@@ -1,0 +1,1239 @@
+SrcGame\src\character.cpp:36:int rsDisplayDamgeToClient(rsPLAYINFO *lpPlayInfo, char *szDmgMsg);
+SrcGame\src\character.cpp:110:int rsSendTransSkillAttack(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo);
+SrcGame\src\character.cpp:112:int rsProcessAttack_SkillHolyReflection(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar);
+SrcGame\src\character.cpp:124:int rsSendTransSkillAttack(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo);
+SrcGame\src\character.cpp:15739:	rsPLAYINFO *lpPlayInfo = 0;
+SrcGame\src\character.cpp:15759:		lpPlayInfo = (rsPLAYINFO *)lpsmsock->ExtData1;
+SrcGame\src\character.h:550:	rsPLAYINFO		*lpMasterPlayInfo;
+SrcGame\src\character.h:555:	rsPLAYINFO		*lpTargetPlayInfo;
+SrcGame\src\character.h:561:	rsPLAYINFO		*lpLinkPlayInfo;
+SrcGame\src\character.h:565:	rsPLAYINFO		*lpExpAttackPlayInfo;
+SrcGame\src\character.h:593:	rsPLAYINFO		*lpCompulsionPlayInfo;
+SrcGame\src\damage.h:43:typedef DWORD(*LPFN_DecodeDamagePacket)(rsPLAYINFO *lpPlayInfo, void *lpPacket);
+SrcGame\src\playsub.cpp:3166:int DecodeCompress_ItemPotion(rsPLAYINFO *lpPlayInfo, BYTE *lpSrcData, BYTE *lpDestData, int deCount, void *lpTransRecdata)
+SrcGame\src\playsub.h:145:int DecodeCompress_ItemPotion(rsPLAYINFO *lpPlayInfo, BYTE *lpSrcData, BYTE *lpDestData, int deCount, void *lpTransRecdata);
+SrcGame\src\record.cpp:55:int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpTransCommand);
+SrcGame\src\record.cpp:57:int	rsGetTradePotionInfo(rsPLAYINFO *lpPlayInfo, DWORD dwCode);
+SrcGame\src\record.cpp:59:int rsPutItem_PointTicket(rsPLAYINFO *lpPlayInfo, int Price);
+SrcGame\src\record.cpp:74:	rsPLAYINFO	*lpPlayInfo;
+SrcGame\src\record.cpp:97:int rsSaveRecData(TRANS_RECORD_DATA *lpTransRecordData, rsPLAYINFO *lpPlayInfo,
+SrcGame\src\record.cpp:103:int	OpenStarPointEvent(rsPLAYINFO *lpPlayInfo, smCHAR_INFO *lpCharInfo);
+SrcGame\src\record.cpp:105:int	CloseStarPointEvent(rsPLAYINFO *lpPlayInfo, smCHAR_INFO *lpCharInfo);
+SrcGame\src\record.cpp:107:int	OpenStarPointTicket(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\record.cpp:2008:int rsRECORD_DBASE::SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName, smWINSOCK *lpsmSock, int Mode)
+SrcGame\src\record.cpp:2284:int rsRECORD_DBASE::MakeRecordItemList(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\record.cpp:2457:int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, rsPLAYINFO *lpPlayInfo)
+SrcGame\src\record.cpp:2794:int rsRecordMemoryBuffToFile(rsPLAYINFO *lpPlayInfo, const char *szName, char *lpRecordMemBuff)
+SrcGame\src\record.cpp:2841:int rsSaveThrowData(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\record.cpp:2871:int rsRecordMemoryBuff_CheckInvenItem(rsPLAYINFO *lpPlayInfo, int Mode)
+SrcGame\src\record.cpp:3684:int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\record.cpp:3844:int rsLoadWareHouseData_Admin(rsPLAYINFO *lpPlayInfo, char *szID, int Day)
+SrcGame\src\record.cpp:3920:int rsLoadServerForce(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo)
+SrcGame\src\record.cpp:4147:int rsSaveServerForce(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo)
+SrcGame\src\record.cpp:4340:int rsSaveServerPotion(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo)
+SrcGame\src\record.cpp:4367:int rsCompareServerPotion(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo)
+SrcGame\src\record.cpp:4606:int rsSaveRecData(TRANS_RECORD_DATA *lpTransRecordData, rsPLAYINFO *lpPlayInfo,
+SrcGame\src\record.cpp:4676:int	rsLoadPostBox(rsPLAYINFO	*lpPlayInfo)
+SrcGame\src\record.cpp:4802:int	rsSavePostBox(rsPLAYINFO	*lpPlayInfo)
+SrcGame\src\record.cpp:4851:int	rsAddPostBox_Present(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\record.cpp:4895:int	OpenStarPointEvent(rsPLAYINFO *lpPlayInfo, smCHAR_INFO *lpCharInfo)
+SrcGame\src\record.cpp:4952:int	CloseStarPointEvent(rsPLAYINFO *lpPlayInfo, smCHAR_INFO *lpCharInfo)
+SrcGame\src\record.cpp:4966:int	OpenStarPointTicket(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\record.h:277:	int RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, rsPLAYINFO *lpPlayInfo);
+SrcGame\src\record.h:280:	int SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName, smWINSOCK *lpsmSock, int Mode = 0);
+SrcGame\src\record.h:283:	int MakeRecordItemList(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\record.h:305:int rsRecordMemoryBuffToFile(rsPLAYINFO *lpPlayInfo, const char *szName, char *lpRecordMemBuff);
+SrcGame\src\record.h:309:int rsRecordMemoryBuff_CheckInvenItem(rsPLAYINFO *lpPlayInfo, int Mode = 0);
+SrcGame\src\record.h:311:int rsSaveThrowData(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\record.h:317:int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\record.h:321:int rsLoadWareHouseData_Admin(rsPLAYINFO *lpPlayInfo, char *szID, int Day);
+SrcGame\src\record.h:324:int rsLoadServerForce(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo);
+SrcGame\src\record.h:326:int rsSaveServerForce(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo);
+SrcGame\src\record.h:328:int rsSaveServerPotion(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo);
+SrcGame\src\record.h:330:int rsCompareServerPotion(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo);
+SrcGame\src\record.h:347:int	rsSavePostBox(rsPLAYINFO	*lpPlayInfo);
+SrcGame\src\record.h:349:int	rsLoadPostBox(rsPLAYINFO	*lpPlayInfo);
+SrcGame\src\record.h:351:int	rsAddPostBox_Present(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\record.h:354:int	OpenStarPointEvent(rsPLAYINFO *lpPlayInfo, smCHAR_INFO *lpCharInfo);
+SrcGame\src\record.h:356:int	OpenStarPointTicket(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\ClientFuncPos.cpp:176:int	rsSendGameServer_FuncError(rsPLAYINFO *lpPlayInfo, int WParam, int LParam)
+SrcGame\src\Server\ClientFuncPos.cpp:222:int rsSendFuncMemToClient(rsPLAYINFO *lpPlayInfo, DWORD dwFuncMem, DWORD	dwLen)
+SrcGame\src\Server\ClientFuncPos.cpp:262:int rsSendFuncMemToClient2(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\ClientFuncPos.cpp:310:int	rsCheckClientFuncMem(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\ClientFuncPos.cpp:338:int	rsCompClientFuncMem(rsPLAYINFO *lpPlayInfo, DWORD	dwFunc, DWORD dwChkSum)
+SrcGame\src\Server\ClientFuncPos.cpp:392:int	rsCompClientFuncMem2(rsPLAYINFO *lpPlayInfo, DWORD dwFuncCode)
+SrcGame\src\Server\ClientFuncPos.h:11:int rsSendFuncMemToClient(rsPLAYINFO *lpPlayInfo, DWORD dwFuncMem, DWORD	dwLen);
+SrcGame\src\Server\ClientFuncPos.h:13:int	rsCompClientFuncMem(rsPLAYINFO *lpPlayInfo, DWORD	dwFunc, DWORD dwChkSum);
+SrcGame\src\Server\ClientFuncPos.h:15:int	rsCompClientFuncMem2(rsPLAYINFO *lpPlayInfo, DWORD dwFuncCode);
+SrcGame\src\Server\ClientFuncPos.h:17:int	rsCheckClientFuncMem(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\DllServer.cpp:79:int	bSql_PCUse(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\DllServer.cpp:84:int	bUrs_Expined(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\DllServer.cpp:90:int	bSql_PCSearchReserv(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\DllServer.cpp:100:int	bSql_EventLogon(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\DllServer.cpp:105:int	bSql_EventLogOut(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\DllServer.cpp:112:int	bSql_PCRNoReservProduct(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\DllServer.cpp:129:int	bSql_SODRecord(rsPLAYINFO *lpPlayInfo, int Level, int SodScore, int SodKillCount, int SodTotalScore, int SodTotalSucessUser, int SodTotalUser, int SodCode)
+SrcGame\src\Server\DllServer.cpp:134:int	bSql_StarPoint(rsPLAYINFO *lpPlayInfo, int StarPoint, int CashFlag)
+SrcGame\src\Server\DllServer.cpp:140:int	bSql_PollData(rsPLAYINFO *lpPlayInfo, int PollKind, int PollCount, BYTE *PollData)
+SrcGame\src\Server\DllServer.cpp:146:int	bSql_GetExpGameTime(rsPLAYINFO *lpPlayInfo, int GamePlayTime)
+SrcGame\src\Server\DllServer.cpp:152:int	bSql_EventJoin(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\DllServer.cpp:157:int	bSql_ClanMoney(rsPLAYINFO *lpPlayInfo, int Cash, int CashFlag, int Kind)
+SrcGame\src\Server\DllServer.cpp:163:int	bClan_GetClanMarkCode(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\DllServer.cpp:174:int	bSql_GiveMoney(rsPLAYINFO *lpPlayInfo, int Money)
+SrcGame\src\Server\DllServer.cpp:235:int	bClan_UserTicket(rsPLAYINFO *lpPlayInfo, int gubun)
+SrcGame\src\Server\DllServer.cpp:240:int	bClan_InsertPoint(rsPLAYINFO *lpPlayInfo, int point)
+SrcGame\src\Server\DllServer.h:56:int	bSql_EventLogon(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\DllServer.h:57:int	bSql_EventLogOut(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\DllServer.h:60:int	bSql_GetExpGameTime(rsPLAYINFO *lpPlayInfo, int GamePlayTime);
+SrcGame\src\Server\DllServer.h:64:int	bSql_PCUse(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\DllServer.h:65:int	bSql_PCSearchReserv(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\DllServer.h:68:int	bSql_PCRNoReservProduct(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\DllServer.h:70:int	bSql_SODRecord(rsPLAYINFO *lpPlayInfo, int Level, int SodScore, int SodKillCount, int SodTotalScore, int SodTotalSucessUser, int SodTotalUser, int SodCode);
+SrcGame\src\Server\DllServer.h:71:int	bSql_StarPoint(rsPLAYINFO *lpPlayInfo, int StarPoint, int CashFlag);
+SrcGame\src\Server\DllServer.h:72:int	bSql_GiveMoney(rsPLAYINFO *lpPlayInfo, int Money);
+SrcGame\src\Server\DllServer.h:73:int	bSql_PollRecord(rsPLAYINFO *lpPlayInfo, int PollKind, int PollCount, BYTE *PollData);
+SrcGame\src\Server\DllServer.h:74:int	bSql_ClanMoney(rsPLAYINFO *lpPlayInfo, int Cash, int CashFlag, int Kind);
+SrcGame\src\Server\DllServer.h:75:int	bClan_GetClanMarkCode(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\DllServer.h:77:int	bSql_EventJoin(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\DllServer.h:191:int	bClan_UserTicket(rsPLAYINFO *lpPlayInfo, int gubun);
+SrcGame\src\Server\DllServer.h:193:int	bClan_InsertPoint(rsPLAYINFO *lpPlayInfo, int point);
+SrcGame\src\Server\onserver.h:195:	int SendStartPos(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\onserver.h:220:	int SendStgItem(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\onserver.h:222:	int SendStgItem(rsPLAYINFO *lpPlayInfo, STG_ITEMS *lpStgItem);
+SrcGame\src\Server\onserver.h:224:	int SendStgItemToPartyUsers(rsPLAYINFO *lpPlayInfo, STG_ITEMS *lpStgItem);
+SrcGame\src\Server\onserver.h:242://extern rsPLAYINFO	*rsPlayInfo;
+SrcGame\src\Server\onserver.h:244:extern rsPLAYINFO rsPlayInfo[CONNECTMAX];
+SrcGame\src\Server\onserver.h:378:int rsProcessQuest(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int QuestCode, int QuestParam);
+SrcGame\src\Server\onserver.h:396:int SendOpenEvent(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo, int EventFlag);
+SrcGame\src\Server\onserver.h:398:int SendOpenGiftExpress(rsPLAYINFO *lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCode_Param);
+SrcGame\src\Server\onserver.h:404:TRANS_SOD_RESULT *rsSod_GetRealTimeScore(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\onserver.h:412:int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpTransCommand);
+SrcGame\src\Server\onserver.h:415:int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAttackData);
+SrcGame\src\Server\onserver.h:417:int RecvRangeAttackUser(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAttackData);
+SrcGame\src\Server\onserver.h:425:rsPLAYINFO *srFindUserFromSerial(DWORD dwObjectSerial);
+SrcGame\src\Server\onserver.h:427:int rsPlayGrandHealing(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\onserver.h:432:int srDisplayBillingTime(rsPLAYINFO *lpPlayInfo, int Add_BillingTime);
+SrcGame\src\Server\onserver.h:435:int	rsSendCommandUser(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX	*lpTransCommandEx);
+SrcGame\src\Server\onserver.h:437:int	rsSendCommandUser2(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\onserver.h:446:int rsEventLogOn_Sucess(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\onserver.h:453:int rsSendRangeDamage(smCHAR *lpChar, rsPLAYINFO *lpMainPlayInfo, int Range, int SubDamgePers);
+SrcGame\src\Server\onserver.h:458:int	rsClanMoneyLOG(rsPLAYINFO *lpPlayInfo, int Money, int RestMoney);
+SrcGame\src\Server\onserver.h:462:int rsAddServerPotion(rsPLAYINFO *lpPlayInfo, DWORD dwPotionCode, int PotionCount);
+SrcGame\src\Server\onserver.h:464:int rsGetServerPotion(rsPLAYINFO *lpPlayInfo, DWORD dwPotionCode);
+SrcGame\src\Server\onserver.h:467:int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff);
+SrcGame\src\Server\onserver.h:471:smCHAR *OpenMonsterFromSkill(DWORD SkillCode, int x, int y, int z, rsPLAYINFO *lpPlayInfo, smCHAR *lpEnemyChar);
+SrcGame\src\Server\onserver.h:477:int rsRecvBlessCastInfo(rsPLAYINFO *lpPlayInfo, void *lpPacket);
+SrcGame\src\Server\onserver.h:479:int rsSendBlessCastInfo(rsPLAYINFO *lpPlayInfo, int Mode);
+SrcGame\src\Server\onserver.h:486:int	rsUpdateServerParam(rsPLAYINFO *lpPlayInfo, DWORD dwUpdateCode, int Param1, int Param2, int TargetMode);
+SrcGame\src\Server\onserver.h:490:int rsDebugMessageToClient(rsPLAYINFO *lpPlayInfo, char *szDmgMsg);
+SrcGame\src\Server\onserver.h:494:int rsGetExp_GameTime(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\onserver.h:496:DWORD ManufactureCheckRune(rsPLAYINFO *lpPlayInfo, DWORD RecipeCode, DWORD *pRuneCode);
+SrcGame\src\Server\onserver.h:499:int rsDispay_GameTime(rsPLAYINFO *lpPlayInfo, DWORD dwTimeOld);
+SrcGame\src\Server\onserver.h:502:int	rsUseSoccerBallPotionItem(DWORD dwItemCode, rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\onserver.h:507:int rsSendGameServer_PrimeItem2(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\onserver.h:512:int rsSendGameServer_PrimeItem3(rsPLAYINFO *lpPlayInfo);SrcGame\src\Server\OnSever.cpp:710:rsPLAYINFO rsPlayInfo[CONNECTMAX];
+SrcGame\src\Server\OnSever.cpp:779:int rsRecvSystemInfo(rsPLAYINFO *lpPlayInfo, void *Buff);
+SrcGame\src\Server\OnSever.cpp:788:int SaveThrowItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwKey, DWORD dwSum);
+SrcGame\src\Server\OnSever.cpp:790:int rsLogAccount(rsPLAYINFO *lpPlayInfo, char *szID, char *szPassword);
+SrcGame\src\Server\OnSever.cpp:795:int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:798:int RecordDebugPlayLogFile(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:800:int RecordMixItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSrcItem, sITEMINFO *lpMixItem);
+SrcGame\src\Server\OnSever.cpp:802:int RecordAgingItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSrcItem, sITEMINFO *lpMixItem, int Mode);
+SrcGame\src\Server\OnSever.cpp:808:int rsSendNetLOG(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:810:int RecordCollectMoney(rsPLAYINFO *lpPlayInfo, int Money);
+SrcGame\src\Server\OnSever.cpp:814:int RecordGetHighItem(rsPLAYINFO *lpPlayInfo, struct STG_ITEMS *lpStgItem);
+SrcGame\src\Server\OnSever.cpp:822:int RecordSmeltingItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSmeltingItem);
+SrcGame\src\Server\OnSever.cpp:824:int RecordManufactureItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpManufactureItem);
+SrcGame\src\Server\OnSever.cpp:827:int RecordMixtureResetItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpMixtureResetItem);
+SrcGame\src\Server\OnSever.cpp:830:int RecordMovieBloodyBattleItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpMovieBloodyBattleItem);
+SrcGame\src\Server\OnSever.cpp:841:int rsPutItem(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode);
+SrcGame\src\Server\OnSever.cpp:843:int rsPutItem(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, int spJobCode);
+SrcGame\src\Server\OnSever.cpp:845:int rsPutItemUnique(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, int spJobCode, DWORD dwUniqueCode);
+SrcGame\src\Server\OnSever.cpp:848:int rsPutItem2(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpItem);
+SrcGame\src\Server\OnSever.cpp:850:int rsCheck_ChageJob(rsPLAYINFO *lpPlayInfo, int NewCnageJob);
+SrcGame\src\Server\OnSever.cpp:867:int	rsTransUpdateSod(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:886:int	rsSendCommandUser(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX	*lpTransCommandEx);
+SrcGame\src\Server\OnSever.cpp:889:int	rsRecordFixExp(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:902:int RecordJobChanger(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:908:int rsSendGameServerExp(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:924:int	rsAddInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum);
+SrcGame\src\Server\OnSever.cpp:926:int	rsDeleteInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum);
+SrcGame\src\Server\OnSever.cpp:928:int	rsFindInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum);
+SrcGame\src\Server\OnSever.cpp:930:int	rsCheckInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode);
+SrcGame\src\Server\OnSever.cpp:933:int	rsCheck_ItemSecCode(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum, int Money, DWORD dwSeCode_0, DWORD dwSeCode_1, DWORD dwSeCode_2, DWORD dwSeCode_3, int *pPotionCount);
+SrcGame\src\Server\OnSever.cpp:935:int	rsRegist_ItemSecCode(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo, int NewItem);
+SrcGame\src\Server\OnSever.cpp:937:int	rsRegist_ItemSecCode(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTransCommandEx);
+SrcGame\src\Server\OnSever.cpp:942:int Record_BillingLogFile(rsPLAYINFO *lpPlayInfo, DWORD wParam, DWORD lParam, DWORD sParam, DWORD eParam);
+SrcGame\src\Server\OnSever.cpp:944:int Record_DeadUser(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:960:int rsSend_ResultSOD(rsPLAYINFO *lpPlayInfo, int Point, int KillCount, int TotalPoint, int TotalSucessUser, int TotalUser, int ClassCode);
+SrcGame\src\Server\OnSever.cpp:964:int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:966:int rsCancelSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:968:int rsUpdateSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:971:int rsClanUpdate(rsPLAYINFO *lpPlayInfo, TRANS_CLAN_COMMAND_USER *lpTransClanUser);
+SrcGame\src\Server\OnSever.cpp:974:int rsRecvYahooMotion(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:977:rsPLAYINFO *FindUserFromName(char *szName);
+SrcGame\src\Server\OnSever.cpp:981:int	rsPushKillMonster(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo, STG_AREA *lpStgArea);
+SrcGame\src\Server\OnSever.cpp:985:int	rsSaveAdminCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand, int Level);
+SrcGame\src\Server\OnSever.cpp:987:int	rsRecordAdminCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand, int Level);
+SrcGame\src\Server\OnSever.cpp:989:AccountTypes getSecurityLevel(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:991:int rsRecvStarPoint(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:993:int rsRecvSodClanCash(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:995:int rsRecvGiveMoney(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:997:int rsRecvPaymentMoney(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:999:DWORD rsOpenEventPuzzleItem(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar);
+SrcGame\src\Server\OnSever.cpp:1001:int	rsTrade_PersonalShop(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, smTRANS_COMMAND_BUFF *lpTransCommandBuff);
+SrcGame\src\Server\OnSever.cpp:1003:int	rsUseLovelyItem(rsPLAYINFO *lpPlayInfo, DWORD	dwItemCode);
+SrcGame\src\Server\OnSever.cpp:1009:int	rsQuestMasterMessage(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:1019:int rsGetQuestCommand(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:1039:int	rsRecvBlessCastleInfoFromGameServer(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:1041:int	rsSendBlessCastleInfoToDataServer(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:1051:int RecordBlessCastleSetup(rsPLAYINFO *lpPlayInfo, smTRANS_BLESSCASTLE *lpBlessCastleSetup);
+SrcGame\src\Server\OnSever.cpp:1054:int rsCheck_BlessCastleClanSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:1056:int rsSendBlessCastleClanSkill(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:1058:int	rsOpenSiegeCastleItem(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:1061:int rsCheckPlayField(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:1063:int rsStartUser_PresentItem(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:1065:DWORD rsLowLevelItem(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar);
+SrcGame\src\Server\OnSever.cpp:1067:int rsRecvUpdateServerParam(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:1070:int rsSendUserID_MainServer(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:1071:int rsRecvUserID_MainServer(rsPLAYINFO *lpPlayInfo, smTRANS_CHAR_COMMAND2 *lpTransCharCommand);
+SrcGame\src\Server\OnSever.cpp:1074:int rsRecvHackTrap(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCharCommand);
+SrcGame\src\Server\OnSever.cpp:1078:int rsRecvCheckItemMesh(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:1082:int	rsSendCloseClient(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:1085:int rsPutItem_TreasureBox(rsPLAYINFO *lpPlayInfo, DWORD Code);
+SrcGame\src\Server\OnSever.cpp:1088:int rsPutItem_CapsuleItem(rsPLAYINFO *lpPlayInfo, DWORD Code);
+SrcGame\src\Server\OnSever.cpp:1092:int rsFiltChatMsg(rsPLAYINFO *lpPlayInfo, char *szMsg, int len);
+SrcGame\src\Server\OnSever.cpp:1093:int rsRecvEventGame(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\OnSever.cpp:1095:int Event_UserInfo_Init(rsPLAYINFO *lpPlayInfo, WORD sTime);
+SrcGame\src\Server\OnSever.cpp:1139:int	rsRecord_ItemLOG(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHead, DWORD dwChkSum, int Flag);
+SrcGame\src\Server\OnSever.cpp:1141:int	rsRecord_ItemLog2(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHead, DWORD dwChkSum, int Flag);
+SrcGame\src\Server\OnSever.cpp:1143:int	rsRecord_ItemLog_Change(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHead, DWORD dwChkSum,
+SrcGame\src\Server\OnSever.cpp:1146:int	rsRecord_ItemLost(rsPLAYINFO *lpPlayInfo, DWORD *lpItemCode, DWORD *lpHead, DWORD *lpChkSum, int Flag);
+SrcGame\src\Server\OnSever.cpp:1148:int	rsRecord_ItemLog_Trade(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRANS_TRADE_ITEMKEY *lpTransTradeItemKey);
+SrcGame\src\Server\OnSever.cpp:1150:int	rsRecord_ItemLog_Post(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHead, DWORD dwChkSum, DWORD dwGCode, char *szTelNum, int Flag);
+SrcGame\src\Server\OnSever.cpp:1153:int rsRecord_SmeltingItemLOG(rsPLAYINFO *lpPlayInfo, DWORD *lpItemCode, DWORD *lpHead, DWORD *lpChkSum, int Flag);
+SrcGame\src\Server\OnSever.cpp:1155:int rsRecord_ManufactureItemLOG(rsPLAYINFO *lpPlayInfo, DWORD *lpItemCode, DWORD *lpHead, DWORD *lpChkSum, int Flag);
+SrcGame\src\Server\OnSever.cpp:1158:int rsRecord_MixtureResetItemLOG(rsPLAYINFO *lpPlayInfo, sMIXTURE_RESET_ITEM_SERVER *pMixtureResetItem_Server, int Flag);
+SrcGame\src\Server\OnSever.cpp:1163:int rsSendAreaOpenKidMonster(rsPLAYINFO	*lpPlayInfo, smCHAR *lpChar);
+SrcGame\src\Server\OnSever.cpp:1164:int rsOpenKidMonster(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand, int mon_Num);
+SrcGame\src\Server\OnSever.cpp:1167:int rsSendAreaOpenSODGuardMonster(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar);
+SrcGame\src\Server\OnSever.cpp:1168:int rsOpenSODGuardMonster(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand, int mon_Num);
+SrcGame\src\Server\OnSever.cpp:1207:rsPLAYINFO	*lpPlayInfo_LoginServer[SER_TO_LOGIN_SOCKET_MAX] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
+SrcGame\src\Server\OnSever.cpp:1232:int	rsSendMoneyToSystemLine(rsPLAYINFO *lpPlayInfo, int Money);
+SrcGame\src\Server\OnSever.cpp:1233:int rsSendCharInfoToLoginServer(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\OnSever.cpp:1242:int	rsSendMoneyToUser(rsPLAYINFO *lpPlayInfo, int Money);
+SrcGame\src\Server\OnSever.cpp:1255:	memset(rsPlayInfo, 0, sizeof(rsPlayInfo));
+SrcGame\src\Server\OnSever.cpp:1270:	memset(rsPlayInfo, 0, sizeof(rsPlayInfo));
+SrcGame\src\Server\OnSever.cpp:1290:int rsLogOut(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:1772:rsPLAYINFO *srFindUserFromSerial(DWORD dwObjectSerial)
+SrcGame\src\Server\OnSever.cpp:1780:		if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial == dwObjectSerial)
+SrcGame\src\Server\OnSever.cpp:1782:			return &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:2060:int srGetMonsterItem(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, psITEM *lpsItem)
+SrcGame\src\Server\OnSever.cpp:2989:int	OpenEnemyMonsterFromCristal(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:3068:int	OpenMonsterFromCristal(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:3452:smCHAR *OpenMonsterFromSkill(DWORD SkillCode, int x, int y, int z, rsPLAYINFO *lpPlayInfo, smCHAR *lpEnemyChar)
+SrcGame\src\Server\OnSever.cpp:3602:smCHAR *OpenMonster_QuestArena(rsPLAYINFO *lpPlayInfo, DWORD dwQuestCode, int Param = 0)
+SrcGame\src\Server\OnSever.cpp:3713:smCHAR *OpenMonsterFromName(char *szName, int x, int y, int z, rsPLAYINFO *lpPlayInfo = 0)
+SrcGame\src\Server\OnSever.cpp:4038:	rsPLAYINFO	*lpPlayInfo;
+SrcGame\src\Server\OnSever.cpp:4563:				if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].EventMode == rsHARDCORE_EVENT_FLAG)
+SrcGame\src\Server\OnSever.cpp:4565:					if(rsCheckHardCoreEventArea(rsPlayInfo[cnt].Position.x, rsPlayInfo[cnt].Position.y, rsPlayInfo[cnt].Position.z) == TRUE)
+SrcGame\src\Server\OnSever.cpp:4567:						if(total < rsPlayInfo[cnt].EventScore)
+SrcGame\src\Server\OnSever.cpp:4568:							total = rsPlayInfo[cnt].EventScore;
+SrcGame\src\Server\OnSever.cpp:4623:				if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].EventMode == rsHARDCORE_EVENT_FLAG)
+SrcGame\src\Server\OnSever.cpp:4625:					if(rsCheckHardCoreEventArea(rsPlayInfo[cnt].Position.x, rsPlayInfo[cnt].Position.y, rsPlayInfo[cnt].Position.z) == TRUE)
+SrcGame\src\Server\OnSever.cpp:4627:						totalScore += rsPlayInfo[cnt].EventScore;
+SrcGame\src\Server\OnSever.cpp:4637:				if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].EventMode == rsHARDCORE_EVENT_FLAG)
+SrcGame\src\Server\OnSever.cpp:4639:					if(rsCheckHardCoreEventArea(rsPlayInfo[cnt].Position.x, rsPlayInfo[cnt].Position.y, rsPlayInfo[cnt].Position.z) == TRUE)
+SrcGame\src\Server\OnSever.cpp:4642:						money = rsPlayInfo[cnt].EventScore - ((rsPlayInfo[cnt].EventScore*rsSOD_Tax) / 100);
+SrcGame\src\Server\OnSever.cpp:4652:						rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:4655:						if(TransSodResult.ResultCount < SOD_RESULT_MAX && !rsPlayInfo[cnt].HideMode)
+SrcGame\src\Server\OnSever.cpp:4657:							TransSodResult.Result[TransSodResult.ResultCount].lpPlayInfo = &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:4658:							strcpy_s(TransSodResult.Result[TransSodResult.ResultCount].szName, rsPlayInfo[cnt].smCharInfo.szName);
+SrcGame\src\Server\OnSever.cpp:4659:							TransSodResult.Result[TransSodResult.ResultCount].Class = rsPlayInfo[cnt].smCharInfo.ClassClan;
+SrcGame\src\Server\OnSever.cpp:4660:							TransSodResult.Result[TransSodResult.ResultCount].JobCode = rsPlayInfo[cnt].smCharInfo.JOB_CODE;
+SrcGame\src\Server\OnSever.cpp:4661:							TransSodResult.Result[TransSodResult.ResultCount].Score = rsPlayInfo[cnt].EventScore;
+SrcGame\src\Server\OnSever.cpp:4662:							TransSodResult.Result[TransSodResult.ResultCount].Monster = rsPlayInfo[cnt].EventCount;
+SrcGame\src\Server\OnSever.cpp:4671:							if(rsSendMoneyToSystemLine(&rsPlayInfo[cnt], mcnt) == TRUE)
+SrcGame\src\Server\OnSever.cpp:4681:							rsSendMoneyToUser(&rsPlayInfo[cnt], mcnt);
+SrcGame\src\Server\OnSever.cpp:4688:						rsSend_ResultSOD(&rsPlayInfo[cnt], rsPlayInfo[cnt].EventScore, rsPlayInfo[cnt].EventCount, totalScore, total2, rsHardCoreEvent_TotalUser, rsSoD_StartCode);
+SrcGame\src\Server\OnSever.cpp:4690:						if(rsPlayInfo[cnt].EventScore >= 400000)
+SrcGame\src\Server\OnSever.cpp:4697:							smTransCommand.SParam = rsPlayInfo[cnt].EventMode;
+SrcGame\src\Server\OnSever.cpp:4698:							smTransCommand.LParam = rsPlayInfo[cnt].EventScore;
+SrcGame\src\Server\OnSever.cpp:4699:							rsSendDataServer(rsPlayInfo[cnt].lpsmSock, &smTransCommand);
+SrcGame\src\Server\OnSever.cpp:4707:						rsSend_ResultSOD(&rsPlayInfo[cnt], 0, rsPlayInfo[cnt].EventCount, 0, 0, rsHardCoreEvent_TotalUser, rsSoD_StartCode);
+SrcGame\src\Server\OnSever.cpp:4772:					if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].EventMode == rsHARDCORE_EVENT_FLAG)
+SrcGame\src\Server\OnSever.cpp:4774:						if(rsCheckHardCoreEventArea(rsPlayInfo[cnt].Position.x, rsPlayInfo[cnt].Position.y, rsPlayInfo[cnt].Position.z) == TRUE)
+SrcGame\src\Server\OnSever.cpp:4777:							if(rsPlayInfo[cnt].sEventParam[0] == rsSodTeamRank[0] || (rsPlayInfo[cnt].sEventParam[0] == rsSodTeamRank[1] && rsHardCoreEvent_Count == 3))
+SrcGame\src\Server\OnSever.cpp:4781:								if(rsPlayInfo[cnt].sEventParam[0] == rsSodTeamRank[0])
+SrcGame\src\Server\OnSever.cpp:4786:								rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand2, smTransCommand2.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:4793:								rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:4796:								rsSend_ResultSOD(&rsPlayInfo[cnt], -rsPlayInfo[cnt].EventScore, rsPlayInfo[cnt].EventCount, 0, 0, rsHardCoreEvent_TotalUser, rsSoD_StartCode);
+SrcGame\src\Server\OnSever.cpp:4801:								money = rsPlayInfo[cnt].EventScore - ((rsPlayInfo[cnt].EventScore*rsSOD_Tax) / 100);
+SrcGame\src\Server\OnSever.cpp:4804:								if(dwSerToSerIP && rsSendMoneyToSystemLine(&rsPlayInfo[cnt], money) == TRUE)
+SrcGame\src\Server\OnSever.cpp:4811:									rsSendMoneyToUser(&rsPlayInfo[cnt], money);
+SrcGame\src\Server\OnSever.cpp:4814:								rsPlayInfo[cnt].EventMode = 0;
+SrcGame\src\Server\OnSever.cpp:4815:								rsPlayInfo[cnt].EventScore = 0;
+SrcGame\src\Server\OnSever.cpp:4816:								rsPlayInfo[cnt].EventCount = 0;
+SrcGame\src\Server\OnSever.cpp:4819:								if(rsPlayInfo[cnt].sEventParam[0] == rsSodTeamRank[1]) rnk = 2;
+SrcGame\src\Server\OnSever.cpp:4820:								if(rsPlayInfo[cnt].sEventParam[0] == rsSodTeamRank[2]) rnk = 3;
+SrcGame\src\Server\OnSever.cpp:4821:								if(rsPlayInfo[cnt].sEventParam[0] == rsSodTeamRank[3]) rnk = 4;
+SrcGame\src\Server\OnSever.cpp:4832:								rsPlayInfo[cnt].lpsmSock->Send((char *)&TransChatMessage2, TransChatMessage2.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:4845:			if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].EventMode == rsHARDCORE_EVENT_FLAG)
+SrcGame\src\Server\OnSever.cpp:4847:				if(rsCheckHardCoreEventArea(rsPlayInfo[cnt].Position.x, rsPlayInfo[cnt].Position.y, rsPlayInfo[cnt].Position.z) == TRUE)
+SrcGame\src\Server\OnSever.cpp:4851:						rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand2, smTransCommand2.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:4857:					rsPlayInfo[cnt].EventMode = 0;
+SrcGame\src\Server\OnSever.cpp:4859:					rsSend_ResultSOD(&rsPlayInfo[cnt], 0, rsPlayInfo[cnt].EventCount, 0, 0, rsHardCoreEvent_TotalUser, rsSoD_StartCode);
+SrcGame\src\Server\OnSever.cpp:4877:				if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].EventMode == rsHARDCORE_EVENT_FLAG)
+SrcGame\src\Server\OnSever.cpp:4879:					rsPlayInfo[cnt].EventMode = 0;
+SrcGame\src\Server\OnSever.cpp:4880:					rsPlayInfo[cnt].EventScore = 0;
+SrcGame\src\Server\OnSever.cpp:4881:					rsPlayInfo[cnt].EventCount = 0;
+SrcGame\src\Server\OnSever.cpp:4883:					if(rsCheckHardCoreEventArea(rsPlayInfo[cnt].Position.x, rsPlayInfo[cnt].Position.y, rsPlayInfo[cnt].Position.z) == TRUE)
+SrcGame\src\Server\OnSever.cpp:4890:						rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:5017:TRANS_SOD_RESULT *rsSod_GetRealTimeScore(rsPLAYINFO *lpPlayInfo, int TeamNum)
+SrcGame\src\Server\OnSever.cpp:5032:			if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].EventMode == rsHARDCORE_EVENT_FLAG && (Team == 0 || (rsPlayInfo[cnt].sEventParam[0] + 1) == Team))
+SrcGame\src\Server\OnSever.cpp:5034:				if(!rsPlayInfo[cnt].HideMode && rsCheckHardCoreEventArea(rsPlayInfo[cnt].Position.x, rsPlayInfo[cnt].Position.y, rsPlayInfo[cnt].Position.z) == TRUE)
+SrcGame\src\Server\OnSever.cpp:5040:						TransSodResult_RealTime[Team].Result[rc].lpPlayInfo = &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:5041:						strcpy_s(TransSodResult_RealTime[Team].Result[rc].szName, rsPlayInfo[cnt].smCharInfo.szName);
+SrcGame\src\Server\OnSever.cpp:5042:						TransSodResult_RealTime[Team].Result[rc].Class = rsPlayInfo[cnt].smCharInfo.ClassClan;
+SrcGame\src\Server\OnSever.cpp:5043:						TransSodResult_RealTime[Team].Result[rc].JobCode = rsPlayInfo[cnt].smCharInfo.JOB_CODE;
+SrcGame\src\Server\OnSever.cpp:5044:						TransSodResult_RealTime[Team].Result[rc].Score = rsPlayInfo[cnt].EventScore;
+SrcGame\src\Server\OnSever.cpp:5045:						TransSodResult_RealTime[Team].Result[rc].Monster = rsPlayInfo[cnt].EventCount;
+SrcGame\src\Server\OnSever.cpp:5074:int	rsTransUpdateSod(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:5131:int rsShowHardCoreEventScore(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:5146:int rsShowHardCoreEventScore2(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int Score)
+SrcGame\src\Server\OnSever.cpp:5166:int rsSoD_CatchItem_SD201(rsPLAYINFO *lpPlayInfo, int StagePos, STG_AREA	*lpStgArea)
+SrcGame\src\Server\OnSever.cpp:5207:int rsSoD_CatchItem_SD202(rsPLAYINFO *lpPlayInfo, int StagePos, STG_AREA	*lpStgArea)
+SrcGame\src\Server\OnSever.cpp:5239:int rsSoD_CatchItem_SD203(rsPLAYINFO *lpPlayInfo, int StagePos, STG_AREA	*lpStgArea)
+SrcGame\src\Server\OnSever.cpp:5273:int rsSoD_CatchItem_SD204(rsPLAYINFO *lpPlayInfo, int StagePos, STG_AREA	*lpStgArea)
+SrcGame\src\Server\OnSever.cpp:5399:int rsSoD_CatchItem_SD205(rsPLAYINFO *lpPlayInfo, int StagePos, STG_AREA	*lpStgArea, DWORD MonSndCode, int Level)
+SrcGame\src\Server\OnSever.cpp:5470:int rsSoD_CatchItem_SD207(rsPLAYINFO *lpPlayInfo, int StagePos, STG_AREA	*lpStgArea)
+SrcGame\src\Server\OnSever.cpp:5493:int	rsSendCommandSodUserTeam(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND	*lpTransCommandEx)
+SrcGame\src\Server\OnSever.cpp:5500:		if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial)
+SrcGame\src\Server\OnSever.cpp:5503:			if(rsPlayInfo[cnt].EventMode == rsHARDCORE_EVENT_FLAG &&
+SrcGame\src\Server\OnSever.cpp:5504:				rsPlayInfo[cnt].sEventParam[0] == lpPlayInfo->sEventParam[0] &&
+SrcGame\src\Server\OnSever.cpp:5505:				rsCheckHardCoreEventArea(rsPlayInfo[cnt].Position.x, rsPlayInfo[cnt].Position.y, rsPlayInfo[cnt].Position.z) == TRUE)
+SrcGame\src\Server\OnSever.cpp:5508:				rsPlayInfo[cnt].lpsmSock->Send((char *)lpTransCommandEx, lpTransCommandEx->size, TRUE);
+SrcGame\src\Server\OnSever.cpp:5520:int	rsSoD_CatchItem(DWORD dwItemCode, rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:5622:int SendOpenEvent(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo, int EventFlag)
+SrcGame\src\Server\OnSever.cpp:5728:int rsEnterHardCoreEvent(rsPLAYINFO *lpPlayInfo, int Money)
+SrcGame\src\Server\OnSever.cpp:5819:int rsShowHardCoreEventScore(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:6163:				if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwExpGameTime)
+SrcGame\src\Server\OnSever.cpp:6164:					rsPlayInfo[cnt].dwExpGameTime = 0;
+SrcGame\src\Server\OnSever.cpp:6555:			if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial)
+SrcGame\src\Server\OnSever.cpp:6558:				rx = lpStgItem->x - (rsPlayInfo[cnt].Position.x >> FLOATNS);
+SrcGame\src\Server\OnSever.cpp:6559:				rz = lpStgItem->z - (rsPlayInfo[cnt].Position.z >> FLOATNS);
+SrcGame\src\Server\OnSever.cpp:6563:					rsPlayInfo[cnt].lpsmSock->Send((char *)&TransActionItem, TransActionItem.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:6590:int STG_AREA::SendStgItem(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:6715:int STG_AREA::SendStgItem(rsPLAYINFO *lpPlayInfo, STG_ITEMS *lpStgItem)
+SrcGame\src\Server\OnSever.cpp:6809:			if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial)
+SrcGame\src\Server\OnSever.cpp:6811:				rx = lpStgItem->x - (rsPlayInfo[cnt].Position.x >> FLOATNS);
+SrcGame\src\Server\OnSever.cpp:6812:				rz = lpStgItem->z - (rsPlayInfo[cnt].Position.z >> FLOATNS);
+SrcGame\src\Server\OnSever.cpp:6817:					rsPlayInfo[cnt].lpsmSock->Send((char *)&TransItems, TransItems.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:6828:int STG_AREA::SendStgItemToPartyUsers(rsPLAYINFO *lpPlayInfo, STG_ITEMS *lpStgItem)
+SrcGame\src\Server\OnSever.cpp:6872:			if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial &&
+SrcGame\src\Server\OnSever.cpp:6873:				rsPlayInfo[cnt].dwPartyInfo && lpPlayInfo->lpPartyMaster == rsPlayInfo[cnt].lpPartyMaster)
+SrcGame\src\Server\OnSever.cpp:6876:				rx = lpStgItem->x - (rsPlayInfo[cnt].Position.x >> FLOATNS);
+SrcGame\src\Server\OnSever.cpp:6877:				rz = lpStgItem->z - (rsPlayInfo[cnt].Position.z >> FLOATNS);
+SrcGame\src\Server\OnSever.cpp:6882:					rsPlayInfo[cnt].lpsmSock->Send((char *)&TransItems, TransItems.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:6899:		if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial && (dwPlayServTime - rsPlayInfo[cnt].dwLastRecvTime) < OVER_TRANS_TIME)
+SrcGame\src\Server\OnSever.cpp:6902:			SendStgItem(&rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:6912:int STG_AREA::SendStartPos(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:7351:		if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial)
+SrcGame\src\Server\OnSever.cpp:7354:			SendStartPos(&rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:8174:int rsSendCharInfo(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:8201:int rsSendPlayerInfo(rsPLAYINFO *lpSndPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:8204:	rsPLAYINFO	*lpPlayInfo;
+SrcGame\src\Server\OnSever.cpp:8239:int rsSendPlayerInfoQuick(rsPLAYINFO *lpSndPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:8242:	rsPLAYINFO	*lpPlayInfo;
+SrcGame\src\Server\OnSever.cpp:8321:int rsSendTransSkillAttack(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:8654:int rsOpen_SodItem(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
+SrcGame\src\Server\OnSever.cpp:8693:int rsCheckEventItem(DWORD dwItemCode, rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
+SrcGame\src\Server\OnSever.cpp:8717:int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
+SrcGame\src\Server\OnSever.cpp:8727:	rsPLAYINFO	*lpDamagePlayInfo[10];
+SrcGame\src\Server\OnSever.cpp:8837:		if(rsCheckEventItem(lpChar->smMonsterInfo.dwEvnetItem, lprsPlayInfo, lpChar) == TRUE)
+SrcGame\src\Server\OnSever.cpp:8838:			rsPutItem(lprsPlayInfo, lpChar->smMonsterInfo.dwEvnetItem);
+SrcGame\src\Server\OnSever.cpp:8866:						rsPutItem2(lprsPlayInfo, &lpsItem->ItemInfo);
+SrcGame\src\Server\OnSever.cpp:8897:									((STG_AREA *)lpChar->lpExt1)->SendStgItem(lprsPlayInfo, lpStgItem);
+SrcGame\src\Server\OnSever.cpp:8918:		if(lprsPlayInfo->dwTime_PrimeItem_X2 > 0)
+SrcGame\src\Server\OnSever.cpp:8920:			switch(lprsPlayInfo->dwPrimeItem_PackageCode)
+SrcGame\src\Server\OnSever.cpp:8950:		if(lprsPlayInfo->dwTime_PrimeItem_PhenixPet > 0)
+SrcGame\src\Server\OnSever.cpp:8955:		if(lprsPlayInfo->Bl_RNo > 0)
+SrcGame\src\Server\OnSever.cpp:8968:		int giCnt = rsGetExp_GameTime(lprsPlayInfo);
+SrcGame\src\Server\OnSever.cpp:8981:		if(srGetMonsterItem(lprsPlayInfo, lpChar, lpsItem) == TRUE)
+SrcGame\src\Server\OnSever.cpp:8997:				lpsItem->ItemInfo.Money = (lpsItem->ItemInfo.Money*rsGetExp_GameTime(lprsPlayInfo)) / 100;
+SrcGame\src\Server\OnSever.cpp:9010:				if(!lprsPlayInfo->smCharInfo.ChangeJob)
+SrcGame\src\Server\OnSever.cpp:9011:					rsPutItem2(lprsPlayInfo, &lpsItem->ItemInfo);
+SrcGame\src\Server\OnSever.cpp:9014:					if(lprsPlayInfo->smCharInfo.ChangeJob == 1 && lpsItem->ItemInfo.CODE == (sinQT1 | sin06))
+SrcGame\src\Server\OnSever.cpp:9016:						rsPutItem2(lprsPlayInfo, &lpsItem->ItemInfo);
+SrcGame\src\Server\OnSever.cpp:9049:								((STG_AREA *)lpChar->lpExt1)->SendStgItem(lprsPlayInfo, lpStgItem);
+SrcGame\src\Server\OnSever.cpp:9061:	if(lprsPlayInfo->BadPlayer)
+SrcGame\src\Server\OnSever.cpp:9064:		cnt = lprsPlayInfo->MonsterKillCounter;
+SrcGame\src\Server\OnSever.cpp:9082:		if(lprsPlayInfo->smCharInfo.Level < 25) ExpBackup = 400;
+SrcGame\src\Server\OnSever.cpp:9122:		if(lprsPlayInfo->smCharInfo.Level <= 20)
+SrcGame\src\Server\OnSever.cpp:9126:		else if(lprsPlayInfo->smCharInfo.Level > 20 && lprsPlayInfo->smCharInfo.Level <= 30)
+SrcGame\src\Server\OnSever.cpp:9130:		else if(lprsPlayInfo->smCharInfo.Level > 80 && lprsPlayInfo->smCharInfo.Level <= 90)
+SrcGame\src\Server\OnSever.cpp:9141:	if(lprsPlayInfo->dwPartyInfo)
+SrcGame\src\Server\OnSever.cpp:9144:		if(!lprsPlayInfo->lpPartyMaster || lprsPlayInfo->lpPartyMaster->GetPartyExp(lpChar, lprsPlayInfo) == FALSE)
+SrcGame\src\Server\OnSever.cpp:9147:			lprsPlayInfo->dwPartyInfo = PARTY_STATE_NONE;
+SrcGame\src\Server\OnSever.cpp:9148:			lprsPlayInfo->lpPartyMaster = NULL;
+SrcGame\src\Server\OnSever.cpp:9156:		smTransCommand.WParam = srGetTotalExp(lpChar->smMonsterInfo.GetExp, lpChar->smCharInfo.Level - lprsPlayInfo->smCharInfo.Level);
+SrcGame\src\Server\OnSever.cpp:9163:			if(lprsPlayInfo->dwTime_PrimeItem_ExpUp > 0)
+SrcGame\src\Server\OnSever.cpp:9165:				switch(lprsPlayInfo->dwPrimeItem_PackageCode)
+SrcGame\src\Server\OnSever.cpp:9178:			if(lprsPlayInfo->Bl_RNo > 0)
+SrcGame\src\Server\OnSever.cpp:9183:			if(lprsPlayInfo->dwTime_PrimeItem_PhenixPet > 0)
+SrcGame\src\Server\OnSever.cpp:9190:				smTransCommand.WParam = (smTransCommand.WParam * rsGetExp_GameTime(lprsPlayInfo)) / 100;
+SrcGame\src\Server\OnSever.cpp:9201:			lprsPlayInfo->spEXP_Out += smTransCommand.WParam;
+SrcGame\src\Server\OnSever.cpp:9202:			smTransCommand.EParam = smTransCommand.SParam^lprsPlayInfo->spEXP_Out;
+SrcGame\src\Server\OnSever.cpp:9204:			lprsPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:9213:	lprsPlayInfo->MonsterKillCounter++;
+SrcGame\src\Server\OnSever.cpp:9224:	rsPLAYINFO *lprsPlayInfo;
+SrcGame\src\Server\OnSever.cpp:9249:	lprsPlayInfo = srFindUserFromSerial(lpKillMonInfo->dwUserObjectSerial);
+SrcGame\src\Server\OnSever.cpp:9250:	if(!lprsPlayInfo) return FALSE;
+SrcGame\src\Server\OnSever.cpp:9262:	return rsOpen_MonsterItemExp(&smChar, lprsPlayInfo);
+SrcGame\src\Server\OnSever.cpp:9275:	rsPLAYINFO	*lprsPlayInfo;
+SrcGame\src\Server\OnSever.cpp:9339:				lprsPlayInfo = (rsPLAYINFO *)lpChar->lpExt2;
+SrcGame\src\Server\OnSever.cpp:9342:				if(lpChar->lpExpAttackPlayInfo && lpChar->lpExpAttackPlayInfo != lprsPlayInfo)
+SrcGame\src\Server\OnSever.cpp:9347:						lprsPlayInfo = lpChar->lpExpAttackPlayInfo;
+SrcGame\src\Server\OnSever.cpp:9359:				if(lprsPlayInfo->lpsmSock && lprsPlayInfo->dwObjectSerial)
+SrcGame\src\Server\OnSever.cpp:9364:					if(rsPushKillMonster(lpChar, lprsPlayInfo, ((STG_AREA *)lpChar->lpExt1)) == FALSE)
+SrcGame\src\Server\OnSever.cpp:9366:						rsOpen_MonsterItemExp(lpChar, lprsPlayInfo);
+SrcGame\src\Server\OnSever.cpp:9370:						lprsPlayInfo->MonsterKillCounter++;
+SrcGame\src\Server\OnSever.cpp:9375:					if(lprsPlayInfo->EventMode == rsHARDCORE_EVENT_FLAG && lpChar->PartyFlag == rsHARDCORE_EVENT_FLAG && rsHardCoreEvent_Count)
+SrcGame\src\Server\OnSever.cpp:9390:								rsShowHardCoreEventScore2(lprsPlayInfo, lpChar, score);
+SrcGame\src\Server\OnSever.cpp:9393:							lprsPlayInfo->EventScore += score;
+SrcGame\src\Server\OnSever.cpp:9394:							lprsPlayInfo->EventCount++;
+SrcGame\src\Server\OnSever.cpp:9395:							if(lprsPlayInfo->sEventParam[0] >= 0 && lprsPlayInfo->sEventParam[0] < 4)
+SrcGame\src\Server\OnSever.cpp:9396:								rsSodTeamScore[lprsPlayInfo->sEventParam[0]] += score;
+SrcGame\src\Server\OnSever.cpp:9398:							rsShowHardCoreEventScore(lprsPlayInfo);
+SrcGame\src\Server\OnSever.cpp:9400:							rsOpen_SodItem(lpChar, lprsPlayInfo);
+SrcGame\src\Server\OnSever.cpp:9404:					if((lprsPlayInfo->smCharInfo.Level - lpChar->smCharInfo.Level) < 20)
+SrcGame\src\Server\OnSever.cpp:9406:						lprsPlayInfo->dwMacroTime = dwPlayServTime;
+SrcGame\src\Server\OnSever.cpp:9411:				rsEventSpawn_KillMonster(lprsPlayInfo, lpChar);
+SrcGame\src\Server\OnSever.cpp:9657:					lprsPlayInfo = 0;
+SrcGame\src\Server\OnSever.cpp:9660:						if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial && rsPlayInfo[cnt].smCharInfo.Life[0] &&
+SrcGame\src\Server\OnSever.cpp:9661:							rsPlayInfo[cnt].smCharInfo.State != smCHAR_STATE_ENEMY)
+SrcGame\src\Server\OnSever.cpp:9665:							if(lpChar->dwLinkObjectCode && lpChar->dwLinkObjectCode != rsPlayInfo[cnt].dwObjectSerial) continue;
+SrcGame\src\Server\OnSever.cpp:9666:							if(lpChar->dwClanCode && lpChar->dwClanCode == rsPlayInfo[cnt].dwClanCode) continue;
+SrcGame\src\Server\OnSever.cpp:9668:							rX = (pX - rsPlayInfo[cnt].Position.x) >> FLOATNS;
+SrcGame\src\Server\OnSever.cpp:9669:							rY = (pY - rsPlayInfo[cnt].Position.y) >> FLOATNS;
+SrcGame\src\Server\OnSever.cpp:9670:							rZ = (pZ - rsPlayInfo[cnt].Position.z) >> FLOATNS;
+SrcGame\src\Server\OnSever.cpp:9681:										if(rsPlayInfo[cnt].Position.x > lpChar->smMonsterInfo.SkillRangeRect.left &&
+SrcGame\src\Server\OnSever.cpp:9682:											rsPlayInfo[cnt].Position.x<lpChar->smMonsterInfo.SkillRangeRect.right &&
+SrcGame\src\Server\OnSever.cpp:9683:											rsPlayInfo[cnt].Position.z>lpChar->smMonsterInfo.SkillRangeRect.top &&
+SrcGame\src\Server\OnSever.cpp:9684:											rsPlayInfo[cnt].Position.z < lpChar->smMonsterInfo.SkillRangeRect.bottom)
+SrcGame\src\Server\OnSever.cpp:9687:											rsSendTransSkillAttack(lpChar, &rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:9695:											rsSendTransSkillAttack(lpChar, &rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:9706:									if(rsPlayInfo[cnt].dwSkill_Vanish_Time)
+SrcGame\src\Server\OnSever.cpp:9708:										if(rsPlayInfo[cnt].dwSkill_Vanish_Time < dwPlayServTime)
+SrcGame\src\Server\OnSever.cpp:9711:											rsPlayInfo[cnt].dwSkill_Vanish_Time = 0;
+SrcGame\src\Server\OnSever.cpp:9712:											rsPlayInfo[cnt].dwSkill_Vanish_Param = 0;
+SrcGame\src\Server\OnSever.cpp:9722:												dist2 = (lpChar->smMonsterInfo.Real_Sight*Vanish_Range[rsPlayInfo[cnt].dwSkill_Vanish_Param]) / 100;
+SrcGame\src\Server\OnSever.cpp:9731:									if(dist < dist2 && !rsPlayInfo[cnt].HideMode)
+SrcGame\src\Server\OnSever.cpp:9737:											if(rsPlayInfo[cnt].EventMode == rsHARDCORE_EVENT_FLAG)
+SrcGame\src\Server\OnSever.cpp:9738:												lprsPlayInfo = &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:9741:											lprsPlayInfo = &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:9750:					if(lpChar->PlayStunCount) lprsPlayInfo = 0;
+SrcGame\src\Server\OnSever.cpp:9755:						lpChar->lpTargetPlayInfo = lprsPlayInfo;
+SrcGame\src\Server\OnSever.cpp:9757:						if(lprsPlayInfo)
+SrcGame\src\Server\OnSever.cpp:9760:								lprsPlayInfo->Position.x,
+SrcGame\src\Server\OnSever.cpp:9761:								lprsPlayInfo->Position.y,
+SrcGame\src\Server\OnSever.cpp:9762:								lprsPlayInfo->Position.z);
+SrcGame\src\Server\OnSever.cpp:9911:int srTransPlayData(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:10197:int srTransPlayUserData(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:10212:	rsPLAYINFO *lpPlayInfo2;
+SrcGame\src\Server\OnSever.cpp:10265:			if(rsPlayInfo[cnt].lpsmSock && &rsPlayInfo[cnt] != lpPlayInfo && rsPlayInfo[cnt].TransInfoFlag &&
+SrcGame\src\Server\OnSever.cpp:10266:				(!SoloMode || rsPlayInfo[cnt].getSecurity() >= AccountTypes::SEC_ADMINISTRATOR))
+SrcGame\src\Server\OnSever.cpp:10271:				lpPlayInfo2 = &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:10301:		if(rsPlayInfo[ClipCnt].lpsmSock && &rsPlayInfo[ClipCnt] != lpPlayInfo && rsPlayInfo[ClipCnt].TransInfoFlag &&
+SrcGame\src\Server\OnSever.cpp:10302:			rsPlayInfo[ClipCnt].srRecvPlayBuffCnt > 0 && !rsPlayInfo[ClipCnt].HideMode &&
+SrcGame\src\Server\OnSever.cpp:10303:			(!SoloMode || rsPlayInfo[ClipCnt].getSecurity() >= AccountTypes::SEC_ADMINISTRATOR))
+SrcGame\src\Server\OnSever.cpp:10306:			lpPlayInfo2 = &rsPlayInfo[ClipCnt];
+SrcGame\src\Server\OnSever.cpp:10466:			if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial &&
+SrcGame\src\Server\OnSever.cpp:10467:				(dwPlayServTime - rsPlayInfo[cnt].dwLastRecvTime) < OVER_TRANS_TIME)
+SrcGame\src\Server\OnSever.cpp:10471:				srTransPlayData(&rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:10473:				rsSendGameServerExp(&rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:10484:			if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial &&
+SrcGame\src\Server\OnSever.cpp:10485:				((dwPlayServTime - rsPlayInfo[cnt].dwLastRecvTime) < OVER_TRANS_TIME || rsPlayInfo[cnt].PlayBuffSleep))
+SrcGame\src\Server\OnSever.cpp:10488:				srTransPlayUserData(&rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:10497:				if(rsPlayInfo[cnt].lpsmSock)
+SrcGame\src\Server\OnSever.cpp:10499:					if(rsPlayInfo[cnt].PlayBuffSleep != 0)
+SrcGame\src\Server\OnSever.cpp:10501:						rsPlayInfo[cnt].PlayBuffSleep++;
+SrcGame\src\Server\OnSever.cpp:10514:		if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwLastRecvTime)
+SrcGame\src\Server\OnSever.cpp:10518:			if(rsServerConfig.ExpGameTimeMode && rsPlayInfo[cnt].dwExpGameTimeCheck &&
+SrcGame\src\Server\OnSever.cpp:10519:				rsPlayInfo[cnt].Position.Area < STAGE_AREA_MAX && StageArea[rsPlayInfo[cnt].Position.Area].lpField)
+SrcGame\src\Server\OnSever.cpp:10522:				int gTimeChk = rsPlayInfo[cnt].dwExpGameTime / (1000 * 60);
+SrcGame\src\Server\OnSever.cpp:10523:				int gTimeOld = rsPlayInfo[cnt].dwExpGameTime;
+SrcGame\src\Server\OnSever.cpp:10526:				rsPlayInfo[cnt].dwExpGameTime += (dwPlayServTime - rsPlayInfo[cnt].dwExpGameTimeCheck);
+SrcGame\src\Server\OnSever.cpp:10530:					rsDispay_GameTime(&rsPlayInfo[cnt], gTimeOld);
+SrcGame\src\Server\OnSever.cpp:10537:					int gTime = rsPlayInfo[cnt].dwExpGameTime / (1000 * 60);
+SrcGame\src\Server\OnSever.cpp:10547:						rsPlayInfo[cnt].lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:10551:							rsSendCloseClient(&rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:10557:				rsPlayInfo[cnt].dwExpGameTimeCheck = dwPlayServTime;
+SrcGame\src\Server\OnSever.cpp:10561:			if(rsPlayInfo[cnt].smCharInfo.dwEventTime_T && (rsPlayInfo[cnt].smCharInfo.dwEventTime_T + 60) < (DWORD)tServerTime)
+SrcGame\src\Server\OnSever.cpp:10563:				rsPlayInfo[cnt].smCharInfo.dwEventTime_T = 0;
+SrcGame\src\Server\OnSever.cpp:10564:				rsPlayInfo[cnt].smCharInfo.SizeLevel = 1;
+SrcGame\src\Server\OnSever.cpp:10568:			if(rsPlayInfo[cnt].dwStartUser_PresentItem_Time && rsPlayInfo[cnt].dwStartUser_PresentItem_Time < dwPlayServTime)
+SrcGame\src\Server\OnSever.cpp:10570:				rsStartUser_PresentItem(&rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:10573:			if(UserPlayServer && (rsPlayInfo[cnt].dwMacroChkTime + 60000) > dwPlayServTime)
+SrcGame\src\Server\OnSever.cpp:10575:				if(rsPlayInfo[cnt].Position.Area < STAGE_AREA_MAX && StageArea[rsPlayInfo[cnt].Position.Area].lpField &&
+SrcGame\src\Server\OnSever.cpp:10576:					StageArea[rsPlayInfo[cnt].Position.Area].lpField->State == FIELD_STATE_VILLAGE)
+SrcGame\src\Server\OnSever.cpp:10579:					rsPlayInfo[cnt].dwMacroAngTime = 0;
+SrcGame\src\Server\OnSever.cpp:10580:					rsPlayInfo[cnt].dwMacroTime = 0;
+SrcGame\src\Server\OnSever.cpp:10584:				if(rsPlayInfo[cnt].dwMacroAngTime && rsPlayInfo[cnt].dwMacroAngTime + (60000 * 2) < dwPlayServTime)
+SrcGame\src\Server\OnSever.cpp:10587:					rsPlayInfo[cnt].dwMacroAngTime = 0;
+SrcGame\src\Server\OnSever.cpp:10588:					rsPlayInfo[cnt].dwMacroTime = 0;
+SrcGame\src\Server\OnSever.cpp:10590:				if(rsPlayInfo[cnt].dwMacroTime && rsPlayInfo[cnt].dwMacroTime + (60000 * 60) < dwPlayServTime)
+SrcGame\src\Server\OnSever.cpp:10596:					smTransCommand.LParam = (dwPlayServTime - rsPlayInfo[cnt].dwMacroTime) / 60000;
+SrcGame\src\Server\OnSever.cpp:10597:					smTransCommand.SParam = rsPlayInfo[cnt].Position.Area;
+SrcGame\src\Server\OnSever.cpp:10599:					rsSendDataServer(rsPlayInfo[cnt].lpsmSock, &smTransCommand);
+SrcGame\src\Server\OnSever.cpp:10601:					rsPlayInfo[cnt].dwMacroAngTime = 0;
+SrcGame\src\Server\OnSever.cpp:10602:					rsPlayInfo[cnt].dwMacroTime = 0;
+SrcGame\src\Server\OnSever.cpp:10606:			dwWaitTime = rsPlayInfo[cnt].dwLastRecvTime + (1000 * 60 * 6);
+SrcGame\src\Server\OnSever.cpp:10609:				(rsPlayInfo[cnt].dwHopeDisconnectTime && rsPlayInfo[cnt].dwHopeDisconnectTime < dwPlayServTime))
+SrcGame\src\Server\OnSever.cpp:10612:				if(rsPlayInfo[cnt].lpsmSock)
+SrcGame\src\Server\OnSever.cpp:10615:						rsPlayInfo[cnt].getAccount().c_str(), rsPlayInfo[cnt].getName().c_str(), rsPlayInfo[cnt].lpsmSock->szIPAddr);
+SrcGame\src\Server\OnSever.cpp:10619:				DisconnectUser(rsPlayInfo[cnt].lpsmSock);
+SrcGame\src\Server\OnSever.cpp:10625:				if(rsPlayInfo[cnt].dwClientFunChk_NextTime < dwPlayServTime)
+SrcGame\src\Server\OnSever.cpp:10627:					rsCheckClientFuncMem(&rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:10628:					rsPlayInfo[cnt].dwClientFunChk_NextTime = dwPlayServTime + 60 * 1000;
+SrcGame\src\Server\OnSever.cpp:10630:					if(!rsPlayInfo[cnt].dwFuncChkErrorFlag)
+SrcGame\src\Server\OnSever.cpp:10632:						if(rsPlayInfo[cnt].FuncChkFailCount1 > 10 || rsPlayInfo[cnt].FuncChkFailCount2 > 10)
+SrcGame\src\Server\OnSever.cpp:10635:							if(rsPlayInfo[cnt].lpsmSock)
+SrcGame\src\Server\OnSever.cpp:10638:									rsPlayInfo[cnt].getAccount().c_str(), rsPlayInfo[cnt].getName().c_str(), rsPlayInfo[cnt].lpsmSock->szIPAddr);
+SrcGame\src\Server\OnSever.cpp:10642:							DisconnectUser(rsPlayInfo[cnt].lpsmSock);
+SrcGame\src\Server\OnSever.cpp:10646:							if(rsPlayInfo[cnt].ClientFunChk1_Count > 60)
+SrcGame\src\Server\OnSever.cpp:10648:								rsPlayInfo[cnt].ClientFunChk1_Count = 0;
+SrcGame\src\Server\OnSever.cpp:10649:								rsPlayInfo[cnt].FuncChkFailCount1 = 0;
+SrcGame\src\Server\OnSever.cpp:10650:								rsPlayInfo[cnt].FuncChkSucessCount1 = 0;
+SrcGame\src\Server\OnSever.cpp:10652:							if(rsPlayInfo[cnt].ClientFunChk2_Count > 80)
+SrcGame\src\Server\OnSever.cpp:10654:								rsPlayInfo[cnt].ClientFunChk2_Count = 0;
+SrcGame\src\Server\OnSever.cpp:10655:								rsPlayInfo[cnt].FuncChkFailCount2 = 0;
+SrcGame\src\Server\OnSever.cpp:10656:								rsPlayInfo[cnt].FuncChkSucessCount2 = 0;
+SrcGame\src\Server\OnSever.cpp:10659:							if((rsPlayInfo[cnt].ClientFunChk1_Count > 10 && rsPlayInfo[cnt].FuncChkSucessCount1 < (rsPlayInfo[cnt].ClientFunChk1_Count >> 1)) ||
+SrcGame\src\Server\OnSever.cpp:10660:								(rsPlayInfo[cnt].ClientFunChk2_Count > 10 && rsPlayInfo[cnt].FuncChkSucessCount2 < (rsPlayInfo[cnt].ClientFunChk2_Count >> 1)))
+SrcGame\src\Server\OnSever.cpp:10664:								if(rsPlayInfo[cnt].ClientFunChk1_Count)
+SrcGame\src\Server\OnSever.cpp:10665:									smTransCommand.LParam = (rsPlayInfo[cnt].FuncChkSucessCount1 * 100) / rsPlayInfo[cnt].ClientFunChk1_Count;
+SrcGame\src\Server\OnSever.cpp:10669:								if(rsPlayInfo[cnt].ClientFunChk2_Count)
+SrcGame\src\Server\OnSever.cpp:10670:									smTransCommand.SParam = (rsPlayInfo[cnt].FuncChkSucessCount2 * 100) / rsPlayInfo[cnt].ClientFunChk2_Count;
+SrcGame\src\Server\OnSever.cpp:10674:								RecordHackLogFile(&rsPlayInfo[cnt], &smTransCommand);
+SrcGame\src\Server\OnSever.cpp:10676:								DisconnectUser(rsPlayInfo[cnt].lpsmSock);
+SrcGame\src\Server\OnSever.cpp:10704:			if(rsPlayInfo[cnt].lpsmSock && (dwPlayServTime - rsPlayInfo[cnt].dwLastRecvTime) > 4000)
+SrcGame\src\Server\OnSever.cpp:10706:				if(rsPlayInfo[cnt].dwObjectSerial ||
+SrcGame\src\Server\OnSever.cpp:10707:					(rsPlayInfo[cnt].SystemLine && (dwPlayServTime - rsPlayInfo[cnt].dwLastRecvTime) > 10000))
+SrcGame\src\Server\OnSever.cpp:10710:					if(rsPlayInfo[cnt].lpsmSock->WaitReadMessage == 0)
+SrcGame\src\Server\OnSever.cpp:10712:						rsPlayInfo[cnt].lpsmSock->WaitReadMessage = 24;
+SrcGame\src\Server\OnSever.cpp:10724:			if(rsPlayInfo[cnt].lpsmSock && (dwPlayServTime - rsPlayInfo[cnt].dwLastRecvTime) > 9000)
+SrcGame\src\Server\OnSever.cpp:10726:				if(!rsPlayInfo[cnt].getName().empty() ||
+SrcGame\src\Server\OnSever.cpp:10727:					(rsPlayInfo[cnt].SystemLine && (dwPlayServTime - rsPlayInfo[cnt].dwLastRecvTime) > 10000))
+SrcGame\src\Server\OnSever.cpp:10730:					if(rsPlayInfo[cnt].lpsmSock->WaitReadMessage == 0)
+SrcGame\src\Server\OnSever.cpp:10732:						rsPlayInfo[cnt].lpsmSock->WaitReadMessage = 24;
+SrcGame\src\Server\OnSever.cpp:10748:int srDisplayBillingTime(rsPLAYINFO *lpPlayInfo, int Add_BillingTime)
+SrcGame\src\Server\OnSever.cpp:10899:		if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty() && !rsPlayInfo[cnt].getName().empty() && rsPlayInfo[cnt].dwObjectSerial)
+SrcGame\src\Server\OnSever.cpp:10901:			if(rsPlayInfo[cnt].Bl_RNo)
+SrcGame\src\Server\OnSever.cpp:10903:				if(rsPlayInfo[cnt].Bl_RNo > 0 || ((srBillingCounter >> 4)&CONNECTMAX) == 0)
+SrcGame\src\Server\OnSever.cpp:10905:					bSql_PCUse(&rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:10933:		if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty() && !rsPlayInfo[cnt].getName().empty() && rsPlayInfo[cnt].dwObjectSerial)
+SrcGame\src\Server\OnSever.cpp:10936:			if(rsPlayInfo[cnt].dwPeriodTime2)
+SrcGame\src\Server\OnSever.cpp:10939:				Time = rsPlayInfo[cnt].dwPeriodTime2 - (int)tServerTime;
+SrcGame\src\Server\OnSever.cpp:10942:					if(rsPlayInfo[cnt].dwPeriodTime != rsPlayInfo[cnt].dwPeriodTime2)
+SrcGame\src\Server\OnSever.cpp:10944:						rsPlayInfo[cnt].dwPeriodTime = rsPlayInfo[cnt].dwPeriodTime2;
+SrcGame\src\Server\OnSever.cpp:10957:			if(rsPlayInfo[cnt].DisuseDay && HiddenPeriod == FALSE)
+SrcGame\src\Server\OnSever.cpp:10960:				Time = (int)rsPlayInfo[cnt].DisuseDay - (int)tServerTime;
+SrcGame\src\Server\OnSever.cpp:10972:						if(rsServerConfig.DispBillingTime) rsPlayInfo[cnt].lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:10974:					bSql_PCSearchReserv(&rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:10977:				if(rsPlayInfo[cnt].DisuseDay < tServerTime)
+SrcGame\src\Server\OnSever.cpp:10979:					rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:10981:					Record_BillingLogFile(&rsPlayInfo[cnt], (DWORD)rsPlayInfo[cnt].DisuseDay, rsPlayInfo[cnt].dwPeriodTime, (DWORD)tServerTime, rsPlayInfo[cnt].Bl_RNo);
+SrcGame\src\Server\OnSever.cpp:10985:			if(rsPlayInfo[cnt].dwPeriodTime)
+SrcGame\src\Server\OnSever.cpp:10988:				Time = rsPlayInfo[cnt].dwPeriodTime - (int)tServerTime;
+SrcGame\src\Server\OnSever.cpp:11000:						if(rsServerConfig.DispBillingTime)  rsPlayInfo[cnt].lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:11002:					bSql_PCSearchReserv(&rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:11007:					rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:11011:						Record_BillingLogFile(&rsPlayInfo[cnt], (DWORD)rsPlayInfo[cnt].DisuseDay, rsPlayInfo[cnt].dwPeriodTime, (DWORD)tServerTime, rsPlayInfo[cnt].Bl_RNo);
+SrcGame\src\Server\OnSever.cpp:11105:		ZeroMemory(&rsPlayInfo[cnt], sizeof(rsPLAYINFO));
+SrcGame\src\Server\OnSever.cpp:11109:			rsPlayInfo[cnt].lpRecordDataBuff = rsRecordDataBuff + ((srRECORD_MEMORY_SIZE + 256)*cnt);
+SrcGame\src\Server\OnSever.cpp:11168:		if(rsPlayInfo[cnt].lpRecordDataBuff)
+SrcGame\src\Server\OnSever.cpp:11170:			if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getName().empty())
+SrcGame\src\Server\OnSever.cpp:11172:				if(rsRecordMemoryBuffToFile(&rsPlayInfo[cnt], rsPlayInfo[cnt].getName().c_str(), rsPlayInfo[cnt].lpRecordDataBuff) == TRUE)
+SrcGame\src\Server\OnSever.cpp:11174:					if(lstrcmpi(rsPlayInfo[cnt].getName().c_str(), ((TRANS_RECORD_DATA *)rsPlayInfo[cnt].lpRecordDataBuff)->smCharInfo.szName) != 0)
+SrcGame\src\Server\OnSever.cpp:11177:						smTransCommand.LParam = (DWORD)rsPlayInfo[cnt].getName().c_str();
+SrcGame\src\Server\OnSever.cpp:11178:						smTransCommand.SParam = (DWORD)((TRANS_RECORD_DATA *)rsPlayInfo[cnt].lpRecordDataBuff)->smCharInfo.szName;
+SrcGame\src\Server\OnSever.cpp:11179:						RecordHackLogFile(&rsPlayInfo[cnt], &smTransCommand);
+SrcGame\src\Server\OnSever.cpp:11182:					rsSaveThrowData(&rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:11183:					rsRecordMemoryBuff_CheckInvenItem(&rsPlayInfo[cnt], 1);
+SrcGame\src\Server\OnSever.cpp:11238:		if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].lpsmSock->acc_sin.sin_addr.S_un.S_addr == dwMyIP)
+SrcGame\src\Server\OnSever.cpp:11244:			if(rsPlayInfo[cnt].lpsmSock == 0) break;
+SrcGame\src\Server\OnSever.cpp:11283:	lpsmSock->ExtData1 = (void *)&rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:11286:	rsPlayInfo[cnt].lpsmSock = lpsmSock;
+SrcGame\src\Server\OnSever.cpp:11287:	rsPlayInfo[cnt].ChatBuffCnt = ChatBuffCnt;
+SrcGame\src\Server\OnSever.cpp:11288:	rsPlayInfo[cnt].SendListCnt = 0;
+SrcGame\src\Server\OnSever.cpp:11289:	rsPlayInfo[cnt].Position.Area = 0xFFFFFFFF;
+SrcGame\src\Server\OnSever.cpp:11290:	rsPlayInfo[cnt].TransInfoFlag = FALSE;
+SrcGame\src\Server\OnSever.cpp:11291:	rsPlayInfo[cnt].SystemLine = 0;
+SrcGame\src\Server\OnSever.cpp:11292:	rsPlayInfo[cnt].CharLevelMax = 0;
+SrcGame\src\Server\OnSever.cpp:11293:	rsPlayInfo[cnt].AdminOperMode = 0;
+SrcGame\src\Server\OnSever.cpp:11294:	rsPlayInfo[cnt].dwDataError = 0;
+SrcGame\src\Server\OnSever.cpp:11297:		rsPlayInfo[cnt].srPlayBuffSize[cnt2] = 0;
+SrcGame\src\Server\OnSever.cpp:11299:	rsPlayInfo[cnt].srSendPlayBuffCnt = 0;
+SrcGame\src\Server\OnSever.cpp:11300:	rsPlayInfo[cnt].srRecvPlayBuffCnt = 0;
+SrcGame\src\Server\OnSever.cpp:11301:	rsPlayInfo[cnt].dwObjectSerial = 0;
+SrcGame\src\Server\OnSever.cpp:11302:	rsPlayInfo[cnt].szChatMessage[0] = 0;
+SrcGame\src\Server\OnSever.cpp:11303:	rsPlayInfo[cnt].lpRecordBase = 0;
+SrcGame\src\Server\OnSever.cpp:11304:	rsPlayInfo[cnt].lpPostBoxItem = 0;
+SrcGame\src\Server\OnSever.cpp:11305:	rsPlayInfo[cnt].PostPassFailCount = 0;
+SrcGame\src\Server\OnSever.cpp:11308:	rsPlayInfo[cnt].security = AccountTypes::SEC_PLAYER;
+SrcGame\src\Server\OnSever.cpp:11309:	rsPlayInfo[cnt].HideMode = 0;
+SrcGame\src\Server\OnSever.cpp:11310:	rsPlayInfo[cnt].CharLoadingCount = 0;
+SrcGame\src\Server\OnSever.cpp:11311:	rsPlayInfo[cnt].dwNoticeCount = rsNoticeMessage.Counter;
+SrcGame\src\Server\OnSever.cpp:11313:	rsPlayInfo[cnt].LastTransPlayUserCount = 0;
+SrcGame\src\Server\OnSever.cpp:11314:	rsPlayInfo[cnt].LastTransAutoPlayCount = 0;
+SrcGame\src\Server\OnSever.cpp:11316:	rsPlayInfo[cnt].UnsaveMoney = -1;
+SrcGame\src\Server\OnSever.cpp:11317:	rsPlayInfo[cnt].ThrowItemCount = 0;
+SrcGame\src\Server\OnSever.cpp:11319:	rsPlayInfo[cnt].setAccountId(0);
+SrcGame\src\Server\OnSever.cpp:11320:	rsPlayInfo[cnt].setAccount('\0');
+SrcGame\src\Server\OnSever.cpp:11321:	rsPlayInfo[cnt].setPassword('\0');
+SrcGame\src\Server\OnSever.cpp:11322:	rsPlayInfo[cnt].setName('\0');
+SrcGame\src\Server\OnSever.cpp:11323:	ZeroMemory(rsPlayInfo[cnt].szServerID, sizeof(rsPlayInfo[cnt].szServerID));
+SrcGame\src\Server\OnSever.cpp:11325:	rsPlayInfo[cnt].dwLastRecvTime = dwPlayServTime;
+SrcGame\src\Server\OnSever.cpp:11326:	rsPlayInfo[cnt].dwLastMotionRecvTime = dwPlayServTime;
+SrcGame\src\Server\OnSever.cpp:11328:	rsPlayInfo[cnt].dwConnectCount = dwConnectCount;
+SrcGame\src\Server\OnSever.cpp:11330:	rsPlayInfo[cnt].SendPlayGroupCount = 0;
+SrcGame\src\Server\OnSever.cpp:11332:	rsPlayInfo[cnt].MonTranCount = 0;
+SrcGame\src\Server\OnSever.cpp:11333:	rsPlayInfo[cnt].CharTransCount = 0;
+SrcGame\src\Server\OnSever.cpp:11334:	rsPlayInfo[cnt].HitMonsterCount = 0;
+SrcGame\src\Server\OnSever.cpp:11335:	rsPlayInfo[cnt].UserPacketLoop = 0;
+SrcGame\src\Server\OnSever.cpp:11336:	rsPlayInfo[cnt].BefUserPacketLoop = 0;
+SrcGame\src\Server\OnSever.cpp:11338:	rsPlayInfo[cnt].lpChrTarget = 0;
+SrcGame\src\Server\OnSever.cpp:11339:	rsPlayInfo[cnt].dwTarObjSerial = 0;
+SrcGame\src\Server\OnSever.cpp:11340:	rsPlayInfo[cnt].smCharInfo.szName[0] = 0;
+SrcGame\src\Server\OnSever.cpp:11341:	rsPlayInfo[cnt].smCharInfo.Level = 0;
+SrcGame\src\Server\OnSever.cpp:11342:	rsPlayInfo[cnt].CrackWarning = 0;
+SrcGame\src\Server\OnSever.cpp:11343:	rsPlayInfo[cnt].dwTime_Disconnect = 0;
+SrcGame\src\Server\OnSever.cpp:11344:	rsPlayInfo[cnt].EventMode = 0;
+SrcGame\src\Server\OnSever.cpp:11345:	rsPlayInfo[cnt].AreaOutCount = 0;
+SrcGame\src\Server\OnSever.cpp:11348:	rsPlayInfo[cnt].dwPartyInfo = 0;
+SrcGame\src\Server\OnSever.cpp:11349:	rsPlayInfo[cnt].lpPartyMaster = 0;
+SrcGame\src\Server\OnSever.cpp:11351:	rsPlayInfo[cnt].DamagePacketCount = 0;
+SrcGame\src\Server\OnSever.cpp:11352:	rsPlayInfo[cnt].dwDamagePacketTime = 0;
+SrcGame\src\Server\OnSever.cpp:11353:	rsPlayInfo[cnt].AttackCount = 0;
+SrcGame\src\Server\OnSever.cpp:11354:	rsPlayInfo[cnt].dwAttackTime = dwPlayServTime;
+SrcGame\src\Server\OnSever.cpp:11355:	rsPlayInfo[cnt].dwConnectTime = dwPlayServTime;
+SrcGame\src\Server\OnSever.cpp:11356:	rsPlayInfo[cnt].dwRecvTimePlayBuff = 0;
+SrcGame\src\Server\OnSever.cpp:11357:	rsPlayInfo[cnt].BadPlayer = 0;
+SrcGame\src\Server\OnSever.cpp:11358:	rsPlayInfo[cnt].dwPacketAttackCount = 0;
+SrcGame\src\Server\OnSever.cpp:11359:	rsPlayInfo[cnt].dwPacketAttackTime = dwPlayServTime;
+SrcGame\src\Server\OnSever.cpp:11361:	rsPlayInfo[cnt].BlockTime = 0;
+SrcGame\src\Server\OnSever.cpp:11362:	rsPlayInfo[cnt].MonsterKillCounter = 0;
+SrcGame\src\Server\OnSever.cpp:11363:	rsPlayInfo[cnt].WhisperMode = 0;
+SrcGame\src\Server\OnSever.cpp:11364:	rsPlayInfo[cnt].Event_StarTicketLevel = 0;
+SrcGame\src\Server\OnSever.cpp:11367:	rsPlayInfo[cnt].dwClanCode = 0;
+SrcGame\src\Server\OnSever.cpp:11368:	rsPlayInfo[cnt].SucessCheck_ClanCode = 0;
+SrcGame\src\Server\OnSever.cpp:11371:	rsPlayInfo[cnt].spExp_Start = 0;
+SrcGame\src\Server\OnSever.cpp:11372:	rsPlayInfo[cnt].spMoney_Start = 0;
+SrcGame\src\Server\OnSever.cpp:11373:	rsPlayInfo[cnt].spLevel_Start = 0;
+SrcGame\src\Server\OnSever.cpp:11375:	rsPlayInfo[cnt].spExp_InOut_Total = 0;
+SrcGame\src\Server\OnSever.cpp:11376:	rsPlayInfo[cnt].spMoney_In_Total = 0;
+SrcGame\src\Server\OnSever.cpp:11377:	rsPlayInfo[cnt].spMoney_InOut_Total = 0;
+SrcGame\src\Server\OnSever.cpp:11379:	rsPlayInfo[cnt].spEXP_Out = 0;
+SrcGame\src\Server\OnSever.cpp:11380:	rsPlayInfo[cnt].spMoney_In = 0;
+SrcGame\src\Server\OnSever.cpp:11381:	rsPlayInfo[cnt].spMoney_Out = 0;
+SrcGame\src\Server\OnSever.cpp:11382:	rsPlayInfo[cnt].dwLastExpMoneyCheckTime = dwPlayServTime;
+SrcGame\src\Server\OnSever.cpp:11383:	rsPlayInfo[cnt].dwLastExpMoneyTransServer = dwPlayServTime;
+SrcGame\src\Server\OnSever.cpp:11385:	rsPlayInfo[cnt].ServerMoney = 0;
+SrcGame\src\Server\OnSever.cpp:11386:	rsPlayInfo[cnt].WareHouseMoney = 0;
+SrcGame\src\Server\OnSever.cpp:11387:	rsPlayInfo[cnt].dwNSpriteTime = 0;
+SrcGame\src\Server\OnSever.cpp:11391:		rsPlayInfo[cnt].dwGameServerExp[cnt2] = 0;
+SrcGame\src\Server\OnSever.cpp:11392:		ZeroMemory(rsPlayInfo[cnt].RcvItemSecCodeBuff[cnt2], sizeof(int) * 16);
+SrcGame\src\Server\OnSever.cpp:11394:	rsPlayInfo[cnt].SndItemSecCodeCount = 1;
+SrcGame\src\Server\OnSever.cpp:11396:	rsPlayInfo[cnt].smCharInfo.Level = 0;
+SrcGame\src\Server\OnSever.cpp:11397:	rsPlayInfo[cnt].smCharInfo.Exp = 0;
+SrcGame\src\Server\OnSever.cpp:11398:	rsPlayInfo[cnt].smCharInfo.Exp_High = 0;
+SrcGame\src\Server\OnSever.cpp:11399:	rsPlayInfo[cnt].smCharInfo.Money = 0;
+SrcGame\src\Server\OnSever.cpp:11400:	rsPlayInfo[cnt].smCharInfo.JOB_CODE = 0;
+SrcGame\src\Server\OnSever.cpp:11403:	rsPlayInfo[cnt].RecordWarningCount = 0;
+SrcGame\src\Server\OnSever.cpp:11404:	rsPlayInfo[cnt].RecordWarningExp = 0;
+SrcGame\src\Server\OnSever.cpp:11405:	rsPlayInfo[cnt].WarningCount = 0;
+SrcGame\src\Server\OnSever.cpp:11407:	rsPlayInfo[cnt].dwLastTradeChksum = 0;
+SrcGame\src\Server\OnSever.cpp:11410:	rsPlayInfo[cnt].Send_AttackCount = 0;
+SrcGame\src\Server\OnSever.cpp:11411:	rsPlayInfo[cnt].Send_AttackDamage = 0;
+SrcGame\src\Server\OnSever.cpp:11412:	rsPlayInfo[cnt].Recv_AttackCount = 0;
+SrcGame\src\Server\OnSever.cpp:11413:	rsPlayInfo[cnt].Recv_AttackDamage = 0;
+SrcGame\src\Server\OnSever.cpp:11416:	rsPlayInfo[cnt].dwHopeDisconnectTime = 0;
+SrcGame\src\Server\OnSever.cpp:11418:	rsPlayInfo[cnt].Client_Version = 0;
+SrcGame\src\Server\OnSever.cpp:11420:	rsPlayInfo[cnt].UpdateInfo_WarnigCounter = 0;
+SrcGame\src\Server\OnSever.cpp:11423:	rsPlayInfo[cnt].dwMacroTime = 0;
+SrcGame\src\Server\OnSever.cpp:11424:	rsPlayInfo[cnt].dwMacroAngTime = 0;
+SrcGame\src\Server\OnSever.cpp:11425:	rsPlayInfo[cnt].dwMacroChkTime = 0;
+SrcGame\src\Server\OnSever.cpp:11428:	rsPlayInfo[cnt].dwClientFuncChk_1 = 0;
+SrcGame\src\Server\OnSever.cpp:11429:	rsPlayInfo[cnt].dwClientFuncChk_2 = 0;
+SrcGame\src\Server\OnSever.cpp:11430:	rsPlayInfo[cnt].FuncChkFailCount1 = 0;
+SrcGame\src\Server\OnSever.cpp:11431:	rsPlayInfo[cnt].FuncChkFailCount2 = 0;
+SrcGame\src\Server\OnSever.cpp:11432:	rsPlayInfo[cnt].dwFuncChkErrorFlag = 0;
+SrcGame\src\Server\OnSever.cpp:11433:	rsPlayInfo[cnt].ClientFunChk1_Count = 0;
+SrcGame\src\Server\OnSever.cpp:11434:	rsPlayInfo[cnt].ClientFunChk2_Count = 0;
+SrcGame\src\Server\OnSever.cpp:11435:	rsPlayInfo[cnt].FuncChkSucessCount1 = 0;
+SrcGame\src\Server\OnSever.cpp:11436:	rsPlayInfo[cnt].FuncChkSucessCount2 = 0;
+SrcGame\src\Server\OnSever.cpp:11437:	rsPlayInfo[cnt].dwClientFunChk_NextTime = dwPlayServTime + 60 * 1000 * 5;
+SrcGame\src\Server\OnSever.cpp:11439:	rsPlayInfo[cnt].dwLastSaveTime = 0;
+SrcGame\src\Server\OnSever.cpp:11441:	rsPlayInfo[cnt].dwClentOS = 0;
+SrcGame\src\Server\OnSever.cpp:11442:	rsPlayInfo[cnt].dwClentModulChkSum = 0;
+SrcGame\src\Server\OnSever.cpp:11443:	rsPlayInfo[cnt].ClentModuleCount = 0;
+SrcGame\src\Server\OnSever.cpp:11447:	rsPlayInfo[cnt].szGuid[0] = 0;
+SrcGame\src\Server\OnSever.cpp:11448:	rsPlayInfo[cnt].szGPCode[0] = 0;
+SrcGame\src\Server\OnSever.cpp:11449:	rsPlayInfo[cnt].GpCode = -1;
+SrcGame\src\Server\OnSever.cpp:11450:	rsPlayInfo[cnt].GpType = -1;
+SrcGame\src\Server\OnSever.cpp:11451:	rsPlayInfo[cnt].DisuseDay = 0;
+SrcGame\src\Server\OnSever.cpp:11452:	rsPlayInfo[cnt].dwPeriodTime = 0;
+SrcGame\src\Server\OnSever.cpp:11453:	rsPlayInfo[cnt].Bl_RNo = 0;
+SrcGame\src\Server\OnSever.cpp:11454:	rsPlayInfo[cnt].Bl_Meter = 0;
+SrcGame\src\Server\OnSever.cpp:11455:	rsPlayInfo[cnt].dwPeriodTime2 = 0;
+SrcGame\src\Server\OnSever.cpp:11460:	rsPlayInfo[cnt].dwSkill_AutoMation_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11461:	rsPlayInfo[cnt].dwSkill_AutoMation_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11462:	rsPlayInfo[cnt].dwSkill_Maximize_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11463:	rsPlayInfo[cnt].dwSkill_Maximize_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11464:	rsPlayInfo[cnt].dwSkill_PhysicalAbsorb_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11465:	rsPlayInfo[cnt].dwSkill_PhysicalAbsorb_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11466:	rsPlayInfo[cnt].dwSkill_ExtreamShield_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11467:	rsPlayInfo[cnt].dwSkill_ExtreamShield_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11469:	rsPlayInfo[cnt].dwSkill_HolyBody_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11470:	rsPlayInfo[cnt].dwSkill_HolyBody_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11471:	rsPlayInfo[cnt].dwSkill_HolyValor_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11472:	rsPlayInfo[cnt].dwSkill_HolyValor_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11473:	rsPlayInfo[cnt].dwSkill_HolyReflection_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11474:	rsPlayInfo[cnt].dwSkill_HolyReflection_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11475:	rsPlayInfo[cnt].dwSkill_EnchantWeapon_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11476:	rsPlayInfo[cnt].dwSkill_EnchantWeapon_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11478:	rsPlayInfo[cnt].dwSkill_SparkShield_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11479:	rsPlayInfo[cnt].dwSkill_MetalArmor_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11480:	rsPlayInfo[cnt].dwSkill_SparkShield_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11481:	rsPlayInfo[cnt].dwSkill_SparkShield_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11483:	rsPlayInfo[cnt].dwSKill_Falcon_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11484:	rsPlayInfo[cnt].dwSKill_Falcon_Damage[0] = 0;
+SrcGame\src\Server\OnSever.cpp:11485:	rsPlayInfo[cnt].dwSKill_Falcon_Damage[1] = 0;
+SrcGame\src\Server\OnSever.cpp:11487:	rsPlayInfo[cnt].dwSkill_DivineInhalation_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11488:	rsPlayInfo[cnt].dwSkill_DivineInhalation_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11490:	rsPlayInfo[cnt].dwSkill_TriumphOfValhalla_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11491:	rsPlayInfo[cnt].dwSkill_TriumphOfValhalla_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11493:	rsPlayInfo[cnt].dwSkill_VirtualLife_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11494:	rsPlayInfo[cnt].dwSkill_VirtualLife_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11496:	rsPlayInfo[cnt].dwSkill_EnergyShield_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11497:	rsPlayInfo[cnt].dwSkill_EnergyShield_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11499:	rsPlayInfo[cnt].dwSkill_SpiritElemental_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11500:	rsPlayInfo[cnt].dwSkill_SpiritElemental_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11502:	rsPlayInfo[cnt].dwSkill_DancingSword_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11503:	rsPlayInfo[cnt].dwSkill_DancingSword_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11504:	rsPlayInfo[cnt].dwSkill_DancingSword_DelayTime = 0;
+SrcGame\src\Server\OnSever.cpp:11506:	rsPlayInfo[cnt].dwSkill_Vanish_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11507:	rsPlayInfo[cnt].dwSkill_Vanish_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11509:	rsPlayInfo[cnt].dwSkill_Compulsion_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11510:	rsPlayInfo[cnt].dwSkill_Compulsion_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11512:	rsPlayInfo[cnt].dwSkill_MagneticSphere_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11513:	rsPlayInfo[cnt].dwSkill_MagneticSphere_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11515:	rsPlayInfo[cnt].dwSkill_Berserker_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11516:	rsPlayInfo[cnt].dwSkill_Berserker_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11518:	rsPlayInfo[cnt].dwSkill_AssassinEye_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11519:	rsPlayInfo[cnt].dwSkill_AssassinEye_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11521:	rsPlayInfo[cnt].dwSkill_Vague_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11522:	rsPlayInfo[cnt].dwSkill_Vague_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11524:	rsPlayInfo[cnt].dwSkill_ForceOfNature_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11526:	rsPlayInfo[cnt].dwSkill_GodlyShied_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11527:	rsPlayInfo[cnt].dwSkill_GodlyShied_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11529:	rsPlayInfo[cnt].dwSkill_GodsBless_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11530:	rsPlayInfo[cnt].dwSkill_GodsBless_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11532:	rsPlayInfo[cnt].dwSkill_HallOfValhalla_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11534:	rsPlayInfo[cnt].dwSkill_FrostJavelin_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11535:	rsPlayInfo[cnt].dwSkill_FrostJavelin_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11537:	rsPlayInfo[cnt].dwSkill_RegenerationField_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11539:	rsPlayInfo[cnt].dwSkill_SummonMuspell_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11540:	rsPlayInfo[cnt].dwSkill_SummonMuspell_Param = 0;
+SrcGame\src\Server\OnSever.cpp:11545:	rsPlayInfo[cnt].dwCurse_Attack_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11546:	rsPlayInfo[cnt].dwCurse_Defence_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11550:	rsPlayInfo[cnt].dwForceOrb_Code = 0;
+SrcGame\src\Server\OnSever.cpp:11551:	rsPlayInfo[cnt].dwForceOrb_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11552:	rsPlayInfo[cnt].dwForceOrb_Damage = 0;
+SrcGame\src\Server\OnSever.cpp:11554:	rsPlayInfo[cnt].dwForceOrb_SaveCode = 0;
+SrcGame\src\Server\OnSever.cpp:11555:	rsPlayInfo[cnt].dwForceOrb_SaveTime = 0;
+SrcGame\src\Server\OnSever.cpp:11556:	rsPlayInfo[cnt].dwForceOrb_SaveDamage = 0;
+SrcGame\src\Server\OnSever.cpp:11557:	rsPlayInfo[cnt].dwForceOrb_NextSetTime = 0;
+SrcGame\src\Server\OnSever.cpp:11560:	rsPlayInfo[cnt].dwLifeBooster_Code = 0;
+SrcGame\src\Server\OnSever.cpp:11561:	rsPlayInfo[cnt].dwLifeBooster_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11562:	rsPlayInfo[cnt].dwLifeBooster_Data = 0;
+SrcGame\src\Server\OnSever.cpp:11564:	rsPlayInfo[cnt].dwLifeBooster_SaveCode = 0;
+SrcGame\src\Server\OnSever.cpp:11565:	rsPlayInfo[cnt].dwLifeBooster_SaveTime = 0;
+SrcGame\src\Server\OnSever.cpp:11566:	rsPlayInfo[cnt].dwLifeBooster_SaveData = 0;
+SrcGame\src\Server\OnSever.cpp:11567:	rsPlayInfo[cnt].dwLifeBooster_NextSetTime = 0;
+SrcGame\src\Server\OnSever.cpp:11569:	rsPlayInfo[cnt].dwManaBooster_Code = 0;
+SrcGame\src\Server\OnSever.cpp:11570:	rsPlayInfo[cnt].dwManaBooster_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11571:	rsPlayInfo[cnt].dwManaBooster_Data = 0;
+SrcGame\src\Server\OnSever.cpp:11573:	rsPlayInfo[cnt].dwManaBooster_SaveCode = 0;
+SrcGame\src\Server\OnSever.cpp:11574:	rsPlayInfo[cnt].dwManaBooster_SaveTime = 0;
+SrcGame\src\Server\OnSever.cpp:11575:	rsPlayInfo[cnt].dwManaBooster_SaveData = 0;
+SrcGame\src\Server\OnSever.cpp:11576:	rsPlayInfo[cnt].dwManaBooster_NextSetTime = 0;
+SrcGame\src\Server\OnSever.cpp:11578:	rsPlayInfo[cnt].dwStaminaBooster_Code = 0;
+SrcGame\src\Server\OnSever.cpp:11579:	rsPlayInfo[cnt].dwStaminaBooster_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11580:	rsPlayInfo[cnt].dwStaminaBooster_Data = 0;
+SrcGame\src\Server\OnSever.cpp:11582:	rsPlayInfo[cnt].dwStaminaBooster_SaveCode = 0;
+SrcGame\src\Server\OnSever.cpp:11583:	rsPlayInfo[cnt].dwStaminaBooster_SaveTime = 0;
+SrcGame\src\Server\OnSever.cpp:11584:	rsPlayInfo[cnt].dwStaminaBooster_SaveData = 0;
+SrcGame\src\Server\OnSever.cpp:11585:	rsPlayInfo[cnt].dwStaminaBooster_NextSetTime = 0;
+SrcGame\src\Server\OnSever.cpp:11588:	rsPlayInfo[cnt].dwSkillDelay_Code = 0;
+SrcGame\src\Server\OnSever.cpp:11589:	rsPlayInfo[cnt].dwSkillDelay_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11590:	rsPlayInfo[cnt].dwSkillDelay_Data = 0;
+SrcGame\src\Server\OnSever.cpp:11592:	rsPlayInfo[cnt].dwSkillDelay_SaveCode = 0;
+SrcGame\src\Server\OnSever.cpp:11593:	rsPlayInfo[cnt].dwSkillDelay_SaveTime = 0;
+SrcGame\src\Server\OnSever.cpp:11594:	rsPlayInfo[cnt].dwSkillDelay_SaveData = 0;
+SrcGame\src\Server\OnSever.cpp:11595:	rsPlayInfo[cnt].dwSkillDelay_NextSetTime = 0;
+SrcGame\src\Server\OnSever.cpp:11599:	rsPlayInfo[cnt].dwPrimeItem_NextSetTime = 0;
+SrcGame\src\Server\OnSever.cpp:11600:	rsPlayInfo[cnt].dwTime_PrimeItem_X2 = 0;
+SrcGame\src\Server\OnSever.cpp:11601:	rsPlayInfo[cnt].dwTime_PrimeItem_ExpUp = 0;
+SrcGame\src\Server\OnSever.cpp:11603:	rsPlayInfo[cnt].dwTime_PrimeItem_VampCuspid = 0;
+SrcGame\src\Server\OnSever.cpp:11604:	rsPlayInfo[cnt].dwTime_PrimeItem_VampCuspid_EX = 0;
+SrcGame\src\Server\OnSever.cpp:11605:	rsPlayInfo[cnt].dwTime_PrimeItem_ManaRecharg = 0;
+SrcGame\src\Server\OnSever.cpp:11606:	rsPlayInfo[cnt].dwTime_PrimeItem_StaminaRecharg = 0;
+SrcGame\src\Server\OnSever.cpp:11607:	rsPlayInfo[cnt].dwTime_PrimeItem_ManaReduce = 0;
+SrcGame\src\Server\OnSever.cpp:11608:	rsPlayInfo[cnt].dwTime_PrimeItem_MightofAwell = 0;
+SrcGame\src\Server\OnSever.cpp:11609:	rsPlayInfo[cnt].dwTime_PrimeItem_MightofAwell2 = 0;
+SrcGame\src\Server\OnSever.cpp:11610:	rsPlayInfo[cnt].dwTime_PrimeItem_PhenixPet = 0;
+SrcGame\src\Server\OnSever.cpp:11611:	rsPlayInfo[cnt].dwTime_PrimeItem_HelpPet = 0;
+SrcGame\src\Server\OnSever.cpp:11612:	rsPlayInfo[cnt].dwTime_PrimeItem_StaminaReduce = 0;
+SrcGame\src\Server\OnSever.cpp:11614:	rsPlayInfo[cnt].dwPrimeItem_PackageCode = 0;
+SrcGame\src\Server\OnSever.cpp:11618:	rsPlayInfo[cnt].dwPCBang_Pet_AttackTime = 0;
+SrcGame\src\Server\OnSever.cpp:11619:	rsPlayInfo[cnt].dwPCBang_Pet_NextSetTime = 0;
+SrcGame\src\Server\OnSever.cpp:11621:	rsPlayInfo[cnt].lpLinkChar = 0;
+SrcGame\src\Server\OnSever.cpp:11624:	((DWORD *)rsPlayInfo[cnt].sBlessCastle_Damage)[0] = 0;
+SrcGame\src\Server\OnSever.cpp:11625:	rsPlayInfo[cnt].dwCheck_MasterClanTime = 0;
+SrcGame\src\Server\OnSever.cpp:11627:	rsPlayInfo[cnt].CastleMaster.Flag = 0;
+SrcGame\src\Server\OnSever.cpp:11628:	rsPlayInfo[cnt].dwBlessSkill_Code = 0;
+SrcGame\src\Server\OnSever.cpp:11629:	rsPlayInfo[cnt].dwBlessSkill_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11631:	rsPlayInfo[cnt].dwSiegeItem_Scroll_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11632:	rsPlayInfo[cnt].dwSiegeItem_Scroll_Code = 0;
+SrcGame\src\Server\OnSever.cpp:11633:	rsPlayInfo[cnt].dwSiegeItem_Stone1_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11634:	rsPlayInfo[cnt].dwSiegeItem_Stone1_Code = 0;
+SrcGame\src\Server\OnSever.cpp:11635:	rsPlayInfo[cnt].dwSiegeItem_Stone2_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11636:	rsPlayInfo[cnt].dwSiegeItem_Stone2_Code = 0;
+SrcGame\src\Server\OnSever.cpp:11640:	((DWORD *)rsPlayInfo[cnt].sLimitDamage)[0] = 0;
+SrcGame\src\Server\OnSever.cpp:11641:	((DWORD *)rsPlayInfo[cnt].sLimitCritical)[0] = 0;
+SrcGame\src\Server\OnSever.cpp:11643:	((DWORD *)rsPlayInfo[cnt].sLowLevel_PresentItem)[0] = 0;
+SrcGame\src\Server\OnSever.cpp:11644:	rsPlayInfo[cnt].dwStartUser_PresentItem_Time = 0;
+SrcGame\src\Server\OnSever.cpp:11645:	rsPlayInfo[cnt].dwStartUser_PresentItem_Count = 0;
+SrcGame\src\Server\OnSever.cpp:11647:	((DWORD *)rsPlayInfo[cnt].sCheckPlayField_Count)[0] = 0;
+SrcGame\src\Server\OnSever.cpp:11649:	rsPlayInfo[cnt].ClanTicketCode = 0;
+SrcGame\src\Server\OnSever.cpp:11651:	rsPlayInfo[cnt].dwDecPacketCode = 0;
+SrcGame\src\Server\OnSever.cpp:11652:	rsPlayInfo[cnt].dwDecPacketTime = 0;
+SrcGame\src\Server\OnSever.cpp:11654:	ZeroMemory(rsPlayInfo[cnt].dwSendFrames, CONNECTMAX * sizeof(DWORD));
+SrcGame\src\Server\OnSever.cpp:11655:	ZeroMemory(rsPlayInfo[cnt].InvenItemInfo, INVEN_ITEM_INFO_MAX * sizeof(sTHROW_ITEM_INFO));
+SrcGame\src\Server\OnSever.cpp:11656:	rsPlayInfo[cnt].OpenWarehouseInfoFlag = 0;
+SrcGame\src\Server\OnSever.cpp:11657:	rsPlayInfo[cnt].TradePotionInfoCount = 0;
+SrcGame\src\Server\OnSever.cpp:11658:	rsPlayInfo[cnt].MyShopListCount = 0;
+SrcGame\src\Server\OnSever.cpp:11659:	rsPlayInfo[cnt].dwMyShopTradeTime = 0;
+SrcGame\src\Server\OnSever.cpp:11661:	rsPlayInfo[cnt].dwTradeMsgCode = 0;
+SrcGame\src\Server\OnSever.cpp:11662:	rsPlayInfo[cnt].dwHaQuestItemCount = 0;
+SrcGame\src\Server\OnSever.cpp:11666:	rsPlayInfo[cnt].szUserExpTimeID[0] = 0;
+SrcGame\src\Server\OnSever.cpp:11667:	rsPlayInfo[cnt].szUserExpTimeName[0] = 0;
+SrcGame\src\Server\OnSever.cpp:11668:	rsPlayInfo[cnt].dwExpGameTime = 0;
+SrcGame\src\Server\OnSever.cpp:11669:	rsPlayInfo[cnt].dwExpGameTimeCheck = 0;
+SrcGame\src\Server\OnSever.cpp:11671:	if(rsPlayInfo[cnt].lpRecordDataBuff)
+SrcGame\src\Server\OnSever.cpp:11673:		((TRANS_RECORD_DATA *)rsPlayInfo[cnt].lpRecordDataBuff)->size = 0;
+SrcGame\src\Server\OnSever.cpp:11674:		rsPlayInfo[cnt].dwRecordDataTime = dwPlayServTime;
+SrcGame\src\Server\OnSever.cpp:11676:		if(rsPlayInfo[cnt].lpRecordDataBuff != (rsRecordDataBuff + ((srRECORD_MEMORY_SIZE + 256)*cnt)))
+SrcGame\src\Server\OnSever.cpp:11680:			TransCommand.SParam = (int)rsPlayInfo[cnt].lpRecordDataBuff;
+SrcGame\src\Server\OnSever.cpp:11681:			RecordHackLogFile(&rsPlayInfo[cnt], &TransCommand);
+SrcGame\src\Server\OnSever.cpp:11685:		rsPlayInfo[cnt].dwRecordDataTime = 0;
+SrcGame\src\Server\OnSever.cpp:11715:int	rsSendServerNoticeToUser(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:11744:int	SendSaveClientData(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:11764:int	rsSendCloseClient(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:11784:int	rsRecordFixExp(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:11807:int SaveThrowItemOver(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwKey, DWORD dwSum)
+SrcGame\src\Server\OnSever.cpp:11838:int SaveThrowItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwKey, DWORD dwSum)
+SrcGame\src\Server\OnSever.cpp:11882:int SaveThrowItem2(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwKey, DWORD dwSum)
+SrcGame\src\Server\OnSever.cpp:11918:int SaveThrowItems(rsPLAYINFO *lpPlayInfo, TRANS_THROW_ITEMS	*lpTransThrowItems)
+SrcGame\src\Server\OnSever.cpp:11945:int	rsFindInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum)
+SrcGame\src\Server\OnSever.cpp:11986:int	rsCheckInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode)
+SrcGame\src\Server\OnSever.cpp:12022:int	rsDeleteInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum)
+SrcGame\src\Server\OnSever.cpp:12065:int	rsAddInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum)
+SrcGame\src\Server\OnSever.cpp:12133:int rsGetServerPotion(rsPLAYINFO *lpPlayInfo, DWORD dwPotionCode)
+SrcGame\src\Server\OnSever.cpp:12196:int rsAddServerPotion(rsPLAYINFO *lpPlayInfo, DWORD dwPotionCode, int PotionCount)
+SrcGame\src\Server\OnSever.cpp:12275:int rsServerPotionErrorLOG(rsPLAYINFO *lpPlayInfo, DWORD dwCode, int Count, int Position)
+SrcGame\src\Server\OnSever.cpp:12294:int	rsGetTradePotionInfo(rsPLAYINFO *lpPlayInfo, DWORD dwCode)
+SrcGame\src\Server\OnSever.cpp:12310:int	rsAddTradePotionInfo(rsPLAYINFO *lpPlayInfo, DWORD	dwCode)
+SrcGame\src\Server\OnSever.cpp:12325:int	rsTradeInvenItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRANS_TRADE_ITEMKEY *lpTransTradeItemKey)
+SrcGame\src\Server\OnSever.cpp:12475:	rsPLAYINFO	*lpPlayInfo;
+SrcGame\src\Server\OnSever.cpp:12481:		lpPlayInfo = &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:12482:		if(lpPlayInfo->lpsmSock && rsPlayInfo[cnt].dwObjectSerial && lpPlayInfo->ChatBuffCnt < ChatBuffCnt)
+SrcGame\src\Server\OnSever.cpp:12623:int SendWareHouseToClient(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:12723:int SendOpenGiftExpress(rsPLAYINFO *lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCode_Param)
+SrcGame\src\Server\OnSever.cpp:13023:int rsProcessQuest(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int QuestCode, int QuestParam)
+SrcGame\src\Server\OnSever.cpp:13061:int rsGetQuestCommand(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:13106:int	rsDeleteClientItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpItem)
+SrcGame\src\Server\OnSever.cpp:13129:int	rsDeleteClientItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum)
+SrcGame\src\Server\OnSever.cpp:13151:int rsRecvAgingUpgradeItem(rsPLAYINFO	*lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
+SrcGame\src\Server\OnSever.cpp:13187:int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server)
+SrcGame\src\Server\OnSever.cpp:13446:int rsRecvCraftItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server)
+SrcGame\src\Server\OnSever.cpp:13690:int rsRecvSmeltingItem(rsPLAYINFO *lpPlayInfo, sSMELTINGITEM_SERVER *pSmeltingItem_Server)
+SrcGame\src\Server\OnSever.cpp:14146:int ManufactureItemInfo(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:14213:int rsRecvManufactureItem(rsPLAYINFO *lpPlayInfo, SManufactureItem_Server *pManufactureItem_Server)
+SrcGame\src\Server\OnSever.cpp:14372:int rsRecvSkinChangeItem(rsPLAYINFO* lpPlayInfo, sSKIN_CHANGE_SERVER* pSkinChangeItem_Server)
+SrcGame\src\Server\OnSever.cpp:14492:int rsRecvMixtureResetItem(rsPLAYINFO *lpPlayInfo, sMIXTURE_RESET_ITEM_SERVER *pMixtureResetItem_Server)
+SrcGame\src\Server\OnSever.cpp:14655:int rsRecvWingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server)
+SrcGame\src\Server\OnSever.cpp:14953:int rsRecvMakeLinkCore(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
+SrcGame\src\Server\OnSever.cpp:14988:int rsRecvUseLinkCore(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
+SrcGame\src\Server\OnSever.cpp:14992:	rsPLAYINFO *lpPlayInfo2;
+SrcGame\src\Server\OnSever.cpp:15083:	rsPLAYINFO *lpPlayInfo;
+SrcGame\src\Server\OnSever.cpp:15134:int rsPlayGrandHealing(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:15137:	rsPLAYINFO *lpPartyMaster;
+SrcGame\src\Server\OnSever.cpp:15204:int rsCheck_ResulSOD(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTransCommandEx)
+SrcGame\src\Server\OnSever.cpp:15230:int rsSend_ResultSOD(rsPLAYINFO *lpPlayInfo, int Point, int KillCount, int TotalPoint, int TotalSucessUser, int TotalUser, int SoDCode)
+SrcGame\src\Server\OnSever.cpp:15252:int rsCompAttackData(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:15288:int CheckInvenItemPosition(rsPLAYINFO *lpPlayInfo, TRANS_USINGITEM *lpTransUsingItem)
+SrcGame\src\Server\OnSever.cpp:15424:int CheckInvenItemPosition2(rsPLAYINFO *lpPlayInfo, TRANS_USINGITEM *lpTransUsingItem)
+SrcGame\src\Server\OnSever.cpp:15602:int rsRecvRecordTradeItem(rsPLAYINFO *lpPlayInfo, TRANS_RECORD_TRADE_ITEMS *lpTransRecordTradeItems)
+SrcGame\src\Server\OnSever.cpp:15610:int rsCheckItemTempCode(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpItem)
+SrcGame\src\Server\OnSever.cpp:15644:int	rsCheckItemCode(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpItem)
+SrcGame\src\Server\OnSever.cpp:15730:int	rsRegist_ItemSecCode(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTransCommandEx)
+SrcGame\src\Server\OnSever.cpp:15778:int	rsRegist_ItemSecCode(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo, int NewItem)
+SrcGame\src\Server\OnSever.cpp:15830:int	rsCheck_ItemSecCode(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum, int Money, DWORD dwSeCode_0, DWORD dwSeCode_1, DWORD dwSeCode_2, DWORD dwSeCode_3, int *pPotionCount)
+SrcGame\src\Server\OnSever.cpp:15946:int	rsRegist_ItemSecCode(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTransCommandEx)
+SrcGame\src\Server\OnSever.cpp:15951:int	rsRegist_ItemSecCode(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo, int NewItem)
+SrcGame\src\Server\OnSever.cpp:15956:int	rsCheck_ItemSecCode(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum, int Money, DWORD dwSeCode_0, DWORD dwSeCode_1, DWORD dwSeCode_2, DWORD dwSeCode_3, int *pPotionCount)
+SrcGame\src\Server\OnSever.cpp:15965:int rsRecvBuyShopItem(rsPLAYINFO *lpPlayInfo, TRANS_BUY_SHOPITEM *lpTransBuyShopItem)
+SrcGame\src\Server\OnSever.cpp:16052:int rsRecvSellShopItem(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
+SrcGame\src\Server\OnSever.cpp:16369:int	rsCheckTotalExpMoney(rsPLAYINFO *lpPlayInfo, TRANS_TOTAL_EXPMONEY *TransTotalExpMoney)
+SrcGame\src\Server\OnSever.cpp:16418:int rsSendGameServerExp(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:16448:int rsRecvGameServerExp(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:16490:int rsSendGameServer_PrimeItem(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:16534:int rsSendGameServer_PrimeItem2(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:16582:int rsSendGameServer_PrimeItem3(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:16610:int rsSendGameServer_PrimeItem4(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:16647:int rsRecvGameServer_PrimeItem(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:16692:int rsRecvGameServer_PrimeItem2(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:16735:int rsRecvGameServer_PrimeItem3(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:16772:int rsRecvGameServer_PrimeItem4(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:16804:int rsSendAreaServer_PCBangPet(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:16849:int rsSendAreaServer_PhenixPet(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:16890:int rsRecvAreaServer_PhenixPet(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:16918:int rsRecvAreaServer_PCBangPet(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:16946:int rsSendAreaServer_HelpPet(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:16987:int rsRecvAreaServer_HelpPet(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:17016:int rsSendAreaServerForceOrb(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:17077:int rsRecvAreaServerForceOrb(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:17138:int rsSendAreaServerBoosterItem(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:17245:int rsRecvAreaServerBoosterItem(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:17309:int rsSendAreaServerSkillDelayItem(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:17351:int rsRecvAreaServerSkillDelayItem(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:17397:int rsSendGameServerExp(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:17402:int rsRecvGameServerExp(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:17647:int	rsSendCommandUser(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX	*lpTransCommandEx)
+SrcGame\src\Server\OnSever.cpp:17661:		if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial)
+SrcGame\src\Server\OnSever.cpp:17663:			rx = (x - rsPlayInfo[cnt].Position.x) >> FLOATNS;
+SrcGame\src\Server\OnSever.cpp:17664:			rz = (z - rsPlayInfo[cnt].Position.z) >> FLOATNS;
+SrcGame\src\Server\OnSever.cpp:17669:				rsPlayInfo[cnt].lpsmSock->Send((char *)lpTransCommandEx, lpTransCommandEx->size, TRUE);
+SrcGame\src\Server\OnSever.cpp:17678:int	rsSendCommandUser2(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:17689:		if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial)
+SrcGame\src\Server\OnSever.cpp:17691:			rx = (x - rsPlayInfo[cnt].Position.x) >> FLOATNS;
+SrcGame\src\Server\OnSever.cpp:17692:			rz = (z - rsPlayInfo[cnt].Position.z) >> FLOATNS;
+SrcGame\src\Server\OnSever.cpp:17697:				rsPlayInfo[cnt].lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+SrcGame\src\Server\OnSever.cpp:17765:rsPLAYINFO *FindUserFromName(char *szName)
+SrcGame\src\Server\OnSever.cpp:17771:		if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].TransInfoFlag)
+SrcGame\src\Server\OnSever.cpp:17773:			if(lstrcmpi(rsPlayInfo[cnt].smCharInfo.szName, szName) == 0)
+SrcGame\src\Server\OnSever.cpp:17775:				return &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:17783:rsPLAYINFO *FindUserFromName2(char *szName)
+SrcGame\src\Server\OnSever.cpp:17789:		if(rsPlayInfo[cnt].lpsmSock)
+SrcGame\src\Server\OnSever.cpp:17791:			if(lstrcmpi(rsPlayInfo[cnt].getName().c_str(), szName) == 0)
+SrcGame\src\Server\OnSever.cpp:17793:				return &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:17802:rsPLAYINFO *FindUserFromCode(DWORD dwUserCode)
+SrcGame\src\Server\OnSever.cpp:17810:			if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial == dwUserCode)
+SrcGame\src\Server\OnSever.cpp:17812:				return &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:17821:rsPLAYINFO *FindUserFromName3(char *szName)
+SrcGame\src\Server\OnSever.cpp:17827:		if(rsPlayInfo[cnt].lpsmSock)
+SrcGame\src\Server\OnSever.cpp:17829:			if(!rsPlayInfo[cnt].getName().empty())
+SrcGame\src\Server\OnSever.cpp:17831:				if(lstrcmpi(rsPlayInfo[cnt].getName().c_str(), szName) == 0)
+SrcGame\src\Server\OnSever.cpp:17833:					return &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:17838:				if(lstrcmpi(rsPlayInfo[cnt].smCharInfo.szName, szName) == 0)
+SrcGame\src\Server\OnSever.cpp:17840:					return &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:17849:rsPLAYINFO *FindUserFromCodeName(char *szName, DWORD dwSpeedSum)
+SrcGame\src\Server\OnSever.cpp:17855:		if(rsPlayInfo[cnt].lpsmSock)
+SrcGame\src\Server\OnSever.cpp:17857:			if(rsPlayInfo[cnt].dwCode_Name == dwSpeedSum && lstrcmpi(rsPlayInfo[cnt].getName().c_str(), szName) == 0)
+SrcGame\src\Server\OnSever.cpp:17859:				return &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:17868:rsPLAYINFO *FindUserFromID(char *szID)
+SrcGame\src\Server\OnSever.cpp:17872:		if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty())
+SrcGame\src\Server\OnSever.cpp:17874:			if(lstrcmpi(rsPlayInfo[cnt].getAccount().c_str(), szID) == 0)
+SrcGame\src\Server\OnSever.cpp:17876:				return &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:17920:int CreateCommandItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, char *szItem)
+SrcGame\src\Server\OnSever.cpp:18065:int rsPutItem_PointTicket(rsPLAYINFO *lpPlayInfo, int Price)
+SrcGame\src\Server\OnSever.cpp:18095:int rsCheck_ChageJob(rsPLAYINFO *lpPlayInfo, int NewCnageJob)
+SrcGame\src\Server\OnSever.cpp:18137:int rsPutItem(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode)
+SrcGame\src\Server\OnSever.cpp:18165:int rsPutItem(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, int spJobCode)
+SrcGame\src\Server\OnSever.cpp:18209:int rsPutItemUnique(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, int spJobCode, DWORD dwUniqueCode)
+SrcGame\src\Server\OnSever.cpp:18254:sDEF_ITEMINFO *rsPutItem3(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode)
+SrcGame\src\Server\OnSever.cpp:18283:int rsPutItem2(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpItem)
+SrcGame\src\Server\OnSever.cpp:18299:int rsSendNetLOG(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:18331:int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
+SrcGame\src\Server\OnSever.cpp:18343:bool initialize(rsPLAYINFO *player)
+SrcGame\src\Server\OnSever.cpp:18501:int RecordSaveThrowData(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:18508:int rsRecordCheckFile(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:18566:	rsPLAYINFO *tpInfo;
+SrcGame\src\Server\OnSever.cpp:18578:	tpInfo = (rsPLAYINFO *)lpsmSock->ExtData1;
+SrcGame\src\Server\OnSever.cpp:18694:	rsPLAYINFO *tpInfo;
+SrcGame\src\Server\OnSever.cpp:18713:	tpInfo = (rsPLAYINFO *)lpsmSock->ExtData1;
+SrcGame\src\Server\OnSever.cpp:19007:				if(rsPlayInfo[cnt].lpsmSock)
+SrcGame\src\Server\OnSever.cpp:19267:	rsPLAYINFO	*lpPlayInfo;
+SrcGame\src\Server\OnSever.cpp:19310:int PushLogAccount(rsPLAYINFO *lpPlayInfo, char *szID, char *szPassword, char *szIP)
+SrcGame\src\Server\OnSever.cpp:19401:			if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty() && rsPlayInfo[cnt].GpType == 1)
+SrcGame\src\Server\OnSever.cpp:19403:				if(rsPlayInfo[cnt].GpCode == 0)
+SrcGame\src\Server\OnSever.cpp:19409:							rsPlayInfo[cnt].lpsmSock->acc_sin.sin_addr.S_un.S_addr;
+SrcGame\src\Server\OnSever.cpp:19412:				if(rsPlayInfo[cnt].GpCode == 1)
+SrcGame\src\Server\OnSever.cpp:19418:							rsPlayInfo[cnt].lpsmSock->acc_sin.sin_addr.S_un.S_addr;
+SrcGame\src\Server\OnSever.cpp:19467:int rsLogAccount(rsPLAYINFO *lpPlayInfo, char *szID, char *szPassword)
+SrcGame\src\Server\OnSever.cpp:19607:			if(rsPlayInfo[cnt].lpsmSock)
+SrcGame\src\Server\OnSever.cpp:19609:				rsPlayInfo[cnt].lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:19627:		if(rsPlayInfo[cnt].lpsmSock)
+SrcGame\src\Server\OnSever.cpp:19632:			rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:19691:int	rsSendTransCommand(rsPLAYINFO *lpPlayInfo, DWORD	dwCode, int WParam, int LParam, int SParam, int EParam)
+SrcGame\src\Server\OnSever.cpp:19711:int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
+SrcGame\src\Server\OnSever.cpp:21086:int RecordDebugPlayLogFile(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:21128:int RecordJobChanger(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:21193:int Record_BillingLogFile(rsPLAYINFO *lpPlayInfo, DWORD wParam, DWORD lParam, DWORD sParam, DWORD eParam)
+SrcGame\src\Server\OnSever.cpp:21222:int Record_DeadUser(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:21258:int RecordMixItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSrcItem, sITEMINFO *lpMixItem)
+SrcGame\src\Server\OnSever.cpp:21292:int RecordAgingItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSrcItem, sITEMINFO *lpMixItem, int Mode)
+SrcGame\src\Server\OnSever.cpp:21344:int RecordCollectMoney(rsPLAYINFO *lpPlayInfo, int Money)
+SrcGame\src\Server\OnSever.cpp:21435:int RecordGetHighItem(rsPLAYINFO *lpPlayInfo, STG_ITEMS *lpStgItem)
+SrcGame\src\Server\OnSever.cpp:21578:int RecordSmeltingItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSmeltingItem)
+SrcGame\src\Server\OnSever.cpp:21615:int RecordManufactureItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpManufactureItem)
+SrcGame\src\Server\OnSever.cpp:21653:int RecordMixtureResetItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpMixtureResetItem)
+SrcGame\src\Server\OnSever.cpp:21692:int RecordMovieBloodyBattleItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpMovieBloodyBattleItem)
+SrcGame\src\Server\OnSever.cpp:22149:int	rsRecord_ItemLOG(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD dwHead, DWORD dwChkSum, int Flag)
+SrcGame\src\Server\OnSever.cpp:22207:int	rsRecord_ItemLog2(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHead, DWORD dwChkSum, int Flag)
+SrcGame\src\Server\OnSever.cpp:22231:int	rsRecord_ItemLog_Change(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHead, DWORD dwChkSum,
+SrcGame\src\Server\OnSever.cpp:22261:int	rsRecord_ItemLost(rsPLAYINFO *lpPlayInfo, DWORD *lpItemCode, DWORD *lpHead, DWORD *lpChkSum, int Flag)
+SrcGame\src\Server\OnSever.cpp:22297:int	rsRecord_ItemLog_Trade(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRANS_TRADE_ITEMKEY *lpTransTradeItemKey)
+SrcGame\src\Server\OnSever.cpp:22340:int	rsRecord_ItemLog_MyShop(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, DWORD dwItemCode, DWORD dwHead, DWORD dwChkSum, int Price)
+SrcGame\src\Server\OnSever.cpp:22389:int	rsRecord_ItemLog_Post(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHead, DWORD dwChkSum, DWORD dwGCode, char *szTelNum, int Flag)
+SrcGame\src\Server\OnSever.cpp:22418:int	rsRecord_SmeltingItemLOG(rsPLAYINFO *lpPlayInfo, DWORD *lpItemCode, DWORD *lpHead, DWORD *lpChkSum, int Flag)
+SrcGame\src\Server\OnSever.cpp:22450:int	rsRecord_ManufactureItemLOG(rsPLAYINFO *lpPlayInfo, DWORD *lpItemCode, DWORD *lpHead, DWORD *lpChkSum, int Flag)
+SrcGame\src\Server\OnSever.cpp:22483:int rsRecord_MixtureResetItemLOG(rsPLAYINFO *lpPlayInfo, sMIXTURE_RESET_ITEM_SERVER *pMixtureResetItem_Server, int Flag)
+SrcGame\src\Server\OnSever.cpp:22796:int rsUpdateSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:22824:int rsCancelSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:22959:int rsProcessSkillPartyUser(rsPLAYINFO *lpPlayInfo, TRANS_PARTY_SKILL *lpTransPartySkill)
+SrcGame\src\Server\OnSever.cpp:22986:	rsPLAYINFO *lpPlayInfo;
+SrcGame\src\Server\OnSever.cpp:23004:int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:23008:	rsPLAYINFO *lpPlayInfo2;
+SrcGame\src\Server\OnSever.cpp:23393:				if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial &&
+SrcGame\src\Server\OnSever.cpp:23394:					lpPlayInfo != &rsPlayInfo[cnt] &&
+SrcGame\src\Server\OnSever.cpp:23395:					rsPlayInfo[cnt].Position.Area == lpPlayInfo->Position.Area &&
+SrcGame\src\Server\OnSever.cpp:23396:					(rsPlayInfo[cnt].Position.Area != rsCASTLE_FIELD || (rsPlayInfo[cnt].dwClanCode && rsPlayInfo[cnt].dwClanCode == lpPlayInfo->dwClanCode)))
+SrcGame\src\Server\OnSever.cpp:23398:					x = (lpPlayInfo->Position.x - rsPlayInfo[cnt].Position.x) >> FLOATNS;
+SrcGame\src\Server\OnSever.cpp:23399:					y = (lpPlayInfo->Position.y - rsPlayInfo[cnt].Position.y) >> FLOATNS;
+SrcGame\src\Server\OnSever.cpp:23400:					z = (lpPlayInfo->Position.z - rsPlayInfo[cnt].Position.z) >> FLOATNS;
+SrcGame\src\Server\OnSever.cpp:23405:						rsPlayInfo[cnt].dwSkill_ForceOfNature_Time = dwPlayServTime + Force_Of_Nature_Time[point] * 1000;
+SrcGame\src\Server\OnSever.cpp:23406:						rsPlayInfo[cnt].wSkill_ForceOfNature_Param[0] = Force_Of_Nature_AddDamage[point] / 2;
+SrcGame\src\Server\OnSever.cpp:23407:						rsPlayInfo[cnt].wSkill_ForceOfNature_Param[1] = Force_Of_Nature_FalconAddDamage[point];
+SrcGame\src\Server\OnSever.cpp:23408:						rsPlayInfo[cnt].lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+SrcGame\src\Server\OnSever.cpp:23459:				if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial &&
+SrcGame\src\Server\OnSever.cpp:23460:					lpPlayInfo != &rsPlayInfo[cnt] &&
+SrcGame\src\Server\OnSever.cpp:23461:					rsPlayInfo[cnt].Position.Area == lpPlayInfo->Position.Area &&
+SrcGame\src\Server\OnSever.cpp:23462:					(rsPlayInfo[cnt].Position.Area != rsCASTLE_FIELD || (rsPlayInfo[cnt].dwClanCode && rsPlayInfo[cnt].dwClanCode == lpPlayInfo->dwClanCode)))
+SrcGame\src\Server\OnSever.cpp:23464:					x = (lpPlayInfo->Position.x - rsPlayInfo[cnt].Position.x) >> FLOATNS;
+SrcGame\src\Server\OnSever.cpp:23465:					y = (lpPlayInfo->Position.y - rsPlayInfo[cnt].Position.y) >> FLOATNS;
+SrcGame\src\Server\OnSever.cpp:23466:					z = (lpPlayInfo->Position.z - rsPlayInfo[cnt].Position.z) >> FLOATNS;
+SrcGame\src\Server\OnSever.cpp:23471:						if(rsPlayInfo[cnt].dwSkill_TriumphOfValhalla_Time < dwPlayServTime)
+SrcGame\src\Server\OnSever.cpp:23473:							rsPlayInfo[cnt].dwSkill_HallOfValhalla_Time = dwPlayServTime + Hall_Of_Valhalla_Time[point] * 1000;
+SrcGame\src\Server\OnSever.cpp:23474:							rsPlayInfo[cnt].wSkill_HallOfValhalla_Param[0] = Hall_Of_Valhalla_AddEvation[point] / 2;
+SrcGame\src\Server\OnSever.cpp:23475:							rsPlayInfo[cnt].wSkill_HallOfValhalla_Param[1] = (T_Of_Valhalla_Damage[lpTransCommand->SParam - 1] + lv) / 2;
+SrcGame\src\Server\OnSever.cpp:23476:							rsPlayInfo[cnt].lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
+SrcGame\src\Server\OnSever.cpp:23533:int rsProcessAttack_SkillHolyReflection(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
+SrcGame\src\Server\OnSever.cpp:23596:int rsClanUpdate(rsPLAYINFO *lpPlayInfo, TRANS_CLAN_COMMAND_USER *lpTransClanUser)
+SrcGame\src\Server\OnSever.cpp:23601:	rsPLAYINFO	*lpPlayInfo2;
+SrcGame\src\Server\OnSever.cpp:23626:int rsRecvYahooMotion(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:23845:int	rsSendMoneyToUser(rsPLAYINFO *lpPlayInfo, int Money)
+SrcGame\src\Server\OnSever.cpp:23875:int	rsPutItemToSystemLine(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode)
+SrcGame\src\Server\OnSever.cpp:23897:int	rsSendMoneyToSystemLine(rsPLAYINFO *lpPlayInfo, int Money)
+SrcGame\src\Server\OnSever.cpp:23920:int rsSendCharInfoToLoginServer(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:23947:		if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].SystemLine)
+SrcGame\src\Server\OnSever.cpp:23966:		if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].SystemLine == 2)
+SrcGame\src\Server\OnSever.cpp:23969:			lpPlayInfo_LoginServer[dwSerToLogin_Count++] = &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:23992:int rsRecvSystemInfo(rsPLAYINFO *lpPlayInfo, void *Buff)
+SrcGame\src\Server\OnSever.cpp:24001:int	rsPushKillMonster(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo, STG_AREA *lpStgArea)
+SrcGame\src\Server\OnSever.cpp:24118:	rsPLAYINFO	*lpPlayInfo;
+SrcGame\src\Server\OnSever.cpp:24157:					lpPlayInfo = (rsPLAYINFO *)lpsmSock->ExtData1;
+SrcGame\src\Server\OnSever.cpp:24247:int	rsSaveAdminCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand, int Level)
+SrcGame\src\Server\OnSever.cpp:24293:int	rsRecordAdminCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand, int Level)
+SrcGame\src\Server\OnSever.cpp:24316:AccountTypes getSecurityLevel(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:24329:int	rsClanMoneyLOG(rsPLAYINFO *lpPlayInfo, int Money, int RestMoney)
+SrcGame\src\Server\OnSever.cpp:24371:int rsRecvStarPoint(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:24460:int rsRecvSodClanCash(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:24516:int rsRecvGiveMoney(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:24547:int rsRecvPaymentMoney(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:24568:int rsEventLogOn_Sucess(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:24646:DWORD rsOpenEventPuzzleItem(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
+SrcGame\src\Server\OnSever.cpp:24677:int rsDebugMessageToClient(rsPLAYINFO *lpPlayInfo, char *szDmgMsg)
+SrcGame\src\Server\OnSever.cpp:24695:int	rsTrade_PersonalShop(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, smTRANS_COMMAND_BUFF *lpTransCommandBuff)
+SrcGame\src\Server\OnSever.cpp:24858:int	rsUseLovelyItem(rsPLAYINFO *lpPlayInfo, DWORD	dwItemCode)
+SrcGame\src\Server\OnSever.cpp:24947:	rsPLAYINFO *lpPlayInfo;
+SrcGame\src\Server\OnSever.cpp:24952:	rsPLAYINFO	*lpDebugPlayInfo = 0;
+SrcGame\src\Server\OnSever.cpp:24963:			lpPlayInfo = &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:25016:int rsSendRangeDamage(smCHAR *lpChar, rsPLAYINFO *lpMainPlayInfo, int Range, int SubDamgePers)
+SrcGame\src\Server\OnSever.cpp:25019:	rsPLAYINFO *lpPlayInfo;
+SrcGame\src\Server\OnSever.cpp:25026:	rsPLAYINFO	*lpUserList[16];
+SrcGame\src\Server\OnSever.cpp:25029:	rsPLAYINFO	*lpSndUserList[128];
+SrcGame\src\Server\OnSever.cpp:25040:		lpPlayInfo = &rsPlayInfo[cnt];
+SrcGame\src\Server\OnSever.cpp:25225:int	rsQuestMasterMessage(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:25621:			if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial && rsPlayInfo[cnt].Position.Area == rsCASTLE_FIELD)
+SrcGame\src\Server\OnSever.cpp:25624:				rsPlayInfo[cnt].lpsmSock->Send((char *)&rsBlessCastle.ClanTop10, rsBlessCastle.ClanTop10.size, TRUE);
+SrcGame\src\Server\OnSever.cpp:25627:					rsSendBlessCastleInfoToDataServer(&rsPlayInfo[cnt]);
+SrcGame\src\Server\OnSever.cpp:25970:int rsCheck_BlessCastleClanSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:25993:int rsCheck_BlessCastleTax(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTransCommandEx)
+SrcGame\src\Server\OnSever.cpp:26019:int	rsSendBlessCastleInfoToDataServer(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:26045:int	rsRecvBlessCastleInfoFromGameServer(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:26076:int rsRecvBlessCastInfo(rsPLAYINFO *lpPlayInfo, void *lpPacket)
+SrcGame\src\Server\OnSever.cpp:26125:int rsSendBlessCastInfo(rsPLAYINFO *lpPlayInfo, int Mode)
+SrcGame\src\Server\OnSever.cpp:26235:	rsPLAYINFO *lpPlayInfo;
+SrcGame\src\Server\OnSever.cpp:26257:		lpPlayInfo = &rsPlayInfo[mcnt];
+SrcGame\src\Server\OnSever.cpp:26296:int rsSendBlessCastleClanSkill(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:26387:int rsSiegeItemSucess(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode)
+SrcGame\src\Server\OnSever.cpp:26404:int	rsOpenSiegeCastleItem(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:26720:int RecordBlessCastleSetup(rsPLAYINFO *lpPlayInfo, smTRANS_BLESSCASTLE *lpBlessCastleSetup)
+SrcGame\src\Server\OnSever.cpp:26761:int rsFault_PlayField(rsPLAYINFO *lpPlayInfo, int height)
+SrcGame\src\Server\OnSever.cpp:26791:int rsCheckPlayField(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:26859:DWORD rsLowLevelItem(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
+SrcGame\src\Server\OnSever.cpp:26920:int rsRecvUpdateServerParam(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:26935:int	rsUpdateServerParam(rsPLAYINFO *lpPlayInfo, DWORD dwUpdateCode, int Param1, int Param2, int TargetMode)
+SrcGame\src\Server\OnSever.cpp:26959:int rsStartUser_PresentItem(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:27075:int rsSendUserID_MainServer(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:27092:int rsRecvUserID_MainServer(rsPLAYINFO *lpPlayInfo, smTRANS_CHAR_COMMAND2 *lpTransCharCommand)
+SrcGame\src\Server\OnSever.cpp:27103:int rsGetExp_GameTime(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:27124:int rsDispay_GameTime(rsPLAYINFO *lpPlayInfo, DWORD dwTimeOld)
+SrcGame\src\Server\OnSever.cpp:27262:int rsRecvHackTrap(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCharCommand)
+SrcGame\src\Server\OnSever.cpp:27290:int rsRecvCheckItemMesh(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:27315:DWORD ManufactureCheckRune(rsPLAYINFO *lpPlayInfo, DWORD RecipeCode, DWORD *pRuneCode)
+SrcGame\src\Server\OnSever.cpp:27536:int rsPutItem_TreasureBox(rsPLAYINFO *lpPlayInfo, DWORD Code)
+SrcGame\src\Server\OnSever.cpp:27630:int rsPutItem_CapsuleItem(rsPLAYINFO *lpPlayInfo, DWORD Code)
+SrcGame\src\Server\OnSever.cpp:27703:int rsSendAreaOpenKidMonster(rsPLAYINFO	*lpPlayInfo, smCHAR *lpChar)
+SrcGame\src\Server\OnSever.cpp:27728:int rsOpenKidMonster(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand, int mon_Num)
+SrcGame\src\Server\OnSever.cpp:27789:int rsSendAreaOpenSODGuardMonster(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
+SrcGame\src\Server\OnSever.cpp:27815:int rsOpenSODGuardMonster(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand, int mon_Num)
+SrcGame\src\Server\OnSever.cpp:27903:int rsFiltChatMsg(rsPLAYINFO *lpPlayInfo, char *szMsg, int len)
+SrcGame\src\Server\OnSever.cpp:27912:int rsRecvEventGame(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\OnSever.cpp:27926:int	rsUseSoccerBallPotionItem(DWORD dwItemCode, rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\OnSever.cpp:27970:int rsXignCode_resultCode_Verify(rsPLAYINFO *lpPlayInfo, XIGNCODE_PACKET *packet)
+SrcGame\src\Server\OnSever.cpp:28018:int rsXignCode_recordLog::getInstance()->output(rsPLAYINFO *lpPlayInfo, int msg_num, int result_data, char *szReport)
+SrcGame\src\Server\OnSever.cpp:28043:int rsXignCode_selected_code_SendPacket(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\PartySever.cpp:32:rsPLAYINFO *srFindUserFromSerial(DWORD dwObjectSerial);
+SrcGame\src\Server\PartySever.cpp:34:int	rsRegist_ItemSecCode(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo, int NewItem);
+SrcGame\src\Server\PartySever.cpp:38:int rsPLAYINFO::SendPartyData(rsPLAYINFO *lpPlayInfo_From, char *szData)
+SrcGame\src\Server\PartySever.cpp:62:int rsPLAYINFO::SendPartyMessage(char *szMessage, DWORD dwCode)
+SrcGame\src\Server\PartySever.cpp:99:int rsPLAYINFO::CreateParty(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\PartySever.cpp:131:int	rsPLAYINFO::JoinPartyPlayer(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\PartySever.cpp:161:int	rsPLAYINFO::DeletePartyPlayer(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\PartySever.cpp:195:int	rsPLAYINFO::ChangePartyPlayer(rsPLAYINFO *lpOldPlayInfo, rsPLAYINFO *lpNewPlayInfo)
+SrcGame\src\Server\PartySever.cpp:240:int	rsPLAYINFO::UpdatePartyPlayer()
+SrcGame\src\Server\PartySever.cpp:306:int	rsPLAYINFO::UpdatePartyPlayInfo()
+SrcGame\src\Server\PartySever.cpp:367:int	rsPLAYINFO::UpdateServerPartyPlayer(TRANS_PARTY_PLAYINFO *lpTransPartyPlayInfo)
+SrcGame\src\Server\PartySever.cpp:377:	rsPLAYINFO *lpPlayInfo = nullptr;
+SrcGame\src\Server\PartySever.cpp:425:	ZeroMemory(lpPartyPlayers, sizeof(rsPLAYINFO *)*PARTY_PLAYER_MAX);
+SrcGame\src\Server\PartySever.cpp:474:int rsPLAYINFO::GetPartyExp(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\PartySever.cpp:585:int rsPLAYINFO::GetPartyMoney(sITEMINFO *lpDefItemInfo, rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\PartySever.cpp:655:int rsPLAYINFO::PartyChatting(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\PartySever.cpp:683:int	rsPLAYINFO::LeavePartyMaster(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\PartySever.cpp:724:	memcpy(lpPlayInfo->lpPartyPlayers, lpPartyPlayers, sizeof(rsPLAYINFO *) *PARTY_PLAYER_MAX);
+SrcGame\src\Server\PartySever.cpp:744:int	rsPLAYINFO::ReleaseParty()
+SrcGame\src\Server\PartySever.cpp:784:int	rsPLAYINFO::JoinParty(rsPLAYINFO *lpPlayMaster)
+SrcGame\src\Server\PartySever.cpp:815:int	rsPLAYINFO::SecedeParty()
+SrcGame\src\Server\PartySever.cpp:819:	rsPLAYINFO	*lpPlayInfo;
+SrcGame\src\Server\PartySever.cpp:858:rsPLAYINFO *LastDisPlayer;
+SrcGame\src\Server\PartySever.cpp:859:rsPLAYINFO *LastDisPartyMaster;
+SrcGame\src\Server\PartySever.cpp:863:int	rsPLAYINFO::DisconnectPartyUser()
+SrcGame\src\Server\PartySever.cpp:866:	rsPLAYINFO *pMaster;
+SrcGame\src\Server\PartySever.cpp:964:int	rsPLAYINFO::AddServerMoney(int Money, int WhereParam)
+SrcGame\src\Server\PartySever.cpp:996:int	rsPLAYINFO::SubServerMoney(int Money, int WhereParam)
+SrcGame\src\Server\PartySever.cpp:1029:int	rsPLAYINFO::SetServerMoney(int Money, int WhereParam)
+SrcGame\src\Server\PartySever.cpp:1063:int	rsPLAYINFO::CallBack_ClanMarkNum(int ClanMarkNum)
+SrcGame\src\Server\svrEventGame.h:55:int sveFiltChatMsg(rsPLAYINFO *lpPlayInfo, char *szMsg, int len)
+SrcGame\src\Server\svrEventGame.h:107:int rsEventGame_State_Init(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\svrEventSpawn.cpp:255:int	rsEVENT_SPAWN::Event_KillMonster(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
+SrcGame\src\Server\svrEventSpawn.cpp:299:		if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].dwObjectSerial)
+SrcGame\src\Server\svrEventSpawn.cpp:301:			rx = abs(x - (rsPlayInfo[cnt].Position.x >> FLOATNS));
+SrcGame\src\Server\svrEventSpawn.cpp:302:			rz = abs(z - (rsPlayInfo[cnt].Position.z >> FLOATNS));
+SrcGame\src\Server\svrEventSpawn.cpp:306:				rsPlayInfo[cnt].lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+SrcGame\src\Server\svrEventSpawn.cpp:366:int rsEVENT_SPAWN::Order(rsPLAYINFO *lpPlayInfo, char *szText)
+SrcGame\src\Server\svrEventSpawn.cpp:457:int rsEventSpawn_KillMonster(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
+SrcGame\src\Server\svrEventSpawn.cpp:469:int rsEventSpawn_Order(rsPLAYINFO *lpPlayInfo, char *szText)
+SrcGame\src\Server\svrEventSpawn.h:18:	int	Order(rsPLAYINFO *lpPlayInfo, char *szText);
+SrcGame\src\Server\svrEventSpawn.h:19:	int	Event_KillMonster(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar);
+SrcGame\src\Server\svrEventSpawn.h:38:int rsEventSpawn_KillMonster(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar);
+SrcGame\src\Server\svrEventSpawn.h:39:int rsEventSpawn_Order(rsPLAYINFO *lpPlayInfo, char *szText);
+SrcGame\src\Server\svr_Damage.h:2:int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttackData, smCHAR *lpTargetChar, int Type);
+SrcGame\src\Server\svr_Damage.h:4:int rsRecvRangeAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAttackData, int Type);
+SrcGame\src\Server\svr_Damage.h:6:int rsRecvRangeAttackUserData_Old(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAttackData);
+SrcGame\src\Server\svr_Damage.h:10:int rsRecvAttackData(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA2 *lpTransAttackData);
+SrcGame\src\Server\svr_Damage.h:12:int rsRecvRangeAttackData(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA2 *lpTransRangeAttackData);;
+SrcGame\src\Server\svr_Damage.h:22:int rsCheckSkillLevel(rsPLAYINFO *lpPlayInfo, DWORD dwSkillCode);
+SrcGame\src\Server\svr_Damage.h:25:int	rsDecodeDamagePacket(rsPLAYINFO *lpPlayInfo, void *lpPacket);
+SrcGame\src\Server\svr_Damage.h:27:int	rsEncodeDamagePacket(rsPLAYINFO *lpPlayInfo, void *lpPacket);
+SrcGame\src\Server\svr_Damage.h:29:int rsSendDamageFuncToClient(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\svr_Damage.h:31:int rsSendDamageFuncToClient2(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\svr_Damage.h:33:int rsSetDamagePacketKey(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\svr_Damage.h:35:int	rsProcessSafePacket(rsPLAYINFO *lpPlayInfo);
+SrcGame\src\Server\svr_Damage.h:37:int	rsCompareSafePacket(rsPLAYINFO *lpPlayInfo, DWORD dwRcvPacketCode);
+SrcGame\src\Server\svr_Damage.h:40:int rsRecordDamageError(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+SrcGame\src\Server\Svr_Damge.cpp:52:int GetCritical(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int Critical_Hit);
+SrcGame\src\Server\Svr_Damge.cpp:53:int GetCritical2(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Critical_Hit);
+SrcGame\src\Server\Svr_Damge.cpp:56:int	rsRecordCharDamage(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int Damage);
+SrcGame\src\Server\Svr_Damge.cpp:58:int	rsRecord_PKDamage(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Damage);
+SrcGame\src\Server\Svr_Damge.cpp:62:int rsSendAttackUser(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Power, int AttackState, short sParam1 = 0, short sParam2 = 0);
+SrcGame\src\Server\Svr_Damge.cpp:65:int	rsBillingItemSkill(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int HitMonsters, int Power, int SkillCode);
+SrcGame\src\Server\Svr_Damge.cpp:75:int rsDisplayDamgeToClient(rsPLAYINFO *lpPlayInfo, char *szDmgMsg)
+SrcGame\src\Server\Svr_Damge.cpp:94:int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttackData, smCHAR *lpTargetChar, int Type)
+SrcGame\src\Server\Svr_Damge.cpp:107:	rsPLAYINFO	*lpPlayInfo2;
+SrcGame\src\Server\Svr_Damge.cpp:795:int rsRecvRangeAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAttackData, int Type)
+SrcGame\src\Server\Svr_Damge.cpp:825:int rsRecvRangeAttackUserData_Old(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAttackData)
+SrcGame\src\Server\Svr_Damge.cpp:868:int	rsCheckAttackRange(int dx, int dy, int dz, rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\Svr_Damge.cpp:884:int rsSendAttackUser(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Power, int AttackState, short sParam1, short sParam2)
+SrcGame\src\Server\Svr_Damge.cpp:1294:int RecvRangeAttack_User(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAttackData, int AreaNum, int PlaySkillCode)
+SrcGame\src\Server\Svr_Damge.cpp:1299:	rsPLAYINFO	*lpCharInfo;
+SrcGame\src\Server\Svr_Damge.cpp:1356:			lpCharInfo = &rsPlayInfo[cnt2];
+SrcGame\src\Server\Svr_Damge.cpp:1609:			lpCharInfo = &rsPlayInfo[cnt2];
+SrcGame\src\Server\Svr_Damge.cpp:1683:			lpCharInfo = &rsPlayInfo[cnt2];
+SrcGame\src\Server\Svr_Damge.cpp:1739:			lpCharInfo = &rsPlayInfo[cnt2];
+SrcGame\src\Server\Svr_Damge.cpp:1765:int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAttackData, int AreaNum, int PlaySkillCode)
+SrcGame\src\Server\Svr_Damge.cpp:2676:int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAttackData)
+SrcGame\src\Server\Svr_Damge.cpp:2684:int RecvRangeAttackUser(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAttackData)
+SrcGame\src\Server\Svr_Damge.cpp:2702:		if(rsPlayInfo[cnt2].lpsmSock && rsPlayInfo[cnt2].dwObjectSerial)
+SrcGame\src\Server\Svr_Damge.cpp:2706:				if(rsPlayInfo[cnt2].dwObjectSerial == lpTransSkilAttackData->dwTarObjectSerial[cnt] &&
+SrcGame\src\Server\Svr_Damge.cpp:2707:				   rsPlayInfo[cnt2].smCharInfo.Level > LIMIT_PK_LEVEL)
+SrcGame\src\Server\Svr_Damge.cpp:2714:					TransAttackData.x = rsPlayInfo[cnt2].Position.x;
+SrcGame\src\Server\Svr_Damge.cpp:2715:					TransAttackData.y = rsPlayInfo[cnt2].Position.y;
+SrcGame\src\Server\Svr_Damge.cpp:2716:					TransAttackData.z = rsPlayInfo[cnt2].Position.z;
+SrcGame\src\Server\Svr_Damge.cpp:2724:					TransAttackData.dwTarObjectSerial = rsPlayInfo[cnt2].dwObjectSerial;
+SrcGame\src\Server\Svr_Damge.cpp:2729:					rsPlayInfo[cnt2].Send_AttackCount++;
+SrcGame\src\Server\Svr_Damge.cpp:2730:					rsPlayInfo[cnt2].Send_AttackDamage += lpTransSkilAttackData->Power;
+SrcGame\src\Server\Svr_Damge.cpp:2732:					rsPlayInfo[cnt2].lpsmSock->Send((char *)&TransAttackData, TransAttackData.size, TRUE);
+SrcGame\src\Server\Svr_Damge.cpp:2748:int rsCheckSkillLevel(rsPLAYINFO *lpPlayInfo, DWORD dwSkillCode)
+SrcGame\src\Server\Svr_Damge.cpp:2785:int rsSetSkillAttack(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, TRANS_ATTACKDATA *lpTransAttackData, TRANS_ATTACKDATA2 *lpTransAttackData2)
+SrcGame\src\Server\Svr_Damge.cpp:3540:int rsSetSkillPlus(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, TRANS_ATTACKDATA *lpTransAttackData, TRANS_ATTACKDATA2 *lpTransAttackData2)
+SrcGame\src\Server\Svr_Damge.cpp:3765:int GetCritical(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int Critical_Hit)
+SrcGame\src\Server\Svr_Damge.cpp:3795:int GetCritical2(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Critical_Hit)
+SrcGame\src\Server\Svr_Damge.cpp:3807:int AddForceOrbPower(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, TRANS_ATTACKDATA	*lpTransAttackData, DWORD dwSkillCode, int MinDamage, int MaxDamage)
+SrcGame\src\Server\Svr_Damge.cpp:3965:int AddRangeForceOrbPower(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, TRANS_SKIL_ATTACKDATA	*lpTransSkillAttackData, DWORD dwSkillCode, int MinDamage, int MaxDamage)
+SrcGame\src\Server\Svr_Damge.cpp:4087:int rsSendAttackDataToUser(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRANS_ATTACKDATA *lpTransAttackData)
+SrcGame\src\Server\Svr_Damge.cpp:4176:int rsRecvAttackData(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA2 *lpTransAttackData)
+SrcGame\src\Server\Svr_Damge.cpp:4181:	rsPLAYINFO *lpPlayInfo2;
+SrcGame\src\Server\Svr_Damge.cpp:4491:int rsSetSkillRangeAttack(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, TRANS_ATTACKDATA *lpTransAttackData, TRANS_SKIL_ATTACKDATA *lpTransSkillAttackData, TRANS_SKIL_ATTACKDATA2 *lpTransRangeAttack)
+SrcGame\src\Server\Svr_Damge.cpp:5098:int rsRecvRangeAttackData(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA2 *lpTransRangeAttackData)
+SrcGame\src\Server\Svr_Damge.cpp:5321:int rsSetDamagePacketKey(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\Svr_Damge.cpp:5344:int rsSendDamageFuncToClient(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\Svr_Damge.cpp:5371:int rsSendDamageFuncToClient2(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\Svr_Damge.cpp:5398:int rsSendPacketFuncToClient(rsPLAYINFO *lpPlayInfo, DWORD dwEncPacketCode, BYTE bEncXor, BYTE bDecXor)
+SrcGame\src\Server\Svr_Damge.cpp:5432:int	rsProcessSafePacket(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\Svr_Damge.cpp:5472:int	rsCompareSafePacket(rsPLAYINFO *lpPlayInfo, DWORD dwRcvPacketCode)
+SrcGame\src\Server\Svr_Damge.cpp:5510:int	rsDecodeDamagePacket(rsPLAYINFO *lpPlayInfo, void *lpPacket)
+SrcGame\src\Server\Svr_Damge.cpp:5537:int	rsEncodeDamagePacket(rsPLAYINFO *lpPlayInfo, void *lpPacket)
+SrcGame\src\Server\Svr_Damge.cpp:5567:int rsSetDamagePacketKey(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\Svr_Damge.cpp:5573:int rsSendDamageFuncToClient(rsPLAYINFO *lpPlayInfo)
+SrcGame\src\Server\Svr_Damge.cpp:5578:int	rsDecodeDamagePacket(rsPLAYINFO *lpPlayInfo, void *lpPacket)
+SrcGame\src\Server\Svr_Damge.cpp:5582:int	rsEncodeDamagePacket(rsPLAYINFO *lpPlayInfo, void *lpPacket)
+SrcGame\src\Server\Svr_Damge.cpp:5592:int rsRecordDamageError(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+SrcGame\src\Server\Svr_Damge.cpp:5609:int	rsRecordCharDamage(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int Damage)
+SrcGame\src\Server\Svr_Damge.cpp:5724:int	rsRecord_PKDamage(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Damage)
+SrcGame\src\Server\Svr_Damge.cpp:5802:int	rsBillingItemSkill(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int HitMonsters, int Power, int SkillCode)
+SrcGame\src\sinbaram\sinSkill_InfoIni.h:635:int ReLoadSkillInfo(rsPLAYINFO *lpPlayInfo);
