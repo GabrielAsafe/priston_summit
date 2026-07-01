@@ -1,0 +1,166 @@
+#whitelink a:link {
+    font-family: Tahoma;
+    font-size: 11px;
+    color: white;
+    text-decoration: none;
+}
+
+#whitelink a:visited {
+    font-family: Tahoma;
+    font-size: 11px;
+    color: white;
+    text-decoration: none;
+}
+
+
+#whitelink a:active {
+    font-family: Tahoma;
+    font-size: 11px;
+    color: white;
+    text-decoration: none;
+}
+
+#whitelink a:hover {
+    font-family: Tahoma;
+    font-size: 11px;
+    color: white;
+    text-decoration: underline;
+}
+
+#whitelink_bot a:link {
+    font-family: Tahoma;
+    font-size: 9px;
+    color: white;
+    text-decoration: none;
+}
+
+#whitelink_bot a:visited {
+    font-family: Tahoma;
+    font-size: 9px;
+    color: white;
+    text-decoration: none;
+}
+
+
+#whitelink_bot a:active {
+    font-family: Tahoma;
+    font-size: 9px;
+    color: white;
+    text-decoration: none;
+}
+
+#whitelink_bot a:hover {
+    font-family: Tahoma;
+    font-size: 9px;
+    color: white;
+    text-decoration: underline;
+}
+
+#bluelink a:link {
+    font-family: Tahoma;
+    font-size: 11px;
+    color: #2d88b6;
+    text-decoration: none;
+}
+
+#bluelink a:visited {
+    font-family: Tahoma;
+    font-size: 11px;
+    color: #2d88b6;
+    text-decoration: none;
+}
+
+
+#bluelink a:active {
+    font-family: Tahoma;
+    font-size: 11px;
+    color: #2d88b6;
+    text-decoration: none;
+}
+
+#bluelink a:hover {
+    font-family: Tahoma;
+    font-size: 11px;
+    color: #2d88b6;
+    text-decoration: underline;
+}
+
+table {
+    font-family: Tahoma;
+    font-size: 11px;
+}
+
+.padding_table {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.padding_all {
+    padding-left:5px;
+    padding-right:5px;
+    padding-top:5px;
+    padding-bottom:5px
+}
+
+.padding_left_sub {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+input {
+    font-family: Tahoma;
+    font-size: 11px;
+    color: #000;
+    background-color: white;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
+
+.button {
+    font-family: Verdana;
+    font-size: 10px;
+    color: #000;
+    background-color: #FFF;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
+.button6 {
+    font-family: Tahoma;
+    font-size: 11px;
+    color: #000;
+    background-color: #fff;
+    border-top: 1px dotted #000;
+    border-bottom: 1px dotted #000;
+    border-left: 1px dotted #000;
+    border-right: 1px dotted #000;
+}
+.btn { 
+background-color: #999; 
+}
+
+
+.alert_color {color: #2d88b6}
+
+select {
+    font-family: Tahoma;
+    font-size: 11px;
+    color: #333333;
+    background-color: #FFFFFF;
+}
+.branco{
+	font-family: Verdana;
+	font-size: 10px;
+	color: #FFF;
+	font-weight: bold;
+}
+
+input { 
+background-color: #FFFFFF; 
+font: 12px verdana, arial, helvetica, sans-serif;
+color:#000;
+border:1px dotted #999;
+}

@@ -1,0 +1,15 @@
+vamos até o pritator / carregar game server 
+
+GameServer\npc\ricarden-store.NPC
+
+ricarden-store
+
+so adicionar e salva o arquivo
+
+image/sinimage/ items  premiuns
+
+acho que é ch101 alguma coisa assim dps se procura e add aqui
+
+dai vc cria in-game e testa eles e add corretamente
+
+pronto

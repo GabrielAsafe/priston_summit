@@ -1,0 +1,13 @@
+<?php
+$showstatus="<font color=\"White\"><br>
+Regen HP: 0.9 - 1.2<br>
+Regen MP: 1.0 - 1.3<br>
+<font color=\"#a68151\">
+N&iacute;vel Ness&aacute;rio: 60<br>
+Intelig&ecirc;ncia Ness&aacute;ria: 100<br></font>
+<font color=\"#7a892d\">
+Regen MP: 0.9 - 1.3<br>
+Regen HP: 0.5 - 0.8<br>
+<br></font>
+PS: Requisitos variam<br> de acordo com spec.</font><br /><br />";
+?>

@@ -1,0 +1,17 @@
+abre o sql
+
+expandi banco de dados
+
+expandi LOGADO
+
+expandi tabelias
+
+e la vai tar a dbo.itemlist
+
+clica com botao direito do mouse e abre essa dbo.item em 200 linhas superiores.
+
+la vai ter 
+
+code - numero do codigo do item
+
+sem segredo, dps q add os itens que quer só fecha a db no x sem fecha o sql

@@ -1,0 +1,21 @@
+======= BOSS TIME SPAWN xx:32 MINUTOS =======
+
+Castelo dos Perdidos / Drop 80-90 / MiniBosses e Boss Greedy = 22
+Castelo dos Perdidos / Drop 80-90 / MiniBosses e Boss Draxos = 16
+Estrada de Ferro do Caos / Drop Padrao BPT / Boss Babel = 1 4 7 10 13 16 19 22
+Coração de Perum / Drop Padrao BPT / Boss Babel = 0 3 6 9 12 15 18 21
+Vale Gallubia / Drop Padrao BPT / Boss Valento = 0 3 6 9 12 15 18 21
+Vale Gallubia / Drop Padrao BPT / Boss Olho de Fogo = 1 5 9 13 17 21
+Santuário Congelado / Drop Padrao BPT / Boss Tartaruga Dragao = 0 4 8 12 16 20
+Covil do Kelvezu / Drop Padrao BPT / Boss Kelvezu = 0 4 8 12 16 20
+Ilha Perdida / Drop Padrao BPT / Boss Cao Esqueleto = 2 6 10 14 18 22
+Templo Perdido / Drop Padrao BPT / Boss Mokova = 2 7 12 17 22
+Torre Sem Fim - 1º Andar / Drop 80-100-102 / Boss Mundo = 3 12 21
+Torre Sem Fim - 2º Andar / Drop 80-100-102-105 / Boss Mundo = 8 16 23
+Torre Sem Fim - 3º Andar / Drop 80-100-102-105-108 / Boss Devil Shy = 2 10 18
+Mina de Gelo - 1º Andar / Drop 100-102-105-108-115-118 / Boss Tulla = 3 11 19
+=============================================
+Laboratório Secreto / Drop 120 / Boss Draxos = 4 12 20
+Arma Antiga / Drop 125 / Boss Greedy = 2 10 18
+Abismo do Mar / Drop 130-135 / Boss Yagditha = 3 11 19
+=============================================

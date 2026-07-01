@@ -1,0 +1,50 @@
+field 50 arena de batalha			SOMENTE ADM POR ENQUANTO
+field 48	abismo do mar - SEAA		entrar 195+	drop LVL190
+field 47	arma secreta - ANCIENTW		entrar 180+	drop LVL175
+field 46	labolatorio secreto - SLAB	entrar 165+	drop LVL160
+field 45 TDP ARDOR (parece sod)			SOMENTE ADM POR ENQUANTO
+field 44	mina de gelo - MINE1		entrar 150+	drop LVL145
+field 43	et3 - DUN9			entrar 135+	drop LVL130
+field 42 t.maldito 3andar - DUN6		entrar 175+	UP 175-200
+field 41 	et2 - DUN8			entrar 120+	drop LVL115
+field 40 	et1 - DUN7			entrar 110+	drop LVL105 +RATE
+field 39 sei la q merda eh			SOMENTE ADM POR ENQUANTO
+field 38 lost2 - LOSTTEMPLE			entrar 140+	UP 140-150
+field 37 lost1 - LOSTISLAND			entrar 125+	UP 125-140
+field 36 covil kelvezu - BOSS			DROP AMULETO BOSS KELVEZU
+field 35 ice2			===========================================================
+field 34 lago ganancia - GREEDY			DROP MANA
+field 33 bc					BC
+field 32 furya					QUEST
+field 31 ice1			===========================================================
+field 30 parece sod				SOD
+field 29 eura			===========================================================
+field 28 iron2 - IRON2				SHELTONS +RATE
+field 27 iron1 - IRON1				SHELTONS
+field 26 santuario sombrio	===========================================================
+field 25 cav abelha		===========================================================
+field 24 cav cogumelo		===========================================================
+field 23 t.maldito 2andar - DUN5		entrar 160+	UP 160-175
+field 22 t.maldito 1andar - DUN4		entrar 150+	UP 150-160
+field 21 pilai					PILAI
+field 20 estrada dos ventos	===========================================================
+field 19 vale tranquilo		===========================================================
+field 18 floresta das ilusoes	===========================================================
+field 17 floresta dos espiritos	===========================================================
+field 16 sala gm				SOMENTE ADM POR ENQUANTO
+field 15 c.antigo 3andar	===========================================================
+field 14 c.antigo 2andar	===========================================================
+field 13 c.antigo 1andar	===========================================================
+field 12 terra proibida		===========================================================
+field 11 c. batalha dos ancioes	===========================================================
+field 10 oasis - DE2				entrar 115+	UP 115-125
+field 9 navisko			===========================================================
+field 8 terra esquecida	- DE1			entrar 100+	UP 100-115 E DROP 105 HARD
+field 7 terra maldita		===========================================================
+field 6 ruinen			===========================================================
+field 5 castelo perdido	- RUIN3			TULLA DROP BOSS
+field 4 refugio anciao		===========================================================
+field 3 ricartem				RICARTEM
+field 2 jardim liberdade			DROP GOLD
+field 1 floresta bamboo		===========================================================
+field 0 mata das acacias	===========================================================

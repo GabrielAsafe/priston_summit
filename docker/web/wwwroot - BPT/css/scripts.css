@@ -1,0 +1,77 @@
+#serverstatus
+{
+    color:		White;
+    font-family:	Verdana, Geneva, Arial, helvetica, sans-serif;
+    font-size:		10px;
+    text-align:		center;
+    margin-top:		8px;
+}
+#scriptsphp
+{
+    color:		White;
+    font-family:	Verdana, Geneva, Arial, helvetica, sans-serif;
+    font-size:		10px;
+    text-align:		center;
+    margin-top:		8px;
+}
+#topranking
+{
+    color:		White;
+    font-family:	Verdana, Geneva, Arial, helvetica, sans-serif;
+    font-size:		10px;
+    text-align:		center;
+}
+/*******************************************
+Equipe Status
+********************************************/
+#equipe *
+{
+	padding: 0px;
+	margin: 0;
+	font-weight:bold;
+}
+#equipe
+{
+	margin-top: 0px;
+	color: White;
+	font-family: Verdana, Geneva, Arial, helvetica, sans-serif;
+	font-size: 10px;
+	background: url(../imagens/equipe/moldura_foot.gif) no-repeat center bottom;
+	padding-bottom: 12px;
+	width: 172px;
+}
+#equipe > h3 span
+{
+	display: none;
+}
+#equipe > h3
+{
+	background-image: url(../imagens/equipe/equipestatus-top.gif);
+	width: 172px;
+	height: 35px;
+}
+#equipe > ul
+{
+	padding: 10px 10px 1px 10px;
+	background: url(../imagens/equipe/moldura_mid.gif) repeat-y;
+	list-style-position: inside;
+	list-style-image: url(../imagens/equipe/marcador.png);
+}
+#equipe > ul > li
+{
+	background: url(../imagens/equipe/line.gif) repeat-x left bottom;
+	margin-bottom: 5px;
+}
+#equipe > ul > li > ul
+{
+	list-style: none;
+}
+#equipe > ul > li > ul > li
+{
+	display: inline-block;
+	margin: 10px 5px;
+}
+#equipe > ul > li > ul > li > span
+{
+	display: none;
+}

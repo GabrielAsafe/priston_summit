@@ -1,0 +1,28 @@
+USE [Jeck]
+GO
+/****** Object: Query database Admin; Script Date: 06/03/2010 10:35:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[premiado](
+	[ID] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
+	[Nick] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
+	[DATA] [varchar](10) COLLATE Latin1_General_CI_AS NULL,
+        [HORA] [varchar](15) COLLATE Latin1_General_CI_AS NULL,
+        [PREMIO] [varchar](15) COLLATE Latin1_General_CI_AS NULL,
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE [dbo].[itens](
+	[Codigo] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
+	[Nome] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
+
+) ON [PRIMARY]
+GO
+
+INSERT INTO [Jeck].[dbo].[itens] ([Codigo],[Nome]) VALUES ('da101','Noob');
+SET ANSI_PADDING OFF

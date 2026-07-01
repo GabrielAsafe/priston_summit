@@ -1,0 +1,530 @@
+body {
+	margin:0px; 
+	background-repeat:no-repeat;
+	background-position:top;
+	background-color:#000000;
+	color:black;
+	font-family: "verdana" , "arial";
+}
+#bg {
+	width: 830px;
+	margin: 0 auto;
+	text-align:center;
+}
+
+.meio_internas{
+	width: 740;
+	margin: 0 auto;
+	background-color:#FFFFFF;
+	text-align:auto;
+}
+
+.meio_internas_maior{
+	width: 815px;
+	margin: 0 auto;
+	background: url('../imagens/interna/lan_maior_bg.gif');
+}
+
+#videofundo{
+background-image:url(../imagens/interna/videos_back.jpg);
+background-repeat:no-repeat;
+background-position:center;
+width:770px;
+height:365px;
+text-align:center;
+}
+
+  h2{
+  color:#000000;
+  font-size:11px;
+  text-align:center;
+  }
+
+.titulos
+{font-family:Verdana;
+	font-size:12px;
+	font-weight:bold;
+	color:#834e0D;
+	}
+
+/*alinhamento das paginas da pasta Guia*/
+.top_inf_internas {width: 830px; margin-right:16px;}
+html>body>center #bg .top_inf_internas {width: 830px; *width: 830px;}
+
+
+#inf{
+background:url("../imagens/footer.jpg") no-repeat scroll 0 0 transparent;
+background-position: center bottom;
+margin-bottom: 0px;
+position:relative;
+height:202px;
+width:100%;
+}
+
+#top {
+	padding:0px; 
+	width: 100%;
+	height:18px;
+	margin: auto;
+	background:url(../imagens/index/top.gif) top left;
+}
+
+#top_loja {
+	position:absolute;
+	margin-top:-35px;
+	margin-left:-15px;
+}
+
+#flash {
+	padding:0px; 
+	width: 830px;
+	height: 230px;
+	position:relative;
+	z-index: 4; margin-right:auto; margin-top:0; margin-bottom:0;
+}
+
+#flasheventos {
+	padding:0px;
+	text-align:center;
+	width: 100%;
+	position:absolute;
+	height: 150px;
+	vertical-align: top;
+	font-size: 1px;
+	border: 0px none;
+	margin-left:0px;
+	z-index: 4;
+	margin-right:auto;
+	margin-top:0;
+	margin-bottom:0;
+	left: 0px;
+	top: 10px;
+}
+
+
+#meio {
+	margin: 0 auto;
+	margin-left: 20px;
+	vertical-align: top;
+	width:690px;
+	top: 245px;
+	z-index: 3;
+	left: 6px;
+	height:auto;
+}
+
+body, td, th {
+	font-family: "Trebuchet MS";
+	font-size: 11px;
+	color: black;
+}
+
+#guia {
+	font-family:"Trebuchet MS";
+	font-size:11px;
+	color:#000000;
+}
+.link .meio_internas a{
+	color:#003366;
+	text-decoration:none;
+}
+.link .meio_internas a:hover{
+	color:#0066CC;
+	text-decoration: underline;
+}
+.link .meio_internas a:link{
+	text-decoration: none;
+	color:#003366;
+}
+
+/* titulo e sub*/
+.style1 
+{
+	font-size: 12pt;
+	font-weight: bold;
+	color:#000000;
+}
+.style2 
+{
+	font-size: 10pt;
+	font-weight: bold;
+	color:#000000;
+}
+
+#internabg {
+	width: 652px;
+	margin: 0 auto;
+	background:url('../imagens/interna/bg.jpg');
+	vertical-align: top;
+	border:1px solid #4c3a15;
+}
+
+
+#internainf {
+	width: 770px;
+	height: 79px;
+	margin: 0 auto;
+	background:url('../imagens/interna/bottom.gif');
+	vertical-align: top;
+	position: relative;
+	padding-top:0;
+}
+
+#internatop {
+	width: 676px;
+	height:26px;
+	margin: 0 auto;
+	background:url('../imagens/interna/bg_top.jpg');
+	vertical-align: top
+}
+
+.noticiastitulo {
+	font-size:26px;
+	color:#834E0D;
+	font-family:"Times New Roman", Times, serif;
+}
+.noticiastexto{
+	font-size:12px;
+	color:#000000;
+	font-family:"Trebuchet MS";
+}
+.noticiastexto a{
+	color:#000000;
+	text-decoration:none;
+	font-size:12px;
+}
+.noticiastexto a:hover{
+	color:#834E0D;
+	text-decoration:underline;
+	font-size:12px;
+}
+.noticiastexto a:link{
+	color:#000000;
+	text-decoration:none;
+}
+
+.noticias {
+	color:#000000;
+	font-size:12px;
+	font-family:"Trebuchet MS";
+	text-decoration:none;
+}
+.noticias a{
+	color:#000000;
+	text-decoration:none;
+}
+.noticias a:hover{
+	color:#834E0D;
+	text-decoration: underline;
+}
+.noticias a:visit{
+	color:#000000;
+	text-decoration:none;
+}
+
+.noticiasimg {
+	color:#F2E3CE;
+	font-size:11px;
+	font-family:"Trebuchet MS";
+	text-decoration:none;
+}
+.noticiasimg a{
+	color:#F2E3CE;
+	text-decoration:none;
+}
+.noticiasimg a:hover{
+	color:#FFFFFF;
+	text-decoration: underline;
+}
+.noticiasimg a:visit{
+	color:#F2E3CE;
+	text-decoration:none;
+}
+
+.acordo {
+	color:#000000;
+	font-size:12px;
+	font-family:"Trebuchet MS";
+	text-decoration:none;
+}
+.acordo a{
+	color:#000000;
+	text-decoration:none;
+}
+.acordo a:hover{
+	color: #834E0D;
+	text-decoration: underline;
+}
+.acordo a:visit{
+	color: #000000;
+	text-decoration:none;
+}
+
+#tv {
+	width: 296px;
+	height:250px;
+	position:absolute;
+	margin-left:315px;
+	margin-top:76px;
+	vertical-align: top;
+}
+
+.linhas {
+	margin-left:0px;
+	margin-right: 0px;
+	padding-top:5px;
+	padding-bottom:5px;
+	border-bottom:1px dotted;
+	text-align:center;
+}
+
+.linhas_ranking
+{
+	border-bottom:1px solid #a99a58;
+	text-align:center;
+}
+
+.styleBlack{
+	color:Black;		
+}
+
+.Painel {
+	background-color:green;
+	position:absolute; 
+	z-index:1; 
+	left: 40%; 
+	top: 300px;
+}
+
+#enquete 
+{
+	font-size:7px;
+	width:80px;
+	height:10px;
+	position:relative;
+	border:1px;
+	border-color:Black;
+	/*border-color:#95b183;*/
+	border-style:solid;
+	background-color:White;
+	color:White;
+	margin-bottom: 10px;
+}
+
+#promocao
+{
+	font-size:7px;
+	width:80px;
+	height:10px;
+	position:relative;
+	border:1px;
+	border-color:Black;
+	/*border-color:#95b183;*/
+	border-style:solid;
+	background-color:White;
+	color:#000000;
+	margin-bottom: 10px;
+}
+
+.PainelPorcentagem 
+{
+	
+	background-image: url(../imagens/bg_enquete.gif);
+	height:10px;
+}
+
+.estilo_tree { font-family:Trebuchet MS; font-size:11px; color:Red;}
+
+
+/* Tabela área tutorial Crie seus Itens */
+
+.tabela1 
+{
+	background-color:#ae7631;
+	margin:0px;
+	color:white;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.tabela1 .linha2
+{
+	background-color:#000000;
+	padding:10px 0px 10px 0px;
+	color:white;
+	font-size:11px;
+	font-weight:normal;
+}
+
+.tabela3 
+{
+	background-color: #FFFFFF;
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0;
+	border: 1px solid #E8DAB1;
+}
+
+
+/*------------------------ Login Novo ----------------------------*/
+
+.teclado {width:90%; margin-left:70px; color:Black;}
+.teclado .tecl_box {margin-left:80px; width:100%;}
+.teclado .link { text-align:right; margin-right: 85px; clear:both;}
+html>body .teclado .link {margin-right:150px; *margin-right: 85px;}
+
+#boxDir {float:left; width:420px; margin-left:10px; padding-left: 10px; border-left:1px solid #d6b280;}
+#boxEsq {float:left; width:200px; margin-left:72px;}
+.new_cadastro { margin-top:10px;}
+.noticia {}
+#ranking { width:620px; margin-top:0px; margin-left:72px; clear:both;}
+
+.linha {BORDER-BOTTOM: #d6b280 1px solid; background-color:White; MARGIN: 10px 80px 20px 75px; WIDTH: 100%; clear:both;}
+html>body .linha {width:80%; *WIDTH: 100%;}
+
+.box_teclado { margin:25px 100px 25px 100px; width:500px; height:150px}
+
+/* pagina de cadastro>segurança */
+
+#principal_seg {
+	text-align:justify; padding-left:15px; width:630px;	
+}
+html>body #principal_seg {width:620px; padding-left:10px; *width:630px; *padding-left:20px;}
+
+#seguranca_topo {
+	 background-image:url(../imagens/interna/seguranca_topo.jpg);
+	 width:642px;
+	 height:337px;
+}
+
+#seguranca_topo .txt {width:352px; margin-left:275px; padding-top:110px; padding-right:10px;}
+#seguranca_topo li {width:320px; margin-left:250px; }
+
+.seguranca_1 {
+	background-image:url(../imagens/interna/seguranca_pers1.jpg);
+	background-repeat:no-repeat;
+	background-position: 300px;
+	width:642px;
+	height:160px;
+}
+.seguranca_1 .txt {
+	padding-top: 80px;
+	padding-right: 180px;
+}
+.seguranca_2 {
+	background-image:url(../imagens/interna/seguranca_pers2.jpg);
+	background-repeat:no-repeat;
+	width:642px;
+	
+}
+.seguranca_2 .txt {
+	padding-top: 80px;
+	padding-left: 150px;
+	padding-right: 20px;
+}
+
+/* pagina fanArt */
+
+.meio_fan{
+	width: 768px;
+	margin: 0 auto;
+	background: url('../imagens/interna/bg.gif');
+}
+
+.cont {width:580px; margin-left:5px;}
+
+.fanBT {width:580px;}
+.fanBT .bt1 {float:left; margin:0px; padding-left:5px;}
+.fanBT .bt2 {float:left; margin:0px; }
+
+
+.fanCadastro {
+	border:1px solid #efe3b9;
+	border-top:0px;
+	width:570px;
+	margin:0px;
+	text-align:center;
+	padding:10px 0px 10px 0px;
+}
+
+.fanCadastro .margem {width:90%; margin-left:30px; margin-right:30px;}
+.meio_fan .texto {width:80%; text-align:left; }
+
+.fanCadastro .nome  { margin:0px; float:left; text-align:right; list-style:none; margin-left:45px;}
+.fanCadastro .campo { margin:0px; width:330px; padding:0px; float:left; text-align:left; list-style:none;}
+.fanCadastro .nome2 { margin:0px; padding:0px; padding-top:4px; float:left; text-align:left; list-style:none; margin-left:120px;}
+html>body .fanCadastro .nome2 {margin-left:0px; *margin-left:120px;}
+
+.fanCadastro .campo li { padding:2px;}
+.fanCadastro .nome li {padding:5px;}
+.fanCadastro .botao {border:1px solid #efe3b9; background-color:#f9f5e6;}
+.fanCadastro .tabela {background-color:#f9f5e6; text-align:center;}
+
+.meio_fan .regulamento 
+{
+	width:518px;
+	border:1px solid #efe3b9;
+	height:300px;
+	overflow-y: visible;
+	margin-top: 30px;
+}
+
+.meio_fan .regulamento2 {height:2450px;}
+html>body .meio_fan .regulamento2 {height:2180px; *height:2450px;}
+
+
+/* Pagina Vídeo */
+
+.video_tela {
+	width:612px;
+	text-align:center;
+	padding-left:1px;
+	padding-top:50px;
+	background:url('../imagens/interna/bg_video.jpg');
+}
+.video_table{ margin: 70px;  margin-top: 0px; margin-bottom: 0px; }
+.video_cadastro {
+	width:612px;
+	height:162px;
+	text-align:center;
+	padding-left:1px;
+	background:url('../imagens/interna/bg_video2.jpg');
+	color:White;
+	display:table;
+}
+.esq { 
+	color: white;
+	float:left; 
+	width:150px; 
+	height: 100%;
+	text-align:right; 
+	padding-left:65px; 
+	padding-top:20px;
+}
+.dir {
+color: white;
+	float:right;
+	width:380px;
+	height: 100%;
+	text-align:left;
+	padding-top:20px;
+	padding-left:5px;	
+}
+.esq:after {content:"-";display:block;clear:both;font-size:1px;visibility:hidden;}
+.dir:after {content:"-";display:block;clear:both;font-size:1px;visibility:hidden;}
+.video_cadastro .nome {margin-top:3px; width:100px;}
+.video_cadastro .nome2 {margin-top:8px; width:100px;}
+.video_cadastro .imput {
+	background-color:Black;
+	border:1px solid black;
+	margin-bottom:3px;
+	color:White;
+	font-family:Trebuchet MS;
+	font-size:11;
+	width: 320;
+}
+
+.botao_video  {margin-top:8px;}
+
+.login {padding-left: 70px; padding-top:10px; color:Black;}

@@ -1,0 +1,57 @@
+SrcGame/src/priston.vcxproj:281:    <ClCompile Include="..\..\modules\Helper\Utils\utils_exception.cpp" />
+SrcGame/src/priston.vcxproj:282:    <ClCompile Include="..\..\modules\Helper\Utils\utils_filesystem.cpp" />
+SrcGame/src/priston.vcxproj:283:    <ClCompile Include="..\..\modules\Helper\Utils\utils_logging.cpp" />
+SrcGame/src/priston.vcxproj:284:    <ClCompile Include="..\..\modules\Helper\Utils\utils_string.cpp" />
+SrcGame/src/priston.vcxproj:285:    <ClCompile Include="..\..\modules\Helper\Utils\utils_testing.cpp" />
+SrcGame/src/priston.vcxproj:492:    <ClInclude Include="..\..\modules\Helper\Utils\utils_exception.h" />
+SrcGame/src/priston.vcxproj:493:    <ClInclude Include="..\..\modules\Helper\Utils\utils_filesystem.h" />
+SrcGame/src/priston.vcxproj:494:    <ClInclude Include="..\..\modules\Helper\Utils\utils_logging.h" />
+SrcGame/src/priston.vcxproj:495:    <ClInclude Include="..\..\modules\Helper\Utils\utils_string.h" />
+SrcGame/src/priston.vcxproj:496:    <ClInclude Include="..\..\modules\Helper\Utils\utils_testing.h" />
+SrcGame/src/priston.vcxproj.bak:277:    <ClCompile Include="..\..\modules\Helper\Utils\utils_exception.cpp" />
+SrcGame/src/priston.vcxproj.bak:278:    <ClCompile Include="..\..\modules\Helper\Utils\utils_filesystem.cpp" />
+SrcGame/src/priston.vcxproj.bak:279:    <ClCompile Include="..\..\modules\Helper\Utils\utils_logging.cpp" />
+SrcGame/src/priston.vcxproj.bak:280:    <ClCompile Include="..\..\modules\Helper\Utils\utils_string.cpp" />
+SrcGame/src/priston.vcxproj.bak:281:    <ClCompile Include="..\..\modules\Helper\Utils\utils_testing.cpp" />
+SrcGame/src/priston.vcxproj.bak:488:    <ClInclude Include="..\..\modules\Helper\Utils\utils_exception.h" />
+SrcGame/src/priston.vcxproj.bak:489:    <ClInclude Include="..\..\modules\Helper\Utils\utils_filesystem.h" />
+SrcGame/src/priston.vcxproj.bak:490:    <ClInclude Include="..\..\modules\Helper\Utils\utils_logging.h" />
+SrcGame/src/priston.vcxproj.bak:491:    <ClInclude Include="..\..\modules\Helper\Utils\utils_string.h" />
+SrcGame/src/priston.vcxproj.bak:492:    <ClInclude Include="..\..\modules\Helper\Utils\utils_testing.h" />
+SrcGame/src/Release/Game.Build.CppClean.log:1:c:\users\on\downloads\sourceept\srcgame\src\release\utils_logging.obj
+SrcGame/src/Release/Game.Build.CppClean.log:48:c:\users\on\downloads\sourceept\srcgame\src\release\utils_string.obj
+SrcGame/src/Release/Game.Build.CppClean.log:105:c:\users\on\downloads\sourceept\srcgame\src\release\utils_exception.obj
+SrcGame/src/Release/Game.Build.CppClean.log:106:c:\users\on\downloads\sourceept\srcgame\src\release\utils_testing.obj
+SrcGame/src/Release/Game.Build.CppClean.log:156:c:\users\on\downloads\sourceept\srcgame\src\release\utils_filesystem.obj
+SrcGame/src/Release/Game.tlog/Cl.items.tlog:1:D:\Server\Source\modules\Helper\Utils\utils_exception.cpp;D:\Server\Source\SrcGame\src\Release\utils_exception.obj
+SrcGame/src/Release/Game.tlog/Cl.items.tlog:2:D:\Server\Source\modules\Helper\Utils\utils_filesystem.cpp;D:\Server\Source\SrcGame\src\Release\utils_filesystem.obj
+SrcGame/src/Release/Game.tlog/Cl.items.tlog:3:D:\Server\Source\modules\Helper\Utils\utils_logging.cpp;D:\Server\Source\SrcGame\src\Release\utils_logging.obj
+SrcGame/src/Release/Game.tlog/Cl.items.tlog:4:D:\Server\Source\modules\Helper\Utils\utils_string.cpp;D:\Server\Source\SrcGame\src\Release\utils_string.obj
+SrcGame/src/Release/Game.tlog/Cl.items.tlog:5:D:\Server\Source\modules\Helper\Utils\utils_testing.cpp;D:\Server\Source\SrcGame\src\Release\utils_testing.obj
+SrcGame/src/Release/priston.log:2:  utils_exception.cpp
+SrcGame/src/Release/priston.log:3:  utils_filesystem.cpp
+SrcGame/src/Release/priston.log:4:  utils_logging.cpp
+SrcGame/src/Release/priston.log:5:  utils_string.cpp
+SrcGame/src/Release/priston.log:6:  utils_testing.cpp
+SrcServer/src/priston.vcxproj:241:    <ClCompile Include="..\..\modules\Helper\Utils\utils_exception.cpp" />
+SrcServer/src/priston.vcxproj:242:    <ClCompile Include="..\..\modules\Helper\Utils\utils_filesystem.cpp" />
+SrcServer/src/priston.vcxproj:243:    <ClCompile Include="..\..\modules\Helper\Utils\utils_logging.cpp" />
+SrcServer/src/priston.vcxproj:244:    <ClCompile Include="..\..\modules\Helper\Utils\utils_string.cpp" />
+SrcServer/src/priston.vcxproj:245:    <ClCompile Include="..\..\modules\Helper\Utils\utils_testing.cpp" />
+SrcServer/src/priston.vcxproj:430:    <ClInclude Include="..\..\modules\Helper\Utils\utils_exception.h" />
+SrcServer/src/priston.vcxproj:431:    <ClInclude Include="..\..\modules\Helper\Utils\utils_filesystem.h" />
+SrcServer/src/priston.vcxproj:432:    <ClInclude Include="..\..\modules\Helper\Utils\utils_logging.h" />
+SrcServer/src/priston.vcxproj:433:    <ClInclude Include="..\..\modules\Helper\Utils\utils_string.h" />
+SrcServer/src/priston.vcxproj:434:    <ClInclude Include="..\..\modules\Helper\Utils\utils_testing.h" />
+SrcServer/src/Release/priston.tlog/Cl.items.tlog:1:D:\Server\Source\modules\Helper\Utils\utils_exception.cpp;D:\Server\Source\SrcServer\src\Release\utils_exception.obj
+SrcServer/src/Release/priston.tlog/Cl.items.tlog:2:D:\Server\Source\modules\Helper\Utils\utils_filesystem.cpp;D:\Server\Source\SrcServer\src\Release\utils_filesystem.obj
+SrcServer/src/Release/priston.tlog/Cl.items.tlog:3:D:\Server\Source\modules\Helper\Utils\utils_logging.cpp;D:\Server\Source\SrcServer\src\Release\utils_logging.obj
+SrcServer/src/Release/priston.tlog/Cl.items.tlog:4:D:\Server\Source\modules\Helper\Utils\utils_string.cpp;D:\Server\Source\SrcServer\src\Release\utils_string.obj
+SrcServer/src/Release/priston.tlog/Cl.items.tlog:5:D:\Server\Source\modules\Helper\Utils\utils_testing.cpp;D:\Server\Source\SrcServer\src\Release\utils_testing.obj
+modules/Helper/Utils/utils_exception.cpp:1:#include "utils_exception.h"
+modules/Helper/Utils/utils_filesystem.cpp:1:#include "utils_filesystem.h"
+modules/Helper/Utils/utils_filesystem.cpp:2:#include "utils_logging.h"
+modules/Helper/Utils/utils_logging.cpp:2:#include "utils_filesystem.h"
+modules/Helper/Utils/utils_logging.cpp:3:#include "utils_logging.h"
+modules/Helper/Utils/utils_string.cpp:1:#include "utils_exception.h"
+modules/Helper/Utils/utils_testing.cpp:1:#include "utils_testing.h"

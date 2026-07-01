@@ -1,0 +1,9 @@
+A Forma mais facil de edita iten
+
+é ir na server files
+
+e procura o programa que está com @ na frente
+
+que tem nome de editor de itens, só abrir ele
+
+e ser feliz, 

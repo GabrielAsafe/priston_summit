@@ -1,0 +1,6 @@
+___________SQL
+[Database]
+Driver={SQL Server}
+Host=PTL\SQLEXPRESS
+User=sa
+Password=#$pdl32xq

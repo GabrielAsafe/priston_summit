@@ -1,0 +1,69 @@
+Para adicionar atualização no launcher, é facil.
+
+
+vamos abrir o IIS, (Disco c: Inetput, wwwroot)
+
+Normalmente, lá o nome da pasta é Update
+
+ou Launcher,
+
+neste caso, está como launcherr,
+
+Dentro dela,
+
+
+tem 3 arquivos,
+
+1 em .zip com a versão sendo ela no momento aqui 1000.zip
+
+para atualizar,
+
+
+Vamos muda o nome dela para 2000.zip e com oque você quer atualizar dentro,
+
+entre na pasta onde tá o patch, chega até os arquivos, seleciona tudo
+
+clicando com botão direito, dps em adicionar para o arquivo, ai vai ter a opção .zip la
+
+só clica em ok ja vai ir pra .zip
+
+
+depois de renomear como 2000 que é a versão que está aqui, vamos abrir o arquivo updates e muda a versão lá
+
+estava 1000.zip aqui, mude as duas para 2000
+
+   
+<version>1000</version>
+ 
+   
+<file>1000.zip</file>
+  
+
+Mude para:
+
+<version>2000</version>
+ 
+   
+<file>2000.zip</file>
+ 
+
+Conforme a versão que você deixou no .zip
+
+depois feito isso, salva,
+
+agora vamos abrir o version.txt
+
+
+e muda a versão lá tbm
+
+aqui está:
+
+1000
+
+
+só coloca
+
+
+2000 fecha e salva.
+
+Depois disso, só abrir o launcher e testa, faça copia de tudo antes caso der errado, tente novamente, uma hora você consegue!

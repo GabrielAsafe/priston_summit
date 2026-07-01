@@ -1,0 +1,46 @@
+USE [ADM]
+GO
+/****** Object:  Table [dbo].[LogsBan]    Script Date: 11/07/2008 16:40:32 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[LogsBan](
+	[idplayer] [varchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[motivo] [varchar](150) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[punicao] [nchar](15) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[diaban] [nchar](2) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[mesban] [nchar](2) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[anoban] [nchar](4) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[diadesban] [nchar](2) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[mesdesban] [nchar](2) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[anodesban] [nchar](4) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[gm] [nchar](30) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[ip] [nchar](30) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[data] [datetime] NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+
+
+
+USE [ADM]
+GO
+/****** Object:  Table [dbo].[loginGM]    Script Date: 11/07/2008 16:40:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[loginGM](
+	[idGM] [varchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[passGM] [nchar](10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	[nickGM] [varchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF

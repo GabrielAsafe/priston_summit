@@ -1,0 +1,18 @@
+Para adicionar ip no fire wall é simples.
+
+
+Abre o firewall que esta na area de trabalho.
+
+Depois clica em Firewall canto esquerdo encima.
+
+Depois vai em More
+
+Depois Clica em Policy
+
+La vai ter 4 quadradinhos para adicionar ip.
+
+adicionar la, não tem problema se for encima de outro, apenas o outro ip perde acesso a host.
+
+Depois clica em freeips e aguarde 5 segundos.
+
+Pronto, IP adicionado

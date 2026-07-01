@@ -1,0 +1,71 @@
+_____________ BOSS KELVEZU
+
+- Nascendo de 4 em 4h no covil de kelvezu
+
+
+- dropando itens 115
+
+_____________ Jardim da liberdade
+
+- Nascendo 4_tobie
+
+
+- dropando gold
+
+_____________ Mobs Up 100-115 (	ok )
+
+
+- 75_Hulk.inf
+
+
+- 77_Dawlin.inf
+
+
+- 85_Typhoon.inf
+
+_____________ Mobs Up 115-130
+
+
+- B_54_SkeletonKnight.inf
+
+
+- B_59_HeadCutter 1.inf
+
+_____________ mobs up 130-140
+
+
+- 64_Mummy.inf
+
+- 65_DarkKnight
+
+_____________ mobs up 140-150
+
+- 89_mountain.inf
+
+- 74_stonegolem.inf
+
+_____________ Arma Antiga
+
+
+- AncientW.Ase.spm
+
+
+- Lab_Flamo.inf
+
+
+- Lab_LTechnician.inf
+
+
+_____________ Ice Mine
+
+
+- Mine-1.ase.spm
+
+
+- minebat.inf
+
+
+- minegolem.inf
+
+
+- tarantulika.inf

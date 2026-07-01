@@ -1,0 +1,20 @@
+services:
+  summit-web-bpt:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: summit-web-bpt
+    ports:
+      - "8088:80"
+    volumes:
+      - ./web/wwwroot - BPT:/var/www/html
+
+  summit-web-epic:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: summit-web-epic
+    ports:
+      - "8089:80"
+    volumes:
+      - ./web/wwwroot - EPIC SIMPLE:/var/www/html

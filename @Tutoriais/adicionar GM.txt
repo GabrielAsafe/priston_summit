@@ -1,0 +1,33 @@
+seguinte. para adicionar Game master.
+
+basta abrir o Sql server managemente studio.
+
+aperta em conectar.
+
+expandi o banco de dados.
+
+expandi accountdb
+
+expandi tabelas
+
+procura gamemaster.dbo
+
+clica com botao direito encima e abre em 200 linhas superiores
+
+Accountdb - id q voce quer add
+
+password - senha para ativar a gm
+
+security - você coloca 5 para Adm
+
+ACtive - voce coloca True
+
+Depois que adicionou a Id no sql.
+
+vai até o cmd do servidor
+
+e digita help;
+
+depois reloadGMS;
+
+depois so logar e /ativar (password - senha para ativar a gm)

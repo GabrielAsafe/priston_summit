@@ -1,0 +1,70 @@
+Primeiramente, temos que saber qual mob é.
+
+para sabemos qual mob é.
+
+entra no jogo, vai no mapa, aperta f9
+
+la em f9 vai mostrar o codigo do mapa encima no f9.
+
+Depois, vai na server files
+
+abre o pritator 1.8.857 que esta perto do server.exe na pasta da files
+
+vai em options
+
+depois server path e procura a pasta da server files que esta em disco c dois ponto servidor
+
+seleciona  pasta servidor e clica em ok
+
+depois vamos em maps
+
+la esta a lista de mapas com mob
+
+vamos pega um mapa aleatorio
+
+vamos pegar jardim da liberdade.
+
+fore-1.ase.spm
+
+la vai ter o nome dos mob,
+
+exemplo, 4.hopy - copy.inf
+
+depois de pegamos o  nome do mob que agente quer edita,
+
+vamos procurar ele.
+
+vai na server files, gameserver, monster
+
+procura o nome dele la, de exemplo vamos usa o 5.cuepy.inf.
+
+depois de acha o mob, abre ele com o txt editor notepad==
+
+para edita o drop, vamos descer tudo.
+
+//???? ????? ??? ?? ??
+*??????	1
+
+*???	5000 ? 1800 2300
+*???	1100 ps101 pl101 pl101 ps101 pl101
+*???	400 da102 ws201 wa101 wc101 wh101 wp101 ws101 wt101 wd101 or103
+*???	200 da103 wa102 wc102 wh102 wp102 ws102 ws202 wt102 wd102 gp101 ds101 db101 dg101 oa201
+*???	100 os103 or103 or103 or101
+
+*????	"name\Cuepy.zhoon"
+
+la embaixo vai ter uma lista assim, 
+
+*???	5000
+
+5000 e a taxa de drop. os codigo que vem dps desse numero é os itens
+
+*???	100 os103 or103 or103 or101
+
+*??? comando de drop para adicionar no mapa
+
+100 é a taxa
+
+os103 or 103 or103 or101 é o codigo do iten.
+
+só editar e salva. depois reinicia o server para consta.

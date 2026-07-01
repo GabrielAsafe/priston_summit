@@ -1,0 +1,72 @@
+﻿body
+{
+    background: #060000 url(../imagens/fundo-top.jpg) no-repeat top center;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+#intro
+{
+    width: 830px;
+	height:230px;
+    margin: auto;
+}
+#intro > h1
+{ 
+	display:none;
+}
+#menu
+{
+	width:830px; 
+	height:230px;
+	margin: auto;
+}
+#contents
+{
+    width: 770px;
+    margin: auto;
+	min-height: 500px;
+}
+#footer
+{
+    clear: both;
+    height: 202px;
+    width: 100%;
+    background: #060000 url(../imagens/fundo-foot.jpg) no-repeat top center;
+    position: relative;
+	text-align:center;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+}
+
+#copyright
+{
+width:500px;
+margin: auto;
+padding-right:40px;
+}
+
+#footer img
+{
+	border: none;
+	margin: 10px 5px 5px 5px;
+}
+#footer ul
+{
+	margin: auto;
+	padding-right:40px;
+	width: 400px;
+}
+#footer ul *
+{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#footer a 
+{
+	text-decoration: underline;
+	color:#FFFFFF;
+}
+
+#footer a:visited{
+color:#FFFFFF;
+} 

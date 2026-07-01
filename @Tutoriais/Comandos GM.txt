@@ -1,0 +1,99 @@
+_______________________ COMANDOS: /@get
+Comando pra criar iten: /drop
+Comando pra estarta bc: /$gobc
+pra finaliza bc: /endbc /$endbc /end_bc um dos 3 kkk
+
+/A> --> falar de GM na Tela
+
+/aging da303 22 4  --> criar iten com age.
+
+/setcoinlogado --> quantidade de coins no logado premiado
+
+/event_coin
+
+/open_warehouse
+
+/shutdownpk
+
+/kill
+
+/userid
+
+/onlines
+
+/rmonsters
+
+/near
+
+/username
+
+/arena_monster
+
+/agefreeOn
+
+/sod_enter
+
+/sod_view
+
+/agefreeOff
+
+/area_monster
+
+/settimelogado_coin
+
+/GlobalON
+
+/modomanu
+
+/GlobalOFF
+
+/kick
+
+/where
+
+/area_users
+
+
+/set_castle_tax
+
+/reset_fountain_time
+
+/get_fountain_info
+
+/get_castle_info
+
+/set_castle_master
+
+/event_monster
+
+/set_castle_time
+
+/skills
+
+/start_castle
+
+/easy_castle
+
+/settimelogado
+
+/rates
+
+/reload --> carrega config. novamente
+
+/givemoney
+
+/pegarpots
+
+/setlevelpt
+
+/avoid
+
+/Bosstime
+
+/setdelaychat
+
+/hide /show
+
+/criar
+
+/@get

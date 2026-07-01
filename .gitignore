@@ -1,0 +1,8 @@
+# SQL Server backups / runtime data
+docker/db/backups/*.bak
+docker/db/data/
+*.mdf
+*.ldf
+/cliente
+/Servidor
+/zips

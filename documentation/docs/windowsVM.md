@@ -1,0 +1,388 @@
+# VM Windows 10/11 com QEMU/KVM + Libvirt (Fedora)
+
+## Objetivo
+
+Criar uma máquina virtual Windows utilizando QEMU/KVM e libvirt através da linha de comandos.
+
+---
+
+# Instalação de dependências
+
+Instalação das ferramentas necessárias:
+
+```bash
+sudo dnf install qemu-kvm qemu-img virt-install virt-manager edk2-ovmf
+sudo dnf install virt-viewer
+```
+
+Verificação de suporte de virtualização:
+
+```bash
+egrep -c '(vmx|svm)' /proc/cpuinfo
+```
+
+---
+
+# Criação do disco virtual
+
+Foi criado um disco QCOW2 para o Windows:
+
+```bash
+qemu-img create -f qcow2 windows10.qcow2 80G
+```
+
+---
+
+# Primeira tentativa de instalação
+
+Comando utilizado inicialmente:
+
+```bash
+virt-install \
+  --name win11 \
+  --memory 8192 \
+  --vcpus 4 \
+  --cpu host-passthrough \
+  --disk path=windows11.qcow2,bus=virtio,size=80 \
+  --cdrom ./win.iso \
+  --os-variant win10 \
+  --network network=default,model=virtio \
+  --graphics spice \
+  --boot uefi
+```
+
+Problema encontrado:
+
+```text
+Network not found: no network with matching name 'default'
+```
+
+Motivo:
+
+A rede virtual "default" do libvirt não existia.
+
+---
+
+# Solução temporária para rede
+
+Foi utilizado o modo NAT interno do QEMU:
+
+```bash
+--network user,model=e1000e
+```
+
+Exemplo:
+
+```bash
+virt-install \
+  --name win10 \
+  --memory 8192 \
+  --vcpus 4 \
+  --cpu host-passthrough \
+  --disk path=windows10.qcow2,bus=sata,size=80 \
+  --cdrom ./win.iso \
+  --os-variant win10 \
+  --network user,model=e1000e \
+  --graphics spice \
+  --boot uefi
+```
+
+---
+
+# Problema: Windows não encontrava o disco
+
+Configuração inicial:
+
+```bash
+bus=virtio
+```
+
+O instalador do Windows não possui drivers VirtIO.
+
+Solução:
+
+```bash
+bus=sata
+```
+
+Exemplo:
+
+```bash
+--disk path=windows10.qcow2,bus=sata,size=80
+```
+
+---
+
+# Gestão das VMs
+
+Listar VMs:
+
+```bash
+virsh --connect qemu:///session list --all
+```
+
+Iniciar VM:
+
+```bash
+virsh --connect qemu:///session start win10
+```
+
+Desligar normalmente:
+
+```bash
+virsh --connect qemu:///session shutdown win10
+```
+
+Desligar à força:
+
+```bash
+virsh --connect qemu:///session destroy win10
+```
+
+Abrir consola gráfica:
+
+```bash
+virt-viewer --connect qemu:///session win10
+```
+
+---
+
+# Problema de resolução dinâmica
+
+Configuração encontrada:
+
+```xml
+<video>
+  <model type='qxl'
+         ram='65536'
+         vram='65536'
+         vgamem='16384'
+         heads='1'
+         primary='yes'/>
+</video>
+```
+
+Verificação:
+
+```bash
+virsh --connect qemu:///session dumpxml win10 | grep -A5 "<video>"
+```
+
+Problema:
+
+No Windows aparecia:
+
+```text
+Microsoft Basic Display Adapter
+```
+
+Isto significa que o driver QXL não estava instalado.
+
+---
+
+# Drivers necessários
+
+## VirtIO Drivers
+
+ISO:
+
+https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/latest-virtio/
+
+Instalar manualmente:
+
+```text
+Device Manager
+→ Microsoft Basic Display Adapter
+→ Update Driver
+→ Browse my computer
+→ qxl\w10\amd64
+```
+
+ou
+
+```text
+qxldod\w10\amd64
+```
+
+---
+
+## SPICE Guest Tools
+
+Download:
+
+https://www.spice-space.org/download/windows/spice-guest-tools/
+
+Benefícios:
+
+* Resize automático
+* Clipboard partilhado
+* Integração SPICE
+* Melhor experiência gráfica
+
+---
+
+# Ativação de SSH no Windows
+
+PowerShell (Administrador):
+
+```powershell
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+
+Start-Service sshd
+
+Set-Service -Name sshd -StartupType Automatic
+
+New-NetFirewallRule -Name sshd `
+  -DisplayName "OpenSSH Server" `
+  -Enabled True `
+  -Direction Inbound `
+  -Protocol TCP `
+  -Action Allow `
+  -LocalPort 22
+
+Get-Service sshd
+
+ipconfig
+```
+
+Confirmação:
+
+```text
+Status : Running
+Name   : sshd
+```
+
+---
+
+# Problema de SSH
+
+IP obtido:
+
+```text
+10.0.2.15
+```
+
+A VM estava configurada com:
+
+```xml
+<interface type='user'>
+```
+
+Confirmado por:
+
+```bash
+virsh --connect qemu:///session dumpxml win10 | grep "<interface" -A20
+```
+
+Este IP pertence ao NAT interno do QEMU.
+
+Consequências:
+
+```bash
+ping 10.0.2.15
+ssh gaymer@10.0.2.15
+```
+
+não funcionam a partir do host.
+
+---
+
+# Configuração encontrada no QEMU
+
+Linha relevante:
+
+```text
+-netdev {"type":"user","id":"hostnet0"}
+```
+
+Isto confirma que a VM utiliza SLIRP/NAT interno.
+
+---
+
+# Possíveis soluções para SSH
+
+## Bridge (recomendado)
+
+Permite que a VM receba IP próprio na rede local.
+
+Ainda não implementado.
+
+---
+
+## Port Forwarding
+
+Mapeamento:
+
+```text
+Host: 2222
+Guest: 22
+```
+
+Comandos:
+
+```bash
+virsh --connect qemu:///session qemu-monitor-command win10 --hmp "hostfwd_add tcp::2222-:22"
+
+nc -zv 127.0.0.1 2222
+
+ssh -p 2222 gaymer@127.0.0.1
+```
+
+Observação:
+
+O forwarding é temporário e perde-se quando a VM reinicia.
+
+---
+
+# Erro comum encontrado
+
+Foi utilizado:
+
+```bash
+#virsh --connect qemu:///session shutdown summit-server
+```
+
+O caractere:
+
+```bash
+#
+```
+
+transforma a linha num comentário.
+
+O comando não é executado.
+
+Correto:
+
+```bash
+virsh --connect qemu:///session shutdown summit-server
+```
+
+ou:
+
+```bash
+virsh --connect qemu:///session destroy summit-server
+```
+
+---
+
+# Estado atual
+
+## win10
+
+* Instalada
+* Arranca corretamente
+* Rede NAT (user networking)
+* SSH instalado
+* SPICE configurado
+* Driver gráfico QXL ainda não instalado
+* Resize automático ainda pendente
+
+## win11
+
+* Existe mas encontra-se desligada
+
+## summit-server
+
+* VM separada em execução
+* Gerida pelo mesmo libvirt session

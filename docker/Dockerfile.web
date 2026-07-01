@@ -1,0 +1,47 @@
+FROM debian:bookworm
+
+RUN apt-get update && apt-get install -y \
+    apache2 \
+    libapache2-mod-php \
+    php \
+    php-cli \
+    php-odbc \
+    unixodbc \
+    unixodbc-dev \
+    freetds-bin \
+    freetds-dev \
+    tdsodbc \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN printf "[FreeTDS]\nDescription=FreeTDS Driver for Linux\nDriver=/usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so\nSetup=/usr/lib/x86_64-linux-gnu/odbc/libtdsS.so\nUsageCount=1\n" > /etc/odbcinst.ini
+
+RUN a2enmod php* rewrite
+
+RUN printf "short_open_tag=On\n" > /etc/php/8.2/apache2/conf.d/99-summit.ini \
+ && printf "short_open_tag=On\n" > /etc/php/8.2/cli/conf.d/99-summit.ini
+
+WORKDIR /var/www/html
+
+EXPOSE 80
+
+CMD ["apachectl", "-D", "FOREGROUND"]
+
+RUN cat > /etc/freetds/freetds.conf <<'EOT'
+[global]
+    tds version = 7.4
+
+[summitdb]
+    host = summittale-mssql
+    port = 1433
+    tds version = 7.4
+EOT
+
+RUN cat > /etc/odbc.ini <<'EOT'
+[SummitSQL]
+Driver = FreeTDS
+Servername = summitdb
+Database = AccountDB
+Port = 1433
+TDS_Version = 7.4
+EOT

@@ -1,0 +1,124 @@
+Hello,
+
+ 
+
+OBS: Esse tutorial é apenas para instalar a extensão de PHP no IIS. Serve para o IIS 6.0 porém em alguns passos como o de autenticação o processo é diferente, porém a instalação do IIS é a mesma.
+
+ 
+
+Vejo muitas pessoas usando Vertrigo ou Xampp na porta 8090, 90, 8080 para usar PHP e coloca o Clan na normal 80 no IIS ou vice vice-versa.
+
+
+Esse tutorial você poderá juntar tudo no IIS e irá tornar tudo mais prático.
+
+ 
+
+Instalando PHP
+
+ 
+
+Após você instalar o IIS no seu Host, Local ou VM faça o Download do PHP!
+
+ 
+
+- Download PHP 5.3.29 = https://windows.php.net/downloads/releases/archives/php-5.3.29-nts-win32-VC9-x86.msi
+
+ 
+
+Passos
+ 
+
+Instale o programa
+
+Aceite os termos
+
+Next
+
+OBS: Escolha IIS FastCGI
+
+Finish
+
+ 
+
+Configurando
+ 
+
+Arquivos de Programas e procure sua pasta PHP
+
+Abra esse arquivo: PHP.ini
+
+ 
+
+Agora preste atenção nas seguintes modificações que você terá que fazer! Mude para..
+
+ 
+
+short_open_tag = On
+
+allow_call_time_pass_reference = On
+
+error_reporting = E_ERROR
+
+ 
+
+Segurança para o PHP
+ 
+
+No mesmo PHP.ini faça as as mudanças
+
+ 
+
+allow_url_fopen = Off
+
+display_errors = Off
+
+magic_quotes_gpc = Off
+
+allow_url_include = Off
+
+expose_php = Off
+
+register_globals = Off
+
+ 
+
+Autentique seu IIS
+ 
+
+Abra seu IIS
+
+Sites
+
+Default Web Site (Click com o Direito)
+
+Editar Permissões
+
+Conectar Como
+
+Usuário Específico - Definir...
+
+ 
+
+Usuário do Windows
+
+Senha
+
+Confirmar Senha
+
+OK
+
+OK
+
+Testar Configurações (Vai aparecer os dois autenticado)
+
+ 
+
+Abra o Gerenciador do IIS
+Clique no site que você deseja editar
+Clique duas vezes em Autenticação
+Clique em Autenticação Anônima e clique em Editar ... em Ações
+Altere para usar as credenciais de identidade do pool de aplicativos em vez do usuário específico (o meu era IUSR)
+
+ 
+
+Reinicie o seu IIS!

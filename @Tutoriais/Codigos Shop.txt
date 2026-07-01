@@ -1,0 +1,45 @@
+_______________ Shop Coins:
+
+
+1 -> Armas de Ataque
+
+
+2 -> Armaduras
+
+
+3 -> Trajes
+
+
+4 -> Acessórios
+
+
+5 -> Sheltons
+
+
+6 -> Itens Premium4
+
+
+7 -> Serviços
+
+_______________ Shop Time:
+
+
+1 -> Ajuda no UP
+
+
+2 -> Sheltons
+
+
+3 -> Especiais
+
+
+4 -> Trajes Festivos
+
+
+5 -> Ajuda no Aging
+
+
+6 -> Ajuda no MIX
+
+
+7 -> Cristais

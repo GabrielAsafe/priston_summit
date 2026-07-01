@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ENV_FILE="${1:-config/summit.local.env}"
+OUT_FILE="${2:-Servidor/sql.reg}"
+if [ ! -f "$ENV_FILE" ]; then echo "Ficheiro não encontrado: $ENV_FILE" >&2; exit 1; fi
+set -a
+. "$ENV_FILE"
+set +a
+SQL_ENDPOINT="${MSSQL_HOST},${MSSQL_PORT}"
+mkdir -p "$(dirname "$OUT_FILE")"
+write_block() {
+  local KEY="$1"
+  cat <<EOF
+[$KEY]
+"ServerName"="$SUMMIT_SERVER_NAME"
+"Server1"="$SQL_ENDPOINT"
+"Server2"="$SQL_ENDPOINT"
+"Server3"="$SQL_ENDPOINT"
+"LogPath"="C:\\ServidorPT\\Logs"
+"AccountDbIP"="$SQL_ENDPOINT"
+"AccountDbID"="$MSSQL_USER"
+"AccountDbPwd"="$MSSQL_PASSWORD"
+"AccountDbName"="$ACCOUNT_DB"
+"BillingDbIP"="$SQL_ENDPOINT"
+"BillingDbID"="$MSSQL_USER"
+"BillingDbPwd"="$MSSQL_PASSWORD"
+"BillingDbName"="$BILLING_DB"
+"BillingLogDbIP"="$SQL_ENDPOINT"
+"BillingLogDbID"="$MSSQL_USER"
+"BillingLogDbPwd"="$MSSQL_PASSWORD"
+"BillingLogDbName"="$BILLING_LOG_DB"
+"ClanDbIP"="$SQL_ENDPOINT"
+"ClanDbID"="$MSSQL_USER"
+"ClanDbPwd"="$MSSQL_PASSWORD"
+"ClanDbName"="$CLAN_DB"
+"LogDbIP"="$SQL_ENDPOINT"
+"LogDbID"="$MSSQL_USER"
+"LogDbPwd"="$MSSQL_PASSWORD"
+"LogDbName"="$LOG_DB"
+"PCDbIP"="$SQL_ENDPOINT"
+"PCDbID"="$MSSQL_USER"
+"PCDbPwd"="$MSSQL_PASSWORD"
+"PCDbName"="$PC_DB"
+"PCCheck"="0"
+"CountryCheck"="0"
+"PCLogDbIP"="$SQL_ENDPOINT"
+"PCLogDbID"="$MSSQL_USER"
+"PCLogDbPwd"="$MSSQL_PASSWORD"
+"PCLogDbName"="$PC_LOG_DB"
+"ITEMLogDbIP"="$SQL_ENDPOINT"
+"ITEMLogDbID"="$MSSQL_USER"
+"ITEMLogDbPwd"="$MSSQL_PASSWORD"
+"ITEMLogDbName"="$ITEM_LOG_DB"
+"SODDbIP"="$SQL_ENDPOINT"
+"SODDbID"="$MSSQL_USER"
+"SODDbPwd"="$MSSQL_PASSWORD"
+"SODDbName"="$SOD_DB"
+"SOD2DbIP"="$SQL_ENDPOINT"
+"SOD2DbID"="$MSSQL_USER"
+"SOD2DbPwd"="$MSSQL_PASSWORD"
+"SOD2DbName"="$SOD2_DB"
+
+EOF
+}
+{
+ echo "Windows Registry Editor Version 5.00"
+ echo
+ write_block "HKEY_LOCAL_MACHINE\SOFTWARE\PristonTale\GameServer"
+ write_block "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\PristonTale\GameServer"
+} > "$OUT_FILE"
+echo "Gerado: $OUT_FILE"
