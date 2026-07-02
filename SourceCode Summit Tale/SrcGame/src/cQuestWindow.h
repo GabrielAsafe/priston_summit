@@ -1,3 +1,4 @@
+#include "skillsPacket.h"
 #pragma once
 
 #include <vector>
@@ -147,3 +148,11 @@ public:
 };
 
 extern cQUESTWINDOW cQuestWindow;
+
+
+
+
+
+
+
+

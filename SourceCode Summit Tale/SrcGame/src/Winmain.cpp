@@ -1,4 +1,4 @@
-ï»¿#define _SINBARAM
+#define _SINBARAM
 
 // STL INCLUDES
 #include <memory>
@@ -507,7 +507,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 	//	HANDLE mutex2 = CreateMutex(NULL, FALSE, "GameSoul2");
 
 	//	if (GetLastError() == ERROR_ALREADY_EXISTS || mutex2 == NULL) {
-	//		/*MessageBox(0, "JÃ¡ existe um jogo aberto", szAppName, MB_OK);*/
+	//		/*MessageBox(0, "Já existe um jogo aberto", szAppName, MB_OK);*/
 	//		return FALSE;
 	//	}
 	//}
@@ -930,7 +930,7 @@ int WndProc_Japanese(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 				lf.lfClipPrecision = CLIP_DEFAULT_PRECIS;
 				lf.lfQuality = DEFAULT_QUALITY;
 				lf.lfPitchAndFamily = VARIABLE_PITCH | FF_ROMAN;
-				strcpy(lf.lfFaceName, _T("â€šlâ€šr â€šoÆ’SÆ’VÆ’bÆ’N"));
+				strcpy(lf.lfFaceName, _T("‚l‚r ‚oƒSƒVƒbƒN"));
 				ImmSetCompositionFont(imc, &lf);
 				ImmReleaseContext(hWnd, imc);
 				setFont = TRUE;
@@ -1214,7 +1214,7 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 			}
 			else
 			{
-				cMessageBox.ShowMessageEvent("NÃ£o Ã© possÃ­vel alterar o modo da janela neste mapa");
+				cMessageBox.ShowMessageEvent("Não é possível alterar o modo da janela neste mapa");
 			}
 		}
 
@@ -3718,7 +3718,7 @@ int DrawGameState()
 	else
 		lpItem = lpSelItem;
 
-	if(VRKeyBuff['A']) // Drop no chÃ£o
+	if(VRKeyBuff['A']) // Drop no chão
 	{
 		for(cnt = 0; cnt < DISP_ITEM_MAX; cnt++)
 		{	
@@ -4425,11 +4425,11 @@ int DrawGameState()
 	}
 
 	if (dwGameHour == 4 && dwGameMin == 0 && hrSod == FALSE && StageField[lpCurPlayer->OnStageField]->FieldCode == 9) {
-		AddChatBuff("> A entrada para o S.O.D estÃ¡ aberta!", 3);
+		AddChatBuff("> A entrada para o S.O.D está aberta!", 3);
 		hrSod = TRUE;
 	}
 	else if (dwGameHour == 6 && dwGameMin == 0 && hrSod == TRUE && StageField[lpCurPlayer->OnStageField]->FieldCode == 9){
-		AddChatBuff("> A entrada para o S.O.D estÃ¡ fechada!", 3);
+		AddChatBuff("> A entrada para o S.O.D está fechada!", 3);
 		hrSod = FALSE;
 	}
 
@@ -5097,3 +5097,4 @@ int HoUninstallFont()
 
 	return TRUE;
 }
+

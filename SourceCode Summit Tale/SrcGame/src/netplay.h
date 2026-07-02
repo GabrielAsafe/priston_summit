@@ -1,3 +1,4 @@
+#include <unordered_map>
 
 #ifndef _NET_PLAY_HEADER
 
@@ -508,3 +509,5 @@ int Xigncode_Client_Start();
 #endif
 
 #endif
+
+

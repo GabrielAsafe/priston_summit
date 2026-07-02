@@ -1,3 +1,4 @@
+#include "opcodes.h"
 #include <windows.h>
 
 #include "smlib3d\\smd3d.h"
@@ -3715,6 +3716,13 @@ int CheckPlaySkill()
 
 	return TRUE;
 }
+
+
+
+
+
+
+
 
 
 

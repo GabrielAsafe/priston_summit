@@ -1,3 +1,4 @@
+#include <string>
 
 #include "smd3d.h"
 #include <io.h>
@@ -1759,4 +1760,5 @@ int new_smCreateTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap)
 	}
 	return TRUE;
 }
+
 

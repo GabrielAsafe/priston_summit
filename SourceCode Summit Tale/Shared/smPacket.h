@@ -1,3 +1,5 @@
+#include "global_def.h"
+#include "smwsock.h"
 #ifndef	_SMPACKET_HEADER
 
 #define _SMPACKET_HEADER
@@ -1181,6 +1183,16 @@ public:
 	int				AdminMode;				//관리자 모드
 	int				HideMode;				//투명 모드 ( 관리자가 남에게 안보이게 다닐때 )
 	int				AdminIP;				//관리자 아이피 주소로 접속
+
+        const char* getAccount() const { return szID; }
+        const char* getName() const { return smCharInfo.szName; }
+        AccountTypes getSecurity() const { return (AccountTypes)AdminMode; }
+        void setAccount(const char* v) { if(v) strcpy_s(szID, v); }
+        void setAccount(char v) { szID[0]=v; }
+        void setAccountId(int v) { dwCode_ID=v; }
+        void setPassword(char v) { }
+        void setName(const char* v) { if(v) strcpy_s(smCharInfo.szName, v); }
+
 
 	DWORD			dwConnectTime;			//접속한 시간
 
@@ -2762,3 +2774,13 @@ struct	sSOD_SCORE {
 #define	MONSTER_CLASS_GHOST			300
 
 #endif
+
+
+
+
+
+
+
+
+
+

@@ -1,3 +1,4 @@
+#include "skillsPacket.h"
 #pragma once
 
 #include "sinbaram/sinLinkHeader.h"
@@ -136,3 +137,11 @@ private:
 };
 
 extern cCOINSHOP cCoinShop;
+
+
+
+
+
+
+
+

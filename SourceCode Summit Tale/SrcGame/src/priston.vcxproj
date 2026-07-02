@@ -102,7 +102,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\modules\;$(SolutionDir)..\Shared\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\Dependency\DirectX9\Include;$(ProjectDir);$(ProjectDir)..\..\Shared\;$(ProjectDir)..\..\modules\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <SDLCheck>false</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -118,7 +118,7 @@
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>$(ProjectDir)Library\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\Dependency\DirectX9\Lib;$(ProjectDir)Library\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(MSBuildProjectDirectory)\linker\$(TargetName).lib</ImportLibrary>
       <BaseAddress>0x870000</BaseAddress>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -154,7 +154,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4430;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\modules\;$(SolutionDir)..\Shared\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\Dependency\DirectX9\Include;$(ProjectDir);$(ProjectDir)..\..\Shared\;$(ProjectDir)..\..\modules\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
@@ -185,7 +185,7 @@
       <EnableCOMDATFolding>
       </EnableCOMDATFolding>
       <LinkTimeCodeGeneration />
-      <AdditionalLibraryDirectories>$(ProjectDir)Library\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\Dependency\DirectX9\Lib;$(ProjectDir)Library\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <BaseAddress>0x870000</BaseAddress>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <FixedBaseAddress>true</FixedBaseAddress>
@@ -224,7 +224,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4430;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)..\modules\;$(SolutionDir)..\Shared\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\Dependency\DirectX9\Include;$(ProjectDir);$(ProjectDir)..\..\Shared\;$(ProjectDir)..\..\modules\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
@@ -256,7 +256,7 @@
       </EnableCOMDATFolding>
       <LinkTimeCodeGeneration>
       </LinkTimeCodeGeneration>
-      <AdditionalLibraryDirectories>$(ProjectDir)Library\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\Dependency\DirectX9\Lib;$(ProjectDir)Library\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <BaseAddress>0x870000</BaseAddress>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <FixedBaseAddress>true</FixedBaseAddress>

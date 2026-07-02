@@ -1,10 +1,4 @@
-
-
-
-
-
-
-
+#include "opcodes.h"
 #define TJCLAN_CPP
 
 #include "tjclanDEF.h"
@@ -3456,4 +3450,11 @@ void ReadWEBDebugOption()
 	if(DebugOption == '1') g_bDebugOption = TRUE;
 	else g_bDebugOption = FALSE;
 }
+
+
+
+
+
+
+
 

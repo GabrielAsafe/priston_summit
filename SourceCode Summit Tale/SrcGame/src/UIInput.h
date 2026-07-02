@@ -1,3 +1,6 @@
+#include <string>
+#include <functional>
+#include <unordered_map>
 #pragma once
 
 enum EActivate
@@ -28,7 +31,7 @@ public:
 
 	void setActivationMethod(EActivate activate) { eActivate = activate; }
 
-	void Bind(char Code, function<void()> func);
+	void Bind(char Code, std::function<void()> func);
 
 	void setTextArea(int x, int y, int w, int h);
 
@@ -55,5 +58,9 @@ private:
 	bool bFilter = false;
 	string TrueText;
 
-	unordered_map<char, function<void()>> vKeyBinds;
+	std::unordered_map<char, std::function<void()>> vKeyBinds;
 };
+
+
+
+
