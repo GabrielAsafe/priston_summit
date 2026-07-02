@@ -149,7 +149,7 @@ function disabledBttn(formname)
                     <b><a href="cadtermos.php">Criar nova conta?</a></b>
                   </div>
 				  <div class="col-lg-8">
-                    <b><a href="http://124.198.128.16/gerenciador/">Painel de Clans</a></b>
+                    <b><a href="/Clan/">Painel de Clans</a></b>
                   </div>
                   <div class="col-lg-4 text-right">
                     <button class="btn btn-action" name="action" type="submit">ENTRAR</button>

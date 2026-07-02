@@ -1,9 +1,11 @@
 <?php
-$conn = odbc_connect('SummitSQL', 'sa', 'SummitTale@12345');
+include_once "incluir/configura.php";
 
-if (!$conn) {
-    die("Erro ao conectar: " . odbc_errormsg());
+$conn = odbc_connect($connection_string, $user, $pass);
+
+if ($conn) {
+    echo "Conexão OK via SummitSQL";
+    odbc_close($conn);
+} else {
+    echo "Erro ODBC: " . odbc_errormsg();
 }
-
-echo "Conectado via ODBC com sucesso!";
-?>

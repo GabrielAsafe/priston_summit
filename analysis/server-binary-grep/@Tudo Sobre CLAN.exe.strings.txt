@@ -1,0 +1,885 @@
+!This program cannot be run in DOS mode.
+.text
+`.sdata
+.rsrc
+@.reloc
+->~;
+, rI
+PA(L
+PA(L
+.%('
+lSystem.Resources.ResourceReader, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089#System.Resources.RuntimeResourceSet
+hSystem.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3afSystem.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3aPADPADPBj
+@e'/
+QSystem.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Drawing.Bitmap
+Data
+BMr(
+QSystem.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Drawing.Icon
+IconData
+IconSize
+System.Drawing.Size
+System.Drawing.Size
+width
+height
+TTTUUUUUUTTTTTTTTTTTTTUTTUUUUUUUQQTTTTUUTTTTTTMMQQMQMQQTQTTUUUUUMTN@:.)
+UTMMON@:.)(
+UUKLNOO@:.-(
+QQCDNOROA@.-(
+JJ>>NO
+RA@9-(
+BD66NO
+SRN@9-)
+8>02AN
+SVRO@9.)
+23+/AA
+RSVSOA:.-(
+/0&&AA
+&'"":@
+$$ !9:
+ORSVWXR
+!!!!9:
+NORSVWX
+A:.)
+!"#$.9
+ANOSVWS
+9ON:.)
+$$*+-.
+++,,)-				
+1133
+)).::AORSVWYZ[ZWSN@9-(
+4377
+)-.:@AORVWXYZ[ZXSO@:-)
+577;
+(-.:@NOSVXXZ[[[XVOA:-)
+;;<=
+=??B
+AORV
+.)(BEBF
+@NOS
+	@9-EFEF9
+:ANO
+9GKGIX-
+9:AN
+@KLGKa`^\ZWRA:-9@AOSSWYY[[]][ZWSOKPIKggfdb`\YSN::@NRSWWYZ[[]][YWSQQILohohhfc`]XSA:ANRVWXYZ[\]]\YWTTIKohohohofb_[WO@AORVWYZZ[\]]\ZQTGIohohohohhea\XRANRSVXYZ[[\]][PQGGHKKKLPPPQQQTTQTQPPLLLLKLLLLLPMEEEFHIKIKLKLLLLLLKKLKKKKIKKKKKKL
+QSystem.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Drawing.Bitmap
+Data
+QSystem.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Drawing.Bitmap
+Data
+lSystem.Resources.ResourceReader, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089#System.Resources.RuntimeResourceSet
+fSystem.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3aBj
+QSystem.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Drawing.Icon
+IconData
+IconSize
+System.Drawing.Size
+System.Drawing.Size
+width
+height
+S			
+						
+11B%%%
+<***
+EEE999
+XXXHHY222
+BBSEEg
+WWyOOO
+lllVVxIII
+DDD111
+55y999
+aaa--
+kk|\\\
+~~~bb
+bbb$$
+___QQQ:::
+--q===
+uuu		
+XXz   
+{{{88
+kkk..
+cccNNp
+666$$$$$$$$$
+...((J%%X""f
+{{{@@
+BBB''Z**L111bbb44
+___$$h
+NNN--O
+444**]
+77777700R
+++o66G
+$b	"b
+Aten
+ precisa ter TCP/IP habilitado, com a porta 1433
+liberada no TCP/IP em IPAll, coloque como porta 
+"dynamic" 1433 e TCP deixe em branco!
+Se tiver duvida em rela
+o a isso: gugump@hotmail.com
+Servidor: Use IP do seu host para conexao remota e
+NOME\SQLEXPRESS para conex
+o local.
+DB Clan: Nome de sua ClanDB.
+User: Usu
+rio do SQL.
+Senha: Senha do SQL.
+Clique no bot
+o Conectar para estabelecer a conex
+Aproveite bem o programa!
+Att. Fire :D
+lSystem.Resources.ResourceReader, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089#System.Resources.RuntimeResourceSet
+PADPADP
+BSJB
+v2.0.50727
+#Strings
+#GUID
+#Blob
+_	c	g	k	o	s	w	{	~	s	
+	{	s	s	
+{	w	
+	{	{	
+	{	w	
+<Module>
+mscorlib
+Microsoft.VisualBasic
+MyApplication
+Fire.My
+MyComputer
+MyProject
+MyForms
+MyWebServices
+ThreadSafeObjectProvider`1
+Ajuda
+Fire
+Form1
+Resources
+Fire.My.Resources
+MySettings
+MySettingsProperty
+Microsoft.VisualBasic.ApplicationServices
+WindowsFormsApplicationBase
+Main
+Args
+.ctor
+OnCreateMainForm
+Microsoft.VisualBasic.Devices
+Computer
+System
+Object
+.cctor
+get_Computer
+m_ComputerObjectProvider
+get_Application
+m_AppObjectProvider
+User
+get_User
+m_UserObjectProvider
+get_Forms
+m_MyFormsObjectProvider
+get_WebServices
+m_MyWebServicesObjectProvider
+Application
+Forms
+WebServices
+get_Ajuda
+get_Form1
+m_Ajuda
+m_Form1
+set_Ajuda
+Value
+set_Form1
+Create__Instance__
+System.Windows.Forms
+Form
+Instance
+Dispose__Instance__
+instance
+System.Collections
+Hashtable
+m_FormBeingCreated
+Equals
+GetHashCode
+Type
+GetType
+ToString
+get_GetInstance
+m_ThreadStaticValue
+GetInstance
+Dispose
+disposing
+System.ComponentModel
+IContainer
+components
+InitializeComponent
+RichTextBox
+_RichTextBox1
+get_RichTextBox1
+set_RichTextBox1
+WithEventsValue
+EventArgs
+Ajuda_Load
+sender
+RichTextBox1
+TextBox
+_txtHost
+get_txtHost
+set_txtHost
+_txtSenha
+get_txtSenha
+set_txtSenha
+_txtUser
+get_txtUser
+set_txtUser
+_txtDatabase
+get_txtDatabase
+set_txtDatabase
+Label
+_txtIP
+get_txtIP
+set_txtIP
+_txtDB
+get_txtDB
+set_txtDB
+_Label3
+get_Label3
+set_Label3
+_Label4
+get_Label4
+set_Label4
+Button
+_conectar
+get_conectar
+set_conectar
+_Label7
+get_Label7
+set_Label7
+PictureBox
+_PictureBox1
+get_PictureBox1
+set_PictureBox1
+_Button1
+get_Button1
+set_Button1
+_desconectar
+get_desconectar
+set_desconectar
+_Button3
+get_Button3
+set_Button3
+_Label5
+get_Label5
+set_Label5
+GroupBox
+_GroupBox1
+get_GroupBox1
+set_GroupBox1
+_txtPontos
+get_txtPontos
+set_txtPontos
+_Label11
+get_Label11
+set_Label11
+_salva
+get_salva
+set_salva
+_Label10
+get_Label10
+set_Label10
+_deleta
+get_deleta
+set_deleta
+_Label9
+get_Label9
+set_Label9
+_Label2
+get_Label2
+set_Label2
+_procura
+get_procura
+set_procura
+_Label6
+get_Label6
+set_Label6
+_Label8
+get_Label8
+set_Label8
+_txtProcuraClan
+get_txtProcuraClan
+set_txtProcuraClan
+_txtMembros
+get_txtMembros
+set_txtMembros
+_txtSiegeMoney
+get_txtSiegeMoney
+set_txtSiegeMoney
+_txtNomeClan
+get_txtNomeClan
+set_txtNomeClan
+_txtClanMoney
+get_txtClanMoney
+set_txtClanMoney
+_msgconexao
+get_msgconexao
+set_msgconexao
+_msgmanager
+get_msgmanager
+set_msgmanager
+_txtFrase
+get_txtFrase
+set_txtFrase
+_Label1
+get_Label1
+set_Label1
+_txtLiderID
+get_txtLiderID
+set_txtLiderID
+_Label12
+get_Label12
+set_Label12
+_Label13
+get_Label13
+set_Label13
+_txtLider
+get_txtLider
+set_txtLider
+_Label14
+get_Label14
+set_Label14
+System.Data
+System.Data.OleDb
+OleDbConnection
+oConexao
+mIDX
+get_Conexao
+set_Conexao
+value
+conectar_Click
+Button1_Click
+txtSenha_TextChanged
+RichTextBox1_TextChanged
+Form1_Load
+TextBox1_TextChanged
+Label7_Click
+txtDatabase_TextChanged
+Button1_Click_1
+Button3_Click
+Button2_Click
+Button6_Click
+deleta_Click
+salva_Click
+GroupBox1_Enter
+Timer1_Tick
+label_Click
+Label14_Click
+KeyPressEventArgs
+SomenteNumeros
+txtPontos_KeyPress
+txtClanMoney_KeyPress
+txtSiegeMoney_KeyPress
+txtHost
+txtSenha
+txtUser
+txtDatabase
+txtIP
+txtDB
+Label3
+Label4
+conectar
+Label7
+PictureBox1
+Button1
+desconectar
+Button3
+Label5
+GroupBox1
+txtPontos
+Label11
+salva
+Label10
+deleta
+Label9
+Label2
+procura
+Label6
+Label8
+txtProcuraClan
+txtMembros
+txtSiegeMoney
+txtNomeClan
+txtClanMoney
+msgconexao
+msgmanager
+txtFrase
+Label1
+txtLiderID
+Label12
+Label13
+txtLider
+Label14
+Conexao
+System.Resources
+ResourceManager
+resourceMan
+System.Globalization
+CultureInfo
+resourceCulture
+get_ResourceManager
+get_Culture
+set_Culture
+Culture
+System.Configuration
+ApplicationSettingsBase
+defaultInstance
+addedHandler
+addedHandlerLockObject
+AutoSaveSettings
+get_Default
+Default
+get_Settings
+Settings
+get_UseCompatibleTextRendering
+SetCompatibleTextRenderingDefault
+AuthenticationMode
+set_IsSingleInstance
+set_EnableVisualStyles
+set_SaveMySettingsOnExit
+ShutdownMode
+set_ShutdownStyle
+set_MainForm
+EditorBrowsableAttribute
+EditorBrowsableState
+System.CodeDom.Compiler
+GeneratedCodeAttribute
+System.Diagnostics
+DebuggerHiddenAttribute
+STAThreadAttribute
+DebuggerStepThroughAttribute
+Microsoft.VisualBasic.CompilerServices
+StandardModuleAttribute
+HideModuleNameAttribute
+System.ComponentModel.Design
+HelpKeywordAttribute
+DebuggerNonUserCodeAttribute
+ArgumentException
+System.Reflection
+TargetInvocationException
+Control
+get_IsDisposed
+RuntimeTypeHandle
+GetTypeFromHandle
+ContainsKey
+String
+Utils
+GetResourceString
+InvalidOperationException
+Activator
+CreateInstance
+ProjectData
+Exception
+SetProjectError
+get_InnerException
+get_Message
+ClearProjectError
+Remove
+Component
+System.Runtime.CompilerServices
+RuntimeHelpers
+GetObjectValue
+MyGroupCollectionAttribute
+ThreadStaticAttribute
+System.Runtime.InteropServices
+ComVisibleAttribute
+CompilerGeneratedAttribute
+EventHandler
+add_Load
+IDisposable
+ComponentResourceManager
+System.Drawing
+Point
+Size
+SizeF
+SuspendLayout
+Color
+get_Black
+TextBoxBase
+set_BackColor
+get_White
+set_ForeColor
+set_Location
+set_Name
+set_Size
+set_TabIndex
+GetString
+set_Text
+ContainerControl
+set_AutoScaleDimensions
+AutoScaleMode
+set_AutoScaleMode
+AutoSizeMode
+set_AutoSizeMode
+set_ClientSize
+ControlCollection
+get_Controls
+FormBorderStyle
+set_FormBorderStyle
+GetObject
+Icon
+set_Icon
+FormStartPosition
+set_StartPosition
+ResumeLayout
+DesignerGeneratedAttribute
+AccessedThroughPropertyAttribute
+ISupportInitialize
+BeginInit
+set_UseSystemPasswordChar
+set_AutoSize
+FromArgb
+ButtonBase
+DialogResult
+set_DialogResult
+set_UseVisualStyleBackColor
+Font
+FontStyle
+GraphicsUnit
+set_Font
+Image
+set_BackgroundImage
+set_InitialImage
+set_TabStop
+set_Enabled
+get_DimGray
+set_MaximizeBox
+EndInit
+PerformLayout
+remove_TextChanged
+add_TextChanged
+remove_Click
+add_Click
+remove_Enter
+add_Enter
+KeyPressEventHandler
+remove_KeyPress
+add_KeyPress
+get_Text
+Concat
+Open
+Close
+Exit
+Show
+OleDbCommand
+OleDbDataReader
+DataTable
+Operators
+CompareString
+ExecuteReader
+IDataReader
+Load
+DataRowCollection
+get_Rows
+get_Count
+DataRow
+get_Item
+Conversions
+ToInteger
+Strings
+TriState
+FormatNumber
+ExecuteNonQuery
+Decimal
+ToDecimal
+get_KeyChar
+Char
+IsNumber
+Convert
+ToInt32
+set_Handled
+ReferenceEquals
+Assembly
+get_Assembly
+SettingsBase
+Synchronized
+get_SaveMySettingsOnExit
+Save
+ObjectFlowControl
+CheckForSyncLockOnValueType
+System.Threading
+Monitor
+Enter
+ShutdownEventHandler
+add_Shutdown
+DebuggableAttribute
+DebuggingModes
+CompilationRelaxationsAttribute
+RuntimeCompatibilityAttribute
+AssemblyFileVersionAttribute
+GuidAttribute
+AssemblyTrademarkAttribute
+AssemblyCopyrightAttribute
+AssemblyProductAttribute
+AssemblyCompanyAttribute
+AssemblyDescriptionAttribute
+AssemblyTitleAttribute
+Fire.exe
+Fire.Form1.resources
+Fire.Ajuda.resources
+Fire.Resources.resources
+MyTemplate
+8.0.0.0
+My.Application
+My.Forms
+My.User
+My.WebServices
+My.Computer
+System.Windows.Forms.Form
+Create__Instance__
+Dispose__Instance__
+My.MyProject.Forms
+4System.Web.Services.Protocols.SoapHttpClientProtocol
+Create__Instance__
+Dispose__Instance__
+RichTextBox1
+conectar
+Label4
+Label3
+txtDB
+txtIP
+txtDatabase
+txtUser
+txtSenha
+txtHost
+Label14
+txtLider
+Label13
+Label12
+txtLiderID
+Label1
+txtFrase
+msgmanager
+msgconexao
+txtClanMoney
+txtNomeClan
+txtSiegeMoney
+txtMembros
+txtProcuraClan
+Label8
+Label6
+procura
+Label2
+Label9
+deleta
+Label10
+salva
+Label11
+	txtPontos
+	GroupBox1
+Label5
+Button3
+desconectar
+Button1
+PictureBox1
+Label7
+3System.Resources.Tools.StronglyTypedResourceBuilder
+2.0.0.0
+KMicrosoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator
+8.0.0.0
+My.Settings
+WrapNonExceptionThrows
+3.0.0.0
+$9b2be942-d32f-452a-a7e2-0f76d2bcf9eb
+Copyright 
+  2008
+Fire
+ArcadePT Clan Manager
+_CorExeMain
+mscoree.dll
+RSDS
+C:\Documents and Settings\Gustavo\Meus documentos\Programa
+o\AAAA CLAN 3.0 FUNFANDO\WindowsApplication1\obj\Release\Fire.pdb
+S			
+						
+11B%%%
+<***
+EEE999
+XXXHHY222
+BBSEEg
+WWyOOO
+lllVVxIII
+DDD111
+55y999
+aaa--
+kk|\\\
+~~~bb
+bbb$$
+___QQQ:::
+--q===
+uuu		
+XXz   
+{{{88
+kkk..
+cccNNp
+666$$$$$$$$$
+...((J%%X""f
+{{{@@
+BBB''Z**L111bbb44
+___$$h
+NNN--O
+444**]
+77777700R
+++o66G
+$b	"b
+$this.BackgroundImage
+$this.Icon
+PictureBox1.BackgroundImage
+PictureBox1.InitialImage
+/ P6pL
+,/KPip
+/-P?pR
+$this.Icon
+RichTextBox1.Text
+Property can only be set to Nothing
+WinForms_RecursiveFormCreate
+WinForms_SeeInnerException
+RichTextBox1
+RichTextBox1.Text
+$this.Icon
+Ajuda
+txtHost
+IP ou NOME SQL
+txtSenha
+1234
+txtUser
+txtDatabase
+ClanDB
+txtIP
+Host :
+txtDB
+DB Clan :
+Label3
+User : 
+Label4
+Senha :
+conectar
+Conectar
+Arial Unicode MS
+Label7
+Criado por Fire - gugump@hotmail.com
+PictureBox1.BackgroundImage
+PictureBox1.InitialImage
+PictureBox1
+Button1
+Sair
+desconectar
+Desconectar
+Button3
+Bookman Old Style
+Label5
+Vers
+o 3.0
+GroupBox1
+txtLider
+Label14
+Nome do Lider :
+txtLiderID
+Label12
+ID do Lider :
+txtFrase
+Label1
+Frase do Clan :
+txtPontos
+Label11
+Nome do Clan :
+salva
+Salvar Altera
+Label10
+Pontos em SoD :
+deleta
+Deletar Clan
+Label9
+Clan Money :
+Label2
+procura
+Procurar Clan
+Label6
+Membros :
+Label8
+Siege Money :
+txtProcuraClan
+txtMembros
+txtSiegeMoney
+txtNomeClan
+txtClanMoney
+msgconexao
+Desconectado!
+msgmanager
+Franklin Gothic Medium
+Label13
+ArcadePT
+$this.BackgroundImage
+Form1
+Clan Tool 3.0 by Fire
+Provider=sqloledb;Data Source='
+,1433';Initial Catalog='
+';User Id='
+';Password='
+Conectado com sucesso!
+Erro ao tentar conectar! Preencha os dados corretamente.
+SELECT * FROM CL WHERE ClanName ='
+ClanName
+MemCnt
+ClanZang
+UserID
+Cpoint
+ClanMoney
+Note
+SiegeMoney
+Informa
+es do clan n
+o encontradas!
+Digite o nome do clan a ser procurado!
+DELETE FROM UL WHERE IDX = 
+DELETE FROM CL WHERE IDX = 
+n exclu
+do com sucesso
+Erro ao excluir o cl
+n. Entre em contato com o administrador!
+Erro ao excluir o cl
+n, procure o clan primeiro!
+Erro ao salvar clan! Procure por um clan e n
+o deixe campos vazio.
+UPDATE CL SET ClanName = '
+', MemCnt = 
+, CPoint = 
+, ClanMoney = 
+, Note = '
+', ClanZang = '
+', UserID = '
+', SiegeMoney = 
+WHERE IDX = 
+Altera
+es salvas com sucesso!
+ERRO! Entre em contato com o desenvolvedor!
+Fire.Resources
+VS_VERSION_INFO
+VarFileInfo
+Translation
+StringFileInfo
+000004b0
+FileDescription
+ArcadePT Clan Manager
+FileVersion
+3.0.0.0
+InternalName
+Fire.exe
+LegalCopyright
+Copyright 
+  2008
+OriginalFilename
+Fire.exe
+ProductName
+Fire
+ProductVersion
+3.0.0.0
+Assembly Version
+3.0.0.0

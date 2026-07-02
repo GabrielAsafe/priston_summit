@@ -2,36 +2,36 @@
 define("PT","1");
 
 /*----------------------------------------------------------------------
-Painel de Adminstra��o
-PESSOAS QUE CONTRIBUIRAM NO DESENVOLVIMENTO DO PAINEL DE ADMINSTRA��O.
-Niik - Jeck - MecanicoGM - N�ckolas - D kin
+Painel de Adminstrao
+PESSOAS QUE CONTRIBUIRAM NO DESENVOLVIMENTO DO PAINEL DE ADMINSTRAO.
+Niik - Jeck - MecanicoGM - Nckolas - D kin
 ----------------------------------------------------------------------*/
 
 $banco = "CoinShopDB";
 
 // TITULO DAS PAGINAS DO PAINEL
-$version="Painel de Administra��o";
+$version="Painel de Administrao";
 
-//Nome do Executavel do servidor.exe (coloque s� o nome, sem a exten��o .exe)
+//Nome do Executavel do servidor.exe (coloque s o nome, sem a exteno .exe)
 $Server = "Server";
 
 //Porta do servidor
 $portasv = "1997";
 
-// IP DA MAQUINA QUE O PAINEL EST� ATUALMENTE
-$iphost = "124.198.128.16";
+// IP DA MAQUINA QUE O PAINEL EST ATUALMENTE
+$iphost = "127.0.0.1";
 
 // DIRETORIO DA SERVER FILES NO HOST
-$rootDir = "C:/Servidor/"; 
-$rootDir2 = "C:/Servidor/Configs/"; 
+$rootDir = "/srv/summit/Servidor/"; 
+$rootDir2 = "/srv/summit/Servidor/Configs/"; 
 
 // DIRETORIO DO PAINEL DE CONTROLE PLAYER EM PASTAS
-$pastapainel = 'C:/inetpub/wwwroot/painel';
-$extrato = "C:/inetpub/wwwroot/painel/shop/historic/";
-$creditos = "C:/inetpub/wwwroot/painel/shop/bonusplayer/";
+$pastapainel = dirname(__DIR__, 2).'/painel';
+$extrato = dirname(__DIR__, 2)."/painel/shop/historic/";
+$creditos = dirname(__DIR__, 2)."/painel/shop/bonusplayer/";
 
 // DIRETORIOS DA PASTA DATASERVER
-// NECESSITA TODAS AS PERMI��ES
+// NECESSITA TODAS AS PERMIES
 $dirUserData = $rootDir."DataServer/userdata/";
 $dirUserInfo = $rootDir."DataServer/userinfo/";
 $dirUserDelete = $rootDir."DataServer/deleted/";
@@ -39,22 +39,22 @@ $dirUserDelete = $rootDir."DataServer/deleted/";
 include_once "class.func.php";
 $func=new func;
 
-// Configura��o SQL!!
-$host = 'PTL\SQLEXPRESS'; //Sua instancia do SQL
-$user = 'sa'; //Seu usu�rio do SQL; Normalmente � SA
-$pass = '#$pdl32xq'; //Sua senha do SQL
+// Configurao SQL!!
+$host = 'summittale-mssql'; //Sua instancia do SQL
+$user = 'sa'; //Seu usurio do SQL; Normalmente  SA
+$pass = 'SummitTale@12345'; //Sua senha do SQL
 
-$connection_string = 'DRIVER={FreeTDS};SERVER='.$host.';PORT=1433;DATABASE=accountdb';
-$sod = 'DRIVER={FreeTDS};SERVER='.$host.';PORT=1433;DATABASE=Sod2db';
-$clan = 'DRIVER={FreeTDS};SERVER='.$host.';PORT=1433;DATABASE=ClanDB';
-$rPTDB = 'DRIVER={FreeTDS};SERVER='.$host.';PORT=1433;DATABASE=rPTDB';
-$itemlog = 'DRIVER={FreeTDS};SERVER='.$host.';PORT=1433;DATABASE=ItemLogDB';
+$connection_string = 'SummitSQL';
+$sod = 'DRIVER={SQL Server};SERVER='.$host.';DATABASE=Sod2db';
+$clan = 'DRIVER={SQL Server};SERVER='.$host.';DATABASE=ClanDB';
+$rPTDB = 'DRIVER={SQL Server};SERVER='.$host.';DATABASE=rPTDB';
+$itemlog = 'DRIVER={SQL Server};SERVER='.$host.';DATABASE=ItemLogDB';
 
-// Configura��o SQL!!
-$host2 = 'PTL\SQLEXPRESS'; //Sua instancia do SQL
-$user2 = 'sa'; //Seu usu�rio do SQL; Normalmente � SA
-$pass2 = '#$pdl32xq'; //Sua senha do SQL
+// Configurao SQL!!
+$host2 = 'summittale-mssql'; //Sua instancia do SQL
+$user2 = 'sa'; //Seu usurio do SQL; Normalmente  SA
+$pass2 = 'SummitTale@12345'; //Sua senha do SQL
 
-$connection_string2 = 'DRIVER={FreeTDS};SERVER='.$host2.';PORT=1433;DATABASE=accountdb';
+$connection_string2 = 'SummitSQL';
 
 ?>

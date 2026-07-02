@@ -14,7 +14,7 @@ $clan_nome = anti_sqli($_POST['nomeclan']);
 
 if (!$_POST['nomeclan']) {
 
-echo "<font color='#000000'>Você não informou um nome de clan, você será redirecionado para escrever o nome do clan!</font>";
+echo "<font color='#000000'>Voc no informou um nome de clan, voc ser redirecionado para escrever o nome do clan!</font>";
 echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=index.php?sess=criaclan'>";
 
 } else {
@@ -26,22 +26,22 @@ echo "<font color='#000000'>O nome que tentou utilizar para clan FOI NEGADO! Ten
 } else {
 
 
-$clan_nome = ereg_replace("[áàâãª]","a",$clan_nome);
-$clan_nome = ereg_replace("[ÁÀÂÃ]","A",$clan_nome);
-$clan_nome = ereg_replace("[éèê]","e",$clan_nome);
-$clan_nome = ereg_replace("[ÉÈÊ]","E",$clan_nome);
-$clan_nome = ereg_replace("[óòôõº]","o",$clan_nome);
-$clan_nome = ereg_replace("[ÓÒÔÕ]","O",$clan_nome);
-$clan_nome = ereg_replace("[úùû]","u",$clan_nome);
-$clan_nome = ereg_replace("[ÚÙÛ]","U",$clan_nome);
-$clan_nome = str_replace("ç","c",$clan_nome);
-$clan_nome = str_replace("Ç","C",$clan_nome);
+$clan_nome = ereg_replace("[]","a",$clan_nome);
+$clan_nome = ereg_replace("[]","A",$clan_nome);
+$clan_nome = ereg_replace("[]","e",$clan_nome);
+$clan_nome = ereg_replace("[]","E",$clan_nome);
+$clan_nome = ereg_replace("[]","o",$clan_nome);
+$clan_nome = ereg_replace("[]","O",$clan_nome);
+$clan_nome = ereg_replace("[]","u",$clan_nome);
+$clan_nome = ereg_replace("[]","U",$clan_nome);
+$clan_nome = str_replace("","c",$clan_nome);
+$clan_nome = str_replace("","C",$clan_nome);
 $clan_nome = str_replace("-","",$clan_nome);
-$clan_nome = str_replace("Ç","C",$clan_nome);
+$clan_nome = str_replace("","C",$clan_nome);
 
     function filtra_frase($ojb)
     {
-        $badchars='.Ý`~!@$%^()+-_=[]{}\'\\:"|,/<>?'; # Nhung ky tu khong cho phep duoc len danh sach tai day
+        $badchars='.`~!@$%^()+-_=[]{}\'\\:"|,/<>?'; # Nhung ky tu khong cho phep duoc len danh sach tai day
         for ($i=0;$i<strlen($badchars);$i++){
             $ojb=str_replace($badchars[$i],"",$ojb);
 
@@ -61,12 +61,12 @@ $clan_liderNick = $_SESSION["charName"];
 //Level do char que player deseja ter como lider
 $level_lider = $_SESSION["charLevel"];
 
- //verificando se o player já tem algum char lider na sua conta
+ //verificando se o player j tem algum char lider na sua conta
  if($lider_clan==0) {
 
  if($level_lider< 40) {
- //Aqui diz que o player indicado como lider não tem level suficiente para criar clans
-echo "<font color='#000000'>O seu char $clan_liderNick é level $level_lider, para criar clans seu char que será líder deve possuir level 40+</font>";
+ //Aqui diz que o player indicado como lider no tem level suficiente para criar clans
+echo "<font color='#000000'>O seu char $clan_liderNick  level $level_lider, para criar clans seu char que ser lder deve possuir level 40+</font>";
 
  } else {
  //Pegando o saldo em gold do player
@@ -92,12 +92,12 @@ $saldokk = $saldo/1000000;
 */
 
 if ($gold < 00000000) {
-//Aqui diz que o player não tem 100kk para pagar o registro de clan
+//Aqui diz que o player no tem 100kk para pagar o registro de clan
 
-echo "<font color='#000000'>Você não tem 0kk em seu char indicado para Líder, logue no game e coloque essa quantidade no char, pois é a taxa exigida para criação de clan</font>";
+echo "<font color='#000000'>Voc no tem 0kk em seu char indicado para Lder, logue no game e coloque essa quantidade no char, pois  a taxa exigida para criao de clan</font>";
 
 } else {
-//Verifica se o player indicado já faz parte de clan
+//Verifica se o player indicado j faz parte de clan
 $nickchar = $_SESSION["charName"];
 $query_clanE = "SELECT * FROM [ClanDb].[dbo].[UL]  WHERE ChName = '$clan_liderNick'";
 $q_clanE = odbc_exec($connection, $query_clanE);
@@ -106,7 +106,7 @@ $nomeclanE = $clanE['ClanName'];
 
 if(!$nomeclanE) {
 
-                //Verificando se existe o nome do Clan já registrado
+                //Verificando se existe o nome do Clan j registrado
                 $query_vername = "SELECT * FROM [ClanDb].[dbo].[CL] WHERE [ClanName]='$clan_nome'";
                 $q_vername = odbc_exec($connection, $query_vername);
 
@@ -114,7 +114,7 @@ if(!$nomeclanE) {
                 $i_vername = 0;
                 while(odbc_fetch_row($qt_vername)) $i_vername++;
                 if($i_vername>0) {
-                echo "<font color='#000000'>Desculpe, mas já existe um clan de nome <b>$clan_nome</b>, favor escolher outro!</font>";
+                echo "<font color='#000000'>Desculpe, mas j existe um clan de nome <b>$clan_nome</b>, favor escolher outro!</font>";
                 echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=index.php?sess=criaclan'>";
                 }
                 else
@@ -176,9 +176,9 @@ $clan_numero = "$clan_numero";
 $ultimos_tres = substr("$clan_numero", -3);
 
 //Cria a Imagem do clan
-$caminho ="C:/Inetpub/wwwroot/ClanContent";
-$imgpadrao ="C:/Inetpub/wwwroot/ClanContent/default.bmp";
-$imgclan ="C:/Inetpub/wwwroot/ClanContent/".$clan_numero.".bmp";
+$caminho ="docker/web/wwwroot - BPT/ClanContent";
+$imgpadrao ="docker/web/wwwroot - BPT/ClanContent/default.bmp";
+$imgclan ="docker/web/wwwroot - BPT/ClanContent/".$clan_numero.".bmp";
 if(file_exists("$caminho/$numeroclan.bmp")) {
 unlink("$caminho/$numeroclan.bmp");
 copy($imgpadrao, $imgclan);
@@ -208,17 +208,17 @@ $go_liup = odbc_exec($connection, $liup);
 //Da a mensagem que o clan foi criado
 echo "<font color='#000000'>$clan_liderNick seu clan $clan_nome foi criado com sucesso!</font>";
 echo "<meta HTTP-EQUIV='Refresh' CONTENT='2;URL=index.php?sess=admclan'>";
- }//Fecha Verificando se existe o nome do Clan já registrado
+ }//Fecha Verificando se existe o nome do Clan j registrado
  } else {
-//Aqui ele deixa a mensagem que o player não pode criar clan pq o char dele já faz parte de um
-echo "<font color='#000000'>O seu char $clan_liderNick já faz parte de um clan portanto ele não pode ser líder de um novo clan!</font>";
+//Aqui ele deixa a mensagem que o player no pode criar clan pq o char dele j faz parte de um
+echo "<font color='#000000'>O seu char $clan_liderNick j faz parte de um clan portanto ele no pode ser lder de um novo clan!</font>";
  }
 
  }
  }
  } else {
- //Aqui deixa a mensagem que o player já é lider de um clan
- echo "<font color='#000000'>Sua ID $clan_liderID já possui um char que é lider de clan, portanto não poderá indicar mais um char como lider.</font>";
+ //Aqui deixa a mensagem que o player j  lider de um clan
+ echo "<font color='#000000'>Sua ID $clan_liderID j possui um char que  lider de clan, portanto no poder indicar mais um char como lider.</font>";
 
  }
  }

@@ -99,7 +99,7 @@ $permisao = odbc_result($qt,3);
 	} else {
 		$procuraPlayer = ''.$rootDir.'DataServer/userdata/'.subDiretorio($nick).'/'.$nick.'.dat';
 		if(!file_exists($procuraPlayer)){
-			echo "<b>Char não existe!</b>";
+			echo "<b>Char no existe!</b>";
 		} else {
 			$aberto = fopen($procuraPlayer, "r");
 			$conteudoDat =fread($aberto,filesize($procuraPlayer));
@@ -109,7 +109,7 @@ $permisao = odbc_result($qt,3);
 if(file_exists($procuraPlayer))
 {
 
-	// lê o arquivo para descobrir a ID
+	// l o arquivo para descobrir a ID
 	$aberto = fopen($procuraPlayer, "r");
 	$conteudoDat =fread($aberto,filesize($procuraPlayer));
 	@fclose($aberto);
@@ -147,7 +147,7 @@ fclose($fp);
 	$q_4 = odbc_exec($connection, $query_4);
 
     if ($q_4){
-	echo "<b>O player <font color='#FF0000'> <u>".$PlayerID."</u></font> cujo o nick é: <font color='#FF0000'>$nick</font> recebeu o item: <font color='#FF0000'><u>".$item."</u></font> com sucesso no Distribuidor!</b>";
+	echo "<b>O player <font color='#FF0000'> <u>".$PlayerID."</u></font> cujo o nick : <font color='#FF0000'>$nick</font> recebeu o item: <font color='#FF0000'><u>".$item."</u></font> com sucesso no Distribuidor!</b>";
 	} else {
 		echo "<b>Algum erro ocorreu, contacte o adminsitrador!</b>";
 	}
@@ -157,7 +157,7 @@ fclose($fp);
       </td>
         </tr>
         <tr>
-          <td width="499" height="10" background="-imgs/23.gif">&nbsp;</td>
+          <td width="499" height="10" background="imgs/23.gif">&nbsp;</td>
         </tr>
       </tbody>
     </table>

@@ -81,9 +81,9 @@ void Settings::readConfig()
 		setEffects(file.readInt("Audio", "Effects") != 0);
 		setEffectsVolume(file.readInt("Audio", "EffectsVolume"));
 		//IP
-		setServer1("124.198.128.16");
-		setServer2("124.198.128.16");
-		setServer3("124.198.128.16");  
+		setServer1("192.168.1.111");
+		setServer2("192.168.1.111");
+		setServer3("192.168.1.111");  
 
 #ifdef YWEENZY_PC 
 		setPort(10012);

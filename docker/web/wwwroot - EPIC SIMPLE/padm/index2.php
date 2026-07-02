@@ -46,7 +46,7 @@ header('Content-Type: text/html; charset=iso-8859-1');
             <tr></tr>
             <tr>
               <td height="25" valign="middle"><p align="left">Ol&aacute; , <strong><? echo $_SESSION["NICKGM"]; ?></strong> Seja bem vindo ao Painel ADMINISTRADOR SummitTale<br>
-                <a href="index.php?sessadm=deslogar" onClick="return confirm('tem certeza que deseja deslogar do Painel de Administra&ccedil;&atilde;o?');"><span class="style2"><strong>DESLOGAR DO PAINEL</strong></span></a><span class="style1"><a href="http://189.8.42.29/paineladm/index.php?sessadm=deslogar" onClick="return confirm('tem certeza que deseja deslogar do Painel de Administra&ccedil;&atilde;o?');"></a></span>              <a href="index.php?sessadm=deslogar" onClick="return confirm('tem certeza que deseja deslogar do Painel de Administra&ccedil;&atilde;o?');"><br>
+                <a href="index.php?sessadm=deslogar" onClick="return confirm('tem certeza que deseja deslogar do Painel de Administra&ccedil;&atilde;o?');"><span class="style2"><strong>DESLOGAR DO PAINEL</strong></span></a><span class="style1"><a href="index.php?sessadm=deslogar" onClick="return confirm('tem certeza que deseja deslogar do Painel de Administra&ccedil;&atilde;o?');"></a></span>              <a href="index.php?sessadm=deslogar" onClick="return confirm('tem certeza que deseja deslogar do Painel de Administra&ccedil;&atilde;o?');"><br>
                 <br>
               </a></p></td>
             </tr>
@@ -345,7 +345,7 @@ switch($sessadm)
 </tr>
         <tr>
           <td align="center"><p><strong>---------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
-                  <span class="style1"></span> Painel de Administração
+                  <span class="style1"></span> Painel de Administrao
                   <span class="style2"></span> do Servidor<br></p>
             </td>
         </tr>

@@ -31,7 +31,7 @@ Senha: ".$array['Passwd']."<br><br>
 Se n&atilde;o foi voc&ecirc; quem solicitou o pedido restaura&ccedil;&atilde;o de senha, iguinore esta mensagem e fique tranquilo pois a senha da sua conta s&oacute; pode ser enviada para o e-mail de cadastro.<br><br>
 
 <b>Atenciosamente, Equipe $nomedoserver</b><br>
-<a href='www.AlfaPT.com.br'>www.AlfaPT.com.br</a>
+<a href='Summit Tale'>Summit Tale</a>
 ";
 
 if(!$mail->Send())

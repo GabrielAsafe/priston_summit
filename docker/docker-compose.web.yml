@@ -18,3 +18,4 @@ services:
       - "8089:80"
     volumes:
       - ./web/wwwroot - EPIC SIMPLE:/var/www/html
+      - ../Servidor:/srv/summit/Servidor

@@ -22,11 +22,9 @@
             $connection = odbc_connect( $connection_string, $user, $pass );
             $query_ban = "SELECT * FROM [accountdb].[dbo].[".( strtoupper($nomedochar[0]) ) ."GameUser] WHERE [userid]='$nomedochar'";
             $q_ban = odbc_exec($connection, $query_ban);
-            $qt_ban = odbc_do($connection, $query_ban);
-            while(odbc_fetch_row($qt_ban)) {
-            $verbanido = odbc_fetch_array($q_ban);
-            $taban=$verbanido[BlockChk];
-            }
+            $verbanido = $q_ban ? odbc_fetch_array($q_ban) : false;
+            $taban = $verbanido ? $verbanido["BlockChk"] : 0;
+            if ($q_ban) { odbc_free_result($q_ban); }
             if ($taban == "1") {
             echo "<meta HTTP-EQUIV='Refresh' CONTENT='0;URL=banido.php'>";
             }
@@ -34,9 +32,11 @@
             $connection = odbc_connect( $connection_string, $user, $pass );
             $queryVPun = "SELECT * FROM [ADM].[dbo].[LogsBan] WHERE [idplayer]='$nomedochar' ORDER BY data desc";
             $qVPun = odbc_exec($connection, $queryVPun);
-            $qtVPun = odbc_do($connection, $queryVPun);
             $VPun = 0;
-            while(odbc_fetch_row($qtVPun)) $VPun++;
+            if ($qVPun) {
+                while(odbc_fetch_row($qVPun)) $VPun++;
+                odbc_free_result($qVPun);
+            }
             if($VPun>0)
             {
             $PunidoC++;
@@ -54,11 +54,9 @@
             $connection = odbc_connect( $connection_string, $user, $pass );
             $queryPUN = "SELECT TOP 5 * FROM [ADM].[dbo].[LogsBan] WHERE [idplayer]='$nomedochar' ORDER BY data desc";
             $qPUN = odbc_exec($connection, $queryPUN);
-            $qtPUN = odbc_do($connection, $queryPUN);
             $contapunicao = 0;
-            while(odbc_fetch_row($qtPUN)) {
+            while($qPUN && ($farr = odbc_fetch_array($qPUN))) {
             $i++;
-            $farr = odbc_fetch_array($qPUN);
             $motivo=$farr[motivo];
             $punicao=$farr[punicao];
             $diaban=$farr[diaban];
@@ -86,11 +84,10 @@
             $connection = odbc_connect( $connection_string, $user, $pass );
             $query = "SELECT * FROM [ClanDb].[dbo].[CL]  WHERE UserID = '$nomedochar' ";
             $qLider = odbc_exec($connection, $query);
-            $qtLider = odbc_do($connection, $query);
 
             $i = 0;
-                            while(odbc_fetch_row($qtLider)){
-                            $nomeclan=odbc_result($qtLider,2);
+                            while($qLider && ($liderRow = odbc_fetch_array($qLider))){
+                            $nomeclan=$liderRow["ClanName"];
 
                              $i++;
 
@@ -111,11 +108,10 @@
             if( !$CHAR )
             {
               $query = "SELECT * FROM [clanDB].[dbo].[CL]";
-              $go = odbc_do($connection,$query);
             function AcertarLinhasODBC($conexao,$query){
               $resultado = odbc_exec($conexao,$query);
               $contador=0;
-              while($temp = odbc_fetch_into($resultado, &$counter)){
+              while($temp = odbc_fetch_into($resultado, $counter)){
                 $contador++;
               }
               return $contador;
@@ -141,7 +137,7 @@
                     $charLevel = substr($fRead,0xc8,1);
                     $charClass = substr($fRead,0xc4,1);
                     $charName = trim(substr($fRead,0x10,15),"\x00");
-                    $charID = trim(substr($fRead,0x2c0,10),"\x00");
+                    $charID = trim(substr($fRead,0x2ec,10),"\x00");
 
                     if( (strtolower($charID)==strtolower($_SESSION["ID"]))  )
 
@@ -285,7 +281,7 @@
                           <form method="post" onSubmit="disabledBttn(this)" action="index.php?sess=sairclan">
                             <tr>
                              <td align="right"><font color="#000000"><strong>CLAN:</strong></font></td>
-                             <td style="border-bottom: solid 1px #cecece;"><img src="http://<? echo $ipdoservidor; ?>/ClanContent/<? echo $numeroclan; ?>.bmp" width="20" height="20" border="1" align="absmiddle"> <strong><font color="Red"><? echo $nomeclan; ?></strong></font></td>
+                             <td style="border-bottom: solid 1px #cecece;"><img src="/ClanContent/<? echo $numeroclan; ?>.bmp" width="20" height="20" border="1" align="absmiddle"> <strong><font color="Red"><? echo $nomeclan; ?></strong></font></td>
                             </tr>
                                </form>
                           <? } ?>
@@ -300,7 +296,7 @@
                         $qCharID=($_SESSION["charID"])?$_SESSION["charID"]:$_SESSION["ID"];
                         $charInfo=$dirUserInfo . ($func->numDir($qCharID)) . "/" . $qCharID . ".dat";
 
-                        if(file_exists($charInfo) && ( filesize($charInfo)==240) )
+                        if(file_exists($charInfo) && ( filesize($charInfo)==240 || filesize($charInfo)==400) )
                         {
                             $fRead=false;
                             $fOpen = fopen($charInfo, "r");
@@ -321,7 +317,8 @@
                                 foreach($charNameArr as $key=>$value)
                                 {
                                     $expValue=explode("\x00",$value);
-                                    echo "<a href=\"?char=".$expValue[0]."\">".$expValue[0]."</a>&nbsp;&nbsp;";
+                                    if(trim($expValue[0])!="")
+                                        echo "<a href=\"?char=".$expValue[0]."\">".$expValue[0]."</a>&nbsp;&nbsp;";
                                 }
                             }
                             else

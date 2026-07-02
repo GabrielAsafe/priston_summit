@@ -8,7 +8,7 @@ header('p3p: CP="CAO PSA OUR"');
 include_once "incluir/configura.php";
 include_once "injection.php";
 
-include_once "verifica_tempo.php";
+// include_once "verifica_tempo.php"; // desativado temporariamente para debug
 
 
 
@@ -171,7 +171,12 @@ $usuarioAPT = anti_sqli(escapestrings($_POST['username']));
 $senhaAPT = anti_sqli(escapestrings($_POST['password']));
 $usuarioAPT = trim($usuarioAPT);
 $senhaAPT = trim($senhaAPT);
-
+echo "<pre>";
+echo "usuarioAPT = [$usuarioAPT]\n";
+echo "senhaAPT   = [$senhaAPT]\n";
+echo "POST username = [" . $_POST['username'] . "]\n";
+echo "POST password = [" . $_POST['password'] . "]\n";
+echo "</pre>";
 
 if (anti_sql($usuarioAPT) != 0 || anti_sql($senhaAPT) != 0 ) {
 echo "<meta HTTP-EQUIV='Refresh' CONTENT='0;URL=index.php'>";
@@ -195,32 +200,24 @@ echo "<meta HTTP-EQUIV='Refresh' CONTENT='0;URL=index.php'>";
 			
             $querysenha = "SELECT * FROM [accountdb].[dbo].[AllPersonalMember] WHERE [Userid]='$usuarioAPT'";
             $qsenha = odbc_exec($connection, $querysenha);
+            $member = $qsenha ? odbc_fetch_array($qsenha) : false;
+            if ($qsenha) { odbc_free_result($qsenha); }
 
-            $qtsenha = odbc_do($connection, $querysenha);
-            $i2 = 0;
-            while(odbc_fetch_row($qtsenha)) $i2++;
-                        $email=odbc_result($qtsenha,12);
-
-            if($i2>0)
+            if($member)
             {
 
             $usernameP=anti_sqli($_POST[username]);
             $query = "SELECT * FROM [accountdb].[dbo].[".( strtoupper($usernameP[0]) ) ."GameUser] WHERE [userid]='$usuarioAPT' AND [Passwd]='$senhaAPT'";
             $q = odbc_exec($connection, $query);
+            $farr = $q ? odbc_fetch_array($q) : false;
 
-            $qt = odbc_do($connection, $query);
-            $i = 0;
-            while(odbc_fetch_row($qt)) $i++;
-                        $email=odbc_result($qt,12);
-
-            if($i>0)
+            if($farr)
             {
 
 		///////////////////////////////
                 session_register("usercode");
-                $farr = odbc_fetch_array($q);
 
-                $_SESSION["ID"]=$farr[userid];
+                $_SESSION["ID"]=$farr["userid"];
 
       echo "<table width=423 border=0 cellspacing=0 cellpadding=0>
   <tr>

@@ -7,24 +7,24 @@ include_once "incluir/configura.php";
 include_once "injection.php";
 
 
-//Segurança para o PHP
+//Segurana para o PHP
 function escapestrings($string)
 {
-    //se magic_quotes não estiver ativado, escapa a string
+    //se magic_quotes no estiver ativado, escapa a string
     if (!get_magic_quotes_gpc())
     {
-        return mysql_escape_string($string); // função nativa do php para escapar variáveis.
+        return mysql_escape_string($string); // funo nativa do php para escapar variveis.
     }
     else
     {
         // caso contrario
-        return $string; // retorna a variável sem necessidade de escapar duas vezes
+        return $string; // retorna a varivel sem necessidade de escapar duas vezes
     }
 }
 
 
 
-if(empty($_SESSION["gmfodoes"]))
+if(!session_is_registered("gmfodoes"))
 {
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -111,8 +111,8 @@ body {
     else
     {
         $required=array(
-            "IDADM"=>$_POST[username],
-            "PWADM"=>$_POST[password],
+            "IDADM"=>$_POST["username"],
+            "PWADM"=>$_POST["password"],
         );
 
 //Obtendo login e senha
@@ -127,54 +127,36 @@ echo "<meta HTTP-EQUIV='Refresh' CONTENT='0;URL=index.php'>";
 } else {
 
 
-        for($i=0;$i<count($required);$i++)
+        if (!empty($gmAPT) && !empty($gmpassAPT))
         {
-            list($key,$value)=each($required);
+            $connection = odbc_connect($connection_string, $user, $pass);
 
-            if(!$value)
-                echo "<b>$key</b> is required<br>";
-            else
-                $chkArr[]=true;
-        }
-
-        if(count($chkArr)==count($required))
-        {
-
-            $connection = odbc_connect( $connection_string, $user, $pass );
-
-
-            $gmAPT=$_POST[username];
             $query = "SELECT * FROM [ADM].[dbo].[loginGM] WHERE [idGM]='$gmAPT' AND [passGM]='$gmpassAPT'";
             $q = odbc_exec($connection, $query);
 
-            $qt = odbc_do($connection, $query);
-            $i = 0;
-            while(odbc_fetch_row($qt)) $i++;
-
-            if($i>0)
+            if ($q && ($farr = odbc_fetch_array($q)))
             {
                 session_register("gmfodoes");
-                $farr = odbc_fetch_array($q);
 
-                $_SESSION["IDADM"]=$farr[idGM];
-				$_SESSION["NICKGM"]=$farr[nickGM];
-				$_SESSION["permissao"]=$farr[permissao];
+                $_SESSION["gmfodoes"] = true;
+                $_SESSION["IDADM"] = $farr["idGM"];
+                $_SESSION["NICKGM"] = $farr["nickGM"];
+                $_SESSION["permissao"] = $farr["permissao"];
 
-
-
-       echo "<table width=440 border=0 cellspacing=0 cellpadding=0>
+                echo "<table width=440 border=0 cellspacing=0 cellpadding=0>
   <tr>
     <td height=100 align=center><b><font color=#008000>DADOS DE ACESSO CORRETOS! <br> REDIRECIONANDO PARA O PAINEL</font></b></td>
   </tr>
 </table>";
             }
             else
-       echo "<table width=440 border=0 cellspacing=0 cellpadding=0>
+            {
+                echo "<table width=440 border=0 cellspacing=0 cellpadding=0>
   <tr>
     <td height=100 align=center><b><font color=#FF0000>LOGIN OU SENHA INCORRETO!</font></b></td>
   </tr>
 </table>";
-
+            }
         }
 
         echo "<meta HTTP-EQUIV='Refresh' CONTENT='2;URL=index.php'>";

@@ -1,0 +1,545 @@
+!This program cannot be run in DOS mode.
+.text
+`.rsrc
+@.reloc
+)System.Resources.ResourceReader, mscorlibsSystem.Resources.RuntimeResourceSet, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+mSystem.CodeDom.MemberAttributes, System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089^System.Boolean, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089iSystem.Drawing.Size, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3aiSystem.Drawing.Icon, System.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3apSystem.Globalization.CultureInfo, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]System.String, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\System.Int32, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089PADPA
+.`{[
+4Ggh
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+System.Boolean
+m_value
+TSystem.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Drawing.Size
+width
+height
+TSystem.Drawing, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+System.Drawing.Icon
+IconData
+IconSize
+System.Drawing.Size
+System.Drawing.Size
+width
+height
+!G!!G!
+ ccGG 
+?%%c!?
+%%|}!??  
+G! ?! 
+|cG? !!
+?<?!
+7[P[
+ System.Globalization.CultureInfo
+m_name
+m_dataItem
+m_useUserOverride	cultureID
+m_isReadOnly
+compareInfo
+textInfo
+numInfo
+dateTimeInfo
+calendar
+ System.Globalization.CompareInfo
+System.Globalization.TextInfo%System.Globalization.NumberFormatInfo'System.Globalization.DateTimeFormatInfo
+System.Globalization.Calendar
+ System.Globalization.CompareInfo
+	win32LCID
+culture
+System.Globalization.TextInfo
+m_nDataItem
+m_useUserOverride
+m_win32LangID
+%System.Globalization.NumberFormatInfo
+numberGroupSizes
+currencyGroupSizes
+percentGroupSizes
+positiveSign
+negativeSign
+numberDecimalSeparator
+numberGroupSeparator
+currencyGroupSeparator
+currencyDecimalSeparator
+currencySymbol
+ansiCurrencySymbol	nanSymbol
+positiveInfinitySymbol
+negativeInfinitySymbol
+percentDecimalSeparator
+percentGroupSeparator
+percentSymbol
+perMilleSymbol
+m_dataItem
+numberDecimalDigits
+currencyDecimalDigits
+currencyPositivePattern
+currencyNegativePattern
+numberNegativePattern
+percentPositivePattern
+percentNegativePattern
+percentDecimalDigits
+isReadOnly
+m_useUserOverride
+validForParseAsNumber
+validForParseAsCurrency
+Infinity
+	-Infinity	
+System.Boolean
+m_value
+System.Boolean
+m_value
+frmMain
+System.Boolean
+m_value
+System.Boolean
+m_value
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+System.Boolean
+m_value
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+System.Boolean
+m_value
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+System.Boolean
+m_value
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+System.Boolean
+m_value
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+System.Boolean
+m_value
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+System.Boolean
+m_value
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+System.Boolean
+m_value
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+System.Boolean
+m_value
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+System.Boolean
+m_value
+LSystem, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+System.CodeDom.MemberAttributes
+value__
+#%(:
+~%(:
++@r:
++JrJ
++Brb
++:rp
+BSJB
+v1.1.4322
+#Strings
+#GUID
+#Blob
+<Module>
+mscorlib
+Microsoft.VisualBasic
+System
+System.Data
+System.Drawing
+System.Windows.Forms
+System.Xml
+frmMain
+MultiManager
+modFunctions
+Form
+Label
+_Label2
+_Label1
+TextBox
+_txtPassword
+Button
+_btnStart
+_lblCIDX
+_txtUser
+_Label3
+Main
+_txtPath
+_txtIP
+.ctor
+Dispose
+disposing
+System.ComponentModel
+IContainer
+components
+get_txtPath
+set_txtPath
+WithEventsValue
+get_txtIP
+set_txtIP
+get_txtUser
+set_txtUser
+get_txtPassword
+set_txtPassword
+get_Label1
+set_Label1
+set_Label2
+get_Label2
+get_Label3
+set_Label3
+set_btnStart
+get_btnStart
+set_lblCIDX
+get_lblCIDX
+InitializeComponent
+strPath
+strIP
+strUser
+strPassword
+connectionString
+strQuery
+objConn
+objReader
+objCommand
+objConn2
+objReader2
+objCommand2
+objConn3
+objReader3
+objCommand3
+objConn4
+objReader4
+objCommand4
+bUPDATE
+EventArgs
+btnStart_Click
+sender
+CallFunction
+ClanInsertClanScore
+strClanName
+iTotalPoint
+ClanInsertSiegeMoney
+iCIDX
+lTotalMoney
+UpdateUserLevel
+strCharName
+strLevel
+strType
+GetClan
+GetClanPoint
+txtPath
+txtIP
+txtUser
+txtPassword
+Label1
+Label2
+Label3
+btnStart
+lblCIDX
+Object
+strSettingsPath
+strSettingsData
+CIDX
+AppPath
+FileExists
+strFilePath
+RemoveFile
+SaveData
+pFileName
+pData
+LoadData
+GetFileName
+flname
+DecToHex
+strInput
+HexToDec
+ToHex
+FixStr
+pString
+ClassName
+iNum
+Application
+IDisposable
+EventHandler
+Control
+remove_Click
+add_Click
+System.Resources
+ResourceManager
+Size
+Point
+Type
+RuntimeTypeHandle
+GetTypeFromHandle
+SuspendLayout
+set_Location
+set_Name
+set_Size
+set_TabIndex
+set_Text
+set_PasswordChar
+ContentAlignment
+set_TextAlign
+set_AutoScaleBaseSize
+set_ClientSize
+ControlCollection
+get_Controls
+FormBorderStyle
+set_FormBorderStyle
+GetObject
+Icon
+set_Icon
+set_MaximizeBox
+ResumeLayout
+String
+Concat
+Microsoft.VisualBasic.CompilerServices
+StringType
+StrCmp
+Strings
+Conversion
+IntegerType
+FromString
+FromInteger
+get_Text
+System.Collections
+IEnumerator
+System.Data.SqlClient
+SqlConnection
+LateBinding
+LateCall
+System.IO
+Directory
+GetDirectories
+Array
+GetEnumerator
+Reset
+SqlCommand
+LateGet
+System.Runtime.CompilerServices
+RuntimeHelpers
+GetObjectValue
+get_Current
+FromObject
+GetFiles
+Refresh
+MoveNext
+Int32
+BooleanType
+FromLong
+Exception
+ProjectData
+SetProjectError
+ClearProjectError
+AccessedThroughPropertyAttribute
+STAThreadAttribute
+System.Diagnostics
+DebuggerStepThroughAttribute
+get_StartupPath
+File
+Exists
+Delete
+FileSystem
+FreeFile
+OpenMode
+OpenAccess
+OpenShare
+FileOpen
+FilePut
+FileClose
+FileLen
+Space
+FileGet
+Right
+CompareMethod
+InStr
+Left
+StandardModuleAttribute
+MultiManager.frmMain.resources
+System.Reflection
+AssemblyVersionAttribute
+System.Runtime.InteropServices
+GuidAttribute
+CLSCompliantAttribute
+AssemblyTrademarkAttribute
+AssemblyCopyrightAttribute
+AssemblyProductAttribute
+AssemblyCompanyAttribute
+AssemblyDescriptionAttribute
+AssemblyTitleAttribute
+MultiManager.exe
+Label2
+Label1
+txtPassword
+txtUser
+txtIP
+txtPath
+lblCIDX
+btnStart
+Label3
+$F913E388-BE8E-4E97-A1A2-47D276DA6D74
+_CorExeMain
+mscoree.dll
+!G!!G!
+ ccGG 
+?%%c!?
+%%|}!??  
+G! ?! 
+|cG? !!
+?<?!
+7[P[
+$this.DefaultModifiers
+$this.DrawGrid
+$this.GridSize
+$this.Icon
+$this.Language
+$this.Localizable
+$this.Locked
+$this.Name
+$this.SnapToGrid
+$this.TrayHeight
+$this.TrayLargeIcon
+Label1.DefaultModifiers
+Label1.Locked
+Label1.Modifiers
+Label2.DefaultModifiers
+Label2.Locked
+Label2.Modifiers
+Label3.DefaultModifiers
+Label3.Locked
+Label3.Modifiers
+btnStart.DefaultModifiers
+btnStart.Locked
+btnStart.Modifiers
+lblCIDX.DefaultModifiers
+lblCIDX.Locked
+lblCIDX.Modifiers
+txtIP.DefaultModifiers
+txtIP.Locked
+txtIP.Modifiers
+txtPassword.DefaultModifiers
+txtPassword.Locked
+txtPassword.Modifiers
+txtPath.DefaultModifiers
+txtPath.Locked
+txtPath.Modifiers
+txtUser.DefaultModifiers
+txtUser.Locked
+txtUser.Modifiers
+txtPath
+C:\rPT\rPT-Server\DataServer\userdata\
+txtIP
+sql.bizhostnet.com
+txtUser
+sandgm
+txtPassword
+san48aug
+Label1
+DB IP:
+Label2
+DB USER:
+Label3
+DB PW:
+btnStart
+Start (v0.95)
+lblCIDX
+$this.Icon
+frmMain
+MultiManager (Made by Sandurr)
+\BlessCastle.dat
+Server=
+,1433;Network Library=DBMSSOCN;Database=rPTDB;UID=
+;PWD=
+Open
+DELETE FROM LevelList
+ExecuteReader
+Close
+INSERT INTO LevelList Values('
+','1')
+server='
+'; user id='
+'; password='
+'; database='SoD2DB'
+SELECT CharName, ServerTime, TotalPoint, SuccessUser FROM SOD2RecBySandurr
+Item
+SELECT CharName, Point FROM SOD2RecBySandurr WHERE ServerTime='
+' AND TotalPoint='
+' AND SuccessUser='
+Read
+'; database='ClanDB'
+UPDATE CL SET Cpoint='
+' WHERE ClanName='
+UPDATE CL SET SiegeMoney='
+' WHERE IDX='
+UPDATE UL SET ChLv='
+',ChType='
+' WHERE ChName='
+SELECT ClanName FROM UL WHERE ChName='
+GetString
+SELECT Cpoint FROM CL WHERE ClanName='
+GetInt32
+Fighter
+Mechanician
+Archer
+Pikeman
+Atalanta
+Knight
+Magician
+Priestess
+Unknown ID: 
+VS_VERSION_INFO
+VarFileInfo
+Translation
+StringFileInfo
+000004b0
+Comments
+CompanyName
+FileDescription
+FileVersion
+1.0.2531.32575
+InternalName
+MultiManager.exe
+LegalCopyright
+LegalTrademarks
+OriginalFilename
+MultiManager.exe
+ProductName
+ProductVersion
+1.0.2531.32575
+Assembly Version
+1.0.2531.32575

@@ -285,7 +285,7 @@
                           <form method="post" onSubmit="disabledBttn(this)" action="index.php?sess=sairclan">
                             <tr>
                              <td align="right"><font color="#000000"><strong>CLAN:</strong></font></td>
-                             <td style="border-bottom: solid 1px #cecece;"><img src="http://<? echo $ipdoservidor; ?>/ClanContent/<? echo $numeroclan; ?>.bmp" width="20" height="20" border="1" align="absmiddle"> <strong><font color="Red"><? echo $nomeclan; ?></strong></font></td>
+                             <td style="border-bottom: solid 1px #cecece;"><img src="/ClanContent/<? echo $numeroclan; ?>.bmp" width="20" height="20" border="1" align="absmiddle"> <strong><font color="Red"><? echo $nomeclan; ?></strong></font></td>
                             </tr>
                                </form>
                           <? } ?>

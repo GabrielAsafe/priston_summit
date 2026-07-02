@@ -114,7 +114,7 @@ Email n&atilde;o encontrado!<br>Digite o email novamente.<br>";
 		
 			$array = odbc_fetch_array($while);
 			include "envia_email_recsenha.php";
-			echo "<center><font color='green' face='Verdana'>Email v&aacute;lido.</b><br>Senha enviada com sucesso!<br></b><br><u> Acesse seu email e verifique sua caixa de spawn/lixeira.<br>Foi enviado para o email o ID e Senha da sua conta<br><br></font></u></b><a href='http://www.ParadisePT.com.br'> Voltar Para o site</a> | <a href=\"$_SERVER[PHP_SELF]?$_SERVER[QUERY_STRING]\">Voltar</a><br></center>";
+			echo "<center><font color='green' face='Verdana'>Email v&aacute;lido.</b><br>Senha enviada com sucesso!<br></b><br><u> Acesse seu email e verifique sua caixa de spawn/lixeira.<br>Foi enviado para o email o ID e Senha da sua conta<br><br></font></u></b><a href='/painel/'> Voltar Para o site</a> | <a href=\"$_SERVER[PHP_SELF]?$_SERVER[QUERY_STRING]\">Voltar</a><br></center>";
 		}
 
 				  ?>

@@ -3,7 +3,7 @@
 include_once "injection.php";
 include_once "incluir/configura.php";
 
-//Verificando se ele é lider de Clan
+//Verificando se ele  lider de Clan
 
 $nomedochar = $_SESSION["ID"];
 $connection = odbc_connect( $connection_string, $user, $pass );
@@ -70,9 +70,9 @@ echo "Total: ".$numero_de_players_kikados." players kikados do servidor.";
         <td><form action="index.php?sess=membros&amp;" method="post" name="form1" id="form1">
           <table width="423" border="0" cellpadding="6" cellspacing="0" bgcolor="">
             <tr>
-              <td width="40" align="center" valign="top" bgcolor=""><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><b><img src="http://<? echo $ipdoservidor; ?>/clancontent/<? echo $numeroclan; ?>.bmp" width="32" height="32" /></b></font></td>
+              <td width="40" align="center" valign="top" bgcolor=""><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><b><img src="/ClanContent/<? echo $numeroclan; ?>.bmp" width="32" height="32" /></b></font></td>
               <td bgcolor=""><font size="2" color="black" face="Verdana, Arial, Helvetica, sans-serif"><b>Clan: </b><? echo $nomeclan; ?><br />
-                <b>Líder: </b><? echo $nomelider; ?><br />
+                <b>Lder: </b><? echo $nomelider; ?><br />
                 <b>Membros: </b><? echo $numeroMembros; ?></font></td>
             </tr>
           </table>

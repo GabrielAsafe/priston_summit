@@ -15,7 +15,7 @@ function abrir(URL) {
 
 <?
 /*----------------------------------------------------------------------
-Painel SparkyPT
+Painel Summit Tale
 ----------------------------------------------------------------------*/
 if (Painel!=1) exit;
 
@@ -119,7 +119,7 @@ copy($filebase, $criatudo);
 include ("shop/infoitens/$codigo_item.php"); ?>
          <td align="left" bgcolor="#000000"><?php echo $showstatus; ?></td> <?php
 } else {
-echo "<img src='http://sparkypt.no-ip.org/Painel/imgs/loading.gif' width='20' height='20'/>";
+echo "<img src='/painel/imgs/loading.gif' width='20' height='20'/>";
 }
 ?>      <br></td>
     </tr>

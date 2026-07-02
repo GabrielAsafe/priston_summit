@@ -1,1 +1,4 @@
-DirectoryIndex index.php index.html
+﻿php_value extension_dir "C:\php_new\ext"
+php_value extension php_curl.dll
+php_value extension php_openssl.dll
+php_value allow_url_fopen On

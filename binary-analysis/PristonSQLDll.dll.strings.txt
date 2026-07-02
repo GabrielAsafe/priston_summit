@@ -1,0 +1,262 @@
+=== PristonSQLDll.dll ASCII ===
+!This program cannot be run in DOS mode.
+Rich
+.text
+`.rdata
+@.data
+.reloc
+t	WVS
+NWVS
+u7WPS
+u&WVS
+_^[]
+YYh `
+t:jtj
+Yt)V
+u?jtj
+Yt&V
+HSVWh
+t9UW
+?=t"U
+QQS3
+PSSW
+8"uD
+8"uF@
+8"u,
+@@f9
+@@f9
+SS@SSPVSS
+t#SSUP
+t$$VSS
+_^][YY
+8MZu
+t>j,P
+Yt0@
+WufS3
+u>Wj
+w|j	
+uA;5d
+w9j	
+u>Vj
+u;j	
+t	VP
+uSj	
+w.j	
+SVWj
+0B=8c
+j@Y3
+Wj@Y3
+t7SW
+    
+@AA;
+<Xt	
+u,9u
+^_[3
+^[_3
+uiSj
+uY;]
+pD#U
+j #M
+j?^;
+SUVWu
+_^][
+Y;5Dc
+QQSV
+6;5`
+sN;E
+u%C@
+VWuBhhT
+tPhLT
+tzVS
+GIt%
+t/Ku
+SVWUj
+]_^[
+t.;t$$t(
+VC20XC00U
+SVWU
+tEVU
+t3x<
+]_^[
+uFWWj
+[ShxT
+"WWShtT
+9} u
+E WW
+tMWWS
+t@9}
+VSh 
+^VhxT
+PVhtT
+t&:a
+PPPPPPPP
+PPPPPPPP
+FGQPS
+u	Iu
+SVWu
+^}%95
+__GLOBAL_HEAP_SELECTED
+__MSVCRT_HEAP_SELECT
+runtime error 
+TLOSS error
+SING error
+DOMAIN error
+R6028
+- unable to initialize heap
+R6027
+- not enough space for lowio initialization
+R6026
+- not enough space for stdio initialization
+R6025
+- pure virtual function call
+R6024
+- not enough space for _onexit/atexit table
+R6019
+- unable to open console device
+R6018
+- unexpected heap error
+R6017
+- unexpected multithread lock error
+R6016
+- not enough space for thread data
+abnormal program termination
+R6009
+- not enough space for environment
+R6008
+- not enough space for arguments
+R6002
+- floating point not loaded
+Microsoft Visual C++ Runtime Library
+Runtime Error!
+Program: 
+<program name unknown>
+GetLastActivePopup
+GetActiveWindow
+MessageBoxA
+user32.dll
+H:mm:ss
+dddd, MMMM dd, yyyy
+M/d/yy
+December
+November
+October
+September
+August
+July
+June
+April
+March
+February
+January
+Saturday
+Friday
+Thursday
+Wednesday
+Tuesday
+Monday
+Sunday
+SunMonTueWedThuFriSat
+JanFebMarAprMayJunJulAugSepOctNovDec
+GetCommandLineA
+GetVersion
+ExitProcess
+TerminateProcess
+GetCurrentProcess
+GetCurrentThreadId
+TlsSetValue
+TlsAlloc
+TlsFree
+SetLastError
+TlsGetValue
+GetLastError
+SetHandleCount
+GetStdHandle
+GetFileType
+GetStartupInfoA
+DeleteCriticalSection
+GetModuleFileNameA
+FreeEnvironmentStringsA
+FreeEnvironmentStringsW
+WideCharToMultiByte
+GetEnvironmentStrings
+GetEnvironmentStringsW
+GetModuleHandleA
+GetEnvironmentVariableA
+GetVersionExA
+HeapDestroy
+HeapCreate
+VirtualFree
+HeapFree
+WriteFile
+InitializeCriticalSection
+EnterCriticalSection
+LeaveCriticalSection
+HeapAlloc
+GetCPInfo
+GetACP
+GetOEMCP
+VirtualAlloc
+HeapReAlloc
+GetProcAddress
+LoadLibraryA
+RtlUnwind
+MultiByteToWideChar
+LCMapStringA
+LCMapStringW
+GetStringTypeA
+GetStringTypeW
+InterlockedDecrement
+InterlockedIncrement
+KERNEL32.dll
+PristonSQLDll.dll
+?SQLAddCharProcess@@YAHPAD0@Z
+?SQLDelCharProcess@@YAHPAD0@Z
+?SQLLoginProcess@@YAHPAD@Z
+?SQLLogoutProcess@@YAHPAD000KH@Z
+/060E0M0X0^0d0n0
+1 1|1
+1!2-242D2J2Q2[2t2|2
+3(3A3M3S3`3p3v3~3
+3O4g4m4
+5!5S5]5~5
+5 6&636T6y6
+7(727F7T7a7f7l7
+8[8>9W9
+9	:Y:l:
+:	;8;>;w;
+;C<J<Y<|<
+=(=.=6=E=W=}=
+=.>B>`>l>
+?-?5?=?E?M?`?h?
+$020u0
+162;2T2b2
+5H5Z5i5
+6 6N6Z6d6o6y6
+7s7y7
+8:8F8X8f8u8
+8%9K9e9l9p9t9x9|9
+9J:U:p:w:|:
+; ;j;p;t;x;|;
+0P2^2d2~2
+3$3/343=3B3R3X3
+3B4/6:6B6U6[6q6x6~6
+8#838j8t8|8
+8"9(93999U9[9e9k9
+9G:a:
+<)>2>8>D>I>S>Z>b>h>o>t>
+40u0
+2"2/2<2F2P2X2f2
+213G3z3
+4M4R4n4
+5d5v5
+6@6T6h6
+8%8,8084888<8@8D8H8
+90979<9@9D9a9
+9*:0:4:8:<:
+<V=k>
+4(444
+000d0l0t0|0
+1$141@3D3H3L3
+8 8$8(8,8084888<8@8D8H8L8P8T8X8\8`8d8h8l8p8t8x8|8
+=== PristonSQLDll.dll UTF16 ===
+         (((((                  H

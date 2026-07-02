@@ -2,7 +2,7 @@
 
 include_once "injection.php";
 
-//Verificando se ele È lider de Clan
+//Verificando se ele  lider de Clan
 $nomedochar = $_SESSION["ID"];
 $connection = odbc_connect( $connection_string, $user, $pass );
 $query = "SELECT * FROM [ClanDb].[dbo].[CL]  WHERE UserID = '$nomedochar' ";
@@ -51,9 +51,9 @@ echo "<meta HTTP-EQUIV='Refresh' CONTENT='0;URL=index.php'>";
         <td>
 		<table width="423" border="0" cellpadding="6" cellspacing="0" bgcolor="">
           <tr>
-            <td width="40" align="center" valign="top"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><b><img src="http://<? echo $ipdoservidor; ?>/clancontent/<? echo $numeroclan; ?>.bmp" width="32" height="32" /></b></font></td>
+            <td width="40" align="center" valign="top"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><b><img src="/ClanContent/<? echo $numeroclan; ?>.bmp" width="32" height="32" /></b></font></td>
             <td><font size="2" color="black" face="Verdana, Arial, Helvetica, sans-serif"><b>Clan: </b><? echo $nomeclan; ?><br />
-              <b>LÌder: </b><? echo $nomelider; ?><br />
+              <b>Lder: </b><? echo $nomelider; ?><br />
               <b>Criado dia:</b> <? echo $dataclan; ?><br />
               <b>Membros: </b><? echo $numeroMembros; ?></font></td>
           </tr>
@@ -77,11 +77,11 @@ echo "<meta HTTP-EQUIV='Refresh' CONTENT='0;URL=index.php'>";
     <br>
     <table width="100%" border="0" cellspacing="0" cellpadding="2">
       <tr>
-        <td bgcolor="#333333"><img src="imgs/setinha.gif" width="11" height="11" /><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#fff"><b> Delegar a lÌderanÁa do Clan </font></b></td>
+        <td bgcolor="#333333"><img src="imgs/setinha.gif" width="11" height="11" /><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#fff"><b> Delegar a lderana do Clan </font></b></td>
       </tr>
       <tr>
         <td><form action="index.php?sess=admclan" method="post" name="form1" id="form1">
-            <font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#000000">Novo lÌder:</font>
+            <font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#000000">Novo lder:</font>
             <select name="novolider" id="select2">
               <?
 $query_new = "SELECT * FROM [ClanDb].[dbo].[UL]  WHERE ClanName = '$nomeclan' and ChName <> '$nomelider' AND [Permi] <> '2' order by JoinDate ASC";
@@ -108,7 +108,7 @@ echo "<option value='$char_new'>$char_new</option>";
         <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#000000">Esta a&ccedil;&atilde;o ir&aacute; fazer com que o seu clan seja excluido, e o nome do clan n&atilde;o poder&aacute; ser recriado por 15 dias de seu desban.</font></td>
       </tr>
       <tr>
-        <td align="center"><form action="index.php?sess=admclan" method="post" name="form1" id="form2"><input name="acao" type="submit" id="acao" value="Debandar" onclick ="return confirm('Tem certeza de Debandar o Clan? Esta aÁ„o n„o poder· ser desfeita!')">
+        <td align="center"><form action="index.php?sess=admclan" method="post" name="form1" id="form2"><input name="acao" type="submit" id="acao" value="Debandar" onclick ="return confirm('Tem certeza de Debandar o Clan? Esta ao no poder ser desfeita!')">
         </form></td>
       </tr>
     </table>
@@ -142,22 +142,22 @@ if (anti_sqli($novafrase) != 0) {
 echo "<meta HTTP-EQUIV='Refresh' CONTENT='2;URL=index.php?sess=negado'>";
 } else {
 
-$novafrase = ereg_replace("[·‡‚„™]","a",$novafrase);
-$novafrase = ereg_replace("[¡¿¬√]","A",$novafrase);
-$novafrase = ereg_replace("[ÈËÍ]","e",$novafrase);
-$novafrase = ereg_replace("[…» ]","E",$novafrase);
-$novafrase = ereg_replace("[ÛÚÙı∫]","o",$novafrase);
-$novafrase = ereg_replace("[”“‘’]","O",$novafrase);
-$novafrase = ereg_replace("[˙˘˚]","u",$novafrase);
-$novafrase = ereg_replace("[⁄Ÿ€]","U",$novafrase);
-$novafrase = str_replace("Á","c",$novafrase);
-$novafrase = str_replace("«","C",$novafrase);
+$novafrase = ereg_replace("[]","a",$novafrase);
+$novafrase = ereg_replace("[]","A",$novafrase);
+$novafrase = ereg_replace("[]","e",$novafrase);
+$novafrase = ereg_replace("[]","E",$novafrase);
+$novafrase = ereg_replace("[]","o",$novafrase);
+$novafrase = ereg_replace("[]","O",$novafrase);
+$novafrase = ereg_replace("[]","u",$novafrase);
+$novafrase = ereg_replace("[]","U",$novafrase);
+$novafrase = str_replace("","c",$novafrase);
+$novafrase = str_replace("","C",$novafrase);
 $novafrase = str_replace("-","",$novafrase);
-$novafrase = str_replace("«","C",$novafrase);
+$novafrase = str_replace("","C",$novafrase);
 
     function filtra_frase($ojb)
     {
-        $badchars='.›`~!@$%^()+-_=[]{}\'\\:"|,/<>?'; # Nhung ky tu khong cho phep duoc len danh sach tai day
+        $badchars='.`~!@$%^()+-_=[]{}\'\\:"|,/<>?'; # Nhung ky tu khong cho phep duoc len danh sach tai day
         for ($i=0;$i<strlen($badchars);$i++){
             $ojb=str_replace($badchars[$i],"",$ojb);
 
@@ -199,7 +199,7 @@ $go_delclanmember = odbc_exec($connection, $sql_delclanmember);
         echo "<meta HTTP-EQUIV='Refresh' CONTENT='3;URL=index.php'>";
 
         //Deleta a Tag clan
-        $caminho ="C:/Inetpub/wwwroot/ClanContent";
+        $caminho ="docker/web/wwwroot - BPT/ClanContent";
         if(file_exists("$caminho/$numeroclan")) { unlink($caminho.'/'.$numeroclan); }
 
 $ip = $_SERVER["REMOTE_ADDR"];
@@ -232,12 +232,12 @@ $go_logreg = odbc_exec($connection, $sql_logreg);
     //Atualiza a tabela com o novo lider
     $sql_novolider = "UPDATE [ClanDb].[dbo].[CL] SET [UserID]='$vice_lider_ID',[ClanZang]='$vice_lider' WHERE [MIconCnt]='$numeroclan'";
     $go_vice_novolider = odbc_exec($connection, $sql_novolider);
-    echo "<font color='white'><b><p><br><p><center>Seu char $nomelider n„o È mais lider do clan $nomeclan, o cargo agora È ocupado pelo player $vice_lider.<p><br><p></font>";
+    echo "<font color='white'><b><p><br><p><center>Seu char $nomelider no  mais lider do clan $nomeclan, o cargo agora  ocupado pelo player $vice_lider.<p><br><p></font>";
     echo "<meta HTTP-EQUIV='Refresh' CONTENT='4;URL=index.php'>";
 
           } else {
-    //Aqui ele vai dizer que o char indicado para ser novo lider n„o faz parte do clan
-    echo "<font color='white'><b><p><br><p><center><font color='white'>O char $vice_lider n„o faz parte do clan $nomeclan!</font><p><br><p></font>";
+    //Aqui ele vai dizer que o char indicado para ser novo lider no faz parte do clan
+    echo "<font color='white'><b><p><br><p><center><font color='white'>O char $vice_lider no faz parte do clan $nomeclan!</font><p><br><p></font>";
           }
 
     }

@@ -1,0 +1,3 @@
+DatabaseName|SchemaName|TableName|ColumnName|DataType|MaxLength|IsNullable|DefaultValue|OrdinalPosition
+------------|----------|---------|----------|--------|---------|----------|------------|---------------
+LogadoPremiado|dbo|ItemList|ItemCode|varchar|16|NO||1
