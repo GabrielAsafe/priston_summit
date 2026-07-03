@@ -19,3 +19,5 @@ void Utils_Log(DWORD type, char* msg, ...);
 void Utils_DumpPacket(char* pckname, BYTE* buffer, int size);
 
 #endif
+
+

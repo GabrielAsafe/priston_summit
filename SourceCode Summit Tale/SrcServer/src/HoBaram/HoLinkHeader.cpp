@@ -778,3 +778,5 @@ extern void		EffectWaveCamera(int factor, int delay)
 	WaveCameraDelay = delay;
 }
 
+
+

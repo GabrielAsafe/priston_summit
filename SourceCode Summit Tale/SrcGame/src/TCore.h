@@ -25,3 +25,6 @@ private:
 	int Open;
 
 };
+
+
+

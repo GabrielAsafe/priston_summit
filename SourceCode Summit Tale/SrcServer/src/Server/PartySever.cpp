@@ -1,4 +1,4 @@
-﻿#include <windows.h>
+#include <windows.h>
 #include <io.h>
 #include <stdio.h>         
 #include <string.h>        
@@ -1123,3 +1123,5 @@ int	rsPLAYINFO::CallBack_ClanMarkNum(int ClanMarkNum)
 
 	return TRUE;
 }
+
+

@@ -5,3 +5,5 @@
 int OpenVideoFile(char *AVIFile);
 void CloseAVIData();
 void AVIDrawSurface(DIRECTDRAWSURFACE *lpDDSSource, int frame);
+
+

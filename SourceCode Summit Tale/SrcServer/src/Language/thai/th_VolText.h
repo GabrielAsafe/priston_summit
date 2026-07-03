@@ -1,7 +1,7 @@
-char *parkTextVO = "»ÃÑºáµè§ Voice Chat";
-char *parkTextMIC = "äÁ¤ì";
-char *parkTextMicON = "à»Ô´";
-char *parkTextMicOFF = "»Ô´ ";
+char *parkTextVO = "ï¿½ï¿½Ñºï¿½ï¿½ Voice Chat";
+char *parkTextMIC = "ï¿½ï¿½ï¿½ï¿½";
+char *parkTextMicON = "ï¿½Ô´";
+char *parkTextMicOFF = "ï¿½Ô´ ";
 
 char *parkTextVol = "Volume : ";
 char *parkTextVolLow = "Low";
@@ -9,3 +9,5 @@ char *parkTextVolHigh = "High";
 
 char *parkTextVolErr1 = "Microphone in Windows";
 char *parkTextVolErr2 = "Check your Volume.";
+
+

@@ -1,4 +1,5 @@
-﻿#define _WIN32_WINNT    0x0403  
+#include "opcodes.h"
+#define _WIN32_WINNT    0x0403  
 #define _WIN32_WINDOWS  0x0403
 
 #include <windows.h>
@@ -486,7 +487,7 @@ int rsPLAYINFO::GetPartyExp(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo)
 	smTransCommand.WParam = 0;
 	smTransCommand.LParam = lpChar->dwObjectSerial;
 
-    //Mob zerado, acrescenta 1xp para não bugar a party
+    //Mob zerado, acrescenta 1xp para n�o bugar a party
 	int Exp = srGetTotalExp(lpChar->smMonsterInfo.GetExp, lpChar->smCharInfo.Level - PartyLevelAverage);
 	
 	if(Exp)
@@ -1089,3 +1090,8 @@ int	rsPLAYINFO::CallBack_ClanMarkNum(int ClanMarkNum)
 
 	return TRUE;
 }
+
+
+
+
+

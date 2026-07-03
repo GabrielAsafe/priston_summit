@@ -117,3 +117,5 @@ DECLARE_INTERFACE_(IMpegAudioDecoder, IUnknown) {
 }
 #endif // __cplusplus
 #endif // __MPEGTYPE__
+
+

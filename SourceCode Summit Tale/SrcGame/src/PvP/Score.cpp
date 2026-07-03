@@ -1,3 +1,4 @@
+#include "opcodes.h"
 #include "Score.h"
 #include <string>
 #include "FontImage.h"
@@ -218,3 +219,8 @@ bool Score::draw()
 
 	return result;
 }
+
+
+
+
+

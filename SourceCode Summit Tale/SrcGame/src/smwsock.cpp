@@ -1,3 +1,4 @@
+#include "opcodes.h"
 #define _WIN32_WINNT    0x0403  
 #define _WIN32_WINDOWS  0x0403
 
@@ -1739,7 +1740,6 @@ DWORD WINAPI smWinsockRecvThreadProc(void *pInfo)
 			{
 				char TempBuff[128];
 				wsprintf(TempBuff, "Recv %d is the error", WSAGetLastError());
-				Utils_Log(LOG_DEBUG, TempBuff, "Recv %d is the error", WSAGetLastError());
 
 		}
 #endif
@@ -2706,6 +2706,13 @@ BYTE smwsock_EncodePacket_AsmCode[ENC_PACKET_ASM_SIZE] = {
 #else
 BYTE smwsock_EncodePacket_AsmCode[ENC_PACKET_ASM_SIZE];
 #endif
+
+
+
+
+
+
+
 
 
 

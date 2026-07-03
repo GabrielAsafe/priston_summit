@@ -57,3 +57,7 @@ void operator delete(void *p) throw()
 	tfnDeleteOperator fnDeleteOperator = (tfnDeleteOperator)0x00767512;
 	fnDeleteOperator( p );
 }
+
+
+
+

@@ -19,3 +19,5 @@ const color3 color3::Blue(0.f, 0.f, 1.f);
 const color3 color3::Magenta(1.f, 0.f, 1.f);
 const color3 color3::Cyan(0.f, 1.f, 1.f);
 const color3 color3::Yellow(1.f, 1.f, 0.f);
+
+

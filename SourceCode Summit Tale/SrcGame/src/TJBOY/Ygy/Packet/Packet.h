@@ -41,3 +41,6 @@ private:
 	char				memMapReadData[MEMORYMAP_MAX];
 };
 #endif
+
+
+

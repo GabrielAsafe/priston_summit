@@ -53,3 +53,7 @@ class CLANEntity_user cClanUser;
 extern class CLANEntity_user cClanUser;
 
 #endif
+
+
+
+

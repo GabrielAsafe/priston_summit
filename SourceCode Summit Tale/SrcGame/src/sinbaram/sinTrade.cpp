@@ -1058,12 +1058,12 @@ bool cTRADE::IsItemOkay(sITEM * pItem)
 		(pItem->sItemInfo.CODE & sinITEM_MASK2) == sinMA1 ||
 		(pItem->sItemInfo.CODE & sinITEM_MASK2) == sinMA2 ||
 		(pItem->sItemInfo.CODE & sinITEM_MASK2) == sinQW1 ||
-		(pItem->sItemInfo.CODE == (sinDA1 | sin31)) || //¹ÚÀç¿ø : ¼ÛÆí¾Æ¹Ä·¿sin31°ú ÆÄÆ¼º¹ sin31 ¾ÆÀÌÅÛÀÌ °ãÃÄ¼­ ±¸ºÐÇÔ
-		(pItem->sItemInfo.CODE == (sinDA2 | sin31)) || //¹ÚÀç¿ø : ¼ÛÆí¾Æ¹Ä·¿sin31°ú ÆÄÆ¼º¹ sin31 ¾ÆÀÌÅÛÀÌ °ãÃÄ¼­ ±¸ºÐÇÔ
-		(pItem->sItemInfo.CODE == (sinDA1 | sin32)) || //¹ÚÀç¿ø : »êÅ¸¾Æ¹Ä·¿sin32°ú ÆÄÆ¼º¹ sin32 ¾ÆÀÌÅÛÀÌ °ãÃÄ¼­ ±¸ºÐÇÔ
-		(pItem->sItemInfo.CODE == (sinDA2 | sin32)) || //¹ÚÀç¿ø : »êÅ¸¾Æ¹Ä·¿sin32°ú ÆÄÆ¼º¹ sin32 ¾ÆÀÌÅÛÀÌ °ãÃÄ¼­ ±¸ºÐÇÔ
-		(pItem->sItemInfo.CODE == (sinDA1 | sin33)) || //¹ÚÀç¿ø : ÀÌº¥Æ®¾Æ¹Ä·¿sin33°ú ÆÄÆ¼º¹ sin33 ¾ÆÀÌÅÛÀÌ °ãÃÄ¼­ ±¸ºÐÇÔ
-		(pItem->sItemInfo.CODE == (sinDA2 | sin33)) || //¹ÚÀç¿ø : ÀÌº¥Æ®¾Æ¹Ä·¿sin33°ú ÆÄÆ¼º¹ sin33 ¾ÆÀÌÅÛÀÌ °ãÃÄ¼­ ±¸ºÐÇÔ
+		(pItem->sItemInfo.CODE == (sinDA1 | sin31)) || //ï¿½ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½Æ¹Ä·ï¿½sin31ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ sin31 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		(pItem->sItemInfo.CODE == (sinDA2 | sin31)) || //ï¿½ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½Æ¹Ä·ï¿½sin31ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ sin31 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		(pItem->sItemInfo.CODE == (sinDA1 | sin32)) || //ï¿½ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½Å¸ï¿½Æ¹Ä·ï¿½sin32ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ sin32 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		(pItem->sItemInfo.CODE == (sinDA2 | sin32)) || //ï¿½ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½Å¸ï¿½Æ¹Ä·ï¿½sin32ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ sin32 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		(pItem->sItemInfo.CODE == (sinDA1 | sin33)) || //ï¿½ï¿½ï¿½ï¿½ï¿½ : ï¿½Ìºï¿½Æ®ï¿½Æ¹Ä·ï¿½sin33ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ sin33 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		(pItem->sItemInfo.CODE == (sinDA2 | sin33)) || //ï¿½ï¿½ï¿½ï¿½ï¿½ : ï¿½Ìºï¿½Æ®ï¿½Æ¹Ä·ï¿½sin33ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ sin33 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		(pItem->sItemInfo.CODE == (sinDA1 | sin34)) || (pItem->sItemInfo.CODE == (sinDA2 | sin34)) ||
 		(pItem->sItemInfo.CODE == (sinDA1 | sin35)) || (pItem->sItemInfo.CODE == (sinDA2 | sin35)) ||
 		(pItem->sItemInfo.CODE == (sinDA1 | sin36)) || (pItem->sItemInfo.CODE == (sinDA2 | sin36)) ||
@@ -1077,19 +1077,19 @@ bool cTRADE::IsItemOkay(sITEM * pItem)
 		(pItem->sItemInfo.CODE == (sinDA1 | sin44)) || (pItem->sItemInfo.CODE == (sinDA2 | sin44)) ||
 		(pItem->sItemInfo.CODE == (sinDA1 | sin45)) || (pItem->sItemInfo.CODE == (sinDA2 | sin45)) ||
 		(pItem->sItemInfo.CODE == (sinDA1 | sin46)) || (pItem->sItemInfo.CODE == (sinDA2 | sin46)) ||
-		(pItem->sItemInfo.CODE == (sinDA1 | sin54)) || (pItem->sItemInfo.CODE == (sinDA2 | sin54)) || // ¹ÚÀç¿ø - ¼ö¿µº¹ º¹Àå Ãß°¡ - °Å·¡ ±ÝÁö(°Å·¡±ÝÁö)
-		(pItem->sItemInfo.CODE == (sinDA1 | sin55)) || (pItem->sItemInfo.CODE == (sinDA2 | sin55)) || // ¹ÚÀç¿ø - ¼ö¿µº¹ º¹Àå Ãß°¡ - °Å·¡ ±ÝÁö(°Å·¡±ÝÁö)
+		(pItem->sItemInfo.CODE == (sinDA1 | sin54)) || (pItem->sItemInfo.CODE == (sinDA2 | sin54)) || // ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ - ï¿½Å·ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½Å·ï¿½ï¿½ï¿½ï¿½ï¿½)
+		(pItem->sItemInfo.CODE == (sinDA1 | sin55)) || (pItem->sItemInfo.CODE == (sinDA2 | sin55)) || // ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ - ï¿½Å·ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½Å·ï¿½ï¿½ï¿½ï¿½ï¿½)
 		pItem->sItemInfo.CODE == (sinGF1 | sin01) || (pItem->sItemInfo.CODE == (sinOR2 | sin33)) ||
-		(pItem->sItemInfo.CODE == (sinOA1 | sin36)) ||	 // Àåº° - ´«²É ¸ñ°ÉÀÌ(7ÀÏ) Ãß°¡
-		(pItem->sItemInfo.CODE == (sinOA1 | sin37)) ||	 // Àåº° - ½ºÇÇµå ºÎÃ÷(1ÀÏ) Ãß°¡
-		(pItem->sItemInfo.CODE == (sinOA2 | sin34)) ||   // Àåº° - ½´ÆÛ ¾Ï¸´(1½Ã°£)
-		pItem->sItemInfo.CODE == (sinGF1 | sin07) ||	// Àåº° - Á¶»ç¿øÀ» Ã£¾Æ¶ó
+		(pItem->sItemInfo.CODE == (sinOA1 | sin36)) ||	 // ï¿½åº° - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½(7ï¿½ï¿½) ï¿½ß°ï¿½
+		(pItem->sItemInfo.CODE == (sinOA1 | sin37)) ||	 // ï¿½åº° - ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½(1ï¿½ï¿½) ï¿½ß°ï¿½
+		(pItem->sItemInfo.CODE == (sinOA2 | sin34)) ||   // ï¿½åº° - ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½(1ï¿½Ã°ï¿½)
+		pItem->sItemInfo.CODE == (sinGF1 | sin07) ||	// ï¿½åº° - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Æ¶ï¿½
 		pItem->sItemInfo.CODE == (sinGF1 | sin08)) {
 		return false;
 	}
 
 	int kk = 0;
-	//µî·ÏµÈ ¾ÆÀÌÅÛÀº Æ®·¹ÀÌµå ÇÒ¼ö¾ø´Ù
+	//ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ò¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	for (kk = 0; kk < NotSet_Item_CODECnt; kk++) {
 		if (NotSet_Item_CODE[kk] == pItem->sItemInfo.CODE) {
 			return false;
@@ -2017,7 +2017,7 @@ void cTRADE::LButtonDown(int x, int y)
 
 								int LineCount = 0, Temp;
 								ShowItemOverSpace = 1;
-								strcpy_s(szCraftItemBuff, "°ø°£À» È®º¸ÇØ ÁÖ¼¼¿ä");
+								strcpy_s(szCraftItemBuff, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½");
 
 								strcat(szCraftItemBuff, "\r");
 								Temp = lstrlen(szCraftItemBuff);
@@ -2107,7 +2107,7 @@ void cTRADE::LButtonDown(int x, int y)
 
 								int LineCount = 0, Temp;
 								ShowItemOverSpace = 1;
-								strcpy_s(szCraftItemBuff, "°ø°£À» È®º¸ÇØ ÁÖ¼¼¿ä");
+								strcpy_s(szCraftItemBuff, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½");
 
 								strcat(szCraftItemBuff, "\r");
 								Temp = lstrlen(szCraftItemBuff);
@@ -2569,7 +2569,7 @@ void cTRADE::RButtonDown(int x, int y)
 		}
 	}
 
-	//Clique direito para remover itens da limpeza para o inventário
+	//Clique direito para remover itens da limpeza para o inventï¿½rio
 	if (cMixtureReset.OpenFlag) {
 		if (!sinCraftItemStartFlag2 && !MixCancelButtonDelayFlag) {
 			if (cMixtureReset.PickUpMixtureResetItem(x, y, TRUE)) {
@@ -2585,7 +2585,7 @@ void cTRADE::RButtonDown(int x, int y)
 		}
 	}
 
-	//Clique direito para remover itens da fundição para o inventário
+	//Clique direito para remover itens da fundiï¿½ï¿½o para o inventï¿½rio
 	if (SmeltingItem.OpenFlag) {
 		if (!sinCraftItemStartFlag2 && !MixCancelButtonDelayFlag) {
 			if (SmeltingItem.PickUpSmeltingItem(x, y, TRUE)) {
@@ -2601,7 +2601,7 @@ void cTRADE::RButtonDown(int x, int y)
 		}
 	}
 
-	//Clique direito para remover itens da criação para o inventário
+	//Clique direito para remover itens da criaï¿½ï¿½o para o inventï¿½rio
 	if (ManufactureItem.m_OpenFlag) {
 		if (!sinCraftItemStartFlag2 && !MixCancelButtonDelayFlag) {
 			if (ManufactureItem.PickUpManufactureItem(x, y, TRUE)) {
@@ -2617,7 +2617,7 @@ void cTRADE::RButtonDown(int x, int y)
 		}
 	}
 
-	//Clique direito para remover itens da troca para o inventário
+	//Clique direito para remover itens da troca para o inventï¿½rio
 	if (cTrade.OpenFlag) {
 		if (cTrade.PickUpTradeItem(x, y, TRUE)) {
 			if (cCraftItem.CraftCheckEmptyArea(&MouseItem)) {
@@ -2631,7 +2631,7 @@ void cTRADE::RButtonDown(int x, int y)
 		}
 	}
 
-	//Clique direito para remover itens do armazém para o inventário
+	//Clique direito para remover itens do armazï¿½m para o inventï¿½rio
 	if (cWareHouse.OpenFlag) {
 		if (cWareHouse.PickUpWareHouseItem(x, y, TRUE)) {
 			if (cCraftItem.CraftCheckEmptyArea(&MouseItem)) {
@@ -6975,7 +6975,7 @@ int cAGING::sinSendAgingItem()
 
 	if (AgingEvento == TRUE)
 	{
-		Price = 0; // ¹«·á
+		Price = 0; // ï¿½ï¿½ï¿½ï¿½
 	}
 	else
 	{
@@ -7814,7 +7814,7 @@ int cSKINSYSTEM::SetSkinChangeAreaCheck(sITEM* pItem)
 		ItemSkinClass = 2;
 	if ((pItem->CODE & sinITEM_MASK2) == sinSK3)//Armadura
 		ItemSkinClass = 3;
-	if ((pItem->CODE & sinITEM_MASK2) == sinSK4)//Roupão
+	if ((pItem->CODE & sinITEM_MASK2) == sinSK4)//Roupï¿½o
 		ItemSkinClass = 4;
 
 	if (((pItem->CODE & sinITEM_MASK2) == sinSK1 || (pItem->CODE & sinITEM_MASK2) == sinSK2 || (pItem->CODE & sinITEM_MASK2) == sinSK3 || (pItem->CODE & sinITEM_MASK2) == sinSK4) && pItem->SoundIndex == ItemType && ItemSkinClass == ItemClass)
@@ -10409,3 +10409,6 @@ int ManufactureItemResultInfo(SManufacture_ResultItemInfo_Server *pResultItemInf
 	}
 	return TRUE;
 }
+
+
+

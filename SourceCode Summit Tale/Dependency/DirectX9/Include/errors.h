@@ -45,3 +45,5 @@ typedef AMGETERRORTEXTPROCA AMGETERRORTEXTPROC;
 }
 #endif // __cplusplus
 #endif // __ERRORS__
+
+

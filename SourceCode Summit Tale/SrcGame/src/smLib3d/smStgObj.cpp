@@ -426,3 +426,7 @@ int smSTAGE_OBJECT::DrawOpening(int x, int y, int z, int ax, int ay, int az, int
 	return TRUE;
 }
 
+
+
+
+

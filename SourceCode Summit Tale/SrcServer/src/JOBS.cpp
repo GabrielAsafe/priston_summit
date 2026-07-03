@@ -14,7 +14,7 @@ DWORD GetServerTime();
 
 
 
-//ENVIA AS INFORMAÇÕES DE EXPERIÊNCIA E NIVEL 
+//ENVIA AS INFORMAï¿½ï¿½ES DE EXPERIï¿½NCIA E NIVEL 
 void JOBS::SendJOBInfoToGame(rsPLAYINFO* Player)
 {
 	if (SQL::GetInstance()->IsConnected())
@@ -183,7 +183,7 @@ void JOBS::RecvJOBsellToClient(rsPLAYINFO* Player, JOBS_RESGATE* infos)
 			{
 
 				TRANS_CHATMESSAGE	TransChatMessage;
-				wsprintf(TransChatMessage.szMessage, "Você colocou %d atributos a venda por %d Coins!", rjob_contsellqtd, rjob_contsellprice);
+				wsprintf(TransChatMessage.szMessage, "Vocï¿½ colocou %d atributos a venda por %d Coins!", rjob_contsellqtd, rjob_contsellprice);
 				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 3;
@@ -320,7 +320,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 
 
 								TRANS_CHATMESSAGE	TransChatMessage;
-								sprintf_s(TransChatMessage.szMessage, sizeof(TransChatMessage.szMessage), "Você comprou %d atributos de '%s', agora você tem %d de Coins.", Qtd, NICK, BuyerCoin);
+								sprintf_s(TransChatMessage.szMessage, sizeof(TransChatMessage.szMessage), "Vocï¿½ comprou %d atributos de '%s', agora vocï¿½ tem %d de Coins.", Qtd, NICK, BuyerCoin);
 								TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 								TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 								TransChatMessage.dwIP = 3;
@@ -337,7 +337,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 				else
 				{
 					TRANS_CHATMESSAGE	TransChatMessage;
-					sprintf_s(TransChatMessage.szMessage, sizeof(TransChatMessage.szMessage), "Você não possui créditos suficientes para comprar esses atributos.");
+					sprintf_s(TransChatMessage.szMessage, sizeof(TransChatMessage.szMessage), "Vocï¿½ nï¿½o possui crï¿½ditos suficientes para comprar esses atributos.");
 					TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 3;
@@ -355,7 +355,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 }
 
 
-//RECEBE AS INFORMAÇÕES DO CLIENTE REFERENTE AO ITEM
+//RECEBE AS INFORMAï¿½ï¿½ES DO CLIENTE REFERENTE AO ITEM
 void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 {
 
@@ -502,7 +502,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 					wsprintf(CodItem2, "wt118");
 
 					wsprintf(Codname1, "Garra 80b");
-					wsprintf(Codname2, "Lança 80b");
+					wsprintf(Codname2, "Lanï¿½a 80b");
 
 					break;
 				}
@@ -574,7 +574,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 										}
 
 										TRANS_CHATMESSAGE	TransChatMessage;
-										wsprintf(TransChatMessage.szMessage, "Você Forjou 1 %s.", itemname);
+										wsprintf(TransChatMessage.szMessage, "Vocï¿½ Forjou 1 %s.", itemname);
 										TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 										TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 										TransChatMessage.dwIP = 3;
@@ -613,7 +613,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 									else
 									{
 										TRANS_CHATMESSAGE	TransChatMessage;
-										wsprintf(TransChatMessage.szMessage, "Você Falhou no processo de Forja!");
+										wsprintf(TransChatMessage.szMessage, "Vocï¿½ Falhou no processo de Forja!");
 										TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 										TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 										TransChatMessage.dwIP = 3;
@@ -666,7 +666,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 				else
 				{
 					TRANS_CHATMESSAGE	TransChatMessage;
-					wsprintf(TransChatMessage.szMessage, "Você não tem materiais suficientes para realizar a Forja!");
+					wsprintf(TransChatMessage.szMessage, "Vocï¿½ nï¿½o tem materiais suficientes para realizar a Forja!");
 					TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 3;
@@ -749,7 +749,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 					wsprintf(CodItem2, "wt119");
 
 					wsprintf(Codname1, "Garra 80c");
-					wsprintf(Codname2, "Lança 80c");
+					wsprintf(Codname2, "Lanï¿½a 80c");
 
 					break;
 				}
@@ -821,7 +821,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 												}
 
 												TRANS_CHATMESSAGE	TransChatMessage;
-												wsprintf(TransChatMessage.szMessage, "Você Forjou 1 %s.", itemname);
+												wsprintf(TransChatMessage.szMessage, "Vocï¿½ Forjou 1 %s.", itemname);
 												TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 												TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 												TransChatMessage.dwIP = 3;
@@ -860,7 +860,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 											else
 											{
 												TRANS_CHATMESSAGE	TransChatMessage;
-												wsprintf(TransChatMessage.szMessage, "Você Falhou no processo de Forja!");
+												wsprintf(TransChatMessage.szMessage, "Vocï¿½ Falhou no processo de Forja!");
 												TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 												TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 												TransChatMessage.dwIP = 3;
@@ -913,7 +913,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 					else
 					{
 						TRANS_CHATMESSAGE	TransChatMessage;
-						wsprintf(TransChatMessage.szMessage, "Você não tem materiais suficientes para realizar a Forja!");
+						wsprintf(TransChatMessage.szMessage, "Vocï¿½ nï¿½o tem materiais suficientes para realizar a Forja!");
 						TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 3;
@@ -996,7 +996,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 					wsprintf(CodItem2, "wt120");
 
 					wsprintf(Codname1, "Garra 80d");
-					wsprintf(Codname2, "Lança 80d");
+					wsprintf(Codname2, "Lanï¿½a 80d");
 
 					break;
 				}
@@ -1068,7 +1068,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 												}
 
 												TRANS_CHATMESSAGE	TransChatMessage;
-												wsprintf(TransChatMessage.szMessage, "Você Forjou 1 '%s'", itemname );
+												wsprintf(TransChatMessage.szMessage, "Vocï¿½ Forjou 1 '%s'", itemname );
 												TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 												TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 												TransChatMessage.dwIP = 3;
@@ -1107,7 +1107,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 											else
 											{
 												TRANS_CHATMESSAGE	TransChatMessage;
-												wsprintf(TransChatMessage.szMessage, "Você Falhou no processo de Forja!");
+												wsprintf(TransChatMessage.szMessage, "Vocï¿½ Falhou no processo de Forja!");
 												TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 												TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 												TransChatMessage.dwIP = 3;
@@ -1160,7 +1160,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 					else
 					{
 						TRANS_CHATMESSAGE	TransChatMessage;
-						wsprintf(TransChatMessage.szMessage, "Você não tem materiais suficientes para realizar a Forja!");
+						wsprintf(TransChatMessage.szMessage, "Vocï¿½ nï¿½o tem materiais suficientes para realizar a Forja!");
 						TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 3;
@@ -1181,7 +1181,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 }
 
 
-//ADICIONA EXPERIÊNCIA NA JOB
+//ADICIONA EXPERIï¿½NCIA NA JOB
 void JOBS::AddExpJOBS(rsPLAYINFO* Player, int valor)
 {
 	if (SQL::GetInstance()->IsConnected())
@@ -1199,7 +1199,7 @@ void JOBS::AddExpJOBS(rsPLAYINFO* Player, int valor)
 				SQL::GetInstance()->GetDataValue(5, &JOBUser_Exp);
 			}
 
-			// Calculo feito para saber se o usuário já atingiu á experiência necessária para evoluir o nível do passe de batalha
+			// Calculo feito para saber se o usuï¿½rio jï¿½ atingiu ï¿½ experiï¿½ncia necessï¿½ria para evoluir o nï¿½vel do passe de batalha
 			JOBUser_Exp = JOBUser_Exp + valor;
 
 			if ((JOBUser_Exp >= 999) && (JOB_LVL < 20))
@@ -1209,7 +1209,7 @@ void JOBS::AddExpJOBS(rsPLAYINFO* Player, int valor)
 
 				//ENVIA MENSAGEM PARA O JOGADOR ASSIM QUE ELE UPA DE NIVEL
 				TRANS_CHATMESSAGE	TransChatMessage;
-				wsprintf(TransChatMessage.szMessage, "Parabéns você atingiu o nível %d em Especialização", JOB_LVL);
+				wsprintf(TransChatMessage.szMessage, "Parabï¿½ns vocï¿½ atingiu o nï¿½vel %d em Especializaï¿½ï¿½o", JOB_LVL);
 				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 3;
@@ -1224,7 +1224,7 @@ void JOBS::AddExpJOBS(rsPLAYINFO* Player, int valor)
 
 			TRANS_CHATMESSAGE pvp;
 
-			wsprintf(pvp.szMessage, "Especialização > Exp %d", JOBUser_Exp);
+			wsprintf(pvp.szMessage, "Especializaï¿½ï¿½o > Exp %d", JOBUser_Exp);
 			pvp.code = OpCode::OPCODE_WHISPERMESSAGE;
 			pvp.size = 32 + lstrlen(pvp.szMessage);
 			pvp.dwIP = 9;
@@ -1346,3 +1346,5 @@ void JOBS::AddminJOBS(rsPLAYINFO* Player, int valor, int type)
 		SQL::GetInstance()->LeaveSqlSection();
 	}
 }
+
+

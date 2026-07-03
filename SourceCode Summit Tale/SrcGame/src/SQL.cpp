@@ -118,3 +118,7 @@ BOOL SQL::GetDataValue(int nCol, int* nData)
 
 
 
+
+
+
+

@@ -231,3 +231,5 @@ int  SetYameEffect(int MaxTime, char *FileName, smCHAR *pChar, POINT3D *pPosi, i
 	return FALSE;
 
 }
+
+

@@ -76,7 +76,7 @@ void debug_fd2(char *fmt, ...)
 
 			if (errorMSGdr == 1)
 			{
-				char msg[256] = "..\n¸Þ½ÃÁö°¡ ³Ê¹«±æ¾î¼­ Àß¶úÀ½";
+				char msg[256] = "..\nï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ï¿½ï¿½î¼­ ï¿½ß¶ï¿½ï¿½ï¿½";
 				WriteFile(hFile, msg, lstrlen(msg), &dwAcess, NULL);
 			}
 
@@ -101,7 +101,7 @@ void debug_fd2(char *fmt, ...)
 
 		if (errorMSGdr == 1)
 		{
-			char msg[256] = "\n¸Þ½ÃÁö°¡ ³Ê¹«±æ¾î¼­ Àß¶úÀ½";
+			char msg[256] = "\nï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ï¿½ï¿½î¼­ ï¿½ß¶ï¿½ï¿½ï¿½";
 			WriteFile(hFile, msg, lstrlen(msg), &dwAcess, NULL);
 		}
 
@@ -469,7 +469,7 @@ int ISAOCHECK::connect_WEBdb_BINARY(char *szWriteBuffer, char *szReadBuffer, int
 IsaoCheck_Free:
 
 	closesocket(Fd);
-	fd2("\n À¥db Á¢±Ù ³¡³².");
+	fd2("\n ï¿½ï¿½db ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.");
 
 	return iRet;
 }
@@ -533,7 +533,7 @@ int ISAOCHECK::IsaoCheck(char *id, char *pass, char *ipaddr, long StartTime)
 
 	ret_chk = connect_WEBdb(szWriteBuffer, szReadBuffer);
 
-	fd2(" À¥ db¿¡¼­ ÀÐÀº°Í %s ", szReadBuffer);
+	fd2(" ï¿½ï¿½ dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s ", szReadBuffer);
 
 	switch (ret_chk)
 	{
@@ -542,19 +542,19 @@ int ISAOCHECK::IsaoCheck(char *id, char *pass, char *ipaddr, long StartTime)
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -605,7 +605,7 @@ int ISAOCHECK::IsaoCheck(char *id, char *pass, char *ipaddr, long StartTime)
 
 
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -630,7 +630,7 @@ int ISAOCHECK::IsaoCheck_GameExit(char *id, char *pass, char *ipaddr, long usert
 
 	ret_chk = connect_WEBdb(szWriteBuffer, szReadBuffer);
 
-	fd2(" À¥ db¿¡¼­ ÀÐÀº°Í %s ", szReadBuffer);
+	fd2(" ï¿½ï¿½ dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s ", szReadBuffer);
 
 	switch (ret_chk)
 	{
@@ -639,19 +639,19 @@ int ISAOCHECK::IsaoCheck_GameExit(char *id, char *pass, char *ipaddr, long usert
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -666,7 +666,7 @@ int ISAOCHECK::IsaoCheck_GameExit(char *id, char *pass, char *ipaddr, long usert
 		goto IsaoCheck_Free;
 
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -701,8 +701,8 @@ int ISAOCHECK::isCheckClanJang(char *ClanZang_id, char* gserver)
 
 
 
-	debug_fd2("isCheckClanJang() º¸³½°Í ±æÀÌ : %d(ret_chk %d) ³»¿ë : %s ", strlen(szWriteBuffer), ret_chk, szWriteBuffer);
-	debug_fd2("isCheckClanJang() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("isCheckClanJang() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d(ret_chk %d) ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), ret_chk, szWriteBuffer);
+	debug_fd2("isCheckClanJang() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 
 
@@ -732,7 +732,7 @@ int ISAOCHECK::isCheckClanJang(char *ClanZang_id, char* gserver)
 
 
 		case ISAO_ERR_NONE_REEJCT:
-			fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+			fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			goto IsaoCheck_Free;
 		}
 
@@ -740,19 +740,19 @@ int ISAOCHECK::isCheckClanJang(char *ClanZang_id, char* gserver)
 
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -789,8 +789,8 @@ int ISAOCHECK::isCheckClanName(char *ClanName, char *gserver)
 
 
 
-	debug_fd2("isCheckClanName() º¸³½°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szWriteBuffer), szWriteBuffer);
-	debug_fd2("isCheckClanName() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("isCheckClanName() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), szWriteBuffer);
+	debug_fd2("isCheckClanName() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 
 
@@ -815,7 +815,7 @@ int ISAOCHECK::isCheckClanName(char *ClanName, char *gserver)
 
 
 		case ISAO_ERR_NONE_REEJCT:
-			fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+			fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			goto IsaoCheck_Free;
 		}
 
@@ -823,19 +823,19 @@ int ISAOCHECK::isCheckClanName(char *ClanName, char *gserver)
 
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -876,8 +876,8 @@ int ISAOCHECK::ReadClanInfo(char *clanNum, char* ret_Buf)
 
 
 
-	debug_fd2("ReadClanInfo() º¸³½°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szWriteBuffer), szWriteBuffer);
-	debug_fd2("ReadClanInfo() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("ReadClanInfo() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), szWriteBuffer);
+	debug_fd2("ReadClanInfo() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 
 
@@ -902,7 +902,7 @@ int ISAOCHECK::ReadClanInfo(char *clanNum, char* ret_Buf)
 			break;
 
 		case ISAO_ERR_NONE_REEJCT:
-			fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+			fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			goto IsaoCheck_Free;
 		}
 
@@ -910,19 +910,19 @@ int ISAOCHECK::ReadClanInfo(char *clanNum, char* ret_Buf)
 
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -961,7 +961,7 @@ int ISAOCHECK::isCheckClanMember(char *pszServerName, char *pszUserName)
 	if (strlen(szReadBuffer) > 2048)
 	{
 		szReadBuffer[2048] = 0;
-		debug_fd2("isClanMember() ³Ê¹«±æ¾î¼­ Àß¶ú´Ù.");
+		debug_fd2("isClanMember() ï¿½Ê¹ï¿½ï¿½ï¿½î¼­ ï¿½ß¶ï¿½ï¿½ï¿½.");
 	}
 
 	switch (receiveCode)
@@ -971,34 +971,34 @@ int ISAOCHECK::isCheckClanMember(char *pszServerName, char *pszUserName)
 		receiveCode = chk_readbuffer("Code=", szReadBuffer, &iRejectCode);
 		if (receiveCode == ISAO_ERR_NONE_REEJCT)
 		{
-			fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+			fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 
 	case ISAO_ERR_WINSOCK_START:
 	{
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		break;
 	}
 	case ISAO_ERR_WINSOCK_VERSION:
 	{
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		break;
 	}
 
 	case ISAO_ERR_TCP_CONNECT:
 	{
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		break;
 	}
 	case ISAO_ERR_SSL_READ:
 	{
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		break;
 	}
 	case ISAO_ERR_SSL_TIMEOUT:
 	{
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		break;
 	}
 	}
@@ -1036,12 +1036,12 @@ int ISAOCHECK::isClanMember(char *ClanZang_id, char* gserver, char* ClanZang_Cha
 	if (strlen(szReadBuffer) > 2048)
 	{
 		szReadBuffer[2048] = 0;
-		debug_fd2("isClanMember() ³Ê¹«±æ¾î¼­ Àß¶ú´Ù.");
+		debug_fd2("isClanMember() ï¿½Ê¹ï¿½ï¿½ï¿½î¼­ ï¿½ß¶ï¿½ï¿½ï¿½.");
 	}
 
 
-	debug_fd2("isClanMember() º¸³½°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szWriteBuffer), szWriteBuffer);
-	debug_fd2("isClanMember() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("isClanMember() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), szWriteBuffer);
+	debug_fd2("isClanMember() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 	switch (ret_chk)
 	{
@@ -1068,7 +1068,7 @@ int ISAOCHECK::isClanMember(char *ClanZang_id, char* gserver, char* ClanZang_Cha
 
 
 		case ISAO_ERR_NONE_REEJCT:
-			fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+			fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			goto IsaoCheck_Free;
 		}
 
@@ -1076,19 +1076,19 @@ int ISAOCHECK::isClanMember(char *ClanZang_id, char* gserver, char* ClanZang_Cha
 
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -1130,8 +1130,8 @@ int ISAOCHECK::joinClanMember(char *ClanZang_ID, char *gserver, char *ClanZang_C
 	}
 
 
-	debug_fd2("joinClanMember() º¸³½°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szWriteBuffer), szWriteBuffer);
-	debug_fd2("joinClanMember() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("joinClanMember() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), szWriteBuffer);
+	debug_fd2("joinClanMember() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 	switch (ret_chk)
 	{
@@ -1157,26 +1157,26 @@ int ISAOCHECK::joinClanMember(char *ClanZang_ID, char *gserver, char *ClanZang_C
 			break;
 
 		case ISAO_ERR_NONE_REEJCT:
-			fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+			fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			goto IsaoCheck_Free;
 		}
 
 
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -1220,8 +1220,8 @@ int ISAOCHECK::makeClan(char *ClanZang_ID, char* gserver, char* ClanZang_ChaName
 		cnt++;
 	}
 
-	debug_fd2("makeClan() º¸³½°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szWriteBuffer), szWriteBuffer);
-	debug_fd2("makeClan() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("makeClan() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), szWriteBuffer);
+	debug_fd2("makeClan() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 
 	switch (ret_chk)
@@ -1231,19 +1231,19 @@ int ISAOCHECK::makeClan(char *ClanZang_ID, char* gserver, char* ClanZang_ChaName
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -1270,7 +1270,7 @@ int ISAOCHECK::makeClan(char *ClanZang_ID, char* gserver, char* ClanZang_ChaName
 
 
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -1310,7 +1310,7 @@ int ISAOCHECK::read_ClanName(int readClumns)
 
 	ret_chk = connect_WEBdb(szWriteBuffer, szReadBuffer);
 
-	fd2(" À¥ db¿¡¼­ ÀÐÀº°Í %s ", szReadBuffer);
+	fd2(" ï¿½ï¿½ dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s ", szReadBuffer);
 
 
 	switch (ret_chk)
@@ -1320,19 +1320,19 @@ int ISAOCHECK::read_ClanName(int readClumns)
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -1348,7 +1348,7 @@ int ISAOCHECK::read_ClanName(int readClumns)
 		goto IsaoCheck_Free;
 
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -1385,8 +1385,8 @@ int ISAOCHECK::read_ClanData(char *ClanZang_ID, char* gserver, char* ClanZang_Ch
 		cnt++;
 	}
 
-	debug_fd2("read_ClanData() º¸³½°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szWriteBuffer), szWriteBuffer);
-	debug_fd2("read_ClanData() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("read_ClanData() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), szWriteBuffer);
+	debug_fd2("read_ClanData() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 
 	switch (ret_chk)
@@ -1395,19 +1395,19 @@ int ISAOCHECK::read_ClanData(char *ClanZang_ID, char* gserver, char* ClanZang_Ch
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -1428,7 +1428,7 @@ int ISAOCHECK::read_ClanData(char *ClanZang_ID, char* gserver, char* ClanZang_Ch
 		goto IsaoCheck_Free;
 
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -1468,7 +1468,7 @@ int ISAOCHECK::BreakUPClan(char *ClanZang_ID, char *gserver, char *ClanZang_ChaN
 		cnt++;
 	}
 
-	fd2(" À¥ db¿¡¼­ ÀÐÀº°Í %s ", szReadBuffer);
+	fd2(" ï¿½ï¿½ dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s ", szReadBuffer);
 
 
 	switch (ret_chk)
@@ -1478,19 +1478,19 @@ int ISAOCHECK::BreakUPClan(char *ClanZang_ID, char *gserver, char *ClanZang_ChaN
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -1507,7 +1507,7 @@ int ISAOCHECK::BreakUPClan(char *ClanZang_ID, char *gserver, char *ClanZang_ChaN
 		break;
 
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -1666,8 +1666,8 @@ int ISAOCHECK::ReadNotice(char *userid, char *chaname, char *gserver, char *buf)
 		cnt++;
 	}
 
-	debug_fd2("ReadNotice() º¸³½°Í ±æÀÌ : %d(ret_chk %d) ³»¿ë : %s ", strlen(szWriteBuffer), ret_chk, szWriteBuffer);
-	debug_fd2("ReadNotice() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("ReadNotice() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d(ret_chk %d) ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), ret_chk, szWriteBuffer);
+	debug_fd2("ReadNotice() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 
 	switch (ret_chk)
@@ -1676,19 +1676,19 @@ int ISAOCHECK::ReadNotice(char *userid, char *chaname, char *gserver, char *buf)
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -1715,7 +1715,7 @@ int ISAOCHECK::ReadNotice(char *userid, char *chaname, char *gserver, char *buf)
 		goto IsaoCheck_Free;
 
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -1754,8 +1754,8 @@ int ISAOCHECK::Banishiment(char *ClanZang_ID, char *gserver, char *ClanZang_ChaN
 		cnt++;
 	}
 
-	debug_fd2("Banishiment() º¸³½°Í ±æÀÌ : %d(ret_chk %d) ³»¿ë : %s ", strlen(szWriteBuffer), ret_chk, szWriteBuffer);
-	debug_fd2("Banishiment() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("Banishiment() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d(ret_chk %d) ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), ret_chk, szWriteBuffer);
+	debug_fd2("Banishiment() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 	switch (ret_chk)
 	{
@@ -1764,19 +1764,19 @@ int ISAOCHECK::Banishiment(char *ClanZang_ID, char *gserver, char *ClanZang_ChaN
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -1799,7 +1799,7 @@ int ISAOCHECK::Banishiment(char *ClanZang_ID, char *gserver, char *ClanZang_ChaN
 		goto IsaoCheck_Free;
 
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -1838,8 +1838,8 @@ int ISAOCHECK::AppointSubChip(char *gserver, char* clanwon)
 		cnt++;
 	}
 
-	debug_fd2("AppointSubChip() º¸³½°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szWriteBuffer), szWriteBuffer);
-	debug_fd2("AppointSubChip() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("AppointSubChip() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), szWriteBuffer);
+	debug_fd2("AppointSubChip() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 	switch (ret_chk)
 	{
@@ -1847,19 +1847,19 @@ int ISAOCHECK::AppointSubChip(char *gserver, char* clanwon)
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	}
 
@@ -1882,7 +1882,7 @@ int ISAOCHECK::AppointSubChip(char *gserver, char* clanwon)
 		goto IsaoCheck_Free;
 
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -1919,8 +1919,8 @@ int ISAOCHECK::ReleaseSubChip(char *gserver, char* clanwon)
 		cnt++;
 	}
 
-	debug_fd2("ReleaseSubChip() º¸³½°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szWriteBuffer), szWriteBuffer);
-	debug_fd2("ReleaseSubChip() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("ReleaseSubChip() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), szWriteBuffer);
+	debug_fd2("ReleaseSubChip() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 	switch (ret_chk)
 	{
@@ -1928,19 +1928,19 @@ int ISAOCHECK::ReleaseSubChip(char *gserver, char* clanwon)
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	}
 
@@ -1962,7 +1962,7 @@ int ISAOCHECK::ReleaseSubChip(char *gserver, char* clanwon)
 		goto IsaoCheck_Free;
 
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -1996,8 +1996,8 @@ int ISAOCHECK::LeaveClan(char *clanname, char *chaname, char *gserver)
 		cnt++;
 	}
 
-	debug_fd2("LeaveClan() º¸³½°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szWriteBuffer), szWriteBuffer);
-	debug_fd2("LeaveClan() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("LeaveClan() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), szWriteBuffer);
+	debug_fd2("LeaveClan() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 	switch (ret_chk)
 	{
@@ -2005,19 +2005,19 @@ int ISAOCHECK::LeaveClan(char *clanname, char *chaname, char *gserver)
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	}
 
@@ -2044,7 +2044,7 @@ int ISAOCHECK::LeaveClan(char *clanname, char *chaname, char *gserver)
 		goto IsaoCheck_Free;
 
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -2081,7 +2081,7 @@ int ISAOCHECK::Secession(char* clanzang, char* gserver, char* SecessionID, char*
 		cnt++;
 	}
 
-	fd2("Secession() À¥ db¿¡¼­ ÀÐÀº°Í %s ", szReadBuffer);
+	fd2("Secession() ï¿½ï¿½ dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s ", szReadBuffer);
 
 	switch (ret_chk)
 	{
@@ -2090,19 +2090,19 @@ int ISAOCHECK::Secession(char* clanzang, char* gserver, char* SecessionID, char*
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	}
 
@@ -2127,7 +2127,7 @@ int ISAOCHECK::Secession(char* clanzang, char* gserver, char* SecessionID, char*
 		goto IsaoCheck_Free;
 
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -2164,8 +2164,8 @@ int ISAOCHECK::isKPFlag(char *userid, char *clanname, char *chaname, char *gserv
 		cnt++;
 	}
 
-	debug_fd2("isPFlag() º¸³½°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szWriteBuffer), szWriteBuffer);
-	debug_fd2("isPFlag() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("isPFlag() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), szWriteBuffer);
+	debug_fd2("isPFlag() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 	switch (ret_chk)
 	{
@@ -2173,19 +2173,19 @@ int ISAOCHECK::isKPFlag(char *userid, char *clanname, char *chaname, char *gserv
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	}
 
@@ -2199,7 +2199,7 @@ int ISAOCHECK::isKPFlag(char *userid, char *clanname, char *chaname, char *gserv
 		goto IsaoCheck_Free;
 	case ISAO_ERR_TCP_CONNECT:
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -2236,8 +2236,8 @@ int ISAOCHECK::isPFlag(char *userid, char *clanname, char *chaname, char *gserve
 		cnt++;
 	}
 
-	debug_fd2("isPFlag() º¸³½°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szWriteBuffer), szWriteBuffer);
-	debug_fd2("isPFlag() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("isPFlag() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), szWriteBuffer);
+	debug_fd2("isPFlag() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 	switch (ret_chk)
 	{
@@ -2245,19 +2245,19 @@ int ISAOCHECK::isPFlag(char *userid, char *clanname, char *chaname, char *gserve
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	}
 
@@ -2270,7 +2270,7 @@ int ISAOCHECK::isPFlag(char *userid, char *clanname, char *chaname, char *gserve
 		goto IsaoCheck_Free;
 	case ISAO_ERR_TCP_CONNECT:
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -2310,7 +2310,7 @@ int ISAOCHECK::WarhouseRight(char *clname, char *right_str)
 
 
 
-	fd2("WarhouseRight() À¥ db¿¡¼­ ÀÐÀº°Í %s ", szReadBuffer);
+	fd2("WarhouseRight() ï¿½ï¿½ dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s ", szReadBuffer);
 
 
 
@@ -2321,19 +2321,19 @@ int ISAOCHECK::WarhouseRight(char *clname, char *right_str)
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	}
 
@@ -2347,7 +2347,7 @@ int ISAOCHECK::WarhouseRight(char *clname, char *right_str)
 		goto IsaoCheck_Free;
 
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -2384,7 +2384,7 @@ int ISAOCHECK::updateFlag(char *clname)
 		cnt++;
 	}
 
-	fd2("updateFlag() À¥ db¿¡¼­ ÀÐÀº°Í %s ", szReadBuffer);
+	fd2("updateFlag() ï¿½ï¿½ dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s ", szReadBuffer);
 
 	switch (ret_chk)
 	{
@@ -2393,19 +2393,19 @@ int ISAOCHECK::updateFlag(char *clname)
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	}
 
@@ -2418,7 +2418,7 @@ int ISAOCHECK::updateFlag(char *clname)
 		goto IsaoCheck_Free;
 
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -2494,8 +2494,8 @@ int ISAOCHECK::GetWavFile(char* FileName)
 		cnt++;
 	}
 
-	debug_fd2("GetWavFile() º¸³½°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szWriteBuffer), szWriteBuffer);
-	debug_fd2("GetWavFile() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szReadBuffer), szReadBuffer);
+	debug_fd2("GetWavFile() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), szWriteBuffer);
+	debug_fd2("GetWavFile() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szReadBuffer), szReadBuffer);
 
 	switch (ret_chk)
 	{
@@ -2503,19 +2503,19 @@ int ISAOCHECK::GetWavFile(char* FileName)
 		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	}
 
@@ -2528,7 +2528,7 @@ int ISAOCHECK::GetWavFile(char* FileName)
 		goto IsaoCheck_Free;
 	case ISAO_ERR_TCP_CONNECT:
 	case ISAO_ERR_NONE_REEJCT:
-		fd2("ISAO_ERR_NONE_REEJCT : ÀÀ´ä¹øÈ£°¡ ¾øÀ½");
+		fd2("ISAO_ERR_NONE_REEJCT : ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_Free;
 	}
 
@@ -2571,8 +2571,8 @@ int ISAOCHECK::read_ClanImage(char *clanname, char *filename)
 
 	}
 
-	debug_fd2("read_ClanImage() º¸³½°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szWriteBuffer), szWriteBuffer);
-	debug_fd2("read_ClanImage() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : bmpÆÄÀÏ¾ÕÀÇ2°³¸¸ÂïÀ½ %c%c. ", strlen(szReadBuffer), szReadBuffer[0], szReadBuffer[1]);
+	debug_fd2("read_ClanImage() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), szWriteBuffer);
+	debug_fd2("read_ClanImage() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : bmpï¿½ï¿½ï¿½Ï¾ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %c%c. ", strlen(szReadBuffer), szReadBuffer[0], szReadBuffer[1]);
 
 
 	if ((szReadBuffer[0] == 'B') && (szReadBuffer[1] == 'M'))
@@ -2622,22 +2622,22 @@ int ISAOCHECK::read_ClanImage(char *clanname, char *filename)
 	switch (ret_chk)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
-		fd2("¼­¹ö·Î ºÎÅÍ ÀÐÀº dataSize : %d ", dataSize);
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ dataSize : %d ", dataSize);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -2675,8 +2675,8 @@ int ISAOCHECK::read_ClanImage2(char *clanname, char *filename, CLANINFO *ci)
 			break;
 	}
 
-	debug_fd2("read_ClanImage2() º¸³½°Í ±æÀÌ : %d ³»¿ë : %s ", strlen(szWriteBuffer), szWriteBuffer);
-	debug_fd2("read_ClanImage2() ¹ÞÀº°Í ±æÀÌ : %d ³»¿ë : bmpÆÄÀÏ¾ÕÀÇ2°³¸¸ÂïÀ½ %c%c. ", strlen(szReadBuffer), szReadBuffer[0], szReadBuffer[1]);
+	debug_fd2("read_ClanImage2() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : %s ", strlen(szWriteBuffer), szWriteBuffer);
+	debug_fd2("read_ClanImage2() ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d ï¿½ï¿½ï¿½ï¿½ : bmpï¿½ï¿½ï¿½Ï¾ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %c%c. ", strlen(szReadBuffer), szReadBuffer[0], szReadBuffer[1]);
 
 
 	char path[128];
@@ -2701,22 +2701,22 @@ int ISAOCHECK::read_ClanImage2(char *clanname, char *filename, CLANINFO *ci)
 	switch (ret_chk)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
-		fd2("¼­¹ö·Î ºÎÅÍ ÀÐÀº dataSize : %d ", dataSize);
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ dataSize : %d ", dataSize);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	}
 
@@ -2888,19 +2888,19 @@ int ISAOCHECK::write_ClanImageFile(char *fname)
 
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	};
 
@@ -2923,7 +2923,7 @@ int ISAOCHECK::WEBdb_Exam()
 	ret_chk = connect_WEBdb(szWriteBuffer, szReadBuffer);
 
 
-	fd2(" À¥ db¿¡¼­ ÀÐÀº°Í %s ", szReadBuffer);
+	fd2(" ï¿½ï¿½ dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s ", szReadBuffer);
 
 	return ret_chk;
 }
@@ -2972,22 +2972,22 @@ int ISAOCHECK::read_sod2(char *usid, char *charname, char *gserver, int index, c
 	switch (ret_chk)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
-		fd2("¼­¹ö·Î ºÎÅÍ ÀÐÀº dataSize : %d ", dataSize);
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ dataSize : %d ", dataSize);
 		break;
 	case ISAO_ERR_WINSOCK_START:
-		fd2("WSAStartup()¿¡¶ó");
+		fd2("WSAStartup()ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_WINSOCK_VERSION:
-		fd2("¹öÀüÀÌ ¸ÂÁö ¾ÊÀ½");
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_TCP_CONNECT:
-		fd2("connect() Á¢¼Ó ½ÇÆÐ");
+		fd2("connect() ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_READ:
-		fd2(" recv() ÀÐ±â ½ÇÆÐ");
+		fd2(" recv() ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	case ISAO_ERR_SSL_TIMEOUT:
-		fd2("---------------- select() Å¸ÀÓ¾Æ¿ô ½ÇÆÐ");
+		fd2("---------------- select() Å¸ï¿½Ó¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		goto IsaoCheck_winsockERR;
 	}
 
@@ -3083,3 +3083,6 @@ bool MBCSToWeb(char *szMBCS, char *szWeb, int iMBCSCodePage)
 	UTF8ToWeb(szUTF8, szWeb);
 	return true;
 }
+
+
+

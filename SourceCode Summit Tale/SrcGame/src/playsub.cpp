@@ -1,5 +1,4 @@
-
-
+#include "opcodes.h"
 #include "smlib3d\\smd3d.h"
 
 #include "smwsock.h"
@@ -1885,7 +1884,7 @@ int AddExp(INT64 Exp)
 	/*int mlevel = CHAR_LEVEL_MAX;*/
 
 	bool flag = false;
-	// DEFINE O LEVEL MÁXIMO PARA GANHAR EXP NO CASO, 110.
+	// DEFINE O LEVEL Mï¿½XIMO PARA GANHAR EXP NO CASO, 110.
 	int mlevel = 118 - 1; //sergio
 
 	if (exp64 < ExpLevelTable[mlevel])
@@ -1901,7 +1900,7 @@ int AddExp(INT64 Exp)
 
 		NumLineComa64(Exp, szTemp);
 
-		wsprintf(szBuf, "> Ganhou %s de experiência!", szTemp);
+		wsprintf(szBuf, "> Ganhou %s de experiï¿½ncia!", szTemp);
 		AddChatBuff(szBuf, 9);
 	}
 
@@ -6889,6 +6888,12 @@ int	DisplaySodScore()
 
 	return FALSE;
 }
+
+
+
+
+
+
 
 
 

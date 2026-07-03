@@ -94,7 +94,7 @@ void CLANEntity_JOIN::Main()
 			WebDB.isClanMember(cldata.szID, cldata.gserver, cldata.ChaName);
 			C_menuN2 = 1;
 		#ifdef CLAN_DEBUG
-			DebugMessage("CLAN_JOIN_before¿¡¼­ WebDB.isClanMember(¾ÆÀÌµð : %s,°ÔÀÓ¼­¹ö : %s,Ä³¸¯ÅÍÀÌ¸§ : %s)", cldata.szID, cldata.gserver, cldata.ChaName);
+			DebugMessage("CLAN_JOIN_beforeï¿½ï¿½ï¿½ï¿½ WebDB.isClanMember(ï¿½ï¿½ï¿½Ìµï¿½ : %s,ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ : %s,Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ : %s)", cldata.szID, cldata.gserver, cldata.ChaName);
 		#endif
 			break;
 			case 1:
@@ -110,7 +110,7 @@ void CLANEntity_JOIN::Main()
 
 				C_menuN2 = 0;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_JOIN_before¿¡¼­ ¸®ÅÏÄÚµå 100");
+				DebugMessage("CLAN_JOIN_beforeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 100");
 			#endif
 				break;
 
@@ -127,7 +127,7 @@ void CLANEntity_JOIN::Main()
 
 				C_menuN2 = 0;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_JOIN_before¿¡¼­ Å¬·£ °¡ÀÔºÒ°¡(%d)", ANSdata.ret_val);
+				DebugMessage("CLAN_JOIN_beforeï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ÔºÒ°ï¿½(%d)", ANSdata.ret_val);
 			#endif
 
 				break;
@@ -142,7 +142,7 @@ void CLANEntity_JOIN::Main()
 
 				C_menuN2 = 0;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_JOIN_before¿¡¼­ Å¬·£°¡ÀÔ°¡´É(%d)", ANSdata.ret_val);
+				DebugMessage("CLAN_JOIN_beforeï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½Ô°ï¿½ï¿½ï¿½(%d)", ANSdata.ret_val);
 			#endif
 
 				break;
@@ -154,7 +154,7 @@ void CLANEntity_JOIN::Main()
 				cClanReport.InitMsg(szErrorMsg);
 				cClanReport.menuInit(C_menuN, clanszError_Msg.pos.x, clanszError_Msg.pos.y);
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_JOIN_before¿¡¼­ ¼­¹ö¿¡ Á¢¼ÓÇÒ¼ö ¾øÀ½(%d)", ANSdata.ret_val);
+				DebugMessage("CLAN_JOIN_beforeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½(%d)", ANSdata.ret_val);
 			#endif
 				break;
 				default:
@@ -169,7 +169,7 @@ void CLANEntity_JOIN::Main()
 
 					C_menuN2 = 0;
 				#ifdef CLAN_DEBUG
-					DebugMessage("CLAN_JOIN_before¿¡¼­ µðÆúÆ®¿¡·¯(%d)", ANSdata.ret_val);
+					DebugMessage("CLAN_JOIN_beforeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½(%d)", ANSdata.ret_val);
 				#endif
 				}
 				break;
@@ -333,9 +333,9 @@ void CLANEntity_JOIN::Main()
 					char TempBufferMsg[256];
 
 				#ifdef	_LANGUAGE_JAPANESE
-					wsprintf(TempBufferMsg, "ƒNƒ‰ƒ“’E‘Þ\n4“úŒo‰ß‚Ì?ƒFƒbƒN’†Error");
+					wsprintf(TempBufferMsg, "ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ï¿½\n4ï¿½ï¿½ï¿½oï¿½ß‚ï¿½?ï¿½Fï¿½bï¿½Nï¿½ï¿½Error");
 				#else
-					wsprintf(TempBufferMsg, "Å¬·£Å»Åð\n4ÀÏ°æ°úÃ¼Å©ÁßError");
+					wsprintf(TempBufferMsg, "Å¬ï¿½ï¿½Å»ï¿½ï¿½\n4ï¿½Ï°ï¿½ï¿½Ã¼Å©ï¿½ï¿½Error");
 				#endif
 					cClanReport.InitMsg(TempBufferMsg);
 					cClanReport.menuInit(C_menuN, clanszError_Msg.pos.x, clanszError_Msg.pos.y);
@@ -358,7 +358,7 @@ void CLANEntity_JOIN::Main()
 
 								 cldata.name, cldata.clanJoinCharID, cldata.clanJoinID, sinChar->Level, cldata.clanJoinJob, cldata.clanJoinLevel, cldata.isSubChip);
 		#ifdef CLAN_DEBUG
-			DebugMessage("CLAN_JOIN_chip¿¡¼­ WebDB.joinClanMember(¾ÆÀÌµð : %s,°ÔÀÓ¼­¹ö : %s,Å¬·£Àå : %s,Å¬·£ÀÌ¸§ : %s, °¡ÀÔÇÒ Ä³¸¯ÅÍ : %s,  °¡ÀÔÇÒ ¾ÆÀÌµð : %s, ·¹º§ : %d, Àâ : %d", cldata.szID, cldata.gserver, cldata.ChaName, cldata.name, cldata.clanJoinCharID, cldata.clanJoinID, sinChar->Level, sinChar->JOB_CODE);
+			DebugMessage("CLAN_JOIN_chipï¿½ï¿½ï¿½ï¿½ WebDB.joinClanMember(ï¿½ï¿½ï¿½Ìµï¿½ : %s,ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ : %s,Å¬ï¿½ï¿½ï¿½ï¿½ : %s,Å¬ï¿½ï¿½ï¿½Ì¸ï¿½ : %s, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ : %s,  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ : %s, ï¿½ï¿½ï¿½ï¿½ : %d, ï¿½ï¿½ : %d", cldata.szID, cldata.gserver, cldata.ChaName, cldata.name, cldata.clanJoinCharID, cldata.clanJoinID, sinChar->Level, sinChar->JOB_CODE);
 		#endif
 
 		#else
@@ -396,7 +396,7 @@ void CLANEntity_JOIN::Main()
 
 				C_menuN2 = 0;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_JOIN_chip¿¡¼­ Æ®·£Àè¼Ç¿À·ù");
+				DebugMessage("CLAN_JOIN_chipï¿½ï¿½ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½");
 			#endif
 				break;
 				case 1:
@@ -412,7 +412,7 @@ void CLANEntity_JOIN::Main()
 
 				C_menuN2 = 0;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_JOIN_chip¿¡¼­ °¡ÀÔ¼º°ø");
+				DebugMessage("CLAN_JOIN_chipï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½");
 			#endif
 				break;
 				case 2:
@@ -428,7 +428,7 @@ void CLANEntity_JOIN::Main()
 
 				C_menuN2 = 0;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_JOIN_chip¿¡¼­ ÇöÀç °¡ÀÔ½ÃÅ°·Á´Â Å¬·£¿øÀÌ ÀÌ¹Ì ´Ù¸¥ Å¬·£¿¡ °¡ÀÔÇØÀÖÀ» °æ¿ì(ÀÚ±â Å¬·£Æ÷ÇÔ)");
+				DebugMessage("CLAN_JOIN_chipï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô½ï¿½Å°ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½Ù¸ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½(ï¿½Ú±ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)");
 			#endif
 				break;
 				case 3:
@@ -443,7 +443,7 @@ void CLANEntity_JOIN::Main()
 
 				C_menuN2 = 0;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_JOIN_chip¿¡¼­ Å¬·£ÀÌ Á¸ÀçÇÏÁö ¾Ê°Å³ª Å¬·£ ÀåÀÌ ¾Æ´Ñ°æ¿ì");
+				DebugMessage("CLAN_JOIN_chipï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°Å³ï¿½ Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ñ°ï¿½ï¿½");
 			#endif
 				break;
 				case 4:
@@ -459,7 +459,7 @@ void CLANEntity_JOIN::Main()
 
 				C_menuN2 = 0;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_JOIN_chip¿¡¼­ Å¬·£ ¸â¹ö ¿À¹öÇÃ·Î¿ì");
+				DebugMessage("CLAN_JOIN_chipï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã·Î¿ï¿½");
 			#endif
 				break;
 				case 100:
@@ -472,7 +472,7 @@ void CLANEntity_JOIN::Main()
 
 				C_menuN2 = 0;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_JOIN_chip¿¡¼­ ¸®ÅÏÄÚµå 100");
+				DebugMessage("CLAN_JOIN_chipï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 100");
 			#endif
 
 				break;
@@ -483,7 +483,7 @@ void CLANEntity_JOIN::Main()
 				cClanReport.InitMsg(szErrorMsg);
 				cClanReport.menuInit(C_menuN, clanszError_Msg.pos.x, clanszError_Msg.pos.y);
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_JOIN_chip¿¡¼­ ¼­¹ö¿¡ Á¢¼Ó ¾ÈµÊ");
+				DebugMessage("CLAN_JOIN_chipï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Èµï¿½");
 			#endif
 				break;
 
@@ -503,7 +503,7 @@ void CLANEntity_JOIN::Main()
 
 					C_menuN2 = 0;
 				#ifdef CLAN_DEBUG
-					DebugMessage("CLAN_JOIN_chip¿¡¼­ µðÆúÆ®¿¡·¯");
+					DebugMessage("CLAN_JOIN_chipï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½");
 				#endif
 				}
 				break;
@@ -918,7 +918,7 @@ void CLANEntity_JOIN::AddClanWon()
 	{
 		if(cldata.clanWon[i][0] != 0)
 		{
-			fd2("Å¬·£¿ø¸®½ºÆ®  cldata.clanWon[%d] = %s  ", i, cldata.clanWon[i]);
+			fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®  cldata.clanWon[%d] = %s  ", i, cldata.clanWon[i]);
 		}
 	}
 
@@ -1038,4 +1038,8 @@ BOOL CheckClanWon(int level)
 	bReturn = cClanJoin.CheckClanWon(level);
 	return bReturn;
 }
+
+
+
+
 

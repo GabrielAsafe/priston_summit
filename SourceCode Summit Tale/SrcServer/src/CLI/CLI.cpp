@@ -220,3 +220,5 @@ void CLI::handleReloadHotuk()
 	rsRefreshConfig();
 	cout << "Hotuk recarregado com sucesso!" << endl;
 }
+
+

@@ -158,3 +158,5 @@ extern const CStrClass jazzidEmptyString;
 extern TCHAR jazzidChNil;
 
 #endif
+
+

@@ -1203,3 +1203,5 @@ int CHelp::haGuidHelpLevel_1(DWORD Code)
 
 	return TRUE;
 }
+
+

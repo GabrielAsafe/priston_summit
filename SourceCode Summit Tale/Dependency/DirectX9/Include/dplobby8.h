@@ -405,3 +405,5 @@ DECLARE_INTERFACE_(IDirectPlay8LobbiedApplication,IUnknown)
 
 #endif	// __DPLOBBY_H__
 
+
+

@@ -1,8 +1,0 @@
-#pragma once
-#include "items.h"
-
-struct PacketRollInfo { int size; int code; };
-struct RESTAURE_LIST { int size; int code; };
-struct smTRANS_SHOPDATA { int size; int code; };
-struct smTRANS_QUEST_INFO { int size; int code; };
-struct smTRANS_QUEST_FULL { int size; int code; };

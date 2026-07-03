@@ -219,3 +219,7 @@ int HoPhysicsMgr::AddObject(HoPhysicsObject *object)
 	}
 	return -1;
 }
+
+
+
+

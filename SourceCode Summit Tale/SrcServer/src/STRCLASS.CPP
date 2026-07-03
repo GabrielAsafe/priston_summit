@@ -951,3 +951,5 @@ void CStrClass::OemToAnsi()
 	::OemToAnsi(m_pchData, m_pchData);
 }
 #endif
+
+

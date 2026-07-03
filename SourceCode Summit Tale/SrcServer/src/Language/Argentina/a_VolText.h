@@ -1,6 +1,6 @@
 
-char *parkTextVO = " Opción de Chatear con Voz ";
-char *parkTextMIC = " Micrófono ";
+char *parkTextVO = " Opciï¿½n de Chatear con Voz ";
+char *parkTextMIC = " Micrï¿½fono ";
 char *parkTextMicON = " Encendido ";
 char *parkTextMicOFF = " Apagado ";
 
@@ -8,5 +8,7 @@ char *parkTextVol = " Volumen : ";
 char *parkTextVolLow = " Bajo ";
 char *parkTextVolHigh = " Alto ";
 
-char *parkTextVolErr1 = " Micrófono en Windows ";
+char *parkTextVolErr1 = " Micrï¿½fono en Windows ";
 char *parkTextVolErr2 = " Controla tu Volumen. ";
+
+

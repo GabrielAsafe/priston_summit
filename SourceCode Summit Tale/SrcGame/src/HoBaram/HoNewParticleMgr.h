@@ -118,3 +118,7 @@ extern HoNewParticleResMgr  g_NewParticleResMgr;
 extern HoNewParticleMgr     g_NewParticleMgr;
 
 #endif
+
+
+
+

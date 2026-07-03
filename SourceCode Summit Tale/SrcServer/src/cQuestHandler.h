@@ -35,3 +35,5 @@ public:
 extern cQUESTHANDLER cQuestHandler;
 
 #endif // QUEST_HANDLER_H
+
+

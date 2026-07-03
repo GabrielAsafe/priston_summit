@@ -156,3 +156,6 @@ extern POINT3D HoPetRenderPoint;
 extern DWORD  g_LowLevelPetAttackSerial;
 
 #endif
+
+
+

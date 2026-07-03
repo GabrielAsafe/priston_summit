@@ -1,4 +1,4 @@
-
+#include "opcodes.h"
 #include "SinBaram\\SinLinkHeader.h"
 #include "..\\HoBaram\\HoLinkHeader.h"
 #include "..\\smReg.h"
@@ -745,4 +745,9 @@ extern void		EffectWaveCamera(int factor, int delay)
 	WaveCameraFactor = factor;
 	WaveCameraDelay = delay;
 }
+
+
+
+
+
 

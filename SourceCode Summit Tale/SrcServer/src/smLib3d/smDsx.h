@@ -177,3 +177,5 @@ public:
 
 extern RenderDevice				renderDevice;
 
+
+

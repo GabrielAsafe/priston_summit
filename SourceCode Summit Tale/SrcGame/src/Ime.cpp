@@ -268,7 +268,7 @@ void ImeClass::GetImeInfo()
 		this->m_szConvMode = "A";
 		break;
 		case IME_CMODE_NATIVE:
-		this->m_szConvMode = "ÏÐ";
+		this->m_szConvMode = "ï¿½ï¿½";
 		break;
 		case (IME_CMODE_NATIVE | IME_CMODE_KATAKANA):
 		default:
@@ -276,9 +276,9 @@ void ImeClass::GetImeInfo()
 	}
 
 	if(dwConv & IME_CMODE_FULLSHAPE)
-		this->m_szHalfMode = "îï";
+		this->m_szHalfMode = "ï¿½ï¿½";
 	else
-		this->m_szHalfMode = "Úâ";
+		this->m_szHalfMode = "ï¿½ï¿½";
 
 }
 
@@ -313,3 +313,7 @@ void ImeClass::OnButtonChangemode()
 
 	ImmReleaseContext(m_hWnd, m_hIMC);
 }
+
+
+
+

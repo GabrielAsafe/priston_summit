@@ -6,3 +6,7 @@ public:
 	sinHaQuest(void);
 	~sinHaQuest(void);
 };
+
+
+
+

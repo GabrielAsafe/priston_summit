@@ -1089,16 +1089,16 @@ void cCHARSTATUS::OtherStateShow()
 	//renderDevice.lpDDSBack->GetDC(&hdc);
 	SetBkMode(hdc, TRANSPARENT);
 	SetTextColor(hdc, RGB(255, 255, 255));
-	wsprintf(strBuff, "°ø°Ý¼Óµµ:%d", sinCharDisplay.Attack_Speed);
+	wsprintf(strBuff, "ï¿½ï¿½ï¿½Ý¼Óµï¿½:%d", sinCharDisplay.Attack_Speed);
 	dsTextLineOut(hdc, 100, 300, strBuff, lstrlen(strBuff));
 
-	wsprintf(strBuff, "ºí·°À²:%d", sinCharDisplay.Chance_Block);
+	wsprintf(strBuff, "ï¿½ï¿½ï¿½ï¿½ï¿½:%d", sinCharDisplay.Chance_Block);
 	dsTextLineOut(hdc, 200, 300, strBuff, lstrlen(strBuff));
 
-	wsprintf(strBuff, "Å©¸®Æ¼ÄÃ:%d", sinCharDisplay.Critical_Hit);
+	wsprintf(strBuff, "Å©ï¿½ï¿½Æ¼ï¿½ï¿½:%d", sinCharDisplay.Critical_Hit);
 	dsTextLineOut(hdc, 300, 300, strBuff, lstrlen(strBuff));
 
-	wsprintf(strBuff, "½´ÆÃ±æÀÌ:%d", sinCharDisplay.Shooting_Range);
+	wsprintf(strBuff, "ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½:%d", sinCharDisplay.Shooting_Range);
 	dsTextLineOut(hdc, 400, 300, strBuff, lstrlen(strBuff));
 
 	//renderDevice.lpDDSBack->ReleaseDC(hdc);
@@ -1463,3 +1463,5 @@ int cCHARSTATUS::InitCharStatus_Attribute(int kind)
 	return TRUE;
 
 }
+
+

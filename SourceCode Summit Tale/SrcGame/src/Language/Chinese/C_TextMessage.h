@@ -1,51 +1,54 @@
 #include "TextMessage.h"
 
-char *szAppName="¾«Áé";
+char *szAppName="ï¿½ï¿½ï¿½ï¿½";
 
 
-char *mgRequestTrade = "ÄãÏò %s ·¢³öÁË½»Ò×ÇëÇó¡£";
-char *mgRequestTrade2 = "ÄãÀë %s Ì«Ô¶£¬ÎÞ·¨½øÐÐ½»Ò×¡£";
+char *mgRequestTrade = "ï¿½ï¿½ï¿½ï¿½ %s ï¿½ï¿½ï¿½ï¿½ï¿½Ë½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+char *mgRequestTrade2 = "ï¿½ï¿½ï¿½ï¿½ %s Ì«Ô¶ï¿½ï¿½ï¿½Þ·ï¿½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½×¡ï¿½";
 
-char *mgDiconnect  = "Óë·þÎñÆ÷µÄÁ¬½ÓÖÐ¶Ï";
-char *mgDiconnect1 = "Óë·þÎñÆ÷µÄÁ¬½ÓÖÐ¶Ï (1)";
-char *mgDiconnect2 = "Óë·þÎñÆ÷µÄÁ¬½ÓÖÐ¶Ï (2)";
-char *mgDiconnect3 = "Óë·þÎñÆ÷µÄÁ¬½ÓÖÐ¶Ï (3)";
-char *mgDiconnect4 = "Óë·þÎñÆ÷µÄÁ¬½ÓÖÐ¶Ï (4)";
+char *mgDiconnect  = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½";
+char *mgDiconnect1 = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ (1)";
+char *mgDiconnect2 = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ (2)";
+char *mgDiconnect3 = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ (3)";
+char *mgDiconnect4 = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ (4)";
 
-char *mgCloseGame = "Àë¿ªÓÎÏ·";
-char *mgCloseWindow = "ÇëÄúÏÈ¹Ø±ÕËùÓÐ´ò¿ªµÄ´°¿Ú£¬È»ºó²ÅÀë¿ªÓÎÏ·";
-char *mgCloseBattle = "Õ½¶·ÖÐ²»ÄÜÀë¿ªÓÎÏ·";
-
-
-
-char *mgRefuseWhisper = "ÎÞ·¨·¢ËÍÇÄÇÄ»°";
-char *mgWeightOver = "³¬¹ýÁË¸ºÖØ        ";
-
-char *mgYahoo = "ÑÅ»¢";
-char *mgContinueChat = "%s : ÎÒËµ»°Ì«¶à, ÎÒµÄÉàÒÑ¾­±äµÃ½©Ó²! ÍÛ -_-;";
-char *mgRecvItem = "  ÄãÒÑ¾­ÊÕµ½( %s )  ";
-
-char *mgItemTimeOut = "×°±¸ÕýÔÚÏûºÄ£¬Ê£ÓàÊ±¼ä( %s )";
-char *mgSOD_Clear = " ¹§Ï²!!! ÄãÓ®µÃ ( %d½ð±Ò) ";
+char *mgCloseGame = "ï¿½ë¿ªï¿½ï¿½Ï·";
+char *mgCloseWindow = "ï¿½ï¿½ï¿½ï¿½ï¿½È¹Ø±ï¿½ï¿½ï¿½ï¿½Ð´ò¿ªµÄ´ï¿½ï¿½Ú£ï¿½È»ï¿½ï¿½ï¿½ï¿½ë¿ªï¿½ï¿½Ï·";
+char *mgCloseBattle = "Õ½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ë¿ªï¿½ï¿½Ï·";
 
 
-char *mgBlessCrystal_01 = "   ËüÒÑ¾­³¬¹ýÕÙ»½µÄÊýÁ¿ÁË  ";
-char *mgBlessCrystal_02 = "   Ö»ÓÐÒ»´Î»ú»á¿ÉÒÔÕÙ»½   ";
-char *mgBlessCrystal_03 = "   Äã²»ÄÜ¹»Ê¹ÓÃÕâ¸öË®¾§   ";
+
+char *mgRefuseWhisper = "ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½";
+char *mgWeightOver = "ï¿½ï¿½ï¿½ï¿½ï¿½Ë¸ï¿½ï¿½ï¿½        ";
+
+char *mgYahoo = "ï¿½Å»ï¿½";
+char *mgContinueChat = "%s : ï¿½ï¿½Ëµï¿½ï¿½Ì«ï¿½ï¿½, ï¿½Òµï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½Ã½ï¿½Ó²! ï¿½ï¿½ -_-;";
+char *mgRecvItem = "  ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½Õµï¿½( %s )  ";
+
+char *mgItemTimeOut = "×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½Ê£ï¿½ï¿½Ê±ï¿½ï¿½( %s )";
+char *mgSOD_Clear = " ï¿½ï¿½Ï²!!! ï¿½ï¿½Ó®ï¿½ï¿½ ( %dï¿½ï¿½ï¿½) ";
+
+
+char *mgBlessCrystal_01 = "   ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ";
+char *mgBlessCrystal_02 = "   Ö»ï¿½ï¿½Ò»ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù»ï¿½   ";
+char *mgBlessCrystal_03 = "   ï¿½ã²»ï¿½Ü¹ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½Ë®ï¿½ï¿½   ";
 
 
 
 char *g_lpBellatraTeamNameText[] = 
 {
-	" Ë®Ö®¿¼Ñé ",
-	" µØÖ®¿¼Ñé ",
-	" ·çÖ®¿¼Ñé ",
-	" »ðÖ®¿¼Ñé ",
-	" Ì«ÑôÖ®³¡ ",
-	" ÔÂÁÁÖ®³¡ ",
+	" Ë®Ö®ï¿½ï¿½ï¿½ï¿½ ",
+	" ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ ",
+	" ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ ",
+	" ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ ",
+	" Ì«ï¿½ï¿½Ö®ï¿½ï¿½ ",
+	" ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ ",
 };
 
-char *g_lpBellatraResult_Text1 = "%s ºÍ";
-char *g_lpBellatraResult_Text2 = "%s ºÍ %s ºÍ";
-char *g_lpBellatraResult_Text3 = "¼ÓÈëÍÅ¶Ó";
-char *g_lpBellatraResult_Text4 = "½øÈë¸ü¸ß¼¶µÄ¿¼Ñé³¡.";
+char *g_lpBellatraResult_Text1 = "%s ï¿½ï¿½";
+char *g_lpBellatraResult_Text2 = "%s ï¿½ï¿½ %s ï¿½ï¿½";
+char *g_lpBellatraResult_Text3 = "ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ï¿½";
+char *g_lpBellatraResult_Text4 = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½ï¿½Ä¿ï¿½ï¿½é³¡.";
+
+
+

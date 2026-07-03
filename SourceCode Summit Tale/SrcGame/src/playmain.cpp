@@ -1,4 +1,4 @@
-
+#include "opcodes.h"
 #include "smlib3d\\smd3d.h"
 #include "cracker.h"
 #include "smwsock.h"
@@ -4508,7 +4508,7 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 			if (MatEachBox >= 0)
 			{
 
-				dsDrawTexImage(MatEachBox, MidX - (w >> 1), MidY - (h >> 1), w, h, 255, 0);//Background da animação do npc
+				dsDrawTexImage(MatEachBox, MidX - (w >> 1), MidY - (h >> 1), w, h, 255, 0);//Background da animaï¿½ï¿½o do npc
 
 				if (!SizeMode)
 				{
@@ -4776,7 +4776,7 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 
 					int ly = SETTINGSHANDLER->getHeight() / 5 + 15;
 
-					wsprintf(szBuff, "Nível: %d", chrEachPlayer.smCharInfo.Level);
+					wsprintf(szBuff, "Nï¿½vel: %d", chrEachPlayer.smCharInfo.Level);
 
 
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
@@ -4787,7 +4787,7 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 					wsprintf(szBuff, "Defesa: %d", chrEachPlayer.smCharInfo.Defence);
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
-					wsprintf(szBuff, "Absorção: %d", chrEachPlayer.smCharInfo.Absorption);
+					wsprintf(szBuff, "Absorï¿½ï¿½o: %d", chrEachPlayer.smCharInfo.Absorption);
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
 					wsprintf(szBuff, "Dinheiro: %d", chrEachPlayer.smCharInfo.Money);
@@ -4796,16 +4796,16 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 					wsprintf(szBuff, "EXP: %d", chrEachPlayer.smCharInfo.Exp);
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
-					wsprintf(szBuff, "Precisão: %d", sinGetAccuracy(chrEachPlayer.smCharInfo.Level, chrEachPlayer.smCharInfo.Defence));
+					wsprintf(szBuff, "Precisï¿½o: %d", sinGetAccuracy(chrEachPlayer.smCharInfo.Level, chrEachPlayer.smCharInfo.Defence));
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
-					wsprintf(szBuff, "Crítico: %d", sinGetCritical(chrEachPlayer.smCharInfo.Level));
+					wsprintf(szBuff, "Crï¿½tico: %d", sinGetCritical(chrEachPlayer.smCharInfo.Level));
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
-					wsprintf(szBuff, "Atualização: %d", chrEachPlayer.smCharInfo.bUpdateInfo[0]);
+					wsprintf(szBuff, "Atualizaï¿½ï¿½o: %d", chrEachPlayer.smCharInfo.bUpdateInfo[0]);
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
-					wsprintf(szBuff, "Clã: %d(%d)", chrEachPlayer.smCharInfo.ClassClan, chrEachMaster->ClanInfoNum);
+					wsprintf(szBuff, "Clï¿½: %d(%d)", chrEachPlayer.smCharInfo.ClassClan, chrEachMaster->ClanInfoNum);
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
 
@@ -4996,3 +4996,8 @@ int Stop_ParkPlayer()
 
 	return TRUE;
 }
+
+
+
+
+

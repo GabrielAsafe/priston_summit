@@ -237,3 +237,7 @@ class CLANEntity_chatting cClanChatting;
 extern class CLANEntity_chatting cClanChatting;
 
 #endif
+
+
+
+

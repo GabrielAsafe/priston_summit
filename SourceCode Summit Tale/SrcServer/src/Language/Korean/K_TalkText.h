@@ -3,7 +3,7 @@
 
 #ifdef	_LANGUAGE_KOREAN
 
-char *parkTextTalk = "%s ´ÔÀÌ ¸»ÇÏ¿´½À´Ï´Ù.";
+char *parkTextTalk = "%s ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.";
 
 #endif
 
@@ -28,6 +28,8 @@ char *parkTextTalk = "%s ´ÔÀÌ ¸»ÇÏ¿´½À´Ï´Ù.";
 #ifdef	_LANGUAGE_THAI
 #include "..\\Thai\\Th_TalkText.h"
 #endif
+
+
 
 
 

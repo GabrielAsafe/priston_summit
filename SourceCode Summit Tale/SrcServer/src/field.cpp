@@ -1836,7 +1836,7 @@ int InitField()
 	sField[cnt].SetCenterPos(198279, 240452);
 	sField[cnt].AddStartPoint(198279, 240452);
 	sField[cnt].LimitLevel = 100;
-	sField[cnt].AddWarpGate(198289, 240238, 1543, 32, 32);					// Å¾ 3Ãþ Ãâ±¸ 
+	sField[cnt].AddWarpGate(198289, 240238, 1543, 32, 32);					// Å¾ 3ï¿½ï¿½ ï¿½â±¸ 
 	sField[cnt].AddWarpOutGate(&sField[3], 2599, -18235, 236);
 	cnt = 53;
 
@@ -2320,5 +2320,7 @@ int WarpCastleField(int MasterClan, int *dx, int *dz)
 
 	return FALSE;
 }
+
+
 
 

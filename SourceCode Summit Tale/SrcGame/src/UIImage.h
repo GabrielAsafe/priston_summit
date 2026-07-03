@@ -42,3 +42,6 @@ private:
 };
 
 extern void ClearLoadedImages();
+
+
+

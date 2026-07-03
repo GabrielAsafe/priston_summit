@@ -1,3 +1,4 @@
+#include "opcodes.h"
 #include "CoinShop.h"
 
 cCOINSHOP cCoinShop;
@@ -335,13 +336,13 @@ void cCOINSHOP::BuySelectedItem()
 
 	if (Coin < SelectedBox->Price)
 	{
-		cMessageBox.ShowMessageEvent("Você não tem crédito suficiente.");
+		cMessageBox.ShowMessageEvent("Vocï¿½ nï¿½o tem crï¿½dito suficiente.");
 		return;
 	}
 
 	if (!cInvenTory.CheckSetEmptyArea(SelectedBox->psItem))
 	{
-		cMessageBox.ShowMessageEvent("Você não tem espaço suficiente no inventário.");
+		cMessageBox.ShowMessageEvent("Vocï¿½ nï¿½o tem espaï¿½o suficiente no inventï¿½rio.");
 		return;
 	}
 
@@ -430,3 +431,7 @@ bool cCOINSHOP::LButtonDown()
 
 	return bClicked;
 }
+
+
+
+

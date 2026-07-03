@@ -35,3 +35,5 @@ int haStringCenter(int PosiX, char *strbuff);
 
 
 #endif
+
+

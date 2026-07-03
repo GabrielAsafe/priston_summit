@@ -108,3 +108,5 @@ STDAPI DMOGetName(
    WCHAR szName[80]
 );
 #endif //__DMOREG_H__
+
+

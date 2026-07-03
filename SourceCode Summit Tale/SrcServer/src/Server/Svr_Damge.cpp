@@ -1,4 +1,4 @@
-﻿#include <windows.h>
+#include <windows.h>
 #include <io.h>
 #include <stdio.h>         
 #include <string.h>        
@@ -764,7 +764,7 @@ int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttack
 							if (lpPlayInfo->smCharInfo.Level > 40)
 								SendOpenEvent(lpChar, lpPlayInfo, lpChar->smMonsterInfo.EventNPC);
 							else
-								SendQuickMessage(lpPlayInfo, "Nível insuficiente.");
+								SendQuickMessage(lpPlayInfo, "N�vel insuficiente.");
 						}
 
 						if(lpChar->MotionInfo->State < 0x100)
@@ -1112,7 +1112,7 @@ int rsSendAttackUser(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Power,
 			#ifdef DISP_DAMAGE
 				if(lpPlayInfo2->getSecurity() >= AccountTypes::SEC_MODERATOR)
 				{
-					wsprintf(szDispDamage, "> %s Esquiva adicional ( Pergaminho de Evasão [%d] )", lpPlayInfo->smCharInfo.szName, lpPlayInfo2->dwSiegeItem_Scroll_Param);
+					wsprintf(szDispDamage, "> %s Esquiva adicional ( Pergaminho de Evas�o [%d] )", lpPlayInfo->smCharInfo.szName, lpPlayInfo2->dwSiegeItem_Scroll_Param);
 					rsDisplayDamgeToClient(lpPlayInfo2, szDispDamage);
 				}
 			#endif
@@ -1136,7 +1136,7 @@ int rsSendAttackUser(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Power,
 		#ifdef DISP_DAMAGE
 			if(lpPlayInfo2->getSecurity() >= AccountTypes::SEC_MODERATOR)
 			{
-				wsprintf(szDispDamage, "> %s Esquiva adicional ( Pergaminho de Evasão [%d] )", lpPlayInfo->smCharInfo.szName, lpPlayInfo2->dwSiegeItem_Scroll_Param);
+				wsprintf(szDispDamage, "> %s Esquiva adicional ( Pergaminho de Evas�o [%d] )", lpPlayInfo->smCharInfo.szName, lpPlayInfo2->dwSiegeItem_Scroll_Param);
 				rsDisplayDamgeToClient(lpPlayInfo2, szDispDamage);
 			}
 		#endif
@@ -1284,7 +1284,7 @@ int rsSendAttackUser(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Power,
 			#ifdef DISP_DAMAGE
 				if(lpPlayInfo2->getSecurity() >= AccountTypes::SEC_MODERATOR)
 				{
-					wsprintf(szDispDamage, "> %s Evasão adicional ( Vague [%d] )", lpPlayInfo->smCharInfo.szName, Vague_EvasionPercent[lpPlayInfo2->dwSkill_Vague_Param]);
+					wsprintf(szDispDamage, "> %s Evas�o adicional ( Vague [%d] )", lpPlayInfo->smCharInfo.szName, Vague_EvasionPercent[lpPlayInfo2->dwSkill_Vague_Param]);
 					rsDisplayDamgeToClient(lpPlayInfo2, szDispDamage);
 				}
 			#endif
@@ -1333,7 +1333,7 @@ int rsSendAttackUser(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Power,
 			#ifdef DISP_DAMAGE
 				if(lpPlayInfo2->getSecurity() >= AccountTypes::SEC_MODERATOR)
 				{
-					wsprintf(szDispDamage, "> %s Evasão adicional ( Hall of Valhalla [%d] )", lpPlayInfo->smCharInfo.szName, lpPlayInfo2->wSkill_HallOfValhalla_Param[0]);
+					wsprintf(szDispDamage, "> %s Evas�o adicional ( Hall of Valhalla [%d] )", lpPlayInfo->smCharInfo.szName, lpPlayInfo2->wSkill_HallOfValhalla_Param[0]);
 					rsDisplayDamgeToClient(lpPlayInfo2, szDispDamage);
 				}
 			#endif
@@ -1366,7 +1366,7 @@ int rsSendAttackUser(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, int Power,
 #ifdef DISP_DAMAGE
 				if (lpPlayInfo2->getSecurity() >= AccountTypes::SEC_MODERATOR)
 				{
-					wsprintf(szDispDamage, "> %s Evasão adicional ( Invocar Muspell [%d] )", lpPlayInfo->smCharInfo.szName, Summon_Muspell_BlockPercent[lpPlayInfo2->dwSkill_SummonMuspell_Param]);
+					wsprintf(szDispDamage, "> %s Evas�o adicional ( Invocar Muspell [%d] )", lpPlayInfo->smCharInfo.szName, Summon_Muspell_BlockPercent[lpPlayInfo2->dwSkill_SummonMuspell_Param]);
 					rsDisplayDamgeToClient(lpPlayInfo2, szDispDamage);
 				}
 #endif
@@ -1706,7 +1706,7 @@ int RecvRangeAttack_User(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransS
 
 								if(lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 								{
-									wsprintf(szDispDamage, "> %s Ataques de estrelas ( Crítico )", lpCharInfo->smCharInfo.szName);
+									wsprintf(szDispDamage, "> %s Ataques de estrelas ( Cr�tico )", lpCharInfo->smCharInfo.szName);
 									rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 								}
 							#endif
@@ -1753,7 +1753,7 @@ int RecvRangeAttack_User(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransS
 
 								if(lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 								{
-									wsprintf(szDispDamage, "> %s Ataques de estrelas ( Crítico )", lpCharInfo->smCharInfo.szName);
+									wsprintf(szDispDamage, "> %s Ataques de estrelas ( Cr�tico )", lpCharInfo->smCharInfo.szName);
 									rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 								}
 							#endif
@@ -2187,7 +2187,7 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 
 								if(lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 								{
-									wsprintf(szDispDamage, "> %s Ataques de estrelas( Crítico )", lpChar->smCharInfo.szName);
+									wsprintf(szDispDamage, "> %s Ataques de estrelas( Cr�tico )", lpChar->smCharInfo.szName);
 									rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 								}
 							#endif
@@ -2239,7 +2239,7 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 
 								if(lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 								{
-									wsprintf(szDispDamage, "> %s Ataques de estrelas ( Crítico )", lpChar->smCharInfo.szName);
+									wsprintf(szDispDamage, "> %s Ataques de estrelas ( Cr�tico )", lpChar->smCharInfo.szName);
 									rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 								}
 							#endif
@@ -2475,7 +2475,7 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 
 								if(lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 								{
-									wsprintf(szDispDamage, ">%s ½Ã¼±²ø±â ( %d ÃÊ )", lpChar->smCharInfo.szName, cnt / 1000);
+									wsprintf(szDispDamage, ">%s �ü����� ( %d �� )", lpChar->smCharInfo.szName, cnt / 1000);
 									rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 								}
 							#endif
@@ -4178,12 +4178,12 @@ int AddForceOrbPower(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, TRANS_ATTACKDATA	*l
 	{
 		if(lpChar)
 		{
-			wsprintf(szDispDamage, "> %s Ataque ( Força Orb + %d ) (%d)", lpChar->smCharInfo.szName, damage, lpTransAttackData->Power);
+			wsprintf(szDispDamage, "> %s Ataque ( For�a Orb + %d ) (%d)", lpChar->smCharInfo.szName, damage, lpTransAttackData->Power);
 			rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 		}
 		else
 		{
-			wsprintf(szDispDamage, "> Ataque ( Força Orb + %d ) (%d)", damage, lpTransAttackData->Power);
+			wsprintf(szDispDamage, "> Ataque ( For�a Orb + %d ) (%d)", damage, lpTransAttackData->Power);
 			rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 		}
 	}
@@ -4300,12 +4300,12 @@ int AddRangeForceOrbPower(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, TRANS_SKIL_ATT
 	{
 		if(lpChar)
 		{
-			wsprintf(szDispDamage, "> %s Ataque Gama ( Força da Magia + %d ) (%d)", lpChar->smCharInfo.szName, damage, lpTransSkillAttackData->Power);
+			wsprintf(szDispDamage, "> %s Ataque Gama ( For�a da Magia + %d ) (%d)", lpChar->smCharInfo.szName, damage, lpTransSkillAttackData->Power);
 			rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 		}
 		else
 		{
-			wsprintf(szDispDamage, "> Ataque Gama ( Força da Magia + %d ) (%d)", damage, lpTransSkillAttackData->Power);
+			wsprintf(szDispDamage, "> Ataque Gama ( For�a da Magia + %d ) (%d)", damage, lpTransSkillAttackData->Power);
 			rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 		}
 	}
@@ -4612,7 +4612,7 @@ int rsRecvAttackData(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA2 *lpTransAttackDat
 
 				if(lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 				{
-					wsprintf(szDispDamage, "> %s Ataques Tentados ( crítico )", lpChar->smCharInfo.szName);
+					wsprintf(szDispDamage, "> %s Ataques Tentados ( cr�tico )", lpChar->smCharInfo.szName);
 					rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 				}
 			#endif
@@ -4692,7 +4692,7 @@ int rsRecvAttackData(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA2 *lpTransAttackDat
 
 					if(lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 					{
-						wsprintf(szDispDamage, "> %s Ataques Tentados ( crítico )", lpPlayInfo2->smCharInfo.szName);
+						wsprintf(szDispDamage, "> %s Ataques Tentados ( cr�tico )", lpPlayInfo2->smCharInfo.szName);
 						rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 					}
 				#endif
@@ -5182,7 +5182,7 @@ int rsSetSkillRangeAttack(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, TRANS_ATTACKDA
 
 					if(lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 					{
-						wsprintf(szDispDamage, "> %s Ataques Tentados ( crítico )", lpChar->smCharInfo.szName);
+						wsprintf(szDispDamage, "> %s Ataques Tentados ( cr�tico )", lpChar->smCharInfo.szName);
 						rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 					}
 				#endif
@@ -5461,7 +5461,7 @@ int rsRecvRangeAttackData(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA2 *lpTran
 		{
 			TRANS_CHATMESSAGE	TransChatMessage;
 
-			wsprintf(TransChatMessage.szMessage, "> Ataque erro numérico ( %d %d %d ) ( %d %d %d )",
+			wsprintf(TransChatMessage.szMessage, "> Ataque erro num�rico ( %d %d %d ) ( %d %d %d )",
 					 lpTransRangeAttackData->Power[0], lpTransRangeAttackData->Power[1], lpTransRangeAttackData->Critical[0],
 					 lpPlayInfo->sLimitDamage[0], lpPlayInfo->sLimitDamage[1], lpPlayInfo->sLimitCritical[0]);
 
@@ -6139,7 +6139,7 @@ int	rsBillingItemSkill(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int HitMonsters, 
 		TRANS_CHATMESSAGE	TransChatMessage;
 		if (lpPlayInfo->AdminMode > 1)
 		{
-			wsprintf(TransChatMessage.szMessage, "> Vampírica amaldiçoada [%d] Força(%d) Monstros Acertados(%d) Poder(%d) <%d^%d> Tempo(%d)",
+			wsprintf(TransChatMessage.szMessage, "> Vamp�rica amaldi�oada [%d] For�a(%d) Monstros Acertados(%d) Poder(%d) <%d^%d> Tempo(%d)",
 				smTransCommand.WParam, lpPlayInfo->smCharInfo.Strength, HitMonsters, Power, (int)fp1, (int)fp2, (lpPlayInfo->dwTime_PrimeItem_VampCuspid - dwServTime_T) / 60);
 
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
@@ -6203,7 +6203,7 @@ int	rsBillingItemSkill(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int HitMonsters, 
 		TRANS_CHATMESSAGE	TransChatMessage;
 		if (lpPlayInfo->AdminMode > 1)
 		{
-			wsprintf(TransChatMessage.szMessage, "¸¶³ª ¸®Â÷Â¡ [%d] Spirit(%d) HitMonsters(%d) Power(%d) <%d^%d> Time(%d)",
+			wsprintf(TransChatMessage.szMessage, "���� ����¡ [%d] Spirit(%d) HitMonsters(%d) Power(%d) <%d^%d> Time(%d)",
 				smTransCommand.WParam, lpPlayInfo->smCharInfo.Spirit, HitMonsters, Power, (int)fp1, (int)fp2, (lpPlayInfo->dwTime_PrimeItem_ManaRecharg - dwServTime_T) / 60);
 
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
@@ -6217,4 +6217,6 @@ int	rsBillingItemSkill(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, int HitMonsters, 
 
 	return TRUE;
 }
+
+
 

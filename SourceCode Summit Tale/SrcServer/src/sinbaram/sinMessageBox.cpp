@@ -2734,7 +2734,7 @@ int StarShopNPC()
 	}
 	if(GiftPrice)
 	{
-		cMessageBox.ShowMessage3(MESSAGE_GIFT_TICKET, "»óÇ°±ÇÀ¸·Î");
+		cMessageBox.ShowMessage3(MESSAGE_GIFT_TICKET, "ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 	}
 	return TRUE;
 }
@@ -2773,3 +2773,5 @@ int DeleteGiftItem()
 	return TRUE;
 
 }
+
+

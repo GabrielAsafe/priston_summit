@@ -372,3 +372,7 @@ void DrawTexture2D(LPDIRECT3DTEXTURE9 lpTexture, RECT destinationRect, RECT sour
 		DrawTexture(lpTexture ? lpTexture : nullptr, Vertices, alphaBlend);
 	}
 }
+
+
+
+

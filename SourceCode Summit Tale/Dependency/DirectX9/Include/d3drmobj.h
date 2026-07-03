@@ -1664,3 +1664,5 @@ DECLARE_INTERFACE_(IDirect3DRMClippedVisual, IDirect3DRMVisual)
 #endif
 #endif /* _D3DRMOBJ_H_ */
 
+
+

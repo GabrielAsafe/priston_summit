@@ -1,3 +1,5 @@
 
-char *parkTextTalk = "%s —l‚ª˜b‚µ‚Ü‚µ‚½";
+char *parkTextTalk = "%s ï¿½lï¿½ï¿½ï¿½bï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½";
+
+
 

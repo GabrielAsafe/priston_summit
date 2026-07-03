@@ -140,3 +140,5 @@ void GameMasters::clear()
 
 	ZeroMemory(users, sizeof(users));
 }
+
+

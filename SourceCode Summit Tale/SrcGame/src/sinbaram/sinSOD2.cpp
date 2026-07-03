@@ -2823,3 +2823,7 @@ int cHASIEGE::ShowCastlePlayMovie(char *szPath, char *TitleName, int Option)
 
 
 
+
+
+
+

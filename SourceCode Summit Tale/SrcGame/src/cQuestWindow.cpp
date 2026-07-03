@@ -1,3 +1,4 @@
+#include "opcodes.h"
 #include "sinbaram/sinLinkHeader.h"
 #include "netplay.h"
 #include "cQuestWindow.h"
@@ -662,56 +663,56 @@ void sSPOILER::GetReward()
 }
 
 char* szFields[] = {
-	"Mata das Acácias",
+	"Mata das Acï¿½cias",
 "Floresta Bamboo",
 "Jardim da Liberdade",
 "Ricartem",
-"Refúgio dos Anciões",
+"Refï¿½gio dos Anciï¿½es",
 "Castelo dos Perdidos",
 "Vila Ruinen",
 "Terra Maldita",
 "Terra Esquecida",
 "Navisko",
-"Oásis",
-"Campo de Batalha dos Anciões",
+"Oï¿½sis",
+"Campo de Batalha dos Anciï¿½es",
 "Terra Proibida",
-"Calabouço Antigo 1º Andar",
-"Calabouço Antigo 2º Andar",
-"Calabouço Antigo 3º Andar",
+"Calabouï¿½o Antigo 1ï¿½ Andar",
+"Calabouï¿½o Antigo 2ï¿½ Andar",
+"Calabouï¿½o Antigo 3ï¿½ Andar",
 "Sala do GM",
-"Floresta dos Espíritos",
-"Floresta das Ilusões",
+"Floresta dos Espï¿½ritos",
+"Floresta das Ilusï¿½es",
 "Vale Tranquilo",
 "Estrada dos Ventos",
 "Pillai",
-"Templo Maldito 1º Andar",
-"Templo Maldito 2º Andar",
+"Templo Maldito 1ï¿½ Andar",
+"Templo Maldito 2ï¿½ Andar",
 "Caverna dos Cogumelos",
 "Caverna das Abelhas",
 "Santuario Sombrio",
 "Estrada de Ferro do Caos",
-"Coração de Perum",
+"Coraï¿½ï¿½o de Perum",
 "Eura",
 "SoD",
 "Vale Galubia",
 "Sala de Quest",
 "Castelo Antigo (BC)",
-"Lago da Ganância",
+"Lago da Ganï¿½ncia",
 "Santuario Congelado",
 "Caverna do Kelvezu",
 "Ilha Perdida",
 "Templo Perdido",
 "Mapa 2d",
-"Torre sem Fim 1º Andar",
-"Torre sem Fim 2º Andar",
-"Templo Maldito 3º Andar",
-"Torre sem Fim 3º Andar",
-"Mina de Gelo 1º Andar",
+"Torre sem Fim 1ï¿½ Andar",
+"Torre sem Fim 2ï¿½ Andar",
+"Templo Maldito 3ï¿½ Andar",
+"Torre sem Fim 3ï¿½ Andar",
+"Mina de Gelo 1ï¿½ Andar",
 "T.D.P Ardor",
 "Laboratorio Secreto",
 "Arma Secreta",
-"Abismo do Mar 1º Andar",
-"Abismo do Mar 2º Andar",
+"Abismo do Mar 1ï¿½ Andar",
+"Abismo do Mar 2ï¿½ Andar",
 };
 
 extern int NumLineComa64(INT64 Num, char* pBuff);
@@ -880,3 +881,8 @@ void sSPOILER::DrawQuest(int BaseX, int BaseY)
 
 	}
 }
+
+
+
+
+

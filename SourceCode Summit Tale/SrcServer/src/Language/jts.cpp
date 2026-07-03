@@ -573,3 +573,5 @@ int IsTaiwan(char* SaveFile)
 	return nReturnValue;
 }
 
+
+

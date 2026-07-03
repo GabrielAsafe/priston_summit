@@ -33,3 +33,6 @@ private:
 	void updateButtonPos(int iX);
 	void updateButtonPos() { ScrollButton->setX(ScrollBar->getX() + ScrollBar->getWidth() - 10); }
 };
+
+
+

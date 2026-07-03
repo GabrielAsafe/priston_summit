@@ -78,3 +78,5 @@ public:
 
 extern HoEffectMain	MainWindow;
 #endif
+
+

@@ -1,4 +1,4 @@
-﻿
+#include "opcodes.h"
 #include "smlib3d\\smd3d.h"
 
 #include "smwsock.h"
@@ -172,7 +172,7 @@ int GetPostBoxFile(const char *szID, char *szFileName)
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "%s\\%d\\＃%s.dat", szPostBoxDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "%s\\%d\\#%s.dat", szPostBoxDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -181,7 +181,7 @@ int GetPostBoxFile(const char *szID, char *szFileName)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "%s\\%d\\＃%s.dat", szPostBoxDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "%s\\%d\\#%s.dat", szPostBoxDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -200,7 +200,7 @@ static int GetUserInfoFile(const char *szID, char *szFileName)
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "DataServer\\%s\\%d\\＃%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "DataServer\\%s\\%d\\#%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -209,7 +209,7 @@ static int GetUserInfoFile(const char *szID, char *szFileName)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "DataServer\\%s\\%d\\＃%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "DataServer\\%s\\%d\\#%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -305,7 +305,7 @@ static int GetUserInfoFile2(char *szID, char *szFileName, char *szServerID)
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "%s\\DataServer\\%s\\%d\\＃%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
+		wsprintf(szFileName, "%s\\DataServer\\%s\\%d\\#%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
 		return TRUE;
 	}
 
@@ -314,7 +314,7 @@ static int GetUserInfoFile2(char *szID, char *szFileName, char *szServerID)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "%s\\DataServer\\%s\\%d\\＃%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
+		wsprintf(szFileName, "%s\\DataServer\\%s\\%d\\#%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
 		return TRUE;
 	}
 
@@ -361,7 +361,7 @@ static int GetWareHouseFile(const char *szName, char *szFileName)
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "DataServer\\%s\\%d\\＃%s.dat", szRecordWareHouseDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "DataServer\\%s\\%d\\#%s.dat", szRecordWareHouseDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -370,7 +370,7 @@ static int GetWareHouseFile(const char *szName, char *szFileName)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "DataServer\\%s\\%d\\＃%s.dat", szRecordWareHouseDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "DataServer\\%s\\%d\\#%s.dat", szRecordWareHouseDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -401,7 +401,7 @@ static int GetWareHouseFile_Backup(char *szName, char *szFileName, int Day)
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "%s\\%s\\%d\\＃%s.dat", szBuff, szRecordWareHouseDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "%s\\%s\\%d\\#%s.dat", szBuff, szRecordWareHouseDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -410,7 +410,7 @@ static int GetWareHouseFile_Backup(char *szName, char *szFileName, int Day)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "%s\\%s\\%d\\＃%s.dat", szBuff, szRecordWareHouseDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "%s\\%s\\%d\\#%s.dat", szBuff, szRecordWareHouseDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -5031,7 +5031,7 @@ int SaveCloseUserRecord(char *szUserName, int Level, int Exp, int Money)
 
 	wsprintf(szFileName, "UserRecord.txt");
 
-	wsprintf(szBuff, "%s		레벨(%d)	경험치(%d)	돈(%d)\r\n", szUserName, Level, Exp, Money);
+	wsprintf(szBuff, "%s		??(%d)	???(%d)	?(%d)\r\n", szUserName, Level, Exp, Money);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile == INVALID_HANDLE_VALUE) return FALSE;
@@ -5057,7 +5057,7 @@ int SaveWareHouseRecord(char *szUserName, int Money, int Weight1, int Weight2)
 
 	wsprintf(szFileName, "UserRecord.txt");
 
-	wsprintf(szBuff, "ID( %s )	창고돈(%d)	무게( %d/%d )\r\n", szUserName, Money, Weight1, Weight2);
+	wsprintf(szBuff, "ID( %s )	???(%d)	??( %d/%d )\r\n", szUserName, Money, Weight1, Weight2);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile == INVALID_HANDLE_VALUE) return FALSE;
@@ -5190,7 +5190,7 @@ int CheckUserDataFull()
 
 		wsprintf(szFindPath, "DataServer\\UserData\\%d\\*.dat", UserCnt);
 
-		wsprintf(szMsgBuff, "캐릭터 확인중 ( %d/255 ) - %d", UserCnt, CharCount);
+		wsprintf(szMsgBuff, "??? ??? ( %d/255 ) - %d", UserCnt, CharCount);
 		SetWindowText(GetDlgItem(hDialog, IDC_EDIT1), szMsgBuff);
 
 
@@ -5245,7 +5245,7 @@ int CheckWareHouseDataFull()
 
 		wsprintf(szFindPath, "DataServer\\WareHouse\\%d\\*.war", UserCnt);
 
-		wsprintf(szMsgBuff, "아이템보관소 확인중 ( %d/255 ) - %d", UserCnt, CharCount);
+		wsprintf(szMsgBuff, "?????? ??? ( %d/255 ) - %d", UserCnt, CharCount);
 		SetWindowText(GetDlgItem(hDialog, IDC_EDIT1), szMsgBuff);
 
 		hFindHandle = FindFirstFile(szFindPath, &fd);
@@ -5303,7 +5303,7 @@ int	CheckServerRecordData()
 HWND CreateDialogWnd()
 {
 
-	char *szAppName = "프리스톤테일 - 모니터";
+	char *szAppName = "?????? - ???";
 	WNDCLASS wndclass;
 
 
@@ -5549,7 +5549,7 @@ int RestoreBackupData(char *szListFile, char *BackupPath)
 							else
 							{
 								flag = FALSE;
-								wsprintf(szLogBuff, "%s (%s) -> 실패 ( 신규캐릭이존재 )\r\n", decode, strBuff);
+								wsprintf(szLogBuff, "%s (%s) -> ?? ( ??????? )\r\n", decode, strBuff);
 								fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 							}
 						}
@@ -5563,19 +5563,19 @@ int RestoreBackupData(char *szListFile, char *BackupPath)
 
 							CopyFile(szSrcDataFile, szDestDataFile, FALSE);
 
-							wsprintf(szLogBuff, "%s (%s) -> 성공\r\n", decode, strBuff);
+							wsprintf(szLogBuff, "%s (%s) -> ??\r\n", decode, strBuff);
 							fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 						}
 					}
 					else
 					{
-						wsprintf(szLogBuff, "%s (%s) -> 실패 ( 계정이없음 )\r\n", decode, strBuff);
+						wsprintf(szLogBuff, "%s (%s) -> ?? ( ????? )\r\n", decode, strBuff);
 						fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 					}
 				}
 				else
 				{
-					wsprintf(szLogBuff, "%s (%s) -> 실패 ( 소스파일없음 )\r\n", decode, strBuff);
+					wsprintf(szLogBuff, "%s (%s) -> ?? ( ?????? )\r\n", decode, strBuff);
 					fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 				}
 			}
@@ -5682,6 +5682,11 @@ int	rsCheck_LoginServerSafeKey(smCHAR_INFO *lpCharInfo, DWORD dwSpdSumCode)
 	return TRUE;
 }
 #endif
+
+
+
+
+
 
 
 

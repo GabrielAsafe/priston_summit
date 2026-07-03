@@ -482,3 +482,5 @@ extern BOOL WINAPI xEnumDisplayDevices(PVOID, DWORD, PDISPLAY_DEVICE, DWORD);
 }
 #endif  // __cplusplus
 
+
+

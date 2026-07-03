@@ -107,9 +107,9 @@ int HoSky::Draw(int x, int y, int z, int ax, int ay, int az)
 			dsTextLineOut(opHdc, 10, 100, buffer, strlen(buffer));
 
 			if(smRender.m_FogMode)
-				wsprintf(buffer, "Æ÷±×»ç¿ë: FogColorR:%d FogColorG:%d FogColorB:%d", FogEndColorR, FogEndColorG, FogEndColorB, FogEndColorA);
+				wsprintf(buffer, "ï¿½ï¿½ï¿½×»ï¿½ï¿½: FogColorR:%d FogColorG:%d FogColorB:%d", FogEndColorR, FogEndColorG, FogEndColorB, FogEndColorA);
 			else
-				wsprintf(buffer, "Æ÷±×»ç¿ë¾ÈÇÔ");
+				wsprintf(buffer, "ï¿½ï¿½ï¿½×»ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 			SetTextColor(opHdc, RGB(255, 255, 255));
 
@@ -119,7 +119,7 @@ int HoSky::Draw(int x, int y, int z, int ax, int ay, int az)
 			SetTextColor(opHdc, RGB(255, 255, 255));
 			dsTextLineOut(opHdc, 10, 115, buffer, strlen(buffer));
 
-			wsprintf(buffer, "Æ÷±×½ÃÀÛÀ§Ä¡:%d Æ÷±×³¡À§Ä¡:%d", FogStartPos2, FogEndPos2);
+			wsprintf(buffer, "ï¿½ï¿½ï¿½×½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡:%d ï¿½ï¿½ï¿½×³ï¿½ï¿½ï¿½Ä¡:%d", FogStartPos2, FogEndPos2);
 
 			if(oldFont)
 				SelectObject(opHdc, oldFont);
@@ -1058,3 +1058,5 @@ int SetNextSky()
 	unsigned int drawIndex = SkyBackGround.SetNextDrawIndex();
 	return TRUE;
 }
+
+

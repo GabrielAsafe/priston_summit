@@ -61,3 +61,6 @@ char *HoTextTempskron = "Tempskron";
 char *HoTextFriendNear = "[Recent]";
 char *HoTextFriendList = "[Friends] %d/%d";
 char *HoTextFriendRefuse = "[Ignored] %d/%d";
+
+
+

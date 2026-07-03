@@ -1,4 +1,4 @@
-﻿
+
 
 #include "sinLinkHeader.h"
 #include "Language\\language.h"
@@ -752,7 +752,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		}
 	}
 
-	if(sInfo.ItemKindCode == 1) // Se esse itemKindCode for 1 é pq o item é mixado
+	if(sInfo.ItemKindCode == 1) // Se esse itemKindCode for 1 � pq o item � mixado
 	{
 		lstrcat(szInfoBuff, "Mix \r");
 		lstrcat(szInfoBuff2, "Item\r");
@@ -3139,3 +3139,5 @@ int cITEM::GetItemLimitTime(sITEM *pItem)
 	return TRUE;
 }
  
+
+

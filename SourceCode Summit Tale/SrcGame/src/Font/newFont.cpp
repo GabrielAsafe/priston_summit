@@ -120,3 +120,6 @@ void InitBmpFont()
 	//BmpFont[BMPFonts::RED_FONT] = new cBMPFONT("game\\Font\\font.dat", LoadDibSurfaceOffscreen("game\\Font\\font1.bmp"));
 	//BmpFont[BMPFonts::BLUE_FONT] = new cBMPFONT("game\\Font\\font.dat", LoadDibSurfaceOffscreen("game\\Font\\font1.bmp"));
 }
+
+
+

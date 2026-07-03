@@ -408,3 +408,5 @@ int cSINWARPGATE::SetWarGateSelectEffect(int x, int y)
 	sSinWarpGate.EffectFlag = 1;
 	return TRUE;
 }
+
+

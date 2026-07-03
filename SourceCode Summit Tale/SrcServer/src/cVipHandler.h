@@ -15,3 +15,5 @@ public:
 
 
 #define VIPHANDLER cVipHandler::getInstance()
+
+

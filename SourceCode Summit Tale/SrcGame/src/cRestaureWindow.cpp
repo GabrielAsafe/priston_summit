@@ -1,3 +1,4 @@
+#include "opcodes.h"
 #include "sinbaram/sinLinkHeader.h"
 #include "cRestaureWindow.h"
 #include "CoinShop.h"
@@ -129,7 +130,7 @@ void cRESTAURE::Restaure()
 {
 	if (!itemCount || itemIndex >= itemCount)
 	{
-		cMessageBox.ShowMessageEvent("Você não tem itens para restaurar.");
+		cMessageBox.ShowMessageEvent("Vocï¿½ nï¿½o tem itens para restaurar.");
 		return;
 	}
 
@@ -137,14 +138,14 @@ void cRESTAURE::Restaure()
 
 	if (cCoinShop.Coin < Item->CoinPrice)
 	{
-		cMessageBox.ShowMessageEvent("Você não tem crédito suficiente.");
+		cMessageBox.ShowMessageEvent("Vocï¿½ nï¿½o tem crï¿½dito suficiente.");
 		return;
 	}
 
 
 	if (!cInvenTory.CheckSetEmptyArea(&Item->psItem))
 	{
-		cMessageBox.ShowMessageEvent("Você não tem espaço suficiente no inventário.");
+		cMessageBox.ShowMessageEvent("Vocï¿½ nï¿½o tem espaï¿½o suficiente no inventï¿½rio.");
 		return;
 	}
 
@@ -215,3 +216,8 @@ void cRESTAURE::RecvRestaureList(RESTAURE_LIST * lpRestaureList)
 		}
 	}
 }
+
+
+
+
+

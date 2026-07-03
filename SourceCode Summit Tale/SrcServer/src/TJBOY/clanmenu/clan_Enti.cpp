@@ -226,7 +226,7 @@ void CLANEntity::Main()
 			WebDB.Resume();
 			WebDB.isClanMember(cldata.szID, cldata.gserver, cldata.ChaName);
 		#ifdef CLAN_DEBUG
-			DebugMessage("UPDATE_ISCLANMEMBER¿¡¼­ WebDB.isClanMember(¾ÆÀÌµð : %s,°ÔÀÓ¼­¹ö : %s,Ä³¸¯ÅÍÀÌ¸§ : %s)", cldata.szID, cldata.gserver, cldata.ChaName);
+			DebugMessage("UPDATE_ISCLANMEMBERï¿½ï¿½ï¿½ï¿½ WebDB.isClanMember(ï¿½ï¿½ï¿½Ìµï¿½ : %s,ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ : %s,Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ : %s)", cldata.szID, cldata.gserver, cldata.ChaName);
 		#endif
 			C_menuN2 = 1;
 			break;
@@ -240,7 +240,7 @@ void CLANEntity::Main()
 				C_menuN = CLAN_AllEnd;
 				cldata.myPosition = CLANNO_REGESTER;
 			#ifdef CLAN_DEBUG
-				DebugMessage("UPDATE_ISCLANMEMBER¿¡¼­ WebDB.isClanMember()È£ÃâÇÏ¿© ¹«µî·Ï ³ª¿È");
+				DebugMessage("UPDATE_ISCLANMEMBERï¿½ï¿½ï¿½ï¿½ WebDB.isClanMember()È£ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			#endif
 
 				break;
@@ -256,7 +256,7 @@ void CLANEntity::Main()
 				C_menuN2 = 0;
 				C_menuN = UPDATE_CLANWON;
 			#ifdef CLAN_DEBUG
-				DebugMessage("UPDATE_ISCLANMEMBER¿¡¼­ WebDB.isClanMember()È£ÃâÇÏ¿© Å¬·£¿øÀ¸·Î ³ª¿È");
+				DebugMessage("UPDATE_ISCLANMEMBERï¿½ï¿½ï¿½ï¿½ WebDB.isClanMember()È£ï¿½ï¿½ï¿½Ï¿ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 
@@ -269,14 +269,14 @@ void CLANEntity::Main()
 				C_menuN = UPDATE_CLANWON;
 				cldata.myPosition = CLANCHIP;
 			#ifdef CLAN_DEBUG
-				DebugMessage("UPDATE_ISCLANMEMBER¿¡¼­ WebDB.isClanMember()È£ÃâÇÏ¿© Å¬·£¿øÀ¸·Î ³ª¿È");
+				DebugMessage("UPDATE_ISCLANMEMBERï¿½ï¿½ï¿½ï¿½ WebDB.isClanMember()È£ï¿½ï¿½ï¿½Ï¿ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 
 				case 100:
 				WebDB.Suspend();
 			#ifdef CLAN_DEBUG
-				DebugMessage("UPDATE_ISCLANMEMBER¿¡¼­ WebDB.isClanMember()È£ÃâÇÏ¿© ¸®ÅÏÄÚµå 100³ª¿È");
+				DebugMessage("UPDATE_ISCLANMEMBERï¿½ï¿½ï¿½ï¿½ WebDB.isClanMember()È£ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 100ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				wsprintf(szErrorMsg, "%s (67)", clanszError_Msg.szMsg);
 				C_menuN = CLAN_AllEnd;
@@ -285,7 +285,7 @@ void CLANEntity::Main()
 				case ISAO_ERR_TCP_CONNECT:
 				WebDB.Suspend();
 			#ifdef CLAN_DEBUG
-				DebugMessage("UPDATE_ISCLANMEMBER¿¡¼­ WebDB.isClanMember()È£ÃâÇÏ¿© ¼­¹ö¿¡ Á¢¼ÓÇÒ¼ö ¾øÀ½");
+				DebugMessage("UPDATE_ISCLANMEMBERï¿½ï¿½ï¿½ï¿½ WebDB.isClanMember()È£ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				wsprintf(szErrorMsg, "%s (68)", clanszError_Msg.szMsg);
 				C_menuN = CLAN_AllEnd;
@@ -297,7 +297,7 @@ void CLANEntity::Main()
 				{
 					WebDB.Suspend();
 				#ifdef CLAN_DEBUG
-					DebugMessage("UPDATE_ISCLANMEMBER¿¡¼­ WebDB.isClanMember()È£ÃâÇÏ¿© µðÆúÆ®¿¡·¯ ³ª¿È");
+					DebugMessage("UPDATE_ISCLANMEMBERï¿½ï¿½ï¿½ï¿½ WebDB.isClanMember()È£ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 				#endif
 					wsprintf(szErrorMsg, "%s (69)", clanszError_Msg.szMsg);
 					bIsLoading = FALSE;
@@ -320,7 +320,7 @@ void CLANEntity::Main()
 
 			WebDB.ReadClan(cldata.szID, cldata.gserver, cldata.ClanZang_Name);
 		#ifdef CLAN_DEBUG
-			DebugMessage("MYCLAN_UPDATE¿¡¼­ WebDB.ReadClan(¾ÆÀÌµð : %s,°ÔÀÓ¼­¹ö : ,Ä³¸¯ÅÍÀÌ¸§ : %s)", cldata.szID, cldata.gserver, cldata.ClanZang_Name);
+			DebugMessage("MYCLAN_UPDATEï¿½ï¿½ï¿½ï¿½ WebDB.ReadClan(ï¿½ï¿½ï¿½Ìµï¿½ : %s,ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ : ,Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ : %s)", cldata.szID, cldata.gserver, cldata.ClanZang_Name);
 		#endif
 			C_menuN2 = 1;
 			break;
@@ -339,7 +339,7 @@ void CLANEntity::Main()
 				bImageDown = FALSE;
 
 			#ifdef CLAN_DEBUG
-				DebugMessage("MYCLAN_UPDATE¿¡¼­ ¸®ÅÏÄÚµå 1 Á¤»óÀûÀ¸·ÎÃ³¸®");
+				DebugMessage("MYCLAN_UPDATEï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½");
 			#endif
 
 
@@ -359,7 +359,7 @@ void CLANEntity::Main()
 					bGetChaClan = FALSE;
 				}
 			#ifdef CLAN_DEBUG
-				DebugMessage("MYCLAN_UPDATE¿¡¼­ ¸®ÅÍÄÚµå 100");
+				DebugMessage("MYCLAN_UPDATEï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 100");
 			#endif
 				break;
 				case ISAO_ERR_TCP_CONNECT:
@@ -375,7 +375,7 @@ void CLANEntity::Main()
 					bGetChaClan = FALSE;
 				}
 			#ifdef CLAN_DEBUG
-				DebugMessage("MYCLAN_UPDATE¿¡¼­ ¼­¹ö¿¡ Á¢¼Ó ÇÒ¼ö ¾øÀ½");
+				DebugMessage("MYCLAN_UPDATEï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 
@@ -394,7 +394,7 @@ void CLANEntity::Main()
 					}
 				}
 			#ifdef CLAN_DEBUG
-				DebugMessage("MYCLAN_UPDATE¿¡¼­ µðÆúÆ®¿¡·¯");
+				DebugMessage("MYCLAN_UPDATEï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 			}
@@ -410,7 +410,7 @@ void CLANEntity::Main()
 
 			WebDB.MarkREAD(cldata.name, cldata.ClanMark);
 		#ifdef CLAN_DEBUG
-			DebugMessage("MYCLAN_CLANMARK_UPDATE¿¡¼­ WebDB.MarkREAD(Å¬·£ÀÌ¸§ : %s,Å¬·£¸¶Å©¹øÈ£ : %s)", cldata.name, cldata.ClanMark);
+			DebugMessage("MYCLAN_CLANMARK_UPDATEï¿½ï¿½ï¿½ï¿½ WebDB.MarkREAD(Å¬ï¿½ï¿½ï¿½Ì¸ï¿½ : %s,Å¬ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½È£ : %s)", cldata.name, cldata.ClanMark);
 		#endif
 			C_menuN2 = 1;
 			break;
@@ -496,7 +496,7 @@ void CLANEntity::Main()
 				CLAN_ERROR_ret = -1;
 
 			#ifdef CLAN_DEBUG
-				DebugMessage("MYCLAN_CLANMARK_UPDATE¿¡¼­ Å¬·£¸¶Å© ÀÐ±â ¼º°ø");
+				DebugMessage("MYCLAN_CLANMARK_UPDATEï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½Å© ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			#endif
 
 				break;
@@ -512,7 +512,7 @@ void CLANEntity::Main()
 					bGetChaClan = FALSE;
 				}
 			#ifdef CLAN_DEBUG
-				DebugMessage("MYCLAN_CLANMARK_UPDATE¿¡¼­ Å¬·£¸¶Å© ÀÐ±â ½ÇÆÐ ¸®ÅÏÄÚµå 2");
+				DebugMessage("MYCLAN_CLANMARK_UPDATEï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½Å© ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 2");
 			#endif
 
 				break;
@@ -528,7 +528,7 @@ void CLANEntity::Main()
 					bGetChaClan = FALSE;
 				}
 			#ifdef CLAN_DEBUG
-				DebugMessage("MYCLAN_CLANMARK_UPDATE¿¡¼­ ¼­¹ö¿¡ Á¢¼ÓÇÒ¼ö ¾øÀ½");
+				DebugMessage("MYCLAN_CLANMARK_UPDATEï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 
@@ -548,7 +548,7 @@ void CLANEntity::Main()
 					}
 				}
 			#ifdef CLAN_DEBUG
-				DebugMessage("MYCLAN_CLANMARK_UPDATE¿¡¼­ µðÆúÆ® ¿¡·¯");
+				DebugMessage("MYCLAN_CLANMARK_UPDATEï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 			}
@@ -566,7 +566,7 @@ void CLANEntity::Main()
 			WebDB.ReadClan(cldata.szID, cldata.gserver, cldata.ClanZang_Name);
 			C_menuN2 = 1;
 		#ifdef CLAN_DEBUG
-			DebugMessage("UPDATE_CLANWON¿¡¼­ WebDB.ReadClan(¾ÆÀÌµð : %s,°ÔÀÓ¼­¹ö : %s,Ä³¸¯ÅÍ ÀÌ¸§ : %s);", cldata.szID, cldata.gserver, cldata.ClanZang_Name);
+			DebugMessage("UPDATE_CLANWONï¿½ï¿½ï¿½ï¿½ WebDB.ReadClan(ï¿½ï¿½ï¿½Ìµï¿½ : %s,ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ : %s,Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ : %s);", cldata.szID, cldata.gserver, cldata.ClanZang_Name);
 		#endif
 			break;
 			case 1:
@@ -632,7 +632,7 @@ void CLANEntity::Main()
 
 				}
 			#ifdef CLAN_DEBUG
-				DebugMessage("UPDATE_CLANWON¿¡¼­ Á¤»óÀûÀ¸·Î Ã³¸® ");
+				DebugMessage("UPDATE_CLANWONï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ");
 			#endif
 
 
@@ -649,7 +649,7 @@ void CLANEntity::Main()
 				CLAN_ERROR_ret = CLAN_AllEnd;
 				C_menuN2 = -1;
 			#ifdef CLAN_DEBUG
-				DebugMessage("UPDATE_CLANWON¿¡¼­ ¸®ÅÏÄÚµå 100 ");
+				DebugMessage("UPDATE_CLANWONï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 100 ");
 			#endif
 				break;
 				case ISAO_ERR_TCP_CONNECT:
@@ -660,7 +660,7 @@ void CLANEntity::Main()
 				cClanReport.InitMsg(szErrorMsg);
 				cClanReport.menuInit(C_menuN, clanszError_Msg.pos.x, clanszError_Msg.pos.y);
 			#ifdef CLAN_DEBUG
-				DebugMessage("UPDATE_CLANWON¿¡¼­ ¼­¹ö¿¡ Á¢¼Ó ÇÒ¼ö ¾øÀ½ ");
+				DebugMessage("UPDATE_CLANWONï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ");
 			#endif
 				break;
 
@@ -673,7 +673,7 @@ void CLANEntity::Main()
 
 					C_menuN2 = -1;
 				#ifdef CLAN_DEBUG
-					DebugMessage("UPDATE_CLANWON¿¡¼­ µðÆúÆ®¿¡·¯");
+					DebugMessage("UPDATE_CLANWONï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½");
 				#endif
 				}
 
@@ -717,7 +717,7 @@ void CLANEntity::Main()
 			WebDB.MarkREAD(cldata.name, cldata.ClanMark);
 			C_menuN2 = 1;
 		#ifdef CLAN_DEBUG
-			DebugMessage("CLAN_READ_CLANMARK¿¡¼­ WebDB.MarkREAD(Å¬·£ÀÌ¸§ : %s,Å¬·£¸¶Å© ¹øÈ£ : %s);");
+			DebugMessage("CLAN_READ_CLANMARKï¿½ï¿½ï¿½ï¿½ WebDB.MarkREAD(Å¬ï¿½ï¿½ï¿½Ì¸ï¿½ : %s,Å¬ï¿½ï¿½ï¿½ï¿½Å© ï¿½ï¿½È£ : %s);");
 		#endif
 			break;
 			case 1:
@@ -785,7 +785,7 @@ void CLANEntity::Main()
 				}
 
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_READ_CLANMARK¿¡¼­ Å¬·£¸¶Å© ÀÐ±â ¼º°ø");
+				DebugMessage("CLAN_READ_CLANMARKï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½Å© ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			#endif
 
 
@@ -801,7 +801,7 @@ void CLANEntity::Main()
 
 				C_menuN2 = -1;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_READ_CLANMARK¿¡¼­ Å¬·£¸¶Å© ÀÐ±â ½ÇÆÐ ¸®ÅÏÄÚµå 2");
+				DebugMessage("CLAN_READ_CLANMARKï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½Å© ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 2");
 			#endif
 				break;
 				case ISAO_ERR_TCP_CONNECT:
@@ -815,7 +815,7 @@ void CLANEntity::Main()
 
 				C_menuN2 = -1;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_READ_CLANMARK¿¡¼­ ¼­¹ö¿¡ Á¢¼ÓÇÒ¼ö ¾øÀ½");
+				DebugMessage("CLAN_READ_CLANMARKï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 
@@ -828,7 +828,7 @@ void CLANEntity::Main()
 					menuInit(C_menuN);
 					C_menuN2 = -1;
 				#ifdef CLAN_DEBUG
-					DebugMessage("CLAN_READ_CLANMARK¿¡¼­ µðÆúÆ®¿¡·¯");
+					DebugMessage("CLAN_READ_CLANMARKï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½");
 				#endif
 				}
 				break;
@@ -898,7 +898,7 @@ void CLANEntity::Main()
 			WebDB.isClanMember(cldata.szID, cldata.gserver, cldata.ChaName);
 			C_menuN2 = 1;
 		#ifdef CLAN_DEBUG
-			DebugMessage("CLAN_NPC_START¿¡¼­ WebDB.isClanMember(¾ÆÀÌµð : %s, °ÔÀÓ¼­¹ö : %s, Ä³¸¯ÅÍÀÌ¸§ : %s)", cldata.szID, cldata.gserver, cldata.ChaName);
+			DebugMessage("CLAN_NPC_STARTï¿½ï¿½ï¿½ï¿½ WebDB.isClanMember(ï¿½ï¿½ï¿½Ìµï¿½ : %s, ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ : %s, Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ : %s)", cldata.szID, cldata.gserver, cldata.ChaName);
 		#endif
 			break;
 
@@ -950,7 +950,7 @@ void CLANEntity::Main()
 				C_menuN2 = 1;
 				cldata.myPosition = CLANNO_REGESTER;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_NPC_START¿¡¼­ ¹«µî·ÏÀÚ");
+				DebugMessage("CLAN_NPC_STARTï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 
@@ -1029,7 +1029,7 @@ void CLANEntity::Main()
 				if(fp2 != NULL) CloseHandle(fp2);
 
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_NPC_START¿¡¼­ Å¬·£¿ø");
+				DebugMessage("CLAN_NPC_STARTï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 
@@ -1103,7 +1103,7 @@ void CLANEntity::Main()
 
 
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_NPC_START¿¡¼­ Å¬·£Àå");
+				DebugMessage("CLAN_NPC_STARTï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 				case 3:
@@ -1114,7 +1114,7 @@ void CLANEntity::Main()
 				cldata.myPosition = CLANNO_REGESTER;
 
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_NPC_START¿¡¼­ Å¬·£ÀåÀÌ Å¬·£À» ÇØÃ¼ÇßÀ»°æ¿ì ¸®ÅÏÄÚµå 3");
+				DebugMessage("CLAN_NPC_STARTï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 3");
 			#endif
 				break;
 				case 4:
@@ -1124,7 +1124,7 @@ void CLANEntity::Main()
 				C_menuN2 = -1;
 				cldata.myPosition = CLANNO_REGESTER;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_NPC_START¿¡¼­ Å¬·£ÀÌ ÇØÃ¼µÈ Å¬·£¿ø");
+				DebugMessage("CLAN_NPC_STARTï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 				case 5:
@@ -1202,7 +1202,7 @@ void CLANEntity::Main()
 				if(fp2 != NULL) CloseHandle(fp2);
 
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_NPC_START¿¡¼­ Å¬·£¿ø");
+				DebugMessage("CLAN_NPC_STARTï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 				case ISAO_ERR_TCP_CONNECT:
@@ -1215,7 +1215,7 @@ void CLANEntity::Main()
 
 				cldata.myPosition = CLAN_NOCONNECT;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_NPC_START¿¡¼­ Å¬·£¼­¹ö¿¡ Á¢¼ÓÇÒ¼ö ¾øÀ½");
+				DebugMessage("CLAN_NPC_STARTï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 
@@ -1233,7 +1233,7 @@ void CLANEntity::Main()
 					cldata.myPosition = CLAN_NOCONNECT;
 					C_menuN2 = 0;
 				#ifdef CLAN_DEBUG
-					DebugMessage("CLAN_NPC_START¿¡¼­ µðÆúÆ®¿¡·¯");
+					DebugMessage("CLAN_NPC_STARTï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½");
 				#endif
 				}
 				break;
@@ -3697,3 +3697,5 @@ void CLANEntity::Draw_C_TextPark(char *str, int x, int y, int RedColor, int Gree
 
 #endif
 }
+
+

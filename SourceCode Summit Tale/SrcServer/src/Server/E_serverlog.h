@@ -16,7 +16,7 @@
 
 #define filenameManufactureItem	"%s\\(Manufacture) %d-%d.log"
 
-#define	filenameMixtureResetItem	"%s\\(¹Í½ºÃÄ¸®¼Â)%d¿ù%dÀÏ.log"
+#define	filenameMixtureResetItem	"%s\\(ï¿½Í½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½)%dï¿½ï¿½%dï¿½ï¿½.log"
 
 
 #define MovieBloodyBattleLog	"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s )"
@@ -175,11 +175,13 @@
 
 #define msgManufactureItem	"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Item ( %s ) ( %d %d <%d> )\r\n"
 
-#define	msgMixtureResetItem		"%d½Ã%dºÐ%dÃÊ - ID:( %s ) / Name:( %s ) / IP ( %s ) - ¾ÆÀÌÅÛ( %s ) ( %d %d <%d> )\r\n"
+#define	msgMixtureResetItem		"%dï¿½ï¿½%dï¿½ï¿½%dï¿½ï¿½ - ID:( %s ) / Name:( %s ) / IP ( %s ) - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½( %s ) ( %d %d <%d> )\r\n"
 
 #define msgAgingItem		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Aging Item    ( %s ) [%d] ( %d %d <%d> ) -> ( %d %d <%d> )\r\n"
 #define msgAgingUpItem		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Aging Up      ( %s ) [%d] ( %d %d <%d> ) -> ( %d %d <%d> )\r\n"
 #define msgAgingFailItem	"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Aging Failed  ( %s ) [%d] ( %d %d <%d> )\r\n"
 
 #define msgBlackUser		"%d:%d:%d - ID( %s ) - ( %d )\r\n"
+
+
 

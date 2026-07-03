@@ -46,3 +46,5 @@ class CMicVolume cmicvol;
 extern class CMicVolume cmicvol;
 
 #endif
+
+

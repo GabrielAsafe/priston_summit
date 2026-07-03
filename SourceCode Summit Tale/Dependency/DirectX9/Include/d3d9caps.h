@@ -474,3 +474,5 @@ typedef struct _D3DCAPS9
 #endif /* (DIRECT3D_VERSION >= 0x0900) */
 #endif /* _d3d9CAPS_H_ */
 
+
+

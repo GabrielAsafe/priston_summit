@@ -74,3 +74,7 @@ extern int FieldLimitLevel_Table[];
 extern sSINWARPGATE sHaWarpGate;
 extern int haWarpGateCODE[10];
 
+
+
+
+

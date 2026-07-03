@@ -58,3 +58,5 @@ int sinEfect_CheckCrash(cSINEFFECT2 *pEffect);
 int sinEffect_StartMagic(POINT3D *pPosi, int CharFlag, int Type = 0);
 
 extern int MatFireBolt[3];
+
+

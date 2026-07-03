@@ -1,4 +1,4 @@
-
+#include "opcodes.h"
 #include <windows.h>
 #include <process.h>
 
@@ -23,8 +23,8 @@ int CrDebug = 1;
 BOOL CALLBACK EnumWndProc(HWND hWnd, LPARAM lParam)
 {
 
-	char *temp_Windowname[7] = { "»ý°¢ÇÏ´Â", "Game Mas" , "GameHack" ,
-	"  " , "ô¸Íöñýàò" , "½ºÇÇµåÇÙ" };
+	char *temp_Windowname[7] = { "ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½", "Game Mas" , "GameHack" ,
+	"  " , "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" , "ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½" };
 	char *temp_Classname[4] = { "#3277" , "TWME1" , "#2770" };
 
 
@@ -484,3 +484,7 @@ int CheckDLL_Module()
 
 	return NULL;
 }
+
+
+
+

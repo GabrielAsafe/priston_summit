@@ -18,7 +18,7 @@
 
 #define CONTENT_MAX   6
 
-#define DETAIL_SEE ">>ÀÚ¼¼È÷º¸±â.."
+#define DETAIL_SEE ">>ï¿½Ú¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.."
 
 class CHelp
 {
@@ -103,3 +103,6 @@ class CHelp  g_Help;
 #else
 extern class CHelp  g_Help;
 #endif
+
+
+

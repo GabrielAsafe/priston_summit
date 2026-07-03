@@ -1,5 +1,4 @@
-﻿
-
+#include "opcodes.h"
 #include "sinLinkHeader.h"
 #include "tjboy\\clanmenu\\tjclan.h"
 #include "..\\field.h"
@@ -624,9 +623,9 @@ void cINTERFACE::Draw()
 
 	}
 
-	//posição da barra de exp
+	//posi��o da barra de exp
 
-	//posição da barra de exp
+	//posi��o da barra de exp
 	if (sinPKWarningExpFlag) {
 		if (sinPKWarnigExpTime <= 15)
 			DrawSprite(575, 592, lpBar_Exp, 0, 0, sinBmpLength[3], 5);
@@ -1093,9 +1092,9 @@ int   CheckExpTime = 0;
 
 DWORD dwTestKeyTime = 0;
 int   TeskKeyMessageCnt = 0;
-char *szTestKeyMsg[6] = { "³ª!  &(^_^)&    ",
-						 "³ë!  /(^_^)/   ",
-						 "³ª!  *(^_^)*  ",
+char *szTestKeyMsg[6] = { "��!  &(^_^)&    ",
+						 "��!  /(^_^)/   ",
+						 "��!  *(^_^)*  ",
 						 "",
 						 "",
 						 "", };
@@ -1993,7 +1992,7 @@ void cINTERFACE::KeyDown()
 
 		}
 
-	if(!lstrcmpi(sinBuff, "/마군오오오오에요") || !lstrcmpi(sinBuff, "/PassMature"))
+	if(!lstrcmpi(sinBuff, "/????????") || !lstrcmpi(sinBuff, "/PassMature"))
 		{
 			sinBuff[0] = 0;
 			sinSecretFlag = 1;
@@ -2003,7 +2002,7 @@ void cINTERFACE::KeyDown()
 			ReformCharForm();
 
 		}
-		if(!lstrcmpi(sinBuff, "/날린다뇨!") || !lstrcmpi(sinBuff, "/FuckingInven!"))
+		if(!lstrcmpi(sinBuff, "/????!") || !lstrcmpi(sinBuff, "/FuckingInven!"))
 		{
 			memset(cInvenTory.InvenItem, 0, sizeof(sITEM) * 100);
 			memset(cInvenTory.InvenItemTemp, 0, sizeof(sITEM) * 100);
@@ -2027,7 +2026,7 @@ void cINTERFACE::KeyDown()
 
 				sscanf(sinBuff, "%s %s", sinTestBuff5, sinTestBuff6);
 
-				if(!lstrcmp(sinTestBuff5, "/임군100퀘스트") || !lstrcmpi(sinBuff, "/MrIm's100"))
+				if(!lstrcmp(sinTestBuff5, "/??100???") || !lstrcmpi(sinBuff, "/MrIm's100"))
 				{
 					if(sinTestBuff6[0])
 					{
@@ -2057,7 +2056,7 @@ void cINTERFACE::KeyDown()
 				}
 
 
-				if(!lstrcmp(sinTestBuff5, "/임군초보퀘스트") || !lstrcmpi(sinTestBuff5, "/MrIm'sbeginner"))
+				if(!lstrcmp(sinTestBuff5, "/???????") || !lstrcmpi(sinTestBuff5, "/MrIm'sbeginner"))
 				{
 					if(sinTestBuff6[0])
 					{
@@ -2080,7 +2079,7 @@ void cINTERFACE::KeyDown()
 
 				}
 
-				if(lstrcmp(sinTestBuff5, "/이방범4차퀘스트") == 0 || lstrcmp(sinTestBuff5, "/Lee4thRankUp") == 0)
+				if(lstrcmp(sinTestBuff5, "/???4????") == 0 || lstrcmp(sinTestBuff5, "/Lee4thRankUp") == 0)
 				{
 					if(sinTestBuff6[0])
 					{
@@ -2095,7 +2094,7 @@ void cINTERFACE::KeyDown()
 					}
 				}
 
-				if(lstrcmp(sinTestBuff5, "/이방범3차퀘스트") == 0 || lstrcmp(sinTestBuff5, "/Lee3thRankUp") == 0)
+				if(lstrcmp(sinTestBuff5, "/???3????") == 0 || lstrcmp(sinTestBuff5, "/Lee3thRankUp") == 0)
 				{
 					if(sinTestBuff6[0])
 					{
@@ -2117,7 +2116,7 @@ void cINTERFACE::KeyDown()
 					#endif
 					}
 				}
-				if(lstrcmp(sinTestBuff5, "/이방범레벨퀘스트") == 0 || lstrcmp(sinTestBuff5, "/LeeResetQuest") == 0)
+				if(lstrcmp(sinTestBuff5, "/????????") == 0 || lstrcmp(sinTestBuff5, "/LeeResetQuest") == 0)
 				{
 					if(sinTestBuff6[0])
 					{
@@ -2377,7 +2376,7 @@ void cINTERFACE::KeyDown()
 					#endif
 				}
 
-				if(lstrcmp(sinTestBuff5, "/이방범도와줘요스킬") == 0 || lstrcmp(sinTestBuff5, "/LeeHelpMeSkill") == 0)
+				if(lstrcmp(sinTestBuff5, "/?????????") == 0 || lstrcmp(sinTestBuff5, "/LeeHelpMeSkill") == 0)
 				{
 				#ifdef	GAME_GM
 					cSkill.InitSkillPoint(1);
@@ -2387,7 +2386,7 @@ void cINTERFACE::KeyDown()
 					memset(sinBuff, 0, sizeof(sinBuff));
 				#endif
 				}
-				if(lstrcmp(sinTestBuff5, "/이방범도와줘요스탯") == 0 || lstrcmp(sinTestBuff5, "/LeeHelpMeStat") == 0)
+				if(lstrcmp(sinTestBuff5, "/?????????") == 0 || lstrcmp(sinTestBuff5, "/LeeHelpMeStat") == 0)
 				{
 				#ifdef	GAME_GM
 					sinChar->wVersion[1] = 0;
@@ -2405,20 +2404,20 @@ void cINTERFACE::KeyDown()
 					memset(sinBuff, 0, sizeof(sinBuff));
 				#endif
 				}
-				if(lstrcmp(sinTestBuff5, "/이방범증정아이템") == 0)
+				if(lstrcmp(sinTestBuff5, "/????????") == 0)
 				{
 				#ifdef	GAME_GM
 					if(MouseItem.Flag)
 					{
 						MouseItem.sItemInfo.SpecialItemFlag[0] = CHECK_GIVE_ITEM;
 					}
-					SendChatMessageToServer("이방범: 잘쓰게(-_-)/ ");
+					SendChatMessageToServer("???: ???(-_-)/ ");
 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
 					memset(sinBuff, 0, sizeof(sinBuff));
 				#endif
 				}
-				if(lstrcmp(sinTestBuff5, "/이방범전업") == 0 || lstrcmp(sinTestBuff5, "/PassRankUp") == 0)
+				if(lstrcmp(sinTestBuff5, "/?????") == 0 || lstrcmp(sinTestBuff5, "/PassRankUp") == 0)
 				{
 				#ifdef	GAME_GM
 					SendChatMessageToServer("MeLee: it's good /(-_-)/ ");
@@ -2445,7 +2444,7 @@ void cINTERFACE::KeyDown()
 				#endif
 				}*/
 
-				if(lstrcmp(sinTestBuff5, "/이방범전업퀘스트") == 0 || lstrcmp(sinTestBuff5, "/LeeResetRankUp") == 0)
+				if(lstrcmp(sinTestBuff5, "/????????") == 0 || lstrcmp(sinTestBuff5, "/LeeResetRankUp") == 0)
 				{
 					if(sinTestBuff6[0])
 					{
@@ -2490,7 +2489,7 @@ void cINTERFACE::KeyDown()
 
 				}
 
-				if(lstrcmp(sinTestBuff5, "/이방범숏키초기화") == 0 || lstrcmp(sinTestBuff5, "/LeeShotKeyReset") == 0)
+				if(lstrcmp(sinTestBuff5, "/????????") == 0 || lstrcmp(sinTestBuff5, "/LeeShotKeyReset") == 0)
 				{
 				#ifdef	GAME_GM
 					cSkill.SkillShortKeyInit();
@@ -2517,7 +2516,7 @@ void cINTERFACE::KeyDown()
 						chaPremiumitem.UpKeepItem[i].Per = 0;
 						memset(chaPremiumitem.UpKeepItem[i].Id, NULL, sizeof(chaPremiumitem.UpKeepItem[i].Id));
 					}
-					SendChatMessageToServer("이방범:버프초기화 ");
+					SendChatMessageToServer("???:????? ");
 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
 					memset(sinBuff, 0, sizeof(sinBuff));
@@ -3426,4 +3425,9 @@ int cINTERFACE::SetStringEffect(int Index)
 	return true;
 
 }
+
+
+
+
+
 

@@ -627,12 +627,12 @@ void CLANEntity_chatting::Main()
 
 
 					extern char loadis[256];
-					wsprintf(loadis, "·ÎµåµÊ %s ", szFile_hMark);
+					wsprintf(loadis, "ï¿½Îµï¿½ï¿½ %s ", szFile_hMark);
 
 
 					if(hMark == NULL)
 					{
-						wsprintf(loadis, "·Îµå¸øÇß´Ù. %s ", szFile_hMark);
+						wsprintf(loadis, "ï¿½Îµï¿½ï¿½ï¿½ß´ï¿½. %s ", szFile_hMark);
 
 						ChatList_CmenuN = CHATLIST_READ_CLANMARK;
 						ChatList_CmenuN2 = 0;
@@ -1290,12 +1290,12 @@ void CLANEntity_chatting::menuInit(int num)
 			hMark = LoadDibSurfaceOffscreen(szFile_hMark);
 
 			extern char loadis[256];
-			wsprintf(loadis, "·ÎµåµÊ %s ", szFile_hMark);
+			wsprintf(loadis, "ï¿½Îµï¿½ï¿½ %s ", szFile_hMark);
 
 
 			if(hMark == NULL)
 			{
-				wsprintf(loadis, "·Îµå¸øÇß´Ù. %s ", szFile_hMark);
+				wsprintf(loadis, "ï¿½Îµï¿½ï¿½ï¿½ß´ï¿½. %s ", szFile_hMark);
 				ChatList_CmenuN = CHATLIST_READ_CLANMARK;
 				ChatList_CmenuN2 = 0;
 
@@ -2821,3 +2821,6 @@ void CLANEntity_chatting::DoubleClick(int i)
 		banisF[(i - 4) + nScl_Bar] = 2;
 	}
 }
+
+
+

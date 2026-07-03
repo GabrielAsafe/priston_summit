@@ -767,3 +767,7 @@
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0},
 " Propiedad Org?ica +5\rPropiedad de Veneno +5\rPropiedad de Escarcha +5\rPropiedad de Llama +5\rPropiedad de Rayo +5\r "},
 
+
+
+
+

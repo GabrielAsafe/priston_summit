@@ -1,11 +1,13 @@
-char *parkTextVO = "‰¹ºƒ`ƒƒƒbƒgƒIƒvƒVƒ‡ƒ“";
-char *parkTextMIC = "ƒ}ƒCƒN";
+char *parkTextVO = "ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½bï¿½gï¿½Iï¿½vï¿½Vï¿½ï¿½ï¿½ï¿½";
+char *parkTextMIC = "ï¿½}ï¿½Cï¿½N";
 char *parkTextMicON = "On";
 char *parkTextMicOFF = "Off";
 
-char *parkTextVol = "ƒ{ƒŠƒ…[ƒ€ : ";
-char *parkTextVolLow = "’á";
-char *parkTextVolHigh = "‚";
+char *parkTextVol = "ï¿½{ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½ : ";
+char *parkTextVolLow = "ï¿½ï¿½";
+char *parkTextVolHigh = "ï¿½ï¿½";
 
-char *parkTextVolErr1 = "ƒEƒBƒ“ƒhƒE“à‚Åƒ}ƒCƒN‚Ì";
-char *parkTextVolErr2 = "ƒ{ƒŠƒ…[ƒ€‚ğ’²ß‚µ‚Ä‚­‚¾‚³‚¢";
+char *parkTextVolErr1 = "ï¿½Eï¿½Bï¿½ï¿½ï¿½hï¿½Eï¿½ï¿½Åƒ}ï¿½Cï¿½Nï¿½ï¿½";
+char *parkTextVolErr2 = "ï¿½{ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ğ’²ß‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+
+

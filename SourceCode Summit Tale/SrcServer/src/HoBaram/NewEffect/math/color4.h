@@ -284,3 +284,5 @@ inline bool operator==(color4 const &a, color4 const &b)
 
 
 #endif 
+
+

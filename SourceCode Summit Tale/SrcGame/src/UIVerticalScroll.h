@@ -35,3 +35,6 @@ private:
 
 	void updateButtonPos(int iY);
 };
+
+
+

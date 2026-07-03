@@ -531,3 +531,5 @@ void __RPC_STUB IDirectDrawStreamSample_SetRect_Stub(
 #endif
 
 
+
+

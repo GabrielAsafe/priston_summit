@@ -1009,3 +1009,5 @@ void CLANEntity_deletecha::menuInit(int num)
 
 }
 
+
+

@@ -662,3 +662,6 @@ int cASSAEFFECT::AssaReSetCharPointer()
 
 	return TRUE;
 }
+
+
+

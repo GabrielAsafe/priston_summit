@@ -141,3 +141,6 @@ public:
 	void										SendLoginData();
 	ESystemOS									GetSystemOS();
 };
+
+
+

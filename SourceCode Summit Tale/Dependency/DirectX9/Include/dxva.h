@@ -919,3 +919,5 @@ typedef struct _DXVA_ProcAmpControlBlt {
 #endif
 
 #endif /* __DIRECTX_VA__ */
+
+

@@ -672,3 +672,5 @@ extern int nMat_SkillDelayItem[];
 extern int sinAddSkillDelay;
 extern int sinSkillDelayTime;
 extern int SkillDelayFlag;
+
+

@@ -79,3 +79,5 @@ bool    AssaSearchWeaponPos(smCHAR *character, POINT3D *outWeaponPos, float u = 
 
 int AssaTestEffectImage();
 #endif
+
+

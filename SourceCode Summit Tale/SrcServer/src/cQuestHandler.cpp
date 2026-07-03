@@ -1766,3 +1766,5 @@ void cQUESTHANDLER::DebugQuest(rsPLAYINFO* player, int QuestID)
 		db->Close();
 	}
 }
+
+

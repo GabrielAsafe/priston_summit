@@ -84,3 +84,6 @@ extern class CProcess g_CtrlProcess;
 
 
 VOID SetClanWon(char *chaname, char* clanname, DWORD clannum);
+
+
+

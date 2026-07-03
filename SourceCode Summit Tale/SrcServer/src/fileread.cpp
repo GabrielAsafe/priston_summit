@@ -108,80 +108,80 @@ static char *GetWord(char *q, char *p)
 
 
 char *szIniCommand[] = {
-	"*µ¿ÀÛÆÄÀÏ",
-	"*µ¿ÀÛ¸ðÀ½",
-	"*¸ð¾çÆÄÀÏ",
-	"*¸ð¾çÀÌ¸§",
-	"*ÆÄÀÏ¿¬°á",
-	"*º¸Á¶µ¿ÀÛÆÄÀÏ",
+	"*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+	"*ï¿½ï¿½ï¿½Û¸ï¿½ï¿½ï¿½",
+	"*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+	"*ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½",
+	"*ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½",
+	"*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
 
-	"*Á¤¹Ð¸ð¾ç",
-	"*º¸Åë¸ð¾ç",
-	"*ÀúÁú¸ð¾ç",
+	"*ï¿½ï¿½ï¿½Ð¸ï¿½ï¿½",
+	"*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+	"*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
 
-	"*XX°È´Âµ¿ÀÛ",
-	"*XX¼­ÀÖ±âµ¿ÀÛ",
+	"*XXï¿½È´Âµï¿½ï¿½ï¿½",
+	"*XXï¿½ï¿½ï¿½Ö±âµ¿ï¿½ï¿½",
 
-	"*Âø¿ë¹«±â",
-	"*Àû¿ëÁ÷¾÷",
-	"*ÇØ´çÀ§Ä¡",
-	"*Àû¿ë±â¼ú",
+	"*ï¿½ï¿½ï¿½ë¹«ï¿½ï¿½",
+	"*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+	"*ï¿½Ø´ï¿½ï¿½ï¿½Ä¡",
+	"*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
 
 
 
-	"*Ç¥Á¤ÆÄÀÏ¿¬°á",
-	"*Ç¥Á¤ÆÄÀÏ",
-	"*Ç¥Á¤¸ðÀ½",
+	"*Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½",
+	"*Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+	"*Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
 
 
 	""
 };
 
-char *szIniRepeat = "¹Ýº¹";
-char *szMotionWord = "µ¿ÀÛ";
+char *szIniRepeat = "ï¿½Ýºï¿½";
+char *szMotionWord = "ï¿½ï¿½ï¿½ï¿½";
 
-char *szRunWord = "¶Ù´Â";
-char *szStandWord = "*¼­ÀÖ±â";
-char *szStandWord2 = "*Á¤Áö";
-char *szWalkWord = "*°È´Â";
+char *szRunWord = "ï¿½Ù´ï¿½";
+char *szStandWord = "*ï¿½ï¿½ï¿½Ö±ï¿½";
+char *szStandWord2 = "*ï¿½ï¿½ï¿½ï¿½";
+char *szWalkWord = "*ï¿½È´ï¿½";
 
-char *szAttackWord = "°ø°Ý";
-char *szDeadWord = "Á×±â";
-char *szDeadWord2 = "Á×´Â";
-char *szDamageWord = "Å¸°Ý";
-char *szDamageWord2 = "µ¥¹ÌÁö";
-char *szDamageWord3 = "¸·±â";
+char *szAttackWord = "ï¿½ï¿½ï¿½ï¿½";
+char *szDeadWord = "ï¿½×±ï¿½";
+char *szDeadWord2 = "ï¿½×´ï¿½";
+char *szDamageWord = "Å¸ï¿½ï¿½";
+char *szDamageWord2 = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+char *szDamageWord3 = "ï¿½ï¿½ï¿½ï¿½";
 
-char *szWarpWord = "¿ï±â";
-char *szWarpWord2 = "¿öÇÁ";
+char *szWarpWord = "ï¿½ï¿½ï¿½";
+char *szWarpWord2 = "ï¿½ï¿½ï¿½ï¿½";
 
-char *szSometimeWord = "°¡²û";
+char *szSometimeWord = "ï¿½ï¿½ï¿½ï¿½";
 
-char *szFallDownWord = "¶³¾î";
-char *szFallStandLargeWord = "Å«ÂøÁö";
-char *szFallStandSmallWord = "ÀÛÀºÂøÁö";
+char *szFallDownWord = "ï¿½ï¿½ï¿½ï¿½";
+char *szFallStandLargeWord = "Å«ï¿½ï¿½ï¿½ï¿½";
+char *szFallStandSmallWord = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 
-char *szRestartWord = "´Ù½Ã½ÃÀÛ";
-char *szEatWord = "¸Ô±â";
-char *szSkillWord = "±â¼ú";
-char *szYahooWord = "¸¸¼¼";
+char *szRestartWord = "ï¿½Ù½Ã½ï¿½ï¿½ï¿½";
+char *szEatWord = "ï¿½Ô±ï¿½";
+char *szSkillWord = "ï¿½ï¿½ï¿½";
+char *szYahooWord = "ï¿½ï¿½ï¿½ï¿½";
 
 
 
-char *szMotionTalkWord = "Ç¥Á¤";
+char *szMotionTalkWord = "Ç¥ï¿½ï¿½";
 
-char *szArTalkWord = "¾ÆÇ¥Á¤";
-char *szETalkWord = "ÀÌÇ¥Á¤";
-char *szOhTalkWord = "¿ÀÇ¥Á¤";
-char *szEyeTalkWord = "´«±ôºýÇ¥Á¤";
+char *szArTalkWord = "ï¿½ï¿½Ç¥ï¿½ï¿½";
+char *szETalkWord = "ï¿½ï¿½Ç¥ï¿½ï¿½";
+char *szOhTalkWord = "ï¿½ï¿½Ç¥ï¿½ï¿½";
+char *szEyeTalkWord = "ï¿½ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½";
 
-char *szBlankTalkWord = "¹«Ç¥Á¤(ÀÛµ¿¾ÊÇÔ)";
-char *szSmileTalkWord = "¿ô´ÂÇ¥Á¤";
-char *szGrumbleTalkWord = "È­³­Ç¥Á¤";
-char *szSorrowTalkWord = "½½ÇÂÇ¥Á¤";
-char *szStartledTalkWord = "³î¶õÇ¥Á¤";
-char *szNatureTalkWord = "°íÀ¯Ç¥Á¤";
-char *szSpecialTalkWord = "Æ¯º°Ç¥Á¤";
+char *szBlankTalkWord = "ï¿½ï¿½Ç¥ï¿½ï¿½(ï¿½Ûµï¿½ï¿½ï¿½ï¿½ï¿½)";
+char *szSmileTalkWord = "ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½";
+char *szGrumbleTalkWord = "È­ï¿½ï¿½Ç¥ï¿½ï¿½";
+char *szSorrowTalkWord = "ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½";
+char *szStartledTalkWord = "ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½";
+char *szNatureTalkWord = "ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½";
+char *szSpecialTalkWord = "Æ¯ï¿½ï¿½Ç¥ï¿½ï¿½";
 
 
 
@@ -652,12 +652,12 @@ int AddModelDecode(char *iniFile, smMODELINFO *Info)
 				p = GetWord(strBuff, p);
 				if(strBuff[0])
 				{
-					if(lstrcmp(strBuff, "¸ðµÎ") == 0)
+					if(lstrcmp(strBuff, "ï¿½ï¿½ï¿½") == 0)
 					{
 						Info->MotionInfo[MotionLastPos].ItemCodeCount = 0; break;
 					}
 
-					if(lstrcmp(strBuff, "¾øÀ½") == 0)
+					if(lstrcmp(strBuff, "ï¿½ï¿½ï¿½ï¿½") == 0)
 					{
 						Info->MotionInfo[MotionLastPos].ItemCodeList[Info->MotionInfo[MotionLastPos].ItemCodeCount++] = 0xFF;
 					}
@@ -708,11 +708,11 @@ int AddModelDecode(char *iniFile, smMODELINFO *Info)
 			p = GetWord(strBuff, p);
 			cnt = 0;
 
-			if(lstrcmp(strBuff, "¸¶À»") == 0)
+			if(lstrcmp(strBuff, "ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				cnt |= 1;
 			}
-			if(lstrcmp(strBuff, "ÇÊµå") == 0)
+			if(lstrcmp(strBuff, "ï¿½Êµï¿½") == 0)
 			{
 				cnt |= 2;
 			}
@@ -720,11 +720,11 @@ int AddModelDecode(char *iniFile, smMODELINFO *Info)
 			p = GetWord(strBuff, p);
 			if(strBuff[0])
 			{
-				if(lstrcmp(strBuff, "¸¶À»") == 0)
+				if(lstrcmp(strBuff, "ï¿½ï¿½ï¿½ï¿½") == 0)
 				{
 					cnt |= 1;
 				}
-				if(lstrcmp(strBuff, "ÇÊµå") == 0)
+				if(lstrcmp(strBuff, "ï¿½Êµï¿½") == 0)
 				{
 					cnt |= 2;
 				}
@@ -1129,7 +1129,7 @@ int smModelDecode(char *iniFile, smMODELINFO *Info)
 smCONFIG smConfig;
 
 
-char *szWordTexQualty[4] = { "ÁÁÀ½" , "º¸Åë" , "³ª»Ý" , "¾ÆÁÖ³ª»Ý" };
+char *szWordTexQualty[4] = { "ï¿½ï¿½ï¿½ï¿½" , "ï¿½ï¿½ï¿½ï¿½" , "ï¿½ï¿½ï¿½ï¿½" , "ï¿½ï¿½ï¿½Ö³ï¿½ï¿½ï¿½" };
 char *InfoRegPath = "SOFTWARE\\Triglow Pictures\\PristonTale";
 
 TRANS_SERVER_LIST	TransServerList;
@@ -1152,7 +1152,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 
 
-	if(lstrcmp(decode, "*¼­¹öÄÚµå¹øÈ£") == 0 ||
+	if(lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½È£") == 0 ||
 		lstrcmpi(decode, "*SERVER_CODE") == 0)
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -1160,14 +1160,14 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*ÀÚµ¿Ä³¸¯ÅÍ»ç¿ë") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½Úµï¿½Ä³ï¿½ï¿½ï¿½Í»ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*SERVER_AUTOPLAY") == 0))
 	{
 		rsServerConfig.AutoPlayer = TRUE;
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*ÀúÀå¹öÆÛ»ç¿ë") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û»ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*SERVER_RECORD_MEM") == 0))
 	{
 		rsServerConfig.UseRecorMemory = TRUE;
@@ -1175,12 +1175,12 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 	
 
-	if(!flag && lstrcmp(decode, "*µ¿·á±ÝÁö") == 0)
+	if(!flag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 	{
 		rsServerConfig.DisableParty = TRUE;
 		flag++;
 	}
-	if(!flag && (lstrcmp(decode, "*Á¢¼ÓÁ¦ÇÑÀÎ¿ø") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¿ï¿½") == 0 ||
 		lstrcmpi(decode, "*MAX_USERS") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -1188,7 +1188,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*Å×½ºÆ®¼­¹ö") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½×½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*TEST_SERVER") == 0))
 	{
 		rsServerConfig.TestSeverMode = TRUE;
@@ -1200,7 +1200,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*Á¢¼Ó°¡´ÉÄÚµå") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½Úµï¿½") == 0 ||
 		lstrcmpi(decode, "*CONNECT_CLIENT_CODE") == 0))
 	{
 		for(cnt = 0; cnt < 32; cnt++)
@@ -1214,14 +1214,14 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*ÄÚµåÁ¢¼ÓÁ¾·á") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*DISCONNECT_CLIENT_BADCODE") == 0))
 	{
 		rsServerConfig.ClientCheckOut = TRUE;
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*³»ºÎº¸È£ÄÚµå") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½Îºï¿½È£ï¿½Úµï¿½") == 0 ||
 		lstrcmpi(decode, "*CLSAFE_CODE") == 0))
 	{
 
@@ -1238,7 +1238,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 
 	}
-	if(!flag && (lstrcmp(decode, "*º¸È£ÄÚµå¿À·ùÁ¾·á") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½È£ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*DISCONNECT_CLSAFE_CODE") == 0))
 	{
 		rsServerConfig.ClientCodeCheckOut = TRUE;
@@ -1246,7 +1246,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*Á¦ÇÑ¹öÀü") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*VERSION") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -1256,7 +1256,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*¼­¹öÀÌ¸§") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½") == 0 ||
 		lstrcmpi(decode, "*SERVER_NAME") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -1264,7 +1264,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*PKÇã°¡") == 0 ||
+	if(!flag && (lstrcmp(decode, "*PKï¿½ã°¡") == 0 ||
 		lstrcmpi(decode, "*ENABLE_PK") == 0))
 	{
 
@@ -1275,7 +1275,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*PKÇÊµå") == 0 ||
+	if(!flag && (lstrcmp(decode, "*PKï¿½Êµï¿½") == 0 ||
 		lstrcmpi(decode, "*PK_FIELD") == 0))
 	{
 
@@ -1285,7 +1285,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 		flag++;
 	}
-	if (!flag && (lstrcmp(decode, "*PKÇÊµå") == 0 ||
+	if (!flag && (lstrcmp(decode, "*PKï¿½Êµï¿½") == 0 ||
 		lstrcmpi(decode, "*PK_FIELD1") == 0))
 	{
 
@@ -1295,7 +1295,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 		flag++;
 	}
-	if (!flag && (lstrcmp(decode, "*PKÇÊµå") == 0 ||
+	if (!flag && (lstrcmp(decode, "*PKï¿½Êµï¿½") == 0 ||
 		lstrcmpi(decode, "*PK_FIELD2") == 0))
 	{
 
@@ -1306,7 +1306,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if (!flag && (lstrcmp(decode, "*PKÇÊµå") == 0 ||
+	if (!flag && (lstrcmp(decode, "*PKï¿½Êµï¿½") == 0 ||
 		lstrcmpi(decode, "*PK_FIELD3") == 0))
 	{
 
@@ -1318,7 +1318,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*PK¸ðµçÇÊµå") == 0 || lstrcmpi(decode, "*PK_FIELD_ALL") == 0))
+	if(!flag && (lstrcmp(decode, "*PKï¿½ï¿½ï¿½ï¿½Êµï¿½") == 0 || lstrcmpi(decode, "*PK_FIELD_ALL") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 		rsServerConfig.Enable_PKField_All = atoi(strBuff);
@@ -1326,7 +1326,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*¹°¾à°¨½Ã") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½à°¨ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*POTION_MONITOR") == 0))
 	{
 
@@ -1339,7 +1339,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*º¸¾È°Ë»ç") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½È°Ë»ï¿½") == 0 ||
 		lstrcmpi(decode, "*CL_PROTECT") == 0))
 	{
 
@@ -1358,7 +1358,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 #endif
 
 
-	if(!flag && (lstrcmp(decode, "*º¸¾ÈÁ¦°Å") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*REMOVE_PROTECT_TIME") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -1367,7 +1367,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*ºí·°´Ü°è") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Ü°ï¿½") == 0 ||
 		lstrcmpi(decode, "*BLOCK_LEVEL") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -1375,14 +1375,14 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*ºí·°¾Æ¿ô") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Æ¿ï¿½") == 0 ||
 		lstrcmpi(decode, "*BLOCK_LOGOUT") == 0))
 	{
 		rsServerConfig.BlockLevel_LogOut = TRUE;
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*¾ÆÀÌÅÛ¿À·ùÁ¾·á") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*DISCONNECT_ITEM_ERROR") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -1394,7 +1394,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*Æã¼Ç°Ë»ç") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½Ç°Ë»ï¿½") == 0 ||
 		lstrcmpi(decode, "*CLIENT_CHECK_FUNC") == 0))
 	{
 		rsServerConfig.ClientFuncCheckMode = 1;
@@ -1403,13 +1403,13 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*¼ÛÆíÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_MANDOO") == 0))
 	{
 		rsServerConfig.Event_Mandoo = TRUE;;
 		flag++;
 	}
-	if(!flag && (lstrcmp(decode, "*ÇÏµåÄÚ¾îÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½Ïµï¿½ï¿½Ú¾ï¿½ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_HARDCORE") == 0))
 	{
 
@@ -1422,7 +1422,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 #ifdef	_LANGUAGE_JAPANESE 
-	if(!flag && (lstrcmp(decode, "*°ø°Ý·ÂÈ°ÀÎÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½Ý·ï¿½È°ï¿½ï¿½ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_DAMAGEOFF") == 0))
 	{
 		p = GetWord(strBuff, p);
@@ -1453,7 +1453,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 #endif
 
-	if(!flag && (lstrcmp(decode, "*¹æ¾î·ÂÇÒÀÎÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_DEFENSEOFF") == 0))
 	{
 		p = GetWord(strBuff, p);
@@ -1464,7 +1464,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*¾î¸°ÀÌÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½î¸°ï¿½ï¿½ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_CHILD") == 0))
 	{
 
@@ -1478,7 +1478,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*Å©¸®½ºÅ»ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*Å©ï¿½ï¿½ï¿½ï¿½Å»ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_CRISTAL") == 0))
 	{
 
@@ -1490,7 +1490,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 		flag++;
 	}
-	if(!flag && (lstrcmp(decode, "*¹°¾àÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_POTION") == 0))
 	{
 
@@ -1498,7 +1498,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		rsServerConfig.Event_Potion = atoi(strBuff);
 		flag++;
 	}
-	if(!flag && (lstrcmp(decode, "*º°Æ÷ÀÎÆ®ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_STARPOINT") == 0))
 	{
 
@@ -1511,7 +1511,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*»ýÀÏÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_BIRTHDAY") == 0))
 	{
 
@@ -1524,7 +1524,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*ÆÛÁñÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_PUZZLE") == 0))
 	{
 
@@ -1537,7 +1537,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*¹Ùº§»ÔÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½Ùºï¿½ï¿½ï¿½ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_BABELHORN") == 0))
 	{
 
@@ -1552,7 +1552,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*±¸¹ÌÈ£ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½È£ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_NINEFOX") == 0))
 	{
 
@@ -1566,7 +1566,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*Å©¸®½º¸¶½ºÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_CHRISTMAS") == 0))
 	{
 		p = GetWord(strBuff, p);
@@ -1577,7 +1577,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 		flag++;
 	}
-	if(!flag && (lstrcmp(decode, "*¹ß·»Å¸ÀÎµ¥ÀÌ_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ß·ï¿½Å¸ï¿½Îµï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_VALENTINEDAY") == 0))
 	{
 
@@ -1591,7 +1591,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*Ä¿ÇÃ¸µ_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*Ä¿ï¿½Ã¸ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_COUPLERING") == 0))
 	{
 		p = GetWord(strBuff, p);
@@ -1604,7 +1604,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*¼ö¹Ú_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_WATERMELON") == 0))
 	{
 		p = GetWord(strBuff, p);
@@ -1617,7 +1617,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*¹ß·»Å¸ÀÎ_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ß·ï¿½Å¸ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_VALENTINE") == 0))
 	{
 		p = GetWord(strBuff, p);
@@ -1631,7 +1631,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 
 
-	if(!flag && (lstrcmp(decode, "*Äµµðµ¥ÀÌÁî_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_CANDYDAYS") == 0))
 	{
 
@@ -1645,7 +1645,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*¹ãÇÏ´Ã¼Ò¿ø_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½Ï´Ã¼Ò¿ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_STAR") == 0))
 	{
 		p = GetWord(strBuff, p);
@@ -1658,7 +1658,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*¾ËÆÄºªÁ¶ÇÕ_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½Äºï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_PRISTON_ALPHABET") == 0))
 	{
 		p = GetWord(strBuff, p);
@@ -1671,7 +1671,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 
 
-	if(!flag && (lstrcmp(decode, "*È­ÀÌÆ®ÄÜÆ®¶ó½ºÆ®_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*È­ï¿½ï¿½Æ®ï¿½ï¿½Æ®ï¿½ï¿½Æ®_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_WHITECONTRAST") == 0))
 	{
 		p = GetWord(strBuff, p);
@@ -1684,7 +1684,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*´ëÀåÀåÀÌÀÇÈ¥_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¥_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_BLACKSMITH") == 0))
 	{
 		p = GetWord(strBuff, p);
@@ -1697,7 +1697,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*¸ÅÁöÄÃ±×¸°_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ã±×¸ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_MAGICALGREEN") == 0))
 	{
 		p = GetWord(strBuff, p);
@@ -1710,7 +1710,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*Ä«¶óÀÇ´«¹°_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*Ä«ï¿½ï¿½ï¿½Ç´ï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_TEAROFKARA") == 0))
 	{
 
@@ -1724,7 +1724,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*È­ÀÌÆ®µ¥ÀÌ_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*È­ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_WHITEDAY") == 0))
 	{
 
@@ -1737,7 +1737,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*¸ð¸®ÇÁÀÇ½©ÅÒ_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_MORIFSHELTOM") == 0))
 	{
 
@@ -1750,7 +1750,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*¿ùµåÄÅ_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_WORLDCUP") == 0))
 	{
 
@@ -1764,7 +1764,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*¼ö¹Ú¸ó½ºÅÍ_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_WATERMELONMONSTER") == 0))
 	{
 
@@ -1779,7 +1779,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 
 
-	if(!flag && (lstrcmp(decode, "*¸ô¸®¿Í´Á´ë_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Í´ï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_MOLLYWOLF") == 0))
 	{
 
@@ -1793,7 +1793,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*º¹³¯_ÀÌº¥Æ®") == 0 || lstrcmpi(decode, "*EVENT_CHICHEN_DAY") == 0))
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 || lstrcmpi(decode, "*EVENT_CHICHEN_DAY") == 0))
 	{
 		p = GetWord(strBuff, p);
 		if(strBuff[0])
@@ -1804,7 +1804,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*°í½ºÆ®_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½Æ®_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_GHOST") == 0))
 	{
 
@@ -1817,7 +1817,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*»êÅ¸°íºí¸°_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_SANTAGOBLIN") == 0))
 	{
 
@@ -1830,7 +1830,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*»ï°èÅÁ_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_SUMMER_CHICKEN") == 0))
 	{
 
@@ -1843,7 +1843,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*ÇÇ½Ã¹æÆê_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½Ç½Ã¹ï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_PCBANG_PET") == 0))
 	{
 
@@ -1856,7 +1856,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*°æÇèÄ¡¾÷_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_EXPUP") == 0))
 	{
 
@@ -1894,7 +1894,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 #ifdef _LANGUAGE_ARGENTINA
 
-	if(!flag && (lstrcmp(decode, "*°æÇèÄ¡¾÷_ÀÌº¥Æ®_¶óÆ¾") == 0 || lstrcmpi(decode, "*EVENT_EXPUP_LATIN") == 0))
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½_ï¿½Ìºï¿½Æ®_ï¿½ï¿½Æ¾") == 0 || lstrcmpi(decode, "*EVENT_EXPUP_LATIN") == 0))
 	{
 
 		p = GetWord(strBuff, p);
@@ -1915,7 +1915,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 
 
-	if(!flag && (lstrcmp(decode, "*¼±¹°»óÀÚ_ÀÌº¥Æ®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½Ìºï¿½Æ®") == 0 ||
 		lstrcmpi(decode, "*EVENT_HALLOWEEN") == 0))
 	{
 		p = GetWord(strBuff, p);
@@ -1933,7 +1933,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 
 
-	if(!flag && (lstrcmp(decode, "*½Ã°£°æÇèÄ¡") == 0 || lstrcmpi(decode, "*EXP_GAMETIME") == 0))
+	if(!flag && (lstrcmp(decode, "*ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡") == 0 || lstrcmpi(decode, "*EXP_GAMETIME") == 0))
 	{
 		p = GetWord(strBuff, p);
 		if(strBuff[0])
@@ -1945,7 +1945,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*ºí·¹½ºÄ³½½") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*EVENT_BLESSCASTLE") == 0))
 	{
 
@@ -1957,7 +1957,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 		flag++;
 	}
-	if(!flag && (lstrcmp(decode, "*°ø¼º½Ã°£") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½") == 0 ||
 		lstrcmpi(decode, "*EVENT_SIEGE_TIME") == 0))
 	{
 
@@ -1971,7 +1971,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*ÀÌº¥Æ®ºñÆ®¼³Á¤") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½Ìºï¿½Æ®ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*EVENT_BITMASK") == 0))
 	{
 
@@ -1982,7 +1982,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*½Å±ÔÀ¯Àú¼±¹°") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½Å±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*DEFAULT_ITEM_USER") == 0))
 	{
 
@@ -1996,28 +1996,28 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*Àü¾÷ÀÚ±â·Ï") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ú±ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*RECORD_JOBCHANGER") == 0))
 	{
 		rsServerConfig.Record_JobChanger = TRUE;;
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*¿µ±¸ºí·°Çã°¡") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã°¡") == 0 ||
 		lstrcmpi(decode, "*ENABLE_BLOCK_FOREVER") == 0))
 	{
 		rsServerConfig.ForeverBlockMode = TRUE;
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*°æÇèÄ¡¿ÀÂ÷¹üÀ§") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*PERMIT_EXP") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 		rsServerConfig.Permit_Exp = atoi(strBuff);
 		flag++;
 	}
-	if(!flag && (lstrcmp(decode, "*µ·¿ÀÂ÷¹üÀ§") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*PERMIT_MONEY") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -2025,27 +2025,27 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*ÇÁ·Î¼¼½º½Ã°£°¨½Ã") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*CLIENT_CHECK_PROCESS_TIME") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 		rsServerConfig.ClientProcessTimeChk = atoi(strBuff);
 		flag++;
 	}
-	if(!flag && (lstrcmp(decode, "*ÇÁ·Î¼¼½º½Ã°£Á¾·á") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*CLIENT_PROCESS_TIME_OUT") == 0))
 	{
 		rsServerConfig.ClientProcessTimeChkOut = TRUE;
 		flag++;
 	}
-	if(!flag && (lstrcmp(decode, "*¹°¾à°¹¼öÈ®ÀÎ") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½à°¹ï¿½ï¿½È®ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*CHECK_POTION_COUNT") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 		rsServerConfig.Dis_PotionError = atoi(strBuff);
 		flag++;
 	}
-	if(!flag && (lstrcmp(decode, "*¼­¹ö°æÇèÄ¡»ç¿ë") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*ENABLE_SERVER_EXP") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -2056,7 +2056,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*ºí·°À¯Àú°æ·Î") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*BLOCK_USER_PATH") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -2064,7 +2064,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*»ç¿ë½Ã°£Ç¥½Ã") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½Ã°ï¿½Ç¥ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*DISP_BILLING_TIME") == 0))
 	{
 
@@ -2077,7 +2077,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	//if(!flag && (lstrcmp(decode, "*·Î±×ÀÎ±ÝÁö") == 0 ||
+	//if(!flag && (lstrcmp(decode, "*ï¿½Î±ï¿½ï¿½Î±ï¿½ï¿½ï¿½") == 0 ||
 	//	lstrcmpi(decode, "*DISABLE_LOGIN") == 0))
 	//{
 
@@ -2105,20 +2105,20 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*·Î±×Å¥±ÝÁö") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½Î±ï¿½Å¥ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*DISABLE_LOGQUE") == 0))
 	{
 		rsServerConfig.Disable_LogQue = TRUE;
 		flag++;
 	}
-	if(!flag && (lstrcmp(decode, "*·Î±×¾Æ¿ôÈ®ÀÎ±ÝÁö") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½Î±×¾Æ¿ï¿½È®ï¿½Î±ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*DISABLE_CHECK_LOGOUT") == 0))
 	{
 		rsServerConfig.Disable_CheckLogOut = TRUE;
 		flag++;
 	}
 
-	//if(!flag && (lstrcmp(decode, "*·Î±×ÀÎÂ÷´Ü") == 0 ||
+	//if(!flag && (lstrcmp(decode, "*ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 	//	lstrcmpi(decode, "*DISABLE_LOGINX") == 0))
 	//{
 	//	rsServerConfig.Disable_LogIn2 = TRUE;
@@ -2126,7 +2126,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	//}
 
 
-	if(!flag && (lstrcmp(decode, "*¹«·á·¹º§") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½á·¹ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*FREE_LEVEL") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -2139,7 +2139,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*¼±¹°·¹º§") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*PRESENT_LEVEL") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -2147,7 +2147,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*µ¿·á¾ÆÀÌÅÛÃâ·Â") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*ENABLE_PARTYITEM") == 0))
 	{
 
@@ -2155,7 +2155,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*ÇÊµåÁöÇü°Ë»ç") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë»ï¿½") == 0 ||
 		lstrcmpi(decode, "*CHECK_PLAYFIELD") == 0))
 	{
 
@@ -2164,7 +2164,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*¸ðµ¨ÆÄÀÏ°Ë»ç") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ï°Ë»ï¿½") == 0 ||
 		lstrcmpi(decode, "*CHECK_MODELFILE") == 0))
 	{
 
@@ -2173,7 +2173,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 
 
-	if(!flag && (lstrcmp(decode, "*Á¢¼ÓÁ¦ÇÑIP") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IP") == 0 ||
 		lstrcmpi(decode, "*DISABLE_IP") == 0))
 	{
 
@@ -2189,7 +2189,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*Á¢¼ÓÇã°¡IP") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ã°¡IP") == 0 ||
 		lstrcmpi(decode, "*ENABLE_IP") == 0))
 	{
 
@@ -2206,7 +2206,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 	 
 	//AQUI TESTE
-	/*if(!flag && (lstrcmp(decode, "*°ü¸®Á¢¼ÓIP") == 0 ||
+	/*if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IP") == 0 ||
 		lstrcmpi(decode, "*ADMINISTRATOR_IP") == 0))
 	{
 
@@ -2222,7 +2222,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}*/
 
-	if(!flag && (lstrcmp(decode, "*¼­¹öÀÎº¥Åä¸®") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ä¸®") == 0 ||
 		lstrcmpi(decode, "*SERVER_INVENTORY") == 0))
 	{
 
@@ -2230,7 +2230,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*¹é¾÷Æú´õÀÌ¸§") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½") == 0 ||
 		lstrcmpi(decode, "*BACKUP_PATH") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -2238,7 +2238,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*½ºÅ³Æ÷ÀÎÆ®°¨¼ÒºÒ°¡") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ÒºÒ°ï¿½") == 0 ||
 		lstrcmpi(decode, "*DISABLE_DEC_SKILLPOINT") == 0))
 	{
 
@@ -2246,7 +2246,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*Äù½ºÆ®±ÝÁö") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*DISABLE_QUEST") == 0))
 	{
 
@@ -2255,7 +2255,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*½ÃÀÛÇÊµå°íÁ¤") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*START_FIELD") == 0))
 	{
 
@@ -2265,7 +2265,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*¾ÆÀÌÅÛ¹ö¸²±ÝÁö") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Û¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*DISABLE_THROWITEM") == 0))
 	{
 
@@ -2280,7 +2280,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 
 
-	if(!flag && (lstrcmp(decode, "*Å©·¹ÀÌÁöÆÐÅ¶") == 0 ||
+	if(!flag && (lstrcmp(decode, "*Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶") == 0 ||
 		lstrcmpi(decode, "*CRAZY_PACKET") == 0))
 	{
 
@@ -2288,7 +2288,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*Åëº¸ÁÖ¼Ò") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ëº¸ï¿½Ö¼ï¿½") == 0 ||
 		lstrcmpi(decode, "*NOTICE_URL") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -2296,7 +2296,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*°ü¸®¸í·É±â·Ï") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É±ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*REC_ADMIN_CMD") == 0))
 	{
 		pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
@@ -2311,7 +2311,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 
 
 
-	if(!flag && (lstrcmp(decode, "*Áö¿ª¼­¹ö") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*AREA_SERVER") == 0))
 	{
 
@@ -2331,7 +2331,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*Åä³Ê¸ÕÆ®°èÁ¤¼­¹ö") == 0 ||
+	if(!flag && (lstrcmp(decode, "*ï¿½ï¿½Ê¸ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*TT_DATA_SERVER") == 0))
 	{
 
@@ -2369,7 +2369,7 @@ int SetServerSelectList(char *decode, char *lpPoint)
 
 	if(TransServerList.ServerCount >= TRANS_SERVER_MAX) return FALSE;
 
-	if(lstrcmp(decode, "*Á¢¼Ó¼­¹öÁ¤º¸") == 0 ||
+	if(lstrcmp(decode, "*ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*GAME_SERVER") == 0)
 	{
 		cnt = TransServerList.ServerCount;
@@ -2405,7 +2405,7 @@ int SetServerSelectList(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*Å¬·£¼­¹öÁ¤º¸") == 0 ||
+	if(!flag && (lstrcmp(decode, "*Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 ||
 		lstrcmpi(decode, "*CLAN_SERVER") == 0))
 	{
 
@@ -2586,7 +2586,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		NextFlag = 0;
 
 
-		if(lstrcmp(decode, "*ÀÌ¸§") == 0)
+		if(lstrcmp(decode, "*ï¿½Ì¸ï¿½") == 0)
 		{
 			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 
@@ -2607,7 +2607,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*ÄÚµå") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½Úµï¿½") == 0)
 		{
 			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 
@@ -2624,7 +2624,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*À¯´ÏÅ©") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Å©") == 0)
 		{
 			p = GetWord(strBuff, p);
 			if(strBuff[0])
@@ -2635,7 +2635,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*À¯´ÏÅ©»ö»ó") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->EffectColor[0] = atoi(strBuff);
@@ -2654,7 +2654,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*ÀÌÆåÆ®¼³Á¤") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->DispEffect = atoi(strBuff);
@@ -2665,7 +2665,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*³»±¸·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->sDurability[0] = atoi(strBuff);
@@ -2675,7 +2675,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*¹«°Ô") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Weight = atoi(strBuff);
@@ -2683,7 +2683,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*°¡°Ý") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Price = atoi(strBuff);
@@ -2691,7 +2691,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*»ýÃ¼") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½Ã¼") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_BIONIC][0] = atoi(strBuff);
@@ -2699,7 +2699,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			lpDefItem->sResistance[sITEMINFO_BIONIC][1] = atoi(strBuff);
 			NextFlag = TRUE;
 		}
-		if(!NextFlag && lstrcmp(decode, "*´ëÀÚ¿¬") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Ú¿ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_EARTH][0] = atoi(strBuff);
@@ -2707,7 +2707,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			lpDefItem->sResistance[sITEMINFO_EARTH][1] = atoi(strBuff);
 			NextFlag = TRUE;
 		}
-		if(!NextFlag && lstrcmp(decode, "*ºÒ") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_FIRE][0] = atoi(strBuff);
@@ -2715,7 +2715,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			lpDefItem->sResistance[sITEMINFO_FIRE][1] = atoi(strBuff);
 			NextFlag = TRUE;
 		}
-		if(!NextFlag && lstrcmp(decode, "*³Ã±â") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½Ã±ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_ICE][0] = atoi(strBuff);
@@ -2723,7 +2723,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			lpDefItem->sResistance[sITEMINFO_ICE][1] = atoi(strBuff);
 			NextFlag = TRUE;
 		}
-		if(!NextFlag && lstrcmp(decode, "*¹ø°³") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_LIGHTING][0] = atoi(strBuff);
@@ -2731,7 +2731,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			lpDefItem->sResistance[sITEMINFO_LIGHTING][1] = atoi(strBuff);
 			NextFlag = TRUE;
 		}
-		if(!NextFlag && lstrcmp(decode, "*µ¶") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_POISON][0] = atoi(strBuff);
@@ -2739,7 +2739,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			lpDefItem->sResistance[sITEMINFO_POISON][1] = atoi(strBuff);
 			NextFlag = TRUE;
 		}
-		if(!NextFlag && lstrcmp(decode, "*¹°") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_WATER][0] = atoi(strBuff);
@@ -2747,7 +2747,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			lpDefItem->sResistance[sITEMINFO_WATER][1] = atoi(strBuff);
 			NextFlag = TRUE;
 		}
-		if(!NextFlag && lstrcmp(decode, "*¹Ù¶÷") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½Ù¶ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_WIND][0] = atoi(strBuff);
@@ -2761,7 +2761,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*°ø°Ý·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Ý·ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->sDamage[0] = atoi(strBuff);
@@ -2775,14 +2775,14 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*»çÁ¤°Å¸®") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Shooting_Range = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*°ø°Ý¼Óµµ") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Ý¼Óµï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Attack_Speed = atoi(strBuff);
@@ -2790,7 +2790,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*¸íÁß·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ß·ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->sAttack_Rating[0] = atoi(strBuff);
@@ -2800,7 +2800,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*Å©¸®Æ¼ÄÃ") == 0)
+		if(!NextFlag && lstrcmp(decode, "*Å©ï¿½ï¿½Æ¼ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Critical_Hit = atoi(strBuff);
@@ -2811,7 +2811,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*Èí¼ö·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->fAbsorb[0] = (float)atof(strBuff);
@@ -2821,7 +2821,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*¹æ¾î·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->sDefence[0] = atoi(strBuff);
@@ -2831,7 +2831,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*ºí·°À²") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->fBlock_Rating[0] = (float)atof(strBuff);
@@ -2842,7 +2842,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*ÀÌµ¿¼Óµµ") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½Ìµï¿½ï¿½Óµï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->fSpeed[0] = (float)atof(strBuff);
@@ -2853,7 +2853,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*º¸À¯°ø°£") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Potion_Space = atoi(strBuff);
@@ -2862,14 +2862,14 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*¸¶¹ý¼÷·Ãµµ") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->fMagic_Mastery = (float)atof(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "*¸¶³ªÀç»ý") == 0 || lstrcmp(decode, "*±â·ÂÀç»ý") == 0))
+		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->fMana_Regen[0] = (float)atof(strBuff);
@@ -2878,7 +2878,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "*¶óÀÌÇÁÀç»ý") == 0 || lstrcmp(decode, "*»ý¸í·ÂÀç»ý") == 0))
+		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->fLife_Regen[0] = (float)atof(strBuff);
@@ -2887,7 +2887,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "*½ºÅ×¹Ì³ªÀç»ý") == 0 || lstrcmp(decode, "*±Ù·ÂÀç»ý") == 0))
+		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½×¹Ì³ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½Ù·ï¿½ï¿½ï¿½ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->fStamina_Regen[0] = (float)atof(strBuff);
@@ -2897,7 +2897,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "*¸¶³ªÃß°¡") == 0 || lstrcmp(decode, "*±â·ÂÃß°¡") == 0))
+		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->Increase_Mana[0] = atoi(strBuff);
@@ -2906,7 +2906,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "*¶óÀÌÇÁÃß°¡") == 0 || lstrcmp(decode, "*»ý¸í·ÂÃß°¡") == 0))
+		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->Increase_Life[0] = atoi(strBuff);
@@ -2915,7 +2915,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "*½ºÅ×¹Ì³ªÃß°¡") == 0 || lstrcmp(decode, "*±Ù·ÂÃß°¡") == 0))
+		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½×¹Ì³ï¿½ï¿½ß°ï¿½") == 0 || lstrcmp(decode, "*ï¿½Ù·ï¿½ï¿½ß°ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->Increase_Stamina[0] = atoi(strBuff);
@@ -2928,7 +2928,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*·¹º§") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Level = atoi(strBuff);
@@ -2936,7 +2936,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*Èû") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Strength = atoi(strBuff);
@@ -2944,28 +2944,28 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*Á¤½Å·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Å·ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Spirit = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*Àç´É") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Talent = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*¹ÎÃ¸¼º") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½Ã¸ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Dexterity = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*°Ç°­") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½Ç°ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Health = atoi(strBuff);
@@ -2976,7 +2976,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && (lstrcmp(decode, "*½ºÅ×¹Ì³Ê»ó½Â") == 0 || lstrcmp(decode, "*±Ù·Â»ó½Â") == 0))
+		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½×¹Ì³Ê»ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½Ù·Â»ï¿½ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Stamina[0] = atoi(strBuff);
@@ -2986,7 +2986,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && (lstrcmp(decode, "*¸¶³ª»ó½Â") == 0 || lstrcmp(decode, "*±â·Â»ó½Â") == 0))
+		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½Â»ï¿½ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Mana[0] = atoi(strBuff);
@@ -2996,7 +2996,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && (lstrcmp(decode, "*¶óÀÌÇÁ»ó½Â") == 0 || lstrcmp(decode, "*»ý¸í·Â»ó½Â") == 0))
+		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Â»ï¿½ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpItem->Life[0] = atoi(strBuff);
@@ -3034,7 +3034,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "**Æ¯È­·£´ý") == 0)
+		if(!NextFlag && lstrcmp(decode, "**Æ¯È­ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			while(1)
 			{
@@ -3064,7 +3064,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "**Èí¼ö·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->fSpecial_Absorb[0] = (float)atof(strBuff);
@@ -3074,7 +3074,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**¹æ¾î·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->sSpecial_Defence[0] = atoi(strBuff);
@@ -3086,7 +3086,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "**ÀÌµ¿¼Óµµ") == 0)
+		if(!NextFlag && lstrcmp(decode, "**ï¿½Ìµï¿½ï¿½Óµï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->fSpecial_fSpeed[0] = (float)atof(strBuff);
@@ -3096,35 +3096,35 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**ºí·°À²") == 0)
+		if(!NextFlag && lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->JobItem.Add_fBlock_Rating = (float)atof(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**°ø°Ý¼Óµµ") == 0)
+		if(!NextFlag && lstrcmp(decode, "**ï¿½ï¿½ï¿½Ý¼Óµï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->JobItem.Add_Attack_Speed = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**Å©¸®Æ¼ÄÃ") == 0)
+		if(!NextFlag && lstrcmp(decode, "**Å©ï¿½ï¿½Æ¼ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->JobItem.Add_Critical_Hit = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**»çÁ¤°Å¸®") == 0)
+		if(!NextFlag && lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->JobItem.Add_Shooting_Range = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**¸¶¹ý¼÷·Ãµµ") == 0)
+		if(!NextFlag && lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 
@@ -3142,21 +3142,21 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && (lstrcmp(decode, "**¸¶³ªÃß°¡") == 0 || lstrcmp(decode, "**±â·ÂÃß°¡") == 0))
+		if(!NextFlag && (lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0 || lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpItem->JobItem.Lev_Mana = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "**¶óÀÌÇÁÃß°¡") == 0 || lstrcmp(decode, "**»ý¸í·ÂÃß°¡") == 0))
+		if(!NextFlag && (lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0 || lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpItem->JobItem.Lev_Life = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**¸íÁß·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "**ï¿½ï¿½ï¿½ß·ï¿½") == 0)
 		{
 
 			p = GetWord(strBuff, p);
@@ -3166,7 +3166,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**°ø°Ý·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "**ï¿½ï¿½ï¿½Ý·ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpItem->JobItem.Lev_Damage[0] = atoi(strBuff);
@@ -3180,7 +3180,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && (lstrcmp(decode, "**¸¶³ªÀç»ý") == 0 || lstrcmp(decode, "**±â·ÂÀç»ý") == 0))
+		if(!NextFlag && (lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 
@@ -3191,21 +3191,21 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "**¶óÀÌÇÁÀç»ý") == 0 || lstrcmp(decode, "**»ý¸í·ÂÀç»ý") == 0))
+		if(!NextFlag && (lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpItem->JobItem.Per_Life_Regen = (float)atof(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "**½ºÅ×¹Ì³ªÀç»ý") == 0 || lstrcmp(decode, "**±Ù·ÂÀç»ý") == 0))
+		if(!NextFlag && (lstrcmp(decode, "**ï¿½ï¿½ï¿½×¹Ì³ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "**ï¿½Ù·ï¿½ï¿½ï¿½ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpItem->JobItem.Per_Stamina_Regen = (float)atof(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*¹ß»ýÁ¦ÇÑ") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ß»ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpDefItem->sGenDay[0] = atoi(strBuff);
@@ -3213,7 +3213,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*¿¬°áÆÄÀÏ") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 
@@ -3496,7 +3496,7 @@ szSTATE_CODE	dwCharSoundCode[] = {
 
 
 char	*szCharSizeCodeName[] = {
-	"¼ÒÇü" , "ÁßÇü" , "Áß´ëÇü" , "´ëÇü" , ""
+	"ï¿½ï¿½ï¿½ï¿½" , "ï¿½ï¿½ï¿½ï¿½" , "ï¿½ß´ï¿½ï¿½ï¿½" , "ï¿½ï¿½ï¿½ï¿½" , ""
 };
 
 
@@ -3568,7 +3568,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		NextFlag = 0;
 
 
-		if(lstrcmp(decode, "*ÀÌ¸§") == 0)
+		if(lstrcmp(decode, "*ï¿½Ì¸ï¿½") == 0)
 		{
 			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 
@@ -3591,7 +3591,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		}
 #endif
 
-		if(!NextFlag && lstrcmp(decode, "*¸ð¾çÆÄÀÏ") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 
@@ -3605,7 +3605,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 		DialogFlag = 0;
 
-		if(!NextFlag && lpDialogMessage && lstrcmp(decode, "*´ëÈ­") == 0)
+		if(!NextFlag && lpDialogMessage && lstrcmp(decode, "*ï¿½ï¿½È­") == 0)
 		{
 			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 
@@ -3640,11 +3640,11 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*¼Ó¼º") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½Ó¼ï¿½") == 0)
 		{
 			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 
-			if(lstrcmp(strBuff, "Àû") == 0)
+			if(lstrcmp(strBuff, "ï¿½ï¿½") == 0)
 				lpCharInfo->State = TRUE;
 			else
 				lpCharInfo->State = FALSE;
@@ -3653,7 +3653,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*Å©±â") == 0)
+		if(!NextFlag && lstrcmp(decode, "*Å©ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cnt = 0;
@@ -3673,7 +3673,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		}
 
 
-		if(!NextFlag && (lstrcmp(decode, "*¼Ò¸®") == 0 || lstrcmp(decode, "*È¿°úÀ½") == 0))
+		if(!NextFlag && (lstrcmp(decode, "*ï¿½Ò¸ï¿½") == 0 || lstrcmp(decode, "*È¿ï¿½ï¿½ï¿½ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			cnt = 0;
@@ -3692,7 +3692,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*·¹º§") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Level = atoi(strBuff);
@@ -3700,14 +3700,14 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*µÎ¸ñ") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½Î¸ï¿½") == 0)
 		{
 
 			lpCharInfo->wPlayClass[0] = MONSTER_CLASS_BOSS;
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*°è±Þ") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->wPlayClass[0] = atoi(strBuff);
@@ -3715,7 +3715,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*¸ðµ¨Å©±â") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½Å©ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->wPlayClass[1] = (short)(atof(strBuff)*fONE);
@@ -3725,7 +3725,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*ÀÌµ¿·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½Ìµï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Move_Speed = ConvMoveSpeed((float)atof(strBuff));
@@ -3733,7 +3733,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*°ø°Ý·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Ý·ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Attack_Damage[0] = atoi(strBuff);
@@ -3744,7 +3744,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*°ø°Ý¼Óµµ") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Ý¼Óµï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Attack_Speed = (int)(atof(strBuff)*fONE);
@@ -3755,7 +3755,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*°ø°Ý¹üÀ§") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Shooting_Range = atoi(strBuff)*fONE;
@@ -3765,7 +3765,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*¸íÁß·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ß·ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Attack_Rating = atoi(strBuff);
@@ -3774,7 +3774,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*¹æ¾î·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Defence = atoi(strBuff);
@@ -3782,7 +3782,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*Èí¼öÀ²") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Absorption = atoi(strBuff);
@@ -3790,7 +3790,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*ºí·°À²") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Chance_Block = atoi(strBuff);
@@ -3799,7 +3799,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		}
 
 
-		if(!NextFlag && (lstrcmp(decode, "*»ý¸í·Â") == 0 || lstrcmp(decode, "*¶óÀÌÇÁ") == 0))
+		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Life[0] = atoi(strBuff);
@@ -3809,21 +3809,21 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*»ýÃ¼") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½Ã¼") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Resistance[sITEMINFO_BIONIC] = (short)atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*¹°") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Resistance[sITEMINFO_WATER] = (short)atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*¹ø°³") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Resistance[sITEMINFO_LIGHTING] = (short)atoi(strBuff);
@@ -3831,35 +3831,35 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*¾óÀ½") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Resistance[sITEMINFO_ICE] = (short)atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*¹Ù¶÷") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½Ù¶ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Resistance[sITEMINFO_WIND] = (short)atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*Áöµ¿·Â") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Resistance[sITEMINFO_EARTH] = (short)atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*ºÒ") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Resistance[sITEMINFO_FIRE] = (short)atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*µ¶") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Resistance[sITEMINFO_POISON] = (short)atof(strBuff);
@@ -3873,7 +3873,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*½Ã¾ß") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½Ã¾ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			lpCharInfo->Sight = atoi(strBuff);
@@ -3884,7 +3884,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*È­¸éº¸Á¤") == 0)
+		if(!NextFlag && lstrcmp(decode, "*È­ï¿½éº¸ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			if(strBuff[0])
@@ -3900,7 +3900,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		{
 
 
-			if(!NextFlag && lstrcmp(decode, "*¿¹ºñ¸ðµ¨") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 				strcpy_s(lpCharInfo->szModelName2 + 1, sizeof(lpCharInfo->szModelName2) - 1, strBuff);
@@ -3909,7 +3909,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			}
 
 
-			if(!NextFlag && lstrcmp(decode, "*±â¼ú°ø°Ý·Â") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý·ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->SkillDamage[0] = atoi(strBuff);
@@ -3920,7 +3920,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			}
 
 
-			if(!NextFlag && lstrcmp(decode, "*±â¼ú°ø°Ý°Å¸®") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°Å¸ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->SkillDistance = atoi(strBuff);
@@ -3930,7 +3930,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 
 
-			if(!NextFlag && lstrcmp(decode, "*±â¼ú°ø°Ý¹üÀ§") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->SkillRange = atoi(strBuff);
@@ -3939,7 +3939,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			}
 
 
-			if(!NextFlag && lstrcmp(decode, "*±â¼ú°ø°Ý·ü") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý·ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->SkillRating = atoi(strBuff);
@@ -3948,7 +3948,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			}
 
 
-			if(!NextFlag && lstrcmp(decode, "*ÀúÁÖ±â¼ú") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Ö±ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->SkillCurse = atoi(strBuff);
@@ -3956,7 +3956,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			}
 
 
-			if(!NextFlag && lstrcmp(decode, "*ÀÌµ¿Å¸ÀÔ") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½Ìµï¿½Å¸ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 
@@ -3964,7 +3964,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			}
 
 
-			if(!NextFlag && lstrcmp(decode, "*ÀÌµ¿¹üÀ§") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->MoveRange = (int)(atof(strBuff)*fONE);
@@ -3973,19 +3973,19 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 
 
-			if(!NextFlag && lstrcmp(decode, "*È°µ¿½Ã°£") == 0)
+			if(!NextFlag && lstrcmp(decode, "*È°ï¿½ï¿½ï¿½Ã°ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->ActiveHour = 0;
-				if(lstrcmpi(strBuff, "³·") == 0)
+				if(lstrcmpi(strBuff, "ï¿½ï¿½") == 0)
 					lpMonInfo->ActiveHour = 1;
-				if(lstrcmpi(strBuff, "¹ã") == 0)
+				if(lstrcmpi(strBuff, "ï¿½ï¿½") == 0)
 					lpMonInfo->ActiveHour = -1;
 				NextFlag = TRUE;
 			}
 
 
-			if(!NextFlag && lstrcmp(decode, "*Á¶Á÷") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->GenerateGroup[0] = atoi(strBuff);
@@ -3995,7 +3995,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			}
 
 
-			if(!NextFlag && lstrcmp(decode, "*Áö´É") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->IQ = atoi(strBuff);
@@ -4003,7 +4003,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			}
 
 
-			if(!NextFlag && lstrcmp(decode, "*±¸º°ÄÚµå") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->ClassCode = atoi(strBuff);
@@ -4011,7 +4011,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			}
 
 
-			if(!NextFlag && (lstrcmp(decode, "*½ºÅÏÀ²") == 0 || lstrcmp(decode, "*½ºÅÏ·ü") == 0))
+			if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½ï¿½Ï·ï¿½") == 0))
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->DamageStunPers = atoi(strBuff);
@@ -4019,7 +4019,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			}
 
 
-			if(!NextFlag && lstrcmp(decode, "*Ç°¼º") == 0)
+			if(!NextFlag && lstrcmp(decode, "*Ç°ï¿½ï¿½") == 0)
 			{
 				lpMonInfo->Nature = smCHAR_MONSTER_NATURAL;
 
@@ -4039,21 +4039,21 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			}
 
 
-			if(!NextFlag && lstrcmp(decode, "*ÀÌº¥Æ®ÄÚµå") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½Ìºï¿½Æ®ï¿½Úµï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 
 				lpMonInfo->EventCode = atoi(strBuff);
 				NextFlag = TRUE;
 			}
-			if(!NextFlag && lstrcmp(decode, "*ÀÌº¥Æ®Á¤º¸") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½Ìºï¿½Æ®ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 
 				lpMonInfo->EventInfo = atoi(strBuff);
 				NextFlag = TRUE;
 			}
-			if(!NextFlag && lstrcmp(decode, "*ÀÌº¥Æ®¾ÆÀÌÅÛ") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½Ìºï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 
@@ -4071,17 +4071,17 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 
 
-			if(!NextFlag && lstrcmp(decode, "*Æ¯¼ö°ø°Ý·ü") == 0)
+			if(!NextFlag && lstrcmp(decode, "*Æ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ý·ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->SpAttackPercetage = ConvPercent8(atoi(strBuff));
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*¾ðµ¥µå") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ðµ¥µï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
-				if(lstrcmp(strBuff, "À¯") == 0 || lstrcmp(strBuff, "ÀÖÀ½") == 0)
+				if(lstrcmp(strBuff, "ï¿½ï¿½") == 0 || lstrcmp(strBuff, "ï¿½ï¿½ï¿½ï¿½") == 0)
 				{
 					lpMonInfo->Undead = TRUE;
 					lpCharInfo->Brood = smCHAR_MONSTER_UNDEAD;
@@ -4095,7 +4095,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*¸ó½ºÅÍÁ¾Á·") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				if(strBuff[0])
@@ -4103,19 +4103,19 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 					lpCharInfo->Brood = smCHAR_MONSTER_NORMAL;
 
-					if(lstrcmp(strBuff, "¾ðµ¥µå") == 0)
+					if(lstrcmp(strBuff, "ï¿½ðµ¥µï¿½") == 0)
 					{
 						lpCharInfo->Brood = smCHAR_MONSTER_UNDEAD;
 					}
-					else if(lstrcmp(strBuff, "¹ÂÅÏÆ®") == 0)
+					else if(lstrcmp(strBuff, "ï¿½ï¿½ï¿½ï¿½Æ®") == 0)
 					{
 						lpCharInfo->Brood = smCHAR_MONSTER_MUTANT;
 					}
-					else if(lstrcmp(strBuff, "µð¸Õ") == 0)
+					else if(lstrcmp(strBuff, "ï¿½ï¿½ï¿½") == 0)
 					{
 						lpCharInfo->Brood = smCHAR_MONSTER_DEMON;
 					}
-					else if(lstrcmp(strBuff, "¸ÞÄ«´Ð") == 0)
+					else if(lstrcmp(strBuff, "ï¿½ï¿½Ä«ï¿½ï¿½") == 0)
 					{
 						lpCharInfo->Brood = smCHAR_MONSTER_MECHANIC;
 					}
@@ -4124,7 +4124,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 
 
-			if(!NextFlag && lstrcmp(decode, "*°æÇèÄ¡") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Ä¡") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->GetExp = atoi(strBuff);
@@ -4133,7 +4133,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			}
 
 
-			if(!NextFlag && lstrcmp(decode, "*¹°¾àº¸À¯¼ö") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½àº¸ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->PotionCount = atoi(strBuff);
@@ -4141,7 +4141,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			}
 
 
-			if(!NextFlag && lstrcmp(decode, "*¹°¾àº¸À¯·ü") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½àº¸ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->PotionPercent = atoi(strBuff);
@@ -4151,20 +4151,20 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 
 
-			if(!NextFlag && lstrcmp(decode, "*¾ÆÀÌÅÛ¸ðµÎ") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Û¸ï¿½ï¿½") == 0)
 			{
 				lpMonInfo->AllSeeItem = TRUE;
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*¾ÆÀÌÅÛÄ«¿îÅÍ") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->FallItemMax = atoi(strBuff);
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*Ãß°¡¾ÆÀÌÅÛ") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->FallItems_Plus[lpMonInfo->FallItemPlusCount].Percentage = atoi(strBuff);
@@ -4185,7 +4185,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*¾ÆÀÌÅÛ") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				percent = atoi(strBuff);
@@ -4193,7 +4193,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				lpMonInfo->FallItemPerMax += percent;
 
 				p = GetWord(strBuff, p);
-				if(lstrcmp(strBuff, "¾øÀ½") == 0)
+				if(lstrcmp(strBuff, "ï¿½ï¿½ï¿½ï¿½") == 0)
 				{
 
 					if(rsServerConfig.TestSeverMode)
@@ -4210,7 +4210,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				}
 				else
 				{
-					if(lstrcmp(strBuff, "µ·") == 0)
+					if(lstrcmp(strBuff, "ï¿½ï¿½") == 0)
 					{
 
 						lpMonInfo->FallItems[lpMonInfo->FallItemCount].dwItemCode = sinGG1 | sin01;
@@ -4267,7 +4267,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			}
 
 
-			if(!NextFlag && lstrcmp(decode, "*¹«±âÆÇ¸Å") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½") == 0)
 			{
 				while(1)
 				{
@@ -4287,7 +4287,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*¹æ¾î±¸ÆÇ¸Å") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½î±¸ï¿½Ç¸ï¿½") == 0)
 			{
 				while(1)
 				{
@@ -4307,7 +4307,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*ÀâÈ­ÆÇ¸Å") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½È­ï¿½Ç¸ï¿½") == 0)
 			{
 				while(1)
 				{
@@ -4327,12 +4327,12 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*½ºÅ³¼ö·Ã") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				lpMonInfo->SkillMaster = TRUE;
 				NextFlag = TRUE;
 			}
-			if(!NextFlag && lstrcmp(decode, "*Á÷¾÷ÀüÈ¯") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¯") == 0)
 			{
 				lpMonInfo->SkillChangeJob = TRUE;
 
@@ -4343,7 +4343,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*ÀÌº¥Æ®¸ÅÇ¥¼Ò") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½Ìºï¿½Æ®ï¿½ï¿½Ç¥ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				if(strBuff[0])
@@ -4353,40 +4353,40 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 				NextFlag = TRUE;
 			}
-			if(!NextFlag && lstrcmp(decode, "*¾ÆÀÌÅÛº¸°ü") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ûºï¿½ï¿½ï¿½") == 0)
 			{
 				lpMonInfo->WareHouseMaster = TRUE;
 				NextFlag = TRUE;
 			}
-			if(!NextFlag && lstrcmp(decode, "*¾ÆÀÌÅÛÁ¶ÇÕ") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				lpMonInfo->ItemMix = TRUE;
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*¾ÆÀÌÅÛÁ¦·Ã") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				lpMonInfo->Smelting = TRUE;
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*¾ÆÀÌÅÛÁ¦ÀÛ") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				lpMonInfo->Manufacture = TRUE;
 				NextFlag = TRUE;
 			}
-			if(!NextFlag && lstrcmp(decode, "*¾ÆÀÌÅÛ¿¬±Ý") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½") == 0)
 			{
 				lpMonInfo->ItemMix = 200;
 				NextFlag = TRUE;
 			}
-			if(!NextFlag && lstrcmp(decode, "*¾ÆÀÌÅÛ¿¡ÀÌÂ¡") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½Â¡") == 0)
 			{
 				lpMonInfo->ItemAging = TRUE;
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*¹Í½ºÃ³¸®¼Â") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½Í½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				lpMonInfo->MixtureReset = TRUE;
 				NextFlag = TRUE;
@@ -4438,35 +4438,35 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				NextFlag = TRUE;
 			}
 						
-			if(!NextFlag && lstrcmp(decode, "*¸ð±ÝÇÔ") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				lpMonInfo->CollectMoney = TRUE;
 				NextFlag = TRUE;
 			}
 #ifdef _LANGUAGE_VEITNAM
-			if(!NextFlag && lstrcmp(decode, "*²ÎÀÌÁö·Õ") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				lpMonInfo->WowEvent = TRUE;
 				NextFlag = TRUE;
 			}
 #endif
-			if(!NextFlag && lstrcmp(decode, "*°æÇ°ÃßÃ·") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½Ç°ï¿½ï¿½Ã·") == 0)
 			{
 				lpMonInfo->EventGift = TRUE;
 				NextFlag = TRUE;
 			}
-			if(!NextFlag && lstrcmp(decode, "*Å¬·£±â´É") == 0)
+			if(!NextFlag && lstrcmp(decode, "*Å¬ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				lpMonInfo->ClanNPC = TRUE;
 				NextFlag = TRUE;
 			}
-			if(!NextFlag && lstrcmp(decode, "*°æÇ°¹è´Þ") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½Ç°ï¿½ï¿½ï¿½") == 0)
 			{
 				lpMonInfo->GiftExpress = TRUE;
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*À®Äù½ºÆ®") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®") == 0)
 			{
 				p = GetWord(strBuff, p);
 				if(strBuff[0])
@@ -4476,7 +4476,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*Äù½ºÆ®ÀÌº¥Æ®") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ìºï¿½Æ®") == 0)
 			{
 
 				p = GetWord(strBuff, p);
@@ -4488,7 +4488,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*º°Æ÷ÀÎÆ®Àû¸³") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				if(strBuff[0])
@@ -4498,13 +4498,13 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 				NextFlag = TRUE;
 			}
-			if(!NextFlag && lstrcmp(decode, "*±âºÎÇÔ") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				lpMonInfo->GiveMoneyNpc = TRUE;
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*ÅÚ·¹Æ÷Æ®") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½Ú·ï¿½ï¿½ï¿½Æ®") == 0)
 			{
 				p = GetWord(strBuff, p);
 				if(strBuff[0])
@@ -4514,7 +4514,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 				NextFlag = TRUE;
 			}
-			if(!NextFlag && lstrcmp(decode, "*ºí·¹½ºÄ³½½") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				if(strBuff[0])
@@ -4524,7 +4524,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 				NextFlag = TRUE;
 			}
-			if(!NextFlag && lstrcmp(decode, "*¼³¹®Á¶»ç") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				if(strBuff[0])
@@ -4535,7 +4535,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*µ¿¿µ»óÁ¦¸ñ") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 				if(strBuff[0])
@@ -4544,7 +4544,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				}
 				NextFlag = TRUE;
 			}
-			if(!NextFlag && lstrcmp(decode, "*µ¿¿µ»ó°æ·Î") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 				if(strBuff[0])
@@ -4554,7 +4554,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				NextFlag = TRUE;
 			}
 
-			if(!NextFlag && lstrcmp(decode, "*ÃâÇö°£°Ý") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->OpenCount[0] = atoi(strBuff);
@@ -4562,7 +4562,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				lpMonInfo->OpenCount[1] = atoi(strBuff);
 				NextFlag = TRUE;
 			}
-			if(!NextFlag && lstrcmp(decode, "*Äù½ºÆ®ÄÚµå") == 0)
+			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Úµï¿½") == 0)
 			{
 				p = GetWord(strBuff, p);
 				lpMonInfo->QuestCode = atoi(strBuff);
@@ -4573,7 +4573,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*¿¬°áÆÄÀÏ") == 0)
+		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 
@@ -4634,7 +4634,7 @@ int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR
 		NextFlag = 0;
 
 
-		if(lstrcmp(decode, "*Ãâ¿¬ÀÚ") == 0 || lstrcmpi(decode, "*ACTOR") == 0)
+		if(lstrcmp(decode, "*ï¿½â¿¬ï¿½ï¿½") == 0 || lstrcmpi(decode, "*ACTOR") == 0)
 		{
 			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 			strcpy_s(lpStgMonList->rsMonster[MonCnt].szMonsterName, strBuff);
@@ -4657,7 +4657,7 @@ int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR
 			NextFlag = TRUE;
 		}
 
-		if(lstrcmp(decode, "*Ãâ¿¬ÀÚµÎ¸ñ") == 0 || lstrcmpi(decode, "*BOSS_ACTOR") == 0)
+		if(lstrcmp(decode, "*ï¿½â¿¬ï¿½ÚµÎ¸ï¿½") == 0 || lstrcmpi(decode, "*BOSS_ACTOR") == 0)
 		{
 
 			lpBossMonster = &lpStgMonList->sBossMonsters[lpStgMonList->BossMonsterCount];
@@ -4698,14 +4698,14 @@ int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR
 		}
 
 
-		if(!NextFlag && (lstrcmp(decode, "*ÃÖ´ëµ¿½ÃÃâÇö¼ö") == 0 || lstrcmp(decode, "*MAX_ACTOR_POS") == 0))
+		if(!NextFlag && (lstrcmp(decode, "*ï¿½Ö´ëµ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*MAX_ACTOR_POS") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpStgMonList->LimitMax = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "*ÃâÇö°£°Ý") == 0 || lstrcmp(decode, "*DELAY") == 0))
+		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*DELAY") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpStgMonList->OpenInterval = (1 << atoi(strBuff));
@@ -4718,7 +4718,7 @@ int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "*ÃâÇö¼ö") == 0 || lstrcmp(decode, "*MAX_ACTOR") == 0))
+		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*MAX_ACTOR") == 0))
 		{
 			p = GetWord(strBuff, p);
 			lpStgMonList->OpenLimit = atoi(strBuff);
@@ -6213,5 +6213,7 @@ int ReadCustomCracker(char *szCrackFile, TRANS_FIND_CRACKER *lpTransFindCrack)
 
 	return cnt;
 }
+
+
 
 

@@ -29,3 +29,6 @@ private:
 
 	void OnClickToggleWindow();
 };
+
+
+

@@ -42,3 +42,7 @@ const char * ConfirmationBox::GetDoc2() const
 {
 	return m_Doc2.c_str();
 }
+
+
+
+

@@ -52,3 +52,5 @@ template <class T> class HoEffectMinMax
 
 #endif
  
+
+

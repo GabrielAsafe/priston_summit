@@ -9782,3 +9782,5 @@ void AssaSkyMeteoParticle::Start(POINT3D *pCur, POINT3D *pDest, int delay, int n
 	if(GameMode != 1)
 		esPlaySound(20, 400 - int(length / 100.f));
 }
+
+

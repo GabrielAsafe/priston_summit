@@ -72,3 +72,7 @@ class CLANEntity_chip cClanChip;
 extern class CLANEntity_chip cClanChip;
 
 #endif
+
+
+
+

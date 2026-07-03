@@ -37,7 +37,7 @@ void cHELLSGATE::Main()
 		if (dwTickWaiting && dwTickWaiting + HG_WAIT_TIME < GetCurrentTime())
 		{
 			SpawnBoss();
-			SendMessageToPlayers("> O Hell's Gate começou, derrote o boss e obtenha a sua recompensa.");
+			SendMessageToPlayers("> O Hell's Gate comeï¿½ou, derrote o boss e obtenha a sua recompensa.");
 			return;
 		}
 
@@ -59,17 +59,17 @@ void cHELLSGATE::SendOpenNpc(rsPLAYINFO * lpPlayInfo)
 {
 	if (vPlayers.size() >= MAX_HG_PLAYER)
 	{
-		SendQuickMessage2(lpPlayInfo, "> O evento está cheio.");
+		SendQuickMessage2(lpPlayInfo, "> O evento estï¿½ cheio.");
 		return;
 	}
 
 	if (iState != 1)
 	{
 		if (iState == 0)
-			SendQuickMessage2(lpPlayInfo, "> O evento ainda não abriu.");
+			SendQuickMessage2(lpPlayInfo, "> O evento ainda nï¿½o abriu.");
 
 		if (iState == 2)
-			SendQuickMessage2(lpPlayInfo, "> O evento já está em andamento.");
+			SendQuickMessage2(lpPlayInfo, "> O evento jï¿½ estï¿½ em andamento.");
 
 		return;
 	}
@@ -84,17 +84,17 @@ void cHELLSGATE::RecvJoinHg(rsPLAYINFO * lpPlayInfo)
 {
 	if (vPlayers.size() >= MAX_HG_PLAYER)
 	{
-		SendQuickMessage2(lpPlayInfo, "> O evento está cheio.");
+		SendQuickMessage2(lpPlayInfo, "> O evento estï¿½ cheio.");
 		return;
 	}
 
 	if (iState != 1)
 	{
 		if (iState == 0)
-			SendQuickMessage2(lpPlayInfo, "> O evento ainda não abriu.");
+			SendQuickMessage2(lpPlayInfo, "> O evento ainda nï¿½o abriu.");
 
 		if (iState == 2)
-			SendQuickMessage2(lpPlayInfo, "> O evento já está em andamento.");
+			SendQuickMessage2(lpPlayInfo, "> O evento jï¿½ estï¿½ em andamento.");
 
 		return;
 	}
@@ -124,12 +124,12 @@ void cHELLSGATE::StartEvent()
 	dwTick = 0;
 	dwTickWaiting = GetCurrentTime();
 
-	//SendMessageToPlayers("> O Hell's Gate está aberto.", true);
+	//SendMessageToPlayers("> O Hell's Gate estï¿½ aberto.", true);
 }
 
 void cHELLSGATE::SpawnBoss()
 {
-	lpBoss = OpenMonsterFromName("Espírito do Mal", -3624 * fONE, 484 * fONE, -43172 * fONE);
+	lpBoss = OpenMonsterFromName("Espï¿½rito do Mal", -3624 * fONE, 484 * fONE, -43172 * fONE);
 
 	dwTick = GetCurrentTime();
 	iState = 2;
@@ -219,3 +219,5 @@ void cHELLSGATE::SendLeaveArena(rsPLAYINFO * lpPlayInfo)
 	sPacket.size = sizeof(smTRANS_COMMAND);
 	lpPlayInfo->lpsmSock->Send((char*)&sPacket, sPacket.size, TRUE);
 }
+
+

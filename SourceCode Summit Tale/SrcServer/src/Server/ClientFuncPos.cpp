@@ -445,3 +445,5 @@ int	rsCompClientFuncMem2(rsPLAYINFO *lpPlayInfo, DWORD dwFuncCode)
 	return FALSE;
 }
 
+
+

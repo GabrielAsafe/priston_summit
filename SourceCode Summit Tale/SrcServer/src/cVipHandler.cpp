@@ -97,3 +97,5 @@ bool cVipHandler::returnVip(rsPLAYINFO* lpPlayInfo)
 
 	return false;
 }
+
+

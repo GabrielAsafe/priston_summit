@@ -2670,3 +2670,5 @@ char* szArmorNumFile_New_2[MAX_JOBNUM][ARMOR_FILE_MAX] = //Nova tabela de armadu
 	},
 	
 };
+
+

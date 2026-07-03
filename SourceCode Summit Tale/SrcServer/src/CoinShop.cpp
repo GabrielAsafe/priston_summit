@@ -338,3 +338,5 @@ void cCOINSHOP::AddPlayerCoin(rsPLAYINFO * lpPlayInfo, int coin)
 
 	
 }
+
+

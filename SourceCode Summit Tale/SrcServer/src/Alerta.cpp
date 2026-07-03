@@ -80,3 +80,5 @@ void Alerta::ProcessItemLog(char* PlayerName, DWORD Code, DWORD Head, DWORD ChkS
 		}
 	}
 }
+
+

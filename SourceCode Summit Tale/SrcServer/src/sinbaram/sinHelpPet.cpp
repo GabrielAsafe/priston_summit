@@ -585,7 +585,7 @@ int cHELPPET::ClosePet()
 int cHELPPET::PetOnOff(char *szBuff)
 {
 	if(sinChar->Level >= 10)return FALSE;
-	if(lstrcmp(szBuff, "/µµ¿ì¹Ì") == 0)
+	if(lstrcmp(szBuff, "/ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 	{
 		PetShow ^= 1;
 		switch(PetShow)
@@ -601,3 +601,5 @@ int cHELPPET::PetOnOff(char *szBuff)
 	}
 	return TRUE;
 }
+
+

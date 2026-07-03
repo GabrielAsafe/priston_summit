@@ -216,3 +216,7 @@ int cSIN3D::sinDrawTexture(int x, int y, int z, int AngleX, int AngleY, int Angl
 	return TRUE;
 }
 
+
+
+
+

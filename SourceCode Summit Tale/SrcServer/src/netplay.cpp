@@ -1900,7 +1900,7 @@ int SendChatMessageToServer(char *szChatMessage)
 			}
 
 
-			len = rsCompString("/ÇÊµåº¯°æ", szMessage);
+			len = rsCompString("/ï¿½Êµåº¯ï¿½ï¿½", szMessage);
 			if(!len)
 				len = rsCompString("/$city", szMessage);
 
@@ -2177,7 +2177,7 @@ int SetIpColor(HDC hdc, DWORD dwIP)
 
 	switch (dwIP)
 	{
-	case 0:		SetTextColor(hdc,RGB(255, 128, 96));		break; // vermelho padrão
+	case 0:		SetTextColor(hdc,RGB(255, 128, 96));		break; // vermelho padrï¿½o
 	case 1:		SetTextColor(hdc,RGB(125, 180, 175));		break; // azul pm
 	case 2:		SetTextColor(hdc,RGB(125, 180, 175));		break; // azul pm
 	case 3:		SetTextColor(hdc,RGB(230, 160, 255));		break; // roxo gm
@@ -3604,11 +3604,11 @@ int SendGetRecordData(char *szName)
 }
 
 char *szCmdOpenMonster[10] = {
-	"È©°íºí¸°",
-	"È©°íºí¸°",
-	"È©°íºí¸°",
-	"Å·È£ÇÇ",
-	"Å¸ÀÌÅº",
+	"È©ï¿½ï¿½ï¿½ï¿½",
+	"È©ï¿½ï¿½ï¿½ï¿½",
+	"È©ï¿½ï¿½ï¿½ï¿½",
+	"Å·È£ï¿½ï¿½",
+	"Å¸ï¿½ï¿½Åº",
 	0,0,0,0,0
 };
 
@@ -4534,7 +4534,7 @@ int Skil_RangeAttack(int x, int y, int z, int range, int power, int TargetState)
 
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - Skil_RangeAttack ");
+	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - Skil_RangeAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -4699,7 +4699,7 @@ int Skil_RangeBoxAttack(smCHAR *lpCurChar, RECT *lpRect, int power, int TargetSt
 
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - Skil_RangeBoxAttack ");
+	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - Skil_RangeBoxAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -4932,7 +4932,7 @@ int QuickSendTransAttack(smCHAR *lpChar, int power, int AttackState, int Resista
 	int pow;
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - QuickSendTransAttack ");
+	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - QuickSendTransAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -7039,7 +7039,7 @@ int	SkillPlay_DivineLightning_Select(smCHAR *lpChar, int SkillPoint)
 	smWINSOCK *lpsmSendSock = 0;
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - SkillPlay_DivineLightning_Select ");
+	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - SkillPlay_DivineLightning_Select ");
 	quit = 1;
 	return TRUE;
 
@@ -9345,4 +9345,6 @@ int Xigncode_Client_Recv(smWINSOCK *lpsmSock, XIGNCODE_PACKET *pack)
 	return TRUE;
 }
 #endif
+
+
 

@@ -959,7 +959,7 @@ int CheeseTestEffectImage()
 
 
 
-		if(!NextFlag && lstrcmp(sinDecode, "*ÆÄÀÏÇü½Ä") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 
 			if(sinObjCount)
@@ -986,7 +986,7 @@ int CheeseTestEffectImage()
 
 		}
 
-		if(!NextFlag && lstrcmp(sinDecode, "*ÀÌ¹ÌÁöÅ©±â") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½Ì¹ï¿½ï¿½ï¿½Å©ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			ImageSize.x = atoi(strBuff);
@@ -997,7 +997,7 @@ int CheeseTestEffectImage()
 		}
 
 
-		if(!NextFlag && lstrcmp(sinDecode, "*ÀÌ¹ÌÁöÆÄÀÏÀÌ¸§") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			wsprintf(szTempBuff, "image\\Sinimage\\%s", strBuff);
@@ -1026,63 +1026,63 @@ int CheeseTestEffectImage()
 
 		}
 
-		if(!NextFlag && lstrcmp(sinDecode, "*¾Ö´Ï¸ÞÀÌ¼Ç½ÃÀÛ") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½Ö´Ï¸ï¿½ï¿½Ì¼Ç½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cSinEffect2[Index].AniCount = atoi(strBuff);
 			NextFlag = TRUE;
 
 		}
-		if(!NextFlag && lstrcmp(sinDecode, "*¾Ö´Ï¸ÞÀÌ¼Ç³¡") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½Ö´Ï¸ï¿½ï¿½Ì¼Ç³ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cSinEffect2[Index].AniMax = atoi(strBuff);
 			NextFlag = TRUE;
 
 		}
-		if(!NextFlag && lstrcmp(sinDecode, "*¾Ö´Ï¸ÞÀÌ¼ÇÅ¸ÀÓ") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½Å¸ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cSinEffect2[Index].AniTime = atoi(strBuff);
 			NextFlag = TRUE;
 
 		}
-		if(!NextFlag && lstrcmp(sinDecode, "*ÀÌÆåÆ®½Ã°£") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ã°ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cSinEffect2[Index].Max_Time = atoi(strBuff);
 			NextFlag = TRUE;
 
 		}
-		if(!NextFlag && lstrcmp(sinDecode, "*Åõ¸í½ÃÀÛ½Ã°£") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û½Ã°ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cSinEffect2[Index].AlphaTime = atoi(strBuff);
 			NextFlag = TRUE;
 
 		}
-		if(!NextFlag && lstrcmp(sinDecode, "*Åõ¸íµµ") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cSinEffect2[Index].AlphaAmount = atoi(strBuff);
 			NextFlag = TRUE;
 
 		}
-		if(!NextFlag && lstrcmp(sinDecode, "*Åõ¸íµô·¹ÀÌ½Ã°£") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½Ã°ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cSinEffect2[Index].AlphaCount = atoi(strBuff);
 			NextFlag = TRUE;
 
 		}
-		if(!NextFlag && lstrcmp(sinDecode, "*Åõ¸íµô·¹ÀÌ½Ã°£") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½Ã°ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cSinEffect2[Index].AlphaCount = atoi(strBuff);
 			NextFlag = TRUE;
 
 		}
-		if(!NextFlag && lstrcmp(sinDecode, "*ÁÂÇ¥") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½Ç¥") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cSinEffect2[Index].Posi.x += atoi(strBuff);
@@ -1094,7 +1094,7 @@ int CheeseTestEffectImage()
 
 		}
 
-		if(!NextFlag && lstrcmp(sinDecode, "*³¡") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½") == 0)
 		{
 
 			Count++;
@@ -1495,3 +1495,7 @@ int sinSongPyeunEffect(POINT3D Posi)
 
 	return TRUE;
 }
+
+
+
+

@@ -1,91 +1,91 @@
 
 
-char *szMsg1 = "NhýÞng chiêìn binh cu?g chung môòt mu?\n\
-??h tr? toa? co? Priston tâòp hõòp \n\
-la? va?tha?h lâòp môòt hiêòp hôòi. ?? \n\
-go? la?'Clan'. Clan se?giu? ba? vêò \n\
-va?nu? dýõ?g ca? tha?h vi?. Khi  \n\
-lâòp môòt Clan, ba? pha? tra?phi?ðê? \n\
-ðãng ky? Ba? co?tiêìp tu? kh?g?    \n";
+char *szMsg1 = "Nhï¿½ï¿½ng chiï¿½ï¿½n binh cu?g chung mï¿½ï¿½t mu?\n\
+??h tr? toa? co? Priston tï¿½ï¿½p hï¿½ï¿½p \n\
+la? va?tha?h lï¿½ï¿½p mï¿½ï¿½t hiï¿½ï¿½p hï¿½ï¿½i. ?? \n\
+go? la?'Clan'. Clan se?giu? ba? vï¿½ï¿½ \n\
+va?nu? dï¿½ï¿½?g ca? tha?h vi?. Khi  \n\
+lï¿½ï¿½p mï¿½ï¿½t Clan, ba? pha? tra?phi?ï¿½ï¿½? \n\
+ï¿½ï¿½ng ky? Ba? co?tiï¿½ï¿½p tu? kh?g?    \n";
 
 
-char *szMsg2 = "Ðê?ta? môòt Clan,\n ba? câÌn pha? tra?n 500,000 va?g. Ba? co?muôìn tiêìp tu? \n kh?g?\n";
+char *szMsg2 = "ï¿½ï¿½?ta? mï¿½ï¿½t Clan,\n ba? cï¿½ï¿½n pha? tra?n 500,000 va?g. Ba? co?muï¿½ï¿½n tiï¿½ï¿½p tu? \n kh?g?\n";
 
-char *szMsg21 = "Ba? câÌn 500,000 va?g\n\
-Ðê?tra?thuêì ta? Clan.\n\
-Ha? quay la? ðây khi na? co???tiêÌn nhe?";
-
-
-char *szMsg3 = "Ha? nhâòp va? t? clan câÌn ta?.\n";
+char *szMsg21 = "Ba? cï¿½ï¿½n 500,000 va?g\n\
+ï¿½ï¿½?tra?thuï¿½ï¿½ ta? Clan.\n\
+Ha? quay la? ï¿½ï¿½y khi na? co???tiï¿½ï¿½n nhe?";
 
 
-char *szMsg4 = "Khi ta? môòt Clan tha?h c?g,  \n\
-ngýõ? ch? co?thêÒ sýÒ du?g biêÒu    \n\
-týõ?g va?t? cu? Clan.            \n\
-Ðê?biêìt th? th?g tin, vui lo?g  \n\
+char *szMsg3 = "Ha? nhï¿½ï¿½p va? t? clan cï¿½ï¿½n ta?.\n";
+
+
+char *szMsg4 = "Khi ta? mï¿½ï¿½t Clan tha?h c?g,  \n\
+ngï¿½ï¿½? ch? co?thï¿½ï¿½ sï¿½ï¿½ du?g biï¿½ï¿½u    \n\
+tï¿½ï¿½?g va?t? cu? Clan.            \n\
+ï¿½ï¿½?biï¿½ï¿½t th? th?g tin, vui lo?g  \n\
 tham kha? tr? website. Sau khi   \n\
-Ðãng nhâòp, ba? co?thêÒ sýÒa ðô?     \n\
-th?g tin vêÌ Clan. Nh?g trýõ? ??\n\
-Clan cu? ba? pha? ðýõòc ðãng ky?   \n\
-chi?h thýìc.\n";
+ï¿½ï¿½ng nhï¿½ï¿½p, ba? co?thï¿½ï¿½ sï¿½ï¿½a ï¿½ï¿½?     \n\
+th?g tin vï¿½ï¿½ Clan. Nh?g trï¿½ï¿½? ??\n\
+Clan cu? ba? pha? ï¿½ï¿½ï¿½ï¿½c ï¿½ï¿½ng ky?   \n\
+chi?h thï¿½ï¿½c.\n";
 
 
-char *szMsg5 = "Ðê?môòt clan ðýõòc chi?h thýìc ðãng  \n\
-ky? ba? câÌn pha? co?nhýÞng ?êÌu kiêòn sau:   \n\
-*Sôì tha?h vi? pha? lõìn h? 6 (Bao gôÌm ca?chu?Clan)\n\
-*Ba? co?10 nga? ðê?tuyêÒn môò tha?h vi?\n\
-*Ngay ca?khi Clan ðýõòc ðãng ky?    \n\
- chi?h thýìc, ba? cu?g câÌn pha? duy \n\
- tri?tôìi thiêÒu 6 tha?h vi? trong  \n\
- clan. Nêìu kh?g, Clan cu? ba? se? \n\
- týò ðô?g bi?huy?bo?                \n";
+char *szMsg5 = "ï¿½ï¿½?mï¿½ï¿½t clan ï¿½ï¿½ï¿½ï¿½c chi?h thï¿½ï¿½c ï¿½ï¿½ng  \n\
+ky? ba? cï¿½ï¿½n pha? co?nhï¿½ï¿½ng ?ï¿½ï¿½u kiï¿½ï¿½n sau:   \n\
+*Sï¿½ï¿½ tha?h vi? pha? lï¿½ï¿½n h? 6 (Bao gï¿½ï¿½m ca?chu?Clan)\n\
+*Ba? co?10 nga? ï¿½ï¿½?tuyï¿½ï¿½n mï¿½ï¿½ tha?h vi?\n\
+*Ngay ca?khi Clan ï¿½ï¿½ï¿½ï¿½c ï¿½ï¿½ng ky?    \n\
+ chi?h thï¿½ï¿½c, ba? cu?g cï¿½ï¿½n pha? duy \n\
+ tri?tï¿½ï¿½i thiï¿½ï¿½u 6 tha?h vi? trong  \n\
+ clan. Nï¿½ï¿½u kh?g, Clan cu? ba? se? \n\
+ tï¿½ï¿½ ï¿½ï¿½?g bi?huy?bo?                \n";
 
-char *szClanMakeFinishMsg = "Qua?tri?h khõÒi ta? Clan ??hoa? tâìt.\n\
-Vui lo?g tu? theo nhýÞng quy ??h\n\\
-va?ha? côì gãìng ðê?Clan ðýõòc chi?h thýìc ðãng ky?\n";
-
-
-char *szMsg254 ="Ðý?g nghi?ðê? viêòc la?h ?? môòt  \n\
-clan võìi nhýÞng ky?n?g thâìp ke?  \n\
-nh?vâòy. Ha? quay la? va?ba? tro?g!\n"
-
-char *szMsg15 = "Ba? co?thýòc sýò muôìn gia? ta? Clan?";
-char *szMark1 = "Clan cu? ba? kh?g co?biêÒu týõ?g.";
-char *szMark2 = "Ba? co?muôìn ðãng ky?biêÒu týõ?g Clan kh?g?";
-char *szMark3 = "Ba? co?muôìn thay ðô? biêÒu týõ?g Clan kh?g?";
-
-char *szJoin = "T? Clan: %s\nChu?Clan : %s\n\n GýÒi th?g ?êòp mõÌi ba? gia nhâòp.\n\
-Ba? co?muôìn tham gia Clan na? kh?g?\n";
-char *szSecession = "Clan: %s\nBa? co?thýòc sýò muôìn rõÌi kho? Clan na? kh?g";
-
-char *szMsg6 = "Ðê?môòt Clan ðýõòc chi?h thýìc hoa? \n\
-ðô?g. Ba? câÌn pha? co?i? nhâìt 6  \n\
-tha?h vi?. Ba? co?%d nga? ðê?   \n\
-tuyêÒn môò tha?h vi?.";
+char *szClanMakeFinishMsg = "Qua?tri?h khï¿½ï¿½i ta? Clan ??hoa? tï¿½ï¿½t.\n\
+Vui lo?g tu? theo nhï¿½ï¿½ng quy ??h\n\\
+va?ha? cï¿½ï¿½ gï¿½ï¿½ng ï¿½ï¿½?Clan ï¿½ï¿½ï¿½ï¿½c chi?h thï¿½ï¿½c ï¿½ï¿½ng ky?\n";
 
 
+char *szMsg254 ="ï¿½ï¿½?g nghi?ï¿½ï¿½? viï¿½ï¿½c la?h ?? mï¿½ï¿½t  \n\
+clan vï¿½ï¿½i nhï¿½ï¿½ng ky?n?g thï¿½ï¿½p ke?  \n\
+nh?vï¿½ï¿½y. Ha? quay la? va?ba? tro?g!\n"
 
-char *szServerConnectErrorMsg = "Kh?g thêÒ kêìt nôìi võìi ma? chu?\n\
-Vui lo?g thýÒ la? sau.\n";
+char *szMsg15 = "Ba? co?thï¿½ï¿½c sï¿½ï¿½ muï¿½ï¿½n gia? ta? Clan?";
+char *szMark1 = "Clan cu? ba? kh?g co?biï¿½ï¿½u tï¿½ï¿½?g.";
+char *szMark2 = "Ba? co?muï¿½ï¿½n ï¿½ï¿½ng ky?biï¿½ï¿½u tï¿½ï¿½?g Clan kh?g?";
+char *szMark3 = "Ba? co?muï¿½ï¿½n thay ï¿½ï¿½? biï¿½ï¿½u tï¿½ï¿½?g Clan kh?g?";
 
-char *szReadClanMarkErrorMsg = "LôÞi khi ?? th?g tin vêÌ Clan\n\
-týÌ server.\n";
+char *szJoin = "T? Clan: %s\nChu?Clan : %s\n\n Gï¿½ï¿½i th?g ?ï¿½ï¿½p mï¿½ï¿½i ba? gia nhï¿½ï¿½p.\n\
+Ba? co?muï¿½ï¿½n tham gia Clan na? kh?g?\n";
+char *szSecession = "Clan: %s\nBa? co?thï¿½ï¿½c sï¿½ï¿½ muï¿½ï¿½n rï¿½ï¿½i kho? Clan na? kh?g";
 
-char *szCancelMakeClan = "Ba? ??xoa?bo?th?g tin vêÌ Clan.\n";
+char *szMsg6 = "ï¿½ï¿½?mï¿½ï¿½t Clan ï¿½ï¿½ï¿½ï¿½c chi?h thï¿½ï¿½c hoa? \n\
+ï¿½ï¿½?g. Ba? cï¿½ï¿½n pha? co?i? nhï¿½ï¿½t 6  \n\
+tha?h vi?. Ba? co?%d nga? ï¿½ï¿½?   \n\
+tuyï¿½ï¿½n mï¿½ï¿½ tha?h vi?.";
 
-char *szTranzationError = "Gãòp lôÞi DB . CýÒa sôÒ na? se???g la?.\n";
 
-char *szInsertClanWonError1 = "Nh? vâòt na? hiêòn ?ng la?tha?h vi? cu? môòt Clan kha?.\n";
 
-char *szClanNameError = "T? ma?ba? lýòa cho? ??tôÌn ta?.\n";
+char *szServerConnectErrorMsg = "Kh?g thï¿½ï¿½ kï¿½ï¿½t nï¿½ï¿½i vï¿½ï¿½i ma? chu?\n\
+Vui lo?g thï¿½ï¿½ la? sau.\n";
 
-char *sz100Error = "LôÞi kh?g xa? ??h.\n\
-CýÒa sôÒ na? se???g la?.\n";
+char *szReadClanMarkErrorMsg = "Lï¿½ï¿½i khi ?? th?g tin vï¿½ï¿½ Clan\n\
+tï¿½ï¿½ server.\n";
 
-char *szDefaultError = "LôÞi nghi? tro?g ??xa? ra.\n\
-CýÒa sôÒ na? se???g la?.\n";
+char *szCancelMakeClan = "Ba? ??xoa?bo?th?g tin vï¿½ï¿½ Clan.\n";
 
-char *szReleseError = "Nh? vâòt na? kh?g pha? la?chu?hoãòc la?tha?h vi? cu? Clan\n";
+char *szTranzationError = "Gï¿½ï¿½p lï¿½ï¿½i DB . Cï¿½ï¿½a sï¿½ï¿½ na? se???g la?.\n";
+
+char *szInsertClanWonError1 = "Nh? vï¿½ï¿½t na? hiï¿½ï¿½n ?ng la?tha?h vi? cu? mï¿½ï¿½t Clan kha?.\n";
+
+char *szClanNameError = "T? ma?ba? lï¿½ï¿½a cho? ??tï¿½ï¿½n ta?.\n";
+
+char *sz100Error = "Lï¿½ï¿½i kh?g xa? ??h.\n\
+Cï¿½ï¿½a sï¿½ï¿½ na? se???g la?.\n";
+
+char *szDefaultError = "Lï¿½ï¿½i nghi? tro?g ??xa? ra.\n\
+Cï¿½ï¿½a sï¿½ï¿½ na? se???g la?.\n";
+
+char *szReleseError = "Nh? vï¿½ï¿½t na? kh?g pha? la?chu?hoï¿½ï¿½c la?tha?h vi? cu? Clan\n";
 
 
 char *szSecessionSuccess = "Ba? ??thoa? kho? Clan.\n";
@@ -93,87 +93,91 @@ char *szSecessionSuccess = "Ba? ??thoa? kho? Clan.\n";
 char *szSecession6DownMsg = "Huy?bo?tha?h c?g.\n\You have less than 6 members in your clan.\n";
 
 
-char *szSecessionChipMsg = "Ngýõ? ?ng muôìn rõÌi kho? Clan chi?h la?chu?Clan\n";
+char *szSecessionChipMsg = "Ngï¿½ï¿½? ?ng muï¿½ï¿½n rï¿½ï¿½i kho? Clan chi?h la?chu?Clan\n";
 
-char *szSecession2ErrorMsg = "Clan, tha?h vi? hoãòc chu?Clan kh?g tôÌn ta?\n";
-
-
-char *szClanJoinMsg = "Clan: %s\nChu?Clan: %s\nmember id: %s\n\n Muôìn ðãng ky?\n";
-
-char *szClanJoinError2Msg = "Ngýõ? na? ??tham gia Clan kha? rôÌi.\n";
-
-char *szClanJoinError3Msg = "Clan ??kh?g tôÌn ta? hoãòc kh?g pha? la?chu?Clan.\n";
-
-char *szClanJoinError4Msg = "Tâìt ca?tha?h vi? trong Clan ðê? co?level lõìn h? 32.\n";
-
-char *szClanJoinCancelMsg = "%s TýÌ chôìi gia nhâòp Clan.\n";
-
-char *szClanJoinsucesssMsg = "%s ??gia nhâòp Clan.\n";
+char *szSecession2ErrorMsg = "Clan, tha?h vi? hoï¿½ï¿½c chu?Clan kh?g tï¿½ï¿½n ta?\n";
 
 
+char *szClanJoinMsg = "Clan: %s\nChu?Clan: %s\nmember id: %s\n\n Muï¿½ï¿½n ï¿½ï¿½ng ky?\n";
+
+char *szClanJoinError2Msg = "Ngï¿½ï¿½? na? ??tham gia Clan kha? rï¿½ï¿½i.\n";
+
+char *szClanJoinError3Msg = "Clan ??kh?g tï¿½ï¿½n ta? hoï¿½ï¿½c kh?g pha? la?chu?Clan.\n";
+
+char *szClanJoinError4Msg = "Tï¿½ï¿½t ca?tha?h vi? trong Clan ï¿½ï¿½? co?level lï¿½ï¿½n h? 32.\n";
+
+char *szClanJoinCancelMsg = "%s Tï¿½ï¿½ chï¿½ï¿½i gia nhï¿½ï¿½p Clan.\n";
+
+char *szClanJoinsucesssMsg = "%s ??gia nhï¿½ï¿½p Clan.\n";
 
 
 
-char *szReMoveClanWonMsg = "??bi?khai trýÌ kho? Clan.\n";
-
-char *szReMoveHeaderMsg = "Ðây la?danh sa?h khai trýÌ\n";
 
 
-char *szReConfReleaseMsg = "Nêìu ba? gia? ta? clan, tâìt ca?\n\
-th?g tin vêÌ Clan se?bi?xoa?bo?   \n\
-Ba? co?muôìn tiêìp tu? nýÞa kh?g?   \n";
+char *szReMoveClanWonMsg = "??bi?khai trï¿½ï¿½ kho? Clan.\n";
 
-char *szNoRecordReleaseMsg = "Ba? co?muôìn gia? ta? clan\n\\
-trýõ? khi no?ðýõòc chi?h thýìc ðãng ky?\n\
-Ba? co?muôìn tiêìp tu? kh?g?\n";
-char *szFinishReleaseMsg = "Clan ??ðýõòc gia? ta?.\n";
+char *szReMoveHeaderMsg = "ï¿½ï¿½y la?danh sa?h khai trï¿½ï¿½\n";
 
-char *szSecessionMsg = "Nêìu ba? rõÌi kho? Clan, tâìt ca?ca? chýìc n?g na? se?biêìn mâìt.\n Ba? co?muôìn tiêìp tu? kh?g?\n";
+
+char *szReConfReleaseMsg = "Nï¿½ï¿½u ba? gia? ta? clan, tï¿½ï¿½t ca?\n\
+th?g tin vï¿½ï¿½ Clan se?bi?xoa?bo?   \n\
+Ba? co?muï¿½ï¿½n tiï¿½ï¿½p tu? nï¿½ï¿½a kh?g?   \n";
+
+char *szNoRecordReleaseMsg = "Ba? co?muï¿½ï¿½n gia? ta? clan\n\\
+trï¿½ï¿½? khi no?ï¿½ï¿½ï¿½ï¿½c chi?h thï¿½ï¿½c ï¿½ï¿½ng ky?\n\
+Ba? co?muï¿½ï¿½n tiï¿½ï¿½p tu? kh?g?\n";
+char *szFinishReleaseMsg = "Clan ??ï¿½ï¿½ï¿½ï¿½c gia? ta?.\n";
+
+char *szSecessionMsg = "Nï¿½ï¿½u ba? rï¿½ï¿½i kho? Clan, tï¿½ï¿½t ca?ca? chï¿½ï¿½c n?g na? se?biï¿½ï¿½n mï¿½ï¿½t.\n Ba? co?muï¿½ï¿½n tiï¿½ï¿½p tu? kh?g?\n";
 char *szFinishSecessionMsg = "Clan: %s\nTha?h vi? : %s\n ??thoa? kho? Clan.\n";
 
-char *szisCheckClanJangErrorMsg = "Ba? kh?g thêÒ ta? môòt Clan\n\
-Vi?ba? ?ng co?môòt nh? vâòt\n hiêòn ?ng la?chu?môòt Clan rôÌi.\n";
+char *szisCheckClanJangErrorMsg = "Ba? kh?g thï¿½ï¿½ ta? mï¿½ï¿½t Clan\n\
+Vi?ba? ?ng co?mï¿½ï¿½t nh? vï¿½ï¿½t\n hiï¿½ï¿½n ?ng la?chu?mï¿½ï¿½t Clan rï¿½ï¿½i.\n";
 
-char *szMoneyErrorMsg = "Kh?g co???tiêÌn\n ðê?ta? môòt Clan.\n"
-"Kh?g thêÒ ta? ðý? Clan.";
+char *szMoneyErrorMsg = "Kh?g co???tiï¿½ï¿½n\n ï¿½ï¿½?ta? mï¿½ï¿½t Clan.\n"
+"Kh?g thï¿½ï¿½ ta? ï¿½ï¿½? Clan.";
 
-char *szAbilityErrorMsg = "Ba? ch? co???EXP.\n ðê?ta? môòt Clan.\n";
+char *szAbilityErrorMsg = "Ba? ch? co???EXP.\n ï¿½ï¿½?ta? mï¿½ï¿½t Clan.\n";
 
-char *szRemoveShortClanWonMsg = "Nêìu ba? khai trýÌ tha?h vi? na?,\n Clan se?kh?g co???sôì tha?h vi? câÌn thiêìt,\n\
-Ba? co?chãìc chãìn kh?g?";
-char *szRemoveShowrtClanWonResultMsg = "Sôì tha?h vi? hiêòn co??ng \nnho?h? 6 ngýõ?. Ha? tuyêÒn \nmôò th? tha?h vi?.\n";
+char *szRemoveShortClanWonMsg = "Nï¿½ï¿½u ba? khai trï¿½ï¿½ tha?h vi? na?,\n Clan se?kh?g co???sï¿½ï¿½ tha?h vi? cï¿½ï¿½n thiï¿½ï¿½t,\n\
+Ba? co?chï¿½ï¿½c chï¿½ï¿½n kh?g?";
+char *szRemoveShowrtClanWonResultMsg = "Sï¿½ï¿½ tha?h vi? hiï¿½ï¿½n co??ng \nnho?h? 6 ngï¿½ï¿½?. Ha? tuyï¿½ï¿½n \nmï¿½ï¿½ th? tha?h vi?.\n";
 
-char *szNoName = "Ha? nhâòp va? t? Clan.\n";
+char *szNoName = "Ha? nhï¿½ï¿½p va? t? Clan.\n";
 
-char *szLoading = "?ng kêìt nôìi võìi ma? chu?\n";
+char *szLoading = "?ng kï¿½ï¿½t nï¿½ï¿½i vï¿½ï¿½i ma? chu?\n";
 
 
-char *szDeleteChaReleaseBefore = "Nh? vâòt na? hiêòn la?chu?môòt Clan.\n\
-Nêìu ba? xoa?no? Clan cu?g se?bi?huy?theo \n\
-Ba? co?muôìn tiêìp tu? kh?g?\n";
+char *szDeleteChaReleaseBefore = "Nh? vï¿½ï¿½t na? hiï¿½ï¿½n la?chu?mï¿½ï¿½t Clan.\n\
+Nï¿½ï¿½u ba? xoa?no? Clan cu?g se?bi?huy?theo \n\
+Ba? co?muï¿½ï¿½n tiï¿½ï¿½p tu? kh?g?\n";
 
-char *szDeleteChaRelease = "Clan ??ðýõòc xoa?bo?\n";
+char *szDeleteChaRelease = "Clan ??ï¿½ï¿½ï¿½ï¿½c xoa?bo?\n";
 
-char *szDeleteChaSecessionBefore = "Nh? vâòt na? ??la?tha?h vi? cu? môòt Clan.\n\
-Nêìu ba? xoa? no?se?bi?khai trýÌ ra kho? Clan\n\
-Ba? co?muôìn tiêìp tu? kh?g?\n";
+char *szDeleteChaSecessionBefore = "Nh? vï¿½ï¿½t na? ??la?tha?h vi? cu? mï¿½ï¿½t Clan.\n\
+Nï¿½ï¿½u ba? xoa? no?se?bi?khai trï¿½ï¿½ ra kho? Clan\n\
+Ba? co?muï¿½ï¿½n tiï¿½ï¿½p tu? kh?g?\n";
 
 char *szDeleteChaSecession = "Ba? ??thoa? kho? Clan.\n";
 
-char *szDeleteChaError = "Kh?g thêÒ xoa?Clan na?.\n Kh?g thêÒ xoa?nh? vâòt na?.\n";
-char *szMakeFinishClan = "Chu? mýÌng.\n[%s]\nBa? ??trõÒ tha?h tha?h vi? cu? Clan.\n";
-char *szClanWon6Down = "Clan cu? ba? ?ng co?i? h? 6 tha?h vi?.\n Ha? tuyêÒn môò th?.\n\
+char *szDeleteChaError = "Kh?g thï¿½ï¿½ xoa?Clan na?.\n Kh?g thï¿½ï¿½ xoa?nh? vï¿½ï¿½t na?.\n";
+char *szMakeFinishClan = "Chu? mï¿½ï¿½ng.\n[%s]\nBa? ??trï¿½ï¿½ tha?h tha?h vi? cu? Clan.\n";
+char *szClanWon6Down = "Clan cu? ba? ?ng co?i? h? 6 tha?h vi?.\n Ha? tuyï¿½ï¿½n mï¿½ï¿½ th?.\n\
 %s\n";
 
 
-char *szClanUserNoMakeMsg = "Clan : %s\n?ng ðãng ky?";
-char *szMakeFinishClanWon = "Clan : %s\nClan cu? ba? ??ðýõòc chi?h thýìc ðãng ky?\n";
-char *ClanServerInspect = "Ma? chu??ng ba? dýõ?g.\n";
+char *szClanUserNoMakeMsg = "Clan : %s\n?ng ï¿½ï¿½ng ky?";
+char *szMakeFinishClanWon = "Clan : %s\nClan cu? ba? ??ï¿½ï¿½ï¿½ï¿½c chi?h thï¿½ï¿½c ï¿½ï¿½ng ky?\n";
+char *ClanServerInspect = "Ma? chu??ng ba? dï¿½ï¿½?g.\n";
 char *szClanUserRelease = "Clan cu? ba? ??bi?gia? ta?.";
-char *Replay = "    Ha? thýÒ la?";
-char *szClanMakedowninfo = "?ng ðãng ky?Clan.";
+char *Replay = "    Ha? thï¿½ï¿½ la?";
+char *szClanMakedowninfo = "?ng ï¿½ï¿½ng ky?Clan.";
 
 
-char *szClanUserReleaseMsg = "Clan : %s\n qua?tri?h ðãng ky???bi?huy?bo?\n";
-char *szClanUserRemove = "Clan : %s\nTha?h vi? : %s\n??bi?khai trýÌ kho? Clan.\n";
+char *szClanUserReleaseMsg = "Clan : %s\n qua?tri?h ï¿½ï¿½ng ky???bi?huy?bo?\n";
+char *szClanUserRemove = "Clan : %s\nTha?h vi? : %s\n??bi?khai trï¿½ï¿½ kho? Clan.\n";
+
+
+
+
 

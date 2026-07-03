@@ -13,11 +13,11 @@ cHaPremiumItem  chaPremiumitem;
 
 #define  TELEPORT_FIELDMAX 64
 int TelePort_FieldNum[TELEPORT_FIELDMAX][3] = {
-	// EXPLICANDO A PRIMEIRA LINHA, { 0, 20, 0 }, 0 = Posição na lista do Core Mágico, 20 = Field 20, 0 = Level para entrar.
+	// EXPLICANDO A PRIMEIRA LINHA, { 0, 20, 0 }, 0 = Posiï¿½ï¿½o na lista do Core Mï¿½gico, 20 = Field 20, 0 = Level para entrar.
 	{ 0, 20, 0 }, // Estrada dos Ventos
 	{ 1, 19, 0 }, // Vale Tranquilo
-	{ 2, 17, 0 }, // Floresta dos Espíritos
-	{ 3, 0, 0 }, // Mata das Acácias
+	{ 2, 17, 0 }, // Floresta dos Espï¿½ritos
+	{ 3, 0, 0 }, // Mata das Acï¿½cias
 	{ 4, 2, 0 }, // Jardim da Liberdade
 	{ 5, 4, 0 }, // Refugio dos Ancioes
 	{ 6, 5, 0 }, // Castelo dos Perdidos
@@ -28,44 +28,44 @@ int TelePort_FieldNum[TELEPORT_FIELDMAX][3] = {
 	{ 11, 12, 55 }, // Terra Proibida
 	{ 12, 25, 55 }, // Caverna das Abelhas
 	{ 13, 24, 55 }, // Caverna dos Cogumelos
-	{ 14, 26, 65 }, // Santuário Sombrio 
-	{ 15, 13, 40 }, // Calabouço Antigo 1º Andar 
-	{ 16, 14, 50 }, // Calabouço Antigo 2º Andar
-	{ 17, 15, 60 }, // Calabouço Antigo 3º Andar
-	{ 18, 22, 70 }, // Templo Maldito 1º Andar 
-	{ 19, 23, 75 }, // Templo Maldito 2º Andar 
-	{ 20, 42, 80 }, // Templo Maldito 3º Andar
-	{ 21, 34, 70 }, // Lago da Ganância
+	{ 14, 26, 65 }, // Santuï¿½rio Sombrio 
+	{ 15, 13, 40 }, // Calabouï¿½o Antigo 1ï¿½ Andar 
+	{ 16, 14, 50 }, // Calabouï¿½o Antigo 2ï¿½ Andar
+	{ 17, 15, 60 }, // Calabouï¿½o Antigo 3ï¿½ Andar
+	{ 18, 22, 70 }, // Templo Maldito 1ï¿½ Andar 
+	{ 19, 23, 75 }, // Templo Maldito 2ï¿½ Andar 
+	{ 20, 42, 80 }, // Templo Maldito 3ï¿½ Andar
+	{ 21, 34, 70 }, // Lago da Ganï¿½ncia
 	{ 22, 27, 80 }, // Estrada de Ferro do Caos
-	{ 23, 28, 90 }, // Coração de Perum
+	{ 23, 28, 90 }, // Coraï¿½ï¿½o de Perum
 	{ 24, 29, 70 }, // Eura
 	{ 25, 31, 70 }, // Vale Gallubia
-	{ 26, 35, 90 }, // Santuário Congelado
+	{ 26, 35, 90 }, // Santuï¿½rio Congelado
 	{ 27, 36,90},   // Covil de Kelvezu 
 	{ 28, 37, 95 }, // Ilha Perdida
 	{ 29, 38, 100 }, // Templo Perdido
 	{ 30, 40, 105 }, // Torre Sem Fim 1o Andar
-	{ 31, 41, 110 }, // Torre Sem Fim 2º Andar 
-	{ 32, 43, 121 }, // Torre Sem Fim 3º Andar
-	{ 33, 44, 125 }, // Mina de Gelo 1º Andar 
-	{ 34, 46, 132 }, // Laboratório Secreto
+	{ 31, 41, 110 }, // Torre Sem Fim 2ï¿½ Andar 
+	{ 32, 43, 121 }, // Torre Sem Fim 3ï¿½ Andar
+	{ 33, 44, 125 }, // Mina de Gelo 1ï¿½ Andar 
+	{ 34, 46, 132 }, // Laboratï¿½rio Secreto
 	{ 35, 47, 132 }, // Arma Secreta 
-	{ 36, 48, 132 }, // Abismo do Mar 1º Andar
-	{ 37, 49, 132 }, // Abismo do Mar 2º andar
+	{ 36, 48, 132 }, // Abismo do Mar 1ï¿½ Andar
+	{ 37, 49, 132 }, // Abismo do Mar 2ï¿½ andar
 	{ 38, 51, 132 }, // Ilha da Morte 3
 	{ 39, 52, 132 }, // Lar do Eragon
-	{ 40, 55, 132 }, // Floresta Misteriosa 1º
-	{ 41, 54, 132 }, // Floresta Misteriosa 2º
-	{ 42, 53, 132 }, // Floresta Misteriosa 3º
+	{ 40, 55, 132 }, // Floresta Misteriosa 1ï¿½
+	{ 41, 54, 132 }, // Floresta Misteriosa 2ï¿½
+	{ 42, 53, 132 }, // Floresta Misteriosa 3ï¿½
 	{ 43, 56, 132 }, // Atlantis
-	{ 44, 57, 132 }, // Calabouço Perdido 1º
-	{ 45, 58, 132 }, // Calabouço Perdido 2º
-	{ 46, 59, 132 }, // Calabouço Perdido 3º
-	{ 47, 60, 132 }, // Templo Esquecido da Morte 1º
-	{ 48, 61, 132 }, // Templo Esquecido da Morte 2º
+	{ 44, 57, 132 }, // Calabouï¿½o Perdido 1ï¿½
+	{ 45, 58, 132 }, // Calabouï¿½o Perdido 2ï¿½
+	{ 46, 59, 132 }, // Calabouï¿½o Perdido 3ï¿½
+	{ 47, 60, 132 }, // Templo Esquecido da Morte 1ï¿½
+	{ 48, 61, 132 }, // Templo Esquecido da Morte 2ï¿½
 	{ 49, 62, 132 }, // Arena de Batalha
 	{ 50, 63, 132 }, // Nucleo de Ferro
-	{ 51, 64, 132 } // Coração de Ferro
+	{ 51, 64, 132 } // Coraï¿½ï¿½o de Ferro
 };
 
 
@@ -2147,3 +2147,5 @@ int cHaPremiumItem::UseMoveShop()
 
 	return TRUE;
 }
+
+

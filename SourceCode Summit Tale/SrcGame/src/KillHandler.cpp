@@ -102,3 +102,7 @@ void cKILL::handleDeath()
 {
 	CurrentStreak = 0;
 }
+
+
+
+

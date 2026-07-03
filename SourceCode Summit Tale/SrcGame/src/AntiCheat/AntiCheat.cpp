@@ -1,3 +1,4 @@
+#include "opcodes.h"
 #include "AntiCheat.h"
 #include "smwsock.h"
 #include "smPacket.h"
@@ -605,3 +606,7 @@ void AntiCheat::HandlePacket(PacketWindowList* psPacket)
 }
 
 #endif 
+
+
+
+

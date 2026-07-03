@@ -813,3 +813,7 @@ int sinSkillEffect_HolyMind(smCHAR *pChar, int Time)
 
 	return TRUE;
 }
+
+
+
+

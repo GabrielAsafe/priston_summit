@@ -118,3 +118,5 @@ int sinEffect_Ratoo_Aura(smCHAR *pChar);
 
 int sinEffect_Ratoo_Aura2(smCHAR *pChar);
 #endif
+
+

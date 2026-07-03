@@ -434,7 +434,7 @@ int WndProc_Japanese(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 				lf.lfClipPrecision = CLIP_DEFAULT_PRECIS;
 				lf.lfQuality = DEFAULT_QUALITY;
 				lf.lfPitchAndFamily = VARIABLE_PITCH | FF_ROMAN;
-				strcpy(lf.lfFaceName, _T("‚l‚r ‚oƒSƒVƒbƒN"));
+				strcpy(lf.lfFaceName, _T("ï¿½lï¿½r ï¿½oï¿½Sï¿½Vï¿½bï¿½N"));
 				ImmSetCompositionFont(imc, &lf);
 				ImmReleaseContext(hWnd, imc);
 				setFont = TRUE;
@@ -2224,3 +2224,5 @@ int HoUninstallFont()
 
 	return TRUE;
 }
+
+

@@ -792,3 +792,7 @@ int CAutoCamera::FrameMain(int FrameStep)
 }
 
 
+
+
+
+

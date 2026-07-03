@@ -767,3 +767,7 @@
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0},
 "Organic Property +5\rPoison Property +5\rFrost Property +5\rFlame Property +5\rlightning Property +5\r"},
 
+
+
+
+

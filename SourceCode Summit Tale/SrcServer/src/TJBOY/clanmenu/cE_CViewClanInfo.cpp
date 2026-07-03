@@ -193,7 +193,7 @@ int CViewClanInfo::readFILE_ClanInfo(DWORD clanNum)
 #endif
 
 #ifdef CLAN_DEBUG
-	DebugMessage("CViewClanInfo::readFILE_ClanInfo(Å¬·£¹øÈ£ : %d)", clanNum);
+	DebugMessage("CViewClanInfo::readFILE_ClanInfo(Å¬ï¿½ï¿½ï¿½ï¿½È£ : %d)", clanNum);
 #endif
 
 
@@ -546,7 +546,7 @@ void debug_fd2(char *fmt, ...);
 int clanINFO_result2(int ret_code, char *marknum, CLANINFO *ci)
 {
 #ifdef CLAN_DEBUG
-	DebugMessage("clanINFO_result2¿¡¼­ Å¬·£¸¶Å© ÀÐ¾î¿È(Å¬·£¹øÈ£ : %s)", marknum);
+	DebugMessage("clanINFO_result2ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½Å© ï¿½Ð¾ï¿½ï¿½(Å¬ï¿½ï¿½ï¿½ï¿½È£ : %s)", marknum);
 #endif
 	char szTemp[256];
 	wsprintf(szTemp, "%s\\%s\\%s_%s_16.%s", CLANINFO_DIR, szConnServerName, ci->ClanInfoHeader.Gserver,
@@ -573,7 +573,7 @@ int clanINFO_result2(int ret_code, char *marknum, CLANINFO *ci)
 int clanINFO_Load32X32(int clinfo_n)
 {
 #ifdef CLAN_DEBUG
-	DebugMessage("clanINFO_Load32X32¿¡¼­32x32 Å¬·£¸¶Å© ÀÐ¾î¿È(Å¬·£ ÀÎÆ÷ ¹øÈ£ : %d)", clinfo_n);
+	DebugMessage("clanINFO_Load32X32ï¿½ï¿½ï¿½ï¿½32x32 Å¬ï¿½ï¿½ï¿½ï¿½Å© ï¿½Ð¾ï¿½ï¿½(Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ : %d)", clinfo_n);
 #endif
 
 	CLANINFO *ci = &ClanInfo[clinfo_n];
@@ -643,7 +643,7 @@ int CViewClanInfo::DownLoadClanInfo(int num, DWORD dwClanNum)
 
 
 #ifdef CLAN_DEBUG
-	DebugMessage("DownLoadClanInfo(%d,Å¬·£¹øÈ£ : %d )¿¡¼­ Å¬·£Á¤º¸¸¦ ´Ù¿î ¹ÞÀ½", num, dwClanNum);
+	DebugMessage("DownLoadClanInfo(%d,Å¬ï¿½ï¿½ï¿½ï¿½È£ : %d )ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½", num, dwClanNum);
 #endif
 
 	return nNum;
@@ -742,7 +742,7 @@ char* CViewClanInfo::AddClanInfo(char *marknum, char *szInfo, CLANINFO* ci)
 
 
 #ifdef CLAN_DEBUG
-	DebugMessage("AddClanInfo()È£Ãâ ¸¶Å©¹øÈ£ : %s", marknum);
+	DebugMessage("AddClanInfo()È£ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½È£ : %s", marknum);
 #endif
 	return ci->ClanInfoHeader.ClanName;
 
@@ -1003,3 +1003,5 @@ BOOL CViewClanInfo::CheckWhere(char *MarkNum)
 
 	return TRUE;
 }
+
+

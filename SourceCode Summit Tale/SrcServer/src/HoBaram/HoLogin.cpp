@@ -1,4 +1,4 @@
-﻿
+
 #include "sinbaram\\SinLinkHeader.h"
 #include "..\\HoBaram\\HoLinkHeader.h"
 #include "..\\HoBaram\\HoTextFile.h"
@@ -1663,3 +1663,5 @@ int GetSelRectJobChar(smCHAR *lpChar)
 
 	return FALSE;
 }
+
+

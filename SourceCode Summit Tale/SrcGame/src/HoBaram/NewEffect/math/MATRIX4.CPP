@@ -384,3 +384,7 @@ point3 matrix4::GetAxis( int axis ) const
 		m[axis][2]
 	);
 }
+
+
+
+

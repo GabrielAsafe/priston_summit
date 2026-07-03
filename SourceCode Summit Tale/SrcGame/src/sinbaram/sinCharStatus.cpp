@@ -288,7 +288,7 @@ void cCHARSTATUS::Draw()
 				TempLen = lstrlen(cldata.name);
 				TempCount2 = 6 - (TempLen / 2);
 				DrawSprite(CheckEditSize(sCharRectPosi[1].Rect.left, sCharRectPosi[1].Rect.right, cldata.name) - ((12 - TempLen / 2)) - TempCount2,
-					sCharRectPosi[1].Rect.top + 15 + (256 - sinMoveKindInter[SIN_CHARSTATUS]), cldata.hClanMark16, 0, 0, 16, 16);//NÃO
+					sCharRectPosi[1].Rect.top + 15 + (256 - sinMoveKindInter[SIN_CHARSTATUS]), cldata.hClanMark16, 0, 0, 16, 16);//Nï¿½O
 			}
 		}
 
@@ -1144,7 +1144,7 @@ void cCHARSTATUS::DrawCharText()
 		}
 	}
 
-	// Skill de Evasão da Arqueira
+	// Skill de Evasï¿½o da Arqueira
 	if (lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_ARCHER) {
 		// skill ativa no momento
 		int cnt = cSkill.GetSkillPoint(SKILL_EVASION_MASTERY);
@@ -1154,7 +1154,7 @@ void cCHARSTATUS::DrawCharText()
 		}
 	}
 
-	// Skill de Evasão da Sacer.
+	// Skill de Evasï¿½o da Sacer.
 	if (lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS) {
 		// skill ativa no momento
 		int cnt = cSkill.SearchContiueSkill(SKILL_SUMMON_MUSPELL);
@@ -1188,16 +1188,16 @@ void cCHARSTATUS::OtherStateShow()
 	memset(strBuff, 0, sizeof(strBuff));
 
 	SetFontTextColor(RGB(255, 255, 255));
-	wsprintf(strBuff, "°ø°Ý¼Óµµ:%d", sinCharDisplay.Attack_Speed);
+	wsprintf(strBuff, "ï¿½ï¿½ï¿½Ý¼Óµï¿½:%d", sinCharDisplay.Attack_Speed);
 	dsTextLineOut(100, 300, strBuff, lstrlen(strBuff));
 
-	wsprintf(strBuff, "ºí·°À²:%d", sinCharDisplay.Chance_Block);
+	wsprintf(strBuff, "ï¿½ï¿½ï¿½ï¿½ï¿½:%d", sinCharDisplay.Chance_Block);
 	dsTextLineOut(200, 300, strBuff, lstrlen(strBuff));
 
-	wsprintf(strBuff, "Å©¸®Æ¼ÄÃ:%d", sinCharDisplay.Critical_Hit);
+	wsprintf(strBuff, "Å©ï¿½ï¿½Æ¼ï¿½ï¿½:%d", sinCharDisplay.Critical_Hit);
 	dsTextLineOut(300, 300, strBuff, lstrlen(strBuff));
 
-	wsprintf(strBuff, "½´ÆÃ±æÀÌ:%d", sinCharDisplay.Shooting_Range);
+	wsprintf(strBuff, "ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½:%d", sinCharDisplay.Shooting_Range);
 	dsTextLineOut(400, 300, strBuff, lstrlen(strBuff));
 
 }
@@ -1553,3 +1553,6 @@ int cCHARSTATUS::InitCharStatus_Attribute(int kind)
 	return TRUE;
 
 }
+
+
+

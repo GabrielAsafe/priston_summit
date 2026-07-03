@@ -15,3 +15,5 @@ public:
 #define HOSKILL_CARAVAN -1
 
 #define CARAVANHANDLER CCaravanaHandler::GetInstance()
+
+

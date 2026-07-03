@@ -664,11 +664,11 @@ void CLANEntity_make::Main()
 		#ifdef USE_PROSTONTALE		
 			WebDB.make_Clan(cldata.szID, cldata.gserver, cldata.ChaName,
 							cldata.name,
-							"¼³¸í¾øÀ½.", sinChar->JOB_CODE, sinChar->Level);
+							"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.", sinChar->JOB_CODE, sinChar->Level);
 		#else
 			WebDB.make_Clan(cldata.szID, cldata.gserver, cldata.ChaName,
 							cldata.name,
-							"¼³¸í¾øÀ½.", 1, 50);
+							"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.", 1, 50);
 		#endif
 			C_menuN2 = 2;
 			break;
@@ -2737,3 +2737,6 @@ void KeyFilter(char *szBuffer)
 
 #endif
 }
+
+
+

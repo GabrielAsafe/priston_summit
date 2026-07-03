@@ -496,3 +496,7 @@ int SetDynLight(int x, int y, int z, int r, int g, int b, int a, int power, int 
 
 	return FALSE;
 }
+
+
+
+

@@ -24,3 +24,5 @@
 #define QzStringFromGUID2       StringFromGUID2
 
 #endif  // _INC_COMLITE_
+
+

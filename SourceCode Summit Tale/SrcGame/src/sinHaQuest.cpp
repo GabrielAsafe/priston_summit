@@ -7,3 +7,7 @@ sinHaQuest::sinHaQuest(void)
 sinHaQuest::~sinHaQuest(void)
 {
 }
+
+
+
+

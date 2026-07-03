@@ -38,3 +38,7 @@ extern rsEVENT_SPAWN	rsEventSpawn[STAGE_AREA_MAX];
 int rsEventSpawn_KillMonster(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar);
 int rsEventSpawn_Order(rsPLAYINFO *lpPlayInfo, char *szText);
 int rsEventSpawn_Main(STG_AREA *lpStgArea);
+
+
+
+

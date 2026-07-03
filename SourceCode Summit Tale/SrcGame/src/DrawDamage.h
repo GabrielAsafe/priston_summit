@@ -41,3 +41,7 @@ public:
 private:
 	DrawDamage();
 };
+
+
+
+

@@ -16,3 +16,5 @@ int GetSkillPower(smCHAR *lpChar, smCHAR *lpChar2, int dx, int dy, int dz);
 int	LearnSkillEffect(smCHAR *lpChar = 0);
 
 int CheckPlaySkill();
+
+

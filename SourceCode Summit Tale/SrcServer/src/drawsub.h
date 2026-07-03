@@ -33,3 +33,5 @@ int dsDrawTexImageFloat(int Mat, float x, float y, float w, float h, float surW,
 int dsDrawTexImageFloatColor(int Mat, float x, float y, float w, float h, float surW, float surH, float tLeft, float tTop, float tRight, float tBottom, DWORD dwColor);
 
 #endif
+
+

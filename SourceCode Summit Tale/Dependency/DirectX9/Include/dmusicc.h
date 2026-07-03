@@ -782,3 +782,5 @@ DEFINE_GUID(GUID_DMUS_PROP_Volume, 0xfedfae25L, 0xe46e, 0x11d1, 0xaa, 0xce, 0x00
 #include <poppack.h>
 
 #endif /* #ifndef _DMUSICC_ */
+
+

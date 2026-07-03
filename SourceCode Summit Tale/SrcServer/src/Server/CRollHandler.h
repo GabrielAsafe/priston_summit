@@ -32,3 +32,5 @@ private:
 };
 
 #define ROLLHANDLER CRollHandler::getInstance()
+
+

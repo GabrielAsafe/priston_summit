@@ -306,3 +306,7 @@ extern int MyShopItemSellMoney2;
 extern sMYSHOP_ITEM_SERVER sMyShop_Server;
 extern sITEMINFO MyShopPotion;
 extern int MyShopItemCancelIndex[2];
+
+
+
+

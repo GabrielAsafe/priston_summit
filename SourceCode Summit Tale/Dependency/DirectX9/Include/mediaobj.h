@@ -1572,3 +1572,5 @@ void __RPC_STUB IDMOVideoOutputOptimizations_GetCurrentSampleRequirements_Stub(
 #endif
 
 
+
+

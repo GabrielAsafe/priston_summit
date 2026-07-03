@@ -45,3 +45,5 @@ int luaCommand_EventSize(lua_State *pLuaState);
 int luaCommand_EventFadeColor(lua_State *pLuaState);
 int luaCommand_EventFadeSize(lua_State *pLuaState);
 #endif
+
+

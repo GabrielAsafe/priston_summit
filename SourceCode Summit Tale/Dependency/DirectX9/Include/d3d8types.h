@@ -1682,3 +1682,5 @@ typedef struct _D3DDEVINFO_D3DVERTEXSTATS
 #endif /* (DIRECT3D_VERSION >= 0x0800) */
 #endif /* _D3D8TYPES(P)_H_ */
 
+
+

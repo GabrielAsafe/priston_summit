@@ -36,3 +36,5 @@ void smInitColorZClip(int r, int g, int b);
 
 
 int SetNormal(POINT3D *p1, POINT3D *p2, POINT3D *p3, POINT3D *normal);
+
+

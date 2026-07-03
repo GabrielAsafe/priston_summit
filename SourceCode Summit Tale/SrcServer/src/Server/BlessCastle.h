@@ -123,3 +123,5 @@ static POINT3D	pCastle_ValhallaTower = { 34559 , -31375 , 800 };
 
 static POINT3D	pCastle_Door = { 34552 , -25545 , 680 };
 
+
+

@@ -51,3 +51,5 @@ void Valento_Justice(smCHAR *pChar);
 void ParkIncubusSummonerSkill(smCHAR *pChar);
 void DevilBird_Skill(smCHAR *pChar);
 #endif
+
+

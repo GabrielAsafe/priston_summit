@@ -1090,3 +1090,5 @@ HRESULT WINAPI D3DXCreateMatrixStack( DWORD flags, LPD3DXMATRIXSTACK *ppStack );
 #endif
 
 #endif // __D3DXMATH_H__
+
+

@@ -359,3 +359,7 @@ int smAddVertexLightSpot(smRGB *LightRGB, smLIGHT3D *light, POINT3D *posi, POINT
 int smFindPatFile(char *szfile, char *FileExt);
 
 
+
+
+
+

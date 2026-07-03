@@ -38,3 +38,5 @@ int	rsCompareSafePacket(rsPLAYINFO *lpPlayInfo, DWORD dwRcvPacketCode);
 
 
 int rsRecordDamageError(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand);
+
+

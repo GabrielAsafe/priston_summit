@@ -68,3 +68,7 @@ private:
 	int  CameraMatrixCheck(smEMATRIX &eSrcMatrix, smEMATRIX &eMatchMatrix);
 };
 
+
+
+
+

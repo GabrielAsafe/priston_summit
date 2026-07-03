@@ -1185,3 +1185,6 @@ int sinEffect_Ratoo_Aura2(smCHAR *pChar)
 
 	return TRUE;
 }
+
+
+

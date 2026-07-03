@@ -75,3 +75,5 @@ void CCaravanaHandler::DelCaravan(smCHAR* lpChar)
 		lpPlayInfo->dwCaravanCode = 0;
 	}
 }
+
+

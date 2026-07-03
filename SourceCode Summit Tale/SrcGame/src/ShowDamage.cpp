@@ -78,3 +78,6 @@ void cSHOW_DMG::DrawDmg(DWORD TargetSerial, int x, int y)
 		}
 	}
 }
+
+
+

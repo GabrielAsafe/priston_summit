@@ -475,3 +475,5 @@ extern int sinMasteryIncreaIndex[16];
 extern int C_Skill_HpPoint[10];
 extern int C_Skill_AttPercent[10];
 extern int C_Skill_EvaPercent[10];
+
+

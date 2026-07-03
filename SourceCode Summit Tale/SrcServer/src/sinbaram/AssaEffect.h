@@ -550,3 +550,5 @@ int AssaReSetCharPointer(cASSAEFFECT *pEffect);
 extern int Assa;
 extern cASSAEFFECT *cAssaEffect[cASSAEFFECT_MAX];
 #endif
+
+

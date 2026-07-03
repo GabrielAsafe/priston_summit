@@ -13,3 +13,5 @@ FILE* Utils_FileOpen(char* path, char* mode, DWORD LOG_FLAG = NOT_LOG_IF_NOT_EXS
 HANDLE Utils_CreateFile(LPCTSTR FileName,DWORD dwDesiredAccess,DWORD dwShareMode,LPSECURITY_ATTRIBUTES lpSecurityAttributes,DWORD dwCreationDisposition,DWORD dwFlagsAndAttributes,HANDLE hTemplateFile, DWORD LOG_FLAG = NOT_LOG_IF_NOT_EXSIST);
 
 #endif
+
+

@@ -51,3 +51,5 @@ extern "C" __declspec(dllexport) int UnZipDataToFile(BYTE *lpSrcBuff);
 
 
 extern "C" __declspec(dllexport) int UnZipDataToDirectory(char *Directory, BYTE *lpSrcBuff);
+
+

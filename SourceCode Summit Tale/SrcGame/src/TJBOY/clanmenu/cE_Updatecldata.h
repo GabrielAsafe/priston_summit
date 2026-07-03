@@ -19,3 +19,6 @@ class CUpdateCldata g_UpdateCldata;
 #else
 extern class CUpdateCldata g_UpdateCldata;
 #endif
+
+
+

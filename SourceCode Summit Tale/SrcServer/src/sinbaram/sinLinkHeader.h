@@ -63,3 +63,5 @@
 #include "Rank.h"
 #define ITEM_KIND_PERFECT			9
 #endif
+
+

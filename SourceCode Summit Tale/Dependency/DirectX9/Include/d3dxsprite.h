@@ -319,3 +319,5 @@ HRESULT WINAPI
 #endif
 
 #endif // __D3DXSPRITE_H__
+
+

@@ -916,3 +916,5 @@ extern HoEffectMgr		EffectMgr;
 #define CHR_IN_EFFECT_OBJECT_MAX	100
 extern hoChrInfoObject ChrInEffectObject[CHR_IN_EFFECT_OBJECT_MAX];
 #endif
+
+

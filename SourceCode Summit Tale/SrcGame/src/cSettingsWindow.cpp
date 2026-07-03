@@ -155,7 +155,7 @@ void cSettingsWindow::BuildWindowVideo()
 				}
 				pWindowVideo->AddElement(new UICheckbox(OBJID_AutoAdjust, 240, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Auto ajuste", true, false, true));
 				pWindowVideo->AddElement(new UICheckbox(OBJID_StartMaximized, 240, pWindowVideo->getMaxY(), "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Iniciar tela maximizada", true, false, true));	
-				pWindowVideo->AddElement(new UIText(0, "Aspecto de resolução:", 23, pWindowVideo->getMaxY(), true));
+				pWindowVideo->AddElement(new UIText(0, "Aspecto de resoluï¿½ï¿½o:", 23, pWindowVideo->getMaxY(), true));
 				
 				auto pRatioList = new UIListBox(OBJID_RatioList, 23, pWindowVideo->getMaxY() + 2, 240, 20);
 				if (pRatioList)
@@ -172,7 +172,7 @@ void cSettingsWindow::BuildWindowVideo()
 						pRatioList->AddListItem(pCheckbox1);
 						pRatioList->AddListItem(pCheckbox2);
 
-						pWindowVideo->AddElement(new UIText(0, "Resoluções:", 23, pWindowVideo->getMaxY() + 3, true));
+						pWindowVideo->AddElement(new UIText(0, "Resoluï¿½ï¿½es:", 23, pWindowVideo->getMaxY() + 3, true));
 
 						iY = pWindowVideo->getMaxY() + 2;
 
@@ -241,8 +241,8 @@ void cSettingsWindow::BuildWindowVideo()
 				pWindowVideo->AddElement(pCam);
 
 				iY = pWindowVideo->getMaxY() + 10;
-				pWindowVideo->AddElement(new UIText(0, "Alcance da câmera:", 23, iY, true));
-				pWindowVideo->AddElement(new UIText(0, "Câmera invertida:", 203, iY, true));
+				pWindowVideo->AddElement(new UIText(0, "Alcance da cï¿½mera:", 23, iY, true));
+				pWindowVideo->AddElement(new UIText(0, "Cï¿½mera invertida:", 203, iY, true));
 
 				iY = pWindowVideo->getMaxY() + 2;
 
@@ -261,7 +261,7 @@ void cSettingsWindow::BuildWindowVideo()
 					pWindowVideo->AddElement(pInvertedList);
 
 					pInvertedList->AddListItem(new UICheckbox(OBJID_ONBox, 0, 0, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Sim", false, false, true));
-					pInvertedList->AddListItem(new UICheckbox(OBJID_OFFBox, 88, 0, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Não", false, false, true));
+					pInvertedList->AddListItem(new UICheckbox(OBJID_OFFBox, 88, 0, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Nï¿½o", false, false, true));
 				}
 			}
 		}
@@ -291,7 +291,7 @@ void cSettingsWindow::BuildWindowAudio()
 				pBgMusic->setY(pTitle1->getY() + (pTitle1->getHeight() - pBgMusic->getHeight()) / 2);
 				pWindowAudio->AddElement(pBgMusic);
 
-				pWindowAudio->AddElement(new UIText(0, "Música de fundo:", 23, pWindowAudio->getMaxY() + 10, true));
+				pWindowAudio->AddElement(new UIText(0, "Mï¿½sica de fundo:", 23, pWindowAudio->getMaxY() + 10, true));
 				
 				auto pWindowController = new UIWindow(OBJID_MusicController, "game\\settings\\bgcontroller.png", 12, pWindowAudio->getMaxY() + 8);
 				if (pWindowController)
@@ -362,7 +362,7 @@ void cSettingsWindow::BuildWindowGeneral()
 
 				int iY = pWindowGeneral->getMaxY() + 10;
 				pWindowGeneral->AddElement(new UIText(0, "Exibir o dano causado:", 23, iY, true));
-				pWindowGeneral->AddElement(new UIText(0, "Barra de HP sobre a cabeça:", 203, iY, true));
+				pWindowGeneral->AddElement(new UIText(0, "Barra de HP sobre a cabeï¿½a:", 203, iY, true));
 
 				iY = pWindowGeneral->getMaxY() + 2;
 
@@ -372,7 +372,7 @@ void cSettingsWindow::BuildWindowGeneral()
 					pWindowGeneral->AddElement(pDamageList);
 
 					pDamageList->AddListItem(new UICheckbox(OBJID_ONBox, 0, 0, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Sim", false, false, true));
-					pDamageList->AddListItem(new UICheckbox(OBJID_OFFBox, 88, 0, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Não", false, false, true));
+					pDamageList->AddListItem(new UICheckbox(OBJID_OFFBox, 88, 0, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Nï¿½o", false, false, true));
 				}
 
 				auto pHPList = new UIListBox(OBJID_HPList, 203, iY, 170, 20);
@@ -381,7 +381,7 @@ void cSettingsWindow::BuildWindowGeneral()
 					pWindowGeneral->AddElement(pHPList);
 
 					pHPList->AddListItem(new UICheckbox(OBJID_ONBox, 0, 0, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Sim", false, false, true));
-					pHPList->AddListItem(new UICheckbox(OBJID_OFFBox, 88, 0, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Não", false, false, true));	
+					pHPList->AddListItem(new UICheckbox(OBJID_OFFBox, 88, 0, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Nï¿½o", false, false, true));	
 				}
 
 				iY = pWindowGeneral->getMaxY() + 4;
@@ -394,7 +394,7 @@ void cSettingsWindow::BuildWindowGeneral()
 					pWindowGeneral->AddElement(pFPSList);
 
 					pFPSList->AddListItem(new UICheckbox(OBJID_ONBox, 0, 0, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Sim", false, false, true));
-					pFPSList->AddListItem(new UICheckbox(OBJID_OFFBox, 88, 0, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Não", false, false, true));
+					pFPSList->AddListItem(new UICheckbox(OBJID_OFFBox, 88, 0, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Nï¿½o", false, false, true));
 				}
 		
 				iY = pWindowGeneral->getMaxY() + 10;
@@ -405,16 +405,16 @@ void cSettingsWindow::BuildWindowGeneral()
 				
 				iY = pWindowGeneral->getMaxY() + 10;
 
-				pWindowGeneral->AddElement(new UICheckbox(OBJID_HPPotion, 23, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Poção de HP", true, false, true));
+				pWindowGeneral->AddElement(new UICheckbox(OBJID_HPPotion, 23, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Poï¿½ï¿½o de HP", true, false, true));
 				pWindowGeneral->AddElement(new UICheckbox(OBJID_NonSpec, 203, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Sem Spec", true, false, true));
 				iY = pWindowGeneral->getMaxY() + 2;
 
-				pWindowGeneral->AddElement(new UICheckbox(OBJID_MPPotion, 23, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Poção de MP", true, false, true));
+				pWindowGeneral->AddElement(new UICheckbox(OBJID_MPPotion, 23, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Poï¿½ï¿½o de MP", true, false, true));
 				pWindowGeneral->AddElement(new UICheckbox(OBJID_Fighter, 203, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Lutador", true, false, true));
 				iY = pWindowGeneral->getMaxY() + 2;
 
-				pWindowGeneral->AddElement(new UICheckbox(OBJID_SPPotion, 23, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Poção de RES", true, false, true));
-				pWindowGeneral->AddElement(new UICheckbox(OBJID_Mechanician, 203, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Mecânico", true, false, true));
+				pWindowGeneral->AddElement(new UICheckbox(OBJID_SPPotion, 23, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Poï¿½ï¿½o de RES", true, false, true));
+				pWindowGeneral->AddElement(new UICheckbox(OBJID_Mechanician, 203, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Mecï¿½nico", true, false, true));
 				iY = pWindowGeneral->getMaxY() + 2;
 
 				pWindowGeneral->AddElement(new UICheckbox(OBJID_Gold, 23, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Gold", true, false, true));
@@ -425,7 +425,7 @@ void cSettingsWindow::BuildWindowGeneral()
 				pWindowGeneral->AddElement(new UICheckbox(OBJID_Pikeman, 203, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Pikeman", true, false, true));
 				iY = pWindowGeneral->getMaxY() + 2;
 
-				pWindowGeneral->AddElement(new UICheckbox(OBJID_Rings, 23, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Anéis", true, false, true));
+				pWindowGeneral->AddElement(new UICheckbox(OBJID_Rings, 23, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Anï¿½is", true, false, true));
 				pWindowGeneral->AddElement(new UICheckbox(OBJID_Atalanta, 203, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Atalanta", true, false, true));
 				iY = pWindowGeneral->getMaxY() + 2;
 
@@ -433,7 +433,7 @@ void cSettingsWindow::BuildWindowGeneral()
 				pWindowGeneral->AddElement(new UICheckbox(OBJID_Knight, 203, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Cavaleiro", true, false, true));
 				iY = pWindowGeneral->getMaxY() + 2;
 
-				pWindowGeneral->AddElement(new UICheckbox(OBJID_Force, 23, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Forças orb", true, false, true));
+				pWindowGeneral->AddElement(new UICheckbox(OBJID_Force, 23, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Forï¿½as orb", true, false, true));
 				pWindowGeneral->AddElement(new UICheckbox(OBJID_Magician, 203, iY, "game\\settings\\checkbox.png", "game\\settings\\checkbox_.png", "Mago", true, false, true));
 				iY = pWindowGeneral->getMaxY() + 2;
 
@@ -1213,3 +1213,7 @@ void cSettingsWindow::SaveSettings()
 	SetVolumeBGM(0);
 	PlayWav_UpdateVolume();
 }
+
+
+
+

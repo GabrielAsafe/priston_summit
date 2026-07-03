@@ -236,3 +236,7 @@ void UIInput::setTextArea(int x, int y, int w, int h)
 	pWindow->setWidth(w);
 	pWindow->setHeight(h);
 }
+
+
+
+

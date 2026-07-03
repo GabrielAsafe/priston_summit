@@ -73,3 +73,5 @@ STDAPI MoDuplicateMediaType(DMO_MEDIA_TYPE **ppmtDest, const DMO_MEDIA_TYPE *pmt
 
 
 #endif //__DMORT_H__
+
+

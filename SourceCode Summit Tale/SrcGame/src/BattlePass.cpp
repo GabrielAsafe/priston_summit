@@ -366,31 +366,31 @@ void BattlePass::Draw()
 				}
 			}
 		}
-		//MOSTRA A IMAGEM DO BOTÃO FECHAR
+		//MOSTRA A IMAGEM DO BOTï¿½O FECHAR
 		if (MouseAction(800, 80, 22, 22))
 			DrawImage(Image[2], 800, 80, 22, 22);
 		else
 			DrawImage(Image[1], 800, 80, 22, 22);
 
-		//MOSTRA A IMAGEM DO BOTÃO RESGATAR
+		//MOSTRA A IMAGEM DO BOTï¿½O RESGATAR
 		if (MouseAction(670, 539, 101, 51))
 			DrawImage(Image[87], 670, 539, 101, 51);
 		else
 			DrawImage(Image[86], 670, 539, 101, 51);
 
-		//MOSTRA A IMAGEM DO BOTÃO PAGINA ESQUERDA
+		//MOSTRA A IMAGEM DO BOTï¿½O PAGINA ESQUERDA
 		if (MouseAction(545, 539, 52, 52))
 			DrawImage(Image[11], 545, 539, 52, 52);
 		else
 			DrawImage(Image[10], 545, 539, 52, 52);
 
-		//MOSTRA A IMAGEM DO BOTÃO PAGINA DIREIRA
+		//MOSTRA A IMAGEM DO BOTï¿½O PAGINA DIREIRA
 		if (MouseAction(605, 539, 52, 52))
 			DrawImage(Image[13], 605, 539, 52, 52);
 		else
 			DrawImage(Image[12], 605, 539, 52, 52);
 
-		//MOSTRA A IMAGEM DA REFERÊNCIA DA PÁGINA ATUAL
+		//MOSTRA A IMAGEM DA REFERï¿½NCIA DA Pï¿½GINA ATUAL
 		for (int cnt = 0; cnt < 4; cnt++)
 		{
 			if (cnt == page)
@@ -492,7 +492,7 @@ void BattlePass::Draw()
 			}
 
 		}
-		//MOSTRA A IMAGEM DO BALÃO DE INFORMAÇÃO DOS ITENS
+		//MOSTRA A IMAGEM DO BALï¿½O DE INFORMAï¿½ï¿½O DOS ITENS
 		/*if (page == 0)
 		{
 			if (MouseAction(124 + (65 * 0), WinY + 175, 130, 130))
@@ -657,7 +657,7 @@ void BattlePass::Button()
 	{
 		int WinX = 40, WinY = 70, cnt2 = 0;
 
-		//AÇÃO DE CLIQUE NO LAYOUT DO ITEM
+		//Aï¿½ï¿½O DE CLIQUE NO LAYOUT DO ITEM
 		for (int cnt = 0; cnt < 10; cnt++)
 		{
 			if (cnt % 2 == 0)
@@ -672,7 +672,7 @@ void BattlePass::Button()
 			}
 		}
 
-		//AÇÃO DE CLIQUE DO BOTÃO PAGINA ESQUERDA
+		//Aï¿½ï¿½O DE CLIQUE DO BOTï¿½O PAGINA ESQUERDA
 		if (MouseAction(545, 539, 52, 52))
 			if (page > 0)
 			{
@@ -680,7 +680,7 @@ void BattlePass::Button()
 				page--;
 			}
 
-		//AÇÃO DE CLIQUE DO BOTÃO PAGINA DIREITA
+		//Aï¿½ï¿½O DE CLIQUE DO BOTï¿½O PAGINA DIREITA
 		if (MouseAction(605, 539, 52, 52))
 			if (page < 3)
 			{
@@ -688,7 +688,7 @@ void BattlePass::Button()
 				page++;
 			}
 
-		//AÇÃO DE CLIQUE DO BOTÃO RESGATAR
+		//Aï¿½ï¿½O DE CLIQUE DO BOTï¿½O RESGATAR
 		if (MouseAction(670, 539, 101, 51) && Itselect > 0)
 		{
 			if (itemResg[(Itselect + (page * 10) - 1)] == 0) {
@@ -696,7 +696,7 @@ void BattlePass::Button()
 				Itselect = 0;
 			}
 		}
-		//AÇÃO DE CLIQUE DO BOTÃO FECHAR
+		//Aï¿½ï¿½O DE CLIQUE DO BOTï¿½O FECHAR
 		if (MouseAction(800, 80, 22, 22))
 		{
 			Itselect = 0;
@@ -705,3 +705,7 @@ void BattlePass::Button()
 	}
 
 }
+
+
+
+

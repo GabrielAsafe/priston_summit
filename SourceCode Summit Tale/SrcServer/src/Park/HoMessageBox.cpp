@@ -846,3 +846,5 @@ void HoMessageBox::Init()
 	Button[1].Init("Assets\\GUI\\Opening\\Select\\UI\\CharSelect\\Bt_cancel.tga", 64, 32);
 	Message.Init();
 }
+
+

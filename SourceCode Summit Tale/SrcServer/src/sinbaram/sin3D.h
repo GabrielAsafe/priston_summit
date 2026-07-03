@@ -60,3 +60,5 @@ public:
 };
 
 extern cSIN3D cSin3D;
+
+

@@ -123,3 +123,7 @@ bool CLootFilter::Filter(TRANS_ITEM * pItem)
 
 	return true;
 }
+
+
+
+

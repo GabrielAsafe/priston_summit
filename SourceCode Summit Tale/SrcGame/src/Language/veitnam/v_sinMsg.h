@@ -1,171 +1,171 @@
 #include "sinLinkHeader.h"
 
 sMESSAGEBOX	sMessageBox[100] = {
-	{"Không ðuÒ khoaÒng trôìng trong ngãn chýìa ðôÌ  "},
-	{"Výõòt quaì cân nãòng cho pheìp "},   
-	{"Moìn ðôÌ naÌy không thêÒ sýÒ duòng ðýõòc "},	   
-	{"Không ðuÒ vaÌng "},
-	{"Moìn ðôÌ naÌy không thêÒ Mix ðýõòc "},
-	{"Výõòt quaì giõìi haòn cuÒa sôì lýõòng ðôÌ ðýõòc trao ðôÒi "},	
-	{"Giao diòch biò huyÒ boÒ  "},
-	{"Không thêÒ lýu trýÞ Potions "},
-	{"Mix moìn ðôÌ naÌy thâìt baòi "},
-	{"CaÒm õn sýò ðoìng goìp quyì baìu cuÒa baòn "},
-	{"Coì quaì nhiêÌu moìn ðôÌ trong nhaÌ kho "},
-	{"Moìn ðôÌ naÌy không thêÒ Age ðýõòc "},
-	{"Môòt vaÌi ðôÌ vâòt ðaÞ biò thay ðôÒi. Vui loÌng kiêÒm tra laòi "},
-	{"Výõòt quaì giõìi haòn vaÌng ðýõòc pheìp sõÒ hýÞu "}, 
-	{"Age moìn ðôÌ naÌy thâìt baòi "},
-	{"ÐiêÒm Statistics ðaÞ ðýõòc thiêìt lâòp laòi. "},
+	{"Khï¿½ng ï¿½uï¿½ khoaï¿½ng trï¿½ï¿½ng trong ngï¿½n chï¿½ï¿½a ï¿½ï¿½ï¿½  "},
+	{"Vï¿½ï¿½ï¿½t quaï¿½ cï¿½n nï¿½ï¿½ng cho pheï¿½p "},   
+	{"Moï¿½n ï¿½ï¿½ï¿½ naï¿½y khï¿½ng thï¿½ï¿½ sï¿½ï¿½ duï¿½ng ï¿½ï¿½ï¿½ï¿½c "},	   
+	{"Khï¿½ng ï¿½uï¿½ vaï¿½ng "},
+	{"Moï¿½n ï¿½ï¿½ï¿½ naï¿½y khï¿½ng thï¿½ï¿½ Mix ï¿½ï¿½ï¿½ï¿½c "},
+	{"Vï¿½ï¿½ï¿½t quaï¿½ giï¿½ï¿½i haï¿½n cuï¿½a sï¿½ï¿½ lï¿½ï¿½ï¿½ng ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½c trao ï¿½ï¿½ï¿½i "},	
+	{"Giao diï¿½ch biï¿½ huyï¿½ boï¿½  "},
+	{"Khï¿½ng thï¿½ï¿½ lï¿½u trï¿½ï¿½ Potions "},
+	{"Mix moï¿½n ï¿½ï¿½ï¿½ naï¿½y thï¿½ï¿½t baï¿½i "},
+	{"Caï¿½m ï¿½n sï¿½ï¿½ ï¿½oï¿½ng goï¿½p quyï¿½ baï¿½u cuï¿½a baï¿½n "},
+	{"Coï¿½ quaï¿½ nhiï¿½ï¿½u moï¿½n ï¿½ï¿½ï¿½ trong nhaï¿½ kho "},
+	{"Moï¿½n ï¿½ï¿½ï¿½ naï¿½y khï¿½ng thï¿½ï¿½ Age ï¿½ï¿½ï¿½ï¿½c "},
+	{"Mï¿½ï¿½t vaï¿½i ï¿½ï¿½ï¿½ vï¿½ï¿½t ï¿½aï¿½ biï¿½ thay ï¿½ï¿½ï¿½i. Vui loï¿½ng kiï¿½ï¿½m tra laï¿½i "},
+	{"Vï¿½ï¿½ï¿½t quaï¿½ giï¿½ï¿½i haï¿½n vaï¿½ng ï¿½ï¿½ï¿½ï¿½c pheï¿½p sï¿½ï¿½ hï¿½ï¿½u "}, 
+	{"Age moï¿½n ï¿½ï¿½ï¿½ naï¿½y thï¿½ï¿½t baï¿½i "},
+	{"ï¿½iï¿½ï¿½m Statistics ï¿½aï¿½ ï¿½ï¿½ï¿½ï¿½c thiï¿½ï¿½t lï¿½ï¿½p laï¿½i. "},
 	{"Item image isn't prepared "},
-	{"Baòn chiÒ coì thêÒ laÌm ðiêÌu naÌy môòt lâÌn thôi "},
-	{"ChiÒ daÌnh cho thaÌnh viên cuÒa Clan "},		
-	{"Baòn phaÒi gia nhâòp môòt Clan mõìi coì thêÒ sýÒ duòng "},		
-	{"Không thêÒ diòch chuyêÒn viÌ giõìi haòn Level "},
-	{"Câìp ðôò Age ðaÞ biò trýÌ ði -1 "},
-	{"Câìp ðôò Age ðaÞ biò trýÌ ði -2 "},
-	{"Câìp ðôò Age ðaÞ ðýõòc tãng lên +1 "},
-	{"Câìp ðôò Age ðaÞ ðýõòc tãng lên +2 "},
-	{"Tôìc ðôò ATK cuÒa moìn ðôÌ nhiêòm vuò  "},
-	{"   Nâng level moìn ðôÌ nhiêòm vuò "},
-	{"   HP ðýõòc tãng thêm +15 "},
-	{"   Puzzle ðaÞ hoaÌn tâìt  "},
-	{"   Puzzle sãìp xêìp không ðuìng "},
-	{"   Không coì giÌ ðêÒ baìn caÒ  "},
-	{"Moìn ðôÌ naÌy ðaÞ ðýõòc baìn rôÌi "},
-	{"Gian haÌng caì nhân ðaÞ biò ðoìng laòi "},
-	{"   Không tiÌm thâìy ngýõÌi baìn "},
-	{"    Sôì lýõòng moìn ðôÌ không ðuìng  "},
-	{"    Nhân vâòt nam không thêÒ sýÒ duòng "},
-	{"    Nhân vâòt nýÞ không thêÒ sýÒ duòng "},
-	{" Nhân vâòt nýÞ không thêÒ sýÒ duòng ðýõòc moìn ðôÌ naÌy "},
-	{" Nhân vâòt nam không thêÒ sýÒ duòng ðýõòc moìn ðôÌ naÌy "},
-	{"    Giaì cuÒa moìn ðôÌ ðaÞ thay ðôÒi "},
-	{"    Không coì tiêÌn thýõÒng cho Clan "},
-	{"  Level cuÒa baòn chýa thêÒ duÌng ðýõòc loaòi force naÌy   "},
-	{"     Force Orb ðang ðýõòc sýÒ duòng  "},
-	{"     Chýìc nãng ATK POW ðang ðýõòc thýÒ nghiêòm    "},
-	{"    Quaì triÌnh Force Orb ðaÞ hoaÌn tâìt     "},
-	{"    ÐiêÒm Stats ðýõòc tãng thêm 5  "},
-	{"    ÐiêÒm Skill ðýõòc tãng thêm 1  "},
-	{" ÐiêÒm Stats & Skill ðýõòc tãng thêm 5 vaÌ 1 "},
-	{" Stat & skill point ðýõòc tãng thêm 5 vaÌ 2 "},
-	{"   PhâÌn trãm XP biò mâìt khi chêìt giaÒm ði 1   "},
-	{"   Vitality tãng thêm 40   " },
-	{"    Baòn ðang thýòc hiêòn nhiêòm vuò     " },
-	{"TýÌ level 80, baòn seÞ ðýõòc 7 ðiêÒm khi ðaòt thêm 1 level." },
-	{"TýÌ level 90, baòn seÞ ðýõòc 10 ðiêÒm khi ðaòt thêm 1 level." },
+	{"Baï¿½n chiï¿½ coï¿½ thï¿½ï¿½ laï¿½m ï¿½iï¿½ï¿½u naï¿½y mï¿½ï¿½t lï¿½ï¿½n thï¿½i "},
+	{"Chiï¿½ daï¿½nh cho thaï¿½nh viï¿½n cuï¿½a Clan "},		
+	{"Baï¿½n phaï¿½i gia nhï¿½ï¿½p mï¿½ï¿½t Clan mï¿½ï¿½i coï¿½ thï¿½ï¿½ sï¿½ï¿½ duï¿½ng "},		
+	{"Khï¿½ng thï¿½ï¿½ diï¿½ch chuyï¿½ï¿½n viï¿½ giï¿½ï¿½i haï¿½n Level "},
+	{"Cï¿½ï¿½p ï¿½ï¿½ï¿½ Age ï¿½aï¿½ biï¿½ trï¿½ï¿½ ï¿½i -1 "},
+	{"Cï¿½ï¿½p ï¿½ï¿½ï¿½ Age ï¿½aï¿½ biï¿½ trï¿½ï¿½ ï¿½i -2 "},
+	{"Cï¿½ï¿½p ï¿½ï¿½ï¿½ Age ï¿½aï¿½ ï¿½ï¿½ï¿½ï¿½c tï¿½ng lï¿½n +1 "},
+	{"Cï¿½ï¿½p ï¿½ï¿½ï¿½ Age ï¿½aï¿½ ï¿½ï¿½ï¿½ï¿½c tï¿½ng lï¿½n +2 "},
+	{"Tï¿½ï¿½c ï¿½ï¿½ï¿½ ATK cuï¿½a moï¿½n ï¿½ï¿½ï¿½ nhiï¿½ï¿½m vuï¿½  "},
+	{"   Nï¿½ng level moï¿½n ï¿½ï¿½ï¿½ nhiï¿½ï¿½m vuï¿½ "},
+	{"   HP ï¿½ï¿½ï¿½ï¿½c tï¿½ng thï¿½m +15 "},
+	{"   Puzzle ï¿½aï¿½ hoaï¿½n tï¿½ï¿½t  "},
+	{"   Puzzle sï¿½ï¿½p xï¿½ï¿½p khï¿½ng ï¿½uï¿½ng "},
+	{"   Khï¿½ng coï¿½ giï¿½ ï¿½ï¿½ï¿½ baï¿½n caï¿½  "},
+	{"Moï¿½n ï¿½ï¿½ï¿½ naï¿½y ï¿½aï¿½ ï¿½ï¿½ï¿½ï¿½c baï¿½n rï¿½ï¿½i "},
+	{"Gian haï¿½ng caï¿½ nhï¿½n ï¿½aï¿½ biï¿½ ï¿½oï¿½ng laï¿½i "},
+	{"   Khï¿½ng tiï¿½m thï¿½ï¿½y ngï¿½ï¿½ï¿½i baï¿½n "},
+	{"    Sï¿½ï¿½ lï¿½ï¿½ï¿½ng moï¿½n ï¿½ï¿½ï¿½ khï¿½ng ï¿½uï¿½ng  "},
+	{"    Nhï¿½n vï¿½ï¿½t nam khï¿½ng thï¿½ï¿½ sï¿½ï¿½ duï¿½ng "},
+	{"    Nhï¿½n vï¿½ï¿½t nï¿½ï¿½ khï¿½ng thï¿½ï¿½ sï¿½ï¿½ duï¿½ng "},
+	{" Nhï¿½n vï¿½ï¿½t nï¿½ï¿½ khï¿½ng thï¿½ï¿½ sï¿½ï¿½ duï¿½ng ï¿½ï¿½ï¿½ï¿½c moï¿½n ï¿½ï¿½ï¿½ naï¿½y "},
+	{" Nhï¿½n vï¿½ï¿½t nam khï¿½ng thï¿½ï¿½ sï¿½ï¿½ duï¿½ng ï¿½ï¿½ï¿½ï¿½c moï¿½n ï¿½ï¿½ï¿½ naï¿½y "},
+	{"    Giaï¿½ cuï¿½a moï¿½n ï¿½ï¿½ï¿½ ï¿½aï¿½ thay ï¿½ï¿½ï¿½i "},
+	{"    Khï¿½ng coï¿½ tiï¿½ï¿½n thï¿½ï¿½ï¿½ng cho Clan "},
+	{"  Level cuï¿½a baï¿½n chï¿½a thï¿½ï¿½ duï¿½ng ï¿½ï¿½ï¿½ï¿½c loaï¿½i force naï¿½y   "},
+	{"     Force Orb ï¿½ang ï¿½ï¿½ï¿½ï¿½c sï¿½ï¿½ duï¿½ng  "},
+	{"     Chï¿½ï¿½c nï¿½ng ATK POW ï¿½ang ï¿½ï¿½ï¿½ï¿½c thï¿½ï¿½ nghiï¿½ï¿½m    "},
+	{"    Quaï¿½ triï¿½nh Force Orb ï¿½aï¿½ hoaï¿½n tï¿½ï¿½t     "},
+	{"    ï¿½iï¿½ï¿½m Stats ï¿½ï¿½ï¿½ï¿½c tï¿½ng thï¿½m 5  "},
+	{"    ï¿½iï¿½ï¿½m Skill ï¿½ï¿½ï¿½ï¿½c tï¿½ng thï¿½m 1  "},
+	{" ï¿½iï¿½ï¿½m Stats & Skill ï¿½ï¿½ï¿½ï¿½c tï¿½ng thï¿½m 5 vaï¿½ 1 "},
+	{" Stat & skill point ï¿½ï¿½ï¿½ï¿½c tï¿½ng thï¿½m 5 vaï¿½ 2 "},
+	{"   Phï¿½ï¿½n trï¿½m XP biï¿½ mï¿½ï¿½t khi chï¿½ï¿½t giaï¿½m ï¿½i 1   "},
+	{"   Vitality tï¿½ng thï¿½m 40   " },
+	{"    Baï¿½n ï¿½ang thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½     " },
+	{"Tï¿½ï¿½ level 80, baï¿½n seï¿½ ï¿½ï¿½ï¿½ï¿½c 7 ï¿½iï¿½ï¿½m khi ï¿½aï¿½t thï¿½m 1 level." },
+	{"Tï¿½ï¿½ level 90, baï¿½n seï¿½ ï¿½ï¿½ï¿½ï¿½c 10 ï¿½iï¿½ï¿½m khi ï¿½aï¿½t thï¿½m 1 level." },
 	{"Resetted your getting-number for tranning." },
-	{"Nhiêòm vuò không thêÒ hoaÌn thaÌnh do hêìt thõÌi gian cho pheìp" },
-	{"Coì quaì nhiêÌu liình ðaình thuê. "},
-	{"Môòt moìn ðôÌ cuÌng loaòi ðang ðýõòc sýÒ duòng. "},
-	{"Không thêÒ diòch chuyêÒn tõìi Bless Castle "},	
-	{"Moìn ðôÌ naÌy không thêÒ baìn trong gian haÌng caì nhân "},
-	{"Không coì ðuÒ sôì tiêÌn thuêì ðêÒ ruìt ra. "},
-	{"Baòn ðaÞ traÒ lõÌi câu hoÒi naÌy rôÌi. "},
-	{"CaÒm õn baòn ðaÞ traÒ lõÌi câu hoÒi. "}, 
-	{"Level cuÒa moìn ðôÌ không phuÌ hõòp. "},
-	{"Moìn ðôÌ ðaÞ ðýõòc biêìn ðôÒi hoaÌn tâìt. "},
-	{"Chiêìn thãìng trong trâòn ðâìu võìi Fury. "},
-	{"Baòn ðaÞ thua trong trâòn ðâìu võìi Fury "},
+	{"Nhiï¿½ï¿½m vuï¿½ khï¿½ng thï¿½ï¿½ hoaï¿½n thaï¿½nh do hï¿½ï¿½t thï¿½ï¿½i gian cho pheï¿½p" },
+	{"Coï¿½ quaï¿½ nhiï¿½ï¿½u liï¿½nh ï¿½aï¿½nh thuï¿½. "},
+	{"Mï¿½ï¿½t moï¿½n ï¿½ï¿½ï¿½ cuï¿½ng loaï¿½i ï¿½ang ï¿½ï¿½ï¿½ï¿½c sï¿½ï¿½ duï¿½ng. "},
+	{"Khï¿½ng thï¿½ï¿½ diï¿½ch chuyï¿½ï¿½n tï¿½ï¿½i Bless Castle "},	
+	{"Moï¿½n ï¿½ï¿½ï¿½ naï¿½y khï¿½ng thï¿½ï¿½ baï¿½n trong gian haï¿½ng caï¿½ nhï¿½n "},
+	{"Khï¿½ng coï¿½ ï¿½uï¿½ sï¿½ï¿½ tiï¿½ï¿½n thuï¿½ï¿½ ï¿½ï¿½ï¿½ ruï¿½t ra. "},
+	{"Baï¿½n ï¿½aï¿½ traï¿½ lï¿½ï¿½i cï¿½u hoï¿½i naï¿½y rï¿½ï¿½i. "},
+	{"Caï¿½m ï¿½n baï¿½n ï¿½aï¿½ traï¿½ lï¿½ï¿½i cï¿½u hoï¿½i. "}, 
+	{"Level cuï¿½a moï¿½n ï¿½ï¿½ï¿½ khï¿½ng phuï¿½ hï¿½ï¿½p. "},
+	{"Moï¿½n ï¿½ï¿½ï¿½ ï¿½aï¿½ ï¿½ï¿½ï¿½ï¿½c biï¿½ï¿½n ï¿½ï¿½ï¿½i hoaï¿½n tï¿½ï¿½t. "},
+	{"Chiï¿½ï¿½n thï¿½ï¿½ng trong trï¿½ï¿½n ï¿½ï¿½ï¿½u vï¿½ï¿½i Fury. "},
+	{"Baï¿½n ï¿½aï¿½ thua trong trï¿½ï¿½n ï¿½ï¿½ï¿½u vï¿½ï¿½i Fury "},
 	{"Acquierd items in compensation. "},
-	{"Caìc moìn ðôÌ naÌy không thêÒ sýÒ duòng ðýõòc cuÌng môòt luìc. "},
+	{"Caï¿½c moï¿½n ï¿½ï¿½ï¿½ naï¿½y khï¿½ng thï¿½ï¿½ sï¿½ï¿½ duï¿½ng ï¿½ï¿½ï¿½ï¿½c cuï¿½ng mï¿½ï¿½t luï¿½c. "},
 	{"Able to use later "},
-	{"Không thêÒ huyÒ boÒ khi caìc Sheltom ðang ðýõòc Mix/Age. "},
-	{"Không thêÒ sýÒ duòng khi caìc Sheltom ðang ðýõòc Mix/Age. "},
-	{"CuÌng môòt kiêÒu toìc ðang ðýõòc sýÒ duòng. "},
-	{"Quaì triÌnh luyêòn kim thâìt baòi. "}, 
-	{"Quaì triÌnh chêì taòo thâìt baòi. "}, 
-	{"Trong khi trôòn Sheltoms, không thêÒ sýÒ duòng Ore/Crystal. "}, 
-	{"Trong khi trôòn Runes, không thêÒ sýÒ duòng Recipe. "}, 
-	{"Ore/Crystal không cuÌng loaòi "}, 
-	{"Công thýìc chêì taòo không ðuìng "}, 
+	{"Khï¿½ng thï¿½ï¿½ huyï¿½ boï¿½ khi caï¿½c Sheltom ï¿½ang ï¿½ï¿½ï¿½ï¿½c Mix/Age. "},
+	{"Khï¿½ng thï¿½ï¿½ sï¿½ï¿½ duï¿½ng khi caï¿½c Sheltom ï¿½ang ï¿½ï¿½ï¿½ï¿½c Mix/Age. "},
+	{"Cuï¿½ng mï¿½ï¿½t kiï¿½ï¿½u toï¿½c ï¿½ang ï¿½ï¿½ï¿½ï¿½c sï¿½ï¿½ duï¿½ng. "},
+	{"Quaï¿½ triï¿½nh luyï¿½ï¿½n kim thï¿½ï¿½t baï¿½i. "}, 
+	{"Quaï¿½ triï¿½nh chï¿½ï¿½ taï¿½o thï¿½ï¿½t baï¿½i. "}, 
+	{"Trong khi trï¿½ï¿½n Sheltoms, khï¿½ng thï¿½ï¿½ sï¿½ï¿½ duï¿½ng Ore/Crystal. "}, 
+	{"Trong khi trï¿½ï¿½n Runes, khï¿½ng thï¿½ï¿½ sï¿½ï¿½ duï¿½ng Recipe. "}, 
+	{"Ore/Crystal khï¿½ng cuï¿½ng loaï¿½i "}, 
+	{"Cï¿½ng thï¿½ï¿½c chï¿½ï¿½ taï¿½o khï¿½ng ï¿½uï¿½ng "}, 
 };
 
 
 
 sMESSAGEBOX2 sMessageBox2[20] = {
-	{"Bao nhiêu moìn ðôÌ ","baòn muôìn mua? "},
-	{"Bao nhiêu moìn ðôÌ ","baòn muôìn baìn? "},
-	{"Bao nhiêu moìn ðôÌ ","baòn muôìn quãÒng ði? "},
-	{"Bao nhiêu vaÌng","baòn muôìn quãÒng ði? "},
+	{"Bao nhiï¿½u moï¿½n ï¿½ï¿½ï¿½ ","baï¿½n muï¿½ï¿½n mua? "},
+	{"Bao nhiï¿½u moï¿½n ï¿½ï¿½ï¿½ ","baï¿½n muï¿½ï¿½n baï¿½n? "},
+	{"Bao nhiï¿½u moï¿½n ï¿½ï¿½ï¿½ ","baï¿½n muï¿½ï¿½n quï¿½ï¿½ng ï¿½i? "},
+	{"Bao nhiï¿½u vaï¿½ng","baï¿½n muï¿½ï¿½n quï¿½ï¿½ng ï¿½i? "},
 	{""," "}, 
-	{"Bao nhiêu vaÌng"," baòn muôìn trao ðôÒi? "},
-	{"Bao nhiêu vaÌng","baòn muôìn câìt ði? "},
-	{"Bao nhiêu vaÌng","baòn muôìn lâìy laòi? "},
-	{" Bao nhiêu ngôi sao ","baòn muôìn mua? "},
-	{"  Bao nhiêu tiêÌn  ","baòn muôìn quyên goìp? "}, 
-	{"Do you wanna register","giaì tiêÌn cuÒa moìn ðôÌ?  "}, 
-	{"Bao nhiêu moìn ðôÌ ","baòn muôìn mua? "},  
-	{"Baòn muôìn ðãòt giaì ","baòn muôìn lâìy laòi? "}, 
-	{"  Baòn coì muôìn ","mua moìn ðôÌ naÌy không? "}, 
-	{"  Baòn coì muôìn  ","mua moìn ðôÌ naÌy không? "},
-	{"Bao nhiêu tiêÌn","baòn muôìn ruìt ra? "},
-	{"Bao nhiêu liình ðaình thuê ","baòn muôìn mua? "} 
+	{"Bao nhiï¿½u vaï¿½ng"," baï¿½n muï¿½ï¿½n trao ï¿½ï¿½ï¿½i? "},
+	{"Bao nhiï¿½u vaï¿½ng","baï¿½n muï¿½ï¿½n cï¿½ï¿½t ï¿½i? "},
+	{"Bao nhiï¿½u vaï¿½ng","baï¿½n muï¿½ï¿½n lï¿½ï¿½y laï¿½i? "},
+	{" Bao nhiï¿½u ngï¿½i sao ","baï¿½n muï¿½ï¿½n mua? "},
+	{"  Bao nhiï¿½u tiï¿½ï¿½n  ","baï¿½n muï¿½ï¿½n quyï¿½n goï¿½p? "}, 
+	{"Do you wanna register","giaï¿½ tiï¿½ï¿½n cuï¿½a moï¿½n ï¿½ï¿½ï¿½?  "}, 
+	{"Bao nhiï¿½u moï¿½n ï¿½ï¿½ï¿½ ","baï¿½n muï¿½ï¿½n mua? "},  
+	{"Baï¿½n muï¿½ï¿½n ï¿½ï¿½ï¿½t giaï¿½ ","baï¿½n muï¿½ï¿½n lï¿½ï¿½y laï¿½i? "}, 
+	{"  Baï¿½n coï¿½ muï¿½ï¿½n ","mua moï¿½n ï¿½ï¿½ï¿½ naï¿½y khï¿½ng? "}, 
+	{"  Baï¿½n coï¿½ muï¿½ï¿½n  ","mua moï¿½n ï¿½ï¿½ï¿½ naï¿½y khï¿½ng? "},
+	{"Bao nhiï¿½u tiï¿½ï¿½n","baï¿½n muï¿½ï¿½n ruï¿½t ra? "},
+	{"Bao nhiï¿½u liï¿½nh ï¿½aï¿½nh thuï¿½ ","baï¿½n muï¿½ï¿½n mua? "} 
 };
 
 
 
 sMESSAGEBOX3 sMessageBox3[MESSAGE3_MAX] = {
-	{"Baòn coì muôìn","hoòc Skill naÌy không? "},
-	{"Baòn coì muôìn", "phong chýìc không? "},
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "},
-	{"Baòn coì muôìn","hoòc laòi caìc Skill không? "},		
-	{"SeÞ tôìn vaÌng"," cho sýò kiêòn naÌy "},
-	{"Baòn coì muôìn","ðiêÌu chiÒnh laòi STATS không? "},
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "},
-	{"Baòn coì muôìn", "nhâòn ðôÌ không? "}, 
-	{"Baòn coì muôìn", "kyì vaÌo Union Core không? "}, 
-	{"Baòn coì muôìn", "nhâòn ðôÌ không? "}, 
-	{"Baòn coì muôìn", "chuyêÒn tõìi ? "}, 
-	{"","Vui loÌng nhâòp vaÌo chýÞ sôì "}, 
-	{"Baòn coì muôìn","purchase star item? "}, 
-	{"Baòn coì muôìn", "baìn vâòt naÌy không? "}, 
-	{"Baòn coì muôìn", "nhiêòm vuò? "}, 
-	{" Baòn coì muôìn", "quyên goìp không? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n","hoï¿½c Skill naï¿½y khï¿½ng? "},
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "phong chï¿½ï¿½c khï¿½ng? "},
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "},
+	{"Baï¿½n coï¿½ muï¿½ï¿½n","hoï¿½c laï¿½i caï¿½c Skill khï¿½ng? "},		
+	{"Seï¿½ tï¿½ï¿½n vaï¿½ng"," cho sï¿½ï¿½ kiï¿½ï¿½n naï¿½y "},
+	{"Baï¿½n coï¿½ muï¿½ï¿½n","ï¿½iï¿½ï¿½u chiï¿½nh laï¿½i STATS khï¿½ng? "},
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "},
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "nhï¿½ï¿½n ï¿½ï¿½ï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "kyï¿½ vaï¿½o Union Core khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "nhï¿½ï¿½n ï¿½ï¿½ï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "chuyï¿½ï¿½n tï¿½ï¿½i ? "}, 
+	{"","Vui loï¿½ng nhï¿½ï¿½p vaï¿½o chï¿½ï¿½ sï¿½ï¿½ "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n","purchase star item? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "baï¿½n vï¿½ï¿½t naï¿½y khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "nhiï¿½ï¿½m vuï¿½? "}, 
+	{" Baï¿½n coï¿½ muï¿½ï¿½n", "quyï¿½n goï¿½p khï¿½ng? "}, 
 	{" Private Store ", "fffffffffff "}, 
-	{"Baòn coì muôìn", "ðôÒi moìn ðôÌ không?  "}, 
-	{"Baòn coì muôìn", "nhýÞng moìn ðôÌ? "}, 
-	{"Baòn coì muôìn ", "huyÒ boÒ ðãng kyì? "}, 
-	{"Baòn coì muôìn", "ðôÒi moìn ðôÌ?  "}, 
-	{"Baòn coì muôìn", "ðôÒi moìn ðôÌ?  "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Nõi naÌo", "baòn muôìn di chuyêÒn tõìi "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thãng haòng không? "}, 
-	{"Baòn coì muôìn", "trao ðôÒi moìn ðôÌ?  "},
-	{"Baòn muôìn diòch chuyêÒn", "tõìi ðây không? "},    
-	{"Baòn coì muôìn mua","môòt toaÌ thaìp không? "},      
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "thýòc hiêòn nhiêòm vuò không? "}, 
-	{"Baòn coì muôìn", "sýÒ duòng moìn ðôÌ naÌy? "},       
-	{"Baòn coì muôìn ", "thýòc hiêòn nhiêòm vuò không? "},
-	{"Baòn coì muôìn ", "nhâòn moìn ðôÌ không? "},   
-	{"Baòn coì muôìn","di chuyêÒn tõìi Zone không? "},   
-	{"Baòn coì muôìn", "diòch chuyêÒn không? "},
-	{"Diòch chuyêÒn", "Baòn chãìc chãìn chýì? "},    
-	{"Item", "seÞ ðýa vaÌo loÌ luyêòn kim? "}, 
-	{"Chêì taòo", "Baòn chãìc chãìn chýì?? "},    
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "ï¿½ï¿½ï¿½i moï¿½n ï¿½ï¿½ï¿½ khï¿½ng?  "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "nhï¿½ï¿½ng moï¿½n ï¿½ï¿½ï¿½? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n ", "huyï¿½ boï¿½ ï¿½ï¿½ng kyï¿½? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "ï¿½ï¿½ï¿½i moï¿½n ï¿½ï¿½ï¿½?  "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "ï¿½ï¿½ï¿½i moï¿½n ï¿½ï¿½ï¿½?  "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Nï¿½i naï¿½o", "baï¿½n muï¿½ï¿½n di chuyï¿½ï¿½n tï¿½ï¿½i "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ng haï¿½ng khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "trao ï¿½ï¿½ï¿½i moï¿½n ï¿½ï¿½ï¿½?  "},
+	{"Baï¿½n muï¿½ï¿½n diï¿½ch chuyï¿½ï¿½n", "tï¿½ï¿½i ï¿½ï¿½y khï¿½ng? "},    
+	{"Baï¿½n coï¿½ muï¿½ï¿½n mua","mï¿½ï¿½t toaï¿½ thaï¿½p khï¿½ng? "},      
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "}, 
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "sï¿½ï¿½ duï¿½ng moï¿½n ï¿½ï¿½ï¿½ naï¿½y? "},       
+	{"Baï¿½n coï¿½ muï¿½ï¿½n ", "thï¿½ï¿½c hiï¿½ï¿½n nhiï¿½ï¿½m vuï¿½ khï¿½ng? "},
+	{"Baï¿½n coï¿½ muï¿½ï¿½n ", "nhï¿½ï¿½n moï¿½n ï¿½ï¿½ï¿½ khï¿½ng? "},   
+	{"Baï¿½n coï¿½ muï¿½ï¿½n","di chuyï¿½ï¿½n tï¿½ï¿½i Zone khï¿½ng? "},   
+	{"Baï¿½n coï¿½ muï¿½ï¿½n", "diï¿½ch chuyï¿½ï¿½n khï¿½ng? "},
+	{"Diï¿½ch chuyï¿½ï¿½n", "Baï¿½n chï¿½ï¿½c chï¿½ï¿½n chï¿½ï¿½? "},    
+	{"Item", "seï¿½ ï¿½ï¿½a vaï¿½o loï¿½ luyï¿½ï¿½n kim? "}, 
+	{"Chï¿½ï¿½ taï¿½o", "Baï¿½n chï¿½ï¿½c chï¿½ï¿½n chï¿½ï¿½?? "},    
 };
 
 
 char *SkillMaster[4] = {
-	"Hoòc Skill",
+	"Hoï¿½c Skill",
 	"Change Class",
-	"Thoaìt Game"
+	"Thoaï¿½t Game"
 
 };
 char *SkillMaster2[4] = {
@@ -176,34 +176,34 @@ char *SkillMaster2[4] = {
 };
 
 char *ReStartMsg[4] = {
-	" Bãìt ðâÌu laòi týÌ chôÞ naÌy",
-	" Quay trõÒ vêÌ thaÌnh",
-	" Thoaìt Game",
-	" Không ðuÒ XP"
+	" Bï¿½ï¿½t ï¿½ï¿½ï¿½u laï¿½i tï¿½ï¿½ chï¿½ï¿½ naï¿½y",
+	" Quay trï¿½ï¿½ vï¿½ï¿½ thaï¿½nh",
+	" Thoaï¿½t Game",
+	" Khï¿½ng ï¿½uï¿½ XP"
 
 };
 char *ReStartMsg2[4] = {
-	" Phaòt thêm (Gold/XP) 1%",
+	" Phaï¿½t thï¿½m (Gold/XP) 1%",
 	"",
 	"",
-	" ðêÒ bãìt ðâÌu laòi týÌ chôÞ naÌy",
+	" ï¿½ï¿½ï¿½ bï¿½ï¿½t ï¿½ï¿½ï¿½u laï¿½i tï¿½ï¿½ chï¿½ï¿½ naï¿½y",
 
 };
 
-char *SkillUseInfoText[10]= { "    Hoòc Skill/Magic     ","    Lýòa choòn môòt Skill/Magic     ","      Hoòc hoãòc luyêòn tâòp       ","  Không coì ðuÒ ðiêÒm Skill ","   ðêÒ hoòc hay luyêòn tâòp" };
+char *SkillUseInfoText[10]= { "    Hoï¿½c Skill/Magic     ","    Lï¿½ï¿½a choï¿½n mï¿½ï¿½t Skill/Magic     ","      Hoï¿½c hoï¿½ï¿½c luyï¿½ï¿½n tï¿½ï¿½p       ","  Khï¿½ng coï¿½ ï¿½uï¿½ ï¿½iï¿½ï¿½m Skill ","   ï¿½ï¿½ï¿½ hoï¿½c hay luyï¿½ï¿½n tï¿½ï¿½p" };
 char *sinMsgSkillPoint = "    Skill Points : %d";
 char *sinMsgEliteSkillPoint = "Elite Skill Points : %d " ;
 char *sinStateName[5]={"H P : %d/%d  ","M P : %d/%d  ","STM : %d/%d  ","X P : %d/%d  ","X P : %dM/%dM   "};
 
 
-char *TownName[3] = {"Quay vêÌ Ricarten\r","Quay vêÌ Navisko\r","Quay vêÌ Pillai\r "};
+char *TownName[3] = {"Quay vï¿½ï¿½ Ricarten\r","Quay vï¿½ï¿½ Navisko\r","Quay vï¿½ï¿½ Pillai\r "};
 
-char *sinAbilityName[50] = {"Sýìc ðaình:  \r","Tôìc ðôò:  \r","TâÌm xa:  \r","Critical:  \r","Sýìc chôìng ðõÞ:  \r","TyÒ lêò ðaình:  \r",
-					"Sýìc chiòu ðýòng:  \r","KhaÒ nãng ðõÞ:  \r","Tôìc ðôò:  \r","Sýò toaÌn veòn:  \r","Phuòc hôÌi MP:  \r","Phuòc hôÌi HP :  \r",
-					"Phuòc hôÌi STM:  \r","Chôìng vâòt lyì:  \r","Nature Type:  \r","Chôìng lýÒa:  \r","Chôìng bãng:  \r","Chôìng seìt:  \r","Chôìng ðôòc: \r",
-					"Water Type:  \r","Wind Type:  \r","Phuòc hôÌi HP:  \r","Phuòc hôÌi MP: \r","Phuòc hôÌi STM: \r","Côòng thêm HP: \r",
-					"Côòng thêm MP:  \r","Côòng thêm STM:  \r","Chýìa Potion:  \r","CâÌn Level:  \r","CâÌn Strength:  \r","CâÌn Spirit:  \r",
-					"CâÌn Talent:  \r","CâÌn Agility:  \r","CâÌn Health:  \r "};
+char *sinAbilityName[50] = {"Sï¿½ï¿½c ï¿½aï¿½nh:  \r","Tï¿½ï¿½c ï¿½ï¿½ï¿½:  \r","Tï¿½ï¿½m xa:  \r","Critical:  \r","Sï¿½ï¿½c chï¿½ï¿½ng ï¿½ï¿½ï¿½:  \r","Tyï¿½ lï¿½ï¿½ ï¿½aï¿½nh:  \r",
+					"Sï¿½ï¿½c chiï¿½u ï¿½ï¿½ï¿½ng:  \r","Khaï¿½ nï¿½ng ï¿½ï¿½ï¿½:  \r","Tï¿½ï¿½c ï¿½ï¿½ï¿½:  \r","Sï¿½ï¿½ toaï¿½n veï¿½n:  \r","Phuï¿½c hï¿½ï¿½i MP:  \r","Phuï¿½c hï¿½ï¿½i HP :  \r",
+					"Phuï¿½c hï¿½ï¿½i STM:  \r","Chï¿½ï¿½ng vï¿½ï¿½t lyï¿½:  \r","Nature Type:  \r","Chï¿½ï¿½ng lï¿½ï¿½a:  \r","Chï¿½ï¿½ng bï¿½ng:  \r","Chï¿½ï¿½ng seï¿½t:  \r","Chï¿½ï¿½ng ï¿½ï¿½ï¿½c: \r",
+					"Water Type:  \r","Wind Type:  \r","Phuï¿½c hï¿½ï¿½i HP:  \r","Phuï¿½c hï¿½ï¿½i MP: \r","Phuï¿½c hï¿½ï¿½i STM: \r","Cï¿½ï¿½ng thï¿½m HP: \r",
+					"Cï¿½ï¿½ng thï¿½m MP:  \r","Cï¿½ï¿½ng thï¿½m STM:  \r","Chï¿½ï¿½a Potion:  \r","Cï¿½ï¿½n Level:  \r","Cï¿½ï¿½n Strength:  \r","Cï¿½ï¿½n Spirit:  \r",
+					"Cï¿½ï¿½n Talent:  \r","Cï¿½ï¿½n Agility:  \r","Cï¿½ï¿½n Health:  \r "};
 
 
 char *sinSpecialName[50] = {"Spec. ATK SPD:  \r","Spec. CRIT:  \r","Spec. DEF RTG:  \r","Spec. ABS RTG:  \r",
@@ -211,51 +211,51 @@ char *sinSpecialName[50] = {"Spec. ATK SPD:  \r","Spec. CRIT:  \r","Spec. DEF RT
 						"Spec. Flame:  \r","Spec. Frost:  \r","Spec. Lightning:  \r","Spec. Poison:  \r","Spec. Water:  \r","Spec. Wind:  \r",
 						"Spec. ATK POW:  \r","Spec. ATK RTG:  \r","Spec. RNG:  \r","Spec. Organic ATK:  \r","Spec. Nature ATK:  \r","Spec. Flame ATK:  \r","Spec. Frost ATK:  \r",
 						"Spec. Lightning ATK:  \r","Spec. Poison ATK:  \r","Spec. Water ATK:  \r","Spec. Wind ATK:  \r","Max HP Boost:  \r","Max MP Boost:  \r",
-						"Phuòc hôÌi HP:  \r","Phuòc hôÌi MP:  \r","Phuòc hôÌi STM:  \r","Giaì baìn  \r","Giaì:  \r "};
+						"Phuï¿½c hï¿½ï¿½i HP:  \r","Phuï¿½c hï¿½ï¿½i MP:  \r","Phuï¿½c hï¿½ï¿½i STM:  \r","Giaï¿½ baï¿½n  \r","Giaï¿½:  \r "};
 
 
 char *SpecialName3 = "%s Spec. \r";
-char *MixResultTitle = "Kêìt quaÒ Mix";
-char *NowLevelText = "Level hiêòn taòi\r";
-char *NextLevelText = "Level kêì tiêìp\r";
+char *MixResultTitle = "Kï¿½ï¿½t quaï¿½ Mix";
+char *NowLevelText = "Level hiï¿½ï¿½n taï¿½i\r";
+char *NextLevelText = "Level kï¿½ï¿½ tiï¿½ï¿½p\r";
 
 char *NormalAttckName ="Default Attack";
 char *RequirLevel = "%s (Req. LVL:%d)\r";
-char *UseItemGroupName = "ChiÒ sýÒ duòng ðýõòc võìi:\r";
+char *UseItemGroupName = "Chiï¿½ sï¿½ï¿½ duï¿½ng ï¿½ï¿½ï¿½ï¿½c vï¿½ï¿½i:\r";
 
 char *PoisonName = "Poison Type:\r";
 char *FireName = "Flame Type:\r";
-char *AttackAreaName = "TâÌm aÒnh hýõÒng:\r";
-char *Attack_RateName = "TyÒ Lêò Ðaình:\r";
-char *Max_DamageIncre = "Tãng Max Damage:\r";
-char *DamageAddName = "Tãng sýìc saìt thýõng:\r";
-char *Attack_SpeedAdd = "Tãng tôìc ðôò ðaình:\r";
-char *IncreBlock = "Tãng khaÒ nãng ðõÞ:\r";
-char *CountinueTime = "ThõÌi gian:\r";
-char *UseManaName = "MP sýÒ duòng:\r";
+char *AttackAreaName = "Tï¿½ï¿½m aï¿½nh hï¿½ï¿½ï¿½ng:\r";
+char *Attack_RateName = "Tyï¿½ Lï¿½ï¿½ ï¿½aï¿½nh:\r";
+char *Max_DamageIncre = "Tï¿½ng Max Damage:\r";
+char *DamageAddName = "Tï¿½ng sï¿½ï¿½c saï¿½t thï¿½ï¿½ng:\r";
+char *Attack_SpeedAdd = "Tï¿½ng tï¿½ï¿½c ï¿½ï¿½ï¿½ ï¿½aï¿½nh:\r";
+char *IncreBlock = "Tï¿½ng khaï¿½ nï¿½ng ï¿½ï¿½ï¿½:\r";
+char *CountinueTime = "Thï¿½ï¿½i gian:\r";
+char *UseManaName = "MP sï¿½ï¿½ duï¿½ng:\r";
 char *DamageName = "Damage:\r";
-char *ShootingRangeName = "tâÌm xa:\r";
-char *IncreAsorb = "Tãng chiÒ sôì chiòu ðýòng:\r";
-char *SecName = "giây";
-char *PlusDamageName = "Côòng sýìc ðaình:\r";
-char *HitNumName = "Sôì lâÌn ðaình:\r";
-char *DecreLifeName = "GiaÒm HP:\r";
-char *Attck_RateAdd = "Côòng tyÒ lêò ðaình:\r";
-char *Add_CriticalName = "Côòng tyÒ lêò Critical:\r";
-char *Push_AreaName = "TâÌm ðâÒy luÌi:\r";
-char *FireAttackDamageAdd ="Côòng pheìp lýÒa:\r";
-char *IceName = "Thuôòc tiình Bãng:\r";
-char *IceAttackDamageAdd = "Côòng pheìp bãng:\r";
-char *StuneRate = "TyÒ lêò gây choaìng:\r";
-char *DefenseRateIncre = "Tãng sýìc chôìng ðõÞ:\r";
-char *WeaponSizeName ="Kiìch cõÞ vuÞ khiì:\r";
-char *HwakRotationNum = "Sôì lâÌn tâìn công:\r";
-char *WeaponSpeedAddName  = "Côòng tôìc ðôò ðaình:\r";
-char *IncreAttack_RateName = "Tãng tyÒ lêò ðaình:\r";
-char *ShootingNumName = "Sôì lâÌn bãìn:\r";
-char *SeriesShootingCount = "Sôì lâÌn tâìn công:\r";
-char *UseStaminaName = "Stamina sýÒ duòng:\r";
-char *MasterSkillMoneyName = "Giaì tiêÌn:\r";
+char *ShootingRangeName = "tï¿½ï¿½m xa:\r";
+char *IncreAsorb = "Tï¿½ng chiï¿½ sï¿½ï¿½ chiï¿½u ï¿½ï¿½ï¿½ng:\r";
+char *SecName = "giï¿½y";
+char *PlusDamageName = "Cï¿½ï¿½ng sï¿½ï¿½c ï¿½aï¿½nh:\r";
+char *HitNumName = "Sï¿½ï¿½ lï¿½ï¿½n ï¿½aï¿½nh:\r";
+char *DecreLifeName = "Giaï¿½m HP:\r";
+char *Attck_RateAdd = "Cï¿½ï¿½ng tyï¿½ lï¿½ï¿½ ï¿½aï¿½nh:\r";
+char *Add_CriticalName = "Cï¿½ï¿½ng tyï¿½ lï¿½ï¿½ Critical:\r";
+char *Push_AreaName = "Tï¿½ï¿½m ï¿½ï¿½ï¿½y luï¿½i:\r";
+char *FireAttackDamageAdd ="Cï¿½ï¿½ng pheï¿½p lï¿½ï¿½a:\r";
+char *IceName = "Thuï¿½ï¿½c tiï¿½nh Bï¿½ng:\r";
+char *IceAttackDamageAdd = "Cï¿½ï¿½ng pheï¿½p bï¿½ng:\r";
+char *StuneRate = "Tyï¿½ lï¿½ï¿½ gï¿½y choaï¿½ng:\r";
+char *DefenseRateIncre = "Tï¿½ng sï¿½ï¿½c chï¿½ï¿½ng ï¿½ï¿½ï¿½:\r";
+char *WeaponSizeName ="Kiï¿½ch cï¿½ï¿½ vuï¿½ khiï¿½:\r";
+char *HwakRotationNum = "Sï¿½ï¿½ lï¿½ï¿½n tï¿½ï¿½n cï¿½ng:\r";
+char *WeaponSpeedAddName  = "Cï¿½ï¿½ng tï¿½ï¿½c ï¿½ï¿½ï¿½ ï¿½aï¿½nh:\r";
+char *IncreAttack_RateName = "Tï¿½ng tyï¿½ lï¿½ï¿½ ï¿½aï¿½nh:\r";
+char *ShootingNumName = "Sï¿½ï¿½ lï¿½ï¿½n bï¿½ï¿½n:\r";
+char *SeriesShootingCount = "Sï¿½ï¿½ lï¿½ï¿½n tï¿½ï¿½n cï¿½ng:\r";
+char *UseStaminaName = "Stamina sï¿½ï¿½ duï¿½ng:\r";
+char *MasterSkillMoneyName = "Giaï¿½ tiï¿½ï¿½n:\r";
 
 char *ItemAgingResult;		
 
@@ -265,11 +265,11 @@ char *sinCopyItem5 = "Copied Item\r";
 char *sinNum7 = "RND";
 char *sinSkillPointName = "Skill Point";	
 char *sinG_Pike_Time3 = "Frozen Time:\r";	
-char *sinItemLimitTimeOverMsg = "ThõÌi gian cho pheìp ðaÞ hêìt\r";
+char *sinItemLimitTimeOverMsg = "Thï¿½ï¿½i gian cho pheï¿½p ï¿½aï¿½ hï¿½ï¿½t\r";
 char *sinDeadSongPyeunEat = "Darn it! It's rotten rice cake!";
-char *SmeltingResultTitle = "Kêìt quaÒ luyêòn kim";		
-char *ManufactureResultTitle = "Kêìt quaÒ chêì taòo";	
-char *ManufacturingTitle = "Moìn ðôÌ ngâÞu nhiên";	
+char *SmeltingResultTitle = "Kï¿½ï¿½t quaï¿½ luyï¿½ï¿½n kim";		
+char *ManufactureResultTitle = "Kï¿½ï¿½t quaï¿½ chï¿½ï¿½ taï¿½o";	
+char *ManufacturingTitle = "Moï¿½n ï¿½ï¿½ï¿½ ngï¿½ï¿½u nhiï¿½n";	
 
 
 char *sinMaxDamageAdd = "Increase in Maximum damage+\r";
@@ -310,27 +310,27 @@ char *ReturnDamage = "Return Damage:\r";
 char *Area18 = "Available Range:\r";
 char *IncreMana5 = "Increase Mana:\r";
 char *Area19 = "Available Area:\r";
-char *HelpTitle8 = " T R Õò  G I Uì P ";
-char *QuestTitle8 = " N H I Êò M  V Uò ";
+char *HelpTitle8 = " T R ï¿½ï¿½  G I Uï¿½ P ";
+char *QuestTitle8 = " N H I ï¿½ï¿½ M  V Uï¿½ ";
 char *ResearchTitle8 = "RESEARCH";
 char *TeleportTitle8 = "TELEPORT";
 
 char *IncreWeaponAttack_RateName = "Increased ATK rating:\r";
 char *AddMaxDamage = "Increase maximum damage:\r";
-char *LinkCoreName = "Diòch chuyêÒn týìc thõÌi tõìi thaÌnh viên cuÒa Clan\r";
+char *LinkCoreName = "Diï¿½ch chuyï¿½ï¿½n tï¿½ï¿½c thï¿½ï¿½i tï¿½ï¿½i thaï¿½nh viï¿½n cuï¿½a Clan\r";
 char *DesLinkCore = "Name:";
 char *Itemul = "item";
-char *ItemRecvOk = "Baòn coì muôìn vâòt naÌy không?";
+char *ItemRecvOk = "Baï¿½n coï¿½ muï¿½ï¿½n vï¿½ï¿½t naï¿½y khï¿½ng?";
 char *Money5 = "gold";
 char *Exp5 = "EXP";
 char *WingItemName[] = {"Metal wing","Silver wing","Gold wing","Diamond wing", "Chaos wing", "Extreme wing "};
-char *WarpGateName[] = {"Warp gate","Ricarten","Pillai","RýÌng côÒ","RýÌng truìc","LaÌng Ruinen","Thiò trâìn Navisko","VuÌng ðâìt câìm", "LaÌng Eura", "Lost Island "};
-char *sinWarningName5 = "Chuì yì ";
-char *ClanCristalName = "DaÌnh riêng cho thaÌnh viên Clan\r";
-char *NowMyShopSell = "Ðang baìn\r";
-char *SecretNumName = "Nhâòp vaÌo maÞ sôì kiêÒm soaìt";
-char *MyShopExpDoc7 = "Thông tin vêÌ cýÒa haÌng";
-char *NotAgingItem2 = "'Không thêÒ Age moìn ðôÌ naÌy";
+char *WarpGateName[] = {"Warp gate","Ricarten","Pillai","Rï¿½ï¿½ng cï¿½ï¿½","Rï¿½ï¿½ng truï¿½c","Laï¿½ng Ruinen","Thiï¿½ trï¿½ï¿½n Navisko","Vuï¿½ng ï¿½ï¿½ï¿½t cï¿½ï¿½m", "Laï¿½ng Eura", "Lost Island "};
+char *sinWarningName5 = "Chuï¿½ yï¿½ ";
+char *ClanCristalName = "Daï¿½nh riï¿½ng cho thaï¿½nh viï¿½n Clan\r";
+char *NowMyShopSell = "ï¿½ang baï¿½n\r";
+char *SecretNumName = "Nhï¿½ï¿½p vaï¿½o maï¿½ sï¿½ï¿½ kiï¿½ï¿½m soaï¿½t";
+char *MyShopExpDoc7 = "Thï¿½ng tin vï¿½ï¿½ cï¿½ï¿½a haï¿½ng";
+char *NotAgingItem2 = "'Khï¿½ng thï¿½ï¿½ Age moï¿½n ï¿½ï¿½ï¿½ naï¿½y";
 char *ExpPercent2 = "EXP : %d.%d%s";
 char *ExpPercent3 = "EXP : %d.0%d%s";
 char *Mutant7   =   "Mutant";
@@ -457,8 +457,8 @@ char *Use4="you";
 char *DivineShield4="Blocking rate of divine shiled";
 
 
-char *QuestMonsterName[] = {"Thaòch nhân ","TaÌn binh côìt ","TraÒm thuÒ quaìi ","Boò giaìp ","Côìt xaò thuÒ ","Thaòch tinh " ,
-                         "Quaìi vâòt taòi VuÌng ðâìt biò laÞng quên ","Quaìi vâòt taòi Ôìc ðaÒo ","Quaìi vâòt taòi NhaÌ nguòc côÒ, tâÌng 1  "};
+char *QuestMonsterName[] = {"Thaï¿½ch nhï¿½n ","Taï¿½n binh cï¿½ï¿½t ","Traï¿½m thuï¿½ quaï¿½i ","Boï¿½ giaï¿½p ","Cï¿½ï¿½t xaï¿½ thuï¿½ ","Thaï¿½ch tinh " ,
+                         "Quaï¿½i vï¿½ï¿½t taï¿½i Vuï¿½ng ï¿½ï¿½ï¿½t biï¿½ laï¿½ng quï¿½n ","Quaï¿½i vï¿½ï¿½t taï¿½i ï¿½ï¿½c ï¿½aï¿½o ","Quaï¿½i vï¿½ï¿½t taï¿½i Nhaï¿½ nguï¿½c cï¿½ï¿½, tï¿½ï¿½ng 1  "};
 
 
 
@@ -468,170 +468,170 @@ char *VampOption[10] ={"IncreaseAging%: \r","Vampire: \r","RefDamage: \r","Decre
 
 char *Quest3ItemName[]={"Demon Hunter","Ancient Revenge","Mist","Devil Side","Anaconda","Plated Sword","Ghost "};
 
-char *Quset3ItemDoc15 = "Moìn ðôÌ nhiêòm vuò ";
-char *Quset3ItemDoc16 = " ðaÞ biêìn mâìt";
+char *Quset3ItemDoc15 = "Moï¿½n ï¿½ï¿½ï¿½ nhiï¿½ï¿½m vuï¿½ ";
+char *Quset3ItemDoc16 = " ï¿½aï¿½ biï¿½ï¿½n mï¿½ï¿½t";
 
 char *SparkDamage10 = "SparkDamage:\r";
 
 char *RequirLevel3 = "(RequirLevel:%d)\r";
 
-char *RecvItemTT = "Nhâòn ðýõòc moìn ðôÌ ";
+char *RecvItemTT = "Nhï¿½ï¿½n ï¿½ï¿½ï¿½ï¿½c moï¿½n ï¿½ï¿½ï¿½ ";
 char *PuzzleEvent5 = "Completed Puzzle";
 char *BabelHorn = "The horn of Babel";
-char *NineTailFoxItem = "Haìi lôòc ðâÌu xuân";
+char *NineTailFoxItem = "Haï¿½i lï¿½ï¿½c ï¿½ï¿½ï¿½u xuï¿½n";
 char *MyShopItemSell5 = "The Price: \r";
 char *CristalItem     ="the 7 Crystals";
-char *StarDust	= "Bôòt tinh tuì ";
+char *StarDust	= "Bï¿½ï¿½t tinh tuï¿½ ";
 char *ChristMas = "Merry ChristMas";
 
-char *sinDeadCandyEat = "Ãòc! Caìi keòo naÌy biò hoÒng rôÌi -_-";
+char *sinDeadCandyEat = "ï¿½ï¿½c! Caï¿½i keï¿½o naï¿½y biï¿½ hoï¿½ng rï¿½ï¿½i -_-";
 
-char *PotionCntDoc2 = "Baìn Potions";
-char *ItemPrice7 = "Baìn moìn ðôÌ ";
+char *PotionCntDoc2 = "Baï¿½n Potions";
+char *ItemPrice7 = "Baï¿½n moï¿½n ï¿½ï¿½ï¿½ ";
 
-char *BuyMyShopItem7 = "%s ðaÞ mua %d %s bãÌng %d vaÌng";
-char *BuyMyShopItem8 = "%s ðaÞ baìn %d %s võìi giaì %d vaÌng";
+char *BuyMyShopItem7 = "%s ï¿½aï¿½ mua %d %s bï¿½ï¿½ng %d vaï¿½ng";
+char *BuyMyShopItem8 = "%s ï¿½aï¿½ baï¿½n %d %s vï¿½ï¿½i giaï¿½ %d vaï¿½ng";
 char *ItemName87 = "item";
 
 char *sinEvent87 = "Request of the danger collector";
 char *sinAddDamageItem = "AddedATKPOWER: \r";
 char *sinContinueTimeItem = "Duration: \r";
 char *BuyPotionMoney = "Gold:";
-char *BuyPotionKind = "Sôì lýõòng:";
+char *BuyPotionKind = "Sï¿½ï¿½ lï¿½ï¿½ï¿½ng:";
 char *SheltomName2[] = {"Lucidy","Sereno"," Fadeo","Sparky","Raident","Transparo","Murky","Devine","Celesto ","Mirage","Inferna","Enigma"};
 
 char *AddPercentDamage3= "AddATKPOWER%: \r";
 
 char *sinLuckyBox = "Lucky Bag";
 char *SodMessage_Etc[]= {
-			"Thu nhâòp cuÒa Clan quaÒn lyì Bellatra laÌ ",
-			"ChiÒ coì chuÒ Clan mõìi ðýõòc nhâòn.",
-			"TiÒ lêò thuêì hiêòn haÌnh laÌ %d%s.",
+			"Thu nhï¿½ï¿½p cuï¿½a Clan quaï¿½n lyï¿½ Bellatra laï¿½ ",
+			"Chiï¿½ coï¿½ chuï¿½ Clan mï¿½ï¿½i ï¿½ï¿½ï¿½ï¿½c nhï¿½ï¿½n.",
+			"Tiï¿½ lï¿½ï¿½ thuï¿½ï¿½ hiï¿½ï¿½n haï¿½nh laï¿½ %d%s.",
 			};
 			
 char *SodMessage_Clan[] = {
-			"TôÒng thu nhâòp ",
-			"Bellatra cung câìp tiêÞn laÞi ngaÌy hôm qua.",
+			"Tï¿½ï¿½ng thu nhï¿½ï¿½p ",
+			"Bellatra cung cï¿½ï¿½p tiï¿½ï¿½n laï¿½i ngaï¿½y hï¿½m qua.",
 			};
 			
 char *SodMessage_Master[] = {
-			"TôÒng thu nhâòp",
-			"Bellatra cung câìp tiêÌn laÞi ngaÌy hôm qua.",
-			"Baòn coì muôìn lâìy ra không?",
+			"Tï¿½ï¿½ng thu nhï¿½ï¿½p",
+			"Bellatra cung cï¿½ï¿½p tiï¿½ï¿½n laï¿½i ngaï¿½y hï¿½m qua.",
+			"Baï¿½n coï¿½ muï¿½ï¿½n lï¿½ï¿½y ra khï¿½ng?",
 			};
 			
 char *OtherClanMaster[] = {
-			"Clan vâÞn coÌn coì thêÒ nhâòn tiêÌn laÞi",
-			"nhâòp vaÌo sôì tiêÌn câÌn lâìy ra.",
+			"Clan vï¿½ï¿½n coï¿½n coï¿½ thï¿½ï¿½ nhï¿½ï¿½n tiï¿½ï¿½n laï¿½i",
+			"nhï¿½ï¿½p vaï¿½o sï¿½ï¿½ tiï¿½ï¿½n cï¿½ï¿½n lï¿½ï¿½y ra.",
 			};
 	
 char *SiegeMessage_Taxrates[] = {
-	"TiÒ lêò thuêì ðaÞ thay ðôÒi %d%s.",
-	"TôÒng sôì thuêì ðaÞ tiìch luyÞ ",
+	"Tiï¿½ lï¿½ï¿½ thuï¿½ï¿½ ï¿½aï¿½ thay ï¿½ï¿½ï¿½i %d%s.",
+	"Tï¿½ï¿½ng sï¿½ï¿½ thuï¿½ï¿½ ï¿½aï¿½ tiï¿½ch luyï¿½ ",
 	"Gold.",
-	"Baòn coì muôìn ruìt tiêÌn thuêì ra không?.",
-	"TiÒ lêò thuêì hiêòn taòi laÌ %d%s.",
+	"Baï¿½n coï¿½ muï¿½ï¿½n ruï¿½t tiï¿½ï¿½n thuï¿½ï¿½ ra khï¿½ng?.",
+	"Tiï¿½ lï¿½ï¿½ thuï¿½ï¿½ hiï¿½ï¿½n taï¿½i laï¿½ %d%s.",
 };
 char *SiegeMessage_MercenrayA[] = {
-	"Dân quân",
-	"LaÌ lýòc lýõòng dân quân",
-	"Sýìc chiêìn ðâìu không cao nhýng giaì thaÌnh reÒ.",
-	"TôÒng sôì dân quân: 20 / %d",
+	"Dï¿½n quï¿½n",
+	"Laï¿½ lï¿½ï¿½c lï¿½ï¿½ï¿½ng dï¿½n quï¿½n",
+	"Sï¿½ï¿½c chiï¿½ï¿½n ï¿½ï¿½ï¿½u khï¿½ng cao nhï¿½ng giaï¿½ thaï¿½nh reï¿½.",
+	"Tï¿½ï¿½ng sï¿½ï¿½ dï¿½n quï¿½n: 20 / %d",
 };
 char *SiegeMessage_MercenrayB[] = {
-	"Vêò binh",
-	"Giaì caÒ phuÌ hõòp võìi khaÒ nãng chiêìn ðâìu.",
-	"Coì sýìc chiêìn ðâìu trung biÌnh.",
-	"TôÒng sôì Vêò binh: 20 / %d",
+	"Vï¿½ï¿½ binh",
+	"Giaï¿½ caï¿½ phuï¿½ hï¿½ï¿½p vï¿½ï¿½i khaï¿½ nï¿½ng chiï¿½ï¿½n ï¿½ï¿½ï¿½u.",
+	"Coï¿½ sï¿½ï¿½c chiï¿½ï¿½n ï¿½ï¿½ï¿½u trung biï¿½nh.",
+	"Tï¿½ï¿½ng sï¿½ï¿½ Vï¿½ï¿½ binh: 20 / %d",
 };
 char *SiegeMessage_MercenrayC[] = {
-	"Câìm vêò quân",
-	"Coì khaÒ nãng chiêìn ðâìu cao nhâìt",
-	"Sýìc chiêìn ðâìu vaÌ phoÌng vêò râìt duÞng maÞnh.",
-	"TôÒng sôì Câìm vêò quân: 20 / %d",
+	"Cï¿½ï¿½m vï¿½ï¿½ quï¿½n",
+	"Coï¿½ khaï¿½ nï¿½ng chiï¿½ï¿½n ï¿½ï¿½ï¿½u cao nhï¿½ï¿½t",
+	"Sï¿½ï¿½c chiï¿½ï¿½n ï¿½ï¿½ï¿½u vaï¿½ phoï¿½ng vï¿½ï¿½ rï¿½ï¿½t duï¿½ng maï¿½nh.",
+	"Tï¿½ï¿½ng sï¿½ï¿½ Cï¿½ï¿½m vï¿½ï¿½ quï¿½n: 20 / %d",
 };
 char *SiegeMessage_TowerIce[] = {
-	"ToaÌ thaìp Bãng",
-	"Tiình bãng laÌm giaÒm tôìc ðôò di chuyêÒn vaÌ ",
-	"coì khaÒ nãng ðãòc biêòt laÌm giaÒm tôìc ðôò ðaình.",
-	"Thiêìt lâòp ToaÌ thaìp Bãng ðaÞ hoaÌn tâìt",
+	"Toaï¿½ thaï¿½p Bï¿½ng",
+	"Tiï¿½nh bï¿½ng laï¿½m giaï¿½m tï¿½ï¿½c ï¿½ï¿½ï¿½ di chuyï¿½ï¿½n vaï¿½ ",
+	"coï¿½ khaï¿½ nï¿½ng ï¿½ï¿½ï¿½c biï¿½ï¿½t laï¿½m giaï¿½m tï¿½ï¿½c ï¿½ï¿½ï¿½ ï¿½aï¿½nh.",
+	"Thiï¿½ï¿½t lï¿½ï¿½p Toaï¿½ thaï¿½p Bï¿½ng ï¿½aï¿½ hoaï¿½n tï¿½ï¿½t",
 };
 char *SiegeMessage_TowerFire[] = {
-	"ToaÌ thaìp LýÒa",
-	"Coì khaÒ nãng tâìn công bãÌng lýÒa râìt maònh",
-	"NgoaÌi ra không coì khaÒ nãng ðãòc biêòt.",
-	"Thiêìt lâòp ToaÌ thaìp LýÒa ðaÞ hoaÌn tâìt",
+	"Toaï¿½ thaï¿½p Lï¿½ï¿½a",
+	"Coï¿½ khaï¿½ nï¿½ng tï¿½ï¿½n cï¿½ng bï¿½ï¿½ng lï¿½ï¿½a rï¿½ï¿½t maï¿½nh",
+	"Ngoaï¿½i ra khï¿½ng coï¿½ khaï¿½ nï¿½ng ï¿½ï¿½ï¿½c biï¿½ï¿½t.",
+	"Thiï¿½ï¿½t lï¿½ï¿½p Toaï¿½ thaï¿½p Lï¿½ï¿½a ï¿½aï¿½ hoaï¿½n tï¿½ï¿½t",
 };
 char *SiegeMessage_TowerLighting[] = {
-	"ToaÌ thaìp Ðiêòn",
-	"LaÌm giaÒm tôìc ðôò di chuyêÒn vaÌ ",
-	"coì khaÒ nãng ðãòc biêòt laÌm giaÒm tôìc ðôò ðaình.",
-	"Thiêìt lâòp ToaÌ thaìp Ðiêòn ðaÞ hoaÌn tâìt",
+	"Toaï¿½ thaï¿½p ï¿½iï¿½ï¿½n",
+	"Laï¿½m giaï¿½m tï¿½ï¿½c ï¿½ï¿½ï¿½ di chuyï¿½ï¿½n vaï¿½ ",
+	"coï¿½ khaï¿½ nï¿½ng ï¿½ï¿½ï¿½c biï¿½ï¿½t laï¿½m giaï¿½m tï¿½ï¿½c ï¿½ï¿½ï¿½ ï¿½aï¿½nh.",
+	"Thiï¿½ï¿½t lï¿½ï¿½p Toaï¿½ thaï¿½p ï¿½iï¿½ï¿½n ï¿½aï¿½ hoaï¿½n tï¿½ï¿½t",
 };
-char *SiegeMessage_MerMoney   = "Giaì cuÒa liình ðaình thuê: ";
-char *SiegeMessage_TowerMoney = "Giaì cuÒa ToaÌ thaìp: ";
+char *SiegeMessage_MerMoney   = "Giaï¿½ cuï¿½a liï¿½nh ï¿½aï¿½nh thuï¿½: ";
+char *SiegeMessage_TowerMoney = "Giaï¿½ cuï¿½a Toaï¿½ thaï¿½p: ";
 
-char *sinClanMaster7 = "ChuÒ Clan";
-char *sinPrize7 = "PhâÌn thýõÒng : ";
+char *sinClanMaster7 = "Chuï¿½ Clan";
+char *sinPrize7 = "Phï¿½ï¿½n thï¿½ï¿½ï¿½ng : ";
 
 
-char *sinLevelQuestMonster[]={"Thaòch nhân ","Nâìm quyÒ ","Ong ðôòc ","Ðaòi tinh tinh ","Xiìch ma výõng ","Thiêìt ma výõng ","Thiêìt thuÒ výõng  "};
-char *sinLevelQusetDoc="Nhiêòm vuò> ÐaÞ tiêu diêòt ðýõòc %s %d";
+char *sinLevelQuestMonster[]={"Thaï¿½ch nhï¿½n ","Nï¿½ï¿½m quyï¿½ ","Ong ï¿½ï¿½ï¿½c ","ï¿½aï¿½i tinh tinh ","Xiï¿½ch ma vï¿½ï¿½ng ","Thiï¿½ï¿½t ma vï¿½ï¿½ng ","Thiï¿½ï¿½t thuï¿½ vï¿½ï¿½ng  "};
+char *sinLevelQusetDoc="Nhiï¿½ï¿½m vuï¿½> ï¿½aï¿½ tiï¿½u diï¿½ï¿½t ï¿½ï¿½ï¿½ï¿½c %s %d";
 
-char *sinTeleportDoc[] = {"Hang Nâìm ","Hang Thaòch NhuÞ ","VuÌng ðâìt biò nguyêÌn ruÒa ","VuÌng ðâìt câìm  "};
-char *sinLevelQuest90_2Mon[] = {"Ðiòa âìn výõng ","Thiêìt khuÒng long ","Song chuyÌ quyÒ  "};
-char *sinLevelQusetDoc2="<Nhiêòm vuò> HaÞy tiêu diêòt %s %d";
-char *sinLevelQusetDoc3="<Nhiêòm vuò> TiÌm moìn ðôÌ týÌ %s";
-char *sinLimitTiem2 = "ThõÌi gian giõìi haòn: \r";
-char *sinMinute2 = "phuìt";
+char *sinTeleportDoc[] = {"Hang Nï¿½ï¿½m ","Hang Thaï¿½ch Nhuï¿½ ","Vuï¿½ng ï¿½ï¿½ï¿½t biï¿½ nguyï¿½ï¿½n ruï¿½a ","Vuï¿½ng ï¿½ï¿½ï¿½t cï¿½ï¿½m  "};
+char *sinLevelQuest90_2Mon[] = {"ï¿½iï¿½a ï¿½ï¿½n vï¿½ï¿½ng ","Thiï¿½ï¿½t khuï¿½ng long ","Song chuyï¿½ quyï¿½  "};
+char *sinLevelQusetDoc2="<Nhiï¿½ï¿½m vuï¿½> Haï¿½y tiï¿½u diï¿½ï¿½t %s %d";
+char *sinLevelQusetDoc3="<Nhiï¿½ï¿½m vuï¿½> Tiï¿½m moï¿½n ï¿½ï¿½ï¿½ tï¿½ï¿½ %s";
+char *sinLimitTiem2 = "Thï¿½ï¿½i gian giï¿½ï¿½i haï¿½n: \r";
+char *sinMinute2 = "phuï¿½t";
 char *sinDay4 = "day";
 char *sinHour4 = "hour";
-char *sinLevelQusetDoc4="<Nhiêòm vuò> ÐaÞ tiêòu diêòt ðýõòc %s %d";
+char *sinLevelQusetDoc4="<Nhiï¿½ï¿½m vuï¿½> ï¿½aï¿½ tiï¿½ï¿½u diï¿½ï¿½t ï¿½ï¿½ï¿½ï¿½c %s %d";
 
 sinSTRING sinTestMsg7("Hurray, Neh Neh Neh Boo Boo, You're losers!");
 
 char *sinMonCodeName[]={
 	0,
-	"Thaòch nhân ",
-	"TaÌn binh côìt ",
-	"TraÒm thuÒ quaìi ",
-	"Boò giaìp ",
-	"Côìt xaò thuÒ ",     
-	"Thaòch tinh ",
-	"Nâìm quyÒ ",
-	"Ong ðôòc ",
-	"Ðaòi tinh tinh ",
-	"Xiìch ma výõng ",                
-	"Thiêìt ma výõng ",
-	"Thiêìt thuÒ výõng ",
-	"Ðiòa âìn výõng ",
-	"Thiêìt khuÒng long ",
-	"Song chuyÌ quyÒ ",              
-	"Thiêìt binh côìt ",
-	"Sên hôÒ ",
-	"Thiêìt caÌng ",
-	"Xaìc ýõìp ",
-	"QuaÒn nguòc ",             
-	"HoaÒ nhân",            
-	"Thaòch výõng ",
-	"Thaòch thâÌn ",
-	"Vêò giaìp binh ",
-	"Nhân maÞ výõng ",       
-	"Nhân maÞ thýõng ",
-	"Ong chuìa ",
-	"Kyò siÞ aÒo ",
-	"Aìc ma ",
-	"PhuÌ thuÒy ",                
-	"Ðaòi quaìi ",
-	"Song ðâÌu quaìi ",
-	"TýÒ thâÌn ",
-	"Xuì diêòn ma ",
-	"Xiìch quyÒ ",           
-	"Hãìc ma výõng ",
-	"Thiêìt hâÌu ",
-	"Nhân maÞ chuÌy ",
-	"HôÌng saìt thuÒ ",
-	"SâÌu quyÒ ",            
+	"Thaï¿½ch nhï¿½n ",
+	"Taï¿½n binh cï¿½ï¿½t ",
+	"Traï¿½m thuï¿½ quaï¿½i ",
+	"Boï¿½ giaï¿½p ",
+	"Cï¿½ï¿½t xaï¿½ thuï¿½ ",     
+	"Thaï¿½ch tinh ",
+	"Nï¿½ï¿½m quyï¿½ ",
+	"Ong ï¿½ï¿½ï¿½c ",
+	"ï¿½aï¿½i tinh tinh ",
+	"Xiï¿½ch ma vï¿½ï¿½ng ",                
+	"Thiï¿½ï¿½t ma vï¿½ï¿½ng ",
+	"Thiï¿½ï¿½t thuï¿½ vï¿½ï¿½ng ",
+	"ï¿½iï¿½a ï¿½ï¿½n vï¿½ï¿½ng ",
+	"Thiï¿½ï¿½t khuï¿½ng long ",
+	"Song chuyï¿½ quyï¿½ ",              
+	"Thiï¿½ï¿½t binh cï¿½ï¿½t ",
+	"Sï¿½n hï¿½ï¿½ ",
+	"Thiï¿½ï¿½t caï¿½ng ",
+	"Xaï¿½c ï¿½ï¿½ï¿½p ",
+	"Quaï¿½n nguï¿½c ",             
+	"Hoaï¿½ nhï¿½n",            
+	"Thaï¿½ch vï¿½ï¿½ng ",
+	"Thaï¿½ch thï¿½ï¿½n ",
+	"Vï¿½ï¿½ giaï¿½p binh ",
+	"Nhï¿½n maï¿½ vï¿½ï¿½ng ",       
+	"Nhï¿½n maï¿½ thï¿½ï¿½ng ",
+	"Ong chuï¿½a ",
+	"Kyï¿½ siï¿½ aï¿½o ",
+	"Aï¿½c ma ",
+	"Phuï¿½ thuï¿½y ",                
+	"ï¿½aï¿½i quaï¿½i ",
+	"Song ï¿½ï¿½ï¿½u quaï¿½i ",
+	"Tï¿½ï¿½ thï¿½ï¿½n ",
+	"Xuï¿½ diï¿½ï¿½n ma ",
+	"Xiï¿½ch quyï¿½ ",           
+	"Hï¿½ï¿½c ma vï¿½ï¿½ng ",
+	"Thiï¿½ï¿½t hï¿½ï¿½u ",
+	"Nhï¿½n maï¿½ chuï¿½y ",
+	"Hï¿½ï¿½ng saï¿½t thuï¿½ ",
+	"Sï¿½ï¿½u quyï¿½ ",            
 	0,
 };
 
@@ -645,56 +645,56 @@ char *Won="Gold";
 
 
 char *CastlItemInfo[] ={
-	{"Bâìt týÒ trong môòt khoaÒng thõÌi gian\r "},  
-	{"TiÒ lêò ðaình Critical\r "},
-	{"Tãng tiÒ lêò neì ðoÌn\r "},
-	{"STM,HP,MP cho thaÌnh viên party\r "},
-	{"HôÌi sinh týìc thiÌ.\r "},
-	{"Sýìc tâìn công cuÒa toaÌ thaìp\r "},     
-	{"Khi tâìn công muòc tiêu, sýìc ðaình tãng thêm 20%\r "},
+	{"Bï¿½ï¿½t tï¿½ï¿½ trong mï¿½ï¿½t khoaï¿½ng thï¿½ï¿½i gian\r "},  
+	{"Tiï¿½ lï¿½ï¿½ ï¿½aï¿½nh Critical\r "},
+	{"Tï¿½ng tiï¿½ lï¿½ï¿½ neï¿½ ï¿½oï¿½n\r "},
+	{"STM,HP,MP cho thaï¿½nh viï¿½n party\r "},
+	{"Hï¿½ï¿½i sinh tï¿½ï¿½c thiï¿½.\r "},
+	{"Sï¿½ï¿½c tï¿½ï¿½n cï¿½ng cuï¿½a toaï¿½ thaï¿½p\r "},     
+	{"Khi tï¿½ï¿½n cï¿½ng muï¿½c tiï¿½u, sï¿½ï¿½c ï¿½aï¿½nh tï¿½ng thï¿½m 20%\r "},
 	0,
 };
 char *CastlItemInfo2[] ={
-	{"Sýìc ðaình giaÒm ði 1/2.\r "},
-	{"Tãng thêm 5%.\r "},
-	{"tãng thêm.\r "},
-	{"phuòc hôÌi ðâÌy ðuÒ.\r "},
+	{"Sï¿½ï¿½c ï¿½aï¿½nh giaï¿½m ï¿½i 1/2.\r "},
+	{"Tï¿½ng thï¿½m 5%.\r "},
+	{"tï¿½ng thï¿½m.\r "},
+	{"phuï¿½c hï¿½ï¿½i ï¿½ï¿½ï¿½y ï¿½uï¿½.\r "},
 	{"\r "},
-	{"giaÒm ði 50%\r "},
-	{"Côòng thêm.\r "},
+	{"giaï¿½m ï¿½i 50%\r "},
+	{"Cï¿½ï¿½ng thï¿½m.\r "},
 	0,
 };
 
 
 char *CharClassTarget[8]={
-	"Muòc tiêu: Fighter\r",
-	"Muòc tiêu: Mechanician\r",
-	"Muòc tiêu: Pikeman\r",
-	"Muòc tiêu: Archer\r",
-	"Muòc tiêu: Knight\r",
-	"Muòc tiêu: Atalanta\r",
-	"Muòc tiêu: Magician\r",
-	"Muòc tiêu: Priestess\r",
+	"Muï¿½c tiï¿½u: Fighter\r",
+	"Muï¿½c tiï¿½u: Mechanician\r",
+	"Muï¿½c tiï¿½u: Pikeman\r",
+	"Muï¿½c tiï¿½u: Archer\r",
+	"Muï¿½c tiï¿½u: Knight\r",
+	"Muï¿½c tiï¿½u: Atalanta\r",
+	"Muï¿½c tiï¿½u: Magician\r",
+	"Muï¿½c tiï¿½u: Priestess\r",
 };
 char *AttributeTower[4]={
-	"Thuôòc tiình LýÒa\r",
-	"Thuôòc tiình Bãng\r",
-	"Thuôòc tiình Ðiêòn\r",
-	"ThõÌi gian:%d giây\r",
+	"Thuï¿½ï¿½c tiï¿½nh Lï¿½ï¿½a\r",
+	"Thuï¿½ï¿½c tiï¿½nh Bï¿½ng\r",
+	"Thuï¿½ï¿½c tiï¿½nh ï¿½iï¿½ï¿½n\r",
+	"Thï¿½ï¿½i gian:%d giï¿½y\r",
 };
 
-char *SiegeMessage_MerComplete ="Thiêìt lâòp hoaÌn tâìt";
+char *SiegeMessage_MerComplete ="Thiï¿½ï¿½t lï¿½ï¿½p hoaï¿½n tï¿½ï¿½t";
 
 
 char *haQuestMonsterName[]={
-	"SýÌng gai",
-	"ThoÒ rýÌng",
-	"Ðôòc tinh",
-	"Hãìc tinh",
-	"Khô côìt",
-	"HuÒ côìt",
-	"Ðôòc nhaÞn ",
-	"Thaòch nhân ",
+	"Sï¿½ï¿½ng gai",
+	"Thoï¿½ rï¿½ï¿½ng",
+	"ï¿½ï¿½ï¿½c tinh",
+	"Hï¿½ï¿½c tinh",
+	"Khï¿½ cï¿½ï¿½t",
+	"Huï¿½ cï¿½ï¿½t",
+	"ï¿½ï¿½ï¿½c nhaï¿½n ",
+	"Thaï¿½ch nhï¿½n ",
 	0,
 };
 char *ha100LVQuestItemName[]={
@@ -710,41 +710,45 @@ char *ha100LVQuestItemName[]={
 };
 
 char *ha100LVQuestMonterName[]={
-	"Quaìi vâòt taòi NhaÌ maìy Perum",
-	"Quaìi vâòt taòi Thung luÞng Gallubia",
+	"Quaï¿½i vï¿½ï¿½t taï¿½i Nhaï¿½ maï¿½y Perum",
+	"Quaï¿½i vï¿½ï¿½t taï¿½i Thung luï¿½ng Gallubia",
 	0,
 };
-char *ha100LVQuestName = "AÒo týõòng Fury";
+char *ha100LVQuestName = "Aï¿½o tï¿½ï¿½ï¿½ng Fury";
 
 
 char *PremiumItemDoc[][2]={
-	{"ÐiêÒm Stats\r"     ,"seÞ ðýõòc thiêìt lâòp laòi.\r "},     
-	{"ÐiêÒm Skill\r"     ,"seÞ ðýõòc thiêìt lâòp laòi.\r "},    
-	{"ÐiêÒm Stats/Skill\r","seÞ ðýõòc thiêìt lâòp laòi.\r "},     
-	{"HôÌi sinh týìc thiÌ \r"    ,"khi biò chêìt\r "},        
-	{"TrõÒ nên bâìt týÒ.\r","Sýìc tâìn công giaÒm ði 1/2\r "},    
-	{"Tãng thêm 15% \r"    ,"tiÒ lêò ra ðoÌn chiì maòng.\r "},		
-	{"Tãng thêm 15% \r"         ,"khaÒ nãng neì ðoÌn.\r "},		
+	{"ï¿½iï¿½ï¿½m Stats\r"     ,"seï¿½ ï¿½ï¿½ï¿½ï¿½c thiï¿½ï¿½t lï¿½ï¿½p laï¿½i.\r "},     
+	{"ï¿½iï¿½ï¿½m Skill\r"     ,"seï¿½ ï¿½ï¿½ï¿½ï¿½c thiï¿½ï¿½t lï¿½ï¿½p laï¿½i.\r "},    
+	{"ï¿½iï¿½ï¿½m Stats/Skill\r","seï¿½ ï¿½ï¿½ï¿½ï¿½c thiï¿½ï¿½t lï¿½ï¿½p laï¿½i.\r "},     
+	{"Hï¿½ï¿½i sinh tï¿½ï¿½c thiï¿½ \r"    ,"khi biï¿½ chï¿½ï¿½t\r "},        
+	{"Trï¿½ï¿½ nï¿½n bï¿½ï¿½t tï¿½ï¿½.\r","Sï¿½ï¿½c tï¿½ï¿½n cï¿½ng giaï¿½m ï¿½i 1/2\r "},    
+	{"Tï¿½ng thï¿½m 15% \r"    ,"tiï¿½ lï¿½ï¿½ ra ï¿½oï¿½n chiï¿½ maï¿½ng.\r "},		
+	{"Tï¿½ng thï¿½m 15% \r"         ,"khaï¿½ nï¿½ng neï¿½ ï¿½oï¿½n.\r "},		
 };
 
 char *UpKeepItemDoc[] = {
-	"CoÌn laòi : %d phuìt",
-	"TiÒ lêò rõi ðôÌ tãng thêm %d%s",
-	"TiÒ lêò XP tãng thêm %d%s",
-	"Tãng thêm sýìc tâìn công %d%s",
-	"Hâìp thu maìu cuÒa ðôìi thuÒ ",
-	"Hâìp thu Mana cuÒa ðôìi thuÒ ",
-	"Tãng cân nãòng thêm d%",
-	"GiaÒm MP khi duÌng kyÞ nãng %d%s",
+	"Coï¿½n laï¿½i : %d phuï¿½t",
+	"Tiï¿½ lï¿½ï¿½ rï¿½i ï¿½ï¿½ï¿½ tï¿½ng thï¿½m %d%s",
+	"Tiï¿½ lï¿½ï¿½ XP tï¿½ng thï¿½m %d%s",
+	"Tï¿½ng thï¿½m sï¿½ï¿½c tï¿½ï¿½n cï¿½ng %d%s",
+	"Hï¿½ï¿½p thu maï¿½u cuï¿½a ï¿½ï¿½ï¿½i thuï¿½ ",
+	"Hï¿½ï¿½p thu Mana cuï¿½a ï¿½ï¿½ï¿½i thuï¿½ ",
+	"Tï¿½ng cï¿½n nï¿½ï¿½ng thï¿½m d%",
+	"Giaï¿½m MP khi duï¿½ng kyï¿½ nï¿½ng %d%s",
 	0,
 };
 char *UpKeepItemName[] = {
-	"ThâÌn nhaÞn",
-	"Tãng XP",
-	"Nanh hâìp huyêìt ",
-	"BiÌnh hâìp lýòc ",
-	"BiÌnh tãng lýòc",
-	"BiÌnh trõò lýòc",
+	"Thï¿½ï¿½n nhaï¿½n",
+	"Tï¿½ng XP",
+	"Nanh hï¿½ï¿½p huyï¿½ï¿½t ",
+	"Biï¿½nh hï¿½ï¿½p lï¿½ï¿½c ",
+	"Biï¿½nh tï¿½ng lï¿½ï¿½c",
+	"Biï¿½nh trï¿½ï¿½ lï¿½ï¿½c",
 	"Red Pixie",
 	0,
 };
+
+
+
+

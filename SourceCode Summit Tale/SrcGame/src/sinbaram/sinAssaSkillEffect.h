@@ -30,3 +30,7 @@ int sinSkillEffect_Windy_Gather(smCHAR *pChar);
 
 
 
+
+
+
+

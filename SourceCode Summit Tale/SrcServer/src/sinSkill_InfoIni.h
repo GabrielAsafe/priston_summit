@@ -606,3 +606,5 @@ struct MAGE_INFO{
 int LoadSkillInfo();
 
 int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo);
+
+

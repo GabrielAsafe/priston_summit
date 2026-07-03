@@ -35,3 +35,6 @@ int sinEffect_MutentTree_Fire_Particle(POINT3D *pPosi);
 int sinEffect_Ratoo(smCHAR *pChar);
 int sinEffect_Ratoo_Vigor(smCHAR *pChar);
 int sinEffect_Ratoo_Vigor_Partilce(POINT3D *pPosi);
+
+
+

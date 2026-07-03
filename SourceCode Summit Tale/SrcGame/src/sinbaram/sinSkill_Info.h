@@ -10,3 +10,6 @@
 #ifdef _LANGUAGE_BRAZIL
 #include "Language\\BRAZIL\\B_sinSkill_Info.h"
 #endif
+
+
+

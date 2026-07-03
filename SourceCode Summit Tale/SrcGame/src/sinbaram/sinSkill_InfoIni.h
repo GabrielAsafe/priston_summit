@@ -634,3 +634,7 @@ int LoadSkillInfo();
 
 int ReLoadSkillInfo(rsPLAYINFO *lpPlayInfo);
 
+
+
+
+

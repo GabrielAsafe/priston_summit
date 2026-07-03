@@ -149,7 +149,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 						if (SQL::GetInstance()->Execute(szQuery))
 						{
 							TRANS_CHATMESSAGE	TransChatMessage;
-							wsprintf(TransChatMessage.szMessage, "Você alterou a Coroa do Clan: Coroa Padrão.");
+							wsprintf(TransChatMessage.szMessage, "Vocï¿½ alterou a Coroa do Clan: Coroa Padrï¿½o.");
 							TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 							TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 							TransChatMessage.dwIP = 3;
@@ -165,7 +165,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 						if (SQL::GetInstance()->Execute(szQuery))
 						{
 							TRANS_CHATMESSAGE	TransChatMessage;
-							wsprintf(TransChatMessage.szMessage, "Você alterou a Coroa do Clan: Asas Angelicais.");
+							wsprintf(TransChatMessage.szMessage, "Vocï¿½ alterou a Coroa do Clan: Asas Angelicais.");
 							TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 							TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 							TransChatMessage.dwIP = 3;
@@ -182,7 +182,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 						if (SQL::GetInstance()->Execute(szQuery))
 						{
 							TRANS_CHATMESSAGE	TransChatMessage;
-							wsprintf(TransChatMessage.szMessage, "Você alterou a Coroa do Clan: Asas Demoniacas.");
+							wsprintf(TransChatMessage.szMessage, "Vocï¿½ alterou a Coroa do Clan: Asas Demoniacas.");
 							TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 							TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 							TransChatMessage.dwIP = 3;
@@ -199,7 +199,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 						if (SQL::GetInstance()->Execute(szQuery))
 						{
 							TRANS_CHATMESSAGE	TransChatMessage;
-							wsprintf(TransChatMessage.szMessage, "Você alterou a Coroa do Clan: Asas Ice.");
+							wsprintf(TransChatMessage.szMessage, "Vocï¿½ alterou a Coroa do Clan: Asas Ice.");
 							TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 							TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 							TransChatMessage.dwIP = 3;
@@ -343,3 +343,5 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 		}
 	}
 }
+
+

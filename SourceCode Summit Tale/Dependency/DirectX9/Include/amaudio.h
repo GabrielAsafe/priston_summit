@@ -52,3 +52,5 @@ DECLARE_INTERFACE_(IAMDirectSound,IUnknown)
 #endif // __cplusplus
 #endif // __AMAUDIO__
 
+
+

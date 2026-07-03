@@ -22,3 +22,6 @@ private:
 	UIWindow* pWindow1;
 	sITEM Item;
 };
+
+
+

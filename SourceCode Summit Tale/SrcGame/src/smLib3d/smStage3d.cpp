@@ -2378,3 +2378,8 @@ int	smSTAGE3D::LoadFile(char *szFile)
 	return TRUE;
 }
 
+
+
+
+
+

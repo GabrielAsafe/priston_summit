@@ -198,3 +198,6 @@ int	bClan_InsertPoint(rsPLAYINFO *lpPlayInfo, int point);
 
 
 #endif //DATABASE_DLL_H
+
+
+

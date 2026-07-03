@@ -109,3 +109,7 @@ public:
 extern cHaQuest chaQuest;
 extern DWORD haElementaryQuestLog;
 extern void HaCheckQuestNpc(int NpcCount);
+
+
+
+

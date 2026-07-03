@@ -112,3 +112,6 @@ private:
 };
 
 extern cSettingsWindow cSettings;
+
+
+

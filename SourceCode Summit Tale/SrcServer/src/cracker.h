@@ -26,3 +26,5 @@ int CheckDLL_Module();
 #define WM_NPROTECT_SH_ERROR (WM_USER + 10012)
 
 #define WM_NPROTECT_SOFTICE (WM_USER + 10111)
+
+

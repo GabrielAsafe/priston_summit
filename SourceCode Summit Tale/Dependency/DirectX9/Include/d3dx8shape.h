@@ -218,3 +218,5 @@ HRESULT WINAPI
 #endif //__cplusplus    
 
 #endif //__D3DX8SHAPES_H__
+
+

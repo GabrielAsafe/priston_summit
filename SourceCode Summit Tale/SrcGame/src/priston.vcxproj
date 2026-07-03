@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -102,7 +102,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <AdditionalIncludeDirectories>C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\Dependency\DirectX9\Include;$(ProjectDir);$(ProjectDir)..\..\Shared\;$(ProjectDir)..\..\modules\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\Shared\;$(ProjectDir)..\..\modules\;%(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories);..\..\Dependency\DirectX9\Include;%(AdditionalIncludeDirectories);..\..\Dependency\DirectX9\Include</AdditionalIncludeDirectories>
       <SDLCheck>false</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -154,7 +154,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4430;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\Dependency\DirectX9\Include;$(ProjectDir);$(ProjectDir)..\..\Shared\;$(ProjectDir)..\..\modules\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\Shared\;$(ProjectDir)..\..\modules\;%(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories);..\..\Dependency\DirectX9\Include;%(AdditionalIncludeDirectories);..\..\Dependency\DirectX9\Include</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
@@ -224,7 +224,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4430;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\Dependency\DirectX9\Include;$(ProjectDir);$(ProjectDir)..\..\Shared\;$(ProjectDir)..\..\modules\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\Shared\;$(ProjectDir)..\..\modules\;%(AdditionalIncludeDirectories);%(AdditionalIncludeDirectories);..\..\Dependency\DirectX9\Include;%(AdditionalIncludeDirectories);..\..\Dependency\DirectX9\Include</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
@@ -303,7 +303,6 @@
     <ClCompile Include="ConfirmationBox\ConfirmationBox.cpp" />
     <ClCompile Include="cQuestWindow.cpp" />
     <ClCompile Include="cracker.cpp" />
-    <ClCompile Include="cRestaureWindow.cpp" />
     <ClCompile Include="cSettingsWindow.cpp" />
     <ClCompile Include="cTarget.cpp" />
     <ClCompile Include="CurseFilter.cpp" />
@@ -518,7 +517,6 @@
     <ClInclude Include="ConfirmationBox\ConfirmationBox.h" />
     <ClInclude Include="cQuestWindow.h" />
     <ClInclude Include="cracker.h" />
-    <ClInclude Include="cRestaureWindow.h" />
     <ClInclude Include="cSettingsWindow.h" />
     <ClInclude Include="cTarget.h" />
     <ClInclude Include="CurseFilter.h" />
@@ -774,3 +772,7 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
 </Project>
+
+
+
+

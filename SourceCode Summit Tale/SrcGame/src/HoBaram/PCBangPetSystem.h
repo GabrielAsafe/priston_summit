@@ -168,3 +168,6 @@ extern POINT3D HoHoPCBangPetRenderPoint;
 extern DWORD  g_HoPCBangPetAttackSerial;
 
 #endif
+
+
+

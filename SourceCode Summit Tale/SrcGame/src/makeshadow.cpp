@@ -278,3 +278,7 @@ BOOL CollisionLineVSPolygon(VECTOR* lpCollisionPoint, VECTOR*
 		return FALSE;
 }
 
+
+
+
+

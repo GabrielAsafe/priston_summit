@@ -136,7 +136,7 @@ void cMixGuide::DescriptionsMix()
 	GetFontTextExtentPoint(szBuff, strlen(szBuff), &size);
 	dsTextLineOut(WinX + 200, WinY + 45, szBuff, strlen(szBuff));
 
-	wsprintf(szBuff, "Descrição");
+	wsprintf(szBuff, "Descriï¿½ï¿½o");
 	GetFontTextExtentPoint(szBuff, strlen(szBuff), &size);
 	dsTextLineOut(WinX + 400, WinY + 45, szBuff, strlen(szBuff));
 	//FontType = 0;
@@ -602,3 +602,6 @@ void cMixGuide::Amulet()
 	dsTextLineOut(WinX + 400, WinY + 155, szBuff, strlen(szBuff));
 	
 }
+
+
+

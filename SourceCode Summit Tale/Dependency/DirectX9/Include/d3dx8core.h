@@ -561,3 +561,5 @@ HRESULT WINAPI
 #endif //__cplusplus
 
 #endif //__D3DX8CORE_H__
+
+

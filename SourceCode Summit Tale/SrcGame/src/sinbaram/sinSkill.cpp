@@ -1,4 +1,4 @@
-﻿
+
 
 #include "sinLinkHeader.h"
 #include "..\\skillsub.h"
@@ -122,194 +122,194 @@ sSKILL_INFO sSkill_Info[SIN_MAX_SKILL] = {
 sSKILL sSkill[SIN_MAX_SKILL] = {
 
 
-	{"³ë¸Ö¾îÅÃ "		,SKILL_NORMAL_ATTACK	,"Skill_Normal",},
+	{"��־��� "		,SKILL_NORMAL_ATTACK	,"Skill_Normal",},
 
 
-	{"ÀÍ½ºÆ®¸²½¯µå"		,SKILL_EXTREME_SHIELD	,"TM10 Ex_shield","Mc1_E_SHIELD.tga"},
-	{"¸ÞÄ«´Ð¹ü"			,SKILL_MECHANIC_BOMB	,"TM12 M_bomb"},
-	{"Æ÷ÀÌÁð ¾îÆ®¸®ºäÆ®",SKILL_POISON_ATTRIBUTE ,"TM14 P_attribute"},
-	{"ÇÇÁöÄÃ ¾÷¼Ù"		,SKILL_PHYSICAL_ABSORB	,"TM17 Ph_absorb","Mc1_P_ABSORB.tga"},
+	{"�ͽ�Ʈ������"		,SKILL_EXTREME_SHIELD	,"TM10 Ex_shield","Mc1_E_SHIELD.tga"},
+	{"��ī�й�"			,SKILL_MECHANIC_BOMB	,"TM12 M_bomb"},
+	{"������ ��Ʈ����Ʈ",SKILL_POISON_ATTRIBUTE ,"TM14 P_attribute"},
+	{"������ ����"		,SKILL_PHYSICAL_ABSORB	,"TM17 Ph_absorb","Mc1_P_ABSORB.tga"},
 
-	{"¶ó¿îµå ÀÓÆåÆ®"	,SKILL_GREAT_SMASH		,"TM20 G_Smash"},
-	{"¸Æ½Ã¸¶ÀÌÁî "		,SKILL_MAXIMIZE			,"TM23 Maximize","Mc2_MAXIMIZE.tga"},
-	{"¿ÀÅä¸ÞÀÌ¼Ç"		,SKILL_AUTOMATION		,"TM26 Automation","Mc2_AUTOMATION.tga"},
-	{"½ºÆÄÅ©"			,SKILL_SPARK			,"TM30 Spark"},
+	{"���� ����Ʈ"	,SKILL_GREAT_SMASH		,"TM20 G_Smash"},
+	{"�ƽø����� "		,SKILL_MAXIMIZE			,"TM23 Maximize","Mc2_MAXIMIZE.tga"},
+	{"������̼�"		,SKILL_AUTOMATION		,"TM26 Automation","Mc2_AUTOMATION.tga"},
+	{"����ũ"			,SKILL_SPARK			,"TM30 Spark"},
 
-	{"¸ÞÅ» ¾Æ¸Ó"		,SKILL_METAL_ARMOR		,"TM40 M_Armor","Mc3_M_ARMOR.tga"},
-	{"±×·£µå ½º¸Þ½¬"	,SKILL_GRAND_SMASH		,"TM43 Grand_Smash"},
-	{"¸ÞÄ«´Ð ¿þÆÝ"		,SKILL_MECHANIC_WEAPON	,"TM44 M_Weapon"},
-	{"½ºÆÄÆ® ½¯µå"		,SKILL_SPARK_SHIELD		,"TM50 S_Shield","Mc3_S_SHIELD.tga"},
-
-
-	{"ÀÓÇÃ·¹ÀÌ¼Ç"		,SKILL_IMPULSION		,"TM60 Impulsion"},
-	{"ÄÄÇÃ·¹ÀÌ¼Ç"		,SKILL_COMPULSION		,"TM63 Compulsion","Mc4_COMPULSION.tga"},
-	{"¸Þ³×Æ½ ÇÇ¾î"		,SKILL_MAGNETIC_SPHERE	,"TM66 M_Sphere","Mc4_M_SPHERE.tga"},
-	{"¸ÞÅ» °ñ·½"		,SKILL_METAL_GOLEM		,"TM70 M_Golem","Mc4_M_GOLEM.tga"},
+	{"��Ż �Ƹ�"		,SKILL_METAL_ARMOR		,"TM40 M_Armor","Mc3_M_ARMOR.tga"},
+	{"�׷��� ���޽�"	,SKILL_GRAND_SMASH		,"TM43 Grand_Smash"},
+	{"��ī�� ����"		,SKILL_MECHANIC_WEAPON	,"TM44 M_Weapon"},
+	{"����Ʈ ����"		,SKILL_SPARK_SHIELD		,"TM50 S_Shield","Mc3_S_SHIELD.tga"},
 
 
-	{"¹èÆ² ¸¶½ºÅÍ¸®"	,SKILL_MELEE_MASTERY	,"TF10 M_mastery"},
-	{"ÆÄÀÌÅÍ ¾îÆ®¸®ºäÆ®",SKILL_FIRE_ATTRIBUTE	,"TF12 F_attribute"},
-	{"·¹ÀÌºù"			,SKILL_RAVING			,"TF14 raving"},
-	{"ÀÓÆÑÆ®"			,SKILL_IMPACT			,"TF17 impact"},
-
-	{"Æ®¸®ÇÃ ÀÓÆÑÆ®"	,SKILL_TRIPLE_IMPACT	,"TF20 T_Impact"},
-	{"ºÎ·çÆ² ½ºÀ®"		,SKILL_BRUTAL_SWING		,"TF23 B_Swing"},
-	{"·Î¾î"				,SKILL_ROAR				,"TF26 Roar"},
-	{"·¹ÀÌÁö¿Àºê Á¦Å©¶÷",SKILL_RAGE_OF_ZECRAM	,"TF30 R_Zecram"},
-
-	{"ÄÁ¼¾Æ®·¹ÀÌ¼Ç"		,SKILL_CONCENTRATION	,"TF40 Concentration","Ft3_CONCENTRATION.tga"},
-	{"¾îº¥Â¡ Å©·¡½¬"	,SKILL_AVANGING_CRASH	,"TF43 A_Crash"},
-	{"½ºÀ§ÇÁ¿¢½º"		,SKILL_SWIFT_AXE		,"TF46 S_Axe","Ft3_S_AXE.tga"},
-	{"º» Å©·¡½¬"		,SKILL_BONE_CRASH		,"TF50 B_Crash"},
+	{"���÷��̼�"		,SKILL_IMPULSION		,"TM60 Impulsion"},
+	{"���÷��̼�"		,SKILL_COMPULSION		,"TM63 Compulsion","Mc4_COMPULSION.tga"},
+	{"�޳�ƽ �Ǿ�"		,SKILL_MAGNETIC_SPHERE	,"TM66 M_Sphere","Mc4_M_SPHERE.tga"},
+	{"��Ż ��"		,SKILL_METAL_GOLEM		,"TM70 M_Golem","Mc4_M_GOLEM.tga"},
 
 
-	{"µð½ºÅä¸®¾î"		,SKILL_DETORYER		    ,"TF60 Destoryer"},
-	{"¹ö¼­Ä¿"		    ,SKILL_BERSERKER		,"TF63 Berserker","Ft4_BERSERKER.tga"},
-	{"½ÎÀÌÅ¬·Ð ½ºÆÄÀÌÅ©",SKILL_CYCLONE_STRIKE	,"TF66 C_Strike"},
-	{"ºÎ½ºÆ® Çï½º"		,SKILL_BOOST_HEALTH		,"TF70 B_Health"},
+	{"��Ʋ �����͸�"	,SKILL_MELEE_MASTERY	,"TF10 M_mastery"},
+	{"������ ��Ʈ����Ʈ",SKILL_FIRE_ATTRIBUTE	,"TF12 F_attribute"},
+	{"���̺�"			,SKILL_RAVING			,"TF14 raving"},
+	{"����Ʈ"			,SKILL_IMPACT			,"TF17 impact"},
+
+	{"Ʈ���� ����Ʈ"	,SKILL_TRIPLE_IMPACT	,"TF20 T_Impact"},
+	{"�η�Ʋ ����"		,SKILL_BRUTAL_SWING		,"TF23 B_Swing"},
+	{"�ξ�"				,SKILL_ROAR				,"TF26 Roar"},
+	{"���������� ��ũ��",SKILL_RAGE_OF_ZECRAM	,"TF30 R_Zecram"},
+
+	{"����Ʈ���̼�"		,SKILL_CONCENTRATION	,"TF40 Concentration","Ft3_CONCENTRATION.tga"},
+	{"�¡ ũ����"	,SKILL_AVANGING_CRASH	,"TF43 A_Crash"},
+	{"����������"		,SKILL_SWIFT_AXE		,"TF46 S_Axe","Ft3_S_AXE.tga"},
+	{"�� ũ����"		,SKILL_BONE_CRASH		,"TF50 B_Crash"},
 
 
-	{"ÆÄÀÌÅ©À©µå"   	,SKILL_PIKE_WIND		,"TP10 P_wind"},
-	{"¾ÆÀÌ½º ¾îÆ®¸®ºäÆ®",SKILL_ICE_ATTRIBUTE	,"TP12 I_attribute"},
-	{"Å©¸®Æ¼ÄÃ Èý"		,SKILL_CRITICAL_HIT		,"TP14 Cri_hit"},
-	{"Á¡ÇÎÅ©·¡½¬"		,SKILL_JUMPING_CRASH	,"TP17 J_Crash"},
-
-	{"±×¶ó¿îµåÆÄÀÌÅ©"	,SKILL_GROUND_PIKE		,"TP20 G_Pike"},
-	{"Åä³×ÀÌµµ"			,SKILL_TORNADO			,"TP23 Tornado"},
-	{"¿þÆÝµðÆæ½º¸¶½ºÅÍ¸®",SKILL_WEAPONE_DEFENCE_MASTERY	,"TP26 W_D_Mastery"},
-	{"ÀÍ½ºÆæ¼Ç" 		,SKILL_EXPANSION		,"TP30 Expasion"},
-
-	{"º£³ð ½ºÇÇ¾î"		,SKILL_VENOM_SPEAR		,"TP40 V_Spear"},
-	{"ºí·¹ÀÌµå¿Àºêºí·¹ÀÌÁî",SKILL_VANISH        ,"TP43 Vanish","Pk3_VANISH.tga"},
-	{"»þÇÁ¸¶½ºÅÍ¸®"		,SKILL_CRITICAL_MASTERY	,"TP46 C_Mastery"},
-	{"Ã¼ÀÎ·£½º" 		,SKILL_CHAIN_LANCE		,"TP50 C_Lance"},
+	{"���丮��"		,SKILL_DETORYER		    ,"TF60 Destoryer"},
+	{"����Ŀ"		    ,SKILL_BERSERKER		,"TF63 Berserker","Ft4_BERSERKER.tga"},
+	{"����Ŭ�� ������ũ",SKILL_CYCLONE_STRIKE	,"TF66 C_Strike"},
+	{"�ν�Ʈ �ｺ"		,SKILL_BOOST_HEALTH		,"TF70 B_Health"},
 
 
-	{"¾î½Ø½Å ¾ÆÀÌ"		,SKILL_ASSASSIN_EYE		,"TP60 A_Eye","Pk4_A_EYE.tga"},
-	{"Â÷Â¡ ½ºÆ®¶óÀÌÅ©"	,SKILL_CHARGING_STRIKE	,"TP63 C_Strike"},
-	{"º£ÀÌ±×"           ,SKILL_VAGUE	        ,"TP66 Vague","Pk4_VAGUE.tga"},
-	{"»õµÍ¿ì ¸¶½ºÅÍ"	,SKILL_SHADOW_MASTER	,"TP70 S_Master"},
+	{"����ũ����"   	,SKILL_PIKE_WIND		,"TP10 P_wind"},
+	{"���̽� ��Ʈ����Ʈ",SKILL_ICE_ATTRIBUTE	,"TP12 I_attribute"},
+	{"ũ��Ƽ�� ��"		,SKILL_CRITICAL_HIT		,"TP14 Cri_hit"},
+	{"����ũ����"		,SKILL_JUMPING_CRASH	,"TP17 J_Crash"},
+
+	{"�׶�������ũ"	,SKILL_GROUND_PIKE		,"TP20 G_Pike"},
+	{"����̵�"			,SKILL_TORNADO			,"TP23 Tornado"},
+	{"���ݵ��潺�����͸�",SKILL_WEAPONE_DEFENCE_MASTERY	,"TP26 W_D_Mastery"},
+	{"�ͽ����" 		,SKILL_EXPANSION		,"TP30 Expasion"},
+
+	{"���� ���Ǿ�"		,SKILL_VENOM_SPEAR		,"TP40 V_Spear"},
+	{"����̵����������",SKILL_VANISH        ,"TP43 Vanish","Pk3_VANISH.tga"},
+	{"���������͸�"		,SKILL_CRITICAL_MASTERY	,"TP46 C_Mastery"},
+	{"ü�η���" 		,SKILL_CHAIN_LANCE		,"TP50 C_Lance"},
 
 
-	{"½ºÄ«¿ô È£Å©"		,SKILL_SCOUT_HAWK		,"TA10 S_hawk","Ac1_S_HAWK.tga"},
-	{"½´ÆÃ ¸¶½ºÅÍ¸®"	,SKILL_SHOOTING_MASTERY	,"TA12 S_mastery"},
-	{"À©µå ¾Ö·Î¿ì"		,SKILL_WIND_ARROW		,"TA14 W_arrow"},
-	{"ÆÛÆåÆ® ¿¡ÀÓ"		,SKILL_PERFECT_AIM		,"TA17 P_aim"},
-
-	{"µð¿Â½º ¾ÆÀÌ"		,SKILL_DIONS_EYE		,"TA20 D_Eye"},
-	{"ÆÈÄÜ"				,SKILL_FALCON			,"TA23 Falcon","Ac2_FALCON.tga"},
-	{"¾Ö·Î¿ì ¿Àºê·¹ÀÌÁö",SKILL_ARROW_OF_RAGE	,"TA26 A_Rage"},
-	{"¾Æ¹ß¶õÃ¼"			,SKILL_AVALANCHE		,"TA30 Avalanchie"},
-
-	{"¿¤·¹¸àÅ»¼¦"		,SKILL_ELEMENTAL_SHOT	,"TA40 E_Shot"},
-	{"°ñµçÆÈÄÜ"			,SKILL_GOLDEN_FALCON	,"TA43 G_Falcon","Ac3_G_FALCON.tga"},
-	{"¹ü ¼¦"			,SKILL_BOMB_SHOT		,"TA46 B_Shot"},
-	{"ÆÛÆ÷·¹ÀÌ¼Ç"		,SKILL_PERFORATION		,"TA50 Perforation"},
+	{"��ؽ� ����"		,SKILL_ASSASSIN_EYE		,"TP60 A_Eye","Pk4_A_EYE.tga"},
+	{"��¡ ��Ʈ����ũ"	,SKILL_CHARGING_STRIKE	,"TP63 C_Strike"},
+	{"���̱�"           ,SKILL_VAGUE	        ,"TP66 Vague","Pk4_VAGUE.tga"},
+	{"���Ϳ� ������"	,SKILL_SHADOW_MASTER	,"TP70 S_Master"},
 
 
-	{"¸®ÄÝ ¿ï¹ö¸°"		  ,SKILL_RECALL_WOLVERIN	,"TA60 R_Wolverin","Ac4_R_WOLVERIN.tga"},
-	{"ÀÌº£ÀÌ¼Ç ¸¶½ºÅÍ¸®"  ,SKILL_EVASION_MASTERY	,"TA63 E_Mastery"},
-	{"ÇÇ´Ð½º ¼¦"          ,SKILL_PHOENIX_SHOT	    ,"TA66 P_Shot"},
-	{"Æ÷½º ¿Àºê ³»Ãò·²"	  ,SKILL_FORCE_OF_NATURE	,"TA70 F_O_Nature","Ac4_F_O_NATURE.tga"},
+	{"��ī�� ȣũ"		,SKILL_SCOUT_HAWK		,"TA10 S_hawk","Ac1_S_HAWK.tga"},
+	{"���� �����͸�"	,SKILL_SHOOTING_MASTERY	,"TA12 S_mastery"},
+	{"���� �ַο�"		,SKILL_WIND_ARROW		,"TA14 W_arrow"},
+	{"����Ʈ ����"		,SKILL_PERFECT_AIM		,"TA17 P_aim"},
+
+	{"��½� ����"		,SKILL_DIONS_EYE		,"TA20 D_Eye"},
+	{"����"				,SKILL_FALCON			,"TA23 Falcon","Ac2_FALCON.tga"},
+	{"�ַο� ���극����",SKILL_ARROW_OF_RAGE	,"TA26 A_Rage"},
+	{"�ƹ߶�ü"			,SKILL_AVALANCHE		,"TA30 Avalanchie"},
+
+	{"������Ż��"		,SKILL_ELEMENTAL_SHOT	,"TA40 E_Shot"},
+	{"�������"			,SKILL_GOLDEN_FALCON	,"TA43 G_Falcon","Ac3_G_FALCON.tga"},
+	{"�� ��"			,SKILL_BOMB_SHOT		,"TA46 B_Shot"},
+	{"�������̼�"		,SKILL_PERFORATION		,"TA50 Perforation"},
 
 
-
-	{"½º¿ö½ººí·¹½ºÆ®"	,SKILL_SWORD_BLAST	    ,"MN10 S_Blast"},
-	{"È¦¸® ¹Ùµð"		,SKILL_HOLY_BODY		,"MN12 H_Body","Kt1_H_BODY.tga"},
-	{"ÇÇÁöÄÃÆ®·¹ÀÌ´×"	,SKILL_PHYSICAL_TRANING ,"MN14 P_Traning"},
-	{"¶°ºí Å©·¡½¬"   	,SKILL_DOUBLE_CRASH     ,"MN17 D_Crash"},
-
-	{"È¦¸® ¹ë·¯"	    ,SKILL_HOLY_VALOR       ,"MN20 H_Valor","Kt2_H_VALOR.tga"},
-	{"ºê·£µð½¬"	        ,SKILL_BRANDISH         ,"MN23 Brandish"},
-	{"ÇÇ¾î½Ì"	        ,SKILL_PIERCING         ,"MN26 Piercing"},
-	{"µå·¹½ºÆ½ ½ºÇÇ¸´"	,SKILL_DRASTIC_SPIRIT   ,"MN30 D_Spirit","Kt2_D_SPIRIT.tga"},
-
-	{"ÇÁ·¹ÀÓ ºê·£µð½¬"	,SKILL_SWORD_MASTERY   ,"MN40 S_Mastery"},
-	{"µð¹ÙÀÎÀÎÈ¦·¹ÀÌ¼Ç" ,SKILL_DIVINE_INHALATION,"MN43 D_Inhalation","Kt3_D_INHALATION.tga"},
-	{"È¦¸®ÀÎÄµÅ×ÀÌ¼Ç"	,SKILL_HOLY_INCANTATION ,"MN46 H_Incantation"},
-	{"±×·£µå Å©·Î½º"	,SKILL_GRAND_CROSS		,"MN50 G_Cross"},
-
-
-	{"½º¿öµå ¿Àºê Àú½ºÆ½½º"	,SKILL_SWORD_OF_JUSTICE	,"MN60 S_O_Justice"},
-	{"°«µé¸® ½¯µå"			,SKILL_GODLY_SHIELD		,"MN63 G_Shield","Kt4_G_SHIELD.tga"},
-	{"°« ºí·¹½º"            ,SKILL_GOD_BLESS	    ,"MN66 G_Bless","Kt4_G_BLESS.tga"},
-	{"µð¹ÙÀÎ ÇÇ¾î½Ì"		,SKILL_DIVINE_PIERCING	,"MN70 D_Piercing"},
+	{"���� �����"		  ,SKILL_RECALL_WOLVERIN	,"TA60 R_Wolverin","Ac4_R_WOLVERIN.tga"},
+	{"�̺��̼� �����͸�"  ,SKILL_EVASION_MASTERY	,"TA63 E_Mastery"},
+	{"�Ǵн� ��"          ,SKILL_PHOENIX_SHOT	    ,"TA66 P_Shot"},
+	{"���� ���� ����"	  ,SKILL_FORCE_OF_NATURE	,"TA70 F_O_Nature","Ac4_F_O_NATURE.tga"},
 
 
 
+	{"�����������Ʈ"	,SKILL_SWORD_BLAST	    ,"MN10 S_Blast"},
+	{"Ȧ�� �ٵ�"		,SKILL_HOLY_BODY		,"MN12 H_Body","Kt1_H_BODY.tga"},
+	{"������Ʈ���̴�"	,SKILL_PHYSICAL_TRANING ,"MN14 P_Traning"},
+	{"���� ũ����"   	,SKILL_DOUBLE_CRASH     ,"MN17 D_Crash"},
 
-	{"½¯µå ½ºÆ®¶óÀÌÅ©"	,SKILL_SHIELD_STRIKE	,"MA10 S_Strike"},
-	{"ÆÄ¸®³ª "			,SKILL_FARINA			,"MA12 Farina"},
-	{"µå·ÎÀ×¸¶½ºÅÍ¸®"	,SKILL_THROWING_MASTERY ,"MA14 T_Mastery"},
-	{"ºñ°Å ½ºÇÇ¾î"	    ,SKILL_VIGOR_SPEAR      ,"MA17 V_Spear"},
+	{"Ȧ�� �뷯"	    ,SKILL_HOLY_VALOR       ,"MN20 H_Valor","Kt2_H_VALOR.tga"},
+	{"�귣��"	        ,SKILL_BRANDISH         ,"MN23 Brandish"},
+	{"�Ǿ��"	        ,SKILL_PIERCING         ,"MN26 Piercing"},
+	{"�巹��ƽ ���Ǹ�"	,SKILL_DRASTIC_SPIRIT   ,"MN30 D_Spirit","Kt2_D_SPIRIT.tga"},
 
-	{"À©µð"	            ,SKILL_WINDY            ,"MA20 Windy","At2_WINDY.tga"},
-	{"Æ®À§½ºÆ® Àçºí¸°"	,SKILL_TWIST_JAVELIN    ,"MA23 T_Javelin"},
-	{"¼Ò¿ï ½âÄ¿"	    ,SKILL_SOUL_SUCKER      ,"MA26 S_Sucker"},
-	{"ÆÄÀÌ¾î Àçºí¸°"	,SKILL_FIRE_JAVELIN     ,"MA30 F_Javelin"},
-
-	{"½ºÇÃ¸´ ÀÚº§¸°"	,SKILL_SPLIT_JAVELIN         ,"MA40 Split_Javelin"},
-	{"Æ®¶óÀÌ¾öÇÁ¿Àºê¹ßÇÒ¶ó",SKILL_TRIUMPH_OF_VALHALLA,"MA43 T_Of_Valhalla","At3_T_O_VALHALLA.tga"},
-	{"¶óÀÌÆ®´×Àçºí¸°"	,SKILL_LIGHTNING_JAVELIN     ,"MA46 L_Javelin"},
-	{"½ºÅè Àçºí¸°"		,SKILL_STORM_JAVELIN         ,"MA50 Storm_Javelin"},
-
-
-	{"Çï ¿Àºê ¹ßÇÒ¶ó"		,SKILL_HALL_OF_VALHALLA ,"MA60 H_O_Valhalla","At4_H_O_VALHALLA.tga"},
-	{"¿¢½º ¶óÁö"			,SKILL_X_RAGE		    ,"MA63 X_Rage"},
-	{"ÇÁ·Î½ºÆ® Àçºí¸°"      ,SKILL_FROST_JAVELIN	,"MA66 F_Javelin","At4_F_JAVELIN.tga"},
-	{"º¥Ã¾"					,SKILL_VENGEANCE		,"MA70 Vengeance"},
+	{"������ �귣��"	,SKILL_SWORD_MASTERY   ,"MN40 S_Mastery"},
+	{"�������Ȧ���̼�" ,SKILL_DIVINE_INHALATION,"MN43 D_Inhalation","Kt3_D_INHALATION.tga"},
+	{"Ȧ����ĵ���̼�"	,SKILL_HOLY_INCANTATION ,"MN46 H_Incantation"},
+	{"�׷��� ũ�ν�"	,SKILL_GRAND_CROSS		,"MN50 G_Cross"},
 
 
-
-	{"Èú¸µ"				,SKILL_HEALING			,"MP10 Healing"},
-	{"È¦¸®º¼Æ® "		,SKILL_HOLY_BOLT		,"MP12 HolyBolt"},
-	{"¸ÖÆ¼½ºÆÄÅ©"		,SKILL_MULTISPARK		,"MP14 M_Spark"},
-	{"È¦¸®¸¶ÀÎµå"	    ,SKILL_HOLY_MIND	    ,"MP17 HolyMind"},
-
-	{"¸ÞµðÅ×ÀÌ¼Ç"	    ,SKILL_MEDITATION	    ,"MP20 Meditation"},
-	{"µð¹ÙÀÎ¶óÀÌÆ®´×"	,SKILL_DIVINE_LIGHTNING ,"MP23 D_Lightning"},
-	{"È¦¸® ¸®ÇÃ·º¼Ç"	,SKILL_HOLY_REFLECTION	,"MP26 H_Reflection","Pr2_H_REFLECTION.tga"},
-	{"±×·¹ÀÌÆ® Èú¸µ"	,SKILL_GRAND_HEALING	,"MP30 G_Healing"},
-
-	{"ºñ°Å º¼"		    ,SKILL_VIGOR_BALL	    ,"MP40 V_Ball"},
-	{"¸®Àú·º¼Ç"			,SKILL_RESURRECTION		,"MP43 Resurrection"},
-	{"ÀÍ½ºÆÃ¼Ç"			,SKILL_EXTINCTION		,"MP46 Extinction"},
-	{"¹öÃò¾ó ¶óÀÌÇÁ"	,SKILL_VIRTUAL_LIFE		,"MP50 V_Life","Pr3_V_LIFE.tga"},
-
-
-	{"±Û·¡¼Å ½ºÆÄÀÌÅ©"	 ,SKILL_GLACIAL_SPIKE	  ,"MP60 G_Spike"},
-	{"¸®Á¦³Ê·¹ÀÌ¼Ç ÇÊµå" ,SKILL_REGENERATION_FIELD,"MP63 R_Field","Pr4_R_FIELD.tga"},
-	{"Ã¼ÀÎ ¶óÀÌÆ®´×"     ,SKILL_CHAIN_LIGHTNING	  ,"MP66 C_Lightning"},
-	{"¼­¸ó ¹Â½ºÆç"		 ,SKILL_SUMMON_MUSPELL	  ,"MP70 S_Muspell","Pr4_S_MUSPELL.tga"},
+	{"������ ���� ����ƽ��"	,SKILL_SWORD_OF_JUSTICE	,"MN60 S_O_Justice"},
+	{"���鸮 ����"			,SKILL_GODLY_SHIELD		,"MN63 G_Shield","Kt4_G_SHIELD.tga"},
+	{"�� �����"            ,SKILL_GOD_BLESS	    ,"MN66 G_Bless","Kt4_G_BLESS.tga"},
+	{"����� �Ǿ��"		,SKILL_DIVINE_PIERCING	,"MN70 D_Piercing"},
 
 
 
 
-	{"¾î°í´Ï"			,SKILL_AGONY			,"MM10 Agony"},
-	{"ÆÄÀÌ¾îº¼Æ® "		,SKILL_FIRE_BOLT		,"MM12 FireBolt"},
-	{"Á¦´Ï¾²"			,SKILL_ZENITH			,"MM14 Zenith","Mg1_ZENITH.tga"},
-	{"ÆÄÀÌ¾îº¼"			,SKILL_FIRE_BALL	    ,"MM17 FireBall"},
+	{"���� ��Ʈ����ũ"	,SKILL_SHIELD_STRIKE	,"MA10 S_Strike"},
+	{"�ĸ��� "			,SKILL_FARINA			,"MA12 Farina"},
+	{"����׸����͸�"	,SKILL_THROWING_MASTERY ,"MA14 T_Mastery"},
+	{"��� ���Ǿ�"	    ,SKILL_VIGOR_SPEAR      ,"MA17 V_Spear"},
 
-	{"¸ÇÅ» ¸¶½ºÅÍ¸®"	,SKILL_MENTAL_MASTERY   ,"MM20 M_Mastery"},
-	{"ÄÝ·ë¿Àºê¿öÅÍ"		,SKILL_WATORNADO	    ,"MM23 Watornado"},
-	{"ÀÎÃ¦Æ® ¿þÆù"		,SKILL_ENCHANT_WEAPON	,"MM26 E_Weapon","Mg2_E_WEAPON.tga"},
-	{"µ¥µå·¹ÀÌ"			,SKILL_DEAD_RAY  	    ,"MM30 D_Ray"},
+	{"����"	            ,SKILL_WINDY            ,"MA20 Windy","At2_WINDY.tga"},
+	{"Ʈ����Ʈ ����"	,SKILL_TWIST_JAVELIN    ,"MA23 T_Javelin"},
+	{"�ҿ� ��Ŀ"	    ,SKILL_SOUL_SUCKER      ,"MA26 S_Sucker"},
+	{"���̾� ����"	,SKILL_FIRE_JAVELIN     ,"MA30 F_Javelin"},
 
-	{"¿¡³ÊÁö ½¯µå"		,SKILL_ENERGY_SHIELD    ,"MM40 E_Shield","Mg3_E_SHIELD.tga"},
-	{"´ÙÀÌ¾Æ½ºÆ®·ÎÇÇÁò"	,SKILL_DIASTROPHISM	    ,"MM43 Diastrophism"},
-	{"½ºÇÇ¸´ ¿¤·¹¸àÅ»"	,SKILL_SPIRIT_ELEMENTAL	,"MM46 S_Elemental","Mg3_S_ELEMENTAL.tga"},
-	{"´í½Ì½º¿öµå"		,SKILL_DANCING_SWORD  	,"MM50 D_Sword","Mg3_D_SWORD.tga"},
-
-
-	{"ÆÄÀÌ¾î ¿¤·¹¸àÅ»"	,SKILL_FIRE_ELEMENTAL	,"MM60 F_Elemental","Mg4_F_ELEMENTAL.tga"},
-	{"ÇÃ¶óÀÓ ¿þÀÌºê"    ,SKILL_FLAME_WAVE		,"MM63 F_Wave"},
-	{"µð½ºÆ®·Ï¼Ç"       ,SKILL_DISTORTION	    ,"MM66 Distortion","Mg4_DISTORTION.tga"},
-	{"¸ÞÅ×¿À"		    ,SKILL_M_METEO		    ,"MM70 Meteo"},
+	{"���ø� �ں���"	,SKILL_SPLIT_JAVELIN         ,"MA40 Split_Javelin"},
+	{"Ʈ���̾���������Ҷ�",SKILL_TRIUMPH_OF_VALHALLA,"MA43 T_Of_Valhalla","At3_T_O_VALHALLA.tga"},
+	{"����Ʈ������"	,SKILL_LIGHTNING_JAVELIN     ,"MA46 L_Javelin"},
+	{"���� ����"		,SKILL_STORM_JAVELIN         ,"MA50 Storm_Javelin"},
 
 
-	{"Èí¼ö·Â »ó½Â"	    ,CLANSKILL_ABSORB	 ,"","wa1-1.tga"},
-	{"°ø°Ý·Â »ó½Â"      ,CLANSKILL_ATTACK	 ,"","wa1-3.tga"},
-	{"È¸ÇÇÀ² »ó½Â"      ,CLANSKILL_EVASION	 ,"","wa1-2.tga"},
+	{"�� ���� ���Ҷ�"		,SKILL_HALL_OF_VALHALLA ,"MA60 H_O_Valhalla","At4_H_O_VALHALLA.tga"},
+	{"���� ����"			,SKILL_X_RAGE		    ,"MA63 X_Rage"},
+	{"���ν�Ʈ ����"      ,SKILL_FROST_JAVELIN	,"MA66 F_Javelin","At4_F_JAVELIN.tga"},
+	{"��þ"					,SKILL_VENGEANCE		,"MA70 Vengeance"},
+
+
+
+	{"����"				,SKILL_HEALING			,"MP10 Healing"},
+	{"Ȧ����Ʈ "		,SKILL_HOLY_BOLT		,"MP12 HolyBolt"},
+	{"��Ƽ����ũ"		,SKILL_MULTISPARK		,"MP14 M_Spark"},
+	{"Ȧ�����ε�"	    ,SKILL_HOLY_MIND	    ,"MP17 HolyMind"},
+
+	{"�޵����̼�"	    ,SKILL_MEDITATION	    ,"MP20 Meditation"},
+	{"����ζ���Ʈ��"	,SKILL_DIVINE_LIGHTNING ,"MP23 D_Lightning"},
+	{"Ȧ�� ���÷���"	,SKILL_HOLY_REFLECTION	,"MP26 H_Reflection","Pr2_H_REFLECTION.tga"},
+	{"�׷���Ʈ ����"	,SKILL_GRAND_HEALING	,"MP30 G_Healing"},
+
+	{"��� ��"		    ,SKILL_VIGOR_BALL	    ,"MP40 V_Ball"},
+	{"��������"			,SKILL_RESURRECTION		,"MP43 Resurrection"},
+	{"�ͽ��ü�"			,SKILL_EXTINCTION		,"MP46 Extinction"},
+	{"����� ������"	,SKILL_VIRTUAL_LIFE		,"MP50 V_Life","Pr3_V_LIFE.tga"},
+
+
+	{"�۷��� ������ũ"	 ,SKILL_GLACIAL_SPIKE	  ,"MP60 G_Spike"},
+	{"�����ʷ��̼� �ʵ�" ,SKILL_REGENERATION_FIELD,"MP63 R_Field","Pr4_R_FIELD.tga"},
+	{"ü�� ����Ʈ��"     ,SKILL_CHAIN_LIGHTNING	  ,"MP66 C_Lightning"},
+	{"���� �½���"		 ,SKILL_SUMMON_MUSPELL	  ,"MP70 S_Muspell","Pr4_S_MUSPELL.tga"},
+
+
+
+
+	{"����"			,SKILL_AGONY			,"MM10 Agony"},
+	{"���̾Ʈ "		,SKILL_FIRE_BOLT		,"MM12 FireBolt"},
+	{"���Ͼ�"			,SKILL_ZENITH			,"MM14 Zenith","Mg1_ZENITH.tga"},
+	{"���̾"			,SKILL_FIRE_BALL	    ,"MM17 FireBall"},
+
+	{"��Ż �����͸�"	,SKILL_MENTAL_MASTERY   ,"MM20 M_Mastery"},
+	{"�ݷ�������"		,SKILL_WATORNADO	    ,"MM23 Watornado"},
+	{"��æƮ ����"		,SKILL_ENCHANT_WEAPON	,"MM26 E_Weapon","Mg2_E_WEAPON.tga"},
+	{"���巹��"			,SKILL_DEAD_RAY  	    ,"MM30 D_Ray"},
+
+	{"������ ����"		,SKILL_ENERGY_SHIELD    ,"MM40 E_Shield","Mg3_E_SHIELD.tga"},
+	{"���̾ƽ�Ʈ������"	,SKILL_DIASTROPHISM	    ,"MM43 Diastrophism"},
+	{"���Ǹ� ������Ż"	,SKILL_SPIRIT_ELEMENTAL	,"MM46 S_Elemental","Mg3_S_ELEMENTAL.tga"},
+	{"��̽�����"		,SKILL_DANCING_SWORD  	,"MM50 D_Sword","Mg3_D_SWORD.tga"},
+
+
+	{"���̾� ������Ż"	,SKILL_FIRE_ELEMENTAL	,"MM60 F_Elemental","Mg4_F_ELEMENTAL.tga"},
+	{"�ö��� ���̺�"    ,SKILL_FLAME_WAVE		,"MM63 F_Wave"},
+	{"��Ʈ�ϼ�"       ,SKILL_DISTORTION	    ,"MM66 Distortion","Mg4_DISTORTION.tga"},
+	{"���׿�"		    ,SKILL_M_METEO		    ,"MM70 Meteo"},
+
+
+	{"����� ���"	    ,CLANSKILL_ABSORB	 ,"","wa1-1.tga"},
+	{"���ݷ� ���"      ,CLANSKILL_ATTACK	 ,"","wa1-3.tga"},
+	{"ȸ���� ���"      ,CLANSKILL_EVASION	 ,"","wa1-2.tga"},
 
 	{ "BC_SILVER"      ,BC_SKILL_SILVER	 ,"","wa1-3.tga" },
 	{ "BC_BRONZE"      ,BC_SKILL_BRONZE	 ,"","wa1-3.tga" },
@@ -320,32 +320,32 @@ sSKILL sSkill[SIN_MAX_SKILL] = {
 	{ "Coroa de SOD Bronze"      ,SOD_SKILL_BRONZE	 ,"","SOD3_Skill.tga" },
 
 
-	{"¾ÆÅ¸³ª½Ã¾Æ"			 ,SCROLL_INVULNERABILITY	 ,"","S_Ath.tga"},
-	{"µ¥µé¸® ¿¡Áö"			 ,SCROLL_CRITICAL            ,"","S_Dea.tga"},
-	{"¾îº£ÀÏ ¿Àºê ÀÌº£ÀÌµå"	 ,SCROLL_EVASION	         ,"","S_Eva.tga"},
-	{"µðÆÄÀÌ¾ð½º ½ºÅæ"		 ,STONE_R_FIRECRYTAL	     ,"","F_C_M.tga"},
-	{"µðÆÄÀÌ¾ð½º ½ºÅæ"		 ,STONE_R_ICECRYTAL	         ,"","I_C_M.tga"},
-	{"µðÆÄÀÌ¾ð½º ½ºÅæ"	     ,STONE_R_LINGHTINGCRYTAL    ,"","L_C_M.tga"},
-	{"¸¶ÀÌÆ® ½ºÅæ"			 ,STONE_A_FIGHTER		     ,"","Ft_R.tga"},
-	{"¸¶ÀÌÆ® ½ºÅæ"			 ,STONE_A_MECHANICIAN	     ,"","Mc_R.tga"},
-	{"¸¶ÀÌÆ® ½ºÅæ"			 ,STONE_A_PIKEMAN		     ,"","Pk_R.tga"},
-	{"¸¶ÀÌÆ® ½ºÅæ"	         ,STONE_A_ARCHER			 ,"","Ac_R.tga"},
-	{"¸¶ÀÌÆ® ½ºÅæ"           ,STONE_A_KNIGHT			 ,"","Kt_R.tga"},
-	{"¸¶ÀÌÆ® ½ºÅæ"           ,STONE_A_ATALANTA		     ,"","At_R.tga"},
-	{"¸¶ÀÌÆ® ½ºÅæ"           ,STONE_A_MAGICIAN		     ,"","Mg_R.tga"},
-	{"¸¶ÀÌÆ® ½ºÅæ"           ,STONE_A_PRIESTESS		     ,"","Pt_R.tga"},
+	{"��Ÿ���þ�"			 ,SCROLL_INVULNERABILITY	 ,"","S_Ath.tga"},
+	{"���鸮 ����"			 ,SCROLL_CRITICAL            ,"","S_Dea.tga"},
+	{"��� ���� �̺��̵�"	 ,SCROLL_EVASION	         ,"","S_Eva.tga"},
+	{"�����̾� ����"		 ,STONE_R_FIRECRYTAL	     ,"","F_C_M.tga"},
+	{"�����̾� ����"		 ,STONE_R_ICECRYTAL	         ,"","I_C_M.tga"},
+	{"�����̾� ����"	     ,STONE_R_LINGHTINGCRYTAL    ,"","L_C_M.tga"},
+	{"����Ʈ ����"			 ,STONE_A_FIGHTER		     ,"","Ft_R.tga"},
+	{"����Ʈ ����"			 ,STONE_A_MECHANICIAN	     ,"","Mc_R.tga"},
+	{"����Ʈ ����"			 ,STONE_A_PIKEMAN		     ,"","Pk_R.tga"},
+	{"����Ʈ ����"	         ,STONE_A_ARCHER			 ,"","Ac_R.tga"},
+	{"����Ʈ ����"           ,STONE_A_KNIGHT			 ,"","Kt_R.tga"},
+	{"����Ʈ ����"           ,STONE_A_ATALANTA		     ,"","At_R.tga"},
+	{"����Ʈ ����"           ,STONE_A_MAGICIAN		     ,"","Mg_R.tga"},
+	{"����Ʈ ����"           ,STONE_A_PRIESTESS		     ,"","Pt_R.tga"},
 
-	{"ÀÌÅÍ³Î ¶óÀÌÇÁ"	     ,SCROLL_P_INVULNERABILITY	 ,"","S_Ath.tga"},
-	{"ÆäÀÌÆ² ¿¡Áö"			 ,SCROLL_P_CRITICAL          ,"","S_Dea.tga"},
-	{"¾î¹öÆ® ½ºÅ©·Ñ"	     ,SCROLL_P_EVASION	         ,"","S_Eva.tga"},
-
-
-	{"»ý¸í·Â ºÎ½ºÅÍ",		BOOSTER_ITEM_LIFE,			"",		"Booster_01.tga"},
-	{"±â·Â ºÎ½ºÅÍ",			BOOSTER_ITEM_MANA,			"",		"Booster_02.tga"},
-	{"±Ù·Â ºÎ½ºÅÍ",			BOOSTER_ITEM_STAMINA,		"",		"Booster_03.tga"},
+	{"���ͳ� ������"	     ,SCROLL_P_INVULNERABILITY	 ,"","S_Ath.tga"},
+	{"����Ʋ ����"			 ,SCROLL_P_CRITICAL          ,"","S_Dea.tga"},
+	{"���Ʈ ��ũ��"	     ,SCROLL_P_EVASION	         ,"","S_Eva.tga"},
 
 
-	{"½ºÅ³ µô·¹ÀÌ",			SKILLDELAY_ITEM_LIFE,			"",		"Booster_01.tga"},
+	{"����� �ν���",		BOOSTER_ITEM_LIFE,			"",		"Booster_01.tga"},
+	{"��� �ν���",			BOOSTER_ITEM_MANA,			"",		"Booster_02.tga"},
+	{"�ٷ� �ν���",			BOOSTER_ITEM_STAMINA,		"",		"Booster_03.tga"},
+
+
+	{"��ų �����",			SKILLDELAY_ITEM_LIFE,			"",		"Booster_01.tga"},
 	
 	{ "PlayerNovato", PLAYERNOVATO, "", "Novato.tga" },
     { "Top Level Classe", PLAYER_TOP, "", "toplvl.tga" },
@@ -1717,7 +1717,7 @@ void cSKILL::DrawSkillText()
 
 							} 
 
-							SetFontTextColor( RGB(255, 255, 255)); //Informaçoes das Skill 
+							SetFontTextColor( RGB(255, 255, 255)); //Informa�oes das Skill 
 
 							BoldFlag = 0;
 							if(Count + 10 == 1)
@@ -1733,7 +1733,7 @@ void cSKILL::DrawSkillText()
 							{
 								if(Count + 1 == SkillDocLineCnt[t])
 								{
-									//Descrição das skill
+									//Descri��o das skill
 									SetFontTextColor( RGB(125, 120, 100));
 								}
 							}
@@ -1750,7 +1750,7 @@ void cSKILL::DrawSkillText()
 							}
 
 							if(SkillMasterFlag == 1)
-							{  //Preço das Skill
+							{  //Pre�o das Skill
 								if(Count == SkillInfoLineCnt - 1) 
 								{
 									SetFontTextColor( RGB(247,243,193));
@@ -2290,7 +2290,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 	}
 	else if(pSkill->CODE == SOD_SKILL_GOLD)
 	{
-		lstrcat(szSkillInfoBuff, "A glória é concedida ao\rClã que sobreviveu ao Bellatra.\r");
+		lstrcat(szSkillInfoBuff, "A gl�ria � concedida ao\rCl� que sobreviveu ao Bellatra.\r");
 		lstrcat(szSkillInfoBuff2, "\r");
 		lstrcat(szSkillInfoBuff, "+ 120 de vida\r");
 		lstrcat(szSkillInfoBuff2, "\r");
@@ -2299,7 +2299,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 	}
 	else if(pSkill->CODE == SOD_SKILL_SILVER)//
 	{
-		lstrcat(szSkillInfoBuff, "A glória é concedida ao\rClã que sobreviveu ao Bellatra.\r\r");
+		lstrcat(szSkillInfoBuff, "A gl�ria � concedida ao\rCl� que sobreviveu ao Bellatra.\r\r");
 		lstrcat(szSkillInfoBuff2, "\r");
 		lstrcat(szSkillInfoBuff, "+ 100 de vida\r");
 		lstrcat(szSkillInfoBuff2, "\r");
@@ -2308,7 +2308,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 	}
 	else if(pSkill->CODE == SOD_SKILL_BRONZE)
 	{
-		lstrcat(szSkillInfoBuff, "A glória é concedida ao\rClã que sobreviveu ao Bellatra.\r\r");
+		lstrcat(szSkillInfoBuff, "A gl�ria � concedida ao\rCl� que sobreviveu ao Bellatra.\r\r");
 		lstrcat(szSkillInfoBuff2, "\r");
 		lstrcat(szSkillInfoBuff, "+ 70 de vida\r");
 		lstrcat(szSkillInfoBuff2, "\r");
@@ -2321,7 +2321,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 
 		lstrcpy(szSkillInfoBuff, "REI PvP\r");
 		lstrcat(szSkillInfoBuff2, "\r");
-		lstrcat(szSkillInfoBuff, "Bênção concedida ao guerreiro\mais Forte\r\r");
+		lstrcat(szSkillInfoBuff, "B�n��o concedida ao guerreiro\mais Forte\r\r");
 		lstrcat(szSkillInfoBuff2, "\r");
 		lstrcat(szSkillInfoBuff, "+ 2% de poder de ataque\r");
 		lstrcat(szSkillInfoBuff, "+ 50 de vida\r");
@@ -2346,7 +2346,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 	{
 		wsprintf(szSkillInfoBuff, "Top Level Classe %s \r", szClasseList[lpCurPlayer->smCharInfo.JOB_CODE]);
 		lstrcat(szSkillInfoBuff2, "\r");
-		lstrcat(szSkillInfoBuff, "O Espírito de Awell.\r\r");
+		lstrcat(szSkillInfoBuff, "O Esp�rito de Awell.\r\r");
 		lstrcat(szSkillInfoBuff2, "\r");
 		lstrcat(szSkillInfoBuff, "2% de poder ataque adicional\r");
 		lstrcat(szSkillInfoBuff, "Tx. de Drop 5% adicional\r");
@@ -2423,7 +2423,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 
 	switch (pSkill->CODE) {
 	case SKILL_MECHANIC_BOMB:
-		wsprintf(szTempSkillDoc, "Bônus de 50%% contra monstros Mutante e Mecânico\r"); //½ºÅ³ ÀÌ¸§ 
+		wsprintf(szTempSkillDoc, "B�nus de 50%% contra monstros Mutante e Mec�nico\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2431,7 +2431,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		MonsterDamageLine = LineCount;
 		break;
 	case SKILL_SPARK:
-		wsprintf(szTempSkillDoc, "Bônus de 50%% contra monstros Mecânico\r"); //½ºÅ³ ÀÌ¸§ 
+		wsprintf(szTempSkillDoc, "B�nus de 50%% contra monstros Mec�nico\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2439,8 +2439,8 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		MonsterDamageLine = LineCount;
 		break;
 	case SKILL_METAL_ARMOR:
-		//Èí¼ö·® ÀÎ°è
-		wsprintf(szTempSkillDoc, "Usa a Absorção Física em 120%%\r"); //½ºÅ³ ÀÌ¸§ 
+		//����� �ΰ�
+		wsprintf(szTempSkillDoc, "Usa a Absor��o F�sica em 120%%\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2448,23 +2448,23 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		ChainDamageLine = LineCount;
 		break;
 	case SKILL_SPARK_SHIELD:
-		wsprintf(szTempSkillDoc, "Bônus de 50%% contra monstros Mecânico\r"); //½ºÅ³ ÀÌ¸§  
+		wsprintf(szTempSkillDoc, "B�nus de 50%% contra monstros Mec�nico\r"); //��ų �̸�  
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 		LineCount++;
 		MonsterDamageLine = LineCount;
 		break;
-	case SKILL_IMPULSION:     //¸ÞÄ«´Ð ¸÷¿¡ 30%°¡Áß
-		wsprintf(szTempSkillDoc, "Bônus de 30%% contra monstros Mecânico\r"); //½ºÅ³ ÀÌ¸§ 
+	case SKILL_IMPULSION:     //��ī�� ���� 30%����
+		wsprintf(szTempSkillDoc, "B�nus de 30%% contra monstros Mec�nico\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 		LineCount++;
 		MonsterDamageLine = LineCount;
 		break;
-	case SKILL_MAGNETIC_SPHERE: //¸ÞÄ«´Ð ¸÷¿¡ 30%°¡Áß
-		wsprintf(szTempSkillDoc, "Bônus de 30%% contra monstros Mecânico\r"); //½ºÅ³ ÀÌ¸§ 
+	case SKILL_MAGNETIC_SPHERE: //��ī�� ���� 30%����
+		wsprintf(szTempSkillDoc, "B�nus de 30%% contra monstros Mec�nico\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2472,7 +2472,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		MonsterDamageLine = LineCount;
 		break;
 	case SKILL_BRUTAL_SWING:
-		wsprintf(szTempSkillDoc, "Bônus de 40%% contra monstros Demônio\r"); //½ºÅ³ ÀÌ¸§ 
+		wsprintf(szTempSkillDoc, "B�nus de 40%% contra monstros Dem�nio\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2480,16 +2480,16 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		MonsterDamageLine = LineCount;
 		break;
 	case SKILL_AVANGING_CRASH:
-		//Å©¸®Æ¼ÄÃ ÀÎ°è
-		wsprintf(szTempSkillDoc, "Usa o Crítico da Girada Brutal em 50%%\r"); //½ºÅ³ ÀÌ¸§ 
+		//ũ��Ƽ�� �ΰ�
+		wsprintf(szTempSkillDoc, "Usa o Cr�tico da Girada Brutal em 50%%\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 		LineCount++;
 		ChainDamageLine = LineCount;
 		break;
-	case SKILL_DETORYER:       //µð¸ÕÇü ¸÷¿¡ 30%°¡Áß
-		wsprintf(szTempSkillDoc, "Bônus de 30%% contra monstros Demônio\r"); //½ºÅ³ ÀÌ¸§ 
+	case SKILL_DETORYER:       //����� ���� 30%����
+		wsprintf(szTempSkillDoc, "B�nus de 30%% contra monstros Dem�nio\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2497,7 +2497,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		MonsterDamageLine = LineCount;
 		break;
 	case SKILL_JUMPING_CRASH:
-		wsprintf(szTempSkillDoc, "Bônus de 30%% contra monstros Demônio\r"); //½ºÅ³ ÀÌ¸§ 
+		wsprintf(szTempSkillDoc, "B�nus de 30%% contra monstros Dem�nio\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2505,7 +2505,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		MonsterDamageLine = LineCount;
 		break;
 	case SKILL_EXPANSION:
-		wsprintf(szTempSkillDoc, "Bônus de 30%% contra monstros Mutante\r"); //½ºÅ³ ÀÌ¸§ 
+		wsprintf(szTempSkillDoc, "B�nus de 30%% contra monstros Mutante\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2513,7 +2513,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		MonsterDamageLine = LineCount;
 		break;
 	case SKILL_WIND_ARROW:
-		wsprintf(szTempSkillDoc, "Bônus de 30%% contra monstros Normal\r"); //½ºÅ³ ÀÌ¸§ 
+		wsprintf(szTempSkillDoc, "B�nus de 30%% contra monstros Normal\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2521,7 +2521,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		MonsterDamageLine = LineCount;
 		break;
 	case SKILL_PERFECT_AIM:
-		wsprintf(szTempSkillDoc, "Bônus de 30%% contra monstros Demônio\r"); //½ºÅ³ ÀÌ¸§ 
+		wsprintf(szTempSkillDoc, "B�nus de 30%% contra monstros Dem�nio\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2529,7 +2529,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		MonsterDamageLine = LineCount;
 		break;
 	case SKILL_SWORD_BLAST:
-		wsprintf(szTempSkillDoc, "Bônus de 30%% contra monstros Normal e Mutante\r"); //½ºÅ³ ÀÌ¸§ 
+		wsprintf(szTempSkillDoc, "B�nus de 30%% contra monstros Normal e Mutante\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2537,7 +2537,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		MonsterDamageLine = LineCount;
 		break;
 	case SKILL_PIERCING:
-		wsprintf(szTempSkillDoc, "Bônus de 30%% contra monstros Mutante\r"); //½ºÅ³ ÀÌ¸§ 
+		wsprintf(szTempSkillDoc, "B�nus de 30%% contra monstros Mutante\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2545,7 +2545,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		MonsterDamageLine = LineCount;
 		break;
 	case SKILL_GODLY_SHIELD:
-		wsprintf(szTempSkillDoc, "Usa o Bloqueio do Escudo Divino em 100%%\r"); //½ºÅ³ ÀÌ¸§ 
+		wsprintf(szTempSkillDoc, "Usa o Bloqueio do Escudo Divino em 100%%\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2553,7 +2553,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		ChainDamageLine = LineCount;
 		break;
 	case SKILL_TWIST_JAVELIN:
-		wsprintf(szTempSkillDoc, "Bônus de 30%% contra monstros Demônio\r"); //½ºÅ³ ÀÌ¸§ 
+		wsprintf(szTempSkillDoc, "B�nus de 30%% contra monstros Dem�nio\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2561,7 +2561,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		MonsterDamageLine = LineCount;
 		break;
 	case SKILL_FIRE_JAVELIN:
-		wsprintf(szTempSkillDoc, "Bônus de 50%% contra monstros Mutante\r"); //½ºÅ³ ÀÌ¸§ 
+		wsprintf(szTempSkillDoc, "B�nus de 50%% contra monstros Mutante\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2569,15 +2569,15 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		MonsterDamageLine = LineCount;
 		break;
 	case SKILL_LIGHTNING_JAVELIN:
-		wsprintf(szTempSkillDoc, "Bônus de 50%% contra monstros Morto-Vivo\r"); //½ºÅ³ ÀÌ¸§  
+		wsprintf(szTempSkillDoc, "B�nus de 50%% contra monstros Morto-Vivo\r"); //��ų �̸�  
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 		LineCount++;
 		MonsterDamageLine = LineCount;
 		break;
-	case SKILL_HALL_OF_VALHALLA: //Triumph100%ÀÎ°è
-		wsprintf(szTempSkillDoc, "Usa o Triunfo de Valhalla em 100%%\r"); //½ºÅ³ ÀÌ¸§ 
+	case SKILL_HALL_OF_VALHALLA: //Triumph100%�ΰ�
+		wsprintf(szTempSkillDoc, "Usa o Triunfo de Valhalla em 100%%\r"); //��ų �̸� 
 		lstrcpy(szTempSkillDoc2, "\r");
 		lstrcat(szSkillInfoBuff, szTempSkillDoc);
 		lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2602,7 +2602,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 		}
 
 
-		switch (pSkill->CODE) {//Mecânico
+		switch (pSkill->CODE) {//Mec�nico
 		case SKILL_EXTREME_SHIELD:
 			lstrcpy(szTempSkillDoc, "Bloqueio:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
@@ -2630,7 +2630,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			LineCount++;
 			break;
 		case SKILL_POISON_ATTRIBUTE:
-			lstrcpy(szTempSkillDoc, "Resistência a Veneno:\r");
+			lstrcpy(szTempSkillDoc, "Resist�ncia a Veneno:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", PlusPoison[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2642,7 +2642,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			break;
 
 		case SKILL_PHYSICAL_ABSORB:
-			lstrcpy(szTempSkillDoc, "Absorção:\r");
+			lstrcpy(szTempSkillDoc, "Absor��o:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", P_Absorb[pSkill->Point + i - 1][0]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2662,7 +2662,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Poder de Ataque Máximo:\r");
+			lstrcpy(szTempSkillDoc, "Poder de Ataque M�ximo:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d - %d\r", G_Smash_Attack_Rage[pSkill->Point + i - 1], G_Smash_Attack_Rage[pSkill->Point + i - 1] + sinChar->Strength / 5);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2677,7 +2677,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 
 
 		case SKILL_MAXIMIZE:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque Máximo:\r");
+			lstrcpy(szTempSkillDoc, "Poder de Ataque M�ximo:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Maximize_Damage[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2718,7 +2718,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");
+			lstrcpy(szTempSkillDoc, "�rea:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Spark_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2785,57 +2785,57 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			LineCount++;
 			break;
 		case SKILL_IMPULSION:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//¶óÀÌÆ®´× Ãß°¡ °ø·Â
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//����Ʈ�� �߰� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Impulsion_LightingDamagePercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Alcance:\r"); //ÁÖº¯»çÁ¤°Å¸®
+			lstrcpy(szTempSkillDoc, "Alcance:\r"); //�ֺ������Ÿ�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Impulsion_Range[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Raios:\r"); //ÃÖ´ë º¼Æ®¼ö
+			lstrcpy(szTempSkillDoc, "Raios:\r"); //�ִ� ��Ʈ��
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Impulsion_LightingNum[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 			break;
 		case SKILL_COMPULSION:
-			lstrcpy(szTempSkillDoc, "Absorção:\r"); //Èí¼ö·Â Ãß°¡
+			lstrcpy(szTempSkillDoc, "Absor��o:\r"); //����� �߰�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Compulsion_AddAbsorb[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");//¹üÀ§Áõ°¡
+			lstrcpy(szTempSkillDoc, "�rea:\r");//��������
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Compulsion_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime);//À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime);//�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", Compulsion_Time[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 			break;
 		case SKILL_MAGNETIC_SPHERE:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque das Esferas:\r");//ÀÚ±â °ø°Ý·Â Áõ°¡
+			lstrcpy(szTempSkillDoc, "Poder de Ataque das Esferas:\r");//�ڱ� ���ݷ� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Magnetic_Sphere_AddDamagePercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Alcance:\r"); //À¯È¿¹Ý°æ
+			lstrcpy(szTempSkillDoc, "Alcance:\r"); //��ȿ�ݰ�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Magnetic_Sphere_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Intervalo entre Ataques:\r"); //°ø°Ý µô·¹ÀÌ
+			lstrcpy(szTempSkillDoc, "Intervalo entre Ataques:\r"); //���� �����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			if (Magnetic_Sphere_AttackDelay[pSkill->Point + i - 1] > 1)
 				wsprintf(szTempSkillDoc2, "%d segundos\r", Magnetic_Sphere_AttackDelay[pSkill->Point + i - 1]);
@@ -2844,44 +2844,44 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime);//À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime);//�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", Magnetic_Sphere_Time[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 			break;
 		case SKILL_METAL_GOLEM:
-			lstrcpy(szTempSkillDoc, sinAttackType);//°ø°ÝÅ¸ÀÔ
+			lstrcpy(szTempSkillDoc, sinAttackType);//����Ÿ��
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			lstrcpy(szTempSkillDoc2, sinAttackType2[SummonSkillCodeIndex[0]]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r"); //°ø°Ý·Â
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r"); //���ݷ�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d - %d\r", Metal_Golem_Damage[pSkill->Point + i - 1][0], Metal_Golem_Damage[pSkill->Point + i - 1][1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Taxa de Ataque:\r");//¸íÁß·Â
+			lstrcpy(szTempSkillDoc, "Taxa de Ataque:\r");//���߷�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Metal_Golem_Hit[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Defesa:\r");//¹æ¾î·Â
+			lstrcpy(szTempSkillDoc, "Defesa:\r");//����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Metal_Golem_Defense[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Vida + (2 x Força):\r"); //»ý¸í·Â+(Èû)
+			lstrcpy(szTempSkillDoc, "Vida + (2 x For�a):\r"); //�����+(��)
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d + %d\r", Metal_Golem_Life[pSkill->Point + i - 1], (sinChar->Strength * 2));
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime);//À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime);//�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", 360, SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2894,14 +2894,14 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			wsprintf(szTempSkillDoc2, "%d%s\r", Melee_Mastery_DamagePercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
-			//ÀÓÀÇ´ë·Î ÇÑÁÙÀ» ´õ ³Ö¾îÁØ´Ù 
+			//���Ǵ�� ������ �� �־��ش� 
 			lstrcat(szSkillInfoBuff, "\r");
 			lstrcpy(szTempSkillDoc2, "\r");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 			break;
 		case SKILL_FIRE_ATTRIBUTE:
-			lstrcpy(szTempSkillDoc, "Resistência a Fogo:\r");
+			lstrcpy(szTempSkillDoc, "Resist�ncia a Fogo:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", PlusFire[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -2971,14 +2971,14 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Crítico:\r");
+			lstrcpy(szTempSkillDoc, "Cr�tico:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", B_Swing_Critical[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 			break;
 		case SKILL_ROAR:
-			lstrcpy(szTempSkillDoc, "Área:\r");
+			lstrcpy(szTempSkillDoc, "�rea:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Roar_Range[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3050,7 +3050,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Bônus contra Demônios:\r");
+			lstrcpy(szTempSkillDoc, "B�nus contra Dem�nios:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", B_Crash_DemonDamage[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3058,64 +3058,64 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 
 			break;
 		case SKILL_DETORYER:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//°ø°Ý·Â°¡Áß
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//���ݷ°���
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Destoryer_DamagePercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Crítico:\r");//Å©¸®Æ¼ÄÃÃß°¡
+			lstrcpy(szTempSkillDoc, "Cr�tico:\r");//ũ��Ƽ���߰�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%%\r", Destoryer_AddCritical[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 			break;
 		case SKILL_BERSERKER:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//°ø·Â·Â Ãß°¡
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//���·� �߰�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Berserker_AddAttack[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Absorção:\r");//Èì¼ö·Â ÇÏ¶ô
+			lstrcpy(szTempSkillDoc, "Absor��o:\r");//����� �϶�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Berserker_SubAbsorb[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime);//À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime);//�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", Berserker_Time[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 			break;
 		case SKILL_CYCLONE_STRIKE:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//°ø°Ý·Â°¡Áß
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//���ݷ°���
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Cyclone_Strike_DamagePercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Bônus de Poder de Ataque:\r");//¹üÀ§ °ø°Ý·Â
+			lstrcpy(szTempSkillDoc, "B�nus de Poder de Ataque:\r");//���� ���ݷ�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d - %d\r", Cyclone_Strike_AreaDamage[pSkill->Point + i - 1][0], Cyclone_Strike_AreaDamage[pSkill->Point + i - 1][1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Alvos Atingidos:\r"); //ÃÖ´ë Å¸°Ý¼ö
+			lstrcpy(szTempSkillDoc, "Alvos Atingidos:\r"); //�ִ� Ÿ�ݼ�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Cyclone_Strike_AttackNum[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");//Èì¼ö·Â ÇÏ¶ô
+			lstrcpy(szTempSkillDoc, "�rea:\r");//����� �϶�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Cyclone_Strike_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 			break;
 		case SKILL_BOOST_HEALTH:
-			lstrcpy(szTempSkillDoc, "Vida:\r"); //»ý¸í·Â Ãß°¡·®
+			lstrcpy(szTempSkillDoc, "Vida:\r"); //����� �߰���
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Boost_Health_Life[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3141,7 +3141,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			break;
 
 		case SKILL_ICE_ATTRIBUTE:
-			lstrcpy(szTempSkillDoc, "Resistência a Gelo:\r");
+			lstrcpy(szTempSkillDoc, "Resist�ncia a Gelo:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", PlusIce[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3152,7 +3152,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			LineCount++;
 			break;
 		case SKILL_CRITICAL_HIT:
-			lstrcpy(szTempSkillDoc, "Crítico:\r");
+			lstrcpy(szTempSkillDoc, "Cr�tico:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Critical_Hit_Critical[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3180,7 +3180,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");
+			lstrcpy(szTempSkillDoc, "�rea:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", G_Pike_Range[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3200,7 +3200,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");
+			lstrcpy(szTempSkillDoc, "�rea:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Tornado_Range[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3267,19 +3267,19 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			break;
 
 		case SKILL_VANISH:
-			wsprintf(szTempSkillDoc, "Bônus do Primeiro Golpe:\r");
+			wsprintf(szTempSkillDoc, "B�nus do Primeiro Golpe:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Vanish_Damage[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Percepção Inimiga:\r");
+			lstrcpy(szTempSkillDoc, "Percep��o Inimiga:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Vanish_Range[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Duração:\r");
+			lstrcpy(szTempSkillDoc, "Dura��o:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", Vanish_Time[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3292,7 +3292,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;*/
 
-			lstrcpy(szTempSkillDoc, "Crítico:\r");
+			lstrcpy(szTempSkillDoc, "Cr�tico:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Critical_Mastery_Critical[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3311,38 +3311,38 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			LineCount++;
 			break;
 		case SKILL_ASSASSIN_EYE:
-			lstrcpy(szTempSkillDoc, "Crítico:\r");//Å©¸®Æ¼ÄÃ °ø°Ý·Â Áõ°¡
+			lstrcpy(szTempSkillDoc, "Cr�tico:\r");//ũ��Ƽ�� ���ݷ� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%%\r", Assassin_Eye_AddCritical[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Crítico Inimigo:\r");//¸ó½ºÅÍÀÇ ´ë Å©¸®Æ¼ÄÃ ´É·Â¾àÈ­
+			lstrcpy(szTempSkillDoc, "Cr�tico Inimigo:\r");//������ �� ũ��Ƽ�� �ɷ¾�ȭ
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "-%d%%\r", Assassin_Eye_M_SubCritical[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Duração:\r");//À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, "Dura��o:\r");//�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", Assassin_Eye_Time[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 			break;
 		case SKILL_CHARGING_STRIKE:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//°ø°Ý·Â°¡Áß
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//���ݷ°���
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Charging_Strike_DamagePercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Bônus quando Carregado:\r");//Â÷Â¡½Ã °ø°Ý·Â°¡Áß
+			lstrcpy(szTempSkillDoc, "B�nus quando Carregado:\r");//��¡�� ���ݷ°���
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Charging_Strike_CharingDamagePercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Velocidade para Carregar:\r");//Â÷Â¡½Ã°£
+			lstrcpy(szTempSkillDoc, "Velocidade para Carregar:\r");//��¡�ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			if ((pSkill->Point + i) == 1) {
 				wsprintf(szTempSkillDoc2, "%d%s\r", 0, "%");
@@ -3352,26 +3352,26 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			LineCount++;
 			break;
 		case SKILL_VAGUE:
-			lstrcpy(szTempSkillDoc, "Esquiva:\r");//Ãß°¡ È¸ÇÇ È®·ü Áõ°¡
+			lstrcpy(szTempSkillDoc, "Esquiva:\r");//�߰� ȸ�� Ȯ�� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Vague_EvasionPercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime);//À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime);//�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", Vague_Time[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 			break;
 		case SKILL_SHADOW_MASTER:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r"); //°ø°Ý·ÂÁõ°¡
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r"); //���ݷ�����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Shadow_Master_DamagePercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Golpes:\r");//ÀÜ»ó ÄÞº¸ Áõ°¡
+			lstrcpy(szTempSkillDoc, "Golpes:\r");//�ܻ� �޺� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Shadow_Master_ShadowNum[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3442,7 +3442,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			LineCount++;
 			break;
 		case SKILL_FALCON:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque do Falcão:\r");
+			lstrcpy(szTempSkillDoc, "Poder de Ataque do Falc�o:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d - %d\r", Falcon_Damage[pSkill->Point + i - 1][0], Falcon_Damage[pSkill->Point + i - 1][1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3469,7 +3469,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");
+			lstrcpy(szTempSkillDoc, "�rea:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", A_Rage_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3520,13 +3520,13 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			LineCount++;
 			break;
 		case SKILL_GOLDEN_FALCON:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque do Falcão:\r");
+			lstrcpy(szTempSkillDoc, "Poder de Ataque do Falc�o:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Golden_Falcon_Damage[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Regeneração de Vida:\r");
+			lstrcpy(szTempSkillDoc, "Regenera��o de Vida:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			sinTemp1 = (int)(Golden_Falcon_LifeRegen[pSkill->Point + i - 1] * 10);
 			RightSpot = sinTemp1 % 10;
@@ -3550,13 +3550,13 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-		    lstrcpy(szTempSkillDoc, "Bônus de Poder de Ataque:\r");
+		    lstrcpy(szTempSkillDoc, "B�nus de Poder de Ataque:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d - %d\r", BombShot_AddDamage[pSkill->Point + i - 1][0], BombShot_AddDamage[pSkill->Point + i - 1][1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Bônus contra Demônios:\r");
+			lstrcpy(szTempSkillDoc, "B�nus contra Dem�nios:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", BombShot_DemonDamage[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3575,7 +3575,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Crítico:\r");
+			lstrcpy(szTempSkillDoc, "Cr�tico:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Perforation_Critical[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3588,44 +3588,44 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			LineCount++;
 			break;
 		case SKILL_RECALL_WOLVERIN:
-			lstrcpy(szTempSkillDoc, "Modo:\r");//°ø°ÝÅ¸ÀÔ
+			lstrcpy(szTempSkillDoc, "Modo:\r");//����Ÿ��
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			lstrcpy(szTempSkillDoc2, sinAttackType2[SummonSkillCodeIndex[2]]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//°ø°Ý·Â
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//���ݷ�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d - %d\r", Recall_Wolverin_Damage[pSkill->Point + i - 1][0], Recall_Wolverin_Damage[pSkill->Point + i - 1][1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Taxa de Ataque:\r");//¸íÁß·Â
+			lstrcpy(szTempSkillDoc, "Taxa de Ataque:\r");//���߷�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Recall_Wolverin_Hit[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Defesa + 2 x Agilidade:\r");//¹æ¾î·Â
+			lstrcpy(szTempSkillDoc, "Defesa + 2 x Agilidade:\r");//����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d + %d\r", Recall_Wolverin_Defense[pSkill->Point + i - 1], (sinChar->Dexterity * 2));
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Vida:\r");//»ý¸í·Â
+			lstrcpy(szTempSkillDoc, "Vida:\r");//�����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Recall_Wolverin_Life[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime);//À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime);//�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", 300, SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 			break;
 		case SKILL_EVASION_MASTERY:
-			lstrcpy(szTempSkillDoc, "Esquiva:\r");//Ãß°¡ È¸ÇÇ ´É·Â Áõ°¡
+			lstrcpy(szTempSkillDoc, "Esquiva:\r");//�߰� ȸ�� �ɷ� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Evasion_Mastery_AddPercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3637,13 +3637,13 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			LineCount++;
 			break;
 		case SKILL_PHOENIX_SHOT:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//°ø°Ý·Â°¡Áß
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//���ݷ°���
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Phoenix_Shot_DamagePercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			/*lstrcpy(szTempSkillDoc, "Velocidade para Carregar:\r");//ÇÇ´Ð½ºÅ¸ÀÓ
+			/*lstrcpy(szTempSkillDoc, "Velocidade para Carregar:\r");//�Ǵн�Ÿ��
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			sinTemp1 = (int)((Phoenix_Shot_Time[pSkill->Point + i - 1] + 0.001f) * 10);
 			RightSpot = sinTemp1 % 10;
@@ -3652,7 +3652,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;*/
 
-			lstrcpy(szTempSkillDoc, "Velocidade para Carregar:\r");//Â÷Â¡½Ã°£
+			lstrcpy(szTempSkillDoc, "Velocidade para Carregar:\r");//��¡�ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			if ((pSkill->Point + i) == 1) {
 				wsprintf(szTempSkillDoc2, "%d%s\r", 0, "%");
@@ -3662,25 +3662,25 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			LineCount++;
 			break;
 		case SKILL_FORCE_OF_NATURE:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//Ãß°¡ °ø°Ý·ÂÁõ°¡
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//�߰� ���ݷ�����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Force_Of_Nature_AddDamage[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Taxa de Ataque:\r");//¸íÁß·ÂÁõ°¡
+			lstrcpy(szTempSkillDoc, "Taxa de Ataque:\r");//���߷�����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Force_Of_Nature_AddHit[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Poder de Ataque do Falcão:\r");//falcon Ãß°¡ °ø°Ý·Â Áõ°¡
+			lstrcpy(szTempSkillDoc, "Poder de Ataque do Falc�o:\r");//falcon �߰� ���ݷ� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Force_Of_Nature_FalconAddDamage[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime);//À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime);//�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", Force_Of_Nature_Time[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3702,7 +3702,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			LineCount++;
 			break;
 		case SKILL_HOLY_BODY:
-			lstrcpy(szTempSkillDoc, "Absorção contra Mortos-Vivos:\r");
+			lstrcpy(szTempSkillDoc, "Absor��o contra Mortos-Vivos:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", HolyBody_Absorb[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3716,7 +3716,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 
 			break;
 		case SKILL_PHYSICAL_TRANING:
-			lstrcpy(szTempSkillDoc, "Resistência:\r");
+			lstrcpy(szTempSkillDoc, "Resist�ncia:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", P_Traning_Stamina[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3734,7 +3734,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Crítico:\r");
+			lstrcpy(szTempSkillDoc, "Cr�tico:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", D_Crash_Critical[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3747,7 +3747,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");
+			lstrcpy(szTempSkillDoc, "�rea:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", 300);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3767,7 +3767,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");
+			lstrcpy(szTempSkillDoc, "�rea:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Brandish_Range[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3843,7 +3843,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Bônus de Vida do Monstro:\r");
+			lstrcpy(szTempSkillDoc, "B�nus de Vida do Monstro:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", H_Incantation_AddLife[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3869,20 +3869,20 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Bônus contra Mortos-Vivos:\r");
+			lstrcpy(szTempSkillDoc, "B�nus contra Mortos-Vivos:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Grand_Cross_UndeadDamage[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 			break;
 		case SKILL_SWORD_OF_JUSTICE:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//°ø°Ý·Â°¡Áß
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//���ݷ°���
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Sword_Of_Justice_DamagePercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Alcance:\r");//°ø°Ý·Â ¹üÀ§
+			lstrcpy(szTempSkillDoc, "Alcance:\r");//���ݷ� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Sword_Of_Justice_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3891,13 +3891,13 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			break;
 
 		case SKILL_GODLY_SHIELD:
-			lstrcpy(szTempSkillDoc, "Absorção:\r");//°ø°Ý Èí¼ö·Â Áõ°¡
+			lstrcpy(szTempSkillDoc, "Absor��o:\r");//���� ����� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Godly_Shield_AbsorbPercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime); //À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime); //�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", Godly_Shield_Time[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3906,13 +3906,13 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			break;
 
 		case SKILL_GOD_BLESS:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//°ø°Ý·ÂÁõ°¡
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//���ݷ�����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", God_Bless_AddDamage[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime);//À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime);//�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", God_Bless_Time[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3921,13 +3921,13 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			break;
 
 		case SKILL_DIVINE_PIERCING:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r"); //°ø°Ý·Â°¡Áß
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r"); //���ݷ°���
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Divine_Piercing_DamagePercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Golpes:\r");  //¿¬¼Ó °ø°Ý È½¼ö
+			lstrcpy(szTempSkillDoc, "Golpes:\r");  //���� ���� Ƚ��
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Divine_Piercing_AttackNum[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -3949,7 +3949,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Velocidade da Lança:\r");
+			lstrcpy(szTempSkillDoc, "Velocidade da Lan�a:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Farina_Speed[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4012,7 +4012,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 
 			break;
 		case SKILL_SOUL_SUCKER:
-			lstrcpy(szTempSkillDoc, "Absorção de Vida:\r");
+			lstrcpy(szTempSkillDoc, "Absor��o de Vida:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Soul_Sucker_Absorb[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4038,7 +4038,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Lanças:\r");
+			lstrcpy(szTempSkillDoc, "Lan�as:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Split_Javelin_AttackNum[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4046,9 +4046,9 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			break;
 
 		case SKILL_TRIUMPH_OF_VALHALLA:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque Máximo:\r");
+			lstrcpy(szTempSkillDoc, "Poder de Ataque M�ximo:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
-			wsprintf(szTempSkillDoc2, "%d + %d\r", T_Of_Valhalla_Damage[pSkill->Point + i - 1], sinChar->Level / 4); // Àåº° - ½ºÅ³¹ë·±½º Á¶Á¤(10.08.10)
+			wsprintf(szTempSkillDoc2, "%d + %d\r", T_Of_Valhalla_Damage[pSkill->Point + i - 1], sinChar->Level / 4); // �庰 - ��ų�뷱�� ����(10.08.10)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
@@ -4075,13 +4075,13 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 
 			break;
 		case SKILL_HALL_OF_VALHALLA:
-			lstrcpy(szTempSkillDoc, "Esquiva:\r"); //Ãß°¡ È¸ÇÇ È®·ü Áõ°¡
+			lstrcpy(szTempSkillDoc, "Esquiva:\r"); //�߰� ȸ�� Ȯ�� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Hall_Of_Valhalla_AddEvation[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime); //À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime); //�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", Hall_Of_Valhalla_Time[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4089,38 +4089,38 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 
 			break;
 		case SKILL_X_RAGE:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//°ø°Ý·Â°¡Áß
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//���ݷ°���
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", X_Rage_DamagePercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");//Á÷°¢°ø°Ý ¹üÀ§
+			lstrcpy(szTempSkillDoc, "�rea:\r");//�������� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", X_Rage_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 			break;
 		case SKILL_FROST_JAVELIN:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//ice Ãß°¡ °ø·Â
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//ice �߰� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d - %d\r", Frost_Javelin_IceAddDamage[pSkill->Point + i - 1][0], Frost_Javelin_IceAddDamage[pSkill->Point + i - 1][1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Velocidade do Inimigo:\r");//Å¸°ÝµÈ ÀûÀÇ ¼ÓµµÀúÇÏÄ¡
+			lstrcpy(szTempSkillDoc, "Velocidade do Inimigo:\r");//Ÿ�ݵ� ���� �ӵ�����ġ
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "-%d%s\r", Frost_Javelin_SpeedSubPercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Tempo de Congelamento:\r");//¾ÆÀÌ½Ì½Ã°£
+			lstrcpy(szTempSkillDoc, "Tempo de Congelamento:\r");//���̽̽ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", Frost_Javelin_IceTime[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime);//À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime);//�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", Frost_Javelin_Time[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4128,19 +4128,19 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 
 			break;
 		case SKILL_VENGEANCE:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//°ø°Ý·Â°¡Áß
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//���ݷ°���
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Vengeance_DamagePercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Crítico:\r");//Å©¸®Æ¼ÄÃÃß°¡
+			lstrcpy(szTempSkillDoc, "Cr�tico:\r");//ũ��Ƽ���߰�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Vengeance_AddCritical[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Alcance:\r");//°ø°Ý·Â ¹üÀ§
+			lstrcpy(szTempSkillDoc, "Alcance:\r");//���ݷ� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Vengeance_Range[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4157,14 +4157,14 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 				PlusMaxD = cInvenTory.InvenItem[sInven[0].ItemIndex-1].sItemInfo.Damage[1];
 			}
 			*/
-			// Àåº° - ½ºÅ³¹ë·±½º Á¶Á¤(10.08.10)
+			// �庰 - ��ų�뷱�� ����(10.08.10)
 			PlusMinD += cInvenTory.InvenItem[sInven[0].ItemIndex - 1].sItemInfo.Damage[0] / 3;
 			PlusMaxD += cInvenTory.InvenItem[sInven[0].ItemIndex - 1].sItemInfo.Damage[1] / 3;
 			PlusMinD += sinChar->Spirit / 8;
 			PlusMaxD += sinChar->Spirit / 6;
 
 
-			lstrcpy(szTempSkillDoc, "Recuperação de Vida:\r");
+			lstrcpy(szTempSkillDoc, "Recupera��o de Vida:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d - %d\r", Healing_Heal[pSkill->Point + i - 1][0], Healing_Heal[pSkill->Point + i - 1][1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4182,7 +4182,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			//PlusMinD += sinChar->Spirit/DivideMin;
 			//PlusMaxD += sinChar->Spirit/DivideMax;
 
-			// Àåº° - ½ºÅ³¹ë·±½º Á¶Á¤(10.08.10)
+			// �庰 - ��ų�뷱�� ����(10.08.10)
 			PlusMinD += cInvenTory.InvenItem[sInven[0].ItemIndex - 1].sItemInfo.Damage[0] / 3;
 			PlusMaxD += cInvenTory.InvenItem[sInven[0].ItemIndex - 1].sItemInfo.Damage[1] / 3;
 			PlusMinD += sinChar->Spirit / 8;
@@ -4207,7 +4207,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			//PlusMinD += sinChar->Spirit/DivideMin;
 			//PlusMaxD += sinChar->Spirit/DivideMax;
 
-			// Àåº° - ½ºÅ³¹ë·±½º Á¶Á¤(10.08.10)
+			// �庰 - ��ų�뷱�� ����(10.08.10)
 			PlusMinD += cInvenTory.InvenItem[sInven[0].ItemIndex - 1].sItemInfo.Damage[0] / 3;
 			PlusMaxD += cInvenTory.InvenItem[sInven[0].ItemIndex - 1].sItemInfo.Damage[1] / 3;
 			PlusMinD += sinChar->Spirit / 8;
@@ -4219,7 +4219,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Faíscas:\r");
+			lstrcpy(szTempSkillDoc, "Fa�scas:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d - %d\r", (M_Spark_Num[pSkill->Point + i - 1] / 2) + 1, M_Spark_Num[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4247,7 +4247,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			wsprintf(szTempSkillDoc2, "%d%s\r", Meditation_Power[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;*/
-			lstrcpy(szTempSkillDoc, "Regeneração de Mana:\r");
+			lstrcpy(szTempSkillDoc, "Regenera��o de Mana:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			sinTemp1 = (int)(Meditation_Regen[pSkill->Point + i - 1] * 10);
 			RightSpot = sinTemp1 % 10;
@@ -4255,7 +4255,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			wsprintf(szTempSkillDoc2, "%d.%d\r", LeftSpot, RightSpot);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
-			//ÀÓÀÇ´ë·Î ÇÑÁÙÀ» ´õ ³Ö¾îÁØ´Ù 
+			//���Ǵ�� ������ �� �־��ش� 
 			lstrcat(szSkillInfoBuff, "\r");
 			lstrcpy(szTempSkillDoc2, "\r");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4315,20 +4315,20 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			}
 			*/
 
-			// Àåº° - ½ºÅ³¹ë·±½º Á¶Á¤(10.08.10)
+			// �庰 - ��ų�뷱�� ����(10.08.10)
 			PlusMinD += cInvenTory.InvenItem[sInven[0].ItemIndex - 1].sItemInfo.Damage[0] / 3;
 			PlusMaxD += cInvenTory.InvenItem[sInven[0].ItemIndex - 1].sItemInfo.Damage[1] / 3;
 			PlusMinD += sinChar->Spirit / 8;
 			PlusMaxD += sinChar->Spirit / 6;
 
 
-			lstrcpy(szTempSkillDoc, "Recuperação de Vida:\r");
+			lstrcpy(szTempSkillDoc, "Recupera��o de Vida:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d - %d\r", Grand_Healing[pSkill->Point + i - 1][0], Grand_Healing[pSkill->Point + i - 1][1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");
+			lstrcpy(szTempSkillDoc, "�rea:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Grand_Healing_Range[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4348,7 +4348,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			PlusMaxD += sinChar->Spirit/DivideMax;
 			*/
 
-			// Àåº° - ½ºÅ³¹ë·±½º Á¶Á¤(10.08.10)
+			// �庰 - ��ų�뷱�� ����(10.08.10)
 			PlusMinD = sinChar->Level / 2;
 			PlusMaxD = sinChar->Level / 2;
 
@@ -4412,7 +4412,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			PlusMaxD += sinChar->Spirit/DivideMax;
 			*/
 
-			// Àåº° - ½ºÅ³¹ë·±½º Á¶Á¤(10.08.10)
+			// �庰 - ��ų�뷱�� ����(10.08.10)
 			PlusMinD = sinChar->Level / 2;
 			PlusMaxD = sinChar->Level / 2;
 
@@ -4420,13 +4420,13 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			PlusMaxD += sinChar->Spirit / 3;
 
 
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//°ø°Ý·Â
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//���ݷ�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Glacial_Spike_Damage_Percent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Alcance:\r");//°ø°Ý·Â ¹üÀ§
+			lstrcpy(szTempSkillDoc, "Alcance:\r");//���ݷ� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Glacial_Spike_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4434,7 +4434,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			break;
 		case SKILL_REGENERATION_FIELD:
 
-			lstrcpy(szTempSkillDoc, "Regeneração de Vida:\r");//»ý¸í Àç»ý·Â Ãß°¡
+			lstrcpy(szTempSkillDoc, "Regenera��o de Vida:\r");//���� ����� �߰�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			TempLife = (int)(Regeneration_Field_LifeRegen[pSkill->Point + i - 1] * 10 + 0.001f);
 			RightSpot = TempLife % 10;
@@ -4443,7 +4443,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Regeneração de Mana:\r");//¸¶³ª Àç»ý·ÂÃß°¡
+			lstrcpy(szTempSkillDoc, "Regenera��o de Mana:\r");//���� ������߰�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			TempMana = (int)(Regeneration_Field_ManaRegen[pSkill->Point + i - 1] * 10 + 0.001f);
 			RightSpot = TempMana % 10;
@@ -4452,13 +4452,13 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");//½ÃÀü ¹üÀ§
+			lstrcpy(szTempSkillDoc, "�rea:\r");//���� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Regeneration_Field_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime);//À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime);//�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", Regeneration_Field_Time[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4477,7 +4477,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			PlusMaxD += sinChar->Spirit/DivideMax;
 			*/
 
-			// Àåº° - ½ºÅ³¹ë·±½º Á¶Á¤(10.08.10)
+			// �庰 - ��ų�뷱�� ����(10.08.10)
 
 			PlusMinD = sinChar->Level / 3;
 			PlusMaxD = sinChar->Level / 3;
@@ -4489,19 +4489,19 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			PlusMaxD += sinChar->Spirit / 3;
 
 
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//°ø°Ý·Â
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//���ݷ�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Chain_Lightning_Damage_Percent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Alcance:\r");//ÃÖ´ë ¿¬°á°Å¸®
+			lstrcpy(szTempSkillDoc, "Alcance:\r");//�ִ� ����Ÿ�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Chain_Lightning_Range[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Raios:\r");//ÃÖ´ë ¿¬°á°¹¼ö
+			lstrcpy(szTempSkillDoc, "Raios:\r");//�ִ� ���᰹��
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Chain_Lightning_Num[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4509,13 +4509,13 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			break;
 		case SKILL_SUMMON_MUSPELL:
 
-			lstrcpy(szTempSkillDoc, "Poder de Ataque do Anjo:\r");//°ø°Ý·Â
+			lstrcpy(szTempSkillDoc, "Poder de Ataque do Anjo:\r");//���ݷ�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d - %d\r", Summon_Muspell_Damage[pSkill->Point + i - 1][0], Summon_Muspell_Damage[pSkill->Point + i - 1][1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Intervalo entre Ataques:\r");//°ø°Ýµô·¹ÀÌ
+			lstrcpy(szTempSkillDoc, "Intervalo entre Ataques:\r");//���ݵ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			if (Summon_Muspell_Attack_Delay[pSkill->Point + i - 1] > 1)
 				wsprintf(szTempSkillDoc2, "%d segundos\r", Summon_Muspell_Attack_Delay[pSkill->Point + i - 1]);
@@ -4524,19 +4524,19 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Absorção contra Mortos-Vivos:\r");//¾ðµ¥µåÀÇ °ø°Ý·Â Èí¼öÄ¡
+			lstrcpy(szTempSkillDoc, "Absor��o contra Mortos-Vivos:\r");//�𵥵��� ���ݷ� ���ġ
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Summon_Muspell_UndeadAbsorbPercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Esquiva:\r");//À¯Àú ºí·°À²
+			lstrcpy(szTempSkillDoc, "Esquiva:\r");//���� �����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Summon_Muspell_BlockPercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime);//À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime);//�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", Summon_Muspell_Time[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4552,7 +4552,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Recuperação de Mana:\r");
+			lstrcpy(szTempSkillDoc, "Recupera��o de Mana:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Agony_RecoveryMana[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4574,7 +4574,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 
 			break;
 		case SKILL_ZENITH:
-			lstrcpy(szTempSkillDoc, "Resistências:\r");
+			lstrcpy(szTempSkillDoc, "Resist�ncias:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Zenith_Element[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4614,7 +4614,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");
+			lstrcpy(szTempSkillDoc, "�rea:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", FireBall_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4660,7 +4660,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");
+			lstrcpy(szTempSkillDoc, "�rea:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Watornado_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4730,7 +4730,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			break;
 
 		case SKILL_ENERGY_SHIELD:
-			lstrcpy(szTempSkillDoc, "Redução no Dano:\r");
+			lstrcpy(szTempSkillDoc, "Redu��o no Dano:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Energy_Shield_DecDamage[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4751,7 +4751,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");
+			lstrcpy(szTempSkillDoc, "�rea:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Diastrophism_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4765,7 +4765,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Regeneração de Mana:\r");
+			lstrcpy(szTempSkillDoc, "Regenera��o de Mana:\r");
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			sinTemp1 = (int)(Spirit_Elemental_RegenMana[pSkill->Point + i - 1] * 10);
 			RightSpot = sinTemp1 % 10;
@@ -4816,31 +4816,31 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 
 			break;
 		case SKILL_FIRE_ELEMENTAL:
-			lstrcpy(szTempSkillDoc, "Modo:\r");//°ø°ÝÅ¸ÀÔ
+			lstrcpy(szTempSkillDoc, "Modo:\r");//����Ÿ��
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			lstrcpy(szTempSkillDoc2, sinAttackType2[SummonSkillCodeIndex[1]]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");     //°ø°Ý·Â
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");     //���ݷ�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d - %d\r", Fire_Elemental_Damage[pSkill->Point + i - 1][0], Fire_Elemental_Damage[pSkill->Point + i - 1][1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Taxa de Ataque:\r");   //¸íÁß·Â
+			lstrcpy(szTempSkillDoc, "Taxa de Ataque:\r");   //���߷�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Fire_Elemental_Hit[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Vida:\r");    //»ý¸í·Â
+			lstrcpy(szTempSkillDoc, "Vida:\r");    //�����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", (Fire_Elemental_Life[pSkill->Point + i - 1]));
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime);//À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime);//�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", 360, SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4859,7 +4859,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 			PlusMaxD += sinChar->Spirit/DivideMax;
 			*/
 
-			// Àåº° - ½ºÅ³¹ë·±½º Á¶Á¤(10.08.10)
+			// �庰 - ��ų�뷱�� ����(10.08.10)
 			PlusMinD = sinChar->Level / 2;
 			PlusMaxD = sinChar->Level / 2;
 
@@ -4873,13 +4873,13 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 				PlusMaxD += (Flame_Wave_FireDamage[pSkill->Point - 1][1] * Spirit_Elemental_Damage[TempPoint - 1]) / 100;
 			}
 
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//ºÒ °ø°Ý·Â
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//�� ���ݷ�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Flame_Wave_FireDamage_Percent[pSkill->Point + i - 1],"%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Alcance:\r");//°ø°Ý·Â ¹üÀ§
+			lstrcpy(szTempSkillDoc, "Alcance:\r");//���ݷ� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Flame_Wave_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -4887,38 +4887,38 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 
 			break;
 		case SKILL_DISTORTION:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque do Inimigo:\r");//°ø°Ý ÀúÇÏ
+			lstrcpy(szTempSkillDoc, "Poder de Ataque do Inimigo:\r");//���� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "-%d%s\r", Distortion_DamageSubPercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Velocidade do Inimigo:\r");//¼Óµµ ÀúÇÏ
+			lstrcpy(szTempSkillDoc, "Velocidade do Inimigo:\r");//�ӵ� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "-%d%s\r", Distortion_SpeedSubPercent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r"); //½ÃÀü ¹üÀ§
+			lstrcpy(szTempSkillDoc, "�rea:\r"); //���� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Distortion_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, CountinueTime);//À¯Áö½Ã°£
+			lstrcpy(szTempSkillDoc, CountinueTime);//�����ð�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d %s\r", Distortion_Time[pSkill->Point + i - 1], SecName);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 			break;
 		case SKILL_M_METEO:
-			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//°ø°Ý·Â
+			lstrcpy(szTempSkillDoc, "Poder de Ataque:\r");//���ݷ�
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d%s\r", Meteo_Damage_Percent[pSkill->Point + i - 1], "%");
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
 			LineCount++;
 
-			lstrcpy(szTempSkillDoc, "Área:\r");//°ø°Ý·Â ¹üÀ§
+			lstrcpy(szTempSkillDoc, "�rea:\r");//���ݷ� ����
 			lstrcat(szSkillInfoBuff, szTempSkillDoc);
 			wsprintf(szTempSkillDoc2, "%d\r", Meteo_Area[pSkill->Point + i - 1]);
 			lstrcat(szSkillInfoBuff2, szTempSkillDoc2);
@@ -7083,4 +7083,8 @@ int cSKILL::CheckMaturedSkill(int ChangeJob)
 	else
 		return FALSE;
 }
+
+
+
+
 

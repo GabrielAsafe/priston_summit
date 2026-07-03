@@ -316,3 +316,5 @@ DECLARE_INTERFACE_(IDirectPlayNATHelp, IUnknown)
 
 #endif // __DPNATHLP_H__
 
+
+

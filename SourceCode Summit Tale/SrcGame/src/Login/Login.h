@@ -49,3 +49,6 @@ enum LoginResult
 LoginResult	requestLogin(const std::string &username, const std::string &password);
 
 #endif // LOGIN_H
+
+
+

@@ -11,7 +11,7 @@ int	rsAddInvenItem(rsPLAYINFO* lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwC
 int	rsSendMoneyToUser(rsPLAYINFO* lpPlayInfo, int Money);
 DWORD GetServerTime();
 
-//ENVIA AS INFORMAÇÕES DAS RECOMPENSAS DO PASSE AO CLIENTE
+//ENVIA AS INFORMAï¿½ï¿½ES DAS RECOMPENSAS DO PASSE AO CLIENTE
 void BattlePass::SendItemToClient(rsPLAYINFO* Player)
 {
 	if (SQL::GetInstance()->IsConnected())
@@ -54,7 +54,7 @@ void BattlePass::SendItemToClient(rsPLAYINFO* Player)
 	}
 }
 
-//ENVIA AS INFORMAÇÕES DE EXPERIÊNCIA E NIVEL DO PASSE AO CLIENTE
+//ENVIA AS INFORMAï¿½ï¿½ES DE EXPERIï¿½NCIA E NIVEL DO PASSE AO CLIENTE
 void BattlePass::SendBPInfoToGame(rsPLAYINFO* Player)
 {
 	if (SQL::GetInstance()->IsConnected())
@@ -97,7 +97,7 @@ void BattlePass::SendBPInfoToGame(rsPLAYINFO* Player)
 }
 
 
-//RECEBE AS INFORMAÇÕES DO CLIENTE REFERENTE AO ITEM SELECIONADO PARA RESGATAR 
+//RECEBE AS INFORMAï¿½ï¿½ES DO CLIENTE REFERENTE AO ITEM SELECIONADO PARA RESGATAR 
 void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 {
 
@@ -161,7 +161,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								rsSendMoneyToUser(Player, Item_Qtd);
 
 								TRANS_CHATMESSAGE	TransChatMessage;
-								wsprintf(TransChatMessage.szMessage, "Você resgatou %d de %s.", Item_Qtd, Shop->item.Name);
+								wsprintf(TransChatMessage.szMessage, "Vocï¿½ resgatou %d de %s.", Item_Qtd, Shop->item.Name);
 								TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 								TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 								TransChatMessage.dwIP = 3;
@@ -207,7 +207,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								//Shop::GetInstance()->AddPlayerCoin(Player, Item_Qtd);
 
 								TRANS_CHATMESSAGE	TransChatMessage;
-								wsprintf(TransChatMessage.szMessage, "Você resgatou %d %s.", Item_Qtd, Shop->item.Name);
+								wsprintf(TransChatMessage.szMessage, "Vocï¿½ resgatou %d %s.", Item_Qtd, Shop->item.Name);
 								TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 								TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 								TransChatMessage.dwIP = 3;
@@ -255,17 +255,17 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								if (Sorteioitem > 90)
 								{
 									wsprintf(itemsorteada, "bi209");
-									wsprintf(itemname, "Baú ouro 3H");
+									wsprintf(itemname, "Baï¿½ ouro 3H");
 								}
 								else if (Sorteioitem > 55 && Sorteioitem <= 90)
 								{
 									wsprintf(itemsorteada, "bi205");
-									wsprintf(itemname, "Baú prata 3H");
+									wsprintf(itemname, "Baï¿½ prata 3H");
 								}
 								else
 								{
 									wsprintf(itemsorteada, "bi201");
-									wsprintf(itemname, "Baú bronze 3H");
+									wsprintf(itemname, "Baï¿½ bronze 3H");
 								}
 
 								if (CreateItem(lpsItem, itemsorteada, Player->smCharInfo.JOB_CODE) == TRUE)
@@ -282,7 +282,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								}
 
 								TRANS_CHATMESSAGE	TransChatMessage;
-								wsprintf(TransChatMessage.szMessage, "Você sorteou %d %s.", Item_Qtd, itemname);
+								wsprintf(TransChatMessage.szMessage, "Vocï¿½ sorteou %d %s.", Item_Qtd, itemname);
 								TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 								TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 								TransChatMessage.dwIP = 3;
@@ -326,17 +326,17 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								if (Sorteioitem > 90)
 								{
 									wsprintf(itemsorteada, "bi210");
-									wsprintf(itemname, "Baú ouro 1D");
+									wsprintf(itemname, "Baï¿½ ouro 1D");
 								}
 								else if (Sorteioitem > 55 && Sorteioitem <= 90)
 								{
 									wsprintf(itemsorteada, "bi206");
-									wsprintf(itemname, "Baú prata 1D");
+									wsprintf(itemname, "Baï¿½ prata 1D");
 								}
 								else
 								{
 									wsprintf(itemsorteada, "bi202");
-									wsprintf(itemname, "Baú bronze 1D");
+									wsprintf(itemname, "Baï¿½ bronze 1D");
 								}
 
 								if (CreateItem(lpsItem, itemsorteada, Player->smCharInfo.JOB_CODE) == TRUE)
@@ -353,7 +353,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								}
 
 								TRANS_CHATMESSAGE	TransChatMessage;
-								wsprintf(TransChatMessage.szMessage, "Você sorteou %d %s.", Item_Qtd, itemname);
+								wsprintf(TransChatMessage.szMessage, "Vocï¿½ sorteou %d %s.", Item_Qtd, itemname);
 								TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 								TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 								TransChatMessage.dwIP = 3;
@@ -397,17 +397,17 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								if (Sorteioitem > 90)
 								{
 									wsprintf(itemsorteada, "bi211");
-									wsprintf(itemname, "Baú ouro 3D");
+									wsprintf(itemname, "Baï¿½ ouro 3D");
 								}
 								else if (Sorteioitem > 55 && Sorteioitem <= 90)
 								{
 									wsprintf(itemsorteada, "bi207");
-									wsprintf(itemname, "Baú prata 3D");
+									wsprintf(itemname, "Baï¿½ prata 3D");
 								}
 								else
 								{
 									wsprintf(itemsorteada, "bi203");
-									wsprintf(itemname, "Baú bronze 3D");
+									wsprintf(itemname, "Baï¿½ bronze 3D");
 								}
 
 								if (CreateItem(lpsItem, itemsorteada, Player->smCharInfo.JOB_CODE) == TRUE)
@@ -424,7 +424,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								}
 
 								TRANS_CHATMESSAGE	TransChatMessage;
-								wsprintf(TransChatMessage.szMessage, "Você sorteou %d %s.", Item_Qtd, itemname);
+								wsprintf(TransChatMessage.szMessage, "Vocï¿½ sorteou %d %s.", Item_Qtd, itemname);
 								TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 								TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 								TransChatMessage.dwIP = 3;
@@ -510,7 +510,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								}
 
 								TRANS_CHATMESSAGE	TransChatMessage;
-								wsprintf(TransChatMessage.szMessage, "Você sorteou %d %s.", Item_Qtd, itemname);
+								wsprintf(TransChatMessage.szMessage, "Vocï¿½ sorteou %d %s.", Item_Qtd, itemname);
 								TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 								TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 								TransChatMessage.dwIP = 3;
@@ -596,7 +596,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								}
 
 								TRANS_CHATMESSAGE	TransChatMessage;
-								wsprintf(TransChatMessage.szMessage, "Você sorteou %d %s.", Item_Qtd, itemname);
+								wsprintf(TransChatMessage.szMessage, "Vocï¿½ sorteou %d %s.", Item_Qtd, itemname);
 								TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 								TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 								TransChatMessage.dwIP = 3;
@@ -695,7 +695,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									}
 
 									TRANS_CHATMESSAGE	TransChatMessage;
-									wsprintf(TransChatMessage.szMessage, "Você sorteou %d %s.", Item_Qtd, itemname);
+									wsprintf(TransChatMessage.szMessage, "Vocï¿½ sorteou %d %s.", Item_Qtd, itemname);
 									TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 									TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 									TransChatMessage.dwIP = 3;
@@ -795,7 +795,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									}
 
 									TRANS_CHATMESSAGE	TransChatMessage;
-									wsprintf(TransChatMessage.szMessage, "Você sorteou %d %s.", Item_Qtd, itemname);
+									wsprintf(TransChatMessage.szMessage, "Vocï¿½ sorteou %d %s.", Item_Qtd, itemname);
 									TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 									TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 									TransChatMessage.dwIP = 3;
@@ -893,7 +893,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								}
 
 								TRANS_CHATMESSAGE	TransChatMessage;
-								wsprintf(TransChatMessage.szMessage, "Você sorteou %d %s.", Item_Qtd, itemname);
+								wsprintf(TransChatMessage.szMessage, "Vocï¿½ sorteou %d %s.", Item_Qtd, itemname);
 								TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 								TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 								TransChatMessage.dwIP = 3;
@@ -973,7 +973,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 
 
 									TRANS_CHATMESSAGE	TransChatMessage;
-									wsprintf(TransChatMessage.szMessage, "Você resgatou %d %s.", Item_Qtd, Shop->item.Name);
+									wsprintf(TransChatMessage.szMessage, "Vocï¿½ resgatou %d %s.", Item_Qtd, Shop->item.Name);
 									TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 									TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 									TransChatMessage.dwIP = 3;
@@ -1016,7 +1016,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 					else
 					{
 						TRANS_CHATMESSAGE	TransChatMessage;
-						wsprintf(TransChatMessage.szMessage, "Esse item já foi resgatado.");
+						wsprintf(TransChatMessage.szMessage, "Esse item jï¿½ foi resgatado.");
 						TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 3;
@@ -1030,7 +1030,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 				else
 				{
 					TRANS_CHATMESSAGE	TransChatMessage;
-					wsprintf(TransChatMessage.szMessage, "Seu passe de batalha não tem nível suficientes para resgatar esse item.");
+					wsprintf(TransChatMessage.szMessage, "Seu passe de batalha nï¿½o tem nï¿½vel suficientes para resgatar esse item.");
 					TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 3;
@@ -1042,7 +1042,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 			}
 			else {
 				TRANS_CHATMESSAGE	TransChatMessage;
-				wsprintf(TransChatMessage.szMessage, "Seu passe de batalha não está habilitado para essa modalidade.");
+				wsprintf(TransChatMessage.szMessage, "Seu passe de batalha nï¿½o estï¿½ habilitado para essa modalidade.");
 				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 3;
@@ -1058,7 +1058,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 	}
 }
 
-//ADICIONA EXPERIÊNCIA NO PASSE DE BATALHA (USADO AO MATAR MONSTROS E OUTROS JOGADORES)
+//ADICIONA EXPERIï¿½NCIA NO PASSE DE BATALHA (USADO AO MATAR MONSTROS E OUTROS JOGADORES)
 void BattlePass::AddExpBattlePass(rsPLAYINFO* Player, int valor)
 {
 	if (SQL::GetInstance()->IsConnected())
@@ -1081,7 +1081,7 @@ void BattlePass::AddExpBattlePass(rsPLAYINFO* Player, int valor)
 			if (Userativo > 0)
 			{
 
-				// Calculo feito para saber se o usuário já atingiu á experiência necessária para evoluir o nível do passe de batalha
+				// Calculo feito para saber se o usuï¿½rio jï¿½ atingiu ï¿½ experiï¿½ncia necessï¿½ria para evoluir o nï¿½vel do passe de batalha
 				UserBP_Exp = UserBP_Exp + valor;
 
 				if ((UserBP_Exp >= 999) && (UserBP_Level < 20))
@@ -1091,7 +1091,7 @@ void BattlePass::AddExpBattlePass(rsPLAYINFO* Player, int valor)
 
 					//ENVIA MENSAGEM PARA O JOGADOR ASSIM QUE ELE UPA DE NIVEL
 					TRANS_CHATMESSAGE	TransChatMessage;
-					wsprintf(TransChatMessage.szMessage, "Parabéns você atingiu o nível %d do seu Passe de Batalha", UserBP_Level);
+					wsprintf(TransChatMessage.szMessage, "Parabï¿½ns vocï¿½ atingiu o nï¿½vel %d do seu Passe de Batalha", UserBP_Level);
 					TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 3;
@@ -1131,3 +1131,5 @@ void BattlePass::AddExpBattlePass(rsPLAYINFO* Player, int valor)
 		SQL::GetInstance()->LeaveSqlSection();
 	}
 }
+
+

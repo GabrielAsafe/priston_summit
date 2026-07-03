@@ -22,3 +22,5 @@ public:
 	int	Close();
 
 };
+
+

@@ -33,3 +33,5 @@ void ImeClass::SetCandidateInfo(LPCANDIDATELIST lpCandList){}
 void ImeClass::GetImeInfo(){}
 
 void ImeClass::OnButtonChangemode(){}
+
+

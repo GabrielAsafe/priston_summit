@@ -64,3 +64,5 @@ extern sSKIN_CHANGE sSkinChangeItemBackUp;
 extern int	SkinChangeCheckFlag;
 extern sSKIN_CHANGE_SERVER	sSkinChange_Send;
 extern sSKIN_CHANGE_SERVER	sSkinChange_Recv;
+
+

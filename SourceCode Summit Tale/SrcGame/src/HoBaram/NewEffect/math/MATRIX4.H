@@ -214,3 +214,6 @@ inline lineSeg3 operator*( matrix4 const &a, lineSeg3 const &b )
 
 
 #endif //_MATRIX4_H
+
+
+

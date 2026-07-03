@@ -91,3 +91,7 @@ inline const bSphere3 operator-(bSphere3 const &a, point3 const &b)
 
 
 #endif 
+
+
+
+

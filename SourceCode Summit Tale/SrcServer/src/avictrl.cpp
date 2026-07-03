@@ -59,3 +59,5 @@ void AVIDrawSurface(DIRECTDRAWSURFACE *lpDDSSource, int frame)
 void AVIFrameRead(int frame){}
 
 
+
+

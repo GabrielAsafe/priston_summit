@@ -15,3 +15,7 @@ private:
 	UIImage* Middle;
 	UIText* Text;
 };
+
+
+
+

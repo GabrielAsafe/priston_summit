@@ -181,3 +181,5 @@ void cRESTAURE::RecvGetRestaure(rsPLAYINFO * lpPlayInfo)
 
 	lpPlayInfo->lpsmSock->Send((char*)&restaureList, restaureList.size, TRUE);
 }
+
+

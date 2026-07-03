@@ -804,3 +804,5 @@ int CheckBellatraFontEffect(SBL_SetFontEffect *lpCheckFontEffect, int isKill)
 
 
 
+
+

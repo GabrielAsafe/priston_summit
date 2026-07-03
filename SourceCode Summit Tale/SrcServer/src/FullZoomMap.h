@@ -27,3 +27,5 @@ extern void MainFullZoomMap(void);
 extern int  KeyFullZoomMap(WPARAM wParam);
 
 
+
+

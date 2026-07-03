@@ -1,275 +1,277 @@
 
-char *srMsg_001 = "ChuÒ Party %s ðaÞ mõÌi %s gia nhâòp Party";
-char *srMsg_002 = "GýÒi yêu câÌu Party tõìi %s";
-char *srMsg_003 = "%s hiêòn ðang laÌ thaÌnh viên cuÒa môòt Party khaìc";
-char *srMsg_004 = "%s hiêòn ðang laÌ thaÌnh viên cuÒa môòt Party khaìc";
-char *srMsg_005 = "%s hiêòn ðang laÌ thaÌnh viên cuÒa môòt Party khaìc";
-char *srMsg_006 = "Level chênh lêòch nhau quaì nhiêÌu";
-char *srMsg_007 = "%s hiêòn ðang online";
-char *srMsg_008 = "%s hiêòn ðang offline, hoãòc không coì ngýõÌi naÌy";
-char *srMsg_009 = "%s ðaÞ ðýõòc taòo";
-char *srMsg_010 = "%s ðaÞ ðýõòc gýÒi tõìi %s";
-char *srMsg_011 = "Chuì yì> %s";
+char *srMsg_001 = "Chuï¿½ Party %s ï¿½aï¿½ mï¿½ï¿½i %s gia nhï¿½ï¿½p Party";
+char *srMsg_002 = "Gï¿½ï¿½i yï¿½u cï¿½ï¿½u Party tï¿½ï¿½i %s";
+char *srMsg_003 = "%s hiï¿½ï¿½n ï¿½ang laï¿½ thaï¿½nh viï¿½n cuï¿½a mï¿½ï¿½t Party khaï¿½c";
+char *srMsg_004 = "%s hiï¿½ï¿½n ï¿½ang laï¿½ thaï¿½nh viï¿½n cuï¿½a mï¿½ï¿½t Party khaï¿½c";
+char *srMsg_005 = "%s hiï¿½ï¿½n ï¿½ang laï¿½ thaï¿½nh viï¿½n cuï¿½a mï¿½ï¿½t Party khaï¿½c";
+char *srMsg_006 = "Level chï¿½nh lï¿½ï¿½ch nhau quaï¿½ nhiï¿½ï¿½u";
+char *srMsg_007 = "%s hiï¿½ï¿½n ï¿½ang online";
+char *srMsg_008 = "%s hiï¿½ï¿½n ï¿½ang offline, hoï¿½ï¿½c khï¿½ng coï¿½ ngï¿½ï¿½ï¿½i naï¿½y";
+char *srMsg_009 = "%s ï¿½aï¿½ ï¿½ï¿½ï¿½ï¿½c taï¿½o";
+char *srMsg_010 = "%s ï¿½aï¿½ ï¿½ï¿½ï¿½ï¿½c gï¿½ï¿½i tï¿½ï¿½i %s";
+char *srMsg_011 = "Chuï¿½ yï¿½> %s";
 
-char *srMsg_012 = "Ðiònh nghiÞa mõìi cho sôì lýõòng ngýõÌi chõi tôìi ða laÌ %d";
-char *srMsg_013 = "Sôì lýõòng ngýõÌi chõi tôìi ða hiêòn taòi cho pheìp laÌ %d";
-char *srMsg_014 = "MaÞ xaìc nhâòn cho %d ðaÞ ðýõòc thêm ( %d )";
-char *srMsg_015 = "Không thêÒ thêm code - FULL";
-char *srMsg_016 = "MaÞ xaìc nhâòn ngýõÌi duÌng ðaÞ ðýõòc huÒy boÒ ";
-char *srMsg_017 = "Chuìc mýÌng. Baòn ðaÞ ðaì %s ra ngoaÌi";
-char *srMsg_018 = "TaÌi khoaÒn %s ðaÞ ðýõòc gaìn cho nhân vâòt %s";
-char *srMsg_019 = "Không thêÒ kêìt nôìi tõìi taÌi khoaÒn";
-char *srMsg_020 = "TiÌnh traòng cuÒa tôi (%d) ";
-char *srMsg_021 = "ChuÒ Party(%s) ";
-char *srMsg_022 = "Baòn ðaÞ thoaìt khoÒi Party";
-char *srMsg_023 = "%s ðaÞ biò loaòi khoÒi Party";
-char *srMsg_024 = "%s không phaÒi laÌ thaÌnh viên Party, do ðoì không thêÒ loaòi boÒ.";
-char *srMsg_025 = "Party ðaÞ biò giaÒi taìn";
-char *srMsg_026 = "%s ðaÞ trõÒ thaÌnh chuÒ Party mõìi";
-char *srMsg_027 = "TaÌi khoaÒn( %s ) Tên( %s ) IP( %s ) Kêìt nôìi( %d mins )";
-char *srMsg_028 = "Hiêòn không online, hoãòc không tôÌn taòi";
-char *srMsg_029 = "TaÌi khoaÒn( %s ) Tên( %s ) IP( %s ) Kêìt nôìi( %d mins )";
-char *srMsg_030 = "Hiêòn không online, hoãòc không tôÌn taòi";
-char *srMsg_031 = "Viò triì taòi %s ( %s ) x=%d / z=%d ";
+char *srMsg_012 = "ï¿½iï¿½nh nghiï¿½a mï¿½ï¿½i cho sï¿½ï¿½ lï¿½ï¿½ï¿½ng ngï¿½ï¿½ï¿½i chï¿½i tï¿½ï¿½i ï¿½a laï¿½ %d";
+char *srMsg_013 = "Sï¿½ï¿½ lï¿½ï¿½ï¿½ng ngï¿½ï¿½ï¿½i chï¿½i tï¿½ï¿½i ï¿½a hiï¿½ï¿½n taï¿½i cho pheï¿½p laï¿½ %d";
+char *srMsg_014 = "Maï¿½ xaï¿½c nhï¿½ï¿½n cho %d ï¿½aï¿½ ï¿½ï¿½ï¿½ï¿½c thï¿½m ( %d )";
+char *srMsg_015 = "Khï¿½ng thï¿½ï¿½ thï¿½m code - FULL";
+char *srMsg_016 = "Maï¿½ xaï¿½c nhï¿½ï¿½n ngï¿½ï¿½ï¿½i duï¿½ng ï¿½aï¿½ ï¿½ï¿½ï¿½ï¿½c huï¿½y boï¿½ ";
+char *srMsg_017 = "Chuï¿½c mï¿½ï¿½ng. Baï¿½n ï¿½aï¿½ ï¿½aï¿½ %s ra ngoaï¿½i";
+char *srMsg_018 = "Taï¿½i khoaï¿½n %s ï¿½aï¿½ ï¿½ï¿½ï¿½ï¿½c gaï¿½n cho nhï¿½n vï¿½ï¿½t %s";
+char *srMsg_019 = "Khï¿½ng thï¿½ï¿½ kï¿½ï¿½t nï¿½ï¿½i tï¿½ï¿½i taï¿½i khoaï¿½n";
+char *srMsg_020 = "Tiï¿½nh traï¿½ng cuï¿½a tï¿½i (%d) ";
+char *srMsg_021 = "Chuï¿½ Party(%s) ";
+char *srMsg_022 = "Baï¿½n ï¿½aï¿½ thoaï¿½t khoï¿½i Party";
+char *srMsg_023 = "%s ï¿½aï¿½ biï¿½ loaï¿½i khoï¿½i Party";
+char *srMsg_024 = "%s khï¿½ng phaï¿½i laï¿½ thaï¿½nh viï¿½n Party, do ï¿½oï¿½ khï¿½ng thï¿½ï¿½ loaï¿½i boï¿½.";
+char *srMsg_025 = "Party ï¿½aï¿½ biï¿½ giaï¿½i taï¿½n";
+char *srMsg_026 = "%s ï¿½aï¿½ trï¿½ï¿½ thaï¿½nh chuï¿½ Party mï¿½ï¿½i";
+char *srMsg_027 = "Taï¿½i khoaï¿½n( %s ) Tï¿½n( %s ) IP( %s ) Kï¿½ï¿½t nï¿½ï¿½i( %d mins )";
+char *srMsg_028 = "Hiï¿½ï¿½n khï¿½ng online, hoï¿½ï¿½c khï¿½ng tï¿½ï¿½n taï¿½i";
+char *srMsg_029 = "Taï¿½i khoaï¿½n( %s ) Tï¿½n( %s ) IP( %s ) Kï¿½ï¿½t nï¿½ï¿½i( %d mins )";
+char *srMsg_030 = "Hiï¿½ï¿½n khï¿½ng online, hoï¿½ï¿½c khï¿½ng tï¿½ï¿½n taï¿½i";
+char *srMsg_031 = "Viï¿½ triï¿½ taï¿½i %s ( %s ) x=%d / z=%d ";
 char *srMsg_032 = "Users %d / Active Monsters %d";
 char *srMsg_033 = "Open (%d) / Active (%d)";
-char *srMsg_034 = "Không thêÒ gýÒi tin nhãìn caì nhân";
-char *srMsg_035 = "TýÌ chôìi nhâòn tin nhãìn caì nhân";
-char *srMsg_036 = "Châìp nhâòn tin nhãìn caì nhân";
-char *srMsg_037 = "> %s nhãòt ðýõòc %s";
-char *srMsg_038 = "> ÐaÞ nhâòn %s  Mana(Mystic) [CoÌn laòi:%d]";
+char *srMsg_034 = "Khï¿½ng thï¿½ï¿½ gï¿½ï¿½i tin nhï¿½ï¿½n caï¿½ nhï¿½n";
+char *srMsg_035 = "Tï¿½ï¿½ chï¿½ï¿½i nhï¿½ï¿½n tin nhï¿½ï¿½n caï¿½ nhï¿½n";
+char *srMsg_036 = "Chï¿½ï¿½p nhï¿½ï¿½n tin nhï¿½ï¿½n caï¿½ nhï¿½n";
+char *srMsg_037 = "> %s nhï¿½ï¿½t ï¿½ï¿½ï¿½ï¿½c %s";
+char *srMsg_038 = "> ï¿½aï¿½ nhï¿½ï¿½n %s  Mana(Mystic) [Coï¿½n laï¿½i:%d]";
 
-char *srMsg_100 = "Baòn không thêÒ tham dýò ðýõòc viÌ ðang coì trâòn ðâìu diêÞn ra. HaÞy quay trõÒ laòi ðây vaÌo saìng sõìm mai nheì.";
-char *srMsg_101 = "Tâìt caÒ veì ðaÞ ðýõòc baìn. HaÞy quay trõÒ laòi vaÌo saìng mai.";
+char *srMsg_100 = "Baï¿½n khï¿½ng thï¿½ï¿½ tham dï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½c viï¿½ ï¿½ang coï¿½ trï¿½ï¿½n ï¿½ï¿½ï¿½u diï¿½ï¿½n ra. Haï¿½y quay trï¿½ï¿½ laï¿½i ï¿½ï¿½y vaï¿½o saï¿½ng sï¿½ï¿½m mai nheï¿½.";
+char *srMsg_101 = "Tï¿½ï¿½t caï¿½ veï¿½ ï¿½aï¿½ ï¿½ï¿½ï¿½ï¿½c baï¿½n. Haï¿½y quay trï¿½ï¿½ laï¿½i vaï¿½o saï¿½ng mai.";
 char *srMsg_102 = "Tickets for monster super main event are on sale. It will only cost you KRW100,000..^^";
-char *srMsg_103 = "         %d VoÌng           ";
-char *srMsg_104 = "Chuìc mýÌng. ThýÒ thaìch ðaÞ kêìt thuìc (nhâòn ðýõòc %d vaÌng)";
-char *srMsg_105 = "       ÐiêÒm : %d           ";
-char *srMsg_106 = "Tâìt caÒ veì ðaÞ ðýõòc baìn";
-char *srMsg_107 = "Ngýõi chýa ðuÒ nãng lýòc ðêÒ tham dýò. HaÞy hoòc hoÒi thêm vaÌ quay laòi ðây sau.";
-char *srMsg_108 = "Baòn không thêÒ tham dýò luìc naÌy. Ðang coì trâòn ðâìu diêÞn ra.";
-char *srMsg_110 = "Ðôòi cuÒa baòn ðaÞ biò loaòi (Haòng %d) Nhâòn ðýõòc %d vaÌng";
-char *srMsg_111 = "%s ðaÞ biò tiêu diêòt ( Nhâòn ðýõòc % ÐiêÒm )";
+char *srMsg_103 = "         %d Voï¿½ng           ";
+char *srMsg_104 = "Chuï¿½c mï¿½ï¿½ng. Thï¿½ï¿½ thaï¿½ch ï¿½aï¿½ kï¿½ï¿½t thuï¿½c (nhï¿½ï¿½n ï¿½ï¿½ï¿½ï¿½c %d vaï¿½ng)";
+char *srMsg_105 = "       ï¿½iï¿½ï¿½m : %d           ";
+char *srMsg_106 = "Tï¿½ï¿½t caï¿½ veï¿½ ï¿½aï¿½ ï¿½ï¿½ï¿½ï¿½c baï¿½n";
+char *srMsg_107 = "Ngï¿½ï¿½i chï¿½a ï¿½uï¿½ nï¿½ng lï¿½ï¿½c ï¿½ï¿½ï¿½ tham dï¿½ï¿½. Haï¿½y hoï¿½c hoï¿½i thï¿½m vaï¿½ quay laï¿½i ï¿½ï¿½y sau.";
+char *srMsg_108 = "Baï¿½n khï¿½ng thï¿½ï¿½ tham dï¿½ï¿½ luï¿½c naï¿½y. ï¿½ang coï¿½ trï¿½ï¿½n ï¿½ï¿½ï¿½u diï¿½ï¿½n ra.";
+char *srMsg_110 = "ï¿½ï¿½ï¿½i cuï¿½a baï¿½n ï¿½aï¿½ biï¿½ loaï¿½i (Haï¿½ng %d) Nhï¿½ï¿½n ï¿½ï¿½ï¿½ï¿½c %d vaï¿½ng";
+char *srMsg_111 = "%s ï¿½aï¿½ biï¿½ tiï¿½u diï¿½ï¿½t ( Nhï¿½ï¿½n ï¿½ï¿½ï¿½ï¿½c % ï¿½iï¿½ï¿½m )";
 
-char *srMsg_200 = "  Giõìi haòn cho viêòc triêòu tâòp cuÒa baòn ðaÞ hêìt. ";
-char *srMsg_201 = "   Baòn chiÒ coì thêÒ triêòu tâòp môÞi lâÌn môòt quaìi vâòt   ";
-char *srMsg_202 = "   Baòn không thêÒ sýÒ duòng viên ngoòc naÌy   ";
+char *srMsg_200 = "  Giï¿½ï¿½i haï¿½n cho viï¿½ï¿½c triï¿½ï¿½u tï¿½ï¿½p cuï¿½a baï¿½n ï¿½aï¿½ hï¿½ï¿½t. ";
+char *srMsg_201 = "   Baï¿½n chiï¿½ coï¿½ thï¿½ï¿½ triï¿½ï¿½u tï¿½ï¿½p mï¿½ï¿½i lï¿½ï¿½n mï¿½ï¿½t quaï¿½i vï¿½ï¿½t   ";
+char *srMsg_202 = "   Baï¿½n khï¿½ng thï¿½ï¿½ sï¿½ï¿½ duï¿½ng viï¿½n ngoï¿½c naï¿½y   ";
 
 char *srMsg_300 = "     password(phone number) is incorrect!    ";
-char *srMsg_301 = "   Nêìu baòn goÞ mâòt khâÒu sai quaì 5 lâÌn, hêò thôìng seÞ týò ðôòng khoaì taÌi khoaÒn cuÒa baòn.";
+char *srMsg_301 = "   Nï¿½ï¿½u baï¿½n goï¿½ mï¿½ï¿½t khï¿½ï¿½u sai quaï¿½ 5 lï¿½ï¿½n, hï¿½ï¿½ thï¿½ï¿½ng seï¿½ tï¿½ï¿½ ï¿½ï¿½ï¿½ng khoaï¿½ taï¿½i khoaï¿½n cuï¿½a baï¿½n.";
 
-char *srMsg_400 = "      Mua %d ngôi sao     ";
-char *srMsg_401 = "      Quyên goìp %d        "; 
+char *srMsg_400 = "      Mua %d ngï¿½i sao     ";
+char *srMsg_401 = "      Quyï¿½n goï¿½p %d        "; 
 
-char *srItem_BB = "Chiêìc tuìi may mãìn";
+char *srItem_BB = "Chiï¿½ï¿½c tuï¿½i may mï¿½ï¿½n";
 char *srItem_PZ = "Puzzle";
 
 #define CHAT_ANGERMONSTER_MAX		5
 char *szAngerMonster[CHAT_ANGERMONSTER_MAX] = {
-	"Tôi không thêÒ chiòu ðýòng ðýõòc nýÞa!",
-	"Ðây laÌ môìi thuÌ cuÒa bôò laòc chuìng tôi.",
-	"Xin ðýÌng laÌm tôÒn thýõng chuìng tôi nýÞa.",
-	"Thâòt laÌ không công bãÌng.",
-	"ÐýÌng quâìy râÌy chuìng tôi nýÞa."
+	"Tï¿½i khï¿½ng thï¿½ï¿½ chiï¿½u ï¿½ï¿½ï¿½ng ï¿½ï¿½ï¿½ï¿½c nï¿½ï¿½a!",
+	"ï¿½ï¿½y laï¿½ mï¿½ï¿½i thuï¿½ cuï¿½a bï¿½ï¿½ laï¿½c chuï¿½ng tï¿½i.",
+	"Xin ï¿½ï¿½ï¿½ng laï¿½m tï¿½ï¿½n thï¿½ï¿½ng chuï¿½ng tï¿½i nï¿½ï¿½a.",
+	"Thï¿½ï¿½t laï¿½ khï¿½ng cï¿½ng bï¿½ï¿½ng.",
+	"ï¿½ï¿½ï¿½ng quï¿½ï¿½y rï¿½ï¿½y chuï¿½ng tï¿½i nï¿½ï¿½a."
 };
 
 #define MORIF_CHAT_MAX		18
 char *szMorifChatMsg[MORIF_CHAT_MAX] = {
-	"HaÞy ðêÒ ta haò guòc ngýõi, vaÌ chãìc chãìn laÌ ngýõi seÞ Age thaÌnh công ðâìy.",
-	"Nêìu ngýõi tâìn công ta, ngýõi seÞ biò nguyêÌn ruÒa...",
-	"Ngýõi laÌ keÒ heÌn nhaìt! Ta không thêÒ biÌnh tiÞnh ðýõòc nýÞa",
-	"HaÞ ðýa cho ta tâìt caÒ ðôÌ ðaòc cuÒa ngýõi naÌo...!",
+	"Haï¿½y ï¿½ï¿½ï¿½ ta haï¿½ guï¿½c ngï¿½ï¿½i, vaï¿½ chï¿½ï¿½c chï¿½ï¿½n laï¿½ ngï¿½ï¿½i seï¿½ Age thaï¿½nh cï¿½ng ï¿½ï¿½ï¿½y.",
+	"Nï¿½ï¿½u ngï¿½ï¿½i tï¿½ï¿½n cï¿½ng ta, ngï¿½ï¿½i seï¿½ biï¿½ nguyï¿½ï¿½n ruï¿½a...",
+	"Ngï¿½ï¿½i laï¿½ keï¿½ heï¿½n nhaï¿½t! Ta khï¿½ng thï¿½ï¿½ biï¿½nh tiï¿½nh ï¿½ï¿½ï¿½ï¿½c nï¿½ï¿½a",
+	"Haï¿½ ï¿½ï¿½a cho ta tï¿½ï¿½t caï¿½ ï¿½ï¿½ï¿½ ï¿½aï¿½c cuï¿½a ngï¿½ï¿½i naï¿½o...!",
 
-	"HaÞy thýÒ age nhiêÌu vaÌo vaÌ cuÞng seÞ thâìt baòt nhiêÌu nhý thêì cho maÌ xem.",
-	"Tôìt hõn hêìt laÌ haÞy chuâÒn biò môòt moìn ðôÌ thay thêì trýõìc khi age nheì.~",
-	"Ngýõi seÞ noìi giÌ nêìu nhý khi age ðôÌ biò gaÞy?",
-	"Ðây laÌ lõÌi nguyêÌn cuÒa ta~",
-	"HaÞy ðýa cho ta tâìt caÒ sheltoms cuÒa ngýõi~!",
-	"ÐýÌng bao giõÌ nghiÞ tõìi viêòc age +10 nheì~",
-	"ÐýÌng coì sõò khi ði age. Huuuu",
-	"Ngýõi seÞ ðýõòc age luôn luôn thaÌnh công~~~~~ Noìi giõÞn thôi Ha Ha !",
-	"Ta râìt sõò baÌ Molly~",
-	"Ngýõi thâòt laÌ yêìu ðuôìi~ Ta coì thêÒ mang ngýõi ði age cho khoeÒ hõn ðýõòc không?",
-	"Ngýõi coì biêìt rãÌng caìi aìo ta ðang mãòc chiình laÌ caìi maÌ caìc chiêìn binh ðaÞ biò mâìt khi age không~!",
-	"Ha Ha Ha~ Ngýõi seÞ không bao giõÌ coì ðýõòc Devine ðâu~",
-	"Ta không muôìn ngýõi age thâìt baòi ðâu, ta cuÞng ðaÞ traÒi qua rôÌi~",
-	"Hey! ~ ÐýÌng coì lâìy sheltoms nýÞa ~ Tâìt caÒ ðêÌu laÌ cuÒa ta ðâìy~"
+	"Haï¿½y thï¿½ï¿½ age nhiï¿½ï¿½u vaï¿½o vaï¿½ cuï¿½ng seï¿½ thï¿½ï¿½t baï¿½t nhiï¿½ï¿½u nhï¿½ thï¿½ï¿½ cho maï¿½ xem.",
+	"Tï¿½ï¿½t hï¿½n hï¿½ï¿½t laï¿½ haï¿½y chuï¿½ï¿½n biï¿½ mï¿½ï¿½t moï¿½n ï¿½ï¿½ï¿½ thay thï¿½ï¿½ trï¿½ï¿½ï¿½c khi age nheï¿½.~",
+	"Ngï¿½ï¿½i seï¿½ noï¿½i giï¿½ nï¿½ï¿½u nhï¿½ khi age ï¿½ï¿½ï¿½ biï¿½ gaï¿½y?",
+	"ï¿½ï¿½y laï¿½ lï¿½ï¿½i nguyï¿½ï¿½n cuï¿½a ta~",
+	"Haï¿½y ï¿½ï¿½a cho ta tï¿½ï¿½t caï¿½ sheltoms cuï¿½a ngï¿½ï¿½i~!",
+	"ï¿½ï¿½ï¿½ng bao giï¿½ï¿½ nghiï¿½ tï¿½ï¿½i viï¿½ï¿½c age +10 nheï¿½~",
+	"ï¿½ï¿½ï¿½ng coï¿½ sï¿½ï¿½ khi ï¿½i age. Huuuu",
+	"Ngï¿½ï¿½i seï¿½ ï¿½ï¿½ï¿½ï¿½c age luï¿½n luï¿½n thaï¿½nh cï¿½ng~~~~~ Noï¿½i giï¿½ï¿½n thï¿½i Ha Ha !",
+	"Ta rï¿½ï¿½t sï¿½ï¿½ baï¿½ Molly~",
+	"Ngï¿½ï¿½i thï¿½ï¿½t laï¿½ yï¿½ï¿½u ï¿½uï¿½ï¿½i~ Ta coï¿½ thï¿½ï¿½ mang ngï¿½ï¿½i ï¿½i age cho khoeï¿½ hï¿½n ï¿½ï¿½ï¿½ï¿½c khï¿½ng?",
+	"Ngï¿½ï¿½i coï¿½ biï¿½ï¿½t rï¿½ï¿½ng caï¿½i aï¿½o ta ï¿½ang mï¿½ï¿½c chiï¿½nh laï¿½ caï¿½i maï¿½ caï¿½c chiï¿½ï¿½n binh ï¿½aï¿½ biï¿½ mï¿½ï¿½t khi age khï¿½ng~!",
+	"Ha Ha Ha~ Ngï¿½ï¿½i seï¿½ khï¿½ng bao giï¿½ï¿½ coï¿½ ï¿½ï¿½ï¿½ï¿½c Devine ï¿½ï¿½u~",
+	"Ta khï¿½ng muï¿½ï¿½n ngï¿½ï¿½i age thï¿½ï¿½t baï¿½i ï¿½ï¿½u, ta cuï¿½ng ï¿½aï¿½ traï¿½i qua rï¿½ï¿½i~",
+	"Hey! ~ ï¿½ï¿½ï¿½ng coï¿½ lï¿½ï¿½y sheltoms nï¿½ï¿½a ~ Tï¿½ï¿½t caï¿½ ï¿½ï¿½ï¿½u laï¿½ cuï¿½a ta ï¿½ï¿½ï¿½y~"
 };
 
 #define MORIF_CHAT_DROP_MAX		15
 char *szMorifChatDropMsg[MORIF_CHAT_DROP_MAX] = {
-	"LaÌm sao maÌ ta lâìy ðýõòc nhýÞng thýì naÌy bây giõÌ..",
-	"TrõÌi õi...noì laÌ cuÒa ta.",
-	"LâÌn tõìi, Ta seÞ traÒ thuÌ ngýõi!",
+	"Laï¿½m sao maï¿½ ta lï¿½ï¿½y ï¿½ï¿½ï¿½ï¿½c nhï¿½ï¿½ng thï¿½ï¿½ naï¿½y bï¿½y giï¿½ï¿½..",
+	"Trï¿½ï¿½i ï¿½i...noï¿½ laï¿½ cuï¿½a ta.",
+	"Lï¿½ï¿½n tï¿½ï¿½i, Ta seï¿½ traï¿½ thuï¿½ ngï¿½ï¿½i!",
 
-	"LaÌm sao maÌ ta lâìy ðýõòc sheltoms bây giõÌ~Oh~Sheltoms cuÒa ta",
-	"KHÔNGGG! ÐýÌng lâìy sheltoms cuÒa ta ~Oh~!",
-	"Age thâìt baòi không phaÒi laÌ lôÞi cuÒa ta.~ Ahhh~ thâòt laÌ không công bãÌng.",
-	"Ngýõi coì nghiÞ laÌ seÞ age thaÌnh công sau tâìt caÒ nhýÞng giÌ ngýõi ðaÞ laÌm võìi ta không?",
-	"Ahh~ LõÌi nguyêÌn khi age......",
-	"Tâìt caÒ nhýÞng moìn ðôÌ maÌ ngýõi biò mâìt ðang nãÌm trong hoÌm cuÒa ta ðâìy ~ yap~!",
-	"Oops~ Ta seÞ chiêìn ðâìu võìi ngýõi lâÌn tõìi~ !!",
-	"Oohuhuhu~Ngýõi ðaÞ coì tên trong sôÒ ðen cuÒa ta rôÌi ðâìy!",
-	"Kuuk~ Ðaìng leÞ, ta nên coì nhiêÌu HP hõn....",
-	"Ta nhõì mãòt ngýõi rôÌi nheì~! Ngýõi seÞ phaÒi traÒ giaì cho haÌnh ðôòng naÌy õÒ Pillai~!",
-	"Ta seÞ không bao giõÌ tha thýì cho ngýõi~ ",
-	"Tôìt hõn hêìt laÌ týÌ nay vêÌ sau ngýõi nên Mix ðôÌ~Ho Ho Ho~!"
+	"Laï¿½m sao maï¿½ ta lï¿½ï¿½y ï¿½ï¿½ï¿½ï¿½c sheltoms bï¿½y giï¿½ï¿½~Oh~Sheltoms cuï¿½a ta",
+	"KHï¿½NGGG! ï¿½ï¿½ï¿½ng lï¿½ï¿½y sheltoms cuï¿½a ta ~Oh~!",
+	"Age thï¿½ï¿½t baï¿½i khï¿½ng phaï¿½i laï¿½ lï¿½ï¿½i cuï¿½a ta.~ Ahhh~ thï¿½ï¿½t laï¿½ khï¿½ng cï¿½ng bï¿½ï¿½ng.",
+	"Ngï¿½ï¿½i coï¿½ nghiï¿½ laï¿½ seï¿½ age thaï¿½nh cï¿½ng sau tï¿½ï¿½t caï¿½ nhï¿½ï¿½ng giï¿½ ngï¿½ï¿½i ï¿½aï¿½ laï¿½m vï¿½ï¿½i ta khï¿½ng?",
+	"Ahh~ Lï¿½ï¿½i nguyï¿½ï¿½n khi age......",
+	"Tï¿½ï¿½t caï¿½ nhï¿½ï¿½ng moï¿½n ï¿½ï¿½ï¿½ maï¿½ ngï¿½ï¿½i biï¿½ mï¿½ï¿½t ï¿½ang nï¿½ï¿½m trong hoï¿½m cuï¿½a ta ï¿½ï¿½ï¿½y ~ yap~!",
+	"Oops~ Ta seï¿½ chiï¿½ï¿½n ï¿½ï¿½ï¿½u vï¿½ï¿½i ngï¿½ï¿½i lï¿½ï¿½n tï¿½ï¿½i~ !!",
+	"Oohuhuhu~Ngï¿½ï¿½i ï¿½aï¿½ coï¿½ tï¿½n trong sï¿½ï¿½ ï¿½en cuï¿½a ta rï¿½ï¿½i ï¿½ï¿½ï¿½y!",
+	"Kuuk~ ï¿½aï¿½ng leï¿½, ta nï¿½n coï¿½ nhiï¿½ï¿½u HP hï¿½n....",
+	"Ta nhï¿½ï¿½ mï¿½ï¿½t ngï¿½ï¿½i rï¿½ï¿½i nheï¿½~! Ngï¿½ï¿½i seï¿½ phaï¿½i traï¿½ giaï¿½ cho haï¿½nh ï¿½ï¿½ï¿½ng naï¿½y ï¿½ï¿½ Pillai~!",
+	"Ta seï¿½ khï¿½ng bao giï¿½ï¿½ tha thï¿½ï¿½ cho ngï¿½ï¿½i~ ",
+	"Tï¿½ï¿½t hï¿½n hï¿½ï¿½t laï¿½ tï¿½ï¿½ nay vï¿½ï¿½ sau ngï¿½ï¿½i nï¿½n Mix ï¿½ï¿½ï¿½~Ho Ho Ho~!"
 };
 
 #define MOLLYWOLF_CHAT_MAX		28
 char *szMollyWolfChatMsg[MOLLYWOLF_CHAT_MAX] = {
-	"Ngýõi coì thýòc sýò nghiÞ rãÌng ta laÌ baÌ Molly không?",
-	"Ngýõi trông nhý môòt con gaÌ tây vâòy!",
-	"Môòt con gaÌ tây seÞ giuìp phuòc hôÌi laòi HP cho tâìt caÒ baòn beÌ cuÒa ngýõi.",
-	"Ha! laÌm sao ngýõi coì thêÒ haò guòc ðýõòc ta!.",
-	"Ta seÞ lâìy Devine cuÒa ngýõi, haÞy kiêÒm tra laòi ði.",
-	"Ta laÌ môòt trong nhýÞng keÒ ðaÞ lâìy gaÌ tây cuÒa baÌ Molly. Ngýõi coì muôìn lâìy môòt iìt không?",
-	"Ta thâìy thâòt laÌ sung maÞn trong chiêìc aìo cuÒa baÌ Molly",
-	"Royal Jelly trong ðoì? Ta seÞ cheìn saòch tâìt caÒ ngay bây giõÌ!",
-	"Môòt ngaÌy naÌo ðoì ngýõi seÞ biêìt ta caÒm thâìy nhý thêì naÌo. Ta chiÒ muôìn coì gaÌ tây thôi maÌ.",
-	"Molly the Granny ðaÞ lýÌa ngýõi ðoì! BaÌ ta ðaÞ ãn hêìt saòch tâìt caÒ sôì gaÌ tây!",
-	"Ta laÌ Molly the Granny ðây~! Coì muôìn xem tay cuÒa ta không?",
-	"Ta mãòc bôò quâÌn aìo naÌy ðeòp hõn baÌ Molly ðâìy, coì ðuìng không, huh? huhu",
-	"Ta laÌ Molly the Granny, ðôÌ chõi cuÒa nhýÞng con soìi!",
-	"HaÞy câÌm lâìy gaÌ tây naÌy, vaÌ sau ðoì cýõìi ta nheì!!",
-	"HaHa trông ngýõi nhý môòt con gaÌ tây age +10? Ngon miêòng lãìm ðây...",
-	"Caìi giÌ? Muôìn chiêìn ðâìu võìi ta haÒ? OK laòi ðây naÌo~",
-	"Huh? 3 thãÌng tiêÒu nhân výÌa chaòy thuòc maòng vaÌ ngýõi chui týÌ ðâu ra vâòy...?",
-	"Ta chiÒ laÌ môòt con cýÌu dýõìi lôìt soìi thôi.",
-	"Ngýõi laÌm thêì naÌy viÌ Molly the Granny aÌ?",
-	"Ta laÌ Molly thâòt ðây. KeÒ trong laÌng laÌ giaÒ maòo ðâìy.",
-	"Không câÌn gaÌ tây. HaÞy mang Royal Jelly cho ta~!!",
-	"Trông ta giôìng môt con gaÌ tây lãìm aÌ!!",
-	"Tâìt caÒ sôì gaÌ tây ðaÞ nãÌm trong daò daÌy cuÒa ta rôÌi~",
-	"GaÌ tây bây giõÌ laÌ môòt phâÌn thân thêÒ cuÒa ta. ",
-	"HaÞy ðýa cho ta môòt iìt thiòt gaÌ tây vaÌ ta seÞ không giêìt ngýõi ðâu~ Grrrr~",
-	"Lê taò õn haònh phuìc~ Ta laÌ Molly ðây~",
-	"Oo-hehe Biò lýÌa rôÌi~ Ngýõi nghiÞ ta laÌ ngýõÌi sao?~",
-	"Nhoìc con! Ta seÞ chiêu ðaÞi ngýõi gaÌ tây nheì~~!!"
+	"Ngï¿½ï¿½i coï¿½ thï¿½ï¿½c sï¿½ï¿½ nghiï¿½ rï¿½ï¿½ng ta laï¿½ baï¿½ Molly khï¿½ng?",
+	"Ngï¿½ï¿½i trï¿½ng nhï¿½ mï¿½ï¿½t con gaï¿½ tï¿½y vï¿½ï¿½y!",
+	"Mï¿½ï¿½t con gaï¿½ tï¿½y seï¿½ giuï¿½p phuï¿½c hï¿½ï¿½i laï¿½i HP cho tï¿½ï¿½t caï¿½ baï¿½n beï¿½ cuï¿½a ngï¿½ï¿½i.",
+	"Ha! laï¿½m sao ngï¿½ï¿½i coï¿½ thï¿½ï¿½ haï¿½ guï¿½c ï¿½ï¿½ï¿½ï¿½c ta!.",
+	"Ta seï¿½ lï¿½ï¿½y Devine cuï¿½a ngï¿½ï¿½i, haï¿½y kiï¿½ï¿½m tra laï¿½i ï¿½i.",
+	"Ta laï¿½ mï¿½ï¿½t trong nhï¿½ï¿½ng keï¿½ ï¿½aï¿½ lï¿½ï¿½y gaï¿½ tï¿½y cuï¿½a baï¿½ Molly. Ngï¿½ï¿½i coï¿½ muï¿½ï¿½n lï¿½ï¿½y mï¿½ï¿½t iï¿½t khï¿½ng?",
+	"Ta thï¿½ï¿½y thï¿½ï¿½t laï¿½ sung maï¿½n trong chiï¿½ï¿½c aï¿½o cuï¿½a baï¿½ Molly",
+	"Royal Jelly trong ï¿½oï¿½? Ta seï¿½ cheï¿½n saï¿½ch tï¿½ï¿½t caï¿½ ngay bï¿½y giï¿½ï¿½!",
+	"Mï¿½ï¿½t ngaï¿½y naï¿½o ï¿½oï¿½ ngï¿½ï¿½i seï¿½ biï¿½ï¿½t ta caï¿½m thï¿½ï¿½y nhï¿½ thï¿½ï¿½ naï¿½o. Ta chiï¿½ muï¿½ï¿½n coï¿½ gaï¿½ tï¿½y thï¿½i maï¿½.",
+	"Molly the Granny ï¿½aï¿½ lï¿½ï¿½a ngï¿½ï¿½i ï¿½oï¿½! Baï¿½ ta ï¿½aï¿½ ï¿½n hï¿½ï¿½t saï¿½ch tï¿½ï¿½t caï¿½ sï¿½ï¿½ gaï¿½ tï¿½y!",
+	"Ta laï¿½ Molly the Granny ï¿½ï¿½y~! Coï¿½ muï¿½ï¿½n xem tay cuï¿½a ta khï¿½ng?",
+	"Ta mï¿½ï¿½c bï¿½ï¿½ quï¿½ï¿½n aï¿½o naï¿½y ï¿½eï¿½p hï¿½n baï¿½ Molly ï¿½ï¿½ï¿½y, coï¿½ ï¿½uï¿½ng khï¿½ng, huh? huhu",
+	"Ta laï¿½ Molly the Granny, ï¿½ï¿½ï¿½ chï¿½i cuï¿½a nhï¿½ï¿½ng con soï¿½i!",
+	"Haï¿½y cï¿½ï¿½m lï¿½ï¿½y gaï¿½ tï¿½y naï¿½y, vaï¿½ sau ï¿½oï¿½ cï¿½ï¿½ï¿½i ta nheï¿½!!",
+	"HaHa trï¿½ng ngï¿½ï¿½i nhï¿½ mï¿½ï¿½t con gaï¿½ tï¿½y age +10? Ngon miï¿½ï¿½ng lï¿½ï¿½m ï¿½ï¿½y...",
+	"Caï¿½i giï¿½? Muï¿½ï¿½n chiï¿½ï¿½n ï¿½ï¿½ï¿½u vï¿½ï¿½i ta haï¿½? OK laï¿½i ï¿½ï¿½y naï¿½o~",
+	"Huh? 3 thï¿½ï¿½ng tiï¿½ï¿½u nhï¿½n vï¿½ï¿½a chaï¿½y thuï¿½c maï¿½ng vaï¿½ ngï¿½ï¿½i chui tï¿½ï¿½ ï¿½ï¿½u ra vï¿½ï¿½y...?",
+	"Ta chiï¿½ laï¿½ mï¿½ï¿½t con cï¿½ï¿½u dï¿½ï¿½ï¿½i lï¿½ï¿½t soï¿½i thï¿½i.",
+	"Ngï¿½ï¿½i laï¿½m thï¿½ï¿½ naï¿½y viï¿½ Molly the Granny aï¿½?",
+	"Ta laï¿½ Molly thï¿½ï¿½t ï¿½ï¿½y. Keï¿½ trong laï¿½ng laï¿½ giaï¿½ maï¿½o ï¿½ï¿½ï¿½y.",
+	"Khï¿½ng cï¿½ï¿½n gaï¿½ tï¿½y. Haï¿½y mang Royal Jelly cho ta~!!",
+	"Trï¿½ng ta giï¿½ï¿½ng mï¿½t con gaï¿½ tï¿½y lï¿½ï¿½m aï¿½!!",
+	"Tï¿½ï¿½t caï¿½ sï¿½ï¿½ gaï¿½ tï¿½y ï¿½aï¿½ nï¿½ï¿½m trong daï¿½ daï¿½y cuï¿½a ta rï¿½ï¿½i~",
+	"Gaï¿½ tï¿½y bï¿½y giï¿½ï¿½ laï¿½ mï¿½ï¿½t phï¿½ï¿½n thï¿½n thï¿½ï¿½ cuï¿½a ta. ",
+	"Haï¿½y ï¿½ï¿½a cho ta mï¿½ï¿½t iï¿½t thiï¿½t gaï¿½ tï¿½y vaï¿½ ta seï¿½ khï¿½ng giï¿½ï¿½t ngï¿½ï¿½i ï¿½ï¿½u~ Grrrr~",
+	"Lï¿½ taï¿½ ï¿½n haï¿½nh phuï¿½c~ Ta laï¿½ Molly ï¿½ï¿½y~",
+	"Oo-hehe Biï¿½ lï¿½ï¿½a rï¿½ï¿½i~ Ngï¿½ï¿½i nghiï¿½ ta laï¿½ ngï¿½ï¿½ï¿½i sao?~",
+	"Nhoï¿½c con! Ta seï¿½ chiï¿½u ï¿½aï¿½i ngï¿½ï¿½i gaï¿½ tï¿½y nheï¿½~~!!"
 };
 
 
 #define MOLLYWOLF_CHAT_DROP_MAX		25
 char *szMollyWolfChatDropMsg[MOLLYWOLF_CHAT_DROP_MAX] = {
-	"Thâòt laÌ tôÌi têò. Daò daÌy cuÒa ngýõi ðuÒ to ðêÒ cheìn gaÌ tây sao.",
-	"Ngýõi coì nghiÞ rãÌng ngýõi coì thêÒ yên laÌnh hýõÒng LêÞ giaìng sinh sau khi haò ta sao?",
+	"Thï¿½ï¿½t laï¿½ tï¿½ï¿½i tï¿½ï¿½. Daï¿½ daï¿½y cuï¿½a ngï¿½ï¿½i ï¿½uï¿½ to ï¿½ï¿½ï¿½ cheï¿½n gaï¿½ tï¿½y sao.",
+	"Ngï¿½ï¿½i coï¿½ nghiï¿½ rï¿½ï¿½ng ngï¿½ï¿½i coï¿½ thï¿½ï¿½ yï¿½n laï¿½nh hï¿½ï¿½ï¿½ng Lï¿½ï¿½ giaï¿½ng sinh sau khi haï¿½ ta sao?",
 	"Khuhuhuhuhuk!",
-	"Laòy chuìa tôi! Ta mõìi chiÒ ãn môòt iìt thôi maÌ.",
-	"Ta seÞ KHÔNG bao giõÌ ðýa cho ngýõi GaÌ tây vaÌ Royal Jelly ðâu!",
-	"Ta chêìt thiÌ cuÞng chãÒng sao. Ta ðaÞ lâìy ðýõòc nhýÞng thýì ta câÌn rôÌi...",
-	"Ta seÞ không bao giõÌ quên ðiêÌu naÌy...",
-	"Ta seÞ chiêìn ðâìu võìi ngýõi lâÌn tõìi. Heòn quyêìt ðâìu õÒ LêÞ taò õn sang nãm.",
-	"Ta không phaÒi laÌ Moriff! Do ðoì ta chãÒng coì Sheltoms hay nhýÞng thýì khaìc týõng týò ðâu~!",
-	"Ngýõi seÞ phaÒi sôìng dýõìi lõÌi nguyêÌn cuÒa môòt con gaÌ tây ðôòc aìc.!",
-	"Ohhh..Molly gây chuyêòn võìi ta T.T",
-	"Ta cuÞng muôìn cheìn môòt con gaÌ tây beìo ngâòy vaÌo LêÞ taò õn T.T",
-	"Ðoì laÌ caìi baình bao maÌ ta ðaÞ lâìy cãìp ðâìy.",
-	"Ngýõi cuÞng muôìn coì chiêìc aìo naÌy haÒ? T.T",
-	"Ta gheìt ngýõi, Molly~ T.T",
-	"HaÞy ãn hêìt GaÌ Tây ði vaÌ ngýõi seÞ beìo nhý môòt con iÒn cho maÌ xem.+-_-+ HaÞy chia seÒ noì võìi baòn beÌ nheì.",
-	"Noì chãÒng ngon miêòng chuìt naÌo, viÌ baÌ Molly nâìu dõÒ eòc.",
-	"Oops~CaÒm õn ngýõi ða giêìt ta~~~DuÌ sao cuÞng chuìc ngýõi môòt LêÞ taò hõn haònh phuìc~",
-	"Ooh....Ngýõi seÞ phaÒi traÒ giaì cho viêòc naÌy.",
-	"OK ngýõi thâòt laÌ tuyêòt.",
-	"Ooh~ LâÌn tõìi ta seÞ lâìy chiêìc aìo cuÒa ngýoi.",
-	"Huhu~ Môòt con GaÌ tây thiu nheì.",
-	"Chuìa õi! Ngýõi lâìy GaÌ tây cuÒa ta!! Baòn beÌ ta seÞ daòy cho ngýõi môòt baÌi hoòc! ",
-	"NgýõÌi naÌy vâÞn cýì giêìt tôi ngay caÒ khi tôi týò nguyêòn traÒ GaÌ tây ðâìy~",
+	"Laï¿½y chuï¿½a tï¿½i! Ta mï¿½ï¿½i chiï¿½ ï¿½n mï¿½ï¿½t iï¿½t thï¿½i maï¿½.",
+	"Ta seï¿½ KHï¿½NG bao giï¿½ï¿½ ï¿½ï¿½a cho ngï¿½ï¿½i Gaï¿½ tï¿½y vaï¿½ Royal Jelly ï¿½ï¿½u!",
+	"Ta chï¿½ï¿½t thiï¿½ cuï¿½ng chï¿½ï¿½ng sao. Ta ï¿½aï¿½ lï¿½ï¿½y ï¿½ï¿½ï¿½ï¿½c nhï¿½ï¿½ng thï¿½ï¿½ ta cï¿½ï¿½n rï¿½ï¿½i...",
+	"Ta seï¿½ khï¿½ng bao giï¿½ï¿½ quï¿½n ï¿½iï¿½ï¿½u naï¿½y...",
+	"Ta seï¿½ chiï¿½ï¿½n ï¿½ï¿½ï¿½u vï¿½ï¿½i ngï¿½ï¿½i lï¿½ï¿½n tï¿½ï¿½i. Heï¿½n quyï¿½ï¿½t ï¿½ï¿½ï¿½u ï¿½ï¿½ Lï¿½ï¿½ taï¿½ ï¿½n sang nï¿½m.",
+	"Ta khï¿½ng phaï¿½i laï¿½ Moriff! Do ï¿½oï¿½ ta chï¿½ï¿½ng coï¿½ Sheltoms hay nhï¿½ï¿½ng thï¿½ï¿½ khaï¿½c tï¿½ï¿½ng tï¿½ï¿½ ï¿½ï¿½u~!",
+	"Ngï¿½ï¿½i seï¿½ phaï¿½i sï¿½ï¿½ng dï¿½ï¿½ï¿½i lï¿½ï¿½i nguyï¿½ï¿½n cuï¿½a mï¿½ï¿½t con gaï¿½ tï¿½y ï¿½ï¿½ï¿½c aï¿½c.!",
+	"Ohhh..Molly gï¿½y chuyï¿½ï¿½n vï¿½ï¿½i ta T.T",
+	"Ta cuï¿½ng muï¿½ï¿½n cheï¿½n mï¿½ï¿½t con gaï¿½ tï¿½y beï¿½o ngï¿½ï¿½y vaï¿½o Lï¿½ï¿½ taï¿½ ï¿½n T.T",
+	"ï¿½oï¿½ laï¿½ caï¿½i baï¿½nh bao maï¿½ ta ï¿½aï¿½ lï¿½ï¿½y cï¿½ï¿½p ï¿½ï¿½ï¿½y.",
+	"Ngï¿½ï¿½i cuï¿½ng muï¿½ï¿½n coï¿½ chiï¿½ï¿½c aï¿½o naï¿½y haï¿½? T.T",
+	"Ta gheï¿½t ngï¿½ï¿½i, Molly~ T.T",
+	"Haï¿½y ï¿½n hï¿½ï¿½t Gaï¿½ Tï¿½y ï¿½i vaï¿½ ngï¿½ï¿½i seï¿½ beï¿½o nhï¿½ mï¿½ï¿½t con iï¿½n cho maï¿½ xem.+-_-+ Haï¿½y chia seï¿½ noï¿½ vï¿½ï¿½i baï¿½n beï¿½ nheï¿½.",
+	"Noï¿½ chï¿½ï¿½ng ngon miï¿½ï¿½ng chuï¿½t naï¿½o, viï¿½ baï¿½ Molly nï¿½ï¿½u dï¿½ï¿½ eï¿½c.",
+	"Oops~Caï¿½m ï¿½n ngï¿½ï¿½i ï¿½a giï¿½ï¿½t ta~~~Duï¿½ sao cuï¿½ng chuï¿½c ngï¿½ï¿½i mï¿½ï¿½t Lï¿½ï¿½ taï¿½ hï¿½n haï¿½nh phuï¿½c~",
+	"Ooh....Ngï¿½ï¿½i seï¿½ phaï¿½i traï¿½ giaï¿½ cho viï¿½ï¿½c naï¿½y.",
+	"OK ngï¿½ï¿½i thï¿½ï¿½t laï¿½ tuyï¿½ï¿½t.",
+	"Ooh~ Lï¿½ï¿½n tï¿½ï¿½i ta seï¿½ lï¿½ï¿½y chiï¿½ï¿½c aï¿½o cuï¿½a ngï¿½oi.",
+	"Huhu~ Mï¿½ï¿½t con Gaï¿½ tï¿½y thiu nheï¿½.",
+	"Chuï¿½a ï¿½i! Ngï¿½ï¿½i lï¿½ï¿½y Gaï¿½ tï¿½y cuï¿½a ta!! Baï¿½n beï¿½ ta seï¿½ daï¿½y cho ngï¿½ï¿½i mï¿½ï¿½t baï¿½i hoï¿½c! ",
+	"Ngï¿½ï¿½ï¿½i naï¿½y vï¿½ï¿½n cï¿½ï¿½ giï¿½ï¿½t tï¿½i ngay caï¿½ khi tï¿½i tï¿½ï¿½ nguyï¿½ï¿½n traï¿½ Gaï¿½ tï¿½y ï¿½ï¿½ï¿½y~",
 	"Oh...~"
 };
 
 
 #define SANTAGOBLIN_CHAT_MAX		11
 char *szSantaGoblinChatMsg[SANTAGOBLIN_CHAT_MAX] = {
-	"Chuìc mýÌng giaìng sinh baòn thân yêu...",
-	"Beì ngoan seÞ không nhâòn ðýõòc quaÌ giaìng sinh nêìu ðaình ông giaÌ Noel ðâu.",
-	"ÔÌ! Câòu beì ðôòc thân hôÌi nãm ngoaìi! Sao giõÌ vâÞn chýa coì baòn gaìi aÌ hehe...",
-	"TiÌm môòt cô baòn gaìi õÒ ðây vaÌ duÌng toaÌn bôò thõÌi gian cho PTV ði!",
-	"Ta chiÒ xuâìt hiêòn duy nhâìt môòt lâÌn trong nãm thôi!",
-	"Nãm mõìi ðâÌy may mãìn seÞ ðêìn võìi ngýõi nêìu ngýõi... ngýÌng ðaình ta ^_^",
-	"Ta cuÞng muôìn coì quaÌ giaìng sinh!!!",
-	"Chuìc mýÌng giaìng sinh! Khen ta ðeòp trai ði, ta seÞ tãòng quaÌ cho.",
-	"Ta laÌ Goblin, ta cuÞng laÌ ông giaÌ Noel. Ta laÌ ông giÌa Noel, ta laÌ ông giaÌ Noel la la la...",
-	"Chuìc ðêm giaìng sinh haònh phuìc vaÌ coì nhiêÌu quaÌ nheì!!!",
-	"Taòi sao ta noìi quaì nhiêÌu aÌ? Bla bla bla hahaha ^^"
+	"Chuï¿½c mï¿½ï¿½ng giaï¿½ng sinh baï¿½n thï¿½n yï¿½u...",
+	"Beï¿½ ngoan seï¿½ khï¿½ng nhï¿½ï¿½n ï¿½ï¿½ï¿½ï¿½c quaï¿½ giaï¿½ng sinh nï¿½ï¿½u ï¿½aï¿½nh ï¿½ng giaï¿½ Noel ï¿½ï¿½u.",
+	"ï¿½ï¿½! Cï¿½ï¿½u beï¿½ ï¿½ï¿½ï¿½c thï¿½n hï¿½ï¿½i nï¿½m ngoaï¿½i! Sao giï¿½ï¿½ vï¿½ï¿½n chï¿½a coï¿½ baï¿½n gaï¿½i aï¿½ hehe...",
+	"Tiï¿½m mï¿½ï¿½t cï¿½ baï¿½n gaï¿½i ï¿½ï¿½ ï¿½ï¿½y vaï¿½ duï¿½ng toaï¿½n bï¿½ï¿½ thï¿½ï¿½i gian cho PTV ï¿½i!",
+	"Ta chiï¿½ xuï¿½ï¿½t hiï¿½ï¿½n duy nhï¿½ï¿½t mï¿½ï¿½t lï¿½ï¿½n trong nï¿½m thï¿½i!",
+	"Nï¿½m mï¿½ï¿½i ï¿½ï¿½ï¿½y may mï¿½ï¿½n seï¿½ ï¿½ï¿½ï¿½n vï¿½ï¿½i ngï¿½ï¿½i nï¿½ï¿½u ngï¿½ï¿½i... ngï¿½ï¿½ng ï¿½aï¿½nh ta ^_^",
+	"Ta cuï¿½ng muï¿½ï¿½n coï¿½ quaï¿½ giaï¿½ng sinh!!!",
+	"Chuï¿½c mï¿½ï¿½ng giaï¿½ng sinh! Khen ta ï¿½eï¿½p trai ï¿½i, ta seï¿½ tï¿½ï¿½ng quaï¿½ cho.",
+	"Ta laï¿½ Goblin, ta cuï¿½ng laï¿½ ï¿½ng giaï¿½ Noel. Ta laï¿½ ï¿½ng giï¿½a Noel, ta laï¿½ ï¿½ng giaï¿½ Noel la la la...",
+	"Chuï¿½c ï¿½ï¿½m giaï¿½ng sinh haï¿½nh phuï¿½c vaï¿½ coï¿½ nhiï¿½ï¿½u quaï¿½ nheï¿½!!!",
+	"Taï¿½i sao ta noï¿½i quaï¿½ nhiï¿½ï¿½u aï¿½? Bla bla bla hahaha ^^"
 };
 
 #define SKILLMASTER_CHAT_MAX		15
 char *szSkillMasterChatMsg[SKILLMASTER_CHAT_MAX] = {
-	"Ta seÞ không cho ngýõi nghiÒ ngõi ðâu. HaÞy chýìng toÒ baÒn thân ði naÌo.",
-      	"Ta baÒo: HAÞY ÐAìNH MAòNH HÕN NÝÞA",
-	"Ta e rãÌng ngay caÒ HOPY ngýõi cuÞng không ðaình laòi ðýõòc! MAòNH HÕN NÝÞA ÐI!",
-     	"Ðem tâìt caÒ sýìc lýòc vaÌ kyÞ nãng cuÒa nhaÌ ngýõÌi ra ði.",
-     	"Tâìn công laÌ caìch phoÌng thuÒ tôìt nhâìt! DuÌng hêìt sýìc ði.",
-       	"Ngýõi ðang mang trong ngýõÌi doÌng maìu cuÒa Temspkron. HaÞy chýìng toÒ rãÌng ngýõi xýìng ðaìng võìi ðiêÌu ðoì.",
-    	"Ngýõi ðaình nhý treÒ em vâòy!",
-   	"HaÞy xem ta nhý Igolanos vaÌ cuÌng nhau quyêìt ðâìu sôìng coÌn ði!",
-      	"Xem kiÌa ngýõi ðang côì gãìng duÌng Core ðêÒ trôìn kiÌa hahaha",
-      	"ÐýÌng ðêÒ ta nhãìc ði nhãìc laòi maÞi: KHÔNG THÊÒ DUÌNG NGOòC TRIÊòU HÔÌI",
-       	"Nêìu ta lõÞ ðaình ngýõi vãng qua Pillai thiÌ vui loÌng giuìp ta hoÒi thãm ông baòn giaÌ cuÒa ta nheì!",
-  	"ÐýÌng coì yÒ laòi vaÌo caìc moìn ðôÌ. HaÞy duÌng chiình sýìc maònh cuÒa cõ thêÒ.",
-     	"Môòt ðoÌn ðeòp! NaÌo naÌo tiêìp tuòc ði chýì!",
-     	"Ngýõi trông trýõÒng thaÌnh hõn caìi luìc ngýõi nhong nhong ðem nhýÞng caìi ðuôi soìi ðêìn cho ta haha...",
-	"HôÒ theòn thâòt! Ngýõi ðaình cýì nhý treÒ em chõi võìi caìc vuÞ khiì cao câìp nhý vâòy hahaha..."
+	"Ta seï¿½ khï¿½ng cho ngï¿½ï¿½i nghiï¿½ ngï¿½i ï¿½ï¿½u. Haï¿½y chï¿½ï¿½ng toï¿½ baï¿½n thï¿½n ï¿½i naï¿½o.",
+      	"Ta baï¿½o: HAï¿½Y ï¿½Aï¿½NH MAï¿½NH Hï¿½N Nï¿½ï¿½A",
+	"Ta e rï¿½ï¿½ng ngay caï¿½ HOPY ngï¿½ï¿½i cuï¿½ng khï¿½ng ï¿½aï¿½nh laï¿½i ï¿½ï¿½ï¿½ï¿½c! MAï¿½NH Hï¿½N Nï¿½ï¿½A ï¿½I!",
+     	"ï¿½em tï¿½ï¿½t caï¿½ sï¿½ï¿½c lï¿½ï¿½c vaï¿½ kyï¿½ nï¿½ng cuï¿½a nhaï¿½ ngï¿½ï¿½ï¿½i ra ï¿½i.",
+     	"Tï¿½ï¿½n cï¿½ng laï¿½ caï¿½ch phoï¿½ng thuï¿½ tï¿½ï¿½t nhï¿½ï¿½t! Duï¿½ng hï¿½ï¿½t sï¿½ï¿½c ï¿½i.",
+       	"Ngï¿½ï¿½i ï¿½ang mang trong ngï¿½ï¿½ï¿½i doï¿½ng maï¿½u cuï¿½a Temspkron. Haï¿½y chï¿½ï¿½ng toï¿½ rï¿½ï¿½ng ngï¿½ï¿½i xï¿½ï¿½ng ï¿½aï¿½ng vï¿½ï¿½i ï¿½iï¿½ï¿½u ï¿½oï¿½.",
+    	"Ngï¿½ï¿½i ï¿½aï¿½nh nhï¿½ treï¿½ em vï¿½ï¿½y!",
+   	"Haï¿½y xem ta nhï¿½ Igolanos vaï¿½ cuï¿½ng nhau quyï¿½ï¿½t ï¿½ï¿½ï¿½u sï¿½ï¿½ng coï¿½n ï¿½i!",
+      	"Xem kiï¿½a ngï¿½ï¿½i ï¿½ang cï¿½ï¿½ gï¿½ï¿½ng duï¿½ng Core ï¿½ï¿½ï¿½ trï¿½ï¿½n kiï¿½a hahaha",
+      	"ï¿½ï¿½ï¿½ng ï¿½ï¿½ï¿½ ta nhï¿½ï¿½c ï¿½i nhï¿½ï¿½c laï¿½i maï¿½i: KHï¿½NG THï¿½ï¿½ DUï¿½NG NGOï¿½C TRIï¿½ï¿½U Hï¿½ï¿½I",
+       	"Nï¿½ï¿½u ta lï¿½ï¿½ ï¿½aï¿½nh ngï¿½ï¿½i vï¿½ng qua Pillai thiï¿½ vui loï¿½ng giuï¿½p ta hoï¿½i thï¿½m ï¿½ng baï¿½n giaï¿½ cuï¿½a ta nheï¿½!",
+  	"ï¿½ï¿½ï¿½ng coï¿½ yï¿½ laï¿½i vaï¿½o caï¿½c moï¿½n ï¿½ï¿½ï¿½. Haï¿½y duï¿½ng chiï¿½nh sï¿½ï¿½c maï¿½nh cuï¿½a cï¿½ thï¿½ï¿½.",
+     	"Mï¿½ï¿½t ï¿½oï¿½n ï¿½eï¿½p! Naï¿½o naï¿½o tiï¿½ï¿½p tuï¿½c ï¿½i chï¿½ï¿½!",
+     	"Ngï¿½ï¿½i trï¿½ng trï¿½ï¿½ï¿½ng thaï¿½nh hï¿½n caï¿½i luï¿½c ngï¿½ï¿½i nhong nhong ï¿½em nhï¿½ï¿½ng caï¿½i ï¿½uï¿½i soï¿½i ï¿½ï¿½ï¿½n cho ta haha...",
+	"Hï¿½ï¿½ theï¿½n thï¿½ï¿½t! Ngï¿½ï¿½i ï¿½aï¿½nh cï¿½ï¿½ nhï¿½ treï¿½ em chï¿½i vï¿½ï¿½i caï¿½c vuï¿½ khiï¿½ cao cï¿½ï¿½p nhï¿½ vï¿½ï¿½y hahaha..."
 };
 
 #define MAGICMASTER_CHAT_MAX		12
 char *szMagicMasterChatMsg[MAGICMASTER_CHAT_MAX] = {
-	"Tâòp trung tâìt caÒ nãng lýõòng ðêÒ coì thêÒ tung ra ðoÌn maònh nhâìt xem!",
-  	"Ngýõi nghiÞ rãÌng miÌnh xýìng ðaìng ðýõòc hýõÒng ðiêÒm EP võìi nhýÞng khaÒ nãng naÌy sao?",
-	"Ngýõi ra ðoÌn vâÞn chýa hoaÌn haÒo lãìm! Tâòp trung tinh thâÌn xem!",
-     	"Vui loÌng ðýÌng noìi võìi ai laÌ ngýõi hoòc caìc kyÞ nãng ðoì týÌ ta. Thâòt xâìu hôÒ!",
-      	"LaÌm tôìt lãìm! Tiêìp tuòc naÌo!",
-	"Ngýõi mang trong ngýõÌi tinh thâÌn vaÌ kyÞ nãng cuÒa dân tôòc Morion. HaÞy thêÒ hiêòn noì ",
-      	"ÐýÌng coì chaòy trôìn bãÌng Core chýì!",
-     	"Nêìu ngýõi coì thêÒ sýÒ duòng ngoòc triêòu hôÌi thiÌ ta coì thêÒ goòi ðýõòc RaSha's ðâìy hahaha...",
-	"HaÞy gýÒi lõÌi chaÌo cuÒa ta tõìi Verkan nêìu nhý ta coì lõÞ thôÒi ngýõi bay ðêìn Ricarten.",
-    	"HaÞy nhõì rãÌng ngay caÒ caìc chiêìn binh huyêÌn thoaòi cuÞng coì ðiêÒm yêìu. HaÞy lõòi dung ðiêÌu ðoì!",
-      	"Ngýõi ðaÞ lõìn lên râìt nhiêÌu týÌ ngaÌy ngýõi gãòp ta lâÌn ðâÌu.",
-   	"Ngýõi khiêìn ta buôÌn nguÒ quaì oa... oa...."
+	"Tï¿½ï¿½p trung tï¿½ï¿½t caï¿½ nï¿½ng lï¿½ï¿½ï¿½ng ï¿½ï¿½ï¿½ coï¿½ thï¿½ï¿½ tung ra ï¿½oï¿½n maï¿½nh nhï¿½ï¿½t xem!",
+  	"Ngï¿½ï¿½i nghiï¿½ rï¿½ï¿½ng miï¿½nh xï¿½ï¿½ng ï¿½aï¿½ng ï¿½ï¿½ï¿½ï¿½c hï¿½ï¿½ï¿½ng ï¿½iï¿½ï¿½m EP vï¿½ï¿½i nhï¿½ï¿½ng khaï¿½ nï¿½ng naï¿½y sao?",
+	"Ngï¿½ï¿½i ra ï¿½oï¿½n vï¿½ï¿½n chï¿½a hoaï¿½n haï¿½o lï¿½ï¿½m! Tï¿½ï¿½p trung tinh thï¿½ï¿½n xem!",
+     	"Vui loï¿½ng ï¿½ï¿½ï¿½ng noï¿½i vï¿½ï¿½i ai laï¿½ ngï¿½ï¿½i hoï¿½c caï¿½c kyï¿½ nï¿½ng ï¿½oï¿½ tï¿½ï¿½ ta. Thï¿½ï¿½t xï¿½ï¿½u hï¿½ï¿½!",
+      	"Laï¿½m tï¿½ï¿½t lï¿½ï¿½m! Tiï¿½ï¿½p tuï¿½c naï¿½o!",
+	"Ngï¿½ï¿½i mang trong ngï¿½ï¿½ï¿½i tinh thï¿½ï¿½n vaï¿½ kyï¿½ nï¿½ng cuï¿½a dï¿½n tï¿½ï¿½c Morion. Haï¿½y thï¿½ï¿½ hiï¿½ï¿½n noï¿½ ",
+      	"ï¿½ï¿½ï¿½ng coï¿½ chaï¿½y trï¿½ï¿½n bï¿½ï¿½ng Core chï¿½ï¿½!",
+     	"Nï¿½ï¿½u ngï¿½ï¿½i coï¿½ thï¿½ï¿½ sï¿½ï¿½ duï¿½ng ngoï¿½c triï¿½ï¿½u hï¿½ï¿½i thiï¿½ ta coï¿½ thï¿½ï¿½ goï¿½i ï¿½ï¿½ï¿½ï¿½c RaSha's ï¿½ï¿½ï¿½y hahaha...",
+	"Haï¿½y gï¿½ï¿½i lï¿½ï¿½i chaï¿½o cuï¿½a ta tï¿½ï¿½i Verkan nï¿½ï¿½u nhï¿½ ta coï¿½ lï¿½ï¿½ thï¿½ï¿½i ngï¿½ï¿½i bay ï¿½ï¿½ï¿½n Ricarten.",
+    	"Haï¿½y nhï¿½ï¿½ rï¿½ï¿½ng ngay caï¿½ caï¿½c chiï¿½ï¿½n binh huyï¿½ï¿½n thoaï¿½i cuï¿½ng coï¿½ ï¿½iï¿½ï¿½m yï¿½ï¿½u. Haï¿½y lï¿½ï¿½i dung ï¿½iï¿½ï¿½u ï¿½oï¿½!",
+      	"Ngï¿½ï¿½i ï¿½aï¿½ lï¿½ï¿½n lï¿½n rï¿½ï¿½t nhiï¿½ï¿½u tï¿½ï¿½ ngaï¿½y ngï¿½ï¿½i gï¿½ï¿½p ta lï¿½ï¿½n ï¿½ï¿½ï¿½u.",
+   	"Ngï¿½ï¿½i khiï¿½ï¿½n ta buï¿½ï¿½n nguï¿½ quaï¿½ oa... oa...."
 };
 
 
-char *szMonsterFlagMsg= "Nguy hiêÒm! Khu výòc quaìi vâòt xuâìt hiêòn";
+char *szMonsterFlagMsg= "Nguy hiï¿½ï¿½m! Khu vï¿½ï¿½c quaï¿½i vï¿½ï¿½t xuï¿½ï¿½t hiï¿½ï¿½n";
 
 #define		SERVER_DOWN_MSG_COUNT	5
 char *szServerDownMsg[SERVER_DOWN_MSG_COUNT] = {
-	"Chuì yì> Caìc baòn vui loÌng chuì yì ",
-	"Chuì yì> Maìy chuÒ seÞ taòm ngýng cung câìp diòch vuò trong iìt phuìt nýÞa",
-	"Chuì yì> Xin vui loÌng thoaìt khoÒi troÌ chõi",
-	"Chuì yì> Maìy chuÒ seÞ taòm ngýng trong iìt phuìt nýÞa",
-	"Chuì yì> Xin vui loÌng thoaìt khoÒi troÌ chõi. CaÒm õn."
+	"Chuï¿½ yï¿½> Caï¿½c baï¿½n vui loï¿½ng chuï¿½ yï¿½ ",
+	"Chuï¿½ yï¿½> Maï¿½y chuï¿½ seï¿½ taï¿½m ngï¿½ng cung cï¿½ï¿½p diï¿½ch vuï¿½ trong iï¿½t phuï¿½t nï¿½ï¿½a",
+	"Chuï¿½ yï¿½> Xin vui loï¿½ng thoaï¿½t khoï¿½i troï¿½ chï¿½i",
+	"Chuï¿½ yï¿½> Maï¿½y chuï¿½ seï¿½ taï¿½m ngï¿½ng trong iï¿½t phuï¿½t nï¿½ï¿½a",
+	"Chuï¿½ yï¿½> Xin vui loï¿½ng thoaï¿½t khoï¿½i troï¿½ chï¿½i. Caï¿½m ï¿½n."
 };
 
-char *szSeverDownCountMsg = "Shutdown> CoÌn %d phuìt vaÌ %d giây nýÞa. Vui loÌng thoaìt khoÒi troÌ chõi";
+char *szSeverDownCountMsg = "Shutdown> Coï¿½n %d phuï¿½t vaï¿½ %d giï¿½y nï¿½ï¿½a. Vui loï¿½ng thoaï¿½t khoï¿½i troï¿½ chï¿½i";
 
 
 
 
 
-char *srBlessCastle_LeagueMsg_01 = "Sau iìt phuìt nýÞa, Bless Castle seÞ mõÒ. HaÞy sãÞn saÌng ðêÒ chiêìn ðâìu"; 
-char *srBlessCastle_LeagueMsg_02 = "Cuôòc chiêìn Bless Castle ðaÞ bãìt ðâÌu. Chuìc caìc baòn may mãìn."; 
-char *srBlessCastle_LeagueMsg_03 = "Cuôòc chiêìn Bless Castle ðaÞ kêìt thuìc. CaÒm õn baòn ðaÞ tham gia Bless Castle"; 
-char *srBlessCastle_LeagueMsg_04 = "Bless Castle seÞ bãìt ðâÌu sau 30 phuìt nýÞa. HaÞy chuâÒn biò sãÞn saÌng"; 
-char *srBlessCastle_LeagueMsg_05 = "Bless Castle seÞ bãìt ðâÌu sau 1 giõÌ nýÞa. HaÞy chuâÒn biò sãÞn saÌng"; 
+char *srBlessCastle_LeagueMsg_01 = "Sau iï¿½t phuï¿½t nï¿½ï¿½a, Bless Castle seï¿½ mï¿½ï¿½. Haï¿½y sï¿½ï¿½n saï¿½ng ï¿½ï¿½ï¿½ chiï¿½ï¿½n ï¿½ï¿½ï¿½u"; 
+char *srBlessCastle_LeagueMsg_02 = "Cuï¿½ï¿½c chiï¿½ï¿½n Bless Castle ï¿½aï¿½ bï¿½ï¿½t ï¿½ï¿½ï¿½u. Chuï¿½c caï¿½c baï¿½n may mï¿½ï¿½n."; 
+char *srBlessCastle_LeagueMsg_03 = "Cuï¿½ï¿½c chiï¿½ï¿½n Bless Castle ï¿½aï¿½ kï¿½ï¿½t thuï¿½c. Caï¿½m ï¿½n baï¿½n ï¿½aï¿½ tham gia Bless Castle"; 
+char *srBlessCastle_LeagueMsg_04 = "Bless Castle seï¿½ bï¿½ï¿½t ï¿½ï¿½ï¿½u sau 30 phuï¿½t nï¿½ï¿½a. Haï¿½y chuï¿½ï¿½n biï¿½ sï¿½ï¿½n saï¿½ng"; 
+char *srBlessCastle_LeagueMsg_05 = "Bless Castle seï¿½ bï¿½ï¿½t ï¿½ï¿½ï¿½u sau 1 giï¿½ï¿½ nï¿½ï¿½a. Haï¿½y chuï¿½ï¿½n biï¿½ sï¿½ï¿½n saï¿½ng"; 
 
-char *srMsg_StartUser_PresentItem = "    Chuìng tôi tãòng baòn  % nhý môòt moìn quaÌ   "; 
-char *srMsg_ThanksPolling = "   CaÒm õn baòn ðaÞ tham gia ";
+char *srMsg_StartUser_PresentItem = "    Chuï¿½ng tï¿½i tï¿½ï¿½ng baï¿½n  % nhï¿½ mï¿½ï¿½t moï¿½n quaï¿½   "; 
+char *srMsg_ThanksPolling = "   Caï¿½m ï¿½n baï¿½n ï¿½aï¿½ tham gia ";
 
 
-char *szNotLinkCore = "Không thêÒ sýÒ duòng Union core";
+char *szNotLinkCore = "Khï¿½ng thï¿½ï¿½ sï¿½ï¿½ duï¿½ng Union core";
 char *szNotLinkCore2 = "  Sai Clan  ";
-char *szNotLinkCore3 = " Không ðuÒ Level ðêÒ ðãòt chân tõìi ";
+char *szNotLinkCore3 = " Khï¿½ng ï¿½uï¿½ Level ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½t chï¿½n tï¿½ï¿½i ";
 
 
 
-char	*srMsg_Bl_01	= " CoÌn %d phuìt nýÞa.";
+char	*srMsg_Bl_01	= " Coï¿½n %d phuï¿½t nï¿½ï¿½a.";
 char	*srMsg_Bl_02	= "[Internet Cafe]";
-char	*srMsg_BI_03	= " Baòn ðaÞ chõi ðýõòc thêm [%dY %dM %dD]";
-char	*srMsg_BI_04	= " Baòn ðaÞ chõi ðýõòc thêm [%d hours]";
+char	*srMsg_BI_03	= " Baï¿½n ï¿½aï¿½ chï¿½i ï¿½ï¿½ï¿½ï¿½c thï¿½m [%dY %dM %dD]";
+char	*srMsg_BI_04	= " Baï¿½n ï¿½aï¿½ chï¿½i ï¿½ï¿½ï¿½ï¿½c thï¿½m [%d hours]";
 
-char	*srMsg_Bl_100	= "%sBaòn coì thêÒ chõi tõìi %d:%d - %d/%d/%d %s   MõÌi baòn gheì thãm www.ptv.com.vn";
-char	*srMsg_Bl_1001	= "%sBaòn coì thêÒ chõi tõìi %d:0%d - %d/%d/%d %s   MõÌi baòn gheì thãm www.ptv.com.vn";
-char	*srMsg_Bl_101	= "%sBaòn coì thêÒ chõi trong %d giõÌ %d phuìt.%s";
-char	*srMsg_Bl_102	= "%sBaòn coÌn %d phuìt nýÞa.%s";
+char	*srMsg_Bl_100	= "%sBaï¿½n coï¿½ thï¿½ï¿½ chï¿½i tï¿½ï¿½i %d:%d - %d/%d/%d %s   Mï¿½ï¿½i baï¿½n gheï¿½ thï¿½m www.ptv.com.vn";
+char	*srMsg_Bl_1001	= "%sBaï¿½n coï¿½ thï¿½ï¿½ chï¿½i tï¿½ï¿½i %d:0%d - %d/%d/%d %s   Mï¿½ï¿½i baï¿½n gheï¿½ thï¿½m www.ptv.com.vn";
+char	*srMsg_Bl_101	= "%sBaï¿½n coï¿½ thï¿½ï¿½ chï¿½i trong %d giï¿½ï¿½ %d phuï¿½t.%s";
+char	*srMsg_Bl_102	= "%sBaï¿½n coï¿½n %d phuï¿½t nï¿½ï¿½a.%s";
+
+
 

@@ -41,3 +41,5 @@ public:
 	BOOL    m_bIsMemMap;
 };
 #endif
+
+

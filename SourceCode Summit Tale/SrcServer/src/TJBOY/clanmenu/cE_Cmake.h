@@ -41,3 +41,5 @@ class CLANEntity_make cClanMake;
 extern class CLANEntity_make cClanMake;
 
 #endif
+
+

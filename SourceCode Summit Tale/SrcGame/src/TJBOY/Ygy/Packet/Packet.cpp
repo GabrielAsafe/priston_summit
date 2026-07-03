@@ -98,7 +98,7 @@ BOOL talk_check(VOICTALKUSERDATA *vUser)
 
 
 		char szchatbuf[64];
-		wsprintf(szchatbuf, "%s ´ÔÀÌ ¸»ÇÏ¿´½À´Ï´Ù.", vUser->uID[i]);
+		wsprintf(szchatbuf, "%s ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", vUser->uID[i]);
 		AddChatBuff(szchatbuf, 5);
 
 
@@ -193,4 +193,8 @@ VOID CPacket::SetClanChat(char *msg)
 	m_sClanChat.sIndex.dwIndex = INSIDE_CLANCHAT;
 	strncpy(m_sClanChat.szMsg, msg, strlen(msg));
 }
+
+
+
+
 

@@ -285,3 +285,5 @@ typedef UINT (WINAPI * LPDIRECTXSETUPGETEULA)(LPSTR, UINT, WORD);
 #endif
 
 #endif
+
+

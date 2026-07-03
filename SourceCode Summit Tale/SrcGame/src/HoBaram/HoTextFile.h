@@ -18,3 +18,7 @@ extern char *HoTextFriendList;
 extern char *HoTextFriendRefuse;
 
 #endif
+
+
+
+

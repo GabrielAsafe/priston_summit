@@ -182,3 +182,6 @@ extern void		HoSetEffectResLoading(BOOL flag);
 extern void		EffectWaveCamera(int factor, int delay = 0);
 
 #endif
+
+
+

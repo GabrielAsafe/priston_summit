@@ -330,3 +330,5 @@ typedef KAFFINITY *PKAFFINITY;
 #endif
 
 #endif // _BASETSD_H_
+
+

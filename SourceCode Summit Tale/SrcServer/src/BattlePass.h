@@ -55,3 +55,5 @@ public:
 	void				AddExpBattlePass(rsPLAYINFO * Player, int valor);
 };
 
+
+

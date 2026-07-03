@@ -1012,3 +1012,5 @@ void g_HoPCBangDeletePet(smCHAR *pAttachChar)
 {
 	s_PcBangPetManager.DeletePet(pAttachChar);
 }
+
+

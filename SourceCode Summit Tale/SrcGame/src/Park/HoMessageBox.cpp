@@ -2838,3 +2838,7 @@ void HoMessageBox::Init()
 	Button[1].Init("StartImage\\login\\CharSelect\\Bt_cancel.tga", 64, 32);
 	Message.Init();
 }
+
+
+
+

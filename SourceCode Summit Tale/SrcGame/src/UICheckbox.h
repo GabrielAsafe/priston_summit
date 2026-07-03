@@ -17,3 +17,6 @@ private:
 	std::function<void()> Activation;
 	std::function<void()> fHover;
 };
+
+
+

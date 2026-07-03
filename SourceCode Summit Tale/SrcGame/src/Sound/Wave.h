@@ -49,3 +49,6 @@ BOOL riffCopyChunk(HMMIO, HMMIO, const LPMMCKINFO);
 
 
 extern BOOL LSEnable;
+
+
+

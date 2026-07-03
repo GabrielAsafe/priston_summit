@@ -562,7 +562,7 @@ void CGuideHelp::Draw()
 
 
 	#ifdef _LANGUAGE_JAPANESE
-		Draw_Title_Text("ƒK   ƒC   ƒh", menuPos[10].left, menuPos[10].top);
+		Draw_Title_Text("ï¿½K   ï¿½C   ï¿½h", menuPos[10].left, menuPos[10].top);
 	#else
 		Draw_Title_Text("G  U  I  D  E", menuPos[10].left, menuPos[10].top);
 	#endif
@@ -652,7 +652,7 @@ void CGuideHelp::Draw()
 
 
 	#ifdef _LANGUAGE_JAPANESE
-		Draw_Title_Text("ƒK   ƒC   ƒh", menuPos[12].left, menuPos[12].top);
+		Draw_Title_Text("ï¿½K   ï¿½C   ï¿½h", menuPos[12].left, menuPos[12].top);
 	#else
 		Draw_Title_Text("G  U  I  D  E", menuPos[12].left, menuPos[12].top);
 	#endif
@@ -1890,5 +1890,7 @@ void CGuideHelp::GuidHelpEnd()
 	TJBscrollWheelClear();
 	TJBscrollWheelClear_Guide();
 }
+
+
 
 

@@ -1,62 +1,62 @@
 
 
 sMESSAGEBOX	sMessageBox[50] = {
-	{"ª««~Äæ¦ì¸m¤£¨¬      "},       
-	{"¶W¹L¤F­t­«¯à¤O      "},   
-	{"¥Ø«e¤£¯à¨Ï¥Î¦¹ª««~  "},	   
-	{"§Aªº¿ú¤£°÷          "},   			   
-	{"ª««~µLªk¿Ä¦X        "},
-	{"¶W¹L¤F¥i¥æ©öªº¼Æ¶q  "},
-	{"¥æ©ö¨ú®ø¤F          "},
-	{"¤£¯à«OºÞÃÄ¤ô        "},
-	{"ª««~¿Ä¦X¥¢±Ñ¡I      "},
-	{"ÁÂÁÂ±zªº®½ÃØ:)      "},
-	{"­Ü®w¤wº¡¡AµLªk«OºÞ  "},
-	{"³o­Óª««~¤£¯à¤É¯Å    "},
-	{"¹ï¤è§ó´«¤F¥æ©öª««~¡A½Ð­«·s½T»{  "},
-	{"§AµLªkÀH¨­Äâ±a³o»ò¦h¿ú"}, 
-	{"°õ¦æ¥¢±Ñ            "},
-	{"    ¯à¤O­È¤w¸gªì©l¤Æ¤F¡@   "},			
-	{"  §ä¤£¨ì¹D¨ãªº¹Ï¥Ü¡@   "},
-	{"¯à¤O­Èªì©l¤Æ¶È­­¤@¦¸¡@"},
+	{"ï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½mï¿½ï¿½ï¿½ï¿½      "},       
+	{"ï¿½Wï¿½Lï¿½Fï¿½tï¿½ï¿½ï¿½ï¿½O      "},   
+	{"ï¿½Ø«eï¿½ï¿½ï¿½ï¿½Ï¥Î¦ï¿½ï¿½ï¿½ï¿½~  "},	   
+	{"ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½          "},   			   
+	{"ï¿½ï¿½ï¿½~ï¿½Lï¿½kï¿½Ä¦X        "},
+	{"ï¿½Wï¿½Lï¿½Fï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶q  "},
+	{"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½F          "},
+	{"ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Ä¤ï¿½        "},
+	{"ï¿½ï¿½ï¿½~ï¿½Ä¦Xï¿½ï¿½ï¿½Ñ¡I      "},
+	{"ï¿½ï¿½ï¿½Â±zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:)      "},
+	{"ï¿½Ü®wï¿½wï¿½ï¿½ï¿½Aï¿½Lï¿½kï¿½Oï¿½ï¿½  "},
+	{"ï¿½oï¿½Óªï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½É¯ï¿½    "},
+	{"ï¿½ï¿½ï¿½ó´«¤Fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½Aï¿½Ð­ï¿½ï¿½sï¿½Tï¿½{  "},
+	{"ï¿½Aï¿½Lï¿½kï¿½Hï¿½ï¿½ï¿½ï¿½aï¿½oï¿½ï¿½hï¿½ï¿½"}, 
+	{"ï¿½ï¿½ï¿½æ¥¢ï¿½ï¿½            "},
+	{"    ï¿½ï¿½Oï¿½È¤wï¿½gï¿½ï¿½lï¿½Æ¤Fï¿½@   "},			
+	{"  ï¿½ä¤£ï¿½ï¿½Dï¿½ãªºï¿½Ï¥Ü¡@   "},
+	{"ï¿½ï¿½Oï¿½Èªï¿½lï¿½Æ¶È­ï¿½ï¿½@ï¿½ï¿½ï¿½@"},
 
 };
 
 sMESSAGEBOX2 sMessageBox2[20] = {
-	{"´X­Óª««~","­n¶R¶Ü?"},
-	{"´X­Óª««~","­n½æ¶Ü?"},
-	{"´X­Óª««~","­n¥µ±¼¶Ü?"},
-	{"¦h¤Öª÷¿ú","­n¥µ±¼¶Ü?"},
+	{"ï¿½Xï¿½Óªï¿½ï¿½~","ï¿½nï¿½Rï¿½ï¿½?"},
+	{"ï¿½Xï¿½Óªï¿½ï¿½~","ï¿½nï¿½ï¿½ï¿½?"},
+	{"ï¿½Xï¿½Óªï¿½ï¿½~","ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?"},
+	{"ï¿½hï¿½Öªï¿½ï¿½ï¿½","ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?"},
 	{"",""}, 
-	{"¦h¤Öª÷¿ú","­n¥æ©ö¶Ü?"},
-	{"¦h¤Öª÷¿ú","­n²¾°Ê¶Ü?"},
-	{"¦h¤Öª÷¿ú","­n¦^¦¬¶Ü?"},
-	{"  §âª««~  ","­n¶R¶Ü?"}, 
-	{"  §âª««~  ","­n¶R¶Ü?"}, 
-	{"  §âª««~  ","­n¶R¶Ü?"}, 
-	{"  §âª««~  ","­n¶R¶Ü?"}, 
-	{"  §âª««~  ","­n¶R¶Ü?"}, 
-	{"  §âª««~  ","­n¶R¶Ü?"}, 
-	{"  §âª««~  ","­n¶R¶Ü?"},  
+	{"ï¿½hï¿½Öªï¿½ï¿½ï¿½","ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½?"},
+	{"ï¿½hï¿½Öªï¿½ï¿½ï¿½","ï¿½nï¿½ï¿½ï¿½Ê¶ï¿½?"},
+	{"ï¿½hï¿½Öªï¿½ï¿½ï¿½","ï¿½nï¿½^ï¿½ï¿½ï¿½ï¿½?"},
+	{"  ï¿½âª«ï¿½~  ","ï¿½nï¿½Rï¿½ï¿½?"}, 
+	{"  ï¿½âª«ï¿½~  ","ï¿½nï¿½Rï¿½ï¿½?"}, 
+	{"  ï¿½âª«ï¿½~  ","ï¿½nï¿½Rï¿½ï¿½?"}, 
+	{"  ï¿½âª«ï¿½~  ","ï¿½nï¿½Rï¿½ï¿½?"}, 
+	{"  ï¿½âª«ï¿½~  ","ï¿½nï¿½Rï¿½ï¿½?"}, 
+	{"  ï¿½âª«ï¿½~  ","ï¿½nï¿½Rï¿½ï¿½?"}, 
+	{"  ï¿½âª«ï¿½~  ","ï¿½nï¿½Rï¿½ï¿½?"},  
 };
 
 sMESSAGEBOX3 sMessageBox3[10] = {
-        {"§Þ¯à¾Ç²ß ","­n°õ¦æ¶Ü?"},
-	{"ÂàÂ¾", "­n¶Ü?"}, 
-	{"¥ô°È","­n±µ¶Ü?"},
-	{"­«·s¤À°t","­n°õ¦æ¶Ü?"},
-	{"°Ñ¥[¬¡°Ê¶O¥Î","¤¸"},
-	{"¯à¤O­Èªì©l¤Æ ","­n°õ¦æ¶Ü?"},			
-	{"¥ô°È", "­n±µ¶Ü?"}, 
-	{"ª««~", "­n¶Ü?"}, 
-	{" ¤½·|±²¶b ", "­n¥Ó½Ð¶Ü?"}, 
+        {"ï¿½Þ¯ï¿½Ç²ï¿½ ","ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½?"},
+	{"ï¿½ï¿½Â¾", "ï¿½nï¿½ï¿½?"}, 
+	{"ï¿½ï¿½ï¿½","ï¿½nï¿½ï¿½ï¿½ï¿½?"},
+	{"ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½t","ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½?"},
+	{"ï¿½Ñ¥[ï¿½ï¿½ï¿½Ê¶Oï¿½ï¿½","ï¿½ï¿½"},
+	{"ï¿½ï¿½Oï¿½Èªï¿½lï¿½ï¿½ ","ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½?"},			
+	{"ï¿½ï¿½ï¿½", "ï¿½nï¿½ï¿½ï¿½ï¿½?"}, 
+	{"ï¿½ï¿½ï¿½~", "ï¿½nï¿½ï¿½?"}, 
+	{" ï¿½ï¿½ï¿½|ï¿½ï¿½ï¿½b ", "ï¿½nï¿½Ó½Ð¶ï¿½?"}, 
 	};
 
 
 char *SkillMaster[4] = {
-	"     ¾Ç²ß§Þ¯à",
-	"        ÂàÂ¾ ",
-	"       Â÷¶}¹CÀ¸ "
+	"     ï¿½Ç²ß§Þ¯ï¿½",
+	"        ï¿½ï¿½Â¾ ",
+	"       ï¿½ï¿½ï¿½}ï¿½Cï¿½ï¿½ "
 
 };
 char *SkillMaster2[4] = {
@@ -67,152 +67,154 @@ char *SkillMaster2[4] = {
 };
 
 char *ReStartMsg[4] = {
-	"        ¦^¨ì³¥¥~     ",
-	"        ¦^¨ì«°Âí     ",
-	"        Â÷¶}¹CÀ¸     ",
-	"       ¸gÅç­È¤£¨¬    "
+	"        ï¿½^ï¿½ì³¥ï¿½~     ",
+	"        ï¿½^ï¿½ì«°ï¿½ï¿½     ",
+	"        ï¿½ï¿½ï¿½}ï¿½Cï¿½ï¿½     ",
+	"       ï¿½gï¿½ï¿½È¤ï¿½ï¿½ï¿½    "
 
 };
 char *ReStartMsg2[4] = {
-	"   ·l¥¢1%ªº¿ú/¸gÅç­È ",
+	"   ï¿½lï¿½ï¿½1%ï¿½ï¿½ï¿½ï¿½/ï¿½gï¿½ï¿½ï¿½ ",
 	"",
 	"",
-	"      ¤£¯à¦^¨ì³¥¥~   ",
+	"      ï¿½ï¿½ï¿½ï¿½^ï¿½ì³¥ï¿½~   ",
 
 };
 
-char *SkillUseInfoText[10]= { "      §Þ¯à/Å]ªk­×·Ò      ","    ¾Ç²ß¤Î´£¤É   ","   ½Ð¿ï¾Ü§Þ¯à/Å]ªk    ",
-		"  Çö¥Ñ©ó¥Ø«e±z¨S¦³§Þ¯àÂI ","   µLªk¾Ç²ß§Þ¯à " 
+char *SkillUseInfoText[10]= { "      ï¿½Þ¯ï¿½/ï¿½]ï¿½kï¿½×·ï¿½      ","    ï¿½Ç²ß¤Î´ï¿½ï¿½ï¿½   ","   ï¿½Ð¿ï¿½Ü§Þ¯ï¿½/ï¿½]ï¿½k    ",
+		"  ï¿½ï¿½ï¿½Ñ©ï¿½Ø«eï¿½zï¿½Sï¿½ï¿½ï¿½Þ¯ï¿½ï¿½I ","   ï¿½Lï¿½kï¿½Ç²ß§Þ¯ï¿½ " 
   };
 
-char *sinMsgSkillPoint = "     §Þ¯àÂIÆ® : %d";
+char *sinMsgSkillPoint = "     ï¿½Þ¯ï¿½ï¿½IÆ® : %d";
 
 char *sinStateName[5]={
-   "¥Í©R­È : %d/%d  ",
-   "Å]ªk­È : %d/%d  ",
-   "ºë¤O­È : %d/%d  ",
-   "¸gÅç­È : %d/%d  ",
-   "¸gÅç­È : %dM/%dM  "};
+   "ï¿½Í©Rï¿½ï¿½ : %d/%d  ",
+   "ï¿½]ï¿½kï¿½ï¿½ : %d/%d  ",
+   "ï¿½ï¿½Oï¿½ï¿½ : %d/%d  ",
+   "ï¿½gï¿½ï¿½ï¿½ : %d/%d  ",
+   "ï¿½gï¿½ï¿½ï¿½ : %dM/%dM  "};
 
 
-char *TownName[3] = {"¦^¨ì·ç¥dµn«°\r","¦^¨ì¯Çºû´µ«°\r","¦^¨ìµá¼Ö¥ì«°\r"};
+char *TownName[3] = {"ï¿½^ï¿½ï¿½ï¿½dï¿½nï¿½ï¿½\r","ï¿½^ï¿½ï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½\r","ï¿½^ï¿½ï¿½ï¿½Ö¥ì«°\r"};
 
-char *sinAbilityName[50] = {"§ðÀ»¤O: \r","§ðÀ»³t«×: \r","®gµ{: \r","¥²  ±þ: \r","¨¾¿m¤O: \r","©R¤¤²v: \r",
-					"ÃB¥~¨¾¿m¤O: \r","®æ¾×²v: \r","²¾°Ê³t«×: \r","­@¤[«×: \r","«ì´_Å]ªk­È: \r","«ì´_¥Í©R­È: \r",
-					"«ì´_ºë¤O­È: \r","ÅéÄÝ©Ê: \r","¦ÛµMÄÝ©Ê: \r","¤õÄÝ©Ê: \r","¦BÄÝ©Ê: \r","¹pÄÝ©Ê: \r","¬rÄÝ©Ê: \r",
-					"¤ôÄÝ©Ê: \r","­·ÄÝ©Ê: \r","¥Í©R­È¦A¥Í: \r","Å]ªk­È¦A¥Í: \r","ºë¤O­È¦A¥Í: \r","¥Í©R­È´£°ª: \r",
-					"Å]ªk­È´£°ª: \r","ºë¤O­È´£°ª: \r","ÃÄ¤ô¦s©ñ¼Æ¶q: \r","µ¥¯Å­n¨D: \r","¤O¶q­n¨D: \r","´¼¤O­n¨D: \r",
-					"¤~¯à­n¨D: \r","±Ó±¶­n¨D: \r","Åé½è­n¨D: \r"};
+char *sinAbilityName[50] = {"ï¿½ï¿½ï¿½ï¿½ï¿½O: \r","ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½: \r","ï¿½gï¿½{: \r","ï¿½ï¿½  ï¿½ï¿½: \r","ï¿½ï¿½ï¿½mï¿½O: \r","ï¿½Rï¿½ï¿½ï¿½v: \r",
+					"ï¿½Bï¿½~ï¿½ï¿½ï¿½mï¿½O: \r","ï¿½ï¿½×²v: \r","ï¿½ï¿½ï¿½Ê³tï¿½ï¿½: \r","ï¿½@ï¿½[ï¿½ï¿½: \r","ï¿½ï¿½_ï¿½]ï¿½kï¿½ï¿½: \r","ï¿½ï¿½_ï¿½Í©Rï¿½ï¿½: \r",
+					"ï¿½ï¿½_ï¿½ï¿½Oï¿½ï¿½: \r","ï¿½ï¿½ï¿½Ý©ï¿½: \r","ï¿½ÛµMï¿½Ý©ï¿½: \r","ï¿½ï¿½ï¿½Ý©ï¿½: \r","ï¿½Bï¿½Ý©ï¿½: \r","ï¿½pï¿½Ý©ï¿½: \r","ï¿½rï¿½Ý©ï¿½: \r",
+					"ï¿½ï¿½ï¿½Ý©ï¿½: \r","ï¿½ï¿½ï¿½Ý©ï¿½: \r","ï¿½Í©Rï¿½È¦Aï¿½ï¿½: \r","ï¿½]ï¿½kï¿½È¦Aï¿½ï¿½: \r","ï¿½ï¿½Oï¿½È¦Aï¿½ï¿½: \r","ï¿½Í©Rï¿½È´ï¿½ï¿½ï¿½: \r",
+					"ï¿½]ï¿½kï¿½È´ï¿½ï¿½ï¿½: \r","ï¿½ï¿½Oï¿½È´ï¿½ï¿½ï¿½: \r","ï¿½Ä¤ï¿½sï¿½ï¿½Æ¶q: \r","ï¿½ï¿½ï¿½Å­nï¿½D: \r","ï¿½Oï¿½qï¿½nï¿½D: \r","ï¿½ï¿½ï¿½Oï¿½nï¿½D: \r",
+					"ï¿½~ï¿½ï¿½nï¿½D: \r","ï¿½Ó±ï¿½ï¿½nï¿½D: \r","ï¿½ï¿½ï¿½nï¿½D: \r"};
 
 
 
-char *sinSpecialName[50] = {"¯S¦³§ðÀ»³t«×: \r","¯S¦³¥²±þ: \r","¯S¦³¨¾¿m¤O: \r","¯S¦³ÃB¥~¨¾¿m¤O: \r",
-						"¯S¦³®æ¾×²v: \r","Å]ªk¼ô½m«×: \r","¯S¦³²¾°Ê³t«×: \r","¯S¦³ÅéÄÝ©Ê: \r","¯S¦³¦ÛµMÄÝ©Ê: \r",
-						"¯S¦³¤õÄÝ©Ê: \r","¯S¦³¦BÄÝ©Ê: \r","¯S¦³¹pÄÝ©Ê: \r","¯S¦³¬rÄÝ©Ê: \r","¯S¦³¤ôÄÝ©Ê: \r","¯S¦³­·ÄÝ©Ê: \r",
-						"¯S¦³§ðÀ»¤O: \r","¯S¦³©R¤¤²v: \r","¯S¦³®gµ{¶ZÂ÷: \r","¯S¦³Åé§ðÀ»: \r","¯S¦³¦ÛµM§ðÀ»: \r","¯S¦³¤õ§ðÀ»: \r","¯S¦³¦B§ðÀ»: \r",
-						"¯S¦³¹p§ðÀ»: \r","¯S¦³¬r§ðÀ»: \r","¯S¦³¤ô§ðÀ»: \r","¯S¦³­·§ðÀ»: \r","³Ì¤j¥Í©R­È¼W¥[: \r","³Ì¤jÅ]ªk­È¼W¥[: \r",
-						"¥Í©R­È¦A¥Í: \r","Å]ªk­È¦A¥Í: \r","ºë¤O­È¦A¥Í: \r","½æ¥X»ù®æ: \r","¶R¤J»ù®æ: \r"
+char *sinSpecialName[50] = {"ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½mï¿½O: \r","ï¿½Sï¿½ï¿½ï¿½Bï¿½~ï¿½ï¿½ï¿½mï¿½O: \r",
+						"ï¿½Sï¿½ï¿½ï¿½ï¿½×²v: \r","ï¿½]ï¿½kï¿½ï¿½mï¿½ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½Ê³tï¿½ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½Ý©ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½ÛµMï¿½Ý©ï¿½: \r",
+						"ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½Ý©ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½Bï¿½Ý©ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½pï¿½Ý©ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½rï¿½Ý©ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½Ý©ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½Ý©ï¿½: \r",
+						"ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½O: \r","ï¿½Sï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½v: \r","ï¿½Sï¿½ï¿½ï¿½gï¿½{ï¿½Zï¿½ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½ÛµMï¿½ï¿½ï¿½ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½: \r",
+						"ï¿½Sï¿½ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½rï¿½ï¿½ï¿½ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: \r","ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: \r","ï¿½Ì¤jï¿½Í©Rï¿½È¼Wï¿½[: \r","ï¿½Ì¤jï¿½]ï¿½kï¿½È¼Wï¿½[: \r",
+						"ï¿½Í©Rï¿½È¦Aï¿½ï¿½: \r","ï¿½]ï¿½kï¿½È¦Aï¿½ï¿½: \r","ï¿½ï¿½Oï¿½È¦Aï¿½ï¿½: \r","ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½: \r","ï¿½Rï¿½Jï¿½ï¿½ï¿½ï¿½: \r"
 
 
 
 };
 
 
-char *SpecialName3 = "%s ¯S¦³\r";
-char *MixResultTitle = "ª««~¿Ä¦Xªºµ²ªG";
-char *NowLevelText = "¥Ø«eµ¥¯Å\r";
-char *NextLevelText = "¤U¤@­Óµ¥¯Å\r";
+char *SpecialName3 = "%s ï¿½Sï¿½ï¿½\r";
+char *MixResultTitle = "ï¿½ï¿½ï¿½~ï¿½Ä¦Xï¿½ï¿½ï¿½ï¿½ï¿½G";
+char *NowLevelText = "ï¿½Ø«eï¿½ï¿½ï¿½ï¿½\r";
+char *NextLevelText = "ï¿½Uï¿½@ï¿½Óµï¿½ï¿½ï¿½\r";
 
-char *NormalAttckName ="°ò¥»§ðÀ»";
-char *RequirLevel = "%s (µ¥¯Å­n¨D:%d)\r";
-char *UseItemGroupName = "¥i¥Îªºª««~²Õ\r";
+char *NormalAttckName ="ï¿½ò¥»§ï¿½ï¿½ï¿½";
+char *RequirLevel = "%s (ï¿½ï¿½ï¿½Å­nï¿½D:%d)\r";
+char *UseItemGroupName = "ï¿½iï¿½Îªï¿½ï¿½ï¿½ï¿½~ï¿½ï¿½\r";
 
-char *PoisonName = "¬rÄÝ©Ê:\r";
-char *FireName = "¤õÄÝ©Ê:\r";
-char *AttackAreaName = "§ðÀ»½d³ò:\r";
-char *Attack_RateName = "©R¤¤²v:\r";
-char *Max_DamageIncre = "³Ì¤j§ðÀ»¤O¼W¥[:\r";
-char *DamageAddName = "§ðÀ»¤O¥[±j:\r";
-char *Attack_SpeedAdd = "§ðÀ»³t«×¼W¥[:\r";
-char *IncreBlock = "®æ¾×²v¼W¥[:\r";
-char *CountinueTime = "ºû«ùªº®É¶¡:\r";
-char *UseManaName = "¨Ï¥ÎÅ]ªk­È:\r";
-char *DamageName = "§ðÀ»¤O:\r";
-char *ShootingRangeName = "®gµ{:\r";
-char *IncreAsorb = "ÃB¥~¨¾¿m¤O¼W¥[:\r";
-char *SecName = "¬í";
-char *PlusDamageName = "§ðÀ»¤O¼W¥[:\r";
-char *HitNumName = "³sÄò§ðÀ»ªº¦¸¼Æ:\r";
-char *DecreLifeName = "¥Í©R­È´î¤Ö­È:\r";
-char *Attck_RateAdd = "©R¤¤²v¼W¥[­È:\r";
-char *Add_CriticalName = "´£°ª¥²±þ²v:\r";
-char *Push_AreaName = "°h«áªº¶ZÂ÷:\r";
-char *FireAttackDamageAdd ="´£°ª¤õÄÝ©Êªº§ðÀ»¤O :\r";
-char *IceName = "¦BÄÝ©Ê:\r";
-char *IceAttackDamageAdd = "´£°ª¦BÄÝ©Êªº§ðÀ»¤O:\r";
-char *StuneRate = "·w­Ëªº¾÷²v:\r";
-char *DefenseRateIncre = "¨¾¿m¾÷²v¼W¥[:\r";
-char *WeaponSizeName ="ªZ¾¹ªº¤j¤p:\r";
-char *HwakRotationNum = "ÆNªº½L±Û¼Æ:\r";
-char *WeaponSpeedAddName  = "ªZ¾¹ªº³t«×¥[§Ö:\r";
-char *IncreAttack_RateName = "©R¤¤²v¼W¥[:\r";
-char *ShootingNumName = "µo®g¼Æ¶q:\r";
-char *SeriesShootingCount = "³sÄòµo®gªº½b¼Æ:\r";
-char *UseStaminaName = "¨Ï¥Îºë¤O­È:\r";
-char *MasterSkillMoneyName = "§Þ¯à¾Ç²ßªº¶O¥Î:\r";
+char *PoisonName = "ï¿½rï¿½Ý©ï¿½:\r";
+char *FireName = "ï¿½ï¿½ï¿½Ý©ï¿½:\r";
+char *AttackAreaName = "ï¿½ï¿½ï¿½ï¿½ï¿½dï¿½ï¿½:\r";
+char *Attack_RateName = "ï¿½Rï¿½ï¿½ï¿½v:\r";
+char *Max_DamageIncre = "ï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½Wï¿½[:\r";
+char *DamageAddName = "ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½[ï¿½j:\r";
+char *Attack_SpeedAdd = "ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½×¼Wï¿½[:\r";
+char *IncreBlock = "ï¿½ï¿½×²vï¿½Wï¿½[:\r";
+char *CountinueTime = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¶ï¿½:\r";
+char *UseManaName = "ï¿½Ï¥ï¿½ï¿½]ï¿½kï¿½ï¿½:\r";
+char *DamageName = "ï¿½ï¿½ï¿½ï¿½ï¿½O:\r";
+char *ShootingRangeName = "ï¿½gï¿½{:\r";
+char *IncreAsorb = "ï¿½Bï¿½~ï¿½ï¿½ï¿½mï¿½Oï¿½Wï¿½[:\r";
+char *SecName = "ï¿½ï¿½";
+char *PlusDamageName = "ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½Wï¿½[:\r";
+char *HitNumName = "ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:\r";
+char *DecreLifeName = "ï¿½Í©Rï¿½È´ï¿½Ö­ï¿½:\r";
+char *Attck_RateAdd = "ï¿½Rï¿½ï¿½ï¿½vï¿½Wï¿½[ï¿½ï¿½:\r";
+char *Add_CriticalName = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½v:\r";
+char *Push_AreaName = "ï¿½hï¿½áªºï¿½Zï¿½ï¿½:\r";
+char *FireAttackDamageAdd ="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý©Êªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½O :\r";
+char *IceName = "ï¿½Bï¿½Ý©ï¿½:\r";
+char *IceAttackDamageAdd = "ï¿½ï¿½ï¿½ï¿½ï¿½Bï¿½Ý©Êªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½O:\r";
+char *StuneRate = "ï¿½wï¿½Ëªï¿½ï¿½ï¿½ï¿½v:\r";
+char *DefenseRateIncre = "ï¿½ï¿½ï¿½mï¿½ï¿½ï¿½vï¿½Wï¿½[:\r";
+char *WeaponSizeName ="ï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½jï¿½p:\r";
+char *HwakRotationNum = "ï¿½Nï¿½ï¿½ï¿½Lï¿½Û¼ï¿½:\r";
+char *WeaponSpeedAddName  = "ï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½tï¿½×¥[ï¿½ï¿½:\r";
+char *IncreAttack_RateName = "ï¿½Rï¿½ï¿½ï¿½vï¿½Wï¿½[:\r";
+char *ShootingNumName = "ï¿½oï¿½gï¿½Æ¶q:\r";
+char *SeriesShootingCount = "ï¿½sï¿½ï¿½oï¿½gï¿½ï¿½ï¿½bï¿½ï¿½:\r";
+char *UseStaminaName = "ï¿½Ï¥Îºï¿½Oï¿½ï¿½:\r";
+char *MasterSkillMoneyName = "ï¿½Þ¯ï¿½Ç²ßªï¿½ï¿½Oï¿½ï¿½:\r";
 
-char *ItemAgingResult = "ª««~¿Ä¦Xªºµ²ªG";
+char *ItemAgingResult = "ï¿½ï¿½ï¿½~ï¿½Ä¦Xï¿½ï¿½ï¿½ï¿½ï¿½G";
 
-char *sinGold ="%d¤¸";
-char *sinGiveItem5 = "ÃØ°eªº¹D¨ã";
-char *sinCopyItem5 = "½Æ»s¦nªº¹D¨ã";
+char *sinGold ="%dï¿½ï¿½";
+char *sinGiveItem5 = "ï¿½Ø°eï¿½ï¿½ï¿½Dï¿½ï¿½";
+char *sinCopyItem5 = "ï¿½Æ»sï¿½nï¿½ï¿½ï¿½Dï¿½ï¿½";
 char *sinNum7 = "RND";
-char *sinSkillPointName = "§Þ¯àÂI¼Æ";
-char *sinG_Pike_Time3 = "­áµ²®É¶¡ :\r";
-char *sinItemLimitTimeOverMsg = "¤w¸g¹L¤F¦³®Ä´Á­­\r";
-char *sinDeadSongPyeunEat = "¤Ñ°Ú! ³o¤ë»æ¤w¸gÃa±¼¤F!";
+char *sinSkillPointName = "ï¿½Þ¯ï¿½ï¿½Iï¿½ï¿½";
+char *sinG_Pike_Time3 = "ï¿½áµ²ï¿½É¶ï¿½ :\r";
+char *sinItemLimitTimeOverMsg = "ï¿½wï¿½gï¿½Lï¿½Fï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½\r";
+char *sinDeadSongPyeunEat = "ï¿½Ñ°ï¿½! ï¿½oï¿½ï¿½ï¿½wï¿½gï¿½aï¿½ï¿½ï¿½F!";
 
 
-char *sinMaxDamageAdd = "³Ì¤j§ðÀ»¤O¥[±j+\r";
-char *sinDamagePiercing = "(¬ï³e§ðÀ»)\r";
-char *sinAddStamina = "ºë¤O¼W¥[¶q:\r";
-char *sinAddLife = "¥Í©R¤O«ì´_­È:\r";
+char *sinMaxDamageAdd = "ï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½[ï¿½j+\r";
+char *sinDamagePiercing = "(ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½)\r";
+char *sinAddStamina = "ï¿½ï¿½Oï¿½Wï¿½[ï¿½q:\r";
+char *sinAddLife = "ï¿½Í©Rï¿½Oï¿½ï¿½_ï¿½ï¿½:\r";
 
-char *sinDamageUndead50 = "¹ï¤£¦º¨t¦C©ÇÃ~ 50% §ðÀ»¤O¼W¥[:\r";
-char *sinNumCount2 = "¼Æ¶q:\r";
-char *sinNumCount3 = "¼Æ¶q\r";
-char *sinDecreDamage = "§ðÀ»¤O´î¤Ö­È:\r";
-char *sinConvert4 = "ÅÜ´«¶q:\r";
-char *sinIncreElement = "¤¸¯ÀÄÝ©Ê¤W¤É­È:\r";
-char *sinPartyIncreElement = "ÄÝ©Ê¤W¤É¤§50%¾A¥Î©ó¶¤­û\r";
-char *sinFireBallDamage2 = "(«Ü¥¿½Tªº³Q¥´ªº©ÇÃ~¦¬¨ì 100% ¶Ë®`)\r";
-char *sinFireBallDamage3 = "(§ðÀ»½d³ò 60 (1/3 ¨ü¶Ë))\r";
-char *sinAddDamage7 = "§ðÀ»¤O¼W¥[:\r";
-char *PlusDamageWeapon = "ªZ¾¹";
-char *SparkDamage = "¥­§¡§ðÀ»¤O:\r";
-char *SparkNum7 = "³Ì¤j§ðÀ»¦¸¼Æ:\r";
-char *StunRage = "§ðÀ»¶ZÂ÷:\r";
+char *sinDamageUndead50 = "ï¿½ï¤£ï¿½ï¿½ï¿½tï¿½Cï¿½ï¿½ï¿½~ 50% ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½Wï¿½[:\r";
+char *sinNumCount2 = "ï¿½Æ¶q:\r";
+char *sinNumCount3 = "ï¿½Æ¶q\r";
+char *sinDecreDamage = "ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½Ö­ï¿½:\r";
+char *sinConvert4 = "ï¿½Ü´ï¿½ï¿½q:\r";
+char *sinIncreElement = "ï¿½ï¿½ï¿½ï¿½ï¿½Ý©Ê¤Wï¿½É­ï¿½:\r";
+char *sinPartyIncreElement = "ï¿½Ý©Ê¤Wï¿½É¤ï¿½50%ï¿½Aï¿½Î©ó¶¤­ï¿½\r";
+char *sinFireBallDamage2 = "(ï¿½Ü¥ï¿½ï¿½Tï¿½ï¿½ï¿½Qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½ 100% ï¿½Ë®`)\r";
+char *sinFireBallDamage3 = "(ï¿½ï¿½ï¿½ï¿½ï¿½dï¿½ï¿½ 60 (1/3 ï¿½ï¿½ï¿½ï¿½))\r";
+char *sinAddDamage7 = "ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½Wï¿½[:\r";
+char *PlusDamageWeapon = "ï¿½Zï¿½ï¿½";
+char *SparkDamage = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½O:\r";
+char *SparkNum7 = "ï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:\r";
+char *StunRage = "ï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½:\r";
 
 
-char *PartyArea7 ="¾Ô°«®É¶¤¥î¥b®|:\r";
-char *Area17 ="¥b®|:\r";
-char *AddAttack_Rate9 ="©R¤¤²v¼W¥[:\r";
-char *PiercingRange ="³e³q¶ZÂ÷:\r";
-char *IncreDefense = "¨¾¿m¤O¼W¥[:\r";
-char *AddShootingRange = "§ðÀ»¶ZÂ÷¼W¥[:\r";
-char *LifeAbsorb = "¥Í©R­È§l¦¬¶q:\r";
-char *FireDamage = "¼W¥[¤õÄÝ©Ê§ðÀ»¤O:\r";
-char *IceDamage = "¼W¥[¦BÄÝ©Ê§ðÀ»¤O:\r";
-char *LightningDamage = "¼W¥[¹pÄÝ©Ê§ðÀ»¤O:\r";
-char *AddManaRegen = "¼W¥[Å]ªk¦A¥Í­È:\r";
-char *LightNum = "°{¹q¦¸¼Æ:\r";
-char *ReturnDamage = "¤Ï®g¶Ë®`:\r";
-char *Area18 = "¦³®Ä¥b®|:\r";
-char *IncreMana5 = "¼W¥[Å]ªk­È:\r";
-char *Area19 = "¦³®Ä¶ZÂ÷:\r";
-char *HelpTitle8 = "»¡©ú";
-char *QuestTitle8 = "¥ô°È";
-char *IncreWeaponAttack_RateName = "ªZ¾¹©R¤¤²v¼W¥[:\r";
-char *AddMaxDamage = "³Ì¤j¶Ë®`¤O¼W¥[:\r";
-char *LinkCoreName = "²¾°Ê¨ì¤½·|·|­û\r";
-char *DesLinkCore = "¹ï¶H:";
+char *PartyArea7 ="ï¿½Ô°ï¿½ï¿½É¶ï¿½ï¿½ï¿½bï¿½|:\r";
+char *Area17 ="ï¿½bï¿½|:\r";
+char *AddAttack_Rate9 ="ï¿½Rï¿½ï¿½ï¿½vï¿½Wï¿½[:\r";
+char *PiercingRange ="ï¿½eï¿½qï¿½Zï¿½ï¿½:\r";
+char *IncreDefense = "ï¿½ï¿½ï¿½mï¿½Oï¿½Wï¿½[:\r";
+char *AddShootingRange = "ï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½Wï¿½[:\r";
+char *LifeAbsorb = "ï¿½Í©Rï¿½È§lï¿½ï¿½ï¿½q:\r";
+char *FireDamage = "ï¿½Wï¿½[ï¿½ï¿½ï¿½Ý©Ê§ï¿½ï¿½ï¿½ï¿½O:\r";
+char *IceDamage = "ï¿½Wï¿½[ï¿½Bï¿½Ý©Ê§ï¿½ï¿½ï¿½ï¿½O:\r";
+char *LightningDamage = "ï¿½Wï¿½[ï¿½pï¿½Ý©Ê§ï¿½ï¿½ï¿½ï¿½O:\r";
+char *AddManaRegen = "ï¿½Wï¿½[ï¿½]ï¿½kï¿½Aï¿½Í­ï¿½:\r";
+char *LightNum = "ï¿½{ï¿½qï¿½ï¿½ï¿½ï¿½:\r";
+char *ReturnDamage = "ï¿½Ï®gï¿½Ë®`:\r";
+char *Area18 = "ï¿½ï¿½ï¿½Ä¥bï¿½|:\r";
+char *IncreMana5 = "ï¿½Wï¿½[ï¿½]ï¿½kï¿½ï¿½:\r";
+char *Area19 = "ï¿½ï¿½ï¿½Ä¶Zï¿½ï¿½:\r";
+char *HelpTitle8 = "ï¿½ï¿½ï¿½ï¿½";
+char *QuestTitle8 = "ï¿½ï¿½ï¿½";
+char *IncreWeaponAttack_RateName = "ï¿½Zï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½vï¿½Wï¿½[:\r";
+char *AddMaxDamage = "ï¿½Ì¤jï¿½Ë®`ï¿½Oï¿½Wï¿½[:\r";
+char *LinkCoreName = "ï¿½ï¿½ï¿½Ê¨ì¤½ï¿½|ï¿½|ï¿½ï¿½\r";
+char *DesLinkCore = "ï¿½ï¿½H:";
+
+

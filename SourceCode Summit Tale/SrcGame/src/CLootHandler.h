@@ -103,3 +103,6 @@ private:
 };
 
 extern CLootFilter cLootFilter;
+
+
+

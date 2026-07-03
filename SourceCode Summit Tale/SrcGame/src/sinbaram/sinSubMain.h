@@ -278,3 +278,7 @@ extern int SummonSkillCodeIndex[10];
 extern int haSiegeBoardTempFlag;
 
 #endif
+
+
+
+

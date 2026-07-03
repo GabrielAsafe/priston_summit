@@ -271,3 +271,5 @@ extern sQUEST_CHANGEJOB3   sinQuest_Level80_2;
 extern sQUEST_CHANGEJOB3   sinQuest_Level90_2;
 extern char *QuestFilePath4[];
 extern char szQuestMonsterName[64];
+
+

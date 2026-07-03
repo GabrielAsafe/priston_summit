@@ -416,3 +416,7 @@ int dsDrawTexImageFloatColor(int Mat, float x, float y, float w, float h, float 
 	DrawTexture(smMaterial[Mat].smTexture[0]->lpD3DTexture, tlVertex, 1);
 	return TRUE;
 }
+
+
+
+

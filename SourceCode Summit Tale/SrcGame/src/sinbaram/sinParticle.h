@@ -101,3 +101,6 @@ extern int   sinCraftItemStartFlag2;
 
 extern int  sinAgingSuccessFlag2;
 extern DWORD InitCancelMixTime;
+
+
+

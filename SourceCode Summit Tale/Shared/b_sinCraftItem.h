@@ -10,7 +10,7 @@
 #define   SIN_ADD_DAMAGE_MIN		0x00000080	//Poder de Ataque Min.
 #define   SIN_ADD_DAMAGE_MAX		0x00000100	//Poder de Ataque M?.
 #define   SIN_ADD_ATTACK_SPEED		0x00000200	//Vel. de Ataque
-#define   SIN_ADD_ABSORB			0x00000400	//Absorção
+#define   SIN_ADD_ABSORB			0x00000400	//Absorï¿½ï¿½o
 #define   SIN_ADD_DEFENCE			0x00000800	//Taxa de Defesa
 #define   SIN_ADD_BLOCK_RATE		0x00001000	//Bloqueio
 #define   SIN_ADD_MOVE_SPEED		0x00002000	//Velocidade
@@ -241,7 +241,7 @@
 "Taxa de Ataque +60\rPoder de Ataque Min. +6\rPoder de Ataque Max. +6\rHP +20\r"},
 
 
-// ?c)¿Ê ----------------------------------------------------------------------------------------------------
+// ?c)ï¿½ï¿½ ----------------------------------------------------------------------------------------------------
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -291,7 +291,7 @@
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {0.6f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"Absorção +0.6\r"},
+"Absorï¿½ï¿½o +0.6\r"},
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
 {0,0,0,0,0,0,0,1,0},
@@ -333,70 +333,70 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {30,0.6f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Defesa +30\rAbsorção +0.6\r"},
+"Defesa +30\rAbsorï¿½ï¿½o +0.6\r"},
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
 {0,1,0,2,1,1,0,0,0},
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {40,0.4f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Defesa +40\rAbsorção +0.4\r"},
+"Defesa +40\rAbsorï¿½ï¿½o +0.4\r"},
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
 {0,1,0,0,2,5,0,0,0},
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {45,1.0f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Defesa +45\rAbsorção +1.0\r"},
+"Defesa +45\rAbsorï¿½ï¿½o +1.0\r"},
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
 {0,1,0,4,0,0,1,0,0},
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {10,1.5f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Defesa +10\rAbsorção +1.5\r"},
+"Defesa +10\rAbsorï¿½ï¿½o +1.5\r"},
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
 {0,1,0,0,0,0,2,0,0},
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {2.0f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"Absorção +2.0\r"},
+"Absorï¿½ï¿½o +2.0\r"},
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
 {0,0,0,0,1,2,2,0,0},
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {3.0f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"Absorção +3.0\r"},
+"Absorï¿½ï¿½o +3.0\r"},
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
 {0,1,0,0,1,1,3,0,0},
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {3.5f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"Absorção +3.5\r"},
+"Absorï¿½ï¿½o +3.5\r"},
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
 {0,0,4,0,4,0,3,0,0},
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {40,3.0f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Defesa +40\rAbsorção +3.0\r"},
+"Defesa +40\rAbsorï¿½ï¿½o +3.0\r"},
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
 {0,0,0,0,0,3,3,0,0},
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {30,0,0,0,0,0,0,0},
 {SIN_ADD_PERCENT,0,0,0,0,0,0,0},
-"Absorção +30%\r"},
+"Absorï¿½ï¿½o +30%\r"},
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
 {0,0,0,2,0,2,2,0,0},
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {20,3.4f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Defesa +20\rAbsorção +3.4\r"},
+"Defesa +20\rAbsorï¿½ï¿½o +3.4\r"},
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
 {0,0,0,0,1,0,0,4,0},
@@ -417,7 +417,7 @@
 {SIN_ADD_ABSORB,SIN_ADD_LIFE,0,0,0,0,0,0},
 {3.5f,20,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Absorção +3.5\rHP +20\r"},
+"Absorï¿½ï¿½o +3.5\rHP +20\r"},
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
 {2,2,2,2,2,2,0,0,0},
@@ -426,7 +426,7 @@
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0},
 "Resist?cia Org?ica +5\rResist?cia a Veneno +5\rResist?cia a Gelo +5\rResist?cia a Fogo +5\rResist?cia a Raio +5\r"},
 
-// ¹æÆÐ ----------------------------------------------------------------------------------------------------
+// ï¿½ï¿½ï¿½ï¿½ ----------------------------------------------------------------------------------------------------
 
 {{sinDS1,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0,0},
@@ -510,35 +510,35 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {15,0.3f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Defesa +15\rAbsorção +0.3\r"},
+"Defesa +15\rAbsorï¿½ï¿½o +0.3\r"},
 
 {{sinDS1,0,0,0,0,0,0,0},
 {0,0,2,0,2,0,0,0,0},
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {0.3f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"Absorção +0.3\r"},
+"Absorï¿½ï¿½o +0.3\r"},
 
 {{sinDS1,0,0,0,0,0,0,0},
 {0,1,0,0,1,2,0,0,0},
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {10,0.6f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Defesa +10\rAbsorção +0.6\r"},
+"Defesa +10\rAbsorï¿½ï¿½o +0.6\r"},
 
 {{sinDS1,0,0,0,0,0,0,0},
 {0,2,2,2,1,1,0,0,0},
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {20,0.3f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Defesa +20\rAbsorção +0.3\r"},
+"Defesa +20\rAbsorï¿½ï¿½o +0.3\r"},
 
 {{sinDS1,0,0,0,0,0,0,0},
 {0,0,1,0,4,0,1,0,0},
 {SIN_ADD_ABSORB,SIN_ADD_BLOCK_RATE,0,0,0,0,0,0},
 {0.6f,4,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Absorção +0.6\rBloqueio 4%\r"},
+"Absorï¿½ï¿½o +0.6\rBloqueio 4%\r"},
 
 {{sinDS1,0,0,0,0,0,0,0},
 {0,0,5,0,0,5,1,0,0},
@@ -580,14 +580,14 @@
 {SIN_ADD_ABSORB,SIN_ADD_MANA,0,0,0,0,0,0},
 {1.0f,20,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Absorção +1.0\rMP +20\r"},
+"Absorï¿½ï¿½o +1.0\rMP +20\r"},
 
 {{sinDS1,0,0,0,0,0,0,0},
 {0,0,0,0,3,1,0,2,0},
 {SIN_ADD_ABSORB,SIN_ADD_LIFE,0,0,0,0,0,0},
 {0.6f,40,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Absorção +0.6\rHP +40\r"},
+"Absorï¿½ï¿½o +0.6\rHP +40\r"},
 
 {{sinDS1,0,0,0,0,0,0,0},
 {2,2,2,2,2,2,0,0,0},
@@ -597,7 +597,7 @@
 "Resist?cia Org?ica +5\rResist?cia a Veneno +5\rResist?cia a Gelo +5\rResist?cia a Fogo +5\rResist?cia a Raio +5\r"},
 
 
-// ¿Àºê ºñÁî -----------------------------------------------------------------------------------------------
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -----------------------------------------------------------------------------------------------
 
 {{sinOM1,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0,0},
@@ -660,7 +660,7 @@
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {1.0f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"Absorção +1.0\r"},
+"Absorï¿½ï¿½o +1.0\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {2,0,1,0,0,0,0,0,0},
@@ -681,14 +681,14 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {15,0.4f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Defesa +15\rAbsorção +0.4\r"},
+"Defesa +15\rAbsorï¿½ï¿½o +0.4\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,4,0,4,0,0,0,0},
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {0.8f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"Absorção +0.8\r"},
+"Absorï¿½ï¿½o +0.8\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,1,0,0,2,2,0,0,0},
@@ -723,7 +723,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {50,1.0f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"Defesa +50\rAbsorção +1.0\r"},
+"Defesa +50\rAbsorï¿½ï¿½o +1.0\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,2,1,1,0,1,2,0,0},
@@ -758,7 +758,7 @@
 {SIN_ADD_ABSORB,SIN_ADD_MANAREGEN,SIN_ADD_LIFE,0,0,0,0,0},
 {1.0f,0.6f,20,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"Absorção +1.0\rRegen de Mana +0.6\rHP +20\r"},
+"Absorï¿½ï¿½o +1.0\rRegen de Mana +0.6\rHP +20\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {2,2,2,2,2,2,0,0,0},
@@ -766,4 +766,6 @@
 {5,5,5,5,5,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0},
 "Resist?cia Org?ica +5\rResist?cia a Veneno +5\rResist?cia a Gelo +5\rResist?cia a Fogo +5\rResist?cia a Raio +5\r"},
+
+
 

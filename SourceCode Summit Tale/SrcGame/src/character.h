@@ -1054,3 +1054,6 @@ int SetClanMaster_Player(DWORD dwMasterClan);
 
 
 #endif
+
+
+

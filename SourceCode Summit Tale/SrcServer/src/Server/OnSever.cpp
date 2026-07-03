@@ -1,4 +1,4 @@
-﻿#include <windows.h>
+#include <windows.h>
 #include <iostream>
 #include <io.h>
 #include <stdio.h>         
@@ -341,19 +341,19 @@ srCRISTAL_MONSTER	srCristalMonster[srCRISTAL_MAX] = {
 	{ "Figon"				, 0 , 9	},
 	{ "Rei Hopi"			, 0 , 9	},
 	{ "Hulk"				, 0 , 9	},
-	{ " ·£´ý "				, 0 , 0	},
-	{ "Guardião Santo"		, 0 , 0	},
+	{ " ���� "				, 0 , 0	},
+	{ "Guardi�o Santo"		, 0 , 0	},
 	{ "Aranha"				, 0 , 9	},
 	{ "Espectro Negro"		, 0 , 9	},
-	{ "Guardião de Aço"		, 0 , 9	},
-	{ "Polícia do Castelo"	, 0 , 0	},
-	{ "Milícia do Castelo"	, 0 , 0	},
+	{ "Guardi�o de A�o"		, 0 , 9	},
+	{ "Pol�cia do Castelo"	, 0 , 0	},
+	{ "Mil�cia do Castelo"	, 0 , 0	},
 	{ "Guarda do Castelo"	, 0 , 0	}, //16
 
-	{ "½ºÄÌ·¹Åæ Å©¸®½ºÅ»"	, 0 , 0	},
-	{ "Ä«¿À½º   Å©¸®½ºÅ»"	, 0 , 0	},
-	{ "ÀÎÆä¸£³ª Å©¸®½ºÅ»"	, 0 , 0	},
-	{ "°¡µð¾È µð¹ÙÀÎ"		, 0 , 0	} //20
+	{ "���̷��� ũ����Ż"	, 0 , 0	},
+	{ "ī����   ũ����Ż"	, 0 , 0	},
+	{ "���丣�� ũ����Ż"	, 0 , 0	},
+	{ "����� �����"		, 0 , 0	} //20
 
 };
 
@@ -371,19 +371,19 @@ srCRISTAL_MONSTER	srCristalMonsterBoss[srCRISTAL_MAX] = {
 	{ "Figon"			, 0 , 9	},
 	{ "Rei Hopi"			, 0 , 9		},
 	{ "Hulk"				, 0 , 9		},
-	{ " ·£´ý "				, 0 , 0		},
-	{ "Guardião Santo"		, 0 , 0		},
+	{ " ���� "				, 0 , 0		},
+	{ "Guardi�o Santo"		, 0 , 0		},
 	{ "Aranha"				, 0 , 9		},
 	{ "Espectro Negro"		, 0 ,9		},
-	{ "Guardião de Aço"		, 0 , 9		},
-	{ "Polícia do Castelo"		, 0 , 0		},
-	{ "Milícia do Castelo"		, 0 , 0		},
+	{ "Guardi�o de A�o"		, 0 , 9		},
+	{ "Pol�cia do Castelo"		, 0 , 0		},
+	{ "Mil�cia do Castelo"		, 0 , 0		},
 	{ "Guarda do Castelo"	, 0 , 0		},
 
-	{ "½ºÄÌ·¹Åæ Å©¸®½ºÅ»"	, 0 , 0		},
-	{ "Ä«¿À½º   Å©¸®½ºÅ»"	, 0 , 0		},
-	{ "ÀÎÆä¸£³ª Å©¸®½ºÅ»"	, 0 , 0		},
-	{ "°¡µð¾È µð¹ÙÀÎ"		, 0 , 0		}
+	{ "���̷��� ũ����Ż"	, 0 , 0		},
+	{ "ī����   ũ����Ż"	, 0 , 0		},
+	{ "���丣�� ũ����Ż"	, 0 , 0		},
+	{ "����� �����"		, 0 , 0		}
 };
 
 srCRISTAL_MONSTER srMarvelCristalMonster[MARVELCRISTAL_MAX] = {
@@ -394,7 +394,7 @@ srCRISTAL_MONSTER srMarvelCristalMonster[MARVELCRISTAL_MAX] = {
 	{ "Hulk"				, 0 ,12		},
 	{ "Aranha"				, 0 ,12		},
 	{ "Espectro Negro"		, 0 ,12		},
-	{ "Guardião de Aço"		, 0 ,12		},
+	{ "Guardi�o de A�o"		, 0 ,12		},
 };
 
 
@@ -406,7 +406,7 @@ srCRISTAL_MONSTER srMarvelCristalMonsterBoss[MARVELCRISTAL_MAX] = {
 	{ "Hulk"				, 0 ,12		},
 	{ "Aranha"				, 0 ,12		},
 	{ "Espectro Negro"		, 0 ,12		},
-	{ "Guardião de Aço"		, 0 ,12		},
+	{ "Guardi�o de A�o"		, 0 ,12		},
 };
 
 #define	srSKILL_MONSTER_MAX		4
@@ -421,100 +421,100 @@ srCRISTAL_MONSTER	srSkillMonster[srSKILL_MONSTER_MAX] = {
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy[7] = {
-	{ " ÄÚÅ©¸®½ºÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " ¸®Ä¡ÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ½ÎÀÌÅ¬·Ó½ºÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ¸ÞÇÍÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ºñµ¶ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " Á»ºñÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " µðÄÚÀÌÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " ��ũ������ ��ȥ "				, 0 , 20	},
+	{ " ��ġ�� ��ȥ "		, 0 , 20	},
+	{ " ����Ŭ�ӽ��� ��ȥ "		, 0 , 15	},
+	{ " ������ ��ȥ "			, 0 , 15	},
+	{ " ���� ��ȥ "		, 0 , 15	},
+	{ " ������ ��ȥ "				, 0 , 10	},
+	{ " �������� ��ȥ "			, 0 , 5		}
 };
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy2[7] = {
-	{ " ¹ìÇÇ¸¯ ¹îÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " ±×¸®ºìÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ÀÌºí ½º³×ÀÏÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " Å©¸³Æ®ÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ºÎ¸¶ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ¹Ù°ïÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " Å¸ÀÌÅºÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " ���Ǹ� ���� ��ȥ "				, 0 , 20	},
+	{ " �׸����� ��ȥ "		, 0 , 20	},
+	{ " �̺� �������� ��ȥ "		, 0 , 15	},
+	{ " ũ��Ʈ�� ��ȥ "			, 0 , 15	},
+	{ " �θ��� ��ȥ "		, 0 , 15	},
+	{ " �ٰ��� ��ȥ "				, 0 , 10	},
+	{ " Ÿ��ź�� ��ȥ "			, 0 , 5		}
 };
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy3[7] = {
-	{ " ºñºíÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " ½½·¹ÀÌ¿ÂÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ½½·¯ÅÍÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " Å¸¿ö °í·½ÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ¸Ó¹ÌÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ³ªÁîÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " À§Ä¡ÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " ����� ��ȥ "				, 0 , 20	},
+	{ " �����̿��� ��ȥ "		, 0 , 20	},
+	{ " �������� ��ȥ "		, 0 , 15	},
+	{ " Ÿ�� ����� ��ȥ "			, 0 , 15	},
+	{ " �ӹ��� ��ȥ "		, 0 , 15	},
+	{ " ������ ��ȥ "				, 0 , 10	},
+	{ " ��ġ�� ��ȥ "			, 0 , 5		}
 };
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy4[7] = {
-	{ " ¹ö¼­Ä¿ÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " Å¸ÀÌÇ¬ÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ¸®ÀÚµåÆ÷Å©ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ·¥ÆäÀÌÁöÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ¾Æº§¸°ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ÀÎÅ¥¹ö½ºÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " »õµå´Ï½ºÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " ����Ŀ�� ��ȥ "				, 0 , 20	},
+	{ " Ÿ��Ǭ�� ��ȥ "		, 0 , 20	},
+	{ " ���ڵ���ũ�� ��ȥ "		, 0 , 15	},
+	{ " ���������� ��ȥ "			, 0 , 15	},
+	{ " �ƺ����� ��ȥ "		, 0 , 15	},
+	{ " ��ť������ ��ȥ "				, 0 , 10	},
+	{ " ����Ͻ��� ��ȥ "			, 0 , 5		}
 };
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy5[7] = {
-	{ " µð-¸Ó½ÅÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " Å·È£ÇÇÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ¿À¸Þ°¡ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " µ¥µåÁ¸ÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ¾ÆÀÌ½º °í·½ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ÄÝµå¾ÆÀÌÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " ±¼°¡¸£ÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " ��-�ӽ��� ��ȥ "				, 0 , 20	},
+	{ " ŷȣ���� ��ȥ "		, 0 , 20	},
+	{ " ���ް��� ��ȥ "		, 0 , 15	},
+	{ " �������� ��ȥ "			, 0 , 15	},
+	{ " ���̽� ����� ��ȥ "		, 0 , 15	},
+	{ " �ݵ������ ��ȥ "				, 0 , 10	},
+	{ " �������� ��ȥ "			, 0 , 5		}
 };
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy6[7] = {
-	{ " ¹ìÇÇ¸¯ ¹îÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " ±×¸®ºìÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ÀÌºí ½º³×ÀÏÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " Å©¸³Æ®ÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ºÎ¸¶ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ¹Ù°ïÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " ¸ÓÇÉÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " ���Ǹ� ���� ��ȥ "				, 0 , 20	},
+	{ " �׸����� ��ȥ "		, 0 , 20	},
+	{ " �̺� �������� ��ȥ "		, 0 , 15	},
+	{ " ũ��Ʈ�� ��ȥ "			, 0 , 15	},
+	{ " �θ��� ��ȥ "		, 0 , 15	},
+	{ " �ٰ��� ��ȥ "				, 0 , 10	},
+	{ " ������ ��ȥ "			, 0 , 5		}
 };
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy7[7] = {
-	{ " ºñºíÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " ½½·¹ÀÌ¿ÂÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ½½·¯ÅÍÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " Å¸¿ö °í·½ÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ¸Ó¹ÌÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ³ªÁîÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " ½½¸®¹öÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " ����� ��ȥ "				, 0 , 20	},
+	{ " �����̿��� ��ȥ "		, 0 , 20	},
+	{ " �������� ��ȥ "		, 0 , 15	},
+	{ " Ÿ�� ����� ��ȥ "			, 0 , 15	},
+	{ " �ӹ��� ��ȥ "		, 0 , 15	},
+	{ " ������ ��ȥ "				, 0 , 10	},
+	{ " �������� ��ȥ "			, 0 , 5		}
 };
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy8[7] = {
-	{ " ¹ö¼­Ä¿ÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " Å¸ÀÌÇ¬ÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ¸®ÀÚµåÆ÷Å©ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ·¥ÆäÀÌÁöÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ¾Æº§¸°ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ÀÎÅ¥¹ö½ºÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " ¸ÞÆ®·ÐÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " ����Ŀ�� ��ȥ "				, 0 , 20	},
+	{ " Ÿ��Ǭ�� ��ȥ "		, 0 , 20	},
+	{ " ���ڵ���ũ�� ��ȥ "		, 0 , 15	},
+	{ " ���������� ��ȥ "			, 0 , 15	},
+	{ " �ƺ����� ��ȥ "		, 0 , 15	},
+	{ " ��ť������ ��ȥ "				, 0 , 10	},
+	{ " ��Ʈ���� ��ȥ "			, 0 , 5		}
 };
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy9[7] = {
-	{ " µð-¸Ó½ÅÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " Å·È£ÇÇÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ¿À¸Þ°¡ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " µ¥µåÁ¸ÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ¾ÆÀÌ½º °í·½ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ÄÝµå¾ÆÀÌÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " ±×·ÎÅ×½ºÅ©ÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " ��-�ӽ��� ��ȥ "				, 0 , 20	},
+	{ " ŷȣ���� ��ȥ "		, 0 , 20	},
+	{ " ���ް��� ��ȥ "		, 0 , 15	},
+	{ " �������� ��ȥ "			, 0 , 15	},
+	{ " ���̽� ����� ��ȥ "		, 0 , 15	},
+	{ " �ݵ������ ��ȥ "				, 0 , 10	},
+	{ " �׷��׽�ũ�� ��ȥ "			, 0 , 5		}
 };
 
 
@@ -531,11 +531,11 @@ srCRISTAL_MONSTER	srBillingCrystalMonster[srBC_MONSTER_TOTAL] = {
 	{ "Naz"					, 0 , 0	},
 	{ "Duende Guerreiro"	, 0 , 0	},
 	{ "Sereia Profana"		, 0 , 0	},
-	{ "Máquina-D"	        , 0 , 0	}, //cristal caos
+	{ "M�quina-D"	        , 0 , 0	}, //cristal caos
 
 	{ "Ratoo"				, 0 , 0	},
 	{ "Grotesco"			, 0 , 0	},
-	{ "Punhos de Aço"		, 0 , 0	},
+	{ "Punhos de A�o"		, 0 , 0	},
 	{ "Gelo"				, 0 , 0	}, //cristal inferna
 
 	{ "Omicron"				, 0 , 25 }, //cristal extremo
@@ -544,32 +544,32 @@ srCRISTAL_MONSTER	srBillingCrystalMonster[srBC_MONSTER_TOTAL] = {
 	{ "Omega"				, 0 , 25 },
 
 	{ "Quimera"					, 0 , 0	},
-	{ "Pássaro Demoníaco"		, 0 , 0	},
-	{ "Cavaleiro Sanguinário"	, 0 , 0	},
+	{ "P�ssaro Demon�aco"		, 0 , 0	},
+	{ "Cavaleiro Sanguin�rio"	, 0 , 0	},
 	{ "Seto"					, 0 , 0	}, //cristal Enigma
 
 	{ "Arqueira das Cinzas"		, 0 , 0	},
 	{ "Naz das Cinzas"			, 0 , 0	},
-	{ "Guardião do Templo"		, 0 , 0	},
+	{ "Guardi�o do Templo"		, 0 , 0	},
 	{ "Gorgon"					, 0 , 0	} //cristal wyvern
 };
 
 #define	srSOLO_MONSTER_TOTAL	16
 srCRISTAL_MONSTER	srBillingSoloCristal[srSOLO_MONSTER_TOTAL] = {
-	{ "Fúria"			, 0 , 0	},
+	{ "F�ria"			, 0 , 0	},
 	{ "Babel"			, 0 , 0	},
 	{ "Valento"			, 0 , 0	},
 	{ "Kelvezu"			, 0 , 0	},
 	{ "Mokova"			, 0 , 0	},
-	{ "Robô Mutante"    , 0 , 0	},
+	{ "Rob� Mutante"    , 0 , 0	},
 	{ "DevilShy"		, 0 , 0	},
 	{ "Duende de Gelo"	, 0 , 0	},
 	{ "Olho de Gelo"	, 0 , 0	},
 	{ "Golem de Gelo"	, 0 , 0	},
 	{ "Caos Cara"		, 0 , 0	},
-	{ "Cão Infernal"	, 0 , 0	},
-	{ "Guardião Negro"	, 0 , 0	},
-	{ "Abominação"		, 0 , 0	},
+	{ "C�o Infernal"	, 0 , 0	},
+	{ "Guardi�o Negro"	, 0 , 0	},
+	{ "Abomina��o"		, 0 , 0	},
 	{ "Igolation"		, 0 , 0	},
 	{ "Xetan"			, 0 , 0	}
 };
@@ -580,7 +580,7 @@ srCRISTAL_MONSTER srMiroticCristalMonster[MIROTIC_MAX] = {
 	{ "Golem de Gelo"		, 0 ,13	},
 	{ "Tartaruga Blindada"	, 0 ,13	},
 	{ "Verme de Fogo"		, 0 ,13	},
-	{ "Guardião do Templo"	, 0 ,13	},
+	{ "Guardi�o do Templo"	, 0 ,13	},
 	{ "Valento"				, 0 ,13	},
 	{ "Mokova"				, 0 ,13	}
 };
@@ -588,7 +588,7 @@ srCRISTAL_MONSTER srMiroticCristalMonster[MIROTIC_MAX] = {
 #define SINTETICO_MAX 8
 srCRISTAL_MONSTER srSinteticoCristalMonster[SINTETICO_MAX] = {
 	{ "Pike das Cinzas"					, 0 ,13	},
-	{ "Mecânico das Cinzas"				, 0 ,13	},
+	{ "Mec�nico das Cinzas"				, 0 ,13	},
 	{ "Arqueira das Cinzas"				, 0 ,13	},
 	{ "Atalanta das Cinzas"				, 0 ,13	},
 	{ "Cavaleiro das Cinzas"			, 0 ,13	},
@@ -4800,24 +4800,24 @@ DWORD rsRegist_EnterKey(DWORD _dwCode, DWORD _dwAdd)
 sHCORE_MONSTER	sHCoreEvent1[] = {
 	{ { "11" , 0, 40 } , { "12", 0, 40 } , { "13", 0, 20 } , { "14", 0, 25 } , { "", 0, 0 } , 100 , 6 , 0 , 40 , SOD_DEFAULT_DELAY },
 	{ { "21" , 0, 35 } , { "22", 0, 20 } , { "23", 0, 10 } , { "24", 0, 25 } , { "", 0, 0 } , 100 , 8 , 0 , 40 , SOD_DEFAULT_DELAY },
-	{ { "31" , 0, 35 } , { "32", 0, 30 } , { "34", 0, 35 } , { "35", 0, 25 } , { "¾ðÈ¦¸® ³ªÀÌÆ®", 0, 0 }	, 100 , 10 , 0 , 40 , SOD_DEFAULT_DELAY },
+	{ { "31" , 0, 35 } , { "32", 0, 30 } , { "34", 0, 35 } , { "35", 0, 25 } , { "��Ȧ�� ����Ʈ", 0, 0 }	, 100 , 10 , 0 , 40 , SOD_DEFAULT_DELAY },
 	{ { "41" , 0, 45 } , { "42", 0, 25 } , { "43", 0, 20 } , { "44", 0, 35 } , { "", 0, 0 } , 100 , 12 , 0 , 35 , SOD_DEFAULT_DELAY * 2 },
 	{ { "51" , 0, 30 } , { "52", 0, 20 } , { "53", 0, 40 } , { "54", 0, 25 } , { "", 0, 0 }	, 100 , 15 , 0 , 30 , SOD_DEFAULT_DELAY},
-	{ { "61" , 0, 20 } , { "62", 0, 20 } , { "63", 0, 40 } , { "64", 0, 30 } , { "º£¸£¹® ¾ÇÅ¸·é", 0, 0 } , 100 , 18 , 0 , 25, SOD_DEFAULT_DELAY },
+	{ { "61" , 0, 20 } , { "62", 0, 20 } , { "63", 0, 40 } , { "64", 0, 30 } , { "������ ��Ÿ��", 0, 0 } , 100 , 18 , 0 , 25, SOD_DEFAULT_DELAY },
 	{ { "71" , 0, 30 } , { "72", 0, 40 } , { "73", 0, 20 } , { "74", 0, 20 } , { "", 0, 0 }	, 100 , 21 , 0 , 20, SOD_DEFAULT_DELAY * 3 },
-	{ { "81" , 0, 20 } , { "82", 0, 30 } , { "83", 0, 30 } , { "84", 0, 25 } , { "µÒ ·Îµå", 0, 0 } , 100 , 0 , 50000 , 15 , SOD_DEFAULT_DELAY },
+	{ { "81" , 0, 20 } , { "82", 0, 30 } , { "83", 0, 30 } , { "84", 0, 25 } , { "�� �ε�", 0, 0 } , 100 , 0 , 50000 , 15 , SOD_DEFAULT_DELAY },
 	{ { "" , 0, 0 } , { "", 0, 0 } , { "", 0, 0 } , { "", 0, 0 } , { "", 0, 0 } , 0 , 3 , 0 , 0}
 };
 
 sHCORE_MONSTER	sHCoreEvent2[] = {
 	{ { "11" , 0, 40 } ,{ "12", 0, 40 } ,{ "13", 0, 20 } ,{ "14", 0, 25 } ,{ "", 0, 0 } , 100 , 6 , 0 , 40 , SOD_DEFAULT_DELAY },
 	{ { "21" , 0, 35 } ,{ "22", 0, 20 } ,{ "23", 0, 10 } ,{ "24", 0, 25 } ,{ "", 0, 0 } , 100 , 8 , 0 , 40 , SOD_DEFAULT_DELAY },
-	{ { "31" , 0, 35 } ,{ "32", 0, 30 } ,{ "34", 0, 35 } ,{ "35", 0, 25 } ,{ "¾ðÈ¦¸® ³ªÀÌÆ®", 0, 0 }	, 100 , 10 , 0 , 40 , SOD_DEFAULT_DELAY },
+	{ { "31" , 0, 35 } ,{ "32", 0, 30 } ,{ "34", 0, 35 } ,{ "35", 0, 25 } ,{ "��Ȧ�� ����Ʈ", 0, 0 }	, 100 , 10 , 0 , 40 , SOD_DEFAULT_DELAY },
 	{ { "41" , 0, 45 } ,{ "42", 0, 25 } ,{ "43", 0, 20 } ,{ "44", 0, 35 } ,{ "", 0, 0 } , 100 , 12 , 0 , 35 , SOD_DEFAULT_DELAY * 2 },
 	{ { "51" , 0, 30 } ,{ "52", 0, 20 } ,{ "53", 0, 40 } ,{ "54", 0, 25 } ,{ "", 0, 0 }	, 100 , 15 , 0 , 30 , SOD_DEFAULT_DELAY },
-	{ { "61" , 0, 20 } ,{ "62", 0, 20 } ,{ "63", 0, 40 } ,{ "64", 0, 30 } ,{ "º£¸£¹® ¾ÇÅ¸·é", 0, 0 } , 100 , 18 , 0 , 25, SOD_DEFAULT_DELAY },
+	{ { "61" , 0, 20 } ,{ "62", 0, 20 } ,{ "63", 0, 40 } ,{ "64", 0, 30 } ,{ "������ ��Ÿ��", 0, 0 } , 100 , 18 , 0 , 25, SOD_DEFAULT_DELAY },
 	{ { "71" , 0, 30 } ,{ "72", 0, 40 } ,{ "73", 0, 20 } ,{ "74", 0, 20 } ,{ "", 0, 0 }	, 100 , 21 , 0 , 20, SOD_DEFAULT_DELAY * 3 },
-	{ { "81" , 0, 20 } ,{ "82", 0, 30 } ,{ "83", 0, 30 } ,{ "84", 0, 25 } ,{ "µÒ ·Îµå", 0, 0 } , 100 , 0 , 50000 , 15 , SOD_DEFAULT_DELAY },
+	{ { "81" , 0, 20 } ,{ "82", 0, 30 } ,{ "83", 0, 30 } ,{ "84", 0, 25 } ,{ "�� �ε�", 0, 0 } , 100 , 0 , 50000 , 15 , SOD_DEFAULT_DELAY },
 	{ { "" , 0, 0 } ,{ "", 0, 0 } ,{ "", 0, 0 } ,{ "", 0, 0 } ,{ "", 0, 0 } , 0 , 3 , 0 , 0 }
 };
 
@@ -4825,12 +4825,12 @@ sHCORE_MONSTER	sHCoreEvent2[] = {
 sHCORE_MONSTER	sHCoreEvent3[] = {
 	{ { "11" , 0, 40 } ,{ "12", 0, 40 } ,{ "13", 0, 20 } ,{ "14", 0, 25 } ,{ "", 0, 0 } , 100 , 6 , 0 , 40 , SOD_DEFAULT_DELAY },
 	{ { "21" , 0, 35 } ,{ "22", 0, 20 } ,{ "23", 0, 10 } ,{ "24", 0, 25 } ,{ "", 0, 0 } , 100 , 8 , 0 , 40 , SOD_DEFAULT_DELAY },
-	{ { "31" , 0, 35 } ,{ "32", 0, 30 } ,{ "34", 0, 35 } ,{ "35", 0, 25 } ,{ "¾ðÈ¦¸® ³ªÀÌÆ®", 0, 0 }	, 100 , 10 , 0 , 40 , SOD_DEFAULT_DELAY },
+	{ { "31" , 0, 35 } ,{ "32", 0, 30 } ,{ "34", 0, 35 } ,{ "35", 0, 25 } ,{ "��Ȧ�� ����Ʈ", 0, 0 }	, 100 , 10 , 0 , 40 , SOD_DEFAULT_DELAY },
 	{ { "41" , 0, 45 } ,{ "42", 0, 25 } ,{ "43", 0, 20 } ,{ "44", 0, 35 } ,{ "", 0, 0 } , 100 , 12 , 0 , 35 , SOD_DEFAULT_DELAY * 2 },
 	{ { "51" , 0, 30 } ,{ "52", 0, 20 } ,{ "53", 0, 40 } ,{ "54", 0, 25 } ,{ "", 0, 0 }	, 100 , 15 , 0 , 30 , SOD_DEFAULT_DELAY },
-	{ { "61" , 0, 20 } ,{ "62", 0, 20 } ,{ "63", 0, 40 } ,{ "64", 0, 30 } ,{ "º£¸£¹® ¾ÇÅ¸·é", 0, 0 } , 100 , 18 , 0 , 25, SOD_DEFAULT_DELAY },
+	{ { "61" , 0, 20 } ,{ "62", 0, 20 } ,{ "63", 0, 40 } ,{ "64", 0, 30 } ,{ "������ ��Ÿ��", 0, 0 } , 100 , 18 , 0 , 25, SOD_DEFAULT_DELAY },
 	{ { "71" , 0, 30 } ,{ "72", 0, 40 } ,{ "73", 0, 20 } ,{ "74", 0, 20 } ,{ "", 0, 0 }	, 100 , 21 , 0 , 20, SOD_DEFAULT_DELAY * 3 },
-	{ { "81" , 0, 20 } ,{ "82", 0, 30 } ,{ "83", 0, 30 } ,{ "84", 0, 25 } ,{ "µÒ ·Îµå", 0, 0 } , 100 , 0 , 50000 , 15 , SOD_DEFAULT_DELAY },
+	{ { "81" , 0, 20 } ,{ "82", 0, 30 } ,{ "83", 0, 30 } ,{ "84", 0, 25 } ,{ "�� �ε�", 0, 0 } , 100 , 0 , 50000 , 15 , SOD_DEFAULT_DELAY },
 	{ { "" , 0, 0 } ,{ "", 0, 0 } ,{ "", 0, 0 } ,{ "", 0, 0 } ,{ "", 0, 0 } , 0 , 3 , 0 , 0 }
 };
 
@@ -14691,7 +14691,7 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 	ccItem.sinRecvAgingItem(pCraftItem_Server);
 	cnt = ccItem.AgingItem(QuestMode);
 
-	//POSSIVEL CORREÇÃO DA FALHA 
+	//POSSIVEL CORRE��O DA FALHA 
 	if(ErrorFlag) sAging_Recv.Result = TRUE;
 
 
@@ -14856,7 +14856,7 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 
 				if (AgeNum >= 10)
 				{
-					wsprintf(szMsgAging, "> Moriph: %s conquistou o nível (+%d) de aging no item (%s). gzzzz!",
+					wsprintf(szMsgAging, "> Moriph: %s conquistou o n�vel (+%d) de aging no item (%s). gzzzz!",
 						lpPlayInfo->getName().c_str(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
 					rsSendMessageAll(szMsgAging, 3);
 				}
@@ -14867,7 +14867,7 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 
 				if (AgeNum >= 10)
 				{
-					wsprintf(szMsgAging, "> Moriph: %s conquistou +2 no nível [+%d] de aging no item (%s). gzzzz!",
+					wsprintf(szMsgAging, "> Moriph: %s conquistou +2 no n�vel [+%d] de aging no item (%s). gzzzz!",
 						lpPlayInfo->getName().c_str(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
 					rsSendMessageAll(szMsgAging, 3);
 				}
@@ -15960,7 +15960,7 @@ int rsRecvManufactureItem(rsPLAYINFO* lpPlayInfo, SManufactureItem_Server* pManu
 		RecordManufactureItem(lpPlayInfo, &g_sManufactureItem_Recv.DesManufactureItem.sItemInfo);
 
 		TRANS_CHATMESSAGE	TransChatMessage;
-		wsprintf(TransChatMessage.szMessage, "Parabéns %s Acabouu de Craftar o Item %s", lpPlayInfo->getName().c_str(), g_sManufactureItem_Recv.DesManufactureItem.sItemInfo.ItemName);
+		wsprintf(TransChatMessage.szMessage, "Parab�ns %s Acabouu de Craftar o Item %s", lpPlayInfo->getName().c_str(), g_sManufactureItem_Recv.DesManufactureItem.sItemInfo.ItemName);
 		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 6;
@@ -16514,7 +16514,7 @@ int rsRecvWingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server)
 						if(lpPlayInfo->getSecurity() > AccountTypes::SEC_VIP)
 						{
 							TRANS_CHATMESSAGE	TransChatMessage;
-							wsprintf(TransChatMessage.szMessage, "¿À´Ã ¹ß»ýÇÒ¼ö ÀÖ´Â ¾ÆÀÌÅÛ¼ö¸¦ ÃÊ°úÇß½À´Ï´Ù(%d/%d)",
+							wsprintf(TransChatMessage.szMessage, "���� �߻��Ҽ� �ִ� �����ۼ��� �ʰ��߽��ϴ�(%d/%d)",
 								DefaultItems[cnt].sGenDay[1], DefaultItems[cnt].sGenDay[0]);
 
 							TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
@@ -19251,11 +19251,11 @@ char* retornarNomeMapa(int field)
 	else if (field == 25)
 		nomeMapa = "Caverna das Abelhas";
 	else if (field == 26)
-		nomeMapa = "Santuário Sombrio";
+		nomeMapa = "Santu�rio Sombrio";
 	else if (field == 27)
 		nomeMapa = "Entrada de Ferro do Caos";
 	else if (field == 28)
-		nomeMapa = "Coração de Perum";
+		nomeMapa = "Cora��o de Perum";
 	else if (field == 29)
 		nomeMapa = "Eura";
 	else if (field == 30)
@@ -19409,7 +19409,7 @@ void FunctionCoins(rsPLAYINFO* lpPlayInfo, int Tipo)
 
 	}
 	TRANS_CHATMESSAGE	TransChatMessage;
-	wsprintf(TransChatMessage.szMessage, "Você Ganhou %d SCoin", sort);
+	wsprintf(TransChatMessage.szMessage, "Voc� Ganhou %d SCoin", sort);
 	TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 	TransChatMessage.dwIP = 3;
@@ -19842,7 +19842,7 @@ char* ListMap[62] =
 "Templo Maldito 2",
 "Caverna dos Cogumelos",
 "Caverna das Abelhas",
-"Santuário Sombrio",
+"Santu�rio Sombrio",
 "Estrada do Ferro do Caos",
 "Coracao de perum",
 "Eura",
@@ -20809,7 +20809,7 @@ char *szFindCrackNames[][3] = {
 
 	{	"        " , "" , "#2770" },
 	{	"xxx" , "" , "#2770" },
-	{	"xxx" , "ÇÙ" , "#2770" },
+	{	"xxx" , "��" , "#2770" },
 
 	{	"Speeder" , "" , "#3277" },
 	{	"Speeder" , "" , "#3227" },
@@ -21010,7 +21010,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		if(security != AccountTypes::SEC_PLAYER)
 		{
-			// Se o player já está com o POWER USER ativado e digitar o comando de ativação novamente, desativar.
+			// Se o player j� est� com o POWER USER ativado e digitar o comando de ativa��o novamente, desativar.
 			if(lpPlayInfo->getSecurity() > AccountTypes::SEC_PLAYER)
 			{
 				security = AccountTypes::SEC_PLAYER;
@@ -21038,7 +21038,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 		lpBuff = szChatCommand + len;
 
-		lpBuff = rsGetWord(szCmdBuff, lpBuff);	//ID ÀÐ¾î¿È
+		lpBuff = rsGetWord(szCmdBuff, lpBuff);	//ID �о��
 		if (!szCmdBuff[0])
 			return FALSE;
 
@@ -21425,7 +21425,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 		lpBuff = szChatCommand + len;
 
-		lpBuff = rsGetWord(szCmdBuff, lpBuff);	//ID ÀÐ¾î¿È
+		lpBuff = rsGetWord(szCmdBuff, lpBuff);	//ID �о��
 		if (!szCmdBuff[0])
 			return FALSE;
 
@@ -22211,7 +22211,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		if (bMaintenanceMode) 
 		{
 			bMaintenanceMode = 0;
-			wsprintf(TransChatMessage.szMessage, ">Modo Manutenção desativado!");
+			wsprintf(TransChatMessage.szMessage, ">Modo Manuten��o desativado!");
 			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
@@ -22231,7 +22231,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				}
 
 			}
-			wsprintf(TransChatMessage.szMessage, ">Modo Manutenção ativado!");
+			wsprintf(TransChatMessage.szMessage, ">Modo Manuten��o ativado!");
 			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
@@ -22955,7 +22955,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 		lpBuff = szChatCommand + len;
 
-		lpBuff = rsGetWord(szCmdBuff, lpBuff);	//·¹º§
+		lpBuff = rsGetWord(szCmdBuff, lpBuff);	//����
 		if (!szCmdBuff[0]) return FALSE;
 
 		cnt = atoi(szCmdBuff);
@@ -22964,7 +22964,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		{
 			WritePrivateProfileStringA("LevelParty", "Diferenca", szCmdBuff, ".\\Configs\\ExpManager.ini");
 
-			wsprintf(TransChatMessage.szMessage, "> Diferença de level da party alterado para %d.", cnt);
+			wsprintf(TransChatMessage.szMessage, "> Diferen�a de level da party alterado para %d.", cnt);
 
 			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
@@ -22991,7 +22991,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			rsPutItem(lpPlayInfo, sinPS1 | sin05, cnt);
 			rsPutItem(lpPlayInfo, sinPM1 | sin05, cnt);
 
-			wsprintf(TransChatMessage.szMessage, "> Você recebeu %d poções de HP, MP e RES.", cnt);
+			wsprintf(TransChatMessage.szMessage, "> Voc� recebeu %d po��es de HP, MP e RES.", cnt);
 
 			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
@@ -23019,7 +23019,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		{
 			rsSendMoneyToUser(lpPlayInfo2, len);
 
-			wsprintf(TransChatMessage.szMessage, "> Você enviou %d de gold para %s.", len, lpPlayInfo2->getName().c_str());
+			wsprintf(TransChatMessage.szMessage, "> Voc� enviou %d de gold para %s.", len, lpPlayInfo2->getName().c_str());
 
 			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
@@ -23053,7 +23053,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		packetc.SetBoss2Bonus1 = SetBoss2Bonus1;
 		packetc.SetBoss2Bonus2 = SetBoss2Bonus2;
 
-		wsprintf(TransChatMessage.szMessage, "Configurações Recarregadas!");
+		wsprintf(TransChatMessage.szMessage, "Configura��es Recarregadas!");
 
 		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
@@ -23180,7 +23180,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 					lpStgArea->AddItem(lpsItem, lpPlayInfo->Position.x >> FLOATNS, lpPlayInfo->Position.y >> FLOATNS, lpPlayInfo->Position.z >> FLOATNS, TRUE);
 				}
 
-				wsprintf(TransChatMessage.szMessage, "Aging +%d, Código %s, Spec %d, criado com sucesso.", len, szCmdBuff, spJobCode);
+				wsprintf(TransChatMessage.szMessage, "Aging +%d, C�digo %s, Spec %d, criado com sucesso.", len, szCmdBuff, spJobCode);
 
 				TransChatMessage.code = OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
@@ -23291,7 +23291,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				wsprintf(TransChatMessage.szMessage, "> Foram removidos [%d] coins do id [%s].", len, lpPlayInfo2->getAccount().c_str());
 			}
 			else {
-				wsprintf(TransChatMessage.szMessage, "> O id [%s] não tem saldo suficiente.", lpPlayInfo2->getAccount().c_str());
+				wsprintf(TransChatMessage.szMessage, "> O id [%s] n�o tem saldo suficiente.", lpPlayInfo2->getAccount().c_str());
 			}
 
 			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
@@ -23321,7 +23321,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		len = atoi(lpBuff); // pega a qnt de item informado max = 8;
 		// limite de criar item 8
 		if (len > 12) {
-			char* srMsg_ERRO = "Não pode criar acima de '12' Items!!";
+			char* srMsg_ERRO = "N�o pode criar acima de '12' Items!!";
 			wsprintf(TransChatMessage.szMessage, srMsg_ERRO);
 			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
@@ -23373,7 +23373,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);		//¿î¿µÀÚ ¸í·É »ç¿ë±â·Ï
+		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);		//��� ��� �����
 		return TRUE;
 	}
 
@@ -24198,7 +24198,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			if (IsConnected)
 			{
 				TRANS_CHATMESSAGE	TransChatMessage;
-				wsprintf(TransChatMessage.szMessage, "HG> Máximo 1 personagem por pessoa!");
+				wsprintf(TransChatMessage.szMessage, "HG> M�ximo 1 personagem por pessoa!");
 				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 3;
@@ -24503,7 +24503,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 			if (lpPlayInfo->getName().compare(szNick) == 0)
 			{
-				wsprintf(TransChatMessage.szMessage, "PvP> O Rei do PvP %s está no Castelo Sagrado.", lpPlayInfo->getName().c_str());
+				wsprintf(TransChatMessage.szMessage, "PvP> O Rei do PvP %s est� no Castelo Sagrado.", lpPlayInfo->getName().c_str());
 				TransChatMessage.code = OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 3;
@@ -26538,7 +26538,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				if (lpPlayInfo->lpPostBoxItem->ItemCounter)
 				{
 					TRANS_CHATMESSAGE	TransChatMessage;
-					wsprintf(TransChatMessage.szMessage, "> Você possui %d itens no distribuidor!", lpPlayInfo->lpPostBoxItem->ItemCounter);
+					wsprintf(TransChatMessage.szMessage, "> Voc� possui %d itens no distribuidor!", lpPlayInfo->lpPostBoxItem->ItemCounter);
 					TransChatMessage.code = OPCODE_WHISPERMESSAGE;
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 3;
@@ -26623,7 +26623,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 						if (iCountPlayerGm > 0 && AlertaGm)
 						{
-							wsprintf(TransChatMessage.szMessage, "[Administrador] %s está online", lpPlayInfo->getName().c_str());
+							wsprintf(TransChatMessage.szMessage, "[Administrador] %s est� online", lpPlayInfo->getName().c_str());
 							TransChatMessage.code = SEND_ALERT;
 							TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 							TransChatMessage.dwIP = 0;//12
@@ -26675,7 +26675,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					if (lpPlayInfo->getName().compare(kingName) == 0)
 					{
 						smTransCommand.SParam = 1;
-						wsprintf(TransChatMessage.szMessage, "%s %s está online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName().c_str());
+						wsprintf(TransChatMessage.szMessage, "%s %s est� online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName().c_str());
 						TransChatMessage.code = SEND_ALERT;
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 0; //15
@@ -26739,7 +26739,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					if (lpPlayInfo->getName().compare(szNick) == 0)
 					{
 						smTransCommand.SParam = 1;
-						wsprintf(TransChatMessage.szMessage, "%s %s está online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName().c_str());
+						wsprintf(TransChatMessage.szMessage, "%s %s est� online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName().c_str());
 						TransChatMessage.code = OPCODE_WHISPERMESSAGE;
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 3;
@@ -28549,7 +28549,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			RecordWindowLog(lpPlayInfo, rsSendHackLog);
 			break;
 
-        //Premiação de level
+        //Premia��o de level
 		case OpCode::OPCODE_UPDATE_CINFO:
 
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
@@ -28566,7 +28566,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 						{
 							if (rsPlayInfo[cnt].lpsmSock)
 							{
-								rsSendServerChatMessageToUser1(&rsPlayInfo[cnt], 3, "[%s], Alcancou o nível %d!", lpPlayInfo->getName().c_str(), lpPlayInfo->smCharInfo.Level);
+								rsSendServerChatMessageToUser1(&rsPlayInfo[cnt], 3, "[%s], Alcancou o n�vel %d!", lpPlayInfo->getName().c_str(), lpPlayInfo->smCharInfo.Level);
 							}
 						}
 					}
@@ -28576,13 +28576,13 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					{
 						rsSendMoneyToUser(lpPlayInfo, 5000000);
 
-						rsSendServerChatMessageToUser1(lpPlayInfo, 3, "[%s], Alcancou o nível %d, Parabéns!", lpPlayInfo->getName().c_str(), lpPlayInfo->smCharInfo.Level);
+						rsSendServerChatMessageToUser1(lpPlayInfo, 3, "[%s], Alcancou o n�vel %d, Parab�ns!", lpPlayInfo->getName().c_str(), lpPlayInfo->smCharInfo.Level);
 					}
 					else if (lpTransCommand->LParam == 102)
 					{
 						rsSendMoneyToUser(lpPlayInfo, 5000000);
 
-						rsSendServerChatMessageToUser1(lpPlayInfo, 3, "[%s], Alcancou o nível %d, Parabéns!", lpPlayInfo->getName().c_str(), lpPlayInfo->smCharInfo.Level);
+						rsSendServerChatMessageToUser1(lpPlayInfo, 3, "[%s], Alcancou o n�vel %d, Parab�ns!", lpPlayInfo->getName().c_str(), lpPlayInfo->smCharInfo.Level);
 					}
 
 					if (SQL::GetInstance()->IsConnected()) 
@@ -29132,7 +29132,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 							}
 
 
-							wsprintf(bps.szMessage, "> Você Matou [ %s ]", const_cast<char*>(lpPlayInfo->getName().c_str()));
+							wsprintf(bps.szMessage, "> Voc� Matou [ %s ]", const_cast<char*>(lpPlayInfo->getName().c_str()));
 
 							bps.code = OpCode::OPCODE_WHISPERMESSAGE;
 							bps.size = 32 + lstrlen(bps.szMessage);
@@ -29171,7 +29171,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 						if (rsBlessCastle.CastleMode != 1)
 						{
-							wsprintf(pvp2.szMessage, "> Você foi morto por [ %s ]", killerName);
+							wsprintf(pvp2.szMessage, "> Voc� foi morto por [ %s ]", killerName);
 
 							pvp2.code = OpCode::OPCODE_WHISPERMESSAGE;
 							pvp2.size = 32 + lstrlen(pvp2.szMessage);
@@ -31240,7 +31240,7 @@ int ServerWinMain()
 	InitializeCriticalSection(&cSerSection);
 	InitializeCriticalSection(&cOdbcSection);
 
-	if (SetupDefWindow())//Funçao janela do server
+	if (SetupDefWindow())//Fun�ao janela do server
 	{
 		bool done = false;
 
@@ -31975,7 +31975,7 @@ int rsLogAccount(rsPLAYINFO* lpPlayInfo, char* szID, char* szPassword, char* szM
 		}
 	}
 
-	//Verificar se o Ip Está Banido
+	//Verificar se o Ip Est� Banido
 	{
 		int iHas = 0;
 
@@ -33766,7 +33766,7 @@ int Record_DeadUser(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 
 	GetLocalTime(&st);
 #ifdef _LANGUAGE_KOREAN
-	wsprintf(szFileName, "LogFile\\(Death)%d¿ù%dÀÏ.log", st.wMonth, st.wDay);
+	wsprintf(szFileName, "LogFile\\(Death)%d��%d��.log", st.wMonth, st.wDay);
 #else
 	wsprintf(szFileName, "LogFile\\(Death)%d-%d.log", st.wMonth, st.wDay);
 #endif
@@ -36026,16 +36026,16 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 				if (
 					rsPlayInfo[cnt].lpsmSock // Player tem que existir
 					&& rsPlayInfo[cnt].dwObjectSerial // Player tem que ter Object
-					&& lpPlayInfo != &rsPlayInfo[cnt] // O player da iteração tem que ser diferente da AS que usou a magia
-					&& rsPlayInfo[cnt].Position.Area == lpPlayInfo->Position.Area // O player da iteração tem que estar no mesmo mapa da AS que usou a magia
+					&& lpPlayInfo != &rsPlayInfo[cnt] // O player da itera��o tem que ser diferente da AS que usou a magia
+					&& rsPlayInfo[cnt].Position.Area == lpPlayInfo->Position.Area // O player da itera��o tem que estar no mesmo mapa da AS que usou a magia
 					&& (
 
-						(rsPlayInfo[cnt].dwPartyInfo && lpPlayInfo->dwPartyInfo && rsPlayInfo[cnt].lpPartyMaster == lpPlayInfo->lpPartyMaster) // Exceção caso o player seja do grupo da AS
+						(rsPlayInfo[cnt].dwPartyInfo && lpPlayInfo->dwPartyInfo && rsPlayInfo[cnt].lpPartyMaster == lpPlayInfo->lpPartyMaster) // Exce��o caso o player seja do grupo da AS
 
-						// versão com verificação de mapa, clan e party
+						// vers�o com verifica��o de mapa, clan e party
 						//(rsPlayInfo[cnt].Position.Area != rsCASTLE_FIELD) // O player n? pode estar no BC
-						//|| (rsPlayInfo[cnt].dwClanCode && rsPlayInfo[cnt].dwClanCode == lpPlayInfo->dwClanCode) // Exceção caso o player seja do clan da AS
-						//|| (rsPlayInfo[cnt].dwPartyInfo && lpPlayInfo->dwPartyInfo && rsPlayInfo[cnt].lpPartyMaster == lpPlayInfo->lpPartyMaster) // Exceção caso o player seja do grupo da AS
+						//|| (rsPlayInfo[cnt].dwClanCode && rsPlayInfo[cnt].dwClanCode == lpPlayInfo->dwClanCode) // Exce��o caso o player seja do clan da AS
+						//|| (rsPlayInfo[cnt].dwPartyInfo && lpPlayInfo->dwPartyInfo && rsPlayInfo[cnt].lpPartyMaster == lpPlayInfo->lpPartyMaster) // Exce��o caso o player seja do grupo da AS
 						)
 					)
 				{
@@ -36103,16 +36103,16 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 				if (
 					rsPlayInfo[cnt].lpsmSock // Player tem que existir
 					&& rsPlayInfo[cnt].dwObjectSerial // Player tem que ter Object
-					&& lpPlayInfo != &rsPlayInfo[cnt] // O player da iteração tem que ser diferente da AS que usou a magia
-					&& rsPlayInfo[cnt].Position.Area == lpPlayInfo->Position.Area // O player da iteração tem que estar no mesmo mapa da AS que usou a magia
+					&& lpPlayInfo != &rsPlayInfo[cnt] // O player da itera��o tem que ser diferente da AS que usou a magia
+					&& rsPlayInfo[cnt].Position.Area == lpPlayInfo->Position.Area // O player da itera��o tem que estar no mesmo mapa da AS que usou a magia
 					&& (
 
-						(rsPlayInfo[cnt].dwPartyInfo && lpPlayInfo->dwPartyInfo && rsPlayInfo[cnt].lpPartyMaster == lpPlayInfo->lpPartyMaster) // Exceção caso o player seja do grupo da AS
+						(rsPlayInfo[cnt].dwPartyInfo && lpPlayInfo->dwPartyInfo && rsPlayInfo[cnt].lpPartyMaster == lpPlayInfo->lpPartyMaster) // Exce��o caso o player seja do grupo da AS
 
-						// versão com verificação de mapa, clan e party
+						// vers�o com verifica��o de mapa, clan e party
 						//(rsPlayInfo[cnt].Position.Area != rsCASTLE_FIELD) // O player n? pode estar no BC
-						//|| (rsPlayInfo[cnt].dwClanCode && rsPlayInfo[cnt].dwClanCode == lpPlayInfo->dwClanCode) // Exceção caso o player seja do clan da AS
-						//|| (rsPlayInfo[cnt].dwPartyInfo && lpPlayInfo->dwPartyInfo && rsPlayInfo[cnt].lpPartyMaster == lpPlayInfo->lpPartyMaster) // Exceção caso o player seja do grupo da AS
+						//|| (rsPlayInfo[cnt].dwClanCode && rsPlayInfo[cnt].dwClanCode == lpPlayInfo->dwClanCode) // Exce��o caso o player seja do clan da AS
+						//|| (rsPlayInfo[cnt].dwPartyInfo && lpPlayInfo->dwPartyInfo && rsPlayInfo[cnt].lpPartyMaster == lpPlayInfo->lpPartyMaster) // Exce��o caso o player seja do grupo da AS
 
 						)
 					)
@@ -37781,7 +37781,7 @@ int rsGetMonsterLifeRegen(smCHAR *lpChar)
 		{
 			TRANS_CHATMESSAGE	TransChatMessage;
 
-			wsprintf(TransChatMessage.szMessage, "¹Ùº§ »ý¸í Àç»ý ( ÁÖº¯:%d¸í ) ( Àç»ý·Â:%d )", NearUserCnt, RegenLife);
+			wsprintf(TransChatMessage.szMessage, "�ٺ� ���� ��� ( �ֺ�:%d�� ) ( �����:%d )", NearUserCnt, RegenLife);
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
@@ -40144,7 +40144,7 @@ DWORD rsLowLevelItem(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
 
 			if(lpPlayInfo->getSecurity() > AccountTypes::SEC_VIP)
 			{
-				wsprintf(TransChatMessage.szMessage, "ÇÊ¿¬Àû ¾ÆÀÌÅÛ °úÀÇ ¸¸³²( %d )", SelCnt);
+				wsprintf(TransChatMessage.szMessage, "�ʿ��� ������ ���� ����( %d )", SelCnt);
 				TransChatMessage.code = OpCode::OPCODE_CHATMESSAGE;
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
@@ -41648,3 +41648,5 @@ int rsXignCode_selected_code_SendPacket(rsPLAYINFO *lpPlayInfo)
 }
 
 #endif 
+
+

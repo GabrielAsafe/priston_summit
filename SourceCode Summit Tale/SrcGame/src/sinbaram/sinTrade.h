@@ -673,3 +673,7 @@ extern DWORD BillingMagicSheltomCode[];
 extern int ForceItemPrice2;
 extern sRECON_ITEM sReconItem[MAX_SEEL_COUNT];
 extern int		MixCancelButtonDelayFlag;
+
+
+
+

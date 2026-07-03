@@ -24,3 +24,5 @@ private:
 };
 
 #define ALERTAHANDLER Alerta::getInstance()
+
+

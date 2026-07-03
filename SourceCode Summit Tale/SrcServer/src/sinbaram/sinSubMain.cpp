@@ -1584,16 +1584,16 @@ void sinTestDrawText()
 
 	if(sinTestFlag)
 	{
-		wsprintf(strBuff, "°ø°Ý¼Óµµ:%d", sinChar->Attack_Speed);
+		wsprintf(strBuff, "ï¿½ï¿½ï¿½Ý¼Óµï¿½:%d", sinChar->Attack_Speed);
 		dsTextLineOut(hdc, 100, 300, strBuff, lstrlen(strBuff));
 
-		wsprintf(strBuff, "ºí·°À²:%d", sinChar->Chance_Block + sinTempBlock);
+		wsprintf(strBuff, "ï¿½ï¿½ï¿½ï¿½ï¿½:%d", sinChar->Chance_Block + sinTempBlock);
 		dsTextLineOut(hdc, 200, 300, strBuff, lstrlen(strBuff));
 
-		wsprintf(strBuff, "Å©¸®Æ¼ÄÃ:%d", sinChar->Critical_Hit);
+		wsprintf(strBuff, "Å©ï¿½ï¿½Æ¼ï¿½ï¿½:%d", sinChar->Critical_Hit);
 		dsTextLineOut(hdc, 300, 300, strBuff, lstrlen(strBuff));
 
-		wsprintf(strBuff, "½´ÆÃ±æÀÌ:%d", sinChar->Shooting_Range);
+		wsprintf(strBuff, "ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½:%d", sinChar->Shooting_Range);
 		dsTextLineOut(hdc, 400, 300, strBuff, lstrlen(strBuff));
 
 	}
@@ -1604,25 +1604,25 @@ void sinTestDrawText()
 		{
 			if(CheatHelpOpenFlag)
 			{
-				wsprintf(strBuff, "(P) ´ÙÀ½°æÇèÄ¡±îÁö 10% ");
+				wsprintf(strBuff, "(P) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ 10% ");
 				dsTextLineOut(hdc, 100, 200, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(L) µ· 200000 ");
+				wsprintf(strBuff, "(L) ï¿½ï¿½ 200000 ");
 				dsTextLineOut(hdc, 100, 230, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(B) LV 65 µ· 300000");
+				wsprintf(strBuff, "(B) LV 65 ï¿½ï¿½ 300000");
 				dsTextLineOut(hdc, 100, 260, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(Y) ¹Í½ºÃÄ ¾ÆÀÌÅÛ ½ÇÇà ");
+				wsprintf(strBuff, "(Y) ï¿½Í½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ");
 				dsTextLineOut(hdc, 100, 290, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(U) Àü¾÷  ");
+				wsprintf(strBuff, "(U) ï¿½ï¿½ï¿½ï¿½  ");
 				dsTextLineOut(hdc, 100, 320, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(F) ¼÷·Ãµµ Up  ");
+				wsprintf(strBuff, "(F) ï¿½ï¿½ï¿½Ãµï¿½ Up  ");
 				dsTextLineOut(hdc, 100, 350, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(N) ¼÷·Ãµµ Down  ");
+				wsprintf(strBuff, "(N) ï¿½ï¿½ï¿½Ãµï¿½ Down  ");
 				dsTextLineOut(hdc, 100, 380, strBuff, lstrlen(strBuff));
 			}
 		}
@@ -4421,4 +4421,6 @@ int sinDoubleClick()
 	}
 	return TRUE;
 }
+
+
 

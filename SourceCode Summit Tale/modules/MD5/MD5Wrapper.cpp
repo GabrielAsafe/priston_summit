@@ -64,3 +64,5 @@ std::string md5wrapper::getHashFromFile(const std::string & filename)
 
     return HashBytes(reinterpret_cast<const BYTE *>(&data[0]), (DWORD)data.size());
 }
+
+

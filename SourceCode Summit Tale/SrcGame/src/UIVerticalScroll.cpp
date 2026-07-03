@@ -212,3 +212,7 @@ void UIVerticalScroll::updateButtonPos(int iY)
 	sprintf(buff, "%.2f | %d", percent, ((getMax() - getMin()) * percent) + getMin());*/
 	setValue(((getMax() - getMin()) * percent) + getMin());
 }
+
+
+
+

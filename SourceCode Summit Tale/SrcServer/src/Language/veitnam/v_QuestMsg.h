@@ -22,12 +22,12 @@ char *mgQuestName[][4] = {
 	{	"Rank up quest second[5]"		,	"Rank up quest second[Completed]"	, "Quest3\\ChangeJob3-3.msg" , "Quest3\\ChangeJob3-4.msg" },
 	
 	
-	{	"Giuìp ðõÞ thýõng nhân"	,	"Giuìp ðõÞ thýõng nhân(F)" ,	"LevelQuest\\Quest30.Msg" , "LevelQuest\\Quest30a.Msg" },	
-	{	"ThýÒ thaìch hang ðôòng"	,	"ThýÒ thaìch hang ðôòng(F)" ,					"LevelQuest\\Quest55.Msg" , "LevelQuest\\Quest55a.Msg" },	
-	{	"ThýÒ thaìch hang ðôòng"	,	"ThýÒ thaìch hang ðôòng(F)" ,					"LevelQuest\\Quest55_2.Msg" , "LevelQuest\\Quest55_2a.Msg" }, 
-	{	"NhýÞng ngýõÌi baòn cuÒa Michelle"	,	"NhýÞng ngýõÌi baòn cuÒa Michelle(F)" ,	"LevelQuest\\Quest70.Msg" , "LevelQuest\\Quest70a.Msg" },	
-	{	"Phong âìn Fury",	"Phong âìn Fury(F)" ,				"LevelQuest\\Quest80.Msg" , "LevelQuest\\Quest80a.Msg" },	
-	{	"Nýõìc mãìt cuÒa Kaliar","Nýõìc mãìt cuÒa Kaliar(F)" ,				"LevelQuest\\Quest85.Msg" , "LevelQuest\\Quest85a.Msg" },	
+	{	"Giuï¿½p ï¿½ï¿½ï¿½ thï¿½ï¿½ng nhï¿½n"	,	"Giuï¿½p ï¿½ï¿½ï¿½ thï¿½ï¿½ng nhï¿½n(F)" ,	"LevelQuest\\Quest30.Msg" , "LevelQuest\\Quest30a.Msg" },	
+	{	"Thï¿½ï¿½ thaï¿½ch hang ï¿½ï¿½ï¿½ng"	,	"Thï¿½ï¿½ thaï¿½ch hang ï¿½ï¿½ï¿½ng(F)" ,					"LevelQuest\\Quest55.Msg" , "LevelQuest\\Quest55a.Msg" },	
+	{	"Thï¿½ï¿½ thaï¿½ch hang ï¿½ï¿½ï¿½ng"	,	"Thï¿½ï¿½ thaï¿½ch hang ï¿½ï¿½ï¿½ng(F)" ,					"LevelQuest\\Quest55_2.Msg" , "LevelQuest\\Quest55_2a.Msg" }, 
+	{	"Nhï¿½ï¿½ng ngï¿½ï¿½ï¿½i baï¿½n cuï¿½a Michelle"	,	"Nhï¿½ï¿½ng ngï¿½ï¿½ï¿½i baï¿½n cuï¿½a Michelle(F)" ,	"LevelQuest\\Quest70.Msg" , "LevelQuest\\Quest70a.Msg" },	
+	{	"Phong ï¿½ï¿½n Fury",	"Phong ï¿½ï¿½n Fury(F)" ,				"LevelQuest\\Quest80.Msg" , "LevelQuest\\Quest80a.Msg" },	
+	{	"Nï¿½ï¿½ï¿½c mï¿½ï¿½t cuï¿½a Kaliar","Nï¿½ï¿½ï¿½c mï¿½ï¿½t cuï¿½a Kaliar(F)" ,				"LevelQuest\\Quest85.Msg" , "LevelQuest\\Quest85a.Msg" },	
 	{	"Village of eura","Village of eura(completed)" ,					"LevelQuest\\Quest90.Msg" , "LevelQuest\\Quest90a.Msg" },	
 
 	
@@ -78,6 +78,8 @@ char *mgHaQuestName[][4] = {
 
 
 };
+
+
 
 
 

@@ -7,3 +7,6 @@
 #include "Language\\BRAZIL\\B_TextMessage.h"
 #include "Language\\BRAZIL\\B_QuestMsg.h"
 #endif
+
+
+

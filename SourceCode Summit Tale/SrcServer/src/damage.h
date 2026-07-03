@@ -57,3 +57,5 @@ int CheckMaxDamage();
 int	LockSpeedProtect(smCHAR *lpChar);
 
 int UnlockSpeedProtect(smCHAR *lpChar);
+
+

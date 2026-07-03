@@ -340,3 +340,5 @@ void cCOINSHOP_T::AddPlayerCoin(rsPLAYINFO * lpPlayInfo, int coin)
 		db->Close();
 	}
 }
+
+

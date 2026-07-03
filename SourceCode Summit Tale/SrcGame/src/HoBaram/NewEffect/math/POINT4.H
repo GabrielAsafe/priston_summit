@@ -110,3 +110,6 @@ inline float operator*(point4 const &a, point4 const &b)
 
 
 #endif /*_POINT4_H*/
+
+
+

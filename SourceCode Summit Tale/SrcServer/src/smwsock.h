@@ -285,3 +285,5 @@ extern BYTE smwsock_EncodePacket_AsmCode[ENC_PACKET_ASM_SIZE];
 
 
 #endif
+
+

@@ -369,3 +369,5 @@ extern char *BoosterItemInfo2[];
 
 extern char *SkillDelayItemInfo[];
 extern char *SkillDelayItemInfo2[];
+
+

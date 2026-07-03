@@ -14,3 +14,6 @@ private:
 
 	std::function<void()> Activation;
 };
+
+
+

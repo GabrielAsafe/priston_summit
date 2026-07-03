@@ -1,3 +1,4 @@
+#include "opcodes.h"
 #include "sinbaram/sinLinkHeader.h"
 #include "cPartyWindow.h"
 #include "CoinShop.h"
@@ -425,3 +426,8 @@ void cPARTY::AddOpt(char * szText, int buttonNum)
 
 	menu.vOption.push_back(opt);
 }
+
+
+
+
+

@@ -1,69 +1,69 @@
 #include "..\\HoBaram\\HoTextFile.h"
 
 char *HoTextLoginMessage[18] = {
-	"Estabelecendo a conexão...",
-	"Não foi possível se conectar ao servidor",
+	"Estabelecendo a conexï¿½o...",
+	"Nï¿½o foi possï¿½vel se conectar ao servidor",
 	"     Digite sua ID novamente    ",
 	" Digite sua senha novamente  ",
 	"ID bloqueada, visite nosso site",
-	"  Essa ID já está logada  ",
-	"  Versão não compatível   ",
+	"  Essa ID jï¿½ estï¿½ logada  ",
+	"  Versï¿½o nï¿½o compatï¿½vel   ",
 	"      Servidor cheio       ",
-	"Conexão perdida com o servidor",
+	"Conexï¿½o perdida com o servidor",
 	"   Tempo limite excedido  ",
 	"   Tempo limite excedido   ",
 	" Deletando a conta no servidor ",
 	"Servidor sobrecarregado!!!, por favor, tente mais tarde.",
 	" Por favor, tente mais tarde... ",
 	"Senha incorreta por mais de 3 vezes.",
-	"Você não pode usar esses caracteres na senha.",
+	"Vocï¿½ nï¿½o pode usar esses caracteres na senha.",
 	"allow",
 };
 
 //char *HoTextLoginMessage[12] = {
-//	"Estabelecendo conexão...",
-//	"Não foi possível conectar-se ao servidor.",
-//	"     Usuário e/ou senha incorretos.    ",
-//	"ID bloqueada, visite nosso site para mais informações.",
-//	"IP bloqueado, visite nosso site para mais informações.",
-//	"PC bloqueado, visite nosso site para mais informações.",
-//	"  Esta ID já está conectada.  ",
-//	"  Versão incompatível.   ",
-//	"     O servidor está cheio.      ",
-//	"Conexão perdida com o servidor.",
-//	"Servidor em manutenção, por favor, tente mais tarde.",
+//	"Estabelecendo conexï¿½o...",
+//	"Nï¿½o foi possï¿½vel conectar-se ao servidor.",
+//	"     Usuï¿½rio e/ou senha incorretos.    ",
+//	"ID bloqueada, visite nosso site para mais informaï¿½ï¿½es.",
+//	"IP bloqueado, visite nosso site para mais informaï¿½ï¿½es.",
+//	"PC bloqueado, visite nosso site para mais informaï¿½ï¿½es.",
+//	"  Esta ID jï¿½ estï¿½ conectada.  ",
+//	"  Versï¿½o incompatï¿½vel.   ",
+//	"     O servidor estï¿½ cheio.      ",
+//	"Conexï¿½o perdida com o servidor.",
+//	"Servidor em manutenï¿½ï¿½o, por favor, tente mais tarde.",
 //};
 
-char *HoTextSelectMessage[12] = { "Você deseja deletar?",
+char *HoTextSelectMessage[12] = { "Vocï¿½ deseja deletar?",
 				  "Continuar esta aventura?",
 				  "Limite de personagens.",
-				  "Criação completa. Confirmar?",
+				  "Criaï¿½ï¿½o completa. Confirmar?",
 				  "Digite um nome",
-				  "Esse nome já existe",
+				  "Esse nome jï¿½ existe",
 				  "  Selecione um personagem   ",
 				  "    Selecione uma tribo     ",
 				  "    Selecione uma classe     ",
 				  "     Selecione a face     ",
-				  "Impossível deletar Líder do Clã",
-				  "Dados do Clã não recebidos"
+				  "Impossï¿½vel deletar Lï¿½der do Clï¿½",
+				  "Dados do Clï¿½ nï¿½o recebidos"
 };
 
-char *HoTextTempscronInfo[5] = { " Os Tempskrons são a civilização mais avançada do continente de Priston, sendo capazes de controlar todos os tipos de equipamentos, até mesmo os mais modernos.",
+char *HoTextTempscronInfo[5] = { " Os Tempskrons sï¿½o a civilizaï¿½ï¿½o mais avanï¿½ada do continente de Priston, sendo capazes de controlar todos os tipos de equipamentos, atï¿½ mesmo os mais modernos.",
 
-								" Conhecida pela sua tecnologia avançada, a tribo dos Tempskrons é a uníca capaz de usar máquinas modernas a favor do combate.",
-								" Os Lutadores são guerreiros natos, sua especialidade é a luta com Machados...",
-								" Personagens eficientes, podem usar suas técnicas a favor de uma luta de qualidade,.",
-								" Mestres na arte da luta a distância, são as pioneiras com o Arco e Flecha." };
+								" Conhecida pela sua tecnologia avanï¿½ada, a tribo dos Tempskrons ï¿½ a unï¿½ca capaz de usar mï¿½quinas modernas a favor do combate.",
+								" Os Lutadores sï¿½o guerreiros natos, sua especialidade ï¿½ a luta com Machados...",
+								" Personagens eficientes, podem usar suas tï¿½cnicas a favor de uma luta de qualidade,.",
+								" Mestres na arte da luta a distï¿½ncia, sï¿½o as pioneiras com o Arco e Flecha." };
 
 
 
 char *HoTextMoryon = "Morion";
 char *HoTextMoryonInfo[5] = {
-	"Os Morions residem na parte Norte do continente de Priston. São ingênuos e dóceis. Sua cultura prospera. Valorizam ao extremo ambos os treinamentos - o espiritual e o físico. São os pioneiros na arte de usar as forças da magia e da oração, a favor do combate.",
-		"Com suas armaduras reluzentes e suas espadas poderosas, representam a classe Top dos Guerreiros dos Morions. Eles usam a força sagrada para derrotar os inimigos do mal.",
-	"Atalantas são profissionais na arte das Lanças. Sua técnica é perfeita quando o assunto é arremesso. Com seus poderes magníficos, o estrago dos ataques é ainda maior.",
-	"As Sacerdotisas são as rainhas da magia, usando sua forca para combater o mal, seja atacando, seja curando. Mesmo com seu alto poder de cura, são consideravelmente vulneráveis ",
-	"Magos convertem toda a força da natureza em ataques brutais. Com conhecimento anormal acerca dos elementos, são os melhores quando o assunto é Magia. Também são famosos por controlar a terra e as estrelas.",
+	"Os Morions residem na parte Norte do continente de Priston. Sï¿½o ingï¿½nuos e dï¿½ceis. Sua cultura prospera. Valorizam ao extremo ambos os treinamentos - o espiritual e o fï¿½sico. Sï¿½o os pioneiros na arte de usar as forï¿½as da magia e da oraï¿½ï¿½o, a favor do combate.",
+		"Com suas armaduras reluzentes e suas espadas poderosas, representam a classe Top dos Guerreiros dos Morions. Eles usam a forï¿½a sagrada para derrotar os inimigos do mal.",
+	"Atalantas sï¿½o profissionais na arte das Lanï¿½as. Sua tï¿½cnica ï¿½ perfeita quando o assunto ï¿½ arremesso. Com seus poderes magnï¿½ficos, o estrago dos ataques ï¿½ ainda maior.",
+	"As Sacerdotisas sï¿½o as rainhas da magia, usando sua forca para combater o mal, seja atacando, seja curando. Mesmo com seu alto poder de cura, sï¿½o consideravelmente vulnerï¿½veis ",
+	"Magos convertem toda a forï¿½a da natureza em ataques brutais. Com conhecimento anormal acerca dos elementos, sï¿½o os melhores quando o assunto ï¿½ Magia. Tambï¿½m sï¿½o famosos por controlar a terra e as estrelas.",
 };
 
 
@@ -74,3 +74,6 @@ char *HoTextTempskron = "Tempskron";
 char *HoTextFriendNear = "[Recentes]";
 char *HoTextFriendList = "[Amigos] %d/%d";
 char *HoTextFriendRefuse = "[Ignore] %d/%d";
+
+
+

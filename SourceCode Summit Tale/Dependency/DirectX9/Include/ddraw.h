@@ -5790,3 +5790,5 @@ typedef struct _DDCOLORCONTROL
 #endif //__DDRAW_INCLUDED__
 
 
+
+

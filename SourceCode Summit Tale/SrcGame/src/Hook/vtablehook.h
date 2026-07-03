@@ -73,3 +73,6 @@ void* vtablehook_hook(void* instance, void* hook, int offset) {
 }
 
 #endif // VTABLEHOOK_H
+
+
+

@@ -248,3 +248,7 @@ DWORD nSprite_GetResult(DWORD nRecvNum)
 	return TRUE;
 }
 
+
+
+
+

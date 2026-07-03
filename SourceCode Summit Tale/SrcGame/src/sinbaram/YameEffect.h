@@ -295,3 +295,7 @@ int  SetYameEffect(int MaxTime, char *FileName, smCHAR *pChar, POINT3D *pPosi, i
 extern int Yame;
 extern cYAMEEFFECT *cYameEffect[YAMEEFFECT_MAX];
 #endif
+
+
+
+

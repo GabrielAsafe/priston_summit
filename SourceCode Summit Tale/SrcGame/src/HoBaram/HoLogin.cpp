@@ -1,4 +1,5 @@
-﻿#include "sinbaram\\SinLinkHeader.h"
+#include "opcodes.h"
+#include "sinbaram\\SinLinkHeader.h"
 #include "..\\HoBaram\\HoLinkHeader.h"
 #include "..\\HoBaram\\HoTextFile.h"
 #include "..\\HoBaram\\HoMinMax.h"
@@ -2376,7 +2377,7 @@ int HoLogin::Draw()
 				if (UserCharacter[index].DisplayFlag)
 					userCount++;
 			}
-            //Impedir Criação de Char
+            //Impedir Cria��o de Char
 			if (pCursorPos.x >(screenWidthHalf - 128) && pCursorPos.x < (screenWidthHalf + 128) &&
 				pCursorPos.y >(screenHeightHalf / 2 - 80) && pCursorPos.y < (screenHeightHalf / 2 + 130) &&
 				SelectSubState == SUB_SELECT_NONE && ErrorSelect == ERROR_NONE)
@@ -3180,3 +3181,7 @@ int GetSelRectJobChar(smCHAR *lpChar)
 
 	return FALSE;
 }
+
+
+
+

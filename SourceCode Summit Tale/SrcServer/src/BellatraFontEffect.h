@@ -188,3 +188,5 @@ extern void	DrawBellatraBackToTexture2D(smTEXTUREHANDLE *hTexHandle, int X, int 
 
 
 extern int CheckBellatraFontEffect(SBL_SetFontEffect *lpCheckFontEffect, int isKill = 0);
+
+

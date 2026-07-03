@@ -12,3 +12,5 @@ enum class AccountTypes
     SEC_GAMEMASTER = 3,
     SEC_ADMINISTRATOR = 4
 };
+
+

@@ -58,3 +58,5 @@ public:
         write(section, key, std::string(value ? value : ""));
     }
 };
+
+

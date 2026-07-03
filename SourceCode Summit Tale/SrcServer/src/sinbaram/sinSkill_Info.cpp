@@ -21,7 +21,7 @@ char* GetWords(char* q, char* p)
 	//	while ( *p != '\n' ) {
 	if (*p == 0) { *q = 0; return p; }
 
-	while ((*p == 32) || (*p == 9) || (*p == 58)) // SPACE or TAB or ':'╢б а╕©э ╫це╢
+	while ((*p == 32) || (*p == 9) || (*p == 58)) // SPACE or TAB or ':'О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫е╢
 	{
 		p++;
 	}
@@ -1329,3 +1329,5 @@ int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo)
 #endif
 	return TRUE;
 }
+
+

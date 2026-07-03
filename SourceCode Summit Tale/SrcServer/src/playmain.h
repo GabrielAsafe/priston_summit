@@ -293,3 +293,5 @@ int Init_ParkPlayer();
 int Stop_ParkPlayer();
 int Play_ParkPlayer(char *szPath, int x, int y, int w, int h, int PlayMode);
 
+
+

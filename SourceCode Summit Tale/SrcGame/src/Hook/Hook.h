@@ -67,3 +67,6 @@ void SetBold(bool bold);
 int __stdcall SetFontColor(DWORD textcolor);
 
 #endif // HOOK_H
+
+
+

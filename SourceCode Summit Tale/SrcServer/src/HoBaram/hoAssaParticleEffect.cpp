@@ -6015,3 +6015,5 @@ void Park_VarDecode(DWORD dwData, int &nData1, int &nData2, int &nData3, int &nD
 	nData3 = (dwData >> 8) & 0x0000ff;
 	nData4 = dwData & 0x000000ff;
 }
+
+

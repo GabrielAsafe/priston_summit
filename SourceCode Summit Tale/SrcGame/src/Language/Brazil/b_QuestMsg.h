@@ -26,8 +26,8 @@ char *mgQuestName[][4] = {
 	{	"A Caverna"	,	"A Caverna (completo)" ,					"LevelQuest\\Quest55.Msg" , "LevelQuest\\Quest55a.Msg" },	
 	{	"A Caverna"	,	"A Caverna (completo)" ,					"LevelQuest\\Quest55_2.Msg" , "LevelQuest\\Quest55_2a.Msg" }, 
 	{	"Amizade de Michelle"	,	"Amizade de Michelle (completo)" ,	"LevelQuest\\Quest70.Msg" , "LevelQuest\\Quest70a.Msg" },	
-	{	"O Fúria aprisionado",	"O Fúria aprisionado (completo)" ,				"LevelQuest\\Quest80.Msg" , "LevelQuest\\Quest80a.Msg" },	
-	{	"Lágrimas de Khália","Lágrimas de Khália (completo)" ,				"LevelQuest\\Quest85.Msg" , "LevelQuest\\Quest85a.Msg" },	
+	{	"O Fï¿½ria aprisionado",	"O Fï¿½ria aprisionado (completo)" ,				"LevelQuest\\Quest80.Msg" , "LevelQuest\\Quest80a.Msg" },	
+	{	"Lï¿½grimas de Khï¿½lia","Lï¿½grimas de Khï¿½lia (completo)" ,				"LevelQuest\\Quest85.Msg" , "LevelQuest\\Quest85a.Msg" },	
 	{	"A Vila de Eura","A Vila de Eura (completo)" ,					"LevelQuest\\Quest90.Msg" , "LevelQuest\\Quest90a.Msg" },	
 
 	
@@ -64,20 +64,24 @@ char *mgHaQuestName[][4] = {
 	{	"Colina dos Duendes"	    ,"Colina dos Duendes(completo)"       , "HaQuest\\Quest_goblin_1start_T.msg"    , "HaQuest\\Quest_goblin_1end.msg"  },
 	{	"Colina dos Duendes"	    ,"Colina dos Duendes(completo)"       , "HaQuest\\Quest_goblin_1start_M.msg"    , "HaQuest\\Quest_goblin_1end.msg"  },
  
-	{	"Ameaça Imortal"	    ,"Ameaça Imortal(completo)"     , "HaQuest\\Quest_undead_1start_T.msg"    , "HaQuest\\Quest_undead_1end.msg"  },
-	{	"Ameaça Imortal"	    ,"Ameaça Imortal(completo)"     , "HaQuest\\Quest_undead_1start_M.msg"    , "HaQuest\\Quest_undead_1end.msg"  },
+	{	"Ameaï¿½a Imortal"	    ,"Ameaï¿½a Imortal(completo)"     , "HaQuest\\Quest_undead_1start_T.msg"    , "HaQuest\\Quest_undead_1end.msg"  },
+	{	"Ameaï¿½a Imortal"	    ,"Ameaï¿½a Imortal(completo)"     , "HaQuest\\Quest_undead_1start_M.msg"    , "HaQuest\\Quest_undead_1end.msg"  },
 
-	{	"Desafio Cíclope"	,"Desafio Cíclope(completo)"   , "HaQuest\\Quest_cyclops_1start.msg"     , "HaQuest\\Quest_cyclops_1end.msg" },
+	{	"Desafio Cï¿½clope"	,"Desafio Cï¿½clope(completo)"   , "HaQuest\\Quest_cyclops_1start.msg"     , "HaQuest\\Quest_cyclops_1end.msg" },
 
 	{	"O Martelo Perdido"	    ,"O Martelo Perdido(completo)"     , "HaQuest\\Quest_hammer_1start.msg"      , "HaQuest\\Quest_hammer_1end.msg"  },
 
-	{	"O Fantasma do Fúria[1]"	,"O Fantasma do Fúria[2]"           , "HaQuest\\Quest_100State_1.msg"         , "HaQuest\\Quest_100State_2.msg"  },
-	{	"O Fantasma do Fúria[3]"	,"O Fantasma do Fúria[4]"           , "HaQuest\\Quest_100State_3.msg"         , "HaQuest\\Quest_100State_4.msg"  },
-	{	"O Fantasma do Fúria[5]"	,"O Fantasma do Fúria(completo)"        , "HaQuest\\Quest_100State_5.msg"         , "HaQuest\\Quest_100State_6.msg"  },
+	{	"O Fantasma do Fï¿½ria[1]"	,"O Fantasma do Fï¿½ria[2]"           , "HaQuest\\Quest_100State_1.msg"         , "HaQuest\\Quest_100State_2.msg"  },
+	{	"O Fantasma do Fï¿½ria[3]"	,"O Fantasma do Fï¿½ria[4]"           , "HaQuest\\Quest_100State_3.msg"         , "HaQuest\\Quest_100State_4.msg"  },
+	{	"O Fantasma do Fï¿½ria[5]"	,"O Fantasma do Fï¿½ria(completo)"        , "HaQuest\\Quest_100State_5.msg"         , "HaQuest\\Quest_100State_6.msg"  },
 
 
 
 };
+
+
+
+
 
 
 

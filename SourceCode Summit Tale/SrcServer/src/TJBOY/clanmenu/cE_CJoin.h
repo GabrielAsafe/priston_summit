@@ -50,3 +50,5 @@ class CLANEntity_JOIN cClanJoin;
 extern class CLANEntity_JOIN cClanJoin;
 
 #endif
+
+

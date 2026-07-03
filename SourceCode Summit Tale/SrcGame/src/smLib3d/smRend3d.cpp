@@ -4734,3 +4734,7 @@ int smGetPolyHeight(POINT3D *p1, POINT3D *p2, POINT3D *p3, int x, int z)
 
 	return ((yl * (x - x1)) >> FLOATNS) + y1;
 }
+
+
+
+

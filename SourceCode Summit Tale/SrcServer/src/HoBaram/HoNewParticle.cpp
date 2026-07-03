@@ -1570,7 +1570,7 @@ bool HoNewParticleEmitter::ProcessEventSequenceBlock(HoNewParticleEventSequence 
 				HoNewParticleEmitterTokenizer::NextToken(TokenIter, EndIter);
 				if(!HoNewParticleEmitterTokenizer::ProcessVector(v, TokenIter, EndIter))
 				{
-					OutputDebugString("º¤ÅÍ°ª ÀÐ´øÁß ¿¡·¯");
+					OutputDebugString("ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ð´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 					return false;
 				}
 
@@ -3199,3 +3199,5 @@ void HoNewParticleEventSequence::Draw(int x, int y, int z, int ax, int ay, int a
 
 
  
+
+

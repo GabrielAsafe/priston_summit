@@ -20,3 +20,6 @@ public:
 private:
 	function<void()> fRender;
 };
+
+
+

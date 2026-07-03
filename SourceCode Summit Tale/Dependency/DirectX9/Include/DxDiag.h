@@ -185,3 +185,5 @@ DECLARE_INTERFACE_(IDxDiagContainer,IUnknown)
 #endif /* _DXDIAG_H_ */
 
 
+
+

@@ -63,3 +63,7 @@ void UITitle::setText(string text)
 	Text->setX((getWidth() - Text->getWidth()) / 2);
 	Text->setY((getHeight() - Text->getHeight()) / 2);
 }
+
+
+
+

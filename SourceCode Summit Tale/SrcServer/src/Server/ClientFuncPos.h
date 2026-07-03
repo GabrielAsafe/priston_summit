@@ -15,3 +15,5 @@ int	rsCompClientFuncMem(rsPLAYINFO *lpPlayInfo, DWORD	dwFunc, DWORD dwChkSum);
 int	rsCompClientFuncMem2(rsPLAYINFO *lpPlayInfo, DWORD dwFuncCode);
 
 int	rsCheckClientFuncMem(rsPLAYINFO *lpPlayInfo);
+
+

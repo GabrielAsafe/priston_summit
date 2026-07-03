@@ -286,3 +286,5 @@ int DisplayError(HDC hdc, int x, int y);
 int AddErrorList(char *szErrMsg);
 
 
+
+

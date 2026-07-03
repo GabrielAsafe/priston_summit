@@ -570,7 +570,7 @@ F_Virtual_Life,SKILL_VIRTUAL_LIFE,SIN_SKILL_USE_RIGHT,Virtual_Life_UseMana},
 {1,0,0},			{sinWM1,0,0,0,0,0,0,0},
 F_Glacial_Spike,SKILL_GLACIAL_SPIKE,SIN_SKILL_USE_RIGHT,Glacial_Spike_UseMana},
 
-{" Campo de Regeneraci? ",	" Luego de tu sacrificio, recupera a tu compañía de manera continua. ",
+{" Campo de Regeneraci? ",	" Luego de tu sacrificio, recupera a tu compaï¿½ï¿½a de manera continua. ",
 63,		41,1,		950,0,
 {1,0,0},			{sinWM1,0,0,0,0,0,0,0},
 F_Regeneration_Field,SKILL_REGENERATION_FIELD,SIN_SKILL_USE_RIGHT,Regeneration_Field_UseMana},
@@ -785,3 +785,7 @@ NULL,SCROLL_P_CRITICAL,0,0},
 0,		0,0,		0,0,
 {0,0,0},			{0,0,0,0,0,0,0,0},
 NULL,SCROLL_P_EVASION,0,0},
+
+
+
+

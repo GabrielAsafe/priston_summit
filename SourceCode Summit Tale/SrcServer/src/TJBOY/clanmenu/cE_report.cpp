@@ -233,3 +233,5 @@ void CLANEntity_report::Draw()
 }
 
 
+
+

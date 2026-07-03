@@ -282,3 +282,8 @@ void Settings::setMacro(unsigned short index, std::string macro)
 {
 	lstrcpy(szShotCutMessage[index%10], macro.c_str());
 }
+
+
+
+
+

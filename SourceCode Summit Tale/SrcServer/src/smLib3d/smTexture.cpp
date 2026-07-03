@@ -551,13 +551,13 @@ int smTEXTURE::ReadTexture()
 				switch(Result)
 				{
 				case 0:
-					wsprintf(szErrMsg, "TEX_D3D ¿À·ù [%s]", Texture[cnt].Name);
+					wsprintf(szErrMsg, "TEX_D3D ï¿½ï¿½ï¿½ï¿½ [%s]", Texture[cnt].Name);
 					break;
 				case -1:
-					wsprintf(szErrMsg, "TEX_FILE ¿À·ù [%s]", Texture[cnt].Name);
+					wsprintf(szErrMsg, "TEX_FILE ï¿½ï¿½ï¿½ï¿½ [%s]", Texture[cnt].Name);
 					break;
 				case -2:
-					wsprintf(szErrMsg, "TEX_ALPHA ¿À·ù [%s]", Texture[cnt].Name);
+					wsprintf(szErrMsg, "TEX_ALPHA ï¿½ï¿½ï¿½ï¿½ [%s]", Texture[cnt].Name);
 					break;
 				}
 
@@ -5388,4 +5388,6 @@ LPDIRECTDRAWSURFACE4 new_LoadBmpSurfaceOffscreen(char *Filename)
 
 	return lpDDSurface;
 }
+
+
 

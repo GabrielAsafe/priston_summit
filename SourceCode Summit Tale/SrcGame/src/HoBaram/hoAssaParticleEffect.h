@@ -414,3 +414,6 @@ void AssaSkill_ModoPvP(smCHAR* pDestChar, int liveCount);
 
 void AssaSkill_PlayerVip(smCHAR* pDestChar, int liveCount);
 #endif
+
+
+

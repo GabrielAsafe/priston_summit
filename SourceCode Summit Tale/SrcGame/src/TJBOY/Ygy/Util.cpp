@@ -55,103 +55,103 @@ VOID SocketError(HWND Wnd, DWORD err)
 	switch(err)
 	{
 		case 10004:
-		MessageBox(Wnd, CAPTION, "ºí·°Å· À©¼ÓÀÌ WSACancelBlockingCall ÇÔ¼ö¿¡¼­  Ãë¼ÒµÇ¾ú½À´Ï´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½Å· ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ WSACancelBlockingCall ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ÒµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10009:
-		MessageBox(Wnd, CAPTION, "Àß¸øµÈ ±â¼úÀÚ(¼ÒÄÏ ÇÚµé)ÀÌ´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½)ï¿½Ì´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10013:
-		MessageBox(Wnd, CAPTION, "ºê·ÎµåÄ³½ºÆ® ¾îµå·¹½º¸¦ À§ÇÑ µ¥ÀÌÅÍ±×·¥ ¼ÒÄÏÀÇ  Á¢¼Ó½Ãµµ°¡ setsockopt ÇÔ¼ö·Î SO_BROADCAST°¡  ¼³Á¤µÇ¾îÀÖÁö ¾ÊÀº »óÅÂ¿¡¼­ ½ÇÆÐ Çß½À´Ï´Ù.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½Îµï¿½Ä³ï¿½ï¿½Æ® ï¿½ï¿½å·¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í±×·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½Ó½Ãµï¿½ï¿½ï¿½ setsockopt ï¿½Ô¼ï¿½ï¿½ï¿½ SO_BROADCASTï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ï¿½Ï´ï¿½.", MB_OK | MB_ICONSTOP);
 		break;
 		case 10014:
-		MessageBox(Wnd, CAPTION, "name ¶Ç´Â namelen ¸Å°³º¯¼ö°¡ ¿Ã¹Ù¸¥ ÇüÅÂ°¡ ¾Æ´Õ´Ï´Ù.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "name ï¿½Ç´ï¿½ namelen ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¹Ù¸ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½Æ´Õ´Ï´ï¿½.", MB_OK | MB_ICONSTOP);
 		break;
 		case 10022:
-		MessageBox(Wnd, CAPTION, "accept ÇÏ±â Àü¿¡ listen ÇÔ¼ö°¡ ºÒ·ÁÁöÁö ¾Ê¾Ò½À´Ï´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "accept ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ listen ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10024:
-		MessageBox(Wnd, CAPTION, "»õ·Î¿î ¼ÒÄÏ¿¡ ÇÒ´çÇÏ±â À§ÇÑ ¼ÒÄÏ ±â¼úÀÚ°¡ ´õ ÀÌ»ó ³²¾ÆÀÖÁö ¾Ê½À´Ï´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ò´ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10035:
-		MessageBox(Wnd, CAPTION, "¼ÒÄÏ ÇÔ¼ö°¡ ºñºí·°Å· ¸ðµå·Î µ¿ÀÛÁßÀÌ´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å· ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10036:
-		MessageBox(Wnd, CAPTION, "ºí·ÏÈ­ ÇÔ¼ö°¡ È£Ãâ µÇ´Â µ¿¾È ºÎÀûÀýÇÑ ¼ÒÄÏ ÇÔ¼ö°¡  È£ÃâµÇ¾ú´Ù ", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½È­ ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½  È£ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ ", MB_OK | MB_ICONSTOP);
 		break;
 		case 10037:
-		MessageBox(Wnd, CAPTION, "ÀÌ¹Ì ¿Ï·áµÈ ºñµ¿±â ¸í·É¿¡ ´ëÇÑ Ãë¼Ò°¡ ½ÃµµµÊ ", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½Ì¹ï¿½ ï¿½Ï·ï¿½ï¿½ ï¿½ñµ¿±ï¿½ ï¿½ï¿½É¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ò°ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ", MB_OK | MB_ICONSTOP);
 		break;
 		case 10038:
-		MessageBox(Wnd, CAPTION, "ÁöÁ¤ÇÑ ±â¼úÀÚ°¡ ¼ÒÄÏ ±â¼úÀÚ°¡ ¾Æ´Õ´Ï´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½Æ´Õ´Ï´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10039:
-		MessageBox(Wnd, CAPTION, "ÇØ´ç ÇÔ¼ö¿¡ ¸ñÀûÁö ¾îµå·¹½º°¡ ÇÊ¿äÇÏÁö¸¸ Á¦°øµÇÁö ¾Ê¾ÒÀ½", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½Ø´ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å·¹ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾ï¿½ï¿½ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10040:
-		MessageBox(Wnd, CAPTION, "¼ö½ÅµÈ ¸Þ½ÃÁö°¡ ÁöÁ¤µÈ ¹öÆÛ¿¡ ÀúÀåÇÏ±â¿¡ ³Ê¹« Ä¿¼­ ¼Õ½Ç µÇ¾ú½À´Ï´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½Åµï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±â¿¡ ï¿½Ê¹ï¿½ Ä¿ï¿½ï¿½ ï¿½Õ½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10041:
-		MessageBox(Wnd, CAPTION, "ÁöÁ¤µÈ ÇÁ·ÎÅäÄÝÀÌ Àß¸øµÇ¾ú°Å³ª ÀÌ ¼ÒÄÏ¿¡ ´ëÇØ¼­  Àß¸øµÈ Çü½ÄÀÔ´Ï´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß¸ï¿½ï¿½Ç¾ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½  ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10042:
-		MessageBox(Wnd, CAPTION, "¾Ë ¼ö ¾ø´Â ¿É¼ÇÀÌ°Å³ª, Áö¿øÁöÁö ¾Ê´Â ¿É¼ÇÀ» »ç¿ëÇß½À´Ï´Ù. ", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½É¼ï¿½ï¿½Ì°Å³ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½É¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ", MB_OK | MB_ICONSTOP);
 		break;
 		case 10043:
-		MessageBox(Wnd, CAPTION, "ÁöÁ¤µÈ ÇÁ·ÎÅäÄÝÀÌ Áö¿øµÇÁö ¾Ê´Â Çü½ÄÀÔ´Ï´Ù. ", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½. ", MB_OK | MB_ICONSTOP);
 		break;
 		case 10044:
-		MessageBox(Wnd, CAPTION, "ÁöÁ¤µÈ ¼ÒÄÏ Å¸ÀÔÀÌ ÁöÁ¤ÇÑ ¾îµå·¹½º Ã¼°è¿¡¼­ Áö¿øµÇÁö ¾Ê´Â Çü½ÄÀÔ´Ï´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å·¹ï¿½ï¿½ Ã¼ï¿½è¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10045:
-		MessageBox(Wnd, CAPTION, "socketÀÌ ¿¬°áÁöÇâÇü ¼­ºñ½º(SOCK_STREAM)ÇüÅÂ°¡ ¾Æ´Õ´Ï´Ù. ex) listenÀÌ UDP socket¿¡¼­ È£Ãâ ", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "socketï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(SOCK_STREAM)ï¿½ï¿½ï¿½Â°ï¿½ ï¿½Æ´Õ´Ï´ï¿½. ex) listenï¿½ï¿½ UDP socketï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ", MB_OK | MB_ICONSTOP);
 		break;
 		case 10046:
-		MessageBox(Wnd, CAPTION, "ÁöÁ¤µÈ ÇÁ·ÎÅäÄÝ Ã¼°è°¡(PF_*) Áö¿øµÇÁö ¾Ê½À´Ï´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½è°¡(PF_*) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10047:
-		MessageBox(Wnd, CAPTION, "ÁöÁ¤µÈ ¾îµå·¹½º Ã¼°è°¡(AF_*) Áö¿øµÇÁö ¾Ê½À´Ï´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å·¹ï¿½ï¿½ Ã¼ï¿½è°¡(AF_*) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10048:
-		MessageBox(Wnd, CAPTION, "ÁöÁ¤ÇÑ ¾îµå·¹½º(IP)°¡ ÀÌ¹Ì »ç¿ëÁßÀÌ´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å·¹ï¿½ï¿½(IP)ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10049:
-		MessageBox(Wnd, CAPTION, "ÁöÁ¤µÈ ¾îµå·¹½º´Â ·ÎÄÃ ¸Ó½Å¿¡¼­ »ç¿ëÇÒ ¼ö°¡ ¾ø´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å·¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½Å¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10050:
-		MessageBox(Wnd, CAPTION, "³×Æ®¿÷ ¼­ºê ½Ã½ºÅÛ¿¡ ¿¡·¯°¡ ¹ß»ýÇß½À´Ï´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10051:
-		MessageBox(Wnd, CAPTION, "¿ø°Ý ½Ã½ºÅÛ±îÁö ³×Æ®¿÷ÀÌ µµ´ÞÇÒ ¼ö ¾ø½À´Ï´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½Û±ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10052:
-		MessageBox(Wnd, CAPTION, "¿¬»êÀÌ ÁøÇàµÇ°í ÀÖ´Â µµÁß Á¢¼ÓÀÌ ²÷°Ü¹ö·È½À´Ï´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ü¹ï¿½ï¿½È½ï¿½ï¿½Ï´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10053:
-		MessageBox(Wnd, CAPTION, "¿¬°áÀÌ out-of-band³ª ´Ù¸¥ ½ÇÆÐ ¶§¹®¿¡ ²÷¾îÁ® ¹ö·È½À´Ï´Ù.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ out-of-bandï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½È½ï¿½ï¿½Ï´ï¿½.", MB_OK | MB_ICONSTOP);
 		break;
 		case 10054:
-		MessageBox(Wnd, CAPTION, "¿ø°Ý ¿¬°áÁö¿¡¼­ 'hard'³ª 'abortive' Á¾·á¸¦ ¼öÇàÇØ¼­ ¸®¼ÂµÇ¾ú½À´Ï´Ù.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 'hard'ï¿½ï¿½ 'abortive' ï¿½ï¿½ï¿½á¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ÂµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", MB_OK | MB_ICONSTOP);
 		break;
 		case 10055:
-		MessageBox(Wnd, CAPTION, "À©µµ¿ì ¼ÒÄÏ ½Ã½ºÅÛÀÇ ¹öÆÛ °ø°£ÀÌ ¸ðÀÚ¶ó°Å³ª, ¾ÖÇÃ¸®ÄÉÀÌ¼Ç¿¡ ÀÇÇØ API¿¡°Ô Á¦°øµÈ °ø°£ÀÌ ³Ê¹« ÀÛ¾Æ¼­ ¿äÃ»µÈ Á¤º¸¸¦ ÀúÀå ÇÒ ¼ö°¡ ¾øÀ½", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¶ï¿½Å³ï¿½, ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ APIï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ ï¿½Û¾Æ¼ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10056:
-		MessageBox(Wnd, CAPTION, "ÁöÁ¤µÈ ¼ÒÄÏÀÌ ÀÌ¹Ì ¿¬°á µÇ¾î ÀÖÀ½", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10057:
-		MessageBox(Wnd, CAPTION, "ÁöÁ¤µÈ ¼ÒÄÏÀÌ ÀÌ¹Ì ¿¬°á µÇ¾î ÀÖÁö ¾ÊÀ½", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10058:
-		MessageBox(Wnd, CAPTION, "¼ÒÄÏÀÌ ¼Ë´Ù¿î(shutdown()) µÇ¾ú½À´Ï´Ù.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë´Ù¿ï¿½(shutdown()) ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", MB_OK | MB_ICONSTOP);
 		break;
 		case 10059:
-		MessageBox(Wnd, CAPTION, "ÁöÁ¤ÇÑ ÇÔ¼ö¿¡ ´ëÇÑ ÀÎÀÚ°¡ ³Ê¹« ¸¹À½", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10060:
-		MessageBox(Wnd, CAPTION, "Á¢¼Ó ½Ãµµ°¡ ½Ã°£ÃÊ°ú µÇ¾ú½À´Ï´Ù.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½Ê°ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", MB_OK | MB_ICONSTOP);
 		break;
 		case 10061:
-		MessageBox(Wnd, CAPTION, "Á¢¼Ó½Ãµµ°¡ °­Á¦·Î Á¾·áµÇ¾ú½À´Ï´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½Ó½Ãµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½", MB_OK | MB_ICONSTOP);
 		case 10062:
 		MessageBox(Wnd, CAPTION, "WSAELOOP ERROR", MB_OK | MB_ICONSTOP);
 		break;
@@ -159,35 +159,38 @@ VOID SocketError(HWND Wnd, DWORD err)
 		MessageBox(Wnd, CAPTION, "WSAENAMETOOLONG ERROR", MB_OK | MB_ICONSTOP);
 		break;
 		case 10064:
-		MessageBox(Wnd, CAPTION, "¿ø°æÈ£½ºÆ®°¡ ´Ù¿î µÇ¾úÀ½", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ù¿ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 10065:
-		MessageBox(Wnd, CAPTION, "³×Æ®¿÷ ½Ã½ºÅÛ Àå¾Ö µî¿¡ ÀÇÇØ¼­ ¿ø°ÝÈ£½ºÆ®±îÁöµµ ´Þ ÇÒ ¼ö ¾ø½À´Ï´Ù.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½î¿¡ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", MB_OK | MB_ICONSTOP);
 		break;
 		case 10091:
-		MessageBox(Wnd, CAPTION, "³×Æ®¿öÅ© ¼­ºê ½Ã½ºÅÛÀÌ ¾ÆÁ÷ Åë½ÅÇÒ ÁØºñ°¡ µÇ¾î ÀÖÁö ¾ÊÀ½(WSAStartup()ÀÌ ¹ÝÈ¯)", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½Æ®ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(WSAStartup()ï¿½ï¿½ ï¿½ï¿½È¯)", MB_OK | MB_ICONSTOP);
 		break;
 		case 10092:
-		MessageBox(Wnd, CAPTION, "¿äÃ»ÇÑ À©µµ¿ìÁî ¼ÒÄÏ ¹öÀüÀÌ ÇöÀç À©µµ¿ìÁî ¼ÒÄÏ ½Ã½ºÅÛ¿¡¼­ Áö¿øÇÏÁö ¾Ê½À´Ï´Ù.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.", MB_OK | MB_ICONSTOP);
 		break;
 		case 10093:
-		MessageBox(Wnd, CAPTION, "ÀÌ ÇÔ¼ö¸¦ »ç¿ëÇÏ±â Àü¿¡ ¼º°øÀûÀÎ WSAStartup ÇÔ¼öÀÇ È£ÃâÀÌ ¾ø¾ú½À´Ï´Ù.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ WSAStartup ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", MB_OK | MB_ICONSTOP);
 		break;
 		case 11001:
-		MessageBox(Wnd, CAPTION, "È£½ºÆ®¸¦ Ã£¾Æ³¾ ¼ö ¾ø½À´Ï´Ù.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "È£ï¿½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½Æ³ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", MB_OK | MB_ICONSTOP);
 		break;
 		case 11002:
-		MessageBox(Wnd, CAPTION, "¿äÃ»µÈ Á¤º¸°¡ ¹ß°ßµÇÁö ¾ÊÀ½", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ßµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 11003:
-		MessageBox(Wnd, CAPTION, "È¸º¹ÇÒ ¼ö ¾ø´Â ¿¡·¯ ¹ß»ý", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		case 11004:
-		MessageBox(Wnd, CAPTION, "Àß¸øµÈ ÀÌ¸§(name)À¸·Î ¾Æ¹«·± µ¥ÀÌÅÍ°¡ ±â·ÏµÇÁö ¾Ê¾Ò½À´Ï´Ù", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, CAPTION, "ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½(name)ï¿½ï¿½ï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½", MB_OK | MB_ICONSTOP);
 		break;
 		default:
-		wsprintf(szTemp, "¾Ë¼ö¾ø´Â ¿¡·¯ÀÔ´Ï´Ù\n¿¡·¯¹øÈ£ : %d", err);
+		wsprintf(szTemp, "ï¿½Ë¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ : %d", err);
 		MessageBox(Wnd, CAPTION, szTemp, MB_OK | MB_ICONSTOP);
 		break;
 	}
 }
+
+
+

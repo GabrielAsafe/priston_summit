@@ -1255,7 +1255,7 @@ int AssaTestEffectImage()
 
 
 
-		if(!NextFlag && lstrcmp(sinDecode, "*ÆÄÀÏÀÌ¸§") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½") == 0)
 		{
 			char boneName2[8];
 			char MeshName[32];
@@ -1281,7 +1281,7 @@ int AssaTestEffectImage()
 
 		}
 
-		if(!NextFlag && lstrcmp(sinDecode, "*ÇÁ·¹ÀÓ") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cAssaEffect[Index]->AniMaxCount = atoi(strBuff);
@@ -1289,14 +1289,14 @@ int AssaTestEffectImage()
 
 		}
 
-		if(!NextFlag && lstrcmp(sinDecode, "*ÇÁ·¹ÀÓµô·¹ÀÌ") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cAssaEffect[Index]->AniDelayTime = atoi(strBuff);
 			NextFlag = TRUE;
 
 		}
-		if(!NextFlag && lstrcmp(sinDecode, "*³ôÀÌ") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			cAssaEffect[Index]->Posi.y += atoi(strBuff);
@@ -1309,3 +1309,5 @@ int AssaTestEffectImage()
 	return TRUE;
 
 }
+
+

@@ -152,3 +152,7 @@ void UIHorizontalScroll::updateButtonPos(int iX)
 	float percent = interval / (float)getWidth();
 	setValue(((getMax() - getMin()) * percent) + getMin());
 }
+
+
+
+

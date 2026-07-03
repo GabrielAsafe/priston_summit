@@ -1881,3 +1881,5 @@ DEFINE_GUID(IID_IDirectMusicAudioPath,0xc87631f5, 0x23be, 0x4986, 0x88, 0x36, 0x
 #include <poppack.h>
 
 #endif /* #ifndef _DMUSICI_ */
+
+

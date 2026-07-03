@@ -450,3 +450,6 @@ int HoAnimDataMgr::GetSearchAnimImageData(char *iniName)
 
 	return -1;
 }
+
+
+

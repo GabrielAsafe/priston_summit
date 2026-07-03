@@ -11,3 +11,5 @@ public:
     std::string getHashFromString(const std::string & text);
     std::string getHashFromFile(const std::string & filename);
 };
+
+

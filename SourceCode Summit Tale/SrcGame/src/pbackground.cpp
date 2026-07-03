@@ -418,3 +418,7 @@ int smBACKGROUND::Draw(int x, int y, int z, int ax, int ay, int az)
 	return TRUE;
 
 }
+
+
+
+

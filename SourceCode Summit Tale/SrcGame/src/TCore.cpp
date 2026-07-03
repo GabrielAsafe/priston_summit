@@ -43,11 +43,11 @@ const char* InfoMapa[38] = {
 	"EM BREVE",
 };
 const char* FieldNum[38][4] = {
-	//Nº   Field	Level   Nome
+	//Nï¿½   Field	Level   Nome
 	{ "0","20",		"0",	"Estrada dos Ventos"},//ok
 	{ "1","19",		"0",	"Vale Tranquilo"},//ok
-	{ "2","17",		"0",	"Floresta dos Espíritos"},//ok
-	{ "3","0",		"0",	"Mata das Acácias"},//ok	
+	{ "2","17",		"0",	"Floresta dos Espï¿½ritos"},//ok
+	{ "3","0",		"0",	"Mata das Acï¿½cias"},//ok	
 	{ "4","2",		"0",	"Jardim da Liberdade"},//ok
 	{ "5","4",		"20",	"Refugio dos Ancioes"},//ok
 	{ "6","5",		"70",	"Castelo dos Perdidos"},//ok
@@ -58,26 +58,26 @@ const char* FieldNum[38][4] = {
 	{ "11","12",	"55",	"Terra Proibida"},//ok
 	{ "12","25",	"55",	"Caverna das Abelhas"},//ok
 	{ "13","24",	"55",	"Caverna dos Cogumelos"},//ok
-	{ "14","26",	"65",	"Santuário Sombrio"},//ok
-	{ "15","13",	"40",	"Calabouço Antigo 1º Andar"},//ok
-	{ "16","14",	"50",	"Calabouço Antigo 2º Andar"},//ok
-	{ "17","15",	"60",	"Calabouço Antigo 3º Andar"},//ok
-	{ "18","22",	"70",	"Templo Maldito 1º Andar"},//ok
-	{ "19","23",	"75",	"Templo Maldito 2º Andar"},//ok
-	{ "20","42",	"80",	"Templo Maldito 3º Andar"},//ok
-	{ "21","34",	"70",	"Lago da Ganância"},//ok
+	{ "14","26",	"65",	"Santuï¿½rio Sombrio"},//ok
+	{ "15","13",	"40",	"Calabouï¿½o Antigo 1ï¿½ Andar"},//ok
+	{ "16","14",	"50",	"Calabouï¿½o Antigo 2ï¿½ Andar"},//ok
+	{ "17","15",	"60",	"Calabouï¿½o Antigo 3ï¿½ Andar"},//ok
+	{ "18","22",	"70",	"Templo Maldito 1ï¿½ Andar"},//ok
+	{ "19","23",	"75",	"Templo Maldito 2ï¿½ Andar"},//ok
+	{ "20","42",	"80",	"Templo Maldito 3ï¿½ Andar"},//ok
+	{ "21","34",	"70",	"Lago da Ganï¿½ncia"},//ok
 	{ "22","27",	"80",	"Estrada de Ferro do Caos"},//ok
-	{ "23","28",	"85",	"Coração de Perum"},//ok
+	{ "23","28",	"85",	"Coraï¿½ï¿½o de Perum"},//ok
 	{ "24","29",	"90",	"Eura"},//ok
 	{ "25","31",	"90",	"Vale Gallubia"},//ok
-	{ "26","35",	"90",	"Santuário Congelado"},//ok
+	{ "26","35",	"90",	"Santuï¿½rio Congelado"},//ok
 	{ "27","36",	"90",	"Covil de Kelvezu"},//ok
 	{ "28","37",	"95",	"Ilha Perdida"},//ok
 	{ "29","38",	"100",	"Templo Perdido"},
 	{ "30","40",	"102",	"Torre Sem Fim 1o Andar"},
-	{ "31","41",	"105",	"Torre Sem Fim 2º Andar"},
-	{ "32","43",	"108",	"Torre Sem Fim 3º Andar"},
-	{ "33","44",	"110",	"Mina de Gelo 1º Andar"},
+	{ "31","41",	"105",	"Torre Sem Fim 2ï¿½ Andar"},
+	{ "32","43",	"108",	"Torre Sem Fim 3ï¿½ Andar"},
+	{ "33","44",	"110",	"Mina de Gelo 1ï¿½ Andar"},
 	{ "34","46",	"200",	"EM BREVE"},
 	{ "35","47",	"200",	"EM BREVE"},
 	{ "36","48",	"200",	"EM BREVE"},
@@ -985,3 +985,6 @@ bool TCORE::MouseIn() {
 	}
 	return TRUE;
 }
+
+
+

@@ -195,3 +195,5 @@ char *szClanMakedowninfo = "Registering clan.";
 char *szClanUserReleaseMsg = "Clan : %s\n registration has been cancelled.\n";
 char *szClanUserRemove = "Clan : %s\nMember : %s\nhas been expelled from the clan.\n";
 
+
+

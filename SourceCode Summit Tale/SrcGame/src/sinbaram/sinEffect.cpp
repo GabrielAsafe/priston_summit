@@ -615,3 +615,7 @@ int EffectTestDrawText()
 	return TRUE;
 
 }
+
+
+
+

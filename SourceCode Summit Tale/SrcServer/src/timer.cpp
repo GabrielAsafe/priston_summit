@@ -28,3 +28,5 @@ DWORD GetSkipFrame(void)
 	return (gt / frameTime);
 }
 
+
+

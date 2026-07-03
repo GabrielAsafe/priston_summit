@@ -431,7 +431,7 @@ DWORD WINAPI AUTH_MainLoop(void* pVoid)
 
 
 			time(&myTime);
-			fd2("¾²·¹µå¸ÞÀÎ·çÇÁ FLAG_WAIT ³¡. %d ", myTime);
+			fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î·ï¿½ï¿½ï¿½ FLAG_WAIT ï¿½ï¿½. %d ", myTime);
 			break;
 
 			case FLAG_EXIT:
@@ -587,7 +587,7 @@ void WebDB_Thread::end()
 
 int WebDB_Thread::AUTH_init(int Num)
 {
-	fd2("AUTH_init()ÇÔ¼ö start");
+	fd2("AUTH_init()ï¿½Ô¼ï¿½ start");
 
 
 	AUTH_QUE_nums = Num;
@@ -655,7 +655,7 @@ int WebDB_Thread::AUTH_init(int Num)
 		return 0;
 
 
-	fd2("AUTH_init()ÇÔ¼ö end");
+	fd2("AUTH_init()ï¿½Ô¼ï¿½ end");
 
 	return TRUE;
 }
@@ -674,7 +674,7 @@ int WebDB_Thread::AUTH_close(void)
 
 	DeleteCriticalSection(&g_cs);
 
-	fd2("AUTH_close()ÇÔ¼ö ");
+	fd2("AUTH_close()ï¿½Ô¼ï¿½ ");
 	return TRUE;
 }
 
@@ -686,29 +686,29 @@ void WebDB_Thread::Suspend()
 
 
 
-	fd2("ÁßÁöÇÔ¼ö Suspend() 00 ");
+	fd2("ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ Suspend() 00 ");
 	ThreadS.flag = FLAG_WAIT;
 
-	fd2("ÁßÁöÇÔ¼ö Suspend() 11 ");
+	fd2("ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ Suspend() 11 ");
 }
 
 void WebDB_Thread::Resume()
 {
-	fd2("Àç°³ÇÔ¼ö Resume() µé¾î°¨ ");
+	fd2("ï¿½ç°³ï¿½Ô¼ï¿½ Resume() ï¿½ï¿½î°¨ ");
 
 	if(ThreadS.flag == FLAG_EXEC)
 		return;
 
-	fd2("Àç°³ÇÔ¼ö Resume() while ½ÃÀÛ ");
+	fd2("ï¿½ç°³ï¿½Ô¼ï¿½ Resume() while ï¿½ï¿½ï¿½ï¿½ ");
 
 	while(true)
 	{
-		fd2("Àç°³ÇÔ¼ö Resume() while Áß ");
+		fd2("ï¿½ç°³ï¿½Ô¼ï¿½ Resume() while ï¿½ï¿½ ");
 
 		if(ThreadS.flag == FLAG_WAIT)
 		{
 
-			fd2("Àç°³ÇÔ¼ö Resume() while Áß break; ");
+			fd2("ï¿½ç°³ï¿½Ô¼ï¿½ Resume() while ï¿½ï¿½ break; ");
 
 
 			break;
@@ -718,7 +718,7 @@ void WebDB_Thread::Resume()
 	ThreadS.flag = FLAG_EXEC;
 	ResumeThread((void *)ThreadS.thrHandle);
 
-	fd2("Àç°³ÇÔ¼ö Resume() ³¡");
+	fd2("ï¿½ç°³ï¿½Ô¼ï¿½ Resume() ï¿½ï¿½");
 }
 
 
@@ -781,7 +781,7 @@ int WebDB_Thread::ReadNotice(char *userid, char *chaname, char *gserver)
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -883,7 +883,7 @@ int WebDB_Thread::AUTH_proc_ReadNotice_Result(int quenum, int threadindex)
 
 
 
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -1021,7 +1021,7 @@ int WebDB_Thread::ReadClanInfo(char *clanNum, CLANINFO *ci)
 {
 
 	static int cnt = 0;
-	fd2("ReadClanInfo: Å¬·£¸¶Å©¹øÈ£ %s (cnt %d )", clanNum, cnt);
+	fd2("ReadClanInfo: Å¬ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½È£ %s (cnt %d )", clanNum, cnt);
 	cnt++;
 
 
@@ -1048,7 +1048,7 @@ int WebDB_Thread::ReadClanInfo(char *clanNum, CLANINFO *ci)
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -1072,7 +1072,7 @@ int WebDB_Thread::isCheckClanMember(char *pszServerName, char *pszUserName)
 
 	if(AUTH_addQue(&AuthQueTmp) < 0)
 	{
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -1241,7 +1241,7 @@ int WebDB_Thread::AUTH_proc_isClanMember_Result(int quenum, int threadindex)
 
 
 
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -1349,7 +1349,7 @@ int WebDB_Thread::AUTH_proc_isPFlag_Result(int quenum, int threadindex)
 
 
 
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -1394,7 +1394,7 @@ int WebDB_Thread::isPFlag(char *userid, char *clName, char *chName, char *gserve
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -1424,7 +1424,7 @@ int WebDB_Thread::isCheckClanJang(char *ClanZang_ID, char *gserver)
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -1542,7 +1542,7 @@ int WebDB_Thread::AUTH_proc_isCheckClanJang_Result(int quenum, int threadindex)
 
 
 	ANSdata.ret_val = iResultCode;
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -1582,7 +1582,7 @@ int WebDB_Thread::isCheckClanName(char *ClanName, char *gserver)
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -1700,7 +1700,7 @@ int WebDB_Thread::AUTH_proc_isCheckClanName_Result(int quenum, int threadindex)
 
 
 	ANSdata.ret_val = iResultCode;
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -1844,7 +1844,7 @@ int WebDB_Thread::AUTH_proc_ClanMake_Result(int quenum, int threadindex)
 
 
 	ANSdata.ret_val = iResultCode;
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -1961,7 +1961,7 @@ int WebDB_Thread::AUTH_proc_Mmake_Result(int quenum, int threadindex)
 	}
 
 	ANSdata.ret_val = iResultCode;
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 	if(0 <= AUTH_que[quenum].result && AUTH_que[quenum].result < AUTH_ERROR_END)
@@ -2057,7 +2057,7 @@ int WebDB_Thread::AUTH_proc_ReadClan_Result(int quenum, int threadindex)
 
 
 	ANSdata.ret_val = iResultCode;
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -2159,7 +2159,7 @@ int WebDB_Thread::AUTH_proc_BreakUP_Result(int quenum, int threadindex)
 
 
 	ANSdata.ret_val = iResultCode;
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -2264,7 +2264,7 @@ int WebDB_Thread::AUTH_proc_Secession_Result(int quenum, int threadindex)
 
 
 	ANSdata.ret_val = iResultCode;
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -2364,7 +2364,7 @@ int WebDB_Thread::AUTH_proc_Banishiment_Result(int quenum, int threadindex)
 
 
 	ANSdata.ret_val = iResultCode;
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -2444,7 +2444,7 @@ int WebDB_Thread::AUTH_proc_WarhouseR_Result(int quenum, int threadindex)
 
 
 	ANSdata.ret_val = iResultCode;
-	fd2("Ã¢°í±ÇÇÑ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Ã¢ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -2523,7 +2523,7 @@ int WebDB_Thread::AUTH_proc_updateFlag_Result(int quenum, int threadindex)
 
 
 	ANSdata.ret_val = iResultCode;
-	fd2("Ã¢°í±ÇÇÑ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Ã¢ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -2625,7 +2625,7 @@ int WebDB_Thread::AUTH_proc_MarkREAD_Result(int quenum, int threadindex)
 
 
 	ANSdata.ret_val = iResultCode;
-	fd2("Ã¢°í±ÇÇÑ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Ã¢ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -2723,7 +2723,7 @@ int WebDB_Thread::AUTH_proc_MarkREAD2_Result(int quenum, int threadindex)
 
 
 	ANSdata.ret_val = iResultCode;
-	fd2("Ã¢°í±ÇÇÑ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Ã¢ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -2867,7 +2867,7 @@ int WebDB_Thread::AUTH_proc_Updatcldata_Result(int quenum, int threadindex)
 
 
 	ANSdata.ret_val = iResultCode;
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -2913,7 +2913,7 @@ int WebDB_Thread::Updatcldata(char *id, char *gserver, char *chaname)
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -2942,7 +2942,7 @@ int WebDB_Thread::isClanMember(char *ClanZang_id, char* gserver, char* ClanZang_
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -2980,7 +2980,7 @@ int WebDB_Thread::joinClanMember(char *ClanZang_ID, char *gserver, char *ClanZan
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -3016,7 +3016,7 @@ int WebDB_Thread::make_Clan(char *ClanZang_ID, char* gserver, char* ClanZang_Cha
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -3049,7 +3049,7 @@ int WebDB_Thread::ReadClan(char *ClanZang_ID, char* gserver, char* ClanZang_ChaN
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -3081,7 +3081,7 @@ int WebDB_Thread::BreakUP_Clan(char *ClanZang_ID, char *gserver, char *ClanZang_
 
 
 
-		fd2("BreakUP_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("BreakUP_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -3118,7 +3118,7 @@ int WebDB_Thread::Banishiment(char *ClanZang_ID, char *gserver, char *ClanZang_C
 
 
 
-		fd2("BreakUP_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("BreakUP_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -3157,7 +3157,7 @@ int WebDB_Thread::Secession(char* clanzang, char* gserver, char* SecessionID, ch
 
 
 
-		fd2("BreakUP_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("BreakUP_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -3191,7 +3191,7 @@ int WebDB_Thread::Warhouse_right(char *clanName, char *right_str)
 
 
 
-		fd2("Warhouse_right() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("Warhouse_right() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -3266,7 +3266,7 @@ int WebDB_Thread::AUTH_proc_LeaveClan_Result(int quenum, int threadindex)
 
 
 	ANSdata.ret_val = iResultCode;
-	fd2("Ã¢°í±ÇÇÑ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Ã¢ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -3302,7 +3302,7 @@ int WebDB_Thread::LeaveClan(char *clanname, char *chaname, char *gserver)
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -3332,7 +3332,7 @@ int WebDB_Thread::updateFlag(char *clanName)
 
 
 
-		fd2("Warhouse_right() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("Warhouse_right() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -3364,7 +3364,7 @@ int WebDB_Thread::MarkREAD(char *clanname, char *mark)
 
 
 
-		fd2("Warhouse_right() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("Warhouse_right() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -3394,7 +3394,7 @@ int WebDB_Thread::MarkREAD2(char *clanname, char *mark)
 
 
 
-		fd2("Warhouse_right() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("Warhouse_right() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -3468,7 +3468,7 @@ int WebDB_Thread::start_GOLDmoney(int fd, char *cdkey, char *accountid, char *pa
 
 
 
-		fd2("³¡³»±â °ú±Ý ¿¡·¯ Å¥¿¡ µî·Ï¾ÈµÊ. %s \n", accountid);
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½. %s \n", accountid);
 		return 0;
 	}
 	return 1;
@@ -3504,7 +3504,7 @@ int WebDB_Thread::end_GOLDmoney(int fd, char *cdkey, char *accountid, char *pass
 
 
 
-		fd2("³¡³»±â °ú±Ý ¿¡·¯ Å¥¿¡ µî·Ï¾ÈµÊ. %s \n", accountid);
+		fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½. %s \n", accountid);
 		return 0;
 	}
 	return 1;
@@ -3768,7 +3768,7 @@ int WebDB_Thread::AUTH_proc_isKPFlag_Result(int quenum, int threadindex)
 
 
 
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -3810,7 +3810,7 @@ int WebDB_Thread::isKPFlag(char *userid, char *clName, char *chName, char *gserv
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -3842,7 +3842,7 @@ int WebDB_Thread::AppointSubChip(char* userid, char* chaname, char* clanname, ch
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -3967,7 +3967,7 @@ int WebDB_Thread::AUTH_proc_AppointSubChip_Result(int quenum, int threadindex)
 
 
 
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -4010,7 +4010,7 @@ int WebDB_Thread::ReleaseSubChip(char* userid, char* chaname, char* clanname, ch
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -4127,7 +4127,7 @@ int WebDB_Thread::AUTH_proc_ReleaseSubChip_Result(int quenum, int threadindex)
 
 
 
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -4165,7 +4165,7 @@ int WebDB_Thread::GetWavFile(char* FileName)
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -4271,7 +4271,7 @@ int WebDB_Thread::AUTH_proc_GetWavFile_Result(int quenum, int threadindex)
 
 
 
-	fd2("Å¬·£¸â¹ö¿©ºÎÀÇ ´äº¯À» ¹ÞÀ½. : ret_val %d ", ANSdata.ret_val);
+	fd2("Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. : ret_val %d ", ANSdata.ret_val);
 
 
 
@@ -4325,7 +4325,7 @@ int WebDB_Thread::sod2INFOindex(char *UserId, char* CharName, char* GServer, int
 
 
 
-		fd2("make_Clan() ¿¡·¯ : Å¥¿¡ µî·Ï¾ÈµÊ");
+		fd2("make_Clan() ï¿½ï¿½ï¿½ï¿½ : Å¥ï¿½ï¿½ ï¿½ï¿½Ï¾Èµï¿½");
 		return 0;
 	}
 	return 1;
@@ -4365,3 +4365,7 @@ int WebDB_Thread::AUTH_proc_sodindex_Result(int quenum, int threadindex)
 
 	return TRUE;
 }
+
+
+
+

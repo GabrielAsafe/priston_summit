@@ -100,3 +100,7 @@ DWORD rsPresentItem_LevelType_2[8][PRESENTITEM_LEVEL_MAX][2] = {
 		{	35,	sinWM1 | sin09	}
 	}
 };
+
+
+
+

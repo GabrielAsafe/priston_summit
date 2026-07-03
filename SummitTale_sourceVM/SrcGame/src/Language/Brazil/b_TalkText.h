@@ -1,4 +1,0 @@
-
-personagem *parkTextTalk = "%s disse.";
-
-

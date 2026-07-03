@@ -39,3 +39,5 @@ class CLANEntity_IsClanMember cIsClanMember;
 extern class CLANEntity_IsClanMember cIsClanMember;
 
 #endif
+
+

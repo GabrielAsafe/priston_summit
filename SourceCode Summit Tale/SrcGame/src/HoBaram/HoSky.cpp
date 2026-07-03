@@ -1144,3 +1144,7 @@ int SetNextSky()
 	unsigned int drawIndex = SkyBackGround.SetNextDrawIndex();
 	return TRUE;
 }
+
+
+
+

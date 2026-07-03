@@ -170,3 +170,7 @@ void UIItemFrame::pickItem(sITEM * pItem)
 
 	ResetInvenItemCode();
 }
+
+
+
+

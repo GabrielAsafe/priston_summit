@@ -88,76 +88,76 @@ sMESSAGEBOX	sMessageBox[100] = {
 
 
 sMESSAGEBOX2 sMessageBox2[20] = {
-	{" ¿Cu?tos objetos "," quieres comprar? "},
-	{" ¿Cu?tos objetos "," quieres vender? "},
-	{" ¿Cu?tos objetos "," quieres tirar? "},
-	{" ¿Cu?to oro "," quieres tirar? "},
+	{" ï¿½Cu?tos objetos "," quieres comprar? "},
+	{" ï¿½Cu?tos objetos "," quieres vender? "},
+	{" ï¿½Cu?tos objetos "," quieres tirar? "},
+	{" ï¿½Cu?to oro "," quieres tirar? "},
 	{"  ","  "},
-	{" ¿Cu?to oro "," quieres intercambiar? "},
-	{" ¿Cu?to oro "," quieres mover? "},
-	{" ¿Cu?to oro "," quieres recuperar? "},
-	{" ¿Cu?tas estrellas "," quieres comprar? "},
-	{" ¿Cu?to oro "," quieres donar? "},
-	{" ¿Quieres registrar"," tu dinero en objetos?  "},
-	{" ¿Cu?tos objetos "," quieres comprar? "},  
-	{" ¿Cu?to oro "," quieres recuperar? "},
-	{" ¿Quieres "," comprar el objeto? "},
-	{" ¿Quieres "," comprar el objeto? "}, 
-	{" ¿Cu?to oro "," quieres retirar? "},
-	{" ¿Cu?tos mercenarios "," te gustar? comprar? "} 
+	{" ï¿½Cu?to oro "," quieres intercambiar? "},
+	{" ï¿½Cu?to oro "," quieres mover? "},
+	{" ï¿½Cu?to oro "," quieres recuperar? "},
+	{" ï¿½Cu?tas estrellas "," quieres comprar? "},
+	{" ï¿½Cu?to oro "," quieres donar? "},
+	{" ï¿½Quieres registrar"," tu dinero en objetos?  "},
+	{" ï¿½Cu?tos objetos "," quieres comprar? "},  
+	{" ï¿½Cu?to oro "," quieres recuperar? "},
+	{" ï¿½Quieres "," comprar el objeto? "},
+	{" ï¿½Quieres "," comprar el objeto? "}, 
+	{" ï¿½Cu?to oro "," quieres retirar? "},
+	{" ï¿½Cu?tos mercenarios "," te gustar? comprar? "} 
 
 };
 
 sMESSAGEBOX3 sMessageBox3[MESSAGE3_MAX] = {
-	{" ¿Quieres "," adquirir las habilidades? "},
-	{" ¿Quieres ", " hacer rank up? "}, 
-	{" ¿Quieres ", " llevar a cabo la misi?? "},
-	{" ¿Quieres "," redistribuir? "},
+	{" ï¿½Quieres "," adquirir las habilidades? "},
+	{" ï¿½Quieres ", " hacer rank up? "}, 
+	{" ï¿½Quieres ", " llevar a cabo la misi?? "},
+	{" ï¿½Quieres "," redistribuir? "},
 	{" Cuesta oro "," para el evento "},
-	{" ¿Quieres ","initializar las STATS? "},
-	{" ¿Quieres ", " llevar a cabo la misi?? "}, 
-	{" ¿Quieres ", " recibir el objeto? "}, 
-	{" ¿Quieres ", " registrar el N?leo de Uni?? "}, 
-	{" ¿Quieres ", " recibir el objeto? "}, 
-	{" ¿Quieres ", " ir a ? "}, 
+	{" ï¿½Quieres ","initializar las STATS? "},
+	{" ï¿½Quieres ", " llevar a cabo la misi?? "}, 
+	{" ï¿½Quieres ", " recibir el objeto? "}, 
+	{" ï¿½Quieres ", " registrar el N?leo de Uni?? "}, 
+	{" ï¿½Quieres ", " recibir el objeto? "}, 
+	{" ï¿½Quieres ", " ir a ? "}, 
 	{" "," Por favor tipea el n?ero "}, 
-	{" ¿Quieres "," comprar un objeto estrella? "}, 
-	{" ¿Quieres ", " vender el objeto? "}, 
-	{" ¿Quieres ", " la misi?? "}, 
-	{" ¿Quieres ", " pagar la donaci?? "}, 
+	{" ï¿½Quieres "," comprar un objeto estrella? "}, 
+	{" ï¿½Quieres ", " vender el objeto? "}, 
+	{" ï¿½Quieres ", " la misi?? "}, 
+	{" ï¿½Quieres ", " pagar la donaci?? "}, 
 	{" Tienda Privada ", " fffffffffff "}, 
-	{" ¿Quieres ", "exchange to the item? "}, 
-	{" ¿Quieres ", "buy the item?"}, 
-	{" ¿Quieres ", " cancelar el Registro? "}, 
-	{" ¿Quieres ", " intercambiar el objeto? "}, 
-	{" ¿Quieres ", " intercambiar el objeto? "}, 
-	{" ¿Quieres ", " buscar la misi?? "}, 
-	{" ¿Quieres ", " buscar la misi?? "}, 
-	{" ¿Quieres ", " buscar la misi?? "}, 
-	{" ¿Quieres ", " buscar la misi?? "}, 
-	{" ¿Quieres ", " buscar la misi?? "}, 
-	{" ¿Quieres ", " buscar la misi?? "}, 
-	{" ¿Quieres ", " buscar la misi?? "}, 
-	{" ¿Ad?de ", " quieres ser teletransportado? "}, 
-	{" ¿Quieres ", " buscar la misi?? "}, 
-	{" ¿Quieres ", " buscar la misi?? "}, 
-	{" ¿Quieres ", " buscar la misi?? "}, 
-	{" ¿Quieres ", " hacer rank up? "}, 
-	{" ¿Quieres ", " intercambiar el objeto? "},
-	{" ¿Te teletransportar?s a ", " alg? lugar? "},    
-	{" ¿te gustar? comprar "," una torre de  cristal? "},      
-	{" ¿Quieres ", " obtener la Misi?? "}, 
-	{" ¿Quieres ", " obtener la Misi?? "}, 
-	{" ¿Quieres ", " obtener la Misi?? "}, 
-	{" ¿Quieres ", " obtener la Misi?? "}, 
-	{" ¿Quieres ", " obtener la Misi?? "}, 
-	{" ¿Quieres ", " obtener la Misi?? "}, 
-	{" ¿Quieres ", " obtener la Misi?? "}, 
-	{" ¿Quieres ", " usar este objeto? "},       
-	{" ¿Quieres ", " obtener la Misi?? "},
-	{" ¿Quieres ", " recibir el objeto? "},   
-	{" ¿Quieres "," ir a la Zona de Batalla? "},   
-	{" ¿Quieres ", " Teletransportarte? "},
+	{" ï¿½Quieres ", "exchange to the item? "}, 
+	{" ï¿½Quieres ", "buy the item?"}, 
+	{" ï¿½Quieres ", " cancelar el Registro? "}, 
+	{" ï¿½Quieres ", " intercambiar el objeto? "}, 
+	{" ï¿½Quieres ", " intercambiar el objeto? "}, 
+	{" ï¿½Quieres ", " buscar la misi?? "}, 
+	{" ï¿½Quieres ", " buscar la misi?? "}, 
+	{" ï¿½Quieres ", " buscar la misi?? "}, 
+	{" ï¿½Quieres ", " buscar la misi?? "}, 
+	{" ï¿½Quieres ", " buscar la misi?? "}, 
+	{" ï¿½Quieres ", " buscar la misi?? "}, 
+	{" ï¿½Quieres ", " buscar la misi?? "}, 
+	{" ï¿½Ad?de ", " quieres ser teletransportado? "}, 
+	{" ï¿½Quieres ", " buscar la misi?? "}, 
+	{" ï¿½Quieres ", " buscar la misi?? "}, 
+	{" ï¿½Quieres ", " buscar la misi?? "}, 
+	{" ï¿½Quieres ", " hacer rank up? "}, 
+	{" ï¿½Quieres ", " intercambiar el objeto? "},
+	{" ï¿½Te teletransportar?s a ", " alg? lugar? "},    
+	{" ï¿½te gustar? comprar "," una torre de  cristal? "},      
+	{" ï¿½Quieres ", " obtener la Misi?? "}, 
+	{" ï¿½Quieres ", " obtener la Misi?? "}, 
+	{" ï¿½Quieres ", " obtener la Misi?? "}, 
+	{" ï¿½Quieres ", " obtener la Misi?? "}, 
+	{" ï¿½Quieres ", " obtener la Misi?? "}, 
+	{" ï¿½Quieres ", " obtener la Misi?? "}, 
+	{" ï¿½Quieres ", " obtener la Misi?? "}, 
+	{" ï¿½Quieres ", " usar este objeto? "},       
+	{" ï¿½Quieres ", " obtener la Misi?? "},
+	{" ï¿½Quieres ", " recibir el objeto? "},   
+	{" ï¿½Quieres "," ir a la Zona de Batalla? "},   
+	{" ï¿½Quieres ", " Teletransportarte? "},
 };
 
 
@@ -175,9 +175,9 @@ char *SkillMaster2[4] = {
 };
 
 char *ReStartMsg[4] = {
-	" ¿Recomenzar desde el campo? ",
-	" ¿Recomenzar desde el pueblo? ",
-	" ¿Salir del Juego? ",
+	" ï¿½Recomenzar desde el campo? ",
+	" ï¿½Recomenzar desde el pueblo? ",
+	" ï¿½Salir del Juego? ",
 	" No tienes suficiente XP "
 
 };
@@ -265,7 +265,7 @@ char *sinNum7 = " RND ";
 char *sinSkillPointName = " Punto de Habilidad ";	
 char *sinG_Pike_Time3 = " Tiempo Congelado:\r ";	
 char *sinItemLimitTimeOverMsg = " El l?ite de tiempo ha expirado\r ";
-char *sinDeadSongPyeunEat = " ¡Maldici?! ¡Es una podrida torta de arroz! ";
+char *sinDeadSongPyeunEat = " ï¿½Maldici?! ï¿½Es una podrida torta de arroz! ";
 char *SmeltingResultTitle = "Resultado de la Fundici?";		
 char *ManufactureResultTitle = "Creando";	
 char *ManufacturingTitle = "al Azar";	
@@ -294,8 +294,8 @@ char *StunRage = " Rango de Paralizaci?:\r ";
 char *RecvPotion7 = " Poci? ";
 
 
-char *PartyArea7 =" Área del Grupo:\r ";
-char *Area17 =" Área:\r ";
+char *PartyArea7 =" ï¿½rea del Grupo:\r ";
+char *Area17 =" ï¿½rea:\r ";
 char *AddAttack_Rate9 =" Capacidad de Ataque:\r ";
 char *PiercingRange =" Rango de Incisi?:\r ";
 char *IncreDefense = "Increase Defense:\r";
@@ -309,7 +309,7 @@ char *LightNum = " # de Rayo:\r ";
 char *ReturnDamage = " Retorno de Da?:\r ";
 char *Area18 = " Rango disponible:\r ";
 char *IncreMana5 = " Incremento de Man?\r ";
-char *Area19 = " Área disponible:\r ";
+char *Area19 = " ï¿½rea disponible:\r ";
 char *HelpTitle8 = " A Y U D A ";
 char *QuestTitle8 = " M I S I ?N  ";
 char *ResearchTitle8 = " INVESTIGACI? ";
@@ -320,7 +320,7 @@ char *AddMaxDamage = " Da? m?imo incrementado:\r ";
 char *LinkCoreName = " Teletransportar a un miembro del clan\r ";
 char *DesLinkCore = " Nombre: ";
 char *Itemul = " objeto ";
-char *ItemRecvOk = " ¿Quieres esto? ";
+char *ItemRecvOk = " ï¿½Quieres esto? ";
 char *Money5 = " oro ";
 char *Exp5 = " EXP ";
 char *WingItemName[6] = {" Ala de Metal "," Ala de Plata "," Ala de Oro "," Ala Diamante ", " Ala de Caos ", " Ala de Extremo "};
@@ -487,7 +487,7 @@ char *StarDust		= " Polvo Destelleante ";
 char *ChristMas	= " Polvo Brillante ";
 
 
-char *sinDeadCandyEat = " ¡Tiene un gusto horrible! ";
+char *sinDeadCandyEat = " ï¿½Tiene un gusto horrible! ";
 
 char *PotionCntDoc2 = " Precio por unidad ";
 char *ItemPrice7 = " Precio del Objeto ";
@@ -532,7 +532,7 @@ char *SiegeMessage_Taxrates[] = {
 	" El ?dice de impuesto ha cambiado a %d%s. ",
 	" El Total de impuesto se ha estado acumulando ",
 	" Oro. ",
-	" ¿Te gustar? retirar el impuesto?. ",
+	" ï¿½Te gustar? retirar el impuesto?. ",
 	" El ?dice de impuesto es ahora %d%s. ",
 };
 char *SiegeMessage_MercenrayA[] = {
@@ -749,4 +749,8 @@ char *UpKeepItemName[] = {
 	" Phoenix ",
 	0,
 };
+
+
+
+
 

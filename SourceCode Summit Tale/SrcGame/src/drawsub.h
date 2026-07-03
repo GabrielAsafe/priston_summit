@@ -42,3 +42,7 @@ BOOL GetFontTextExtentPoint32(LPCTSTR lpString, int c, LPSIZE  lpSize);
 void SetFontTextColor32(COLORREF crColor);
 
 #endif
+
+
+
+

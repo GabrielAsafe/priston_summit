@@ -361,3 +361,5 @@ typedef enum _tagDVD_PB_STOPPED {
 // lParam1 is either TRUE (a karaoke track is being played) or FALSE (no karaoke data is being played).
 //
 #endif // __DVDEVCOD__
+
+

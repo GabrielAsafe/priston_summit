@@ -1,3 +1,4 @@
+#include "opcodes.h"
 #define _WIN32_WINNT    0x0403  
 #define _WIN32_WINDOWS  0x0403
 
@@ -503,5 +504,10 @@ int rsEventSpawn_Main(STG_AREA *lpStgArea)
 
 	return TRUE;
 }
+
+
+
+
+
 
 

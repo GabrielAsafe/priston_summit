@@ -1,5 +1,4 @@
-
-
+#include "opcodes.h"
 #include "sinLinkHeader.h"
 #include "..\\skillsub.h"
 #include "tjboy\\clanmenu\\tjclan.h"
@@ -2701,25 +2700,25 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 			{
 				bcanadd = true;
 				AddExp(((ExpLevelTable[lpCurPlayer->smCharInfo.Level] - ExpLevelTable[lpCurPlayer->smCharInfo.Level - 1]) * 10) / 100);
-				cMessageBox.ShowMessageEvent("Você trocou 50 pontos de batalha por 10%.");
+				cMessageBox.ShowMessageEvent("Vocï¿½ trocou 50 pontos de batalha por 10%.");
 			}
 			else if((lpCurPlayer->smCharInfo.Level >= 100) && (lpCurPlayer->smCharInfo.Level < 120))
 			{
 				bcanadd = true;
 				AddExp(((ExpLevelTable[lpCurPlayer->smCharInfo.Level] - ExpLevelTable[lpCurPlayer->smCharInfo.Level - 1]) * 5) / 100);
-				cMessageBox.ShowMessageEvent("Você trocou 50 pontos de batalha por 5%.");
+				cMessageBox.ShowMessageEvent("Vocï¿½ trocou 50 pontos de batalha por 5%.");
 			}
 			else if((lpCurPlayer->smCharInfo.Level >= 120) && (lpCurPlayer->smCharInfo.Level < 140))
 			{
 				bcanadd = true;
 				AddExp(((ExpLevelTable[lpCurPlayer->smCharInfo.Level] - ExpLevelTable[lpCurPlayer->smCharInfo.Level - 1]) * 2) / 100);
-				cMessageBox.ShowMessageEvent("Você trocou 50 pontos de batalha por 2%.");
+				cMessageBox.ShowMessageEvent("Vocï¿½ trocou 50 pontos de batalha por 2%.");
 			}
 			else if((lpCurPlayer->smCharInfo.Level >= 140) && (lpCurPlayer->smCharInfo.Level < 150))
 			{
 				bcanadd = true;
 				AddExp(((ExpLevelTable[lpCurPlayer->smCharInfo.Level] - ExpLevelTable[lpCurPlayer->smCharInfo.Level - 1]) * 1) / 100);
-				cMessageBox.ShowMessageEvent("Você trocou 50 pontos de batalha por 1%.");
+				cMessageBox.ShowMessageEvent("Vocï¿½ trocou 50 pontos de batalha por 1%.");
 			}
 
 			smTRANS_COMMAND smPacket;
@@ -2735,7 +2734,7 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 			ZeroMemory(&smPacket, sizeof(smTRANS_COMMAND));
 		}
 		else
-			cMessageBox.ShowMessageEvent("É necessário 50 pontos de batalha para realizar a troca!");
+			cMessageBox.ShowMessageEvent("ï¿½ necessï¿½rio 50 pontos de batalha para realizar a troca!");
 	}
 
 	break;
@@ -3126,7 +3125,7 @@ int StarShopNPC()
 	}
 	if(GiftPrice)
 	{
-		cMessageBox.ShowMessage3(MESSAGE_GIFT_TICKET, "»óÇ°±ÇÀ¸·Î");
+		cMessageBox.ShowMessage3(MESSAGE_GIFT_TICKET, "ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 	}
 	return TRUE;
 }
@@ -3165,3 +3164,7 @@ int DeleteGiftItem()
 	return TRUE;
 
 }
+
+
+
+

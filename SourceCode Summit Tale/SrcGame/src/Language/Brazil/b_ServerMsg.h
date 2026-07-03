@@ -1,121 +1,121 @@
 
-char *srMsg_001 = "Líder, %s recomendou %s para juntar-se ao grupo";
+char *srMsg_001 = "Lï¿½der, %s recomendou %s para juntar-se ao grupo";
 char *srMsg_002 = "Pedido de Grupo enviado a %s";
-char *srMsg_003 = "%s já está no Grupo";
-char *srMsg_004 = "%s já está em outro Grupo";
-char *srMsg_005 = "%s já está em outro Grupo";
-char *srMsg_006 = "A diferença de Nível é muito grande";
-char *srMsg_007 = "%s está online agora";
-char *srMsg_008 = "%s está offline, ou não pode ser encontrado";
+char *srMsg_003 = "%s jï¿½ estï¿½ no Grupo";
+char *srMsg_004 = "%s jï¿½ estï¿½ em outro Grupo";
+char *srMsg_005 = "%s jï¿½ estï¿½ em outro Grupo";
+char *srMsg_006 = "A diferenï¿½a de Nï¿½vel ï¿½ muito grande";
+char *srMsg_007 = "%s estï¿½ online agora";
+char *srMsg_008 = "%s estï¿½ offline, ou nï¿½o pode ser encontrado";
 char *srMsg_009 = "%s itens foram criados";
 char *srMsg_010 = "%s itens foram enviados para %s";
 char *srMsg_011 = "%s> %s";
 
-char *srMsg_012 = "Limite de usuários enviado para %d";
-char *srMsg_013 = "Limite de usuários atual é de %d";
-char *srMsg_014 = "Código de autorização para o cliente %d foi adicionado ( %d )";
-char *srMsg_015 = "Impossível adicionar código - SOBRECARGA";
-char *srMsg_016 = "A autorização do cliente foi bloqueada";
-char *srMsg_017 = "Parabéns. Você kickou %s";
+char *srMsg_012 = "Limite de usuï¿½rios enviado para %d";
+char *srMsg_013 = "Limite de usuï¿½rios atual ï¿½ de %d";
+char *srMsg_014 = "Cï¿½digo de autorizaï¿½ï¿½o para o cliente %d foi adicionado ( %d )";
+char *srMsg_015 = "Impossï¿½vel adicionar cï¿½digo - SOBRECARGA";
+char *srMsg_016 = "A autorizaï¿½ï¿½o do cliente foi bloqueada";
+char *srMsg_017 = "Parabï¿½ns. Vocï¿½ kickou %s";
 char *srMsg_018 = "%s conta foi alterada para o personagem %s";
-char *srMsg_019 = "Impossível conectar-se a conta";
+char *srMsg_019 = "Impossï¿½vel conectar-se a conta";
 char *srMsg_020 = "Meu status(%d) ";
-char *srMsg_021 = "Líder do grupo(%s) ";
-char *srMsg_022 = "Você saiu do grupo";
+char *srMsg_021 = "Lï¿½der do grupo(%s) ";
+char *srMsg_022 = "Vocï¿½ saiu do grupo";
 char *srMsg_023 = "%s foi removido do Grupo";
-char *srMsg_024 = "%s não faz parte do Grupo, ou não pode ser removido";
+char *srMsg_024 = "%s nï¿½o faz parte do Grupo, ou nï¿½o pode ser removido";
 char *srMsg_025 = "O grupo se separou";
-char *srMsg_026 = "%s foi delegado como novo líder do Grupo";
+char *srMsg_026 = "%s foi delegado como novo lï¿½der do Grupo";
 char *srMsg_027 = "Conta( %s ) Nome( %s ) IP( %s ) Conectado a( %d mins )";
-char *srMsg_028 = "Offline no momento, ou não pode ser encontrado";
+char *srMsg_028 = "Offline no momento, ou nï¿½o pode ser encontrado";
 char *srMsg_029 = "Conta( %s ) Nome( %s ) IP( %s ) Conectado a( %d mins )";
-char *srMsg_030 = "Offline no momento, ou não pode ser encontrado";
-char *srMsg_031 = "Posição de %s ( %s ) x=%d / z=%d ";
-char *srMsg_032 = "Usuários %d / Monstros ativos %d";
+char *srMsg_030 = "Offline no momento, ou nï¿½o pode ser encontrado";
+char *srMsg_031 = "Posiï¿½ï¿½o de %s ( %s ) x=%d / z=%d ";
+char *srMsg_032 = "Usuï¿½rios %d / Monstros ativos %d";
 char *srMsg_033 = "Abrir (%d) / Ativar (%d)";
-char *srMsg_034 = "Impossível enviar Msg. Pessoal";
+char *srMsg_034 = "Impossï¿½vel enviar Msg. Pessoal";
 char *srMsg_035 = "Recusar mensagens pessoais";
 char *srMsg_036 = "Aceitar mensagens pessoais";
 char *srMsg_037 = "> %s ganhou %s";
-char *srMsg_038 = "> %s  Mana(Mística) Pegue [Sobram:%d]";
+char *srMsg_038 = "> %s  Mana(Mï¿½stica) Pegue [Sobram:%d]";
 
 
-char *srMsg_100 = "Você não pode entrar agora, devido a um evento que acontece. Por favor, tente novamente amanhã.";
-char *srMsg_101 = "Ingressos vendidos. Tente amanhã, ao amanhecer";
-char *srMsg_102 = "Ingressos do Super Evento dos Monstros à venda. Lhe custará, apenas, Ouro100,000..^^";
+char *srMsg_100 = "Vocï¿½ nï¿½o pode entrar agora, devido a um evento que acontece. Por favor, tente novamente amanhï¿½.";
+char *srMsg_101 = "Ingressos vendidos. Tente amanhï¿½, ao amanhecer";
+char *srMsg_102 = "Ingressos do Super Evento dos Monstros ï¿½ venda. Lhe custarï¿½, apenas, Ouro100,000..^^";
 char *srMsg_103 = "         %d Round           ";
-char *srMsg_104 = "Parabéns. O evento terminou (adquiridos $ %d )";
+char *srMsg_104 = "Parabï¿½ns. O evento terminou (adquiridos $ %d )";
 char *srMsg_105 = "       Pontos : %d           ";
 char *srMsg_106 = "Ingressos vendidos.";
-char *srMsg_107 = "Suas Habilidades não são suficientes para entrar. Treine mais e volte mais tarde";
-char *srMsg_108 = "Você não poderá entrar agora. Por favor, volte mais tarde...";
-char *srMsg_110 = "Sua equipe saiu. (no.%d) Você ganhou %d em Ouro";
-char *srMsg_111 = "Você derrotou o monstro %s ( marcou %d Pontos )";
+char *srMsg_107 = "Suas Habilidades nï¿½o sï¿½o suficientes para entrar. Treine mais e volte mais tarde";
+char *srMsg_108 = "Vocï¿½ nï¿½o poderï¿½ entrar agora. Por favor, volte mais tarde...";
+char *srMsg_110 = "Sua equipe saiu. (no.%d) Vocï¿½ ganhou %d em Ouro";
+char *srMsg_111 = "Vocï¿½ derrotou o monstro %s ( marcou %d Pontos )";
 
-char *srMsg_200 = "  Você excedeu o limite de invocações  ";
-char *srMsg_201 = "   Você só pode invocar um por vez   ";
-char *srMsg_202 = "   Você não pode usar este Cristal   ";
+char *srMsg_200 = "  Vocï¿½ excedeu o limite de invocaï¿½ï¿½es  ";
+char *srMsg_201 = "   Vocï¿½ sï¿½ pode invocar um por vez   ";
+char *srMsg_202 = "   Vocï¿½ nï¿½o pode usar este Cristal   ";
 
-char *srMsg_300 = "     senha(número de tel.) está incorreto!    ";
-char *srMsg_301 = "   Se você digitar mais de 5 senhas incorretas, o sistema irá travar seu login.";
+char *srMsg_300 = "     senha(nï¿½mero de tel.) estï¿½ incorreto!    ";
+char *srMsg_301 = "   Se vocï¿½ digitar mais de 5 senhas incorretas, o sistema irï¿½ travar seu login.";
 
-char *srMsg_400 = "      Você adquiriu %d estrelas     ";
+char *srMsg_400 = "      Vocï¿½ adquiriu %d estrelas     ";
 char *srMsg_401 = "      Doou %d        "; 
 
 
 char *srItem_BB = "Saco da Sorte";
-char *srItem_PZ = "Quebra-Cabeças";
+char *srItem_PZ = "Quebra-Cabeï¿½as";
 
 #define CHAT_ANGERMONSTER_MAX		5
 char *szAngerMonster[CHAT_ANGERMONSTER_MAX] = {
-	"Eu não agüento mais!",
-	"Esta é a vingança da nossa tribo.",
-	"Não nos machuque mais.",
-	"Que injustiça! Nao agüento mais isso!",
-	"Não nos irrite."
+	"Eu nï¿½o agï¿½ento mais!",
+	"Esta ï¿½ a vinganï¿½a da nossa tribo.",
+	"Nï¿½o nos machuque mais.",
+	"Que injustiï¿½a! Nao agï¿½ento mais isso!",
+	"Nï¿½o nos irrite."
 };
 
 #define MORIF_CHAT_MAX		18
 char *szMorifChatMsg[MORIF_CHAT_MAX] = {
 	"Morra por mim, mas complete o Aging.",
-	"Se você me acertar, você irá acabar com a maldição do Aging...",
-	"Voce é um covarde! Nao dá para esperar mais!",
-	"Dê-me todos os seus Itens...!",
+	"Se vocï¿½ me acertar, vocï¿½ irï¿½ acabar com a maldiï¿½ï¿½o do Aging...",
+	"Voce ï¿½ um covarde! Nao dï¿½ para esperar mais!",
+	"Dï¿½-me todos os seus Itens...!",
 
 	"Quando o Aging falha muito, os jogadores ficam nervosos...",
-	"É uma boa idéia preparar o Item, antes de usar o Aging...",
-	"O que você diria, se o Aging falhasse?",
-	"Esta é minha Maldição do Aging",
-	"Dê-me todos os seus Sheltoms!",
+	"ï¿½ uma boa idï¿½ia preparar o Item, antes de usar o Aging...",
+	"O que vocï¿½ diria, se o Aging falhasse?",
+	"Esta ï¿½ minha Maldiï¿½ï¿½o do Aging",
+	"Dï¿½-me todos os seus Sheltoms!",
 	"Nem sonhe com o Aging +10",
-	"Não tenha medo do Aging...",
-	"Seus Agings nunca mais darão errado... Brincadeirinha, hahaha!",
-	"Eu tenho medo da Vovó Molly...",
-	"Você parece fraco... o Aging vai te ajudar?",
-	"Sabe... essa armadura que eu uso... alguém a perdeu com o Aging... hahaha!",
-	"Ha Ha Ha... voce nunca terá Devines",
-	"Eu não quero que seu Aging dê errado... Eu fico triste... sniff",
-	"Ei! Nao encoste nos meus Sheltoms! Eles são MEU tesouro!"
+	"Nï¿½o tenha medo do Aging...",
+	"Seus Agings nunca mais darï¿½o errado... Brincadeirinha, hahaha!",
+	"Eu tenho medo da Vovï¿½ Molly...",
+	"Vocï¿½ parece fraco... o Aging vai te ajudar?",
+	"Sabe... essa armadura que eu uso... alguï¿½m a perdeu com o Aging... hahaha!",
+	"Ha Ha Ha... voce nunca terï¿½ Devines",
+	"Eu nï¿½o quero que seu Aging dï¿½ errado... Eu fico triste... sniff",
+	"Ei! Nao encoste nos meus Sheltoms! Eles sï¿½o MEU tesouro!"
 };
 
 #define MORIF_CHAT_DROP_MAX		15
 char *szMorifChatDropMsg[MORIF_CHAT_DROP_MAX] = {
 	"Como eu consegui isso?",
-	"Meu Deus! Esse é meu!!!",
-	"Da próxima vez, eu vou me vingar!",
+	"Meu Deus! Esse ï¿½ meu!!!",
+	"Da prï¿½xima vez, eu vou me vingar!",
 
 	"Como eu con... oh! Meus sheltoms!!!",
-	"NÃOOOOO! Não leve meus Sheltoms!",
-	"Quando o Aging falha, não é minha culpa... Verdade!!! Ahhh",
+	"Nï¿½OOOOO! Nï¿½o leve meus Sheltoms!",
+	"Quando o Aging falha, nï¿½o ï¿½ minha culpa... Verdade!!! Ahhh",
 	"Acha que vai conseguir usar o Aging depois dessa? ",
-	"Ahhh... Maldição do Aging",
-	"Todos os Items que você perdeu, eu guardo no MEU Armazém... hahaha!",
-	"Oops... Aposto que eu ganho da próxima vez!!",
-	"Ahhhh... Agora, você está na minha 'lista negra do Aging'!",
-	"Hmmm...você deveria ter mais HP...",
-	"Eu me lembrarei de você... Isso vai ter troco, em Pillai...!",
-	"Eu não o perdoarei por essa...",
-	"Será melhor você só usar a Mixagem de agora em diante..."
+	"Ahhh... Maldiï¿½ï¿½o do Aging",
+	"Todos os Items que vocï¿½ perdeu, eu guardo no MEU Armazï¿½m... hahaha!",
+	"Oops... Aposto que eu ganho da prï¿½xima vez!!",
+	"Ahhhh... Agora, vocï¿½ estï¿½ na minha 'lista negra do Aging'!",
+	"Hmmm...vocï¿½ deveria ter mais HP...",
+	"Eu me lembrarei de vocï¿½... Isso vai ter troco, em Pillai...!",
+	"Eu nï¿½o o perdoarei por essa...",
+	"Serï¿½ melhor vocï¿½ sï¿½ usar a Mixagem de agora em diante..."
 };
 
 char *szMiniMorif = "?????";
@@ -123,32 +123,32 @@ char *szWantedMorif = "???????";
 
 #define MOLLYWOLF_CHAT_MAX		28
 char *szMollyWolfChatMsg[MOLLYWOLF_CHAT_MAX] = {
-	"Você ainda acha que eu sou a Vovó Molly?",
-	"Hmmm, você tem um Peru, eu posso sentir o cheiro dele. Passe-o pra cá, que eu não te mato!",
-	"O Peru irá recuperar o HP de todos os seus Amigos.",
-	"Ha! Como ousa me desafiar. O lobo ladrão de Perus!.",
-	"Eu vou roubar seus Devines também. Fique esperto!",
-	"Fui eu que roubei o Peru da Vovó Molly. Quer um pedaço?",
-	"Eu me sinto mais forte com essas roupas da vovó...",
-	"Geléia Real não é? Eu vou comer tudo!",
-	"Algum dia, você me entenderá... Eu só queria o Peru!",
-	"A Vovó te enganou! Ela comeu todo o Peru!",
-	"Eu sou a Vovó Molly! Quer ver minhas mãos?",
+	"Vocï¿½ ainda acha que eu sou a Vovï¿½ Molly?",
+	"Hmmm, vocï¿½ tem um Peru, eu posso sentir o cheiro dele. Passe-o pra cï¿½, que eu nï¿½o te mato!",
+	"O Peru irï¿½ recuperar o HP de todos os seus Amigos.",
+	"Ha! Como ousa me desafiar. O lobo ladrï¿½o de Perus!.",
+	"Eu vou roubar seus Devines tambï¿½m. Fique esperto!",
+	"Fui eu que roubei o Peru da Vovï¿½ Molly. Quer um pedaï¿½o?",
+	"Eu me sinto mais forte com essas roupas da vovï¿½...",
+	"Gelï¿½ia Real nï¿½o ï¿½? Eu vou comer tudo!",
+	"Algum dia, vocï¿½ me entenderï¿½... Eu sï¿½ queria o Peru!",
+	"A Vovï¿½ te enganou! Ela comeu todo o Peru!",
+	"Eu sou a Vovï¿½ Molly! Quer ver minhas mï¿½os?",
 	"Essas roupas ficam muito melhores em mim... diga a verdade!",
-	"Eu sou o bichinho de estimação da Vovó!",
+	"Eu sou o bichinho de estimaï¿½ï¿½o da Vovï¿½!",
 	"Leve meu Peru, mas, case comigo!",
-	"Qual será o gostinho do Peru +10 hein?",
+	"Qual serï¿½ o gostinho do Peru +10 hein?",
 	"O que? Quer me desafiar? Ok...",
-	"Hã? Onde estão os três porquinhos?",
+	"Hï¿½? Onde estï¿½o os trï¿½s porquinhos?",
 	"Eu sou uma ovelha na pela de um lobo...",
-	"Foi a Vovó que te pediu para fazer isso?",
-	"Eu sou a Vovó, de verdade! Aquela da cidade que é falsa!",
-	"Sem Peru... que tal um pouco de Geléia Real?",
-	"Eu pareço um Peru?",
-	"O Peru já era...",
-	"Agora, aquele Peru é meu... ",
-	"Dê-me um pedaço do Peru que eu não te mato...",
-	"Feliz dia de Ação de Graças...",
+	"Foi a Vovï¿½ que te pediu para fazer isso?",
+	"Eu sou a Vovï¿½, de verdade! Aquela da cidade que ï¿½ falsa!",
+	"Sem Peru... que tal um pouco de Gelï¿½ia Real?",
+	"Eu pareï¿½o um Peru?",
+	"O Peru jï¿½ era...",
+	"Agora, aquele Peru ï¿½ meu... ",
+	"Dï¿½-me um pedaï¿½o do Peru que eu nï¿½o te mato...",
+	"Feliz dia de Aï¿½ï¿½o de Graï¿½as...",
 	"Ahhh, seu tolo... achou que eu fosse humano?",
 	"Ei! Deixe-me cuidar do Peru... eu tomo conta dele!!"
 };
@@ -156,154 +156,154 @@ char *szMollyWolfChatMsg[MOLLYWOLF_CHAT_MAX] = {
 
 #define MOLLYWOLF_CHAT_DROP_MAX		25
 char *szMollyWolfChatDropMsg[MOLLYWOLF_CHAT_DROP_MAX] = {
-	"Isso não vai fazer muito bem pra você... já posso ouvir seu estômago...",
-	"Acha mesmo que seu dia de Ação de Graças vai ser feliz depois dessa?",
+	"Isso nï¿½o vai fazer muito bem pra vocï¿½... jï¿½ posso ouvir seu estï¿½mago...",
+	"Acha mesmo que seu dia de Aï¿½ï¿½o de Graï¿½as vai ser feliz depois dessa?",
 	"Huuuuuuuu!",
-	"Meu Deus! Só consegui comer um pedacinho...",
-	"Eu NUNCA vou deixá-lo pegar meu Peru com Geléia Real...",
-	"Eu não ligo, se morrer... já roubei tudo o que queria...",
-	"Nunca me esquecerei dessa...  -¦®",
-	"Eu te vencerei na próxima... não vou desistir tão fácil!",
-	"Ei! Eu não sou o mascote do Morif! Não tenho nenhum Sheltom!",
-	"Você será amaldiçoado pela Praga dos Perus!!!",
-	"Ahhh... a Molly sempre pega no meu Pé...",
-	"Eu só queria comer um belo Peru neste dia tão lindo... T.T",
-	"Eu sei que roubar é feio...",
-	"Você queria ter estas roupas também? >.>",
+	"Meu Deus! Sï¿½ consegui comer um pedacinho...",
+	"Eu NUNCA vou deixï¿½-lo pegar meu Peru com Gelï¿½ia Real...",
+	"Eu nï¿½o ligo, se morrer... jï¿½ roubei tudo o que queria...",
+	"Nunca me esquecerei dessa...  -ï¿½ï¿½",
+	"Eu te vencerei na prï¿½xima... nï¿½o vou desistir tï¿½o fï¿½cil!",
+	"Ei! Eu nï¿½o sou o mascote do Morif! Nï¿½o tenho nenhum Sheltom!",
+	"Vocï¿½ serï¿½ amaldiï¿½oado pela Praga dos Perus!!!",
+	"Ahhh... a Molly sempre pega no meu Pï¿½...",
+	"Eu sï¿½ queria comer um belo Peru neste dia tï¿½o lindo... T.T",
+	"Eu sei que roubar ï¿½ feio...",
+	"Vocï¿½ queria ter estas roupas tambï¿½m? >.>",
 	"Eu odeio a Molly...",
-	"Coma o Peru sozinho e você vira um porco... divida-o com seu grupo!",
-	"O Peru está horrível porque foi a Molly que fez.",
-	"Opa... você está acabando comigo. Feliz Dia de Ação de Graças mesmo assim!",
-	"Ah... você vai pagar por isso!",
-	"Ah... você se acha tããão bom não é? O Peru vai te dar dor de barriga!",
-	"Da próxima vez, eu roubo SUAS roupas...",
+	"Coma o Peru sozinho e vocï¿½ vira um porco... divida-o com seu grupo!",
+	"O Peru estï¿½ horrï¿½vel porque foi a Molly que fez.",
+	"Opa... vocï¿½ estï¿½ acabando comigo. Feliz Dia de Aï¿½ï¿½o de Graï¿½as mesmo assim!",
+	"Ah... vocï¿½ vai pagar por isso!",
+	"Ah... vocï¿½ se acha tï¿½ï¿½ï¿½o bom nï¿½o ï¿½? O Peru vai te dar dor de barriga!",
+	"Da prï¿½xima vez, eu roubo SUAS roupas...",
 	"Hmmm... que tal um Peru?",
-	"Céus! Você pegou meu Peru! Devolva AGORA! ",
+	"Cï¿½us! Vocï¿½ pegou meu Peru! Devolva AGORA! ",
 	"Este cara vai me matar, mesmo depois de entregar o Peru... -.-",
 	"Ah... eu paguei por meus pecados..."
 };
 
 #define SANTAGOBLIN_CHAT_MAX		18
 char *szSantaGoblinChatMsg[SANTAGOBLIN_CHAT_MAX] = {
-	"Não me irrite! Eu fico bemmm maior!!",
-	"Feliz Natal pra todos os mais feios que eu... você não é exceção!",
+	"Nï¿½o me irrite! Eu fico bemmm maior!!",
+	"Feliz Natal pra todos os mais feios que eu... vocï¿½ nï¿½o ï¿½ exceï¿½ï¿½o!",
 	"Se me acertar, vai ficar sem presente!",
-	"Ei, você não jogava sozinho, ano passado?",
+	"Ei, vocï¿½ nï¿½o jogava sozinho, ano passado?",
 	"Consiga uma namorada aqui no Priston e passe um tempo com ela!",
-	"O Noel foi tentar o 8° aging... com certeza vai falhar!",
-	"Eu só apareço uma vez por ano...",
+	"O Noel foi tentar o 8ï¿½ aging... com certeza vai falhar!",
+	"Eu sï¿½ apareï¿½o uma vez por ano...",
 	"Tenha um feliz 2006...",
 	"Eu quero os presentes pra mim!",
 	"Eu cacei o Rudolf e o comi...!",
 	"Vamos ajudar os mais fracos... yahooo!",
 	"Feliz Natalll!!! Celebre com sua familia do PT",
-	"Será que eu sou o Papai Noel de verdade...?",
+	"Serï¿½ que eu sou o Papai Noel de verdade...?",
 	"Nada de tristezas neste Natal!!!",
 	"Eu sinto que vai chover neste Natal...",
 	"Se me acertar, sua filha vai ser a minha cara...",
-	"Porque eu falo tanto? É assim que ganho a vida, oras!",
+	"Porque eu falo tanto? ï¿½ assim que ganho a vida, oras!",
 	"Ajudem os mais fracos... ho ho ho"
 };
 
 #define SKILLMASTER_CHAT_MAX		16
 char *szSkillMasterChatMsg[SKILLMASTER_CHAT_MAX] = {
-	"Eu não o deixarei descansar. Faça o melhor que puder!",
-      	"Eu te disse, ponha mais força nisso!",
-        "Você não é forte o suficiente. Vamos, capriche!",
+	"Eu nï¿½o o deixarei descansar. Faï¿½a o melhor que puder!",
+      	"Eu te disse, ponha mais forï¿½a nisso!",
+        "Vocï¿½ nï¿½o ï¿½ forte o suficiente. Vamos, capriche!",
      	"Ataque-me com tudo que tiver!!!",
-     	"O ataque é a melhor defesa... Mande tudo que tiver!!!",
-       	"Nao se esqueça da força dos Tempskrons... Acabe comigo!",
-    	"Você não seria nada para o Fúria!",
-   	"Pense que sou o Egolanos, e lute até a morte!",
-      	"Mas, você já está tentando usar um Core pra escapar?",
-      	"É impossível usar Cristais aqui... Nem pense nisso!",
-       	"Se você for pra Pillai, qualquer dia desses, diga um 'oi' ao Raymon, por mim...",
-  	"Não confie em seu equipamento. Treine sua força, ao invés disso.",
+     	"O ataque ï¿½ a melhor defesa... Mande tudo que tiver!!!",
+       	"Nao se esqueï¿½a da forï¿½a dos Tempskrons... Acabe comigo!",
+    	"Vocï¿½ nï¿½o seria nada para o Fï¿½ria!",
+   	"Pense que sou o Egolanos, e lute atï¿½ a morte!",
+      	"Mas, vocï¿½ jï¿½ estï¿½ tentando usar um Core pra escapar?",
+      	"ï¿½ impossï¿½vel usar Cristais aqui... Nem pense nisso!",
+       	"Se vocï¿½ for pra Pillai, qualquer dia desses, diga um 'oi' ao Raymon, por mim...",
+  	"Nï¿½o confie em seu equipamento. Treine sua forï¿½a, ao invï¿½s disso.",
      	"Essa foi boa! Continue tentando...",
-     	"Você cresceu tanto, desde seu primeiro desafio com os Wolverines...",
-        "É uma vergonha você ter esses equipamentos e atacar tão mal...",
-      	"Você está me fazendo cócegas..."
+     	"Vocï¿½ cresceu tanto, desde seu primeiro desafio com os Wolverines...",
+        "ï¿½ uma vergonha vocï¿½ ter esses equipamentos e atacar tï¿½o mal...",
+      	"Vocï¿½ estï¿½ me fazendo cï¿½cegas..."
 };
 
 #define MAGICMASTER_CHAT_MAX		16
 char *szMagicMasterChatMsg[MAGICMASTER_CHAT_MAX] = {
-	"Concentre toda sua energia... você consegue!",
-  	"Acha mesmo que você merece pontos Especiais desse jeito?",
-        "Você não está usando suas Habilidades... concentre-se!",
-     	"Isso é tudo que te ensinei?",
+	"Concentre toda sua energia... vocï¿½ consegue!",
+  	"Acha mesmo que vocï¿½ merece pontos Especiais desse jeito?",
+        "Vocï¿½ nï¿½o estï¿½ usando suas Habilidades... concentre-se!",
+     	"Isso ï¿½ tudo que te ensinei?",
       	"Essa foi boa! Continue assim!",
-        "A força dos Morions vem da religião e da pureza. Concentre seus ataques nisso!",
-       	"Você não faria um arranhão em Hellion, desse jeito!",
-      	"Mas, você já está tentando usar um Core pra escapar?",
-     	"É impossível usar Cristais aqui... Nem pense nisso!",
-        "Se você for pra Ricarten, qualquer dia desses, diga um 'oi' ao Verkan, por mim...",
-    	"Até os inimigos mais fortes possuem um ponto fraco, concentre-se",
+        "A forï¿½a dos Morions vem da religiï¿½o e da pureza. Concentre seus ataques nisso!",
+       	"Vocï¿½ nï¿½o faria um arranhï¿½o em Hellion, desse jeito!",
+      	"Mas, vocï¿½ jï¿½ estï¿½ tentando usar um Core pra escapar?",
+     	"ï¿½ impossï¿½vel usar Cristais aqui... Nem pense nisso!",
+        "Se vocï¿½ for pra Ricarten, qualquer dia desses, diga um 'oi' ao Verkan, por mim...",
+    	"Atï¿½ os inimigos mais fortes possuem um ponto fraco, concentre-se",
     	"Estou ficando cansado de treinar tanta gente...",
-     	"Você não terá que treinar as Habilidades que conseguirá, se me derrotar...",
-      	"Você cresceu tanto, desde seu primeiro desafio...",
+     	"Vocï¿½ nï¿½o terï¿½ que treinar as Habilidades que conseguirï¿½, se me derrotar...",
+      	"Vocï¿½ cresceu tanto, desde seu primeiro desafio...",
    	"Ahhhhh... que sono!",
-	"Se você ainda me respeita como Mestre, fique parado! Ha ha!"
+	"Se vocï¿½ ainda me respeita como Mestre, fique parado! Ha ha!"
 };
 
 
-char *szMonsterFlagMsg = "Perigo! Área habitada por monstros";
+char *szMonsterFlagMsg = "Perigo! ï¿½rea habitada por monstros";
 
 #define		SERVER_DOWN_MSG_COUNT	5
 char *szServerDownMsg[SERVER_DOWN_MSG_COUNT] = {
-	"Alerta> Atenção todos...",
-	"Alerta> a manutenção dos servidores começará em breve.",
+	"Alerta> Atenï¿½ï¿½o todos...",
+	"Alerta> a manutenï¿½ï¿½o dos servidores comeï¿½arï¿½ em breve.",
 	"Alerta> Saiam do jogo, por favor.",
-	"Alerta> Os servidores serão desativados, em breve.",
+	"Alerta> Os servidores serï¿½o desativados, em breve.",
 	"Alerta> Por favor, saiam do jogo. Obrigado"
 };
 
 
 #define PAPACHICHEN_CHAT_MAX		7
 char *szPaPaChichenChatMsg[PAPACHICHEN_CHAT_MAX] = {
-	"—Á‚µ‚­‚È‚Á‚Ä‚«‚½‚ÈB‚¢‚Á‚Ï‚¢H‚×‚È‚¢‚ÆI",
-	"‚¨‘O‚ª‚¤‚¿‚ÌŽq‚ð‰£‚Á‚½‚Ì‚©H",
-	"‰s—˜‚È‚­‚¿‚Î‚µ‚Å‚¨‘O‚ð‚Â‚Â‚¢‚Ä‚â‚éI",
-	"—Á‚µ‚­‚È‚é‚Æ‚È‚º‚©’‡ŠÔ‚ªŒ¸‚Á‚Ä‚µ‚Ü‚¤‚ñ‚¾c",
-	"ƒoƒ^ƒoƒ^`Ž„‚ÌƒLƒbƒN‚Ì–¡‚í‚Á‚Ä‚Ý‚ë`",
-	"ƒtƒ‰ƒCƒhƒ`ƒLƒ“‚Æ–¡•t‚¯ƒ`ƒLƒ“‚Ç‚Á‚¿‚ª‚¢‚¢H",
-	"‚È‚ñ‚Æ‚¢‚Á‚Ä‚à‚±‚ê‚©‚ç‚Í…†‚«‚ªÅ‚I"
+	"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ÈBï¿½ï¿½ï¿½ï¿½ï¿½Ï‚ï¿½ï¿½Hï¿½×‚È‚ï¿½ï¿½ÆI",
+	"ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌŽqï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½H",
+	"ï¿½sï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Î‚ï¿½ï¿½Å‚ï¿½ï¿½Oï¿½ï¿½Â‚Â‚ï¿½ï¿½Ä‚ï¿½ï¿½I",
+	"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½Æ‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ñ‚¾c",
+	"ï¿½oï¿½^ï¿½oï¿½^ï¿½`ï¿½ï¿½ï¿½ÌƒLï¿½bï¿½Nï¿½Ì–ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Ý‚ï¿½`",
+	"ï¿½tï¿½ï¿½ï¿½Cï¿½hï¿½`ï¿½Lï¿½ï¿½ï¿½Æ–ï¿½ï¿½tï¿½ï¿½ï¿½`ï¿½Lï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½H",
+	"ï¿½È‚ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ê‚©ï¿½ï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åï¿½ï¿½I"
 };
 
 
 #define PAPACHICHEN_CHAT_DROP_MAX	5
 
 char *szPaPaChichenChatDropMsg[PAPACHICHEN_CHAT_DROP_MAX] = {
-	"M‚¶‚ç‚ê‚È‚¢`Ž„‚ª‚â‚ç‚ê‚é‚È‚ñ‚ÄBB",
-	"Ž„‚ð‰£‚Á‚Ä‚àS‚Í’É‚Ü‚È‚¢‚ÌH",
-	"ƒNƒIƒIƒIƒIƒIƒII",
-	"M‚¶‚ç‚ê‚È‚¢I‚¨‘O‚Ì–¼‘O‚ðŠo‚¦‚Ä‚â‚éB",
-	"ŽŸ‚É‚Í‚¨‘O‚É‚â‚ç‚ê‚È‚¢B‚«‚Á‚Æ‚¾‚¼I"
+	"ï¿½Mï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ÄBï¿½B",
+	"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½Sï¿½Í’É‚Ü‚È‚ï¿½ï¿½ÌH",
+	"ï¿½Nï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½I",
+	"ï¿½Mï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Iï¿½ï¿½ï¿½Oï¿½Ì–ï¿½ï¿½Oï¿½ï¿½oï¿½ï¿½ï¿½Ä‚ï¿½ï¿½B",
+	"ï¿½ï¿½ï¿½É‚Í‚ï¿½ï¿½Oï¿½É‚ï¿½ï¿½ï¿½È‚ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½I"
 };
 
 char *szSeverDownCountMsg = "Shutdown> %d mins. %d segs sobrando. Saiam do jogo, por favor";
 
-char *srBlessCastle_LeagueMsg_01 = "Em breve, a batalha do Castelo Bless terá início. Estejam alerta!"; 
-char *srBlessCastle_LeagueMsg_02 = "A batalha terá início agora. Desejamos boa sorte a todos!"; 
+char *srBlessCastle_LeagueMsg_01 = "Em breve, a batalha do Castelo Bless terï¿½ inï¿½cio. Estejam alerta!"; 
+char *srBlessCastle_LeagueMsg_02 = "A batalha terï¿½ inï¿½cio agora. Desejamos boa sorte a todos!"; 
 char *srBlessCastle_LeagueMsg_03 = "A batalha do Castelo Bless terminou. Obrigado por participar"; 
-char *srBlessCastle_LeagueMsg_04 = "O Castelo Bless estará aberto em 30 minutos. Estejam prontos!"; 
+char *srBlessCastle_LeagueMsg_04 = "O Castelo Bless estarï¿½ aberto em 30 minutos. Estejam prontos!"; 
 char *srBlessCastle_LeagueMsg_05 = "O Castelo Bless estara aberto em 1 hora. Estejam prontos!"; 
 
-char *srMsg_StartUser_PresentItem = "    Nós lhe daremos  %s como recompensa   "; 
+char *srMsg_StartUser_PresentItem = "    Nï¿½s lhe daremos  %s como recompensa   "; 
 
 
-char *szNotLinkCore = "Impossível usar Core de União";
+char *szNotLinkCore = "Impossï¿½vel usar Core de Uniï¿½o";
 char *szNotLinkCore2 = "  Clan errado  ";
-char *szNotLinkCore3 = " Nível muito baixo para entrar ";
+char *szNotLinkCore3 = " Nï¿½vel muito baixo para entrar ";
 
 
 char	*srMsg_Bl_01	= " Faltam %d minutos.";
-char	*srMsg_Bl_02	= "[Internet Café]";
-char	*srMsg_BI_03	= " Você reservou outros [%dY %dM %dD]";
-char	*srMsg_BI_04	= " Você reservou outras [%d horas]";
+char	*srMsg_Bl_02	= "[Internet Cafï¿½]";
+char	*srMsg_BI_03	= " Vocï¿½ reservou outros [%dY %dM %dD]";
+char	*srMsg_BI_04	= " Vocï¿½ reservou outras [%d horas]";
 
-char	*srMsg_Bl_100	= "%sVocê pode jogar até %d:%d - %d/%d/%d (GMT).%s";
-char	*srMsg_Bl_1001	= "%sVocê pode jogar até %d:0%d - %d/%d/%d (GMT).%s";
-char	*srMsg_Bl_101	= "%sVocê pode jogar por %d horas %d minutos.%s";
+char	*srMsg_Bl_100	= "%sVocï¿½ pode jogar atï¿½ %d:%d - %d/%d/%d (GMT).%s";
+char	*srMsg_Bl_1001	= "%sVocï¿½ pode jogar atï¿½ %d:0%d - %d/%d/%d (GMT).%s";
+char	*srMsg_Bl_101	= "%sVocï¿½ pode jogar por %d horas %d minutos.%s";
 char	*srMsg_Bl_102	= "%sFaltam %d minutos.%s";
 
 
@@ -325,3 +325,6 @@ char *StateInitEvent1 = "????????????????????????????";
 char *StateInitEvent2 = "??????????????????????????????????????";
 char *StateInitEvent3 = "???????";
 char *StateInitEvent4 = "????????????????????????????????????????";
+
+
+

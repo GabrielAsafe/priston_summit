@@ -2908,3 +2908,7 @@ int smFindPatFile(char *szfile, char *FileExt)
 
 	return FALSE;
 }
+
+
+
+

@@ -11,22 +11,22 @@
 #define smTRANSCODE_FAILRECORDDATA	0x48470083
 #define smTRANSCODE_RECORDRESULT	0x48470084
 
-//ID·Î ÀúÀåµÈ Ä³¸¯ÅÍ Á¤º¸ ÀÔ¼ö
+//IDï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 #define smTRANSCODE_ID_GETUSERINFO	0x48470085
 #define smTRANSCODE_ID_SETUSERINFO	0x48470086
 #define smTRANSCODE_DELRECORDDATA	0x48470087
 #define smTRANSCODE_INSRECORDDATA	0x48470088
 #define smTRANSCODE_ISRECORDDATA	0x48470089
 
-//¹öÀü È®ÀÎ ¸Þ¼¼Áö
+//ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
 #define smTRANSCODE_VERSION			0x4847008A
-//³×Æ®¿öÅ© Ã½Å© ¸Þ¼¼Áö
+//ï¿½ï¿½Æ®ï¿½ï¿½Å© Ã½Å© ï¿½Þ¼ï¿½ï¿½ï¿½
 #define smTRANSCODE_CHECK_NETSTATE	0x4847008B
-//°ü¸®ÀÚ ¸ðµå ¼³Á¤
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_ADMINMODE		0x4847008C
-//¿ÀºêÁ§Æ® ¼­¹ö¿¡ ¹øÈ£ ¼³Á¤ 
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ 
 #define smTRANSCODE_SET_OBJSERIAL	0x4847008D
-//³×Æ®¿öÅ© Ã½Å© ¸Þ¼¼Áö(º¸Á¶ ¼­¹ö¿ë)
+//ï¿½ï¿½Æ®ï¿½ï¿½Å© Ã½Å© ï¿½Þ¼ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 #define smTRANSCODE_CHECK_NETSTATE2	0x4847008E
 #define smTRANSCODE_CHECK_NETSTATE3	0x4847008F
 #define smTRANSCODE_CHECK_NETSTATE4	0x48470090
@@ -38,7 +38,7 @@
 #define smTRANSCODE_PLAYLIST		0x48471003
 #define smTRANSCODE_CONTINUEDATA	0x48471004
 #define smTRANSCODE_WHISPERMESSAGE	0x48471005
-#define smTRANSCODE_COUPLERING		0x48471006			// pluto Ä¿ÇÃ¸µ
+#define smTRANSCODE_COUPLERING		0x48471006			// pluto Ä¿ï¿½Ã¸ï¿½
 
 #define smTRANSCODE_PLAYDATA1		0x48470010
 #define smTRANSCODE_PLAYDATA2		0x48470011
@@ -114,35 +114,35 @@
 #define	smTRANSCODE_PARTY_PLAYUPDATE	0x484700A3
 #define	smTRANSCODE_PARTY_RELEASE		0x484700A4
 #define	smTRANSCODE_PARTY_COMMAND		0x484700A5
-#define smTRANSCODE_OPEN_MIXTURE_RESET	0x484700A6	// ¼®Áö¿ë - ¹Í½ºÃÄ ¸®¼Â ¸Þ½ÃÁö Á¤ÀÇ
+#define smTRANSCODE_OPEN_MIXTURE_RESET	0x484700A6	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½Í½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 #define smTRANSCODE_PCBANG_PET			0x484700B0
-#define smTRANSCODE_PHENIX_PET			0x484700B1	// pluto Æê(ÇØ¿Ü) ¼öÁ¤
-#define smTRANSCODE_HELP_PET			0x484700B2	// ¹ÚÀç¿ø - ºô¸µ µµ¿ì¹Ì Æê Ãß°¡
+#define smTRANSCODE_PHENIX_PET			0x484700B1	// pluto ï¿½ï¿½(ï¿½Ø¿ï¿½) ï¿½ï¿½ï¿½ï¿½
+#define smTRANSCODE_HELP_PET			0x484700B2	// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½
 
 #define	smTRANSCODE_SERVER_INFO			0x484700C0
 
 #define	smTRANSCODE_PARTY_POTION		0x484700D0
-//Èú¸µ
+//ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_HEALING				0x484700D2
 #define	smTRANSCODE_HOLYMIND			0x484700D3
 #define	smTRANSCODE_GRAND_HEALING		0x484700D4
 
 #define	smTRANSCODE_VAMPRIC_CUSPID		0x484700D6
-#define	smTRANSCODE_VAMPRIC_CUSPID_EX		0x484700D7		// Àåº° - ¹ìÇÇ¸¯ Ä¿½ºÇÍ EX
+#define	smTRANSCODE_VAMPRIC_CUSPID_EX		0x484700D7		// ï¿½åº° - ï¿½ï¿½ï¿½Ç¸ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ EX
 #define	smTRANSCODE_MANA_RECHARGING		0x484700D8
 
-//¾ÆÀÌÅÛ °Å·¡ º¸°í
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_RECORD_TRADE		0x48480010
 
 
-//³×Æ®¿öÅ© Ç°Áú ¸ðµå ¼³Á¤
+//ï¿½ï¿½Æ®ï¿½ï¿½Å© Ç°ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_NETWORK_QUALITY	0x484700E0
 #define smTRANSCODE_PROCESSINFO		0x484700E4
 #define	smTRANSCODE_CLOSECLIENT		0x484700E6
 #define smTRANSCODE_CHECKIP			0x484700E7
 
-//Å¬¶óÀÌ¾ðÆ®¿¡ µ¥ÀÌÅ¸ ÀúÀå ¿ä±¸
+//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ ï¿½ä±¸
 #define	smTRANSCODE_SAVECLIENT		0x484700E8
 
 
@@ -162,248 +162,248 @@
 #define smTRANSCODE_EFFECT_KEEPSKILL	0x48479020
 
 
-//¿ÀºêÁ§Æ® ¼­¹ö¿¡ ¹øÈ£ ¼³Á¤ 
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ 
 #define smTRANSCODE_CONT_OBJSERIAL	0x48478010
 
-//¸Þ¼¼Áö¹Ú½º Ãâ·Â
+//ï¿½Þ¼ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½
 #define smTRANSCODE_MESSAGEBOX		0x48478100
 
-//Æã¼Ç ¿¡·¯³­°ÍÀ» °¨Áö
+//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_FUNCERROR		0x48478200
 
-//Å¬¶óÀÌ¾ðÆ® Æã¼Ç¸Þ¸ð¸® Àü¼Û
+//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½Ç¸Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_FUNCTION_MEM2	0x48478300
 
-//ÇØÅ·À¯Àú µî·Ï 2
+//ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 2
 #define	smTRANSCODE_SET_BLACKLIST2	0x48478400
-//ÇØÅ·À¯Àú µî·Ï 3
+//ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 3
 #define smTRANSCODE_SET_BLACKLIST3	0x48478500
 
-//ºÒ·® À¯Àú ¼³Á¤
+//ï¿½Ò·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_BAD_PLAYER		0x48478600
 
-//Àß¸øµÈ °ø¼ö ¼öÄ¡ º¸Á¤ °ª
+//ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 #define	smTRANSCODE_FIX_ATTACK		0x48478700
-//Ä³¸¯ÅÍ °­Á¦·Î Á×ÀÌ±â
+//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½
 #define	smTRANSCODE_DEAD_PLAYER		0x48478800
 
-//Å¬¶óÀÌ¾ðÆ® ¼öÄ¡ ¿À·ù
+//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_CLIENT_ERROR	0x48478900
 
-//ÀÎº¥Åä¸® ¾ÆÀÌÅÛ ¿À·ù
+//ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_INVEN_ERR_ITEM	0x48478910
-//ÀÎº¥Åä¸® µ· ¿À·ù
+//ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_INVEN_ERR_MONEY	0x48478920
 
-//ÀÎº¥Åä¸® ¾ÆÀÌÅÛ À§Ä¡ Á¤º¸
+//ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_INVEN_POSITION	0x48478930
 #define	smTRANSCODE_INVEN_POSITION2	0x48478931
 
 
-//¾ÏÈ£È­µÈ ÆÐÅ¶
+//ï¿½ï¿½È£È­ï¿½ï¿½ ï¿½ï¿½Å¶
 #define smTRANSCODE_ENCODE_PACKET	0x80010000
 #define smTRANSCODE_ENCODE_PACKET2	0x90010000
 
-//Å¬·£ ¸Þ´º
+//Å¬ï¿½ï¿½ ï¿½Þ´ï¿½
 #define smTRANSCODE_OPEN_CLANMENU	0x48478A00
-//º° Æ÷ÀÎÆ® °ü·Ã
+//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_OPEN_STARPOINT	0x48478A10
 #define smTRANSCODE_STARPOINT		0x48478A12
-//µ·±âºÎ ÆÐÅ¶
+//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶
 #define smTRANSCODE_OPEN_GIVEMONEY	0x48478A14
 #define smTRANSCODE_GIVEMONEY		0x48478A16
-//Å¬·£¸Ó´Ï °ü·ÃÆÐÅ¶
+//Å¬ï¿½ï¿½ï¿½Ó´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶
 #define smTRANSCODE_CLANMONEY		0x48478A18
 
 
-//¾ÆÀÌÅÛ ¹è´Þ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 #define smTRANSCODE_ITEM_EXPRESS	0x48478A80
 
-//°³ÀÎ»óÁ¡ ¿ÀÇÂ
+//ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_OPEN_MYSHOP		0x48478A90
-//°³ÀÎ»óÁ¡ ºÎ¸£±â
+//ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ï¿½ï¿½
 #define smTRANSCODE_CALL_MYSHOP		0x48478AA0
-//°³ÀÎ»óÁ¡ ¾ÆÀÌÅÛ
+//ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_MYSHOP_ITEM		0x48478AB0
-//°³ÀÎ»óÁ¡ ¸Þ¼¼Áö ¾ò±â
+//ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 #define	smTRANSCODE_MYSHOP_MESSAGE	0x48478AC0
-//°³ÀÎ»óÁ¡ ¹°°Ç ±¸ÀÔ
+//ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_MYSHOP_TRADE	0x48478AD0
 
-//¹ÚÃ¶È£ : 2005-11-17 ¿ÀÈÄ 8:41:39
-//PC¹æ Æê °ø°ÝÀÌÆåÆ®
+//ï¿½ï¿½Ã¶È£ : 2005-11-17 ï¿½ï¿½ï¿½ï¿½ 8:41:39
+//PCï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 #define smTRANSCODE_EFFECT_PCBANGPET	0x48478AE0
 
 
-//°ü¸®ÀÚ ¸ðµå ¼³Á¤
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_ADMINMODE2			0x5047108C
-//³×Æ®¿÷ Ã½Å©
+//ï¿½ï¿½Æ®ï¿½ï¿½ Ã½Å©
 #define smTRANSCODE_CHECK_NETSTATE20	0x5047008E
 
-//°æÇèÄ¡ µ· ¹ÞÀºµ¥ÀÌÅ¸ È®ÀÎ
+//ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ È®ï¿½ï¿½
 #define smTRANSCODE_CHECK_EXPMONEY		0x50320010
-//°æÇèÄ¡ µ¥ÀÌÅ¸ È®ÀÎ
+//ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½Å¸ È®ï¿½ï¿½
 #define smTRANSCODE_CHECK_EXPDATA		0x50320020
-//Æ÷½º¿Àºê ¼³Á¤ µ¥ÀÌÅ¸ ¼³Á¤±³½Å
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_FORCEORB_DATA		0x50320030
-//ºô¸µ¾ÆÀÌÅÛ ¼³Á¤ µ¥ÀÌÅ¸ ¼³Á¤±³½Å
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_PRIMEITEM_DATA		0x50320031
 
-// pluto ¸¶³ª ¸®µà½º
-// pluto ºô¸µ¾ÆÀÌÅÛ ¼³Á¤ µ¥ÀÌÅ¸ ¼³Á¤±³½Å
+// pluto ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½à½º
+// pluto ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_PRIMEITEM_DATA2	0x50320032
 
-// ¹ÚÀç¿ø - ºô¸µ µµ¿ì¹Ì Æê, ¹ìÇÇ¸¯ Ä¿½ºÇÍ EX, ±Ù·Â ¸®µà½º Æ÷¼Ç
+// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½Ç¸ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ EX, ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½à½º ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_PRIMEITEM_DATA3	0x50320033
 
-// Àåº° - ¹ìÇÇ¸¯ Ä¿½ºÇÍ EX
+// ï¿½åº° - ï¿½ï¿½ï¿½Ç¸ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ EX
 //DRZ_EDIT (transcode is already in use)
 //#define smTRANSCODE_PRIMEITEM_DATA4	0x50320036			
 
-// ¹ÚÀç¿ø - ºÎ½ºÅÍ ¾ÆÀÌÅÛ(»ý¸í·Â, ±â·Â, Ã¼·Â)
+// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½, Ã¼ï¿½ï¿½)
 #define smTRANSCODE_BOOSTER_DATA		0x50320034
 
-// Àåº° - ¿¡ÀÌÂ¡ Ä¡Æ® ¼­¹ö·Î Àü¼Û
+// ï¿½åº° - ï¿½ï¿½ï¿½ï¿½Â¡ Ä¡Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_AGING_DATA			0x50320035
 
-// Àåº° - ½ºÅ³ µô·¹ÀÌ
+// ï¿½åº° - ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_SKILLDELAY_DATA			0x50320036
 
-//µ¥ÀÌÅ¸ ¼­¹ö·Î Å¬¶óÀÌ¾ðÆ® °æÀ¯ Àü¼Û
+//ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_SEND_DATASERVER		0x50320100
-//°ÔÀÓ ¼­¹ö·Î Å¬¶óÀÌ¾ðÆ® °æÀ¯ Àü¼Û
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_SEND_GAMESERVER		0x50320110
-//Áö¿ª ¼­¹ö·Î Å¬¶óÀÌ¾ðÆ® °æÀ¯ Àü¼Û
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_SEND_AREASERVER		0x50320120
-//Áö¿ª/°ÔÀÓ ¼­¹ö·Î Å¬¶óÀÌ¾ðÆ® °æÀ¯ Àü¼Û
+//ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_SEND_AGAME_SERVER	0x50320130
 
-//pluto ¸¶³ª ¸®µà½º
-//Áö¿ª/°ÔÀÓ ¼­¹ö·Î Å¬¶óÀÌ¾ðÆ® °æÀ¯ Àü¼Û
+//pluto ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½à½º
+//ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_SEND_AGAME_PRIMEITEM_DATA2	0x50320140
 
-// ¹ÚÀç¿ø - ºô¸µ µµ¿ì¹Ì Æê, ¹ìÇÇ¸¯ Ä¿½ºÇÍ EX, ±Ù·Â ¸®µà½º Æ÷¼Ç ¾ÆÀÌÅÛ Ãß°¡½Ã »ç¿ëÇÔ.
-// Áö¿ª/°ÔÀÓ ¼­¹ö·Î Å¬¶óÀÌ¾ðÆ® °æÀ¯ Àü¼Û
+// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½Ç¸ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ EX, ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½à½º ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
+// ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_SEND_AGAME_PRIMEITEM_DATA3	0x50320150
 
-// Àåº° - ¹ìÇÇ¸¯ Ä¿½ºÇÍ EX
+// ï¿½åº° - ï¿½ï¿½ï¿½Ç¸ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ EX
 #define smTRANSCODE_SEND_AGAME_PRIMEITEM_DATA4	0x50320160
 
 
-//¹Í½ºÃÄ µ¥ÀÌÅ¸ º¸³¿
+//ï¿½Í½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_CRAFTITEM			0x50320200
-//¿¡ÀÌÂ¡ µ¥ÀÌÅ¸ º¸³¿
+//ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_AGINGITEM			0x50320202
-//¿¡ÀÌÂ¡ ¾÷±×·¹ÀÌµå
+//ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½
 #define	smTRANSCODE_AGING_UPGRADE		0x50320204
-//¸µÅ©ÄÚ¾î µî·Ï
+//ï¿½ï¿½Å©ï¿½Ú¾ï¿½ ï¿½ï¿½ï¿½
 #define	smTRANSCODE_MAKE_LINKCORE		0x50320205
-//¸µÅ©ÄÚ¾î »ç¿ë
+//ï¿½ï¿½Å©ï¿½Ú¾ï¿½ ï¿½ï¿½ï¿½
 #define	smTRANSCODE_USE_LINKCORE		0x50320206
-//À® ¾ÆÀÌÅÛ µ¥ÀÌÅ¸ º¸³¿
+//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_WINGITEM			0x50320208
 
-//»óÁ¡ µ¥ÀÌÅ¸ ±¸ÀÔ
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_SHOPTITEM			0x50320210
-//»óÁ¡ µ¥ÀÌÅ¸ ÆÇ¸Å
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½Ç¸ï¿½
 #define smTRANSCODE_SHOP_SELLITEM		0x50320212
 
-//Æ÷½º¿Àºê ¾ÆÀÌÅÛ »ý¼º
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_ITEM_FORCEORB		0x50320214
 
-//Äù½ºÆ® ¸í·É
+//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
 #define	smTRANSCODE_QUEST_COMMAND		0x50320220
-//Á¾·á½Ã Web URL ¿ÀÇÂ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ Web URL ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_EXITINFO_URL		0x50320230
 
 
-//¾ÆÀÌÅÛ È®ÀÎ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 #define smTRANSCODE_CHECKITEM			0x50320300
-//¾ÆÀÌÅÛ ¿À·ù È®ÀÎ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 #define smTRANSCODE_ERRORITEM			0x50320310
-//¹°¾à °¹¼ö ¿À·ù È®ÀÎ - ¹°¾à °ãÄ£¼ö¸¦ 1·Î ÃÊ±âÈ­ 
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½Ê±ï¿½È­ 
 #define smTRANSCODE_CLEARPOTION			0x50320320
 
 #define smTRANSCODE_CHECK_ITEMMESH		0x50320330
 
-//Å¬¶óÀÌ¾ðÆ® Æã¼ÇÆ÷Áö¼Ç º¸°í
+//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_CLIENT_FUNCPOS		0x50320400
-//Å¬¶óÀÌ¾ðÆ® Æã¼ÇÆ÷Áö¼Ç °ªÀ» ¿ä±¸ ( ÃÊ±â¼³Á¤À» À§ÇÔ )
+//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ä±¸ ( ï¿½Ê±â¼³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ )
 #define smTRANSCODE_GETCLIENT_FUNCPOS	0x50320410
 
-//Å¬¶óÀÌ¾ðÆ® Æã¼Ç¸Þ¸ð¸® Àü¼Û
+//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½Ç¸Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_FUNCTION_MEM		0x50320420
-//Å¬¶óÀÌ¾ðÆ® Æã¼ÇÆ÷Áö¼Ç °á°ú °ª
+//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½
 #define smTRANSCODE_FUNCTON_RESULT		0x50320430
 
-//Å¬¶óÀÌ¾ðÆ® ÇÁ·Î¼¼½º Å¸ÀÓ ÃÖ´ëÄ¡
+//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½Ö´ï¿½Ä¡
 #define smTRANSCODE_PROCESS_TIMEMAX		0x50320500
 
-//nSprite Áß±¹ÆÇ º¸¾ÈÇÁ·Î±×·¥
+//nSprite ï¿½ß±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î±×·ï¿½
 #define smTRANSCODE_NSPRITE				0x50320600
 //nProtect
 #define smTRANSCODE_NPROTECT			0x50320700
 #define smTRANSCODE_GAMEGUARD_AUTH		0x50320710
 
 
-//°ø°Ý ±â·Ï ºñ±³ ¿ä±¸
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ä±¸
 #define	smTRANSCODE_REC_DAMAGEDATA		0x50320800
 
-//SoD °á°ú º¸°í
+//SoD ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_SOD_RESULT			0x50320900
 #define	smTRANSCODE_SOD_RESULT2			0x50320901
 
-//½ºÅ³ ½ÇÇà µ¿·á
+//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_PARTY_SKILL			0x50320A00
 
 
-//½ºÅ³ ½ÇÇà Ãë¼Ò
+//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 #define	smTRANSCODE_CANCEL_SKILL		0x50320A10
-//½ºÅ³ ½ÇÇà ÀÏ¹Ý
+//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¹ï¿½
 #define	smTRANSCODE_PROCESS_SKILL		0x50320A20
 #define smTRANSCODE_PROCESS_SKILL2		0x50320A30
 #define smTRANSCODE_PROCESS_CLAN_SKILL	0x50320A35
-//½ºÅ³ º¯°æ ¾÷µ¥ÀÌÆ®
+//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 #define	smTRANSCODE_UPDATEL_SKILL		0x50320A40
-//Ãß°¡È¸ÇÇ ¼º°øÁ¤º¸
+//ï¿½ß°ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_SUCCESS_EVATION		0x50320A50
-//¼Ó¼ºÁ¤º¸
+//ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_RESISTANCE			0x50320A60
 
-//¼³¹®Á¶»ç
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_PUBLIC_POLLING		0x50320A70
-//¼³¸í°øÁö ¹Ú½º
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½
 #define	smTRANSCODE_NOTICE_BOX			0x50320A80
-//ÇÙÅ·¿ë ÇÔÁ¤
+//ï¿½ï¿½Å·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_HACKTRAP			0x50320A90
 
 
-//»ý¸í,±â·Â,±Ù·Â Áõ°¡
+//ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½,ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_VIRTURAL_POTION		0x50320B00
 
-//Å¬·£ °¡ÀÔ ¸Þ¼¼Áö
+//Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
 #define	smTRANSCODE_CLAN_SERVICE		0x50320C00
-//Å¬·£ ¾÷µ¥ÀÌÆ® ¿ä±¸ ¸Þ¼¼Áö
+//Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ä±¸ ï¿½Þ¼ï¿½ï¿½ï¿½
 #define	smTRANSCODE_CLAN_UPDATE			0x50320C10
 
-//Äù½ºÆ® Ã³¸® ¿ä±¸ ¸Þ¼¼Áö
+//ï¿½ï¿½ï¿½ï¿½Æ® Ã³ï¿½ï¿½ ï¿½ä±¸ ï¿½Þ¼ï¿½ï¿½ï¿½
 #define	smTRANSCODE_QUEST_MESSAGE		0x50320D00
 
-//Ä³¸¯ÅÍ Á×´Ù
+//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½×´ï¿½
 #define	smTRANSCODE_DEAD_USER			0x50320E00
-//¾ßÈ£ µ¿ÀÛ ½ÇÇà
+//ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_YAHOO_MOTION		0x50320E10
-//ÀÌº¥Æ® Á¤º¸ º¯°æ
+//ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_CHANGE_EVENT		0x50320F00
 
-//Å¬¶óÀÌ¾ðÆ® Á¤º¸
+//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_CLIENTINFO			0x50321000
 
-//¹«Àû ¸ðµå °æ°í
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 #define	smTRANSCODE_WARNING_BLINK_ATT	0x50321010
 
 
-//»õ °ø°Ý ÆÐÅ¶
+//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶
 #define smTRANSCODE_ATTACK_DAMAGE		0x50322000
 #define smTRANSCODE_RANGE_DAMAGE		0x50322010
 #define smTRANSCODE_ATTACK_RESULT		0x50322020
@@ -412,74 +412,74 @@
 
 #define smTRANSCODE_LIMIT_DAMAGE		0x50322050
 
-//Å¬¶óÀÌ¾ðÆ® ¹®Á¦ °æ°í
+//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 #define smTRANSCODE_WARNING_CLIENT		0x50322060
 #define smTRANSCODE_WARNING_SKILL		0x50322080
-//¾ó±¼ Ä¿Áö´Â ÆÐÅ¶
+//ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶
 #define smTRANSCODE_COMIC_SKIN			0x50322070
-//°ü¸®ÀÚ ¸í·É ±â·Ï
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 #define	smTRANSCODE_REC_ADMIN_COMMAND	0x50322090
 
-//°ü¸®ÀÚ ¸ðµå ¼³Á¤ È®ÀÎ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 #define smTRANSCODE_CHECK_ADMINMODE		0x503220A0
 
-//SoDÁ¤º¸ º¸³»±â
+//SoDï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_SOD_INFOMATION		0x503220B0
 
-//ºí·¹½ºÄ³½½ ¼³Á¤Á¤º¸
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_BLESSCASTLE_INFO	0x503220C0
 #define smTRANSCODE_BLESSCASTLE_TAX		0x503220D0
 
-//¸ó½ºÅÍÀÇ ¹üÀ§½ºÅ³ ÁÖº¯ Ä³¸¯ÅÍ Á¤º¸
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ ï¿½Öºï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_ATTACK_SLASH_LIST	0x503220E0
 
-//´Ù¸¥¼­¹ö¿¡ ÀÇÇØ º¯°æµÈ °ª º¸³¿
+//ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_UPDATE_SERVER_PARAM	0x503220F0
 #define smUPDATE_PARAM_LOWUSER_PRESENT	0x100
 
-//¸ÞÀÎ¼­¹ö¿¡ °èÁ¤Á¤º¸ º¸³¿ (º£Æ®³²)
+//ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½Æ®ï¿½ï¿½)
 #define smTRANSCODE_USER_ID				0x50322100
 
 
 
-//µ¥¹ÌÁö ÆÐÅ¶ ¾ÏÈ£È­ ¸ðµâ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ ï¿½ï¿½È£È­ ï¿½ï¿½ï¿½
 #define smTRANSCODE_DAMAGE_ENCODE_MEM	0x50322F00
 #define smTRANSCODE_DAMAGE_ENCODE_MEM2	0x50322EC0
 
-//ÆÐÅ¶ µ¿Àû ¾ÏÈ£È­ Æã¼Ç
+//ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£È­ ï¿½ï¿½ï¿½
 #define	smTRANSCODE_PACKET_DYNFUNC		0x50323000
 
 
-//¼­¹ö ¸ÅÇÎ Á¤º¸
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define	smTRANSCODE_AREA_SERVER_MAP		0x50324000
-// pluto ¾ÆÀÌÅÛ Á¦·Ã
+// pluto ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_OPEN_SMELTING		0x50325000
 #define smTRANSCODE_SMELTINGITEM		0x50325001
-// pluto ¾ÆÀÌÅÛ Á¦ÀÛ
+// pluto ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_OPEN_MANUFACTURE	0x50326000
 #define smTRANSCODE_MANUFACTURE			0x50326001
-// pluto Á¦ÀÛ ¾ÆÀÌÅÛ °¡°Ý, ¹«°Ô Á¤º¸ °¡Á® ¿Ã·Á°í
+// pluto ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½
 #define smTRANSCODE_MANUFACTURE_WEIGHT_PRICE 0x50326002
 
-// pluto ¼±¹°»óÀÚ
+// pluto ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define smTRANSCODE_GIFTBOX_MONEY		0x50326003
 
-//¹ÚÀç¿ø - ºô¸µ ¾ÆÀÌÅÛ ÃÊ±âÈ­ Ä¡Æ®
+//ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ Ä¡Æ®
 #define smTRANSCODE_PREMIUMITEM_INIT	0x50326004
 
-// ¼®Áö¿ë - ¹Í½ºÃÄ ¸®¼Â Ã³¸®
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½Í½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 #define smTRANSCODE_MIXTURE_RESET_ITEM	0x50326006
 
-//ÀÌº¥Æ® ÇÃ·¢¸ðµå
+//ï¿½Ìºï¿½Æ® ï¿½Ã·ï¿½ï¿½ï¿½ï¿½
 #define	rsHARDCORE_EVENT_FLAG		0x100
 
-#define smCODE_SOD_EFFECT		100			//ÁÖ¹® ½Ã½ºÅÛ Ãß°¡ - SOD ÀÌÆåÆ® Àç»ç¿ë
+#define smCODE_SOD_EFFECT		100			//ï¿½Ö¹ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ - SOD ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 
-// Àåº° - ÀçºÐ¹è ÀÌº¥Æ®
+// ï¿½åº° - ï¿½ï¿½Ð¹ï¿½ ï¿½Ìºï¿½Æ®
 #define smTRANSCODE_EVENT_GAME		0x50326007
 #define smCODE_EVENT_STATE_INIT		100
 
-// Àåº° - ÀÔ·ÂÃ¢
+// ï¿½åº° - ï¿½Ô·ï¿½Ã¢
 #define smTRANSCODE_ITEMDOC			0x50326008
 
 
@@ -799,3 +799,5 @@ char* GetTranscodeNameByOpcode(int opcode)
 
 	return "UNKNOW_TRANSCODE";
 }
+
+

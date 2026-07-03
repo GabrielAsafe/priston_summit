@@ -158,3 +158,7 @@ int TestCreateEffectObject();
 extern smTEXRECT sinTexRect;
 extern sinEFFECT sinEffect[SIN_MAX_EFFECT];
 extern sinEFFECT_ZDEPTH	sinEffect_ZDepth[SIN_MAX_EFFECT];
+
+
+
+

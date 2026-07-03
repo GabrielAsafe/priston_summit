@@ -950,3 +950,5 @@ void g_LowLevelDeletePet(smCHAR *pAttachChar)
 {
 	s_LowLevelPetManager.DeletePet(pAttachChar);
 }
+
+

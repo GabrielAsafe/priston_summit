@@ -61,3 +61,5 @@ class CLANEntity_Notice cClanNotice;
 extern class CLANEntity_Notice cClanNotice;
 
 #endif
+
+

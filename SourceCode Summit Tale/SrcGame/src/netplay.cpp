@@ -1,4 +1,5 @@
-﻿
+#include "opcodes.h"
+
 
 #include "smlib3d\\smd3d.h"
 
@@ -2209,7 +2210,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 	case OpCode::OPCODE_EXPLVL1:
 	{
 		chaPremiumitem.UsePremiumItem(155);
-		AddChatBuff("Você recebeu o Kit UP relogue Para ativar");
+		AddChatBuff("Voc� recebeu o Kit UP relogue Para ativar");
 	}
 	break;
 	case OpCode::SEARCH_GAME_CHEAT:
@@ -3734,13 +3735,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 				cTrade.CancelTradeItem();
 			}
 		}
-		break;
-		
-	case OpCode::OPCODE_RESTAURE_LIST:
-		cRestaure.RecvRestaureList((RESTAURE_LIST*)pData->Buff);
-		break;
-
-	case OpCode::OPCODE_TRADE_READYITEM:
+		break;case OpCode::OPCODE_TRADE_READYITEM:
 
 
 
@@ -4145,7 +4140,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	case OpCode::OPCODE_OPEN_HG:
 		if (sinChar->Level < 90) {
-			AddChatBuff("> O Level mínimo necessário é 90+");
+			AddChatBuff("> O Level m�nimo necess�rio � 90+");
 		}
 		else {
 			cHg.RecvOpenNpc();
@@ -6167,7 +6162,7 @@ int SendChatMessageToServer(char *szChatMessage)
 			{
 				ClearNowQuest();
 				AddChatBuff("> Sua quest atual foi cancelada", 0);
-				AddChatBuff("> Será necessário relogar...", 0);
+				AddChatBuff("> Ser� necess�rio relogar...", 0);
 				return TRUE;
 			}
 
@@ -6189,7 +6184,7 @@ int SendChatMessageToServer(char *szChatMessage)
 				}
 
 				AddChatBuff("> Force Cancelada", 0);
-				AddChatBuff("> Será necessário relogar...", 0);
+				AddChatBuff("> Ser� necess�rio relogar...", 0);
 				return TRUE;
 			}
 			
@@ -6207,7 +6202,7 @@ int SendChatMessageToServer(char *szChatMessage)
 					AddChatBuff("Exp up + 15% , 5% Drop", 0);
 					//AddChatBuff("Aging Free", 0);
 					AddChatBuff("Time shop x2 por minuto", 0);
-				//	AddChatBuff("Ressurreição por 30D >PVE<", 0);
+				//	AddChatBuff("Ressurrei��o por 30D >PVE<", 0);
 				}
 
 			}
@@ -6820,7 +6815,7 @@ int SetIpColor(DWORD dwIP)
 
 	switch(dwIP)
 	{
-	case 0:		SetFontTextColor(RGB(255, 128, 96));		break; // vermelho padrão
+	case 0:		SetFontTextColor(RGB(255, 128, 96));		break; // vermelho padr�o
 	case 1:		SetFontTextColor(RGB(125, 180, 175));		break; // azul pm
 	case 2:		SetFontTextColor(RGB(125, 180, 175));		break; // azul pm
 	case 3:		SetFontTextColor(RGB(230, 160, 255));		break; // roxo gm 
@@ -8741,11 +8736,11 @@ int SendGetRecordData(char *szName)
 }
 
 char *szCmdOpenMonster[10] = {
-	"È©°íºí¸°",
-	"È©°íºí¸°",
-	"È©°íºí¸°",
-	"Å·È£ÇÇ",
-	"Å¸ÀÌÅº",
+	"ȩ����",
+	"ȩ����",
+	"ȩ����",
+	"ŷȣ��",
+	"Ÿ��ź",
 	0,0,0,0,0
 };
 
@@ -9845,7 +9840,7 @@ int Skil_RangeAttack(int x, int y, int z, int range, int power, int TargetState)
 
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - Skil_RangeAttack ");
+	Record_ClinetLogFile("������ ������Ŷ - Skil_RangeAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -10010,7 +10005,7 @@ int Skil_RangeBoxAttack(smCHAR *lpCurChar, RECT *lpRect, int power, int TargetSt
 
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - Skil_RangeBoxAttack ");
+	Record_ClinetLogFile("������ ������Ŷ - Skil_RangeBoxAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -10243,7 +10238,7 @@ int QuickSendTransAttack(smCHAR *lpChar, int power, int AttackState, int Resista
 	int pow;
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - QuickSendTransAttack ");
+	Record_ClinetLogFile("������ ������Ŷ - QuickSendTransAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -12472,7 +12467,7 @@ int	SkillPlay_DivineLightning_Select(smCHAR *lpChar, int SkillPoint)
 	smWINSOCK *lpsmSendSock = 0;
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - SkillPlay_DivineLightning_Select ");
+	Record_ClinetLogFile("������ ������Ŷ - SkillPlay_DivineLightning_Select ");
 	quit = 1;
 	return TRUE;
 
@@ -14826,4 +14821,12 @@ int Xigncode_Client_Recv(smWINSOCK *lpsmSock, XIGNCODE_PACKET *pack)
 	return TRUE;
 }
 #endif
+
+
+
+
+
+
+
+
 

@@ -69,3 +69,5 @@ extern class CLANEntity_deletecha cClanDeleteCha;
 
 
 #endif
+
+

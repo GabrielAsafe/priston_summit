@@ -226,3 +226,5 @@ inline bool operator==(color3 const &a, color3 const &b)
 
 
 #endif //_COLOR3_H
+
+

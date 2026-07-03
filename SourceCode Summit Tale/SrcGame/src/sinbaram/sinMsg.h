@@ -371,3 +371,7 @@ extern char *ManufacturingTitle;
 
 extern char *SkillDelayItemInfo[];
 extern char *SkillDelayItemInfo2[];
+
+
+
+

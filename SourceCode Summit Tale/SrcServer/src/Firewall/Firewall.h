@@ -32,3 +32,5 @@ private:
 	HRESULT m_Initialized;
 };
 
+
+

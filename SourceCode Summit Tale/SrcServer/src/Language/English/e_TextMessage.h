@@ -47,3 +47,5 @@ char *g_lpBellatraResult_Text1 = "%s of";
 char *g_lpBellatraResult_Text2 = "%s and %s of";
 char *g_lpBellatraResult_Text3 = "Join team";
 char *g_lpBellatraResult_Text4 = "Rank-up for High tower.";
+
+

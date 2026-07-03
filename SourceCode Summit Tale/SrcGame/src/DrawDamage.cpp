@@ -239,3 +239,7 @@ void  DrawDamage::AddTargetDamage(int Damage, DWORD Object, int Type)
 		}
 	}
 }
+
+
+
+

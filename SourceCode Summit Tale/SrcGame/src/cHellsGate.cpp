@@ -1,3 +1,4 @@
+#include "opcodes.h"
 #include "sinbaram/sinLinkHeader.h"
 #include "field.h"
 #include "cHellsGate.h"
@@ -63,3 +64,8 @@ void cHELLSGATE::RecvLeaveHg()
 	iState = 0;
 	WarpField2(3);
 }
+
+
+
+
+

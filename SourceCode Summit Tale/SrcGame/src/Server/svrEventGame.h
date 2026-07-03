@@ -1,4 +1,4 @@
-
+#include "opcodes.h"
 #define _EVENT_GAME_
 
 
@@ -209,4 +209,9 @@ int rsEventGame_State_Init(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransComma
 
 
 }
+
+
+
+
+
 

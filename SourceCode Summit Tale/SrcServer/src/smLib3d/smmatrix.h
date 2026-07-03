@@ -102,3 +102,5 @@ extern HRESULT D3D_SetProjectionMatrix(D3DMATRIX &mat, float fFOV, float fAspect
 int smEMatrixInvert(smEMATRIX &q, smEMATRIX &a);
 
 
+
+

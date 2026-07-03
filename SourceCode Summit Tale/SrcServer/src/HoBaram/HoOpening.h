@@ -175,3 +175,5 @@ public:
 
 extern HWND hTextWnd;
 #endif
+
+

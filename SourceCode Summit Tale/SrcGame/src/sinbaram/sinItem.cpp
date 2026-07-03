@@ -1,4 +1,4 @@
-﻿
+
 
 #include "CoinShop.h"
 #include "CoinShop_T.h"
@@ -866,7 +866,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		ItemInfoCol++;
 	}
 	trajeM = 0;
-	//descrição dos itens
+	//descri��o dos itens
 	if (pItem->CODE == (sinCA1 | sin31) || pItem->CODE == (sinCA1 | sin35) || pItem->CODE == (sinCA1 | sin43) ||
 		pItem->CODE == (sinCA1 | sin54) || pItem->CODE == (sinCA1 | sin66) || pItem->CODE == (sinCA1 | sin67) ||
 		pItem->CODE == (sinCA1 | sin85) || pItem->CODE == (sinCA1 | sin86) || pItem->CODE == (sinCA1 | sin89) ||
@@ -1067,7 +1067,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "para vários mapas.\r");
+		lstrcpy(szTemp, "para v�rios mapas.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1081,7 +1081,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Regeneração de HP em 15%\r");
+		lstrcpy(szTemp, "Regenera��o de HP em 15%\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1095,7 +1095,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Regeneração de MP em 15%\r");
+		lstrcpy(szTemp, "Regenera��o de MP em 15%\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1109,7 +1109,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Regeneração de RES em 15%\r");
+		lstrcpy(szTemp, "Regenera��o de RES em 15%\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1123,7 +1123,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Redistribui os pontos de força\r");
+		lstrcpy(szTemp, "Redistribui os pontos de for�a\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1137,7 +1137,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Redistribui os pontos de inteligência\r");
+		lstrcpy(szTemp, "Redistribui os pontos de intelig�ncia\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1261,7 +1261,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Possíveis monstros: Hopi,\r");
+			lstrcpy(szTemp, "Poss�veis monstros: Hopi,\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1294,7 +1294,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Possíveis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1327,7 +1327,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Possíveis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1337,7 +1337,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Sereia Profana, Máquina-D.\r");
+			lstrcpy(szTemp, "Sereia Profana, M�quina-D.\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1360,7 +1360,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Possíveis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1370,7 +1370,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Punhos de Aço, Gelo.\r");
+			lstrcpy(szTemp, "Punhos de A�o, Gelo.\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1393,7 +1393,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Possíveis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1426,17 +1426,17 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Possíveis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Quimera, Pássaro Demoníaco,\r");
+			lstrcpy(szTemp, "Quimera, P�ssaro Demon�aco,\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Cavaleiro Sanguinário, Seto\r");
+			lstrcpy(szTemp, "Cavaleiro Sanguin�rio, Seto\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1459,7 +1459,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Possíveis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1479,7 +1479,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Guardião do Templo\r");
+			lstrcpy(szTemp, "Guardi�o do Templo\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1501,7 +1501,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Possíveis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1516,7 +1516,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Guardião do Templo\r");
+			lstrcpy(szTemp, "Guardi�o do Templo\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1539,7 +1539,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Possíveis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1573,7 +1573,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Possíveis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1597,7 +1597,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca o Boss Fúria\r");
+			lstrcpy(szTemp, "Invoca o Boss F�ria\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1687,7 +1687,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca o Boss Robô Mutante\r");
+			lstrcpy(szTemp, "Invoca o Boss Rob� Mutante\r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcpy(szTemp2, "\r");
 			lstrcat(szInfoBuff2, szTemp2);
@@ -1762,7 +1762,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Re-Especialização.\r");
+		lstrcpy(szTemp, "de Re-Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1786,7 +1786,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Re-Especialização.\r");
+		lstrcpy(szTemp, "de Re-Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1810,7 +1810,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Re-Especialização.\r");
+		lstrcpy(szTemp, "de Re-Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1834,7 +1834,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Re-Especialização.\r");
+		lstrcpy(szTemp, "de Re-Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1858,7 +1858,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Re-Especialização.\r");
+		lstrcpy(szTemp, "de Re-Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1882,7 +1882,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de reversão do mix ou aging.\r");
+		lstrcpy(szTemp, "de revers�o do mix ou aging.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1901,7 +1901,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Re-Especialização para obter\r");
+		lstrcpy(szTemp, "de Re-Especializa��o para obter\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1966,7 +1966,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Experiência ao morrer.\r");
+		lstrcpy(szTemp, "de Experi�ncia ao morrer.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1985,7 +1985,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "da Sacerdotisa no Nível 4.\r");
+		lstrcpy(szTemp, "da Sacerdotisa no N�vel 4.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -2014,7 +2014,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "da Sacerdotisa no Nível 8.\r");
+		lstrcpy(szTemp, "da Sacerdotisa no N�vel 8.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -2043,7 +2043,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "da Sacerdotisa no Nível 4.\r");
+		lstrcpy(szTemp, "da Sacerdotisa no N�vel 4.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -2072,7 +2072,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "da Sacerdotisa no Nível 8.\r");
+		lstrcpy(szTemp, "da Sacerdotisa no N�vel 8.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -2619,7 +2619,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Prêmio para quem sobreviveu\r");
+		lstrcpy(szTemp, "Pr�mio para quem sobreviveu\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -2639,19 +2639,19 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necessários para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realização do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do nível +10.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +10.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -2717,7 +2717,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro Mágico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -2735,13 +2735,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especialização aleatória\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especialização.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -2755,19 +2755,19 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necessários para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realização do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do nível +11.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +11.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -2833,7 +2833,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro Mágico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -2851,13 +2851,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especialização aleatória\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especialização.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -2871,19 +2871,19 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necessários para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realização do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do nível +12.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +12.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -2949,7 +2949,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro Mágico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -2967,13 +2967,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especialização aleatória\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especialização.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -2987,19 +2987,19 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necessários para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realização do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do nível +13.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +13.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3065,7 +3065,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro Mágico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3083,13 +3083,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especialização aleatória\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especialização.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3103,19 +3103,19 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necessários para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realização do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do nível +14.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +14.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3181,7 +3181,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro Mágico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3199,13 +3199,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especialização aleatória\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especialização.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3219,19 +3219,19 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necessários para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realização do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do nível +15.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +15.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3297,7 +3297,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro Mágico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3315,13 +3315,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especialização aleatória\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especialização.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3335,19 +3335,19 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necessários para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realização do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do nível +16.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +16.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3413,7 +3413,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro Mágico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3431,13 +3431,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especialização aleatória\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especialização.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3451,19 +3451,19 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necessários para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realização do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do nível +17.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +17.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3529,7 +3529,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro Mágico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3547,13 +3547,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especialização aleatória\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especialização.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3567,19 +3567,19 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necessários para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realização do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do nível +18.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +18.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3645,7 +3645,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro Mágico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3663,13 +3663,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especialização aleatória\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especialização.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3683,19 +3683,19 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necessários para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realização do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do nível +19.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +19.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3761,7 +3761,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro Mágico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3779,13 +3779,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especialização aleatória\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especialização.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3799,19 +3799,19 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necessários para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realização do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do nível +20.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +20.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3877,7 +3877,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro Mágico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3895,13 +3895,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especialização aleatória\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especialização.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3953,13 +3953,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Olho mágico 50% 12H\r");
+		lstrcpy(szTemp, "01 Olho m�gico 50% 12H\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Poção de experiência 30% 12H\r");
+		lstrcpy(szTemp, "01 Po��o de experi�ncia 30% 12H\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -3977,19 +3977,19 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Poção Redut. de MANA 30% 12H\r");
+		lstrcpy(szTemp, "01 Po��o Redut. de MANA 30% 12H\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Poção Redut. de RES 30% 12H\r");
+		lstrcpy(szTemp, "01 Po��o Redut. de RES 30% 12H\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Fênix 12H\r");
+		lstrcpy(szTemp, "01 F�nix 12H\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4027,13 +4027,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Olho mágico 50% 1D\r");
+		lstrcpy(szTemp, "01 Olho m�gico 50% 1D\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Poção de experiência 50% 1D\r");
+		lstrcpy(szTemp, "01 Po��o de experi�ncia 50% 1D\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4051,19 +4051,19 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Poção Redut. de MANA 30% 1D\r");
+		lstrcpy(szTemp, "01 Po��o Redut. de MANA 30% 1D\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Poção Redut. de RES 30% 1D\r");
+		lstrcpy(szTemp, "01 Po��o Redut. de RES 30% 1D\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Fênix 1D\r");
+		lstrcpy(szTemp, "01 F�nix 1D\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4077,7 +4077,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "premiação pra os que ajudou na beta\r");
+		lstrcpy(szTemp, "premia��o pra os que ajudou na beta\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4164,12 +4164,12 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Lança fogos de artifício no\r");
+		lstrcpy(szTemp, "Lan�a fogos de artif�cio no\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "céu como forma de comemoração.\r");
+		lstrcpy(szTemp, "c�u como forma de comemora��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4226,7 +4226,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Matura uma Armadura ou Roupão\r");
+		lstrcpy(szTemp, "Matura uma Armadura ou Roup�o\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4464,7 +4464,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "expressão de Felicidade.\r");
+		lstrcpy(szTemp, "express�o de Felicidade.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4483,7 +4483,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "expressão Amorosa.\r");
+		lstrcpy(szTemp, "express�o Amorosa.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4502,7 +4502,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "expressão de Tristeza.\r");
+		lstrcpy(szTemp, "express�o de Tristeza.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4521,7 +4521,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "expressão de Fofura.\r");
+		lstrcpy(szTemp, "express�o de Fofura.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4540,7 +4540,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "máscara de halloween.\r");
+		lstrcpy(szTemp, "m�scara de halloween.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4559,7 +4559,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "chápeu de Carneiro.\r");
+		lstrcpy(szTemp, "ch�peu de Carneiro.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4578,7 +4578,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Cartola na cabeça.\r");
+		lstrcpy(szTemp, "Cartola na cabe�a.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4598,7 +4598,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "chapéu de Bola.\r");
+		lstrcpy(szTemp, "chap�u de Bola.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4618,7 +4618,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "chápeu de Girafa.\r");
+		lstrcpy(szTemp, "ch�peu de Girafa.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4656,7 +4656,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "nível de Aging +10.\r");
+		lstrcpy(szTemp, "n�vel de Aging +10.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4675,7 +4675,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "nível de Aging +15.\r");
+		lstrcpy(szTemp, "n�vel de Aging +15.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4694,7 +4694,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "nível de Aging +18.\r");
+		lstrcpy(szTemp, "n�vel de Aging +18.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4713,7 +4713,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "nível de Aging +20.\r");
+		lstrcpy(szTemp, "n�vel de Aging +20.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4731,7 +4731,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "nível de Aging +28.\r");
+		lstrcpy(szTemp, "n�vel de Aging +28.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4784,7 +4784,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 30% a Experiência\r");
+		lstrcpy(szTemp, "Aumenta em 30% a Experi�ncia\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4845,7 +4845,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 50% a Experiência\r");
+		lstrcpy(szTemp, "Aumenta em 50% a Experi�ncia\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4879,7 +4879,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Invoca uma Fênix para\r");
+		lstrcpy(szTemp, "Invoca uma F�nix para\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4921,7 +4921,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 100% a Experiência\r");
+		lstrcpy(szTemp, "Aumenta em 100% a Experi�ncia\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4958,7 +4958,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 10% a Experiência\r");
+		lstrcpy(szTemp, "Aumenta em 10% a Experi�ncia\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -4992,7 +4992,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 20% a Experiência\r");
+		lstrcpy(szTemp, "Aumenta em 20% a Experi�ncia\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -5026,7 +5026,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 30% a Experiência\r");
+		lstrcpy(szTemp, "Aumenta em 30% a Experi�ncia\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -5060,7 +5060,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 40% a Experiência\r");
+		lstrcpy(szTemp, "Aumenta em 40% a Experi�ncia\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -5091,7 +5091,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 10% a Experiência\r");
+		lstrcpy(szTemp, "Aumenta em 10% a Experi�ncia\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -5121,7 +5121,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 20% a Experiência\r");
+		lstrcpy(szTemp, "Aumenta em 20% a Experi�ncia\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -5151,7 +5151,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 30% a Experiência\r");
+		lstrcpy(szTemp, "Aumenta em 30% a Experi�ncia\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -5181,7 +5181,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 40% a Experiência\r");
+		lstrcpy(szTemp, "Aumenta em 40% a Experi�ncia\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -5202,7 +5202,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Invoca um pequeno dragão\r");
+		lstrcpy(szTemp, "Invoca um pequeno drag�o\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -5228,7 +5228,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Invoca um pequeno dragão\r");
+		lstrcpy(szTemp, "Invoca um pequeno drag�o\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -5254,7 +5254,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Invoca um pequeno dragão\r");
+		lstrcpy(szTemp, "Invoca um pequeno drag�o\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -5280,7 +5280,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Invoca um pequeno dragão\r");
+		lstrcpy(szTemp, "Invoca um pequeno drag�o\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -5364,7 +5364,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "processo de Fundição.\r");
+		lstrcpy(szTemp, "processo de Fundi��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -5384,7 +5384,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "processo de Criação.\r");
+		lstrcpy(szTemp, "processo de Cria��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -5404,7 +5404,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "processo de Criação.\r");
+		lstrcpy(szTemp, "processo de Cria��o.\r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcpy(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -6175,7 +6175,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff, "\r");
 		lstrcat(szInfoBuff2, "\r");
 		ItemInfoCol++;
-		wsprintf(szTemp, "Set Bônus #1\r");
+		wsprintf(szTemp, "Set B�nus #1\r");
 		lstrcat(szInfoBuff, szTemp);
 		strcpy_s(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -6225,7 +6225,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		lstrcat(szInfoBuff, "\r");
 		lstrcat(szInfoBuff2, "\r");
 		ItemInfoCol++;
-		wsprintf(szTemp, "Set Bônus #2\r");
+		wsprintf(szTemp, "Set B�nus #2\r");
 		lstrcat(szInfoBuff, szTemp);
 		strcpy_s(szTemp2, "\r");
 		lstrcat(szInfoBuff2, szTemp2);
@@ -6396,7 +6396,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 				}
-				strcpy_s(szTemp, "Duração: \r");
+				strcpy_s(szTemp, "Dura��o: \r");
 				wsprintf(szTemp2, "%02d:%02d:%02d\r", (ForceOrbUseTime[i] / 60 / 60) % 24, (ForceOrbUseTime[i] / 60) % 60, (ForceOrbUseTime[i]) % 60);
 				//wsprintf(szTemp2, "%d%s\r", ForceOrbUseTime[i], SecName);
 				lstrcat(szInfoBuff, szTemp);
@@ -6438,7 +6438,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 					ItemInfoCol++;
 				}
 
-				strcpy_s(szTemp, "Duração: \r");
+				strcpy_s(szTemp, "Dura��o: \r");
 				wsprintf(szTemp2, "%02d:%02d:%02d\r", (MagicForceOrbUseTime[i] / 60 / 60) % 24, (MagicForceOrbUseTime[i] / 60) % 60, (MagicForceOrbUseTime[i]) % 60);
 				/*wsprintf(szTemp2, "%d%s\r", MagicForceOrbUseTime[i], SecName);*/
 				lstrcat(szInfoBuff, szTemp);
@@ -6455,7 +6455,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
 
-				strcpy_s(szTemp, "Duração: \r");
+				strcpy_s(szTemp, "Dura��o: \r");
 				wsprintf(szTemp2, "%02d:%02d:%02d\r", (BillingMagicForceOrbUseTime[i] / 60 / 60) % 24, (BillingMagicForceOrbUseTime[i] / 60) % 60, (BillingMagicForceOrbUseTime[i]) % 60);
 				/*wsprintf(szTemp2, "%d%s\r", BillingMagicForceOrbUseTime[i], SecName);*/
 				lstrcat(szInfoBuff, szTemp);
@@ -8460,3 +8460,6 @@ int cITEM::GetItemLimitTime(sITEM* pItem)
 
 	return TRUE;
 }
+
+
+

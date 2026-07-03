@@ -1,4 +1,4 @@
-﻿
+
 
 #include "smlib3d\\smd3d.h"
 #include "smwsock.h"
@@ -6109,7 +6109,7 @@ int smCHAR::Main()
 	//		AutoMoveStep = 1;
 	//		lpTargetChar = 0;
 	//	}
-	//}﻿
+	//}?
 
 	if (smMonsterInfo.SkillCurse && smCharInfo.Brood != smCHAR_MONSTER_USER && lpTargetChar->smCharInfo.Brood != smCHAR_MONSTER_USER) {
 			if (MotionInfo->State < 0x100) {
@@ -6245,11 +6245,11 @@ int smCHAR::Main()
 
 
 						if (lpTargetChar->smCharInfo.Life[0] <= 0) {
-							//Verifica se o monstro usa a HP em blocos e se há blocos existentes
+							//Verifica se o monstro usa a HP em blocos e se h� blocos existentes
 							if (lpTargetChar->UseObject_VirtualLife && sObject_VirtualLife[0] > 0)
 							{
 								//Caso seja verdadeiro, atualizar a vida do monstro para 1% da total, assim criamos a folga
-								//necessária para o servidor atualizar para o próximo bloco
+								//necess�ria para o servidor atualizar para o pr�ximo bloco
 								lpTargetChar->smCharInfo.Life[0] = (lpTargetChar->smCharInfo.Life[1] * 1) / 100;
 							}
 							else
@@ -15267,7 +15267,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 				if(lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 				{
-					wsprintf(szDispDamage, ">%s °ø°Ý Ãß°¡È¸ÇÇ ( Evade Scroll[%d] )", smCharInfo.szName, lpPlayInfo->dwSiegeItem_Scroll_Param);
+					wsprintf(szDispDamage, ">%s ���� �߰�ȸ�� ( Evade Scroll[%d] )", smCharInfo.szName, lpPlayInfo->dwSiegeItem_Scroll_Param);
 					rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 				}
 #endif
@@ -15291,7 +15291,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 			if(lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 			{
-				wsprintf(szDispDamage, ">%s °ø°Ý Ãß°¡È¸ÇÇ ( Evade Scroll[%d] )", smCharInfo.szName, lpPlayInfo->dwSiegeItem_Scroll_Param);
+				wsprintf(szDispDamage, ">%s ���� �߰�ȸ�� ( Evade Scroll[%d] )", smCharInfo.szName, lpPlayInfo->dwSiegeItem_Scroll_Param);
 				rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 			}
 #endif
@@ -15465,7 +15465,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 				if(lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 				{
-					wsprintf(szDispDamage, ">%s °ø°Ý Ãß°¡È¸ÇÇ ( Vague[%d] )", smCharInfo.szName, Vague_EvasionPercent[lpPlayInfo->dwSkill_Vague_Param]);
+					wsprintf(szDispDamage, ">%s ���� �߰�ȸ�� ( Vague[%d] )", smCharInfo.szName, Vague_EvasionPercent[lpPlayInfo->dwSkill_Vague_Param]);
 					rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 				}
 #endif
@@ -15514,7 +15514,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 				if(lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 				{
-					wsprintf(szDispDamage, ">%s °ø°Ý Ãß°¡È¸ÇÇ ( Hall of Valhalla [%d] )", smCharInfo.szName, lpPlayInfo->wSkill_HallOfValhalla_Param[0]);
+					wsprintf(szDispDamage, ">%s ���� �߰�ȸ�� ( Hall of Valhalla [%d] )", smCharInfo.szName, lpPlayInfo->wSkill_HallOfValhalla_Param[0]);
 					rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 				}
 #endif
@@ -15546,7 +15546,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 				if(lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 				{
-					wsprintf(szDispDamage, ">%s °ø°Ý Ãß°¡ È¸ÇÇ ( Summon Muspell [%d] )", smCharInfo.szName, Summon_Muspell_BlockPercent[lpPlayInfo->dwSkill_SummonMuspell_Param]);
+					wsprintf(szDispDamage, ">%s ���� �߰� ȸ�� ( Summon Muspell [%d] )", smCharInfo.szName, Summon_Muspell_BlockPercent[lpPlayInfo->dwSkill_SummonMuspell_Param]);
 					rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 				}
 #endif
@@ -15602,7 +15602,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 					if(lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 					{
-						wsprintf(szDispDamage, ">%s Evasão ( Clan Skill [%d] )", smCharInfo.szName, lpPlayInfo->dwBlessSkill_Param);
+						wsprintf(szDispDamage, ">%s Evas�o ( Clan Skill [%d] )", smCharInfo.szName, lpPlayInfo->dwBlessSkill_Param);
 						rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 					}
 #endif
@@ -16329,3 +16329,5 @@ int SetClanMaster_Player(DWORD dwMasterClan)
 	return lpCurPlayer->Clan_CastleMasterFlag;
 
 }
+
+

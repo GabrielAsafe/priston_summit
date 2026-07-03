@@ -422,3 +422,7 @@ int GetRadian(int Rad)
 	return (Rad & ANGCLIP);
 }
 
+
+
+
+

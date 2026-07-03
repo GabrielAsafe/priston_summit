@@ -1,6 +1,8 @@
 
-char *srPartyMsg1 = "¶¤ªø²{¦b§ï¥Ñ%s¾á¥ô¡C";
-char *srPartyMsg2 = "¶¤¥î¸Ñ´²¡C";
-char *srPartyMsg3 = "%s¥[¤J¶¤¥î¡C";
-char *srPartyMsg4 = "µLªk¥[¤J¶¤¥î¡C";
-char *srPartyMsg5 = "%sÂ÷¶}¶¤¥î¡C";
+char *srPartyMsg1 = "ï¿½ï¿½ï¿½ï¿½ï¿½{ï¿½bï¿½ï¿½ï¿½%sï¿½ï¿½ï¿½C";
+char *srPartyMsg2 = "ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½C";
+char *srPartyMsg3 = "%sï¿½[ï¿½Jï¿½ï¿½ï¿½ï¿½C";
+char *srPartyMsg4 = "ï¿½Lï¿½kï¿½[ï¿½Jï¿½ï¿½ï¿½ï¿½C";
+char *srPartyMsg5 = "%sï¿½ï¿½ï¿½}ï¿½ï¿½ï¿½ï¿½C";
+
+

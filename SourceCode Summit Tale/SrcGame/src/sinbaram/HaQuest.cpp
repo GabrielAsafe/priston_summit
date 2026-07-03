@@ -910,3 +910,7 @@ int  cHaQuest::RecvBattleNpcResult(int flag)
 	return false;
 }
 
+
+
+
+

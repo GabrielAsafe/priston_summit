@@ -857,3 +857,5 @@ void ParkIncubusSummonerSkill(smCHAR *pChar)
 		}
 	}
 }
+
+

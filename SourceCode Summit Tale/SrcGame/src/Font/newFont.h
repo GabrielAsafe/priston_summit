@@ -57,3 +57,6 @@ extern cBMPFONT* BmpFont[BMPFonts::MAX_FONT];
 void InitBmpFont();
 
 #endif
+
+
+

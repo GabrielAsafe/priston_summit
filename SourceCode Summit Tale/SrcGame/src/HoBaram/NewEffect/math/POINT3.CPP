@@ -36,3 +36,6 @@ point3::point3( const point4& in )
 		z = in.z;
 	}
 }
+
+
+

@@ -1,3 +1,4 @@
+#include "opcodes.h"
 #include "sinbaram/sinLinkHeader.h"
 #include "CRollWindow.h"
 
@@ -86,3 +87,8 @@ void CRollWindow::OnHoverItemImage()
 	cItem.ShowItemInfo(&Item, 1);
 	sinShowItemInfoFlag = 1;
 }
+
+
+
+
+

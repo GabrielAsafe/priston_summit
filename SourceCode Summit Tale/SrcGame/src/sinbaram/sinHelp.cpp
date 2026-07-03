@@ -2584,7 +2584,7 @@ int cSINHELP::TonyGetFileData()
 
 
 
-		if(!NextFlag && lstrcmp(sinDecode, "*ÀÌ¹ÌÁöÆÄÀÏÀÌ¸§") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			strcpy_s(sTonyTest[Count].ImageFileName, strBuff);
@@ -2592,7 +2592,7 @@ int cSINHELP::TonyGetFileData()
 			NextFlag = TRUE;
 
 		}
-		if(!NextFlag && lstrcmp(sinDecode, "*ÀÌ¹ÌÁöÀ§Ä¡") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡") == 0)
 		{
 			p = GetWord(strBuff, p);
 			sTonyTest[Count].Posi.x = atoi(strBuff);
@@ -2601,7 +2601,7 @@ int cSINHELP::TonyGetFileData()
 			NextFlag = TRUE;
 
 		}
-		if(!NextFlag && lstrcmp(sinDecode, "*ÀÌ¹ÌÁöÅ©±â") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½Ì¹ï¿½ï¿½ï¿½Å©ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			sTonyTest[Count].Size.x = atoi(strBuff);
@@ -2610,7 +2610,7 @@ int cSINHELP::TonyGetFileData()
 			NextFlag = TRUE;
 
 		}
-		if(!NextFlag && lstrcmp(sinDecode, "*ÆÄÀÏÆ÷¸Ë") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			if(lstrcmp(strBuff, "TGA") == 0)
@@ -2620,7 +2620,7 @@ int cSINHELP::TonyGetFileData()
 
 		}
 
-		if(!NextFlag && lstrcmp(sinDecode, "*³¡") == 0)
+		if(!NextFlag && lstrcmp(sinDecode, "*ï¿½ï¿½") == 0)
 		{
 			sTonyTest[Count].Flag = 1;
 
@@ -2940,3 +2940,6 @@ int cSINHELP::sinGetHelpShowFlagNum()
 	}
 	return KindFlag;
 }
+
+
+

@@ -1118,9 +1118,9 @@ int   CheckExpTime = 0;
 
 DWORD dwTestKeyTime = 0;
 int   TeskKeyMessageCnt = 0;
-char *szTestKeyMsg[6] = { "³ª!  &(^_^)&    ",
-						 "³ë!  /(^_^)/   ",
-						 "³ª!  *(^_^)*  ",
+char *szTestKeyMsg[6] = { "ï¿½ï¿½!  &(^_^)&    ",
+						 "ï¿½ï¿½!  /(^_^)/   ",
+						 "ï¿½ï¿½!  *(^_^)*  ",
 						 "",
 						 "",
 						 "", };
@@ -2020,7 +2020,7 @@ void cINTERFACE::KeyDown()
 
 		}
 
-		if(!lstrcmpi(sinBuff, "/¸¶±º¿À¿À¿À¿À¿¡¿ä") || !lstrcmpi(sinBuff, "/PassMature"))
+		if(!lstrcmpi(sinBuff, "/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") || !lstrcmpi(sinBuff, "/PassMature"))
 		{
 			sinBuff[0] = 0;
 			sinSecretFlag = 1;
@@ -2030,7 +2030,7 @@ void cINTERFACE::KeyDown()
 			ReformCharForm();
 
 		}
-		if(!lstrcmpi(sinBuff, "/³¯¸°´Ù´¢!") || !lstrcmpi(sinBuff, "/FuckingInven!"))
+		if(!lstrcmpi(sinBuff, "/ï¿½ï¿½ï¿½ï¿½ï¿½Ù´ï¿½!") || !lstrcmpi(sinBuff, "/FuckingInven!"))
 		{
 			memset(cInvenTory.InvenItem, 0, sizeof(sITEM) * 100);
 			memset(cInvenTory.InvenItemTemp, 0, sizeof(sITEM) * 100);
@@ -2055,7 +2055,7 @@ void cINTERFACE::KeyDown()
 
 				sscanf(sinBuff, "%s %s", sinTestBuff5, sinTestBuff6);
 
-				if(!lstrcmp(sinTestBuff5, "/ÀÓ±º100Äù½ºÆ®") || !lstrcmpi(sinBuff, "/MrIm's100"))
+				if(!lstrcmp(sinTestBuff5, "/ï¿½Ó±ï¿½100ï¿½ï¿½ï¿½ï¿½Æ®") || !lstrcmpi(sinBuff, "/MrIm's100"))
 				{
 					if(sinTestBuff6[0])
 					{
@@ -2085,7 +2085,7 @@ void cINTERFACE::KeyDown()
 				}
 
 
-				if(!lstrcmp(sinTestBuff5, "/ÀÓ±ºÃÊº¸Äù½ºÆ®") || !lstrcmpi(sinTestBuff5, "/MrIm'sbeginner"))
+				if(!lstrcmp(sinTestBuff5, "/ï¿½Ó±ï¿½ï¿½Êºï¿½ï¿½ï¿½ï¿½ï¿½Æ®") || !lstrcmpi(sinTestBuff5, "/MrIm'sbeginner"))
 				{
 					if(sinTestBuff6[0])
 					{
@@ -2108,7 +2108,7 @@ void cINTERFACE::KeyDown()
 
 				}
 
-				if(lstrcmp(sinTestBuff5, "/ÀÌ¹æ¹ü4Â÷Äù½ºÆ®") == 0 || lstrcmp(sinTestBuff5, "/Lee4thRankUp") == 0)
+				if(lstrcmp(sinTestBuff5, "/ï¿½Ì¹ï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®") == 0 || lstrcmp(sinTestBuff5, "/Lee4thRankUp") == 0)
 				{
 					if(sinTestBuff6[0])
 					{
@@ -2123,7 +2123,7 @@ void cINTERFACE::KeyDown()
 					}
 				}
 
-				if(lstrcmp(sinTestBuff5, "/ÀÌ¹æ¹ü3Â÷Äù½ºÆ®") == 0 || lstrcmp(sinTestBuff5, "/Lee3thRankUp") == 0)
+				if(lstrcmp(sinTestBuff5, "/ï¿½Ì¹ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®") == 0 || lstrcmp(sinTestBuff5, "/Lee3thRankUp") == 0)
 				{
 					if(sinTestBuff6[0])
 					{
@@ -2145,7 +2145,7 @@ void cINTERFACE::KeyDown()
 					#endif
 					}
 				}
-				if(lstrcmp(sinTestBuff5, "/ÀÌ¹æ¹ü·¹º§Äù½ºÆ®") == 0 || lstrcmp(sinTestBuff5, "/LeeResetQuest") == 0)
+				if(lstrcmp(sinTestBuff5, "/ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®") == 0 || lstrcmp(sinTestBuff5, "/LeeResetQuest") == 0)
 				{
 					if(sinTestBuff6[0])
 					{
@@ -2225,7 +2225,7 @@ void cINTERFACE::KeyDown()
 				}
 
 
-				if(lstrcmp(sinTestBuff5, "/ÀÌ¹æ¹ü¼øÂû°¬³×") == 0 || lstrcmp(sinTestBuff5, "/level") == 0)
+				if(lstrcmp(sinTestBuff5, "/ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(sinTestBuff5, "/level") == 0)
 				{
 					if(sinTestBuff6[0])
 					{
@@ -2399,7 +2399,7 @@ void cINTERFACE::KeyDown()
 					}
 
 				}
-				if(lstrcmp(sinTestBuff5, "/ÀÌ¹æ¹üµµ¿ÍÁà¿ä½ºÅ³") == 0 || lstrcmp(sinTestBuff5, "/LeeHelpMeSkill") == 0)
+				if(lstrcmp(sinTestBuff5, "/ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä½ºÅ³") == 0 || lstrcmp(sinTestBuff5, "/LeeHelpMeSkill") == 0)
 				{
 				#ifdef	_WINMODE_DEBUG
 					cSkill.InitSkillPoint(1);
@@ -2409,7 +2409,7 @@ void cINTERFACE::KeyDown()
 					memset(sinBuff, 0, sizeof(sinBuff));
 				#endif
 				}
-				if(lstrcmp(sinTestBuff5, "/ÀÌ¹æ¹üµµ¿ÍÁà¿ä½ºÅÈ") == 0 || lstrcmp(sinTestBuff5, "/LeeHelpMeStat") == 0)
+				if(lstrcmp(sinTestBuff5, "/ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä½ºï¿½ï¿½") == 0 || lstrcmp(sinTestBuff5, "/LeeHelpMeStat") == 0)
 				{
 				#ifdef	_WINMODE_DEBUG
 					sinChar->wVersion[1] = 0;
@@ -2427,14 +2427,14 @@ void cINTERFACE::KeyDown()
 					memset(sinBuff, 0, sizeof(sinBuff));
 				#endif
 				}
-				if(lstrcmp(sinTestBuff5, "/ÀÌ¹æ¹üÁõÁ¤¾ÆÀÌÅÛ") == 0)
+				if(lstrcmp(sinTestBuff5, "/ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 				{
 				#ifdef	_WINMODE_DEBUG
 					if(MouseItem.Flag)
 					{
 						MouseItem.sItemInfo.SpecialItemFlag[0] = CHECK_GIVE_ITEM;
 					}
-					SendChatMessageToServer("ÀÌ¹æ¹ü: Àß¾²°Ô(-_-)/ ");
+					SendChatMessageToServer("ï¿½Ì¹ï¿½ï¿½: ï¿½ß¾ï¿½ï¿½ï¿½(-_-)/ ");
 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
 					memset(sinBuff, 0, sizeof(sinBuff));
@@ -2446,7 +2446,7 @@ void cINTERFACE::KeyDown()
 
 				#endif
 				}
-				if(lstrcmp(sinTestBuff5, "/ÀÌ¹æ¹üÀü¾÷") == 0 || lstrcmp(sinTestBuff5, "/PassRankUp") == 0)
+				if(lstrcmp(sinTestBuff5, "/ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(sinTestBuff5, "/PassRankUp") == 0)
 				{
 				#ifdef	_WINMODE_DEBUG
 					SendChatMessageToServer("MeLee: it's good /(-_-)/ ");
@@ -2459,7 +2459,7 @@ void cINTERFACE::KeyDown()
 				#endif
 				}
 
-				if(lstrcmp(sinTestBuff5, "/ÀÌ¹æ¹üÀü¾÷Äù½ºÆ®") == 0 || lstrcmp(sinTestBuff5, "/LeeResetRankUp") == 0)
+				if(lstrcmp(sinTestBuff5, "/ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®") == 0 || lstrcmp(sinTestBuff5, "/LeeResetRankUp") == 0)
 				{
 					if(sinTestBuff6[0])
 					{
@@ -2504,11 +2504,11 @@ void cINTERFACE::KeyDown()
 
 				}
 
-				if(lstrcmp(sinTestBuff5, "/ÀÌ¹æ¹üÄù½ºÆ®ÃÊ±âÈ­") == 0)
+				if(lstrcmp(sinTestBuff5, "/ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ê±ï¿½È­") == 0)
 				{
 				#ifdef	_WINMODE_DEBUG
 
-					SendChatMessageToServer("ÀÌ¹æ¹ü: ÁøÇàÁßÀÎÄù½ºÆ®ÃÊ±âÈ­");
+					SendChatMessageToServer("ï¿½Ì¹ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ê±ï¿½È­");
 					ClearNowQuest();
 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
@@ -2516,7 +2516,7 @@ void cINTERFACE::KeyDown()
 				#endif
 				}
 
-				if(lstrcmp(sinTestBuff5, "/ÀÌ¹æ¹üÆ÷½º") == 0 || lstrcmp(sinTestBuff5, "/LeeForce") == 0)
+				if(lstrcmp(sinTestBuff5, "/ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(sinTestBuff5, "/LeeForce") == 0)
 				{
 				#ifdef	_WINMODE_DEBUG
 					SendChatMessageToServer("MrLee: I like force /(-_-)/ ");
@@ -2538,7 +2538,7 @@ void cINTERFACE::KeyDown()
 					memset(sinBuff, 0, sizeof(sinBuff));
 				#endif
 				}
-				if(lstrcmp(sinTestBuff5, "/ÀÌ¹æ¹ü¼ôÅ°ÃÊ±âÈ­") == 0 || lstrcmp(sinTestBuff5, "/LeeShotKeyReset") == 0)
+				if(lstrcmp(sinTestBuff5, "/ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½Å°ï¿½Ê±ï¿½È­") == 0 || lstrcmp(sinTestBuff5, "/LeeShotKeyReset") == 0)
 				{
 				#ifdef	_WINMODE_DEBUG
 					cSkill.SkillShortKeyInit();
@@ -2548,7 +2548,7 @@ void cINTERFACE::KeyDown()
 					memset(sinBuff, 0, sizeof(sinBuff));
 				#endif
 				}
-				if(lstrcmp(sinTestBuff5, "/¹öÇÁÁ¦·Î") == 0)
+				if(lstrcmp(sinTestBuff5, "/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 				{
 				#ifdef	_WINMODE_DEBUG
 					for(int i = 0; i < 4; i++)
@@ -2564,7 +2564,7 @@ void cINTERFACE::KeyDown()
 						chaPremiumitem.UpKeepItem[i].Per = 0;
 						memset(chaPremiumitem.UpKeepItem[i].Id, NULL, sizeof(chaPremiumitem.UpKeepItem[i].Id));
 					}
-					SendChatMessageToServer("ÀÌ¹æ¹ü:¹öÇÁÃÊ±âÈ­ ");
+					SendChatMessageToServer("ï¿½Ì¹ï¿½ï¿½:ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½È­ ");
 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
 					memset(sinBuff, 0, sizeof(sinBuff));
@@ -3420,4 +3420,6 @@ int cINTERFACE::SetStringEffect(int Index)
 	return false;
 
 }
+
+
 

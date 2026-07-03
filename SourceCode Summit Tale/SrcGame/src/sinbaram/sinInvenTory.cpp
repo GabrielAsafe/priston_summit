@@ -1,6 +1,4 @@
-
-
-
+#include "opcodes.h"
 #include "sinLinkHeader.h"
 
 #include "tjboy\\clanmenu\\tjclanDEF.h"
@@ -1563,7 +1561,7 @@ void cINVENTORY::LButtonUp(int x, int y)
 
 DWORD dwBoosterItemCode[] = { sin21,sin22,sin23,sin24,sin25,sin26,sin27,sin28,sin29,0 };
 DWORD dwCastlItemCODE[] = { sin01,sin02,sin03,sin04,sin05,sin06,sin07,sin08,sin09,sin10,sin11,sin12,sin13,sin14,sin15,sin16,0 };
-//#NÃO USAR ITEM NA CIDADE
+//#Nï¿½O USAR ITEM NA CIDADE
 DWORD dwNotUseVillageItemCODE[3] = { (sinBI1 | sin05),(sinBI1 | sin06),(sinBI1 | sin07) };
 DWORD dwNotUseItemCODE[6][3] = { {SCROLL_INVULNERABILITY,(sinBC1 | sin01),1},{SCROLL_CRITICAL,(sinBC1 | sin02),2},{SCROLL_EVASION,(sinBC1 | sin03),3},
 							  {SCROLL_P_INVULNERABILITY,(sinBI1 | sin05),1},{SCROLL_P_CRITICAL,(sinBI1 | sin06),2},{SCROLL_P_EVASION,(sinBI1 | sin07),3} };
@@ -1638,16 +1636,16 @@ int cINVENTORY::GetMaxGold(bool Warehouse)
 
 	/*switch (sinChar->ChangeJob) {
 	case 0:
-		// Totaliza 1,000,000 no nível 20 com tier 1.
+		// Totaliza 1,000,000 no nï¿½vel 20 com tier 1.
 		return 1000000 + ((sinChar->Level > 120 ? 120 : sinChar->Level) * 20000);
 	case 1:
-		// Totaliza 20,000,000 no nível 40 com tier 2.
+		// Totaliza 20,000,000 no nï¿½vel 40 com tier 2.
 		return 1000000 + ((sinChar->Level > 120 ? 120 : sinChar->Level) * 500000);
 	case 2:
-		// Totaliza +-300,000,000 no nível 60 com tier 3.
+		// Totaliza +-300,000,000 no nï¿½vel 60 com tier 3.
 		return 60000000 + ((sinChar->Level > 120 ? 120 : sinChar->Level) * 4000000);
 	case 3:
-		// Totaliza 1,000,000,000 no nível 120 com tier 4.
+		// Totaliza 1,000,000,000 no nï¿½vel 120 com tier 4.
 		return 400000000 + ((sinChar->Level > 120 ? 120 : sinChar->Level) * 5000000);
 	}
 	return 0;*/
@@ -1683,7 +1681,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 
 	int Index = SelectInvenItemIndex - 1;
 
-	//Clique direito para enviar itens do inventário para o aging
+	//Clique direito para enviar itens do inventï¿½rio para o aging
 	if(cAging.OpenFlag) // Aging window
 	{
 		if(SelectInvenItemIndex)
@@ -1709,17 +1707,17 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Já existe uma pedra especial de aging.");
+						cMessageBox.ShowMessage("Jï¿½ existe uma pedra especial de aging.");
 					}
 				}
 				else
 				{
-					cMessageBox.ShowMessage("Este item não pode ser usado no Aging.");
+					cMessageBox.ShowMessage("Este item nï¿½o pode ser usado no Aging.");
 				}
 			}
 			else if((InvenItem[Index].CODE & sinITEM_MASK2) == sinOS1)
 			{
-				//Verifica as posições dos sheltons e pega a mais próxima.
+				//Verifica as posiï¿½ï¿½es dos sheltons e pega a mais prï¿½xima.
 				bool isEmpty = false;
 				int i = 0;
 				for(i = 0; i < 12; i++)
@@ -1751,12 +1749,12 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Este item não pode ser usado no aging.");
+						cMessageBox.ShowMessage("Este item nï¿½o pode ser usado no aging.");
 					}
 				}
 				else
 				{
-					cMessageBox.ShowMessage("Sheltom incompatível ou não há espaço livre.");
+					cMessageBox.ShowMessage("Sheltom incompatï¿½vel ou nï¿½o hï¿½ espaï¿½o livre.");
 				}
 			}
 			else if (cAging.isAgeableItem(&Item))
@@ -1785,7 +1783,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Já existe um item na janela de aging.");
+						cMessageBox.ShowMessage("Jï¿½ existe um item na janela de aging.");
 					}
 				}
 				else
@@ -1814,18 +1812,18 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Já existe um item na janela de aging.");
+						cMessageBox.ShowMessage("Jï¿½ existe um item na janela de aging.");
 					}
 			}
 			}
 			else
 			{
-				cMessageBox.ShowMessage("Este item não pode ser usado no Aging.");
+				cMessageBox.ShowMessage("Este item nï¿½o pode ser usado no Aging.");
 			}
 		}
 	}
 
-	//Clique direito para enviar itens do inventário para o mix/force
+	//Clique direito para enviar itens do inventï¿½rio para o mix/force
 	else if(cCraftItem.OpenFlag) // Mix window
 	{
 		if(SelectInvenItemIndex)
@@ -1837,7 +1835,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 
 			if((InvenItem[Index].CODE & sinITEM_MASK2) == sinOS1 || (InvenItem[Index].CODE & sinITEM_MASK2) == sinSE1)
 			{
-				//Verifica as posições dos sheltons e pega a mais próxima.
+				//Verifica as posiï¿½ï¿½es dos sheltons e pega a mais prï¿½xima.
 				bool isEmpty = false;
 
 				int i = 0;
@@ -1870,12 +1868,12 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Este item não pode ser usado no mix.");
+						cMessageBox.ShowMessage("Este item nï¿½o pode ser usado no mix.");
 					}
 				}
 				else
 				{
-					cMessageBox.ShowMessage("Sheltom incompatível ou não há espaço livre.");
+					cMessageBox.ShowMessage("Sheltom incompatï¿½vel ou nï¿½o hï¿½ espaï¿½o livre.");
 				}
 			}
 			else if(cCraftItem.isMixableItem(&Item))
@@ -1903,7 +1901,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Já existe um item na janela de Mix.");
+						cMessageBox.ShowMessage("Jï¿½ existe um item na janela de Mix.");
 					}
 				}
 				else
@@ -1918,7 +1916,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		}
 	}
 
-	//Clique direito para enviar itens do inventário para a limpeza
+	//Clique direito para enviar itens do inventï¿½rio para a limpeza
 	/*else if (cMixtureReset.OpenFlag) {
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
@@ -1979,7 +1977,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		return;
 	} */
 
-	//Clique direito para enviar itens do inventário para a fundição
+	//Clique direito para enviar itens do inventï¿½rio para a fundiï¿½ï¿½o
 	else if (SmeltingItem.OpenFlag) {
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
@@ -2028,7 +2026,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		}
 	} 
 
-	//Clique direito para enviar itens do inventário para a criação
+	//Clique direito para enviar itens do inventï¿½rio para a criaï¿½ï¿½o
 	else if (ManufactureItem.m_OpenFlag) {
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
@@ -2092,7 +2090,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		}
 	} 
 
-	//Clique direito para enviar itens do inventário para a troca
+	//Clique direito para enviar itens do inventï¿½rio para a troca
 	else if (cTrade.OpenFlag) {
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
@@ -2124,7 +2122,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		return;
 	} 
 
-	//Clique direito para enviar itens do inventário para o armazém
+	//Clique direito para enviar itens do inventï¿½rio para o armazï¿½m
 	else if (cWareHouse.OpenFlag) {
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
@@ -2163,7 +2161,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		return;
 	} 
 
-	//Clique direito para enviar itens do inventário para a loja pessoal
+	//Clique direito para enviar itens do inventï¿½rio para a loja pessoal
 	else if (cMyShop.OpenFlag) {
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
@@ -2195,7 +2193,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		}
 	} 
 
-	//Clique direito para enviar itens do inventário para o ferreiro
+	//Clique direito para enviar itens do inventï¿½rio para o ferreiro
 	else if (cShop.OpenFlag) {
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
@@ -2209,7 +2207,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 				if (smConfig.getSecurity() <= AccountTypes::SEC_MODERATOR) {
 					for (int i = 0; i < 30; i++) {
 						if (InvenItem[SelectInvenItemIndex - 1].CODE == ItemDonate[i]) {
-							cMessageBox.ShowMessageEvent("Este item não pode ser vendido! ");
+							cMessageBox.ShowMessageEvent("Este item nï¿½o pode ser vendido! ");
 							return;
 
 						}
@@ -3987,11 +3985,11 @@ void cINVENTORY::RButtonDown(int x, int y)
 					SendPlayUpdateInfo();
 					SaveGameData();
 					cCharStatus.CheckLevel();
-					cMessageBox.ShowMessage("Você upou +1 nível!");
+					cMessageBox.ShowMessage("Vocï¿½ upou +1 nï¿½vel!");
 					haCastleSkillUseFlag = 1;
 				}
 				else if (sinChar->Level == CHAR_LEVEL_MAX) {
-					cMessageBox.ShowMessage("Você já está no nível máximo!");
+					cMessageBox.ShowMessage("Vocï¿½ jï¿½ estï¿½ no nï¿½vel mï¿½ximo!");
 				}
 
 				/*chaPremiumitem.UsePremiumItem(154);*/
@@ -6885,7 +6883,7 @@ int cINVENTORY::ThrowInvenItemToField(sITEM *pItem)
 
 				for (int i = 0; i < 30; i++) {
 					if (pItem->sItemInfo.CODE == ItemDonate[i]) {
-						cMessageBox.ShowMessageEvent("Este item não pode ser vendido! ");
+						cMessageBox.ShowMessageEvent("Este item nï¿½o pode ser vendido! ");
 						return 0;
 
 					}
@@ -10618,7 +10616,7 @@ int cINVENTORY::ResetInvenItemToServer(DWORD CODE, DWORD Head, DWORD CheckSum, D
 	return FALSE;
 }
 
-//Deletando item do inventário
+//Deletando item do inventï¿½rio
 int cINVENTORY::DeleteInvenItemToServer(DWORD CODE, DWORD Head, DWORD CheckSum)
 {
 
@@ -13771,3 +13769,7 @@ int cINVENTORY::SendFindinvestigatorTaleEtoEventItem()
 	sWingItem_Send.DocIndex = 2;
 	return TRUE;
 }
+
+
+
+

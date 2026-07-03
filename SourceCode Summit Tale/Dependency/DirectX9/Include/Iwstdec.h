@@ -115,3 +115,5 @@ DECLARE_INTERFACE_(IAMWstDecoder, IUnknown)
 }
 #endif // __cplusplus
 #endif // __IWSTDEC__
+
+

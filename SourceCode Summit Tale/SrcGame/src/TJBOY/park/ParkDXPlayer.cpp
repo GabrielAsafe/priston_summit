@@ -97,3 +97,7 @@ void CParkPlayer::StopPlayer(void)
 	::CoUninitialize();
 }
 
+
+
+
+

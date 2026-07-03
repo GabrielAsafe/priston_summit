@@ -256,3 +256,5 @@ JOB_DATA_CODE	*GetJobDataCode(DWORD BaseJob, int	JobCnt);
 extern int NotItemSpecial;
 
 #endif
+
+

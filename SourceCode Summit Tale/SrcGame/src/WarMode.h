@@ -18,3 +18,6 @@ public:
 	int BaseX, BaseY;
 };
 extern MODOWAR WarMode;
+
+
+

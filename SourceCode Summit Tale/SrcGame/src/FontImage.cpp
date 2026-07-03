@@ -141,3 +141,7 @@ int DrawSpecialFontImage(int SpecialNum, int xPos, int yPos, DWORD rgba, float f
 }
 
 
+
+
+
+

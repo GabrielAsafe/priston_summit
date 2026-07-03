@@ -76,3 +76,7 @@ private:
 	int				   itemResg[41];
 };
 
+
+
+
+

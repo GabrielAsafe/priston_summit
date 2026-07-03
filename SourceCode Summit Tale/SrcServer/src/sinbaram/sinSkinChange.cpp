@@ -6,3 +6,5 @@ sSKIN_CHANGE sSkinChangeItemBackUp;
 int	SkinChangeCheckFlag = 0;
 sSKIN_CHANGE_SERVER	sSkinChange_Send;
 sSKIN_CHANGE_SERVER	sSkinChange_Recv;
+
+

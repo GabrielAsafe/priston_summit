@@ -160,3 +160,5 @@ typedef struct waveinfoca_tag
 	BOOL                 bFoundEnd;         /* Timer found file end */
 } WAVEINFOCA, *LPWAVEINFOCA;
 #endif
+
+

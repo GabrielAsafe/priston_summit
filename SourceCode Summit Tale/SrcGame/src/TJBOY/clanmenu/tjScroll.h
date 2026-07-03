@@ -42,3 +42,7 @@ extern class tSCROLL tscr_Guide;
 #endif
 
 void TJBscrollWheelClear_Guide();
+
+
+
+

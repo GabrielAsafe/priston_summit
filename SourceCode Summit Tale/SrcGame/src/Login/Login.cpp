@@ -1,3 +1,4 @@
+#include "opcodes.h"
 #include "Login.h"
 #include <string>
 #include <smPacket.h>
@@ -55,3 +56,7 @@ LoginResult	requestLogin(const std::string &username, const std::string &passwor
 
 	
 }
+
+
+
+

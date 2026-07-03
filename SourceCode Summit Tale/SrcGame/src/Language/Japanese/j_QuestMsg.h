@@ -1,83 +1,87 @@
 char *mgQuestName[][4] = {
-	{"“]EƒNƒGƒXƒg","“]EƒNƒGƒXƒg(Š®—¹)","ChangeJob1a.Msg","ChangeJob1b.Msg"},
-	{"“]EƒNƒGƒXƒg[ƒ[ƒ„ƒ‹ƒ[ƒŠ[]","“]EƒNƒGƒXƒg(Š®—¹)" , "ChangeJob2a.Msg" , "ChangeJob1b.Msg" },
-	{"“]EƒNƒGƒXƒg[”­–ÑÜ]","“]EƒNƒGƒXƒg(Š®—¹)" , "ChangeJob3a.Msg" , "ChangeJob1b.Msg" },
+	{"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½g","ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½g(ï¿½ï¿½ï¿½ï¿½)","ChangeJob1a.Msg","ChangeJob1b.Msg"},
+	{"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½g[ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[]","ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½g(ï¿½ï¿½ï¿½ï¿½)" , "ChangeJob2a.Msg" , "ChangeJob1b.Msg" },
+	{"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½g[ï¿½ï¿½ï¿½Ñï¿½]","ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½g(ï¿½ï¿½ï¿½ï¿½)" , "ChangeJob3a.Msg" , "ChangeJob1b.Msg" },
 	
-	{	"“]EƒNƒGƒXƒg[“ñ‰ñ–Ú]"	,	"“]EƒNƒGƒXƒg[“ñ‰ñ–Ú]" , "ChangeJob3-1.msg" , "ChangeJob3-2.msg" },
-	{	"“]EƒNƒGƒXƒg[“ñ‰ñ–Ú]"	,	"“]EƒNƒGƒXƒg(Š®—¹)" , "ChangeJob3-3.msg" , "ChangeJob3-4.msg" },
+	{	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½g[ï¿½ï¿½ï¿½ï¿½]"	,	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½g[ï¿½ï¿½ï¿½ï¿½]" , "ChangeJob3-1.msg" , "ChangeJob3-2.msg" },
+	{	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½g[ï¿½ï¿½ï¿½ï¿½]"	,	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½g(ï¿½ï¿½ï¿½ï¿½)" , "ChangeJob3-3.msg" , "ChangeJob3-4.msg" },
 
 	
-	{	"“]EƒNƒGƒXƒg‚QŸ[1]"	,	"“]EƒNƒGƒXƒg‚QŸ[2]"	, "Quest3\\ChangeJob3-1.msg" , "Quest3\\ChangeJob3-W1-2.msg" },
-	{	"“]EƒNƒGƒXƒg‚QŸ[3]"	,	"“]EƒNƒGƒXƒg‚QŸ[4]"	, "Quest3\\ChangeJob3-W2-2.msg" , "Quest3\\ChangeJob3-W3-2.msg" },
-	{	"“]EƒNƒGƒXƒg‚QŸ[5]"	,	"“]EƒNƒGƒXƒg‚QŸ[Š®—¹]"	, "Quest3\\ChangeJob3-3.msg" , "Quest3\\ChangeJob3-4.msg" },
+	{	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[1]"	,	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[2]"	, "Quest3\\ChangeJob3-1.msg" , "Quest3\\ChangeJob3-W1-2.msg" },
+	{	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[3]"	,	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[4]"	, "Quest3\\ChangeJob3-W2-2.msg" , "Quest3\\ChangeJob3-W3-2.msg" },
+	{	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[5]"	,	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½]"	, "Quest3\\ChangeJob3-3.msg" , "Quest3\\ChangeJob3-4.msg" },
 
 	
-	{	"“]EƒNƒGƒXƒg‚QŸ[1]"	,	"“]EƒNƒGƒXƒg‚QŸ[2]"	, "Quest3\\ChangeJob3-1.msg" , "Quest3\\ChangeJob3-R1-2.msg" },
-	{	"“]EƒNƒGƒXƒg‚QŸ[3]"	,	"“]EƒNƒGƒXƒg‚QŸ[4]"	, "Quest3\\ChangeJob3-R2-2.msg" , "Quest3\\ChangeJob3-R3-2.msg" },
-	{	"“]EƒNƒGƒXƒg‚QŸ[5]"	,	"“]EƒNƒGƒXƒg‚QŸ[Š®—¹]"	, "Quest3\\ChangeJob3-3.msg" , "Quest3\\ChangeJob3-4.msg" },
+	{	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[1]"	,	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[2]"	, "Quest3\\ChangeJob3-1.msg" , "Quest3\\ChangeJob3-R1-2.msg" },
+	{	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[3]"	,	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[4]"	, "Quest3\\ChangeJob3-R2-2.msg" , "Quest3\\ChangeJob3-R3-2.msg" },
+	{	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[5]"	,	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½]"	, "Quest3\\ChangeJob3-3.msg" , "Quest3\\ChangeJob3-4.msg" },
 
 	
-	{	"“]EƒNƒGƒXƒg‚QŸ[1]"	,	"“]EƒNƒGƒXƒg‚QŸ[2]"	, "Quest3\\ChangeJob3-1.msg" , "Quest3\\ChangeJob3-M1-2.msg" },
-	{	"“]EƒNƒGƒXƒg‚QŸ[3]"	,	"“]EƒNƒGƒXƒg‚QŸ[4]"	, "Quest3\\ChangeJob3-M2-2.msg" , "Quest3\\ChangeJob3-M3-2.msg" },
-	{	"“]EƒNƒGƒXƒg‚QŸ[5]"	,	"“]EƒNƒGƒXƒg‚QŸ[Š®—¹]"	, "Quest3\\ChangeJob3-3.msg" , "Quest3\\ChangeJob3-4.msg" },
+	{	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[1]"	,	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[2]"	, "Quest3\\ChangeJob3-1.msg" , "Quest3\\ChangeJob3-M1-2.msg" },
+	{	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[3]"	,	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[4]"	, "Quest3\\ChangeJob3-M2-2.msg" , "Quest3\\ChangeJob3-M3-2.msg" },
+	{	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[5]"	,	"ï¿½]ï¿½Eï¿½Nï¿½Gï¿½Xï¿½gï¿½Qï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½]"	, "Quest3\\ChangeJob3-3.msg" , "Quest3\\ChangeJob3-4.msg" },
 	
 	
-	{	"”Ş—’B‚Ì‚½‚ß‚É"		,	"”Ş—’B‚Ì‚½‚ß‚É(Š®—¹)"	, "LevelQuest\\Quest30.Msg" , "LevelQuest\\Quest30a.Msg" },	
-	{	"The Cave"		,	"The Cave(Š®—¹)" 		, "LevelQuest\\Quest55.Msg" , "LevelQuest\\Quest55a.Msg" },	
-	{	"The Cave"		,	"The Cave(Š®—¹)"		, "LevelQuest\\Quest55_2.Msg" , "LevelQuest\\Quest55_2a.Msg" }, 
-	{	"ƒ~ƒPƒŒ‚Æ‚Ì—Fî"		,	"ƒ~ƒPƒŒ‚Æ‚Ì—Fî(Š®—¹)"	, "LevelQuest\\Quest70.Msg" , "LevelQuest\\Quest70a.Msg" },	
-	{	"••ˆó‚³‚ê‚½ƒtƒ…[ƒŠ["	,	"••ˆó‚³‚ê‚½ƒtƒ…[ƒŠ[(Š®—¹)"	, "LevelQuest\\Quest80.Msg" , "LevelQuest\\Quest80a.Msg" },	
-	{	"ƒJƒŠƒA‚Ì—Ü"		,	"ƒJƒŠƒA‚Ì—Ü(Š®—¹)" 		, "LevelQuest\\Quest85.Msg" , "LevelQuest\\Quest85a.Msg" },	
-	{	"ƒ†ƒ‰ƒrƒŒƒbƒW"		,	"ƒ†ƒ‰ƒrƒŒƒbƒW(Š®—¹)"	, "LevelQuest\\Quest90.Msg" , "LevelQuest\\Quest90a.Msg" },	
+	{	"ï¿½Şï¿½ï¿½Bï¿½Ì‚ï¿½ï¿½ß‚ï¿½"		,	"ï¿½Şï¿½ï¿½Bï¿½Ì‚ï¿½ï¿½ß‚ï¿½(ï¿½ï¿½ï¿½ï¿½)"	, "LevelQuest\\Quest30.Msg" , "LevelQuest\\Quest30a.Msg" },	
+	{	"The Cave"		,	"The Cave(ï¿½ï¿½ï¿½ï¿½)" 		, "LevelQuest\\Quest55.Msg" , "LevelQuest\\Quest55a.Msg" },	
+	{	"The Cave"		,	"The Cave(ï¿½ï¿½ï¿½ï¿½)"		, "LevelQuest\\Quest55_2.Msg" , "LevelQuest\\Quest55_2a.Msg" }, 
+	{	"ï¿½~ï¿½Pï¿½ï¿½ï¿½Æ‚Ì—Fï¿½ï¿½"		,	"ï¿½~ï¿½Pï¿½ï¿½ï¿½Æ‚Ì—Fï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)"	, "LevelQuest\\Quest70.Msg" , "LevelQuest\\Quest70a.Msg" },	
+	{	"ï¿½ï¿½ï¿½ó‚³‚ê‚½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½["	,	"ï¿½ï¿½ï¿½ó‚³‚ê‚½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[(ï¿½ï¿½ï¿½ï¿½)"	, "LevelQuest\\Quest80.Msg" , "LevelQuest\\Quest80a.Msg" },	
+	{	"ï¿½Jï¿½ï¿½ï¿½Aï¿½Ì—ï¿½"		,	"ï¿½Jï¿½ï¿½ï¿½Aï¿½Ì—ï¿½(ï¿½ï¿½ï¿½ï¿½)" 		, "LevelQuest\\Quest85.Msg" , "LevelQuest\\Quest85a.Msg" },	
+	{	"ï¿½ï¿½ï¿½ï¿½ï¿½rï¿½ï¿½ï¿½bï¿½W"		,	"ï¿½ï¿½ï¿½ï¿½ï¿½rï¿½ï¿½ï¿½bï¿½W(ï¿½ï¿½ï¿½ï¿½)"	, "LevelQuest\\Quest90.Msg" , "LevelQuest\\Quest90a.Msg" },	
 	
 	
-	{	"‰¤‘‚ÌŒ±"	,	"‰¤‘‚ÌŒ±iŠ®—¹j" ,	"LevelQuest\\Quest_7State_1.msg" , "LevelQuest\\Quest_7State_end.msg" },	
-	{	"‰¤‘‚ÌŒ±"	,	"‰¤‘‚ÌŒ±iŠ®—¹j" ,	"LevelQuest\\Quest_7State_2.msg" , "LevelQuest\\Quest_7State_end.msg" },	
-	{	"‰¤‘‚ÌŒ±"	,	"‰¤‘‚ÌŒ±iŠ®—¹j" ,	"LevelQuest\\Quest_7State_3.msg" , "LevelQuest\\Quest_7State_end.msg" },	
+	{	"ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½"	,	"ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j" ,	"LevelQuest\\Quest_7State_1.msg" , "LevelQuest\\Quest_7State_end.msg" },	
+	{	"ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½"	,	"ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j" ,	"LevelQuest\\Quest_7State_2.msg" , "LevelQuest\\Quest_7State_end.msg" },	
+	{	"ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½"	,	"ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j" ,	"LevelQuest\\Quest_7State_3.msg" , "LevelQuest\\Quest_7State_end.msg" },	
 
-	{	"“ï‚µ‚¢—û"	,	"“ï‚µ‚¢—ûiŠ®—¹j" ,	"LevelQuest\\Quest_10State_1.msg" , "LevelQuest\\Quest_10State_end.msg" },	
-	{	"“ï‚µ‚¢—û"	,	"“ï‚µ‚¢—ûiŠ®—¹j" ,	"LevelQuest\\Quest_10State_2_1.msg" , "LevelQuest\\Quest_10State_end.msg" },
-	{	"“ï‚µ‚¢—û"	,	"“ï‚µ‚¢—ûiŠ®—¹j" ,	"LevelQuest\\Quest_10State_2_2.msg" , "LevelQuest\\Quest_10State_end.msg" },
-	{	"“ï‚µ‚¢—û"	,	"“ï‚µ‚¢—ûiŠ®—¹j" ,	"LevelQuest\\Quest_10State_2_3.msg" , "LevelQuest\\Quest_10State_end.msg" },
+	{	"ï¿½ï‚µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"	,	"ï¿½ï‚µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j" ,	"LevelQuest\\Quest_10State_1.msg" , "LevelQuest\\Quest_10State_end.msg" },	
+	{	"ï¿½ï‚µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"	,	"ï¿½ï‚µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j" ,	"LevelQuest\\Quest_10State_2_1.msg" , "LevelQuest\\Quest_10State_end.msg" },
+	{	"ï¿½ï‚µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"	,	"ï¿½ï‚µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j" ,	"LevelQuest\\Quest_10State_2_2.msg" , "LevelQuest\\Quest_10State_end.msg" },
+	{	"ï¿½ï‚µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"	,	"ï¿½ï‚µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j" ,	"LevelQuest\\Quest_10State_2_3.msg" , "LevelQuest\\Quest_10State_end.msg" },
 
 	
-	{	"“]EƒeƒXƒg3Ÿ[1]"	,	"“]EƒeƒXƒg3ŸiŠ®—¹j" ,	"Quest4\\ChangeJob4_1.msg" ,	"Quest4\\ChangeJob4_5.msg" },	
-	{	"“]EƒeƒXƒg3Ÿ[2]"	,	"“]EƒeƒXƒg3ŸiŠ®—¹j" ,	"Quest4\\ChangeJob4_2.msg" ,	"Quest4\\ChangeJob4_5.msg" },	
-	{	"“]EƒeƒXƒg3Ÿ[3]"	,	"“]EƒeƒXƒg3ŸiŠ®—¹j" ,	"Quest4\\ChangeJob4_3_1.msg" ,	"Quest4\\ChangeJob4_3_2.msg" },	
-	{	"“]EƒeƒXƒg3Ÿ[3]"	,	"“]EƒeƒXƒg3ŸiŠ®—¹j" ,	"Quest4\\ChangeJob4_3_3.msg" ,	"Quest4\\ChangeJob4_3_4.msg" },	
-	{	"“]EƒeƒXƒg3Ÿ[3]"	,	"“]EƒeƒXƒg3ŸiŠ®—¹j" ,	"Quest4\\ChangeJob4_3_5.msg" ,	"Quest4\\ChangeJob4_3_6.msg" },	
-	{	"“]EƒeƒXƒg3Ÿ[4]"	,	"“]EƒeƒXƒg3ŸiŠ®—¹j" ,	"Quest4\\ChangeJob4_4.msg" ,	"Quest4\\ChangeJob4_5.msg" }	
+	{	"ï¿½]ï¿½Eï¿½eï¿½Xï¿½g3ï¿½ï¿½[1]"	,	"ï¿½]ï¿½Eï¿½eï¿½Xï¿½g3ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j" ,	"Quest4\\ChangeJob4_1.msg" ,	"Quest4\\ChangeJob4_5.msg" },	
+	{	"ï¿½]ï¿½Eï¿½eï¿½Xï¿½g3ï¿½ï¿½[2]"	,	"ï¿½]ï¿½Eï¿½eï¿½Xï¿½g3ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j" ,	"Quest4\\ChangeJob4_2.msg" ,	"Quest4\\ChangeJob4_5.msg" },	
+	{	"ï¿½]ï¿½Eï¿½eï¿½Xï¿½g3ï¿½ï¿½[3]"	,	"ï¿½]ï¿½Eï¿½eï¿½Xï¿½g3ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j" ,	"Quest4\\ChangeJob4_3_1.msg" ,	"Quest4\\ChangeJob4_3_2.msg" },	
+	{	"ï¿½]ï¿½Eï¿½eï¿½Xï¿½g3ï¿½ï¿½[3]"	,	"ï¿½]ï¿½Eï¿½eï¿½Xï¿½g3ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j" ,	"Quest4\\ChangeJob4_3_3.msg" ,	"Quest4\\ChangeJob4_3_4.msg" },	
+	{	"ï¿½]ï¿½Eï¿½eï¿½Xï¿½g3ï¿½ï¿½[3]"	,	"ï¿½]ï¿½Eï¿½eï¿½Xï¿½g3ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j" ,	"Quest4\\ChangeJob4_3_5.msg" ,	"Quest4\\ChangeJob4_3_6.msg" },	
+	{	"ï¿½]ï¿½Eï¿½eï¿½Xï¿½g3ï¿½ï¿½[4]"	,	"ï¿½]ï¿½Eï¿½eï¿½Xï¿½g3ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j" ,	"Quest4\\ChangeJob4_4.msg" ,	"Quest4\\ChangeJob4_5.msg" }	
 
 };
 
 
 char *mgHaQuestName[][4] = {
-	{	"”æ‚ê‚½‘qŒÉ”Ô"	,"”æ‚ê‚½‘qŒÉ”Ô(Š®—¹)"   , "HaQuest\\Quest_tired_1start_T.msg"     , "HaQuest\\Quest_tired_1end.msg"   },
-	{	"”æ‚ê‚½‘qŒÉ”Ô"	,"”æ‚ê‚½‘qŒÉ”Ô(Š®—¹)"   , "HaQuest\\Quest_tired_1start_M.msg"     , "HaQuest\\Quest_tired_1end.msg"   },
+	{	"ï¿½ï¿½ê‚½ï¿½qï¿½É”ï¿½"	,"ï¿½ï¿½ê‚½ï¿½qï¿½É”ï¿½(ï¿½ï¿½ï¿½ï¿½)"   , "HaQuest\\Quest_tired_1start_T.msg"     , "HaQuest\\Quest_tired_1end.msg"   },
+	{	"ï¿½ï¿½ê‚½ï¿½qï¿½É”ï¿½"	,"ï¿½ï¿½ê‚½ï¿½qï¿½É”ï¿½(ï¿½ï¿½ï¿½ï¿½)"   , "HaQuest\\Quest_tired_1start_M.msg"     , "HaQuest\\Quest_tired_1end.msg"   },
 	
-	{	"‹°‚ë‚µ‚¢ƒI[ƒ‰"	    ,"‹°‚ë‚µ‚¢ƒI[ƒ‰(Š®—¹)"       , "HaQuest\\Quest_terrified_1start_T.msg" , "HaQuest\\Quest_terrified_1end.msg" },
-	{	"‹°‚ë‚µ‚¢ƒI[ƒ‰" 	    ,"‹°‚ë‚µ‚¢ƒI[ƒ‰(Š®—¹)"       , "HaQuest\\Quest_terrified_1start_M.msg" , "HaQuest\\Quest_terrified_1end.msg" },
+	{	"ï¿½ï¿½ï¿½ë‚µï¿½ï¿½ï¿½Iï¿½[ï¿½ï¿½"	    ,"ï¿½ï¿½ï¿½ë‚µï¿½ï¿½ï¿½Iï¿½[ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)"       , "HaQuest\\Quest_terrified_1start_T.msg" , "HaQuest\\Quest_terrified_1end.msg" },
+	{	"ï¿½ï¿½ï¿½ë‚µï¿½ï¿½ï¿½Iï¿½[ï¿½ï¿½" 	    ,"ï¿½ï¿½ï¿½ë‚µï¿½ï¿½ï¿½Iï¿½[ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)"       , "HaQuest\\Quest_terrified_1start_M.msg" , "HaQuest\\Quest_terrified_1end.msg" },
 
-	{	"ˆ¹“n‚µ"	        ,"ˆ¹“n‚µ(Š®—¹)"         , "HaQuest\\Quest_candy_1start_T.msg"     , "HaQuest\\Quest_candy_1end.msg"   },
-	{	"ˆ¹“n‚µ"	        ,"ˆ¹“n‚µ(Š®—¹)"         , "HaQuest\\Quest_candy_1start_M.msg"     , "HaQuest\\Quest_candy_1end.msg"   },
+	{	"ï¿½ï¿½ï¿½nï¿½ï¿½"	        ,"ï¿½ï¿½ï¿½nï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)"         , "HaQuest\\Quest_candy_1start_T.msg"     , "HaQuest\\Quest_candy_1end.msg"   },
+	{	"ï¿½ï¿½ï¿½nï¿½ï¿½"	        ,"ï¿½ï¿½ï¿½nï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)"         , "HaQuest\\Quest_candy_1start_M.msg"     , "HaQuest\\Quest_candy_1end.msg"   },
 
-	{	"ƒSƒuƒŠƒ“‚Ì‹u"	    ,"ƒSƒuƒŠƒ“‚Ì‹u(Š®—¹)"       , "HaQuest\\Quest_goblin_1start_T.msg"    , "HaQuest\\Quest_goblin_1end.msg"  },
-	{	"ƒSƒuƒŠƒ“‚Ì‹u"	    ,"ƒSƒuƒŠƒ“‚Ì‹u(Š®—¹)"       , "HaQuest\\Quest_goblin_1start_M.msg"    , "HaQuest\\Quest_goblin_1end.msg"  },
+	{	"ï¿½Sï¿½uï¿½ï¿½ï¿½ï¿½ï¿½Ì‹u"	    ,"ï¿½Sï¿½uï¿½ï¿½ï¿½ï¿½ï¿½Ì‹u(ï¿½ï¿½ï¿½ï¿½)"       , "HaQuest\\Quest_goblin_1start_T.msg"    , "HaQuest\\Quest_goblin_1end.msg"  },
+	{	"ï¿½Sï¿½uï¿½ï¿½ï¿½ï¿½ï¿½Ì‹u"	    ,"ï¿½Sï¿½uï¿½ï¿½ï¿½ï¿½ï¿½Ì‹u(ï¿½ï¿½ï¿½ï¿½)"       , "HaQuest\\Quest_goblin_1start_M.msg"    , "HaQuest\\Quest_goblin_1end.msg"  },
  
-	{	"ƒAƒ“ƒfƒbƒg‚Ì‹ºˆĞ"	    ,"ƒAƒ“ƒfƒbƒg‚Ì‹ºˆĞ(Š®—¹)"     , "HaQuest\\Quest_undead_1start_T.msg"    , "HaQuest\\Quest_undead_1end.msg"  },
-	{	"ƒAƒ“ƒfƒbƒg‚Ì‹ºˆĞ"	    ,"ƒAƒ“ƒfƒbƒg‚Ì‹ºˆĞ(Š®—¹)"     , "HaQuest\\Quest_undead_1start_M.msg"    , "HaQuest\\Quest_undead_1end.msg"  },
+	{	"ï¿½Aï¿½ï¿½ï¿½fï¿½bï¿½gï¿½Ì‹ï¿½ï¿½ï¿½"	    ,"ï¿½Aï¿½ï¿½ï¿½fï¿½bï¿½gï¿½Ì‹ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)"     , "HaQuest\\Quest_undead_1start_T.msg"    , "HaQuest\\Quest_undead_1end.msg"  },
+	{	"ï¿½Aï¿½ï¿½ï¿½fï¿½bï¿½gï¿½Ì‹ï¿½ï¿½ï¿½"	    ,"ï¿½Aï¿½ï¿½ï¿½fï¿½bï¿½gï¿½Ì‹ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)"     , "HaQuest\\Quest_undead_1start_M.msg"    , "HaQuest\\Quest_undead_1end.msg"  },
 
-	{	"ˆê–Ú‚Ì‰»‚¯•¨"	,"ˆê–Ú‚Ì‰»‚¯•¨(Š®—¹)"   , "HaQuest\\Quest_cyclops_1start.msg"     , "HaQuest\\Quest_cyclops_1end.msg" },
+	{	"ï¿½ï¿½Ú‚Ì‰ï¿½ï¿½ï¿½ï¿½ï¿½"	,"ï¿½ï¿½Ú‚Ì‰ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)"   , "HaQuest\\Quest_cyclops_1start.msg"     , "HaQuest\\Quest_cyclops_1end.msg" },
 
-	{	"¸‚­‚µ‚½ƒnƒ“ƒ}["	    ,"¸‚­‚µ‚½ƒnƒ“ƒ}[(Š®—¹)"     , "HaQuest\\Quest_hammer_1start.msg"      , "HaQuest\\Quest_hammer_1end.msg"  },
+	{	"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½}ï¿½["	    ,"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½}ï¿½[(ï¿½ï¿½ï¿½ï¿½)"     , "HaQuest\\Quest_hammer_1start.msg"      , "HaQuest\\Quest_hammer_1end.msg"  },
 
-	{	"ƒtƒ…[ƒŠ[‚ÌŠ½Œ}[1]"	,"ƒtƒ…[ƒŠ[‚ÌŠ½Œ}[2]"           , "HaQuest\\Quest_100State_1.msg"         , "HaQuest\\Quest_100State_2.msg"  },
-	{	"ƒtƒ…[ƒŠ[‚ÌŠ½Œ}[3]"	,"ƒtƒ…[ƒŠ[‚ÌŠ½Œ}[4]"           , "HaQuest\\Quest_100State_3.msg"         , "HaQuest\\Quest_100State_4.msg"  },
-	{	"ƒtƒ…[ƒŠ[‚ÌŠ½Œ}[5]"	,"ƒtƒ…[ƒŠ[‚ÌŠ½Œ}(Š®—¹)"        , "HaQuest\\Quest_100State_5.msg"         , "HaQuest\\Quest_100State_6.msg"  },
+	{	"ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ÌŠï¿½ï¿½}[1]"	,"ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ÌŠï¿½ï¿½}[2]"           , "HaQuest\\Quest_100State_1.msg"         , "HaQuest\\Quest_100State_2.msg"  },
+	{	"ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ÌŠï¿½ï¿½}[3]"	,"ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ÌŠï¿½ï¿½}[4]"           , "HaQuest\\Quest_100State_3.msg"         , "HaQuest\\Quest_100State_4.msg"  },
+	{	"ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ÌŠï¿½ï¿½}[5]"	,"ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½ÌŠï¿½ï¿½}(ï¿½ï¿½ï¿½ï¿½)"        , "HaQuest\\Quest_100State_5.msg"         , "HaQuest\\Quest_100State_6.msg"  },
 
 
 
 };
+
+
+
+
 
 
 

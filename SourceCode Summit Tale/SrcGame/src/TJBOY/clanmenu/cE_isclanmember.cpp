@@ -73,7 +73,7 @@ void CLANEntity_IsClanMember::Main()
 			WebDB.isClanMember(cldata.szID, cldata.gserver, cldata.ChaName);
 			C_menuN2 = 1;
 		#ifdef CLAN_DEBUG
-			DebugMessage("CLAN_isClanWon¿¡¼­ WebDB.isClanMember(¾ÆÀÌµð : %s,°ÔÀÓ¼­¹ö : %s,Ä³¸¯ÅÍÀÌ¸§ : %s)", cldata.szID, cldata.gserver, cldata.ChaName);
+			DebugMessage("CLAN_isClanWonï¿½ï¿½ï¿½ï¿½ WebDB.isClanMember(ï¿½ï¿½ï¿½Ìµï¿½ : %s,ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ : %s,Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ : %s)", cldata.szID, cldata.gserver, cldata.ChaName);
 		#endif
 			break;
 			case 1:
@@ -92,7 +92,7 @@ void CLANEntity_IsClanMember::Main()
 				C_menuN = CLAN_AllEnd;
 				cldata.myPosition = CLANNO_REGESTER;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_isClanWon¿¡¼­ ¹«µî·Ï");
+				DebugMessage("CLAN_isClanWonï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½");
 			#endif     
 			#ifdef VOICE_CHAT
 				if(bCheckClan)
@@ -150,7 +150,7 @@ void CLANEntity_IsClanMember::Main()
 			#endif
 
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_isClanWon¿¡¼­ Å¬·£¿øµî·Ï");
+				DebugMessage("CLAN_isClanWonï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			#endif				
 
 				break;
@@ -189,7 +189,7 @@ void CLANEntity_IsClanMember::Main()
 				}
 
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_isClanWon¿¡¼­ Å¬·£Àå");
+				DebugMessage("CLAN_isClanWonï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½");
 			#endif				
 			#ifdef VOICE_CHAT
 				if(bCheckClan)
@@ -215,7 +215,7 @@ void CLANEntity_IsClanMember::Main()
 					bGetChaClan = FALSE;
 				}
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_isClanWon¿¡¼­ Å¬·£ÀÌÇØÃ¼µÈ Å¬·£¿ø");
+				DebugMessage("CLAN_isClanWonï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½");
 			#endif
 			#ifdef VOICE_CHAT
 				if(bCheckClan)
@@ -241,7 +241,7 @@ void CLANEntity_IsClanMember::Main()
 					bGetChaClan = FALSE;
 				}
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_isClanWon¿¡¼­ Å¬·£ÀÌ ÇØÃ¼µÊ  Å¬·£ Àå");
+				DebugMessage("CLAN_isClanWonï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½  Å¬ï¿½ï¿½ ï¿½ï¿½");
 			#endif
 			#ifdef VOICE_CHAT
 				if(bCheckClan)
@@ -287,7 +287,7 @@ void CLANEntity_IsClanMember::Main()
 				}
 
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_isClanWon¿¡¼­ Å¬·£¿øµî·Ï");
+				DebugMessage("CLAN_isClanWonï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			#endif				
 
 			#ifdef VOICE_CHAT
@@ -311,7 +311,7 @@ void CLANEntity_IsClanMember::Main()
 					bGetChaClan = FALSE;
 				}
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_isClanWon¿¡¼­ ¸®ÅÏÄÚµå 100");
+				DebugMessage("CLAN_isClanWonï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 100");
 			#endif
 				break;
 				case ISAO_ERR_TCP_CONNECT:
@@ -328,7 +328,7 @@ void CLANEntity_IsClanMember::Main()
 					bGetChaClan = FALSE;
 				}
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_isClanWon¿¡¼­ ¼­¹ö¿¡ Á¢¼ÓÇÒ¼ö ¾øÀ½");
+				DebugMessage("CLAN_isClanWonï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			#endif
 
 				break;
@@ -346,7 +346,7 @@ void CLANEntity_IsClanMember::Main()
 						bGetChaClan = FALSE;
 					}
 				#ifdef CLAN_DEBUG
-					DebugMessage("CLAN_isClanWon¿¡¼­ µðÆúÆ®¿¡·¯");
+					DebugMessage("CLAN_isClanWonï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½");
 				#endif
 				}
 				break;
@@ -375,6 +375,10 @@ void CLANEntity_IsClanMember::menuInit(int num)
 {
 
 }
+
+
+
+
 
 
 

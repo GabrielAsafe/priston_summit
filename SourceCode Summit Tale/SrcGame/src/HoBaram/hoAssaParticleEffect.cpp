@@ -1,4 +1,4 @@
-﻿#include "SinBaram\\SinLinkHeader.h"
+#include "SinBaram\\SinLinkHeader.h"
 #include "SinBaram\\AssaEffect.h"
 #include "hoAssaParticleEffect.h"
 
@@ -6128,3 +6128,6 @@ void AssaSkill_PlayerVip(smCHAR* pDestChar, int liveCount)
 		cAssaEffect[i] = Playervip;
 	}
 }
+
+
+

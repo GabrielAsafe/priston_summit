@@ -5,7 +5,7 @@ void c_GetFilePath(char *szName, char *szFileName)
 		((szName[0] == 'l' || szName[0] == 'L') && (szName[1] == 'p' || szName[1] == 'P') && (szName[2] == 't' || szName[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "££%s.dat", szName);
+		wsprintf(szFileName, "ï¿½ï¿½%s.dat", szName);
 		return;
 	}
 
@@ -14,7 +14,7 @@ void c_GetFilePath(char *szName, char *szFileName)
 	   ((szName[0] == 'c' || szName[0] == 'C') && (szName[1] == 'o' || szName[1] == 'O') && (szName[2] == 'n' || szName[2] == 'N'))
 	   )
 	{
-		wsprintf(szFileName, "££%s.dat", szName);
+		wsprintf(szFileName, "ï¿½ï¿½%s.dat", szName);
 		return;
 	}
 	wsprintf(szFileName, "%s.dat", szName);
@@ -81,3 +81,5 @@ int c_CheckName(char* filepath, char* data)
 	delete[] charlist;
 	return 1;
 }
+
+

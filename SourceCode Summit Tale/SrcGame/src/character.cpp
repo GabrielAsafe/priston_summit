@@ -1,4 +1,5 @@
-﻿
+#include "opcodes.h"
+
 
 #include "smlib3d\\smd3d.h"
 #include "smwsock.h"
@@ -1743,11 +1744,11 @@ int smCHAR::SetTool(DWORD dwItemCode, int hvPosi)
 		if (dwActionItemCode == HvRightHand.dwItemCode)
 			AttackToolRange = (HvRightHand.SizeMax * 200) >> 8;
 
-		//verificação ranged to atack
+		//verifica��o ranged to atack
 		//if ( ((HvRightHand.SizeMax * 200) >> 8) > 13000 )
 		//	AttackToolRange = 0;
 
-		//verificação ranged to atack
+		//verifica��o ranged to atack
 		//if ( ((HvLeftHand.SizeMax * 200) >> 8) > 13000 )
 		//	AttackToolRange = 0;
 
@@ -9911,7 +9912,7 @@ int smCHAR::PlayAttack(int EventFlag)
 					sinSetLife(sinGetLife() - cnt);
 
 					if (sinGetLife() > 0)
-						SendShowDmg(cnt, lpTransAttackData->Critical ? 1 : 0, dwObjectSerial);
+						SendShowDmg(cnt, 0, dwObjectSerial);
 					else
 						SendShowDmg(cnt, 2, dwObjectSerial);
 
@@ -10302,7 +10303,7 @@ int smCHAR::FormSetPlayerInfo()
 		char szBuff[128];
 
 		wsprintf(szBuff, "Mesh Pattern Error [ %s ] ( %s %s )", smCharInfo.szName, smCharInfo.szModelName, smCharInfo.szModelName2);
-		Utils_Log(LOG_ERROR, "Mesh Pattern Error [ %s ] ( %s %s )", smCharInfo.szName, smCharInfo.szModelName, smCharInfo.szModelName2);
+
 		Record_ClinetLogFile(szBuff);
 	}
 
@@ -10932,25 +10933,7 @@ int smCHAR::RecvPlayData2(char *lpData)
 
 				case OpCode::OPCODE_EFFECT_CURSE_QUEST:
 					PlayCurseQuest = 1;
-					break;
-					
-				case OpCode::PLAYER_TOP_LEVEL:
-					PlayerTopLevel = 1;
-					break;
-
-				case OpCode::EFFECT_CURSE_PVP:
-					PlayCursePvP = 1;
-					break;
-
-				case OpCode::EFFECT_CURSE_PVP_OFF:
-					PlayCursePvP = 0;
-					break;
-					
-				case OPCODE_PLAYERNOVATO:
-					PlayerNovato = 1;
-					break;
-					
-				case OpCode::OPCODE_EFFECT_VIP:
+					break;case OpCode::OPCODE_EFFECT_VIP:
 					PlayerVip = 1;
 					break;
 
@@ -11055,16 +11038,7 @@ int smCHAR::RecvPlayData2(char *lpData)
 					sBlessCastle_Damage[0] = ((smEFFECT_ITEM *)lpBuff)->sColors[0];
 					sBlessCastle_Damage[1] = ((smEFFECT_ITEM *)lpBuff)->sColors[1];
 					PontosPvP = ((smEFFECT_ITEM *)lpBuff)->sColors[2];
-					break;
-
-				case OpCode::EFFECT_TOP_LEVEL:
-					PlayerPvPMode = 1;
-					break;
-				case OpCode::EFFECT_TOP_LEVEL_OFF:
-					PlayerPvPMode = 0;
-					break;
-
-				}
+					break;}
 				lpBuff += Size;
 			}
 		}
@@ -11384,8 +11358,6 @@ int smCHAR::MakeTransPlayData(char *lpTargetBuff, int SendTime, int pBuffStep)
 	}
 	
 	lpTransPlayData->Hp[1] = smCharInfo.Life[1];
-	lpTransPlayData->Mp[0] = smCharInfo.Mana[0];
-	lpTransPlayData->Mp[1] = smCharInfo.Mana[1];
 
 	if (UseObject_VirtualLife)
 	{
@@ -11647,85 +11619,7 @@ int smCHAR::MakeTransPlayData(char *lpTargetBuff, int SendTime, int pBuffStep)
 		lpTransPlayData->size += lpEffectItem->size;
 		lpTransPlayData->bEventInfo[TRANS_PLAYDATA_EVENT_EXT] ++;
 		lpEffectItem++;
-	}
-
-	extern BOOL bTopLevel;
-	extern BOOL bReiPVP;
-	extern BOOL bPlayerPvP;
-
-	if (PlayCursePvP && Life > 0 && bReiPVP)
-	{
-		lpEffectItem->code = OpCode::EFFECT_CURSE_PVP;
-		lpEffectItem->size = sizeof(smEFFECT_ITEM);
-		lpEffectItem->dwItemCode = PlayCursePvP;
-		lpEffectItem->ColorBlink = 0;
-		ZeroMemory(lpEffectItem->sColors, sizeof(short) * 4);
-		lpEffectItem->DispEffect = 0;
-		lpEffectItem->BlinkScale = 0;
-
-		lpTransPlayData->size += lpEffectItem->size;
-		lpTransPlayData->bEventInfo[TRANS_PLAYDATA_EVENT_EXT] ++;
-		lpEffectItem++;
-	}
-
-	if (!PlayCursePvP && !bReiPVP)
-	{
-		lpEffectItem->code = OpCode::EFFECT_CURSE_PVP_OFF;
-		lpEffectItem->size = sizeof(smEFFECT_ITEM);
-		lpEffectItem->dwItemCode = 0;
-		lpEffectItem->ColorBlink = 0;
-		ZeroMemory(lpEffectItem->sColors, sizeof(short) * 4);
-		lpEffectItem->DispEffect = 0;
-		lpEffectItem->BlinkScale = 0;
-
-		lpTransPlayData->size += lpEffectItem->size;
-		lpTransPlayData->bEventInfo[TRANS_PLAYDATA_EVENT_EXT] ++;
-		lpEffectItem++;
-	}
-
-	if (PlayerTopLevel && Life > 0 && bTopLevel)
-	{
-		lpEffectItem->code = OpCode::PLAYER_TOP_LEVEL;
-		lpEffectItem->size = sizeof(smEFFECT_ITEM);
-		lpEffectItem->dwItemCode = PlayerTopLevel;
-		lpEffectItem->ColorBlink = 0;
-		ZeroMemory(lpEffectItem->sColors, sizeof(short) * 4);
-		lpEffectItem->DispEffect = 0;
-		lpEffectItem->BlinkScale = 0;
-
-		lpTransPlayData->size += lpEffectItem->size;
-		lpTransPlayData->bEventInfo[TRANS_PLAYDATA_EVENT_EXT] ++;
-		lpEffectItem++;
-	}
-
-	if (PlayerPvPMode && bPlayerPvP)
-	{
-		lpEffectItem->code = OpCode::EFFECT_TOP_LEVEL;
-		lpEffectItem->size = sizeof(smEFFECT_ITEM);
-		lpEffectItem->dwItemCode = 0;
-		lpEffectItem->ColorBlink = 0;
-		ZeroMemory(lpEffectItem->sColors, sizeof(short) * 4);
-		lpEffectItem->DispEffect = 0;
-		lpEffectItem->BlinkScale = 0;
-		lpTransPlayData->size += lpEffectItem->size;
-		lpTransPlayData->bEventInfo[TRANS_PLAYDATA_EVENT_EXT] ++;
-		lpEffectItem++;
-	}
-	if (!PlayerPvPMode && !bPlayerPvP)
-	{
-		lpEffectItem->code = OpCode::EFFECT_TOP_LEVEL_OFF;
-		lpEffectItem->size = sizeof(smEFFECT_ITEM);
-		lpEffectItem->dwItemCode = 0;
-		lpEffectItem->ColorBlink = 0;
-		ZeroMemory(lpEffectItem->sColors, sizeof(short) * 4);
-		lpEffectItem->DispEffect = 0;
-		lpEffectItem->BlinkScale = 0;
-		lpTransPlayData->size += lpEffectItem->size;
-		lpTransPlayData->bEventInfo[TRANS_PLAYDATA_EVENT_EXT] ++;
-		lpEffectItem++;
-	}
-
-	if (PlayerVip && Life > 0)
+	}if (PlayerVip && Life > 0)
 	{
 		lpEffectItem->code = OpCode::OPCODE_EFFECT_VIP;
 		lpEffectItem->size = sizeof(smEFFECT_ITEM);
@@ -15835,7 +15729,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 				if (lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 				{
-					wsprintf(szDispDamage, ">%s °ø°Ý Ãß°¡È¸ÇÇ ( Evade Scroll[%d] )", smCharInfo.szName, lpPlayInfo->dwSiegeItem_Scroll_Param);
+					wsprintf(szDispDamage, ">%s ���� �߰�ȸ�� ( Evade Scroll[%d] )", smCharInfo.szName, lpPlayInfo->dwSiegeItem_Scroll_Param);
 					rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 				}
 #endif
@@ -15859,7 +15753,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 			if (lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 			{
-				wsprintf(szDispDamage, ">%s °ø°Ý Ãß°¡È¸ÇÇ ( Evade Scroll[%d] )", smCharInfo.szName, lpPlayInfo->dwSiegeItem_Scroll_Param);
+				wsprintf(szDispDamage, ">%s ���� �߰�ȸ�� ( Evade Scroll[%d] )", smCharInfo.szName, lpPlayInfo->dwSiegeItem_Scroll_Param);
 				rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 			}
 #endif
@@ -16033,7 +15927,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 				if (lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 				{
-					wsprintf(szDispDamage, ">%s °ø°Ý Ãß°¡È¸ÇÇ ( Vague[%d] )", smCharInfo.szName, Vague_EvasionPercent[lpPlayInfo->dwSkill_Vague_Param]);
+					wsprintf(szDispDamage, ">%s ���� �߰�ȸ�� ( Vague[%d] )", smCharInfo.szName, Vague_EvasionPercent[lpPlayInfo->dwSkill_Vague_Param]);
 					rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 				}
 #endif
@@ -16082,7 +15976,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 				if (lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 				{
-					wsprintf(szDispDamage, ">%s °ø°Ý Ãß°¡È¸ÇÇ ( Hall of Valhalla [%d] )", smCharInfo.szName, lpPlayInfo->wSkill_HallOfValhalla_Param[0]);
+					wsprintf(szDispDamage, ">%s ���� �߰�ȸ�� ( Hall of Valhalla [%d] )", smCharInfo.szName, lpPlayInfo->wSkill_HallOfValhalla_Param[0]);
 					rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 				}
 #endif
@@ -16114,7 +16008,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 				if (lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 				{
-					wsprintf(szDispDamage, ">%s °ø°Ý Ãß°¡ È¸ÇÇ ( Summon Muspell [%d] )", smCharInfo.szName, Summon_Muspell_BlockPercent[lpPlayInfo->dwSkill_SummonMuspell_Param]);
+					wsprintf(szDispDamage, ">%s ���� �߰� ȸ�� ( Summon Muspell [%d] )", smCharInfo.szName, Summon_Muspell_BlockPercent[lpPlayInfo->dwSkill_SummonMuspell_Param]);
 					rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 				}
 #endif
@@ -16170,7 +16064,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 					if (lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 					{
-						wsprintf(szDispDamage, ">%s Evasão ( Clan Skill [%d] )", smCharInfo.szName, lpPlayInfo->dwBlessSkill_Param);
+						wsprintf(szDispDamage, ">%s Evas�o ( Clan Skill [%d] )", smCharInfo.szName, lpPlayInfo->dwBlessSkill_Param);
 						rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 					}
 #endif
@@ -16768,7 +16662,7 @@ int scITEM::Draw()
 
 
 	if ((lpCurPlayer->OnStageField >= 0 && StageField[lpCurPlayer->OnStageField]->FieldCode == rsSOD_FIELD))//
-	{ // coloca mana no chão de sod
+	{ // coloca mana no ch�o de sod
 		if ((ItemCode&sinITEM_MASK2) == sinPM1 || (ItemCode&sinITEM_MASK2) == sinSD2)
 		{
 			scale = (dwPlayTime >> 2) & 0x1FF;
@@ -16900,3 +16794,12 @@ int SetClanMaster_Player(DWORD dwMasterClan)
 	return lpCurPlayer->Clan_CastleMasterFlag;
 
 }
+
+
+
+
+
+
+
+
+

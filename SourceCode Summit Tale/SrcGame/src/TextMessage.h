@@ -39,3 +39,6 @@ extern char *g_lpBellatraResult_Text1;
 extern char *g_lpBellatraResult_Text2;
 extern char *g_lpBellatraResult_Text3;
 extern char *g_lpBellatraResult_Text4;
+
+
+

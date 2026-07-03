@@ -1,5 +1,4 @@
-
-
+#include "opcodes.h"
 #include "smlib3d\\smd3d.h"
 #include "smwsock.h"
 
@@ -321,8 +320,6 @@ int dm_SendTransDamage(smCHAR *lpChar, int PowParam1, int PowParam2, int AttackS
 
 	if (lpsmSock) lpsmSendSock = lpsmSock;
 
-	Utils_Log(LOG_DEBUG, "SEND ATTACK DATA");
-
 #ifdef _USE_DYNAMIC_ENCODE
 	if (lpsmSendSock && fnEncodeDamagePacket && fnDecodeDamagePacket)
 	{
@@ -338,7 +335,7 @@ int dm_SendTransDamage(smCHAR *lpChar, int PowParam1, int PowParam2, int AttackS
 		}
 	}
 #else
-	Utils_Log(LOG_DEBUG, "SEND ATTACK DATA - static encode");
+
 	if (lpsmSendSock)
 	{
 		dmg = GetRandomPos(TransAttackData.Power[0], TransAttackData.Power[1]);
@@ -1209,6 +1206,13 @@ int	dm_DecodePacket(DWORD dwObjectSerial, void *lpPacket)
 
 	return TRUE;
 }
+
+
+
+
+
+
+
 
 
 

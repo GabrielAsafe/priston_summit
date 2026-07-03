@@ -204,7 +204,7 @@ void JOBS::Draw()
 			switch (Job)
 			{
 			case 0:
-				wsprintf(nomejob, "SEM PROFISSÃO");
+				wsprintf(nomejob, "SEM PROFISSï¿½O");
 				DrawFontText(WinX - 636 + 930, WinY - 305 + 400, nomejob, RGB(214, 158, 17), false);
 				DrawImage(Image[20], WinX + 189 , WinY + 71, 100, 116);
 				DrawFontText(WinX - 636 + 1180, WinY - 305 + 383, "?", RGB(214, 158, 17), false);
@@ -234,7 +234,7 @@ void JOBS::Draw()
 				DrawImage(Image[33], WinX - 636 + 1180, WinY - 305 + 383, 26, 25);
 				break;
 			case 5:
-				wsprintf(nomejob, "ARTESÃO");
+				wsprintf(nomejob, "ARTESï¿½O");
 				DrawFontText(WinX - 636 + 930, WinY - 305 + 400, nomejob, RGB(214, 158, 17), false);
 				DrawImage(Image[16 + contjob], WinX + 189, WinY + 71, 100, 116);
 				DrawImage(Image[34], WinX - 636 + 1180, WinY - 305 + 383, 26, 25);
@@ -1111,15 +1111,15 @@ void JOBS::Button()
 		int WinX = (WinSizeX - 586) / 2, WinY = (WinSizeY - 445) / 2, cnt2 = 0;
 
 
-		//AÇÃO DE CLIQUE DO BOTÃO
+		//Aï¿½ï¿½O DE CLIQUE DO BOTï¿½O
 		if (MouseAction(WinX - 636 + 655, WinY - 305 + 390, 155, 30) && page != 99)
 			page = 1;
 
-		//AÇÃO DE CLIQUE DO BOTÃO 
+		//Aï¿½ï¿½O DE CLIQUE DO BOTï¿½O 
 		if (MouseAction(WinX - 636 + 655, WinY - 305 + 425, 155, 30) && page != 99)
 			page = 2;
 
-		//AÇÃO DE CLIQUE DO BOTÃO
+		//Aï¿½ï¿½O DE CLIQUE DO BOTï¿½O
 		if (Job > 0)
 		{
 			if (MouseAction(WinX - 636 + 655, WinY - 305 + 675, 155, 30) && page != 99)
@@ -1267,7 +1267,7 @@ void JOBS::Button()
 
 		if (page > 3 && Job < 1)
 		{
-			//AÇÃO DE CLIQUE DO BOTÃO JOB
+			//Aï¿½ï¿½O DE CLIQUE DO BOTï¿½O JOB
 			if (MouseAction(WinX - 636 + 1060, WinY - 305 + 717, 104, 32))
 			{
 				switch (page)
@@ -1294,7 +1294,7 @@ void JOBS::Button()
 
 		if (page == 3 && VSFlvl >= 0)
 		{
-			//AÇÃO DE CLIQUE DO BOTÃO FORJA
+			//Aï¿½ï¿½O DE CLIQUE DO BOTï¿½O FORJA
 			if (MouseAction(WinX - 636 + 985, WinY - 305 + 440, 60, 30))
 			{
 				SendJOBItemToServer("Forja Iniciante", 0, 1);
@@ -1303,7 +1303,7 @@ void JOBS::Button()
 
 		if (page == 3 && VSFlvl >= 10)
 		{
-			//AÇÃO DE CLIQUE DO BOTÃO FORJA
+			//Aï¿½ï¿½O DE CLIQUE DO BOTï¿½O FORJA
 			if (MouseAction(WinX - 636 + 985, WinY - 305 + 540, 60, 30))
 			{
 				SendJOBItemToServer("Forja Veterano", 0, 2);
@@ -1312,7 +1312,7 @@ void JOBS::Button()
 
 		if (page == 3 && VSFlvl >= 15)
 		{
-			//AÇÃO DE CLIQUE DO BOTÃO FORJA
+			//Aï¿½ï¿½O DE CLIQUE DO BOTï¿½O FORJA
 			if (MouseAction(WinX - 636 + 985, WinY - 305 + 645, 60, 30))
 			{
 				SendJOBItemToServer("Forja Experiente", 0, 3);
@@ -1422,3 +1422,7 @@ void JOBS::Button()
 	}
 
 }
+
+
+
+

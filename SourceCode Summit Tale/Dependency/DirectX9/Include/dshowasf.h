@@ -327,3 +327,5 @@ void __RPC_STUB IConfigAsfWriter_GetIndexMode_Stub(
 #endif
 
 
+
+

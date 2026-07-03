@@ -39,3 +39,6 @@ private:
 };
 
 extern cKILL cKill;
+
+
+

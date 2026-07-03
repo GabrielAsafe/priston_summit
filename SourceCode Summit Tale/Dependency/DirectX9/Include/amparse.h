@@ -36,3 +36,5 @@ DECLARE_INTERFACE_(IAMParse, IUnknown) {
 }
 #endif // __cplusplus
 #endif // __AMPARSE__
+
+

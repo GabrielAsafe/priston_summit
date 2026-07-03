@@ -46,3 +46,5 @@ D3DCOLORVALUE RandomNumber(D3DCOLORVALUE Min, D3DCOLORVALUE Max)
 	temp.a = a;
 	return(temp);
 }
+
+

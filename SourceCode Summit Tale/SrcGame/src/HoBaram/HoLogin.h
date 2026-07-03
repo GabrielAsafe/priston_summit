@@ -260,3 +260,6 @@ extern char *szTempPikeFaceName[2][3];
 extern char *szTempArcherFaceName[2][3];
 extern char *szTempMechFaceName[2][3];
 extern char *szTempFighterFaceName[2][3];
+
+
+

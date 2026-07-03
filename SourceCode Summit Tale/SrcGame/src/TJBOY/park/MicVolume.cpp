@@ -42,7 +42,7 @@ HMIXER CMicVolume::MixDevice(HMIXER current_mix, unsigned int mix_id)
 		if(mixerClose(current_mix) != MMSYSERR_NOERROR)
 		{
 		#ifdef _DEBUG
-			MessageBox(NULL, "Mixer ÀåÄ¡°¡ »ç¿ëÁßÀÔ´Ï´Ù.", "Mixer ¿­±â½ÇÆÐ", MB_ICONSTOP);
+			MessageBox(NULL, "Mixer ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.", "Mixer ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", MB_ICONSTOP);
 		#endif
 			current_mix = NULL;
 		}
@@ -88,7 +88,7 @@ BOOL CMicVolume::GetDevice()
 	if(mixerGetDevCaps((unsigned int)h_mix, &mixer_caps, sizeof(mixer_caps)) != MMSYSERR_NOERROR)
 	{
 	#ifdef _DEBUG
-		MessageBox(NULL, "µî·ÏµÈ ÀåÄ¡ÀÇ Á¤º¸¸¦ ÀÐÀ» ¼ö ¾ø½À´Ï´Ù.", "½Ã½ºÅÛ Á¤º¸ ¿À·ù", MB_ICONSTOP);
+		MessageBox(NULL, "ï¿½ï¿½Ïµï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", "ï¿½Ã½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_ICONSTOP);
 	#endif
 		mixer_caps.cDestinations = 0;
 		return FALSE;
@@ -146,7 +146,7 @@ float CMicVolume::VolDevice(MCS *pData)
 	if(mixerGetControlDetails((HMIXEROBJ)h_mix, &mixer_control_details, MIXER_GETCONTROLDETAILSF_VALUE) != MMSYSERR_NOERROR)
 	{
 	#ifdef _DEBUG
-		MessageBox(NULL, "³»ºÎÇÔ¼ö ¿À·ù(mixerGetControlDetails)", "³»ºÎ ÇÔ¼ö ¿À·ù", MB_ICONSTOP);
+		MessageBox(NULL, "ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½(mixerGetControlDetails)", "ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_ICONSTOP);
 	#endif
 		return -1;
 	}
@@ -175,14 +175,14 @@ void CMicVolume::GetDeviceCtrl(MCS *pData)
 	if(mixerGetLineInfo((HMIXEROBJ)h_mix, &mixer_line, MIXER_GETLINEINFOF_LINEID) != MMSYSERR_NOERROR)
 	{
 	#ifdef _DEBUG
-		MessageBox(NULL, "³»ºÎÇÔ¼ö ¼öÇàÁß ¿À·ù(MixerGetLineInfo)", "ÀåÄ¡ Á¤º¸ ¿À·ù", MB_ICONSTOP);
+		MessageBox(NULL, "ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(MixerGetLineInfo)", "ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_ICONSTOP);
 	#endif
 		return;
 	}
 	else if(!mixer_line.cControls)
 	{
 	#ifdef _DEBUG
-		MessageBox(NULL, "»ç¿ë °¡´ÉÇÑ ±â´É ºÎÀç", "ÀåÄ¡ ¿À·ù", MB_ICONSTOP);
+		MessageBox(NULL, "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½", MB_ICONSTOP);
 	#endif
 		return;
 	}
@@ -198,7 +198,7 @@ void CMicVolume::GetDeviceCtrl(MCS *pData)
 	if(mixerGetLineControls((HMIXEROBJ)h_mix, &mixer_line_controls, MIXER_GETLINECONTROLSF_ALL) != MMSYSERR_NOERROR)
 	{
 	#ifdef _DEBUG
-		MessageBox(NULL, "³»ºÎÇÔ¼ö ¼öÇàÁß ¿À·ù(mixerGetLineControls)", "ÀåÄ¡ Á¤º¸ ¿À·ù", MB_ICONSTOP);
+		MessageBox(NULL, "ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(mixerGetLineControls)", "ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_ICONSTOP);
 	#endif
 	}
 	else
@@ -249,8 +249,12 @@ void CMicVolume::SetDeviceCtrl(MCS *pData, float vol)
 	if(mixerSetControlDetails((HMIXEROBJ)h_mix, &mixer_control_details, 0))
 	{
 	#ifdef _DEBUG
-		MessageBox(NULL, "³»ºÎ ÇÔ¼ö ¿À·ù(mixerSetControlDetails)", "³»ºÎ ÇÔ¼ö ¿À·ù", MB_ICONSTOP);
+		MessageBox(NULL, "ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½(mixerSetControlDetails)", "ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½", MB_ICONSTOP);
 	#endif
 	}
 	return;
 }
+
+
+
+

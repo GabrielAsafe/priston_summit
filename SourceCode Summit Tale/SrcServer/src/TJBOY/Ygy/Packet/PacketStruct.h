@@ -146,10 +146,10 @@ enum
 	VC_STATE_CONNECT,
 	VC_STATE_DISCONNECT,
 };
-#define VC_STATE_NOSERVER_STR	"º¸ÀÌ½º¼­¹ö°¡ ¾ø´Ù."
-#define VC_STATE_NOTCONNECT_STR	"º¸ÀÌ½º¼­¹ö¿¡ Á¢¼ÓÇÒ¼ö ¾ø´Ù."
-#define VC_STATE_CONNECT_STR	"º¸ÀÌ½º¼­¹ö¿Í connect"
-#define VC_STATE_DISCONNECT_STR	"º¸ÀÌ½º¼­¹ö¿Í disconnect"
+#define VC_STATE_NOSERVER_STR	"ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½."
+#define VC_STATE_NOTCONNECT_STR	"ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½."
+#define VC_STATE_CONNECT_STR	"ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ connect"
+#define VC_STATE_DISCONNECT_STR	"ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ disconnect"
 
 typedef struct
 {
@@ -210,3 +210,5 @@ typedef struct
 
 
 #endif 
+
+

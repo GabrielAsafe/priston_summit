@@ -257,3 +257,7 @@ int DeleteRegValue(HKEY hkeyRoot, char *RegPath, char *RegName)
 
 	return TRUE;
 }
+
+
+
+

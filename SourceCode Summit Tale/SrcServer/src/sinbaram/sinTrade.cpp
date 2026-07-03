@@ -1741,7 +1741,7 @@ void cTRADE::LButtonDown(int x, int y)
 
 								int LineCount = 0, Temp;
 								ShowItemOverSpace = 1;
-								strcpy_s(szCraftItemBuff, "°ø°£À» È®º¸ÇØ ÁÖ¼¼¿ä");
+								strcpy_s(szCraftItemBuff, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½");
 
 								strcat(szCraftItemBuff, "\r");
 								Temp = lstrlen(szCraftItemBuff);
@@ -9338,3 +9338,5 @@ int ManufactureItemResultInfo(SManufacture_ResultItemInfo_Server *pResultItemInf
 	}
 	return TRUE;
 }
+
+

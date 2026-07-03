@@ -3,12 +3,12 @@
 char *szMsg1 = " Los Guerreros de todo el continente\n\
 se unen y forman un grupo con el mismo \n\
 objetivo. Se llama 'clan'.    \n\
-Estos clanes protegerán a los suyos.\n\
+Estos clanes protegerï¿½n a los suyos.\n\
 Para formar un clan, se debe pagar  \n\
 impuestos para registrarse        \n\
 oficialmente. Deseas formar   \n\
 un clan?                    \n\
-Hey, Te gustaría formar un clan también? ";
+Hey, Te gustarï¿½a formar un clan tambiï¿½n? ";
 
 
 char *szMsg2 = " Para formar un clan,\n necesitas pagar 500.000 Oro.\n Deseas continuar?\n";
@@ -25,31 +25,31 @@ char *szMsg3 = " Por favor tipea el nombre de tu clan.\n ";
 
 #ifdef		_LANGUAGE_PHILIPIN
 char *szMsg4 = " Cuando se forma un clan, \n\
-los jugadores podrán usar         \n\
+los jugadores podrï¿½n usar         \n\
 su marca y frases.                \n\
-Para mayor información por favor \n\
-visita www.axeso5.com. Después de \n\
-loguearte, podrás registrar/editar \n\
-la página del clan, pero debes estar\n\
+Para mayor informaciï¿½n por favor \n\
+visita www.axeso5.com. Despuï¿½s de \n\
+loguearte, podrï¿½s registrar/editar \n\
+la pï¿½gina del clan, pero debes estar\n\
 registrado oficialmente.            \n ";
 #else
 char *szMsg4 = " Cuando se forma un clan, \n\
-los jugadores podrán usar su marca y frases. .\n\
-Para mayor información por favor  visita nuestra página web.\n\
-Después de loguearte, podrás registrar/editar\n\
-la página del clan, pero debes estar\n\
+los jugadores podrï¿½n usar su marca y frases. .\n\
+Para mayor informaciï¿½n por favor  visita nuestra pï¿½gina web.\n\
+Despuï¿½s de loguearte, podrï¿½s registrar/editar\n\
+la pï¿½gina del clan, pero debes estar\n\
 Gracias.\n ";
 #endif
 
 
 
-char *szMsg5 = " Este es lo que deberías hacer\n\
+char *szMsg5 = " Este es lo que deberï¿½as hacer\n\
 para estar oficialmente registrado.\n\
-*Debes tener más de 6 miembros\n\
+*Debes tener mï¿½s de 6 miembros\n\
 (incluyendo al jefe del clan )\n\
-*Tienes 10 días para reclutar miembros.\n\
+*Tienes 10 dï¿½as para reclutar miembros.\n\
 Si no puedes satisfacer estas condiciones,\n\
-el registro del clan será cancelado\n\
+el registro del clan serï¿½ cancelado\n\
 automaticamente.\n ";
 
 char *szClanMakeFinishMsg = " El registro del clan se ha completado.\n\
@@ -69,33 +69,33 @@ char *szMark3 = " Deseas cambiar la marca de clan? ";
 
 
 
-char *szJoin = " Nombre del Clan: %s\nMaestro del Clan : %s\n\n ha enviado un mensaje de invitación.\n\
-Te gustaría unirte a este clan clan?\n ";
+char *szJoin = " Nombre del Clan: %s\nMaestro del Clan : %s\n\n ha enviado un mensaje de invitaciï¿½n.\n\
+Te gustarï¿½a unirte a este clan clan?\n ";
 char *szSecession = " Nombre del Clan: %s\n Deseas abandonar el clan? ";
 
-char *szMsg6 = " Para registrar un clan, necesitas un mínimo de 6 miembros.\n Te quedan %d días. ";
+char *szMsg6 = " Para registrar un clan, necesitas un mï¿½nimo de 6 miembros.\n Te quedan %d dï¿½as. ";
 
 
 
 char *szServerConnectErrorMsg = " Imposible conectar al servidor.\n\
-Por favor intenta más tarde.\n ";
+Por favor intenta mï¿½s tarde.\n ";
 
-char *szReadClanMarkErrorMsg = " Falló la lectura de la marca del clan\n\
+char *szReadClanMarkErrorMsg = " Fallï¿½ la lectura de la marca del clan\n\
 del servidor.\n ";
 
-char *szCancelMakeClan = " Has cancelado la formación del clan.\n ";
+char *szCancelMakeClan = " Has cancelado la formaciï¿½n del clan.\n ";
 
-char *szTranzationError = " Ocurrió un error de DB. El menú finalizará ahora.\n ";
+char *szTranzationError = " Ocurriï¿½ un error de DB. El menï¿½ finalizarï¿½ ahora.\n ";
 
 char *szInsertClanWonError1 = " Este personaje ya es parte de otro clan.\n ";
 
 char *szClanNameError = " El nombre que deseas registrar ya existe.\n ";
 
 char *sz100Error = " Ha ocurrido un error desconocido.\n\
-El menú finalizará ahora.\n ";
+El menï¿½ finalizarï¿½ ahora.\n ";
 
 char *szDefaultError = " Ha ocurrido un erro fatal.\n\
-El menú finalizará ahora.\n ";
+El menï¿½ finalizarï¿½ ahora.\n ";
 
 char *szReleseError = " Este personaje no es maestro de clan\n\
 ni miembro de clan.\n ";
@@ -125,7 +125,7 @@ char *szClanJoinError3Msg = " Ese clan no existe o no es un maestro de clan .\n 
 
 char *szClanJoinError4Msg = " Todos los miembros del clan son de nivel 32 o superior.\n ";
 
-char *szClanJoinCancelMsg = " %s rehusó unirse al clan.\n ";
+char *szClanJoinCancelMsg = " %s rehusï¿½ unirse al clan.\n ";
 
 char *szClanJoinsucesssMsg = " %s se ha unido al clan.\n ";
 
@@ -135,18 +135,18 @@ char *szClanJoinsucesssMsg = " %s se ha unido al clan.\n ";
 
 char *szReMoveClanWonMsg = " Expulsado del clan.\n ";
 
-char *szReMoveHeaderMsg = " Aquí está la lista de expulsados\n ";
+char *szReMoveHeaderMsg = " Aquï¿½ estï¿½ la lista de expulsados\n ";
 
 
-char *szReConfReleaseMsg = " Si desbandas el clan, toda la información\n\
-acerca de los miembros será borrada.\n\
+char *szReConfReleaseMsg = " Si desbandas el clan, toda la informaciï¿½n\n\
+acerca de los miembros serï¿½ borrada.\n\
 Deseas desbandar de tods maneras?\n ";
-char *szNoRecordReleaseMsg = " Estás intentando desbandar el clan\n\
+char *szNoRecordReleaseMsg = " Estï¿½s intentando desbandar el clan\n\
 antes de registrarlo.\n\
 Deseas continuar?\n ";
 char *szFinishReleaseMsg = " El clan ha sido desbandado.\n ";
 
-char *szSecessionMsg = " Si dejas el clan, todas tus funciones de clan\n desaparecerán.\n Deseas continuar?\n ";
+char *szSecessionMsg = " Si dejas el clan, todas tus funciones de clan\n desaparecerï¿½n.\n Deseas continuar?\n ";
 char *szFinishSecessionMsg = " Clan: %s\nMiembro : %s\n ha dejado el clan.\n ";
 
 char *szisCheckClanJangErrorMsg = " No puedes hacer otro clan\n\
@@ -157,9 +157,9 @@ char *szMoneyErrorMsg = " No hay suficiente dinero\n para hacer un clan.\n "
 
 char *szAbilityErrorMsg = " No tienes suficiente EXP.\n para hacer un clan.\n ";
 
-char *szRemoveShortClanWonMsg = " Si borras a esta miembro, \n tu clan no cumplirá con el número de miembros requeridos,\n\
+char *szRemoveShortClanWonMsg = " Si borras a esta miembro, \n tu clan no cumplirï¿½ con el nï¿½mero de miembros requeridos,\n\
 Deseas borrarlo de todas maneras? ";
-char *szRemoveShowrtClanWonResultMsg = " Tu clan tiene menos de 6 miembros.\n Por favor, recluta más Guerreros.\n ";
+char *szRemoveShowrtClanWonResultMsg = " Tu clan tiene menos de 6 miembros.\n Por favor, recluta mï¿½s Guerreros.\n ";
 
 char *szNoName = " Por favor, escribe el nombre de tu clan.\n ";
 
@@ -168,19 +168,19 @@ char *szLoading = " Conectando al servidor.\n ";
 
 
 char *szDeleteChaReleaseBefore = " Este personaje es un maestro de clan.\n\
-Si lo borras, el clan también será borrado.\n\
+Si lo borras, el clan tambiï¿½n serï¿½ borrado.\n\
 Deseas continuar?\n ";
 
 char *szDeleteChaRelease = " El clan ha sido borrado.\n ";
 
-char *szDeleteChaSecessionBefore = " Este personaje está en un clan.\n\
-Si lo borras, será desbandado de él.\n\
+char *szDeleteChaSecessionBefore = " Este personaje estï¿½ en un clan.\n\
+Si lo borras, serï¿½ desbandado de ï¿½l.\n\
 Deseas borrar?\n ";
 char *szDeleteChaSecession = " te has separado del clan.\n ";
 
 char *szDeleteChaError = " Falla al borrar el clan.\n Imposible borrar el personaje.\n ";
 char *szMakeFinishClan = " !Felicitacones!!!\n[%s]\nTe has convertido en miembro de un clan.\n ";
-char *szClanWon6Down = " Tu clan tiene menos de 6 miembros.\n Por favor, recluta más\n Guerreros.\n\
+char *szClanWon6Down = " Tu clan tiene menos de 6 miembros.\n Por favor, recluta mï¿½s\n Guerreros.\n\
 %s\n";
 
 
@@ -194,4 +194,6 @@ char *szClanMakedowninfo = " Registrando clan. ";
 
 char *szClanUserReleaseMsg = " Clan : %s\n el registro ha sido cancelado.\n ";
 char *szClanUserRemove = " Clan : %s\nMiembro : %s\nha sido expulsado del clan.\n ";
+
+
 

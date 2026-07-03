@@ -1513,17 +1513,17 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Já existe uma pedra especial de aging.");
+						cMessageBox.ShowMessage("Jï¿½ existe uma pedra especial de aging.");
 					}
 				}
 				else
 				{
-					cMessageBox.ShowMessage("Este item não pode ser usado no Aging.");
+					cMessageBox.ShowMessage("Este item nï¿½o pode ser usado no Aging.");
 				}
 			}
 			else if((InvenItem[Index].CODE & sinITEM_MASK2) == sinOS1)
 			{
-				//Verifica as posições dos sheltons e pega a mais próxima.
+				//Verifica as posiï¿½ï¿½es dos sheltons e pega a mais prï¿½xima.
 				bool isEmpty = false;
 				int i = 0;
 				for(i = 0; i < 12; i++)
@@ -1555,12 +1555,12 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Este item não pode ser usado no aging.");
+						cMessageBox.ShowMessage("Este item nï¿½o pode ser usado no aging.");
 					}
 				}
 				else
 				{
-					cMessageBox.ShowMessage("Sheltom incompatível ou não há espaço livre.");
+					cMessageBox.ShowMessage("Sheltom incompatï¿½vel ou nï¿½o hï¿½ espaï¿½o livre.");
 				}
 			}
 			else if(cAging.isAgeableItem(&Item))
@@ -1588,7 +1588,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Já existe um item na janela de aging.");
+						cMessageBox.ShowMessage("Jï¿½ existe um item na janela de aging.");
 					}
 				}
 				else
@@ -1598,7 +1598,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 			}
 			else
 			{
-				cMessageBox.ShowMessage("Este item não pode ser usado no Aging.");
+				cMessageBox.ShowMessage("Este item nï¿½o pode ser usado no Aging.");
 			}
 		}
 	}
@@ -1613,7 +1613,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 
 			if((InvenItem[Index].CODE & sinITEM_MASK2) == sinOS1 || (InvenItem[Index].CODE & sinITEM_MASK2) == sinSE1)
 			{
-				//Verifica as posições dos sheltons e pega a mais próxima.
+				//Verifica as posiï¿½ï¿½es dos sheltons e pega a mais prï¿½xima.
 				bool isEmpty = false;
 				
 				int i = 0;
@@ -1646,12 +1646,12 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Este item não pode ser usado no mix.");
+						cMessageBox.ShowMessage("Este item nï¿½o pode ser usado no mix.");
 					}
 				}
 				else
 				{
-					cMessageBox.ShowMessage("Sheltom incompatível ou não há espaço livre.");
+					cMessageBox.ShowMessage("Sheltom incompatï¿½vel ou nï¿½o hï¿½ espaï¿½o livre.");
 				}
 			}
 			else if(cCraftItem.isMixableItem(&Item))
@@ -1679,7 +1679,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Já existe um item na janela de Mix.");
+						cMessageBox.ShowMessage("Jï¿½ existe um item na janela de Mix.");
 					}
 				}
 				else
@@ -11784,3 +11784,5 @@ int cINVENTORY::SendFindinvestigatorTaleEtoEventItem()
 	sWingItem_Send.DocIndex = 2;
 	return TRUE;
 }
+
+

@@ -79,7 +79,7 @@ void CRollHandler::HandlePacket(rsPLAYINFO * lpPlayInfo, smTRANS_COMMAND * psPac
 	}
 	else
 	{
-		wsprintf(sPacket.szMessage, "> %s optou por não jogar na roleta.", lpPlayInfo->getName().c_str());
+		wsprintf(sPacket.szMessage, "> %s optou por nï¿½o jogar na roleta.", lpPlayInfo->getName().c_str());
 	}
 
 	sPacket.size = lstrlen(sPacket.szMessage) + 32;
@@ -136,7 +136,7 @@ void CRollHandler::EndRoll(RollItem* pRoll)
 				pRoll->lpStgArea->SendStgItemToNearUsers(lpStgItem);
 		}
 
-		wsprintf(TransChatMessage.szMessage, "> Ninguém recebeu o item %s.", pRoll->psItem.ItemInfo.ItemName);
+		wsprintf(TransChatMessage.szMessage, "> Ninguï¿½m recebeu o item %s.", pRoll->psItem.ItemInfo.ItemName);
 	}
 	else
 	{
@@ -182,3 +182,5 @@ void CRollHandler::EndRoll(RollItem* pRoll)
 		}
 	}
 }
+
+

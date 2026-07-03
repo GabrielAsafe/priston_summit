@@ -48,3 +48,5 @@ DECLARE_INTERFACE_(IDirect3DRMWinDevice, IDirect3DRMObject)
 
 #endif
 
+
+

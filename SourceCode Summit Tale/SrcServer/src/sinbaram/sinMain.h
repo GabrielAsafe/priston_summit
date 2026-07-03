@@ -75,3 +75,5 @@ extern HWND hwnd;
 extern smCHAR_INFO *sinChar;
 extern smCHAR_INFO sinCharDisplay;
 extern int sinbaram_Stop;
+
+

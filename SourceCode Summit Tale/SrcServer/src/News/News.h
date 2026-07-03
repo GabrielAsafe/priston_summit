@@ -14,3 +14,5 @@ public:
 	void msgNotice();
 	void msgPlayerLogado(rsPLAYINFO *newPlayer); // Msg informando quem logou
 };
+
+

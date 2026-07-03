@@ -1366,3 +1366,7 @@ void CJpeg::PutEOI(HFILE hFile)
 	_lwrite(hFile, (LPSTR)&Marker, 2);
 
 }
+
+
+
+

@@ -351,24 +351,24 @@ int HoOpening::DebugModeLoadFieldInfo(void)
 		p = GetWord(decode, line);
 
 
-		if (lstrcmp(decode, "*ÇÊµå¸í") == 0)
+		if (lstrcmp(decode, "*ï¿½Êµï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			Stage = smSTAGE3D_ReadASE(strBuff);
 			if (Stage)
 				Stage->Head = TRUE;
 		}
-		else if (lstrcmp(decode, "*Ä«¸Þ¶ó¸í") == 0)
+		else if (lstrcmp(decode, "*Ä«ï¿½Þ¶ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			s_AutoCamera.ReadASE_AutoCamera(strBuff);
 		}
-		else if (lstrcmp(decode, "*Ä«¸Þ¶ó¼Óµµ") == 0)
+		else if (lstrcmp(decode, "*Ä«ï¿½Þ¶ï¿½Óµï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			m_AutoCameraFrameTime = atoi(strBuff);
 		}
-		else if (lstrcmp(decode, "*¿öÇÁÇÁ·¹ÀÓ") == 0)
+		else if (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			int StFrame = atoi(strBuff);
@@ -378,12 +378,12 @@ int HoOpening::DebugModeLoadFieldInfo(void)
 
 			s_AutoCamera.SetWarpFrame(StFrame, EndFrame);
 		}
-		else if (lstrcmp(decode, "*ÁöÇü¹°Ã¼") == 0)
+		else if (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼") == 0)
 		{
 			p = GetWord(strBuff, p);
 			Stage->StageObject->AddObjectFile(strBuff);
 		}
-		else if (lstrcmp(decode, "*ÁöÇü¾Ö´Ï") == 0)
+		else if (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½") == 0)
 		{
 			p = GetWord(strBuff, p);
 			Stage->StageObject->AddObjectFile(strBuff, strBuff);
@@ -616,7 +616,7 @@ int HoOpening::Draw()
 	int v1 = Client_Version / 5000;
 	int v2 = (Client_Version / 10) % 100;
 	int v3 = Client_Version % 10;
-	/*wsprintf(Version, "Versão %d", Client_Version);*/
+	/*wsprintf(Version, "Versï¿½o %d", Client_Version);*/
 	wsprintf(Version, "%s%d.%d.%d", "Ver: ", v1, v2, v3);
 	SetFontTextColor(RGB(0, 0, 0));
 	dsTextLineOut(SETTINGSHANDLER->getWidth() - 60, 15, Version, strlen(Version));
@@ -1542,4 +1542,9 @@ int HoOpening::Main()
 
 	return 1;
 }
+
+
+
+
+
 

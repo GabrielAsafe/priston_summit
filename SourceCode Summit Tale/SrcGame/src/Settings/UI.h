@@ -32,3 +32,6 @@ public:
 
 
 #endif // GUI_SETTINGS_H
+
+
+

@@ -1145,3 +1145,7 @@ void CChatBox::OnItemLinkHover( ItemData * pcItemData, UI::Window_ptr pWindowHov
 	else
 		cItemLinkDataWrapper.bValid = FALSE;
 }
+
+
+
+

@@ -45,3 +45,5 @@ void CloseBackground();
 void CALLBACK TimeFunc( UINT uTimerID, UINT uMsg,
 						DWORD dwUser, DWORD dw1, DWORD dw2 );
 */
+
+

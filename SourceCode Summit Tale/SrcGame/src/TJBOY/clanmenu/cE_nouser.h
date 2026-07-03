@@ -38,3 +38,7 @@ class CLANEntity_nouser cClanMake;
 extern class CLANEntity_nouser cClanMake;
 
 #endif
+
+
+
+

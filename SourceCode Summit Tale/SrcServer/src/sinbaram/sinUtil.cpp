@@ -135,3 +135,5 @@ int haStringCenter(int PosiX, char *strbuff)
 
 	return rPosiX;
 }
+
+

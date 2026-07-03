@@ -1454,3 +1454,5 @@ DECLARE_INTERFACE_(IDirectPlay8NATResolver,IUnknown)
 
 #endif
 
+
+

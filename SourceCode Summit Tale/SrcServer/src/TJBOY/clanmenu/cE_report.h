@@ -50,3 +50,5 @@ extern class CLANEntity_report cClanReport;
 
 
 #endif
+
+

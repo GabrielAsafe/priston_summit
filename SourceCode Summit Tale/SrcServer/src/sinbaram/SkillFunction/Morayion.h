@@ -462,3 +462,5 @@ extern int Meteo_Damage[10][2];
 extern int Meteo_Damage_Percent[10];
 extern int Meteo_Area[10];
 extern int Meteo_UseMana[10];
+
+

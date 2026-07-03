@@ -1,45 +1,47 @@
 JOB_DATA_CODE	JobDataBase[] = {
 	
-	{	"Mechanician"	,"ƒƒJƒjƒVƒƒƒ“"		,JOB_CODE_MECHANICIAN		,	2	,BROOD_CODE_TEMPSKRON ,65,2,2,2,2,2,0},
-	{	"Fighter"		,"ƒt?ƒC??"		,JOB_CODE_FIGHTER		,	1	,BROOD_CODE_TEMPSKRON ,70,1,3,1,1,2,0},
-	{	"Pikeman"	,"ƒpƒCƒN?ƒ“"		,JOB_CODE_PIKEMAN		,	4	,BROOD_CODE_TEMPSKRON ,75,1,3,1,1,2,0},
-	{	"Archer"		,"ƒA??ƒƒ?"		,JOB_CODE_ARCHER		,	3	,BROOD_CODE_TEMPSKRON ,80,3,3,2,3,1,0},
+	{	"Mechanician"	,"ï¿½ï¿½ï¿½Jï¿½jï¿½Vï¿½ï¿½ï¿½ï¿½"		,JOB_CODE_MECHANICIAN		,	2	,BROOD_CODE_TEMPSKRON ,65,2,2,2,2,2,0},
+	{	"Fighter"		,"ï¿½t?ï¿½C??"		,JOB_CODE_FIGHTER		,	1	,BROOD_CODE_TEMPSKRON ,70,1,3,1,1,2,0},
+	{	"Pikeman"	,"ï¿½pï¿½Cï¿½N?ï¿½ï¿½"		,JOB_CODE_PIKEMAN		,	4	,BROOD_CODE_TEMPSKRON ,75,1,3,1,1,2,0},
+	{	"Archer"		,"ï¿½A??ï¿½ï¿½?"		,JOB_CODE_ARCHER		,	3	,BROOD_CODE_TEMPSKRON ,80,3,3,2,3,1,0},
 
-	{	"MechanicMaster"	,"ƒƒJƒjƒbƒN?ƒX??"	,JOB_CODE_MECHANICMASTER	,	2	,BROOD_CODE_TEMPSKRON },
-	{	"Warrior"		,"ƒEƒH?ƒŠƒA"		,JOB_CODE_WARRIOR		,	1	,BROOD_CODE_TEMPSKRON },
-	{	"Combatant"	,"ƒRƒ“ƒo?ƒ“ƒg"		,JOB_CODE_COMBATANT		,	4	,BROOD_CODE_TEMPSKRON },
-	{	"HunterMaster"	,"ƒnƒ“???ƒX??"		,JOB_CODE_HUNTERMASTER		,	3	,BROOD_CODE_TEMPSKRON },
+	{	"MechanicMaster"	,"ï¿½ï¿½ï¿½Jï¿½jï¿½bï¿½N?ï¿½X??"	,JOB_CODE_MECHANICMASTER	,	2	,BROOD_CODE_TEMPSKRON },
+	{	"Warrior"		,"ï¿½Eï¿½H?ï¿½ï¿½ï¿½A"		,JOB_CODE_WARRIOR		,	1	,BROOD_CODE_TEMPSKRON },
+	{	"Combatant"	,"ï¿½Rï¿½ï¿½ï¿½o?ï¿½ï¿½ï¿½g"		,JOB_CODE_COMBATANT		,	4	,BROOD_CODE_TEMPSKRON },
+	{	"HunterMaster"	,"ï¿½nï¿½ï¿½???ï¿½X??"		,JOB_CODE_HUNTERMASTER		,	3	,BROOD_CODE_TEMPSKRON },
 
-	{	"MetalLeader"	,"ƒ?ƒ‹ƒŠ???"		,JOB_CODE_METALLEADER		,	2	,BROOD_CODE_TEMPSKRON },
-	{	"Champion"	,"?ƒƒƒ“ƒsƒIƒ“"		,JOB_CODE_CHAMPION		,	1	,BROOD_CODE_TEMPSKRON },
-	{	"Lancer"		,"ƒ‰ƒ“ƒT?"		,JOB_CODE_LANCER		,	4	,BROOD_CODE_TEMPSKRON },
-	{	"Dion's Disciple"	,"ƒfƒBƒIƒ“‚Ì’íŽq"		,JOB_CODE_DIONS_DISCIPLE		,	3	,BROOD_CODE_TEMPSKRON },
+	{	"MetalLeader"	,"ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½???"		,JOB_CODE_METALLEADER		,	2	,BROOD_CODE_TEMPSKRON },
+	{	"Champion"	,"?ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½Iï¿½ï¿½"		,JOB_CODE_CHAMPION		,	1	,BROOD_CODE_TEMPSKRON },
+	{	"Lancer"		,"ï¿½ï¿½ï¿½ï¿½ï¿½T?"		,JOB_CODE_LANCER		,	4	,BROOD_CODE_TEMPSKRON },
+	{	"Dion's Disciple"	,"ï¿½fï¿½Bï¿½Iï¿½ï¿½ï¿½Ì’ï¿½q"		,JOB_CODE_DIONS_DISCIPLE		,	3	,BROOD_CODE_TEMPSKRON },
 
-	{	"Metalion"	,"ƒ?ƒŠƒIƒ“"		,JOB_CODE_HEAVYMETAL		,	2	,BROOD_CODE_TEMPSKRON },
-	{	"ImmortalWarrior"	,"ƒCƒ‚??ƒ‹ƒEƒH?ƒŠƒA"	,JOB_CODE_IMMORTALWARRIOR	,	1	,BROOD_CODE_TEMPSKRON },
-	{	"Lancelot"	,"ƒ‰ƒ“ƒXƒƒbƒg"		,JOB_CODE_LANCELOT		,	4	,BROOD_CODE_TEMPSKRON },
-	{	"Sagittarion"	,"ƒTƒW?ƒŠƒEƒX"		,JOB_CODE_SAGITTARION		,	3	,BROOD_CODE_TEMPSKRON },
+	{	"Metalion"	,"ï¿½ï¿½?ï¿½ï¿½ï¿½Iï¿½ï¿½"		,JOB_CODE_HEAVYMETAL		,	2	,BROOD_CODE_TEMPSKRON },
+	{	"ImmortalWarrior"	,"ï¿½Cï¿½ï¿½??ï¿½ï¿½ï¿½Eï¿½H?ï¿½ï¿½ï¿½A"	,JOB_CODE_IMMORTALWARRIOR	,	1	,BROOD_CODE_TEMPSKRON },
+	{	"Lancelot"	,"ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½bï¿½g"		,JOB_CODE_LANCELOT		,	4	,BROOD_CODE_TEMPSKRON },
+	{	"Sagittarion"	,"ï¿½Tï¿½W?ï¿½ï¿½ï¿½Eï¿½X"		,JOB_CODE_SAGITTARION		,	3	,BROOD_CODE_TEMPSKRON },
 
 	
-	{	"Knight"		,"ƒiƒCƒg"			,JOB_CODE_KNIGHT		,	6	,BROOD_CODE_MORAYION  , 190,2,2,2,1,2,0},
-	{	"Atalanta"	,"ƒA?ƒ‰ƒ“?"		,JOB_CODE_ATALANTA		,	5	,BROOD_CODE_MORAYION  , 200,2,2,2,2,1,0},
-	{	"Priestess"	,"ƒvƒŠƒXƒeƒBƒX"		,JOB_CODE_PRIEST			,	8	,BROOD_CODE_MORAYION  , 200,4,1,3,3,2,2},
-	{	"Magician"	,"?ƒWƒVƒƒƒ“"		,JOB_CODE_MAGICIAN		,	7	,BROOD_CODE_MORAYION  , 190,5,1,3,3,2,1},
+	{	"Knight"		,"ï¿½iï¿½Cï¿½g"			,JOB_CODE_KNIGHT		,	6	,BROOD_CODE_MORAYION  , 190,2,2,2,1,2,0},
+	{	"Atalanta"	,"ï¿½A?ï¿½ï¿½ï¿½ï¿½?"		,JOB_CODE_ATALANTA		,	5	,BROOD_CODE_MORAYION  , 200,2,2,2,2,1,0},
+	{	"Priestess"	,"ï¿½vï¿½ï¿½ï¿½Xï¿½eï¿½Bï¿½X"		,JOB_CODE_PRIEST			,	8	,BROOD_CODE_MORAYION  , 200,4,1,3,3,2,2},
+	{	"Magician"	,"?ï¿½Wï¿½Vï¿½ï¿½ï¿½ï¿½"		,JOB_CODE_MAGICIAN		,	7	,BROOD_CODE_MORAYION  , 190,5,1,3,3,2,1},
 
-	{	"Paladin"		,"ƒpƒ‰ƒfƒBƒ“"		,JOB_CODE_PALADIN		,	6	,BROOD_CODE_MORAYION },
-	{	"Valkyrie"	,"ƒoƒ‹ƒLƒŠ?"		,JOB_CODE_VALKYRIE		,	5	,BROOD_CODE_MORAYION },
-	{	"Saintess"	,"ƒZƒCƒ“ƒeƒBƒX"		,JOB_CODE_SAINTESS		,	8	,BROOD_CODE_MORAYION },
-	{	"Wizard"		,"ƒEƒBƒU?ƒh"		,JOB_CODE_WIZARD		,	7	,BROOD_CODE_MORAYION },
+	{	"Paladin"		,"ï¿½pï¿½ï¿½ï¿½fï¿½Bï¿½ï¿½"		,JOB_CODE_PALADIN		,	6	,BROOD_CODE_MORAYION },
+	{	"Valkyrie"	,"ï¿½oï¿½ï¿½ï¿½Lï¿½ï¿½?"		,JOB_CODE_VALKYRIE		,	5	,BROOD_CODE_MORAYION },
+	{	"Saintess"	,"ï¿½Zï¿½Cï¿½ï¿½ï¿½eï¿½Bï¿½X"		,JOB_CODE_SAINTESS		,	8	,BROOD_CODE_MORAYION },
+	{	"Wizard"		,"ï¿½Eï¿½Bï¿½U?ï¿½h"		,JOB_CODE_WIZARD		,	7	,BROOD_CODE_MORAYION },
 	
-	{	"HolyKnight"	,"ƒz?ƒŠ?ƒiƒCƒg"		,JOB_CODE_HOLYKNIGHT		,	6	,BROOD_CODE_MORAYION },
-	{	"Brunhild"	,"ƒuƒŠƒ…ƒ“ƒqƒ‹ƒg"		,JOB_CODE_BRUNHILD		,	5	,BROOD_CODE_MORAYION },
-	{	"Bishop"		,"ƒrƒVƒ‡ƒbƒv"		,JOB_CODE_BISHOP		,	8	,BROOD_CODE_MORAYION },
-	{	"RoyalWizard"	,"ƒƒCƒ„ƒ‹ƒEƒBƒU?ƒh	"	,JOB_CODE_ROYALKNIGHT		,	7	,BROOD_CODE_MORAYION },
+	{	"HolyKnight"	,"ï¿½z?ï¿½ï¿½?ï¿½iï¿½Cï¿½g"		,JOB_CODE_HOLYKNIGHT		,	6	,BROOD_CODE_MORAYION },
+	{	"Brunhild"	,"ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½qï¿½ï¿½ï¿½g"		,JOB_CODE_BRUNHILD		,	5	,BROOD_CODE_MORAYION },
+	{	"Bishop"		,"ï¿½rï¿½Vï¿½ï¿½ï¿½bï¿½v"		,JOB_CODE_BISHOP		,	8	,BROOD_CODE_MORAYION },
+	{	"RoyalWizard"	,"ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½Bï¿½U?ï¿½h	"	,JOB_CODE_ROYALKNIGHT		,	7	,BROOD_CODE_MORAYION },
 	
-	{	"SaintKnight"	,"ƒZƒCƒ“ƒgƒiƒCƒg"		,JOB_CODE_SAINTKNIGHT		,	6	,BROOD_CODE_MORAYION },
-	{	"Valhalla"	,"ƒoƒ‹ƒnƒ‰"		,JOB_CODE_VALHALLA		,	5	,BROOD_CODE_MORAYION },
-	{	"Celestial"	,"ƒZƒŒƒXƒeƒBƒAƒ‹"		,JOB_CODE_CELESTIAL		,	8	,BROOD_CODE_MORAYION },
-	{	"ArchMage"	,"ƒA?ƒNƒƒCƒW"		,JOB_CODE_ARCHMAGE		,	7	,BROOD_CODE_MORAYION },
+	{	"SaintKnight"	,"ï¿½Zï¿½Cï¿½ï¿½ï¿½gï¿½iï¿½Cï¿½g"		,JOB_CODE_SAINTKNIGHT		,	6	,BROOD_CODE_MORAYION },
+	{	"Valhalla"	,"ï¿½oï¿½ï¿½ï¿½nï¿½ï¿½"		,JOB_CODE_VALHALLA		,	5	,BROOD_CODE_MORAYION },
+	{	"Celestial"	,"ï¿½Zï¿½ï¿½ï¿½Xï¿½eï¿½Bï¿½Aï¿½ï¿½"		,JOB_CODE_CELESTIAL		,	8	,BROOD_CODE_MORAYION },
+	{	"ArchMage"	,"ï¿½A?ï¿½Nï¿½ï¿½ï¿½Cï¿½W"		,JOB_CODE_ARCHMAGE		,	7	,BROOD_CODE_MORAYION },
 
 	{	"","",0,0,0 }
 };
+
+

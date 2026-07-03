@@ -14,3 +14,5 @@ void TimeClear(void);
 DWORD GetSkipFrame(void);
 
 
+
+

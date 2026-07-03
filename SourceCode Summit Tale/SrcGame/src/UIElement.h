@@ -92,3 +92,6 @@ protected:
 	RECT						RectMove = { 0,0,0,0 };
 	int							iX, iY, iWidth, iHeight;
 };
+
+
+

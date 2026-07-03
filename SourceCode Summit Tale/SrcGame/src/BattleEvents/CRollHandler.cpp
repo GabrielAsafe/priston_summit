@@ -89,3 +89,7 @@ void CRollHandler::Resize()
 		}
 	}
 }
+
+
+
+

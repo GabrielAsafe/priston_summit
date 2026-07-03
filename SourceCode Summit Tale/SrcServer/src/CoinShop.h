@@ -28,3 +28,5 @@ private:
 };
 
 extern cCOINSHOP cCoinShop;
+
+

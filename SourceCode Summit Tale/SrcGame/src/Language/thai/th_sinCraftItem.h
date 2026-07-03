@@ -618,7 +618,7 @@
 {SIN_ADD_ICE,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"Frost Property¼º +5\r"},
+"Frost Propertyï¿½ï¿½ +5\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,0,5,0,0,0,0,0},
@@ -766,5 +766,9 @@
 {5,5,5,5,5,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0},
 "Organic Property +5\rPoison Property +5\rFrost Property +5\rFlame Property +5\rightning Property +5\r"},
+
+
+
+
 
 

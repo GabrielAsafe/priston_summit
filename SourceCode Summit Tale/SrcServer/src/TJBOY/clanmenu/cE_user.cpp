@@ -158,7 +158,7 @@ void CLANEntity_user::Main()
 
 			C_menuN2 = 1;
 		#ifdef CLAN_DEBUG
-			DebugMessage("CLANUSER_LEAVECLAN_MESSAGEEND¿¡¼­ WebDB.isPFlag(¾ÆÀÌµð : %s,Å¬·£ÀÌ¸§ : %s,Ä³¸¯ÅÍÀÌ¸§ : %s,°ÔÀÓ¼­¹ö : %s,ÇÃ·¡±× : %s,0)", cldata.szID, cldata.name, cldata.ChaName, cldata.gserver, cldata.PFlag);
+			DebugMessage("CLANUSER_LEAVECLAN_MESSAGEENDï¿½ï¿½ï¿½ï¿½ WebDB.isPFlag(ï¿½ï¿½ï¿½Ìµï¿½ : %s,Å¬ï¿½ï¿½ï¿½Ì¸ï¿½ : %s,Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ : %s,ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ : %s,ï¿½Ã·ï¿½ï¿½ï¿½ : %s,0)", cldata.szID, cldata.name, cldata.ChaName, cldata.gserver, cldata.PFlag);
 		#endif
 			break;
 			case 1:
@@ -172,7 +172,7 @@ void CLANEntity_user::Main()
 				cClanReport.InitMsg(szErrorMsg);
 				C_menuN2 = -1;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLANUSER_LEAVECLAN_MESSAGEEND¿¡¼­ »ðÀÔ½ÇÆÐ");
+				DebugMessage("CLANUSER_LEAVECLAN_MESSAGEENDï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 				case 1:
@@ -276,7 +276,7 @@ void CLANEntity_user::Main()
 					C_menuN2 = -1;
 				}
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLANUSER_LEAVECLAN_MESSAGEEND¿¡¼­ Á¤»óÀûÀ¸·Î Ã³¸®");
+				DebugMessage("CLANUSER_LEAVECLAN_MESSAGEENDï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½");
 			#endif
 
 				break;
@@ -291,7 +291,7 @@ void CLANEntity_user::Main()
 					cClanReport.InitMsg(szErrorMsg);
 					C_menuN2 = -1;
 				#ifdef CLAN_DEBUG
-					DebugMessage("CLANUSER_LEAVECLAN_MESSAGEEND¿¡¼­ µðÆúÆ®¿¡·¯");
+					DebugMessage("CLANUSER_LEAVECLAN_MESSAGEENDï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½");
 				#endif
 				}
 				break;
@@ -391,7 +391,7 @@ void CLANEntity_user::Main()
 
 			C_menuN2 = 1;
 		#ifdef CLAN_DEBUG
-			DebugMessage("CLANUSER_LEAVECLAN_MESSAGEEND¿¡¼­ WebDB.isPFlag(¾ÆÀÌµð : %s,Å¬·£ÀÌ¸§ : %s,Ä³¸¯ÅÍÀÌ¸§ : %s,°ÔÀÓ¼­¹ö : %s,ÇÃ·¡±× : %s,0)", cldata.szID, cldata.name, cldata.ChaName, cldata.gserver, cldata.PFlag);
+			DebugMessage("CLANUSER_LEAVECLAN_MESSAGEENDï¿½ï¿½ï¿½ï¿½ WebDB.isPFlag(ï¿½ï¿½ï¿½Ìµï¿½ : %s,Å¬ï¿½ï¿½ï¿½Ì¸ï¿½ : %s,Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ : %s,ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ : %s,ï¿½Ã·ï¿½ï¿½ï¿½ : %s,0)", cldata.szID, cldata.name, cldata.ChaName, cldata.gserver, cldata.PFlag);
 		#endif
 			break;
 			case 1:
@@ -405,7 +405,7 @@ void CLANEntity_user::Main()
 				cClanReport.InitMsg(szErrorMsg);
 				C_menuN2 = -1;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLANUSER_LEAVECLAN_MESSAGEEND¿¡¼­ »ðÀÔ½ÇÆÐ");
+				DebugMessage("CLANUSER_LEAVECLAN_MESSAGEENDï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 				case 1:
@@ -507,7 +507,7 @@ void CLANEntity_user::Main()
 					C_menuN2 = -1;
 				}
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLANUSER_LEAVECLAN_MESSAGEEND¿¡¼­ Á¤»óÀûÀ¸·Î Ã³¸®");
+				DebugMessage("CLANUSER_LEAVECLAN_MESSAGEENDï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½");
 			#endif
 
 				break;
@@ -522,7 +522,7 @@ void CLANEntity_user::Main()
 					cClanReport.InitMsg(szErrorMsg);
 					C_menuN2 = -1;
 				#ifdef CLAN_DEBUG
-					DebugMessage("CLANUSER_LEAVECLAN_MESSAGEEND¿¡¼­ µðÆúÆ®¿¡·¯");
+					DebugMessage("CLANUSER_LEAVECLAN_MESSAGEENDï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½");
 				#endif
 				}
 				break;
@@ -875,7 +875,7 @@ void CLANEntity_user::Main()
 
 			WebDB.Secession(cldata.szID, cldata.gserver, cldata.ChaName, cldata.name);
 		#ifdef CLAN_DEBUG
-			DebugMessage("CLAN_RECONF_SECESSION¿¡¼­ WebDB.Secession(¾ÆÀÌµð : %s,°ÔÀÓ¼­¹ö : %s,Ä³¸¯ÅÍÀÌ¸§ : %s,Å¬·£ÀÌ¸§ : %s);", cldata.szID, cldata.gserver, cldata.ChaName, cldata.name);
+			DebugMessage("CLAN_RECONF_SECESSIONï¿½ï¿½ï¿½ï¿½ WebDB.Secession(ï¿½ï¿½ï¿½Ìµï¿½ : %s,ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ : %s,Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ : %s,Å¬ï¿½ï¿½ï¿½Ì¸ï¿½ : %s);", cldata.szID, cldata.gserver, cldata.ChaName, cldata.name);
 		#endif
 			C_menuN2 = 1;
 			break;
@@ -898,7 +898,7 @@ void CLANEntity_user::Main()
 				CLAN_ERROR_ret = CLAN_USER;
 				C_menuN2 = -1;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_RECONF_SECESSION¿¡¼­ ¸®ÅÏÄÚµå 0 Æ®·¢Àè¼Ç ¿À·ù");
+				DebugMessage("CLAN_RECONF_SECESSIONï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 0 Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 				case 3:
@@ -922,7 +922,7 @@ void CLANEntity_user::Main()
 
 
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_RECONF_SECESSION¿¡¼­ Å»Åð¼º°ø(%d)", ANSdata.ret_val);
+				DebugMessage("CLAN_RECONF_SECESSIONï¿½ï¿½ï¿½ï¿½ Å»ï¿½ð¼º°ï¿½(%d)", ANSdata.ret_val);
 			#endif
 
 			#ifdef VOICE_CHAT
@@ -947,7 +947,7 @@ void CLANEntity_user::Main()
 
 				C_menuN2 = -1;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_RECONF_SECESSION¿¡¼­ Å¬·£ÀÌ Á¸ÀçÇÏÁö ¾Ê°Å³ª Å¬·£ ÀåÀÌ ¾Æ´Ñ°æ¿ì ¶Ç´Â Å¬·£¿øÀÌ ¾Æ´Ñ°æ¿ì(%d)", ANSdata.ret_val);
+				DebugMessage("CLAN_RECONF_SECESSIONï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°Å³ï¿½ Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ñ°ï¿½ï¿½ ï¿½Ç´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ñ°ï¿½ï¿½(%d)", ANSdata.ret_val);
 			#endif
 
 				break;
@@ -962,7 +962,7 @@ void CLANEntity_user::Main()
 				CLAN_ERROR_ret = 255;
 				C_menuN2 = -1;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_RECONF_SECESSION¿¡¼­ Å»ÅðÇÏ·Á´Â ÀÚ°¡ ÇöÀç Å¬·£ÀÇ Å¬·£ÀåÀÏ °æ¿ì(%d)", ANSdata.ret_val);
+				DebugMessage("CLAN_RECONF_SECESSIONï¿½ï¿½ï¿½ï¿½ Å»ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½(%d)", ANSdata.ret_val);
 			#endif
 				break;
 				case 100:
@@ -976,7 +976,7 @@ void CLANEntity_user::Main()
 				CLAN_ERROR_ret = 255;
 				C_menuN2 = -1;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_RECONF_SECESSION¿¡¼­ ¸®ÅÏÄÚµå 100");
+				DebugMessage("CLAN_RECONF_SECESSIONï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 100");
 			#endif
 				break;
 				case ISAO_ERR_TCP_CONNECT:
@@ -988,7 +988,7 @@ void CLANEntity_user::Main()
 				cClanReport.InitMsg(szErrorMsg);
 				cClanReport.menuInit(C_menuN, clanszError_Msg.pos.x, clanszError_Msg.pos.y);
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_RECONF_SECESSION¿¡¼­ ¸®ÅÏÄÚµå 1004");
+				DebugMessage("CLAN_RECONF_SECESSIONï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 1004");
 			#endif
 				break;
 				default:
@@ -1005,7 +1005,7 @@ void CLANEntity_user::Main()
 					CLAN_ERROR_ret = CLAN_USER;
 					C_menuN2 = -1;
 				#ifdef CLAN_DEBUG
-					DebugMessage("CLAN_RECONF_SECESSION¿¡¼­ µðÆúÆ®¿¡·¯");
+					DebugMessage("CLAN_RECONF_SECESSIONï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½");
 				#endif
 				}
 				break;
@@ -1213,7 +1213,7 @@ void CLANEntity_user::Main()
 			WebDB.Resume();
 			WebDB.isPFlag(cldata.szID, cldata.name, cldata.ChaName, cldata.gserver, "100", "1");
 		#ifdef CLAN_DEBUG
-			DebugMessage("CLANUSER_RELEASE_FLAG¿¡¼­ WebDB.isPFlag(¾ÆÀÌµð,Å¬·£ÀÌ¸§ : %s,Ä³¸¯ÅÍÀÌ¸§ : %s,°ÔÀÓ¼­¹ö : %s,100,1)", cldata.szID, cldata.name, cldata.ChaName, cldata.gserver);
+			DebugMessage("CLANUSER_RELEASE_FLAGï¿½ï¿½ï¿½ï¿½ WebDB.isPFlag(ï¿½ï¿½ï¿½Ìµï¿½,Å¬ï¿½ï¿½ï¿½Ì¸ï¿½ : %s,Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ : %s,ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ : %s,100,1)", cldata.szID, cldata.name, cldata.ChaName, cldata.gserver);
 		#endif
 			C_menuN2 = 1;
 			break;
@@ -1229,7 +1229,7 @@ void CLANEntity_user::Main()
 
 				C_menuN2 = -1;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLANUSER_RELEASE_FLAG¿¡¼­ ÇÃ·¡±× »ðÀÔ½ÇÆÐ ¸®ÅÏÄÚµå 0");
+				DebugMessage("CLANUSER_RELEASE_FLAGï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 0");
 			#endif
 				break;
 				case 1:
@@ -1242,7 +1242,7 @@ void CLANEntity_user::Main()
 
 
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLANUSER_RELEASE_FLAG¿¡¼­ ÇÃ·¡±× »ðÀÔ¼º°ø 1");
+				DebugMessage("CLANUSER_RELEASE_FLAGï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ 1");
 			#endif
 
 				break;
@@ -1256,7 +1256,7 @@ void CLANEntity_user::Main()
 					cClanReport.menuInit(C_menuN, clanszError_Msg.pos.x, clanszError_Msg.pos.y);
 					C_menuN2 = -1;
 				#ifdef CLAN_DEBUG
-					DebugMessage("CLANUSER_RELEASE_FLAG¿¡¼­ µðÆúÆ®¿¡·¯");
+					DebugMessage("CLANUSER_RELEASE_FLAGï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½");
 				#endif
 				}
 				break;
@@ -1273,7 +1273,7 @@ void CLANEntity_user::Main()
 			WebDB.isPFlag(cldata.szID, cldata.name, cldata.ChaName, cldata.gserver, cldata.PFlag, "1");
 			C_menuN2 = 1;
 		#ifdef CLAN_DEBUG
-			DebugMessage("ISPFLAG_USER¿¡¼­ WebDB.isPFlag(¾ÆÀÌµð : %s,Å¬·£ÀÌ¸§ : %s,Ä³¸¯ÅÍÀÌ¸§ : %s,°ÔÀÓ¼­¹ö : %s,ÇÃ·¡±× : %s,1)", cldata.szID, cldata.name, cldata.ChaName, cldata.gserver, cldata.PFlag);
+			DebugMessage("ISPFLAG_USERï¿½ï¿½ï¿½ï¿½ WebDB.isPFlag(ï¿½ï¿½ï¿½Ìµï¿½ : %s,Å¬ï¿½ï¿½ï¿½Ì¸ï¿½ : %s,Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ : %s,ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ : %s,ï¿½Ã·ï¿½ï¿½ï¿½ : %s,1)", cldata.szID, cldata.name, cldata.ChaName, cldata.gserver, cldata.PFlag);
 		#endif
 			break;
 			case 1:
@@ -1287,7 +1287,7 @@ void CLANEntity_user::Main()
 				cClanReport.menuInit(C_menuN, clanszError_Msg.pos.x, clanszError_Msg.pos.y);
 				C_menuN2 = -1;
 			#ifdef CLAN_DEBUG
-				DebugMessage("ISPFLAG_USER¿¡¼­ ÇÃ·¡±× »ðÀÔ½ÇÆÐ ¸®ÅÏÄÚµå 0");
+				DebugMessage("ISPFLAG_USERï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 0");
 			#endif
 				break;
 				case 1:
@@ -1296,7 +1296,7 @@ void CLANEntity_user::Main()
 				C_menuN = CLAN_USER;
 				menuInit(C_menuN);
 			#ifdef CLAN_DEBUG
-				DebugMessage("ISPFLAG_USER¿¡¼­ ÇÃ·¡±× »ðÀÔ¼º°ø");
+				DebugMessage("ISPFLAG_USERï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½");
 			#endif
 				break;
 				default:
@@ -1309,7 +1309,7 @@ void CLANEntity_user::Main()
 					cClanReport.InitMsg(szErrorMsg);
 					cClanReport.menuInit(C_menuN, clanszError_Msg.pos.x, clanszError_Msg.pos.y);
 				#ifdef CLAN_DEBUG
-					DebugMessage("ISPFLAG_USER¿¡¼­ µðÆúÆ®¿¡·¯");
+					DebugMessage("ISPFLAG_USERï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½");
 				#endif
 				}
 				break;
@@ -1410,7 +1410,7 @@ void CLANEntity_user::Main()
 
 			WebDB.ReadClan(cldata.szID, cldata.gserver, cldata.ClanZang_Name);
 		#ifdef CLAN_DEBUG
-			DebugMessage("CLAN_USER_ReadDATA¿¡¼­ WebDB.ReadClan(¾ÆÀÌµð : %s,°ÔÀÓ¼­¹ö : %s,Ä³¸¯ÅÍÀÌ¸§ : %s)", cldata.szID, cldata.gserver, cldata.ClanZang_Name);
+			DebugMessage("CLAN_USER_ReadDATAï¿½ï¿½ï¿½ï¿½ WebDB.ReadClan(ï¿½ï¿½ï¿½Ìµï¿½ : %s,ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ : %s,Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ : %s)", cldata.szID, cldata.gserver, cldata.ClanZang_Name);
 		#endif
 			C_menuN2 = 1;
 			break;
@@ -1433,7 +1433,7 @@ void CLANEntity_user::Main()
 				CLAN_ERROR_ret = 255;
 				C_menuN2 = -1;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_USER_ReadDATA¿¡¼­ °¡ÀÔÇÑ Å¬·£ÀÌ ¾øÀ½ ¸®ÅÏÄÚµå 0");
+				DebugMessage("CLAN_USER_ReadDATAï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ 0");
 			#endif
 				break;
 				case 1:
@@ -1612,7 +1612,7 @@ void CLANEntity_user::Main()
 					C_menuN2 = -1;
 				}
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_USER_ReadDATA¿¡¼­ Á¤»óÀûÀ¸·Î Ã³¸®");
+				DebugMessage("CLAN_USER_ReadDATAï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½");
 			#endif
 
 
@@ -1627,7 +1627,7 @@ void CLANEntity_user::Main()
 				CLAN_ERROR_ret = CLAN_AllEnd;
 				C_menuN2 = -1;
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_USER_ReadDATA¿¡¼­ ¸®ÅÏÄÚµå100");
+				DebugMessage("CLAN_USER_ReadDATAï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½100");
 			#endif
 				break;
 				case ISAO_ERR_TCP_CONNECT:
@@ -1638,7 +1638,7 @@ void CLANEntity_user::Main()
 				cClanReport.InitMsg(szErrorMsg);
 				cClanReport.menuInit(C_menuN, clanszError_Msg.pos.x, clanszError_Msg.pos.y);
 			#ifdef CLAN_DEBUG
-				DebugMessage("CLAN_USER_ReadDATA¿¡¼­ ¼­¹ö¿¡ Á¢¼Ó ÇÒ¼ö ¾øÀ½");
+				DebugMessage("CLAN_USER_ReadDATAï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			#endif
 				break;
 
@@ -1651,7 +1651,7 @@ void CLANEntity_user::Main()
 
 					C_menuN2 = -1;
 				#ifdef CLAN_DEBUG
-					DebugMessage("CLAN_USER_ReadDATA¿¡¼­ µðÆúÆ®¿¡·¯");
+					DebugMessage("CLAN_USER_ReadDATAï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½");
 				#endif
 				}
 				break;
@@ -4152,5 +4152,7 @@ void CLANEntity_user::Draw()
 
 #endif
 }
+
+
 
 

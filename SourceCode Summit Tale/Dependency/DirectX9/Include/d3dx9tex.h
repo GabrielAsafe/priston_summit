@@ -1645,3 +1645,5 @@ HRESULT WINAPI
 
 #endif //__D3DX9TEX_H__
 
+
+

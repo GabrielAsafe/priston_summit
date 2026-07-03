@@ -359,13 +359,13 @@ VOID CProcess::SetSelectCha(char *id, char *chaname, char *clanname, DWORD clann
 			strncpy(m_userInfo.szConnServerName, szConnServerName, strlen(szConnServerName));
 
 
-			fd2("ÇÁ¸®½ºÅÏÅ¬¶ó: ¼­¹öÀÌ¸§  %s ", szConnServerName);
+			fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¬ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½  %s ", szConnServerName);
 		}
 		else
 		{
 
 			szConnServerName[15] = 0;
-			fd2("ÇÁ¸®½ºÅÏÅ¬¶ó: ¼­¹öÀÌ¸§ ÀÌ»ó????????????????????? %s ", szConnServerName);
+			fd2("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¬ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ì»ï¿½????????????????????? %s ", szConnServerName);
 		}
 
 		m_nStep = INSIDE_USERINFO;
@@ -531,3 +531,6 @@ VOID CProcess::SetClanChat(char *msg)
 
 
 }
+
+
+

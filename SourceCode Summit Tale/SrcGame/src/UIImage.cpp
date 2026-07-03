@@ -160,3 +160,7 @@ void UIImage::SetImage(char * path)
 		trueHeight = ImageDesc.Height;
 	}
 }
+
+
+
+

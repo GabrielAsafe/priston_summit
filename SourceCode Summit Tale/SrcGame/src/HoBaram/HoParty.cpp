@@ -731,11 +731,11 @@ void HoParty::DrawPartyMessage(int x, int y)
 
 
 		FontType = 2;
-		strcpy_s(strBuff, "Grupo");//ação
+		strcpy_s(strBuff, "Grupo");//aï¿½ï¿½o
 		GetFontTextExtentPoint(strBuff, strlen(strBuff), &size);
 		dsTextLineOut(BaseX + (115 - size.cx / 2), BaseY + 17, strBuff, strlen(strBuff));
 		FontType = 0;
-		strcpy_s(strBuff, "Pedido de grupo de");//ação
+		strcpy_s(strBuff, "Pedido de grupo de");//aï¿½ï¿½o
 		GetFontTextExtentPoint(strBuff, strlen(strBuff), &size);
 		dsTextLineOut(BaseX + (115 - size.cx / 2), BaseY + 50, strBuff, strlen(strBuff));
 
@@ -4369,5 +4369,9 @@ int HoEffectHitBoard::Draw()
 	}
 	return TRUE;
 }
+
+
+
+
 
 
