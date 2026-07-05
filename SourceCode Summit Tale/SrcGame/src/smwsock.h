@@ -1,7 +1,13 @@
 #ifndef	_SMWSOCK_HEADER
 #define	_SMWSOCK_HEADER
 
-#include "nettype.h"
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#include <winsock2.h>
+#include <windows.h>
+
+#include "NetType.h"
 
 
 #define _PS_TALE
@@ -10,7 +16,7 @@
 
 #define TCP_GAMEPORT		8180
 
-#include "Language\\language.h"
+#include "Language/language.h"
 #ifdef YWEENZY_PC	
 #define TCP_SERVPORT		10012
 #else
@@ -288,6 +294,8 @@ extern BYTE smwsock_EncodePacket_AsmCode[ENC_PACKET_ASM_SIZE];
 
 
 #endif
+
+
 
 
 

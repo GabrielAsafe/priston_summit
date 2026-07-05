@@ -1,18 +1,18 @@
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 
 #include "smwsock.h"
 #include "character.h"
 #include "avictrl.h"
 #include "playmain.h"
-#include "Sound\\dxwav.h"
+#include "Sound/Dxwav.h"
 #include "fileread.h"
 
 #include "particle.h"
 #include "netplay.h"
 
-#include "sinbaram\\sinlinkheader.h"
-#include "hobaram\\holinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
 
 #include "field.h"
 #include "effectsnd.h"
@@ -21,12 +21,12 @@
 #include "playsub.h"
 #include "resource.h"
 #include "drawsub.h"
-#include "skillsub.h"
-#include "Language\\language.h"
+#include "SkillSub.h"
+#include "Language/language.h"
 
-#include "Server\\onserver.h"
+#include "Server/onserver.h"
 
-#include "actiongame.h"
+#include "ActionGame.h"
 
 
 int ActionKeyAngle;

@@ -256,12 +256,12 @@
 #define HELPCONTENT_X        19
 #define HELPCONTENT_Y        56
 #define HELPCONTENT_CAP      20
-#define CLANCHIPHELPINF "image\\clanImage\\help\\ClanHelp.inf"
-#define CLANUSERHELPINF "image\\clanImage\\help\\ClanUserHelp.inf"
+#define CLANCHIPHELPINF "image//clanImage//help//ClanHelp.inf"
+#define CLANUSERHELPINF "image//clanImage//help//ClanUserHelp.inf"
 
 
 #define SAVEDATA_DIR	"savedata"
-#define CLANDATA_DIR   "savedata\\clanDATA"
+#define CLANDATA_DIR   "savedata//clanDATA"
 
 
 
@@ -382,7 +382,7 @@
 #define YDOWN					-2  
 #define REMOVE_ICON				20 
 #define WHR_ICON				30
-#define HELP1					"image\\Sinimage\\chipbutton\\help1.txt"
+#define HELP1					"image//Sinimage//chipbutton//help1.txt"
 #define HELPMSG_MAX				256
 #define CLANMARK_TXT_X           34
 #define CLANMARK_TXT_Y           10
@@ -1269,12 +1269,12 @@ int GetNoticeUrl(char *url);
 
 
 extern HWND    g_hwnd;
-/
-	: �Լ�  �� : HBITMAP MakeDIBSection(char *Path)
-	: �ϴ�  �� :
-: ��    �� : bmp�������о  DIB ������ ����� �ڵ��� �����Ѵ�.
-	: ��ȯ  �� :
-
+//
+//	: �Լ�  �� : HBITMAP MakeDIBSection(char *Path)
+//	: �ϴ�  �� :
+//: ��    �� : bmp�������о  DIB ������ ����� �ڵ��� �����Ѵ�.
+//	: ��ȯ  �� :
+//
 HBITMAP MakeDIBSection(DIBSectionBUF *Dibbuf)
 {
 	HANDLE hFile;

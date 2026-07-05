@@ -1,6 +1,6 @@
-#include "sinbaram\sinLinkHeader.h"
-#include "File\File.h"
-#include "server\OnServer.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "File/File.h"
+#include "server/onserver.h"
 
 
 
@@ -299,7 +299,7 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 						}
 					}
 
-					wsprintfA(comando, "copy \"C:\\inetpub\\wwwroot\\brnxcontenttags\\%s.bmp\" \"C:\\inetpub\\wwwroot\\ClanContent\\%s.bmp\"", Clanaux, codeant);
+					wsprintfA(comando, "copy /"C://inetpub//wwwroot//brnxcontenttags//%s.bmp/" /"C://inetpub//wwwroot//ClanContent//%s.bmp/"", Clanaux, codeant);
 					system(comando);
 
 					wsprintf(szQuery, "UPDATE [PristonDB].[dbo].[Tags] SET Slot='%d' WHERE [CodeIT]='%s'", 0, codeatt);

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "smLib3d\smType.h"
+#include "smLib3d/smType.h"
 
 
 class smPAT3D;

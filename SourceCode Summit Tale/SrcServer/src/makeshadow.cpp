@@ -1,5 +1,5 @@
 #include <windows.h>
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 
 
 BOOL CollisionLineVSPolygon(VECTOR* lpCollisionPoint, VECTOR* lpLineBegin, VECTOR* lpLineEnd,

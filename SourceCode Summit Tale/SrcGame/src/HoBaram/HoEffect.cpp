@@ -1,18 +1,18 @@
-#include "..\\particle.h"
-#include "HoBaram\\HoLinkHeader.h"
-#include "sinbaram\\sinLinkHeader.h"
+#include "../particle.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
 
-#include "HoBaram\\HoMinMax.h"
-#include "HoBaram\\HoNewParticle.h"
-#include "HoBaram\\HoNewParticleMgr.h"
+#include "HoBaram/HoMinMax.h"
+#include "HoBaram/HoNewParticle.h"
+#include "HoBaram/HoNewParticleMgr.h"
 
 #include "hoAssaParticleEffect.h"
 #include "AssaParticle.h"
-#include "..\\field.h"
+#include "../field.h"
 
-#include "HoBaram\\NewEffect\\HoEffectManager.h"
-#include "HoBaram\\NewEffect\\HoNewEffectFunction.h"
-#include "Settings\Settings.h"
+#include "HoBaram/NewEffect/HoEffectManager.h"
+#include "HoBaram/NewEffect/HoNewEffectFunction.h"
+#include "Settings/Settings.h"
 
 HoEffectObject::HoEffectObject()
 {
@@ -60,8 +60,8 @@ HoEtc2dPrimitive::~HoEtc2dPrimitive()
 
 int HoEtc2dPrimitive::Load()
 {
-	AnimationData.ImageLoad("Effect\\Etc\\Flame.ini");
-	AnimationData.SequenceLoad("Effect\\Etc\\Flame.ini");
+	AnimationData.ImageLoad("Effect//Etc//Flame.ini");
+	AnimationData.SequenceLoad("Effect//Etc//Flame.ini");
 
 
 	return TRUE;
@@ -3032,34 +3032,34 @@ void HoEffectMgr::Init()
 
 
 	int index = 0;
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\dust.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//dust.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	index++;
 
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\bubble.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//bubble.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	index++;
 
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\Red.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//Red.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	index++;
 
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\Blue.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//Blue.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	index++;
 
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\cc.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//cc.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	index++;
 
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\Fire.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//Fire.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	index++;
 
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\flare.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
-	index++;
-
-
-
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\bkh0.tga", 0, 0, 0, 0, SMMAT_BLEND_SHADOW);
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//flare.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	index++;
 
 
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\Red_KTJimsi.tga", 0, 0, 0, 0, SMMAT_BLEND_SHADOW);
+
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//bkh0.tga", 0, 0, 0, 0, SMMAT_BLEND_SHADOW);
+	index++;
+
+
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//Red_KTJimsi.tga", 0, 0, 0, 0, SMMAT_BLEND_SHADOW);
 	index++;
 
 
@@ -3067,8 +3067,8 @@ void HoEffectMgr::Init()
 	index = 0;
 	char buffer[256];
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\GameStart\\GameStart1.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\GameStart\\GameStart1.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//GameStart//GameStart1.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//GameStart//GameStart1.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3077,8 +3077,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\GroundPike\\GroundPike.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\GroundPIke\\GroundPike.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//GroundPike//GroundPike.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//GroundPIke//GroundPike.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3087,8 +3087,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\PhysicalAbsorb\\PhysicalAbsorb.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\PhysicalAbsorb\\PhysicalAbsorb.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//PhysicalAbsorb//PhysicalAbsorb.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//PhysicalAbsorb//PhysicalAbsorb.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3098,8 +3098,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\PikeWind\\bong.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\PikeWind\\bong.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//PikeWind//bong.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//PikeWind//bong.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3109,11 +3109,11 @@ void HoEffectMgr::Init()
 	index++;
 
 
-	PatObj[index] = smASE_ReadBone("Effect\\ObjAnimationData\\ScoutHawk\\Hawk-ani.ASE");
+	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//ScoutHawk//Hawk-ani.ASE");
 	smASE_SetPhysique(PatObj[index]);
 	index++;
 
-	PatObj[index] = smASE_Read("Effect\\ObjAnimationData\\ScoutHawk\\Hawk-ani.ASE", 0);
+	PatObj[index] = smASE_Read("Effect//ObjAnimationData//ScoutHawk//Hawk-ani.ASE", 0);
 	PatObj[index]->ZeroNormals();
 
 	smASE_SetPhysique(0);
@@ -3122,8 +3122,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\WindArrow\\WindArrow.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\WindArrow\\WindArrow.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//WindArrow//WindArrow.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//WindArrow//WindArrow.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3133,8 +3133,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\ArrowRage\\ArrowRage.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\ArrowRage\\ArrowRage.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//ArrowRage//ArrowRage.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//ArrowRage//ArrowRage.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3144,8 +3144,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\test\\test.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\test\\test.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//test//test.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//test//test.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3156,8 +3156,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\MechanicBomb\\MechanicBomb.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\MechanicBomb\\MechanicBomb.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MechanicBomb//MechanicBomb.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MechanicBomb//MechanicBomb.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3167,8 +3167,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\Roar\\Roar.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\Roar\\Roar.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Roar//Roar.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Roar//Roar.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3178,8 +3178,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\MonsterWeb\\WebShot.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\MonsterWeb\\WebShot.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterWeb//WebShot.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterWeb//WebShot.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3189,8 +3189,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\MonsterWeb\\WebHit.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\MonsterWeb\\WebHit.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterWeb//WebHit.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterWeb//WebHit.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3201,8 +3201,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\Avalanche\\avalanche.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\Avalanche\\avalanche.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Avalanche//avalanche.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Avalanche//avalanche.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3213,11 +3213,11 @@ void HoEffectMgr::Init()
 
 
 
-	PatObj[index] = smASE_ReadBone("Effect\\ObjAnimationData\\Falcon\\FalconAni.ase");
+	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//Falcon//FalconAni.ase");
 	smASE_SetPhysique(PatObj[index]);
 	index++;
 
-	PatObj[index] = smASE_Read("Effect\\ObjAnimationData\\Falcon\\FalconAni.ase", 0);
+	PatObj[index] = smASE_Read("Effect//ObjAnimationData//Falcon//FalconAni.ase", 0);
 	PatObj[index]->ZeroNormals();
 	smASE_SetPhysique(0);
 	PatAnimationEnd[index] = 210;
@@ -3229,8 +3229,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\BrutalSwing\\BrutalSwing1.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\BrutalSwing\\BrutalSwing1.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//BrutalSwing//BrutalSwing1.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//BrutalSwing//BrutalSwing1.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3241,8 +3241,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\BrutalSwing\\BrutalSwing2.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\BrutalSwing\\BrutalSwing2.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//BrutalSwing//BrutalSwing2.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//BrutalSwing//BrutalSwing2.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3253,8 +3253,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\MonsterHeadCutter\\HeadCutterHit1.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\MonsterHeadCutter\\HeadCutterHit1.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterHeadCutter//HeadCutterHit1.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterHeadCutter//HeadCutterHit1.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3269,8 +3269,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\MonsterHeadCutter\\HeadCutterHit2.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\MonsterHeadCutter\\HeadCutterHit2.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterHeadCutter//HeadCutterHit2.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterHeadCutter//HeadCutterHit2.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3282,8 +3282,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\OmiCron\\omicronHit1.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\OmiCron\\omicronHit1.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//OmiCron//omicronHit1.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//OmiCron//omicronHit1.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3291,8 +3291,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\Stygianlord\\StygianlordShot1.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\Stygianlord\\StygianlordShot1.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Stygianlord//StygianlordShot1.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Stygianlord//StygianlordShot1.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3301,8 +3301,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\Shadow\\ShadowShot1.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\Shadow\\ShadowShot1.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Shadow//ShadowShot1.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Shadow//ShadowShot1.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3315,18 +3315,18 @@ void HoEffectMgr::Init()
 
 
 
-	PatObj[index] = smASE_ReadBone("Effect\\ObjAnimationData\\Falcon\\FalconAni.ase");
+	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//Falcon//FalconAni.ase");
 	smASE_SetPhysique(PatObj[index]);
 	index++;
 
-	PatObj[index] = smASE_Read("Effect\\ObjAnimationData\\GoldenFalcon\\g-falcon01.ASE", 0);
+	PatObj[index] = smASE_Read("Effect//ObjAnimationData//GoldenFalcon//g-falcon01.ASE", 0);
 	PatObj[index]->ZeroNormals();
 
 	smASE_SetPhysique(0);
 	PatAnimationEnd[index] = 120;
 
 	smASE_SetPhysique(NULL);
-	PatMissile = smASE_Read("Effect\\ObjAnimationData\\Missile\\Mis.ase");
+	PatMissile = smASE_Read("Effect//ObjAnimationData//Missile//Mis.ase");
 	PatMissile->ZeroNormals();
 
 	ReadTextures();
@@ -11823,91 +11823,91 @@ int InitEffect()
 {
 	AnimDataMgr.Init();
 
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Hit1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Hit21.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Hit22.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\LevelUp1Left.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\LevelUp1Right.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\LevelUpParticle1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Potion1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Potion2.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Potion3.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Blood1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Gas1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\dust1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Light1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Bandi1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Pung1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Tail1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\LevelUp.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillExtremeShieldBig.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillExtremeShieldSmall.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillExtremeShieldParticle.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Meteo1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\ParticleMeteo1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillUp1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Return1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\ParticleMeteo2.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\PhysicalAbsorbParticle1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\ScoutHawkGate.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\ScoutHawkLight.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\AutomationLeft.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\AutomationRight.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\MaximizeLeft.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\MaximizeRight.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillRageofZecram1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\ReturnParticle1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Hit1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Hit21.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Hit22.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//LevelUp1Left.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//LevelUp1Right.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//LevelUpParticle1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Potion1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Potion2.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Potion3.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Blood1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Gas1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//dust1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Light1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Bandi1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Pung1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Tail1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//LevelUp.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillExtremeShieldBig.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillExtremeShieldSmall.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillExtremeShieldParticle.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Meteo1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//ParticleMeteo1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillUp1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Return1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//ParticleMeteo2.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//PhysicalAbsorbParticle1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//ScoutHawkGate.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//ScoutHawkLight.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//AutomationLeft.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//AutomationRight.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//MaximizeLeft.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//MaximizeRight.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillRageofZecram1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//ReturnParticle1.ini");
 
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillMechanicBombDust1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillPerfectAim1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillPerfectAim2.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillPhysicalAbsorb1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\PhysicalAbsorbParticle2.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Shield1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Shield2.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\ShieldParticle1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\FireParticle1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillMechanicBombDust1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillPerfectAim1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillPerfectAim2.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillPhysicalAbsorb1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//PhysicalAbsorbParticle2.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Shield1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Shield2.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//ShieldParticle1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//FireParticle1.ini");
 
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillSpark1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillSpark2.ini");
-
-
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillRoarParticle1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillRoarLineParticle1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Power1.ini");
-
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\MonsterWeb1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\MonsterWebHit1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\MonsterWebHit2.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\MonsterImp1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\MonsterMephit1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\MonsterMephit2.ini");
-
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillTripleImpactParticle.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillTripleImpactHit.ini");
-
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillRoundImpactParticle.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillRoundImpactHit.ini");
-
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillTornado.ini");
-
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillZecram1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Blur1.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\ContinueStun.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\DamageParticle1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillSpark1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillSpark2.ini");
 
 
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillRoarParticle1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillRoarLineParticle1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Power1.ini");
 
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillTornado2.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\ParticleMeteo3.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\Power2.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\FireParticle2.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\blackhole.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\FireParticle1_blh.ini");
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\ParticleMeteo1_blue.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//MonsterWeb1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//MonsterWebHit1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//MonsterWebHit2.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//MonsterImp1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//MonsterMephit1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//MonsterMephit2.ini");
+
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillTripleImpactParticle.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillTripleImpactHit.ini");
+
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillRoundImpactParticle.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillRoundImpactHit.ini");
+
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillTornado.ini");
+
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillZecram1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Blur1.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//ContinueStun.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//DamageParticle1.ini");
+
+
+
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillTornado2.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//ParticleMeteo3.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//Power2.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//FireParticle2.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//blackhole.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//FireParticle1_blh.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//ParticleMeteo1_blue.ini");
 
 #ifdef Making_SKILL_TORNADO3
-	AnimDataMgr.ImageLoad("Effect\\ImageData\\SkillTornado3.ini");
+	AnimDataMgr.ImageLoad("Effect//ImageData//SkillTornado3.ini");
 #endif
 
 
@@ -11915,101 +11915,101 @@ int InitEffect()
 
 
 
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\NormalHit1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\CriticalHit1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\CriticalHit21.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\CriticalHit22.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\LevelUp1Left.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\LevelUp1Right.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\LevelUpParticle1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Potion1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Potion2.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Potion3.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Blood1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Gas1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\dust1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Light1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Bandi1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\PotionLight1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\LevelUpLight1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Pung1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Tail1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Tail2.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\LevelUp.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillExtremeShieldBig.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillExtremeShieldSmall.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillExtremeShieldParticle.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Meteo1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\ParticleMeteo1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillUp1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Return1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\ParticleMeteo2.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\PhysicalAbsorbParticle1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\ScoutHawkGate.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//NormalHit1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//CriticalHit1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//CriticalHit21.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//CriticalHit22.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//LevelUp1Left.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//LevelUp1Right.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//LevelUpParticle1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Potion1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Potion2.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Potion3.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Blood1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Gas1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//dust1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Light1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Bandi1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//PotionLight1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//LevelUpLight1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Pung1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Tail1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Tail2.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//LevelUp.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillExtremeShieldBig.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillExtremeShieldSmall.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillExtremeShieldParticle.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Meteo1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//ParticleMeteo1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillUp1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Return1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//ParticleMeteo2.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//PhysicalAbsorbParticle1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//ScoutHawkGate.ini");
 
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\AutomationLeft.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\AutomationRight.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\MaximizeLeft.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\MaximizeRight.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillRageofZecram1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\ReturnParticle1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//AutomationLeft.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//AutomationRight.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//MaximizeLeft.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//MaximizeRight.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillRageofZecram1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//ReturnParticle1.ini");
 
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillMechanicBombDust1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillPerfectAim1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillPerfectAim2.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillPhysicalAbsorb1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\PhysicalAbsorbParticle2.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillUp2.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\ScoutHawkLight.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Shield1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Shield2.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\ShieldParticle1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\MechanicBomb1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\MechanicBomb2.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\FireParticle1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillSpark1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillSpark2.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillSpark3.ini");
-
-
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillRoarParticle1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillRoarLineParticle1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Power1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\MonsterWeb1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\MonsterWebHit1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\MonsterWebHit2.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\MonsterImp1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\MonsterMephit1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\MonsterMephit2.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillMechanicBombDust1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillPerfectAim1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillPerfectAim2.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillPhysicalAbsorb1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//PhysicalAbsorbParticle2.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillUp2.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//ScoutHawkLight.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Shield1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Shield2.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//ShieldParticle1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//MechanicBomb1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//MechanicBomb2.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//FireParticle1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillSpark1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillSpark2.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillSpark3.ini");
 
 
-
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillTripleImpactParticle.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillTripleImpactHit.ini");
-
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillRoundImpactParticle.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillRoundImpactHit.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillTornado.ini");
-
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillZecram1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Blur1.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillArrowOfRage1.ini");
-
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\ContinueStun.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\DamageParticle1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillRoarParticle1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillRoarLineParticle1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Power1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//MonsterWeb1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//MonsterWebHit1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//MonsterWebHit2.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//MonsterImp1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//MonsterMephit1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//MonsterMephit2.ini");
 
 
 
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillTornado2.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\ParticleMeteo3.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\Power2.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\FireParticle2.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\blackhole.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\FireParticle1_blh.ini");
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\ParticleMeteo1_blue.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillTripleImpactParticle.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillTripleImpactHit.ini");
+
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillRoundImpactParticle.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillRoundImpactHit.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillTornado.ini");
+
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillZecram1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Blur1.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillArrowOfRage1.ini");
+
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//ContinueStun.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//DamageParticle1.ini");
+
+
+
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillTornado2.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//ParticleMeteo3.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//Power2.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//FireParticle2.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//blackhole.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//FireParticle1_blh.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//ParticleMeteo1_blue.ini");
 
 #ifdef Making_SKILL_TORNADO3
-	AnimDataMgr.SequenceLoad("Effect\\AnimationData\\SkillTornado3.ini");
+	AnimDataMgr.SequenceLoad("Effect//AnimationData//SkillTornado3.ini");
 #endif
 
 	if(SETTINGSHANDLER->getTextureQuality() == 0 ||
@@ -12029,391 +12029,391 @@ int InitEffect()
 	g_NewParticleMgr.Clear();
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\water.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\NewCharacter.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FuryHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Fire.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\HeadCutterHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\leafDown.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\HulkHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\HulkHit2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\HulkHit3.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\OmiCronHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\DMachineParticle1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\DMachineParticle2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusShot1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusShot2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusShot3.part");
-
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusHit2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusHit3.part");
-
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\StygianlordHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\StygianlordParticle1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\StygianlordParticle2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\StygianlordParticle3.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ShadowParticle1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ShadowParticle2.part");
-
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ShadowMagic1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//water.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//NewCharacter.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FuryHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Fire.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//HeadCutterHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//leafDown.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//HulkHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//HulkHit2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//HulkHit3.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//OmiCronHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//DMachineParticle1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//DMachineParticle2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusShot1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusShot2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusShot3.part");
+
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusHit2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusHit3.part");
+
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//StygianlordHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//StygianlordParticle1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//StygianlordParticle2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//StygianlordParticle3.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ShadowParticle1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ShadowParticle2.part");
+
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ShadowMagic1.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusMagic1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusMagic2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusMagic3.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusMagic1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusMagic2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusMagic3.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusMagicAttack1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusMagicAttack2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusMagicAttack3.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusMagicAttack1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusMagicAttack2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusMagicAttack3.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusState1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusState2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SerqbusState3.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusState1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusState2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SerqbusState3.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Aging.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\SoulSuckerHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\DeadLayStart1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\DeadLayHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\DivineLightning.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ColumnOfWater1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ColumnOfWater2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Aging.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//SoulSuckerHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//DeadLayStart1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//DeadLayHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//DivineLightning.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ColumnOfWater1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ColumnOfWater2.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\EnchantWeaponJang.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\EnchantWeaponMember.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\EnchantWeaponFire1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\EnchantWeaponFire2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\EnchantWeaponFire3.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//EnchantWeaponJang.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//EnchantWeaponMember.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//EnchantWeaponFire1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//EnchantWeaponFire2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//EnchantWeaponFire3.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\EnchantWeaponIce.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\EnchantWeaponLight.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//EnchantWeaponIce.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//EnchantWeaponLight.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\HolyValor.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\DrasticSpirit.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//HolyValor.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//DrasticSpirit.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\TwistJavelin1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\TwistJavelin2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//TwistJavelin1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//TwistJavelin2.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FireJavelinFire.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\LightHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\LightStart1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireJavelinFire.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//LightHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//LightStart1.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FireHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FireHIt2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireHIt2.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FireBigHIt1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Windy1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Windy2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Piercing1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceShot1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FireShot1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FireBigShot1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireBigHIt1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Windy1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Windy2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Piercing1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceShot1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireShot1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireBigShot1.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FuryEye.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FuryRespawn.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FuryRespawnMouse.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FuryRespawnDown.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FuryHit2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\StoneGolemHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FuryEye.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FuryRespawn.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FuryRespawnMouse.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FuryRespawnDown.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FuryHit2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//StoneGolemHit1.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\HeavyGoblin.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\HeavyGoblinHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//HeavyGoblin.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//HeavyGoblinHit1.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\MonsterHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\MonsterHit2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\DoomGuard.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\DoomGuardBig.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\DoomGuardBigHit.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//MonsterHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//MonsterHit2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//DoomGuard.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//DoomGuardBig.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//DoomGuardBigHit.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\CaveMummy.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ThornCrawler.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Snail.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Ratoo.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\RatooHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//CaveMummy.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ThornCrawler.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Snail.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Ratoo.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//RatooHit1.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\EvilMaple.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\EvilPlant.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Opening.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//EvilMaple.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//EvilPlant.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Opening.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ClanMonster1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ClanMonster2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ClanMonster3.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ClanMonster4.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ClanMonster1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ClanMonster2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ClanMonster3.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ClanMonster4.part");
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FuryHit1_b.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FuryHit2_b.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FuryHit1_g.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FuryHit2_g.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FuryHit1_b.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FuryHit2_b.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FuryHit1_g.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FuryHit2_g.part");
 
 
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Skill2FighterRoar1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill2FighterRoar1.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\AgingBody4.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//AgingBody4.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Skill3Hit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Skill3Hit2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Skill3Hit3.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Skill3Hit4.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Skill3Hit5.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Skill3Hit6.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3Hit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3Hit2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3Hit3.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3Hit4.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3Hit5.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3Hit6.part");
 
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3FighterConcentration1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3FighterSwiftAxe1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3FighterBoneSmash1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3FighterConcentration1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3FighterSwiftAxe1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3FighterBoneSmash1.part");
 
 
 
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3PikeManVenomSpear.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3PikeManVenomSpear1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3PikeManBladeOfBlaze.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3PikeManBladeOfBlazeHit.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3PikeVanish1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PikeManVenomSpear.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PikeManVenomSpear1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PikeManBladeOfBlaze.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PikeManBladeOfBlazeHit.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PikeVanish1.part");
 
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3ArcherBombShotHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3ArcherBombShotHit2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3ArcherBombShot1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3ArcherBombShotHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3ArcherBombShotHit2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3ArcherBombShot1.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3ArcherGoldenFalcon1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3ArcherGoldenFalcon2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3ArcherGoldenFalcon1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3ArcherGoldenFalcon2.part");
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3MechanicianMetalArmor.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3MechanicianSparkShield.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3MechanicianSparkShield1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MechanicianMetalArmor.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MechanicianSparkShield.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MechanicianSparkShield1.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3MagicianEngrgyShield.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3MagicianEngrgyShield1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3MagicianSpiritElemental.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3MagicianDiastrophism1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3MagicianDancingSwordFire1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MagicianEngrgyShield.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MagicianEngrgyShield1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MagicianSpiritElemental.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MagicianDiastrophism1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MagicianDancingSwordFire1.part");
 
 
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3MagicianDancingSwordIce1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3MagicianSpiritElementalExt1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MagicianDancingSwordIce1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MagicianSpiritElementalExt1.part");
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3KnightHolyIncantation1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3KnightHolyIncantation2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3KnightHolyIncantationHand1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3KnightHolyIncantationHand2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightHolyIncantation1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightHolyIncantation2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightHolyIncantationHand1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightHolyIncantationHand2.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3KnightFlameBrandish.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3KnightFlameBrandish1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3KnightDivineInhalation1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3KnightDivineInhalation2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightFlameBrandish.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightFlameBrandish1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightDivineInhalation1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightDivineInhalation2.part");
 
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3PriestessResurrection1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3PriestessResurrection2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3PriestessResurrection3.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessResurrection1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessResurrection2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessResurrection3.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3PriestessVigorBall1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3PriestessVigorBall2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3PriestessVigorBallHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessVigorBall1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessVigorBall2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessVigorBallHit1.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3PriestessExtinction1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3PriestessExtinction2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3PriestessVirtualLifeMember.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessExtinction1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessExtinction2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessVirtualLifeMember.part");
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3AtalantaTriumphOfValhalla.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill3AtalantaSplitJavelin1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3AtalantaTriumphOfValhalla.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3AtalantaSplitJavelin1.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\toppvp.part");//ReiPvP
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\warmode.part");//WarMode
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//toppvp.part");//ReiPvP
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//warmode.part");//WarMode
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\MonsterPigonFire1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\MonsterIron1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterChainGolem1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterChainGolem2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterRunicGuardian.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterRunicGuardianLight1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterRunicGuardianLight2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterRunicGuardianSkillHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MonsterPigonFire1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MonsterIron1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterChainGolem1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterChainGolem2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardian.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianLight1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianLight2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianSkillHit1.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterMountainHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterOmuHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterMountainHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterOmuHit1.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterBombHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterBombHit2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterBombHit3.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterBombHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterBombHit2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterBombHit3.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterHyperDead.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterDeadZoneDead.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterHyperDead.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterDeadZoneDead.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterRunicGuardianHand.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterRunicGuardianShot1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterRunicGuardianBossWeapon1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterRunicGuardianBossWeapon2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterRunicGuardianBossHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterRunicGuardianBossSkill1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterRunicGuardianBossJin1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterRunicGuardianBossJin2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterRunicGuardianLight3.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianHand.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianShot1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianBossWeapon1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianBossWeapon2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianBossHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianBossSkill1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianBossJin1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianBossJin2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianLight3.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Shelltom.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\ShelltomHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\ShelltomUp1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\ShelltomUp2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\ShellTomWeaponHit.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterSadnessShot.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\IronMonsterMorgon.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Shelltom.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//ShelltomHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//ShelltomUp1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//ShelltomUp2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//ShellTomWeaponHit.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterSadnessShot.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterMorgon.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\ClassUpWeapon1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\ClassUpWeapon2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//ClassUpWeapon1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//ClassUpWeapon2.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\snow.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\TerrainFire.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Bam.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//snow.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//TerrainFire.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Bam.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\MusPell.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\MusPellHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\MusPellHand.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MusPell.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MusPellHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MusPellHand.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\GodlyShield.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\magneticlight.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\magneticShot.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//GodlyShield.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//magneticlight.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//magneticShot.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill4Betserker.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill4FrostJavelin.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill4ImpulsionLight.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill4ImpulsionHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill4CelestialChainLightingLight.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill4PhoenixShot.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\FireElementalHit.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\MonsterPigonFireTail.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\Skill4RegenerationField.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill4Betserker.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill4FrostJavelin.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill4ImpulsionLight.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill4ImpulsionHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill4CelestialChainLightingLight.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill4PhoenixShot.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//FireElementalHit.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MonsterPigonFireTail.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill4RegenerationField.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\MuspellStart.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\script\\MuspellEnd.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MuspellStart.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MuspellEnd.part");
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceColdEyeStart1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceColdEyeHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceColdEyeSkill1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceMisticSpinelSkill1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceAceintSkill2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceGolemHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceFrozenMistBody1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceBoltHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceBallHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceGoblinHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceGoblin.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceColdEyeStart1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceColdEyeHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceColdEyeSkill1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceMisticSpinelSkill1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceAceintSkill2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceGolemHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceFrozenMistBody1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceBoltHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceBallHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceGoblinHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceGoblin.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceValentoPiercing.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceValentoBrandish.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceValentoJoint.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceValentoBody.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceValentoLEye.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceValentoREye.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceValentoHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceValentoHit2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceValentoPiercing.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceValentoBrandish.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceValentoJoint.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceValentoBody.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceValentoLEye.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceValentoREye.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceValentoHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceValentoHit2.part");
 
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ChaosKaraNormal1_1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ChaosKaraNormal1_2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ChaosKaraMeteo.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ChaosKaraMeteoHit.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ChaosKaraStaff.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ChaosKaraSkill.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ChaosKaraSkillUser.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ChaosKaraNormal1_1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ChaosKaraNormal1_2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ChaosKaraMeteo.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ChaosKaraMeteoHit.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ChaosKaraStaff.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ChaosKaraSkill.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ChaosKaraSkillUser.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ParkSpiderTrooper.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ParkSpiderTrooper.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ParkStingRay.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ParkStingRay.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ParkPosion.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ParkPosion.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ParkMummy.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\ParkMummyHit.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ParkMummy.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ParkMummyHit.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\DevilBirdNormal.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\DevilBirdSkillHit.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//DevilBirdNormal.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//DevilBirdSkillHit.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FireCrackerNormal.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FireCrackerHeart.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FireCrackerMoon.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FireCrackerStar.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FireCrackerAll.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireCrackerNormal.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireCrackerHeart.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireCrackerMoon.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireCrackerStar.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireCrackerAll.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FireCrackerBombHeart.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FireCrackerBombMoon.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\FireCrackerBombStar.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireCrackerBombHeart.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireCrackerBombMoon.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireCrackerBombStar.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\Firesnow.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceKelvezuBossJin1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceKelvezuBossMouseJin1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceKelvezuHit.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceKelvezuNormal1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceKelvezuNormal2.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceKelvezuNormal3.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceKelvezuSkill1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\IceKelvezuSkill2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Firesnow.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceKelvezuBossJin1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceKelvezuBossMouseJin1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceKelvezuHit.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceKelvezuNormal1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceKelvezuNormal2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceKelvezuNormal3.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceKelvezuSkill1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceKelvezuSkill2.part");
 	
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\LostMonsterHellHoundAttack.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\LostMonsterDarkMageHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\LostMonsterDarkMageDead.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//LostMonsterHellHoundAttack.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//LostMonsterDarkMageHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//LostMonsterDarkMageDead.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\TerrainFireSmall.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//TerrainFireSmall.part");
 		
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\TopLevel.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\NewPlayer.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//TopLevel.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//NewPlayer.part");
 	
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\DefenseInfo.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\BlockInfo.part");
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\EvadeInfo.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//DefenseInfo.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//BlockInfo.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//EvadeInfo.part");
 
-	g_NewParticleResMgr.LoadScript("Effect\\Particle\\Script\\PlayerVip.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//PlayerVip.part");
 
 #ifdef _EFFECT_RES_LOADING_
 	if(HoEffectResLoadingFlag)
 	{
-		g_NewParticleResMgr.SearchingAddTexture("Effect\\Particle\\*.*");
+		g_NewParticleResMgr.SearchingAddTexture("Effect//Particle//*.*");
 	}
 #endif
 

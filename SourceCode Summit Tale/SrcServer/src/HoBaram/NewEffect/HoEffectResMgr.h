@@ -11,11 +11,11 @@
 
 #include "HoNewEffectHeader.h"
 #ifndef _HO_NEW_WIN32_
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #endif
 
 #ifdef  _HO_NEW_WIN32_
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #endif
 
 

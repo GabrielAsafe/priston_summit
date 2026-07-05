@@ -28,7 +28,7 @@ void UICombobox::addOption(int iID, char * path, char * label, bool line)
 	pWindow->AddElement(new UIButton(iID, path, path, 8, (pWindow->getMaxY() ? pWindow->getMaxY() : 5) + 3, true, false, std::bind(&UICombobox::OnSelectOption, this, iID)));
 
 	if(line)
-		pWindow->AddElement(new UIImage(0, "game\\GUI\\Chat\\chat_combo_line.png", 5, pWindow->getMaxY() + 2));
+		pWindow->AddElement(new UIImage(0, "game//GUI//Chat//chat_combo_line.png", 5, pWindow->getMaxY() + 2));
 
 	if(pButton)
 		vLabels.push_back(std::pair<int, UIImage*>(iID, new UIImage(iID, label, pButton->getX(), pButton->getY())));

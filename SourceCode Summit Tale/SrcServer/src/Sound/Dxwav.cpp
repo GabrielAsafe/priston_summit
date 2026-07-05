@@ -1,5 +1,5 @@
 
-#include "dxWav.h"
+#include "Dxwav.h"
 #include <windowsx.h>
 #include <mmsystem.h>
 #include <conio.h>
@@ -43,28 +43,28 @@ int chk_load_sangJuWav(int wavN)
 
 
 char *sangJuWav2[NUM_SOUNDS] = {
-"Assets\\Audio\\rain01.wav",
-"Assets\\Audio\\thunder1.wav",
-"Assets\\Audio\\Button.wav",
-"Assets\\Audio\\New.wav",
-"Assets\\Audio\\CharacterDelete.wav",
-"Assets\\Audio\\ButtonBack.wav",
-"Assets\\Audio\\CharacterSelect.wav",
+"Assets//Audio//rain01.wav",
+"Assets//Audio//thunder1.wav",
+"Assets//Audio//Button.wav",
+"Assets//Audio//New.wav",
+"Assets//Audio//CharacterDelete.wav",
+"Assets//Audio//ButtonBack.wav",
+"Assets//Audio//CharacterSelect.wav",
 
-"Assets\\Audio\\NewChar.wav",
-"Assets\\Audio\\Fire.wav",
-"Assets\\Audio\\Thunder.wav",
-"Assets\\Audio\\GameStart.wav",
-"Assets\\Audio\\Login.wav",
+"Assets//Audio//NewChar.wav",
+"Assets//Audio//Fire.wav",
+"Assets//Audio//Thunder.wav",
+"Assets//Audio//GameStart.wav",
+"Assets//Audio//Login.wav",
 NULL
 };
 
 char *wnameBuf[NUM_SOUNDS] = {
-"Assets\\Audio\\bgm0.wav",
-"Assets\\Audio\\rain01.wav",
-"Assets\\Audio\\thunder1.wav",
-"Assets\\Audio\\step01.wav",
-"Assets\\Audio\\Effects\\weapon\\one hand swing - small 3.wav",
+"Assets//Audio//bgm0.wav",
+"Assets//Audio//rain01.wav",
+"Assets//Audio//thunder1.wav",
+"Assets//Audio//step01.wav",
+"Assets//Audio//Effects//weapon//one hand swing - small 3.wav",
 	NULL
 };
 
@@ -72,7 +72,7 @@ int isPlaying(int i);
 
 
 char *backMusicWav[] = {
-"Assets\\Audio\\622s.wav",
+"Assets//Audio//622s.wav",
 NULL,
 NULL,
 };
@@ -1168,9 +1168,9 @@ int isPlaying(int i)
 
 
 
-#include "wave.h"
-#include "shell.h"
-#include "stream.h"
+#include "Wave.h"
+#include "SHELL.H"
+#include "STREAM.H"
 
 
 

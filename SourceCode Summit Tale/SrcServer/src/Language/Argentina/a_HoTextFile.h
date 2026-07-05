@@ -1,4 +1,4 @@
-#include "..\\HoBaram\\HoTextFile.h"
+#include "../HoBaram/HoTextFile.h"
 
 char *HoTextLoginMessage[18] =  {" Estableciendo Conexi�n.... ",
 				" Imposible conectar al servidor ",

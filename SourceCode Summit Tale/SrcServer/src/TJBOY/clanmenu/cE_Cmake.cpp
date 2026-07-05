@@ -9,20 +9,20 @@
 
 #ifdef USE_PROSTONTALE		
 
-#include "sinbaram\\SinLinkHeader.h"
-#include "HoBaram\\HoLinkHeader.h"
-#include "Language\\language.h"
-#include "Language\\jts.h"
-#include "HoBaram\\HoTextFile.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "Language/language.h"
+#include "Language/jts.h"
+#include "HoBaram/HoTextFile.h"
 #endif
 
 #include "tjclan.h"
 #include "cE_Cmake.h"
 #include "cE_report.h"
 #include "cE_CViewClanInfo.h"
-#include "..\\isaocheck\\auth.h"
-#include "..\\isaocheck\\isaocheck.h"
-#include "..\\ygy\\ygyheader.h"
+#include "../isaocheck/auth.h"
+#include "../isaocheck/isaocheck.h"
+#include "../Ygy/YgyHeader.h"
 #include "CurseFilter.h"	
 
 
@@ -991,8 +991,8 @@ void CLANEntity_make::Main()
 
 				server = cldata.ClanMark[0];
 				strcpy(UniqueClanMark, &cldata.ClanMark[3]);
-				wsprintf(szFile, "%s\\%s\\%c_%s.%s", SAVE_DIR, szConnServerName, server, UniqueClanMark, SAVE_EXE);
-				wsprintf(szFile2, "%s\\%s\\%c_%s_16.%s", SAVE_DIR, szConnServerName, server, UniqueClanMark, SAVE_EXE);
+				wsprintf(szFile, "%s//%s//%c_%s.%s", SAVE_DIR, szConnServerName, server, UniqueClanMark, SAVE_EXE);
+				wsprintf(szFile2, "%s//%s//%c_%s_16.%s", SAVE_DIR, szConnServerName, server, UniqueClanMark, SAVE_EXE);
 			#ifdef  USE_PROSTONTALE
 				if(cldata.hClanMark16)
 				{

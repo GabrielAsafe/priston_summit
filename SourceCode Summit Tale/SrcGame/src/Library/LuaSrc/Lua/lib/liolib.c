@@ -330,7 +330,7 @@ static int read_line (lua_State *L, FILE *f) {
       return (lua_strlen(L, -1) > 0);  /* check whether read something */
     }
     l = strlen(p);
-    if (p[l-1] != '\n')
+    if (p[l-1] != '/n')
       luaL_addsize(&b, l);
     else {
       luaL_addsize(&b, l - 1);  /* do not include `eol' */

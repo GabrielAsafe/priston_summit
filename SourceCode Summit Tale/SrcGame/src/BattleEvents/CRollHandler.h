@@ -1,6 +1,7 @@
 #pragma once
+#include "roll.h"
 
-#include "CRollWindow.h"
+#include "BattleEvents/CRollWindow.h"
 
 class CRollHandler
 {

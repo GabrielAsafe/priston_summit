@@ -1,6 +1,6 @@
 #pragma once
 
-extern struct TRANS_ITEM;
+struct TRANS_ITEM;
 
 class CLootFilter
 {

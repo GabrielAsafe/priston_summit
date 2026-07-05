@@ -1,16 +1,16 @@
 
-#include "sinbaram\\SinLinkHeader.h"
-#include "..\\HoBaram\\HoLinkHeader.h"
-#include "..\\smreg.h"
-#include "..\\HoBaram\\HoTextFile.h"
-#include "..\\HoBaram\\HoMinMax.h"
-#include "..\\HoBaram\\HoNewParticle.h"
-#include "..\\HoBaram\\HoNewParticleMgr.h"
-#include "Language\\language.h"
-#include "..\\CAutoCamera.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "../HoBaram/HoLinkHeader.h"
+#include "../smreg.h"
+#include "../HoBaram/HoTextFile.h"
+#include "../HoBaram/HoMinMax.h"
+#include "../HoBaram/HoNewParticle.h"
+#include "../HoBaram/HoNewParticleMgr.h"
+#include "Language/language.h"
+#include "../CAutoCamera.h"
 
-#include "File\File.h"
-#include "Priston\Login.h"
+#include "File/File.h"
+#include "Priston/Login.h"
 
 static CAutoCamera		s_AutoCamera;
 
@@ -162,7 +162,7 @@ int HoOpening::KeyFilter(char *message)
 	if(message == NULL || hFocusWnd == NULL)
 		return FALSE;
 
-	if(lstrlen(message) >= 31 && message[30] != '\t')
+	if(lstrlen(message) >= 31 && message[30] != '/t')
 	{
 		message[30] = 0;
 		SetWindowText(hFocusWnd, 0);
@@ -172,7 +172,7 @@ int HoOpening::KeyFilter(char *message)
 
 	for(int index = 0; index < (int)strlen(message); index++)
 	{
-		if(message[index] == '\t')
+		if(message[index] == '/t')
 		{
 			message[index] = 0;
 			SetWindowText(hFocusWnd, 0);

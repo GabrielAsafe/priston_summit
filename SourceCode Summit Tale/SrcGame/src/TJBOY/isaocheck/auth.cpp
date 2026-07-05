@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
-#include "..\\..\\sinbaram\\sinLinkHeader.h"
+#include "../../sinbaram/sinLinkHeader.h"
 
 #pragma comment(lib,"ws2_32.lib")
 
@@ -15,16 +15,16 @@
 
 #ifdef USE_PROSTONTALE 
 
-#include "..\\..\\sinbaram\\SinLinkHeader.h"
-#include "..\\..\\HoBaram\\HoLinkHeader.h"
-#include "Language\language.h"
-#include "..\\..\\HoBaram\\HoTextFile.h"
-#include "..\\clanmenu\\cE_CViewClanInfo.h"
+#include "../../sinbaram/sinLinkHeader.h"
+#include "../../HoBaram/HoLinkHeader.h"
+#include "Language/language.h"
+#include "../../HoBaram/HoTextFile.h"
+#include "../clanmenu/cE_CViewClanInfo.h"
 
 
 #endif
-#include "..\\clanmenu\\tjclanDEF.h"
-#include "..\\clanmenu\\tjclan.h"
+#include "../clanmenu/tjclanDEF.h"
+#include "../clanmenu/tjclan.h"
 
 
 #include "auth.h"
@@ -483,7 +483,7 @@ DWORD WINAPI AUTH_MainLoop(void* pVoid)
 
 			if(!AUTH_proc(0, cnt, thread_index))
 			{
-				fd2("auth_proc error [que:%d command:%d]\n", cnt, AUTH_que[cnt].command);
+				fd2("auth_proc error [que:%d command:%d]/n", cnt, AUTH_que[cnt].command);
 				break;
 			}
 
@@ -531,13 +531,13 @@ BOOL AUTH_proc(int mode, int quenum, int threadindex)
 
 	if(quenum < 0 || quenum > AUTH_QUE_nums)
 	{
-		fd2("err: quenum \n");
+		fd2("err: quenum /n");
 		return FALSE;
 	}
 
 	if(AUTH_que[quenum].command <= AUTH_QUE_CMD_NONE || AUTH_que[quenum].command >= AUTH_QUE_CMD_ALLNUM)
 	{
-		fd2("err: command \n");
+		fd2("err: command /n");
 		return FALSE;
 	}
 
@@ -546,10 +546,10 @@ BOOL AUTH_proc(int mode, int quenum, int threadindex)
 	if(func)
 		ret = func(quenum, threadindex);
 	else
-		fd2("err: no such function\n");
+		fd2("err: no such function/n");
 
 	if(!ret)
-		fd2("err func:\n");
+		fd2("err func:/n");
 	return ret;
 
 }
@@ -599,7 +599,7 @@ int WebDB_Thread::AUTH_init(int Num)
 	if(AUTH_que == NULL)
 	{
 
-		fd2("can not allocatte memory %d\n", "new memory");
+		fd2("can not allocatte memory %d/n", "new memory");
 		return FALSE;
 	}
 
@@ -612,9 +612,9 @@ int WebDB_Thread::AUTH_init(int Num)
 		AUTH_que[i].command = AUTH_QUE_CMD_NONE;
 		AUTH_que[i].index = i;
 		AUTH_que[i].fdid = -1;
-		AUTH_que[i].cdkey[0] = '\0';
-		AUTH_que[i].isaokey[0] = '\0';
-		AUTH_que[i].password[0] = '\0';
+		AUTH_que[i].cdkey[0] = '/0';
+		AUTH_que[i].isaokey[0] = '/0';
+		AUTH_que[i].password[0] = '/0';
 
 		AUTH_que[i].result = AUTH_ERROR_OTHER;
 	}
@@ -835,7 +835,7 @@ int WebDB_Thread::AUTH_proc_ReadNotice_Result(int quenum, int threadindex)
 	char szData[128];
 
 	if(AUTH_que[quenum].result == 0)
-		szData[0] = '\0';
+		szData[0] = '/0';
 	else
 		sprintf_s(szData, sizeof(szData), "faild");
 
@@ -973,7 +973,7 @@ int WebDB_Thread::AUTH_proc_ReadClanInfo_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -1183,7 +1183,7 @@ int WebDB_Thread::AUTH_proc_isClanMember_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -1307,7 +1307,7 @@ int WebDB_Thread::AUTH_proc_isPFlag_Result(int quenum, int threadindex)
 	char szData[128];
 
 	if(AUTH_que[quenum].result == 0)
-		szData[0] = '\0';
+		szData[0] = '/0';
 	else
 		sprintf_s(szData, sizeof(szData), "faild");
 
@@ -1484,7 +1484,7 @@ int WebDB_Thread::AUTH_proc_isCheckClanJang_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -1642,7 +1642,7 @@ int WebDB_Thread::AUTH_proc_isCheckClanName_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -1780,7 +1780,7 @@ int WebDB_Thread::AUTH_proc_ClanMake_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -1914,7 +1914,7 @@ int WebDB_Thread::AUTH_proc_Mmake_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -2011,7 +2011,7 @@ int WebDB_Thread::AUTH_proc_ReadClan_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -2108,7 +2108,7 @@ int WebDB_Thread::AUTH_proc_BreakUP_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -2216,7 +2216,7 @@ int WebDB_Thread::AUTH_proc_Secession_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -2316,7 +2316,7 @@ int WebDB_Thread::AUTH_proc_Banishiment_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -2413,7 +2413,7 @@ int WebDB_Thread::AUTH_proc_WarhouseR_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -2491,7 +2491,7 @@ int WebDB_Thread::AUTH_proc_updateFlag_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -2572,7 +2572,7 @@ int WebDB_Thread::AUTH_proc_MarkREAD_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -2676,7 +2676,7 @@ int WebDB_Thread::AUTH_proc_MarkREAD2_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -2799,7 +2799,7 @@ int WebDB_Thread::AUTH_proc_Updatcldata_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -2820,8 +2820,8 @@ int WebDB_Thread::AUTH_proc_Updatcldata_Result(int quenum, int threadindex)
 		iResultCode = AUTH_que[quenum].result;
 		GServer = cldata.ClanMark[0];
 		strcpy(szNum, &cldata.ClanMark[3]);
-		wsprintf(szFile, "%s\\%s\\%c_%s.%s", SAVE_DIR, szConnServerName, GServer, szNum, SAVE_EXE);
-		wsprintf(szFile2, "%s\\%s\\%c_%s_16.%s", SAVE_DIR, szConnServerName, GServer, szNum, SAVE_EXE);
+		wsprintf(szFile, "%s//%s//%c_%s.%s", SAVE_DIR, szConnServerName, GServer, szNum, SAVE_EXE);
+		wsprintf(szFile2, "%s//%s//%c_%s_16.%s", SAVE_DIR, szConnServerName, GServer, szNum, SAVE_EXE);
 	#ifdef USE_PROSTONTALE 
 		if(cldata.hClanMark16)
 		{
@@ -3232,7 +3232,7 @@ int WebDB_Thread::AUTH_proc_LeaveClan_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -3468,7 +3468,7 @@ int WebDB_Thread::start_GOLDmoney(int fd, char *cdkey, char *accountid, char *pa
 
 
 
-		fd2("������ ���� ���� ť�� ��Ͼȵ�. %s \n", accountid);
+		fd2("������ ���� ���� ť�� ��Ͼȵ�. %s /n", accountid);
 		return 0;
 	}
 	return 1;
@@ -3504,7 +3504,7 @@ int WebDB_Thread::end_GOLDmoney(int fd, char *cdkey, char *accountid, char *pass
 
 
 
-		fd2("������ ���� ���� ť�� ��Ͼȵ�. %s \n", accountid);
+		fd2("������ ���� ���� ť�� ��Ͼȵ�. %s /n", accountid);
 		return 0;
 	}
 	return 1;
@@ -3719,7 +3719,7 @@ int WebDB_Thread::AUTH_proc_isKPFlag_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -3911,7 +3911,7 @@ int WebDB_Thread::AUTH_proc_AppointSubChip_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -4075,7 +4075,7 @@ int WebDB_Thread::AUTH_proc_ReleaseSubChip_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{
@@ -4219,7 +4219,7 @@ int WebDB_Thread::AUTH_proc_GetWavFile_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '\0';
+		szData[0] = '/0';
 	}
 	else
 	{

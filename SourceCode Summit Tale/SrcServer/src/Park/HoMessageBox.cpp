@@ -1,5 +1,5 @@
-#include "sinbaram\\SinLinkHeader.h"
-#include "..\\HoBaram\\HoLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "../HoBaram/HoLinkHeader.h"
 
 
 HoMessage	ChatMessage;
@@ -25,7 +25,7 @@ void HoMessage::DrawMessageBox(int x, int y, char *message, int boxAttrib, int C
 }
 
 
-#include "Language\\language.h"
+#include "Language/language.h"
 
 
 int HoDrawLinearTexImage(int Mat, float x, float y, float w, float h, float texX, float texY, float texW, float texH, DWORD color){
@@ -368,7 +368,7 @@ void HoMessage::DrawCharacterMessageFrame(int x, int y, int messageWidth, int me
 }
 
 
-#include <Wingdi.h>
+#include <wingdi.h>
 int HoMessage::textarrange(char *teststr, bool clanm)
 {
 	int		len = 0;
@@ -842,8 +842,8 @@ BOOL HoMessageBox::Draw(int x, int y, char *message, int Color)
 
 void HoMessageBox::Init()
 {
-	Button[0].Init("Assets\\GUI\\Opening\\Select\\UI\\CharSelect\\Bt_ok.tga", 64, 32);
-	Button[1].Init("Assets\\GUI\\Opening\\Select\\UI\\CharSelect\\Bt_cancel.tga", 64, 32);
+	Button[0].Init("Assets//GUI//Opening//Select//UI//CharSelect//Bt_ok.tga", 64, 32);
+	Button[1].Init("Assets//GUI//Opening//Select//UI//CharSelect//Bt_cancel.tga", 64, 32);
 	Message.Init();
 }
 

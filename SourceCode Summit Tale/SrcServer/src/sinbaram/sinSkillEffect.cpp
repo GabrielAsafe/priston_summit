@@ -48,73 +48,73 @@ int ShieldStrikeTime;
 void sinInitSkillEffect()
 {
 	int i = 0;
-	char *Path = "Image\\SinImage\\Effect\\SkillEffect";
+	char *Path = "Image//SinImage//Effect//SkillEffect";
 	char szBuff[128];
 
 	for(i = 0; i < 9; i++)
 	{
-		wsprintf(szBuff, "%s\\Farina\\farina0%d.tga", Path, i);
+		wsprintf(szBuff, "%s//Farina//farina0%d.tga", Path, i);
 		MatFarina[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 
 	for(i = 0; i < 4; i++)
 	{
-		wsprintf(szBuff, "%s\\HolyBody\\H_BAP0%d.tga", Path, i);
+		wsprintf(szBuff, "%s//HolyBody//H_BAP0%d.tga", Path, i);
 		MatHolyBodyCross[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 	for(i = 0; i < 9; i++)
 	{
-		wsprintf(szBuff, "%s\\MultiSpark\\m_spark0%d.tga", Path, i);
+		wsprintf(szBuff, "%s//MultiSpark//m_spark0%d.tga", Path, i);
 		MatMultiSpark[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 	for(i = 0; i < 9; i++)
 	{
-		wsprintf(szBuff, "%s\\Agony\\Agony%d.tga", Path, i);
+		wsprintf(szBuff, "%s//Agony//Agony%d.tga", Path, i);
 		MatAgony[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 	for(i = 0; i < 4; i++)
 	{
-		wsprintf(szBuff, "%s\\HolyMind\\H_MIND0%d.tga", Path, i);
+		wsprintf(szBuff, "%s//HolyMind//H_MIND0%d.tga", Path, i);
 		MatHolyMind[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
-	wsprintf(szBuff, "%s\\HolyMind\\H_Particle.tga", Path, i);
+	wsprintf(szBuff, "%s//HolyMind//H_Particle.tga", Path, i);
 	MatHolyMindParticle = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	for(i = 0; i < 7; i++)
 	{
-		wsprintf(szBuff, "%s\\VigorSpear\\v_spear0%d.tga", Path, i);
+		wsprintf(szBuff, "%s//VigorSpear//v_spear0%d.tga", Path, i);
 		MatVigorSpear[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 	for(i = 0; i < 5; i++)
 	{
-		wsprintf(szBuff, "%s\\Zenith\\%dos.tga", Path, i + 1);
+		wsprintf(szBuff, "%s//Zenith//%dos.tga", Path, i + 1);
 		MatZenith[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 	for(i = 0; i < 3; i++)
 	{
-		wsprintf(szBuff, "%s\\FireBolt\\FireBolt0%d.tga", Path, i + 1);
+		wsprintf(szBuff, "%s//FireBolt//FireBolt0%d.tga", Path, i + 1);
 		MatFireBolt[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 	for(i = 0; i < 6; i++)
 	{
-		wsprintf(szBuff, "%s\\Bomb\\Bomb%d.tga", Path, i + 1);
+		wsprintf(szBuff, "%s//Bomb//Bomb%d.tga", Path, i + 1);
 		MatBomb6[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 
 	for(i = 0; i < 2; i++)
 	{
-		wsprintf(szBuff, "%s\\HolyBody\\HolyBody0%d.tga", Path, i + 1);
+		wsprintf(szBuff, "%s//HolyBody//HolyBody0%d.tga", Path, i + 1);
 		MatHolyBody[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 
 	for(i = 0; i < 2; i++)
 	{
-		wsprintf(szBuff, "%s\\SwordBlast\\SwordBlast0%d.tga", Path, i + 1);
+		wsprintf(szBuff, "%s//SwordBlast//SwordBlast0%d.tga", Path, i + 1);
 		MatSwordBlast[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 
 	for(i = 0; i < 3; i++)
 	{
-		wsprintf(szBuff, "%s\\ShieldStrike\\sd%d.tga", Path, i + 1);
+		wsprintf(szBuff, "%s//ShieldStrike//sd%d.tga", Path, i + 1);
 		MatShieldStrike[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 
@@ -585,7 +585,7 @@ int sinEffect_Sword_Blast(smCHAR *pChar, smCHAR *desChar)
 	SetDynLight(pChar->pX, pChar->pY, pChar->pZ, 255, 255, 255, 255, 200, 1);
 	Index2 = sinSearchEmptyIndex();
 	sinEffectDefaultSet(Index2, SIN_EFFECT_MESH, pChar, 0, 10000);
-	cSinEffect2[Index2].sinPatMesh = smASE_Read("image\\Sinimage\\Effect\\SkillEffect\\SwordBlast\\SwordBlast.ASE");
+	cSinEffect2[Index2].sinPatMesh = smASE_Read("image//Sinimage//Effect//SkillEffect//SwordBlast//SwordBlast.ASE");
 	cSinEffect2[Index2].CODE = SKILL_SWORD_BLAST;
 
 	cSinEffect2[Index2].Max_Time = 40;
@@ -660,7 +660,7 @@ int sinEffect_Holy_Body(smCHAR *pChar)
 	SetDynLight(pChar->pX, pChar->pY, pChar->pZ, 255, 255, 255, 255, 200, 1);
 	Index2 = sinSearchEmptyIndex();
 	sinEffectDefaultSet(Index2, SIN_EFFECT_MESH, pChar, 0, 7000);
-	cSinEffect2[Index2].sinPatMesh = smASE_Read("image\\Sinimage\\Effect\\SkillEffect\\HolyBody\\h_bodyteg.ASE");
+	cSinEffect2[Index2].sinPatMesh = smASE_Read("image//Sinimage//Effect//SkillEffect//HolyBody//h_bodyteg.ASE");
 	cSinEffect2[Index2].CODE = SKILL_HOLY_BODY;
 
 	cSinEffect2[Index2].Max_Time = 90;
@@ -1183,7 +1183,7 @@ int sinEffect_VigorSpear(smCHAR *pChar, smCHAR *desChar)
 	SetDynLight(pChar->pX, pChar->pY, pChar->pZ, 255, 255, 255, 255, 200, 1);
 	Index2 = sinSearchEmptyIndex();
 	sinEffectDefaultSet(Index2, SIN_EFFECT_MESH, pChar, 0, 10000);
-	cSinEffect2[Index2].sinPatMesh = smASE_Read("image\\Sinimage\\Effect\\SkillEffect\\VigorSpear\\v_spear.ASE");
+	cSinEffect2[Index2].sinPatMesh = smASE_Read("image//Sinimage//Effect//SkillEffect//VigorSpear//v_spear.ASE");
 	cSinEffect2[Index2].CODE = SKILL_VIGOR_SPEAR;
 
 	cSinEffect2[Index2].Max_Time = 100;
@@ -1638,7 +1638,7 @@ int sinEffect_Healing2(smCHAR *pChar)
 	{
 
 		Index2 = sinSearchEmptyIndex();
-		cSinEffect2[Index2].sinPatMesh = smASE_ReadBone("image\\Sinimage\\Effect\\SkillEffect\\Healing\\HIALTEST.ASE");
+		cSinEffect2[Index2].sinPatMesh = smASE_ReadBone("image//Sinimage//Effect//SkillEffect//Healing//HIALTEST.ASE");
 		smASE_SetPhysique(cSinEffect2[Index2].sinPatMesh);
 		sinEffectDefaultSet(Index2, SIN_EFFECT_MESH, pChar, 0, 13000);
 
@@ -1651,7 +1651,7 @@ int sinEffect_Healing2(smCHAR *pChar)
 
 		Index2 = sinSearchEmptyIndex();
 		sinEffectDefaultSet(Index2, SIN_EFFECT_MESH, pChar, 0, 7000);
-		cSinEffect2[Index2].sinPatMesh = smASE_Read("image\\Sinimage\\Effect\\SkillEffect\\Healing\\HIALTEST.ASE");
+		cSinEffect2[Index2].sinPatMesh = smASE_Read("image//Sinimage//Effect//SkillEffect//Healing//HIALTEST.ASE");
 		cSinEffect2[Index2].sinPatMesh->ZeroNormals();
 		smASE_SetPhysique(0);
 		cSinEffect2[Index2].Max_Time = 250;

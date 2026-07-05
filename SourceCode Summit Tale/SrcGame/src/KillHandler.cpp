@@ -9,14 +9,14 @@ void cKILL::Init()
 	for (int i = 1; i <= 8; i++)
 	{
 		char path[255];
-		wsprintf(path, "game\\kill\\class%d.png", i);
+		wsprintf(path, "game//kill//class%d.png", i);
 		lpClass[i-1] = LoadDibSurfaceOffscreen(path);
 	}
 	
 	for (int i = 1; i <= 9; i++)
 	{
 		char path[255];
-		wsprintf(path, "game\\kill\\kt%d.png", i);
+		wsprintf(path, "game//kill//kt%d.png", i);
 		lpKills[i-1] = LoadDibSurfaceOffscreen(path);
 	}
 }

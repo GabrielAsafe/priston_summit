@@ -104,7 +104,7 @@ static TString* LoadString (LoadState* S)
  {
   char* s=luaZ_openspace(S->L,S->b,size);
   ezread(S,s,size);
-  return luaS_newlstr(S->L,s,size-1);		/* remove trailing '\0' */
+  return luaS_newlstr(S->L,s,size-1);		/* remove trailing '/0' */
  }
 }
 

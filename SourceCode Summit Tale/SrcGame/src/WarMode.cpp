@@ -7,9 +7,9 @@ extern int ReiPVP;
 
 void MODOWAR::Init()
 {
-	WarModeImg[0] = CreateTextureMaterial("game\\Warmode\\window.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	WarModeImg[1] = CreateTextureMaterial("game\\Warmode\\Button_ativar.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	WarModeImg[2] = CreateTextureMaterial("game\\Warmode\\Button_desativar.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	WarModeImg[0] = CreateTextureMaterial("game//Warmode//window.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	WarModeImg[1] = CreateTextureMaterial("game//Warmode//Button_ativar.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	WarModeImg[2] = CreateTextureMaterial("game//Warmode//Button_desativar.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	
 }
 

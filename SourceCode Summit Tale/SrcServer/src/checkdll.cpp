@@ -1,5 +1,5 @@
 #include <windows.h>
-#include <Tlhelp32.h>
+#include <tlhelp32.h>
 
 class checkbuf
 {

@@ -59,21 +59,21 @@ void cTARGET::DrawTarget()
 
 void cTARGET::Init()
 {
-	Mat[BACKGROUND] = CreateTextureMaterial("game\\target\\targetoverlay.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[TARGETBG] = CreateTextureMaterial("game\\target\\targetbackground.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[TARGETCLAN] = CreateTextureMaterial("game\\target\\targetoverlay_Clan.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[TARGETHP] = CreateTextureMaterial("game\\target\\targethp.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[TYPEDEMON] = CreateTextureMaterial("game\\target\\type\\demon.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[TYPEMECHANIC] = CreateTextureMaterial("game\\target\\type\\mechanic.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[TYPEMUTANT] = CreateTextureMaterial("game\\target\\type\\mutant.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[TYPENORMAL] = CreateTextureMaterial("game\\target\\type\\normal.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[TYPENPC] = CreateTextureMaterial("game\\target\\type\\npc.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[TYPEPLAYER] = CreateTextureMaterial("game\\target\\type\\player.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[TYPEUNDEAD] = CreateTextureMaterial("game\\target\\type\\undead.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MORE_] = CreateTextureMaterial("game\\target\\type\\player_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[DROPTOP] = CreateTextureMaterial("game\\target\\menu\\topleft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[DROPMID] = CreateTextureMaterial("game\\target\\menu\\middle.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[DROPBOT] = CreateTextureMaterial("game\\target\\menu\\bottom.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[BACKGROUND] = CreateTextureMaterial("game//target//targetoverlay.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[TARGETBG] = CreateTextureMaterial("game//target//targetbackground.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[TARGETCLAN] = CreateTextureMaterial("game//target//targetoverlay_Clan.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[TARGETHP] = CreateTextureMaterial("game//target//targethp.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[TYPEDEMON] = CreateTextureMaterial("game//target//type//demon.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[TYPEMECHANIC] = CreateTextureMaterial("game//target//type//mechanic.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[TYPEMUTANT] = CreateTextureMaterial("game//target//type//mutant.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[TYPENORMAL] = CreateTextureMaterial("game//target//type//normal.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[TYPENPC] = CreateTextureMaterial("game//target//type//npc.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[TYPEPLAYER] = CreateTextureMaterial("game//target//type//player.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[TYPEUNDEAD] = CreateTextureMaterial("game//target//type//undead.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MORE_] = CreateTextureMaterial("game//target//type//player_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[DROPTOP] = CreateTextureMaterial("game//target//menu//topleft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[DROPMID] = CreateTextureMaterial("game//target//menu//middle.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[DROPBOT] = CreateTextureMaterial("game//target//menu//bottom.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 }
 

@@ -1,4 +1,4 @@
-#include "sinbaram\sinLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
 #include "JOBS.h"
 #include <string>
 
@@ -105,51 +105,51 @@ void JOBS::Open()
 
 void JOBS::Init()
 {
-	Image[0] = CreateTextureMaterial("game\\images\\Jobs\\main.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[1] = CreateTextureMaterial("game\\images\\Jobs\\1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[2] = CreateTextureMaterial("game\\images\\Jobs\\2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[3] = CreateTextureMaterial("game\\images\\Jobs\\3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[4] = CreateTextureMaterial("game\\images\\Jobs\\job1_1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[5] = CreateTextureMaterial("game\\images\\Jobs\\job1_2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[6] = CreateTextureMaterial("game\\images\\Jobs\\job1_3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[7] = CreateTextureMaterial("game\\images\\Jobs\\job2_1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[8] = CreateTextureMaterial("game\\images\\Jobs\\job2_2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[9] = CreateTextureMaterial("game\\images\\Jobs\\job2_3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[10] = CreateTextureMaterial("game\\images\\Jobs\\job3_1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[11] = CreateTextureMaterial("game\\images\\Jobs\\job3_2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[12] = CreateTextureMaterial("game\\images\\Jobs\\job3_3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[13] = CreateTextureMaterial("game\\images\\Jobs\\job4_1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[14] = CreateTextureMaterial("game\\images\\Jobs\\job4_2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[15] = CreateTextureMaterial("game\\images\\Jobs\\job4_3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[16] = CreateTextureMaterial("game\\images\\Jobs\\job5_1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[17] = CreateTextureMaterial("game\\images\\Jobs\\job5_2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[18] = CreateTextureMaterial("game\\images\\Jobs\\job5_3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[19] = CreateTextureMaterial("game\\images\\Jobs\\xpbar.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[20] = CreateTextureMaterial("game\\images\\Jobs\\nojob.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[21] = CreateTextureMaterial("game\\images\\Jobs\\3_1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[22] = CreateTextureMaterial("game\\images\\Jobs\\3_2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[23] = CreateTextureMaterial("game\\images\\battlepass\\Balao_Info_BP.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[24] = CreateTextureMaterial("game\\images\\Jobs\\bt1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[25] = CreateTextureMaterial("game\\images\\Jobs\\4.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[26] = CreateTextureMaterial("game\\images\\Jobs\\5.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[27] = CreateTextureMaterial("game\\images\\Jobs\\6.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[28] = CreateTextureMaterial("game\\images\\Jobs\\7.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[29] = CreateTextureMaterial("game\\images\\Jobs\\8.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[30] = CreateTextureMaterial("game\\images\\Jobs\\m1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[31] = CreateTextureMaterial("game\\images\\Jobs\\m2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[32] = CreateTextureMaterial("game\\images\\Jobs\\m3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[33] = CreateTextureMaterial("game\\images\\Jobs\\m4.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[34] = CreateTextureMaterial("game\\images\\Jobs\\m5.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[35] = CreateTextureMaterial("game\\images\\Jobs\\venda.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[36] = CreateTextureMaterial("game\\images\\Jobs\\sell.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[37] = CreateTextureMaterial("game\\images\\Jobs\\sell_.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[38] = CreateTextureMaterial("game\\images\\Jobs\\mercado.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[39] = CreateTextureMaterial("game\\images\\Jobs\\Page_Left.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[40] = CreateTextureMaterial("game\\images\\Jobs\\Page_Left_1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[41] = CreateTextureMaterial("game\\images\\Jobs\\Page_Right.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[42] = CreateTextureMaterial("game\\images\\Jobs\\Page_Right_1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[43] = CreateTextureMaterial("game\\images\\Jobs\\buy.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[44] = CreateTextureMaterial("game\\images\\Jobs\\buy_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[0] = CreateTextureMaterial("game//images//Jobs//main.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[1] = CreateTextureMaterial("game//images//Jobs//1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[2] = CreateTextureMaterial("game//images//Jobs//2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[3] = CreateTextureMaterial("game//images//Jobs//3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[4] = CreateTextureMaterial("game//images//Jobs//job1_1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[5] = CreateTextureMaterial("game//images//Jobs//job1_2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[6] = CreateTextureMaterial("game//images//Jobs//job1_3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[7] = CreateTextureMaterial("game//images//Jobs//job2_1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[8] = CreateTextureMaterial("game//images//Jobs//job2_2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[9] = CreateTextureMaterial("game//images//Jobs//job2_3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[10] = CreateTextureMaterial("game//images//Jobs//job3_1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[11] = CreateTextureMaterial("game//images//Jobs//job3_2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[12] = CreateTextureMaterial("game//images//Jobs//job3_3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[13] = CreateTextureMaterial("game//images//Jobs//job4_1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[14] = CreateTextureMaterial("game//images//Jobs//job4_2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[15] = CreateTextureMaterial("game//images//Jobs//job4_3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[16] = CreateTextureMaterial("game//images//Jobs//job5_1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[17] = CreateTextureMaterial("game//images//Jobs//job5_2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[18] = CreateTextureMaterial("game//images//Jobs//job5_3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[19] = CreateTextureMaterial("game//images//Jobs//xpbar.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[20] = CreateTextureMaterial("game//images//Jobs//nojob.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[21] = CreateTextureMaterial("game//images//Jobs//3_1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[22] = CreateTextureMaterial("game//images//Jobs//3_2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[23] = CreateTextureMaterial("game//images//battlepass//Balao_Info_BP.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[24] = CreateTextureMaterial("game//images//Jobs//bt1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[25] = CreateTextureMaterial("game//images//Jobs//4.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[26] = CreateTextureMaterial("game//images//Jobs//5.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[27] = CreateTextureMaterial("game//images//Jobs//6.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[28] = CreateTextureMaterial("game//images//Jobs//7.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[29] = CreateTextureMaterial("game//images//Jobs//8.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[30] = CreateTextureMaterial("game//images//Jobs//m1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[31] = CreateTextureMaterial("game//images//Jobs//m2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[32] = CreateTextureMaterial("game//images//Jobs//m3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[33] = CreateTextureMaterial("game//images//Jobs//m4.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[34] = CreateTextureMaterial("game//images//Jobs//m5.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[35] = CreateTextureMaterial("game//images//Jobs//venda.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[36] = CreateTextureMaterial("game//images//Jobs//sell.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[37] = CreateTextureMaterial("game//images//Jobs//sell_.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[38] = CreateTextureMaterial("game//images//Jobs//mercado.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[39] = CreateTextureMaterial("game//images//Jobs//Page_Left.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[40] = CreateTextureMaterial("game//images//Jobs//Page_Left_1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[41] = CreateTextureMaterial("game//images//Jobs//Page_Right.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[42] = CreateTextureMaterial("game//images//Jobs//Page_Right_1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[43] = CreateTextureMaterial("game//images//Jobs//buy.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[44] = CreateTextureMaterial("game//images//Jobs//buy_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	ReadTextures();
 }
 

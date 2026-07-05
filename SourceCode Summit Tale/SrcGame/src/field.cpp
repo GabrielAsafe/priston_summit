@@ -1,6 +1,6 @@
 
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 
 #include "smwsock.h"
 #include "character.h"
@@ -11,11 +11,11 @@
 #include "particle.h"
 #include "netplay.h"
 
-#include "sinbaram\\sinlinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
 
 #include "field.h"
 #include "effectsnd.h"
-#include "Language\\language.h"
+#include "Language/language.h"
 
 char szFieldDirectory[64];
 char szMapDirectory[64];
@@ -432,9 +432,9 @@ static int SelCount = 0;
 	{
 		int cnt;
 
-		strcpy_s(szFieldDirectory, "field\\");
-		strcpy_s(szMapDirectory, "field\\map\\");
-		strcpy_s(szTitleDirectory, "field\\title\\");
+		strcpy_s(szFieldDirectory, "field//");
+		strcpy_s(szMapDirectory, "field//map//");
+		strcpy_s(szTitleDirectory, "field//title//");
 
 		ZeroMemory(sField, sizeof(sFIELD) * FIELD_MAX);
 
@@ -443,27 +443,27 @@ static int SelCount = 0;
 
 		cnt = 0;
 
-		sField[cnt].SetName("forest\\fore-3.ase", "fore-3");
+		sField[cnt].SetName("forest//fore-3.ase", "fore-3");
 		sField[cnt].State = FIELD_STATE_FOREST;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAY;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWDAY;
 		sField[cnt].BackImageCode[2] = FIELD_BACKIMAGE_NIGHT;
 		sField[cnt].BackMusicCode = BGM_CODE_FOREST;
 		sField[cnt].ServerCode = PLAY_SERVER_CODE_MAIN;
-		sField[cnt].AddStageObject("forest\\3ani-01.ASE");
-		sField[cnt].AddStageObject("forest\\3ani-02.ASE");
-		sField[cnt].AddStageObject("forest\\3ani-03.ASE");
-		sField[cnt].AddStageObject("forest\\3ani-04.ASE");
-		sField[cnt].AddStageObject("forest\\3ani-05.ASE");
-		sField[cnt].AddStageObject("forest\\3ani-06.ASE");
-		sField[cnt].AddStageObject("forest\\3ani-07.ASE");
-		sField[cnt].AddStageObject("forest\\3ani-08.ASE");
-		sField[cnt].AddStageObject("forest\\3ani-09.ASE");
-		sField[cnt].AddStageObject("forest\\3ani-10.ASE");
-		sField[cnt].AddStageObject("forest\\3ani-11.ASE");
-		sField[cnt].AddStageObject("forest\\3ani-12.ASE");
-		sField[cnt].AddStageObject("forest\\3ani-13.ASE");
-		sField[cnt].AddStageObject("forest\\3ani-14.ASE");
+		sField[cnt].AddStageObject("forest//3ani-01.ASE");
+		sField[cnt].AddStageObject("forest//3ani-02.ASE");
+		sField[cnt].AddStageObject("forest//3ani-03.ASE");
+		sField[cnt].AddStageObject("forest//3ani-04.ASE");
+		sField[cnt].AddStageObject("forest//3ani-05.ASE");
+		sField[cnt].AddStageObject("forest//3ani-06.ASE");
+		sField[cnt].AddStageObject("forest//3ani-07.ASE");
+		sField[cnt].AddStageObject("forest//3ani-08.ASE");
+		sField[cnt].AddStageObject("forest//3ani-09.ASE");
+		sField[cnt].AddStageObject("forest//3ani-10.ASE");
+		sField[cnt].AddStageObject("forest//3ani-11.ASE");
+		sField[cnt].AddStageObject("forest//3ani-12.ASE");
+		sField[cnt].AddStageObject("forest//3ani-13.ASE");
+		sField[cnt].AddStageObject("forest//3ani-14.ASE");
 		sField[cnt].SetCenterPos(-16419, -7054);
 		sField[cnt].AddStartPoint(-10585, -11810);
 		sField[cnt].AddStartPoint(-13659, -9753);
@@ -477,7 +477,7 @@ static int SelCount = 0;
 
 		cnt = 1;
 
-		sField[cnt].SetName("forest\\fore-2.ase", "fore-2");
+		sField[cnt].SetName("forest//fore-2.ase", "fore-2");
 		sField[cnt].State = FIELD_STATE_FOREST;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAY;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWDAY;
@@ -488,7 +488,7 @@ static int SelCount = 0;
 
 
 
-		sField[cnt].AddStageObject("forest\\2ani-04.ASE");
+		sField[cnt].AddStageObject("forest//2ani-04.ASE");
 
 
 		sField[cnt].SetCenterPos(-5427, -9915);
@@ -508,7 +508,7 @@ static int SelCount = 0;
 
 		cnt = 2;
 
-		sField[cnt].SetName("forest\\fore-1.ase", "fore-1");
+		sField[cnt].SetName("forest//fore-1.ase", "fore-1");
 		sField[cnt].State = FIELD_STATE_FOREST;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAY;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWDAY;
@@ -527,7 +527,7 @@ static int SelCount = 0;
 
 		cnt = 3;
 
-		sField[cnt].SetName("ricarten\\village-2.ase", "village-2");
+		sField[cnt].SetName("ricarten//village-2.ase", "village-2");
 		sField[cnt].State = FIELD_STATE_VILLAGE;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAY;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWDAY;
@@ -535,28 +535,28 @@ static int SelCount = 0;
 		sField[cnt].BackMusicCode = BGM_CODE_TOWN2;
 		sField[cnt].ServerCode = PLAY_SERVER_CODE_MAIN;
 
-		sField[cnt].AddStageObject("ricarten\\v-ani01.ASE");
-		sField[cnt].AddStageObject("ricarten\\v-ani02.ASE");
-		sField[cnt].AddStageObject("ricarten\\v-ani03.ASE");
-		sField[cnt].AddStageObject("ricarten\\v-ani04.ASE");
-		sField[cnt].AddStageObject("ricarten\\v-ani05.ASE");
-		sField[cnt].AddStageObject("ricarten\\v-ani06.ASE");
-		sField[cnt].AddStageObject("ricarten\\v-ani07.ASE");
-		sField[cnt].AddStageObject("ricarten\\v-ani08.ASE");
-		sField[cnt].AddStageObject("ricarten\\v-ani09.ASE");
-		sField[cnt].AddStageObject("ricarten\\v-ani10.ASE");
-		sField[cnt].AddStageObject("ricarten\\v-ani11.ASE");
-		sField[cnt].AddStageObject("ricarten\\v-ani12.ASE");
-		sField[cnt].AddStageObject("ricarten\\v-ani13.ASE");
-		sField[cnt].AddStageObject("ricarten\\v-ani14.ASE");
+		sField[cnt].AddStageObject("ricarten//v-ani01.ASE");
+		sField[cnt].AddStageObject("ricarten//v-ani02.ASE");
+		sField[cnt].AddStageObject("ricarten//v-ani03.ASE");
+		sField[cnt].AddStageObject("ricarten//v-ani04.ASE");
+		sField[cnt].AddStageObject("ricarten//v-ani05.ASE");
+		sField[cnt].AddStageObject("ricarten//v-ani06.ASE");
+		sField[cnt].AddStageObject("ricarten//v-ani07.ASE");
+		sField[cnt].AddStageObject("ricarten//v-ani08.ASE");
+		sField[cnt].AddStageObject("ricarten//v-ani09.ASE");
+		sField[cnt].AddStageObject("ricarten//v-ani10.ASE");
+		sField[cnt].AddStageObject("ricarten//v-ani11.ASE");
+		sField[cnt].AddStageObject("ricarten//v-ani12.ASE");
+		sField[cnt].AddStageObject("ricarten//v-ani13.ASE");
+		sField[cnt].AddStageObject("ricarten//v-ani14.ASE");
 
 #ifdef	WORLDCUP_FIELD
 
-		sField[cnt].AddStageObject("ricarten\\world_ani01.ASE");
-		sField[cnt].AddStageObject("ricarten\\world_ani02.ASE");
-		sField[cnt].AddStageObject("ricarten\\world_ani03.ASE");
-		sField[cnt].AddStageObject("ricarten\\world_ani04.ASE");
-		sField[cnt].AddStageObject("ricarten\\world_ani05.ASE");
+		sField[cnt].AddStageObject("ricarten//world_ani01.ASE");
+		sField[cnt].AddStageObject("ricarten//world_ani02.ASE");
+		sField[cnt].AddStageObject("ricarten//world_ani03.ASE");
+		sField[cnt].AddStageObject("ricarten//world_ani04.ASE");
+		sField[cnt].AddStageObject("ricarten//world_ani05.ASE");
 
 #endif
 
@@ -573,7 +573,7 @@ static int SelCount = 0;
 
 		cnt = 4;
 
-		sField[cnt].SetName("Ruin\\ruin-4.ase", "ruin-4");
+		sField[cnt].SetName("Ruin//ruin-4.ase", "ruin-4");
 		sField[cnt].State = FIELD_STATE_RUIN;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_RUIN1;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWRUIN1;
@@ -588,7 +588,7 @@ static int SelCount = 0;
 
 		cnt = 5;
 
-		sField[cnt].SetName("Ruin\\ruin-3.ase", "ruin-3");
+		sField[cnt].SetName("Ruin//ruin-3.ase", "ruin-3");
 		sField[cnt].State = FIELD_STATE_RUIN;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_RUIN1;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWRUIN1;
@@ -603,7 +603,7 @@ static int SelCount = 0;
 
 		cnt = 6;
 
-		sField[cnt].SetName("Ruin\\ruin-2.ase", "ruin-2");
+		sField[cnt].SetName("Ruin//ruin-2.ase", "ruin-2");
 		sField[cnt].State = FIELD_STATE_RUIN;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_RUIN2;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWRUIN2;
@@ -614,7 +614,7 @@ static int SelCount = 0;
 		sField[cnt].AddStartPoint(3976, 19645);
 		sField[cnt].AddStartPoint(5832, 23751);
 		sField[cnt].AddStartPoint(5615, 25117);
-		sField[cnt].AddStageObject("ruin\\ruin_ani01.ASE");
+		sField[cnt].AddStageObject("ruin//ruin_ani01.ASE");
 		sField[cnt].AddGate(&sField[cnt + 1], 10019, 18031, 0);
 		sField[cnt].AddGate(&sField[cnt + 11], 4470, 27774, 0);
 		sField[cnt].AddGate(&sField[34], 12713, 23409, 0);
@@ -626,7 +626,7 @@ static int SelCount = 0;
 
 		cnt = 7;
 
-		sField[cnt].SetName("Ruin\\ruin-1.ase", "ruin-1");
+		sField[cnt].SetName("Ruin//ruin-1.ase", "ruin-1");
 		sField[cnt].State = FIELD_STATE_RUIN;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_RUIN2;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWRUIN2;
@@ -645,7 +645,7 @@ static int SelCount = 0;
 
 		cnt = 8;
 
-		sField[cnt].SetName("desert\\De-1.ase", "De-1");
+		sField[cnt].SetName("desert//De-1.ase", "De-1");
 		sField[cnt].State = FIELD_STATE_DESERT;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DESERT;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWDESERT;
@@ -661,7 +661,7 @@ static int SelCount = 0;
 
 		cnt = 9;
 
-		sField[cnt].SetName("forest\\village-1.ase", "village-1");
+		sField[cnt].SetName("forest//village-1.ase", "village-1");
 		sField[cnt].State = FIELD_STATE_DESERT;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DESERT;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWDESERT;
@@ -671,7 +671,7 @@ static int SelCount = 0;
 		sField[cnt].ServerCode = PLAY_SERVER_CODE_MAIN;
 		sField[cnt].SetCenterPos(22214, -1182);
 		sField[cnt].AddStartPoint(22214, -1182);
-		sField[cnt].AddStageObject("forest\\v2-ani01.ASE");
+		sField[cnt].AddStageObject("forest//v2-ani01.ASE");
 		sField[cnt].AddGate(&sField[cnt + 2], 27110, -479, 0);
 		sField[cnt].AddGate(&sField[30], 21840, 1062, 0);
 		sField[cnt].AddWarpGate(21936, -1833, 855, 64, 32);
@@ -681,7 +681,7 @@ static int SelCount = 0;
 
 		cnt = 10;
 
-		sField[cnt].SetName("desert\\De-2.ase", "De-2");
+		sField[cnt].SetName("desert//De-2.ase", "De-2");
 		sField[cnt].State = FIELD_STATE_DESERT;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DESERT;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWDESERT;
@@ -695,7 +695,7 @@ static int SelCount = 0;
 
 		cnt = 11;
 
-		sField[cnt].SetName("desert\\De-3.ase", "De-3");
+		sField[cnt].SetName("desert//De-3.ase", "De-3");
 		sField[cnt].State = FIELD_STATE_DESERT;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DESERT;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWDESERT;
@@ -721,7 +721,7 @@ static int SelCount = 0;
 
 		cnt = 12;
 
-		sField[cnt].SetName("desert\\De-4.ase", "De-4");
+		sField[cnt].SetName("desert//De-4.ase", "De-4");
 		sField[cnt].State = FIELD_STATE_DESERT;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DESERT;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWDESERT;
@@ -729,7 +729,7 @@ static int SelCount = 0;
 		sField[cnt].BackMusicCode = BGM_CODE_DESERT;
 		sField[cnt].ServerCode = PLAY_SERVER_CODE_EXTEND;
 		sField[cnt].SetCenterPos(43988, 12053);
-		sField[cnt].AddStageObject("desert\\d4-ani01.ASE");
+		sField[cnt].AddStageObject("desert//d4-ani01.ASE");
 		sField[cnt].AddStartPoint(33740, 6491);
 		sField[cnt].AddStartPoint(40691, 11056);
 		sField[cnt].AddGate(&sField[27], 44545, 13063, 0);
@@ -741,14 +741,14 @@ static int SelCount = 0;
 
 		cnt = 13;
 
-		sField[cnt].SetName("dungeon\\dun-1.ase", "dun-1");
+		sField[cnt].SetName("dungeon//dun-1.ase", "dun-1");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
 		sField[cnt].BackImageCode[2] = 0;
 		sField[cnt].BackMusicCode = BGM_CODE_DUNGEON;
 		sField[cnt].ServerCode = PLAY_SERVER_CODE_EXTEND;
-		sField[cnt].AddStageObject("dungeon\\dun-1-wheel.ase");
+		sField[cnt].AddStageObject("dungeon//dun-1-wheel.ase");
 		sField[cnt].SetCenterPos(-15384, -24310);
 		sField[cnt].AddWarpGate(-15388, -24073, 100, 64, 32);
 		sField[cnt].AddWarpOutGate(&sField[cnt - 6], 16649, 15238, 501);
@@ -761,7 +761,7 @@ static int SelCount = 0;
 
 		cnt = 14;
 
-		sField[cnt].SetName("dungeon\\dun-2.ase", "dun-2");
+		sField[cnt].SetName("dungeon//dun-2.ase", "dun-2");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -782,7 +782,7 @@ static int SelCount = 0;
 
 		cnt = 15;
 
-		sField[cnt].SetName("dungeon\\dun-3.ase", "dun-3");
+		sField[cnt].SetName("dungeon//dun-3.ase", "dun-3");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -798,7 +798,7 @@ static int SelCount = 0;
 
 		cnt = 16;
 
-		sField[cnt].SetName("room\\office.ase", 0);
+		sField[cnt].SetName("room//office.ase", 0);
 		sField[cnt].State = FIELD_STATE_ROOM;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -810,7 +810,7 @@ static int SelCount = 0;
 
 		cnt = 17;
 
-		sField[cnt].SetName("forever-fall\\forever-fall-04.ASE", "forever-fall-04");
+		sField[cnt].SetName("forever-fall//forever-fall-04.ASE", "forever-fall-04");
 		sField[cnt].State = FIELD_STATE_FOREST;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYFALL;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWFALL;
@@ -820,17 +820,17 @@ static int SelCount = 0;
 		sField[cnt].SetCenterPos(-1583, 37905);
 		sField[cnt].AddStartPoint(-2135, 33668);
 		sField[cnt].AddStartPoint(4073, 32119);
-		sField[cnt].AddStageObject("forever-fall\\4ani-01.ASE");
-		sField[cnt].AddStageObject("forever-fall\\4ani-02.ASE");
-		sField[cnt].AddStageObject("forever-fall\\4ani-03.ASE");
-		sField[cnt].AddStageObject("forever-fall\\4ani-04.ASE");
-		sField[cnt].AddStageObject("forever-fall\\4ani-05.ASE");
-		sField[cnt].AddStageObject("forever-fall\\4ani-06.ASE");
-		sField[cnt].AddStageObject("forever-fall\\4ani-07.ASE");
-		sField[cnt].AddStageObject("forever-fall\\4ani-08.ASE");
-		sField[cnt].AddStageObject("forever-fall\\4ani-09.ASE");
-		sField[cnt].AddStageObject("forever-fall\\4ani-10.ASE");
-		sField[cnt].AddStageObject("forever-fall\\4ani-11.ASE");
+		sField[cnt].AddStageObject("forever-fall//4ani-01.ASE");
+		sField[cnt].AddStageObject("forever-fall//4ani-02.ASE");
+		sField[cnt].AddStageObject("forever-fall//4ani-03.ASE");
+		sField[cnt].AddStageObject("forever-fall//4ani-04.ASE");
+		sField[cnt].AddStageObject("forever-fall//4ani-05.ASE");
+		sField[cnt].AddStageObject("forever-fall//4ani-06.ASE");
+		sField[cnt].AddStageObject("forever-fall//4ani-07.ASE");
+		sField[cnt].AddStageObject("forever-fall//4ani-08.ASE");
+		sField[cnt].AddStageObject("forever-fall//4ani-09.ASE");
+		sField[cnt].AddStageObject("forever-fall//4ani-10.ASE");
+		sField[cnt].AddStageObject("forever-fall//4ani-11.ASE");
 		sField[cnt].AddGate(&sField[cnt + 1], -2949, 40442, 0);
 		sField[cnt].AddAmbientPos(-1448, 827, 34188, 160, 7);
 		sField[cnt].AddAmbientPos(618, 531, 35981, 160, 7);
@@ -843,7 +843,7 @@ static int SelCount = 0;
 
 		cnt = 18;
 
-		sField[cnt].SetName("forever-fall\\forever-fall-03.ASE", "forever-fall-03");
+		sField[cnt].SetName("forever-fall//forever-fall-03.ASE", "forever-fall-03");
 		sField[cnt].State = FIELD_STATE_FOREST;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYFALL;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWFALL;
@@ -853,13 +853,13 @@ static int SelCount = 0;
 		sField[cnt].SetCenterPos(-5823, 43244);
 		sField[cnt].AddStartPoint(-1516, 45437);
 		sField[cnt].AddStartPoint(-3586, 42886);
-		sField[cnt].AddStageObject("forever-fall\\3ani-01.ASE");
-		sField[cnt].AddStageObject("forever-fall\\3ani-02.ASE");
-		sField[cnt].AddStageObject("forever-fall\\3ani-03.ASE");
-		sField[cnt].AddStageObject("forever-fall\\3ani-04.ASE");
-		sField[cnt].AddStageObject("forever-fall\\3ani-05.ASE");
-		sField[cnt].AddStageObject("forever-fall\\3ani-06.ASE");
-		sField[cnt].AddStageObject("forever-fall\\3ani-07.ASE");
+		sField[cnt].AddStageObject("forever-fall//3ani-01.ASE");
+		sField[cnt].AddStageObject("forever-fall//3ani-02.ASE");
+		sField[cnt].AddStageObject("forever-fall//3ani-03.ASE");
+		sField[cnt].AddStageObject("forever-fall//3ani-04.ASE");
+		sField[cnt].AddStageObject("forever-fall//3ani-05.ASE");
+		sField[cnt].AddStageObject("forever-fall//3ani-06.ASE");
+		sField[cnt].AddStageObject("forever-fall//3ani-07.ASE");
 		sField[cnt].AddGate(&sField[cnt + 1], -2349, 49830, 0);
 		sField[cnt].AddAmbientPos(-3573, 861, 42603, 0, 15);
 		sField[cnt].AddAmbientPos(-2160, 943, 42588, 0, 19);
@@ -873,7 +873,7 @@ static int SelCount = 0;
 
 		cnt = 19;
 
-		sField[cnt].SetName("forever-fall\\forever-fall-02.ASE", "forever-fall-02");
+		sField[cnt].SetName("forever-fall//forever-fall-02.ASE", "forever-fall-02");
 		sField[cnt].State = FIELD_STATE_FOREST;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYFALL;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWFALL;
@@ -884,11 +884,11 @@ static int SelCount = 0;
 		sField[cnt].AddStartPoint(-1024, 45437);
 		sField[cnt].AddStartPoint(-1543, 52333);
 		sField[cnt].AddStartPoint(-1310, 54945);
-		sField[cnt].AddStageObject("forever-fall\\2ani-01.ASE");
-		sField[cnt].AddStageObject("forever-fall\\2ani-02.ASE");
-		sField[cnt].AddStageObject("forever-fall\\2ani-03.ASE");
-		sField[cnt].AddStageObject("forever-fall\\2ani-04.ASE");
-		sField[cnt].AddStageObject("forever-fall\\2ani-05.ASE");
+		sField[cnt].AddStageObject("forever-fall//2ani-01.ASE");
+		sField[cnt].AddStageObject("forever-fall//2ani-02.ASE");
+		sField[cnt].AddStageObject("forever-fall//2ani-03.ASE");
+		sField[cnt].AddStageObject("forever-fall//2ani-04.ASE");
+		sField[cnt].AddStageObject("forever-fall//2ani-05.ASE");
 		sField[cnt].AddGate(&sField[cnt + 1], 667, 59371, 0);
 		sField[cnt].AddAmbientPos(-266, 862, 57971, 100, 13);
 		sField[cnt].AddAmbientPos(-5014, 629, 56702, 100, 13);
@@ -900,7 +900,7 @@ static int SelCount = 0;
 
 		cnt = 20;
 
-		sField[cnt].SetName("forever-fall\\forever-fall-01.ASE", "forever-fall-01");
+		sField[cnt].SetName("forever-fall//forever-fall-01.ASE", "forever-fall-01");
 		sField[cnt].State = FIELD_STATE_FOREST;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYFALL;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWFALL;
@@ -911,33 +911,33 @@ static int SelCount = 0;
 		sField[cnt].AddStartPoint(1875, 69871);
 		sField[cnt].AddStartPoint(2637, 60219);
 		sField[cnt].AddGate(&sField[cnt + 1], -8508, -10576, 0);
-		sField[cnt].AddStageObject("forever-fall\\1ani-01.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-02.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-03.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-04.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-05.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-06.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-07.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-08.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-09.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-10.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-11.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-12.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-13.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-14.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-15.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-16.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-17.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-18.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-19.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-20.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-21.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-22.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-23.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-24.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-25.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-26.ase");
-		sField[cnt].AddStageObject("forever-fall\\1ani-27.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-01.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-02.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-03.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-04.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-05.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-06.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-07.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-08.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-09.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-10.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-11.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-12.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-13.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-14.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-15.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-16.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-17.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-18.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-19.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-20.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-21.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-22.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-23.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-24.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-25.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-26.ase");
+		sField[cnt].AddStageObject("forever-fall//1ani-27.ase");
 		sField[cnt].AddWarpGate(1962, 71184, 559, 64, 32);
 		sField[cnt].AddWarpOutGate(&sField[cnt + 1], 1993, 73134, 449);
 		sField[cnt].WarpGate[sField[cnt].WarpGateActiveNum].SpecialEffect = 1;
@@ -953,7 +953,7 @@ static int SelCount = 0;
 
 		cnt = 21;
 
-		sField[cnt].SetName("forever-fall\\pilai.ASE", "pilai");
+		sField[cnt].SetName("forever-fall//pilai.ASE", "pilai");
 		sField[cnt].State = FIELD_STATE_VILLAGE;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYFALL;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWFALL;
@@ -963,59 +963,59 @@ static int SelCount = 0;
 		sField[cnt].SetCenterPos(2981, 75486);
 		sField[cnt].AddStartPoint(2287, 74131);
 		sField[cnt].AddStartPoint(3547, 75500);
-		sField[cnt].AddStageObject("forever-fall\\piani-01.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-02.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-03.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-04.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-05.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-06.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-07.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-08.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-09.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-10.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-11.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-12.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-13.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-14.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-15.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-16.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-17.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-18.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-19.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-20.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-21.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-22.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-23.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-24.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-25.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-26.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-27.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-28.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-29.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-30.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-31.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-32.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-33.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-34.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-35.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-36.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-37.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-38.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-39.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-40.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-41.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-42.ase");
-		sField[cnt].AddStageObject("forever-fall\\piani-43.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-01.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-02.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-03.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-04.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-05.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-06.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-07.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-08.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-09.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-10.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-11.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-12.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-13.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-14.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-15.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-16.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-17.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-18.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-19.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-20.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-21.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-22.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-23.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-24.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-25.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-26.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-27.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-28.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-29.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-30.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-31.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-32.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-33.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-34.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-35.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-36.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-37.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-38.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-39.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-40.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-41.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-42.ase");
+		sField[cnt].AddStageObject("forever-fall//piani-43.ase");
 
 
 #ifdef	WORLDCUP_FIELD
 
-		sField[cnt].AddStageObject("forever-fall\\ani_world01.ASE");
-		sField[cnt].AddStageObject("forever-fall\\ani_world02.ASE");
-		sField[cnt].AddStageObject("forever-fall\\ani_world03.ASE");
-		sField[cnt].AddStageObject("forever-fall\\ani_world04.ASE");
-		sField[cnt].AddStageObject("forever-fall\\ani_world05.ASE");
-		sField[cnt].AddStageObject("forever-fall\\ani_world06.ASE");
+		sField[cnt].AddStageObject("forever-fall//ani_world01.ASE");
+		sField[cnt].AddStageObject("forever-fall//ani_world02.ASE");
+		sField[cnt].AddStageObject("forever-fall//ani_world03.ASE");
+		sField[cnt].AddStageObject("forever-fall//ani_world04.ASE");
+		sField[cnt].AddStageObject("forever-fall//ani_world05.ASE");
+		sField[cnt].AddStageObject("forever-fall//ani_world06.ASE");
 
 #endif
 
@@ -1040,44 +1040,44 @@ static int SelCount = 0;
 
 		cnt = 22;
 
-		sField[cnt].SetName("dungeon\\dun-4.ase", "dun-4");
+		sField[cnt].SetName("dungeon//dun-4.ase", "dun-4");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
 		sField[cnt].BackImageCode[2] = 0;
 		sField[cnt].BackMusicCode = BGM_CODE_DUNGEON;
 		sField[cnt].ServerCode = PLAY_SERVER_CODE_EXTEND;
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-01.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-02.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-03.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-06.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-07.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-08.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-09.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-14.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-15.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-16.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-17.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-18.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-19.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-20.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-21.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-22.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-23.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-24.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-25.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-26.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-27.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-28.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-29.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-30.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-31.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-32.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-33.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-34.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-35.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-36.ase");
-		sField[cnt].AddStageObject("dungeon\\dun-4-ani-37.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-01.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-02.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-03.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-06.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-07.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-08.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-09.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-14.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-15.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-16.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-17.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-18.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-19.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-20.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-21.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-22.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-23.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-24.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-25.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-26.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-27.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-28.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-29.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-30.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-31.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-32.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-33.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-34.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-35.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-36.ase");
+		sField[cnt].AddStageObject("dungeon//dun-4-ani-37.ase");
 		sField[cnt].SetCenterPos(-11108, -41681);
 		sField[cnt].AddWarpGate(-10860, -41666, 398, 64, 32);
 		sField[cnt].AddWarpOutGate(&sField[cnt - 11], 35872, -2016, 804);
@@ -1106,7 +1106,7 @@ static int SelCount = 0;
 
 		cnt = 23;
 
-		sField[cnt].SetName("dungeon\\dun-5.ase", "dun-5");
+		sField[cnt].SetName("dungeon//dun-5.ase", "dun-5");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1114,28 +1114,28 @@ static int SelCount = 0;
 		sField[cnt].ServerCode = PLAY_SERVER_CODE_EXTEND;
 		sField[cnt].BackMusicCode = BGM_CODE_DUNGEON;
 		sField[cnt].SetCenterPos(-3675, -36597);
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-01.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-02.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-03.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-04.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-05.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-06.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-07.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-08.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-09.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-10.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-11.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-12.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-13.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-14.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-15.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-16.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-17.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-18.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-19.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-20.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-21.ASE");
-		sField[cnt].AddStageObject("dungeon\\dun-5-ani-22.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-01.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-02.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-03.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-04.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-05.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-06.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-07.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-08.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-09.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-10.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-11.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-12.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-13.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-14.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-15.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-16.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-17.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-18.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-19.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-20.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-21.ASE");
+		sField[cnt].AddStageObject("dungeon//dun-5-ani-22.ASE");
 		sField[cnt].AddAmbientPos(-3660, 730, -36915, 40, 23);
 		sField[cnt].AddAmbientPos(-2166, 732, -36125, 0, 24);
 		sField[cnt].AddAmbientPos(-5150, 732, -36123, 0, 24);
@@ -1163,7 +1163,7 @@ static int SelCount = 0;
 
 		cnt = 24;
 
-		sField[cnt].SetName("cave\\Tcave.ase", "Tcave");
+		sField[cnt].SetName("cave//Tcave.ase", "Tcave");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1180,27 +1180,27 @@ static int SelCount = 0;
 		sField[cnt].LimitLevel = 55;
 		sField[cnt].AddWarpGate(118869, 26017, 538, 80, 32);
 		sField[cnt].AddWarpOutGate(&sField[0], -16490, -6930, 298);
-		sField[cnt].AddStageObject("cave\\Tcave_ani01.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani02.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani03.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani04.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani05.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani06.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani07.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani08.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani09.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani10.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani11.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani12.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani13.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani14.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani15.ase");
-		sField[cnt].AddStageObject("cave\\Tcave_ani16.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani01.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani02.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani03.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani04.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani05.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani06.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani07.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani08.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani09.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani10.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani11.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani12.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani13.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani14.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani15.ase");
+		sField[cnt].AddStageObject("cave//Tcave_ani16.ase");
 
 
 		cnt = 25;
 
-		sField[cnt].SetName("cave\\Mcave.ase", "Mcave");
+		sField[cnt].SetName("cave//Mcave.ase", "Mcave");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1216,28 +1216,28 @@ static int SelCount = 0;
 		sField[cnt].LimitLevel = 55;
 		sField[cnt].AddWarpGate(118808, 35686, 520, 80, 32);
 		sField[cnt].AddWarpOutGate(&sField[18], -6056, 43245, 787);
-		sField[cnt].AddStageObject("cave\\Mcave_ani01.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani02.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani03.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani04.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani05.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani06.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani07.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani08.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani09.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani10.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani11.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani12.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani13.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani14.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani15.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani16.ASE");
-		sField[cnt].AddStageObject("cave\\Mcave_ani17.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani01.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani02.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani03.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani04.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani05.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani06.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani07.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani08.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani09.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani10.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani11.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani12.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani13.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani14.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani15.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani16.ASE");
+		sField[cnt].AddStageObject("cave//Mcave_ani17.ASE");
 
 
 		cnt = 26;
 
-		sField[cnt].SetName("cave\\Dcave.ase", "Dcave");
+		sField[cnt].SetName("cave//Dcave.ase", "Dcave");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1250,25 +1250,25 @@ static int SelCount = 0;
 		sField[cnt].AddWarpGate(158023, 20453, 240, 120, 32);
 		sField[cnt].AddWarpOutGate(&sField[cnt - 2], 125566, 24825, 480);
 		sField[cnt].LimitLevel = 65;
-		sField[cnt].AddStageObject("cave\\Dcave_ani01.ASE");
-		sField[cnt].AddStageObject("cave\\Dcave_ani02.ASE");
-		sField[cnt].AddStageObject("cave\\Dcave_ani03.ASE");
-		sField[cnt].AddStageObject("cave\\Dcave_ani04.ASE");
-		sField[cnt].AddStageObject("cave\\Dcave_ani05.ASE");
-		sField[cnt].AddStageObject("cave\\Dcave_ani06.ASE");
-		sField[cnt].AddStageObject("cave\\Dcave_ani07.ASE");
-		sField[cnt].AddStageObject("cave\\Dcave_ani08.ASE");
-		sField[cnt].AddStageObject("cave\\Dcave_ani09.ASE");
-		sField[cnt].AddStageObject("cave\\Dcave_ani10.ASE");
-		sField[cnt].AddStageObject("cave\\Dcave_ani11.ASE");
-		sField[cnt].AddStageObject("cave\\Dcave_ani12.ASE");
-		sField[cnt].AddStageObject("cave\\Dcave_ani13.ASE");
-		sField[cnt].AddStageObject("cave\\Dcave_ani14.ASE");
+		sField[cnt].AddStageObject("cave//Dcave_ani01.ASE");
+		sField[cnt].AddStageObject("cave//Dcave_ani02.ASE");
+		sField[cnt].AddStageObject("cave//Dcave_ani03.ASE");
+		sField[cnt].AddStageObject("cave//Dcave_ani04.ASE");
+		sField[cnt].AddStageObject("cave//Dcave_ani05.ASE");
+		sField[cnt].AddStageObject("cave//Dcave_ani06.ASE");
+		sField[cnt].AddStageObject("cave//Dcave_ani07.ASE");
+		sField[cnt].AddStageObject("cave//Dcave_ani08.ASE");
+		sField[cnt].AddStageObject("cave//Dcave_ani09.ASE");
+		sField[cnt].AddStageObject("cave//Dcave_ani10.ASE");
+		sField[cnt].AddStageObject("cave//Dcave_ani11.ASE");
+		sField[cnt].AddStageObject("cave//Dcave_ani12.ASE");
+		sField[cnt].AddStageObject("cave//Dcave_ani13.ASE");
+		sField[cnt].AddStageObject("cave//Dcave_ani14.ASE");
 
 
 		cnt = 27;
 
-		sField[cnt].SetName("Iron\\iron-1.ASE", "iron-1");
+		sField[cnt].SetName("Iron//iron-1.ASE", "iron-1");
 		sField[cnt].State = FIELD_STATE_IRON;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYIRON;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWIRON;
@@ -1281,25 +1281,25 @@ static int SelCount = 0;
 		sField[cnt].AddStartPoint(46741, 21349);
 		sField[cnt].LimitLevel = 80;
 		sField[cnt].AddGate(&sField[cnt + 1], 45316, 21407, 0);
-		sField[cnt].AddStageObject("iron\\i1-ani01_Bip.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i1-ani02_Bip.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i1-ani03_Bip.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i1-ani04_Bip.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i1-ani05_Bip.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i1-ani06_Bip.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i1-ani07_Bip.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i1-ani08_Bip.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i1-ani09_Bip.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i1-ani10_Bip.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i1-ani11_Bip.ASE", 1);
-		sField[cnt].AddStageObject("iron\\iron-ani01.ASE");
-		sField[cnt].AddStageObject("iron\\iron-ani02.ASE");
-		sField[cnt].AddStageObject("iron\\iron-ani03.ASE");
+		sField[cnt].AddStageObject("iron//i1-ani01_Bip.ASE", 1);
+		sField[cnt].AddStageObject("iron//i1-ani02_Bip.ASE", 1);
+		sField[cnt].AddStageObject("iron//i1-ani03_Bip.ASE", 1);
+		sField[cnt].AddStageObject("iron//i1-ani04_Bip.ASE", 1);
+		sField[cnt].AddStageObject("iron//i1-ani05_Bip.ASE", 1);
+		sField[cnt].AddStageObject("iron//i1-ani06_Bip.ASE", 1);
+		sField[cnt].AddStageObject("iron//i1-ani07_Bip.ASE", 1);
+		sField[cnt].AddStageObject("iron//i1-ani08_Bip.ASE", 1);
+		sField[cnt].AddStageObject("iron//i1-ani09_Bip.ASE", 1);
+		sField[cnt].AddStageObject("iron//i1-ani10_Bip.ASE", 1);
+		sField[cnt].AddStageObject("iron//i1-ani11_Bip.ASE", 1);
+		sField[cnt].AddStageObject("iron//iron-ani01.ASE");
+		sField[cnt].AddStageObject("iron//iron-ani02.ASE");
+		sField[cnt].AddStageObject("iron//iron-ani03.ASE");
 
 
 		cnt = 28;
 
-		sField[cnt].SetName("Iron\\iron-2.ASE", "iron-2");
+		sField[cnt].SetName("Iron//iron-2.ASE", "iron-2");
 		sField[cnt].State = FIELD_STATE_IRON;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYIRON;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWIRON;
@@ -1311,23 +1311,23 @@ static int SelCount = 0;
 		sField[cnt].AddStartPoint(44893, 21380);
 		sField[cnt].LimitLevel = 85;
 		sField[cnt].AddGate(&sField[cnt + 1], 33618, 24011, 0);
-		sField[cnt].AddStageObject("iron\\i2-bip01.ASE");
-		sField[cnt].AddStageObject("iron\\i2-bip02.ASE");
-		sField[cnt].AddStageObject("iron\\i2-bip03.ASE");
-		sField[cnt].AddStageObject("iron\\i2-bip04_ani.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i2-bip05_ani.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i2-bip06_ani.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i2-bip07_ani.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i2-bip08_ani.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i2-bip09.ASE");
-		sField[cnt].AddStageObject("iron\\i2-bip10.ASE");
-		sField[cnt].AddStageObject("iron\\i2-bip11_ani.ASE", 1);
-		sField[cnt].AddStageObject("iron\\i2-bip12_ani.ASE", 1);
+		sField[cnt].AddStageObject("iron//i2-bip01.ASE");
+		sField[cnt].AddStageObject("iron//i2-bip02.ASE");
+		sField[cnt].AddStageObject("iron//i2-bip03.ASE");
+		sField[cnt].AddStageObject("iron//i2-bip04_ani.ASE", 1);
+		sField[cnt].AddStageObject("iron//i2-bip05_ani.ASE", 1);
+		sField[cnt].AddStageObject("iron//i2-bip06_ani.ASE", 1);
+		sField[cnt].AddStageObject("iron//i2-bip07_ani.ASE", 1);
+		sField[cnt].AddStageObject("iron//i2-bip08_ani.ASE", 1);
+		sField[cnt].AddStageObject("iron//i2-bip09.ASE");
+		sField[cnt].AddStageObject("iron//i2-bip10.ASE");
+		sField[cnt].AddStageObject("iron//i2-bip11_ani.ASE", 1);
+		sField[cnt].AddStageObject("iron//i2-bip12_ani.ASE", 1);
 
 
 		cnt = 29;
 
-		sField[cnt].SetName("Ice\\ice_ura.ASE", "ice_ura");
+		sField[cnt].SetName("Ice//ice_ura.ASE", "ice_ura");
 		sField[cnt].State = FIELD_STATE_ICE;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYSNOW;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWSNOW;
@@ -1335,7 +1335,7 @@ static int SelCount = 0;
 		sField[cnt].ServerCode = PLAY_SERVER_CODE_EXTEND;
 		sField[cnt].BackMusicCode = BGM_CODE_DESERT;
 		sField[cnt].SetCenterPos(32621, 23865);
-		sField[cnt].AddStageObject("ice\\ice_ani_01.ASE");
+		sField[cnt].AddStageObject("ice//ice_ani_01.ASE");
 		sField[cnt].AddGate(&sField[cnt + 2], 31848, 27225, 0);
 		sField[cnt].AddWarpGate(30407, 22232, 1349, 64, 32);
 		sField[cnt].AddWarpOutGate(&sField[cnt], 30610, 22164, 1304);
@@ -1347,7 +1347,7 @@ static int SelCount = 0;
 
 		cnt = 30;
 
-		sField[cnt].SetName("Sod\\sod-1.ASE", "sod-1");
+		sField[cnt].SetName("Sod//sod-1.ASE", "sod-1");
 		sField[cnt].State = FIELD_STATE_RUIN;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_RUIN2;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWRUIN2;
@@ -1355,29 +1355,29 @@ static int SelCount = 0;
 		sField[cnt].ServerCode = PLAY_SERVER_CODE_EXTEND;
 		sField[cnt].BackMusicCode = BGM_CODE_CUSTOM;
 		sField[cnt].SetCenterPos(22018, 6569);
-		sField[cnt].AddStageObject("sod\\s-ani01_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani02_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani03_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani04_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani05_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani06_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani07_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani08_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani09_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani10_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani11_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani12_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani13_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani14_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani15_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani16_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani17_Bip.ASE", 1);
-		sField[cnt].AddStageObject("sod\\s-ani18_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani01_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani02_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani03_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani04_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani05_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani06_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani07_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani08_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani09_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani10_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani11_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani12_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani13_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani14_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani15_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani16_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani17_Bip.ASE", 1);
+		sField[cnt].AddStageObject("sod//s-ani18_Bip.ASE", 1);
 
 
 		cnt = 31;
 
-		sField[cnt].SetName("Ice\\ice1.ASE", "ice1");
+		sField[cnt].SetName("Ice//ice1.ASE", "ice1");
 		sField[cnt].State = FIELD_STATE_ICE;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYSNOW;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWSNOW;
@@ -1386,17 +1386,17 @@ static int SelCount = 0;
 		sField[cnt].BackMusicCode = BGM_CODE_ICE;
 		sField[cnt].SetCenterPos(32313, 28529);
 		sField[cnt].AddGate(&sField[35], 33729, 38029, 0);
-		sField[cnt].AddStageObject("ice\\ice_ani_01.ASE");
-		sField[cnt].AddStageObject("ice\\ice_bip_leewood01.ASE");
-		sField[cnt].AddStageObject("ice\\ice_bip_leewood03.ASE");
-		sField[cnt].AddStageObject("ice\\ice_bip_leewood04.ASE");
-		sField[cnt].AddStageObject("ice\\ice_bip_leaf01.ASE");
-		sField[cnt].AddStageObject("ice\\ice_bip_leaf02.ASE");
-		sField[cnt].AddStageObject("ice\\ice_bip_leaf03.ASE");
-		sField[cnt].AddStageObject("ice\\ice_bip_leaf04.ASE");
-		sField[cnt].AddStageObject("ice\\ice_bip_leaf05.ASE");
-		sField[cnt].AddStageObject("ice\\ice_bip_leaf06.ASE");
-		sField[cnt].AddStageObject("ice\\ice_bip_leaf07.ASE");
+		sField[cnt].AddStageObject("ice//ice_ani_01.ASE");
+		sField[cnt].AddStageObject("ice//ice_bip_leewood01.ASE");
+		sField[cnt].AddStageObject("ice//ice_bip_leewood03.ASE");
+		sField[cnt].AddStageObject("ice//ice_bip_leewood04.ASE");
+		sField[cnt].AddStageObject("ice//ice_bip_leaf01.ASE");
+		sField[cnt].AddStageObject("ice//ice_bip_leaf02.ASE");
+		sField[cnt].AddStageObject("ice//ice_bip_leaf03.ASE");
+		sField[cnt].AddStageObject("ice//ice_bip_leaf04.ASE");
+		sField[cnt].AddStageObject("ice//ice_bip_leaf05.ASE");
+		sField[cnt].AddStageObject("ice//ice_bip_leaf06.ASE");
+		sField[cnt].AddStageObject("ice//ice_bip_leaf07.ASE");
 		sField[cnt].LimitLevel = 90;
 		sField[cnt].AddWarpGate(35400, 31863, 820, 64, 32);
 		sField[cnt].AddWarpOutGate(&sField[44], 18006, -34740, 216);
@@ -1406,7 +1406,7 @@ static int SelCount = 0;
 
 		cnt = 32;
 
-		sField[cnt].SetName("quest\\quest_IV.ASE", "quest_IV");
+		sField[cnt].SetName("quest//quest_IV.ASE", "quest_IV");
 		sField[cnt].State = FIELD_STATE_QUEST_ARENA;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1417,7 +1417,7 @@ static int SelCount = 0;
 
 		cnt = 33;
 
-		sField[cnt].SetName("castle\\castle.ase", "castle");
+		sField[cnt].SetName("castle//castle.ase", "castle");
 		sField[cnt].State = FIELD_STATE_CASTLE;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_RUIN2;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWRUIN2;
@@ -1428,13 +1428,13 @@ static int SelCount = 0;
 		sField[cnt].AddStartPoint(33920, -23479);
 		sField[cnt].AddStartPoint(35247, -23355);
 		sField[cnt].AddStartPoint(36164, -23446);
-		sField[cnt].AddStageObject("castle\\wf_gate_ani.ASE");
-		sField[cnt].AddStageObject("castle\\crystal_ani01.ASE");
-		sField[cnt].AddStageObject("castle\\crystal_ani02.ASE");
-		sField[cnt].AddStageObject("castle\\crystal_ani03.ASE");
-		sField[cnt].AddStageObject("castle\\crystal_ani04.ASE");
-		sField[cnt].AddStageObject("castle\\crystal_ani05.ASE");
-		sField[cnt].AddStageObject("castle\\crystal_ani06.ASE");
+		sField[cnt].AddStageObject("castle//wf_gate_ani.ASE");
+		sField[cnt].AddStageObject("castle//crystal_ani01.ASE");
+		sField[cnt].AddStageObject("castle//crystal_ani02.ASE");
+		sField[cnt].AddStageObject("castle//crystal_ani03.ASE");
+		sField[cnt].AddStageObject("castle//crystal_ani04.ASE");
+		sField[cnt].AddStageObject("castle//crystal_ani05.ASE");
+		sField[cnt].AddStageObject("castle//crystal_ani06.ASE");
 		sField[cnt].AddWarpGate(32527, -30693, 774, 64, 32);
 		sField[cnt].AddWarpOutGate(&sField[cnt], 32739, -30474, 711);
 		sField[cnt].WarpGate[sField[cnt].WarpGateActiveNum].SpecialEffect = 2;
@@ -1443,7 +1443,7 @@ static int SelCount = 0;
 
 		cnt = 34;
 
-		sField[cnt].SetName("Greedy\\Greedy.ase", "Greedy");
+		sField[cnt].SetName("Greedy//Greedy.ase", "Greedy");
 		sField[cnt].State = FIELD_STATE_ICE;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYGREDDY;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWGREDDY;
@@ -1452,41 +1452,41 @@ static int SelCount = 0;
 		sField[cnt].ServerCode = PLAY_SERVER_CODE_MAIN;
 		sField[cnt].SetCenterPos(13930, 23206);
 		sField[cnt].LimitLevel = 70;
-		sField[cnt].AddStageObject("Greedy\\vane1_ani.ASE");
-		sField[cnt].AddStageObject("Greedy\\vane2_ani.ASE");
-		sField[cnt].AddStageObject("Greedy\\vane3_ani.ASE");
-		sField[cnt].AddStageObject("Greedy\\vane4_ani.ASE");
-		sField[cnt].AddStageObject("Greedy\\ani_tail.ASE");
-		sField[cnt].AddStageObject("Greedy\\ship_ani.ASE");
-		sField[cnt].AddStageObject("Greedy\\ship1_ani.ASE");
-		sField[cnt].AddStageObject("Greedy\\ship2_ani.ASE");
-		sField[cnt].AddStageObject("Greedy\\ship3_ani.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_animi01.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_animi02.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_animi03.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_animi04.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_animi05.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_animi06.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_animi07.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_animi08.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_animi09.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_animi10.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_ani00.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_ani01.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_ani02.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_ani03.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_ani04.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_ani05.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_ani06.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_ani07.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_ani08.ASE");
-		sField[cnt].AddStageObject("Greedy\\flower_ani09.ASE");
-		sField[cnt].AddStageObject("Greedy\\door.ASE");
+		sField[cnt].AddStageObject("Greedy//vane1_ani.ASE");
+		sField[cnt].AddStageObject("Greedy//vane2_ani.ASE");
+		sField[cnt].AddStageObject("Greedy//vane3_ani.ASE");
+		sField[cnt].AddStageObject("Greedy//vane4_ani.ASE");
+		sField[cnt].AddStageObject("Greedy//ani_tail.ASE");
+		sField[cnt].AddStageObject("Greedy//ship_ani.ASE");
+		sField[cnt].AddStageObject("Greedy//ship1_ani.ASE");
+		sField[cnt].AddStageObject("Greedy//ship2_ani.ASE");
+		sField[cnt].AddStageObject("Greedy//ship3_ani.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_animi01.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_animi02.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_animi03.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_animi04.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_animi05.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_animi06.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_animi07.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_animi08.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_animi09.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_animi10.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_ani00.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_ani01.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_ani02.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_ani03.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_ani04.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_ani05.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_ani06.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_ani07.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_ani08.ASE");
+		sField[cnt].AddStageObject("Greedy//flower_ani09.ASE");
+		sField[cnt].AddStageObject("Greedy//door.ASE");
 
 
 		cnt = 35;
 
-		sField[cnt].SetName("Ice\\ice_2.ASE", "ice2");
+		sField[cnt].SetName("Ice//ice_2.ASE", "ice2");
 		sField[cnt].State = FIELD_STATE_ICE;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYSNOW;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWSNOW;
@@ -1502,7 +1502,7 @@ static int SelCount = 0;
 
 		cnt = 36;
 
-		sField[cnt].SetName("Boss\\Boss.ASE", "Boss");
+		sField[cnt].SetName("Boss//Boss.ASE", "Boss");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1517,7 +1517,7 @@ static int SelCount = 0;
 
 		cnt = 37;
 
-		sField[cnt].SetName("lost\\lostisland.ASE", "lost");
+		sField[cnt].SetName("lost//lostisland.ASE", "lost");
 		sField[cnt].State = FIELD_STATE_RUIN;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYLOST;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWLOST;
@@ -1527,11 +1527,11 @@ static int SelCount = 0;
 		sField[cnt].SetCenterPos(-12555, -1113);
 		sField[cnt].LimitLevel = 95;
 		sField[cnt].AddGate(&sField[cnt + 1], -11586, 7704, 0);
-		sField[cnt].AddStageObject("lost\\wf_ani.ASE");
-		sField[cnt].AddStageObject("lost\\ani_shop01.ASE");
-		sField[cnt].AddStageObject("lost\\ani_shop02.ASE");
-		sField[cnt].AddStageObject("lost\\ani_shop03.ASE");
-		sField[cnt].AddStageObject("lost\\ani_shop04.ASE");
+		sField[cnt].AddStageObject("lost//wf_ani.ASE");
+		sField[cnt].AddStageObject("lost//ani_shop01.ASE");
+		sField[cnt].AddStageObject("lost//ani_shop02.ASE");
+		sField[cnt].AddStageObject("lost//ani_shop03.ASE");
+		sField[cnt].AddStageObject("lost//ani_shop04.ASE");
 		sField[cnt].AddWarpGate(-12610, -1349, 694, 64, 32);
 		sField[cnt].AddWarpOutGate(&sField[cnt], -12555, -1113, 668);
 		sField[cnt].WarpGate[sField[cnt].WarpGateActiveNum].SpecialEffect = 2;
@@ -1539,7 +1539,7 @@ static int SelCount = 0;
 
 		cnt = 38;
 
-		sField[cnt].SetName("Losttemple\\lost_temple.ASE", "Losttemple");
+		sField[cnt].SetName("Losttemple//lost_temple.ASE", "Losttemple");
 		sField[cnt].State = FIELD_STATE_RUIN;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYTEMPLE;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWTEMPLE;
@@ -1552,7 +1552,7 @@ static int SelCount = 0;
 
 		cnt = 39;
 
-		sField[cnt].SetName("Fall_Game\\fall_game.ASE", 0);
+		sField[cnt].SetName("Fall_Game//fall_game.ASE", 0);
 		sField[cnt].State = FIELD_STATE_ACTION;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1581,7 +1581,7 @@ static int SelCount = 0;
 
 		cnt = 40;
 
-		sField[cnt].SetName("endless\\dun-7.ase", "dun-7");
+		sField[cnt].SetName("endless//dun-7.ase", "dun-7");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1601,7 +1601,7 @@ static int SelCount = 0;
 
 		cnt = 41;
 
-		sField[cnt].SetName("endless\\dun-8.ase", "dun-8");
+		sField[cnt].SetName("endless//dun-8.ase", "dun-8");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1621,7 +1621,7 @@ static int SelCount = 0;
 
 		cnt = 42;
 
-		sField[cnt].SetName("dungeon\\Dun-6a.ASE", "dun-6");
+		sField[cnt].SetName("dungeon//Dun-6a.ASE", "dun-6");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1629,25 +1629,25 @@ static int SelCount = 0;
 		sField[cnt].BackMusicCode = BGM_CODE_DUNGEON;
 		sField[cnt].ServerCode = PLAY_SERVER_CODE_EXTEND;
 		sField[cnt].SetCenterPos(-3660, -45200);
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-001.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-002.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-003.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-004.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-005.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-006.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-007.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-008.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-009.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-010.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-011.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-012.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-013.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-014.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-015.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-016.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-017.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-018.ASE");
-		sField[cnt].AddStageObject("dungeon\\Dun-6a-ani-019.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-001.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-002.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-003.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-004.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-005.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-006.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-007.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-008.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-009.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-010.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-011.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-012.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-013.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-014.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-015.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-016.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-017.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-018.ASE");
+		sField[cnt].AddStageObject("dungeon//Dun-6a-ani-019.ASE");
 		sField[cnt].AddAmbientPos(-3648, 3, -50013, 0, 7);
 		sField[cnt].AddAmbientPos(-4349, 454, -47777, 0, 7);
 		sField[cnt].AddAmbientPos(-5130, 454, -47587, 0, 7);
@@ -1669,7 +1669,7 @@ static int SelCount = 0;
 
 		cnt = 43;
 
-		sField[cnt].SetName("endless\\dun-9.ASE", "dun-9");
+		sField[cnt].SetName("endless//dun-9.ASE", "dun-9");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1691,7 +1691,7 @@ static int SelCount = 0;
 
 		cnt = 44;
 
-		sField[cnt].SetName("Mine\\mine-1.ASE", "mine-1");
+		sField[cnt].SetName("Mine//mine-1.ASE", "mine-1");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYSNOW;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWSNOW;
@@ -1708,7 +1708,7 @@ static int SelCount = 0;
 
 		cnt = 45;
 
-		sField[cnt].SetName("Sod\\sod-2.ASE", "sod-2");
+		sField[cnt].SetName("Sod//sod-2.ASE", "sod-2");
 		sField[cnt].State = FIELD_STATE_RUIN;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_RUIN2;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWRUIN2;
@@ -1721,7 +1721,7 @@ static int SelCount = 0;
 
 		cnt = 46;
 
-		sField[cnt].SetName("Slab\\Slab.ASE", "Slab");
+		sField[cnt].SetName("Slab//Slab.ASE", "Slab");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1740,7 +1740,7 @@ static int SelCount = 0;
 		cnt = 47;
 
 		// ===================================== NEW FIELD =====================================
-		sField[cnt].SetName("AncientW\\ancientW.ASE", "AncientW");
+		sField[cnt].SetName("AncientW//ancientW.ASE", "AncientW");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1749,23 +1749,23 @@ static int SelCount = 0;
 		sField[cnt].ServerCode = PLAY_SERVER_CODE_EXTEND;
 		sField[cnt].SetCenterPos(12725, -73112);
 		sField[cnt].AddStartPoint(12725, -73112);
-		sField[cnt].AddStageObject("AncientW\\RotObj01.ASE");
-		sField[cnt].AddStageObject("AncientW\\RotObj02.ASE");
-		sField[cnt].AddStageObject("AncientW\\RotObj03.ASE");
-		sField[cnt].AddStageObject("AncientW\\RotObj04.ASE");
-		sField[cnt].AddStageObject("AncientW\\RotObj05.ASE");
-		sField[cnt].AddStageObject("AncientW\\RotObj06.ASE");
-		sField[cnt].AddStageObject("AncientW\\RotObj07.ASE");
-		sField[cnt].AddStageObject("AncientW\\RotObj08.ASE");
-		sField[cnt].AddStageObject("AncientW\\RotObj09.ASE");
-		sField[cnt].AddStageObject("AncientW\\RotObj10.ASE");
+		sField[cnt].AddStageObject("AncientW//RotObj01.ASE");
+		sField[cnt].AddStageObject("AncientW//RotObj02.ASE");
+		sField[cnt].AddStageObject("AncientW//RotObj03.ASE");
+		sField[cnt].AddStageObject("AncientW//RotObj04.ASE");
+		sField[cnt].AddStageObject("AncientW//RotObj05.ASE");
+		sField[cnt].AddStageObject("AncientW//RotObj06.ASE");
+		sField[cnt].AddStageObject("AncientW//RotObj07.ASE");
+		sField[cnt].AddStageObject("AncientW//RotObj08.ASE");
+		sField[cnt].AddStageObject("AncientW//RotObj09.ASE");
+		sField[cnt].AddStageObject("AncientW//RotObj10.ASE");
 		sField[cnt].LimitLevel = 118;
 		sField[cnt].WarpGate[sField[cnt].WarpGateActiveNum].LimitLevel = 118;
 
 		cnt = 48;
 
 		// ===================================== NEW FIELD =====================================
-		sField[cnt].SetName("SeaA\\SeaA.ASE", "SeaA");
+		sField[cnt].SetName("SeaA//SeaA.ASE", "SeaA");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1774,23 +1774,23 @@ static int SelCount = 0;
 		sField[cnt].ServerCode = PLAY_SERVER_CODE_EXTEND;
 		sField[cnt].SetCenterPos(-19925, -3858);
 		sField[cnt].AddStartPoint(-19925, -3858);
-		sField[cnt].AddStageObject("SeaA\\sea_ani01.ASE");
-		sField[cnt].AddStageObject("SeaA\\sea_ani02.ASE");
-		sField[cnt].AddStageObject("SeaA\\sea_ani03.ASE");
-		sField[cnt].AddStageObject("SeaA\\sea_ani04.ASE");
-		sField[cnt].AddStageObject("SeaA\\sea_ani05.ASE");
-		sField[cnt].AddStageObject("SeaA\\sea_ani06.ASE");
-		sField[cnt].AddStageObject("SeaA\\sea_ani07.ASE");
-		sField[cnt].AddStageObject("SeaA\\sea_ani08.ASE");
-		sField[cnt].AddStageObject("SeaA\\sea_ani09.ASE");
-		sField[cnt].AddStageObject("SeaA\\sea_ani10.ASE");
+		sField[cnt].AddStageObject("SeaA//sea_ani01.ASE");
+		sField[cnt].AddStageObject("SeaA//sea_ani02.ASE");
+		sField[cnt].AddStageObject("SeaA//sea_ani03.ASE");
+		sField[cnt].AddStageObject("SeaA//sea_ani04.ASE");
+		sField[cnt].AddStageObject("SeaA//sea_ani05.ASE");
+		sField[cnt].AddStageObject("SeaA//sea_ani06.ASE");
+		sField[cnt].AddStageObject("SeaA//sea_ani07.ASE");
+		sField[cnt].AddStageObject("SeaA//sea_ani08.ASE");
+		sField[cnt].AddStageObject("SeaA//sea_ani09.ASE");
+		sField[cnt].AddStageObject("SeaA//sea_ani10.ASE");
 		sField[cnt].LimitLevel = 125;
 		sField[cnt].WarpGate[sField[cnt].WarpGateActiveNum].LimitLevel = 125;
 
 
 		cnt = 49;
 		// ===================================== NEW FIELD =====================================
-		sField[cnt].SetName("SeaA\\Stemple.ASE", "Stemple");
+		sField[cnt].SetName("SeaA//Stemple.ASE", "Stemple");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;
@@ -1802,7 +1802,7 @@ static int SelCount = 0;
 		sField[cnt].WarpGate[sField[cnt].WarpGateActiveNum].LimitLevel = 130;
 		cnt = 50;
 
-		sField[cnt].SetName("mar\\ruin-arenaSF.ASE", "mar");
+		sField[cnt].SetName("mar//ruin-arenaSF.ASE", "mar");
 		sField[cnt].State = FIELD_STATE_FOREST;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAY;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWDAY;
@@ -1814,7 +1814,7 @@ static int SelCount = 0;
 		sField[cnt].LimitLevel = 140;
 		cnt = 51;
 
-		sField[cnt].SetName("lost\\lost3.ASE", "lost3");
+		sField[cnt].SetName("lost//lost3.ASE", "lost3");
 		sField[cnt].State = FIELD_STATE_RUIN;
 		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAYLOST;
 		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWLOST;
@@ -1826,7 +1826,7 @@ static int SelCount = 0;
 		sField[cnt].LimitLevel = 130;
 		cnt = 52;
 
-		sField[cnt].SetName("boss\\dark_boss.ASE", "dc1");
+		sField[cnt].SetName("boss//dark_boss.ASE", "dc1");
 		sField[cnt].State = FIELD_STATE_DUNGEON;
 		sField[cnt].BackImageCode[0] = 0;
 		sField[cnt].BackImageCode[1] = 0;

@@ -2,7 +2,7 @@
 #include <windows.h>
 #include <process.h>
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "smwsock.h"
 #include "smPacket.h"
 #include "cracker.h"
@@ -421,7 +421,7 @@ int CheckDLL_Module()
 
 	int len = lstrlen(szBuff);
 
-	szBuff[len++] = '\\';
+	szBuff[len++] = '//';
 
 	lpBuff = szBuff + len;
 

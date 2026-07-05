@@ -3,13 +3,13 @@
 #include "HoEffectManager.h"
 #include "HoEffectMain.h"
 #include "HoEffectController.h"
-#include "..\\..\\sinbaram\\sinLinkHeader.h"
-#include "..\\..\\field.h"
+#include "../../sinbaram/sinLinkHeader.h"
+#include "../../field.h"
 
-#include "..\\HoMinMax.h"
-#include "..\\HoNewParticle.h"
-#include "..\\HoNewParticleMgr.h"
-#include "..\\AssaParticle.h"
+#include "../HoMinMax.h"
+#include "../HoNewParticle.h"
+#include "../HoNewParticleMgr.h"
+#include "../AssaParticle.h"
 
 void AssaParticle_Top_Level(smCHAR* pChar)
 {
@@ -77,7 +77,7 @@ void SkillMetalionImpulsionHit(smCHAR **pChar, int charCount)
 		desPos.y = (float)pChar[index+1]->pY/256.f;
 		desPos.z = (float)pChar[index+1]->pZ/256.f;
 
-		effectType->m_AxialController.Init("Effect\\NewEffect\\Res\\TextureHit\\spark01_0.bmp", 4, 0.005f);
+		effectType->m_AxialController.Init("Effect//NewEffect//Res//TextureHit//spark01_0.bmp", 4, 0.005f);
 		effectType->m_AxialController.InitLoop(1);
 		effectType->m_AxialController.InitEndTime(1.f);
 		effectType->m_AxialController.InitColor(150,255,200, 255);
@@ -156,7 +156,7 @@ void SkillMetalionImpulsionHit(smCHAR **pChar, int charCount)
 void SkillMetalionCompulsion(smCHAR *pChar)
 {
  	HoEffectGroup *effectGroup = NULL;
-	effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\SkillMetalionCompulsion1.lua");
+	effectGroup = MainWindow.LoadScript("Effect//NewEffect//SkillMetalionCompulsion1.lua");
 	if(effectGroup)
 	{
 		HoEffectType_Default *effectType = new HoEffectType_Default();
@@ -296,7 +296,7 @@ void SkillMetalionSphere(smCHAR *pChar, float time, float attackTime)
 void SkillMetalionGolem(smCHAR *pChar)
 {
  	HoEffectGroup *effectGroup = NULL;
-	effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\SkillMetalionMetalGolem.lua");
+	effectGroup = MainWindow.LoadScript("Effect//NewEffect//SkillMetalionMetalGolem.lua");
 	if(effectGroup)
 	{
 		GetMoveLocation( 0, 0, 30*fONE, 0, pChar->Angle.y, 0);
@@ -325,7 +325,7 @@ void SkillWarriorDestroyerBlade(smCHAR *pChar, float time)
 void SkillWarriorDestroyerHit(POINT3D *pos)
 {
     HoEffectGroup *effectGroup = NULL;
-	effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\SkillWarriorDestroyerHit.lua");
+	effectGroup = MainWindow.LoadScript("Effect//NewEffect//SkillWarriorDestroyerHit.lua");
 	if(effectGroup)
 	{
 		HoEffectType_Default *effectType = new HoEffectType_Default();
@@ -337,7 +337,7 @@ void SkillWarriorDestroyerHit(POINT3D *pos)
 
 void SkillWarriorBetserker(smCHAR *pChar, float time)
 {
- 	HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\SkillWarriorBetserker.lua");
+ 	HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect//NewEffect//SkillWarriorBetserker.lua");
 	if(effectGroup)
 	{
 		
@@ -375,7 +375,7 @@ void SkillLancelotAssassinEye(smCHAR *pChar, float time)
 	else
 	{
 		HoEffectGroup *effectGroup = NULL;
-		effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\SkillLancelotAssassinEye.lua");
+		effectGroup = MainWindow.LoadScript("Effect//NewEffect//SkillLancelotAssassinEye.lua");
 		if(effectGroup)
 		{
    			HoEffectType_Attach_Avater *effectType = new HoEffectType_Attach_Avater();
@@ -389,7 +389,7 @@ void SkillLancelotAssassinEye(smCHAR *pChar, float time)
 
 void SkillLancelotChargingStrike(smCHAR *pChar)
 {
-	HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\SkillLancelotChargingStrike1.lua");
+	HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect//NewEffect//SkillLancelotChargingStrike1.lua");
 	if(effectGroup)
 	{
 		GetMoveLocation( 0, 0, 30*fONE, 0, lpCurPlayer->Angle.y, 0);
@@ -406,7 +406,7 @@ void SkillLancelotChargingStrike(smCHAR *pChar)
 
 void SkillLancelotVague(smCHAR *pChar)
 {
-	HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\SkillArchMageMeteo1.lua");
+	HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect//NewEffect//SkillArchMageMeteo1.lua");
 	if(effectGroup)
 	{
 		GetMoveLocation( 0, 0, 30*fONE, 0, lpCurPlayer->Angle.y, 0);
@@ -466,7 +466,7 @@ void SkillSagittarionForceOfNature1(smCHAR *pChar, float time)
 	else
 	{
 		HoEffectGroup *effectGroup = NULL;
-		effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\SkillSagittarionForceofNature.lua");
+		effectGroup = MainWindow.LoadScript("Effect//NewEffect//SkillSagittarionForceofNature.lua");
 		if(effectGroup)
 		{
    			HoEffectType_Attach_Avater *effectType = new HoEffectType_Attach_Avater();
@@ -485,7 +485,7 @@ void SkillSagittarionForceOfNature2(smCHAR *pChar, float time)
 	else
 	{
 		HoEffectGroup *effectGroup = NULL;
-		effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\SkillSagittarionForceofNature2.lua");
+		effectGroup = MainWindow.LoadScript("Effect//NewEffect//SkillSagittarionForceofNature2.lua");
 		if(effectGroup)
 		{
    			HoEffectType_Attach_Avater *effectType = new HoEffectType_Attach_Avater();
@@ -510,7 +510,7 @@ void SkillSaintDivinePiercing(smCHAR *pChar)
 void SkillSaintGodBless(smCHAR *pChar, float time)
 {
    	SkillGodBless(pChar);
-	HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\SkillSaintNightGodsBless.lua");
+	HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect//NewEffect//SkillSaintNightGodsBless.lua");
 	if(effectGroup)
 	{
 		HoEffectType_Attach_Avater *effectType = new HoEffectType_Attach_Avater();
@@ -522,7 +522,7 @@ void SkillSaintGodBless(smCHAR *pChar, float time)
 void SkillSwordOfUstice(smCHAR *pChar)
 {
 	HoEffectGroup *effectGroup = NULL;
-	effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\SkillSaintNightSwordOfustice.lua");
+	effectGroup = MainWindow.LoadScript("Effect//NewEffect//SkillSaintNightSwordOfustice.lua");
 	if(effectGroup)
 	{
 		HoEffectType_Default *effectType = new HoEffectType_Default();
@@ -535,7 +535,7 @@ void SkillSwordOfUstice(smCHAR *pChar)
 void SkillValhallaHallOfValhalla1(smCHAR *pChar)
 {
 	HoEffectGroup *effectGroup = NULL;
-	effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\SkillValhallaHallofVahalla.lua");
+	effectGroup = MainWindow.LoadScript("Effect//NewEffect//SkillValhallaHallofVahalla.lua");
 	if(effectGroup)
 	{
 		HoEffectType_Default *effectType = new HoEffectType_Default();
@@ -556,9 +556,9 @@ void SkillValhallaXRage(POINT3D *curPos, POINT3D *desPos)
  	ShotInfo.m_AttackPos.y = desPos->y;
 	ShotInfo.m_AttackPos.z = desPos->z;
 
-	ShotInfo.m_EffectGroup[SHOT_PROCESS] = MainWindow.LoadScript("Effect\\NewEffect\\SkillValhallaXRage.lua");
-	ShotInfo.m_EffectGroup[SHOT_END] =  MainWindow.LoadScript("Effect\\NewEffect\\SkillValhallaHit1.lua");
-	ShotInfo.m_LineTextureName = "Effect\\NewEffect\\Res\\TextureHit\\Shield1.tga";
+	ShotInfo.m_EffectGroup[SHOT_PROCESS] = MainWindow.LoadScript("Effect//NewEffect//SkillValhallaXRage.lua");
+	ShotInfo.m_EffectGroup[SHOT_END] =  MainWindow.LoadScript("Effect//NewEffect//SkillValhallaHit1.lua");
+	ShotInfo.m_LineTextureName = "Effect//NewEffect//Res//TextureHit//Shield1.tga";
 	HoEffectType_Avater_Shot_Default *effectType = new HoEffectType_Avater_Shot_Default();
 	effectType->Init(ShotInfo);
 	effectType->SetSkillCode(SKILL_X_RAGE);
@@ -577,10 +577,10 @@ void SkillFrostJavelin(POINT3D *curPos, POINT3D *desPos)
  	ShotInfo.m_AttackPos.y = desPos->y;
 	ShotInfo.m_AttackPos.z = desPos->z;
 
-	ShotInfo.m_EffectGroup[SHOT_PROCESS] = MainWindow.LoadScript("Effect\\NewEffect\\SkillFrostJavelin.lua");
+	ShotInfo.m_EffectGroup[SHOT_PROCESS] = MainWindow.LoadScript("Effect//NewEffect//SkillFrostJavelin.lua");
 	
- 	ShotInfo.m_EffectGroup[SHOT_END] =  MainWindow.LoadScript("Effect\\NewEffect\\SkillValhallaFrostJavellin1.lua");
-	ShotInfo.m_LineTextureName = "Effect\\NewEffect\\Res\\TextureHit\\Shield1.tga";
+ 	ShotInfo.m_EffectGroup[SHOT_END] =  MainWindow.LoadScript("Effect//NewEffect//SkillValhallaFrostJavellin1.lua");
+	ShotInfo.m_LineTextureName = "Effect//NewEffect//Res//TextureHit//Shield1.tga";
 	HoEffectType_Avater_Shot_Default *effectType = new HoEffectType_Avater_Shot_Default();
 	effectType->Init(ShotInfo);
 	HoEffectManager::GetInstance()->AddEffect(effectType);
@@ -588,7 +588,7 @@ void SkillFrostJavelin(POINT3D *curPos, POINT3D *desPos)
 
 void SkillForstJavelinAttach(smCHAR *pChar, float time)
 {
-	HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\SkillValhallaFrostJavellin1.lua");
+	HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect//NewEffect//SkillValhallaFrostJavellin1.lua");
 	if(effectGroup)
 	{
 		HoEffectType_Attach_Avater *effectType = new HoEffectType_Attach_Avater();
@@ -609,9 +609,9 @@ void SkillVengeance(POINT3D *curPos, POINT3D *desPos)
  	ShotInfo.m_AttackPos.y = desPos->y;
 	ShotInfo.m_AttackPos.z = desPos->z;
 
-	ShotInfo.m_EffectGroup[SHOT_PROCESS] = MainWindow.LoadScript("Effect\\NewEffect\\SkillValhallaXRage.lua");
-	ShotInfo.m_EffectGroup[SHOT_END] =  MainWindow.LoadScript("Effect\\NewEffect\\SkillValhallaHit1.lua");
-	ShotInfo.m_LineTextureName = "Effect\\NewEffect\\Res\\TextureHit\\Shield1.tga";
+	ShotInfo.m_EffectGroup[SHOT_PROCESS] = MainWindow.LoadScript("Effect//NewEffect//SkillValhallaXRage.lua");
+	ShotInfo.m_EffectGroup[SHOT_END] =  MainWindow.LoadScript("Effect//NewEffect//SkillValhallaHit1.lua");
+	ShotInfo.m_LineTextureName = "Effect//NewEffect//Res//TextureHit//Shield1.tga";
 	HoEffectType_Avater_Shot_Default *effectType = new HoEffectType_Avater_Shot_Default();
 	effectType->Init(ShotInfo);
 	HoEffectManager::GetInstance()->AddEffect(effectType);
@@ -620,7 +620,7 @@ void SkillVengeance(POINT3D *curPos, POINT3D *desPos)
 void SkillCelestialGlacialSpike(smCHAR *pChar)
 {
 	HoEffectGroup *effectGroup = NULL;
-	effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\SkillCelestialGlacialSpike.lua");
+	effectGroup = MainWindow.LoadScript("Effect//NewEffect//SkillCelestialGlacialSpike.lua");
 	if(effectGroup)
 	{
 		HoEffectType_Default *effectType = new HoEffectType_Default();
@@ -687,7 +687,7 @@ void CelestialChainLighting(smCHAR **pChar, int count)
 		desPos.y = (float)pChar[index+1]->pY/256.f;
 		desPos.z = (float)pChar[index+1]->pZ/256.f;
 
-		effectType->m_AxialController.Init("Effect\\NewEffect\\Res\\TextureHit\\B_e20.bmp", 3, 0.005f);
+		effectType->m_AxialController.Init("Effect//NewEffect//Res//TextureHit//B_e20.bmp", 3, 0.005f);
 		effectType->m_AxialController.InitLoop(1);
 		effectType->m_AxialController.InitEndTime(1.f);
 		effectType->m_AxialController.InitColor(150,255,200, 255);
@@ -832,7 +832,7 @@ BOOL GetAssaCodeEffect(smCHAR *pChar, int code)
 
 void Valento_PowerUp(smCHAR *pChar)
 {
- 	HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\ValentoPowerUp.Lua");
+ 	HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect//NewEffect//ValentoPowerUp.Lua");
 	if(effectGroup)
 	{
 		HoEffectType_Default *effectType = new HoEffectType_Default();
@@ -846,7 +846,7 @@ void Valento_PowerUp(smCHAR *pChar)
 void Valento_Justice(smCHAR *pChar)
 {
 
-	 HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\ValentoJustice.Lua");
+	 HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect//NewEffect//ValentoJustice.Lua");
 	if(effectGroup)
 	{
 		HoEffectType_Default *effectType = new HoEffectType_Default();
@@ -859,7 +859,7 @@ void Valento_Justice(smCHAR *pChar)
 void DevilBird_Skill(smCHAR *pChar)
 {
 
-	 HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\DevilBirdSkill.Lua");
+	 HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect//NewEffect//DevilBirdSkill.Lua");
 	if(effectGroup)
 	{
 		HoEffectType_Default *effectType = new HoEffectType_Default();
@@ -871,7 +871,7 @@ void DevilBird_Skill(smCHAR *pChar)
 
 void EffectPVP(smCHAR *pChar)
 {
-	HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\PVP.lua");
+	HoEffectGroup *effectGroup = MainWindow.LoadScript("Effect//NewEffect//PVP.lua");
 	if (effectGroup)
 	{
 		HoEffectType_Attach_Avater *effectType = new HoEffectType_Attach_Avater();
@@ -892,7 +892,7 @@ void ParkIncubusSummonerSkill(smCHAR *pChar)
 	if(pChar)
 	{
 		HoEffectGroup *effectGroup = NULL;
-		effectGroup = MainWindow.LoadScript("Effect\\NewEffect\\Incu_summSkill.lua");
+		effectGroup = MainWindow.LoadScript("Effect//NewEffect//Incu_summSkill.lua");
 		if(effectGroup)
 		{
 			GetMoveLocation( 0, 0, 30*fONE, 0, pChar->Angle.y, 0);

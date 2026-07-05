@@ -2,7 +2,7 @@
 #define	_CHARACTER_HEADER
 
 #include "smPacket.h"
-#include "smLib3d\smObj3d.h"
+#include "smLib3d/smObj3d.h"
 
 struct smMOTIONINFO;
 struct smTHREADSOCK;

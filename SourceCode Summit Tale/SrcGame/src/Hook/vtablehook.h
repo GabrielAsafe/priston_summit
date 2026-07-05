@@ -23,7 +23,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <stdint.h>
 
 #ifdef WIN32
-#include <Windows.h>
+#include <windows.h>
 #elif __linux__
 #include <unistd.h>
 #include <sys/mman.h>

@@ -5,7 +5,7 @@
 
 #include "clan_Enti.h"
 
-#define CLANUSER_HELP "image\\clanImage\\Help\\clanuser_help.msg"
+#define CLANUSER_HELP "image//clanImage//Help//clanuser_help.msg"
 
 class CLANEntity_user : public CLANEntity
 {

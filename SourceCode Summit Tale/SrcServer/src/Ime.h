@@ -2,7 +2,7 @@
 #define __IME_CONTROL_INCLUDE__
 
 #include <imm.h>
-#include "strclass.h"
+#include "STRCLASS.H"
 
 class ImeClass
 {

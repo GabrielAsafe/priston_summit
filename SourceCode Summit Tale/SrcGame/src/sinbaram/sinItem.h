@@ -3,7 +3,7 @@
 
 #define _SINITEM_HEADER_
 
-#include "smLib3d\\smDsx.h"
+#include "smLib3d/smDsx.h"
 
 #define MAX_ITEM 2000
 
@@ -307,6 +307,7 @@
 #define ITEM_KIND_CRAFT				1   
 #define ITEM_KIND_AGING				2   
 #define ITEM_KIND_QUEST				3	
+#define ITEM_KIND_PERFECT			9
 #define ITEM_KIND_EVENT				4	
 #define ITEM_KIND_MAKE_MAIN			5	
 #define ITEM_KIND_MAKE_ELEMENT		6	

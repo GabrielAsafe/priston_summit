@@ -1,4 +1,4 @@
-#include "sinbaram\\sinlinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
 #include "FontImage.h"
 
 bool TextureBox1 = false;
@@ -22,27 +22,27 @@ bool cMixGuide::MouseAction(int x, int y, int w, int h)
 
 void cMixGuide::Init()
 {
-	cImages[0] = CreateTextureMaterial("game\\mix\\window.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	cImages[1] = CreateTextureMaterial("game\\mix\\btnok.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[0] = CreateTextureMaterial("game//mix//window.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[1] = CreateTextureMaterial("game//mix//btnok.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	cImages[2] = CreateTextureMaterial("game\\mix\\combobox\\drop.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	cImages[3] = CreateTextureMaterial("game\\mix\\combobox\\dropon.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	cImages[4] = CreateTextureMaterial("game\\mix\\combobox\\drop_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	cImages[5] = CreateTextureMaterial("game\\mix\\combobox\\dropdown.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	cImages[6] = CreateTextureMaterial("game\\mix\\combobox\\dropbg.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[2] = CreateTextureMaterial("game//mix//combobox//drop.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[3] = CreateTextureMaterial("game//mix//combobox//dropon.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[4] = CreateTextureMaterial("game//mix//combobox//drop_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[5] = CreateTextureMaterial("game//mix//combobox//dropdown.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[6] = CreateTextureMaterial("game//mix//combobox//dropbg.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	//sheltons
 	
-	cImages[12] = CreateTextureMaterial("game\\mix\\Sheltoms\\Transparo.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	cImages[7] = CreateTextureMaterial("game\\mix\\Sheltoms\\Devine.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	cImages[8] = CreateTextureMaterial("game\\mix\\Sheltoms\\Celesto.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	cImages[13] = CreateTextureMaterial("game\\mix\\Sheltoms\\Mirage.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	cImages[14] = CreateTextureMaterial("game\\mix\\Sheltoms\\Inferna.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	cImages[15] = CreateTextureMaterial("game\\mix\\Sheltoms\\enigma.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	cImages[10] = CreateTextureMaterial("game\\mix\\Sheltoms\\Murki.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	cImages[11] = CreateTextureMaterial("game\\mix\\Sheltoms\\Bellum.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[12] = CreateTextureMaterial("game//mix//Sheltoms//Transparo.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[7] = CreateTextureMaterial("game//mix//Sheltoms//Devine.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[8] = CreateTextureMaterial("game//mix//Sheltoms//Celesto.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[13] = CreateTextureMaterial("game//mix//Sheltoms//Mirage.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[14] = CreateTextureMaterial("game//mix//Sheltoms//Inferna.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[15] = CreateTextureMaterial("game//mix//Sheltoms//enigma.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[10] = CreateTextureMaterial("game//mix//Sheltoms//Murki.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[11] = CreateTextureMaterial("game//mix//Sheltoms//Bellum.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	cImages[9] = CreateTextureMaterial("game\\mix\\Mix.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	cImages[9] = CreateTextureMaterial("game//mix//Mix.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
     
 }
 

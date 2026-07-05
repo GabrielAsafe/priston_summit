@@ -26,8 +26,8 @@
 #include "ole2.h"
 #endif 
 
-#ifndef __amstream_h__
-#define __amstream_h__
+#ifndef __amSTREAM.H__
+#define __amSTREAM.H__
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -97,7 +97,7 @@ typedef struct AMMultiMediaStream AMMultiMediaStream;
 
 
 #include "unknwn.h"
-#include "mmstream.h"
+#include "mmSTREAM.H"
 #include "strmif.h"
 
 #ifdef __cplusplus
@@ -112,9 +112,9 @@ extern "C"{
 
 #include <ddraw.h>
 #include <mmsystem.h>
-#include <mmstream.h>
-#include <ddstream.h>
-#include <austream.h>
+#include <mmSTREAM.H>
+#include <ddSTREAM.H>
+#include <auSTREAM.H>
 
 
 
@@ -276,45 +276,45 @@ extern "C"{
 #ifdef COBJMACROS
 
 
-#define IDirectShowStream_QueryInterface(This,riid,ppvObject)	\
+#define IDirectShowStream_QueryInterface(This,riid,ppvObject)	/
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IDirectShowStream_AddRef(This)	\
+#define IDirectShowStream_AddRef(This)	/
     (This)->lpVtbl -> AddRef(This)
 
-#define IDirectShowStream_Release(This)	\
+#define IDirectShowStream_Release(This)	/
     (This)->lpVtbl -> Release(This)
 
 
-#define IDirectShowStream_GetTypeInfoCount(This,pctinfo)	\
+#define IDirectShowStream_GetTypeInfoCount(This,pctinfo)	/
     (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo)
 
-#define IDirectShowStream_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+#define IDirectShowStream_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	/
     (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo)
 
-#define IDirectShowStream_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+#define IDirectShowStream_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	/
     (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)
 
-#define IDirectShowStream_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+#define IDirectShowStream_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	/
     (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)
 
 
-#define IDirectShowStream_get_FileName(This,pVal)	\
+#define IDirectShowStream_get_FileName(This,pVal)	/
     (This)->lpVtbl -> get_FileName(This,pVal)
 
-#define IDirectShowStream_put_FileName(This,newVal)	\
+#define IDirectShowStream_put_FileName(This,newVal)	/
     (This)->lpVtbl -> put_FileName(This,newVal)
 
-#define IDirectShowStream_get_Video(This,pVal)	\
+#define IDirectShowStream_get_Video(This,pVal)	/
     (This)->lpVtbl -> get_Video(This,pVal)
 
-#define IDirectShowStream_put_Video(This,newVal)	\
+#define IDirectShowStream_put_Video(This,newVal)	/
     (This)->lpVtbl -> put_Video(This,newVal)
 
-#define IDirectShowStream_get_Audio(This,pVal)	\
+#define IDirectShowStream_get_Audio(This,pVal)	/
     (This)->lpVtbl -> get_Audio(This,pVal)
 
-#define IDirectShowStream_put_Audio(This,newVal)	\
+#define IDirectShowStream_put_Audio(This,newVal)	/
     (This)->lpVtbl -> put_Audio(This,newVal)
 
 #endif 
@@ -551,63 +551,63 @@ extern "C"{
 #ifdef COBJMACROS
 
 
-#define IAMMultiMediaStream_QueryInterface(This,riid,ppvObject)	\
+#define IAMMultiMediaStream_QueryInterface(This,riid,ppvObject)	/
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IAMMultiMediaStream_AddRef(This)	\
+#define IAMMultiMediaStream_AddRef(This)	/
     (This)->lpVtbl -> AddRef(This)
 
-#define IAMMultiMediaStream_Release(This)	\
+#define IAMMultiMediaStream_Release(This)	/
     (This)->lpVtbl -> Release(This)
 
 
-#define IAMMultiMediaStream_GetInformation(This,pdwFlags,pStreamType)	\
+#define IAMMultiMediaStream_GetInformation(This,pdwFlags,pStreamType)	/
     (This)->lpVtbl -> GetInformation(This,pdwFlags,pStreamType)
 
-#define IAMMultiMediaStream_GetMediaStream(This,idPurpose,ppMediaStream)	\
+#define IAMMultiMediaStream_GetMediaStream(This,idPurpose,ppMediaStream)	/
     (This)->lpVtbl -> GetMediaStream(This,idPurpose,ppMediaStream)
 
-#define IAMMultiMediaStream_EnumMediaStreams(This,Index,ppMediaStream)	\
+#define IAMMultiMediaStream_EnumMediaStreams(This,Index,ppMediaStream)	/
     (This)->lpVtbl -> EnumMediaStreams(This,Index,ppMediaStream)
 
-#define IAMMultiMediaStream_GetState(This,pCurrentState)	\
+#define IAMMultiMediaStream_GetState(This,pCurrentState)	/
     (This)->lpVtbl -> GetState(This,pCurrentState)
 
-#define IAMMultiMediaStream_SetState(This,NewState)	\
+#define IAMMultiMediaStream_SetState(This,NewState)	/
     (This)->lpVtbl -> SetState(This,NewState)
 
-#define IAMMultiMediaStream_GetTime(This,pCurrentTime)	\
+#define IAMMultiMediaStream_GetTime(This,pCurrentTime)	/
     (This)->lpVtbl -> GetTime(This,pCurrentTime)
 
-#define IAMMultiMediaStream_GetDuration(This,pDuration)	\
+#define IAMMultiMediaStream_GetDuration(This,pDuration)	/
     (This)->lpVtbl -> GetDuration(This,pDuration)
 
-#define IAMMultiMediaStream_Seek(This,SeekTime)	\
+#define IAMMultiMediaStream_Seek(This,SeekTime)	/
     (This)->lpVtbl -> Seek(This,SeekTime)
 
-#define IAMMultiMediaStream_GetEndOfStreamEventHandle(This,phEOS)	\
+#define IAMMultiMediaStream_GetEndOfStreamEventHandle(This,phEOS)	/
     (This)->lpVtbl -> GetEndOfStreamEventHandle(This,phEOS)
 
 
-#define IAMMultiMediaStream_Initialize(This,StreamType,dwFlags,pFilterGraph)	\
+#define IAMMultiMediaStream_Initialize(This,StreamType,dwFlags,pFilterGraph)	/
     (This)->lpVtbl -> Initialize(This,StreamType,dwFlags,pFilterGraph)
 
-#define IAMMultiMediaStream_GetFilterGraph(This,ppGraphBuilder)	\
+#define IAMMultiMediaStream_GetFilterGraph(This,ppGraphBuilder)	/
     (This)->lpVtbl -> GetFilterGraph(This,ppGraphBuilder)
 
-#define IAMMultiMediaStream_GetFilter(This,ppFilter)	\
+#define IAMMultiMediaStream_GetFilter(This,ppFilter)	/
     (This)->lpVtbl -> GetFilter(This,ppFilter)
 
-#define IAMMultiMediaStream_AddMediaStream(This,pStreamObject,PurposeId,dwFlags,ppNewStream)	\
+#define IAMMultiMediaStream_AddMediaStream(This,pStreamObject,PurposeId,dwFlags,ppNewStream)	/
     (This)->lpVtbl -> AddMediaStream(This,pStreamObject,PurposeId,dwFlags,ppNewStream)
 
-#define IAMMultiMediaStream_OpenFile(This,pszFileName,dwFlags)	\
+#define IAMMultiMediaStream_OpenFile(This,pszFileName,dwFlags)	/
     (This)->lpVtbl -> OpenFile(This,pszFileName,dwFlags)
 
-#define IAMMultiMediaStream_OpenMoniker(This,pCtx,pMoniker,dwFlags)	\
+#define IAMMultiMediaStream_OpenMoniker(This,pCtx,pMoniker,dwFlags)	/
     (This)->lpVtbl -> OpenMoniker(This,pCtx,pMoniker,dwFlags)
 
-#define IAMMultiMediaStream_Render(This,dwFlags)	\
+#define IAMMultiMediaStream_Render(This,dwFlags)	/
     (This)->lpVtbl -> Render(This,dwFlags)
 
 #endif 
@@ -830,48 +830,48 @@ extern "C"{
 #ifdef COBJMACROS
 
 
-#define IAMMediaStream_QueryInterface(This,riid,ppvObject)	\
+#define IAMMediaStream_QueryInterface(This,riid,ppvObject)	/
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IAMMediaStream_AddRef(This)	\
+#define IAMMediaStream_AddRef(This)	/
     (This)->lpVtbl -> AddRef(This)
 
-#define IAMMediaStream_Release(This)	\
+#define IAMMediaStream_Release(This)	/
     (This)->lpVtbl -> Release(This)
 
 
-#define IAMMediaStream_GetMultiMediaStream(This,ppMultiMediaStream)	\
+#define IAMMediaStream_GetMultiMediaStream(This,ppMultiMediaStream)	/
     (This)->lpVtbl -> GetMultiMediaStream(This,ppMultiMediaStream)
 
-#define IAMMediaStream_GetInformation(This,pPurposeId,pType)	\
+#define IAMMediaStream_GetInformation(This,pPurposeId,pType)	/
     (This)->lpVtbl -> GetInformation(This,pPurposeId,pType)
 
-#define IAMMediaStream_SetSameFormat(This,pStreamThatHasDesiredFormat,dwFlags)	\
+#define IAMMediaStream_SetSameFormat(This,pStreamThatHasDesiredFormat,dwFlags)	/
     (This)->lpVtbl -> SetSameFormat(This,pStreamThatHasDesiredFormat,dwFlags)
 
-#define IAMMediaStream_AllocateSample(This,dwFlags,ppSample)	\
+#define IAMMediaStream_AllocateSample(This,dwFlags,ppSample)	/
     (This)->lpVtbl -> AllocateSample(This,dwFlags,ppSample)
 
-#define IAMMediaStream_CreateSharedSample(This,pExistingSample,dwFlags,ppNewSample)	\
+#define IAMMediaStream_CreateSharedSample(This,pExistingSample,dwFlags,ppNewSample)	/
     (This)->lpVtbl -> CreateSharedSample(This,pExistingSample,dwFlags,ppNewSample)
 
-#define IAMMediaStream_SendEndOfStream(This,dwFlags)	\
+#define IAMMediaStream_SendEndOfStream(This,dwFlags)	/
     (This)->lpVtbl -> SendEndOfStream(This,dwFlags)
 
 
-#define IAMMediaStream_Initialize(This,pSourceObject,dwFlags,PurposeId,StreamType)	\
+#define IAMMediaStream_Initialize(This,pSourceObject,dwFlags,PurposeId,StreamType)	/
     (This)->lpVtbl -> Initialize(This,pSourceObject,dwFlags,PurposeId,StreamType)
 
-#define IAMMediaStream_SetState(This,State)	\
+#define IAMMediaStream_SetState(This,State)	/
     (This)->lpVtbl -> SetState(This,State)
 
-#define IAMMediaStream_JoinAMMultiMediaStream(This,pAMMultiMediaStream)	\
+#define IAMMediaStream_JoinAMMultiMediaStream(This,pAMMultiMediaStream)	/
     (This)->lpVtbl -> JoinAMMultiMediaStream(This,pAMMultiMediaStream)
 
-#define IAMMediaStream_JoinFilter(This,pMediaStreamFilter)	\
+#define IAMMediaStream_JoinFilter(This,pMediaStreamFilter)	/
     (This)->lpVtbl -> JoinFilter(This,pMediaStreamFilter)
 
-#define IAMMediaStream_JoinFilterGraph(This,pFilterGraph)	\
+#define IAMMediaStream_JoinFilterGraph(This,pFilterGraph)	/
     (This)->lpVtbl -> JoinFilterGraph(This,pFilterGraph)
 
 #endif 
@@ -1109,80 +1109,80 @@ extern "C"{
 #ifdef COBJMACROS
 
 
-#define IMediaStreamFilter_QueryInterface(This,riid,ppvObject)	\
+#define IMediaStreamFilter_QueryInterface(This,riid,ppvObject)	/
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IMediaStreamFilter_AddRef(This)	\
+#define IMediaStreamFilter_AddRef(This)	/
     (This)->lpVtbl -> AddRef(This)
 
-#define IMediaStreamFilter_Release(This)	\
+#define IMediaStreamFilter_Release(This)	/
     (This)->lpVtbl -> Release(This)
 
 
-#define IMediaStreamFilter_GetClassID(This,pClassID)	\
+#define IMediaStreamFilter_GetClassID(This,pClassID)	/
     (This)->lpVtbl -> GetClassID(This,pClassID)
 
 
-#define IMediaStreamFilter_Stop(This)	\
+#define IMediaStreamFilter_Stop(This)	/
     (This)->lpVtbl -> Stop(This)
 
-#define IMediaStreamFilter_Pause(This)	\
+#define IMediaStreamFilter_Pause(This)	/
     (This)->lpVtbl -> Pause(This)
 
-#define IMediaStreamFilter_Run(This,tStart)	\
+#define IMediaStreamFilter_Run(This,tStart)	/
     (This)->lpVtbl -> Run(This,tStart)
 
-#define IMediaStreamFilter_GetState(This,dwMilliSecsTimeout,State)	\
+#define IMediaStreamFilter_GetState(This,dwMilliSecsTimeout,State)	/
     (This)->lpVtbl -> GetState(This,dwMilliSecsTimeout,State)
 
-#define IMediaStreamFilter_SetSyncSource(This,pClock)	\
+#define IMediaStreamFilter_SetSyncSource(This,pClock)	/
     (This)->lpVtbl -> SetSyncSource(This,pClock)
 
-#define IMediaStreamFilter_GetSyncSource(This,pClock)	\
+#define IMediaStreamFilter_GetSyncSource(This,pClock)	/
     (This)->lpVtbl -> GetSyncSource(This,pClock)
 
 
-#define IMediaStreamFilter_EnumPins(This,ppEnum)	\
+#define IMediaStreamFilter_EnumPins(This,ppEnum)	/
     (This)->lpVtbl -> EnumPins(This,ppEnum)
 
-#define IMediaStreamFilter_FindPin(This,Id,ppPin)	\
+#define IMediaStreamFilter_FindPin(This,Id,ppPin)	/
     (This)->lpVtbl -> FindPin(This,Id,ppPin)
 
-#define IMediaStreamFilter_QueryFilterInfo(This,pInfo)	\
+#define IMediaStreamFilter_QueryFilterInfo(This,pInfo)	/
     (This)->lpVtbl -> QueryFilterInfo(This,pInfo)
 
-#define IMediaStreamFilter_JoinFilterGraph(This,pGraph,pName)	\
+#define IMediaStreamFilter_JoinFilterGraph(This,pGraph,pName)	/
     (This)->lpVtbl -> JoinFilterGraph(This,pGraph,pName)
 
-#define IMediaStreamFilter_QueryVendorInfo(This,pVendorInfo)	\
+#define IMediaStreamFilter_QueryVendorInfo(This,pVendorInfo)	/
     (This)->lpVtbl -> QueryVendorInfo(This,pVendorInfo)
 
 
-#define IMediaStreamFilter_AddMediaStream(This,pAMMediaStream)	\
+#define IMediaStreamFilter_AddMediaStream(This,pAMMediaStream)	/
     (This)->lpVtbl -> AddMediaStream(This,pAMMediaStream)
 
-#define IMediaStreamFilter_GetMediaStream(This,idPurpose,ppMediaStream)	\
+#define IMediaStreamFilter_GetMediaStream(This,idPurpose,ppMediaStream)	/
     (This)->lpVtbl -> GetMediaStream(This,idPurpose,ppMediaStream)
 
-#define IMediaStreamFilter_EnumMediaStreams(This,Index,ppMediaStream)	\
+#define IMediaStreamFilter_EnumMediaStreams(This,Index,ppMediaStream)	/
     (This)->lpVtbl -> EnumMediaStreams(This,Index,ppMediaStream)
 
-#define IMediaStreamFilter_SupportSeeking(This,bRenderer)	\
+#define IMediaStreamFilter_SupportSeeking(This,bRenderer)	/
     (This)->lpVtbl -> SupportSeeking(This,bRenderer)
 
-#define IMediaStreamFilter_ReferenceTimeToStreamTime(This,pTime)	\
+#define IMediaStreamFilter_ReferenceTimeToStreamTime(This,pTime)	/
     (This)->lpVtbl -> ReferenceTimeToStreamTime(This,pTime)
 
-#define IMediaStreamFilter_GetCurrentStreamTime(This,pCurrentStreamTime)	\
+#define IMediaStreamFilter_GetCurrentStreamTime(This,pCurrentStreamTime)	/
     (This)->lpVtbl -> GetCurrentStreamTime(This,pCurrentStreamTime)
 
-#define IMediaStreamFilter_WaitUntil(This,WaitStreamTime)	\
+#define IMediaStreamFilter_WaitUntil(This,WaitStreamTime)	/
     (This)->lpVtbl -> WaitUntil(This,WaitStreamTime)
 
-#define IMediaStreamFilter_Flush(This,bCancelEOS)	\
+#define IMediaStreamFilter_Flush(This,bCancelEOS)	/
     (This)->lpVtbl -> Flush(This,bCancelEOS)
 
-#define IMediaStreamFilter_EndOfStream(This)	\
+#define IMediaStreamFilter_EndOfStream(This)	/
     (This)->lpVtbl -> EndOfStream(This)
 
 #endif 
@@ -1359,17 +1359,17 @@ extern "C"{
 #ifdef COBJMACROS
 
 
-#define IDirectDrawMediaSampleAllocator_QueryInterface(This,riid,ppvObject)	\
+#define IDirectDrawMediaSampleAllocator_QueryInterface(This,riid,ppvObject)	/
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IDirectDrawMediaSampleAllocator_AddRef(This)	\
+#define IDirectDrawMediaSampleAllocator_AddRef(This)	/
     (This)->lpVtbl -> AddRef(This)
 
-#define IDirectDrawMediaSampleAllocator_Release(This)	\
+#define IDirectDrawMediaSampleAllocator_Release(This)	/
     (This)->lpVtbl -> Release(This)
 
 
-#define IDirectDrawMediaSampleAllocator_GetDirectDraw(This,ppDirectDraw)	\
+#define IDirectDrawMediaSampleAllocator_GetDirectDraw(This,ppDirectDraw)	/
     (This)->lpVtbl -> GetDirectDraw(This,ppDirectDraw)
 
 #endif 
@@ -1456,20 +1456,20 @@ extern "C"{
 #ifdef COBJMACROS
 
 
-#define IDirectDrawMediaSample_QueryInterface(This,riid,ppvObject)	\
+#define IDirectDrawMediaSample_QueryInterface(This,riid,ppvObject)	/
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IDirectDrawMediaSample_AddRef(This)	\
+#define IDirectDrawMediaSample_AddRef(This)	/
     (This)->lpVtbl -> AddRef(This)
 
-#define IDirectDrawMediaSample_Release(This)	\
+#define IDirectDrawMediaSample_Release(This)	/
     (This)->lpVtbl -> Release(This)
 
 
-#define IDirectDrawMediaSample_GetSurfaceAndReleaseLock(This,ppDirectDrawSurface,pRect)	\
+#define IDirectDrawMediaSample_GetSurfaceAndReleaseLock(This,ppDirectDrawSurface,pRect)	/
     (This)->lpVtbl -> GetSurfaceAndReleaseLock(This,ppDirectDrawSurface,pRect)
 
-#define IDirectDrawMediaSample_LockMediaSamplePointer(This)	\
+#define IDirectDrawMediaSample_LockMediaSamplePointer(This)	/
     (This)->lpVtbl -> LockMediaSamplePointer(This)
 
 #endif 
@@ -1630,48 +1630,48 @@ extern "C"{
 #ifdef COBJMACROS
 
 
-#define IAMMediaTypeStream_QueryInterface(This,riid,ppvObject)	\
+#define IAMMediaTypeStream_QueryInterface(This,riid,ppvObject)	/
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IAMMediaTypeStream_AddRef(This)	\
+#define IAMMediaTypeStream_AddRef(This)	/
     (This)->lpVtbl -> AddRef(This)
 
-#define IAMMediaTypeStream_Release(This)	\
+#define IAMMediaTypeStream_Release(This)	/
     (This)->lpVtbl -> Release(This)
 
 
-#define IAMMediaTypeStream_GetMultiMediaStream(This,ppMultiMediaStream)	\
+#define IAMMediaTypeStream_GetMultiMediaStream(This,ppMultiMediaStream)	/
     (This)->lpVtbl -> GetMultiMediaStream(This,ppMultiMediaStream)
 
-#define IAMMediaTypeStream_GetInformation(This,pPurposeId,pType)	\
+#define IAMMediaTypeStream_GetInformation(This,pPurposeId,pType)	/
     (This)->lpVtbl -> GetInformation(This,pPurposeId,pType)
 
-#define IAMMediaTypeStream_SetSameFormat(This,pStreamThatHasDesiredFormat,dwFlags)	\
+#define IAMMediaTypeStream_SetSameFormat(This,pStreamThatHasDesiredFormat,dwFlags)	/
     (This)->lpVtbl -> SetSameFormat(This,pStreamThatHasDesiredFormat,dwFlags)
 
-#define IAMMediaTypeStream_AllocateSample(This,dwFlags,ppSample)	\
+#define IAMMediaTypeStream_AllocateSample(This,dwFlags,ppSample)	/
     (This)->lpVtbl -> AllocateSample(This,dwFlags,ppSample)
 
-#define IAMMediaTypeStream_CreateSharedSample(This,pExistingSample,dwFlags,ppNewSample)	\
+#define IAMMediaTypeStream_CreateSharedSample(This,pExistingSample,dwFlags,ppNewSample)	/
     (This)->lpVtbl -> CreateSharedSample(This,pExistingSample,dwFlags,ppNewSample)
 
-#define IAMMediaTypeStream_SendEndOfStream(This,dwFlags)	\
+#define IAMMediaTypeStream_SendEndOfStream(This,dwFlags)	/
     (This)->lpVtbl -> SendEndOfStream(This,dwFlags)
 
 
-#define IAMMediaTypeStream_GetFormat(This,pMediaType,dwFlags)	\
+#define IAMMediaTypeStream_GetFormat(This,pMediaType,dwFlags)	/
     (This)->lpVtbl -> GetFormat(This,pMediaType,dwFlags)
 
-#define IAMMediaTypeStream_SetFormat(This,pMediaType,dwFlags)	\
+#define IAMMediaTypeStream_SetFormat(This,pMediaType,dwFlags)	/
     (This)->lpVtbl -> SetFormat(This,pMediaType,dwFlags)
 
-#define IAMMediaTypeStream_CreateSample(This,lSampleSize,pbBuffer,dwFlags,pUnkOuter,ppAMMediaTypeSample)	\
+#define IAMMediaTypeStream_CreateSample(This,lSampleSize,pbBuffer,dwFlags,pUnkOuter,ppAMMediaTypeSample)	/
     (This)->lpVtbl -> CreateSample(This,lSampleSize,pbBuffer,dwFlags,pUnkOuter,ppAMMediaTypeSample)
 
-#define IAMMediaTypeStream_GetStreamAllocatorRequirements(This,pProps)	\
+#define IAMMediaTypeStream_GetStreamAllocatorRequirements(This,pProps)	/
     (This)->lpVtbl -> GetStreamAllocatorRequirements(This,pProps)
 
-#define IAMMediaTypeStream_SetStreamAllocatorRequirements(This,pProps)	\
+#define IAMMediaTypeStream_SetStreamAllocatorRequirements(This,pProps)	/
     (This)->lpVtbl -> SetStreamAllocatorRequirements(This,pProps)
 
 #endif 
@@ -1944,81 +1944,81 @@ extern "C"{
 #ifdef COBJMACROS
 
 
-#define IAMMediaTypeSample_QueryInterface(This,riid,ppvObject)	\
+#define IAMMediaTypeSample_QueryInterface(This,riid,ppvObject)	/
     (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
 
-#define IAMMediaTypeSample_AddRef(This)	\
+#define IAMMediaTypeSample_AddRef(This)	/
     (This)->lpVtbl -> AddRef(This)
 
-#define IAMMediaTypeSample_Release(This)	\
+#define IAMMediaTypeSample_Release(This)	/
     (This)->lpVtbl -> Release(This)
 
 
-#define IAMMediaTypeSample_GetMediaStream(This,ppMediaStream)	\
+#define IAMMediaTypeSample_GetMediaStream(This,ppMediaStream)	/
     (This)->lpVtbl -> GetMediaStream(This,ppMediaStream)
 
-#define IAMMediaTypeSample_GetSampleTimes(This,pStartTime,pEndTime,pCurrentTime)	\
+#define IAMMediaTypeSample_GetSampleTimes(This,pStartTime,pEndTime,pCurrentTime)	/
     (This)->lpVtbl -> GetSampleTimes(This,pStartTime,pEndTime,pCurrentTime)
 
-#define IAMMediaTypeSample_SetSampleTimes(This,pStartTime,pEndTime)	\
+#define IAMMediaTypeSample_SetSampleTimes(This,pStartTime,pEndTime)	/
     (This)->lpVtbl -> SetSampleTimes(This,pStartTime,pEndTime)
 
-#define IAMMediaTypeSample_Update(This,dwFlags,hEvent,pfnAPC,dwAPCData)	\
+#define IAMMediaTypeSample_Update(This,dwFlags,hEvent,pfnAPC,dwAPCData)	/
     (This)->lpVtbl -> Update(This,dwFlags,hEvent,pfnAPC,dwAPCData)
 
-#define IAMMediaTypeSample_CompletionStatus(This,dwFlags,dwMilliseconds)	\
+#define IAMMediaTypeSample_CompletionStatus(This,dwFlags,dwMilliseconds)	/
     (This)->lpVtbl -> CompletionStatus(This,dwFlags,dwMilliseconds)
 
 
-#define IAMMediaTypeSample_SetPointer(This,pBuffer,lSize)	\
+#define IAMMediaTypeSample_SetPointer(This,pBuffer,lSize)	/
     (This)->lpVtbl -> SetPointer(This,pBuffer,lSize)
 
-#define IAMMediaTypeSample_GetPointer(This,ppBuffer)	\
+#define IAMMediaTypeSample_GetPointer(This,ppBuffer)	/
     (This)->lpVtbl -> GetPointer(This,ppBuffer)
 
-#define IAMMediaTypeSample_GetSize(This)	\
+#define IAMMediaTypeSample_GetSize(This)	/
     (This)->lpVtbl -> GetSize(This)
 
-#define IAMMediaTypeSample_GetTime(This,pTimeStart,pTimeEnd)	\
+#define IAMMediaTypeSample_GetTime(This,pTimeStart,pTimeEnd)	/
     (This)->lpVtbl -> GetTime(This,pTimeStart,pTimeEnd)
 
-#define IAMMediaTypeSample_SetTime(This,pTimeStart,pTimeEnd)	\
+#define IAMMediaTypeSample_SetTime(This,pTimeStart,pTimeEnd)	/
     (This)->lpVtbl -> SetTime(This,pTimeStart,pTimeEnd)
 
-#define IAMMediaTypeSample_IsSyncPoint(This)	\
+#define IAMMediaTypeSample_IsSyncPoint(This)	/
     (This)->lpVtbl -> IsSyncPoint(This)
 
-#define IAMMediaTypeSample_SetSyncPoint(This,bIsSyncPoint)	\
+#define IAMMediaTypeSample_SetSyncPoint(This,bIsSyncPoint)	/
     (This)->lpVtbl -> SetSyncPoint(This,bIsSyncPoint)
 
-#define IAMMediaTypeSample_IsPreroll(This)	\
+#define IAMMediaTypeSample_IsPreroll(This)	/
     (This)->lpVtbl -> IsPreroll(This)
 
-#define IAMMediaTypeSample_SetPreroll(This,bIsPreroll)	\
+#define IAMMediaTypeSample_SetPreroll(This,bIsPreroll)	/
     (This)->lpVtbl -> SetPreroll(This,bIsPreroll)
 
-#define IAMMediaTypeSample_GetActualDataLength(This)	\
+#define IAMMediaTypeSample_GetActualDataLength(This)	/
     (This)->lpVtbl -> GetActualDataLength(This)
 
-#define IAMMediaTypeSample_SetActualDataLength(This,__MIDL_0020)	\
+#define IAMMediaTypeSample_SetActualDataLength(This,__MIDL_0020)	/
     (This)->lpVtbl -> SetActualDataLength(This,__MIDL_0020)
 
-#define IAMMediaTypeSample_GetMediaType(This,ppMediaType)	\
+#define IAMMediaTypeSample_GetMediaType(This,ppMediaType)	/
     (This)->lpVtbl -> GetMediaType(This,ppMediaType)
 
-#define IAMMediaTypeSample_SetMediaType(This,pMediaType)	\
+#define IAMMediaTypeSample_SetMediaType(This,pMediaType)	/
     (This)->lpVtbl -> SetMediaType(This,pMediaType)
 
-#define IAMMediaTypeSample_IsDiscontinuity(This)	\
+#define IAMMediaTypeSample_IsDiscontinuity(This)	/
     (This)->lpVtbl -> IsDiscontinuity(This)
 
-#define IAMMediaTypeSample_SetDiscontinuity(This,bDiscontinuity)	\
+#define IAMMediaTypeSample_SetDiscontinuity(This,bDiscontinuity)	/
     (This)->lpVtbl -> SetDiscontinuity(This,bDiscontinuity)
 
-#define IAMMediaTypeSample_GetMediaTime(This,pTimeStart,pTimeEnd)	\
+#define IAMMediaTypeSample_GetMediaTime(This,pTimeStart,pTimeEnd)	/
     (This)->lpVtbl -> GetMediaTime(This,pTimeStart,pTimeEnd)
 
-#define IAMMediaTypeSample_SetMediaTime(This,pTimeStart,pTimeEnd)	\
+#define IAMMediaTypeSample_SetMediaTime(This,pTimeStart,pTimeEnd)	/
     (This)->lpVtbl -> SetMediaTime(This,pTimeStart,pTimeEnd)
 
 #endif 

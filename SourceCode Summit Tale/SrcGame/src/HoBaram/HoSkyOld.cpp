@@ -1,5 +1,5 @@
-#include "..\\HoBaram\\HoLinkHeader.h"
-#include "..\\field.h"
+#include "../HoBaram/HoLinkHeader.h"
+#include "../field.h"
 
 HoSky	SkyBackGround;
 
@@ -456,9 +456,9 @@ void HoSky::Create()
 
 	FILE *fp;
 	if(smConfig.ScreenColorBit == 32)
- 		fp = fopen("Effect\\Sky\\test32.txt", "rt");
+ 		fp = fopen("Effect//Sky//test32.txt", "rt");
 	else
-		fp = fopen("Effect\\Sky\\test16.txt", "rt");
+		fp = fopen("Effect//Sky//test16.txt", "rt");
 
 	if( fp == NULL)
 		return;

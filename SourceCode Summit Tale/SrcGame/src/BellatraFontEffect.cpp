@@ -4,12 +4,12 @@
 
 
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "TextMessage.h"		
 #include "FullZoomMap.h"
 #include "FontImage.h"
 #include "BellatraFontEffect.h"
-#include "Drawsub.h"
+#include "drawsub.h"
 
 
 
@@ -163,7 +163,7 @@ static void DrawEventScore(void)
 		rcRect.right = int(rcRect.right * g_fWinSizeRatio_X);
 		rcRect.top = int((rcRect.top + yPos)    * g_fWinSizeRatio_Y);
 		rcRect.bottom = int((rcRect.bottom + yPos) * g_fWinSizeRatio_Y);
-		Font->DrawText(NULL, lpName, lstrlen(lpName), &rcRect, DT_RIGHT, FontColor);
+		Font->DrawText(lpName, lstrlen(lpName), &rcRect, DT_RIGHT, FontColor);
 
 
 		yPos += 30;
@@ -210,7 +210,7 @@ void CreateBellatraFontEffect(void)
 
 
 
-	FILE *fp = fopen("image\\Bellatra\\Bellatra.dat", "rb");
+	FILE *fp = fopen("image//Bellatra//Bellatra.dat", "rb");
 	if(fp)
 	{
 		fread(&s_BL_MinFontEffectInfoBuff, sizeof(s_BL_MinFontEffectInfoBuff), 1, fp);
@@ -224,7 +224,7 @@ void CreateBellatraFontEffect(void)
 
 	char szFullName[128];
 	char szDirectory[32];
-	::strcpy_s(szDirectory, "image\\Bellatra\\");
+	::strcpy_s(szDirectory, "image//Bellatra//");
 
 	int i;
 
@@ -250,7 +250,7 @@ void CreateBellatraFontEffect(void)
 
 	char dwFontGame[32] = { 0 };
 
-	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".\\game\\Font\\Config.ini");
+	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".//game//Font//Config.ini");
 
 #ifdef _LANGUAGE_BRAZIL
 	s_EventScore_Font = ::CreateFont(16, 0, 0, 0, FW_THIN, FALSE, FALSE, FALSE, ANSI_CHARSET | FS_LATIN1, OUT_TT_PRECIS, CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame);

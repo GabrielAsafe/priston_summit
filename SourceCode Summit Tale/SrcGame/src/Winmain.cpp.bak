@@ -50,7 +50,7 @@
 
 #include "BellatraFontEffect.h"
 
-#include "actiongame.h"
+#include "ActionGame.h"
 
 #include "Font\Font.h"
 #include "Settings\Settings.h"

@@ -1,9 +1,9 @@
 
 #include "sinLinkHeader.h"
 
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\Help.h"
-#include "..\\field.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/Help.h"
+#include "../field.h"
 
 cHELPPET cHelpPet;
 int MatPetImage[4] = { 0, };
@@ -18,10 +18,10 @@ void cHELPPET::Init()
 void cHELPPET::Load()
 {
 
-	MatPetImage[0] = CreateTextureMaterial("Image\\SinImage\\PetData\\Pet_terry-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatPetImage[1] = CreateTextureMaterial("Image\\SinImage\\PetData\\Pet_nepsys-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatPetImage[2] = CreateTextureMaterial("Image\\SinImage\\PetData\\Pet_io-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatPetImage[3] = CreateTextureMaterial("Image\\SinImage\\PetData\\Pet-mute-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatPetImage[0] = CreateTextureMaterial("Image//SinImage//PetData//Pet_terry-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatPetImage[1] = CreateTextureMaterial("Image//SinImage//PetData//Pet_nepsys-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatPetImage[2] = CreateTextureMaterial("Image//SinImage//PetData//Pet_io-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatPetImage[3] = CreateTextureMaterial("Image//SinImage//PetData//Pet-mute-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 }
 
@@ -281,7 +281,7 @@ void cHELPPET::KeyDown()
 int cHELPPET::GetFileData()
 {
 
-	char *szFilePath = "Image\\SinImage\\PetData\\PetMessage.txt";
+	char *szFilePath = "Image//SinImage//PetData//PetMessage.txt";
 
 	char decode[512];
 	char decode2[512];

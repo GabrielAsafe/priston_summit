@@ -5,6 +5,14 @@ struct RESTAURE_ITEM
 	int CoinPrice;
 	sITEM psItem;
 };
+struct RESTAURE_LIST
+{
+	int size;
+	int code;
+	int Count;
+	RESTAURE_ITEM ItemList[15];
+};
+
 
 class cRESTAURE
 {

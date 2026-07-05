@@ -1,11 +1,11 @@
 #include "opcodes.h"
 #include "sinLinkHeader.h"
-#include "..\\skillsub.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\clan_Enti.h"
-#include "..\\field.h"
-#include "Settings\Settings.h"
-#include "ConfirmationBox\ConfirmationBox.h"
+#include "../SkillSub.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/clan_Enti.h"
+#include "../field.h"
+#include "Settings/Settings.h"
+#include "ConfirmationBox/ConfirmationBox.h"
 #include "CoinShop.h"
 #include "cQuestWindow.h"
 #include "cHellsGate.h"
@@ -83,31 +83,31 @@ cMESSAGEBOX::~cMESSAGEBOX()
 void cMESSAGEBOX::Init()
 {
 
-	MatBoxLeft = CreateTextureMaterial("Image\\SinImage\\MessageBox\\CutBox\\BoxLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatBoxRight = CreateTextureMaterial("Image\\SinImage\\MessageBox\\CutBox\\BoxRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatBoxCenter = CreateTextureMaterial("Image\\SinImage\\MessageBox\\CutBox\\BoxCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatBoxLeft = CreateTextureMaterial("Image//SinImage//MessageBox//CutBox//BoxLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatBoxRight = CreateTextureMaterial("Image//SinImage//MessageBox//CutBox//BoxRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatBoxCenter = CreateTextureMaterial("Image//SinImage//MessageBox//CutBox//BoxCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	TopChat = CreateTextureMaterial("game\\global\\Main.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TopChat = CreateTextureMaterial("game//global//Main.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	BoxMain = CreateTextureMaterial("game\\GUI\\messagebox\\background_normal.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);//Box Main
+	BoxMain = CreateTextureMaterial("game//GUI//messagebox//background_normal.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);//Box Main
 
-	BtnNo = CreateTextureMaterial("game\\GUI\\messagebox\\btnno.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "Nao" Apagado
-	BtnNo_ = CreateTextureMaterial("game\\GUI\\messagebox\\btnno_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "Nao" Acesso
-	BtnYes = CreateTextureMaterial("game\\GUI\\messagebox\\btnyes.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "Yes" Apagado
-	BtnYes_ = CreateTextureMaterial("game\\GUI\\messagebox\\btnyes_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "Yes" Acesso
+	BtnNo = CreateTextureMaterial("game//GUI//messagebox//btnno.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "Nao" Apagado
+	BtnNo_ = CreateTextureMaterial("game//GUI//messagebox//btnno_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "Nao" Acesso
+	BtnYes = CreateTextureMaterial("game//GUI//messagebox//btnyes.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "Yes" Apagado
+	BtnYes_ = CreateTextureMaterial("game//GUI//messagebox//btnyes_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "Yes" Acesso
 
-	BtnCancel = CreateTextureMaterial("game\\GUI\\messagebox\\btncancel.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "Cancelar" Apagado
-	BtnCancel_ = CreateTextureMaterial("game\\GUI\\messagebox\\btncancel_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "Cancelar" Acesso
-	BtnOK = CreateTextureMaterial("game\\GUI\\messagebox\\btnok.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "OK" Apagado
-	BtnOK_ = CreateTextureMaterial("game\\GUI\\messagebox\\btnok_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "OK" Acesso
+	BtnCancel = CreateTextureMaterial("game//GUI//messagebox//btncancel.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "Cancelar" Apagado
+	BtnCancel_ = CreateTextureMaterial("game//GUI//messagebox//btncancel_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "Cancelar" Acesso
+	BtnOK = CreateTextureMaterial("game//GUI//messagebox//btnok.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "OK" Apagado
+	BtnOK_ = CreateTextureMaterial("game//GUI//messagebox//btnok_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "OK" Acesso
 
-	BtnSell = CreateTextureMaterial("game\\GUI\\messagebox\\sell.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "OK" Apagado
-	BtnSell_ = CreateTextureMaterial("game\\GUI\\messagebox\\sell_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "OK" Ace
+	BtnSell = CreateTextureMaterial("game//GUI//messagebox//sell.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "OK" Apagado
+	BtnSell_ = CreateTextureMaterial("game//GUI//messagebox//sell_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // Button "OK" Ace
 
-	MatBoxMain = CreateTextureMaterial("Image\\SinImage\\MessageBox\\BoxMain.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatBoxMain = CreateTextureMaterial("Image//SinImage//MessageBox//BoxMain.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
-	MatMyShopPRBoxLine = CreateTextureMaterial("image\\Sinimage\\Inven\\PR_Box.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatMyShopPRBoxLine = CreateTextureMaterial("image//Sinimage//Inven//PR_Box.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	Load();
 }
@@ -115,33 +115,33 @@ void cMESSAGEBOX::Init()
 void cMESSAGEBOX::Load()
 {
 
-	lpButtonYes07 = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\Button_Yes_Yellow.bmp");
-	lpButtonYesGlay07 = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\Button_Yes_Glay.bmp");
-	lpButtonNo07 = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\Button_No_Yellow.bmp");
-	lpButtonNoGlay07 = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\Button_No_Glay.bmp");
-	lpButtonBox07 = LoadDibSurfaceOffscreen("image\\Sinimage\\Help\\box-test-title2.bmp");
+	lpButtonYes07 = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//Button_Yes_Yellow.bmp");
+	lpButtonYesGlay07 = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//Button_Yes_Glay.bmp");
+	lpButtonNo07 = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//Button_No_Yellow.bmp");
+	lpButtonNoGlay07 = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//Button_No_Glay.bmp");
+	lpButtonBox07 = LoadDibSurfaceOffscreen("image//Sinimage//Help//box-test-title2.bmp");
 
-	lpArrowUpDown[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Arrow_Up.bmp");
-	lpArrowUpDown[1] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Arrow_Down.bmp");
+	lpArrowUpDown[0] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Arrow_Up.bmp");
+	lpArrowUpDown[1] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Arrow_Down.bmp");
 
-	lpButtonNo[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_No_Glay.bmp");
-	lpButtonNo[1] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_No_Yellow.bmp");
+	lpButtonNo[0] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_No_Glay.bmp");
+	lpButtonNo[1] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_No_Yellow.bmp");
 
-	lpButtonYes[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_Yes_Glay.bmp");
-	lpButtonYes[1] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_Yes_Yellow.bmp");
+	lpButtonYes[0] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_Yes_Glay.bmp");
+	lpButtonYes[1] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_Yes_Yellow.bmp");
 
-	lpButtonOk[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_Ok_Glay.bmp");
-	lpButtonOk[1] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_Ok_Yellow.bmp");
+	lpButtonOk[0] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_Ok_Glay.bmp");
+	lpButtonOk[1] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_Ok_Yellow.bmp");
 
-	lpButtonCancel[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_Cancel_Glay.bmp");
-	lpButtonCancel[1] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_Cancel_Yellow.bmp");
+	lpButtonCancel[0] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_Cancel_Glay.bmp");
+	lpButtonCancel[1] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_Cancel_Yellow.bmp");
 
-	lpCount = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\COUNT.bmp");
+	lpCount = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//COUNT.bmp");
 
 
-	lpStarIcon = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\Star.bmp");
-	lpStarShopClose = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\c.bmp");
-	lpStarShopClose_ = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\c1.bmp");
+	lpStarIcon = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//Star.bmp");
+	lpStarShopClose = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//c.bmp");
+	lpStarShopClose_ = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//c1.bmp");
 
 }
 

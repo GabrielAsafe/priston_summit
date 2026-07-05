@@ -7,15 +7,15 @@
 #include <stdio.h>
 
 
-#include "smlib3d\\smd3d.h"
-#include "..\\drawsub.h"
-#include "..\\smwsock.h"
-#include "smpacket.h"
+#include "smLib3d/smd3d.h"
+#include "../drawsub.h"
+#include "../smwsock.h"
+#include "smPacket.h"
 #include "global_def.h"
-#include "..\\HoBaram\\HoLinkHeader.h" 
-#include "..\\effectsnd.h"
-#include "..\\playsub.h"
-#include "Language\\language.h"
+#include "../HoBaram/HoLinkHeader.h" 
+#include "../effectsnd.h"
+#include "../playsub.h"
+#include "Language/language.h"
 
 #include "sinUtil.h"
 #include "sinMonster.h"
@@ -53,11 +53,11 @@
 #include "sinSOD2.h"
 
 #include "HaQuest.h"
-#include "haPremiumItem.h"
+#include "HaPremiumItem.h"
 #include "sinParkPcBangPet.h"   
 #include "SQL.h"
-#include "SkillFunction\\Tempskron.h"
-#include "SkillFunction\\Morayion.h"
+#include "SkillFunction/Tempskron.h"
+#include "SkillFunction/Morayion.h"
 #include "ClanCustom.h"
 #include "JOBS.h"
 #include "Rank.h"

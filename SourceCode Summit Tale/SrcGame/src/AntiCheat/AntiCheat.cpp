@@ -1,14 +1,33 @@
 #include "opcodes.h"
-#include "AntiCheat.h"
+#include "AntiCheat/AntiCheat.h"
 #include "smwsock.h"
 #include "smPacket.h"
 
 #include <vector>
-#include <Windows.h>
-#include <TlHelp32.h>
+#include <string>
+#include <windows.h>
+#include <tlhelp32.h>
+
 
 
 typedef LONG NTSTATUS;
+
+#ifndef __in
+#define __in
+#endif
+
+#ifndef __out
+#define __out
+#endif
+
+#ifndef __out_opt
+#define __out_opt
+#endif
+
+#ifndef __out_bcount
+#define __out_bcount(x)
+#endif
+
 
 bool bLoadedNTDLL = false;
 
@@ -39,7 +58,7 @@ BOOLEAN BlockAPI(HANDLE hProcess, CHAR* libName, CHAR* apiName)
 	HINSTANCE hLib = NULL;
 	VOID* pAddr = NULL;
 	BOOL bRet = FALSE;
-	DWORD dwRet = 0;
+	SIZE_T dwRet = 0;
 
 	hLib = LoadLibrary(libName);
 	if (hLib) {
@@ -216,22 +235,22 @@ BOOL AntiCheat::IsGameModules(char* pszFile)
 	{
 		return TRUE;
 	}
-	extract = strstr(szModule, "windows\\system");
+	extract = strstr(szModule, "windows//system");
 	if (extract)
 	{
 		return TRUE;
 	}
-	extract = strstr(szModule, "windows\\syswow64");
+	extract = strstr(szModule, "windows//syswow64");
 	if (extract)
 	{
 		return TRUE;
 	}
-	extract = strstr(szModule, "\\gbpsv.exe");
+	extract = strstr(szModule, "//gbpsv.exe");
 	if (extract)
 	{
 		return  TRUE;
 	}
-	extract = strstr(szModule, "\\gbpinj.dll");
+	extract = strstr(szModule, "//gbpinj.dll");
 	if (extract)
 	{
 		return  TRUE;
@@ -410,22 +429,28 @@ void AntiCheat::WindowFunctionHandler()
 
 bool antidebug1()
 {
-	bool bRet = false;
+#ifdef __GNUC__
+    // TEMP_MINGW_COMPAT:
+    // O código original usa inline assembly MSVC x86 (__asm { mov ... fs:[...] }),
+    // que não compila em GCC/MinGW x64. Stub temporário para desbloquear build.
+    return false;
+#else
+    bool bRet = false;
 
-	__asm
-	{
-		mov eax, dword ptr fs : [0x18]
+    __asm
+    {
+        mov eax, dword ptr fs : [0x18]
 
-		mov eax, dword ptr[eax + 0x30]
+        mov eax, dword ptr[eax + 0x30]
 
-		cmp byte ptr[eax + 2], 0
-		je blocEnd
-		mov bRet, 1
-		blocEnd :
+        cmp byte ptr[eax + 2], 0
+        je blocEnd
+        mov bRet, 1
+        blocEnd :
+    }
 
-	}
-
-	return bRet;
+    return bRet;
+#endif
 }
 
 DWORD dwTickCount = 0;

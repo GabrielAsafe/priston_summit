@@ -2,14 +2,14 @@
 
 
 #include "sinLinkHeader.h"
-#include "tjboy\\clanmenu\\tjclanDEF.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\Help.h"
+#include "TJBOY/clanmenu/tjclanDEF.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/Help.h"
 
-#include "..\\FullZoomMap.h" 
+#include "../FullZoomMap.h" 
 
 #ifdef _XTRAP_GUARD_4_CLIENT 
-#include "..\\XTrapSrcD5\\ClientExt\\XTrap4ClientExt1.h"	
+#include "../XTrapSrcD5/ClientExt/XTrap4ClientExt1.h"	
 #endif
 
 
@@ -67,32 +67,32 @@ int ItemImageNotExitFlag = 0;
 int DownNum = 0;
 
 char *sinSoundWav[] = {
-	"Image\\SinImage\\Sound\\interface-on.wav",
-	"Image\\SinImage\\Sound\\Axes.wav",
-	"Image\\SinImage\\Sound\\Claws.wav",
-	"Image\\SinImage\\Sound\\Hammer.wav",
-	"Image\\SinImage\\Sound\\Magicial_Stuffs.wav",
-	"Image\\SinImage\\Sound\\Poles.wav",
-	"Image\\SinImage\\Sound\\Shooters.wav",
-	"Image\\SinImage\\Sound\\Swords.wav",
-	"Image\\SinImage\\Sound\\Throwing.wav",
-	"Image\\SinImage\\Sound\\Armor.wav",
-	"Image\\SinImage\\Sound\\Boots.wav",
-	"Image\\SinImage\\Sound\\Gloves.wav",
-	"Image\\SinImage\\Sound\\Shields.wav",
-	"Image\\SinImage\\Sound\\Amulet.wav",
-	"Image\\SinImage\\Sound\\Armlet.wav",
-	"Image\\SinImage\\Sound\\Ring.wav",
-	"Image\\SinImage\\Sound\\Sheltom.wav",
-	"Image\\SinImage\\Sound\\Potion.wav",
-	"Image\\SinImage\\Sound\\Coin.wav",
-	"Image\\SinImage\\Sound\\Magicial_weapon.wav",
-	"Image\\SinImage\\Sound\\drink1.wav",
-	"Image\\SinImage\\Sound\\interface.wav",
-	"Image\\SinImage\\Sound\\repair.wav",
-	"Image\\SinImage\\Sound\\sheltom-failure.wav",
-	"Image\\SinImage\\Sound\\Armor-w.wav",
-	"Image\\SinImage\\Sound\\drink2.wav",
+	"Image//SinImage//Sound//interface-on.wav",
+	"Image//SinImage//Sound//Axes.wav",
+	"Image//SinImage//Sound//Claws.wav",
+	"Image//SinImage//Sound//Hammer.wav",
+	"Image//SinImage//Sound//Magicial_Stuffs.wav",
+	"Image//SinImage//Sound//Poles.wav",
+	"Image//SinImage//Sound//Shooters.wav",
+	"Image//SinImage//Sound//Swords.wav",
+	"Image//SinImage//Sound//Throwing.wav",
+	"Image//SinImage//Sound//Armor.wav",
+	"Image//SinImage//Sound//Boots.wav",
+	"Image//SinImage//Sound//Gloves.wav",
+	"Image//SinImage//Sound//Shields.wav",
+	"Image//SinImage//Sound//Amulet.wav",
+	"Image//SinImage//Sound//Armlet.wav",
+	"Image//SinImage//Sound//Ring.wav",
+	"Image//SinImage//Sound//Sheltom.wav",
+	"Image//SinImage//Sound//Potion.wav",
+	"Image//SinImage//Sound//Coin.wav",
+	"Image//SinImage//Sound//Magicial_weapon.wav",
+	"Image//SinImage//Sound//drink1.wav",
+	"Image//SinImage//Sound//interface.wav",
+	"Image//SinImage//Sound//repair.wav",
+	"Image//SinImage//Sound//sheltom-failure.wav",
+	"Image//SinImage//Sound//Armor-w.wav",
+	"Image//SinImage//Sound//drink2.wav",
 	0
 };
 
@@ -145,14 +145,14 @@ void CloseSub()
 
 void InitCursor()
 {
-	MatCursorDefault = CreateTextureMaterial("Assets\\GUI\\Cursor\\DefaultCursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatCursorSell = CreateTextureMaterial("Assets\\GUI\\Cursor\\SellCursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatCursorBuy = CreateTextureMaterial("Assets\\GUI\\Cursor\\BuyCursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatCursorRepair = CreateTextureMaterial("Assets\\GUI\\Cursor\\RepairCursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatCursorAttack = CreateTextureMaterial("Assets\\GUI\\Cursor\\Attack_Cursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatCursorGetItem1 = CreateTextureMaterial("Assets\\GUI\\Cursor\\GetItem_Cursor1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatCursorGetItem2 = CreateTextureMaterial("Assets\\GUI\\Cursor\\GetItem_Cursor2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatCursorTalk = CreateTextureMaterial("Assets\\GUI\\Cursor\\Talk_Cursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatCursorDefault = CreateTextureMaterial("Assets//GUI//Cursor//DefaultCursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatCursorSell = CreateTextureMaterial("Assets//GUI//Cursor//SellCursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatCursorBuy = CreateTextureMaterial("Assets//GUI//Cursor//BuyCursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatCursorRepair = CreateTextureMaterial("Assets//GUI//Cursor//RepairCursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatCursorAttack = CreateTextureMaterial("Assets//GUI//Cursor//Attack_Cursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatCursorGetItem1 = CreateTextureMaterial("Assets//GUI//Cursor//GetItem_Cursor1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatCursorGetItem2 = CreateTextureMaterial("Assets//GUI//Cursor//GetItem_Cursor2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatCursorTalk = CreateTextureMaterial("Assets//GUI//Cursor//Talk_Cursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 }
 
 void DrawCursor()
@@ -258,7 +258,7 @@ int sinGetItemInfo(DWORD CODE, char *szImagePath)
 	{
 		if(sItem[j].CODE == CODE)
 		{
-			wsprintf(szImagePath, "Image\\sinImage\\Items\\DropItem\\it%s.ASE", sItem[j].DorpItem);
+			wsprintf(szImagePath, "Image//sinImage//Items//DropItem//it%s.ASE", sItem[j].DorpItem);
 			return TRUE;
 		}
 	}
@@ -624,7 +624,7 @@ int LoadItemImage(sITEMINFO *sItemInfo, sITEM *TempItem)
 	{
 		if(sItemInfo->CODE == sItem[j].CODE)
 		{
-			wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+			wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 			memcpy(TempItem, &sItem[j], sizeof(sITEM));
 
 
@@ -636,7 +636,7 @@ int LoadItemImage(sITEMINFO *sItemInfo, sITEM *TempItem)
 					{
 						if((sinPZ1 | sin00) == sItem[k].CODE)
 						{
-							wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[k].ItemFilePath, sItem[k].LastCategory);
+							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[k].ItemFilePath, sItem[k].LastCategory);
 							memcpy(TempItem, &sItem[k], sizeof(sITEM));
 							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
 						}

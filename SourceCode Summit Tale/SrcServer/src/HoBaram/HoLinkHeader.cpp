@@ -1,8 +1,8 @@
 
-#include "SinBaram\\SinLinkHeader.h"
-#include "..\\HoBaram\\HoLinkHeader.h"
-#include "..\\smReg.h"
-#include "Language\\language.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "../HoBaram/HoLinkHeader.h"
+#include "../smreg.h"
+#include "Language/language.h"
 
 HoLogin		*lpLogin = 0;
 HoOpening	*lpOpening = 0;
@@ -420,7 +420,7 @@ void Capture(HWND handle, int fileFormatFlag)
 		char numBuffer[64];
 		memset(buffer, 0, sizeof(buffer));
 
-		strcpy(buffer, "Capture\\");
+		strcpy(buffer, "Capture//");
 
 		memset(numBuffer, 0, sizeof(numBuffer));
 		sprintf(numBuffer, "%d%s", (int)systemTime.wYear, "-");

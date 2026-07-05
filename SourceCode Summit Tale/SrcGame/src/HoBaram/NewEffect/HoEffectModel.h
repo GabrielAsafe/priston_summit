@@ -8,10 +8,10 @@
 
 #ifndef _HO_EFFECT_MODEL_H_
 #define _HO_EFFECT_MODEL_H_
-#include "math\\mathGlobal.h"
-#include "math\\point3.h"
-#include "math\\color4.h"
-#include "math\\matrix4.h"
+#include "math/mathGlobal.h"
+#include "math/point3.h"
+#include "math/color4.h"
+#include "math/MATRIX4.H"
 #include <vector>
 #include <string>
 #include <list>

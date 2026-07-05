@@ -9,19 +9,19 @@
 
 #ifdef USE_PROSTONTALE		
 
-#include "sinbaram\\SinLinkHeader.h"
-#include "HoBaram\\HoLinkHeader.h"
-#include "Language\\language.h"
-#include "HoBaram\\HoTextFile.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "Language/language.h"
+#include "HoBaram/HoTextFile.h"
 #endif
 
 #include <stdio.h>
 #include "tjclan.h"
 #include "cE_CViewClanInfo.h"
-#include "..\\isaocheck\\auth.h"
-#include "..\\isaocheck\\isaocheck.h"
+#include "../isaocheck/auth.h"
+#include "../isaocheck/isaocheck.h"
 #include "cE_Updatecldata.h"
-#include "..\\ygy\\ygyheader.h"
+#include "../Ygy/YgyHeader.h"
 
 
 
@@ -37,7 +37,7 @@ CUpdateCldata::~CUpdateCldata()
 
 void CUpdateCldata::Updatecldata()
 {
-	static cnt = 0;
+	static int cnt = 0;
 	extern char updateis[256];
 	wsprintf(updateis, "Updatecldata : %d ", cnt++);
 

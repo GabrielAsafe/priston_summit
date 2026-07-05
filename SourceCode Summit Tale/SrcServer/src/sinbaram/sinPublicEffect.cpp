@@ -39,43 +39,43 @@ int MatMonVigorRatoo[5];
 void sinInitPublicEffect()
 {
 	int i = 0;
-	char *Path = "Image\\SinImage\\Effect\\PublicEffect";
-	char *Path2 = "Image\\SinImage\\Effect\\MonsterEffect";
+	char *Path = "Image//SinImage//Effect//PublicEffect";
+	char *Path2 = "Image//SinImage//Effect//MonsterEffect";
 
 	char szBuff[128];
 
-	wsprintf(szBuff, "%s\\Line\\Line01.tga", Path);
+	wsprintf(szBuff, "%s//Line//Line01.tga", Path);
 	MatLine2[0] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
 	for(i = 0; i < 5; i++)
 	{
-		wsprintf(szBuff, "%s\\Light\\Light0%d.tga", Path, i + 1);
+		wsprintf(szBuff, "%s//Light//Light0%d.tga", Path, i + 1);
 		MatLight5[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 	for(i = 0; i < 3; i++)
 	{
-		wsprintf(szBuff, "%s\\Hit\\HitYellow%d.tga", Path, i + 1);
+		wsprintf(szBuff, "%s//Hit//HitYellow%d.tga", Path, i + 1);
 		MatHit2Circle[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 	for(i = 0; i < 3; i++)
 	{
-		wsprintf(szBuff, "%s\\Hit\\HitYellow%d.tga", Path, i + 1);
+		wsprintf(szBuff, "%s//Hit//HitYellow%d.tga", Path, i + 1);
 		MatHit2Circle[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 
-	wsprintf(szBuff, "%s\\Particle\\MonParticle01.tga", Path2);
+	wsprintf(szBuff, "%s//Particle//MonParticle01.tga", Path2);
 	MatMonParticle[0] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_SHADOW);
 
 	for(i = 1; i < 10; i++)
 	{
-		wsprintf(szBuff, "%s\\Particle\\MonParticle0%d.tga", Path2, i + 1);
+		wsprintf(szBuff, "%s//Particle//MonParticle0%d.tga", Path2, i + 1);
 		MatMonParticle[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
 	}
 
-	wsprintf(szBuff, "%s\\Ratoo\\glow.tga", Path2);
+	wsprintf(szBuff, "%s//Ratoo//glow.tga", Path2);
 	MatMonVigorRatoo[0] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
-	wsprintf(szBuff, "%s\\Ratoo\\glow1.tga", Path2);
+	wsprintf(szBuff, "%s//Ratoo//glow1.tga", Path2);
 	MatMonVigorRatoo[1] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
 }

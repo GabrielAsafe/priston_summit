@@ -100,7 +100,7 @@ F_Pike_Wind,SKILL_PIKE_WIND,SIN_SKILL_USE_RIGHT,Pike_Wind_UseMana},
 {0,0,0},			{0,0,0,0,0,0,0,0},
 F_Ice_Attribute,SKILL_ICE_ATTRIBUTE,SIN_SKILL_USE_NOT,0},
 
-{"�P�R�@��",			"�����ĤH���n�`�A�����P�R�������R���v�P���\�v�C",
+{"�P�R�@��",			"�����ĤH���n�`�A�����P�R�������R���v�P���/�v�C",
 14,		31,2,		84,3,
 {0,0,0},			{sinWS2,sinWP1,sinWH1,sinWC1,0,0,0,0},
 F_Critical_Hit,SKILL_CRITICAL_HIT,SIN_SKILL_USE_ALL,Critical_Hit_UseMana},

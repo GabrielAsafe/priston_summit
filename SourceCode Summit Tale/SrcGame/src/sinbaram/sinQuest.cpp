@@ -1,7 +1,7 @@
 
 
 #include "sinLinkHeader.h"
-#include "..\\field.h"
+#include "../field.h"
 
 extern bool bcanadd;
 
@@ -41,178 +41,178 @@ POINT QuestMessageBoxSize2 = { 9,10 };
 
 
 char *QuestFilePath[] = {
-	"image\\Sinimage\\Quest\\ChangeJob1.sin",
-	"image\\Sinimage\\Quest\\ChangeJob2.sin",
-	"image\\Sinimage\\Quest\\ChangeJob2M.sin",
-	"image\\Sinimage\\Quest\\ChangeJob2M_M1.sin",
-	"image\\Sinimage\\Quest\\ChangeJob2M_M2.sin",
-	"image\\Sinimage\\Quest\\ChangeJob2M_M3.sin",
-	"image\\Sinimage\\Quest\\ChangeJob2M_D1.sin",
-	"image\\Sinimage\\Quest\\ChangeJob2M_D2.sin",
-	"image\\Sinimage\\Quest\\ChangeJob2M_D3.sin",
-	"image\\Sinimage\\Quest\\ChangeJob2M_Success.sin",
-	"image\\Sinimage\\Quest\\ChangeJob2M_M0.sin",
-	"image\\Sinimage\\Quest\\ChangeJob2M_D0.sin",
-	"image\\Sinimage\\Quest\\ChangeJob1.sin",
+	"image//Sinimage//Quest//ChangeJob1.sin",
+	"image//Sinimage//Quest//ChangeJob2.sin",
+	"image//Sinimage//Quest//ChangeJob2M.sin",
+	"image//Sinimage//Quest//ChangeJob2M_M1.sin",
+	"image//Sinimage//Quest//ChangeJob2M_M2.sin",
+	"image//Sinimage//Quest//ChangeJob2M_M3.sin",
+	"image//Sinimage//Quest//ChangeJob2M_D1.sin",
+	"image//Sinimage//Quest//ChangeJob2M_D2.sin",
+	"image//Sinimage//Quest//ChangeJob2M_D3.sin",
+	"image//Sinimage//Quest//ChangeJob2M_Success.sin",
+	"image//Sinimage//Quest//ChangeJob2M_M0.sin",
+	"image//Sinimage//Quest//ChangeJob2M_D0.sin",
+	"image//Sinimage//Quest//ChangeJob1.sin",
 };
 
 char *QuestFilePath3[] = {
-	"image\\Sinimage\\Quest\\ChangeJob3_0.sin",
-	"image\\Sinimage\\Quest\\ChangeJob3_1.sin",
-	"image\\Sinimage\\Quest\\ChangeJob3_2.sin",
-	"image\\Sinimage\\Quest\\ChangeJob3_3.sin",
-	"image\\Sinimage\\Quest\\ChangeJob3_4.sin",
-	"image\\Sinimage\\Quest\\ChangeJob3_5.sin",
+	"image//Sinimage//Quest//ChangeJob3_0.sin",
+	"image//Sinimage//Quest//ChangeJob3_1.sin",
+	"image//Sinimage//Quest//ChangeJob3_2.sin",
+	"image//Sinimage//Quest//ChangeJob3_3.sin",
+	"image//Sinimage//Quest//ChangeJob3_4.sin",
+	"image//Sinimage//Quest//ChangeJob3_5.sin",
 };
 
 
 char *WingQuestFilePath_a[] = {
-	"image\\Sinimage\\Quest\\M_Wing_a.sin",
-	"image\\Sinimage\\Quest\\S_Wing_a.sin",
-	"image\\Sinimage\\Quest\\G_Wing_a.sin",
-	"image\\Sinimage\\Quest\\D_Wing_a.sin",
-	"image\\Sinimage\\Quest\\K_wing_a.sin",
-	"image\\Sinimage\\Quest\\E_wing_a.sin",
-	"image\\Sinimage\\Quest\\Puzzle.sin",
+	"image//Sinimage//Quest//M_Wing_a.sin",
+	"image//Sinimage//Quest//S_Wing_a.sin",
+	"image//Sinimage//Quest//G_Wing_a.sin",
+	"image//Sinimage//Quest//D_Wing_a.sin",
+	"image//Sinimage//Quest//K_wing_a.sin",
+	"image//Sinimage//Quest//E_wing_a.sin",
+	"image//Sinimage//Quest//Puzzle.sin",
 
 };
 
 char *WingQuestFilePath_b[] = {
-	"image\\Sinimage\\Quest\\M_Wing_b.sin",
-	"image\\Sinimage\\Quest\\S_Wing_b.sin",
-	"image\\Sinimage\\Quest\\G_Wing_b.sin",
-	"image\\Sinimage\\Quest\\D_Wing_b.sin",
-	"image\\Sinimage\\Quest\\K_wing_b.sin",
-	"image\\Sinimage\\Quest\\E_wing_b.sin",
-	"image\\Sinimage\\Quest\\Wing_End.sin",
+	"image//Sinimage//Quest//M_Wing_b.sin",
+	"image//Sinimage//Quest//S_Wing_b.sin",
+	"image//Sinimage//Quest//G_Wing_b.sin",
+	"image//Sinimage//Quest//D_Wing_b.sin",
+	"image//Sinimage//Quest//K_wing_b.sin",
+	"image//Sinimage//Quest//E_wing_b.sin",
+	"image//Sinimage//Quest//Wing_End.sin",
 
 };
 
 char *WarpGateDoc[] = {
-	"image\\Sinimage\\WarpGateDoc\\Default.sin",
-	"image\\Sinimage\\WarpGateDoc\\Ricarten.sin",
-	"image\\Sinimage\\WarpGateDoc\\Pilai.sin",
-	"image\\Sinimage\\WarpGateDoc\\Forest2.sin",
-	"image\\Sinimage\\WarpGateDoc\\Forest3.sin",
-	"image\\Sinimage\\WarpGateDoc\\Ruinen.sin",
-	"image\\Sinimage\\WarpGateDoc\\Nevisco.sin",
-	"image\\Sinimage\\WarpGateDoc\\Desert4.sin",
-	"image\\Sinimage\\WarpGateDoc\\yura.sin",
-	"image\\Sinimage\\WarpGateDoc\\chaoticpost.sin",
+	"image//Sinimage//WarpGateDoc//Default.sin",
+	"image//Sinimage//WarpGateDoc//Ricarten.sin",
+	"image//Sinimage//WarpGateDoc//Pilai.sin",
+	"image//Sinimage//WarpGateDoc//Forest2.sin",
+	"image//Sinimage//WarpGateDoc//Forest3.sin",
+	"image//Sinimage//WarpGateDoc//Ruinen.sin",
+	"image//Sinimage//WarpGateDoc//Nevisco.sin",
+	"image//Sinimage//WarpGateDoc//Desert4.sin",
+	"image//Sinimage//WarpGateDoc//yura.sin",
+	"image//Sinimage//WarpGateDoc//chaoticpost.sin",
 
 };
 char *HaWarpGateDoc[] = {
-	"image\\Sinimage\\WarpGateDoc\\B_Castle.sin"
+	"image//Sinimage//WarpGateDoc//B_Castle.sin"
 };
 
 char *WarningInitPoint[] = {
-	"image\\Sinimage\\Help\\WarnigWeight.sin",
+	"image//Sinimage//Help//WarnigWeight.sin",
 
 };
-char *BabelEventDoc = "image\\Sinimage\\Quest\\BaBelEvent.sin";
-char *NineTailFoxDoc = "image\\Sinimage\\Quest\\NineTailFoxEvent.sin";
-char *StarDustDoc = "image\\Sinimage\\Quest\\StarDust.sin";
-char *CristalEventDoc = "image\\Sinimage\\Quest\\CristalEvent.sin";
+char *BabelEventDoc = "image//Sinimage//Quest//BaBelEvent.sin";
+char *NineTailFoxDoc = "image//Sinimage//Quest//NineTailFoxEvent.sin";
+char *StarDustDoc = "image//Sinimage//Quest//StarDust.sin";
+char *CristalEventDoc = "image//Sinimage//Quest//CristalEvent.sin";
 
 
-char *WatermelonDoc = "image\\Sinimage\\Quest\\WatermelonEvent.sin";
+char *WatermelonDoc = "image//Sinimage//Quest//WatermelonEvent.sin";
 
-char *PumpkinDoc = "image\\Sinimage\\Quest\\PumpkinEvent.sin";
+char *PumpkinDoc = "image//Sinimage//Quest//PumpkinEvent.sin";
 
-char *StarDoc = "image\\Sinimage\\Quest\\StarEvent.sin";
+char *StarDoc = "image//Sinimage//Quest//StarEvent.sin";
 
-char *ValentineDoc = "image\\Sinimage\\Quest\\ChocolateEvent.sin";
+char *ValentineDoc = "image//Sinimage//Quest//ChocolateEvent.sin";
 
-char *PristonAlphabetDoc = "image\\Sinimage\\Quest\\Priston.sin";
+char *PristonAlphabetDoc = "image//Sinimage//Quest//Priston.sin";
 
-char *CandydaysDoc = "image\\Sinimage\\Quest\\CandydaysEvent.sin";
+char *CandydaysDoc = "image//Sinimage//Quest//CandydaysEvent.sin";
 
-char *MagicalGreenDoc = "image\\Sinimage\\Quest\\MagicalGreenEvent.sin";
+char *MagicalGreenDoc = "image//Sinimage//Quest//MagicalGreenEvent.sin";
 
-char *TearOfKaraDoc = "image\\Sinimage\\Quest\\KarasTears.sin";
+char *TearOfKaraDoc = "image//Sinimage//Quest//KarasTears.sin";
 
 
-char *Findinvestigator1_1Doc = "image\\Sinimage\\Quest\\Resercher_Start.sin";
-char *Findinvestigator1_2Doc = "image\\Sinimage\\Quest\\Resercher_Pass1.sin";
-char *Findinvestigator1_3Doc = "image\\Sinimage\\Quest\\Resercher_Pass2.sin";
-char *Findinvestigator2_1Doc = "image\\Sinimage\\Quest\\Kamiyu_Start.sin";
-char *Findinvestigator2_2Doc = "image\\Sinimage\\Quest\\Kamiyu_Pass.sin";
-char *Findinvestigator3_1Doc = "image\\Sinimage\\Quest\\Eto_Start.sin";
-char *Findinvestigator3_2Doc = "image\\Sinimage\\Quest\\Eto_Pass.sin";
+char *Findinvestigator1_1Doc = "image//Sinimage//Quest//Resercher_Start.sin";
+char *Findinvestigator1_2Doc = "image//Sinimage//Quest//Resercher_Pass1.sin";
+char *Findinvestigator1_3Doc = "image//Sinimage//Quest//Resercher_Pass2.sin";
+char *Findinvestigator2_1Doc = "image//Sinimage//Quest//Kamiyu_Start.sin";
+char *Findinvestigator2_2Doc = "image//Sinimage//Quest//Kamiyu_Pass.sin";
+char *Findinvestigator3_1Doc = "image//Sinimage//Quest//Eto_Start.sin";
+char *Findinvestigator3_2Doc = "image//Sinimage//Quest//Eto_Pass.sin";
 
 char *LevelQuest30Doc[] = {
-	"image\\Sinimage\\Quest\\LevelQuest30start.sin",
-	"image\\Sinimage\\Quest\\LevelQuest30Path.sin",
-	"image\\Sinimage\\Quest\\LevelQuest30end.sin",
+	"image//Sinimage//Quest//LevelQuest30start.sin",
+	"image//Sinimage//Quest//LevelQuest30Path.sin",
+	"image//Sinimage//Quest//LevelQuest30end.sin",
 
 };
 char *LevelQuest55Doc[] = {
-	"image\\Sinimage\\Quest\\LevelQuest55start.sin",
-	"image\\Sinimage\\Quest\\LevelQuest55Path.sin",
-	"image\\Sinimage\\Quest\\LevelQuest55end.sin",
+	"image//Sinimage//Quest//LevelQuest55start.sin",
+	"image//Sinimage//Quest//LevelQuest55Path.sin",
+	"image//Sinimage//Quest//LevelQuest55end.sin",
 
 };
 
 char *LevelQuest55_2Doc[] = {
-	"image\\Sinimage\\Quest\\LevelQuest55-2start.sin",
-	"image\\Sinimage\\Quest\\LevelQuest55-2Path.sin",
-	"image\\Sinimage\\Quest\\LevelQuest55-2end.sin",
+	"image//Sinimage//Quest//LevelQuest55-2start.sin",
+	"image//Sinimage//Quest//LevelQuest55-2Path.sin",
+	"image//Sinimage//Quest//LevelQuest55-2end.sin",
 
 };
 
 char *LevelQuest70Doc[] = {
-	"image\\Sinimage\\Quest\\LevelQuest70start.sin",
-	"image\\Sinimage\\Quest\\LevelQuest70Path.sin",
-	"image\\Sinimage\\Quest\\LevelQuest70end.sin",
+	"image//Sinimage//Quest//LevelQuest70start.sin",
+	"image//Sinimage//Quest//LevelQuest70Path.sin",
+	"image//Sinimage//Quest//LevelQuest70end.sin",
 
 };
 char *LevelQuest80Doc[] = {
-	"image\\Sinimage\\Quest\\LevelQuest80start.sin",
-	"image\\Sinimage\\Quest\\LevelQuest80Path.sin",
-	"image\\Sinimage\\Quest\\LevelQuest80end.sin",
+	"image//Sinimage//Quest//LevelQuest80start.sin",
+	"image//Sinimage//Quest//LevelQuest80Path.sin",
+	"image//Sinimage//Quest//LevelQuest80end.sin",
 
 };
 char *LevelQuest85Doc[] = {
-	"image\\Sinimage\\Quest\\LevelQuest85start.sin",
-	"image\\Sinimage\\Quest\\LevelQuest85Path.sin",
-	"image\\Sinimage\\Quest\\LevelQuest85Path2.sin",
-	"image\\Sinimage\\Quest\\LevelQuest85end.sin",
+	"image//Sinimage//Quest//LevelQuest85start.sin",
+	"image//Sinimage//Quest//LevelQuest85Path.sin",
+	"image//Sinimage//Quest//LevelQuest85Path2.sin",
+	"image//Sinimage//Quest//LevelQuest85end.sin",
 
 };
 char *LevelQuest90Doc[] = {
-	"image\\Sinimage\\Quest\\LevelQuest90start.sin",
-	"image\\Sinimage\\Quest\\LevelQuest90Path.sin",
-	"image\\Sinimage\\Quest\\LevelQuest90end.sin",
+	"image//Sinimage//Quest//LevelQuest90start.sin",
+	"image//Sinimage//Quest//LevelQuest90Path.sin",
+	"image//Sinimage//Quest//LevelQuest90end.sin",
 
 };
 
 char *LevelQuest80_2Doc[] = {
-	"image\\Sinimage\\Quest\\LevelQuest80_2start.sin",
-	"image\\Sinimage\\Quest\\LevelQuest80_2start2.sin",
-	"image\\Sinimage\\Quest\\LevelQuest80_2Path.sin",
-	"image\\Sinimage\\Quest\\LevelQuest80_2Path2.sin",
-	"image\\Sinimage\\Quest\\LevelQuest80_2end.sin",
+	"image//Sinimage//Quest//LevelQuest80_2start.sin",
+	"image//Sinimage//Quest//LevelQuest80_2start2.sin",
+	"image//Sinimage//Quest//LevelQuest80_2Path.sin",
+	"image//Sinimage//Quest//LevelQuest80_2Path2.sin",
+	"image//Sinimage//Quest//LevelQuest80_2end.sin",
 
 };
 
 char *LevelQuest90_2Doc[] = {
-	"image\\Sinimage\\Quest\\LevelQuest90_2start.sin",
-	"image\\Sinimage\\Quest\\LevelQuest90_2start2.sin",
-	"image\\Sinimage\\Quest\\LevelQuest90_2Path.sin",
-	"image\\Sinimage\\Quest\\LevelQuest90_2Path2.sin",
-	"image\\Sinimage\\Quest\\LevelQuest90_2end.sin",
+	"image//Sinimage//Quest//LevelQuest90_2start.sin",
+	"image//Sinimage//Quest//LevelQuest90_2start2.sin",
+	"image//Sinimage//Quest//LevelQuest90_2Path.sin",
+	"image//Sinimage//Quest//LevelQuest90_2Path2.sin",
+	"image//Sinimage//Quest//LevelQuest90_2end.sin",
 
 };
 
 char *QuestFilePath4[] = {
-	"image\\Sinimage\\Quest\\ChangeJob4_1Start.sin",
-	"image\\Sinimage\\Quest\\ChangeJob4_1Path.sin",
-	"image\\Sinimage\\Quest\\ChangeJob4_2Start.sin",
-	"image\\Sinimage\\Quest\\ChangeJob4_2Path.sin",
-	"image\\Sinimage\\Quest\\ChangeJob4_3Start.sin",
-	"image\\Sinimage\\Quest\\ChangeJob4_3Path.sin",
-	"image\\Sinimage\\Quest\\ChangeJob4_4Start.sin",
-	"image\\Sinimage\\Quest\\ChangeJob4_4End.sin",
+	"image//Sinimage//Quest//ChangeJob4_1Start.sin",
+	"image//Sinimage//Quest//ChangeJob4_1Path.sin",
+	"image//Sinimage//Quest//ChangeJob4_2Start.sin",
+	"image//Sinimage//Quest//ChangeJob4_2Path.sin",
+	"image//Sinimage//Quest//ChangeJob4_3Start.sin",
+	"image//Sinimage//Quest//ChangeJob4_3Path.sin",
+	"image//Sinimage//Quest//ChangeJob4_4Start.sin",
+	"image//Sinimage//Quest//ChangeJob4_4End.sin",
 
 };
 
@@ -2321,7 +2321,7 @@ int sinSetQuestTimer(sQUEST_CHANGEJOB3 *pQuset, int UseTime, int CheckTime)
 	sSKILL TempSkill;
 	memset(&TempSkill, 0, sizeof(sSKILL));
 
-	char *Path = "image\\Sinimage\\skill\\keep\\QuestTimer.tga";
+	char *Path = "image//Sinimage//skill//keep//QuestTimer.tga";
 	if(!MatQuestTimer)
 	{
 		MatQuestTimer = CreateTextureMaterial(Path, 0, 0, 0, 0, SMMAT_BLEND_ALPHA);

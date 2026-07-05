@@ -1,10 +1,10 @@
-#include "Database.h"
+#include "Database/Database.h"
 #include <iostream>
 #include <memory>
 #include <string>
-#include "File\File.h"
-#include "Helper\common.h"
-#include "Database.h"
+#include "File/File.h"
+#include "Helper/common.h"
+#include "Database/Database.h"
 
 using namespace std;
 
@@ -22,7 +22,7 @@ BOOL show_errorSQL(unsigned int handletype, const SQLHANDLE& handle)
 
 	if(SQL_SUCCESS == SQLGetDiagRecA(handletype, handle, 1, sqlstateSqlError, NULL, messageSqlError, 1024, NULL))
 	{
-		wsprintfA(szBufSQLError, "Message: %s\nSQLSTATE: %s\n", messageSqlError, sqlstateSqlError);
+		wsprintfA(szBufSQLError, "Message: %s/nSQLSTATE: %s/n", messageSqlError, sqlstateSqlError);
 
 		Utils_Log(LOG_SQL, szBufSQLError);
 		/*printf(szBufSQLError);
@@ -121,7 +121,7 @@ bool SQLConnection::Init(EDatabaseID eDatabaseID)
 
 	try
 	{
-		File file("Configs\\Sistemas.ini");
+		File file("Configs//Sistemas.ini");
 
 		Driver = file.readString("Database", "Driver");
 		Host = file.readString("Database", "Host");
@@ -134,7 +134,7 @@ bool SQLConnection::Init(EDatabaseID eDatabaseID)
 	}
 #ifdef YWEENZY_PC
 	wsprintfA(szStringConnectionSQL, "Persist Security Info=False; Integrated Security=False; Driver=%s; Server=%s; Database=%s; Uid=%s; Pwd=%s;",
-		"{SQL Server}", "PTL\\SQLEXPRES", szDatabaseName, "sa", "#$pdl32xq");
+		"{SQL Server}", "PTL//SQLEXPRES", szDatabaseName, "sa", "#$pdl32xq");
 #else
 	wsprintfA(szStringConnectionSQL, "Persist Security Info=False; Integrated Security=False; Driver=%s; Server=%s; Database=%s; Uid=%s; Pwd=%s;",
 			  Driver.c_str(), Host.c_str(), szDatabaseName, User.c_str(), Password.c_str());

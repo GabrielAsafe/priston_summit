@@ -1,11 +1,11 @@
 #include "opcodes.h"
 #include "sinLinkHeader.h"
-#include "..\\field.h"
-#include "..\\AreaServer.h"
-#include "ConfirmationBox\ConfirmationBox.h"
+#include "../field.h"
+#include "../AreaServer.h"
+#include "ConfirmationBox/ConfirmationBox.h"
 #include "cRestaureWindow.h"
 #include <string>
-#include "..\\WarMode.h"
+#include "../WarMode.h"
 
 using namespace std;
 
@@ -69,10 +69,10 @@ int TelePort_FieldNum[TELEPORT_FIELDMAX][3] = {
 };
 
 char *haTeleport_Field[4] = {
-	"image\\Sinimage\\help\\haTeleport_Field[1].sin",
-	"image\\Sinimage\\help\\haTeleport_Field[2].sin",
-	"image\\Sinimage\\help\\haTeleport_Field[3].sin",
-	"image\\Sinimage\\help\\haTeleport_Field[4].sin",
+	"image//Sinimage//help//haTeleport_Field[1].sin",
+	"image//Sinimage//help//haTeleport_Field[2].sin",
+	"image//Sinimage//help//haTeleport_Field[3].sin",
+	"image//Sinimage//help//haTeleport_Field[4].sin",
 };
 
 cHaPremiumItem::cHaPremiumItem()
@@ -148,61 +148,61 @@ cHaPremiumItem::~cHaPremiumItem()
 void cHaPremiumItem::init()
 {
 
-	UpKeepItemTGAImage[0] = CreateTextureMaterial("image\\Sinimage\\Premium\\ThirdEyes.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[1] = CreateTextureMaterial("image\\Sinimage\\Premium\\ExpUpPotion.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[2] = CreateTextureMaterial("image\\Sinimage\\Premium\\Vampiric.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[3] = CreateTextureMaterial("image\\Sinimage\\Premium\\M_Rechar.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[0] = CreateTextureMaterial("image//Sinimage//Premium//ThirdEyes.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[1] = CreateTextureMaterial("image//Sinimage//Premium//ExpUpPotion.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[2] = CreateTextureMaterial("image//Sinimage//Premium//Vampiric.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[3] = CreateTextureMaterial("image//Sinimage//Premium//M_Rechar.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	UpKeepItemTGAImage[4] = CreateTextureMaterial("image\\Sinimage\\Premium\\M_Might.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[5] = CreateTextureMaterial("image\\Sinimage\\Premium\\M_Reduce.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[6] = CreateTextureMaterial("image\\Sinimage\\Premium\\M_Phoenix.TGA", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[7] = CreateTextureMaterial("image\\Sinimage\\Premium\\Pet_terry-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[8] = CreateTextureMaterial("image\\Sinimage\\Premium\\Pet_nepsys-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[9] = CreateTextureMaterial("image\\Sinimage\\Premium\\Pet_io-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[10] = CreateTextureMaterial("image\\Sinimage\\Premium\\Pet-mute-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[11] = CreateTextureMaterial("image\\Sinimage\\Premium\\Vampiric_EX.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[12] = CreateTextureMaterial("image\\Sinimage\\Premium\\S_Reduce.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[4] = CreateTextureMaterial("image//Sinimage//Premium//M_Might.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[5] = CreateTextureMaterial("image//Sinimage//Premium//M_Reduce.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[6] = CreateTextureMaterial("image//Sinimage//Premium//M_Phoenix.TGA", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[7] = CreateTextureMaterial("image//Sinimage//Premium//Pet_terry-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[8] = CreateTextureMaterial("image//Sinimage//Premium//Pet_nepsys-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[9] = CreateTextureMaterial("image//Sinimage//Premium//Pet_io-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[10] = CreateTextureMaterial("image//Sinimage//Premium//Pet-mute-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[11] = CreateTextureMaterial("image//Sinimage//Premium//Vampiric_EX.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[12] = CreateTextureMaterial("image//Sinimage//Premium//S_Reduce.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	UpKeepItemTGAImage[13] = CreateTextureMaterial("image\\Sinimage\\Premium\\BigHead.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[14] = CreateTextureMaterial("image\\Sinimage\\Premium\\BigHead.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[15] = CreateTextureMaterial("image\\Sinimage\\Premium\\BigHead.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[16] = CreateTextureMaterial("image\\Sinimage\\Premium\\BigHead.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[13] = CreateTextureMaterial("image//Sinimage//Premium//BigHead.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[14] = CreateTextureMaterial("image//Sinimage//Premium//BigHead.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[15] = CreateTextureMaterial("image//Sinimage//Premium//BigHead.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[16] = CreateTextureMaterial("image//Sinimage//Premium//BigHead.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	UpKeepItemTGAImage[17] = CreateTextureMaterial("image\\Sinimage\\Premium\\S_Rechar.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[18] = CreateTextureMaterial("image\\Sinimage\\Premium\\Caravan.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[19] = CreateTextureMaterial("image\\Sinimage\\Premium\\GoldLooter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[17] = CreateTextureMaterial("image//Sinimage//Premium//S_Rechar.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[18] = CreateTextureMaterial("image//Sinimage//Premium//Caravan.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[19] = CreateTextureMaterial("image//Sinimage//Premium//GoldLooter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	UpKeepItemTGAImage[20] = CreateTextureMaterial("image\\Sinimage\\Premium\\HPBooster.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[21] = CreateTextureMaterial("image\\Sinimage\\Premium\\MPBooster.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UpKeepItemTGAImage[22] = CreateTextureMaterial("image\\Sinimage\\Premium\\RESBooster.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[20] = CreateTextureMaterial("image//Sinimage//Premium//HPBooster.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[21] = CreateTextureMaterial("image//Sinimage//Premium//MPBooster.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UpKeepItemTGAImage[22] = CreateTextureMaterial("image//Sinimage//Premium//RESBooster.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	lpUpKeepItemBackImage[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\ThirdEyes_Back.bmp");
-	lpUpKeepItemBackImage[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\ExpUpPotion_Back.bmp");
-	lpUpKeepItemBackImage[2] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\Vampiric_back.bmp");
-	lpUpKeepItemBackImage[3] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\M_Rechar_back.bmp");
+	lpUpKeepItemBackImage[0] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//ThirdEyes_Back.bmp");
+	lpUpKeepItemBackImage[1] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//ExpUpPotion_Back.bmp");
+	lpUpKeepItemBackImage[2] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//Vampiric_back.bmp");
+	lpUpKeepItemBackImage[3] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//M_Rechar_back.bmp");
 
-	lpUpKeepItemBackImage[4] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\M_Might_back.bmp");
-	lpUpKeepItemBackImage[5] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\M_Reduce_back.bmp");
-	lpUpKeepItemBackImage[6] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\M_Phoenix_back.BMP");
-	lpUpKeepItemBackImage[7] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\M_Phoenix_back.BMP");
-	lpUpKeepItemBackImage[8] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\M_Phoenix_back.BMP");
-	lpUpKeepItemBackImage[9] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\M_Phoenix_back.BMP");
-	lpUpKeepItemBackImage[10] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\M_Phoenix_back.BMP");
-	lpUpKeepItemBackImage[11] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\Vampiric_back_EX.bmp");
-	lpUpKeepItemBackImage[12] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\S_Reduce_back.bmp");
+	lpUpKeepItemBackImage[4] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//M_Might_back.bmp");
+	lpUpKeepItemBackImage[5] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//M_Reduce_back.bmp");
+	lpUpKeepItemBackImage[6] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//M_Phoenix_back.BMP");
+	lpUpKeepItemBackImage[7] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//M_Phoenix_back.BMP");
+	lpUpKeepItemBackImage[8] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//M_Phoenix_back.BMP");
+	lpUpKeepItemBackImage[9] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//M_Phoenix_back.BMP");
+	lpUpKeepItemBackImage[10] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//M_Phoenix_back.BMP");
+	lpUpKeepItemBackImage[11] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//Vampiric_back_EX.bmp");
+	lpUpKeepItemBackImage[12] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//S_Reduce_back.bmp");
 
-	lpUpKeepItemBackImage[13] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\BigHead_Back.bmp");
-	lpUpKeepItemBackImage[14] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\BigHead_Back.bmp");
-	lpUpKeepItemBackImage[15] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\BigHead_Back.bmp");
-	lpUpKeepItemBackImage[16] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\BigHead_Back.bmp");
-    //lpUpKeepItemBackImage[17] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\S_Rechar_back.bmp");
-	lpUpKeepItemBackImage[18] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\Caravan_.bmp");
+	lpUpKeepItemBackImage[13] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//BigHead_Back.bmp");
+	lpUpKeepItemBackImage[14] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//BigHead_Back.bmp");
+	lpUpKeepItemBackImage[15] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//BigHead_Back.bmp");
+	lpUpKeepItemBackImage[16] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//BigHead_Back.bmp");
+    //lpUpKeepItemBackImage[17] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//S_Rechar_back.bmp");
+	lpUpKeepItemBackImage[18] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//Caravan_.bmp");
 
-	lpUpKeepItemBackImage[19] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\GoldLooter_.bmp");
+	lpUpKeepItemBackImage[19] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//GoldLooter_.bmp");
 
-	lpUpKeepItemBackImage[20] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\HPBooster_.png");
-	lpUpKeepItemBackImage[21] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\MPBooster_.png");
-	lpUpKeepItemBackImage[22] = LoadDibSurfaceOffscreen("image\\Sinimage\\Premium\\RESBooster_.png");
+	lpUpKeepItemBackImage[20] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//HPBooster_.png");
+	lpUpKeepItemBackImage[21] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//MPBooster_.png");
+	lpUpKeepItemBackImage[22] = LoadDibSurfaceOffscreen("image//Sinimage//Premium//RESBooster_.png");
 
 	haItemUseDelayFlag = false;
 }

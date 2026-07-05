@@ -5,7 +5,7 @@
 
 #include "mathGlobal.h"
 
-#include "color3.h"
+#include "COLOR3.H"
 
 struct color4
 {

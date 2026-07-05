@@ -1,5 +1,5 @@
-#include "sinbaram\sinLinkHeader.h"
-#include "server\OnServer.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "server/onserver.h"
 
 
 

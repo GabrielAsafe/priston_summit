@@ -196,128 +196,128 @@ char *sinMsgEliteSkillPoint = "Elite Skill Points : %d " ;
 char *sinStateName[5]={"H P : %d/%d  ","M P : %d/%d  ","STM : %d/%d  ","X P : %d/%d  ","X P : %dM/%dM   "};
 
 
-char *TownName[3] = {"Quay vï¿½ï¿½ Ricarten\r","Quay vï¿½ï¿½ Navisko\r","Quay vï¿½ï¿½ Pillai\r "};
+char *TownName[3] = {"Quay vï¿½ï¿½ Ricarten/r","Quay vï¿½ï¿½ Navisko/r","Quay vï¿½ï¿½ Pillai/r "};
 
-char *sinAbilityName[50] = {"Sï¿½ï¿½c ï¿½aï¿½nh:  \r","Tï¿½ï¿½c ï¿½ï¿½ï¿½:  \r","Tï¿½ï¿½m xa:  \r","Critical:  \r","Sï¿½ï¿½c chï¿½ï¿½ng ï¿½ï¿½ï¿½:  \r","Tyï¿½ lï¿½ï¿½ ï¿½aï¿½nh:  \r",
-					"Sï¿½ï¿½c chiï¿½u ï¿½ï¿½ï¿½ng:  \r","Khaï¿½ nï¿½ng ï¿½ï¿½ï¿½:  \r","Tï¿½ï¿½c ï¿½ï¿½ï¿½:  \r","Sï¿½ï¿½ toaï¿½n veï¿½n:  \r","Phuï¿½c hï¿½ï¿½i MP:  \r","Phuï¿½c hï¿½ï¿½i HP :  \r",
-					"Phuï¿½c hï¿½ï¿½i STM:  \r","Chï¿½ï¿½ng vï¿½ï¿½t lyï¿½:  \r","Nature Type:  \r","Chï¿½ï¿½ng lï¿½ï¿½a:  \r","Chï¿½ï¿½ng bï¿½ng:  \r","Chï¿½ï¿½ng seï¿½t:  \r","Chï¿½ï¿½ng ï¿½ï¿½ï¿½c: \r",
-					"Water Type:  \r","Wind Type:  \r","Phuï¿½c hï¿½ï¿½i HP:  \r","Phuï¿½c hï¿½ï¿½i MP: \r","Phuï¿½c hï¿½ï¿½i STM: \r","Cï¿½ï¿½ng thï¿½m HP: \r",
-					"Cï¿½ï¿½ng thï¿½m MP:  \r","Cï¿½ï¿½ng thï¿½m STM:  \r","Chï¿½ï¿½a Potion:  \r","Cï¿½ï¿½n Level:  \r","Cï¿½ï¿½n Strength:  \r","Cï¿½ï¿½n Spirit:  \r",
-					"Cï¿½ï¿½n Talent:  \r","Cï¿½ï¿½n Agility:  \r","Cï¿½ï¿½n Health:  \r "};
-
-
-char *sinSpecialName[50] = {"Spec. ATK SPD:  \r","Spec. CRIT:  \r","Spec. DEF RTG:  \r","Spec. ABS RTG:  \r",
-						"Spec. BLK RTG:  \r","Magic APT:  \r","Spec. SPD:  \r","Spec. Organic:  \r","Spec. Nature:  \r",
-						"Spec. Flame:  \r","Spec. Frost:  \r","Spec. Lightning:  \r","Spec. Poison:  \r","Spec. Water:  \r","Spec. Wind:  \r",
-						"Spec. ATK POW:  \r","Spec. ATK RTG:  \r","Spec. RNG:  \r","Spec. Organic ATK:  \r","Spec. Nature ATK:  \r","Spec. Flame ATK:  \r","Spec. Frost ATK:  \r",
-						"Spec. Lightning ATK:  \r","Spec. Poison ATK:  \r","Spec. Water ATK:  \r","Spec. Wind ATK:  \r","Max HP Boost:  \r","Max MP Boost:  \r",
-						"Phuï¿½c hï¿½ï¿½i HP:  \r","Phuï¿½c hï¿½ï¿½i MP:  \r","Phuï¿½c hï¿½ï¿½i STM:  \r","Giaï¿½ baï¿½n  \r","Giaï¿½:  \r "};
+char *sinAbilityName[50] = {"Sï¿½ï¿½c ï¿½aï¿½nh:  /r","Tï¿½ï¿½c ï¿½ï¿½ï¿½:  /r","Tï¿½ï¿½m xa:  /r","Critical:  /r","Sï¿½ï¿½c chï¿½ï¿½ng ï¿½ï¿½ï¿½:  /r","Tyï¿½ lï¿½ï¿½ ï¿½aï¿½nh:  /r",
+					"Sï¿½ï¿½c chiï¿½u ï¿½ï¿½ï¿½ng:  /r","Khaï¿½ nï¿½ng ï¿½ï¿½ï¿½:  /r","Tï¿½ï¿½c ï¿½ï¿½ï¿½:  /r","Sï¿½ï¿½ toaï¿½n veï¿½n:  /r","Phuï¿½c hï¿½ï¿½i MP:  /r","Phuï¿½c hï¿½ï¿½i HP :  /r",
+					"Phuï¿½c hï¿½ï¿½i STM:  /r","Chï¿½ï¿½ng vï¿½ï¿½t lyï¿½:  /r","Nature Type:  /r","Chï¿½ï¿½ng lï¿½ï¿½a:  /r","Chï¿½ï¿½ng bï¿½ng:  /r","Chï¿½ï¿½ng seï¿½t:  /r","Chï¿½ï¿½ng ï¿½ï¿½ï¿½c: /r",
+					"Water Type:  /r","Wind Type:  /r","Phuï¿½c hï¿½ï¿½i HP:  /r","Phuï¿½c hï¿½ï¿½i MP: /r","Phuï¿½c hï¿½ï¿½i STM: /r","Cï¿½ï¿½ng thï¿½m HP: /r",
+					"Cï¿½ï¿½ng thï¿½m MP:  /r","Cï¿½ï¿½ng thï¿½m STM:  /r","Chï¿½ï¿½a Potion:  /r","Cï¿½ï¿½n Level:  /r","Cï¿½ï¿½n Strength:  /r","Cï¿½ï¿½n Spirit:  /r",
+					"Cï¿½ï¿½n Talent:  /r","Cï¿½ï¿½n Agility:  /r","Cï¿½ï¿½n Health:  /r "};
 
 
-char *SpecialName3 = "%s Spec. \r";
+char *sinSpecialName[50] = {"Spec. ATK SPD:  /r","Spec. CRIT:  /r","Spec. DEF RTG:  /r","Spec. ABS RTG:  /r",
+						"Spec. BLK RTG:  /r","Magic APT:  /r","Spec. SPD:  /r","Spec. Organic:  /r","Spec. Nature:  /r",
+						"Spec. Flame:  /r","Spec. Frost:  /r","Spec. Lightning:  /r","Spec. Poison:  /r","Spec. Water:  /r","Spec. Wind:  /r",
+						"Spec. ATK POW:  /r","Spec. ATK RTG:  /r","Spec. RNG:  /r","Spec. Organic ATK:  /r","Spec. Nature ATK:  /r","Spec. Flame ATK:  /r","Spec. Frost ATK:  /r",
+						"Spec. Lightning ATK:  /r","Spec. Poison ATK:  /r","Spec. Water ATK:  /r","Spec. Wind ATK:  /r","Max HP Boost:  /r","Max MP Boost:  /r",
+						"Phuï¿½c hï¿½ï¿½i HP:  /r","Phuï¿½c hï¿½ï¿½i MP:  /r","Phuï¿½c hï¿½ï¿½i STM:  /r","Giaï¿½ baï¿½n  /r","Giaï¿½:  /r "};
+
+
+char *SpecialName3 = "%s Spec. /r";
 char *MixResultTitle = "Kï¿½ï¿½t quaï¿½ Mix";
-char *NowLevelText = "Level hiï¿½ï¿½n taï¿½i\r";
-char *NextLevelText = "Level kï¿½ï¿½ tiï¿½ï¿½p\r";
+char *NowLevelText = "Level hiï¿½ï¿½n taï¿½i/r";
+char *NextLevelText = "Level kï¿½ï¿½ tiï¿½ï¿½p/r";
 
 char *NormalAttckName ="Default Attack";
-char *RequirLevel = "%s (Req. LVL:%d)\r";
-char *UseItemGroupName = "Chiï¿½ sï¿½ï¿½ duï¿½ng ï¿½ï¿½ï¿½ï¿½c vï¿½ï¿½i:\r";
+char *RequirLevel = "%s (Req. LVL:%d)/r";
+char *UseItemGroupName = "Chiï¿½ sï¿½ï¿½ duï¿½ng ï¿½ï¿½ï¿½ï¿½c vï¿½ï¿½i:/r";
 
-char *PoisonName = "Poison Type:\r";
-char *FireName = "Flame Type:\r";
-char *AttackAreaName = "Tï¿½ï¿½m aï¿½nh hï¿½ï¿½ï¿½ng:\r";
-char *Attack_RateName = "Tyï¿½ Lï¿½ï¿½ ï¿½aï¿½nh:\r";
-char *Max_DamageIncre = "Tï¿½ng Max Damage:\r";
-char *DamageAddName = "Tï¿½ng sï¿½ï¿½c saï¿½t thï¿½ï¿½ng:\r";
-char *Attack_SpeedAdd = "Tï¿½ng tï¿½ï¿½c ï¿½ï¿½ï¿½ ï¿½aï¿½nh:\r";
-char *IncreBlock = "Tï¿½ng khaï¿½ nï¿½ng ï¿½ï¿½ï¿½:\r";
-char *CountinueTime = "Thï¿½ï¿½i gian:\r";
-char *UseManaName = "MP sï¿½ï¿½ duï¿½ng:\r";
-char *DamageName = "Damage:\r";
-char *ShootingRangeName = "tï¿½ï¿½m xa:\r";
-char *IncreAsorb = "Tï¿½ng chiï¿½ sï¿½ï¿½ chiï¿½u ï¿½ï¿½ï¿½ng:\r";
+char *PoisonName = "Poison Type:/r";
+char *FireName = "Flame Type:/r";
+char *AttackAreaName = "Tï¿½ï¿½m aï¿½nh hï¿½ï¿½ï¿½ng:/r";
+char *Attack_RateName = "Tyï¿½ Lï¿½ï¿½ ï¿½aï¿½nh:/r";
+char *Max_DamageIncre = "Tï¿½ng Max Damage:/r";
+char *DamageAddName = "Tï¿½ng sï¿½ï¿½c saï¿½t thï¿½ï¿½ng:/r";
+char *Attack_SpeedAdd = "Tï¿½ng tï¿½ï¿½c ï¿½ï¿½ï¿½ ï¿½aï¿½nh:/r";
+char *IncreBlock = "Tï¿½ng khaï¿½ nï¿½ng ï¿½ï¿½ï¿½:/r";
+char *CountinueTime = "Thï¿½ï¿½i gian:/r";
+char *UseManaName = "MP sï¿½ï¿½ duï¿½ng:/r";
+char *DamageName = "Damage:/r";
+char *ShootingRangeName = "tï¿½ï¿½m xa:/r";
+char *IncreAsorb = "Tï¿½ng chiï¿½ sï¿½ï¿½ chiï¿½u ï¿½ï¿½ï¿½ng:/r";
 char *SecName = "giï¿½y";
-char *PlusDamageName = "Cï¿½ï¿½ng sï¿½ï¿½c ï¿½aï¿½nh:\r";
-char *HitNumName = "Sï¿½ï¿½ lï¿½ï¿½n ï¿½aï¿½nh:\r";
-char *DecreLifeName = "Giaï¿½m HP:\r";
-char *Attck_RateAdd = "Cï¿½ï¿½ng tyï¿½ lï¿½ï¿½ ï¿½aï¿½nh:\r";
-char *Add_CriticalName = "Cï¿½ï¿½ng tyï¿½ lï¿½ï¿½ Critical:\r";
-char *Push_AreaName = "Tï¿½ï¿½m ï¿½ï¿½ï¿½y luï¿½i:\r";
-char *FireAttackDamageAdd ="Cï¿½ï¿½ng pheï¿½p lï¿½ï¿½a:\r";
-char *IceName = "Thuï¿½ï¿½c tiï¿½nh Bï¿½ng:\r";
-char *IceAttackDamageAdd = "Cï¿½ï¿½ng pheï¿½p bï¿½ng:\r";
-char *StuneRate = "Tyï¿½ lï¿½ï¿½ gï¿½y choaï¿½ng:\r";
-char *DefenseRateIncre = "Tï¿½ng sï¿½ï¿½c chï¿½ï¿½ng ï¿½ï¿½ï¿½:\r";
-char *WeaponSizeName ="Kiï¿½ch cï¿½ï¿½ vuï¿½ khiï¿½:\r";
-char *HwakRotationNum = "Sï¿½ï¿½ lï¿½ï¿½n tï¿½ï¿½n cï¿½ng:\r";
-char *WeaponSpeedAddName  = "Cï¿½ï¿½ng tï¿½ï¿½c ï¿½ï¿½ï¿½ ï¿½aï¿½nh:\r";
-char *IncreAttack_RateName = "Tï¿½ng tyï¿½ lï¿½ï¿½ ï¿½aï¿½nh:\r";
-char *ShootingNumName = "Sï¿½ï¿½ lï¿½ï¿½n bï¿½ï¿½n:\r";
-char *SeriesShootingCount = "Sï¿½ï¿½ lï¿½ï¿½n tï¿½ï¿½n cï¿½ng:\r";
-char *UseStaminaName = "Stamina sï¿½ï¿½ duï¿½ng:\r";
-char *MasterSkillMoneyName = "Giaï¿½ tiï¿½ï¿½n:\r";
+char *PlusDamageName = "Cï¿½ï¿½ng sï¿½ï¿½c ï¿½aï¿½nh:/r";
+char *HitNumName = "Sï¿½ï¿½ lï¿½ï¿½n ï¿½aï¿½nh:/r";
+char *DecreLifeName = "Giaï¿½m HP:/r";
+char *Attck_RateAdd = "Cï¿½ï¿½ng tyï¿½ lï¿½ï¿½ ï¿½aï¿½nh:/r";
+char *Add_CriticalName = "Cï¿½ï¿½ng tyï¿½ lï¿½ï¿½ Critical:/r";
+char *Push_AreaName = "Tï¿½ï¿½m ï¿½ï¿½ï¿½y luï¿½i:/r";
+char *FireAttackDamageAdd ="Cï¿½ï¿½ng pheï¿½p lï¿½ï¿½a:/r";
+char *IceName = "Thuï¿½ï¿½c tiï¿½nh Bï¿½ng:/r";
+char *IceAttackDamageAdd = "Cï¿½ï¿½ng pheï¿½p bï¿½ng:/r";
+char *StuneRate = "Tyï¿½ lï¿½ï¿½ gï¿½y choaï¿½ng:/r";
+char *DefenseRateIncre = "Tï¿½ng sï¿½ï¿½c chï¿½ï¿½ng ï¿½ï¿½ï¿½:/r";
+char *WeaponSizeName ="Kiï¿½ch cï¿½ï¿½ vuï¿½ khiï¿½:/r";
+char *HwakRotationNum = "Sï¿½ï¿½ lï¿½ï¿½n tï¿½ï¿½n cï¿½ng:/r";
+char *WeaponSpeedAddName  = "Cï¿½ï¿½ng tï¿½ï¿½c ï¿½ï¿½ï¿½ ï¿½aï¿½nh:/r";
+char *IncreAttack_RateName = "Tï¿½ng tyï¿½ lï¿½ï¿½ ï¿½aï¿½nh:/r";
+char *ShootingNumName = "Sï¿½ï¿½ lï¿½ï¿½n bï¿½ï¿½n:/r";
+char *SeriesShootingCount = "Sï¿½ï¿½ lï¿½ï¿½n tï¿½ï¿½n cï¿½ng:/r";
+char *UseStaminaName = "Stamina sï¿½ï¿½ duï¿½ng:/r";
+char *MasterSkillMoneyName = "Giaï¿½ tiï¿½ï¿½n:/r";
 
 char *ItemAgingResult;		
 
 char *sinGold ="%d Gold";
-char *sinGiveItem5 = "Gift Item\r";
-char *sinCopyItem5 = "Copied Item\r";
+char *sinGiveItem5 = "Gift Item/r";
+char *sinCopyItem5 = "Copied Item/r";
 char *sinNum7 = "RND";
 char *sinSkillPointName = "Skill Point";	
-char *sinG_Pike_Time3 = "Frozen Time:\r";	
-char *sinItemLimitTimeOverMsg = "Thï¿½ï¿½i gian cho pheï¿½p ï¿½aï¿½ hï¿½ï¿½t\r";
+char *sinG_Pike_Time3 = "Frozen Time:/r";	
+char *sinItemLimitTimeOverMsg = "Thï¿½ï¿½i gian cho pheï¿½p ï¿½aï¿½ hï¿½ï¿½t/r";
 char *sinDeadSongPyeunEat = "Darn it! It's rotten rice cake!";
 char *SmeltingResultTitle = "Kï¿½ï¿½t quaï¿½ luyï¿½ï¿½n kim";		
 char *ManufactureResultTitle = "Kï¿½ï¿½t quaï¿½ chï¿½ï¿½ taï¿½o";	
 char *ManufacturingTitle = "Moï¿½n ï¿½ï¿½ï¿½ ngï¿½ï¿½u nhiï¿½n";	
 
 
-char *sinMaxDamageAdd = "Increase in Maximum damage+\r";
-char *sinDamagePiercing = "(Piercing attack)\r";
-char *sinAddStamina = "Added stamina:\r";
-char *sinAddLife = "Life recovery:\r";
+char *sinMaxDamageAdd = "Increase in Maximum damage+/r";
+char *sinDamagePiercing = "(Piercing attack)/r";
+char *sinAddStamina = "Added stamina:/r";
+char *sinAddLife = "Life recovery:/r";
 
-char *sinDamageUndead50 = "50% more damages to Undead units:\r";
-char *sinNumCount2 = "number:\r";
-char *sinNumCount3 = "quantity\r";
-char *sinDecreDamage = "Decrease in damage:\r";
-char *sinConvert4 = "conversion rate:\r";
-char *sinIncreElement = "Increase in element feature:\r";
-char *sinPartyIncreElement = "Party member gather 50% increase of element\r";
-char *sinFireBallDamage2 = "(100% damage to the targeted enemy)\r";
-char *sinFireBallDamage3 = "(targeted area 60 (1/3 damage))\r";
-char *sinAddDamage7 = "added damage:\r";
+char *sinDamageUndead50 = "50% more damages to Undead units:/r";
+char *sinNumCount2 = "number:/r";
+char *sinNumCount3 = "quantity/r";
+char *sinDecreDamage = "Decrease in damage:/r";
+char *sinConvert4 = "conversion rate:/r";
+char *sinIncreElement = "Increase in element feature:/r";
+char *sinPartyIncreElement = "Party member gather 50% increase of element/r";
+char *sinFireBallDamage2 = "(100% damage to the targeted enemy)/r";
+char *sinFireBallDamage3 = "(targeted area 60 (1/3 damage))/r";
+char *sinAddDamage7 = "added damage:/r";
 char *PlusDamageWeapon = "weapon";
-char *SparkDamage = "damage per unit:\r";
-char *SparkNum7 = "# of maximum spark:\r";
-char *StunRage = "Stun Range:\r";
+char *SparkDamage = "damage per unit:/r";
+char *SparkNum7 = "# of maximum spark:/r";
+char *StunRage = "Stun Range:/r";
 char *RecvPotion7 = "Potion";
 
 
-char *PartyArea7 ="Party Area:\r";
-char *Area17 ="Area:\r";
-char *AddAttack_Rate9 ="Attack Rating:\r";
-char *PiercingRange ="Piercing Range:\r";
-char *IncreDefense = "Increase Defense:\r";
-char *AddShootingRange = "Increased SHT range:\r";
-char *LifeAbsorb = "Life absorb.:\r";
-char *FireDamage = "Fire Damage:\r";
-char *IceDamage = "Ice Damage:\r";
-char *LightningDamage = "Lightning Damage:\r";
-char *AddManaRegen = "Add Mana Regen:\r";
-char *LightNum = "# of Lightning:\r";
-char *ReturnDamage = "Return Damage:\r";
-char *Area18 = "Available Range:\r";
-char *IncreMana5 = "Increase Mana:\r";
-char *Area19 = "Available Area:\r";
+char *PartyArea7 ="Party Area:/r";
+char *Area17 ="Area:/r";
+char *AddAttack_Rate9 ="Attack Rating:/r";
+char *PiercingRange ="Piercing Range:/r";
+char *IncreDefense = "Increase Defense:/r";
+char *AddShootingRange = "Increased SHT range:/r";
+char *LifeAbsorb = "Life absorb.:/r";
+char *FireDamage = "Fire Damage:/r";
+char *IceDamage = "Ice Damage:/r";
+char *LightningDamage = "Lightning Damage:/r";
+char *AddManaRegen = "Add Mana Regen:/r";
+char *LightNum = "# of Lightning:/r";
+char *ReturnDamage = "Return Damage:/r";
+char *Area18 = "Available Range:/r";
+char *IncreMana5 = "Increase Mana:/r";
+char *Area19 = "Available Area:/r";
 char *HelpTitle8 = " T R ï¿½ï¿½  G I Uï¿½ P ";
 char *QuestTitle8 = " N H I ï¿½ï¿½ M  V Uï¿½ ";
 char *ResearchTitle8 = "RESEARCH";
 char *TeleportTitle8 = "TELEPORT";
 
-char *IncreWeaponAttack_RateName = "Increased ATK rating:\r";
-char *AddMaxDamage = "Increase maximum damage:\r";
-char *LinkCoreName = "Diï¿½ch chuyï¿½ï¿½n tï¿½ï¿½c thï¿½ï¿½i tï¿½ï¿½i thaï¿½nh viï¿½n cuï¿½a Clan\r";
+char *IncreWeaponAttack_RateName = "Increased ATK rating:/r";
+char *AddMaxDamage = "Increase maximum damage:/r";
+char *LinkCoreName = "Diï¿½ch chuyï¿½ï¿½n tï¿½ï¿½c thï¿½ï¿½i tï¿½ï¿½i thaï¿½nh viï¿½n cuï¿½a Clan/r";
 char *DesLinkCore = "Name:";
 char *Itemul = "item";
 char *ItemRecvOk = "Baï¿½n coï¿½ muï¿½ï¿½n vï¿½ï¿½t naï¿½y khï¿½ng?";
@@ -326,8 +326,8 @@ char *Exp5 = "EXP";
 char *WingItemName[] = {"Metal wing","Silver wing","Gold wing","Diamond wing", "Chaos wing", "Extreme wing "};
 char *WarpGateName[] = {"Warp gate","Ricarten","Pillai","Rï¿½ï¿½ng cï¿½ï¿½","Rï¿½ï¿½ng truï¿½c","Laï¿½ng Ruinen","Thiï¿½ trï¿½ï¿½n Navisko","Vuï¿½ng ï¿½ï¿½ï¿½t cï¿½ï¿½m", "Laï¿½ng Eura", "Lost Island "};
 char *sinWarningName5 = "Chuï¿½ yï¿½ ";
-char *ClanCristalName = "Daï¿½nh riï¿½ng cho thaï¿½nh viï¿½n Clan\r";
-char *NowMyShopSell = "ï¿½ang baï¿½n\r";
+char *ClanCristalName = "Daï¿½nh riï¿½ng cho thaï¿½nh viï¿½n Clan/r";
+char *NowMyShopSell = "ï¿½ang baï¿½n/r";
 char *SecretNumName = "Nhï¿½ï¿½p vaï¿½o maï¿½ sï¿½ï¿½ kiï¿½ï¿½m soaï¿½t";
 char *MyShopExpDoc7 = "Thï¿½ng tin vï¿½ï¿½ cï¿½ï¿½a haï¿½ng";
 char *NotAgingItem2 = "'Khï¿½ng thï¿½ï¿½ Age moï¿½n ï¿½ï¿½ï¿½ naï¿½y";
@@ -338,8 +338,8 @@ char *Mechanic7 = "Mechanic";
 char *Demon7    = "Demon";
 char *Nomal7    = "Normal";
 char *Undead7    = "Undead";
-char *MonsterAddDamage2 = "add extra damamge)\r";
-char *MonsterAddDamageFire = "add fire element damage)\r";
+char *MonsterAddDamage2 = "add extra damamge)/r";
+char *MonsterAddDamageFire = "add fire element damage)/r";
 char *HaWarpGateName[] = {"Bless Castle", 0};
 char *FallGameName = "Twisted forest";
 char *EndlessGameName	= "Endless Tower";
@@ -352,106 +352,106 @@ char *ChangeMoney7   = "(The price of one star: 100000)";
 
 
 
-char *LightningDamage2 = "LightningDamage:\r";
-char *SheildDefense = "Increasing Defense:\r";
+char *LightningDamage2 = "LightningDamage:/r";
+char *SheildDefense = "Increasing Defense:/r";
 
-char *DemonDamage4  = "DemonVSATKpower:\r";
-char *PoisonDamage3  = "PoisonDamage:\r";
-char *PikeNum4       = "Number of spear:\r";
-char *poisoningTime  = "poisoningTime:\r";
-char *PlusCriticalName = "Increasing Critical%:\r";
-char *SpiritFalconDamage2 = "SpritFalconDamage:\r";
-char *LifeGegenPlus = "Increaing HP:\r";
-char *PlusDamage4 = "PlusDamage:\r";
-char *PiercingPercent = "PiercingPercent:\r";
-char *DamageToLife = "DamageToLife:\r";
-char *MyMonster7 = "MyMonster:\r";
-char *LifeIncre4 = "LifeIncre:\r";
-char *UndeadDamage3 = "UndeadDamage:\r";
+char *DemonDamage4  = "DemonVSATKpower:/r";
+char *PoisonDamage3  = "PoisonDamage:/r";
+char *PikeNum4       = "Number of spear:/r";
+char *poisoningTime  = "poisoningTime:/r";
+char *PlusCriticalName = "Increasing Critical%:/r";
+char *SpiritFalconDamage2 = "SpritFalconDamage:/r";
+char *LifeGegenPlus = "Increaing HP:/r";
+char *PlusDamage4 = "PlusDamage:/r";
+char *PiercingPercent = "PiercingPercent:/r";
+char *DamageToLife = "DamageToLife:/r";
+char *MyMonster7 = "MyMonster:/r";
+char *LifeIncre4 = "LifeIncre:/r";
+char *UndeadDamage3 = "UndeadDamage:/r";
 
-char *AttackNum3     = "NumberofATK:\r"; 
-char *AttackRateMinus = "DecresingATKRATING:\r"; 
-char *MaxDamagePlus2 = "MaxDamagePlus:\r"; 
-char *LightningAddDamage3 = "LightningAddDamage:\r"; 
-char *ReLifePercent4    = "ReLifePercent:\r"; 
-char *GetExp3    = "GetExp:\r"; 
+char *AttackNum3     = "NumberofATK:/r"; 
+char *AttackRateMinus = "DecresingATKRATING:/r"; 
+char *MaxDamagePlus2 = "MaxDamagePlus:/r"; 
+char *LightningAddDamage3 = "LightningAddDamage:/r"; 
+char *ReLifePercent4    = "ReLifePercent:/r"; 
+char *GetExp3    = "GetExp:/r"; 
 char *ResurrectionChar4    = "ResurrectionCharLV"; 
-char *ExtinctionPercent2    = "ExtinctionPercen:\r"; 
-char *ExtinctionAmount2    = "ExtinctionAmount:\r"; 
-char *IncreLifePercent2   = "IncreLifePercent:\r"; 
+char *ExtinctionPercent2    = "ExtinctionPercen:/r"; 
+char *ExtinctionAmount2    = "ExtinctionAmount:/r"; 
+char *IncreLifePercent2   = "IncreLifePercent:/r"; 
 
-char *ReduceDamage3 = "ReduceDamage:\r"; 
-char *IncreMagicDamage = "IncreMagicDamage:\r"; 
-char *AttackDelay3   = "AttackDelay:\r"; 
+char *ReduceDamage3 = "ReduceDamage:/r"; 
+char *IncreMagicDamage = "IncreMagicDamage:/r"; 
+char *AttackDelay3   = "AttackDelay:/r"; 
 
-char *FireDamage2 = "FireDamage:\r";
-char *IceDamage2 = "IceDamage:\r";
-char *AddDefense8 = "AddDefense:\r";
-char *SkillDamage5 = "SkillDamage:\r";
+char *FireDamage2 = "FireDamage:/r";
+char *IceDamage2 = "IceDamage:/r";
+char *AddDefense8 = "AddDefense:/r";
+char *SkillDamage5 = "SkillDamage:/r";
 
-char *FireDamage3 = "FireDamage:\r";
-char *AddSpeed7 = "AddSpeed:\r";
-char *AfterDamage7 = "AfterDamage:\r";
-char *MonsterSight7 = "MonsterSight:\r";
-
-
-char *LinghtingAddDamage4="Add attack rate on lightening:\r";
-char *MaxBoltNum4="Max voltage:\r";
-char *AddAbsorb4="Add rate on absorb:\r";
-char *IncreArea4="Increasing range:\r";
-char *IncreAttack4="More attacking power:\r";
-char *GolemLife4="Life+STR:\r";
+char *FireDamage3 = "FireDamage:/r";
+char *AddSpeed7 = "AddSpeed:/r";
+char *AfterDamage7 = "AfterDamage:/r";
+char *MonsterSight7 = "MonsterSight:/r";
 
 
-char *SubAbsorb4="Decreasing absorption:\r";
-char *AreaDamage4="Attacking rate for range:\r";
-char *MaxAttackNum4="Max hits:\r";
-char *LifeUp4="Add vitality:\r";
-
-char *CriticalAddDamage4="Increase of critical:\r";
-char *MonstervsSubCritical4="Weaken critical of monster:\r";
-char *ChargingAddPercentDamage4="Add attacking rate on charging:\r";
-
-char *IncreEvasionPercent4="Additinal percentage of evasion:\r";
-char *AddShadowNum4="Increasing combination of ocular:\r";
-
-char *WolverinLife4="Vitality:\r";
-char *WolverinRate4="Accuracy:\r";
-char *WolverinDefense4="Defence rate:\r";
-char *AddEvasion4="Increasing ability of evasion:\r";
-char *AddDamage4="Increasing attacking rate(physic):\r";
-char *FalconAddDamage4="Increasing attacking rate of falcon:\r";
+char *LinghtingAddDamage4="Add attack rate on lightening:/r";
+char *MaxBoltNum4="Max voltage:/r";
+char *AddAbsorb4="Add rate on absorb:/r";
+char *IncreArea4="Increasing range:/r";
+char *IncreAttack4="More attacking power:/r";
+char *GolemLife4="Life+STR:/r";
 
 
-char *IncreAttackAbsorb4="Increasing absorption rate:\r";
+char *SubAbsorb4="Decreasing absorption:/r";
+char *AreaDamage4="Attacking rate for range:/r";
+char *MaxAttackNum4="Max hits:/r";
+char *LifeUp4="Add vitality:/r";
 
-char *RectAngleArea4="Attacking at sharp angled range:\r"; 
+char *CriticalAddDamage4="Increase of critical:/r";
+char *MonstervsSubCritical4="Weaken critical of monster:/r";
+char *ChargingAddPercentDamage4="Add attacking rate on charging:/r";
 
-char *MonsterSubSpeed4="Decreasing speed of attacked monster:\r";
+char *IncreEvasionPercent4="Additinal percentage of evasion:/r";
+char *AddShadowNum4="Increasing combination of ocular:/r";
 
-
-char *AddLifeRegen4="Add life-regeneration:\r";
-char *AddManaRegen4="Add mana-regeneration:\r";
-char *MagicArea4="Magic affected range:\r";
-char *ChainNum4="A number of affected monster:\r";
-char *ChainRange4="The rage of affected monster:\r";
-char *UndeadDamageAbsorb4="Undead attacking absorption:\r";
-char *UserBlockPercent4="Blocking rate for character:\r";
-
-char *SecondIncreMana4="Increasing mana rate per second:\r";
-char *FireDamage4="Fire attacking rate:\r";
-char *DecreSpeed4="Decreasing Speed:\r";
-char *DecreAttack4="Decreasing attacking rate:\r";
-char *AddPercentDamage4="Adding attacking rate:\r";
+char *WolverinLife4="Vitality:/r";
+char *WolverinRate4="Accuracy:/r";
+char *WolverinDefense4="Defence rate:/r";
+char *AddEvasion4="Increasing ability of evasion:/r";
+char *AddDamage4="Increasing attacking rate(physic):/r";
+char *FalconAddDamage4="Increasing attacking rate of falcon:/r";
 
 
+char *IncreAttackAbsorb4="Increasing absorption rate:/r";
 
-char *ChainDamage3    = "ChainDamage)\r";
+char *RectAngleArea4="Attacking at sharp angled range:/r"; 
+
+char *MonsterSubSpeed4="Decreasing speed of attacked monster:/r";
+
+
+char *AddLifeRegen4="Add life-regeneration:/r";
+char *AddManaRegen4="Add mana-regeneration:/r";
+char *MagicArea4="Magic affected range:/r";
+char *ChainNum4="A number of affected monster:/r";
+char *ChainRange4="The rage of affected monster:/r";
+char *UndeadDamageAbsorb4="Undead attacking absorption:/r";
+char *UserBlockPercent4="Blocking rate for character:/r";
+
+char *SecondIncreMana4="Increasing mana rate per second:/r";
+char *FireDamage4="Fire attacking rate:/r";
+char *DecreSpeed4="Decreasing Speed:/r";
+char *DecreAttack4="Decreasing attacking rate:/r";
+char *AddPercentDamage4="Adding attacking rate:/r";
+
+
+
+char *ChainDamage3    = "ChainDamage)/r";
 char *BrandishDamage3 = "BrandishDamage";
 char *PhysicalAbsorb3 = "PhysicalAbsorb";
 char *SparkDamage3    = "SparkDamage";
 char *BrutalSwingCritical3   = "BrutalSwingCritical";
-char *Attck_RateAdd5 = "Attck_RateAdd:\r";
+char *Attck_RateAdd5 = "Attck_RateAdd:/r";
 char *Triumph4="Triumph";
 char *Use4="you";
 char *DivineShield4="Blocking rate of divine shiled";
@@ -463,7 +463,7 @@ char *QuestMonsterName[] = {"Thaï¿½ch nhï¿½n ","Taï¿½n binh cï¿½ï¿½t ","Traï¿½m 
 
 
 
-char *VampOption[10] ={"IncreaseAging%: \r","Vampire: \r","RefDamage: \r","DecreaseHP: \r","Lucky: \r "};
+char *VampOption[10] ={"IncreaseAging%: /r","Vampire: /r","RefDamage: /r","DecreaseHP: /r","Lucky: /r "};
 
 
 char *Quest3ItemName[]={"Demon Hunter","Ancient Revenge","Mist","Devil Side","Anaconda","Plated Sword","Ghost "};
@@ -471,15 +471,15 @@ char *Quest3ItemName[]={"Demon Hunter","Ancient Revenge","Mist","Devil Side","An
 char *Quset3ItemDoc15 = "Moï¿½n ï¿½ï¿½ï¿½ nhiï¿½ï¿½m vuï¿½ ";
 char *Quset3ItemDoc16 = " ï¿½aï¿½ biï¿½ï¿½n mï¿½ï¿½t";
 
-char *SparkDamage10 = "SparkDamage:\r";
+char *SparkDamage10 = "SparkDamage:/r";
 
-char *RequirLevel3 = "(RequirLevel:%d)\r";
+char *RequirLevel3 = "(RequirLevel:%d)/r";
 
 char *RecvItemTT = "Nhï¿½ï¿½n ï¿½ï¿½ï¿½ï¿½c moï¿½n ï¿½ï¿½ï¿½ ";
 char *PuzzleEvent5 = "Completed Puzzle";
 char *BabelHorn = "The horn of Babel";
 char *NineTailFoxItem = "Haï¿½i lï¿½ï¿½c ï¿½ï¿½ï¿½u xuï¿½n";
-char *MyShopItemSell5 = "The Price: \r";
+char *MyShopItemSell5 = "The Price: /r";
 char *CristalItem     ="the 7 Crystals";
 char *StarDust	= "Bï¿½ï¿½t tinh tuï¿½ ";
 char *ChristMas = "Merry ChristMas";
@@ -494,13 +494,13 @@ char *BuyMyShopItem8 = "%s ï¿½aï¿½ baï¿½n %d %s vï¿½ï¿½i giaï¿½ %d vaï¿½ng";
 char *ItemName87 = "item";
 
 char *sinEvent87 = "Request of the danger collector";
-char *sinAddDamageItem = "AddedATKPOWER: \r";
-char *sinContinueTimeItem = "Duration: \r";
+char *sinAddDamageItem = "AddedATKPOWER: /r";
+char *sinContinueTimeItem = "Duration: /r";
 char *BuyPotionMoney = "Gold:";
 char *BuyPotionKind = "Sï¿½ï¿½ lï¿½ï¿½ï¿½ng:";
 char *SheltomName2[] = {"Lucidy","Sereno"," Fadeo","Sparky","Raident","Transparo","Murky","Devine","Celesto ","Mirage","Inferna","Enigma"};
 
-char *AddPercentDamage3= "AddATKPOWER%: \r";
+char *AddPercentDamage3= "AddATKPOWER%: /r";
 
 char *sinLuckyBox = "Lucky Bag";
 char *SodMessage_Etc[]= {
@@ -582,7 +582,7 @@ char *sinTeleportDoc[] = {"Hang Nï¿½ï¿½m ","Hang Thaï¿½ch Nhuï¿½ ","Vuï¿½ng ï¿½ï
 char *sinLevelQuest90_2Mon[] = {"ï¿½iï¿½a ï¿½ï¿½n vï¿½ï¿½ng ","Thiï¿½ï¿½t khuï¿½ng long ","Song chuyï¿½ quyï¿½  "};
 char *sinLevelQusetDoc2="<Nhiï¿½ï¿½m vuï¿½> Haï¿½y tiï¿½u diï¿½ï¿½t %s %d";
 char *sinLevelQusetDoc3="<Nhiï¿½ï¿½m vuï¿½> Tiï¿½m moï¿½n ï¿½ï¿½ï¿½ tï¿½ï¿½ %s";
-char *sinLimitTiem2 = "Thï¿½ï¿½i gian giï¿½ï¿½i haï¿½n: \r";
+char *sinLimitTiem2 = "Thï¿½ï¿½i gian giï¿½ï¿½i haï¿½n: /r";
 char *sinMinute2 = "phuï¿½t";
 char *sinDay4 = "day";
 char *sinHour4 = "hour";
@@ -635,52 +635,52 @@ char *sinMonCodeName[]={
 	0,
 };
 
-char *ChargingTime4="Raise speed for charging:\r";
-char *AddIceDamage4="Added Damage of Frost Elemental:\r";
-char *IceTime4="Freezed Time:\r";
-char *sinAttackType = "Attack Type:\r";
-char *sinAttackType2[2] ={"Manual\r","Auto\r "};
+char *ChargingTime4="Raise speed for charging:/r";
+char *AddIceDamage4="Added Damage of Frost Elemental:/r";
+char *IceTime4="Freezed Time:/r";
+char *sinAttackType = "Attack Type:/r";
+char *sinAttackType2[2] ={"Manual/r","Auto/r "};
 
 char *Won="Gold";
 
 
 char *CastlItemInfo[] ={
-	{"Bï¿½ï¿½t tï¿½ï¿½ trong mï¿½ï¿½t khoaï¿½ng thï¿½ï¿½i gian\r "},  
-	{"Tiï¿½ lï¿½ï¿½ ï¿½aï¿½nh Critical\r "},
-	{"Tï¿½ng tiï¿½ lï¿½ï¿½ neï¿½ ï¿½oï¿½n\r "},
-	{"STM,HP,MP cho thaï¿½nh viï¿½n party\r "},
-	{"Hï¿½ï¿½i sinh tï¿½ï¿½c thiï¿½.\r "},
-	{"Sï¿½ï¿½c tï¿½ï¿½n cï¿½ng cuï¿½a toaï¿½ thaï¿½p\r "},     
-	{"Khi tï¿½ï¿½n cï¿½ng muï¿½c tiï¿½u, sï¿½ï¿½c ï¿½aï¿½nh tï¿½ng thï¿½m 20%\r "},
+	{"Bï¿½ï¿½t tï¿½ï¿½ trong mï¿½ï¿½t khoaï¿½ng thï¿½ï¿½i gian/r "},  
+	{"Tiï¿½ lï¿½ï¿½ ï¿½aï¿½nh Critical/r "},
+	{"Tï¿½ng tiï¿½ lï¿½ï¿½ neï¿½ ï¿½oï¿½n/r "},
+	{"STM,HP,MP cho thaï¿½nh viï¿½n party/r "},
+	{"Hï¿½ï¿½i sinh tï¿½ï¿½c thiï¿½./r "},
+	{"Sï¿½ï¿½c tï¿½ï¿½n cï¿½ng cuï¿½a toaï¿½ thaï¿½p/r "},     
+	{"Khi tï¿½ï¿½n cï¿½ng muï¿½c tiï¿½u, sï¿½ï¿½c ï¿½aï¿½nh tï¿½ng thï¿½m 20%/r "},
 	0,
 };
 char *CastlItemInfo2[] ={
-	{"Sï¿½ï¿½c ï¿½aï¿½nh giaï¿½m ï¿½i 1/2.\r "},
-	{"Tï¿½ng thï¿½m 5%.\r "},
-	{"tï¿½ng thï¿½m.\r "},
-	{"phuï¿½c hï¿½ï¿½i ï¿½ï¿½ï¿½y ï¿½uï¿½.\r "},
-	{"\r "},
-	{"giaï¿½m ï¿½i 50%\r "},
-	{"Cï¿½ï¿½ng thï¿½m.\r "},
+	{"Sï¿½ï¿½c ï¿½aï¿½nh giaï¿½m ï¿½i 1/2./r "},
+	{"Tï¿½ng thï¿½m 5%./r "},
+	{"tï¿½ng thï¿½m./r "},
+	{"phuï¿½c hï¿½ï¿½i ï¿½ï¿½ï¿½y ï¿½uï¿½./r "},
+	{"/r "},
+	{"giaï¿½m ï¿½i 50%/r "},
+	{"Cï¿½ï¿½ng thï¿½m./r "},
 	0,
 };
 
 
 char *CharClassTarget[8]={
-	"Muï¿½c tiï¿½u: Fighter\r",
-	"Muï¿½c tiï¿½u: Mechanician\r",
-	"Muï¿½c tiï¿½u: Pikeman\r",
-	"Muï¿½c tiï¿½u: Archer\r",
-	"Muï¿½c tiï¿½u: Knight\r",
-	"Muï¿½c tiï¿½u: Atalanta\r",
-	"Muï¿½c tiï¿½u: Magician\r",
-	"Muï¿½c tiï¿½u: Priestess\r",
+	"Muï¿½c tiï¿½u: Fighter/r",
+	"Muï¿½c tiï¿½u: Mechanician/r",
+	"Muï¿½c tiï¿½u: Pikeman/r",
+	"Muï¿½c tiï¿½u: Archer/r",
+	"Muï¿½c tiï¿½u: Knight/r",
+	"Muï¿½c tiï¿½u: Atalanta/r",
+	"Muï¿½c tiï¿½u: Magician/r",
+	"Muï¿½c tiï¿½u: Priestess/r",
 };
 char *AttributeTower[4]={
-	"Thuï¿½ï¿½c tiï¿½nh Lï¿½ï¿½a\r",
-	"Thuï¿½ï¿½c tiï¿½nh Bï¿½ng\r",
-	"Thuï¿½ï¿½c tiï¿½nh ï¿½iï¿½ï¿½n\r",
-	"Thï¿½ï¿½i gian:%d giï¿½y\r",
+	"Thuï¿½ï¿½c tiï¿½nh Lï¿½ï¿½a/r",
+	"Thuï¿½ï¿½c tiï¿½nh Bï¿½ng/r",
+	"Thuï¿½ï¿½c tiï¿½nh ï¿½iï¿½ï¿½n/r",
+	"Thï¿½ï¿½i gian:%d giï¿½y/r",
 };
 
 char *SiegeMessage_MerComplete ="Thiï¿½ï¿½t lï¿½ï¿½p hoaï¿½n tï¿½ï¿½t";
@@ -718,13 +718,13 @@ char *ha100LVQuestName = "Aï¿½o tï¿½ï¿½ï¿½ng Fury";
 
 
 char *PremiumItemDoc[][2]={
-	{"ï¿½iï¿½ï¿½m Stats\r"     ,"seï¿½ ï¿½ï¿½ï¿½ï¿½c thiï¿½ï¿½t lï¿½ï¿½p laï¿½i.\r "},     
-	{"ï¿½iï¿½ï¿½m Skill\r"     ,"seï¿½ ï¿½ï¿½ï¿½ï¿½c thiï¿½ï¿½t lï¿½ï¿½p laï¿½i.\r "},    
-	{"ï¿½iï¿½ï¿½m Stats/Skill\r","seï¿½ ï¿½ï¿½ï¿½ï¿½c thiï¿½ï¿½t lï¿½ï¿½p laï¿½i.\r "},     
-	{"Hï¿½ï¿½i sinh tï¿½ï¿½c thiï¿½ \r"    ,"khi biï¿½ chï¿½ï¿½t\r "},        
-	{"Trï¿½ï¿½ nï¿½n bï¿½ï¿½t tï¿½ï¿½.\r","Sï¿½ï¿½c tï¿½ï¿½n cï¿½ng giaï¿½m ï¿½i 1/2\r "},    
-	{"Tï¿½ng thï¿½m 15% \r"    ,"tiï¿½ lï¿½ï¿½ ra ï¿½oï¿½n chiï¿½ maï¿½ng.\r "},		
-	{"Tï¿½ng thï¿½m 15% \r"         ,"khaï¿½ nï¿½ng neï¿½ ï¿½oï¿½n.\r "},		
+	{"ï¿½iï¿½ï¿½m Stats/r"     ,"seï¿½ ï¿½ï¿½ï¿½ï¿½c thiï¿½ï¿½t lï¿½ï¿½p laï¿½i./r "},     
+	{"ï¿½iï¿½ï¿½m Skill/r"     ,"seï¿½ ï¿½ï¿½ï¿½ï¿½c thiï¿½ï¿½t lï¿½ï¿½p laï¿½i./r "},    
+	{"ï¿½iï¿½ï¿½m Stats/Skill/r","seï¿½ ï¿½ï¿½ï¿½ï¿½c thiï¿½ï¿½t lï¿½ï¿½p laï¿½i./r "},     
+	{"Hï¿½ï¿½i sinh tï¿½ï¿½c thiï¿½ /r"    ,"khi biï¿½ chï¿½ï¿½t/r "},        
+	{"Trï¿½ï¿½ nï¿½n bï¿½ï¿½t tï¿½ï¿½./r","Sï¿½ï¿½c tï¿½ï¿½n cï¿½ng giaï¿½m ï¿½i 1/2/r "},    
+	{"Tï¿½ng thï¿½m 15% /r"    ,"tiï¿½ lï¿½ï¿½ ra ï¿½oï¿½n chiï¿½ maï¿½ng./r "},		
+	{"Tï¿½ng thï¿½m 15% /r"         ,"khaï¿½ nï¿½ng neï¿½ ï¿½oï¿½n./r "},		
 };
 
 char *UpKeepItemDoc[] = {

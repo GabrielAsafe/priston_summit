@@ -1,7 +1,7 @@
-#include "opcodes.h"
+#include "../../Shared/opcodes.h"
 
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 
 #include "smwsock.h"
 #include "character.h"
@@ -9,46 +9,139 @@
 #include "fileread.h"
 
 #include "particle.h"
-#include "sinbaram\\sinlinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
+
+#ifndef SUMMIT_NETPLAY_COMPAT_TYPES
+#define SUMMIT_NETPLAY_COMPAT_TYPES
+
+#ifndef QWORD
+typedef unsigned long long QWORD;
+#endif
+
+struct smTRANS_COMMAND_QWORD
+{
+    int size, code;
+    DWORD WParam;
+    DWORD LParam;
+    QWORD SParam;
+    QWORD EParam;
+};
+
+struct smTRANS_VIP
+{
+    int size, code;
+    int Ativo;
+};
+
+struct smRANKING
+{
+    int size, code;
+    int type;
+    int contador;
+    char rankName[100][32];
+    char rankNameClan[100][32];
+    char rankLiderClan[100][32];
+    int rankLevel[100];
+    int rankClasse[100];
+    int rankKills[100];
+    int rankDeads[100];
+    int rankPointsSod[100];
+    int rankmembros[100];
+};
+
+struct TRANS_PREMIUM_TIME
+{
+    int size, code;
+    DWORD ThirdEye;
+    DWORD ExpUp;
+    DWORD VampCuspid;
+    DWORD ManaRecharg;
+    DWORD StaminaRecharg;
+    DWORD ManaReduce;
+    DWORD MightofAwell;
+    DWORD MightofAwell2;
+    DWORD PhenixPet;
+    DWORD HelpPet;
+    DWORD VampCuspidEx;
+    DWORD StaminaReduce;
+    DWORD Caravan;
+    DWORD GoldLooter;
+    DWORD HPBooster;
+    DWORD MPBooster;
+    DWORD RESBooster;
+};
+
+struct PACKET_CROWN
+{
+    int size, code;
+    DWORD Silver;
+    DWORD Bronze;
+};
+
+struct PACKET_BUFFS
+{
+    int size, code;
+    int NovatoLevel;
+    int NovatoADD;
+    int NovatoRegen;
+    int SetBoss1Bonus1;
+    int SetBoss1Bonus2;
+    int SetBoss2Bonus1;
+    int SetBoss2Bonus2;
+};
+
+#ifndef PACKET_KILL
+#define PACKET_KILL 0x4847900B
+#endif
+#ifndef PLAYER_TOP_LEVEL
+#define PLAYER_TOP_LEVEL 0x4847900C
+#endif
+#ifndef WARMODE
+#define WARMODE 0x4847900D
+#endif
+#ifndef smTRANSCODE_RESETBP
+#define smTRANSCODE_RESETBP 0x4847900E
+#endif
+
+#endif
+
 #include "record.h"
 #include "netplay.h"
 #include "playsub.h"
 #include "field.h"
-#include "Language\\language.h"
-#include "Language\\jts.h"
+#include "Language/language.h"
+#include "Language/jts.h"
 #include "TextMessage.h"
 #include "cracker.h"
-#include "tjboy\\clanmenu\\tjclanDEF.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\help.h"
+#include "TJBOY/clanmenu/tjclanDEF.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/Help.h"
 #include "damage.h"
-#include "skillsub.h"
+#include "SkillSub.h"
 
 #include "AreaServer.h"
 
 #include "BellatraFontEffect.h"
-#include "Server\\onserver.h"
+#include "Server/onserver.h"
 #include "WarMode.h"
 #include "cPartyWindow.h"
 #include "NPCinfo.h"
-#include "WinInt\\WinIntThread.h"
-#include "WinInt\\WavIntHttp.h"
-#include "WinInt\\ZipLib.h"
+#include "WinInt/WinIntThread.h"
+#include "WinInt/WavIntHttp.h"
+#include "WinInt/ZipLib.h"
 
 #include "cQuestWindow.h"
-#include "cRestaureWindow.h"
 #include "CurseFilter.h"	
-#include "sinbaram\\sinSkill_InfoIni.h"
+#include "sinbaram/sinSkill_InfoIni.h"
 #include "DrawDamage.h"
-#include "Settings\Settings.h"
-#include "AntiCheat\AntiCheat.h"
+#include "Settings/Settings.h"
+#include "AntiCheat/AntiCheat.h"
 #include "skillsPacket.h"
 #include "CoinShop.h"
 #include "CoinShop_T.h"
 #include "cHellsGate.h"
 #include "KillHandler.h"
 #include "CLootHandler.h"
-#include "BattleEvents\\CRollHandler.h"
 
 extern int WinSizeX;
 extern int WinSizeY;
@@ -904,7 +997,7 @@ int GetTradeDistanceFromCode(DWORD dwObjectSerial)
 #ifndef _A
 #define _A
 
-#include "AntiCheat\AntiCheat.h"
+#include "AntiCheat/AntiCheat.h"
 
 #endif
 
@@ -1516,7 +1609,7 @@ DWORD	dwGetCharInfoTime = 0;
 #ifndef _A
 #define _A
 
-#include "AntiCheat\AntiCheat.h"
+#include "AntiCheat/AntiCheat.h"
 
 #endif
 
@@ -1611,7 +1704,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 	}
 	
 //#ifdef _DEBUG
-	//Utils_Log(LOG_DEBUG, "Recv %s (%x) %d\r\n", GetTranscodeNameByOpcode(IPData[1]), IPData[1], IPData[0]);
+	//Utils_Log(LOG_DEBUG, "Recv %s (%x) %d/r/n", GetTranscodeNameByOpcode(IPData[1]), IPData[1], IPData[0]);
 //#endif
 
 	switch(IPData[1])
@@ -2851,16 +2944,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		ZeroMemory(lpTransItemInfo, sizeof(TRANS_ITEMINFO));
 
 		ResetInvenItemCode();
-		break;
-		
-	case OpCode::OPCODE_ROLL:
-		ROLLHANDLER->HandlePacket((PacketRollInfo*)pData->Buff);
-		break;
-	case OpCode::OPCODE_ENDROLL:
-		ROLLHANDLER->HandlePacket((smTRANS_COMMAND*)pData->Buff);
-		break;
-
-	case OpCode::OPCODE_MESSAGEBOX:
+		break;case OpCode::OPCODE_MESSAGEBOX:
 
 		lpTransChatMessage = (TRANS_CHATMESSAGE *)pData->Buff;
 		cMessageBox.ShowMessageEvent(lpTransChatMessage->szMessage);
@@ -3506,7 +3590,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 					else
 					{
 						strcpy_s(lpTransUserCharInfo->CharInfo[cnt].szModelName,
-							"char\\monster\\hopy\\hopy.ini");
+							"char//monster//hopy//hopy.ini");
 					}
 				}
 			}
@@ -4603,7 +4687,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		}
 		break;
 
-	case OPCODE_cMIXGUIDE:
+	case OpCode::OPCODE_cMIXGUIDE:
 	{
 		cMixGuide::GetInstance()->Open();
 	}
@@ -14821,6 +14905,8 @@ int Xigncode_Client_Recv(smWINSOCK *lpsmSock, XIGNCODE_PACKET *pack)
 	return TRUE;
 }
 #endif
+
+
 
 
 

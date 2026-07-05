@@ -43,22 +43,22 @@
 #include <algorithm>
 
 //Windows Header Files:
+#include <winsock2.h>
 #include <windows.h>
 #include <tlhelp32.h>
-#include <Psapi.h>
-#include <Mmsystem.h>
+#include <psapi.h>
+#include <mmsystem.h>
 #include <shellapi.h>
-#include <Shlwapi.h>
+#include <shlwapi.h>
 #include <vfw.h>
 #include <intrin.h>
 
-#include <Wininet.h>
-#include <WinSock2.h>
+#include <wininet.h>
 
 #include <memory>
 #include <stack>
 #include <time.h>
-#include <Strsafe.h>
+#include <strsafe.h>
 
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -71,7 +71,7 @@
 #include <cctype>
 #include <functional>
 #include <queue>
-#include <Imagehlp.h>
+#include <imagehlp.h>
 #include <basetsd.h>
 #include <rpc.h>
 
@@ -88,21 +88,23 @@ extern "C"
 }
 
 #include <dshow.h>
-#include "qedit.h"
-#pragma comment(lib,"Strmiids.lib")
+// #include "qedit.h" // disabled for MinGW: pulls old DirectX RM headers
+// #pragma comment(lib,"Strmiids.lib") // disabled for MinGW
 
 //Custom Include:
-#include "globals.h"
+// #include "globals.h" // removed: not needed / wrong libxml match
 
 DWORD GetMajorAllocator();
 DWORD GetMajorAllocatorP();
 
-void * operator new[]( std::size_t s ) throw(std::bad_alloc);
-void operator delete[]( void *p ) throw();
-void * operator new(std::size_t s) throw(std::bad_alloc);
-void operator delete(void *p) throw();
+void * operator new[]( std::size_t s ) noexcept(false);
+void operator delete[]( void *p ) noexcept;
+void * operator new(std::size_t s) noexcept(false);
+void operator delete(void *p) noexcept;
 
 using namespace std;
+
+
 
 
 

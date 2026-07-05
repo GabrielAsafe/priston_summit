@@ -1,9 +1,9 @@
 #include "HoEffectController.h"
 #include "HoEffectView.h"
 #include "HoEffectResMgr.h"
-#include "smLib3d\smSin.h"
-#include "smLib3d\smType.h"
-#include "smLib3d\smGeosub.h"
+#include "smLib3d/smSin.h"
+#include "smLib3d/smType.h"
+#include "smLib3d/smGeosub.h"
 
 void HoEffectEventColor::VisitEffectModel(HoEffectModelInterface &effectModel)
 {

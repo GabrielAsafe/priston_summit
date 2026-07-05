@@ -1,7 +1,7 @@
 #ifndef HOOK_H
 #define HOOK_H
 
-#include <Windows.h>
+#include <windows.h>
 #include <ddraw.h>
 
 typedef BOOL(WINAPI *H_GetTextExtentPoint32)(HDC hdc, LPCTSTR lpString, int c, LPSIZE lpSize);

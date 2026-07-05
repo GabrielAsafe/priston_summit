@@ -32,7 +32,7 @@
 
 
 /* convert a stack index to positive */
-#define abs_index(L, i)		((i) > 0 || (i) <= LUA_REGISTRYINDEX ? (i) : \
+#define abs_index(L, i)		((i) > 0 || (i) <= LUA_REGISTRYINDEX ? (i) : /
 					lua_gettop(L) + (i) + 1)
 
 
@@ -557,7 +557,7 @@ static void callalert (lua_State *L, int status) {
       lua_call(L, 1, 0);
     }
     else {  /* no _ALERT function; print it on stderr */
-      fprintf(stderr, "%s\n", lua_tostring(L, -2));
+      fprintf(stderr, "%s/n", lua_tostring(L, -2));
       lua_pop(L, 2);  /* remove error message and _ALERT */
     }
   }

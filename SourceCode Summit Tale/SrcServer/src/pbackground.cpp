@@ -1,4 +1,4 @@
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "pbackground.h"
 #include "field.h"
 
@@ -56,8 +56,8 @@ int smBACKGROUND::Init(int BgNum)
 	{
 		case FIELD_BACKIMAGE_RAIN:
 
-		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets\\sky\\RainSky.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-		lpMaterialGroup->AddTexture(BGMatNum, "Assets\\sky\\fsky00.tga");
+		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets//sky//RainSky.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+		lpMaterialGroup->AddTexture(BGMatNum, "Assets//sky//fsky00.tga");
 		lpMaterialGroup->smMaterial[BGMatNum].TextureFormState[1] = smTEXSTATE_FS_SCROLL;
 		lpMaterialGroup->smMaterial[BGMatNum].MapOpacity = 0;
 		TexCount = 1;
@@ -65,22 +65,22 @@ int smBACKGROUND::Init(int BgNum)
 
 		case FIELD_BACKIMAGE_NIGHT:
 
-		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets\\sky\\nsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets//sky//nsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
 		TexCount = 0;
 		break;
 
 		case FIELD_BACKIMAGE_DAY:
 
-		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets\\sky\\fsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets//sky//fsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
 		TexCount = 0;
 		break;
 
 		case FIELD_BACKIMAGE_GLOWDAY:
 
-		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets\\sky\\fgsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-		lpMaterialGroup->AddTexture(BGMatNum, "Assets\\sky\\fgsky00.tga");
+		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets//sky//fgsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+		lpMaterialGroup->AddTexture(BGMatNum, "Assets//sky//fgsky00.tga");
 		lpMaterialGroup->smMaterial[BGMatNum].TextureFormState[1] = smTEXSTATE_FS_SCROLL;
 		lpMaterialGroup->smMaterial[BGMatNum].MapOpacity = 0;
 		TexCount = 1;
@@ -88,8 +88,8 @@ int smBACKGROUND::Init(int BgNum)
 
 		case FIELD_BACKIMAGE_DESERT:
 
-		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets\\sky\\dsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-		lpMaterialGroup->AddTexture(BGMatNum, "Assets\\sky\\dsky00.tga");
+		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets//sky//dsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+		lpMaterialGroup->AddTexture(BGMatNum, "Assets//sky//dsky00.tga");
 		lpMaterialGroup->smMaterial[BGMatNum].TextureFormState[1] = smTEXSTATE_FS_SCROLL;
 		lpMaterialGroup->smMaterial[BGMatNum].MapOpacity = 0;
 		TexCount = 1;
@@ -97,45 +97,45 @@ int smBACKGROUND::Init(int BgNum)
 
 		case FIELD_BACKIMAGE_GLOWDESERT:
 
-		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets\\sky\\dgsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-		lpMaterialGroup->AddTexture(BGMatNum, "Assets\\sky\\dgsky00.tga");
+		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets//sky//dgsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+		lpMaterialGroup->AddTexture(BGMatNum, "Assets//sky//dgsky00.tga");
 		lpMaterialGroup->smMaterial[BGMatNum].TextureFormState[1] = smTEXSTATE_FS_SCROLL;
 		lpMaterialGroup->smMaterial[BGMatNum].MapOpacity = 0;
 		TexCount = 1;
 		break;
 		case FIELD_BACKIMAGE_NIGHTDESERT:
 
-		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets\\sky\\dnsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets//sky//dnsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
 		TexCount = 0;
 		break;
 
 		case FIELD_BACKIMAGE_RUIN1:
-		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets\\sky\\RuinSky2.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-		lpMaterialGroup->AddTexture(BGMatNum, "Assets\\sky\\fsky00.tga");
+		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets//sky//RuinSky2.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+		lpMaterialGroup->AddTexture(BGMatNum, "Assets//sky//fsky00.tga");
 		lpMaterialGroup->smMaterial[BGMatNum].TextureFormState[1] = smTEXSTATE_FS_SCROLL;
 		lpMaterialGroup->smMaterial[BGMatNum].MapOpacity = 0;
 		TexCount = 1;
 		break;
 
 		case FIELD_BACKIMAGE_RUIN2:
-		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets\\sky\\RuinSky.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-		lpMaterialGroup->AddTexture(BGMatNum, "Assets\\sky\\fsky00.tga");
+		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets//sky//RuinSky.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+		lpMaterialGroup->AddTexture(BGMatNum, "Assets//sky//fsky00.tga");
 		lpMaterialGroup->smMaterial[BGMatNum].TextureFormState[1] = smTEXSTATE_FS_SCROLL;
 		lpMaterialGroup->smMaterial[BGMatNum].MapOpacity = 0;
 		TexCount = 1;
 		break;
 
 		case FIELD_BACKIMAGE_NIGHTRUIN1:
-		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets\\sky\\RuinSky2-n.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-		lpMaterialGroup->AddTexture(BGMatNum, "Assets\\sky\\fsky00.tga");
+		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets//sky//RuinSky2-n.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+		lpMaterialGroup->AddTexture(BGMatNum, "Assets//sky//fsky00.tga");
 		lpMaterialGroup->smMaterial[BGMatNum].TextureFormState[1] = smTEXSTATE_FS_SCROLL;
 		lpMaterialGroup->smMaterial[BGMatNum].MapOpacity = 0;
 		TexCount = 1;
 		break;
 
 		case FIELD_BACKIMAGE_NIGHTRUIN2:
-		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets\\sky\\RuinNsky.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets//sky//RuinNsky.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 		lpMaterialGroup->smMaterial[BGMatNum].SelfIllum = 1.0f;
 		TexCount = 0;
 		break;
@@ -144,14 +144,14 @@ int smBACKGROUND::Init(int BgNum)
 
 		case FIELD_BACKIMAGE_NIGHTFALL:
 
-		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets\\sky\\forever-Nsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets//sky//forever-Nsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 		TexCount = 0;
 		break;
 
 		case FIELD_BACKIMAGE_DAYFALL:
 
-		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets\\sky\\forever-Fsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-		lpMaterialGroup->AddTexture(BGMatNum, "Assets\\sky\\forever-Fsky00.tga");
+		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets//sky//forever-Fsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+		lpMaterialGroup->AddTexture(BGMatNum, "Assets//sky//forever-Fsky00.tga");
 		lpMaterialGroup->smMaterial[BGMatNum].TextureFormState[1] = smTEXSTATE_FS_SCROLL;
 		lpMaterialGroup->smMaterial[BGMatNum].MapOpacity = 0;
 		TexCount = 1;
@@ -159,8 +159,8 @@ int smBACKGROUND::Init(int BgNum)
 
 		case FIELD_BACKIMAGE_GLOWFALL:
 
-		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets\\sky\\forever-Gsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-		lpMaterialGroup->AddTexture(BGMatNum, "Assets\\sky\\forever-Fsky00.tga");
+		BGMatNum = lpMaterialGroup->CreateTextureMaterial("Assets//sky//forever-Gsky00.bmp", 0, FALSE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+		lpMaterialGroup->AddTexture(BGMatNum, "Assets//sky//forever-Fsky00.tga");
 		lpMaterialGroup->smMaterial[BGMatNum].TextureFormState[1] = smTEXSTATE_FS_SCROLL;
 		lpMaterialGroup->smMaterial[BGMatNum].MapOpacity = 0;
 		TexCount = 1;

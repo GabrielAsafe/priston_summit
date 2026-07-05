@@ -6,7 +6,7 @@
 #include <ddraw.h>
 #include <d3d.h>
 #include <d3dtypes.h>
-#include <Shlwapi.h>
+#include <shlwapi.h>
 
 
 #pragma comment( lib, "ddraw.lib" )

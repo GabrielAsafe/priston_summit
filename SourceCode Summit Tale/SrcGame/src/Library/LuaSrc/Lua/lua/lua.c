@@ -98,21 +98,21 @@ static void laction (int i) {
 
 static void print_usage (void) {
   fprintf(stderr,
-  "usage: %s [options] [script [args]].\n"
-  "Available options are:\n"
-  "  -        execute stdin as a file\n"
-  "  -e stat  execute string `stat'\n"
-  "  -i       enter interactive mode after executing `script'\n"
-  "  -l name  load and run library `name'\n"
-  "  -v       show version information\n"
-  "  --       stop handling options\n" ,
+  "usage: %s [options] [script [args]]./n"
+  "Available options are:/n"
+  "  -        execute stdin as a file/n"
+  "  -e stat  execute string `stat'/n"
+  "  -i       enter interactive mode after executing `script'/n"
+  "  -l name  load and run library `name'/n"
+  "  -v       show version information/n"
+  "  --       stop handling options/n" ,
   progname);
 }
 
 
 static void l_message (const char *pname, const char *msg) {
   if (pname) fprintf(stderr, "%s: ", pname);
-  fprintf(stderr, "%s\n", msg);
+  fprintf(stderr, "%s/n", msg);
 }
 
 
@@ -291,7 +291,7 @@ static void manual_input (void) {
     }
   }
   lua_settop(L, 0);  /* clear stack */
-  fputs("\n", stdout);
+  fputs("/n", stdout);
   progname = oldprogname;
 }
 
@@ -311,14 +311,14 @@ static int handle_argv (char *argv[], int *interactive) {
       if (argv[i][0] != '-') break;  /* not an option? */
       switch (argv[i][1]) {  /* option */
         case '-': {  /* `--' */
-          if (argv[i][2] != '\0') {
+          if (argv[i][2] != '/0') {
             print_usage();
             return 1;
           }
           i++;  /* skip this argument */
           goto endloop;  /* stop handling arguments */
         }
-        case '\0': {
+        case '/0': {
           file_input(NULL);  /* executes stdin as a file */
           break;
         }
@@ -332,7 +332,7 @@ static int handle_argv (char *argv[], int *interactive) {
         }
         case 'e': {
           const char *chunk = argv[i] + 2;
-          if (*chunk == '\0') chunk = argv[++i];
+          if (*chunk == '/0') chunk = argv[++i];
           if (chunk == NULL) {
             print_usage();
             return 1;
@@ -343,7 +343,7 @@ static int handle_argv (char *argv[], int *interactive) {
         }
         case 'l': {
           const char *filename = argv[i] + 2;
-          if (*filename == '\0') filename = argv[++i];
+          if (*filename == '/0') filename = argv[++i];
           if (filename == NULL) {
             print_usage();
             return 1;

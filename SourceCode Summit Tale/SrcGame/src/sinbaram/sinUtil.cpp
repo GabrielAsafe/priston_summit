@@ -16,7 +16,7 @@ sinSTRING::sinSTRING(sinSTRING &rString)
 		m_aString = new char[rString.GetLength() + 1];
 		strcpy(m_aString, rString.GetString());
 	}
-	else m_aString[0] = '\0';
+	else m_aString[0] = '/0';
 
 }
 sinSTRING::sinSTRING(char *pString)
@@ -27,13 +27,13 @@ sinSTRING::sinSTRING(char *pString)
 		strcpy(m_aString, pString);
 
 	}
-	else m_aString[0] = '\0';
+	else m_aString[0] = '/0';
 
 }
 
 sinSTRING::~sinSTRING(void)
 {
-	m_aString[0] = '\0';
+	m_aString[0] = '/0';
 }
 
 
@@ -41,14 +41,14 @@ sinSTRING & sinSTRING::operator = (sinSTRING & rString)
 {
 	if(rString.GetLength() > 0)
 		strcpy(m_aString, rString.GetString());
-	else m_aString[0] = '\0';
+	else m_aString[0] = '/0';
 	return *this;
 }
 sinSTRING & sinSTRING::operator = (char *pString)
 {
 	if(pString)
 		strcpy(m_aString, pString);
-	else m_aString[0] = '\0';
+	else m_aString[0] = '/0';
 	return *this;
 }
 

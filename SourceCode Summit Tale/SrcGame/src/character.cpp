@@ -1,35 +1,35 @@
 #include "opcodes.h"
 
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "smwsock.h"
 
 #include "character.h"
-#include "Sound\\dxwav.h"
+#include "Sound/Dxwav.h"
 #include "particle.h"
 #include "fileread.h"
 #include "playmain.h"
 #include "drawsub.h"
 #include "netplay.h"
 #include "field.h"
-#include "hobaram\\holinkheader.h"
-#include "sinbaram\\sinlinkheader.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
 
 #include "effectsnd.h"
 #include "playsub.h"
-#include "skillsub.h"
-#include "Language\\language.h"
+#include "SkillSub.h"
+#include "Language/language.h"
 
-#include "tjboy\\clanmenu\\tjclanDEF.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\cE_CViewClanInfo.h"
+#include "TJBOY/clanmenu/tjclanDEF.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/cE_CViewClanInfo.h"
 
 #include "damage.h"
-#include "Server\\svr_Damage.h"
-#include "Server\\onserver.h"
+#include "Server/svr_Damage.h"
+#include "Server/onserver.h"
 #include "FullZoomMap.h"	
 #include "DrawDamage.h"
-#include "Settings\Settings.h"
+#include "Settings/Settings.h"
 
 #define DISP_DAMAGE
 
@@ -647,7 +647,7 @@ smDPAT *smPATTERN::LoadCharactor(char *szFileName)
 
 
 extern smPAT3D *PatKnife;
-char *szDefaultCharName = "char\\woman.ini";
+char *szDefaultCharName = "char//woman.ini";
 
 
 int InitLoader();
@@ -16321,7 +16321,7 @@ int InitMotionBlur()
 	int MbCnt, MvCnt;
 
 
-	MatMBlur = CreateTextureMaterial("image\\MotionMask.bmp", NULL, TRUE, FALSE, FALSE, SMMAT_BLEND_ADDCOLOR);
+	MatMBlur = CreateTextureMaterial("image//MotionMask.bmp", NULL, TRUE, FALSE, FALSE, SMMAT_BLEND_ADDCOLOR);
 
 
 
@@ -16603,7 +16603,7 @@ int scITEM::SetTransItem(TRANS_ITEM *lpTransItem)
 	Angle.y = ((pX + pZ) >> 2)&ANGCLIP;
 
 	if (sinGetItemInfo(ItemCode, szModelName) == FALSE || ItemCode == 0)
-		strcpy_s(szModelName, "char\\flag\\flag.ini");
+		strcpy_s(szModelName, "char//flag//flag.ini");
 
 
 

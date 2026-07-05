@@ -1,8 +1,8 @@
 #include "opcodes.h"
-#include "SinBaram\\SinLinkHeader.h"
-#include "..\\HoBaram\\HoLinkHeader.h"
-#include "..\\smReg.h"
-#include "Language\\language.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "../HoBaram/HoLinkHeader.h"
+#include "../smreg.h"
+#include "Language/language.h"
 #include "WarMode.h"
 
 HoLogin		*lpLogin = 0;
@@ -434,7 +434,7 @@ void Capture(HWND handle, int fileFormatFlag)
 		char numBuffer[64];
 		memset(buffer, 0, sizeof(buffer));
 
-		strcpy(buffer, "Capture\\");
+		strcpy(buffer, "Capture//");
 
 	
 		memset(numBuffer, 0, sizeof(numBuffer));
@@ -536,23 +536,12 @@ extern int ClanCLCharMove;
 #include "cPartyWindow.h"
 #include "cTarget.h"
 #include "cQuestWindow.h"
-#include "cRestaureWindow.h"
 #include "cSettingsWindow.h"
-#include "BattleEvents\\CRollHandler.h"
 
 extern BOOL stop;
 BOOL HoStopCharMotion()
-{
-	if (ROLLHANDLER->isInsideRoll())
-		return TRUE;
-	
-	if (cCoinShop.isOpen() || cCoinShop_T.isOpen() || cParty.StopMotion() || cTarget.StopMotion() || cQuestWindow.OpenFlag || cSettings.isOpen() || stop)
-		return TRUE;
-
-	if (cRestaure.OpenFlag)
-		return TRUE;
-
-	if(InterfaceParty.MessageBoxOpenFlag)
+{if (cCoinShop.isOpen() || cCoinShop_T.isOpen() || cParty.StopMotion() || cTarget.StopMotion() || cQuestWindow.OpenFlag || cSettings.isOpen() || stop)
+		return TRUE;if(InterfaceParty.MessageBoxOpenFlag)
 	{
 		if(pCursorPos.x >= 653 && pCursorPos.x <= 653 + 23 && pCursorPos.y >= 14 && pCursorPos.y <= 14 + 23)
 			return TRUE;
@@ -745,6 +734,7 @@ extern void		EffectWaveCamera(int factor, int delay)
 	WaveCameraFactor = factor;
 	WaveCameraDelay = delay;
 }
+
 
 
 

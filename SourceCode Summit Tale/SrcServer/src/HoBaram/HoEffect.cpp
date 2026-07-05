@@ -1,17 +1,17 @@
-#include "..\\particle.h"
-#include "HoBaram\\HoLinkHeader.h"
-#include "sinbaram\\sinLinkHeader.h"
+#include "../particle.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
 
-#include "HoBaram\\HoMinMax.h"
-#include "HoBaram\\HoNewParticle.h"
-#include "HoBaram\\HoNewParticleMgr.h"
+#include "HoBaram/HoMinMax.h"
+#include "HoBaram/HoNewParticle.h"
+#include "HoBaram/HoNewParticleMgr.h"
 
 #include "hoAssaParticleEffect.h"
 #include "AssaParticle.h"
-#include "..\\field.h"
+#include "../field.h"
 
-#include "HoBaram\\NewEffect\\HoEffectManager.h"
-#include "HoBaram\\NewEffect\\HoNewEffectFunction.h"
+#include "HoBaram/NewEffect/HoEffectManager.h"
+#include "HoBaram/NewEffect/HoNewEffectFunction.h"
 
 
 
@@ -61,8 +61,8 @@ HoEtc2dPrimitive::~HoEtc2dPrimitive()
 
 int HoEtc2dPrimitive::Load()
 {
-	AnimationData.ImageLoad("Effect\\Etc\\Flame.ini");
-	AnimationData.SequenceLoad("Effect\\Etc\\Flame.ini");
+	AnimationData.ImageLoad("Effect//Etc//Flame.ini");
+	AnimationData.SequenceLoad("Effect//Etc//Flame.ini");
 
 
 	return TRUE;
@@ -3066,34 +3066,34 @@ void HoEffectMgr::Init()
 
 
 	int index = 0;
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\dust.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//dust.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	index++;
 
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\bubble.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//bubble.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	index++;
 
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\Red.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//Red.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	index++;
 
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\Blue.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//Blue.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	index++;
 
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\cc.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//cc.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	index++;
 
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\Fire.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//Fire.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	index++;
 
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\flare.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
-	index++;
-
-
-
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\bkh0.tga", 0, 0, 0, 0, SMMAT_BLEND_SHADOW);
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//flare.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	index++;
 
 
-	MaterialNum[index] = CreateTextureMaterial("Effect\\ImageData\\Particle\\Red_KTJimsi.tga", 0, 0, 0, 0, SMMAT_BLEND_SHADOW);
+
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//bkh0.tga", 0, 0, 0, 0, SMMAT_BLEND_SHADOW);
+	index++;
+
+
+	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//Red_KTJimsi.tga", 0, 0, 0, 0, SMMAT_BLEND_SHADOW);
 	index++;
 
 
@@ -3101,8 +3101,8 @@ void HoEffectMgr::Init()
 	index = 0;
 	char buffer[256];
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\GameStart\\GameStart1.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\GameStart\\GameStart1.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//GameStart//GameStart1.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//GameStart//GameStart1.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3111,8 +3111,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\GroundPike\\GroundPike.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\GroundPIke\\GroundPike.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//GroundPike//GroundPike.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//GroundPIke//GroundPike.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3121,8 +3121,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\PhysicalAbsorb\\PhysicalAbsorb.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\PhysicalAbsorb\\PhysicalAbsorb.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//PhysicalAbsorb//PhysicalAbsorb.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//PhysicalAbsorb//PhysicalAbsorb.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3132,8 +3132,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\PikeWind\\bong.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\PikeWind\\bong.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//PikeWind//bong.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//PikeWind//bong.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3143,11 +3143,11 @@ void HoEffectMgr::Init()
 	index++;
 
 
-	PatObj[index] = smASE_ReadBone("Effect\\ObjAnimationData\\ScoutHawk\\Hawk-ani.ASE");
+	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//ScoutHawk//Hawk-ani.ASE");
 	smASE_SetPhysique(PatObj[index]);
 	index++;
 
-	PatObj[index] = smASE_Read("Effect\\ObjAnimationData\\ScoutHawk\\Hawk-ani.ASE", 0);
+	PatObj[index] = smASE_Read("Effect//ObjAnimationData//ScoutHawk//Hawk-ani.ASE", 0);
 	PatObj[index]->ZeroNormals();
 
 	smASE_SetPhysique(0);
@@ -3156,8 +3156,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\WindArrow\\WindArrow.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\WindArrow\\WindArrow.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//WindArrow//WindArrow.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//WindArrow//WindArrow.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3167,8 +3167,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\ArrowRage\\ArrowRage.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\ArrowRage\\ArrowRage.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//ArrowRage//ArrowRage.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//ArrowRage//ArrowRage.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3178,8 +3178,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\test\\test.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\test\\test.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//test//test.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//test//test.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3190,8 +3190,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\MechanicBomb\\MechanicBomb.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\MechanicBomb\\MechanicBomb.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MechanicBomb//MechanicBomb.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MechanicBomb//MechanicBomb.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3201,8 +3201,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\Roar\\Roar.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\Roar\\Roar.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Roar//Roar.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Roar//Roar.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3212,8 +3212,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\MonsterWeb\\WebShot.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\MonsterWeb\\WebShot.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterWeb//WebShot.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterWeb//WebShot.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3223,8 +3223,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\MonsterWeb\\WebHit.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\MonsterWeb\\WebHit.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterWeb//WebHit.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterWeb//WebHit.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3235,8 +3235,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\Avalanche\\avalanche.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\Avalanche\\avalanche.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Avalanche//avalanche.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Avalanche//avalanche.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3247,11 +3247,11 @@ void HoEffectMgr::Init()
 
 
 
-	PatObj[index] = smASE_ReadBone("Effect\\ObjAnimationData\\Falcon\\FalconAni.ase");
+	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//Falcon//FalconAni.ase");
 	smASE_SetPhysique(PatObj[index]);
 	index++;
 
-	PatObj[index] = smASE_Read("Effect\\ObjAnimationData\\Falcon\\FalconAni.ase", 0);
+	PatObj[index] = smASE_Read("Effect//ObjAnimationData//Falcon//FalconAni.ase", 0);
 	PatObj[index]->ZeroNormals();
 	smASE_SetPhysique(0);
 	PatAnimationEnd[index] = 210;
@@ -3263,8 +3263,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\BrutalSwing\\BrutalSwing1.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\BrutalSwing\\BrutalSwing1.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//BrutalSwing//BrutalSwing1.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//BrutalSwing//BrutalSwing1.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3275,8 +3275,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\BrutalSwing\\BrutalSwing2.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\BrutalSwing\\BrutalSwing2.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//BrutalSwing//BrutalSwing2.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//BrutalSwing//BrutalSwing2.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3287,8 +3287,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\MonsterHeadCutter\\HeadCutterHit1.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\MonsterHeadCutter\\HeadCutterHit1.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterHeadCutter//HeadCutterHit1.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterHeadCutter//HeadCutterHit1.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3303,8 +3303,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\MonsterHeadCutter\\HeadCutterHit2.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\MonsterHeadCutter\\HeadCutterHit2.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterHeadCutter//HeadCutterHit2.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterHeadCutter//HeadCutterHit2.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3316,8 +3316,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\OmiCron\\omicronHit1.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\OmiCron\\omicronHit1.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//OmiCron//omicronHit1.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//OmiCron//omicronHit1.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3325,8 +3325,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\Stygianlord\\StygianlordShot1.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\Stygianlord\\StygianlordShot1.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Stygianlord//StygianlordShot1.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Stygianlord//StygianlordShot1.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3335,8 +3335,8 @@ void HoEffectMgr::Init()
 
 
 	memset(buffer, 0, sizeof(buffer));
-	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect\\ObjAnimationData\\Shadow\\ShadowShot1.ini");
-	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect\\ObjAnimationData\\Shadow\\ShadowShot1.ini");
+	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Shadow//ShadowShot1.ini");
+	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Shadow//ShadowShot1.ini");
 	smASE_SetPhysique(NULL);
 	PatObj[index] = smASE_Read(buffer);
 	PatObj[index]->ZeroNormals();
@@ -3349,18 +3349,18 @@ void HoEffectMgr::Init()
 
 
 
-	PatObj[index] = smASE_ReadBone("Effect\\ObjAnimationData\\Falcon\\FalconAni.ase");
+	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//Falcon//FalconAni.ase");
 	smASE_SetPhysique(PatObj[index]);
 	index++;
 
-	PatObj[index] = smASE_Read("Effect\\ObjAnimationData\\GoldenFalcon\\g-falcon01.ASE", 0);
+	PatObj[index] = smASE_Read("Effect//ObjAnimationData//GoldenFalcon//g-falcon01.ASE", 0);
 	PatObj[index]->ZeroNormals();
 
 	smASE_SetPhysique(0);
 	PatAnimationEnd[index] = 120;
 
 	smASE_SetPhysique(NULL);
-	PatMissile = smASE_Read("Effect\\ObjAnimationData\\Missile\\Mis.ase");
+	PatMissile = smASE_Read("Effect//ObjAnimationData//Missile//Mis.ase");
 	PatMissile->ZeroNormals();
 
 	ReadTextures();

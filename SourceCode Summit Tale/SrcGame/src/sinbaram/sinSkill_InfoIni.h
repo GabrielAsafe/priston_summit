@@ -1,17 +1,16 @@
 
-#include <Windows.h>
+#include <windows.h>
 #include <stdio.h>
 
 struct MECH_INFO{
 
 	int size, code;
 
-	
 	int E_Shield_BlockRate[10];
 	int E_Shield_UseTime[10];
 	int E_Shield_UseMana[10];
 
-	//int Mechanic_Bomb_Damage[10][2];
+	int Mechanic_Bomb_Damage[10][2];
 	int Mechanic_Bomb_DamagePercent[10];
 	int Mechanic_Bomb_Attack_Range[10];
 	int Mechanic_Bomb_UseMana[10];
@@ -22,10 +21,9 @@ struct MECH_INFO{
 
 	int PlusPoison[10];
 
-	
 	int G_Smash_Attack_Rate[10];
-	//int G_Smash_Attack_Rage[10];
 	int G_Smash_Attack_RagePercent[10];
+	int G_Smash_Attack_Rage[10];
 	int G_Smash_UseMana[10];
 
 	int Maximize_Damage[10];
@@ -38,12 +36,11 @@ struct MECH_INFO{
 	int Automation_Time[10];
 	int Automation_UseMana[10];
 
-	//int Spark_Damage[10][2];
+	int Spark_Damage[10][2];
 	int Spark_DamagePercent[10];
 	int Spark_Area[10];
 	int Spark_UseMana[10];
 
-	
 	int Metal_Armor_Defense[10];
 	int Metal_Armor_Time[10];
 	int Metal_Armor_UseMana[10];
@@ -59,8 +56,7 @@ struct MECH_INFO{
 	int Spark_Shield_Time[10];
 	int Spark_Shield_UseMana[10];
 
-	
-	//int Impulsion_LightingDamage[10][2];
+	int Impulsion_LightingDamage[10][2];
 	int Impulsion_LightingDamagePercent[10];
 	int Impulsion_Range[10];
 	int Impulsion_LightingNum[10];
@@ -71,7 +67,7 @@ struct MECH_INFO{
 	int Compulsion_Time[10];
 	int Compulsion_UseMana[10];
 
-	//int Magnetic_Sphere_AddDamage[10][2];
+	int Magnetic_Sphere_AddDamage[10][2];
 	int Magnetic_Sphere_AddDamagePercent[10];
 	int Magnetic_Sphere_Area[10];
 	int Magnetic_Sphere_AttackDelay[10];
@@ -86,7 +82,6 @@ struct MECH_INFO{
 };
 
 struct FIGHTER_INFO{
-	
 
 	int size, code;
 
@@ -103,7 +98,6 @@ struct FIGHTER_INFO{
 	int Impact_Damage[10];
 	int Impact_UseMana[10];
 
-	
 	int T_Impact_Damage[10];
 	int T_Impact_Hit[10];
 	int T_Impact_UseMana[10];
@@ -119,7 +113,6 @@ struct FIGHTER_INFO{
 	int R_Zecram_Damage[10];
 	int R_Zecram_UseMana[10];
 
-	
 	int Concentration_AttackRate[10];
 	int Concentration_Time[10];
 	int Concentration_UseMana[10];
@@ -136,7 +129,6 @@ struct FIGHTER_INFO{
 	int B_Crash_DemonDamage[10];
 	int B_Crash_UseMana[10];
 
-	
 	int Destoryer_DamagePercent[10];
 	int Destoryer_AddCritical[10];
 	int Destoryer_UseMana[10];
@@ -159,11 +151,10 @@ struct PIKE_INFO{
 
 	int size, code;
 
-	
-	//int Pike_Wind_Damage[10][2];
+	int Pike_Wind_Throw_Height[10];
+	int Pike_Wind_Damage[10][2];
 	int Pike_Wind_DamagePercent[10];
 	int Pike_Wind_Push_Lenght[10];
-	int Pike_Wind_Throw_Height[10];
 	int Pike_Wind_UseMana[10];
 
 	int PlusIce[10];
@@ -175,8 +166,7 @@ struct PIKE_INFO{
 	int Jumping_Crash_Attack_Rating[10];
 	int Jumping_Crash_Damage[10];
 
-	
-	//int G_Pike_Damage[10][2];
+	int G_Pike_Damage[10][2];
 	int G_Pike_DamagePercent[10];
 	int G_Pike_Range[10];
 	int G_Pike_UseMana[10];
@@ -193,8 +183,7 @@ struct PIKE_INFO{
 	int Expansion_UseMana[10];
 	int Expansion_Damage[10];
 
-	
-	//int VenomSpear_Damage[10][2];
+	int VenomSpear_Damage[10][2];
 	int VenomSpear_DamagePercent[10];
 	int VenomSpear_Num[10];
 	int VenomSpear_Time[10];
@@ -208,11 +197,11 @@ struct PIKE_INFO{
 	int Vanish_UseMana[10];
 
 	int Critical_Mastery_Critical[10];
-
+    int Critical_Mastery_Power[10];
+	
 	int Chain_Lance_Damage[10];
 	int Chain_Lance_UseMana[10];
 
-	
 	int Assassin_Eye_AddCritical[10];
 	int Assassin_Eye_M_SubCritical[10];
 	int Assassin_Eye_Time[10];
@@ -236,7 +225,6 @@ struct ARCHER_INFO{
 
 	int size, code;
 
-	
 	int Scout_Hawk_Attack_Rate[10];
 	int Scout_Hawk_UseTime[10];
 	int Scout_Hawk_UseMana[10];
@@ -248,12 +236,11 @@ struct ARCHER_INFO{
 	int Wind_Arrow_UseMana[10];
 
 	int Perfect_Aim_Attack_Rate[10];
-	//int Perfect_Aim_Damage[10];
 	int Perfect_Aim_DamagePercent[10];
+	int Perfect_Aim_Damage[10];
 	int Perfect_Aim_Damage_LV[10];
 	int Perfect_Aim_UseMana[10];
 
-	
 	int D_Eye_Attack_Rate[10];
 
 	int Falcon_Damage[10][2];
@@ -270,7 +257,6 @@ struct ARCHER_INFO{
 	int Avalanche_ArrowNum[10];
 	int Avalanche_UseMana[10];
 
-	
 	int Elemental_Shot_Ice[10][2];
 	int Elemental_Shot_Fire[10][2];
 	int Elemental_Shot_Lightning[10][2];
@@ -293,7 +279,6 @@ struct ARCHER_INFO{
 	int Perforation_UseMana[10];
 	int Perforation_Attack_Range[10];
 
-	
 	int Recall_Wolverin_Damage[10][2];
 	int Recall_Wolverin_Hit[10];
 	int Recall_Wolverin_Defense[10];
@@ -317,9 +302,8 @@ struct KINA_INFO{
 
 	int size, code;
 
-	
 	int Sword_Blast_UseMana[10];
-	//int Sword_Blast_Damage[10][2];
+	int Sword_Blast_Damage[10][2];
 	int Sword_Blast_DamagePercent[10];
 	int Sword_Blast_ShootingRange[10];
 
@@ -333,7 +317,6 @@ struct KINA_INFO{
 	int D_Crash_Damage[10];
 	int D_Crash_Critical[10];
 
-	
 	int Holy_Valor_Damage[10];
 	int Holy_Valor_Time[10];
 	int Holy_Valor_Mana[10];
@@ -350,7 +333,6 @@ struct KINA_INFO{
 	int Drastic_Spirit_Time[10];
 	int Drastic_Spirit_Mana[10];
 
-	
 	int Sword_Mastery_DamagePercent[10];
 
 	int D_Inhalation_Life[10];
@@ -368,7 +350,6 @@ struct KINA_INFO{
 	int Grand_Cross_UndeadDamage[10];
 	int Grand_Cross_UseMana[10];
 
-	
 	int Divine_Piercing_DamagePercent[10];
 	int Divine_Piercing_AddHit[10];
 	int Divine_Piercing_AttackNum[10];
@@ -391,11 +372,11 @@ struct ATA_INFO{
 
 	int size, code;
 
-	
 	int S_Strike_UseMana[10];
-	//int S_Strike_Damage[10][2];
+	int S_Strike_Damage[10][2];
 	int S_Strike_DamagePercent[10];
-
+  //  int S_Strike_Stun[10];
+	
 	int Farina_UseMana[10];
 	int Farina_Speed[10];
 	int Farina_AttackRate[10];
@@ -403,9 +384,8 @@ struct ATA_INFO{
 	int T_Mastery_Damage[10];
 
 	int V_Spear_UseMana[10];
-	//int V_Spear_Damage[10][2];
-	int V_Spear_DamagePercent[10];
-
+	int V_Spear_Damage[10][2];
+    int V_Spear_DamagePercent[10];
 	
 	int Windy_Attack_Rating[10];
 	int Windy_Time[10];
@@ -418,11 +398,10 @@ struct ATA_INFO{
 	int Soul_Sucker_Absorb[10];
 	int Soul_Sucker_Mana[10];
 
-	//int Fire_Javelin_Damage[10][2];
+	int Fire_Javelin_Damage[10][2];
 	int Fire_Javelin_DamagePercent[10];
 	int Fire_Javelin_Mana[10];
 
-	
 	int Split_Javelin_AttackNum[10];
 	int Split_Javelin_Damage[10];
 	int Split_Javelin_AttackRate[10];
@@ -432,14 +411,13 @@ struct ATA_INFO{
 	int T_Of_Valhalla_Time[10];
 	int T_Of_Valhalla_UseMana[10];
 
-	//int Lightning_Javelin_Damage[10][2];
+	int Lightning_Javelin_Damage[10][2];
 	int Lightning_Javelin_DamagePercent[10];
 	int Lightning_Javelin_UseMana[10];
 
 	int Storm_Javelin_Damage[10];
 	int Storm_Javelin_UseMana[10];
 
-	
 	int Hall_Of_Valhalla_AddEvation[10];
 	int Hall_Of_Valhalla_Time[10];
 	int Hall_Of_Valhalla_UseMana[10];
@@ -464,14 +442,15 @@ struct SACER_INFO{
 
 	int size, code;
 
-	
 	int Healing_UseMana[10];
 	int Healing_Heal[10][2];
 
 	int HolyBolt_UseMana[10];
-	int HolyBolt_Damage[10];
-
+	int HolyBolt_Damage[10][2];
+    int HolyBolt_DamagePercent[10];
+	
 	int M_Spark_UseMana[10];
+	int M_Spark_Damage[10][2];
 	int M_Spark_Damage_Percent[10];
 	int M_Spark_Num[10];
 
@@ -479,15 +458,13 @@ struct SACER_INFO{
 	int HolyMind_DecDamage[10];
 	int HolyMind_Time[10];
 
-	
 	float Meditation_Regen[10];
-
-
-	//int Divine_Lightning_Damage[10];
+    int Meditation_Power[10];
+	
+	int Divine_Lightning_Damage[10][2];
 	int Divine_Lightning_Damage_Percent[10];
 	int Divine_Lightning_Num[10];
 	int Divine_Lightning_Mana[10];
-
 
 	int Holy_Reflection_Return_Damage[10];
 	int Holy_Reflection_Time[10];
@@ -497,8 +474,7 @@ struct SACER_INFO{
 	int Grand_Healing_Range[10];
 	int Grand_Healing_Mana[10];
 
-	
-	//int Vigor_Ball_Damage[10];
+	int Vigor_Ball_Damage[10][2];
 	int Vigor_Ball_Damage_Percent[10];
 	int Vigor_Ball_UseMana[10];
 
@@ -514,8 +490,8 @@ struct SACER_INFO{
 	int Virtual_Life_Time[10];
 	int Virtual_Life_UseMana[10];
 
-	
-	int Glacial_Spike_Damage[10];
+	int Glacial_Spike_Damage[10][2];
+	int Glacial_Spike_Damage_Percent[10];
 	int Glacial_Spike_Area[10];
 	int Glacial_Spike_UseMana[10];
 
@@ -525,7 +501,7 @@ struct SACER_INFO{
 	int Regeneration_Field_Area[10];
 	int Regeneration_Field_UseMana[10];
 
-	//int Chain_Lightning_Damage[10];
+	int Chain_Lightning_Damage[10][2];
 	int Chain_Lightning_Damage_Percent[10];
 	int Chain_Lightning_Num[10];
 	int Chain_Lightning_Range[10];
@@ -543,29 +519,27 @@ struct MAGE_INFO{
 
 	int size, code;
 
-	
 	int Agony_UseMana[10];
 	int Agony_ConvLife[10];
-	int Agony_RecoveryMana[10];
-
+    int Agony_RecoveryMana[10];
+	
 	int FireBolt_UseMana[10];
-	//int FireBolt_Damage[10];
-	int FireBolt_DamagePercent[10];
-
+	int FireBolt_Damage[10][2];
+    int FireBolt_DamagePercent[10];
+	
 	int Zenith_UseMana[10];
 	int Zenith_Element[10];
 	int Zenith_Time[10];
 
 	int FireBall_UseMana[10];
-	//int FireBall_Damage[10];
+	int FireBall_Damage[10][2];
 	int FireBall_DamagePercent[10];
 	int FireBall_Range[10];
 	int FireBall_Area[10];
 
-	
 	int Mental_Mastery_Mana[10];
 
-	//int Watornado_Damage[10];
+	int Watornado_Damage[10][2];
 	int Watornado_DamagePercent[10];
 	int Watornado_Range[10];
 	int Watornado_Mana[10];
@@ -578,17 +552,16 @@ struct MAGE_INFO{
 	int Enchant_Weapon_Time[10];
 	int Enchant_Weapon_Mana[10];
 
-	//int Dead_Ray_Damage[10];
+	int Dead_Ray_Damage[10][2];
 	int Dead_Ray_Damage_Percent[10];
 	int Dead_Ray_Range[10];
 	int Dead_Ray_Mana[10];
 
-	
 	int Energy_Shield_DecDamage[10];
 	int Energy_Shield_Time[10];
 	int Energy_Shield_UseMana[10];
 
-	//int Diastrophism_Damage[10];
+	int Diastrophism_Damage[10][2];
 	int Diastrophism_Damage_Percent[10];
 	int Diastrophism_Area[10];
 	int Diastrophism_UseMana[10];
@@ -605,13 +578,12 @@ struct MAGE_INFO{
 	int Dancing_Sword_Time[10];
 	int Dancing_Sword_UseMana[10];
 
-	
 	int Fire_Elemental_Damage[10][2];
 	int Fire_Elemental_Hit[10];
 	int Fire_Elemental_Life[10];
 	int Fire_Elemental_UseMana[10];
 
-	//int Flame_Wave_FireDamage[10];
+	int Flame_Wave_FireDamage[10][2];
 	int Flame_Wave_FireDamage_Percent[10];
 	int Flame_Wave_Area[10];
 	int Flame_Wave_UseMana[10];
@@ -622,19 +594,17 @@ struct MAGE_INFO{
 	int Distortion_Time[10];
 	int Distortion_UseMana[10];
 
-	//int Meteo_Damage[10];
+	int Meteo_Damage[10][2];
 	int Meteo_Damage_Percent[10];
 	int Meteo_Area[10];
 	int Meteo_UseMana[10];
 };
 
-#include "sinLinkHeader.h"
+
+#include "sinbaram/sinLinkHeader.h"
 
 int LoadSkillInfo();
 
-int ReLoadSkillInfo(rsPLAYINFO *lpPlayInfo);
-
-
-
+int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo);
 
 

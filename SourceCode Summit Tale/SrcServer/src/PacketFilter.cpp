@@ -139,7 +139,7 @@ void PacketFilter::LogPacket(rsPLAYINFO* Player) const
 		std::tm ttm = *std::localtime(&tt);
 
 		char szFileName[256] = { 0 };
-		sprintf_s(szFileName, "LogFile\\(Protector)%d-%d.log", ttm.tm_mday, ttm.tm_mon + 1);
+		sprintf_s(szFileName, "LogFile//(Protector)%d-%d.log", ttm.tm_mday, ttm.tm_mon + 1);
 
 		LogFile.open(szFileName, std::ios::app);
 
@@ -147,7 +147,7 @@ void PacketFilter::LogPacket(rsPLAYINFO* Player) const
 		{
 			char szBuff[256] = { 0 };
 			sprintf_s(szBuff, "ID( %s ) Name( %s ) IP( %s ) - PacketFiltered( %d - %d )", Player->getAccount().c_str(), Player->getName().c_str(), Player->lpsmSock->szIPAddr, ((DWORD*)m_Packet)[1], ((DWORD*)m_Packet)[0]);
-			LogFile << "\n" << ttm.tm_hour << ":" << ttm.tm_min << ":" << ttm.tm_sec << "\t" << szBuff;
+			LogFile << "/n" << ttm.tm_hour << ":" << ttm.tm_min << ":" << ttm.tm_sec << "/t" << szBuff;
 		}
 
 		LogFile.close();
@@ -171,7 +171,7 @@ void PacketFilter::DumpPacket(rsPLAYINFO* Player) const
 			std::tm ttm = *std::localtime(&tt);
 
 			char szFileName[256] = { 0 };
-			sprintf_s(szFileName, "LogFile\\(Dumps)%d-%d.log", ttm.tm_mday, ttm.tm_mon + 1);
+			sprintf_s(szFileName, "LogFile//(Dumps)%d-%d.log", ttm.tm_mday, ttm.tm_mon + 1);
 
 			LogFile.open(szFileName, std::ios::app);
 
@@ -179,7 +179,7 @@ void PacketFilter::DumpPacket(rsPLAYINFO* Player) const
 			{
 				char szBuff[256] = { 0 };
 				sprintf_s(szBuff, "ID( %s ) Name( %s ) IP( %s ) - DumpPacket( %d - %d )", Player->getAccount().c_str(), Player->getName().c_str(), Player->lpsmSock->szIPAddr, ((DWORD*)m_Packet)[1], ((DWORD*)m_Packet)[0]);
-				LogFile << "\n" << ttm.tm_hour << ":" << ttm.tm_min << ":" << ttm.tm_sec << "\t" << szBuff;
+				LogFile << "/n" << ttm.tm_hour << ":" << ttm.tm_min << ":" << ttm.tm_sec << "/t" << szBuff;
 			}
 
 			LogFile.close();

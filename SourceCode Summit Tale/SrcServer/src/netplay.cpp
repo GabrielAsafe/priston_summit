@@ -1,6 +1,6 @@
 
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 
 #include "smwsock.h"
 #include "character.h"
@@ -8,31 +8,31 @@
 #include "fileread.h"
 
 #include "particle.h"
-#include "sinbaram\\sinlinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
 #include "record.h"
 #include "netplay.h"
 #include "playsub.h"
 #include "field.h"
-#include "Language\\language.h"
-#include "Language\\jts.h"
+#include "Language/language.h"
+#include "Language/jts.h"
 #include "TextMessage.h"
 #include "cracker.h"
-#include "tjboy\\clanmenu\\tjclanDEF.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\help.h"
+#include "TJBOY/clanmenu/tjclanDEF.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/Help.h"
 #include "damage.h"
-#include "skillsub.h"
+#include "SkillSub.h"
 
 #include "AreaServer.h"
 
 #include "BellatraFontEffect.h"
-#include "Server\\onserver.h"
+#include "Server/onserver.h"
 
 
 
-#include "WinInt\\WinIntThread.h"
-#include "WinInt\\WavIntHttp.h"
-#include "WinInt\\ZipLib.h"
+#include "WinInt/WinIntThread.h"
+#include "WinInt/WavIntHttp.h"
+#include "WinInt/ZipLib.h"
 
 
 #include "CurseFilter.h"		
@@ -8985,7 +8985,7 @@ int	SendPublicPollingToServer(int PollCode, int PollCnt, BYTE *bPollingData)
 
 
 #ifdef _xTrap_GUARD
-#include "XTrapSrc\\XTrap.h"
+#include "XTrapSrc/XTrap.h"
 
 int XTrap_Recv(smTRANS_COMMAND *lpPacket, smWINSOCK *lpsmSock)
 {
@@ -9025,7 +9025,7 @@ int XTrap_Recv(smTRANS_COMMAND *lpPacket, smWINSOCK *lpsmSock)
 };
 #else
 #ifdef _XTRAP_GUARD_4_CLIENT
-#include "XTrapSrcD5\Client\XTrap4Client.h"	
+#include "XTrapSrcD5/Client/XTrap4Client.h"	
 
 
 int XTrap_Recv(smTRANS_COMMAND *lpPacket, smWINSOCK *lpsmSock)

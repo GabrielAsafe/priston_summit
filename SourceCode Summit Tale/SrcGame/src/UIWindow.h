@@ -1,5 +1,8 @@
 #pragma once
-
+#include <vector>
+#include "UIElement.h"
+#include "UIImage.h"
+#include "UIVerticalScroll.h"
 class UIWindow : public Element
 {
 public:

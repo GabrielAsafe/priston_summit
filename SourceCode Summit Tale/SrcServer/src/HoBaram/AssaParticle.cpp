@@ -1,9 +1,9 @@
-#include "SinBaram\\SinLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
 #include "hoAssaParticleEffect.h"
 #include "AssaParticle.h"
-#include "HoBaram\\HoNewParticleLinkHeader.h"
-#include "..\\field.h"
-#include "HoBaram\\NewEffect\\HoNewEffectFunction.h"
+#include "HoBaram/HoNewParticleLinkHeader.h"
+#include "../field.h"
+#include "HoBaram/NewEffect/HoNewEffectFunction.h"
 
 cASSAPARTSHOT::cASSAPARTSHOT()
 {

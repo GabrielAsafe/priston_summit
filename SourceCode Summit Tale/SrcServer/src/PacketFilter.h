@@ -1,5 +1,5 @@
 #pragma once
-#include "SinBaram\\sinLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>

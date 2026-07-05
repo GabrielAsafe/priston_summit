@@ -1,6 +1,6 @@
-#include "Hook.h"
+#include "Hook/Hook.h"
 #include "drawsub.h"
-#include "smLib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include <winbase.h>
 #include <vector>
 
@@ -59,15 +59,15 @@ int  __stdcall GetFontExtentPoint(HDC hdc, char* lpString, int c, SIZE* lpSize)
 			lstrcpy(buff, lpString);
 			lstrcat(buff, "_");
 
-			pCurrentFont->DrawText(NULL, buff, c+1, &rcRect, DT_CALCRECT, FontColor);
-			pCurrentFont->DrawText(NULL, "_", 1, &rcRect2, DT_CALCRECT, FontColor);
+			pCurrentFont->DrawText(buff, c+1, &rcRect, DT_CALCRECT, FontColor);
+			pCurrentFont->DrawText("_", 1, &rcRect2, DT_CALCRECT, FontColor);
 
 			lpSize->cx = rcRect.right - rcRect.left - (rcRect2.right - rcRect2.left);
 			lpSize->cy = rcRect.bottom - rcRect.top;
 		}
 		else
 		{
-			pCurrentFont->DrawText(NULL, lpString, c, &rcRect, DT_CALCRECT, FontColor);
+			pCurrentFont->DrawText(lpString, c, &rcRect, DT_CALCRECT, FontColor);
 
 			lpSize->cx = rcRect.right - rcRect.left;
 			lpSize->cy = rcRect.bottom - rcRect.top;
@@ -108,32 +108,32 @@ int  DrawFontText(int x, int y, LPCTSTR lpszString, COLORREF Color, int FontType
 
 	if ((!Font && FontTypeDraw == 0) || (!FontBold && FontTypeDraw == 1))
 	{
-		GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".\\game\\Font\\Config.ini");
+		GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".//game//Font//Config.ini");
 	}
 
 	switch (FontTypeDraw)
 	{
 	case 0:
 		if (Font) 
-			return Font->DrawText(NULL, lpszString, strlen(lpszString), &rc, 0, FontColor);
+			return Font->DrawText(lpszString, strlen(lpszString), &rc, 0, FontColor);
 		else
 			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 0, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &Font);
 		break;
 	case 1:
 		if (FontBold)
-			return FontBold->DrawText(NULL, lpszString, strlen(lpszString), &rc, 0, FontColor);
+			return FontBold->DrawText(lpszString, strlen(lpszString), &rc, 0, FontColor);
 		else
 			D3DXCreateFont(d3ddev, 16, 0, FW_BOLD, 1, 0,  ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontBold);
 		break;
 	case 2:
 		if (FontTitle)
-			return FontTitle->DrawText(NULL, lpszString, strlen(lpszString), &rc, 0, FontColor);
+			return FontTitle->DrawText(lpszString, strlen(lpszString), &rc, 0, FontColor);
 		else
 			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontTitle);
 		break;
 	case 3:
 		if (FontRank)
-			return FontRank->DrawText(NULL, lpszString, strlen(lpszString), &rc, 0, FontColor);
+			return FontRank->DrawText(lpszString, strlen(lpszString), &rc, 0, FontColor);
 		else
 			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontRank);
 		break;
@@ -149,33 +149,33 @@ int DrawFontRect(RECT rc, char* lpszString, int nCount, UINT uFormat)
 	
 	if ((!Font && FontType == 0) || (!FontBold && FontType == 1))
 	{
-		GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".\\game\\Font\\Config.ini");
+		GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".//game//Font//Config.ini");
 	}
 
 	switch (FontType)
 	{
 	case 0:
 		if (Font)  
-			return Font->DrawText(NULL, lpszString, nCount, &rc, 0, FontColor);
+			return Font->DrawText(lpszString, nCount, &rc, 0, FontColor);
 		else
 			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 0, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &Font);
 
 		break;
 	case 1:
 		if (FontBold)
-			return FontBold->DrawText(NULL, lpszString, nCount, &rc, 0, FontColor);
+			return FontBold->DrawText(lpszString, nCount, &rc, 0, FontColor);
 		else
 			D3DXCreateFont(d3ddev, 16, 0, FW_BOLD, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontBold);
 		break;
 	case 2:
 		if (FontTitle)
-			return FontTitle->DrawText(NULL, lpszString, nCount, &rc, 0,  FontColor);
+			return FontTitle->DrawText(lpszString, nCount, &rc, 0,  FontColor);
 		else
 			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontTitle);
 		break;
 	case 3:
 		if (FontRank)
-			return FontRank->DrawText(NULL, lpszString, strlen(lpszString), &rc, 0, FontColor);
+			return FontRank->DrawText(lpszString, strlen(lpszString), &rc, 0, FontColor);
 		else
 			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, ANSI_CHARSET | FS_LATIN1, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY | VARIABLE_PITCH, dwFontGame, &FontRank);
 		break;
@@ -192,7 +192,7 @@ void InitFont()
 {
 	char dwFontGame[32] = { 0 };
 
-	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".\\game\\Font\\Config.ini");
+	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".//game//Font//Config.ini");
 
 	if (!Font)
 		D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLEARTYPE_NATURAL_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &Font);

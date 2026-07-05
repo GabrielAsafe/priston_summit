@@ -181,9 +181,9 @@ void luaI_printcode (Proto *pt, int size) {
   int pc;
   for (pc=0; pc<size; pc++) {
     char buff[100];
-    printf("%s\n", buildop(pt, pc, buff));
+    printf("%s/n", buildop(pt, pc, buff));
   }
-  printf("-------\n");
+  printf("-------/n");
 }
 #endif
 
@@ -408,7 +408,7 @@ static int upvalue (lua_State *L) {
 static int newuserdata (lua_State *L) {
   size_t size = luaL_checkint(L, 1);
   char *p = cast(char *, lua_newuserdata(L, size));
-  while (size--) *p++ = '\0';
+  while (size--) *p++ = '/0';
   return 1;
 }
 
@@ -541,10 +541,10 @@ static int test_do (lua_State *L) {
 ** =======================================================
 */
 
-static const char *const delimits = " \t\n,;";
+static const char *const delimits = " /t/n,;";
 
 static void skip (const char **pc) {
-  while (**pc != '\0' && strchr(delimits, **pc)) (*pc)++;
+  while (**pc != '/0' && strchr(delimits, **pc)) (*pc)++;
 }
 
 static int getnum_aux (lua_State *L, const char **pc) {
@@ -568,9 +568,9 @@ static int getnum_aux (lua_State *L, const char **pc) {
 static const char *getname_aux (char *buff, const char **pc) {
   int i = 0;
   skip(pc);
-  while (**pc != '\0' && !strchr(delimits, **pc))
+  while (**pc != '/0' && !strchr(delimits, **pc))
     buff[i++] = *(*pc)++;
-  buff[i] = '\0';
+  buff[i] = '/0';
   return buff;
 }
 
@@ -825,7 +825,7 @@ static void fim (void) {
 
 static int l_panic (lua_State *L) {
   UNUSED(L);
-  fprintf(stderr, "unable to recover; exiting\n");
+  fprintf(stderr, "unable to recover; exiting/n");
   return 0;
 }
 

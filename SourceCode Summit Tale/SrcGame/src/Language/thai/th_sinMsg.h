@@ -185,129 +185,129 @@ char *sinMsgEliteSkillPoint = "  Elite Skill Points : %d " ;
 char *sinStateName[5]={ "  H P : %d/%d " , "  M P : %d/%d " , "  STM : %d/%d " , "  X P : %d/%d " , "  X P : %dM/%dM " };
 
 
-char *TownName[3] = { "  ���¡��Ѻ���ͧ Ricarten\r " , "  ���¡��Ѻ���ͧ Navisko\r " , "  ���¡��Ѻ���ͧ Pillai\r " };
+char *TownName[3] = { "  ���¡��Ѻ���ͧ Ricarten/r " , "  ���¡��Ѻ���ͧ Navisko/r " , "  ���¡��Ѻ���ͧ Pillai/r " };
 
 
-char *sinAbilityName[50] = {  "  ATK Power:  \r "  ,  "  Weapon Speed:  \r "  ,  "  Range:  \r "  ,  "  Critical:  \r "  ,  "  Defense Rating:  \r "  ,  "  ATK Rating:  \r "  ,
-			  "  Absorb :  \r "  ,  "  Block :  \r "  ,  "  Speed:  \r "  ,  "  Integrity:  \r "  ,  "  ��� MP :  \r "  ,  "  ��� HP :  \r "  ,
-			  "  ��� STM :  \r "  ,  "  Organic Type:  \r "  ,  "  Nature Type:  \r "  ,  "  Flame Type:  \r "  ,  "  Frost Type:  \r "  ,  "  Lightning Type:  \r "  ,  "  Poison Type: \r "  ,
-			  "  Water Type:  \r "  ,  "  Wind Type:  \r "  ,  "  HP Regen:  \r "  ,  "  MP Regen: \r  "  ,  "  STM Regen: \r "  ,  "  ����HP: \r "  ,
-			  "  ����MP:  \r "  ,  "  ����STM:  \r "  ,  "  �� Potion �? \r "  ,  "  ��ͧ���Level:  \r  "  ,  "  ��ͧ���Strength:  \r "  ,  "  ��ͧ���Willpower:  \r "  ,
-			  "  ��ͧ���Talent:  \r "  ,  "  ��ͧ���Agility:  \r "  ,  "  ��ͧ���Health:  \r "  };
+char *sinAbilityName[50] = {  "  ATK Power:  /r "  ,  "  Weapon Speed:  /r "  ,  "  Range:  /r "  ,  "  Critical:  /r "  ,  "  Defense Rating:  /r "  ,  "  ATK Rating:  /r "  ,
+			  "  Absorb :  /r "  ,  "  Block :  /r "  ,  "  Speed:  /r "  ,  "  Integrity:  /r "  ,  "  ��� MP :  /r "  ,  "  ��� HP :  /r "  ,
+			  "  ��� STM :  /r "  ,  "  Organic Type:  /r "  ,  "  Nature Type:  /r "  ,  "  Flame Type:  /r "  ,  "  Frost Type:  /r "  ,  "  Lightning Type:  /r "  ,  "  Poison Type: /r "  ,
+			  "  Water Type:  /r "  ,  "  Wind Type:  /r "  ,  "  HP Regen:  /r "  ,  "  MP Regen: /r  "  ,  "  STM Regen: /r "  ,  "  ����HP: /r "  ,
+			  "  ����MP:  /r "  ,  "  ����STM:  /r "  ,  "  �� Potion �? /r "  ,  "  ��ͧ���Level:  /r  "  ,  "  ��ͧ���Strength:  /r "  ,  "  ��ͧ���Willpower:  /r "  ,
+			  "  ��ͧ���Talent:  /r "  ,  "  ��ͧ���Agility:  /r "  ,  "  ��ͧ���Health:  /r "  };
 			
-char *sinSpecialName[50] = { "  Spec. ATK SPD:  \r  " , "  Spec. CRIT:  \r  " , "  Spec. DEF RTG:  \r  " , "  Spec. ABS RTG:  \r  " ,
-			 "  Spec. BLK RTG:  \r  " , " Magic APT:  \r " , " Spec. SPD:  \r  " , "  Spec. Organic:  \r  " , "  Spec. Nature:  \r  " ,
-			 "  Spec. Flame:  \r  " , "  Spec. Frost:  \r  " , "  Spec. Lightning:  \r  " , "  Spec. Poison:  \r " , "  Spec. Water:  \r  " , "  Spec. Wind:  \r  " ,
-			 "  Spec. ATK POW:  \r  " ,  "  Spec. ATK RTG:  \r  " , "  Spec. RNG:  \r  " , "  Spec. Organic ATK:  \r  " , "  Spec. Nature ATK:  \r  " , "  Spec. Flame ATK:  \r  " , "  Spec. Frost ATK:  \r  " ,
-			 "  Spec. Lightning ATK:  \r  " , "  Spec. Poison ATK:  \r  " , "  Spec. Water ATK:  \r  " , "  Spec. Wind ATK:  \r  " , "  Max HP Boost:  \r  " , "  Max MP Boost:  \r  " ,
-			 "  ��� HP:  \r  " , "  ��� MP:  \r  " , "  ��� STM:  \r  " , " �ҤҢ�? \r " , " �Ҥҫ���:  \r " };
+char *sinSpecialName[50] = { "  Spec. ATK SPD:  /r  " , "  Spec. CRIT:  /r  " , "  Spec. DEF RTG:  /r  " , "  Spec. ABS RTG:  /r  " ,
+			 "  Spec. BLK RTG:  /r  " , " Magic APT:  /r " , " Spec. SPD:  /r  " , "  Spec. Organic:  /r  " , "  Spec. Nature:  /r  " ,
+			 "  Spec. Flame:  /r  " , "  Spec. Frost:  /r  " , "  Spec. Lightning:  /r  " , "  Spec. Poison:  /r " , "  Spec. Water:  /r  " , "  Spec. Wind:  /r  " ,
+			 "  Spec. ATK POW:  /r  " ,  "  Spec. ATK RTG:  /r  " , "  Spec. RNG:  /r  " , "  Spec. Organic ATK:  /r  " , "  Spec. Nature ATK:  /r  " , "  Spec. Flame ATK:  /r  " , "  Spec. Frost ATK:  /r  " ,
+			 "  Spec. Lightning ATK:  /r  " , "  Spec. Poison ATK:  /r  " , "  Spec. Water ATK:  /r  " , "  Spec. Wind ATK:  /r  " , "  Max HP Boost:  /r  " , "  Max MP Boost:  /r  " ,
+			 "  ��� HP:  /r  " , "  ��� MP:  /r  " , "  ��� STM:  /r  " , " �ҤҢ�? /r " , " �Ҥҫ���:  /r " };
 
 
-char *SpecialName3 =  "  %s Spec. \r " ;
+char *SpecialName3 =  "  %s Spec. /r " ;
 char *MixResultTitle = "  �Ţͧ��� mix���?"  ;
-char *NowLevelText = "  ����ŻѨ�غ�?\r "  ;
-char *NextLevelText = "  ����ŶѴ� \r "  ;
+char *NowLevelText = "  ����ŻѨ�غ�?/r "  ;
+char *NextLevelText = "  ����ŶѴ� /r "  ;
 
 char *NormalAttckName = "  Default Attack " ;
-char *RequirLevel =  " %s (��ͧ���LVL : %d)\r " ;
-char *UseItemGroupName =  " �����������ö�������Ѻ�ѡ�й���?\r " ;
+char *RequirLevel =  " %s (��ͧ���LVL : %d)/r " ;
+char *UseItemGroupName =  " �����������ö�������Ѻ�ѡ�й���?/r " ;
 
-char *PoisonName = "  Poison Type:\r "  ;
-char *FireName = "  Flame Type:\r "  ;
-char *AttackAreaName = "  �������?\r "  ;
-char *Attack_RateName = "  ��������� \r "  ;
-char *Max_DamageIncre = "  ��ѧ�����٧��?\r "  ;
-char *DamageAddName = "  ������ѧ����: \r "  ;
-char *Attack_SpeedAdd = "  ����������������: \r "  ;
-char *IncreBlock = "  �����ѵ�ҡ�û�ͧ�ѹ: \r "  ;
-char *CountinueTime = "  ��������: \r "  ;
-char *UseManaName = "  �?MP: \r "  ;
-char *DamageName = "  ��ѧ���? \r "  ;
-char *ShootingRangeName = "  ����: \r "  ;
-char *IncreAsorb = "  Ŵ�ѵ�Ҥ���������¨ҡ������?\r "  ;
+char *PoisonName = "  Poison Type:/r "  ;
+char *FireName = "  Flame Type:/r "  ;
+char *AttackAreaName = "  �������?/r "  ;
+char *Attack_RateName = "  ��������� /r "  ;
+char *Max_DamageIncre = "  ��ѧ�����٧��?/r "  ;
+char *DamageAddName = "  ������ѧ����: /r "  ;
+char *Attack_SpeedAdd = "  ����������������: /r "  ;
+char *IncreBlock = "  �����ѵ�ҡ�û�ͧ�ѹ: /r "  ;
+char *CountinueTime = "  ��������: /r "  ;
+char *UseManaName = "  �?MP: /r "  ;
+char *DamageName = "  ��ѧ���? /r "  ;
+char *ShootingRangeName = "  ����: /r "  ;
+char *IncreAsorb = "  Ŵ�ѵ�Ҥ���������¨ҡ������?/r "  ;
 char *SecName = " �� "  ;
-char *PlusDamageName = "  ������ѧ���� \r "  ;
-char *HitNumName = "  �ӹǹ���� : \r "  ;
-char *DecreLifeName = "  HP Ŵ : \r "  ;
-char *Attck_RateAdd = "  ������������������� : \r  "  ;
-char *Add_CriticalName = "  ���?Critical : \r "  ;
-char *Push_AreaName = "  Push-back Length : \r "  ;
-char *FireAttackDamageAdd =  "  Flame ATK : \r "  ;
-char *IceName = "  Frost Property : \r "  ;
-char *IceAttackDamageAdd = "  Frost ATK : \r "  ;
-char *StuneRate = "  % Stun : \r "  ;
-char *DefenseRateIncre = "  ��������ѵ�ҡ�û�ͧ��?\r "  ;
-char *WeaponSizeName =  "  �������?\r "  ;
-char *HwakRotationNum = "  Hawk Rotations:\r "  ;
-char *WeaponSpeedAddName  = "  ���������������ظ:\r "  ;
-char *IncreAttack_RateName = "  ������ѧ����:\r "  ;
-char *ShootingNumName = "  �ӹ�?Shots:\r "  ;
-char *SeriesShootingCount = "  �ԧ������ͧ :\r "  ;
-char *UseStaminaName = "  �?Stamina :\r "  ;
-char *MasterSkillMoneyName = "  �Ҥҷѡ�?\r "  ;
+char *PlusDamageName = "  ������ѧ���� /r "  ;
+char *HitNumName = "  �ӹǹ���� : /r "  ;
+char *DecreLifeName = "  HP Ŵ : /r "  ;
+char *Attck_RateAdd = "  ������������������� : /r  "  ;
+char *Add_CriticalName = "  ���?Critical : /r "  ;
+char *Push_AreaName = "  Push-back Length : /r "  ;
+char *FireAttackDamageAdd =  "  Flame ATK : /r "  ;
+char *IceName = "  Frost Property : /r "  ;
+char *IceAttackDamageAdd = "  Frost ATK : /r "  ;
+char *StuneRate = "  % Stun : /r "  ;
+char *DefenseRateIncre = "  ��������ѵ�ҡ�û�ͧ��?/r "  ;
+char *WeaponSizeName =  "  �������?/r "  ;
+char *HwakRotationNum = "  Hawk Rotations:/r "  ;
+char *WeaponSpeedAddName  = "  ���������������ظ:/r "  ;
+char *IncreAttack_RateName = "  ������ѧ����:/r "  ;
+char *ShootingNumName = "  �ӹ�?Shots:/r "  ;
+char *SeriesShootingCount = "  �ԧ������ͧ :/r "  ;
+char *UseStaminaName = "  �?Stamina :/r "  ;
+char *MasterSkillMoneyName = "  �Ҥҷѡ�?/r "  ;
 
 char *ItemAgingResult;		
 
 char *sinGold = " %d Gold " ;
-char *sinGiveItem5 =  "  Gift Item\r " ;
-char *sinCopyItem5 =  "  Copied Item\r " ;
+char *sinGiveItem5 =  "  Gift Item/r " ;
+char *sinCopyItem5 =  "  Copied Item/r " ;
 char *sinNum7 =  " ��  " ;
 char *sinSkillPointName =  "  Skill Point " ;	
-char *sinG_Pike_Time3 =  "  Frozen Time:\r " ;	
+char *sinG_Pike_Time3 =  "  Frozen Time:/r " ;	
 
 
-char *sinItemLimitTimeOverMsg = "  ����������Ǥ�� \r "  ;
+char *sinItemLimitTimeOverMsg = "  ����������Ǥ�� /r "  ;
 char *sinDeadSongPyeunEat = "  ���������ث�����!  "  ;
 char *SmeltingResultTitle = "������ ���� ���";		
 char *ManufactureResultTitle = "������ ���� ���";	
 
 
-char *sinMaxDamageAdd = "  ������ѧ�����٧�ش + \r "  ;
-char *sinDamagePiercing = "  (Piercing attack)\r "  ;
-char *sinAddStamina = "  ����stamina: \r "  ;
-char *sinAddLife = "  ��� HP: \r "  ;
+char *sinMaxDamageAdd = "  ������ѧ�����٧�ش + /r "  ;
+char *sinDamagePiercing = "  (Piercing attack)/r "  ;
+char *sinAddStamina = "  ����stamina: /r "  ;
+char *sinAddLife = "  ��� HP: /r "  ;
 
-char *sinDamageUndead50 = "  ��������������� 50% �?Undead :\r "  ;
-char *sinNumCount2 = "  number:\r "  ;
-char *sinNumCount3 = " ��?\r "  ;
-char *sinDecreDamage = "  Ŵ damage:\r "  ;
-char *sinConvert4 = "  conversion rate:\r "  ;
-char *sinIncreElement = "  ���?Element feature:\r "  ;
-char *sinPartyIncreElement = "  ��ѧ�ҵآͧ��Ҫԡ㹻������������?50% \r "  ;
-char *sinFireBallDamage2 = "  (100% damage to the targeted enemy)\r "  ;
-char *sinFireBallDamage3 = "  (targeted area 60 (1/3 damage))\r "  ;
-char *sinAddDamage7 = "  ����damage : \r "  ;
+char *sinDamageUndead50 = "  ��������������� 50% �?Undead :/r "  ;
+char *sinNumCount2 = "  number:/r "  ;
+char *sinNumCount3 = " ��?/r "  ;
+char *sinDecreDamage = "  Ŵ damage:/r "  ;
+char *sinConvert4 = "  conversion rate:/r "  ;
+char *sinIncreElement = "  ���?Element feature:/r "  ;
+char *sinPartyIncreElement = "  ��ѧ�ҵآͧ��Ҫԡ㹻������������?50% /r "  ;
+char *sinFireBallDamage2 = "  (100% damage to the targeted enemy)/r "  ;
+char *sinFireBallDamage3 = "  (targeted area 60 (1/3 damage))/r "  ;
+char *sinAddDamage7 = "  ����damage : /r "  ;
 char *PlusDamageWeapon = "  ����?"  ;
-char *SparkDamage = "  ���յ����?\r "  ;
-char *SparkNum7 = "  �ӹǹspark max:\r "  ;
-char *StunRage = "  ���� Stun : \r "  ;
+char *SparkDamage = "  ���յ����?/r "  ;
+char *SparkNum7 = "  �ӹǹspark max:/r "  ;
+char *StunRage = "  ���� Stun : /r "  ;
 char *RecvPotion7 =  "  ���Ǵ " ;
 
 
-char *PartyArea7 =  "  ���� Party:\r "  ;
-char *Area17 =  "  ����:\r "  ;
-char *AddAttack_Rate9 =  "  ��������� \r "  ;
-char *PiercingRange =  "  ���� Piercing: \r "  ;
-char *IncreDefense = "  ������һ�ͧ��?\r "  ;
-char *AddShootingRange = "  �������С����?\r "  ;
-char *LifeAbsorb = "  Life absorb.: \r "  ;
-char *FireDamage = "  Fire Damage: \r "  ;
-char *IceDamage = "  Ice Damage: \r "  ;
-char *LightningDamage = "  Lighting Damage: \r "  ;
-char *AddManaRegen = "  �����ѵ�ҡ�ÿ�鹤׹ Mana: \r "  ;
-char *LightNum = "  # of Lighting: \r "  ;
-char *ReturnDamage = "  �з�͹��ѧ���? \r "  ;
-char *Area18 = "  ���Ф�ͺ����: \r "  ;
-char *IncreMana5 = "  ����Mana: \r "  ;
-char *Area19 = "  ���Ф�ͺ����: \r "  ;
+char *PartyArea7 =  "  ���� Party:/r "  ;
+char *Area17 =  "  ����:/r "  ;
+char *AddAttack_Rate9 =  "  ��������� /r "  ;
+char *PiercingRange =  "  ���� Piercing: /r "  ;
+char *IncreDefense = "  ������һ�ͧ��?/r "  ;
+char *AddShootingRange = "  �������С����?/r "  ;
+char *LifeAbsorb = "  Life absorb.: /r "  ;
+char *FireDamage = "  Fire Damage: /r "  ;
+char *IceDamage = "  Ice Damage: /r "  ;
+char *LightningDamage = "  Lighting Damage: /r "  ;
+char *AddManaRegen = "  �����ѵ�ҡ�ÿ�鹤׹ Mana: /r "  ;
+char *LightNum = "  # of Lighting: /r "  ;
+char *ReturnDamage = "  �з�͹��ѧ���? /r "  ;
+char *Area18 = "  ���Ф�ͺ����: /r "  ;
+char *IncreMana5 = "  ����Mana: /r "  ;
+char *Area19 = "  ���Ф�ͺ����: /r "  ;
 char *HelpTitle8 = "  ��������?"  ;
 char *QuestTitle8 = "  ��� "  ;
 char *ResearchTitle8 = "  Ẻ�ͺ��?"  ;
 char *TeleportTitle8 = "  TELEPORT "  ;
 
-char *IncreWeaponAttack_RateName = "  ��������������: \r "  ;
-char *AddMaxDamage = "  ������ѧ�����٧�ش: \r "  ;
-char *LinkCoreName =  "  ������ѧ��Ҫԡ��Ź  \r " ;
+char *IncreWeaponAttack_RateName = "  ��������������: /r "  ;
+char *AddMaxDamage = "  ������ѧ�����٧�ش: /r "  ;
+char *LinkCoreName =  "  ������ѧ��Ҫԡ��Ź  /r " ;
 char *DesLinkCore =  "  ����: " ;
 char *Itemul =  "  ���?" ;
 char *ItemRecvOk =  "  ��ҹ��ͧ����Ѻ? " ;
@@ -316,8 +316,8 @@ char *Exp5 =  "  ��һ��ʺ��ó?" ;
 char *WingItemName[] = { "  Metal Wing  " , "  Silver Wing  " , "  Gold Wing  " , "  Diamond Wing  "  , "  Chaos Wing  " };
 char *WarpGateName[] = { "  Warp Gate  " , "  Ricarten  " , "  Pillai Town  " , "  Land of Dusk  " , "  Bamboo Forest  " , "  Ruinen Village  " , "  Navisko town  " , "  Forbidden Land  " ,  "  Eura Village  "  };
 char *sinWarningName5 =  "  Warning!!! " ;
-char *ClanCristalName =  "  �Ź���ʵ�?\r " ;
-char *NowMyShopSell =  "  ���ѧ������� \r " ;
+char *ClanCristalName =  "  �Ź���ʵ�?/r " ;
+char *NowMyShopSell =  "  ���ѧ������� /r " ;
 char *SecretNumName =  "  ��س���������Ţ���?" ;
 char *MyShopExpDoc7 =  "  ��ҹ��?" ;
 char *NotAgingItem2 =  "  ���������������?age �?" ;
@@ -328,8 +328,8 @@ char *Mechanic7 =  "  Mechanic " ;
 char *Demon7  =  "  Demon " ;
 char *Nomal7  =  "  Normal  " ;
 char *Undead7  = "  Undead "  ;
-char *MonsterAddDamage2 =  "  ���?(Damage)\r " ;
-char *MonsterAddDamageFire =  "  ���?Fire Damage\r " ;
+char *MonsterAddDamage2 =  "  ���?(Damage)/r " ;
+char *MonsterAddDamageFire =  "  ���?Fire Damage/r " ;
 
 
 char *HoldStarNumDoc = "  �ӹ�?Star ��������?"  ;
@@ -340,106 +340,106 @@ char *FallGameName = "�ϱ׷��� ��";
 
 
 
-char *LightningDamage2 = "  Lightning Damage:\r "  ;
-char *SheildDefense = "  ������ҡ�û�ͧ�ѹ: \r "  ;
+char *LightningDamage2 = "  Lightning Damage:/r "  ;
+char *SheildDefense = "  ������ҡ�û�ͧ�ѹ: /r "  ;
 
-char *DemonDamage4  = "  Demon Damage: \r "  ;
-char *PoisonDamage3  = "  Poison Attack: \r "  ;
-char *PikeNum4   = "  �ӹ�? \r "  ;
-char *poisoningTime  = "  ���� Poisoning: \r "  ;
-char *PlusCriticalName = "  ���?Critical: \r "  ;
-char *SpiritFalconDamage2 = "  Spirit Falcon Damage: \r "  ;
-char *LifeGegenPlus = "  ��� HP: \r "  ;
-char *PlusDamage4 = "  ������ѧ����: \r "  ;
-char *PiercingPercent = "  Piercing Percent: \r "  ;
-char *DamageToLife = "  ����¹��Ҥ������������?HP: \r "  ;
-char *MyMonster7 = "  % ����С?\r "  ;
-char *LifeIncre4 = "  ������ѧ���Ե: \r "  ;
-char *UndeadDamage3 = "  Undead Damage: \r "  ;
+char *DemonDamage4  = "  Demon Damage: /r "  ;
+char *PoisonDamage3  = "  Poison Attack: /r "  ;
+char *PikeNum4   = "  �ӹ�? /r "  ;
+char *poisoningTime  = "  ���� Poisoning: /r "  ;
+char *PlusCriticalName = "  ���?Critical: /r "  ;
+char *SpiritFalconDamage2 = "  Spirit Falcon Damage: /r "  ;
+char *LifeGegenPlus = "  ��� HP: /r "  ;
+char *PlusDamage4 = "  ������ѧ����: /r "  ;
+char *PiercingPercent = "  Piercing Percent: /r "  ;
+char *DamageToLife = "  ����¹��Ҥ������������?HP: /r "  ;
+char *MyMonster7 = "  % ����С?/r "  ;
+char *LifeIncre4 = "  ������ѧ���Ե: /r "  ;
+char *UndeadDamage3 = "  Undead Damage: /r "  ;
 
-char *AttackNum3   = "  ���յ�����ͧ: \r "  ; 
-char *AttackRateMinus = "  Ŵ��������� \r "  ; 
-char *MaxDamagePlus2 = "  ������ѧ�����٧�ش \r "  ; 
-char *LightningAddDamage3 = " Lightning :\r "  ; 
-char *ReLifePercent4  = "  % �����: \r "  ; 
-char *GetExp3  = "  ��?Exp:\r "  ; 
+char *AttackNum3   = "  ���յ�����ͧ: /r "  ; 
+char *AttackRateMinus = "  Ŵ��������� /r "  ; 
+char *MaxDamagePlus2 = "  ������ѧ�����٧�ش /r "  ; 
+char *LightningAddDamage3 = " Lightning :/r "  ; 
+char *ReLifePercent4  = "  % �����: /r "  ; 
+char *GetExp3  = "  ��?Exp:/r "  ; 
 char *ResurrectionChar4  = "  Resurrection Character LV "  ; 
-char *ExtinctionPercent2  = "  % �����: \r "  ; 
-char *ExtinctionAmount2  = "  �ӹ�?Extinction: \r "  ; 
-char *IncreLifePercent2 = "  ���?HP: \r "  ; 
+char *ExtinctionPercent2  = "  % �����: /r "  ; 
+char *ExtinctionAmount2  = "  �ӹ�?Extinction: /r "  ; 
+char *IncreLifePercent2 = "  ���?HP: /r "  ; 
 
-char *ReduceDamage3 = "  Ŵ��Ҥ����������: \r "  ; 
-char *IncreMagicDamage = "  ������ѧ���ըҡ����?Magic: \r "  ; 
-char *AttackDelay3 = "  Attack Delay: \r "  ; 
+char *ReduceDamage3 = "  Ŵ��Ҥ����������: /r "  ; 
+char *IncreMagicDamage = "  ������ѧ���ըҡ����?Magic: /r "  ; 
+char *AttackDelay3 = "  Attack Delay: /r "  ; 
 
-char *FireDamage2 = "  Fire Damage: \r "  ;
-char *IceDamage2 = "  Ice Damage: \r "  ;
-char *AddDefense8 = "  ������ѧ��ͧ�ѹ: \r "  ;
-char *SkillDamage5 = "  Skill Damage: \r "  ;
+char *FireDamage2 = "  Fire Damage: /r "  ;
+char *IceDamage2 = "  Ice Damage: /r "  ;
+char *AddDefense8 = "  ������ѧ��ͧ�ѹ: /r "  ;
+char *SkillDamage5 = "  Skill Damage: /r "  ;
 
-char *FireDamage3 = "  Fire Damage: \r "  ;
-char *AddSpeed7 = "  �����������?\r "  ;
-char *AfterDamage7 = "  After Damage: \r "  ;
-char *MonsterSight7 = "  Monster ���: \r "  ;
-
-
-
-char *LinghtingAddDamage4=  "  Add attack rate on lightning: \r  "  ;
-char *MaxBoltNum4=  "  Max voltage: \r  "  ;
-char *AddAbsorb4=  "  Add rate on absorb: \r  "  ;
-char *IncreArea4=  "  Increasing range: \r  "  ;
-char *IncreAttack4=  "  More attacking power: \r  "  ;
-char *GolemLife4=  "  Life+strength: \r  "  ;
+char *FireDamage3 = "  Fire Damage: /r "  ;
+char *AddSpeed7 = "  �����������?/r "  ;
+char *AfterDamage7 = "  After Damage: /r "  ;
+char *MonsterSight7 = "  Monster ���: /r "  ;
 
 
-char *SubAbsorb4=  "  Decreasing absorption: \r  "  ;
-char *AreaDamage4=  "  Attacking rate for range: \r  "  ;
-char *MaxAttackNum4=  "  Max hits: \r  "  ;
-char *LifeUp4=  "  Add vitality: \r  "  ;
 
-char *CriticalAddDamage4=  "  Increase of critical: \r  "  ;
-char *MonstervsSubCritical4=  "  Weaken critical of monster: \r  "  ;
-char *ChargingAddPercentDamage4=  "  Add attacking rate on charging: \r  "  ;
-
-char *IncreEvasionPercent4=  "  Additinal percentage of evasion: \r  "  ;
-char *AddShadowNum4=  "  Increasing combination of ocular: \r  "  ;
-
-char *WolverinLife4=  "  Vitality:\r  "  ;
-char *WolverinRate4=  "  Accuracy:\r  "  ;
-char *WolverinDefense4=  "  Defence rate:\r  "  ;
-char *AddEvasion4=  "  Increasing ability of evasion:\r  "  ;
-char *AddDamage4=  "  Increasing attacking rate(physic):\r  "  ;
-char *FalconAddDamage4=  "  Increasing attacking rate of falcon:\r  "  ;
+char *LinghtingAddDamage4=  "  Add attack rate on lightning: /r  "  ;
+char *MaxBoltNum4=  "  Max voltage: /r  "  ;
+char *AddAbsorb4=  "  Add rate on absorb: /r  "  ;
+char *IncreArea4=  "  Increasing range: /r  "  ;
+char *IncreAttack4=  "  More attacking power: /r  "  ;
+char *GolemLife4=  "  Life+strength: /r  "  ;
 
 
-char *IncreAttackAbsorb4=  "  Increasing absorption rate:\r  "  ;
+char *SubAbsorb4=  "  Decreasing absorption: /r  "  ;
+char *AreaDamage4=  "  Attacking rate for range: /r  "  ;
+char *MaxAttackNum4=  "  Max hits: /r  "  ;
+char *LifeUp4=  "  Add vitality: /r  "  ;
 
-char *RectAngleArea4=  "  Attacking at sharp angled range:\r  "  ; 
+char *CriticalAddDamage4=  "  Increase of critical: /r  "  ;
+char *MonstervsSubCritical4=  "  Weaken critical of monster: /r  "  ;
+char *ChargingAddPercentDamage4=  "  Add attacking rate on charging: /r  "  ;
 
-char *MonsterSubSpeed4=  "  Decreasing speed of attacted monster:\r  "  ;
+char *IncreEvasionPercent4=  "  Additinal percentage of evasion: /r  "  ;
+char *AddShadowNum4=  "  Increasing combination of ocular: /r  "  ;
 
-
-char *AddLifeRegen4=  "  Add life-regeneration:\r  "  ;
-char *AddManaRegen4=  "  Add mana-regeneration:\r  "  ;
-char *MagicArea4=  "  Magic affected range:\r  "  ;
-char *ChainNum4=  "  A number of affected monster:\r  "  ;
-char *ChainRange4=  "  The rage of affected monster:\r  "  ;
-char *UndeadDamageAbsorb4=  "  Undead attacking absorption:\r  "  ;
-char *UserBlockPercent4=  "  Blocking rate for character:\r  "  ;
-
-char *SecondIncreMana4=  "  Increasing mana rate per second:\r  "  ;
-char *FireDamage4=  "  Fire attacking rate:\r  "  ;
-char *DecreSpeed4=  "  Decreasing Speed:\r  "  ;
-char *DecreAttack4=  "  Decreasing attacking rate:\r  "  ;
-char *AddPercentDamage4=  "  Adding attacking rate:\r  "  ;
+char *WolverinLife4=  "  Vitality:/r  "  ;
+char *WolverinRate4=  "  Accuracy:/r  "  ;
+char *WolverinDefense4=  "  Defence rate:/r  "  ;
+char *AddEvasion4=  "  Increasing ability of evasion:/r  "  ;
+char *AddDamage4=  "  Increasing attacking rate(physic):/r  "  ;
+char *FalconAddDamage4=  "  Increasing attacking rate of falcon:/r  "  ;
 
 
-char *ChainDamage3  = "  ChainDamage)\r  "  ;
+char *IncreAttackAbsorb4=  "  Increasing absorption rate:/r  "  ;
+
+char *RectAngleArea4=  "  Attacking at sharp angled range:/r  "  ; 
+
+char *MonsterSubSpeed4=  "  Decreasing speed of attacted monster:/r  "  ;
+
+
+char *AddLifeRegen4=  "  Add life-regeneration:/r  "  ;
+char *AddManaRegen4=  "  Add mana-regeneration:/r  "  ;
+char *MagicArea4=  "  Magic affected range:/r  "  ;
+char *ChainNum4=  "  A number of affected monster:/r  "  ;
+char *ChainRange4=  "  The rage of affected monster:/r  "  ;
+char *UndeadDamageAbsorb4=  "  Undead attacking absorption:/r  "  ;
+char *UserBlockPercent4=  "  Blocking rate for character:/r  "  ;
+
+char *SecondIncreMana4=  "  Increasing mana rate per second:/r  "  ;
+char *FireDamage4=  "  Fire attacking rate:/r  "  ;
+char *DecreSpeed4=  "  Decreasing Speed:/r  "  ;
+char *DecreAttack4=  "  Decreasing attacking rate:/r  "  ;
+char *AddPercentDamage4=  "  Adding attacking rate:/r  "  ;
+
+
+char *ChainDamage3  = "  ChainDamage)/r  "  ;
 char *BrandishDamage3 = "  BrandishDamage  "  ;
 char *PhysicalAbsorb3 = "  PhysicalAbsorb  "  ;
 char *SparkDamage3  = "  SparkDamage  "  ;
 char *BrutalSwingCritical3 = "  BrutalSwingCritical  "  ;
-char *Attck_RateAdd5 = "  ���?Attack Rate:\r  " ;
+char *Attck_RateAdd5 = "  ���?Attack Rate:/r  " ;
 char *Triumph4= " Triumph " ;
 char *Use4= " you " ;
 char *DivineShield4= " Blocking rate of divine shiled " ;
@@ -451,7 +451,7 @@ char *QuestMonsterName[] = { " Bagon " , " Skeleton Warrior " , " Head Cutter " 
 
 
 
-char *VampOption[10] ={ " Aging Rating is increased: \r " , " blood sucking: \r " , " Damage: \r " , " Reduce Life : \r " , " good luck: \r " };
+char *VampOption[10] ={ " Aging Rating is increased: /r " , " blood sucking: /r " , " Damage: /r " , " Reduce Life : /r " , " good luck: /r " };
 
 
 char *Quest3ItemName[]={ " Demon Hunter " , " Ancient Revenge " , " Myst " , " Double Side " , " Anaconda " , " Platinum Sword " , " Ghost " };
@@ -459,15 +459,15 @@ char *Quest3ItemName[]={ " Demon Hunter " , " Ancient Revenge " , " Myst " , " D
 char *Quset3ItemDoc15 =  " ������? " ;
 char *Quset3ItemDoc16 =  "  ������  " ;
 
-char *SparkDamage10 =  " Spark Damage:\r " ;
+char *SparkDamage10 =  " Spark Damage:/r " ;
 
-char *RequirLevel3 =  " (��ͧ���Level:%d)\r  " ;
+char *RequirLevel3 =  " (��ͧ���Level:%d)/r  " ;
 
 char *RecvItemTT =  " ���Ѻ�������? " ;
 char *PuzzleEvent5 =  " Puzzle �������ó�  " ;
 char *BabelHorn =  " Babel Horn  " ;
 char *NineTailFoxItem =  " NineTail amulet  " ;
-char *MyShopItemSell5 =  " �ҤҢ�?\r  " ;
+char *MyShopItemSell5 =  " �ҤҢ�?/r  " ;
 char *CristalItem   = " ���ʵ�?7 ���  " ;
 char *StarDust = "Glitering powder";
 char *ChristMas = "Merry Christmas";
@@ -482,13 +482,13 @@ char *BuyMyShopItem8 =  "  ���������  %s ��?%s �� %d �
 char *ItemName87 =  " ���? " ;
 
 char *sinEvent87 =  " �Ӣͧ͢�ѡ�纵�ǩ��? " ;
-char *sinAddDamageItem =  " ������ѧ����: \r " ;
-char *sinContinueTimeItem =  " ��������: \r " ;
+char *sinAddDamageItem =  " ������ѧ����: /r " ;
+char *sinContinueTimeItem =  " ��������: /r " ;
 char *BuyPotionMoney =  " �ӹǹ��? " ;
 char *BuyPotionKind =  " �ӹ�? " ;
 char *SheltomName2[] = { " Lucidy " , " Sereno " , "  Fadeo " , " Sparky " , " Raident " , " Transparo " , " Murky " , " Devine " , " Celesto " };
 
-char *AddPercentDamage3=  " ������ѧ���� %: \r " ;
+char *AddPercentDamage3=  " ������ѧ���� %: /r " ;
 
 char *sinLuckyBox=  " �ا��⪤  " ;
 
@@ -573,7 +573,7 @@ char *sinTeleportDoc[] = { " �ҧ�?Ҷ������? " , " �ҧ�?Ҷ�
 char *sinLevelQuest90_2Mon[] = { " Omeca " , " D-Machine " , " Mountain " };
 char *sinLevelQusetDoc2= " <���> ���?%s �Ҩ�ҹǹ %d ��?" ;
 char *sinLevelQusetDoc3= " <���> ����������?%s  " ;
-char *sinLimitTiem2 =  " ���ҷ����˹? \r " ;
+char *sinLimitTiem2 =  " ���ҷ����˹? /r " ;
 char *sinMinute2 =  " �ҷ�  " ;
 char *sinDay4 =  " day " ;
 char *sinHour4 =  " hour " ;
@@ -626,52 +626,52 @@ char *sinMonCodeName[]={
 	0,
 };
 
-char *ChargingTime4= " �����������Ǫ��� \r  " ;
-char *AddIceDamage4= " ��ѧ���ոҵع������������ \r  " ;
-char *IceTime4= " �������� : \r  " ;
-char *sinAttackType =  " ����Ẻ : \r "  ;
-char *sinAttackType2[2] ={ " �����ѵ��ѵ� \r  " , " Auto\r " };
+char *ChargingTime4= " �����������Ǫ��� /r  " ;
+char *AddIceDamage4= " ��ѧ���ոҵع������������ /r  " ;
+char *IceTime4= " �������� : /r  " ;
+char *sinAttackType =  " ����Ẻ : /r "  ;
+char *sinAttackType2[2] ={ " �����ѵ��ѵ� /r  " , " Auto/r " };
 
 char *Won= " Gold " ;
 
 
 char *CastlItemInfo[] ={
-	{ " �����������������ѵ�٪�ǧ˹������� \r  " },  
-	{ " �ѵ�Ҥ�ԵԤ�?\r  " },
-	{ " �ѵ���ź���?\r  " },
-	{ " HP MP Stam �ͧ��㹻����� \r  " },
-	{ " ��鹷ѹ�շ���?\r  " },
-	{ " ������դ�ԵԤ�ŷ������� \r  " },   
-	{ " ��ѧ������������������� 20% \r " },
+	{ " �����������������ѵ�٪�ǧ˹������� /r  " },  
+	{ " �ѵ�Ҥ�ԵԤ�?/r  " },
+	{ " �ѵ���ź���?/r  " },
+	{ " HP MP Stam �ͧ��㹻����� /r  " },
+	{ " ��鹷ѹ�շ���?/r  " },
+	{ " ������դ�ԵԤ�ŷ������� /r  " },   
+	{ " ��ѧ������������������� 20% /r " },
 	0,
 };
 char *CastlItemInfo2[] ={
-	{ " ��ѧ����Ŵ�?/2 \r  " },
-	{ " �������?% \r  " },
-	{ " �٧���?\r  " },
-	{ " ��鹷����?\r  " },
-	{ " \r " },
-	{ " ������� 50% \r  " },
-	{ " ��������ç���?\r  " },
+	{ " ��ѧ����Ŵ�?/2 /r  " },
+	{ " �������?% /r  " },
+	{ " �٧���?/r  " },
+	{ " ��鹷����?/r  " },
+	{ " /r " },
+	{ " ������� 50% /r  " },
+	{ " ��������ç���?/r  " },
 	0,
 };
 
 
 char *CharClassTarget[8]={
-	 " �������(fighter)\r " ,
-	 " �������(mechanician)\r " ,
-	 " �������(pikeman)\r " ,
-	 " �������(archer)\r " ,
-	 " �������(knight)\r " ,
-	 " �������(atalanta)\r " ,
-	 " �������(magician)\r " ,
-	 " �������(priestess)\r " ,
+	 " �������(fighter)/r " ,
+	 " �������(mechanician)/r " ,
+	 " �������(pikeman)/r " ,
+	 " �������(archer)/r " ,
+	 " �������(knight)/r " ,
+	 " �������(atalanta)/r " ,
+	 " �������(magician)/r " ,
+	 " �������(priestess)/r " ,
 };
 char *AttributeTower[4]={
-	 " �ҵ�(�) \r " ,
-	 " �ҵ�(�����? \r " ,
-	 " �ҵ�(��¿��) \r " ,
-	 " �����ʴ��� %d �Թҷ� \r " ,
+	 " �ҵ�(�) /r " ,
+	 " �ҵ�(�����? /r " ,
+	 " �ҵ�(��¿��) /r " ,
+	 " �����ʴ��� %d �Թҷ� /r " ,
 };
 
 char *SiegeMessage_MerComplete = " �Ѵ�ҧ�����Ѻ��ҧ���º��������  " ;
@@ -709,13 +709,13 @@ char *ha100LVQuestName =  " Fury's phantasma " ;
 
 
 char *PremiumItemDoc[][2]={
-	{ "It makes stat points\r "  , "to be restributed.\r " },   
-	{ "It makes skill points\r "  , " to be restributed.\r " },  
-	{ "It makes stat/skill points\r " , "to be restributed.\r " },   
-	{ "It makes the dead character \r "   , "to be revived.\r " },    
-	{ "Becomes invincible for the set time.\r " , "The attack power decrease in 1/2\r " },  
-	{ "15% increase \r "   , "on the critical attack.\r " },		
-	{ "15% increase of \r "    , "evade chance.\r " },		
+	{ "It makes stat points/r "  , "to be restributed./r " },   
+	{ "It makes skill points/r "  , " to be restributed./r " },  
+	{ "It makes stat/skill points/r " , "to be restributed./r " },   
+	{ "It makes the dead character /r "   , "to be revived./r " },    
+	{ "Becomes invincible for the set time./r " , "The attack power decrease in 1/2/r " },  
+	{ "15% increase /r "   , "on the critical attack./r " },		
+	{ "15% increase of /r "    , "evade chance./r " },		
 };
 char *UpKeepItemDoc[] = {
 	 "Remaining Time : %dMin" ,

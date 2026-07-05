@@ -2,8 +2,8 @@
 #define _SINBARAM_TEST   
 
 #include "sinLinkHeader.h"
-#include "Settings\UI.h"
-#include "AntiCheat\AntiCheat.h"
+#include "Settings/UI.h"
+#include "AntiCheat/AntiCheat.h"
 #include "DrawDamage.h"
 
 smCHAR_INFO *sinChar;
@@ -26,7 +26,7 @@ extern void InitFont();
 #include "cHellsGate.h"
 #include "KillHandler.h"
 #include "cSettingsWindow.h"
-#include "BattleEvents\\CRollHandler.h"
+#include "BattleEvents/CRollHandler.h"
 
 void sinInit()
 {

@@ -2,7 +2,7 @@
 #define SECURITY_H
 
 #include <string>
-#include <MD5\MD5Wrapper.h>
+#include <MD5/MD5Wrapper.h>
 
 class Security
 {

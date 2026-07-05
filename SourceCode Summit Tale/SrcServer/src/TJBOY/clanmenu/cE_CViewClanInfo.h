@@ -9,7 +9,7 @@
 
 #define CLAN_MAX		500
 
-#define CLANINFO_DIR	"savedata\\clanDATA"  
+#define CLANINFO_DIR	"savedata//clanDATA"  
 typedef struct _tagClanInfoHeader
 {
 	char		ClanMark_Num[40];

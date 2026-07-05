@@ -1,7 +1,7 @@
-#include "sinbaram\\SinLinkHeader.h"
-#include "..\\HoBaram\\HoLinkHeader.h"
-#include "Settings\Settings.h"
-#include "Font\Font.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "../HoBaram/HoLinkHeader.h"
+#include "Settings/Settings.h"
+#include "Font/Font.h"
 
 HoMessage	ChatMessage;
 BOOL    HoMessage::MessageFrameSelectFlag = TRUE;
@@ -20,105 +20,105 @@ int HoMessage::Init()
 {
 	TextStartPosY = 0;
 
-	BoxImage1[0] = CreateTextureMaterial("StartImage\\MessageBox\\NormalBox\\MessageBox0.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage1[1] = CreateTextureMaterial("StartImage\\MessageBox\\NormalBox\\MessageBox1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage1[2] = CreateTextureMaterial("StartImage\\MessageBox\\NormalBox\\MessageBox2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage1[3] = CreateTextureMaterial("StartImage\\MessageBox\\NormalBox\\MessageBox3.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage1[4] = CreateTextureMaterial("StartImage\\MessageBox\\NormalBox\\MessageBox4.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage1[5] = CreateTextureMaterial("StartImage\\MessageBox\\NormalBox\\MessageBox5.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage1[6] = CreateTextureMaterial("StartImage\\MessageBox\\NormalBox\\MessageBox6.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage1[7] = CreateTextureMaterial("StartImage\\MessageBox\\NormalBox\\MessageBox7.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage1[8] = CreateTextureMaterial("StartImage\\MessageBox\\NormalBox\\MessageBox8.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage1[0] = CreateTextureMaterial("StartImage//MessageBox//NormalBox//MessageBox0.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage1[1] = CreateTextureMaterial("StartImage//MessageBox//NormalBox//MessageBox1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage1[2] = CreateTextureMaterial("StartImage//MessageBox//NormalBox//MessageBox2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage1[3] = CreateTextureMaterial("StartImage//MessageBox//NormalBox//MessageBox3.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage1[4] = CreateTextureMaterial("StartImage//MessageBox//NormalBox//MessageBox4.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage1[5] = CreateTextureMaterial("StartImage//MessageBox//NormalBox//MessageBox5.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage1[6] = CreateTextureMaterial("StartImage//MessageBox//NormalBox//MessageBox6.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage1[7] = CreateTextureMaterial("StartImage//MessageBox//NormalBox//MessageBox7.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage1[8] = CreateTextureMaterial("StartImage//MessageBox//NormalBox//MessageBox8.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	BoxImage2[0] = CreateTextureMaterial("StartImage\\MessageBox\\NormalBox\\MessageBox00.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage2[1] = CreateTextureMaterial("StartImage\\MessageBox\\NormalBox\\MessageBox22.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage2[2] = CreateTextureMaterial("StartImage\\MessageBox\\NormalBox\\MessageBox66.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage2[3] = CreateTextureMaterial("StartImage\\MessageBox\\NormalBox\\MessageBox88.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage2[0] = CreateTextureMaterial("StartImage//MessageBox//NormalBox//MessageBox00.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage2[1] = CreateTextureMaterial("StartImage//MessageBox//NormalBox//MessageBox22.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage2[2] = CreateTextureMaterial("StartImage//MessageBox//NormalBox//MessageBox66.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage2[3] = CreateTextureMaterial("StartImage//MessageBox//NormalBox//MessageBox88.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	//Box Char
-	BoxImage3[0] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBox000.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage3[1] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBox001.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage3[2] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBox002.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage3[3] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBox003.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage3[4] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBox004.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage3[5] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBox005.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage3[6] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBox006.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage3[7] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBox007.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage3[8] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBox008.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage3[9] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBox009.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage3[0] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBox000.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage3[1] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBox001.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage3[2] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBox002.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage3[3] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBox003.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage3[4] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBox004.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage3[5] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBox005.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage3[6] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBox006.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage3[7] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBox007.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage3[8] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBox008.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage3[9] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBox009.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
-	BoxImage4[0] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBoxa000.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage4[1] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBoxa001.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage4[2] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBoxa002.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage4[3] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBoxa003.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage4[5] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBoxa005.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage4[6] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBoxa006.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage4[7] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBoxa007.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage4[8] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBoxa008.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BoxImage4[9] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\MessageBoxa009.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage4[0] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBoxa000.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage4[1] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBoxa001.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage4[2] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBoxa002.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage4[3] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBoxa003.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage4[5] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBoxa005.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage4[6] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBoxa006.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage4[7] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBoxa007.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage4[8] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBoxa008.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BoxImage4[9] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//MessageBoxa009.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	ClanBoxImage[0] = CreateTextureMaterial("StartImage\\MessageBox\\ClanBox\\clanNameBox01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ClanBoxImage[1] = CreateTextureMaterial("StartImage\\MessageBox\\ClanBox\\clanNameBox02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ClanBoxImage[2] = CreateTextureMaterial("StartImage\\MessageBox\\ClanBox\\clanNameBox03.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ClanBoxImage[0] = CreateTextureMaterial("StartImage//MessageBox//ClanBox//clanNameBox01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ClanBoxImage[1] = CreateTextureMaterial("StartImage//MessageBox//ClanBox//clanNameBox02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ClanBoxImage[2] = CreateTextureMaterial("StartImage//MessageBox//ClanBox//clanNameBox03.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	ClanBoxImage2[0] = CreateTextureMaterial("StartImage\\MessageBox\\ClanBox\\BoxTopLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ClanBoxImage2[1] = CreateTextureMaterial("StartImage\\MessageBox\\ClanBox\\BoxTopCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ClanBoxImage2[2] = CreateTextureMaterial("StartImage\\MessageBox\\ClanBox\\BoxTopRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ClanBoxImage2[3] = CreateTextureMaterial("StartImage\\MessageBox\\ClanBox\\BoxLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ClanBoxImage2[4] = CreateTextureMaterial("StartImage\\MessageBox\\ClanBox\\BoxCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ClanBoxImage2[5] = CreateTextureMaterial("StartImage\\MessageBox\\ClanBox\\BoxRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ClanBoxImage2[6] = CreateTextureMaterial("StartImage\\MessageBox\\ClanBox\\BoxBottomLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ClanBoxImage2[7] = CreateTextureMaterial("StartImage\\MessageBox\\ClanBox\\BoxBottomCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ClanBoxImage2[8] = CreateTextureMaterial("StartImage\\MessageBox\\ClanBox\\BoxBottomRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ClanBoxImage2[0] = CreateTextureMaterial("StartImage//MessageBox//ClanBox//BoxTopLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ClanBoxImage2[1] = CreateTextureMaterial("StartImage//MessageBox//ClanBox//BoxTopCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ClanBoxImage2[2] = CreateTextureMaterial("StartImage//MessageBox//ClanBox//BoxTopRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ClanBoxImage2[3] = CreateTextureMaterial("StartImage//MessageBox//ClanBox//BoxLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ClanBoxImage2[4] = CreateTextureMaterial("StartImage//MessageBox//ClanBox//BoxCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ClanBoxImage2[5] = CreateTextureMaterial("StartImage//MessageBox//ClanBox//BoxRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ClanBoxImage2[6] = CreateTextureMaterial("StartImage//MessageBox//ClanBox//BoxBottomLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ClanBoxImage2[7] = CreateTextureMaterial("StartImage//MessageBox//ClanBox//BoxBottomCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ClanBoxImage2[8] = CreateTextureMaterial("StartImage//MessageBox//ClanBox//BoxBottomRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	ShopBoxByeImage1[0] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBox000.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage1[1] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBox001.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage1[2] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBox002.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage1[3] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBox003.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage1[5] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBox005.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage1[6] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBox006.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage1[7] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBox007.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage1[8] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBox008.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage1[9] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBox009.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage1[0] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBox000.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage1[1] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBox001.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage1[2] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBox002.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage1[3] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBox003.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage1[5] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBox005.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage1[6] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBox006.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage1[7] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBox007.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage1[8] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBox008.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage1[9] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBox009.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	ShopBoxByeImage2[0] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBoxA000.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage2[1] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBoxA001.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage2[2] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBoxA002.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage2[3] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBoxA003.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage2[5] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBoxA005.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage2[6] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBoxA006.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage2[7] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBoxA007.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage2[8] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBoxA008.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxByeImage2[9] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\BMessageBoxA009.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-
-	ShopBoxSellImage1[0] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBox000.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage1[1] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBox001.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage1[2] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBox002.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage1[3] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBox003.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage1[5] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBox005.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage1[6] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBox006.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage1[7] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBox007.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage1[8] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBox008.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage1[9] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBox009.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	ShopBoxSellImage2[0] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBoxA000.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage2[1] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBoxA001.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage2[2] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBoxA002.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage2[3] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBoxA003.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage2[5] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBoxA005.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage2[6] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBoxA006.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage2[7] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBoxA007.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage2[8] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBoxA008.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ShopBoxSellImage2[9] = CreateTextureMaterial("StartImage\\MessageBox\\ChatBox\\GMessageBoxA009.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage2[0] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBoxA000.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage2[1] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBoxA001.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage2[2] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBoxA002.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage2[3] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBoxA003.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage2[5] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBoxA005.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage2[6] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBoxA006.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage2[7] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBoxA007.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage2[8] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBoxA008.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxByeImage2[9] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//BMessageBoxA009.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
-	BellaIconImage[0] = CreateTextureMaterial("StartImage\\MessageBox\\BellaBox\\Bella_01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BellaIconImage[1] = CreateTextureMaterial("StartImage\\MessageBox\\BellaBox\\Bella_02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BellaIconImage[2] = CreateTextureMaterial("StartImage\\MessageBox\\BellaBox\\Bella_03.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage1[0] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBox000.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage1[1] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBox001.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage1[2] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBox002.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage1[3] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBox003.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage1[5] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBox005.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage1[6] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBox006.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage1[7] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBox007.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage1[8] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBox008.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage1[9] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBox009.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	PVPCrown[0] = CreateTextureMaterial("StartImage\\MessageBox\\BellaBox\\PVP_Crown.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage2[0] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBoxA000.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage2[1] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBoxA001.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage2[2] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBoxA002.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage2[3] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBoxA003.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage2[5] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBoxA005.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage2[6] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBoxA006.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage2[7] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBoxA007.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage2[8] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBoxA008.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ShopBoxSellImage2[9] = CreateTextureMaterial("StartImage//MessageBox//ChatBox//GMessageBoxA009.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+
+
+	BellaIconImage[0] = CreateTextureMaterial("StartImage//MessageBox//BellaBox//Bella_01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BellaIconImage[1] = CreateTextureMaterial("StartImage//MessageBox//BellaBox//Bella_02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BellaIconImage[2] = CreateTextureMaterial("StartImage//MessageBox//BellaBox//Bella_03.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+
+	PVPCrown[0] = CreateTextureMaterial("StartImage//MessageBox//BellaBox//PVP_Crown.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	return TRUE;
 }
@@ -214,7 +214,7 @@ void HoMessage::DrawMessageBox(int x, int y, char *message, int boxAttrib, int C
 }
 
 
-#include "Language\\language.h"
+#include "Language/language.h"
 
 
 int HoDrawLinearTexImage(int Mat, float x, float y, float w, float h, float texX, float texY, float texW, float texH, DWORD color)
@@ -912,7 +912,7 @@ void HoMessage::DrawCharacterMessageFrame(int x, int y, int messageWidth, int me
 	
 }
 
-#include <Wingdi.h>
+#include <wingdi.h>
 int HoMessage::textarrange(char *teststr, bool clanm)
 {
 	int		len = 0;
@@ -2834,8 +2834,8 @@ BOOL HoMessageBox::Draw(int x, int y, char *message, int Color)
 
 void HoMessageBox::Init()
 {
-	Button[0].Init("StartImage\\login\\CharSelect\\Bt_ok.tga", 64, 32);
-	Button[1].Init("StartImage\\login\\CharSelect\\Bt_cancel.tga", 64, 32);
+	Button[0].Init("StartImage//login//CharSelect//Bt_ok.tga", 64, 32);
+	Button[1].Init("StartImage//login//CharSelect//Bt_cancel.tga", 64, 32);
 	Message.Init();
 }
 

@@ -8,15 +8,15 @@
 
 
 
-#include "smlib3d\\smd3d.h"
-#include "..\\drawsub.h"
-#include "..\\smwsock.h"
-#include "smpacket.h"
+#include "smLib3d/smd3d.h"
+#include "../drawsub.h"
+#include "../smwsock.h"
+#include "smPacket.h"
 #include "global_def.h"
-#include "..\\HoBaram\\HoLinkHeader.h" 
-#include "..\\effectsnd.h"
-#include "..\\playsub.h"
-#include "Language\\language.h"
+#include "../HoBaram/HoLinkHeader.h" 
+#include "../effectsnd.h"
+#include "../playsub.h"
+#include "Language/language.h"
 
 #include "sinUtil.h"
 #include "sinMonster.h"
@@ -54,21 +54,21 @@
 #include "sinSOD2.h"
 
 #include "HaQuest.h"
-#include "haPremiumItem.h"
+#include "HaPremiumItem.h"
 #include "sinParkPcBangPet.h"   
 
 
-#include "SkillFunction\\Tempskron.h"
-#include "SkillFunction\\Morayion.h"
-#include "..\\ClanCustom.h"
-#include "..\\BattlePass.h"
-#include "Font\\newFont.h"
+#include "SkillFunction/Tempskron.h"
+#include "SkillFunction/Morayion.h"
+#include "../ClanCustom.h"
+#include "../BattlePass.h"
+#include "Font/newFont.h"
 #include "ShowDamage.h"
 #include "TCore.h"
 #include "cMixGuide.h"
-#include "..\\JOBS.h"
+#include "../JOBS.h"
 #include "Rank.h"
-#include "..\\Ranking.h"
+#include "../Ranking.h"
 #include "SQL.h"
 
 //STD:
@@ -99,16 +99,16 @@
 #include <future>
 
 //Windows Header Files:
-#include <Windows.h>
-#include <ShellAPI.h>
+#include <windows.h>
+#include <shellapi.h>
 #include <tlhelp32.h>
-#include <Shobjidl.h>
+#include <shobjidl.h>
 #include <intrin.h>
-#include <Psapi.h>
+#include <psapi.h>
 #include <immintrin.h>
 #include <winternl.h>
 #include <assert.h>
-#include <Shlwapi.h>
+#include <shlwapi.h>
 #include <winnt.h>
 
 #include <mmsystem.h>
@@ -122,7 +122,7 @@
 #include <d3dx9.h>
 #include <d3dx9math.h>
 #include <dsound.h>
-#include <D3Dcompiler.h>
+#include <d3dcompiler.h>
 
 #endif
 

@@ -9,32 +9,32 @@
 #include <iostream>
 #include <math.h>
 #include <stdio.h>
-#include <ZMOUSE.H>
+#include <zmouse.h>
 #include <process.h>
 #include "cracker.h"
 
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "smwsock.h"
 #include "smreg.h"
 
 #include "character.h"
 #include "playmain.h"
-#include "Sound\\dxwav.h"
+#include "Sound/Dxwav.h"
 #include "effectsnd.h"
 #include "fileread.h"
 #include "netplay.h"
 #include "makeshadow.h"
 #include "particle.h"
 #include "field.h"
-#include "hoBaram\\holinkheader.h"
+#include "HoBaram/HoLinkHeader.h"
 
-#include "tjboy\\clanmenu\\tjclanDEF.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\cE_CViewClanInfo.h"
+#include "TJBOY/clanmenu/tjclanDEF.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/cE_CViewClanInfo.h"
 
 #ifdef _SINBARAM
-#include "sinbaram\\sinlinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
 #endif
 
 #include "playsub.h"
@@ -42,8 +42,8 @@
 #include "resource.h"
 
 #include "TextMessage.h"		
-#include "Language\\language.h"
-#include "Language\\jts.h"		
+#include "Language/language.h"
+#include "Language/jts.h"		
 
 #include "CurseFilter.h"		
 #include "damage.h"
@@ -51,28 +51,28 @@
 
 #include "BellatraFontEffect.h"
 
-#include "actiongame.h"
+#include "ActionGame.h"
 
 #define WM_CALLMEMMAP				WM_USER+3   
 
 #ifdef PARKMENU
-#include "TJBOY\\\\Park\\MicVolume.h"
+#include "TJBOY/park/MicVolume.h"
 extern BOOL bMic;
 extern int vrunRuning;
 extern int micInit;
 #endif
 
 
-#include "WinInt\\WinIntThread.h"
+#include "WinInt/WinIntThread.h"
 #include "FullZoomMap.h"
 #include "FontImage.h"
 
 
 #ifdef _W_SERVER
-#include "Database\Database.h"
-#include "GameMasters\GameMasters.h"
-#include "Dump\WinDump.h"
-#include "Skills\Skills.h"
+#include "Database/Database.h"
+#include "GameMasters/GameMasters.h"
+#include "Dump/WinDump.h"
+#include "Skills/SkillSub.h"
 #endif
 
 
@@ -648,7 +648,7 @@ int GameClose(){
 
 int DisplayLogoImage()
 {
-	LPDIRECTDRAWSURFACE4 LogoImage = LoadDibSurfaceOffscreen("Image\\Logo.bmp");
+	LPDIRECTDRAWSURFACE4 LogoImage = LoadDibSurfaceOffscreen("Image//Logo.bmp");
 
 	if(LogoImage)
 	{
@@ -1871,10 +1871,10 @@ char *CompCmdStr(char *strCmdLine, char *strword)
 
 
 
-char *RegPath_3DMax = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\3D Studio MAX R3.1L";
-char *RegPath_3DMax2 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\3D Studio MAX R3.1";
-char *RegPath_Photoshop = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Adobe Photoshop 6.0";
-char *RegPath_ACDSee = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\ACDSee";
+char *RegPath_3DMax = "SOFTWARE//Microsoft//Windows//CurrentVersion//Uninstall//3D Studio MAX R3.1L";
+char *RegPath_3DMax2 = "SOFTWARE//Microsoft//Windows//CurrentVersion//Uninstall//3D Studio MAX R3.1";
+char *RegPath_Photoshop = "SOFTWARE//Microsoft//Windows//CurrentVersion//Uninstall//Adobe Photoshop 6.0";
+char *RegPath_ACDSee = "SOFTWARE//Microsoft//Windows//CurrentVersion//Uninstall//ACDSee";
 
 
 
@@ -2119,7 +2119,7 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 }
 
 
-#include "sinbaram\\HaQuestBoard.h"
+#include "sinbaram/HaQuestBoard.h"
 
 
 int	StartQuest_Code(DWORD wCode)
@@ -2168,9 +2168,9 @@ int HoInstallFont()
 	char szKey[255];
 	GetVersionEx(&vi);
 	if(vi.dwPlatformId == VER_PLATFORM_WIN32_NT)
-		strcpy(szKey, "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts");
+		strcpy(szKey, "SOFTWARE//Microsoft//Windows NT//CurrentVersion//Fonts");
 	else
-		strcpy(szKey, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Fonts");
+		strcpy(szKey, "SOFTWARE//Microsoft//Windows//CurrentVersion//Fonts");
 
 #ifdef	_LANGUAGE_ENGLISH		
 	SetRegString(HKEY_LOCAL_MACHINE, szKey, "ptz", "ptz.ttf");
@@ -2203,9 +2203,9 @@ int HoUninstallFont()
 	char szKey[255];
 	GetVersionEx(&vi);
 	if(vi.dwPlatformId == VER_PLATFORM_WIN32_NT)
-		strcpy(szKey, "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts");
+		strcpy(szKey, "SOFTWARE//Microsoft//Windows NT//CurrentVersion//Fonts");
 	else
-		strcpy(szKey, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Fonts");
+		strcpy(szKey, "SOFTWARE//Microsoft//Windows//CurrentVersion//Fonts");
 	HKEY key;
 	DWORD dwDisp;
 	RegCreateKeyEx(HKEY_LOCAL_MACHINE, szKey, 0, NULL,

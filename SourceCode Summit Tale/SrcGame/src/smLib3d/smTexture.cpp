@@ -261,7 +261,7 @@ smTEXTUREHANDLE *smTEXTURE::Add(char *name, char *nameA)
 
 	if (strlen(name) > sizeof(Texture[TextureCnt].Name))
 	{
-		Utils_Log(LOG_ERROR, "[smTEXTURE::Add] - [Buffer Overflow][Capacity: %d] - [required: %d] Buffer: (%s)", sizeof(Texture[TextureCnt].Name), strlen(name), name);
+// 		Utils_Log(LOG_ERROR, "[smTEXTURE::Add] - [Buffer Overflow][Capacity: %d] - [required: %d] Buffer: (%s)", sizeof(Texture[TextureCnt].Name), strlen(name), name);
 		//return NULL;
 	}
 
@@ -1581,7 +1581,7 @@ std::string GetFileExtension(const std::string & strFilePath)
 	std::string::size_type stDotIndex;
 
 	stSlashIndex = strFilePath.rfind('/');
-	stBackslashIndex = strFilePath.rfind('\\');
+	stBackslashIndex = strFilePath.rfind('//');
 	stDotIndex = strFilePath.rfind('.');
 
 	if (stDotIndex != std::string::npos)

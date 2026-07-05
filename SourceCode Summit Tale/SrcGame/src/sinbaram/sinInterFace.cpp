@@ -1,8 +1,8 @@
 #include "opcodes.h"
 #include "sinLinkHeader.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "..\\field.h"
-#include "Settings\Settings.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "../field.h"
+#include "Settings/Settings.h"
 #include "cSettingsWindow.h"
 
 cINTERFACE	cInterFace;
@@ -139,9 +139,9 @@ struct HAEFFECT
 };
 char *HaEffectFilePath[] = {
 	0,
-	"image\\Sinimage\\Inter\\defense.tga",
-	"image\\Sinimage\\Inter\\block.tga",
-	"image\\Sinimage\\Inter\\Evade.tga",
+	"image//Sinimage//Inter//defense.tga",
+	"image//Sinimage//Inter//block.tga",
+	"image//Sinimage//Inter//Evade.tga",
 	0,
 };
 #define  MAX_HAEFFECTNUM 10 
@@ -185,28 +185,28 @@ void cINTERFACE::Init()
 
 
 
-	MatMenu[0] = CreateTextureMaterial("image\\Sinimage\\Inter\\Menu-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatMenu[1] = CreateTextureMaterial("image\\Sinimage\\Inter\\Menu-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatMenu[0] = CreateTextureMaterial("image//Sinimage//Inter//Menu-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatMenu[1] = CreateTextureMaterial("image//Sinimage//Inter//Menu-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatChatDefault[0] = CreateTextureMaterial("image\\Sinimage\\Inter\\Chat\\ChatDefault-1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatChatDefault[1] = CreateTextureMaterial("image\\Sinimage\\Inter\\Chat\\ChatDefault-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatChatDefault[0] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDefault-1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatChatDefault[1] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDefault-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatChatSmall[0] = CreateTextureMaterial("image\\Sinimage\\Inter\\Chat\\ChatSmall-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatChatSmall[1] = CreateTextureMaterial("image\\Sinimage\\Inter\\Chat\\ChatSmall-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatChatSmall[0] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatSmall-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatChatSmall[1] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatSmall-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatChatDoc[0] = CreateTextureMaterial("image\\Sinimage\\Inter\\Chat\\ChatDoc-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatChatDoc[1] = CreateTextureMaterial("image\\Sinimage\\Inter\\Chat\\ChatDoc-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-
-	MatExitMenu = CreateTextureMaterial("image\\Sinimage\\Inter\\ExitMenu.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatChatDoc[0] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDoc-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatChatDoc[1] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDoc-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
-	MatClock = CreateTextureMaterial("image\\Sinimage\\Inter\\Clock.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatComPass = CreateTextureMaterial("image\\Sinimage\\Inter\\Compass.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatExitMenu = CreateTextureMaterial("image//Sinimage//Inter//ExitMenu.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatLife = CreateTextureMaterial("image\\Sinimage\\Inter\\ShadowLife.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatMana = CreateTextureMaterial("image\\Sinimage\\Inter\\ShadowMana.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatStamina = CreateTextureMaterial("image\\Sinimage\\Inter\\ShadowStamina.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+
+	MatClock = CreateTextureMaterial("image//Sinimage//Inter//Clock.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatComPass = CreateTextureMaterial("image//Sinimage//Inter//Compass.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+
+	MatLife = CreateTextureMaterial("image//Sinimage//Inter//ShadowLife.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatMana = CreateTextureMaterial("image//Sinimage//Inter//ShadowMana.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatStamina = CreateTextureMaterial("image//Sinimage//Inter//ShadowStamina.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 		
 	Load();
 
@@ -215,88 +215,88 @@ void cINTERFACE::Init()
 
 void cINTERFACE::Load()
 {
-	lpLIFE = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Bar_Life.bmp");
-	lpMP = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Bar_Mana.bmp");
-	lpSTM = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Bar_Stamina.bmp");
+	lpLIFE = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_Life.bmp");
+	lpMP = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_Mana.bmp");
+	lpSTM = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_Stamina.bmp");
 
-	lpButton[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\bStatus.bmp");
-	lpButton[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\bInvenTory.bmp");
-	lpButton[2] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\bSkill.bmp");
-	lpButton[3] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\bParty.bmp");
-	lpButton[4] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\bQuest.bmp");
-	lpButton[5] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\bSystem.bmp");
+	lpButton[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bStatus.bmp");
+	lpButton[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bInvenTory.bmp");
+	lpButton[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bSkill.bmp");
+	lpButton[3] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bParty.bmp");
+	lpButton[4] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bQuest.bmp");
+	lpButton[5] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bSystem.bmp");
 
-	lpButton2[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\bStatus-1.bmp");
-	lpButton2[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\bInvenTory-1.bmp");
-	lpButton2[2] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\bSkill-1.bmp");
-	lpButton2[3] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\bParty-1.bmp");
-	lpButton2[4] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\bQuest-1.bmp");
-	lpButton2[5] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\bSystem-1.bmp");
+	lpButton2[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bStatus-1.bmp");
+	lpButton2[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bInvenTory-1.bmp");
+	lpButton2[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bSkill-1.bmp");
+	lpButton2[3] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bParty-1.bmp");
+	lpButton2[4] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bQuest-1.bmp");
+	lpButton2[5] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bSystem-1.bmp");
 
-	lpInfoBox[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ButtonInfo\\StatusInfo.bmp");
-	lpInfoBox[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ButtonInfo\\InvenInfo.bmp");
-	lpInfoBox[2] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ButtonInfo\\SkillInfo.bmp");
-	lpInfoBox[3] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ButtonInfo\\PartyInfo.bmp");
-	lpInfoBox[4] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ButtonInfo\\QuestInfo.bmp");
-	lpInfoBox[5] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ButtonInfo\\SystemInfo.bmp");
-
-
-	lpMenuButton[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Option.bmp");
-	lpMenuButton[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Setting.bmp");
-	lpMenuButton[2] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Exit.bmp");
+	lpInfoBox[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//StatusInfo.bmp");
+	lpInfoBox[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//InvenInfo.bmp");
+	lpInfoBox[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//SkillInfo.bmp");
+	lpInfoBox[3] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//PartyInfo.bmp");
+	lpInfoBox[4] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//QuestInfo.bmp");
+	lpInfoBox[5] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//SystemInfo.bmp");
 
 
-	lpWalk = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Button\\Walk.bmp");
-
-	lpChatShowButton = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Chat\\ChatDownButton.bmp");
-
-
-	lpSun = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Flash\\Sun.bmp");
-	lpMoon = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Flash\\Moon.bmp");
-
-	lpGage[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\Skill\\P-skill.bmp");
-	lpGage[1] = LoadDibSurfaceOffscreen("Image\\SinImage\\Skill\\P-skill2.bmp");
-
-	lpBar_Anger = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\sinGage\\Bar_Anger.bmp");
-	lpBar_Time = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\sinGage\\Bar_Time.bmp");
-	lpBar_Exp = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\sinGage\\Bar_Exp.bmp");
-	lpButton_Anger = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\sinGage\\Button_Anger.bmp");
-
-	lpRunInfo = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ButtonInfo\\Run.bmp");
-	lpWalkInfo = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ButtonInfo\\Walk.bmp");
-
-	lpCameraHandInfo = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ButtonInfo\\Camera_Hand.bmp");
-	lpCameraFixInfo = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ButtonInfo\\Camera_Fix.bmp");
-	lpCameraAutoInfo = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ButtonInfo\\Camera_Auto.bmp");
-
-	lpMapOnInfo = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ButtonInfo\\MapOn.bmp");
-	lpMapOffInfo = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ButtonInfo\\MapOff.bmp");
-
-	lpMapOnImage = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Button\\MapOnImage.bmp");
-	lpCameraImage[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Button\\AutoCameraImage.bmp");
-	lpCameraImage[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Button\\PixCameraImage.bmp");
-
-	lpLIFESpot = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Bar_LifeSpot.bmp");
-	lpSTMSpot = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Bar_StaminaSpot.bmp");
-	lpMANASpot = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\Bar_ManaSpot.bmp");
-
-	lpReStartMain = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ReStart\\ReStartMain.bmp");
-	lpReStartButton[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ReStart\\ReStart_Field.bmp");
-	lpReStartButton[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ReStart\\ReStart_Town.bmp");
-	lpReStartButton[2] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\ReStart\\ReStart_Exit.bmp");
+	lpMenuButton[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Option.bmp");
+	lpMenuButton[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Setting.bmp");
+	lpMenuButton[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Exit.bmp");
 
 
-	lpSelectSkill_Main[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\SkillIcon\\G_Select_Skill.bmp");
-	lpSelectSkill_Main[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\SkillIcon\\Select_Skill.bmp");
+	lpWalk = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Button//Walk.bmp");
 
-	lpSelectChangeJob[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\SkillIcon\\G_Select_ChangeJob.bmp");
-	lpSelectChangeJob[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\SkillIcon\\Select_ChangeJob.bmp");
+	lpChatShowButton = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Chat//ChatDownButton.bmp");
 
-	lpTime7 = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\SkillIcon\\Select_ChangeJob.bmp");
 
-	lpGrowInterLeft = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\inter_01.bmp");
-	lpGrowInterMiddle = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\inter_02.bmp");
-	lpGrowInterRight = LoadDibSurfaceOffscreen("image\\Sinimage\\Inter\\inter_03.bmp");
+	lpSun = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Flash//Sun.bmp");
+	lpMoon = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Flash//Moon.bmp");
+
+	lpGage[0] = LoadDibSurfaceOffscreen("Image//SinImage//Skill//P-skill.bmp");
+	lpGage[1] = LoadDibSurfaceOffscreen("Image//SinImage//Skill//P-skill2.bmp");
+
+	lpBar_Anger = LoadDibSurfaceOffscreen("image//Sinimage//Inter//sinGage//Bar_Anger.bmp");
+	lpBar_Time = LoadDibSurfaceOffscreen("image//Sinimage//Inter//sinGage//Bar_Time.bmp");
+	lpBar_Exp = LoadDibSurfaceOffscreen("image//Sinimage//Inter//sinGage//Bar_Exp.bmp");
+	lpButton_Anger = LoadDibSurfaceOffscreen("image//Sinimage//Inter//sinGage//Button_Anger.bmp");
+
+	lpRunInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Run.bmp");
+	lpWalkInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Walk.bmp");
+
+	lpCameraHandInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Camera_Hand.bmp");
+	lpCameraFixInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Camera_Fix.bmp");
+	lpCameraAutoInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Camera_Auto.bmp");
+
+	lpMapOnInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//MapOn.bmp");
+	lpMapOffInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//MapOff.bmp");
+
+	lpMapOnImage = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Button//MapOnImage.bmp");
+	lpCameraImage[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Button//AutoCameraImage.bmp");
+	lpCameraImage[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Button//PixCameraImage.bmp");
+
+	lpLIFESpot = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_LifeSpot.bmp");
+	lpSTMSpot = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_StaminaSpot.bmp");
+	lpMANASpot = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_ManaSpot.bmp");
+
+	lpReStartMain = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ReStart//ReStartMain.bmp");
+	lpReStartButton[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ReStart//ReStart_Field.bmp");
+	lpReStartButton[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ReStart//ReStart_Town.bmp");
+	lpReStartButton[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ReStart//ReStart_Exit.bmp");
+
+
+	lpSelectSkill_Main[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//G_Select_Skill.bmp");
+	lpSelectSkill_Main[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//Select_Skill.bmp");
+
+	lpSelectChangeJob[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//G_Select_ChangeJob.bmp");
+	lpSelectChangeJob[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//Select_ChangeJob.bmp");
+
+	lpTime7 = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//Select_ChangeJob.bmp");
+
+	lpGrowInterLeft = LoadDibSurfaceOffscreen("image//Sinimage//Inter//inter_01.bmp");
+	lpGrowInterMiddle = LoadDibSurfaceOffscreen("image//Sinimage//Inter//inter_02.bmp");
+	lpGrowInterRight = LoadDibSurfaceOffscreen("image//Sinimage//Inter//inter_03.bmp");
 
 
 }
@@ -810,7 +810,7 @@ void cINTERFACE::Draw()
 
 	}
 
-#include "Language\\language.h"
+#include "Language/language.h"
 #ifdef _LANGUAGE_JAPANESE
 #include <imm.h>
 
@@ -1635,7 +1635,7 @@ void cINTERFACE::LButtonDown(int x, int y)
 		ExitButtonClick = 0;
 	}
 
-	char *HelpFilePath = "image\\Sinimage\\Help\\Help.sin";
+	char *HelpFilePath = "image//Sinimage//Help//Help.sin";
 	if(sinMenuBottonPosi == 1)
 	{
 		cSinHelp.sinShowHelp(SIN_HELP_KIND_NORMAL, 208, 61 - 50, 11, 11, D3DCOLOR_RGBA(19, 27, 20, 165), HelpFilePath);

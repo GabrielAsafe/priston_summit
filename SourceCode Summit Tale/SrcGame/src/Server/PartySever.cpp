@@ -11,17 +11,17 @@
 
 
 
-#include "Resources\resource.h"
-#include "..\\smwsock.h"
+#include "Resources/resource.h"
+#include "../smwsock.h"
 
-#include "..\\smlib3d\\smd3d.h"
-#include "..\\character.h"
-#include "..\\fileread.h"
-#include "..\\playmain.h"
-#include "..\\field.h"
-#include "..\\sinbaram\\sinlinkheader.h"
-#include "Language\\language.h"
-#include "partymsg.h"
+#include "../smLib3d/smd3d.h"
+#include "../character.h"
+#include "../fileread.h"
+#include "../playmain.h"
+#include "../field.h"
+#include "../sinbaram/sinLinkHeader.h"
+#include "Language/language.h"
+#include "PartyMsg.h"
 #include "onserver.h"
 
 extern DWORD	dwPlayServTime;

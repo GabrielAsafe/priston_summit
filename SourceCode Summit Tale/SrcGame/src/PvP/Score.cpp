@@ -1,15 +1,15 @@
 #include "opcodes.h"
-#include "Score.h"
+#include "PvP/Score.h"
 #include <string>
 #include "FontImage.h"
-#include "smLib3d\smDsx.h"
+#include "smLib3d/smDsx.h"
 #include "playmain.h"
 #include "character.h"
 #include "field.h"
-#include "Settings\Settings.h"
-#include "..\\drawsub.h"
-#include "hobaram\\holinkheader.h"
-#include "sinbaram\\sinlinkheader.h"
+#include "Settings/Settings.h"
+#include "../drawsub.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
 
 extern int haSiegeBoardFlag;
 

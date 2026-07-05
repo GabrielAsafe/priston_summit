@@ -8,17 +8,17 @@
 
 #ifndef _HO_EFFECT_VIEW_H_
 #define _HO_EFFECT_VIEW_H_
-#include "math\\mathGlobal.h"
-#include "math\\point3.h"
-#include "math\\color4.h"
+#include "math/mathGlobal.h"
+#include "math/point3.h"
+#include "math/color4.h"
 
 #include "HoNewEffectHeader.h"
 #ifndef _HO_NEW_WIN32_
-#include ".\\smlib3d\\smd3d.h"
+#include "./smLib3d/smd3d.h"
 #endif
 
 #ifdef  _HO_NEW_WIN32_
-#include "..\\..\\smlib3d\\smd3d.h"
+#include "../../smLib3d/smd3d.h"
 #endif
 
 #include <list>

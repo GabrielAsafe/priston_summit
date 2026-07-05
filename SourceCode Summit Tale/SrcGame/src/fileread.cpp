@@ -1,7 +1,7 @@
 #include "opcodes.h"
 #include <fstream>
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "smwsock.h"
 #include "character.h"
 #include "fileread.h"
@@ -10,10 +10,10 @@
 #include "smreg.h"
 #include "playmain.h"
 #include "playsub.h"
-#include "Language\\language.h"
+#include "Language/language.h"
 
-#include "Server\\onserver.h"
-#include "Settings\Settings.h"
+#include "Server/onserver.h"
+#include "Settings/Settings.h"
 
 extern void LeIniStr(char* Section, char* Key, char* szFileIni, char* Var1);
 
@@ -92,7 +92,7 @@ static char *GetWord(char *q, char *p)
 
 	while((*p != 32) && (*p != 9))
 	{
-		if(*p == '\n' || *p == '\r') break;
+		if(*p == '/n' || *p == '/r') break;
 		*q++ = *p++;
 	}
 	*q++ = 0;
@@ -1126,7 +1126,7 @@ smCONFIG smConfig;
 
 
 char *szWordTexQualty[4] = { "����" , "����" , "����" , "���ֳ���" };
-char *InfoRegPath = "SOFTWARE\\Triglow Pictures\\PristonTale";
+char *InfoRegPath = "SOFTWARE//Triglow Pictures//PristonTale";
 
 
 TRANS_SERVER_LIST	TransServerList;
@@ -2578,7 +2578,7 @@ char *GetDirectoryFromFile(char *filename, char *szDirectory, size_t size)
 	len = lstrlen(szDirectory);
 
 	for(cnt = len; cnt >= 0; cnt--)
-		if(szDirectory[cnt] == '\\') break;
+		if(szDirectory[cnt] == '//') break;
 
 	szDirectory[cnt + 1] = NULL;
 
@@ -4421,11 +4421,6 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 				NextFlag = TRUE;
 			}
 
-			if (!NextFlag && lstrcmp(decode, "*ClanCustom") == 0)
-			{
-				lpMonInfo->ClanCustom = TRUE;
-				NextFlag = TRUE;
-			}
 
 			if(!NextFlag && lstrcmp(decode, "*�����") == 0)
 			{
@@ -5408,7 +5403,7 @@ int CreateDefItemPerf(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode
 		else if (lpDefItem->Lev_Attack_Rating[0])
 			lpItem->JobItem.Lev_Attack_Rating = lpDefItem->Lev_Attack_Rating[0];
 
-		lpItem->SpecialItemFlag[1] = ITEM_KIND_PERFECT;
+		lpItem->SpecialItemFlag[1] = ITEM_KIND_NORMAL;
 	}
 	else
 	{
@@ -5595,7 +5590,7 @@ JOB_DATA_CODE *GetJobDataCode(DWORD BaseJob, int JobCnt)
 
 
 #ifdef _LANGUAGE_BRAZIL
-#include "Language\\BRAZIL\\B_JobCode.h"
+#include "Language/Brazil/b_JobCode.h"
 #endif
 
 
@@ -6249,6 +6244,7 @@ int ReadCustomCracker(char *szCrackFile, TRANS_FIND_CRACKER *lpTransFindCrack)
 
 	return cnt;
 }
+
 
 
 

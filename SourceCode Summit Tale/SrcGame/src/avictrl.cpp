@@ -67,7 +67,7 @@ int OpenVideoFile(char *AVIFile)
 	VideoHeight = lpTarget->biHeight;
 
 
-	AVIStreamInfo(pas, &si, sizeof AVISTREAMINFO);
+	AVIStreamInfo(pas, &si, sizeof(AVISTREAMINFO));
 
 	lLength = (ULONG)lpTarget->biSizeImage * (ULONG)(lpSrcFmt->biBitCount >> 3);
 

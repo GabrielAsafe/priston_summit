@@ -1,6 +1,6 @@
 #pragma once
 #pragma once
-#include <Windows.h>
+#include <windows.h>
 
 #define smTRANSCODE_OPEN_NPCinfo  0x49470022
 

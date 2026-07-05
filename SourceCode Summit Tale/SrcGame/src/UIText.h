@@ -1,5 +1,5 @@
 #pragma once
-
+#include "UIElement.h"
 enum EOrientation
 {
 	EORIENT_Left = 1,

@@ -1,7 +1,7 @@
 #define PROCESS_CPP
 #include <windows.h>
 #include <stdio.h>
-#include "..\\YgyHeader.h"
+#include "../YgyHeader.h"
 #include "smPacket.h"
 
 
@@ -33,9 +33,9 @@ void dll_open()
 	g_uMsg = WM_KEYBOARDHOOK_ACTIVITY;
 
 	if(InstallKeyboardHook(hwnd, g_uMsg))
-		fd2("Hook installed OK\n");
+		fd2("Hook installed OK/n");
 	else
-		fd2("Hook install FAILED\n");
+		fd2("Hook install FAILED/n");
 }
 
 
@@ -415,7 +415,7 @@ VOID CProcess::UserOut()
 int read_GameOption(char *optStr, char *rStr)
 {
 	char fname[] = "luncher.INI";
-	char folder[] = ".\\";
+	char folder[] = ".//";
 	char strFilename[128];
 	strcpy(strFilename, folder);
 	strcat(strFilename, fname);

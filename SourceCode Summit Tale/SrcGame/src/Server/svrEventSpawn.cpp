@@ -9,35 +9,35 @@
 #include <memory.h>
 #include <process.h>       
 
-#include "Resources\resource.h"
-#include "..\\smwsock.h"
+#include "Resources/resource.h"
+#include "../smwsock.h"
 
-#include "..\\smlib3d\\smd3d.h"
-#include "..\\character.h"
-#include "..\\fileread.h"
-#include "..\\playmain.h"
-#include "..\\field.h"
-#include "..\\sinbaram\\sinlinkheader.h"
-#include "..\\effectsnd.h"
+#include "../smLib3d/smd3d.h"
+#include "../character.h"
+#include "../fileread.h"
+#include "../playmain.h"
+#include "../field.h"
+#include "../sinbaram/sinLinkHeader.h"
+#include "../effectsnd.h"
 
-#include "..\\record.h"
-#include "..\playsub.h"
+#include "../record.h"
+#include "../playsub.h"
 
 #include "DllServer.h"
 
-#include "Language\\language.h"
+#include "Language/language.h"
 
 
-#include "..\\sinbaram\\sinitem.h"
+#include "../sinbaram/sinItem.h"
 
 #include "ClientFuncPos.h"
 
-#include "OnServer.h"
+#include "onserver.h"
 #include "svr_Damage.h"
 
 #include "svrEventSpawn.h"
 
-#include "..\BellatraFontEffect.h"
+#include "../BellatraFontEffect.h"
 
 
 

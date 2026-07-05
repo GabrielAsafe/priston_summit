@@ -1,7 +1,7 @@
 #define MICVOL_CPP
 
 #include <windows.h>
-#include "micvolume.h"
+#include "MicVolume.h"
 
 CMicVolume::CMicVolume(void)
 {

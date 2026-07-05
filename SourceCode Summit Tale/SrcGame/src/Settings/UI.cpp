@@ -1,10 +1,10 @@
 #include "UI.h"
-#include "smLib3d\smDsx.h"
-#include "smLib3d\smType.h"
-#include "smLib3d\smTexture.h"
+#include "smLib3d/smDsx.h"
+#include "smLib3d/smType.h"
+#include "smLib3d/smTexture.h"
 #include "drawsub.h"
-#include "Settings\Settings.h"
-#include "Font\Font.h"
+#include "Settings/Settings.h"
+#include "Font/Font.h"
 #include "drawsub.h"
 
 SettingsUI settingsUI;

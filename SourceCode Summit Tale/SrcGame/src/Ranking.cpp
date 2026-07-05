@@ -1,6 +1,6 @@
 #include "opcodes.h"
 #include "FontImage.h"
-#include "sinbaram\\sinlinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
 char NameRank[10][32];
 char NameClanRank[10][32];
 int LevelRank[10];
@@ -19,22 +19,22 @@ int Type = 0;
 enum OnRank { RANKPLAYER = 1, RANKPVP, RANKSODPLAYER, RANKSODCLAN, RANKLISTCLAN };
 void RankGame::init() {
 
-	img[BACKGROUND] = CreateTextureMaterial("game\\ranking\\background.TGA", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	img[BTRANKPLAYER] = CreateTextureMaterial("game\\ranking\\btn_ranklvl.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	img[BTRANKPVP] = CreateTextureMaterial("game\\ranking\\btn_rankbp.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	img[BTRANKSODCLAN] = CreateTextureMaterial("game\\ranking\\btn_ranksodclan.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	img[BTRANKSODPLAYER] = CreateTextureMaterial("game\\ranking\\btn_ranksodplayer.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	img[BTRANKLISTCLAN] = CreateTextureMaterial("game\\ranking\\btn_clanlist.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	img[BTCLOSE] = CreateTextureMaterial("game\\ranking\\close.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[PIKE] = CreateTextureMaterial("game\\ranking\\Class\\ps.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[MS] = CreateTextureMaterial("game\\ranking\\Class\\ms.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[FS] = CreateTextureMaterial("game\\ranking\\Class\\fs.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[AS] = CreateTextureMaterial("game\\ranking\\Class\\as.BMP", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[ATS] = CreateTextureMaterial("game\\ranking\\Class\\ata.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[MGS] = CreateTextureMaterial("game\\ranking\\Class\\mg.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[KS] = CreateTextureMaterial("game\\ranking\\Class\\ks.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[PRS] = CreateTextureMaterial("game\\ranking\\Class\\prs.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	img[8] = CreateTextureMaterial("game\\ranking\\line.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	img[BACKGROUND] = CreateTextureMaterial("game//ranking//background.TGA", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	img[BTRANKPLAYER] = CreateTextureMaterial("game//ranking//btn_ranklvl.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	img[BTRANKPVP] = CreateTextureMaterial("game//ranking//btn_rankbp.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	img[BTRANKSODCLAN] = CreateTextureMaterial("game//ranking//btn_ranksodclan.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	img[BTRANKSODPLAYER] = CreateTextureMaterial("game//ranking//btn_ranksodplayer.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	img[BTRANKLISTCLAN] = CreateTextureMaterial("game//ranking//btn_clanlist.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	img[BTCLOSE] = CreateTextureMaterial("game//ranking//close.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	imgClasse[PIKE] = CreateTextureMaterial("game//ranking//Class//ps.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	imgClasse[MS] = CreateTextureMaterial("game//ranking//Class//ms.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	imgClasse[FS] = CreateTextureMaterial("game//ranking//Class//fs.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	imgClasse[AS] = CreateTextureMaterial("game//ranking//Class//as.BMP", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	imgClasse[ATS] = CreateTextureMaterial("game//ranking//Class//ata.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	imgClasse[MGS] = CreateTextureMaterial("game//ranking//Class//mg.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	imgClasse[KS] = CreateTextureMaterial("game//ranking//Class//ks.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	imgClasse[PRS] = CreateTextureMaterial("game//ranking//Class//prs.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	img[8] = CreateTextureMaterial("game//ranking//line.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 }
 
 

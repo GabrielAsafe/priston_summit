@@ -1,5 +1,5 @@
-#include "SinBaram\\SinLinkHeader.h"
-#include "SinBaram\\AssaEffect.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "sinbaram/AssaEffect.h"
 #include "hoAssaParticleEffect.h"
 
 #include "HoNewParticleLinkHeader.h"

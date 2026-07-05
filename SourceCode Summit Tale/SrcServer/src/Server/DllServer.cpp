@@ -5,23 +5,23 @@
 #include <memory.h>
 #include <process.h>       
 
-#include "..\\resource.h"
-#include "..\\smwsock.h"
+#include "../resource.h"
+#include "../smwsock.h"
 
-#include "..\\smlib3d\\smd3d.h"
-#include "..\\character.h"
-#include "..\\fileread.h"
-#include "..\\playmain.h"
-#include "..\\field.h"
-#include "..\\sinbaram\\sinlinkheader.h"
-#include "..\\effectsnd.h"
+#include "../smLib3d/smd3d.h"
+#include "../character.h"
+#include "../fileread.h"
+#include "../playmain.h"
+#include "../field.h"
+#include "../sinbaram/sinLinkHeader.h"
+#include "../effectsnd.h"
 
-#include "..\\record.h"
-#include "..\playsub.h"
+#include "../record.h"
+#include "../playsub.h"
 
 #include "DllServer.h"
 #include "onserver.h"
-#include "Priston\Login.h"
+#include "Priston/Login.h"
 
 #define		BILLING_METER_RATE
 

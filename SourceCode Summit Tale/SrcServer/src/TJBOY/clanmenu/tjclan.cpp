@@ -15,13 +15,13 @@
 
 
 
-#include "sinbaram\\SinLinkHeader.h"
-#include "HoBaram\\HoLinkHeader.h"
-#include "Language\\language.h"
-#include "HoBaram\\HoTextFile.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "Language/language.h"
+#include "HoBaram/HoTextFile.h"
 
 #include "tjclan.h"
-#include "tjscroll.h"
+#include "tjScroll.h"
 #include "cE_Cmake.h"
 #include "cE_chip.h"
 #include "cE_user.h"
@@ -29,17 +29,17 @@
 #include "cE_report.h"
 #include "cE_chatlist.h"
 #include "cE_deletecha.h"
-#include "cE_Cjoin.h"
+#include "cE_CJoin.h"
 #include "cE_CViewClanInfo.h"
 #include "cE_Updatecldata.h"
 #include "cE_Notice.h"
 
-#include "..\\isaocheck\\auth.h"
-#include "..\\isaocheck\\isaocheck.h"
+#include "../isaocheck/auth.h"
+#include "../isaocheck/isaocheck.h"
 #include "Help.h"
 #include "GuideHelp.h" 
 
-#include "..\\ygy\\ygyheader.h"
+#include "../Ygy/YgyHeader.h"
 
 
 
@@ -66,7 +66,7 @@ extern char	szConnServerName[16];
 #include <windows.h>
 #include <stdio.h>
 #include "tjclan.h"
-#include "tjscroll.h"
+#include "tjScroll.h"
 
 #include "clan_Enti.h"
 #include "cE_Cmake.h"
@@ -81,8 +81,8 @@ extern char	szConnServerName[16];
 #include "cE_Updatecldata.h"
 #include "cE_Notice.h"
 
-#include "..\\isaocheck\\auth.h"
-#include "..\\isaocheck\\isaocheck.h"
+#include "../isaocheck/auth.h"
+#include "../isaocheck/isaocheck.h"
 
 
 
@@ -551,38 +551,38 @@ void CLAN_MENU::Init2()
 #ifdef USE_PROSTONTALE		
 
 	MatPartyBackGround =
-		CreateTextureMaterial("image\\Sinimage\\Help\\party_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//party_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
 
 	hBox1 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\HelpBoxCorner.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//HelpBoxCorner.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox2 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\HelpBoxLine.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//HelpBoxLine.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox3 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box3.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box3.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox4 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box4.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box4.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	hBox5 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box5.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box5.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox6 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box6.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box6.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox7 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box7.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box7.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox8 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box8.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box8.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox9 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box9.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box9.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
-	hScl_icon_tj = CreateTextureMaterial("image\\Sinimage\\Help\\scl_icon.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	hScl_icon_tj = CreateTextureMaterial("image//Sinimage//Help//scl_icon.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	g_Help.Load();
 	g_GuideHelp.Load();
 
@@ -607,38 +607,38 @@ void CLAN_MENU::NoticeMessage_Init2()
 #ifdef USE_PROSTONTALE		
 
 	MatPartyBackGround =
-		CreateTextureMaterial("image\\Sinimage\\Help\\party_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//party_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
 
 	hBox1 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\HelpBoxCorner.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//HelpBoxCorner.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox2 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\HelpBoxLine.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//HelpBoxLine.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox3 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box3.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box3.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox4 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box4.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box4.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	hBox5 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box5.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box5.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox6 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box6.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box6.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox7 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box7.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box7.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox8 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box8.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box8.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox9 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box9.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box9.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
-	hScl_icon_tj = CreateTextureMaterial("image\\Sinimage\\Help\\scl_icon.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	hScl_icon_tj = CreateTextureMaterial("image//Sinimage//Help//scl_icon.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	cBaseMenu.copy_LoadResource2(&cClanNotice);
 
 #endif
@@ -1633,7 +1633,7 @@ int CLAN_MENU::Draw()
 			extern char g_AllClanWon[_CLANWON_MAX][STRING_MAX];
 			for(int i = 0; i < 90; i += 5)
 			{
-				wsprintf(Msg3, "%s, %s,  %s , %s, %s\n",
+				wsprintf(Msg3, "%s, %s,  %s , %s, %s/n",
 						 g_AllClanWon[i], g_AllClanWon[i + 1], g_AllClanWon[i + 2], g_AllClanWon[i + 3]
 						 , g_AllClanWon[i + 4]);
 				Draw_C_Text(Msg3, 300, 230 + nPos, 0);
@@ -2024,7 +2024,7 @@ void CLAN_MENU::Draw_C_Text(char *str, int x, int y, int sw = 0)
 
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '\n')
+		if(strbuf[i] == '/n')
 		{
 			strbuf[i] = 0;
 			i = 0;
@@ -2446,7 +2446,7 @@ void Draw_Text(int x, int y, char *str)
 	{
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '\n')
+		if(strbuf[i] == '/n')
 		{
 			strbuf[i] = 0;
 			i = 0;
@@ -2526,7 +2526,7 @@ void Text_Out(HDC hdc, int x, int y, char *str)
 	{
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '\n')
+		if(strbuf[i] == '/n')
 		{
 			strbuf[i] = 0;
 			i = 0;
@@ -2564,36 +2564,36 @@ void CLAN_MENU::Load()
 #ifdef USE_PROSTONTALE		
 
 	MatPartyBackGround =
-		CreateTextureMaterial("image\\Sinimage\\Help\\party_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//party_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
 
 
 	hBox1 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\HelpBoxCorner.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//HelpBoxCorner.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox2 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\HelpBoxLine.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//HelpBoxLine.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox3 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box3.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box3.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox4 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box4.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box4.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	hBox5 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box5.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box5.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox6 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box6.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box6.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox7 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box7.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box7.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox8 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box8.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box8.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hBox9 =
-		CreateTextureMaterial("image\\Sinimage\\Help\\box9.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//Sinimage//Help//box9.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
 
@@ -2605,45 +2605,45 @@ void CLAN_MENU::Load()
 
 	MatPartyBackGround = (HBITMAP)LoadImage(
 		NULL,
-		"image\\Sinimage\\Help\\box-test-title2.bmp",
+		"image//Sinimage//Help//box-test-title2.bmp",
 		IMAGE_BITMAP,
 		0, 0,
 		LR_LOADFROMFILE);
 
 
 
-	hBox1 = (HBITMAP)LoadImage(NULL, "image\\clanimage\\MessageBox\\box1.bmp",
+	hBox1 = (HBITMAP)LoadImage(NULL, "image//clanimage//MessageBox//box1.bmp",
 							   IMAGE_BITMAP,
 							   0, 0,
 							   LR_LOADFROMFILE);
 
-	hBox2 = (HBITMAP)LoadImage(NULL, "image\\clanimage\\MessageBox\\box2.bmp",
+	hBox2 = (HBITMAP)LoadImage(NULL, "image//clanimage//MessageBox//box2.bmp",
 							   IMAGE_BITMAP,
 							   0, 0,
 							   LR_LOADFROMFILE);
-	hBox3 = (HBITMAP)LoadImage(NULL, "image\\clanimage\\MessageBox\\box3.bmp",
+	hBox3 = (HBITMAP)LoadImage(NULL, "image//clanimage//MessageBox//box3.bmp",
 							   IMAGE_BITMAP,
 							   0, 0,
 							   LR_LOADFROMFILE);
-	hBox4 = (HBITMAP)LoadImage(NULL, "image\\clanimage\\MessageBox\\box4.bmp",
-							   IMAGE_BITMAP,
-							   0, 0,
-							   LR_LOADFROMFILE);
-
-	hBox6 = (HBITMAP)LoadImage(NULL, "image\\clanimage\\MessageBox\\box6.bmp",
-							   IMAGE_BITMAP,
-							   0, 0,
-							   LR_LOADFROMFILE);
-	hBox7 = (HBITMAP)LoadImage(NULL, "image\\clanimage\\MessageBox\\box7.bmp",
+	hBox4 = (HBITMAP)LoadImage(NULL, "image//clanimage//MessageBox//box4.bmp",
 							   IMAGE_BITMAP,
 							   0, 0,
 							   LR_LOADFROMFILE);
 
-	hBox8 = (HBITMAP)LoadImage(NULL, "image\\clanimage\\MessageBox\\box8.bmp",
+	hBox6 = (HBITMAP)LoadImage(NULL, "image//clanimage//MessageBox//box6.bmp",
 							   IMAGE_BITMAP,
 							   0, 0,
 							   LR_LOADFROMFILE);
-	hBox9 = (HBITMAP)LoadImage(NULL, "image\\clanimage\\MessageBox\\box9.bmp",
+	hBox7 = (HBITMAP)LoadImage(NULL, "image//clanimage//MessageBox//box7.bmp",
+							   IMAGE_BITMAP,
+							   0, 0,
+							   LR_LOADFROMFILE);
+
+	hBox8 = (HBITMAP)LoadImage(NULL, "image//clanimage//MessageBox//box8.bmp",
+							   IMAGE_BITMAP,
+							   0, 0,
+							   LR_LOADFROMFILE);
+	hBox9 = (HBITMAP)LoadImage(NULL, "image//clanimage//MessageBox//box9.bmp",
 							   IMAGE_BITMAP,
 							   0, 0,
 							   LR_LOADFROMFILE);
@@ -2653,12 +2653,12 @@ void CLAN_MENU::Load()
 
 
 
-	hOk_Gray = (HBITMAP)LoadImage(NULL, "image\\Sinimage\\MessageBox\\Button_Ok_Glay.bmp",
+	hOk_Gray = (HBITMAP)LoadImage(NULL, "image//Sinimage//MessageBox//Button_Ok_Glay.bmp",
 								  IMAGE_BITMAP,
 								  0, 0,
 								  LR_LOADFROMFILE);
 
-	hOk_Yellow = (HBITMAP)LoadImage(NULL, "image\\Sinimage\\MessageBox\\Button_Ok_Yellow.bmp",
+	hOk_Yellow = (HBITMAP)LoadImage(NULL, "image//Sinimage//MessageBox//Button_Ok_Yellow.bmp",
 									IMAGE_BITMAP,
 									0, 0,
 									LR_LOADFROMFILE);
@@ -2670,30 +2670,30 @@ void CLAN_MENU::Load()
 		wsprintf(temp, "Num : %d", GetLastError());
 	}
 
-	hCancel_Gray = (HBITMAP)LoadImage(NULL, "image\\Sinimage\\MessageBox\\Button_Cancel_Glay.bmp",
+	hCancel_Gray = (HBITMAP)LoadImage(NULL, "image//Sinimage//MessageBox//Button_Cancel_Glay.bmp",
 									  IMAGE_BITMAP,
 									  0, 0,
 									  LR_LOADFROMFILE);
 
-	hCancel_Yellow = (HBITMAP)LoadImage(NULL, "image\\Sinimage\\MessageBox\\Button_Cancel_Yellow.bmp",
+	hCancel_Yellow = (HBITMAP)LoadImage(NULL, "image//Sinimage//MessageBox//Button_Cancel_Yellow.bmp",
 										IMAGE_BITMAP,
 										0, 0,
 										LR_LOADFROMFILE);
-	hYes_Gray = (HBITMAP)LoadImage(NULL, "image\\Sinimage\\MessageBox\\Button_Yes_Glay.bmp",
+	hYes_Gray = (HBITMAP)LoadImage(NULL, "image//Sinimage//MessageBox//Button_Yes_Glay.bmp",
 								   IMAGE_BITMAP,
 								   0, 0,
 								   LR_LOADFROMFILE);
-	hYes_Yellow = (HBITMAP)LoadImage(NULL, "image\\Sinimage\\MessageBox\\Button_Yes_Yellow.bmp",
+	hYes_Yellow = (HBITMAP)LoadImage(NULL, "image//Sinimage//MessageBox//Button_Yes_Yellow.bmp",
 									 IMAGE_BITMAP,
 									 0, 0,
 									 LR_LOADFROMFILE);
 
-	hNo_Gray = (HBITMAP)LoadImage(NULL, "image\\Sinimage\\MessageBox\\Button_No_Glay.bmp",
+	hNo_Gray = (HBITMAP)LoadImage(NULL, "image//Sinimage//MessageBox//Button_No_Glay.bmp",
 								  IMAGE_BITMAP,
 								  0, 0,
 								  LR_LOADFROMFILE);
 
-	hNo_Yellow = (HBITMAP)LoadImage(NULL, "image\\Sinimage\\MessageBox\\Button_No_Yellow.bmp",
+	hNo_Yellow = (HBITMAP)LoadImage(NULL, "image//Sinimage//MessageBox//Button_No_Yellow.bmp",
 									IMAGE_BITMAP,
 									0, 0,
 									LR_LOADFROMFILE);
@@ -2706,177 +2706,177 @@ void CLAN_MENU::Load()
 
 
 
-	hClanName = (HBITMAP)LoadImage(NULL, "image\\Sinimage\\Help\\box-test-title.bmp",
+	hClanName = (HBITMAP)LoadImage(NULL, "image//Sinimage//Help//box-test-title.bmp",
 								   IMAGE_BITMAP,
 								   0, 0,
 								   LR_LOADFROMFILE);
-	hWareHouse[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\whc.bmp",
+	hWareHouse[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//whc.bmp",
 									   IMAGE_BITMAP,
 									   0, 0,
 									   LR_LOADFROMFILE);
-	hWareHouse[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\whc1.bmp",
+	hWareHouse[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//whc1.bmp",
 									   IMAGE_BITMAP,
 									   0, 0,
 									   LR_LOADFROMFILE);
-	hWHRight[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\whr.bmp",
+	hWHRight[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//whr.bmp",
 									 IMAGE_BITMAP,
 									 0, 0,
 									 LR_LOADFROMFILE);
-	hWHRight[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\whr1.bmp",
+	hWHRight[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//whr1.bmp",
 									 IMAGE_BITMAP,
 									 0, 0,
 									 LR_LOADFROMFILE);
-	hClanMark[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\m.bmp",
+	hClanMark[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//m.bmp",
 									  IMAGE_BITMAP,
 									  0, 0,
 									  LR_LOADFROMFILE);
-	hClanMark[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\m1.bmp",
+	hClanMark[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//m1.bmp",
 									  IMAGE_BITMAP,
 									  0, 0,
 									  LR_LOADFROMFILE);
-	hRemove[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\r.bmp",
+	hRemove[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//r.bmp",
 									IMAGE_BITMAP,
 									0, 0,
 									LR_LOADFROMFILE);
-	hRemove[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\r1.bmp",
+	hRemove[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//r1.bmp",
 									IMAGE_BITMAP,
 									0, 0,
 									LR_LOADFROMFILE);
-	hClanRelease[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\cr.bmp",
+	hClanRelease[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//cr.bmp",
 										 IMAGE_BITMAP,
 										 0, 0,
 										 LR_LOADFROMFILE);
-	hClanRelease[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\cr1.bmp",
+	hClanRelease[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//cr1.bmp",
 										 IMAGE_BITMAP,
 										 0, 0,
 										 LR_LOADFROMFILE);
-	hHelp[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\h.bmp",
+	hHelp[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//h.bmp",
 								  IMAGE_BITMAP,
 								  0, 0,
 								  LR_LOADFROMFILE);
-	hHelp[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\h1.bmp",
+	hHelp[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//h1.bmp",
 								  IMAGE_BITMAP,
 								  0, 0,
 								  LR_LOADFROMFILE);
-	hOut[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\MessageBox\\o.bmp",
+	hOut[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//MessageBox//o.bmp",
 								 IMAGE_BITMAP,
 								 0, 0,
 								 LR_LOADFROMFILE);
-	hOut[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\MessageBox\\o1.bmp",
+	hOut[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//MessageBox//o1.bmp",
 								 IMAGE_BITMAP,
 								 0, 0,
 								 LR_LOADFROMFILE);
 
 
-	hSecession[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\s.bmp",
+	hSecession[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//s.bmp",
 									   IMAGE_BITMAP,
 									   0, 0,
 									   LR_LOADFROMFILE);
 
-	hSecession[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\s1.bmp",
+	hSecession[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//s1.bmp",
 									   IMAGE_BITMAP,
 									   0, 0,
 									   LR_LOADFROMFILE);
 
-	hIcon = (HBITMAP)LoadImage(NULL, "image\\party\\party_man_0.bmp",
+	hIcon = (HBITMAP)LoadImage(NULL, "image//party//party_man_0.bmp",
 							   IMAGE_BITMAP,
 							   0, 0,
 							   LR_LOADFROMFILE);
-	hIcon_Click = (HBITMAP)LoadImage(NULL, "image\\party\\party_man_1.bmp",
+	hIcon_Click = (HBITMAP)LoadImage(NULL, "image//party//party_man_1.bmp",
 									 IMAGE_BITMAP,
 									 0, 0,
 									 LR_LOADFROMFILE);
 
-	hRemoveToMenu[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\MessageBox\\Button_deport_Glay.bmp",
+	hRemoveToMenu[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//MessageBox//Button_deport_Glay.bmp",
 										  IMAGE_BITMAP,
 										  0, 0,
 										  LR_LOADFROMFILE);
 
-	hRemoveToMenu[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\MessageBox\\Button_deport_Yellow.bmp",
+	hRemoveToMenu[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//MessageBox//Button_deport_Yellow.bmp",
 										  IMAGE_BITMAP,
 										  0, 0,
 										  LR_LOADFROMFILE);
 
-	hClose[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\MessageBox\\c.bmp",
+	hClose[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//MessageBox//c.bmp",
 								   IMAGE_BITMAP,
 								   0, 0,
 								   LR_LOADFROMFILE);
 
-	hClose[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\MessageBox\\c1.bmp",
+	hClose[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//MessageBox//c1.bmp",
 								   IMAGE_BITMAP,
 								   0, 0,
 								   LR_LOADFROMFILE);
 
-	hHelp1 = (HBITMAP)LoadImage(NULL, "image\\Sinimage\\chipbutton\\help1.bmp",
+	hHelp1 = (HBITMAP)LoadImage(NULL, "image//Sinimage//chipbutton//help1.bmp",
 								IMAGE_BITMAP,
 								0, 0,
 								LR_LOADFROMFILE);
 
-	hButton_Box = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\msBox.bmp",
+	hButton_Box = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//msBox.bmp",
 									 IMAGE_BITMAP,
 									 0, 0,
 									 LR_LOADFROMFILE);
-	hClanTitle = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\title.bmp",
+	hClanTitle = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//title.bmp",
 									IMAGE_BITMAP,
 									0, 0,
 									LR_LOADFROMFILE);
-	hScl_Bar = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\scl_bar.bmp",
+	hScl_Bar = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//scl_bar.bmp",
 								  IMAGE_BITMAP,
 								  0, 0,
 								  LR_LOADFROMFILE);
-	hScl_icon = (HBITMAP)LoadImage(NULL, "image\\Sinimage\\help\\scl_icon.bmp",
+	hScl_icon = (HBITMAP)LoadImage(NULL, "image//Sinimage//help//scl_icon.bmp",
 								   IMAGE_BITMAP,
 								   0, 0,
 								   LR_LOADFROMFILE);
 
 #ifndef _LANGUAGE_BRAZIL 
-	hTxt_Remove[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\txt_r_.bmp",
+	hTxt_Remove[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//txt_r_.bmp",
 										IMAGE_BITMAP,
 										0, 0,
 										LR_LOADFROMFILE);
 
-	hTxt_Remove[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\txt_r.bmp",
+	hTxt_Remove[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//txt_r.bmp",
 										IMAGE_BITMAP,
 										0, 0,
 										LR_LOADFROMFILE);
 
-	hTxt_Release[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\txt_cr_.bmp",
+	hTxt_Release[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//txt_cr_.bmp",
 										 IMAGE_BITMAP,
 										 0, 0,
 										 LR_LOADFROMFILE);
 
-	hTxt_Release[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\txt_cr.bmp",
+	hTxt_Release[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//txt_cr.bmp",
 										 IMAGE_BITMAP,
 										 0, 0,
 										 LR_LOADFROMFILE);
 #endif
 
-	hTxt_Mark[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\txt_m_.bmp",
+	hTxt_Mark[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//txt_m_.bmp",
 									  IMAGE_BITMAP,
 									  0, 0,
 									  LR_LOADFROMFILE);
 
-	hTxt_Mark[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\txt_m.bmp",
+	hTxt_Mark[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//txt_m.bmp",
 									  IMAGE_BITMAP,
 									  0, 0,
 									  LR_LOADFROMFILE);
 
-	hTxt_Help[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\txt_h_.bmp",
+	hTxt_Help[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//txt_h_.bmp",
 									  IMAGE_BITMAP,
 									  0, 0,
 									  LR_LOADFROMFILE);
 
-	hTxt_Help[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\txt_h.bmp",
+	hTxt_Help[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//txt_h.bmp",
 									  IMAGE_BITMAP,
 									  0, 0,
 									  LR_LOADFROMFILE);
 
-	hTxt_Secession[0] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\txt_out_.bmp",
+	hTxt_Secession[0] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//txt_out_.bmp",
 										   IMAGE_BITMAP,
 										   0, 0,
 										   LR_LOADFROMFILE);
 
-	hTxt_Secession[1] = (HBITMAP)LoadImage(NULL, "image\\clanImage\\chipbutton\\txt_out.bmp",
+	hTxt_Secession[1] = (HBITMAP)LoadImage(NULL, "image//clanImage//chipbutton//txt_out.bmp",
 										   IMAGE_BITMAP,
 										   0, 0,
 										   LR_LOADFROMFILE);
@@ -3033,7 +3033,7 @@ BOOL SearchDirectory(char *dir)
 	WIN32_FIND_DATA wfd;
 	HANDLE hFind;
 	char t[50];
-	wsprintf(t, "%s\\*.*", dir);
+	wsprintf(t, "%s//*.*", dir);
 	hFind = FindFirstFile(t, &wfd);
 	if(hFind == INVALID_HANDLE_VALUE)
 	{
@@ -3057,7 +3057,7 @@ void CreateSaveData_dir()
 
 	ZeroMemory(szTemp, sizeof(szTemp));
 	wsprintf(szTemp, "%s", CLANDATA_DIR);
-	wsprintf(szTemp, "%s\\%s", szTemp, szConnServerName);
+	wsprintf(szTemp, "%s//%s", szTemp, szConnServerName);
 
 	if(!SearchDirectory(szTemp)) MakeDirectory(szTemp);
 
@@ -3084,7 +3084,7 @@ int LoadClanMessage()
 	DWORD dwFileSize;
 	DWORD dwRead = 0;
 	char c;
-	c = '\n';
+	c = '/n';
 	hFile = CreateFile(CLANMESSAGE_DIR, GENERIC_READ, FILE_SHARE_READ,
 					   NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
@@ -3362,7 +3362,7 @@ int ReadMessage(char *save, char *savename, char *readbuf)
 	{
 		if((readbuf[nCount] == 0x5c))
 		{
-			szReadData[nCount1] = '\n';
+			szReadData[nCount1] = '/n';
 			nCount1++;
 			nCount += 3;
 			if(readbuf[nCount] == 0x0a)
@@ -3399,7 +3399,7 @@ void MsgXsu_Ysu(CLANMSG* clanmsg, int *xsu, int *ysu)
 	{
 		strbuf[cntX] = clanmsg->szMsg[nCount];
 
-		if(clanmsg->szMsg[nCount] == '\n')
+		if(clanmsg->szMsg[nCount] == '/n')
 		{
 			strbuf[cntX] = 0;
 			if(cntX > maxXsu)
@@ -3485,7 +3485,7 @@ void DebugMessage(char* msg, ...)
 	hFile = CreateFile("ClanDebug.txt", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
 					   NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-	wsprintf(szDebugMsg, "%d.%d��%d��%d�� : %s\r\n", g_nCount++,
+	wsprintf(szDebugMsg, "%d.%d��%d��%d�� : %s/r/n", g_nCount++,
 			 SystemTime.wYear, SystemTime.wMonth, SystemTime.wDay, buff);
 
 
@@ -3497,7 +3497,7 @@ void DebugMessage(char* msg, ...)
 		if(lstrlen(buff) > DEBUG_MSG_MAX - 2)
 		{
 			SetFilePointer(hFile, 0, NULL, FILE_END);
-			char szMsg[256] = "..\n�޽����� �ʹ��� �߶���";
+			char szMsg[256] = "../n�޽����� �ʹ��� �߶���";
 			WriteFile(hFile, szMsg, lstrlen(szMsg), &dwWrite, NULL);
 		}
 

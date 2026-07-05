@@ -1,8 +1,8 @@
-#include "News.h"
-#include "File\File.h"
+#include "News/News.h"
+#include "File/File.h"
 #include "smPacket.h"
 #include <string>
-#include "Database\Database.h"
+#include "Database/Database.h"
 #include "CoinShop.h"
 #include "CoinShop_T.h"
 
@@ -30,7 +30,7 @@ void News::welcome()
 
 	/*try
 	{
-		File file("Configs\\Sistemas.ini");
+		File file("Configs//Sistemas.ini");
 
 		std::string message = file.readString("Welcome", "message");
 
@@ -58,7 +58,7 @@ void News::title()
 {
 	try
 	{
-		File file("Configs\\Sistemas.ini");
+		File file("Configs//Sistemas.ini");
 
 		std::string message = file.readString("Title", "message");
 		

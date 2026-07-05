@@ -3,7 +3,7 @@
 
 
 
-#include "..\\field.h"
+#include "../field.h"
 
 cPCBANGPET cPCBANGPet;
 int MatPcBangPetImage[4] = { 0, };
@@ -18,10 +18,10 @@ void cPCBANGPET::Init()
 void cPCBANGPET::Load()
 {
 
-	MatPcBangPetImage[0] = CreateTextureMaterial("Effect\\PcBangPet\\Pet_Phoenimin\\Pet_terry01.TGA", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatPcBangPetImage[1] = CreateTextureMaterial("Effect\\PcBangPet\\Pet_Phoenimin\\Pet_terry01.TGA", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatPcBangPetImage[2] = CreateTextureMaterial("Effect\\PcBangPet\\Pet_Phoenimin\\Pet_terry01.TGA", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatPcBangPetImage[3] = CreateTextureMaterial("Effect\\PcBangPet\\Pet_Phoenimin\\Pet_terry01.TGA", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatPcBangPetImage[0] = CreateTextureMaterial("Effect//PcBangPet//Pet_Phoenimin//Pet_terry01.TGA", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatPcBangPetImage[1] = CreateTextureMaterial("Effect//PcBangPet//Pet_Phoenimin//Pet_terry01.TGA", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatPcBangPetImage[2] = CreateTextureMaterial("Effect//PcBangPet//Pet_Phoenimin//Pet_terry01.TGA", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatPcBangPetImage[3] = CreateTextureMaterial("Effect//PcBangPet//Pet_Phoenimin//Pet_terry01.TGA", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 }
 

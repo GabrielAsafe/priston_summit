@@ -6,9 +6,9 @@ UIHorizontalScroll::UIHorizontalScroll(int iID, int x, int y, int minValue, int 
 	setX(x);
 	setY(y);
 
-	ScrollBarBg = new UIImage(0, "game\\Settings\\scroll\\barbg.png", 0, 0);
-	ScrollBar = new UIImage(0, "game\\Settings\\scroll\\bar.png", 0, 0);
-	ScrollButton = new UIImage(0, "game\\Settings\\scroll\\icon.png", x - 10, y - 6);
+	ScrollBarBg = new UIImage(0, "game//Settings//scroll//barbg.png", 0, 0);
+	ScrollBar = new UIImage(0, "game//Settings//scroll//bar.png", 0, 0);
+	ScrollButton = new UIImage(0, "game//Settings//scroll//icon.png", x - 10, y - 6);
 
 	setWidth(ScrollBarBg->getWidth());
 	setHeight(ScrollBarBg->getHeight());

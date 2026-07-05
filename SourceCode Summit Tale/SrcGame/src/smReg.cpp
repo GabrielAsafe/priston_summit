@@ -2,7 +2,7 @@
 
 #include "smreg.h"
 #include <stdio.h>
-#include "Language\\language.h"
+#include "Language/language.h"
 
 
 
@@ -51,7 +51,7 @@ static char *GetWord(char *q, char *p)
 
 	while((*p != 32) && (*p != 9))
 	{
-		if(*p == '\n' || *p == '\r') break;
+		if(*p == '/n' || *p == '/r') break;
 		*q++ = *p++;
 	}
 	*q++ = 0;

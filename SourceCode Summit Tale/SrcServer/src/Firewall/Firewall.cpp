@@ -1,4 +1,4 @@
-#include "Firewall.h"
+#include "Firewall/Firewall.h"
 #include <tchar.h>
 #include <atlconv.h>
 
@@ -35,7 +35,7 @@ bool Firewall::AddRule(Firewall::Rule Rule, std::string IP, unsigned short Port)
 		m_Policy->get_CurrentProfileTypes(&CurrentProfilesBitMask);
 		if(FAILED(CoCreateInstance(__uuidof(NetFwRule), NULL, CLSCTX_INPROC_SERVER, __uuidof(INetFwRule), (void**)&FirewallRule)))
 		{
-			printf("Rule Creation failed.\n");
+			printf("Rule Creation failed./n");
 			SysFreeString(RuleRAddress);
 			SysFreeString(RuleLPorts);
 			SysFreeString(RuleGroup);
@@ -89,7 +89,7 @@ bool Firewall::AddRuleHacker(Firewall::Rule Rule, std::string IP, unsigned short
 		m_Policy->get_CurrentProfileTypes(&CurrentProfilesBitMask);
 		if (FAILED(CoCreateInstance(__uuidof(NetFwRule), NULL, CLSCTX_INPROC_SERVER, __uuidof(INetFwRule), (void**)&FirewallRule)))
 		{
-			printf("Rule Creation failed.\n");
+			printf("Rule Creation failed./n");
 			SysFreeString(RuleRAddress);
 			SysFreeString(RuleLPorts);
 			SysFreeString(RuleGroup);
@@ -128,12 +128,12 @@ Firewall::Firewall()
 	{
 		if(FAILED(m_Initialized))
 		{
-			printf("CoInitializeEx failed: 0x%08lx\n", m_Initialized);
+			printf("CoInitializeEx failed: 0x%08lx/n", m_Initialized);
 		}
 	}
 	if(FAILED(CoCreateInstance(__uuidof(NetFwPolicy2), NULL, CLSCTX_INPROC_SERVER, __uuidof(INetFwPolicy2), (void**)&m_Policy)))
 	{
-		printf("CoCreateInstance failed.\n");
+		printf("CoCreateInstance failed./n");
 	}
 }
 

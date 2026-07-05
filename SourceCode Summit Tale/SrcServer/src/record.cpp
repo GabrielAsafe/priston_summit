@@ -1,29 +1,29 @@
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 
 #include "smwsock.h"
 #include "character.h"
 #include "avictrl.h"
 #include "playmain.h"
-#include "Sound\\dxwav.h"
+#include "Sound/Dxwav.h"
 #include "fileread.h"
 
 #include "particle.h"
 #include "netplay.h"
 
-#include "sinbaram\\sinlinkheader.h"
-#include "hobaram\\holinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
 
 #include "record.h"
 #include "playsub.h"
 
 #include "field.h"
-#include "Language\\language.h"
+#include "Language/language.h"
 
 #include "TextMessage.h"
-#include "Server\\onserver.h"
+#include "Server/onserver.h"
 
-#include "TJBOY\isaocheck\isaocheck.h"
+#include "TJBOY/isaocheck/isaocheck.h"
 
 
 //char	*szRecordHeader = "RC 1.50";
@@ -176,7 +176,7 @@ int GetPostBoxFile(const char *szID, char *szFileName)
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "%s\\%d\\�̡�%s.dat", szPostBoxDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "%s//%d//�̡�%s.dat", szPostBoxDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -185,11 +185,11 @@ int GetPostBoxFile(const char *szID, char *szFileName)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "%s\\%d\\�̡�%s.dat", szPostBoxDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "%s//%d//�̡�%s.dat", szPostBoxDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
-	wsprintf(szFileName, "%s\\%d\\%s.dat", szPostBoxDir, GetUserCode(szID), szID);
+	wsprintf(szFileName, "%s//%d//%s.dat", szPostBoxDir, GetUserCode(szID), szID);
 
 	return TRUE;
 }
@@ -204,7 +204,7 @@ static int GetUserInfoFile(const char *szID, char *szFileName)
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "DataServer\\%s\\%d\\��%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "DataServer//%s//%d//��%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -213,11 +213,11 @@ static int GetUserInfoFile(const char *szID, char *szFileName)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "DataServer\\%s\\%d\\��%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "DataServer//%s//%d//��%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
-	wsprintf(szFileName, "DataServer\\%s\\%d\\%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
+	wsprintf(szFileName, "DataServer//%s//%d//%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
 
 	return TRUE;
 }
@@ -225,7 +225,7 @@ static int GetUserInfoFile(const char *szID, char *szFileName)
 int GetUserDataFile(const char *szName, char *szFileName)
 {
 
-	wsprintf(szFileName, "DataServer\\%s\\%d\\%s.dat", szRecordUserDataDir, GetUserCode(szName), szName);
+	wsprintf(szFileName, "DataServer//%s//%d//%s.dat", szRecordUserDataDir, GetUserCode(szName), szName);
 
 	return TRUE;
 }
@@ -309,7 +309,7 @@ static int GetUserInfoFile2(char *szID, char *szFileName, char *szServerID)
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "%s\\DataServer\\%s\\%d\\��%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
+		wsprintf(szFileName, "%s//DataServer//%s//%d//��%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
 		return TRUE;
 	}
 
@@ -318,11 +318,11 @@ static int GetUserInfoFile2(char *szID, char *szFileName, char *szServerID)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "%s\\DataServer\\%s\\%d\\��%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
+		wsprintf(szFileName, "%s//DataServer//%s//%d//��%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
 		return TRUE;
 	}
 
-	wsprintf(szFileName, "%s\\DataServer\\%s\\%d\\%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
+	wsprintf(szFileName, "%s//DataServer//%s//%d//%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
 
 	return TRUE;
 }
@@ -332,7 +332,7 @@ int GetUserDataFile2(char *szName, char *szFileName, char *szServerID)
 	char szTTServerPath[128];
 	GetTT_ServerPath(szServerID, szTTServerPath, sizeof(szTTServerPath));
 
-	wsprintf(szFileName, "%s\\DataServer\\%s\\%d\\%s.dat", szTTServerPath, szRecordUserDataDir, GetUserCode(szName), szName);
+	wsprintf(szFileName, "%s//DataServer//%s//%d//%s.dat", szTTServerPath, szRecordUserDataDir, GetUserCode(szName), szName);
 
 	return TRUE;
 }
@@ -340,7 +340,7 @@ int GetUserDataFile2(char *szName, char *szFileName, char *szServerID)
 
 static int GetDeleteDataFile(char *szName, char *szFileName)
 {
-	wsprintf(szFileName, "DataServer\\%s\\%s.dat", szRecordDeleteDir, szName);
+	wsprintf(szFileName, "DataServer//%s//%s.dat", szRecordDeleteDir, szName);
 
 	return TRUE;
 }
@@ -349,7 +349,7 @@ static int GetDeleteDataFile(char *szName, char *szFileName)
 static int GetUserDataBackupFile(const char *szName, char *szFileName)
 {
 
-	wsprintf(szFileName, "DataServer\\%s\\%d\\%s.dat", szRecordUserBackupDataDir, GetUserCode(szName), szName);
+	wsprintf(szFileName, "DataServer//%s//%d//%s.dat", szRecordUserBackupDataDir, GetUserCode(szName), szName);
 
 	return TRUE;
 }
@@ -365,7 +365,7 @@ static int GetWareHouseFile(const char *szName, char *szFileName)
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "DataServer\\%s\\%d\\��%s.dat", szRecordWareHouseDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "DataServer//%s//%d//��%s.dat", szRecordWareHouseDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -374,18 +374,18 @@ static int GetWareHouseFile(const char *szName, char *szFileName)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "DataServer\\%s\\%d\\��%s.dat", szRecordWareHouseDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "DataServer//%s//%d//��%s.dat", szRecordWareHouseDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
-	wsprintf(szFileName, "DataServer\\%s\\%d\\%s.war", szRecordWareHouseDir, GetUserCode(szName), szName);
+	wsprintf(szFileName, "DataServer//%s//%d//%s.war", szRecordWareHouseDir, GetUserCode(szName), szName);
 
 	return TRUE;
 }
 
 static int GetUserDataFile_BackupDay(char *szName, char *szFileName, int Day)
 {
-	wsprintf(szFileName, "%s\\%d\\%s\\%d\\%s.dat",
+	wsprintf(szFileName, "%s//%d//%s//%d//%s.dat",
 		rsServerConfig.szBackupPath, Day,
 		szRecordUserDataDir, GetUserCode(szName), szName);
 
@@ -398,14 +398,14 @@ static int GetWareHouseFile_Backup(char *szName, char *szFileName, int Day)
 	char *szID = szName;
 	char szBuff[256];
 
-	wsprintf(szBuff, "%s\\%d", rsServerConfig.szBackupPath, Day);
+	wsprintf(szBuff, "%s//%d", rsServerConfig.szBackupPath, Day);
 
 	if(szID[4] == 0 && szID[3] >= '0' && szID[3] <= '9' && (
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'm' || szID[2] == 'M')) ||
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "%s\\%s\\%d\\��%s.dat", szBuff, szRecordWareHouseDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "%s//%s//%d//��%s.dat", szBuff, szRecordWareHouseDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -414,11 +414,11 @@ static int GetWareHouseFile_Backup(char *szName, char *szFileName, int Day)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "%s\\%s\\%d\\��%s.dat", szBuff, szRecordWareHouseDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "%s//%s//%d//��%s.dat", szBuff, szRecordWareHouseDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
-	wsprintf(szFileName, "%s\\%s\\%d\\%s.war", szBuff, szRecordWareHouseDir, GetUserCode(szName), szName);
+	wsprintf(szFileName, "%s//%s//%d//%s.war", szBuff, szRecordWareHouseDir, GetUserCode(szName), szName);
 
 	return TRUE;
 }
@@ -433,36 +433,36 @@ int CreateDataServerDirectory()
 
 	CreateDirectory("DataServer", NULL);
 
-	wsprintf(szBuff, "DataServer\\%s", szRecordUserInfoDir);
+	wsprintf(szBuff, "DataServer//%s", szRecordUserInfoDir);
 	CreateDirectory(szBuff, NULL);
-	wsprintf(szBuff, "DataServer\\%s", szRecordUserDataDir);
+	wsprintf(szBuff, "DataServer//%s", szRecordUserDataDir);
 	CreateDirectory(szBuff, NULL);
-	wsprintf(szBuff, "DataServer\\%s", szRecordWareHouseDir);
+	wsprintf(szBuff, "DataServer//%s", szRecordWareHouseDir);
 	CreateDirectory(szBuff, NULL);
-	wsprintf(szBuff, "DataServer\\%s", szRecordUserBackupDataDir);
+	wsprintf(szBuff, "DataServer//%s", szRecordUserBackupDataDir);
 	CreateDirectory(szBuff, NULL);
-	wsprintf(szBuff, "DataServer\\%s", szRecordDeleteDir);
+	wsprintf(szBuff, "DataServer//%s", szRecordDeleteDir);
 	CreateDirectory(szBuff, NULL);
 
 
 	for(cnt = 0; cnt < 256; cnt++)
 	{
-		wsprintf(szBuff, "DataServer\\%s\\%d", szRecordUserInfoDir, cnt);
+		wsprintf(szBuff, "DataServer//%s//%d", szRecordUserInfoDir, cnt);
 		CreateDirectory(szBuff, NULL);
 	}
 	for(cnt = 0; cnt < 256; cnt++)
 	{
-		wsprintf(szBuff, "DataServer\\%s\\%d", szRecordUserDataDir, cnt);
+		wsprintf(szBuff, "DataServer//%s//%d", szRecordUserDataDir, cnt);
 		CreateDirectory(szBuff, NULL);
 	}
 	for(cnt = 0; cnt < 256; cnt++)
 	{
-		wsprintf(szBuff, "DataServer\\%s\\%d", szRecordWareHouseDir, cnt);
+		wsprintf(szBuff, "DataServer//%s//%d", szRecordWareHouseDir, cnt);
 		CreateDirectory(szBuff, NULL);
 	}
 	for(cnt = 0; cnt < 256; cnt++)
 	{
-		wsprintf(szBuff, "DataServer\\%s\\%d", szRecordUserBackupDataDir, cnt);
+		wsprintf(szBuff, "DataServer//%s//%d", szRecordUserBackupDataDir, cnt);
 		CreateDirectory(szBuff, NULL);
 	}
 
@@ -471,7 +471,7 @@ int CreateDataServerDirectory()
 	{
 		for(cnt = 0; cnt < 256; cnt++)
 		{
-			wsprintf(szBuff, "%s\\%d", szPostBoxDir, cnt);
+			wsprintf(szBuff, "%s//%d", szPostBoxDir, cnt);
 			CreateDirectory(szBuff, NULL);
 		}
 	}
@@ -2514,7 +2514,7 @@ int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, 
 
 
 
-			fp = fopen("DataServer\\LastError.dat", "wb");
+			fp = fopen("DataServer//LastError.dat", "wb");
 			if(fp)
 			{
 				cnt = fwrite(&TransRecordData, TransRecordData.size, 1, fp);
@@ -3561,7 +3561,7 @@ int rsRECORD_DBASE::IsData(char *szName)
 
 	if(lstrlen(szName) >= CHAR_NAME_MAXLEN) return TRUE;
 
-	if(!c_CheckName(".\\CharacterNameList", szName)) return TRUE;
+	if(!c_CheckName(".//CharacterNameList", szName)) return TRUE;
 
 	GetUserDataFile(szName, szFile);
 
@@ -4970,7 +4970,7 @@ int	rsSavePostBox(rsPLAYINFO	*lpPlayInfo)
 		if(lpPlayInfo->lpPostBoxItem->PostItem[cnt].Flag)
 		{
 
-			wsprintf(strBuff, "%s		%s		%s		\"%s\"	%s	%s\r\n",
+			wsprintf(strBuff, "%s		%s		%s		/"%s/"	%s	%s/r/n",
 				lpPlayInfo->lpPostBoxItem->PostItem[cnt].szCharName,
 				lpPlayInfo->lpPostBoxItem->PostItem[cnt].szItemCode,
 				lpPlayInfo->lpPostBoxItem->PostItem[cnt].szSpeJob,
@@ -4998,7 +4998,7 @@ int rsAddPostBoxItem(rsPLAYINFO * pcUnitData, const char * ItemCode, int Spec, c
 	FILE * pFile = NULL;
 	fopen_s(&pFile, szFileName, "a+");
 	if (pFile) {
-		fprintf(pFile, "%s		%s		%d		\"%s\"\r\n", bSendToCharacter ? pcUnitData->smCharInfo.szName : "*", ItemCode, Spec, pszMessage);
+		fprintf(pFile, "%s		%s		%d		/"%s/"/r/n", bSendToCharacter ? pcUnitData->smCharInfo.szName : "*", ItemCode, Spec, pszMessage);
 		fclose(pFile);
 
 		return TRUE;
@@ -5189,7 +5189,7 @@ int SaveCloseUserRecord(char *szUserName, int Level, int Exp, int Money)
 
 	wsprintf(szFileName, "UserRecord.txt");
 
-	wsprintf(szBuff, "%s		����(%d)	����ġ(%d)	��(%d)\r\n", szUserName, Level, Exp, Money);
+	wsprintf(szBuff, "%s		����(%d)	����ġ(%d)	��(%d)/r/n", szUserName, Level, Exp, Money);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFile == INVALID_HANDLE_VALUE) return FALSE;
@@ -5215,7 +5215,7 @@ int SaveWareHouseRecord(char *szUserName, int Money, int Weight1, int Weight2)
 
 	wsprintf(szFileName, "UserRecord.txt");
 
-	wsprintf(szBuff, "ID( %s )	â���(%d)	����( %d/%d )\r\n", szUserName, Money, Weight1, Weight2);
+	wsprintf(szBuff, "ID( %s )	â���(%d)	����( %d/%d )/r/n", szUserName, Money, Weight1, Weight2);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFile == INVALID_HANDLE_VALUE) return FALSE;
@@ -5319,7 +5319,7 @@ int CheckWareHouseData(char *szFile)
 		}
 		for(cnt = cnt; cnt >= 0; cnt--)
 		{
-			if(szName[cnt] == '\\')
+			if(szName[cnt] == '//')
 			{
 				cnt++;
 				break;
@@ -5345,7 +5345,7 @@ int CheckUserDataFull()
 	for(UserCnt = 0; UserCnt < 256; UserCnt++)
 	{
 
-		wsprintf(szFindPath, "DataServer\\UserData\\%d\\*.dat", UserCnt);
+		wsprintf(szFindPath, "DataServer//UserData//%d//*.dat", UserCnt);
 
 		wsprintf(szMsgBuff, "ĳ���� Ȯ���� ( %d/255 ) - %d", UserCnt, CharCount);
 
@@ -5399,7 +5399,7 @@ int CheckWareHouseDataFull()
 	for(UserCnt = 0; UserCnt < 256; UserCnt++)
 	{
 
-		wsprintf(szFindPath, "DataServer\\WareHouse\\%d\\*.war", UserCnt);
+		wsprintf(szFindPath, "DataServer//WareHouse//%d//*.war", UserCnt);
 
 		wsprintf(szMsgBuff, "�����ۺ����� Ȯ���� ( %d/255 ) - %d", UserCnt, CharCount);
 
@@ -5420,7 +5420,7 @@ int CheckWareHouseDataFull()
 					}
 				}
 
-				wsprintf(szUserPath, "DataServer\\WareHouse\\%d\\%s", UserCnt, fd.cFileName);
+				wsprintf(szUserPath, "DataServer//WareHouse//%d//%s", UserCnt, fd.cFileName);
 				CheckWareHouseData(szUserPath);
 
 				CharCount++;
@@ -5548,7 +5548,7 @@ static char *GetWord(char *q, char *p)
 
 	while((*p != 32) && (*p != 9))
 	{
-		if(*p == '\n' || *p == '\r') break;
+		if(*p == '/n' || *p == '/r') break;
 		*q++ = *p++;
 	}
 	*q++ = 0;
@@ -5666,7 +5666,7 @@ int RestoreBackupData(char *szListFile, char *BackupPath)
 							else
 							{
 								flag = FALSE;
-								wsprintf(szLogBuff, "%s (%s) -> ���� ( �ű�ĳ�������� )\r\n", decode, strBuff);
+								wsprintf(szLogBuff, "%s (%s) -> ���� ( �ű�ĳ�������� )/r/n", decode, strBuff);
 								fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 							}
 						}
@@ -5675,24 +5675,24 @@ int RestoreBackupData(char *szListFile, char *BackupPath)
 						{
 
 
-							wsprintf(szFile, "BackupUser\\%s.dat", strBuff);
+							wsprintf(szFile, "BackupUser//%s.dat", strBuff);
 							CopyFile(szDestDataFile, szFile, TRUE);
 
 							CopyFile(szSrcDataFile, szDestDataFile, FALSE);
 
-							wsprintf(szLogBuff, "%s (%s) -> ����\r\n", decode, strBuff);
+							wsprintf(szLogBuff, "%s (%s) -> ����/r/n", decode, strBuff);
 							fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 						}
 					}
 					else
 					{
-						wsprintf(szLogBuff, "%s (%s) -> ���� ( �����̾��� )\r\n", decode, strBuff);
+						wsprintf(szLogBuff, "%s (%s) -> ���� ( �����̾��� )/r/n", decode, strBuff);
 						fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 					}
 				}
 				else
 				{
-					wsprintf(szLogBuff, "%s (%s) -> ���� ( �ҽ����Ͼ��� )\r\n", decode, strBuff);
+					wsprintf(szLogBuff, "%s (%s) -> ���� ( �ҽ����Ͼ��� )/r/n", decode, strBuff);
 					fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 				}
 			}

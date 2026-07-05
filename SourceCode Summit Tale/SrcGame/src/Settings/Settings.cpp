@@ -1,6 +1,6 @@
 #include "Settings.h"
-#include "File\File.h"
-#include "Helper\\common.h"
+#include "File/File.h"
+#include "Helper/common.h"
 #include "CLootHandler.h"
 #include "sinbaram/sinLinkHeader.h"
 
@@ -59,7 +59,7 @@ void Settings::readConfig()
 	try
 	{
 		File file("game.ini");
-		//File fileIP(".\\game\\GUI\\Opening\\Login\\UI\\cfg.ini");
+		//File fileIP(".//game//GUI//Opening//Login//UI//cfg.ini");
 
 		setWindowMode(file.readInt("Screen", "Windowed") != 0);
 
@@ -133,7 +133,7 @@ void Settings::readConfig()
 
 	catch(FileException &e)
 	{
-		Utils_Log(LOG_ERROR, const_cast<char*>(e.what()));
+// 		Utils_Log(LOG_ERROR, const_cast<char*>(e.what()));
 	}
 }
 

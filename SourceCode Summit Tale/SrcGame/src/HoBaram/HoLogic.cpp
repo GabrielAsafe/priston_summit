@@ -1,6 +1,6 @@
-#include "..\\HoBaram\\HoLinkHeader.h"
-#include "sinbaram\\sinLinkHeader.h"
-#include "..\\PlayMain.h"
+#include "../HoBaram/HoLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "../playmain.h"
 
 
 

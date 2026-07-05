@@ -40,27 +40,27 @@ int InitEffect2()
 
 	int i = 0;
 	char szBuff[128];
-	Matstun = CreateTextureMaterial("image\\Sinimage\\Effect\\stun\\Star.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	Matstun = CreateTextureMaterial("image//Sinimage//Effect//stun//Star.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
 	for(i = 0; i < 5; i++)
 	{
-		wsprintf(szBuff, "image\\Sinimage\\Effect\\IceVigo\\0%d.tga", i + 1);
+		wsprintf(szBuff, "image//Sinimage//Effect//IceVigo//0%d.tga", i + 1);
 		MatIceVigo[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
 	}
 
-	MatBossEffect[0] = CreateTextureMaterial("image\\Sinimage\\Effect\\BossMonster\\mamangjin1.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
-	MatBossEffect[1] = CreateTextureMaterial("image\\Sinimage\\Effect\\BossMonster\\mamangjin2.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
-	MatBossEffect[2] = CreateTextureMaterial("image\\Sinimage\\Effect\\BossMonster\\mamangjin3.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MatBossEffect[0] = CreateTextureMaterial("image//Sinimage//Effect//BossMonster//mamangjin1.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MatBossEffect[1] = CreateTextureMaterial("image//Sinimage//Effect//BossMonster//mamangjin2.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MatBossEffect[2] = CreateTextureMaterial("image//Sinimage//Effect//BossMonster//mamangjin3.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
-	MatParticle2[0] = CreateTextureMaterial("image\\Sinimage\\Effect\\Particle\\Par-1.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
-	MatParticle2[1] = CreateTextureMaterial("image\\Sinimage\\Effect\\Particle\\Par-5.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MatParticle2[0] = CreateTextureMaterial("image//Sinimage//Effect//Particle//Par-1.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MatParticle2[1] = CreateTextureMaterial("image//Sinimage//Effect//Particle//Par-5.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
-	MatTestParticle = CreateTextureMaterial("image\\Sinimage\\Effect\\Particle2\\TestParticle.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MatTestParticle = CreateTextureMaterial("image//Sinimage//Effect//Particle2//TestParticle.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
-	MatParticleLine = CreateTextureMaterial("image\\Sinimage\\Effect\\Particle2\\raysoflight1.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
-	MatLightEffect = CreateTextureMaterial("image\\Sinimage\\Effect\\Skill\\SwordBlast\\bal.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
-	MatSongPyeun = CreateTextureMaterial("image\\Sinimage\\Effect\\Particle2\\song.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MatParticleLine = CreateTextureMaterial("image//Sinimage//Effect//Particle2//raysoflight1.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MatLightEffect = CreateTextureMaterial("image//Sinimage//Effect//Skill//SwordBlast//bal.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MatSongPyeun = CreateTextureMaterial("image//Sinimage//Effect//Particle2//song.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	return TRUE;
 }
 
@@ -182,7 +182,7 @@ int setBossMonsterEffect(smCHAR *pChar, int ProcessCount)
 	smASE_SetPhysique(0);
 
 	cSinEffect2[Index].Flag = 1;
-	cSinEffect2[Index].sinPatMesh = smASE_Read("image\\Sinimage\\Effect\\BossMonster\\mon.ASE");
+	cSinEffect2[Index].sinPatMesh = smASE_Read("image//Sinimage//Effect//BossMonster//mon.ASE");
 	cSinEffect2[Index].CODE = SIN_EFFECT_BOSSAURA;
 	cSinEffect2[Index].Max_Time = SIN_EFFECT_NO_TIME;
 	cSinEffect2[Index].Posi.x = pChar->pX;
@@ -918,7 +918,7 @@ static char sinLine[512];
 int CheeseTestEffectImage()
 {
 
-	char *szFilePath = "Image\\SinImage\\";
+	char *szFilePath = "Image//SinImage//";
 	char szTempBuffFile[128];
 	char szTempBuff[128];
 	int  FileFormatFlag = 0;
@@ -1000,7 +1000,7 @@ int CheeseTestEffectImage()
 		if(!NextFlag && lstrcmp(sinDecode, "*�̹��������̸�") == 0)
 		{
 			p = GetWord(strBuff, p);
-			wsprintf(szTempBuff, "image\\Sinimage\\%s", strBuff);
+			wsprintf(szTempBuff, "image//Sinimage//%s", strBuff);
 			if(FileFormatFlag == 1)
 			{
 				cSinEffect2[Index].sinFace.MatNum = CreateTextureMaterial(szTempBuff, 0, 0, 0, 0, SMMAT_BLEND_LAMP);

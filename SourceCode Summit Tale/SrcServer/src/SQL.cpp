@@ -1,4 +1,4 @@
-#include "sinbaram\\sinlinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
 
 
 SQL::SQL()

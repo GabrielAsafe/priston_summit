@@ -28,7 +28,7 @@ BOOL FindFileRecursive(char *path, char *fileName)
 		{
 			if(wfd.cFileName[0] != '.')
 			{
-				wsprintf(newpath, "%s%s%s\\*.*", drive, dir, wfd.cFileName);
+				wsprintf(newpath, "%s%s%s//*.*", drive, dir, wfd.cFileName);
 				if(FindFileRecursive(newpath, fileName))
 					return TRUE;
 			}
@@ -53,7 +53,7 @@ char *FindFile(char *fileName)
 {
 	char Path[MAX_RES_PATH];
 	GetCurrentDirectory(MAX_RES_PATH, Path);
-	strcat(Path, "\\image\\Sinimage\\TestEffect\\*.*");
+	strcat(Path, "//image//Sinimage//TestEffect//*.*");
 
 
 	memset(FindFileName, 0, sizeof(FindFileName));
@@ -118,7 +118,7 @@ bool ExistAseFile(char *directory)
 		{
 			if(tempFileName[index] == '.')
 			{
-				tempFileName[index] = '\0';
+				tempFileName[index] = '/0';
 				strcpy(tempExtName, &tempFileName[index + 1]);
 				break;
 			}
@@ -152,7 +152,7 @@ void LoadResFile(char *path, bool aseExistFlag)
 		{
 			if(wfd.cFileName[0] != '.')
 			{
-				wsprintf(newpath, "%s%s%s\\*.*", drive, dir, wfd.cFileName);
+				wsprintf(newpath, "%s%s%s//*.*", drive, dir, wfd.cFileName);
 				LoadResFile(newpath, ExistAseFile(newpath));
 			}
 		}
@@ -175,7 +175,7 @@ void LoadResFile(char *path, bool aseExistFlag)
 				{
 					if(tempFileName[index] == '.')
 					{
-						tempFileName[index] = '\0';
+						tempFileName[index] = '/0';
 						strcpy(tempExtName, &tempFileName[index + 1]);
 						break;
 					}
@@ -190,13 +190,13 @@ void LoadResFile(char *path, bool aseExistFlag)
 						{
 							FILE *loadFp;
 							loadFp = fopen(AssaLoadingFile, "at");
-							fprintf(loadFp, "%s\n", fileDirectoryName);
+							fprintf(loadFp, "%s/n", fileDirectoryName);
 							fclose(loadFp);
 
 
 							FILE *errorFp;
 							errorFp = fopen(AssaErrorFile, "wt");
-							fprintf(errorFp, "%s\n", fileDirectoryName);
+							fprintf(errorFp, "%s/n", fileDirectoryName);
 							fclose(errorFp);
 						}
 						strcpy(AssaRes[AssaResCount].resName, wfd.cFileName);
@@ -238,7 +238,7 @@ void LoadResFile(char *path, bool aseExistFlag)
 					{
 						if(aseName[index] == '.')
 						{
-							aseName[index] = '\0';
+							aseName[index] = '/0';
 							strcat(aseName, ".ase");
 							break;
 						}
@@ -257,13 +257,13 @@ void LoadResFile(char *path, bool aseExistFlag)
 					{
 						FILE *loadFp;
 						loadFp = fopen(AssaLoadingFile, "at");
-						fprintf(loadFp, "%s\n", fileDirectoryName);
+						fprintf(loadFp, "%s/n", fileDirectoryName);
 						fclose(loadFp);
 
 
 						FILE *errorFp;
 						errorFp = fopen(AssaErrorFile, "wt");
-						fprintf(errorFp, "%s\n", fileDirectoryName);
+						fprintf(errorFp, "%s/n", fileDirectoryName);
 						fclose(errorFp);
 					}
 
@@ -384,10 +384,10 @@ void LoadAssaRes()
 
 	if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
 		DeleteFile(AssaLoadingFile);
-	strcpy(Path, "image\\Sinimage\\AssaEffect\\*.*");
+	strcpy(Path, "image//Sinimage//AssaEffect//*.*");
 	LoadResFile(Path, false);
 
-	strcpy(Path, "Effect\\AssaEffect\\*.*");
+	strcpy(Path, "Effect//AssaEffect//*.*");
 	LoadResFile(Path, false);
 
 	if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
@@ -1230,7 +1230,7 @@ static char sinLine[512];
 int AssaTestEffectImage()
 {
 
-	char *szFilePath = "image\\Sinimage\\AssaEffect\\AssaTest.INI";
+	char *szFilePath = "image//Sinimage//AssaEffect//AssaTest.INI";
 
 	FILE	*fp;
 	char strBuff[64];

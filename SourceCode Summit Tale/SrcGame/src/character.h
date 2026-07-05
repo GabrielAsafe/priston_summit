@@ -2,8 +2,8 @@
 #define	_CHARACTER_HEADER
 
 #include "smPacket.h"
-#include "smLib3d\smObj3d.h"
-#include "PvP\Score.h"
+#include "smLib3d/smObj3d.h"
+#include "PvP/Score.h"
 
 struct smMOTIONINFO;
 struct smTHREADSOCK;

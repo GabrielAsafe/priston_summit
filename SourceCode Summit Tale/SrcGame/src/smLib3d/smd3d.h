@@ -10,19 +10,19 @@
 #include <math.h>
 #include <float.h>
 
-#include "smdsx.h"
-#include "smsin.h"
-#include "smtype.h"
-#include "smtexture.h"
-#include "smobj3d.h"
-#include "smstgobj.h"
-#include "smstage3d.h"
-#include "smRend3d.h"
-#include "smmap3d.h"
-#include "smread3d.h"
+#include "smDsx.h"
+#include "smSin.h"
+#include "smType.h"
+#include "smTexture.h"
+#include "smObj3d.h"
+#include "smStgObj.h"
+#include "smStage3d.h"
+#include "smrend3d.h"
+#include "smMap3d.h"
+#include "smRead3d.h"
 #include "smmatrix.h"
-#include "smgeosub.h"
-#include "smjpeg.h"
+#include "smGeosub.h"
+#include "smJpeg.h"
 
 int smPlayWindowMessage();
 

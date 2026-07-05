@@ -1,3 +1,6 @@
+struct sSKILL;
+class smCHAR;
+
 
 
 int OpenPlaySkill(sSKILL *lpSkill);

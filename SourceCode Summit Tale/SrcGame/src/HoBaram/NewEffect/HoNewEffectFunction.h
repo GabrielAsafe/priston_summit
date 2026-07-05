@@ -1,7 +1,7 @@
 #ifndef _HO_NEW_EFFECT_FUNCTION_H_
 #define _HO_NEW_EFFECT_FUNCTION_H_
 
-#include "..\\..\\smlib3d\\smd3d.h"
+#include "../../smLib3d/smd3d.h"
 #include "smwsock.h"
 #include "character.h"
 

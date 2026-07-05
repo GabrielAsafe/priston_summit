@@ -168,7 +168,7 @@ void CChatBox::AddMessage( std::string strMessage, EChatColor eChatColor, ItemDa
 						pBaseWindow->SetBox( Rectangle2D( 5, 0, 275, pTextMessage->GetHeightText() ) );
 
 						UI::ImageBox_ptr pEmoteIcon = std::make_shared<UI::ImageBox>( Rectangle2D( pTextMessage->GetTextWidth(), 0, 103, 103 ) );
-						pEmoteIcon->SetImage( UI::ImageLoader::LoadImage( "game\\textures\\particles\\emote%d.png", iEmoteIndex ) );
+						pEmoteIcon->SetImage( UI::ImageLoader::LoadImage( "game//textures//particles//emote%d.png", iEmoteIndex ) );
 						pEmoteIcon->SetScale( 0.16f );
 						pBaseWindow->AddElement( pEmoteIcon );
 					}
@@ -739,14 +739,14 @@ void CChatBox::BuildWindow()
 
 	UI::ImageBox_ptr pImageChatBoxBar = std::make_shared<UI::ImageBox>( Rectangle2D( 0, 66, 295, 3 ) );
 	pImageChatBoxBar->SetID( IMAGEID_ChatBoxBar );
-	pImageChatBoxBar->SetImage( UI::ImageLoader::LoadImage( "game\\images\\UI\\hud\\chatbox\\chatbar.png" ) );
+	pImageChatBoxBar->SetImage( UI::ImageLoader::LoadImage( "game//images//UI//hud//chatbox//chatbar.png" ) );
 	pWindow1->AddElement( pImageChatBoxBar );
 
 	for( size_t i = 0; i < 6; i++ )
 	{
 		UI::List_ptr pListChat = std::make_shared<UI::List>( Rectangle2D( 0, 74, 280, 100 ) );
 		pListChat->SetID( LISTID_ChatAll + i );
-		pListChat->MakeScrollBar( Rectangle2D( 285, 0, 6, 105 ), "game\\images\\UI\\scroll\\barbg_v.png", "game\\images\\UI\\scroll\\icon_2.png" );
+		pListChat->MakeScrollBar( Rectangle2D( 285, 0, 6, 105 ), "game//images//UI//scroll//barbg_v.png", "game//images//UI//scroll//icon_2.png" );
 		pListChat->SetForceDown( TRUE );
 		pListChat->SetScrollFirst( TRUE );
 
@@ -760,7 +760,7 @@ void CChatBox::BuildWindow()
 
 	UI::List_ptr pListChatNotice = std::make_shared<UI::List>( Rectangle2D( 0, 2, 280, 62 ) );
 	pListChatNotice->SetID( LISTID_ChatNotice );
-	pListChatNotice->MakeScrollBar( Rectangle2D( 285, 2, 6, 54 ), "game\\images\\UI\\scroll\\barbg_v.png", "game\\images\\UI\\scroll\\icon_2.png" );
+	pListChatNotice->MakeScrollBar( Rectangle2D( 285, 2, 6, 54 ), "game//images//UI//scroll//barbg_v.png", "game//images//UI//scroll//icon_2.png" );
 	pListChatNotice->SetForceDown( TRUE );
 	pWindow1->AddElement( pListChatNotice );
 
@@ -778,7 +778,7 @@ void CChatBox::BuildWindow()
 		UI::Button_ptr pButtonTabAll = std::make_shared<UI::Button>( Rectangle2D( iBaseX, iBaseY, 43, 15 ) );
 		pButtonTabAll->SetGroup( pGroupTabs );
 		pButtonTabAll->SetID( BUTTONID_TabAll );
-		pButtonTabAll->SetActiveImage( UI::ImageLoader::LoadActiveImage( "game\\images\\UI\\hud\\chatbox\\all.png", "game\\images\\UI\\hud\\chatbox\\all_.png" ) );
+		pButtonTabAll->SetActiveImage( UI::ImageLoader::LoadActiveImage( "game//images//UI//hud//chatbox//all.png", "game//images//UI//hud//chatbox//all_.png" ) );
 		pButtonTabAll->SetEvent( UI::Event::Build( std::bind( &CChatBox::OnSelectChatBoxTab, this, pButtonTabAll->GetID() ) ));
 		pButtonTabAll->SetSelect( TRUE );
 		pButtonTabAll->SetSelected( TRUE );
@@ -787,7 +787,7 @@ void CChatBox::BuildWindow()
 		UI::Button_ptr pButtonTabClan = std::make_shared<UI::Button>( Rectangle2D( iBaseX + 45, iBaseY, 43, 15 ) );
 		pButtonTabClan->SetGroup( pGroupTabs );
 		pButtonTabClan->SetID( BUTTONID_TabClan );
-		pButtonTabClan->SetActiveImage( UI::ImageLoader::LoadActiveImage( "game\\images\\UI\\hud\\chatbox\\clan.png", "game\\images\\UI\\hud\\chatbox\\clan_.png" ) );
+		pButtonTabClan->SetActiveImage( UI::ImageLoader::LoadActiveImage( "game//images//UI//hud//chatbox//clan.png", "game//images//UI//hud//chatbox//clan_.png" ) );
 		pButtonTabClan->SetEvent( UI::Event::Build( std::bind( &CChatBox::OnSelectChatBoxTab, this, pButtonTabClan->GetID() ) ) );
 		pButtonTabClan->SetSelect( TRUE );
 		pWindow1->AddElement( pButtonTabClan );
@@ -795,7 +795,7 @@ void CChatBox::BuildWindow()
 		UI::Button_ptr pButtonTabParty = std::make_shared<UI::Button>( Rectangle2D( iBaseX + 90, iBaseY, 43, 15 ) );
 		pButtonTabParty->SetGroup( pGroupTabs );
 		pButtonTabParty->SetID( BUTTONID_TabParty );
-		pButtonTabParty->SetActiveImage( UI::ImageLoader::LoadActiveImage( "game\\images\\UI\\hud\\chatbox\\party.png", "game\\images\\UI\\hud\\chatbox\\party_.png" ) );
+		pButtonTabParty->SetActiveImage( UI::ImageLoader::LoadActiveImage( "game//images//UI//hud//chatbox//party.png", "game//images//UI//hud//chatbox//party_.png" ) );
 		pButtonTabParty->SetEvent( UI::Event::Build( std::bind( &CChatBox::OnSelectChatBoxTab, this, pButtonTabParty->GetID() ) ) );
 		pButtonTabParty->SetSelect( TRUE );
 		pWindow1->AddElement( pButtonTabParty );
@@ -803,7 +803,7 @@ void CChatBox::BuildWindow()
 		UI::Button_ptr pButtonTabRaid = std::make_shared<UI::Button>( Rectangle2D( iBaseX + 135, iBaseY, 43, 15 ) );
 		pButtonTabRaid->SetGroup( pGroupTabs );
 		pButtonTabRaid->SetID( BUTTONID_TabRaid );
-		pButtonTabRaid->SetActiveImage( UI::ImageLoader::LoadActiveImage( "game\\images\\UI\\hud\\chatbox\\raid.png", "game\\images\\UI\\hud\\chatbox\\raid_.png" ) );
+		pButtonTabRaid->SetActiveImage( UI::ImageLoader::LoadActiveImage( "game//images//UI//hud//chatbox//raid.png", "game//images//UI//hud//chatbox//raid_.png" ) );
 		pButtonTabRaid->SetEvent( UI::Event::Build( std::bind( &CChatBox::OnSelectChatBoxTab, this, pButtonTabRaid->GetID() ) ) );
 		pButtonTabRaid->SetSelect( TRUE );
 		pWindow1->AddElement( pButtonTabRaid );
@@ -811,7 +811,7 @@ void CChatBox::BuildWindow()
 		UI::Button_ptr pButtonTabTrade = std::make_shared<UI::Button>( Rectangle2D( iBaseX + 180, iBaseY, 43, 15 ) );
 		pButtonTabTrade->SetGroup( pGroupTabs );
 		pButtonTabTrade->SetID( BUTTONID_TabTrade );
-		pButtonTabTrade->SetActiveImage( UI::ImageLoader::LoadActiveImage( "game\\images\\UI\\hud\\chatbox\\trade.png", "game\\images\\UI\\hud\\chatbox\\trade_.png" ) );
+		pButtonTabTrade->SetActiveImage( UI::ImageLoader::LoadActiveImage( "game//images//UI//hud//chatbox//trade.png", "game//images//UI//hud//chatbox//trade_.png" ) );
 		pButtonTabTrade->SetEvent( UI::Event::Build( std::bind( &CChatBox::OnSelectChatBoxTab, this, pButtonTabTrade->GetID() ) ) );
 		pButtonTabTrade->SetSelect( TRUE );
 		pWindow1->AddElement( pButtonTabTrade );
@@ -819,7 +819,7 @@ void CChatBox::BuildWindow()
 		UI::Button_ptr pButtonTabPM = std::make_shared<UI::Button>( Rectangle2D( iBaseX + 225, iBaseY, 43, 15 ) );
 		pButtonTabPM->SetGroup( pGroupTabs );
 		pButtonTabPM->SetID( BUTTONID_TabPM );
-		pButtonTabPM->SetActiveImage( UI::ImageLoader::LoadActiveImage( "game\\images\\UI\\hud\\chatbox\\pm.png", "game\\images\\UI\\hud\\chatbox\\pm_.png" ) );
+		pButtonTabPM->SetActiveImage( UI::ImageLoader::LoadActiveImage( "game//images//UI//hud//chatbox//pm.png", "game//images//UI//hud//chatbox//pm_.png" ) );
 		pButtonTabPM->SetEvent( UI::Event::Build( std::bind( &CChatBox::OnSelectChatBoxTab, this, pButtonTabPM->GetID() ) ) );
 		pButtonTabPM->SetSelect( TRUE );
 		pWindow1->AddElement( pButtonTabPM );
@@ -833,13 +833,13 @@ void CChatBox::BuildWindow()
 	pInputMessage->SetSelect( TRUE );
 	pInputMessage->SetMaxLength( MAX_CHATLENGTH );
 	pInputMessage->SetTextAlign( EAlign::ALIGN_Left, EAlign::ALIGN_Middle );
-	pInputMessage->SetImage( UI::ImageLoader::LoadImage( "game\\images\\UI\\hud\\chatbox\\input.png" ) );
+	pInputMessage->SetImage( UI::ImageLoader::LoadImage( "game//images//UI//hud//chatbox//input.png" ) );
 	pInputMessage->BindActionKeyboard( UI::ActionKeyboard( VK_RETURN, UI::Event::Build( std::bind( &CChatBox::OnEnterKeyPressed, this, std::placeholders::_1 ) ) ) );
 	pWindow1->AddElement( pInputMessage );
 
 	UI::Button_ptr pButtonSendMessage = std::make_shared<UI::Button>( Rectangle2D( 270, 195, 25, 23 ) );
 	pButtonSendMessage->SetID( BUTTONID_SendMessage );
-	pButtonSendMessage->SetActiveImage( UI::ImageLoader::LoadActiveImage( "game\\images\\UI\\hud\\chatbox\\send.png", "game\\images\\UI\\hud\\chatbox\\send_.png" ) );
+	pButtonSendMessage->SetActiveImage( UI::ImageLoader::LoadActiveImage( "game//images//UI//hud//chatbox//send.png", "game//images//UI//hud//chatbox//send_.png" ) );
 	pButtonSendMessage->SetEvent( UI::Event::Build( std::bind( &CChatBox::OnEnterKeyPressed, this, std::placeholders::_1 ) ) );
 	pButtonSendMessage->SetSelect( TRUE );
 	pWindow1->AddElement( pButtonSendMessage );
@@ -926,7 +926,7 @@ BOOL CChatBox::OnEmoteCommand( std::string & strMessage, UnitData * pcUnitData )
 		if( strMessage[0] == 'e' && isdigit(strMessage[1]) && iEmoteIndex > 0 && iEmoteIndex <= MAX_EMOTELIST )
 		{
 			bRet			= TRUE;
-			strEffectPath	= FormatString("game\\scripts\\particles\\Emote%d.luac", iEmoteIndex );
+			strEffectPath	= FormatString("game//scripts//particles//Emote%d.luac", iEmoteIndex );
 		}
 	}
 

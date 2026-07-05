@@ -1,6 +1,6 @@
 #pragma once 
 
-#include "smLib3d\smDsx.h"
+#include "smLib3d/smDsx.h"
 
 struct JOB_DATA_CODE;
 struct sITEM;

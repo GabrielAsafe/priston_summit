@@ -1,5 +1,5 @@
-#include "utils_filesystem.h"
-#include "utils_logging.h"
+#include "modules/Helper/Utils/utils_filesystem.h"
+#include "modules/Helper/Utils/utils_logging.h"
 
 FILE* Utils_FileOpen(char* path, char* mode, DWORD LOG_FLAG)
 {

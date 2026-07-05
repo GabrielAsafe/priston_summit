@@ -2281,7 +2281,7 @@ int	smSTAGE3D::LoadFile(char *szFile)
 
 	if(!hFile)
 	{
-		Utils_Log(LOG_ERROR, "Cannot open StageFile(%s)", szFile);
+// 		Utils_Log(LOG_ERROR, "Cannot open StageFile(%s)", szFile);
 		return FALSE;
 	}
 
@@ -2291,7 +2291,7 @@ int	smSTAGE3D::LoadFile(char *szFile)
 
 	if(lstrcmp(FileHeader.szHeader, szSMDFileHeader) != 0)
 	{
-		Utils_Log(LOG_ERROR, "Wrong StageFile Header (%s)", szFile);
+// 		Utils_Log(LOG_ERROR, "Wrong StageFile Header (%s)", szFile);
 		CloseHandle(hFile);
 		return FALSE;
 	}

@@ -60,7 +60,7 @@ int CreateWinIntThread(void)
 
 
 	CreateDirectory("SaveData", NULL);
-	CreateDirectory("SaveData\\TalkWav", NULL);
+	CreateDirectory("SaveData//TalkWav", NULL);
 
 
 	return TRUE;

@@ -5,7 +5,7 @@
 
 #include "clan_Enti.h"
 
-#define HELPCONTENT_TXT "image\\clanImage\\Help\\Help.msg"
+#define HELPCONTENT_TXT "image//clanImage//Help//Help.msg"
 
 class CLANEntity_chip : public CLANEntity
 {

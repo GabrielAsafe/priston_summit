@@ -8,20 +8,20 @@
 
 #ifdef USE_PROSTONTALE		
 
-#include "sinbaram\\SinLinkHeader.h"
-#include "HoBaram\\HoLinkHeader.h"
-#include "Language\\language.h"
-#include "HoBaram\\HoTextFile.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "Language/language.h"
+#include "HoBaram/HoTextFile.h"
 #endif
 
 #include "tjclan.h"
 #include "cE_chip.h"
-#include "tjscroll.h"
-#include "cE_Report.h"
+#include "tjScroll.h"
+#include "cE_report.h"
 #include "cE_CViewClanInfo.h"
-#include "..\\isaocheck\\auth.h"
-#include "..\\isaocheck\\isaocheck.h"
-#include "..\\ygy\\ygyheader.h"
+#include "../isaocheck/auth.h"
+#include "../isaocheck/isaocheck.h"
+#include "../Ygy/YgyHeader.h"
 
 
 CLANEntity_chip::CLANEntity_chip()
@@ -6182,7 +6182,7 @@ BOOL CLANEntity_chip::CheckMark(char* filename)
 	char szTemp[50];
 	memset(szTemp, 0, sizeof(char) * 50);
 
-	wsprintf(szTemp, "image\\clanDATA\\%s.bmp", filename);
+	wsprintf(szTemp, "image//clanDATA//%s.bmp", filename);
 	hFind = FindFirstFile(szTemp, &wfd);
 
 	if(hFind == INVALID_HANDLE_VALUE)
@@ -6199,7 +6199,7 @@ BOOL CLANEntity_chip::SearchMarkClient(char *clanName)
 	char szTemp[50];
 	memset(szTemp, 0, sizeof(char) * 50);
 
-	wsprintf(szTemp, "image\\clanDATA\\%s.bmp", clanName);
+	wsprintf(szTemp, "image//clanDATA//%s.bmp", clanName);
 	hFind = FindFirstFile(szTemp, &wfd);
 
 	if(hFind == INVALID_HANDLE_VALUE)
@@ -6228,7 +6228,7 @@ BOOL CLANEntity_chip::SearchMarkServer(char *clanName)
 	char szTemp[50];
 	memset(szTemp, 0, sizeof(char) * 50);
 
-	wsprintf(szTemp, "image\\clanDATA\\%s.bmp", clanName);
+	wsprintf(szTemp, "image//clanDATA//%s.bmp", clanName);
 	hFind = FindFirstFile(szTemp, &wfd);
 
 	if(hFind == INVALID_HANDLE_VALUE)

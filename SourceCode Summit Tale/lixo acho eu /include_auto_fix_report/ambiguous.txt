@@ -1,0 +1,1068 @@
+sinbaram\\sinitem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/sinbaram/sinItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/sinbaram/sinItem.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+actiongame.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/ActionGame.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/ActionGame.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+Drawsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/drawsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/drawsub.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+areaserver.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/AreaServer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/AreaServer.h
+Drawsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/drawsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/drawsub.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+Language/Brazil/B_JobCode.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Brazil/b_JobCode.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Brazil/b_JobCode.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/help.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/Help.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/Help.h
+skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+TJBOY/park/ParkDXplayer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/park/ParkDXPlayer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/park/ParkDXPlayer.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+hoBaram/holinkheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/HoLinkHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/HoLinkHeader.h
+skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+areaserver.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/AreaServer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/AreaServer.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+hoBaram/holinkheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/HoLinkHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/HoLinkHeader.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+actiongame.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/ActionGame.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/ActionGame.h
+TJBOY//Park/MicVolume.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/park/MicVolume.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/park/MicVolume.h
+CRollHandler.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/BattleEvents/CRollHandler.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/CRollHandler.h
+WinDump.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Dump/WinDump.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Dump/WinDump.h
+SinBaram/AssaEffect.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/sinbaram/AssaEffect.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/sinbaram/AssaEffect.h
+../smReg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smreg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smreg.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+smpacket.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared/smPacket.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared2/smPacket.h
+HoBaram/HoLogic.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/HoLogic.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/HoLogic.h
+Park/HoMessageBox.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Park/HoMessageBox.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Park/HoMessageBox.h
+HoBaram/HoOpening.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/HoOpening.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/HoOpening.h
+HoBaram/HoLogin.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/HoLogin.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/HoLogin.h
+HoBaram/HoParty.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/HoParty.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/HoParty.h
+../PlayMain.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/playmain.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/playmain.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+Login.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Login/Login.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Priston/Login.h
+OnServer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Server/onserver.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/onserver.h
+Language/Chinese/c_TimeLimit.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Chinese/C_TimeLimit.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Chinese/C_TimeLimit.h
+e_serverlog.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Server/E_serverlog.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/E_serverlog.h
+Language/Brazil/B_PartyMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Brazil/b_PartyMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Brazil/b_PartyMsg.h
+partymsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Server/PartyMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/PartyMsg.h
+Language/Brazil/B_ServerMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Brazil/b_ServerMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Brazil/b_ServerMsg.h
+OnServer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Server/onserver.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/onserver.h
+../veitnam/v_event.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/veitnam/v_event.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/veitnam/v_event.h
+mmSTREAM.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Dependency/DirectX9/Include/mmstream.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/mmstream.h
+mmSTREAM.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Dependency/DirectX9/Include/mmstream.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/mmstream.h
+ddSTREAM.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Dependency/DirectX9/Include/ddstream.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/ddstream.h
+auSTREAM.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Dependency/DirectX9/Include/austream.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/austream.h
+Language/Language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/language.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/boost/predef/language.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+Language/Language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/language.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/boost/predef/language.h
+Language/chinese/C_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Chinese/C_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Chinese/C_sinCraftItem.h
+Language/Taiwan/T_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/taiwan/T_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/taiwan/T_sinCraftItem.h
+Language/English/E_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/English/e_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/English/e_sinCraftItem.h
+Language/Taiwan/T_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/taiwan/T_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/taiwan/T_sinCraftItem.h
+Language/THAI/TH_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/thai/th_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/thai/th_sinCraftItem.h
+Language/VEITNAM/V_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/veitnam/v_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/veitnam/v_sinCraftItem.h
+B_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared/b_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared2/b_sinCraftItem.h
+Language/ARGENTINA/A_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Argentina/a_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Argentina/a_sinCraftItem.h
+Language/Language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/language.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/boost/predef/language.h
+Language/chinese/C_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Chinese/C_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Chinese/C_sinCraftItem.h
+Language/Taiwan/T_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/taiwan/T_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/taiwan/T_sinCraftItem.h
+Language/English/E_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/English/e_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/English/e_sinCraftItem.h
+Language/THAI/th_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/thai/th_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/thai/th_sinCraftItem.h
+../VEITNAM/V_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/veitnam/v_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/veitnam/v_sinCraftItem.h
+B_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared/b_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared2/b_sinCraftItem.h
+Language/ARGENTINA/A_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Argentina/a_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Argentina/a_sinCraftItem.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/Help.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/Help.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/Help.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+smpacket.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared/smPacket.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared2/smPacket.h
+haPremiumItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/sinbaram/HaPremiumItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/sinbaram/HaPremiumItem.h
+../skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/clan_Enti.h
+Language/Language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/language.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/boost/predef/language.h
+Language/chinese/C_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Chinese/C_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Chinese/C_sinMsg.h
+Language/Taiwan/T_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/taiwan/T_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/taiwan/T_sinMsg.h
+Language/English/E_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/English/e_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/English/e_sinMsg.h
+Language/THAI/TH_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/thai/th_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/thai/th_sinMsg.h
+Language/VEITNAM/V_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/veitnam/v_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/veitnam/v_sinMsg.h
+Language/Brazil/B_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Brazil/b_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Brazil/b_sinMsg.h
+Language/ARGENTINA/A_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Argentina/a_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Argentina/a_sinMsg.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/clan_Enti.h
+../skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+Language/Language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/language.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/boost/predef/language.h
+Language/Brazil/B_sinSkill_Info.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Brazil/b_sinSkill_Info.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Brazil/b_sinSkill_Info.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/clan_Enti.h
+tjboy/isaocheck/auth.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/isaocheck/auth.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/isaocheck/auth.h
+../bellatraFontEffect.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/BellatraFontEffect.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/BellatraFontEffect.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/Help.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/Help.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/Help.h
+smobj3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smObj3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smObj3d.h
+smstgobj.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smStgObj.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smStgObj.h
+smstage3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smStage3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smStage3d.h
+smRend3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smrend3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smrend3d.h
+smmap3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smMap3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smMap3d.h
+smread3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smRead3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smRead3d.h
+smgeosub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smGeosub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smGeosub.h
+smjpeg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smJpeg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smJpeg.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+../Park/MicVolume.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/park/MicVolume.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/park/MicVolume.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+cE_Report.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/cE_report.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/cE_report.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+clan_enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/clan_Enti.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+clan_enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/clan_Enti.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+cE_Cjoin.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/cE_CJoin.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/cE_CJoin.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+../Language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/language.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/boost/predef/language.h
+../chinese/C_TalkText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Chinese/C_TalkText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Chinese/C_TalkText.h
+../Thai/Th_TalkText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/thai/th_TalkText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/thai/th_TalkText.h
+../Language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/language.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/boost/predef/language.h
+../chinese/C_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Chinese/C_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Chinese/C_VolText.h
+../Thai/Th_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/thai/th_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/thai/th_VolText.h
+../BRAZIL/b_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Brazil/b_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Brazil/b_VolText.h
+../ARGENTINA/a_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Argentina/a_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Argentina/a_VolText.h
+../HoAssaParticleEffect.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/hoAssaParticleEffect.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/hoAssaParticleEffect.h
+Lua/src/lua.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Library/LuaSrc/Lua/lua.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/NewEffect/Script/lua/Win32/lua.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/NewEffect/Script/lua/lua.h
+Lua/src/lauxlib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Library/LuaSrc/Lua/lauxlib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/NewEffect/Script/lua/Win32/lauxlib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/NewEffect/Script/lua/lauxlib.h
+Lua/src/lualib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Library/LuaSrc/Lua/lualib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/NewEffect/Script/lua/Win32/lualib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/NewEffect/Script/lua/lualib.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+actiongame.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/ActionGame.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/ActionGame.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+server/OnServer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Server/onserver.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/onserver.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+server/OnServer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Server/onserver.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/onserver.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+areaserver.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/AreaServer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/AreaServer.h
+Drawsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/drawsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/drawsub.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+Language/Brazil/B_JobCode.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Brazil/b_JobCode.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Brazil/b_JobCode.h
+server/OnServer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Server/onserver.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/onserver.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/help.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/Help.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/Help.h
+skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+TJBOY/park/ParkDXplayer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/park/ParkDXPlayer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/park/ParkDXPlayer.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+server/OnServer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Server/onserver.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/onserver.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+hoBaram/holinkheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/HoLinkHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/HoLinkHeader.h
+skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+areaserver.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/AreaServer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/AreaServer.h
+OnServer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Server/onserver.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/onserver.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+hoBaram/holinkheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/HoLinkHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/HoLinkHeader.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+actiongame.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/ActionGame.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/ActionGame.h
+TJBOY//Park/MicVolume.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/park/MicVolume.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/park/MicVolume.h
+Skills/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+WinDump.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Dump/WinDump.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Dump/WinDump.h
+SinBaram/AssaEffect.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/sinbaram/AssaEffect.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/sinbaram/AssaEffect.h
+../smReg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smreg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smreg.h
+Sound/dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Sound/Dxwav.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Sound/Dxwav.h
+smpacket.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared/smPacket.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared2/smPacket.h
+HoBaram/HoLogic.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/HoLogic.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/HoLogic.h
+Park/HoMessageBox.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Park/HoMessageBox.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Park/HoMessageBox.h
+HoBaram/HoOpening.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/HoOpening.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/HoOpening.h
+HoBaram/HoLogin.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/HoLogin.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/HoLogin.h
+HoBaram/HoParty.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/HoParty.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/HoParty.h
+../PlayMain.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/playmain.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/playmain.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+Priston/Login.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Login/Login.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Priston/Login.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+CRollHandler.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/BattleEvents/CRollHandler.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/CRollHandler.h
+Priston/Login.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Login/Login.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Priston/Login.h
+OnServer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Server/onserver.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/onserver.h
+CRollHandler.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/BattleEvents/CRollHandler.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/CRollHandler.h
+Skills/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+Priston/Login.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Login/Login.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Priston/Login.h
+Language/Chinese/c_TimeLimit.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Chinese/C_TimeLimit.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Chinese/C_TimeLimit.h
+e_serverlog.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Server/E_serverlog.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/E_serverlog.h
+Language/Brazil/B_PartyMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Brazil/b_PartyMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Brazil/b_PartyMsg.h
+partymsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Server/PartyMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/PartyMsg.h
+Language/Brazil/B_ServerMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Brazil/b_ServerMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Brazil/b_ServerMsg.h
+OnServer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Server/onserver.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/onserver.h
+OnServer.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Server/onserver.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Server/onserver.h
+../veitnam/v_event.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/veitnam/v_event.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/veitnam/v_event.h
+mmSTREAM.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Dependency/DirectX9/Include/mmstream.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/mmstream.h
+mmSTREAM.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Dependency/DirectX9/Include/mmstream.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/mmstream.h
+ddSTREAM.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Dependency/DirectX9/Include/ddstream.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/ddstream.h
+auSTREAM.H
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Dependency/DirectX9/Include/austream.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/austream.h
+Language/Language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/language.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/boost/predef/language.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+Language/Language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/language.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/boost/predef/language.h
+Language/chinese/C_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Chinese/C_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Chinese/C_sinCraftItem.h
+Language/Taiwan/T_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/taiwan/T_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/taiwan/T_sinCraftItem.h
+Language/English/E_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/English/e_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/English/e_sinCraftItem.h
+Language/Taiwan/T_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/taiwan/T_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/taiwan/T_sinCraftItem.h
+Language/THAI/TH_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/thai/th_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/thai/th_sinCraftItem.h
+Language/VEITNAM/V_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/veitnam/v_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/veitnam/v_sinCraftItem.h
+B_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared/b_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared2/b_sinCraftItem.h
+Language/ARGENTINA/A_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Argentina/a_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Argentina/a_sinCraftItem.h
+Language/Language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/language.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/boost/predef/language.h
+Language/chinese/C_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Chinese/C_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Chinese/C_sinCraftItem.h
+Language/Taiwan/T_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/taiwan/T_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/taiwan/T_sinCraftItem.h
+Language/English/E_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/English/e_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/English/e_sinCraftItem.h
+Language/THAI/th_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/thai/th_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/thai/th_sinCraftItem.h
+../VEITNAM/V_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/veitnam/v_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/veitnam/v_sinCraftItem.h
+B_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared/b_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared2/b_sinCraftItem.h
+Language/ARGENTINA/A_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Argentina/a_sinCraftItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Argentina/a_sinCraftItem.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/Help.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/Help.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/Help.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+smpacket.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared/smPacket.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Shared2/smPacket.h
+haPremiumItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/sinbaram/HaPremiumItem.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/sinbaram/HaPremiumItem.h
+../skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/clan_Enti.h
+Language/Language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/language.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/boost/predef/language.h
+Language/chinese/C_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Chinese/C_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Chinese/C_sinMsg.h
+Language/Taiwan/T_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/taiwan/T_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/taiwan/T_sinMsg.h
+Language/English/E_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/English/e_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/English/e_sinMsg.h
+Language/THAI/TH_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/thai/th_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/thai/th_sinMsg.h
+Language/VEITNAM/V_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/veitnam/v_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/veitnam/v_sinMsg.h
+Language/Brazil/B_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Brazil/b_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Brazil/b_sinMsg.h
+Language/ARGENTINA/A_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Argentina/a_sinMsg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Argentina/a_sinMsg.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/clan_Enti.h
+../skillsub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/SkillSub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/SkillSub.h
+sinSkill_Infoini.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/sinbaram/sinSkill_InfoIni.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/sinSkill_InfoIni.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/sinbaram/sinSkill_InfoIni.h
+Language/Language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/language.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/boost/predef/language.h
+Language/Brazil/B_sinSkill_Info.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Brazil/b_sinSkill_Info.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Brazil/b_sinSkill_Info.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/clan_Enti.h
+tjboy/isaocheck/auth.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/isaocheck/auth.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/isaocheck/auth.h
+../bellatraFontEffect.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/BellatraFontEffect.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/BellatraFontEffect.h
+tjboy/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjclan.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjclan.h
+tjboy/clanmenu/Help.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/Help.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/Help.h
+smobj3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smObj3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smObj3d.h
+smstgobj.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smStgObj.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smStgObj.h
+smstage3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smStage3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smStage3d.h
+smRend3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smrend3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smrend3d.h
+smmap3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smMap3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smMap3d.h
+smread3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smRead3d.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smRead3d.h
+smgeosub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smGeosub.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smGeosub.h
+smjpeg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/smLib3d/smJpeg.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/smLib3d/smJpeg.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+../Park/MicVolume.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/park/MicVolume.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/park/MicVolume.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+cE_Report.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/cE_report.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/cE_report.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+clan_enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/clan_Enti.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+clan_enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/clan_Enti.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/clan_Enti.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+cE_Cjoin.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/cE_CJoin.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/cE_CJoin.h
+../ygy/ygyheader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/Ygy/YgyHeader.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/Ygy/YgyHeader.h
+tjscroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/TJBOY/clanmenu/tjScroll.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/TJBOY/clanmenu/tjScroll.h
+../Language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/language.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/boost/predef/language.h
+../chinese/C_TalkText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Chinese/C_TalkText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Chinese/C_TalkText.h
+../Thai/Th_TalkText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/thai/th_TalkText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/thai/th_TalkText.h
+../Language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/language.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/language.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/boost/predef/language.h
+../chinese/C_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Chinese/C_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Chinese/C_VolText.h
+../Thai/Th_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/thai/th_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/thai/th_VolText.h
+../BRAZIL/b_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Brazil/b_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Brazil/b_VolText.h
+../ARGENTINA/a_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Language/Argentina/a_VolText.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/Language/Argentina/a_VolText.h
+Script/Lua/lua.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Library/LuaSrc/Lua/lua.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/NewEffect/Script/lua/Win32/lua.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/NewEffect/Script/lua/lua.h
+Script/Lua/lauxlib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Library/LuaSrc/Lua/lauxlib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/NewEffect/Script/lua/Win32/lauxlib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/NewEffect/Script/lua/lauxlib.h
+Script/Lua/lualib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Library/LuaSrc/Lua/lualib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/NewEffect/Script/lua/Win32/lualib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/NewEffect/Script/lua/lualib.h
+../HoAssaParticleEffect.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/hoAssaParticleEffect.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/hoAssaParticleEffect.h
+Lua/src/lua.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Library/LuaSrc/Lua/lua.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/NewEffect/Script/lua/Win32/lua.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/NewEffect/Script/lua/lua.h
+Lua/src/lauxlib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Library/LuaSrc/Lua/lauxlib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/NewEffect/Script/lua/Win32/lauxlib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/NewEffect/Script/lua/lauxlib.h
+Lua/src/lualib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/Library/LuaSrc/Lua/lualib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcGame/src/HoBaram/NewEffect/Script/lua/Win32/lualib.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/SrcServer/src/HoBaram/NewEffect/Script/lua/lualib.h
+BdaTypes.h
+  /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/Dependency/DirectX9/Include/bdatypes.h
+  /usr/x86_64-w64-mingw32/sys-root/mingw/include/bdatypes.h

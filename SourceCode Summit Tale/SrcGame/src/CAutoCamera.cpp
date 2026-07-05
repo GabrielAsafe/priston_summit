@@ -4,7 +4,7 @@
 
 
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "CAutoCamera.h"
 
 

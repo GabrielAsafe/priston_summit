@@ -1,5 +1,5 @@
 #include <windows.h>
-#include <Imagehlp.h>
+#include <imagehlp.h>
 #include "WinDump.h"
 #include <string>
 
@@ -37,7 +37,7 @@ void create_minidump(struct _EXCEPTION_POINTERS* apExceptionInfo)
 			M.ExceptionPointers = apExceptionInfo;  //got by GetExceptionInformation()
 			M.ClientPointers = 0;		
 
-			hDump_File = CreateFileA("Configs\\Crash.dmp", GENERIC_WRITE, 0,
+			hDump_File = CreateFileA("Configs//Crash.dmp", GENERIC_WRITE, 0,
 									 NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
 			const DWORD Flags = MiniDumpWithFullMemory |

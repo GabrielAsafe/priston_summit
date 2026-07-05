@@ -1017,13 +1017,6 @@ typedef struct _XIGNCODE_TempData{
 #define smTRANSCODE_XIGNCODE_START		0x48470500
 
 
-typedef struct _WSABUF {
-	u_long      len;     
-	char FAR *  buf;     
-} WSABUF, FAR * LPWSABUF;
-
-
-
 //////////////////// ¿¢½ºÆ®·¦ ////////////////////
 #ifdef _xTrap_GUARD
 
@@ -2762,3 +2755,4 @@ struct	sSOD_SCORE {
 #define	MONSTER_CLASS_GHOST			300
 
 #endif
+

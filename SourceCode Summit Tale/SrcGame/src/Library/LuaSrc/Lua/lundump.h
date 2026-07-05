@@ -19,7 +19,7 @@ void luaU_dump (lua_State* L, const Proto* Main, lua_Chunkwriter w, void* data);
 void luaU_print (const Proto* Main);
 
 
-#define	LUA_SIGNATURE	"\033Lua"	
+#define	LUA_SIGNATURE	"/033Lua"	
 #define	VERSION		0x50		
 #define	VERSION0	0x50		
 

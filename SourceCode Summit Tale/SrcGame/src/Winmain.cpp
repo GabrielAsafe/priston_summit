@@ -9,40 +9,40 @@
 #include <iostream>
 #include <math.h>
 #include <stdio.h>
-#include <ZMOUSE.H>
+#include <zmouse.h>
 #include <process.h>
 #include "cracker.h"
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "smwsock.h"
 #include "smreg.h"
 
 #include "character.h"
 #include "playmain.h"
-#include "Sound\\dxwav.h"
+#include "Sound/Dxwav.h"
 #include "effectsnd.h"
 #include "fileread.h"
 #include "netplay.h"
 #include "makeshadow.h"
 #include "particle.h"
 #include "field.h"
-#include "hoBaram\\holinkheader.h"
+#include "HoBaram/HoLinkHeader.h"
 
-#include "tjboy\\clanmenu\\tjclanDEF.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\cE_CViewClanInfo.h"
+#include "TJBOY/clanmenu/tjclanDEF.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/cE_CViewClanInfo.h"
 
 #ifdef _SINBARAM
-#include "sinbaram\\sinlinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
 #endif
 
 #include "playsub.h"
 #include "SkillSub.h"
-#include "Resources\resource.h"
+#include "Resources/resource.h"
 
 #include "TextMessage.h"		
-#include "Language\\language.h"
-#include "Language\\jts.h"		
+#include "Language/language.h"
+#include "Language/jts.h"		
 
 #include "CurseFilter.h"		
 #include "damage.h"
@@ -50,11 +50,11 @@
 
 #include "BellatraFontEffect.h"
 
-#include "actiongame.h"
+#include "ActionGame.h"
 
-#include "Font\Font.h"
-#include "Settings\Settings.h"
-#include "Settings\UI.h"
+#include "Font/Font.h"
+#include "Settings/Settings.h"
+#include "Settings/UI.h"
 #include "DrawDamage.h"
 #include "cQuestWindow.h"
 #include "cSettingsWindow.h"
@@ -67,17 +67,17 @@
 #define WM_CALLMEMMAP				WM_USER+3   
 
 #ifdef PARKMENU
-#include "TJBOY\\\\Park\\MicVolume.h"
+#include "TJBOY/park/MicVolume.h"
 extern BOOL bMic;
 extern int vrunRuning;
 extern int micInit;
 #endif
 
 
-#include "WinInt\\WinIntThread.h"
+#include "WinInt/WinIntThread.h"
 #include "FullZoomMap.h"
 #include "FontImage.h"
-#include "Dump\WinDump.h"
+#include "Dump/WinDump.h"
 
 int lowHPWarningImage = -1;
 
@@ -135,7 +135,7 @@ void smPlayD3D(int x, int y, int z, int ax, int ay, int az);
 
 
 
-#include "ime.h"
+#include "Ime.h"
 
 ImeClass IMETest;
 CStrClass sz;
@@ -178,16 +178,16 @@ int         iBellatrOK;
 
 void ReadTexSettings()
 {
-	iSettingsBg = CreateTextureMaterial("game\\Settings\\window.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgPVP = CreateTextureMaterial("game\\mash\\bp_system.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iSettingsButton[0] = CreateTextureMaterial("game\\UI\\settings.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iSettingsButton[1] = CreateTextureMaterial("game\\UI\\settings_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iSettingsRelog = CreateTextureMaterial("game\\Settings\\help_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iSettingsSave = CreateTextureMaterial("game\\Settings\\save_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iSettingsCheckBox[0] = CreateTextureMaterial("game\\Settings\\checkbox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iSettingsCheckBox[1] = CreateTextureMaterial("game\\Settings\\checkbox_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iBellatraBg = CreateTextureMaterial("game\\bellatra\\window.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iBellatrOK = CreateTextureMaterial("game\\bellatra\\ok.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iSettingsBg = CreateTextureMaterial("game//Settings//window.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	imgPVP = CreateTextureMaterial("game//mash//bp_system.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iSettingsButton[0] = CreateTextureMaterial("game//UI//settings.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iSettingsButton[1] = CreateTextureMaterial("game//UI//settings_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iSettingsRelog = CreateTextureMaterial("game//Settings//help_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iSettingsSave = CreateTextureMaterial("game//Settings//save_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iSettingsCheckBox[0] = CreateTextureMaterial("game//Settings//checkbox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iSettingsCheckBox[1] = CreateTextureMaterial("game//Settings//checkbox_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iBellatraBg = CreateTextureMaterial("game//bellatra//window.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iBellatrOK = CreateTextureMaterial("game//bellatra//ok.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 }
 
 int xPos, yPos;
@@ -323,7 +323,7 @@ int LeIniInt(char* Section, char* Key, char* szFileIni)
 	char Pasta[600] = { 0 };
 	char PastaEmu[512] = { 0 };
 	GetCurrentDirectoryA(512, PastaEmu);
-	wsprintfA(Pasta, "%s\\%s", (char*)PastaEmu, szFileIni);
+	wsprintfA(Pasta, "%s//%s", (char*)PastaEmu, szFileIni);
 	return GetPrivateProfileIntA(Section, Key, 0, Pasta);
 }
 
@@ -334,7 +334,7 @@ void WriteIniInt(char* Section, char* Key, char* szFileIni, DWORD Value)
 	char Value2[30] = { 0 };
 	GetCurrentDirectoryA(512, PastaEmu);
 	wsprintfA(Value2, "%d", Value);
-	wsprintfA(Pasta, "%s\\%s", (char*)PastaEmu, szFileIni);
+	wsprintfA(Pasta, "%s//%s", (char*)PastaEmu, szFileIni);
 	WritePrivateProfileStringA(Section, Key, Value2, Pasta);
 }
 
@@ -343,7 +343,7 @@ void WriteIniStr(char* Section, char* Key, char* szFileIni, char* Value)
 	char Pasta[600] = { 0 };
 	char PastaEmu[512] = { 0 };
 	GetCurrentDirectoryA(512, PastaEmu);
-	wsprintfA(Pasta, "%s\\%s", (char*)PastaEmu, szFileIni);
+	wsprintfA(Pasta, "%s//%s", (char*)PastaEmu, szFileIni);
 	WritePrivateProfileStringA(Section, Key, Value, Pasta);
 }
 
@@ -354,7 +354,7 @@ void LeIniStr(char* Section, char* Key, char* szFileIni, char* Var1)
 	char szResult[255] = { 0 };
 	char PastaEmu[512] = { 0 };
 	GetCurrentDirectoryA(512, PastaEmu);
-	wsprintfA(Pasta, "%s\\%s", (char*)PastaEmu, szFileIni);
+	wsprintfA(Pasta, "%s//%s", (char*)PastaEmu, szFileIni);
 	GetPrivateProfileStringA(Section, Key, 0, szResult, 255, Pasta);
 	strcpy(Var1, szResult);
 }
@@ -377,7 +377,7 @@ extern int RestoreBackupData(char *szListFile, char *BackupPath);
 #ifndef _AC
 #define _AC
 
-#include "AntiCheat\AntiCheat.h"
+#include "AntiCheat/AntiCheat.h"
 
 #endif
 
@@ -622,7 +622,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 	ShowWindow(hwnd, SETTINGSHANDLER->getStartMaximized() ? SW_MAXIMIZE : nCmdShow);
 	UpdateWindow(hwnd);
 
-	LoadScreen("Image\\logo.bmp", hInst, hwnd);
+	LoadScreen("Image//logo.bmp", hInst, hwnd);
 	Sleep(300);
 
 	ShowCursor(FALSE);
@@ -635,7 +635,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 
 	hTextWnd = CreateWindow("EDIT", "", WS_CHILD | WS_BORDER | ES_LEFT | ES_MULTILINE | ES_WANTRETURN, 10, 400, 500, 40, hwnd, (HMENU)IDC_TEXT, hInst, NULL);
 
-	OldEditProc01 = (WNDPROC)SetWindowLong(hTextWnd, GWL_WNDPROC, (LONG)EditWndProc01);
+	OldEditProc01 = (WNDPROC)SetWindowLongPtr(hTextWnd, GWLP_WNDPROC, (LONG_PTR)EditWndProc01);
 	IMETest.SetHWND(hTextWnd);
 
 	hImc = ImmGetContext(hwnd);
@@ -3357,7 +3357,7 @@ int GameInit()
 			PlayBGM_Direct(StageField[0]->BackMusicCode);
 		else
 		{
-			OpenBGM("game\\Audio\\bgm\\Field - Desert - Pilgrim.bgm");
+			OpenBGM("game//Audio//bgm//Field - Desert - Pilgrim.bgm");
 			PlayBGM();
 		}
 	}
@@ -4771,15 +4771,15 @@ char *CompCmdStr(char *strCmdLine, char *strword)
 
 
 
-char *RegPath_3DMax = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\3D Studio MAX R3.1L";
-char *RegPath_3DMax2 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\3D Studio MAX R3.1";
-char *RegPath_Photoshop = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Adobe Photoshop 6.0";
-char *RegPath_ACDSee = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\ACDSee";
+char *RegPath_3DMax = "SOFTWARE//Microsoft//Windows//CurrentVersion//Uninstall//3D Studio MAX R3.1L";
+char *RegPath_3DMax2 = "SOFTWARE//Microsoft//Windows//CurrentVersion//Uninstall//3D Studio MAX R3.1";
+char *RegPath_Photoshop = "SOFTWARE//Microsoft//Windows//CurrentVersion//Uninstall//Adobe Photoshop 6.0";
+char *RegPath_ACDSee = "SOFTWARE//Microsoft//Windows//CurrentVersion//Uninstall//ACDSee";
 
 int SetCreateFont()
 {
 	char dwFontGame[32] = { 0 };
-	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".\\game\\Font\\Config.ini");
+	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".//game//Font//Config.ini");
 
 	hFont = CreateFontA(16, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, NULL, NULL, ANTIALIASED_QUALITY, FF_DONTCARE, dwFontGame);
 	return TRUE;
@@ -4992,7 +4992,7 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 }
 
 
-#include "sinbaram\\HaQuestBoard.h"
+#include "sinbaram/HaQuestBoard.h"
 
 
 int	StartQuest_Code(DWORD wCode)
@@ -5041,9 +5041,9 @@ int HoInstallFont()
 	char szKey[255];
 	GetVersionEx(&vi);
 	if (vi.dwPlatformId == VER_PLATFORM_WIN32_NT)
-		strcpy(szKey, "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts");
+		strcpy(szKey, "SOFTWARE//Microsoft//Windows NT//CurrentVersion//Fonts");
 	else
-		strcpy(szKey, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Fonts");
+		strcpy(szKey, "SOFTWARE//Microsoft//Windows//CurrentVersion//Fonts");
 
 #ifdef	_LANGUAGE_ENGLISH		
 	SetRegString(HKEY_LOCAL_MACHINE, szKey, "ptz", "ptz.ttf");
@@ -5076,9 +5076,9 @@ int HoUninstallFont()
 	char szKey[255];
 	GetVersionEx(&vi);
 	if (vi.dwPlatformId == VER_PLATFORM_WIN32_NT)
-		strcpy(szKey, "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts");
+		strcpy(szKey, "SOFTWARE//Microsoft//Windows NT//CurrentVersion//Fonts");
 	else
-		strcpy(szKey, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Fonts");
+		strcpy(szKey, "SOFTWARE//Microsoft//Windows//CurrentVersion//Fonts");
 	HKEY key;
 	DWORD dwDisp;
 	RegCreateKeyEx(HKEY_LOCAL_MACHINE, szKey, 0, NULL,

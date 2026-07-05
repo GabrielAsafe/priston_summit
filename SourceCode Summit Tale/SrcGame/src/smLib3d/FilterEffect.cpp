@@ -86,7 +86,7 @@ int CreateNewRenderTarget(void)
 	if(hresult != DD_OK)
 	{
 		ReleaseNewRenderTarget();
-		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. CreateSurface() #1. NEW Target\n");
+		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. CreateSurface() #1. NEW Target/n");
 		return -3;
 	}
 
@@ -94,7 +94,7 @@ int CreateNewRenderTarget(void)
 	if(hresult != DD_OK)
 	{
 		ReleaseNewRenderTarget();
-		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. QueryInterface() #1. NEW Target TEXTURE\n");
+		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. QueryInterface() #1. NEW Target TEXTURE/n");
 		return -3;
 	}
 
@@ -104,7 +104,7 @@ int CreateNewRenderTarget(void)
 	if(hresult != DD_OK)
 	{
 		ReleaseNewRenderTarget();
-		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. CreateSurface() #2. NEW Target\n");
+		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. CreateSurface() #2. NEW Target/n");
 		return -3;
 	}
 
@@ -112,7 +112,7 @@ int CreateNewRenderTarget(void)
 	if(hresult != DD_OK)
 	{
 		ReleaseNewRenderTarget();
-		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. QueryInterface() #2. NEW Target TEXTURE\n");
+		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. QueryInterface() #2. NEW Target TEXTURE/n");
 		return -3;
 	}
 
@@ -127,7 +127,7 @@ int CreateNewRenderTarget(void)
 	if(hresult != DD_OK)
 	{
 		ReleaseNewRenderTarget();
-		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. CreateSurface() #3. NEW Target\n");
+		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. CreateSurface() #3. NEW Target/n");
 		return -3;
 	}
 
@@ -135,7 +135,7 @@ int CreateNewRenderTarget(void)
 	if(hresult != DD_OK)
 	{
 		ReleaseNewRenderTarget();
-		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. QueryInterface() #3. NEW Target TEXTURE\n");
+		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. QueryInterface() #3. NEW Target TEXTURE/n");
 		return -3;
 	}
 
@@ -158,7 +158,7 @@ int CreateNewRenderTarget(void)
 	if(hresult != DD_OK)
 	{
 		ReleaseNewRenderTarget();
-		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. CreateSurface() #1. Z Buffer\n");
+		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. CreateSurface() #1. Z Buffer/n");
 		return -3;
 	}
 
@@ -166,7 +166,7 @@ int CreateNewRenderTarget(void)
 	if(hresult != DD_OK)
 	{
 		ReleaseNewRenderTarget();
-		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. AddAttachedSurface() #1.\n");
+		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. AddAttachedSurface() #1./n");
 		return -3;
 	}
 
@@ -176,7 +176,7 @@ int CreateNewRenderTarget(void)
 	if(hresult != DD_OK)
 	{
 		ReleaseNewRenderTarget();
-		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. CreateSurface() #2. Z Buffer\n");
+		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. CreateSurface() #2. Z Buffer/n");
 		return -3;
 	}
 
@@ -184,7 +184,7 @@ int CreateNewRenderTarget(void)
 	if(hresult != DD_OK)
 	{
 		ReleaseNewRenderTarget();
-		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. AddAttachedSurface() #2.\n");
+		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. AddAttachedSurface() #2./n");
 		return -3;
 	}
 
@@ -199,7 +199,7 @@ int CreateNewRenderTarget(void)
 	if(hresult != DD_OK)
 	{
 		ReleaseNewRenderTarget();
-		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. CreateSurface() #3. Z Buffer\n");
+		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. CreateSurface() #3. Z Buffer/n");
 		return -3;
 	}
 
@@ -207,7 +207,7 @@ int CreateNewRenderTarget(void)
 	if(hresult != DD_OK)
 	{
 		ReleaseNewRenderTarget();
-		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. AddAttachedSurface() #3.\n");
+		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. AddAttachedSurface() #3./n");
 		return -3;
 	}
 
@@ -217,7 +217,7 @@ int CreateNewRenderTarget(void)
 	if(hresult != DD_OK)
 	{
 		ReleaseNewRenderTarget();
-		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. ChangeRenderTarget().\n");
+		Log::getInstance()->output(LOG_ERROR, "CreateNewRenderTarget() Error. ChangeRenderTarget()./n");
 		return -4;
 	}
 

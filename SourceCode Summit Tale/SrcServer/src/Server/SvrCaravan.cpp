@@ -1,7 +1,7 @@
-#include "sinbaram\\sinlinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
 #include "field.h"
-#include "SvrCaravan.h"
-#include "OnServer.h"
+#include "Server/SvrCaravan.h"
+#include "onserver.h"
 
 //extern int chrMonsterCnt;
 //extern smCHAR_INFO* chrMonsterList;

@@ -8,24 +8,24 @@
 
 
 
-#include "..\\smwsock.h"
-#include "..\\smlib3d\\smd3d.h"
-#include "..\\character.h"
-#include "..\\fileread.h"
-#include "..\\playmain.h"
-#include "..\\field.h"
-#include "..\\sinbaram\\sinlinkheader.h"
-#include "..\\effectsnd.h"
+#include "../smwsock.h"
+#include "../smLib3d/smd3d.h"
+#include "../character.h"
+#include "../fileread.h"
+#include "../playmain.h"
+#include "../field.h"
+#include "../sinbaram/sinLinkHeader.h"
+#include "../effectsnd.h"
 
-#include "..\\record.h"
-#include "..\\playsub.h"
-#include "Language\\language.h"
+#include "../record.h"
+#include "../playsub.h"
+#include "Language/language.h"
 
 #include "onserver.h"
 #include "svr_Damage.h"
-#include "..\\damage.h"
+#include "../damage.h"
 #ifdef _LANGUAGE_VEITNAM
-#include "..\\veitnam\\v_event.h"
+#include "../veitnam/v_event.h"
 #endif
 
 #define	PK_POWER_DIVIDE	5
@@ -5324,8 +5324,8 @@ int rsSetDamagePacketKey(rsPLAYINFO *lpPlayInfo)
 	DWORD	dwChkSum;
 	DWORD	dwObjSum;
 
-	if(!lpPlayInfo->getName().empty())
-		dwChkSum = GetSpeedSum(lpPlayInfo->getName().c_str());
+	if(!lpPlayInfo->getName()[0] == 0)
+		dwChkSum = GetSpeedSum(lpPlayInfo->getName());
 	else
 		dwChkSum = GetSpeedSum(lpPlayInfo->smCharInfo.szName);
 
@@ -5441,8 +5441,8 @@ int	rsProcessSafePacket(rsPLAYINFO *lpPlayInfo)
 	if(!rsServerConfig.CrazyPacketMode) return FALSE;
 
 	//if(!lpPlayInfo->getPassword().empty())
-	if(lpPlayInfo->getName().size())
-		dwChkSum = GetSpeedSum(lpPlayInfo->getName().c_str());
+	if(strlen(lpPlayInfo->getName()))
+		dwChkSum = GetSpeedSum(lpPlayInfo->getName());
 	else
 		dwChkSum = GetSpeedSum(lpPlayInfo->smCharInfo.szName);
 
@@ -5479,8 +5479,8 @@ int	rsCompareSafePacket(rsPLAYINFO *lpPlayInfo, DWORD dwRcvPacketCode)
 
 	if((dwRcvPacketCode >> 28) != 9) return FALSE;
 
-	if(!lpPlayInfo->getName().empty())
-		dwChkSum = GetSpeedSum(lpPlayInfo->getName().c_str());
+	if(!lpPlayInfo->getName()[0] == 0)
+		dwChkSum = GetSpeedSum(lpPlayInfo->getName());
 	else
 		dwChkSum = GetSpeedSum(lpPlayInfo->smCharInfo.szName);
 

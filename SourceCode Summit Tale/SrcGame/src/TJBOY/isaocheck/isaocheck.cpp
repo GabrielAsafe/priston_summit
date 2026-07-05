@@ -1,25 +1,26 @@
 #define __ISAOCHECK_CPP__
+#include <winsock2.h>
 #include <windows.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <Winsock.h>
+
 #include <wininet.h>
 #include <time.h>
 
 #include "../clanmenu/tjclanDEF.h"
 
 #ifdef USE_PROSTONTALE 
-#include "..\\..\\sinbaram\\SinLinkHeader.h"
-#include "..\\..\\HoBaram\\HoLinkHeader.h"
-#include "Language\language.h"
-#include "..\\..\\HoBaram\\HoTextFile.h"
-#include "..\\clanmenu\\cE_CViewClanInfo.h"
+#include "../../sinbaram/sinLinkHeader.h"
+#include "../../HoBaram/HoLinkHeader.h"
+#include "Language/language.h"
+#include "../../HoBaram/HoTextFile.h"
+#include "../clanmenu/cE_CViewClanInfo.h"
 #endif
 
 
-#include "..\\clanmenu\\BMPsmooth.h"
-#include "..\\clanmenu\\tjclan.h"
-#include "..\\clanmenu\\cE_CViewClanInfo.h"
+#include "../clanmenu/BMPsmooth.h"
+#include "../clanmenu/tjclan.h"
+#include "../clanmenu/cE_CViewClanInfo.h"
 
 #include <wininet.h>
 #pragma comment(lib,"wininet.lib")
@@ -50,7 +51,7 @@ void debug_fd2(char *fmt, ...)
 	vsprintf_s(buff, sizeof(buff), fmt, args);
 	va_end(args);
 
-	strcat_s(buff, sizeof(buff), "\r\n");
+	strcat_s(buff, sizeof(buff), "/r/n");
 
 
 	int errorMSGdr = 0;
@@ -76,7 +77,7 @@ void debug_fd2(char *fmt, ...)
 
 			if (errorMSGdr == 1)
 			{
-				char msg[256] = "..\n�޽����� �ʹ��� �߶���";
+				char msg[256] = "../n�޽����� �ʹ��� �߶���";
 				WriteFile(hFile, msg, lstrlen(msg), &dwAcess, NULL);
 			}
 
@@ -101,7 +102,7 @@ void debug_fd2(char *fmt, ...)
 
 		if (errorMSGdr == 1)
 		{
-			char msg[256] = "\n�޽����� �ʹ��� �߶���";
+			char msg[256] = "/n�޽����� �ʹ��� �߶���";
 			WriteFile(hFile, msg, lstrlen(msg), &dwAcess, NULL);
 		}
 
@@ -353,7 +354,7 @@ int ISAOCHECK::connect_WEBdb_BINARY(char *szWriteBuffer, char *szReadBuffer, int
 {
 	struct timeval tmv;
 	struct sockaddr_in server;
-	char Value = '\0';
+	char Value = '/0';
 	char Msg[1024] = "";
 	SOCKET Fd;
 
@@ -400,6 +401,9 @@ int ISAOCHECK::connect_WEBdb_BINARY(char *szWriteBuffer, char *szReadBuffer, int
 
 	send(Fd, szWriteBuffer, strlen(szWriteBuffer) + 1, 0);
 
+		time_t startTime = 0, endTime = 0;
+		int rcnt = 0;
+
 	tmv.tv_sec = iTimeOut;
 	tmv.tv_usec = 0;
 	FD_ZERO(&fdset);
@@ -417,11 +421,9 @@ int ISAOCHECK::connect_WEBdb_BINARY(char *szWriteBuffer, char *szReadBuffer, int
 	}
 
 
-	time_t startTime, endTime;
 	time(&startTime);
 
 
-	int rcnt = 0;
 
 	while (true)
 	{
@@ -469,7 +471,7 @@ int ISAOCHECK::connect_WEBdb_BINARY(char *szWriteBuffer, char *szReadBuffer, int
 IsaoCheck_Free:
 
 	closesocket(Fd);
-	fd2("\n ��db ���� ����.");
+	fd2("/n ��db ���� ����.");
 
 	return iRet;
 }
@@ -539,7 +541,7 @@ int ISAOCHECK::IsaoCheck(char *id, char *pass, char *ipaddr, long StartTime)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
 
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -636,7 +638,7 @@ int ISAOCHECK::IsaoCheck_GameExit(char *id, char *pass, char *ipaddr, long usert
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
 
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -1228,7 +1230,7 @@ int ISAOCHECK::makeClan(char *ClanZang_ID, char* gserver, char* ClanZang_ChaName
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
 
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -1317,7 +1319,7 @@ int ISAOCHECK::read_ClanName(int readClumns)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
 
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -1392,7 +1394,7 @@ int ISAOCHECK::read_ClanData(char *ClanZang_ID, char* gserver, char* ClanZang_Ch
 	switch (ret_chk)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -1475,7 +1477,7 @@ int ISAOCHECK::BreakUPClan(char *ClanZang_ID, char *gserver, char *ClanZang_ChaN
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
 
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -1649,7 +1651,7 @@ int ISAOCHECK::ReadNotice(char *userid, char *chaname, char *gserver, char *buf)
 	char szServer[256], szPath[256];
 	ConvertURL(szNoticeUrl, szServer, sizeof(szServer), szPath, sizeof(szPath));
 
-	sprintf_s(szWriteBuffer, sizeof(szWriteBuffer), "%s?userid=%s&gserver=%s&chname=%s&ticket=%d\r\n\r\n\r\n", szNoticeUrl, userid, gserver, chaname, nClanTicket);
+	sprintf_s(szWriteBuffer, sizeof(szWriteBuffer), "%s?userid=%s&gserver=%s&chname=%s&ticket=%d/r/n/r/n/r/n", szNoticeUrl, userid, gserver, chaname, nClanTicket);
 
 	int cnt = 0;
 
@@ -1673,7 +1675,7 @@ int ISAOCHECK::ReadNotice(char *userid, char *chaname, char *gserver, char *buf)
 	switch (ret_chk)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -1761,7 +1763,7 @@ int ISAOCHECK::Banishiment(char *ClanZang_ID, char *gserver, char *ClanZang_ChaN
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
 
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -1844,7 +1846,7 @@ int ISAOCHECK::AppointSubChip(char *gserver, char* clanwon)
 	switch (ret_chk)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -1925,7 +1927,7 @@ int ISAOCHECK::ReleaseSubChip(char *gserver, char* clanwon)
 	switch (ret_chk)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -2002,7 +2004,7 @@ int ISAOCHECK::LeaveClan(char *clanname, char *chaname, char *gserver)
 	switch (ret_chk)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -2087,7 +2089,7 @@ int ISAOCHECK::Secession(char* clanzang, char* gserver, char* SecessionID, char*
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
 
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -2170,7 +2172,7 @@ int ISAOCHECK::isKPFlag(char *userid, char *clanname, char *chaname, char *gserv
 	switch (ret_chk)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -2242,7 +2244,7 @@ int ISAOCHECK::isPFlag(char *userid, char *clanname, char *chaname, char *gserve
 	switch (ret_chk)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -2318,7 +2320,7 @@ int ISAOCHECK::WarhouseRight(char *clname, char *right_str)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
 
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -2390,7 +2392,7 @@ int ISAOCHECK::updateFlag(char *clname)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
 
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -2434,7 +2436,7 @@ void clanDATA_save(char *fname, char *buff, int dataLen)
 {
 	HANDLE hFile;
 	char allFname[64];
-	sprintf_s(allFname, sizeof(allFname), "%s\\%s\\%s", SAVE_DIR, szConnServerName, fname);
+	sprintf_s(allFname, sizeof(allFname), "%s//%s//%s", SAVE_DIR, szConnServerName, fname);
 
 	DWORD dwAcess = 0;
 	hFile = CreateFile(allFname, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
@@ -2453,7 +2455,7 @@ void clanDATA_save2(char *fname, char *buff, int dataLen)
 {
 	HANDLE hFile;
 	char allFname[64];
-	sprintf_s(allFname, sizeof(allFname), "%s\\%s", CLANINFO_DIR, fname);
+	sprintf_s(allFname, sizeof(allFname), "%s//%s", CLANINFO_DIR, fname);
 
 	DWORD dwAcess = 0;
 	hFile = CreateFile(allFname, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
@@ -2500,7 +2502,7 @@ int ISAOCHECK::GetWavFile(char* FileName)
 	switch (ret_chk)
 	{
 	case ISAO_ERR_WINSOCK_NOERR:
-		fd2("From server: ---from--\n%s--end--\n ", szReadBuffer);
+		fd2("From server: ---from--/n%s--end--/n ", szReadBuffer);
 		break;
 	case ISAO_ERR_WINSOCK_START:
 		fd2("WSAStartup()����");
@@ -2607,8 +2609,8 @@ int ISAOCHECK::read_ClanImage(char *clanname, char *filename)
 		char path[128];
 		char path2[128];
 		int bmpSAVE(char *loadfname, char *savefname);
-		wsprintf(path, "%s\\%s\\%s", SAVE_DIR, szConnServerName, szBMPName);
-		wsprintf(path2, "%s\\%s\\%s_%s_16.%s", SAVE_DIR, szConnServerName, server, uniqueclannum, SAVE_EXE);
+		wsprintf(path, "%s//%s//%s", SAVE_DIR, szConnServerName, szBMPName);
+		wsprintf(path2, "%s//%s//%s_%s_16.%s", SAVE_DIR, szConnServerName, server, uniqueclannum, SAVE_EXE);
 
 		bmpSAVE(path, path2);
 
@@ -2688,8 +2690,8 @@ int ISAOCHECK::read_ClanImage2(char *clanname, char *filename, CLANINFO *ci)
 		clanDATA_save(szBMPName, szReadBuffer, dataSize);
 
 		int bmpSAVE(char *loadfname, char *savefname);
-		wsprintf(path, "%s\\%s\\%s", SAVE_DIR, szConnServerName, szBMPName);
-		wsprintf(path1, "%s\\%s\\%s_%s_16.%s", SAVE_DIR, szConnServerName, ci->ClanInfoHeader.Gserver, ci->ClanInfoHeader.UniqueClaClanInfo_nNum, SAVE_EXE);
+		wsprintf(path, "%s//%s//%s", SAVE_DIR, szConnServerName, szBMPName);
+		wsprintf(path1, "%s//%s//%s_%s_16.%s", SAVE_DIR, szConnServerName, ci->ClanInfoHeader.Gserver, ci->ClanInfoHeader.UniqueClaClanInfo_nNum, SAVE_EXE);
 
 		bmpSAVE(path, path1);
 
@@ -2859,7 +2861,7 @@ int ISAOCHECK::write_ClanImageFile(char *fname)
 	char fileName[64];
 	char OrigFName[] = "a.bmp";
 
-	sprintf_s(fileName, sizeof(fileName), "%s\\%s\\%s", SAVE_DIR, szConnServerName, fname);
+	sprintf_s(fileName, sizeof(fileName), "%s//%s//%s", SAVE_DIR, szConnServerName, fname);
 
 	int len = 0;
 	char* fileBuf = fileREAD(fileName, NULL, &len);
@@ -2870,7 +2872,7 @@ int ISAOCHECK::write_ClanImageFile(char *fname)
 
 	for (i = 0; i < HSsu; i++)
 	{
-		sprintf(szWriteBuffer, "POST http://%s/tjboyh/clan_insertClanImage.php?file_name=%s&file_HSsu=%d&file_cnt=%d&file_DATA=%s\r\n\r\n\r\n", hostName, OrigFName, HSsu, i + 1, fileDATA_HS[i]);
+		sprintf(szWriteBuffer, "POST http://%s/tjboyh/clan_insertClanImage.php?file_name=%s&file_HSsu=%d&file_cnt=%d&file_DATA=%s/r/n/r/n/r/n", hostName, OrigFName, HSsu, i + 1, fileDATA_HS[i]);
 
 		while (true)
 		{
@@ -2919,7 +2921,7 @@ int ISAOCHECK::WEBdb_Exam()
 	char szReadBuffer[1024] = { 0, };
 
 
-	sprintf(szWriteBuffer, "POST http://%s/tjboyh/ktj_login.php\r\n\r\n\r\n", hostName);
+	sprintf(szWriteBuffer, "POST http://%s/tjboyh/ktj_login.php/r/n/r/n/r/n", hostName);
 	ret_chk = connect_WEBdb(szWriteBuffer, szReadBuffer);
 
 
@@ -3083,6 +3085,7 @@ bool MBCSToWeb(char *szMBCS, char *szWeb, int iMBCSCodePage)
 	UTF8ToWeb(szUTF8, szWeb);
 	return true;
 }
+
 
 
 

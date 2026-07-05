@@ -52,7 +52,7 @@ int c_CheckName(char* filepath, char* data)
 	num = GetUserCode(data);
 	c_GetFilePath(data, charname);
 
-	wsprintf(fullpath, "%s\\%d.txt", filepath, num);
+	wsprintf(fullpath, "%s//%d.txt", filepath, num);
 
 	hFind = CreateFile(fullpath, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFind == INVALID_HANDLE_VALUE)

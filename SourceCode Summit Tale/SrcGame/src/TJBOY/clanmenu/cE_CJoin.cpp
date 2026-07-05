@@ -9,18 +9,18 @@
 
 #ifdef USE_PROSTONTALE		
 
-#include "sinbaram\\SinLinkHeader.h"
-#include "HoBaram\\HoLinkHeader.h"
-#include "Language\\language.h"
-#include "HoBaram\\HoTextFile.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "Language/language.h"
+#include "HoBaram/HoTextFile.h"
 #endif
 
 #include "tjclan.h"
 #include "cE_report.h"
 #include "cE_CJoin.h"
 #include "cE_CViewClanInfo.h"
-#include "..\\isaocheck\\auth.h"
-#include "..\\isaocheck\\isaocheck.h"
+#include "../isaocheck/auth.h"
+#include "../isaocheck/isaocheck.h"
 
 
 
@@ -333,9 +333,9 @@ void CLANEntity_JOIN::Main()
 					char TempBufferMsg[256];
 
 				#ifdef	_LANGUAGE_JAPANESE
-					wsprintf(TempBufferMsg, "�N�����E��\n4���o�߂�?�F�b�N��Error");
+					wsprintf(TempBufferMsg, "�N�����E��/n4���o�߂�?�F�b�N��Error");
 				#else
-					wsprintf(TempBufferMsg, "Ŭ��Ż��\n4�ϰ��üũ��Error");
+					wsprintf(TempBufferMsg, "Ŭ��Ż��/n4�ϰ��üũ��Error");
 				#endif
 					cClanReport.InitMsg(TempBufferMsg);
 					cClanReport.menuInit(C_menuN, clanszError_Msg.pos.x, clanszError_Msg.pos.y);

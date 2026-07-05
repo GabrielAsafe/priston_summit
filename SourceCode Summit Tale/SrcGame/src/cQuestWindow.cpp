@@ -17,25 +17,25 @@ void cQUESTWINDOW::Init()
 {
 	pCurrentTab = 0;
 
-	Mat[BG] = CreateTextureMaterial("game\\GUI\\Quest\\images\\background.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[CLOSE] = CreateTextureMaterial("game\\GUI\\Quest\\images\\close.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[PROGRESS_TAB] = CreateTextureMaterial("game\\GUI\\Quest\\images\\progress_tab.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[PROGRESS_TAB_] = CreateTextureMaterial("game\\GUI\\Quest\\images\\progress_tab_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[LIST_TAB] = CreateTextureMaterial("game\\GUI\\Quest\\images\\list_tab.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[LIST_TAB_] = CreateTextureMaterial("game\\GUI\\Quest\\images\\list_tab_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[SPOILER_DAILY] = CreateTextureMaterial("game\\GUI\\Quest\\images\\spoiler_daily.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[SPOILER_Repeated] = CreateTextureMaterial("game\\GUI\\Quest\\images\\spoiler_repeat.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[SPOILER_QUESTS] = CreateTextureMaterial("game\\GUI\\Quest\\images\\spoiler_quests.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[SPOILER_PROGRESS] = CreateTextureMaterial("game\\GUI\\Quest\\images\\spoiler_progress.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[SPOILER_FINALIZED] = CreateTextureMaterial("game\\GUI\\Quest\\images\\spoiler_finalized.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[SPOILER_OPEN] = CreateTextureMaterial("game\\GUI\\Quest\\images\\spoiler_open.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[SPOILER_CLOSE] = CreateTextureMaterial("game\\GUI\\Quest\\images\\spoiler_close.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[ACCEPT_QUEST] = CreateTextureMaterial("game\\GUI\\Quest\\images\\accept.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[ACCEPT_QUEST_] = CreateTextureMaterial("game\\GUI\\Quest\\images\\accept_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[CANCEL_QUEST] = CreateTextureMaterial("game\\GUI\\Quest\\images\\cancel.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[CANCEL_QUEST_] = CreateTextureMaterial("game\\GUI\\Quest\\images\\cancel_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[GET_REWARD] = CreateTextureMaterial("game\\GUI\\Quest\\images\\get_reward.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[GET_REWARD_] = CreateTextureMaterial("game\\GUI\\Quest\\images\\get_reward_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[BG] = CreateTextureMaterial("game//GUI//Quest//images//background.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[CLOSE] = CreateTextureMaterial("game//GUI//Quest//images//close.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[PROGRESS_TAB] = CreateTextureMaterial("game//GUI//Quest//images//progress_tab.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[PROGRESS_TAB_] = CreateTextureMaterial("game//GUI//Quest//images//progress_tab_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[LIST_TAB] = CreateTextureMaterial("game//GUI//Quest//images//list_tab.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[LIST_TAB_] = CreateTextureMaterial("game//GUI//Quest//images//list_tab_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[SPOILER_DAILY] = CreateTextureMaterial("game//GUI//Quest//images//spoiler_daily.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[SPOILER_Repeated] = CreateTextureMaterial("game//GUI//Quest//images//spoiler_repeat.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[SPOILER_QUESTS] = CreateTextureMaterial("game//GUI//Quest//images//spoiler_quests.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[SPOILER_PROGRESS] = CreateTextureMaterial("game//GUI//Quest//images//spoiler_progress.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[SPOILER_FINALIZED] = CreateTextureMaterial("game//GUI//Quest//images//spoiler_finalized.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[SPOILER_OPEN] = CreateTextureMaterial("game//GUI//Quest//images//spoiler_open.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[SPOILER_CLOSE] = CreateTextureMaterial("game//GUI//Quest//images//spoiler_close.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[ACCEPT_QUEST] = CreateTextureMaterial("game//GUI//Quest//images//accept.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[ACCEPT_QUEST_] = CreateTextureMaterial("game//GUI//Quest//images//accept_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[CANCEL_QUEST] = CreateTextureMaterial("game//GUI//Quest//images//cancel.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[CANCEL_QUEST_] = CreateTextureMaterial("game//GUI//Quest//images//cancel_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[GET_REWARD] = CreateTextureMaterial("game//GUI//Quest//images//get_reward.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[GET_REWARD_] = CreateTextureMaterial("game//GUI//Quest//images//get_reward_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 }
 
 void cQUESTWINDOW::AddObject(int ID, int Mat, int Mat_, int x, int y, int w, int h, int Opacity)

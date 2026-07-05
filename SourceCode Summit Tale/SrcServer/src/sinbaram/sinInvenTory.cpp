@@ -3,15 +3,15 @@
 
 #include "sinLinkHeader.h"
 
-#include "tjboy\\clanmenu\\tjclanDEF.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "..\\field.h"
-#include "Server\\onserver.h"
+#include "TJBOY/clanmenu/tjclanDEF.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "../field.h"
+#include "Server/onserver.h"
 
 
 
 #ifdef _XTRAP_GUARD_4_CLIENT 
-#include "..\\XTrapSrcD5\\ClientExt\\XTrap4ClientExt1.h"	
+#include "../XTrapSrcD5/ClientExt/XTrap4ClientExt1.h"	
 #endif
 
 #define MAX_MONEY 1000000000
@@ -321,11 +321,11 @@ void cINVENTORY::Init()
 	char szBuff[128];
 	for(i = 0; i < 5; i++)
 	{
-		wsprintf(szBuff, "Image\\SinImage\\Effect\\Particle\\InvenPaticle%d.tga", i);
+		wsprintf(szBuff, "Image//SinImage//Effect//Particle//InvenPaticle%d.tga", i);
 		MatInvenParticle[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	}
-	MatUnionCoreEffect = CreateTextureMaterial("image\\Sinimage\\Effect\\InterEffect\\UC-hall.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatUnionCoreEffect = CreateTextureMaterial("image//Sinimage//Effect//InterEffect//UC-hall.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
 
@@ -339,52 +339,52 @@ void cINVENTORY::Load()
 	char szBuff[128];
 	for(int i = 0; i < 4; i++)
 	{
-		wsprintf(szBuff, "image\\Sinimage\\Effect\\InterEffect\\UC-0%d.bmp", i + 1);
+		wsprintf(szBuff, "image//Sinimage//Effect//InterEffect//UC-0%d.bmp", i + 1);
 		lpUnionCoreEffect[i] = LoadDibSurfaceOffscreen(szBuff);
 
 	}
 
-	lpIndiShopIcon = LoadDibSurfaceOffscreen("Image\\SinImage\\indishop\\indishop_icon.bmp");
-	lpMyShopIcon_T = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\InfoBox\\inven-SaleT.bmp");
+	lpIndiShopIcon = LoadDibSurfaceOffscreen("Image//SinImage//indishop//indishop_icon.bmp");
+	lpMyShopIcon_T = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//InfoBox//inven-SaleT.bmp");
 
-	lpMyShopIcon = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\inven-Sale.bmp");
+	lpMyShopIcon = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//inven-Sale.bmp");
 
-	lpSpecialItem[0] = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\QuestItem_.bmp");
-	lpSpecialItem[1] = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\QuestItem.bmp");
+	lpSpecialItem[0] = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//QuestItem_.bmp");
+	lpSpecialItem[1] = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//QuestItem.bmp");
 
-	lpSpecialItemInfo[0] = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\InfoBox\\Questitem.bmp");
-	lpSpecialItemInfo[1] = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\InfoBox\\close.bmp");
+	lpSpecialItemInfo[0] = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//InfoBox//Questitem.bmp");
+	lpSpecialItemInfo[1] = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//InfoBox//close.bmp");
 
-	lpSpecialInven = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\QuestItembox.bmp");
+	lpSpecialInven = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//QuestItembox.bmp");
 
-	lpInvenMain = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\Inven.bmp");
-	lpInvenArrow[0] = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\LeftArrow.bmp");
-	lpInvenArrow[1] = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\RightArrow.bmp");
+	lpInvenMain = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//Inven.bmp");
+	lpInvenArrow[0] = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//LeftArrow.bmp");
+	lpInvenArrow[1] = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//RightArrow.bmp");
 
-	lpCoverSmall = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\CoverSmall.bmp");
-	lpCoverMiddle = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\CoverMiddle.bmp");
-	lpCoverLarge = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\CoverLarge.bmp");
+	lpCoverSmall = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//CoverSmall.bmp");
+	lpCoverMiddle = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//CoverMiddle.bmp");
+	lpCoverLarge = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//CoverLarge.bmp");
 
-	lpPotionBack = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\PotionBack.bmp");
+	lpPotionBack = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//PotionBack.bmp");
 
-	lpChangeABInfo[0] = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\InfoBox\\ButtonA.bmp");
-	lpChangeABInfo[1] = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\InfoBox\\ButtonB.bmp");
+	lpChangeABInfo[0] = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//InfoBox//ButtonA.bmp");
+	lpChangeABInfo[1] = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//InfoBox//ButtonB.bmp");
 
-	lpExitInfo = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\InfoBox\\ButtonExit.bmp");
-	lpWeightInfo = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\InfoBox\\ButtonWeight.bmp");
+	lpExitInfo = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//InfoBox//ButtonExit.bmp");
+	lpWeightInfo = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//InfoBox//ButtonWeight.bmp");
 
-	lpItemABInfo[0] = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\InfoBox\\ButtonItemA.bmp");
-	lpItemABInfo[1] = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\InfoBox\\ButtonItemB.bmp");
+	lpItemABInfo[0] = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//InfoBox//ButtonItemA.bmp");
+	lpItemABInfo[1] = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//InfoBox//ButtonItemB.bmp");
 
-	lpShowWeaponClass[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\Items\\Weapon_Onehand.bmp");
-	lpShowWeaponClass[1] = LoadDibSurfaceOffscreen("Image\\SinImage\\Items\\Weapon_Twohand.bmp");
-	lpShowWeaponClass[2] = LoadDibSurfaceOffscreen("Image\\SinImage\\Items\\Weapon_Knight.bmp");
-	lpShowWeaponClass[3] = LoadDibSurfaceOffscreen("Image\\SinImage\\Items\\Weapon_Wizard.bmp");
+	lpShowWeaponClass[0] = LoadDibSurfaceOffscreen("Image//SinImage//Items//Weapon_Onehand.bmp");
+	lpShowWeaponClass[1] = LoadDibSurfaceOffscreen("Image//SinImage//Items//Weapon_Twohand.bmp");
+	lpShowWeaponClass[2] = LoadDibSurfaceOffscreen("Image//SinImage//Items//Weapon_Knight.bmp");
+	lpShowWeaponClass[3] = LoadDibSurfaceOffscreen("Image//SinImage//Items//Weapon_Wizard.bmp");
 
 
-	lpPuzzleInven = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\NYEAR_00.bmp");
-	lpPuzzlewidth = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\NYEAR_01.bmp");
-	lpPuzzleHeight = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\NYEAR_02.bmp");
+	lpPuzzleInven = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//NYEAR_00.bmp");
+	lpPuzzlewidth = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//NYEAR_01.bmp");
+	lpPuzzleHeight = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//NYEAR_02.bmp");
 
 }
 void cINVENTORY::InvenItemLoad()
@@ -398,7 +398,7 @@ void cINVENTORY::InvenItemLoad()
 			{
 				if(InvenItem[i].CODE == sItem[j].CODE)
 				{
-					wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+					wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 
 					if(!sItem[j].lpTempItem)
 					{
@@ -416,7 +416,7 @@ void cINVENTORY::InvenItemLoad()
 			{
 				if(InvenItemTemp[i].CODE == sItem[j].CODE)
 				{
-					wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+					wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 					if(!sItem[j].lpTempItem)
 						sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
 					InvenItemTemp[i].lpItem = sItem[j].lpTempItem;
@@ -1212,7 +1212,7 @@ void cINVENTORY::Close()
 	Release();
 }
 
-#include "Language\\language.h"
+#include "Language/language.h"
 
 int sinButtonFlag = 0;
 
@@ -3304,7 +3304,7 @@ int cINVENTORY::LoadItemInfo()
 				{
 					memcpy(&sinTempItem, &sItem[j], sizeof(sITEM));
 					memcpy(&sinTempItem.sItemInfo, &InvenItem[i].sItemInfo, sizeof(sITEMINFO));
-					wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+					wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 
 					if(!sItem[j].lpTempItem)
 					{
@@ -3323,14 +3323,14 @@ int cINVENTORY::LoadItemInfo()
 								if(sItem[cnt].sItemInfo.CODE == (sinPZ1 | sin00))
 									break;
 							}
-							wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
+							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
 							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
 							sinTempItem.w = sItem[cnt].w;
 							sinTempItem.h = sItem[cnt].h;
 						}
 						else
 						{
-							wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
 							sinTempItem.w = sItem[j].w;
 							sinTempItem.h = sItem[j].h;
@@ -3364,7 +3364,7 @@ int cINVENTORY::LoadItemInfo()
 				{
 					memcpy(&sinTempItem, &sItem[j], sizeof(sITEM));
 					memcpy(&sinTempItem.sItemInfo, &InvenItemTemp[i].sItemInfo, sizeof(sITEMINFO));
-					wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+					wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 
 					if(!sItem[j].lpTempItem)
 					{
@@ -3387,14 +3387,14 @@ int cINVENTORY::LoadItemInfo()
 								if(sItem[cnt].sItemInfo.CODE == (sinPZ1 | sin00))
 									break;
 							}
-							wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
+							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
 							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
 							sinTempItem.w = sItem[cnt].w;
 							sinTempItem.h = sItem[cnt].h;
 						}
 						else
 						{
-							wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
 							sinTempItem.w = sItem[j].w;
 							sinTempItem.h = sItem[j].h;
@@ -3620,7 +3620,7 @@ int cINVENTORY::LoadItemInfo()
 			{
 				memcpy(&sinTempItem, &sItem[j], sizeof(sITEM));
 				memcpy(&sinTempItem.sItemInfo, &MouseItem.sItemInfo, sizeof(sITEMINFO));
-				wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+				wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 
 				if(!sItem[j].lpTempItem)
 				{
@@ -7584,7 +7584,7 @@ int cINVENTORY::ImsiCheckItemImageSize()
 	sinTestBuff[0] = 0;
 	for(int j = 0; j < MAX_ITEM; j++)
 	{
-		wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+		wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 		memcpy(&TestItem, &sItem[j], sizeof(sITEM));
 		TestItem.lpItem = LoadDibSurfaceOffscreen(szFilePath);
 		TestPoint.x = 0;
@@ -9494,7 +9494,7 @@ int cINVENTORY::CheckInvenEmpty(sITEM *pItem)
 	{
 		if(pItem->CODE == sItem[j].CODE)
 		{
-			wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+			wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 
 			if(!sItem[j].lpTempItem)
 			{
@@ -9526,13 +9526,13 @@ int cINVENTORY::LoadMoneyExpImage(sITEM *pItem)
 
 	if(pItem->CODE == (sinGG1 | sin01))
 	{
-		if(!lpGold7)lpGold7 = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\Gold7.bmp");
+		if(!lpGold7)lpGold7 = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//Gold7.bmp");
 		pItem->lpItem = lpGold7;
 
 	}
 	if(pItem->CODE == (sinGG1 | sin02))
 	{
-		if(!lpExp7)lpExp7 = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\Exp7.bmp");
+		if(!lpExp7)lpExp7 = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//Exp7.bmp");
 		pItem->lpItem = lpExp7;
 
 	}
@@ -10209,7 +10209,7 @@ int cINVENTORY::ChangePuzzle(sITEM *pItem)
 				{
 					CheckInvenItemForm();
 
-					wsprintf(szTestBuff2, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+					wsprintf(szTestBuff2, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 					sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szTestBuff2);
 					pItem->lpItem = sItem[j].lpTempItem;
 					pItem->w = sItem[j].w;
@@ -10573,7 +10573,7 @@ int cINVENTORY::DrawForceOrbEffect(int x, int y)
 
 
 	int i = 0;
-	char *Path = "image\\Sinimage\\Effect\\ForceOrb\\P_0%d.tga";
+	char *Path = "image//Sinimage//Effect//ForceOrb//P_0%d.tga";
 	char szBuff[128];
 	if(!MatForceOrbEffect[0])
 	{
@@ -10659,7 +10659,7 @@ int cINVENTORY::UseForceOrb(sITEM *pItem, int Flag)
 
 
 
-	char *Path = "image\\Sinimage\\skill\\ForceOrb\\FOS_0%d.tga";
+	char *Path = "image//Sinimage//skill//ForceOrb//FOS_0%d.tga";
 	char szBuff[128];
 	if(!MatForceOrb[UseFlag - 1])
 	{
@@ -10738,7 +10738,7 @@ int cINVENTORY::UseMagicForceOrb(sITEM *pItem, int Flag)
 	}
 
 
-	char *Path = "image\\Sinimage\\skill\\ForceOrb\\FOS_0%d.tga";
+	char *Path = "image//Sinimage//skill//ForceOrb//FOS_0%d.tga";
 	char szBuff[128];
 	if(!MatForceOrb[UseFlag - 1])
 	{
@@ -10817,7 +10817,7 @@ int cINVENTORY::UseBillingMagicForceOrb(sITEM *pItem, int Flag)
 	}
 
 
-	char *Path = "image\\Sinimage\\skill\\ForceOrb\\FOS_0%d.tga";
+	char *Path = "image//Sinimage//skill//ForceOrb//FOS_0%d.tga";
 	char szBuff[128];
 	if(!MatBillingMagicForceOrb[UseFlag - 1])
 	{
@@ -10859,7 +10859,7 @@ int cINVENTORY::SetMagicForceOrb(DWORD ItemCODE, int Time)
 		}
 	}
 
-	char *Path = "image\\Sinimage\\skill\\ForceOrb\\FOS_0%d.tga";
+	char *Path = "image//Sinimage//skill//ForceOrb//FOS_0%d.tga";
 	char szBuff[128];
 	if(!MatForceOrb[UseFlag - 1])
 	{
@@ -10894,7 +10894,7 @@ int cINVENTORY::SetBillingMagicForceOrb(DWORD ItemCODE, int Time)
 		}
 	}
 
-	char *Path = "image\\Sinimage\\skill\\ForceOrb\\FOS_0%d.tga";
+	char *Path = "image//Sinimage//skill//ForceOrb//FOS_0%d.tga";
 	char szBuff[128];
 	if(!MatForceOrb[UseFlag - 1])
 	{
@@ -10929,7 +10929,7 @@ int cINVENTORY::SetForceOrb(DWORD ItemCODE, int Time)
 
 		}
 	}
-	char *Path = "image\\Sinimage\\skill\\ForceOrb\\FOS_0%d.tga";
+	char *Path = "image//Sinimage//skill//ForceOrb//FOS_0%d.tga";
 	char szBuff[128];
 	if(!MatForceOrb[UseFlag - 1])
 	{

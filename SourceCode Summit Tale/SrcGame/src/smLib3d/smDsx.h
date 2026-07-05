@@ -8,7 +8,7 @@
 
 
 
-#include <Shlwapi.h>
+#include <shlwapi.h>
 
 
 struct D3DTLVERTEX

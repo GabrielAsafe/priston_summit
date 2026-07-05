@@ -119,7 +119,7 @@ char  szExpressItemName[64];
 
 
 char *PostBoxDocFilePath[] = {
-	"image\\Sinimage\\shopall\\PostBox.sin",
+	"image//Sinimage//shopall//PostBox.sin",
 
 };
 
@@ -149,7 +149,7 @@ sRECON_ITEM sReconItem[MAX_SEEL_COUNT] =
 #define TRADEBUTTONMAIN_X		513
 #define TRADEBUTTONMAIN_Y		3
 
-#include "..\\nettype.h"
+#include "../NetType.h"
 
 
 sCRAFTITEM_INFO sCraftItem_Info[MAX_CRAFTITEM_INFO] = {
@@ -337,8 +337,8 @@ void cTRADE::Init()
 	memset(&sCraftItem_Recv, 0, sizeof(sCRAFTITEM_SERVER));
 
 
-	MatTradebuttonMain = CreateTextureMaterial("Image\\SinImage\\Shopall\\TradeButton\\TradeButtonMain.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatTradebuttonCancel = CreateTextureMaterial("Image\\SinImage\\Shopall\\TradeButton\\ButtonCancel.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatTradebuttonMain = CreateTextureMaterial("Image//SinImage//Shopall//TradeButton//TradeButtonMain.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatTradebuttonCancel = CreateTextureMaterial("Image//SinImage//Shopall//TradeButton//ButtonCancel.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	sWareHouse.Money += 2023;
 	sWareHouse.Weight[0] += 197;
 	sWareHouse.Weight[1] += 196;
@@ -354,21 +354,21 @@ void cTRADE::Load()
 
 	char szTemp[256];
 
-	lpCheck = LoadDibSurfaceOffscreen("Image\\SinImage\\shopall\\Trade_Check.bmp");
-	lpCheckInfo = LoadDibSurfaceOffscreen("Image\\SinImage\\shopall\\Trade_Check_Info.bmp");
-	lpDelayCheck = LoadDibSurfaceOffscreen("Image\\SinImage\\shopall\\Trade_Check_Delay.bmp");
+	lpCheck = LoadDibSurfaceOffscreen("Image//SinImage//shopall//Trade_Check.bmp");
+	lpCheckInfo = LoadDibSurfaceOffscreen("Image//SinImage//shopall//Trade_Check_Info.bmp");
+	lpDelayCheck = LoadDibSurfaceOffscreen("Image//SinImage//shopall//Trade_Check_Delay.bmp");
 
-	lpbuttonOk = LoadDibSurfaceOffscreen("Image\\SinImage\\shopall\\TradeButton\\ButtonOk.bmp");
+	lpbuttonOk = LoadDibSurfaceOffscreen("Image//SinImage//shopall//TradeButton//ButtonOk.bmp");
 
-	lpbuttonCancel = LoadDibSurfaceOffscreen("Image\\SinImage\\shopall\\Trade_Cancel.bmp");
-	lpbuttonCancelInfo = LoadDibSurfaceOffscreen("Image\\SinImage\\shopall\\Trade_CancelInfo.bmp");
+	lpbuttonCancel = LoadDibSurfaceOffscreen("Image//SinImage//shopall//Trade_Cancel.bmp");
+	lpbuttonCancelInfo = LoadDibSurfaceOffscreen("Image//SinImage//shopall//Trade_CancelInfo.bmp");
 
-	lpCheck_Glay = LoadDibSurfaceOffscreen("Image\\SinImage\\shopall\\Trade_Check_Glay.bmp");
-	lpCenterBox = LoadDibSurfaceOffscreen("Image\\SinImage\\shopall\\Trade_0.bmp");
+	lpCheck_Glay = LoadDibSurfaceOffscreen("Image//SinImage//shopall//Trade_Check_Glay.bmp");
+	lpCenterBox = LoadDibSurfaceOffscreen("Image//SinImage//shopall//Trade_0.bmp");
 
 	for(int i = 0; i < MAX_SHELTOM; i++)
 	{
-		wsprintf(szTemp, "Image\\SinImage\\shopall\\Aging\\itos%d_.bmp", 100 + i + 1);
+		wsprintf(szTemp, "Image//SinImage//shopall//Aging//itos%d_.bmp", 100 + i + 1);
 		cAging.lpGraySheltom[i] = LoadDibSurfaceOffscreen(szTemp);
 	}
 
@@ -451,9 +451,9 @@ void cTRADE::Draw()
 	{
 		if(!lpForceMain)
 		{
-			lpForceMain = LoadDibSurfaceOffscreen("Image\\SinImage\\shopall\\shop_alchemy.bmp");
-			lpForceButtonInfo = LoadDibSurfaceOffscreen("Image\\SinImage\\shopall\\Bt_alchemy.bmp");
-			lpForceTitle = LoadDibSurfaceOffscreen("Image\\SinImage\\shopall\\title_alchemy.bmp");
+			lpForceMain = LoadDibSurfaceOffscreen("Image//SinImage//shopall//shop_alchemy.bmp");
+			lpForceButtonInfo = LoadDibSurfaceOffscreen("Image//SinImage//shopall//Bt_alchemy.bmp");
+			lpForceTitle = LoadDibSurfaceOffscreen("Image//SinImage//shopall//title_alchemy.bmp");
 		}
 		DrawSprite(17 - (256 + 128 - sinMoveKindInter[SIN_CRAFTITEM]), 134 + sinInterHeight2, lpForceMain, 0, 0, 217, 208);
 		DrawSprite(225 - (256 + 128 - sinMoveKindInter[SIN_CRAFTITEM]), 47, lpForceTitle, 0, 0, 111, 32);
@@ -1743,11 +1743,11 @@ void cTRADE::LButtonDown(int x, int y)
 								ShowItemOverSpace = 1;
 								strcpy_s(szCraftItemBuff, "������ Ȯ���� �ּ���");
 
-								strcat(szCraftItemBuff, "\r");
+								strcat(szCraftItemBuff, "/r");
 								Temp = lstrlen(szCraftItemBuff);
 								for(i = 0; i < Temp; i++)
 								{
-									if(szCraftItemBuff[i] == '\r')
+									if(szCraftItemBuff[i] == '/r')
 									{
 										LineCount++;
 									}
@@ -1866,11 +1866,11 @@ void cTRADE::LButtonDown(int x, int y)
 								ShowItemOverSpace = 1;
 								strcpy_s(szCraftItemBuff, InvenSpaceSecure);
 
-								strcat(szCraftItemBuff, "\r");
+								strcat(szCraftItemBuff, "/r");
 								Temp = lstrlen(szCraftItemBuff);
 								for(int j = 0; j < Temp; j++)
 								{
-									if(szCraftItemBuff[j] == '\r')
+									if(szCraftItemBuff[j] == '/r')
 									{
 										LineCount++;
 									}
@@ -1981,11 +1981,11 @@ void cTRADE::LButtonDown(int x, int y)
 						ShowItemOverSpace = 1;
 						strcpy_s(szCraftItemBuff, InvenSpaceSecure);
 
-						strcat(szCraftItemBuff, "\r");
+						strcat(szCraftItemBuff, "/r");
 						Temp = lstrlen(szCraftItemBuff);
 						for(i = 0; i < Temp; i++)
 						{
-							if(szCraftItemBuff[i] == '\r')
+							if(szCraftItemBuff[i] == '/r')
 							{
 								LineCount++;
 							}
@@ -2095,11 +2095,11 @@ void cTRADE::LButtonDown(int x, int y)
 						ShowItemOverSpace = 1;
 						strcpy_s(szCraftItemBuff, InvenSpaceSecure);
 
-						strcat(szCraftItemBuff, "\r");
+						strcat(szCraftItemBuff, "/r");
 						Temp = lstrlen(szCraftItemBuff);
 						for(i = 0; i < Temp; i++)
 						{
-							if(szCraftItemBuff[i] == '\r')
+							if(szCraftItemBuff[i] == '/r')
 							{
 								LineCount++;
 							}
@@ -2424,7 +2424,7 @@ void cTRADE::DrawTradeText()
 			len = lstrlen(TempszCraftItemBuff);
 			for (i = 0; i < len; i++)
 			{
-				if (TempszCraftItemBuff[i] == '\r')
+				if (TempszCraftItemBuff[i] == '/r')
 				{
 					pCraftItemInfo[Count] = &TempszCraftItemBuff[Templen];
 					TempszCraftItemBuff[i] = 0;
@@ -3132,7 +3132,7 @@ int cTRADE::LoadTradeItemIamge()
 			{
 				if(sTradeRecv.TradeItem[i].sItemInfo.CODE == sItem[j].CODE)
 				{
-					wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+					wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 
 					if(!sItem[j].lpTempItem)
 						sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
@@ -3151,7 +3151,7 @@ int cTRADE::LoadTradeItemIamge()
 									break;
 								}
 							}
-							wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
+							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
 							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
 						}
 					}
@@ -3545,7 +3545,7 @@ int cWAREHOUSE::LoadWareHouseItemIamge()
 				{
 					sWareHouse.WareHouseItem[i].w = sItem[j].w;
 					sWareHouse.WareHouseItem[i].h = sItem[j].h;
-					wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+					wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 					if(!sItem[j].lpTempItem)
 						sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
 
@@ -3553,7 +3553,7 @@ int cWAREHOUSE::LoadWareHouseItemIamge()
 					{
 						if(sWareHouse.WareHouseItem[i].sItemInfo.PotionCount == 2)
 						{
-							wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
 							sWareHouse.WareHouseItem[i].w = sItem[j].w;
 							sWareHouse.WareHouseItem[i].h = sItem[j].h;
@@ -3569,7 +3569,7 @@ int cWAREHOUSE::LoadWareHouseItemIamge()
 									break;
 								}
 							}
-							wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
+							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
 							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
 							sWareHouse.WareHouseItem[i].w = sItem[cnt].w;
 							sWareHouse.WareHouseItem[i].h = sItem[cnt].h;
@@ -6449,7 +6449,7 @@ int cCRAFTITEM::sinRecvCraftItemResult(sCRAFTITEM_SERVER *pCraftItem_Server)
 			Temp = lstrlen(szCraftItemBuff);
 			for(i = 0; i < Temp; i++)
 			{
-				if(szCraftItemBuff[i] == '\r')
+				if(szCraftItemBuff[i] == '/r')
 				{
 					LineCount++;
 				}
@@ -7226,12 +7226,12 @@ int cSKINSYSTEM::sinRecvSkinChangeResult(sSKIN_CHANGE_SERVER* pSkinChangeItem_Se
 		if(LoadItemImage(&pSkinChangeItem_Server->DesSkinChangeItem.sItemInfo, &TempItem))
 		{
 			strcpy_s(szCraftItemBuff, pSkinChangeItem_Server->DesSkinChangeItem.sItemInfo.ItemName);
-			strcat(szCraftItemBuff, "\r");
+			strcat(szCraftItemBuff, "/r");
 
 			Temp = lstrlen(szCraftItemBuff);
 			for(i = 0; i < Temp; i++)
 			{
-				if(szCraftItemBuff[i] == '\r')
+				if(szCraftItemBuff[i] == '/r')
 				{
 					LineCount++;
 				}
@@ -7646,12 +7646,12 @@ int cMIXTURERESET::sinRecvMixtureItemResetResult(sMIXTURE_RESET_ITEM_SERVER *pMi
 		if(LoadItemImage(&pMixtureResetItem_Server->DesMixtureResetItem.sItemInfo, &TempItem))
 		{
 			strcpy_s(szCraftItemBuff, pMixtureResetItem_Server->DesMixtureResetItem.sItemInfo.ItemName);
-			strcat(szCraftItemBuff, "\r");
+			strcat(szCraftItemBuff, "/r");
 
 			Temp = lstrlen(szCraftItemBuff);
 			for(i = 0; i < Temp; i++)
 			{
-				if(szCraftItemBuff[i] == '\r')
+				if(szCraftItemBuff[i] == '/r')
 				{
 					LineCount++;
 				}
@@ -8162,11 +8162,11 @@ int CSmeltingItem::sinRecvSmeltingItemResult(sSMELTINGITEM_SERVER *pSmeltingItem
 		{
 			strcpy_s(szCraftItemBuff, pSmeltingItem_Server->DesSmeltingItem.sItemInfo.ItemName);
 
-			strcat(szCraftItemBuff, "\r");
+			strcat(szCraftItemBuff, "/r");
 			Temp = lstrlen(szCraftItemBuff);
 			for(i = 0; i < Temp; i++)
 			{
-				if(szCraftItemBuff[i] == '\r')
+				if(szCraftItemBuff[i] == '/r')
 				{
 					LineCount++;
 				}
@@ -8909,11 +8909,11 @@ int CManufacture::RecvManufactureItemResult(SManufactureItem_Server *pManufactur
 		{
 			strcpy_s(szCraftItemBuff, pManufactureItem_Server->DesManufactureItem.sItemInfo.ItemName);
 
-			strcat(szCraftItemBuff, "\r");
+			strcat(szCraftItemBuff, "/r");
 			Temp = lstrlen(szCraftItemBuff);
 			for(i = 0; i < Temp; i++)
 			{
-				if(szCraftItemBuff[i] == '\r')
+				if(szCraftItemBuff[i] == '/r')
 				{
 					LineCount++;
 				}

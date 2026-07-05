@@ -1,5 +1,5 @@
 #pragma once
-#include <Windows.h>
+#include <windows.h>
 
 
 #define smTRANSCODE_OPEN_CLANCUSTOM   0x49470012

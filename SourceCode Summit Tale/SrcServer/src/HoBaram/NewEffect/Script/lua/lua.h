@@ -189,16 +189,16 @@ LUA_API void  lua_concat(lua_State *L, int n);
 
 
 
-#define lua_boxpointer(L,u) \
+#define lua_boxpointer(L,u) /
 	(*(void **)(lua_newuserdata(L, sizeof(void *))) = (u))
 
 #define lua_unboxpointer(L,i)	(*(void **)(lua_touserdata(L, i)))
 
 #define lua_pop(L,n)		lua_settop(L, -(n)-1)
 
-#define lua_register(L,n,f) \
-	(lua_pushstring(L, n), \
-	 lua_pushcfunction(L, f), \
+#define lua_register(L,n,f) /
+	(lua_pushstring(L, n), /
+	 lua_pushcfunction(L, f), /
 	 lua_settable(L, LUA_GLOBALSINDEX))
 
 #define lua_pushcfunction(L,f)	lua_pushcclosure(L, f, 0)
@@ -211,7 +211,7 @@ LUA_API void  lua_concat(lua_State *L, int n);
 #define lua_isnone(L,n)		(lua_type(L,n) == LUA_TNONE)
 #define lua_isnoneornil(L, n)	(lua_type(L,n) <= 0)
 
-#define lua_pushliteral(L, s)	\
+#define lua_pushliteral(L, s)	/
 	lua_pushlstring(L, "" s, (sizeof(s)/sizeof(char))-1)
 
 
@@ -222,10 +222,10 @@ LUA_API void  lua_concat(lua_State *L, int n);
 LUA_API int lua_pushupvalues(lua_State *L);
 
 #define lua_getregistry(L)	lua_pushvalue(L, LUA_REGISTRYINDEX)
-#define lua_setglobal(L,s)	\
+#define lua_setglobal(L,s)	/
    (lua_pushstring(L, s), lua_insert(L, -2), lua_settable(L, LUA_GLOBALSINDEX))
 
-#define lua_getglobal(L,s)	\
+#define lua_getglobal(L,s)	/
 		(lua_pushstring(L, s), lua_gettable(L, LUA_GLOBALSINDEX))
 
 
@@ -235,7 +235,7 @@ LUA_API int lua_pushupvalues(lua_State *L);
 #define LUA_NOREF	(-2)
 #define LUA_REFNIL	(-1)
 
-#define lua_ref(L,lock)	((lock) ? luaL_ref(L, LUA_REGISTRYINDEX) : \
+#define lua_ref(L,lock)	((lock) ? luaL_ref(L, LUA_REGISTRYINDEX) : /
       (lua_pushstring(L, "unlocked references are obsolete"), lua_error(L), 0))
 
 #define lua_unref(L,ref)	luaL_unref(L, LUA_REGISTRYINDEX, (ref))

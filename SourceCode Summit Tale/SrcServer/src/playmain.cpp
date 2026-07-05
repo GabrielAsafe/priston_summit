@@ -1,36 +1,36 @@
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "cracker.h"
 #include "smwsock.h"
 #include "character.h"
 #include "avictrl.h"
 #include "playmain.h"
-#include "Sound\\dxwav.h"
+#include "Sound/Dxwav.h"
 #include "fileread.h"
 
 #include "particle.h"
 #include "netplay.h"
 
-#include "sinbaram\\sinlinkheader.h"
-#include "hobaram\\holinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
 
 #include "field.h"
 #include "effectsnd.h"
 
 #include "record.h"
 #include "playsub.h"
-#include "skillsub.h"
+#include "SkillSub.h"
 #include "damage.h"
 
-#include "tjboy\\clanmenu\\tjclanDEF.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\cE_CViewClanInfo.h"
+#include "TJBOY/clanmenu/tjclanDEF.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/cE_CViewClanInfo.h"
 
-#include "Language\\language.h"
+#include "Language/language.h"
 
 #include "damage.h"
 #include "AreaServer.h"
 
-#include "Server\onserver.h"
+#include "Server/onserver.h"
 
 
 
@@ -193,49 +193,49 @@ DIRECTDRAWSURFACE	lpDDS_ParTradeToolTip[4];
 
 
 char *szFlame[8] = {
-	"image\\flame1.bmp",
-	"image\\flame2.bmp",
-	"image\\flame3.bmp",
-	"image\\flame4.bmp",
-	"image\\flame5.bmp",
-	"image\\flame6.bmp",
-	"image\\flame7.bmp",
-	"image\\flame8.bmp"
+	"image//flame1.bmp",
+	"image//flame2.bmp",
+	"image//flame3.bmp",
+	"image//flame4.bmp",
+	"image//flame5.bmp",
+	"image//flame6.bmp",
+	"image//flame7.bmp",
+	"image//flame8.bmp"
 };
 
 char *szShine[] = {
-	"image\\shine0.bmp",
-	"image\\shine2.bmp",
-	"image\\shine4.bmp",
-	"image\\shine6.bmp",
-	"image\\shine8.bmp",
+	"image//shine0.bmp",
+	"image//shine2.bmp",
+	"image//shine4.bmp",
+	"image//shine6.bmp",
+	"image//shine8.bmp",
 	""
 };
 
 char *szBlood1[] = {
-	"image\\blood\\b1_001.tga",
-	"image\\blood\\b1_002.tga",
-	"image\\blood\\b1_003.tga",
-	"image\\blood\\b1_004.tga"
+	"image//blood//b1_001.tga",
+	"image//blood//b1_002.tga",
+	"image//blood//b1_003.tga",
+	"image//blood//b1_004.tga"
 };
 
 char *szBlood2[] = {
-	"image\\blood\\b2_001.tga",
-	"image\\blood\\b2_002.tga",
-	"image\\blood\\b2_003.tga",
-	"image\\blood\\b2_004.tga"
+	"image//blood//b2_001.tga",
+	"image//blood//b2_002.tga",
+	"image//blood//b2_003.tga",
+	"image//blood//b2_004.tga"
 };
 
 
-char *szShadowImageFile = "image\\bshadow.bmp";
+char *szShadowImageFile = "image//bshadow.bmp";
 
 
 
 
 char *g_IceFootImageFileBuff[ICE_FOOT_PAT_MAX] =
 {
-	"image\\mk-r.tga",
-	"image\\mk-l.tga",
+	"image//mk-r.tga",
+	"image//mk-l.tga",
 };
 
 
@@ -1172,7 +1172,7 @@ static char *SetDirectoryFromFile(char *filename)
 	len = lstrlen(szDataDirectory);
 
 	for(cnt = len; cnt >= 0; cnt--)
-		if(szDataDirectory[cnt] == '\\') break;
+		if(szDataDirectory[cnt] == '//') break;
 
 	szDataDirectory[cnt + 1] = NULL;
 
@@ -1191,7 +1191,7 @@ int SetCharFileList(char *szCharFile)
 	WIN32_FIND_DATA	fd;
 
 	strcpy_s(szFindPath, szDataDirectory);
-	lstrcat(szFindPath, "\\*.ini");
+	lstrcat(szFindPath, "//*.ini");
 
 
 	hFindHandle = FindFirstFile(szFindPath, &fd);
@@ -1251,7 +1251,7 @@ void SetPlayerBodyPattern(char *szBodyFile)
 	if(lpCurPlayer->PatLoading)
 		return;
 
-	wsprintf(szBuff, "char\\tmABCD\\%s.ini", szBodyFile);
+	wsprintf(szBuff, "char//tmABCD//%s.ini", szBodyFile);
 	FILE *fp = fopen(szBuff, "rb");
 	if(!fp) return;
 	fclose(fp);
@@ -1562,14 +1562,14 @@ char szPlayerCode[32];
 int CharacterJob = 0;
 
 char *szAnimShieldEffectFile[] = {
-	"Weapons\\test1.tga",
-	"Weapons\\test2.tga",
-	"Weapons\\test3.tga",
-	"Weapons\\test2.tga"
+	"Weapons//test1.tga",
+	"Weapons//test2.tga",
+	"Weapons//test3.tga",
+	"Weapons//test2.tga"
 };
 
-char *szBangImage = "weapons\\bang2.bmp";
-char *szClowImage = "weapons\\crown.tga";
+char *szBangImage = "weapons//bang2.bmp";
+char *szClowImage = "weapons//crown.tga";
 
 extern	char *szNpcInfoPath;
 
@@ -1641,7 +1641,7 @@ int InitPat3D()
 
 
 
-	SetCharFileList("char\\tmABCD\\a001.ini");
+	SetCharFileList("char//tmABCD//a001.ini");
 
 
 
@@ -1781,12 +1781,12 @@ int InitPat3D()
 	smMATERIAL *mat;
 
 	smASE_SetPhysique(0);
-	PatArrow = smASE_Read("weapons\\arrow.ase");
-	PatEffectShield = smASE_Read("weapons\\Test8.ASE");
-	PatSparkShield = smASE_Read("weapons\\Mc3_sparkShield.ASE");
-	PatDivineShield = smASE_Read("weapons\\Nt3_DivineI.ASE");
-	PatGodlyShield = smASE_Read("weapons\\Godly_Shield.ASE");
-	PatCrown = smASE_Read("weapons\\Crown.ASE");
+	PatArrow = smASE_Read("weapons//arrow.ase");
+	PatEffectShield = smASE_Read("weapons//Test8.ASE");
+	PatSparkShield = smASE_Read("weapons//Mc3_sparkShield.ASE");
+	PatDivineShield = smASE_Read("weapons//Nt3_DivineI.ASE");
+	PatGodlyShield = smASE_Read("weapons//Godly_Shield.ASE");
+	PatCrown = smASE_Read("weapons//Crown.ASE");
 
 
 
@@ -1823,52 +1823,52 @@ int InitPat3D()
 	smASE_SetPhysique(0);
 
 
-	MatEachBox = CreateTextureMaterial("image\\cw.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MatEachBox = CreateTextureMaterial("image//cw.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
 
-	MatEachMenuBox = CreateTextureMaterial("image\\cw-1.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	MatEachTradeButton[0] = CreateTextureMaterial("image\\CW-trade0.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	MatEachTradeButton[1] = CreateTextureMaterial("image\\CW-trade1.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MatEachMenuBox = CreateTextureMaterial("image//cw-1.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MatEachTradeButton[0] = CreateTextureMaterial("image//CW-trade0.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MatEachTradeButton[1] = CreateTextureMaterial("image//CW-trade1.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
 #ifdef	_NEW_PARTRADE
 
 
-	lpDDS_ParTradeButton[0][0] = LoadDibSurfaceOffscreen("image\\party\\icon-c5_.bmp");
-	lpDDS_ParTradeButton[0][1] = LoadDibSurfaceOffscreen("image\\party\\icon-c5.bmp");
+	lpDDS_ParTradeButton[0][0] = LoadDibSurfaceOffscreen("image//party//icon-c5_.bmp");
+	lpDDS_ParTradeButton[0][1] = LoadDibSurfaceOffscreen("image//party//icon-c5.bmp");
 
-	lpDDS_ParTradeButton[1][0] = LoadDibSurfaceOffscreen("image\\party\\icon-c1_.bmp");
-	lpDDS_ParTradeButton[1][1] = LoadDibSurfaceOffscreen("image\\party\\icon-c1.bmp");
+	lpDDS_ParTradeButton[1][0] = LoadDibSurfaceOffscreen("image//party//icon-c1_.bmp");
+	lpDDS_ParTradeButton[1][1] = LoadDibSurfaceOffscreen("image//party//icon-c1.bmp");
 
-	lpDDS_ParTradeButton[2][0] = LoadDibSurfaceOffscreen("image\\party\\icon-c2_.bmp");
-	lpDDS_ParTradeButton[2][1] = LoadDibSurfaceOffscreen("image\\party\\icon-c2.bmp");
+	lpDDS_ParTradeButton[2][0] = LoadDibSurfaceOffscreen("image//party//icon-c2_.bmp");
+	lpDDS_ParTradeButton[2][1] = LoadDibSurfaceOffscreen("image//party//icon-c2.bmp");
 
-	lpDDS_ParTradeButton[3][0] = LoadDibSurfaceOffscreen("image\\party\\icon_clan_.bmp");
-	lpDDS_ParTradeButton[3][1] = LoadDibSurfaceOffscreen("image\\party\\icon_clan.bmp");
+	lpDDS_ParTradeButton[3][0] = LoadDibSurfaceOffscreen("image//party//icon_clan_.bmp");
+	lpDDS_ParTradeButton[3][1] = LoadDibSurfaceOffscreen("image//party//icon_clan.bmp");
 
 
-	lpDDS_ParTradeToolTip[0] = LoadDibSurfaceOffscreen("image\\party\\ButtonInfo-c5.bmp");
-	lpDDS_ParTradeToolTip[1] = LoadDibSurfaceOffscreen("image\\party\\ButtonInfo-c1.bmp");
-	lpDDS_ParTradeToolTip[2] = LoadDibSurfaceOffscreen("image\\party\\ButtonInfo-c0.bmp");
-	lpDDS_ParTradeToolTip[3] = LoadDibSurfaceOffscreen("image\\party\\ButtonInfo-c10.bmp");
+	lpDDS_ParTradeToolTip[0] = LoadDibSurfaceOffscreen("image//party//ButtonInfo-c5.bmp");
+	lpDDS_ParTradeToolTip[1] = LoadDibSurfaceOffscreen("image//party//ButtonInfo-c1.bmp");
+	lpDDS_ParTradeToolTip[2] = LoadDibSurfaceOffscreen("image//party//ButtonInfo-c0.bmp");
+	lpDDS_ParTradeToolTip[3] = LoadDibSurfaceOffscreen("image//party//ButtonInfo-c10.bmp");
 
 
 #endif
 
 
-	MatEnergyBox[0] = CreateTextureMaterial("image\\Energy_Red.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	MatEnergyBox[1] = CreateTextureMaterial("image\\Energy_Blue.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MatEnergyBox[0] = CreateTextureMaterial("image//Energy_Red.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MatEnergyBox[1] = CreateTextureMaterial("image//Energy_Blue.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
 
-	MatLight[0] = CreateTextureMaterial("image\\glow01.bmp", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ADDCOLOR);
+	MatLight[0] = CreateTextureMaterial("image//glow01.bmp", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ADDCOLOR);
 	smMaterial[MatLight[0]].SelfIllum = TRUE;
-	MatLight[1] = CreateTextureMaterial("image\\glow02.bmp", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ADDCOLOR);
+	MatLight[1] = CreateTextureMaterial("image//glow02.bmp", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ADDCOLOR);
 	smMaterial[MatLight[1]].SelfIllum = TRUE;
 
-	MatMonBroodImage[0] = CreateTextureMaterial("image\\M_Nm.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	MatMonBroodImage[1] = CreateTextureMaterial("image\\M_Mt.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	MatMonBroodImage[2] = CreateTextureMaterial("image\\M_Un.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	MatMonBroodImage[3] = CreateTextureMaterial("image\\M_D.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	MatMonBroodImage[4] = CreateTextureMaterial("image\\M_mc.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MatMonBroodImage[0] = CreateTextureMaterial("image//M_Nm.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MatMonBroodImage[1] = CreateTextureMaterial("image//M_Mt.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MatMonBroodImage[2] = CreateTextureMaterial("image//M_Un.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MatMonBroodImage[3] = CreateTextureMaterial("image//M_D.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MatMonBroodImage[4] = CreateTextureMaterial("image//M_mc.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
 
 	InitWeatherSystem();
@@ -4372,10 +4372,10 @@ int Record_ClinetLogFile(char *szMessage)
 
 	wsprintf(szBuff, "%d-%d (%d:%d:%d) - %s", st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond, szMessage);
 	len = lstrlen(szBuff);
-	if(szBuff[len - 1] != '\n')
+	if(szBuff[len - 1] != '/n')
 	{
-		szBuff[len] = '\r';
-		szBuff[len + 1] = '\n';
+		szBuff[len] = '/r';
+		szBuff[len + 1] = '/n';
 		len += 2;
 	}
 
@@ -4388,7 +4388,7 @@ int Record_ClinetLogFile(char *szMessage)
 }
 
 
-#include "TJBOY\\park\\ParkDXplayer.h"
+#include "TJBOY/park/ParkDXPlayer.h"
 
 int ParkPlayInit = 0;
 int ParkPlayMode = 0;

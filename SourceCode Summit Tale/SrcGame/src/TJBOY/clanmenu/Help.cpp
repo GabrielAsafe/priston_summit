@@ -8,15 +8,15 @@
 
 #ifdef USE_PROSTONTALE		
 
-#include "sinbaram\\SinLinkHeader.h"
-#include "HoBaram\\HoLinkHeader.h"
-#include "Language\\language.h"
-#include "HoBaram\\HoTextFile.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "Language/language.h"
+#include "HoBaram/HoTextFile.h"
 #include "cE_CViewClanInfo.h"
 #endif
-#include "tjscroll.h"
+#include "tjScroll.h"
 #include "tjclan.h"
-#include "clan_enti.h"
+#include "clan_Enti.h"
 #include "cE_Notice.h"
 
 
@@ -86,23 +86,23 @@ int CHelp::Clear()
 
 void CHelp::Load()
 {
-	nHelp0 = CreateTextureMaterial("image\\Sinimage\\Help\\help_icon03.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
-	nHelp1 = CreateTextureMaterial("image\\Sinimage\\Help\\help_icon04.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
+	nHelp0 = CreateTextureMaterial("image//Sinimage//Help//help_icon03.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
+	nHelp1 = CreateTextureMaterial("image//Sinimage//Help//help_icon04.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
 
-	nBox1 = CreateTextureMaterial("image\\Sinimage\\Help\\GH-Box01.tga", 0, 0, 32, 32, SMMAT_BLEND_ALPHA);
-	nBox2 = CreateTextureMaterial("image\\Sinimage\\Help\\GH-Box02.tga", 0, 0, 16, 32, SMMAT_BLEND_ALPHA);
-	nBox3 = CreateTextureMaterial("image\\Sinimage\\Help\\GH-Box03.tga", 0, 0, 32, 32, SMMAT_BLEND_ALPHA);
-	nBox4 = CreateTextureMaterial("image\\Sinimage\\Help\\GH-Box04.tga", 0, 0, 32, 16, SMMAT_BLEND_ALPHA);
-	nBox5 = CreateTextureMaterial("image\\Sinimage\\Help\\GH-Box05.tga", 0, 0, 16, 16, SMMAT_BLEND_ALPHA);
-	nBox6 = CreateTextureMaterial("image\\Sinimage\\Help\\GH-Box06.tga", 0, 0, 32, 16, SMMAT_BLEND_ALPHA);
-	nBox7 = CreateTextureMaterial("image\\Sinimage\\Help\\GH-Box07.tga", 0, 0, 32, 32, SMMAT_BLEND_ALPHA);
-	nBox8 = CreateTextureMaterial("image\\Sinimage\\Help\\GH-Box08.tga", 0, 0, 16, 32, SMMAT_BLEND_ALPHA);
-	nBox9 = CreateTextureMaterial("image\\Sinimage\\Help\\GH-Box09.tga", 0, 0, 32, 32, SMMAT_BLEND_ALPHA);
+	nBox1 = CreateTextureMaterial("image//Sinimage//Help//GH-Box01.tga", 0, 0, 32, 32, SMMAT_BLEND_ALPHA);
+	nBox2 = CreateTextureMaterial("image//Sinimage//Help//GH-Box02.tga", 0, 0, 16, 32, SMMAT_BLEND_ALPHA);
+	nBox3 = CreateTextureMaterial("image//Sinimage//Help//GH-Box03.tga", 0, 0, 32, 32, SMMAT_BLEND_ALPHA);
+	nBox4 = CreateTextureMaterial("image//Sinimage//Help//GH-Box04.tga", 0, 0, 32, 16, SMMAT_BLEND_ALPHA);
+	nBox5 = CreateTextureMaterial("image//Sinimage//Help//GH-Box05.tga", 0, 0, 16, 16, SMMAT_BLEND_ALPHA);
+	nBox6 = CreateTextureMaterial("image//Sinimage//Help//GH-Box06.tga", 0, 0, 32, 16, SMMAT_BLEND_ALPHA);
+	nBox7 = CreateTextureMaterial("image//Sinimage//Help//GH-Box07.tga", 0, 0, 32, 32, SMMAT_BLEND_ALPHA);
+	nBox8 = CreateTextureMaterial("image//Sinimage//Help//GH-Box08.tga", 0, 0, 16, 32, SMMAT_BLEND_ALPHA);
+	nBox9 = CreateTextureMaterial("image//Sinimage//Help//GH-Box09.tga", 0, 0, 32, 32, SMMAT_BLEND_ALPHA);
 
-	hClose[0] = LoadDibSurfaceOffscreen("image\\clanImage\\MessageBox\\c.bmp");
-	hClose[1] = LoadDibSurfaceOffscreen("image\\clanImage\\MessageBox\\c1.bmp");
+	hClose[0] = LoadDibSurfaceOffscreen("image//clanImage//MessageBox//c.bmp");
+	hClose[1] = LoadDibSurfaceOffscreen("image//clanImage//MessageBox//c1.bmp");
 
-	nGuideHelp = CreateTextureMaterial("image\\Sinimage\\Help\\help_icon02t.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
+	nGuideHelp = CreateTextureMaterial("image//Sinimage//Help//help_icon02t.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
 
 
 }
@@ -732,7 +732,7 @@ void CHelp::Draw_Help_Text(char *str, int x, int y, int sw)
 	{
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '\n')
+		if(strbuf[i] == '/n')
 		{
 			strbuf[i] = 0;
 			i = 0;
@@ -895,7 +895,7 @@ void CHelp::Draw_Help_Text3(char *str, int x, int y, int sw)
 
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '\n')
+		if(strbuf[i] == '/n')
 		{
 			strbuf[i] = 0;
 			i = 0;
@@ -968,7 +968,7 @@ void CHelp::Draw_Help_Text2(char *str, int x, int y, int sw)
 
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '\n')
+		if(strbuf[i] == '/n')
 		{
 			strbuf[i] = 0;
 			i = 0;

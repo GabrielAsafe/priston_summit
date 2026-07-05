@@ -1,4 +1,4 @@
-#include "opcodes.h"
+#include "../../Shared/opcodes.h"
 #include "sinbaram/sinLinkHeader.h"
 #include "cRestaureWindow.h"
 #include "CoinShop.h"
@@ -8,11 +8,11 @@ extern bool isMousePos(int x, int y, int w, int h);
 
 void cRESTAURE::Load()
 {
-	Mat[BACKGROUND] = CreateTextureMaterial("game\\GUI\\Restaure\\background.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[CLOSE] = CreateTextureMaterial("game\\GUI\\Restaure\\close.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[LEFT] = CreateTextureMaterial("game\\GUI\\Restaure\\left.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[RIGHT] = CreateTextureMaterial("game\\GUI\\Restaure\\right.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[RESTAURE] = CreateTextureMaterial("game\\GUI\\Restaure\\restaure.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[BACKGROUND] = CreateTextureMaterial("game//GUI//Restaure//background.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[CLOSE] = CreateTextureMaterial("game//GUI//Restaure//close.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[LEFT] = CreateTextureMaterial("game//GUI//Restaure//left.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[RIGHT] = CreateTextureMaterial("game//GUI//Restaure//right.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[RESTAURE] = CreateTextureMaterial("game//GUI//Restaure//restaure.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 }
 
 void cRESTAURE::Draw()
@@ -108,7 +108,7 @@ void cRESTAURE::Open()
 	itemIndex = 0;
 
 	smTRANS_COMMAND smTransCommand;
-	smTransCommand.code = OPCODE_GET_RESTAURE;
+	smTransCommand.code = OpCode::OPCODE_GET_RESTAURE;
 	smTransCommand.size = sizeof(smTRANS_COMMAND);
 
 	smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
@@ -204,7 +204,7 @@ void cRESTAURE::RecvRestaureList(RESTAURE_LIST * lpRestaureList)
 
 		if (item)
 		{
-			LoadItemImage(&lpRestaureList->ItemList[i].sItem, &item->psItem);
+			LoadItemImage(&lpRestaureList->ItemList[i].psItem.sItemInfo, &item->psItem);
 			if (item->psItem.lpItem)
 			{
 				item->CoinPrice = lpRestaureList->ItemList[i].CoinPrice;

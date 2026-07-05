@@ -3,12 +3,12 @@
 #include "HoEffectView.h"
 #include "HoNewEffectFunction.h"
 #include "netplay.h"
-#include "..\\HoMinMax.h"
-#include "..\\HoNewParticle.h"
-#include "..\\HoNewParticleMgr.h"
-#include "..\\HoAssaParticleEffect.h"
+#include "../HoMinMax.h"
+#include "../HoNewParticle.h"
+#include "../HoNewParticleMgr.h"
+#include "../hoAssaParticleEffect.h"
 #include "field.h"
-#include "SinBaram\\SinLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
 extern smCHAR *lpCurPlayer;
 void HoEffectType_Default::Init(HoEffectGroup *effectGroup, int x, int y, int z, int angleX, int angleY, int angleZ)
 {
@@ -605,7 +605,7 @@ void HoEffectType_Avater_Blade_Blur::UpdateView(int x, int y, int z, int ax, int
 
 void HoEffectType_Magnetic_Sphere::Init(smCHAR *pChar, float endTime, float attackTime)
 {
-	std::string meshName = "Effect\\NewEffect\\Res\\Object\\MC_4-3.ASE";
+	std::string meshName = "Effect//NewEffect//Res//Object//MC_4-3.ASE";
 	std::string boneName;
 	m_pMesh = HoEffectResManager::GetInstance()->GetResMesh(meshName, boneName);
     if(m_pMesh == NULL)

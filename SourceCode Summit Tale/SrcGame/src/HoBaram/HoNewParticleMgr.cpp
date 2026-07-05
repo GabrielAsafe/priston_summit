@@ -70,14 +70,14 @@ bool HoNewParticleResMgr::LoadScript(char *scr)
 	{
 		if(directoryBuffer[index] == '.')
 		{
-			directoryBuffer[index] = '\0';
+			directoryBuffer[index] = '/0';
 			break;
 		}
 	}
 
 	for(int index = (strlen(directoryBuffer) - 1); index > 0; index--)
 	{
-		if(directoryBuffer[index] == '\\')
+		if(directoryBuffer[index] == '//')
 		{
 			strcpy(fileBuffer, &directoryBuffer[index + 1]);
 			break;
@@ -173,7 +173,7 @@ int HoNewParticleResMgr::AddTexture(const char *mat)
 	partScriptRes.matName = buffer;
 	MakeUpperCase(partScriptRes.matName);
 
-	wsprintf(FullDirectoryName, "%s%s", "effect\\particle\\", mat);
+	wsprintf(FullDirectoryName, "%s%s", "effect//particle//", mat);
 	partScriptRes.matNum = CreateTextureMaterial(FullDirectoryName, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
 	MatRes.push_back(partScriptRes);

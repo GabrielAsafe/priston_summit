@@ -1,11 +1,11 @@
-#include "SinBaram\\SinLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
 #include "PCBangPetSystem.h"
-#include "..\\playmain.h"
+#include "../playmain.h"
 #include "hoAssaParticleEffect.h"
 #include "HoNewParticleLinkHeader.h"
-#include "..\\effectsnd.h"
+#include "../effectsnd.h"
 POINT3D HoPcBangPetRenderPoint;
-#include "..\\damage.h"
+#include "../damage.h"
 #include "field.h"
 
 DWORD	g_HoPCBangPetAttackSerial = 0;
@@ -740,20 +740,20 @@ HoPCBangPetManager::~HoPCBangPetManager()
 bool HoPCBangPetManager::Create()
 {
 	Destroy();
-	m_BoneBurstP = smASE_ReadBone("Effect\\PcBangPet\\Pet_Phoenimin\\Phoenix.ASE");
+	m_BoneBurstP = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
 	smASE_SetPhysique(m_BoneBurstP);
-	m_BoneBurstS = smASE_ReadBone("Effect\\PcBangPet\\Pet_Phoenimin\\Phoenix.ASE");
+	m_BoneBurstS = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
 	smASE_SetPhysique(m_BoneBurstS);
-	m_BoneBurstL = smASE_ReadBone("Effect\\PcBangPet\\Pet_Phoenimin\\Phoenix.ASE");
+	m_BoneBurstL = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
 	smASE_SetPhysique(m_BoneBurstL);
-	m_BoneBurstD = smASE_ReadBone("Effect\\PcBangPet\\Pet_Phoenimin\\Phoenix.ASE");
+	m_BoneBurstD = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
 	smASE_SetPhysique(m_BoneBurstD);
 
 
-	m_MeshBurstP = smASE_Read("Effect\\PcBangPet\\Pet_Phoenimin\\Phoenix.ASE", 0);
-	m_MeshBurstS = smASE_Read("Effect\\PcBangPet\\Pet_Phoenimin\\Phoenix.ASE", 0);
-	m_MeshBurstL = smASE_Read("Effect\\PcBangPet\\Pet_Phoenimin\\Phoenix.ASE", 0);
-	m_MeshBurstD = smASE_Read("Effect\\PcBangPet\\Pet_Phoenimin\\Phoenix.ASE", 0);
+	m_MeshBurstP = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+	m_MeshBurstS = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+	m_MeshBurstL = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+	m_MeshBurstD = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
 
 	return true;
 }

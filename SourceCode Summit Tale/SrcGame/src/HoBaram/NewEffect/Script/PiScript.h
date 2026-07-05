@@ -10,27 +10,27 @@
 #define _PI_SCRIPT_
 #pragma once
 
-#include "..\\HoNewEffectHeader.h"
+#include "../HoNewEffectHeader.h"
 #ifndef _HO_NEW_WIN32_
 extern "C"
 {
-   #include "Lua\\src\\lua.h"
-   #include "Lua\\src\\lauxlib.h"
-   #include "Lua\\src\\lualib.h"
+   #include "Lua/src/lua.h"
+   #include "Lua/src/lauxlib.h"
+   #include "Lua/src/lualib.h"
 }
 #endif
 
 #ifdef  _HO_NEW_WIN32_
 extern "C"
 {
-   #include "Lua\\win32\\lua.h"
-   #include "Lua\\win32\\lauxlib.h"
-   #include "Lua\\win32\\lualib.h"
+   #include "lua/Win32/lua.h"
+   #include "lua/Win32/lauxlib.h"
+   #include "lua/Win32/lualib.h"
 }
 #endif
 
-#pragma comment( lib, "..\\Library\\Lua.lib" )
-#pragma comment( lib, "..\\Library\\Lualib.lib" )
+#pragma comment( lib, "..//Library//Lua.lib" )
+#pragma comment( lib, "..//Library//Lualib.lib" )
 
 class PiScript
 {

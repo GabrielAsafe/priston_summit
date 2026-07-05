@@ -1,25 +1,25 @@
 
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "smwsock.h"
 
 #include "character.h"
-#include "Sound\\dxwav.h"
+#include "Sound/Dxwav.h"
 #include "particle.h"
 #include "fileread.h"
 #include "playmain.h"
 #include "drawsub.h"
 #include "netplay.h"
 #include "field.h"
-#include "hobaram\\holinkheader.h"
-#include "sinbaram\\sinlinkheader.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
 
 #include "effectsnd.h"
 #include "playsub.h"
-#include "skillsub.h"
-#include "Language\\language.h"
+#include "SkillSub.h"
+#include "Language/language.h"
 #include "damage.h"
-#include "areaserver.h"
+#include "AreaServer.h"
 
 
 

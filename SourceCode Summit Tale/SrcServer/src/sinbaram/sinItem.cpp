@@ -1,7 +1,7 @@
 
 
 #include "sinLinkHeader.h"
-#include "Language\\language.h"
+#include "Language/language.h"
 
 
 cITEM cItem;
@@ -75,19 +75,19 @@ void cITEM::Init()
 		sItem[cnt].sItemInfo.CODE = sItem[cnt].CODE;
 	}
 
-	MatItemInfoBox = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatItemInfoBox_TopLeft = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxTopLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatItemInfoBox_TopRight = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxTopRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatItemInfoBox_TopCenter = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxTopCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_TopLeft = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxTopLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_TopRight = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxTopRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_TopCenter = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxTopCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatItemInfoBox_BottomLeft = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxBottomLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatItemInfoBox_BottomRight = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxBottomRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatItemInfoBox_BottomCenter = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxBottomCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_BottomLeft = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxBottomLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_BottomRight = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxBottomRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_BottomCenter = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxBottomCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatItemInfoBox_Left = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatItemInfoBox_Right = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatItemInfoBox_Center = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_Left = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_Right = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_Center = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	Load();
 
@@ -153,9 +153,9 @@ void cITEM::Init()
 
 void cITEM::Load()
 {
-	AgingBar = LoadDibSurfaceOffscreen("image\\Sinimage\\shopall\\Aging\\Bar.bmp");
-	AgingGage = LoadDibSurfaceOffscreen("image\\Sinimage\\shopall\\Aging\\Bar_.bmp");
-	AgingBar2 = LoadDibSurfaceOffscreen("image\\Sinimage\\shopall\\Aging\\Aging.bmp");
+	AgingBar = LoadDibSurfaceOffscreen("image//Sinimage//shopall//Aging//Bar.bmp");
+	AgingGage = LoadDibSurfaceOffscreen("image//Sinimage//shopall//Aging//Bar_.bmp");
+	AgingBar2 = LoadDibSurfaceOffscreen("image//Sinimage//shopall//Aging//Aging.bmp");
 }
 
 void cITEM::Release()
@@ -189,7 +189,7 @@ void cITEM::Draw()
 	memset(&TempBuff, 0, sizeof(TempBuff));
 	for(i = 0; i < len; i++)
 	{
-		if(szInfoBuff[i] == '\r')
+		if(szInfoBuff[i] == '/r')
 		{
 			memcpy(TempBuff, szInfoBuff, i);
 			break;
@@ -601,9 +601,9 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 
 
 	if (tWeaponClass)
-		wsprintf(szInfoBuff, "%s%s\r", sInfo.ItemName, "  ");
+		wsprintf(szInfoBuff, "%s%s/r", sInfo.ItemName, "  ");
 	else
-		wsprintf(szInfoBuff, "%s\r", sInfo.ItemName);
+		wsprintf(szInfoBuff, "%s/r", sInfo.ItemName);
 
 
 
@@ -612,13 +612,13 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	{
 		if(sInfo.PotionCount <= 1)
 		{
-			wsprintf(szInfoBuff, "%s\r", sinLuckyBox);
+			wsprintf(szInfoBuff, "%s/r", sinLuckyBox);
 
 		}
 	}
 
 
-	strcpy_s(szInfoBuff2, "\r");
+	strcpy_s(szInfoBuff2, "/r");
 	ItemInfoCol++;
 
 
@@ -627,8 +627,8 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		if(sInfo.ItemAgingCount[1]) AgingGageFlag = 1;
 		else AgingGageFlag = 2;
 
-		lstrcat(szInfoBuff, "\r\r");
-		lstrcat(szInfoBuff2, "\r\r");
+		lstrcat(szInfoBuff, "/r/r");
+		lstrcat(szInfoBuff2, "/r/r");
 		ItemInfoCol++;
 		ItemInfoCol++;
 		if(sInfo.ItemAgingCount[0])
@@ -643,19 +643,19 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.ItemKindCode == ITEM_KIND_QUEST_WEAPON && sInfo.ItemAgingNum[0] < 4 &&
 		(sInfo.CODE & sinITEM_MASK2) != sinOR2)
 	{
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
 
-		wsprintf(szTemp, "%s:%d/%d  \r", QuestMonsterName[sInfo.ItemAgingNum[1]], sInfo.ItemAgingCount[1] - sInfo.ItemAgingCount[0], sInfo.ItemAgingCount[1]);
+		wsprintf(szTemp, "%s:%d/%d  /r", QuestMonsterName[sInfo.ItemAgingNum[1]], sInfo.ItemAgingCount[1] - sInfo.ItemAgingCount[0], sInfo.ItemAgingCount[1]);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		QuestItemLine = ItemInfoCol;
 
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
 
 
@@ -667,7 +667,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	{
 		strcpy_s(szTemp, TownName[0]);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
@@ -677,7 +677,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	{
 		strcpy_s(szTemp, TownName[1]);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
@@ -686,7 +686,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	{
 		strcpy_s(szTemp, TownName[2]);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
@@ -700,7 +700,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	{
 		strcpy_s(szTemp, ClanCristalName);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		for(cnt = 0; cnt < 10; cnt++)
@@ -720,21 +720,21 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	{
 		strcpy_s(szTemp, LinkCoreName);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		if(pItem->sItemInfo.ItemName[len + 1] != NULL)
 		{
 
-			lstrcat(szInfoBuff, "\r");
-			lstrcat(szInfoBuff2, "\r");
+			lstrcat(szInfoBuff, "/r");
+			lstrcat(szInfoBuff2, "/r");
 			ItemInfoCol++;
 
 			strcpy_s(szLinkName, &pItem->sItemInfo.ItemName[len + 1]);
 			strcpy_s(szTemp, szLinkName);
 			lstrcat(szInfoBuff, DesLinkCore);
 			lstrcat(szInfoBuff, szTemp);
-			strcpy_s(szTemp2, "\r");
+			strcpy_s(szTemp2, "/r");
 			lstrcat(szInfoBuff, szTemp2);
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
@@ -754,15 +754,15 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 
 	if(sInfo.ItemKindCode == 1) // Se esse itemKindCode for 1 � pq o item � mixado
 	{
-		lstrcat(szInfoBuff, "Mix \r");
-		lstrcat(szInfoBuff2, "Item\r");
+		lstrcat(szInfoBuff, "Mix /r");
+		lstrcat(szInfoBuff2, "Item/r");
 		ItemInfoCol++;
 	}
 
 	if(sInfo.Damage[0] || sInfo.Damage[1])
 	{
 		strcpy_s(szTemp, sinAbilityName[0]);
-		wsprintf(szTemp2, "%d-%d\r", sInfo.Damage[0], sInfo.Damage[1]);
+		wsprintf(szTemp2, "%d-%d/r", sInfo.Damage[0], sInfo.Damage[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -802,12 +802,12 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinAbilityName[1]);
 		if(CheckQuestItemDownFlag && sInfo.ItemKindCode == ITEM_KIND_QUEST_WEAPON)
 		{
-			wsprintf(szTemp2, "%d\r", sInfo.Attack_Speed - 2);
+			wsprintf(szTemp2, "%d/r", sInfo.Attack_Speed - 2);
 			RedLine[9] = ItemInfoCol + 1;
 		}
 		else
 		{
-			wsprintf(szTemp2, "%d\r", sInfo.Attack_Speed);
+			wsprintf(szTemp2, "%d/r", sInfo.Attack_Speed);
 		}
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
@@ -830,7 +830,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Shooting_Range)
 	{
 		strcpy_s(szTemp, sinAbilityName[2]);
-		wsprintf(szTemp2, "%d\r", sInfo.Shooting_Range);
+		wsprintf(szTemp2, "%d/r", sInfo.Shooting_Range);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -843,7 +843,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Critical_Hit)
 	{
 		strcpy_s(szTemp, sinAbilityName[3]);
-		wsprintf(szTemp2, "%d%s\r", sInfo.Critical_Hit, "%");
+		wsprintf(szTemp2, "%d%s/r", sInfo.Critical_Hit, "%");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -875,7 +875,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Defence)
 	{
 		strcpy_s(szTemp, sinAbilityName[4]);
-		wsprintf(szTemp2, "%d\r", sInfo.Defence);
+		wsprintf(szTemp2, "%d/r", sInfo.Defence);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -911,7 +911,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Attack_Rating)
 	{
 		strcpy_s(szTemp, sinAbilityName[5]);
-		wsprintf(szTemp2, "%d\r", sInfo.Attack_Rating);
+		wsprintf(szTemp2, "%d/r", sInfo.Attack_Rating);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -949,7 +949,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		sinRightSpot = sinAbsorb % 10;
 		sinLeftSpot = (sinAbsorb - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinAbilityName[6]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -983,7 +983,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	{
 		BlockRate = (int)(sInfo.fBlock_Rating);
 		strcpy_s(szTemp, sinAbilityName[7]);
-		wsprintf(szTemp2, "%d%s\r", BlockRate, "%");
+		wsprintf(szTemp2, "%d%s/r", BlockRate, "%");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1019,7 +1019,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		sinRightSpot = sinSpeed % 10;
 		sinLeftSpot = (sinSpeed - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinAbilityName[8]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1041,7 +1041,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Durability[0] || sInfo.Durability[1])
 	{
 		strcpy_s(szTemp, sinAbilityName[9]);
-		wsprintf(szTemp2, "%d/%d\r", sInfo.Durability[0], sInfo.Durability[1]);
+		wsprintf(szTemp2, "%d/%d/r", sInfo.Durability[0], sInfo.Durability[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1070,7 +1070,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Mana[0] || sInfo.Mana[1])
 	{
 		strcpy_s(szTemp, sinAbilityName[10]);
-		wsprintf(szTemp2, "%d-%d\r", sInfo.Mana[0], sInfo.Mana[1]);
+		wsprintf(szTemp2, "%d-%d/r", sInfo.Mana[0], sInfo.Mana[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1079,7 +1079,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Life[0] || sInfo.Life[1])
 	{
 		strcpy_s(szTemp, sinAbilityName[11]);
-		wsprintf(szTemp2, "%d-%d\r", sInfo.Life[0], sInfo.Life[1]);
+		wsprintf(szTemp2, "%d-%d/r", sInfo.Life[0], sInfo.Life[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1088,7 +1088,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Stamina[0] || sInfo.Stamina[1])
 	{
 		strcpy_s(szTemp, sinAbilityName[12]);
-		wsprintf(szTemp2, "%d-%d\r", sInfo.Stamina[0], sInfo.Stamina[1]);
+		wsprintf(szTemp2, "%d-%d/r", sInfo.Stamina[0], sInfo.Stamina[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1099,7 +1099,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Resistance[0])
 	{
 		strcpy_s(szTemp, sinAbilityName[13]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[0]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[0]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1118,7 +1118,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Resistance[1])
 	{
 		strcpy_s(szTemp, sinAbilityName[14]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[1]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1127,7 +1127,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Resistance[2])
 	{
 		strcpy_s(szTemp, sinAbilityName[15]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[2]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[2]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1149,7 +1149,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Resistance[3])
 	{
 		strcpy_s(szTemp, sinAbilityName[16]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[3]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[3]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1168,7 +1168,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Resistance[4])
 	{
 		strcpy_s(szTemp, sinAbilityName[17]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[4]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[4]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1187,7 +1187,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Resistance[5])
 	{
 		strcpy_s(szTemp, sinAbilityName[18]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[5]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[5]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1206,7 +1206,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Resistance[6])
 	{
 		strcpy_s(szTemp, sinAbilityName[19]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[6]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[6]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1215,7 +1215,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Resistance[7])
 	{
 		strcpy_s(szTemp, sinAbilityName[20]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[7]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[7]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1228,7 +1228,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		sinRightSpot = sinRegen % 10;
 		sinLeftSpot = (sinRegen - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinAbilityName[21]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1252,7 +1252,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		sinRightSpot = sinRegen % 10;
 		sinLeftSpot = (sinRegen - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinAbilityName[22]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1277,7 +1277,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		sinRightSpot = sinRegen % 10;
 		sinLeftSpot = (sinRegen - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinAbilityName[23]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1299,7 +1299,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	{
 		AddState = (int)sInfo.fIncrease_Life;
 		strcpy_s(szTemp, sinAbilityName[24]);
-		wsprintf(szTemp2, "%d\r", AddState);
+		wsprintf(szTemp2, "%d/r", AddState);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1319,7 +1319,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	{
 		AddState = (int)sInfo.fIncrease_Mana;
 		strcpy_s(szTemp, sinAbilityName[25]);
-		wsprintf(szTemp2, "%d\r", AddState);
+		wsprintf(szTemp2, "%d/r", AddState);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1352,7 +1352,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	{
 		AddState = (int)sInfo.fIncrease_Stamina;
 		strcpy_s(szTemp, sinAbilityName[26]);
-		wsprintf(szTemp2, "%d\r", AddState);
+		wsprintf(szTemp2, "%d/r", AddState);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1372,7 +1372,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Potion_Space)
 	{
 		strcpy_s(szTemp, sinAbilityName[27]);
-		wsprintf(szTemp2, "%d\r", sInfo.Potion_Space);
+		wsprintf(szTemp2, "%d/r", sInfo.Potion_Space);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1385,8 +1385,8 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinAbilityName[28]);
 		if((sInfo.CODE & sinITEM_MASK2) == sinFO1)
 		{
-			lstrcat(szInfoBuff, "\r");
-			lstrcat(szInfoBuff2, "\r");
+			lstrcat(szInfoBuff, "/r");
+			lstrcat(szInfoBuff2, "/r");
 			ItemInfoCol++;
 
 			for(i = 0; i < 16; i++)
@@ -1395,11 +1395,11 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				{
 					if(i <= 3)
 					{
-						wsprintf(szTemp2, "%d-%d\r", ForceOrbUseLevel[i][0], ForceOrbUseLevel[i][1]);
+						wsprintf(szTemp2, "%d-%d/r", ForceOrbUseLevel[i][0], ForceOrbUseLevel[i][1]);
 					}
 					else
 					{
-						wsprintf(szTemp2, "%d+\r", ForceOrbUseLevel[i][0]);
+						wsprintf(szTemp2, "%d+/r", ForceOrbUseLevel[i][0]);
 					}
 					break;
 				}
@@ -1407,17 +1407,17 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				{
 					if(i <= 3)
 					{
-						wsprintf(szTemp2, "%d-%d\r", MagicForceOrbUseLevel[i][0], MagicForceOrbUseLevel[i][1]);
+						wsprintf(szTemp2, "%d-%d/r", MagicForceOrbUseLevel[i][0], MagicForceOrbUseLevel[i][1]);
 					}
 					else
 					{
-						wsprintf(szTemp2, "%d+\r", MagicForceOrbUseLevel[i][0]);
+						wsprintf(szTemp2, "%d+/r", MagicForceOrbUseLevel[i][0]);
 					}
 					break;
 				}
 				else if(((pItem->CODE&sinITEM_MASK3) == BillingMagicSheltomCode[i]))
 				{
-					wsprintf(szTemp2, "%d+\r", BillingMagicForceOrbUseLevel[i][0]);
+					wsprintf(szTemp2, "%d+/r", BillingMagicForceOrbUseLevel[i][0]);
 					break;
 				}
 			}
@@ -1435,7 +1435,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		}
 		else
 		{
-			wsprintf(szTemp2, "%d\r", sInfo.Level);
+			wsprintf(szTemp2, "%d/r", sInfo.Level);
 			lstrcat(szInfoBuff, szTemp);
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
@@ -1456,7 +1456,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 			if((pItem->CODE&sinITEM_MASK3) == SheltomCode2[i])
 			{
 				strcpy_s(szTemp, sinAddDamageItem);
-				wsprintf(szTemp2, "%d\r", ForceOrbDamage[i]);
+				wsprintf(szTemp2, "%d/r", ForceOrbDamage[i]);
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -1464,7 +1464,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				if(i > 5 && i < 10)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 10, "%");
+					wsprintf(szTemp2, "%d%s/r", 10, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -1472,7 +1472,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				else if(i == 10)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 15, "%");
+					wsprintf(szTemp2, "%d%s/r", 15, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -1480,7 +1480,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				else if(i == 11)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 20, "%");
+					wsprintf(szTemp2, "%d%s/r", 20, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -1488,7 +1488,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				else if (i == 12)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 20, "%");
+					wsprintf(szTemp2, "%d%s/r", 20, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -1496,7 +1496,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				else if (i == 13)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 20, "%");
+					wsprintf(szTemp2, "%d%s/r", 20, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -1504,7 +1504,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				else if (i == 14)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 20, "%");
+					wsprintf(szTemp2, "%d%s/r", 20, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -1512,7 +1512,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				else if (i == 15)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 20, "%");
+					wsprintf(szTemp2, "%d%s/r", 20, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -1520,14 +1520,14 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				else if (i == 16)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 20, "%");
+					wsprintf(szTemp2, "%d%s/r", 20, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 				}
 
 				strcpy_s(szTemp, sinContinueTimeItem);
-				wsprintf(szTemp2, "%d%s\r", ForceOrbUseTime[i], SecName);
+				wsprintf(szTemp2, "%d%s/r", ForceOrbUseTime[i], SecName);
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -1536,7 +1536,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 			else if((pItem->CODE&sinITEM_MASK3) == MagicSheltomCode[i])
 			{
 				strcpy_s(szTemp, sinAddDamageItem);
-				wsprintf(szTemp2, "%d\r", MagicForceOrbDamage[i]);
+				wsprintf(szTemp2, "%d/r", MagicForceOrbDamage[i]);
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -1545,7 +1545,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				if(i > 5 && i < 10)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 10, "%");
+					wsprintf(szTemp2, "%d%s/r", 10, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -1553,7 +1553,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				else if(i == 10)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 15, "%");
+					wsprintf(szTemp2, "%d%s/r", 15, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -1561,14 +1561,14 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				else if(i == 11)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 20, "%");
+					wsprintf(szTemp2, "%d%s/r", 20, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 				}
 
 				strcpy_s(szTemp, sinContinueTimeItem);
-				wsprintf(szTemp2, "%d%s\r", MagicForceOrbUseTime[i], SecName);
+				wsprintf(szTemp2, "%d%s/r", MagicForceOrbUseTime[i], SecName);
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -1578,13 +1578,13 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 			{
 
 				strcpy_s(szTemp, AddPercentDamage3);
-				wsprintf(szTemp2, "%d%s\r", 15, "%");
+				wsprintf(szTemp2, "%d%s/r", 15, "%");
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
 
 				strcpy_s(szTemp, sinContinueTimeItem);
-				wsprintf(szTemp2, "%d%s\r", BillingMagicForceOrbUseTime[i], SecName);
+				wsprintf(szTemp2, "%d%s/r", BillingMagicForceOrbUseTime[i], SecName);
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -1600,7 +1600,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		DWORD NowTime = GetPlayTime_T();
 		DWORD Time = (60 * 60 * 24 * 14) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
-		wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+		wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1625,7 +1625,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		DWORD NowTime = GetPlayTime_T();
 		DWORD Time = (60 * 60 * 24 * 5) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
-		wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+		wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1642,9 +1642,9 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1662,9 +1662,9 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 
 
 
@@ -1684,11 +1684,11 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
 
 
-			wsprintf(szTemp2, "%d%s\r", (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s/r", (Time / 60) % 60, sinMinute2);
 
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1706,10 +1706,10 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
 
-			wsprintf(szTemp2, "%d%s%d%s\r", (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s/r", (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 
 
 		lstrcat(szInfoBuff, szTemp);
@@ -1728,9 +1728,9 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 
 
 
@@ -1750,10 +1750,10 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 
 		else
-			wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
@@ -1772,9 +1772,9 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 
 
 
@@ -1791,9 +1791,9 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 24 * 1) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1806,9 +1806,9 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		DWORD Time = (60 * 60) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1822,9 +1822,9 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 24 * 1) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1837,9 +1837,9 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		DWORD Time = (60 * 60) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1857,9 +1857,9 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 
 
 
@@ -1879,9 +1879,9 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 
 
 
@@ -1901,9 +1901,9 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 
 
 
@@ -1930,9 +1930,9 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 24 * 7) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1957,9 +1957,9 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 24 * 30) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if(DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%d%s%d%s%d%s\r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
+			wsprintf(szTemp2, "%d%s%d%s%d%s/r", (Time / 60 / 60) / 24, sinDay4, (Time / 60 / 60) % 24, sinHour4, (Time / 60) % 60, sinMinute2);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -1972,13 +1972,13 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 			if(pItem->CODE == dwPremiumItemCode[i])
 			{
 				strcpy_s(szTemp, PremiumItemDoc[i][0]);
-				wsprintf(szTemp2, "\r");
+				wsprintf(szTemp2, "/r");
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
 
 				strcpy_s(szTemp, PremiumItemDoc[i][1]);
-				wsprintf(szTemp2, "\r");
+				wsprintf(szTemp2, "/r");
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -1994,7 +1994,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 			if(pItem->CODE == sReconItem[i].dwCODE)
 			{
 				strcpy_s(szTemp, sinAbilityName[28]);
-				wsprintf(szTemp2, "%d-%d\r", sReconItem[i].iLevel[0], sReconItem[i].iLevel[1]);
+				wsprintf(szTemp2, "%d-%d/r", sReconItem[i].iLevel[0], sReconItem[i].iLevel[1]);
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -2013,25 +2013,25 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				if(i == 5 || i == 6 || i == 7)
 				{
 					strcpy_s(szTemp, CastlItemInfo[5]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 
 					strcpy_s(szTemp, CastlItemInfo2[5]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 
 					wsprintf(szTemp, AttributeTower[3], 60);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 
 					strcpy_s(szTemp, AttributeTower[i - 5]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -2042,25 +2042,25 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				else if(i > 7)
 				{
 					strcpy_s(szTemp, CastlItemInfo[6]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 
 					strcpy_s(szTemp, CastlItemInfo2[6]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 
 					wsprintf(szTemp, AttributeTower[3], 60);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 
 					strcpy_s(szTemp, CharClassTarget[i - 8]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -2071,13 +2071,13 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				else
 				{
 					strcpy_s(szTemp, CastlItemInfo[i]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 
 					strcpy_s(szTemp, CastlItemInfo2[i]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -2086,7 +2086,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 					{
 
 						wsprintf(szTemp, AttributeTower[3], 30);
-						wsprintf(szTemp2, "\r");
+						wsprintf(szTemp2, "/r");
 						lstrcat(szInfoBuff, szTemp);
 						lstrcat(szInfoBuff2, szTemp2);
 						ItemInfoCol++;
@@ -2112,13 +2112,13 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 
 
 				strcpy_s(szTemp, BoosterItemInfo[m]);
-				wsprintf(szTemp2, "\r");
+				wsprintf(szTemp2, "/r");
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
 
 				strcpy_s(szTemp, BoosterItemInfo2[m]);
-				wsprintf(szTemp2, "\r");
+				wsprintf(szTemp2, "/r");
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -2127,7 +2127,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 				if(i == 1 || i == 4 || i == 7) n = 1;
 				if(i == 2 || i == 5 || i == 8) n = 2;
 				wsprintf(szTemp, AttributeTower[3], BoosterItem_UseTime[n]);
-				wsprintf(szTemp2, "\r");
+				wsprintf(szTemp2, "/r");
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -2142,7 +2142,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Strength)
 	{
 		strcpy_s(szTemp, sinAbilityName[29]);
-		wsprintf(szTemp2, "%d\r", sInfo.Strength);
+		wsprintf(szTemp2, "%d/r", sInfo.Strength);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2159,7 +2159,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Spirit && (sInfo.CODE & sinITEM_MASK2) != sinFO1)
 	{
 		strcpy_s(szTemp, sinAbilityName[30]);
-		wsprintf(szTemp2, "%d\r", sInfo.Spirit);
+		wsprintf(szTemp2, "%d/r", sInfo.Spirit);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2176,7 +2176,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Talent)
 	{
 		strcpy_s(szTemp, sinAbilityName[31]);
-		wsprintf(szTemp2, "%d\r", sInfo.Talent);
+		wsprintf(szTemp2, "%d/r", sInfo.Talent);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2192,7 +2192,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Dexterity)
 	{
 		strcpy_s(szTemp, sinAbilityName[32]);
-		wsprintf(szTemp2, "%d\r", sInfo.Dexterity);
+		wsprintf(szTemp2, "%d/r", sInfo.Dexterity);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2208,7 +2208,7 @@ int cITEM::ShowItemInfo(sITEM *pItem, int Flag, int Index)
 	if(sInfo.Health)
 	{
 		strcpy_s(szTemp, sinAbilityName[33]);
-		wsprintf(szTemp2, "%d\r", sInfo.Health);
+		wsprintf(szTemp2, "%d/r", sInfo.Health);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2260,7 +2260,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Add_Attack_Speed)
 	{
 		strcpy_s(szTemp, sinSpecialName[0]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Attack_Speed);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Attack_Speed);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2269,7 +2269,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Add_Critical_Hit)
 	{
 		strcpy_s(szTemp, sinSpecialName[1]);
-		wsprintf(szTemp2, "%d%s\r", sInfo.JobItem.Add_Critical_Hit, "%");
+		wsprintf(szTemp2, "%d%s/r", sInfo.JobItem.Add_Critical_Hit, "%");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2278,7 +2278,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Add_Defence)
 	{
 		strcpy_s(szTemp, sinSpecialName[2]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Defence);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Defence);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2290,7 +2290,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 		sinRightSpot = sinAbsorb % 10;
 		sinLeftSpot = (sinAbsorb - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinSpecialName[3]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2300,7 +2300,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	{
 		BlockRate = (int)(sInfo.JobItem.Add_fBlock_Rating);
 		strcpy_s(szTemp, sinSpecialName[4]);
-		wsprintf(szTemp2, "%d%s\r", BlockRate, "%");
+		wsprintf(szTemp2, "%d%s/r", BlockRate, "%");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2311,7 +2311,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	{
 		sinMagic_Mastery = (int)(sInfo.JobItem.Add_fMagic_Mastery);
 		strcpy_s(szTemp, sinSpecialName[5]);
-		wsprintf(szTemp2, "%d\r", sinMagic_Mastery);
+		wsprintf(szTemp2, "%d/r", sinMagic_Mastery);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2324,7 +2324,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 		sinRightSpot = sinSpeed % 10;
 		sinLeftSpot = (sinSpeed - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinSpecialName[6]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2334,7 +2334,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Add_Resistance[0])
 	{
 		strcpy_s(szTemp, sinSpecialName[7]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[0]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[0]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2342,7 +2342,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Add_Resistance[1])
 	{
 		strcpy_s(szTemp, sinSpecialName[8]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[1]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2351,7 +2351,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Add_Resistance[2])
 	{
 		strcpy_s(szTemp, sinSpecialName[9]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[2]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[2]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2360,7 +2360,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Add_Resistance[3])
 	{
 		strcpy_s(szTemp, sinSpecialName[10]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[3]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[3]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2369,7 +2369,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Add_Resistance[4])
 	{
 		strcpy_s(szTemp, sinSpecialName[11]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[4]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[4]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2378,7 +2378,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Add_Resistance[5])
 	{
 		strcpy_s(szTemp, sinSpecialName[12]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[5]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[5]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2387,7 +2387,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Add_Resistance[6])
 	{
 		strcpy_s(szTemp, sinSpecialName[13]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[6]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[6]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2396,7 +2396,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Add_Resistance[7])
 	{
 		strcpy_s(szTemp, sinSpecialName[14]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[7]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[7]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2405,7 +2405,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Lev_Damage[1])
 	{
 		strcpy_s(szTemp, sinSpecialName[15]);
-		wsprintf(szTemp2, "LV/%d\r", sInfo.JobItem.Lev_Damage[1]);
+		wsprintf(szTemp2, "LV/%d/r", sInfo.JobItem.Lev_Damage[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2415,7 +2415,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Lev_Attack_Rating)
 	{
 		strcpy_s(szTemp, sinSpecialName[16]);
-		wsprintf(szTemp2, "LV/%d\r", sInfo.JobItem.Lev_Attack_Rating);
+		wsprintf(szTemp2, "LV/%d/r", sInfo.JobItem.Lev_Attack_Rating);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2425,7 +2425,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Add_Shooting_Range)
 	{
 		strcpy_s(szTemp, sinSpecialName[17]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Shooting_Range);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Shooting_Range);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2435,7 +2435,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Lev_Attack_Resistance[0])
 	{
 		strcpy_s(szTemp, sinSpecialName[18]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[0]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[0]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2444,7 +2444,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Lev_Attack_Resistance[1])
 	{
 		strcpy_s(szTemp, sinSpecialName[19]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[1]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2453,7 +2453,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Lev_Attack_Resistance[2])
 	{
 		strcpy_s(szTemp, sinSpecialName[20]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[2]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[2]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2462,7 +2462,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Lev_Attack_Resistance[3])
 	{
 		strcpy_s(szTemp, sinSpecialName[21]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[3]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[3]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2471,7 +2471,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Lev_Attack_Resistance[4])
 	{
 		wsprintf(szTemp, sinSpecialName[22]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[4]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[4]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2481,7 +2481,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Lev_Attack_Resistance[5])
 	{
 		strcpy_s(szTemp, sinSpecialName[23]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[5]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[5]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2491,7 +2491,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Lev_Attack_Resistance[6])
 	{
 		strcpy_s(szTemp, sinSpecialName[24]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[6]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[6]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2500,7 +2500,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Lev_Attack_Resistance[7])
 	{
 		strcpy_s(szTemp, sinSpecialName[25]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[7]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[7]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2509,7 +2509,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Lev_Life)
 	{
 		strcpy_s(szTemp, sinSpecialName[26]);
-		wsprintf(szTemp2, "LV/%d\r", sInfo.JobItem.Lev_Life);
+		wsprintf(szTemp2, "LV/%d/r", sInfo.JobItem.Lev_Life);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2518,7 +2518,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(sInfo.JobItem.Lev_Mana)
 	{
 		strcpy_s(szTemp, sinSpecialName[27]);
-		wsprintf(szTemp2, "LV/%d\r", sInfo.JobItem.Lev_Mana);
+		wsprintf(szTemp2, "LV/%d/r", sInfo.JobItem.Lev_Mana);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2532,7 +2532,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 		sinLeftSpot = (sinPer_Regen - sinRightSpot) / 10;
 
 		strcpy_s(szTemp, sinSpecialName[28]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2544,7 +2544,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 		sinRightSpot = sinPer_Regen % 10;
 		sinLeftSpot = (sinPer_Regen - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinSpecialName[29]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2557,7 +2557,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 		sinRightSpot = sinPer_Regen % 10;
 		sinLeftSpot = (sinPer_Regen - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinSpecialName[30]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2568,8 +2568,8 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	memset(szTemp7, 0, sizeof(szTemp7));
 	if(cShop.OpenFlag)
 	{
-		strcpy_s(szTemp, "\r");
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp, "/r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -2584,7 +2584,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 
 				NumLineComa(pItem->SellPrice, szTemp7);
 				strcpy_s(szTemp2, szTemp7);
-				lstrcat(szTemp2, "\r");
+				lstrcat(szTemp2, "/r");
 
 			}
 			if(Flag == 1)
@@ -2600,7 +2600,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 
 
 				strcpy_s(szTemp2, szTemp7);
-				lstrcat(szTemp2, "\r");
+				lstrcat(szTemp2, "/r");
 
 
 
@@ -2618,8 +2618,8 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	{
 		if(Flag == 3)
 		{
-			strcpy_s(szTemp, "\r");
-			strcpy_s(szTemp2, "\r");
+			strcpy_s(szTemp, "/r");
+			strcpy_s(szTemp2, "/r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
@@ -2627,7 +2627,7 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 			strcpy_s(szTemp, MyShopItemSell5);
 			NumLineComa(MyShopItemSellMoney2, szTemp7);
 			strcpy_s(szTemp2, szTemp7);
-			lstrcat(szTemp2, "    \r");
+			lstrcat(szTemp2, "    /r");
 
 
 			lstrcat(szInfoBuff, szTemp);
@@ -2639,14 +2639,14 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	}
 	if(pItem->CODE == (sinGF1 | sin01))
 	{
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
 
 		wsprintf(szTemp, sinGold, sInfo.Price);
-		lstrcat(szTemp, "\r");
+		lstrcat(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
@@ -2654,13 +2654,13 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 
 	if(pItem->sItemInfo.SpecialItemFlag[0] == CHECK_COPY_ITEM)
 	{
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
 
 		strcpy_s(szTemp, sinCopyItem5);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		RedLine[6] = ItemInfoCol;
@@ -2669,13 +2669,13 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 
 	if(pItem->sItemInfo.SpecialItemFlag[0] == CHECK_GIVE_ITEM)
 	{
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
 
 		strcpy_s(szTemp, sinGiveItem5);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		RedLine[7] = ItemInfoCol;
@@ -2685,13 +2685,13 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(cItem.GetItemLimitTime(pItem) == FALSE)
 	{
 
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
 
 		strcpy_s(szTemp, sinItemLimitTimeOverMsg);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		RedLine[8] = ItemInfoCol;
@@ -2702,13 +2702,13 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	{
 		if(Flag == 2)
 		{
-			lstrcat(szInfoBuff, "\r");
-			lstrcat(szInfoBuff2, "\r");
+			lstrcat(szInfoBuff, "/r");
+			lstrcat(szInfoBuff2, "/r");
 			ItemInfoCol++;
 
 			wsprintf(szTemp, "%s", NowMyShopSell);
 			lstrcat(szInfoBuff, szTemp);
-			strcpy_s(szTemp2, "\r");
+			strcpy_s(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
@@ -2719,15 +2719,15 @@ int cITEM::ShowItemInfo2(sITEM *pItem, int Flag, int Index)
 	if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR && VRKeyBuff[VK_CONTROL])
 	{
 
-		wsprintf(szTemp, "%d\r", pItem->sItemInfo.ItemHeader.dwChkSum);
+		wsprintf(szTemp, "%d/r", pItem->sItemInfo.ItemHeader.dwChkSum);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		wsprintf(szTemp, "%d\r", pItem->sItemInfo.ItemHeader.Head);
+		wsprintf(szTemp, "%d/r", pItem->sItemInfo.ItemHeader.Head);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
@@ -2829,9 +2829,9 @@ int cITEM::DrawItemText()
 	{
 		for(j = 0; j < len2; j++)
 		{
-			if(szInfoBuffBack[i] == '\r')
+			if(szInfoBuffBack[i] == '/r')
 			{
-				if(szInfoBuff2Back[j] == '\r')
+				if(szInfoBuff2Back[j] == '/r')
 				{
 					pItemInfo[Count] = &szInfoBuffBack[TempLen];
 					pItemInfo2[Count] = &szInfoBuff2Back[TempLen2];
@@ -3077,7 +3077,7 @@ int cITEM::SearchSpecialItemJob(DWORD SpecialJob_CODE)
 		if(JobDataBase[cnt].JobBitCode & SpecialJob_CODE)
 		{
 			wsprintf(szTemp, SpecialName3, JobDataBase[cnt].szName2);
-			strcpy_s(szTemp2, "  \r");
+			strcpy_s(szTemp2, "  /r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;

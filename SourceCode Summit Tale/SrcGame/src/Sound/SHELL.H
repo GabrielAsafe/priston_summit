@@ -2,8 +2,8 @@
  *
  *  Copyright (C) 1995-1996 Microsoft Corporation. All Rights Reserved.
  *
- *  File:       shell.h
- *  Content:    DirectSound shell header
+ *  File:       SHELL.H
+ *  Content:    DirectSound SHELL.Header
  *
  ***************************************************************************/
 

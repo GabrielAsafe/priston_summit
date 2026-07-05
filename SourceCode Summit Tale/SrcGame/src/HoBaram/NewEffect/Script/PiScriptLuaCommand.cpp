@@ -6,16 +6,16 @@
 
 
 
-#include ".\PiScript.h"
-#include ".\PiScriptLuaCommand.h"
+#include "PiScript.h"
+#include "./PiScriptLuaCommand.h"
 
-#include "..\\HoNewEffectHeader.h"
+#include "../HoNewEffectHeader.h"
 #ifndef _HO_NEW_WIN32_
-#include "..\\..\\MainWnd.h"
+#include "../../MainWnd.h"
 #endif
 
 #ifdef _HO_NEW_WIN32_
-#include "..\\HoEffectMain.h"
+#include "../HoEffectMain.h"
 #endif
 
 
@@ -58,16 +58,16 @@ int luaCommand_InitMeshName( lua_State *pLuaState)
 	char buffer2[256];
 	if(count == 1)
 	{
-		strcpy(buffer1, "Effect\\NewEffect\\");
+		strcpy(buffer1, "Effect//NewEffect//");
  		strcat(buffer1, lua_tostring(pLuaState, 1));
         MainWindow.LuaInitMeshName( buffer1, NULL);
 	}
     else if(count == 2)
 	{
-		strcpy(buffer1, "Effect\\NewEffect\\");
+		strcpy(buffer1, "Effect//NewEffect//");
  		strcat(buffer1, lua_tostring(pLuaState, 1));
 
-		strcpy(buffer2, "Effect\\NewEffect\\");
+		strcpy(buffer2, "Effect//NewEffect//");
  		strcat(buffer2, lua_tostring(pLuaState, 2));
         MainWindow.LuaInitMeshName( buffer1, buffer2);
 	}
@@ -95,7 +95,7 @@ int luaCommand_InitLoop( lua_State *pLuaState)
 int luaCommand_InitTextureName ( lua_State *pLuaState)
 {
     char buffer[256];
- 	strcpy(buffer, "Effect\\NewEffect\\");
+ 	strcpy(buffer, "Effect//NewEffect//");
 	strcat(buffer, lua_tostring(pLuaState, 1));
  	MainWindow.LuaInitTextureName( buffer);
 	return 1;
@@ -104,7 +104,7 @@ int luaCommand_InitTextureName ( lua_State *pLuaState)
 int luaCommand_InitAniTextureName ( lua_State *pLuaState)
 {
     char buffer[256];
- 	strcpy(buffer, "Effect\\NewEffect\\");
+ 	strcpy(buffer, "Effect//NewEffect//");
  	strcat(buffer, lua_tostring(pLuaState, 1));
  	MainWindow.LuaInitTextureName( buffer);
 

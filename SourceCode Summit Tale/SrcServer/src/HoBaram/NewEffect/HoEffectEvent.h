@@ -8,9 +8,9 @@
 
 #ifndef _HO_EFFECT_EVENT_H_
 #define _HO_EFFECT_EVENT_H_
-#include "math\\mathGlobal.h"
-#include "math\\point3.h"
-#include "math\\color4.h"
+#include "math/mathGlobal.h"
+#include "math/point3.h"
+#include "math/color4.h"
 #include "HoEffectModel.h"
 #include "HoEffectUtil.h"
 #include <vector>

@@ -1,4 +1,4 @@
-#include "sinhaquest.h"
+#include "sinHaQuest.h"
 
 sinHaQuest::sinHaQuest(void)
 {

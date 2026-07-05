@@ -1,19 +1,19 @@
-#include "sinbaram\\SinLinkHeader.h"
-#include "..\\HoBaram\\HoLinkHeader.h"
-#include "..\\smreg.h"
-#include "..\\HoBaram\\HoTextFile.h"
-#include "..\\HoBaram\\HoMinMax.h"
-#include "..\\HoBaram\\HoNewParticle.h"
-#include "..\\HoBaram\\HoNewParticleMgr.h"
-#include "Language\\language.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "../HoBaram/HoLinkHeader.h"
+#include "../smreg.h"
+#include "../HoBaram/HoTextFile.h"
+#include "../HoBaram/HoMinMax.h"
+#include "../HoBaram/HoNewParticle.h"
+#include "../HoBaram/HoNewParticleMgr.h"
+#include "Language/language.h"
 
-#include "..\\CAutoCamera.h"
+#include "../CAutoCamera.h"
 
-#include "Font\Font.h"
-#include "Settings\Settings.h"
-#include "Settings\UI.h"
-#include "File\File.h"
-#include "Login\Login.h"
+#include "Font/Font.h"
+#include "Settings/Settings.h"
+#include "Settings/UI.h"
+#include "File/File.h"
+#include "Login/Login.h"
 #include "cSettingsWindow.h"
 
 
@@ -128,7 +128,7 @@ int HoOpening::Init()
 	smRender.ClearLight();
 
 	StopBGM();
-	OpenBGM("game\\GUI\\Opening\\Login\\UI\\Intro.wav");
+	OpenBGM("game//GUI//Opening//Login//UI//Intro.wav");
 	PlayBGM();
 
 	SetVolumeBGM(OpeningBgmVolume);
@@ -145,7 +145,7 @@ int HoOpening::Init()
 	{
 		char buffer[100] = { 0 };
 		strcpy_s(buffer, sizeof(buffer), e.what());
-		Utils_Log(LOG_GAME, buffer);
+		// // Utils_Log(LOG_GAME, buffer);
 	}
 
 	if (!id.empty())
@@ -332,7 +332,7 @@ void HoOpening::SetParticleEffectSpawn(void)
 
 int HoOpening::DebugModeLoadFieldInfo(void)
 {
-	FILE* fp = fopen("game\\GUI\\Opening\\Login\\UI\\OpeningField.txt", "rb");
+	FILE* fp = fopen("game//GUI//Opening//Login//UI//OpeningField.txt", "rb");
 	if (fp == NULL)
 		return FALSE;
 
@@ -442,26 +442,26 @@ int HoOpening::Load()
 
 	if (IsLoad == FALSE)
 	{
-		Stage = smSTAGE3D_ReadASE("StartImage\\Opening\\map\\stage.ASE");
+		Stage = smSTAGE3D_ReadASE("StartImage//Opening//map//stage.ASE");
 
 		if (Stage)
 		{
 			Stage->Head = TRUE;
 
-			s_AutoCamera.ReadASE_AutoCamera("StartImage\\Opening\\opening_camera.ASE");
+			s_AutoCamera.ReadASE_AutoCamera("StartImage//Opening//opening_camera.ASE");
 			m_AutoCameraFrameTime = 50;
 			s_AutoCamera.SetWarpFrame(472, 473);
 
-			Stage->StageObject->AddObjectFile("StartImage\\Opening\\map\\st-ani02.ASE");
-			Stage->StageObject->AddObjectFile("StartImage\\Opening\\map\\st-ani03.ASE");
+			Stage->StageObject->AddObjectFile("StartImage//Opening//map//st-ani02.ASE");
+			Stage->StageObject->AddObjectFile("StartImage//Opening//map//st-ani03.ASE");
 
-			Stage->StageObject->AddObjectFile("StartImage\\Opening\\babel\\st-ani04.ASE", "StartImage\\Opening\\babel\\st-ani04.ASE");
-			Stage->StageObject->AddObjectFile("StartImage\\Opening\\npc\\opening_NPC_A.ASE", "StartImage\\Opening\\npc\\opening_NPC_A.ASE");
-			Stage->StageObject->AddObjectFile("StartImage\\Opening\\npc\\opening_NPC_B.ASE", "StartImage\\Opening\\npc\\opening_NPC_B.ASE");
-			Stage->StageObject->AddObjectFile("StartImage\\Opening\\npc\\opening_NPC_C.ASE", "StartImage\\Opening\\npc\\opening_NPC_C.ASE");
-			Stage->StageObject->AddObjectFile("StartImage\\Opening\\npc\\opening_NPC_D.ASE", "StartImage\\Opening\\npc\\opening_NPC_D.ASE");
-			Stage->StageObject->AddObjectFile("StartImage\\Opening\\npc\\opening_NPC_E.ASE", "StartImage\\Opening\\npc\\opening_NPC_E.ASE");
-			Stage->StageObject->AddObjectFile("StartImage\\Opening\\npc\\opening_NPC_F.ASE", "StartImage\\Opening\\npc\\opening_NPC_F.ASE");
+			Stage->StageObject->AddObjectFile("StartImage//Opening//babel//st-ani04.ASE", "StartImage//Opening//babel//st-ani04.ASE");
+			Stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_A.ASE", "StartImage//Opening//npc//opening_NPC_A.ASE");
+			Stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_B.ASE", "StartImage//Opening//npc//opening_NPC_B.ASE");
+			Stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_C.ASE", "StartImage//Opening//npc//opening_NPC_C.ASE");
+			Stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_D.ASE", "StartImage//Opening//npc//opening_NPC_D.ASE");
+			Stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_E.ASE", "StartImage//Opening//npc//opening_NPC_E.ASE");
+			Stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_F.ASE", "StartImage//Opening//npc//opening_NPC_F.ASE");
 
 		}
 	}
@@ -473,34 +473,34 @@ int HoOpening::Load()
 	smGameStage[1] = NULL;
 
 
-	/*GameLogo[0] = CreateTextureMaterial("game\\GUI\\Opening\\Login\\UI\\GameLogo1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	GameLogo[1] = CreateTextureMaterial("game\\GUI\\Opening\\Login\\UI\\GameLogo2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	GameLogo[2] = CreateTextureMaterial("game\\GUI\\Opening\\Login\\UI\\GameLogo3.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	GameLogo[3] = CreateTextureMaterial("game\\GUI\\Opening\\Login\\UI\\GameLogo4.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	GameLogo[4] = CreateTextureMaterial("game\\GUI\\Opening\\Login\\UI\\GameLogo5.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	GameLogo[5] = CreateTextureMaterial("game\\GUI\\Opening\\Login\\UI\\GameLogo6.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);*/
+	/*GameLogo[0] = CreateTextureMaterial("game//GUI//Opening//Login//UI//GameLogo1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	GameLogo[1] = CreateTextureMaterial("game//GUI//Opening//Login//UI//GameLogo2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	GameLogo[2] = CreateTextureMaterial("game//GUI//Opening//Login//UI//GameLogo3.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	GameLogo[3] = CreateTextureMaterial("game//GUI//Opening//Login//UI//GameLogo4.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	GameLogo[4] = CreateTextureMaterial("game//GUI//Opening//Login//UI//GameLogo5.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	GameLogo[5] = CreateTextureMaterial("game//GUI//Opening//Login//UI//GameLogo6.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);*/
 
-	ButtonLoginImage[0] = CreateTextureMaterial("game\\Login\\UI\\cad.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ButtonLoginImage[1] = CreateTextureMaterial("game\\Login\\UI\\cad_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ButtonLoginImage[0] = CreateTextureMaterial("game//Login//UI//cad.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ButtonLoginImage[1] = CreateTextureMaterial("game//Login//UI//cad_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	ButtonQuitImage[0] = CreateTextureMaterial("game\\Login\\UI\\S_Exit_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ButtonQuitImage[1] = CreateTextureMaterial("game\\Login\\UI\\S_Exit.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ButtonQuitImage[0] = CreateTextureMaterial("game//Login//UI//S_Exit_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ButtonQuitImage[1] = CreateTextureMaterial("game//Login//UI//S_Exit.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	iInputID = CreateTextureMaterial("game\\UI\\insertbox.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iBtnLogin[0] = CreateTextureMaterial("game\\UI\\btn_play.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iBtnLogin[1] = CreateTextureMaterial("game\\UI\\btn_play_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iBtnExit[0] = CreateTextureMaterial("game\\UI\\btn_exit.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iBtnExit[1] = CreateTextureMaterial("game\\UI\\btn_exit_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Back = CreateTextureMaterial("game\\UI\\bg.jpg", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	bk = CreateTextureMaterial("game\\UI\\logo.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iInputID = CreateTextureMaterial("game//UI//insertbox.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iBtnLogin[0] = CreateTextureMaterial("game//UI//btn_play.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iBtnLogin[1] = CreateTextureMaterial("game//UI//btn_play_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iBtnExit[0] = CreateTextureMaterial("game//UI//btn_exit.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iBtnExit[1] = CreateTextureMaterial("game//UI//btn_exit_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Back = CreateTextureMaterial("game//UI//bg.jpg", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	bk = CreateTextureMaterial("game//UI//logo.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 #ifdef _LANGUAGE_JAPANESE
-	PristonLogoImage = CreateTextureMaterial("game\\GUI\\Opening\\Login\\UI\\BlackBox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	PristonLogoImage = CreateTextureMaterial("game//GUI//Opening//Login//UI//BlackBox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 #else
-	PristonLogoImage = CreateTextureMaterial("game\\Login\\UI\\priston_txt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	PristonLogoImage = CreateTextureMaterial("game//Login//UI//priston_txt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 #endif
 
-	BlackBoxImage = CreateTextureMaterial("game\\Login\\UI\\BlackBox.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	WhiteBoxImage = CreateTextureMaterial("game\\Login\\UI\\WhiteBox.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	BlackBoxImage = CreateTextureMaterial("game//Login//UI//BlackBox.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	WhiteBoxImage = CreateTextureMaterial("game//Login//UI//WhiteBox.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
 
 	Message.Init();
@@ -554,7 +554,7 @@ void SaveConfig()
 
 extern int QuitGame();
 
-BOOL bs = FALSE;
+static BOOL bs = FALSE;
 int iTime = 0;
 extern bool bCaptureOpening;
 extern DWORD dwTickCap;
@@ -974,7 +974,7 @@ int HoOpening::KeyFilter(char* message)
 	if (message == NULL || hFocusWnd == NULL)
 		return FALSE;
 
-	if (strlen(message) >= (ACCOUNT_SIZE - 1) && message[ACCOUNT_SIZE - 2] != '\t')
+	if (strlen(message) >= (ACCOUNT_SIZE - 1) && message[ACCOUNT_SIZE - 2] != '/t')
 	{
 		message[ACCOUNT_SIZE - 2] = 0;
 		SetWindowText(hFocusWnd, 0);
@@ -984,7 +984,7 @@ int HoOpening::KeyFilter(char* message)
 
 	for (int index = 0; index < (int)strlen(message); index++)
 	{
-		if (message[index] == '\t')
+		if (message[index] == '/t')
 		{
 			message[index] = 0;
 			SetWindowText(hFocusWnd, 0);
@@ -1542,6 +1542,8 @@ int HoOpening::Main()
 
 	return 1;
 }
+
+
 
 
 

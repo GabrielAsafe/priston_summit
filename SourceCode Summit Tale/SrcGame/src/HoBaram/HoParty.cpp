@@ -1,16 +1,16 @@
 
-#include "sinbaram\\SinLinkHeader.h"
-#include "..\\HoBaram\\HoLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "../HoBaram/HoLinkHeader.h"
 
 
-#include "Language\\language.h"
-#include "..\\HoBaram\\HoTextFile.h"
+#include "Language/language.h"
+#include "../HoBaram/HoTextFile.h"
 
 
-#include "tjboy/clanmenu/tjclanDEF.h"
-#include "tjboy/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/tjclanDEF.h"
+#include "TJBOY/clanmenu/tjclan.h"
 
-#include "Settings\Settings.h"
+#include "Settings/Settings.h"
 
 
 extern char UserAccount[ACCOUNT_SIZE];
@@ -48,7 +48,7 @@ void fd(char *fmt, ...)
 	vsprintf(buff, fmt, args);
 	va_end(args);
 
-	strcat(buff, "\r\n");
+	strcat(buff, "/r/n");
 
 
 	if (strlen(buff) > 1024)
@@ -73,7 +73,7 @@ void fd2(char *fmt, ...)
 	vsprintf(buff, fmt, args);
 	va_end(args);
 
-	strcat(buff, "\r\n");
+	strcat(buff, "/r/n");
 
 	if (strlen(buff) > 1024)
 	{
@@ -88,7 +88,7 @@ void fd2(char *fmt, ...)
 
 int read_INI(char *iniF, char *optStr1, char *optStr, char *rStr)
 {
-	char folder[] = ".\\";
+	char folder[] = ".//";
 	char strFilename[128];
 	strcpy(strFilename, folder);
 	strcat(strFilename, iniF);
@@ -104,7 +104,7 @@ int read_INI(char *iniF, char *optStr1, char *optStr, char *rStr)
 
 int save_INI(char *iniF, char *optStr1, char *optStr, char *rStr, int value)
 {
-	char folder[] = ".\\";
+	char folder[] = ".//";
 	char strFilename[128];
 	strcpy(strFilename, folder);
 	strcat(strFilename, iniF);
@@ -618,41 +618,41 @@ void HoParty::Close()
 
 void HoParty::Load()
 {
-	MatPartyBackGround = CreateTextureMaterial("Effect\\Party\\PartyBackGround.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BmpLifeBlue = LoadDibSurfaceOffscreen("Effect\\Party\\LifeBlue.bmp");
-	BmpLifeRed = LoadDibSurfaceOffscreen("Effect\\Party\\LifeRed.bmp");
+	MatPartyBackGround = CreateTextureMaterial("Effect//Party//PartyBackGround.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BmpLifeBlue = LoadDibSurfaceOffscreen("Effect//Party//LifeBlue.bmp");
+	BmpLifeRed = LoadDibSurfaceOffscreen("Effect//Party//LifeRed.bmp");
 
 	char buffer[256];
 	for (int index = 0; index < 5; index++)
 	{
 		memset(buffer, 0, sizeof(buffer));
-		wsprintf(buffer, "%s%d%s", "Effect\\Party\\ToolTip", index + 1, ".bmp");
+		wsprintf(buffer, "%s%d%s", "Effect//Party//ToolTip", index + 1, ".bmp");
 		ToolTip[index] = LoadDibSurfaceOffscreen(buffer);
 	}
 
 	for (int index = 0; index < 5; index++)
 	{
 		memset(buffer, 0, sizeof(buffer));
-		wsprintf(buffer, "%s%d%s", "Effect\\Party\\icon-", index + 1, ".bmp");
+		wsprintf(buffer, "%s%d%s", "Effect//Party//icon-", index + 1, ".bmp");
 		Button[index] = LoadDibSurfaceOffscreen(buffer);
 	}
 
 	for (int index = 0; index < 3; index++)
 	{
 		memset(buffer, 0, sizeof(buffer));
-		wsprintf(buffer, "%s%d%s", "Effect\\Party\\Man", index + 1, ".bmp");
+		wsprintf(buffer, "%s%d%s", "Effect//Party//Man", index + 1, ".bmp");
 		BmpMan[index] = LoadDibSurfaceOffscreen(buffer);
 	}
 
 
 
 
-	MatMessageBoxBackGround = CreateTextureMaterial("Game\\messagebox\\background_normal.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	LpButtonNo = CreateTextureMaterial("Game\\messagebox\\btnno.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	LpButtonNo_ = CreateTextureMaterial("Game\\messagebox\\btnno_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatMessageBoxBackGround = CreateTextureMaterial("Game//messagebox//background_normal.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	LpButtonNo = CreateTextureMaterial("Game//messagebox//btnno.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	LpButtonNo_ = CreateTextureMaterial("Game//messagebox//btnno_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	LpButtonYes = CreateTextureMaterial("Game\\messagebox\\btnyes.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	LpButtonYes_ = CreateTextureMaterial("Game\\messagebox\\btnyes_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	LpButtonYes = CreateTextureMaterial("Game//messagebox//btnyes.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	LpButtonYes_ = CreateTextureMaterial("Game//messagebox//btnyes_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	ReadTextures();
 }
@@ -1189,9 +1189,9 @@ int HoParty_KTJ::chatbuild_INIfiles()
 
 
 	if (szConnServerName[0] == 0)
-		wsprintf(fname, ".\\savedata\\%s.ini", UserAccount);
+		wsprintf(fname, ".//savedata//%s.ini", UserAccount);
 	else
-		wsprintf(fname, ".\\savedata\\%s\\%s.ini", szConnServerName, UserAccount);
+		wsprintf(fname, ".//savedata//%s//%s.ini", szConnServerName, UserAccount);
 
 
 	hFile = CreateFile(fname,
@@ -1205,18 +1205,18 @@ int HoParty_KTJ::chatbuild_INIfiles()
 
 
 
-	CreateDirectory(".\\savedata", 0);
+	CreateDirectory(".//savedata", 0);
 	char buf[128];
 
 	if (szConnServerName[0] != 0)
 	{
-		wsprintf(buf, ".\\savedata\\%s", szConnServerName);
+		wsprintf(buf, ".//savedata//%s", szConnServerName);
 		CreateDirectory(buf, 0);
 	}
 
 
-	char inidata0[] = "[FRIEND]\r\n";
-	char inidata1[] = "[DENY]\r\n";
+	char inidata0[] = "[FRIEND]/r/n";
+	char inidata1[] = "[DENY]/r/n";
 	char inidata2[10];
 
 
@@ -1227,14 +1227,14 @@ int HoParty_KTJ::chatbuild_INIfiles()
 	int chk = WriteFile(hFile, inidata0, lstrlen(inidata0), &dwAcess, NULL);
 	for (int i = 0; i < (100 + 1); i++)
 	{
-		wsprintf(inidata2, "ID%0.2d=\r\n", i);
+		wsprintf(inidata2, "ID%0.2d=/r/n", i);
 		WriteFile(hFile, inidata2, lstrlen(inidata2), &dwAcess, NULL);
 	}
 
 	chk = WriteFile(hFile, inidata1, lstrlen(inidata1), &dwAcess, NULL);
 	for (int i = 0; i < (100 + 1); i++)
 	{
-		wsprintf(inidata2, "ID%0.2d=\r\n", i);
+		wsprintf(inidata2, "ID%0.2d=/r/n", i);
 		WriteFile(hFile, inidata2, lstrlen(inidata2), &dwAcess, NULL);
 	}
 
@@ -1253,9 +1253,9 @@ void HoParty_KTJ::chatINI_read()
 	char fname[64];
 
 	if (szConnServerName[0] == 0)
-		wsprintf(fname, ".\\savedata\\%s.ini", UserAccount);
+		wsprintf(fname, ".//savedata//%s.ini", UserAccount);
 	else
-		wsprintf(fname, ".\\savedata\\%s\\%s.ini", szConnServerName, UserAccount);
+		wsprintf(fname, ".//savedata//%s//%s.ini", szConnServerName, UserAccount);
 
 
 
@@ -1313,9 +1313,9 @@ void HoParty_KTJ::chatINI_save(int menuN)
 
 
 	if (szConnServerName[0] == 0)
-		wsprintf(fname, ".\\savedata\\%s.ini", UserAccount);
+		wsprintf(fname, ".//savedata//%s.ini", UserAccount);
 	else
-		wsprintf(fname, ".\\savedata\\%s\\%s.ini", szConnServerName, UserAccount);
+		wsprintf(fname, ".//savedata//%s//%s.ini", szConnServerName, UserAccount);
 
 
 
@@ -2272,24 +2272,24 @@ void HoParty_KTJ::Load()
 {
 	int i, index;
 	MatPartyBackGround =
-		CreateTextureMaterial("image\\party\\party_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//party//party_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
 
 	MatTitle[0] =
-		CreateTextureMaterial("image\\party\\title-quest.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//party//title-quest.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	MatTitle[1] =
-		CreateTextureMaterial("image\\party\\title-Party.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//party//title-Party.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	MatTitle[2] =
-		CreateTextureMaterial("image\\party\\title-chatting.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//party//title-chatting.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	MatTitle[3] =
-		CreateTextureMaterial("image\\party\\quest_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//party//quest_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
 	MatTitle[4] =
-		CreateTextureMaterial("image\\party\\title-NoClan_Party.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//party//title-NoClan_Party.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	MatTitle[5] =
-		CreateTextureMaterial("image\\party\\title-NoClan_chatting.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//party//title-NoClan_chatting.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
 
@@ -2330,7 +2330,7 @@ void HoParty_KTJ::Load()
 	for (i = 0; i < PARTY_BINFOsu; i++)
 	{
 		memset(buffer, 0, sizeof(buffer));
-		wsprintf(buffer, "image\\party\\%s", binfoName[i]);
+		wsprintf(buffer, "image//party//%s", binfoName[i]);
 		binfo_Bmp[i] = LoadDibSurfaceOffscreen(buffer);
 	}
 
@@ -2411,7 +2411,7 @@ void HoParty_KTJ::Load()
 		if (i == 48)
 			i = 48;
 		memset(buffer, 0, sizeof(buffer));
-		wsprintf(buffer, "image\\party\\%s", iconName[i]);
+		wsprintf(buffer, "image//party//%s", iconName[i]);
 		butt_Bmp[i] = LoadDibSurfaceOffscreen(buffer);
 	}
 
@@ -2421,8 +2421,8 @@ void HoParty_KTJ::Load()
 
 
 
-	BmpLifeBlue = LoadDibSurfaceOffscreen("Effect\\Party\\LifeBlue.bmp");
-	BmpLifeRed = LoadDibSurfaceOffscreen("Effect\\Party\\LifeRed.bmp");
+	BmpLifeBlue = LoadDibSurfaceOffscreen("Effect//Party//LifeBlue.bmp");
+	BmpLifeRed = LoadDibSurfaceOffscreen("Effect//Party//LifeRed.bmp");
 
 
 
@@ -2431,7 +2431,7 @@ void HoParty_KTJ::Load()
 	for (index = 0; index < 3; index++)
 	{
 		memset(buffer, 0, sizeof(buffer));
-		wsprintf(buffer, "%s%d%s", "Effect\\Party\\Man", index + 1, ".bmp");
+		wsprintf(buffer, "%s%d%s", "Effect//Party//Man", index + 1, ".bmp");
 		BmpMan[index] = LoadDibSurfaceOffscreen(buffer);
 	}
 
@@ -3604,10 +3604,10 @@ int HoParty_KTJ::Main(int sw)
 						strcpy(q_explationTitle, qNameb[qNameS + (i - 8)]);
 
 
-						wsprintf(namebuf, ".\\image\\party\\party_DATA\\%s", qFnameb[qNameS + (i - 8)]);
+						wsprintf(namebuf, ".//image//party//party_DATA//%s", qFnameb[qNameS + (i - 8)]);
 						if (ReadFileData(namebuf) == 0)
 						{
-							ReadFileData(".\\image\\party\\party_DATA\\quest_imsi.txt");
+							ReadFileData(".//image//party//party_DATA//quest_imsi.txt");
 						}
 						ZeroMemory((void *)q_explation, sizeof(q_explation));
 						ReadFileData_moveBuf((char *)q_explation, 128);
@@ -3628,10 +3628,10 @@ int HoParty_KTJ::Main(int sw)
 						strcpy(q_explationTitle, qNameb_E[qNameS_ENDs + (i - 8)]);
 
 
-						wsprintf(namebuf, ".\\image\\party\\party_DATA\\%s", qFnameb_E[qNameS_ENDs + (i - 8)]);
+						wsprintf(namebuf, ".//image//party//party_DATA//%s", qFnameb_E[qNameS_ENDs + (i - 8)]);
 						if (ReadFileData(namebuf) == 0)
 						{
-							ReadFileData(".\\image\\party\\party_DATA\\quest_imsi.txt");
+							ReadFileData(".//image//party//party_DATA//quest_imsi.txt");
 						}
 						ZeroMemory((void *)q_explation, sizeof(q_explation));
 						ReadFileData_moveBuf((char *)q_explation, 128);
@@ -4163,8 +4163,8 @@ HoEffectHitBoard::~HoEffectHitBoard()
 
 void HoEffectHitBoard::Load()
 {
-	MatHitBackBoard = CreateTextureMaterial("Effect\\Etc\\HitBackBoard.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatHitCount = CreateTextureMaterial("Effect\\Etc\\HitCount.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatHitBackBoard = CreateTextureMaterial("Effect//Etc//HitBackBoard.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatHitCount = CreateTextureMaterial("Effect//Etc//HitCount.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	ReadTextures();
 }
 

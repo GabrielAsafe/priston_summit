@@ -1,6 +1,6 @@
-#include "sinbaram\sinLinkHeader.h"
-#include "Font\\newFont.h"
-#include "File\File.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "Font/newFont.h"
+#include "File/File.h"
 
 const char * FormatString(const char * pszFormat, ...)
 {
@@ -116,9 +116,9 @@ cBMPFONT* BmpFont[BMPFonts::MAX_FONT];
 
 void InitBmpFont()
 {
-	//BmpFont[BMPFonts::ORANGE_FONT] = new cBMPFONT("game\\Font\\font.dat", LoadDibSurfaceOffscreen("game\\Font\\font1.bmp"));
-	//BmpFont[BMPFonts::RED_FONT] = new cBMPFONT("game\\Font\\font.dat", LoadDibSurfaceOffscreen("game\\Font\\font1.bmp"));
-	//BmpFont[BMPFonts::BLUE_FONT] = new cBMPFONT("game\\Font\\font.dat", LoadDibSurfaceOffscreen("game\\Font\\font1.bmp"));
+	//BmpFont[BMPFonts::ORANGE_FONT] = new cBMPFONT("game//Font//font.dat", LoadDibSurfaceOffscreen("game//Font//font1.bmp"));
+	//BmpFont[BMPFonts::RED_FONT] = new cBMPFONT("game//Font//font.dat", LoadDibSurfaceOffscreen("game//Font//font1.bmp"));
+	//BmpFont[BMPFonts::BLUE_FONT] = new cBMPFONT("game//Font//font.dat", LoadDibSurfaceOffscreen("game//Font//font1.bmp"));
 }
 
 

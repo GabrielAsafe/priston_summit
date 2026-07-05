@@ -1,19 +1,19 @@
 
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 
 #include "smwsock.h"
 #include "character.h"
 #include "avictrl.h"
 #include "playmain.h"
-#include "Sound\\dxwav.h"
+#include "Sound/Dxwav.h"
 #include "fileread.h"
 
 #include "particle.h"
 #include "netplay.h"
 
-#include "sinbaram\\sinlinkheader.h"
-#include "hobaram\\holinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
 
 #include "field.h"
 #include "effectsnd.h"
@@ -22,20 +22,20 @@
 #include "playsub.h"
 #include "resource.h"
 #include "drawsub.h"
-#include "Language\\language.h"
+#include "Language/language.h"
 
-#include "tjboy\\clanmenu\\tjclanDEF.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\cE_CViewClanInfo.h"
+#include "TJBOY/clanmenu/tjclanDEF.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/cE_CViewClanInfo.h"
 
-#include "Server\\onserver.h"
+#include "Server/onserver.h"
 
 #include "BellatraFontEffect.h"
 #include "TextMessage.h"
 
 
 
-#include "WinInt\\WinIntThread.h"
+#include "WinInt/WinIntThread.h"
 #include "FullZoomMap.h"
 #include "FontImage.h"
 
@@ -61,8 +61,8 @@ int	CodeXorMoney = 0;
 
 DWORD	dwPlaySub_CheckResult = PLAYSUB_CHECKRESULT;
 
-static char *szArmorDirectory = "char\\tmABCD\\";
-static char *szNpcDirectory = "char\\npc\\";
+static char *szArmorDirectory = "char//tmABCD//";
+static char *szNpcDirectory = "char//npc//";
 
 #include "playmodel.h"
 
@@ -449,8 +449,8 @@ int LoadFolder_Ini(char *szPath, char *szWildCard, char *szChgExt, int OftSave);
 int Make_CharAll_SMD()
 {
 	LoadOftenFullPattern();
-	LoadFolder_Ini("Char\\Npc", "*.ini", 0, 0);
-	LoadFolder_Ini("Char\\Monster", "*.ini", 0, 0);
+	LoadFolder_Ini("Char//Npc", "*.ini", 0, 0);
+	LoadFolder_Ini("Char//Monster", "*.ini", 0, 0);
 
 	return TRUE;
 }
@@ -459,7 +459,7 @@ int Make_CharAll_SMD()
 int LoadOftenNpc()
 {
 #ifdef _W_SERVER
-	LoadFolder_Ini("Char\\Npc", "*.inx", "ini", TRUE);
+	LoadFolder_Ini("Char//Npc", "*.inx", "ini", TRUE);
 #else
 	int cnt = 0;
 	while (1)
@@ -547,7 +547,7 @@ int LoadOftenItem()
 			continue;
 		}
 
-		wsprintf(szBuff, "Image\\sinImage\\Items\\DropItem\\it%s.ASE", sItem[cnt].DorpItem);
+		wsprintf(szBuff, "Image//sinImage//Items//DropItem//it%s.ASE", sItem[cnt].DorpItem);
 
 #ifdef _CHECK_MESH
 		LoadOftenMeshPatternCheckSum(szBuff);
@@ -908,7 +908,7 @@ int	ChangeModelSkin(smCHAR *lpChar, int ComicArmor, int ComicHeadNum, char *szAr
 	len = lstrlen(lpArmorFile);
 	for (cnt = len - 1; cnt >= 0; cnt--)
 	{
-		if (lpArmorFile[cnt] == '\\')
+		if (lpArmorFile[cnt] == '//')
 		{
 			strcpy_s(szArmorName, &lpArmorFile[cnt + 1]);
 			break;
@@ -2071,10 +2071,10 @@ int	MatNpcPos;
 int InitFieldMap()
 {
 	ZeroMemory(sCompactMap, sizeof(sCOMPACT_MAP) * 4);
-	MatArrow = CreateTextureMaterial("Image\\ARROW.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatMapBox = CreateTextureMaterial("Image\\MapBox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatPartyPos = CreateTextureMaterial("Image\\party.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatNpcPos = CreateTextureMaterial("Image\\npc.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatArrow = CreateTextureMaterial("Image//ARROW.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatMapBox = CreateTextureMaterial("Image//MapBox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatPartyPos = CreateTextureMaterial("Image//party.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatNpcPos = CreateTextureMaterial("Image//npc.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	return TRUE;
 }
@@ -5636,14 +5636,14 @@ int	CheckUserModel(smCHAR_INFO *lpCharInfo)
 	strcpy_s(szBuff, lpCharInfo->szModelName);
 	for (cnt = len - 1; cnt >= 0; cnt--)
 	{
-		if (szBuff[cnt] == '\\')
+		if (szBuff[cnt] == '//')
 		{
 			szBuff[cnt + 1] = 0;
 			break;
 		}
 	}
 
-	if (lstrcmpi(szBuff, "char\\tmABCD\\") != 0) return FALSE;
+	if (lstrcmpi(szBuff, "char//tmABCD//") != 0) return FALSE;
 	lpBuff = &lpCharInfo->szModelName[len - 3];
 	if (lstrcmpi(lpBuff, "ini") != 0) return FALSE;
 
@@ -7048,7 +7048,7 @@ int LoadFolder_Ini(char *szPath, char *szWildCard, char *szChgExt, int OftSave)
 	int		cnt;
 
 	strcpy_s(szFindPath, szPath);
-	lstrcat(szFindPath, "\\*.*");
+	lstrcat(szFindPath, "//*.*");
 
 	hFindHandle = FindFirstFile(szFindPath, &fd);
 	if (hFindHandle != INVALID_HANDLE_VALUE)
@@ -7057,14 +7057,14 @@ int LoadFolder_Ini(char *szPath, char *szWildCard, char *szChgExt, int OftSave)
 		{
 			if ((fd.dwFileAttributes&FILE_ATTRIBUTE_DIRECTORY) != 0)
 			{
-				wsprintf(szFindPath2, "%s\\%s\\%s", szPath, fd.cFileName, szWildCard);
+				wsprintf(szFindPath2, "%s//%s//%s", szPath, fd.cFileName, szWildCard);
 
 				hFindHandle2 = FindFirstFile(szFindPath2, &fd2);
 				if (hFindHandle2 != INVALID_HANDLE_VALUE)
 				{
 					while (1)
 					{
-						wsprintf(szFilePath, "%s\\%s\\%s", szPath, fd.cFileName, fd2.cFileName);
+						wsprintf(szFilePath, "%s//%s//%s", szPath, fd.cFileName, fd2.cFileName);
 
 						if (OftSave)
 						{

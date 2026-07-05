@@ -1,10 +1,10 @@
-#include "CLI.h"
+#include "CLI/CLI.h"
 #include <iostream>
-#include <Windows.h>
+#include <windows.h>
 #include "smwsock.h"
-#include "Server\onserver.h"
+#include "Server/onserver.h"
 #include "smPacket.h"
-#include "GameMasters\GameMasters.h"
+#include "GameMasters/GameMasters.h"
 #include <chrono>
 #include <ctime>
 #include <ratio>
@@ -203,14 +203,14 @@ CLI* CLI::getInstance()
 
 void CLI::handleBossTIME()
 {
-	printf("Boss Time: xx:%02d\n", OpenBossTimeMin);
+	printf("Boss Time: xx:%02d/n", OpenBossTimeMin);
 	cout << "Boss time: " << OpenBossTimeMin << endl;
 }
 
 void CLI::handleBossTIMEChange()
 {
 	OpenBossTimeMin = 0;
-	printf("Boss Time alterado para: xx:%02d\n", OpenBossTimeMin);
+	printf("Boss Time alterado para: xx:%02d/n", OpenBossTimeMin);
 	/*cout << "BossTime alterado para " << OpenBossTimeMin << endl;*/
 }
 

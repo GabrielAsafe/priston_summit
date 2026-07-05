@@ -169,7 +169,7 @@ static char *unmakemask (int mask, char *smask) {
   if (mask & LUA_MASKCALL) smask[i++] = 'c';
   if (mask & LUA_MASKRET) smask[i++] = 'r';
   if (mask & LUA_MASKLINE) smask[i++] = 'l';
-  smask[i] = '\0';
+  smask[i] = '/0';
   return smask;
 }
 
@@ -213,7 +213,7 @@ static int debug (lua_State *L) {
     char buffer[250];
     fputs("lua_debug> ", stderr);
     if (fgets(buffer, sizeof(buffer), stdin) == 0 ||
-        strcmp(buffer, "cont\n") == 0)
+        strcmp(buffer, "cont/n") == 0)
       return 0;
     lua_dostring(L, buffer);
     lua_settop(L, 0);  /* remove eventual returns */
@@ -231,7 +231,7 @@ static int errorfb (lua_State *L) {
   if (lua_gettop(L) == 0)
     lua_pushliteral(L, "");
   else if (!lua_isstring(L, 1)) return 1;  /* no string message */
-  else lua_pushliteral(L, "\n");
+  else lua_pushliteral(L, "/n");
   lua_pushliteral(L, "stack traceback:");
   while (lua_getstack(L, level++, &ar)) {
     if (level > LEVELS1 && firstpart) {
@@ -239,14 +239,14 @@ static int errorfb (lua_State *L) {
       if (!lua_getstack(L, level+LEVELS2, &ar))
         level--;  /* keep going */
       else {
-        lua_pushliteral(L, "\n\t...");  /* too many levels */
+        lua_pushliteral(L, "/n/t...");  /* too many levels */
         while (lua_getstack(L, level+LEVELS2, &ar))  /* find last levels */
           level++;
       }
       firstpart = 0;
       continue;
     }
-    lua_pushliteral(L, "\n\t");
+    lua_pushliteral(L, "/n/t");
     lua_getinfo(L, "Snl", &ar);
     lua_pushfstring(L, "%s:", ar.short_src);
     if (ar.currentline > 0)

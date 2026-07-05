@@ -55,14 +55,14 @@ static char *getField(const char *buf, int delim, char *field)
 	while((int)*src == delim && *src != 0) src++;
 	while((int)*src != delim && *src != 0) *field++ = *src++;
 
-	*field = '\0';
+	*field = '/0';
 	return (char *)src;
 }
 
 int LoadCurses(const char *filename)
 {
 
-	static char comment_chars[] = { "\n" };
+	static char comment_chars[] = { "/n" };
 	char buf[128];
 	char *ptr = curse_string;
 	FILE *file;
@@ -74,7 +74,7 @@ int LoadCurses(const char *filename)
 
 	if(file = fopen(filename, "r"), !file)
 	{
-		fprintf(stderr, "! can't open [%s]\n", filename);
+		fprintf(stderr, "! can't open [%s]/n", filename);
 		return FALSE;
 	}
 
@@ -90,21 +90,21 @@ int LoadCurses(const char *filename)
 
 		if(ptr - curse_string >= MAX_CURSE_STRING)
 		{
-			fprintf(stderr, "! %s is too long, pass.\n", filename);
+			fprintf(stderr, "! %s is too long, pass./n", filename);
 			curse_string[MAX_CURSE_STRING - 1] = 0;
 			break;
 		}
 	}
 	fclose(file);
 
-	fprintf(stderr, "* parsing [%s]. %d bytes read\n", filename, ptr - curse_string);
+	fprintf(stderr, "* parsing [%s]. %d bytes read/n", filename, ptr - curse_string);
 	return chksum;
 }
 
 int LoadCursesID(const char *filename)
 {
 
-	static char comment_chars[] = { "\n" };
+	static char comment_chars[] = { "/n" };
 	char buf[128];
 	char *ptr = curse_stringID;
 	FILE *file;
@@ -116,7 +116,7 @@ int LoadCursesID(const char *filename)
 
 	if(file = fopen(filename, "r"), !file)
 	{
-		fprintf(stderr, "! can't open [%s]\n", filename);
+		fprintf(stderr, "! can't open [%s]/n", filename);
 		return FALSE;
 	}
 
@@ -132,14 +132,14 @@ int LoadCursesID(const char *filename)
 
 		if(ptr - curse_stringID >= MAX_CURSE_STRING)
 		{
-			fprintf(stderr, "! %s is too long, pass.\n", filename);
+			fprintf(stderr, "! %s is too long, pass./n", filename);
 			curse_stringID[MAX_CURSE_STRING - 1] = 0;
 			break;
 		}
 	}
 	fclose(file);
 
-	fprintf(stderr, "* parsing [%s]. %d bytes read\n", filename, ptr - curse_stringID);
+	fprintf(stderr, "* parsing [%s]. %d bytes read/n", filename, ptr - curse_stringID);
 	return chksumID;
 }
 
@@ -147,7 +147,7 @@ int LoadCursesID(const char *filename)
 int LoadCursesDebug(const char *filename)
 {
 
-	static char comment_chars[] = { "\n" };
+	static char comment_chars[] = { "/n" };
 	char buf[128];
 	char *ptr = curse_string;
 	FILE *file;
@@ -157,7 +157,7 @@ int LoadCursesDebug(const char *filename)
 
 	if(file = fopen(filename, "r"), !file)
 	{
-		fprintf(stderr, "! can't open [%s]\n", filename);
+		fprintf(stderr, "! can't open [%s]/n", filename);
 		return FALSE;
 	}
 
@@ -169,21 +169,21 @@ int LoadCursesDebug(const char *filename)
 
 		if(ptr - curse_string >= MAX_CURSE_STRING)
 		{
-			fprintf(stderr, "! %s is too long, pass.\n", filename);
+			fprintf(stderr, "! %s is too long, pass./n", filename);
 			curse_string[MAX_CURSE_STRING - 1] = 0;
 			break;
 		}
 	}
 	fclose(file);
 
-	fprintf(stderr, "* parsing [%s]. %d bytes read\n", filename, ptr - curse_string);
+	fprintf(stderr, "* parsing [%s]. %d bytes read/n", filename, ptr - curse_string);
 	return chksum;
 }
 
 int LoadCursesDebugID(const char *filename)
 {
 
-	static char comment_chars[] = { "\n" };
+	static char comment_chars[] = { "/n" };
 	char buf[128];
 	char *ptr = curse_stringID;
 	FILE *file;
@@ -193,7 +193,7 @@ int LoadCursesDebugID(const char *filename)
 
 	if(file = fopen(filename, "r"), !file)
 	{
-		fprintf(stderr, "! can't open [%s]\n", filename);
+		fprintf(stderr, "! can't open [%s]/n", filename);
 		return FALSE;
 	}
 
@@ -205,14 +205,14 @@ int LoadCursesDebugID(const char *filename)
 
 		if(ptr - curse_stringID >= MAX_CURSE_STRING)
 		{
-			fprintf(stderr, "! %s is too long, pass.\n", filename);
+			fprintf(stderr, "! %s is too long, pass./n", filename);
 			curse_stringID[MAX_CURSE_STRING - 1] = 0;
 			break;
 		}
 	}
 	fclose(file);
 
-	fprintf(stderr, "* parsing [%s]. %d bytes read\n", filename, ptr - curse_stringID);
+	fprintf(stderr, "* parsing [%s]. %d bytes read/n", filename, ptr - curse_stringID);
 	return chksumID;
 }
 
@@ -233,9 +233,9 @@ bool IsCurse(const char * str)
 
 
 
-	while(ptr = getField(ptr, '\n', line), line[0])
+	while(ptr = getField(ptr, '/n', line), line[0])
 	{
-		getField(line, '\t', word);
+		getField(line, '/t', word);
 		sub = str;
 
 		while(*sub && *(sub + 1))
@@ -274,9 +274,9 @@ bool IsCurseID(const char * str)
 
 
 
-	while(ptr = getField(ptr, '\n', line), line[0])
+	while(ptr = getField(ptr, '/n', line), line[0])
 	{
-		getField(line, '\t', word);
+		getField(line, '/t', word);
 		sub = str;
 
 		while(*sub && *(sub + 1))
@@ -321,12 +321,12 @@ char *ConvertString(char * str, int max_len)
 
 	filterChar(str, string, " ");
 
-	while(ptr = getField(ptr, '\n', line), line[0])
+	while(ptr = getField(ptr, '/n', line), line[0])
 	{
 
 		lptr = line;
-		lptr = getField(lptr, '\t', curse);
-		lptr = getField(lptr, '\t', replace);
+		lptr = getField(lptr, '/t', curse);
+		lptr = getField(lptr, '/t', replace);
 		cptr = string;
 		strcpy(result, string);
 
@@ -390,11 +390,11 @@ char *ConvertStringTHAI(char * str, int max_len)
 
 	filterChar(str, string, "");
 
-	while(ptr = getField(ptr, '\n', line), line[0])
+	while(ptr = getField(ptr, '/n', line), line[0])
 	{
 
 		lptr = line;
-		lptr = getField(lptr, '\t', curse);
+		lptr = getField(lptr, '/t', curse);
 		cptr = string;
 		strcpy(result, string);
 

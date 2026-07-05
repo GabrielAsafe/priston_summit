@@ -2,7 +2,7 @@
 
 #include "CoinShop.h"
 #include "CoinShop_T.h"
-#include "Language\\language.h"
+#include "Language/language.h"
 #include "sinLinkHeader.h"
 
 
@@ -96,19 +96,19 @@ void cITEM::Init()
 		sItem[cnt].sItemInfo.CODE = sItem[cnt].CODE;
 	}
 
-	MatItemInfoBox = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatItemInfoBox_TopLeft = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxTopLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatItemInfoBox_TopRight = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxTopRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatItemInfoBox_TopCenter = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxTopCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_TopLeft = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxTopLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_TopRight = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxTopRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_TopCenter = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxTopCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatItemInfoBox_BottomLeft = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxBottomLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatItemInfoBox_BottomRight = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxBottomRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatItemInfoBox_BottomCenter = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxBottomCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_BottomLeft = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxBottomLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_BottomRight = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxBottomRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_BottomCenter = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxBottomCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatItemInfoBox_Left = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatItemInfoBox_Right = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatItemInfoBox_Center = CreateTextureMaterial("Image\\SinImage\\Items\\ItemInfoBox\\BoxCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_Left = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_Right = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatItemInfoBox_Center = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	Load();
 
@@ -174,9 +174,9 @@ void cITEM::Init()
 
 void cITEM::Load()
 {
-	AgingBar = LoadDibSurfaceOffscreen("image\\Sinimage\\shopall\\Aging\\Bar.bmp");
-	AgingGage = LoadDibSurfaceOffscreen("image\\Sinimage\\shopall\\Aging\\Bar_.bmp");
-	AgingBar2 = LoadDibSurfaceOffscreen("image\\Sinimage\\shopall\\Aging\\Aging.bmp");
+	AgingBar = LoadDibSurfaceOffscreen("image//Sinimage//shopall//Aging//Bar.bmp");
+	AgingGage = LoadDibSurfaceOffscreen("image//Sinimage//shopall//Aging//Bar_.bmp");
+	AgingBar2 = LoadDibSurfaceOffscreen("image//Sinimage//shopall//Aging//Aging.bmp");
 }
 
 void cITEM::Release()
@@ -210,7 +210,7 @@ void cITEM::Draw()
 	memset(&TempBuff, 0, sizeof(TempBuff));
 	for (i = 0; i < len; i++)
 	{
-		if (szInfoBuff[i] == '\r')
+		if (szInfoBuff[i] == '/r')
 		{
 			memcpy(TempBuff, szInfoBuff, i);
 			break;
@@ -686,22 +686,22 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 
 	//Nome do Item
 	if (tWeaponClass)
-		wsprintf(szInfoBuff, "%s%s\r", sInfo.ItemName, "");
+		wsprintf(szInfoBuff, "%s%s/r", sInfo.ItemName, "");
 	else
-		wsprintf(szInfoBuff, "%s\r", sInfo.ItemName);
+		wsprintf(szInfoBuff, "%s/r", sInfo.ItemName);
 
 
 	if ((sInfo.CODE & sinITEM_MASK2) == sinPZ1 || (sInfo.CODE & sinITEM_MASK2) == sinPZ2)
 	{
 		if (sInfo.PotionCount <= 1)
 		{
-			wsprintf(szInfoBuff, "%s\r", sinLuckyBox);
+			wsprintf(szInfoBuff, "%s/r", sinLuckyBox);
 
 		}
 	}
 
 
-	strcpy_s(szInfoBuff2, "\r");
+	strcpy_s(szInfoBuff2, "/r");
 	ItemInfoCol++;
 
 
@@ -710,8 +710,8 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		if (sInfo.ItemAgingCount[1]) AgingGageFlag = 1;
 		else AgingGageFlag = 2;
 
-		lstrcat(szInfoBuff, "\r\r");
-		lstrcat(szInfoBuff2, "\r\r");
+		lstrcat(szInfoBuff, "/r/r");
+		lstrcat(szInfoBuff2, "/r/r");
 		ItemInfoCol++;
 		ItemInfoCol++;
 		if (sInfo.ItemAgingCount[0])
@@ -726,19 +726,19 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.ItemKindCode == ITEM_KIND_QUEST_WEAPON && sInfo.ItemAgingNum[0] < 4 &&
 		(sInfo.CODE & sinITEM_MASK2) != sinOR2)
 	{
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
 
-		wsprintf(szTemp, "%s:%d/%d  \r", QuestMonsterName[sInfo.ItemAgingNum[1]], sInfo.ItemAgingCount[1] - sInfo.ItemAgingCount[0], sInfo.ItemAgingCount[1]);
+		wsprintf(szTemp, "%s:%d/%d  /r", QuestMonsterName[sInfo.ItemAgingNum[1]], sInfo.ItemAgingCount[1] - sInfo.ItemAgingCount[0], sInfo.ItemAgingCount[1]);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		QuestItemLine = ItemInfoCol;
 
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
 
 
@@ -770,9 +770,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 
 		if (pszMixName[0] != 0 && lstrlen(pszMixName) > 0)
 		{
-			wsprintf(szTemp, "%s\r\r", pszMixName);
+			wsprintf(szTemp, "%s/r/r", pszMixName);
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r\r");
+			lstrcpy(szTemp2, "/r/r");
 			lstrcat(szInfoBuff2, szTemp2);
 
 			sMixTypeColor.iMixType = pItem->sItemInfo.iMixType;
@@ -785,14 +785,14 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 
 	if (pItem->CODE == (sinEC1 | sin01))
 	{
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		strcpy_s(szTemp, TownName[0]);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
@@ -800,68 +800,68 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 
 	if (pItem->CODE == (sinEC1 | sin02))
 	{
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		strcpy_s(szTemp, TownName[1]);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
 	}
 	if (pItem->CODE == (sinEC1 | sin04))
 	{
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		strcpy_s(szTemp, TownName[2]);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
 	}
 	if (pItem->CODE == (sinEC1 | sin03))
 	{
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		strcpy_s(szTemp, TownName[3]);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 	if (pItem->CODE == (sinEC1 | sin06))
 	{
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		strcpy_s(szTemp, TownName[4]);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 	if (pItem->CODE == (sinEC1 | sin07))
 	{
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		strcpy_s(szTemp, TownName[5]);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
@@ -905,17 +905,17 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		pItem->CODE == (sinCA6 | sin77) || pItem->CODE == (sinCA6 | sin80) || pItem->CODE == (sinCA6 | sin82) ||
 		pItem->CODE == (sinCA6 | sin84) || pItem->CODE == (sinCA6 | sin86)) {
 
-		wsprintfA(szTemp, "%s\r", "Traje Masculino");
+		wsprintfA(szTemp, "%s/r", "Traje Masculino");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 
 		ItemInfoCol++;
 		trajeM = ItemInfoCol;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
@@ -959,3155 +959,3155 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		pItem->CODE == (sinCA6 | sin78) || pItem->CODE == (sinCA6 | sin81) || pItem->CODE == (sinCA6 | sin83) ||
 		pItem->CODE == (sinCA6 | sin85) || pItem->CODE == (sinCA6 | sin87)) {
 
-		wsprintfA(szTemp, "%s\r", "Traje Feminino");
+		wsprintfA(szTemp, "%s/r", "Traje Feminino");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 
 		ItemInfoCol++;
 		trajeF = ItemInfoCol;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinGB1 | sin01)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Vale 100k ao ser\r");
+		lstrcpy(szTemp, "Vale 100k ao ser/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "vendido no NPC.\r");
+		lstrcpy(szTemp, "vendido no NPC./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinGB1 | sin02)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Vale 500k ao ser\r");
+		lstrcpy(szTemp, "Vale 500k ao ser/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "vendido no NPC.\r");
+		lstrcpy(szTemp, "vendido no NPC./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinGB1 | sin03)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Vale 250k ao ser\r");
+		lstrcpy(szTemp, "Vale 250k ao ser/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "vendido no NPC.\r");
+		lstrcpy(szTemp, "vendido no NPC./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinGB1 | sin04)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Vale 25kk ao ser\r");
+		lstrcpy(szTemp, "Vale 25kk ao ser/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "vendido no NPC.\r");
+		lstrcpy(szTemp, "vendido no NPC./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin08)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Use para teletransporta-se \r");
+		lstrcpy(szTemp, "Use para teletransporta-se /r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "para v�rios mapas.\r");
+		lstrcpy(szTemp, "para v�rios mapas./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBC1 | sin21) || pItem->CODE == (sinBC1 | sin22) || pItem->CODE == (sinBC1 | sin23)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Regenera��o de HP em 15%\r");
+		lstrcpy(szTemp, "Regenera��o de HP em 15%/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBC1 | sin24) || pItem->CODE == (sinBC1 | sin25) || pItem->CODE == (sinBC1 | sin26)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Regenera��o de MP em 15%\r");
+		lstrcpy(szTemp, "Regenera��o de MP em 15%/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBC1 | sin27) || pItem->CODE == (sinBC1 | sin28) || pItem->CODE == (sinBC1 | sin29)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Regenera��o de RES em 15%\r");
+		lstrcpy(szTemp, "Regenera��o de RES em 15%/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin45)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Redistribui os pontos de for�a\r");
+		lstrcpy(szTemp, "Redistribui os pontos de for�a/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin46)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Redistribui os pontos de intelig�ncia\r");
+		lstrcpy(szTemp, "Redistribui os pontos de intelig�ncia/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin47)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Redistribui os pontos de Talento\r");
+		lstrcpy(szTemp, "Redistribui os pontos de Talento/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin48)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Redistribui os pontos de Agilidade\r");
+		lstrcpy(szTemp, "Redistribui os pontos de Agilidade/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin49)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Redistribui os pontos de Vitalidade\r");
+		lstrcpy(szTemp, "Redistribui os pontos de Vitalidade/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin39)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Treina em 100% todas as habilidades\r");
+		lstrcpy(szTemp, "Treina em 100% todas as habilidades/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "da primeira coroa\r");
+		lstrcpy(szTemp, "da primeira coroa/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin40)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Treina em 100% todas as habilidades\r");
+		lstrcpy(szTemp, "Treina em 100% todas as habilidades/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "da segunda coroa\r");
+		lstrcpy(szTemp, "da segunda coroa/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin41)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Treina em 100% todas as habilidades\r");
+		lstrcpy(szTemp, "Treina em 100% todas as habilidades/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "da terceira coroa\r");
+		lstrcpy(szTemp, "da terceira coroa/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if ((sInfo.CODE & sinITEM_MASK2) == sinGP1) {
 		if (pItem->CODE == (sinGP1 | sin09)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca um monstro aliado\r");
+			lstrcpy(szTemp, "Invoca um monstro aliado/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas.\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas./r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Poss�veis monstros: Hopi,\r");
+			lstrcpy(szTemp, "Poss�veis monstros: Hopi,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Duende Macabro, Decoy, Bargon,\r");
+			lstrcpy(szTemp, "Duende Macabro, Decoy, Bargon,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Decapitador, Figon, Rei Hopi, Hulk.\r");
+			lstrcpy(szTemp, "Decapitador, Figon, Rei Hopi, Hulk./r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else if (pItem->CODE == (sinGP1 | sin17)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca um monstro aliado\r");
+			lstrcpy(szTemp, "Invoca um monstro aliado/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas.\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas./r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Poss�veis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Arqueiro do Mal, Patrulheiro do Mal,\r");
+			lstrcpy(szTemp, "Arqueiro do Mal, Patrulheiro do Mal,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Guerreiro do Mal, Cavaleiro do Mal.\r");
+			lstrcpy(szTemp, "Guerreiro do Mal, Cavaleiro do Mal./r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else if (pItem->CODE == (sinGP1 | sin18)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca um monstro aliado\r");
+			lstrcpy(szTemp, "Invoca um monstro aliado/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas.\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas./r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Poss�veis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Naz, Duende Guerreiro,\r");
+			lstrcpy(szTemp, "Naz, Duende Guerreiro,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Sereia Profana, M�quina-D.\r");
+			lstrcpy(szTemp, "Sereia Profana, M�quina-D./r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else if (pItem->CODE == (sinGP1 | sin19)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca um monstro aliado\r");
+			lstrcpy(szTemp, "Invoca um monstro aliado/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas.\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas./r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Poss�veis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Ratoo, Grotesco,\r");
+			lstrcpy(szTemp, "Ratoo, Grotesco,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Punhos de A�o, Gelo.\r");
+			lstrcpy(szTemp, "Punhos de A�o, Gelo./r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else if (pItem->CODE == (sinGP1 | sin20)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca um monstro aliado\r");
+			lstrcpy(szTemp, "Invoca um monstro aliado/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas.\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas./r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Poss�veis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Omicron, Aranha Rainha,\r");
+			lstrcpy(szTemp, "Omicron, Aranha Rainha,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Montanha, Omega.\r");
+			lstrcpy(szTemp, "Montanha, Omega./r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else if (pItem->CODE == (sinGP1 | sin23)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca um monstro aliado\r");
+			lstrcpy(szTemp, "Invoca um monstro aliado/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas,\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Poss�veis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Quimera, P�ssaro Demon�aco,\r");
+			lstrcpy(szTemp, "Quimera, P�ssaro Demon�aco,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Cavaleiro Sanguin�rio, Seto\r");
+			lstrcpy(szTemp, "Cavaleiro Sanguin�rio, Seto/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else if (pItem->CODE == (sinGP1 | sin24)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca um monstro aliado\r");
+			lstrcpy(szTemp, "Invoca um monstro aliado/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas,\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Poss�veis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Olho de Gelo, Golem de Gelo,\r");
+			lstrcpy(szTemp, "Olho de Gelo, Golem de Gelo,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Tartaruga Blindada, Valento,\r");
+			lstrcpy(szTemp, "Tartaruga Blindada, Valento,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Verme de Fogo, Mokova,\r");
+			lstrcpy(szTemp, "Verme de Fogo, Mokova,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Guardi�o do Templo\r");
+			lstrcpy(szTemp, "Guardi�o do Templo/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else if (pItem->CODE == (sinGP1 | sin25)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Invoca um monstro aliado\r");
+			lstrcpy(szTemp, "Invoca um monstro aliado/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas,\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Poss�veis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Naz das Cinzas, Gorgon,\r");
+			lstrcpy(szTemp, "Naz das Cinzas, Gorgon,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Arqueira das Cinzas,\r");
+			lstrcpy(szTemp, "Arqueira das Cinzas,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Guardi�o do Templo\r");
+			lstrcpy(szTemp, "Guardi�o do Templo/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else if (pItem->CODE == (sinGP1 | sin26)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca um monstro aliado\r");
+			lstrcpy(szTemp, "Invoca um monstro aliado/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas,\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Poss�veis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "PS, AS, PRS, MG, ATA, FS\r");
+			lstrcpy(szTemp, "PS, AS, PRS, MG, ATA, FS/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "KS e MS das Cinzas\r");
+			lstrcpy(szTemp, "KS e MS das Cinzas/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
 		}
 		else if (pItem->CODE == (sinGP1 | sin27)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca um monstro aliado\r");
+			lstrcpy(szTemp, "Invoca um monstro aliado/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas,\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Poss�veis monstros:\r");
+			lstrcpy(szTemp, "Poss�veis monstros:/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Golem de Metal, Wolverine,\r");
+			lstrcpy(szTemp, "Golem de Metal, Wolverine,/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "Chama Elemental\r");
+			lstrcpy(szTemp, "Chama Elemental/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
 		}
 		else if (pItem->CODE == (sinGP1 | sin35)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca o Boss F�ria\r");
+			lstrcpy(szTemp, "Invoca o Boss F�ria/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else if (pItem->CODE == (sinGP1 | sin36)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca o Boss Babel\r");
+			lstrcpy(szTemp, "Invoca o Boss Babel/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else if (pItem->CODE == (sinGP1 | sin37)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca o Boss Valento\r");
+			lstrcpy(szTemp, "Invoca o Boss Valento/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else if (pItem->CODE == (sinGP1 | sin38)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca o Boss Kelvezu\r");
+			lstrcpy(szTemp, "Invoca o Boss Kelvezu/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else if (pItem->CODE == (sinGP1 | sin39)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca o Boss Mokova\r");
+			lstrcpy(szTemp, "Invoca o Boss Mokova/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else if (pItem->CODE == (sinGP1 | sin40)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca o Boss Rob� Mutante\r");
+			lstrcpy(szTemp, "Invoca o Boss Rob� Mutante/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else if (pItem->CODE == (sinGP1 | sin41)) {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca o Boss DevilShy\r");
+			lstrcpy(szTemp, "Invoca o Boss DevilShy/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 		else {
-			lstrcpy(szTemp, "\r");
+			lstrcpy(szTemp, "/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Invoca um monstro aliado\r");
+			lstrcpy(szTemp, "Invoca um monstro aliado/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
-			lstrcpy(szTemp, "para auxiliar nas batalhas\r");
+			lstrcpy(szTemp, "para auxiliar nas batalhas/r");
 			lstrcat(szInfoBuff, szTemp);
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 		}
 	}
 
 	if ((sInfo.CODE & sinITEM_MASK2) == sinQW1) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta o alcance do Portal.\r");
+		lstrcpy(szTemp, "Aumenta o alcance do Portal./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinSE1 | sin01)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Item usado no processo\r");
+		lstrcpy(szTemp, "Item usado no processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Re-Especializa��o.\r");
+		lstrcpy(szTemp, "de Re-Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Utilize 2 Pedra.\r");
+		lstrcpy(szTemp, "Utilize 2 Pedra./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinSE1 | sin02)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Item usado no processo\r");
+		lstrcpy(szTemp, "Item usado no processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Re-Especializa��o.\r");
+		lstrcpy(szTemp, "de Re-Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Utilize 2 Pedras.\r");
+		lstrcpy(szTemp, "Utilize 2 Pedras./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinSE1 | sin03)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Item usado no processo\r");
+		lstrcpy(szTemp, "Item usado no processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Re-Especializa��o.\r");
+		lstrcpy(szTemp, "de Re-Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Utilize 2 Pedras.\r");
+		lstrcpy(szTemp, "Utilize 2 Pedras./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinSE1 | sin04)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Item usado no processo\r");
+		lstrcpy(szTemp, "Item usado no processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Re-Especializa��o.\r");
+		lstrcpy(szTemp, "de Re-Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Utilize 2 Pedras.\r");
+		lstrcpy(szTemp, "Utilize 2 Pedras./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinSE1 | sin13)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Item usado no processo\r");
+		lstrcpy(szTemp, "Item usado no processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Re-Especializa��o.\r");
+		lstrcpy(szTemp, "de Re-Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Utilize 2 Pedras.\r");
+		lstrcpy(szTemp, "Utilize 2 Pedras./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin89)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Item usado no processo\r");
+		lstrcpy(szTemp, "Item usado no processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de revers�o do mix ou aging.\r");
+		lstrcpy(szTemp, "de revers�o do mix ou aging./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin90)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Item usado no processo\r");
+		lstrcpy(szTemp, "Item usado no processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Re-Especializa��o para obter\r");
+		lstrcpy(szTemp, "de Re-Especializa��o para obter/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "status 100% perfeitos.\r");
+		lstrcpy(szTemp, "status 100% perfeitos./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (((sInfo.CODE & sinITEM_MASK2) == sinQT1) || ((sInfo.CODE & sinITEM_MASK2) == sinMA1) || ((sInfo.CODE & sinITEM_MASK2) == sinMA2)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Item de Desafio.\r");
+		lstrcpy(szTemp, "Item de Desafio./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinQT1 | sin06)) {
-		lstrcpy(szTemp, "Usado para o desafio Nv. 40.\r");
+		lstrcpy(szTemp, "Usado para o desafio Nv. 40./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinQT1 | sin09) || pItem->CODE == (sinQT1 | sin10) || pItem->CODE == (sinQT1 | sin11)) {
-		lstrcpy(szTemp, "Usado para o desafio Nv. 80.\r");
+		lstrcpy(szTemp, "Usado para o desafio Nv. 80./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinQT1 | sin07)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Adiciona 40 pontos de Vida.\r");
+		lstrcpy(szTemp, "Adiciona 40 pontos de Vida./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinQT1 | sin08)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Reduz para 2%% a penalidade\r");
+		lstrcpy(szTemp, "Reduz para 2%% a penalidade/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Experi�ncia ao morrer.\r");
+		lstrcpy(szTemp, "de Experi�ncia ao morrer./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinCH1 | sin01)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Usa a Habilidade Vida Virtual\r");
+		lstrcpy(szTemp, "Usa a Habilidade Vida Virtual/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "da Sacerdotisa no N�vel 4.\r");
+		lstrcpy(szTemp, "da Sacerdotisa no N�vel 4./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Apenas personagens Masculinos\r");
+		lstrcpy(szTemp, "Apenas personagens Masculinos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "podem usar este item.\r");
+		lstrcpy(szTemp, "podem usar este item./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinCH1 | sin02)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Usa a Habilidade Vida Virtual\r");
+		lstrcpy(szTemp, "Usa a Habilidade Vida Virtual/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "da Sacerdotisa no N�vel 8.\r");
+		lstrcpy(szTemp, "da Sacerdotisa no N�vel 8./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Apenas personagens Masculinos\r");
+		lstrcpy(szTemp, "Apenas personagens Masculinos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "podem usar este item.\r");
+		lstrcpy(szTemp, "podem usar este item./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinCH1 | sin03)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Usa a Habilidade Vida Virtual\r");
+		lstrcpy(szTemp, "Usa a Habilidade Vida Virtual/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "da Sacerdotisa no N�vel 4.\r");
+		lstrcpy(szTemp, "da Sacerdotisa no N�vel 4./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Apenas personagens Femininos\r");
+		lstrcpy(szTemp, "Apenas personagens Femininos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "podem usar este item.\r");
+		lstrcpy(szTemp, "podem usar este item./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinCH1 | sin04)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Usa a Habilidade Vida Virtual\r");
+		lstrcpy(szTemp, "Usa a Habilidade Vida Virtual/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "da Sacerdotisa no N�vel 8.\r");
+		lstrcpy(szTemp, "da Sacerdotisa no N�vel 8./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Apenas personagens Femininos\r");
+		lstrcpy(szTemp, "Apenas personagens Femininos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "podem usar este item.\r");
+		lstrcpy(szTemp, "podem usar este item./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin10)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Reduz a chance de\r");
+		lstrcpy(szTemp, "Reduz a chance de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Falha do processo de\r");
+		lstrcpy(szTemp, "Falha do processo de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin11)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Reduz a chance de\r");
+		lstrcpy(szTemp, "Reduz a chance de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Quebra do processo de\r");
+		lstrcpy(szTemp, "Quebra do processo de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin60)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Impede o item de\r");
+		lstrcpy(szTemp, "Impede o item de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "quebrar no processo de\r");
+		lstrcpy(szTemp, "quebrar no processo de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Aging em 100%.\r");
+		lstrcpy(szTemp, "Aging em 100%./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin61)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Impede o item de\r");
+		lstrcpy(szTemp, "Impede o item de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "falhar no processo de\r");
+		lstrcpy(szTemp, "falhar no processo de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Aging em 100%.\r");
+		lstrcpy(szTemp, "Aging em 100%./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin85)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Concede 100% de sucesso\r");
+		lstrcpy(szTemp, "Concede 100% de sucesso/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "no processo de\r");
+		lstrcpy(szTemp, "no processo de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Aging do item.\r");
+		lstrcpy(szTemp, "Aging do item./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin16)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: A\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: A/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin17)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: B\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: B/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin18)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: C\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: C/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin13)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: D\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: D/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin14)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: E\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: E/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin15)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: F\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: F/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin16)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: G\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: G/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin17)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: H\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: H/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin18)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: I\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: I/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin19)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: J\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: J/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin20)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: K\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: K/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin21)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: L\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: L/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin22)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: M\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: M/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin40)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: N\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: N/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin41)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: O\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: O/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin42)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: P\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: P/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin43)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: Q\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: Q/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin44)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: R\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: R/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin47)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: S\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: S/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin48)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: T\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: T/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin49)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Muda o cabelo do personagem.\r");
+		lstrcpy(szTemp, "Muda o cabelo do personagem./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Tipo de Cabelo: U\r");
+		lstrcpy(szTemp, "Tipo de Cabelo: U/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin98)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Use para upar 1 Level.\r");
+		lstrcpy(szTemp, "Use para upar 1 Level./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin01)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Pr�mio para quem sobreviveu\r");
+		lstrcpy(szTemp, "Pr�mio para quem sobreviveu/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ao Hell's Gate.\r");
+		lstrcpy(szTemp, "ao Hell's Gate./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin02)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realiza��o do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do n�vel +10.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +10./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O Pacote possui:\r");
+		lstrcpy(szTemp, "O Pacote possui:/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Sparks\r");
+		lstrcpy(szTemp, "02 Sparks/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Raidents\r");
+		lstrcpy(szTemp, "02 Raidents/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Transparos\r");
+		lstrcpy(szTemp, "02 Transparos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Murkis\r");
+		lstrcpy(szTemp, "02 Murkis/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Devines\r");
+		lstrcpy(szTemp, "02 Devines/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Celestos\r");
+		lstrcpy(szTemp, "02 Celestos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Pedra de Aging\r");
+		lstrcpy(szTemp, "01 Pedra de Aging/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro M�gico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Os Sheltons podem vir com\r");
+		lstrcpy(szTemp, "Os Sheltons podem vir com/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especializa��o.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin03)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realiza��o do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do n�vel +11.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +11./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O Pacote possui:\r");
+		lstrcpy(szTemp, "O Pacote possui:/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Raidents\r");
+		lstrcpy(szTemp, "02 Raidents/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Transparos\r");
+		lstrcpy(szTemp, "02 Transparos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Murkis\r");
+		lstrcpy(szTemp, "02 Murkis/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Devines\r");
+		lstrcpy(szTemp, "02 Devines/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Celestos\r");
+		lstrcpy(szTemp, "02 Celestos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Mirage\r");
+		lstrcpy(szTemp, "01 Mirage/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Pedra de Aging\r");
+		lstrcpy(szTemp, "01 Pedra de Aging/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro M�gico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Os Sheltons podem vir com\r");
+		lstrcpy(szTemp, "Os Sheltons podem vir com/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especializa��o.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin04)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realiza��o do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do n�vel +12.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +12./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O Pacote possui:\r");
+		lstrcpy(szTemp, "O Pacote possui:/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Raidents\r");
+		lstrcpy(szTemp, "02 Raidents/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Transparos\r");
+		lstrcpy(szTemp, "02 Transparos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Murkis\r");
+		lstrcpy(szTemp, "02 Murkis/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Devines\r");
+		lstrcpy(szTemp, "02 Devines/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Celestos\r");
+		lstrcpy(szTemp, "02 Celestos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Mirages\r");
+		lstrcpy(szTemp, "02 Mirages/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Pedra de Aging\r");
+		lstrcpy(szTemp, "01 Pedra de Aging/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro M�gico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Os Sheltons podem vir com\r");
+		lstrcpy(szTemp, "Os Sheltons podem vir com/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especializa��o.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin05)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realiza��o do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do n�vel +13.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +13./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O Pacote possui:\r");
+		lstrcpy(szTemp, "O Pacote possui:/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Transparos\r");
+		lstrcpy(szTemp, "02 Transparos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Murkis\r");
+		lstrcpy(szTemp, "02 Murkis/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Devines\r");
+		lstrcpy(szTemp, "02 Devines/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Celestos\r");
+		lstrcpy(szTemp, "02 Celestos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Mirages\r");
+		lstrcpy(szTemp, "02 Mirages/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Inferna\r");
+		lstrcpy(szTemp, "01 Inferna/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Pedra de Aging\r");
+		lstrcpy(szTemp, "01 Pedra de Aging/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro M�gico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Os Sheltons podem vir com\r");
+		lstrcpy(szTemp, "Os Sheltons podem vir com/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especializa��o.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin06)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realiza��o do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do n�vel +14.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +14./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O Pacote possui:\r");
+		lstrcpy(szTemp, "O Pacote possui:/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Transparos\r");
+		lstrcpy(szTemp, "02 Transparos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Murkis\r");
+		lstrcpy(szTemp, "02 Murkis/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Devines\r");
+		lstrcpy(szTemp, "02 Devines/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Celestos\r");
+		lstrcpy(szTemp, "02 Celestos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Mirages\r");
+		lstrcpy(szTemp, "02 Mirages/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Infernas\r");
+		lstrcpy(szTemp, "02 Infernas/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Pedra de Aging\r");
+		lstrcpy(szTemp, "01 Pedra de Aging/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro M�gico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Os Sheltons podem vir com\r");
+		lstrcpy(szTemp, "Os Sheltons podem vir com/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especializa��o.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin07)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realiza��o do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do n�vel +15.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +15./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O Pacote possui:\r");
+		lstrcpy(szTemp, "O Pacote possui:/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Murkis\r");
+		lstrcpy(szTemp, "02 Murkis/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Devines\r");
+		lstrcpy(szTemp, "02 Devines/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Celestos\r");
+		lstrcpy(szTemp, "02 Celestos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Mirages\r");
+		lstrcpy(szTemp, "02 Mirages/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Infernas\r");
+		lstrcpy(szTemp, "02 Infernas/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Enigma\r");
+		lstrcpy(szTemp, "01 Enigma/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Pedra de Aging\r");
+		lstrcpy(szTemp, "01 Pedra de Aging/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro M�gico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Os Sheltons podem vir com\r");
+		lstrcpy(szTemp, "Os Sheltons podem vir com/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especializa��o.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin08)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realiza��o do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do n�vel +16.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +16./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O Pacote possui:\r");
+		lstrcpy(szTemp, "O Pacote possui:/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Murkis\r");
+		lstrcpy(szTemp, "02 Murkis/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Devines\r");
+		lstrcpy(szTemp, "02 Devines/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Celestos\r");
+		lstrcpy(szTemp, "02 Celestos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Mirages\r");
+		lstrcpy(szTemp, "02 Mirages/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Infernas\r");
+		lstrcpy(szTemp, "02 Infernas/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Enigmas\r");
+		lstrcpy(szTemp, "02 Enigmas/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Pedra de Aging\r");
+		lstrcpy(szTemp, "01 Pedra de Aging/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro M�gico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Os Sheltons podem vir com\r");
+		lstrcpy(szTemp, "Os Sheltons podem vir com/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especializa��o.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin09)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realiza��o do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do n�vel +17.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +17./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O Pacote possui:\r");
+		lstrcpy(szTemp, "O Pacote possui:/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Devines\r");
+		lstrcpy(szTemp, "02 Devines/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Celestos\r");
+		lstrcpy(szTemp, "02 Celestos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Mirages\r");
+		lstrcpy(szTemp, "02 Mirages/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Infernas\r");
+		lstrcpy(szTemp, "02 Infernas/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Enigmas\r");
+		lstrcpy(szTemp, "02 Enigmas/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Bellum\r");
+		lstrcpy(szTemp, "01 Bellum/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Pedra de Aging\r");
+		lstrcpy(szTemp, "01 Pedra de Aging/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro M�gico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Os Sheltons podem vir com\r");
+		lstrcpy(szTemp, "Os Sheltons podem vir com/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especializa��o.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin10)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realiza��o do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do n�vel +18.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +18./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O Pacote possui:\r");
+		lstrcpy(szTemp, "O Pacote possui:/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Devines\r");
+		lstrcpy(szTemp, "02 Devines/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Celestos\r");
+		lstrcpy(szTemp, "02 Celestos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Mirages\r");
+		lstrcpy(szTemp, "02 Mirages/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Infernas\r");
+		lstrcpy(szTemp, "02 Infernas/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Enigmas\r");
+		lstrcpy(szTemp, "02 Enigmas/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Bellums\r");
+		lstrcpy(szTemp, "02 Bellums/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Pedra de Aging\r");
+		lstrcpy(szTemp, "01 Pedra de Aging/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro M�gico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Os Sheltons podem vir com\r");
+		lstrcpy(szTemp, "Os Sheltons podem vir com/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especializa��o.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin11)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realiza��o do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do n�vel +19.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +19./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O Pacote possui:\r");
+		lstrcpy(szTemp, "O Pacote possui:/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Celestos\r");
+		lstrcpy(szTemp, "02 Celestos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Mirages\r");
+		lstrcpy(szTemp, "02 Mirages/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Infernas\r");
+		lstrcpy(szTemp, "02 Infernas/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Enigmas\r");
+		lstrcpy(szTemp, "02 Enigmas/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Bellums\r");
+		lstrcpy(szTemp, "02 Bellums/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ordo\r");
+		lstrcpy(szTemp, "01 Ordo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Pedra de Aging\r");
+		lstrcpy(szTemp, "01 Pedra de Aging/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro M�gico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Os Sheltons podem vir com\r");
+		lstrcpy(szTemp, "Os Sheltons podem vir com/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especializa��o.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin12)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Set de Sheltons necess�rios para\r");
+		lstrcpy(szTemp, "Set de Sheltons necess�rios para/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "a realiza��o do processo\r");
+		lstrcpy(szTemp, "a realiza��o do processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "de Aging do n�vel +20.\r");
+		lstrcpy(szTemp, "de Aging do n�vel +20./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O Pacote possui:\r");
+		lstrcpy(szTemp, "O Pacote possui:/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Celestos\r");
+		lstrcpy(szTemp, "02 Celestos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Mirages\r");
+		lstrcpy(szTemp, "02 Mirages/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Infernas\r");
+		lstrcpy(szTemp, "02 Infernas/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Enigmas\r");
+		lstrcpy(szTemp, "02 Enigmas/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Bellums\r");
+		lstrcpy(szTemp, "02 Bellums/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "02 Ordos\r");
+		lstrcpy(szTemp, "02 Ordos/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Pedra de Aging\r");
+		lstrcpy(szTemp, "01 Pedra de Aging/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Ouro M�gico\r");
+		lstrcpy(szTemp, "01 Ouro M�gico/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Os Sheltons podem vir com\r");
+		lstrcpy(szTemp, "Os Sheltons podem vir com/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Especializa��o aleat�ria\r");
+		lstrcpy(szTemp, "Especializa��o aleat�ria/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ou sem Especializa��o.\r");
+		lstrcpy(szTemp, "ou sem Especializa��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin13)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Caixa de itens premiuns Open-beta\r");
+		lstrcpy(szTemp, "Caixa de itens premiuns Open-beta/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin14)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Pacote de itens premiuns 12H\r");
+		lstrcpy(szTemp, "Pacote de itens premiuns 12H/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O Pacote possui:\r");
+		lstrcpy(szTemp, "O Pacote possui:/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Olho m�gico 50% 12H\r");
+		lstrcpy(szTemp, "01 Olho m�gico 50% 12H/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Po��o de experi�ncia 30% 12H\r");
+		lstrcpy(szTemp, "01 Po��o de experi�ncia 30% 12H/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Presa de Vampiro 12H\r");
+		lstrcpy(szTemp, "01 Presa de Vampiro 12H/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Drena Almas 12H\r");
+		lstrcpy(szTemp, "01 Drena Almas 12H/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Po��o Redut. de MANA 30% 12H\r");
+		lstrcpy(szTemp, "01 Po��o Redut. de MANA 30% 12H/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Po��o Redut. de RES 30% 12H\r");
+		lstrcpy(szTemp, "01 Po��o Redut. de RES 30% 12H/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 F�nix 12H\r");
+		lstrcpy(szTemp, "01 F�nix 12H/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin15)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Pacote de itens premiuns 1D\r");
+		lstrcpy(szTemp, "Pacote de itens premiuns 1D/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O Pacote possui:\r");
+		lstrcpy(szTemp, "O Pacote possui:/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Olho m�gico 50% 1D\r");
+		lstrcpy(szTemp, "01 Olho m�gico 50% 1D/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Po��o de experi�ncia 50% 1D\r");
+		lstrcpy(szTemp, "01 Po��o de experi�ncia 50% 1D/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Presa de Vampiro 1D\r");
+		lstrcpy(szTemp, "01 Presa de Vampiro 1D/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Drena Almas 1D\r");
+		lstrcpy(szTemp, "01 Drena Almas 1D/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Po��o Redut. de MANA 30% 1D\r");
+		lstrcpy(szTemp, "01 Po��o Redut. de MANA 30% 1D/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 Po��o Redut. de RES 30% 1D\r");
+		lstrcpy(szTemp, "01 Po��o Redut. de RES 30% 1D/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "01 F�nix 1D\r");
+		lstrcpy(szTemp, "01 F�nix 1D/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin16)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "premia��o pra os que ajudou na beta\r");
+		lstrcpy(szTemp, "premia��o pra os que ajudou na beta/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin30)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Abre O Bau Em qualquer Lugar\r");
+		lstrcpy(szTemp, "Abre O Bau Em qualquer Lugar/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI3 | sin31)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Abre O Bau Em qualquer Lugar\r");
+		lstrcpy(szTemp, "Abre O Bau Em qualquer Lugar/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
@@ -4116,20 +4116,20 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 
 	if (pItem->CODE == (sinBI3 | sin17) || pItem->CODE == (sinBI3 | sin18) || pItem->CODE == (sinBI3 | sin19))
 	{
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Vip\r");
+		lstrcpy(szTemp, "Vip/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Com varios beneficios\r");
+		lstrcpy(szTemp, "Com varios beneficios/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
@@ -4138,797 +4138,797 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 
 	if (pItem->CODE == (sinBI3 | sin20) || pItem->CODE == (sinBI3 | sin21) || pItem->CODE == (sinBI3 | sin22))
 	{
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Gold Looter\r");
+		lstrcpy(szTemp, "Gold Looter/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Mate os Monstro e colete o ouro.\r");
+		lstrcpy(szTemp, "Mate os Monstro e colete o ouro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 
 	if (pItem->CODE == (sinBI1 | sin23)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Lan�a fogos de artif�cio no\r");
+		lstrcpy(szTemp, "Lan�a fogos de artif�cio no/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "c�u como forma de comemora��o.\r");
+		lstrcpy(szTemp, "c�u como forma de comemora��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin36)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Matura uma Arma que passou\r");
+		lstrcpy(szTemp, "Matura uma Arma que passou/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "pelo processo de Aging.\r");
+		lstrcpy(szTemp, "pelo processo de Aging./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin37)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Matura um Escudo ou Orbital\r");
+		lstrcpy(szTemp, "Matura um Escudo ou Orbital/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "que passou pelo processo\r");
+		lstrcpy(szTemp, "que passou pelo processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Aging.\r");
+		lstrcpy(szTemp, "de Aging./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin38)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Matura uma Armadura ou Roup�o\r");
+		lstrcpy(szTemp, "Matura uma Armadura ou Roup�o/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "que passou pelo processo\r");
+		lstrcpy(szTemp, "que passou pelo processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de Aging.\r");
+		lstrcpy(szTemp, "de Aging./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin90)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Abre o respectivo NPC de onde\r");
+		lstrcpy(szTemp, "Abre o respectivo NPC de onde/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "estiver para realizar o processo\r");
+		lstrcpy(szTemp, "estiver para realizar o processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin91)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Abre o respectivo NPC de onde\r");
+		lstrcpy(szTemp, "Abre o respectivo NPC de onde/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "estiver para realizar o processo\r");
+		lstrcpy(szTemp, "estiver para realizar o processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin92)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Abre o respectivo NPC de onde\r");
+		lstrcpy(szTemp, "Abre o respectivo NPC de onde/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "estiver para realizar o processo\r");
+		lstrcpy(szTemp, "estiver para realizar o processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin93)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Abre o respectivo NPC de onde\r");
+		lstrcpy(szTemp, "Abre o respectivo NPC de onde/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "estiver para realizar o processo\r");
+		lstrcpy(szTemp, "estiver para realizar o processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin94)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Abre o respectivo NPC de onde\r");
+		lstrcpy(szTemp, "Abre o respectivo NPC de onde/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "estiver para realizar o processo\r");
+		lstrcpy(szTemp, "estiver para realizar o processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin95)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Abre o respectivo NPC de onde\r");
+		lstrcpy(szTemp, "Abre o respectivo NPC de onde/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "estiver para realizar o processo\r");
+		lstrcpy(szTemp, "estiver para realizar o processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin96)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Abre o respectivo NPC de onde\r");
+		lstrcpy(szTemp, "Abre o respectivo NPC de onde/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "estiver para realizar o processo\r");
+		lstrcpy(szTemp, "estiver para realizar o processo/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin42)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Abre uma loja para que o\r");
+		lstrcpy(szTemp, "Abre uma loja para que o/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "personagem possa vender itens.\r");
+		lstrcpy(szTemp, "personagem possa vender itens./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin62)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Matura um Bracelete que passou\r");
+		lstrcpy(szTemp, "Matura um Bracelete que passou/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "pelo processo de Aging.\r");
+		lstrcpy(szTemp, "pelo processo de Aging./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin63)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Matura uma Luva que passou\r");
+		lstrcpy(szTemp, "Matura uma Luva que passou/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "pelo processo de Aging.\r");
+		lstrcpy(szTemp, "pelo processo de Aging./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin64)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Matura uma Bota que passou\r");
+		lstrcpy(szTemp, "Matura uma Bota que passou/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "pelo processo de Aging.\r");
+		lstrcpy(szTemp, "pelo processo de Aging./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin95)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O personagem fica com uma\r");
+		lstrcpy(szTemp, "O personagem fica com uma/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "express�o de Felicidade.\r");
+		lstrcpy(szTemp, "express�o de Felicidade./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin96)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O personagem fica com uma\r");
+		lstrcpy(szTemp, "O personagem fica com uma/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "express�o Amorosa.\r");
+		lstrcpy(szTemp, "express�o Amorosa./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin97)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O personagem fica com uma\r");
+		lstrcpy(szTemp, "O personagem fica com uma/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "express�o de Tristeza.\r");
+		lstrcpy(szTemp, "express�o de Tristeza./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin98)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O personagem fica com uma\r");
+		lstrcpy(szTemp, "O personagem fica com uma/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "express�o de Fofura.\r");
+		lstrcpy(szTemp, "express�o de Fofura./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin45)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O personagem fica com uma\r");
+		lstrcpy(szTemp, "O personagem fica com uma/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "m�scara de halloween.\r");
+		lstrcpy(szTemp, "m�scara de halloween./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin46)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O personagem fica com um\r");
+		lstrcpy(szTemp, "O personagem fica com um/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "ch�peu de Carneiro.\r");
+		lstrcpy(szTemp, "ch�peu de Carneiro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin50)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O personagem fica com uma\r");
+		lstrcpy(szTemp, "O personagem fica com uma/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "Cartola na cabe�a.\r");
+		lstrcpy(szTemp, "Cartola na cabe�a./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 
 	if (pItem->CODE == (sinBI2 | sin51)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O personagem fica com um\r");
+		lstrcpy(szTemp, "O personagem fica com um/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "chap�u de Bola.\r");
+		lstrcpy(szTemp, "chap�u de Bola./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 
 	if (pItem->CODE == (sinBI2 | sin52)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O personagem fica com um\r");
+		lstrcpy(szTemp, "O personagem fica com um/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "ch�peu de Girafa.\r");
+		lstrcpy(szTemp, "ch�peu de Girafa./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin53)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "O personagem fica com uma\r");
+		lstrcpy(szTemp, "O personagem fica com uma/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "touca de Natal.\r");
+		lstrcpy(szTemp, "touca de Natal./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin73)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Leva o item direto ao\r");
+		lstrcpy(szTemp, "Leva o item direto ao/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "n�vel de Aging +10.\r");
+		lstrcpy(szTemp, "n�vel de Aging +10./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin74)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Leva o item direto ao\r");
+		lstrcpy(szTemp, "Leva o item direto ao/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "n�vel de Aging +15.\r");
+		lstrcpy(szTemp, "n�vel de Aging +15./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin75)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Leva o item direto ao\r");
+		lstrcpy(szTemp, "Leva o item direto ao/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "n�vel de Aging +18.\r");
+		lstrcpy(szTemp, "n�vel de Aging +18./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin76)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Leva o item direto ao\r");
+		lstrcpy(szTemp, "Leva o item direto ao/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "n�vel de Aging +20.\r");
+		lstrcpy(szTemp, "n�vel de Aging +20./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 	if (pItem->CODE == (sinBI2 | sin77)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Leva o item direto ao\r");
+		lstrcpy(szTemp, "Leva o item direto ao/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "n�vel de Aging +28.\r");
+		lstrcpy(szTemp, "n�vel de Aging +28./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 
 	if (pItem->CODE == (sinBI1 | sin09)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Deixa o personagem inchado e\r");
+		lstrcpy(szTemp, "Deixa o personagem inchado e/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "aumenta 15% do poder de ATQ.\r");
+		lstrcpy(szTemp, "aumenta 15% do poder de ATQ./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin12) || pItem->CODE == (sinBI1 | sin14) || pItem->CODE == (sinBI1 | sin78)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta 50% na chanche de\r");
+		lstrcpy(szTemp, "Aumenta 50% na chanche de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "dropar mais itens de um monstro.\r");
+		lstrcpy(szTemp, "dropar mais itens de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin13) || pItem->CODE == (sinBI1 | sin15)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 30% a Experi�ncia\r");
+		lstrcpy(szTemp, "Aumenta em 30% a Experi�ncia/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "adquirida de um monstro.\r");
+		lstrcpy(szTemp, "adquirida de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin19) || pItem->CODE == (sinBI1 | sin20) || pItem->CODE == (sinBI1 | sin81)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Converte % do dano em HP\r");
+		lstrcpy(szTemp, "Converte % do dano em HP/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin21) || pItem->CODE == (sinBI1 | sin22) || pItem->CODE == (sinBI1 | sin82)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Converte % do dano em MP\r");
+		lstrcpy(szTemp, "Converte % do dano em MP/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin56) || pItem->CODE == (sinBI1 | sin57) || pItem->CODE == (sinBI1 | sin58)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Adiciona +10 de Regen de STM\r");
+		lstrcpy(szTemp, "Adiciona +10 de Regen de STM/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin24) || pItem->CODE == (sinBI1 | sin25) || pItem->CODE == (sinBI1 | sin79)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 50% a Experi�ncia\r");
+		lstrcpy(szTemp, "Aumenta em 50% a Experi�ncia/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "adquirida de um monstro.\r");
+		lstrcpy(szTemp, "adquirida de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin28) || pItem->CODE == (sinBI1 | sin29) || pItem->CODE == (sinBI1 | sin83)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Reduz o uso de MP em 30%\r");
+		lstrcpy(szTemp, "Reduz o uso de MP em 30%/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin32) || pItem->CODE == (sinBI1 | sin33) ||
 		pItem->CODE == (sinBI1 | sin34) || pItem->CODE == (sinBI1 | sin51) || pItem->CODE == (sinBI1 | sin77)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Invoca uma F�nix para\r");
+		lstrcpy(szTemp, "Invoca uma F�nix para/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "ajudar nas batalhas.\r");
+		lstrcpy(szTemp, "ajudar nas batalhas./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta 10% na chanche de\r");
+		lstrcpy(szTemp, "Aumenta 10% na chanche de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "dropar mais itens de um monstro.\r");
+		lstrcpy(szTemp, "dropar mais itens de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta 10% no exp\r");
+		lstrcpy(szTemp, "Aumenta 10% no exp/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "de um monstro.\r");
+		lstrcpy(szTemp, "de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin43) || pItem->CODE == (sinBI1 | sin44) || pItem->CODE == (sinBI1 | sin50) || pItem->CODE == (sinBI1 | sin80)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 100% a Experi�ncia\r");
+		lstrcpy(szTemp, "Aumenta em 100% a Experi�ncia/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "adquirida de um monstro.\r");
+		lstrcpy(szTemp, "adquirida de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
@@ -4936,259 +4936,259 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 
 
 	if (pItem->CODE == (sinBI2 | sin01) || pItem->CODE == (sinBI2 | sin02) || pItem->CODE == (sinBI2 | sin03) || pItem->CODE == (sinBI2 | sin04)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta 20% na chanche de\r");
+		lstrcpy(szTemp, "Aumenta 20% na chanche de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "dropar mais itens de um monstro.\r");
+		lstrcpy(szTemp, "dropar mais itens de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 10% a Experi�ncia\r");
+		lstrcpy(szTemp, "Aumenta em 10% a Experi�ncia/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "adquirida de um monstro.\r");
+		lstrcpy(szTemp, "adquirida de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 	if (pItem->CODE == (sinBI2 | sin05) || pItem->CODE == (sinBI2 | sin06) || pItem->CODE == (sinBI2 | sin07) || pItem->CODE == (sinBI2 | sin08)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta 30% na chanche de\r");
+		lstrcpy(szTemp, "Aumenta 30% na chanche de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "dropar mais itens de um monstro.\r");
+		lstrcpy(szTemp, "dropar mais itens de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 20% a Experi�ncia\r");
+		lstrcpy(szTemp, "Aumenta em 20% a Experi�ncia/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "adquirida de um monstro.\r");
+		lstrcpy(szTemp, "adquirida de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 	if (pItem->CODE == (sinBI2 | sin09) || pItem->CODE == (sinBI2 | sin10) || pItem->CODE == (sinBI2 | sin11) || pItem->CODE == (sinBI2 | sin12)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta 40% na chanche de\r");
+		lstrcpy(szTemp, "Aumenta 40% na chanche de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "dropar mais itens de um monstro.\r");
+		lstrcpy(szTemp, "dropar mais itens de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 30% a Experi�ncia\r");
+		lstrcpy(szTemp, "Aumenta em 30% a Experi�ncia/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "adquirida de um monstro.\r");
+		lstrcpy(szTemp, "adquirida de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 	if (pItem->CODE == (sinBI2 | sin23) || pItem->CODE == (sinBI2 | sin24) || pItem->CODE == (sinBI2 | sin25)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta 50% na chanche de\r");
+		lstrcpy(szTemp, "Aumenta 50% na chanche de/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "dropar mais itens de um monstro.\r");
+		lstrcpy(szTemp, "dropar mais itens de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 40% a Experi�ncia\r");
+		lstrcpy(szTemp, "Aumenta em 40% a Experi�ncia/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "adquirida de um monstro.\r");
+		lstrcpy(szTemp, "adquirida de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin26) || pItem->CODE == (sinBI2 | sin27) || pItem->CODE == (sinBI2 | sin28)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Reduz o uso de MP em 10%\r");
+		lstrcpy(szTemp, "Reduz o uso de MP em 10%/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 10% a Experi�ncia\r");
+		lstrcpy(szTemp, "Aumenta em 10% a Experi�ncia/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "adquirida de um monstro.\r");
+		lstrcpy(szTemp, "adquirida de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 	if (pItem->CODE == (sinBI2 | sin29) || pItem->CODE == (sinBI2 | sin30) || pItem->CODE == (sinBI2 | sin31)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Reduz o uso de MP em 20%\r");
+		lstrcpy(szTemp, "Reduz o uso de MP em 20%/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 20% a Experi�ncia\r");
+		lstrcpy(szTemp, "Aumenta em 20% a Experi�ncia/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "adquirida de um monstro.\r");
+		lstrcpy(szTemp, "adquirida de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 	if (pItem->CODE == (sinBI2 | sin32) || pItem->CODE == (sinBI2 | sin33) || pItem->CODE == (sinBI2 | sin34)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Reduz o uso de MP em 30%\r");
+		lstrcpy(szTemp, "Reduz o uso de MP em 30%/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 30% a Experi�ncia\r");
+		lstrcpy(szTemp, "Aumenta em 30% a Experi�ncia/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "adquirida de um monstro.\r");
+		lstrcpy(szTemp, "adquirida de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 	if (pItem->CODE == (sinBI2 | sin35) || pItem->CODE == (sinBI2 | sin36) || pItem->CODE == (sinBI2 | sin37)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Reduz o uso de MP em 40%\r");
+		lstrcpy(szTemp, "Reduz o uso de MP em 40%/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta em 40% a Experi�ncia\r");
+		lstrcpy(szTemp, "Aumenta em 40% a Experi�ncia/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "adquirida de um monstro.\r");
+		lstrcpy(szTemp, "adquirida de um monstro./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
@@ -5196,25 +5196,25 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (pItem->CODE == (sinBI1 | sin52) || pItem->CODE == (sinBI1 | sin65) ||
 		pItem->CODE == (sinBI1 | sin69) || pItem->CODE == (sinBI1 | sin73))
 	{
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Invoca um pequeno drag�o\r");
+		lstrcpy(szTemp, "Invoca um pequeno drag�o/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "com o poder de fogo para \r");
+		lstrcpy(szTemp, "com o poder de fogo para /r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "ajudar nas batalhas.\r");
+		lstrcpy(szTemp, "ajudar nas batalhas./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
@@ -5222,25 +5222,25 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (pItem->CODE == (sinBI1 | sin53) || pItem->CODE == (sinBI1 | sin66) ||
 		pItem->CODE == (sinBI1 | sin70) || pItem->CODE == (sinBI1 | sin74))
 	{
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Invoca um pequeno drag�o\r");
+		lstrcpy(szTemp, "Invoca um pequeno drag�o/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "com o poder de gelo para \r");
+		lstrcpy(szTemp, "com o poder de gelo para /r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "ajudar nas batalhas.\r");
+		lstrcpy(szTemp, "ajudar nas batalhas./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
@@ -5248,25 +5248,25 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (pItem->CODE == (sinBI1 | sin54) || pItem->CODE == (sinBI1 | sin67) ||
 		pItem->CODE == (sinBI1 | sin71) || pItem->CODE == (sinBI1 | sin75))
 	{
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Invoca um pequeno drag�o\r");
+		lstrcpy(szTemp, "Invoca um pequeno drag�o/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "com o poder de raio para \r");
+		lstrcpy(szTemp, "com o poder de raio para /r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "ajudar nas batalhas.\r");
+		lstrcpy(szTemp, "ajudar nas batalhas./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
@@ -5274,154 +5274,154 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (pItem->CODE == (sinBI1 | sin55) || pItem->CODE == (sinBI1 | sin68) ||
 		pItem->CODE == (sinBI1 | sin72) || pItem->CODE == (sinBI1 | sin76))
 	{
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Invoca um pequeno drag�o\r");
+		lstrcpy(szTemp, "Invoca um pequeno drag�o/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "com o poder de cura para \r");
+		lstrcpy(szTemp, "com o poder de cura para /r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "ajudar nas batalhas.\r");
+		lstrcpy(szTemp, "ajudar nas batalhas./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin84)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Aumenta +50 do peso total no\r");
+		lstrcpy(szTemp, "Aumenta +50 do peso total no/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "personagem permanentemente.\r");
+		lstrcpy(szTemp, "personagem permanentemente./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Limite de uso: 5 vezes\r");
+		lstrcpy(szTemp, "Limite de uso: 5 vezes/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin86) || pItem->CODE == (sinBI1 | sin87) || pItem->CODE == (sinBI1 | sin88)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Converte % do dano em HP\r");
+		lstrcpy(szTemp, "Converte % do dano em HP/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI1 | sin91) || pItem->CODE == (sinBI1 | sin92)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Reduz o uso de STM em 30%\r");
+		lstrcpy(szTemp, "Reduz o uso de STM em 30%/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if ((sInfo.CODE & sinITEM_MASK2) == sinPR1 ||
 		(sInfo.CODE & sinITEM_MASK2) == sinPR2) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Item usado no\r");
+		lstrcpy(szTemp, "Item usado no/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "processo de Fundi��o.\r");
+		lstrcpy(szTemp, "processo de Fundi��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if ((sInfo.CODE & sinITEM_MASK2) == sinPR3 ||
 		(sInfo.CODE & sinITEM_MASK2) == sinPR4) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Item usado no\r");
+		lstrcpy(szTemp, "Item usado no/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "processo de Cria��o.\r");
+		lstrcpy(szTemp, "processo de Cria��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (((sInfo.CODE & sinITEM_MASK2) == sinWR1) ||
 		((sInfo.CODE & sinITEM_MASK2) == sinDR1)) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Item usado no\r");
+		lstrcpy(szTemp, "Item usado no/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		lstrcpy(szTemp, "processo de Cria��o.\r");
+		lstrcpy(szTemp, "processo de Cria��o./r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
 
 	if (pItem->CODE == (sinBI2 | sin83))
 	{
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Ressuscita o personagem morto\r");
+		lstrcpy(szTemp, "Ressuscita o personagem morto/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
@@ -5430,7 +5430,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	{
 		strcpy_s(szTemp, ClanCristalName);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		for (cnt = 0; cnt < 10; cnt++)
@@ -5450,20 +5450,20 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	{
 		strcpy_s(szTemp, LinkCoreName);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		if (pItem->sItemInfo.ItemName[len + 1] != NULL)
 		{
-			lstrcat(szInfoBuff, "\r");
-			lstrcat(szInfoBuff2, "\r");
+			lstrcat(szInfoBuff, "/r");
+			lstrcat(szInfoBuff2, "/r");
 			ItemInfoCol++;
 
 			strcpy_s(szLinkName, &pItem->sItemInfo.ItemName[len + 1]);
 			strcpy_s(szTemp, szLinkName);
 			lstrcat(szInfoBuff, DesLinkCore);
 			lstrcat(szInfoBuff, szTemp);
-			strcpy_s(szTemp2, "\r");
+			strcpy_s(szTemp2, "/r");
 			lstrcat(szInfoBuff, szTemp2);
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
@@ -5486,13 +5486,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 
 	if (sInfo.SpecialItemFlag[1] == ITEM_KIND_PERFECT)
 	{
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
 
-		wsprintf(szTemp, "Item Perfeito\r");
+		wsprintf(szTemp, "Item Perfeito/r");
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		ItemPerfLine = ItemInfoCol;
@@ -5500,13 +5500,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 
 	if (sInfo.SpecialItemFlag[2] == ITEM_KIND_SKIN)
 	{
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
 
-		wsprintf(szTemp, "Skin Aplicada\r");
+		wsprintf(szTemp, "Skin Aplicada/r");
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		ItemSkinLine = ItemInfoCol;
@@ -5515,7 +5515,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Damage[0] || sInfo.Damage[1])
 	{
 		strcpy_s(szTemp, sinAbilityName[0]);
-		wsprintf(szTemp2, "%d-%d\r", sInfo.Damage[0], sInfo.Damage[1]);
+		wsprintf(szTemp2, "%d-%d/r", sInfo.Damage[0], sInfo.Damage[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5555,12 +5555,12 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinAbilityName[1]);
 		if (CheckQuestItemDownFlag && sInfo.ItemKindCode == ITEM_KIND_QUEST_WEAPON)
 		{
-			wsprintf(szTemp2, "%d\r", sInfo.Attack_Speed - 2);
+			wsprintf(szTemp2, "%d/r", sInfo.Attack_Speed - 2);
 			RedLine[9] = ItemInfoCol + 1;
 		}
 		else
 		{
-			wsprintf(szTemp2, "%d\r", sInfo.Attack_Speed);
+			wsprintf(szTemp2, "%d/r", sInfo.Attack_Speed);
 		}
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
@@ -5583,7 +5583,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Shooting_Range)
 	{
 		strcpy_s(szTemp, sinAbilityName[2]);
-		wsprintf(szTemp2, "%d\r", sInfo.Shooting_Range);
+		wsprintf(szTemp2, "%d/r", sInfo.Shooting_Range);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5596,7 +5596,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Critical_Hit)
 	{
 		strcpy_s(szTemp, sinAbilityName[3]);
-		wsprintf(szTemp2, "%d%s\r", sInfo.Critical_Hit, "%");
+		wsprintf(szTemp2, "%d%s/r", sInfo.Critical_Hit, "%");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5628,7 +5628,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Defence)
 	{
 		strcpy_s(szTemp, sinAbilityName[4]);
-		wsprintf(szTemp2, "%d\r", sInfo.Defence);
+		wsprintf(szTemp2, "%d/r", sInfo.Defence);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5666,7 +5666,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Attack_Rating)
 	{
 		strcpy_s(szTemp, sinAbilityName[5]);
-		wsprintf(szTemp2, "%d\r", sInfo.Attack_Rating);
+		wsprintf(szTemp2, "%d/r", sInfo.Attack_Rating);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5704,7 +5704,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		sinRightSpot = sinAbsorb % 10;
 		sinLeftSpot = (sinAbsorb - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinAbilityName[6]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5740,7 +5740,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	{
 		BlockRate = (int)(sInfo.fBlock_Rating);
 		strcpy_s(szTemp, sinAbilityName[7]);
-		wsprintf(szTemp2, "%d%s\r", BlockRate, "%");
+		wsprintf(szTemp2, "%d%s/r", BlockRate, "%");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5776,7 +5776,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		sinRightSpot = sinSpeed % 10;
 		sinLeftSpot = (sinSpeed - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinAbilityName[8]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5798,7 +5798,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Durability[0] || sInfo.Durability[1])
 	{
 		strcpy_s(szTemp, sinAbilityName[9]);
-		wsprintf(szTemp2, "%d/%d\r", sInfo.Durability[0], sInfo.Durability[1]);
+		wsprintf(szTemp2, "%d/%d/r", sInfo.Durability[0], sInfo.Durability[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5833,7 +5833,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Mana[0] || sInfo.Mana[1])
 	{
 		strcpy_s(szTemp, sinAbilityName[10]);
-		wsprintf(szTemp2, "%d-%d\r", sInfo.Mana[0], sInfo.Mana[1]);
+		wsprintf(szTemp2, "%d-%d/r", sInfo.Mana[0], sInfo.Mana[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5842,7 +5842,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Life[0] || sInfo.Life[1])
 	{
 		strcpy_s(szTemp, sinAbilityName[11]);
-		wsprintf(szTemp2, "%d-%d\r", sInfo.Life[0], sInfo.Life[1]);
+		wsprintf(szTemp2, "%d-%d/r", sInfo.Life[0], sInfo.Life[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5851,7 +5851,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Stamina[0] || sInfo.Stamina[1])
 	{
 		strcpy_s(szTemp, sinAbilityName[12]);
-		wsprintf(szTemp2, "%d-%d\r", sInfo.Stamina[0], sInfo.Stamina[1]);
+		wsprintf(szTemp2, "%d-%d/r", sInfo.Stamina[0], sInfo.Stamina[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5862,7 +5862,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Resistance[0])
 	{
 		strcpy_s(szTemp, sinAbilityName[13]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[0]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[0]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5881,7 +5881,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Resistance[1])
 	{
 		strcpy_s(szTemp, sinAbilityName[14]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[1]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5890,7 +5890,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Resistance[2])
 	{
 		strcpy_s(szTemp, sinAbilityName[15]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[2]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[2]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5912,7 +5912,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Resistance[3])
 	{
 		strcpy_s(szTemp, sinAbilityName[16]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[3]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[3]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5931,7 +5931,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Resistance[4])
 	{
 		strcpy_s(szTemp, sinAbilityName[17]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[4]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[4]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5950,7 +5950,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Resistance[5])
 	{
 		strcpy_s(szTemp, sinAbilityName[18]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[5]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[5]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5969,7 +5969,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Resistance[6])
 	{
 		strcpy_s(szTemp, sinAbilityName[19]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[6]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[6]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5978,7 +5978,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Resistance[7])
 	{
 		strcpy_s(szTemp, sinAbilityName[20]);
-		wsprintf(szTemp2, "%d\r", sInfo.Resistance[7]);
+		wsprintf(szTemp2, "%d/r", sInfo.Resistance[7]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -5991,7 +5991,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		sinRightSpot = sinRegen % 10;
 		sinLeftSpot = (sinRegen - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinAbilityName[21]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6015,7 +6015,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		sinRightSpot = sinRegen % 10;
 		sinLeftSpot = (sinRegen - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinAbilityName[22]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6040,7 +6040,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		sinRightSpot = sinRegen % 10;
 		sinLeftSpot = (sinRegen - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinAbilityName[23]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6062,7 +6062,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	{
 		AddState = (int)sInfo.fIncrease_Life;
 		strcpy_s(szTemp, sinAbilityName[24]);
-		wsprintf(szTemp2, "%d\r", AddState);
+		wsprintf(szTemp2, "%d/r", AddState);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6082,7 +6082,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	{
 		AddState = (int)sInfo.fIncrease_Mana;
 		strcpy_s(szTemp, sinAbilityName[25]);
-		wsprintf(szTemp2, "%d\r", AddState);
+		wsprintf(szTemp2, "%d/r", AddState);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6115,7 +6115,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	{
 		AddState = (int)sInfo.fIncrease_Stamina;
 		strcpy_s(szTemp, sinAbilityName[26]);
-		wsprintf(szTemp2, "%d\r", AddState);
+		wsprintf(szTemp2, "%d/r", AddState);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6135,14 +6135,14 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Potion_Space)
 	{
 		strcpy_s(szTemp, sinAbilityName[27]);
-		wsprintf(szTemp2, "%d\r", sInfo.Potion_Space);
+		wsprintf(szTemp2, "%d/r", sInfo.Potion_Space);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
 	}
 
-	lstrcpy(szTemp2, "  \r");
+	lstrcpy(szTemp2, "  /r");
 	lstrcat(szInfoBuff, szTemp2);
 	lstrcat(szInfoBuff2, szTemp2);
 	ItemInfoCol++;
@@ -6150,46 +6150,46 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (pItem->CODE == (sinOR1 | sin25) || pItem->CODE == (sinOA1 | sin25))
 	{
 		ItemBoss1 = 1;
-		lstrcpy(szTemp2, "  \r");
+		lstrcpy(szTemp2, "  /r");
 		lstrcat(szInfoBuff, szTemp2);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		wsprintf(szTemp, "Set Boss #1\r");
+		wsprintf(szTemp, "Set Boss #1/r");
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		ItemBossLine = ItemInfoCol;
-		wsprintf(szTemp, "Anillo Valento (%d/2)\r", LValRing + RValRing);
+		wsprintf(szTemp, "Anillo Valento (%d/2)/r", LValRing + RValRing);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		Ring1 = ItemInfoCol;
-		wsprintf(szTemp, "Amuleto Kelvezu (%d/1)\r", KelAmulet);
+		wsprintf(szTemp, "Amuleto Kelvezu (%d/1)/r", KelAmulet);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		Amulet1 = ItemInfoCol;
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
-		wsprintf(szTemp, "Set B�nus #1\r");
+		wsprintf(szTemp, "Set B�nus #1/r");
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		Efect1Line = ItemInfoCol;
-		wsprintf(szTemp, "2 - %d Defensa\r", SetBoss1Bonus1);
+		wsprintf(szTemp, "2 - %d Defensa/r", SetBoss1Bonus1);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		Efect1Line2 = ItemInfoCol;
-		wsprintf(szTemp, "3 - %d Vida\r", SetBoss1Bonus2);
+		wsprintf(szTemp, "3 - %d Vida/r", SetBoss1Bonus2);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		Efect1Line3 = ItemInfoCol;
@@ -6200,46 +6200,46 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (pItem->CODE == (sinOR1 | sin26) || pItem->CODE == (sinOA1 | sin26))
 	{
 		ItemBoss2 = 1;
-		lstrcpy(szTemp2, "  \r");
+		lstrcpy(szTemp2, "  /r");
 		lstrcat(szInfoBuff, szTemp2);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
-		wsprintf(szTemp, "Set Boss #2\r");
+		wsprintf(szTemp, "Set Boss #2/r");
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		ItemBossLine = ItemInfoCol;
-		wsprintf(szTemp, "Anel Shy (%d/2)\r", LShyRing + RShyRing);
+		wsprintf(szTemp, "Anel Shy (%d/2)/r", LShyRing + RShyRing);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		Ring2 = ItemInfoCol;
-		wsprintf(szTemp, "Amuleto Tulla (%d/1)\r", TullaAmulet);
+		wsprintf(szTemp, "Amuleto Tulla (%d/1)/r", TullaAmulet);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		Amulet2 = ItemInfoCol;
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
-		wsprintf(szTemp, "Set B�nus #2\r");
+		wsprintf(szTemp, "Set B�nus #2/r");
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		Efect2Line = ItemInfoCol;
-		wsprintf(szTemp, "2 - %d Defensa\r", SetBoss2Bonus1);
+		wsprintf(szTemp, "2 - %d Defensa/r", SetBoss2Bonus1);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		Efect2Line2 = ItemInfoCol;
-		wsprintf(szTemp, "3 - %d Vida\r", SetBoss2Bonus2);
+		wsprintf(szTemp, "3 - %d Vida/r", SetBoss2Bonus2);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		Efect2Line3 = ItemInfoCol;
@@ -6251,8 +6251,8 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinAbilityName[28]);
 		if ((sInfo.CODE & sinITEM_MASK2) == sinFO1)
 		{
-			lstrcat(szInfoBuff, "\r");
-			lstrcat(szInfoBuff2, "\r");
+			lstrcat(szInfoBuff, "/r");
+			lstrcat(szInfoBuff2, "/r");
 			ItemInfoCol++;
 
 			for (i = 0; i < 16; i++)
@@ -6261,11 +6261,11 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				{
 					if (i <= 3)
 					{
-						wsprintf(szTemp2, "%d-%d\r", ForceOrbUseLevel[i][0], ForceOrbUseLevel[i][1]);
+						wsprintf(szTemp2, "%d-%d/r", ForceOrbUseLevel[i][0], ForceOrbUseLevel[i][1]);
 					}
 					else
 					{
-						wsprintf(szTemp2, "%d+\r", ForceOrbUseLevel[i][0]);
+						wsprintf(szTemp2, "%d+/r", ForceOrbUseLevel[i][0]);
 					}
 					break;
 				}
@@ -6273,17 +6273,17 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				{
 					if (i <= 3)
 					{
-						wsprintf(szTemp2, "%d-%d\r", MagicForceOrbUseLevel[i][0], MagicForceOrbUseLevel[i][1]);
+						wsprintf(szTemp2, "%d-%d/r", MagicForceOrbUseLevel[i][0], MagicForceOrbUseLevel[i][1]);
 					}
 					else
 					{
-						wsprintf(szTemp2, "%d+\r", MagicForceOrbUseLevel[i][0]);
+						wsprintf(szTemp2, "%d+/r", MagicForceOrbUseLevel[i][0]);
 					}
 					break;
 				}
 				else if (((pItem->CODE & sinITEM_MASK3) == BillingMagicSheltomCode[i]))
 				{
-					wsprintf(szTemp2, "%d+\r", BillingMagicForceOrbUseLevel[i][0]);
+					wsprintf(szTemp2, "%d+/r", BillingMagicForceOrbUseLevel[i][0]);
 					break;
 				}
 			}
@@ -6301,7 +6301,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		}
 		else
 		{
-			wsprintf(szTemp2, "%d\r", sInfo.Level);
+			wsprintf(szTemp2, "%d/r", sInfo.Level);
 			lstrcat(szInfoBuff, szTemp);
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
@@ -6315,15 +6315,15 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	}
 
 	if ((sInfo.CODE & sinITEM_MASK2) == sinSK1 || (sInfo.CODE & sinITEM_MASK2) == sinSK2) {
-		lstrcpy(szTemp, "\r");
+		lstrcpy(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		lstrcpy(szTemp, "Use para trocar a skin\r");
+		lstrcpy(szTemp, "Use para trocar a skin/r");
 		lstrcat(szInfoBuff, szTemp);
-		lstrcpy(szTemp2, "\r");
+		lstrcpy(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
@@ -6335,7 +6335,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			if ((pItem->CODE & sinITEM_MASK3) == SheltomCode2[i])
 			{
 				strcpy_s(szTemp, sinAddDamageItem);
-				wsprintf(szTemp2, "%d\r", ForceOrbDamage[i]);
+				wsprintf(szTemp2, "%d/r", ForceOrbDamage[i]);
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -6343,7 +6343,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				if (i > 5 && i < 10)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 10, "%");
+					wsprintf(szTemp2, "%d%s/r", 10, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -6351,7 +6351,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				else if (i == 10)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 15, "%");
+					wsprintf(szTemp2, "%d%s/r", 15, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -6359,7 +6359,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				else if (i == 11)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 20, "%");
+					wsprintf(szTemp2, "%d%s/r", 20, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -6367,7 +6367,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				else if (i == 12)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 20, "%");
+					wsprintf(szTemp2, "%d%s/r", 20, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -6375,7 +6375,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				else if (i == 13)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 25, "%");
+					wsprintf(szTemp2, "%d%s/r", 25, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -6383,7 +6383,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				else if (i == 14)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 30, "%");
+					wsprintf(szTemp2, "%d%s/r", 30, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -6391,14 +6391,14 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				else if (i == 15)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, " %d%s\r", 40, "%");
+					wsprintf(szTemp2, " %d%s/r", 40, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 				}
-				strcpy_s(szTemp, "Dura��o: \r");
-				wsprintf(szTemp2, "%02d:%02d:%02d\r", (ForceOrbUseTime[i] / 60 / 60) % 24, (ForceOrbUseTime[i] / 60) % 60, (ForceOrbUseTime[i]) % 60);
-				//wsprintf(szTemp2, "%d%s\r", ForceOrbUseTime[i], SecName);
+				strcpy_s(szTemp, "Dura��o: /r");
+				wsprintf(szTemp2, "%02d:%02d:%02d/r", (ForceOrbUseTime[i] / 60 / 60) % 24, (ForceOrbUseTime[i] / 60) % 60, (ForceOrbUseTime[i]) % 60);
+				//wsprintf(szTemp2, "%d%s/r", ForceOrbUseTime[i], SecName);
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -6407,7 +6407,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			else if ((pItem->CODE & sinITEM_MASK3) == MagicSheltomCode[i])
 			{
 				strcpy_s(szTemp, sinAddDamageItem);
-				wsprintf(szTemp2, "%d\r", MagicForceOrbDamage[i]);
+				wsprintf(szTemp2, "%d/r", MagicForceOrbDamage[i]);
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -6416,7 +6416,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				if (i > 5 && i < 10)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 10, "%");
+					wsprintf(szTemp2, "%d%s/r", 10, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -6424,7 +6424,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				else if (i == 10)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 15, "%");
+					wsprintf(szTemp2, "%d%s/r", 15, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -6432,15 +6432,15 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				else if (i == 11)
 				{
 					strcpy_s(szTemp, AddPercentDamage3);
-					wsprintf(szTemp2, "%d%s\r", 20, "%");
+					wsprintf(szTemp2, "%d%s/r", 20, "%");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 				}
 
-				strcpy_s(szTemp, "Dura��o: \r");
-				wsprintf(szTemp2, "%02d:%02d:%02d\r", (MagicForceOrbUseTime[i] / 60 / 60) % 24, (MagicForceOrbUseTime[i] / 60) % 60, (MagicForceOrbUseTime[i]) % 60);
-				/*wsprintf(szTemp2, "%d%s\r", MagicForceOrbUseTime[i], SecName);*/
+				strcpy_s(szTemp, "Dura��o: /r");
+				wsprintf(szTemp2, "%02d:%02d:%02d/r", (MagicForceOrbUseTime[i] / 60 / 60) % 24, (MagicForceOrbUseTime[i] / 60) % 60, (MagicForceOrbUseTime[i]) % 60);
+				/*wsprintf(szTemp2, "%d%s/r", MagicForceOrbUseTime[i], SecName);*/
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -6450,14 +6450,14 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			{
 
 				strcpy_s(szTemp, AddPercentDamage3);
-				wsprintf(szTemp2, "%d%s\r", 15, "%");
+				wsprintf(szTemp2, "%d%s/r", 15, "%");
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
 
-				strcpy_s(szTemp, "Dura��o: \r");
-				wsprintf(szTemp2, "%02d:%02d:%02d\r", (BillingMagicForceOrbUseTime[i] / 60 / 60) % 24, (BillingMagicForceOrbUseTime[i] / 60) % 60, (BillingMagicForceOrbUseTime[i]) % 60);
-				/*wsprintf(szTemp2, "%d%s\r", BillingMagicForceOrbUseTime[i], SecName);*/
+				strcpy_s(szTemp, "Dura��o: /r");
+				wsprintf(szTemp2, "%02d:%02d:%02d/r", (BillingMagicForceOrbUseTime[i] / 60 / 60) % 24, (BillingMagicForceOrbUseTime[i] / 60) % 60, (BillingMagicForceOrbUseTime[i]) % 60);
+				/*wsprintf(szTemp2, "%d%s/r", BillingMagicForceOrbUseTime[i], SecName);*/
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -6473,7 +6473,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD NowTime = GetPlayTime_T();
 		DWORD Time = (60 * 60 * 24 * 14) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
-		wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+		wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
@@ -6494,7 +6494,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD NowTime = GetPlayTime_T();
 		DWORD Time = (60 * 60 * 24 * 5) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
-		wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+		wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6508,9 +6508,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, " %02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, " %02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
@@ -6525,9 +6525,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 
 
 
@@ -6545,10 +6545,10 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
 
-			wsprintf(szTemp2, "%02d:%02d:%02d\r", (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d/r", (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
@@ -6567,10 +6567,10 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
 
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 
 
 		lstrcat(szInfoBuff, szTemp);
@@ -6587,9 +6587,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 
 
 
@@ -6606,10 +6606,10 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
@@ -6624,9 +6624,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 
 
 
@@ -6641,9 +6641,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 24 * 1) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6656,9 +6656,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD Time = (60 * 60) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6672,9 +6672,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 24 * 1) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6687,9 +6687,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD Time = (60 * 60) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6702,9 +6702,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 3) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6719,9 +6719,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 
 
 
@@ -6740,9 +6740,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 
 
 
@@ -6760,9 +6760,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 24 * 7) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6777,9 +6777,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 24 * 7) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6792,9 +6792,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 24 * 30) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6815,9 +6815,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 24 * 7) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6848,9 +6848,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 24 * 1) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6882,9 +6882,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		strcpy_s(szTemp, sinContinueTimeItem);
 
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
@@ -6951,9 +6951,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 24 * 7) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -6999,9 +6999,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 24 * 30) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7023,9 +7023,9 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		DWORD Time = (60 * 60 * 24 * 30) - (NowTime - pItem->sItemInfo.dwCreateTime);
 		strcpy_s(szTemp, sinContinueTimeItem);
 		if (DeleteEventItem_TimeOut(&pItem->sItemInfo) == TRUE)
-			wsprintf(szTemp2, "%s\r", ExpireItem);
+			wsprintf(szTemp2, "%s/r", ExpireItem);
 		else
-			wsprintf(szTemp2, "%02d:%02d:%02d:%02d\r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
+			wsprintf(szTemp2, "%02d:%02d:%02d:%02d/r", (Time / 60 / 60) / 24, (Time / 60 / 60) % 24, (Time / 60) % 60, (Time) % 60);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7038,13 +7038,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			if (pItem->CODE == dwPremiumItemCode[i])
 			{
 				strcpy_s(szTemp, PremiumItemDoc[i][0]);
-				wsprintf(szTemp2, "\r");
+				wsprintf(szTemp2, "/r");
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
 
 				strcpy_s(szTemp, PremiumItemDoc[i][1]);
-				wsprintf(szTemp2, "\r");
+				wsprintf(szTemp2, "/r");
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -7060,7 +7060,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			if (pItem->CODE == sReconItem[i].dwCODE)
 			{
 				strcpy_s(szTemp, sinAbilityName[28]);
-				wsprintf(szTemp2, "%d-%d\r", sReconItem[i].iLevel[0], sReconItem[i].iLevel[1]);
+				wsprintf(szTemp2, "%d-%d/r", sReconItem[i].iLevel[0], sReconItem[i].iLevel[1]);
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -7079,25 +7079,25 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				if (i == 5 || i == 6 || i == 7)
 				{
 					strcpy_s(szTemp, CastlItemInfo[5]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 
 					strcpy_s(szTemp, CastlItemInfo2[5]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 
 					wsprintf(szTemp, AttributeTower[3], 60);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 
 					strcpy_s(szTemp, AttributeTower[i - 5]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -7108,25 +7108,25 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				else if (i > 7)
 				{
 					strcpy_s(szTemp, CastlItemInfo[6]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 
 					strcpy_s(szTemp, CastlItemInfo2[6]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 
 					wsprintf(szTemp, AttributeTower[3], 60);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 
 					strcpy_s(szTemp, CharClassTarget[i - 8]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -7137,13 +7137,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				else
 				{
 					strcpy_s(szTemp, CastlItemInfo[i]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
 
 					strcpy_s(szTemp, CastlItemInfo2[i]);
-					wsprintf(szTemp2, "\r");
+					wsprintf(szTemp2, "/r");
 					lstrcat(szInfoBuff, szTemp);
 					lstrcat(szInfoBuff2, szTemp2);
 					ItemInfoCol++;
@@ -7152,7 +7152,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 					{
 
 						wsprintf(szTemp, AttributeTower[3], 30);
-						wsprintf(szTemp2, "\r");
+						wsprintf(szTemp2, "/r");
 						lstrcat(szInfoBuff, szTemp);
 						lstrcat(szInfoBuff2, szTemp2);
 						ItemInfoCol++;
@@ -7173,13 +7173,13 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			{
 				int n = 0;
 				/*strcpy_s(szTemp, BoosterItemInfo[m]);
-				wsprintf(szTemp2, "\r");
+				wsprintf(szTemp2, "/r");
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
 
 				strcpy_s(szTemp, BoosterItemInfo2[m]);
-				wsprintf(szTemp2, "\r");
+				wsprintf(szTemp2, "/r");
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;*/
@@ -7188,7 +7188,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 				if (i == 1 || i == 4 || i == 7) n = 1;
 				if (i == 2 || i == 5 || i == 8) n = 2;
 				wsprintf(szTemp, AttributeTower[3], BoosterItem_UseTime[n]);
-				wsprintf(szTemp2, "\r");
+				wsprintf(szTemp2, "/r");
 				lstrcat(szInfoBuff, szTemp);
 				lstrcat(szInfoBuff2, szTemp2);
 				ItemInfoCol++;
@@ -7203,7 +7203,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Strength)
 	{
 		strcpy_s(szTemp, sinAbilityName[29]);
-		wsprintf(szTemp2, "%d\r", sInfo.Strength);
+		wsprintf(szTemp2, "%d/r", sInfo.Strength);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7220,7 +7220,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Spirit && (sInfo.CODE & sinITEM_MASK2) != sinFO1)
 	{
 		strcpy_s(szTemp, sinAbilityName[30]);
-		wsprintf(szTemp2, "%d\r", sInfo.Spirit);
+		wsprintf(szTemp2, "%d/r", sInfo.Spirit);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7237,7 +7237,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Talent)
 	{
 		strcpy_s(szTemp, sinAbilityName[31]);
-		wsprintf(szTemp2, "%d\r", sInfo.Talent);
+		wsprintf(szTemp2, "%d/r", sInfo.Talent);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7253,7 +7253,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Dexterity)
 	{
 		strcpy_s(szTemp, sinAbilityName[32]);
-		wsprintf(szTemp2, "%d\r", sInfo.Dexterity);
+		wsprintf(szTemp2, "%d/r", sInfo.Dexterity);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7269,7 +7269,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 	if (sInfo.Health)
 	{
 		strcpy_s(szTemp, sinAbilityName[33]);
-		wsprintf(szTemp2, "%d\r", sInfo.Health);
+		wsprintf(szTemp2, "%d/r", sInfo.Health);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7322,7 +7322,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Add_Attack_Speed)
 	{
 		strcpy_s(szTemp, sinSpecialName[0]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Attack_Speed);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Attack_Speed);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7331,7 +7331,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Add_Critical_Hit)
 	{
 		strcpy_s(szTemp, sinSpecialName[1]);
-		wsprintf(szTemp2, "%d%s\r", sInfo.JobItem.Add_Critical_Hit, "%");
+		wsprintf(szTemp2, "%d%s/r", sInfo.JobItem.Add_Critical_Hit, "%");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7340,7 +7340,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Add_Defence)
 	{
 		strcpy_s(szTemp, sinSpecialName[2]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Defence);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Defence);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7352,7 +7352,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 		sinRightSpot = sinAbsorb % 10;
 		sinLeftSpot = (sinAbsorb - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinSpecialName[3]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7362,7 +7362,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	{
 		BlockRate = (int)(sInfo.JobItem.Add_fBlock_Rating);
 		strcpy_s(szTemp, sinSpecialName[4]);
-		wsprintf(szTemp2, "%d%s\r", BlockRate, "%");
+		wsprintf(szTemp2, "%d%s/r", BlockRate, "%");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7373,7 +7373,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	{
 		sinMagic_Mastery = (int)(sInfo.JobItem.Add_fMagic_Mastery);
 		strcpy_s(szTemp, sinSpecialName[5]);
-		wsprintf(szTemp2, "%d\r", sinMagic_Mastery);
+		wsprintf(szTemp2, "%d/r", sinMagic_Mastery);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7386,7 +7386,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 		sinRightSpot = sinSpeed % 10;
 		sinLeftSpot = (sinSpeed - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinSpecialName[6]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7396,7 +7396,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Add_Resistance[0])
 	{
 		strcpy_s(szTemp, sinSpecialName[7]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[0]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[0]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7404,7 +7404,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Add_Resistance[1])
 	{
 		strcpy_s(szTemp, sinSpecialName[8]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[1]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7413,7 +7413,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Add_Resistance[2])
 	{
 		strcpy_s(szTemp, sinSpecialName[9]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[2]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[2]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7422,7 +7422,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Add_Resistance[3])
 	{
 		strcpy_s(szTemp, sinSpecialName[10]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[3]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[3]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7431,7 +7431,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Add_Resistance[4])
 	{
 		strcpy_s(szTemp, sinSpecialName[11]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[4]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[4]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7440,7 +7440,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Add_Resistance[5])
 	{
 		strcpy_s(szTemp, sinSpecialName[12]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[5]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[5]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7449,7 +7449,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Add_Resistance[6])
 	{
 		strcpy_s(szTemp, sinSpecialName[13]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[6]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[6]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7458,7 +7458,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Add_Resistance[7])
 	{
 		strcpy_s(szTemp, sinSpecialName[14]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Resistance[7]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Resistance[7]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7467,7 +7467,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Lev_Damage[1])
 	{
 		strcpy_s(szTemp, sinSpecialName[15]);
-		wsprintf(szTemp2, "LV/%d\r", sInfo.JobItem.Lev_Damage[1]);
+		wsprintf(szTemp2, "LV/%d/r", sInfo.JobItem.Lev_Damage[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7477,7 +7477,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Lev_Attack_Rating)
 	{
 		strcpy_s(szTemp, sinSpecialName[16]);
-		wsprintf(szTemp2, "LV/%d\r", sInfo.JobItem.Lev_Attack_Rating);
+		wsprintf(szTemp2, "LV/%d/r", sInfo.JobItem.Lev_Attack_Rating);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7487,7 +7487,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Add_Shooting_Range)
 	{
 		strcpy_s(szTemp, sinSpecialName[17]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Add_Shooting_Range);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Add_Shooting_Range);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7497,7 +7497,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Lev_Attack_Resistance[0])
 	{
 		strcpy_s(szTemp, sinSpecialName[18]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[0]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[0]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7506,7 +7506,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Lev_Attack_Resistance[1])
 	{
 		strcpy_s(szTemp, sinSpecialName[19]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[1]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[1]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7515,7 +7515,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Lev_Attack_Resistance[2])
 	{
 		strcpy_s(szTemp, sinSpecialName[20]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[2]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[2]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7524,7 +7524,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Lev_Attack_Resistance[3])
 	{
 		strcpy_s(szTemp, sinSpecialName[21]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[3]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[3]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7533,7 +7533,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Lev_Attack_Resistance[4])
 	{
 		wsprintf(szTemp, sinSpecialName[22]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[4]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[4]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7543,7 +7543,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Lev_Attack_Resistance[5])
 	{
 		strcpy_s(szTemp, sinSpecialName[23]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[5]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[5]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7553,7 +7553,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Lev_Attack_Resistance[6])
 	{
 		strcpy_s(szTemp, sinSpecialName[24]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[6]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[6]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7562,7 +7562,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Lev_Attack_Resistance[7])
 	{
 		strcpy_s(szTemp, sinSpecialName[25]);
-		wsprintf(szTemp2, "%d\r", sInfo.JobItem.Lev_Attack_Resistance[7]);
+		wsprintf(szTemp2, "%d/r", sInfo.JobItem.Lev_Attack_Resistance[7]);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7571,7 +7571,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Lev_Life)
 	{
 		strcpy_s(szTemp, sinSpecialName[26]);
-		wsprintf(szTemp2, "LV/%d\r", sInfo.JobItem.Lev_Life);
+		wsprintf(szTemp2, "LV/%d/r", sInfo.JobItem.Lev_Life);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7580,7 +7580,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (sInfo.JobItem.Lev_Mana)
 	{
 		strcpy_s(szTemp, sinSpecialName[27]);
-		wsprintf(szTemp2, "LV/%d\r", sInfo.JobItem.Lev_Mana);
+		wsprintf(szTemp2, "LV/%d/r", sInfo.JobItem.Lev_Mana);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7594,7 +7594,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 		sinLeftSpot = (sinPer_Regen - sinRightSpot) / 10;
 
 		strcpy_s(szTemp, sinSpecialName[28]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7606,7 +7606,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 		sinRightSpot = sinPer_Regen % 10;
 		sinLeftSpot = (sinPer_Regen - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinSpecialName[29]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7619,7 +7619,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 		sinRightSpot = sinPer_Regen % 10;
 		sinLeftSpot = (sinPer_Regen - sinRightSpot) / 10;
 		strcpy_s(szTemp, sinSpecialName[30]);
-		wsprintf(szTemp2, "%d.%d\r", sinLeftSpot, sinRightSpot);
+		wsprintf(szTemp2, "%d.%d/r", sinLeftSpot, sinRightSpot);
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7631,8 +7631,8 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	memset(szTemp7, 0, sizeof(szTemp7));
 	if (cShop.OpenFlag)
 	{
-		strcpy_s(szTemp, "\r");
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp, "/r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
@@ -7647,7 +7647,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 
 				NumLineComa(pItem->SellPrice, szTemp7);
 				strcpy_s(szTemp2, szTemp7);
-				lstrcat(szTemp2, "\r");
+				lstrcat(szTemp2, "/r");
 
 			}
 			if (Flag == 1)
@@ -7663,7 +7663,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 
 
 				strcpy_s(szTemp2, szTemp7);
-				lstrcat(szTemp2, "\r");
+				lstrcat(szTemp2, "/r");
 
 
 
@@ -7683,8 +7683,8 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	{
 		if (Flag == 3)
 		{
-			strcpy_s(szTemp, "\r");
-			strcpy_s(szTemp2, "\r");
+			strcpy_s(szTemp, "/r");
+			strcpy_s(szTemp2, "/r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
@@ -7692,7 +7692,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 			strcpy_s(szTemp, MyShopItemSell5);
 			NumLineComa(MyShopItemSellMoney2, szTemp7);
 			strcpy_s(szTemp2, szTemp7);
-			lstrcat(szTemp2, "    \r");
+			lstrcat(szTemp2, "    /r");
 
 			lstrcat(szInfoBuff, szTemp);
 			lstrcat(szInfoBuff2, szTemp2);
@@ -7712,16 +7712,16 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 
 		else if (Flag == 4)
 		{
-			lstrcpy(szTemp, "\r");
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp, "/r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Coins: \r");
+			lstrcpy(szTemp, "Coins: /r");
 			NumLineComa(MyShopItemSellMoney2, szTemp7);
 			lstrcpy(szTemp2, szTemp7);
-			lstrcat(szTemp2, "    \r");
+			lstrcat(szTemp2, "    /r");
 
 			lstrcat(szInfoBuff, szTemp);
 			lstrcat(szInfoBuff2, szTemp2);
@@ -7734,8 +7734,8 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	{
 		if (Flag == 3)
 		{
-			strcpy_s(szTemp, "\r");
-			strcpy_s(szTemp2, "\r");
+			strcpy_s(szTemp, "/r");
+			strcpy_s(szTemp2, "/r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
@@ -7743,7 +7743,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 			strcpy_s(szTemp, MyShopItemSell5);
 			NumLineComa(MyShopItemSellMoney2, szTemp7);
 			strcpy_s(szTemp2, szTemp7);
-			lstrcat(szTemp2, "    \r");
+			lstrcat(szTemp2, "    /r");
 
 			lstrcat(szInfoBuff, szTemp);
 			lstrcat(szInfoBuff2, szTemp2);
@@ -7760,16 +7760,16 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 
 		else if (Flag == 4)
 		{
-			lstrcpy(szTemp, "\r");
-			lstrcpy(szTemp2, "\r");
+			lstrcpy(szTemp, "/r");
+			lstrcpy(szTemp2, "/r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
-			lstrcpy(szTemp, "Coins: \r");
+			lstrcpy(szTemp, "Coins: /r");
 			NumLineComa(MyShopItemSellMoney2, szTemp7);
 			lstrcpy(szTemp2, szTemp7);
-			lstrcat(szTemp2, "    \r");
+			lstrcat(szTemp2, "    /r");
 
 			lstrcat(szInfoBuff, szTemp);
 			lstrcat(szInfoBuff2, szTemp2);
@@ -7780,14 +7780,14 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 
 	if (pItem->CODE == (sinGF1 | sin01))
 	{
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
 
 		wsprintf(szTemp, sinGold, sInfo.Price);
-		lstrcat(szTemp, "\r");
+		lstrcat(szTemp, "/r");
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 	}
@@ -7803,7 +7803,7 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 #endif
 
 		strcpy_s(szTemp2, szTemp7);
-		lstrcat(szTemp2, "\r");
+		lstrcat(szTemp2, "/r");
 
 		lstrcat(szInfoBuff, szTemp);
 		lstrcat(szInfoBuff2, szTemp2);
@@ -7812,13 +7812,13 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 
 	if (pItem->sItemInfo.SpecialItemFlag[0] == CHECK_COPY_ITEM)
 	{
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
 
 		strcpy_s(szTemp, sinCopyItem5);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		RedLine[6] = ItemInfoCol;
@@ -7827,13 +7827,13 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 
 	if (pItem->sItemInfo.SpecialItemFlag[0] == CHECK_GIVE_ITEM)
 	{
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
 
 		strcpy_s(szTemp, sinGiveItem5);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		RedLine[7] = ItemInfoCol;
@@ -7843,13 +7843,13 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	if (cItem.GetItemLimitTime(pItem) == FALSE)
 	{
 
-		lstrcat(szInfoBuff, "\r");
-		lstrcat(szInfoBuff2, "\r");
+		lstrcat(szInfoBuff, "/r");
+		lstrcat(szInfoBuff2, "/r");
 		ItemInfoCol++;
 
 		strcpy_s(szTemp, sinItemLimitTimeOverMsg);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 		RedLine[8] = ItemInfoCol;
@@ -7860,13 +7860,13 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 	{
 		if (Flag == 2)
 		{
-			lstrcat(szInfoBuff, "\r");
-			lstrcat(szInfoBuff2, "\r");
+			lstrcat(szInfoBuff, "/r");
+			lstrcat(szInfoBuff2, "/r");
 			ItemInfoCol++;
 
 			wsprintf(szTemp, "%s", NowMyShopSell);
 			lstrcat(szInfoBuff, szTemp);
-			strcpy_s(szTemp2, "\r");
+			strcpy_s(szTemp2, "/r");
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;
 
@@ -7876,21 +7876,21 @@ int cITEM::ShowItemInfo2(sITEM* pItem, int Flag, int Index)
 
 	if (smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR && VRKeyBuff[VK_CONTROL])
 	{
-		wsprintf(szTemp, "Code: %s\r", pItem->LastCategory);
+		wsprintf(szTemp, "Code: %s/r", pItem->LastCategory);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		wsprintf(szTemp, "Checksum: %d\r", pItem->sItemInfo.ItemHeader.dwChkSum);
+		wsprintf(szTemp, "Checksum: %d/r", pItem->sItemInfo.ItemHeader.dwChkSum);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
-		wsprintf(szTemp, "Head: %d\r", pItem->sItemInfo.ItemHeader.Head);
+		wsprintf(szTemp, "Head: %d/r", pItem->sItemInfo.ItemHeader.Head);
 		lstrcat(szInfoBuff, szTemp);
-		strcpy_s(szTemp2, "\r");
+		strcpy_s(szTemp2, "/r");
 		lstrcat(szInfoBuff2, szTemp2);
 		ItemInfoCol++;
 
@@ -7990,8 +7990,8 @@ int cITEM::DrawItemText()
 
 	for (i = 0; i < len; i++) {
 		for (j = 0; j < len2; j++) {
-			if (szInfoBuffBack[i] == '\r') {
-				if (szInfoBuff2Back[j] == '\r') {
+			if (szInfoBuffBack[i] == '/r') {
+				if (szInfoBuff2Back[j] == '/r') {
 					pItemInfo[Count] = &szInfoBuffBack[TempLen];
 					pItemInfo2[Count] = &szInfoBuff2Back[TempLen2];
 
@@ -8382,7 +8382,7 @@ int cITEM::SearchSpecialItemJob(DWORD SpecialJob_CODE)
 
 	cnt = 0;
 
-	lstrcpy(szTemp2, "  \r");
+	lstrcpy(szTemp2, "  /r");
 	lstrcat(szInfoBuff, szTemp2);
 	lstrcat(szInfoBuff2, szTemp2);
 	ItemInfoCol++;
@@ -8398,7 +8398,7 @@ int cITEM::SearchSpecialItemJob(DWORD SpecialJob_CODE)
 		if (JobDataBase[cnt].JobBitCode & SpecialJob_CODE)
 		{
 			wsprintf(szTemp, SpecialName3, JobDataBase[cnt].szName2);
-			lstrcpy(szTemp2, "  \r");
+			lstrcpy(szTemp2, "  /r");
 			lstrcat(szInfoBuff, szTemp);
 			lstrcat(szInfoBuff2, szTemp2);
 			ItemInfoCol++;

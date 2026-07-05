@@ -27,29 +27,29 @@ void cCOINSHOP::Init()
 	BaseX = 113;
 	BaseY = 50;
 
-	Mat[MC::BACKGROUND] = CreateTextureMaterial("game\\shop\\background.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::WEAPON] = CreateTextureMaterial("game\\shop\\armas.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::ARMOR] = CreateTextureMaterial("game\\shop\\defesas.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::SHIELD] = CreateTextureMaterial("game\\shop\\trajes.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::SETBLB] = CreateTextureMaterial("game\\shop\\acessorio.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::RINGS] = CreateTextureMaterial("game\\shop\\sheltons.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::SHELTONS] = CreateTextureMaterial("game\\shop\\itenspremiuns.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::PREMIUM] = CreateTextureMaterial("game\\shop\\servico.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::ITEMBOX] = CreateTextureMaterial("game\\shop\\itembox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::BACKGROUND] = CreateTextureMaterial("game//shop//background.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::WEAPON] = CreateTextureMaterial("game//shop//armas.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::ARMOR] = CreateTextureMaterial("game//shop//defesas.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::SHIELD] = CreateTextureMaterial("game//shop//trajes.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::SETBLB] = CreateTextureMaterial("game//shop//acessorio.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::RINGS] = CreateTextureMaterial("game//shop//sheltons.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::SHELTONS] = CreateTextureMaterial("game//shop//itenspremiuns.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::PREMIUM] = CreateTextureMaterial("game//shop//servico.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::ITEMBOX] = CreateTextureMaterial("game//shop//itembox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	Mat[MC::WEAPON_] = CreateTextureMaterial("game\\shop\\armas_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::ARMOR_] = CreateTextureMaterial("game\\shop\\defesas_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::SHIELD_] = CreateTextureMaterial("game\\shop\\trajes_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::SETBLB_] = CreateTextureMaterial("game\\shop\\acessorio_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::RINGS_] = CreateTextureMaterial("game\\shop\\sheltons_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::SHELTONS_] = CreateTextureMaterial("game\\shop\\itenspremiuns_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::PREMIUM_] = CreateTextureMaterial("game\\shop\\servico_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::ITEMBOX_] = CreateTextureMaterial("game\\shop\\itembox_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::WEAPON_] = CreateTextureMaterial("game//shop//armas_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::ARMOR_] = CreateTextureMaterial("game//shop//defesas_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::SHIELD_] = CreateTextureMaterial("game//shop//trajes_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::SETBLB_] = CreateTextureMaterial("game//shop//acessorio_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::RINGS_] = CreateTextureMaterial("game//shop//sheltons_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::SHELTONS_] = CreateTextureMaterial("game//shop//itenspremiuns_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::PREMIUM_] = CreateTextureMaterial("game//shop//servico_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::ITEMBOX_] = CreateTextureMaterial("game//shop//itembox_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	Mat[MC::BUYBTN] = CreateTextureMaterial("game\\shop\\buy.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::LEFTARROW] = CreateTextureMaterial("game\\shop\\left.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::RIGHTARROW] = CreateTextureMaterial("game\\shop\\right.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Mat[MC::CLOSEBTN] = CreateTextureMaterial("game\\shop\\close.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::BUYBTN] = CreateTextureMaterial("game//shop//buy.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::LEFTARROW] = CreateTextureMaterial("game//shop//left.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::RIGHTARROW] = CreateTextureMaterial("game//shop//right.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[MC::CLOSEBTN] = CreateTextureMaterial("game//shop//close.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 }
 
 void cCOINSHOP::Clear()

@@ -23,7 +23,7 @@ void MiLae_Debug_txt(char *fmt, ...)
 	vsprintf(Buff, fmt, args);
 	va_end(args);
 
-	strcat(Buff, "\r\n");
+	strcat(Buff, "/r/n");
 	SetFilePointer(hFile, 0, NULL, FILE_END);
 	WriteFile(hFile, Buff, lstrlen(Buff), &dwAcess, NULL);
 	CloseHandle(hFile);
@@ -186,7 +186,7 @@ VOID SocketError(HWND Wnd, DWORD err)
 		MessageBox(Wnd, CAPTION, "�߸��� �̸�(name)���� �ƹ��� �����Ͱ� ��ϵ��� �ʾҽ��ϴ�", MB_OK | MB_ICONSTOP);
 		break;
 		default:
-		wsprintf(szTemp, "�˼����� �����Դϴ�\n������ȣ : %d", err);
+		wsprintf(szTemp, "�˼����� �����Դϴ�/n������ȣ : %d", err);
 		MessageBox(Wnd, CAPTION, szTemp, MB_OK | MB_ICONSTOP);
 		break;
 	}

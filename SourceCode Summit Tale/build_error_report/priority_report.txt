@@ -1,0 +1,19 @@
+# Prioridade sugerida
+
+## 1. DirectX / D3DX
+Ver groups/directx.txt
+
+## 2. rsPLAYINFO / PrimeItem
+Ver groups/rsplayinfo.txt
+
+## 3. Logging
+Ver groups/logging.txt
+
+## 4. min/max
+Ver groups/minmax.txt
+
+## 5. OpCodes ignorados por agora
+Ver groups/opcodes.txt
+
+## 6. Erros por arquivo
+Ver summary_by_file.txt

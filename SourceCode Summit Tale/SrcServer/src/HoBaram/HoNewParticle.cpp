@@ -987,7 +987,7 @@ bool HoNewParticleEmitterTokenizer::ProcessTime(HoMinMax<float> &TimeRange, bool
 
 		NextToken(TokenIter, EndIter); if(TokenIter->Type != KeywordSo)
 		{
-			OutputDebugString("Expecting \"so\" after \"fade\".");
+			OutputDebugString("Expecting /"so/" after /"fade/".");
 			return false;
 		}
 
@@ -1014,7 +1014,7 @@ bool HoNewParticleEmitterTokenizer::ProcessTime(HoMinMax<float> &TimeRange, bool
 
 			if(IsFade)
 			{
-				OutputDebugString("Cannot use \"fade so\" modifier on \"initial\" times.");
+				OutputDebugString("Cannot use /"fade so/" modifier on /"initial/" times.");
 				return false;
 			}
 			TimeRange.Min = InitialTime;
@@ -1034,7 +1034,7 @@ bool HoNewParticleEmitterTokenizer::ProcessTime(HoMinMax<float> &TimeRange, bool
 
 		default:
 		{
-			OutputDebugString("Expected time specifier: \"[fade so] at\", \"initial\", or \"[fade so] final\"");
+			OutputDebugString("Expected time specifier: /"[fade so] at/", /"initial/", or /"[fade so] final/"");
 			return false;
 		}
 	}
@@ -1075,7 +1075,7 @@ void HoNewParticleEmitterTokenizer::DetermineTokenType(HoNewParticleEmitterToken
 	{
 		token.Type = CloseBrace; return;
 	}
-	if(token.StrValue[0] == '\"')
+	if(token.StrValue[0] == '/"')
 	{
 		token.Type = Quote; return;
 	}
@@ -1268,7 +1268,7 @@ void HoNewParticleEmitterTokenizer::Tokenize(const char *str)
 					if((*p) == '/' && *(p + 1) == '/')
 						cs = InComment;
 					else
-						cs = (*p == '\"') ? InQuote : InText;
+						cs = (*p == '/"') ? InQuote : InText;
 				}
 			}
 			break;
@@ -1287,7 +1287,7 @@ void HoNewParticleEmitterTokenizer::Tokenize(const char *str)
 				else
 				{
 
-					if((*p) == '(' || (*p) == ')' || (*p) == ',' || (*p) == '\"' || (*p) == '{' || (*p) == '}' || (*p) == '/')
+					if((*p) == '(' || (*p) == ')' || (*p) == ',' || (*p) == '/"' || (*p) == '{' || (*p) == '}' || (*p) == '/')
 					{
 						if((*p) == '/' && *(p + 1) == '/')
 							cs = InComment;
@@ -1298,7 +1298,7 @@ void HoNewParticleEmitterTokenizer::Tokenize(const char *str)
 							AddToken(token);
 
 
-							if((*p) == '\"')
+							if((*p) == '/"')
 								cs = InQuote;
 
 							else
@@ -1323,7 +1323,7 @@ void HoNewParticleEmitterTokenizer::Tokenize(const char *str)
 			case InComment:
 			{
 
-				if(*p == '\n')
+				if(*p == '/n')
 				{
 					token.StrValue = "";
 					cs = InWhiteSpace;
@@ -1335,7 +1335,7 @@ void HoNewParticleEmitterTokenizer::Tokenize(const char *str)
 			{
 
 				token.StrValue += (*p);
-				if(*p == '\"')
+				if(*p == '/"')
 				{
 					AddToken(token);
 
@@ -1743,7 +1743,7 @@ bool HoNewParticleEmitter::ProcessEventSequenceBlock(HoNewParticleEventSequence 
 
 			default:
 			{
-				char buf[256]; _snprintf(buf, sizeof(buf), "Unexpected \"%s\" in Sequence Block!", TokenIter->StrValue.c_str());
+				char buf[256]; _snprintf(buf, sizeof(buf), "Unexpected /"%s/" in Sequence Block!", TokenIter->StrValue.c_str());
 				OutputDebugString(&buf[0]);
 				return false;
 
@@ -1831,7 +1831,7 @@ bool HoNewParticleEmitter::ProcessParticleSystemBlock(std::vector<HoNewParticleE
 			default:
 			{
 				char buf[256];
-				_snprintf(buf, sizeof(buf), "Unexpected \"%s\" in Particle System Block!", TokenIter->StrValue.c_str());
+				_snprintf(buf, sizeof(buf), "Unexpected /"%s/" in Particle System Block!", TokenIter->StrValue.c_str());
 				OutputDebugString(buf);
 				return false;
 

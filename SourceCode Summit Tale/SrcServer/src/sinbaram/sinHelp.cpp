@@ -1,9 +1,9 @@
 
 
 #include "sinLinkHeader.h"
-#include "tjboy\\clanmenu\\tjclanDEF.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "..\\field.h"
+#include "TJBOY/clanmenu/tjclanDEF.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "../field.h"
 
 
 
@@ -37,23 +37,23 @@ int MatHelpTitleIcon = 0;
 int MatHelpTitleIconGlay = 0;
 
 int GuideHelpFlag = 0;
-char *TeleportFilePath = "image\\Sinimage\\help\\Teleport.sin";
+char *TeleportFilePath = "image//Sinimage//help//Teleport.sin";
 int sinTeleportIndex = 0;
 int sinFallgameIndex = 0;
 int sinTeleportMoneyIndex = 0;
 int TeleportUseCose[] = { 100,100,500,1000 };
 
 
-char *haC_TeleportFilePath = "image\\Sinimage\\help\\CastleTeleport.sin";
+char *haC_TeleportFilePath = "image//Sinimage//help//CastleTeleport.sin";
 
-char *haC_Not_TeleportFilePath = "image\\Sinimage\\help\\CastleTeleport_.sin";
+char *haC_Not_TeleportFilePath = "image//Sinimage//help//CastleTeleport_.sin";
 
 int  haC_TeleportIndex = 0;
 int  haC_TeleportMoney = 0;
 
-char *haResearchFilePath1 = "image\\Sinimage\\help\\Research1.sin";
-char *haResearchFilePath2 = "image\\Sinimage\\help\\Research2.sin";
-char *haResearchFilePath3 = "image\\Sinimage\\help\\Research3.sin";
+char *haResearchFilePath1 = "image//Sinimage//help//Research1.sin";
+char *haResearchFilePath2 = "image//Sinimage//help//Research2.sin";
+char *haResearchFilePath3 = "image//Sinimage//help//Research3.sin";
 
 int   haResearchIndex = 0;
 
@@ -76,27 +76,27 @@ void cSINHELP::Init()
 
 
 
-	MatScrollButton = CreateTextureMaterial("Image\\SinImage\\Help\\scl_icon.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatScrollBar = CreateTextureMaterial("Image\\SinImage\\Help\\scl_bar.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatScrollButton = CreateTextureMaterial("Image//SinImage//Help//scl_icon.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatScrollBar = CreateTextureMaterial("Image//SinImage//Help//scl_bar.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatHelpBoxImage[0] = CreateTextureMaterial("Image\\SinImage\\Help\\HelpBoxCorner.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatHelpBoxImage[1] = CreateTextureMaterial("Image\\SinImage\\Help\\HelpBoxLine.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatHelpBoxImage[0] = CreateTextureMaterial("Image//SinImage//Help//HelpBoxCorner.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatHelpBoxImage[1] = CreateTextureMaterial("Image//SinImage//Help//HelpBoxLine.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	char szBuff[128];
 	for(int i = 2; i < 9; i++)
 	{
-		wsprintf(szBuff, "Image\\SinImage\\Help\\box%d.tga", i + 1);
+		wsprintf(szBuff, "Image//SinImage//Help//box%d.tga", i + 1);
 		MatHelpBoxImage[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	}
-	MatHelpBoxImage[9] = CreateTextureMaterial("Image\\SinImage\\Help\\Box_Line.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatHelpBoxImage[9] = CreateTextureMaterial("Image//SinImage//Help//Box_Line.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatGuideHelpTitle = CreateTextureMaterial("Image\\SinImage\\Help\\help_icon02t.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatGuideHelpIcon = CreateTextureMaterial("Image\\SinImage\\Help\\help_icon02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatGuideHelpIconGlay = CreateTextureMaterial("Image\\SinImage\\Help\\help_icon02_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatGuideHelpTitle = CreateTextureMaterial("Image//SinImage//Help//help_icon02t.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatGuideHelpIcon = CreateTextureMaterial("Image//SinImage//Help//help_icon02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatGuideHelpIconGlay = CreateTextureMaterial("Image//SinImage//Help//help_icon02_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatHelpTitle = CreateTextureMaterial("Image\\SinImage\\Help\\help_icon01t.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatHelpTitleIcon = CreateTextureMaterial("Image\\SinImage\\Help\\help_icon01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatHelpTitleIconGlay = CreateTextureMaterial("Image\\SinImage\\Help\\help_icon01_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatHelpTitle = CreateTextureMaterial("Image//SinImage//Help//help_icon01t.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatHelpTitleIcon = CreateTextureMaterial("Image//SinImage//Help//help_icon01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatHelpTitleIconGlay = CreateTextureMaterial("Image//SinImage//Help//help_icon01_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
 	Load();
@@ -113,9 +113,9 @@ void cSINHELP::Init()
 
 void cSINHELP::Load()
 {
-	lpHelpTitle = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\box-test-title.bmp");
-	lpChangeJobTitle = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\box-test-title.bmp");
-	lpHelpOk = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\box-test-title2.bmp");
+	lpHelpTitle = LoadDibSurfaceOffscreen("Image//SinImage//Help//box-test-title.bmp");
+	lpChangeJobTitle = LoadDibSurfaceOffscreen("Image//SinImage//Help//box-test-title.bmp");
+	lpHelpOk = LoadDibSurfaceOffscreen("Image//SinImage//Help//box-test-title2.bmp");
 
 
 }
@@ -2644,7 +2644,7 @@ int cSINHELP::TonyGetFileData()
 
 	memset(&sTonyTest, 0, sizeof(sTONY_TEST_IMAGE) * 10);
 
-	char *szFilePath = "Image\\SinImage\\Tony\\";
+	char *szFilePath = "Image//SinImage//Tony//";
 	char szTempBuffFile[128];
 	char szTempBuff[128];
 
@@ -2715,7 +2715,7 @@ int cSINHELP::TonyGetFileData()
 			if(sTonyTest[Count].FileFormat == TONY_TGA)
 			{
 
-				sTonyTest[Count].Mat = CreateTextureMaterial("Image\\SinImage\\Tony\\shop-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+				sTonyTest[Count].Mat = CreateTextureMaterial("Image//SinImage//Tony//shop-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 			}
 			if(sTonyTest[Count].FileFormat == TONY_BMP)
@@ -2827,16 +2827,16 @@ int cSINHELP::ShowSodRanking(TRANS_SOD_RESULT *SodResult, int MyGame)
 	int  i = 0, j = 0;
 
 	if(!lpSodMenu)
-		lpSodMenu = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\sod_list.bmp");
+		lpSodMenu = LoadDibSurfaceOffscreen("Image//SinImage//Help//sod_list.bmp");
 	if(!lpSodLine)
-		lpSodLine = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\sod_list-line.bmp");
+		lpSodLine = LoadDibSurfaceOffscreen("Image//SinImage//Help//sod_list-line.bmp");
 
 	char szBuff[128];
 	for(i = 0; i < 8; i++)
 	{
 		if(!lpSodJobFace[i])
 		{
-			wsprintf(szBuff, "Image\\SinImage\\Help\\sod_cr-%d.bmp", i + 1);
+			wsprintf(szBuff, "Image//SinImage//Help//sod_cr-%d.bmp", i + 1);
 			lpSodJobFace[i] = LoadDibSurfaceOffscreen(szBuff);
 		}
 	}
@@ -2920,7 +2920,7 @@ int cSINHELP::GetSodRankBoxState()
 
 int sinShowHelp()
 {
-	char *HelpFilePath = "image\\Sinimage\\Help\\Help.sin";
+	char *HelpFilePath = "image//Sinimage//Help//Help.sin";
 	cSinHelp.sinShowHelp(SIN_HELP_KIND_NORMAL, 208, 61 - 50, 11, 11, RGBA_MAKE(19, 27, 20, 165), HelpFilePath);
 	HelpBoxKindIndex = SIN_HELP;
 	return TRUE;
@@ -2937,7 +2937,7 @@ int sinShowTeleportMap()
 
 int TeleportDungeon()
 {
-	char *TeleportText = "image\\Sinimage\\Help\\EndlessTeleport.sin";
+	char *TeleportText = "image//Sinimage//Help//EndlessTeleport.sin";
 	cSinHelp.NPCTeleportFlag = 1;
 #ifdef _LANGUAGE_CHINESE
 	if(sinChar->Level >= 102)

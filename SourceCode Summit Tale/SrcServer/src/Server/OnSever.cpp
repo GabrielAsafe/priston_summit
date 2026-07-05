@@ -10,35 +10,35 @@
 #include <mutex>
 #include <thread>
 #include <functional>
-#include "CLI\CLI.h"
+#include "CLI/CLI.h"
 
-#include "..\\resource.h"
-#include "..\\smwsock.h"
+#include "../resource.h"
+#include "../smwsock.h"
 
 #include "CoinShop.h"
 #include "CoinShop_T.h"
 
-#include "..\\sinbaram\\sinSkill_InfoIni.h"
-#include "..\\smlib3d\\smd3d.h"
-#include "..\\character.h"
-#include "..\\fileread.h"
-#include "..\\playmain.h"
-#include "..\\field.h"
-#include "..\\sinbaram\\sinlinkheader.h"
-#include "..\\effectsnd.h"
+#include "../sinbaram/sinSkill_InfoIni.h"
+#include "../smLib3d/smd3d.h"
+#include "../character.h"
+#include "../fileread.h"
+#include "../playmain.h"
+#include "../field.h"
+#include "../sinbaram/sinLinkHeader.h"
+#include "../effectsnd.h"
 
-#include "..\\record.h"
-#include "..\playsub.h"
+#include "../record.h"
+#include "../playsub.h"
 
 #include "DllServer.h"
-#include "SvrCaravan.h"
-#include "Language\\language.h"
+#include "Server/SvrCaravan.h"
+#include "Language/language.h"
 
-#include "..\\sinbaram\\sinitem.h"
+#include "../sinbaram/sinItem.h"
 
 #include "ClientFuncPos.h"
 
-#include "OnServer.h"
+#include "onserver.h"
 #include "svr_Damage.h"
 #include "CRollHandler.h"
 
@@ -46,30 +46,30 @@
 
 #include "svrEventGame.h"				
 #include "BattlePass.h"
-#include "..\\damage.h"
-#include "News\News.h"
+#include "../damage.h"
+#include "News/News.h"
 
 #pragma comment(lib, "iphlpapi")    //to get mac address
 #include <iphlpapi.h>               //to get mac address
 #include "cHellsGate.h"
-#include "Firewall\Firewall.h"
+#include "Firewall/Firewall.h"
 
 #ifdef _W_SERVER
 
-#include "Database\Database.h"
-#include "GameMasters\GameMasters.h"
-#include "Skills\Skills.h"
+#include "Database/Database.h"
+#include "GameMasters/GameMasters.h"
+#include "Skills/SkillSub.h"
 #endif
 
 #include "cQuestHandler.h"
 #include "cRestaureHandler.h"
-#include "Priston\Login.h"
+#include "Priston/Login.h"
 #include "Alerta.h"
 #include "cVipHandler.h"
 #include "PacketFilter.h"
 #ifdef _W_SERVER
 #include "ServerMsg.h"
-#include "Joi\Joi.hpp"
+#include "Joi/Joi.hpp"
 #else
 
 #define CHAT_ANGERMONSTER_MAX		2
@@ -128,7 +128,7 @@ char *szEvent_HopeMsg_StateInit;
 
 #endif
 
-#include "Language\\Chinese\\c_TimeLimit.h" 
+#include "Language/Chinese/C_TimeLimit.h" 
 
 #ifdef _LANGUAGE_BRAZIL
 char *finehack_message = "http://info.pristontale.com/blackWarning/warning.asp?id=%s&name=%s";
@@ -185,8 +185,8 @@ int RecordLog(char* lpLogName, char* lpBuff) {
 	GetCurrentDirectory(sizeof(szPath), szPath);
 
 	GetLocalTime(&st);
-	wsprintf(szFileName, "%s\\LogFile\\(%s)%d-%d.log", szPath, lpLogName, st.wDay, st.wMonth);
-	wsprintf(szBuff, "%d:%d:%d - %s\r\n", st.wHour, st.wMinute, st.wSecond, lpBuff);
+	wsprintf(szFileName, "%s//LogFile//(%s)%d-%d.log", szPath, lpLogName, st.wDay, st.wMonth);
+	wsprintf(szBuff, "%d:%d:%d - %s/r/n", st.wHour, st.wMinute, st.wSecond, lpBuff);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile == INVALID_HANDLE_VALUE) {
@@ -956,10 +956,10 @@ DWORD	dwBabelPlayTime = 0;
 int		BabelPlayField = -1;
 
 
-char *MonsterPath = "GameServer\\monster\\";
-char *ItemPath = "GameServer\\OpenItem\\";
-char *szNpcInfoPath = "GameServer\\npc\\";
-char *szFieldInfoPath = "GameServer\\Field\\";
+char *MonsterPath = "GameServer//monster//";
+char *ItemPath = "GameServer//OpenItem//";
+char *szNpcInfoPath = "GameServer//npc//";
+char *szFieldInfoPath = "GameServer//Field//";
 char *HackLogDirectory = "LogFile";
 char *LogDirectory = "LogFile";
 char *DebugLogDirectory = "LogDebug";
@@ -1674,7 +1674,7 @@ int rsRefreshConfig()
 	bool readWarline();
 	readWarline();
 	
-	if (!smConfigDecode("Configs\\hotuk.ini"))
+	if (!smConfigDecode("Configs//hotuk.ini"))
 	{
 		Sleep(5000);
 		quit = 1;
@@ -2152,7 +2152,7 @@ int ConvertMonsterNames()
 }
 
 
-char *szUserModelPath = "char\\tmABCD";
+char *szUserModelPath = "char//tmABCD";
 
 
 int rsCheckActiveFile(char *szFile)
@@ -2173,7 +2173,7 @@ int rsCheckActiveFile(char *szFile)
 
 	for(cnt = len - 1; cnt >= 0; cnt--)
 	{
-		if(szFileName[cnt] == '\\')
+		if(szFileName[cnt] == '//')
 		{
 			szFileName[cnt] = 0;
 			break;
@@ -2247,7 +2247,7 @@ char *SetFieldInfoPath(char *SaveBuff, char *szFieldPath, char *InfoExt)
 
 	while(cnt > 0)
 	{
-		if(szFieldPath[cnt] == '\\')
+		if(szFieldPath[cnt] == '//')
 		{
 			szFile = &szFieldPath[cnt + 1];
 			break;
@@ -5076,7 +5076,7 @@ int	rsOpen_SODConfig()
 
 	int cnt, cnt2;
 
-	if(Open_SODConfig("Configs\\bellatra.ini", sHCoreEvent_Bellatra[0], &rsSOD_Tax, rsSOD_Text, sizeof(rsSOD_Text), &rsSOD_ScoreDiv) == 0)
+	if(Open_SODConfig("Configs//bellatra.ini", sHCoreEvent_Bellatra[0], &rsSOD_Tax, rsSOD_Text, sizeof(rsSOD_Text), &rsSOD_ScoreDiv) == 0)
 	{
 		memcpy(sHCoreEvent_Bellatra[0], sHCoreEvent1, sizeof(sHCORE_MONSTER)*hCORE_ROUND_MAX);
 		memcpy(sHCoreEvent_Bellatra[1], sHCoreEvent2, sizeof(sHCORE_MONSTER)*hCORE_ROUND_MAX);
@@ -9101,7 +9101,7 @@ INT64 srGetTotalExp(INT64 exp, int level, rsPLAYINFO* lpPlayInfo)
 
 	char buff[32];
 	wsprintf(buff, "Nv[%d]", lpPlayInfo->smCharInfo.Level);
-	File expIni("Configs\\ExpManager.ini");
+	File expIni("Configs//ExpManager.ini");
 
 	result *= expIni.readInt("ExpConfig", buff);
 
@@ -11692,7 +11692,7 @@ int srAutoTransPlay()
 
 				if(rsPlayInfo[cnt].lpsmSock)
 				{
-					wsprintf(szTempBuff, "ID( %s ) Name( %s ) IP( %s ) TimeOut Message\r\n",
+					wsprintf(szTempBuff, "ID( %s ) Name( %s ) IP( %s ) TimeOut Message/r/n",
 						rsPlayInfo[cnt].getAccount().c_str(), rsPlayInfo[cnt].getName().c_str(), rsPlayInfo[cnt].lpsmSock->szIPAddr);
 					Record_TempLogFile(szTempBuff);
 				}
@@ -11715,7 +11715,7 @@ int srAutoTransPlay()
 
 							if(rsPlayInfo[cnt].lpsmSock)
 							{
-								wsprintf(szTempBuff, "ID( %s ) Name( %s ) IP( %s ) Func Check Out Message\r\n",
+								wsprintf(szTempBuff, "ID( %s ) Name( %s ) IP( %s ) Func Check Out Message/r/n",
 									rsPlayInfo[cnt].getAccount().c_str(), rsPlayInfo[cnt].getName().c_str(), rsPlayInfo[cnt].lpsmSock->szIPAddr);
 								Record_TempLogFile(szTempBuff);
 							}
@@ -11768,7 +11768,7 @@ int srAutoTransPlay()
 			(smWSock[cnt].dwLastRecvTime + 1000 * 60 * 8) < dwPlayServTime)
 		{
 
-			wsprintf(szTempBuff, "Socket IP( %s ) TimeOut Message\r\n", smWSock[cnt].szIPAddr);
+			wsprintf(szTempBuff, "Socket IP( %s ) TimeOut Message/r/n", smWSock[cnt].szIPAddr);
 			Record_TempLogFile(szTempBuff);
 
 			DisconnectUser(&smWSock[cnt]);
@@ -12493,9 +12493,9 @@ int AddNewPlayInfo(smWINSOCK *lpsmSock)
 	rsPlayInfo[cnt].ThrowItemCount = 0;
 
 	rsPlayInfo[cnt].setAccountId(0);
-	rsPlayInfo[cnt].setAccount('\0');
-	rsPlayInfo[cnt].setPassword('\0');
-	rsPlayInfo[cnt].setName('\0');
+	rsPlayInfo[cnt].setAccount('/0');
+	rsPlayInfo[cnt].setPassword('/0');
+	rsPlayInfo[cnt].setName('/0');
 	ZeroMemory(rsPlayInfo[cnt].szServerID, sizeof(rsPlayInfo[cnt].szServerID));
 
 	rsPlayInfo[cnt].dwLastRecvTime = dwPlayServTime;
@@ -17458,7 +17458,7 @@ int	rsCheckItemCode(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpItem)
 	FILE	*fp;
 
 	CreateDirectory(szErrorItemDir, NULL);
-	wsprintf(szBuff, "%s\\%s(%d).itm", szErrorItemDir, lpPlayInfo->smCharInfo.szName, lpItem->ItemHeader.dwChkSum);
+	wsprintf(szBuff, "%s//%s(%d).itm", szErrorItemDir, lpPlayInfo->smCharInfo.szName, lpItem->ItemHeader.dwChkSum);
 	fp = fopen(szBuff, "wb");
 	if(fp)
 	{
@@ -20180,7 +20180,7 @@ char *rsGetWord(char *q, char *p)
 
 	while((*p != 32) && (*p != 9) && (*p != 58) && (*p != 0))
 	{
-		if(*p == '\n' || *p == '\r') break;
+		if(*p == '/n' || *p == '/r') break;
 		*q++ = *p++;
 	}
 	*q++ = 0;
@@ -20374,7 +20374,7 @@ int CreateCommandItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, char *szI
 
 	lpsItem = new psITEM;
 
-	if(szItem[0] != '\"')
+	if(szItem[0] != '/"')
 	{
 		if(szItem[0] != '@')
 		{
@@ -20447,7 +20447,7 @@ int CreateCommandItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, char *szI
 		len = lstrlen(szItem);
 		for(cnt = 1; cnt < len; cnt++)
 		{
-			if(szItem[cnt] == '\"')
+			if(szItem[cnt] == '/"')
 			{
 				szItemName[cnt2] = 0; break;
 			}
@@ -21090,7 +21090,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		int DiferencaParty;
 
-		DiferencaParty = GetPrivateProfileInt("LevelParty", "Diferenca", 0, ".\\Configs\\ExpManager.ini");
+		DiferencaParty = GetPrivateProfileInt("LevelParty", "Diferenca", 0, ".//Configs//ExpManager.ini");
 
 		if(!szCmdBuff[0])
 		{
@@ -21533,7 +21533,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 		unsigned int delay_Chat = 0;
 
-		delay_Chat = GetPrivateProfileInt("ChatGame", "Delay_Chat", 0, ".\\Configs\\Sistemas.ini");
+		delay_Chat = GetPrivateProfileInt("ChatGame", "Delay_Chat", 0, ".//Configs//Sistemas.ini");
 
 		if ((GetTickCount() - lpPlayInfo->getLastMessageTick()) > delay_Chat * 1000)
 		{
@@ -22908,7 +22908,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		cnt = atoi(szCmdBuff);
 
 		if (cnt >= 0 && cnt <= 3600) {
-            WritePrivateProfileStringA("ChatGame", "Delay_Chat", szCmdBuff,".\\Configs\\Sistemas.ini");
+            WritePrivateProfileStringA("ChatGame", "Delay_Chat", szCmdBuff,".//Configs//Sistemas.ini");
 			
 			wsprintf(TransChatMessage.szMessage, "> Delay do chat global alterado para %d segundos.", cnt);
 
@@ -22935,7 +22935,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		if (cnt >= 0 && cnt <= 59)
 		{
-			WritePrivateProfileStringA("BossTime", "TimeBoss", szCmdBuff, ".\\Configs\\Sistemas.ini");
+			WritePrivateProfileStringA("BossTime", "TimeBoss", szCmdBuff, ".//Configs//Sistemas.ini");
 
 			wsprintf(TransChatMessage.szMessage, "> Horario Boss Alterado para %d.", cnt);
 
@@ -22962,7 +22962,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		if (cnt >= 1 && cnt <= CHAR_LEVEL_MAX) 
 		{
-			WritePrivateProfileStringA("LevelParty", "Diferenca", szCmdBuff, ".\\Configs\\ExpManager.ini");
+			WritePrivateProfileStringA("LevelParty", "Diferenca", szCmdBuff, ".//Configs//ExpManager.ini");
 
 			wsprintf(TransChatMessage.szMessage, "> Diferen�a de level da party alterado para %d.", cnt);
 
@@ -23091,7 +23091,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		lpBuff = rsGetWord(szCmdBuff, lpBuff);
 
 		if (atoi(szCmdBuff)) {
-			File file(".\\Configs\\Sistemas.ini");
+			File file(".//Configs//Sistemas.ini");
 			file.write("Logado", "Delay", szCmdBuff);
 			LogadoDelay = file.readInt("Logado", "Delay");
 
@@ -23113,7 +23113,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		lpBuff = rsGetWord(szCmdBuff, lpBuff);
 
 		if(atoi(szCmdBuff)){
-		File file(".\\Configs\\Sistemas.ini");
+		File file(".//Configs//Sistemas.ini");
 		file.write("Logado_coin", "Delay", szCmdBuff);
 		LogadoDelay_Coin = file.readInt("Logado_coin", "Delay");
 
@@ -23135,7 +23135,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 
 		if (atoi(szCmdBuff)) {
-			File file(".\\Configs\\Sistemas.ini");
+			File file(".//Configs//Sistemas.ini");
 			file.write("Logado_coin", "Sorteio_Quant", szCmdBuff);
 			Quantidade_Coins = file.readInt("Logado_coin", "Sorteio_Quant");
 
@@ -23780,7 +23780,7 @@ bool readWarline()
 {
 	try
 	{
-		File file("Configs\\Sistemas.ini");
+		File file("Configs//Sistemas.ini");
 
 		absorption_max = file.readInt("Limits", "Absorption");
 		attack_damage_max = file.readInt("Limits", "Attack_Damage");
@@ -24090,7 +24090,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 	char accountId[32] = { 0 };
 	strcpy_s(accountId, sizeof(accountId), lpPlayInfo->getAccount().c_str());
-	if (accountId[0] == '\0' )
+	if (accountId[0] == '/0' )
 	{
 		if(dwTransCode != OpCode::OPCODE_ID_GETUSERINFO && dwTransCode != OpCode::OPCODE_CONT_OBJSERIAL)
 		{
@@ -24601,7 +24601,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			std::string path = lpTransChatMessage->szMessage;
 
 			size_t size = path.size();
-			size_t backslash = path.find('\\');
+			size_t backslash = path.find('//');
 
 			if((lpTransChatMessage->dwObjectSerial > MAXDWORD) || (size > 200 || backslash == std::string::npos))
 			{
@@ -25117,9 +25117,9 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 				if (validation.error())
 				{
-					lpTransPlayerInfo->smCharInfo.szName[0] = '\0';
-					lpTransPlayerInfo->smCharInfo.szModelName[0] = '\0';
-					lpTransPlayerInfo->smCharInfo.szModelName2[0] = '\0';
+					lpTransPlayerInfo->smCharInfo.szName[0] = '/0';
+					lpTransPlayerInfo->smCharInfo.szModelName[0] = '/0';
+					lpTransPlayerInfo->smCharInfo.szModelName2[0] = '/0';
 				}
 
 				memcpy(&lpPlayInfo->smCharInfo, &lpTransPlayerInfo->smCharInfo, sizeof(smCHAR_INFO));
@@ -25298,9 +25298,9 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 				if (validation.error())
 				{
-					lpTransPlayerInfo->smCharInfo.szName[0] = '\0';
-					lpTransPlayerInfo->smCharInfo.szModelName[0] = '\0';
-					lpTransPlayerInfo->smCharInfo.szModelName2[0] = '\0';
+					lpTransPlayerInfo->smCharInfo.szName[0] = '/0';
+					lpTransPlayerInfo->smCharInfo.szModelName[0] = '/0';
+					lpTransPlayerInfo->smCharInfo.szModelName2[0] = '/0';
 				}
 
 				memcpy(&lpPlayInfo->smCharInfo, &lpTransPlayerInfo->smCharInfo, sizeof(smCHAR_INFO));
@@ -25951,7 +25951,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				smTransCommand.EParam = lpPlayInfo->dwObjectSerial;
 				RecordHackLogFile(lpPlayInfo, &smTransCommand);
 
-				lpPlayInfo->setName('\0');
+				lpPlayInfo->setName('/0');
 
 				cnt = 0;
 				if(lpRecordBase)
@@ -28439,8 +28439,8 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					//rsPlayInfo[cnt].username[0] = 0;
 					//rsPlayInfo[cnt].password[0] = 0;
 
-					rsPlayInfo[cnt].setAccount('\0');
-					rsPlayInfo[cnt].setName('\0');
+					rsPlayInfo[cnt].setAccount('/0');
+					rsPlayInfo[cnt].setName('/0');
 
 					rsPlayInfo[cnt].lpPostBoxItem = 0;
 
@@ -29196,9 +29196,9 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				SYSTEMTIME	SystemTime;
 
 				GetLocalTime(&SystemTime);
-				sprintf(szFileName, "PK_LOG\\(PK)%d-%d.log", SystemTime.wMonth, SystemTime.wDay);
+				sprintf(szFileName, "PK_LOG//(PK)%d-%d.log", SystemTime.wMonth, SystemTime.wDay);
 				CreateDirectory("PK_LOG", NULL);
-				sprintf(szLog, "%d:%d:%d - (ID : %s) (Name : %s) FOI MORTO POR (ID : %s) (Name : %s)\r\n", SystemTime.wHour, SystemTime.wMinute, SystemTime.wSecond,
+				sprintf(szLog, "%d:%d:%d - (ID : %s) (Name : %s) FOI MORTO POR (ID : %s) (Name : %s)/r/n", SystemTime.wHour, SystemTime.wMinute, SystemTime.wSecond,
 					lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo2->getAccount().c_str(), lpPlayInfo2->getName().c_str());
 				hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 				if (hFile != INVALID_HANDLE_VALUE)
@@ -29230,7 +29230,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					SYSTEMTIME	SystemTime;
 
 					GetLocalTime(&SystemTime);
-					sprintf(szFileName, "PK_LOG\\(PK)%d-%d.log", SystemTime.wMonth, SystemTime.wDay);
+					sprintf(szFileName, "PK_LOG//(PK)%d-%d.log", SystemTime.wMonth, SystemTime.wDay);
 					CreateDirectory("PK_LOG", NULL);
 					sprintf(szLog, "%d:%d:%d - (ID : %s) (Name : %s) FOI MORTO POR (ID : %s) (Name : %s)", SystemTime.wHour, SystemTime.wMinute, SystemTime.wSecond,
 						lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo2->getAccount().c_str(), lpPlayInfo2->getName().c_str());
@@ -30558,7 +30558,7 @@ void DisplayMessage()
 
 	if(ShutDownFlag)
 	{
-		//wsprintf(szMessageBuff, "Servidor desligando (%d)\r\nFechando servidor\r\nRestam %d Min.\r\n", cnt, ShutDownLeftTime + 1);
+		//wsprintf(szMessageBuff, "Servidor desligando (%d)/r/nFechando servidor/r/nRestam %d Min./r/n", cnt, ShutDownLeftTime + 1);
         //SetWindowText(hMsgTextWnd, szMessageBuff);
 		return;
 	}
@@ -31233,7 +31233,7 @@ int ServerWinMain()
 {
 	MSG Msg;
 
-	SQL::GetInstance()->Connect(".\\SQLEXPRESS", "sa", "#$pdl32xq");
+	SQL::GetInstance()->Connect(".//SQLEXPRESS", "sa", "#$pdl32xq");
 
 
 	LoadSkillInfo();
@@ -31826,7 +31826,7 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 					smTransCommand.EParam = 2;
 					LogAccount->lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
 					LogAccount->lpPlayInfo->dwTime_Disconnect = GetCurrentTime();
-					LogAccount->lpPlayInfo->setAccount('\0');
+					LogAccount->lpPlayInfo->setAccount('/0');
 				}
 			}
 		}
@@ -31936,9 +31936,9 @@ int rsLogAccount(rsPLAYINFO* lpPlayInfo, char* szID, char* szPassword, char* szM
 		char	szFileName[128];
 		char	szBuff[256];
 		GetLocalTime(&st);
-		wsprintf(szFileName, "LogFile\\(MAC_PC)%d-%d.log", st.wMonth, st.wDay);
+		wsprintf(szFileName, "LogFile//(MAC_PC)%d-%d.log", st.wMonth, st.wDay);
 
-		wsprintf(szBuff, "%d:%d:%d - ID( %s ) - Pw( %s ) - Nick ( %s ) - IP( %s ) - MAC_PC( %s ) - PcName(%s ) \r\n",
+		wsprintf(szBuff, "%d:%d:%d - ID( %s ) - Pw( %s ) - Nick ( %s ) - IP( %s ) - MAC_PC( %s ) - PcName(%s ) /r/n",
 			st.wHour, st.wMinute, st.wSecond, szID, szPassword, lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr,
 			szMac, szPCName);
 
@@ -32214,7 +32214,7 @@ int	rsShutDown()
 #ifdef	_LANGUAGE_KOREAN
 #include "serverlog.h"
 #else
-#include "e_serverlog.h"
+#include "E_serverlog.h"
 #endif
 
 int	rsSendTransCommand(rsPLAYINFO *lpPlayInfo, DWORD	dwCode, int WParam, int LParam, int SParam, int EParam)
@@ -32277,13 +32277,13 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 	{
 		/*lpPlayInfo->username[USERNAME_SIZE - 1] = 0;
 		lpPlayInfo->password[PASSWORD_SIZE - 1] = 0;*/
-		wsprintf(szBuff, "%d:%d:%d IP-( %s ) ID-( %s ) Name-( %s ) / ( %d ) - ( %d , %d )\r\n",
+		wsprintf(szBuff, "%d:%d:%d IP-( %s ) ID-( %s ) Name-( %s ) / ( %d ) - ( %d , %d )/r/n",
 			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
 			lpTransCommand->WParam, lpTransCommand->LParam, lpTransCommand->SParam);
 	}
 	else
 	{
-		wsprintf(szBuff, "%d:%d:%d ( %d ) - ( %d , %d )\r\n", st.wHour, st.wMinute, st.wSecond, lpTransCommand->WParam, lpTransCommand->LParam, lpTransCommand->SParam);
+		wsprintf(szBuff, "%d:%d:%d ( %d ) - ( %d , %d )/r/n", st.wHour, st.wMinute, st.wSecond, lpTransCommand->WParam, lpTransCommand->LParam, lpTransCommand->SParam);
 	}
 
 
@@ -32298,7 +32298,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		case -1:
 		{
 
-			wsprintf(szBuff, "%d:%d:%d IP:[ %s ] ID:[ %s ] Name:[ %s ] / Param:[ %d ] - ( Power User Hacker [ %d ])\r\n",
+			wsprintf(szBuff, "%d:%d:%d IP:[ %s ] ID:[ %s ] Name:[ %s ] / Param:[ %d ] - ( Power User Hacker [ %d ])/r/n",
 				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
 				lpTransCommand->WParam, lpTransCommand->LParam);
 }
@@ -33403,7 +33403,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 
-			wsprintf(szBuff, "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Item Mixing Error ( %d )( %d )\r\n",
+			wsprintf(szBuff, "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Item Mixing Error ( %d )( %d )/r/n",
 				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
@@ -33494,14 +33494,14 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			char szTemp[256];
-			wsprintf(szTemp, "logfile [ %d %d %d %d ]\r\n",
+			wsprintf(szTemp, "logfile [ %d %d %d %d ]/r/n",
 				lpTransCommand->WParam, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 			Record_TempLogFile(szTemp);
 
 
 			if(LoginServer)
 			{
-				wsprintf(szTemp, "DebugLog - LastMsg( %d ) LastUserID( %s ) LastUserName( %s ) DebugCount( %d )\r\n",
+				wsprintf(szTemp, "DebugLog - LastMsg( %d ) LastUserID( %s ) LastUserName( %s ) DebugCount( %d )/r/n",
 					dwServer_DebugMessage, szServer_DebugLastUserID, szServer_DebugLastUserName, Server_DebugCount);
 			}
 			Record_TempLogFile(szTemp);
@@ -33573,25 +33573,25 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 	if(lpTransCommand->WParam == 50000)
 	{
 
-		wsprintf(szBuff, "%d:%d:%d >**** Timer Overflow **** - ( %d / %d )\r\n",
+		wsprintf(szBuff, "%d:%d:%d >**** Timer Overflow **** - ( %d / %d )/r/n",
 			st.wHour, st.wMinute, st.wSecond, lpTransCommand->LParam, lpTransCommand->SParam);
 	}
 	if(lpTransCommand->WParam == 50010)
 	{
 
-		wsprintf(szBuff, "%d:%d:%d >**** Shutdown Service **** - ( %d / %d )\r\n",
+		wsprintf(szBuff, "%d:%d:%d >**** Shutdown Service **** - ( %d / %d )/r/n",
 			st.wHour, st.wMinute, st.wSecond, lpTransCommand->LParam, lpTransCommand->SParam);
 	}
 	if(lpTransCommand->WParam == 50020)
 	{
 
-		wsprintf(szBuff, "%d:%d:%d >**** Starting Service **** - ( %d / %d )\r\n",
+		wsprintf(szBuff, "%d:%d:%d >**** Starting Service **** - ( %d / %d )/r/n",
 			st.wHour, st.wMinute, st.wSecond, lpTransCommand->LParam, lpTransCommand->SParam);
 	}
 	if(lpTransCommand->WParam == 50030)
 	{
 
-		wsprintf(szBuff, "%d:%d:%d >**** Closed Service **** - ( %d / %d )\r\n",
+		wsprintf(szBuff, "%d:%d:%d >**** Closed Service **** - ( %d / %d )/r/n",
 			st.wHour, st.wMinute, st.wSecond, lpTransCommand->LParam, lpTransCommand->SParam);
 	}
 
@@ -33671,9 +33671,9 @@ int RecordJobChanger(rsPLAYINFO *lpPlayInfo)
 	if(!lpPlayInfo->lpsmSock) return FALSE;
 
 	GetLocalTime(&st);
-	wsprintf(szFileName, "LogFile\\(LogOn)%d-%d.log", st.wMonth, st.wDay);
+	wsprintf(szFileName, "LogFile//(LogOn)%d-%d.log", st.wMonth, st.wDay);
 
-	wsprintf(szBuff, "ID( %s ) Name( %s ) IP( %s ) - JOB_CODE( %d )/ChangeJob( %d )/Level( %d )\r\n",
+	wsprintf(szBuff, "ID( %s ) Name( %s ) IP( %s ) - JOB_CODE( %d )/ChangeJob( %d )/Level( %d )/r/n",
 		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr,
 		lpPlayInfo->smCharInfo.JOB_CODE, lpPlayInfo->smCharInfo.ChangeJob, lpPlayInfo->smCharInfo.Level);
 
@@ -33700,7 +33700,7 @@ int Record_TempLogFile(char *szMessage)
 	char	szBuff[256];
 
 	GetLocalTime(&st);
-	wsprintf(szFileName, "LogFile\\(Temp)%d-%d.log", st.wMonth, st.wDay);
+	wsprintf(szFileName, "LogFile//(Temp)%d-%d.log", st.wMonth, st.wDay);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFile == INVALID_HANDLE_VALUE) return FALSE;
@@ -33708,10 +33708,10 @@ int Record_TempLogFile(char *szMessage)
 
 	wsprintf(szBuff, "%d:%d:%d - %s", st.wHour, st.wMinute, st.wSecond, szMessage);
 	len = lstrlen(szBuff);
-	if(szBuff[len - 1] != '\n')
+	if(szBuff[len - 1] != '/n')
 	{
-		szBuff[len] = '\r';
-		szBuff[len + 1] = '\n';
+		szBuff[len] = '/r';
+		szBuff[len + 1] = '/n';
 		len += 2;
 	}
 
@@ -33736,12 +33736,12 @@ int Record_BillingLogFile(rsPLAYINFO *lpPlayInfo, DWORD wParam, DWORD lParam, DW
 	if(!lpPlayInfo || !lpPlayInfo->lpsmSock) return FALSE;
 
 	GetLocalTime(&st);
-	wsprintf(szFileName, "LogFile\\(Billing)%d-%d.log", st.wMonth, st.wDay);
+	wsprintf(szFileName, "LogFile//(Billing)%d-%d.log", st.wMonth, st.wDay);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFile == INVALID_HANDLE_VALUE) return FALSE;
 
-	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) - DisuseDay(%d) dwPeriodTime(%d) tTime(%d) PcUse(%d)\r\n", st.wHour, st.wMinute, st.wSecond,
+	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) - DisuseDay(%d) dwPeriodTime(%d) tTime(%d) PcUse(%d)/r/n", st.wHour, st.wMinute, st.wSecond,
 		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr, wParam, lParam, sParam, eParam);
 
 	FileLength = GetFileSize(hFile, NULL);
@@ -33766,12 +33766,12 @@ int Record_DeadUser(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 
 	GetLocalTime(&st);
 #ifdef _LANGUAGE_KOREAN
-	wsprintf(szFileName, "LogFile\\(Death)%d��%d��.log", st.wMonth, st.wDay);
+	wsprintf(szFileName, "LogFile//(Death)%d��%d��.log", st.wMonth, st.wDay);
 #else
-	wsprintf(szFileName, "LogFile\\(Death)%d-%d.log", st.wMonth, st.wDay);
+	wsprintf(szFileName, "LogFile//(Death)%d-%d.log", st.wMonth, st.wDay);
 #endif
 
-	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) - Level( %d )/Area( %d )\r\n",
+	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) - Level( %d )/Area( %d )/r/n",
 		st.wHour, st.wMinute, st.wSecond,
 		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr,
 		lpPlayInfo->smCharInfo.Level, lpPlayInfo->Position.Area);
@@ -34340,7 +34340,7 @@ int rsAddBlockUserFile(const char *szID, char *szLog)
 
 	CreateDirectory(szEverBlockDir, NULL);
 
-	wsprintf(szBuff, "%s\\%s.fev", szEverBlockDir, szID);
+	wsprintf(szBuff, "%s//%s.fev", szEverBlockDir, szID);
 
 
 	fp = fopen(szBuff, "wb");
@@ -34361,7 +34361,7 @@ int	rsCheckBlockUserFile(char *szID)
 	WIN32_FIND_DATA	fd;
 	char szBuff[256];
 
-	wsprintf(szBuff, "%s\\%s.fev", szEverBlockDir, szID);
+	wsprintf(szBuff, "%s//%s.fev", szEverBlockDir, szID);
 
 
 	hFindHandle = FindFirstFile(szBuff, &fd);
@@ -34383,7 +34383,7 @@ int ResetBlackUserFiles()
 	WIN32_FIND_DATA	fd;
 	char szBuff[256];
 
-	wsprintf(szBuff, "%s\\*.bur", szBlackUserDir);
+	wsprintf(szBuff, "%s//*.bur", szBlackUserDir);
 	CreateDirectory(szBlackUserDir, NULL);
 
 
@@ -34395,7 +34395,7 @@ int ResetBlackUserFiles()
 	}
 	while(1)
 	{
-		wsprintf(szBuff, "%s\\%s", szBlackUserDir, fd.cFileName);
+		wsprintf(szBuff, "%s//%s", szBlackUserDir, fd.cFileName);
 		DeleteFile(szBuff);
 		if(FindNextFile(hFindHandle, &fd) == FALSE) break;
 	}
@@ -34414,7 +34414,7 @@ int ResetBlackUserFiles(const char *szID, DWORD dwTime)
 	SYSTEMTIME	st;
 
 
-	wsprintf(szBuff, "%s\\%s.bur", szBlackUserDir, szID);
+	wsprintf(szBuff, "%s//%s.bur", szBlackUserDir, szID);
 
 	if(dwTime)
 	{
@@ -34445,7 +34445,7 @@ int FindBlackUserFile(char *szID)
 	WIN32_FIND_DATA	fd;
 	char szBuff[256];
 
-	wsprintf(szBuff, "%s\\%s.bur", szBlackUserDir, szID);
+	wsprintf(szBuff, "%s//%s.bur", szBlackUserDir, szID);
 
 
 	hFindHandle = FindFirstFile(szBuff, &fd);
@@ -35141,7 +35141,7 @@ int	rsSaveAgingItemToHDD(sITEMINFO *lpItem)
 	CreateDirectory(szLogItemDataDirectory, NULL);
 
 
-	wsprintf(szBuff, "%s\\%d@%d.itm", szLogItemDataDirectory, lpItem->ItemHeader.Head, lpItem->ItemHeader.dwChkSum);
+	wsprintf(szBuff, "%s//%d@%d.itm", szLogItemDataDirectory, lpItem->ItemHeader.Head, lpItem->ItemHeader.dwChkSum);
 	fp = fopen(szBuff, "wb");
 	if(fp)
 	{
@@ -35177,7 +35177,7 @@ int	rsSaveCreateItemToHDD(psITEM	*lpItem)
 	CreateDirectory(szLogItemDataDirectory, NULL);
 
 
-	wsprintf(szBuff, "%s\\%d@%d.itm", szLogItemDataDirectory, lpItem->ItemInfo.ItemHeader.Head, lpItem->ItemInfo.ItemHeader.dwChkSum);
+	wsprintf(szBuff, "%s//%d@%d.itm", szLogItemDataDirectory, lpItem->ItemInfo.ItemHeader.Head, lpItem->ItemInfo.ItemHeader.dwChkSum);
 	fp = fopen(szBuff, "wb");
 	if(fp)
 	{
@@ -35197,7 +35197,7 @@ int	rsLoadCreateItemToHDD(psITEM	*lpItem, char *szFileCode)
 	WIN32_FIND_DATA	fd;
 	char	szBuff[256];
 
-	wsprintf(szBuff, "%s\\%s.itm", szLogItemDataDirectory, szFileCode);
+	wsprintf(szBuff, "%s//%s.itm", szLogItemDataDirectory, szFileCode);
 
 	hFindHandle = FindFirstFile(szBuff, &fd);
 	if(hFindHandle != INVALID_HANDLE_VALUE)
@@ -37067,20 +37067,20 @@ int	rsSaveAdminCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand, int Level)
 	GetLocalTime(&st);
 
 
-	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) AdminLv( %d )> %s\r\n",
+	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) AdminLv( %d )> %s/r/n",
 		st.wHour, st.wMinute, st.wSecond,
 		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr, Level, szChatCommand);
 
 	len = lstrlen(szBuff);
 
 #ifdef _LANGUAGE_KOREAN				
-	wsprintf(szFileName, "%s\\(Admin)%d-%d.xog", AdminLogDirectory, st.wMonth, st.wDay);
+	wsprintf(szFileName, "%s//(Admin)%d-%d.xog", AdminLogDirectory, st.wMonth, st.wDay);
 	for(int cnt = 0; cnt < len; cnt++)
 	{
 		szBuff[cnt] = szBuff[cnt] ^ 0x55;
 	}
 #else
-	wsprintf(szFileName, "%s\\(Admin)%d-%d.log", AdminLogDirectory, st.wMonth, st.wDay);
+	wsprintf(szFileName, "%s//(Admin)%d-%d.log", AdminLogDirectory, st.wMonth, st.wDay);
 #endif
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -37149,13 +37149,13 @@ int	rsClanMoneyLog(rsPLAYINFO *lpPlayInfo, int Money, int RestMoney)
 	GetLocalTime(&st);
 
 
-	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) Money( %d ) RestMoney( %d )\r\n",
+	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) Money( %d ) RestMoney( %d )/r/n",
 		st.wHour, st.wMinute, st.wSecond,
 		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr, Money, RestMoney);
 
 	len = lstrlen(szBuff);
 
-	wsprintf(szFileName, "%s\\(ClanMoney)%d-%d.log", HackLogDirectory, st.wMonth, st.wDay);
+	wsprintf(szFileName, "%s//(ClanMoney)%d-%d.log", HackLogDirectory, st.wMonth, st.wDay);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFile == INVALID_HANDLE_VALUE) return FALSE;
@@ -39459,14 +39459,14 @@ int RecordBlessCastleLog(rsUSER_LIST_TOP10 *lpUserListDamageTop10)
 	wsprintf(szFileName, filenameBlessCaslte, HackLogDirectory, st.wMonth, st.wDay);
 
 
-	wsprintf(szBuff2, "=================== Check Time [ %d:%d:%d ] =====================\r\n",
+	wsprintf(szBuff2, "=================== Check Time [ %d:%d:%d ] =====================/r/n",
 		st.wHour, st.wMinute, st.wSecond);
 
 
 	for(cnt = 0; cnt < 10; cnt++)
 	{
 
-		wsprintf(szBuff, "%d> ClanCode[%d] Damage:%d Count:%d \r\n",
+		wsprintf(szBuff, "%d> ClanCode[%d] Damage:%d Count:%d /r/n",
 			cnt + 1,
 			lpUserListDamageTop10->dwUserCode[cnt],
 			lpUserListDamageTop10->Damage[cnt],
@@ -39477,7 +39477,7 @@ int RecordBlessCastleLog(rsUSER_LIST_TOP10 *lpUserListDamageTop10)
 
 	}
 
-	wsprintf(szBuff, "* Tower Crystal ( %d %d %d %d )\r\n",
+	wsprintf(szBuff, "* Tower Crystal ( %d %d %d %d )/r/n",
 		lpUserListDamageTop10->bCrystalTowerCount[0],
 		lpUserListDamageTop10->bCrystalTowerCount[1],
 		lpUserListDamageTop10->bCrystalTowerCount[2],
@@ -39488,7 +39488,7 @@ int RecordBlessCastleLog(rsUSER_LIST_TOP10 *lpUserListDamageTop10)
 
 	if(rsBlessCastle.lpChar_ValhallaTower && rsBlessCastle.lpChar_ValhallaTower->Flag && rsBlessCastle.lpChar_ValhallaTower->smCharInfo.dwCharSoundCode == snCHAR_SOUND_CASTLE_TOWER_B)
 	{
-		wsprintf(szBuff, "* ValhallaTower ( %d:%d )/( %d/%d )\r\n",
+		wsprintf(szBuff, "* ValhallaTower ( %d:%d )/( %d/%d )/r/n",
 			rsBlessCastle.lpChar_ValhallaTower->smMonsterInfo.PotionCount,
 			rsBlessCastle.lpChar_ValhallaTower->smCharInfo.Life[0],
 
@@ -39526,12 +39526,12 @@ int RecordBlessCastleSetup(rsPLAYINFO *lpPlayInfo, smTRANS_BLESSCASTLE *lpBlessC
 	GetLocalTime(&st);
 	wsprintf(szFileName, filenameBlessCaslte, HackLogDirectory, st.wMonth, st.wDay);
 
-	wsprintf(szBuff, "%d:%d:%d - Name(%s)/IP(%s) MasterClan(%d) Price(%d)\r\n",
+	wsprintf(szBuff, "%d:%d:%d - Name(%s)/IP(%s) MasterClan(%d) Price(%d)/r/n",
 		st.wHour, st.wMinute, st.wSecond,
 		lpPlayInfo->smCharInfo.szName, lpPlayInfo->lpsmSock->szIPAddr,
 		rsBlessCastle.dwMasterClan, lpBlessCastleSetup->Price);
 
-	wsprintf(szBuff2, "%s=> TaxRate(%d) Tower(%d %d %d %d %d %d) Mercenary(%d %d %d) ClanSkill(%d)\r\n\r\n", szBuff,
+	wsprintf(szBuff2, "%s=> TaxRate(%d) Tower(%d %d %d %d %d %d) Mercenary(%d %d %d) ClanSkill(%d)/r/n/r/n", szBuff,
 		lpBlessCastleSetup->TaxRate,
 		lpBlessCastleSetup->Tower[0], lpBlessCastleSetup->Tower[1], lpBlessCastleSetup->Tower[2],
 		lpBlessCastleSetup->Tower[3], lpBlessCastleSetup->Tower[4], lpBlessCastleSetup->Tower[5],

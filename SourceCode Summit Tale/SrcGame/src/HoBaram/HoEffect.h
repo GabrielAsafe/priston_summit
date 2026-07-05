@@ -1,7 +1,7 @@
 #ifndef _HO_EFFECT_
 #define _HO_EFFECT_
 
-#include "smLib3d\smType.h"
+#include "smLib3d/smType.h"
 
 
 #define		CLASS_NONE						10000

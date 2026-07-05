@@ -1,14 +1,14 @@
 /*******************************************************************
  *         Advanced 3D Game Programming using DirectX 8.0
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *   Title: color3.h
+ *   Title: COLOR3.H
  *    Desc: RGB color primitive using floats
  *
  * copyright (c) 2001 by Peter A Walsh and Adrian Perez
  * See license.txt for modification and distribution information
  ******************************************************************/
 
-#include "color3.h"
+#include "COLOR3.H"
 
 const color3 color3::Black(0.f, 0.f, 0.f);
 const color3 color3::Gray(0.5f, 0.5f, 0.5f);

@@ -67,7 +67,7 @@
 
 
 
-#include "..\\nettype.h"
+#include "../NetType.h"
 #ifdef _W_SERVER
 #define MAX_TEXTURE		8000
 #else

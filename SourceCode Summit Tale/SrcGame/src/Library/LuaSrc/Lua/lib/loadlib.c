@@ -100,7 +100,7 @@ static void pusherror(lua_State *L)
 	0, error, 0, buffer, sizeof(buffer), 0))
   lua_pushstring(L,buffer);
  else
-  lua_pushfstring(L,"system error %d\n",error);
+  lua_pushfstring(L,"system error %d/n",error);
 }
 
 static int loadlib(lua_State *L)

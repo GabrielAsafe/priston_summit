@@ -1,5 +1,5 @@
-#include "sinbaram\sinLinkHeader.h"
-#include "Font\Font.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "Font/Font.h"
 #include "Settings/Settings.h"
 
 extern int DrawFontImage(char *lpStr, int xPos, int yPos, DWORD rgba, float fRatio);

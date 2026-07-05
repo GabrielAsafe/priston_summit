@@ -1,9 +1,9 @@
 #ifndef _H0_EFFECT_MANAGER_
 #define _HO_EFFECT_MANAGER_
 
-#include "..\\..\\smlib3d\\smd3d.h"
-#include "..\\..\\smwsock.h"
-#include "..\\..\\character.h"
+#include "../../smLib3d/smd3d.h"
+#include "../../smwsock.h"
+#include "../../character.h"
 #include "HoEffectController.h"
 #include <vector>
 #include <string>

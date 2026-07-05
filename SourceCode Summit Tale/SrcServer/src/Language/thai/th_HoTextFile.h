@@ -1,4 +1,4 @@
-#include  "..\\HoBaram\\HoTextFile.h"  
+#include  "../HoBaram/HoTextFile.h"  
 
 char *HoTextLoginMessage[18] =  { "���ѧ�Դ��͡Ѻ Server.... "  ,
 			"�������ö�Դ��͡Ѻ Server �� ",

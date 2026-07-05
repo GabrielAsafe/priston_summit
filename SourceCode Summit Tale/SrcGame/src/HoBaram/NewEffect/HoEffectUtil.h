@@ -8,9 +8,9 @@
 
 #ifndef _HO_EFFECT_UTIL_H_
 #define _HO_EFFECT_UTIL_H_
-#include "math\\mathGlobal.h"
-#include "math\\point3.h"
-#include "math\\color4.h"
+#include "math/mathGlobal.h"
+#include "math/point3.h"
+#include "math/color4.h"
 
 float RandomNumber(float fMin, float fMax);
 int RandomNumber(int iMin, int iMax);

@@ -4,7 +4,7 @@
 
 
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "smwsock.h"
 #include "character.h"
 #include "fileread.h"
@@ -13,9 +13,9 @@
 #include "smreg.h"
 #include "playmain.h"
 #include "playsub.h"
-#include "Language\\language.h"
+#include "Language/language.h"
 #include "smPacket.h"
-#include "Server\\onserver.h"
+#include "Server/onserver.h"
 
 #include <iostream>
 
@@ -96,7 +96,7 @@ static char *GetWord(char *q, char *p)
 
 	while((*p != 32) && (*p != 9))
 	{
-		if(*p == '\n' || *p == '\r') break;
+		if(*p == '/n' || *p == '/r') break;
 		*q++ = *p++;
 	}
 	*q++ = 0;
@@ -1130,7 +1130,7 @@ smCONFIG smConfig;
 
 
 char *szWordTexQualty[4] = { "����" , "����" , "����" , "���ֳ���" };
-char *InfoRegPath = "SOFTWARE\\Triglow Pictures\\PristonTale";
+char *InfoRegPath = "SOFTWARE//Triglow Pictures//PristonTale";
 
 TRANS_SERVER_LIST	TransServerList;
 rsSERVER_CONFIG	rsServerConfig;
@@ -2550,7 +2550,7 @@ char *GetDirectoryFromFile(char *filename, char *szDirectory, size_t size)
 	len = lstrlen(szDirectory);
 
 	for(cnt = len; cnt >= 0; cnt--)
-		if(szDirectory[cnt] == '\\') break;
+		if(szDirectory[cnt] == '//') break;
 
 	szDirectory[cnt + 1] = NULL;
 
@@ -5649,7 +5649,7 @@ JOB_DATA_CODE *GetJobDataCode(DWORD BaseJob, int JobCnt)
 
 
 #ifdef _LANGUAGE_BRAZIL
-#include "Language\\BRAZIL\\B_JobCode.h"
+#include "Language/Brazil/b_JobCode.h"
 #endif
 
 

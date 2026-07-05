@@ -1,5 +1,5 @@
 #pragma once
-
+#include "UIElement.h"
 struct LOADEDIMAGE
 {
 	LPDIRECT3DTEXTURE9 Image;

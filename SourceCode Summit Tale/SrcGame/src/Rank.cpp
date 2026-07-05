@@ -1,4 +1,4 @@
-#include "sinbaram\sinLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
 
 Rank_PACK RankList;
 Rank_Class Rselectitem;
@@ -46,48 +46,48 @@ void Rank::Open()
 
 void Rank::Init()
 {
-	Image[0] = CreateTextureMaterial("game\\Rank\\main.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[1] = CreateTextureMaterial("game\\Rank\\Alllvl.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[2] = CreateTextureMaterial("game\\Rank\\Allpvp.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[3] = CreateTextureMaterial("game\\Rank\\lvl1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[4] = CreateTextureMaterial("game\\Rank\\lvl2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[5] = CreateTextureMaterial("game\\Rank\\lvl3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[6] = CreateTextureMaterial("game\\Rank\\lvl4.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[7] = CreateTextureMaterial("game\\Rank\\lvl5.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[8] = CreateTextureMaterial("game\\Rank\\lvl6.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[9] = CreateTextureMaterial("game\\Rank\\lvl7.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[10] = CreateTextureMaterial("game\\Rank\\lvl8.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[11] = CreateTextureMaterial("game\\Rank\\pvp1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[12] = CreateTextureMaterial("game\\Rank\\pvp2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[13] = CreateTextureMaterial("game\\Rank\\pvp3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[14] = CreateTextureMaterial("game\\Rank\\pvp4.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[15] = CreateTextureMaterial("game\\Rank\\pvp5.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[16] = CreateTextureMaterial("game\\Rank\\pvp6.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[17] = CreateTextureMaterial("game\\Rank\\pvp7.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[18] = CreateTextureMaterial("game\\Rank\\pvp8.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[19] = CreateTextureMaterial("game\\Rank\\t1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[20] = CreateTextureMaterial("game\\Rank\\t2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[21] = CreateTextureMaterial("game\\Rank\\t3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[22] = CreateTextureMaterial("game\\Rank\\t4.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[23] = CreateTextureMaterial("game\\Rank\\t5.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[24] = CreateTextureMaterial("game\\Rank\\t6.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[25] = CreateTextureMaterial("game\\Rank\\t7.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[26] = CreateTextureMaterial("game\\Rank\\t8.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[27] = CreateTextureMaterial("game\\Rank\\btnclose.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[28] = CreateTextureMaterial("game\\Rank\\btnclose_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[29] = CreateTextureMaterial("game\\Rank\\Page_Left.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[30] = CreateTextureMaterial("game\\Rank\\Page_Left_1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[31] = CreateTextureMaterial("game\\Rank\\Page_Right.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[32] = CreateTextureMaterial("game\\Rank\\Page_Right_1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[33] = CreateTextureMaterial("game\\Rank\\t0.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[34] = CreateTextureMaterial("game\\Rank\\icon\\Fighter.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[35] = CreateTextureMaterial("game\\Rank\\icon\\Mechanician.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[36] = CreateTextureMaterial("game\\Rank\\icon\\Archer.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[37] = CreateTextureMaterial("game\\Rank\\icon\\Pikeman.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[38] = CreateTextureMaterial("game\\Rank\\icon\\Atalanta.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[39] = CreateTextureMaterial("game\\Rank\\icon\\Knight.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[40] = CreateTextureMaterial("game\\Rank\\icon\\Magician.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[41] = CreateTextureMaterial("game\\Rank\\icon\\Priestess_.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[0] = CreateTextureMaterial("game//Rank//main.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[1] = CreateTextureMaterial("game//Rank//Alllvl.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[2] = CreateTextureMaterial("game//Rank//Allpvp.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[3] = CreateTextureMaterial("game//Rank//lvl1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[4] = CreateTextureMaterial("game//Rank//lvl2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[5] = CreateTextureMaterial("game//Rank//lvl3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[6] = CreateTextureMaterial("game//Rank//lvl4.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[7] = CreateTextureMaterial("game//Rank//lvl5.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[8] = CreateTextureMaterial("game//Rank//lvl6.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[9] = CreateTextureMaterial("game//Rank//lvl7.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[10] = CreateTextureMaterial("game//Rank//lvl8.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[11] = CreateTextureMaterial("game//Rank//pvp1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[12] = CreateTextureMaterial("game//Rank//pvp2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[13] = CreateTextureMaterial("game//Rank//pvp3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[14] = CreateTextureMaterial("game//Rank//pvp4.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[15] = CreateTextureMaterial("game//Rank//pvp5.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[16] = CreateTextureMaterial("game//Rank//pvp6.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[17] = CreateTextureMaterial("game//Rank//pvp7.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[18] = CreateTextureMaterial("game//Rank//pvp8.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[19] = CreateTextureMaterial("game//Rank//t1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[20] = CreateTextureMaterial("game//Rank//t2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[21] = CreateTextureMaterial("game//Rank//t3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[22] = CreateTextureMaterial("game//Rank//t4.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[23] = CreateTextureMaterial("game//Rank//t5.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[24] = CreateTextureMaterial("game//Rank//t6.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[25] = CreateTextureMaterial("game//Rank//t7.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[26] = CreateTextureMaterial("game//Rank//t8.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[27] = CreateTextureMaterial("game//Rank//btnclose.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[28] = CreateTextureMaterial("game//Rank//btnclose_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[29] = CreateTextureMaterial("game//Rank//Page_Left.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[30] = CreateTextureMaterial("game//Rank//Page_Left_1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[31] = CreateTextureMaterial("game//Rank//Page_Right.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[32] = CreateTextureMaterial("game//Rank//Page_Right_1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[33] = CreateTextureMaterial("game//Rank//t0.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[34] = CreateTextureMaterial("game//Rank//icon//Fighter.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[35] = CreateTextureMaterial("game//Rank//icon//Mechanician.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[36] = CreateTextureMaterial("game//Rank//icon//Archer.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[37] = CreateTextureMaterial("game//Rank//icon//Pikeman.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[38] = CreateTextureMaterial("game//Rank//icon//Atalanta.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[39] = CreateTextureMaterial("game//Rank//icon//Knight.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[40] = CreateTextureMaterial("game//Rank//icon//Magician.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[41] = CreateTextureMaterial("game//Rank//icon//Priestess_.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	ReadTextures();
 }
 

@@ -1,7 +1,7 @@
 
 
 #include "sinLinkHeader.h"
-#include "..\\HoBaram\\HoNewParticleLinkHeader.h" 
+#include "../HoBaram/HoNewParticleLinkHeader.h" 
 
 #define ASSA_PARTICLE_BELT				0x50000000 
 #define ASSA_PARTICLE_ROTATE_GATHER		0x50000001 

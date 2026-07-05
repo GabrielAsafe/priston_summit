@@ -1,6 +1,6 @@
 #include <iostream>
-#include "utils_filesystem.h"
-#include "utils_logging.h"
+#include "modules/Helper/Utils/utils_filesystem.h"
+#include "modules/Helper/Utils/utils_logging.h"
 
 void Utils_DeleteLogFiles()
 {
@@ -42,7 +42,7 @@ void Utils_Log(DWORD type, char* msg, ...)
 	if( fpc_log == NULL )
 		return;
 	
-	fprintf(fpc_log,"%s\n",buffer);
+	fprintf(fpc_log,"%s/n",buffer);
 	fclose(fpc_log);
 	fpc_log = NULL;
 }

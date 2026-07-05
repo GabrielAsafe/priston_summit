@@ -1,5 +1,5 @@
 #include <windows.h>
-#include <Imagehlp.h>
+#include <imagehlp.h>
 #include "WinDump.h"
 
 #pragma comment(lib,"Imagehlp.lib")

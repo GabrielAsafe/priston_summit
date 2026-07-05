@@ -7,8 +7,8 @@
 
 
 #include <windows.h>
-#include ".\piscript.h"
-#include ".\PiScriptLuaCommand.h"
+#include "PiScript.h"
+#include "./PiScriptLuaCommand.h"
 
 PiScript::PiScript(void) : m_pLuaState(NULL)
 {

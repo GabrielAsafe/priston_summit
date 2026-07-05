@@ -6,16 +6,16 @@
 
 
 
-#include ".\PiScript.h"
-#include ".\PiScriptLuaCommand.h"
+#include "PiScript.h"
+#include "./PiScriptLuaCommand.h"
 
-#include "..\\HoNewEffectHeader.h"
+#include "../HoNewEffectHeader.h"
 #ifndef _HO_NEW_WIN32_
-#include "..\\..\\MainWnd.h"
+#include "../../MainWnd.h"
 #endif
 
 #ifdef _HO_NEW_WIN32_
-#include "..\\HoEffectMain.h"
+#include "../HoEffectMain.h"
 #endif
 
 

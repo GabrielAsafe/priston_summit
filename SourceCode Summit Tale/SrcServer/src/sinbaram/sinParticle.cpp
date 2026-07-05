@@ -25,19 +25,19 @@ int InitInterEffect()
 
 	for(i = 1; i < 5; i++)
 	{
-		wsprintf(szPath, "Image\\SinImage\\Effect\\InterEffect\\par%d.tga", i);
+		wsprintf(szPath, "Image//SinImage//Effect//InterEffect//par%d.tga", i);
 
 		MatInterEffectAging2[i - 1] = CreateTextureMaterial(szPath, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 
 	for(i = 1; i < 6; i++)
 	{
-		wsprintf(szPath, "Image\\SinImage\\Effect\\InterEffect\\Aging%d.tga", i);
+		wsprintf(szPath, "Image//SinImage//Effect//InterEffect//Aging%d.tga", i);
 		MatInterEffectAging[i - 1] = CreateTextureMaterial(szPath, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 	}
 
-	MatSuccessEffectAging = CreateTextureMaterial("Image\\SinImage\\Effect\\InterEffect\\par-7.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
-	MatPuzzleEffect = CreateTextureMaterial("Image\\SinImage\\Effect\\InterEffect\\P_bok.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MatSuccessEffectAging = CreateTextureMaterial("Image//SinImage//Effect//InterEffect//par-7.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MatPuzzleEffect = CreateTextureMaterial("Image//SinImage//Effect//InterEffect//P_bok.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
 	return TRUE;
 }

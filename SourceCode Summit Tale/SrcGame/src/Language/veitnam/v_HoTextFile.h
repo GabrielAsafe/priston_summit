@@ -1,4 +1,4 @@
-#include "..\\HoBaram\\HoTextFile.h"
+#include "../HoBaram/HoTextFile.h"
 
 char *HoTextLoginMessage[18] =  {"K��t n��i �ang ����c thi��t l��p....",
 				"Kh�ng th�� k��t n��i v��i ma�y chu� ",

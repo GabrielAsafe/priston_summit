@@ -1,8 +1,8 @@
 #ifndef _ASSAEFFECT_HEADER_
 #define _ASSAEFFECT_HEADER_
 
-#include <Windows.h>
-#include "smLib3d\smType.h"
+#include <windows.h>
+#include "smLib3d/smType.h"
 
 
 class cASSATrace;

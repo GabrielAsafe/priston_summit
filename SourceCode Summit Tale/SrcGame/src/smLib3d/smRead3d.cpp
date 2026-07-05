@@ -40,7 +40,7 @@ char *GetWord(char *q, char *p)
 
 	while((*p != 32) && (*p != 9) && (*p != 58))
 	{
-		if(*p == '\n' || *p == '\r') break;
+		if(*p == '/n' || *p == '/r') break;
 		*q++ = *p++;
 	}
 	*q++ = 0;
@@ -81,7 +81,7 @@ char *SetDirectoryFromFile(char *filename)
 	len = lstrlen(DataDirectory);
 
 	for(cnt = len; cnt >= 0; cnt--)
-		if(DataDirectory[cnt] == '\\') break;
+		if(DataDirectory[cnt] == '//') break;
 
 	DataDirectory[cnt + 1] = NULL;
 
@@ -407,7 +407,7 @@ FILE *ReadASE_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
 			slen = lstrlen(strBuff);
 			for(cnt = slen - 1; cnt > 0; cnt--)
 			{
-				if(strBuff[cnt] == '\\' || strBuff[cnt] == ':')
+				if(strBuff[cnt] == '//' || strBuff[cnt] == ':')
 				{
 					cnt++; break;
 				}
@@ -819,7 +819,7 @@ FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
 			slen = lstrlen(strBuff);
 			for(cnt = slen - 1; cnt > 0; cnt--)
 			{
-				if(strBuff[cnt] == '\\' || strBuff[cnt] == ':')
+				if(strBuff[cnt] == '//' || strBuff[cnt] == ':')
 				{
 					cnt++; break;
 				}

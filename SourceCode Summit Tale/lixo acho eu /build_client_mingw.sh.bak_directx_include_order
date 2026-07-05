@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+set -e
+
+ROOT="$(pwd)"
+OBJDIR="$ROOT/build_mingw_client"
+LOG="$ROOT/build_mingw_client_compile.log"
+
+rm -rf "$OBJDIR"
+mkdir -p "$OBJDIR"
+: > "$LOG"
+
+find SrcGame/src -iname '*.cpp' \
+  | grep -vi '/AntiCheat/' \
+  | grep -vi 'FilterEffect.cpp' \
+  | grep -vi 'netplay.cpp' \
+  | grep -vi 'CChatBox.cpp' \
+  | sort > cpp_files_stage3.txt
+
+
+# Mantém exclusões manuais de ficheiros órfãos/misturados
+if [ -f cpp_files_stage3.txt ]; then
+    grep -viE 'HoSkyOld\.cpp|HoOpeningOFF\.cpp' cpp_files_stage3.txt > cpp_files_stage3.tmp
+    mv cpp_files_stage3.tmp cpp_files_stage3.txt
+fi
+
+echo "Total CPP sem AntiCheat:"
+wc -l cpp_files_stage3.txt
+
+parallel -j8 --bar '
+src="{}"
+base="${src//\//_}"
+base="${base%.cpp}"
+obj="'"$OBJDIR"'/${base}.o"
+
+x86_64-w64-mingw32-g++ \
+-c "$src" \
+-o "$obj" \
+-std=gnu++17 \
+-fpermissive \
+-Wno-write-strings \
+-Wno-narrowing \
+-Wno-unused-variable \
+-Wno-unused-parameter \
+-Wno-deprecated-declarations \
+-DWIN32 \
+-D_WINDOWS \
+-DNDEBUG \
+-I. \
+-IShared \
+-IShared2 \
+-ISrcGame/src \
+-ISrcGame/src/smLib3d \
+-ISrcGame/src/sinbaram \
+-ISrcGame/src/Language \
+-ISrcGame/src/Resources \
+-ISrcGame/src/Sound \
+-ISrcGame/src/HoBaram \
+-ISrcGame/src/HoBaram/NewEffect \
+-ISrcGame/src/HoBaram/NewEffect/math \
+-ISrcGame/src/HoBaram/NewEffect/Script \
+-ISrcGame/src/Library/LuaSrc \
+-ISrcGame/src/Library/LuaSrc/Lua \
+-ISrcGame/src/TJBOY/clanmenu \
+-ISrcGame/src/TJBOY/isaocheck \
+-ISrcGame/src/TJBOY/park \
+-ISrcGame/src/TJBOY/Ygy \
+-ISrcGame/src/TJBOY/Ygy/memmap \
+-ISrcGame/src/Server \
+-ISrcGame/src/WinInt \
+-ISrcGame/src/Security \
+-ISrcGame/src/Settings \
+-Imodules \
+-Imodules/File \
+-Imodules/MD5 \
+-Imodules/Helper \
+-IDependency/DirectX9/Include \
+2>> "'"$LOG"'"
+' :::: cpp_files_stage3.txt
+
+echo
+echo "Compilação terminada."
+echo "Objetos gerados:"
+find "$OBJDIR" -name "*.o" | wc -l
+
+echo
+echo "Últimos erros:"
+grep -niE "error:|fatal error:" "$LOG" | tail -200 || true

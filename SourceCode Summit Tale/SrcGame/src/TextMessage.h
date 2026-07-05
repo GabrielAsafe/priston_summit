@@ -1,5 +1,5 @@
 
-#include "Language\\language.h"
+#include "Language/language.h"
 
 extern char *szAppName;
 

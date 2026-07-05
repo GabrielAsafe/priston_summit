@@ -7,16 +7,16 @@
 
 #if defined (_LOG_)
 #include "stdio.h"
-#define MAKELOG(description)					\
-{												\
-	FILE *fpc_log = NULL;						\
-	fpc_log = fopen(szLOG_FILENAME,"a+t");		\
-	if( fpc_log != NULL )						\
-	{											\
-		fprintf(fpc_log,"\n %s",(description)); \
-		fclose(fpc_log);						\
-		fpc_log = NULL;							\
-	}											\
+#define MAKELOG(description)					/
+{												/
+	FILE *fpc_log = NULL;						/
+	fpc_log = fopen(szLOG_FILENAME,"a+t");		/
+	if( fpc_log != NULL )						/
+	{											/
+		fprintf(fpc_log,"/n %s",(description)); /
+		fclose(fpc_log);						/
+		fpc_log = NULL;							/
+	}											/
 }
 #else
 #define MAKELOG(desciption)

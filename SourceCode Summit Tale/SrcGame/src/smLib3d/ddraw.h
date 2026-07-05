@@ -207,7 +207,7 @@ typedef struct _DDCOLORCONTROL          FAR *LPDDCOLORCONTROL;
 
 #define REGSTR_KEY_DDHW_DESCRIPTION     "Description"
 #define REGSTR_KEY_DDHW_DRIVERNAME      "DriverName"
-#define REGSTR_PATH_DDHW                "Hardware\\DirectDrawDrivers"
+#define REGSTR_PATH_DDHW                "Hardware//DirectDrawDrivers"
 
 #define DDCREATE_HARDWAREONLY           0x00000001l
 #define DDCREATE_EMULATIONONLY          0x00000002l
@@ -948,9 +948,9 @@ typedef struct tagDDDEVICEIDENTIFIER2
  * Macros for interpretting DDEVICEIDENTIFIER2.dwWHQLLevel
  */
 #define GET_WHQL_YEAR( dwWHQLLevel ) \
-    ( (dwWHQLLevel) / 0x10000 )
+    ( (dwWHQLLevel) \ 0x10000 )
 #define GET_WHQL_MONTH( dwWHQLLevel ) \
-    ( ( (dwWHQLLevel) / 0x100 ) & 0x00ff )
+    ( ( (dwWHQLLevel) \ 0x100 ) & 0x00ff )
 #define GET_WHQL_DAY( dwWHQLLevel ) \
     ( (dwWHQLLevel) & 0xff )
 

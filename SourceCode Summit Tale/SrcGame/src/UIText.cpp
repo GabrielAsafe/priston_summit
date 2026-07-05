@@ -1,5 +1,5 @@
 #include "UILinker.h"
-//#include "Hook\\Hook.h"
+//#include "Hook/Hook.h"
 extern int DrawFontRect(RECT rc, char* lpszString, int nCount, UINT uFormat);
 extern void SetBold(bool bold);
 extern int __stdcall SetFontColor(DWORD textcolor);

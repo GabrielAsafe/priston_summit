@@ -1,6 +1,6 @@
 #include <windows.h>
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "smwsock.h"
 
 #include "character.h"
@@ -11,12 +11,12 @@
 #include "makeshadow.h"
 #include "particle.h"
 #include "field.h"
-#include "hoBaram\\holinkheader.h"
-#include "sinbaram\\sinlinkheader.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
 #include "playsub.h"
-#include "skillsub.h"
+#include "SkillSub.h"
 #include "damage.h"
-#include "areaserver.h"
+#include "AreaServer.h"
 
 
 static sSKILL Skill_ScoutHawk;

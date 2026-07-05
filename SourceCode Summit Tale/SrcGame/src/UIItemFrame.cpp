@@ -151,7 +151,7 @@ void UIItemFrame::setItem(sITEM * pItem)
 
 	if (!Item.lpItem)
 	{
-		Item.lpItem = LoadDibSurfaceOffscreen((char*)FormatString("image\\Sinimage\\Items\\%s\\it%s.bmp", Item.ItemFilePath, Item.LastCategory));
+		Item.lpItem = LoadDibSurfaceOffscreen((char*)FormatString("image//Sinimage//Items//%s//it%s.bmp", Item.ItemFilePath, Item.LastCategory));
 	}
 
 	if (fPutItem)

@@ -259,9 +259,9 @@ void cCOINSHOP::RecvBuyShopItem(rsPLAYINFO * lpPlayInfo, smTRANS_BUYSHOP * lpTra
 								SYSTEMTIME	SystemTime;
 
 								GetLocalTime(&SystemTime);
-								sprintf(szFileName, "COINSHOP_LOG\\%d-%d.log", SystemTime.wMonth, SystemTime.wDay);
+								sprintf(szFileName, "COINSHOP_LOG//%d-%d.log", SystemTime.wMonth, SystemTime.wDay);
 								CreateDirectory("COINSHOP_LOG", NULL);
-								sprintf(szLog, "%d:%d:%d - (ID : %s) (Name : %s) buy (Coin : %d) (CODE : %s)\r\n", SystemTime.wHour, SystemTime.wMinute, SystemTime.wSecond,
+								sprintf(szLog, "%d:%d:%d - (ID : %s) (Name : %s) buy (Coin : %d) (CODE : %s)/r/n", SystemTime.wHour, SystemTime.wMinute, SystemTime.wSecond,
 									playerID, lpPlayInfo->getName().c_str(), PlayerCoin, lpTransBuy->szItemCode);
 
 								hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);

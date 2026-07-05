@@ -2,7 +2,7 @@
 
 #define	_FILEREAD_HEADER
 
-#include "smLib3d\smType.h"
+#include "smLib3d/smType.h"
 #include "smPacket.h"
 
 extern smCONFIG	smConfig;

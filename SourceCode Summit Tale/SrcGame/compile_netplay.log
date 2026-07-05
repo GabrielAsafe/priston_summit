@@ -1,0 +1,285 @@
+MSBuild version 17.14.40+3e7442088 for .NET Framework
+Build started 7/4/2026 4:44:28 PM.
+
+Project "C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj" on node 1 (ClCompile target(s)).
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(523,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory. [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(524,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory. [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+InitializeBuildStatus:
+  Touching "..\Release\Game.tlog\unsuccessfulbuild".
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX86\x86\CL.exe /c /I"C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\\" /I"C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\..\..\Shared\\" /I"C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\..\..\modules\\" /ZI /nologo /W3 /WX- /diagnostics:column /sdl- /MP /Od /Oy- /D _WINSOCKAPI_ /D WIN32 /D _DEBUG /D _WINDOWS /D _MBCS /GF- /Gm- /EHsc /RTC1 /MTd /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR- /std:c++17 /Fo".\Debug/" /Fd".\Debug/vc143.pdb" /external:W3 /Gd /TP /wd4430 /wd4996 /analyze- /FC /errorReport:queue netplay.cpp
+  netplay.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winsock2.h(17,9): warning C4005: '_WINSOCKAPI_': macro redefinition [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  (compiling source file 'netplay.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winsock2.h(17,9):
+      '_WINSOCKAPI_' previously declared on the command line
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\CLootHandler.h(3,15): warning C4091: 'extern ': ignored on left of 'TRANS_ITEM' when no variable is declared [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  (compiling source file 'netplay.cpp')
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(957,6): warning C4101: 'cnt': unreferenced local variable [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1614,7): error C2065: 'smTRANSCODE_FIGHTER_INFO': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1684,7): error C2065: 'smTRANSCODE_PIKE_INFO': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1758,7): error C2065: 'smTRANSCODE_ARCHER_INFO': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1837,7): error C2065: 'smTRANSCODE_KINA_INFO': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1909,7): error C2065: 'smTRANSCODE_ATA_INFO': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1977,7): error C2065: 'smTRANSCODE_SACER_INFO': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2050,7): error C2065: 'smTRANSCODE_MAGE_INFO': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1614,7): error C2051: case expression not constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1684,7): error C2051: case expression not constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1758,7): error C2051: case expression not constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1837,7): error C2051: case expression not constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1909,7): error C2051: case expression not constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1977,7): error C2051: case expression not constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2050,7): error C2051: case expression not constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2136,2): error C2043: illegal break [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2138,2): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2140,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2141,3): error C3927: '->': trailing return type is not allowed after a non-function declarator [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2141,15): error C3484: syntax error: expected '->' before the return type [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2141,16): error C3613: missing return type after '->' ('int' assumed) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2141,3): error C2371: 'cQuestWindow': redefinition; different basic types [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+      C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\cQuestWindow.h(150,21):
+      see declaration of 'cQuestWindow'
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2141,16): error C2146: syntax error: missing ';' before identifier 'handlePacket' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2142,3): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2144,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2145,3): error C3927: '->': trailing return type is not allowed after a non-function declarator [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2145,15): error C3484: syntax error: expected '->' before the return type [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2145,16): error C3613: missing return type after '->' ('int' assumed) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2145,3): error C2371: 'cQuestWindow': redefinition; different basic types [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+      C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\cQuestWindow.h(150,21):
+      see declaration of 'cQuestWindow'
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2145,16): error C2146: syntax error: missing ';' before identifier 'handlePacket' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2146,3): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2147,4): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2148,5): error C2365: 'ChangeHairModel': redefinition; previous definition was 'function' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+      C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\playsub.h(120,5):
+      see declaration of 'ChangeHairModel'
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2149,5): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2150,4): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2151,5): error C2365: 'ChangeHairModel': redefinition; previous definition was 'function' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+      C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\playsub.h(120,5):
+      see declaration of 'ChangeHairModel'
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2152,5): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2153,4): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2154,5): error C2365: 'ChangeHairModel': redefinition; previous definition was 'function' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+      C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\playsub.h(120,5):
+      see declaration of 'ChangeHairModel'
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2155,5): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2156,4): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2157,5): error C2365: 'ChangeHairModel': redefinition; previous definition was 'function' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+      C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\playsub.h(120,5):
+      see declaration of 'ChangeHairModel'
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2158,5): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2159,4): error C2059: syntax error: '}' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2159,4): error C2143: syntax error: missing ';' before '}' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2160,3): error C2143: syntax error: missing ';' before '}' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2160,3): error C2059: syntax error: '}' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2161,2): error C2143: syntax error: missing ';' before '}' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2161,2): error C2059: syntax error: '}' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2164,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2167,12): error C2131: expression did not evaluate to a constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+      C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2167,12):
+      failure was caused by non-constant arguments or reference to a non-constant symbol
+      C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2167,12):
+      see usage of 'ChatCnt'
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2167,3): error C3927: '->': trailing return type is not allowed after a non-function declarator [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2167,20): error C3484: syntax error: expected '->' before the return type [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2167,21): error C3613: missing return type after '->' ('int' assumed) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2167,3): error C2369: 'ChatBuff': redefinition; different subscripts [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+      C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(168,10):
+      see declaration of 'ChatBuff'
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2167,21): error C2146: syntax error: missing ';' before identifier 'dwIP' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2168,42): error C2065: 'pData': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2168,3): error C2365: 'strcpy_s': redefinition; previous definition was 'function' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2169,14): error C2143: syntax error: missing ';' before '++' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2169,3): error C2086: 'int ChatBuffCnt': redefinition [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+      C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(126,5):
+      see declaration of 'ChatBuffCnt'
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2169,14): error C2059: syntax error: '++' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2170,3): error C2374: 'ChatDispCnt': redefinition; multiple initialization [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+      C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(172,5):
+      see declaration of 'ChatDispCnt'
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2170,3): error C2086: 'int ChatDispCnt': redefinition [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+      C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(172,5):
+      see declaration of 'ChatDispCnt'
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2171,3): error C2059: syntax error: 'if' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2172,3): error C2143: syntax error: missing ';' before '{' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2172,3): error C2447: '{': missing function header (old-style formal list?) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2176,3): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2179,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2180,2): error C2447: '{': missing function header (old-style formal list?) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2196,2): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2198,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2199,3): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2201,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2203,45): error C2065: 'pData': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2207,3): error C2059: syntax error: 'if' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2208,3): error C2143: syntax error: missing ';' before '{' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2208,3): error C2447: '{': missing function header (old-style formal list?) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2215,3): error C2059: syntax error: 'if' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2218,3): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2220,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2222,3): error C2374: 'lpChar': redefinition; multiple initialization [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+      C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2205,3):
+      see declaration of 'lpChar'
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2222,3): error C2086: 'int lpChar': redefinition [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+      C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2205,3):
+      see declaration of 'lpChar'
+  
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2222,56): error C2065: 'pData': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2224,3): error C2059: syntax error: 'if' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2225,3): error C2143: syntax error: missing ';' before '{' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2225,3): error C2447: '{': missing function header (old-style formal list?) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2230,3): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2232,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2238,3): error C2040: 'lpPlayDataGroup': 'int' differs in levels of indirection from 'smPLAYDATA_GROUP *' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2238,41): error C2065: 'pData': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2239,3): error C2040: 'lpTransBuff': 'int' differs in levels of indirection from 'char *' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2239,17): error C2065: 'pData': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2241,3): error C2059: syntax error: 'if' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2242,3): error C2143: syntax error: missing ';' before '{' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2242,3): error C2447: '{': missing function header (old-style formal list?) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2249,3): error C2059: syntax error: 'if' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2250,3): error C2143: syntax error: missing ';' before '{' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2250,3): error C2447: '{': missing function header (old-style formal list?) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2250,3): error C1003: error count exceeds 100; stopping compilation [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+Done Building Project "C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj" (ClCompile target(s)) -- FAILED.
+
+Build FAILED.
+
+"C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj" (ClCompile target) (1) ->
+(PrepareForBuild target) -> 
+  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(523,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory. [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+
+
+"C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj" (ClCompile target) (1) ->
+  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(524,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory. [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+
+
+"C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj" (ClCompile target) (1) ->
+(ClCompile target) -> 
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winsock2.h(17,9): warning C4005: '_WINSOCKAPI_': macro redefinition [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\CLootHandler.h(3,15): warning C4091: 'extern ': ignored on left of 'TRANS_ITEM' when no variable is declared [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(957,6): warning C4101: 'cnt': unreferenced local variable [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+
+
+"C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj" (ClCompile target) (1) ->
+(ClCompile target) -> 
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1614,7): error C2065: 'smTRANSCODE_FIGHTER_INFO': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1684,7): error C2065: 'smTRANSCODE_PIKE_INFO': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1758,7): error C2065: 'smTRANSCODE_ARCHER_INFO': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1837,7): error C2065: 'smTRANSCODE_KINA_INFO': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1909,7): error C2065: 'smTRANSCODE_ATA_INFO': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1977,7): error C2065: 'smTRANSCODE_SACER_INFO': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2050,7): error C2065: 'smTRANSCODE_MAGE_INFO': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1614,7): error C2051: case expression not constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1684,7): error C2051: case expression not constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1758,7): error C2051: case expression not constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1837,7): error C2051: case expression not constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1909,7): error C2051: case expression not constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(1977,7): error C2051: case expression not constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2050,7): error C2051: case expression not constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2136,2): error C2043: illegal break [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2138,2): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2140,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2141,3): error C3927: '->': trailing return type is not allowed after a non-function declarator [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2141,15): error C3484: syntax error: expected '->' before the return type [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2141,16): error C3613: missing return type after '->' ('int' assumed) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2141,3): error C2371: 'cQuestWindow': redefinition; different basic types [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2141,16): error C2146: syntax error: missing ';' before identifier 'handlePacket' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2142,3): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2144,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2145,3): error C3927: '->': trailing return type is not allowed after a non-function declarator [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2145,15): error C3484: syntax error: expected '->' before the return type [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2145,16): error C3613: missing return type after '->' ('int' assumed) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2145,3): error C2371: 'cQuestWindow': redefinition; different basic types [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2145,16): error C2146: syntax error: missing ';' before identifier 'handlePacket' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2146,3): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2147,4): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2148,5): error C2365: 'ChangeHairModel': redefinition; previous definition was 'function' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2149,5): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2150,4): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2151,5): error C2365: 'ChangeHairModel': redefinition; previous definition was 'function' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2152,5): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2153,4): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2154,5): error C2365: 'ChangeHairModel': redefinition; previous definition was 'function' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2155,5): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2156,4): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2157,5): error C2365: 'ChangeHairModel': redefinition; previous definition was 'function' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2158,5): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2159,4): error C2059: syntax error: '}' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2159,4): error C2143: syntax error: missing ';' before '}' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2160,3): error C2143: syntax error: missing ';' before '}' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2160,3): error C2059: syntax error: '}' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2161,2): error C2143: syntax error: missing ';' before '}' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2161,2): error C2059: syntax error: '}' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2164,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2167,12): error C2131: expression did not evaluate to a constant [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2167,3): error C3927: '->': trailing return type is not allowed after a non-function declarator [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2167,20): error C3484: syntax error: expected '->' before the return type [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2167,21): error C3613: missing return type after '->' ('int' assumed) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2167,3): error C2369: 'ChatBuff': redefinition; different subscripts [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2167,21): error C2146: syntax error: missing ';' before identifier 'dwIP' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2168,42): error C2065: 'pData': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2168,3): error C2365: 'strcpy_s': redefinition; previous definition was 'function' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2169,14): error C2143: syntax error: missing ';' before '++' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2169,3): error C2086: 'int ChatBuffCnt': redefinition [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2169,14): error C2059: syntax error: '++' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2170,3): error C2374: 'ChatDispCnt': redefinition; multiple initialization [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2170,3): error C2086: 'int ChatDispCnt': redefinition [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2171,3): error C2059: syntax error: 'if' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2172,3): error C2143: syntax error: missing ';' before '{' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2172,3): error C2447: '{': missing function header (old-style formal list?) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2176,3): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2179,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2180,2): error C2447: '{': missing function header (old-style formal list?) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2196,2): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2198,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2199,3): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2201,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2203,45): error C2065: 'pData': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2207,3): error C2059: syntax error: 'if' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2208,3): error C2143: syntax error: missing ';' before '{' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2208,3): error C2447: '{': missing function header (old-style formal list?) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2215,3): error C2059: syntax error: 'if' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2218,3): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2220,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2222,3): error C2374: 'lpChar': redefinition; multiple initialization [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2222,3): error C2086: 'int lpChar': redefinition [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2222,56): error C2065: 'pData': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2224,3): error C2059: syntax error: 'if' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2225,3): error C2143: syntax error: missing ';' before '{' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2225,3): error C2447: '{': missing function header (old-style formal list?) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2230,3): error C2059: syntax error: 'break' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2232,2): error C2059: syntax error: 'case' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2238,3): error C2040: 'lpPlayDataGroup': 'int' differs in levels of indirection from 'smPLAYDATA_GROUP *' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2238,41): error C2065: 'pData': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2239,3): error C2040: 'lpTransBuff': 'int' differs in levels of indirection from 'char *' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2239,17): error C2065: 'pData': undeclared identifier [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2241,3): error C2059: syntax error: 'if' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2242,3): error C2143: syntax error: missing ';' before '{' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2242,3): error C2447: '{': missing function header (old-style formal list?) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2249,3): error C2059: syntax error: 'if' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2250,3): error C2143: syntax error: missing ';' before '{' [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2250,3): error C2447: '{': missing function header (old-style formal list?) [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+  C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\netplay.cpp(2250,3): error C1003: error count exceeds 100; stopping compilation [C:\Users\gaymer\Desktop\SummitTale\SourceCode Summit Tale\SrcGame\src\priston.vcxproj]
+
+    5 Warning(s)
+    98 Error(s)
+
+Time Elapsed 00:00:04.49

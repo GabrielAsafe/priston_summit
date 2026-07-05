@@ -8,18 +8,18 @@
 
 #ifdef USE_PROSTONTALE		
 
-#include "sinbaram\\SinLinkHeader.h"
-#include "HoBaram\\HoLinkHeader.h"
-#include "Language\\language.h"
-#include "HoBaram\\HoTextFile.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "Language/language.h"
+#include "HoBaram/HoTextFile.h"
 #endif
 
 #include "tjclan.h"
-#include "tjscroll.h"
+#include "tjScroll.h"
 #include "cE_report.h"
 #include "cE_CViewClanInfo.h"
-#include "..\\isaocheck\\auth.h"
-#include "..\\isaocheck\\isaocheck.h"
+#include "../isaocheck/auth.h"
+#include "../isaocheck/isaocheck.h"
 #include "cE_Notice.h"
 
 extern int m_nNoticeCount;
@@ -547,9 +547,9 @@ void CLANEntity_Notice::NoticeCheck(char* buf)
 			break;
 		}
 
-		if(buf[i] == '\r')
+		if(buf[i] == '/r')
 		{
-			if(buf[i + 1] == '\n')
+			if(buf[i + 1] == '/n')
 			{
 				nCount = 0;
 				szNotice[m_nNoticeCount][nHeight_Count[m_nNoticeCount]][nCnt] = 0;
@@ -622,7 +622,7 @@ void CLANEntity_Notice::NoticeCheck(char* buf)
 		{
 			nCount = 0;
 			nCnt += 1;
-			szNotice[m_nNoticeCount][nHeight_Count[m_nNoticeCount]][nCnt] = '\n';
+			szNotice[m_nNoticeCount][nHeight_Count[m_nNoticeCount]][nCnt] = '/n';
 			szNotice[m_nNoticeCount][nHeight_Count[m_nNoticeCount]][nCnt + 1] = 0;
 
 			nHeight_Count[m_nNoticeCount]++;

@@ -1,7 +1,7 @@
 #ifndef _SHOW_DMG
 #define _SHOW_DMG
 
-#include <Windows.h>
+#include <windows.h>
 #include <vector>
 
 class cSHOW_DMG

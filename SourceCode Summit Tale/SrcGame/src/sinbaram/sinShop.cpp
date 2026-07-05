@@ -1,8 +1,8 @@
 #include "opcodes.h"
 #include "sinLinkHeader.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\clan_Enti.h"
-#include "..\\CurseFilter.h"		
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/clan_Enti.h"
+#include "../CurseFilter.h"		
 #include "CoinShop.h"
 
 #define MAX_MONEY 1000000000
@@ -105,99 +105,99 @@ void cSHOP::Init()
 
 	Load();
 
-	MatMyShop_Button = CreateTextureMaterial("Image\\SinImage\\Shopall\\MyShopButton.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatMyShop_Button = CreateTextureMaterial("Image//SinImage//Shopall//MyShopButton.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 }
 
 void cSHOP::Load()
 {
 
-	lpShopMain = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\shop-1.bmp");
-	lpShopMain2 = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\shop-2.bmp");
+	lpShopMain = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//shop-1.bmp");
+	lpShopMain2 = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//shop-2.bmp");
 
-	lpGoldEdit = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\my_money.bmp");
+	lpGoldEdit = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//my_money.bmp");
 
-	lpAllRepair = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\AllRepair.bmp");
-	lpRepair = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\Repair.bmp");
+	lpAllRepair = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//AllRepair.bmp");
+	lpRepair = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//Repair.bmp");
 
-	lpSell = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\Sell.bmp");
-	lpBuy = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\Buy.bmp");
+	lpSell = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//Sell.bmp");
+	lpBuy = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//Buy.bmp");
 
-	lpAllRepair_D = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\DefaultAllRepair.bmp");
-	lpRepair_D = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\DefaultRepair.bmp");
+	lpAllRepair_D = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//DefaultAllRepair.bmp");
+	lpRepair_D = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//DefaultRepair.bmp");
 
-	lpSell_D = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\Sell0.bmp");
-	lpBuy_D = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\Buy0.bmp");
+	lpSell_D = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//Sell0.bmp");
+	lpBuy_D = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//Buy0.bmp");
 
-	lpRightArrow = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\RightArrow.bmp");
-	lpLeftArrow = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\LeftArrow.bmp");
+	lpRightArrow = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//RightArrow.bmp");
+	lpLeftArrow = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//LeftArrow.bmp");
 
-	lpTabAttack = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\TabAttack.bmp");
-	lpTabDefense = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\TabDefense.bmp");
-	lpTabEtc = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\TabEtc.bmp");
+	lpTabAttack = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//TabAttack.bmp");
+	lpTabDefense = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//TabDefense.bmp");
+	lpTabEtc = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//TabEtc.bmp");
 
-	lpTabAttack_D = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\TabAttack0.bmp");
-	lpTabDefense_D = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\TabDefense0.bmp");
-	lpTabEtc_D = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\TabEtc.bmp");
+	lpTabAttack_D = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//TabAttack0.bmp");
+	lpTabDefense_D = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//TabDefense0.bmp");
+	lpTabEtc_D = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//TabEtc.bmp");
 
-	lpExit = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\ButtonExit.bmp");
-	lpGrid = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\Grid.bmp");
+	lpExit = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//ButtonExit.bmp");
+	lpGrid = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//Grid.bmp");
 
-	lpRepairAllInfo = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\ButtonInfo\\RepairAllInfo.bmp");
-	lpRepairInfo = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\ButtonInfo\\RepairInfo.bmp");
-	lpSellInfo = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\ButtonInfo\\SellInfo.bmp");
-	lpBuyInfo = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\ButtonInfo\\BuyInfo.bmp");
+	lpRepairAllInfo = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//ButtonInfo//RepairAllInfo.bmp");
+	lpRepairInfo = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//ButtonInfo//RepairInfo.bmp");
+	lpSellInfo = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//ButtonInfo//SellInfo.bmp");
+	lpBuyInfo = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//ButtonInfo//BuyInfo.bmp");
 
-	lpDefaultRepairAll = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\DefaultAllRepair.bmp");
-	lpDefaultRepair = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\DefaultRepair.bmp");
+	lpDefaultRepairAll = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//DefaultAllRepair.bmp");
+	lpDefaultRepair = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//DefaultRepair.bmp");
 
-	lpTitle_Attack = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\title-shop.bmp");
-	lpTitle_Etc = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\title-TabEtc.bmp");
-	lpTitle_Trade = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\Trade.bmp");
-	lpTitle_WareHouse = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\Warehouse.bmp");
+	lpTitle_Attack = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//title-shop.bmp");
+	lpTitle_Etc = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//title-TabEtc.bmp");
+	lpTitle_Trade = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//Trade.bmp");
+	lpTitle_WareHouse = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//Warehouse.bmp");
 
-	lpWeightEdit = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\weight.bmp");
+	lpWeightEdit = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//weight.bmp");
 
-	lpNoUseBox = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\NoUseBox.bmp");
+	lpNoUseBox = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//NoUseBox.bmp");
 
-	lpCraftItemMain = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\CraftItem\\CraftItemMain.bmp");
-	lpCraftItemButton = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\CraftItem\\Button.bmp");
-	lpCraftItemButtonInfo = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\CraftItem\\ButtonInfo.bmp");
-	lpTitle_CraftItem = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\CraftItem\\Title.bmp");
-	lpTitle_Aging = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\Aging\\Aging_Title.bmp");
-	lpAging_Info = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\Aging\\ButtonInfo.bmp");
-
-
-	lpSmeltingItemMain = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\SmeltingItem\\SmeltingMain.bmp");
-	lpTitle_SmeltingItem = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\SmeltingItem\\SmeltingTitle.bmp");
-	lpSmeltingItemButtonInfo = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\SmeltingItem\\ButtonInfo.bmp");
+	lpCraftItemMain = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//CraftItem//CraftItemMain.bmp");
+	lpCraftItemButton = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//CraftItem//Button.bmp");
+	lpCraftItemButtonInfo = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//CraftItem//ButtonInfo.bmp");
+	lpTitle_CraftItem = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//CraftItem//Title.bmp");
+	lpTitle_Aging = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//Aging//Aging_Title.bmp");
+	lpAging_Info = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//Aging//ButtonInfo.bmp");
 
 
-	lpManufactureItemMain = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\Manufacture\\ManufactureMain.bmp");
-	lpTitle_ManufactureItem = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\Manufacture\\ManufactureTitle.bmp");
-	lpManufactureItemButtonInfo = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\Manufacture\\ButtonInfo.bmp");
+	lpSmeltingItemMain = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//SmeltingItem//SmeltingMain.bmp");
+	lpTitle_SmeltingItem = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//SmeltingItem//SmeltingTitle.bmp");
+	lpSmeltingItemButtonInfo = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//SmeltingItem//ButtonInfo.bmp");
 
 
-	lpMResetTitle = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\CraftItem\\MResetTitle.bmp");
-	lpMResetMain = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\CraftItem\\MResetMain.bmp");
-	lpMResetButton = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\CraftItem\\MResetButton.bmp");
-	lpMResetButtonInfo = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\CraftItem\\MResetButtonInfo.bmp");
+	lpManufactureItemMain = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//Manufacture//ManufactureMain.bmp");
+	lpTitle_ManufactureItem = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//Manufacture//ManufactureTitle.bmp");
+	lpManufactureItemButtonInfo = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//Manufacture//ButtonInfo.bmp");
 
-	lpMSkinMain = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\ModifyItem\\skinchange.bmp");
-	lpTitle_Skin = LoadDibSurfaceOffscreen("Image\\SinImage\\Shopall\\Skin_Title.bmp");
 
-	lpMyShopExp = LoadDibSurfaceOffscreen("Image\\SinImage\\indishop\\indishop_exp.bmp");
-	lpMyShopExp_ = LoadDibSurfaceOffscreen("Image\\SinImage\\indishop\\indishop_exp_.bmp");
-	lpMyShopExp_T = LoadDibSurfaceOffscreen("Image\\SinImage\\indishop\\indishop_expT.bmp");
-	lpMyShopNoSale = LoadDibSurfaceOffscreen("Image\\SinImage\\indishop\\indishop_nosale.bmp");
-	lpMyShopNoSale_ = LoadDibSurfaceOffscreen("Image\\SinImage\\indishop\\indishop_nosale_.bmp");
-	lpMyShopNoSale_T = LoadDibSurfaceOffscreen("Image\\SinImage\\indishop\\indishop_nosaleT.bmp");
-	lpMyShopSale = LoadDibSurfaceOffscreen("Image\\SinImage\\indishop\\indishop_sale.bmp");
-	lpMyShopSale_ = LoadDibSurfaceOffscreen("Image\\SinImage\\indishop\\indishop_sale_.bmp");
-	lpMyShopSale_T = LoadDibSurfaceOffscreen("Image\\SinImage\\indishop\\indishop_saleT.bmp");
-	lpTitle_MyShop = LoadDibSurfaceOffscreen("Image\\SinImage\\indishop\\indishop_title.bmp");
-	lpImage_MyShop = LoadDibSurfaceOffscreen("Image\\SinImage\\indishop\\indishop_image.bmp");
-	lpMyShop_T = LoadDibSurfaceOffscreen("Image\\SinImage\\indishop\\indishop_T.bmp");
+	lpMResetTitle = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//CraftItem//MResetTitle.bmp");
+	lpMResetMain = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//CraftItem//MResetMain.bmp");
+	lpMResetButton = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//CraftItem//MResetButton.bmp");
+	lpMResetButtonInfo = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//CraftItem//MResetButtonInfo.bmp");
+
+	lpMSkinMain = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//ModifyItem//skinchange.bmp");
+	lpTitle_Skin = LoadDibSurfaceOffscreen("Image//SinImage//Shopall//Skin_Title.bmp");
+
+	lpMyShopExp = LoadDibSurfaceOffscreen("Image//SinImage//indishop//indishop_exp.bmp");
+	lpMyShopExp_ = LoadDibSurfaceOffscreen("Image//SinImage//indishop//indishop_exp_.bmp");
+	lpMyShopExp_T = LoadDibSurfaceOffscreen("Image//SinImage//indishop//indishop_expT.bmp");
+	lpMyShopNoSale = LoadDibSurfaceOffscreen("Image//SinImage//indishop//indishop_nosale.bmp");
+	lpMyShopNoSale_ = LoadDibSurfaceOffscreen("Image//SinImage//indishop//indishop_nosale_.bmp");
+	lpMyShopNoSale_T = LoadDibSurfaceOffscreen("Image//SinImage//indishop//indishop_nosaleT.bmp");
+	lpMyShopSale = LoadDibSurfaceOffscreen("Image//SinImage//indishop//indishop_sale.bmp");
+	lpMyShopSale_ = LoadDibSurfaceOffscreen("Image//SinImage//indishop//indishop_sale_.bmp");
+	lpMyShopSale_T = LoadDibSurfaceOffscreen("Image//SinImage//indishop//indishop_saleT.bmp");
+	lpTitle_MyShop = LoadDibSurfaceOffscreen("Image//SinImage//indishop//indishop_title.bmp");
+	lpImage_MyShop = LoadDibSurfaceOffscreen("Image//SinImage//indishop//indishop_image.bmp");
+	lpMyShop_T = LoadDibSurfaceOffscreen("Image//SinImage//indishop//indishop_T.bmp");
 
 }
 
@@ -2831,7 +2831,7 @@ int cCHARSHOP::RecvShopItem(sMYSHOP* sMyShop)
 			{
 				if (sMyShop->sMyShopItem[i].sItem.CODE == sItem[j].CODE)
 				{
-					wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+					wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 					memcpy(&TempItem, &sItem[j], sizeof(sITEM));
 
 
@@ -2840,7 +2840,7 @@ int cCHARSHOP::RecvShopItem(sMYSHOP* sMyShop)
 					{
 						if (sMyShop->sMyShopItem[i].sItem.PotionCount == 2)
 						{
-							wsprintf(szFilePath, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 							memcpy(&TempItem, &sItem[j], sizeof(sITEM));
 							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
 						}
@@ -2897,7 +2897,7 @@ int cCHARSHOP::SetCharShopItemToInven(sITEMINFO *pItem_Info)
 	{
 		if(pItem_Info->CODE == sItem[j].CODE)
 		{
-			wsprintf(szTestBuff2, "Image\\sinImage\\Items\\%s\\it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+			wsprintf(szTestBuff2, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 			if(!sItem[j].lpTempItem)
 				sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szTestBuff2);
 			memcpy(&TempItem, &sItem[j], sizeof(sITEM));

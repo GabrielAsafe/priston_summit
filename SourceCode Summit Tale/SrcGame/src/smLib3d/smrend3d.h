@@ -18,6 +18,18 @@ struct D3DTLVERTEX8
 	float tu8, tv8;
 };
 
+struct DRZD3DTLVERTEX
+{
+    float sx;
+    float sy;
+    float sz;
+    float rhw;
+    D3DCOLOR color;
+    D3DCOLOR specular;
+    float tu;
+    float tv;
+};
+
 #define D3DFVF_TLVERTEX0		D3DFVF_XYZRHW |D3DFVF_DIFFUSE |D3DFVF_SPECULAR |D3DFVF_TEX0
 #define D3DFVF_TLVERTEX1		D3DFVF_XYZRHW |D3DFVF_DIFFUSE |D3DFVF_SPECULAR |D3DFVF_TEX1
 #define D3DFVF_TLVERTEX2		D3DFVF_XYZRHW |D3DFVF_DIFFUSE |D3DFVF_SPECULAR |D3DFVF_TEX2

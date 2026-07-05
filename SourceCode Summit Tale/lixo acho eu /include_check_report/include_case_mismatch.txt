@@ -1,0 +1,145 @@
+actiongame.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/ActionGame.h
+AntiCheat.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/AntiCheat/AntiCheat.h
+areaserver.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/AreaServer.h
+auth.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/isaocheck/auth.h
+AutoDropItem.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Server/AutoDropItem.h
+BlessCastle.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Server/BlessCastle.h
+BMPsmooth.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/BMPsmooth.h
+B_sinCraftItem.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./Shared/b_sinCraftItem.h
+cE_chatlist.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/cE_chatlist.h
+cE_chip.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/cE_chip.h
+cE_Cjoin.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/cE_CJoin.h
+cE_CJoin.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/cE_CJoin.h
+cE_Cmake.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/cE_Cmake.h
+cE_CViewClanInfo.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/cE_CViewClanInfo.h
+cE_deletecha.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/cE_deletecha.h
+cE_isclanmember.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/cE_isclanmember.h
+cE_Notice.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/cE_Notice.h
+cE_nouser.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/cE_nouser.h
+cE_report.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/cE_report.h
+cE_Report.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/cE_report.h
+cE_Updatecldata.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/cE_Updatecldata.h
+cE_user.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/cE_user.h
+clan_enti.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/clan_Enti.h
+clan_Enti.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/clan_Enti.h
+../clanmenu/tjclanDEF.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+ClientFuncPos.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Server/ClientFuncPos.h
+CLI.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcServer/src/CLI/CLI.h
+color3.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/HoBaram/NewEffect/math/COLOR3.H
+color4.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/HoBaram/NewEffect/math/color4.h
+ConfirmationBox.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/ConfirmationBox/ConfirmationBox.h
+CRollHandler.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/BattleEvents/CRollHandler.h
+CRollWindow.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/BattleEvents/CRollWindow.h
+D3Dcompiler.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/d3dcompiler.h
+Database.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcServer/src/Database/Database.h
+DllServer.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Server/DllServer.h
+Drawsub.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/drawsub.h
+dxWav.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Sound/Dxwav.h
+e_serverlog.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Server/E_serverlog.h
+Firewall.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcServer/src/Firewall/Firewall.h
+GameMasters.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcServer/src/GameMasters/GameMasters.h
+globals.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/libxml2/libxml/globals.h
+GuideHelp.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/GuideHelp.h
+haPremiumItem.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/sinbaram/HaPremiumItem.h
+Help.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/Help.h
+Hook.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Hook/Hook.h
+Imagehlp.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/imagehlp.h
+isaocheck.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/isaocheck/isaocheck.h
+lapi.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lapi.h
+lauxlib.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lauxlib.h
+lcode.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lcode.h
+ldebug.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/ldebug.h
+ldo.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/ldo.h
+lfunc.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lfunc.h
+lgc.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lgc.h
+lineSeg3.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/HoBaram/NewEffect/math/lineSeg3.h
+llex.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/llex.h
+llimits.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/llimits.h
+lmem.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lmem.h
+lobject.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lobject.h
+Login.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Login/Login.h
+lopcodes.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lopcodes.h
+lparser.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lparser.h
+lstate.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lstate.h
+lstring.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lstring.h
+ltable.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/ltable.h
+ltm.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/ltm.h
+lua.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lua.h
+lualib.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lualib.h
+lundump.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lundump.h
+lvm.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lvm.h
+lzio.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Library/LuaSrc/Lua/lzio.h
+mathGlobal.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/HoBaram/NewEffect/math/mathGlobal.h
+matrix4.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/HoBaram/NewEffect/math/MATRIX4.H
+memmap.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/Ygy/memmap/memmap.h
+../Memmap/memmap.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/Ygy/memmap/memmap.h
+micvolume.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/park/MicVolume.h
+Mmsystem.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/mmsystem.h
+Mouse.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcServer/src/Mouse/Mouse.h
+nettype.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/NetType.h
+News.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcServer/src/News/News.h
+onserver.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Server/onserver.h
+OnServer.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Server/onserver.h
+ParkDXPlayer.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/park/ParkDXPlayer.h
+partymsg.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Server/PartyMsg.h
+point3.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/HoBaram/NewEffect/math/point3.h
+point4.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/HoBaram/NewEffect/math/POINT4.H
+Psapi.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/psapi.h
+RingBuff.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/WinInt/RingBuff.h
+Score.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/PvP/Score.h
+ServerMsg.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Server/ServerMsg.h
+Set_EventSpawn.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Server/Set_EventSpawn.h
+ShellAPI.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/shellapi.h
+shell.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Sound/SHELL.H
+Shlwapi.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/shlwapi.h
+Shobjidl.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/shobjidl.h
+sinhaquest.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/sinHaQuest.h
+sinSkill_Infoini.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/sinbaram/sinSkill_InfoIni.h
+skills.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcServer/src/Skills/Skills.h
+Skills.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcServer/src/Skills/Skills.h
+skillsub.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/SkillSub.h
+smdsx.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/smLib3d/smDsx.h
+smgeosub.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/smLib3d/smGeosub.h
+smjpeg.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/smLib3d/smJpeg.h
+smmap3d.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/smLib3d/smMap3d.h
+smobj3d.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/smLib3d/smObj3d.h
+smpacket.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./backup_wsabuf_patch_20260704_153037/smPacket.h
+smread3d.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/smLib3d/smRead3d.h
+smRend3d.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/smLib3d/smrend3d.h
+smsin.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/smLib3d/smSin.h
+smstage3d.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/smLib3d/smStage3d.h
+smstgobj.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/smLib3d/smStgObj.h
+smtexture.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/smLib3d/smTexture.h
+smtype.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/smLib3d/smType.h
+strclass.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/STRCLASS.H
+stream.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Sound/STREAM.H
+Strsafe.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/strsafe.h
+SvrCaravan.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcServer/src/Server/SvrCaravan.h
+svr_Damage.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Server/svr_Damage.h
+svrEventGame.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Server/svrEventGame.h
+svrEventSpawn.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Server/svrEventSpawn.h
+svrHaQuest.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Server/svrHaQuest.h
+tjboy/clanmenu/tjclanDEF.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+tjboy/clanmenu/tjclan.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/tjclan.h
+tjclanDEF.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/tjclanDEF.h
+tjclan.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/tjclan.h
+tjscroll.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/tjScroll.h
+tjScroll.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/clanmenu/tjScroll.h
+Tlhelp32.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/tlhelp32.h
+TlHelp32.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/tlhelp32.h
+util.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/Ygy/Util.h
+Util.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/TJBOY/Ygy/Util.h
+utils_exception.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./modules/Helper/Utils/utils_exception.h
+utils_filesystem.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./modules/Helper/Utils/utils_filesystem.h
+utils_logging.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./modules/Helper/Utils/utils_logging.h
+utils_testing.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./modules/Helper/Utils/utils_testing.h
+wave.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Sound/Wave.h
+WavIntHttp.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/WinInt/WavIntHttp.h
+Windows.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/windows.h
+WinDump.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/Dump/WinDump.h
+Wingdi.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/wingdi.h
+Wininet.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/wininet.h
+WinIntThread.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/WinInt/WinIntThread.h
+WinSock2.h -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/winsock2.h
+ZipLib.h -> CASE? /home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale/./SrcGame/src/WinInt/ZipLib.h
+ZMOUSE.H -> CASE? /usr/x86_64-w64-mingw32/sys-root/mingw/include/zmouse.h

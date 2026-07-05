@@ -1,6 +1,6 @@
-#include "sinbaram\sinLinkHeader.h"
-#include "File\File.h"
-#include "server\OnServer.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "File/File.h"
+#include "server/onserver.h"
 #include "JOBS.h"
 
 #include <time.h>
@@ -592,9 +592,9 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 										char* lpMsg;
 										char* HackLogDirectory = "LogFile";
 
-										wsprintf(szFileName, "%s\\(FORJA) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+										wsprintf(szFileName, "%s//(FORJA) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-										lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Forjou ( %d ) ( %s ) \r\n";
+										lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Forjou ( %d ) ( %s ) /r/n";
 										wsprintf(szBuff, lpMsg,
 											tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 											Player->lpsmSock->szIPAddr, 1, itemname);
@@ -631,9 +631,9 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 										char* lpMsg;
 										char* HackLogDirectory = "LogFile";
 
-										wsprintf(szFileName, "%s\\(FORJA) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+										wsprintf(szFileName, "%s//(FORJA) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-										lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Tentou Forjar ( %d ) ( %s ) \r\n";
+										lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Tentou Forjar ( %d ) ( %s ) /r/n";
 										wsprintf(szBuff, lpMsg,
 											tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 											Player->lpsmSock->szIPAddr, 1, "item");
@@ -839,9 +839,9 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 												char* lpMsg;
 												char* HackLogDirectory = "LogFile";
 
-												wsprintf(szFileName, "%s\\(FORJA) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+												wsprintf(szFileName, "%s//(FORJA) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-												lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Forjou ( %d ) ( %s ) \r\n";
+												lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Forjou ( %d ) ( %s ) /r/n";
 												wsprintf(szBuff, lpMsg,
 													tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 													Player->lpsmSock->szIPAddr, 1, itemname);
@@ -878,9 +878,9 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 												char* lpMsg;
 												char* HackLogDirectory = "LogFile";
 
-												wsprintf(szFileName, "%s\\(FORJA) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+												wsprintf(szFileName, "%s//(FORJA) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-												lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Tentou Forjar ( %d ) ( %s ) \r\n";
+												lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Tentou Forjar ( %d ) ( %s ) /r/n";
 												wsprintf(szBuff, lpMsg,
 													tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 													Player->lpsmSock->szIPAddr, 1, "item");
@@ -1086,9 +1086,9 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 												char* lpMsg;
 												char* HackLogDirectory = "LogFile";
 
-												wsprintf(szFileName, "%s\\(FORJA) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+												wsprintf(szFileName, "%s//(FORJA) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-												lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Forjou ( %d ) ( %s ) \r\n";
+												lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Forjou ( %d ) ( %s ) /r/n";
 												wsprintf(szBuff, lpMsg,
 													tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 													Player->lpsmSock->szIPAddr, 1, itemname);
@@ -1125,9 +1125,9 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 												char* lpMsg;
 												char* HackLogDirectory = "LogFile";
 
-												wsprintf(szFileName, "%s\\(FORJA) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+												wsprintf(szFileName, "%s//(FORJA) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-												lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Tentou Forjar ( %d ) ( %s ) \r\n";
+												lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Tentou Forjar ( %d ) ( %s ) /r/n";
 												wsprintf(szBuff, lpMsg,
 													tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 													Player->lpsmSock->szIPAddr, 1, "item");

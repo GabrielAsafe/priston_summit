@@ -1,11 +1,11 @@
-#include "SinBaram\\SinLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
 #include "LowLevelPetSystem.h"
-#include "..\\playmain.h"
+#include "../playmain.h"
 #include "hoAssaParticleEffect.h"
 #include "HoNewParticleLinkHeader.h"
-#include "..\\effectsnd.h"
+#include "../effectsnd.h"
 POINT3D HoPetRenderPoint;
-#include "..\\damage.h"
+#include "../damage.h"
 
 DWORD	g_LowLevelPetAttackSerial = 0;
 HoLowLevelPet::HoLowLevelPet() : m_Type(HoLowLevelPet::Terry),
@@ -704,13 +704,13 @@ HoLowLevelPetManager::~HoLowLevelPetManager()
 bool HoLowLevelPetManager::Create()
 {
 	Destroy();
-	m_Bone = smASE_ReadBone("Effect\\LowLevelPet\\Pet_motion.ASE");
+	m_Bone = smASE_ReadBone("Effect//LowLevelPet//Pet_motion.ASE");
 	smASE_SetPhysique(m_Bone);
 
-	m_MeshTerry = smASE_Read("Effect\\LowLevelPet\\Pet_terry.ASE", 0);
-	m_MeshNepsys = smASE_Read("Effect\\LowLevelPet\\Pet_nepsys.ASE", 0);
-	m_MeshIo = smASE_Read("Effect\\LowLevelPet\\Pet_io.ASE", 0);
-	m_MeshMute = smASE_Read("Effect\\LowLevelPet\\Pet_mute.ASE", 0);
+	m_MeshTerry = smASE_Read("Effect//LowLevelPet//Pet_terry.ASE", 0);
+	m_MeshNepsys = smASE_Read("Effect//LowLevelPet//Pet_nepsys.ASE", 0);
+	m_MeshIo = smASE_Read("Effect//LowLevelPet//Pet_io.ASE", 0);
+	m_MeshMute = smASE_Read("Effect//LowLevelPet//Pet_mute.ASE", 0);
 
 	return true;
 }

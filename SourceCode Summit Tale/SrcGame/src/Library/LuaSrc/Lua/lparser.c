@@ -28,7 +28,7 @@
 #define getlocvar(fs, i)	((fs)->f->locvars[(fs)->actvar[i]])
 
 
-#define enterlevel(ls)	if (++(ls)->nestlevel > LUA_MAXPARSERLEVEL) \
+#define enterlevel(ls)	if (++(ls)->nestlevel > LUA_MAXPARSERLEVEL) /
 		luaX_syntaxerror(ls, "too many syntax levels");
 #define leavelevel(ls)	((ls)->nestlevel--)
 

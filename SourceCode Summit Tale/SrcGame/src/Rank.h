@@ -1,5 +1,5 @@
 #pragma once
-#include <Windows.h>
+#include <windows.h>
 
 #define	smTRANSCODE_OPEN_RANK		0x49470046
 #define RANK_PACKET_SEND_RANKCLASS   0x49470047

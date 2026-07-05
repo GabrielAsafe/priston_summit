@@ -1,10 +1,10 @@
 
 
 #include "sinLinkHeader.h"
-#include "Language\\Language.h"
-#include "tjboy\\clanmenu\\tjclanDEF.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\cE_CViewClanInfo.h"
+#include "Language/language.h"
+#include "TJBOY/clanmenu/tjclanDEF.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/cE_CViewClanInfo.h"
 
 
 cCHARSTATUS cCharStatus;
@@ -131,40 +131,40 @@ void cCHARSTATUS::Init()
 	SkillTextColor[SIN2_SPEED] = SIN_TEXT_COLOR_WHITE;
 
 
-	MatChatBotton_Glay = CreateTextureMaterial("Assets\\GUI\\Interface\\Chat\\Chatting06.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatChatBotton_Glay = CreateTextureMaterial("Assets//GUI//Interface//Chat//Chatting06.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
-	//sinMatMike = CreateTextureMaterial("Assets\\GUI\\Interface\\mike.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	//sinMatMike = CreateTextureMaterial("Assets//GUI//Interface//mike.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 }
 
 void cCHARSTATUS::Load()
 {
-	lpRegiBox[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\Status\\RegiInfo\\BioInfo.bmp");
-	lpRegiBox[1] = LoadDibSurfaceOffscreen("Image\\SinImage\\Status\\RegiInfo\\FireInfo.bmp");
-	lpRegiBox[2] = LoadDibSurfaceOffscreen("Image\\SinImage\\Status\\RegiInfo\\IceInfo.bmp");
-	lpRegiBox[3] = LoadDibSurfaceOffscreen("Image\\SinImage\\Status\\RegiInfo\\PoisonInfo.bmp");
-	lpRegiBox[4] = LoadDibSurfaceOffscreen("Image\\SinImage\\Status\\RegiInfo\\LightInfo.bmp");
+	lpRegiBox[0] = LoadDibSurfaceOffscreen("Image//SinImage//Status//RegiInfo//BioInfo.bmp");
+	lpRegiBox[1] = LoadDibSurfaceOffscreen("Image//SinImage//Status//RegiInfo//FireInfo.bmp");
+	lpRegiBox[2] = LoadDibSurfaceOffscreen("Image//SinImage//Status//RegiInfo//IceInfo.bmp");
+	lpRegiBox[3] = LoadDibSurfaceOffscreen("Image//SinImage//Status//RegiInfo//PoisonInfo.bmp");
+	lpRegiBox[4] = LoadDibSurfaceOffscreen("Image//SinImage//Status//RegiInfo//LightInfo.bmp");
 
 
-	lpChangeArrow[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\Status\\ChangeArrow.bmp");
-	lpSelectArrow[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\Status\\SelectArrow.bmp");
-	lpSelectArrow[1] = LoadDibSurfaceOffscreen("Image\\SinImage\\Status\\SelectArrow2.bmp");
-	lpStatusPoint = LoadDibSurfaceOffscreen("Image\\SinImage\\Status\\StatusPoint.bmp");
+	lpChangeArrow[0] = LoadDibSurfaceOffscreen("Image//SinImage//Status//ChangeArrow.bmp");
+	lpSelectArrow[0] = LoadDibSurfaceOffscreen("Image//SinImage//Status//SelectArrow.bmp");
+	lpSelectArrow[1] = LoadDibSurfaceOffscreen("Image//SinImage//Status//SelectArrow2.bmp");
+	lpStatusPoint = LoadDibSurfaceOffscreen("Image//SinImage//Status//StatusPoint.bmp");
 
-	lpStatusMain = LoadDibSurfaceOffscreen("Image\\SinImage\\Status\\Status.bmp");
+	lpStatusMain = LoadDibSurfaceOffscreen("Image//SinImage//Status//Status.bmp");
 
-	lpChatButton[0] = LoadDibSurfaceOffscreen("Assets\\GUI\\Interface\\Chat\\ChatTap_01.bmp");
-	lpChatButton[1] = LoadDibSurfaceOffscreen("Assets\\GUI\\Interface\\Chat\\ChatTap_02.bmp");
-	lpChatButton[2] = LoadDibSurfaceOffscreen("Assets\\GUI\\Interface\\Chat\\ChatTap_03.bmp");
-	lpChatButton[3] = LoadDibSurfaceOffscreen("Assets\\GUI\\Interface\\Chat\\ChatTap_04.bmp");
-	lpChatButton[4] = LoadDibSurfaceOffscreen("Assets\\GUI\\Interface\\Chat\\ChatTap_05.bmp");
+	lpChatButton[0] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_01.bmp");
+	lpChatButton[1] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_02.bmp");
+	lpChatButton[2] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_03.bmp");
+	lpChatButton[3] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_04.bmp");
+	lpChatButton[4] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_05.bmp");
 
-	lpChatButton_Notice[0] = LoadDibSurfaceOffscreen("Assets\\GUI\\Interface\\Chat\\ChatTap_N11.bmp");
-	lpChatButton_Notice[1] = LoadDibSurfaceOffscreen("Assets\\GUI\\Interface\\Chat\\ChatTap_N12.bmp");
-	lpChatButton_Notice[2] = LoadDibSurfaceOffscreen("Assets\\GUI\\Interface\\Chat\\ChatTap_N22.bmp");
+	lpChatButton_Notice[0] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_N11.bmp");
+	lpChatButton_Notice[1] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_N12.bmp");
+	lpChatButton_Notice[2] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_N22.bmp");
 
-	lpChatLine = LoadDibSurfaceOffscreen("Assets\\GUI\\Interface\\Chat\\n_line.bmp");
+	lpChatLine = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//n_line.bmp");
 }
 
 void cCHARSTATUS::Release()

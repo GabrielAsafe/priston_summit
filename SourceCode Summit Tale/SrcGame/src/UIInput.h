@@ -2,7 +2,10 @@
 #include <functional>
 #include <unordered_map>
 #pragma once
-
+#include "UIElement.h"
+#include "UIWindow.h"
+#include "UIImage.h"
+#include "UIText.h"
 enum EActivate
 {
 	EACTIVATE_Click,

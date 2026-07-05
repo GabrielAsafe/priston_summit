@@ -174,6 +174,39 @@ HRESULT WINAPI
 #endif //__cplusplus
 
 
+#ifdef __cplusplus
+static inline HRESULT D3DXCreateFontACompat(
+    LPDIRECT3DDEVICE9 pDevice,
+    INT Height,
+    UINT Width,
+    UINT Weight,
+    UINT MipLevels,
+    BOOL Italic,
+    DWORD CharSet,
+    DWORD OutputPrecision,
+    DWORD Quality,
+    DWORD PitchAndFamily,
+    LPCSTR pFaceName,
+    LPD3DXFONT* ppFont)
+{
+    LOGFONTA lf = {};
+    lf.lfHeight = Height;
+    lf.lfWidth = Width;
+    lf.lfWeight = Weight;
+    lf.lfItalic = (BYTE)Italic;
+    lf.lfCharSet = (BYTE)CharSet;
+    lf.lfOutPrecision = (BYTE)OutputPrecision;
+    lf.lfQuality = (BYTE)Quality;
+    lf.lfPitchAndFamily = (BYTE)PitchAndFamily;
+    lstrcpynA(lf.lfFaceName, pFaceName ? pFaceName : "Arial", LF_FACESIZE);
+    return D3DXCreateFontIndirect(pDevice, &lf, ppFont);
+}
+
+#define D3DXCreateFont D3DXCreateFontACompat
+#endif
+
+
+
 
 
 ///////////////////////////////////////////////////////////////////////////

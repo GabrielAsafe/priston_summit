@@ -1,4 +1,4 @@
-#include "sinbaram\sinLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h"
 
 CCSHOP CList;
 CCSHOP_ITEM Cselectitem;
@@ -20,7 +20,7 @@ void ClanCustom::RecvItemToServer(CCSHOP * Shop)
 		switch (CList.item[cnt].SubTag)
 		{
 		case 1:
-			wsprintf(Dir, "game\\images\\Crown\\BMP\\it%s.bmp", CList.item[cnt].itCode);
+			wsprintf(Dir, "game//images//Crown//BMP//it%s.bmp", CList.item[cnt].itCode);
 			CList.item[cnt].Image = LoadDibSurfaceOffscreen(Dir);
 			break;
 		}
@@ -31,7 +31,7 @@ void ClanCustom::RecvItemToServer(CCSHOP * Shop)
 		switch (CList.item2[cnt2].SubTag)
 		{
 		case 2:
-			wsprintf(Dir, "game\\images\\Crown\\TAGS\\%s.bmp", CList.item2[cnt2].itCode);
+			wsprintf(Dir, "game//images//Crown//TAGS//%s.bmp", CList.item2[cnt2].itCode);
 			CList.item2[cnt2].Image = LoadDibSurfaceOffscreen(Dir);
 			break;
 		}
@@ -62,18 +62,18 @@ void ClanCustom::Open()
 
 void ClanCustom::Init()
 {
-	Image[0] = CreateTextureMaterial("game\\images\\Crown\\main.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[1] = CreateTextureMaterial("game\\images\\Crown\\btnclose.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[2] = CreateTextureMaterial("game\\images\\Crown\\btnclose_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[3] = CreateTextureMaterial("game\\images\\Crown\\buy.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[4] = CreateTextureMaterial("game\\images\\Crown\\buy_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[5] = CreateTextureMaterial("game\\images\\Crown\\Page_Left.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[6] = CreateTextureMaterial("game\\images\\Crown\\Page_Left_1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[7] = CreateTextureMaterial("game\\images\\Crown\\Page_Right.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[8] = CreateTextureMaterial("game\\images\\Crown\\Page_Right_1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[9] = CreateTextureMaterial("game\\images\\Crown\\coroas.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[10] = CreateTextureMaterial("game\\images\\Crown\\select.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Image[11] = CreateTextureMaterial("game\\images\\Crown\\tags.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[0] = CreateTextureMaterial("game//images//Crown//main.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[1] = CreateTextureMaterial("game//images//Crown//btnclose.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[2] = CreateTextureMaterial("game//images//Crown//btnclose_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[3] = CreateTextureMaterial("game//images//Crown//buy.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[4] = CreateTextureMaterial("game//images//Crown//buy_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[5] = CreateTextureMaterial("game//images//Crown//Page_Left.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[6] = CreateTextureMaterial("game//images//Crown//Page_Left_1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[7] = CreateTextureMaterial("game//images//Crown//Page_Right.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[8] = CreateTextureMaterial("game//images//Crown//Page_Right_1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[9] = CreateTextureMaterial("game//images//Crown//coroas.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[10] = CreateTextureMaterial("game//images//Crown//select.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Image[11] = CreateTextureMaterial("game//images//Crown//tags.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	ReadTextures();
 }
 

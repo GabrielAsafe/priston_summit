@@ -1,5 +1,5 @@
 #include <windows.h>
-#include "..\\YgyHeader.h"
+#include "../YgyHeader.h"
 
 
 

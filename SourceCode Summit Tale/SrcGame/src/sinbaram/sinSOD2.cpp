@@ -1,15 +1,15 @@
 
 
 #include "sinLinkHeader.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\clan_Enti.h"
-#include "tjboy\\isaocheck\\auth.h"
-#include "..\\FontImage.h"
-#include "..\\bellatraFontEffect.h" 
-#include "..\\field.h"
-#include "Server\\onserver.h"
-#include "Settings\Settings.h"
-#include "Settings\UI.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/clan_Enti.h"
+#include "TJBOY/isaocheck/auth.h"
+#include "../FontImage.h"
+#include "../BellatraFontEffect.h" 
+#include "../field.h"
+#include "Server/onserver.h"
+#include "Settings/Settings.h"
+#include "Settings/UI.h"
 
 
 cSINSOD2 cSinSod2;
@@ -79,14 +79,14 @@ void cSINSOD2::Init()
 	char szBuff[128];
 	for(int i = 0; i < 9; i++)
 	{
-		wsprintf(szBuff, "Image\\SinImage\\Help\\box%d.tga", i + 1);
+		wsprintf(szBuff, "Image//SinImage//Help//box%d.tga", i + 1);
 		MatSod2Box[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	}
-	MatSod2Box[9] = CreateTextureMaterial("Image\\SinImage\\Help\\Box_Line.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Matbltr_Paper291 = CreateTextureMaterial("Image\\SinImage\\Help\\bltr_paper291_145.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Matbltr_Paper291_Text = CreateTextureMaterial("Image\\SinImage\\Help\\bltr_paper_txt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Matbltr_Logo = CreateTextureMaterial("Image\\SinImage\\Help\\bltr.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	Matbltr_ClanRank_KindBar = CreateTextureMaterial("Image\\SinImage\\Help\\bltr_list-title.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatSod2Box[9] = CreateTextureMaterial("Image//SinImage//Help//Box_Line.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Matbltr_Paper291 = CreateTextureMaterial("Image//SinImage//Help//bltr_paper291_145.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Matbltr_Paper291_Text = CreateTextureMaterial("Image//SinImage//Help//bltr_paper_txt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Matbltr_Logo = CreateTextureMaterial("Image//SinImage//Help//bltr.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Matbltr_ClanRank_KindBar = CreateTextureMaterial("Image//SinImage//Help//bltr_list-title.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	ReadTexSettings();
 	Load();
@@ -96,17 +96,17 @@ void cSINSOD2::Load()
 {
 
 
-	lpbltr_clanN = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\bltr_clanN.bmp");
-	lpbltr_clanB = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\bltr_clanB.bmp");
-	lpbltr_ButtonBox = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\bltr_box.bmp");
-	lpbltr_Button_Clan = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\bltr_bt1.bmp");
-	lpbltr_Button_Clan_G = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\bltr_bt1_.bmp");
-	lpbltr_Button_Prize = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\bltr_bt2.bmp");
-	lpbltr_Button_Prize_G = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\bltr_bt2_.bmp");
-	lpbltr_Button_OK = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\bltr_bt3.bmp");
-	lpbltr_Button_OK_G = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\bltr_bt3_.bmp");
-	lpbltr_ClanRank_Title = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\bltr_list-title.bmp");
-	Matbltr_ClanRank_ListLine = LoadDibSurfaceOffscreen("Image\\SinImage\\Help\\bltr_list-line.bmp");
+	lpbltr_clanN = LoadDibSurfaceOffscreen("Image//SinImage//Help//bltr_clanN.bmp");
+	lpbltr_clanB = LoadDibSurfaceOffscreen("Image//SinImage//Help//bltr_clanB.bmp");
+	lpbltr_ButtonBox = LoadDibSurfaceOffscreen("Image//SinImage//Help//bltr_box.bmp");
+	lpbltr_Button_Clan = LoadDibSurfaceOffscreen("Image//SinImage//Help//bltr_bt1.bmp");
+	lpbltr_Button_Clan_G = LoadDibSurfaceOffscreen("Image//SinImage//Help//bltr_bt1_.bmp");
+	lpbltr_Button_Prize = LoadDibSurfaceOffscreen("Image//SinImage//Help//bltr_bt2.bmp");
+	lpbltr_Button_Prize_G = LoadDibSurfaceOffscreen("Image//SinImage//Help//bltr_bt2_.bmp");
+	lpbltr_Button_OK = LoadDibSurfaceOffscreen("Image//SinImage//Help//bltr_bt3.bmp");
+	lpbltr_Button_OK_G = LoadDibSurfaceOffscreen("Image//SinImage//Help//bltr_bt3_.bmp");
+	lpbltr_ClanRank_Title = LoadDibSurfaceOffscreen("Image//SinImage//Help//bltr_list-title.bmp");
+	Matbltr_ClanRank_ListLine = LoadDibSurfaceOffscreen("Image//SinImage//Help//bltr_list-line.bmp");
 
 }
 char temp[4] = { 0 };
@@ -1136,11 +1136,11 @@ int haTowerMoney = 500000;
 
 short haCrystalTowerCount[4];
 
-char *haC_CastleWinFilePath = "image\\Sinimage\\help\\CastleWin.sin";
-char *haC_CastleLoseFilePath = "image\\Sinimage\\help\\CastleLose.sin";
+char *haC_CastleWinFilePath = "image//Sinimage//help//CastleWin.sin";
+char *haC_CastleLoseFilePath = "image//Sinimage//help//CastleLose.sin";
 
-char *haC_CastleWin_FilePath = "image\\Sinimage\\help\\CastleWining.sin";
-char *haC_CastleLose_FilePath = "image\\Sinimage\\help\\CastleLoseing.sin";
+char *haC_CastleWin_FilePath = "image//Sinimage//help//CastleWining.sin";
+char *haC_CastleLose_FilePath = "image//Sinimage//help//CastleLoseing.sin";
 
 
 
@@ -1215,55 +1215,55 @@ void cHASIEGE::init()
 void cHASIEGE::ImageLoad()
 {
 
-	lpSiegeTax = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_tax.bmp");
-	lpSiegeDefense = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_menu.bmp");
-	lpCastleButton = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_button.bmp");
-	lpMercenary = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_box.bmp");
+	lpSiegeTax = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_tax.bmp");
+	lpSiegeDefense = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_menu.bmp");
+	lpCastleButton = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_button.bmp");
+	lpMercenary = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_box.bmp");
 
-	lpDefenseButton[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_soldier_text.bmp");
-	lpDefenseButton[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_tower_text.bmp");
+	lpDefenseButton[0] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_soldier_text.bmp");
+	lpDefenseButton[1] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_tower_text.bmp");
 
-	lpTax_Ok[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_button_ok01_.bmp");
-
-
-	lpSiegeMercenaryIcon[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_soldier_ricaM.bmp");
-	lpSiegeMercenaryIcon[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_soldier_ricaY.bmp");
-	lpSiegeMercenaryIcon[2] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_soldier_bress.bmp");
-
-	lpSiegeMercenaryIcon_[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_soldier_ricaM_01.bmp");
-	lpSiegeMercenaryIcon_[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_soldier_ricaY_01.bmp");
-	lpSiegeMercenaryIcon_[2] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_soldier_bress_01.bmp");
-
-	lpSiegeDefeseIcon[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_ice.bmp");
-	lpSiegeDefeseIcon[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_ele.bmp");
-	lpSiegeDefeseIcon[2] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_fire.bmp");
-
-	lpSiegeDefeseIcon_[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_ice01.bmp");
-	lpSiegeDefeseIcon_[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_ele01.bmp");
-	lpSiegeDefeseIcon_[2] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_fire01.bmp");
-
-	lpSiegeClanskillIcon[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_hp.bmp");
-	lpSiegeClanskillIcon[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_attack.bmp");
-	lpSiegeClanskillIcon[2] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_eva.bmp");
+	lpTax_Ok[0] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_button_ok01_.bmp");
 
 
-	lpSiegeTaxButton = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_button_creat.bmp");
-	lpSiegeDefenseButton = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_tax_button_defense.bmp");
-	lpSiegeOkButton = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_button_ok.bmp");
-	lpSiegeCancelButton = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_button_cancel.bmp");
+	lpSiegeMercenaryIcon[0] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_soldier_ricaM.bmp");
+	lpSiegeMercenaryIcon[1] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_soldier_ricaY.bmp");
+	lpSiegeMercenaryIcon[2] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_soldier_bress.bmp");
 
-	lpCastleIcon[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_castle_outa.bmp");
-	lpCastleIcon[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_castle_outb.bmp");
-	lpCastleIcon[2] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_castle_ina.bmp");
-	lpCastleIcon[3] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_castle_inb.bmp");
-	lpCastleIcon[4] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_castle_inc.bmp");
-	lpCastleIcon[5] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_castle_ind.bmp");
+	lpSiegeMercenaryIcon_[0] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_soldier_ricaM_01.bmp");
+	lpSiegeMercenaryIcon_[1] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_soldier_ricaY_01.bmp");
+	lpSiegeMercenaryIcon_[2] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_soldier_bress_01.bmp");
+
+	lpSiegeDefeseIcon[0] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_ice.bmp");
+	lpSiegeDefeseIcon[1] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_ele.bmp");
+	lpSiegeDefeseIcon[2] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_fire.bmp");
+
+	lpSiegeDefeseIcon_[0] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_ice01.bmp");
+	lpSiegeDefeseIcon_[1] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_ele01.bmp");
+	lpSiegeDefeseIcon_[2] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_fire01.bmp");
+
+	lpSiegeClanskillIcon[0] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_hp.bmp");
+	lpSiegeClanskillIcon[1] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_attack.bmp");
+	lpSiegeClanskillIcon[2] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_eva.bmp");
 
 
-	lpTaxScroll[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_arrow01.bmp");
-	lpTaxScroll[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_arrow02.bmp");
+	lpSiegeTaxButton = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_button_creat.bmp");
+	lpSiegeDefenseButton = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_tax_button_defense.bmp");
+	lpSiegeOkButton = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_button_ok.bmp");
+	lpSiegeCancelButton = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_button_cancel.bmp");
 
-	lpTaxGraph = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\war_tax_graph.bmp");
+	lpCastleIcon[0] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_castle_outa.bmp");
+	lpCastleIcon[1] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_castle_outb.bmp");
+	lpCastleIcon[2] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_castle_ina.bmp");
+	lpCastleIcon[3] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_castle_inb.bmp");
+	lpCastleIcon[4] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_castle_inc.bmp");
+	lpCastleIcon[5] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_castle_ind.bmp");
+
+
+	lpTaxScroll[0] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_arrow01.bmp");
+	lpTaxScroll[1] = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_arrow02.bmp");
+
+	lpTaxGraph = LoadDibSurfaceOffscreen("image//Sinimage//Siege//war_tax_graph.bmp");
 }
 
 
@@ -1715,7 +1715,7 @@ void cHASIEGE::Draw()
 
 		if(!haStartTga)
 		{
-			haStartTga = CreateTextureMaterial("image\\Bellatra\\T_Start_278_65.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+			haStartTga = CreateTextureMaterial("image//Bellatra//T_Start_278_65.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 			ReadTextures();
 		}
 
@@ -1766,7 +1766,7 @@ void cHASIEGE::Draw()
 				TempCount += haCrystalTowerCount[i];
 				if(lpTwoerImage == NULL)
 				{
-					lpTwoerImage = LoadDibSurfaceOffscreen("image\\Sinimage\\Siege\\Tower_image.bmp");
+					lpTwoerImage = LoadDibSurfaceOffscreen("image//Sinimage//Siege//Tower_image.bmp");
 				}
 			}
 		}
@@ -1789,7 +1789,7 @@ void cHASIEGE::Draw()
 
 		for(i = 0; i < 9; i++)
 		{
-			wsprintf(szBuff, "Image\\SinImage\\Player\\ha_B%d.tga", i + 1);
+			wsprintf(szBuff, "Image//SinImage//Player//ha_B%d.tga", i + 1);
 			if(haMatPlayMenu[i] == NULL)
 			{
 				haMatPlayMenu[i] = CreateTextureMaterial(szBuff, 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
@@ -1815,22 +1815,22 @@ void cHASIEGE::Draw()
 
 		for(i = 0; i < 3; i++)
 		{
-			wsprintf(szBuff, "Image\\SinImage\\Player\\habox_0%d.bmp", i + 1);
+			wsprintf(szBuff, "Image//SinImage//Player//habox_0%d.bmp", i + 1);
 			if(haPlayerButtonBox[i] == NULL)
 			{
 				haPlayerButtonBox[i] = LoadDibSurfaceOffscreen(szBuff);
 			}
-			wsprintf(szBuff, "Image\\SinImage\\Player\\ha_S%d_.bmp", i + 1);
+			wsprintf(szBuff, "Image//SinImage//Player//ha_S%d_.bmp", i + 1);
 			if(haPlayerButton_G[i] == NULL)
 			{
 				haPlayerButton_G[i] = LoadDibSurfaceOffscreen(szBuff);
 			}
-			wsprintf(szBuff, "Image\\SinImage\\Player\\ha_S%d.bmp", i + 1);
+			wsprintf(szBuff, "Image//SinImage//Player//ha_S%d.bmp", i + 1);
 			if(haPlayerButton[i] == NULL)
 			{
 				haPlayerButton[i] = LoadDibSurfaceOffscreen(szBuff);
 			}
-			wsprintf(szBuff, "Image\\SinImage\\Player\\ha0%d.bmp", i + 1);
+			wsprintf(szBuff, "Image//SinImage//Player//ha0%d.bmp", i + 1);
 			if(haPlayerButtonDown[i] == NULL)
 			{
 				haPlayerButtonDown[i] = LoadDibSurfaceOffscreen(szBuff);

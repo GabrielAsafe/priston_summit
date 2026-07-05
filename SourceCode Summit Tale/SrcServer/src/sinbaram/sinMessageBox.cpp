@@ -1,10 +1,10 @@
 
 
 #include "sinLinkHeader.h"
-#include "..\\skillsub.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\clan_Enti.h"
-#include "..\\field.h"
+#include "../SkillSub.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/clan_Enti.h"
+#include "../field.h"
 
 
 #define MAX_MONEY 1000000000
@@ -74,14 +74,14 @@ cMESSAGEBOX::~cMESSAGEBOX()
 void cMESSAGEBOX::Init()
 {
 
-	MatBoxLeft = CreateTextureMaterial("Image\\SinImage\\MessageBox\\CutBox\\BoxLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatBoxRight = CreateTextureMaterial("Image\\SinImage\\MessageBox\\CutBox\\BoxRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatBoxCenter = CreateTextureMaterial("Image\\SinImage\\MessageBox\\CutBox\\BoxCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatBoxLeft = CreateTextureMaterial("Image//SinImage//MessageBox//CutBox//BoxLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatBoxRight = CreateTextureMaterial("Image//SinImage//MessageBox//CutBox//BoxRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatBoxCenter = CreateTextureMaterial("Image//SinImage//MessageBox//CutBox//BoxCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatBoxMain = CreateTextureMaterial("Image\\SinImage\\MessageBox\\BoxMain.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatBoxMain = CreateTextureMaterial("Image//SinImage//MessageBox//BoxMain.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
-	MatMyShopPRBoxLine = CreateTextureMaterial("Assets\\GUI\\Inventory\\PR_Box.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatMyShopPRBoxLine = CreateTextureMaterial("Assets//GUI//Inventory//PR_Box.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	Load();
 }
@@ -89,33 +89,33 @@ void cMESSAGEBOX::Init()
 void cMESSAGEBOX::Load()
 {
 
-	lpButtonYes07 = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\Button_Yes_Yellow.bmp");
-	lpButtonYesGlay07 = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\Button_Yes_Glay.bmp");
-	lpButtonNo07 = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\Button_No_Yellow.bmp");
-	lpButtonNoGlay07 = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\Button_No_Glay.bmp");
-	lpButtonBox07 = LoadDibSurfaceOffscreen("image\\Sinimage\\Help\\box-test-title2.bmp");
+	lpButtonYes07 = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//Button_Yes_Yellow.bmp");
+	lpButtonYesGlay07 = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//Button_Yes_Glay.bmp");
+	lpButtonNo07 = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//Button_No_Yellow.bmp");
+	lpButtonNoGlay07 = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//Button_No_Glay.bmp");
+	lpButtonBox07 = LoadDibSurfaceOffscreen("image//Sinimage//Help//box-test-title2.bmp");
 
-	lpArrowUpDown[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Arrow_Up.bmp");
-	lpArrowUpDown[1] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Arrow_Down.bmp");
+	lpArrowUpDown[0] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Arrow_Up.bmp");
+	lpArrowUpDown[1] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Arrow_Down.bmp");
 
-	lpButtonNo[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_No_Glay.bmp");
-	lpButtonNo[1] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_No_Yellow.bmp");
+	lpButtonNo[0] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_No_Glay.bmp");
+	lpButtonNo[1] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_No_Yellow.bmp");
 
-	lpButtonYes[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_Yes_Glay.bmp");
-	lpButtonYes[1] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_Yes_Yellow.bmp");
+	lpButtonYes[0] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_Yes_Glay.bmp");
+	lpButtonYes[1] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_Yes_Yellow.bmp");
 
-	lpButtonOk[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_Ok_Glay.bmp");
-	lpButtonOk[1] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_Ok_Yellow.bmp");
+	lpButtonOk[0] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_Ok_Glay.bmp");
+	lpButtonOk[1] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_Ok_Yellow.bmp");
 
-	lpButtonCancel[0] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_Cancel_Glay.bmp");
-	lpButtonCancel[1] = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\Button_Cancel_Yellow.bmp");
+	lpButtonCancel[0] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_Cancel_Glay.bmp");
+	lpButtonCancel[1] = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//Button_Cancel_Yellow.bmp");
 
-	lpCount = LoadDibSurfaceOffscreen("Image\\SinImage\\MessageBox\\COUNT.bmp");
+	lpCount = LoadDibSurfaceOffscreen("Image//SinImage//MessageBox//COUNT.bmp");
 
 
-	lpStarIcon = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\Star.bmp");
-	lpStarShopClose = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\c.bmp");
-	lpStarShopClose_ = LoadDibSurfaceOffscreen("image\\Sinimage\\MessageBox\\c1.bmp");
+	lpStarIcon = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//Star.bmp");
+	lpStarShopClose = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//c.bmp");
+	lpStarShopClose_ = LoadDibSurfaceOffscreen("image//Sinimage//MessageBox//c1.bmp");
 
 }
 

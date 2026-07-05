@@ -5,7 +5,7 @@
 #include <windows.h>
 #include <windowsx.h>
 #include <mmsystem.h>
-#include "wave.h"
+#include "Wave.h"
 
 
 BOOL LSEnable = FALSE;

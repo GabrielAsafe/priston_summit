@@ -5,7 +5,7 @@
 
 
 char *EvnetDocFilePath[] = {
-	"image\\Sinimage\\Event\\SmashTV.sin",
+	"image//Sinimage//Event//SmashTV.sin",
 
 
 };

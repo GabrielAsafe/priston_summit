@@ -5,7 +5,7 @@
 
 #include <wininet.h>
 #pragma comment( lib, "wininet.lib" )
-//#pragma comment( lib, "..\\Library\\ohZipLib.lib" )
+//#pragma comment( lib, "..//Library//ohZipLib.lib" )
 
 
 

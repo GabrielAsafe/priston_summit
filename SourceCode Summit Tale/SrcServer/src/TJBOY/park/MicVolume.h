@@ -2,7 +2,7 @@
 #ifndef __MICVOL_H__
 #define __MICVOL_H__
 
-#include <Mmsystem.h>
+#include <mmsystem.h>
 
 typedef struct MixerControlStruct
 {

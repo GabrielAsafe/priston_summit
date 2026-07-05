@@ -1,7 +1,8 @@
+#include <algorithm>
 #define MICVOL_CPP
 
 #include <windows.h>
-#include "micvolume.h"
+#include "MicVolume.h"
 
 CMicVolume::CMicVolume(void)
 {
@@ -207,7 +208,7 @@ void CMicVolume::GetDeviceCtrl(MCS *pData)
 		{
 			if(mixer_control[i].dwControlType == MIXERCONTROL_CONTROLTYPE_VOLUME)
 			{
-				pData->nMax = (int)min(32767, mixer_control[i].Metrics.cSteps - 1);
+				pData->nMax = (int)std::min<DWORD>(32767, mixer_control[i].Metrics.cSteps - 1);
 				int nPageIncrement = pData->nMax / 10;
 				if(nPageIncrement <= 0) nPageIncrement = 1;
 				nVolStep = (float)(pData->nMax / 9);

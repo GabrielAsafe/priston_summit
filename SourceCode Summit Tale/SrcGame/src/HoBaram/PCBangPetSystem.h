@@ -11,9 +11,9 @@
 #ifndef _PC_BANG_Pet_H_
 #define _PC_BANG_Pet_H_
 
-#include "smlib3d\\smd3d.h"
-#include "..\\smwsock.h"
-#include "..\\character.h"
+#include "smLib3d/smd3d.h"
+#include "../smwsock.h"
+#include "../character.h"
 
 #define PCBANG_PET_BURSTP	0
 #define PCBANG_PET_BURSTS	1

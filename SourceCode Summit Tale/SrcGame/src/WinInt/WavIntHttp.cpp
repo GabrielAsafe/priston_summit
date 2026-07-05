@@ -146,7 +146,7 @@ int WavIntHttpPush(char *lpRemainderUrl)
 //	if(lpZipHeader->TotalFileSize != dwTotalReadSize)
 //		return 0;
 //
-//	i = UnZipDataToDirectory("SaveData\\Talkgame\\Audio\\", s_ZipWavDownBuff);
+//	i = UnZipDataToDirectory("SaveData//Talkgame//Audio//", s_ZipWavDownBuff);
 //	if(i != ZIP_OK)
 //		return 0;
 //

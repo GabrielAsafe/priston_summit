@@ -10,48 +10,48 @@
 #include <process.h>       
 
 
-#include "Resources\\resource.h"
-#include "..\\smwsock.h"
+#include "Resources/resource.h"
+#include "../smwsock.h"
 
 
 
-#include "..\\smlib3d\\smd3d.h"
-#include "..\\character.h"
-#include "..\\fileread.h"
-#include "..\\playmain.h"
-#include "..\\field.h"
-#include "..\\sinbaram\\sinlinkheader.h"
-#include "..\\effectsnd.h"
+#include "../smLib3d/smd3d.h"
+#include "../character.h"
+#include "../fileread.h"
+#include "../playmain.h"
+#include "../field.h"
+#include "../sinbaram/sinLinkHeader.h"
+#include "../effectsnd.h"
 
-#include "..\\record.h"
-#include "..\playsub.h"
+#include "../record.h"
+#include "../playsub.h"
 
 #include "DllServer.h"
 
-#include "Language\\language.h"
+#include "Language/language.h"
 
-#include "..\\sinbaram\\sinitem.h"
+#include "../sinbaram/sinItem.h"
 
 #include "ClientFuncPos.h"
 
-#include "OnServer.h"
+#include "onserver.h"
 #include "svr_Damage.h"
 
 #include "svrEventSpawn.h"			
 
 #include "svrEventGame.h"				
 
-#include "..\\damage.h"
+#include "../damage.h"
 
-#include "Settings\Settings.h"
+#include "Settings/Settings.h"
 
 #ifdef _W_SERVER
 
-#include "Database\DataBase.h"
+#include "Database/Database.h"
 
 #endif
 
-#include "Login\Login.h"
+#include "Login/Login.h"
 
 
 #ifdef _W_SERVER
@@ -113,7 +113,7 @@ char *szEvent_HopeMsg_StateInit;
 
 #endif
 
-#include "Language\\Chinese\\c_TimeLimit.h" 
+#include "Language/Chinese/C_TimeLimit.h" 
 
 
 #ifdef _LANGUAGE_BRAZIL
@@ -683,10 +683,10 @@ DWORD	dwBabelPlayTime = 0;
 int		BabelPlayField = -1;
 
 
-char *MonsterPath = "GameServer\\monster\\";
-char *ItemPath = "GameServer\\OpenItem\\";
-char *szNpcInfoPath = "GameServer\\npc\\";
-char *szFieldInfoPath = "GameServer\\Field\\";
+char *MonsterPath = "GameServer//monster//";
+char *ItemPath = "GameServer//OpenItem//";
+char *szNpcInfoPath = "GameServer//npc//";
+char *szFieldInfoPath = "GameServer//Field//";
 char *HackLogDirectory = "LogFile";
 char *LogDirectory = "LogFile";
 char *DebugLogDirectory = "LogDebug";
@@ -699,9 +699,7 @@ char *EventLogDirectory = "EventLog";
 static char *szDebugServer = "Summit Tale";
 
 int	DefaultItemCount;
-
-
-static int	ChatBuffCnt;
+static int ChatBuffCnt;
 static char TransTemp[1024];
 static char	szChkID[ACCOUNT_SIZE];
 
@@ -1293,14 +1291,14 @@ int rsLogOut(rsPLAYINFO *lpPlayInfo)
 	int BlockTime;
 	int Money;
 
-	if(lpPlayInfo && lpPlayInfo->getAccount().size() && lpPlayInfo->lpsmSock)
+	if(lpPlayInfo && strlen(lpPlayInfo->getAccount()) && lpPlayInfo->lpsmSock)
 	{
 
-		if(lpPlayInfo->getName().size())
+		if(strlen(lpPlayInfo->getName()))
 		{
 			Money = lpPlayInfo->ServerMoney - lpPlayInfo->WareHouseMoney;
 
-			RecordLogSql(LOG_SQL_LOGOUT, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->szGPCode, 1, lpPlayInfo->smCharInfo.JOB_CODE,
+			RecordLogSql(LOG_SQL_LOGOUT, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->szGPCode, 1, lpPlayInfo->smCharInfo.JOB_CODE,
 				GetExp64(&lpPlayInfo->smCharInfo), lpPlayInfo->smCharInfo.Level, Money);
 		}
 
@@ -1330,7 +1328,7 @@ int rsLogOut(rsPLAYINFO *lpPlayInfo)
 
 
 		RecordGameLogSql(GAMELOG_SQL_LOGOUT, lpPlayInfo->lpsmSock->szIPAddr,
-			lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->szGPCode,
+			lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->szGPCode,
 			lpPlayInfo->smCharInfo.JOB_CODE, lpPlayInfo->szGuid, BlockTime);
 
 
@@ -1338,12 +1336,12 @@ int rsLogOut(rsPLAYINFO *lpPlayInfo)
 		if(lpPlayInfo->szGPCode[0])
 		{
 
-			bSql_Logout(lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->szGPCode,
+			bSql_Logout(lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->szGPCode,
 				lpPlayInfo->DisuseDay, lpPlayInfo->UsePeriod, lpPlayInfo->szGuid, lpPlayInfo->Bl_RNo);
 
 		}
 
-		if(lpPlayInfo->ClanTicketCode && lpPlayInfo->getName().size())
+		if(lpPlayInfo->ClanTicketCode && strlen(lpPlayInfo->getName()))
 			bClan_UserTicket(lpPlayInfo, 1);
 
 
@@ -1595,7 +1593,7 @@ int ConvertMonsterNames()
 }
 
 
-char *szUserModelPath = "char\\tmABCD";
+char *szUserModelPath = "char//tmABCD";
 
 
 int rsCheckActiveFile(char *szFile)
@@ -1616,7 +1614,7 @@ int rsCheckActiveFile(char *szFile)
 
 	for(cnt = len - 1; cnt >= 0; cnt--)
 	{
-		if(szFileName[cnt] == '\\')
+		if(szFileName[cnt] == '//')
 		{
 			szFileName[cnt] = 0;
 			break;
@@ -1691,7 +1689,7 @@ char *SetFieldInfoPath(char *SaveBuff, char *szFieldPath, char *InfoExt)
 
 	while(cnt > 0)
 	{
-		if(szFieldPath[cnt] == '\\')
+		if(szFieldPath[cnt] == '//')
 		{
 			szFile = &szFieldPath[cnt + 1];
 			break;
@@ -4378,7 +4376,7 @@ int	rsOpen_SODConfig()
 
 	int cnt, cnt2;
 
-	if(Open_SODConfig("Bellatra\\bellatra.ini", sHCoreEvent_Bellatra[0], &rsSOD_Tax, rsSOD_Text, sizeof(rsSOD_Text), &rsSOD_ScoreDiv) == 0)
+	if(Open_SODConfig("Bellatra//bellatra.ini", sHCoreEvent_Bellatra[0], &rsSOD_Tax, rsSOD_Text, sizeof(rsSOD_Text), &rsSOD_ScoreDiv) == 0)
 	{
 		memcpy(sHCoreEvent_Bellatra[0], sHCoreEvent1, sizeof(sHCORE_MONSTER)*hCORE_ROUND_MAX);
 		memcpy(sHCoreEvent_Bellatra[1], sHCoreEvent2, sizeof(sHCORE_MONSTER)*hCORE_ROUND_MAX);
@@ -10612,8 +10610,8 @@ int srAutoTransPlay()
 
 				if(rsPlayInfo[cnt].lpsmSock)
 				{
-					wsprintf(szTempBuff, "ID( %s ) Name( %s ) IP( %s ) TimeOut Message\r\n",
-						rsPlayInfo[cnt].getAccount().c_str(), rsPlayInfo[cnt].getName().c_str(), rsPlayInfo[cnt].lpsmSock->szIPAddr);
+					wsprintf(szTempBuff, "ID( %s ) Name( %s ) IP( %s ) TimeOut Message/r/n",
+						rsPlayInfo[cnt].getAccount(), rsPlayInfo[cnt].getName(), rsPlayInfo[cnt].lpsmSock->szIPAddr);
 					Record_TempLogFile(szTempBuff);
 				}
 
@@ -10635,8 +10633,8 @@ int srAutoTransPlay()
 
 							if(rsPlayInfo[cnt].lpsmSock)
 							{
-								wsprintf(szTempBuff, "ID( %s ) Name( %s ) IP( %s ) Func Check Out Message\r\n",
-									rsPlayInfo[cnt].getAccount().c_str(), rsPlayInfo[cnt].getName().c_str(), rsPlayInfo[cnt].lpsmSock->szIPAddr);
+								wsprintf(szTempBuff, "ID( %s ) Name( %s ) IP( %s ) Func Check Out Message/r/n",
+									rsPlayInfo[cnt].getAccount(), rsPlayInfo[cnt].getName(), rsPlayInfo[cnt].lpsmSock->szIPAddr);
 								Record_TempLogFile(szTempBuff);
 							}
 
@@ -10688,7 +10686,7 @@ int srAutoTransPlay()
 			(smWSock[cnt].dwLastRecvTime + 1000 * 60 * 8) < dwPlayServTime)
 		{
 
-			wsprintf(szTempBuff, "Socket IP( %s ) TimeOut Message\r\n", smWSock[cnt].szIPAddr);
+			wsprintf(szTempBuff, "Socket IP( %s ) TimeOut Message/r/n", smWSock[cnt].szIPAddr);
 			Record_TempLogFile(szTempBuff);
 
 			DisconnectUser(&smWSock[cnt]);
@@ -10724,7 +10722,7 @@ int srAutoTransPlay()
 		{
 			if(rsPlayInfo[cnt].lpsmSock && (dwPlayServTime - rsPlayInfo[cnt].dwLastRecvTime) > 9000)
 			{
-				if(!rsPlayInfo[cnt].getName().empty() ||
+				if(!rsPlayInfo[cnt].getName()[0] == 0 ||
 					(rsPlayInfo[cnt].SystemLine && (dwPlayServTime - rsPlayInfo[cnt].dwLastRecvTime) > 10000))
 				{
 
@@ -10897,7 +10895,7 @@ int srBillingMain()
 
 		cnt = (srBillingCounter >> 4)&CONNECTMAX_MASK;
 
-		if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty() && !rsPlayInfo[cnt].getName().empty() && rsPlayInfo[cnt].dwObjectSerial)
+		if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount()[0] == 0 && !rsPlayInfo[cnt].getName()[0] == 0 && rsPlayInfo[cnt].dwObjectSerial)
 		{
 			if(rsPlayInfo[cnt].Bl_RNo)
 			{
@@ -10931,7 +10929,7 @@ int srBillingMain()
 	for(cnt = 0; cnt < CONNECTMAX; cnt++)
 	{
 
-		if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty() && !rsPlayInfo[cnt].getName().empty() && rsPlayInfo[cnt].dwObjectSerial)
+		if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount()[0] == 0 && !rsPlayInfo[cnt].getName()[0] == 0 && rsPlayInfo[cnt].dwObjectSerial)
 		{
 
 			if(rsPlayInfo[cnt].dwPeriodTime2)
@@ -11168,14 +11166,14 @@ void RemoveAll()
 	{
 		if(rsPlayInfo[cnt].lpRecordDataBuff)
 		{
-			if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getName().empty())
+			if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getName()[0] == 0)
 			{
-				if(rsRecordMemoryBuffToFile(&rsPlayInfo[cnt], rsPlayInfo[cnt].getName().c_str(), rsPlayInfo[cnt].lpRecordDataBuff) == TRUE)
+				if(rsRecordMemoryBuffToFile(&rsPlayInfo[cnt], rsPlayInfo[cnt].getName(), rsPlayInfo[cnt].lpRecordDataBuff) == TRUE)
 				{
-					if(lstrcmpi(rsPlayInfo[cnt].getName().c_str(), ((TRANS_RECORD_DATA *)rsPlayInfo[cnt].lpRecordDataBuff)->smCharInfo.szName) != 0)
+					if(lstrcmpi(rsPlayInfo[cnt].getName(), ((TRANS_RECORD_DATA *)rsPlayInfo[cnt].lpRecordDataBuff)->smCharInfo.szName) != 0)
 					{
 						smTransCommand.WParam = 10002;
-						smTransCommand.LParam = (DWORD)rsPlayInfo[cnt].getName().c_str();
+						smTransCommand.LParam = (DWORD)rsPlayInfo[cnt].getName();
 						smTransCommand.SParam = (DWORD)((TRANS_RECORD_DATA *)rsPlayInfo[cnt].lpRecordDataBuff)->smCharInfo.szName;
 						RecordHackLogFile(&rsPlayInfo[cnt], &smTransCommand);
 					}
@@ -11306,7 +11304,7 @@ int AddNewPlayInfo(smWINSOCK *lpsmSock)
 	rsPlayInfo[cnt].PostPassFailCount = 0;
 
 
-	rsPlayInfo[cnt].security = AccountTypes::SEC_PLAYER;
+	rsPlayInfo[cnt].AdminMode = (int)AccountTypes::SEC_PLAYER;
 	rsPlayInfo[cnt].HideMode = 0;
 	rsPlayInfo[cnt].CharLoadingCount = 0;
 	rsPlayInfo[cnt].dwNoticeCount = rsNoticeMessage.Counter;
@@ -11318,9 +11316,9 @@ int AddNewPlayInfo(smWINSOCK *lpsmSock)
 	rsPlayInfo[cnt].ThrowItemCount = 0;
 
 	rsPlayInfo[cnt].setAccountId(0);
-	rsPlayInfo[cnt].setAccount('\0');
-	rsPlayInfo[cnt].setPassword('\0');
-	rsPlayInfo[cnt].setName('\0');
+	rsPlayInfo[cnt].setAccount('/0');
+	rsPlayInfo[cnt].setPassword('/0');
+	rsPlayInfo[cnt].setName('/0');
 	ZeroMemory(rsPlayInfo[cnt].szServerID, sizeof(rsPlayInfo[cnt].szServerID));
 
 	rsPlayInfo[cnt].dwLastRecvTime = dwPlayServTime;
@@ -11604,7 +11602,7 @@ int AddNewPlayInfo(smWINSOCK *lpsmSock)
 	rsPlayInfo[cnt].dwTime_PrimeItem_VampCuspid = 0;
 	rsPlayInfo[cnt].dwTime_PrimeItem_VampCuspid_EX = 0;
 	rsPlayInfo[cnt].dwTime_PrimeItem_ManaRecharg = 0;
-	rsPlayInfo[cnt].dwTime_PrimeItem_StaminaRecharg = 0;
+	rsPlayInfo[cnt].dwTime_PrimeItem_ManaRecharg = 0;
 	rsPlayInfo[cnt].dwTime_PrimeItem_ManaReduce = 0;
 	rsPlayInfo[cnt].dwTime_PrimeItem_MightofAwell = 0;
 	rsPlayInfo[cnt].dwTime_PrimeItem_MightofAwell2 = 0;
@@ -12627,7 +12625,7 @@ int SendWareHouseToClient(rsPLAYINFO *lpPlayInfo)
 	if((lpPlayInfo->dwDataError&rsDATA_ERROR_WAREHOUSE) != 0)
 		return FALSE;
 
-	if(!lpPlayInfo->getAccount().empty() && !lpPlayInfo->szServerID[0] && ((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->size > 0)
+	if(!lpPlayInfo->getAccount()[0] == 0 && !lpPlayInfo->szServerID[0] && ((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->size > 0)
 	{
 
 		return rsLoadWareHouseData(lpPlayInfo);
@@ -12768,7 +12766,7 @@ int SendOpenGiftExpress(rsPLAYINFO *lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 			if(lpPlayInfo->lpPostBoxItem->PostItem[cnt].Flag &&
 				lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwItemCode == dwItemCode &&
 				(lpPlayInfo->lpPostBoxItem->PostItem[cnt].szCharName[0] == '*' ||
-					lstrcmpi(lpPlayInfo->getName().c_str(), lpPlayInfo->lpPostBoxItem->PostItem[cnt].szCharName) == 0))
+					lstrcmpi(lpPlayInfo->getName(), lpPlayInfo->lpPostBoxItem->PostItem[cnt].szCharName) == 0))
 			{
 
 				spJobCode = lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwJobCode;
@@ -12871,7 +12869,7 @@ int SendOpenGiftExpress(rsPLAYINFO *lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 	{
 		if(lpPlayInfo->lpPostBoxItem->PostItem[cnt].Flag &&
 			(lpPlayInfo->lpPostBoxItem->PostItem[cnt].szCharName[0] == '*' ||
-				lstrcmpi(lpPlayInfo->getName().c_str(), lpPlayInfo->lpPostBoxItem->PostItem[cnt].szCharName) == 0))
+				lstrcmpi(lpPlayInfo->getName(), lpPlayInfo->lpPostBoxItem->PostItem[cnt].szCharName) == 0))
 		{
 
 			if(lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwItemCode == (sinGG1 | sin01) ||
@@ -12977,7 +12975,7 @@ int rsSend_BadPlayerToGameServer(smWINSOCK *lpsmSock, int BadPlayer)
 {
 	smTRANS_COMMAND		smTransCommand;
 
-	smTransCommand.code = OpCode::OPCODE_BAD_PLAYER;
+	smTransCommand.code = OpCode::OPCODE_DEAD_PLAYER;
 	smTransCommand.size = sizeof(smTRANS_COMMAND);
 	smTransCommand.WParam = BadPlayer;
 	smTransCommand.LParam = 0;
@@ -13292,7 +13290,7 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 		QuestMode = TRUE;
 	else
 	{
-		if(lpPlayInfo->getSecurity() >= AccountTypes::SEC_CONSOLE)
+		if(lpPlayInfo->getSecurity() >= AccountTypes::SEC_MODERATOR)
 			QuestMode = -1;
 		else
 			QuestMode = FALSE;
@@ -14955,7 +14953,7 @@ int rsRecvMakeLinkCore(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
 {
 	int len, len2;
 
-	if(lpPlayInfo->getName().empty() || CheckItemForm(&lpTransItemInfo->Item) == FALSE) return FALSE;
+	if(lpPlayInfo->getName()[0] == 0 || CheckItemForm(&lpTransItemInfo->Item) == FALSE) return FALSE;
 
 
 	if(rsDeleteInvenItem(lpPlayInfo, lpTransItemInfo->Item.CODE, lpTransItemInfo->Item.ItemHeader.Head, lpTransItemInfo->Item.ItemHeader.dwChkSum) < 0)
@@ -14966,14 +14964,14 @@ int rsRecvMakeLinkCore(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
 	lpTransItemInfo->Item.BackUpChkSum = lpTransItemInfo->Item.ItemHeader.dwChkSum;
 
 	len = lstrlen(lpTransItemInfo->Item.ItemName) + 1;
-	len2 = lpPlayInfo->getName().size();
+	len2 = strlen(lpPlayInfo->getName());
 
 	if((len + len2) > 32)
 	{
 		return FALSE;
 	}
 
-	strcpy_s(lpTransItemInfo->Item.ItemName + len, sizeof(lpTransItemInfo->Item.ItemName) - len, lpPlayInfo->getName().c_str());
+	strcpy_s(lpTransItemInfo->Item.ItemName + len, sizeof(lpTransItemInfo->Item.ItemName) - len, lpPlayInfo->getName());
 
 	ReformItem(&lpTransItemInfo->Item);
 
@@ -15707,7 +15705,7 @@ int	rsCheckItemCode(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpItem)
 	FILE	*fp;
 
 	CreateDirectory(szErrorItemDir, NULL);
-	wsprintf(szBuff, "%s\\%s(%d).itm", szErrorItemDir, lpPlayInfo->smCharInfo.szName, lpItem->ItemHeader.dwChkSum);
+	wsprintf(szBuff, "%s//%s(%d).itm", szErrorItemDir, lpPlayInfo->smCharInfo.szName, lpItem->ItemHeader.dwChkSum);
 	fp = fopen(szBuff, "wb");
 	if(fp)
 	{
@@ -17752,7 +17750,7 @@ char *rsGetWord(char *q, char *p)
 
 	while((*p != 32) && (*p != 9) && (*p != 58) && (*p != 0))
 	{
-		if(*p == '\n' || *p == '\r') break;
+		if(*p == '/n' || *p == '/r') break;
 		*q++ = *p++;
 	}
 	*q++ = 0;
@@ -17789,7 +17787,7 @@ rsPLAYINFO *FindUserFromName2(char *szName)
 	{
 		if(rsPlayInfo[cnt].lpsmSock)
 		{
-			if(lstrcmpi(rsPlayInfo[cnt].getName().c_str(), szName) == 0)
+			if(lstrcmpi(rsPlayInfo[cnt].getName(), szName) == 0)
 			{
 				return &rsPlayInfo[cnt];
 			}
@@ -17827,9 +17825,9 @@ rsPLAYINFO *FindUserFromName3(char *szName)
 	{
 		if(rsPlayInfo[cnt].lpsmSock)
 		{
-			if(!rsPlayInfo[cnt].getName().empty())
+			if(!rsPlayInfo[cnt].getName()[0] == 0)
 			{
-				if(lstrcmpi(rsPlayInfo[cnt].getName().c_str(), szName) == 0)
+				if(lstrcmpi(rsPlayInfo[cnt].getName(), szName) == 0)
 				{
 					return &rsPlayInfo[cnt];
 				}
@@ -17855,7 +17853,7 @@ rsPLAYINFO *FindUserFromCodeName(char *szName, DWORD dwSpeedSum)
 	{
 		if(rsPlayInfo[cnt].lpsmSock)
 		{
-			if(rsPlayInfo[cnt].dwCode_Name == dwSpeedSum && lstrcmpi(rsPlayInfo[cnt].getName().c_str(), szName) == 0)
+			if(rsPlayInfo[cnt].dwCode_Name == dwSpeedSum && lstrcmpi(rsPlayInfo[cnt].getName(), szName) == 0)
 			{
 				return &rsPlayInfo[cnt];
 			}
@@ -17870,9 +17868,9 @@ rsPLAYINFO *FindUserFromID(char *szID)
 {
 	for(int cnt = 0; cnt < CONNECTMAX; cnt++)
 	{
-		if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty())
+		if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount()[0] == 0)
 		{
-			if(lstrcmpi(rsPlayInfo[cnt].getAccount().c_str(), szID) == 0)
+			if(lstrcmpi(rsPlayInfo[cnt].getAccount(), szID) == 0)
 			{
 				return &rsPlayInfo[cnt];
 			}
@@ -17948,7 +17946,7 @@ int CreateCommandItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, char *szI
 
 	lpsItem = new psITEM;
 
-	if(szItem[0] != '\"')
+	if(szItem[0] != '/"')
 	{
 		if(szItem[0] != '@')
 		{
@@ -18021,7 +18019,7 @@ int CreateCommandItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, char *szI
 		len = lstrlen(szItem);
 		for(cnt = 1; cnt < len; cnt++)
 		{
-			if(szItem[cnt] == '\"')
+			if(szItem[cnt] == '/"')
 			{
 				szItemName[cnt2] = 0; break;
 			}
@@ -18381,7 +18379,7 @@ int MakePlayerList()
 	}
 
 	ListBuff[0] = ListCnt * sizeof(DWORD);
-	ListBuff[1] = OpCode::OPCODE_IPLIST;
+	ListBuff[1] = OpCode::OPCODE_PLAYLIST;
 
 	return ListBuff[0];
 }
@@ -18411,7 +18409,7 @@ void DisplayMessage()
 
 	if(ShutDownFlag)
 	{
-		wsprintf(szMessageBuff, "Servidor desligando (%d)\r\nFechando servidor\r\nRestam %d Min.\r\n", cnt, ShutDownLeftTime + 1);
+		wsprintf(szMessageBuff, "Servidor desligando (%d)/r/nFechando servidor/r/nRestam %d Min./r/n", cnt, ShutDownLeftTime + 1);
 		SetWindowText(hMsgTextWnd, szMessageBuff);
 		return;
 	}
@@ -18426,7 +18424,7 @@ void DisplayMessage()
 
 		if(AutoPlayServer || UserPlayServer)
 		{
-			wsprintf(szMessageBuff, "Status do Servidor\r\nUsuarios : %d\r\nMonstros: %d\r\nMensagens Recebidas : %d\r\nProcessos: ( Snd:%d Rcv:%d )\r\nErros de Rota: %d\r\nErros de Conex? : %d (%d)",
+			wsprintf(szMessageBuff, "Status do Servidor/r/nUsuarios : %d/r/nMonstros: %d/r/nMensagens Recebidas : %d/r/nProcessos: ( Snd:%d Rcv:%d )/r/nErros de Rota: %d/r/nErros de Conex? : %d (%d)",
 				cnt, ActivePlayCounter, WSA_RecvMsgCount,
 				GetUseingSendThreadCount(), GetUseingRecvThreadCount(),
 				srRouteErrorCount,
@@ -18434,7 +18432,7 @@ void DisplayMessage()
 		}
 		else
 		{
-			wsprintf(szMessageBuff, "[Login Server]\r\nUsu?ios : %d\r\nFalha no Login: %d\r\nProcesso Login: %d/%d Proc(%d) DLL_Code(%d)\r\n?timo Login: %s (%d)\r\nLogin Que: %d\r\nLogQue Using: %d\r\nLogQue Process: %d/ Avg(%d) Max(%d)\r\nLogQue Failed: %d\r\nItem Log: Using(%d) Failed(%d)\r\nEvent Log: Using(%d) Failed(%d)\r\n",
+			wsprintf(szMessageBuff, "[Login Server]/r/nUsu?ios : %d/r/nFalha no Login: %d/r/nProcesso Login: %d/%d Proc(%d) DLL_Code(%d)/r/n?timo Login: %s (%d)/r/nLogin Que: %d/r/nLogQue Using: %d/r/nLogQue Process: %d/ Avg(%d) Max(%d)/r/nLogQue Failed: %d/r/nItem Log: Using(%d) Failed(%d)/r/nEvent Log: Using(%d) Failed(%d)/r/n",
 				cnt, srLogFailedCount,
 				LogOnThread_Sucess, LogOnThread_Count, LogOnThread_Process, UseDLL_Code,
 				szLastLogInID, LastLogInResult,
@@ -18447,14 +18445,14 @@ void DisplayMessage()
 		break;
 
 	case 1:
-		wsprintf(szMessageBuff, "[Informa��es do Jogo]\r\nContador de Experi?cia: %d\r\nOp. Monstro: %d\r\nItem: %d [Mny %d]\r\nItemBuffOver: %d\r\n",
+		wsprintf(szMessageBuff, "[Informa��es do Jogo]/r/nContador de Experi?cia: %d/r/nOp. Monstro: %d/r/nItem: %d [Mny %d]/r/nItemBuffOver: %d/r/n",
 			rsMonHuntCount, rsMonOpenCount, rsItemOpenCount, rsMoneyTotalCount, rsItemBuffOverCount);
 		break;
 
 	case 2:
 
 
-		wsprintf(szMessageBuff, "[Configura��o]\r\nC?igo do Servidor: %d\r\nNome do Servidor: %s\r\nVers?: %d\r\nSafeCode Count: %d\r\nCheckSum Count: %d\r\nMonster: %d\r\nItem: %d",
+		wsprintf(szMessageBuff, "[Configura��o]/r/nC?igo do Servidor: %d/r/nNome do Servidor: %s/r/nVers?: %d/r/nSafeCode Count: %d/r/nCheckSum Count: %d/r/nMonster: %d/r/nItem: %d",
 			rsServerConfig.ServerCode, rsServerConfig.szServerName, rsServerConfig.LimitVersion,
 			rsServerConfig.SafeClientCodeCount, rsServerConfig.ClientCheckSumCount, chrMonsterCnt, DefaultItemCount);
 
@@ -18463,7 +18461,7 @@ void DisplayMessage()
 	case 3:
 
 
-		wsprintf(szMessageBuff, "[Informa��o de ?ea]\r\n[Aser]Line: %d\r\n[Aser]NetState.: %d\r\n[Aser]Conn.: %d (%d)\r\n[Aser]Process: %d",
+		wsprintf(szMessageBuff, "[Informa��o de ?ea]/r/n[Aser]Line: %d/r/n[Aser]NetState.: %d/r/n[Aser]Conn.: %d (%d)/r/n[Aser]Process: %d",
 			rsGetSystemLineCount(), rsSystemNetCount, rsSystemLineConnCount, rsSystemLineFailedCount, rsSystemLinePlayCount);
 
 		break;
@@ -18518,13 +18516,13 @@ int rsRecordCheckFile(rsPLAYINFO *lpPlayInfo)
 	result = FALSE;
 
 	if(!lpPlayInfo) return FALSE;
-	if(!lpPlayInfo->lpRecordDataBuff || lpPlayInfo->getAccount().empty() || lpPlayInfo->getName().empty()) return FALSE;
+	if(!lpPlayInfo->lpRecordDataBuff || lpPlayInfo->getAccount()[0] == 0 || lpPlayInfo->getName()[0] == 0) return FALSE;
 
 	lpBuff = lpPlayInfo->lpRecordDataBuff;
 	lpPlayInfo->lpRecordDataBuff = new char[sizeof(TRANS_RECORD_DATA)];
 	if(lpPlayInfo->lpRecordDataBuff)
 	{
-		GetUserDataFile(lpPlayInfo->getName().c_str(), szFile);
+		GetUserDataFile(lpPlayInfo->getName(), szFile);
 		fp = fopen(szFile, "rb");
 		if(fp)
 		{
@@ -18540,7 +18538,7 @@ int rsRecordCheckFile(rsPLAYINFO *lpPlayInfo)
 
 				rsRecordMemoryBuff_CheckInvenItem(lpPlayInfo);
 
-				rsRecordMemoryBuffToFile(lpPlayInfo, lpPlayInfo->getName().c_str(), lpPlayInfo->lpRecordDataBuff);
+				rsRecordMemoryBuffToFile(lpPlayInfo, lpPlayInfo->getName(), lpPlayInfo->lpRecordDataBuff);
 
 
 				smTransCommand.WParam = 8400;
@@ -18582,17 +18580,17 @@ int Serv_DisconnectPlayer(smWINSOCK *lpsmSock)
 	if(LoginServer && tpInfo)
 	{
 		dwServer_DebugMessage = 100;
-		strcpy_s(szServer_DebugLastUserID, tpInfo->getAccount().c_str());
-		strcpy_s(szServer_DebugLastUserName, tpInfo->getName().c_str());
+		strcpy_s(szServer_DebugLastUserID, tpInfo->getAccount());
+		strcpy_s(szServer_DebugLastUserName, tpInfo->getName());
 	}
 	Server_DebugCount = 100;
 
-	if(tpInfo->lpRecordDataBuff && !tpInfo->getAccount().empty() && !tpInfo->getName().empty() &&
+	if(tpInfo->lpRecordDataBuff && !tpInfo->getAccount()[0] == 0 && !tpInfo->getName()[0] == 0 &&
 		((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->size > 0)
 	{
 
 		((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->smCharInfo.szName[31] = 0;
-		if(lstrcmpi(((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->smCharInfo.szName, tpInfo->getName().c_str()) == 0)
+		if(lstrcmpi(((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->smCharInfo.szName, tpInfo->getName()) == 0)
 		{
 
 			if(rsServerConfig.ServerInventoryMode)
@@ -18610,7 +18608,7 @@ int Serv_DisconnectPlayer(smWINSOCK *lpsmSock)
 
 			for(cnt = 0; cnt < 6; cnt++)
 			{
-				if(rsRecordMemoryBuffToFile(tpInfo, tpInfo->getName().c_str(), tpInfo->lpRecordDataBuff) == TRUE) break;
+				if(rsRecordMemoryBuffToFile(tpInfo, tpInfo->getName(), tpInfo->lpRecordDataBuff) == TRUE) break;
 
 
 				smTransCommand.WParam = 8080;
@@ -18665,7 +18663,7 @@ int Serv_DisconnectPlayer(smWINSOCK *lpsmSock)
 
 	Server_DebugCount = 105;
 
-	if((tpInfo->ThrowItemCount > 0 || tpInfo->UnsaveMoney >= 0) && !tpInfo->getName().empty())
+	if((tpInfo->ThrowItemCount > 0 || tpInfo->UnsaveMoney >= 0) && !tpInfo->getName()[0] == 0)
 		RecordSaveThrowData(tpInfo);
 
 	if(tpInfo->SystemLine)
@@ -18717,8 +18715,8 @@ int DisconnectUser(smWINSOCK *lpsmSock)
 	if(LoginServer && tpInfo)
 	{
 		dwServer_DebugMessage = 200;
-		strcpy_s(szServer_DebugLastUserID, tpInfo->getAccount().c_str());
-		strcpy_s(szServer_DebugLastUserName, tpInfo->getName().c_str());
+		strcpy_s(szServer_DebugLastUserID, tpInfo->getAccount());
+		strcpy_s(szServer_DebugLastUserName, tpInfo->getName());
 	}
 	Server_DebugCount = 200;
 
@@ -18728,13 +18726,13 @@ int DisconnectUser(smWINSOCK *lpsmSock)
 
 
 
-		if(tpInfo->lpRecordDataBuff && !tpInfo->getAccount().empty() && !tpInfo->getName().empty() &&
+		if(tpInfo->lpRecordDataBuff && !tpInfo->getAccount()[0] == 0 && !tpInfo->getName()[0] == 0 &&
 			((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->size > 0)
 		{
 
 			((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->smCharInfo.szName[31] = 0;
 
-			if(lstrcmpi(((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->smCharInfo.szName, tpInfo->getName().c_str()) == 0)
+			if(lstrcmpi(((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->smCharInfo.szName, tpInfo->getName()) == 0)
 			{
 
 				if(rsServerConfig.ServerInventoryMode)
@@ -18754,7 +18752,7 @@ int DisconnectUser(smWINSOCK *lpsmSock)
 
 				for(cnt = 0; cnt < 6; cnt++)
 				{
-					if(rsRecordMemoryBuffToFile(tpInfo, tpInfo->getName().c_str(), tpInfo->lpRecordDataBuff) == TRUE) break;
+					if(rsRecordMemoryBuffToFile(tpInfo, tpInfo->getName(), tpInfo->lpRecordDataBuff) == TRUE) break;
 
 
 					smTransCommand.WParam = 8080;
@@ -18810,7 +18808,7 @@ int DisconnectUser(smWINSOCK *lpsmSock)
 
 		Server_DebugCount = 205;
 
-		if((tpInfo->ThrowItemCount > 0 || tpInfo->UnsaveMoney >= 0) && !tpInfo->getName().empty())
+		if((tpInfo->ThrowItemCount > 0 || tpInfo->UnsaveMoney >= 0) && !tpInfo->getName()[0] == 0)
 			RecordSaveThrowData(tpInfo);
 
 		if(tpInfo->SystemLine)
@@ -19399,7 +19397,7 @@ DWORD WINAPI RecordPCJung_Thread(void *pInfo)
 
 		for(cnt = 0; cnt < CONNECTMAX; cnt++)
 		{
-			if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty() && rsPlayInfo[cnt].GpType == 1)
+			if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount()[0] == 0 && rsPlayInfo[cnt].GpType == 1)
 			{
 				if(rsPlayInfo[cnt].GpCode == 0)
 				{
@@ -19686,7 +19684,7 @@ int	rsShutDown()
 #ifdef	_LANGUAGE_KOREAN
 #include "serverlog.h"
 #else
-#include "e_serverlog.h"
+#include "E_serverlog.h"
 #endif
 
 int	rsSendTransCommand(rsPLAYINFO *lpPlayInfo, DWORD	dwCode, int WParam, int LParam, int SParam, int EParam)
@@ -19749,13 +19747,13 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 	{
 		/*lpPlayInfo->username[USERNAME_SIZE - 1] = 0;
 		lpPlayInfo->password[PASSWORD_SIZE - 1] = 0;*/
-		wsprintf(szBuff, "%d:%d:%d IP-( %s ) ID-( %s ) Name-( %s ) / ( %d ) - ( %d , %d )\r\n",
-			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+		wsprintf(szBuff, "%d:%d:%d IP-( %s ) ID-( %s ) Name-( %s ) / ( %d ) - ( %d , %d )/r/n",
+			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 			lpTransCommand->WParam, lpTransCommand->LParam, lpTransCommand->SParam);
 	}
 	else
 	{
-		wsprintf(szBuff, "%d:%d:%d ( %d ) - ( %d , %d )\r\n", st.wHour, st.wMinute, st.wSecond, lpTransCommand->WParam, lpTransCommand->LParam, lpTransCommand->SParam);
+		wsprintf(szBuff, "%d:%d:%d ( %d ) - ( %d , %d )/r/n", st.wHour, st.wMinute, st.wSecond, lpTransCommand->WParam, lpTransCommand->LParam, lpTransCommand->SParam);
 	}
 
 
@@ -19770,8 +19768,8 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		case -1:
 		{
 
-			wsprintf(szBuff, "%d:%d:%d IP:[ %s ] ID:[ %s ] Name:[ %s ] / Param:[ %d ] - ( Power User Hacker [ %d ])\r\n",
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+			wsprintf(szBuff, "%d:%d:%d IP:[ %s ] ID:[ %s ] Name:[ %s ] / Param:[ %d ] - ( Power User Hacker [ %d ])/r/n",
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpTransCommand->WParam, lpTransCommand->LParam);
 		}
 		break;
@@ -19779,12 +19777,12 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
 
 			if(!lpPlayInfo->BlockTime)
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 18);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 18);
 
 		}
 		break;
@@ -19793,7 +19791,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1010,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}
 		break;
@@ -19802,7 +19800,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1011,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}
 		break;
@@ -19810,18 +19808,18 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		case 1100:
 		{
 			wsprintf(szBuff, msg1100,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, (char *)lpTransCommand->LParam);
 
 			if(strstr((char *)lpTransCommand->LParam, "FPE") != 0)
 			{
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 
 			}
 			else
 			{
 
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60);
 			}
 
 		}
@@ -19836,12 +19834,12 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 
 			if(strstr((char *)lpTransCommand->LParam, "FPE") != 0)
 			{
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 24);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 24);
 			}
 			else
 			{
 
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60);
 			}
 		}
 		break;
@@ -19850,11 +19848,11 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1102,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
 			if(!lpPlayInfo->BlockTime)
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 19);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 19);
 
 		}
 		break;
@@ -19863,7 +19861,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1103,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}
 		break;
@@ -19872,12 +19870,12 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1110,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 
 
 			if(!lpPlayInfo->BlockTime)
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 1);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 1);
 
 		}
 		break;
@@ -19886,12 +19884,12 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1120,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 
 
 
-			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 
 
 			DisconnectUser(lpPlayInfo->lpsmSock);
@@ -19902,12 +19900,12 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1130,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
-			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 
-			rsAddBlockUserFile(lpPlayInfo->getAccount().c_str(), szBuff);
+			rsAddBlockUserFile(lpPlayInfo->getAccount(), szBuff);
 		}
 		break;
 
@@ -19915,11 +19913,11 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1132,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 			if(!lpPlayInfo->BlockTime)
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 24);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 24);
 		}
 		break;
 
@@ -19927,7 +19925,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1150,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}
 		break;
@@ -19936,14 +19934,14 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1200,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
 			lpPlayInfo->CrackWarning = lpTransCommand->WParam;
 
 
 			if(!lpPlayInfo->BlockTime)
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 2);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 2);
 
 
 
@@ -19956,7 +19954,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1250,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 			lpPlayInfo->CrackWarning = lpTransCommand->WParam;
@@ -19988,7 +19986,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1500,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}
 		break;
@@ -19997,7 +19995,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1510,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
 
@@ -20008,14 +20006,14 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		case 1530:
 		{
 			wsprintf(szBuff, msg1530,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 			if(rsServerConfig.Dis_PotionError)
 			{
 
 				if(!lpPlayInfo->BlockTime)
-					lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), rsServerConfig.Dis_PotionError*(1000 * 60));
+					lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), rsServerConfig.Dis_PotionError*(1000 * 60));
 
 				lpPlayInfo->dwTime_Disconnect = 1;
 				rsSendTransCommand(lpPlayInfo, OpCode::OPCODE_CLEARPOTION, 0, 0, 0, 0);
@@ -20034,7 +20032,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 
 
 			if(!lpPlayInfo->BlockTime)
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60);
 
 		}
 		break;
@@ -20052,10 +20050,10 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1820,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
-			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 
 			rsSendCloseClient(lpPlayInfo);
 		}
@@ -20064,10 +20062,10 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		case 1821:
 		{
 			wsprintf(szBuff, msg1821,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
-			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 
 			rsSendCloseClient(lpPlayInfo);
 		}
@@ -20076,7 +20074,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		case 1823:
 		{
 			wsprintf(szBuff, msg1823,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
 			rsSendCloseClient(lpPlayInfo);
@@ -20105,7 +20103,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1840,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 			if(lpTransCommand->LParam == 9100)
@@ -20120,7 +20118,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1900,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->smCharInfo.szName,
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->smCharInfo.szName,
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}
 		break;
@@ -20138,7 +20136,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1960,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}
 		break;
@@ -20147,7 +20145,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg2000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}
 		break;
@@ -20156,64 +20154,64 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg2100,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
-			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 		}break;
 		case 2110:
 		{
 
 			wsprintf(szBuff, msg2110,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 2120:
 		{
 
 			wsprintf(szBuff, msg2120,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 2300:
 		{
 
 			wsprintf(szBuff, msg2300,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 2400:
 		{
 
 			wsprintf(szBuff, msg2400,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 2700:
 		{
 
 			wsprintf(szBuff, msg2700,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 2800:
 		{
 
 			wsprintf(szBuff, msg2800,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 4000:
 		{
 			wsprintf(szBuff, msg4000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 4100:
 		{
 
 			wsprintf(szBuff, msg4100,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 5000:
@@ -20226,50 +20224,50 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg5100,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->smCharInfo.szName,
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->smCharInfo.szName,
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 5200:
 		{
 
 			wsprintf(szBuff, msg5200,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}break;
 		case 6000:
 		{
 
 			wsprintf(szBuff, msg6000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 
 
-			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 1);
+			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 1);
 
 		}break;
 		case 6100:
 		{
 
 			wsprintf(szBuff, msg6100,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 6200:
 		{
 
 			wsprintf(szBuff, msg6200,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
 			if(lpPlayInfo->BlockTime < 1000 * 60 * 10)
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 10);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 10);
 		}break;
 		case 6500:
 		{
 
 			wsprintf(szBuff, msg6500,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 		}break;
@@ -20277,7 +20275,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg6510,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 		}break;
@@ -20285,18 +20283,18 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg6600,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
 
-			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 		}break;
 		case 6610:
 		{
 
 			wsprintf(szBuff, msg6610,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 		}break;
@@ -20304,54 +20302,54 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg6611,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
 			if(!lpPlayInfo->BlockTime)
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 30);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 30);
 		}break;
 		case 6612:
 		{
 
 			wsprintf(szBuff, msg6612,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
 			if(!lpPlayInfo->BlockTime)
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 30);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 30);
 		}break;
 		case 6620:
 		{
 
 			wsprintf(szBuff, msg6620,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
 			if(!lpPlayInfo->BlockTime)
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60);
 		}break;
 		case 6630:
 		{
 
 			wsprintf(szBuff, msg6630,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 6800:
 		{
 
 			wsprintf(szBuff, msg6800,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 			if(rsServerConfig.ItemCodeOut > 0)
 			{
 				if((lpTransCommand->LParam&sinITEM_MASK1) < (sinPM1&sinITEM_MASK1))
 				{
-					lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+					lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 				}
 				lpPlayInfo->dwTime_Disconnect = 1;
 			}
@@ -20360,12 +20358,12 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg6810,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 			if(rsServerConfig.ItemCodeOut > 1)
 			{
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 24);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 24);
 				DisconnectUser(lpPlayInfo->lpsmSock);
 			}
 		}break;
@@ -20373,24 +20371,24 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg6900,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
-			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 
 		}break;
 		case 6910:
 		{
 
 			wsprintf(szBuff, msg6910,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, (lpTransCommand->SParam & 0xFFFF), (lpTransCommand->SParam >> 16), lpTransCommand->EParam);
 		}break;
 		case 6920:
 		{
 
 			wsprintf(szBuff, msg6920,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 		}break;
@@ -20398,7 +20396,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg7000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
@@ -20407,7 +20405,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg7010,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
@@ -20422,21 +20420,21 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg7020,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 7030:
 		{
 
 			wsprintf(szBuff, msg7030,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 7100:
 		{
 
 			wsprintf(szBuff, msg7100,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 7110:
@@ -20449,36 +20447,36 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 			}
 
 			wsprintf(szBuff, msg7110,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 
-			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60);
+			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60);
 		}break;
 		case 7120:
 		{
 
 			wsprintf(szBuff, msg7120,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
-			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 			lpPlayInfo->dwHopeDisconnectTime = 30000;
 		}break;
 		case 7130:
 		{
 
 			wsprintf(szBuff, msg7130,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 7140:
 		{
 
 			wsprintf(szBuff, msg7140,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->lpsmSock->szIPAddr);
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->lpsmSock->szIPAddr);
 
-			rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 16);
+			rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 16);
 
 			return FALSE;
 		}break;
@@ -20486,42 +20484,42 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg7150,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 7160:
 		{
 
 			wsprintf(szBuff, msg7160,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8000:
 		{
 
 			wsprintf(szBuff, msg8000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->WxParam, lpTransCommand->LxParam, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8010:
 		{
 
 			wsprintf(szBuff, msg8010,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8020:
 		{
 
 			wsprintf(szBuff, msg8020,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8030:
 		{
 
 			wsprintf(szBuff, msg8030,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8040:
@@ -20532,7 +20530,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 				rsSendCloseClient(lpPlayInfo);
 
 #ifdef	_LANGUAGE_BRAZIL
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 				lpPlayInfo->dwHopeDisconnectTime = dwPlayServTime + 3 * 60 * 1000;
 #endif
 			}
@@ -20541,7 +20539,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 
 
 			wsprintf(szBuff, msg8040,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 
@@ -20550,7 +20548,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8050,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 
@@ -20574,28 +20572,28 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8060,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8070:
 		{
 
 			wsprintf(szBuff, msg8070,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->WxParam, lpTransCommand->LxParam, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8080:
 		{
 
 			wsprintf(szBuff, msg8080,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8100:
 		{
 
 			wsprintf(szBuff, msg8100,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
 			if(lpTransCommand->LParam >= 200 && lpPlayInfo->WarningCount > 4)
@@ -20609,70 +20607,70 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8102,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8110:
 		{
 
 			wsprintf(szBuff, msg8110,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8120:
 		{
 
 			wsprintf(szBuff, msg8120,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8140:
 		{
 
 			wsprintf(szBuff, msg8140,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8200:
 		{
 
 			wsprintf(szBuff, msg8200,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8210:
 		{
 
 			wsprintf(szBuff, msg8210,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam, lpTransCommand->SxParam, lpTransCommand->ExParam);
 		}break;
 		case 8300:
 		{
 
 			wsprintf(szBuff, msg8300,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}break;
 		case 8400:
 		{
 
 			wsprintf(szBuff, msg8400,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8500:
 		{
 
 			wsprintf(szBuff, msg8500,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8510:
 		{
 
 			wsprintf(szBuff, msg8510,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->WxParam,
 				lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam,
 				lpTransCommand->LxParam, lpTransCommand->SxParam, lpTransCommand->ExParam);
@@ -20681,21 +20679,21 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8520,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}break;
 		case 8530:
 		{
 
 			wsprintf(szBuff, msg8530,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}break;
 		case 8540:
 		{
 
 			wsprintf(szBuff, msg8540,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 			DisconnectUser(lpPlayInfo->lpsmSock);
@@ -20707,7 +20705,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 
 
 			wsprintf(szBuff, msg8550,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 
@@ -20716,7 +20714,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8560,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 		}break;
@@ -20724,7 +20722,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8570,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 			rsSendCloseClient(lpPlayInfo);
@@ -20733,7 +20731,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8580,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 			rsSendCloseClient(lpPlayInfo);
@@ -20748,56 +20746,56 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 			}
 
 			wsprintf(szBuff, msg8600,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8700:
 		{
 
 			wsprintf(szBuff, msg8700,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8710:
 		{
 
 			wsprintf(szBuff, msg8710,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8720:
 		{
 
 			wsprintf(szBuff, msg8720,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8730:
 		{
 
 			wsprintf(szBuff, msg8730,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8800:
 		{
 
 			wsprintf(szBuff, msg8800,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8810:
 		{
 
 			wsprintf(szBuff, msg8810,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8820:
 		{
 
 			wsprintf(szBuff, msg8820,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 		}break;
@@ -20805,7 +20803,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8830,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 		}break;
@@ -20813,35 +20811,35 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8840,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->WxParam, lpTransCommand->LxParam, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8850:
 		{
 
 			wsprintf(szBuff, msg8850,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8860:
 		{
 
 			wsprintf(szBuff, msg8860,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->WxParam, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam, lpTransCommand->LxParam);
 		}break;
 		case 8870:
 		{
 
 			wsprintf(szBuff, msg8870,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8880:
 		{
 
 			wsprintf(szBuff, msg8880,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 			rsSendCloseClient(lpPlayInfo);
@@ -20850,16 +20848,16 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8890,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
-			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 		}break;
 		case 8900:
 		{
 
 			wsprintf(szBuff, msg8900,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 #ifdef _CHECK_MESH
@@ -20875,8 +20873,8 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 
-			wsprintf(szBuff, "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Item Mixing Error ( %d )( %d )\r\n",
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+			wsprintf(szBuff, "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Item Mixing Error ( %d )( %d )/r/n",
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
@@ -20885,42 +20883,42 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg10000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}break;
 		case 10001:
 		{
 
 			wsprintf(szBuff, msg10001,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}break;
 		case 10002:
 		{
 
 			wsprintf(szBuff, msg10002,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}break;
 		case 10003:
 		{
 
 			wsprintf(szBuff, msg10003,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}break;
 		case 10005:
 		{
 
 			wsprintf(szBuff, msg10005,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}break;
 		case 10006:
 		{
 
 			wsprintf(szBuff, msg10006,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}break;
 		case 10007:
@@ -20934,21 +20932,21 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg10010,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}break;
 		case 10020:
 		{
 
 			wsprintf(szBuff, msg10020,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 11000:
 		{
 
 			wsprintf(szBuff, msg11000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr);
 		}
 		break;
@@ -20956,7 +20954,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg21000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}
 		break;
@@ -20966,14 +20964,14 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			char szTemp[256];
-			wsprintf(szTemp, "logfile [ %d %d %d %d ]\r\n",
+			wsprintf(szTemp, "logfile [ %d %d %d %d ]/r/n",
 				lpTransCommand->WParam, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 			Record_TempLogFile(szTemp);
 
 
 			if(LoginServer)
 			{
-				wsprintf(szTemp, "DebugLog - LastMsg( %d ) LastUserID( %s ) LastUserName( %s ) DebugCount( %d )\r\n",
+				wsprintf(szTemp, "DebugLog - LastMsg( %d ) LastUserID( %s ) LastUserName( %s ) DebugCount( %d )/r/n",
 					dwServer_DebugMessage, szServer_DebugLastUserID, szServer_DebugLastUserName, Server_DebugCount);
 			}
 			Record_TempLogFile(szTemp);
@@ -20985,12 +20983,12 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 			{
 
 				wsprintf(szBuff, msgHack,
-					st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+					st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 					lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->WParam);
 
 				if(lpTransCommand->WParam == 82 || lpTransCommand->WParam == 83 || lpTransCommand->WParam == 5)
 				{
-					lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+					lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 					lpPlayInfo->dwHopeDisconnectTime = 2000;
 				}
 				if(lpTransCommand->WParam == 55 || lpTransCommand->WParam == 54)
@@ -21004,14 +21002,14 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 			{
 
 				wsprintf(szBuff, msgHack100,
-					st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+					st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 					lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->WParam, lpTransCommand->SParam, lpTransCommand->LParam, lpTransCommand->EParam);
 
 				if(lpPlayInfo->BlockTime && lpTransCommand->LParam >= 140)
 				{
 					lpPlayInfo->BadPlayer = 2;
 
-					smTransCommand.code = OpCode::OPCODE_BAD_PLAYER;
+					smTransCommand.code = OpCode::OPCODE_DEAD_PLAYER;
 					smTransCommand.size = sizeof(smTRANS_COMMAND);
 					smTransCommand.WParam = 2;
 					smTransCommand.LParam = 0;
@@ -21027,7 +21025,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 
 
 			if(!lpPlayInfo->BlockTime && lpTransCommand->WParam != 99)
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 21);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 21);
 
 			Record_TempLogFile(szBuff);
 			Record_TempLogFile(szFileName);
@@ -21040,25 +21038,25 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 	if(lpTransCommand->WParam == 50000)
 	{
 
-		wsprintf(szBuff, "%d:%d:%d >**** Timer Overflow **** - ( %d / %d )\r\n",
+		wsprintf(szBuff, "%d:%d:%d >**** Timer Overflow **** - ( %d / %d )/r/n",
 			st.wHour, st.wMinute, st.wSecond, lpTransCommand->LParam, lpTransCommand->SParam);
 	}
 	if(lpTransCommand->WParam == 50010)
 	{
 
-		wsprintf(szBuff, "%d:%d:%d >**** Shutdown Service **** - ( %d / %d )\r\n",
+		wsprintf(szBuff, "%d:%d:%d >**** Shutdown Service **** - ( %d / %d )/r/n",
 			st.wHour, st.wMinute, st.wSecond, lpTransCommand->LParam, lpTransCommand->SParam);
 	}
 	if(lpTransCommand->WParam == 50020)
 	{
 
-		wsprintf(szBuff, "%d:%d:%d >**** Starting Service **** - ( %d / %d )\r\n",
+		wsprintf(szBuff, "%d:%d:%d >**** Starting Service **** - ( %d / %d )/r/n",
 			st.wHour, st.wMinute, st.wSecond, lpTransCommand->LParam, lpTransCommand->SParam);
 	}
 	if(lpTransCommand->WParam == 50030)
 	{
 
-		wsprintf(szBuff, "%d:%d:%d >**** Closed Service **** - ( %d / %d )\r\n",
+		wsprintf(szBuff, "%d:%d:%d >**** Closed Service **** - ( %d / %d )/r/n",
 			st.wHour, st.wMinute, st.wSecond, lpTransCommand->LParam, lpTransCommand->SParam);
 	}
 
@@ -21098,10 +21096,10 @@ int RecordDebugPlayLogFile(rsPLAYINFO *lpPlayInfo)
 	GetLocalTime(&st);
 	wsprintf(szFileName, filenameDebugLogin, DebugLogDirectory, st.wMonth, st.wDay);
 
-	if(!lpPlayInfo->getAccount().empty())
+	if(!lpPlayInfo->getAccount()[0] == 0)
 	{
 		wsprintf(szBuff, msgDebugloginID,
-			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 			lpPlayInfo->lpsmSock->szIPAddr, (int)lpPlayInfo->getSecurity());
 	}
 	else
@@ -21138,10 +21136,10 @@ int RecordJobChanger(rsPLAYINFO *lpPlayInfo)
 	if(!lpPlayInfo->lpsmSock) return FALSE;
 
 	GetLocalTime(&st);
-	wsprintf(szFileName, "LogFile\\(����)%d��%d��.log", st.wMonth, st.wDay);
+	wsprintf(szFileName, "LogFile//(����)%d��%d��.log", st.wMonth, st.wDay);
 
-	wsprintf(szBuff, "ID( %s ) Name( %s ) IP( %s ) - ����( %d )/����( %d )/����( %d )\r\n",
-		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr,
+	wsprintf(szBuff, "ID( %s ) Name( %s ) IP( %s ) - ����( %d )/����( %d )/����( %d )/r/n",
+		lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr,
 		lpPlayInfo->smCharInfo.JOB_CODE, lpPlayInfo->smCharInfo.ChangeJob, lpPlayInfo->smCharInfo.Level);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -21167,7 +21165,7 @@ int Record_TempLogFile(char *szMessage)
 	char	szBuff[256];
 
 	GetLocalTime(&st);
-	wsprintf(szFileName, "LogFile\\(Temp)%d-%d.log", st.wMonth, st.wDay);
+	wsprintf(szFileName, "LogFile//(Temp)%d-%d.log", st.wMonth, st.wDay);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFile == INVALID_HANDLE_VALUE) return FALSE;
@@ -21175,10 +21173,10 @@ int Record_TempLogFile(char *szMessage)
 
 	wsprintf(szBuff, "%d:%d:%d - %s", st.wHour, st.wMinute, st.wSecond, szMessage);
 	len = lstrlen(szBuff);
-	if(szBuff[len - 1] != '\n')
+	if(szBuff[len - 1] != '/n')
 	{
-		szBuff[len] = '\r';
-		szBuff[len + 1] = '\n';
+		szBuff[len] = '/r';
+		szBuff[len + 1] = '/n';
 		len += 2;
 	}
 
@@ -21203,13 +21201,13 @@ int Record_BillingLogFile(rsPLAYINFO *lpPlayInfo, DWORD wParam, DWORD lParam, DW
 	if(!lpPlayInfo || !lpPlayInfo->lpsmSock) return FALSE;
 
 	GetLocalTime(&st);
-	wsprintf(szFileName, "LogFile\\(Billing)%d-%d.log", st.wMonth, st.wDay);
+	wsprintf(szFileName, "LogFile//(Billing)%d-%d.log", st.wMonth, st.wDay);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFile == INVALID_HANDLE_VALUE) return FALSE;
 
-	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) - DisuseDay(%d) dwPeriodTime(%d) tTime(%d) PcUse(%d)\r\n", st.wHour, st.wMinute, st.wSecond,
-		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr, wParam, lParam, sParam, eParam);
+	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) - DisuseDay(%d) dwPeriodTime(%d) tTime(%d) PcUse(%d)/r/n", st.wHour, st.wMinute, st.wSecond,
+		lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr, wParam, lParam, sParam, eParam);
 
 	FileLength = GetFileSize(hFile, NULL);
 	SetFilePointer(hFile, FileLength, NULL, FILE_BEGIN);
@@ -21233,14 +21231,14 @@ int Record_DeadUser(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 
 	GetLocalTime(&st);
 #ifdef _LANGUAGE_KOREAN
-	wsprintf(szFileName, "LogFile\\(Death)%d��%d��.log", st.wMonth, st.wDay);
+	wsprintf(szFileName, "LogFile//(Death)%d��%d��.log", st.wMonth, st.wDay);
 #else
-	wsprintf(szFileName, "LogFile\\(Death)%d-%d.log", st.wMonth, st.wDay);
+	wsprintf(szFileName, "LogFile//(Death)%d-%d.log", st.wMonth, st.wDay);
 #endif
 
-	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) - Level( %d )/Area( %d )\r\n",
+	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) - Level( %d )/Area( %d )/r/n",
 		st.wHour, st.wMinute, st.wSecond,
-		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr,
+		lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr,
 		lpPlayInfo->smCharInfo.Level, lpPlayInfo->Position.Area);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -21271,7 +21269,7 @@ int RecordMixItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSrcItem, sITEMINFO *lpMix
 	wsprintf(szFileName, filenameMixItem, HackLogDirectory, st.wMonth, st.wDay);
 
 	wsprintf(szBuff, msgMixItem,
-		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 		lpPlayInfo->lpsmSock->szIPAddr, lpSrcItem->ItemName,
 		lpSrcItem->ItemHeader.Head, lpSrcItem->ItemHeader.dwChkSum, lpSrcItem->ItemHeader.dwTime,
 		lpMixItem->ItemHeader.Head, lpMixItem->ItemHeader.dwChkSum, lpMixItem->ItemHeader.dwTime);
@@ -21311,7 +21309,7 @@ int RecordAgingItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSrcItem, sITEMINFO *lpM
 		else lpMsg = msgAgingUpItem;
 
 		wsprintf(szBuff, lpMsg,
-			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 			lpPlayInfo->lpsmSock->szIPAddr, lpSrcItem->ItemName, lpMixItem->ItemAgingNum[0],
 			lpSrcItem->ItemHeader.Head, lpSrcItem->ItemHeader.dwChkSum, lpSrcItem->ItemHeader.dwTime,
 			lpMixItem->ItemHeader.Head, lpMixItem->ItemHeader.dwChkSum, lpMixItem->ItemHeader.dwTime);
@@ -21320,7 +21318,7 @@ int RecordAgingItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSrcItem, sITEMINFO *lpM
 	else
 	{
 		wsprintf(szBuff, msgAgingFailItem,
-			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 			lpPlayInfo->lpsmSock->szIPAddr, lpSrcItem->ItemName, lpSrcItem->ItemAgingNum[0],
 			lpSrcItem->ItemHeader.Head, lpSrcItem->ItemHeader.dwChkSum, lpSrcItem->ItemHeader.dwTime);
 	}
@@ -21381,7 +21379,7 @@ int RecordCollectMoney(rsPLAYINFO *lpPlayInfo, int Money)
 	wsprintf(szFileName, filenameCollectMoney, szRecordCollectDirectory, st.wMonth, st.wDay);
 
 	wsprintf(szBuff, msgKindPeople,
-		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 		lpPlayInfo->lpsmSock->szIPAddr, Money, TotalMoney);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -21594,7 +21592,7 @@ int RecordSmeltingItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSmeltingItem)
 	wsprintf(szFileName, filenameSmeltingItem, HackLogDirectory, st.wMonth, st.wDay);
 
 	wsprintf(szBuff, msgSmeltingItem,
-		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 		lpPlayInfo->lpsmSock->szIPAddr, lpSmeltingItem->ItemName,
 		lpSmeltingItem->ItemHeader.Head, lpSmeltingItem->ItemHeader.dwChkSum, lpSmeltingItem->ItemHeader.dwTime);
 
@@ -21631,7 +21629,7 @@ int RecordManufactureItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpManufactureItem)
 	wsprintf(szFileName, filenameManufactureItem, HackLogDirectory, st.wMonth, st.wDay);
 
 	wsprintf(szBuff, msgManufactureItem,
-		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 		lpPlayInfo->lpsmSock->szIPAddr, lpManufactureItem->ItemName,
 		lpManufactureItem->ItemHeader.Head, lpManufactureItem->ItemHeader.dwChkSum, lpManufactureItem->ItemHeader.dwTime);
 
@@ -21669,7 +21667,7 @@ int RecordMixtureResetItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpMixtureResetItem
 	wsprintf(szFileName, filenameMixtureResetItem, HackLogDirectory, st.wMonth, st.wDay);
 
 	wsprintf(szBuff, msgMixtureResetItem,
-		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 		lpPlayInfo->lpsmSock->szIPAddr, lpMixtureResetItem->ItemName,
 		lpMixtureResetItem->ItemHeader.Head, lpMixtureResetItem->ItemHeader.dwChkSum, lpMixtureResetItem->ItemHeader.dwTime);
 
@@ -21710,7 +21708,7 @@ int RecordMovieBloodyBattleItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpMovieBloody
 	wsprintf(szFileName, filenameMovieBloodyBattleItem, EventLogDirectory, st.wMonth, st.wDay);
 
 	wsprintf(szBuff, MovieBloodyBattleLog,
-		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str());
+		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName());
 
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -21747,7 +21745,7 @@ int rsAddBlockUserFile(const char *szID, char *szLog)
 
 	CreateDirectory(szEverBlockDir, NULL);
 
-	wsprintf(szBuff, "%s\\%s.fev", szEverBlockDir, szID);
+	wsprintf(szBuff, "%s//%s.fev", szEverBlockDir, szID);
 
 
 	fp = fopen(szBuff, "wb");
@@ -21768,7 +21766,7 @@ int	rsCheckBlockUserFile(char *szID)
 	WIN32_FIND_DATA	fd;
 	char szBuff[256];
 
-	wsprintf(szBuff, "%s\\%s.fev", szEverBlockDir, szID);
+	wsprintf(szBuff, "%s//%s.fev", szEverBlockDir, szID);
 
 
 	hFindHandle = FindFirstFile(szBuff, &fd);
@@ -21790,7 +21788,7 @@ int ResetBlackUserFiles()
 	WIN32_FIND_DATA	fd;
 	char szBuff[256];
 
-	wsprintf(szBuff, "%s\\*.bur", szBlackUserDir);
+	wsprintf(szBuff, "%s//*.bur", szBlackUserDir);
 	CreateDirectory(szBlackUserDir, NULL);
 
 
@@ -21802,7 +21800,7 @@ int ResetBlackUserFiles()
 	}
 	while(1)
 	{
-		wsprintf(szBuff, "%s\\%s", szBlackUserDir, fd.cFileName);
+		wsprintf(szBuff, "%s//%s", szBlackUserDir, fd.cFileName);
 		DeleteFile(szBuff);
 		if(FindNextFile(hFindHandle, &fd) == FALSE) break;
 	}
@@ -21821,7 +21819,7 @@ int ResetBlackUserFiles(const char *szID, DWORD dwTime)
 	SYSTEMTIME	st;
 
 
-	wsprintf(szBuff, "%s\\%s.bur", szBlackUserDir, szID);
+	wsprintf(szBuff, "%s//%s.bur", szBlackUserDir, szID);
 
 	if(dwTime)
 	{
@@ -21852,7 +21850,7 @@ int FindBlackUserFile(char *szID)
 	WIN32_FIND_DATA	fd;
 	char szBuff[256];
 
-	wsprintf(szBuff, "%s\\%s.bur", szBlackUserDir, szID);
+	wsprintf(szBuff, "%s//%s.bur", szBlackUserDir, szID);
 
 
 	hFindHandle = FindFirstFile(szBuff, &fd);
@@ -22191,8 +22189,8 @@ int	rsRecord_ItemLOG(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD dwHead, DWO
 	}
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 	LogItem.Item[0].dwCode = dwItemCode;
 	LogItem.Item[0].dwINo[0] = dwHead;
@@ -22214,8 +22212,8 @@ int	rsRecord_ItemLog2(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHead, DW
 	if(!lpPlayInfo->lpsmSock) return FALSE;
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 	LogItem.Item[0].dwCode = dwItemCode;
 	LogItem.Item[0].dwINo[0] = dwHead;
@@ -22239,8 +22237,8 @@ int	rsRecord_ItemLog_Change(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHe
 	if(!lpPlayInfo->lpsmSock) return FALSE;
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
 	LogItem.Item[0].dwCode = dwItemCode;
@@ -22269,8 +22267,8 @@ int	rsRecord_ItemLost(rsPLAYINFO *lpPlayInfo, DWORD *lpItemCode, DWORD *lpHead, 
 	if(!lpPlayInfo->lpsmSock) return FALSE;
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
 	LogItem.ItemCount = 0;
@@ -22307,10 +22305,10 @@ int	rsRecord_ItemLog_Trade(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRAN
 	if(!lpPlayInfo2->lpsmSock) return FALSE;
 
 	LogItem.Flag = 8;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
-	strcpy_s(LogItem.TUserID, lpPlayInfo2->getAccount().c_str());
-	strcpy_s(LogItem.TCharName, lpPlayInfo2->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
+	strcpy_s(LogItem.TUserID, lpPlayInfo2->getAccount());
+	strcpy_s(LogItem.TCharName, lpPlayInfo2->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 	LogItem.TIP = lpPlayInfo2->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
@@ -22348,10 +22346,10 @@ int	rsRecord_ItemLog_MyShop(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, DWO
 
 	ZeroMemory(&LogItem, sizeof(LogITEM_TRADE));
 	LogItem.Flag = ITEMLOG_MYSHOP;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
-	strcpy_s(LogItem.TUserID, lpPlayInfo2->getAccount().c_str());
-	strcpy_s(LogItem.TCharName, lpPlayInfo2->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
+	strcpy_s(LogItem.TUserID, lpPlayInfo2->getAccount());
+	strcpy_s(LogItem.TCharName, lpPlayInfo2->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 	LogItem.TIP = lpPlayInfo2->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
@@ -22365,10 +22363,10 @@ int	rsRecord_ItemLog_MyShop(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, DWO
 
 	ZeroMemory(&LogItem, sizeof(LogITEM_TRADE));
 	LogItem.Flag = ITEMLOG_MYSHOP;
-	strcpy_s(LogItem.UserID, lpPlayInfo2->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo2->getName().c_str());
-	strcpy_s(LogItem.TUserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.TCharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo2->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo2->getName());
+	strcpy_s(LogItem.TUserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.TCharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo2->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 	LogItem.TIP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
@@ -22396,8 +22394,8 @@ int	rsRecord_ItemLog_Post(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHead
 	ZeroMemory(&LogItem, sizeof(LogGiftITEM));
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 	LogItem.Gitem.dwCode = dwItemCode;
 	LogItem.Gitem.dwINo[0] = dwHead;
@@ -22425,8 +22423,8 @@ int	rsRecord_SmeltingItemLOG(rsPLAYINFO *lpPlayInfo, DWORD *lpItemCode, DWORD *l
 	if(!lpPlayInfo->lpsmSock) return FALSE;
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
 	LogItem.ItemCount = 0;
@@ -22457,8 +22455,8 @@ int	rsRecord_ManufactureItemLOG(rsPLAYINFO *lpPlayInfo, DWORD *lpItemCode, DWORD
 	if(!lpPlayInfo->lpsmSock) return FALSE;
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
 	LogItem.ItemCount = 0;
@@ -22489,8 +22487,8 @@ int rsRecord_MixtureResetItemLOG(rsPLAYINFO *lpPlayInfo, sMIXTURE_RESET_ITEM_SER
 	if(!lpPlayInfo->lpsmSock) return FALSE;
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
 	LogItem.ItemCount = 0;
@@ -22526,7 +22524,7 @@ int	rsSaveAgingItemToHDD(sITEMINFO *lpItem)
 	CreateDirectory(szLogItemDataDirectory, NULL);
 
 
-	wsprintf(szBuff, "%s\\%d@%d.itm", szLogItemDataDirectory, lpItem->ItemHeader.Head, lpItem->ItemHeader.dwChkSum);
+	wsprintf(szBuff, "%s//%d@%d.itm", szLogItemDataDirectory, lpItem->ItemHeader.Head, lpItem->ItemHeader.dwChkSum);
 	fp = fopen(szBuff, "wb");
 	if(fp)
 	{
@@ -22562,7 +22560,7 @@ int	rsSaveCreateItemToHDD(psITEM	*lpItem)
 	CreateDirectory(szLogItemDataDirectory, NULL);
 
 
-	wsprintf(szBuff, "%s\\%d@%d.itm", szLogItemDataDirectory, lpItem->ItemInfo.ItemHeader.Head, lpItem->ItemInfo.ItemHeader.dwChkSum);
+	wsprintf(szBuff, "%s//%d@%d.itm", szLogItemDataDirectory, lpItem->ItemInfo.ItemHeader.Head, lpItem->ItemInfo.ItemHeader.dwChkSum);
 	fp = fopen(szBuff, "wb");
 	if(fp)
 	{
@@ -22582,7 +22580,7 @@ int	rsLoadCreateItemToHDD(psITEM	*lpItem, char *szFileCode)
 	WIN32_FIND_DATA	fd;
 	char	szBuff[256];
 
-	wsprintf(szBuff, "%s\\%s.itm", szLogItemDataDirectory, szFileCode);
+	wsprintf(szBuff, "%s//%s.itm", szLogItemDataDirectory, szFileCode);
 
 	hFindHandle = FindFirstFile(szBuff, &fd);
 	if(hFindHandle != INVALID_HANDLE_VALUE)
@@ -24262,20 +24260,20 @@ int	rsSaveAdminCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand, int Level)
 	GetLocalTime(&st);
 
 
-	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) AdminLv( %d )> %s\r\n",
+	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) AdminLv( %d )> %s/r/n",
 		st.wHour, st.wMinute, st.wSecond,
-		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr, Level, szChatCommand);
+		lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr, Level, szChatCommand);
 
 	len = lstrlen(szBuff);
 
 #ifdef _LANGUAGE_KOREAN				
-	wsprintf(szFileName, "%s\\(Admin)%d-%d.xog", AdminLogDirectory, st.wMonth, st.wDay);
+	wsprintf(szFileName, "%s//(Admin)%d-%d.xog", AdminLogDirectory, st.wMonth, st.wDay);
 	for(int cnt = 0; cnt < len; cnt++)
 	{
 		szBuff[cnt] = szBuff[cnt] ^ 0x55;
 	}
 #else
-	wsprintf(szFileName, "%s\\(Admin)%d-%d.log", AdminLogDirectory, st.wMonth, st.wDay);
+	wsprintf(szFileName, "%s//(Admin)%d-%d.log", AdminLogDirectory, st.wMonth, st.wDay);
 #endif
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -24319,7 +24317,7 @@ AccountTypes getSecurityLevel(rsPLAYINFO *lpPlayInfo)
 	smWINSOCK *lpsmSock = lpPlayInfo->lpsmSock;
 
 	if(!lpPlayInfo->BlockTime)
-		lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 24);
+		lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 24);
 
 	DisconnectUser(lpsmSock);
 
@@ -24344,13 +24342,13 @@ int	rsClanMoneyLOG(rsPLAYINFO *lpPlayInfo, int Money, int RestMoney)
 	GetLocalTime(&st);
 
 
-	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) Money( %d ) RestMoney( %d )\r\n",
+	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) Money( %d ) RestMoney( %d )/r/n",
 		st.wHour, st.wMinute, st.wSecond,
-		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr, Money, RestMoney);
+		lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr, Money, RestMoney);
 
 	len = lstrlen(szBuff);
 
-	wsprintf(szFileName, "%s\\(ClanMoney)%d-%d.log", HackLogDirectory, st.wMonth, st.wDay);
+	wsprintf(szFileName, "%s//(ClanMoney)%d-%d.log", HackLogDirectory, st.wMonth, st.wDay);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFile == INVALID_HANDLE_VALUE) return FALSE;
@@ -26664,14 +26662,14 @@ int RecordBlessCastleLOG(rsUSER_LIST_TOP10 *lpUserListDamageTop10)
 	wsprintf(szFileName, filenameBlessCaslte, HackLogDirectory, st.wMonth, st.wDay);
 
 
-	wsprintf(szBuff2, "=================== Check Time [ %d:%d:%d ] =====================\r\n",
+	wsprintf(szBuff2, "=================== Check Time [ %d:%d:%d ] =====================/r/n",
 		st.wHour, st.wMinute, st.wSecond);
 
 
 	for(cnt = 0; cnt < 10; cnt++)
 	{
 
-		wsprintf(szBuff, "%d> ClanCode[%d] Damage:%d Count:%d \r\n",
+		wsprintf(szBuff, "%d> ClanCode[%d] Damage:%d Count:%d /r/n",
 			cnt + 1,
 			lpUserListDamageTop10->dwUserCode[cnt],
 			lpUserListDamageTop10->Damage[cnt],
@@ -26682,7 +26680,7 @@ int RecordBlessCastleLOG(rsUSER_LIST_TOP10 *lpUserListDamageTop10)
 
 	}
 
-	wsprintf(szBuff, "* Tower Crystal ( %d %d %d %d )\r\n",
+	wsprintf(szBuff, "* Tower Crystal ( %d %d %d %d )/r/n",
 		lpUserListDamageTop10->bCrystalTowerCount[0],
 		lpUserListDamageTop10->bCrystalTowerCount[1],
 		lpUserListDamageTop10->bCrystalTowerCount[2],
@@ -26693,7 +26691,7 @@ int RecordBlessCastleLOG(rsUSER_LIST_TOP10 *lpUserListDamageTop10)
 
 	if(rsBlessCastle.lpChar_ValhallaTower && rsBlessCastle.lpChar_ValhallaTower->Flag && rsBlessCastle.lpChar_ValhallaTower->smCharInfo.dwCharSoundCode == snCHAR_SOUND_CASTLE_TOWER_B)
 	{
-		wsprintf(szBuff, "* ValhallaTower ( %d:%d )/( %d/%d )\r\n",
+		wsprintf(szBuff, "* ValhallaTower ( %d:%d )/( %d/%d )/r/n",
 			rsBlessCastle.lpChar_ValhallaTower->smMonsterInfo.PotionCount,
 			rsBlessCastle.lpChar_ValhallaTower->smCharInfo.Life[0],
 
@@ -26731,12 +26729,12 @@ int RecordBlessCastleSetup(rsPLAYINFO *lpPlayInfo, smTRANS_BLESSCASTLE *lpBlessC
 	GetLocalTime(&st);
 	wsprintf(szFileName, filenameBlessCaslte, HackLogDirectory, st.wMonth, st.wDay);
 
-	wsprintf(szBuff, "%d:%d:%d - Name(%s)/IP(%s) MasterClan(%d) Price(%d)\r\n",
+	wsprintf(szBuff, "%d:%d:%d - Name(%s)/IP(%s) MasterClan(%d) Price(%d)/r/n",
 		st.wHour, st.wMinute, st.wSecond,
 		lpPlayInfo->smCharInfo.szName, lpPlayInfo->lpsmSock->szIPAddr,
 		rsBlessCastle.dwMasterClan, lpBlessCastleSetup->Price);
 
-	wsprintf(szBuff2, "%s=> TaxRate(%d) Tower(%d %d %d %d %d %d) Mercenary(%d %d %d) ClanSkill(%d)\r\n\r\n", szBuff,
+	wsprintf(szBuff2, "%s=> TaxRate(%d) Tower(%d %d %d %d %d %d) Mercenary(%d %d %d) ClanSkill(%d)/r/n/r/n", szBuff,
 		lpBlessCastleSetup->TaxRate,
 		lpBlessCastleSetup->Tower[0], lpBlessCastleSetup->Tower[1], lpBlessCastleSetup->Tower[2],
 		lpBlessCastleSetup->Tower[3], lpBlessCastleSetup->Tower[4], lpBlessCastleSetup->Tower[5],
@@ -26938,7 +26936,7 @@ int	rsUpdateServerParam(rsPLAYINFO *lpPlayInfo, DWORD dwUpdateCode, int Param1, 
 	smTRANS_COMMAND	smTransCommand;
 
 	smTransCommand.size = sizeof(smTRANS_COMMAND);
-	smTransCommand.code = OpCode::OPCODE_UPDATE_SERVER_PARAM;
+	smTransCommand.code = OpCode::OPCODE_AREA_SERVER_MAP;
 	smTransCommand.WParam = dwUpdateCode;
 	smTransCommand.LParam = Param1;
 	smTransCommand.SParam = Param2;
@@ -27084,8 +27082,8 @@ int rsSendUserID_MainServer(rsPLAYINFO *lpPlayInfo)
 	smTransCharCommand.LParam = 0;
 	smTransCharCommand.SParam = 0;
 
-	strcpy_s(smTransCharCommand.szId, lpPlayInfo->getAccount().c_str());
-	strcpy_s(smTransCharCommand.szName, lpPlayInfo->getName().c_str());
+	strcpy_s(smTransCharCommand.szId, lpPlayInfo->getAccount());
+	strcpy_s(smTransCharCommand.szName, lpPlayInfo->getName());
 
 	return rsSendGameServer(lpPlayInfo->lpsmSock, &smTransCharCommand);
 }

@@ -1,6 +1,6 @@
-#include "sinbaram\sinLinkHeader.h"
-#include "File\File.h"
-#include "server\OnServer.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "File/File.h"
+#include "server/onserver.h"
 #include "BattlePass.h"
 
 #include <time.h>
@@ -183,9 +183,9 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								char* lpMsg;
 								char* HackLogDirectory = "LogFile";
 
-								wsprintf(szFileName, "%s\\(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+								wsprintf(szFileName, "%s//(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Resgatou ( %d ) ( %s ) \r\n";
+								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Resgatou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
 									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, Shop->item.Name);
@@ -229,9 +229,9 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								char* lpMsg;
 								char* HackLogDirectory = "LogFile";
 
-								wsprintf(szFileName, "%s\\(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+								wsprintf(szFileName, "%s//(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Resgatou ( %d ) ( %s ) \r\n";
+								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Resgatou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
 									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, Shop->item.Name);
@@ -300,9 +300,9 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								char* lpMsg;
 								char* HackLogDirectory = "LogFile";
 
-								wsprintf(szFileName, "%s\\(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+								wsprintf(szFileName, "%s//(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) \r\n";
+								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
 									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
@@ -371,9 +371,9 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								char* lpMsg;
 								char* HackLogDirectory = "LogFile";
 
-								wsprintf(szFileName, "%s\\(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+								wsprintf(szFileName, "%s//(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) \r\n";
+								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
 									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
@@ -442,9 +442,9 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								char* lpMsg;
 								char* HackLogDirectory = "LogFile";
 
-								wsprintf(szFileName, "%s\\(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+								wsprintf(szFileName, "%s//(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) \r\n";
+								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
 									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
@@ -528,9 +528,9 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								char* lpMsg;
 								char* HackLogDirectory = "LogFile";
 
-								wsprintf(szFileName, "%s\\(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+								wsprintf(szFileName, "%s//(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) \r\n";
+								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
 									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
@@ -614,9 +614,9 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								char* lpMsg;
 								char* HackLogDirectory = "LogFile";
 
-								wsprintf(szFileName, "%s\\(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+								wsprintf(szFileName, "%s//(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) \r\n";
+								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
 									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
@@ -713,9 +713,9 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									char* lpMsg;
 									char* HackLogDirectory = "LogFile";
 
-									wsprintf(szFileName, "%s\\(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+									wsprintf(szFileName, "%s//(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-									lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) \r\n";
+									lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 									wsprintf(szBuff, lpMsg,
 										tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 										Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
@@ -813,9 +813,9 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									char* lpMsg;
 									char* HackLogDirectory = "LogFile";
 
-									wsprintf(szFileName, "%s\\(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+									wsprintf(szFileName, "%s//(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-									lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) \r\n";
+									lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 									wsprintf(szBuff, lpMsg,
 										tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 										Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
@@ -911,9 +911,9 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 								char* lpMsg;
 								char* HackLogDirectory = "LogFile";
 
-								wsprintf(szFileName, "%s\\(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+								wsprintf(szFileName, "%s//(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) \r\n";
+								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
 									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
@@ -991,9 +991,9 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 									char* lpMsg;
 									char* HackLogDirectory = "LogFile";
 
-									wsprintf(szFileName, "%s\\(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
+									wsprintf(szFileName, "%s//(BattlePass) %d - %d.log", HackLogDirectory, tm.tm_mon + 1, tm.tm_mday);
 
-									lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Resgatou ( %d ) ( %s ) \r\n";
+									lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Resgatou ( %d ) ( %s ) /r/n";
 									wsprintf(szBuff, lpMsg,
 										tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
 										Player->lpsmSock->szIPAddr, Item_Qtd, Shop->item.Name);

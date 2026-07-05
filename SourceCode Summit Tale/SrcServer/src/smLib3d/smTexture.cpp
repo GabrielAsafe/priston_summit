@@ -4578,7 +4578,7 @@ int LoadAnimBG()
 
 	for(cnt = 0; cnt < 32; cnt++)
 	{
-		strcpy_s(strName, "cloud\\");
+		strcpy_s(strName, "cloud//");
 		lstrcat(strName, BGTextureName[cnt]);
 		lpDDSAnimBG[cnt] = LoadDibBGTexture(strName);
 	}

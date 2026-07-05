@@ -4,14 +4,14 @@
 
 #include "HoNewEffectHeader.h"
 #include "HoEffectResMgr.h"
-#include "Script\\PiScript.h"
+#include "Script/PiScript.h"
 
 #ifdef  _HO_NEW_WIN32_
 extern "C"
 {
-   #include "Script\\Lua\\lua.h"
-   #include "Script\\Lua\\lauxlib.h"
-   #include "Script\\Lua\\lualib.h"
+   #include "Script/Lua/lua.h"
+   #include "Script/Lua/lauxlib.h"
+   #include "Script/Lua/lualib.h"
 }
 #endif
 

@@ -1,4 +1,4 @@
-#include "sinbaram\\sinlinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
 
 
 SQL::SQL()
@@ -86,7 +86,7 @@ BOOL SQL::Fetch()
 SQLINTEGER SQL::GetColLength(int nCol)
 {
 	SQLSMALLINT sDataType, sDig, sNullable;
-	SQLUINTEGER nColSize;
+	SQLULEN nColSize;
 
 	SQLDescribeCol(m_hSTMT, nCol, NULL, 0, NULL, &sDataType, &nColSize, &sDig, &sNullable);
 
@@ -96,7 +96,7 @@ SQLINTEGER SQL::GetColLength(int nCol)
 BOOL SQL::GetDataValue(int nCol, char* szData)
 {
 	SQLRETURN Result;
-	SQLINTEGER nLenOrInd;
+	SQLLEN nLenOrInd;
 	SQLINTEGER nLength = GetColLength(nCol);
 
 	Result = SQLGetData(m_hSTMT, (SQLUSMALLINT)nCol, SQL_C_CHAR, szData, nLength, &nLenOrInd);
@@ -107,7 +107,7 @@ BOOL SQL::GetDataValue(int nCol, char* szData)
 BOOL SQL::GetDataValue(int nCol, int* nData)
 {
 	SQLRETURN Result;
-	SQLINTEGER nLenOrInd;
+	SQLLEN nLenOrInd;
 	SQLINTEGER nLength = GetColLength(nCol);
 
 	Result = SQLGetData(m_hSTMT, (SQLUSMALLINT)nCol, SQL_C_LONG, nData, nLength, &nLenOrInd);

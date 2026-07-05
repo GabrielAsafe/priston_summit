@@ -3,8 +3,8 @@
 char *szAppName="�v���X�g���e�[��";
 
 
-char *mgRequestTrade = "%s�l�Ɏ����\�����݂܂����B";
-char *mgRequestTrade2 = "%s��͋������������߁A�����\�����߂܂���B";
+char *mgRequestTrade = "%s�l�Ɏ����/�����݂܂����B";
+char *mgRequestTrade2 = "%s��͋������������߁A�����/�����߂܂���B";
 
 char *mgDiconnect  = "�T�|�o�|�Ƃ̐ڑ����؂�܂����B";
 char *mgDiconnect1 = "�T�|�o�|�Ƃ̐ڑ����؂�܂����B(1)";

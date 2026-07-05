@@ -3,7 +3,7 @@
 
 #define _SINITEM_HEADER_
 
-#include "smLib3d\\smDsx.h"
+#include "smLib3d/smDsx.h"
 
 #define MAX_ITEM 2000
 

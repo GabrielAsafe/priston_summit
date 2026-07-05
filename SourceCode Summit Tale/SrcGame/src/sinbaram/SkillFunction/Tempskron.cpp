@@ -1,6 +1,6 @@
 
 
-#include "..\\sinLinkHeader.h"
+#include "../sinLinkHeader.h"
 #include "field.h"
 
 

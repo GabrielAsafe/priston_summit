@@ -1,11 +1,11 @@
 
-#include "dxWav.h"
+#include "Dxwav.h"
 #include <windowsx.h>
 #include <mmsystem.h>
 #include <conio.h>
 #include "smLib3d/smDsx.h"
 #include "Settings/Settings.h"
-#include "Helper\\common.h"
+#include "Helper/common.h"
 
 HRESULT     rval_g_lpDs;
 HRESULT     dsrval_lpDirectSound;
@@ -43,39 +43,39 @@ int chk_load_sangJuWav(int wavN)
 }
 
 char *sangJuWav2[NUM_SOUNDS] = {
-"wav\\rain01.wav",
-"wav\\thunder1.wav",
-"wav\\Button.wav",
-"wav\\New.wav",
-"wav\\CharacterDelete.wav",
-"wav\\ButtonBack.wav",
-"wav\\CharacterSelect.wav",
+"wav//rain01.wav",
+"wav//thunder1.wav",
+"wav//Button.wav",
+"wav//New.wav",
+"wav//CharacterDelete.wav",
+"wav//ButtonBack.wav",
+"wav//CharacterSelect.wav",
 
-"wav\\NewChar.wav",
-"wav\\Fire.wav",
-"wav\\Thunder.wav",
-"wav\\GameStart.wav",
-"wav\\Login.wav",
+"wav//NewChar.wav",
+"wav//Fire.wav",
+"wav//Thunder.wav",
+"wav//GameStart.wav",
+"wav//Login.wav",
 
-"game\\kill\\sound\\DoubleKill.wav",
-"game\\kill\\sound\\TripleKill.wav",
-"game\\kill\\sound\\QuadraKill.wav",
-"game\\kill\\sound\\PentaKill.wav",
-"game\\kill\\sound\\Shutdown.wav",
-"game\\kill\\sound\\Rampage.wav",
-"game\\kill\\sound\\Unstoppable.wav",
-//"game\\kill\\sound\\Legendary.wav",
-//"game\\kill\\sound\\KillingSpree.wav",
+"game//kill//sound//DoubleKill.wav",
+"game//kill//sound//TripleKill.wav",
+"game//kill//sound//QuadraKill.wav",
+"game//kill//sound//PentaKill.wav",
+"game//kill//sound//Shutdown.wav",
+"game//kill//sound//Rampage.wav",
+"game//kill//sound//Unstoppable.wav",
+//"game//kill//sound//Legendary.wav",
+//"game//kill//sound//KillingSpree.wav",
 
 NULL
 };
 
 char *wnameBuf[NUM_SOUNDS] = {
-"wav\\bgm0.wav",
-"wav\\rain01.wav",
-"wav\\thunder1.wav",
-"wav\\step01.wav",
-"wav\\Effects\\weapon\\one hand swing - small 3.wav",
+"wav//bgm0.wav",
+"wav//rain01.wav",
+"wav//thunder1.wav",
+"wav//step01.wav",
+"wav//Effects//weapon//one hand swing - small 3.wav",
 	NULL
 };
 
@@ -83,7 +83,7 @@ int isPlaying(int i);
 
 
 char *backMusicWav[] = {
-"wav\\622s.wav",
+"wav//622s.wav",
 NULL,
 NULL,
 };
@@ -1262,9 +1262,9 @@ int isPlaying(int i)
 
 
 
-#include "wave.h"
-#include "shell.h"
-#include "stream.h"
+#include "Wave.h"
+#include "SHELL.H"
+#include "STREAM.H"
 
 
 

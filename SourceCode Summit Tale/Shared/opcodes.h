@@ -1,5 +1,8 @@
 #pragma once
 namespace OpCode {
+    // TEMP_MINGW_COMPAT: valor provisório. Validar contra servidor/protocolo real.
+    static const int FIND_CHEAT = 0x4847900B;
+
     static const int OPCODE_ADD_NPC = 0x70000000 + 0;
     static const int OPCODE_ADD_STARTPOSI = 0x70000000 + 1;
     static const int OPCODE_ADDEXP = 0x70000000 + 2;
@@ -195,6 +198,7 @@ namespace OpCode {
     static const int OPCODE_RESISTANCE = 0x70000000 + 192;
     static const int OPCODE_RESTAURE_ITEM = 0x70000000 + 193;
     static const int OPCODE_RESTAURE_LIST = 0x70000000 + 194;
+    static const int OPCODE_GET_RESTAURE = OPCODE_RESTAURE_LIST;
     static const int OPCODE_ROLL = 0x70000000 + 195;
     static const int OPCODE_SAVECLIENT = 0x70000000 + 196;
     static const int OPCODE_SAVETHROWITEM = 0x70000000 + 197;
@@ -264,6 +268,33 @@ namespace OpCode {
     static const int OPCODE_XIGNCODE_START = 0x70000000 + 261;
     static const int OPCODE_XTRAP_PACKET = 0x70000000 + 262;
     static const int OPCODE_YAHOO_MOTION = 0x70000000 + 263;
+
+    static const int OPCODE_ID_GETUSERINFO = 0x48470085;
+    static const int OPCODE_FUNCERROR = 0x48478200;
+    static const int OPCODE_FIX_ATTACK = 0x48478700;
+
+    static const int UPDATE_BATTLE_POINTS = 0x48479000;
+    static const int SEND_ALERT_PVP = 0x48479001;
+    static const int DELETE_ITEM_PREMIUM = 0x48479002;
+
+    static const int SEARCH_GAME_CHEAT = 0x48479003;
+    static const int INIT_CHEAT_PROTECTION = 0x48479004;
+    static const int SET_ITEM_PREMIUM = 0x48479005;
+    static const int SEND_ALERT = 0x48479006;
+    static const int BATTLE_POINTS = 0x48479007;
+    static const int BOSS_TIME = 0x48479008;
+    static const int BLESS_CROWN = 0x48479009;
+    static const int OPCODE_cMIXGUIDE = 0x4847900A;
+
+
 }
 
 
+
+
+#ifndef SUMMIT_LEGACY_OPCODE_ALIASES
+#define SUMMIT_LEGACY_OPCODE_ALIASES
+static const int UPDATE_BATTLE_POINTS = 0x48479000;
+static const int SEND_ALERT_PVP = 0x48479001;
+static const int DELETE_ITEM_PREMIUM = 0x48479002;
+#endif

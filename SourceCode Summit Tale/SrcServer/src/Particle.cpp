@@ -1,4 +1,4 @@
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "particle.h"
 
 extern DWORD dwPlayTime;

@@ -6,8 +6,8 @@ UIVerticalScroll::UIVerticalScroll(int iID, int x, int y, int w, int h, int minV
 	setX(x);
 	setY(y);
 
-	ScrollBarBg = new UIImage(0, "game\\settings\\scroll\\barbg_v.png", 0, 0);
-	ScrollButton = new UIImage(0, "game\\settings\\scroll\\icon_2.png", -1, 0);
+	ScrollBarBg = new UIImage(0, "game//settings//scroll//barbg_v.png", 0, 0);
+	ScrollButton = new UIImage(0, "game//settings//scroll//icon_2.png", -1, 0);
 
 	if (w <= 0)
 	{

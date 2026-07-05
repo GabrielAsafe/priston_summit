@@ -3,53 +3,53 @@
 
 
 #include "sinLinkHeader.h"
-#include "..\\field.h"
+#include "../field.h"
 
 char *haQuestFilePathA[] = {
-	"image\\Sinimage\\Quest\\haQuesttired_Astart.sin",
-	"image\\Sinimage\\Quest\\haQuesttired_Apass1.sin",
-	"image\\Sinimage\\Quest\\haQuesttired_Apass.sin",
-	"image\\Sinimage\\Quest\\haQuesttired_Aend.sin",
+	"image//Sinimage//Quest//haQuesttired_Astart.sin",
+	"image//Sinimage//Quest//haQuesttired_Apass1.sin",
+	"image//Sinimage//Quest//haQuesttired_Apass.sin",
+	"image//Sinimage//Quest//haQuesttired_Aend.sin",
 };
 char *haQuestFilePathB[] = {
-	"image\\Sinimage\\Quest\\haQuestterrified_Bstart_M.sin",
-	"image\\Sinimage\\Quest\\haQuestterrified_Bstart_T.sin",
-	"image\\Sinimage\\Quest\\haQuestterrified_Bpass_M.sin",
-	"image\\Sinimage\\Quest\\haQuestterrified_Bpass_T.sin",
-	"image\\Sinimage\\Quest\\haQuestterrified_Bend.sin",
+	"image//Sinimage//Quest//haQuestterrified_Bstart_M.sin",
+	"image//Sinimage//Quest//haQuestterrified_Bstart_T.sin",
+	"image//Sinimage//Quest//haQuestterrified_Bpass_M.sin",
+	"image//Sinimage//Quest//haQuestterrified_Bpass_T.sin",
+	"image//Sinimage//Quest//haQuestterrified_Bend.sin",
 };
 char *haQuestFilePathC[] = {
-	"image\\Sinimage\\Quest\\haQuestcandy_Cstart_M.sin",
-	"image\\Sinimage\\Quest\\haQuestcandy_Cstart_T.sin",
-	"image\\Sinimage\\Quest\\haQuestcandy_Cpass.sin",
-	"image\\Sinimage\\Quest\\haQuestcandy_Cend.sin",
+	"image//Sinimage//Quest//haQuestcandy_Cstart_M.sin",
+	"image//Sinimage//Quest//haQuestcandy_Cstart_T.sin",
+	"image//Sinimage//Quest//haQuestcandy_Cpass.sin",
+	"image//Sinimage//Quest//haQuestcandy_Cend.sin",
 };
 char *haQuestFilePathD[] = {
-	"image\\Sinimage\\Quest\\haQuestGoblin_Dstart_M.sin",
-	"image\\Sinimage\\Quest\\haQuestGoblin_Dstart_T.sin",
-	"image\\Sinimage\\Quest\\haQuestGoblin_Dpass_M.sin",
-	"image\\Sinimage\\Quest\\haQuestGoblin_Dpass_T.sin",
-	"image\\Sinimage\\Quest\\haQuestGoblin_Dend.sin",
+	"image//Sinimage//Quest//haQuestGoblin_Dstart_M.sin",
+	"image//Sinimage//Quest//haQuestGoblin_Dstart_T.sin",
+	"image//Sinimage//Quest//haQuestGoblin_Dpass_M.sin",
+	"image//Sinimage//Quest//haQuestGoblin_Dpass_T.sin",
+	"image//Sinimage//Quest//haQuestGoblin_Dend.sin",
 };
 char *haQuestFilePathE[] = {
-	"image\\Sinimage\\Quest\\haQuestundead_Estart_M.sin",
-	"image\\Sinimage\\Quest\\haQuestundead_Estart_T.sin",
-	"image\\Sinimage\\Quest\\haQuestundead_Epass_M.sin",
-	"image\\Sinimage\\Quest\\haQuestundead_Epass_T.sin",
-	"image\\Sinimage\\Quest\\haQuestundead_Eend.sin",
+	"image//Sinimage//Quest//haQuestundead_Estart_M.sin",
+	"image//Sinimage//Quest//haQuestundead_Estart_T.sin",
+	"image//Sinimage//Quest//haQuestundead_Epass_M.sin",
+	"image//Sinimage//Quest//haQuestundead_Epass_T.sin",
+	"image//Sinimage//Quest//haQuestundead_Eend.sin",
 };
 char *haQuestFilePathF[] = {
-	"image\\Sinimage\\Quest\\haQuestcyclops_Fstart.sin",
-	"image\\Sinimage\\Quest\\haQuestcyclops_Fpass.sin",
-	"image\\Sinimage\\Quest\\haQuestcyclops_Fend.sin",
+	"image//Sinimage//Quest//haQuestcyclops_Fstart.sin",
+	"image//Sinimage//Quest//haQuestcyclops_Fpass.sin",
+	"image//Sinimage//Quest//haQuestcyclops_Fend.sin",
 };
 char *haQuestFilePathG[] = {
-	"image\\Sinimage\\Quest\\haQuesthammer_Gstart.sin",
-	"image\\Sinimage\\Quest\\haQuesthammer_Gpass.sin",
-	"image\\Sinimage\\Quest\\haQuesthammer_Gend.sin",
+	"image//Sinimage//Quest//haQuesthammer_Gstart.sin",
+	"image//Sinimage//Quest//haQuesthammer_Gpass.sin",
+	"image//Sinimage//Quest//haQuesthammer_Gend.sin",
 };
 char *haQuestLevelOver = {
-	"image\\Sinimage\\Quest\\haQuestLevel_Over.sin",
+	"image//Sinimage//Quest//haQuestLevel_Over.sin",
 };
 
 
@@ -577,7 +577,7 @@ int cHaQuest::haSetQuestTimer(sQUEST_ELEMENTARY *pQuest)
 	sSKILL TempSkill;
 	memset(&TempSkill, 0, sizeof(sSKILL));
 
-	char *Path = "image\\Sinimage\\skill\\keep\\QuestTimer.tga";
+	char *Path = "image//Sinimage//skill//keep//QuestTimer.tga";
 	if(!MatQuestTimer)
 	{
 		MatQuestTimer = CreateTextureMaterial(Path, 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
@@ -629,19 +629,19 @@ void HaCheckQuestNpc(int NpcCount)
 
 void cHaQuest::init()
 {
-	lpQuestItemImage[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\Items\\Weapon\\itwa120.bmp");
-	lpQuestItemImage[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\Items\\Weapon\\itwc120.bmp");
-	lpQuestItemImage[2] = LoadDibSurfaceOffscreen("image\\Sinimage\\Items\\Weapon\\itwh121.bmp");
-	lpQuestItemImage[3] = LoadDibSurfaceOffscreen("image\\Sinimage\\Items\\Weapon\\itwp121.bmp");
-	lpQuestItemImage[4] = LoadDibSurfaceOffscreen("image\\Sinimage\\Items\\Weapon\\itws122.bmp");
-	lpQuestItemImage[5] = LoadDibSurfaceOffscreen("image\\Sinimage\\Items\\Weapon\\itws223.bmp");
-	lpQuestItemImage[6] = LoadDibSurfaceOffscreen("image\\Sinimage\\Items\\Weapon\\itwt121.bmp");
-	lpQuestItemImage[7] = LoadDibSurfaceOffscreen("image\\Sinimage\\Items\\Weapon\\itwm121.bmp");
+	lpQuestItemImage[0] = LoadDibSurfaceOffscreen("image//Sinimage//Items//Weapon//itwa120.bmp");
+	lpQuestItemImage[1] = LoadDibSurfaceOffscreen("image//Sinimage//Items//Weapon//itwc120.bmp");
+	lpQuestItemImage[2] = LoadDibSurfaceOffscreen("image//Sinimage//Items//Weapon//itwh121.bmp");
+	lpQuestItemImage[3] = LoadDibSurfaceOffscreen("image//Sinimage//Items//Weapon//itwp121.bmp");
+	lpQuestItemImage[4] = LoadDibSurfaceOffscreen("image//Sinimage//Items//Weapon//itws122.bmp");
+	lpQuestItemImage[5] = LoadDibSurfaceOffscreen("image//Sinimage//Items//Weapon//itws223.bmp");
+	lpQuestItemImage[6] = LoadDibSurfaceOffscreen("image//Sinimage//Items//Weapon//itwt121.bmp");
+	lpQuestItemImage[7] = LoadDibSurfaceOffscreen("image//Sinimage//Items//Weapon//itwm121.bmp");
 
-	lpQuestButtonImage[0] = LoadDibSurfaceOffscreen("image\\Sinimage\\shopall\\LeftArrow.bmp");
-	lpQuestButtonImage[1] = LoadDibSurfaceOffscreen("image\\Sinimage\\shopall\\RightArrow.bmp");
-	lpQuestButtonImage[2] = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\LeftArrow.bmp");
-	lpQuestButtonImage[3] = LoadDibSurfaceOffscreen("Assets\\GUI\\Inventory\\RightArrow.bmp");
+	lpQuestButtonImage[0] = LoadDibSurfaceOffscreen("image//Sinimage//shopall//LeftArrow.bmp");
+	lpQuestButtonImage[1] = LoadDibSurfaceOffscreen("image//Sinimage//shopall//RightArrow.bmp");
+	lpQuestButtonImage[2] = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//LeftArrow.bmp");
+	lpQuestButtonImage[3] = LoadDibSurfaceOffscreen("Assets//GUI//Inventory//RightArrow.bmp");
 
 
 
@@ -735,30 +735,30 @@ void cHaQuest::LButtonUp(int x, int y)
 }
 
 char* haQuestFuryOfPhantom[12] = {
-	"image\\Sinimage\\Quest\\100LVQuest_1Start.sin",
-	"image\\Sinimage\\Quest\\100LVQuest_2Start.sin",
-	"image\\Sinimage\\Quest\\100LVQuest_2pass.sin",
-	"image\\Sinimage\\Quest\\100LVQuest_3Start.sin",
-	"image\\Sinimage\\Quest\\100LVQuest_3Pass.sin",
-	"image\\Sinimage\\Quest\\100LVQuest_4Start.sin",
-	"image\\Sinimage\\Quest\\100LVQuest_4Pass.sin",
-	"image\\Sinimage\\Quest\\100LVQuest_5Start.sin",
-	"image\\Sinimage\\Quest\\100LVQuest_5Pass.sin",
-	"image\\Sinimage\\Quest\\100LVQuest_6Start.sin",
-	"image\\Sinimage\\Quest\\100LVQuest_6Pass.sin",
-	"image\\Sinimage\\Quest\\100LVQuest_7End.sin",
+	"image//Sinimage//Quest//100LVQuest_1Start.sin",
+	"image//Sinimage//Quest//100LVQuest_2Start.sin",
+	"image//Sinimage//Quest//100LVQuest_2pass.sin",
+	"image//Sinimage//Quest//100LVQuest_3Start.sin",
+	"image//Sinimage//Quest//100LVQuest_3Pass.sin",
+	"image//Sinimage//Quest//100LVQuest_4Start.sin",
+	"image//Sinimage//Quest//100LVQuest_4Pass.sin",
+	"image//Sinimage//Quest//100LVQuest_5Start.sin",
+	"image//Sinimage//Quest//100LVQuest_5Pass.sin",
+	"image//Sinimage//Quest//100LVQuest_6Start.sin",
+	"image//Sinimage//Quest//100LVQuest_6Pass.sin",
+	"image//Sinimage//Quest//100LVQuest_7End.sin",
 };
 char* haQuestFuryOfPhantomItem[8] = {
-	"image\\Sinimage\\Quest\\haQuestFuryItem1.sin",
-	"image\\Sinimage\\Quest\\haQuestFuryItem2.sin",
-	"image\\Sinimage\\Quest\\haQuestFuryItem3.sin",
-	"image\\Sinimage\\Quest\\haQuestFuryItem4.sin",
-	"image\\Sinimage\\Quest\\haQuestFuryItem5.sin",
-	"image\\Sinimage\\Quest\\haQuestFuryItem6.sin",
-	"image\\Sinimage\\Quest\\haQuestFuryItem7.sin",
-	"image\\Sinimage\\Quest\\haQuestFuryItem8.sin",
+	"image//Sinimage//Quest//haQuestFuryItem1.sin",
+	"image//Sinimage//Quest//haQuestFuryItem2.sin",
+	"image//Sinimage//Quest//haQuestFuryItem3.sin",
+	"image//Sinimage//Quest//haQuestFuryItem4.sin",
+	"image//Sinimage//Quest//haQuestFuryItem5.sin",
+	"image//Sinimage//Quest//haQuestFuryItem6.sin",
+	"image//Sinimage//Quest//haQuestFuryItem7.sin",
+	"image//Sinimage//Quest//haQuestFuryItem8.sin",
 };
-char* haQuestFuryOfPhantomVictory = "image\\Sinimage\\Quest\\100LVQuest_Victory.sin";
+char* haQuestFuryOfPhantomVictory = "image//Sinimage//Quest//100LVQuest_Victory.sin";
 
 int  cHaQuest::showFuryQuest()
 {

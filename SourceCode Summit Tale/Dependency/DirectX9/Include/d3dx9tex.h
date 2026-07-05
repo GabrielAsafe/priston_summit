@@ -1,3 +1,12 @@
+
+#ifndef D3DX_FROM_FILE
+#define D3DX_FROM_FILE ((UINT)-3)
+#endif
+
+#ifndef D3DFMT_FROM_FILE
+#define D3DFMT_FROM_FILE ((D3DFORMAT)-3)
+#endif
+
 //////////////////////////////////////////////////////////////////////////////
 //
 //  Copyright (C) Microsoft Corporation.  All Rights Reserved.

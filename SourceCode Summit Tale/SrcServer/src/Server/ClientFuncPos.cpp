@@ -7,25 +7,25 @@
 
 
 
-#include "..\\resource.h"
-#include "..\\smwsock.h"
+#include "../resource.h"
+#include "../smwsock.h"
 
 
 
-#include "..\\smlib3d\\smd3d.h"
-#include "..\\character.h"
-#include "..\\fileread.h"
-#include "..\\playmain.h"
-#include "..\\field.h"
-#include "..\\sinbaram\\sinlinkheader.h"
-#include "..\\effectsnd.h"
+#include "../smLib3d/smd3d.h"
+#include "../character.h"
+#include "../fileread.h"
+#include "../playmain.h"
+#include "../field.h"
+#include "../sinbaram/sinLinkHeader.h"
+#include "../effectsnd.h"
 
-#include "..\\record.h"
-#include "..\playsub.h"
+#include "../record.h"
+#include "../playsub.h"
 
 #include "DllServer.h"
 
-#include "Language\\language.h"
+#include "Language/language.h"
 
 #include "ClientFuncPos.h"
 
@@ -64,7 +64,7 @@ int	rsRecvClientFuncPos(TRANS_CLIENT_FUNPOS	*lpClentFuncPos)
 
 	CreateDirectory(szFuncDirectory, NULL);
 
-	wsprintf(szBuff, "%s\\%d.dat", szFuncDirectory, lpClentFuncPos->ClientVersion);
+	wsprintf(szBuff, "%s//%d.dat", szFuncDirectory, lpClentFuncPos->ClientVersion);
 	fp = fopen(szBuff, "wb");
 
 	if(fp)
@@ -138,7 +138,7 @@ int	rsResetClientFuncPos()
 	char	szBuff[256];
 	FILE	*fp;
 
-	wsprintf(szBuff, "%s\\*.dat", szFuncDirectory);
+	wsprintf(szBuff, "%s//*.dat", szFuncDirectory);
 
 	ZeroMemory(ClientFuncPos, sizeof(TRANS_CLIENT_FUNPOS)*CLIENT_FUNC_POS_MAX);
 
@@ -149,7 +149,7 @@ int	rsResetClientFuncPos()
 
 	while(1)
 	{
-		wsprintf(szBuff, "%s\\%s", szFuncDirectory, fd.cFileName);
+		wsprintf(szBuff, "%s//%s", szFuncDirectory, fd.cFileName);
 		fp = fopen(szBuff, "rb");
 		if(fp)
 		{

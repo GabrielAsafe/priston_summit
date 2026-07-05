@@ -1,16 +1,36 @@
+
+#ifndef PRIME_ITEM_TIME_1H
+#define PRIME_ITEM_TIME_1H   (60 * 60)
+#endif
+#ifndef PRIME_ITEM_TIME_6H
+#define PRIME_ITEM_TIME_6H   (6 * 60 * 60)
+#endif
+#ifndef PRIME_ITEM_TIME_12H
+#define PRIME_ITEM_TIME_12H  (12 * 60 * 60)
+#endif
+#ifndef PRIME_ITEM_TIME_24H
+#define PRIME_ITEM_TIME_24H  (24 * 60 * 60)
+#endif
+#ifndef PRIME_ITEM_TIME_72H
+#define PRIME_ITEM_TIME_72H  (72 * 60 * 60)
+#endif
+#ifndef PRIME_ITEM_TIME_7D
+#define PRIME_ITEM_TIME_7D   (7 * 24 * 60 * 60)
+#endif
+
 #include "global_def.h"
 #include "smwsock.h"
 #ifndef	_SMPACKET_HEADER
 
 #define _SMPACKET_HEADER
 
-#include	"sinbaram\\sinitem.h"
-#include	<atltime.h>
+#include	"sinbaram/sinItem.h"
+// #include <atltime.h> // removed for MinGW
 
 //���Ӱ��� ���� Lib
 #ifdef	_npGAME_GUARD_AUTH
-#include "nProtect\\CSAuth.h"
-#pragma comment(lib,"nprotect\\CSAuth.lib")
+#include "nProtect/CSAuth.h"
+#pragma comment(lib,"nprotect//CSAuth.lib")
 #endif
 
 #define	smTRANSCODE_OPENLIVE		0x38000000
@@ -133,6 +153,18 @@
 #define smTRANSCODE_HELP_PET			0x484700B2	// ����� - ��� ����� �� �߰�
 
 #define	smTRANSCODE_SERVER_INFO			0x484700C0
+
+#ifndef smTRANSCODE_MECH_INFO
+#define smTRANSCODE_MECH_INFO      0x484700C1
+#define smTRANSCODE_FIGHTER_INFO   0x484700C2
+#define smTRANSCODE_PIKE_INFO      0x484700C3
+#define smTRANSCODE_ARCHER_INFO    0x484700C4
+#define smTRANSCODE_KINA_INFO      0x484700C5
+#define smTRANSCODE_ATA_INFO       0x484700C6
+#define smTRANSCODE_SACER_INFO     0x484700C7
+#define smTRANSCODE_MAGE_INFO      0x484700C8
+#endif
+
 
 #define	smTRANSCODE_PARTY_POTION		0x484700D0
 //����
@@ -1019,13 +1051,6 @@ typedef struct _XIGNCODE_TempData{
 #define smTRANSCODE_XIGNCODE_START		0x48470500
 
 
-typedef struct _WSABUF {
-	u_long      len;     
-	char FAR *  buf;     
-} WSABUF, FAR * LPWSABUF;
-
-
-
 //////////////////// ����Ʈ�� ////////////////////
 #ifdef _xTrap_GUARD
 
@@ -1067,7 +1092,7 @@ struct	smXTRAP_PLAYINFO {
 #ifdef _W_SERVER
 
 #define _XTRAP_GUARD_4_SERVER
-#include "XTrapSrcD5\\Server\\XTrap4Server.h"	//XTrapD5
+#include "XTrapSrcD5/Server/XTrap4Server.h"	//XTrapD5
 
 #else
 
@@ -1075,7 +1100,7 @@ struct	smXTRAP_PLAYINFO {
 
 #endif
 
-#include "XTrapSrcD5\\Server\\MessageProtocol.h"
+#include "XTrapSrcD5/Server/MessageProtocol.h"
 //smPacket.h
 #define	smTRANSCODE_XTRAP_PACKET		0x48470300
 #define	smXTRAP_COMMAND_LOGIN			0x00001000
@@ -2132,6 +2157,7 @@ struct TRANS_TRADE_ITEMKEY	{
 	DWORD	dwItemSum[_MAX_TRADE_ITEM];
 
 	int		Money;
+	int		Coin;
 };
 
 #define	TRADE_RECV_ITEMS_MAX				32
@@ -2142,6 +2168,7 @@ struct TRANS_TRADE_ITEMKEY	{
 struct TRANS_RECORD_TRADE_ITEMS {
 	int		size,code;
 	int		Money;
+	int		Coin;
 	int		ThrowItemCount;
 	char	szTradeUserName[32];			//���� ĳ����
 	int		Temp[4];
@@ -2303,7 +2330,9 @@ struct _PARTY_USER {
 
 	DWORD	dwObjectSerial;			//��ü ������ȣ
 	DWORD	Level;
+	DWORD	JobCode;
 	short	Life[2];				//�����
+	short	Mana[2];
 	int		x,z;
 };
 
@@ -2322,6 +2351,7 @@ struct _PARTY_PLAYINFO {
 	DWORD	dwObjectSerial;			//��ü ������ȣ
 	DWORD	Level;					//����
 	short	Life[2];				//�����
+	short	Mana[2];
 	int		x,z;
 };
 
@@ -2774,6 +2804,14 @@ struct	sSOD_SCORE {
 #define	MONSTER_CLASS_GHOST			300
 
 #endif
+
+
+
+
+
+
+
+
 
 
 

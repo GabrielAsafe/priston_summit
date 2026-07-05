@@ -1,8 +1,8 @@
 
 
 #include "sinLinkHeader.h"
-#include "..\\field.h"
-#include "Server\\onserver.h"
+#include "../field.h"
+#include "Server/onserver.h"
 
 
 cSINWARPGATE cSinWarpGate;
@@ -38,18 +38,18 @@ void cSINWARPGATE::Init()
 
 
 
-	MatWarpMap = CreateTextureMaterial("Image\\SinImage\\Help\\WG_map.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatIcon = CreateTextureMaterial("Image\\SinImage\\Help\\WG_icon.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatSelect = CreateTextureMaterial("Image\\SinImage\\Help\\WG_slt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatWarpMap = CreateTextureMaterial("Image//SinImage//Help//WG_map.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatIcon = CreateTextureMaterial("Image//SinImage//Help//WG_icon.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatSelect = CreateTextureMaterial("Image//SinImage//Help//WG_slt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	Load();
 }
 
 void cSINWARPGATE::Load()
 {
-	lpCancelBox = LoadDibSurfaceOffscreen("image\\clanImage\\chipbutton\\msBOX.bmp");
-	lpCancelButton = LoadDibSurfaceOffscreen("image\\clanImage\\MessageBox\\c1.bmp");
-	lpCancelButton_G = LoadDibSurfaceOffscreen("image\\clanImage\\MessageBox\\c.bmp");
+	lpCancelBox = LoadDibSurfaceOffscreen("image//clanImage//chipbutton//msBOX.bmp");
+	lpCancelButton = LoadDibSurfaceOffscreen("image//clanImage//MessageBox//c1.bmp");
+	lpCancelButton_G = LoadDibSurfaceOffscreen("image//clanImage//MessageBox//c.bmp");
 }
 
 void cSINWARPGATE::Release()

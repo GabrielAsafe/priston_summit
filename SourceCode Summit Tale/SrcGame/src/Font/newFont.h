@@ -1,7 +1,7 @@
 #ifndef _NEW_FONT
 #define _NEW_FONT
 
-#include <Windows.h>
+#include <windows.h>
 #include <drawsub.h>
 
 struct sBOX

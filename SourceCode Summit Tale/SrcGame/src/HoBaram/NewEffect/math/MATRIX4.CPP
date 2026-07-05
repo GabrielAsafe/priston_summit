@@ -9,7 +9,7 @@
  ******************************************************************/
 
 #include "point3.h"
-#include "matrix4.h"
+#include "MATRIX4.H"
 
 const matrix4 matrix4::Identity = matrix4(
 	1,0,0,0,

@@ -1,13 +1,13 @@
-#include "..\\SinBaram\\SinLinkHeader.h"
+#include "../sinbaram/sinLinkHeader.h"
 #include "hoAssaParticleEffect.h"
 #include "AssaParticle.h"
-#include "..\\HoBaram\\HoNewParticleLinkHeader.h"
-#include "..\\field.h"
-#include "..\\HoBaram\\NewEffect\\HoNewEffectFunction.h"
+#include "../HoBaram/HoNewParticleLinkHeader.h"
+#include "../field.h"
+#include "../HoBaram/NewEffect/HoNewEffectFunction.h"
 
-#include "..\\HoBaram\\NewEffect\\HoEffectManager.h"
-#include "..\\HoBaram\\NewEffect\\HoEffectMain.h"
-#include "..\\HoBaram\\NewEffect\\HoEffectController.h"
+#include "../HoBaram/NewEffect/HoEffectManager.h"
+#include "../HoBaram/NewEffect/HoEffectMain.h"
+#include "../HoBaram/NewEffect/HoEffectController.h"
 
 void cASSAChar_Rank_level::Start(smCHAR* character, int code, int maxTime, float delay)
 {

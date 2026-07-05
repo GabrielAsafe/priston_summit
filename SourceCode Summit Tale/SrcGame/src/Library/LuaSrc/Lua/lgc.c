@@ -55,14 +55,14 @@ typedef struct GCState {
 
 
 
-#define markobject(st,o) { checkconsistency(o); \
+#define markobject(st,o) { checkconsistency(o); /
   if (iscollectable(o) && !ismarked(gcvalue(o))) reallymarkobject(st,gcvalue(o)); }
 
-#define condmarkobject(st,o,c) { checkconsistency(o); \
-  if (iscollectable(o) && !ismarked(gcvalue(o)) && (c)) \
+#define condmarkobject(st,o,c) { checkconsistency(o); /
+  if (iscollectable(o) && !ismarked(gcvalue(o)) && (c)) /
     reallymarkobject(st,gcvalue(o)); }
 
-#define markvalue(st,t) { if (!ismarked(valtogco(t))) \
+#define markvalue(st,t) { if (!ismarked(valtogco(t))) /
 		reallymarkobject(st, valtogco(t)); }
 
 

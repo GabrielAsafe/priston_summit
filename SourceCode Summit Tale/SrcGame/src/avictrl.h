@@ -1,6 +1,6 @@
 
 
-#include "smLib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 
 #pragma comment( lib, "vfw32.lib" )
 

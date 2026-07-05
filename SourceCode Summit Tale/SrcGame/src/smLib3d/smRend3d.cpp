@@ -48,7 +48,7 @@ int CreateItem2PassTexture(void)
 	char szImagePath[64] = { 0, };
 	for(int i = 0; i < MAX_ITEM2PASS_TEX; i++)
 	{
-		wsprintf(szImagePath, "Image\\sinImage\\Items\\DropItem\\%s", s_Item2PassTexName[i]);
+		wsprintf(szImagePath, "Image//sinImage//Items//DropItem//%s", s_Item2PassTexName[i]);
 		s_Item2PassTexHandleBuff[i] = smTexture.Add(szImagePath);
 		if(s_Item2PassTexHandleBuff[i] == NULL)
 			return FALSE;

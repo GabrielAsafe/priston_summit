@@ -21,7 +21,7 @@
 #include "tjboy\\clanmenu\\tjclan.h"
 #include "tjboy\\clanmenu\\help.h"
 #include "damage.h"
-#include "skillsub.h"
+#include "SkillSub.h"
 
 #include "AreaServer.h"
 

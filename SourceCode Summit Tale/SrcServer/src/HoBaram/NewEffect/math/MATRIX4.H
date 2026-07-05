@@ -1,7 +1,7 @@
 /*******************************************************************
  *         Advanced 3D Game Programming using DirectX 8.0
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *   Title: matrix4.h
+ *   Title: MATRIX4.H
  *    Desc: Declaration for a 4x4 homogenous matrix class
  *
  * copyright (c) 2001 by Peter A Walsh and Adrian Perez
@@ -12,7 +12,7 @@
 #define _MATRIX4_H
 
 #include "point3.h"
-#include "point4.h"
+#include "POINT4.H"
 #include "lineSeg3.h"
 //#include "plane3.h"
 

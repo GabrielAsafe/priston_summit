@@ -10,22 +10,22 @@
 #define _PI_SCRIPT_
 #pragma once
 
-#include "..\\HoNewEffectHeader.h"
+#include "../HoNewEffectHeader.h"
 #ifndef _HO_NEW_WIN32_
 extern "C"
 {
-#include "Lua\\src\\lua.h"
-#include "Lua\\src\\lauxlib.h"
-#include "Lua\\src\\lualib.h"
+#include "Lua/src/lua.h"
+#include "Lua/src/lauxlib.h"
+#include "Lua/src/lualib.h"
 }
 #endif
 
 #ifdef  _HO_NEW_WIN32_
 extern "C"
 {
-#include "Lua\\lua.h"
-#include "Lua\\lauxlib.h"
-#include "Lua\\lualib.h"
+#include "Lua/lua.h"
+#include "Lua/lauxlib.h"
+#include "Lua/lualib.h"
 }
 #endif
 

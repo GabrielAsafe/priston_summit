@@ -1,5 +1,5 @@
 
-#include "..\\Language.h"
+#include "../language.h"
 
 #ifdef	_LANGUAGE_KOREAN
 
@@ -21,35 +21,35 @@ char *parkTextVolErr2 = "���� ���� ���ּ���.";
 
 
 #ifdef	_LANGUAGE_CHINESE
-#include "..\\chinese\\C_VolText.h"
+#include "../chinese/C_VolText.h"
 #endif
 
 #ifdef	_LANGUAGE_JAPANESE
-#include "..\\Japanese\\J_VolText.h"
+#include "../Japanese/J_VolText.h"
 #endif
 
 #ifdef	_LANGUAGE_TAIWAN
-#include "..\\Taiwan\\T_VolText.h"
+#include "../Taiwan/T_VolText.h"
 #endif
 
 #ifdef	_LANGUAGE_ENGLISH
-#include "..\\English\\E_VolText.h"
+#include "../English/E_VolText.h"
 #endif
 
 #ifdef	_LANGUAGE_THAI
-#include "..\\Thai\\Th_VolText.h"
+#include "../Thai/Th_VolText.h"
 #endif
 
 #ifdef	_LANGUAGE_VEITNAM
-#include "..\\veitnam\\v_VolText.h"
+#include "../veitnam/v_VolText.h"
 #endif
 
 #ifdef	_LANGUAGE_BRAZIL
-#include "..\\BRAZIL\\b_VolText.h"
+#include "../Brazil/b_VolText.h"
 #endif
 
 #ifdef	_LANGUAGE_ARGENTINA
-#include "..\\ARGENTINA\\a_VolText.h"
+#include "../ARGENTINA/a_VolText.h"
 #endif
 
 

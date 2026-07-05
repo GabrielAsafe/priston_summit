@@ -11,9 +11,9 @@
 #ifndef _LowLevelPet_H_
 #define _LowLevelPet_H_
 
-#include "smlib3d\\smd3d.h"
-#include "..\\smwsock.h"
-#include "..\\character.h"
+#include "smLib3d/smd3d.h"
+#include "../smwsock.h"
+#include "../character.h"
 
 #define PET_TERRY	0
 #define PET_NEPSYS  1

@@ -1,20 +1,20 @@
 
-#include "sinbaram\\SinLinkHeader.h"
-#include "..\\HoBaram\\HoLinkHeader.h"
-#include "..\\smreg.h"
-#include "..\\HoBaram\\HoTextFile.h"
-#include "..\\HoBaram\\HoMinMax.h"
-#include "..\\HoBaram\\HoNewParticle.h"
-#include "..\\HoBaram\\HoNewParticleMgr.h"
-#include "Language\\language.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "../HoBaram/HoLinkHeader.h"
+#include "../smreg.h"
+#include "../HoBaram/HoTextFile.h"
+#include "../HoBaram/HoMinMax.h"
+#include "../HoBaram/HoNewParticle.h"
+#include "../HoBaram/HoNewParticleMgr.h"
+#include "Language/language.h"
 
-#include "..\\CAutoCamera.h"
+#include "../CAutoCamera.h"
 
-#include "Font\Font.h"
-#include "Settings\Settings.h"
-#include "Settings\UI.h"
-#include "File\File.h"
-#include "Login\Login.h"
+#include "Font/Font.h"
+#include "Settings/Settings.h"
+#include "Settings/UI.h"
+#include "File/File.h"
+#include "Login/Login.h"
 #include "cSettingsWindow.h"
 
 extern int			iSettingsBg;
@@ -122,7 +122,7 @@ int HoOpening::Init()
 	smRender.ClearLight();
 
 	StopBGM();
-	OpenBGM("StartImage\\Opening\\Intro.wav");
+	OpenBGM("StartImage//Opening//Intro.wav");
 	PlayBGM();
 
 	SetVolumeBGM(OpeningBgmVolume);
@@ -350,31 +350,31 @@ char ratio[4] = { 0 };
 int HoOpening::Load()
 {
 	
-	ButtonLoginImage[0] = CreateTextureMaterial("game\\Login\\S_login_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ButtonLoginImage[1] = CreateTextureMaterial("game\\Login\\S_login.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ButtonLoginImage[0] = CreateTextureMaterial("game//Login//S_login_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ButtonLoginImage[1] = CreateTextureMaterial("game//Login//S_login.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	ButtonQuitImage[0] = CreateTextureMaterial("game\\Login\\S_Exit_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ButtonQuitImage[1] = CreateTextureMaterial("game\\Login\\S_Exit.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ButtonQuitImage[0] = CreateTextureMaterial("game//Login//S_Exit_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ButtonQuitImage[1] = CreateTextureMaterial("game//Login//S_Exit.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	iWindowID = CreateTextureMaterial("game\\Login\\Window.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iInputID = CreateTextureMaterial("game\\Login\\Input.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iBtnLogin[0] = CreateTextureMaterial("game\\Login\\Btnlogin.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iBtnLogin[1] = CreateTextureMaterial("game\\Login\\Btnlogin_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iBtnSite[0] = CreateTextureMaterial("game\\Login\\BtnSite.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iBtnSite[1] = CreateTextureMaterial("game\\Login\\BtnSite_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iBtnExit[0] = CreateTextureMaterial("game\\Login\\Btnexit.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iBtnExit[1] = CreateTextureMaterial("game\\Login\\Btnexit_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	background = CreateTextureMaterial("game\\Login\\Background.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iWindowID = CreateTextureMaterial("game//Login//Window.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iInputID = CreateTextureMaterial("game//Login//Input.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iBtnLogin[0] = CreateTextureMaterial("game//Login//Btnlogin.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iBtnLogin[1] = CreateTextureMaterial("game//Login//Btnlogin_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iBtnSite[0] = CreateTextureMaterial("game//Login//BtnSite.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iBtnSite[1] = CreateTextureMaterial("game//Login//BtnSite_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iBtnExit[0] = CreateTextureMaterial("game//Login//Btnexit.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iBtnExit[1] = CreateTextureMaterial("game//Login//Btnexit_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	background = CreateTextureMaterial("game//Login//Background.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
 #ifdef _LANGUAGE_JAPANESE 
-	PristonLogoImage = CreateTextureMaterial("StartImage\\login\\BlackBox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	PristonLogoImage = CreateTextureMaterial("StartImage//login//BlackBox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 #else
-	PristonLogoImage = CreateTextureMaterial("StartImage\\login\\priston_txt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	PristonLogoImage = CreateTextureMaterial("StartImage//login//priston_txt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 #endif
 
-	BlackBoxImage = CreateTextureMaterial("StartImage\\login\\BlackBox.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	WhiteBoxImage = CreateTextureMaterial("StartImage\\login\\WhiteBox.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	BlackBoxImage = CreateTextureMaterial("StartImage//login//BlackBox.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	WhiteBoxImage = CreateTextureMaterial("StartImage//login//WhiteBox.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
 	Message.Init();
 	MessageBox.Init();
@@ -868,7 +868,7 @@ int HoOpening::KeyFilter(char *message)
 	if (message == NULL || hFocusWnd == NULL)
 		return FALSE;
 
-	if (strlen(message) >= (ACCOUNT_SIZE - 1) && message[ACCOUNT_SIZE - 2] != '\t')
+	if (strlen(message) >= (ACCOUNT_SIZE - 1) && message[ACCOUNT_SIZE - 2] != '/t')
 	{
 		message[ACCOUNT_SIZE - 2] = 0;
 		SetWindowText(hFocusWnd, 0);
@@ -878,7 +878,7 @@ int HoOpening::KeyFilter(char *message)
 
 	for (int index = 0; index < (int)strlen(message); index++)
 	{
-		if (message[index] == '\t')
+		if (message[index] == '/t')
 		{
 			message[index] = 0;
 			SetWindowText(hFocusWnd, 0);

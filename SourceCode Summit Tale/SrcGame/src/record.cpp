@@ -1,29 +1,29 @@
 #include "opcodes.h"
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 
 #include "smwsock.h"
 #include "character.h"
 #include "avictrl.h"
 #include "playmain.h"
-#include "Sound\\dxwav.h"
+#include "Sound/Dxwav.h"
 #include "fileread.h"
 
 #include "particle.h"
 #include "netplay.h"
 
-#include "sinbaram\\sinlinkheader.h"
-#include "hobaram\\holinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
 
 #include "record.h"
 #include "playsub.h"
 
 #include "field.h"
-#include "Language\\language.h"
+#include "Language/language.h"
 
 #include "TextMessage.h"
-#include "Server\\onserver.h"
+#include "Server/onserver.h"
 
-#include "TJBOY\isaocheck\isaocheck.h"
+#include "TJBOY/isaocheck/isaocheck.h"
 
 
 char	*szRecordHeader = "RC 1.50";
@@ -62,7 +62,7 @@ int rsPutItem_PointTicket(rsPLAYINFO *lpPlayInfo, int Price);
 
 
 
-#include "Resources\resource.h"
+#include "Resources/resource.h"
 
 static char LastAcessID[64];
 
@@ -172,7 +172,7 @@ int GetPostBoxFile(const char *szID, char *szFileName)
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "%s\\%d\\#%s.dat", szPostBoxDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "%s//%d//#%s.dat", szPostBoxDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -181,11 +181,11 @@ int GetPostBoxFile(const char *szID, char *szFileName)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "%s\\%d\\#%s.dat", szPostBoxDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "%s//%d//#%s.dat", szPostBoxDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
-	wsprintf(szFileName, "%s\\%d\\%s.dat", szPostBoxDir, GetUserCode(szID), szID);
+	wsprintf(szFileName, "%s//%d//%s.dat", szPostBoxDir, GetUserCode(szID), szID);
 
 	return TRUE;
 }
@@ -200,7 +200,7 @@ static int GetUserInfoFile(const char *szID, char *szFileName)
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "DataServer\\%s\\%d\\#%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "DataServer//%s//%d//#%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -209,11 +209,11 @@ static int GetUserInfoFile(const char *szID, char *szFileName)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "DataServer\\%s\\%d\\#%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "DataServer//%s//%d//#%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
-	wsprintf(szFileName, "DataServer\\%s\\%d\\%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
+	wsprintf(szFileName, "DataServer//%s//%d//%s.dat", szRecordUserInfoDir, GetUserCode(szID), szID);
 
 	return TRUE;
 }
@@ -221,7 +221,7 @@ static int GetUserInfoFile(const char *szID, char *szFileName)
 int GetUserDataFile(const char *szName, char *szFileName)
 {
 
-	wsprintf(szFileName, "DataServer\\%s\\%d\\%s.dat", szRecordUserDataDir, GetUserCode(szName), szName);
+	wsprintf(szFileName, "DataServer//%s//%d//%s.dat", szRecordUserDataDir, GetUserCode(szName), szName);
 
 	return TRUE;
 }
@@ -305,7 +305,7 @@ static int GetUserInfoFile2(char *szID, char *szFileName, char *szServerID)
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "%s\\DataServer\\%s\\%d\\#%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
+		wsprintf(szFileName, "%s//DataServer//%s//%d//#%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
 		return TRUE;
 	}
 
@@ -314,11 +314,11 @@ static int GetUserInfoFile2(char *szID, char *szFileName, char *szServerID)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "%s\\DataServer\\%s\\%d\\#%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
+		wsprintf(szFileName, "%s//DataServer//%s//%d//#%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
 		return TRUE;
 	}
 
-	wsprintf(szFileName, "%s\\DataServer\\%s\\%d\\%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
+	wsprintf(szFileName, "%s//DataServer//%s//%d//%s.dat", szTTServerPath, szRecordUserInfoDir, GetUserCode(szRealID), szRealID);
 
 	return TRUE;
 }
@@ -328,7 +328,7 @@ int GetUserDataFile2(char *szName, char *szFileName, char *szServerID)
 	char szTTServerPath[128];
 	GetTT_ServerPath(szServerID, szTTServerPath, sizeof(szTTServerPath));
 
-	wsprintf(szFileName, "%s\\DataServer\\%s\\%d\\%s.dat", szTTServerPath, szRecordUserDataDir, GetUserCode(szName), szName);
+	wsprintf(szFileName, "%s//DataServer//%s//%d//%s.dat", szTTServerPath, szRecordUserDataDir, GetUserCode(szName), szName);
 
 	return TRUE;
 }
@@ -336,7 +336,7 @@ int GetUserDataFile2(char *szName, char *szFileName, char *szServerID)
 
 static int GetDeleteDataFile(char *szName, char *szFileName)
 {
-	wsprintf(szFileName, "DataServer\\%s\\%s.dat", szRecordDeleteDir, szName);
+	wsprintf(szFileName, "DataServer//%s//%s.dat", szRecordDeleteDir, szName);
 
 	return TRUE;
 }
@@ -345,7 +345,7 @@ static int GetDeleteDataFile(char *szName, char *szFileName)
 static int GetUserDataBackupFile(const char *szName, char *szFileName)
 {
 
-	wsprintf(szFileName, "DataServer\\%s\\%d\\%s.dat", szRecordUserBackupDataDir, GetUserCode(szName), szName);
+	wsprintf(szFileName, "DataServer//%s//%d//%s.dat", szRecordUserBackupDataDir, GetUserCode(szName), szName);
 
 	return TRUE;
 }
@@ -361,7 +361,7 @@ static int GetWareHouseFile(const char *szName, char *szFileName)
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "DataServer\\%s\\%d\\#%s.dat", szRecordWareHouseDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "DataServer//%s//%d//#%s.dat", szRecordWareHouseDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -370,18 +370,18 @@ static int GetWareHouseFile(const char *szName, char *szFileName)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "DataServer\\%s\\%d\\#%s.dat", szRecordWareHouseDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "DataServer//%s//%d//#%s.dat", szRecordWareHouseDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
-	wsprintf(szFileName, "DataServer\\%s\\%d\\%s.war", szRecordWareHouseDir, GetUserCode(szName), szName);
+	wsprintf(szFileName, "DataServer//%s//%d//%s.war", szRecordWareHouseDir, GetUserCode(szName), szName);
 
 	return TRUE;
 }
 
 static int GetUserDataFile_BackupDay(char *szName, char *szFileName, int Day)
 {
-	wsprintf(szFileName, "%s\\%d\\%s\\%d\\%s.dat",
+	wsprintf(szFileName, "%s//%d//%s//%d//%s.dat",
 		rsServerConfig.szBackupPath, Day,
 		szRecordUserDataDir, GetUserCode(szName), szName);
 
@@ -394,14 +394,14 @@ static int GetWareHouseFile_Backup(char *szName, char *szFileName, int Day)
 	char *szID = szName;
 	char szBuff[256];
 
-	wsprintf(szBuff, "%s\\%d", rsServerConfig.szBackupPath, Day);
+	wsprintf(szBuff, "%s//%d", rsServerConfig.szBackupPath, Day);
 
 	if (szID[4] == 0 && szID[3] >= '0' && szID[3] <= '9' && (
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'm' || szID[2] == 'M')) ||
 		((szID[0] == 'l' || szID[0] == 'L') && (szID[1] == 'p' || szID[1] == 'P') && (szID[2] == 't' || szID[2] == 'T')))
 		)
 	{
-		wsprintf(szFileName, "%s\\%s\\%d\\#%s.dat", szBuff, szRecordWareHouseDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "%s//%s//%d//#%s.dat", szBuff, szRecordWareHouseDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
@@ -410,11 +410,11 @@ static int GetWareHouseFile_Backup(char *szName, char *szFileName, int Day)
 		((szID[0] == 'c' || szID[0] == 'C') && (szID[1] == 'o' || szID[1] == 'O') && (szID[2] == 'n' || szID[2] == 'N'))
 		)
 	{
-		wsprintf(szFileName, "%s\\%s\\%d\\#%s.dat", szBuff, szRecordWareHouseDir, GetUserCode(szID), szID);
+		wsprintf(szFileName, "%s//%s//%d//#%s.dat", szBuff, szRecordWareHouseDir, GetUserCode(szID), szID);
 		return TRUE;
 	}
 
-	wsprintf(szFileName, "%s\\%s\\%d\\%s.war", szBuff, szRecordWareHouseDir, GetUserCode(szName), szName);
+	wsprintf(szFileName, "%s//%s//%d//%s.war", szBuff, szRecordWareHouseDir, GetUserCode(szName), szName);
 
 	return TRUE;
 }
@@ -429,36 +429,36 @@ int CreateDataServerDirectory()
 
 	CreateDirectory("DataServer", NULL);
 
-	wsprintf(szBuff, "DataServer\\%s", szRecordUserInfoDir);
+	wsprintf(szBuff, "DataServer//%s", szRecordUserInfoDir);
 	CreateDirectory(szBuff, NULL);
-	wsprintf(szBuff, "DataServer\\%s", szRecordUserDataDir);
+	wsprintf(szBuff, "DataServer//%s", szRecordUserDataDir);
 	CreateDirectory(szBuff, NULL);
-	wsprintf(szBuff, "DataServer\\%s", szRecordWareHouseDir);
+	wsprintf(szBuff, "DataServer//%s", szRecordWareHouseDir);
 	CreateDirectory(szBuff, NULL);
-	wsprintf(szBuff, "DataServer\\%s", szRecordUserBackupDataDir);
+	wsprintf(szBuff, "DataServer//%s", szRecordUserBackupDataDir);
 	CreateDirectory(szBuff, NULL);
-	wsprintf(szBuff, "DataServer\\%s", szRecordDeleteDir);
+	wsprintf(szBuff, "DataServer//%s", szRecordDeleteDir);
 	CreateDirectory(szBuff, NULL);
 
 
 	for (cnt = 0; cnt < 256; cnt++)
 	{
-		wsprintf(szBuff, "DataServer\\%s\\%d", szRecordUserInfoDir, cnt);
+		wsprintf(szBuff, "DataServer//%s//%d", szRecordUserInfoDir, cnt);
 		CreateDirectory(szBuff, NULL);
 	}
 	for (cnt = 0; cnt < 256; cnt++)
 	{
-		wsprintf(szBuff, "DataServer\\%s\\%d", szRecordUserDataDir, cnt);
+		wsprintf(szBuff, "DataServer//%s//%d", szRecordUserDataDir, cnt);
 		CreateDirectory(szBuff, NULL);
 	}
 	for (cnt = 0; cnt < 256; cnt++)
 	{
-		wsprintf(szBuff, "DataServer\\%s\\%d", szRecordWareHouseDir, cnt);
+		wsprintf(szBuff, "DataServer//%s//%d", szRecordWareHouseDir, cnt);
 		CreateDirectory(szBuff, NULL);
 	}
 	for (cnt = 0; cnt < 256; cnt++)
 	{
-		wsprintf(szBuff, "DataServer\\%s\\%d", szRecordUserBackupDataDir, cnt);
+		wsprintf(szBuff, "DataServer//%s//%d", szRecordUserBackupDataDir, cnt);
 		CreateDirectory(szBuff, NULL);
 	}
 
@@ -467,7 +467,7 @@ int CreateDataServerDirectory()
 	{
 		for (cnt = 0; cnt < 256; cnt++)
 		{
-			wsprintf(szBuff, "%s\\%d", szPostBoxDir, cnt);
+			wsprintf(szBuff, "%s//%d", szPostBoxDir, cnt);
 			CreateDirectory(szBuff, NULL);
 		}
 	}
@@ -1711,9 +1711,9 @@ int rsRECORD_DBASE::ResotrRecordData(smCHAR_INFO *lpCharInfo, sITEM *lpItems, sI
 			chaPremiumitem.SetUpKeepItem(nsPremiumItem::MANA_RECHAR_P, chaPremiumitem.m_ManaRechargingPTime, true, UpKeepItemName[3]);
 		}
 	}
-	if (TransRecordData.GameSaveInfo.dwTime_PrimeItem_StaminaRecharg)
+	if (TransRecordData.GameSaveInfo.dwTime_PrimeItem_ManaRecharg)
 	{
-		PrimeItem_Time = TransRecordData.GameSaveInfo.dwTime_PrimeItem_StaminaRecharg;
+		PrimeItem_Time = TransRecordData.GameSaveInfo.dwTime_PrimeItem_ManaRecharg;
 		if (PrimeItem_Time > 0)
 		{
 			chaPremiumitem.SetStaminaRechargingPTime(PrimeItem_Time);
@@ -1730,9 +1730,9 @@ int rsRECORD_DBASE::ResotrRecordData(smCHAR_INFO *lpCharInfo, sITEM *lpItems, sI
 		}
 	}
 
-	if (TransRecordData.GameSaveInfo.dwTime_PrimeItem_GoldLooter)
+	if (TransRecordData.GameSaveInfo.dwTime_PrimeItem_HelpPet)
 	{
-		PrimeItem_Time = TransRecordData.GameSaveInfo.dwTime_PrimeItem_GoldLooter;
+		PrimeItem_Time = TransRecordData.GameSaveInfo.dwTime_PrimeItem_HelpPet;
 		if (PrimeItem_Time > 0)
 		{
 			chaPremiumitem.SetGoldLooterPTime(PrimeItem_Time);
@@ -1740,9 +1740,9 @@ int rsRECORD_DBASE::ResotrRecordData(smCHAR_INFO *lpCharInfo, sITEM *lpItems, sI
 		}
 	}
 
-	if (TransRecordData.GameSaveInfo.dwTime_PrimeItem_HPBooster)
+	if (TransRecordData.GameSaveInfo.dwTime_PrimeItem_HelpPet)
 	{
-		PrimeItem_Time = TransRecordData.GameSaveInfo.dwTime_PrimeItem_HPBooster;
+		PrimeItem_Time = TransRecordData.GameSaveInfo.dwTime_PrimeItem_HelpPet;
 		if (PrimeItem_Time > 0)
 		{
 			chaPremiumitem.SetHPBoosterPTime(PrimeItem_Time);
@@ -1750,9 +1750,9 @@ int rsRECORD_DBASE::ResotrRecordData(smCHAR_INFO *lpCharInfo, sITEM *lpItems, sI
 		}
 	}
 
-	if (TransRecordData.GameSaveInfo.dwTime_PrimeItem_MPBooster)
+	if (TransRecordData.GameSaveInfo.dwTime_PrimeItem_PhenixPet)
 	{
-		PrimeItem_Time = TransRecordData.GameSaveInfo.dwTime_PrimeItem_MPBooster;
+		PrimeItem_Time = TransRecordData.GameSaveInfo.dwTime_PrimeItem_PhenixPet;
 		if (PrimeItem_Time > 0)
 		{
 			chaPremiumitem.SetMPBoosterPTime(PrimeItem_Time);
@@ -1760,9 +1760,9 @@ int rsRECORD_DBASE::ResotrRecordData(smCHAR_INFO *lpCharInfo, sITEM *lpItems, sI
 		}
 	}
 
-	if (TransRecordData.GameSaveInfo.dwTime_PrimeItem_RESBooster)
+	if (TransRecordData.GameSaveInfo.dwTime_PrimeItem_HelpPet)
 	{
-		PrimeItem_Time = TransRecordData.GameSaveInfo.dwTime_PrimeItem_RESBooster;
+		PrimeItem_Time = TransRecordData.GameSaveInfo.dwTime_PrimeItem_HelpPet;
 		if (PrimeItem_Time > 0)
 		{
 			chaPremiumitem.SetRESBoosterPTime(PrimeItem_Time);
@@ -2500,7 +2500,7 @@ int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, 
 			return -1;
 		}
 
-		if (lpPlayInfo->getSecurity() < AccountTypes::SEC_GAMEMASTER && lstrcmp(TransRecordData.smCharInfo.szName, lpPlayInfo->getName().c_str()) != 0)
+		if (lpPlayInfo->getSecurity() < AccountTypes::SEC_GAMEMASTER && lstrcmp(TransRecordData.smCharInfo.szName, lpPlayInfo->getName()) != 0)
 		{
 
 			TransRecordData.code = 0;
@@ -2525,7 +2525,7 @@ int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, 
 
 
 
-			fp = fopen("DataServer\\LastError.dat", "wb");
+			fp = fopen("DataServer//LastError.dat", "wb");
 			if (fp)
 			{
 				cnt = fwrite(&TransRecordData, TransRecordData.size, 1, fp);
@@ -2706,8 +2706,8 @@ int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, 
 			CloseStarPointEvent(lpPlayInfo, &TransRecordData.smCharInfo);
 
 
-		GetUserDataFile(lpPlayInfo->getName().c_str(), szFile);
-		GetUserDataBackupFile(lpPlayInfo->getName().c_str(), szBackupFile);
+		GetUserDataFile(lpPlayInfo->getName(), szFile);
+		GetUserDataBackupFile(lpPlayInfo->getName(), szBackupFile);
 
 		if (FieldLimitLevel_Table[TransRecordData.GameSaveInfo.PlayStageNum] > TransRecordData.smCharInfo.Level)
 		{
@@ -2745,7 +2745,7 @@ int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, 
 			}
 		}
 
-		strcpy_s(TransRecordData.GameSaveInfo.szMasterID, lpPlayInfo->getAccount().c_str());
+		strcpy_s(TransRecordData.GameSaveInfo.szMasterID, lpPlayInfo->getAccount());
 
 
 
@@ -3071,7 +3071,7 @@ int rsRecordMemoryBuff_CheckInvenItem(rsPLAYINFO *lpPlayInfo, int Mode)
 
 	if (lpPlayInfo->OpenWarehouseInfoFlag && (lpPlayInfo->dwDataError&rsDATA_ERROR_WAREHOUSE) == 0)
 	{
-		GetWareHouseFile(lpPlayInfo->getAccount().c_str(), szFileName);
+		GetWareHouseFile(lpPlayInfo->getAccount(), szFileName);
 
 		fp = fopen(szFileName, "rb");
 		if (fp)
@@ -3229,7 +3229,7 @@ skip_Warehouse:
 			if (SaveWareHouse(&WareHouseCheck, &TransWareHouse) == TRUE)
 			{
 
-				rsSaveWareHouseData(lpPlayInfo->getAccount().c_str(), &TransWareHouse);
+				rsSaveWareHouseData(lpPlayInfo->getAccount(), &TransWareHouse);
 			}
 		}
 	}
@@ -3605,7 +3605,7 @@ int rsRECORD_DBASE::IsData(char *szName)
 
 	if (lstrlen(szName) >= CHAR_NAME_MAXLEN) return TRUE;
 
-	if (!c_CheckName(".\\CharacterNameList", szName)) return TRUE;
+	if (!c_CheckName(".//CharacterNameList", szName)) return TRUE;
 
 	GetUserDataFile(szName, szFile);
 
@@ -3698,7 +3698,7 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo)
 	int cnt, cnt2;
 
 
-	GetWareHouseFile(lpPlayInfo->getAccount().c_str(), szFileName);
+	GetWareHouseFile(lpPlayInfo->getAccount(), szFileName);
 
 	hFind = FindFirstFile(szFileName, &ffd);
 	FindClose(hFind);
@@ -4054,10 +4054,10 @@ int rsLoadServerForce(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo)
 	else
 		lpPlayInfo->dwTime_PrimeItem_ManaRecharg = 0;
 
-	if (lpGameSaveInfo->dwTime_PrimeItem_StaminaRecharg > 0)
-		lpPlayInfo->dwTime_PrimeItem_StaminaRecharg = lpGameSaveInfo->dwTime_PrimeItem_StaminaRecharg;
+	if (lpGameSaveInfo->dwTime_PrimeItem_ManaRecharg > 0)
+		lpPlayInfo->dwTime_PrimeItem_ManaRecharg = lpGameSaveInfo->dwTime_PrimeItem_ManaRecharg;
 	else
-		lpPlayInfo->dwTime_PrimeItem_StaminaRecharg = 0;
+		lpPlayInfo->dwTime_PrimeItem_ManaRecharg = 0;
 
 	if (lpGameSaveInfo->dwTime_PrimeItem_ManaReduce > 0)
 	{
@@ -4119,25 +4119,25 @@ int rsLoadServerForce(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo)
 		lpPlayInfo->dwTime_PrimeItem_StaminaReduce = 0;
 	}
 
-	if (lpGameSaveInfo->dwTime_PrimeItem_GoldLooter > 0)
-		lpPlayInfo->dwTime_PrimeItem_GoldLooter = lpGameSaveInfo->dwTime_PrimeItem_GoldLooter;
+	if (lpGameSaveInfo->dwTime_PrimeItem_HelpPet > 0)
+		lpPlayInfo->dwTime_PrimeItem_HelpPet = lpGameSaveInfo->dwTime_PrimeItem_HelpPet;
 	else
-		lpPlayInfo->dwTime_PrimeItem_GoldLooter = 0;
+		lpPlayInfo->dwTime_PrimeItem_HelpPet = 0;
 
-	if (lpGameSaveInfo->dwTime_PrimeItem_HPBooster > 0)
-		lpPlayInfo->dwTime_PrimeItem_HPBooster = lpGameSaveInfo->dwTime_PrimeItem_HPBooster;
+	if (lpGameSaveInfo->dwTime_PrimeItem_HelpPet > 0)
+		lpPlayInfo->dwTime_PrimeItem_HelpPet = lpGameSaveInfo->dwTime_PrimeItem_HelpPet;
 	else
-		lpPlayInfo->dwTime_PrimeItem_HPBooster = 0;
+		lpPlayInfo->dwTime_PrimeItem_HelpPet = 0;
 
-	if (lpGameSaveInfo->dwTime_PrimeItem_MPBooster > 0)
-		lpPlayInfo->dwTime_PrimeItem_MPBooster = lpGameSaveInfo->dwTime_PrimeItem_MPBooster;
+	if (lpGameSaveInfo->dwTime_PrimeItem_PhenixPet > 0)
+		lpPlayInfo->dwTime_PrimeItem_PhenixPet = lpGameSaveInfo->dwTime_PrimeItem_PhenixPet;
 	else
-		lpPlayInfo->dwTime_PrimeItem_MPBooster = 0;
+		lpPlayInfo->dwTime_PrimeItem_PhenixPet = 0;
 
-	if (lpGameSaveInfo->dwTime_PrimeItem_RESBooster > 0)
-		lpPlayInfo->dwTime_PrimeItem_RESBooster = lpGameSaveInfo->dwTime_PrimeItem_RESBooster;
+	if (lpGameSaveInfo->dwTime_PrimeItem_HelpPet > 0)
+		lpPlayInfo->dwTime_PrimeItem_HelpPet = lpGameSaveInfo->dwTime_PrimeItem_HelpPet;
 	else
-		lpPlayInfo->dwTime_PrimeItem_RESBooster = 0;
+		lpPlayInfo->dwTime_PrimeItem_HelpPet = 0;
 
 	return TRUE;
 
@@ -4249,10 +4249,10 @@ int rsSaveServerForce(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo)
 	else
 		lpGameSaveInfo->dwTime_PrimeItem_ManaRecharg = 0;
 
-	if (lpGameSaveInfo->dwTime_PrimeItem_StaminaRecharg > 0)
-		lpPlayInfo->dwTime_PrimeItem_StaminaRecharg = lpGameSaveInfo->dwTime_PrimeItem_StaminaRecharg;
+	if (lpGameSaveInfo->dwTime_PrimeItem_ManaRecharg > 0)
+		lpPlayInfo->dwTime_PrimeItem_ManaRecharg = lpGameSaveInfo->dwTime_PrimeItem_ManaRecharg;
 	else
-		lpPlayInfo->dwTime_PrimeItem_StaminaRecharg = 0;
+		lpPlayInfo->dwTime_PrimeItem_ManaRecharg = 0;
 
 	if (lpPlayInfo->dwTime_PrimeItem_ManaReduce > 0)
 	{
@@ -4313,25 +4313,25 @@ int rsSaveServerForce(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo)
 		lpGameSaveInfo->dwTime_PrimeItem_StaminaReduce = 0;
 	}
 
-	if (lpGameSaveInfo->dwTime_PrimeItem_GoldLooter > 0)
-		lpPlayInfo->dwTime_PrimeItem_GoldLooter = lpGameSaveInfo->dwTime_PrimeItem_GoldLooter;
+	if (lpGameSaveInfo->dwTime_PrimeItem_HelpPet > 0)
+		lpPlayInfo->dwTime_PrimeItem_HelpPet = lpGameSaveInfo->dwTime_PrimeItem_HelpPet;
 	else
-		lpPlayInfo->dwTime_PrimeItem_GoldLooter = 0;
+		lpPlayInfo->dwTime_PrimeItem_HelpPet = 0;
 
-	if (lpGameSaveInfo->dwTime_PrimeItem_HPBooster > 0)
-		lpPlayInfo->dwTime_PrimeItem_HPBooster = lpGameSaveInfo->dwTime_PrimeItem_HPBooster;
+	if (lpGameSaveInfo->dwTime_PrimeItem_HelpPet > 0)
+		lpPlayInfo->dwTime_PrimeItem_HelpPet = lpGameSaveInfo->dwTime_PrimeItem_HelpPet;
 	else
-		lpPlayInfo->dwTime_PrimeItem_HPBooster = 0;
+		lpPlayInfo->dwTime_PrimeItem_HelpPet = 0;
 
-	if (lpGameSaveInfo->dwTime_PrimeItem_MPBooster > 0)
-		lpPlayInfo->dwTime_PrimeItem_MPBooster = lpGameSaveInfo->dwTime_PrimeItem_MPBooster;
+	if (lpGameSaveInfo->dwTime_PrimeItem_PhenixPet > 0)
+		lpPlayInfo->dwTime_PrimeItem_PhenixPet = lpGameSaveInfo->dwTime_PrimeItem_PhenixPet;
 	else
-		lpPlayInfo->dwTime_PrimeItem_MPBooster = 0;
+		lpPlayInfo->dwTime_PrimeItem_PhenixPet = 0;
 
-	if (lpGameSaveInfo->dwTime_PrimeItem_RESBooster > 0)
-		lpPlayInfo->dwTime_PrimeItem_RESBooster = lpGameSaveInfo->dwTime_PrimeItem_RESBooster;
+	if (lpGameSaveInfo->dwTime_PrimeItem_HelpPet > 0)
+		lpPlayInfo->dwTime_PrimeItem_HelpPet = lpGameSaveInfo->dwTime_PrimeItem_HelpPet;
 	else
-		lpPlayInfo->dwTime_PrimeItem_RESBooster = 0;
+		lpPlayInfo->dwTime_PrimeItem_HelpPet = 0;
 
 	return TRUE;
 
@@ -4686,10 +4686,10 @@ int	rsLoadPostBox(rsPLAYINFO	*lpPlayInfo)
 	char	strBuff[512];
 	int		cnt;
 
-	if (lpPlayInfo->getAccount().empty()) return FALSE;
+	if (lpPlayInfo->getAccount()[0] == 0) return FALSE;
 	if (lpPlayInfo->lpPostBoxItem) return TRUE;
 
-	GetPostBoxFile(lpPlayInfo->getAccount().c_str(), szFileName);
+	GetPostBoxFile(lpPlayInfo->getAccount(), szFileName);
 
 	fp = fopen(szFileName, "rb");
 	if (!fp) return FALSE;
@@ -4810,10 +4810,10 @@ int	rsSavePostBox(rsPLAYINFO	*lpPlayInfo)
 	DWORD	FileLength;
 
 
-	if (lpPlayInfo->getAccount().empty()) return FALSE;
+	if (lpPlayInfo->getAccount()[0] == 0) return FALSE;
 	if (!lpPlayInfo->lpPostBoxItem) return FALSE;
 
-	GetPostBoxFile(lpPlayInfo->getAccount().c_str(), szFileName);
+	GetPostBoxFile(lpPlayInfo->getAccount(), szFileName);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile == INVALID_HANDLE_VALUE)
@@ -4859,7 +4859,7 @@ int	rsAddPostBox_Present(rsPLAYINFO *lpPlayInfo)
 
 	char	strBuff[16384];
 
-	if (lpPlayInfo->getAccount().empty()) return FALSE;
+	if (lpPlayInfo->getAccount()[0] == 0) return FALSE;
 
 	hFile = CreateFile("Present.dat", GENERIC_READ, FILE_SHARE_READ, NULL,
 		OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -4872,7 +4872,7 @@ int	rsAddPostBox_Present(rsPLAYINFO *lpPlayInfo)
 	ReadFile(hFile, strBuff, len, &dwAcess, NULL);
 	CloseHandle(hFile);
 
-	GetPostBoxFile(lpPlayInfo->getAccount().c_str(), szFileName);
+	GetPostBoxFile(lpPlayInfo->getAccount(), szFileName);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile == INVALID_HANDLE_VALUE)
@@ -5031,7 +5031,7 @@ int SaveCloseUserRecord(char *szUserName, int Level, int Exp, int Money)
 
 	wsprintf(szFileName, "UserRecord.txt");
 
-	wsprintf(szBuff, "%s		??(%d)	???(%d)	?(%d)\r\n", szUserName, Level, Exp, Money);
+	wsprintf(szBuff, "%s		??(%d)	???(%d)	?(%d)/r/n", szUserName, Level, Exp, Money);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile == INVALID_HANDLE_VALUE) return FALSE;
@@ -5057,7 +5057,7 @@ int SaveWareHouseRecord(char *szUserName, int Money, int Weight1, int Weight2)
 
 	wsprintf(szFileName, "UserRecord.txt");
 
-	wsprintf(szBuff, "ID( %s )	???(%d)	??( %d/%d )\r\n", szUserName, Money, Weight1, Weight2);
+	wsprintf(szBuff, "ID( %s )	???(%d)	??( %d/%d )/r/n", szUserName, Money, Weight1, Weight2);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hFile == INVALID_HANDLE_VALUE) return FALSE;
@@ -5162,7 +5162,7 @@ int CheckWareHouseData(char *szFile)
 		}
 		for (cnt = cnt; cnt >= 0; cnt--)
 		{
-			if (szName[cnt] == '\\')
+			if (szName[cnt] == '//')
 			{
 				cnt++;
 				break;
@@ -5188,7 +5188,7 @@ int CheckUserDataFull()
 	for (UserCnt = 0; UserCnt < 256; UserCnt++)
 	{
 
-		wsprintf(szFindPath, "DataServer\\UserData\\%d\\*.dat", UserCnt);
+		wsprintf(szFindPath, "DataServer//UserData//%d//*.dat", UserCnt);
 
 		wsprintf(szMsgBuff, "??? ??? ( %d/255 ) - %d", UserCnt, CharCount);
 		SetWindowText(GetDlgItem(hDialog, IDC_EDIT1), szMsgBuff);
@@ -5243,7 +5243,7 @@ int CheckWareHouseDataFull()
 	for (UserCnt = 0; UserCnt < 256; UserCnt++)
 	{
 
-		wsprintf(szFindPath, "DataServer\\WareHouse\\%d\\*.war", UserCnt);
+		wsprintf(szFindPath, "DataServer//WareHouse//%d//*.war", UserCnt);
 
 		wsprintf(szMsgBuff, "?????? ??? ( %d/255 ) - %d", UserCnt, CharCount);
 		SetWindowText(GetDlgItem(hDialog, IDC_EDIT1), szMsgBuff);
@@ -5265,7 +5265,7 @@ int CheckWareHouseDataFull()
 					}
 				}
 
-				wsprintf(szUserPath, "DataServer\\WareHouse\\%d\\%s", UserCnt, fd.cFileName);
+				wsprintf(szUserPath, "DataServer//WareHouse//%d//%s", UserCnt, fd.cFileName);
 				CheckWareHouseData(szUserPath);
 
 				CharCount++;
@@ -5431,7 +5431,7 @@ static char *GetWord(char *q, char *p)
 
 	while ((*p != 32) && (*p != 9))
 	{
-		if (*p == '\n' || *p == '\r') break;
+		if (*p == '/n' || *p == '/r') break;
 		*q++ = *p++;
 	}
 	*q++ = 0;
@@ -5549,7 +5549,7 @@ int RestoreBackupData(char *szListFile, char *BackupPath)
 							else
 							{
 								flag = FALSE;
-								wsprintf(szLogBuff, "%s (%s) -> ?? ( ??????? )\r\n", decode, strBuff);
+								wsprintf(szLogBuff, "%s (%s) -> ?? ( ??????? )/r/n", decode, strBuff);
 								fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 							}
 						}
@@ -5558,24 +5558,24 @@ int RestoreBackupData(char *szListFile, char *BackupPath)
 						{
 
 
-							wsprintf(szFile, "BackupUser\\%s.dat", strBuff);
+							wsprintf(szFile, "BackupUser//%s.dat", strBuff);
 							CopyFile(szDestDataFile, szFile, TRUE);
 
 							CopyFile(szSrcDataFile, szDestDataFile, FALSE);
 
-							wsprintf(szLogBuff, "%s (%s) -> ??\r\n", decode, strBuff);
+							wsprintf(szLogBuff, "%s (%s) -> ??/r/n", decode, strBuff);
 							fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 						}
 					}
 					else
 					{
-						wsprintf(szLogBuff, "%s (%s) -> ?? ( ????? )\r\n", decode, strBuff);
+						wsprintf(szLogBuff, "%s (%s) -> ?? ( ????? )/r/n", decode, strBuff);
 						fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 					}
 				}
 				else
 				{
-					wsprintf(szLogBuff, "%s (%s) -> ?? ( ?????? )\r\n", decode, strBuff);
+					wsprintf(szLogBuff, "%s (%s) -> ?? ( ?????? )/r/n", decode, strBuff);
 					fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 				}
 			}

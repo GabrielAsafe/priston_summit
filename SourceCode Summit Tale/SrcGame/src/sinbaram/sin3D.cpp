@@ -26,24 +26,24 @@ void cSIN3D::Init()
 	char *Partyellow = "Partyellow";
 	char szPath[128];
 
-	sinEffect2D_Line = CreateTextureMaterial("Image\\SinImage\\Effect\\Return1.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	sinEffect2D_Line = CreateTextureMaterial("Image//SinImage//Effect//Return1.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
 
 	for(int i = 1; i < 5; i++)
 	{
-		wsprintf(szPath, "image\\Sinimage\\Effect\\Particle\\%s%d.tga", Partyellow, i);
+		wsprintf(szPath, "image//Sinimage//Effect//Particle//%s%d.tga", Partyellow, i);
 		MatParticleGold[i - 1] = CreateTextureMaterial(szPath, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
 	}
 
-	Rage_Of_SinBaRam = smASE_Read("Image\\SinImage\\Effect\\test.ase");
+	Rage_Of_SinBaRam = smASE_Read("Image//SinImage//Effect//test.ase");
 
-	MatWideCircle = CreateTextureMaterial("image\\Sinimage\\Effect\\Effect2D\\WideCircle.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MatWideCircle = CreateTextureMaterial("image//Sinimage//Effect//Effect2D//WideCircle.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
 
-	MatEffectLine = CreateTextureMaterial("image\\Sinimage\\Effect\\Effect2D\\YellowLine.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MatEffectLine = CreateTextureMaterial("image//Sinimage//Effect//Effect2D//YellowLine.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
-	MatParticle1 = CreateTextureMaterial("image\\Sinimage\\Effect\\Particle\\Particle1.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+	MatParticle1 = CreateTextureMaterial("image//Sinimage//Effect//Particle//Particle1.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 
 	InitInterEffect();
 	InitEffect2();

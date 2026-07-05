@@ -1,5 +1,6 @@
 #pragma once
-
+#include "UIElement.h"
+#include "UIImage.h"
 class UIButton : public Element
 {
 public:

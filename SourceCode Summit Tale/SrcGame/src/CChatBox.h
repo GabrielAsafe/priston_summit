@@ -1,5 +1,16 @@
 #pragma once
 
+#include <deque>
+#include "Settings/UI.h"
+#include "UIWindow.h"
+#include "UIList.h"
+#include "UIText.h"
+#include "UIButton.h"
+#include "UIInput.h"
+#include "UIImage.h"
+#include "items.h"
+// #include "NetType.h" // disabled temporarily for MinGW stage build
+
 #define MAX_CHATTEXTLIST			32
 
 #define MAX_SAVECOMMANDSCHAT		10

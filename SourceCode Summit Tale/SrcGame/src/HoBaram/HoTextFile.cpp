@@ -1,9 +1,9 @@
-#include "..\\HoBaram\\HoTextFile.h"
+#include "../HoBaram/HoTextFile.h"
 
-#include "Language\\language.h"
+#include "Language/language.h"
 
 #ifdef _LANGUAGE_BRAZIL
-#include "Language\\BRAZIL\\B_HoTextFile.h"
+#include "Language/Brazil/b_HoTextFile.h"
 #endif
 
 

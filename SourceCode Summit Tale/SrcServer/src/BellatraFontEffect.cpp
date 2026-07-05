@@ -4,7 +4,7 @@
 
 
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "TextMessage.h"		
 #include "FullZoomMap.h"
 #include "FontImage.h"
@@ -224,7 +224,7 @@ void CreateBellatraFontEffect(void)
 
 
 
-	FILE *fp = fopen("image\\Bellatra\\Bellatra.dat", "rb");
+	FILE *fp = fopen("image//Bellatra//Bellatra.dat", "rb");
 	if(fp)
 	{
 		fread(&s_BL_MinFontEffectInfoBuff, sizeof(s_BL_MinFontEffectInfoBuff), 1, fp);
@@ -238,7 +238,7 @@ void CreateBellatraFontEffect(void)
 
 	char szFullName[128];
 	char szDirectory[32];
-	::strcpy_s(szDirectory, "image\\Bellatra\\");
+	::strcpy_s(szDirectory, "image//Bellatra//");
 
 	int i;
 

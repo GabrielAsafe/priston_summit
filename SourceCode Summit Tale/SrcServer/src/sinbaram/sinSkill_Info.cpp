@@ -1,7 +1,7 @@
 /*Tabela de Skills
 Organizada e reestruturada por Zaraki.*/
 
-#include "skills.h"
+#include "SkillSub.h"
 
 /*__________________________________________________________________________________________________________________________
 
@@ -18,7 +18,7 @@ ________________________________________________________________________________
 char* GetWords(char* q, char* p)
 {
 
-	//	while ( *p != '\n' ) {
+	//	while ( *p != '/n' ) {
 	if (*p == 0) { *q = 0; return p; }
 
 	while ((*p == 32) || (*p == 9) || (*p == 58)) // SPACE or TAB or ':'�� ���� ��Ŵ
@@ -28,12 +28,12 @@ char* GetWords(char* q, char* p)
 
 	while ((*p != 32) && (*p != 9) && (*p != 58) && (*p != 0)) // SPACE or TAB
 	{
-		if (*p == '\n' || *p == '\r') break;
+		if (*p == '/n' || *p == '/r') break;
 		*q++ = *p++;
 	}
 	*q++ = 0;	// end of one string, put Null character
 	//	}
-	//	*q = '\n';
+	//	*q = '/n';
 
 	return p;
 }
@@ -52,7 +52,7 @@ int ReadSkillFloat(float* Skill, char* szFileName, char* szSkillName)
 	char* skill;
 
 	GetCurrentDirectoryA(sizeof(Path), Path);
-	wsprintf(Path, "%s\\Configs\\Skill\\%s", Path, szFileName);
+	wsprintf(Path, "%s//Configs//Skill//%s", Path, szFileName);
 
 	file = fopen(Path, "rb");
 
@@ -107,7 +107,7 @@ int ReadSkillInt(int* Skill, char* szFileName, char* szSkillName)
 	char* skill;
 
 	GetCurrentDirectoryA(sizeof(Path), Path);
-	wsprintf(Path, "%s\\Configs\\Skill\\%s", Path, szFileName);
+	wsprintf(Path, "%s//Configs//Skill//%s", Path, szFileName);
 
 	file = fopen(Path, "rb");
 
@@ -150,7 +150,7 @@ int ReadSkillInt2(int Skill[][2], char* szFileName, char* szSkillName)
 	char* skill;
 
 	GetCurrentDirectoryA(sizeof(Path), Path);
-	wsprintf(Path, "%s\\Configs\\Skill\\%s", Path, szFileName);
+	wsprintf(Path, "%s//Configs//Skill//%s", Path, szFileName);
 
 	file = fopen(Path, "rb");
 	//fopen_s(&file, Path, "rb");

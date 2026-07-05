@@ -2,7 +2,7 @@
 #define _WIN32_WINNT    0x0403  
 #define _WIN32_WINDOWS  0x0403
 
-#include "nettype.h"
+#include "NetType.h"
 
 #ifdef _W_SERVER
 
@@ -91,7 +91,7 @@ smWINSOCK	smWSock[CONNECTMAX];
 
 #ifdef _DEBUG_SOCKET
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 extern smCONFIG smConfig;
 extern int AddChatBuff(char *szMsg);
 
@@ -1501,7 +1501,7 @@ extern FILE *fpNetLog;
 #ifndef _AH
 #define _AH
 
-#include "AntiCheat\AntiCheat.h"
+#include "AntiCheat/AntiCheat.h"
 
 #endif
 

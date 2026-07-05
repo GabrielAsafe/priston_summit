@@ -8,10 +8,10 @@
 
 #ifdef USE_PROSTONTALE		
 
-#include "sinbaram\\SinLinkHeader.h"
-#include "HoBaram\\HoLinkHeader.h"
-#include "Language\\language.h"
-#include "HoBaram\\HoTextFile.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "Language/language.h"
+#include "HoBaram/HoTextFile.h"
 
 #endif
 
@@ -21,8 +21,8 @@
 #include "cE_CViewClanInfo.h"
 
 
-#include "..\\isaocheck\\auth.h"
-#include "..\\isaocheck\\isaocheck.h"
+#include "../isaocheck/auth.h"
+#include "../isaocheck/isaocheck.h"
 
 extern char szConnServerName[16];
 
@@ -117,7 +117,7 @@ int CViewClanInfo::readFILE_ClanInfo(DWORD clanNum)
 
 #ifdef  USE_PROSTONTALE	
 	ClanInfo[nCount].dwTime = GetCurrentTime();
-	wsprintf(szTemp, "%s\\%s\\%s_%s.rep", CLANINFO_DIR, szConnServerName, GServer, ClanUnique);
+	wsprintf(szTemp, "%s//%s//%s_%s.rep", CLANINFO_DIR, szConnServerName, GServer, ClanUnique);
 
 
 
@@ -133,7 +133,7 @@ int CViewClanInfo::readFILE_ClanInfo(DWORD clanNum)
 	}
 
 
-	wsprintf(szTemp, "%s\\%s\\%s_%s.%s", CLANINFO_DIR, szConnServerName, GServer, ClanUnique, SAVE_EXE);
+	wsprintf(szTemp, "%s//%s//%s_%s.%s", CLANINFO_DIR, szConnServerName, GServer, ClanUnique, SAVE_EXE);
 
 	if(ClanInfo[nCount].hClanMark != NULL)
 	{
@@ -156,12 +156,12 @@ int CViewClanInfo::readFILE_ClanInfo(DWORD clanNum)
 	else return 0;
 #else
 	ClanInfo[nCount].dwTime = GetCurrentTime();
-	wsprintf(szTemp, "%s\\%s\\%s_%s.rep", CLANINFO_DIR, szConnServerName, GServer, ClanUnique);
+	wsprintf(szTemp, "%s//%s//%s_%s.rep", CLANINFO_DIR, szConnServerName, GServer, ClanUnique);
 	FILE *fp;
 	fp = fopen(szTemp, "rb");
 	fread(&ClanInfo[nCount].ClanInfoHeader, sizeof(CLANINFOHEADER), 1, fp);
 	fclose(fp);
-	wsprintf(szTemp, "%s\\%s\\%s_%s.%s", CLANINFO_DIR, szConnServerName, GServer, ClanUnique, SAVE_EXE);
+	wsprintf(szTemp, "%s//%s//%s_%s.%s", CLANINFO_DIR, szConnServerName, GServer, ClanUnique, SAVE_EXE);
 	ClanInfo[nCount].hClanMark = (HBITMAP)LoadImage(NULL, szTemp,
 													IMAGE_BITMAP,
 													0, 0, LR_LOADFROMFILE);
@@ -344,7 +344,7 @@ int CViewClanInfo::Search_Files(char *clanNum)
 
 
 
-	wsprintf(szTemp, "%s\\%s\\%s_%s.rep", CLANINFO_DIR, szConnServerName, GServer, szClanNum);
+	wsprintf(szTemp, "%s//%s//%s_%s.rep", CLANINFO_DIR, szConnServerName, GServer, szClanNum);
 
 
 
@@ -368,7 +368,7 @@ int CViewClanInfo::Search_Files(char *clanNum)
 		else
 		{
 		#ifdef  USE_PROSTONTALE
-			wsprintf(szTemp, "%s\\%s\\%s_%s.%s", CLANINFO_DIR, szConnServerName, GServer, szClanNum, SAVE_EXE);
+			wsprintf(szTemp, "%s//%s//%s_%s.%s", CLANINFO_DIR, szConnServerName, GServer, szClanNum, SAVE_EXE);
 			LPDIRECT3DTEXTURE9 ld = NULL;
 			ld = LoadDibSurfaceOffscreen(szTemp);
 			if(ld != NULL)
@@ -381,7 +381,7 @@ int CViewClanInfo::Search_Files(char *clanNum)
 			}
 			else return 0;
 		#else
-			wsprintf(szTemp, "%s\\%s\\%s_%s_16.%s", CLANINFO_DIR, szConnServerName, GServer, szClanNum, SAVE_EXE);
+			wsprintf(szTemp, "%s//%s//%s_%s_16.%s", CLANINFO_DIR, szConnServerName, GServer, szClanNum, SAVE_EXE);
 			HBITMAP ld = NULL;
 			ld = (HBITMAP)LoadImage(NULL, szTemp,
 									IMAGE_BITMAP,
@@ -533,7 +533,7 @@ int clanINFO_result2(int ret_code, char *marknum, CLANINFO *ci)
 	DebugMessage("clanINFO_result2���� Ŭ����ũ �о��(Ŭ����ȣ : %s)", marknum);
 #endif
 	char szTemp[256];
-	wsprintf(szTemp, "%s\\%s\\%s_%s_16.%s", CLANINFO_DIR, szConnServerName, ci->ClanInfoHeader.Gserver,
+	wsprintf(szTemp, "%s//%s//%s_%s_16.%s", CLANINFO_DIR, szConnServerName, ci->ClanInfoHeader.Gserver,
 		ci->ClanInfoHeader.UniqueClaClanInfo_nNum, SAVE_EXE);
 
 #ifdef  USE_PROSTONTALE
@@ -563,7 +563,7 @@ int clanINFO_Load32X32(int clinfo_n)
 	CLANINFO *ci = &ClanInfo[clinfo_n];
 
 	char szTemp[256];
-	wsprintf(szTemp, "%s\\%s\\%s_%s.%s", CLANINFO_DIR, szConnServerName, ci->ClanInfoHeader.Gserver,
+	wsprintf(szTemp, "%s//%s//%s_%s.%s", CLANINFO_DIR, szConnServerName, ci->ClanInfoHeader.Gserver,
 			 ci->ClanInfoHeader.UniqueClaClanInfo_nNum, SAVE_EXE);
 
 	if(ci->hClanMark32 != NULL)
@@ -708,7 +708,7 @@ char* CViewClanInfo::AddClanInfo(char *marknum, char *szInfo, CLANINFO* ci)
 
 	ci->dwTime = GetCurrentTime();
 
-	wsprintf(szTemp, "%s\\%s\\%s_%s.rep", CLANINFO_DIR, szConnServerName, ci->ClanInfoHeader.Gserver, ci->ClanInfoHeader.UniqueClaClanInfo_nNum);
+	wsprintf(szTemp, "%s//%s//%s_%s.rep", CLANINFO_DIR, szConnServerName, ci->ClanInfoHeader.Gserver, ci->ClanInfoHeader.UniqueClaClanInfo_nNum);
 	hFile = CreateFile(szTemp, GENERIC_WRITE, FILE_SHARE_WRITE,
 					   NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
@@ -747,7 +747,7 @@ int CViewClanInfo::chk_readStrBuf(char *cmd, char *readbuf, char *retBuf)
 	pBuf = pBuf + strlen(cmd);
 	while(1)
 	{
-		if(*pBuf == '\n') return 0;
+		if(*pBuf == '/n') return 0;
 		if(*pBuf != ' ') break;
 		pBuf++;
 	}
@@ -774,7 +774,7 @@ void CViewClanInfo::ParsingData(char* cmd, char* data, char* save)
 	while(1)
 	{
 
-		if(szTemp[nCount] == '\r') break;
+		if(szTemp[nCount] == '/r') break;
 		save[nCount] = szTemp[nCount];
 		nCount++;
 
@@ -820,7 +820,7 @@ BOOL CViewClanInfo::SearchDirectory()
 	WIN32_FIND_DATA wfd;
 	HANDLE hFind;
 	char t[50];
-	wsprintf(t, "%s\\*.dat", CLANINFO_DIR);
+	wsprintf(t, "%s//*.dat", CLANINFO_DIR);
 	hFind = FindFirstFile(t, &wfd);
 	if(hFind == INVALID_HANDLE_VALUE)
 	{
@@ -854,7 +854,7 @@ void CViewClanInfo::LoadData()
 
 	while(1)
 	{
-		wsprintf(szFile, "%s\\*.rep", CLANINFO_DIR);
+		wsprintf(szFile, "%s//*.rep", CLANINFO_DIR);
 		if(bNext_Folder == TRUE)
 		{
 			hFind = FindFirstFile(szFile, &wfd);
@@ -865,7 +865,7 @@ void CViewClanInfo::LoadData()
 		}
 		bNext_Folder = FALSE;
 		memset(szFileName, 0, sizeof(szFileName));
-		wsprintf(szFileName, "%s\\%s", CLANINFO_DIR, wfd.cFileName);
+		wsprintf(szFileName, "%s//%s", CLANINFO_DIR, wfd.cFileName);
 		ReadToFile(szFileName, nCount);
 		bReturn = FindNextFile(hFind, &wfd);
 
@@ -882,7 +882,7 @@ void CViewClanInfo::LoadData()
 
 	while(1)
 	{
-		wsprintf(szFile, "%s\\*.bmp", CLANINFO_DIR);
+		wsprintf(szFile, "%s//*.bmp", CLANINFO_DIR);
 		if(bNext_Folder == TRUE)
 		{
 			hFind = FindFirstFile(szFile, &wfd);
@@ -893,7 +893,7 @@ void CViewClanInfo::LoadData()
 		}
 		bNext_Folder = FALSE;
 		memset(szFileName, 0, sizeof(szFileName));
-		wsprintf(szFileName, "%s\\%s", CLANINFO_DIR, wfd.cFileName);
+		wsprintf(szFileName, "%s//%s", CLANINFO_DIR, wfd.cFileName);
 		ReadToImage(szFileName, nCount);
 		bReturn = FindNextFile(hFind, &wfd);
 
@@ -944,7 +944,7 @@ BOOL CViewClanInfo::CheckWhere(char *MarkNum)
 	strcpy(ClanMarkNum, MarkNum);
 	char szTemp[64];
 
-	wsprintf(szTemp, "%s\\%c_%s.rep", ClanMarkNum[0], ClanMarkNum[3]);
+	wsprintf(szTemp, "%s//%c_%s.rep", ClanMarkNum[0], ClanMarkNum[3]);
 
 
 
@@ -966,7 +966,7 @@ BOOL CViewClanInfo::CheckWhere(char *MarkNum)
 
 
 
-	wsprintf(szTemp, "%s\\%c_%s.bmp", ClanMarkNum[0], ClanMarkNum[3]);
+	wsprintf(szTemp, "%s//%c_%s.bmp", ClanMarkNum[0], ClanMarkNum[3]);
 
 #ifdef  USE_PROSTONTALE
 	ClanInfo[ClanInfo_nNum].hClanMark = LoadDibSurfaceOffscreen(szTemp);

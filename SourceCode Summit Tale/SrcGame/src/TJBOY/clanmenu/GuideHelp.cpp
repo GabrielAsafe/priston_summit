@@ -40,14 +40,14 @@
 #include "tjclanDEF.h"
 
 #ifdef USE_PROSTONTALE		
-#include "sinbaram\\SinLinkHeader.h"
-#include "HoBaram\\HoLinkHeader.h"
-#include "Language\\language.h"
-#include "HoBaram\\HoTextFile.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "Language/language.h"
+#include "HoBaram/HoTextFile.h"
 #include "cE_CViewClanInfo.h"
 #endif
 
-#include "tjscroll.h"
+#include "tjScroll.h"
 #include "tjclan.h"
 #include "cE_Notice.h"
 #include "GuideHelp.h"
@@ -700,23 +700,23 @@ void CGuideHelp::Draw()
 
 void CGuideHelp::Load()
 {
-	nQuetion_Icon = CreateTextureMaterial("image\\Sinimage\\Help\\help_icon01.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
-	nQuetion_Icon1 = CreateTextureMaterial("image\\Sinimage\\Help\\help_icon01_.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
-	nHelp = CreateTextureMaterial("image\\Sinimage\\Help\\help_icon01t.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
-	nHelpSee = CreateTextureMaterial("image\\Sinimage\\Help\\help_icon00.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
-	nQuideHelp = CreateTextureMaterial("image\\Sinimage\\Help\\help_icon02t.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
-	nDuru = CreateTextureMaterial("image\\Sinimage\\Help\\help_icon02.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
-	nDuru1 = CreateTextureMaterial("image\\Sinimage\\Help\\help_icon02_.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
-	nLine = CreateTextureMaterial("image\\Sinimage\\Help\\Box_Line.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	nQuetion_Icon = CreateTextureMaterial("image//Sinimage//Help//help_icon01.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
+	nQuetion_Icon1 = CreateTextureMaterial("image//Sinimage//Help//help_icon01_.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
+	nHelp = CreateTextureMaterial("image//Sinimage//Help//help_icon01t.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
+	nHelpSee = CreateTextureMaterial("image//Sinimage//Help//help_icon00.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
+	nQuideHelp = CreateTextureMaterial("image//Sinimage//Help//help_icon02t.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
+	nDuru = CreateTextureMaterial("image//Sinimage//Help//help_icon02.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
+	nDuru1 = CreateTextureMaterial("image//Sinimage//Help//help_icon02_.tga", 0, 0, 64, 64, SMMAT_BLEND_ALPHA);
+	nLine = CreateTextureMaterial("image//Sinimage//Help//Box_Line.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	hOn = LoadDibSurfaceOffscreen("image\\Sinimage\\Help\\G_help-On.bmp");
-	hOff = LoadDibSurfaceOffscreen("image\\Sinimage\\Help\\G_help-Off.bmp");
+	hOn = LoadDibSurfaceOffscreen("image//Sinimage//Help//G_help-On.bmp");
+	hOff = LoadDibSurfaceOffscreen("image//Sinimage//Help//G_help-Off.bmp");
 
-	nScl_icon_tj = CreateTextureMaterial("image\\Sinimage\\Help\\scl_icon.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	nScl_icon_tj = CreateTextureMaterial("image//Sinimage//Help//scl_icon.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	nScl_Bar_tj = CreateTextureMaterial("image\\Sinimage\\Help\\scl_bar.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	nScl_Bar_tj = CreateTextureMaterial("image//Sinimage//Help//scl_bar.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	nGuideList = CreateTextureMaterial("image\\Sinimage\\Help\\help_Glist.tga", 0, 0, 64, 32, SMMAT_BLEND_ALPHA);
+	nGuideList = CreateTextureMaterial("image//Sinimage//Help//help_Glist.tga", 0, 0, 64, 32, SMMAT_BLEND_ALPHA);
 
 
 }
@@ -1471,7 +1471,7 @@ void CGuideHelp::Draw_Help_Text(char *str, int x, int y, int sw)
 
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '\n')
+		if(strbuf[i] == '/n')
 		{
 			strbuf[i] = 0;
 			i = 0;
@@ -1544,7 +1544,7 @@ void CGuideHelp::Draw_Help_Text2(char *str, int x, int y, int sw)
 
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '\n')
+		if(strbuf[i] == '/n')
 		{
 			strbuf[i] = 0;
 			i = 0;
@@ -1617,7 +1617,7 @@ void CGuideHelp::Draw_Title_Text(char *str, int x, int y, int sw)
 
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '\n')
+		if(strbuf[i] == '/n')
 		{
 			strbuf[i] = 0;
 			i = 0;

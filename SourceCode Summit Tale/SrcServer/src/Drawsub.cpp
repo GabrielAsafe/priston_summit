@@ -1,7 +1,7 @@
 
-#include "smlib3d\\smd3d.h"
-#include "Drawsub.h"
-#include "sinbaram\\sinlinkheader.h"
+#include "smLib3d/smd3d.h"
+#include "drawsub.h"
+#include "sinbaram/sinLinkHeader.h"
 
 
 extern int WinSizeX;

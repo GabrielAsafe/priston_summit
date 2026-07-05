@@ -10,3 +10,4 @@ docker/db/data/
 *.tar.xz
 *.tar.gz
 *.zip
+.exe

@@ -1,6 +1,6 @@
 #ifndef __STRING_CORE_INCLUDE__
 #define __STRING_CORE_INCLUDE__
-#include <atlbase.h>
+// #include <atlbase.h> // removed for MinGW
 
 class CStrClass
 {

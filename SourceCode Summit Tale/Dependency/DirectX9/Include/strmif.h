@@ -14896,9 +14896,9 @@ EXTERN_C const IID IID_IKsPropertySet;
     IKsPropertySet * This,
     /* [in] */ REFGUID guidPropSet,
     /* [in] */ DWORD dwPropID,
-    /* [size_is][in] */ byte *pInstanceData,
+    /* [size_is][in] */ BYTE *pInstanceData,
     /* [in] */ DWORD cbInstanceData,
-    /* [size_is][in] */ byte *pPropData,
+    /* [size_is][in] */ BYTE *pPropData,
     /* [in] */ DWORD cbPropData);
 
 
@@ -14913,9 +14913,9 @@ void __RPC_STUB IKsPropertySet_RemoteSet_Stub(
     IKsPropertySet * This,
     /* [in] */ REFGUID guidPropSet,
     /* [in] */ DWORD dwPropID,
-    /* [size_is][in] */ byte *pInstanceData,
+    /* [size_is][in] */ BYTE *pInstanceData,
     /* [in] */ DWORD cbInstanceData,
-    /* [size_is][out] */ byte *pPropData,
+    /* [size_is][out] */ BYTE *pPropData,
     /* [in] */ DWORD cbPropData,
     /* [out] */ DWORD *pcbReturned);
 
@@ -30698,9 +30698,9 @@ void                      __RPC_USER  VARIANT_UserFree(     unsigned long *, VAR
     IKsPropertySet * This,
     /* [in] */ REFGUID guidPropSet,
     /* [in] */ DWORD dwPropID,
-    /* [size_is][in] */ byte *pInstanceData,
+    /* [size_is][in] */ BYTE *pInstanceData,
     /* [in] */ DWORD cbInstanceData,
-    /* [size_is][in] */ byte *pPropData,
+    /* [size_is][in] */ BYTE *pPropData,
     /* [in] */ DWORD cbPropData);
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IKsPropertySet_Get_Proxy( 
@@ -30718,9 +30718,9 @@ void                      __RPC_USER  VARIANT_UserFree(     unsigned long *, VAR
     IKsPropertySet * This,
     /* [in] */ REFGUID guidPropSet,
     /* [in] */ DWORD dwPropID,
-    /* [size_is][in] */ byte *pInstanceData,
+    /* [size_is][in] */ BYTE *pInstanceData,
     /* [in] */ DWORD cbInstanceData,
-    /* [size_is][out] */ byte *pPropData,
+    /* [size_is][out] */ BYTE *pPropData,
     /* [in] */ DWORD cbPropData,
     /* [out] */ DWORD *pcbReturned);
 

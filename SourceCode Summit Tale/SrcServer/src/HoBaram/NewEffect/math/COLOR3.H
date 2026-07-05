@@ -1,7 +1,7 @@
 /*******************************************************************
  *         Advanced 3D Game Programming using DirectX 8.0
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *   Title: color3.h
+ *   Title: COLOR3.H
  *    Desc: RGB color structure, using floats
  *
  * copyright (c) 2001 by Peter A Walsh and Adrian Perez

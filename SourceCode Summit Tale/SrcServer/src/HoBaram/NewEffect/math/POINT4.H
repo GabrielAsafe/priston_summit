@@ -1,7 +1,7 @@
 /*******************************************************************
  *         Advanced 3D Game Programming using DirectX 8.0
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *   Title: point4.h
+ *   Title: POINT4.H
  *    Desc: 4-dimensional point class
  *          Subset of the functionality in point3
  * copyright (c) 2001 by Peter A Walsh and Adrian Perez

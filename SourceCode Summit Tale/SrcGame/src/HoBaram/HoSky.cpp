@@ -1,8 +1,8 @@
 
-#include "..\\HoBaram\\HoLinkHeader.h"
-#include "..\\field.h"
-#include "..\\HoBaram\\HoNewParticleLinkHeader.h"
-#include "Settings\Settings.h"
+#include "../HoBaram/HoLinkHeader.h"
+#include "../field.h"
+#include "../HoBaram/HoNewParticleLinkHeader.h"
+#include "Settings/Settings.h"
 
 HoSky SkyBackGround;
 
@@ -522,11 +522,11 @@ void HoSky::Create()
 	
 	if(SETTINGSHANDLER->getBitDepth() == 32)
 	{
-		fp = fopen("Effect\\Sky\\test32.txt", "rt");
+		fp = fopen("Effect//Sky//test32.txt", "rt");
 	}
 	else
 	{
-		fp = fopen("Effect\\Sky\\test16.txt ", "rt");
+		fp = fopen("Effect//Sky//test16.txt ", "rt");
 	}
 
 	if(fp == NULL)

@@ -4,11 +4,11 @@
 #define SIN_SKILL_USE_ALL		0x03000000		
 #define SIN_SKILL_USE_NOT		0x04000000		
 
-#include "Language\\Language.h"
+#include "Language/language.h"
 
 
 #ifdef _LANGUAGE_BRAZIL
-#include "Language\\BRAZIL\\B_sinSkill_Info.h"
+#include "Language/Brazil/b_sinSkill_Info.h"
 #endif
 
 

@@ -15,43 +15,43 @@ void cPARTY::LoadImages()
 	bExpand = true;
 	MenuFlag = 0;
 
-	mClass[0][0] = CreateTextureMaterial("Game\\Party\\Class\\Fighter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[0][1] = CreateTextureMaterial("Game\\Party\\Class\\Mechanician.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[0][2] = CreateTextureMaterial("Game\\Party\\Class\\Archer.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[0][3] = CreateTextureMaterial("Game\\Party\\Class\\Pikeman.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[0][4] = CreateTextureMaterial("Game\\Party\\Class\\Atalanta.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[0][5] = CreateTextureMaterial("Game\\Party\\Class\\Knight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[0][6] = CreateTextureMaterial("Game\\Party\\Class\\Magician.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[0][7] = CreateTextureMaterial("Game\\Party\\Class\\Priestess.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[0][0] = CreateTextureMaterial("Game//Party//Class//Fighter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[0][1] = CreateTextureMaterial("Game//Party//Class//Mechanician.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[0][2] = CreateTextureMaterial("Game//Party//Class//Archer.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[0][3] = CreateTextureMaterial("Game//Party//Class//Pikeman.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[0][4] = CreateTextureMaterial("Game//Party//Class//Atalanta.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[0][5] = CreateTextureMaterial("Game//Party//Class//Knight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[0][6] = CreateTextureMaterial("Game//Party//Class//Magician.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[0][7] = CreateTextureMaterial("Game//Party//Class//Priestess.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	mClass[1][0] = CreateTextureMaterial("Game\\Party\\Class\\Fighter_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[1][1] = CreateTextureMaterial("Game\\Party\\Class\\Mechanician_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[1][2] = CreateTextureMaterial("Game\\Party\\Class\\Archer_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[1][3] = CreateTextureMaterial("Game\\Party\\Class\\Pikeman_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[1][4] = CreateTextureMaterial("Game\\Party\\Class\\Atalanta_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[1][5] = CreateTextureMaterial("Game\\Party\\Class\\Knight_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[1][6] = CreateTextureMaterial("Game\\Party\\Class\\Magician_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[1][7] = CreateTextureMaterial("Game\\Party\\Class\\Priestess_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[1][0] = CreateTextureMaterial("Game//Party//Class//Fighter_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[1][1] = CreateTextureMaterial("Game//Party//Class//Mechanician_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[1][2] = CreateTextureMaterial("Game//Party//Class//Archer_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[1][3] = CreateTextureMaterial("Game//Party//Class//Pikeman_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[1][4] = CreateTextureMaterial("Game//Party//Class//Atalanta_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[1][5] = CreateTextureMaterial("Game//Party//Class//Knight_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[1][6] = CreateTextureMaterial("Game//Party//Class//Magician_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[1][7] = CreateTextureMaterial("Game//Party//Class//Priestess_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	mMembers[0] = CreateTextureMaterial("Game\\Party\\Members\\member1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mMembers[1] = CreateTextureMaterial("Game\\Party\\Members\\member2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mMembers[2] = CreateTextureMaterial("Game\\Party\\Members\\member3.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mMembers[3] = CreateTextureMaterial("Game\\Party\\Members\\member4.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mMembers[4] = CreateTextureMaterial("Game\\Party\\Members\\member5.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mMembers[5] = CreateTextureMaterial("Game\\Party\\Members\\member6.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mMembers[0] = CreateTextureMaterial("Game//Party//Members//member1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mMembers[1] = CreateTextureMaterial("Game//Party//Members//member2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mMembers[2] = CreateTextureMaterial("Game//Party//Members//member3.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mMembers[3] = CreateTextureMaterial("Game//Party//Members//member4.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mMembers[4] = CreateTextureMaterial("Game//Party//Members//member5.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mMembers[5] = CreateTextureMaterial("Game//Party//Members//member6.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	mDefault[DEFAULT::BACKGROUND] = CreateTextureMaterial("Game\\Party\\background.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mDefault[DEFAULT::EXPAND] = CreateTextureMaterial("Game\\Party\\expand.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mDefault[DEFAULT::EXPAND_] = CreateTextureMaterial("Game\\Party\\expand_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mDefault[DEFAULT::LEADER] = CreateTextureMaterial("Game\\Party\\leader.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mDefault[DEFAULT::BACKGROUND] = CreateTextureMaterial("Game//Party//background.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mDefault[DEFAULT::EXPAND] = CreateTextureMaterial("Game//Party//expand.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mDefault[DEFAULT::EXPAND_] = CreateTextureMaterial("Game//Party//expand_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mDefault[DEFAULT::LEADER] = CreateTextureMaterial("Game//Party//leader.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	LifeBar = CreateTextureMaterial("Game\\Party\\lifebar.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	ManaBar = CreateTextureMaterial("Game\\Party\\manabar.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	LifeBar = CreateTextureMaterial("Game//Party//lifebar.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	ManaBar = CreateTextureMaterial("Game//Party//manabar.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	mMenu[MENU::TOP] = CreateTextureMaterial("Game\\Party\\Menu\\top.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mMenu[MENU::MID] = CreateTextureMaterial("Game\\Party\\Menu\\mid.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mMenu[MENU::BOT] = CreateTextureMaterial("Game\\Party\\Menu\\bot.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mMenu[MENU::MAIN] = CreateTextureMaterial("Game\\Party\\Menu\\main.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mMenu[MENU::TOP] = CreateTextureMaterial("Game//Party//Menu//top.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mMenu[MENU::MID] = CreateTextureMaterial("Game//Party//Menu//mid.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mMenu[MENU::BOT] = CreateTextureMaterial("Game//Party//Menu//bot.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mMenu[MENU::MAIN] = CreateTextureMaterial("Game//Party//Menu//main.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 }
 

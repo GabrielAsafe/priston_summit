@@ -1,45 +1,45 @@
 #ifndef _HoLinkHeader_H_
 #define _HoLinkHeader_H_
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 
-#include "..\\drawsub.h"
-#include "..\\smwsock.h"
+#include "../drawsub.h"
+#include "../smwsock.h"
 
 
-#include "Sound\\dxwav.h"
-#include "..\\character.h"
-#include "..\\playmain.h"
+#include "Sound/Dxwav.h"
+#include "../character.h"
+#include "../playmain.h"
 
-#include "smpacket.h"
+#include "smPacket.h"
 #include "global_def.h"
-#include "..\\record.h"
-#include "..\\netplay.h"
-#include "..\\fileread.h"
+#include "../record.h"
+#include "../netplay.h"
+#include "../fileread.h"
 
 #include <stdlib.h>
-#include "HoBaram\\HoAnimData.h"
-#include "HoBaram\\HoPhysics.h"
+#include "HoBaram/HoAnimData.h"
+#include "HoBaram/HoPhysics.h"
 
-#include "HoBaram\\HoEffect.h"
-#include "HoBaram\\HoLogic.H"
+#include "HoBaram/HoEffect.h"
+#include "HoBaram/HoLogic.h"
 
-#include "HoBaram\\HoParticle.h"
-#include "Park\\HoMessageBox.H"
+#include "HoBaram/HoParticle.h"
+#include "Park/HoMessageBox.h"
 
-#include "HoBaram\\HoOpening.H"
-#include "HoBaram\\HoLogin.H"
-#include "HoBaram\\HoParty.H"
+#include "HoBaram/HoOpening.h"
+#include "HoBaram/HoLogin.h"
+#include "HoBaram/HoParty.h"
 
-#include "HoBaram\\hoAssaParticleEffect.h"
+#include "HoBaram/hoAssaParticleEffect.h"
 
-#include "HoBaram\\HoSky.h"
-#include "HoBaram\\LowLevelPetSystem.h"
-#include "HoBaram\\NewEffect\\HoNewEffectFunction.h"
+#include "HoBaram/HoSky.h"
+#include "HoBaram/LowLevelPetSystem.h"
+#include "HoBaram/NewEffect/HoNewEffectFunction.h"
 
 
 
-#include "HoBaram\\PCBangPetSystem.h"
+#include "HoBaram/PCBangPetSystem.h"
 #define ITEM_KIND_PERFECT			9
 
 extern smWINSOCK *ConnectServer_Main();

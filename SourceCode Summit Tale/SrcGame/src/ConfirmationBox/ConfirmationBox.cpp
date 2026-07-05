@@ -1,5 +1,5 @@
-#include "ConfirmationBox.h"
-#include "SinBaram\\sinLinkHeader.h"
+#include "ConfirmationBox/ConfirmationBox.h"
+#include "sinbaram/sinLinkHeader.h"
 
 ConfirmationBox _ConfirmationBox;
 

@@ -1,44 +1,44 @@
 #include "opcodes.h"
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 
 #include "smwsock.h"
 #include "character.h"
 #include "avictrl.h"
 #include "playmain.h"
-#include "Sound\\dxwav.h"
+#include "Sound/Dxwav.h"
 #include "fileread.h"
 
 #include "particle.h"
 #include "netplay.h"
 
-#include "sinbaram\\sinlinkheader.h"
-#include "hobaram\\holinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
 
 #include "field.h"
 #include "effectsnd.h"
 
 #include "record.h"
 #include "playsub.h"
-#include "Resources\resource.h"
+#include "Resources/resource.h"
 #include "drawsub.h"
-#include "Language\\language.h"
+#include "Language/language.h"
 
-#include "tjboy\\clanmenu\\tjclanDEF.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "tjboy\\clanmenu\\cE_CViewClanInfo.h"
+#include "TJBOY/clanmenu/tjclanDEF.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "TJBOY/clanmenu/cE_CViewClanInfo.h"
 
-#include "Server\\onserver.h"
+#include "Server/onserver.h"
 
 #include "BellatraFontEffect.h"
 #include "TextMessage.h"
 
 
 
-#include "WinInt\\WinIntThread.h"
+#include "WinInt/WinIntThread.h"
 #include "FullZoomMap.h"
 #include "FontImage.h"
 #include "DrawDamage.h"
-#include "Settings\Settings.h"
+#include "Settings/Settings.h"
 
 #include "cPartyWindow.h"
 
@@ -65,8 +65,8 @@ int	CodeXorMoney = 0;
 
 DWORD	dwPlaySub_CheckResult = PLAYSUB_CHECKRESULT;
 
-static char *szArmorDirectory = "char\\tmABCD\\";
-static char *szNpcDirectory = "char\\npc\\";
+static char *szArmorDirectory = "char//tmABCD//";
+static char *szNpcDirectory = "char//npc//";
 
 #include "playmodel.h"
 
@@ -453,8 +453,8 @@ int LoadFolder_Ini(char *szPath, char *szWildCard, char *szChgExt, int OftSave);
 int Make_CharAll_SMD()
 {
 	LoadOftenFullPattern();
-	LoadFolder_Ini("Char\\Npc", "*.ini", 0, 0);
-	LoadFolder_Ini("Char\\Monster", "*.ini", 0, 0);
+	LoadFolder_Ini("Char//Npc", "*.ini", 0, 0);
+	LoadFolder_Ini("Char//Monster", "*.ini", 0, 0);
 
 	return TRUE;
 }
@@ -463,7 +463,7 @@ int Make_CharAll_SMD()
 int LoadOftenNpc()
 {
 #ifdef _W_SERVER
-	LoadFolder_Ini("Char\\Npc", "*.inx", "ini", TRUE);
+	LoadFolder_Ini("Char//Npc", "*.inx", "ini", TRUE);
 #else
 	int cnt = 0;
 	while (1)
@@ -551,7 +551,7 @@ int LoadOftenItem()
 			continue;
 		}
 
-		wsprintf(szBuff, "Image\\sinImage\\Items\\DropItem\\it%s.ASE", sItem[cnt].DorpItem);
+		wsprintf(szBuff, "Image//sinImage//Items//DropItem//it%s.ASE", sItem[cnt].DorpItem);
 
 #ifdef _CHECK_MESH
 		LoadOftenMeshPatternCheckSum(szBuff);
@@ -929,7 +929,7 @@ int	ChangeModelSkin(smCHAR *lpChar, int ComicArmor, int ComicHeadNum, char *szAr
 	len = lstrlen(lpArmorFile);
 	for (cnt = len - 1; cnt >= 0; cnt--)
 	{
-		if (lpArmorFile[cnt] == '\\')
+		if (lpArmorFile[cnt] == '//')
 		{
 			strcpy_s(szArmorName, &lpArmorFile[cnt + 1]);
 			break;
@@ -1080,28 +1080,28 @@ void ResetHairModel()
 	switch (lpCurPlayer->smCharInfo.JOB_CODE)
 	{
 	case 1:
-		wsprintf(szDefaultHeadModel, "char\\tmABCD\\tmh%sB01%s.inf", cl, c);
+		wsprintf(szDefaultHeadModel, "char//tmABCD//tmh%sB01%s.inf", cl, c);
 		break;
 	case 2:
-		wsprintf(szDefaultHeadModel, "char\\tmABCD\\tmh%sA01%s.inf", cl, c);
+		wsprintf(szDefaultHeadModel, "char//tmABCD//tmh%sA01%s.inf", cl, c);
 		break;
 	case 3:
-		wsprintf(szDefaultHeadModel, "char\\tmABCD\\tfh%sD01%s.inf", cl, c);
+		wsprintf(szDefaultHeadModel, "char//tmABCD//tfh%sD01%s.inf", cl, c);
 		break;
 	case 4:
-		wsprintf(szDefaultHeadModel, "char\\tmABCD\\tmh%sC01%s.inf", cl, c);
+		wsprintf(szDefaultHeadModel, "char//tmABCD//tmh%sC01%s.inf", cl, c);
 		break;
 	case 5:
-		wsprintf(szDefaultHeadModel, "char\\tmABCD\\Mfh%sB01%s.inf", cl, c);
+		wsprintf(szDefaultHeadModel, "char//tmABCD//Mfh%sB01%s.inf", cl, c);
 		break;
 	case 6:
-		wsprintf(szDefaultHeadModel, "char\\tmABCD\\Mmh%sA01%s.inf", cl, c);
+		wsprintf(szDefaultHeadModel, "char//tmABCD//Mmh%sA01%s.inf", cl, c);
 		break;
 	case 7:
-		wsprintf(szDefaultHeadModel, "char\\tmABCD\\Mmh%sD01%s.inf", cl, c);
+		wsprintf(szDefaultHeadModel, "char//tmABCD//Mmh%sD01%s.inf", cl, c);
 		break;
 	case 8:
-		wsprintf(szDefaultHeadModel, "char\\tmABCD\\Mfh%sC01%s.inf", cl, c);
+		wsprintf(szDefaultHeadModel, "char//tmABCD//Mfh%sC01%s.inf", cl, c);
 		break;
 	}
 
@@ -2136,28 +2136,28 @@ int InitWeatherSystem()
 		return FALSE;
 	}
 
-	RainMaterial[0][0] = CreateTextureMaterial("game\\sky\\rain\\ll.bmp", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ADDCOLOR);
+	RainMaterial[0][0] = CreateTextureMaterial("game//sky//rain//ll.bmp", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ADDCOLOR);
 
-	RainMaterial[1][0] = CreateTextureMaterial("game\\sky\\rain\\45rain01.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[1][1] = CreateTextureMaterial("game\\sky\\rain\\45rain02.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[1][2] = CreateTextureMaterial("game\\sky\\rain\\45rain03.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[1][3] = CreateTextureMaterial("game\\sky\\rain\\45rain04.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[1][4] = CreateTextureMaterial("game\\sky\\rain\\45rain05.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[1][5] = CreateTextureMaterial("game\\sky\\rain\\45rain06.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[1][0] = CreateTextureMaterial("game//sky//rain//45rain01.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[1][1] = CreateTextureMaterial("game//sky//rain//45rain02.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[1][2] = CreateTextureMaterial("game//sky//rain//45rain03.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[1][3] = CreateTextureMaterial("game//sky//rain//45rain04.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[1][4] = CreateTextureMaterial("game//sky//rain//45rain05.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[1][5] = CreateTextureMaterial("game//sky//rain//45rain06.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
-	RainMaterial[2][0] = CreateTextureMaterial("game\\sky\\rain\\80rain01.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[2][1] = CreateTextureMaterial("game\\sky\\rain\\80rain02.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[2][2] = CreateTextureMaterial("game\\sky\\rain\\80rain03.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[2][3] = CreateTextureMaterial("game\\sky\\rain\\80rain04.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[2][4] = CreateTextureMaterial("game\\sky\\rain\\80rain05.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[2][5] = CreateTextureMaterial("game\\sky\\rain\\80rain06.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[2][0] = CreateTextureMaterial("game//sky//rain//80rain01.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[2][1] = CreateTextureMaterial("game//sky//rain//80rain02.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[2][2] = CreateTextureMaterial("game//sky//rain//80rain03.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[2][3] = CreateTextureMaterial("game//sky//rain//80rain04.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[2][4] = CreateTextureMaterial("game//sky//rain//80rain05.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[2][5] = CreateTextureMaterial("game//sky//rain//80rain06.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
-	RainMaterial[3][0] = CreateTextureMaterial("game\\sky\\rain\\90rain01.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[3][1] = CreateTextureMaterial("game\\sky\\rain\\90rain02.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[3][2] = CreateTextureMaterial("game\\sky\\rain\\90rain03.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[3][3] = CreateTextureMaterial("game\\sky\\rain\\90rain04.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[3][4] = CreateTextureMaterial("game\\sky\\rain\\90rain05.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RainMaterial[3][5] = CreateTextureMaterial("game\\sky\\rain\\90rain06.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[3][0] = CreateTextureMaterial("game//sky//rain//90rain01.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[3][1] = CreateTextureMaterial("game//sky//rain//90rain02.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[3][2] = CreateTextureMaterial("game//sky//rain//90rain03.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[3][3] = CreateTextureMaterial("game//sky//rain//90rain04.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[3][4] = CreateTextureMaterial("game//sky//rain//90rain05.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RainMaterial[3][5] = CreateTextureMaterial("game//sky//rain//90rain06.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
 	return TRUE;
 }
@@ -2497,17 +2497,17 @@ int bpinfo;
 int InitFieldMap()
 {
 	ZeroMemory(sCompactMap, sizeof(sCOMPACT_MAP) * 4);
-	MatArrow = CreateTextureMaterial("Image\\ARROW.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatBossTime = CreateTextureMaterial("game\\boss\\nextboss.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatMapBox = CreateTextureMaterial("Image\\MapBox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatPartyPos = CreateTextureMaterial("Image\\party.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MatNpcPos = CreateTextureMaterial("Image\\npc.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BPbar = CreateTextureMaterial("game\\images\\battlepass\\EXP_BAR_mini.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BPhud = CreateTextureMaterial("game\\images\\battlepass\\hud_mini.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	BPbox = CreateTextureMaterial("game\\images\\battlepass\\box_mini.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	//Bpf = CreateTextureMaterial("game\\images\\shop\\BPF.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	//Bpp = CreateTextureMaterial("game\\images\\shop\\BPP.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	bpinfo = CreateTextureMaterial("game\\images\\battlepass\\Balao_Info_BP.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatArrow = CreateTextureMaterial("Image//ARROW.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatBossTime = CreateTextureMaterial("game//boss//nextboss.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatMapBox = CreateTextureMaterial("Image//MapBox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatPartyPos = CreateTextureMaterial("Image//party.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatNpcPos = CreateTextureMaterial("Image//npc.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BPbar = CreateTextureMaterial("game//images//battlepass//EXP_BAR_mini.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BPhud = CreateTextureMaterial("game//images//battlepass//hud_mini.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	BPbox = CreateTextureMaterial("game//images//battlepass//box_mini.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	//Bpf = CreateTextureMaterial("game//images//shop//BPF.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	//Bpp = CreateTextureMaterial("game//images//shop//BPP.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	bpinfo = CreateTextureMaterial("game//images//battlepass//Balao_Info_BP.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	return TRUE;
 }
@@ -4057,7 +4057,7 @@ int ReformCharForm()
 #ifndef _GU
 #define _GU
 
-#include "AntiCheat\AntiCheat.h"
+#include "AntiCheat/AntiCheat.h"
 
 #endif
 
@@ -4981,14 +4981,14 @@ int	CheckUserModel(smCHAR_INFO *lpCharInfo)
 	strcpy_s(szBuff, lpCharInfo->szModelName);
 	for (cnt = len - 1; cnt >= 0; cnt--)
 	{
-		if (szBuff[cnt] == '\\')
+		if (szBuff[cnt] == '//')
 		{
 			szBuff[cnt + 1] = 0;
 			break;
 		}
 	}
 
-	if (lstrcmpi(szBuff, "char\\tmABCD\\") != 0) return FALSE;
+	if (lstrcmpi(szBuff, "char//tmABCD//") != 0) return FALSE;
 	lpBuff = &lpCharInfo->szModelName[len - 3];
 	if (lstrcmpi(lpBuff, "ini") != 0) return FALSE;
 
@@ -5519,8 +5519,9 @@ int	IncPotionCount(sCHK_POTION_COUNT *ChkPotion, sITEMINFO *lpItem)
 		ChkPotion->Pl103 += PotionCount;
 	if (lpItem->CODE == (sinPL1 | sin04))
 		ChkPotion->Pl104 += PotionCount;
-	if (lpItem->CODE == (sinPL1 | sin05))
-		ChkPotion->Pl105 += PotionCount;
+	// sin05 does not exist in current sCHK_POTION_COUNT structure
+	// if (lpItem->CODE == (sinPL1 | sin05))
+	// 	ChkPotion->Pl105 += PotionCount;
 
 
 	if (lpItem->CODE == (sinPM1 | sin01))
@@ -5531,8 +5532,9 @@ int	IncPotionCount(sCHK_POTION_COUNT *ChkPotion, sITEMINFO *lpItem)
 		ChkPotion->Pm103 += PotionCount;
 	if (lpItem->CODE == (sinPM1 | sin04))
 		ChkPotion->Pm104 += PotionCount;
-	if (lpItem->CODE == (sinPM1 | sin05))
-		ChkPotion->Pm105 += PotionCount;
+	// sin05 does not exist in current sCHK_POTION_COUNT structure
+	// if (lpItem->CODE == (sinPM1 | sin05))
+	// 	ChkPotion->Pm105 += PotionCount;
 
 
 	if (lpItem->CODE == (sinPS1 | sin01))
@@ -5543,8 +5545,9 @@ int	IncPotionCount(sCHK_POTION_COUNT *ChkPotion, sITEMINFO *lpItem)
 		ChkPotion->Ps103 += PotionCount;
 	if (lpItem->CODE == (sinPS1 | sin04))
 		ChkPotion->Ps104 += PotionCount;
-	if (lpItem->CODE == (sinPS1 | sin05))
-		ChkPotion->Ps105 += PotionCount;
+	// sin05 does not exist in current sCHK_POTION_COUNT structure
+	// if (lpItem->CODE == (sinPS1 | sin05))
+	// 	ChkPotion->Ps105 += PotionCount;
 
 	return TRUE;
 }
@@ -6424,7 +6427,7 @@ int LoadFolder_Ini(char *szPath, char *szWildCard, char *szChgExt, int OftSave)
 	int		cnt;
 
 	strcpy_s(szFindPath, szPath);
-	lstrcat(szFindPath, "\\*.*");
+	lstrcat(szFindPath, "//*.*");
 
 	hFindHandle = FindFirstFile(szFindPath, &fd);
 	if (hFindHandle != INVALID_HANDLE_VALUE)
@@ -6433,14 +6436,14 @@ int LoadFolder_Ini(char *szPath, char *szWildCard, char *szChgExt, int OftSave)
 		{
 			if ((fd.dwFileAttributes&FILE_ATTRIBUTE_DIRECTORY) != 0)
 			{
-				wsprintf(szFindPath2, "%s\\%s\\%s", szPath, fd.cFileName, szWildCard);
+				wsprintf(szFindPath2, "%s//%s//%s", szPath, fd.cFileName, szWildCard);
 
 				hFindHandle2 = FindFirstFile(szFindPath2, &fd2);
 				if (hFindHandle2 != INVALID_HANDLE_VALUE)
 				{
 					while (1)
 					{
-						wsprintf(szFilePath, "%s\\%s\\%s", szPath, fd.cFileName, fd2.cFileName);
+						wsprintf(szFilePath, "%s//%s//%s", szPath, fd.cFileName, fd2.cFileName);
 
 						if (OftSave)
 						{

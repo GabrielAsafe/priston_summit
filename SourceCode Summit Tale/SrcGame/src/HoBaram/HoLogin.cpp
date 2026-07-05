@@ -1,19 +1,19 @@
 #include "opcodes.h"
-#include "sinbaram\\SinLinkHeader.h"
-#include "..\\HoBaram\\HoLinkHeader.h"
-#include "..\\HoBaram\\HoTextFile.h"
-#include "..\\HoBaram\\HoMinMax.h"
-#include "..\\HoBaram\\HoNewParticle.h"
-#include "..\\HoBaram\\HoNewParticleMgr.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "../HoBaram/HoLinkHeader.h"
+#include "../HoBaram/HoTextFile.h"
+#include "../HoBaram/HoMinMax.h"
+#include "../HoBaram/HoNewParticle.h"
+#include "../HoBaram/HoNewParticleMgr.h"
 
-#include "tjboy\\clanmenu\\tjclanDEF.h"
-#include "tjboy\\clanmenu\\tjclan.h"
-#include "..\\CurseFilter.h"		
+#include "TJBOY/clanmenu/tjclanDEF.h"
+#include "TJBOY/clanmenu/tjclan.h"
+#include "../CurseFilter.h"		
 
-#include "Language\\language.h"
-#include "Language\\jts.h"
+#include "Language/language.h"
+#include "Language/jts.h"
 
-#include "Settings\Settings.h"
+#include "Settings/Settings.h"
 
 int  CharacterPosX = 0;
 int  CharacterPosZ = 0;
@@ -47,187 +47,187 @@ static int CharacterInfoPosi[5] = { 362, 243, 488, 154, 588 };
 
 
 static char *szTempFighterBodyName[] = {
-	"char\\tmABCD\\b001.ini",
-	"char\\tmABCD\\b002.ini",
-	"char\\tmABCD\\b003.ini",
-	"char\\tmABCD\\b004.ini",
-	"char\\tmABCD\\b005.ini",
-	"char\\tmABCD\\b006.ini",
-	"char\\tmABCD\\b007.ini"
+	"char//tmABCD//b001.ini",
+	"char//tmABCD//b002.ini",
+	"char//tmABCD//b003.ini",
+	"char//tmABCD//b004.ini",
+	"char//tmABCD//b005.ini",
+	"char//tmABCD//b006.ini",
+	"char//tmABCD//b007.ini"
 };
 static char *szTempMechBodyName[] = {
-	"char\\tmABCD\\a001.ini",
-	"char\\tmABCD\\a002.ini",
-	"char\\tmABCD\\a003.ini",
-	"char\\tmABCD\\a004.ini",
-	"char\\tmABCD\\a005.ini",
-	"char\\tmABCD\\a006.ini",
-	"char\\tmABCD\\a007.ini"
+	"char//tmABCD//a001.ini",
+	"char//tmABCD//a002.ini",
+	"char//tmABCD//a003.ini",
+	"char//tmABCD//a004.ini",
+	"char//tmABCD//a005.ini",
+	"char//tmABCD//a006.ini",
+	"char//tmABCD//a007.ini"
 };
 static char *szTempArcherBodyName[] = {
-	"char\\tmABCD\\d001.ini",
-	"char\\tmABCD\\d002.ini",
-	"char\\tmABCD\\d003.ini",
-	"char\\tmABCD\\d004.ini",
-	"char\\tmABCD\\d005.ini",
-	"char\\tmABCD\\d006.ini",
-	"char\\tmABCD\\d007.ini"
+	"char//tmABCD//d001.ini",
+	"char//tmABCD//d002.ini",
+	"char//tmABCD//d003.ini",
+	"char//tmABCD//d004.ini",
+	"char//tmABCD//d005.ini",
+	"char//tmABCD//d006.ini",
+	"char//tmABCD//d007.ini"
 };
 static char *szTempPikeBodyName[] = {
-	"char\\tmABCD\\c001.ini",
-	"char\\tmABCD\\c002.ini",
-	"char\\tmABCD\\c003.ini",
-	"char\\tmABCD\\c004.ini",
-	"char\\tmABCD\\c005.ini",
-	"char\\tmABCD\\c006.ini",
-	"char\\tmABCD\\c007.ini"
+	"char//tmABCD//c001.ini",
+	"char//tmABCD//c002.ini",
+	"char//tmABCD//c003.ini",
+	"char//tmABCD//c004.ini",
+	"char//tmABCD//c005.ini",
+	"char//tmABCD//c006.ini",
+	"char//tmABCD//c007.ini"
 };
 
 
 char *szTempFighterFaceName[2][3] = {
 	{
-		"char\\tmABCD\\tmh-b01.inf",
-		"char\\tmABCD\\tmh-b02.inf",
-		"char\\tmABCD\\tmh-b03.inf"
+		"char//tmABCD//tmh-b01.inf",
+		"char//tmABCD//tmh-b02.inf",
+		"char//tmABCD//tmh-b03.inf"
 	},
 	{
-		"char\\tmABCD\\tmh-b01a.inf",
-		"char\\tmABCD\\tmh-b02a.inf",
-		"char\\tmABCD\\tmh-b03a.inf"
+		"char//tmABCD//tmh-b01a.inf",
+		"char//tmABCD//tmh-b02a.inf",
+		"char//tmABCD//tmh-b03a.inf"
 	}
 };
 
 char *szTempMechFaceName[2][3] = {
 	{
-		"char\\tmABCD\\tmh-a01.inf",
-		"char\\tmABCD\\tmh-a02.inf",
-		"char\\tmABCD\\tmh-a03.inf"
+		"char//tmABCD//tmh-a01.inf",
+		"char//tmABCD//tmh-a02.inf",
+		"char//tmABCD//tmh-a03.inf"
 	},
 	{
-		"char\\tmABCD\\tmh-a01a.inf",
-		"char\\tmABCD\\tmh-a02a.inf",
-		"char\\tmABCD\\tmh-a03a.inf"
+		"char//tmABCD//tmh-a01a.inf",
+		"char//tmABCD//tmh-a02a.inf",
+		"char//tmABCD//tmh-a03a.inf"
 	}
 };
 
 char *szTempArcherFaceName[2][3] = {
-	{ "char\\tmABCD\\tfh-D01.inf",
-	"char\\tmABCD\\tfh-d02.inf",
-	"char\\tmABCD\\tfh-d03.inf"
+	{ "char//tmABCD//tfh-D01.inf",
+	"char//tmABCD//tfh-d02.inf",
+	"char//tmABCD//tfh-d03.inf"
 	},
 	{
-		"char\\tmABCD\\tfh-D01a.inf",
-		"char\\tmABCD\\tfh-d02a.inf",
-		"char\\tmABCD\\tfh-d03a.inf"
+		"char//tmABCD//tfh-D01a.inf",
+		"char//tmABCD//tfh-d02a.inf",
+		"char//tmABCD//tfh-d03a.inf"
 	}
 };
 
 char *szTempPikeFaceName[2][3] = {
 	{
-		"char\\tmABCD\\tmh-c01.inf",
-		"char\\tmABCD\\tmh-c02.inf",
-		"char\\tmABCD\\tmh-c03.inf"
+		"char//tmABCD//tmh-c01.inf",
+		"char//tmABCD//tmh-c02.inf",
+		"char//tmABCD//tmh-c03.inf"
 	},
 	{
-		"char\\tmABCD\\tmh-c01a.inf",
-		"char\\tmABCD\\tmh-c02a.inf",
-		"char\\tmABCD\\tmh-c03a.inf"
+		"char//tmABCD//tmh-c01a.inf",
+		"char//tmABCD//tmh-c02a.inf",
+		"char//tmABCD//tmh-c03a.inf"
 	}
 };
 
 
 static char *szMorKnightBodyName[] = {
-	"char\\tmABCD\\ma001.ini",
-	"char\\tmABCD\\ma002.ini",
-	"char\\tmABCD\\ma003.ini",
-	"char\\tmABCD\\ma004.ini",
-	"char\\tmABCD\\ma005.ini",
-	"char\\tmABCD\\ma006.ini",
-	"char\\tmABCD\\ma007.ini"
+	"char//tmABCD//ma001.ini",
+	"char//tmABCD//ma002.ini",
+	"char//tmABCD//ma003.ini",
+	"char//tmABCD//ma004.ini",
+	"char//tmABCD//ma005.ini",
+	"char//tmABCD//ma006.ini",
+	"char//tmABCD//ma007.ini"
 };
 
 static char *szMorAtalantaBodyName[] = {
-	"char\\tmABCD\\mb001.ini",
-	"char\\tmABCD\\mb002.ini",
-	"char\\tmABCD\\mb003.ini",
-	"char\\tmABCD\\mb004.ini",
-	"char\\tmABCD\\mb005.ini",
-	"char\\tmABCD\\mb006.ini",
-	"char\\tmABCD\\mb007.ini"
+	"char//tmABCD//mb001.ini",
+	"char//tmABCD//mb002.ini",
+	"char//tmABCD//mb003.ini",
+	"char//tmABCD//mb004.ini",
+	"char//tmABCD//mb005.ini",
+	"char//tmABCD//mb006.ini",
+	"char//tmABCD//mb007.ini"
 };
 
 static char *szMorPriestessBodyName[] = {
-	"char\\tmABCD\\mc001.ini",
-	"char\\tmABCD\\mc002.ini",
-	"char\\tmABCD\\mc003.ini",
-	"char\\tmABCD\\mc004.ini",
-	"char\\tmABCD\\mc005.ini",
-	"char\\tmABCD\\mc006.ini",
-	"char\\tmABCD\\mc007.ini"
+	"char//tmABCD//mc001.ini",
+	"char//tmABCD//mc002.ini",
+	"char//tmABCD//mc003.ini",
+	"char//tmABCD//mc004.ini",
+	"char//tmABCD//mc005.ini",
+	"char//tmABCD//mc006.ini",
+	"char//tmABCD//mc007.ini"
 };
 
 static char *szMorMagicianBodyName[] = {
-	"char\\tmABCD\\md001.ini",
-	"char\\tmABCD\\md002.ini",
-	"char\\tmABCD\\md003.ini",
-	"char\\tmABCD\\md004.ini",
-	"char\\tmABCD\\md005.ini",
-	"char\\tmABCD\\md006.ini",
-	"char\\tmABCD\\md007.ini"
+	"char//tmABCD//md001.ini",
+	"char//tmABCD//md002.ini",
+	"char//tmABCD//md003.ini",
+	"char//tmABCD//md004.ini",
+	"char//tmABCD//md005.ini",
+	"char//tmABCD//md006.ini",
+	"char//tmABCD//md007.ini"
 };
 
 
 char *szMorKnightFaceName[2][3] = {
 	{
-		"char\\tmABCD\\Mmh-A01.inf",
-		"char\\tmABCD\\Mmh-A02.inf",
-		"char\\tmABCD\\Mmh-A03.inf"
+		"char//tmABCD//Mmh-A01.inf",
+		"char//tmABCD//Mmh-A02.inf",
+		"char//tmABCD//Mmh-A03.inf"
 	},
 	{
 
-		"char\\tmABCD\\Mmh-A01.inf",
-		"char\\tmABCD\\Mmh-A02.inf",
-		"char\\tmABCD\\Mmh-A03.inf"
+		"char//tmABCD//Mmh-A01.inf",
+		"char//tmABCD//Mmh-A02.inf",
+		"char//tmABCD//Mmh-A03.inf"
 	}
 };
 
 char *szMorAtalantaFaceName[2][3] = {
 	{
-		"char\\tmABCD\\Mfh-B01.inf",
-		"char\\tmABCD\\Mfh-B02.inf",
-		"char\\tmABCD\\Mfh-B03.inf"
+		"char//tmABCD//Mfh-B01.inf",
+		"char//tmABCD//Mfh-B02.inf",
+		"char//tmABCD//Mfh-B03.inf"
 	},
 	{
-		"char\\tmABCD\\Mfh-B01.inf",
-		"char\\tmABCD\\Mfh-B02.inf",
-		"char\\tmABCD\\Mfh-B03.inf"
+		"char//tmABCD//Mfh-B01.inf",
+		"char//tmABCD//Mfh-B02.inf",
+		"char//tmABCD//Mfh-B03.inf"
 	}
 };
 
 
 char *szMorPriestessFaceName[2][3] = {
 	{
-		"char\\tmABCD\\Mfh-C01.inf",
-		"char\\tmABCD\\Mfh-C02.inf",
-		"char\\tmABCD\\Mfh-C03.inf"
+		"char//tmABCD//Mfh-C01.inf",
+		"char//tmABCD//Mfh-C02.inf",
+		"char//tmABCD//Mfh-C03.inf"
 	},
 	{
-		"char\\tmABCD\\Mfh-C01.inf",
-		"char\\tmABCD\\Mfh-C02.inf",
-		"char\\tmABCD\\Mfh-C03.inf"
+		"char//tmABCD//Mfh-C01.inf",
+		"char//tmABCD//Mfh-C02.inf",
+		"char//tmABCD//Mfh-C03.inf"
 	}
 };
 
 char *szMorMagicianFaceName[2][3] = {
 	{
-		"char\\tmABCD\\Mmh-D01.inf",
-		"char\\tmABCD\\Mmh-D02.inf",
-		"char\\tmABCD\\Mmh-D03.inf"
+		"char//tmABCD//Mmh-D01.inf",
+		"char//tmABCD//Mmh-D02.inf",
+		"char//tmABCD//Mmh-D03.inf"
 	},
 	{
-		"char\\tmABCD\\Mmh-D01.inf",
-		"char\\tmABCD\\Mmh-D02.inf",
-		"char\\tmABCD\\Mmh-D03.inf"
+		"char//tmABCD//Mmh-D01.inf",
+		"char//tmABCD//Mmh-D02.inf",
+		"char//tmABCD//Mmh-D03.inf"
 	}
 };
 
@@ -409,7 +409,7 @@ int HoLogin::Init()
 
 
 	StopBGM();
-	OpenBGM("StartImage\\login\\CharacterSelect.wav");
+	OpenBGM("StartImage//login//CharacterSelect.wav");
 	PlayBGM();
 
 	PlayWav2(9 - 1, 1);
@@ -465,8 +465,8 @@ int HoLogin::Load()
 {
 	char dwFontGame[32] = { 0 };
 	//int SizeFontGame = 0;
-	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".\\game\\Font\\Config.ini");
-	//SizeFontGame = GetPrivateProfileInt("FontG", "Size", 0, ".\\game\\Font\\Config.ini");
+	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".//game//Font//Config.ini");
+	//SizeFontGame = GetPrivateProfileInt("FontG", "Size", 0, ".//game//Font//Config.ini");
 
 #ifdef _LANGUAGE_BRAZIL
 	Font = CreateFont(16,
@@ -497,7 +497,7 @@ int HoLogin::Load()
 	Stage->Bright = smConfig.MapBright;
 	Stage->Contrast = smConfig.MapContrast;
 
-	Stage = smSTAGE3D_ReadASE("cSelect\\login.ASE", smStage);
+	Stage = smSTAGE3D_ReadASE("cSelect//login.ASE", smStage);
 
 	if (Stage)
 	{
@@ -511,107 +511,107 @@ int HoLogin::Load()
 		Stage->smMaterialGroup->CheckMatreialTextureSwap();
 	}
 	
-	OkButton.Init("StartImage\\login\\CharSelect\\Bt_select.tga", 128, 32);
+	OkButton.Init("StartImage//login//CharSelect//Bt_select.tga", 128, 32);
 	OkButton.InitCrashRect(10, 0, 110, 32);
 
-	BackButton.Init("StartImage\\login\\CharSelect\\Bt_back.tga", 128, 32);
+	BackButton.Init("StartImage//login//CharSelect//Bt_back.tga", 128, 32);
 	BackButton.InitCrashRect(20, 0, 103, 32);
 
-	NewCharButton.Init("StartImage\\login\\CharSelect\\bt-NewChar.tga", 128, 32);
+	NewCharButton.Init("StartImage//login//CharSelect//bt-NewChar.tga", 128, 32);
 	NewCharButton.InitCrashRect(10, 0, 110, 32);
 
-	QuitButton.Init("StartImage\\login\\CharSelect\\Bt_exit.tga", 128, 32);
+	QuitButton.Init("StartImage//login//CharSelect//Bt_exit.tga", 128, 32);
 	QuitButton.InitCrashRect(15, 0, 108, 32);
 
-	DeleteButton.Init("StartImage\\login\\CharSelect\\Bt_delet.tga", 128, 32);
+	DeleteButton.Init("StartImage//login//CharSelect//Bt_delet.tga", 128, 32);
 	DeleteButton.InitCrashRect(10, 0, 108, 32);
 
 
-	UserCharacterInfoBackImage = CreateTextureMaterial("StartImage\\login\\UserCharacterInfo.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	UserCharacterInfoImage = CreateTextureMaterial("StartImage\\login\\CharacterInfo.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UserCharacterInfoBackImage = CreateTextureMaterial("StartImage//login//UserCharacterInfo.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	UserCharacterInfoImage = CreateTextureMaterial("StartImage//login//CharacterInfo.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
-	TempscronMarkImage = CreateTextureMaterial("StartImage\\login\\CharSelect\\mark_T.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronLogoImage = CreateTextureMaterial("StartImage\\login\\CharSelect\\T-tempscron.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronMarkImage = CreateTextureMaterial("StartImage//login//CharSelect//mark_T.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronLogoImage = CreateTextureMaterial("StartImage//login//CharSelect//T-tempscron.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MoryonMarkImage = CreateTextureMaterial("StartImage\\login\\CharSelect\\mark_M.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonLogoImage = CreateTextureMaterial("StartImage\\login\\CharSelect\\T-Morion.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonMarkImage = CreateTextureMaterial("StartImage//login//CharSelect//mark_M.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonLogoImage = CreateTextureMaterial("StartImage//login//CharSelect//T-Morion.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	FaceSelectImage = LoadDibSurfaceOffscreen("StartImage\\login\\CharSelect\\SelectFace.bmp"); //aqui
+	FaceSelectImage = LoadDibSurfaceOffscreen("StartImage//login//CharSelect//SelectFace.bmp"); //aqui
 
-	TempFaceImage[0][0][0] = CreateTextureMaterial("StartImage\\login\\TmA01-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[0][0][1] = CreateTextureMaterial("StartImage\\login\\TmA01-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[0][1][0] = CreateTextureMaterial("StartImage\\login\\TmA02-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[0][1][1] = CreateTextureMaterial("StartImage\\login\\TmA02-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[0][2][0] = CreateTextureMaterial("StartImage\\login\\TmA03-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[0][2][1] = CreateTextureMaterial("StartImage\\login\\TmA03-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[0][0][0] = CreateTextureMaterial("StartImage//login//TmA01-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[0][0][1] = CreateTextureMaterial("StartImage//login//TmA01-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[0][1][0] = CreateTextureMaterial("StartImage//login//TmA02-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[0][1][1] = CreateTextureMaterial("StartImage//login//TmA02-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[0][2][0] = CreateTextureMaterial("StartImage//login//TmA03-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[0][2][1] = CreateTextureMaterial("StartImage//login//TmA03-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	TempFaceImage[1][0][0] = CreateTextureMaterial("StartImage\\login\\TmB01-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[1][0][1] = CreateTextureMaterial("StartImage\\login\\TmB01-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[1][1][0] = CreateTextureMaterial("StartImage\\login\\TmB02-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[1][1][1] = CreateTextureMaterial("StartImage\\login\\TmB02-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[1][2][0] = CreateTextureMaterial("StartImage\\login\\TmB03-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[1][2][1] = CreateTextureMaterial("StartImage\\login\\TmB03-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[1][0][0] = CreateTextureMaterial("StartImage//login//TmB01-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[1][0][1] = CreateTextureMaterial("StartImage//login//TmB01-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[1][1][0] = CreateTextureMaterial("StartImage//login//TmB02-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[1][1][1] = CreateTextureMaterial("StartImage//login//TmB02-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[1][2][0] = CreateTextureMaterial("StartImage//login//TmB03-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[1][2][1] = CreateTextureMaterial("StartImage//login//TmB03-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	TempFaceImage[2][0][0] = CreateTextureMaterial("StartImage\\login\\TmC01-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[2][0][1] = CreateTextureMaterial("StartImage\\login\\TmC01-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[2][1][0] = CreateTextureMaterial("StartImage\\login\\TmC02-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[2][1][1] = CreateTextureMaterial("StartImage\\login\\TmC02-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[2][2][0] = CreateTextureMaterial("StartImage\\login\\TmC03-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[2][2][1] = CreateTextureMaterial("StartImage\\login\\TmC03-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[2][0][0] = CreateTextureMaterial("StartImage//login//TmC01-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[2][0][1] = CreateTextureMaterial("StartImage//login//TmC01-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[2][1][0] = CreateTextureMaterial("StartImage//login//TmC02-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[2][1][1] = CreateTextureMaterial("StartImage//login//TmC02-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[2][2][0] = CreateTextureMaterial("StartImage//login//TmC03-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[2][2][1] = CreateTextureMaterial("StartImage//login//TmC03-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	TempFaceImage[3][0][0] = CreateTextureMaterial("StartImage\\login\\TfD01-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[3][0][1] = CreateTextureMaterial("StartImage\\login\\TfD01-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[3][1][0] = CreateTextureMaterial("StartImage\\login\\TfD02-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[3][1][1] = CreateTextureMaterial("StartImage\\login\\TfD02-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[3][2][0] = CreateTextureMaterial("StartImage\\login\\TfD03-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[3][2][1] = CreateTextureMaterial("StartImage\\login\\TfD03-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[3][0][0] = CreateTextureMaterial("StartImage//login//TfD01-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[3][0][1] = CreateTextureMaterial("StartImage//login//TfD01-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[3][1][0] = CreateTextureMaterial("StartImage//login//TfD02-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[3][1][1] = CreateTextureMaterial("StartImage//login//TfD02-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[3][2][0] = CreateTextureMaterial("StartImage//login//TfD03-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[3][2][1] = CreateTextureMaterial("StartImage//login//TfD03-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	TempFaceImage[4][0][0] = CreateTextureMaterial("StartImage\\login\\TfE01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[4][0][1] = CreateTextureMaterial("StartImage\\login\\TfE01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[4][1][0] = CreateTextureMaterial("StartImage\\login\\TfE02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[4][1][1] = CreateTextureMaterial("StartImage\\login\\TfE02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[4][2][0] = CreateTextureMaterial("StartImage\\login\\TfE03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[4][2][1] = CreateTextureMaterial("StartImage\\login\\TfE03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[4][0][0] = CreateTextureMaterial("StartImage//login//TfE01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[4][0][1] = CreateTextureMaterial("StartImage//login//TfE01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[4][1][0] = CreateTextureMaterial("StartImage//login//TfE02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[4][1][1] = CreateTextureMaterial("StartImage//login//TfE02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[4][2][0] = CreateTextureMaterial("StartImage//login//TfE03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempFaceImage[4][2][1] = CreateTextureMaterial("StartImage//login//TfE03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MorFaceImage[0][0][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\MmA01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[0][0][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\MmA01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[0][1][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\MmA02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[0][1][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\MmA02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[0][2][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\MmA03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[0][2][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\MmA03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[0][0][0] = CreateTextureMaterial("StartImage//login//Moryon//MmA01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[0][0][1] = CreateTextureMaterial("StartImage//login//Moryon//MmA01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[0][1][0] = CreateTextureMaterial("StartImage//login//Moryon//MmA02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[0][1][1] = CreateTextureMaterial("StartImage//login//Moryon//MmA02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[0][2][0] = CreateTextureMaterial("StartImage//login//Moryon//MmA03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[0][2][1] = CreateTextureMaterial("StartImage//login//Moryon//MmA03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MorFaceImage[1][0][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\MfB02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[1][0][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\MfB02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[1][1][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\MfB01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[1][1][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\MfB01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[1][2][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\MfB03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[1][2][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\MfB03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[1][0][0] = CreateTextureMaterial("StartImage//login//Moryon//MfB02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[1][0][1] = CreateTextureMaterial("StartImage//login//Moryon//MfB02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[1][1][0] = CreateTextureMaterial("StartImage//login//Moryon//MfB01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[1][1][1] = CreateTextureMaterial("StartImage//login//Moryon//MfB01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[1][2][0] = CreateTextureMaterial("StartImage//login//Moryon//MfB03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[1][2][1] = CreateTextureMaterial("StartImage//login//Moryon//MfB03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MorFaceImage[2][0][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mfc01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[2][0][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mfc01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[2][1][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mfc02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[2][1][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mfc02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[2][2][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mfc03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[2][2][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mfc03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[2][0][0] = CreateTextureMaterial("StartImage//login//Moryon//Mfc01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[2][0][1] = CreateTextureMaterial("StartImage//login//Moryon//Mfc01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[2][1][0] = CreateTextureMaterial("StartImage//login//Moryon//Mfc02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[2][1][1] = CreateTextureMaterial("StartImage//login//Moryon//Mfc02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[2][2][0] = CreateTextureMaterial("StartImage//login//Moryon//Mfc03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[2][2][1] = CreateTextureMaterial("StartImage//login//Moryon//Mfc03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MorFaceImage[3][0][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mmd01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[3][0][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mmd01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[3][1][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mmd02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[3][1][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mmd02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[3][2][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mmd03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[3][2][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mmd03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[3][0][0] = CreateTextureMaterial("StartImage//login//Moryon//Mmd01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[3][0][1] = CreateTextureMaterial("StartImage//login//Moryon//Mmd01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[3][1][0] = CreateTextureMaterial("StartImage//login//Moryon//Mmd02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[3][1][1] = CreateTextureMaterial("StartImage//login//Moryon//Mmd02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[3][2][0] = CreateTextureMaterial("StartImage//login//Moryon//Mmd03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[3][2][1] = CreateTextureMaterial("StartImage//login//Moryon//Mmd03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MorFaceImage[4][0][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mme01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[4][0][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mme01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[4][1][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mme02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[4][1][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mme02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[4][2][0] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mme03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[4][2][1] = CreateTextureMaterial("StartImage\\login\\Moryon\\Mme03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[4][0][0] = CreateTextureMaterial("StartImage//login//Moryon//Mme01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[4][0][1] = CreateTextureMaterial("StartImage//login//Moryon//Mme01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[4][1][0] = CreateTextureMaterial("StartImage//login//Moryon//Mme02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[4][1][1] = CreateTextureMaterial("StartImage//login//Moryon//Mme02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[4][2][0] = CreateTextureMaterial("StartImage//login//Moryon//Mme03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MorFaceImage[4][2][1] = CreateTextureMaterial("StartImage//login//Moryon//Mme03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	MatEachBox = -1;
 
-	BlackBoxImage = CreateTextureMaterial("StartImage\\login\\BlackBox.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	BlackBoxImage = CreateTextureMaterial("StartImage//login//BlackBox.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
 	SYSTEMTIME st;
 	GetLocalTime(&st);
@@ -620,72 +620,72 @@ int HoLogin::Load()
 	MessageBox.Init();
 	InitMessageBox();
 
-	MainBoxFrameImage1[0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\mainbox_L.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	MainBoxFrameImage1[1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\mainbox_T.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	MainBoxFrameImage1[2] = CreateTextureMaterial("StartImage\\login\\CharSelect\\mainbox_R.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	MainBoxFrameImage1[3] = CreateTextureMaterial("StartImage\\login\\CharSelect\\mainbox_D.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MainBoxFrameImage1[0] = CreateTextureMaterial("StartImage//login//CharSelect//mainbox_L.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MainBoxFrameImage1[1] = CreateTextureMaterial("StartImage//login//CharSelect//mainbox_T.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MainBoxFrameImage1[2] = CreateTextureMaterial("StartImage//login//CharSelect//mainbox_R.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MainBoxFrameImage1[3] = CreateTextureMaterial("StartImage//login//CharSelect//mainbox_D.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
-	MainBoxFrameImage2[0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\mainbox_CN1.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	MainBoxFrameImage2[1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\mainbox_CN2.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	MainBoxFrameImage2[2] = CreateTextureMaterial("StartImage\\login\\CharSelect\\mainbox_CN3.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	MainBoxFrameImage2[3] = CreateTextureMaterial("StartImage\\login\\CharSelect\\mainbox_CN4.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MainBoxFrameImage2[0] = CreateTextureMaterial("StartImage//login//CharSelect//mainbox_CN1.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MainBoxFrameImage2[1] = CreateTextureMaterial("StartImage//login//CharSelect//mainbox_CN2.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MainBoxFrameImage2[2] = CreateTextureMaterial("StartImage//login//CharSelect//mainbox_CN3.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MainBoxFrameImage2[3] = CreateTextureMaterial("StartImage//login//CharSelect//mainbox_CN4.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
-	TitleBoxFrameImage = CreateTextureMaterial("StartImage\\login\\CharSelect\\title-box.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	TitleNameImage = CreateTextureMaterial("StartImage\\login\\CharSelect\\title-txt30.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	TitleBoxFrameImage = CreateTextureMaterial("StartImage//login//CharSelect//title-box.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	TitleNameImage = CreateTextureMaterial("StartImage//login//CharSelect//title-txt30.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
-	TempscronTextImage = CreateTextureMaterial("StartImage\\login\\CharSelect\\T-ex_tscr.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	MoryonTextImage = CreateTextureMaterial("StartImage\\login\\CharSelect\\T-ex_mrin.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	TempscronTextImage = CreateTextureMaterial("StartImage//login//CharSelect//T-ex_tscr.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	MoryonTextImage = CreateTextureMaterial("StartImage//login//CharSelect//T-ex_mrin.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
-	RaceTextBoxImage[0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\mark_box1.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	RaceTextBoxImage[1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\mark_box2.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RaceTextBoxImage[0] = CreateTextureMaterial("StartImage//login//CharSelect//mark_box1.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	RaceTextBoxImage[1] = CreateTextureMaterial("StartImage//login//CharSelect//mark_box2.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
-	JobTextBoxImage[0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-box1.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
-	JobTextBoxImage[1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-box2.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	JobTextBoxImage[0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-box1.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
+	JobTextBoxImage[1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-box2.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
-	TempscronJobImage[0][0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-meca_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[1][0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-ft_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[2][0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-pkm_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[3][0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-ac_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[4][0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-assa_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobImage[0][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-meca_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobImage[1][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-ft_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobImage[2][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-pkm_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobImage[3][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-ac_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobImage[4][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-assa_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	TempscronJobImage[0][1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-meca.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[1][1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-ft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[2][1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-pkm.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[3][1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-ac.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[4][1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-assa.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobImage[0][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-meca.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobImage[1][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-ft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobImage[2][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-pkm.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobImage[3][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-ac.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobImage[4][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-assa.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MoryonJobImage[0][0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T-cls-knt_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[1][0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-atlt_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[2][0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-prts_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[3][0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-mgc_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[4][0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-sha_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobImage[0][0] = CreateTextureMaterial("StartImage//login//CharSelect//T-cls-knt_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobImage[1][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-atlt_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobImage[2][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-prts_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobImage[3][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-mgc_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobImage[4][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-sha_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MoryonJobImage[0][1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T-cls-knt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[1][1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-atlt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[2][1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-prts.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[3][1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-mgc.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[4][1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_cls-sha.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobImage[0][1] = CreateTextureMaterial("StartImage//login//CharSelect//T-cls-knt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobImage[1][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-atlt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobImage[2][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-prts.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobImage[3][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-mgc.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobImage[4][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-sha.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	TempscronJobTextImage[0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_chr-meca.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobTextImage[1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_chr-ft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobTextImage[2] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_chr-pkm.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobTextImage[3] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_chr-ac.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobTextImage[4] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_chr-assa.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobTextImage[0] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-meca.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobTextImage[1] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-ft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobTextImage[2] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-pkm.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobTextImage[3] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-ac.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	TempscronJobTextImage[4] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-assa.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MoryonJobTextImage[0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_chr-knt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobTextImage[1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_chr-atlt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobTextImage[2] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_chr-prts.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobTextImage[3] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_chr-mgc.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobTextImage[4] = CreateTextureMaterial("StartImage\\login\\CharSelect\\T_chr-sha.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobTextImage[0] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-knt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobTextImage[1] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-atlt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobTextImage[2] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-prts.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobTextImage[3] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-mgc.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MoryonJobTextImage[4] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-sha.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	FaceBoxBigImage[0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\face_bigbox1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	FaceBoxBigImage[1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\face_bigbox2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	FaceBoxBigImage[0] = CreateTextureMaterial("StartImage//login//CharSelect//face_bigbox1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	FaceBoxBigImage[1] = CreateTextureMaterial("StartImage//login//CharSelect//face_bigbox2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	FaceBoxSmallImage[0] = CreateTextureMaterial("StartImage\\login\\CharSelect\\face_box_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	FaceBoxSmallImage[1] = CreateTextureMaterial("StartImage\\login\\CharSelect\\face_box.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	FaceBoxSmallImage[2] = CreateTextureMaterial("StartImage\\login\\CharSelect\\face_box2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	FaceBoxSmallImage[0] = CreateTextureMaterial("StartImage//login//CharSelect//face_box_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	FaceBoxSmallImage[1] = CreateTextureMaterial("StartImage//login//CharSelect//face_box.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	FaceBoxSmallImage[2] = CreateTextureMaterial("StartImage//login//CharSelect//face_box2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	NewCharacterImage = CreateTextureMaterial("StartImage\\login\\CharSelect\\New_char.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	NewCharacterImage = CreateTextureMaterial("StartImage//login//CharSelect//New_char.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	ReadTextures();
 
@@ -694,14 +694,14 @@ int HoLogin::Load()
 
 static char *LoadingImageName[MAX_LOADING_IMAGE] =
 {
-	"StartImage\\Loading\\Loading1.bmp",
-	"StartImage\\Loading\\Loading2.bmp",
-	"StartImage\\Loading\\Loading3.bmp",
-	"StartImage\\Loading\\Loading4.bmp",
-	"StartImage\\Loading\\Loading5.bmp",
-	"StartImage\\Loading\\Loading6.bmp",
-	"StartImage\\Loading\\Loading7.bmp",
-	"StartImage\\Loading\\Loading8.bmp",
+	"StartImage//Loading//Loading1.bmp",
+	"StartImage//Loading//Loading2.bmp",
+	"StartImage//Loading//Loading3.bmp",
+	"StartImage//Loading//Loading4.bmp",
+	"StartImage//Loading//Loading5.bmp",
+	"StartImage//Loading//Loading6.bmp",
+	"StartImage//Loading//Loading7.bmp",
+	"StartImage//Loading//Loading8.bmp",
 };
 
 void HoLogin::LoadLoadingImage(int level)
@@ -3101,7 +3101,7 @@ int HoLogin::ReLoad()
 	{
 		GameMapImage->Release();
 		GameMapImage = NULL;
-		GameMapImage = LoadDibSurfaceOffscreen("StartImage\\Login\\Map.bmp");
+		GameMapImage = LoadDibSurfaceOffscreen("StartImage//Login//Map.bmp");
 
 	}
 

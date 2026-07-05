@@ -9,7 +9,7 @@
  ******************************************************************/
 
 #include "point3.h"
-#include "point4.h"
+#include "POINT4.H"
 
 const point3 point3::Zero( 0.f,0.f,0.f );
 

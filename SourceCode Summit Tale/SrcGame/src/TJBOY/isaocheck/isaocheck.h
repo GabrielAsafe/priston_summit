@@ -1,10 +1,10 @@
 #ifndef __ISAOCHECK_H__
 #define __ISAOCHECK_H__
 #ifndef USE_PROSTONTALE		
-#include "..\\clanmenu\\cE_CViewClanInfo.h"
+#include "../clanmenu/cE_CViewClanInfo.h"
 #endif
 
-#define SAVE_DIR	"savedata\\clanDATA"
+#define SAVE_DIR	"savedata//clanDATA"
 #define SAVE_EXE	"cl"
 
 

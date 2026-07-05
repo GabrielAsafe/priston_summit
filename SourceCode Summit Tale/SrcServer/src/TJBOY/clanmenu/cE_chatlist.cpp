@@ -9,24 +9,24 @@
 
 #ifdef USE_PROSTONTALE		
 
-#include "sinbaram\\SinLinkHeader.h"
-#include "HoBaram\\HoLinkHeader.h"
-#include "Language\\language.h"
-#include "HoBaram\\HoTextFile.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "HoBaram/HoLinkHeader.h"
+#include "Language/language.h"
+#include "HoBaram/HoTextFile.h"
 
 #endif
 
 #include "tjclan.h"
 
-#include "tjscroll.h"
+#include "tjScroll.h"
 #include "cE_chatlist.h"
 
 
 
 
 #ifdef PARKMENU
-#include "..\\Park\\MicVolume.h"
-#include "Language\\Korean\\K_VolText.h"
+#include "../park/MicVolume.h"
+#include "Language/Korean/K_VolText.h"
 #endif
 
 
@@ -34,10 +34,10 @@
 
 #include "cE_report.h"
 #include "cE_CViewClanInfo.h"
-#include "..\\isaocheck\\auth.h"
-#include "..\\isaocheck\\isaocheck.h"
+#include "../isaocheck/auth.h"
+#include "../isaocheck/isaocheck.h"
 
-#include "..\\ygy\\ygyheader.h"
+#include "../Ygy/YgyHeader.h"
 
 
 #ifdef USE_PROSTONTALE		
@@ -617,7 +617,7 @@ void CLANEntity_chatting::Main()
 				server = cldata.ClanMark[0];
 				strcpy(uniqueclanmark, &cldata.ClanMark[3]);
 
-				wsprintf(szFile, "%s\\%s\\%c_%s.%s", SAVE_DIR, szConnServerName, server, uniqueclanmark, SAVE_EXE);
+				wsprintf(szFile, "%s//%s//%c_%s.%s", SAVE_DIR, szConnServerName, server, uniqueclanmark, SAVE_EXE);
 			#ifdef  USE_PROSTONTALE
 
 				if(strcmp(szFile_hMark, szFile) != 0)
@@ -1275,7 +1275,7 @@ void CLANEntity_chatting::menuInit(int num)
 
 
 
-		wsprintf(szFile, "%s\\%s\\%c_%s.%s", SAVE_DIR, szConnServerName, server, UniqueClanMark, SAVE_EXE);
+		wsprintf(szFile, "%s//%s//%c_%s.%s", SAVE_DIR, szConnServerName, server, UniqueClanMark, SAVE_EXE);
 	#ifdef  USE_PROSTONTALE
 
 		if(strcmp(szFile_hMark, szFile) != 0)
@@ -2001,15 +2001,15 @@ void CLANEntity_chatting::Load2()
 {
 #ifdef USE_PROSTONTALE		
 	hChatListBoxLine =
-		CreateTextureMaterial("image\\party\\party_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//party//party_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	hChatListBoxTitle2 =
-		CreateTextureMaterial("image\\party\\title-clan.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//party//title-clan.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 #ifdef PARKMENU
 
 	hChatMicOpt =
-		CreateTextureMaterial("image\\party\\quest_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//party//quest_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 #endif
 
 #endif
@@ -2019,74 +2019,74 @@ void CLANEntity_chatting::Load()
 {
 #ifdef USE_PROSTONTALE		
 	hChatListBoxLine =
-		CreateTextureMaterial("image\\party\\party_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//party//party_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
 	hChatListBoxTitle2 =
-		CreateTextureMaterial("image\\party\\title-clan.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//party//title-clan.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	hChatListBoxTitle = LoadDibSurfaceOffscreen("image\\party\\title-clan.bmp");
-
-
+	hChatListBoxTitle = LoadDibSurfaceOffscreen("image//party//title-clan.bmp");
 
 
 
 
-	hButtonClose[0] = LoadDibSurfaceOffscreen("image\\party\\close_.bmp");
-	hButtonClose[1] = LoadDibSurfaceOffscreen("image\\party\\ButtonExit.bmp");
-	hClanWon[0] = LoadDibSurfaceOffscreen("image\\party\\party_man_0.bmp");
-	hClanWon[1] = LoadDibSurfaceOffscreen("image\\party\\party_man_1.bmp");
-	hChatIcon[0] = LoadDibSurfaceOffscreen("image\\party\\ButtonChatting_.bmp");
-	hChatIcon[1] = LoadDibSurfaceOffscreen("image\\party\\ButtonChatting.bmp");
-	hChatClanWon = LoadDibSurfaceOffscreen("image\\party\\chattng-icon-c.bmp");
+
+
+	hButtonClose[0] = LoadDibSurfaceOffscreen("image//party//close_.bmp");
+	hButtonClose[1] = LoadDibSurfaceOffscreen("image//party//ButtonExit.bmp");
+	hClanWon[0] = LoadDibSurfaceOffscreen("image//party//party_man_0.bmp");
+	hClanWon[1] = LoadDibSurfaceOffscreen("image//party//party_man_1.bmp");
+	hChatIcon[0] = LoadDibSurfaceOffscreen("image//party//ButtonChatting_.bmp");
+	hChatIcon[1] = LoadDibSurfaceOffscreen("image//party//ButtonChatting.bmp");
+	hChatClanWon = LoadDibSurfaceOffscreen("image//party//chattng-icon-c.bmp");
 
 
 #ifdef PARKMENU
-	hMicOption[0] = LoadDibSurfaceOffscreen("image\\party\\ButtonMike_.bmp");
-	hMicOption[1] = LoadDibSurfaceOffscreen("image\\party\\ButtonMike.bmp");
-	hMicOptTitle = LoadDibSurfaceOffscreen("image\\party\\mike-title.bmp");
-	hMicSortLine = LoadDibSurfaceOffscreen("image\\party\\mike-line.bmp");
-	hMicONBack = LoadDibSurfaceOffscreen("image\\party\\mike-onoffbox.bmp");
-	hMicONChk = LoadDibSurfaceOffscreen("image\\party\\mike-onoff.bmp");
-	hMicVolBar = LoadDibSurfaceOffscreen("image\\party\\mike-updown.bmp");
-	hMicVOLUPDOWN[0] = LoadDibSurfaceOffscreen("image\\party\\mike-btdown.bmp");
-	hMicVOLUPDOWN[1] = LoadDibSurfaceOffscreen("image\\party\\mike-btup.bmp");
-	hMicOptToolTip = LoadDibSurfaceOffscreen("image\\party\\ButtonInfo-clan2.bmp");
+	hMicOption[0] = LoadDibSurfaceOffscreen("image//party//ButtonMike_.bmp");
+	hMicOption[1] = LoadDibSurfaceOffscreen("image//party//ButtonMike.bmp");
+	hMicOptTitle = LoadDibSurfaceOffscreen("image//party//mike-title.bmp");
+	hMicSortLine = LoadDibSurfaceOffscreen("image//party//mike-line.bmp");
+	hMicONBack = LoadDibSurfaceOffscreen("image//party//mike-onoffbox.bmp");
+	hMicONChk = LoadDibSurfaceOffscreen("image//party//mike-onoff.bmp");
+	hMicVolBar = LoadDibSurfaceOffscreen("image//party//mike-updown.bmp");
+	hMicVOLUPDOWN[0] = LoadDibSurfaceOffscreen("image//party//mike-btdown.bmp");
+	hMicVOLUPDOWN[1] = LoadDibSurfaceOffscreen("image//party//mike-btup.bmp");
+	hMicOptToolTip = LoadDibSurfaceOffscreen("image//party//ButtonInfo-clan2.bmp");
 	hChatMicOpt =
-		CreateTextureMaterial("image\\party\\quest_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		CreateTextureMaterial("image//party//quest_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 
 #endif
 
-	hClanChatToolTip = LoadDibSurfaceOffscreen("image\\party\\ButtonInfo-chatting.bmp");
-	hBtnCloseToolTip = LoadDibSurfaceOffscreen("image\\party\\ButtonInfo-5.bmp");
+	hClanChatToolTip = LoadDibSurfaceOffscreen("image//party//ButtonInfo-chatting.bmp");
+	hBtnCloseToolTip = LoadDibSurfaceOffscreen("image//party//ButtonInfo-5.bmp");
 
 #else
-	hChatListBoxLine = (HBITMAP)LoadImage(NULL, "image\\party\\party_win.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hChatListBoxTitle = (HBITMAP)LoadImage(NULL, "image\\party\\title-clan.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hChatIcon[0] = (HBITMAP)LoadImage(NULL, "image\\party\\ButtonChatting_.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hChatIcon[1] = (HBITMAP)LoadImage(NULL, "image\\party\\ButtonChatting.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hButtonClose[0] = (HBITMAP)LoadImage(NULL, "image\\party\\close_.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hButtonClose[1] = (HBITMAP)LoadImage(NULL, "image\\party\\ButtonExit.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hClanWon[0] = (HBITMAP)LoadImage(NULL, "image\\party\\party_man_0.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hClanWon[1] = (HBITMAP)LoadImage(NULL, "image\\party\\party_man_1.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hChatListParty = (HBITMAP)LoadImage(NULL, "image\\party\\title-Party.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hChatListFriend = (HBITMAP)LoadImage(NULL, "image\\party\\title-chatting1.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hChatClanWon = (HBITMAP)LoadImage(NULL, "image\\party\\chattng-icon-c.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hChatListBoxLine = (HBITMAP)LoadImage(NULL, "image//party//party_win.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hChatListBoxTitle = (HBITMAP)LoadImage(NULL, "image//party//title-clan.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hChatIcon[0] = (HBITMAP)LoadImage(NULL, "image//party//ButtonChatting_.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hChatIcon[1] = (HBITMAP)LoadImage(NULL, "image//party//ButtonChatting.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hButtonClose[0] = (HBITMAP)LoadImage(NULL, "image//party//close_.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hButtonClose[1] = (HBITMAP)LoadImage(NULL, "image//party//ButtonExit.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hClanWon[0] = (HBITMAP)LoadImage(NULL, "image//party//party_man_0.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hClanWon[1] = (HBITMAP)LoadImage(NULL, "image//party//party_man_1.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hChatListParty = (HBITMAP)LoadImage(NULL, "image//party//title-Party.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hChatListFriend = (HBITMAP)LoadImage(NULL, "image//party//title-chatting1.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hChatClanWon = (HBITMAP)LoadImage(NULL, "image//party//chattng-icon-c.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 
 
 #ifdef PARKMENU
-	hMicOption[0] = (HBITMAP)LoadImage(NULL, "image\\party\\ButtonMike_.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hMicOption[1] = (HBITMAP)LoadImage(NULL, "image\\party\\ButtonMike.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hMicOptTitle = (HBITMAP)LoadImage(NULL, "image\\party\\mike-title.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hMicSortLine = (HBITMAP)LoadImage(NULL, "image\\party\\mike-line.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hMicONBack = (HBITMAP)LoadImage(NULL, "image\\party\\mike-onoffbox.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hMicONChk = (HBITMAP)LoadImage(NULL, "image\\party\\mike-onoff.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hMicVolBar = (HBITMAP)LoadImage(NULL, "image\\party\\mike-updown.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hMicVOLUPDOWN[0] = (HBITMAP)LoadImage(NULL, "image\\party\\mike-btdown.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	hMicVOLUPDOWN[1] = (HBITMAP)LoadImage(NULL, "image\\party\\mike-btup.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hMicOption[0] = (HBITMAP)LoadImage(NULL, "image//party//ButtonMike_.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hMicOption[1] = (HBITMAP)LoadImage(NULL, "image//party//ButtonMike.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hMicOptTitle = (HBITMAP)LoadImage(NULL, "image//party//mike-title.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hMicSortLine = (HBITMAP)LoadImage(NULL, "image//party//mike-line.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hMicONBack = (HBITMAP)LoadImage(NULL, "image//party//mike-onoffbox.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hMicONChk = (HBITMAP)LoadImage(NULL, "image//party//mike-onoff.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hMicVolBar = (HBITMAP)LoadImage(NULL, "image//party//mike-updown.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hMicVOLUPDOWN[0] = (HBITMAP)LoadImage(NULL, "image//party//mike-btdown.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hMicVOLUPDOWN[1] = (HBITMAP)LoadImage(NULL, "image//party//mike-btup.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 #endif
-	hBtnCloseToolTip = (HBITMAP)LoadImage(NULL, "image\\party\\ButtonInfo-5.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+	hBtnCloseToolTip = (HBITMAP)LoadImage(NULL, "image//party//ButtonInfo-5.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 
 #endif
 }

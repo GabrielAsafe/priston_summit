@@ -1,13 +1,13 @@
-#include "SinBaram\\SinLinkHeader.h"
-#include "SinBaram\\AssaEffect.h"
+#include "sinbaram/sinLinkHeader.h"
+#include "sinbaram/AssaEffect.h"
 #include "hoAssaParticleEffect.h"
 
 #include "HoNewParticleLinkHeader.h"
 #include "AssaParticle.h"
 
-#include "..\\HoBaram\\NewEffect\\HoEffectManager.h"
-#include "..\\HoBaram\\NewEffect\\HoEffectMain.h"
-#include "..\\HoBaram\\NewEffect\\HoEffectController.h"
+#include "../HoBaram/NewEffect/HoEffectManager.h"
+#include "../HoBaram/NewEffect/HoEffectMain.h"
+#include "../HoBaram/NewEffect/HoEffectController.h"
 
 #include "ParkFireCrackerTable.h"
 

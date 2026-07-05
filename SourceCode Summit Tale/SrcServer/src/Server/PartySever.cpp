@@ -7,17 +7,17 @@
 
 
 
-#include "..\\resource.h"
-#include "..\\smwsock.h"
+#include "../resource.h"
+#include "../smwsock.h"
 
-#include "..\\smlib3d\\smd3d.h"
-#include "..\\character.h"
-#include "..\\fileread.h"
-#include "..\\playmain.h"
-#include "..\\field.h"
-#include "..\\sinbaram\\sinlinkheader.h"
-#include "Language\\language.h"
-#include "partymsg.h"
+#include "../smLib3d/smd3d.h"
+#include "../character.h"
+#include "../fileread.h"
+#include "../playmain.h"
+#include "../field.h"
+#include "../sinbaram/sinLinkHeader.h"
+#include "Language/language.h"
+#include "PartyMsg.h"
 #include "onserver.h"
 
 extern DWORD	dwPlayServTime;
@@ -458,7 +458,7 @@ float PartyExpTable[8][2] =
 
 void LoadPartyExpTable()
 {
-	File exp("Configs\\ExpManager.ini");
+	File exp("Configs//ExpManager.ini");
 	for (int i = 1; i < 6; i++)
 	{
 		char buff[255];

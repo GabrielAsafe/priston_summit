@@ -1,12 +1,12 @@
 #include "opcodes.h"
 #include "sinbaram/sinLinkHeader.h"
-#include "CRollWindow.h"
+#include "BattleEvents/CRollWindow.h"
 
 CRollWindow::CRollWindow(DWORD iRollID, int x, int y, sITEMINFO * lpItemInfo)
 {
 	char szText[256];
 
-	pWindow1 = new UIWindow(iRollID, "game\\roll\\background.png", x, y);
+	pWindow1 = new UIWindow(iRollID, "game//roll//background.png", x, y);
 	pWindow1->setX((WinSizeX - pWindow1->getWidth()) / 2);
 	pWindow1->setY((WinSizeY - pWindow1->getHeight()) / 2);
 	pWindow1->show();
@@ -19,7 +19,7 @@ CRollWindow::CRollWindow(DWORD iRollID, int x, int y, sITEMINFO * lpItemInfo)
 			{
 				memcpy(&Item, &sItem[cnt], sizeof(sITEM));
 				memcpy(&Item.sItemInfo, lpItemInfo, sizeof(sITEMINFO));
-				sprintf_s(szText, "image\\Sinimage\\Items\\%s\\it%s.bmp", Item.ItemFilePath, Item.DorpItem);
+				sprintf_s(szText, "image//Sinimage//Items//%s//it%s.bmp", Item.ItemFilePath, Item.DorpItem);
 				auto pImage = new UIImage(0, szText, 10, 57);
 				pImage->setX(pImage->getX() + (66 - pImage->getWidth()) / 2);
 				pImage->setY(pImage->getY() + (88 - pImage->getHeight()) / 2);
@@ -34,8 +34,8 @@ CRollWindow::CRollWindow(DWORD iRollID, int x, int y, sITEMINFO * lpItemInfo)
 		}
 	}
 
-	pWindow1->AddElement(new UIButton(-1, "game\\roll\\roll.png", "game\\roll\\roll_.png", 90, 102, true, false, bind(&CRollWindow::OnClickRollButton, this)));
-	pWindow1->AddElement(new UIButton(-2, "game\\roll\\skip.png", "game\\roll\\skip_.png", 165, 102, true, false, bind(&CRollWindow::OnClickSkipButton, this)));
+	pWindow1->AddElement(new UIButton(-1, "game//roll//roll.png", "game//roll//roll_.png", 90, 102, true, false, bind(&CRollWindow::OnClickRollButton, this)));
+	pWindow1->AddElement(new UIButton(-2, "game//roll//skip.png", "game//roll//skip_.png", 165, 102, true, false, bind(&CRollWindow::OnClickSkipButton, this)));
 }
 
 CRollWindow::~CRollWindow()

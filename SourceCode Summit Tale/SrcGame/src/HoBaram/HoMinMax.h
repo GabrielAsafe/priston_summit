@@ -20,7 +20,7 @@ inline std::string RemoveQuotes(std::string &str)
 {
 	for(std::string::iterator i = str.begin(); i != str.end(); i++)
 	{
-		if(*i == '\"')
+		if(*i == '/"')
 		{
 			i = str.erase(i); if(i == str.end())
 				break;

@@ -4,7 +4,7 @@
 
 
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "FontImage.h"
 
 
@@ -90,9 +90,9 @@ static int DrawFontBackToTexture2D(SFontImageChInfo *lpFontInfo, float fPos_x, f
 
 void CreateFontImage(void)
 {
-	s_iFontImageMatNum = CreateTextureMaterial("image\\Bellatra\\FontImage.tga", NULL, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	s_iFontImageMatNum = CreateTextureMaterial("image//Bellatra//FontImage.tga", NULL, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	FILE *fp = fopen("image\\Bellatra\\FontImagePos.dat", "rb");
+	FILE *fp = fopen("image//Bellatra//FontImagePos.dat", "rb");
 	if(fp)
 	{
 		fread(s_FontImageChInfo, sizeof(s_FontImageChInfo), 1, fp);

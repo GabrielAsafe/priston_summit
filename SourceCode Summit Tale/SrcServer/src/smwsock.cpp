@@ -1,10 +1,10 @@
-#include "nettype.h"
+#include "NetType.h"
 
 #ifdef _W_SERVER
 //#define	FD_SETSIZE 8192
 #endif
 
-#include <WinSock2.h>
+#include <winsock2.h>
 #include <windows.h>
 #include <iostream>
 #include <io.h>
@@ -14,7 +14,7 @@
 #include <process.h>
 
 #include "smwsock.h"
-#include "Firewall\Firewall.h"
+#include "Firewall/Firewall.h"
 #include "smPacket.h"
 
 #pragma comment( lib, "wsock32.lib" )
@@ -93,7 +93,7 @@ smWINSOCK	smWSock[CONNECTMAX];
 
 #ifdef _DEBUG_SOCKET
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 extern smCONFIG smConfig;
 extern int AddChatBuff(char *szMsg);
 

@@ -2,12 +2,12 @@
 DWORD dwNumC = 0;
 UICheckbox::UICheckbox(int ID, int x, int y, char * szText, bool free, bool selected, bool hover, bool bold)
 {
-	Image = new UIImage(ID, "game\\settings\\checkbox.png", x, y + 2);
+	Image = new UIImage(ID, "game//settings//checkbox.png", x, y + 2);
 
 	if (!Image)
 		return;
 
-	Image_ = new UIImage(ID, "game\\settings\\checkbox_.png", x, y + 2);
+	Image_ = new UIImage(ID, "game//settings//checkbox_.png", x, y + 2);
 		
 	if (lstrlen(szText) > 0)
 	{

@@ -1358,7 +1358,7 @@ void SendPostBox(char* szID, char* szItemCode, int spec)
 		int FileLength = GetFileSize(hFile, NULL);
 		SetFilePointer(hFile, FileLength, NULL, FILE_BEGIN);
 
-		sprintf_s(strBuff, "* %s %d \"Shop\"\r\n", szItemCode, spec);
+		sprintf_s(strBuff, "* %s %d /"Shop/"/r/n", szItemCode, spec);
 		WriteFile(hFile, strBuff, lstrlen(strBuff), &dwAcess, NULL);
 		CloseHandle(hFile);
 	}

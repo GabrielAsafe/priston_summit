@@ -63,7 +63,7 @@ LUALIB_API int luaL_loadbuffer(lua_State *L, const char *buff, size_t sz,
 
 
 
-#define luaL_argcheck(L, cond,numarg,extramsg) if (!(cond)) \
+#define luaL_argcheck(L, cond,numarg,extramsg) if (!(cond)) /
                                                luaL_argerror(L, numarg,extramsg)
 #define luaL_checkstring(L,n)	(luaL_checklstring(L, (n), NULL))
 #define luaL_optstring(L,n,d)	(luaL_optlstring(L, (n), (d), NULL))
@@ -89,8 +89,8 @@ typedef struct luaL_Buffer
 	char buffer[LUAL_BUFFERSIZE];
 } luaL_Buffer;
 
-#define luaL_putchar(B,c) \
-  ((void)((B)->p < ((B)->buffer+LUAL_BUFFERSIZE) || luaL_prepbuffer(B)), \
+#define luaL_putchar(B,c) /
+  ((void)((B)->p < ((B)->buffer+LUAL_BUFFERSIZE) || luaL_prepbuffer(B)), /
    (*(B)->p++ = (char)(c)))
 
 #define luaL_addsize(B,n)	((B)->p += (n))

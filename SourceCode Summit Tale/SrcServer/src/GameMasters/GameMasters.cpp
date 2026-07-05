@@ -1,5 +1,5 @@
-#include "GameMasters.h"
-#include "Database\Database.h"
+#include "GameMasters/GameMasters.h"
+#include "Database/Database.h"
 #include <iostream>
 #include <memory>
 

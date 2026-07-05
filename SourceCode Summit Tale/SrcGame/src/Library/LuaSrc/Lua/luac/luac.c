@@ -37,7 +37,7 @@ static const char* progname=PROGNAME;	/* actual program name */
 
 static void fatal(const char* message)
 {
- fprintf(stderr,"%s: %s\n",progname,message);
+ fprintf(stderr,"%s: %s/n",progname,message);
  exit(EXIT_FAILURE);
 }
 
@@ -52,17 +52,17 @@ static void usage(const char* message, const char* arg)
 {
  if (message!=NULL)
  {
-  fprintf(stderr,"%s: ",progname); fprintf(stderr,message,arg); fprintf(stderr,"\n");
+  fprintf(stderr,"%s: ",progname); fprintf(stderr,message,arg); fprintf(stderr,"/n");
  }
  fprintf(stderr,
- "usage: %s [options] [filenames].  Available options are:\n"
- "  -        process stdin\n"
- "  -l       list\n"
- "  -o name  output to file `name' (default is \"" OUTPUT "\")\n"
- "  -p       parse only\n"
- "  -s       strip debug information\n"
- "  -v       show version information\n"
- "  --       stop handling options\n",
+ "usage: %s [options] [filenames].  Available options are:/n"
+ "  -        process stdin/n"
+ "  -l       list/n"
+ "  -o name  output to file `name' (default is /"" OUTPUT "/")/n"
+ "  -p       parse only/n"
+ "  -s       strip debug information/n"
+ "  -v       show version information/n"
+ "  --       stop handling options/n",
  progname);
  exit(EXIT_FAILURE);
 }
@@ -97,7 +97,7 @@ static int doargs(int argc, char* argv[])
    stripping=1;
   else if (IS("-v"))			/* show version */
   {
-   printf("%s  %s\n",LUA_VERSION,LUA_COPYRIGHT);
+   printf("%s  %s/n",LUA_VERSION,LUA_COPYRIGHT);
    if (argc==2) exit(EXIT_SUCCESS);
   }
   else					/* unknown option */

@@ -1,7 +1,7 @@
 #ifndef	_SMWSOCK_HEADER
 #define	_SMWSOCK_HEADER
 
-#include "nettype.h"
+#include "NetType.h"
 
 
 #define _PS_TALE
@@ -10,7 +10,7 @@
 
 #define TCP_GAMEPORT		9000
 
-#include "Language\\language.h"
+#include "Language/language.h"
 
 #ifdef _W_SERVER
 

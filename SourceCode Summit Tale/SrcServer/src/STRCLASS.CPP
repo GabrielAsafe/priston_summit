@@ -12,7 +12,7 @@
 #include <windows.h>
 #include <limits.h>
 #include <tchar.h>
-#include "strclass.h"
+#include "STRCLASS.H"
 
 /////////////////////////////////////////////////////////////////////////////
 // static class data, special inlines
@@ -20,7 +20,7 @@
 // For an empty string, m_???Data will point here
 // (note: avoids a lot of NULL pointer tests when we call standard
 //	C runtime libraries
-TCHAR jazzidChNil = '\0';
+TCHAR jazzidChNil = '/0';
 
 // for creating empty key strings
 const CStrClass jazzidEmptyString;
@@ -56,7 +56,7 @@ CStrClass::CStrClass(const CStrClass& stringSrc)
 }
 
 void CStrClass::AllocBuffer(int nLen)
- // always allocate one extra character for '\0' termination
+ // always allocate one extra character for '/0' termination
  // assumes [optimistically] that data length will equal allocation length
 {
 	if(nLen == 0)
@@ -66,7 +66,7 @@ void CStrClass::AllocBuffer(int nLen)
 	else
 	{
 		m_pchData = new TCHAR[nLen + 1];		 // may throw an exception
-		m_pchData[nLen] = '\0';
+		m_pchData[nLen] = '/0';
 		m_nDataLength = nLen;
 		m_nAllocLength = nLen;
 	}
@@ -185,7 +185,7 @@ void CStrClass::AssignCopy(int nSrcLen, LPCTSTR lpszSrcData)
 	if(nSrcLen != 0)
 		memcpy(m_pchData, lpszSrcData, nSrcLen * sizeof(TCHAR));
 	m_nDataLength = nSrcLen;
-	m_pchData[nSrcLen] = '\0';
+	m_pchData[nSrcLen] = '/0';
 }
 
 const CStrClass& CStrClass::operator=(const CStrClass& stringSrc)
@@ -217,7 +217,7 @@ const CStrClass& CStrClass::operator=(LPCSTR lpsz)
 	if(nSrcLen != 0)
 		_mbstowcsz(m_pchData, lpsz, nSrcLen + 1);
 	m_nDataLength = nSrcLen;
-	m_pchData[nSrcLen] = '\0';
+	m_pchData[nSrcLen] = '/0';
 	return *this;
 }
 #else //!_UNICODE
@@ -234,7 +234,7 @@ const CStrClass& CStrClass::operator=(LPCWSTR lpsz)
 	if(nSrcLen != 0)
 		_wcstombsz(m_pchData, lpsz, nSrcLen + 1);
 	m_nDataLength = nSrcLen;
-	m_pchData[nSrcLen] = '\0';
+	m_pchData[nSrcLen] = '/0';
 	return *this;
 }
 #endif	//!_UNICODE
@@ -306,7 +306,7 @@ void CStrClass::ConcatInPlace(int nSrcLen, LPCTSTR lpszSrcData)
 		memcpy(&m_pchData[m_nDataLength], lpszSrcData, nSrcLen * sizeof(TCHAR));
 		m_nDataLength += nSrcLen;
 	}
-	m_pchData[m_nDataLength] = '\0';
+	m_pchData[m_nDataLength] = '/0';
 }
 
 const CStrClass& CStrClass::operator+=(LPCTSTR lpsz)
@@ -341,7 +341,7 @@ LPTSTR CStrClass::GetBuffer(int nMinBufLength)
 		AllocBuffer(nMinBufLength);
 		memcpy(m_pchData, lpszOldData, nOldLen * sizeof(TCHAR));
 		m_nDataLength = nOldLen;
-		m_pchData[m_nDataLength] = '\0';
+		m_pchData[m_nDataLength] = '/0';
 
 		SafeDelete(lpszOldData);
 	}
@@ -356,7 +356,7 @@ void CStrClass::ReleaseBuffer(int nNewLength)
 		nNewLength = lstrlen(m_pchData); // zero terminated
 
 	m_nDataLength = nNewLength;
-	m_pchData[m_nDataLength] = '\0';
+	m_pchData[m_nDataLength] = '/0';
 }
 
 LPTSTR CStrClass::GetBufferSetLength(int nNewLength)
@@ -364,7 +364,7 @@ LPTSTR CStrClass::GetBufferSetLength(int nNewLength)
 
 	GetBuffer(nNewLength);
 	m_nDataLength = nNewLength;
-	m_pchData[m_nDataLength] = '\0';
+	m_pchData[m_nDataLength] = '/0';
 	return m_pchData;
 }
 
@@ -576,7 +576,7 @@ void __cdecl CStrClass::Format(LPCTSTR lpszFormat, ...)
 
 	// make a guess at the maximum length of the resulting string
 	int nMaxLen = 0;
-	for(LPCTSTR lpsz = lpszFormat; *lpsz != '\0'; lpsz = _tcsinc(lpsz))
+	for(LPCTSTR lpsz = lpszFormat; *lpsz != '/0'; lpsz = _tcsinc(lpsz))
 	{
 		// handle '%' character, but watch out for '%%'
 		if(*lpsz != '%' || *(lpsz = _tcsinc(lpsz)) == '%')
@@ -589,7 +589,7 @@ void __cdecl CStrClass::Format(LPCTSTR lpszFormat, ...)
 
 		// handle '%' character with format
 		int nWidth = 0;
-		for(; *lpsz != '\0'; lpsz = _tcsinc(lpsz))
+		for(; *lpsz != '/0'; lpsz = _tcsinc(lpsz))
 		{
 			// check for valid flags
 			if(*lpsz == '#')
@@ -607,7 +607,7 @@ void __cdecl CStrClass::Format(LPCTSTR lpszFormat, ...)
 		{
 			// width indicated by
 			int nWidth = _ttoi(lpsz);
-			for(; *lpsz != '\0' && _istdigit(*lpsz); lpsz = _tcsinc(lpsz))
+			for(; *lpsz != '/0' && _istdigit(*lpsz); lpsz = _tcsinc(lpsz))
 				;
 		}
 
@@ -623,7 +623,7 @@ void __cdecl CStrClass::Format(LPCTSTR lpszFormat, ...)
 			else
 			{
 				nPrecision = _ttoi(lpsz);
-				for(; *lpsz != '\0' && _istdigit(*lpsz); lpsz = _tcsinc(lpsz))
+				for(; *lpsz != '/0' && _istdigit(*lpsz); lpsz = _tcsinc(lpsz))
 					;
 			}
 		}

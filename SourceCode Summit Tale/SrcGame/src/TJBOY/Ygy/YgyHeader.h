@@ -8,11 +8,11 @@
 #include <windows.h>
 
 
-#include ".\\MemMap\\memmap.h"
-#include ".\\Packet\\PacketStruct.h"
-#include ".\\Packet\\Packet.h"
-#include ".\\Process\\Process.h"
-#include "util.h"
+#include "memmap/memmap.h"
+#include "./Packet/PacketStruct.h"
+#include "./Packet/Packet.h"
+#include "./Process/Process.h"
+#include "Util.h"
 
 
 #ifndef VOICE_CHAT

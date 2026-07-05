@@ -5,13 +5,13 @@
 
 
 
-#include "smlib3d\\smd3d.h"
+#include "smLib3d/smd3d.h"
 #include "smwsock.h"
 #include "character.h"
 #include "playmain.h"
 #include "field.h"
 #include "FullZoomMap.h"
-#include "sinbaram\\sinlinkheader.h"
+#include "sinbaram/sinLinkHeader.h"
 
 
 
@@ -943,7 +943,7 @@ static void DrawFzmEffect(void)
 
 static void SetMapStageInfo(void)
 {
-	FILE *fp = fopen("image\\GuideMap\\StageInfo.dat", "rb");
+	FILE *fp = fopen("image//GuideMap//StageInfo.dat", "rb");
 	if(fp)
 	{
 		fread(s_MapStageInfoBuff, sizeof(s_MapStageInfoBuff), 1, fp);
@@ -997,7 +997,7 @@ static void SetMapStageInfo(void)
 			}
 		}
 
-		fp = fopen("image\\GuideMap\\StageInfo.dat", "wb");
+		fp = fopen("image//GuideMap//StageInfo.dat", "wb");
 		if(fp)
 		{
 			fwrite(s_MapStageInfoBuff, sizeof(s_MapStageInfoBuff), 1, fp);
@@ -1113,7 +1113,7 @@ static void CreateFullZoomMap(void)
 
 	char szFullName[128] = { 0 };
 	char szDirectory[32] = { 0 };
-	::strcpy_s(szDirectory, "image\\GuideMap\\");
+	::strcpy_s(szDirectory, "image//GuideMap//");
 
 
 	::CopyMemory(szFullName, szDirectory, 32);
@@ -1215,7 +1215,7 @@ static int LoadZoomInMap(SFullZoomMapInfo  *lpZoomMapInfo)
 		return FALSE;
 
 	char szFullName[128] = { 0, };
-	::strcpy_s(szFullName, "image\\GuideMap\\");
+	::strcpy_s(szFullName, "image//GuideMap//");
 
 	int index = ((lpZoomMapInfo->eNameType - 1) << 1) + 1;
 	if(*s_lpFzmINamePtrBuff[index] != '@')
@@ -1256,8 +1256,8 @@ void CreateBeforeFullZoomMap(void)
 
 
 	s_iFzmUserLargeMatNum = MatArrow;
-	s_iFzmPartyLargeMatNum = CreateTextureMaterial("image\\GuideMap\\User_P.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	s_iFzmUserSmallMatNum = CreateTextureMaterial("image\\GuideMap\\User_PSR.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	s_iFzmPartyLargeMatNum = CreateTextureMaterial("image//GuideMap//User_P.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	s_iFzmUserSmallMatNum = CreateTextureMaterial("image//GuideMap//User_PSR.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 }
 
 

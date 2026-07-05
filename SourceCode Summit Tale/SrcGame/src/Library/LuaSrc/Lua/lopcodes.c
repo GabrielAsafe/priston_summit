@@ -56,8 +56,8 @@ const char *const luaP_opnames[] = {
 
 #endif
 
-#define opmode(t,b,bk,ck,sa,k,m) (((t)<<OpModeT) | \
-   ((b)<<OpModeBreg) | ((bk)<<OpModeBrk) | ((ck)<<OpModeCrk) | \
+#define opmode(t,b,bk,ck,sa,k,m) (((t)<<OpModeT) | /
+   ((b)<<OpModeBreg) | ((bk)<<OpModeBrk) | ((ck)<<OpModeCrk) | /
    ((sa)<<OpModesetA) | ((k)<<OpModeK) | (m))
 
 
