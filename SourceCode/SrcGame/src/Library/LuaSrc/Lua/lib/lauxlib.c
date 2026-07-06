@@ -3,8 +3,6 @@
 ** Auxiliary functions for building Lua libraries
 ** See Copyright Notice in lua.h
 */
-
-
 #include <ctype.h>
 #include <errno.h>
 #include <stdarg.h>
@@ -15,7 +13,6 @@
 /* This file uses only the official API of Lua.
 ** Any function declared here could be written as an application function.
 */
-
 #define lauxlib_c
 
 #include "lua.h"
@@ -29,10 +26,8 @@
 /* reserved references */
 #define FREELIST_REF	1	/* free list of references */
 #define ARRAYSIZE_REF	2	/* array sizes */
-
-
 /* convert a stack index to positive */
-#define abs_index(L, i)		((i) > 0 || (i) <= LUA_REGISTRYINDEX ? (i) : /
+#define abs_index(L, i)		((i) > 0 || (i) <= LUA_REGISTRYINDEX ? (i) : \
 					lua_gettop(L) + (i) + 1)
 
 
@@ -41,8 +36,6 @@
 ** Error-report functions
 ** =======================================================
 */
-
-
 LUALIB_API int luaL_argerror (lua_State *L, int narg, const char *extramsg) {
   lua_Debug ar;
   lua_getstack(L, 0, &ar);
@@ -95,8 +88,6 @@ LUALIB_API int luaL_error (lua_State *L, const char *fmt, ...) {
 }
 
 /* }====================================================== */
-
-
 LUALIB_API int luaL_findstring (const char *name, const char *const list[]) {
   int i;
   for (i=0; list[i]; i++)
@@ -254,7 +245,6 @@ LUALIB_API void luaL_openlib (lua_State *L, const char *libname,
 ** getn-setn: size for arrays
 ** =======================================================
 */
-
 static int checkint (lua_State *L, int topop) {
   int n = (int)lua_tonumber(L, -1);
   if (n == 0 && !lua_isnumber(L, -1)) n = -1;
@@ -318,16 +308,11 @@ int luaL_getn (lua_State *L, int t) {
 }
 
 /* }====================================================== */
-
-
-
 /*
 ** {======================================================
 ** Generic Buffer manipulation
 ** =======================================================
 */
-
-
 #define bufflen(B)	((B)->p - (B)->buffer)
 #define bufffree(B)	((size_t)(LUAL_BUFFERSIZE - bufflen(B)))
 
@@ -414,8 +399,6 @@ LUALIB_API void luaL_buffinit (lua_State *L, luaL_Buffer *B) {
 }
 
 /* }====================================================== */
-
-
 LUALIB_API int luaL_ref (lua_State *L, int t) {
   int ref;
   t = abs_index(L, t);
@@ -459,7 +442,6 @@ LUALIB_API void luaL_unref (lua_State *L, int t, int ref) {
 ** Load functions
 ** =======================================================
 */
-
 typedef struct LoadF {
   FILE *f;
   char buff[LUAL_BUFFERSIZE];
@@ -540,15 +522,11 @@ LUALIB_API int luaL_loadbuffer (lua_State *L, const char *buff, size_t size,
 }
 
 /* }====================================================== */
-
-
 /*
 ** {======================================================
 ** compatibility code
 ** =======================================================
 */
-
-
 static void callalert (lua_State *L, int status) {
   if (status != 0) {
     lua_getglobal(L, "_ALERT");

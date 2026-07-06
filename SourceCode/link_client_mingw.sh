@@ -16,9 +16,11 @@ wc -l object_files_mingw.txt
 echo
 echo "Iniciando linkagem..."
 
-x86_64-w64-mingw32-g++ \
+x86_64-w64-mingw32-g++ -mwindows -Wl,--disable-nxcompat -Wl,-e,DebugWinMainCRTStartup  \
   -o "$OUTEXE" \
   @object_files_mingw.txt \
+  build_mingw_lua/liblua.a \
+   \
   -LDependency/DirectX9/Lib/x64 \
   -ld3d9 \
   -ld3dx9 \

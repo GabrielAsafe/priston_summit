@@ -3,8 +3,6 @@
 ** Interface to Memory Manager
 ** See Copyright Notice in lua.h
 */
-
-
 #include <stdlib.h>
 
 #define lmem_c

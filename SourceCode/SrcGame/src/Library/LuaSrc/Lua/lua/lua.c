@@ -3,8 +3,6 @@
 ** Lua stand-alone interpreter
 ** See Copyright Notice in lua.h
 */
-
-
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -291,7 +289,7 @@ static void manual_input (void) {
     }
   }
   lua_settop(L, 0);  /* clear stack */
-  fputs("/n", stdout);
+  fputs("\n", stdout);
   progname = oldprogname;
 }
 
@@ -311,14 +309,14 @@ static int handle_argv (char *argv[], int *interactive) {
       if (argv[i][0] != '-') break;  /* not an option? */
       switch (argv[i][1]) {  /* option */
         case '-': {  /* `--' */
-          if (argv[i][2] != '/0') {
+          if (argv[i][2] != '\0') {
             print_usage();
             return 1;
           }
           i++;  /* skip this argument */
           goto endloop;  /* stop handling arguments */
         }
-        case '/0': {
+        case '\0': {
           file_input(NULL);  /* executes stdin as a file */
           break;
         }
@@ -332,7 +330,7 @@ static int handle_argv (char *argv[], int *interactive) {
         }
         case 'e': {
           const char *chunk = argv[i] + 2;
-          if (*chunk == '/0') chunk = argv[++i];
+          if (*chunk == '\0') chunk = argv[++i];
           if (chunk == NULL) {
             print_usage();
             return 1;
@@ -343,7 +341,7 @@ static int handle_argv (char *argv[], int *interactive) {
         }
         case 'l': {
           const char *filename = argv[i] + 2;
-          if (*filename == '/0') filename = argv[++i];
+          if (*filename == '\0') filename = argv[++i];
           if (filename == NULL) {
             print_usage();
             return 1;

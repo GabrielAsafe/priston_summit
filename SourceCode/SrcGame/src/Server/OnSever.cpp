@@ -699,7 +699,7 @@ char *EventLogDirectory = "EventLog";
 static char *szDebugServer = "Summit Tale";
 
 int	DefaultItemCount;
-static int ChatBuffCnt;
+extern int ChatBuffCnt;
 static char TransTemp[1024];
 static char	szChkID[ACCOUNT_SIZE];
 

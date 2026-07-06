@@ -3,8 +3,6 @@
 ** Lua Parser
 ** See Copyright Notice in lua.h
 */
-
-
 #include <string.h>
 
 #define lparser_c
@@ -28,7 +26,7 @@
 #define getlocvar(fs, i)	((fs)->f->locvars[(fs)->actvar[i]])
 
 
-#define enterlevel(ls)	if (++(ls)->nestlevel > LUA_MAXPARSERLEVEL) /
+#define enterlevel(ls)	if (++(ls)->nestlevel > LUA_MAXPARSERLEVEL) \
 		luaX_syntaxerror(ls, "too many syntax levels");
 #define leavelevel(ls)	((ls)->nestlevel--)
 
@@ -385,8 +383,6 @@ Proto *luaY_parser (lua_State *L, ZIO *z, Mbuffer *buff) {
 /*============================================================*/
 /* GRAMMAR RULES */
 /*============================================================*/
-
-
 static void luaY_field (LexState *ls, expdesc *v) {
   /* field -> ['.' | ':'] NAME */
   FuncState *fs = ls->fs;
@@ -412,8 +408,6 @@ static void luaY_index (LexState *ls, expdesc *v) {
 ** Rules for Constructors
 ** =======================================================================
 */
-
-
 struct ConsControl {
   expdesc v;  /* last list item read */
   expdesc *t;  /* table descriptor */
@@ -522,9 +516,6 @@ static void constructor (LexState *ls, expdesc *t) {
 }
 
 /* }====================================================================== */
-
-
-
 static void parlist (LexState *ls) {
   /* parlist -> [ param { `,' param } ] */
   int nparams = 0;
@@ -628,8 +619,6 @@ static void funcargs (LexState *ls, expdesc *f) {
 ** Expression parsing
 ** =======================================================================
 */
-
-
 static void prefixexp (LexState *ls, expdesc *v) {
   /* prefixexp -> NAME | '(' expr ')' */
   switch (ls->t.token) {
@@ -790,8 +779,6 @@ static const struct {
 };
 
 #define UNARY_PRIORITY	8  /* priority for unary operators */
-
-
 /*
 ** subexpr -> (simplexep | unop subexpr) { binop subexpr }
 ** where `binop' is any binary operator with a priority higher than `limit'
@@ -829,16 +816,11 @@ static void expr (LexState *ls, expdesc *v) {
 }
 
 /* }==================================================================== */
-
-
-
 /*
 ** {======================================================================
 ** Rules for Statements
 ** =======================================================================
 */
-
-
 static int block_follow (int token) {
   switch (token) {
     case TK_ELSE: case TK_ELSEIF: case TK_END:
@@ -944,7 +926,6 @@ static void cond (LexState *ls, expdesc *v) {
 ** The while statement optimizes its code by coding the condition
 ** after its body (and thus avoiding one jump in the loop).
 */
-
 /*
 ** maximum size of expressions for optimizing `while' code
 */

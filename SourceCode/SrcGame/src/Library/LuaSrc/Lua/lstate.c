@@ -3,8 +3,6 @@
 ** Global State
 ** See Copyright Notice in lua.h
 */
-
-
 #include <stdlib.h>
 
 #define lstate_c

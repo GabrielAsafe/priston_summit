@@ -3,8 +3,6 @@
 ** Debug Interface
 ** See Copyright Notice in lua.h
 */
-
-
 #include <stdlib.h>
 #include <string.h>
 
@@ -263,7 +261,6 @@ LUA_API int lua_getinfo (lua_State *L, const char *what, lua_Debug *ar) {
 ** Symbolic Execution and code checker
 ** =======================================================
 */
-
 #define check(x)		if (!(x)) return 0;
 
 #define checkjump(pt,pc)	check(0 <= pc && pc < pt->sizecode)
@@ -433,8 +430,6 @@ static Instruction luaG_symbexec (const Proto *pt, int lastpc, int reg) {
 #undef checkreg
 
 /* }====================================================== */
-
-
 int luaG_checkcode (const Proto *pt) {
   return luaG_symbexec(pt, pt->sizecode, NO_REG);
 }

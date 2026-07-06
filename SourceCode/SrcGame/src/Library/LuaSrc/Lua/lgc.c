@@ -3,7 +3,6 @@
 ** Garbage Collector
 ** See Copyright Notice in lua.h
 */
-
 #include <string.h>
 
 #define lgc_c
@@ -55,14 +54,14 @@ typedef struct GCState {
 
 
 
-#define markobject(st,o) { checkconsistency(o); /
+#define markobject(st,o) { checkconsistency(o); \
   if (iscollectable(o) && !ismarked(gcvalue(o))) reallymarkobject(st,gcvalue(o)); }
 
-#define condmarkobject(st,o,c) { checkconsistency(o); /
-  if (iscollectable(o) && !ismarked(gcvalue(o)) && (c)) /
+#define condmarkobject(st,o,c) { checkconsistency(o); \
+  if (iscollectable(o) && !ismarked(gcvalue(o)) && (c)) \
     reallymarkobject(st,gcvalue(o)); }
 
-#define markvalue(st,t) { if (!ismarked(valtogco(t))) /
+#define markvalue(st,t) { if (!ismarked(valtogco(t))) \
 		reallymarkobject(st, valtogco(t)); }
 
 
@@ -120,7 +119,6 @@ size_t luaC_separateudata (lua_State *L) {
     lua_assert(curr->gch.tt == LUA_TUSERDATA);
     if (ismarked(curr) || isfinalized(gcotou(curr)))
       p = &curr->gch.next;  /* don't bother with them */
-
     else if (fasttm(L, gcotou(curr)->uv.metatable, TM_GC) == NULL) {
       markfinalized(gcotou(curr));  /* don't need finalization */
       p = &curr->gch.next;

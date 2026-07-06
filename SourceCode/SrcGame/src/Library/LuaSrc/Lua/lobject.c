@@ -3,7 +3,6 @@
 ** Some generic functions over Lua objects
 ** See Copyright Notice in lua.h
 */
-
 #include <ctype.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -94,7 +93,7 @@ int luaO_str2d (const char *s, lua_Number *result) {
   lua_Number res = lua_str2number(s, &endptr);
   if (endptr == s) return 0;  /* no conversion */
   while (isspace((unsigned char)(*endptr))) endptr++;
-  if (*endptr != '/0') return 0;  /* invalid trailing characters? */
+  if (*endptr != '\0') return 0;  /* invalid trailing characters? */
   *result = res;
   return 1;
 }
@@ -123,7 +122,7 @@ const char *luaO_pushvfstring (lua_State *L, const char *fmt, va_list argp) {
       case 'c': {
         char buff[2];
         buff[0] = cast(char, va_arg(argp, int));
-        buff[1] = '/0';
+        buff[1] = '\0';
         pushstr(L, buff);
         break;
       }
@@ -163,7 +162,7 @@ const char *luaO_pushfstring (lua_State *L, const char *fmt, ...) {
 void luaO_chunkid (char *out, const char *source, int bufflen) {
   if (*source == '=') {
     strncpy(out, source+1, bufflen);  /* remove first char */
-    out[bufflen-1] = '/0';  /* ensures null termination */
+    out[bufflen-1] = '\0';  /* ensures null termination */
   }
   else {  /* out = "source", or "...source" */
     if (*source == '@') {
@@ -179,17 +178,17 @@ void luaO_chunkid (char *out, const char *source, int bufflen) {
       strcat(out, source);
     }
     else {  /* out = [string "string"] */
-      int len = strcspn(source, "/n");  /* stop at first newline */
-      bufflen -= sizeof(" [string /".../"] ");
+      int len = strcspn(source, "\n");  /* stop at first newline */
+      bufflen -= sizeof(" [string \"...\" ] ");
       if (len > bufflen) len = bufflen;
-      strcpy(out, "[string /"");
-      if (source[len] != '/0') {  /* must truncate? */
+      strcpy(out, "[string \"");
+      if (source[len] != '\0') {  /* must truncate? */
         strncat(out, source, len);
         strcat(out, "...");
       }
       else
         strcat(out, source);
-      strcat(out, "/"]");
+      strcat(out, "\"]");
     }
   }
 }

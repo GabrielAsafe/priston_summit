@@ -1,0 +1,88 @@
+cliente/dlls/clan-procedure.dll
+cliente/dlls/Clan.dll
+cliente/dlls/Database.dll
+cliente/dlls/PristonSQLDll.dll
+cliente/dlls/SQL(Original).dll
+cliente/dlls/Sql-2.dll
+cliente/dlls/SQL.dll
+cliente/Launcher BPT/pstale/lha.exe
+cliente/Launcher BPT/pstale/MakeUps.exe
+cliente/Summit Tale Client Full/cliente/d3d9on12.dll
+cliente/Summit Tale Client Full/cliente/D3DCompiler_43.dll
+cliente/Summit Tale Client Full/cliente/d3dx9_43.dll
+cliente/Summit Tale Client Full/cliente/DirectX/DSETUP.dll
+cliente/Summit Tale Client Full/cliente/DirectX/dsetup32.dll
+cliente/Summit Tale Client Full/cliente/DirectX/DXSETUP.exe
+cliente/Summit Tale Client Full/cliente/dxbcSigner.dll
+cliente/Summit Tale Client Full/cliente/Game.exe
+cliente/Summit Tale Client Full/cliente/Ionic.Zip.dll
+cliente/Summit Tale Client Full/cliente/pstale.exe
+cliente/Summit Tale Client Full/cliente/psupdate.exe
+cliente/Summit Tale Client Full/cliente/psupdate.patch.exe
+cliente/Summit Tale Client Full/cliente/SummitTaleClient.exe
+cliente/Summit Tale Client Full/cliente/libwinpthread-1.dll
+cliente/Summit Tale Client Full/cliente/libgcc_s_seh-1.dll
+cliente/Summit Tale Client Full/cliente/libstdc++-6.dll
+Servidor/1.exe
+Servidor/10.exe
+Servidor/2.exe
+Servidor/3.exe
+Servidor/4.exe
+Servidor/5.exe
+Servidor/6.exe
+Servidor/9.exe
+Servidor/@Editor de Monstros.exe
+Servidor/@ItemEditor.exe
+Servidor/@Level Editor.exe
+Servidor/@Mudar nick do player.exe
+Servidor/@PriTaTor_1.8.857.exe
+Servidor/@Restarter.exe
+Servidor/@SoD Atualiza.exe
+Servidor/@Tudo Sobre CLAN.exe
+Servidor/char/monster/FlameMaiden/RazorGodTool.exe
+Servidor/char/monster/Igniculus/RazorGodTool.exe
+Servidor/char/monster/Insec/RazorGodTool.exe
+Servidor/char/tmABCD/SMDReader.exe
+Servidor/clan-procedure.dll
+Servidor/clan.dll
+Servidor/ControllerUser.exe
+Servidor/Database.dll
+Servidor/Field/Title/RazorGodTool.exe
+Servidor/GameServer/Field/NPC Editor.exe
+Servidor/GameServer/Field/NpcEditor.exe
+Servidor/GameServer/Field/NPCManager.exe
+Servidor/LIBMYSQL.DLL
+Servidor/Management/ClanSoDManager.exe
+Servidor/Management/ControllerUser.exe
+Servidor/Management/Editor de conta.exe
+Servidor/Management/Editor De Equipamentos.exe
+Servidor/Management/Editor de Itens.exe
+Servidor/Management/Editor de Monstros.exe
+Servidor/Management/Editor Japaokiko.exe
+Servidor/Management/ItemDistributor.exe
+Servidor/Management/ItemEditor.exe
+Servidor/Management/Level Editor.exe
+Servidor/Management/Mudar Nick Do Personagen.exe
+Servidor/Management/MudarNome.exe
+Servidor/Management/NPCManager.exe
+Servidor/Management/PriTaTor_1.8.857.exe
+Servidor/Management/Procura item pelo nome.exe
+Servidor/Management/PTprotector.exe
+Servidor/Management/SoD Atualiza.exe
+Servidor/mfc70.dll
+Servidor/MSVCP71.DLL
+Servidor/msvcr70.dll
+Servidor/msvcr71.dll
+Servidor/PristonSQLDll.dll
+Servidor/ptprotector/pt_protector_reloaded_1_3.exe
+Servidor/PTprotector.exe
+Servidor/Server.exe
+Servidor/sql.dll
+Servidor/Todas ferramentas em 1 Tools.exe
+Servidor/TopLevel/Business.dll
+Servidor/TopLevel/Entities.dll
+Servidor/TopLevel/Principal.exe
+Servidor/TopLevel/Repository.dll
+Servidor/TopLevel/Util.dll
+Servidor/XPHex Creator.exe
+Servidor/_pt_protector_reloaded_1_3-Developer/pt_protector_reloaded_1_3.exe

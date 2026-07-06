@@ -3,9 +3,6 @@
 ** Basic library
 ** See Copyright Notice in lua.h
 */
-
-
-
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,11 +36,11 @@ static int luaB_print (lua_State *L) {
     s = lua_tostring(L, -1);  /* get result */
     if (s == NULL)
       return luaL_error(L, "`tostring' must return a string to `print'");
-    if (i>1) fputs("/t", stdout);
+    if (i>1) fputs("\t", stdout);
     fputs(s, stdout);
     lua_pop(L, 1);  /* pop result */
   }
-  fputs("/n", stdout);
+  fputs("\n", stdout);
   return 0;
 }
 
@@ -65,7 +62,7 @@ static int luaB_tonumber (lua_State *L) {
     n = strtoul(s1, &s2, base);
     if (s1 != s2) {  /* at least one valid digit? */
       while (isspace((unsigned char)(*s2))) s2++;  /* skip trailing spaces */
-      if (*s2 == '/0') {  /* no invalid trailing characters? */
+      if (*s2 == '\0') {  /* no invalid trailing characters? */
         lua_pushnumber(L, (lua_Number)n);
         return 1;
       }
@@ -392,8 +389,6 @@ static int luaB_newproxy (lua_State *L) {
 ** `require' function
 ** =======================================================
 */
-
-
 /* name of global that holds table with loaded packages */
 #define REQTAB		"_LOADED"
 
@@ -427,7 +422,7 @@ static const char *getpath (lua_State *L) {
 
 static const char *pushnextpath (lua_State *L, const char *path) {
   const char *l;
-  if (*path == '/0') return NULL;  /* no more paths */
+  if (*path == '\0') return NULL;  /* no more paths */
   if (*path == LUA_PATH_SEP) path++;  /* skip separator */
   l = strchr(path, LUA_PATH_SEP);  /* find next separator */
   if (l == NULL) l = path+strlen(path);
@@ -503,8 +498,6 @@ static int luaB_require (lua_State *L) {
 }
 
 /* }====================================================== */
-
-
 static const luaL_reg base_funcs[] = {
   {"error", luaB_error},
   {"getmetatable", luaB_getmetatable},
@@ -540,7 +533,6 @@ static const luaL_reg base_funcs[] = {
 ** Coroutine library
 ** =======================================================
 */
-
 static int auxresume (lua_State *L, lua_State *co, int narg) {
   int status;
   if (!lua_checkstack(co, narg))
@@ -641,9 +633,6 @@ static const luaL_reg co_funcs[] = {
 };
 
 /* }====================================================== */
-
-
-
 static void base_open (lua_State *L) {
   lua_pushliteral(L, "_G");
   lua_pushvalue(L, LUA_GLOBALSINDEX);

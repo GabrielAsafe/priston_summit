@@ -3,8 +3,6 @@
 ** Standard mathematical library
 ** See Copyright Notice in lua.h
 */
-
-
 #include <stdlib.h>
 #include <math.h>
 

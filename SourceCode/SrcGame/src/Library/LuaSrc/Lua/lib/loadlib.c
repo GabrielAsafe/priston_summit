@@ -25,7 +25,6 @@
 * on top of which loadlib could be implemented.
 *
 */
-
 #include "lua.h"
 #include "lauxlib.h"
 #include "lualib.h"
@@ -42,7 +41,6 @@
 * NetBSD, AIX 4.2, HPUX 11, and  probably most other Unix flavors, at least
 * as an emulation layer on top of native functions.
 */
-
 #include <dlfcn.h>
 
 static int loadlib(lua_State *L)
@@ -89,7 +87,6 @@ static int loadlib(lua_State *L)
 /*
 * This is an implementation of loadlib for Windows using native functions.
 */
-
 #include <windows.h>
 
 static void pusherror(lua_State *L)
@@ -131,7 +128,6 @@ static int loadlib(lua_State *L)
 
 #ifndef LOADLIB
 /* Fallback for other systems */
-
 /*
 ** Those systems support dlopen, so they should have defined USE_DLOPEN.
 ** The default (no)implementation gives them a special error message.
@@ -197,9 +193,9 @@ LUALIB_API int luaopen_loadlib (lua_State *L)
 * http://www.stat.umn.edu/~luke/xls/projects/dlbasics/dlbasics.html
 *
 * Mac OS X/Darwin
-* http://www.opendarwin.org/projects/dlcompat/
+* http://www.opendarwin.org/projects/dlcompat\
 *
 * GLIB has wrapper code for BeOS, OS2, Unix and Windows
-* http://cvs.gnome.org/lxr/source/glib/gmodule/
+* http://cvs.gnome.org/lxr/source/glib/gmodule\
 *
 */

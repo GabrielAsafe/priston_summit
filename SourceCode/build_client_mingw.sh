@@ -21,7 +21,7 @@ mkdir -p "$OBJDIR"
 # CChatBox.cpp é LEGACY_CHAT_UI_EXCLUDE_MINGW: depende de UI::Window_ptr, UIEventArgs,
 # PacketChatBoxMessage, PacketItemLinkChat, EChatColor e handlers que não existem nesta base atual.
 if [ -f cpp_files_stage3.txt ]; then
-    grep -viE 'HoSkyOld\.cpp|HoOpeningOFF\.cpp|FilterEffect\.cpp|CChatBox\.cpp' cpp_files_stage3.txt > cpp_files_stage3.tmp
+    grep -viE 'HoSkyOld\.cpp|HoOpeningOFF\.cpp|FilterEffect\.cpp|CChatBox\.cpp|/Server/(ClientFuncPos|OnSever|PartySever|Svr_Damge|svrEventSpawn)\.cpp' cpp_files_stage3.txt > cpp_files_stage3.tmp
     mv cpp_files_stage3.tmp cpp_files_stage3.txt
 fi
 

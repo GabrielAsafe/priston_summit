@@ -3,8 +3,6 @@
 ** Lua API
 ** See Copyright Notice in lua.h
 */
-
-
 #include <assert.h>
 #include <string.h>
 
@@ -152,8 +150,6 @@ LUA_API lua_State *lua_newthread (lua_State *L) {
 /*
 ** basic stack manipulation
 */
-
-
 LUA_API int lua_gettop (lua_State *L) {
   return (L->top - L->base);
 }
@@ -217,8 +213,6 @@ LUA_API void lua_pushvalue (lua_State *L, int idx) {
 /*
 ** access functions (stack -> C)
 */
-
-
 LUA_API int lua_type (lua_State *L, int idx) {
   StkId o = luaA_indexAcceptable(L, idx);
   return (o == NULL) ? LUA_TNONE : ttype(o);
@@ -384,8 +378,6 @@ LUA_API const void *lua_topointer (lua_State *L, int idx) {
 /*
 ** push functions (C -> stack)
 */
-
-
 LUA_API void lua_pushnil (lua_State *L) {
   lua_lock(L);
   setnilvalue(L->top);
@@ -479,8 +471,6 @@ LUA_API void lua_pushlightuserdata (lua_State *L, void *p) {
 /*
 ** get functions (Lua -> stack)
 */
-
-
 LUA_API void lua_gettable (lua_State *L, int idx) {
   StkId t;
   lua_lock(L);
@@ -561,8 +551,6 @@ LUA_API void lua_getfenv (lua_State *L, int idx) {
 /*
 ** set functions (stack -> Lua)
 */
-
-
 LUA_API void lua_settable (lua_State *L, int idx) {
   StkId t;
   lua_lock(L);
@@ -646,7 +634,6 @@ LUA_API int lua_setfenv (lua_State *L, int idx) {
 /*
 ** `load' and `call' functions (run Lua code)
 */
-
 LUA_API void lua_call (lua_State *L, int nargs, int nresults) {
   StkId func;
   lua_lock(L);
@@ -757,7 +744,6 @@ LUA_API int lua_dump (lua_State *L, lua_Chunkwriter writer, void *data) {
 /*
 ** Garbage-collection functions
 */
-
 /* GC values are expressed in Kbytes: #bytes/2^10 */
 #define GCscalel(x)		((x)>>10)
 #define GCscale(x)		(cast(int, GCscalel(x)))
@@ -793,8 +779,6 @@ LUA_API void lua_setgcthreshold (lua_State *L, int newthreshold) {
 /*
 ** miscellaneous functions
 */
-
-
 LUA_API const char *lua_version (void) {
   return LUA_VERSION;
 }

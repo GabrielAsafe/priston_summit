@@ -3,8 +3,6 @@
 ** Lua virtual machine
 ** See Copyright Notice in lua.h
 */
-
-
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
@@ -186,7 +184,7 @@ void luaV_settable (lua_State *L, const TObject *t, TObject *key, StkId val) {
       callTM(L, tm, t, key, val);
       return;
     }
-    t = tm;  /* else repeat with `tm' */ 
+    t = tm;  /* else repeat with `tm' */
   } while (++loop <= MAXTAGLOOP);
   luaG_runerror(L, "loop in settable");
 }
@@ -378,7 +376,6 @@ static void Arith (lua_State *L, StkId ra,
 /*
 ** some macros for common tasks in `luaV_execute'
 */
-
 #define runtime_check(L, c)	{ if (!(c)) return 0; }
 
 #define RA(i)	(base+GETARG_A(i))

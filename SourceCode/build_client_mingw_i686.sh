@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+set -e
+
+ROOT="$(pwd)"
+OBJDIR="$ROOT/build_mingw_client_i686"
+LOG="$ROOT/build_mingw_client_i686_compile.log"
+
+rm -rf "$OBJDIR"
+mkdir -p "$OBJDIR"
+: > "$LOG"
+
+{
+  find SrcGame/src -iname '*.cpp'
+  find modules/MD5 -iname '*.cpp'
+} | sort > cpp_files_stage3.txt
+
+# ORPHAN_EXCLUDE_MINGW:
+# HoSkyOld.cpp e HoOpeningOFF.cpp não aparecem no vcxproj/sln e foram substituídos por HoSky.cpp/HoOpening.cpp.
+# FilterEffect.cpp é LEGACY_RENDER_EXCLUDE_MINGW: depende de RenderDevice/DirectDraw/Direct3DTexture2 antigo.
+# O cliente atual usa Direct3D9; portar depois, não corrigir erro por erro.
+# CChatBox.cpp é LEGACY_CHAT_UI_EXCLUDE_MINGW: depende de UI::Window_ptr, UIEventArgs,
+# PacketChatBoxMessage, PacketItemLinkChat, EChatColor e handlers que não existem nesta base atual.
+if [ -f cpp_files_stage3.txt ]; then
+    grep -viE 'HoSkyOld\.cpp|HoOpeningOFF\.cpp|FilterEffect\.cpp|CChatBox\.cpp|/Server/(ClientFuncPos|OnSever|PartySever|Svr_Damge|svrEventSpawn)\.cpp' cpp_files_stage3.txt > cpp_files_stage3.tmp
+    mv cpp_files_stage3.tmp cpp_files_stage3.txt
+fi
+
+
+
+echo "Total CPP sem AntiCheat:"
+wc -l cpp_files_stage3.txt
+
+parallel -j8 --bar '
+src="{}"
+base="${src//\//_}"
+base="${base%.cpp}"
+obj="'"$OBJDIR"'/${base}.o"
+
+i686-w64-mingw32-g++ \
+-c "$src" \
+-o "$obj" \
+-std=gnu++17 \
+-fpermissive \
+-Wno-write-strings \
+-Wno-narrowing \
+-Wno-unused-variable \
+-Wno-unused-parameter \
+-Wno-deprecated-declarations \
+-DWIN32 \
+-D_WINDOWS \
+-DNDEBUG \
+-IDependency/DirectX9/Include \
+-I. \
+-IShared \
+-IShared2 \
+-ISrcGame/src \
+-ISrcGame/src/smLib3d \
+-ISrcGame/src/sinbaram \
+-ISrcGame/src/Language \
+-ISrcGame/src/Resources \
+-ISrcGame/src/Sound \
+-ISrcGame/src/HoBaram \
+-ISrcGame/src/HoBaram/NewEffect \
+-ISrcGame/src/HoBaram/NewEffect/math \
+-ISrcGame/src/HoBaram/NewEffect/Script \
+-ISrcGame/src/Library/LuaSrc \
+-ISrcGame/src/Library/LuaSrc/Lua \
+-ISrcGame/src/TJBOY/clanmenu \
+-ISrcGame/src/TJBOY/isaocheck \
+-ISrcGame/src/TJBOY/park \
+-ISrcGame/src/TJBOY/Ygy \
+-ISrcGame/src/TJBOY/Ygy/memmap \
+-ISrcGame/src/Server \
+-ISrcGame/src/WinInt \
+-ISrcGame/src/Security \
+-ISrcGame/src/Settings \
+-Imodules \
+-Imodules/File \
+-Imodules/MD5 \
+-Imodules/Helper \
+2>> "'"$LOG"'"
+' :::: cpp_files_stage3.txt
+
+echo
+echo "Compilação terminada."
+echo "Objetos gerados:"
+find "$OBJDIR" -name "*.o" | wc -l
+
+echo
+echo "Últimos erros:"
+grep -niE "error:|fatal error:" "$LOG" | tail -200 || true
+

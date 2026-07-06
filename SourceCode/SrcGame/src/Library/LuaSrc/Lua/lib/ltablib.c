@@ -3,8 +3,6 @@
 ** Library for Table Manipulation
 ** See Copyright Notice in lua.h
 */
-
-
 #include <stddef.h>
 
 #define ltablib_c
@@ -132,8 +130,6 @@ static int str_concat (lua_State *L) {
 ** (based on `Algorithms in MODULA-3', Robert Sedgewick;
 **  Addison-Wesley, 1993.)
 */
-
-
 static void set2 (lua_State *L, int i, int j) {
   lua_rawseti(L, 1, i);
   lua_rawseti(L, 1, j);
@@ -228,8 +224,6 @@ static int luaB_sort (lua_State *L) {
 }
 
 /* }====================================================== */
-
-
 static const luaL_reg tab_funcs[] = {
   {"concat", str_concat},
   {"foreach", luaB_foreach},

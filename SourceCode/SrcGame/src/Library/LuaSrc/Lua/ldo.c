@@ -3,8 +3,6 @@
 ** Stack and Call structure of Lua
 ** See Copyright Notice in lua.h
 */
-
-
 #include <setjmp.h>
 #include <stdlib.h>
 #include <string.h>
@@ -37,8 +35,6 @@
 ** Error-recovery functions (based on long jumps)
 ** =======================================================
 */
-
-
 /* chain list of long jump buffers */
 struct lua_longjmp {
   struct lua_longjmp *previous;
@@ -101,8 +97,6 @@ static void restore_stack_limit (lua_State *L) {
 }
 
 /* }====================================================== */
-
-
 static void correctstack (lua_State *L, TObject *oldstack) {
   CallInfo *ci;
   GCObject *up;
@@ -298,7 +292,7 @@ void luaD_poscall (lua_State *L, int wanted, StkId firstResult) {
 ** The arguments are on the stack, right after the function.
 ** When returns, all the results are on the stack, starting at the original
 ** function position.
-*/ 
+*/
 void luaD_call (lua_State *L, StkId func, int nResults) {
   StkId firstResult;
   lua_assert(!(L->ci->state & CI_CALLING));

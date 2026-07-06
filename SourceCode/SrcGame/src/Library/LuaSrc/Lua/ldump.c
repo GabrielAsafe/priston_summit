@@ -3,7 +3,6 @@
 ** save bytecodes
 ** See Copyright Notice in lua.h
 */
-
 #include <stddef.h>
 
 #define ldump_c
@@ -58,7 +57,7 @@ static void DumpString(TString* s, DumpState* D)
   DumpSize(0,D);
  else
  {
-  size_t size=s->tsv.len+1;		/* include trailing '/0' */
+  size_t size=s->tsv.len+1;		/* include trailing '\0' */
   DumpSize(size,D);
   DumpBlock(getstr(s),size,D);
  }

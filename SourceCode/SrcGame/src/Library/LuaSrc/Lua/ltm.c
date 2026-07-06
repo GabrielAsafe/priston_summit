@@ -3,8 +3,6 @@
 ** Tag methods
 ** See Copyright Notice in lua.h
 */
-
-
 #include <string.h>
 
 #define ltm_c

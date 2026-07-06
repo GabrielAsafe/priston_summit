@@ -3,8 +3,6 @@
 ** a generic input stream interface
 ** See Copyright Notice in lua.h
 */
-
-
 #include <string.h>
 
 #define lzio_c

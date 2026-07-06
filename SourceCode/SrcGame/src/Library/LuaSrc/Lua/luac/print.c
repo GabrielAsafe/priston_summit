@@ -3,7 +3,6 @@
 ** print bytecodes
 ** See Copyright Notice in lua.h
 */
-
 #include <stdio.h>
 
 #if 0
@@ -31,13 +30,13 @@ static void PrintString(const Proto* f, int n)
   switch (*s)
   {
    case '"': printf("///""); break;
-   case '/a': printf("//a"); break;
-   case '/b': printf("//b"); break;
-   case '/f': printf("//f"); break;
-   case '/n': printf("//n"); break;
-   case '/r': printf("//r"); break;
-   case '/t': printf("//t"); break;
-   case '/v': printf("//v"); break;
+   case '\a': printf("//a"); break;
+   case '\b': printf("//b"); break;
+   case '\f': printf("//f"); break;
+   case '\n': printf("//n"); break;
+   case '\r': printf("//r"); break;
+   case '\t': printf("//t"); break;
+   case '\v': printf("//v"); break;
    default: putchar(*s); break;
   }
  }
@@ -135,7 +134,7 @@ static void PrintCode(const Proto* f)
    default:
     break;
   }
-  printf("/n");
+  printf("\n");
  }
 }
 
@@ -176,7 +175,7 @@ static void PrintConstants(const Proto* f)
  {
   printf("/t%d/t",i);
   PrintConstant(f,i);
-  printf("/n");
+  printf("\n");
  }
 }
 

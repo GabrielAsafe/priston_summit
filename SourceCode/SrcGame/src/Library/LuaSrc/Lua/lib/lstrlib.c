@@ -3,8 +3,6 @@
 ** Standard library for string operations and pattern-matching
 ** See Copyright Notice in lua.h
 */
-
-
 #include <ctype.h>
 #include <stddef.h>
 #include <stdio.h>
@@ -26,8 +24,6 @@
 
 
 typedef long sint32;	/* a signed version for size_t */
-
-
 static int str_len (lua_State *L) {
   size_t l;
   luaL_checklstring(L, 1, &l);
@@ -144,7 +140,6 @@ static int str_dump (lua_State *L) {
 ** PATTERN MATCHING
 ** =======================================================
 */
-
 #ifndef MAX_CAPTURES
 #define MAX_CAPTURES 32  /* arbitrary limit */
 #endif
@@ -188,16 +183,16 @@ static int capture_to_close (MatchState *ms) {
 static const char *luaI_classend (MatchState *ms, const char *p) {
   switch (*p++) {
     case ESC: {
-      if (*p == '/0')
+      if (*p == '\0')
         luaL_error(ms->L, "malformed pattern (ends with `%')");
       return p+1;
     }
     case '[': {
       if (*p == '^') p++;
       do {  /* look for a `]' */
-        if (*p == '/0')
+        if (*p == '\0')
           luaL_error(ms->L, "malformed pattern (missing `]')");
-        if (*(p++) == ESC && *p != '/0')
+        if (*(p++) == ESC && *p != '\0')
           p++;  /* skip escapes (e.g. `%]') */
       } while (*p != ']');
       return p+1;
@@ -373,7 +368,7 @@ static const char *match (MatchState *ms, const char *s, const char *p) {
           if (*p != '[')
             luaL_error(ms->L, "missing `[' after `%%f' in pattern");
           ep = luaI_classend(ms, p);  /* points to what is next */
-          previous = (s == ms->src_init) ? '/0' : *(s-1);
+          previous = (s == ms->src_init) ? '\0' : *(s-1);
           if (matchbracketclass(uchar(previous), p, ep-1) ||
              !matchbracketclass(uchar(*s), p, ep-1)) return NULL;
           p=ep; goto init;  /* else return match(ms, s, ep); */
@@ -388,11 +383,11 @@ static const char *match (MatchState *ms, const char *s, const char *p) {
         }
       }
     }
-    case '/0': {  /* end of pattern */
+    case '\0': {  /* end of pattern */
       return s;  /* match succeeded */
     }
     case '$': {
-      if (*(p+1) == '/0')  /* is the `$' the last char in pattern? */
+      if (*(p+1) == '\0')  /* is the `$' the last char in pattern? */
         return (s == ms->src_end) ? s : NULL;  /* check end of string */
       else goto dflt;
     }
@@ -621,8 +616,6 @@ static int str_gsub (lua_State *L) {
 }
 
 /* }====================================================== */
-
-
 /* maximum size of each formatted item (> len(format('%99.99f', -1e308))) */
 #define MAX_ITEM	512
 /* maximum size of each format specification (such as '%-099.99d') */
@@ -635,13 +628,13 @@ static void luaI_addquoted (lua_State *L, luaL_Buffer *b, int arg) {
   luaL_putchar(b, '"');
   while (l--) {
     switch (*s) {
-      case '"': case '//': case '/n': {
-        luaL_putchar(b, '//');
+      case '"': case '\\': case '\n': {
+        luaL_putchar(b, '\\');
         luaL_putchar(b, *s);
         break;
       }
-      case '/0': {
-        luaL_addlstring(b, "//000", 4);
+      case '\0': {
+        luaL_addlstring(b, "\\000", 4);
         break;
       }
       default: {

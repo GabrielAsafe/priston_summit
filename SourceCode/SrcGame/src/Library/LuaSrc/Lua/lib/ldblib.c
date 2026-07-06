@@ -3,8 +3,6 @@
 ** Interface from Lua to its debug API
 ** See Copyright Notice in lua.h
 */
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -169,7 +167,7 @@ static char *unmakemask (int mask, char *smask) {
   if (mask & LUA_MASKCALL) smask[i++] = 'c';
   if (mask & LUA_MASKRET) smask[i++] = 'r';
   if (mask & LUA_MASKLINE) smask[i++] = 'l';
-  smask[i] = '/0';
+  smask[i] = '\0';
   return smask;
 }
 
@@ -223,7 +221,6 @@ static int debug (lua_State *L) {
 
 #define LEVELS1	12	/* size of the first part of the stack */
 #define LEVELS2	10	/* size of the second part of the stack */
-
 static int errorfb (lua_State *L) {
   int level = 1;  /* skip level 0 (it's this function) */
   int firstpart = 1;  /* still before eventual `...' */
@@ -231,7 +228,7 @@ static int errorfb (lua_State *L) {
   if (lua_gettop(L) == 0)
     lua_pushliteral(L, "");
   else if (!lua_isstring(L, 1)) return 1;  /* no string message */
-  else lua_pushliteral(L, "/n");
+  else lua_pushliteral(L, "\n");
   lua_pushliteral(L, "stack traceback:");
   while (lua_getstack(L, level++, &ar)) {
     if (level > LEVELS1 && firstpart) {
@@ -252,7 +249,7 @@ static int errorfb (lua_State *L) {
     if (ar.currentline > 0)
       lua_pushfstring(L, "%d:", ar.currentline);
     switch (*ar.namewhat) {
-      case 'g':  /* global */ 
+      case 'g':  /* global */
       case 'l':  /* local */
       case 'f':  /* field */
       case 'm':  /* method */

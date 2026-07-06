@@ -3,8 +3,6 @@
 ** Internal Module for Debugging of the Lua Implementation
 ** See Copyright Notice in lua.h
 */
-
-
 #include <ctype.h>
 #include <limits.h>
 #include <stdio.h>
@@ -59,9 +57,7 @@ static void setnameval (lua_State *L, const char *name, int val) {
 ** Controlled version for realloc.
 ** =======================================================================
 */
-
 #define MARK		0x55  /* 01010101 (a nice pattern) */
-
 #ifndef EXTERNMEMCHECK
 /* full memory check */
 #define HEADER	(sizeof(L_Umaxalign)) /* ensures maximum alignment for HEADER */
@@ -144,16 +140,11 @@ void *debug_realloc (void *block, size_t oldsize, size_t size) {
 
 
 /* }====================================================================== */
-
-
-
 /*
 ** {======================================================
 ** Disassembler
 ** =======================================================
 */
-
-
 static char *buildop (Proto *p, int pc, char *buff) {
   Instruction i = p->code[pc];
   OpCode o = GET_OPCODE(i);
@@ -237,10 +228,6 @@ static int listlocals (lua_State *L) {
 }
 
 /* }====================================================== */
-
-
-
-
 static int get_limits (lua_State *L) {
   lua_newtable(L);
   setnameval(L, "BITS_INT", BITS_INT);
@@ -408,7 +395,7 @@ static int upvalue (lua_State *L) {
 static int newuserdata (lua_State *L) {
   size_t size = luaL_checkint(L, 1);
   char *p = cast(char *, lua_newuserdata(L, size));
-  while (size--) *p++ = '/0';
+  while (size--) *p++ = '\0';
   return 1;
 }
 
@@ -540,11 +527,10 @@ static int test_do (lua_State *L) {
 ** language with calls to the API, so the test can be driven by Lua code
 ** =======================================================
 */
-
 static const char *const delimits = " /t/n,;";
 
 static void skip (const char **pc) {
-  while (**pc != '/0' && strchr(delimits, **pc)) (*pc)++;
+  while (**pc != '\0' && strchr(delimits, **pc)) (*pc)++;
 }
 
 static int getnum_aux (lua_State *L, const char **pc) {
@@ -568,9 +554,9 @@ static int getnum_aux (lua_State *L, const char **pc) {
 static const char *getname_aux (char *buff, const char **pc) {
   int i = 0;
   skip(pc);
-  while (**pc != '/0' && !strchr(delimits, **pc))
+  while (**pc != '\0' && !strchr(delimits, **pc))
     buff[i++] = *(*pc)++;
-  buff[i] = '/0';
+  buff[i] = '\0';
   return buff;
 }
 
@@ -733,14 +719,11 @@ static int testC (lua_State *L) {
 }
 
 /* }====================================================== */
-
-
 /*
 ** {======================================================
 ** tests for yield inside hooks
 ** =======================================================
 */
-
 static void yieldf (lua_State *L, lua_Debug *ar) {
   lua_yield(L, 0);
 }
@@ -777,9 +760,6 @@ static int coresume (lua_State *L) {
 }
 
 /* }====================================================== */
-
-
-
 static const struct luaL_reg tests_funcs[] = {
   {"hash", hash_query},
   {"limits", get_limits},

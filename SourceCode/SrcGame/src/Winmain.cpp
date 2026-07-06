@@ -501,6 +501,19 @@ void initipgame()
 
 INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCmdShow)
 {
+    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+
+    {
+        HANDLE f = CreateFileA("mingw_winmain_reached.txt", GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+        if (f != INVALID_HANDLE_VALUE) {
+            const char *msg = "ENTROU NO WINMAIN\n";
+            DWORD written = 0;
+            WriteFile(f, msg, lstrlenA(msg), &written, NULL);
+            CloseHandle(f);
+        }
+    }
+
+
 	//HANDLE mutex = CreateMutex(NULL, FALSE, "GameSoul");
 	//
 	//if (GetLastError() == ERROR_ALREADY_EXISTS || mutex == NULL) {
@@ -539,6 +552,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 	pcAntiCheat = new AntiCheat();
 	pcAntiCheat->AddNewThreadException(GetCurrentThreadId());
 	pcAntiCheat->CheckThread();
+    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
 
 	MSG msg;
 	WNDCLASS wndclass;
@@ -549,6 +563,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 	initSinCos();
 
 	SETTINGSHANDLER->readConfig();
+    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
 	
 	InitializeCriticalSection(&cSection);
 	InitializeCriticalSection(&cDrawSection);
@@ -557,6 +572,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 	srand(GetCurrentTime());
 
 	InitDirectSound();
+    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
 
 	WinSizeX = SETTINGSHANDLER->getWidth();
 	WinSizeY = SETTINGSHANDLER->getHeight();
@@ -585,6 +601,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 		wndclass.lpszMenuName = NULL;
 		wndclass.lpszClassName = szAppName;
 		RegisterClass(&wndclass);
+    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
 	}
 
 	if(SETTINGSHANDLER->getWindowMode())
@@ -596,6 +613,8 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 		wrect.bottom = SETTINGSHANDLER->getHeight();
 
 		AdjustWindowRectEx(&wrect, WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX, FALSE, 0);
+
+		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
 
 		hwnd = CreateWindowEx(0,
 			szAppName,

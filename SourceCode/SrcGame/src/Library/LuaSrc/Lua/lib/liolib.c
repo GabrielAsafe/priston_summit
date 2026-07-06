@@ -3,8 +3,6 @@
 ** Standard I/O (and system) library
 ** See Copyright Notice in lua.h
 */
-
-
 #include <errno.h>
 #include <locale.h>
 #include <stdio.h>
@@ -56,8 +54,6 @@
 ** FILE Operations
 ** =======================================================
 */
-
-
 #if !USE_POPEN
 #define pclose(f)    (-1)
 #endif
@@ -299,8 +295,6 @@ static int io_lines (lua_State *L) {
 ** READ
 ** =======================================================
 */
-
-
 static int read_number (lua_State *L, FILE *f) {
   lua_Number d;
   if (fscanf(f, LUA_NUMBER_SCAN, &d) == 1) {
@@ -330,7 +324,7 @@ static int read_line (lua_State *L, FILE *f) {
       return (lua_strlen(L, -1) > 0);  /* check whether read something */
     }
     l = strlen(p);
-    if (p[l-1] != '/n')
+    if (p[l-1] != '\n')
       luaL_addsize(&b, l);
     else {
       luaL_addsize(&b, l - 1);  /* do not include `eol' */
@@ -431,8 +425,6 @@ static int io_readline (lua_State *L) {
 }
 
 /* }====================================================== */
-
-
 static int g_write (lua_State *L, FILE *f, int arg) {
   int nargs = lua_gettop(L) - 1;
   int status = 1;
@@ -528,14 +520,11 @@ static void createmeta (lua_State *L) {
 }
 
 /* }====================================================== */
-
-
 /*
 ** {======================================================
 ** Other O.S. Operations
 ** =======================================================
 */
-
 static int io_execute (lua_State *L) {
   lua_pushnumber(L, system(luaL_checkstring(L, 1)));
   return 1;
@@ -588,7 +577,6 @@ static int io_clock (lua_State *L) {
 **   wday=%w+1, yday=%j, isdst=? }
 ** =======================================================
 */
-
 static void setfield (lua_State *L, const char *key, int value) {
   lua_pushstring(L, key);
   lua_pushnumber(L, value);
@@ -696,8 +684,6 @@ static int io_difftime (lua_State *L) {
 }
 
 /* }====================================================== */
-
-
 static int io_setloc (lua_State *L) {
   static const int cat[] = {LC_ALL, LC_COLLATE, LC_CTYPE, LC_MONETARY,
                       LC_NUMERIC, LC_TIME};
@@ -733,9 +719,6 @@ static const luaL_reg syslib[] = {
 };
 
 /* }====================================================== */
-
-
-
 LUALIB_API int luaopen_io (lua_State *L) {
   luaL_openlib(L, LUA_OSLIBNAME, syslib, 0);
   createmeta(L);

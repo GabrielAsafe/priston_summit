@@ -1,6 +1,7 @@
 #include "opcodes.h"
 #include "smLib3d/smd3d.h"
 
+static char *record_GetWord(char *q, char *p);
 #include "smwsock.h"
 #include "character.h"
 #include "avictrl.h"
@@ -4719,14 +4720,14 @@ int	rsLoadPostBox(rsPLAYINFO	*lpPlayInfo)
 		{
 			p = szLine;
 
-			pb = p; p = GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+			pb = p; p = record_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
 			if (strBuff[0])
 			{
 				strBuff[31] = 0;
 				strcpy_s(lpPostItem->szCharName, strBuff);
 			}
 
-			pb = p; p = GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+			pb = p; p = record_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
 			if (strBuff[0])
 			{
 				strBuff[31] = 0;
@@ -4754,7 +4755,7 @@ int	rsLoadPostBox(rsPLAYINFO	*lpPlayInfo)
 				}
 			}
 
-			pb = p; p = GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+			pb = p; p = record_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
 			if (strBuff[0])
 			{
 				strBuff[31] = 0;
@@ -4762,14 +4763,14 @@ int	rsLoadPostBox(rsPLAYINFO	*lpPlayInfo)
 				lpPostItem->dwJobCode = atoi(strBuff);
 			}
 
-			pb = p; p = GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+			pb = p; p = record_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
 			if (strBuff[0])
 			{
 				strBuff[127] = 0;
 				strcpy_s(lpPostItem->szDoc, strBuff);
 			}
 
-			pb = p; p = GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+			pb = p; p = record_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
 			if (strBuff[0])
 			{
 				strBuff[63] = 0;
@@ -4777,7 +4778,7 @@ int	rsLoadPostBox(rsPLAYINFO	*lpPlayInfo)
 				lpPostItem->dwFormCode = atoi(strBuff);
 			}
 
-			pb = p; p = GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+			pb = p; p = record_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
 			if (strBuff[0])
 			{
 				strBuff[16] = 0;
@@ -5421,7 +5422,7 @@ int PeekMonMsg()
 static char decode[512];
 static char line[512];
 
-static char *GetWord(char *q, char *p)
+static char *record_GetWord(char *q, char *p)
 {
 
 	while ((*p == 32) || (*p == 9))
@@ -5482,12 +5483,12 @@ int RestoreBackupData(char *szListFile, char *BackupPath)
 	{
 		if (fgets(line, 255, fp) == NULL)	break;
 
-		p = GetWord(decode, line);
+		p = record_GetWord(decode, line);
 
 
 		if (decode[0])
 		{
-			p = GetWord(strBuff, p);
+			p = record_GetWord(strBuff, p);
 
 			if (strBuff[0])
 			{

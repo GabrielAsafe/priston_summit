@@ -3,8 +3,6 @@
 ** Lua tables (hash)
 ** See Copyright Notice in lua.h
 */
-
-
 /*
 ** Implementation of tables (aka arrays, objects, or hash tables).
 ** Tables keep its elements in two parts: an array part and a hash part.
@@ -20,7 +18,6 @@
 ** Because of that, the load factor of these tables can be 100% without
 ** performance penalties.
 */
-
 #include <string.h>
 
 #define ltable_c
@@ -175,8 +172,6 @@ int luaH_next (lua_State *L, Table *t, StkId key) {
 ** Rehash
 ** ==============================================================
 */
-
-
 static void computesizes  (int nums[], int ntotal, int *narray, int *nhash) {
   int i;
   int a = nums[0];  /* number of elements smaller than 2^i */
@@ -322,8 +317,6 @@ static void rehash (lua_State *L, Table *t) {
 /*
 ** }=============================================================
 */
-
-
 Table *luaH_new (lua_State *L, int narray, int lnhash) {
   Table *t = luaM_new(L, Table);
   luaC_link(L, valtogco(t), LUA_TTABLE);

@@ -3,7 +3,6 @@
 ** Lua compiler (saves bytecodes to files; also list bytecodes)
 ** See Copyright Notice in lua.h
 */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,14 +26,12 @@
 #endif
 
 #define	OUTPUT		"luac.out"	/* default output file */
-
 static int listing=0;			/* list bytecodes? */
 static int dumping=1;			/* dump bytecodes? */
 static int stripping=0;			/* strip debug information? */
 static char Output[]={ OUTPUT };	/* default output file name */
 static const char* output=Output;	/* output file name */
 static const char* progname=PROGNAME;	/* actual program name */
-
 static void fatal(const char* message)
 {
  fprintf(stderr,"%s: %s/n",progname,message);
@@ -52,7 +49,7 @@ static void usage(const char* message, const char* arg)
 {
  if (message!=NULL)
  {
-  fprintf(stderr,"%s: ",progname); fprintf(stderr,message,arg); fprintf(stderr,"/n");
+  fprintf(stderr,"%s: ",progname); fprintf(stderr,message,arg); fprintf(stderr,"\n");
  }
  fprintf(stderr,
  "usage: %s [options] [filenames].  Available options are:/n"

@@ -1,4 +1,7 @@
+modules/MD5/MD5.cpp
+modules/MD5/MD5Wrapper.cpp
 SrcGame/src/ActionGame.cpp
+SrcGame/src/AntiCheat/AntiCheat.cpp
 SrcGame/src/AreaServer.cpp
 SrcGame/src/avictrl.cpp
 SrcGame/src/BattleEvents/CRollHandler.cpp
@@ -10,6 +13,7 @@ SrcGame/src/character.cpp
 SrcGame/src/checkdll.cpp
 SrcGame/src/cHellsGate.cpp
 SrcGame/src/ClanCustom.cpp
+SrcGame/src/client_server_stubs.cpp
 SrcGame/src/CLootHandler.cpp
 SrcGame/src/cMixGuide.cpp
 SrcGame/src/CoinShop.cpp
@@ -22,6 +26,7 @@ SrcGame/src/cRestaureWindow.cpp
 SrcGame/src/cSettingsWindow.cpp
 SrcGame/src/cTarget.cpp
 SrcGame/src/CurseFilter.cpp
+SrcGame/src/d3dx_font_alias.cpp
 SrcGame/src/Damage.cpp
 SrcGame/src/DrawDamage.cpp
 SrcGame/src/Drawsub.cpp
@@ -72,6 +77,8 @@ SrcGame/src/KillHandler.cpp
 SrcGame/src/Language/jts.cpp
 SrcGame/src/Login/Login.cpp
 SrcGame/src/makeshadow.cpp
+SrcGame/src/mingw_debug_entry.cpp
+SrcGame/src/netplay.cpp
 SrcGame/src/NPCinfo.cpp
 SrcGame/src/Park/HoMessageBox.cpp
 SrcGame/src/Particle.cpp
@@ -83,12 +90,7 @@ SrcGame/src/Rank.cpp
 SrcGame/src/Ranking.cpp
 SrcGame/src/record.cpp
 SrcGame/src/Security/Security.cpp
-SrcGame/src/Server/ClientFuncPos.cpp
 SrcGame/src/Server/DllServer.cpp
-SrcGame/src/Server/OnSever.cpp
-SrcGame/src/Server/PartySever.cpp
-SrcGame/src/Server/Svr_Damge.cpp
-SrcGame/src/Server/svrEventSpawn.cpp
 SrcGame/src/Settings/Settings.cpp
 SrcGame/src/Settings/UI.cpp
 SrcGame/src/ShowDamage.cpp
@@ -130,6 +132,7 @@ SrcGame/src/sinbaram/sinUtil.cpp
 SrcGame/src/sinbaram/sinWarpGate.cpp
 SrcGame/src/sinbaram/SkillFunction/Morayion.cpp
 SrcGame/src/sinbaram/SkillFunction/Tempskron.cpp
+SrcGame/src/sinbaram/skill_missing_globals_mingw.cpp
 SrcGame/src/sinbaram/YameEffect.cpp
 SrcGame/src/sinHaQuest.cpp
 SrcGame/src/SkillSub.cpp
@@ -177,6 +180,7 @@ SrcGame/src/TJBOY/isaocheck/auth.cpp
 SrcGame/src/TJBOY/isaocheck/isaocheck.cpp
 SrcGame/src/TJBOY/park/MicVolume.cpp
 SrcGame/src/TJBOY/park/ParkDXPlayer.cpp
+SrcGame/src/TJBOY/park/ParkDXPlayer_global.cpp
 SrcGame/src/TJBOY/Ygy/memmap/memmap.cpp
 SrcGame/src/TJBOY/Ygy/Packet/Packet.cpp
 SrcGame/src/TJBOY/Ygy/Process/Process.cpp
