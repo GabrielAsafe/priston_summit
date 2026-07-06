@@ -11,3 +11,10 @@ docker/db/data/
 *.tar.gz
 *.zip
 .exe
+/SourceCode Summit Tale/Dependency/DirectXSDK
+
+# Large dependency files
+SourceCode/Dependency/DXSDK_Jun10.exe
+SourceCode/Dependency/DirectXSDK.7z
+SourceCode Summit Tale/Dependency/DXSDK_Jun10.exe
+SourceCode Summit Tale/Dependency/DirectXSDK.7z
