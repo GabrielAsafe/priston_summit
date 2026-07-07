@@ -16,6 +16,7 @@ services:
     container_name: summit-web-epic
     ports:
       - "8089:80"
+    command: bash -lc "rm -f /var/run/apache2/apache2.pid /run/apache2/apache2.pid; exec apache2ctl -D FOREGROUND"
     volumes:
       - ./web/wwwroot - EPIC SIMPLE:/var/www/html
       - ../Servidor:/srv/summit/Servidor

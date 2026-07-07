@@ -1,0 +1,3527 @@
+!This program cannot be run in DOS mode.
+,.0_
+,r0.
++w0F
+,s0[
+,+0N
+,S0N
+n0RichO
+.textbssMW
+.text
+`.rdata
+@.data
+.idata
+.rsrc
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+XZ_^[
+SVWQ
+}(h$
+XZ_^[
+szFileName
+szFileDir
+SVWQ
+XZ_^[
+szTemp
+SVWQ
+}%h$
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+XZ_^[
+szMsg
+szFileName
+hFind
+SVWQ
+SVWQ
+XZ_^[
+FileName
+dwWrite
+SVWQ
+XZ_^[
+szCode
+szFileDir
+hFind
+SVWQ
+XZ_^[
+dwNumOfBytesWritten
+Temp
+m_FileName
+SVWQ
+XZ_^[
+szCode
+m_FileName
+SVWQ
+SVWQ
+XZ_^[
+dwNumOfBytesWritten
+szCode
+m_FileName1
+m_FileName
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+XZ_^[
+szFileDir
+dwRead
+SVWQ
+XZ_^[
+szFileDir
+dwRead
+SVWQ
+XZ_^[
+szFileDir
+szUnique
+dwRead
+SVWQ
+XZ_^[
+dwWrite
+dwRead
+szUnique
+szFileDir
+szTemp
+SVWQ
+XZ_^[
+szMsg
+szFileName
+szFileDir
+SVWQ
+utj2j
+XZ_^[
+szFileDir
+szTemp
+SVWQ
+XZ_^[
+szMsg
+szFileName
+szFileDir
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+XZ_^[
+szFileDir
+SVWQ
+XZ_^[
+szMsg
+szFileDir
+SVWQ
+XZ_^[
+dwWrite
+dwRead
+Temp1
+Temp
+SVWQ
+XZ_^[
+dwWrite
+dwRead
+Temp1
+Temp
+SVWQ
+XZ_^[
+szUnique
+dwRead
+Temp
+SVWQ
+XZ_^[
+Temp
+dwRead
+SVWQ
+XZ_^[
+dwWrite
+szMsg
+dwRead
+FileName1
+FileName
+SVWQ
+uhh$
+XZ_^[
+temp
+temp_tw
+SVWQ
+XZ_^[
+_ms_lvi
+_ms_lvi
+_ms_lvi
+_ms_lvi
+_ms_lvi
+_ms_lvi
+temp1
+temp
+dwWrite
+SVWQ
+XZ_^[
+SVWQ
+XZ_^[
+_ms_lvi
+_ms_lvi
+_ms_lvi
+_ms_lvi
+_ms_lvi
+temp1
+temp
+dwWrite
+RjFj
+XZ_^[
+rect
+RjFj
+XZ_^[
+rect
+XZ_^[
+szFileDir
+hFind
+RjFj
+XZ_^[
+rect
+RjFj
+XZ_^[
+rect
+RjFj
+XZ_^[
+rect
+RjFj
+XZ_^[
+rect
+XZ_^[
+file
+temp
+ht!E
+ht!E
+XZ_^[
+szFileDir
+hFind
+XZ_^[
+dwRead
+szFile
+XZ_^[
+tcItem
+XZ_^[
+XZ_^[
+XZ_^[
+Rj2j
+Rj2j
+XZ_^[
+XZ_^[
+rect
+XZ_^[
+InitComCtrlex
+XZ_^[
+InitComCtrlex
+XZ_^[
+InitComCtrlex
+XZ_^[
+InitComCtrlex
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+}%h$
+SVWQ
+SVWQ
+XZ_^[
+szFileName
+szFileDir
+SVWQ
+XZ_^[
+temp
+temp_warehouse
+temp_tw
+SVWQ
+XZ_^[
+szFileName
+szFileDir
+SVWQ
+d}%h
+XZ_^[
+temp_warehouse
+temp_tw
+SVWQ
+XZ_^[
+szFileName
+szFileDir
+SVWQ
+}hh$
+XZ_^[
+sSaveRecordItem
+sRecordItem
+temp_trd
+RjFj
+XZ_^[
+rect
+RjFj
+XZ_^[
+rect
+RjFj
+XZ_^[
+rect
+XZ_^[
+SVWQ
+XZ_^[
+hJqD
+hMsD
+httD
+Ph8Ju
+hAzD
+hAzD
+hAzD
+hAzD
+hAzD
+hAzD
+XZ_^[
+_ms_lvi
+temp
+szNum
+szUserData_dir
+szUserDataDir
+XZ_^[
+_ms_lvi
+lvhti
+szText
+rect
+XZ_^[
+dispinfo
+h4xD
+XZ_^[
+_ms_lvi
+lvhti
+szText
+rect
+XZ_^[
+dispinfo
+hc{D
+XZ_^[
+_ms_lvi
+lvhti
+szText
+rect
+XZ_^[
+dispinfo
+XZ_^[
+_ms_lvi
+lvhti
+szText
+rect
+XZ_^[
+dispinfo
+XZ_^[
+lvhti
+rect
+hzsD
+XZ_^[
+_ms_lvi
+lvhti
+szText
+rect
+XZ_^[
+dispinfo
+XZ_^[
+InitComCtrlex
+XZ_^[
+InitComCtrlex
+h!rD
+h0|D
+h}uD
+XZ_^[
+dwThreadID
+szCheckSum
+szHead
+szCode1
+szCode
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+hC}D
+XZ_^[
+szFileName
+rect
+hFind
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+}%h$
+SVWQ
+XZ_^[
+dwNumOfBytesWritten
+Temp
+SVWQ
+XZ_^[
+Temp
+dwNumOfBytesWritten
+SVWQ
+SVWQ
+XZ_^[
+szUnique
+dwRead
+dwChSum
+SVWQ
+XZ_^[
+szUnique
+dwRead
+dwHead
+SVWQ
+XZ_^[
+szUnique
+dwRead
+SVWQ
+SVWQ
+XZ_^[
+dwWrite
+dwRead
+szUnique
+SVWQ
+XZ_^[
+szUnique
+dwRead
+SVWQ
+= ad
+XZ_^[
+dwWrite
+dwRead
+SVWQ
+SVWQ
+SVWQ
+uhh$
+XZ_^[
+temp_tw
+SVWQ
+XZ_^[
+SVWQ
+XZ_^[
+szTemp
+SVWQ
+SVWQ
+}%h$
+SVWQ
+h=#F
+h=#F
+h=#F
+h=#F
+XZ_^[
+szFileName
+hFind
+SVWQ
+h}(F
+h}(F
+h}(F
+h}(F
+XZ_^[
+szFileName
+hFind
+SVWQ
+XZ_^[
+szFileName
+hFind
+SVWQ
+}%h$
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+SVWQ
+hC}D
+h3<F
+h3<F
+h3<F
+h3<F
+XZ_^[
+szFileName
+rect
+hFind
+SVWQ
+XZ_^[
+dwWrite
+SVWQ
+XZ_^[
+dwWrite
+SVWQ
+SVWQ
+SVWQ
+}%h$
+SVWQ
+XZ_^[
+_ms_lvi
+_ms_lvi
+_ms_lvi
+_ms_lvi
+_ms_lvi
+_ms_lvi
+dwRead
+temp_sil
+temp
+XZ_^[
+XZ_^[
+j h(Gu
+},j 
+XZ_^[
+CharName
+Header
+h(,x
+Ph(,x
+h(,x
+h(,x
+XZ_^[
+szUserInfo_dir
+XZ_^[
+XZ_^[
+temp
+XZ_^[
+temp
+XZ_^[
+h8Ju
+Ph8Ju
+h8Ju
+h8Ju
+XZ_^[
+szUserData_dir
+h8Ju
+Ph8Ju
+h8Ju
+h8Ju
+XZ_^[
+szUserData_dir
+XZ_^[
+XZ_^[
+temp
+XZ_^[
+temp
+XZ_^[
+XZ_^[
+szUserWareHouse_dir
+XZ_^[
+szUserWareHouse_dir
+XZ_^[
+XZ_^[
+temp
+XZ_^[
+szDeletedUser_dir
+szDeletedUserDir
+h(`r
+XZ_^[
+szChName
+Temp
+hFind
+XZ_^[
+szUserWareHouse_dir
+szUserWareHouseDir
+szUserInfo_dir
+szUserInfoDir
+szID
+szUserCharacterName
+h(,x
+h(,x
+XZ_^[
+temp_pud
+h(,x
+h(,x
+XZ_^[
+temp_pud
+h(,x
+h(,x
+XZ_^[
+temp_pud
+h(,x
+h(,x
+XZ_^[
+temp_pud
+h(,x
+h(,x
+XZ_^[
+temp_pud
+h(,x
+h(,x
+XZ_^[
+temp_pud
+h(,x
+h(,x
+XZ_^[
+temp_pud
+h(,x
+h(,x
+XZ_^[
+temp_pud
+tmpnum
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+dTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+dTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+dTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+ufj 
+XZ_^[
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+fTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+fTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+fTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+fTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+fTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+fTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+fTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+fTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+fTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+fTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+fTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+fTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+fTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+fTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+nTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+dTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+dTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+h8Ju
+h8Ju
+XZ_^[
+dTemp
+sSaveRecordItem
+sRecordItem
+temp_trd
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+nTemp
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+_ms_lvi
+_ms_lvi
+_ms_lvi
+_ms_lvi
+_ms_lvi
+temp
+dwWrite
+XZ_^[
+temp_warehouse
+temp_tw
+XZ_^[
+dwRead
+PT;QTu-
+PP;QPu
+XZ_^[
+temp
+dwWrite
+XZ_^[
+temp
+dwWrite
+XZ_^[
+dwRead
+memsize
+}Wjdj
+}Wjdj
+}Wjdj
+}Wjdj
+XZ_^[
+szTemp
+XZ_^[
+XZ_^[
+szDes_dir
+}%j 
+XZ_^[
+szDir_temp
+szDir
+h(,x
+h(,x
+XZ_^[
+PRSVW
+_^[ZX
+j6h0
+j7h0
+j8h0
+j9h0
+PQVR
+$SVW
+$SVW
+_^[]
+PPPh5
+t&:a
+j]h\
+j^h\
+u!hh
+^[_3
+jZh|
+j]h|
+u!hh
+PRSVWhX
+jAhD
+_^[ZX
+u!h`
+u!h`
+u!hL
+t!hx
+u!h`
+u!hL
+t!h|
+u!h`
+u!hL
+ QhX
+A,+B,
+J0+H0
+ QhP
+t1h$
+Q,Rhh
+Q0Rh@
+u%h$
+j0h@
+}!hd
+																								
+													
+													
+										
+					
+!hWsD
+>j]h
+8SVW
+Gf;}
+RVGWP
+SVWu
+SVWUj
+]_^[
+t.;t$$t(
+VC20XC00U
+SVWU
+tEVU
+t3x<
+]_^[
+j8h\
+j9h\
+j6hh
+uJjwhh
+u!h 
+^_[3
+=t`h
+jAhH
+uZj]hH
+t!hT
+jyh<
+u0j~hT
+u.h:
+h0_M
+h `M
+DefenceWeapon\CopyDefenceWeapon.dat
+Copy_Item.txt
+Weapon\CopyWeapon.dat
+Compare
+DefenceWeapon
+Weapon
+dwCopy_Item.dat
+Copy_Item
+Copy_Item.dat
+%s\*.dat
+%s\%s
+Weapon\*.ygy
+.dat
+DataServer\warehouse\%d\%s
+DataServer\warehouse\%d\*.war
+Searching : %s
+%s count : %d
+DataServer\userdata\%d\%s
+DataServer\userdata\%d\*.dat
+%s\%scs.ygy
+%s\*.ygy
+%s\%ucs.ygy
+GetCheckSum()
+Read File Error
+%s\%scp.dat
+cannot read checksum file
+Read Error
+Write Handle : %d
+fail
+Compare\*.dat
+for : %d
+while : %d
+ProtectCopyItem()
+Read File Error
+GetCopyItemList()
+Read File Error
+It have finished deleting
+finish deleting
+UserData ID : (  %s )   Name : ( %s )Code : ( %ud )  Head : ( %ud ) CheckSum : ( %ud) Pos : ( %d )
+WareHouse  ID : (  %s )   Code : ( %ud )  Head : ( %ud )  CheckSum : ( %ud)  Pos : ( %d )
+It cannot read copy-item file
+msctls_progress32
+Wait.......... Now Searching UserData
+Wait.......... Now Searching Warehouse
+Wait.......... Searching Copy-Item now
+%s\*.%s
+Wait.......... Checking CheckSum now!!!
+Wait.......... Check CopyItem now!!!
+Wait.......... Read CopyItem now!!!
+%scs,ygy
+Button
+Search
+CheckSumEdit Error Code : %d
+HeadEdit Error Code : %d
+CodeEdit Error Code : %d
+Edit
+Static12 Window
+Error Code : %d
+Item CheckSum
+Static11 Window
+Error Code : %d
+Item Head
+Static10 Window
+Error Code : %d
+Item Code
+Static4 Window
+Error Code : %d
+Static3 Window
+Error Code : %d
+Error Code : %d
+Static2 Window
+Error Code : %d
+UserInfo Wnd
+Error Code : %d
+SysListView32
+Static1 Window
+Error Code : %d
+static
+[ Directory : ]
+It could make tab-wnd
+Tab-window error
+SysTabControl32
+Close
+Search-Button1 Error Code : %d
+Search-Edit1 Error Code : %d
+name_static Error Code : %d
+Name : 
+Search-Button2 Error Code : %d
+Search-Edit2 Error Code : %d
+id_static Error Code : %d
+ID : 
+item-code-static Error Code : %d
+[Item Code]
+PCI-Button Error Code : %d
+AllDeleted
+PCIEdit Error Code : %d
+Button alldelete Error
+AllDelete
+Button Weapon Error
+Error
+button
+User Item
+Button warehouse item Error
+WHItem
+Button warehouse money Error
+WHMoney
+Copy Error Code : %d
+Copy
+Create Directory Error Code : %d
+Create Directory
+Value
+Attribute
+Head
+CheckSum
+Position
+Code
+Status
+Name
+Item Name
+Initialize : %s
+File open is error
+MainWnd
+It cannot create Main-Window
+Main-Window Error
+GUD Ver2.0.2
+Cancel[UserData]
+It is cancel.........!!
+Cancel[UserInfo]
+Item delted!!!!!!!!!
+Item Delted
+[ Directory : %s ]
+Success make directory1
+It cannot read data of user
+Select Item
+Select CheckSum
+All item deleted.......!!!
+All item delted
+Please...input a numeral!!!!!
+Input Error
+Main : %d
+Please put on numeral......
+Put On
+%d.dat
+SumFile.dat
+CompyItem.dat
+Wait.......... Now Searching userdata
+dword : %d
+SearchItem.dat
+Tail != NULL
+Head != NULL
+d:\work_china\cu\cu\store.cpp
+Item [199]
+Item [198]
+Item [197]
+Item [196]
+Item [195]
+Item [194]
+Item [193]
+Item [192]
+Item [191]
+Item [190]
+Item [189]
+Item [188]
+Item [187]
+Item [186]
+Item [185]
+Item [184]
+Item [183]
+Item [182]
+Item [181]
+Item [180]
+Item [179]
+Item [178]
+Item [177]
+Item [176]
+Item [175]
+Item [174]
+Item [173]
+Item [172]
+Item [171]
+Item [170]
+Item [169]
+Item [168]
+Item [167]
+Item [166]
+Item [165]
+Item [164]
+Item [163]
+Item [162]
+Item [161]
+Item [160]
+Item [159]
+Item [158]
+Item [157]
+Item [156]
+Item [155]
+Item [154]
+Item [153]
+Item [152]
+Item [151]
+Item [150]
+Item [149]
+Item [148]
+Item [147]
+Item [146]
+Item [145]
+Item [144]
+Item [143]
+Item [142]
+Item [141]
+Item [140]
+Item [139]
+Item [138]
+Item [137]
+Item [136]
+Item [135]
+Item [134]
+Item [133]
+Item [132]
+Item [131]
+Item [130]
+Item [129]
+Item [128]
+Item [127]
+Item [126]
+Item [125]
+Item [124]
+Item [123]
+Item [122]
+Item [121]
+Item [120]
+Item [119]
+Item [118]
+Item [117]
+Item [116]
+Item [115]
+Item [114]
+Item [113]
+Item [112]
+Item [111]
+Item [110]
+Item [109]
+Item [108]
+Item [107]
+Item [106]
+Item [105]
+Item [104]
+Item [103]
+Item [102]
+Item [101]
+Item [100]
+Item [99]
+Item [98]
+Item [97]
+Item [96]
+Item [95]
+Item [94]
+Item [93]
+Item [92]
+Item [91]
+Item [90]
+Item [89]
+Item [88]
+Item [87]
+Item [86]
+Item [85]
+Item [84]
+Item [83]
+Item [82]
+Item [81]
+Item [80]
+Item [79]
+Item [78]
+Item [77]
+Item [76]
+Item [75]
+Item [74]
+Item [73]
+Item [72]
+Item [71]
+Item [70]
+Item [69]
+Item [68]
+Item [67]
+Item [66]
+Item [65]
+Item [64]
+Item [63]
+Item [62]
+Item [61]
+Item [60]
+Item [59]
+Item [58]
+Item [57]
+Item [56]
+Item [55]
+Item [54]
+Item [53]
+Item [52]
+Item [51]
+Item [50]
+Item [49]
+Item [48]
+Item [47]
+Item [46]
+Item [45]
+Item [44]
+Item [43]
+Item [42]
+Item [41]
+Item [40]
+Item [39]
+Item [38]
+Item [37]
+Item [36]
+Item [35]
+Item [34]
+Item [33]
+Item [32]
+Item [31]
+Item [30]
+Item [29]
+Item [28]
+Item [27]
+Item [26]
+Item [25]
+Item [24]
+Item [23]
+Item [22]
+Item [21]
+Item [20]
+Item [19]
+Item [18]
+Item [17]
+Item [16]
+Item [15]
+Item [14]
+Item [13]
+Item [12]
+Item [11]
+Item [10]
+Item [9]
+Item [8]
+Item [7]
+Item [6]
+Item [5]
+Item [4]
+Item [3]
+Item [2]
+Item [1]
+Item [0]
+Character Name[5]
+Character Name[4]
+Character Name[3]
+Character Name[2]
+Character Name[1]
+Character Name[0]
+OldY
+OldX
+SellPrice
+SetY
+SetX
+Flag
+WeaponClass
+SoundIndex
+SetModelPos
+DorpItem
+Class
+ItemFilePath
+Height
+Width
+LastCategory
+***Item***
+FakeMoney
+BuyAreaCount
+Pre_Stamina_Regen
+Per_Life_Regen
+Per_Mana_Regen
+Lev_Damage[1]
+Lev_Damage[0]
+Lev_Attack_Rating
+Lev_Life
+Lev_Mana
+Lev_Attack_Resistance[7]
+Lev_Attack_Resistance[6]
+Lev_Attack_Resistance[5]
+Lev_Attack_Resistance[4]
+Lev_Attack_Resistance[3]
+Lev_Attack_Resistance[2]
+Lev_Attack_Resistance[1]
+Lev_Attack_Resistance[0]
+Add_Resistance[7]
+Add_Resistance[6]
+Add_Resistance[5]
+Add_Resistance[4]
+Add_Resistance[3]
+Add_Resistance[2]
+Add_Resistance[1]
+Add_Resistance[0]
+Add_Magic_Mastery
+Add_Shooting_Range
+Add_Critical_Hit
+Add_Attack_Speed
+Add_Block_Rating
+Add_Speed
+Add_Defence
+Add_Absorb
+****Item_Special****
+ItemAgingProtect[1]
+ItemAgingProtect[0]
+ItemAgingcount[1]
+ItemAgingCount[0]
+ItemAgingNum[1]
+ItemAgingNum[0]
+ItemKindMask
+ItemKindCode
+JobCodeMask
+DisplayEffect
+EffectColor[3]
+EffectColor[2]
+EffectColor[1]
+EffectColor[0]
+EffectBlink[1]
+EffectBlink[0]
+UniqueItem
+ScaleBlink[1]
+ScaleBlink[0]
+Temp1[1]
+Temp1[0]
+NotUseFlag
+Stamina[max]
+Stamina[min]
+Life[max]
+Life[min]
+Mana[max]
+Mana[min]
+Increase_Stamina
+Increase_Mana
+Increase_Life
+Magic_Mastery
+Speed
+Block_Rating
+Absorb
+Damage[1]
+Damage[0]
+Temp0
+PotionCount
+Index
+Price
+Weight
+ItemName
+Durability[1]
+Durability[0]
+***ItemInformation**
+ChkSum
+Time
+Version
+***Item_Create***
+ItemPosition
+*RECORD_ITEM*
+SelecctSkill[1]
+SelecctSkill[0]
+ShortKey[15]
+ShortKey[14]
+ShortKey[13]
+ShortKey[12]
+ShortKey[11]
+ShortKey[10]
+ShortKey[9]
+ShortKey[8]
+ShortKey[7]
+ShortKey[6]
+ShortKey[5]
+ShortKey[4]
+ShortKey[3]
+ShortKey[2]
+ShortKey[1]
+ShortKey[0]
+SkillMastery[15]
+SkillMastery[14]
+SkillMastery[13]
+SkillMastery[12]
+SkillMastery[11]
+SkillMastery[10]
+SkillMastery[9]
+SkillMastery[8]
+SkillMastery[7]
+SkillMastery[6]
+SkillMastery[5]
+SkillMastery[4]
+SkillMastery[3]
+SkillMastery[2]
+SkillMastery[1]
+SkillMastery[0]
+SkillPoint[15]
+SkillPoint[14]
+SkillPoint[13]
+SkillPoint[12]
+SkillPoint[11]
+SkillPoint[10]
+SkillPoint[9]
+SkillPoint[8]
+SkillPoint[7]
+SkillPoint[6]
+SkillPoint[5]
+SkillPoint[4]
+SkillPoint[3]
+SkillPoint[2]
+SkillPoint[1]
+SkillPoint[0]
+***Record Skill***
+CheckSum_Charinfo
+LastMoney
+PosZ
+PosX
+CameraMode
+PlayStage
+***Game_Save_Information***
+JobBitMask
+ChangeJob
+RefomCode
+DamageFunction[1]
+DamageFunction[0]
+StaminaFunction
+ManaFunction
+LifeFunction
+Potion_Space
+ArrowPosition[1]
+ArrowPosition[0]
+UpdateInfo[3]
+UpdateInfo[2]
+UpdateInfo[1]
+UpdateInfo[0]
+StatePoint
+Brood
+Money
+Next_Exp
+Stamina_Regen
+Mana_Regen
+Life_Regen
+Stamina[1]
+Stamina[0]
+Mana[0]
+Life[1]
+Life[0]
+Attack_Resistance[7]
+Attack_Resistance[6]
+Attack_Resistance[5]
+Attack_Resistance[4]
+Attack_Resistance[3]
+Attack_Resistance[2]
+Attack_Resistance[1]
+Attack_Resistance[0]
+Resistance[7]
+Resistance[6]
+Resistance[5]
+Resistance[4]
+Resistance[3]
+Resistance[2]
+Resistance[1]
+Resistance[0]
+Weight[1]
+Weight[0]
+Sight
+Move_Speed
+Absorption
+Chance_Block
+Defence
+Critical_Hit
+Shooting_Range
+Attack_Speed
+Attack_Damage[max]
+Attack_Damage[min]
+Attack_Rating
+Accuracy
+Health
+Dexterity
+Talent
+Spirit
+Strength
+Level
+Job_Code
+Serial
+ModelName2
+ModelName1
+Character Name
+Master ID
+***Character Information***
+DataSize
+ItemSubStart
+ItemCount
+ThrowItemCount
+Header
+Size
+please put comment
+DataServer\userinfo\%d\%s.dat
+DataServer\userdata\%d\%s.dat
+*************
+****************
+***********
+*********
+************
+DataServer\warehouse\%d\%s.war
+DataServer\deleted\%s.dat
+%s.dat
+It is not character's name
+Not Character Name
+Wait.......... Searching User's ID
+It cannot search ID of user
+No User
+deleted
+userdata_backup
+warehouse
+userdata
+userinfo
+DataServer5
+DataServer4
+DataServer3
+DataServer2
+DataServer1
+%s\%s\%d
+%s\%s\%d\%s.dat
+dbgdel.cpp
+_BLOCK_TYPE_IS_VALID(pHead->nBlockUse)
+fclose.c
+str != NULL
+*mode != _T('\0')
+mode != NULL
+*file != _T('\0')
+fopen.c
+file != NULL
+Unknown Runtime Check Error
+A local variable was used before it was initialized
+Stack memory was corrupted
+A cast to a smaller data type has caused a loss of data.  If this was intentional, you should mask the source of the cast with the appropriate bitmask.  For example:  
+	char c = (i & 0xFF);
+Changing the code in this way will not affect the quality of the resulting optimized code.
+The value of ESP was not properly saved across a function call.  This is usually a result of calling a function declared with one calling convention with a function pointer declared with a different calling convention.
+Run-Time Check Failure #%d - %s
+Module:	
+Line:	
+Invalid pointer was assigned at
+File:	
+' was corrupted.
+Stack around the variable '
+A variable is being used without being defined.
+' is being used without being defined.
+The variable '
+IsDebuggerPresent
+Kernel32.dll
+onexit.c
+Microsoft Visual C++ Runtime Library
+(Press Retry to debug the application - JIT must be enabled)
+For information on how your program can cause an assertion
+failure, see the Visual C++ documentation on asserts
+Expression: 
+Line: 
+File: 
+<program name unknown>
+Program: 
+Assertion failed!
+string != NULL
+sprintf.c
+format != NULL
+vsprintf.c
+Local variable used before initialization
+Stack memory corruption
+Cast to smaller type causing loss of data
+Stack pointer corruption
+i386\chkesp.c
+The value of ESP was not properly saved across a function call.  This is usually a result of calling a function declared with one calling convention with a function pointer declared with a different calling convention. 
+Client
+Ignore
+Normal
+Free
+Error: memory allocation: bad memory block type.
+Invalid allocation size: %Iu bytes.
+Client hook allocation failure.
+Client hook allocation failure at file %hs line %d.
+dbgheap.c
+_CrtCheckMemory()
+_pFirstBlock == pOldBlock
+_pLastBlock == pOldBlock
+fRealloc || (!fRealloc && pNewBlock == pOldBlock)
+pOldBlock->nLine == IGNORE_LINE && pOldBlock->lRequest == IGNORE_REQ
+_CrtIsValidHeapPointer(pUserData)
+The Block at 0x%p was allocated by aligned routines, use _aligned_realloc()
+Allocation too large or negative: %Iu bytes.
+Client hook re-allocation failure.
+Client hook re-allocation failure at file %hs line %d.
+_pFirstBlock == pHead
+_pLastBlock == pHead
+pHead->nBlockUse == nBlockUse
+pHead->nLine == IGNORE_LINE && pHead->lRequest == IGNORE_REQ
+DAMAGE: after %hs block (#%d) at 0x%p.
+DAMAGE: before %hs block (#%d) at 0x%p.
+Client hook free failure.
+The Block at 0x%p was allocated by aligned routines, use _aligned_free()
+%hs located at 0x%p is %Iu bytes long.
+%hs allocated at file %hs(%d).
+DAMAGE: on top of Free block at 0x%p.
+DAMAGED
+_heapchk fails with unknown return value!
+_heapchk fails with _HEAPBADPTR.
+_heapchk fails with _HEAPBADEND.
+_heapchk fails with _HEAPBADNODE.
+_heapchk fails with _HEAPBADBEGIN.
+Bad memory block found at 0x%p.
+_CrtMemCheckPoint: NULL state pointer.
+_CrtMemDifference: NULL state pointer.
+Object dump complete.
+crt block at 0x%p, subtype %x, %Iu bytes long.
+normal block at 0x%p, %Iu bytes long.
+client block at 0x%p, subtype %x, %Iu bytes long.
+{%ld} 
+%hs(%d) : 
+#File Error#(%d) : 
+Dumping objects ->
+ Data: <%s> %s
+%.2X 
+Detected memory leaks!
+Total allocations: %Id bytes.
+Largest number used: %Id bytes.
+%Id bytes in %Id %hs Blocks.
+("offset must be within size", 0)
+("alignment must be a power of 2",0)
+Damage before 0x%p which was allocated by aligned routine
+The block at 0x%p was not allocated by _aligned routines, use realloc()
+The block at 0x%p was not allocated by _aligned routines, use free()
+Assertion Failed
+Warning
+dbgrpt.c
+%s(%d) : %s
+Assertion failed: 
+_CrtDbgReport: String too long or IO Error
+Second Chance Assertion Failed: File %s, Line %d
+wsprintfA
+user32.dll
+Microsoft Visual C++ Debug Library
+Debug %s!
+Program: %s%s%s%s%s%s%s%s%s%s%s
+(Press Retry to debug the application)
+Module: 
+File: 
+Line: 
+For information on how your program can cause an assertion
+failure, see the Visual C++ documentation on asserts.
+szUserMessage != NULL
+_freebuf.c
+stream != NULL
+("inconsistent IOB fields", stream->_ptr - stream->_base >= 0)
+_flsbuf.c
+_open.c
+filename != NULL
+CorExitProcess
+mscoree.dll
+stream.c
+_filbuf.c
+MSPDB70.DLL
+PDBClose
+DBIClose
+ModClose
+ModQueryLines
+DBIQueryModFromAddr
+PDBOpenDBI
+PDBOpenValidate3
+Module32Next
+Module32First
+GetModuleInformation
+EnumProcessModules
+PSAPI.DLL
+CreateToolhelp32Snapshot
+ImageNtHeader
+IMAGEHLP.DLL
+KERNEL32.DLL
+EnvironmentDirectory
+SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VS
+RegCloseKey
+RegQueryValueExA
+RegOpenKeyExA
+ADVAPI32.DLL
+GetProcessWindowStation
+GetUserObjectInformationA
+GetLastActivePopup
+GetActiveWindow
+MessageBoxA
+fprintf.c
+setvbuf.c
+_file.c
+ (8PX
+700WP
+`h````
+ppxxxx
+(null)
+output.c
+ch != _T('\0')
+IsProcessorFeaturePresent
+KERNEL32
+e+000
+isctype.c
+(unsigned)(c + 1) <= 256
+stdenvp.c
+stdargv.c
+a_env.c
+ioinit.c
+runtime error 
+TLOSS error
+SING error
+DOMAIN error
+R6028
+- unable to initialize heap
+R6027
+- not enough space for lowio initialization
+R6026
+- not enough space for stdio initialization
+R6025
+- pure virtual function call
+R6024
+- not enough space for _onexit/atexit table
+R6019
+- unable to open console device
+R6018
+- unexpected heap error
+R6017
+- unexpected multithread lock error
+R6016
+- not enough space for thread data
+This application has requested the Runtime to terminate it in an unusual way.
+Please contact the application's support team for more information.
+R6009
+- not enough space for environment
+R6008
+- not enough space for arguments
+R6002
+- floating point not loaded
+Runtime Error!
+Program: 
+f:\vs70builds\9466\vc\crtbld\crt\src\sprintf.c
+f:\vs70builds\9466\vc\crtbld\crt\src\vsprintf.c
+osfinfo.c
+_getbuf.c
+a_str.c
+_sftbuf.c
+flag == 0 || flag == 1
+A buffer overrun has been detected which has corrupted the program's
+internal state.  The program cannot safely continue execution and must
+now be terminated.
+Buffer overrun detected!
+A security error of unknown cause has been detected which has
+corrupted the program's internal state.  The program cannot safely
+continue execution and must now be terminated.
+Unknown security failure detected!
+chsize.c
+size >= 0
+convrtcp.c
+a_map.c
+1#QNAN
+1#INF
+1#IND
+1#SNAN
+RSDSE
+c:\Working\PristonTale Wolrd\GMTOOL\CU\CU\Debug\CU.pdb
+UserInfo
+Character Data
+WareHouse
+Deleted User
+Protect Copy-Item
+Search Item
+All Search Copy_Item
+Initialize Item
+Assertion failed: %s, file %s, line %d
+kU'9
+HMXB
+?Zd;
+?/L[
+S;uD
+z?aUY
+D?$?
+U>c{
+zc%C1
+.:3q
+-64OS
+NKeb
+FindFirstFileA
+Sleep
+FindNextFileA
+DeleteFileA
+CreateDirectoryA
+CloseHandle
+WriteFile
+SetFilePointer
+CreateFileA
+lstrlenA
+ReadFile
+GetLastError
+DeleteCriticalSection
+LeaveCriticalSection
+CreateThread
+EnterCriticalSection
+InitializeCriticalSection
+FindClose
+CopyFileA
+OutputDebugStringA
+KERNEL32.dll
+wsprintfA
+EndDialog
+SetWindowTextA
+GetDlgItem
+SendMessageA
+MessageBoxA
+UpdateWindow
+ShowWindow
+SetWindowPos
+GetWindowInfo
+CreateDialogParamA
+CreateWindowExA
+GetClientRect
+PostQuitMessage
+CloseWindow
+DestroyWindow
+MoveWindow
+EndDeferWindowPos
+DeferWindowPos
+BeginDeferWindowPos
+SetRect
+TranslateMessage
+DispatchMessageA
+PeekMessageA
+RegisterClassExA
+LoadIconA
+LoadCursorA
+GetSystemMetrics
+DefWindowProcA
+EndPaint
+BeginPaint
+DialogBoxParamA
+EnableWindow
+SetWindowLongA
+CallWindowProcA
+SetFocus
+GetParent
+GetWindowTextA
+USER32.dll
+GetStockObject
+GDI32.dll
+InitCommonControlsEx
+COMCTL32.dll
+DebugBreak
+RaiseException
+GetVersionExA
+GetProcAddress
+LoadLibraryA
+GetModuleFileNameA
+GetModuleHandleA
+GetStartupInfoA
+GetCommandLineA
+IsBadWritePtr
+IsBadReadPtr
+HeapValidate
+GetStdHandle
+InterlockedDecrement
+InterlockedIncrement
+TerminateProcess
+GetCurrentProcess
+ExitProcess
+HeapFree
+HeapAlloc
+GetProcessHeap
+FreeLibrary
+RtlUnwind
+SetConsoleCtrlHandler
+UnhandledExceptionFilter
+FreeEnvironmentStringsA
+GetEnvironmentStrings
+FreeEnvironmentStringsW
+WideCharToMultiByte
+GetEnvironmentStringsW
+SetHandleCount
+GetFileType
+HeapDestroy
+HeapCreate
+VirtualFree
+HeapReAlloc
+VirtualAlloc
+SetStdHandle
+FlushFileBuffers
+MultiByteToWideChar
+GetStringTypeA
+GetStringTypeW
+GetCPInfo
+GetACP
+GetOEMCP
+QueryPerformanceCounter
+GetTickCount
+GetCurrentThreadId
+GetCurrentProcessId
+GetSystemTimeAsFileTime
+SetEndOfFile
+VirtualProtect
+GetSystemInfo
+VirtualQuery
+GetLocaleInfoA
+LCMapStringA
+LCMapStringW

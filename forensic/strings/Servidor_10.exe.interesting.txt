@@ -1,0 +1,12 @@
+[NETWORK STRINGS]
+505:Updated Mix Editor
+
+[UTF16 NETWORK STRINGS]
+2:A*\AC:\Documents and Settings\telatoro\Desktop\KPT Update New Map + New Monster Effects + New Items\Bellum Mixing\MixEditor.vbp
+22:Maces
+57:VS_VERSION_INFO
+73:Updated Mix Editor
+74:FileVersion
+76:ProductVersion
+79:Updated Mix Editor
+81:Updated Mix Editor.exe

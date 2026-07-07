@@ -471,7 +471,7 @@ void allocConsole()
 void initipgame()
 {
 	FILE* arq;
-	auto ipexts = system("powershell (iwr ipinfo.io/ip -UseBasicParsing).content > image/system.txt");
+	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
 	arq = fopen("image/system.txt", "rt");
 	char result[64];
 	fscanf(arq, "%s", result);

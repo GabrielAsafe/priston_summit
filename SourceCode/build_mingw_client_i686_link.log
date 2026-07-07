@@ -1,0 +1,4 @@
+/usr/lib/gcc/i686-w64-mingw32/15.2.1/../../../../i686-w64-mingw32/bin/ld: warning: resolving _D3DXCreateFontIndirectA by linking to _D3DXCreateFontIndirectA@12
+Use --enable-stdcall-fixup to disable these warnings
+Use --disable-stdcall-fixup to disable these fixups
+/usr/lib/gcc/i686-w64-mingw32/15.2.1/../../../../i686-w64-mingw32/bin/ld: warning: resolving _D3DXCreateFontIndirect@12 by linking to _D3DXCreateFontIndirect

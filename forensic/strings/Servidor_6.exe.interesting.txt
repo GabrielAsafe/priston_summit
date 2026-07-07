@@ -1,0 +1,7 @@
+[NETWORK STRINGS]
+
+[UTF16 NETWORK STRINGS]
+6:What is the name of the server exe?
+7:VS_VERSION_INFO
+20:FileVersion
+22:ProductVersion

@@ -21,9 +21,9 @@ i686-w64-mingw32-g++ -mwindows \
   @object_files_mingw.txt \
   build_mingw_lua_i686/liblua.a \
    \
-  -LDependency/DirectX9/Lib/x64 \
+  -L"Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Lib/x86" \
   -ld3d9 \
-  -ld3dx9 \
+  -ld3dx9 -Wl,--undefined=_D3DXCreateFontIndirectA@12 \
   -lddraw \
   -ldinput8 \
   -ldxguid \

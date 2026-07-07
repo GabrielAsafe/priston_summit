@@ -162,21 +162,35 @@ BOOL SetDisplayMode(HWND hWnd, DWORD Width, DWORD Height, DWORD BPP)
 		d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
 	}
 
+	
+	// TEMP_MINGW_I686_D3D_FIX:
+	// Fullscreen com BackBufferFormat=D3DFMT_UNKNOWN gera D3DERR_INVALIDCALL.
+	// Forçar windowed para validar runtime do cliente.
+	d3dpp.Windowed = TRUE;
+	d3dpp.BackBufferFormat = D3DFMT_UNKNOWN;
+
 	HRESULT Result = 0;
 	Result = lpD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, dwBehaviourFlags, &d3dpp, &d3ddev);
 	if (FAILED(Result))
 	{
+		char dbg[2048];
+		wsprintfA(dbg,
+			"CreateDevice FAILED\\nHRESULT=0x%08X\\nBackBuffer=%dx%d\\nWindowed=%d\\nSwapEffect=%d\\nBackBufferFormat=%d\\nDepthStencil=%d\\nDepthStencilFormat=%d\\nPresentationInterval=%d\\nBehaviorFlags=0x%08X",
+			(unsigned int)Result,
+			d3dpp.BackBufferWidth,
+			d3dpp.BackBufferHeight,
+			d3dpp.Windowed,
+			d3dpp.SwapEffect,
+			d3dpp.BackBufferFormat,
+			d3dpp.EnableAutoDepthStencil,
+			d3dpp.AutoDepthStencilFormat,
+			d3dpp.PresentationInterval,
+			(unsigned int)dwBehaviourFlags);
+
+		MessageBoxA(NULL, dbg, "D3D CREATEDEVICE DEBUG", MB_OK);
+
 		lpD3D->Release();
 		lpD3D = NULL;
-
-		if (Result == D3DERR_DEVICELOST)
-			MessageBox(NULL, "D3DERR_DEVICELOST", "D3DERR_DEVICELOST", MB_OK);
-		if (Result == D3DERR_INVALIDCALL)
-			MessageBox(NULL, "D3DERR_DEVICELOST", "D3DERR_DEVICELOST", MB_OK);
-		if (Result == D3DERR_NOTAVAILABLE)
-			MessageBox(NULL, "D3DERR_NOTAVAILABLE", "D3DERR_NOTAVAILABLE", MB_OK);
-		if (Result == D3DERR_OUTOFVIDEOMEMORY)
-			MessageBox(NULL, "D3DERR_OUTOFVIDEOMEMORY", "D3DERR_OUTOFVIDEOMEMORY", MB_OK);
 		return false;
 	}
 

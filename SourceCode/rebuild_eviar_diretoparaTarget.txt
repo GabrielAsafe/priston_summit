@@ -1,0 +1,20 @@
+cd "/home/gabriel/Área de Trabalho/SummitTale/SourceCode Summit Tale"
+
+rm -rf build_mingw_client_i686 dist_mingw_client_i686
+
+bash ./build_client_mingw_i686.sh 2>&1 | tee build_client_i686.log
+bash ./link_client_mingw_i686.sh 2>&1 | tee link_client_i686.log
+
+cp -v /usr/i686-w64-mingw32/sys-root/mingw/bin/libgcc_s_dw2-1.dll dist_mingw_client_i686/
+cp -v /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll dist_mingw_client_i686/
+
+cd dist_mingw_client_i686
+
+cabextract -F d3dx9_43.dll ../Dependency/DirectXSDK/Microsoft\ DirectX\ SDK\ \(June\ 2010\)/Redist/Jun2010_d3dx9_43_x86.cab
+
+scp -P 2223 \
+  SummitTaleClient.exe \
+  libgcc_s_dw2-1.dll \
+  libwinpthread-1.dll \
+  d3dx9_43.dll \
+  server@127.0.0.1:"C:/Users/server/"
