@@ -1,0 +1,168 @@
+SrcGame/src/HoBaram/HoOpening.cpp:817:					/* TEMP_MINGW_BLOCK_AUTO_EXIT:
+SrcGame/src/HoBaram/HoOpening.cpp:867:						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp:874:						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp:907:				/* TEMP_MINGW_SKIP_LOGIN_PASSWORD_STAR: dsTextLineOut("*") crashes in MinGW build */
+SrcGame/src/sinbaram/amstream.h:21:#error this stub requires an updated version of <rpcndr.h>
+SrcGame/src/sinbaram/amstream.h:332:	void __RPC_STUB IDirectShowStream_get_FileName_Stub(
+SrcGame/src/sinbaram/amstream.h:333:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:336:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:344:	void __RPC_STUB IDirectShowStream_put_FileName_Stub(
+SrcGame/src/sinbaram/amstream.h:345:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:348:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:356:	void __RPC_STUB IDirectShowStream_get_Video_Stub(
+SrcGame/src/sinbaram/amstream.h:357:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:360:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:368:	void __RPC_STUB IDirectShowStream_put_Video_Stub(
+SrcGame/src/sinbaram/amstream.h:369:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:372:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:380:	void __RPC_STUB IDirectShowStream_get_Audio_Stub(
+SrcGame/src/sinbaram/amstream.h:381:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:384:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:392:	void __RPC_STUB IDirectShowStream_put_Audio_Stub(
+SrcGame/src/sinbaram/amstream.h:393:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:396:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:627:	void __RPC_STUB IAMMultiMediaStream_Initialize_Stub(
+SrcGame/src/sinbaram/amstream.h:628:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:631:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:639:	void __RPC_STUB IAMMultiMediaStream_GetFilterGraph_Stub(
+SrcGame/src/sinbaram/amstream.h:640:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:643:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:651:	void __RPC_STUB IAMMultiMediaStream_GetFilter_Stub(
+SrcGame/src/sinbaram/amstream.h:652:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:655:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:666:	void __RPC_STUB IAMMultiMediaStream_AddMediaStream_Stub(
+SrcGame/src/sinbaram/amstream.h:667:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:670:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:679:	void __RPC_STUB IAMMultiMediaStream_OpenFile_Stub(
+SrcGame/src/sinbaram/amstream.h:680:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:683:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:693:	void __RPC_STUB IAMMultiMediaStream_OpenMoniker_Stub(
+SrcGame/src/sinbaram/amstream.h:694:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:697:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:705:	void __RPC_STUB IAMMultiMediaStream_Render_Stub(
+SrcGame/src/sinbaram/amstream.h:706:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:709:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:892:	void __RPC_STUB IAMMediaStream_Initialize_Stub(
+SrcGame/src/sinbaram/amstream.h:893:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:896:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:904:	void __RPC_STUB IAMMediaStream_SetState_Stub(
+SrcGame/src/sinbaram/amstream.h:905:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:908:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:916:	void __RPC_STUB IAMMediaStream_JoinAMMultiMediaStream_Stub(
+SrcGame/src/sinbaram/amstream.h:917:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:920:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:928:	void __RPC_STUB IAMMediaStream_JoinFilter_Stub(
+SrcGame/src/sinbaram/amstream.h:929:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:932:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:940:	void __RPC_STUB IAMMediaStream_JoinFilterGraph_Stub(
+SrcGame/src/sinbaram/amstream.h:941:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:944:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1200:	void __RPC_STUB IMediaStreamFilter_AddMediaStream_Stub(
+SrcGame/src/sinbaram/amstream.h:1201:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1204:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1213:	void __RPC_STUB IMediaStreamFilter_GetMediaStream_Stub(
+SrcGame/src/sinbaram/amstream.h:1214:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1217:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1226:	void __RPC_STUB IMediaStreamFilter_EnumMediaStreams_Stub(
+SrcGame/src/sinbaram/amstream.h:1227:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1230:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1238:	void __RPC_STUB IMediaStreamFilter_SupportSeeking_Stub(
+SrcGame/src/sinbaram/amstream.h:1239:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1242:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1250:	void __RPC_STUB IMediaStreamFilter_ReferenceTimeToStreamTime_Stub(
+SrcGame/src/sinbaram/amstream.h:1251:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1254:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1262:	void __RPC_STUB IMediaStreamFilter_GetCurrentStreamTime_Stub(
+SrcGame/src/sinbaram/amstream.h:1263:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1266:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1274:	void __RPC_STUB IMediaStreamFilter_WaitUntil_Stub(
+SrcGame/src/sinbaram/amstream.h:1275:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1278:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1286:	void __RPC_STUB IMediaStreamFilter_Flush_Stub(
+SrcGame/src/sinbaram/amstream.h:1287:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1290:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1297:	void __RPC_STUB IMediaStreamFilter_EndOfStream_Stub(
+SrcGame/src/sinbaram/amstream.h:1298:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1301:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1387:	void __RPC_STUB IDirectDrawMediaSampleAllocator_GetDirectDraw_Stub(
+SrcGame/src/sinbaram/amstream.h:1388:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1391:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1488:	void __RPC_STUB IDirectDrawMediaSample_GetSurfaceAndReleaseLock_Stub(
+SrcGame/src/sinbaram/amstream.h:1489:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1492:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1499:	void __RPC_STUB IDirectDrawMediaSample_LockMediaSamplePointer_Stub(
+SrcGame/src/sinbaram/amstream.h:1500:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1503:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1690:	void __RPC_STUB IAMMediaTypeStream_GetFormat_Stub(
+SrcGame/src/sinbaram/amstream.h:1691:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1694:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1703:	void __RPC_STUB IAMMediaTypeStream_SetFormat_Stub(
+SrcGame/src/sinbaram/amstream.h:1704:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1707:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1719:	void __RPC_STUB IAMMediaTypeStream_CreateSample_Stub(
+SrcGame/src/sinbaram/amstream.h:1720:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1723:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1731:	void __RPC_STUB IAMMediaTypeStream_GetStreamAllocatorRequirements_Stub(
+SrcGame/src/sinbaram/amstream.h:1732:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1735:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:1743:	void __RPC_STUB IAMMediaTypeStream_SetStreamAllocatorRequirements_Stub(
+SrcGame/src/sinbaram/amstream.h:1744:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:1747:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2037:	void __RPC_STUB IAMMediaTypeSample_SetPointer_Stub(
+SrcGame/src/sinbaram/amstream.h:2038:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2041:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2049:	void __RPC_STUB IAMMediaTypeSample_GetPointer_Stub(
+SrcGame/src/sinbaram/amstream.h:2050:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2053:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2060:	void __RPC_STUB IAMMediaTypeSample_GetSize_Stub(
+SrcGame/src/sinbaram/amstream.h:2061:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2064:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2073:	void __RPC_STUB IAMMediaTypeSample_GetTime_Stub(
+SrcGame/src/sinbaram/amstream.h:2074:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2077:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2086:	void __RPC_STUB IAMMediaTypeSample_SetTime_Stub(
+SrcGame/src/sinbaram/amstream.h:2087:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2090:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2097:	void __RPC_STUB IAMMediaTypeSample_IsSyncPoint_Stub(
+SrcGame/src/sinbaram/amstream.h:2098:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2101:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2109:	void __RPC_STUB IAMMediaTypeSample_SetSyncPoint_Stub(
+SrcGame/src/sinbaram/amstream.h:2110:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2113:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2120:	void __RPC_STUB IAMMediaTypeSample_IsPreroll_Stub(
+SrcGame/src/sinbaram/amstream.h:2121:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2124:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2132:	void __RPC_STUB IAMMediaTypeSample_SetPreroll_Stub(
+SrcGame/src/sinbaram/amstream.h:2133:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2136:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2143:	void __RPC_STUB IAMMediaTypeSample_GetActualDataLength_Stub(
+SrcGame/src/sinbaram/amstream.h:2144:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2147:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2155:	void __RPC_STUB IAMMediaTypeSample_SetActualDataLength_Stub(
+SrcGame/src/sinbaram/amstream.h:2156:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2159:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2167:	void __RPC_STUB IAMMediaTypeSample_GetMediaType_Stub(
+SrcGame/src/sinbaram/amstream.h:2168:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2171:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2179:	void __RPC_STUB IAMMediaTypeSample_SetMediaType_Stub(
+SrcGame/src/sinbaram/amstream.h:2180:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2183:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2190:	void __RPC_STUB IAMMediaTypeSample_IsDiscontinuity_Stub(
+SrcGame/src/sinbaram/amstream.h:2191:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2194:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2202:	void __RPC_STUB IAMMediaTypeSample_SetDiscontinuity_Stub(
+SrcGame/src/sinbaram/amstream.h:2203:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2206:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2215:	void __RPC_STUB IAMMediaTypeSample_GetMediaTime_Stub(
+SrcGame/src/sinbaram/amstream.h:2216:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2219:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/amstream.h:2228:	void __RPC_STUB IAMMediaTypeSample_SetMediaTime_Stub(
+SrcGame/src/sinbaram/amstream.h:2229:		IRpcStubBuffer *This,
+SrcGame/src/sinbaram/amstream.h:2232:		DWORD *_pdwStubPhase);
+SrcGame/src/sinbaram/skill_missing_globals_mingw.cpp:1:// TEMP_MINGW_COMPAT:
+SrcGame/src/smLib3d/smDsx.cpp:166:	// TEMP_MINGW_I686_D3D_FIX:
+SrcGame/src/Winmain.cpp:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp:607:	if(1 /* TEMP_MINGW_FORCE_WINDOWMODE */ || SETTINGSHANDLER->getWindowMode())
+SrcGame/src/client_server_stubs.cpp:1:// TEMP_MINGW_CLIENT_STUB
+SrcGame/src/client_server_stubs.cpp:2:// Stubs mínimos para linkar o cliente sem módulos server-side reais.
+SrcGame/src/client_server_stubs.cpp:57:class rsPLAYINFO_AddServerMoney_Stub {};

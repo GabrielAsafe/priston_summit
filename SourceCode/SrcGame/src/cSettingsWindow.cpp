@@ -13,20 +13,39 @@ cSettingsWindow::~cSettingsWindow()
 
 void cSettingsWindow::Init()
 {
+	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"ENTER cSettingsWindow::Init pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
+
 	ClearLoadedImages();
+	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after ClearLoadedImages\n"); fclose(f);} }
+
 	if (pWindow1)
 	{
+		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before delete pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
 		delete pWindow1;
 		pWindow1 = 0;
+		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after delete pWindow1\n"); fclose(f);} }
 	}
 
+	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindow1\n"); fclose(f);} }
 	BuildWindow1();
+	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindow1 pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
+
 	if (pWindow1)
 	{
+		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowVideo\n"); fclose(f);} }
 		BuildWindowVideo();
+		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowVideo\n"); fclose(f);} }
+
+		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowAudio\n"); fclose(f);} }
 		BuildWindowAudio();
+		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowAudio\n"); fclose(f);} }
+
+		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowGeneral\n"); fclose(f);} }
 		BuildWindowGeneral();
+		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowGeneral\n"); fclose(f);} }
 	}
+
+	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"LEAVE cSettingsWindow::Init\n"); fclose(f);} }
 }
 
 void cSettingsWindow::Draw()
@@ -459,6 +478,9 @@ void cSettingsWindow::BuildWindowGeneral()
 				pKeyBoard->setX(pTitle3->getX() + (pTitle3->getWidth() - pKeyBoard->getWidth()) / 2);
 				pKeyBoard->setY(pTitle3->getY() + (pTitle3->getHeight() - pKeyBoard->getHeight()) / 2);
 				pWindowGeneral->AddElement(pKeyBoard);
+
+				{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"TEMP skip macro UIInput block before CTRL+F1\n"); fclose(f);} }
+				return;
 
 				iY = pWindowGeneral->getMaxY() + 10;
 				pWindowGeneral->AddElement(new UIText(0, "CTRL + F1", 23, iY));

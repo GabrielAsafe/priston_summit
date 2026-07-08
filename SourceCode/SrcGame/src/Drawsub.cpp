@@ -47,19 +47,19 @@ int dsTextLineOut(int x, int y, LPCTSTR lpszString, int nCount)
 		if (Font)
 			return Font->DrawText(lpszString, nCount, &rc, 0, FontColor);
 		else
-			D3DXCreateFont(d3ddev, 15, 0, FW_BOLD, 0, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLEARTYPE_NATURAL_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &Font);
+			D3DXCreateFont(d3ddev, 15, 0, FW_BOLD, 0, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &Font);
 		break;
 	case 1:
 		if (FontBold)
 			return FontBold->DrawText(lpszString, nCount, &rc, 0, FontColor);
 		else
-			D3DXCreateFont(d3ddev, 15, 0, FW_BOLD, 0, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLEARTYPE_NATURAL_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &FontBold);
+			D3DXCreateFont(d3ddev, 15, 0, FW_BOLD, 0, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &FontBold);
 		break;
 	case 2:
 		if (FontTitle)
 			return FontTitle->DrawText(lpszString, nCount, &rc, 0, FontColor);
 		else
-			D3DXCreateFont(d3ddev, 15, 0, FW_BOLD, 0, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLEARTYPE_NATURAL_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &FontTitle);
+			D3DXCreateFont(d3ddev, 15, 0, FW_BOLD, 0, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &FontTitle);
 		break;
 	}
 	return 0;
@@ -95,13 +95,13 @@ int dsTextLineOut32(int x, int y, LPCTSTR lpszString, int nCount)
 		if (Font)
 			return Font->DrawText(lpszString, nCount, &rc, 0, FontColor);
 		else
-			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 6, 0, VIETNAMESE_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, VARIABLE_PITCH | FF_DONTCARE, dwFontGame, &Font);
+			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 6, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, VARIABLE_PITCH | FF_DONTCARE, dwFontGame, &Font);
 		break;
 	case 1:
 		if (FontBold)
 			return FontBold->DrawText(lpszString, nCount, &rc, 0, FontColor);
 		else
-			D3DXCreateFont(d3ddev, 16, 0, FW_BOLD, 6, 0, VIETNAMESE_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, VARIABLE_PITCH | FF_DONTCARE, dwFontGame, &FontBold);
+			D3DXCreateFont(d3ddev, 16, 0, FW_BOLD, 6, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, VARIABLE_PITCH | FF_DONTCARE, dwFontGame, &FontBold);
 		break;
 	}
 	return 0;

@@ -604,7 +604,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
     MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
 	}
 
-	if(SETTINGSHANDLER->getWindowMode())
+	if(1 /* TEMP_MINGW_FORCE_WINDOWMODE */ || SETTINGSHANDLER->getWindowMode())
 	{
 		RECT wrect;
 		wrect.left = 0;
@@ -638,19 +638,60 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 			hInst, NULL);
 	}
 
+	{
+		FILE *f = fopen("mingw_hwnd_check.txt", "a");
+		if (f)
+		{
+			fprintf(f, "after CreateWindow: hwnd=%p lastError=%lu windowMode=%d startMax=%d nCmdShow=%d sx=%d sy=%d width=%d height=%d\\n",
+				(void*)hwnd,
+				GetLastError(),
+				SETTINGSHANDLER->getWindowMode(),
+				SETTINGSHANDLER->getStartMaximized(),
+				nCmdShow,
+				sx,
+				sy,
+				SETTINGSHANDLER->getWidth(),
+				SETTINGSHANDLER->getHeight());
+			fclose(f);
+		}
+	}
+
+	if (!hwnd)
+	{
+		MessageBoxA(NULL, "CreateWindow/CreateWindowEx failed. See mingw_hwnd_check.txt", "DEBUG MINGW", MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+
 	ShowWindow(hwnd, SETTINGSHANDLER->getStartMaximized() ? SW_MAXIMIZE : nCmdShow);
 	UpdateWindow(hwnd);
 
+	{
+		FILE *f = fopen("mingw_hwnd_check.txt", "a");
+		if (f)
+		{
+			fprintf(f, "after ShowWindow/UpdateWindow: hwnd=%p visible=%d iconic=%d lastError=%lu\\n",
+				(void*)hwnd,
+				IsWindowVisible(hwnd),
+				IsIconic(hwnd),
+				GetLastError());
+			fclose(f);
+		}
+	}
+
 	LoadScreen("Image//logo.bmp", hInst, hwnd);
+	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after LoadScreen\n"); fclose(f);} }
 	Sleep(300);
+	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after Sleep\n"); fclose(f);} }
 
 	ShowCursor(FALSE);
+	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after ShowCursor\n"); fclose(f);} }
 
 	if (InitD3D(hwnd) == NULL)
 	{
 		//Utils_Log(LOG_ERROR, "Failed InitD3D()");
 		return FALSE;
 	}
+	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after InitD3D OK\n"); fclose(f);} }
 
 	hTextWnd = CreateWindow("EDIT", "", WS_CHILD | WS_BORDER | ES_LEFT | ES_MULTILINE | ES_WANTRETURN, 10, 400, 500, 40, hwnd, (HMENU)IDC_TEXT, hInst, NULL);
 
@@ -667,17 +708,24 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 	TextMode = 0;
 
 	InitGameSocket();
+	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after InitGameSocket\n"); fclose(f);} }
 
 	initipgame();
+	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after initipgame\n"); fclose(f);} }
 
+	{ FILE *f=fopen("mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"before DeleteFile ddd.txt\n"); fclose(f);} }
 	DeleteFile("ddd.txt");
+	{ FILE *f=fopen("mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"after DeleteFile ddd.txt lastError=%lu\n", GetLastError()); fclose(f);} }
 
+	{ FILE *f=fopen("mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"before SetGameMode(1)\n"); fclose(f);} }
 	SetGameMode(1);
+	{ FILE *f=fopen("mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"after SetGameMode(1) GameMode=%d\n", GameMode); fclose(f);} }
 
 	CharacterName1[0] = 0;
 	CharacterName2[0] = 0;
 
 	SetTimer(hwnd, 0, GAME_WORLDTIME_MIN / 4, NULL);
+	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after SetTimer\n"); fclose(f);} }
 
 #ifdef _LANGUAGE_WINDOW
 	SetForegroundWindow(hwnd);
@@ -685,6 +733,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 
 	while (1)
 	{
+		{ static int logged_loop_entry=0; if(!logged_loop_entry){ logged_loop_entry=1; FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"entered main loop\n"); fclose(f);} } }
 		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
@@ -773,6 +822,15 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 
 	if (szExitInfo_URL[0])
 		ShellExecute(NULL, NULL, szExitInfo_URL, NULL, NULL, NULL);
+
+	{
+		FILE *f=fopen("mingw_winmain_final_return.txt","a");
+		if(f)
+		{
+			fprintf(f,"WinMain returning msg.wParam=%ld quit=%d GameMode=%d\n", (long)msg.wParam, quit, GameMode);
+			fclose(f);
+		}
+	}
 
 	return msg.wParam;
 }
@@ -1098,6 +1156,15 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 		break;
 
 	case WM_CLOSE:
+	{
+		FILE *f = fopen("mingw_window_lifecycle.txt", "a");
+		if (f)
+		{
+			fprintf(f, "WM_CLOSE hWnd=%p hwnd_global=%p GameMode=%d quit=%d dwTradeMaskTime=%lu\n",
+				(void*)hWnd, (void*)hwnd, GameMode, quit, dwTradeMaskTime);
+			fclose(f);
+		}
+	}
 
 		QuitGame();
 		break;
@@ -1708,28 +1775,42 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 
 	case WM_LBUTTONDOWN:
 	{
-
+		{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"CLICK enter GameMode=%d x=%ld y=%ld wParam=%lu\n", GameMode, pCursorPos.x, pCursorPos.y, (unsigned long)wParam); fclose(f);} }
 
 		if (g_IsDxProjectZoomIn <= 0 || g_iFzmCursorFocusGame)
 		{
+			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"before SetMousePlay\n"); fclose(f);} }
 			SetMousePlay(1);
+			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"after SetMousePlay\n"); fclose(f);} }
+
+			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"before sinLButtonDown\n"); fclose(f);} }
 			sinLButtonDown();
+			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"after sinLButtonDown\n"); fclose(f);} }
+
 			MouseButton[0] = TRUE;
+			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"after MouseButton TRUE\n"); fclose(f);} }
+
+			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"before cSettings.LButtonDown\n"); fclose(f);} }
 			cSettings.LButtonDown();
+			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"after cSettings.LButtonDown\n"); fclose(f);} }
 			
+			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"before clan_Mouse\n"); fclose(f);} }
 			clan_Mouse(WM_LBUTTONDOWN, wParam);
+			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"after clan_Mouse\n"); fclose(f);} }
 		}
 		else
+		{
 			g_FzmMouseButton[0] = TRUE;
-
-
-
+			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"zoom branch g_FzmMouseButton TRUE\n"); fclose(f);} }
+		}
 
 		if (GameMode == 2 && DisconnectFlag)
 			quit = TRUE;
 
 		extern bool clickable;
 		clickable = true;
+
+		{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"CLICK leave quit=%d GameMode=%d\n", quit, GameMode); fclose(f);} }
 	}
 	break;
 
@@ -1879,6 +1960,15 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 		break;
 
 	case WM_DESTROY:
+	{
+		FILE *f = fopen("mingw_window_lifecycle.txt", "a");
+		if (f)
+		{
+			fprintf(f, "WM_DESTROY hWnd=%p hwnd_global=%p GameMode=%d quit=%d dwTradeMaskTime=%lu\n",
+				(void*)hWnd, (void*)hwnd, GameMode, quit, dwTradeMaskTime);
+			fclose(f);
+		}
+	}
 		PostQuitMessage(0);
 		break;
 
@@ -3467,11 +3557,23 @@ extern void InitFont();
 
 int SetGameMode(int mode)
 {
+	{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"ENTER SetGameMode mode=%d GameMode_before=%d lpCurPlayer=%p\n", mode, GameMode, (void*)lpCurPlayer); fclose(f);} }
+
 	int OldMode = GameMode;
 	GameMode = mode;
 
+	{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"before sinChar assignment lpCurPlayer=%p\n", (void*)lpCurPlayer); fclose(f);} }
+
+	if (!lpCurPlayer)
+	{
+		FILE *f=fopen("mingw_setgamemode_inside.txt","a");
+		if(f){ fprintf(f,"ERROR lpCurPlayer is NULL before sinChar assignment\n"); fclose(f); }
+		return FALSE;
+	}
 
 	sinChar = &lpCurPlayer->smCharInfo;
+
+	{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after sinChar assignment sinChar=%p OldMode=%d GameMode=%d\n", (void*)sinChar, OldMode, GameMode); fclose(f);} }
 
 
 	switch (OldMode)
@@ -3493,18 +3595,26 @@ int SetGameMode(int mode)
 	{
 	case 1:
 		SetDxProjection((PI / 4.4f), SETTINGSHANDLER->getWidth(), SETTINGSHANDLER->getHeight(), 20.f, 4000.f);
+		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after SetDxProjection\n"); fclose(f);} }
 
 
 		smRender.CreateRenderBuff(SETTINGSHANDLER->getSight() ? 1 : 0);
+		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after CreateRenderBuff\n"); fclose(f);} }
 
 
 		InitMaterial();
+		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitMaterial\n"); fclose(f);} }
 		smRender.SetMaterialGroup(smMaterialGroup);
+		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after SetMaterialGroup\n"); fclose(f);} }
 		InitEffect();
+		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitEffect\n"); fclose(f);} }
 		InitFont();
+		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitFont\n"); fclose(f);} }
 		cSettings.Init();
+		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after cSettings.Init\n"); fclose(f);} }
 
 		InitOpening();
+		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitOpening\n"); fclose(f);} }
 
 		if(SETTINGSHANDLER->isWideScreen())
 		{
@@ -3523,6 +3633,10 @@ int SetGameMode(int mode)
 
 		if(CheckCrackProcess(TRUE))
 			quit = 1;
+		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"before CheckCrackProcess TRUE\n"); fclose(f);} }
+		if(CheckCrackProcess(TRUE))
+			quit = 1;
+		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after CheckCrackProcess TRUE quit=%d\n", quit); fclose(f);} }
 
 		dwM_BlurTime = 0;
 
@@ -3544,6 +3658,8 @@ int SetGameMode(int mode)
 	}
 
 	WaveCameraFlag = FALSE;
+
+	{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"LEAVE SetGameMode mode=%d GameMode=%d quit=%d\n", mode, GameMode, quit); fclose(f);} }
 
 	return TRUE;
 }

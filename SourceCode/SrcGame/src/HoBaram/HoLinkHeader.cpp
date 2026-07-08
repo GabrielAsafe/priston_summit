@@ -44,28 +44,38 @@ void CaptureOpening()
 
 int InitOpening()
 {
+	{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"ENTER InitOpening WorkMode=%d lpLogin=%p lpOpening=%p\n", WorkMode, (void*)lpLogin, (void*)lpOpening); fclose(f);} }
+
 	memset(CharacterName1, 0, sizeof(CharacterName1));
 	memset(CharacterName2, 0, sizeof(CharacterName2));
+	{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after memset names\n"); fclose(f);} }
 
 	InitCursor();
+	{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after InitCursor\n"); fclose(f);} }
 
 	lpLogin = new HoLogin();
+	{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after new HoLogin lpLogin=%p\n", (void*)lpLogin); fclose(f);} }
 
 	lpOpening = new HoOpening();
+	{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after new HoOpening lpOpening=%p\n", (void*)lpOpening); fclose(f);} }
 
 	if(WorkMode == OPENING_MODE)
 	{
+		{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"before lpOpening->Init\n"); fclose(f);} }
 		lpOpening->Init();
+		{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after lpOpening->Init\n"); fclose(f);} }
 	}
 	else if(WorkMode == LOGIN_MODE)
 	{
+		{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"before lpLogin->Init\n"); fclose(f);} }
 		lpLogin->Init();
+		{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after lpLogin->Init\n"); fclose(f);} }
 	}
 
 	CursorShowFlag = TRUE;
 	LoginEndFlag = FALSE;
 
-
+	{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"LEAVE InitOpening\n"); fclose(f);} }
 
 	return TRUE;
 }
@@ -75,6 +85,9 @@ extern int Client_Version;
 
 int DrawOpening()
 {
+	static int drawLogCount = 0;
+	drawLogCount++;
+	{ FILE *f=fopen("mingw_opening_loop_unlimited.txt","a"); if(f){ fprintf(f,"DRAW #%d ENTER WorkMode=%d lpOpening=%p lpLogin=%p LoginEndFlag=%d\n", drawLogCount, WorkMode, (void*)lpOpening, (void*)lpLogin, LoginEndFlag); fflush(f); fclose(f);} }
 	if(lpOpening == NULL || lpLogin == NULL)
 	{
 		return FALSE;
@@ -84,7 +97,9 @@ int DrawOpening()
 
 	if(WorkMode == OPENING_MODE)
 	{
+		{ FILE *f=fopen("mingw_opening_loop_unlimited.txt","a"); if(f){ fprintf(f,"DRAW #%d before lpOpening->Draw\n", drawLogCount); fflush(f); fclose(f);} }
 		lpOpening->Draw();
+		{ FILE *f=fopen("mingw_opening_loop_unlimited.txt","a"); if(f){ fprintf(f,"DRAW #%d after lpOpening->Draw\n", drawLogCount); fflush(f); fclose(f);} }
 	}
 	else if(WorkMode == LOGIN_MODE)
 	{
@@ -101,7 +116,9 @@ int DrawOpening()
 	showFPS();
 	Client_Version;
 
+	{ FILE *f=fopen("mingw_opening_loop_unlimited.txt","a"); if(f){ fprintf(f,"DRAW #%d before EndRender\n", drawLogCount); fflush(f); fclose(f);} }
 	EndRender();
+	{ FILE *f=fopen("mingw_opening_loop_unlimited.txt","a"); if(f){ fprintf(f,"DRAW #%d after EndRender\n", drawLogCount); fflush(f); fclose(f);} }
 
 	if(LoginEndFlag)
 	{
@@ -123,18 +140,26 @@ void resizeOpening()
 static int GameErrorTimeCount = 0;
 int MainOpening()
 {
+	static int mainLogCount = 0;
+	mainLogCount++;
+	{ FILE *f=fopen("mingw_opening_loop_unlimited.txt","a"); if(f){ fprintf(f,"MAIN #%d ENTER WorkMode=%d lpOpening=%p lpLogin=%p LoginEndFlag=%d\n", mainLogCount, WorkMode, (void*)lpOpening, (void*)lpLogin, LoginEndFlag); fflush(f); fclose(f);} }
 	if(lpOpening == NULL || lpLogin == NULL)
 		return FALSE;
 
 	if(WorkMode == OPENING_MODE)
 	{
-		if(lpOpening->Main() == 2)
+		{ FILE *f=fopen("mingw_opening_loop_unlimited.txt","a"); if(f){ fprintf(f,"MAIN #%d before lpOpening->Main\n", mainLogCount); fflush(f); fclose(f);} }
+		int openingMainResult = lpOpening->Main();
+		{ FILE *f=fopen("mingw_opening_loop_unlimited.txt","a"); if(f){ fprintf(f,"MAIN #%d after lpOpening->Main result=%d WorkMode=%d\n", mainLogCount, openingMainResult, WorkMode); fflush(f); fclose(f);} }
+		if(openingMainResult == 2)
 		{
+			if(mainLogCount < 20){ FILE *f=fopen("mingw_opening_loop.txt","a"); if(f){ fprintf(f,"before lpLogin->Init from opening transition\n"); fclose(f);} }
 			lpLogin->Init();
+			if(mainLogCount < 20){ FILE *f=fopen("mingw_opening_loop.txt","a"); if(f){ fprintf(f,"after lpLogin->Init from opening transition\n"); fclose(f);} }
 			WorkMode = LOGIN_MODE;
 		}
 	}
-	else if(WorkMode = LOGIN_MODE)
+	else if(WorkMode == LOGIN_MODE)
 	{
 		int num;
 		num = lpLogin->Main();

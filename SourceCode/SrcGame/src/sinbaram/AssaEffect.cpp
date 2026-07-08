@@ -30,15 +30,20 @@ void AssaEffectKeyDown()
 
 void InitAssaEffect()
 {
+	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"ENTER InitAssaEffect\n"); fclose(f);} }
 
+	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"before InitAssaRes\n"); fclose(f);} }
 	InitAssaRes();
+	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"after InitAssaRes\n"); fclose(f);} }
 
-
+	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"before LoadAssaRes\n"); fclose(f);} }
 	LoadAssaRes();
-
+	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"after LoadAssaRes\n"); fclose(f);} }
 
 	memset(cAssaEffect, 0, sizeof(cASSAEFFECT));
+	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"after memset cAssaEffect\n"); fclose(f);} }
 
+	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"LEAVE InitAssaEffect\n"); fclose(f);} }
 }
 
 void DrawAssaEffect(POINT3D *pPosi, POINT3D *pAngle)

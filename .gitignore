@@ -13,6 +13,11 @@ docker/db/data/
 .exe
 /SourceCode Summit Tale/Dependency/DirectXSDK
 
+*.o
+/todos os outros coisos da pasta
+/Summit Tale Client Full
+
+
 # Large dependency files
 SourceCode/Dependency/DXSDK_Jun10.exe
 SourceCode/Dependency/DirectXSDK.7z

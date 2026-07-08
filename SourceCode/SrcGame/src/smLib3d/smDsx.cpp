@@ -164,10 +164,28 @@ BOOL SetDisplayMode(HWND hWnd, DWORD Width, DWORD Height, DWORD BPP)
 
 	
 	// TEMP_MINGW_I686_D3D_FIX:
-	// Fullscreen com BackBufferFormat=D3DFMT_UNKNOWN gera D3DERR_INVALIDCALL.
-	// Forçar windowed para validar runtime do cliente.
+	// Mantém windowed para evitar D3DERR_INVALIDCALL,
+	// mas preserva BackBufferFormat calculado antes.
 	d3dpp.Windowed = TRUE;
-	d3dpp.BackBufferFormat = D3DFMT_UNKNOWN;
+
+	{
+		FILE* f = fopen("mingw_d3d_present_params.txt", "a");
+		if (f)
+		{
+			fprintf(f,
+				"Before CreateDevice: BackBuffer=%dx%d Windowed=%d SwapEffect=%d BackBufferFormat=%d Refresh=%d PresentationInterval=%d BehaviorFlags=0x%08X\n",
+				d3dpp.BackBufferWidth,
+				d3dpp.BackBufferHeight,
+				d3dpp.Windowed,
+				d3dpp.SwapEffect,
+				d3dpp.BackBufferFormat,
+				d3dpp.FullScreen_RefreshRateInHz,
+				d3dpp.PresentationInterval,
+				(unsigned int)dwBehaviourFlags);
+			fflush(f);
+			fclose(f);
+		}
+	}
 
 	HRESULT Result = 0;
 	Result = lpD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, dwBehaviourFlags, &d3dpp, &d3ddev);
@@ -194,7 +212,7 @@ BOOL SetDisplayMode(HWND hWnd, DWORD Width, DWORD Height, DWORD BPP)
 		return false;
 	}
 
-	D3DXCreateFont(d3ddev, 25, 0, FW_MEDIUM, 1, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLEARTYPE_NATURAL_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Tahoma", &FontDamageShadow);
+	D3DXCreateFont(d3ddev, 25, 0, FW_MEDIUM, 1, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Tahoma", &FontDamageShadow);
 
 	return TRUE;
 }

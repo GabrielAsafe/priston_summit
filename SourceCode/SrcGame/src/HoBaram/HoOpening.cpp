@@ -69,6 +69,8 @@ HoOpening::HoOpening()
 
 
 	MouseDownServerIndex = -1;
+
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after MouseDownServerIndex\\n"); fclose(f);} }
 	CameraFrame = 0;
 }
 
@@ -79,11 +81,15 @@ HoOpening::~HoOpening()
 
 int HoOpening::Init()
 {
+
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"ENTER HoOpening::Init\\n"); fclose(f);} }
 	GameErrorValue = -1;
 	ConnectErrorCount = 0;
 	FocusWndFlag = FALSE;
 	SetWindowText(hTextWnd, "");
 	SendMessage(hTextWnd, EM_SETLIMITTEXT, 31, 0);
+
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SendMessage EM_SETLIMITTEXT\\n"); fclose(f);} }
 
 	LoginInputState = 0;
 	ConnectError = ERROR_NONE;
@@ -119,7 +125,11 @@ int HoOpening::Init()
 
 	SetFade();
 
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SetFade\\n"); fclose(f);} }
+
 	smInitColorZClip(0, 0, 0);
+
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smInitColorZClip\\n"); fclose(f);} }
 
 	smRender.Color_R = 40;
 	smRender.Color_G = 0;
@@ -127,11 +137,21 @@ int HoOpening::Init()
 	smRender.Color_A = 0;
 	smRender.ClearLight();
 
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smRender.ClearLight\\n"); fclose(f);} }
+
 	StopBGM();
+
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after StopBGM\\n"); fclose(f);} }
 	OpenBGM("game//GUI//Opening//Login//UI//Intro.wav");
+
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after OpenBGM Intro.wav\\n"); fclose(f);} }
 	PlayBGM();
 
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after PlayBGM\\n"); fclose(f);} }
+
 	SetVolumeBGM(OpeningBgmVolume);
+
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SetVolumeBGM\\n"); fclose(f);} }
 
 	std::string id;
 
@@ -139,7 +159,11 @@ int HoOpening::Init()
 	{
 		File file("Settings.ini");
 
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after File Settings.ini constructor\\n"); fclose(f);} }
+
 		id = file.readString("Game", "LastAccount");
+
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after read LastAccount\\n"); fclose(f);} }
 	}
 	catch (FileException& e)
 	{
@@ -156,24 +180,38 @@ int HoOpening::Init()
 	}
 
 	CurrentWorkState = STATE_OPENING;
+
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after CurrentWorkState STATE_OPENING\\n"); fclose(f);} }
+
 	NextWorkState = STATE_OPENING;
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after NextWorkState STATE_OPENING\\n"); fclose(f);} }
+
 	MouseDownServerIndex = -1;
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after Init MouseDownServerIndex\\n"); fclose(f);} }
+
 	MouseDownFlag = FALSE;
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after MouseDownFlag FALSE\\n"); fclose(f);} }
 
 	CameraFrame = 160;
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after CameraFrame 160\\n"); fclose(f);} }
 
-
-
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before g_NewParticleMgr.Init\\n"); fclose(f);} }
 	g_NewParticleMgr.Init();
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after g_NewParticleMgr.Init\\n"); fclose(f);} }
+
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before InitAssaEffect\\n"); fclose(f);} }
 	InitAssaEffect();
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after InitAssaEffect\\n"); fclose(f);} }
 
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before InitCinemaFadeEffect\\n"); fclose(f);} }
 	InitCinemaFadeEffect();
-
-
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after InitCinemaFadeEffect\\n"); fclose(f);} }
 
 	smIdentityMatrix(m_CameraRotInvert);
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smIdentityMatrix\\n"); fclose(f);} }
 
 	m_IsDrawOpening = TRUE;
+	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after m_IsDrawOpening TRUE\\n"); fclose(f);} }
 	m_AutoCameraFrameTime = 50;
 	m_ParticleSpawnTimeCount = 0;
 
@@ -600,7 +638,9 @@ int HoOpening::Draw()
 	startAccountAddX = 230;
 	startAccountAddY = 290;
 
+	{ FILE *f=fopen("mingw_mousebutton_frame.txt","a"); if(f){ fprintf(f,"DRAW before FastFade MouseButton0=%d x=%ld y=%ld CWS=%d NWS=%d LB=%d SB=%d\n", MouseButton[0], pCursorPos.x, pCursorPos.y, CurrentWorkState, NextWorkState, LoginBlendValue, ScreenBlendValue); fclose(f);} }
 	FastFade();
+	{ FILE *f=fopen("mingw_mousebutton_frame.txt","a"); if(f){ fprintf(f,"DRAW after FastFade MouseButton0=%d x=%ld y=%ld CWS=%d NWS=%d LB=%d SB=%d\n", MouseButton[0], pCursorPos.x, pCursorPos.y, CurrentWorkState, NextWorkState, LoginBlendValue, ScreenBlendValue); fclose(f);} }
 
 	dsDrawTexImage(Back, (smScreenWidth / 2 - smScreenWidth / 2), (smScreenHeight / 2 - smScreenHeight / 2), smScreenWidth, smScreenHeight, 255);
 
@@ -622,13 +662,16 @@ int HoOpening::Draw()
 	dsTextLineOut(SETTINGSHANDLER->getWidth() - 60, 15, Version, strlen(Version));
 
 
+	{ FILE *f=fopen("mingw_mousebutton_frame.txt","a"); if(f){ fprintf(f,"DRAW before cSettings.isOpen block isOpen=%d MouseButton0=%d\n", cSettings.isOpen(), MouseButton[0]); fclose(f);} }
 	if (cSettings.isOpen())
 	{
 		if (MouseButton[0])
 			MouseButton[0] = 0;
 	}
+	{ FILE *f=fopen("mingw_mousebutton_frame.txt","a"); if(f){ fprintf(f,"DRAW after cSettings.isOpen block MouseButton0=%d\n", MouseButton[0]); fclose(f);} }
 
 	//setings engrenagem
+	{ FILE *f=fopen("mingw_mousebutton_frame.txt","a"); if(f){ fprintf(f,"DRAW before settings gear check MouseButton0=%d x=%ld y=%ld\n", MouseButton[0], pCursorPos.x, pCursorPos.y); fclose(f);} }
 	if ((pCursorPos.x > 590) && (pCursorPos.x < 750) &&
 		(pCursorPos.y > 15) && (pCursorPos.y < 51))
 	{
@@ -648,6 +691,7 @@ int HoOpening::Draw()
 		dsDrawTexImage(iSettingsButton[0], MidX - 98, MidY - 350, 161, 59, 255);
 	};
 
+	{ FILE *f=fopen("mingw_mousebutton_frame.txt","a"); if(f){ fprintf(f,"DRAW before login hover/button checks MouseButton0=%d x=%ld y=%ld startLogoX=%d startLogoY=%d\n", MouseButton[0], pCursorPos.x, pCursorPos.y, startLogoX, startLogoY); fclose(f);} }
 	if (pCursorPos.x > (startLogoX + 165) &&
 		pCursorPos.y > (startLogoY + 320) &&
 		pCursorPos.x < (startLogoX + 286) &&
@@ -706,15 +750,19 @@ int HoOpening::Draw()
 
 
 
+	{ FILE *f=fopen("mingw_mousebutton_frame.txt","a"); if(f){ fprintf(f,"DRAW before login input block CWS=%d NWS=%d ScreenBlend=%d LoginBlend=%d MouseButton0=%d\n", CurrentWorkState, NextWorkState, ScreenBlendValue, LoginBlendValue, MouseButton[0]); fclose(f);} }
 	if (CurrentWorkState == STATE_LOGIN_INPUT && NextWorkState == STATE_LOGIN_INPUT && ScreenBlendValue <= 100)
 	{
+		{ FILE *f=fopen("mingw_mousebutton_frame.txt","a"); if(f){ fprintf(f,"DRAW ENTER login input block\n"); fclose(f);} }
 
 		if (LoginBlendValue >= 255)
 		{
 			if (FocusWndFlag == FALSE)
 			{
+				FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"before focus assign hTextWnd=%p hFocusWnd=%p\n",(void*)hTextWnd,(void*)hFocusWnd); fclose(f); }
 				FocusWndFlag = TRUE;
 				hFocusWnd = hTextWnd;
+				f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"after focus assign hTextWnd=%p hFocusWnd=%p\n",(void*)hTextWnd,(void*)hFocusWnd); fclose(f); }
 			}
 
 			if (pCursorPos.x > (startLogoX + 155) &&
@@ -758,18 +806,17 @@ int HoOpening::Draw()
 					pCursorPos.y < (startLogoY + 371) &&
 					MouseButton[0])
 				{
-					//if (LoginInputState == 0)
-					//{
-					MouseDownFlag = TRUE;
-					StartQuitFlag = TRUE;
-					QuitGame();
-					SetFade();
-					PlayWav2(4 - 1);
-					SetIME_Mode(0);
-					LoginInputState = 1;
-					SetWindowText(hFocusWnd, UserPassword);
-					SendMessage(hTextWnd, EM_SETSEL, lstrlen(UserPassword), lstrlen(UserPassword) + 1);
-					//}
+					FILE *f=fopen("mingw_login_exit_button.txt","a");
+					if(f)
+					{
+						fprintf(f,"EXIT BUTTON HIT x=%ld y=%ld startLogoX=%d startLogoY=%d MouseButton0=%d LoginInputState=%d CurrentWorkState=%d NextWorkState=%d\n",
+							pCursorPos.x, pCursorPos.y, startLogoX, startLogoY, MouseButton[0], LoginInputState, CurrentWorkState, NextWorkState);
+						fclose(f);
+					}
+
+					/* TEMP_MINGW_BLOCK_AUTO_EXIT:
+					   Não sair automaticamente enquanto diagnosticamos MouseButton/pCursorPos. */
+					MouseButton[0] = 0;
 				}
 			}
 
@@ -779,54 +826,88 @@ int HoOpening::Draw()
 			{
 				if (LoginInputState == 0)
 				{
+					{ FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"before GetWindowText UserAccount hFocusWnd=%p\n",(void*)hFocusWnd); fclose(f);} }
 					GetWindowText(hFocusWnd, UserAccount, sizeof(UserAccount));
+					{ FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"after GetWindowText UserAccount text=%s\n", UserAccount); fclose(f);} }
 					KeyFilter(UserAccount);
+					{ FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"after KeyFilter UserAccount\n"); fclose(f);} }
 
 				}
 				else if (LoginInputState == 1)
 				{
+					{ FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"before GetWindowText UserPassword hFocusWnd=%p\n",(void*)hFocusWnd); fclose(f);} }
 					GetWindowText(hFocusWnd, UserPassword, sizeof(UserPassword));
+					{ FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"after GetWindowText UserPassword\n"); fclose(f);} }
 					KeyFilter(UserPassword);
+					{ FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"after KeyFilter UserPassword\n"); fclose(f);} }
 				}
 			}
 
 			if (hFocusWnd)
+			{
+				FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"before EM_GETSEL hFocusWnd=%p End_before=%d\n",(void*)hFocusWnd, End); fclose(f); }
 				SendMessage(hFocusWnd, EM_GETSEL, NULL, (LPARAM)&End);
+				f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"after EM_GETSEL End=%d\n", End); fclose(f); }
+			}
 
+			{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"before SetFontTextColor End=%d CaretCount=%d LoginInputState=%d hFocusWnd=%p\n", End, CaretCount, LoginInputState, (void*)hFocusWnd); fclose(f);} }
 			SetFontTextColor(RGB(255, 255, 255));
+			{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"after SetFontTextColor\n"); fclose(f);} }
 
 			if (hFocusWnd)
 			{
+				{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"enter caret block CaretCount=%d End=%d\n", CaretCount, End); fclose(f);} }
 				if (CaretCount < 16)
 				{
 					if (End > DISP_LOGIN_LEN) End = DISP_LOGIN_LEN;
 
 					if (LoginInputState == 0)
-						dsTextLineOut(startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY - 60, "|", 1);
+					{
+						{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"before caret account draw x=%d y=%d End=%d\n", startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY - 60, End); fclose(f);} }
+						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+						/* dsTextLineOut(startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY - 60, "|", 1); */
+						{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"after caret account draw\n"); fclose(f);} }
+					}
 					else if (LoginInputState == 1)
-						dsTextLineOut(startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY + 4, "|", 1);
+					{
+						{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"before caret pass draw x=%d y=%d End=%d\n", startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY + 4, End); fclose(f);} }
+						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+						/* dsTextLineOut(startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY + 4, "|", 1); */
+						{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"after caret pass draw\n"); fclose(f);} }
+					}
 				}
 
 				CaretCount++;
 				if (CaretCount > 32)
 					CaretCount = 0;
+				{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"after caret block CaretCount=%d\n", CaretCount); fclose(f);} }
 			}
 
 			int sp, len;
 
 			sp = 0;
 			len = lstrlen(UserAccount);
+			{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"before account len=%d text=%s\n", len, UserAccount); fclose(f);} }
 			if (len > DISP_LOGIN_LEN)
 			{
 				sp = len - DISP_LOGIN_LEN;
 				len -= sp;
 			}
+			{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"before account text draw sp=%d len=%d ptr=%p\n", sp, len, (void*)(UserAccount + sp)); fclose(f);} }
 			dsTextLineOut(  startLogoX + startAccountAddX + 25 , startLogoY + startAccountAddY - 60, UserAccount + sp, len);
+			{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"after account text draw\n"); fclose(f);} }
+
 			len = lstrlen(UserPassword);
+			{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"before password mask len=%d\n", len); fclose(f);} }
 			if (len > DISP_LOGIN_LEN) len = DISP_LOGIN_LEN;
 
 			for (int count = 0; count < len; count++)
-				dsTextLineOut( startLogoX + startAccountAddX + 25 + count * 6, startLogoY + startAccountAddY + 8, "*", 1);
+			{
+				{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"before password star draw count=%d\n", count); fclose(f);} }
+				/* TEMP_MINGW_SKIP_LOGIN_PASSWORD_STAR: dsTextLineOut("*") crashes in MinGW build */
+				/* dsTextLineOut( startLogoX + startAccountAddX + 25 + count * 6, startLogoY + startAccountAddY + 8, "*", 1); */
+				{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"after password star draw count=%d\n", count); fclose(f);} }
+			}
 
 		}
 	}
@@ -874,7 +955,9 @@ int HoOpening::Draw()
 	else if (ConnectError == ERROR_UNTIL_LOGINDENIED)
 		DrawMessage(295 + m_AddWidth, 300 + m_AddHeight, HoTextLoginMessage[18], 30);
 
+	{ FILE *f=fopen("mingw_mousebutton_frame.txt","a"); if(f){ fprintf(f,"DRAW before cSettings.Draw\n"); fclose(f);} }
 	cSettings.Draw();
+	{ FILE *f=fopen("mingw_mousebutton_frame.txt","a"); if(f){ fprintf(f,"DRAW after cSettings.Draw return TRUE\n"); fclose(f);} }
 
 	return TRUE;
 }

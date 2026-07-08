@@ -195,13 +195,13 @@ void InitFont()
 	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".//game//Font//Config.ini");
 
 	if (!Font)
-		D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLEARTYPE_NATURAL_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &Font);
+		D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &Font);
 
 	if (!FontBold)
-		D3DXCreateFont(d3ddev, 16, 0, FW_BOLD, 1, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLEARTYPE_NATURAL_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &FontBold);
+		D3DXCreateFont(d3ddev, 16, 0, FW_BOLD, 1, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &FontBold);
 
 	if (!FontRank)
-		D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLEARTYPE_NATURAL_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &FontRank);
+		D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 1, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &FontRank);
 
 	HookAPI("gdi32.dll", "TextOutA", &DrawFontText);
 	HookAPI("gdi32.dll", "SetFontTextColor", &SetFontColor);
