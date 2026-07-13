@@ -1,0 +1,79 @@
+SrcServer/src/HoBaram/HoNewParticleMgr.cpp:73:			directoryBuffer[index] = '/0';
+SrcServer/src/Server/OnSever.cpp:12496:	rsPlayInfo[cnt].setAccount('/0');
+SrcServer/src/Server/OnSever.cpp:12497:	rsPlayInfo[cnt].setPassword('/0');
+SrcServer/src/Server/OnSever.cpp:12498:	rsPlayInfo[cnt].setName('/0');
+SrcServer/src/Server/OnSever.cpp:24093:	if (accountId[0] == '/0' )
+SrcServer/src/Server/OnSever.cpp:25120:					lpTransPlayerInfo->smCharInfo.szName[0] = '/0';
+SrcServer/src/Server/OnSever.cpp:25121:					lpTransPlayerInfo->smCharInfo.szModelName[0] = '/0';
+SrcServer/src/Server/OnSever.cpp:25122:					lpTransPlayerInfo->smCharInfo.szModelName2[0] = '/0';
+SrcServer/src/Server/OnSever.cpp:25301:					lpTransPlayerInfo->smCharInfo.szName[0] = '/0';
+SrcServer/src/Server/OnSever.cpp:25302:					lpTransPlayerInfo->smCharInfo.szModelName[0] = '/0';
+SrcServer/src/Server/OnSever.cpp:25303:					lpTransPlayerInfo->smCharInfo.szModelName2[0] = '/0';
+SrcServer/src/Server/OnSever.cpp:25954:				lpPlayInfo->setName('/0');
+SrcServer/src/Server/OnSever.cpp:28442:					rsPlayInfo[cnt].setAccount('/0');
+SrcServer/src/Server/OnSever.cpp:28443:					rsPlayInfo[cnt].setName('/0');
+SrcServer/src/Server/OnSever.cpp:31829:					LogAccount->lpPlayInfo->setAccount('/0');
+SrcServer/src/Server/OnSever.cpp.bak_fix_skillsub_include_20260708_195607:12496:	rsPlayInfo[cnt].setAccount('/0');
+SrcServer/src/Server/OnSever.cpp.bak_fix_skillsub_include_20260708_195607:12497:	rsPlayInfo[cnt].setPassword('/0');
+SrcServer/src/Server/OnSever.cpp.bak_fix_skillsub_include_20260708_195607:12498:	rsPlayInfo[cnt].setName('/0');
+SrcServer/src/Server/OnSever.cpp.bak_fix_skillsub_include_20260708_195607:24093:	if (accountId[0] == '/0' )
+SrcServer/src/Server/OnSever.cpp.bak_fix_skillsub_include_20260708_195607:25120:					lpTransPlayerInfo->smCharInfo.szName[0] = '/0';
+SrcServer/src/Server/OnSever.cpp.bak_fix_skillsub_include_20260708_195607:25121:					lpTransPlayerInfo->smCharInfo.szModelName[0] = '/0';
+SrcServer/src/Server/OnSever.cpp.bak_fix_skillsub_include_20260708_195607:25122:					lpTransPlayerInfo->smCharInfo.szModelName2[0] = '/0';
+SrcServer/src/Server/OnSever.cpp.bak_fix_skillsub_include_20260708_195607:25301:					lpTransPlayerInfo->smCharInfo.szName[0] = '/0';
+SrcServer/src/Server/OnSever.cpp.bak_fix_skillsub_include_20260708_195607:25302:					lpTransPlayerInfo->smCharInfo.szModelName[0] = '/0';
+SrcServer/src/Server/OnSever.cpp.bak_fix_skillsub_include_20260708_195607:25303:					lpTransPlayerInfo->smCharInfo.szModelName2[0] = '/0';
+SrcServer/src/Server/OnSever.cpp.bak_fix_skillsub_include_20260708_195607:25954:				lpPlayInfo->setName('/0');
+SrcServer/src/Server/OnSever.cpp.bak_fix_skillsub_include_20260708_195607:28442:					rsPlayInfo[cnt].setAccount('/0');
+SrcServer/src/Server/OnSever.cpp.bak_fix_skillsub_include_20260708_195607:28443:					rsPlayInfo[cnt].setName('/0');
+SrcServer/src/Server/OnSever.cpp.bak_fix_skillsub_include_20260708_195607:31829:					LogAccount->lpPlayInfo->setAccount('/0');
+SrcServer/src/sinbaram/AssaEffect.cpp:534:			TempFileName[i] = '/0'; TempFileName[i + 1] = '/0';
+SrcServer/src/sinbaram/AssaUtil.cpp:121:				tempFileName[index] = '/0';
+SrcServer/src/sinbaram/AssaUtil.cpp:178:						tempFileName[index] = '/0';
+SrcServer/src/sinbaram/AssaUtil.cpp:241:							aseName[index] = '/0';
+SrcServer/src/sinbaram/sinUtil.cpp:19:	else m_aString[0] = '/0';
+SrcServer/src/sinbaram/sinUtil.cpp:30:	else m_aString[0] = '/0';
+SrcServer/src/sinbaram/sinUtil.cpp:36:	m_aString[0] = '/0';
+SrcServer/src/sinbaram/sinUtil.cpp:44:	else m_aString[0] = '/0';
+SrcServer/src/sinbaram/sinUtil.cpp:51:	else m_aString[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:613:		AUTH_que[i].cdkey[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:614:		AUTH_que[i].isaokey[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:615:		AUTH_que[i].password[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:836:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:974:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:1184:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:1308:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:1485:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:1643:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:1781:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:1915:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:2012:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:2109:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:2217:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:2317:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:2414:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:2492:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:2573:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:2677:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:2800:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:3233:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:3720:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:3912:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:4076:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/auth.cpp:4220:		szData[0] = '/0';
+SrcServer/src/TJBOY/isaocheck/isaocheck.cpp:357:	char Value = '/0';
+SrcServer/src/CurseFilter.cpp:58:	*field = '/0';
+SrcServer/src/STRCLASS.CPP:23:TCHAR jazzidChNil = '/0';
+SrcServer/src/STRCLASS.CPP:59: // always allocate one extra character for '/0' termination
+SrcServer/src/STRCLASS.CPP:69:		m_pchData[nLen] = '/0';
+SrcServer/src/STRCLASS.CPP:188:	m_pchData[nSrcLen] = '/0';
+SrcServer/src/STRCLASS.CPP:220:	m_pchData[nSrcLen] = '/0';
+SrcServer/src/STRCLASS.CPP:237:	m_pchData[nSrcLen] = '/0';
+SrcServer/src/STRCLASS.CPP:309:	m_pchData[m_nDataLength] = '/0';
+SrcServer/src/STRCLASS.CPP:344:		m_pchData[m_nDataLength] = '/0';
+SrcServer/src/STRCLASS.CPP:359:	m_pchData[m_nDataLength] = '/0';
+SrcServer/src/STRCLASS.CPP:367:	m_pchData[m_nDataLength] = '/0';
+SrcServer/src/STRCLASS.CPP:579:	for(LPCTSTR lpsz = lpszFormat; *lpsz != '/0'; lpsz = _tcsinc(lpsz))
+SrcServer/src/STRCLASS.CPP:592:		for(; *lpsz != '/0'; lpsz = _tcsinc(lpsz))
+SrcServer/src/STRCLASS.CPP:610:			for(; *lpsz != '/0' && _istdigit(*lpsz); lpsz = _tcsinc(lpsz))
+SrcServer/src/STRCLASS.CPP:626:				for(; *lpsz != '/0' && _istdigit(*lpsz); lpsz = _tcsinc(lpsz))

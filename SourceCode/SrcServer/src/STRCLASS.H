@@ -1,6 +1,13 @@
 #ifndef __STRING_CORE_INCLUDE__
 #define __STRING_CORE_INCLUDE__
-#include <atlbase.h>
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#include <windows.h>
+#include <tchar.h>
+#include <oleauto.h>
+#include <stddef.h>
+// // #include <atlbase.h> // removed for MinGW // removed for MinGW
 
 class CStrClass
 {

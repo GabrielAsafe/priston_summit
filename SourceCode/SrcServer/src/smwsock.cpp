@@ -1,3 +1,4 @@
+#include "opcodes.h"
 #include "NetType.h"
 
 #ifdef _W_SERVER
@@ -16,6 +17,9 @@
 #include "smwsock.h"
 #include "Firewall/Firewall.h"
 #include "smPacket.h"
+#ifndef SERVER_TCP_PORT
+#define SERVER_TCP_PORT TCP_GAMEPORT
+#endif
 
 #pragma comment( lib, "wsock32.lib" )
 
@@ -344,7 +348,7 @@ DWORD WINAPI smTransRecvThreadProc(void *pInfo)
 			RecvCode = (((int*)szBuff)[1]);
 
 			int PktMask = (RecvCode & 0xFFFF0000);
-			if (RecvCode < OPCODE_OPENLIVE || RecvCode > OPCODE_SOD_INFO)
+			if (RecvCode < OpCode::OPCODE_OPENLIVE || RecvCode > OpCode::OPCODE_SOD_INFO)
 			{
 				RecvLen = 0;
 				BuffCnt = 0;

@@ -1,0 +1,27 @@
+#faz o find e rename para o arquivo atual : OnSever
+
+rm -f /tmp/OnSever.o /tmp/OnSever.err
+
+i686-w64-mingw32-g++ \
+    -m32 -std=gnu++14 -fpermissive -w \
+    -DWIN32 -D_WINDOWS -D_M_IX86 -Di386 -D__i386__ -D_SERVER \
+    -I. \
+    -ISrcServer/src \
+    -ISrcServer/src/sinbaram \
+    -ISrcServer/src/Skills \
+    -ISrcGame/src \
+    -IShared -IShared/Lua -IShared2 \
+    -Imodules -Imodules/File \
+    "-IDependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Include" \
+    -c SrcGame/src/Server/OnSever.cpp \
+    -o /tmp/OnSever.o \
+    2>/tmp/OnSever.err
+
+
+if [ -f /tmp/OnSever.o ]; then
+    echo "OnSever OK"
+else
+    grep -E 'error:|fatal error:' /tmp/OnSever.err | head -40
+fi
+
+

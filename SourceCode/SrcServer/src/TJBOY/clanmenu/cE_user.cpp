@@ -1,3 +1,4 @@
+#include <cstring>
 
 #define CE_USER_CPP
 #include <windows.h>

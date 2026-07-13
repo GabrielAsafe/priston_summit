@@ -1,3 +1,6 @@
+#include "server_compat_packets.h"
+#include <cstring>
+#include "opcodes.h"
 #include "cQuestHandler.h"
 #include "CoinShop.h"
 
@@ -23,7 +26,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 			if (db->Prepare("SELECT * FROM Progress WHERE QuestKind=? AND PlayerName=?"))
 			{
 				char playerName[32];
-				wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+				wsprintf(playerName, "%s", lpPlayInfo->getName());
 				db->BindInputParameter(&SpoilerNum, 1, PARAMTYPE_Integer);
 				db->BindInputParameter(playerName, 2, PARAMTYPE_String);
 				if (db->Execute(false))
@@ -44,7 +47,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 			/*if (db->Prepare("SELECT * FROM Complete WHERE QuestKind=? AND PlayerName=? AND DAY(GETDATE()) <= DAY(EndDate) AND MONTH(GETDATE())=MONTH(EndDate)")) // GETDATE() < DATEADD(day, 1, EndDate)
 			{
 				char playerName[32];
-				wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+				wsprintf(playerName, "%s", lpPlayInfo->getName());
 				db->BindInputParameter(&SpoilerNum, 1, PARAMTYPE_Integer);
 				db->BindInputParameter(playerName, 2, PARAMTYPE_String);
 				if (db->Execute(false))
@@ -100,7 +103,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 							lpPlayInfo->lpsmSock->Send((char*)&TransQuestInfo, TransQuestInfo.size, TRUE);
 
 							TransQuestInfo.QuestCount = 0;
-							ZeroMemory(&TransQuestInfo.QuestInfo, sizeof(sNEW_QUEST_INFO) * 58);
+							ZeroMemory(TransQuestInfo.QuestInfo, sizeof(TransQuestInfo.QuestInfo));
 						}
 					}
 
@@ -137,7 +140,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 							lpPlayInfo->lpsmSock->Send((char*)&TransQuestInfo, TransQuestInfo.size, TRUE);
 
 							TransQuestInfo.QuestCount = 0;
-							ZeroMemory(&TransQuestInfo.QuestInfo, sizeof(sNEW_QUEST_INFO) * 58);
+							ZeroMemory(TransQuestInfo.QuestInfo, sizeof(TransQuestInfo.QuestInfo));
 						}
 					}
 
@@ -158,7 +161,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 			if (db->Prepare("SELECT * FROM Progress WHERE QuestKind=? AND PlayerName=?"))
 			{
 				char playerName[32];
-				wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+				wsprintf(playerName, "%s", lpPlayInfo->getName());
 				db->BindInputParameter(&SpoilerNum, 1, PARAMTYPE_Integer);
 				db->BindInputParameter(playerName, 2, PARAMTYPE_String);
 				if (db->Execute(false))
@@ -179,7 +182,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 			if (db->Prepare("SELECT * FROM Complete WHERE QuestKind=? AND PlayerName=? AND DAY(GETDATE()) <= DAY(EndDate) AND MONTH(GETDATE())=MONTH(EndDate)")) // GETDATE() < DATEADD(day, 1, EndDate)
 			{
 				char playerName[32];
-				wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+				wsprintf(playerName, "%s", lpPlayInfo->getName());
 				db->BindInputParameter(&SpoilerNum, 1, PARAMTYPE_Integer);
 				db->BindInputParameter(playerName, 2, PARAMTYPE_String);
 				if (db->Execute(false))
@@ -235,7 +238,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 							lpPlayInfo->lpsmSock->Send((char*)&TransQuestInfo, TransQuestInfo.size, TRUE);
 
 							TransQuestInfo.QuestCount = 0;
-							ZeroMemory(&TransQuestInfo.QuestInfo, sizeof(sNEW_QUEST_INFO) * 58);
+							ZeroMemory(TransQuestInfo.QuestInfo, sizeof(TransQuestInfo.QuestInfo));
 						}
 					}
 
@@ -272,7 +275,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 							lpPlayInfo->lpsmSock->Send((char*)&TransQuestInfo, TransQuestInfo.size, TRUE);
 
 							TransQuestInfo.QuestCount = 0;
-							ZeroMemory(&TransQuestInfo.QuestInfo, sizeof(sNEW_QUEST_INFO) * 58);
+							ZeroMemory(TransQuestInfo.QuestInfo, sizeof(TransQuestInfo.QuestInfo));
 						}
 					}
 
@@ -292,7 +295,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 			if (db->Prepare("SELECT * FROM Progress WHERE QuestKind=? AND PlayerName=?"))
 			{
 				char playerName[32];
-				wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+				wsprintf(playerName, "%s", lpPlayInfo->getName());
 				db->BindInputParameter(&SpoilerNum, 1, PARAMTYPE_Integer);
 				db->BindInputParameter(playerName, 2, PARAMTYPE_String);
 				if (db->Execute(false))
@@ -313,7 +316,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 			if (db->Prepare("SELECT * FROM Complete WHERE QuestKind=? AND PlayerName=?"))
 			{
 				char playerName[32];
-				wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+				wsprintf(playerName, "%s", lpPlayInfo->getName());
 				db->BindInputParameter(&SpoilerNum, 1, PARAMTYPE_Integer);
 				db->BindInputParameter(playerName, 2, PARAMTYPE_String);
 				if (db->Execute(false))
@@ -369,7 +372,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 							lpPlayInfo->lpsmSock->Send((char*)&TransQuestInfo, TransQuestInfo.size, TRUE);
 
 							TransQuestInfo.QuestCount = 0;
-							ZeroMemory(&TransQuestInfo.QuestInfo, sizeof(sNEW_QUEST_INFO) * 58);
+							ZeroMemory(TransQuestInfo.QuestInfo, sizeof(TransQuestInfo.QuestInfo));
 						}
 					}
 
@@ -406,7 +409,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 							lpPlayInfo->lpsmSock->Send((char*)&TransQuestInfo, TransQuestInfo.size, TRUE);
 
 							TransQuestInfo.QuestCount = 0;
-							ZeroMemory(&TransQuestInfo.QuestInfo, sizeof(sNEW_QUEST_INFO) * 58);
+							ZeroMemory(TransQuestInfo.QuestInfo, sizeof(TransQuestInfo.QuestInfo));
 						}
 					}
 
@@ -426,7 +429,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 			if (db->Prepare("SELECT * FROM Progress WHERE PlayerName=?"))
 			{
 				char playerName[32];
-				wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+				wsprintf(playerName, "%s", lpPlayInfo->getName());
 
 				db->BindInputParameter(playerName, 1, PARAMTYPE_String);
 				if (db->Execute(false))
@@ -476,7 +479,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 									lpPlayInfo->lpsmSock->Send((char*)&TransQuestInfo, TransQuestInfo.size, TRUE);
 
 									TransQuestInfo.QuestCount = 0;
-									ZeroMemory(&TransQuestInfo.QuestInfo, sizeof(sNEW_QUEST_INFO) * 58);
+									ZeroMemory(TransQuestInfo.QuestInfo, sizeof(TransQuestInfo.QuestInfo));
 								}
 							}
 						}
@@ -507,7 +510,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 									lpPlayInfo->lpsmSock->Send((char*)&TransQuestInfo, TransQuestInfo.size, TRUE);
 
 									TransQuestInfo.QuestCount = 0;
-									ZeroMemory(&TransQuestInfo.QuestInfo, sizeof(sNEW_QUEST_INFO) * 58);
+									ZeroMemory(TransQuestInfo.QuestInfo, sizeof(TransQuestInfo.QuestInfo));
 								}
 							}
 						}
@@ -538,7 +541,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 									lpPlayInfo->lpsmSock->Send((char*)&TransQuestInfo, TransQuestInfo.size, TRUE);
 
 									TransQuestInfo.QuestCount = 0;
-									ZeroMemory(&TransQuestInfo.QuestInfo, sizeof(sNEW_QUEST_INFO) * 58);
+									ZeroMemory(TransQuestInfo.QuestInfo, sizeof(TransQuestInfo.QuestInfo));
 								}
 							}
 						}
@@ -565,7 +568,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 			if (db->Prepare("SELECT * FROM Complete WHERE PlayerName=?"))
 			{
 				char playerName[32];
-				wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+				wsprintf(playerName, "%s", lpPlayInfo->getName());
 
 				db->BindInputParameter(playerName, 1, PARAMTYPE_String);
 				if (db->Execute(false))
@@ -615,7 +618,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 									lpPlayInfo->lpsmSock->Send((char*)&TransQuestInfo, TransQuestInfo.size, TRUE);
 
 									TransQuestInfo.QuestCount = 0;
-									ZeroMemory(&TransQuestInfo.QuestInfo, sizeof(sNEW_QUEST_INFO) * 58);
+									ZeroMemory(TransQuestInfo.QuestInfo, sizeof(TransQuestInfo.QuestInfo));
 								}
 							}
 						}
@@ -646,7 +649,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 									lpPlayInfo->lpsmSock->Send((char*)&TransQuestInfo, TransQuestInfo.size, TRUE);
 
 									TransQuestInfo.QuestCount = 0;
-									ZeroMemory(&TransQuestInfo.QuestInfo, sizeof(sNEW_QUEST_INFO) * 58);
+									ZeroMemory(TransQuestInfo.QuestInfo, sizeof(TransQuestInfo.QuestInfo));
 								}
 							}
 						}
@@ -677,7 +680,7 @@ void cQUESTHANDLER::GetSpoilerInfo(rsPLAYINFO* lpPlayInfo, int SpoilerNum)
 									lpPlayInfo->lpsmSock->Send((char*)&TransQuestInfo, TransQuestInfo.size, TRUE);
 
 									TransQuestInfo.QuestCount = 0;
-									ZeroMemory(&TransQuestInfo.QuestInfo, sizeof(sNEW_QUEST_INFO) * 58);
+									ZeroMemory(TransQuestInfo.QuestInfo, sizeof(TransQuestInfo.QuestInfo));
 								}
 							}
 						}
@@ -716,7 +719,7 @@ void cQUESTHANDLER::GetQuestInfo(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestK
 		if (db->Open())
 		{
 			char playerName[32];
-			wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+			wsprintf(playerName, "%s", lpPlayInfo->getName());
 
 			if (db->Prepare("SELECT * FROM RepeatedQuest WHERE QuestID=?"))
 			{
@@ -829,7 +832,8 @@ void cQUESTHANDLER::GetQuestInfo(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestK
 				db->BindInputParameter(playerName, 2, PARAMTYPE_String);
 				if (db->Execute())
 				{
-					db->GetData(&TransQuestInfo.EndTime, sizeof(SYSTEMTIME), 5, PARAMTYPE_Time);
+					SYSTEMTIME questEndTime = {};
+                                    db->GetData(&questEndTime, sizeof(questEndTime), 5, PARAMTYPE_Time);
 				}
 			}*/
 
@@ -841,7 +845,7 @@ void cQUESTHANDLER::GetQuestInfo(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestK
 		if (db->Open())
 		{
 			char playerName[32];
-			wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+			wsprintf(playerName, "%s", lpPlayInfo->getName());
 
 			if (db->Prepare("SELECT * FROM DailyQuest WHERE QuestID=?"))
 			{
@@ -954,7 +958,8 @@ void cQUESTHANDLER::GetQuestInfo(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestK
 				db->BindInputParameter(playerName, 2, PARAMTYPE_String);
 				if (db->Execute())
 				{
-					db->GetData(&TransQuestInfo.EndTime, sizeof(SYSTEMTIME), 5, PARAMTYPE_Time);
+					SYSTEMTIME questEndTime = {};
+                                    db->GetData(&questEndTime, sizeof(questEndTime), 5, PARAMTYPE_Time);
 				}
 			}
 
@@ -1007,7 +1012,7 @@ void cQUESTHANDLER::GetQuestInfo(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestK
 					if (db->Prepare("SELECT * FROM MonsterKilled WHERE PlayerName=? AND MonsterName=? AND QuestType=? AND QuestKind=? AND QuestID=? AND QuestMap=?"))
 					{
 						char playerName[32];
-						wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+						wsprintf(playerName, "%s", lpPlayInfo->getName());
 
 						db->BindInputParameter(playerName, 1, PARAMTYPE_String);
 						db->BindInputParameter(TransQuestInfo.MonsterNames[i], 2, PARAMTYPE_String);
@@ -1074,7 +1079,7 @@ void cQUESTHANDLER::GetQuestInfo(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestK
 			}
 
 			char playerName[32];
-			wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+			wsprintf(playerName, "%s", lpPlayInfo->getName());
 
 			if (db->Prepare("SELECT * FROM Complete WHERE QuestType=? AND QuestKind=9 AND PlayerName=? ORDER BY EndDate DESC"))
 			{
@@ -1082,7 +1087,8 @@ void cQUESTHANDLER::GetQuestInfo(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestK
 				db->BindInputParameter(playerName, 2, PARAMTYPE_String);
 				if (db->Execute())
 				{
-					db->GetData(&TransQuestInfo.EndTime, sizeof(SYSTEMTIME), 5, PARAMTYPE_Time);
+					SYSTEMTIME questEndTime = {};
+                                    db->GetData(&questEndTime, sizeof(questEndTime), 5, PARAMTYPE_Time);
 				}
 			}
 
@@ -1106,7 +1112,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 			if (db->Prepare("IF EXISTS(SELECT * FROM RepeatedQuest WHERE QuestID=?) BEGIN INSERT INTO Progress VALUES (?, ?, ?, ?, GETDATE()) END"))
 			{
 				char playerName[32];
-				wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+				wsprintf(playerName, "%s", lpPlayInfo->getName());
 
 				db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
 				db->BindInputParameter(&QuestID, 2, PARAMTYPE_Integer);
@@ -1172,7 +1178,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 			if (db->Prepare("IF EXISTS(SELECT * FROM DailyQuest WHERE QuestID=?) BEGIN INSERT INTO Progress VALUES (?, ?, ?, ?, GETDATE()) END"))
 			{
 				char playerName[32];
-				wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+				wsprintf(playerName, "%s", lpPlayInfo->getName());
 
 				db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
 				db->BindInputParameter(&QuestID, 2, PARAMTYPE_Integer);
@@ -1238,7 +1244,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 			if (db->Prepare("IF EXISTS(SELECT * FROM SingleQuest WHERE QuestID=?) BEGIN INSERT INTO Progress VALUES (?, ?, ?, ?, GETDATE()) END"))
 			{
 				char playerName[32];
-				wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+				wsprintf(playerName, "%s", lpPlayInfo->getName());
 
 				db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
 				db->BindInputParameter(&QuestID, 2, PARAMTYPE_Integer);
@@ -1311,7 +1317,7 @@ void cQUESTHANDLER::CancelQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKi
 	if (db->Open())
 	{
 		char playerName[32];
-		wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+		wsprintf(playerName, "%s", lpPlayInfo->getName());
 		if (db->Prepare("DELETE FROM Progress WHERE QuestID=? AND QuestKind=? AND QuestType=? AND PlayerName=?"))
 		{
 			db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
@@ -1358,7 +1364,7 @@ void SendPostBox(char* szID, char* szItemCode, int spec)
 		int FileLength = GetFileSize(hFile, NULL);
 		SetFilePointer(hFile, FileLength, NULL, FILE_BEGIN);
 
-		sprintf_s(strBuff, "* %s %d /"Shop/"/r/n", szItemCode, spec);
+		sprintf_s(strBuff, "* %s %d \"Shop\"\r\n", szItemCode, spec);
 		WriteFile(hFile, strBuff, lstrlen(strBuff), &dwAcess, NULL);
 		CloseHandle(hFile);
 	}
@@ -1374,7 +1380,7 @@ void cQUESTHANDLER::GetReward(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind
 		if (db->Prepare("SELECT * FROM Progress WHERE QuestID=? AND QuestKind=? AND QuestType=? AND PlayerName=?"))
 		{
 			char playerName[32];
-			wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+			wsprintf(playerName, "%s", lpPlayInfo->getName());
 
 			db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
 			db->BindInputParameter(&QuestKind, 2, PARAMTYPE_Integer);
@@ -1417,7 +1423,7 @@ void cQUESTHANDLER::GetReward(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind
 					if (isComplete)
 					{
 						char playerID[32];
-						wsprintf(playerID, "%s", lpPlayInfo->getAccount().c_str());
+						wsprintf(playerID, "%s", lpPlayInfo->getAccount());
 
 						if (db->Prepare("DELETE FROM Progress WHERE QuestID=? AND QuestKind=? AND QuestType=? AND PlayerName=?"))
 						{
@@ -1556,7 +1562,7 @@ bool cQUESTHANDLER::inQuest(rsPLAYINFO* lpPlayInfo, smCHAR* lpChar)
 		if (db->Prepare("SELECT * FROM MonsterKilled WHERE PlayerName=? AND (MonsterName=? OR QuestMap=?) AND PartyFlag=1"))
 		{
 			char playerName[32];
-			wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+			wsprintf(playerName, "%s", lpPlayInfo->getName());
 
 			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
 			db->BindInputParameter(lpChar->smCharInfo.szName, 2, PARAMTYPE_String);
@@ -1590,7 +1596,7 @@ void cQUESTHANDLER::VerifyLevel(rsPLAYINFO* lpPlayInfo)
 		if (db->Prepare("SELECT * FROM Progress WHERE PlayerName=?"))
 		{
 			char playerName[32];
-			wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+			wsprintf(playerName, "%s", lpPlayInfo->getName());
 			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
 			if (db->Execute(false))
 			{
@@ -1659,7 +1665,7 @@ bool cQUESTHANDLER::KillMonster(rsPLAYINFO* lpPlayInfo, smCHAR* lpChar, int Part
 	if (db->Open())
 	{
 		char playerName[32];
-		wsprintf(playerName, "%s", lpPlayInfo->getName().c_str());
+		wsprintf(playerName, "%s", lpPlayInfo->getName());
 
 		char* szBuff = "SELECT * FROM MonsterKilled WHERE PlayerName=? AND ((MonsterName=? AND QuestMap=-1) OR (QuestMap=?)) AND Killed < Count";
 		if (PartyFlag)
@@ -1746,7 +1752,7 @@ void cQUESTHANDLER::DebugQuest(rsPLAYINFO* player, int QuestID)
 	if (db->Open())
 	{
 		char playerName[32] = { 0 };
-		wsprintf(playerName, "%s", player->getName().c_str());
+		wsprintf(playerName, "%s", player->getName());
 
 		if (db->Prepare("DELETE FROM Progress Where QuestID=? And  PlayerName = ?"))
 		{

@@ -1,3 +1,4 @@
+#include <cstring>
 #include <windows.h>
 #include <io.h>
 #include <stdio.h>         
@@ -20,6 +21,7 @@
 #include "../playsub.h"
 
 #include "DllServer.h"
+#include "../opcodes.h"
 #include "onserver.h"
 #include "Priston/Login.h"
 
@@ -782,9 +784,9 @@ DWORD WINAPI LogSqlDataThreadProc(void *pInfo)
 						for(cnt = 0; cnt < CONNECTMAX; cnt++)
 						{
 							//if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].username[0] && rsPlayInfo[cnt].dwCode_ID == dwIdCode)
-							if(rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].getAccount().size() && rsPlayInfo[cnt].dwCode_ID == dwIdCode)
+							if(rsPlayInfo[cnt].lpsmSock && strlen(rsPlayInfo[cnt].getAccount()) && rsPlayInfo[cnt].dwCode_ID == dwIdCode)
 							{
-								if(lstrcmpi(logSqlData2.szUserID, rsPlayInfo[cnt].getAccount().c_str()) == 0)
+								if(lstrcmpi(logSqlData2.szUserID, rsPlayInfo[cnt].getAccount()) == 0)
 								{
 
 									rsPlayInfo[cnt].GpCode = GpCode;
@@ -1277,7 +1279,7 @@ int	bSql_PCUse(rsPLAYINFO *lpPlayInfo)
 	LogSqlData[cnt].dwRecCode = BILLING_SQL_PCUSE;
 
 	//strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getUsername().c_str());
-	strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getAccount().c_str());
+	strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getAccount());
 	strcpy_s(LogSqlData[cnt].szGPCode, lpPlayInfo->szGPCode);
 	strcpy_s(LogSqlData[cnt].szIP, lpPlayInfo->lpsmSock->szIPAddr);
 	strcpy_s(LogSqlData[cnt].szGuid, lpPlayInfo->szGuid);
@@ -1315,7 +1317,7 @@ int	bUrs_Expined(rsPLAYINFO *lpPlayInfo)
 	LogSqlData[cnt].dwRecCode = BILLING_URS_EXPINED;
 
 	//strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getUsername().c_str());
-	strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getAccount().c_str());
+	strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getAccount());
 	strcpy_s(LogSqlData[cnt].szIP, lpPlayInfo->lpsmSock->szIPAddr);
 
 
@@ -1352,7 +1354,7 @@ int	bSql_PCSearchReserv(rsPLAYINFO *lpPlayInfo)
 	LogSqlData[cnt].dwRecCode = BILLING_SQL_PC_SRESERV;
 
 	//strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getUsername().c_str());
-	strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getAccount().c_str());
+	strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getAccount());
 	strcpy_s(LogSqlData[cnt].szGPCode, lpPlayInfo->szGPCode);
 	strcpy_s(LogSqlData[cnt].szIP, lpPlayInfo->lpsmSock->szIPAddr);
 	strcpy_s(LogSqlData[cnt].szGuid, lpPlayInfo->szGuid);
@@ -1417,7 +1419,7 @@ int	bSql_EventLogon(rsPLAYINFO *lpPlayInfo)
 	LogSqlData[cnt].dwRecCode = BILLING_SQL_EVENT_LOGIN;
 
 	//strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getUsername().c_str());
-	strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getAccount().c_str());
+	strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getAccount());
 	strcpy_s(LogSqlData[cnt].szIP, lpPlayInfo->lpsmSock->szIPAddr);
 
 
@@ -1452,8 +1454,8 @@ int	bSql_EventLogOut(rsPLAYINFO *lpPlayInfo)
 
 	//strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getUsername().c_str());
 	//strcpy_s(LogSqlData[cnt].szCharName, lpPlayInfo->getPassword().c_str());
-	strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogSqlData[cnt].szCharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getAccount());
+	strcpy_s(LogSqlData[cnt].szCharName, lpPlayInfo->getName());
 	strcpy_s(LogSqlData[cnt].szGuid, lpPlayInfo->szGuid);
 	strcpy_s(LogSqlData[cnt].szGPCode, lpPlayInfo->szGPCode);
 
@@ -1540,7 +1542,7 @@ int	bSql_PCRNoReservProduct(rsPLAYINFO *lpPlayInfo)
 	LogSqlData[cnt].dwRecCode = BILLING_SQL_PC_TIME;
 
 	//strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getUsername().c_str());
-	strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getAccount().c_str());
+	strcpy_s(LogSqlData[cnt].szUserID, lpPlayInfo->getAccount());
 	strcpy_s(LogSqlData[cnt].szGPCode, lpPlayInfo->szGPCode);
 	strcpy_s(LogSqlData[cnt].szIP, lpPlayInfo->lpsmSock->szIPAddr);
 
@@ -1566,8 +1568,8 @@ int	bSql_SODRecord(rsPLAYINFO *lpPlayInfo, int Level, int SodScore, int SodKillC
 
 	lpPlayInfo->szGPCode[15] = 0;
 
-	strcpy_s(sEventData.szID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(sEventData.szName, lpPlayInfo->getName().c_str());
+	strcpy_s(sEventData.szID, lpPlayInfo->getAccount());
+	strcpy_s(sEventData.szName, lpPlayInfo->getName());
 	strcpy_s(sEventData.szGPCode, lpPlayInfo->szGPCode);
 	strcpy_s(sEventData.szIP, lpPlayInfo->lpsmSock->szIPAddr);
 
@@ -1596,8 +1598,8 @@ int	bSql_StarPoint(rsPLAYINFO *lpPlayInfo, int StarPoint, int CashFlag)
 
 	lpPlayInfo->szGPCode[15] = 0;
 
-	strcpy_s(sEventData.szID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(sEventData.szName, lpPlayInfo->getName().c_str());
+	strcpy_s(sEventData.szID, lpPlayInfo->getAccount());
+	strcpy_s(sEventData.szName, lpPlayInfo->getName());
 	strcpy_s(sEventData.szGPCode, lpPlayInfo->szGPCode);
 	strcpy_s(sEventData.szIP, lpPlayInfo->lpsmSock->szIPAddr);
 
@@ -1626,8 +1628,8 @@ int	bSql_PollRecord(rsPLAYINFO *lpPlayInfo, int PollKind, int PollCount, BYTE *P
 
 	lpPlayInfo->szGPCode[15] = 0;
 
-	strcpy_s(sEventData.szID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(sEventData.szName, lpPlayInfo->getName().c_str());
+	strcpy_s(sEventData.szID, lpPlayInfo->getAccount());
+	strcpy_s(sEventData.szName, lpPlayInfo->getName());
 	strcpy_s(sEventData.szGPCode, lpPlayInfo->szGPCode);
 	strcpy_s(sEventData.szIP, lpPlayInfo->lpsmSock->szIPAddr);
 
@@ -1660,8 +1662,8 @@ int	bSql_EventJoin(rsPLAYINFO *lpPlayInfo)
 
 	lpPlayInfo->szGPCode[15] = 0;
 
-	strcpy_s(sEventData.szID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(sEventData.szName, lpPlayInfo->getName().c_str());
+	strcpy_s(sEventData.szID, lpPlayInfo->getAccount());
+	strcpy_s(sEventData.szName, lpPlayInfo->getName());
 	strcpy_s(sEventData.szGPCode, lpPlayInfo->szGPCode);
 	strcpy_s(sEventData.szIP, lpPlayInfo->lpsmSock->szIPAddr);
 
@@ -1681,8 +1683,8 @@ int	bSql_ClanMoney(rsPLAYINFO *lpPlayInfo, int Cash, int CashFlag, int Kind)
 
 	lpPlayInfo->szGPCode[15] = 0;
 
-	strcpy_s(sEventData.szID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(sEventData.szName, lpPlayInfo->getName().c_str());
+	strcpy_s(sEventData.szID, lpPlayInfo->getAccount());
+	strcpy_s(sEventData.szName, lpPlayInfo->getName());
 	strcpy_s(sEventData.szGPCode, lpPlayInfo->szGPCode);
 	strcpy_s(sEventData.szIP, lpPlayInfo->lpsmSock->szIPAddr);
 
@@ -1730,8 +1732,8 @@ int	bSql_GiveMoney(rsPLAYINFO *lpPlayInfo, int Money)
 
 	lpPlayInfo->szGPCode[15] = 0;
 
-	strcpy_s(sEventData.szID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(sEventData.szName, lpPlayInfo->getName().c_str());
+	strcpy_s(sEventData.szID, lpPlayInfo->getAccount());
+	strcpy_s(sEventData.szName, lpPlayInfo->getName());
 	strcpy_s(sEventData.szGPCode, lpPlayInfo->szGPCode);
 	strcpy_s(sEventData.szIP, lpPlayInfo->lpsmSock->szIPAddr);
 
@@ -1767,8 +1769,8 @@ int	bClan_UserTicket(rsPLAYINFO *lpPlayInfo, int gubun)
 		return NULL;
 	}
 
-	strcpy_s(sClanEvent.szID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(sClanEvent.szName, lpPlayInfo->getName().c_str());
+	strcpy_s(sClanEvent.szID, lpPlayInfo->getAccount());
+	strcpy_s(sClanEvent.szName, lpPlayInfo->getName());
 	strcpy_s(sClanEvent.szIP, lpPlayInfo->lpsmSock->szIPAddr);
 
 	if(gubun == 0)
@@ -1798,8 +1800,8 @@ int	bClan_InsertPoint(rsPLAYINFO *lpPlayInfo, int point)
 
 	if(!BillSql.hClanDLL || !BillSql.GetTicket) return NULL;
 
-	strcpy_s(sClanEvent.szID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(sClanEvent.szName, lpPlayInfo->getName().c_str());
+	strcpy_s(sClanEvent.szID, lpPlayInfo->getAccount());
+	strcpy_s(sClanEvent.szName, lpPlayInfo->getName());
 	strcpy_s(sClanEvent.szIP, lpPlayInfo->lpsmSock->szIPAddr);
 
 	sClanEvent.TicketNum = lpPlayInfo->ClanTicketCode;
@@ -1815,8 +1817,8 @@ int	bClan_GetClanMarkCode(rsPLAYINFO *lpPlayInfo)
 
 	if(!BillSql.hClanDLL || !BillSql.ClanUserMarkNum) return NULL;
 
-	strcpy_s(sClanEvent.szID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(sClanEvent.szName, lpPlayInfo->getName().c_str());
+	strcpy_s(sClanEvent.szID, lpPlayInfo->getAccount());
+	strcpy_s(sClanEvent.szName, lpPlayInfo->getName());
 	strcpy_s(sClanEvent.szIP, lpPlayInfo->lpsmSock->szIPAddr);
 
 	sClanEvent.Param[0] = 0;

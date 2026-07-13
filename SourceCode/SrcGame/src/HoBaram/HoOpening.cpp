@@ -15,6 +15,7 @@
 #include "File/File.h"
 #include "Login/Login.h"
 #include "cSettingsWindow.h"
+#include <stdarg.h>
 
 
 extern int			iSettingsBg;
@@ -39,6 +40,22 @@ extern BOOL	   WaveCameraFlag;
 
 char	UserAccount[ACCOUNT_SIZE];
 char	UserPassword[PASSWORD_SIZE];
+
+
+static void MINGW_LoginTrace(const char* fmt, ...)
+{
+    FILE* f = fopen("mingw_login_thread.txt", "a");
+    if (!f) return;
+
+    va_list args;
+    va_start(args, fmt);
+    vfprintf(f, fmt, args);
+    fprintf(f, "\n");
+    va_end(args);
+
+    fflush(f);
+    fclose(f);
+}
 
 HoOpening::HoOpening()
 {
@@ -793,8 +810,10 @@ int HoOpening::Draw()
 				{
 					if (LoginInputState == 1)
 					{
+						MINGW_LoginTrace("CLICK_PLAY before LoginDataServer user=%s LoginInputState=%d StartConnectServerFlag=%d ConnectError=%d", UserAccount, LoginInputState, StartConnectServerFlag, ConnectError);
 						CurrentWorkState = STATE_LOGIN_INPUT;
 						LoginDataServer();
+						MINGW_LoginTrace("CLICK_PLAY after LoginDataServer");
 						LoginInputState = 0;
 						SetWindowText(hFocusWnd, UserAccount);
 						SendMessage(hTextWnd, EM_SETSEL, lstrlen(UserAccount), lstrlen(UserAccount) + 1);
@@ -969,11 +988,14 @@ HANDLE	hHoLoginThread = 0;
 
 DWORD WINAPI HoLoginThreadProc(void* pInfo)
 {
+	MINGW_LoginTrace("ENTER HoLoginThreadProc");
 	HoOpening* lpHoOpening = (HoOpening*)pInfo;
 
 	if (!smWsockDataServer)
 	{
-		ConnectServer_InfoMain();
+		MINGW_LoginTrace("before ConnectServer_InfoMain");
+	ConnectServer_InfoMain();
+	MINGW_LoginTrace("after ConnectServer_InfoMain smWsockDataServer=%p", smWsockDataServer);
 
 		if (smWsockDataServer)
 		{
@@ -991,11 +1013,15 @@ DWORD WINAPI HoLoginThreadProc(void* pInfo)
 				memcpy(UserPassword, HoCommandInfo.Pass, strlen(HoCommandInfo.Pass));
 			}
 
-			LoginResult result = requestLogin(UserAccount, UserPassword);
+			LoginResult result = MINGW_LoginTrace("before requestLogin user=%s", UserAccount);
+	requestLogin(UserAccount, UserPassword);
+	MINGW_LoginTrace("after requestLogin");
 
 			if (result != LoginResult::OK)
 			{
-				DisconnectServerFull();
+				MINGW_LoginTrace("before DisconnectServerFull");
+	DisconnectServerFull();
+	MINGW_LoginTrace("after DisconnectServerFull");
 				lpHoOpening->ConnectError = ERROR_NO_VERSION;
 				lpHoOpening->StartConnectServerFlag = FALSE;
 				GameErrorValue = -1;
@@ -1011,16 +1037,19 @@ DWORD WINAPI HoLoginThreadProc(void* pInfo)
 	hHoLoginThread = 0;
 
 	ExitThread(TRUE);
+	MINGW_LoginTrace("LEAVE HoLoginThreadProc return TRUE");
 	return TRUE;
 }
 
 int HoOpening::LoginDataServer()
 {
+	MINGW_LoginTrace("ENTER LoginDataServer");
 	DWORD dwHoLoginThreadId;
 
 	if (!hHoLoginThread)
 	{
-		hHoLoginThread = CreateThread(NULL, 0, HoLoginThreadProc, this, 0, &dwHoLoginThreadId);
+		hHoLoginThread = MINGW_LoginTrace("before CreateThread");
+	CreateThread(NULL, 0, HoLoginThreadProc, this, 0, &dwHoLoginThreadId);
 
 		//PlayWav2(13 - 1);
 		StartConnectServerFlag = TRUE;

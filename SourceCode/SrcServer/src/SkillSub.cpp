@@ -1,3 +1,4 @@
+#include "opcodes.h"
 #include <windows.h>
 
 #include "smLib3d/smd3d.h"

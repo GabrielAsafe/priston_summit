@@ -1,3 +1,4 @@
+#include <cstring>
 
 #define _EVENT_GAME_
 

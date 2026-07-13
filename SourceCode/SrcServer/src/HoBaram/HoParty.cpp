@@ -1,3 +1,4 @@
+#include <cstring>
 
 #include "sinbaram/sinLinkHeader.h"
 #include "../HoBaram/HoLinkHeader.h"
@@ -373,7 +374,7 @@ HoParty::HoParty()
 
 	BmpLifeBlue = NULL;
 	BmpLifeRed = NULL;
-
+	int index;	
 	for(int index = 0; index < 5; index++)
 	{
 		ToolTip[index] = NULL;
@@ -710,7 +711,6 @@ void HoParty::DrawPartyMessage(int x, int y)
 				PartySpotTimer = 0;
 		}
 		renderDevice.EndScene();
-
 
 		HDC hdc = NULL;
 		HFONT oldFont = NULL;
@@ -2512,7 +2512,7 @@ int HoParty_KTJ::Draw()
 
 
 	HFONT oldFont = NULL;
-
+	HDC hdc;
 	if(PmenuN == 1)
 		goto menu_dongru;
 
@@ -2584,7 +2584,7 @@ int HoParty_KTJ::Draw()
 	qNamePosx = BackStartPos.x + 116;
 	qNamePosy = BackStartPos.y + 40;
 	
-	HDC hdc = NULL;
+	hdc = NULL;
 
 	//renderDevice.lpDDSBack->GetDC(&hdc);
 	SetBkMode(hdc, TRANSPARENT);

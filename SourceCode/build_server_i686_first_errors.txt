@@ -1,0 +1,25 @@
+
+===== FAIL: SrcServer/src/Server/OnSever.cpp =====
+SrcServer/src/Server/OnSever.cpp:643:33: error: 'SEND_ALERT' was not declared in this scope
+SrcServer/src/Server/OnSever.cpp:672:33: error: 'SEND_ALERT' was not declared in this scope
+SrcServer/src/Server/OnSever.cpp:833:22: error: 'SERVER_TCP_PORT' was not declared in this scope
+SrcServer/src/Server/OnSever.cpp:1759:39: error: 'OPCODE_AGING_FREE' was not declared in this scope; did you mean 'OpCode::OPCODE_AGING_FREE'?
+SrcServer/src/Server/OnSever.cpp:1770:41: error: 'SEND_ALERT' was not declared in this scope
+SrcServer/src/Server/OnSever.cpp:1785:39: error: 'OPCODE_AGING_FREE' was not declared in this scope; did you mean 'OpCode::OPCODE_AGING_FREE'?
+SrcServer/src/Server/OnSever.cpp:1797:41: error: 'SEND_ALERT' was not declared in this scope
+SrcServer/src/Server/OnSever.cpp:6876:71: error: 'PLAYER_TOP_LEVEL' is not a member of 'OpCode'
+SrcServer/src/Server/OnSever.cpp:6879:49: error: 'class rsPLAYINFO' has no member named 'topLevelFlag'
+SrcServer/src/Server/OnSever.cpp:6884:63: error: 'PLAYER_TOP_LEVEL' is not a member of 'OpCode'
+SrcServer/src/Server/OnSever.cpp:9520:9: error: 'smTRANS_QCOMMAND' was not declared in this scope; did you mean 'smTRANS_COMMAND'?
+SrcServer/src/Server/OnSever.cpp:9796:35: error: 'class rsPLAYINFO' has no member named 'topLevelFlag'
+SrcServer/src/Server/OnSever.cpp:11970:25: error: 'class rsPLAYINFO' has no member named 'dwPrimeItem_NextSetTime_T'; did you mean 'dwPrimeItem_NextSetTime'?
+SrcServer/src/Server/OnSever.cpp:11972:33: error: 'class rsPLAYINFO' has no member named 'dwPrimeItem_NextSetTime_T'; did you mean 'dwPrimeItem_NextSetTime'?
+SrcServer/src/Server/OnSever.cpp:11979:37: error: 'class rsPLAYINFO' has no member named 'dwPrimeItem_NextSetTime_T'; did you mean 'dwPrimeItem_NextSetTime'?
+SrcServer/src/Server/OnSever.cpp:11984:29: error: 'class rsPLAYINFO' has no member named 'dwPrimeItem_NextSetTime_T'; did you mean 'dwPrimeItem_NextSetTime'?
+SrcServer/src/Server/OnSever.cpp:12031:17: error: 'TRANS_PREMIUM_TIME' was not declared in this scope
+SrcServer/src/Server/OnSever.cpp:12033:17: error: 'PremiumTime' was not declared in this scope; did you mean 'nsPremiumItem'?
+SrcServer/src/Server/OnSever.cpp:12271:35: error: 'LOG_SERVER' was not declared in this scope; did you mean 'OS_SERVER'?
+SrcServer/src/Server/OnSever.cpp:12271:25: error: 'Utils_Log' was not declared in this scope
+
+===== FAIL: SrcServer/src/sinbaram/sinTrade.cpp =====
+SrcServer/src/sinbaram/sinTrade.cpp:163:1: error: too many initializers for 'DWORD [8]' {aka 'long unsigned int [8]'}

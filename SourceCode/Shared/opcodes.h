@@ -1,5 +1,7 @@
 #pragma once
 namespace OpCode {
+    static const int PLAYER_TOP_LEVEL = 0x4847900C;
+
     // TEMP_MINGW_COMPAT: valor provisório. Validar contra servidor/protocolo real.
     static const int FIND_CHEAT = 0x4847900B;
 

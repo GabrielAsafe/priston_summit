@@ -1,3 +1,4 @@
+#include <cstring>
 #include "smLib3d/smd3d.h"
 #include "smwsock.h"
 

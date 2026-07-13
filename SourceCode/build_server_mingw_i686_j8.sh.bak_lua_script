@@ -1,0 +1,152 @@
+#!/usr/bin/env bash
+set -u
+
+BUILD_DIR="build_mingw_server_i686"
+OBJ_LIST="object_files_server_mingw.txt"
+CPP_LIST="cpp_files_server_i686.txt"
+LOG="build_server_i686_compile_errors.log"
+
+CXX=i686-w64-mingw32-g++
+JOBS="${JOBS:-8}"
+
+CXXFLAGS=(
+  -m32
+  -std=gnu++14
+  -fpermissive
+  -w
+  -DWIN32
+  -D_WINDOWS
+  -D_M_IX86
+  -Di386
+  -D__i386__
+  -D__in=
+  -D__out=
+  -D__in_opt=
+  -D__out_opt=
+  '-D__in_ecount(x)='
+  '-D__out_ecount(x)='
+  '-D__in_ecount_opt(x)='
+  '-D__out_ecount_opt(x)='
+  '-DSAL__in_ecount_opt(x)='
+  '-D__in_bcount(x)='
+  '-D__out_bcount(x)='
+  '-D__in_bcount_opt(x)='
+  '-D__out_bcount_opt(x)='
+  '-D__deref_out_bcount(x)='
+  '-D__deref_out_bcount_opt(x)='
+  -D__inout=
+  -D__inout_opt=
+
+  -I.
+  -ISrcServer/src
+  -ISrcServer/src/sinbaram
+  -ISrcServer/src/Skills
+  -ISrcServer/src/HoBaram/NewEffect/Script
+  -ISrcServer/src/HoBaram/NewEffect/Script/lua
+  -ISrcGame/src/Library/LuaSrc
+  -ISrcGame/src/Library/LuaSrc/Lua
+  -ISrcServer/src/HoBaram/NewEffect/Script/lua
+  -ISrcGame/src
+  -IShared
+  -IShared2
+  -Imodules
+  -Imodules/File
+  -I"Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Include"
+)
+
+export BUILD_DIR LOG CXX
+
+rm -rf "$BUILD_DIR"
+mkdir -p "$BUILD_DIR"
+
+find SrcServer/src modules \
+  -type f \( -iname "*.cpp" -o -iname "*.CPP" -o -iname "*.c" \) \
+  | grep -Eiv 'AntiCheat|Lua\.bak|\.bak|bak_|corrupt|/lua/lua\.c|/luac/|ltests\.c' \
+  | sort > "$CPP_LIST"
+
+cat >> "$CPP_LIST" <<'LISTEOF'
+SrcServer/src/Winmain.cpp
+SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp
+SrcServer/src/TJBOY/Ygy/Process/Process.cpp
+SrcServer/src/TJBOY/Ygy/Util.cpp
+SrcServer/src/TJBOY/Ygy/memmap/memmap.cpp
+SrcServer/src/sinbaram/sinInvenTory.cpp
+SrcServer/src/sinbaram/sinSkill.cpp
+SrcServer/src/sinbaram/sinSkill_Info.cpp
+SrcServer/src/sinbaram/SkillFunction/Morayion.cpp
+SrcServer/src/sinbaram/SkillFunction/Tempskron.cpp
+LISTEOF
+
+sort -u "$CPP_LIST" -o "$CPP_LIST"
+
+# Guarda flags em ficheiro para evitar problemas de quoting dentro do parallel.
+FLAGS_FILE="$BUILD_DIR/cxxflags.txt"
+: > "$FLAGS_FILE"
+for f in "${CXXFLAGS[@]}"; do
+  printf '%s\n' "$f" >> "$FLAGS_FILE"
+done
+export FLAGS_FILE
+
+echo "Total CPP servidor:"
+wc -l "$CPP_LIST"
+echo "Compilando com JOBS=$JOBS"
+
+: > "$LOG"
+
+compile_one() {
+  src="$1"
+  obj="$BUILD_DIR/$(echo "$src" | sed 's#[/ ]#_#g; s#\.[^.]*$#.o#')"
+  tmp="$BUILD_DIR/$(echo "$src" | sed 's#[/ ]#_#g; s#\.[^.]*$#.err#')"
+
+  mapfile -t FLAGS < "$FLAGS_FILE"
+
+  "$CXX" "${FLAGS[@]}" -c "$src" -o "$obj" > "$tmp" 2>&1
+  rc=$?
+
+  if [ $rc -ne 0 ]; then
+    {
+      echo "===== FAIL: $src ====="
+      cat "$tmp"
+      echo
+    } >> "$LOG"
+    rm -f "$obj"
+    echo "FAIL: $src"
+  else
+    rm -f "$tmp"
+    echo "OK: $src"
+  fi
+
+  return $rc
+}
+export -f compile_one
+
+if command -v parallel >/dev/null 2>&1; then
+  parallel -j"$JOBS" --bar compile_one :::: "$CPP_LIST"
+else
+  echo "ERRO: GNU parallel não encontrado. Instala com: sudo apt install parallel"
+  exit 1
+fi
+
+find "$BUILD_DIR" -type f -name "*.o" | sort > "$OBJ_LIST"
+
+TOTAL=$(wc -l < "$CPP_LIST")
+OK=$(wc -l < "$OBJ_LIST")
+FAIL=$((TOTAL - OK))
+
+echo
+echo "Objetos encontrados:"
+wc -l "$OBJ_LIST"
+
+echo "Winmain:"
+find "$BUILD_DIR" -iname "*Winmain*.o"
+
+echo "Packet:"
+find "$BUILD_DIR" -iname "*Packet*.o"
+
+echo
+echo "Resumo: OK=$OK FAIL=$FAIL TOTAL=$TOTAL"
+
+if [ "$FAIL" -ne 0 ]; then
+  echo "Alguns CPP falharam. Erros:"
+  grep -Ei "error:|fatal:" "$LOG" | tail -200 || true
+fi

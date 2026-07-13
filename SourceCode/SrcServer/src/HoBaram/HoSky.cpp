@@ -1,3 +1,4 @@
+#include <cstring>
 
 #include "../HoBaram/HoLinkHeader.h"
 #include "../field.h"

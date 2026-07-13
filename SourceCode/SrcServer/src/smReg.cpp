@@ -1,3 +1,4 @@
+#include <cstring>
 #include <windows.h>
 
 #include "smreg.h"
@@ -122,7 +123,7 @@ static int SaveRegFile()
 	for(int cnt = 0; cnt < smRegBuff.nCount; cnt++)
 	{
 
-		wsprintf(line, "/"%s/" /"%s/"/r/n", smRegBuff.RegString[cnt].szRegPath, smRegBuff.RegString[cnt].szRegString);
+		wsprintf(line, "\"%s\" \"%s\"\r\n", smRegBuff.RegString[cnt].szRegPath, smRegBuff.RegString[cnt].szRegString);
 		fwrite(line, lstrlen(line), 1, fp);
 
 	}

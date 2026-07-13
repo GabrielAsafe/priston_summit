@@ -1,3 +1,6 @@
+#include "server_build_compat.h"
+#include <cstring>
+#include "opcodes.h"
 
 
 #include "smLib3d/smd3d.h"

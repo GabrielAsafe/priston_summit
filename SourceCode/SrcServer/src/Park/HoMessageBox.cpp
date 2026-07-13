@@ -1,3 +1,4 @@
+#include <cstring>
 #include "sinbaram/sinLinkHeader.h"
 #include "../HoBaram/HoLinkHeader.h"
 

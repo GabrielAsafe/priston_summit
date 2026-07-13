@@ -71,7 +71,6 @@ struct sCRAFTITEM_SERVER
 
 struct sCRAFTITEM_INFO
 {
-	int iMixType;
 	DWORD MainItemCode[8];
 	int AddItem[19];
 	int PlusElementCode[8];

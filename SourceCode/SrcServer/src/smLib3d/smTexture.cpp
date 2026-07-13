@@ -1,3 +1,4 @@
+#include <cstring>
 #include "smd3d.h"
 #include <io.h>
 

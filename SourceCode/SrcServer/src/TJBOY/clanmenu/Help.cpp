@@ -1,3 +1,4 @@
+#include <cstring>
 #define LEVELUP_HELP_CPP
 #include <windows.h>
 #include <tchar.h>

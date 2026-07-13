@@ -1,8 +1,29 @@
+#include "opcodes.h"
 #include "sinbaram/sinLinkHeader.h"
 #include "cRestaureHandler.h"
 #include "Database/Database.h"
 #include "Server/onserver.h"
 #include "CoinShop.h"
+
+#ifndef SUMMIT_RESTAURE_LIST_DEFINED
+#define SUMMIT_RESTAURE_LIST_DEFINED
+
+struct RESTAURE_ITEM
+{
+    int CoinPrice;
+    sITEM psItem;
+};
+
+struct RESTAURE_LIST
+{
+    int size;
+    int code;
+    int Count;
+    RESTAURE_ITEM ItemList[15];
+};
+
+#endif
+
 
 cRESTAURE cRestaure;
 
@@ -18,8 +39,8 @@ void cRESTAURE::InsertAgingFailed(rsPLAYINFO* lpPlayInfo, char * ItemName, int I
 		{
 			char playerID[32];
 			char playerName[32];
-			lstrcpy(playerID, lpPlayInfo->getAccount().c_str());
-			lstrcpy(playerName, lpPlayInfo->getName().c_str());
+			lstrcpy(playerID, lpPlayInfo->getAccount());
+			lstrcpy(playerName, lpPlayInfo->getName());
 			db->BindInputParameter(playerID, 1, PARAMTYPE_String);
 			db->BindInputParameter(playerName, 2, PARAMTYPE_String);
 			db->BindInputParameter(ItemName, 3, PARAMTYPE_String);
@@ -45,8 +66,8 @@ void cRESTAURE::RestaureItem(rsPLAYINFO * lpPlayInfo, DWORD Head, DWORD dwChkSum
 		{
 			char playerID[32];
 			char playerName[32];
-			lstrcpy(playerID, lpPlayInfo->getAccount().c_str());
-			lstrcpy(playerName, lpPlayInfo->getName().c_str());
+			lstrcpy(playerID, lpPlayInfo->getAccount());
+			lstrcpy(playerName, lpPlayInfo->getName());
 			db->BindInputParameter(playerID, 1, PARAMTYPE_String);
 			db->BindInputParameter(playerName, 2, PARAMTYPE_String);
 			db->BindInputParameter(&Head, 3, PARAMTYPE_Integer);
@@ -124,8 +145,8 @@ void cRESTAURE::RecvGetRestaure(rsPLAYINFO * lpPlayInfo)
 		{
 			char playerID[32];
 			char playerName[32];
-			lstrcpy(playerID, lpPlayInfo->getAccount().c_str());
-			lstrcpy(playerName, lpPlayInfo->getName().c_str());
+			lstrcpy(playerID, lpPlayInfo->getAccount());
+			lstrcpy(playerName, lpPlayInfo->getName());
 			db->BindInputParameter(playerID, 1, PARAMTYPE_String);
 			db->BindInputParameter(playerName, 2, PARAMTYPE_String);
 			if (db->Execute(false))
@@ -143,10 +164,15 @@ void cRESTAURE::RecvGetRestaure(rsPLAYINFO * lpPlayInfo)
 
 					if (srSetItemFromLogData(&psItem, buff))
 					{
-						memcpy(&restaureList.ItemList[restaureList.Count].sItem, &psItem.ItemInfo, sizeof(sITEMINFO));
-						restaureList.ItemList[restaureList.Count].sItem.ItemHeader.dwTime = 0;
-						restaureList.ItemList[restaureList.Count].sItem.ItemHeader.dwVersion = 0;
-						restaureList.ItemList[restaureList.Count].sItem.dwCreateTime = 0;
+						memcpy(
+							&restaureList.ItemList[restaureList.Count].psItem.sItemInfo,
+							&psItem.ItemInfo,
+							sizeof(sITEMINFO)
+										);
+
+						restaureList.ItemList[restaureList.Count].psItem.sItemInfo.ItemHeader.dwTime = 0;
+						restaureList.ItemList[restaureList.Count].psItem.sItemInfo.ItemHeader.dwVersion = 0;
+						restaureList.ItemList[restaureList.Count].psItem.sItemInfo.dwCreateTime = 0;
 
 						if (psItem.ItemInfo.ItemAgingNum[0] > 0 && psItem.ItemInfo.ItemAgingNum[0] < 8)
 							restaureList.ItemList[restaureList.Count].CoinPrice = 0;

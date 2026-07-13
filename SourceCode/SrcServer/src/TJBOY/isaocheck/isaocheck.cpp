@@ -1,3 +1,4 @@
+#include <cstring>
 #define __ISAOCHECK_CPP__
 #include <winsock2.h>
 #include <windows.h>
@@ -77,7 +78,7 @@ void debug_fd2(char *fmt, ...)
 
 			if (errorMSGdr == 1)
 			{
-				char msg[256] = "../n�޽����� �ʹ��� �߶���";
+				char msg[256] = "../n�޽����� �ʹ��� �߶���";
 				WriteFile(hFile, msg, lstrlen(msg), &dwAcess, NULL);
 			}
 
@@ -102,7 +103,7 @@ void debug_fd2(char *fmt, ...)
 
 		if (errorMSGdr == 1)
 		{
-			char msg[256] = "/n�޽����� �ʹ��� �߶���";
+			char msg[256] = "/n�޽����� �ʹ��� �߶���";
 			WriteFile(hFile, msg, lstrlen(msg), &dwAcess, NULL);
 		}
 
@@ -354,13 +355,14 @@ int ISAOCHECK::connect_WEBdb_BINARY(char *szWriteBuffer, char *szReadBuffer, int
 {
 	struct timeval tmv;
 	struct sockaddr_in server;
-	char Value = '/0';
+	char Value = '\0';
 	char Msg[1024] = "";
 	SOCKET Fd;
 
 	int iLen;
 	int iRet = ISAO_ERR_WINSOCK_NOERR;
 	int iSelectRet;
+	int rcnt = 0;
 
 	fd_set fdset;
 
@@ -421,8 +423,6 @@ int ISAOCHECK::connect_WEBdb_BINARY(char *szWriteBuffer, char *szReadBuffer, int
 	time_t startTime, endTime;
 	time(&startTime);
 
-
-	int rcnt = 0;
 
 	while (true)
 	{
@@ -962,7 +962,7 @@ int ISAOCHECK::isCheckClanMember(char *pszServerName, char *pszUserName)
 	if (strlen(szReadBuffer) > 2048)
 	{
 		szReadBuffer[2048] = 0;
-		debug_fd2("isClanMember() �ʹ��� �߶���.");
+		debug_fd2("isClanMember() �ʹ��� �߶���.");
 	}
 
 	switch (receiveCode)
@@ -1037,7 +1037,7 @@ int ISAOCHECK::isClanMember(char *ClanZang_id, char* gserver, char* ClanZang_Cha
 	if (strlen(szReadBuffer) > 2048)
 	{
 		szReadBuffer[2048] = 0;
-		debug_fd2("isClanMember() �ʹ��� �߶���.");
+		debug_fd2("isClanMember() �ʹ��� �߶���.");
 	}
 
 

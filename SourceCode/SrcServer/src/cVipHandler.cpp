@@ -1,3 +1,5 @@
+#include "server_compat_packets.h"
+#include "opcodes.h"
 #include "Server/onserver.h"
 #include "cVipHandler.h"
 #include "Database/Database.h"
@@ -16,7 +18,7 @@ void cVipHandler::InsertDB(rsPLAYINFO* lpPlayInfo, int IdVip , int time)
 
 		if (db->Prepare(query))
 		{
-			char playerName[32];  lstrcpy(playerName, lpPlayInfo->getName().c_str());
+			char playerName[32];  lstrcpy(playerName, lpPlayInfo->getName());
 			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
 			db->BindInputParameter(&IdVip, 2, PARAMTYPE_Integer);
 			db->Execute(false);
@@ -27,7 +29,6 @@ void cVipHandler::InsertDB(rsPLAYINFO* lpPlayInfo, int IdVip , int time)
 	smTRANS_VIP sPacket;
 	sPacket.code = OpCode::OPCODE_VIP;
 	sPacket.size = sizeof(sPacket);
-	sPacket.Vip = IdVip;
 	sPacket.Ativo = TRUE;
 
 	lpPlayInfo->lpsmSock->Send((char*)&sPacket, sPacket.size, TRUE);
@@ -47,7 +48,7 @@ void cVipHandler::IsVIp(rsPLAYINFO* lpPlayInfo)
 	{
 		if (db->Prepare("DELETE FROM Vip Where PlayerName = ? And GetDate() >= DateEnd"))
 		{
-			char playerName[32];  lstrcpy(playerName, lpPlayInfo->getName().c_str());
+			char playerName[32];  lstrcpy(playerName, lpPlayInfo->getName());
 
 			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
 			db->Execute(false);
@@ -55,7 +56,7 @@ void cVipHandler::IsVIp(rsPLAYINFO* lpPlayInfo)
 
 		if (db->Prepare("SELECT * FROM Vip Where PlayerName = ?"))
 		{
-			char playerName[32];  lstrcpy(playerName, lpPlayInfo->getName().c_str());
+			char playerName[32];  lstrcpy(playerName, lpPlayInfo->getName());
 
 			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
 
@@ -64,7 +65,6 @@ void cVipHandler::IsVIp(rsPLAYINFO* lpPlayInfo)
 
 				db->GetData(&IdVip, 4, 2, PARAMTYPE_Integer);
 
-				sPacket.Vip = IdVip;
 				sPacket.Ativo = TRUE;
 				lpPlayInfo->lpsmSock->Send((char*)&sPacket, sPacket.size, TRUE);
 				SendQuickMessage(lpPlayInfo, "/comandos para ver suas recompensas do VIP.");
@@ -85,7 +85,7 @@ bool cVipHandler::returnVip(rsPLAYINFO* lpPlayInfo)
 
 		if (db->Prepare("SELECT * FROM Vip Where PlayerName = ?"))
 		{
-			char playerName[32];  lstrcpy(playerName, lpPlayInfo->getName().c_str());
+			char playerName[32];  lstrcpy(playerName, lpPlayInfo->getName());
 
 			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
 

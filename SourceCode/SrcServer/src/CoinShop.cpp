@@ -1,3 +1,5 @@
+#include <cstring>
+#include "opcodes.h"
 #include "CoinShop.h"
 
 cCOINSHOP cCoinShop;
@@ -141,7 +143,7 @@ void cCOINSHOP::RecvGetItemShop(rsPLAYINFO* lpPlayInfo, smTRANS_COMMAND * lpTran
 					{
 						TransShopData.Count = itemCount;
 						lpPlayInfo->lpsmSock->Send((char*)&TransShopData, TransShopData.size, TRUE);
-						ZeroMemory(TransShopData.sCompItem, sizeof(sCOMPRESSED) * 15);
+						ZeroMemory(TransShopData.sCompItem, sizeof(TransShopData.sCompItem));
 						itemCount = 0;
 						TransShopData.Count = 0;
 					}
@@ -166,7 +168,7 @@ void cCOINSHOP::RecvGetItemCoin(rsPLAYINFO * lpPlayInfo)
 	if (db->Open())
 	{
 		char playerID[32];
-		wsprintf(playerID, "%s", lpPlayInfo->getAccount().c_str());
+		wsprintf(playerID, "%s", lpPlayInfo->getAccount());
 		if (db->Prepare("IF NOT EXISTS(SELECT * FROM UserInfo WHERE UserID=?) BEGIN INSERT INTO UserInfo VALUES (?, 0, GETDATE()) END"))
 		{ 
 			db->BindInputParameter(playerID, 1, PARAMTYPE_String);
@@ -200,7 +202,7 @@ void cCOINSHOP::RecvBuyShopItem(rsPLAYINFO * lpPlayInfo, smTRANS_BUYSHOP * lpTra
 	{
 		sITEMSHOP* pItemShop = new sITEMSHOP;
 		char playerID[32];
-		wsprintf(playerID, "%s", lpPlayInfo->getAccount().c_str());
+		wsprintf(playerID, "%s", lpPlayInfo->getAccount());
 		if (db->Prepare("SELECT * FROM ItemList WHERE szItemCode=?"))
 		{
 			db->BindInputParameter(lpTransBuy->szItemCode, 1, PARAMTYPE_String);
@@ -262,7 +264,7 @@ void cCOINSHOP::RecvBuyShopItem(rsPLAYINFO * lpPlayInfo, smTRANS_BUYSHOP * lpTra
 								sprintf(szFileName, "COINSHOP_LOG//%d-%d.log", SystemTime.wMonth, SystemTime.wDay);
 								CreateDirectory("COINSHOP_LOG", NULL);
 								sprintf(szLog, "%d:%d:%d - (ID : %s) (Name : %s) buy (Coin : %d) (CODE : %s)/r/n", SystemTime.wHour, SystemTime.wMinute, SystemTime.wSecond,
-									playerID, lpPlayInfo->getName().c_str(), PlayerCoin, lpTransBuy->szItemCode);
+									playerID, lpPlayInfo->getName(), PlayerCoin, lpTransBuy->szItemCode);
 
 								hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 								if (hFile != INVALID_HANDLE_VALUE)
@@ -291,7 +293,7 @@ int cCOINSHOP::GetPlayerCoin(rsPLAYINFO * lpPlayInfo)
 	char playerID[32];
 	int coin;
 
-	lstrcpy(playerID, lpPlayInfo->getAccount().c_str());
+	lstrcpy(playerID, lpPlayInfo->getAccount());
 
 	if (db->Open())
 	{
@@ -322,7 +324,7 @@ void cCOINSHOP::AddPlayerCoin(rsPLAYINFO * lpPlayInfo, int coin)
 	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_CoinShopDB);
 	char playerID[32];
 
-	lstrcpy(playerID, lpPlayInfo->getAccount().c_str());
+	lstrcpy(playerID, lpPlayInfo->getAccount());
 
 	if (db->Open())
 	{

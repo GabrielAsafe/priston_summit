@@ -1,3 +1,5 @@
+#include <cstring>
+#include "../opcodes.h"
 #include <windows.h>
 #include <io.h>
 #include <stdio.h>         

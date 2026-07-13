@@ -1,5 +1,5 @@
 #ifdef _LANGUAGE_BRAZIL
-#include "Language/Brazil/B_ServerMsg.h"
+#include "Language/Brazil/b_ServerMsg.h"
 #endif
 
 

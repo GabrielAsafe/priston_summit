@@ -1,3 +1,5 @@
+#include <cstring>
+#include "opcodes.h"
 //#include "StdAfx.h"
 #include "PacketFilter.h"
 
@@ -146,7 +148,7 @@ void PacketFilter::LogPacket(rsPLAYINFO* Player) const
 		if (LogFile.is_open())
 		{
 			char szBuff[256] = { 0 };
-			sprintf_s(szBuff, "ID( %s ) Name( %s ) IP( %s ) - PacketFiltered( %d - %d )", Player->getAccount().c_str(), Player->getName().c_str(), Player->lpsmSock->szIPAddr, ((DWORD*)m_Packet)[1], ((DWORD*)m_Packet)[0]);
+			sprintf_s(szBuff, "ID( %s ) Name( %s ) IP( %s ) - PacketFiltered( %d - %d )", Player->getAccount(), Player->getName(), Player->lpsmSock->szIPAddr, ((DWORD*)m_Packet)[1], ((DWORD*)m_Packet)[0]);
 			LogFile << "/n" << ttm.tm_hour << ":" << ttm.tm_min << ":" << ttm.tm_sec << "/t" << szBuff;
 		}
 
@@ -178,7 +180,7 @@ void PacketFilter::DumpPacket(rsPLAYINFO* Player) const
 			if (LogFile.is_open())
 			{
 				char szBuff[256] = { 0 };
-				sprintf_s(szBuff, "ID( %s ) Name( %s ) IP( %s ) - DumpPacket( %d - %d )", Player->getAccount().c_str(), Player->getName().c_str(), Player->lpsmSock->szIPAddr, ((DWORD*)m_Packet)[1], ((DWORD*)m_Packet)[0]);
+				sprintf_s(szBuff, "ID( %s ) Name( %s ) IP( %s ) - DumpPacket( %d - %d )", Player->getAccount(), Player->getName(), Player->lpsmSock->szIPAddr, ((DWORD*)m_Packet)[1], ((DWORD*)m_Packet)[0]);
 				LogFile << "/n" << ttm.tm_hour << ":" << ttm.tm_min << ":" << ttm.tm_sec << "/t" << szBuff;
 			}
 

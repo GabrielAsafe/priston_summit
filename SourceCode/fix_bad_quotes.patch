@@ -1,0 +1,30 @@
+--- a/SrcServer/src/HoBaram/HoNewParticle.cpp
++++ b/SrcServer/src/HoBaram/HoNewParticle.cpp
+@@ -991,7 +991,7 @@
+-			OutputDebugString("Expecting /"so/" after /"fade/".");
++			OutputDebugString("Expecting \"so\" after \"fade\".");
+@@ -1018,7 +1018,7 @@
+-				OutputDebugString("Cannot use /"fade so/" modifier on /"initial/" times.");
++				OutputDebugString("Cannot use \"fade so\" modifier on \"initial\" times.");
+@@ -1038,7 +1038,7 @@
+-			OutputDebugString("Expected time specifier: /"[fade so] at/", /"initial/", or /"[fade so] final/"");
++			OutputDebugString("Expected time specifier: \"[fade so] at\", \"initial\", or \"[fade so] final\"");
+@@ -1747,7 +1747,7 @@
+-				char buf[256]; _snprintf(buf, sizeof(buf), "Unexpected /"%s/" in Sequence Block!", TokenIter->StrValue.c_str());
++				char buf[256]; _snprintf(buf, sizeof(buf), "Unexpected \"%s\" in Sequence Block!", TokenIter->StrValue.c_str());
+@@ -1835,7 +1835,7 @@
+-				_snprintf(buf, sizeof(buf), "Unexpected /"%s/" in Particle System Block!", TokenIter->StrValue.c_str());
++				_snprintf(buf, sizeof(buf), "Unexpected \"%s\" in Particle System Block!", TokenIter->StrValue.c_str());
+--- a/SrcServer/src/smReg.cpp
++++ b/SrcServer/src/smReg.cpp
+@@ -126,7 +126,7 @@
+-		wsprintf(line, "/"%s/" /"%s/"/r/n", smRegBuff.RegString[cnt].szRegPath, smRegBuff.RegString[cnt].szRegString);
++		wsprintf(line, "\"%s\" \"%s\"\r\n", smRegBuff.RegString[cnt].szRegPath, smRegBuff.RegString[cnt].szRegString);
+--- a/SrcServer/src/record.cpp
++++ b/SrcServer/src/record.cpp
+@@ -4975,7 +4975,7 @@
+-			wsprintf(strBuff, "%s		%s		%s		/"%s/"	%s	%s/r/n",
++			wsprintf(strBuff, "%s		%s		%s		\"%s\"	%s	%s\r\n",
+@@ -5003,7 +5003,7 @@
+-		fprintf(pFile, "%s		%s		%d		/"%s/"/r/n", bSendToCharacter ? pcUnitData->smCharInfo.szName : "*", ItemCode, Spec, pszMessage);
++		fprintf(pFile, "%s		%s		%d		\"%s\"\r\n", bSendToCharacter ? pcUnitData->smCharInfo.szName : "*", ItemCode, Spec, pszMessage);

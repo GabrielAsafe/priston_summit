@@ -1,3 +1,4 @@
+#include <cstring>
 
 #define CE_CHATLIST_CPP
 #include <windows.h>

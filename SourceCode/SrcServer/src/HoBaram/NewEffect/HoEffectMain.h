@@ -9,9 +9,9 @@
 #ifdef  _HO_NEW_WIN32_
 extern "C"
 {
-   #include "Script/Lua/lua.h"
-   #include "Script/Lua/lauxlib.h"
-   #include "Script/Lua/lualib.h"
+   #include "Script/lua/lua.h"
+   #include "Script/lua/lauxlib.h"
+   #include "Script/lua/lualib.h"
 }
 #endif
 

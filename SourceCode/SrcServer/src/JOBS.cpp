@@ -1,6 +1,8 @@
+#include <cstring>
+#include "opcodes.h"
 #include "sinbaram/sinLinkHeader.h"
 #include "File/File.h"
-#include "server/onserver.h"
+#include "Server/onserver.h"
 #include "JOBS.h"
 
 #include <time.h>
@@ -22,7 +24,7 @@ void JOBS::SendJOBInfoToGame(rsPLAYINFO* Player)
 		JOBS_INFO packet;
 		char szQuery[512];
 		SQL::GetInstance()->EnterSqlSection();
-		wsprintf(szQuery, "SELECT * FROM [JOBS].[dbo].[Jobs_Info] WHERE [ID]='%s'", Player->getAccount().c_str());
+		wsprintf(szQuery, "SELECT * FROM [JOBS].[dbo].[Jobs_Info] WHERE [ID]='%s'", Player->getAccount());
 		if (SQL::GetInstance()->Execute(szQuery))
 		{
 			if (SQL::GetInstance()->Fetch())
@@ -110,8 +112,8 @@ void JOBS::RecvJOBsellToClient(rsPLAYINFO* Player, JOBS_RESGATE* infos)
 	rjob_auxmine = infos->item.job_auxmine;
 	rjob_contsellqtd = infos->item.job_contsellqtd;
 	rjob_contsellprice = infos->item.job_contsellprice;
-	wsprintf(jobidsell, "'%s'", Player->getAccount().c_str());
-	wsprintf(jobnamesell, "'%s'", Player->getName().c_str());
+	wsprintf(jobidsell, "'%s'", Player->getAccount());
+	wsprintf(jobnamesell, "'%s'", Player->getName());
 	int rm_a;
 	int rm_f;
 	int rm_l;
@@ -121,7 +123,7 @@ void JOBS::RecvJOBsellToClient(rsPLAYINFO* Player, JOBS_RESGATE* infos)
 
 	if (SQL::GetInstance()->IsConnected())
 	{
-		wsprintf(szQuery, "SELECT * FROM [JOBS].[dbo].[Jobs_Info] WHERE [ID]='%s'", Player->getAccount().c_str());
+		wsprintf(szQuery, "SELECT * FROM [JOBS].[dbo].[Jobs_Info] WHERE [ID]='%s'", Player->getAccount());
 		if (SQL::GetInstance()->Execute(szQuery))
 		{
 			if (SQL::GetInstance()->Fetch())
@@ -137,7 +139,7 @@ void JOBS::RecvJOBsellToClient(rsPLAYINFO* Player, JOBS_RESGATE* infos)
 			{
 			case 1:
 				rm_a -= rjob_contsellqtd;
-				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_A=%d WHERE[ID] = '%s'", rm_a, Player->getAccount().c_str());
+				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_A=%d WHERE[ID] = '%s'", rm_a, Player->getAccount());
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
 
@@ -145,7 +147,7 @@ void JOBS::RecvJOBsellToClient(rsPLAYINFO* Player, JOBS_RESGATE* infos)
 				break;
 			case 2:
 				rm_f -= rjob_contsellqtd;
-				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_F=%d WHERE[ID] = '%s'", rm_f, Player->getAccount().c_str());
+				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_F=%d WHERE[ID] = '%s'", rm_f, Player->getAccount());
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
 
@@ -153,7 +155,7 @@ void JOBS::RecvJOBsellToClient(rsPLAYINFO* Player, JOBS_RESGATE* infos)
 				break;
 			case 3:
 				rm_l -= rjob_contsellqtd;
-				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_L=%d WHERE[ID] = '%s'", rm_l, Player->getAccount().c_str());
+				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_L=%d WHERE[ID] = '%s'", rm_l, Player->getAccount());
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
 
@@ -161,7 +163,7 @@ void JOBS::RecvJOBsellToClient(rsPLAYINFO* Player, JOBS_RESGATE* infos)
 				break;
 			case 4:
 				rm_m -= rjob_contsellqtd;
-				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_M=%d WHERE[ID] = '%s'", rm_m, Player->getAccount().c_str());
+				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_M=%d WHERE[ID] = '%s'", rm_m, Player->getAccount());
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
 
@@ -169,7 +171,7 @@ void JOBS::RecvJOBsellToClient(rsPLAYINFO* Player, JOBS_RESGATE* infos)
 				break;
 			case 5:
 				rm_r -= rjob_contsellqtd;
-				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_R=%d WHERE[ID] = '%s'", rm_r, Player->getAccount().c_str());
+				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_R=%d WHERE[ID] = '%s'", rm_r, Player->getAccount());
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
 
@@ -178,7 +180,7 @@ void JOBS::RecvJOBsellToClient(rsPLAYINFO* Player, JOBS_RESGATE* infos)
 			}
 
 
-			wsprintf(szQuery, "INSERT INTO  [JOBS].[dbo].[Jobs_shop] (ID, NICK, MINE_TYPE, MINE_QTD, MINE_PRICE, CHECKSUM) VALUES ('%s', '%s', %d, %d, %d, %d)", Player->getAccount().c_str(), Player->getName().c_str(), rjob_auxmine, rjob_contsellqtd, rjob_contsellprice, CHECKSUM);
+			wsprintf(szQuery, "INSERT INTO  [JOBS].[dbo].[Jobs_shop] (ID, NICK, MINE_TYPE, MINE_QTD, MINE_PRICE, CHECKSUM) VALUES ('%s', '%s', %d, %d, %d, %d)", Player->getAccount(), Player->getName(), rjob_auxmine, rjob_contsellqtd, rjob_contsellprice, CHECKSUM);
 			if (SQL::GetInstance()->Execute(szQuery))
 			{
 
@@ -220,7 +222,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 		char ID[512];
 		char NICK[512];
 		SQL::GetInstance()->EnterSqlSection();
-		sprintf_s(szQuery, sizeof(szQuery), "SELECT * FROM [CoinShopDB].[dbo].[Usuario] WHERE [Login]='%s'", Player->getAccount().c_str());
+		sprintf_s(szQuery, sizeof(szQuery), "SELECT * FROM [CoinShopDB].[dbo].[Usuario] WHERE [Login]='%s'", Player->getAccount());
 		if (SQL::GetInstance()->Execute(szQuery))
 		{
 			if (SQL::GetInstance()->Fetch())
@@ -241,7 +243,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 				if (SQL::GetInstance()->Fetch())
 					SQL::GetInstance()->GetDataValue(6, &SellerCoin);
 			}
-			wsprintf(szQuery, "SELECT * FROM [JOBS].[dbo].[Jobs_Info] WHERE [ID]='%s'", Player->getAccount().c_str());
+			wsprintf(szQuery, "SELECT * FROM [JOBS].[dbo].[Jobs_Info] WHERE [ID]='%s'", Player->getAccount());
 			if (SQL::GetInstance()->Execute(szQuery))
 			{
 				if (SQL::GetInstance()->Fetch())
@@ -254,7 +256,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 				}
 			}
 
-			if (lstrcmpi(Player->getAccount().c_str(), ID) == 0)
+			if (lstrcmpi(Player->getAccount(), ID) == 0)
 			{
 				Price = 0;
 			}
@@ -264,7 +266,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 				{
 					BuyerCoin -= Price;
 					SellerCoin += Price;
-					sprintf_s(szQuery, sizeof(szQuery), "UPDATE [PAINEL_NET].[dbo].[Usuario] SET Coins=%d WHERE [Login]='%s'", BuyerCoin, Player->getAccount().c_str());
+					sprintf_s(szQuery, sizeof(szQuery), "UPDATE [PAINEL_NET].[dbo].[Usuario] SET Coins=%d WHERE [Login]='%s'", BuyerCoin, Player->getAccount());
 					if (SQL::GetInstance()->Execute(szQuery))
 					{
 						sprintf_s(szQuery, sizeof(szQuery), "UPDATE [PAINEL_NET].[dbo].[Usuario] SET Coins=%d WHERE [Login]='%s'", SellerCoin, ID);
@@ -278,7 +280,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 								{
 								case 1:
 									brm_a += Qtd;
-									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_A=%d WHERE[ID] = '%s'", brm_a, Player->getAccount().c_str());
+									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_A=%d WHERE[ID] = '%s'", brm_a, Player->getAccount());
 									if (SQL::GetInstance()->Execute(szQuery))
 									{
 
@@ -286,7 +288,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 									break;
 								case 2:
 									brm_f += Qtd;
-									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_F=%d WHERE[ID] = '%s'", brm_f, Player->getAccount().c_str());
+									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_F=%d WHERE[ID] = '%s'", brm_f, Player->getAccount());
 									if (SQL::GetInstance()->Execute(szQuery))
 									{
 
@@ -294,7 +296,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 									break;
 								case 3:
 									brm_l += Qtd;
-									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_L=%d WHERE[ID] = '%s'", brm_l, Player->getAccount().c_str());
+									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_L=%d WHERE[ID] = '%s'", brm_l, Player->getAccount());
 									if (SQL::GetInstance()->Execute(szQuery))
 									{
 
@@ -302,7 +304,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 									break;
 								case 4:
 									brm_m += Qtd;
-									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_M=%d WHERE[ID] = '%s'", brm_m, Player->getAccount().c_str());
+									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_M=%d WHERE[ID] = '%s'", brm_m, Player->getAccount());
 									if (SQL::GetInstance()->Execute(szQuery))
 									{
 
@@ -310,7 +312,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 									break;
 								case 5:
 									brm_r += Qtd;
-									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_R=%d WHERE[ID] = '%s'", brm_r, Player->getAccount().c_str());
+									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_R=%d WHERE[ID] = '%s'", brm_r, Player->getAccount());
 									if (SQL::GetInstance()->Execute(szQuery))
 									{
 
@@ -406,7 +408,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 			{
 				char szQuery[512];
 				SQL::GetInstance()->EnterSqlSection();
-				wsprintf(szQuery, "INSERT INTO  [JOBS].[dbo].[Jobs_Info] (ID, NICK, JOB, job_Level, Job_xp, M_A, M_F, M_L, M_M, M_R) VALUES ('%s', 0, %d, 1, 0, 0, 0, 0, 0, 0)", Player->getAccount().c_str(), job_code);
+				wsprintf(szQuery, "INSERT INTO  [JOBS].[dbo].[Jobs_Info] (ID, NICK, JOB, job_Level, Job_xp, M_A, M_F, M_L, M_M, M_R) VALUES ('%s', 0, %d, 1, 0, 0, 0, 0, 0, 0)", Player->getAccount(), job_code);
 				if (SQL::GetInstance()->Execute(szQuery)) {
 				}
 				SQL::GetInstance()->LeaveSqlSection();
@@ -416,7 +418,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 
 
 		SQL::GetInstance()->EnterSqlSection();
-		wsprintf(szQuery, "SELECT * FROM [JOBS].[dbo].[Jobs_Info] WHERE [ID]='%s'", Player->getAccount().c_str());
+		wsprintf(szQuery, "SELECT * FROM [JOBS].[dbo].[Jobs_Info] WHERE [ID]='%s'", Player->getAccount());
 		if (SQL::GetInstance()->Execute(szQuery))
 		{
 			if (SQL::GetInstance()->Fetch())
@@ -526,19 +528,19 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 					}
 
 				
-					wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_A=%d WHERE[ID] = '%s'", m_a, Player->getAccount().c_str());
+					wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_A=%d WHERE[ID] = '%s'", m_a, Player->getAccount());
 					if (SQL::GetInstance()->Execute(szQuery))
 					{
-						wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_F=%d WHERE[ID] = '%s'", m_f, Player->getAccount().c_str());
+						wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_F=%d WHERE[ID] = '%s'", m_f, Player->getAccount());
 						if (SQL::GetInstance()->Execute(szQuery))
 						{
-							wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_L=%d WHERE[ID] = '%s'", m_l, Player->getAccount().c_str());
+							wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_L=%d WHERE[ID] = '%s'", m_l, Player->getAccount());
 							if (SQL::GetInstance()->Execute(szQuery))
 							{
-								wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_M=%d WHERE[ID] = '%s'", m_m, Player->getAccount().c_str());
+								wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_M=%d WHERE[ID] = '%s'", m_m, Player->getAccount());
 								if (SQL::GetInstance()->Execute(szQuery))
 								{
-									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_R=%d WHERE[ID] = '%s'", m_r, Player->getAccount().c_str());
+									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_R=%d WHERE[ID] = '%s'", m_r, Player->getAccount());
 									if (SQL::GetInstance()->Execute(szQuery))
 									{
 										if (sorteioforja >= chanceforja)
@@ -596,7 +598,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 
 										lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Forjou ( %d ) ( %s ) /r/n";
 										wsprintf(szBuff, lpMsg,
-											tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+											tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 											Player->lpsmSock->szIPAddr, 1, itemname);
 
 										hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -635,7 +637,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 
 										lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Tentou Forjar ( %d ) ( %s ) /r/n";
 										wsprintf(szBuff, lpMsg,
-											tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+											tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 											Player->lpsmSock->szIPAddr, 1, "item");
 
 										hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -773,19 +775,19 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 						}
 
 					
-							wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_A=%d WHERE[ID] = '%s'", m_a, Player->getAccount().c_str());
+							wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_A=%d WHERE[ID] = '%s'", m_a, Player->getAccount());
 							if (SQL::GetInstance()->Execute(szQuery))
 							{
-								wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_F=%d WHERE[ID] = '%s'", m_f, Player->getAccount().c_str());
+								wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_F=%d WHERE[ID] = '%s'", m_f, Player->getAccount());
 								if (SQL::GetInstance()->Execute(szQuery))
 								{
-									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_L=%d WHERE[ID] = '%s'", m_l, Player->getAccount().c_str());
+									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_L=%d WHERE[ID] = '%s'", m_l, Player->getAccount());
 									if (SQL::GetInstance()->Execute(szQuery))
 									{
-										wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_M=%d WHERE[ID] = '%s'", m_m, Player->getAccount().c_str());
+										wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_M=%d WHERE[ID] = '%s'", m_m, Player->getAccount());
 										if (SQL::GetInstance()->Execute(szQuery))
 										{
-											wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_R=%d WHERE[ID] = '%s'", m_r, Player->getAccount().c_str());
+											wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_R=%d WHERE[ID] = '%s'", m_r, Player->getAccount());
 											if (SQL::GetInstance()->Execute(szQuery))
 											{
 												if (sorteioforja >= chanceforja)
@@ -843,7 +845,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 
 												lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Forjou ( %d ) ( %s ) /r/n";
 												wsprintf(szBuff, lpMsg,
-													tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+													tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 													Player->lpsmSock->szIPAddr, 1, itemname);
 
 												hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -882,7 +884,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 
 												lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Tentou Forjar ( %d ) ( %s ) /r/n";
 												wsprintf(szBuff, lpMsg,
-													tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+													tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 													Player->lpsmSock->szIPAddr, 1, "item");
 
 												hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -1020,19 +1022,19 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 						}
 
 
-							wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_A=%d WHERE[ID] = '%s'", m_a, Player->getAccount().c_str());
+							wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_A=%d WHERE[ID] = '%s'", m_a, Player->getAccount());
 							if (SQL::GetInstance()->Execute(szQuery))
 							{
-								wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_F=%d WHERE[ID] = '%s'", m_f, Player->getAccount().c_str());
+								wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_F=%d WHERE[ID] = '%s'", m_f, Player->getAccount());
 								if (SQL::GetInstance()->Execute(szQuery))
 								{
-									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_L=%d WHERE[ID] = '%s'", m_l, Player->getAccount().c_str());
+									wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_L=%d WHERE[ID] = '%s'", m_l, Player->getAccount());
 									if (SQL::GetInstance()->Execute(szQuery))
 									{
-										wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_M=%d WHERE[ID] = '%s'", m_m, Player->getAccount().c_str());
+										wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_M=%d WHERE[ID] = '%s'", m_m, Player->getAccount());
 										if (SQL::GetInstance()->Execute(szQuery))
 										{
-											wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_R=%d WHERE[ID] = '%s'", m_r, Player->getAccount().c_str());
+											wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_R=%d WHERE[ID] = '%s'", m_r, Player->getAccount());
 											if (SQL::GetInstance()->Execute(szQuery))
 											{
 												if (sorteioforja >= chanceforja)
@@ -1090,7 +1092,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 
 												lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Forjou ( %d ) ( %s ) /r/n";
 												wsprintf(szBuff, lpMsg,
-													tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+													tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 													Player->lpsmSock->szIPAddr, 1, itemname);
 
 												hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -1129,7 +1131,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 
 												lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Tentou Forjar ( %d ) ( %s ) /r/n";
 												wsprintf(szBuff, lpMsg,
-													tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+													tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 													Player->lpsmSock->szIPAddr, 1, "item");
 
 												hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -1190,7 +1192,7 @@ void JOBS::AddExpJOBS(rsPLAYINFO* Player, int valor)
 		int JOB_LVL = 0;
 		char szQuery[512];
 		SQL::GetInstance()->EnterSqlSection();
-		wsprintf(szQuery, "SELECT * FROM [JOBS].[dbo].[Jobs_Info] WHERE [ID]='%s'", Player->getAccount().c_str());
+		wsprintf(szQuery, "SELECT * FROM [JOBS].[dbo].[Jobs_Info] WHERE [ID]='%s'", Player->getAccount());
 		if (SQL::GetInstance()->Execute(szQuery))
 		{
 			if (SQL::GetInstance()->Fetch())
@@ -1235,11 +1237,11 @@ void JOBS::AddExpJOBS(rsPLAYINFO* Player, int valor)
 			//
 			//
 			if (JOBUser_Exp < 999) {
-				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET Job_xp=%d WHERE[ID] = '%s'", JOBUser_Exp, Player->getAccount().c_str());
+				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET Job_xp=%d WHERE[ID] = '%s'", JOBUser_Exp, Player->getAccount());
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
 				}
-				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET Job_Level=%d WHERE[ID] = '%s'", JOB_LVL, Player->getAccount().c_str());
+				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET Job_Level=%d WHERE[ID] = '%s'", JOB_LVL, Player->getAccount());
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
 				}
@@ -1261,7 +1263,7 @@ void JOBS::AddminJOBS(rsPLAYINFO* Player, int valor, int type)
 		int M_R = 0;
 		char szQuery[512];
 		SQL::GetInstance()->EnterSqlSection();
-		wsprintf(szQuery, "SELECT * FROM [JOBS].[dbo].[Jobs_Info] WHERE [ID]='%s'", Player->getAccount().c_str());
+		wsprintf(szQuery, "SELECT * FROM [JOBS].[dbo].[Jobs_Info] WHERE [ID]='%s'", Player->getAccount());
 		if (SQL::GetInstance()->Execute(szQuery))
 		{
 			if (SQL::GetInstance()->Fetch())
@@ -1283,7 +1285,7 @@ void JOBS::AddminJOBS(rsPLAYINFO* Player, int valor, int type)
 				M_A = M_A + valor;
 				wsprintf(sznamemin, "Essencias");
 				Min = M_A;
-				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_A=%d WHERE[ID] = '%s'", Min, Player->getAccount().c_str());
+				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_A=%d WHERE[ID] = '%s'", Min, Player->getAccount());
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
 				}
@@ -1292,7 +1294,7 @@ void JOBS::AddminJOBS(rsPLAYINFO* Player, int valor, int type)
 				M_F = M_F + valor;
 				wsprintf(sznamemin, "Ferros");
 				Min = M_F;
-				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_F=%d WHERE[ID] = '%s'", Min, Player->getAccount().c_str());
+				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_F=%d WHERE[ID] = '%s'", Min, Player->getAccount());
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
 				}
@@ -1301,7 +1303,7 @@ void JOBS::AddminJOBS(rsPLAYINFO* Player, int valor, int type)
 				M_L = M_L + valor;
 				wsprintf(sznamemin, "Madeiras");
 				Min = M_L;
-				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_L=%d WHERE[ID] = '%s'", Min, Player->getAccount().c_str());
+				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_L=%d WHERE[ID] = '%s'", Min, Player->getAccount());
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
 				}
@@ -1310,7 +1312,7 @@ void JOBS::AddminJOBS(rsPLAYINFO* Player, int valor, int type)
 				M_M = M_M + valor;
 				wsprintf(sznamemin, "Minerios");
 				Min = M_M;
-				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_M=%d WHERE[ID] = '%s'", Min, Player->getAccount().c_str());
+				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_M=%d WHERE[ID] = '%s'", Min, Player->getAccount());
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
 				}
@@ -1319,7 +1321,7 @@ void JOBS::AddminJOBS(rsPLAYINFO* Player, int valor, int type)
 				M_R = M_R + valor;
 				wsprintf(sznamemin, "Energias");
 				Min = M_R;
-				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_R=%d WHERE[ID] = '%s'", Min, Player->getAccount().c_str());
+				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET M_R=%d WHERE[ID] = '%s'", Min, Player->getAccount());
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
 				}

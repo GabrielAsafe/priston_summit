@@ -1,3 +1,5 @@
+#include <cstring>
+#include "../opcodes.h"
 #include "sinbaram/sinLinkHeader.h"
 #include "Server/onserver.h"
 #include "CRollHandler.h"
@@ -75,11 +77,11 @@ void CRollHandler::HandlePacket(rsPLAYINFO * lpPlayInfo, smTRANS_COMMAND * psPac
 	if (psPacket->LParam == 1)
 	{
 		val = (rand() % 100) + 1;
-		wsprintf(sPacket.szMessage, "> %s tirou %d na roleta!", lpPlayInfo->getName().c_str(), val);
+		wsprintf(sPacket.szMessage, "> %s tirou %d na roleta!", lpPlayInfo->getName(), val);
 	}
 	else
 	{
-		wsprintf(sPacket.szMessage, "> %s optou por n�o jogar na roleta.", lpPlayInfo->getName().c_str());
+		wsprintf(sPacket.szMessage, "> %s optou por n�o jogar na roleta.", lpPlayInfo->getName());
 	}
 
 	sPacket.size = lstrlen(sPacket.szMessage) + 32;
@@ -157,7 +159,7 @@ void CRollHandler::EndRoll(RollItem* pRoll)
 					pRoll->psItem.ItemInfo.JobCodeMask);
 				RecordLog("ROLL", buff);
 				rsPutItem2(lpPlayInfo, &pRoll->psItem.ItemInfo);
-				wsprintf(TransChatMessage.szMessage, "> %s ganhou %s na roleta com o numero %d!", lpPlayInfo->getName().c_str(), pRoll->psItem.ItemInfo.ItemName, p.second);
+				wsprintf(TransChatMessage.szMessage, "> %s ganhou %s na roleta com o numero %d!", lpPlayInfo->getName(), pRoll->psItem.ItemInfo.ItemName, p.second);
 				break;
 			}
 		}

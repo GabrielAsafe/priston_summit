@@ -1,3 +1,4 @@
+#include "skillsPacket.h"
 #pragma once
 
 #include "sinbaram/sinLinkHeader.h"

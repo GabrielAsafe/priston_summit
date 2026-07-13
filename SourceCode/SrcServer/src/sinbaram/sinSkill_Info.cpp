@@ -11,7 +11,7 @@ Organizada e reestruturada por Zaraki.
 __________________________________________________________________________________________________________________________*/
 
 
-#include "sinSkill_Infoini.h"
+#include "sinSkill_InfoIni.h"
 #include "File/File.h"
 
 
@@ -523,7 +523,8 @@ int LoadSkillInfo()
 
 	ReadSkillInt(&S_Strike_UseMana[0], "Atalanta.ini", "S_Strike_UseMana");
 	ReadSkillInt(&S_Strike_DamagePercent[0], "Atalanta.ini", "S_Strike_DamagePercent");
-	ReadSkillInt(&S_Strike_Stun[0], "Atalanta.ini", "S_Strike_Stun");
+	int S_Strike_Stun[10] = {6,9,12,15,18,21,24,27,30,34};
+ReadSkillInt(&S_Strike_Stun[0], "Atalanta.ini", "S_Strike_Stun");
 
 	ReadSkillInt(&Farina_UseMana[0], "Atalanta.ini", "Farina_UseMana");
 	ReadSkillInt(&Farina_Speed[0], "Atalanta.ini", "Farina_Speed");

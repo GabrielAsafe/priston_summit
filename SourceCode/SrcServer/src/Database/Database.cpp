@@ -1,10 +1,15 @@
 #include "Database/Database.h"
+#include "Helper/Utils/utils_logging.h"
+#include "Helper/Utils/utils_logging.h"
 #include <iostream>
 #include <memory>
 #include <string>
 #include "File/File.h"
 #include "Helper/common.h"
 #include "Database/Database.h"
+
+#define LOG_SQL    0
+#define LOG_SERVER 1
 
 using namespace std;
 

@@ -1,3 +1,7 @@
+#ifndef _D3DRENDERSTATETYPE
+#define _D3DRENDERSTATETYPE D3DRENDERSTATETYPE
+#endif
+
 #ifndef _SMDSX_H_
 #define _SMDSX_H_
 

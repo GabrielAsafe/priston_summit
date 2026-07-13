@@ -1,57 +1,60 @@
+#include <cstring> //manipulação de strings em memória strcpy strcmp memcopy memset
 #define _SINBARAM
 
 // STL INCLUDES
-#include <memory>
-#include <vector>
+#include <memory>// ponteiros inteligentes e utilitários em memória
+#include <vector> //container dinâmico std::vector
 
 
-#include <windows.h>
-#include <iostream>
+#include <windows.h> //Principal cabeçalho da Win32 API: janelas, mensagens, threads, arquivos, sockets (indiretamente), tipos como HWND, DWORD, BOOL etc.
+#include "STRCLASS.H" //utilitário para tratar strings
+#include <iostream> //entrada/saida em c++ cout cin cerr
 #include <math.h>
-#include <stdio.h>
-#include <zmouse.h>
-#include <process.h>
+#include <stdio.h> // C, não c++ printf, scanf file em c++ usarcstd
+#include <zmouse.h> //suporte a roda do mouse
+#include <process.h> //Funções de processo/thread da CRT da Microsoft (_beginthread, _spawn, _getpid...).
 #include "cracker.h"
 
+//engine gráfica rede e sistema
+#include "smLib3d/smd3d.h" //engine 3D (renderização, modelos, câmera, Direct3D/OpenGL etc.).
+#include "smwsock.h" //wrapper de winsock/rede tcp/udp do projeto
+#include "smreg.h"//acesso ao registro do windows e configuração
 
-#include "smLib3d/smd3d.h"
-#include "smwsock.h"
-#include "smreg.h"
+//jogo e gameplay
+#include "character.h" //personagem/jogado/npc
+#include "playmain.h" //loop principal e estado do jogo
+#include "Sound/Dxwav.h" //reprodução de WAV/DirectSound/DirectX áudio.
+#include "effectsnd.h" //sons e efeitos do jogo
+#include "fileread.h"  //leitura de arquivos
+#include "netplay.h" //multiplayer e comunicação do jogo
+#include "makeshadow.h" //geração de sombras
+#include "particle.h" //sistema de particulas
+#include "field.h"//mapas camera e área do jogo
+#include "HoBaram/HoLinkHeader.h" //provavelmente agregação interna e de headers
 
-#include "character.h"
-#include "playmain.h"
-#include "Sound/Dxwav.h"
-#include "effectsnd.h"
-#include "fileread.h"
-#include "netplay.h"
-#include "makeshadow.h"
-#include "particle.h"
-#include "field.h"
-#include "HoBaram/HoLinkHeader.h"
-
-#include "TJBOY/clanmenu/tjclanDEF.h"
-#include "TJBOY/clanmenu/tjclan.h"
-#include "TJBOY/clanmenu/cE_CViewClanInfo.h"
+#include "TJBOY/clanmenu/tjclanDEF.h" //definição de sistema de clãs
+#include "TJBOY/clanmenu/tjclan.h" //interface do clã
+#include "TJBOY/clanmenu/cE_CViewClanInfo.h"//janela de informação do clã
 
 #ifdef _SINBARAM
-#include "sinbaram/sinLinkHeader.h"
+#include "sinbaram/sinLinkHeader.h" //aparentemente módulo opcional
 #endif
 
-#include "playsub.h"
-#include "SkillSub.h"
+#include "playsub.h"//rotina auxiliar do gameplay
+#include "SkillSub.h"//sistema de habilidade e magia
 #include "resource.h"
 
-#include "TextMessage.h"		
-#include "Language/language.h"
-#include "Language/jts.h"		
+#include "TextMessage.h" //mensagens de texto no jogo
+#include "Language/language.h" //sistema de localização
+#include "Language/jts.h"//sistema de localização/idiomas e utilitários de texto/tradução.
 
-#include "CurseFilter.h"		
-#include "damage.h"
-#include "AreaServer.h"
+#include "CurseFilter.h"//filtro de palavrões	
+#include "damage.h" //calculo e exibição do jogo
+#include "AreaServer.h" //comunicação - lógica do dervidor de área
 
-#include "BellatraFontEffect.h"
+#include "BellatraFontEffect.h" //fontes expecíficas de belatra | definitivamente refatorar essa merda
 
-#include "ActionGame.h"
+#include "ActionGame.h"// ações do jogo
 
 #define WM_CALLMEMMAP				WM_USER+3   
 
@@ -63,21 +66,22 @@ extern int micInit;
 #endif
 
 
-#include "WinInt/WinIntThread.h"
-#include "FullZoomMap.h"
-#include "FontImage.h"
+#include "WinInt/WinIntThread.h"// thread da interface de integração do projeto
+#include "FullZoomMap.h" //mapa com zoom em tela cheia
+#include "FontImage.h" //renderização de fontes/imagens de texto.
 
 
 #ifdef _W_SERVER
-#include "Database/Database.h"
-#include "GameMasters/GameMasters.h"
-#include "Dump/WinDump.h"
-#include "Skills/SkillSub.h"
+#include "Database/Database.h" //acesso ao banco de dados
+#include "GameMasters/GameMasters.h" //gerencia de admins
+#include "Dump/WinDump.h" //geração de crash e logs
+#include "SkillSub.h" //reutilização já definida anteriormente
 #endif
 
-
+//define o namespace para não precisar chamar std::
 using namespace std;
 
+//Handle WiNDoW - Um handle não é a janela em si, mas um identificador que o Windows usa para localizar e manipular uma janela.
 HWND hwnd;
 HWND hTextWnd;
 HWND hFocusWnd;
@@ -114,7 +118,7 @@ void smPlayD3D(int x, int y, int z, int ax, int ay, int az);
 
 
 
-#include "ime.h"
+#include "Ime.h"
 
 ImeClass IMETest;
 CStrClass sz;

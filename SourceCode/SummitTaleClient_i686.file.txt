@@ -1,1 +1,0 @@
-dist_mingw_client_i686/SummitTaleClient.exe: PE32 executable for MS Windows 4.00 (GUI), Intel i386, 17 sections

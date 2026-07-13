@@ -1,5 +1,7 @@
 #pragma once
 namespace OpCode {
+    static const int OPCODE_cMIXGUIDE = 0x50320B00;
+    static const int OPCODE_FIX_ATTACK = 0x70000000 + 302;
     static const int OPCODE_ADD_NPC = 0x70000000 + 0;
     static const int OPCODE_ADD_STARTPOSI = 0x70000000 + 1;
     static const int OPCODE_ADDEXP = 0x70000000 + 2;
@@ -258,6 +260,8 @@ namespace OpCode {
     static const int OPCODE_WARNING_SKILL = 0x70000000 + 255;
     static const int OPCODE_WARPFIELD = 0x70000000 + 256;
     static const int OPCODE_WHISPERMESSAGE = 0x70000000 + 257;
+    static const int OPCODE_FUNCERROR = 0x70000000 + 258;
+    static const int BLESS_CROWN = 0x70000000 + 259;
     static const int OPCODE_WING_NPC = 0x70000000 + 258;
     static const int OPCODE_WINGITEM = 0x70000000 + 259;
     static const int OPCODE_XIGNCODE_PACKET = 0x70000000 + 260;

@@ -1,3 +1,4 @@
+#include <cstring>
 #define __AUTH_CPP__
 
 #include <windowsx.h>
@@ -610,9 +611,9 @@ int WebDB_Thread::AUTH_init(int Num)
 		AUTH_que[i].command = AUTH_QUE_CMD_NONE;
 		AUTH_que[i].index = i;
 		AUTH_que[i].fdid = -1;
-		AUTH_que[i].cdkey[0] = '/0';
-		AUTH_que[i].isaokey[0] = '/0';
-		AUTH_que[i].password[0] = '/0';
+		AUTH_que[i].cdkey[0] = '\0';
+		AUTH_que[i].isaokey[0] = '\0';
+		AUTH_que[i].password[0] = '\0';
 
 		AUTH_que[i].result = AUTH_ERROR_OTHER;
 	}
@@ -833,7 +834,7 @@ int WebDB_Thread::AUTH_proc_ReadNotice_Result(int quenum, int threadindex)
 	char szData[128];
 
 	if(AUTH_que[quenum].result == 0)
-		szData[0] = '/0';
+		szData[0] = '\0';
 	else
 		sprintf_s(szData, sizeof(szData), "faild");
 
@@ -971,7 +972,7 @@ int WebDB_Thread::AUTH_proc_ReadClanInfo_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -1181,7 +1182,7 @@ int WebDB_Thread::AUTH_proc_isClanMember_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -1305,7 +1306,7 @@ int WebDB_Thread::AUTH_proc_isPFlag_Result(int quenum, int threadindex)
 	char szData[128];
 
 	if(AUTH_que[quenum].result == 0)
-		szData[0] = '/0';
+		szData[0] = '\0';
 	else
 		sprintf_s(szData, sizeof(szData), "faild");
 
@@ -1482,7 +1483,7 @@ int WebDB_Thread::AUTH_proc_isCheckClanJang_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -1640,7 +1641,7 @@ int WebDB_Thread::AUTH_proc_isCheckClanName_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -1778,7 +1779,7 @@ int WebDB_Thread::AUTH_proc_ClanMake_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -1912,7 +1913,7 @@ int WebDB_Thread::AUTH_proc_Mmake_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -2009,7 +2010,7 @@ int WebDB_Thread::AUTH_proc_ReadClan_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -2106,7 +2107,7 @@ int WebDB_Thread::AUTH_proc_BreakUP_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -2214,7 +2215,7 @@ int WebDB_Thread::AUTH_proc_Secession_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -2314,7 +2315,7 @@ int WebDB_Thread::AUTH_proc_Banishiment_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -2411,7 +2412,7 @@ int WebDB_Thread::AUTH_proc_WarhouseR_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -2489,7 +2490,7 @@ int WebDB_Thread::AUTH_proc_updateFlag_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -2570,7 +2571,7 @@ int WebDB_Thread::AUTH_proc_MarkREAD_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -2674,7 +2675,7 @@ int WebDB_Thread::AUTH_proc_MarkREAD2_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -2797,7 +2798,7 @@ int WebDB_Thread::AUTH_proc_Updatcldata_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -3230,7 +3231,7 @@ int WebDB_Thread::AUTH_proc_LeaveClan_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -3717,7 +3718,7 @@ int WebDB_Thread::AUTH_proc_isKPFlag_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -3909,7 +3910,7 @@ int WebDB_Thread::AUTH_proc_AppointSubChip_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -4073,7 +4074,7 @@ int WebDB_Thread::AUTH_proc_ReleaseSubChip_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{
@@ -4217,7 +4218,7 @@ int WebDB_Thread::AUTH_proc_GetWavFile_Result(int quenum, int threadindex)
 
 	if(AUTH_que[quenum].result == 0)
 	{
-		szData[0] = '/0';
+		szData[0] = '\0';
 	}
 	else
 	{

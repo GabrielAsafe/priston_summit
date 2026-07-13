@@ -1,3 +1,4 @@
+#include <cstring>
 
 
 #include "HoLinkHeader.h"
@@ -987,7 +988,7 @@ bool HoNewParticleEmitterTokenizer::ProcessTime(HoMinMax<float> &TimeRange, bool
 
 		NextToken(TokenIter, EndIter); if(TokenIter->Type != KeywordSo)
 		{
-			OutputDebugString("Expecting /"so/" after /"fade/".");
+			OutputDebugString("Expecting \"so\" after \"fade\".");
 			return false;
 		}
 
@@ -1014,7 +1015,7 @@ bool HoNewParticleEmitterTokenizer::ProcessTime(HoMinMax<float> &TimeRange, bool
 
 			if(IsFade)
 			{
-				OutputDebugString("Cannot use /"fade so/" modifier on /"initial/" times.");
+				OutputDebugString("Cannot use \"fade so\" modifier on \"initial\" times.");
 				return false;
 			}
 			TimeRange.Min = InitialTime;
@@ -1034,7 +1035,7 @@ bool HoNewParticleEmitterTokenizer::ProcessTime(HoMinMax<float> &TimeRange, bool
 
 		default:
 		{
-			OutputDebugString("Expected time specifier: /"[fade so] at/", /"initial/", or /"[fade so] final/"");
+			OutputDebugString("Expected time specifier: \"[fade so] at\", \"initial\", or \"[fade so] final\"");
 			return false;
 		}
 	}
@@ -1743,7 +1744,7 @@ bool HoNewParticleEmitter::ProcessEventSequenceBlock(HoNewParticleEventSequence 
 
 			default:
 			{
-				char buf[256]; _snprintf(buf, sizeof(buf), "Unexpected /"%s/" in Sequence Block!", TokenIter->StrValue.c_str());
+				char buf[256]; _snprintf(buf, sizeof(buf), "Unexpected \"%s\" in Sequence Block!", TokenIter->StrValue.c_str());
 				OutputDebugString(&buf[0]);
 				return false;
 
@@ -1831,7 +1832,7 @@ bool HoNewParticleEmitter::ProcessParticleSystemBlock(std::vector<HoNewParticleE
 			default:
 			{
 				char buf[256];
-				_snprintf(buf, sizeof(buf), "Unexpected /"%s/" in Particle System Block!", TokenIter->StrValue.c_str());
+				_snprintf(buf, sizeof(buf), "Unexpected \"%s\" in Particle System Block!", TokenIter->StrValue.c_str());
 				OutputDebugString(buf);
 				return false;
 

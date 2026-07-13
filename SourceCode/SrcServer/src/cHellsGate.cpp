@@ -1,3 +1,5 @@
+#include <cstring>
+#include "opcodes.h"
 #include "sinbaram/sinLinkHeader.h"
 #include "cHellsGate.h"
 
@@ -100,7 +102,7 @@ void cHELLSGATE::RecvJoinHg(rsPLAYINFO * lpPlayInfo)
 	}
 
 	sHGPLAYER sPlayer;
-	lstrcpy(sPlayer.szName, lpPlayInfo->getName().c_str());
+	lstrcpy(sPlayer.szName, lpPlayInfo->getName());
 	sPlayer.dwObjectSerial = lpPlayInfo->dwObjectSerial;
 	vPlayers.push_back(sPlayer);
 

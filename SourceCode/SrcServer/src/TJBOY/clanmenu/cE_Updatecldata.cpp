@@ -37,7 +37,7 @@ CUpdateCldata::~CUpdateCldata()
 
 void CUpdateCldata::Updatecldata()
 {
-	static cnt = 0;
+	static int cnt = 0;
 	extern char updateis[256];
 	wsprintf(updateis, "Updatecldata : %d ", cnt++);
 

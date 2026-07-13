@@ -1,3 +1,4 @@
+#include <cstring>
 void c_GetFilePath(char *szName, char *szFileName)
 {
 	if(szName[4] == 0 && szName[3] >= '0' && szName[3] <= '9' && (

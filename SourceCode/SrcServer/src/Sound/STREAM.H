@@ -1,7 +1,39 @@
 #ifndef __DSSTREAM_INCLUDED__
 #define __DSSTREAM_INCLUDED__
 
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#include <windows.h>
+#include <mmsystem.h>
+#include <mmreg.h>
+#include "compat_sal.h"
 #include <dsound.h>
+
+/* Evita que as anotações SAL colidam com identificadores da STL. */
+#undef __in
+#undef __in_opt
+#undef __out
+#undef __out_opt
+#undef __inout
+#undef __inout_opt
+#undef __deref_in
+#undef __deref_in_opt
+#undef __deref_out
+#undef __deref_out_opt
+#undef __deref_inout
+#undef __deref_inout_opt
+#undef __deref_out_bcount
+#undef __deref_out_bcount_opt
+#undef __in_bcount
+#undef __in_bcount_opt
+#undef __in_ecount
+#undef __in_ecount_opt
+#undef __out_bcount
+#undef __out_bcount_opt
+#undef __out_ecount
+#undef __out_ecount_opt
+
 
 /* WARNING -- Be careful about changing NUM_BUFFER_SEGMENTS -- it should be at
  * least 3, or there will probably not be enough time for the interrupt to do

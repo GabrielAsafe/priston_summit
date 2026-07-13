@@ -1,3 +1,4 @@
+#include <cstring>
 #define PROCESS_CPP
 #include <windows.h>
 #include <stdio.h>

@@ -1,3 +1,5 @@
+#include <cstring>
+#include "opcodes.h"
 #include "smLib3d/smd3d.h"
 #include "cracker.h"
 #include "smwsock.h"

@@ -1,7 +1,7 @@
 #include "sinbaram/sinLinkHeader.h"
 #include "field.h"
 #include "Server/SvrCaravan.h"
-#include "onserver.h"
+#include "Server/onserver.h"
 
 //extern int chrMonsterCnt;
 //extern smCHAR_INFO* chrMonsterList;
@@ -50,7 +50,7 @@ void CCaravanaHandler::AddCaravan(rsPLAYINFO* lpPlayInfo)
 		lpChar->HoSkillMode = 0;
 		lpChar->smCharInfo.Brood = smCHAR_MONSTER_USER;
 		lpChar->smCharInfo.State = smCHAR_STATE_NPC;
-		wsprintf(lpChar->smCharInfo.szName, "Caravana de %s", lpPlayInfo->getName().c_str());
+		wsprintf(lpChar->smCharInfo.szName, "Caravana de %s", lpPlayInfo->getName());
 		lstrcpy(lpChar->smCharInfo.szModelName2 + 1, lpPlayInfo->smCharInfo.szName);
 		lpChar->smCharInfo.Next_Exp = lpPlayInfo->dwObjectSerial;
 		lpChar->dwUpdateCharInfoTime = 0;

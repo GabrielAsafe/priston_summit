@@ -1,3 +1,5 @@
+#include <cstring>
+#include "../opcodes.h"
 #include <windows.h>
 #include <io.h>
 #include <stdio.h>         
@@ -5615,8 +5617,8 @@ int rsSetDamagePacketKey(rsPLAYINFO *lpPlayInfo)
 	DWORD	dwChkSum;
 	DWORD	dwObjSum;
 
-	if(!lpPlayInfo->getName().empty())
-		dwChkSum = GetSpeedSum(lpPlayInfo->getName().c_str());
+	if(!lpPlayInfo->getName()[0] == 0)
+		dwChkSum = GetSpeedSum(lpPlayInfo->getName());
 	else
 		dwChkSum = GetSpeedSum(lpPlayInfo->smCharInfo.szName);
 
@@ -5732,15 +5734,15 @@ int	rsProcessSafePacket(rsPLAYINFO *lpPlayInfo)
 	if(!rsServerConfig.CrazyPacketMode) return FALSE;
 
 	//if(!lpPlayInfo->getPassword().empty())
-	if(lpPlayInfo->getName().size())
-		dwChkSum = GetSpeedSum(lpPlayInfo->getName().c_str());
+	if(strlen(lpPlayInfo->getName()))
+		dwChkSum = GetSpeedSum(lpPlayInfo->getName());
 	else
 		dwChkSum = GetSpeedSum(lpPlayInfo->smCharInfo.szName);
 
 	dwObjSum = (lpPlayInfo->dwObjectSerial + PACKET_SAFE_CODE)*dwChkSum;
 
 	dwEncPacketCode = (dwObjSum^dwChkSum) & 0x0FFF0000;
-	dwEncPacketCode |= OPCODE_ENCODE_PACKET2;
+	dwEncPacketCode |= smTRANSCODE_ENCODE_PACKET2;
 	bEncXor = (BYTE)(dwObjSum ^ (dwChkSum >> PACKET_SAFE_SHIFT1)) & 0x7F;
 	bDecXor = (BYTE)((dwObjSum >> PACKET_SAFE_SHIFT2) ^ dwChkSum) & 0x7F;
 
@@ -5750,7 +5752,7 @@ int	rsProcessSafePacket(rsPLAYINFO *lpPlayInfo)
 	lpPlayInfo->bPacketXor[0] = bEncXor;
 	lpPlayInfo->bPacketXor[1] = bDecXor;
 
-	lpPlayInfo->lpsmSock->dwEncPacketCode = OPCODE_ENCODE_PACKET2;
+	lpPlayInfo->lpsmSock->dwEncPacketCode = smTRANSCODE_ENCODE_PACKET2;
 	lpPlayInfo->lpsmSock->bEncXor = bEncXor;
 	lpPlayInfo->lpsmSock->bDecXor = bDecXor;
 
@@ -5770,15 +5772,15 @@ int	rsCompareSafePacket(rsPLAYINFO *lpPlayInfo, DWORD dwRcvPacketCode)
 
 	if((dwRcvPacketCode >> 28) != 9) return FALSE;
 
-	if(!lpPlayInfo->getName().empty())
-		dwChkSum = GetSpeedSum(lpPlayInfo->getName().c_str());
+	if(!lpPlayInfo->getName()[0] == 0)
+		dwChkSum = GetSpeedSum(lpPlayInfo->getName());
 	else
 		dwChkSum = GetSpeedSum(lpPlayInfo->smCharInfo.szName);
 
 	dwObjSum = (lpPlayInfo->dwObjectSerial + PACKET_SAFE_CODE)*dwChkSum;
 
 	dwEncPacketCode = (dwObjSum^dwChkSum) & 0x0FFF0000;
-	dwEncPacketCode |= OPCODE_ENCODE_PACKET2;
+	dwEncPacketCode |= smTRANSCODE_ENCODE_PACKET2;
 	bEncXor = (BYTE)(dwObjSum ^ (dwChkSum >> PACKET_SAFE_SHIFT1)) & 0x7F;
 	bDecXor = (BYTE)((dwObjSum >> PACKET_SAFE_SHIFT2) ^ dwChkSum) & 0x7F;
 
@@ -5788,7 +5790,7 @@ int	rsCompareSafePacket(rsPLAYINFO *lpPlayInfo, DWORD dwRcvPacketCode)
 		lpPlayInfo->bPacketXor[0] = bEncXor;
 		lpPlayInfo->bPacketXor[1] = bDecXor;
 
-		lpPlayInfo->lpsmSock->dwEncPacketCode = OPCODE_ENCODE_PACKET2;
+		lpPlayInfo->lpsmSock->dwEncPacketCode = smTRANSCODE_ENCODE_PACKET2;
 		lpPlayInfo->lpsmSock->bEncXor = bEncXor;
 		lpPlayInfo->lpsmSock->bDecXor = bDecXor;
 

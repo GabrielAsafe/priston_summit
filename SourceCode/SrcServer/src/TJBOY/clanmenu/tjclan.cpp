@@ -1,3 +1,6 @@
+#include <cstring>
+#include "../../opcodes.h"
+#include "smPacket.h"
 
 
 

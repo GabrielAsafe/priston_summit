@@ -1,6 +1,8 @@
+#include <cstring>
+#include "opcodes.h"
 #include "sinbaram/sinLinkHeader.h"
 #include "File/File.h"
-#include "server/onserver.h"
+#include "Server/onserver.h"
 #include "BattlePass.h"
 
 #include <time.h>
@@ -62,7 +64,7 @@ void BattlePass::SendBPInfoToGame(rsPLAYINFO* Player)
 		BP_INFO packet;
 		char szQuery[512];
 		SQL::GetInstance()->EnterSqlSection();
-		wsprintf(szQuery, "SELECT * FROM [BattlePass].[dbo].[BP_Info] WHERE [ID]='%s'", Player->getAccount().c_str());
+		wsprintf(szQuery, "SELECT * FROM [BattlePass].[dbo].[BP_Info] WHERE [ID]='%s'", Player->getAccount());
 		if (SQL::GetInstance()->Execute(szQuery))
 		{
 			if (SQL::GetInstance()->Fetch())
@@ -119,7 +121,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 		char CodItem[32];
 		char szQuery[512];
 		SQL::GetInstance()->EnterSqlSection();
-		wsprintf(szQuery, "SELECT * FROM [BattlePass].[dbo].[BP_Info] WHERE [ID]='%s'", Player->getAccount().c_str());
+		wsprintf(szQuery, "SELECT * FROM [BattlePass].[dbo].[BP_Info] WHERE [ID]='%s'", Player->getAccount());
 		if (SQL::GetInstance()->Execute(szQuery))
 		{
 			if (SQL::GetInstance()->Fetch())
@@ -153,7 +155,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 				{
 					if (Item_Info_Resgate == 0)
 					{
-						wsprintf(szQuery, "UPDATE [BattlePass].[dbo].[BP_Info] SET BP_Resg%d=1 WHERE [ID]='%s'", Shop->item.Tag + 1, Player->getAccount().c_str());
+						wsprintf(szQuery, "UPDATE [BattlePass].[dbo].[BP_Info] SET BP_Resg%d=1 WHERE [ID]='%s'", Shop->item.Tag + 1, Player->getAccount());
 						if (SQL::GetInstance()->Execute(szQuery))
 						{
 							if (strcmp(CodItem, "GG101") == 0)
@@ -187,7 +189,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 
 								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Resgatou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
-									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, Shop->item.Name);
 
 								hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -233,7 +235,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 
 								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Resgatou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
-									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, Shop->item.Name);
 
 								hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -304,7 +306,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 
 								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
-									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
 
 								hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -375,7 +377,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 
 								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
-									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
 
 								hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -446,7 +448,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 
 								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
-									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
 
 								hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -532,7 +534,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 
 								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
-									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
 
 								hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -618,7 +620,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 
 								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
-									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
 
 								hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -717,7 +719,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 
 									lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 									wsprintf(szBuff, lpMsg,
-										tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+										tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 										Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
 
 									hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -817,7 +819,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 
 									lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 									wsprintf(szBuff, lpMsg,
-										tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+										tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 										Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
 
 									hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -915,7 +917,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 
 								lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Sorteou ( %d ) ( %s ) /r/n";
 								wsprintf(szBuff, lpMsg,
-									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+									tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 									Player->lpsmSock->szIPAddr, Item_Qtd, itemname);
 
 								hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -995,7 +997,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 
 									lpMsg = "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) - Resgatou ( %d ) ( %s ) /r/n";
 									wsprintf(szBuff, lpMsg,
-										tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount().c_str(), Player->getName().c_str(),
+										tm.tm_hour, tm.tm_min, tm.tm_sec, Player->getAccount(), Player->getName(),
 										Player->lpsmSock->szIPAddr, Item_Qtd, Shop->item.Name);
 
 									hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -1068,7 +1070,7 @@ void BattlePass::AddExpBattlePass(rsPLAYINFO* Player, int valor)
 		int Userativo = 0;
 		char szQuery[512];
 		SQL::GetInstance()->EnterSqlSection();
-		wsprintf(szQuery, "SELECT * FROM [BattlePass].[dbo].[BP_Info] WHERE [ID]='%s'", Player->getAccount().c_str());
+		wsprintf(szQuery, "SELECT * FROM [BattlePass].[dbo].[BP_Info] WHERE [ID]='%s'", Player->getAccount());
 		if (SQL::GetInstance()->Execute(szQuery))
 		{
 			if (SQL::GetInstance()->Fetch())
@@ -1117,11 +1119,11 @@ void BattlePass::AddExpBattlePass(rsPLAYINFO* Player, int valor)
 				//
 				//
 				if (UserBP_Exp < 999) {
-					wsprintf(szQuery, "UPDATE [BattlePass].[dbo].[BP_Info] SET BP_Exp=%d WHERE [ID]='%s'", UserBP_Exp, Player->getAccount().c_str());
+					wsprintf(szQuery, "UPDATE [BattlePass].[dbo].[BP_Info] SET BP_Exp=%d WHERE [ID]='%s'", UserBP_Exp, Player->getAccount());
 					if (SQL::GetInstance()->Execute(szQuery))
 					{
 					}
-					wsprintf(szQuery, "UPDATE [BattlePass].[dbo].[BP_Info] SET BP_Level=%d WHERE [ID]='%s'", UserBP_Level, Player->getAccount().c_str());
+					wsprintf(szQuery, "UPDATE [BattlePass].[dbo].[BP_Info] SET BP_Level=%d WHERE [ID]='%s'", UserBP_Level, Player->getAccount());
 					if (SQL::GetInstance()->Execute(szQuery))
 					{
 					}

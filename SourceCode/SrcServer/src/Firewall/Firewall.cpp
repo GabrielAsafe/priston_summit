@@ -1,6 +1,47 @@
 #include "Firewall/Firewall.h"
 #include <tchar.h>
-#include <atlconv.h>
+//#include <atlconv.h>
+
+
+
+#include <windows.h>
+#include <string>
+
+static std::wstring ToWide(const std::string& text)
+{
+    if (text.empty())
+        return std::wstring();
+
+    int size = MultiByteToWideChar(
+        CP_ACP,
+        0,
+        text.c_str(),
+        -1,
+        nullptr,
+        0
+    );
+
+    if (size <= 0)
+        return std::wstring();
+
+    std::wstring result(static_cast<size_t>(size), L'\0');
+
+    MultiByteToWideChar(
+        CP_ACP,
+        0,
+        text.c_str(),
+        -1,
+        &result[0],
+        size
+    );
+
+    if (!result.empty() && result.back() == L'\0')
+        result.pop_back();
+
+    return result;
+}
+
+
 
 Firewall * Firewall::m_Instance = nullptr;
 
@@ -24,9 +65,14 @@ bool Firewall::AddRule(Firewall::Rule Rule, std::string IP, unsigned short Port)
 	} break;
 	case Firewall::Rule::BlockAccess:
 	{
-		USES_CONVERSION;
-		BSTR RuleRAddress = SysAllocString(A2W(IP.c_str()));
-		BSTR RuleLPorts = SysAllocString(A2W(std::to_string(Port).c_str()));
+		//USES_CONVERSION;
+		//BSTR RuleRAddress = SysAllocString(A2W(IP.c_str()));
+		std::wstring wideIP = ToWide(IP);
+		BSTR RuleRAddress = SysAllocString(wideIP.c_str());
+		//BSTR RuleLPorts = SysAllocString(A2W(std::to_string(Port).c_str()));
+		std::wstring widePort = ToWide(std::to_string(Port));
+		BSTR RuleLPorts = SysAllocString(widePort.c_str());
+
 		BSTR RuleName = SysAllocString(L"PT Server Firewall");
 		BSTR RuleDesc = SysAllocString(L"Block HTTP Request");
 		BSTR RuleGroup = SysAllocString(L"Priston Tale Rules");
@@ -35,7 +81,7 @@ bool Firewall::AddRule(Firewall::Rule Rule, std::string IP, unsigned short Port)
 		m_Policy->get_CurrentProfileTypes(&CurrentProfilesBitMask);
 		if(FAILED(CoCreateInstance(__uuidof(NetFwRule), NULL, CLSCTX_INPROC_SERVER, __uuidof(INetFwRule), (void**)&FirewallRule)))
 		{
-			printf("Rule Creation failed./n");
+			printf("Rule Creation failed.\n");
 			SysFreeString(RuleRAddress);
 			SysFreeString(RuleLPorts);
 			SysFreeString(RuleGroup);
@@ -78,18 +124,25 @@ bool Firewall::AddRuleHacker(Firewall::Rule Rule, std::string IP, unsigned short
 	} break;
 	case Firewall::Rule::BlockAccess:
 	{
-		USES_CONVERSION;
-		BSTR RuleRAddress = SysAllocString(A2W(IP.c_str()));
-		BSTR RuleLPorts = SysAllocString(A2W(std::to_string(Port).c_str()));
-		BSTR RuleName = SysAllocString(A2W(msg.c_str()));
-		BSTR RuleDesc = SysAllocString(A2W(msg.c_str()));
-		BSTR RuleGroup = SysAllocString(A2W(msg.c_str()));
+		//USES_CONVERSION;
+		std::wstring wideIP = ToWide(IP);
+		BSTR RuleRAddress = SysAllocString(wideIP.c_str());
+
+		std::wstring widePort = ToWide(std::to_string(Port));
+		BSTR RuleLPorts = SysAllocString(widePort.c_str());
+
+		std::wstring wideMsg = ToWide(msg);
+
+		BSTR RuleName  = SysAllocString(wideMsg.c_str());
+		BSTR RuleDesc  = SysAllocString(wideMsg.c_str());
+		BSTR RuleGroup = SysAllocString(wideMsg.c_str());
+
 
 		m_Policy->get_Rules(&Rules);
 		m_Policy->get_CurrentProfileTypes(&CurrentProfilesBitMask);
 		if (FAILED(CoCreateInstance(__uuidof(NetFwRule), NULL, CLSCTX_INPROC_SERVER, __uuidof(INetFwRule), (void**)&FirewallRule)))
 		{
-			printf("Rule Creation failed./n");
+			printf("Rule Creation failed.\n");
 			SysFreeString(RuleRAddress);
 			SysFreeString(RuleLPorts);
 			SysFreeString(RuleGroup);
@@ -128,12 +181,12 @@ Firewall::Firewall()
 	{
 		if(FAILED(m_Initialized))
 		{
-			printf("CoInitializeEx failed: 0x%08lx/n", m_Initialized);
+			printf("CoInitializeEx failed: 0x%08lx\n", m_Initialized);
 		}
 	}
 	if(FAILED(CoCreateInstance(__uuidof(NetFwPolicy2), NULL, CLSCTX_INPROC_SERVER, __uuidof(INetFwPolicy2), (void**)&m_Policy)))
 	{
-		printf("CoCreateInstance failed./n");
+		printf("CoCreateInstance failed.\n");
 	}
 }
 

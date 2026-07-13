@@ -1,3 +1,4 @@
+#include <cstring>
 
 
 #include "sinLinkHeader.h"
@@ -118,7 +119,7 @@ bool ExistAseFile(char *directory)
 		{
 			if(tempFileName[index] == '.')
 			{
-				tempFileName[index] = '/0';
+				tempFileName[index] = '\0';
 				strcpy(tempExtName, &tempFileName[index + 1]);
 				break;
 			}
@@ -175,7 +176,7 @@ void LoadResFile(char *path, bool aseExistFlag)
 				{
 					if(tempFileName[index] == '.')
 					{
-						tempFileName[index] = '/0';
+						tempFileName[index] = '\0';
 						strcpy(tempExtName, &tempFileName[index + 1]);
 						break;
 					}
@@ -238,7 +239,7 @@ void LoadResFile(char *path, bool aseExistFlag)
 					{
 						if(aseName[index] == '.')
 						{
-							aseName[index] = '/0';
+							aseName[index] = '\0';
 							strcat(aseName, ".ase");
 							break;
 						}

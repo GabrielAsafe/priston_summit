@@ -5,6 +5,18 @@
 
 #include "smLib3d/smDsx.h"
 
+
+
+
+#ifdef _SERVER
+
+#ifndef LPDIRECT3DTEXTURE9
+typedef void *LPDIRECT3DTEXTURE9;
+#endif
+
+#endif
+
+
 #define MAX_ITEM 2000
 
 

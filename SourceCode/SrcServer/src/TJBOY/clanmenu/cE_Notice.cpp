@@ -1,3 +1,4 @@
+#include <cstring>
 #define CE_NOTICE_CPP
 #include <windows.h>
 #include <stdio.h>

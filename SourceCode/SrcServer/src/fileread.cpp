@@ -1,3 +1,7 @@
+#include "items.h"
+#include "server_build_compat.h"
+#include <cstring>
+#include "opcodes.h"
 #include <fstream>
 
 
@@ -2098,9 +2102,9 @@ int SetServerConfig(char *decode, char *lpPoint)
 			p = GetString(strBuff, pb);
 
 		if(strBuff[0])
-			rsServerConfig.allowed_login = atoi(strBuff);
+			rsServerConfig.Disable_LogIn = atoi(strBuff) ? 0 : 1;
 		else
-			rsServerConfig.allowed_login = 0;
+			rsServerConfig.Disable_LogIn = 1;
 
 		flag++;
 	}

@@ -1,3 +1,4 @@
+#include <cstring>
 #include "HoEffectModel.h"
 #include "HoEffectView.h"
 #include "HoEffectResMgr.h"

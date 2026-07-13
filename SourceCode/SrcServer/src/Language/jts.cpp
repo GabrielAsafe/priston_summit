@@ -1,3 +1,4 @@
+#include <cstring>
 #include "jts.h"
 
 

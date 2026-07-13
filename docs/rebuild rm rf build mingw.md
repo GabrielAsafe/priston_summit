@@ -51,6 +51,33 @@ tasklist /V /FI "IMAGENAME eq SummitTaleClient.exe"
 
 
 #testando no wine 
+
+
+rm -rf build_mingw_client_i686 dist_mingw_client_i686
+
+bash ./build_client_mingw_i686.sh 2>&1 | tee build_client_i686.log
+
+find build_mingw_client_i686 -iname "*Winmain*.o"
+
+bash ./link_client_mingw_i686.sh 2>&1 | tee link_client_i686.log
+
+grep -Ei "error:|undefined reference|multiple definition|cannot find|ld returned|collect2" \
+build_client_i686.log link_client_i686.log | tail -200
+
+file dist_mingw_client_i686/SummitTaleClient.exe
+
+find build_mingw_client_i686 -type f -name "*.o" | wc -l
+
+cd dist_mingw_client_i686
+
+cp -v /usr/i686-w64-mingw32/sys-root/mingw/bin/libgcc_s_dw2-1.dll .
+cp -v /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll .
+cp -v /usr/i686-w64-mingw32/sys-root/mingw/bin/libstdc++-6.dll .
+
+cabextract -F d3dx9_43.dll \
+../Dependency/DirectXSDK/Microsoft\ DirectX\ SDK\ \(June\ 2010\)/Redist/Jun2010_d3dx9_43_x86.cab
+
+
 cd "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente"
 
 cp -v "/home/gabriel/Área de Trabalho/summit/SourceCode/dist_mingw_client_i686/SummitTaleClient.exe" .

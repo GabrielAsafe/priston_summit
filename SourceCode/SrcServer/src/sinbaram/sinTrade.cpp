@@ -1,3 +1,4 @@
+#include <cstring>
 #include "sinLinkHeader.h"
 
 #define AGING_MONEY_FREE
@@ -4805,7 +4806,7 @@ int cCRAFTITEM::MixingItem()
 							return FALSE;
 						}
 
-						sCraftItem_Recv.DesCraftItem.sItemInfo.iMixType = sCraftItem_Info[i].iMixType;
+						sCraftItem_Recv.DesCraftItem.sItemInfo.iMixType = 0;
 						sCraftItem_Recv.DesCraftItem.sItemInfo.ItemKindCode = ITEM_KIND_CRAFT;
 						ReformMixItem(&sCraftItem_Recv.DesCraftItem.sItemInfo);
 

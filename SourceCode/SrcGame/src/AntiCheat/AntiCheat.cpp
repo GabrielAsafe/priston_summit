@@ -1,4 +1,5 @@
 #include "opcodes.h"
+#include "compat_sal.h"
 #include "AntiCheat/AntiCheat.h"
 #include "smwsock.h"
 #include "smPacket.h"
@@ -11,22 +12,6 @@
 
 
 typedef LONG NTSTATUS;
-
-#ifndef __in
-#define __in
-#endif
-
-#ifndef __out
-#define __out
-#endif
-
-#ifndef __out_opt
-#define __out_opt
-#endif
-
-#ifndef __out_bcount
-#define __out_bcount(x)
-#endif
 
 
 bool bLoadedNTDLL = false;

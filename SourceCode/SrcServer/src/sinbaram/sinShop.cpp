@@ -1,3 +1,5 @@
+#include <cstring>
+#include "../opcodes.h"
 
 
 #include "sinLinkHeader.h"

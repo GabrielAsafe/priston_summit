@@ -1,3 +1,4 @@
+#include <cstring>
 
 
 #include "sinLinkHeader.h"
@@ -531,7 +532,7 @@ int AssaGetAniFileMat(cASSAEFFECT *pEffect)
 		if(TempFileName[i + 1] == '.')
 		{
 			memcpy(&szIndex, &TempFileName[i], 2);
-			TempFileName[i] = '/0'; TempFileName[i + 1] = '/0';
+			TempFileName[i] = '\0'; TempFileName[i + 1] = '\0';
 			FileIndex = atoi(szIndex);
 			strcpy(FirstFileName, TempFileName);
 			strcpy(FileFormat, &TempFileName[i + 2]);

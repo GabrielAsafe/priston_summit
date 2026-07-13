@@ -1,3 +1,4 @@
+#include <cstring>
 #include <windows.h>
 #include "../YgyHeader.h"
 
@@ -60,7 +61,7 @@ void fd2(char *fmt, ...);
 
 BOOL talk_check(VOICTALKUSERDATA *vUser)
 {
-	static tCnt = 0;
+	static int tCnt = 0;
 	static char  talk[15][32];
 	static DWORD ttime[15];
 

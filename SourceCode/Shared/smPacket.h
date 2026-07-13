@@ -669,6 +669,15 @@ struct smCHAR_MONSTER_INFO {
 	char	*lpNpcMessage[NPC_MESSAGE_MAX];	//NPC ��ȭ �޼���
 	int		NpcMsgCount;					//NPC ��ȭ ī����
 
+	int SkinChange;
+	int Ranking;
+	int ItemShop;
+	int TimeShop;
+	int Rank;
+	int BattlePass;
+	int JOBS;
+	int NPCinfo;
+	int ClanCustom;
 };
 
 /*----------------------------------------------------------------------------*
@@ -833,7 +842,8 @@ struct TRANS_ATTACKDATA {
 	int Power;			// ���� �Ŀ�
 	DWORD	dwChkSum;
 
-	short	sRating[2];	//[0]-���� [1]-���߷�
+		short	Critical[2];
+short	sRating[2];	//[0]-���� [1]-���߷�
 	DWORD	dwDamageChkSum;
 };
 
@@ -1212,6 +1222,9 @@ public:
         const char* getAccount() const { return szID; }
         const char* getName() const { return smCharInfo.szName; }
         AccountTypes getSecurity() const { return (AccountTypes)AdminMode; }
+
+        DWORD getLastMessageTick() const { return lastMessageTick; }
+        void setLastMessageTick(DWORD value) { lastMessageTick = value; }
         void setAccount(const char* v) { if(v) strcpy_s(szID, v); }
         void setAccount(char v) { szID[0]=v; }
         void setAccountId(int v) { dwCode_ID=v; }
@@ -1281,6 +1294,9 @@ public:
 	int				CrackWarning;				//ũ�� ��� ����
 	DWORD			dwTime_Disconnect;			//������� ����
 	int				BadPlayer;					//���� �÷��̾� ( ��� ���� ��ȿ )
+	DWORD   lastMessageTick;
+	bool    topLevelFlag;
+	int     ModoPvP_Drop;
 	DWORD			dwPacketAttackCount;		//������ ��Ŷ���� ���� ���� ���� 
 	DWORD			dwPacketAttackTime;			//������ ��Ű���� �������� �ð�
 	int				WarningCount;				//��� ī��Ʈ
@@ -1306,6 +1322,7 @@ public:
 	////////////// ���� ���� ��ġ ��� //////////////////////
 
 	INT64			spExp_Start;				//���۽� ����ġ
+	INT64   m_Experience;
 	int				spMoney_Start;				//���۽� ��
 	int				spLevel_Start;				//���۽� ����
 
@@ -1577,6 +1594,11 @@ public:
 
 	//�ð��� ��� ������ ����
 	DWORD	dwPrimeItem_NextSetTime;	//�ð��� ��������� ���μ����뺸 ����ð�
+	DWORD   dwPrimeItem_NextSetTime_T;
+	DWORD   dwTime_BigHead1;
+	DWORD   dwTime_BigHead2;
+	DWORD   dwTime_BigHead3;
+	DWORD   dwTime_BigHead4;
 	DWORD	dwTime_PrimeItem_X2;		//������ 2�� ���
 	DWORD	dwTime_PrimeItem_ExpUp;		//����ġ�� ����
 	DWORD	dwPrimeItem_PackageCode;	//��Ű�������� �ڵ�
@@ -1590,6 +1612,13 @@ public:
 	DWORD	dwTime_PrimeItem_HelpPet;	// ����� - ��� ����� �� �߰�
 	DWORD	dwTime_PrimeItem_VampCuspid_EX;	// �庰 - ���Ǹ� Ŀ���� EX
 	DWORD	dwTime_PrimeItem_StaminaReduce;	// ����� - �ٷ� ���ེ ����
+
+	DWORD   dwTime_PrimeItem_StaminaRecharg;
+	DWORD   dwTime_PrimeItem_Caravan;
+	DWORD   dwTime_PrimeItem_GoldLooter;
+	DWORD   dwTime_PrimeItem_HPBooster;
+	DWORD   dwTime_PrimeItem_MPBooster;
+	DWORD   dwTime_PrimeItem_RESBooster;
 
 	//pC�� ��
 	DWORD	dwPCBang_Pet_AttackTime;	//PC�� �� ����Ÿ��
@@ -1614,6 +1643,9 @@ public:
 	//////////////////////////// ��ȯ�� ���� ///////////////////////
 	smCHAR	*lpLinkChar;
 	DWORD	dwLinkCharCode;
+
+	smCHAR  *lpCharCaravan;
+	DWORD   dwCaravanCode;
 
 	/////////////////////////// ���� ���� //////////////////////////
 	short	sBlessCastle_Damage[2];		//0-Damage 1-Killing Count
@@ -1688,6 +1720,7 @@ public:
 	int GetPartyMoney( sITEMINFO *lpDefItemInfo , rsPLAYINFO *lpPlayInfo );	//��Ƽ�� �� ȹ��
 	int GetPartyExp( smCHAR *lpChar , rsPLAYINFO *lpPlayInfo );				//��Ƽ�� ����ġ ȹ��
 	int PartyChatting( rsPLAYINFO *lpPlayInfo );			//��Ƽ�� ä�ø޼��� ����
+	void AddExp(INT64 Exp, DWORD dwObjectSerial, bool bParty);
 
 	int	UpdateServerPartyPlayer( TRANS_PARTY_PLAYINFO *lpTransPartyPlayInfo );	//���� ������ ��Ƽ�� ���� ������Ʈ /smTRANSCODE_PARTY_PLAYUPDATE
 
@@ -2668,6 +2701,9 @@ struct rsSERVER_CONFIG	{
 	int		CheckPlayField;								//Ŭ���̾�Ʈ �� ������  �ʵ� ���� �� �˻�
 
 	int		Enable_PKField;								// PK��� �ʵ� ��ȣ
+	int		Enable_PKField1;
+	int		Enable_PKField2;
+	int		Enable_PKField3;
 
 	int		Enable_PKField_All;							// pluto PK��� �ʵ� ����
 
@@ -2735,16 +2771,19 @@ struct	sCHK_POTION_COUNT  {
 	int	Ps102;
 	int	Ps103;
 	int	Ps104;
+	int     Ps105;
 
 	int	Pm101;
 	int	Pm102;
 	int	Pm103;
 	int	Pm104;
+	int     Pm105;
 
 	int	Pl101;
 	int	Pl102;
 	int	Pl103;
 	int	Pl104;
+	int     Pl105;
 };
 
 //SOD ���� ���

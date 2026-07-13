@@ -1,6 +1,12 @@
 #ifndef	_SMWSOCK_HEADER
 #define	_SMWSOCK_HEADER
 
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#include <winsock2.h>
+#include <windows.h>
+
 #include "NetType.h"
 
 

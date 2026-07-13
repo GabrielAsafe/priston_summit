@@ -1,3 +1,4 @@
+#include <cstring>
 #define CLAN_EITI_CPP
 #include <windows.h>
 #include <tchar.h>
@@ -3477,7 +3478,7 @@ int CLANEntity::CheckMark(BOOL bFlag)
 
 	wsprintf(szTemp, "%s//%s//%c_%s.rep", CLANINFO_DIR, szConnServerName, GServer, szNum);
 	fp = fopen(szTemp, "rb");
-	if(fp > 0)
+	if(fp)
 	{
 		fread(&myclaninfo, sizeof(MYCLANINFOHEADER), 1, fp);
 		fclose(fp);

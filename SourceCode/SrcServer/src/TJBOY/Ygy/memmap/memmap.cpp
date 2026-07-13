@@ -1,3 +1,4 @@
+#include <cstring>
 #include <windows.h>
 #include "memmap.h"
 #define __MEMDEBUG

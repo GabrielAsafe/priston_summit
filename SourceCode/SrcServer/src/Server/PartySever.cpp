@@ -1,3 +1,6 @@
+#include "server_compat_packets.h"
+#include <cstring>
+#include "../opcodes.h"
 #include <windows.h>
 #include <io.h>
 #include <stdio.h>         

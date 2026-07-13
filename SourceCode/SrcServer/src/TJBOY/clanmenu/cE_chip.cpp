@@ -1,3 +1,4 @@
+#include <cstring>
 #define CE_CHIP_CPP
 #include <windows.h>
 #include <stdio.h>

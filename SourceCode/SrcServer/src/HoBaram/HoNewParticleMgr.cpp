@@ -1,3 +1,4 @@
+#include <cstring>
 
 #include "HoLinkHeader.h"
 
@@ -70,7 +71,7 @@ bool HoNewParticleResMgr::LoadScript(char *scr)
 	{
 		if(directoryBuffer[index] == '.')
 		{
-			directoryBuffer[index] = '/0';
+			directoryBuffer[index] = '\0';
 			break;
 		}
 	}

@@ -1,3 +1,4 @@
+#include <cstring>
 
 #include "sinLinkHeader.h"
 #include "../field.h"

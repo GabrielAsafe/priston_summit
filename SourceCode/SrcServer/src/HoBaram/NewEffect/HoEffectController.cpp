@@ -49,7 +49,7 @@ void HoEffectEventController::Clear()
 		}
 	}
 
-	m_EffectEvents.assign(nullptr);
+	m_EffectEvents.fill(nullptr);
 	cursor = 0;
 }
 

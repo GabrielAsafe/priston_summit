@@ -1,3 +1,15 @@
+backup_server_after_copilot_20260709_130448/SrcServer/src/Server/SvrCaravan.cpp
+backup_server_after_copilot_20260709_130448/SrcServer/src/Server/Svr_Damge.cpp
+backup_server_after_copilot_20260709_130448/SrcServer/src/Server/svrEventSpawn.cpp
+backup_server_after_copilot_20260709_130448/SrcServer/src/sinbaram/sinInterFace.cpp
+backup_server_after_copilot_20260709_130448/SrcServer/src/sinbaram/sinInvenTory.cpp
+backup_server_after_copilot_20260709_130448/SrcServer/src/sinbaram/sinShop.cpp
+backup_server_after_copilot_20260709_130448/SrcServer/src/sinbaram/sinSkill_Info.cpp
+backup_server_after_copilot_20260709_130448/SrcServer/src/sinbaram/sinSubMain.cpp
+backup_server_after_copilot_20260709_130448/SrcServer/src/SkillSub.cpp
+backup_server_after_copilot_20260709_130448/SrcServer/src/smwsock.cpp
+backup_server_after_copilot_20260709_130448/SrcServer/src/STRCLASS.CPP
+backup_server_after_copilot_20260709_130448/SrcServer/src/SvrCaravan.cpp
 Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D10/10BitScanout10/10BitScanout10.cpp
 Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D10/AdvancedParticles/AdvancedParticles.cpp
 Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D10/BasicHLSL10/BasicHLSL10.cpp
@@ -444,19 +456,70 @@ Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Utilities/Source/Sas/Sas
 Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Utilities/Source/Sas/stdafx.cpp
 Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Utilities/Source/Sas/Unit.cpp
 Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Utilities/Source/Sas/Value.cpp
-lixo_2026_07/summit_missing_modules/modules/Helper/Utils/utils_exception.cpp
-lixo_2026_07/summit_missing_modules/modules/Helper/Utils/utils_filesystem.cpp
-lixo_2026_07/summit_missing_modules/modules/Helper/Utils/utils_logging.cpp
-lixo_2026_07/summit_missing_modules/modules/Helper/Utils/utils_string.cpp
-lixo_2026_07/summit_missing_modules/modules/Helper/Utils/utils_testing.cpp
-lixo_2026_07/summit_missing_modules/modules/MD5/MD5.cpp
-lixo_2026_07/summit_missing_modules/modules/MD5/MD5Wrapper.cpp
 lixo acho eu /backup_fix_failed_patch_20260704_100410/fileread.cpp
 lixo acho eu /backup_fix_failed_patch_20260704_100410/HoOpening.cpp
 lixo acho eu /backup_safe_patch_20260704_095605/fileread.cpp
 lixo acho eu /backup_safe_patch_20260704_095605/HoOpening.cpp
 lixo acho eu /backup_safe_patch_20260704_095605/netplay.cpp
+lixo acho eu /backup_server_blockers_20260708_201748/SrcServer/src/TJBOY/park/MicVolume.cpp
+lixo acho eu /backup_server_blockers_20260708_201748/SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp
+lixo acho eu /backup_server_client_ported_20260709_104636/SrcServer/src/TJBOY/clanmenu/tjclan.cpp
+lixo acho eu /backup_server_client_ported_20260709_104636/SrcServer/src/TJBOY/isaocheck/isaocheck.cpp
+lixo acho eu /backup_server_immediate_20260709_131227/SrcServer/src/Server/PartySever.cpp
+lixo acho eu /backup_server_immediate_20260709_131227/SrcServer/src/Server/Svr_Damge.cpp
+lixo acho eu /backup_server_immediate_20260709_131227/SrcServer/src/sinbaram/sinInvenTory.cpp
+lixo acho eu /backup_server_immediate_20260709_131227/SrcServer/src/Winmain.cpp
+lixo acho eu /backup_server_immediate2_20260709_132950/SrcServer/src/Server/DllServer.cpp
+lixo acho eu /backup_server_immediate2_20260709_132950/SrcServer/src/sinbaram/sinSkill_Info.cpp
+lixo acho eu /backup_server_immediate3_20260709_133543/SrcServer/src/Server/DllServer.cpp
+lixo acho eu /backup_server_immediate3_20260709_133543/SrcServer/src/sinbaram/sinSkill_Info.cpp
+lixo acho eu /backup_server_immediate3_fixed_20260709_133826/SrcServer/src/Server/DllServer.cpp
+lixo acho eu /backup_server_immediate3_fixed_20260709_133826/SrcServer/src/sinbaram/sinSkill_Info.cpp
+lixo acho eu /backup_server_next_blockers_20260709_103401/SrcServer/src/TJBOY/clanmenu/cE_Updatecldata.cpp
+lixo acho eu /backup_server_next_blockers_20260709_103401/SrcServer/src/TJBOY/clanmenu/clan_Enti.cpp
+lixo acho eu /backup_server_next_blockers_20260709_103401/SrcServer/src/TJBOY/clanmenu/tjclan.cpp
+lixo acho eu /backup_server_next_blockers_20260709_103401/SrcServer/src/TJBOY/isaocheck/isaocheck.cpp
+lixo acho eu /backup_server_next_blockers_20260709_103401/SrcServer/src/TJBOY/park/MicVolume.cpp
+lixo acho eu /backup_server_next_blockers_20260709_103401/SrcServer/src/Winmain.cpp
+lixo acho eu /backup_server_next_compile_wave_20260709_113123/SrcServer/src/Server/Svr_Damge.cpp
+lixo acho eu /backup_server_next_compile_wave_20260709_113123/SrcServer/src/Server/svrEventSpawn.cpp
+lixo acho eu /backup_server_next_compile_wave_20260709_113123/SrcServer/src/sinbaram/sinInterFace.cpp
+lixo acho eu /backup_server_next_compile_wave_20260709_113123/SrcServer/src/sinbaram/sinInvenTory.cpp
+lixo acho eu /backup_server_next_compile_wave_20260709_113123/SrcServer/src/sinbaram/sinShop.cpp
+lixo acho eu /backup_server_next_compile_wave_20260709_113123/SrcServer/src/sinbaram/sinSkill_Info.cpp
+lixo acho eu /backup_server_next_compile_wave_20260709_113123/SrcServer/src/sinbaram/sinSubMain.cpp
+lixo acho eu /backup_server_next_compile_wave_20260709_113123/SrcServer/src/SkillSub.cpp
+lixo acho eu /backup_server_next_compile_wave_20260709_113123/SrcServer/src/smwsock.cpp
+lixo acho eu /backup_server_next_compile_wave_20260709_113123/SrcServer/src/STRCLASS.CPP
+lixo acho eu /backup_server_next_compile_wave_20260709_113123/SrcServer/src/SvrCaravan.cpp
+lixo acho eu /backup_server_null_strclass_final_20260709_111956/SrcServer/src/Winmain.cpp
+lixo acho eu /backup_server_patch_all_v2_20260708_201456/SrcServer/src/CurseFilter.cpp
+lixo acho eu /backup_server_patch_all_v2_20260708_201456/SrcServer/src/HoBaram/HoNewParticleMgr.cpp
+lixo acho eu /backup_server_patch_all_v2_20260708_201456/SrcServer/src/Server/OnSever.cpp
+lixo acho eu /backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaEffect.cpp
+lixo acho eu /backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp
+lixo acho eu /backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/sinUtil.cpp
+lixo acho eu /backup_server_patch_all_v2_20260708_201456/SrcServer/src/STRCLASS.CPP
+lixo acho eu /backup_server_patch_all_v2_20260708_201456/SrcServer/src/TJBOY/isaocheck/auth.cpp
+lixo acho eu /backup_server_patch_all_v2_20260708_201456/SrcServer/src/Winmain.cpp
+lixo acho eu /backup_server_patch_safe_01_20260708_200514/SrcServer/src/CurseFilter.cpp
+lixo acho eu /backup_server_patch_safe_01_20260708_200514/SrcServer/src/HoBaram/HoNewParticleMgr.cpp
+lixo acho eu /backup_server_patch_safe_01_20260708_200514/SrcServer/src/Server/OnSever.cpp
+lixo acho eu /backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaEffect.cpp
+lixo acho eu /backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp
+lixo acho eu /backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/sinUtil.cpp
+lixo acho eu /backup_server_patch_safe_01_20260708_200514/SrcServer/src/STRCLASS.CPP
+lixo acho eu /backup_server_patch_safe_01_20260708_200514/SrcServer/src/TJBOY/isaocheck/auth.cpp
+lixo acho eu /backup_server_patch_safe_01_20260708_200514/SrcServer/src/Winmain.cpp
+lixo acho eu /backup_server_wave2_20260709_120402/SrcServer/src/smwsock.cpp
 lixo acho eu /backup_winsock_conflict_20260704_152450/isaocheck.cpp
+lixo acho eu /lixo_2026_07/summit_missing_modules/modules/Helper/Utils/utils_exception.cpp
+lixo acho eu /lixo_2026_07/summit_missing_modules/modules/Helper/Utils/utils_filesystem.cpp
+lixo acho eu /lixo_2026_07/summit_missing_modules/modules/Helper/Utils/utils_logging.cpp
+lixo acho eu /lixo_2026_07/summit_missing_modules/modules/Helper/Utils/utils_string.cpp
+lixo acho eu /lixo_2026_07/summit_missing_modules/modules/Helper/Utils/utils_testing.cpp
+lixo acho eu /lixo_2026_07/summit_missing_modules/modules/MD5/MD5.cpp
+lixo acho eu /lixo_2026_07/summit_missing_modules/modules/MD5/MD5Wrapper.cpp
 modules/Helper/Utils/utils_exception.cpp
 modules/Helper/Utils/utils_filesystem.cpp
 modules/Helper/Utils/utils_logging.cpp

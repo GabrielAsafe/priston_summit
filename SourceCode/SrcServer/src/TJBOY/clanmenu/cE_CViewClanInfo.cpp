@@ -1,3 +1,4 @@
+#include <cstring>
 #define CLAN_VIEWCLANINFO_CPP
 #include <windows.h>
 #include <stdio.h>

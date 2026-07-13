@@ -1269,10 +1269,10 @@ int GetNoticeUrl(char *url);
 
 
 extern HWND    g_hwnd;
-/
+/*
 	: �Լ�  �� : HBITMAP MakeDIBSection(char *Path)
 	: �ϴ�  �� :
-: ��    �� : bmp�������о  DIB ������ ����� �ڵ��� �����Ѵ�.
+: ��    �� : bmp�������о  DIB ������ ����� �ڵ��� �����Ѵ�.
 	: ��ȯ  �� :
 
 HBITMAP MakeDIBSection(DIBSectionBUF *Dibbuf)
@@ -1287,6 +1287,7 @@ HBITMAP MakeDIBSection(DIBSectionBUF *Dibbuf)
 
 	hFile = CreateFile(Dibbuf->fname, GENERIC_READ, 0, NULL,
 					   OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	*/
 	if(hFile == INVALID_HANDLE_VALUE)
 	{
 		return NULL;

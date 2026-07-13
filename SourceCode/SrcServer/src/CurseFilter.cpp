@@ -1,3 +1,4 @@
+#include <cstring>
 #include <windows.h>
 #include <string.h>
 #include <stdio.h>
@@ -55,7 +56,7 @@ static char *getField(const char *buf, int delim, char *field)
 	while((int)*src == delim && *src != 0) src++;
 	while((int)*src != delim && *src != 0) *field++ = *src++;
 
-	*field = '/0';
+	*field = '\0';
 	return (char *)src;
 }
 

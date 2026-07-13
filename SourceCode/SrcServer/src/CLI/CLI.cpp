@@ -1,3 +1,4 @@
+#include "server_build_compat.h"
 #include "CLI/CLI.h"
 #include <iostream>
 #include <windows.h>

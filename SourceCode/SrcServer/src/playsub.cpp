@@ -1,3 +1,6 @@
+#include "items.h"
+#include <cstring>
+#include "opcodes.h"
 
 
 #include "smLib3d/smd3d.h"

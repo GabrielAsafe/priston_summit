@@ -1,3 +1,5 @@
+#include <cstring>
+#include "../opcodes.h"
 #include "News/News.h"
 #include "File/File.h"
 #include "smPacket.h"
@@ -12,8 +14,8 @@ void News::welcome()
 {
 	TRANS_CHATMESSAGE TransChatMessage;
 	//nick na msg de boas vindas
-	/*wsprintf(TransChatMessage.szMessage, "> Ol� %s", player->getName().c_str());
-	TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+	/*wsprintf(TransChatMessage.szMessage, "> Ol� %s", player->getName());
+	TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 	TransChatMessage.dwIP = 16;
 	TransChatMessage.dwObjectSerial = 0;
@@ -21,8 +23,8 @@ void News::welcome()
 
 
 	//nick na msg de boas vindas
-	wsprintf(TransChatMessage.szMessage, "Ola %s, Bem Vindo ao Priston Tale.", player->getName().c_str());
-	TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+	wsprintf(TransChatMessage.szMessage, "Ola %s, Bem Vindo ao Priston Tale.", player->getName());
+	TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 	TransChatMessage.dwIP = 3;
 	TransChatMessage.dwObjectSerial = 0;
@@ -89,7 +91,7 @@ void News::msgCoinShop()
 		TRANS_CHATMESSAGE TransChatMessage;
 
 		wsprintf(TransChatMessage.szMessage, "> Voc� Possui %d CoinShop", cCoinShop.GetPlayerCoin(player));
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 3;
 		TransChatMessage.dwObjectSerial = 0;
@@ -97,7 +99,7 @@ void News::msgCoinShop()
 		
 	
 		wsprintf(TransChatMessage.szMessage, "> Voc� Possui %d TimeShop", cCoinShop_T.GetPlayerCoin(player));
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 3;
 		TransChatMessage.dwObjectSerial = 0;
@@ -138,7 +140,7 @@ void News::msgNotice()
 				      else
 						  wsprintf(Login.szMessage, "%s", szMessageLogin);
 
-					  Login.code = OPCODE_WHISPERMESSAGE;
+					  Login.code = OpCode::OPCODE_WHISPERMESSAGE;
 					  Login.size = 32 + lstrlen(Login.szMessage);
 					  Login.dwIP = 13;
 					  Login.dwObjectSerial = 0;
@@ -168,8 +170,8 @@ void News::msgPlayerLogado(rsPLAYINFO *jogadores)
 	if (player && player->lpsmSock)
 	{
 
-		wsprintf(TransChatMessage.szMessage, "> Player [%s] Est� Online", player->getName().c_str());
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		wsprintf(TransChatMessage.szMessage, "> Player [%s] Est� Online", player->getName());
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 9;
 		TransChatMessage.dwObjectSerial = 0;

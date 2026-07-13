@@ -1,3 +1,6 @@
+#include "server_compat_packets.h"
+#include <cstring>
+#include "opcodes.h"
 
 #include "smLib3d/smd3d.h"
 
@@ -2489,7 +2492,7 @@ int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, 
 			return -1;
 		}
 
-		if(lpPlayInfo->getSecurity() < AccountTypes::SEC_GAMEMASTER && lstrcmp(TransRecordData.smCharInfo.szName, lpPlayInfo->getName().c_str()) != 0)
+		if(lpPlayInfo->getSecurity() < AccountTypes::SEC_GAMEMASTER && lstrcmp(TransRecordData.smCharInfo.szName, lpPlayInfo->getName()) != 0)
 		{
 
 			TransRecordData.code = 0;
@@ -2703,7 +2706,7 @@ int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, 
 			}
 		}
 
-		lstrcpy(TransRecordData.GameSaveInfo.szMasterID, lpPlayInfo->getAccount().c_str());
+		lstrcpy(TransRecordData.GameSaveInfo.szMasterID, lpPlayInfo->getAccount());
 
 
 
@@ -3029,7 +3032,7 @@ int rsRecordMemoryBuff_CheckInvenItem(rsPLAYINFO *lpPlayInfo, int Mode)
 
 	if(lpPlayInfo->OpenWarehouseInfoFlag && (lpPlayInfo->dwDataError&rsDATA_ERROR_WAREHOUSE) == 0)
 	{
-		GetWareHouseFile(lpPlayInfo->getAccount().c_str(), szFileName);
+		GetWareHouseFile(lpPlayInfo->getAccount(), szFileName);
 
 		fp = fopen(szFileName, "rb");
 		if(fp)
@@ -3186,7 +3189,7 @@ skip_Warehouse:
 			if(SaveWareHouse(&WareHouseCheck, &TransWareHouse) == TRUE)
 			{
 
-				rsSaveWareHouseData(lpPlayInfo->getAccount().c_str(), &TransWareHouse);
+				rsSaveWareHouseData(lpPlayInfo->getAccount(), &TransWareHouse);
 			}
 		}
 	}
@@ -3656,7 +3659,7 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo)
 	int cnt, cnt2;
 
 
-	GetWareHouseFile(lpPlayInfo->getAccount().c_str(), szFileName);
+	GetWareHouseFile(lpPlayInfo->getAccount(), szFileName);
 
 	hFind = FindFirstFile(szFileName, &ffd);
 	FindClose(hFind);
@@ -3815,7 +3818,7 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo, int Caravan = 0)
 	int cnt, cnt2;
 
 
-	GetWareHouseFile(lpPlayInfo->getAccount().c_str(), szFileName);
+	GetWareHouseFile(lpPlayInfo->getAccount(), szFileName);
 
 	hFind = FindFirstFile(szFileName, &ffd);
 	FindClose(hFind);
@@ -4826,10 +4829,10 @@ int	rsLoadPostBox(rsPLAYINFO	*lpPlayInfo)
 	char	strBuff[512];
 	int		cnt;
 
-	if(lpPlayInfo->getAccount().empty()) return FALSE;
+	if((!lpPlayInfo->getAccount() || !lpPlayInfo->getAccount()[0])) return FALSE;
 	if(lpPlayInfo->lpPostBoxItem) return TRUE;
 
-	GetPostBoxFile(lpPlayInfo->getAccount().c_str(), szFileName);
+	GetPostBoxFile(lpPlayInfo->getAccount(), szFileName);
 
 	fp = fopen(szFileName, "rb");
 	if(!fp) return FALSE;
@@ -4950,10 +4953,10 @@ int	rsSavePostBox(rsPLAYINFO	*lpPlayInfo)
 	DWORD	FileLength;
 
 
-	if(lpPlayInfo->getAccount().empty()) return FALSE;
+	if((!lpPlayInfo->getAccount() || !lpPlayInfo->getAccount()[0])) return FALSE;
 	if(!lpPlayInfo->lpPostBoxItem) return FALSE;
 
-	GetPostBoxFile(lpPlayInfo->getAccount().c_str(), szFileName);
+	GetPostBoxFile(lpPlayInfo->getAccount(), szFileName);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFile == INVALID_HANDLE_VALUE)
@@ -4970,7 +4973,7 @@ int	rsSavePostBox(rsPLAYINFO	*lpPlayInfo)
 		if(lpPlayInfo->lpPostBoxItem->PostItem[cnt].Flag)
 		{
 
-			wsprintf(strBuff, "%s		%s		%s		/"%s/"	%s	%s/r/n",
+			wsprintf(strBuff, "%s		%s		%s		\"%s\"	%s	%s\r\n",
 				lpPlayInfo->lpPostBoxItem->PostItem[cnt].szCharName,
 				lpPlayInfo->lpPostBoxItem->PostItem[cnt].szItemCode,
 				lpPlayInfo->lpPostBoxItem->PostItem[cnt].szSpeJob,
@@ -4989,16 +4992,16 @@ int	rsSavePostBox(rsPLAYINFO	*lpPlayInfo)
 
 int rsAddPostBoxItem(rsPLAYINFO * pcUnitData, const char * ItemCode, int Spec, char* pszMessage, bool bSendToCharacter) 
 {
-	if (!pcUnitData->getAccount().empty())
+	if ((pcUnitData->getAccount() && pcUnitData->getAccount()[0]))
 		return FALSE;
 
 	char szFileName[64];
-	GetPostBoxFile(pcUnitData->getAccount().c_str(), szFileName);
+	GetPostBoxFile(pcUnitData->getAccount(), szFileName);
 
 	FILE * pFile = NULL;
 	fopen_s(&pFile, szFileName, "a+");
 	if (pFile) {
-		fprintf(pFile, "%s		%s		%d		/"%s/"/r/n", bSendToCharacter ? pcUnitData->smCharInfo.szName : "*", ItemCode, Spec, pszMessage);
+		fprintf(pFile, "%s		%s		%d		\"%s\"\r\n", bSendToCharacter ? pcUnitData->smCharInfo.szName : "*", ItemCode, Spec, pszMessage);
 		fclose(pFile);
 
 		return TRUE;
@@ -5018,7 +5021,7 @@ int	rsAddPostBox_Present(rsPLAYINFO *lpPlayInfo)
 
 	char	strBuff[16384];
 
-	if(lpPlayInfo->getAccount().empty()) return FALSE;
+	if((!lpPlayInfo->getAccount() || !lpPlayInfo->getAccount()[0])) return FALSE;
 
 	hFile = CreateFile("Present.dat", GENERIC_READ, FILE_SHARE_READ, NULL,
 		OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -5031,7 +5034,7 @@ int	rsAddPostBox_Present(rsPLAYINFO *lpPlayInfo)
 	ReadFile(hFile, strBuff, len, &dwAcess, NULL);
 	CloseHandle(hFile);
 
-	GetPostBoxFile(lpPlayInfo->getAccount().c_str(), szFileName);
+	GetPostBoxFile(lpPlayInfo->getAccount(), szFileName);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFile == INVALID_HANDLE_VALUE)
@@ -5189,7 +5192,7 @@ int SaveCloseUserRecord(char *szUserName, int Level, int Exp, int Money)
 
 	wsprintf(szFileName, "UserRecord.txt");
 
-	wsprintf(szBuff, "%s		����(%d)	����ġ(%d)	��(%d)/r/n", szUserName, Level, Exp, Money);
+	wsprintf(szBuff, "%s		����(%d)	����ġ(%d)	��(%d)\r\n", szUserName, Level, Exp, Money);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFile == INVALID_HANDLE_VALUE) return FALSE;
@@ -5215,7 +5218,7 @@ int SaveWareHouseRecord(char *szUserName, int Money, int Weight1, int Weight2)
 
 	wsprintf(szFileName, "UserRecord.txt");
 
-	wsprintf(szBuff, "ID( %s )	â���(%d)	����( %d/%d )/r/n", szUserName, Money, Weight1, Weight2);
+	wsprintf(szBuff, "ID( %s )	â���(%d)	����( %d/%d )\r\n", szUserName, Money, Weight1, Weight2);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFile == INVALID_HANDLE_VALUE) return FALSE;
@@ -5666,7 +5669,7 @@ int RestoreBackupData(char *szListFile, char *BackupPath)
 							else
 							{
 								flag = FALSE;
-								wsprintf(szLogBuff, "%s (%s) -> ���� ( �ű�ĳ�������� )/r/n", decode, strBuff);
+								wsprintf(szLogBuff, "%s (%s) -> ���� ( �ű�ĳ�������� )\r\n", decode, strBuff);
 								fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 							}
 						}
@@ -5680,19 +5683,19 @@ int RestoreBackupData(char *szListFile, char *BackupPath)
 
 							CopyFile(szSrcDataFile, szDestDataFile, FALSE);
 
-							wsprintf(szLogBuff, "%s (%s) -> ����/r/n", decode, strBuff);
+							wsprintf(szLogBuff, "%s (%s) -> ����\r\n", decode, strBuff);
 							fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 						}
 					}
 					else
 					{
-						wsprintf(szLogBuff, "%s (%s) -> ���� ( �����̾��� )/r/n", decode, strBuff);
+						wsprintf(szLogBuff, "%s (%s) -> ���� ( �����̾��� )\r\n", decode, strBuff);
 						fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 					}
 				}
 				else
 				{
-					wsprintf(szLogBuff, "%s (%s) -> ���� ( �ҽ����Ͼ��� )/r/n", decode, strBuff);
+					wsprintf(szLogBuff, "%s (%s) -> ���� ( �ҽ����Ͼ��� )\r\n", decode, strBuff);
 					fwrite(szLogBuff, lstrlen(szLogBuff), 1, fp3);
 				}
 			}

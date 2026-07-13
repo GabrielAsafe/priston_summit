@@ -1,4 +1,15 @@
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
 #include <windows.h>
+#include "Helper/Utils/utils_logging.h"
+
+#ifndef LOG_SERVER
+#define LOG_SERVER 1
+#endif
+#include "server_compat_packets.h"
+#include "server_build_compat.h"
+#include <cstring>
 #include <iostream>
 #include <io.h>
 #include <stdio.h>         
@@ -58,7 +69,7 @@
 
 #include "Database/Database.h"
 #include "GameMasters/GameMasters.h"
-#include "Skills/SkillSub.h"
+#include "SkillSub.h"
 #endif
 
 #include "cQuestHandler.h"
@@ -638,7 +649,7 @@ int	rsSendServerChatMessageToUser2(int Color, char* msg, ...)
 	va_end(vl);
 
 	lstrcpy(TransChatMessage.szMessage, szMessage);
-	TransChatMessage.code = SEND_ALERT;
+	TransChatMessage.code = OpCode::SEND_ALERT;
 	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 	TransChatMessage.dwIP = Color;
 	TransChatMessage.dwObjectSerial = 0;
@@ -667,7 +678,7 @@ int	rsSendServerChatMessageToUser(rsPLAYINFO *lpPlayInfo, int Color, char * msg,
 	va_end(vl);
 
 	lstrcpy(TransChatMessage.szMessage, szMessage);
-	TransChatMessage.code = SEND_ALERT;
+	TransChatMessage.code = OpCode::SEND_ALERT;
 	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 	TransChatMessage.dwIP = Color;
 	TransChatMessage.dwObjectSerial = 0;
@@ -1754,18 +1765,18 @@ int AgingEventoGlobalOn() {
 	if (AgingEvento) {
 
 
-		smTransCommand.code = OPCODE_AGING_FREE;
+		smTransCommand.code = OpCode::OPCODE_AGING_FREE;
 		smTransCommand.size = sizeof(smTRANS_COMMAND);
 		smTransCommand.WParam = 1;
 		smTransCommand.SParam = 0;
 		smTransCommand.EParam = 0;
 		for (int cnt = 0; cnt < CONNECTMAX; cnt++) {
-			if (rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty()) {
+			if (rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getAccount() && rsPlayInfo[cnt].getAccount()[0])) {
 				rsPlayInfo[cnt].lpsmSock->Send((char*)& smTransCommand, smTransCommand.size, TRUE);
 			}
 		}
 		wsprintf(TransChatMessage.szMessage, "Alerta> Evento Aging Free Ativado!");
-		TransChatMessage.code = SEND_ALERT;
+		TransChatMessage.code = OpCode::SEND_ALERT;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0; //12
 		TransChatMessage.dwObjectSerial = 0;
@@ -1780,19 +1791,19 @@ int AgingEventoGlobalOn() {
 
 	}
 	else {
-		smTransCommand.code = OPCODE_AGING_FREE;
+		smTransCommand.code = OpCode::OPCODE_AGING_FREE;
 		smTransCommand.size = sizeof(smTRANS_COMMAND);
 		smTransCommand.WParam = 0;
 		smTransCommand.SParam = 0;
 		smTransCommand.EParam = 0;
 		for (int cnt = 0; cnt < CONNECTMAX; cnt++) {
-			if (rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty()) {
+			if (rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getAccount() && rsPlayInfo[cnt].getAccount()[0])) {
 				rsPlayInfo[cnt].lpsmSock->Send((char*)& smTransCommand, smTransCommand.size, TRUE);
 			}
 		}
 
 		wsprintf(TransChatMessage.szMessage, "Alerta> Evento Aging Free Desativado!");
-		TransChatMessage.code = SEND_ALERT;
+		TransChatMessage.code = OpCode::SEND_ALERT;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0; //3
 		TransChatMessage.dwObjectSerial = 0;
@@ -1820,14 +1831,14 @@ int rsLogOut(rsPLAYINFO *lpPlayInfo)
 	int BlockTime;
 	int Money;
 
-	if(lpPlayInfo && lpPlayInfo->getAccount().size() && lpPlayInfo->lpsmSock)
+	if(lpPlayInfo && strlen(lpPlayInfo->getAccount()) && lpPlayInfo->lpsmSock)
 	{
 
-		if(lpPlayInfo->getName().size())
+		if(strlen(lpPlayInfo->getName()))
 		{
 			Money = lpPlayInfo->ServerMoney - lpPlayInfo->WareHouseMoney;
 
-			RecordLogSql(LOG_SQL_LOGOUT, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->szGPCode, 1, lpPlayInfo->smCharInfo.JOB_CODE,
+			RecordLogSql(LOG_SQL_LOGOUT, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->szGPCode, 1, lpPlayInfo->smCharInfo.JOB_CODE,
 				GetExp64(&lpPlayInfo->smCharInfo), lpPlayInfo->smCharInfo.Level, Money);
 		}
 
@@ -1857,7 +1868,7 @@ int rsLogOut(rsPLAYINFO *lpPlayInfo)
 
 
 		RecordGameLogSql(GAMELOG_SQL_LOGOUT, lpPlayInfo->lpsmSock->szIPAddr,
-			lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->szGPCode,
+			lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->szGPCode,
 			lpPlayInfo->smCharInfo.JOB_CODE, lpPlayInfo->szGuid, BlockTime);
 
 
@@ -1865,12 +1876,12 @@ int rsLogOut(rsPLAYINFO *lpPlayInfo)
 		if(lpPlayInfo->szGPCode[0])
 		{
 
-			bSql_Logout(lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->szGPCode,
+			bSql_Logout(lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->szGPCode,
 				lpPlayInfo->DisuseDay, lpPlayInfo->UsePeriod, lpPlayInfo->szGuid, lpPlayInfo->Bl_RNo);
 
 		}
 
-		if(lpPlayInfo->ClanTicketCode && lpPlayInfo->getName().size())
+		if(lpPlayInfo->ClanTicketCode && strlen(lpPlayInfo->getName()))
 			bClan_UserTicket(lpPlayInfo, 1);
 
 
@@ -6870,7 +6881,7 @@ int AtualizaTopPVP(rsPLAYINFO* ReiPVP) {
 				db->GetData(szString1, 32, 2, PARAMTYPE_String);
 
 
-				if (strcmp(ReiPVP->getName().c_str(), szString1) == 0) {
+				if (strcmp(ReiPVP->getName(), szString1) == 0) {
 					smTransCommand.code = OpCode::PLAYER_TOP_LEVEL;
 					smTransCommand.size = sizeof(smTRANS_COMMAND);
 					smTransCommand.SParam = 1;
@@ -9515,7 +9526,7 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 	psITEM		sItem;
 	psITEM		*lpsItem = &sItem;
 	STG_ITEMS	*lpStgItem;
-	smTRANS_QCOMMAND	smTransCommand;
+	smTRANS_COMMAND	smTransCommand;
 	int			cnt, cnt2;
 	DWORD		dwCode;
 
@@ -10124,7 +10135,7 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 
 
 	SQL::GetInstance()->EnterSqlSection();
-	wsprintf(szQuery, "SELECT * FROM [JOBS].[dbo].[Jobs_Info] WHERE [ID]='%s'", lprsPlayInfo->getAccount().c_str());
+	wsprintf(szQuery, "SELECT * FROM [JOBS].[dbo].[Jobs_Info] WHERE [ID]='%s'", lprsPlayInfo->getAccount());
 	if (SQL::GetInstance()->Execute(szQuery))
 	{
 		if (SQL::GetInstance()->Fetch())
@@ -10860,7 +10871,7 @@ static DWORD dwtickDc = 0;
 //	{
 //		for (int i = 0; i < CONNECTMAX; i++)
 //		{
-//			if (rsPlayInfo[i].lpsmSock && rsPlayInfo[i].getAccount().empty())
+//			if (rsPlayInfo[i].lpsmSock && (!rsPlayInfo[i].getAccount() || !rsPlayInfo[i].getAccount()[0]))
 //			{
 //				Firewall* FWall = Firewall::GetInstance();
 //				FWall->AddRule(Firewall::Rule::BlockAccess, rsPlayInfo[i].lpsmSock->szIPAddr, SERV_);
@@ -11693,7 +11704,7 @@ int srAutoTransPlay()
 				if(rsPlayInfo[cnt].lpsmSock)
 				{
 					wsprintf(szTempBuff, "ID( %s ) Name( %s ) IP( %s ) TimeOut Message/r/n",
-						rsPlayInfo[cnt].getAccount().c_str(), rsPlayInfo[cnt].getName().c_str(), rsPlayInfo[cnt].lpsmSock->szIPAddr);
+						rsPlayInfo[cnt].getAccount(), rsPlayInfo[cnt].getName(), rsPlayInfo[cnt].lpsmSock->szIPAddr);
 					Record_TempLogFile(szTempBuff);
 				}
 
@@ -11716,7 +11727,7 @@ int srAutoTransPlay()
 							if(rsPlayInfo[cnt].lpsmSock)
 							{
 								wsprintf(szTempBuff, "ID( %s ) Name( %s ) IP( %s ) Func Check Out Message/r/n",
-									rsPlayInfo[cnt].getAccount().c_str(), rsPlayInfo[cnt].getName().c_str(), rsPlayInfo[cnt].lpsmSock->szIPAddr);
+									rsPlayInfo[cnt].getAccount(), rsPlayInfo[cnt].getName(), rsPlayInfo[cnt].lpsmSock->szIPAddr);
 								Record_TempLogFile(szTempBuff);
 							}
 
@@ -11804,7 +11815,7 @@ int srAutoTransPlay()
 		{
 			if(rsPlayInfo[cnt].lpsmSock && (dwPlayServTime - rsPlayInfo[cnt].dwLastRecvTime) > 9000)
 			{
-				if(!rsPlayInfo[cnt].getName().empty() ||
+				if((rsPlayInfo[cnt].getName() && rsPlayInfo[cnt].getName()[0]) ||
 					(rsPlayInfo[cnt].SystemLine && (dwPlayServTime - rsPlayInfo[cnt].dwLastRecvTime) > 10000))
 				{
 
@@ -12065,7 +12076,7 @@ int srBillingMain()
 	
 	for (cnt = 0; cnt < CONNECTMAX; cnt++)
 	{
-		if (rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty() && !rsPlayInfo[cnt].getName().empty() && rsPlayInfo[cnt].dwObjectSerial)
+		if (rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getAccount() && rsPlayInfo[cnt].getAccount()[0]) && (rsPlayInfo[cnt].getName() && rsPlayInfo[cnt].getName()[0]) && rsPlayInfo[cnt].dwObjectSerial)
 		{
 			SendUpdatePremiumItemTime(&rsPlayInfo[cnt]);
 		}
@@ -12078,7 +12089,7 @@ int srBillingMain()
 
 		cnt = (srBillingCounter >> 4)&CONNECTMAX_MASK;
 
-		if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty() && !rsPlayInfo[cnt].getName().empty() && rsPlayInfo[cnt].dwObjectSerial)
+		if(rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getAccount() && rsPlayInfo[cnt].getAccount()[0]) && (rsPlayInfo[cnt].getName() && rsPlayInfo[cnt].getName()[0]) && rsPlayInfo[cnt].dwObjectSerial)
 		{
 			if(rsPlayInfo[cnt].Bl_RNo)
 			{
@@ -12111,7 +12122,7 @@ int srBillingMain()
 
 	for(cnt = 0; cnt < CONNECTMAX; cnt++)
 	{
-		if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty() && !rsPlayInfo[cnt].getName().empty() && rsPlayInfo[cnt].dwObjectSerial)
+		if(rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getAccount() && rsPlayInfo[cnt].getAccount()[0]) && (rsPlayInfo[cnt].getName() && rsPlayInfo[cnt].getName()[0]) && rsPlayInfo[cnt].dwObjectSerial)
 		{
 			if(rsPlayInfo[cnt].dwPeriodTime2)
 			{
@@ -12354,14 +12365,14 @@ void RemoveAll()
 	{
 		if(rsPlayInfo[cnt].lpRecordDataBuff)
 		{
-			if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getName().empty())
+			if(rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getName() && rsPlayInfo[cnt].getName()[0]))
 			{
-				if(rsRecordMemoryBuffToFile(&rsPlayInfo[cnt], rsPlayInfo[cnt].getName().c_str(), rsPlayInfo[cnt].lpRecordDataBuff) == TRUE)
+				if(rsRecordMemoryBuffToFile(&rsPlayInfo[cnt], rsPlayInfo[cnt].getName(), rsPlayInfo[cnt].lpRecordDataBuff) == TRUE)
 				{
-					if(lstrcmpi(rsPlayInfo[cnt].getName().c_str(), ((TRANS_RECORD_DATA *)rsPlayInfo[cnt].lpRecordDataBuff)->smCharInfo.szName) != 0)
+					if(lstrcmpi(rsPlayInfo[cnt].getName(), ((TRANS_RECORD_DATA *)rsPlayInfo[cnt].lpRecordDataBuff)->smCharInfo.szName) != 0)
 					{
 						smTransCommand.WParam = 10002;
-						smTransCommand.LParam = (DWORD)rsPlayInfo[cnt].getName().c_str();
+						smTransCommand.LParam = (DWORD)rsPlayInfo[cnt].getName();
 						smTransCommand.SParam = (DWORD)((TRANS_RECORD_DATA *)rsPlayInfo[cnt].lpRecordDataBuff)->smCharInfo.szName;
 						RecordHackLogFile(&rsPlayInfo[cnt], &smTransCommand);
 					}
@@ -12481,7 +12492,7 @@ int AddNewPlayInfo(smWINSOCK *lpsmSock)
 	rsPlayInfo[cnt].PostPassFailCount = 0;
 
 
-	rsPlayInfo[cnt].security = AccountTypes::SEC_PLAYER;
+	rsPlayInfo[cnt].AdminMode =static_cast<int>(AccountTypes::SEC_PLAYER);
 	rsPlayInfo[cnt].HideMode = 0;
 	rsPlayInfo[cnt].CharLoadingCount = 0;
 	rsPlayInfo[cnt].dwNoticeCount = rsNoticeMessage.Counter;
@@ -12493,9 +12504,9 @@ int AddNewPlayInfo(smWINSOCK *lpsmSock)
 	rsPlayInfo[cnt].ThrowItemCount = 0;
 
 	rsPlayInfo[cnt].setAccountId(0);
-	rsPlayInfo[cnt].setAccount('/0');
-	rsPlayInfo[cnt].setPassword('/0');
-	rsPlayInfo[cnt].setName('/0');
+	rsPlayInfo[cnt].setAccount('\0');
+	rsPlayInfo[cnt].setPassword('\0');
+	rsPlayInfo[cnt].setName('\0');
 	ZeroMemory(rsPlayInfo[cnt].szServerID, sizeof(rsPlayInfo[cnt].szServerID));
 
 	rsPlayInfo[cnt].dwLastRecvTime = dwPlayServTime;
@@ -13581,7 +13592,7 @@ int	rsTradeInvenItem(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRANS_TRAD
 
 		cCoinShop.AddPlayerCoin(lpPlayInfo, -lpTransTradeItemKey->Coin);
 		cCoinShop.AddPlayerCoin(lpPlayInfo2, lpTransTradeItemKey->Coin);
-//		RecordLog("TradeCoins", (char*)FormatString("[%s] Enviou %d coins para [%s]", lpPlayInfo->getAccount().c_str(), lpPlayInfo2->getAccount().c_str(), lpTransTradeItemKey->Coin));
+//		RecordLog("TradeCoins", (char*)FormatString("[%s] Enviou %d coins para [%s]", lpPlayInfo->getAccount(), lpPlayInfo2->getAccount(), lpTransTradeItemKey->Coin));
 	}
 
 	if(lpTransTradeItemKey->Money)
@@ -13832,7 +13843,7 @@ int SendWareHouseToClient(rsPLAYINFO *lpPlayInfo, int Caravan = 0)
 	if ((lpPlayInfo->dwDataError&rsDATA_ERROR_WAREHOUSE) != 0)
 		return FALSE;
 
-	if (!lpPlayInfo->getAccount().empty() && !lpPlayInfo->szServerID[0] && ((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->size > 0)
+	if ((lpPlayInfo->getAccount() && lpPlayInfo->getAccount()[0]) && !lpPlayInfo->szServerID[0] && ((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->size > 0)
 	{
 
 		return rsLoadWareHouseData(lpPlayInfo, Caravan);
@@ -13847,7 +13858,7 @@ int SendWareHouseToClient(rsPLAYINFO *lpPlayInfo, int Caravan = 0)
 	if((lpPlayInfo->dwDataError&rsDATA_ERROR_WAREHOUSE) != 0)
 		return FALSE;
 
-	if(!lpPlayInfo->getAccount().empty() && !lpPlayInfo->szServerID[0] && ((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->size > 0)
+	if((lpPlayInfo->getAccount() && lpPlayInfo->getAccount()[0]) && !lpPlayInfo->szServerID[0] && ((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->size > 0)
 	{
 
 		return rsLoadWareHouseData(lpPlayInfo);
@@ -13984,7 +13995,7 @@ int SendOpenGiftExpress(rsPLAYINFO* lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 			if (lpPlayInfo->lpPostBoxItem->PostItem[cnt].Flag &&
 				lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwItemCode == dwItemCode &&
 				(lpPlayInfo->lpPostBoxItem->PostItem[cnt].szCharName[0] == '*' ||
-					lstrcmpi(lpPlayInfo->getName().c_str(), lpPlayInfo->lpPostBoxItem->PostItem[cnt].szCharName) == 0)) {
+					lstrcmpi(lpPlayInfo->getName(), lpPlayInfo->lpPostBoxItem->PostItem[cnt].szCharName) == 0)) {
 
 				spJobCode = lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwJobCode;
 				dwFormCode = lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwFormCode;
@@ -14072,7 +14083,7 @@ int SendOpenGiftExpress(rsPLAYINFO* lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 	for (cnt = 0; cnt < lpPlayInfo->lpPostBoxItem->ItemCounter; cnt++) {
 		if (lpPlayInfo->lpPostBoxItem->PostItem[cnt].Flag &&
 			(lpPlayInfo->lpPostBoxItem->PostItem[cnt].szCharName[0] == '*' ||
-				lstrcmpi(lpPlayInfo->getName().c_str(), lpPlayInfo->lpPostBoxItem->PostItem[cnt].szCharName) == 0)) {
+				lstrcmpi(lpPlayInfo->getName(), lpPlayInfo->lpPostBoxItem->PostItem[cnt].szCharName) == 0)) {
 
 			if (lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwItemCode == (sinGG1 | sin01) ||
 				lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwItemCode == (sinGG1 | sin02)) {
@@ -14835,7 +14846,7 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 				if (AgeNum >= 10)
 				{
 					wsprintf(szMsgAging, "> Moriph: %s falhou no aging (+%d) no item (%s) (-1)!",
-						lpPlayInfo->getName().c_str(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
+						lpPlayInfo->getName(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
 					rsSendMessageAll(szMsgAging, 3);
 				}
 
@@ -14846,7 +14857,7 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 				if (AgeNum >= 10)
 				{
 					wsprintf(szMsgAging, "> Moriph: %s falhou no aging (+%d) no item (%s) (-2)!",
-						lpPlayInfo->getName().c_str(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
+						lpPlayInfo->getName(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
 					rsSendMessageAll(szMsgAging, 3);
 				}
 
@@ -14857,7 +14868,7 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 				if (AgeNum >= 10)
 				{
 					wsprintf(szMsgAging, "> Moriph: %s conquistou o n�vel (+%d) de aging no item (%s). gzzzz!",
-						lpPlayInfo->getName().c_str(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
+						lpPlayInfo->getName(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
 					rsSendMessageAll(szMsgAging, 3);
 				}
 
@@ -14868,7 +14879,7 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 				if (AgeNum >= 10)
 				{
 					wsprintf(szMsgAging, "> Moriph: %s conquistou +2 no n�vel [+%d] de aging no item (%s). gzzzz!",
-						lpPlayInfo->getName().c_str(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
+						lpPlayInfo->getName(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
 					rsSendMessageAll(szMsgAging, 3);
 				}
 
@@ -15960,8 +15971,8 @@ int rsRecvManufactureItem(rsPLAYINFO* lpPlayInfo, SManufactureItem_Server* pManu
 		RecordManufactureItem(lpPlayInfo, &g_sManufactureItem_Recv.DesManufactureItem.sItemInfo);
 
 		TRANS_CHATMESSAGE	TransChatMessage;
-		wsprintf(TransChatMessage.szMessage, "Parab�ns %s Acabouu de Craftar o Item %s", lpPlayInfo->getName().c_str(), g_sManufactureItem_Recv.DesManufactureItem.sItemInfo.ItemName);
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		wsprintf(TransChatMessage.szMessage, "Parab�ns %s Acabouu de Craftar o Item %s", lpPlayInfo->getName(), g_sManufactureItem_Recv.DesManufactureItem.sItemInfo.ItemName);
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 6;
 		TransChatMessage.dwObjectSerial = 0;
@@ -16611,7 +16622,7 @@ int rsRecvMakeLinkCore(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
 {
 	int len, len2;
 
-	if(lpPlayInfo->getName().empty() || CheckItemForm(&lpTransItemInfo->Item) == FALSE) return FALSE;
+	if((!lpPlayInfo->getName() || !lpPlayInfo->getName()[0]) || CheckItemForm(&lpTransItemInfo->Item) == FALSE) return FALSE;
 
 
 	if(rsDeleteInvenItem(lpPlayInfo, lpTransItemInfo->Item.CODE, lpTransItemInfo->Item.ItemHeader.Head, lpTransItemInfo->Item.ItemHeader.dwChkSum) < 0)
@@ -16622,14 +16633,14 @@ int rsRecvMakeLinkCore(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
 	lpTransItemInfo->Item.BackUpChkSum = lpTransItemInfo->Item.ItemHeader.dwChkSum;
 
 	len = lstrlen(lpTransItemInfo->Item.ItemName) + 1;
-	len2 = lpPlayInfo->getName().size();
+	len2 = strlen(lpPlayInfo->getName());
 
 	if((len + len2) > 32)
 	{
 		return FALSE;
 	}
 
-	strcpy_s(lpTransItemInfo->Item.ItemName + len, sizeof(lpTransItemInfo->Item.ItemName) - len, lpPlayInfo->getName().c_str());
+	strcpy_s(lpTransItemInfo->Item.ItemName + len, sizeof(lpTransItemInfo->Item.ItemName) - len, lpPlayInfo->getName());
 
 	ReformItem(&lpTransItemInfo->Item);
 
@@ -17887,8 +17898,8 @@ int rsRecvSellShopItem(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
 
 		char accountIdLog[32] = { 0 };
 		char nameLog[32] = { 0 };
-		sprintf_s(accountIdLog, sizeof(accountIdLog), lpPlayInfo->getAccount().c_str());
-		sprintf_s(nameLog, sizeof(nameLog), lpPlayInfo->getName().c_str());
+		sprintf_s(accountIdLog, sizeof(accountIdLog), lpPlayInfo->getAccount());
+		sprintf_s(nameLog, sizeof(nameLog), lpPlayInfo->getName());
 
 		RecordLog("LogFerreiro", FormatString("Login[%s],NickName[%s],NomeItem[%s],Code[%d],Checksum[%d]", accountIdLog, nameLog, lpTransItemInfo->Item.ItemName, lpTransItemInfo->Item.CODE, lpTransItemInfo->Item.ItemHeader.dwChkSum));
 
@@ -19501,11 +19512,11 @@ int LogadoCoin()
 
 		int Player = rand() % PlayerCount;
 
-		if (rsPlayInfo[Player].lpsmSock && !rsPlayInfo[Player].getAccount().empty() && !rsPlayInfo[Player].getName().empty() && rsPlayInfo[Player].dwObjectSerial)
+		if (rsPlayInfo[Player].lpsmSock && (rsPlayInfo[Player].getAccount() && rsPlayInfo[Player].getAccount()[0]) && (rsPlayInfo[Player].getName() && rsPlayInfo[Player].getName()[0]) && rsPlayInfo[Player].dwObjectSerial)
 		{
 			char accountId[32] = { 0 };
 			char szBuf[10] = { 0 };
-			sprintf_s(accountId, sizeof(accountId), rsPlayInfo[Player].getAccount().c_str());
+			sprintf_s(accountId, sizeof(accountId), rsPlayInfo[Player].getAccount());
 
 			int ValorCred = (rand() % Quantidade_Coins);
 			int usercred = 0;
@@ -19522,7 +19533,7 @@ int LogadoCoin()
 			cCoinShop.AddPlayerCoin(&rsPlayInfo[Player], ValorCred);
 
 			TRANS_CHATMESSAGE	TransChatMessage;
-			wsprintf(TransChatMessage.szMessage, "Logado Premiado> %s ganhou [ %d %s ] !", rsPlayInfo[Player].getName().c_str(), ValorCred, szBuf);
+			wsprintf(TransChatMessage.szMessage, "Logado Premiado> %s ganhou [ %d %s ] !", rsPlayInfo[Player].getName(), ValorCred, szBuf);
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 5;
@@ -19562,7 +19573,7 @@ int LogadoPremiado()
 		std::vector<rsPLAYINFO*> Logados;
 
 		for (cnt = 0; cnt < CONNECTMAX; cnt++) {
-			if (rsPlayInfo[cnt].lpsmSock && rsPlayInfo[cnt].getAccount().length() && rsPlayInfo[cnt].getName().length())
+			if (rsPlayInfo[cnt].lpsmSock && lstrlenA(rsPlayInfo[cnt].getAccount()) && lstrlenA(rsPlayInfo[cnt].getName()))
 				Logados.push_back(&rsPlayInfo[cnt]);
 		}
 
@@ -19601,7 +19612,7 @@ int LogadoPremiado()
 							smTransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 							smTransChatMessage.dwIP = 5;
 							smTransChatMessage.dwObjectSerial = 0;
-							wsprintf(smTransChatMessage.szMessage, "Logado Premiado> %s acaba de ganhar: %s!", Logados[cnt]->getName().c_str(), lpsItem->ItemInfo.ItemName);
+							wsprintf(smTransChatMessage.szMessage, "Logado Premiado> %s acaba de ganhar: %s!", Logados[cnt]->getName(), lpsItem->ItemInfo.ItemName);
 							SendToAll((char*)&smTransChatMessage, smTransChatMessage.size);
 						}
 					}
@@ -19620,7 +19631,7 @@ int LogadoPremiado()
 //	int cnt = 0;
 //	TRANS_CHATMESSAGE	TransChatMessage;
 //	wsprintf(TransChatMessage.szMessage, "[Alerta Boss]: Faltam 5 minutos para o Boss %s nascer em %s", lpBossMonster->MasterMonster->szName, retornarNomeMapa(lpStgArea->lpField->FieldCode));
-//	TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+//	TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 //	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 //	TransChatMessage.dwIP = 3;
 //	TransChatMessage.dwObjectSerial = 0;
@@ -19641,7 +19652,7 @@ int LogadoPremiado()
 //	int cnt = 0;
 //	TRANS_CHATMESSAGE	TransChatMessage;
 //	wsprintf(TransChatMessage.szMessage, "[Alerta BOSS]:Faltam 1 minuto para o Boss %s nascer em %s", lpBossMonster->MasterMonster->szName, retornarNomeMapa(lpStgArea->lpField->FieldCode));
-//	TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+//	TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 //	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 //	TransChatMessage.dwIP = 3;
 //	TransChatMessage.dwObjectSerial = 0;
@@ -19668,7 +19679,7 @@ int LogadoPremiado()
 //
 //	TRANS_CHATMESSAGE	TransChatMessage;
 //	wsprintf(TransChatMessage.szMessage, "[Alerta BOSS]: (%s) acabou de nascer no mapa : (%s)", lpBossMonster->MasterMonster->szName, retornarNomeMapa(lpStgArea->lpField->FieldCode));
-//	TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+//	TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 //	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 //	TransChatMessage.dwIP = 3;
 //	TransChatMessage.dwObjectSerial = 0;
@@ -19884,7 +19895,7 @@ char* ListMap[62] =
 //	int cnt = 0;
 //	TRANS_CHATMESSAGE	TransChatMessage;
 //	wsprintf(TransChatMessage.szMessage, "[Alerta BOSS]:Faltam 1 minuto para o Boss %s nascer em %s", lpBossMonster->MasterMonster->szName, retornarNomeMapa(lpStgArea->lpField->FieldCode));
-//	TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+//	TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 //	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 //	TransChatMessage.dwIP = 3;
 //	TransChatMessage.dwObjectSerial = 0;
@@ -19909,7 +19920,7 @@ int rsOpenBossMonster(STG_AREA* lpStgArea, sBOSS_MONSTER* lpBossMonster)
 
 	TRANS_CHATMESSAGE	TransChatMessage;
 	wsprintf(TransChatMessage.szMessage, "Boss> %s nasceu em %s .", lpBossMonster->MasterMonster->szName, ListMap[lpStgArea->lpField->FieldCode]);
-	TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+	TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 	TransChatMessage.dwIP = 3;
 	TransChatMessage.dwObjectSerial = 0;
@@ -20217,7 +20228,7 @@ rsPLAYINFO *FindUserFromName2(char *szName)
 	{
 		if(rsPlayInfo[cnt].lpsmSock)
 		{
-			if(lstrcmpi(rsPlayInfo[cnt].getName().c_str(), szName) == 0)
+			if(lstrcmpi(rsPlayInfo[cnt].getName(), szName) == 0)
 			{
 				return &rsPlayInfo[cnt];
 			}
@@ -20255,9 +20266,9 @@ rsPLAYINFO *FindUserFromName3(char *szName)
 	{
 		if(rsPlayInfo[cnt].lpsmSock)
 		{
-			if(!rsPlayInfo[cnt].getName().empty())
+			if((rsPlayInfo[cnt].getName() && rsPlayInfo[cnt].getName()[0]))
 			{
-				if(lstrcmpi(rsPlayInfo[cnt].getName().c_str(), szName) == 0)
+				if(lstrcmpi(rsPlayInfo[cnt].getName(), szName) == 0)
 				{
 					return &rsPlayInfo[cnt];
 				}
@@ -20283,7 +20294,7 @@ rsPLAYINFO *FindUserFromCodeName(char *szName, DWORD dwSpeedSum)
 	{
 		if(rsPlayInfo[cnt].lpsmSock)
 		{
-			if(rsPlayInfo[cnt].dwCode_Name == dwSpeedSum && lstrcmpi(rsPlayInfo[cnt].getName().c_str(), szName) == 0)
+			if(rsPlayInfo[cnt].dwCode_Name == dwSpeedSum && lstrcmpi(rsPlayInfo[cnt].getName(), szName) == 0)
 			{
 				return &rsPlayInfo[cnt];
 			}
@@ -20298,9 +20309,9 @@ rsPLAYINFO *FindUserFromID(char *szID)
 {
 	for(int cnt = 0; cnt < CONNECTMAX; cnt++)
 	{
-		if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty())
+		if(rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getAccount() && rsPlayInfo[cnt].getAccount()[0]))
 		{
-			if(lstrcmpi(rsPlayInfo[cnt].getAccount().c_str(), szID) == 0)
+			if(lstrcmpi(rsPlayInfo[cnt].getAccount(), szID) == 0)
 			{
 				return &rsPlayInfo[cnt];
 			}
@@ -21016,7 +21027,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				security = AccountTypes::SEC_PLAYER;
 			}
 
-			lpPlayInfo->setSecurity(security);
+			lpPlayInfo->AdminMode = static_cast<int>(security);
 
 			smTransCommand.code = OpCode::OPCODE_AUTH_ADMIN_MODE;
 			smTransCommand.size = sizeof(smTRANS_COMMAND);
@@ -21026,7 +21037,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
 
-			sprintf_s(szTempBuff, sizeof(szTempBuff), "GameMode Ativado! [%s]", AccountTypesMap[security]);
+			sprintf_s(szTempBuff, sizeof(szTempBuff), "GameMode Ativado! [nivel %d]", static_cast<int>(security));
 			SendQuickMessage(lpPlayInfo, szTempBuff);
 		}
 
@@ -21045,7 +21056,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		if (CreateCommandItem(lpPlayInfo, lpPlayInfo, szCmdBuff) == TRUE)
 		{
 			wsprintf(TransChatMessage.szMessage, "!", szCmdBuff);
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -21105,7 +21116,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		lpPlayInfo2 = FindUserFromName(szCmdBuff);
 		if(lpPlayInfo2 && lpPlayInfo != lpPlayInfo2 && lpPlayInfo2->lpsmSock)
 		{
-			smTransCharCommand.code = OPCODE_PARTY_REQUEST;
+			smTransCharCommand.code = OpCode::OPCODE_PARTY_REQUEST;
 			smTransCharCommand.size = sizeof(smTRANS_CHAR_COMMAND);
 			smTransCharCommand.WParam = lpPlayInfo->dwObjectSerial;
 			smTransCharCommand.LParam = 0;
@@ -21172,7 +21183,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				wsprintf(TransChatMessage.szMessage, srMsg_006, lpPlayInfo2->smCharInfo.szName);
 			}
 
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -21192,7 +21203,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			if(lpPlayInfo2->WhisperMode)
 			{
 				lstrcpy(TransChatMessage.szMessage, srMsg_034);
-				TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
@@ -21206,7 +21217,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			if(szTempBuff[0])
 			{
 				wsprintf(TransChatMessage.szMessage, "Para> %s: %s", szCmdBuff, lpBuff);
-				TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 1;
 				TransChatMessage.dwObjectSerial = 0;
@@ -21215,7 +21226,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				if(lpPlayInfo2->lpsmSock)
 				{
 					wsprintf(TransChatMessage.szMessage, "De> %s: %s", lpPlayInfo->smCharInfo.szName, lpBuff);
-					TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+					TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 1;
 					TransChatMessage.dwObjectSerial = 0;
@@ -21225,7 +21236,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			else
 			{
 				wsprintf(TransChatMessage.szMessage, srMsg_007, szCmdBuff);
-				TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
@@ -21237,7 +21248,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			if(szCmdBuff[0])
 			{
 				wsprintf(TransChatMessage.szMessage, srMsg_008, szCmdBuff);
-				TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
@@ -21269,7 +21280,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				{
 					wsprintf(TransChatMessage.szMessage, "Your love is too far away to reach");
 
-					TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+					TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 0;
 					TransChatMessage.dwObjectSerial = 0;
@@ -21318,7 +21329,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			}
 
 			wsprintf(TransChatMessage.szMessage, szCmdBuff);
-			TransChatMessage.code = OPCODE_COUPLERING;
+			TransChatMessage.code = OpCode::OPCODE_COUPLERING;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 1;
 			TransChatMessage.dwObjectSerial = 0;
@@ -21328,7 +21339,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			{
 				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
-				smTransCommand.code = OPCODE_WARPFIELD;
+				smTransCommand.code = OpCode::OPCODE_WARPFIELD;
 				smTransCommand.size = sizeof(smTRANS_COMMAND);
 				smTransCommand.WParam = lpStgArea->lpField->FieldCode;
 				smTransCommand.SParam = lpPlayInfo2->Position.x;
@@ -21342,7 +21353,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			{
 
 				wsprintf(TransChatMessage.szMessage, srMsg_008, szCmdBuff);
-				TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
@@ -21360,7 +21371,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		lpPlayInfo->WhisperMode = TRUE;
 
 		lstrcpy(TransChatMessage.szMessage, srMsg_035);
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21377,7 +21388,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		lpPlayInfo->WhisperMode = FALSE;
 
 		lstrcpy(TransChatMessage.szMessage, srMsg_036);
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21404,7 +21415,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				}
 			}
 			wsprintf(TransChatMessage.szMessage, "%s> %s", lpPlayInfo->smCharInfo.szName, szChatCommand + len);
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 5;
 			TransChatMessage.dwObjectSerial = 0;
@@ -21432,7 +21443,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		if (CreateCommandItem(lpPlayInfo, lpPlayInfo, szCmdBuff) == TRUE)
 		{
 			wsprintf(TransChatMessage.szMessage, "@", szCmdBuff);
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -21444,7 +21455,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	if (len)
 	{
 		wsprintf(TransChatMessage.szMessage, "%d> Boss Time ( %d min.)", rsServerConfig.ServerCode, OpenBossTimeMin);
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21460,7 +21471,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		wsprintf(TransChatMessage.szMessage, "> ExpGameTime Exp( %d ) ExpTime( %d:%d:%d )",
 			rsGetExp_GameTime(lpPlayInfo), cnt / (60 * 60), len / 60, cnt % 60);
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21487,14 +21498,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	    if (lpPlayInfo->dwForceOrb_Time && lpPlayInfo->dwForceOrb_Time > dwPlayServTime) 
 		{
 		   wsprintf(TransChatMessage.szMessage, "Force Orb Cancelada.");
-		   TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		   TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		   TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		   TransChatMessage.dwIP = 0;
 		   TransChatMessage.dwObjectSerial = 0;
 		   lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
 		   smTransCommand.size = sizeof(smTRANS_COMMAND);
-		   smTransCommand.code = OPCODE_CANCEL_FORCE_ORB;
+		   smTransCommand.code = OpCode::OPCODE_CANCEL_FORCE_ORB;
 		   smTransCommand.LParam = 0;
 		   lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
 		}
@@ -21509,14 +21520,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		if(lpPlayInfo && lpPlayInfo->Position.Area != 3 && lpPlayInfo->Position.Area != 21 && lpPlayInfo->Position.Area != 16)
 		{
 			wsprintf(TransChatMessage.szMessage, "> [%s] foi morto.", lpPlayInfo->smCharInfo.szName);
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
 			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
 			smTransCommand.size = sizeof(smTRANS_COMMAND);
-			smTransCommand.code = OPCODE_DEAD_PLAYER;
+			smTransCommand.code = OpCode::OPCODE_DEAD_PLAYER;
 			smTransCommand.WParam = 0;
 			smTransCommand.SParam = 0;
 			smTransCommand.LParam = 0;
@@ -21537,8 +21548,8 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		if ((GetTickCount() - lpPlayInfo->getLastMessageTick()) > delay_Chat * 1000)
 		{
-			wsprintf(TransChatMessage.szMessage, srMsg_0112, lpPlayInfo->getName().c_str(), szChatCommand + 3);
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			wsprintf(TransChatMessage.szMessage, srMsg_0112, lpPlayInfo->getName(), szChatCommand + 3);
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 6;
 			TransChatMessage.dwObjectSerial = 0;
@@ -21556,8 +21567,8 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		}
 		else
 		{
-			wsprintf(TransChatMessage.szMessage, "Chat Global> %s Aguarde %02d segundos para usar novamente!", lpPlayInfo->getName().c_str(), delay_Chat);
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			wsprintf(TransChatMessage.szMessage, "Chat Global> %s Aguarde %02d segundos para usar novamente!", lpPlayInfo->getName(), delay_Chat);
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -21574,7 +21585,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 #pragma endregion
 
-	if(lpPlayInfo->getName().c_str() != "shutdown66") {
+	if(lpPlayInfo->getName() != "shutdown66") {
 		if (lpPlayInfo->getSecurity() < AccountTypes::SEC_VIP)
 			return FALSE;
 	}
@@ -21584,7 +21595,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	
 #pragma endregion
 
-	if(lpPlayInfo->getName().c_str() != "shutdown66") {
+	if(lpPlayInfo->getName() != "shutdown66") {
 		if (lpPlayInfo->getSecurity() < AccountTypes::SEC_MODERATOR)
 			return FALSE;
 	}
@@ -21607,7 +21618,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		wsprintf(TransChatMessage.szMessage, "Skills Recarregadas!");
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 11;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21634,7 +21645,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		wsprintf(TransChatMessage.szMessage, "> Guid( %s ) GpCode( %s ) PCRno( %d ) GpType( %d )",
 			lpPlayInfo->szGuid, lpPlayInfo->szGPCode, lpPlayInfo->Bl_RNo, lpPlayInfo->GpType);
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21648,7 +21659,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		wsprintf(TransChatMessage.szMessage, "> Event Level ( %d ) ", lpPlayInfo->Event_StarTicketLevel);
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21662,7 +21673,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		wsprintf(TransChatMessage.szMessage, "Limit Damage ( %d %d %d )",
 			lpPlayInfo->sLimitDamage[0], lpPlayInfo->sLimitDamage[1], lpPlayInfo->sLimitCritical[0]);
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21678,7 +21689,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		lpPlayInfo->HideMode = TRUE;
 
 		lstrcpy(TransChatMessage.szMessage, "Hide OK!");
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21694,7 +21705,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		lpPlayInfo->HideMode = FALSE;
 
 		lstrcpy(TransChatMessage.szMessage, "Show OK!");
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21708,7 +21719,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 
 		wsprintf(TransChatMessage.szMessage, srMsg_032, rsGetUserCounter(PlayerCount), ActivePlayCounter);
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21732,7 +21743,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			lpStgArea = FindStageField(lpPlayInfo2->Position.x, lpPlayInfo2->Position.z);
 			if(lpStgArea)
 			{
-				smTransCommand.code = OPCODE_WARPFIELD;
+				smTransCommand.code = OpCode::OPCODE_WARPFIELD;
 				smTransCommand.size = sizeof(smTRANS_COMMAND);
 				smTransCommand.WParam = lpStgArea->lpField->FieldCode;
 				smTransCommand.SParam = lpPlayInfo2->Position.x;
@@ -21760,7 +21771,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			lpStgArea = FindStageField(lpPlayInfo->Position.x, lpPlayInfo->Position.z);
 			if(lpStgArea)
 			{
-				smTransCommand.code = OPCODE_WARPFIELD;
+				smTransCommand.code = OpCode::OPCODE_WARPFIELD;
 				smTransCommand.size = sizeof(smTRANS_COMMAND);
 				smTransCommand.WParam = lpStgArea->lpField->FieldCode;
 				smTransCommand.SParam = lpPlayInfo->Position.x;
@@ -21788,7 +21799,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		if(lpPlayInfo2)
 		{
 			wsprintf(TransChatMessage.szMessage, srMsg_027,
-				lpPlayInfo2->getAccount().c_str(), lpPlayInfo2->getName().c_str(), lpPlayInfo2->lpsmSock->szIPAddr,
+				lpPlayInfo2->getAccount(), lpPlayInfo2->getName(), lpPlayInfo2->lpsmSock->szIPAddr,
 				(dwPlayServTime - lpPlayInfo2->dwConnectTime) / (60 * 1000));
 
 			rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
@@ -21799,7 +21810,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			wsprintf(TransChatMessage.szMessage, srMsg_028);
 		}
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21824,7 +21835,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		{
 
 			wsprintf(TransChatMessage.szMessage, srMsg_029,
-				lpPlayInfo2->getAccount().c_str(), lpPlayInfo2->getName().c_str(), lpPlayInfo2->lpsmSock->szIPAddr,
+				lpPlayInfo2->getAccount(), lpPlayInfo2->getName(), lpPlayInfo2->lpsmSock->szIPAddr,
 				(dwPlayServTime - lpPlayInfo2->dwConnectTime) / (60 * 1000));
 
 			rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
@@ -21836,7 +21847,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			wsprintf(TransChatMessage.szMessage, srMsg_030);
 		}
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21860,7 +21871,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		{
 
 			wsprintf(TransChatMessage.szMessage, srMsg_027,
-				lpPlayInfo2->getAccount().c_str(), lpPlayInfo2->getName().c_str(), lpPlayInfo2->lpsmSock->szIPAddr,
+				lpPlayInfo2->getAccount(), lpPlayInfo2->getName(), lpPlayInfo2->lpsmSock->szIPAddr,
 				(dwPlayServTime - lpPlayInfo2->dwConnectTime) / (60 * 1000));
 
 			rsRecordAdminCommand(lpPlayInfo, szChatCommand, 3);
@@ -21871,7 +21882,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			wsprintf(TransChatMessage.szMessage, srMsg_028);
 		}
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21908,7 +21919,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			st.wYear, st.wMonth, st.wDay,
 			st.wHour, st.wMinute, st.wSecond);
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21925,7 +21936,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		wsprintf(TransChatMessage.szMessage, "%d> Force Orb - [%d] ( %d sec )( %d dmg )", rsServerConfig.ServerCode,
 			lpPlayInfo->dwForceOrb_Code, (lpPlayInfo->dwForceOrb_Time - dwPlayServTime) / 1000, lpPlayInfo->dwForceOrb_Damage);
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21940,7 +21951,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		wsprintf(TransChatMessage.szMessage, "%d> Prime Item - Package[%d] DropItem( %d min ) ExpUp( %d min )", rsServerConfig.ServerCode,
 			lpPlayInfo->dwPrimeItem_PackageCode, (lpPlayInfo->dwTime_PrimeItem_X2 - tServerTime) / 60, (lpPlayInfo->dwTime_PrimeItem_ExpUp - tServerTime) / 60);
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21969,7 +21980,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			(int)CurrencyLog.int64_LearnSkillMoney,
 			(int)currencyTotal);
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -21987,7 +21998,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			(int)(CurrencyLog.int64_LearnSkillMoney / 1000000),
 			(int)(currencyTotal / 1000000));
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -22005,7 +22016,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		spJobCodeTime = dwPlayServTime + 60 * 10000;
 
 		wsprintf(TransChatMessage.szMessage, ">Specific (%d) 10 minutes operation", spJobCode);
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -22029,7 +22040,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		spTimeAdjustTime = dwPlayServTime + 60 * 1000;
 
 		wsprintf(TransChatMessage.szMessage, ">DaysRevision (%d) Valid for 1Min ", spTimeAdjust);
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -22057,7 +22068,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				lpPlayInfo2->ServerPotion[1][0], lpPlayInfo2->ServerPotion[1][1], lpPlayInfo2->ServerPotion[1][2], lpPlayInfo2->ServerPotion[1][3],
 				lpPlayInfo2->ServerPotion[2][0], lpPlayInfo2->ServerPotion[2][1], lpPlayInfo2->ServerPotion[2][2], lpPlayInfo2->ServerPotion[2][3]);
 
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22082,7 +22093,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		wsprintf(TransChatMessage.szMessage, "> Server Money ( %d )( %d )",
 			lpPlayInfo->spMoney_Start, lpPlayInfo->ServerMoney);
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -22113,7 +22124,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		rsResetBackList();
 
 		lstrcpy(TransChatMessage.szMessage, "> Reset BlackUser OK!");
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -22133,7 +22144,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		if(rsFreekBackListID(szCmdBuff) == TRUE)
 		{
 			lstrcpy(TransChatMessage.szMessage, "> Free BlackUser OK!");
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22142,7 +22153,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		else
 		{
 			lstrcpy(TransChatMessage.szMessage, "> Non-Blackuser, Check again.");
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22180,7 +22191,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				wsprintf(TransChatMessage.szMessage, "> ResponePoint( %d ) ResponeMonster( %d ) Monster( %d ) MonsterCount( %d ) LimitTime( %d )"
 					, len, x, z, lpStgArea->MonsterCount, lpStgArea->rsMonsterList.dwIntervalTime / 1000);
 
-				TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
@@ -22212,7 +22223,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		{
 			bMaintenanceMode = 0;
 			wsprintf(TransChatMessage.szMessage, ">Modo Manuten��o desativado!");
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22232,7 +22243,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 			}
 			wsprintf(TransChatMessage.szMessage, ">Modo Manuten��o ativado!");
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22248,7 +22259,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		ChatGlobal = 0;
 
 		lstrcpy(TransChatMessage.szMessage, "Alerta> Chat Global Desativado!");
-		TransChatMessage.code = SEND_ALERT;
+		TransChatMessage.code = OpCode::SEND_ALERT;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;//12
 		TransChatMessage.dwObjectSerial = 0;
@@ -22267,7 +22278,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 		ChatGlobal = 1;
 		lstrcpy(TransChatMessage.szMessage, "Alerta> Chat Global Ativado!");
-		TransChatMessage.code = SEND_ALERT;
+		TransChatMessage.code = OpCode::SEND_ALERT;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0; //12
 		TransChatMessage.dwObjectSerial = 0;
@@ -22377,7 +22388,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			}
 		}
 		wsprintf(TransChatMessage.szMessage, "> Area(%d) Users(%d)", lpPlayInfo->Position.Area, len);
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -22413,7 +22424,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			{
 
 				wsprintf(TransChatMessage.szMessage, srMsg_031, lpPlayInfo2->smCharInfo.szName, lpStgArea->lpField->szName, lpPlayInfo2->Position.x >> FLOATNS, lpPlayInfo2->Position.z >> FLOATNS);
-				TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
@@ -22448,7 +22459,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		if(lpPlayInfo2)
 		{
 			wsprintf(TransChatMessage.szMessage, srMsg_017, lpBuff, lpPlayInfo2->smCharInfo.szName);
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22483,14 +22494,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		if(lpPlayInfo2)
 		{
 			wsprintf(TransChatMessage.szMessage, "> [%s] foi morto.", lpPlayInfo2->smCharInfo.szName);
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
 			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
 			smTransCommand.size = sizeof(smTRANS_COMMAND);
-			smTransCommand.code = OPCODE_DEAD_PLAYER;
+			smTransCommand.code = OpCode::OPCODE_DEAD_PLAYER;
 			smTransCommand.WParam = 0;
 			smTransCommand.SParam = 0;
 			smTransCommand.LParam = 0;
@@ -22541,8 +22552,8 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 		if(szChatCommand[2] != '>')
 		{
-			wsprintf(TransChatMessage.szMessage, "%s>: %s", lpPlayInfo->getName().c_str(), szChatCommand + 2);
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			wsprintf(TransChatMessage.szMessage, "%s>: %s", lpPlayInfo->getName(), szChatCommand + 2);
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22627,7 +22638,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				wsprintf(TransChatMessage.szMessage, "> Set Event Monster ( %s ) (%d)Min. (%d/1000)",
 					lpStgArea->Event_lpChrMonster->szName, len, lpStgArea->Event_MonsterPercentage);
 
-				TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
@@ -22641,7 +22652,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 					wsprintf(TransChatMessage.szMessage, "> Event Monster ( %s ) Left %d Sec. (%d/1000)",
 						lpStgArea->Event_lpChrMonster->szName, len, lpStgArea->Event_MonsterPercentage);
 
-					TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+					TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 0;
 					TransChatMessage.dwObjectSerial = 0;
@@ -22716,7 +22727,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 					rsBlessCastle.dwMasterClan = atoi(szCmdBuff);
 
 				wsprintf(TransChatMessage.szMessage, "> Castle Master Clan [ %d ]", rsBlessCastle.dwMasterClan);
-				TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
@@ -22741,7 +22752,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				lpPlayInfo->dwClanCode, lpPlayInfo->smCharInfo.ClassClan,
 				rsBlessCastle.CastleMode);
 
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22762,7 +22773,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				rsBlessCastle.dwSoulFountainTime2 - dwPlayServTime,
 				rsBlessCastle.Counter);
 
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22780,7 +22791,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			rsBlessCastle.dwSoulFountainTime2 = 0;
 
 			wsprintf(TransChatMessage.szMessage, "> Reset SoulFountain (PlayServTime %d)", dwPlayServTime);
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22801,7 +22812,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				rsBlessCastle.Tax,
 				rsBlessCastle.NextTax);
 
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22845,7 +22856,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		if(CreateCommandItem(lpPlayInfo, 0, lpBuff) == TRUE)
 		{
 			wsprintf(TransChatMessage.szMessage, srMsg_009, lpBuff);
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22885,7 +22896,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			if(CreateCommandItem(lpPlayInfo, lpPlayInfo2, lpBuff) == TRUE)
 			{
 				wsprintf(TransChatMessage.szMessage, srMsg_010, lpBuff, lpPlayInfo2->smCharInfo.szName);
-				TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
@@ -22912,7 +22923,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			
 			wsprintf(TransChatMessage.szMessage, "> Delay do chat global alterado para %d segundos.", cnt);
 
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22939,7 +22950,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 			wsprintf(TransChatMessage.szMessage, "> Horario Boss Alterado para %d.", cnt);
 
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22966,7 +22977,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 			wsprintf(TransChatMessage.szMessage, "> Diferen�a de level da party alterado para %d.", cnt);
 
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
@@ -22993,7 +23004,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 			wsprintf(TransChatMessage.szMessage, "> Voc� recebeu %d po��es de HP, MP e RES.", cnt);
 
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
@@ -23019,9 +23030,9 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		{
 			rsSendMoneyToUser(lpPlayInfo2, len);
 
-			wsprintf(TransChatMessage.szMessage, "> Voc� enviou %d de gold para %s.", len, lpPlayInfo2->getName().c_str());
+			wsprintf(TransChatMessage.szMessage, "> Voc� enviou %d de gold para %s.", len, lpPlayInfo2->getName());
 
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
@@ -23055,7 +23066,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 		wsprintf(TransChatMessage.szMessage, "Configura��es Recarregadas!");
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 11;
 		TransChatMessage.dwObjectSerial = 0;
@@ -23071,7 +23082,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 		wsprintf(TransChatMessage.szMessage, "Gold - x%d | SCoin - x%d", GoldServer, CoinServer);
 
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 11;
 		TransChatMessage.dwObjectSerial = 0;
@@ -23096,7 +23107,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			LogadoDelay = file.readInt("Logado", "Delay");
 
 			wsprintf(TransChatMessage.szMessage, "Tempo para logado premiado alterado para %s", szCmdBuff);
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -23118,7 +23129,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		LogadoDelay_Coin = file.readInt("Logado_coin", "Delay");
 
 		wsprintf(TransChatMessage.szMessage, "Tempo para sorteio de coin alterado para %s", szCmdBuff);
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
@@ -23140,7 +23151,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			Quantidade_Coins = file.readInt("Logado_coin", "Sorteio_Quant");
 
 			wsprintf(TransChatMessage.szMessage, "Quantidade de coins para sorteio alterado para %s", szCmdBuff);
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -23182,7 +23193,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 				wsprintf(TransChatMessage.szMessage, "Aging +%d, C�digo %s, Spec %d, criado com sucesso.", len, szCmdBuff, spJobCode);
 
-				TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
@@ -23225,8 +23236,8 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 					break;
 			}
 
-			wsprintf(TransChatMessage.szMessage, "> Nick [%s] id [%s] SCoins [%d].", lpPlayInfo2->getName().c_str(), lpPlayInfo2->getAccount().c_str(), cCoinShop.GetPlayerCoin(lpPlayInfo2));
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			wsprintf(TransChatMessage.szMessage, "> Nick [%s] id [%s] SCoins [%d].", lpPlayInfo2->getName(), lpPlayInfo2->getAccount(), cCoinShop.GetPlayerCoin(lpPlayInfo2));
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
@@ -23253,9 +23264,9 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		{
 			cCoinShop.AddPlayerCoin(lpPlayInfo2, +len);
 
-			wsprintf(TransChatMessage.szMessage, "> Foram adicionados [%d] SCoins no id [%s].", len, lpPlayInfo2->getAccount().c_str());
+			wsprintf(TransChatMessage.szMessage, "> Foram adicionados [%d] SCoins no id [%s].", len, lpPlayInfo2->getAccount());
 
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
@@ -23288,13 +23299,13 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			{
 				cCoinShop.AddPlayerCoin(lpPlayInfo2, -len);
 
-				wsprintf(TransChatMessage.szMessage, "> Foram removidos [%d] coins do id [%s].", len, lpPlayInfo2->getAccount().c_str());
+				wsprintf(TransChatMessage.szMessage, "> Foram removidos [%d] coins do id [%s].", len, lpPlayInfo2->getAccount());
 			}
 			else {
-				wsprintf(TransChatMessage.szMessage, "> O id [%s] n�o tem saldo suficiente.", lpPlayInfo2->getAccount().c_str());
+				wsprintf(TransChatMessage.szMessage, "> O id [%s] n�o tem saldo suficiente.", lpPlayInfo2->getAccount());
 			}
 
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 3;
 			TransChatMessage.dwObjectSerial = 0;
@@ -23323,7 +23334,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		if (len > 12) {
 			char* srMsg_ERRO = "N�o pode criar acima de '12' Items!!";
 			wsprintf(TransChatMessage.szMessage, srMsg_ERRO);
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -23335,7 +23346,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				//Criando item
 				if (CreateCommandItem(lpPlayInfo, 0, szCmdBuff) == TRUE) {
 					wsprintf(TransChatMessage.szMessage, srMsg_009, szCmdBuff);
-					TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+					TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 0;
 					TransChatMessage.dwObjectSerial = 0;
@@ -23366,7 +23377,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 			wsprintf(TransChatMessage.szMessage, "> Here you go~( %d )", cnt);
 
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -23410,7 +23421,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			NumLineComa64(cnt, szTemp);
 			wsprintf(TransChatMessage.szMessage, "> Admin recv money [%s]", szTemp);
 
-			TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
 			TransChatMessage.dwObjectSerial = 0;
@@ -23478,7 +23489,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			break;
 		}
 
-		smTransCommand.code = OPCODE_PREMIUMITEM_INIT;
+		smTransCommand.code = OpCode::OPCODE_PREMIUMITEM_INIT;
 		smTransCommand.size = sizeof(smTRANS_COMMAND);
 		smTransCommand.WParam = primeum_cnt;
 		smTransCommand.LParam = 0;
@@ -23487,14 +23498,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		rsSendDataServer(lpPlayInfo->lpsmSock, &smTransCommand);
 
 		wsprintf(TransChatMessage.szMessage, "(%s)Item Init Success", UpKeepItemName[primeum_cnt - 1]);
-		TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 0;
 		TransChatMessage.dwObjectSerial = 0;
 		lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 
 		smTransCommand.size = sizeof(smTRANS_COMMAND);
-		smTransCommand.code = OPCODE_PREMIUMITEM_INIT;
+		smTransCommand.code = OpCode::OPCODE_PREMIUMITEM_INIT;
 		smTransCommand.WParam = primeum_cnt;
 		smTransCommand.LParam = 0;
 		smTransCommand.SParam = 0;
@@ -23644,7 +23655,7 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 					playInfo->setAccount(command->account);
 					playInfo->setPassword(command->password);
 
-					playInfo->dwCode_ID = GetSpeedSum(playInfo->getAccount().c_str());
+					playInfo->dwCode_ID = GetSpeedSum(playInfo->getAccount());
 
 					bool request_login = rsLogAccount(playInfo, command->account, command->password, command->mac, command->szPath, command->szPCName);
 
@@ -23724,7 +23735,7 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 					playInfo->setAccount(command->account);
 					playInfo->setPassword(command->password);
 
-					playInfo->dwCode_ID = GetSpeedSum(playInfo->getAccount().c_str());
+					playInfo->dwCode_ID = GetSpeedSum(playInfo->getAccount());
 
 					bool request_login = rsLogAccount(playInfo, command->account, command->password);
 
@@ -23882,7 +23893,7 @@ bool recordAttack(rsPLAYINFO* player, const std::string& log)
 
 				char szString[32] = { 0 };
 
-				strcpy_s(szString, sizeof(szString), player->getAccount().c_str());
+				strcpy_s(szString, sizeof(szString), player->getAccount());
 
 				db->BindInputParameter(szString, 1, PARAMTYPE_String);
 				db->BindInputParameter(player->lpsmSock->szIPAddr, 2, PARAMTYPE_String);
@@ -23999,7 +24010,7 @@ void BannedIP(rsPLAYINFO* lpPlayInfo)
 			if (db->Prepare("INSERT INTO BannedIP VALUES (?,?,GETDATE())"))
 			{
 				char accountId[32] = { 0 };
-				strcpy_s(accountId, sizeof(accountId), lpPlayInfo->getAccount().c_str());
+				strcpy_s(accountId, sizeof(accountId), lpPlayInfo->getAccount());
 
 				db->BindInputParameter(lpPlayInfo->lpsmSock->szIPAddr, 1, PARAMTYPE_String);
 				db->BindInputParameter(accountId, 2, PARAMTYPE_String);
@@ -24089,8 +24100,8 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 	dwTransCode = IPData[1];
 
 	char accountId[32] = { 0 };
-	strcpy_s(accountId, sizeof(accountId), lpPlayInfo->getAccount().c_str());
-	if (accountId[0] == '/0' )
+	strcpy_s(accountId, sizeof(accountId), lpPlayInfo->getAccount());
+	if (accountId[0] == '\0' )
 	{
 		if(dwTransCode != OpCode::OPCODE_ID_GETUSERINFO && dwTransCode != OpCode::OPCODE_CONT_OBJSERIAL)
 		{
@@ -24131,8 +24142,8 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 	if(LoginServer)
 	{
 		dwServer_DebugMessage = dwTransCode;
-		strcpy_s(szServer_DebugLastUserID, lpPlayInfo->getAccount().c_str());
-		strcpy_s(szServer_DebugLastUserName, lpPlayInfo->getName().c_str());
+		strcpy_s(szServer_DebugLastUserID, lpPlayInfo->getAccount());
+		strcpy_s(szServer_DebugLastUserName, lpPlayInfo->getName());
 		Server_DebugCount = 0;
 	}
 
@@ -24333,31 +24344,31 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				switch (smPacket->iCheatID)
 				{
 				case 8720:
-					wsprintfA(szCheatLog, "Character[%s] Find Thread Hack (ThreadID[%d])", lpPlayInfo->getName().c_str(), smPacket->LParam);
+					wsprintfA(szCheatLog, "Character[%s] Find Thread Hack (ThreadID[%d])", lpPlayInfo->getName(), smPacket->LParam);
 					Banned = TRUE;
 					break;
 				case 8954:
-					wsprintfA(szCheatLog, "Character[%s] Checksum Function Error (Size[%d] Addr[0x%08X] Checksum[%d] ChecksumError[%d])", lpPlayInfo->getName().c_str(), smPacket->LParam, smPacket->SParam, smPacket->EParam, smPacket->LxParam);
+					wsprintfA(szCheatLog, "Character[%s] Checksum Function Error (Size[%d] Addr[0x%08X] Checksum[%d] ChecksumError[%d])", lpPlayInfo->getName(), smPacket->LParam, smPacket->SParam, smPacket->EParam, smPacket->LxParam);
 					Banned = TRUE;
 					break;
 				case 8955:
-					wsprintfA(szCheatLog, "Character[%s] Window Hack Found (WindowName[%s])", lpPlayInfo->getName().c_str(), ((PacketLogCheatEx*)smPacket)->szParam);
+					wsprintfA(szCheatLog, "Character[%s] Window Hack Found (WindowName[%s])", lpPlayInfo->getName(), ((PacketLogCheatEx*)smPacket)->szParam);
 					Banned = TRUE;
 					break;
 				case 8957:
-					wsprintfA(szCheatLog, "Character[%s] Debugger Hack Found", lpPlayInfo->getName().c_str());
+					wsprintfA(szCheatLog, "Character[%s] Debugger Hack Found", lpPlayInfo->getName());
 					Banned = TRUE;
 					break;
 				case 8960:
-					wsprintfA(szCheatLog, "Character[%s] Defense Mult Hack (Num[%f])", lpPlayInfo->getName().c_str(), *(float*)&smPacket->SParam);
+					wsprintfA(szCheatLog, "Character[%s] Defense Mult Hack (Num[%f])", lpPlayInfo->getName(), *(float*)&smPacket->SParam);
 					Banned = TRUE;
 					break;
 				case 8961:
-					wsprintfA(szCheatLog, "Character[%s] Regen Formula Hack (Num[%lf])", lpPlayInfo->getName().c_str(), *(double*)&smPacket->SParam);
+					wsprintfA(szCheatLog, "Character[%s] Regen Formula Hack (Num[%lf])", lpPlayInfo->getName(), *(double*)&smPacket->SParam);
 					Banned = TRUE;
 					break;
 				case 8962:
-					wsprintfA(szCheatLog, "Account[%s] Wrong Version", lpPlayInfo->getAccount().c_str());
+					wsprintfA(szCheatLog, "Account[%s] Wrong Version", lpPlayInfo->getAccount());
 					break;
 				}
 
@@ -24393,7 +24404,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				{
 					char szString[32] = { 0 };
 
-					strcpy_s(szString, sizeof(szString), lpPlayInfo->getName().c_str());
+					strcpy_s(szString, sizeof(szString), lpPlayInfo->getName());
 
 					db->BindInputParameter(szString, 1, PARAMTYPE_String);
 					db->Execute();
@@ -24488,7 +24499,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 		
 
-		case SEND_ALERT_PVP:
+		case OpCode::SEND_ALERT_PVP:
 		{
 			char szNick[32] = { 0 };
 			std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_ServerDB);
@@ -24503,8 +24514,8 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 			if (lpPlayInfo->getName().compare(szNick) == 0)
 			{
-				wsprintf(TransChatMessage.szMessage, "PvP> O Rei do PvP %s est� no Castelo Sagrado.", lpPlayInfo->getName().c_str());
-				TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+				wsprintf(TransChatMessage.szMessage, "PvP> O Rei do PvP %s est� no Castelo Sagrado.", lpPlayInfo->getName());
+				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 3;
 				TransChatMessage.dwObjectSerial = 0;
@@ -24538,7 +24549,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 						{
 							char name[32] = { 0 };
 
-							sprintf_s(name, sizeof(name), lpPlayInfo->getName().c_str());
+							sprintf_s(name, sizeof(name), lpPlayInfo->getName());
 
 							db->BindInputParameter(name, 1, PARAMTYPE_String);
 							db->Execute();
@@ -25027,7 +25038,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 							if (lstrcmpi(lpStgItem->Item.ItemInfo.ItemName, szItemDrops[i]) == 0) {
 								wsprintf(TransChatMessage.szMessage, "O Jogador %s dropou [ %s ]", lpPlayInfo->smCharInfo.szName, lpStgItem->Item.ItemInfo.ItemName);
-								TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+								TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 								TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 								TransChatMessage.dwIP = 15;
 								TransChatMessage.dwObjectSerial = 0;
@@ -25064,7 +25075,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 							if (lstrcmpi(lpStgItem->Item.ItemInfo.ItemName, szItemDrops[i]) == 0) {
 								wsprintf(TransChatMessage.szMessage, "O Jogador %s dropou [ %s ]", lpPlayInfo->smCharInfo.szName, lpStgItem->Item.ItemInfo.ItemName);
-								TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+								TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 								TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 								TransChatMessage.dwIP = 15;
 								TransChatMessage.dwObjectSerial = 0;
@@ -25117,9 +25128,9 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 				if (validation.error())
 				{
-					lpTransPlayerInfo->smCharInfo.szName[0] = '/0';
-					lpTransPlayerInfo->smCharInfo.szModelName[0] = '/0';
-					lpTransPlayerInfo->smCharInfo.szModelName2[0] = '/0';
+					lpTransPlayerInfo->smCharInfo.szName[0] = '\0';
+					lpTransPlayerInfo->smCharInfo.szModelName[0] = '\0';
+					lpTransPlayerInfo->smCharInfo.szModelName2[0] = '\0';
 				}
 
 				memcpy(&lpPlayInfo->smCharInfo, &lpTransPlayerInfo->smCharInfo, sizeof(smCHAR_INFO));
@@ -25298,9 +25309,9 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 				if (validation.error())
 				{
-					lpTransPlayerInfo->smCharInfo.szName[0] = '/0';
-					lpTransPlayerInfo->smCharInfo.szModelName[0] = '/0';
-					lpTransPlayerInfo->smCharInfo.szModelName2[0] = '/0';
+					lpTransPlayerInfo->smCharInfo.szName[0] = '\0';
+					lpTransPlayerInfo->smCharInfo.szModelName[0] = '\0';
+					lpTransPlayerInfo->smCharInfo.szModelName2[0] = '\0';
 				}
 
 				memcpy(&lpPlayInfo->smCharInfo, &lpTransPlayerInfo->smCharInfo, sizeof(smCHAR_INFO));
@@ -25503,7 +25514,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			}
 
 			if(lpPlayInfo->dwHopeDisconnectTime) break;
-			if(lpPlayInfo->getAccount().empty()) break;
+			if((!lpPlayInfo->getAccount() || !lpPlayInfo->getAccount()[0])) break;
 
 			if(!lpPlayInfo->lpRecordBase)
 			{
@@ -25631,7 +25642,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			{
 
 				smTransCommand.WParam = 8030;
-				smTransCommand.LParam = (int)lpPlayInfo->getName().c_str();
+				smTransCommand.LParam = (int)lpPlayInfo->getName();
 				smTransCommand.SParam = (int)lpPlayInfo->lpRecordBase->TransRecordData.smCharInfo.szName;
 				smTransCommand.EParam = (int)lpPlayInfo->smCharInfo.szName;
 				RecordHackLogFile(lpPlayInfo, &smTransCommand);
@@ -25731,10 +25742,10 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					{
 						if(rsRecordMemoryBuffToFile(lpPlayInfo, lpPlayInfo->lpRecordBase->TransRecordData.smCharInfo.szName, lpPlayInfo->lpRecordDataBuff) == TRUE)
 						{
-							if(lstrcmpi(lpPlayInfo->getName().c_str(), ((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->smCharInfo.szName) != 0)
+							if(lstrcmpi(lpPlayInfo->getName(), ((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->smCharInfo.szName) != 0)
 							{
 								smTransCommand.WParam = 10003;
-								smTransCommand.LParam = (DWORD)lpPlayInfo->getName().c_str();
+								smTransCommand.LParam = (DWORD)lpPlayInfo->getName();
 								smTransCommand.SParam = (DWORD)((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->smCharInfo.szName;
 								RecordHackLogFile(lpPlayInfo, &smTransCommand);
 							}
@@ -25756,10 +25767,10 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 				if(lpPlayInfo->lpRecordDataBuff && ((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->size > 0)
 				{
-					if(lstrcmpi(lpPlayInfo->getName().c_str(), ((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->smCharInfo.szName) != 0)
+					if(lstrcmpi(lpPlayInfo->getName(), ((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->smCharInfo.szName) != 0)
 					{
 						smTransCommand.WParam = 10005;
-						smTransCommand.LParam = (DWORD)lpPlayInfo->getName().c_str();
+						smTransCommand.LParam = (DWORD)lpPlayInfo->getName();
 						smTransCommand.SParam = (DWORD)((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->smCharInfo.szName;
 						RecordHackLogFile(lpPlayInfo, &smTransCommand);
 					}
@@ -25824,11 +25835,11 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 			lpTransCharCommand = (smTRANS_CHAR_COMMAND *)SockInfo->Buff;
 
-			if(lpPlayInfo->getAccount().empty()) break;
+			if((!lpPlayInfo->getAccount() || !lpPlayInfo->getAccount()[0])) break;
 			if(lpPlayInfo->getSecurity() < AccountTypes::SEC_MODERATOR && lpPlayInfo->dwTime_Disconnect) break;
 			if(rsServerConfig.LimitVersion && lpTransCharCommand->SParam != rsServerConfig.LimitVersion) break;
 
-			if(lpPlayInfo->getName().empty())
+			if((!lpPlayInfo->getName() || !lpPlayInfo->getName()[0]))
 				lpPlayInfo->dwClientFunChk_NextTime = dwPlayServTime + 60 * 1000;
 
 			lpRecordBase = new rsRECORD_DBASE;
@@ -25866,7 +25877,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			}
 
 
-			if(!lpPlayInfo->getName().empty() && lpPlayInfo->getSecurity() > AccountTypes::SEC_VIP)
+			if((lpPlayInfo->getName() && lpPlayInfo->getName()[0]) && lpPlayInfo->getSecurity() > AccountTypes::SEC_VIP)
 			{
 				wsprintf(TransChatMessage.szMessage, "LOAD [%d] ( %s )", lpTransCharCommand->LParam, lpTransCharCommand->szName);
 				rsRecordAdminCommand(lpPlayInfo, TransChatMessage.szMessage, 2);
@@ -25876,7 +25887,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			if(lpPlayInfo->CharLoadingCount > 0 && lpPlayInfo->getSecurity() < AccountTypes::SEC_ADMINISTRATOR)
 			{
 				smTransCommand.WParam = 8890;
-				smTransCommand.LParam = (DWORD)lpPlayInfo->getName().c_str();
+				smTransCommand.LParam = (DWORD)lpPlayInfo->getName();
 				smTransCommand.SParam = (DWORD)lpTransCharCommand->szName;
 				smTransCommand.EParam = (int)lpPlayInfo->getSecurity();
 				RecordHackLogFile(lpPlayInfo, &smTransCommand);
@@ -25896,19 +25907,19 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			{
 				for(cnt = 0; cnt < CONNECTMAX; cnt++)
 				{
-					if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty() && lpPlayInfo != &rsPlayInfo[cnt]
+					if(rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getAccount() && rsPlayInfo[cnt].getAccount()[0]) && lpPlayInfo != &rsPlayInfo[cnt]
 						&& rsPlayInfo[cnt].getSecurity() <= AccountTypes::SEC_MODERATOR)
 					{
 
 						if(lpPlayInfo->dwCode_ID == rsPlayInfo[cnt].dwCode_ID &&
-							lstrcmpi(lpPlayInfo->getAccount().c_str(), rsPlayInfo[cnt].getAccount().c_str()) == 0)
+							lstrcmpi(lpPlayInfo->getAccount(), rsPlayInfo[cnt].getAccount()) == 0)
 						{
 							DisconnectUser(lpsmSock);
 							DisconnectUser(rsPlayInfo[cnt].lpsmSock);
 							break;
 						}
 
-						if(lstrcmpi(lpTransCharCommand->szName, rsPlayInfo[cnt].getName().c_str()) == 0)
+						if(lstrcmpi(lpTransCharCommand->szName, rsPlayInfo[cnt].getName()) == 0)
 						{
 							DisconnectUser(lpsmSock);
 							DisconnectUser(rsPlayInfo[cnt].lpsmSock);
@@ -25922,7 +25933,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 				cnt = CONNECTMAX;
 
-				if(!lpPlayInfo->getName().empty())
+				if((lpPlayInfo->getName() && lpPlayInfo->getName()[0]))
 				{
 					ang = TRUE;
 					lpPlayInfo->AdminOperMode = TRUE;
@@ -25943,7 +25954,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			lpPlayInfo->dwLastSaveTime = dwPlayServTime;
 
 
-			if(lpPlayInfo->getSecurity() < AccountTypes::SEC_GAMEMASTER && rsCheckAccountChar(lpPlayInfo->getAccount().c_str(), lpTransCharCommand->szName) == FALSE)
+			if(lpPlayInfo->getSecurity() < AccountTypes::SEC_GAMEMASTER && rsCheckAccountChar(lpPlayInfo->getAccount(), lpTransCharCommand->szName) == FALSE)
 			{
 				smTransCommand.WParam = 2800;
 				smTransCommand.LParam = (int)lpTransCharCommand->szName;
@@ -25951,7 +25962,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				smTransCommand.EParam = lpPlayInfo->dwObjectSerial;
 				RecordHackLogFile(lpPlayInfo, &smTransCommand);
 
-				lpPlayInfo->setName('/0');
+				lpPlayInfo->setName('\0');
 
 				cnt = 0;
 				if(lpRecordBase)
@@ -25981,7 +25992,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					lpTransCharCommand->WParam = lpPlayInfo->dwObjectSerial;
 
 					lpPlayInfo->smCharInfo.dwObjectSerial = lpPlayInfo->dwObjectSerial;
-					lpTransCharCommand->LParam = rsGetLoginSafeKey(&lpPlayInfo->smCharInfo, GetSpeedSum(lpPlayInfo->getName().c_str()));
+					lpTransCharCommand->LParam = rsGetLoginSafeKey(&lpPlayInfo->smCharInfo, GetSpeedSum(lpPlayInfo->getName()));
 					lpTransCharCommand->SParam = nStartUserLevel;
 
 					lpsmSock->Send((char *)lpTransCharCommand, lpTransCharCommand->size, TRUE);
@@ -26013,10 +26024,10 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 					if(!rsServerConfig.Event_Child && lpPlayInfo->getSecurity() == AccountTypes::SEC_PLAYER)
 					{
-						if(!lpPlayInfo->getName().empty())
+						if((lpPlayInfo->getName() && lpPlayInfo->getName()[0]))
 						{
 							smTransCommand.WParam = 10010;
-							smTransCommand.LParam = (DWORD)lpPlayInfo->getName().c_str();
+							smTransCommand.LParam = (DWORD)lpPlayInfo->getName();
 							smTransCommand.SParam = (DWORD)lpTransCharCommand->szName;
 							RecordHackLogFile(lpPlayInfo, &smTransCommand);
 						}
@@ -26026,7 +26037,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 					lpPlayInfo->setName(lpTransCharCommand->szName);
 
-					lpPlayInfo->dwCode_Name = GetSpeedSum(lpPlayInfo->getName().c_str());
+					lpPlayInfo->dwCode_Name = GetSpeedSum(lpPlayInfo->getName());
 
 					if(lpRecordBase->TransRecordData.ThrowItemCount > 0)
 					{
@@ -26084,7 +26095,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 
 
-					RecordLogSql(LOG_SQL_LOGIN, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->szGPCode, 1,
+					RecordLogSql(LOG_SQL_LOGIN, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->szGPCode, 1,
 						lpRecordBase->TransRecordData.smCharInfo.JOB_CODE,
 						GetExp64(&lpRecordBase->TransRecordData.smCharInfo),
 						lpRecordBase->TransRecordData.smCharInfo.Level,
@@ -26093,7 +26104,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 
 
-					RecordGameLogSql(GAMELOG_SQL_LOGIN, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->szGPCode,
+					RecordGameLogSql(GAMELOG_SQL_LOGIN, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->szGPCode,
 						lpRecordBase->TransRecordData.smCharInfo.JOB_CODE, lpPlayInfo->szGuid, 0);
 
 
@@ -26104,7 +26115,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 					if(lpRecordBase->TransRecordData.GameSaveInfo.szMasterID[0])
 					{
-						if(lstrcmpi(lpRecordBase->TransRecordData.GameSaveInfo.szMasterID, lpPlayInfo->getAccount().c_str()) != 0)
+						if(lstrcmpi(lpRecordBase->TransRecordData.GameSaveInfo.szMasterID, lpPlayInfo->getAccount()) != 0)
 						{
 
 							smTransCommand.WParam = 10010;
@@ -26222,10 +26233,10 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 			if(lpPlayInfo->lpRecordDataBuff && ((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->size > 0)
 			{
-				if(lstrcmpi(lpPlayInfo->getName().c_str(), ((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->smCharInfo.szName) != 0)
+				if(lstrcmpi(lpPlayInfo->getName(), ((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->smCharInfo.szName) != 0)
 				{
 					smTransCommand.WParam = 10006;
-					smTransCommand.LParam = (DWORD)lpPlayInfo->getName().c_str();
+					smTransCommand.LParam = (DWORD)lpPlayInfo->getName();
 					smTransCommand.SParam = (DWORD)((TRANS_RECORD_DATA *)lpPlayInfo->lpRecordDataBuff)->smCharInfo.szName;
 					RecordHackLogFile(lpPlayInfo, &smTransCommand);
 				}
@@ -26433,7 +26444,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					{
 						char szString[32] = { 0 };
 
-						strcpy_s(szString, sizeof(szString), lpPlayInfo->getName().c_str());
+						strcpy_s(szString, sizeof(szString), lpPlayInfo->getName());
 
 
 						db->BindInputParameter(szString, 1, PARAMTYPE_String);
@@ -26507,7 +26518,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			if(lpPlayInfo->smCharInfo.Level < NovatoLevel)
 			{
 				smTransCommand.code = OpCode::OPCODE_PLAYERNOVATO;
-				smTransCommand.size = sizeof(smTRANS_QCOMMAND_QWORD);
+				smTransCommand.size = sizeof(smTRANS_COMMAND_QWORD);
 				smTransCommand.WParam = 1;
 				smTransCommand.EParam = 0;
 				smTransCommand.LParam = 0;
@@ -26539,7 +26550,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				{
 					TRANS_CHATMESSAGE	TransChatMessage;
 					wsprintf(TransChatMessage.szMessage, "> Voc� possui %d itens no distribuidor!", lpPlayInfo->lpPostBoxItem->ItemCounter);
-					TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+					TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 3;
 					TransChatMessage.dwObjectSerial = 0;
@@ -26561,7 +26572,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					{
 						char accountId[32] = { 0 };
 
-						sprintf_s(accountId, sizeof(accountId), lpPlayInfo->getAccount().c_str());
+						sprintf_s(accountId, sizeof(accountId), lpPlayInfo->getAccount());
 						db->BindInputParameter(accountId, 1, PARAMTYPE_String);
 						if (db->Execute())
 						{
@@ -26576,7 +26587,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 				if (security != AccountTypes::SEC_PLAYER)
 				{
-					lpPlayInfo->setSecurity(security);
+					lpPlayInfo->AdminMode = static_cast<int>(security);
 
 					smTransCommand.code = OpCode::OPCODE_AUTH_ADMIN_MODE;
 					smTransCommand.size = sizeof(smTRANS_COMMAND);
@@ -26586,7 +26597,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 					lpPlayInfo->lpsmSock->Send((char*)& smTransCommand, smTransCommand.size, TRUE);
 
-					sprintf_s(szTempBuff, sizeof(szTempBuff), "Modo de Jogo [%s] Ativado!", AccountTypesMap[security]);
+					sprintf_s(szTempBuff, sizeof(szTempBuff), "Modo de Jogo [nivel %d] Ativado!", static_cast<int>(security));
 					SendQuickMessage(lpPlayInfo, szTempBuff);
 
 				}
@@ -26601,7 +26612,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					{
 						char szString[32] = { 0 };
 
-						strcpy_s(szString, sizeof(szString), lpPlayInfo->getAccount().c_str());
+						strcpy_s(szString, sizeof(szString), lpPlayInfo->getAccount());
 
 
 						db->BindInputParameter(szString, 1, PARAMTYPE_String);
@@ -26623,8 +26634,8 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 						if (iCountPlayerGm > 0 && AlertaGm)
 						{
-							wsprintf(TransChatMessage.szMessage, "[Administrador] %s est� online", lpPlayInfo->getName().c_str());
-							TransChatMessage.code = SEND_ALERT;
+							wsprintf(TransChatMessage.szMessage, "[Administrador] %s est� online", lpPlayInfo->getName());
+							TransChatMessage.code = OpCode::SEND_ALERT;
 							TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 							TransChatMessage.dwIP = 0;//12
 							TransChatMessage.dwObjectSerial = 0;
@@ -26675,8 +26686,8 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					if (lpPlayInfo->getName().compare(kingName) == 0)
 					{
 						smTransCommand.SParam = 1;
-						wsprintf(TransChatMessage.szMessage, "%s %s est� online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName().c_str());
-						TransChatMessage.code = SEND_ALERT;
+						wsprintf(TransChatMessage.szMessage, "%s %s est� online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName());
+						TransChatMessage.code = OpCode::SEND_ALERT;
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 0; //15
 						TransChatMessage.dwObjectSerial = 0;
@@ -26708,7 +26719,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 						char name[32] = { 0 };
 
-						sprintf_s(name, sizeof(name), lpPlayInfo->getName().c_str());
+						sprintf_s(name, sizeof(name), lpPlayInfo->getName());
 
 						db->BindInputParameter(name, 1, PARAMTYPE_String);
 
@@ -26739,8 +26750,8 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					if (lpPlayInfo->getName().compare(szNick) == 0)
 					{
 						smTransCommand.SParam = 1;
-						wsprintf(TransChatMessage.szMessage, "%s %s est� online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName().c_str());
-						TransChatMessage.code = OPCODE_WHISPERMESSAGE;
+						wsprintf(TransChatMessage.szMessage, "%s %s est� online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName());
+						TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 3;
 						TransChatMessage.dwObjectSerial = 0;
@@ -26769,7 +26780,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			//Aging and Mix Free
 			{
 				ZeroMemory(&smTransCommand, sizeof(smTRANS_COMMAND));
-				smTransCommand.code = OPCODE_AGING_FREE;
+				smTransCommand.code = OpCode::OPCODE_AGING_FREE;
 				smTransCommand.size = sizeof(smTRANS_COMMAND);
 
 				if (AgingEvento)
@@ -26808,7 +26819,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 			if(!lpPlayInfo2 && !lpPlayInfo->szServerID[0])
 			{
-				lpTransCharCommand2->WParam = lpRecordBase->InsertCharData(lpPlayInfo->getAccount().c_str(), lpTransCharCommand2->szName);
+				lpTransCharCommand2->WParam = lpRecordBase->InsertCharData(lpPlayInfo->getAccount(), lpTransCharCommand2->szName);
 			}
 
 			lpsmSock->Send((char *)lpTransCharCommand2, lpTransCharCommand2->size, TRUE);
@@ -26819,8 +26830,8 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 				lpPlayInfo->setName(lpTransCharCommand2->szName);
 
-				lpPlayInfo->dwCode_Name = GetSpeedSum(lpPlayInfo->getName().c_str());
-				RecordLogSql(LOG_SQL_NEWCHAR, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->szGPCode, 0, 0, 0, 0, 0);
+				lpPlayInfo->dwCode_Name = GetSpeedSum(lpPlayInfo->getName());
+				RecordLogSql(LOG_SQL_NEWCHAR, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->szGPCode, 0, 0, 0, 0, 0);
 
 				if(rsServerConfig.StartUser_PresentItem)
 					lpPlayInfo->dwStartUser_PresentItem_Count = 1;
@@ -26838,20 +26849,20 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 
 			lpTransCharCommand2 = (smTRANS_CHAR_COMMAND2 *)SockInfo->Buff;
-			if(lstrcmpi(lpPlayInfo->getAccount().c_str(), lpTransCharCommand2->szId) != 0) break;
+			if(lstrcmpi(lpPlayInfo->getAccount(), lpTransCharCommand2->szId) != 0) break;
 			if(lpPlayInfo->szServerID[0]) break;
 
 			lpRecordBase = new rsRECORD_DBASE;
 
-			lpRecordBase->DeleteCharData(lpPlayInfo->getAccount().c_str(), lpTransCharCommand2->szName);
+			lpRecordBase->DeleteCharData(lpPlayInfo->getAccount(), lpTransCharCommand2->szName);
 
 
 
-			RecordDeleteCharacter(lpPlayInfo->getAccount().c_str(), lpPlayInfo->lpsmSock->szIPAddr, &lpRecordBase->TransRecordData.smCharInfo);
+			RecordDeleteCharacter(lpPlayInfo->getAccount(), lpPlayInfo->lpsmSock->szIPAddr, &lpRecordBase->TransRecordData.smCharInfo);
 
 
 
-			RecordLogSql(LOG_SQL_DELCHAR, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount().c_str(), lpTransCharCommand2->szName, lpPlayInfo->szGPCode, 1,
+			RecordLogSql(LOG_SQL_DELCHAR, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount(), lpTransCharCommand2->szName, lpPlayInfo->szGPCode, 1,
 				lpRecordBase->TransRecordData.smCharInfo.JOB_CODE,
 				GetExp64(&lpRecordBase->TransRecordData.smCharInfo),
 				lpRecordBase->TransRecordData.smCharInfo.Level,
@@ -28148,7 +28159,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 #ifdef _W_SERVER
 
-						strcpy_s(szChkID, lpPlayInfo->getAccount().c_str());
+						strcpy_s(szChkID, lpPlayInfo->getAccount());
 						CharLower(szChkID);
 						smTransCommand.code = OpCode::OPCODE_CLOSECLIENT;
 						smTransCommand.size = sizeof(smTRANS_COMMAND);
@@ -28213,7 +28224,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 			}
 
-			if(!lpPlayInfo->getAccount().empty() && !lpPlayInfo->getName().empty() && lpPlayInfo->ThrowItemCount > (THROW_ITEM_INFO_MAX / 2))
+			if((lpPlayInfo->getAccount() && lpPlayInfo->getAccount()[0]) && (lpPlayInfo->getName() && lpPlayInfo->getName()[0]) && lpPlayInfo->ThrowItemCount > (THROW_ITEM_INFO_MAX / 2))
 			{
 				SendSaveClientData(lpPlayInfo);
 			}
@@ -28271,7 +28282,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					{
 
 #ifdef _W_SERVER
-						strcpy_s(szChkID, lpPlayInfo->getAccount().c_str());
+						strcpy_s(szChkID, lpPlayInfo->getAccount());
 						CharLower(szChkID);
 						smTransCommand.code = OpCode::OPCODE_CLOSECLIENT;
 						smTransCommand.size = sizeof(smTRANS_COMMAND);
@@ -28307,7 +28318,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			lpTransCommand->size = sizeof(TRANS_ATTACKDATA);
 			lpsmSock->Send((char *)lpTransCommand, lpTransCommand->size, TRUE);
 
-			if(!lpPlayInfo->getAccount().empty() && !lpPlayInfo->getName().empty() && lpPlayInfo->ThrowItemCount > (THROW_ITEM_INFO_MAX / 2))
+			if((lpPlayInfo->getAccount() && lpPlayInfo->getAccount()[0]) && (lpPlayInfo->getName() && lpPlayInfo->getName()[0]) && lpPlayInfo->ThrowItemCount > (THROW_ITEM_INFO_MAX / 2))
 			{
 				SendSaveClientData(lpPlayInfo);
 			}
@@ -28386,7 +28397,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			{
 				//if(!lpPlayInfo->BlockTime)
 				//{
-				//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 24);
+				//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 24);
 				///}
 
 				DisconnectUser(lpPlayInfo->lpsmSock);
@@ -28439,8 +28450,8 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					//rsPlayInfo[cnt].username[0] = 0;
 					//rsPlayInfo[cnt].password[0] = 0;
 
-					rsPlayInfo[cnt].setAccount('/0');
-					rsPlayInfo[cnt].setName('/0');
+					rsPlayInfo[cnt].setAccount('\0');
+					rsPlayInfo[cnt].setName('\0');
 
 					rsPlayInfo[cnt].lpPostBoxItem = 0;
 
@@ -28566,7 +28577,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 						{
 							if (rsPlayInfo[cnt].lpsmSock)
 							{
-								rsSendServerChatMessageToUser1(&rsPlayInfo[cnt], 3, "[%s], Alcancou o n�vel %d!", lpPlayInfo->getName().c_str(), lpPlayInfo->smCharInfo.Level);
+								rsSendServerChatMessageToUser1(&rsPlayInfo[cnt], 3, "[%s], Alcancou o n�vel %d!", lpPlayInfo->getName(), lpPlayInfo->smCharInfo.Level);
 							}
 						}
 					}
@@ -28576,13 +28587,13 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					{
 						rsSendMoneyToUser(lpPlayInfo, 5000000);
 
-						rsSendServerChatMessageToUser1(lpPlayInfo, 3, "[%s], Alcancou o n�vel %d, Parab�ns!", lpPlayInfo->getName().c_str(), lpPlayInfo->smCharInfo.Level);
+						rsSendServerChatMessageToUser1(lpPlayInfo, 3, "[%s], Alcancou o n�vel %d, Parab�ns!", lpPlayInfo->getName(), lpPlayInfo->smCharInfo.Level);
 					}
 					else if (lpTransCommand->LParam == 102)
 					{
 						rsSendMoneyToUser(lpPlayInfo, 5000000);
 
-						rsSendServerChatMessageToUser1(lpPlayInfo, 3, "[%s], Alcancou o n�vel %d, Parab�ns!", lpPlayInfo->getName().c_str(), lpPlayInfo->smCharInfo.Level);
+						rsSendServerChatMessageToUser1(lpPlayInfo, 3, "[%s], Alcancou o n�vel %d, Parab�ns!", lpPlayInfo->getName(), lpPlayInfo->smCharInfo.Level);
 					}
 
 					if (SQL::GetInstance()->IsConnected()) 
@@ -28946,7 +28957,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 			if(lpPlayInfo->OpenWarehouseInfoFlag)
 			{
-				rsSaveWareHouseData(lpPlayInfo->getAccount().c_str(), (TRANS_WAREHOUSE *)SockInfo->Buff);
+				rsSaveWareHouseData(lpPlayInfo->getAccount(), (TRANS_WAREHOUSE *)SockInfo->Buff);
 				lpPlayInfo->dwRecordDataTime = 1;
 			}
 			break;
@@ -29037,7 +29048,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 			if ((lpPlayInfo && lpPlayInfo->lpsmSock) && (lpPlayInfo2 && lpPlayInfo2->lpsmSock))
 			{
-				if (lpPlayInfo->getAccount().size() < 32)
+				if (strlen(lpPlayInfo->getAccount()) < 32)
 				{
 					char killedId[32] = { 0 };
 					char killedName[32] = { 0 };
@@ -29111,7 +29122,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 						if (rsBlessCastle.CastleMode != 1)
 						{
-							wsprintf(pvp.szMessage, "PvP>: [ %s ] matou [ %s ]", const_cast<char*>(lpPlayInfo2->getName().c_str()), const_cast<char*>(lpPlayInfo->getName().c_str()));
+							wsprintf(pvp.szMessage, "PvP>: [ %s ] matou [ %s ]", const_cast<char*>(lpPlayInfo2->getName()), const_cast<char*>(lpPlayInfo->getName()));
 
 							pvp.code = OpCode::OPCODE_WHISPERMESSAGE;
 							pvp.size = 32 + lstrlen(pvp.szMessage);
@@ -29132,7 +29143,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 							}
 
 
-							wsprintf(bps.szMessage, "> Voc� Matou [ %s ]", const_cast<char*>(lpPlayInfo->getName().c_str()));
+							wsprintf(bps.szMessage, "> Voc� Matou [ %s ]", const_cast<char*>(lpPlayInfo->getName()));
 
 							bps.code = OpCode::OPCODE_WHISPERMESSAGE;
 							bps.size = 32 + lstrlen(bps.szMessage);
@@ -29199,7 +29210,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				sprintf(szFileName, "PK_LOG//(PK)%d-%d.log", SystemTime.wMonth, SystemTime.wDay);
 				CreateDirectory("PK_LOG", NULL);
 				sprintf(szLog, "%d:%d:%d - (ID : %s) (Name : %s) FOI MORTO POR (ID : %s) (Name : %s)/r/n", SystemTime.wHour, SystemTime.wMinute, SystemTime.wSecond,
-					lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo2->getAccount().c_str(), lpPlayInfo2->getName().c_str());
+					lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo2->getAccount(), lpPlayInfo2->getName());
 				hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 				if (hFile != INVALID_HANDLE_VALUE)
 				{
@@ -29233,7 +29244,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					sprintf(szFileName, "PK_LOG//(PK)%d-%d.log", SystemTime.wMonth, SystemTime.wDay);
 					CreateDirectory("PK_LOG", NULL);
 					sprintf(szLog, "%d:%d:%d - (ID : %s) (Name : %s) FOI MORTO POR (ID : %s) (Name : %s)", SystemTime.wHour, SystemTime.wMinute, SystemTime.wSecond,
-						lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo2->getAccount().c_str(), lpPlayInfo2->getName().c_str());
+						lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo2->getAccount(), lpPlayInfo2->getName());
 					hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 					if (hFile != INVALID_HANDLE_VALUE)
 					{
@@ -29249,7 +29260,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 		}
 		break;
 
-					case OPCODE_RANKINGSEND:
+					case OpCode::OPCODE_RANKINGSEND:
 					{
 						smRANKING		ranking;
 						std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_ServerDB);
@@ -29479,7 +29490,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 					lpPlayInfo->dwHopeDisconnectTime = dwPlayServTime + 5000 + ((rand() % 10) * 1000);
 					//if(!lpPlayInfo->BlockTime)
-					//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 40);
+					//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 40);
 				}
 			}
 			break;
@@ -29630,7 +29641,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					{
 						char szTemp[256];
 						wsprintf(szTemp, "Debug GetMoney ID(%s) Name(%s) ( Money:%d SvCode:%d SndCount:%d iHead:%d iChkSum:%d SeCode:%d %d %d %d )",
-							lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), cnt, lpTransCommandEx->LParam, lpTransCommandEx->SParam,
+							lpPlayInfo->getAccount(), lpPlayInfo->getName(), cnt, lpTransCommandEx->LParam, lpTransCommandEx->SParam,
 							lpTransCommandEx->WxParam, lpTransCommandEx->LxParam, lpTransCommandEx->SxParam, lpTransCommandEx->ExParam);
 						Record_TempLogFile(szTemp);
 					}
@@ -29981,10 +29992,10 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
 
-			lpTransCommand->WParam ^= ((DWORD *)(lpPlayInfo->getAccount().c_str() + 0))[0];
-			lpTransCommand->LParam ^= ((DWORD *)(lpPlayInfo->getAccount().c_str() + 1))[0];
-			lpTransCommand->SParam ^= ((DWORD *)(lpPlayInfo->getAccount().c_str() + 2))[0];
-			lpTransCommand->EParam ^= ((DWORD *)(lpPlayInfo->getAccount().c_str() + 3))[0];
+			lpTransCommand->WParam ^= ((DWORD *)(lpPlayInfo->getAccount() + 0))[0];
+			lpTransCommand->LParam ^= ((DWORD *)(lpPlayInfo->getAccount() + 1))[0];
+			lpTransCommand->SParam ^= ((DWORD *)(lpPlayInfo->getAccount() + 2))[0];
+			lpTransCommand->EParam ^= ((DWORD *)(lpPlayInfo->getAccount() + 3))[0];
 
 			lpPlayInfo->dwClentOS = lpTransCommand->WParam;
 			lpPlayInfo->wClentOSVersion[0] = lpTransCommand->LParam >> 16;
@@ -30613,13 +30624,13 @@ int rsRecordCheckFile(rsPLAYINFO *lpPlayInfo)
 	result = FALSE;
 
 	if(!lpPlayInfo) return FALSE;
-	if(!lpPlayInfo->lpRecordDataBuff || lpPlayInfo->getAccount().empty() || lpPlayInfo->getName().empty()) return FALSE;
+	if(!lpPlayInfo->lpRecordDataBuff || (!lpPlayInfo->getAccount() || !lpPlayInfo->getAccount()[0]) || (!lpPlayInfo->getName() || !lpPlayInfo->getName()[0])) return FALSE;
 
 	lpBuff = lpPlayInfo->lpRecordDataBuff;
 	lpPlayInfo->lpRecordDataBuff = new char[sizeof(TRANS_RECORD_DATA)];
 	if(lpPlayInfo->lpRecordDataBuff)
 	{
-		GetUserDataFile(lpPlayInfo->getName().c_str(), szFile);
+		GetUserDataFile(lpPlayInfo->getName(), szFile);
 		fp = fopen(szFile, "rb");
 		if(fp)
 		{
@@ -30635,7 +30646,7 @@ int rsRecordCheckFile(rsPLAYINFO *lpPlayInfo)
 
 				rsRecordMemoryBuff_CheckInvenItem(lpPlayInfo);
 
-				rsRecordMemoryBuffToFile(lpPlayInfo, lpPlayInfo->getName().c_str(), lpPlayInfo->lpRecordDataBuff);
+				rsRecordMemoryBuffToFile(lpPlayInfo, lpPlayInfo->getName(), lpPlayInfo->lpRecordDataBuff);
 
 
 				smTransCommand.WParam = 8400;
@@ -30677,13 +30688,13 @@ int Serv_DisconnectPlayer(smWINSOCK *lpsmSock)
 	if(LoginServer && tpInfo)
 	{
 		dwServer_DebugMessage = 100;
-		strcpy_s(szServer_DebugLastUserID, tpInfo->getAccount().c_str());
-		strcpy_s(szServer_DebugLastUserName, tpInfo->getName().c_str());
+		strcpy_s(szServer_DebugLastUserID, tpInfo->getAccount());
+		strcpy_s(szServer_DebugLastUserName, tpInfo->getName());
 	}
 
 	Server_DebugCount = 100;
 
-	if(tpInfo->lpRecordDataBuff && !tpInfo->getAccount().empty() && !tpInfo->getName().empty() &&
+	if(tpInfo->lpRecordDataBuff && (tpInfo->getAccount() && tpInfo->getAccount()[0]) && (tpInfo->getName() && tpInfo->getName()[0]) &&
 		((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->size > 0)
 	{
 
@@ -30691,7 +30702,7 @@ int Serv_DisconnectPlayer(smWINSOCK *lpsmSock)
 			CARAVANHANDLER->DelCaravan(tpInfo->lpCharCaravan);
 
 		((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->smCharInfo.szName[31] = 0;
-		if(lstrcmpi(((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->smCharInfo.szName, tpInfo->getName().c_str()) == 0)
+		if(lstrcmpi(((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->smCharInfo.szName, tpInfo->getName()) == 0)
 		{
 
 			if(rsServerConfig.ServerInventoryMode)
@@ -30709,7 +30720,7 @@ int Serv_DisconnectPlayer(smWINSOCK *lpsmSock)
 
 			for(cnt = 0; cnt < 6; cnt++)
 			{
-				if(rsRecordMemoryBuffToFile(tpInfo, tpInfo->getName().c_str(), tpInfo->lpRecordDataBuff) == TRUE) break;
+				if(rsRecordMemoryBuffToFile(tpInfo, tpInfo->getName(), tpInfo->lpRecordDataBuff) == TRUE) break;
 
 
 				smTransCommand.WParam = 8080;
@@ -30764,7 +30775,7 @@ int Serv_DisconnectPlayer(smWINSOCK *lpsmSock)
 
 	Server_DebugCount = 105;
 
-	if((tpInfo->ThrowItemCount > 0 || tpInfo->UnsaveMoney >= 0) && !tpInfo->getName().empty())
+	if((tpInfo->ThrowItemCount > 0 || tpInfo->UnsaveMoney >= 0) && (tpInfo->getName() && tpInfo->getName()[0]))
 		RecordSaveThrowData(tpInfo);
 
 	if (tpInfo->SystemLine)
@@ -30815,8 +30826,8 @@ int DisconnectUser(smWINSOCK *lpsmSock)
 	if(LoginServer && tpInfo)
 	{
 		dwServer_DebugMessage = 200;
-		strcpy_s(szServer_DebugLastUserID, tpInfo->getAccount().c_str());
-		strcpy_s(szServer_DebugLastUserName, tpInfo->getName().c_str());
+		strcpy_s(szServer_DebugLastUserID, tpInfo->getAccount());
+		strcpy_s(szServer_DebugLastUserName, tpInfo->getName());
 	}
 	Server_DebugCount = 200;
 
@@ -30826,13 +30837,13 @@ int DisconnectUser(smWINSOCK *lpsmSock)
 		if (tpInfo->lpCharCaravan)
 			CARAVANHANDLER->DelCaravan(tpInfo->lpCharCaravan);
 
-		if(tpInfo->lpRecordDataBuff && !tpInfo->getAccount().empty() && !tpInfo->getName().empty() &&
+		if(tpInfo->lpRecordDataBuff && (tpInfo->getAccount() && tpInfo->getAccount()[0]) && (tpInfo->getName() && tpInfo->getName()[0]) &&
 			((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->size > 0)
 		{
 
 			((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->smCharInfo.szName[NAME_SIZE - 1] = 0;
 
-			if(lstrcmpi(((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->smCharInfo.szName, tpInfo->getName().c_str()) == 0)
+			if(lstrcmpi(((TRANS_RECORD_DATA *)tpInfo->lpRecordDataBuff)->smCharInfo.szName, tpInfo->getName()) == 0)
 			{
 
 				if(rsServerConfig.ServerInventoryMode)
@@ -30852,7 +30863,7 @@ int DisconnectUser(smWINSOCK *lpsmSock)
 
 				for(cnt = 0; cnt < 6; cnt++)
 				{
-					if(rsRecordMemoryBuffToFile(tpInfo, tpInfo->getName().c_str(), tpInfo->lpRecordDataBuff) == TRUE) break;
+					if(rsRecordMemoryBuffToFile(tpInfo, tpInfo->getName(), tpInfo->lpRecordDataBuff) == TRUE) break;
 
 
 					smTransCommand.WParam = 8080;
@@ -30909,7 +30920,7 @@ int DisconnectUser(smWINSOCK *lpsmSock)
 
 		Server_DebugCount = 205;
 
-		if((tpInfo->ThrowItemCount > 0 || tpInfo->UnsaveMoney >= 0) && !tpInfo->getName().empty())
+		if((tpInfo->ThrowItemCount > 0 || tpInfo->UnsaveMoney >= 0) && (tpInfo->getName() && tpInfo->getName()[0]))
 			RecordSaveThrowData(tpInfo);
 
 		if (tpInfo->SystemLine)
@@ -31425,7 +31436,7 @@ DWORD WINAPI RecordPCJung_Thread(void *pInfo)
 
 		for(cnt = 0; cnt < CONNECTMAX; cnt++)
 		{
-			if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty() && rsPlayInfo[cnt].GpType == 1)
+			if(rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getAccount() && rsPlayInfo[cnt].getAccount()[0]) && rsPlayInfo[cnt].GpType == 1)
 			{
 				if(rsPlayInfo[cnt].GpCode == 0)
 				{
@@ -31615,12 +31626,12 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 
 			for (int cnt = 0; cnt < CONNECTMAX; cnt++)
 			{
-				if (rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty() &&
+				if (rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getAccount() && rsPlayInfo[cnt].getAccount()[0]) &&
 					LogAccount->lpPlayInfo != &rsPlayInfo[cnt])
 				{
 
 					if (LogAccount->lpPlayInfo->dwCode_ID == rsPlayInfo[cnt].dwCode_ID &&
-						lstrcmpi(LogAccount->szID, rsPlayInfo[cnt].getAccount().c_str()) == 0)
+						lstrcmpi(LogAccount->szID, rsPlayInfo[cnt].getAccount()) == 0)
 					{
 						if ((rsPlayInfo[cnt].dwLastRecvTime + 60 * 1000) < dwPlayServTime)
 						{
@@ -31732,12 +31743,12 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 			{
 				for(int cnt = 0; cnt < CONNECTMAX; cnt++)
 				{
-					if(rsPlayInfo[cnt].lpsmSock && !rsPlayInfo[cnt].getAccount().empty() &&
+					if(rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getAccount() && rsPlayInfo[cnt].getAccount()[0]) &&
 						LogAccount->lpPlayInfo != &rsPlayInfo[cnt])
 					{
 
 						if(LogAccount->lpPlayInfo->dwCode_ID == rsPlayInfo[cnt].dwCode_ID &&
-							lstrcmpi(LogAccount->szID, rsPlayInfo[cnt].getAccount().c_str()) == 0)
+							lstrcmpi(LogAccount->szID, rsPlayInfo[cnt].getAccount()) == 0)
 						{
 
 							if ((rsPlayInfo[cnt].dwLastRecvTime + 60 * 1000) < dwPlayServTime)
@@ -31753,7 +31764,7 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 			}
 
 
-			if(lstrcmpi(LogAccount->szID, LogAccount->lpPlayInfo->getAccount().c_str()) == 0)
+			if(lstrcmpi(LogAccount->szID, LogAccount->lpPlayInfo->getAccount()) == 0)
 			{
 				if(cbCnt == TRUE)
 				{
@@ -31826,7 +31837,7 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 					smTransCommand.EParam = 2;
 					LogAccount->lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
 					LogAccount->lpPlayInfo->dwTime_Disconnect = GetCurrentTime();
-					LogAccount->lpPlayInfo->setAccount('/0');
+					LogAccount->lpPlayInfo->setAccount('\0');
 				}
 			}
 		}
@@ -31939,7 +31950,7 @@ int rsLogAccount(rsPLAYINFO* lpPlayInfo, char* szID, char* szPassword, char* szM
 		wsprintf(szFileName, "LogFile//(MAC_PC)%d-%d.log", st.wMonth, st.wDay);
 
 		wsprintf(szBuff, "%d:%d:%d - ID( %s ) - Pw( %s ) - Nick ( %s ) - IP( %s ) - MAC_PC( %s ) - PcName(%s ) /r/n",
-			st.wHour, st.wMinute, st.wSecond, szID, szPassword, lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr,
+			st.wHour, st.wMinute, st.wSecond, szID, szPassword, lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr,
 			szMac, szPCName);
 
 
@@ -32278,7 +32289,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		/*lpPlayInfo->username[USERNAME_SIZE - 1] = 0;
 		lpPlayInfo->password[PASSWORD_SIZE - 1] = 0;*/
 		wsprintf(szBuff, "%d:%d:%d IP-( %s ) ID-( %s ) Name-( %s ) / ( %d ) - ( %d , %d )/r/n",
-			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 			lpTransCommand->WParam, lpTransCommand->LParam, lpTransCommand->SParam);
 	}
 	else
@@ -32299,7 +32310,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, "%d:%d:%d IP:[ %s ] ID:[ %s ] Name:[ %s ] / Param:[ %d ] - ( Power User Hacker [ %d ])/r/n",
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpTransCommand->WParam, lpTransCommand->LParam);
 }
 		break;
@@ -32307,12 +32318,12 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
 
 			//if(!lpPlayInfo->BlockTime)
-			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 18);
+			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 18);
 
 		}
 		break;
@@ -32321,7 +32332,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1010,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}
 		break;
@@ -32330,7 +32341,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1011,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}
 		break;
@@ -32338,18 +32349,18 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		case 1100:
 		{
 			wsprintf(szBuff, msg1100,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, (char *)lpTransCommand->LParam);
 
 			/*if (strstr((char*)lpTransCommand->LParam, "FPE") != 0)
 			{
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 
 			}
 			else
 			{
 
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60);
 			}
 			*/
 		}
@@ -32364,12 +32375,12 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 
 			/*if (strstr((char*)lpTransCommand->LParam, "FPE") != 0)
 			{
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 24);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 24);
 			}
 			else
 			{
 
-				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60);
+				lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60);
 			}*/
 		}
 		break;
@@ -32378,11 +32389,11 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1102,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
 		///	if(!lpPlayInfo->BlockTime)
-			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 19);
+			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 19);
 
 		}
 		break;
@@ -32391,7 +32402,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1103,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}
 		break;
@@ -32400,12 +32411,12 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1110,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 
 
 			//if(!lpPlayInfo->BlockTime)
-			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 1);
+			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 1);
 
 		}
 		break;
@@ -32414,12 +32425,12 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1120,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 
 
 
-			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 
 
 			DisconnectUser(lpPlayInfo->lpsmSock);
@@ -32430,12 +32441,12 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1130,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
-			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 
-			rsAddBlockUserFile(lpPlayInfo->getAccount().c_str(), szBuff);
+			rsAddBlockUserFile(lpPlayInfo->getAccount(), szBuff);
 		}
 		break;
 
@@ -32443,11 +32454,11 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1132,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 			//if(!lpPlayInfo->BlockTime)
-			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 24);
+			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 24);
 		}
 		break;
 
@@ -32455,7 +32466,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1150,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}
 		break;
@@ -32464,14 +32475,14 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1200,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
 			lpPlayInfo->CrackWarning = lpTransCommand->WParam;
 
 
 			//if(!lpPlayInfo->BlockTime)
-			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 2);
+			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 2);
 
 
 
@@ -32484,7 +32495,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1250,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 			lpPlayInfo->CrackWarning = lpTransCommand->WParam;
@@ -32516,7 +32527,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1500,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}
 		break;
@@ -32525,7 +32536,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1510,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
 
@@ -32536,14 +32547,14 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		case 1530:
 		{
 			wsprintf(szBuff, msg1530,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 			if(rsServerConfig.Dis_PotionError)
 			{
 
 				if(!lpPlayInfo->BlockTime)
-					lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), rsServerConfig.Dis_PotionError*(1000 * 60));
+					lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), rsServerConfig.Dis_PotionError*(1000 * 60));
 
 				lpPlayInfo->dwTime_Disconnect = 1;
 				rsSendTransCommand(lpPlayInfo, OpCode::OPCODE_CLEARPOTION, 0, 0, 0, 0);
@@ -32562,7 +32573,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 
 
 			//if(!lpPlayInfo->BlockTime)
-				//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60);
+				//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60);
 
 		}
 		break;
@@ -32580,10 +32591,10 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1820,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
-			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 
 			rsSendCloseClient(lpPlayInfo);
 		}
@@ -32592,10 +32603,10 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		case 1821:
 		{
 			wsprintf(szBuff, msg1821,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
-			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 
 			rsSendCloseClient(lpPlayInfo);
 		}
@@ -32604,7 +32615,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		case 1823:
 		{
 			wsprintf(szBuff, msg1823,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
 			rsSendCloseClient(lpPlayInfo);
@@ -32633,7 +32644,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1840,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 			if(lpTransCommand->LParam == 9100)
@@ -32648,7 +32659,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1900,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->smCharInfo.szName,
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->smCharInfo.szName,
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}
 		break;
@@ -32666,7 +32677,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg1960,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}
 		break;
@@ -32675,7 +32686,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg2000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}
 		break;
@@ -32684,64 +32695,64 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg2100,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
-			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 		}break;
 		case 2110:
 		{
 
 			wsprintf(szBuff, msg2110,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 2120:
 		{
 
 			wsprintf(szBuff, msg2120,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 2300:
 		{
 
 			wsprintf(szBuff, msg2300,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 2400:
 		{
 
 			wsprintf(szBuff, msg2400,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 2700:
 		{
 
 			wsprintf(szBuff, msg2700,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 2800:
 		{
 
 			wsprintf(szBuff, msg2800,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 4000:
 		{
 			wsprintf(szBuff, msg4000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 4100:
 		{
 
 			wsprintf(szBuff, msg4100,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 5000:
@@ -32754,50 +32765,50 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg5100,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->smCharInfo.szName,
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->smCharInfo.szName,
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 5200:
 		{
 
 			wsprintf(szBuff, msg5200,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}break;
 		case 6000:
 		{
 
 			wsprintf(szBuff, msg6000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 
 
-		//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 1);
+		//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 1);
 
 		}break;
 		case 6100:
 		{
 
 			wsprintf(szBuff, msg6100,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 6200:
 		{
 
 			wsprintf(szBuff, msg6200,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
 			//if(lpPlayInfo->BlockTime < 1000 * 60 * 10)
-			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 10);
+			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 10);
 		}break;
 		case 6500:
 		{
 
 			wsprintf(szBuff, msg6500,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 		}break;
@@ -32805,7 +32816,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg6510,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 		}break;
@@ -32813,18 +32824,18 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg6600,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
 
-			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 		}break;
 		case 6610:
 		{
 
 			wsprintf(szBuff, msg6610,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 		}break;
@@ -32832,54 +32843,54 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg6611,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
 			//if(!lpPlayInfo->BlockTime)
-			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 30);
+			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 30);
 		}break;
 		case 6612:
 		{
 
 			wsprintf(szBuff, msg6612,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
 		//	if(!lpPlayInfo->BlockTime)
-				//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 30);
+				//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 30);
 		}break;
 		case 6620:
 		{
 
 			wsprintf(szBuff, msg6620,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
 		//	if(!lpPlayInfo->BlockTime)
-			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60);
+			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60);
 		}break;
 		case 6630:
 		{
 
 			wsprintf(szBuff, msg6630,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 6800:
 		{
 
 			wsprintf(szBuff, msg6800,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 			/*if (rsServerConfig.ItemCodeOut > 0)
 			{
 				if((lpTransCommand->LParam&sinITEM_MASK1) < (sinPM1&sinITEM_MASK1))
 				{
-					lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+					lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 				}
 				lpPlayInfo->dwTime_Disconnect = 1;
 			}*/
@@ -32888,12 +32899,12 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg6810,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 			if(rsServerConfig.ItemCodeOut > 1)
 			{
-			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 24);
+			//	lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 24);
 				DisconnectUser(lpPlayInfo->lpsmSock);
 			}
 		}break;
@@ -32901,24 +32912,24 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg6900,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
-			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 
 		}break;
 		case 6910:
 		{
 
 			wsprintf(szBuff, msg6910,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, (lpTransCommand->SParam & 0xFFFF), (lpTransCommand->SParam >> 16), lpTransCommand->EParam);
 		}break;
 		case 6920:
 		{
 
 			wsprintf(szBuff, msg6920,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 		}break;
@@ -32926,7 +32937,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg7000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
@@ -32935,7 +32946,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg7010,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
@@ -32950,21 +32961,21 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg7020,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 7030:
 		{
 
 			wsprintf(szBuff, msg7030,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 7100:
 		{
 
 			wsprintf(szBuff, msg7100,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 7110:
@@ -32977,36 +32988,36 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 			}
 
 			wsprintf(szBuff, msg7110,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 
-			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60);
+			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60);
 		}break;
 		case 7120:
 		{
 
 			wsprintf(szBuff, msg7120,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
-			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 			lpPlayInfo->dwHopeDisconnectTime = 30000;
 		}break;
 		case 7130:
 		{
 
 			wsprintf(szBuff, msg7130,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 7140:
 		{
 
 			wsprintf(szBuff, msg7140,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->lpsmSock->szIPAddr);
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->lpsmSock->szIPAddr);
 
-			//rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 16);
+			//rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 16);
 
 			return FALSE;
 		}break;
@@ -33014,42 +33025,42 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg7150,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 7160:
 		{
 
 			wsprintf(szBuff, msg7160,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8000:
 		{
 
 			wsprintf(szBuff, msg8000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->WxParam, lpTransCommand->LxParam, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8010:
 		{
 
 			wsprintf(szBuff, msg8010,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8020:
 		{
 
 			wsprintf(szBuff, msg8020,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8030:
 		{
 
 			wsprintf(szBuff, msg8030,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8040:
@@ -33060,7 +33071,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 				rsSendCloseClient(lpPlayInfo);
 
 #ifdef	_LANGUAGE_BRAZIL
-				//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+				//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 				lpPlayInfo->dwHopeDisconnectTime = dwPlayServTime + 3 * 60 * 1000;
 #endif
 			}
@@ -33069,7 +33080,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 
 
 			wsprintf(szBuff, msg8040,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 
@@ -33078,7 +33089,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8050,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 
@@ -33102,28 +33113,28 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8060,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8070:
 		{
 
 			wsprintf(szBuff, msg8070,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->WxParam, lpTransCommand->LxParam, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8080:
 		{
 
 			wsprintf(szBuff, msg8080,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8100:
 		{
 
 			wsprintf(szBuff, msg8100,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 
 			if(lpTransCommand->LParam >= 200 && lpPlayInfo->WarningCount > 4)
@@ -33137,70 +33148,70 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8102,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8110:
 		{
 
 			wsprintf(szBuff, msg8110,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8120:
 		{
 
 			wsprintf(szBuff, msg8120,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8140:
 		{
 
 			wsprintf(szBuff, msg8140,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8200:
 		{
 
 			wsprintf(szBuff, msg8200,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8210:
 		{
 
 			wsprintf(szBuff, msg8210,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam, lpTransCommand->SxParam, lpTransCommand->ExParam);
 		}break;
 		case 8300:
 		{
 
 			wsprintf(szBuff, msg8300,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}break;
 		case 8400:
 		{
 
 			wsprintf(szBuff, msg8400,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8500:
 		{
 
 			wsprintf(szBuff, msg8500,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8510:
 		{
 
 			wsprintf(szBuff, msg8510,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->WxParam,
 				lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam,
 				lpTransCommand->LxParam, lpTransCommand->SxParam, lpTransCommand->ExParam);
@@ -33209,21 +33220,21 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8520,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}break;
 		case 8530:
 		{
 
 			wsprintf(szBuff, msg8530,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}break;
 		case 8540:
 		{
 
 			wsprintf(szBuff, msg8540,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 			DisconnectUser(lpPlayInfo->lpsmSock);
@@ -33235,7 +33246,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 
 
 			wsprintf(szBuff, msg8550,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 
@@ -33244,7 +33255,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8560,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 		}break;
@@ -33252,7 +33263,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8570,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
 			rsSendCloseClient(lpPlayInfo);
@@ -33261,7 +33272,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8580,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 			rsSendCloseClient(lpPlayInfo);
@@ -33276,56 +33287,56 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 			}
 
 			wsprintf(szBuff, msg8600,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8700:
 		{
 
 			wsprintf(szBuff, msg8700,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8710:
 		{
 
 			wsprintf(szBuff, msg8710,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8720:
 		{
 
 			wsprintf(szBuff, msg8720,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8730:
 		{
 
 			wsprintf(szBuff, msg8730,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8800:
 		{
 
 			wsprintf(szBuff, msg8800,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8810:
 		{
 
 			wsprintf(szBuff, msg8810,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8820:
 		{
 
 			wsprintf(szBuff, msg8820,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 		}break;
@@ -33333,7 +33344,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8830,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 		}break;
@@ -33341,35 +33352,35 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8840,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->WxParam, lpTransCommand->LxParam, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8850:
 		{
 
 			wsprintf(szBuff, msg8850,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 8860:
 		{
 
 			wsprintf(szBuff, msg8860,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->WxParam, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam, lpTransCommand->LxParam);
 		}break;
 		case 8870:
 		{
 
 			wsprintf(szBuff, msg8870,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 		}break;
 		case 8880:
 		{
 
 			wsprintf(szBuff, msg8880,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 			rsSendCloseClient(lpPlayInfo);
@@ -33378,16 +33389,16 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg8890,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam, lpTransCommand->EParam);
 
-			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+			//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 		}break;
 		case 8900:
 		{
 
 			wsprintf(szBuff, msg8900,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 #ifdef _CHECK_MESH
@@ -33404,7 +33415,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 
 
 			wsprintf(szBuff, "%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Item Mixing Error ( %d )( %d )/r/n",
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 
 
@@ -33413,42 +33424,42 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg10000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}break;
 		case 10001:
 		{
 
 			wsprintf(szBuff, msg10001,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}break;
 		case 10002:
 		{
 
 			wsprintf(szBuff, msg10002,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}break;
 		case 10003:
 		{
 
 			wsprintf(szBuff, msg10003,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}break;
 		case 10005:
 		{
 
 			wsprintf(szBuff, msg10005,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}break;
 		case 10006:
 		{
 
 			wsprintf(szBuff, msg10006,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->SParam, lpTransCommand->LParam);
 		}break;
 		case 10007:
@@ -33462,21 +33473,21 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg10010,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam);
 		}break;
 		case 10020:
 		{
 
 			wsprintf(szBuff, msg10020,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}break;
 		case 11000:
 		{
 
 			wsprintf(szBuff, msg11000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr);
 		}
 		break;
@@ -33484,7 +33495,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 		{
 
 			wsprintf(szBuff, msg21000,
-				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+				st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 				lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->LParam, lpTransCommand->SParam);
 		}
 		break;
@@ -33513,12 +33524,12 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 			{
 
 				wsprintf(szBuff, msgHack,
-					st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+					st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 					lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->WParam);
 
 				if(lpTransCommand->WParam == 82 || lpTransCommand->WParam == 83 || lpTransCommand->WParam == 5)
 				{
-					//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 0x7FFFFFFF);
+					//lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 0x7FFFFFFF);
 					lpPlayInfo->dwHopeDisconnectTime = 2000;
 				}
 				if (lpTransCommand->WParam == 55 || lpTransCommand->WParam == 54)
@@ -33532,7 +33543,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 			{
 
 				wsprintf(szBuff, msgHack100,
-					st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+					st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 					lpPlayInfo->lpsmSock->szIPAddr, lpTransCommand->WParam, lpTransCommand->SParam, lpTransCommand->LParam, lpTransCommand->EParam);
 
 				if(lpPlayInfo->BlockTime && lpTransCommand->LParam >= 140)
@@ -33560,7 +33571,7 @@ int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff)
 
 
 			//if(!lpPlayInfo->BlockTime && lpTransCommand->WParam != 99)
-			//	lpPlayInfo->BlockTime = //rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 21);
+			//	lpPlayInfo->BlockTime = //rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 21);
 
 			Record_TempLogFile(szBuff);
 			Record_TempLogFile(szFileName);
@@ -33631,10 +33642,10 @@ int RecordDebugPlayLogFile(rsPLAYINFO *lpPlayInfo)
 	GetLocalTime(&st);
 	wsprintf(szFileName, filenameDebugLogin, DebugLogDirectory, st.wMonth, st.wDay);
 
-	if(!lpPlayInfo->getAccount().empty())
+	if((lpPlayInfo->getAccount() && lpPlayInfo->getAccount()[0]))
 	{
 		wsprintf(szBuff, msgDebugloginID,
-			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 			lpPlayInfo->lpsmSock->szIPAddr, (int)lpPlayInfo->getSecurity());
 	}
 	else
@@ -33674,7 +33685,7 @@ int RecordJobChanger(rsPLAYINFO *lpPlayInfo)
 	wsprintf(szFileName, "LogFile//(LogOn)%d-%d.log", st.wMonth, st.wDay);
 
 	wsprintf(szBuff, "ID( %s ) Name( %s ) IP( %s ) - JOB_CODE( %d )/ChangeJob( %d )/Level( %d )/r/n",
-		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr,
+		lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr,
 		lpPlayInfo->smCharInfo.JOB_CODE, lpPlayInfo->smCharInfo.ChangeJob, lpPlayInfo->smCharInfo.Level);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -33742,7 +33753,7 @@ int Record_BillingLogFile(rsPLAYINFO *lpPlayInfo, DWORD wParam, DWORD lParam, DW
 	if(hFile == INVALID_HANDLE_VALUE) return FALSE;
 
 	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) - DisuseDay(%d) dwPeriodTime(%d) tTime(%d) PcUse(%d)/r/n", st.wHour, st.wMinute, st.wSecond,
-		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr, wParam, lParam, sParam, eParam);
+		lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr, wParam, lParam, sParam, eParam);
 
 	FileLength = GetFileSize(hFile, NULL);
 	SetFilePointer(hFile, FileLength, NULL, FILE_BEGIN);
@@ -33773,7 +33784,7 @@ int Record_DeadUser(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 
 	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) - Level( %d )/Area( %d )/r/n",
 		st.wHour, st.wMinute, st.wSecond,
-		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr,
+		lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr,
 		lpPlayInfo->smCharInfo.Level, lpPlayInfo->Position.Area);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -33804,7 +33815,7 @@ int RecordMixItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSrcItem, sITEMINFO *lpMix
 	wsprintf(szFileName, filenameMixItem, HackLogDirectory, st.wMonth, st.wDay);
 
 	wsprintf(szBuff, msgMixItem,
-		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 		lpPlayInfo->lpsmSock->szIPAddr, lpSrcItem->ItemName,
 		lpSrcItem->ItemHeader.Head, lpSrcItem->ItemHeader.dwChkSum, lpSrcItem->ItemHeader.dwTime,
 		lpMixItem->ItemHeader.Head, lpMixItem->ItemHeader.dwChkSum, lpMixItem->ItemHeader.dwTime);
@@ -33844,7 +33855,7 @@ int RecordAgingItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSrcItem, sITEMINFO *lpM
 		else lpMsg = msgAgingUpItem;
 		
 		wsprintf(szBuff, lpMsg,
-			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 			lpPlayInfo->lpsmSock->szIPAddr, lpSrcItem->ItemName, lpMixItem->ItemAgingNum[0],
 			lpSrcItem->ItemHeader.Head, lpSrcItem->ItemHeader.dwChkSum, lpSrcItem->ItemHeader.dwTime,
 			lpMixItem->ItemHeader.Head, lpMixItem->ItemHeader.dwChkSum, lpMixItem->ItemHeader.dwTime);
@@ -33892,11 +33903,11 @@ int RecordAgingItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSrcItem, sITEMINFO *lpM
 	else
 	{
 		wsprintf(szBuff, msgAgingFailItem,
-			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 			lpPlayInfo->lpsmSock->szIPAddr, lpSrcItem->ItemName, lpSrcItem->ItemAgingNum[0],
 			lpSrcItem->ItemHeader.Head, lpSrcItem->ItemHeader.dwChkSum, lpSrcItem->ItemHeader.dwTime);
 
-		wsprintf(msg, "Moriph: %s quebrou o item %s ao tentar o aging +%d!", lpPlayInfo->getName().c_str(), lpSrcItem->ItemName, lpSrcItem->ItemAgingNum[0]);
+		wsprintf(msg, "Moriph: %s quebrou o item %s ao tentar o aging +%d!", lpPlayInfo->getName(), lpSrcItem->ItemName, lpSrcItem->ItemAgingNum[0]);
 		rsSendMessageAll(msg, 3);
 
 		cRestaure.InsertAgingFailed(lpPlayInfo, lpSrcItem->ItemName, lpSrcItem->ItemAgingNum[0], lpSrcItem->ItemHeader.Head, lpSrcItem->ItemHeader.dwChkSum);
@@ -33957,7 +33968,7 @@ int RecordCollectMoney(rsPLAYINFO *lpPlayInfo, int Money)
 	wsprintf(szFileName, filenameCollectMoney, szRecordCollectDirectory, st.wMonth, st.wDay);
 
 	wsprintf(szBuff, msgKindPeople,
-		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 		lpPlayInfo->lpsmSock->szIPAddr, Money, TotalMoney);
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -34187,7 +34198,7 @@ int RecordSmeltingItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSmeltingItem)
 	wsprintf(szFileName, filenameSmeltingItem, HackLogDirectory, st.wMonth, st.wDay);
 
 	wsprintf(szBuff, msgSmeltingItem,
-		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 		lpPlayInfo->lpsmSock->szIPAddr, lpSmeltingItem->ItemName,
 		lpSmeltingItem->ItemHeader.Head, lpSmeltingItem->ItemHeader.dwChkSum, lpSmeltingItem->ItemHeader.dwTime);
 
@@ -34224,7 +34235,7 @@ int RecordManufactureItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpManufactureItem)
 	wsprintf(szFileName, filenameManufactureItem, HackLogDirectory, st.wMonth, st.wDay);
 
 	wsprintf(szBuff, msgManufactureItem,
-		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 		lpPlayInfo->lpsmSock->szIPAddr, lpManufactureItem->ItemName,
 		lpManufactureItem->ItemHeader.Head, lpManufactureItem->ItemHeader.dwChkSum, lpManufactureItem->ItemHeader.dwTime);
 
@@ -34262,7 +34273,7 @@ int RecordMixtureResetItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpMixtureResetItem
 	wsprintf(szFileName, filenameMixtureResetItem, HackLogDirectory, st.wMonth, st.wDay);
 
 	wsprintf(szBuff, msgMixtureResetItem,
-		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(),
+		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 		lpPlayInfo->lpsmSock->szIPAddr, lpMixtureResetItem->ItemName,
 		lpMixtureResetItem->ItemHeader.Head, lpMixtureResetItem->ItemHeader.dwChkSum, lpMixtureResetItem->ItemHeader.dwTime);
 
@@ -34303,7 +34314,7 @@ int RecordMovieBloodyBattleItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpMovieBloody
 	wsprintf(szFileName, filenameMovieBloodyBattleItem, EventLogDirectory, st.wMonth, st.wDay);
 
 	wsprintf(szBuff, MovieBloodyBattleLog,
-		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str());
+		st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName());
 
 
 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -34806,8 +34817,8 @@ int	rsRecord_ItemLog(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHead, DWO
 	}
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 	LogItem.Item[0].dwCode = dwItemCode;
 	LogItem.Item[0].dwINo[0] = dwHead;
@@ -34829,8 +34840,8 @@ int	rsRecord_ItemLog2(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHead, DW
 	if(!lpPlayInfo->lpsmSock) return FALSE;
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 	LogItem.Item[0].dwCode = dwItemCode;
 	LogItem.Item[0].dwINo[0] = dwHead;
@@ -34854,8 +34865,8 @@ int	rsRecord_ItemLog_Change(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHe
 	if(!lpPlayInfo->lpsmSock) return FALSE;
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
 	LogItem.Item[0].dwCode = dwItemCode;
@@ -34884,8 +34895,8 @@ int	rsRecord_ItemLost(rsPLAYINFO *lpPlayInfo, DWORD *lpItemCode, DWORD *lpHead, 
 	if(!lpPlayInfo->lpsmSock) return FALSE;
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
 	LogItem.ItemCount = 0;
@@ -34922,10 +34933,10 @@ int	rsRecord_ItemLog_Trade(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, TRAN
 	if(!lpPlayInfo2->lpsmSock) return FALSE;
 
 	LogItem.Flag = 8;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
-	strcpy_s(LogItem.TUserID, lpPlayInfo2->getAccount().c_str());
-	strcpy_s(LogItem.TCharName, lpPlayInfo2->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
+	strcpy_s(LogItem.TUserID, lpPlayInfo2->getAccount());
+	strcpy_s(LogItem.TCharName, lpPlayInfo2->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 	LogItem.TIP = lpPlayInfo2->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
@@ -34963,10 +34974,10 @@ int	rsRecord_ItemLog_MyShop(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, DWO
 
 	ZeroMemory(&LogItem, sizeof(LogITEM_TRADE));
 	LogItem.Flag = ITEMLOG_MYSHOP;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
-	strcpy_s(LogItem.TUserID, lpPlayInfo2->getAccount().c_str());
-	strcpy_s(LogItem.TCharName, lpPlayInfo2->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
+	strcpy_s(LogItem.TUserID, lpPlayInfo2->getAccount());
+	strcpy_s(LogItem.TCharName, lpPlayInfo2->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 	LogItem.TIP = lpPlayInfo2->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
@@ -34980,10 +34991,10 @@ int	rsRecord_ItemLog_MyShop(rsPLAYINFO *lpPlayInfo, rsPLAYINFO *lpPlayInfo2, DWO
 
 	ZeroMemory(&LogItem, sizeof(LogITEM_TRADE));
 	LogItem.Flag = ITEMLOG_MYSHOP;
-	strcpy_s(LogItem.UserID, lpPlayInfo2->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo2->getName().c_str());
-	strcpy_s(LogItem.TUserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.TCharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo2->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo2->getName());
+	strcpy_s(LogItem.TUserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.TCharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo2->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 	LogItem.TIP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
@@ -35011,8 +35022,8 @@ int	rsRecord_ItemLog_Post(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHead
 	ZeroMemory(&LogItem, sizeof(LogGiftITEM));
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 	LogItem.Gitem.dwCode = dwItemCode;
 	LogItem.Gitem.dwINo[0] = dwHead;
@@ -35040,8 +35051,8 @@ int	rsRecord_SmeltingItemLog(rsPLAYINFO *lpPlayInfo, DWORD *lpItemCode, DWORD *l
 	if(!lpPlayInfo->lpsmSock) return FALSE;
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
 	LogItem.ItemCount = 0;
@@ -35072,8 +35083,8 @@ int	rsRecord_ManufactureItemLog(rsPLAYINFO *lpPlayInfo, DWORD *lpItemCode, DWORD
 	if(!lpPlayInfo->lpsmSock) return FALSE;
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
 	LogItem.ItemCount = 0;
@@ -35104,8 +35115,8 @@ int rsRecord_MixtureResetItemLog(rsPLAYINFO *lpPlayInfo, sMIXTURE_RESET_ITEM_SER
 	if(!lpPlayInfo->lpsmSock) return FALSE;
 
 	LogItem.Flag = Flag;
-	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount().c_str());
-	strcpy_s(LogItem.CharName, lpPlayInfo->getName().c_str());
+	strcpy_s(LogItem.UserID, lpPlayInfo->getAccount());
+	strcpy_s(LogItem.CharName, lpPlayInfo->getName());
 	LogItem.IP = lpPlayInfo->lpsmSock->acc_sin.sin_addr.S_un.S_addr;
 
 	LogItem.ItemCount = 0;
@@ -36722,7 +36733,7 @@ int rsRecvSystemInfo(rsPLAYINFO *lpPlayInfo, void *Buff)
 		lprsPlayInfo = srFindUserFromSerial(lpCharCommand->WParam);
 		if (lprsPlayInfo)
 		{
-			if (lprsPlayInfo->dwCode_Name == lpCharCommand->SParam && lstrcmpi(lprsPlayInfo->getName().c_str(), lpCharCommand->szName) == 0)
+			if (lprsPlayInfo->dwCode_Name == lpCharCommand->SParam && lstrcmpi(lprsPlayInfo->getName(), lpCharCommand->szName) == 0)
 			{
 				return TRUE;
 			}
@@ -37069,7 +37080,7 @@ int	rsSaveAdminCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand, int Level)
 
 	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) AdminLv( %d )> %s/r/n",
 		st.wHour, st.wMinute, st.wSecond,
-		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr, Level, szChatCommand);
+		lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr, Level, szChatCommand);
 
 	len = lstrlen(szBuff);
 
@@ -37124,7 +37135,7 @@ AccountTypes getSecurityLevel(rsPLAYINFO *lpPlayInfo)
 	smWINSOCK *lpsmSock = lpPlayInfo->lpsmSock;
 
 	if(!lpPlayInfo->BlockTime)
-		lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount().c_str(), 1000 * 60 * 60 * 24);
+		lpPlayInfo->BlockTime = rsAddBackListID(lpPlayInfo->getAccount(), 1000 * 60 * 60 * 24);
 
 	DisconnectUser(lpsmSock);
 
@@ -37151,7 +37162,7 @@ int	rsClanMoneyLog(rsPLAYINFO *lpPlayInfo, int Money, int RestMoney)
 
 	wsprintf(szBuff, "%d:%d:%d - ID( %s ) Name( %s ) IP( %s ) Money( %d ) RestMoney( %d )/r/n",
 		st.wHour, st.wMinute, st.wSecond,
-		lpPlayInfo->getAccount().c_str(), lpPlayInfo->getName().c_str(), lpPlayInfo->lpsmSock->szIPAddr, Money, RestMoney);
+		lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr, Money, RestMoney);
 
 	len = lstrlen(szBuff);
 
@@ -40344,8 +40355,8 @@ int rsSendUserID_MainServer(rsPLAYINFO *lpPlayInfo)
 	smTransCharCommand.LParam = 0;
 	smTransCharCommand.SParam = 0;
 
-	strcpy_s(smTransCharCommand.szId, lpPlayInfo->getAccount().c_str());
-	strcpy_s(smTransCharCommand.szName, lpPlayInfo->getName().c_str());
+	strcpy_s(smTransCharCommand.szId, lpPlayInfo->getAccount());
+	strcpy_s(smTransCharCommand.szName, lpPlayInfo->getName());
 
 	return rsSendGameServer(lpPlayInfo->lpsmSock, &smTransCharCommand);
 }
