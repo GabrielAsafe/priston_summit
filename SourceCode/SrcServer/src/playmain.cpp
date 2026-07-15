@@ -1164,7 +1164,7 @@ int CharFileCnt;
 int CharPlayCnt = 0;
 
 
-static char *SetDirectoryFromFile(char *filename)
+static char *Local_SetDirectoryFromFile(char *filename)
 {
 	int len;
 	int cnt;
@@ -1187,7 +1187,7 @@ int SetCharFileList(char *szCharFile)
 	CharFileCnt = 0;
 	char szFindPath[256];
 
-	SetDirectoryFromFile(szCharFile);
+	Local_SetDirectoryFromFile(szCharFile);
 
 	HANDLE hFindHandle;
 	WIN32_FIND_DATA	fd;

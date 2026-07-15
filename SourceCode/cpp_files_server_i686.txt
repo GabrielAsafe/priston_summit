@@ -128,6 +128,8 @@ SrcServer/src/sinbaram/sinUtil.cpp
 SrcServer/src/sinbaram/sinWarpGate.cpp
 SrcServer/src/sinbaram/SkillFunction/Morayion.cpp
 SrcServer/src/sinbaram/SkillFunction/Tempskron.cpp
+SrcServer/src/sinbaram/skill_missing_globals_mingw.cpp
+SrcServer/src/sinbaram/SkillTables.cpp
 SrcServer/src/sinbaram/YameEffect.cpp
 SrcServer/src/sinHaQuest.cpp
 SrcServer/src/Skills/Skills.cpp
@@ -151,7 +153,6 @@ SrcServer/src/Sound/Dxwav.cpp
 SrcServer/src/Sound/Wave.cpp
 SrcServer/src/SQL.cpp
 SrcServer/src/STRCLASS.CPP
-SrcServer/src/SvrCaravan.cpp
 SrcServer/src/TextMessage.cpp
 SrcServer/src/timer.cpp
 SrcServer/src/TJBOY/clanmenu/BMPsmooth.cpp

@@ -311,7 +311,7 @@ void ReleaseNewRenderTarget(void)
 
 
 
-inline int IsCreateNewRenderTarget(void)
+int IsCreateNewRenderTarget(void)
 {
 	return s_dwIsBoolFilterEffect;
 }
@@ -323,7 +323,7 @@ inline int IsCreateNewRenderTarget(void)
 
 
 
-inline int GetRenderTarget(void)
+int GetRenderTarget(void)
 {
 	return s_eWorkTarget;
 }
@@ -373,7 +373,7 @@ int ChangeRenderTarget(eNEW_RENDER_TARGET_TYPE eRTtype)
 
 
 
-inline int GetFilterEffect(void)
+int GetFilterEffect(void)
 {
 	return s_dwFilterEffectWork;
 }

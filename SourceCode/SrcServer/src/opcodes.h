@@ -268,6 +268,42 @@ namespace OpCode {
     static const int OPCODE_XIGNCODE_START = 0x70000000 + 261;
     static const int OPCODE_XTRAP_PACKET = 0x70000000 + 262;
     static const int OPCODE_YAHOO_MOTION = 0x70000000 + 263;
+
+
+    // Compatibilidade recuperada de Shared/opcodes.h
+    static const int PLAYER_TOP_LEVEL = 0x4847900C;
+    static const int UPDATE_BATTLE_POINTS = 0x48479000;
+    static const int SEND_ALERT_PVP = 0x48479001;
+    static const int DELETE_ITEM_PREMIUM = 0x48479002;
+    static const int SEARCH_GAME_CHEAT = 0x48479003;
+    static const int INIT_CHEAT_PROTECTION = 0x48479004;
+    static const int SET_ITEM_PREMIUM = 0x48479005;
+    static const int SEND_ALERT = 0x48479006;
+    static const int BATTLE_POINTS = 0x48479007;
+    static const int BOSS_TIME = 0x48479008;
+    static const int FIND_CHEAT = 0x4847900B;
+    static const int OPCODE_GET_RESTAURE = OPCODE_RESTAURE_LIST;
+    static const int OPCODE_ID_GETUSERINFO = 0x48470085;
+
+    // -----------------------------------------------------------------
+    // Compatibility opcodes restored for the current source revision.
+    // Keep this block synchronized between client and server.
+    // SUMMIT_BEGIN_RESTORED_COMPATIBILITY_OPCODES
+    static const int OPCODE_BAD_PLAYER                  = 0x70000000 + 303;
+    static const int OPCODE_CHECK_EXPDATA               = 0x70000000 + 304;
+    static const int OPCODE_PRIMEITEM_DATA              = 0x70000000 + 305;
+    static const int OPCODE_PRIMEITEM_DATA2             = 0x70000000 + 306;
+    static const int OPCODE_PRIMEITEM_DATA3             = 0x70000000 + 307;
+    static const int OPCODE_PRIMEITEM_DATA4             = 0x70000000 + 308;
+    static const int OPCODE_FORCEORB_DATA               = 0x70000000 + 309;
+    static const int OPCODE_BOOSTER_DATA                = 0x70000000 + 310;
+    static const int OPCODE_SKILLDELAY_DATA             = 0x70000000 + 311;
+    static const int CHECK_SOD_CROWN                    = 0x70000000 + 312;
+    static const int PLAYER_GM                          = 0x70000000 + 313;
+    static const int OPCODE_IPLIST                      = 0x70000000 + 314;
+    static const int OPCODE_UPDATE_SERVER_PARAM         = 0x70000000 + 315;
+    // SUMMIT_END_RESTORED_COMPATIBILITY_OPCODES
+    // -----------------------------------------------------------------
 }
 
 

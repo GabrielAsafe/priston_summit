@@ -32,11 +32,8 @@ public:
 
 
 #ifdef CE_NOUSER_CPP
-class CLANEntity_nouser cClanMake;
-
+class CLANEntity_nouser cClanNoUser;
 #else
-extern class CLANEntity_nouser cClanMake;
-
+extern class CLANEntity_nouser cClanNoUser;
 #endif
-
 

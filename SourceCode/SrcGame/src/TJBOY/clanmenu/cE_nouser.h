@@ -35,7 +35,7 @@ public:
 extern class CLANEntity_nouser cClanMake;
 
 #else
-extern extern class CLANEntity_nouser cClanMake;
+extern class CLANEntity_nouser cClanMake;
 
 #endif
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef __CE_NOUSER_HPP__
-#define __CE_NOUSER_HPP__
+#ifndef __CE_CMAKE_HPP__
+#define __CE_CMAKE_HPP__
 
 #include "clan_Enti.h"
 

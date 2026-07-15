@@ -264,6 +264,26 @@ namespace OpCode {
     static const int OPCODE_XIGNCODE_START = 0x70000000 + 261;
     static const int OPCODE_XTRAP_PACKET = 0x70000000 + 262;
     static const int OPCODE_YAHOO_MOTION = 0x70000000 + 263;
+
+    // -----------------------------------------------------------------
+    // Compatibility opcodes restored for the current source revision.
+    // Keep this block synchronized between client and server.
+    // SUMMIT_BEGIN_RESTORED_COMPATIBILITY_OPCODES
+    static const int OPCODE_BAD_PLAYER                  = 0x70000000 + 303;
+    static const int OPCODE_CHECK_EXPDATA               = 0x70000000 + 304;
+    static const int OPCODE_PRIMEITEM_DATA              = 0x70000000 + 305;
+    static const int OPCODE_PRIMEITEM_DATA2             = 0x70000000 + 306;
+    static const int OPCODE_PRIMEITEM_DATA3             = 0x70000000 + 307;
+    static const int OPCODE_PRIMEITEM_DATA4             = 0x70000000 + 308;
+    static const int OPCODE_FORCEORB_DATA               = 0x70000000 + 309;
+    static const int OPCODE_BOOSTER_DATA                = 0x70000000 + 310;
+    static const int OPCODE_SKILLDELAY_DATA             = 0x70000000 + 311;
+    static const int CHECK_SOD_CROWN                    = 0x70000000 + 312;
+    static const int PLAYER_GM                          = 0x70000000 + 313;
+    static const int OPCODE_IPLIST                      = 0x70000000 + 314;
+    static const int OPCODE_UPDATE_SERVER_PARAM         = 0x70000000 + 315;
+    // SUMMIT_END_RESTORED_COMPATIBILITY_OPCODES
+    // -----------------------------------------------------------------
 }
 
 

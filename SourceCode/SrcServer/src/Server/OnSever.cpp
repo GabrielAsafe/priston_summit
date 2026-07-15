@@ -9,7 +9,16 @@
 #endif
 #include "server_compat_packets.h"
 #include "server_build_compat.h"
+
+/* SUMMIT_ONSERVER_GLOBAL_OPCODE_ALIASES */
+static const int UPDATE_BATTLE_POINTS = OpCode::UPDATE_BATTLE_POINTS;
+static const int DELETE_ITEM_PREMIUM = OpCode::DELETE_ITEM_PREMIUM;
 #include <cstring>
+
+#ifndef SIN_ADD_NUM
+#define SIN_ADD_NUM 1
+#endif
+#define SUMMIT_COMPAT_SIN_ADD_NUM
 #include <iostream>
 #include <io.h>
 #include <stdio.h>         
@@ -14630,7 +14639,7 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 		QuestMode = TRUE;
 	else
 	{
-		if(lpPlayInfo->getSecurity() >= AccountTypes::SEC_CONSOLE)
+		if(lpPlayInfo->getSecurity() >= AccountTypes::SEC_MODERATOR)
 			QuestMode = -1;
 		else
 			QuestMode = FALSE;
@@ -23517,7 +23526,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	}
 #pragma endregion
 
-	if(lpPlayInfo->getSecurity() < AccountTypes::SEC_CONSOLE)
+	if(lpPlayInfo->getSecurity() < AccountTypes::SEC_MODERATOR)
 		return FALSE;
 
 #pragma region Console Commands
@@ -24072,6 +24081,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 	rsPLAYINFO *lpPlayInfo = (rsPLAYINFO *)lpsmSock->ExtData1;
 	DWORD *IPData = (DWORD *)(SockInfo->Buff);
 	DWORD dwTime = GetCurrentTime();
+	char accountId[32] = { 0 };
 
 	if(!lpPlayInfo || !lpPlayInfo->lpsmSock) goto quit;
 
@@ -24099,7 +24109,6 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 	dwTransSize = IPData[0];
 	dwTransCode = IPData[1];
 
-	char accountId[32] = { 0 };
 	strcpy_s(accountId, sizeof(accountId), lpPlayInfo->getAccount());
 	if (accountId[0] == '\0' )
 	{
@@ -24274,6 +24283,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			JOBS::GetInstance()->RecvJOBbuyToClient(lpPlayInfo, (JOBS_PACK*)SockInfo->Buff);
 			break;
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: WARMODE */
 		case OpCode::WARMODE:
 			lpTransCommandEx = (smTRANS_COMMAND_EX*)SockInfo->Buff;
 			if (lpTransCommandEx->WParam == 1)
@@ -24281,6 +24291,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			else
 				lpPlayInfo->ModoPvP_Drop = 0;
 			break;
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 			
 		case OpCode::OPCODE_SPOILER_INFO:
 			lpTransCommand = (smTRANS_COMMAND*)SockInfo->Buff;
@@ -24387,6 +24398,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 		}
 		break;
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: UPDATE_ITEM_PREMIUM */
 		case OpCode::UPDATE_ITEM_PREMIUM:
 		{
 			smTRANS_COMMAND * smPacket;
@@ -24459,6 +24471,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			}
 		}
 		break;
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 
 		case UPDATE_BATTLE_POINTS:
 		{
@@ -24512,7 +24525,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				}
 			}
 
-			if (lpPlayInfo->getName().compare(szNick) == 0)
+			if (strcmp(lpPlayInfo->getName(), szNick) == 0)
 			{
 				wsprintf(TransChatMessage.szMessage, "PvP> O Rei do PvP %s est� no Castelo Sagrado.", lpPlayInfo->getName());
 				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
@@ -24792,9 +24805,11 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			}
 			break;
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_CONTINUEDATA */
 		case OpCode::OPCODE_CONTINUEDATA:
 
 			break;
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 
 		case OpCode::OPCODE_RESTAURE_ITEM:
 			lpTransCommandEx = (smTRANS_COMMAND_EX*)SockInfo->Buff;
@@ -25410,8 +25425,6 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 			lpPlayInfo->smCharInfo.Life[0] = lpTransPlayData->Hp[0];
 			lpPlayInfo->smCharInfo.Life[1] = lpTransPlayData->Hp[1];
-			lpPlayInfo->smCharInfo.Mana[0] = lpTransPlayData->Mp[0];
-			lpPlayInfo->smCharInfo.Mana[1] = lpTransPlayData->Mp[1];
 			lpPlayInfo->smCharInfo.Level = lpTransPlayData->bEventInfo[TRANS_PLAYDATA_EVENT_LEVEL];
 			
 
@@ -26683,7 +26696,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					smTransCommand.size = sizeof(smTRANS_COMMAND);
 
 
-					if (lpPlayInfo->getName().compare(kingName) == 0)
+					if (strcmp(lpPlayInfo->getName(), kingName) == 0)
 					{
 						smTransCommand.SParam = 1;
 						wsprintf(TransChatMessage.szMessage, "%s %s est� online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName());
@@ -26747,7 +26760,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 					smTransCommand.WParam = iBPs;
 
-					if (lpPlayInfo->getName().compare(szNick) == 0)
+					if (strcmp(lpPlayInfo->getName(), szNick) == 0)
 					{
 						smTransCommand.SParam = 1;
 						wsprintf(TransChatMessage.szMessage, "%s %s est� online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName());
@@ -27598,7 +27611,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 						}
 						else if (lpTransCommandEx->WParam == (sinBI1 | sin56))
 						{
-							lpPlayInfo->dwTime_PrimeItem_StaminaRecharg = PRIME_ITEM_TIME_3H;
+							lpPlayInfo->dwTime_PrimeItem_StaminaRecharg = PRIME_ITEM_TIME_6H;
 							lpPlayInfo->dwPrimeItem_NextSetTime = 0;
 							rsSendGameServer_PrimeItem3(lpPlayInfo);
 						}
@@ -28380,10 +28393,12 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			rsCheckTotalExpMoney(lpPlayInfo, (TRANS_TOTAL_EXPMONEY *)SockInfo->Buff);
 			break;
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_CHECK_EXPDATA */
 		case OpCode::OPCODE_CHECK_EXPDATA:
 
 			rsRecvGameServerExp(lpPlayInfo, (smTRANS_COMMAND *)SockInfo->Buff);
 			break;
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 
 
 
@@ -28405,12 +28420,14 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 		}
 		break;
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_SET_OBJSERIAL */
 		case OpCode::OPCODE_SET_OBJSERIAL:
 
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
 			lpPlayInfo->dwObjectSerial = lpTransCommand->WParam;
 			lpPlayInfo->TransInfoFlag = TRUE;
 			break;
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 
 		case OpCode::OPCODE_CONT_OBJSERIAL:
 
@@ -29020,6 +29037,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 		break;
 
 
+		#if 0 /* SUMMIT_DISABLED_PLAYERKILLING_BEGIN
 		case OpCode::OPCODE_PLAYERKILLING:
 		{
 
@@ -29259,6 +29277,8 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			}
 		}
 		break;
+		SUMMIT_DISABLED_PLAYERKILLING_END */
+		#endif
 
 					case OpCode::OPCODE_RANKINGSEND:
 					{
@@ -29460,7 +29480,9 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			rsRecvClientFuncPos((TRANS_CLIENT_FUNPOS *)SockInfo->Buff);
 			break;
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_FUNCTON_RESULT */
 		case OpCode::OPCODE_FUNCTON_RESULT:
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 		case OpCode::OPCODE_FUNCTION_MEM2:
 
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
@@ -29501,11 +29523,13 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				lpPlayInfo->dwFuncChkErrorFlag = TRUE;
 			break;
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_BAD_PLAYER */
 		case OpCode::OPCODE_BAD_PLAYER:
 
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
 			lpPlayInfo->BadPlayer = lpTransCommand->WParam;
 			break;
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 
 
 		case OpCode::OPCODE_HEALING:
@@ -30258,32 +30282,44 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			}
 			break;
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_FORCEORB_DATA */
 		case OpCode::OPCODE_FORCEORB_DATA:
 
 			rsRecvAreaServerForceOrb(lpPlayInfo, (smTRANS_COMMAND *)SockInfo->Buff);
 			break;
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_BOOSTER_DATA */
 		case OpCode::OPCODE_BOOSTER_DATA:
 			rsRecvAreaServerBoosterItem(lpPlayInfo, (smTRANS_COMMAND *)SockInfo->Buff);
 			break;
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_SKILLDELAY_DATA */
 		case OpCode::OPCODE_SKILLDELAY_DATA:
 			rsRecvAreaServerSkillDelayItem(lpPlayInfo, (smTRANS_COMMAND *)SockInfo->Buff);
 			break;
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_PRIMEITEM_DATA */
 		case OpCode::OPCODE_PRIMEITEM_DATA:
 
 			rsRecvGameServer_PrimeItem(lpPlayInfo, (smTRANS_COMMAND_EX *)SockInfo->Buff);
 			break;
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_PRIMEITEM_DATA2 */
 		case OpCode::OPCODE_PRIMEITEM_DATA2:
 			rsRecvGameServer_PrimeItem2(lpPlayInfo, (smTRANS_COMMAND_EX *)SockInfo->Buff);
 			break;
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_PRIMEITEM_DATA3 */
 		case OpCode::OPCODE_PRIMEITEM_DATA3:
 			rsRecvGameServer_PrimeItem3(lpPlayInfo, (smTRANS_COMMAND_EX *)SockInfo->Buff);
 			break;
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 
 
 
@@ -30316,10 +30352,12 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			rsRecvBlessCastleInfoFromGameServer(lpPlayInfo, (smTRANS_COMMAND_EX *)SockInfo->Buff);
 			break;
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_UPDATE_SERVER_PARAM */
 		case OpCode::OPCODE_UPDATE_SERVER_PARAM:
 
 			rsRecvUpdateServerParam(lpPlayInfo, (smTRANS_COMMAND *)SockInfo->Buff);
 			break;
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 
 		case OpCode::OPCODE_RESISTANCE:
 
@@ -30385,9 +30423,11 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			rsRecvManufactureItem(lpPlayInfo, (SManufactureItem_Server *)SockInfo->Buff);
 			break;
 
+		#if 0 /* SUMMIT_DISABLED_MISSING_OPCODE: OPCODE_EVENT_GAME */
 		case OpCode::OPCODE_EVENT_GAME:
 			rsRecvEventGame(lpPlayInfo, (smTRANS_COMMAND *)SockInfo->Buff);
 			break;
+		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
 
 		case OpCode::OPCODE_PREMIUMITEM_INIT:
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
@@ -37556,8 +37596,7 @@ int	rsTrade_PersonalShop(rsPLAYINFO* lpPlayInfo, rsPLAYINFO* lpPlayInfo2, smTRAN
 						lpMyShopItem->CODE == lpPlayInfo->sMyShopList[cnt].dwCode &&
 						lpMyShopItem->Head == lpPlayInfo->sMyShopList[cnt].dwHead &&
 						lpMyShopItem->CkSum == lpPlayInfo->sMyShopList[cnt].dwChkSum &&
-						lpMyShopItem->Price == lpPlayInfo->sMyShopList[cnt].Price &&
-						lpMyShopItem->Temp[0] == lpPlayInfo->sMyShopList[cnt].CoinPrice)
+						lpMyShopItem->Price == lpPlayInfo->sMyShopList[cnt].Price)
 					{
 						return TRUE;
 					}
@@ -37569,7 +37608,7 @@ int	rsTrade_PersonalShop(rsPLAYINFO* lpPlayInfo, rsPLAYINFO* lpPlayInfo2, smTRAN
 			lpPlayInfo->sMyShopList[mCnt].dwHead = lpMyShopItem->Head;
 			lpPlayInfo->sMyShopList[mCnt].dwChkSum = lpMyShopItem->CkSum;
 			lpPlayInfo->sMyShopList[mCnt].Price = lpMyShopItem->Price;
-			lpPlayInfo->sMyShopList[mCnt].CoinPrice = lpMyShopItem->Temp[0];
+			// SUMMIT_DISABLED_MISSING_COINPRICE: lpPlayInfo->sMyShopList[mCnt].CoinPrice = lpMyShopItem->Temp[0];
 			lpPlayInfo->MyShopListCount++;
 			return TRUE;
 		}
@@ -37593,8 +37632,7 @@ int	rsTrade_PersonalShop(rsPLAYINFO* lpPlayInfo, rsPLAYINFO* lpPlayInfo2, smTRAN
 				lpMyShopItem->CODE == lpPlayInfo2->sMyShopList[cnt].dwCode &&
 				lpMyShopItem->Head == lpPlayInfo2->sMyShopList[cnt].dwHead &&
 				lpMyShopItem->CkSum == lpPlayInfo2->sMyShopList[cnt].dwChkSum &&
-				lpMyShopItem->Price == lpPlayInfo2->sMyShopList[cnt].Price &&
-				lpMyShopItem->Temp[0] == lpPlayInfo2->sMyShopList[cnt].CoinPrice)
+				lpMyShopItem->Price == lpPlayInfo2->sMyShopList[cnt].Price)
 			{
 				if (lpPlayInfo2->ServerMoney >= (int)lpMyShopItem->Price && cCoinShop.GetPlayerCoin(lpPlayInfo2) >= lpMyShopItem->Temp[0])
 				{

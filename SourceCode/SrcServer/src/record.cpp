@@ -28,6 +28,24 @@
 
 #include "TJBOY/isaocheck/isaocheck.h"
 
+static char *Local_GetWord(char *q, char *p)
+{
+
+	while((*p == 32) || (*p == 9))
+	{
+		p++;
+	}
+
+	while((*p != 32) && (*p != 9))
+	{
+		if(*p == '/n' || *p == '/r') break;
+		*q++ = *p++;
+	}
+	*q++ = 0;
+
+	return p;
+}
+
 
 //char	*szRecordHeader = "RC 1.50";
 
@@ -4862,14 +4880,14 @@ int	rsLoadPostBox(rsPLAYINFO	*lpPlayInfo)
 		{
 			p = szLine;
 
-			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+			pb = p; p = Local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 			if(strBuff[0])
 			{
 				strBuff[31] = 0;
 				strcpy_s(lpPostItem->szCharName, strBuff);
 			}
 
-			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+			pb = p; p = Local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 			if(strBuff[0])
 			{
 				strBuff[31] = 0;
@@ -4897,7 +4915,7 @@ int	rsLoadPostBox(rsPLAYINFO	*lpPlayInfo)
 				}
 			}
 
-			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+			pb = p; p = Local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 			if(strBuff[0])
 			{
 				strBuff[31] = 0;
@@ -4905,14 +4923,14 @@ int	rsLoadPostBox(rsPLAYINFO	*lpPlayInfo)
 				lpPostItem->dwJobCode = atoi(strBuff);
 			}
 
-			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+			pb = p; p = Local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 			if(strBuff[0])
 			{
 				strBuff[127] = 0;
 				strcpy_s(lpPostItem->szDoc, strBuff);
 			}
 
-			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+			pb = p; p = Local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 			if(strBuff[0])
 			{
 				strBuff[63] = 0;
@@ -4920,7 +4938,7 @@ int	rsLoadPostBox(rsPLAYINFO	*lpPlayInfo)
 				lpPostItem->dwFormCode = atoi(strBuff);
 			}
 
-			pb = p; p = GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+			pb = p; p = Local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 			if(strBuff[0])
 			{
 				strBuff[16] = 0;
@@ -5541,23 +5559,6 @@ int PeekMonMsg()
 static char decode[512];
 static char line[512];
 
-static char *GetWord(char *q, char *p)
-{
-
-	while((*p == 32) || (*p == 9))
-	{
-		p++;
-	}
-
-	while((*p != 32) && (*p != 9))
-	{
-		if(*p == '/n' || *p == '/r') break;
-		*q++ = *p++;
-	}
-	*q++ = 0;
-
-	return p;
-}
 
 
 
@@ -5602,12 +5603,12 @@ int RestoreBackupData(char *szListFile, char *BackupPath)
 	{
 		if(fgets(line, 255, fp) == NULL)	break;
 
-		p = GetWord(decode, line);
+		p = Local_GetWord(decode, line);
 
 
 		if(decode[0])
 		{
-			p = GetWord(strBuff, p);
+			p = Local_GetWord(strBuff, p);
 
 			if(strBuff[0])
 			{

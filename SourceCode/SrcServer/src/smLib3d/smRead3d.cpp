@@ -29,7 +29,6 @@ struct smFCPOINT
 
 static char decode[256];
 static char line[256];
-
 char *GetWord(char *q, char *p)
 {
 
@@ -70,7 +69,6 @@ char *GetString(char *q, char *p)
 
 	return p;
 }
-
 
 char *SetDirectoryFromFile(char *filename)
 {

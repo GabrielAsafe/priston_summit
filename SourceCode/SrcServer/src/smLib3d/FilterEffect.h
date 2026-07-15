@@ -36,12 +36,12 @@ extern DDPIXELFORMAT				g_ddpfPixelFormatZ;
 
 extern int			CreateNewRenderTarget(void);
 extern void			ReleaseNewRenderTarget(void);
-extern inline int	IsCreateNewRenderTarget(void);
+extern int IsCreateNewRenderTarget(void);
 
-extern inline int	GetRenderTarget(void);
+extern int GetRenderTarget(void);
 extern int			ChangeRenderTarget(eNEW_RENDER_TARGET_TYPE eRTtype);
 
-extern inline int	GetFilterEffect(void);
+extern int GetFilterEffect(void);
 extern void			SetFilterEffect(eFILTER_EFFECT_TYPE eFEtype, DWORD dwAlpha);
 
 extern void SetNewTargetTextureState(void);
