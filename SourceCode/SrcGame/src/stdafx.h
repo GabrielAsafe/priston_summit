@@ -76,7 +76,6 @@
 #include <rpc.h>
 
 //Boost
-#include <boost/format.hpp>
 
 //User Header Files:
 extern "C"

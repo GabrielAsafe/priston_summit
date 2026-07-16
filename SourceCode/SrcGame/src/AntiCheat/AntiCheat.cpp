@@ -1,5 +1,5 @@
 #include "opcodes.h"
-#include "compat_sal.h"
+//#include "compat_sal.h"// disabled: conflicts with GCC STL identifiers
 #include "AntiCheat/AntiCheat.h"
 #include "smwsock.h"
 #include "smPacket.h"
@@ -47,19 +47,19 @@ BOOLEAN BlockAPI(HANDLE hProcess, CHAR* libName, CHAR* apiName)
 
 	hLib = LoadLibrary(libName);
 	if (hLib) {
-		pAddr = (VOID*)GetProcAddress(hLib, apiName);
-		if (pAddr) {
-			if (WriteProcessMemory(hProcess,
-				(LPVOID)pAddr,
-				(LPVOID)pRet,
-				sizeof(pRet),
-				&dwRet)) {
-				if (dwRet) {
-					bRet = TRUE;
-				}
-			}
-		}
-		FreeLibrary(hLib);
+ pAddr = (VOID*)GetProcAddress(hLib, apiName);
+ if (pAddr) {
+ if (WriteProcessMemory(hProcess,
+ (LPVOID)pAddr,
+ (LPVOID)pRet,
+ sizeof(pRet),
+ &dwRet)) {
+ if (dwRet) {
+ bRet = TRUE;
+ }
+ }
+ }
+ FreeLibrary(hLib);
 	}
 	return bRet;
 }
@@ -68,8 +68,8 @@ void AntiInject()
 {
 	HANDLE hProc = FindWindow(0, "Game");
 	while (TRUE) {
-		BlockAPI(hProc, "NTDLL.DLL", "LdrLoadDll");
-		Sleep(100);
+ BlockAPI(hProc, "NTDLL.DLL", "LdrLoadDll");
+ Sleep(100);
 	}
 }
 
@@ -83,24 +83,24 @@ HWND FindWindowPartialName(char* pszWindowName, char* pszTempVar)
 
 	ZeroMemory(szNameWindow, 256);
 	for (int i = 0; i < lstrlenA(pszWindowName); i++)
-		szNameWindow[i] = tolower(pszWindowName[i]);
+ szNameWindow[i] = tolower(pszWindowName[i]);
 
 	HWND hWndTemp = FindWindowA(NULL, NULL);
 	while (hWndTemp != 0)
 	{
-		iLenTitle = GetWindowTextA(hWndTemp, szTempName, 255);
+ iLenTitle = GetWindowTextA(hWndTemp, szTempName, 255);
 
-		lstrcpy(szTempName2, szTempName);
+ lstrcpy(szTempName2, szTempName);
 
-		for (int i = 0; i < lstrlenA(szTempName); i++)
-			szTempName[i] = tolower(szTempName[i]);
+ for (int i = 0; i < lstrlenA(szTempName); i++)
+ szTempName[i] = tolower(szTempName[i]);
 
-		if (lstrlenA(szTempName) && strstr(szTempName, szNameWindow))
-		{
-			lstrcpynA(pszTempVar, szTempName2, 256);
-			break;
-		}
-		hWndTemp = GetWindow(hWndTemp, GW_HWNDNEXT);
+ if (lstrlenA(szTempName) && strstr(szTempName, szNameWindow))
+ {
+ lstrcpynA(pszTempVar, szTempName2, 256);
+ break;
+ }
+ hWndTemp = GetWindow(hWndTemp, GW_HWNDNEXT);
 	}
 
 
@@ -123,14 +123,14 @@ BOOL AntiCheat::ChecksumCheckMismatch(ChecksumFunction* pChecksum)
 
 	for (DWORD i = 0; i < dwSize; i++)
 	{
-		dwCheckSum += (DWORD)(*(BYTE*)(pChecksum->dwAddress + i)) ^ psPacketChecksum->bKey;
+ dwCheckSum += (DWORD)(*(BYTE*)(pChecksum->dwAddress + i)) ^ psPacketChecksum->bKey;
 	}
 
 
 	if (dwCheckSum == pChecksum->dwCheckSum)
 	{
-		VirtualProtect((void*)pChecksum->dwAddress, dwSize, dwOld, NULL);
-		return TRUE;
+ VirtualProtect((void*)pChecksum->dwAddress, dwSize, dwOld, NULL);
+ return TRUE;
 	}
 
 
@@ -153,23 +153,23 @@ BOOL AntiCheat::GetModuleName(DWORD dwThreadID, char* pszBuf, int iSizeBuf)
 	if (Module32First(hSnapshot, &moduleEntry32))
 	{
 
-		if (GetModuleHandleA(NULL) == moduleEntry32.hModule)
-		{
-			lstrcpynA(pszBuf, moduleEntry32.szExePath, iSizeBuf);
-		}
-		else
-		{
+ if (GetModuleHandleA(NULL) == moduleEntry32.hModule)
+ {
+ lstrcpynA(pszBuf, moduleEntry32.szExePath, iSizeBuf);
+ }
+ else
+ {
 
-			while (Module32Next(hSnapshot, &moduleEntry32))
-			{
+ while (Module32Next(hSnapshot, &moduleEntry32))
+ {
 
-				if (GetModuleHandleA(NULL) == moduleEntry32.hModule)
-				{
-					lstrcpynA(pszBuf, moduleEntry32.szExePath, iSizeBuf);
-					break;
-				}
-			}
-		}
+ if (GetModuleHandleA(NULL) == moduleEntry32.hModule)
+ {
+ lstrcpynA(pszBuf, moduleEntry32.szExePath, iSizeBuf);
+ break;
+ }
+ }
+ }
 	}
 	CloseHandle(hSnapshot);
 	return FALSE;
@@ -178,22 +178,22 @@ BOOL AntiCheat::GetModuleName(DWORD dwThreadID, char* pszBuf, int iSizeBuf)
 BOOL AntiCheat::AddNewThreadException(DWORD dwThreadID)
 {
 	if (!dwThreadID)
-		return FALSE;
+ return FALSE;
 
 
 	for (int i = 0; i < _countof(dwThreadsID); i++)
 	{
-		if (dwThreadsID[i] == dwThreadID)
-			return TRUE;
+ if (dwThreadsID[i] == dwThreadID)
+ return TRUE;
 	}
 
 	for (int i = 0; i < _countof(dwThreadsID); i++)
 	{
-		if (!dwThreadsID[i])
-		{
-			dwThreadsID[i] = dwThreadID;
-			return TRUE;
-		}
+ if (!dwThreadsID[i])
+ {
+ dwThreadsID[i] = dwThreadID;
+ return TRUE;
+ }
 	}
 	return FALSE;
 }
@@ -204,7 +204,7 @@ BOOL AntiCheat::IsGameModules(char* pszFile)
 	GetModuleFileName(NULL, path, 2048);
 	int iSizePathString = lstrlenA(path);
 	for (int i = 0; i < iSizePathString; i++)
-		path[i] = tolower(path[i]);
+ path[i] = tolower(path[i]);
 	std::string modulePath(path);
 	std::string parentStr;
 	parentStr = modulePath.replace(modulePath.length() - 8, modulePath.length(), "");
@@ -213,32 +213,32 @@ BOOL AntiCheat::IsGameModules(char* pszFile)
 	lstrcpyA(szModule, pszFile);
 	int iSizeString = lstrlenA(szModule);
 	for (int i = 0; i < iSizeString; i++)
-		szModule[i] = tolower(szModule[i]);
+ szModule[i] = tolower(szModule[i]);
 
 	char* extract = strstr(szModule, (parentStr + "Game.exe").c_str());
 	if (extract)
 	{
-		return TRUE;
+ return TRUE;
 	}
 	extract = strstr(szModule, "windows//system");
 	if (extract)
 	{
-		return TRUE;
+ return TRUE;
 	}
 	extract = strstr(szModule, "windows//syswow64");
 	if (extract)
 	{
-		return TRUE;
+ return TRUE;
 	}
 	extract = strstr(szModule, "//gbpsv.exe");
 	if (extract)
 	{
-		return  TRUE;
+ return TRUE;
 	}
 	extract = strstr(szModule, "//gbpinj.dll");
 	if (extract)
 	{
-		return  TRUE;
+ return TRUE;
 	}
 
 	return FALSE;
@@ -249,30 +249,30 @@ void AntiCheat::ChecksumFunctionHandler()
 	for (int i = 0; i < CHECKSUM_FUNCTION_TOTAL; i++)
 	{
 
-		if (psPacketChecksum && psPacketChecksum->sCheckSum[i].dwSize)
-		{
+ if (psPacketChecksum && psPacketChecksum->sCheckSum[i].dwSize)
+ {
 
-			if (!ChecksumCheckMismatch(&psPacketChecksum->sCheckSum[i]))
-			{
+ if (!ChecksumCheckMismatch(&psPacketChecksum->sCheckSum[i]))
+ {
 
-				PacketLogCheat sPacket;
-				sPacket.iLength = sizeof(PacketLogCheat);
-				sPacket.iHeader = OpCode::FIND_CHEAT;
-				sPacket.iCheatID = 8954;
-				sPacket.LParam = psPacketChecksum->sCheckSum[i].dwSize;
-				sPacket.SParam = psPacketChecksum->sCheckSum[i].dwAddress;
-				sPacket.EParam = psPacketChecksum->sCheckSum[i].dwCheckSum;
-				sPacket.LxParam = dwChecksumRet;
+ PacketLogCheat sPacket;
+ sPacket.iLength = sizeof(PacketLogCheat);
+ sPacket.iHeader = OpCode::FIND_CHEAT;
+ sPacket.iCheatID = 8954;
+ sPacket.LParam = psPacketChecksum->sCheckSum[i].dwSize;
+ sPacket.SParam = psPacketChecksum->sCheckSum[i].dwAddress;
+ sPacket.EParam = psPacketChecksum->sCheckSum[i].dwCheckSum;
+ sPacket.LxParam = dwChecksumRet;
 
-				smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
+ smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
 
-				break;
-			}
-		}
+ break;
+ }
+ }
 	}
 }
 
-DWORD WINAPI GetThreadStartAddress(__in HANDLE hThread)
+DWORD WINAPI GetThreadStartAddress(HANDLE hThread)
 {
 	NTSTATUS ntStatus;
 	DWORD dwThreadStartAddr = 0;
@@ -280,25 +280,25 @@ DWORD WINAPI GetThreadStartAddress(__in HANDLE hThread)
 	NTQUERYINFOMATIONTHREAD NtQueryInformationThread;
 	if (!bLoadedNTDLL)
 	{
-		LoadLibraryA("ntdll.dll");
-		bLoadedNTDLL = true;
+ LoadLibraryA("ntdll.dll");
+ bLoadedNTDLL = true;
 	}
 	if ((NtQueryInformationThread = (NTQUERYINFOMATIONTHREAD)GetProcAddress(GetModuleHandleA("ntdll.dll"), "NtQueryInformationThread")))
 	{
-		hPeusdoCurrentProcess = GetCurrentProcess();
-		if (DuplicateHandle(hPeusdoCurrentProcess, hThread, hPeusdoCurrentProcess, &hNewThreadHandle, THREAD_QUERY_INFORMATION, FALSE, 0))
-		{
-			ntStatus = NtQueryInformationThread(hNewThreadHandle, ThreadQuerySetWin32StartAddress, &dwThreadStartAddr, sizeof(DWORD), NULL);
-			CloseHandle(hNewThreadHandle);
-			if (ntStatus != STATUS_SUCCESS) return 0;
-		}
+ hPeusdoCurrentProcess = GetCurrentProcess();
+ if (DuplicateHandle(hPeusdoCurrentProcess, hThread, hPeusdoCurrentProcess, &hNewThreadHandle, THREAD_QUERY_INFORMATION, FALSE, 0))
+ {
+ ntStatus = NtQueryInformationThread(hNewThreadHandle, ThreadQuerySetWin32StartAddress, &dwThreadStartAddr, sizeof(DWORD), NULL);
+ CloseHandle(hNewThreadHandle);
+ if (ntStatus != STATUS_SUCCESS) return 0;
+ }
 
 	}
 
 	return dwThreadStartAddr;
 }
 
-BOOL MatchAddressToModule(__in DWORD dwProcId, __out_bcount(MAX_PATH + 1) LPTSTR lpstrModule, __in DWORD dwThreadStartAddr, __out_opt PDWORD pModuleStartAddr)
+BOOL MatchAddressToModule(DWORD dwProcId, LPTSTR lpstrModule, DWORD dwThreadStartAddr, PDWORD pModuleStartAddr)
 {
 	BOOL bRet = FALSE;
 	HANDLE hSnapshot;
@@ -311,21 +311,21 @@ BOOL MatchAddressToModule(__in DWORD dwProcId, __out_bcount(MAX_PATH + 1) LPTSTR
 
 	if (Module32First(hSnapshot, &moduleEntry32))
 	{
-		if (dwThreadStartAddr >= (DWORD)moduleEntry32.modBaseAddr && dwThreadStartAddr <= ((DWORD)moduleEntry32.modBaseAddr + moduleEntry32.modBaseSize))
-		{
-			lstrcpyA(lpstrModule, moduleEntry32.szExePath);
-		}
-		else
-		{
-			while (Module32Next(hSnapshot, &moduleEntry32))
-			{
-				if (dwThreadStartAddr >= (DWORD)moduleEntry32.modBaseAddr && dwThreadStartAddr <= ((DWORD)moduleEntry32.modBaseAddr + moduleEntry32.modBaseSize))
-				{
-					lstrcpyA(lpstrModule, moduleEntry32.szExePath);
-					break;
-				}
-			}
-		}
+ if (dwThreadStartAddr >= (DWORD)moduleEntry32.modBaseAddr && dwThreadStartAddr <= ((DWORD)moduleEntry32.modBaseAddr + moduleEntry32.modBaseSize))
+ {
+ lstrcpyA(lpstrModule, moduleEntry32.szExePath);
+ }
+ else
+ {
+ while (Module32Next(hSnapshot, &moduleEntry32))
+ {
+ if (dwThreadStartAddr >= (DWORD)moduleEntry32.modBaseAddr && dwThreadStartAddr <= ((DWORD)moduleEntry32.modBaseAddr + moduleEntry32.modBaseSize))
+ {
+ lstrcpyA(lpstrModule, moduleEntry32.szExePath);
+ break;
+ }
+ }
+ }
 	}
 
 	if (pModuleStartAddr) *pModuleStartAddr = (DWORD)moduleEntry32.modBaseAddr;
@@ -348,38 +348,38 @@ void AntiCheat::FindHackDllThread()
 
 
 	if ((hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, GetCurrentProcessId())) == INVALID_HANDLE_VALUE)
-		return;
+ return;
 
 	threadEntry32.dwSize = sizeof(THREADENTRY32);
 	threadEntry32.cntUsage = 0;
 
 	if (Thread32First(hSnapshot, &threadEntry32))
 	{
-		if (threadEntry32.th32OwnerProcessID == GetCurrentProcessId())
-		{
-			hThread = OpenThread(THREAD_QUERY_INFORMATION, FALSE, threadEntry32.th32ThreadID);
-			dwThreadStartAddr = GetThreadStartAddress(hThread);
-			MatchAddressToModule(GetCurrentProcessId(), lpstrModuleName, dwThreadStartAddr, &dwModuleBaseAddr);
-			if (!IsGameModules(lpstrModuleName))
-			{
-				FreeLibraryAndExitThread(GetModuleHandleA(lpstrModuleName), 0);
-			}
-			CloseHandle(hThread);
-		}
-		while (Thread32Next(hSnapshot, &threadEntry32))
-		{
-			if (threadEntry32.th32OwnerProcessID == GetCurrentProcessId())
-			{
-				hThread = OpenThread(THREAD_QUERY_INFORMATION, FALSE, threadEntry32.th32ThreadID);
-				dwThreadStartAddr = GetThreadStartAddress(hThread);
-				MatchAddressToModule(GetCurrentProcessId(), lpstrModuleName, dwThreadStartAddr, &dwModuleBaseAddr);
-				if (!IsGameModules(lpstrModuleName))
-				{
-					FreeLibraryAndExitThread(GetModuleHandleA(lpstrModuleName), 0);
-				}
-				CloseHandle(hThread);
-			}
-		}
+ if (threadEntry32.th32OwnerProcessID == GetCurrentProcessId())
+ {
+ hThread = OpenThread(THREAD_QUERY_INFORMATION, FALSE, threadEntry32.th32ThreadID);
+ dwThreadStartAddr = GetThreadStartAddress(hThread);
+ MatchAddressToModule(GetCurrentProcessId(), lpstrModuleName, dwThreadStartAddr, &dwModuleBaseAddr);
+ if (!IsGameModules(lpstrModuleName))
+ {
+ FreeLibraryAndExitThread(GetModuleHandleA(lpstrModuleName), 0);
+ }
+ CloseHandle(hThread);
+ }
+ while (Thread32Next(hSnapshot, &threadEntry32))
+ {
+ if (threadEntry32.th32OwnerProcessID == GetCurrentProcessId())
+ {
+ hThread = OpenThread(THREAD_QUERY_INFORMATION, FALSE, threadEntry32.th32ThreadID);
+ dwThreadStartAddr = GetThreadStartAddress(hThread);
+ MatchAddressToModule(GetCurrentProcessId(), lpstrModuleName, dwThreadStartAddr, &dwModuleBaseAddr);
+ if (!IsGameModules(lpstrModuleName))
+ {
+ FreeLibraryAndExitThread(GetModuleHandleA(lpstrModuleName), 0);
+ }
+ CloseHandle(hThread);
+ }
+ }
 	}
 	LeaveCriticalSection(&cSection);
 	DeleteCriticalSection(&cSection);
@@ -391,23 +391,23 @@ void AntiCheat::WindowFunctionHandler()
 	char szTempName[256];
 	for (int i = 0; i < 50; i++)
 	{
-		if (lstrlenA(pcAntiCheat->psPacketWindowCheat->szaWindowName[i]) && FindWindowPartialName(pcAntiCheat->psPacketWindowCheat->szaWindowName[i], szTempName))
-		{
+ if (lstrlenA(pcAntiCheat->psPacketWindowCheat->szaWindowName[i]) && FindWindowPartialName(pcAntiCheat->psPacketWindowCheat->szaWindowName[i], szTempName))
+ {
 
-			PacketLogCheatEx sPacket;
-			sPacket.iLength = sizeof(PacketLogCheatEx);
-			sPacket.iHeader = OpCode::FIND_CHEAT;
-			sPacket.iCheatID = 8955;
-			lstrcpyA(sPacket.szParam, szTempName);
+ PacketLogCheatEx sPacket;
+ sPacket.iLength = sizeof(PacketLogCheatEx);
+ sPacket.iHeader = OpCode::FIND_CHEAT;
+ sPacket.iCheatID = 8955;
+ lstrcpyA(sPacket.szParam, szTempName);
 
-			if (smWsockDataServer)
-			{
-				smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
-			}
-			else
-				exit(0);
+ if (smWsockDataServer)
+ {
+ smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
+ }
+ else
+ exit(0);
 
-		}
+ }
 	}
 	return;
 }
@@ -415,26 +415,26 @@ void AntiCheat::WindowFunctionHandler()
 bool antidebug1()
 {
 #ifdef __GNUC__
-    // TEMP_MINGW_COMPAT:
-    // O código original usa inline assembly MSVC x86 (__asm { mov ... fs:[...] }),
-    // que não compila em GCC/MinGW x64. Stub temporário para desbloquear build.
-    return false;
+ // TEMP_MINGW_COMPAT:
+ // O código original usa inline assembly MSVC x86 (__asm { mov ... fs:[...] }),
+ // que não compila em GCC/MinGW x64. Stub temporário para desbloquear build.
+ return false;
 #else
-    bool bRet = false;
+ bool bRet = false;
 
-    __asm
-    {
-        mov eax, dword ptr fs : [0x18]
+ __asm
+ {
+ mov eax, dword ptr fs : [0x18]
 
-        mov eax, dword ptr[eax + 0x30]
+ mov eax, dword ptr[eax + 0x30]
 
-        cmp byte ptr[eax + 2], 0
-        je blocEnd
-        mov bRet, 1
-        blocEnd :
-    }
+ cmp byte ptr[eax + 2], 0
+ je blocEnd
+ mov bRet, 1
+ blocEnd :
+ }
 
-    return bRet;
+ return bRet;
 #endif
 }
 
@@ -450,33 +450,33 @@ DWORD WINAPI AntiCheat::ThreadAntiCheatHandler()
 
 	while (true)
 	{
-		void AntiInject();
+ void AntiInject();
 
-		if ((GetTickCount() - dwTickCount) >= 15000)
-		{
-			pcAntiCheat->ChecksumFunctionHandler();
+ if ((GetTickCount() - dwTickCount) >= 15000)
+ {
+ pcAntiCheat->ChecksumFunctionHandler();
 
-			if (pcAntiCheat->psPacketWindowCheat)
-				pcAntiCheat->WindowFunctionHandler();
+ if (pcAntiCheat->psPacketWindowCheat)
+ pcAntiCheat->WindowFunctionHandler();
 
-			dwTickCount = GetTickCount();
-		}
+ dwTickCount = GetTickCount();
+ }
 
-		if ((GetTickCount() - dwTickCount2) >= 1000)
-		{
-			if (antidebug1())
-			{
-				bdebugfound = true;
-			}
+ if ((GetTickCount() - dwTickCount2) >= 1000)
+ {
+ if (antidebug1())
+ {
+ bdebugfound = true;
+ }
 
-			if (IsDebuggerPresent())
-			{
-				bdebugfound = true;
-			}
+ if (IsDebuggerPresent())
+ {
+ bdebugfound = true;
+ }
 
-			dwtickhack = GetTickCount();
-			dwTickCount2 = GetTickCount();
-		}
+ dwtickhack = GetTickCount();
+ dwTickCount2 = GetTickCount();
+ }
 	}
 	return TRUE;
 }
@@ -489,45 +489,45 @@ void AntiCheat::CheckThread()
 
 	for (int i = 0; i < _countof(pcAntiCheat->dwThreadsID); i++)
 	{
-		if (pcAntiCheat->dwThreadsID[i] == dwThreadID)
-		{
-			bThreadFound = TRUE;
-			break;
-		}
+ if (pcAntiCheat->dwThreadsID[i] == dwThreadID)
+ {
+ bThreadFound = TRUE;
+ break;
+ }
 	}
 
 
 	if (!bThreadFound)
 	{
 
-		char szModuleName[128] = { 0 };
-		PacketLogCheat sPacket;
-		sPacket.iLength = sizeof(PacketLogCheat);
-		sPacket.iHeader = OpCode::FIND_CHEAT;
-		sPacket.iCheatID = 8720;
-		sPacket.LParam = dwThreadID;
+ char szModuleName[128] = { 0 };
+ PacketLogCheat sPacket;
+ sPacket.iLength = sizeof(PacketLogCheat);
+ sPacket.iHeader = OpCode::FIND_CHEAT;
+ sPacket.iCheatID = 8720;
+ sPacket.LParam = dwThreadID;
 
-		smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
+ smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
 	}
 }
 
 void AntiCheat::ReceivePacketHandler(PacketChecksumFunctionList* psPacket)
 {
 	if (!psPacketChecksum)
-		psPacketChecksum = new PacketChecksumFunctionList;
+ psPacketChecksum = new PacketChecksumFunctionList;
 
 	ZeroMemory(psPacketChecksum, sizeof(PacketChecksumFunctionList));
 
 	CopyMemory(psPacketChecksum, psPacket, sizeof(PacketChecksumFunctionList));
 
 	if (!hThread)
-		hThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)ThreadAntiCheatHandler, NULL, NULL, NULL);
+ hThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)ThreadAntiCheatHandler, NULL, NULL, NULL);
 }
 
 void AntiCheat::HandlePacket(PacketWindowList* psPacket)
 {
 	if (!psPacketWindowCheat)
-		psPacketWindowCheat = new PacketWindowList;
+ psPacketWindowCheat = new PacketWindowList;
 
 	ZeroMemory(psPacketWindowCheat, sizeof(PacketWindowList));
 
@@ -567,12 +567,12 @@ void AntiCheat::ChecksumFunctionHandler()
 
 }
 
-DWORD WINAPI GetThreadStartAddress(__in HANDLE hThread)
+DWORD WINAPI GetThreadStartAddress(HANDLE hThread)
 {
 	return NULL;
 }
 
-BOOL MatchAddressToModule(__in DWORD dwProcId, __out_bcount(MAX_PATH + 1) LPTSTR lpstrModule, __in DWORD dwThreadStartAddr, __out_opt PDWORD pModuleStartAddr)
+BOOL MatchAddressToModule(DWORD dwProcId, LPTSTR lpstrModule, DWORD dwThreadStartAddr, PDWORD pModuleStartAddr)
 {
 	return FALSE;
 }

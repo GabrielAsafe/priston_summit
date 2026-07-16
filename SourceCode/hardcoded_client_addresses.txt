@@ -1,0 +1,42 @@
+SrcGame/src/Server/OnSever.cpp:9937:	lpPlayDataGroup->dwSendCode = 0x80000000 + (lpPlayInfo->SendPlayGroupCount & 0x00FFFFFF);
+SrcGame/src/Server/OnSever.cpp:10228:	lpPlayDataGroup->dwSendCode = lpPlayInfo->SendPlayGroupCount & 0x00FFFFFF;
+SrcGame/src/sinbaram/AssaEffect.h:18:#define ASSA_DECRESIZE			0x00F00000 
+SrcGame/src/sinbaram/AssaParticle7.cpp:6:#define  PARTICLE7_HIT			0x00700001
+SrcGame/src/smLib3d/ddraw.h:2397:#define DDSD_SRCVBHANDLE        0x00400000l
+SrcGame/src/smLib3d/ddraw.h:2402:#define DDSD_DEPTH              0x00800000l
+SrcGame/src/smLib3d/ddraw.h:2407:#define DDSD_ALL                0x00fff9eel
+SrcGame/src/smLib3d/ddraw.h:2717:#define DDSCAPS_MIPMAP                          0x00400000l
+SrcGame/src/smLib3d/ddraw.h:2722:#define DDSCAPS_RESERVED2                       0x00800000l
+SrcGame/src/smLib3d/ddraw.h:2880:#define DDSCAPS2_NOTUSERLOCKABLE                0x00400000L
+SrcGame/src/smLib3d/ddraw.h:2886:#define DDSCAPS2_POINTS                         0x00800000L
+SrcGame/src/smLib3d/ddraw.h:3129:#define DDCAPS_COLORKEY                 0x00400000l
+SrcGame/src/smLib3d/ddraw.h:3134:#define DDCAPS_ALPHA                    0x00800000l
+SrcGame/src/smLib3d/ddraw.h:3299:#define DDCAPS2_FLIPNOVSYNC             0x00400000l
+SrcGame/src/smLib3d/ddraw.h:3306:#define DDCAPS2_CANMANAGETEXTURE        0x00800000l
+SrcGame/src/smLib3d/ddraw.h:3594:#define DDFXCAPS_OVERLAYSHRINKYN        0x00400000l
+SrcGame/src/smLib3d/ddraw.h:3600:#define DDFXCAPS_OVERLAYSTRETCHX        0x00800000l
+SrcGame/src/smLib3d/ddraw.h:4422:#define DDBLT_ZBUFFERSRCCONSTOVERRIDE           0x00400000l
+SrcGame/src/smLib3d/ddraw.h:4429:#define DDBLT_ZBUFFERSRCOVERRIDE                0x00800000l
+SrcGame/src/smLib3d/ddraw.h:4740:#define DDOVER_OVERRIDEBOBWEAVE                 0x00400000l
+SrcGame/src/smLib3d/ddraw.h:4745:#define DDOVER_INTERLEAVED                      0x00800000l
+SrcGame/src/smLib3d/smRend3d.cpp:3431:				*((DWORD *)(RenderBuff++)) = (*((DWORD *)rv->bCol)) | 0x00FFFFFF;
+SrcGame/src/smLib3d/smRend3d.cpp:4553:					*((DWORD*)(RenderBuff++)) = (*((DWORD*)rv->bCol)) | 0x00FFFFFF;
+SrcGame/src/CChatBox.cpp:1003:		CALLT_WITH_ARG1( 0x005A57D0, 0x039114D0, (DWORD)strName.c_str() );
+SrcGame/src/character.h:109:#define CHAR_FRAME_MASK		0x00FFFFFF
+SrcGame/src/Damage.cpp:85:	dwChkSum ^= 0x009821CC;
+SrcGame/src/fileread.h:176:#define		JOB_CODE_SAINTESS			0x00400000		
+SrcGame/src/fileread.h:182:#define		JOB_CODE_WIZARD				0x00800000		
+SrcGame/src/fileread.cpp:5886:		dwCode_1 = ((dwFileCode & 0x00ff0000) << 8);
+SrcGame/src/fileread.cpp:5895:		dwCode_4 = ((dwLinkCode & 0x00ff0000) >> 16);
+SrcGame/src/fileread.cpp:5903:		dwCode_4 = ((dwFileCode & 0x00ff0000) >> 16);
+SrcGame/src/fileread.cpp:5928:		dwCode_3 = ((lpMODELINFO->LinkFileKeyWord & 0x00ff0000) >> 8);
+SrcGame/src/fileread.cpp:5929:		dwCode_4 = ((lpMODELINFO->FileTypeKeyWord & 0x00ff0000) >> 16);
+SrcGame/src/fileread.cpp:5936:		dwCode_2 = ((lpMODELINFO->FileTypeKeyWord & 0x00ff0000) << 8);
+SrcGame/src/fileread.cpp:5966:					((dwCode & 0x00ff0000) >> 8) | (stFrm & 0x000000ff);
+SrcGame/src/fileread.cpp:5968:				lpMotionInfo->StartFrame = ((dwCode & 0x000000ff) << 24) | (stFrm & 0x00ff0000) |
+SrcGame/src/fileread.cpp:5976:					(dwCode & 0x0000ff00) | ((endFrm & 0x00ff0000) >> 16);
+SrcGame/src/fileread.cpp:5978:				lpMotionInfo->EndFrame = ((dwCode & 0x00ff0000) << 8) | ((endFrm & 0x0000ff00) << 8) |
+SrcGame/src/fileread.cpp:6004:				Frame = ((lpMotionInfo->StartFrame & 0x000000ff) << 24) | (lpMotionInfo->StartFrame & 0x00ff0000) |
+SrcGame/src/fileread.cpp:6005:					((lpMotionInfo->MotionKeyWord_1 & 0x00ff0000) >> 8) | (lpMotionInfo->MotionKeyWord_1 & 0x000000ff);
+SrcGame/src/fileread.cpp:6020:				Frame = ((lpMotionInfo->MotionKeyWord_2 & 0x00ff0000) << 8) | ((lpMotionInfo->MotionKeyWord_2 & 0x000000ff) << 16) |
+SrcGame/src/fileread.cpp:6021:					((lpMotionInfo->EndFrame & 0x00ff0000) >> 8) | (lpMotionInfo->EndFrame & 0x000000ff);

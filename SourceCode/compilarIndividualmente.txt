@@ -1,6 +1,6 @@
-#faz o find e rename para o arquivo atual : OnSever
+--------------Servidor
 
-rm -f /tmp/OnSever.o /tmp/OnSever.err
+rm -f /tmp/HoOpening.o /tmp/HoOpening.err
 
 i686-w64-mingw32-g++ \
     -m32 -std=gnu++14 -fpermissive -w \
@@ -13,15 +13,73 @@ i686-w64-mingw32-g++ \
     -IShared -IShared/Lua -IShared2 \
     -Imodules -Imodules/File \
     "-IDependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Include" \
-    -c SrcGame/src/Server/OnSever.cpp \
-    -o /tmp/OnSever.o \
-    2>/tmp/OnSever.err
+    -c SrcGame/src/HoBaram/HoOpening.cpp \
+    -o /tmp/HoOpening.o \
+    2>/tmp/HoOpening.err
 
 
-if [ -f /tmp/OnSever.o ]; then
-    echo "OnSever OK"
+if [ -f /tmp/HoOpening.o ]; then
+    echo "HoOpening OK"
 else
-    grep -E 'error:|fatal error:' /tmp/OnSever.err | head -40
+    grep -E 'error:|fatal error:' /tmp/HoOpening.err | head -40
 fi
 
 
+----------cliente
+rm -f /tmp/HoOpening.o /tmp/HoOpening.err
+
+i686-w64-mingw32-g++ \
+    -m32 \
+    -std=gnu++17 \
+    -fpermissive \
+    -Wno-write-strings \
+    -Wno-narrowing \
+    -Wno-unused-variable \
+    -Wno-unused-parameter \
+    -Wno-deprecated-declarations \
+    -DWIN32 \
+    -D_WINDOWS \
+    -D_M_IX86 \
+    -Di386 \
+    -D__i386__ \
+    -DNDEBUG \
+    -D_CLIENT \
+    -I. \
+    -IShared \
+    -IShared2 \
+    -ISrcGame/src \
+    -ISrcGame/src/smLib3d \
+    -ISrcGame/src/sinbaram \
+    -ISrcGame/src/Skills \
+    -ISrcGame/src/Language \
+    -ISrcGame/src/Resources \
+    -ISrcGame/src/Sound \
+    -ISrcGame/src/HoBaram \
+    -ISrcGame/src/HoBaram/NewEffect \
+    -ISrcGame/src/HoBaram/NewEffect/math \
+    -ISrcGame/src/HoBaram/NewEffect/Script \
+    -ISrcGame/src/Library/LuaSrc \
+    -ISrcGame/src/Library/LuaSrc/Lua \
+    -ISrcGame/src/TJBOY/clanmenu \
+    -ISrcGame/src/TJBOY/isaocheck \
+    -ISrcGame/src/TJBOY/park \
+    -ISrcGame/src/TJBOY/Ygy \
+    -ISrcGame/src/TJBOY/Ygy/memmap \
+    -ISrcGame/src/Server \
+    -ISrcGame/src/WinInt \
+    -ISrcGame/src/Security \
+    -ISrcGame/src/Settings \
+    -Imodules \
+    -Imodules/File \
+    -Imodules/MD5 \
+    -Imodules/Helper \
+    -IDependency/DirectX9/Include \
+    -c SrcGame/src/HoBaram/HoOpening.cpp \
+    -o /tmp/HoOpening.o \
+    2>/tmp/HoOpening.err
+
+if [ -f /tmp/HoOpening.o ]; then
+    echo "HoOpening OK"
+else
+    grep -E 'error:|fatal error:' /tmp/HoOpening.err | head -60
+fi

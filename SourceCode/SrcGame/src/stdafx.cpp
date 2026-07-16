@@ -1,63 +1,76 @@
 #include "stdafx.h"
 
-// TODO: reference any additional headers you need in STDAFX.H
-// and not in this file
+#include <cstdint>
+#include <cstdlib>
+#include <new>
 
 static DWORD dwAllocs = 0;
 static DWORD dwPAllocs = 0;
 
 DWORD GetMajorAllocator()
 {
-	return dwAllocs;
+    return dwAllocs;
 }
 
 DWORD GetMajorAllocatorP()
 {
-	return dwPAllocs;
+    return dwPAllocs;
 }
 
-void * operator new[](std::size_t s) noexcept(false)
-{	
-	if ( s > dwAllocs )
-	{
-		dwAllocs = s;
-		dwPAllocs = (DWORD)__builtin_return_address(0);
-	}
-
-	typedef void*(__cdecl *tfnNewOperator)(std::size_t s);
-	tfnNewOperator fnNewOperator = (tfnNewOperator)0x00766698;
-
-	void * p = fnNewOperator( s );
-	return p;
-}
-void operator delete[](void *p) noexcept
+static void RegisterAllocation(std::size_t size)
 {
-	typedef void( __cdecl *tfnDeleteOperator )(void * p);
-	tfnDeleteOperator fnDeleteOperator = (tfnDeleteOperator)0x00767512;
-	fnDeleteOperator( p );
+    if (size > dwAllocs)
+    {
+        dwAllocs = static_cast<DWORD>(size);
+
+        dwPAllocs = static_cast<DWORD>(
+            reinterpret_cast<std::uintptr_t>(
+                __builtin_return_address(0)
+            )
+        );
+    }
 }
 
-void * operator new(std::size_t s) noexcept(false)
+void* operator new(std::size_t size)
 {
-	if ( s > dwAllocs )
-	{
-		dwAllocs = s;
-		dwPAllocs = (DWORD)__builtin_return_address(0);
-	}
+    RegisterAllocation(size);
 
-	typedef void*(__cdecl *tfnNewOperator)(std::size_t s);
-	tfnNewOperator fnNewOperator = (tfnNewOperator)0x00766698;
+    if (void* memory = std::malloc(size))
+        return memory;
 
-	void * p = fnNewOperator( s );
-	return p;
+    throw std::bad_alloc();
 }
-void operator delete(void *p) noexcept
+
+void* operator new[](std::size_t size)
 {
-	typedef void( __cdecl *tfnDeleteOperator )(void * p);
-	tfnDeleteOperator fnDeleteOperator = (tfnDeleteOperator)0x00767512;
-	fnDeleteOperator( p );
+    RegisterAllocation(size);
+
+    if (void* memory = std::malloc(size))
+        return memory;
+
+    throw std::bad_alloc();
 }
 
+void operator delete(void* memory) noexcept
+{
+    std::free(memory);
+}
 
+void operator delete[](void* memory) noexcept
+{
+    std::free(memory);
+}
 
+/*
+ * GCC em C++14/C++17 pode emitir chamadas aos operadores delete
+ * dimensionados.
+ */
+void operator delete(void* memory, std::size_t) noexcept
+{
+    std::free(memory);
+}
 
+void operator delete[](void* memory, std::size_t) noexcept
+{
+    std::free(memory);
+}

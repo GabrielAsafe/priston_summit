@@ -1013,9 +1013,18 @@ DWORD WINAPI HoLoginThreadProc(void* pInfo)
 				memcpy(UserPassword, HoCommandInfo.Pass, strlen(HoCommandInfo.Pass));
 			}
 
-			LoginResult result = MINGW_LoginTrace("before requestLogin user=%s", UserAccount);
-	requestLogin(UserAccount, UserPassword);
-	MINGW_LoginTrace("after requestLogin");
+			MINGW_LoginTrace(
+				"before requestLogin user=%s",
+				UserAccount
+			);
+
+			LoginResult result =
+			requestLogin(UserAccount, UserPassword);
+
+			MINGW_LoginTrace(
+				"after requestLogin result=%d",
+				static_cast<int>(result)
+			);
 
 			if (result != LoginResult::OK)
 			{
@@ -1048,8 +1057,23 @@ int HoOpening::LoginDataServer()
 
 	if (!hHoLoginThread)
 	{
-		hHoLoginThread = MINGW_LoginTrace("before CreateThread");
-	CreateThread(NULL, 0, HoLoginThreadProc, this, 0, &dwHoLoginThreadId);
+		MINGW_LoginTrace("before CreateThread");
+
+		hHoLoginThread =
+		CreateThread(
+			NULL,
+			0,
+			HoLoginThreadProc,
+			this,
+			0,
+			&dwHoLoginThreadId
+		);
+
+		MINGW_LoginTrace(
+			"after CreateThread handle=%p threadId=%lu",
+			hHoLoginThread,
+			static_cast<unsigned long>(dwHoLoginThreadId)
+		);
 
 		//PlayWav2(13 - 1);
 		StartConnectServerFlag = TRUE;
