@@ -7,6 +7,7 @@
 #include "File/File.h"
 #include "Helper/common.h"
 #include "Database/Database.h"
+#include <stdint.h>
 
 #define LOG_SQL    0
 #define LOG_SERVER 1
@@ -81,48 +82,164 @@ DatabaseStructureData * SQLConnection::GetDatabaseData(EDatabaseID eDatabaseID)
 	return NULL;
 }
 
+// bool SQLConnection::Init(EDatabaseID eDatabaseID)
+// {
+// 	// Copy database name to class
+// 	strcpy_s(szDatabaseName, GetDatabaseData(eDatabaseID)->pszDatabaseName);
+// 	eID = eDatabaseID;
+
+// 	// Try alloc Handle SQL ODBC
+// 	if(SQL_SUCCESS != SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &hEnv))
+// 	{
+// 		//show_errorSQL(SQL_HANDLE_ENV, hStatement);
+// 		Utils_Log(LOG_SQL, "SQLDATA: Unable to allocate handle for environment.");
+// 		return false;
+// 	}
+
+// 	// Set Version ODBC
+// 	if(SQL_SUCCESS != SQLSetEnvAttr(hEnv, SQL_ATTR_ODBC_VERSION, (SQLPOINTER)SQL_OV_ODBC3, 0))
+// 	{
+// 		Utils_Log(LOG_SQL, "SQLDATA: Unable to set ODBC version.");
+// 		return false;
+// 	}
+// 	// Set statement of cursor type
+// 	SQLSetStmtAttr(hEnv, SQL_ATTR_CURSOR_TYPE, (SQLPOINTER)SQL_CURSOR_DYNAMIC, 0);
+
+// 	// Try alloc handle connection
+// 	if(SQL_SUCCESS != SQLAllocHandle(SQL_HANDLE_DBC, hEnv, &hConnection))
+// 	{
+// 		//show_errorSQL(SQL_HANDLE_DBC, hStatement);
+// 		Utils_Log(LOG_SQL, "SQLDATA: Unable to allocate handle for connection.");
+// 		return false;
+// 	}
+
+// 	// Set connection timeout
+// 	SQLSetConnectAttrA(hConnection, SQL_LOGIN_TIMEOUT, (SQLPOINTER)5, 0);
+
+// 	char szStringConnectionSQL[512];
+// 	SQLCHAR strconn[512];
+// 	ZeroMemory(szStringConnectionSQL, 512);
+
+// 	string Driver = "";
+// 	string Host = "";
+// 	string User = "";
+// 	string Password = "";
+
+// 	try
+// 	{
+// 		File file("Configs//Sistemas.ini");
+
+// 		Driver = file.readString("Database", "Driver");
+// 		Host = file.readString("Database", "Host");
+// 		User = file.readString("Database", "User");
+// 		Password = file.readString("Database", "Password");
+// 	}
+// 	catch(FileException &e)
+// 	{
+// 		cerr << "bool SQLConnection::Init(EDatabaseID eDatabaseID): " << e.what() << endl;
+// 	}
+// #ifdef YWEENZY_PC
+// 	wsprintfA(szStringConnectionSQL, "Persist Security Info=False; Integrated Security=False; Driver=%s; Server=%s; Database=%s; Uid=%s; Pwd=%s;",
+// 		"{SQL Server}", "PTL//SQLEXPRES", szDatabaseName, "sa", "#$pdl32xq");
+// #else
+// 	wsprintfA(szStringConnectionSQL, "Persist Security Info=False; Integrated Security=False; Driver=%s; Server=%s; Database=%s; Uid=%s; Pwd=%s;",
+// 			  Driver.c_str(), Host.c_str(), szDatabaseName, User.c_str(), Password.c_str());
+// #endif
+// 	memcpy(strconn, szStringConnectionSQL, 512);
+
+
+// 	SQLCHAR retconstring[1024] = { 0 };
+// 	// Connect to driver
+// 	SQLDriverConnectA(hConnection, NULL, strconn, SQL_NTS, retconstring, 1024, NULL, SQL_DRIVER_NOPROMPT);
+
+// 	// Alloc statement of connection
+// 	if(SQL_SUCCESS != SQLAllocHandle(SQL_HANDLE_STMT, hConnection, &hStatement))
+// 	{
+// 		//show_errorSQL(SQL_HANDLE_DBC, hStatement);
+// 		Utils_Log(LOG_SQL, "SQLAllocHandle failed. Error 4");
+// 		return false;
+// 	}
+
+// 	// Create critical section to use on mutex
+// 	InitializeCriticalSection(&sCriticalSection);
+
+// 	return true;
+// }
+
 bool SQLConnection::Init(EDatabaseID eDatabaseID)
 {
-	// Copy database name to class
-	strcpy_s(szDatabaseName, GetDatabaseData(eDatabaseID)->pszDatabaseName);
+	DatabaseStructureData* psDatabaseData = GetDatabaseData(eDatabaseID);
+
+	if(!psDatabaseData || !psDatabaseData->pszDatabaseName)
+	{
+		Utils_Log(LOG_SQL, "SQLDATA: Database ID invalido.");
+		return false;
+	}
+
+	strcpy_s(szDatabaseName, psDatabaseData->pszDatabaseName);
 	eID = eDatabaseID;
 
-	// Try alloc Handle SQL ODBC
-	if(SQL_SUCCESS != SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &hEnv))
+	hEnv = SQL_NULL_HENV;
+	hConnection = SQL_NULL_HDBC;
+	hStatement = SQL_NULL_HSTMT;
+
+	SQLRETURN rc = SQLAllocHandle(
+		SQL_HANDLE_ENV,
+		SQL_NULL_HANDLE,
+		&hEnv
+	);
+
+	if(!SQL_SUCCEEDED(rc))
 	{
-		//show_errorSQL(SQL_HANDLE_ENV, hStatement);
-		Utils_Log(LOG_SQL, "SQLDATA: Unable to allocate handle for environment.");
+		Utils_Log(LOG_SQL,
+			"SQLDATA: Unable to allocate environment handle.");
 		return false;
 	}
 
-	// Set Version ODBC
-	if(SQL_SUCCESS != SQLSetEnvAttr(hEnv, SQL_ATTR_ODBC_VERSION, (SQLPOINTER)SQL_OV_ODBC3, 0))
+	rc = SQLSetEnvAttr(
+		hEnv,
+		SQL_ATTR_ODBC_VERSION,
+		(SQLPOINTER)SQL_OV_ODBC3,
+		0
+	);
+
+	if(!SQL_SUCCEEDED(rc))
 	{
-		Utils_Log(LOG_SQL, "SQLDATA: Unable to set ODBC version.");
+		Utils_Log(LOG_SQL,
+			"SQLDATA: Unable to set ODBC version.");
+
+		SQLFreeHandle(SQL_HANDLE_ENV, hEnv);
+		hEnv = SQL_NULL_HENV;
 		return false;
 	}
-	// Set statement of cursor type
-	SQLSetStmtAttr(hEnv, SQL_ATTR_CURSOR_TYPE, (SQLPOINTER)SQL_CURSOR_DYNAMIC, 0);
 
-	// Try alloc handle connection
-	if(SQL_SUCCESS != SQLAllocHandle(SQL_HANDLE_DBC, hEnv, &hConnection))
+	rc = SQLAllocHandle(
+		SQL_HANDLE_DBC,
+		hEnv,
+		&hConnection
+	);
+
+	if(!SQL_SUCCEEDED(rc))
 	{
-		//show_errorSQL(SQL_HANDLE_DBC, hStatement);
-		Utils_Log(LOG_SQL, "SQLDATA: Unable to allocate handle for connection.");
+		Utils_Log(LOG_SQL,
+			"SQLDATA: Unable to allocate connection handle.");
+
+		SQLFreeHandle(SQL_HANDLE_ENV, hEnv);
+		hEnv = SQL_NULL_HENV;
 		return false;
 	}
 
-	// Set connection timeout
-	SQLSetConnectAttrA(hConnection, SQL_LOGIN_TIMEOUT, (SQLPOINTER)5, 0);
+	SQLSetConnectAttrA(
+		hConnection,
+		SQL_LOGIN_TIMEOUT,
+		(SQLPOINTER)(uintptr_t)5,
+		0
+	);
 
-	char szStringConnectionSQL[512];
-	SQLCHAR strconn[512];
-	ZeroMemory(szStringConnectionSQL, 512);
-
-	string Driver = "";
-	string Host = "";
-	string User = "";
-	string Password = "";
+	std::string Driver;
+	std::string Host;
+	std::string User;
+	std::string Password;
 
 	try
 	{
@@ -133,34 +250,213 @@ bool SQLConnection::Init(EDatabaseID eDatabaseID)
 		User = file.readString("Database", "User");
 		Password = file.readString("Database", "Password");
 	}
-	catch(FileException &e)
+	catch(FileException& e)
 	{
-		cerr << "bool SQLConnection::Init(EDatabaseID eDatabaseID): " << e.what() << endl;
-	}
-#ifdef YWEENZY_PC
-	wsprintfA(szStringConnectionSQL, "Persist Security Info=False; Integrated Security=False; Driver=%s; Server=%s; Database=%s; Uid=%s; Pwd=%s;",
-		"{SQL Server}", "PTL//SQLEXPRES", szDatabaseName, "sa", "#$pdl32xq");
-#else
-	wsprintfA(szStringConnectionSQL, "Persist Security Info=False; Integrated Security=False; Driver=%s; Server=%s; Database=%s; Uid=%s; Pwd=%s;",
-			  Driver.c_str(), Host.c_str(), szDatabaseName, User.c_str(), Password.c_str());
-#endif
-	memcpy(strconn, szStringConnectionSQL, 512);
+		std::cerr
+			<< "SQLConnection::Init: "
+			<< e.what()
+			<< std::endl;
 
+		Utils_Log(
+			LOG_SQL,
+			"SQLDATA: Nao foi possivel ler Configs/Sistemas.ini."
+		);
 
-	SQLCHAR retconstring[1024] = { 0 };
-	// Connect to driver
-	SQLDriverConnectA(hConnection, NULL, strconn, SQL_NTS, retconstring, 1024, NULL, SQL_DRIVER_NOPROMPT);
+		SQLFreeHandle(SQL_HANDLE_DBC, hConnection);
+		SQLFreeHandle(SQL_HANDLE_ENV, hEnv);
 
-	// Alloc statement of connection
-	if(SQL_SUCCESS != SQLAllocHandle(SQL_HANDLE_STMT, hConnection, &hStatement))
-	{
-		//show_errorSQL(SQL_HANDLE_DBC, hStatement);
-		Utils_Log(LOG_SQL, "SQLAllocHandle failed. Error 4");
+		hConnection = SQL_NULL_HDBC;
+		hEnv = SQL_NULL_HENV;
 		return false;
 	}
 
-	// Create critical section to use on mutex
+	if(Driver.empty() || Host.empty() ||
+	   User.empty() || Password.empty())
+	{
+		Utils_Log(
+			LOG_SQL,
+			"SQLDATA: Configuracao incompleta em Configs/Sistemas.ini."
+		);
+
+		std::cerr
+			<< "Configuracao SQL incompleta para "
+			<< szDatabaseName
+			<< std::endl;
+
+		SQLFreeHandle(SQL_HANDLE_DBC, hConnection);
+		SQLFreeHandle(SQL_HANDLE_ENV, hEnv);
+
+		hConnection = SQL_NULL_HDBC;
+		hEnv = SQL_NULL_HENV;
+		return false;
+	}
+
+	char szStringConnectionSQL[512] = { 0 };
+
+	int iWritten = snprintf(
+		szStringConnectionSQL,
+		sizeof(szStringConnectionSQL),
+		"Persist Security Info=False;"
+		"Integrated Security=False;"
+		"Driver=%s;"
+		"Server=%s;"
+		"Database=%s;"
+		"Uid=%s;"
+		"Pwd=%s;",
+		Driver.c_str(),
+		Host.c_str(),
+		szDatabaseName,
+		User.c_str(),
+		Password.c_str()
+	);
+
+	if(iWritten < 0 ||
+	   iWritten >= static_cast<int>(sizeof(szStringConnectionSQL)))
+	{
+		Utils_Log(
+			LOG_SQL,
+			"SQLDATA: Connection string excedeu o buffer."
+		);
+
+		SQLFreeHandle(SQL_HANDLE_DBC, hConnection);
+		SQLFreeHandle(SQL_HANDLE_ENV, hEnv);
+
+		hConnection = SQL_NULL_HDBC;
+		hEnv = SQL_NULL_HENV;
+		return false;
+	}
+
+	SQLCHAR szReturnedConnection[1024] = { 0 };
+	SQLSMALLINT iReturnedLength = 0;
+
+	rc = SQLDriverConnectA(
+		hConnection,
+		NULL,
+		reinterpret_cast<SQLCHAR*>(szStringConnectionSQL),
+		SQL_NTS,
+		szReturnedConnection,
+		sizeof(szReturnedConnection),
+		&iReturnedLength,
+		SQL_DRIVER_NOPROMPT
+	);
+
+	if(!SQL_SUCCEEDED(rc))
+	{
+		SQLCHAR szState[7] = { 0 };
+		SQLCHAR szMessage[1024] = { 0 };
+		SQLINTEGER iNativeError = 0;
+		SQLSMALLINT iMessageLength = 0;
+
+		std::cerr
+			<< "Falha SQL ao conectar em "
+			<< Host
+			<< " / Database="
+			<< szDatabaseName
+			<< std::endl;
+
+		for(SQLSMALLINT iRecord = 1;; ++iRecord)
+		{
+			SQLRETURN rcDiag = SQLGetDiagRecA(
+				SQL_HANDLE_DBC,
+				hConnection,
+				iRecord,
+				szState,
+				&iNativeError,
+				szMessage,
+				sizeof(szMessage),
+				&iMessageLength
+			);
+
+			if(rcDiag == SQL_NO_DATA)
+				break;
+
+			if(!SQL_SUCCEEDED(rcDiag))
+				break;
+
+			std::cerr
+				<< "SQLSTATE="
+				<< reinterpret_cast<char*>(szState)
+				<< " Native="
+				<< iNativeError
+				<< " Mensagem="
+				<< reinterpret_cast<char*>(szMessage)
+				<< std::endl;
+		}
+
+		Utils_Log(
+			LOG_SQL,
+			"SQLDATA: SQLDriverConnectA falhou."
+		);
+
+		SQLDisconnect(hConnection);
+		SQLFreeHandle(SQL_HANDLE_DBC, hConnection);
+		SQLFreeHandle(SQL_HANDLE_ENV, hEnv);
+
+		hConnection = SQL_NULL_HDBC;
+		hEnv = SQL_NULL_HENV;
+		return false;
+	}
+
+	rc = SQLAllocHandle(
+		SQL_HANDLE_STMT,
+		hConnection,
+		&hStatement
+	);
+
+	if(!SQL_SUCCEEDED(rc))
+	{
+		Utils_Log(
+			LOG_SQL,
+			"SQLDATA: SQLAllocHandle statement falhou."
+		);
+
+		SQLDisconnect(hConnection);
+		SQLFreeHandle(SQL_HANDLE_DBC, hConnection);
+		SQLFreeHandle(SQL_HANDLE_ENV, hEnv);
+
+		hStatement = SQL_NULL_HSTMT;
+		hConnection = SQL_NULL_HDBC;
+		hEnv = SQL_NULL_HENV;
+		return false;
+	}
+
+	rc = SQLSetStmtAttr(
+		hStatement,
+		SQL_ATTR_CURSOR_TYPE,
+		(SQLPOINTER)(uintptr_t)SQL_CURSOR_DYNAMIC,
+		0
+	);
+
+	if(!SQL_SUCCEEDED(rc))
+	{
+		/*
+		 * Nem todos os drivers suportam cursor dinâmico.
+		 * Tenta cursor estático antes de considerar erro fatal.
+		 */
+		rc = SQLSetStmtAttr(
+			hStatement,
+			SQL_ATTR_CURSOR_TYPE,
+			(SQLPOINTER)(uintptr_t)SQL_CURSOR_STATIC,
+			0
+		);
+
+		if(!SQL_SUCCEEDED(rc))
+		{
+			Utils_Log(
+				LOG_SQL,
+				"SQLDATA: Driver nao suporta o cursor solicitado."
+			);
+		}
+	}
+
 	InitializeCriticalSection(&sCriticalSection);
+
+	std::cout
+		<< "Ligacao SQL confirmada: "
+		<< szDatabaseName
+		<< " em "
+		<< Host
+		<< std::endl;
 
 	return true;
 }
