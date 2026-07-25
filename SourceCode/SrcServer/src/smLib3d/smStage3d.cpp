@@ -2268,113 +2268,554 @@ int	smSTAGE3D::SaveFile(char *szFile)
 }
 
 
-int	smSTAGE3D::LoadFile(char *szFile)
+// int	smSTAGE3D::LoadFile(char *szFile)
+// {
+// 	DWORD	dwAcess;
+// 	int		slen;
+
+// 	smDFILE_HEADER	FileHeader;
+
+// 	HANDLE hFile = CreateFile(szFile, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+// 	if(!hFile)
+// 	{
+// 		//LOG(LOG_ERROR, "Cannot open StageFile(%s)", szFile);
+// 		return FALSE;
+// 	}
+
+
+// 	int size = ReadFile(hFile, &FileHeader, sizeof(smDFILE_HEADER), &dwAcess, NULL);
+
+
+// 	if(lstrcmp(FileHeader.szHeader, szSMDFileHeader) != 0)
+// 	{
+// 		//LOG(LOG_ERROR, "Wrong StageFile Header (%s)", szFile);
+// 		CloseHandle(hFile);
+// 		return FALSE;
+// 	}
+
+
+// 	ReadFile(hFile, &Head, sizeof(smSTAGE3D), &dwAcess, NULL);
+// 	smTEXLINK *lpOldTexLink = TexLink;
+
+
+
+
+// 	if(FileHeader.MatCounter)
+// 	{
+// 		smMaterialGroup = new smMATERIAL_GROUP;
+// 		smMaterialGroup->LoadFile(hFile);
+// 		smMaterial = smMaterialGroup->smMaterial;
+// 	}
+
+
+// 	Vertex = new smSTAGE_VERTEX[nVertex];
+// 	ReadFile(hFile, Vertex, sizeof(smSTAGE_VERTEX) * nVertex, &dwAcess, NULL);
+
+// 	Face = new smSTAGE_FACE[nFace];
+// 	ReadFile(hFile, Face, sizeof(smSTAGE_FACE) * nFace, &dwAcess, NULL);
+
+// 	TexLink = new smTEXLINK[nTexLink];
+// 	ReadFile(hFile, TexLink, sizeof(smTEXLINK) * nTexLink, &dwAcess, NULL);
+
+// 	if(nLight > 0)
+// 	{
+// 		smLight = new smLIGHT3D[nLight];
+// 		ReadFile(hFile, smLight, sizeof(smLIGHT3D) * nLight, &dwAcess, NULL);
+// 	}
+
+
+
+// int smSTAGE3D::LoadFile(char *szFile)
+// {
+//     DWORD dwAcess = 0;
+//     int slen;
+
+//     smDFILE_HEADER FileHeader;
+//     ZeroMemory(&FileHeader, sizeof(FileHeader));
+
+//     HANDLE hFile = CreateFile(
+//         szFile,
+//         GENERIC_READ,
+//         FILE_SHARE_READ | FILE_SHARE_WRITE,
+//         NULL,
+//         OPEN_EXISTING,
+//         FILE_ATTRIBUTE_NORMAL,
+//         NULL
+//     );
+
+//     if(hFile == INVALID_HANDLE_VALUE)
+//     {
+//         fprintf(stderr, "MAPA: nao foi possivel abrir: %s, erro=%lu\n",
+//             szFile, GetLastError());
+//         fflush(stderr);
+//         return FALSE;
+//     }
+
+//     if(!ReadFile(hFile, &FileHeader, sizeof(FileHeader), &dwAcess, NULL) ||
+//        dwAcess != sizeof(FileHeader))
+//     {
+//         fprintf(stderr, "MAPA: cabecalho incompleto: %s, lidos=%lu\n",
+//             szFile, (unsigned long)dwAcess);
+//         fflush(stderr);
+//         CloseHandle(hFile);
+//         return FALSE;
+//     }
+
+//     if(lstrcmp(FileHeader.szHeader, szSMDFileHeader) != 0)
+//     {
+//         fprintf(stderr, "MAPA: cabecalho invalido: %s\n", szFile);
+//         fflush(stderr);
+//         CloseHandle(hFile);
+//         return FALSE;
+//     }
+
+//     if(!ReadFile(hFile, &Head, sizeof(smSTAGE3D), &dwAcess, NULL) ||
+//        dwAcess != sizeof(smSTAGE3D))
+//     {
+//         fprintf(stderr,
+//             "MAPA: estrutura incompleta: %s, esperado=%u, lidos=%lu\n",
+//             szFile,
+//             (unsigned)sizeof(smSTAGE3D),
+//             (unsigned long)dwAcess);
+//         fflush(stderr);
+//         CloseHandle(hFile);
+//         return FALSE;
+//     }
+
+//     fprintf(stderr,
+//         "MAPA: %s | sizeof(smSTAGE3D)=%u | "
+//         "nVertex=%d nFace=%d nTexLink=%d nLight=%d wAreaSize=%d\n",
+//         szFile,
+//         (unsigned)sizeof(smSTAGE3D),
+//         nVertex,
+//         nFace,
+//         nTexLink,
+//         nLight,
+//         wAreaSize);
+//     fflush(stderr);
+
+//     const int MAX_VERTEX   = 5000000;
+//     const int MAX_FACE     = 5000000;
+//     const int MAX_TEXLINK  = 20000000;
+//     const int MAX_LIGHT    = 1000000;
+//     const int MAX_AREA     = 50000000;
+
+//     if(nVertex < 0 || nVertex > MAX_VERTEX ||
+//        nFace < 0 || nFace > MAX_FACE ||
+//        nTexLink < 0 || nTexLink > MAX_TEXLINK ||
+//        nLight < 0 || nLight > MAX_LIGHT ||
+//        wAreaSize < 0 || wAreaSize > MAX_AREA)
+//     {
+//         fprintf(stderr, "MAPA: dimensoes invalidas no arquivo: %s\n", szFile);
+//         fflush(stderr);
+//         CloseHandle(hFile);
+//         return FALSE;
+//     }
+
+//     smTEXLINK *lpOldTexLink = TexLink;
+
+//     if(FileHeader.MatCounter)
+//     {
+//         smMaterialGroup = new smMATERIAL_GROUP;
+//         smMaterialGroup->LoadFile(hFile);
+//         smMaterial = smMaterialGroup->smMaterial;
+//     }
+
+//     Vertex = nVertex ? new smSTAGE_VERTEX[nVertex] : NULL;
+//     if(nVertex &&
+//        (!ReadFile(hFile, Vertex, sizeof(smSTAGE_VERTEX) * nVertex,
+//                   &dwAcess, NULL) ||
+//         dwAcess != sizeof(smSTAGE_VERTEX) * (DWORD)nVertex))
+//     {
+//         fprintf(stderr, "MAPA: vertices incompletos: %s\n", szFile);
+//         fflush(stderr);
+//         CloseHandle(hFile);
+//         return FALSE;
+//     }
+
+//     Face = nFace ? new smSTAGE_FACE[nFace] : NULL;
+//     if(nFace &&
+//        (!ReadFile(hFile, Face, sizeof(smSTAGE_FACE) * nFace,
+//                   &dwAcess, NULL) ||
+//         dwAcess != sizeof(smSTAGE_FACE) * (DWORD)nFace))
+//     {
+//         fprintf(stderr, "MAPA: faces incompletas: %s\n", szFile);
+//         fflush(stderr);
+//         CloseHandle(hFile);
+//         return FALSE;
+//     }
+
+//     TexLink = nTexLink ? new smTEXLINK[nTexLink] : NULL;
+//     if(nTexLink &&
+//        (!ReadFile(hFile, TexLink, sizeof(smTEXLINK) * nTexLink,
+//                   &dwAcess, NULL) ||
+//         dwAcess != sizeof(smTEXLINK) * (DWORD)nTexLink))
+//     {
+//         fprintf(stderr, "MAPA: TexLink incompleto: %s\n", szFile);
+//         fflush(stderr);
+//         CloseHandle(hFile);
+//         return FALSE;
+//     }
+
+//     if(nLight > 0)
+//     {
+//         smLight = new smLIGHT3D[nLight];
+
+//         if(!ReadFile(hFile, smLight, sizeof(smLIGHT3D) * nLight,
+//                      &dwAcess, NULL) ||
+//            dwAcess != sizeof(smLIGHT3D) * (DWORD)nLight)
+//         {
+//             fprintf(stderr, "MAPA: luzes incompletas: %s\n", szFile);
+//             fflush(stderr);
+//             CloseHandle(hFile);
+//             return FALSE;
+//         }
+//     }
+
+// 	int SubTexLink = TexLink - lpOldTexLink;
+
+// 	for(int cnt = 0; cnt < nTexLink; cnt++)
+// 	{
+// 		if(TexLink[cnt].NextTex)
+// 		{
+// 			SubTexLink = TexLink[cnt].NextTex - lpOldTexLink;
+// 			TexLink[cnt].NextTex = TexLink + SubTexLink;
+// 		}
+// 	}
+// 	for(int cnt = 0; cnt < nFace; cnt++)
+// 	{
+// 		if(Face[cnt].lpTexLink)
+// 		{
+// 			SubTexLink = Face[cnt].lpTexLink - lpOldTexLink;
+// 			Face[cnt].lpTexLink = TexLink + SubTexLink;
+// 		}
+// 	}
+
+// 	StageObject = new smSTAGE_OBJECT;
+
+
+
+// 	lpwAreaBuff = new DWORD[wAreaSize];
+
+// 	int wbCnt = 0;
+
+
+// 	for(int cnt2 = 0; cnt2 < MAP_SIZE; cnt2++)
+// 	{
+// 		for(int cnt = 0; cnt < MAP_SIZE; cnt++)
+// 		{
+// 			if(StageArea[cnt][cnt2])
+// 			{
+// 				ReadFile(hFile, &slen, sizeof(int), &dwAcess, NULL);
+// 				StageArea[cnt][cnt2] = &lpwAreaBuff[wbCnt];
+// 				ReadFile(hFile, StageArea[cnt][cnt2], slen * sizeof(DWORD), &dwAcess, NULL);
+// 				wbCnt += slen;
+// 			}
+// 		}
+// 	}
+
+
+// 	CloseHandle(hFile);
+
+// 	CalcSumCount++;
+
+// 	return TRUE;
+// }
+
+
+
+int smSTAGE3D::LoadFile(char *szFile)
 {
-	DWORD	dwAcess;
-	int		slen;
+    DWORD dwAcess;
+    int slen;
 
-	smDFILE_HEADER	FileHeader;
+    smDFILE_HEADER FileHeader;
 
-	HANDLE hFile = CreateFile(szFile, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile = CreateFile(
+        szFile,
+        GENERIC_READ,
+        FILE_SHARE_READ | FILE_SHARE_WRITE,
+        NULL,
+        OPEN_EXISTING,
+        FILE_ATTRIBUTE_NORMAL,
+        NULL);
 
-	if(!hFile)
+    if(hFile == INVALID_HANDLE_VALUE)
+    {
+        fprintf(stderr, "ERRO: nao foi possivel abrir %s\n", szFile);
+        fflush(stderr);
+        return FALSE;
+    }
+
+    ReadFile(hFile, &FileHeader, sizeof(smDFILE_HEADER), &dwAcess, NULL);
+
+    if(lstrcmp(FileHeader.szHeader, szSMDFileHeader) != 0)
+    {
+        fprintf(stderr, "ERRO: cabecalho invalido %s\n", szFile);
+        fflush(stderr);
+
+        CloseHandle(hFile);
+        return FALSE;
+    }
+
+    ReadFile(hFile, &Head, sizeof(smSTAGE3D), &dwAcess, NULL);
+
+    fprintf(stderr,
+        "\nMAPA: %s\n"
+        "  nVertex   = %d\n"
+        "  nFace     = %d\n"
+        "  nTexLink  = %d\n"
+        "  nLight    = %d\n"
+        "  wAreaSize = %d\n",
+        szFile,
+        nVertex,
+        nFace,
+        nTexLink,
+        nLight,
+        wAreaSize);
+    fflush(stderr);
+
+    smTEXLINK *lpOldTexLink = TexLink;
+
+    if(FileHeader.MatCounter)
+    {
+        fprintf(stderr, "ALLOC MaterialGroup\n");
+        fflush(stderr);
+
+        smMaterialGroup = new smMATERIAL_GROUP;
+
+        fprintf(stderr, "OK MaterialGroup\n");
+        fflush(stderr);
+
+        smMaterialGroup->LoadFile(hFile);
+        smMaterial = smMaterialGroup->smMaterial;
+    }
+
+    fprintf(stderr, "ALLOC Vertex (%d)\n", nVertex);
+    fflush(stderr);
+
+    Vertex = new smSTAGE_VERTEX[nVertex];
+
+    fprintf(stderr, "OK Vertex\n");
+    fflush(stderr);
+
+    ReadFile(hFile, Vertex, sizeof(smSTAGE_VERTEX) * nVertex, &dwAcess, NULL);
+
+    fprintf(stderr, "ALLOC Face (%d)\n", nFace);
+    fflush(stderr);
+
+    Face = new smSTAGE_FACE[nFace];
+
+    fprintf(stderr, "OK Face\n");
+    fflush(stderr);
+
+    ReadFile(hFile, Face, sizeof(smSTAGE_FACE) * nFace, &dwAcess, NULL);
+
+    fprintf(stderr, "ALLOC TexLink (%d)\n", nTexLink);
+    fflush(stderr);
+
+    TexLink = new smTEXLINK[nTexLink];
+
+    fprintf(stderr, "OK TexLink\n");
+    fflush(stderr);
+
+    ReadFile(hFile, TexLink, sizeof(smTEXLINK) * nTexLink, &dwAcess, NULL);
+
+    if(nLight > 0)
+    {
+        fprintf(stderr, "ALLOC Light (%d)\n", nLight);
+        fflush(stderr);
+
+        smLight = new smLIGHT3D[nLight];
+
+        fprintf(stderr, "OK Light\n");
+        fflush(stderr);
+
+        ReadFile(hFile, smLight, sizeof(smLIGHT3D) * nLight, &dwAcess, NULL);
+    }
+
+    int SubTexLink = TexLink - lpOldTexLink;
+
+    for(int cnt = 0; cnt < nTexLink; cnt++)
+    {
+        if(TexLink[cnt].NextTex)
+        {
+            SubTexLink = TexLink[cnt].NextTex - lpOldTexLink;
+            TexLink[cnt].NextTex = TexLink + SubTexLink;
+        }
+    }
+
+    for(int cnt = 0; cnt < nFace; cnt++)
+    {
+        if(Face[cnt].lpTexLink)
+        {
+            SubTexLink = Face[cnt].lpTexLink - lpOldTexLink;
+            Face[cnt].lpTexLink = TexLink + SubTexLink;
+        }
+    }
+
+    fprintf(stderr, "ALLOC StageObject\n");
+    fflush(stderr);
+
+    StageObject = new smSTAGE_OBJECT;
+
+    fprintf(stderr, "OK StageObject\n");
+    fflush(stderr);
+
+    fprintf(stderr, "ALLOC AreaBuff (%d)\n", wAreaSize);
+    fflush(stderr);
+
+    lpwAreaBuff = new DWORD[wAreaSize];
+
+    fprintf(stderr, "OK AreaBuff\n");
+    fflush(stderr);
+
+//mudar eventualmente para 
+
+// int wbCnt = 0;
+
+// for(int cnt2 = 0; cnt2 < MAP_SIZE; cnt2++)
+// {
+// 	for(int cnt = 0; cnt < MAP_SIZE; cnt++)
+// 	{
+// 		// mesmas validações e ReadFile
+// 	}
+// }
+
+// CloseHandle(hFile);
+
+
+int wbCnt = 0;
+
+fprintf(stderr,
+	"AREA: iniciando leitura | capacidade=%d DWORDs | %.2f MiB\n",
+	wAreaSize,
+	((double)wAreaSize * sizeof(DWORD)) / 1048576.0);
+
+for(int cnt2 = 0; cnt2 < MAP_SIZE; cnt2++)
+{
+	for(int cnt = 0; cnt < MAP_SIZE; cnt++)
 	{
-		//LOG(LOG_ERROR, "Cannot open StageFile(%s)", szFile);
-		return FALSE;
-	}
-
-
-	int size = ReadFile(hFile, &FileHeader, sizeof(smDFILE_HEADER), &dwAcess, NULL);
-
-
-	if(lstrcmp(FileHeader.szHeader, szSMDFileHeader) != 0)
-	{
-		//LOG(LOG_ERROR, "Wrong StageFile Header (%s)", szFile);
-		CloseHandle(hFile);
-		return FALSE;
-	}
-
-
-	ReadFile(hFile, &Head, sizeof(smSTAGE3D), &dwAcess, NULL);
-	smTEXLINK *lpOldTexLink = TexLink;
-
-
-
-
-	if(FileHeader.MatCounter)
-	{
-		smMaterialGroup = new smMATERIAL_GROUP;
-		smMaterialGroup->LoadFile(hFile);
-		smMaterial = smMaterialGroup->smMaterial;
-	}
-
-
-	Vertex = new smSTAGE_VERTEX[nVertex];
-	ReadFile(hFile, Vertex, sizeof(smSTAGE_VERTEX) * nVertex, &dwAcess, NULL);
-
-	Face = new smSTAGE_FACE[nFace];
-	ReadFile(hFile, Face, sizeof(smSTAGE_FACE) * nFace, &dwAcess, NULL);
-
-	TexLink = new smTEXLINK[nTexLink];
-	ReadFile(hFile, TexLink, sizeof(smTEXLINK) * nTexLink, &dwAcess, NULL);
-
-	if(nLight > 0)
-	{
-		smLight = new smLIGHT3D[nLight];
-		ReadFile(hFile, smLight, sizeof(smLIGHT3D) * nLight, &dwAcess, NULL);
-	}
-
-
-
-	int SubTexLink = TexLink - lpOldTexLink;
-
-	for(int cnt = 0; cnt < nTexLink; cnt++)
-	{
-		if(TexLink[cnt].NextTex)
+		if(StageArea[cnt][cnt2])
 		{
-			SubTexLink = TexLink[cnt].NextTex - lpOldTexLink;
-			TexLink[cnt].NextTex = TexLink + SubTexLink;
-		}
-	}
-	for(int cnt = 0; cnt < nFace; cnt++)
-	{
-		if(Face[cnt].lpTexLink)
-		{
-			SubTexLink = Face[cnt].lpTexLink - lpOldTexLink;
-			Face[cnt].lpTexLink = TexLink + SubTexLink;
-		}
-	}
+			slen = 0;
+			dwAcess = 0;
 
-	StageObject = new smSTAGE_OBJECT;
-
-
-
-	lpwAreaBuff = new DWORD[wAreaSize];
-
-	int wbCnt = 0;
-
-
-	for(int cnt2 = 0; cnt2 < MAP_SIZE; cnt2++)
-	{
-		for(int cnt = 0; cnt < MAP_SIZE; cnt++)
-		{
-			if(StageArea[cnt][cnt2])
+			if(!ReadFile(
+					hFile,
+					&slen,
+					sizeof(int),
+					&dwAcess,
+					NULL) ||
+			   dwAcess != sizeof(int))
 			{
-				ReadFile(hFile, &slen, sizeof(int), &dwAcess, NULL);
-				StageArea[cnt][cnt2] = &lpwAreaBuff[wbCnt];
-				ReadFile(hFile, StageArea[cnt][cnt2], slen * sizeof(DWORD), &dwAcess, NULL);
-				wbCnt += slen;
+				fprintf(stderr,
+					"ERRO AREA: falha ao ler slen em [%d][%d] "
+					"| lidos=%lu | wbCnt=%d\n",
+					cnt,
+					cnt2,
+					(unsigned long)dwAcess,
+					wbCnt);
+
+				CloseHandle(hFile);
+				return FALSE;
 			}
+
+			if(slen < 0)
+			{
+				fprintf(stderr,
+					"ERRO AREA: slen negativo em [%d][%d]: %d\n",
+					cnt,
+					cnt2,
+					slen);
+
+				CloseHandle(hFile);
+				return FALSE;
+			}
+
+			if(wbCnt < 0 ||
+			   wbCnt > wAreaSize ||
+			   slen > (wAreaSize - wbCnt))
+			{
+				fprintf(stderr,
+					"ERRO AREA: buffer excedido em [%d][%d]\n"
+					"  wbCnt      = %d\n"
+					"  slen       = %d\n"
+					"  necessario = %lld\n"
+					"  limite     = %d\n",
+					cnt,
+					cnt2,
+					wbCnt,
+					slen,
+					(long long)wbCnt + (long long)slen,
+					wAreaSize);
+
+				CloseHandle(hFile);
+				return FALSE;
+			}
+
+			StageArea[cnt][cnt2] = &lpwAreaBuff[wbCnt];
+
+			const size_t bytesCalculados =
+				(size_t)slen * sizeof(DWORD);
+
+			if(bytesCalculados > MAXDWORD)
+			{
+				fprintf(stderr,
+					"ERRO AREA: tamanho de leitura excede DWORD "
+					"em [%d][%d] | slen=%d | bytes=%llu\n",
+					cnt,
+					cnt2,
+					slen,
+					(unsigned long long)bytesCalculados);
+
+				CloseHandle(hFile);
+				return FALSE;
+			}
+
+			const DWORD bytesEsperados = (DWORD)bytesCalculados;
+			dwAcess = 0;
+
+			if(!ReadFile(
+					hFile,
+					StageArea[cnt][cnt2],
+					bytesEsperados,
+					&dwAcess,
+					NULL) ||
+			   dwAcess != bytesEsperados)
+			{
+				fprintf(stderr,
+					"ERRO AREA: leitura incompleta em [%d][%d]\n"
+					"  slen     = %d\n"
+					"  esperado = %lu bytes\n"
+					"  recebido = %lu bytes\n",
+					cnt,
+					cnt2,
+					slen,
+					(unsigned long)bytesEsperados,
+					(unsigned long)dwAcess);
+
+				CloseHandle(hFile);
+				return FALSE;
+			}
+
+			wbCnt += slen;
 		}
 	}
-
-
-	CloseHandle(hFile);
-
-	CalcSumCount++;
-
-	return TRUE;
 }
 
+fprintf(stderr,
+	"AREA: leitura concluida | usado=%d | capacidade=%d | restante=%d\n",
+	wbCnt,
+	wAreaSize,
+	wAreaSize - wbCnt);
 
+CloseHandle(hFile);
+    CalcSumCount++;
 
+    fprintf(stderr, "MAPA carregado com sucesso: %s\n\n", szFile);
+    fflush(stderr);
+
+    return TRUE;
+}

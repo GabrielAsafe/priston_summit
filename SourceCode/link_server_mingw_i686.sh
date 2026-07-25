@@ -29,7 +29,8 @@ rm -f "$OUTPUT" "$LOG"
 
 "$CXX" \
     -m32 \
-    -mwindows \
+    -mconsole \
+    -Wl,--large-address-aware \
     -o "$OUTPUT" \
     "${OBJECTS[@]}" \
     -Lbuild_mingw_lua_i686 \

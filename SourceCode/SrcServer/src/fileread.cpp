@@ -91,21 +91,36 @@ char	*SetNPCMsg(char *szMsg)
 
 static char *local_GetWord(char *q, char *p)
 {
+	if(!q)
+		return p;
 
-
-	while((*p == 32) || (*p == 9))
+	if(!p)
 	{
+		q[0] = 0;
+		return p;
+	}
+
+	while(*p == ' ' || *p == '\t')
+		p++;
+
+	int count = 0;
+
+	while(*p != 0 &&
+		  *p != ' ' &&
+		  *p != '\t' &&
+		  *p != '\n' &&
+		  *p != '\r')
+	{
+		if(count < 255)
+		{
+			q[count] = *p;
+			count++;
+		}
+
 		p++;
 	}
 
-	while((*p != 32) && (*p != 9))
-	{
-		if(*p == '/n' || *p == '/r') break;
-		*q++ = *p++;
-	}
-	*q++ = 0;
-
-
+	q[count] = 0;
 
 	return p;
 }

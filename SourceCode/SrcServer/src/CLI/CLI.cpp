@@ -32,49 +32,100 @@ CLI::~CLI()
 }
 extern int ActivePlayCounter;
 
-bool CLI::run(bool *done)
+//resolvendo race condition
+// bool CLI::run(bool *done)
+// {
+// 	this->done = done;
+
+// 	std::string input;
+
+// 	system_clock::time_point today = system_clock::now();
+
+// 	std::time_t tt = system_clock::to_time_t(today);
+
+// 	extern TRANS_SERVER_LIST TransServerList;
+
+// 	cout << "Seja Bem Vindo ao Summit Tale. Os comandos terminam com ;" << endl;
+// 	cout << "O Servidor esta Ativo no IP : " << TransServerList.ServerInfo[0].szServerIp1 << " : " << SERVER_TCP_PORT << " " << endl;
+// 	cout << "Hoje: " << ctime(&tt) << endl;
+// 	cout << "Versao: Oficial" << endl;
+
+// 	cout << "GameServer: Mapas (Estavel) Verificando." << endl << endl;
+// 	cout << "            Monstros (Estavel) Verificando.." << endl << endl;
+// 	cout << "            NPCs (Estavel) Verificando..." << endl << endl;
+// 	cout << "            Itens (Estavel) Verificando.." << endl << endl;
+
+// 	cout << "Digite: 'help;' para abrir alguns comandos." << endl << endl;
+
+// 	std::string input;
+
+// 	while (!(*this->done))
+// 	{
+// 		cout << "server> ";
+// 		cout.flush();
+
+// 		input.clear();
+
+// 		if (!(cin >> input))
+// 		{
+// 			cerr << "[CLI] stdin fechado ou erro de leitura; encerrando CLI" << endl;
+// 			return false;
+// 		}
+
+// 		if (input.empty())
+// 		{
+// 			continue;
+// 		}
+
+// 		if (input.back() != ';')
+// 		{
+// 			cout << "Comandos precisam terminar com ;" << endl;
+// 			continue;
+// 		}
+
+// 		process(input);
+// 	}
+
+
+// 	return true;
+// }
+
+
+bool CLI::run(std::atomic_bool* done)
 {
-	this->done = done;
+    this->done = done;
 
-	std::string input;
+    std::string input;
 
-	system_clock::time_point today = system_clock::now();
+    // restante da inicialização...
 
-	std::time_t tt = system_clock::to_time_t(today);
+    while (!this->done->load())
+    {
+        cout << "server> ";
+        cout.flush();
 
-	extern TRANS_SERVER_LIST TransServerList;
+        input.clear();
 
-	cout << "Seja Bem Vindo ao Summit Tale. Os comandos terminam com ;" << endl;
-	cout << "O Servidor esta Ativo no IP : " << TransServerList.ServerInfo[0].szServerIp1 << " : " << SERVER_TCP_PORT << " " << endl;
-	cout << "Hoje: " << ctime(&tt) << endl;
-	cout << "Versao: Oficial" << endl;
+        if (!(cin >> input))
+        {
+            cerr << "[CLI] stdin fechado ou erro de leitura; encerrando CLI" << endl;
+            return false;
+        }
 
-	cout << "GameServer: Mapas (Estavel) Verificando." << endl << endl;
-	cout << "            Monstros (Estavel) Verificando.." << endl << endl;
-	cout << "            NPCs (Estavel) Verificando..." << endl << endl;
-	cout << "            Itens (Estavel) Verificando.." << endl << endl;
+        if (input.empty())
+            continue;
 
-	cout << "Digite: 'help;' para abrir alguns comandos." << endl << endl;
+        if (input.back() != ';')
+        {
+            cout << "Comandos precisam terminar com ;" << endl;
+            continue;
+        }
 
-	while (!(*this->done))
-	{
-		cout << "server> ";
-		cin >> input;
+        process(input);
+    }
 
-		if (input.back() != ';')
-		{
-			cout << "Comandos precisam terminar com ;" << endl;
-		}
-		else
-		{
-			process(input);
-		}
-	}
-
-
-	return true;
+    return true;
 }
-
 bool CLI::process(const std::string &cmd)
 {
 	
@@ -122,10 +173,16 @@ void CLI::handleHelpCommand()
 	cout << "Comando: showGMS; <Exibe todos os Game Masters ativados>" << endl;
 }
 
+// void CLI::handleExitCommand()
+// {
+// 	*this->done = true;
+// }
+
 void CLI::handleExitCommand()
 {
-	*this->done = true;
+    this->done->store(true);
 }
+
 
 void CLI::handleShutdownCommand()
 {

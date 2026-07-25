@@ -846,7 +846,13 @@ INT SetupDefWindow()
 	cout << "Inicializando pacotes de conexao" << endl;
 	InitGameSocket(TRUE);
 
-	InitAll();
+	fprintf(stderr, "[MAIN] ANTES InitAll\n");
+	fflush(stderr);
+
+	int ret = InitAll();
+
+	fprintf(stderr, "[MAIN] DEPOIS InitAll ret=%d\n", ret);
+	fflush(stderr);
 
 	InitBindSock(SERVER_TCP_PORT);
 	cout << "Servidor pronto para receber conexoes" << endl;
@@ -854,9 +860,12 @@ INT SetupDefWindow()
 	cout << "Todos os sistemas foram inicializados com sucesso.!" << endl;
 	cout << "O servidor estara pronto em segundos..." << endl;
 
-	Sleep(4 * 1000);
+	//temp change
+	fprintf(stderr, "[SETUP] inicializacao concluida; retornando TRUE\n");
+	fflush(stderr);
 
-	system("cls");
+	Sleep(4 * 1000);
+	// system("cls");
 
 	return TRUE;
 }
@@ -8932,41 +8941,205 @@ STG_AREA *FindStageField(int x, int z)
 }
 
 
+//comentado pois quebra a inicializaçao
+// int srReadStage()
+// {
+// 	int cnt;
+
+
+// 	InitStageLoader();
+// 	InitField();
+
+
+
+
+// 	cnt = 0;
+
+// 	while(1)
+// 	{
+// 		if(sField[cnt].szName[0] == 0) break;
+
+
+
+
+// 		StageArea[cnt].LoadStage(sField[cnt].szName);
+// 		StageArea[cnt].lpField = &sField[cnt];
+// 		cnt++;
+// 	}
+
+
+
+// 	lpsmStage[0] = StageArea[0].lpStage;
+// 	lpsmStage[1] = StageArea[0].lpStage;
+
+
+
+// 	return TRUE;
+// }
+// int srReadStage()
+// {
+//     int cnt;
+
+//     InitStageLoader();
+//     InitField();
+
+//     cnt = 0;
+
+//     while(1)
+//     {
+//         if(cnt >= STAGE_AREA_MAX)
+//         {
+//             fprintf(stderr,
+//                 "MAPAS: quantidade excedeu STAGE_AREA_MAX=%d\n",
+//                 STAGE_AREA_MAX);
+//             fflush(stderr);
+//             break;
+//         }
+
+//         if(sField[cnt].szName[0] == 0)
+//             break;
+
+//         fprintf(stderr, "MAPAS: carregando [%d]: %s\n",
+//             cnt, sField[cnt].szName);
+//         fflush(stderr);
+
+//         if(!StageArea[cnt].LoadStage(sField[cnt].szName))
+//         {
+//             fprintf(stderr, "MAPAS: falha no mapa [%d]: %s\n",
+//                 cnt, sField[cnt].szName);
+//             fflush(stderr);
+//         }
+//         else
+//         {
+//             fprintf(stderr, "MAPAS: mapa [%d] carregado\n", cnt);
+//             fflush(stderr);
+//         }
+
+//         StageArea[cnt].lpField = &sField[cnt];
+//         cnt++;
+//     }
+
+//     fprintf(stderr, "MAPAS: total processado=%d\n", cnt);
+//     fprintf(stderr, "[srReadStage] DEPOIS total processado\n");
+// 	fflush(stderr);
+
+//     if(cnt <= 0 || !StageArea[0].lpStage)
+//     {
+//         fprintf(stderr, "MAPAS: mapa inicial nao foi carregado\n");
+//         fflush(stderr);
+//         return FALSE;
+//     }
+
+//     lpsmStage[0] = StageArea[0].lpStage;
+//     lpsmStage[1] = StageArea[0].lpStage;
+
+//     return TRUE;
+// }
+
 
 int srReadStage()
 {
-	int cnt;
+    int cnt;
 
+    InitStageLoader();
+    InitField();
 
-	InitStageLoader();
-	InitField();
+    cnt = 0;
 
+    while(1)
+    {
+        if(cnt >= STAGE_AREA_MAX)
+        {
+            fprintf(stderr,
+                "MAPAS: quantidade excedeu STAGE_AREA_MAX=%d\n",
+                STAGE_AREA_MAX);
+            fflush(stderr);
+            break;
+        }
 
+        if(sField[cnt].szName[0] == 0)
+            break;
 
+        fprintf(stderr, "MAPAS: carregando [%d]: %s\n",
+            cnt, sField[cnt].szName);
+        fflush(stderr);
 
-	cnt = 0;
+        if(!StageArea[cnt].LoadStage(sField[cnt].szName))
+        {
+            fprintf(stderr, "MAPAS: falha no mapa [%d]: %s\n",
+                cnt, sField[cnt].szName);
+            fflush(stderr);
+        }
+        else
+        {
+            fprintf(stderr, "MAPAS: mapa [%d] carregado\n", cnt);
+            fflush(stderr);
+        }
 
-	while(1)
-	{
-		if(sField[cnt].szName[0] == 0) break;
+        StageArea[cnt].lpField = &sField[cnt];
+        cnt++;
+    }
 
+    fprintf(stderr, "MAPAS: total processado=%d\n", cnt);
+    fprintf(stderr, "[srReadStage] DEPOIS total processado\n");
+    fflush(stderr);
 
+    fprintf(stderr, "[srReadStage] ANTES validar cnt\n");
+    fflush(stderr);
 
+    if(cnt <= 0)
+    {
+        fprintf(stderr, "[srReadStage] ERRO: cnt <= 0\n");
+        fflush(stderr);
+        return FALSE;
+    }
 
-		StageArea[cnt].LoadStage(sField[cnt].szName);
-		StageArea[cnt].lpField = &sField[cnt];
-		cnt++;
-	}
+    fprintf(stderr, "[srReadStage] DEPOIS validar cnt | cnt=%d\n", cnt);
+    fflush(stderr);
 
+    fprintf(stderr,
+        "[srReadStage] ANTES acessar StageArea[0] | StageArea=%p\n",
+        (void *)StageArea);
+    fflush(stderr);
 
+    fprintf(stderr,
+        "[srReadStage] StageArea[0].lpStage=%p\n",
+        (void *)StageArea[0].lpStage);
+    fflush(stderr);
 
-	lpsmStage[0] = StageArea[0].lpStage;
-	lpsmStage[1] = StageArea[0].lpStage;
+    if(!StageArea[0].lpStage)
+    {
+        fprintf(stderr, "MAPAS: mapa inicial nao foi carregado\n");
+        fflush(stderr);
+        return FALSE;
+    }
 
+    fprintf(stderr, "[srReadStage] ANTES atribuir lpsmStage[0]\n");
+    fflush(stderr);
 
+    lpsmStage[0] = StageArea[0].lpStage;
 
-	return TRUE;
+    fprintf(stderr,
+        "[srReadStage] DEPOIS atribuir lpsmStage[0] | valor=%p\n",
+        (void *)lpsmStage[0]);
+    fflush(stderr);
+
+    fprintf(stderr, "[srReadStage] ANTES atribuir lpsmStage[1]\n");
+    fflush(stderr);
+
+    lpsmStage[1] = StageArea[0].lpStage;
+
+    fprintf(stderr,
+        "[srReadStage] DEPOIS atribuir lpsmStage[1] | valor=%p\n",
+        (void *)lpsmStage[1]);
+    fflush(stderr);
+
+    fprintf(stderr, "[srReadStage] ANTES return TRUE\n");
+    fflush(stderr);
+
+    return TRUE;
 }
+
 
 int srRemoveStage()
 {
@@ -12325,39 +12498,115 @@ int InitAll()
 
 	Stage_StepHeight = fONE * 20;
 
+	//verificando crash do servidor 
+	// cout << "Carregando Mapas..." << endl;
+	// StageArea = new STG_AREA[STAGE_AREA_MAX];
+	// srReadStage();
 
-	cout << "Carregando Mapas..." << endl;
+	// cout << "Carregando Nome de Monstros..." << endl;
+	// ConvertMonsterNames();
+
+	// AutoPlayServer = rsServerConfig.AutoPlayer;
+
+	// cout << "Carregando horario do servidor..." << endl;
+	// SetTimer(hwnd, 0, 100, NULL);
+	// dwPlayServTime = GetCurrentTime();
+
+	// cout << "Inicializando logs SQL SERVER..." << endl;
+	// InitLogSql();
+
+	// rsResetClientFuncPos();
+
+	// rsLoadCopiedItemList();
+
+	// RecordShutdownLog(50020, 0, 0);
+
+    // rsInit_SerToServer();
+
+	// ZeroMemory(&rsUserListDamageTop10, sizeof(rsUSER_LIST_TOP10));
+	cout << "[INIT] ANTES: alocar StageArea" << endl;
 	StageArea = new STG_AREA[STAGE_AREA_MAX];
+	cout << "[INIT] DEPOIS: alocar StageArea" << endl;
+
+	cout << "[INIT] ANTES: srReadStage" << endl;
 	srReadStage();
+	fprintf(stderr, "[INIT] DEPOIS: srReadStage\n");
+	fflush(stderr);
+	//temp change
+	//cout << "[INIT] DEPOIS: srReadStage" << endl;
 
-	cout << "Carregando Nome de Monstros..." << endl;
+
+	cout << "[INIT] ANTES: ConvertMonsterNames" << endl;
 	ConvertMonsterNames();
+	cout << "[INIT] DEPOIS: ConvertMonsterNames" << endl;
 
+
+	cout << "[INIT] ANTES: configurar AutoPlayServer" << endl;
 	AutoPlayServer = rsServerConfig.AutoPlayer;
+	cout << "[INIT] DEPOIS: configurar AutoPlayServer" << endl;
 
-	cout << "Carregando horario do servidor..." << endl;
+
+	cout << "[INIT] ANTES: SetTimer" << endl;
 	SetTimer(hwnd, 0, 100, NULL);
+	cout << "[INIT] DEPOIS: SetTimer" << endl;
+
+
+	cout << "[INIT] ANTES: GetCurrentTime" << endl;
 	dwPlayServTime = GetCurrentTime();
+	cout << "[INIT] DEPOIS: GetCurrentTime" << endl;
 
-	cout << "Inicializando logs SQL SERVER..." << endl;
+
+	cout << "[INIT] ANTES: InitLogSql" << endl;
 	InitLogSql();
+	cout << "[INIT] DEPOIS: InitLogSql" << endl;
 
+
+	cout << "[INIT] ANTES: rsResetClientFuncPos" << endl;
 	rsResetClientFuncPos();
+	cout << "[INIT] DEPOIS: rsResetClientFuncPos" << endl;
 
+
+	cout << "[INIT] ANTES: rsLoadCopiedItemList" << endl;
 	rsLoadCopiedItemList();
+	cout << "[INIT] DEPOIS: rsLoadCopiedItemList" << endl;
 
+
+	cout << "[INIT] ANTES: RecordShutdownLog" << endl;
 	RecordShutdownLog(50020, 0, 0);
+	cout << "[INIT] DEPOIS: RecordShutdownLog" << endl;
 
-    rsInit_SerToServer();
 
+	cout << "[INIT] ANTES: rsInit_SerToServer" << endl;
+	rsInit_SerToServer();
+	cout << "[INIT] DEPOIS: rsInit_SerToServer" << endl;
+
+
+	cout << "[INIT] ANTES: zerar rsUserListDamageTop10" << endl;
 	ZeroMemory(&rsUserListDamageTop10, sizeof(rsUSER_LIST_TOP10));
+	cout << "[INIT] DEPOIS: zerar rsUserListDamageTop10" << endl;
 
-	cout << "Carregando informacoes do Castelo Sagrado " << endl;
+
+	cout << "[INIT] ANTES: rsInit_Castle" << endl;
 	rsInit_Castle();
+	cout << "[INIT] DEPOIS: rsInit_Castle" << endl;
 
+
+	cout << "[INIT] ANTES: ALERTAHANDLER->Init" << endl;
 	ALERTAHANDLER->Init();
+	cout << "[INIT] DEPOIS: ALERTAHANDLER->Init" << endl;
 
+
+	cout << "[INIT] ANTES: zerar CurrencyLog" << endl;
 	ZeroMemory(&CurrencyLog, sizeof(rsCURRENCY_LOG));
+	cout << "[INIT] DEPOIS: zerar CurrencyLog" << endl;
+
+	cout << "[INIT] INICIALIZACAO CONCLUIDA" << endl;
+	// cout << "Carregando informacoes do Castelo Sagrado " << endl;
+	// rsInit_Castle();
+
+	// ALERTAHANDLER->Init();
+
+	// ZeroMemory(&CurrencyLog, sizeof(rsCURRENCY_LOG));
 
 
 	return TRUE;
@@ -31280,61 +31529,347 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 
 }
 
+// int ServerWinMain()
+// {
+// 	MSG Msg;
+
+// 	SQL::GetInstance()->Connect(".//SQLEXPRESS", "sa", "#$pdl32xq");
+
+
+// 	LoadSkillInfo();
+// 	InitializeCriticalSection(&cSerSection);
+// 	InitializeCriticalSection(&cOdbcSection);
+
+// 	if (SetupDefWindow())//Fun�ao janela do server
+// 	{
+// 		bool done = false;
+
+// 		std::thread cmd(&CLI::run, CLI::getInstance(), &done);
+
+// 		cmd.detach();
+
+// 		while (!done)
+// 		{
+// 			if (PeekMessage(&Msg, 0, 0, 0, PM_REMOVE))
+// 			{
+// 				TranslateMessage(&Msg);
+// 				DispatchMessage(&Msg);
+
+// 				if (Msg.message == WM_QUIT || Quit != 0)
+// 				{
+// 					done = true;
+// 				}
+// 			}
+// 			else
+// 			{
+// 				WaitMessage();
+// 			}
+// 		}
+
+// 		rsSaveCastleInfo();
+
+// 		if (fpNetLog)
+// 			fclose(fpNetLog);
+
+// 		quit = 1;
+
+// 		bSql_ServerExit();
+
+// 		CloseBindSock();
+
+// 		RemoveAll();
+// 	}
+
+
+// 	return TRUE;
+// }
+
+
+// int ServerWinMain()
+// {
+//     MSG Msg;
+
+//     SQL::GetInstance()->Connect(".//SQLEXPRESS", "sa", "#$pdl32xq");
+
+//     LoadSkillInfo();
+//     InitializeCriticalSection(&cSerSection);
+//     InitializeCriticalSection(&cOdbcSection);
+
+//     if (SetupDefWindow())
+//     {
+//         std::atomic_bool done{false};
+
+//         std::thread cmd(&CLI::run, CLI::getInstance(), &done);
+//         cmd.detach();
+
+//         while (!done.load())
+//         {
+//             if (PeekMessage(&Msg, 0, 0, 0, PM_REMOVE))
+//             {
+//                 TranslateMessage(&Msg);
+//                 DispatchMessage(&Msg);
+
+//                 if (Msg.message == WM_QUIT || Quit != 0)
+//                 {
+//                     done.store(true);
+//                 }
+//             }
+//             else
+//             {
+//                 WaitMessage();
+//             }
+//         }
+
+//         rsSaveCastleInfo();
+
+//         if (fpNetLog)
+//             fclose(fpNetLog);
+
+//         quit = 1;
+
+//         bSql_ServerExit();
+//         CloseBindSock();
+//         RemoveAll();
+//     }
+
+//     return TRUE;
+// }
+
+// int ServerWinMain()
+// {
+//     MSG Msg = {};
+
+//     fprintf(stderr, "[SERVER] inicio | Quit=%d | quit=%d\n", Quit, quit);
+//     fflush(stderr);
+
+//     SQL::GetInstance()->Connect(".//SQLEXPRESS", "sa", "#$pdl32xq");
+
+//     LoadSkillInfo();
+//     InitializeCriticalSection(&cSerSection);
+//     InitializeCriticalSection(&cOdbcSection);
+
+//     fprintf(stderr, "[SERVER] ANTES SetupDefWindow\n");
+//     fflush(stderr);
+
+//     BOOL setupResult = SetupDefWindow();
+
+//     fprintf(
+//         stderr,
+//         "[SERVER] DEPOIS SetupDefWindow | resultado=%d | Quit=%d | quit=%d\n",
+//         setupResult,
+//         Quit,
+//         quit
+//     );
+//     fflush(stderr);
+
+//     if (setupResult)
+//     {
+//         std::atomic_bool done{false};
+
+//         fprintf(stderr, "[SERVER] criando CLI\n");
+//         fflush(stderr);
+
+//         std::thread cmd(&CLI::run, CLI::getInstance(), &done);
+//         cmd.detach();
+
+//         fprintf(
+//             stderr,
+//             "[SERVER] entrando no loop | done=%d | Quit=%d\n",
+//             static_cast<int>(done.load()),
+//             Quit
+//         );
+//         fflush(stderr);
+
+//         while (!done.load())
+//         {
+//             if (PeekMessage(&Msg, nullptr, 0, 0, PM_REMOVE))
+//             {
+//                 fprintf(
+//                     stderr,
+//                     "[SERVER] mensagem=%u | WM_QUIT=%u | Quit=%d\n",
+//                     static_cast<unsigned>(Msg.message),
+//                     static_cast<unsigned>(WM_QUIT),
+//                     Quit
+//                 );
+//                 fflush(stderr);
+
+//                 TranslateMessage(&Msg);
+//                 DispatchMessage(&Msg);
+
+//                 fprintf(
+//                     stderr,
+//                     "[SERVER] apos DispatchMessage | mensagem=%u | Quit=%d\n",
+//                     static_cast<unsigned>(Msg.message),
+//                     Quit
+//                 );
+//                 fflush(stderr);
+
+//                 if (Msg.message == WM_QUIT || Quit != 0)
+//                 {
+//                     fprintf(
+//                         stderr,
+//                         "[SERVER] encerramento solicitado | mensagem=%u | Quit=%d\n",
+//                         static_cast<unsigned>(Msg.message),
+//                         Quit
+//                     );
+//                     fflush(stderr);
+
+//                     done.store(true);
+//                 }
+//             }
+//             else
+//             {
+//                 fprintf(stderr, "[SERVER] ANTES WaitMessage\n");
+//                 fflush(stderr);
+
+//                 WaitMessage();
+
+//                 fprintf(stderr, "[SERVER] DEPOIS WaitMessage\n");
+//                 fflush(stderr);
+//             }
+//         }
+
+//         fprintf(stderr, "[SERVER] saiu do loop principal\n");
+//         fflush(stderr);
+
+//         rsSaveCastleInfo();
+
+//         if (fpNetLog)
+//             fclose(fpNetLog);
+
+//         quit = 1;
+
+//         bSql_ServerExit();
+//         CloseBindSock();
+//         RemoveAll();
+
+//         fprintf(stderr, "[SERVER] limpeza concluida\n");
+//         fflush(stderr);
+//     }
+
+//     fprintf(stderr, "[SERVER] ServerWinMain retornando\n");
+//     fflush(stderr);
+
+//     return TRUE;
+// }
+
+
 int ServerWinMain()
 {
-	MSG Msg;
+    MSG Msg = {};
 
-	SQL::GetInstance()->Connect(".//SQLEXPRESS", "sa", "#$pdl32xq");
+    fprintf(stderr, "[SERVER] inicio | Quit=%d | quit=%d\n", Quit, quit);
+    fflush(stderr);
 
+    SQL::GetInstance()->Connect(".//SQLEXPRESS", "sa", "#$pdl32xq");
 
-	LoadSkillInfo();
-	InitializeCriticalSection(&cSerSection);
-	InitializeCriticalSection(&cOdbcSection);
+    LoadSkillInfo();
+    InitializeCriticalSection(&cSerSection);
+    InitializeCriticalSection(&cOdbcSection);
 
-	if (SetupDefWindow())//Fun�ao janela do server
-	{
-		bool done = false;
+    fprintf(stderr, "[SERVER] ANTES SetupDefWindow\n");
+    fflush(stderr);
 
-		std::thread cmd(&CLI::run, CLI::getInstance(), &done);
+    const BOOL setupResult = SetupDefWindow();
 
-		cmd.detach();
+    fprintf(
+        stderr,
+        "[SERVER] DEPOIS SetupDefWindow | resultado=%d | Quit=%d | quit=%d\n",
+        setupResult,
+        Quit,
+        quit
+    );
+    fflush(stderr);
 
-		while (!done)
-		{
-			if (PeekMessage(&Msg, 0, 0, 0, PM_REMOVE))
-			{
-				TranslateMessage(&Msg);
-				DispatchMessage(&Msg);
+    if (!setupResult)
+    {
+        fprintf(stderr, "[SERVER] SetupDefWindow falhou\n");
+        fflush(stderr);
+        return FALSE;
+    }
 
-				if (Msg.message == WM_QUIT || Quit != 0)
-				{
-					done = true;
-				}
-			}
-			else
-			{
-				WaitMessage();
-			}
-		}
+    std::atomic_bool done{false};
 
-		rsSaveCastleInfo();
+    fprintf(stderr, "[SERVER] criando CLI\n");
+    fflush(stderr);
 
-		if (fpNetLog)
-			fclose(fpNetLog);
+    std::thread cmd(&CLI::run, CLI::getInstance(), &done);
 
-		quit = 1;
+    fprintf(stderr, "[SERVER] entrando no loop principal\n");
+    fflush(stderr);
 
-		bSql_ServerExit();
+    while (!done.load(std::memory_order_acquire))
+    {
+        while (PeekMessage(&Msg, nullptr, 0, 0, PM_REMOVE))
+        {
+            if (Msg.message == WM_QUIT || Quit != 0)
+            {
+                fprintf(
+                    stderr,
+                    "[SERVER] encerramento solicitado | mensagem=%u | Quit=%d\n",
+                    static_cast<unsigned>(Msg.message),
+                    Quit
+                );
+                fflush(stderr);
 
-		CloseBindSock();
+                done.store(true, std::memory_order_release);
+                break;
+            }
 
-		RemoveAll();
-	}
+            TranslateMessage(&Msg);
+            DispatchMessage(&Msg);
+        }
 
+        if (done.load(std::memory_order_acquire) || Quit != 0)
+            break;
 
-	return TRUE;
+        /*
+         * Espera por mensagens, mas acorda pelo menos a cada 100 ms
+         * para verificar se a CLI definiu done=true.
+         */
+        MsgWaitForMultipleObjectsEx(
+            0,
+            nullptr,
+            100,
+            QS_ALLINPUT,
+            MWMO_INPUTAVAILABLE
+        );
+    }
+
+    fprintf(stderr, "[SERVER] saiu do loop principal\n");
+    fflush(stderr);
+
+    /*
+     * A CLI precisa sair quando done=true.
+     * CLI::run não pode continuar bloqueada indefinidamente em std::cin.
+     */
+    done.store(true, std::memory_order_release);
+
+    if (cmd.joinable())
+        cmd.join();
+
+    rsSaveCastleInfo();
+
+    if (fpNetLog)
+    {
+        fclose(fpNetLog);
+        fpNetLog = nullptr;
+    }
+
+    quit = 1;
+
+    bSql_ServerExit();
+    CloseBindSock();
+    RemoveAll();
+
+    DeleteCriticalSection(&cOdbcSection);
+    DeleteCriticalSection(&cSerSection);
+
+    fprintf(stderr, "[SERVER] limpeza concluida\n");
+    fflush(stderr);
+
+    return TRUE;
 }
-
 
 
 /* LOGIN AREA */
