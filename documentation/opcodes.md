@@ -245,3 +245,30 @@ Assim, há uma distinção importante:
 * **Não podemos inferir os valores históricos exatos apenas pela tabela atual.**
 
 Para compilar servidor e cliente em conjunto, podemos atribuir novos valores no final da faixa e sincronizá-los nos dois lados. Para compatibilidade com um cliente binário antigo ou com outra revisão do servidor, precisamos encontrar os headers originais, referências em executáveis, dumps de pacotes ou uma source anterior.
+
+<!-- BEGIN AUTO:connection-opcodes -->
+## Handshake inicial
+
+| Direção | Opcode decimal | Opcode hexadecimal | Estrutura | Tamanho | Estado |
+|---|---:|---:|---|---:|---|
+| Cliente → Servidor | Desconhecido | Desconhecido | Primeiro pacote | ? | Pendente |
+| Servidor → Cliente | Desconhecido | Desconhecido | Resposta inicial | ? | Pendente |
+
+## Login
+
+| Direção | Opcode decimal | Opcode hexadecimal | Estrutura | Tamanho | Estado |
+|---|---:|---:|---|---:|---|
+| Cliente → Servidor | | | Conta/senha | | Pendente |
+| Servidor → Cliente | | | Resultado do login | | Pendente |
+
+## Informações obrigatórias por pacote
+
+- valor decimal e hexadecimal;
+- direção;
+- tamanho;
+- estrutura C/C++;
+- alinhamento;
+- função de envio;
+- função de receção;
+- resposta esperada.
+<!-- END AUTO:connection-opcodes -->

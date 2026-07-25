@@ -51,3 +51,37 @@ Servidor/Configs/
 HKEY_LOCAL_MACHINE\SOFTWARE\PristonTale\GameServer
 HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\PristonTale\GameServer
 ```
+
+<!-- BEGIN AUTO:server-network -->
+## Rede do servidor
+
+### Porta de escuta
+
+- Protocolo: TCP
+- Porta: `9000`
+- Bind esperado: `0.0.0.0:9000`
+
+```bat
+netstat -ano | findstr :9000
+```
+
+Resultado esperado:
+
+```text
+0.0.0.0:9000 LISTENING
+```
+
+### Erro Winsock 10048
+
+O erro `10048` indica que o endereço ou a porta já está em uso.
+
+```bat
+tasklist /FI "IMAGENAME eq Server.exe"
+netstat -ano | findstr :9000
+taskkill /IM Server.exe /F
+```
+
+### Instrumentação recomendada
+
+Adicionar logs em `socket()`, `bind()`, `listen()`, `accept()`, `recv()`, dispatch do opcode, `send()` e `closesocket()`.
+<!-- END AUTO:server-network -->

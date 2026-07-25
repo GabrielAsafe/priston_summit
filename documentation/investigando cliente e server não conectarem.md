@@ -999,3 +999,66 @@ Como o servidor ainda não compila, a melhor forma prática de avançar é pelo 
 logar o WParam do OPCODE_FAILCONNECT.
 ```
 
+
+<!-- BEGIN AUTO:connection-investigation -->
+## Objetivo atual
+
+Fazer o cliente SummitTale estabelecer conexão TCP com o servidor compilado em MinGW.
+
+## Estado confirmado do servidor
+
+- O servidor inicia corretamente.
+- A conexão SQL funciona.
+- A inicialização termina.
+- O processo permanece ativo.
+- O servidor entra no loop principal.
+- A porta configurada é `9000/TCP`.
+- O executável utiliza o subsistema Windows Console.
+- Não existe crash durante a inicialização.
+
+## Perguntas da investigação
+
+1. Para qual IP o cliente tenta conectar?
+2. Para qual porta o cliente tenta conectar?
+3. O cliente chega a executar `connect()`?
+4. Qual é o código de retorno de `connect()`?
+5. Qual é o resultado de `WSAGetLastError()` quando ocorre falha?
+6. O servidor executa `accept()`?
+7. O cliente envia algum pacote?
+8. O servidor recebe algum byte?
+9. O opcode recebido é reconhecido?
+10. O servidor ou o cliente fecha a conexão?
+11. Existem diferenças de estrutura, alinhamento ou tamanho dos pacotes?
+
+## Checklist de conectividade
+
+| Etapa | Estado | Evidência |
+|---|---|---|
+| Servidor inicia completamente | Confirmado | Logs de inicialização |
+| Servidor escuta na porta 9000 | Confirmado | `netstat` |
+| Cliente usa o IP correto | Pendente | Instrumentação do cliente |
+| Cliente usa a porta correta | Pendente | Instrumentação do cliente |
+| TCP SYN chega ao servidor | Pendente | Wireshark ou `pktmon` |
+| `connect()` retorna sucesso | Pendente | Log do cliente |
+| `accept()` é executado | Pendente | Log do servidor |
+| Primeiro pacote é enviado | Pendente | Log ou captura |
+| Primeiro pacote é recebido | Pendente | Log do servidor |
+| Opcode é reconhecido | Pendente | Dispatch de pacotes |
+| Login chega ao SQL | Pendente | Log do servidor/SQL |
+
+## Comandos básicos de validação
+
+```bat
+tasklist /FI "IMAGENAME eq Server.exe"
+netstat -ano | findstr :9000
+powershell -NoProfile -Command "Test-NetConnection 127.0.0.1 -Port 9000"
+```
+
+```bash
+grep -RInE "127\\.0\\.0\\.1|localhost|9000|connect\\s*\\(|socket\\s*\\(|inet_addr|gethostbyname|getaddrinfo" SrcGame
+```
+
+```bash
+grep -RInE "ServerIP|ServerPort|LoginServer|GameServer|AreaServer|WorldServer" SrcGame
+```
+<!-- END AUTO:connection-investigation -->

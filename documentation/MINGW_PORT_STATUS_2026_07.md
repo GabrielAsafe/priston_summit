@@ -696,3 +696,45 @@ Game.exe original
 
 e verificar se o problema desaparece sem necessidade de corrigir milhares de casts de ponteiro.
 
+
+<!-- BEGIN AUTO:connection-status -->
+## Estado atual do port
+
+### Concluído
+
+- Compilação dos 186 ficheiros do servidor.
+- Linkagem do servidor em MinGW i686.
+- Compatibilidade ODBC.
+- Conexão com SQL Server.
+- Correção de `local_GetWord()`.
+- Correção do `std::bad_alloc` durante o carregamento.
+- Carregamento completo dos mapas.
+- Inicialização completa do servidor.
+- Correção do subsistema Windows GUI para Windows Console.
+- Execução persistente do servidor.
+- Loop de mensagens Windows validado.
+- Processamento periódico de `WM_TIMER` validado.
+- Porta TCP do servidor aberta e em escuta.
+
+### Em andamento
+
+- Conexão do cliente com o servidor.
+- Validação do IP e da porta usados pelo cliente.
+- Validação do protocolo inicial de conexão.
+- Comparação dos opcodes entre cliente e servidor.
+- Diagnóstico do handshake e do fluxo de login.
+
+### Próximo marco
+
+O cliente deverá estabelecer uma conexão TCP com a porta `9000` e o servidor deverá registar o socket remoto aceite e o primeiro pacote recebido.
+
+### Critério de conclusão
+
+- IP e porta usados pelo cliente;
+- resultado da chamada `connect()`;
+- chamada `accept()` no servidor;
+- IP e porta remotos aceites;
+- tamanho do primeiro pacote recebido;
+- opcode do primeiro pacote;
+- resposta inicial enviada pelo servidor.
+<!-- END AUTO:connection-status -->

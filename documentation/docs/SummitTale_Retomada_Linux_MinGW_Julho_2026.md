@@ -1,0 +1,1094 @@
+# SummitTale – Retomada da Migração Linux + MinGW
+
+Data: Julho de 2026  
+Ambiente: Fedora Linux + MinGW-w64  
+Objetivo: compilar o cliente SummitTale no Linux gerando executável Windows.
+
+---
+
+# Objetivo Geral
+
+Migrar o build do cliente SummitTale para Linux usando MinGW-w64.
+
+Objetivos:
+
+- Desenvolver no Linux
+- Compilar no Linux
+- Gerar executáveis Windows `.exe`
+- Futuramente dockerizar todo o ambiente
+- Manter compatibilidade cliente/servidor sempre que possível
+
+---
+
+# Ambiente Atual
+
+Sistema:
+
+```bash
+Fedora Linux
+```
+
+Compilador:
+
+```bash
+x86_64-w64-mingw32-g++
+MinGW-w64
+```
+
+Paralelização:
+
+```bash
+GNU Parallel
+8 threads
+```
+
+Build principal:
+
+```bash
+./build_client_mingw.sh
+```
+
+Análise de erros:
+
+```bash
+./analyze_build_errors.sh
+```
+
+Lista de fontes compilados:
+
+```text
+cpp_files_stage3.txt
+```
+
+Relatórios:
+
+```text
+build_error_report/
+```
+
+---
+
+# Regra Principal de Trabalho
+
+Este projeto mistura várias bases de código.
+
+Não assumir que o código atual é correto.
+
+Antes de corrigir qualquer erro:
+
+1. Procurar implementação no cliente
+2. Procurar implementação no servidor
+3. Procurar definição em `Shared`
+4. Verificar se o módulo é realmente usado
+5. Só depois aplicar patch
+
+---
+
+# Regra Sobre Código Órfão
+
+Um ficheiro deve ser tratado como potencial código órfão quando:
+
+- não é referenciado
+- não participa no fluxo principal
+- usa APIs antigas
+- gera muitos erros isolados
+- parece ter vindo de outra base
+
+Exemplos já tratados como problemáticos/removidos do build:
+
+```text
+SrcGame/src/HoBaram/HoSkyOld.cpp
+SrcGame/src/HoBaram/HoOpeningOFF.cpp
+```
+
+---
+
+# Progresso Concluído
+
+## Ambiente
+
+Concluído:
+
+- Linux configurado
+- MinGW-w64 configurado
+- GNU Parallel configurado
+- Script de build funcional
+- Script de análise funcional
+- Relatórios por ficheiro funcionais
+
+---
+
+## Includes Windows
+
+Corrigidos includes com caixa errada:
+
+```cpp
+Psapi.h
+Mmsystem.h
+Wininet.h
+Imagehlp.h
+TlHelp32.h
+Strsafe.h
+```
+
+para:
+
+```cpp
+psapi.h
+mmsystem.h
+wininet.h
+imagehlp.h
+tlhelp32.h
+strsafe.h
+```
+
+---
+
+## Includes com Barras Invertidas
+
+Exemplo corrigido:
+
+```cpp
+MD5\MD5Wrapper.h
+```
+
+para:
+
+```cpp
+MD5/MD5Wrapper.h
+```
+
+---
+
+## Correções Case Sensitive
+
+Exemplos corrigidos:
+
+```text
+smtexture.h -> smTexture.h
+HoLogic.H -> HoLogic.h
+HoOpening.H -> HoOpening.h
+HoMessageBox.H -> HoMessageBox.h
+```
+
+---
+
+## targetver.h
+
+Referência inválida removida/corrigida.
+
+---
+
+## Lua
+
+Foi identificado código corrompido.
+
+Exemplo:
+
+```cpp
+#define lua_boxpointer(L,u) /
+```
+
+quando deveria ser:
+
+```cpp
+#define lua_boxpointer(L,u) \
+```
+
+Problema parcialmente isolado.
+
+---
+
+## DirectX
+
+Foram encontrados headers corrompidos.
+
+Exemplo:
+
+```cpp
+#define MAKEFOURCC(...) /
+```
+
+corrigido para:
+
+```cpp
+#define MAKEFOURCC(...) \
+```
+
+`ddraw.h` foi corrigido e diversos erros falsos desapareceram.
+
+Ainda existem erros DirectX/D3DX, especialmente:
+
+```text
+D3DXCreateFont
+ID3DXFont::DrawTextA
+D3DX_FROM_FILE
+D3DFMT_FROM_FILE
+strmif.h byte ambiguous
+```
+
+---
+
+## rsPLAYINFO
+
+Foram corrigidas divergências como:
+
+```cpp
+dwTime_PrimeItem_StaminaRecharg
+```
+
+para:
+
+```cpp
+dwTime_PrimeItem_ManaRecharg
+```
+
+Também:
+
+```cpp
+lpPlayInfo->security
+```
+
+para:
+
+```cpp
+lpPlayInfo->getSecurity()
+```
+
+E posteriormente:
+
+```cpp
+rsPlayInfo[cnt].getSecurity() = ...
+```
+
+para:
+
+```cpp
+rsPlayInfo[cnt].AdminMode = ...
+```
+
+---
+
+## AntiCheat
+
+Excluído temporariamente do build.
+
+Motivos:
+
+- `__in`
+- `std::string`
+- macros MSVC antigas
+- dependências Visual Studio antigas
+
+Observação:
+
+`AntiCheat.h` contém um `struct Packet`, mas o AntiCheat está isolado e não deve ser usado como base para corrigir BattleEvents sem verificação.
+
+---
+
+## Logging
+
+Arquivos afetados:
+
+```text
+SrcGame/src/smLib3d/smStage3d.cpp
+SrcGame/src/smLib3d/smTexture.cpp
+SrcGame/src/Settings/Settings.cpp
+```
+
+Erros antigos:
+
+```cpp
+Utils_Log
+LOG_ERROR
+```
+
+Foi confirmado que a implementação existe em:
+
+```text
+modules/Helper/Utils/utils_logging.h
+modules/Helper/Utils/utils_logging.cpp
+```
+
+Mas para desbloquear compilação, as chamadas isoladas foram comentadas.
+
+Status:
+
+```text
+Logging removido do relatório atual.
+```
+
+---
+
+## PartyWindow
+
+Erros antigos:
+
+```cpp
+_PARTY_USER::JobCode
+_PARTY_USER::Mana
+_PARTY_PLAYINFO::Mana
+```
+
+Foi verificado que as estruturas em:
+
+```text
+Shared/smPacket.h
+```
+
+não continham os campos usados pelo cliente.
+
+Patch aplicado:
+
+```cpp
+struct _PARTY_USER {
+    ...
+    DWORD JobCode;
+    short Mana[2];
+    ...
+};
+
+struct _PARTY_PLAYINFO {
+    ...
+    short Mana[2];
+    ...
+};
+```
+
+Status:
+
+```text
+PartyWindow resolvido.
+```
+
+Observação importante:
+
+Estas estruturas são pacotes de rede. A alteração desbloqueia o build, mas deve ser validada depois contra o servidor.
+
+---
+
+## playsub
+
+Erros antigos:
+
+```cpp
+Pl105
+Pm105
+Ps105
+```
+
+Contexto:
+
+```cpp
+sCHK_POTION_COUNT
+```
+
+A estrutura atual não possui campos `105`.
+
+Patch aplicado:
+
+- Comentadas as partes referentes a `sin05`
+- Não foi feito `105 -> 101`, porque isso seria semanticamente errado
+
+Status:
+
+```text
+playsub resolvido.
+```
+
+---
+
+## Restaure
+
+Arquivo principal:
+
+```text
+SrcGame/src/cRestaureWindow.h
+SrcGame/src/cRestaureWindow.cpp
+```
+
+Foi criado:
+
+```cpp
+struct RESTAURE_LIST
+{
+    int size;
+    int code;
+    int Count;
+    RESTAURE_ITEM ItemList[15];
+};
+```
+
+O erro de `RESTAURE_LIST` em header desapareceu.
+
+Status atual:
+
+```text
+cRestaureWindow.h resolvido.
+cRestaureWindow.cpp ainda tem 1 erro.
+```
+
+Erro restante:
+
+```cpp
+LoadItemImage(&lpRestaureList->ItemList[i].sItem, &item->psItem);
+```
+
+Mas `RESTAURE_ITEM` atual usa:
+
+```cpp
+sITEM psItem;
+```
+
+e não:
+
+```cpp
+sItem
+```
+
+Foi tentado alterar `RESTAURE_ITEM` para `sITEMINFO sItem`, mas isso gerou muitos erros, porque o resto do código usa `psItem`.
+
+Conclusão:
+
+Não alterar `RESTAURE_ITEM::psItem` por enquanto.
+
+---
+
+## OpCodes
+
+Foi confirmado que vários opcodes antigos existem em `Shared/smPacket.h` como `smTRANSCODE_*`, mas faltavam no namespace `OpCode`.
+
+Valores confirmados:
+
+```cpp
+#define smTRANSCODE_ID_GETUSERINFO 0x48470085
+#define smTRANSCODE_FUNCERROR      0x48478200
+#define smTRANSCODE_FIX_ATTACK    0x48478700
+```
+
+Foram adicionados em:
+
+```text
+Shared/opcodes.h
+```
+
+como:
+
+```cpp
+static const int OPCODE_ID_GETUSERINFO = 0x48470085;
+static const int OPCODE_FUNCERROR = 0x48478200;
+static const int OPCODE_FIX_ATTACK = 0x48478700;
+```
+
+Também foram adicionados temporariamente:
+
+```cpp
+static const int UPDATE_BATTLE_POINTS = 0x48479000;
+static const int SEND_ALERT_PVP = 0x48479001;
+static const int DELETE_ITEM_PREMIUM = 0x48479002;
+```
+
+Atenção:
+
+Esses três valores são temporários e devem ser substituídos pelos valores reais depois.
+
+---
+
+## OPCODE_GET_RESTAURE
+
+Foi encontrada duplicação em:
+
+```text
+Shared/opcodes.h
+```
+
+Linhas aproximadas:
+
+```cpp
+static const int OPCODE_GET_RESTAURE = OPCODE_RESTAURE_LIST;
+```
+
+aparecendo duas vezes.
+
+Situação:
+
+```text
+Há redefinição de OpCode::OPCODE_GET_RESTAURE.
+```
+
+Próximo patch:
+
+Manter apenas a primeira ocorrência e remover a duplicada.
+
+---
+
+# Estado Atual do Último Build
+
+Último resumo por arquivo:
+
+```text
+22 SrcGame/src/Hook/Hook.cpp
+17 Shared/opcodes.h
+15 SrcGame/src/Drawsub.cpp
+10 SrcGame/src/BattleEvents/roll.h
+8 Dependency/DirectX9/Include/strmif.h
+3 SrcGame/src/smLib3d/smTexture.cpp
+3 SrcGame/src/BattleEvents/CRollHandler.cpp
+2 SrcGame/src/BattleEvents/CRollHandler.h
+1 SrcGame/src/TJBOY/isaocheck/isaocheck.cpp
+1 SrcGame/src/smLib3d/smDsx.cpp
+1 SrcGame/src/sinbaram/sinTrade.cpp
+1 SrcGame/src/cRestaureWindow.cpp
+1 SrcGame/src/BellatraFontEffect.cpp
+1 SrcGame/src/avictrl.cpp
+```
+
+Observação:
+
+Os 17 erros em `Shared/opcodes.h` são efeito cascata da duplicação de:
+
+```cpp
+OPCODE_GET_RESTAURE
+```
+
+Não representam 17 problemas diferentes.
+
+---
+
+# Problemas Restantes
+
+## 1. Shared/opcodes.h
+
+Erro:
+
+```cpp
+redefinition of 'const int OpCode::OPCODE_GET_RESTAURE'
+```
+
+Causa confirmada:
+
+```cpp
+OPCODE_GET_RESTAURE
+```
+
+aparece duas vezes em `Shared/opcodes.h`.
+
+Próximo comando recomendado:
+
+```bash
+grep -Rni "OPCODE_GET_RESTAURE" Shared SrcGame SrcServer
+```
+
+Patch recomendado:
+
+```bash
+cd ~/Área\ de\ Trabalho/SummitTale/"SourceCode Summit Tale"
+
+cp Shared/opcodes.h Shared/opcodes.h.bak_remove_duplicate_get_restaure
+
+python3 - <<'PY'
+from pathlib import Path
+
+p = Path("Shared/opcodes.h")
+lines = p.read_text(errors="ignore").splitlines(True)
+
+seen = False
+out = []
+
+for line in lines:
+    if "OPCODE_GET_RESTAURE" in line:
+        if seen:
+            continue
+        seen = True
+    out.append(line)
+
+p.write_text("".join(out))
+PY
+```
+
+---
+
+## 2. cRestaureWindow.cpp
+
+Erro atual:
+
+```cpp
+SrcGame/src/cRestaureWindow.cpp:207:
+'struct RESTAURE_ITEM' has no member named 'sItem'; did you mean 'psItem'?
+```
+
+Linha atual problemática:
+
+```cpp
+LoadItemImage(&lpRestaureList->ItemList[i].sItem, &item->psItem);
+```
+
+Como `RESTAURE_LIST` foi definido com:
+
+```cpp
+RESTAURE_ITEM ItemList[15];
+```
+
+e `RESTAURE_ITEM` tem:
+
+```cpp
+sITEM psItem;
+```
+
+patch temporário possível:
+
+```cpp
+LoadItemImage(&lpRestaureList->ItemList[i].psItem.sItemInfo, &item->psItem);
+```
+
+Atenção:
+
+Esse patch compila conceitualmente, mas deve ser validado contra o pacote real enviado pelo servidor.
+
+---
+
+## 3. BattleEvents
+
+Arquivos:
+
+```text
+Shared/roll.h
+SrcGame/src/BattleEvents/roll.h
+SrcGame/src/BattleEvents/CRollHandler.h
+SrcGame/src/BattleEvents/CRollHandler.cpp
+```
+
+Erros:
+
+```cpp
+STRINGCOPY
+EItemID
+Packet
+PacketRollInfo
+```
+
+Foi confirmado:
+
+- `BattleEvents` não é órfão
+- `OPCODE_ROLL` é usado no cliente e servidor
+- `CRollHandler` existe no cliente e servidor
+- `CRollWindow.cpp` envia `OPCODE_ROLL`
+- Servidor usa `CRollHandler.cpp`
+
+Achados:
+
+```text
+PacketRollInfo só aparece em backup:
+Shared/skillsPacket.h.bak_before_real_structs
+```
+
+```cpp
+struct PacketRollInfo { int size; int code; };
+```
+
+`Packet` só foi encontrado em:
+
+```text
+SrcGame/src/AntiCheat/AntiCheat.h
+SrcServer/src/Server/OnSever.cpp
+```
+
+`EItemID` não tem definição real encontrada.
+
+`STRINGCOPY` é usado em `CChatBox.cpp`, mas não foi encontrada definição com grep simples.
+
+Conclusão:
+
+BattleEvents está parcialmente migrado de outra base e precisa de compatibilidade mínima ou recuperação das estruturas reais.
+
+Patch temporário sugerido:
+
+```cpp
+#ifndef SUMMIT_ROLL_COMPAT
+#define SUMMIT_ROLL_COMPAT
+
+#ifndef STRINGCOPY
+#define STRINGCOPY(dst, src) lstrcpyn((dst), (src), sizeof(dst))
+#endif
+
+struct Packet
+{
+    int size;
+    int code;
+};
+
+typedef DWORD EItemID;
+
+struct PacketRollInfo
+{
+    int size;
+    int code;
+};
+
+#endif
+```
+
+Inserir em:
+
+```text
+Shared/roll.h
+SrcGame/src/BattleEvents/roll.h
+```
+
+E garantir em:
+
+```text
+SrcGame/src/BattleEvents/CRollHandler.h
+```
+
+que existe:
+
+```cpp
+#include "roll.h"
+```
+
+Atenção:
+
+É um patch de desbloqueio, não definitivo.
+
+---
+
+## 4. DirectX / D3DX
+
+Bloco dominante restante.
+
+Arquivos:
+
+```text
+SrcGame/src/Hook/Hook.cpp
+SrcGame/src/Drawsub.cpp
+SrcGame/src/smLib3d/smTexture.cpp
+SrcGame/src/smLib3d/smDsx.cpp
+SrcGame/src/BellatraFontEffect.cpp
+Dependency/DirectX9/Include/strmif.h
+```
+
+Erros típicos:
+
+```cpp
+D3DXCreateFont(...)
+ID3DXFont::DrawTextA(...)
+D3DX_FROM_FILE
+D3DFMT_FROM_FILE
+reference to byte is ambiguous
+```
+
+Possível causa:
+
+A camada DirectX atual é incompatível com as assinaturas usadas pelo código antigo.
+
+Exemplo:
+
+MinGW/header atual espera:
+
+```cpp
+HRESULT D3DXCreateFont(LPDIRECT3DDEVICE9, HFONT, ID3DXFont**)
+```
+
+mas o código chama uma assinatura longa estilo DirectX SDK antigo.
+
+Próxima estratégia:
+
+Criar camada de compatibilidade para:
+
+```cpp
+D3DXCreateFont
+DrawTextA
+D3DX_FROM_FILE
+D3DFMT_FROM_FILE
+byte
+```
+
+Mas só depois de limpar BattleEvents/opcodes/Restaure.
+
+---
+
+## 5. isaocheck.cpp
+
+Erro:
+
+```cpp
+jump to label 'IsaoCheck_Free'
+```
+
+Arquivo:
+
+```text
+SrcGame/src/TJBOY/isaocheck/isaocheck.cpp
+```
+
+Provável causa:
+
+GCC é mais estrito com `goto` saltando inicializações de variáveis.
+
+Necessita inspeção local ao redor da linha 470.
+
+Comando recomendado:
+
+```bash
+sed -n '430,490p' SrcGame/src/TJBOY/isaocheck/isaocheck.cpp
+```
+
+---
+
+## 6. avictrl.cpp
+
+Erro:
+
+```cpp
+expected primary-expression before ')' token
+```
+
+Arquivo:
+
+```text
+SrcGame/src/avictrl.cpp
+```
+
+Linha:
+
+```text
+70
+```
+
+Comando recomendado:
+
+```bash
+sed -n '55,80p' SrcGame/src/avictrl.cpp
+```
+
+---
+
+## 7. sinTrade.cpp
+
+Erro:
+
+```cpp
+too many initializers for 'DWORD [8]'
+```
+
+Arquivo:
+
+```text
+SrcGame/src/sinbaram/sinTrade.cpp
+```
+
+Linha:
+
+```text
+167
+```
+
+Comando recomendado:
+
+```bash
+sed -n '150,175p' SrcGame/src/sinbaram/sinTrade.cpp
+```
+
+---
+
+# Próximos Passos Recomendados
+
+## Passo 1 — Corrigir duplicação de OPCODE_GET_RESTAURE
+
+```bash
+cd ~/Área\ de\ Trabalho/SummitTale/"SourceCode Summit Tale"
+
+cp Shared/opcodes.h Shared/opcodes.h.bak_remove_duplicate_get_restaure
+
+python3 - <<'PY'
+from pathlib import Path
+
+p = Path("Shared/opcodes.h")
+lines = p.read_text(errors="ignore").splitlines(True)
+
+seen = False
+out = []
+
+for line in lines:
+    if "OPCODE_GET_RESTAURE" in line:
+        if seen:
+            continue
+        seen = True
+    out.append(line)
+
+p.write_text("".join(out))
+PY
+```
+
+---
+
+## Passo 2 — Corrigir BattleEvents com compat mínima
+
+```bash
+cd ~/Área\ de\ Trabalho/SummitTale/"SourceCode Summit Tale"
+
+cp Shared/roll.h Shared/roll.h.bak_roll_compat
+cp SrcGame/src/BattleEvents/roll.h SrcGame/src/BattleEvents/roll.h.bak_roll_compat
+cp SrcGame/src/BattleEvents/CRollHandler.h SrcGame/src/BattleEvents/CRollHandler.h.bak_rollinfo_forward
+
+python3 - <<'PY'
+from pathlib import Path
+
+compat = '''#ifndef SUMMIT_ROLL_COMPAT
+#define SUMMIT_ROLL_COMPAT
+
+#ifndef STRINGCOPY
+#define STRINGCOPY(dst, src) lstrcpyn((dst), (src), sizeof(dst))
+#endif
+
+struct Packet
+{
+    int size;
+    int code;
+};
+
+typedef DWORD EItemID;
+
+struct PacketRollInfo
+{
+    int size;
+    int code;
+};
+
+#endif
+
+'''
+
+for file in [
+    "Shared/roll.h",
+    "SrcGame/src/BattleEvents/roll.h",
+]:
+    p = Path(file)
+    s = p.read_text(errors="ignore")
+    if "SUMMIT_ROLL_COMPAT" not in s:
+        s = s.replace("#pragma once\n", "#pragma once\n\n" + compat)
+    p.write_text(s)
+
+p = Path("SrcGame/src/BattleEvents/CRollHandler.h")
+s = p.read_text(errors="ignore")
+if "roll.h" not in s:
+    s = s.replace("#pragma once\n", "#pragma once\n#include \"roll.h\"\n")
+p.write_text(s)
+PY
+```
+
+---
+
+## Passo 3 — Recompilar
+
+```bash
+./build_client_mingw.sh
+./analyze_build_errors.sh
+
+cat build_error_report/summary_by_file.txt
+echo
+cat build_error_report/errors_clean.txt | head -160
+```
+
+---
+
+# Ordem de Ataque Atual
+
+```text
+1. Shared/opcodes.h duplicado
+2. BattleEvents
+3. cRestaureWindow.cpp restante
+4. DirectX / D3DX
+5. isaocheck.cpp
+6. avictrl.cpp
+7. sinTrade.cpp
+8. Linkagem
+9. Game.exe
+10. Docker
+```
+
+---
+
+# Estado de Risco
+
+## Alterações temporárias que devem ser revistas depois
+
+```text
+PartyWindow: campos adicionados a estruturas de rede
+playsub: sin05 comentado
+Restaure: RESTAURE_LIST reconstruído localmente
+OpCodes: alguns valores temporários adicionados
+BattleEvents: compat mínima proposta
+Logging: chamadas Utils_Log comentadas
+AntiCheat: removido do build
+HoSkyOld/HoOpeningOFF: removidos do build
+```
+
+---
+
+# Comandos Úteis
+
+Buscar símbolos:
+
+```bash
+grep -Rni "SIMBOLO" Shared SrcGame SrcServer modules
+```
+
+Rebuild:
+
+```bash
+./build_client_mingw.sh
+./analyze_build_errors.sh
+```
+
+Resumo:
+
+```bash
+cat build_error_report/summary_by_file.txt
+```
+
+Primeiros erros:
+
+```bash
+cat build_error_report/errors_clean.txt | head -160
+```
+
+Filtrar DirectX:
+
+```bash
+grep -vEi 'directx|d3d|d3dx|dsound|strmif|DrawText|D3DFMT|D3DX_FROM_FILE|D3DXCreateFont|opcode' \
+build_error_report/errors_clean.txt \
+> build_error_report/errors_no_directx_no_opcodes.txt
+```
+
+---
+
+# Nota Final
+
+O build está bastante mais limpo do que no início.
+
+Já foram resolvidos:
+
+```text
+Logging
+PartyWindow
+playsub
+cRestaureWindow.h
+vários opcodes antigos
+headers Windows
+case-sensitive
+includes com barras
+AntiCheat isolado
+HoSkyOld removido
+HoOpeningOFF removido
+rsPLAYINFO estabilizado
+```
+
+O gargalo atual é principalmente:
+
+```text
+DirectX/D3DX
+BattleEvents
+duplicação de OPCODE_GET_RESTAURE
+```

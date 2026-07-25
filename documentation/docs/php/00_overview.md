@@ -1,0 +1,26 @@
+# Summit Tale — PHP/DB reverse map
+
+## Objetivo
+
+Documentar automaticamente:
+
+- ficheiro PHP/INC;
+- queries SQL encontradas;
+- base de dados;
+- tabela;
+- operação SQL;
+- problemas PHP legado;
+- dependências prováveis do servidor.
+
+## Totais
+
+- Ficheiros PHP/INC analisados: 300
+- Ficheiros com queries detectadas: 38
+- Ficheiros com padrões legados: 52
+- Bases no schema importado: 23
+
+## Estado conhecido
+
+O painel normal `/painel/` já foi validado com a conta `alface`.
+O fluxo de login usa `AllPersonalMember` e `<LETRA>GameUser`.
+O erro 500 inicial foi causado por sintaxe antiga PHP e cursor ODBC.
