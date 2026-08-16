@@ -1666,6 +1666,21 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	IPData = (DWORD *)(pData->Buff);
 
+#ifdef __MINGW32__
+{
+    FILE *fp = fopen("mingw_dispatch.txt", "a");
+    if(fp)
+    {
+        fprintf(
+            fp,
+            "RecvMessage MessageLoading=%d opcode=0x%08X (%u)\n",
+            MessageLoading,
+            (unsigned)IPData[1],
+            (unsigned)IPData[1]);
+        fclose(fp);
+    }
+}
+#endif
 	if(MessageLoading)
 	{
 		switch(IPData[1])
@@ -1706,6 +1721,22 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 //#ifdef _DEBUG
 	//Utils_Log(LOG_DEBUG, "Recv %s (%x) %d/r/n", GetTranscodeNameByOpcode(IPData[1]), IPData[1], IPData[0]);
 //#endif
+
+
+	#ifdef __MINGW32__
+	{
+		FILE *fp = fopen("mingw_dispatch.txt", "a");
+		if(fp)
+		{
+			fprintf(fp,
+				"dispatch opcode=0x%08X (%u)\n",
+				(unsigned)IPData[1],
+				(unsigned)IPData[1]);
+			fclose(fp);
+		}
+	}
+	#endif
+
 
 	switch(IPData[1])
 	{
@@ -3540,6 +3571,13 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 		break;
 
+	#ifdef __MINGW32__
+	{
+		FILE *fp=fopen("mingw_dispatch.txt","a");
+		if(fp){ fprintf(fp,"SERVER_INFO case\n"); fclose(fp); }
+	}
+	#endif
+
 	case OpCode::OPCODE_SERVER_INFO:
 		TRANS_SERVER_LIST	*lpTransServerList;
 
@@ -3566,6 +3604,14 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		HoRecvMessage(IPData[1], pData->Buff);
 		break;
 
+
+
+	#ifdef __MINGW32__
+	{
+		FILE *fp=fopen("mingw_dispatch.txt","a");
+		if(fp){ fprintf(fp,"SETUSERINFO case\n"); fclose(fp); }
+	}
+	#endif
 	case OpCode::OPCODE_ID_SETUSERINFO:
 		if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
 		{
@@ -3595,6 +3641,13 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 				}
 			}
 		}
+
+	#ifdef __MINGW32__
+	{
+		FILE *fp=fopen("mingw_dispatch.txt","a");
+		if(fp){ fprintf(fp,"FAILCONNECT case\n"); fclose(fp); }
+	}
+	#endif
 
 	case OpCode::OPCODE_ISRECORDDATA:
 	case OpCode::OPCODE_INSRECORDDATA:
@@ -7512,6 +7565,22 @@ int RecvPlayData(smTHREADSOCK *pData)
 
 
 	IPData = (DWORD *)(pData->Buff);
+
+#ifdef __MINGW32__
+{
+    FILE *fp = fopen("mingw_dispatch.txt", "a");
+    if(fp)
+    {
+        fprintf(
+            fp,
+            "RecvMessage MessageLoading=%d opcode=0x%08X (%u)\n",
+            MessageLoading,
+            (unsigned)IPData[1],
+            (unsigned)IPData[1]);
+        fclose(fp);
+    }
+}
+#endif
 
 
 

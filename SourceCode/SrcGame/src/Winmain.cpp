@@ -1055,8 +1055,55 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 	char strBuff2[256];
 	char *lpString;
 	int	len, CrCode;
+
+	#ifdef __MINGW32__
+if(messg == WSA_READ ||
+   messg == WSA_ACCEPT ||
+   messg == SWM_RECVSUCCESS ||
+   messg == (WM_APP + 77))
+{
+    FILE *fp = fopen("mingw_wndproc_socket.txt", "a");
+    if(fp)
+    {
+        fprintf(
+            fp,
+            "WndProc hwnd=%p mainHwnd=%p msg=0x%X wParam=%llu lParam=0x%llX event=%d error=%d\n",
+            (void *)hWnd,
+            (void *)hwnd,
+            (unsigned)messg,
+            (unsigned long long)wParam,
+            (unsigned long long)lParam,
+            (int)WSAGETSELECTEVENT(lParam),
+            (int)WSAGETSELECTERROR(lParam)
+        );
+        fclose(fp);
+    }
+}
+#endif
 	
-	switch (messg)
+	
+#ifdef __MINGW32__
+	{
+		static FILE *fp = NULL;
+
+		if(!fp)
+			fp = fopen("mingw_wndproc_all.txt", "w");
+
+		if(fp)
+		{
+			fprintf(
+				fp,
+				"MSG=0x%04X wParam=%llu lParam=%llu\n",
+				(unsigned)messg,
+				(unsigned long long)wParam,
+				(unsigned long long)lParam
+			);
+			fflush(fp);
+		}
+	}
+#endif
+
+switch (messg)
 	{
 
 	case WM_SIZE:
@@ -1168,6 +1215,11 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 
 		QuitGame();
 		break;
+
+#ifdef __MINGW32__
+	case WM_APP + 77:
+		break;
+#endif
 
 	case WSA_ACCEPT:
 		WSAMessage_Accept(wParam, lParam);
@@ -1322,7 +1374,9 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 
 
 
-		if (wParam == VK_RETURN)
+		// keydownEnt pertence ao sistema de jogo/cl�.
+		// N�o deve ser ativado durante o ecr� de login (GameMode != 2).
+		if (wParam == VK_RETURN && GameMode == 2)
 		{
 			keydownEnt = 1;
 		}
@@ -1354,6 +1408,8 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 			}
 		}
 
+		// Mant�m o fluxo original do controlo EDIT tamb�m no login.
+		// Apenas o envio/processamento de chat ser� limitado ao GameMode == 2.
 		if (hFocusWnd)
 		{
 			lpString = 0;
@@ -1394,7 +1450,7 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 					}
 				}
 			}
-			if (!sinMessageBoxShowFlag &&
+			if (GameMode == 2 && !sinMessageBoxShowFlag &&
 				((wParam == VK_RETURN && VRKeyBuff[wParam] == 0 && !VRKeyBuff[VK_CONTROL]) || CrCode == TRUE))
 			{
 
@@ -1580,7 +1636,7 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 			if (GameWindowMessage(hWnd, messg, wParam, lParam) == FALSE) break;
 		}
 
-		if (GameMode == 2 && lpCurPlayer->OnStageField >= 0 && StageField[lpCurPlayer->OnStageField] &&
+		if (GameMode == 2 && lpCurPlayer && lpCurPlayer->OnStageField >= 0 && StageField[lpCurPlayer->OnStageField] &&
 			StageField[lpCurPlayer->OnStageField]->State == FIELD_STATE_ROOM)
 		{
 
@@ -1937,7 +1993,7 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 			
 	case WM_CHAR:
 		if (wParam == 0x0D || wParam == 0x0A || (GameMode == 2 && wParam == VK_TAB)) return TRUE;
-		if (smConfig.getSecurity() < AccountTypes::SEC_MODERATOR && wParam == 22 && lpCurPlayer->szChatMessage[0]) return TRUE;
+		if (lpCurPlayer && smConfig.getSecurity() < AccountTypes::SEC_MODERATOR && wParam == 22 && lpCurPlayer->szChatMessage[0]) return TRUE;
 
 	case WM_SYSCHAR:
 	case WM_IME_CHAR:

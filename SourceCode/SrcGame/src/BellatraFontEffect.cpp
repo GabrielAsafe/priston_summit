@@ -163,7 +163,7 @@ static void DrawEventScore(void)
 		rcRect.right = int(rcRect.right * g_fWinSizeRatio_X);
 		rcRect.top = int((rcRect.top + yPos)    * g_fWinSizeRatio_Y);
 		rcRect.bottom = int((rcRect.bottom + yPos) * g_fWinSizeRatio_Y);
-		Font->DrawText(lpName, lstrlen(lpName), &rcRect, DT_RIGHT, FontColor);
+		Font->DrawText(NULL, lpName, lstrlen(lpName), &rcRect, DT_RIGHT, FontColor);
 
 
 		yPos += 30;

@@ -27,10 +27,10 @@ LPDIRECT3DDEVICE9       d3ddev = nullptr;
 D3DPRESENT_PARAMETERS   d3dpp = { 0 };
 int                     FontType = 0;
 int                     FontOpacity = 255;
-extern ID3DXFont *      Font = nullptr;
-extern ID3DXFont *      FontBold = nullptr;
-extern ID3DXFont *      FontTitle = nullptr;
-extern ID3DXFont *      FontRank = nullptr;
+ID3DXFont *Font = nullptr;
+ID3DXFont *FontBold = nullptr;
+ID3DXFont *FontTitle = nullptr;
+ID3DXFont *FontRank = nullptr;
 ID3DXFont *      FontDamageShadow = nullptr;
 extern D3DCOLOR         FontColor = { 0 };
 

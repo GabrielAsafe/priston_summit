@@ -1,4 +1,6 @@
 #include "opcodes.h"
+
+
 #define _WIN32_WINNT    0x0403  
 #define _WIN32_WINDOWS  0x0403
 
@@ -11,11 +13,29 @@
 
 #include <windows.h>
 #include <io.h>
-#include <stdio.h>         
+#include <stdio.h>   
+#include <stdarg.h>      
 #include <string.h>        
 #include <memory.h>
 #include <process.h>
 #include "smwsock.h"
+
+#ifdef __MINGW32__
+static void MingwSocketTrace(const char *format, ...)
+{
+    FILE *fp = fopen("mingw_socket_recv.txt", "a");
+    if(!fp)
+        return;
+
+    va_list args;
+    va_start(args, format);
+    vfprintf(fp, format, args);
+    va_end(args);
+
+    fprintf(fp, "\n");
+    fclose(fp);
+}
+#endif
 
 #pragma comment( lib, "wsock32.lib" )
 
@@ -422,8 +442,25 @@ DWORD WINAPI smTransRecvThreadProc(void *pInfo)
 				SockInfo->Sucess = TRUE;
 
 				SockInfo->smMySock->dwLastRecvTime = GetCurrentTime();
-				SendMessage(hMsgWnd, SWM_RECVSUCCESS, (WPARAM)SockInfo, 0);
+				//SendMessage(hMsgWnd, SWM_RECVSUCCESS, (WPARAM)SockInfo, 0);
+				#ifdef __MINGW32__
+				MingwSocketTrace(
+					"BEFORE SendMessage hwnd=%p msg=0x%X SockInfo=%p RecvLen=%d code=0x%08X",
+					(void *)hMsgWnd,
+					(unsigned)SWM_RECVSUCCESS,
+					SockInfo,
+					RecvLen,
+					(unsigned)RecvCode);
+				#endif
 
+				LRESULT mingwSendResult =
+					SendMessage(hMsgWnd, SWM_RECVSUCCESS, (WPARAM)SockInfo, 0);
+
+				#ifdef __MINGW32__
+				MingwSocketTrace(
+					"AFTER SendMessage result=%lld",
+					(long long)mingwSendResult);
+				#endif
 				if(RecvLen < BuffCnt)
 				{
 
@@ -1268,9 +1305,35 @@ int smWINSOCK::ReconnectSock()
 
 	ConnectDirection = TRUE;
 
-	status = WSAAsyncSelect(msock, hMsgWnd, WSA_READ, FD_READ | FD_WRITE | FD_CLOSE);
+	//status = WSAAsyncSelect(msock, hMsgWnd, WSA_READ, FD_READ | FD_WRITE | FD_CLOSE);
+WSASetLastError(0);
 
+status = WSAAsyncSelect(
+    msock,
+    hMsgWnd,
+    WSA_READ,
+    FD_READ | FD_WRITE | FD_CLOSE
+);
+
+#ifdef __MINGW32__
+MingwSocketTrace(
+    "ConnectSock WSAAsyncSelect status=%d error=%d msock=%lld hMsgWnd=%p WSA_READ=0x%X",
+    status,
+    status == SOCKET_ERROR ? WSAGetLastError() : 0,
+    (long long)msock,
+    (void *)hMsgWnd,
+    (unsigned)WSA_READ
+);
+#endif
 	sock = msock;
+	#ifdef __MINGW32__
+MingwSocketTrace(
+    "ConnectSock ASSIGNED this=%p sock=%lld smRecvState.Sock_before=%lld",
+    this,
+    (long long)sock,
+    (long long)smRecvState.Sock
+);
+#endif
 	acc_sin.sin_addr.S_un.S_addr = inet_addr(szIPAddr);
 
 	ClearPacketSendQue(this);
@@ -1324,10 +1387,62 @@ int smWINSOCK::ConnectSock(char *szIP, WORD port)
 	ConnectDirection = TRUE;
 	dwPort = port;
 
-	status = WSAAsyncSelect(msock, hMsgWnd, WSA_READ, FD_READ | FD_WRITE | FD_CLOSE);
+	//status = WSAAsyncSelect(msock, hMsgWnd, WSA_READ, FD_READ | FD_WRITE | FD_CLOSE);
+WSASetLastError(0);
 
+status = WSAAsyncSelect(
+    msock,
+    hMsgWnd,
+    WSA_READ,
+    FD_READ | FD_WRITE | FD_CLOSE
+);
 
-	sock = msock;
+#ifdef __MINGW32__
+MingwSocketTrace(
+    "REAL_CONNECTSOCK_V2 async_status=%d error=%d msock=%lld hMsgWnd=%p hwnd=%p isWindow=%d WSA_READ=0x%X",
+    status,
+    status == SOCKET_ERROR ? WSAGetLastError() : 0,
+    (long long)msock,
+    (void *)hMsgWnd,
+    (void *)hwnd,
+    IsWindow(hMsgWnd) ? 1 : 0,
+    (unsigned)WSA_READ
+);
+#endif
+
+#ifdef __MINGW32__
+BOOL postResult = PostMessage(
+    hMsgWnd,
+    WM_APP + 77,
+    (WPARAM)msock,
+    (LPARAM)0x12345678
+);
+
+MingwSocketTrace(
+    "POSTMESSAGE_TEST result=%d error=%lu hwnd=%p msg=0x%X",
+    postResult ? 1 : 0,
+    postResult ? 0UL : GetLastError(),
+    (void *)hMsgWnd,
+    (unsigned)(WM_APP + 77)
+);
+#endif
+
+if(status == SOCKET_ERROR)
+{
+    closesocket(msock);
+    return FALSE;
+}
+
+sock = msock;
+
+#ifdef __MINGW32__
+MingwSocketTrace(
+    "ConnectSock ASSIGNED this=%p sock=%lld smRecvState.Sock_before=%lld",
+    this,
+    (long long)sock,
+    (long long)smRecvState.Sock
+);
+#endif
 	acc_sin.sin_addr.S_un.S_addr = inet_addr(szIP);
 
 	PacketSendQueCnt = 0;
@@ -1450,11 +1565,28 @@ int smWINSOCK::CloseSocket()
 int smWINSOCK::mesReceve(LPARAM lParam)
 {
 	HWND	hWnd = hMsgWnd;
+	#ifdef __MINGW32__
+MingwSocketTrace(
+    "mesReceve this=%p event=%d error=%d sock=%lld hMsgWnd=%p",
+    this,
+    (int)WSAGETSELECTEVENT(lParam),
+    (int)WSAGETSELECTERROR(lParam),
+    (long long)sock,
+    (void *)hMsgWnd);
+#endif
+		
 
 	switch(WSAGETSELECTEVENT(lParam))
 	{
 
 	case FD_READ:
+	#ifdef __MINGW32__
+	MingwSocketTrace(
+		"FD_READ NewData_before=%d threadMode=%d recvThread=%p",
+		smRecvState.NewData,
+		smTransThreadMode,
+		(void *)hRecvThread);
+	#endif
 		smRecvState.NewData++;
 
 		if(!smTransThreadMode)
@@ -1631,6 +1763,13 @@ DWORD WINAPI smWinsockRecvThreadProc(void *pInfo)
 	DWORD dwRcvSize;
 
 	SockInfo = (smTHREADSOCK *)pInfo;
+	#ifdef __MINGW32__
+MingwSocketTrace(
+    "RecvThread START SockInfo=%p smMySock=%p sock=%lld",
+    SockInfo,
+    SockInfo ? SockInfo->smMySock : 0,
+    SockInfo ? (long long)SockInfo->Sock : -1LL);
+#endif
 	RecvLen = 0;
 	BuffCnt = 0;
 	BuffOver = 0;
@@ -1669,9 +1808,20 @@ DWORD WINAPI smWinsockRecvThreadProc(void *pInfo)
 			ExitThread(TRUE);
 			return TRUE;
 		}
-
+		#ifdef __MINGW32__
+		MingwSocketTrace(
+			"RecvThread WAKE NewData=%d BuffCnt=%d",
+			SockInfo->NewData,
+			BuffCnt);
+		#endif
 		dwRcvSize = 0;
 		ioctlsocket(SockInfo->Sock, FIONREAD, &dwRcvSize);
+		#ifdef __MINGW32__
+		MingwSocketTrace(
+			"FIONREAD size=%lu wsaerr=%d",
+			(unsigned long)dwRcvSize,
+			WSAGetLastError());
+		#endif
 		if(dwRcvSize <= 0)
 		{
 			SockInfo->NewData = 0;
@@ -1693,7 +1843,14 @@ DWORD WINAPI smWinsockRecvThreadProc(void *pInfo)
 		BuffSize = smSOCKBUFF_SIZE - BuffCnt;
 
 		len = recv(SockInfo->Sock, Buff, BuffSize, 0);
-
+		#ifdef __MINGW32__
+		MingwSocketTrace(
+			"recv len=%d BuffCnt_before=%d BuffSize=%d err=%d",
+			len,
+			BuffCnt,
+			BuffSize,
+			len == SOCKET_ERROR ? WSAGetLastError() : 0);
+		#endif
 		if(len > 0)
 		{
 			if(BuffSize <= len) smRcvBuffOverCount++;
@@ -1707,6 +1864,14 @@ DWORD WINAPI smWinsockRecvThreadProc(void *pInfo)
 
 			RecvLen = (((int *)szBuff)[0]);
 			RecvCode = (((int *)szBuff)[1]);
+
+			#ifdef __MINGW32__
+			MingwSocketTrace(
+				"HEADER RecvLen=%d RecvCode=0x%08X total=%d",
+				RecvLen,
+				(unsigned)RecvCode,
+				BuffCnt + len);
+			#endif
 		}
 
 		if(len > 0)
@@ -1759,8 +1924,26 @@ DWORD WINAPI smWinsockRecvThreadProc(void *pInfo)
 				SockInfo->Sucess = TRUE;
 
 				SockInfo->smMySock->dwLastRecvTime = GetCurrentTime();
-				SendMessage(hMsgWnd, SWM_RECVSUCCESS, (WPARAM)SockInfo, 0);
+				
+				//SendMessage(hMsgWnd, SWM_RECVSUCCESS, (WPARAM)SockInfo, 0);
+				#ifdef __MINGW32__
+				MingwSocketTrace(
+					"BEFORE SendMessage hwnd=%p msg=0x%X SockInfo=%p RecvLen=%d code=0x%08X",
+					(void *)hMsgWnd,
+					(unsigned)SWM_RECVSUCCESS,
+					SockInfo,
+					RecvLen,
+					(unsigned)RecvCode);
+				#endif
 
+				LRESULT mingwSendResult =
+					SendMessage(hMsgWnd, SWM_RECVSUCCESS, (WPARAM)SockInfo, 0);
+
+				#ifdef __MINGW32__
+				MingwSocketTrace(
+					"AFTER SendMessage result=%lld",
+					(long long)mingwSendResult);
+				#endif
 				if(RecvLen < BuffCnt)
 				{
 					BuffCnt -= RecvLen;
@@ -2342,31 +2525,91 @@ void smLeaveCSectionSocket()
 	LeaveCriticalSection(&cSocketSection);
 }
 
+// int WSAMessage_Read(DWORD wParam, DWORD lParam)
+// {
+// 	int cnt;
+// 	int Result;
+
+// 	Result = FALSE;
+
+
+// 	EnterCriticalSection(&cSocketSection);
+
+// 	for(cnt = 0; cnt < CONNECTMAX; cnt++)
+// 	{
+// 		if(smWSock[cnt].sock == (SOCKET)wParam && smWSock[cnt].WaitReadMessage >= 0)
+// 		{
+// 			Result = smWSock[cnt].mesReceve(lParam);
+// 			break;
+// 		}
+// 	}
+
+
+// 	LeaveCriticalSection(&cSocketSection);
+
+// 	return Result;
+// }
 int WSAMessage_Read(DWORD wParam, DWORD lParam)
 {
-	int cnt;
-	int Result;
+    int cnt;
+    int Result;
 
-	Result = FALSE;
+    Result = FALSE;
 
+#ifdef __MINGW32__
+    MingwSocketTrace(
+        "WSAMessage_Read ENTER wParamSock=%llu lParam=0x%08X event=%d error=%d",
+        (unsigned long long)wParam,
+        (unsigned)lParam,
+        (int)WSAGETSELECTEVENT(lParam),
+        (int)WSAGETSELECTERROR(lParam)
+    );
+#endif
 
-	EnterCriticalSection(&cSocketSection);
+    EnterCriticalSection(&cSocketSection);
 
-	for(cnt = 0; cnt < CONNECTMAX; cnt++)
-	{
-		if(smWSock[cnt].sock == (SOCKET)wParam && smWSock[cnt].WaitReadMessage >= 0)
-		{
-			Result = smWSock[cnt].mesReceve(lParam);
-			break;
-		}
-	}
+    for(cnt = 0; cnt < CONNECTMAX; cnt++)
+    {
+#ifdef __MINGW32__
+        if(smWSock[cnt].sock)
+        {
+            MingwSocketTrace(
+                "WSAMessage_Read CHECK index=%d storedSock=%llu wait=%d match=%d",
+                cnt,
+                (unsigned long long)smWSock[cnt].sock,
+                smWSock[cnt].WaitReadMessage,
+                smWSock[cnt].sock == (SOCKET)wParam
+            );
+        }
+#endif
 
+        if(smWSock[cnt].sock == (SOCKET)wParam &&
+           smWSock[cnt].WaitReadMessage >= 0)
+        {
+#ifdef __MINGW32__
+            MingwSocketTrace(
+                "WSAMessage_Read MATCH index=%d socket=%llu",
+                cnt,
+                (unsigned long long)smWSock[cnt].sock
+            );
+#endif
 
-	LeaveCriticalSection(&cSocketSection);
+            Result = smWSock[cnt].mesReceve(lParam);
+            break;
+        }
+    }
 
-	return Result;
+    LeaveCriticalSection(&cSocketSection);
+
+#ifdef __MINGW32__
+    MingwSocketTrace(
+        "WSAMessage_Read EXIT Result=%d",
+        Result
+    );
+#endif
+
+    return Result;
 }
-
 
 
 static int status;

@@ -45,19 +45,19 @@ int dsTextLineOut(int x, int y, LPCTSTR lpszString, int nCount)
 	{
 	case 0:
 		if (Font)
-			return Font->DrawText(lpszString, nCount, &rc, 0, FontColor);
+			return Font->DrawText(NULL, lpszString, nCount, &rc, 0, FontColor);
 		else
 			D3DXCreateFont(d3ddev, 15, 0, FW_BOLD, 0, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &Font);
 		break;
 	case 1:
 		if (FontBold)
-			return FontBold->DrawText(lpszString, nCount, &rc, 0, FontColor);
+			return FontBold->DrawText(NULL, lpszString, nCount, &rc, 0, FontColor);
 		else
 			D3DXCreateFont(d3ddev, 15, 0, FW_BOLD, 0, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &FontBold);
 		break;
 	case 2:
 		if (FontTitle)
-			return FontTitle->DrawText(lpszString, nCount, &rc, 0, FontColor);
+			return FontTitle->DrawText(NULL, lpszString, nCount, &rc, 0, FontColor);
 		else
 			D3DXCreateFont(d3ddev, 15, 0, FW_BOLD, 0, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, dwFontGame, &FontTitle);
 		break;
@@ -93,13 +93,13 @@ int dsTextLineOut32(int x, int y, LPCTSTR lpszString, int nCount)
 	{
 	case 0:
 		if (Font)
-			return Font->DrawText(lpszString, nCount, &rc, 0, FontColor);
+			return Font->DrawText(NULL, lpszString, nCount, &rc, 0, FontColor);
 		else
 			D3DXCreateFont(d3ddev, 16, 0, FW_NORMAL, 6, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, VARIABLE_PITCH | FF_DONTCARE, dwFontGame, &Font);
 		break;
 	case 1:
 		if (FontBold)
-			return FontBold->DrawText(lpszString, nCount, &rc, 0, FontColor);
+			return FontBold->DrawText(NULL, lpszString, nCount, &rc, 0, FontColor);
 		else
 			D3DXCreateFont(d3ddev, 16, 0, FW_BOLD, 6, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, VARIABLE_PITCH | FF_DONTCARE, dwFontGame, &FontBold);
 		break;
@@ -126,7 +126,7 @@ BOOL GetFontTextExtentPoint32(LPCTSTR lpString, int c, LPSIZE  lpSize)
 	case 0:
 		if (Font)
 		{
-			Font->DrawText(lpString, c, &rcRect, DT_CALCRECT, FontColor);
+			Font->DrawText(NULL, lpString, c, &rcRect, DT_CALCRECT, FontColor);
 
 			lpSize->cx = rcRect.right - rcRect.left;
 			lpSize->cy = rcRect.bottom - rcRect.top;
@@ -135,7 +135,7 @@ BOOL GetFontTextExtentPoint32(LPCTSTR lpString, int c, LPSIZE  lpSize)
 	case 1:
 		if (FontBold)
 		{
-			FontBold->DrawText(lpString, c, &rcRect, DT_CALCRECT, FontColor);
+			FontBold->DrawText(NULL, lpString, c, &rcRect, DT_CALCRECT, FontColor);
 
 			lpSize->cx = rcRect.right - rcRect.left;
 			lpSize->cy = rcRect.bottom - rcRect.top;
@@ -156,7 +156,7 @@ BOOL GetFontTextExtentPoint(LPCTSTR lpString, int c, LPSIZE  lpSize)
 	case 0:
 		if (Font)
 		{
-			Font->DrawText(lpString, c, &rcRect, DT_CALCRECT, FontColor);
+			Font->DrawText(NULL, lpString, c, &rcRect, DT_CALCRECT, FontColor);
 
 			lpSize->cx = rcRect.right - rcRect.left;
 			lpSize->cy = rcRect.bottom - rcRect.top;
@@ -165,7 +165,7 @@ BOOL GetFontTextExtentPoint(LPCTSTR lpString, int c, LPSIZE  lpSize)
 	case 1:
 		if (FontBold)
 		{
-			FontBold->DrawText(lpString, c, &rcRect, DT_CALCRECT, FontColor);
+			FontBold->DrawText(NULL, lpString, c, &rcRect, DT_CALCRECT, FontColor);
 
 			lpSize->cx = rcRect.right - rcRect.left;
 			lpSize->cy = rcRect.bottom - rcRect.top;
@@ -174,7 +174,7 @@ BOOL GetFontTextExtentPoint(LPCTSTR lpString, int c, LPSIZE  lpSize)
 	case 2:
 		if (FontTitle)
 		{
-			FontTitle->DrawText(lpString, c, &rcRect, DT_CALCRECT, FontColor);
+			FontTitle->DrawText(NULL, lpString, c, &rcRect, DT_CALCRECT, FontColor);
 
 			lpSize->cx = rcRect.right - rcRect.left;
 			lpSize->cy = rcRect.bottom - rcRect.top;

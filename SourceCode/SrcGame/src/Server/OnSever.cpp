@@ -18356,7 +18356,117 @@ bool handlePlayerLoginOpcode(smTHREADSOCK *SockInfo)
 
 int RecvMessage(smTHREADSOCK *SockInfo)
 {
-	return TRUE;
+    /* MINGW_SERVER_RECV_PROBE_V1 */
+
+    FILE *fp = fopen("mingw_server_recv.txt", "a");
+
+    if(fp)
+    {
+        smWINSOCK *sock = NULL;
+        rsPLAYINFO *player = NULL;
+
+        if(SockInfo)
+            sock = SockInfo->smMySock;
+
+        if(sock)
+            player = (rsPLAYINFO *)sock->ExtData1;
+
+        fprintf(
+            fp,
+            "\n===== RecvMessage =====\n"
+            "SockInfo=%p smMySock=%p player=%p\n",
+            (void *)SockInfo,
+            (void *)sock,
+            (void *)player
+        );
+
+        if(SockInfo)
+        {
+            fprintf(
+                fp,
+                "Sock=%lld RecvLen=%d RecvCode=%d BuffCnt=%d "
+                "NewData=%d Sucess=%d\n",
+                (long long)SockInfo->Sock,
+                SockInfo->RecvLen,
+                SockInfo->RecvCode,
+                SockInfo->BuffCnt,
+                SockInfo->NewData,
+                SockInfo->Sucess
+            );
+
+            if(SockInfo->RecvLen >= 8)
+            {
+                unsigned int packetSize = 0;
+                unsigned int packetCode = 0;
+
+                memcpy(
+                    &packetSize,
+                    SockInfo->Buff,
+                    sizeof(packetSize)
+                );
+
+                memcpy(
+                    &packetCode,
+                    SockInfo->Buff + 4,
+                    sizeof(packetCode)
+                );
+
+                fprintf(
+                    fp,
+                    "HEADER size=%u code=0x%08X\n",
+                    packetSize,
+                    packetCode
+                );
+            }
+
+            int dumpLen = SockInfo->RecvLen;
+
+            if(dumpLen <= 0 || dumpLen > 128)
+                dumpLen = 128;
+
+            fprintf(fp, "HEX:");
+
+            for(int i = 0; i < dumpLen; ++i)
+            {
+                fprintf(
+                    fp,
+                    " %02X",
+                    (unsigned int)
+                    (unsigned char)SockInfo->Buff[i]
+                );
+            }
+
+            fprintf(fp, "\n");
+        }
+
+        if(sock)
+        {
+            fprintf(
+                fp,
+                "socket=%lld ip=[%s] ExtData1=%p "
+                "RecvPacketCount=%d\n",
+                (long long)sock->sock,
+                sock->szIPAddr,
+                sock->ExtData1,
+                sock->RecvPacketCount
+            );
+        }
+
+        if(player)
+        {
+            fprintf(
+                fp,
+                "player account=[%s] connectCount=%lu\n",
+                player->getAccount(),
+                (unsigned long)player->dwConnectCount
+            );
+        }
+
+        fflush(fp);
+        fclose(fp);
+    }
+
+    return TRUE;
 }
 
 

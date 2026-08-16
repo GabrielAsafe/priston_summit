@@ -16,9 +16,40 @@
 
 #include "smwsock.h"
 #include "Firewall/Firewall.h"
+#include <stdarg.h>
+
+/* MINGW_TRANSPORT_TRACE_V2 */
+static void MingwTransportTraceV2(const char *fmt, ...)
+{
+    FILE *fp = fopen("mingw_server_transport.txt", "a");
+    if(!fp)
+        return;
+
+    SYSTEMTIME st;
+    GetLocalTime(&st);
+
+    fprintf(fp,
+            "MINGW_TRANSPORT_TRACE_V2 %02u:%02u:%02u.%03u tid=%lu ",
+            (unsigned)st.wHour,
+            (unsigned)st.wMinute,
+            (unsigned)st.wSecond,
+            (unsigned)st.wMilliseconds,
+            (unsigned long)GetCurrentThreadId());
+
+    va_list ap;
+    va_start(ap, fmt);
+    vfprintf(fp, fmt, ap);
+    va_end(ap);
+
+    fprintf(fp, "\n");
+    fflush(fp);
+    fclose(fp);
+}
+
 #include "smPacket.h"
 #ifndef SERVER_TCP_PORT
-#define SERVER_TCP_PORT TCP_GAMEPORT
+/* MINGW_SERVER_LOGIN_PORT_1997_V1 */
+#define SERVER_TCP_PORT 1997
 #endif
 
 #pragma comment( lib, "wsock32.lib" )
@@ -242,6 +273,11 @@ int SucessPacketSending(smTHREADSOCK *SockInfo)
 
 DWORD WINAPI smTransRecvThreadProc(void *pInfo)
 {
+
+    MingwTransportTraceV2(
+        "[THREAD_START] pInfo=%p",
+        pInfo);
+
 	smTHREAD_ROUTE *ThreadRoute;
 	smTHREADSOCK *SockInfo;
 	smWINSOCK	*lpsmsock;
@@ -315,7 +351,24 @@ DWORD WINAPI smTransRecvThreadProc(void *pInfo)
 		Buff = szBuff + BuffCnt;
 		BuffSize = smSOCKBUFF_SIZE - BuffCnt;
 
-		len = recv(SockInfo->Sock, Buff, BuffSize, 0);
+		
+        MingwTransportTraceV2(
+            "[BEFORE_RECV] SockInfo=%p socket=%llu BuffCnt=%d BuffSize=%d NewData=%d ",
+            SockInfo,
+            SockInfo ? (unsigned long long)SockInfo->Sock : 0ULL,
+            BuffCnt,
+            BuffSize,
+            SockInfo ? SockInfo->NewData : -1);
+
+        len = recv(SockInfo->Sock, Buff, BuffSize, 0);
+
+        MingwTransportTraceV2(
+            "[AFTER_RECV] SockInfo=%p socket=%llu len=%d wsaerr=%d",
+            SockInfo,
+            SockInfo ? (unsigned long long)SockInfo->Sock : 0ULL,
+            len,
+            (len == SOCKET_ERROR) ? (int)WSAGetLastError() : 0);
+
         extern int DisconnectUser(smWINSOCK * lpsmSock);
 		
 		if(len > 4)
@@ -347,8 +400,19 @@ DWORD WINAPI smTransRecvThreadProc(void *pInfo)
 			RecvLen = (((int*)szBuff)[0]);
 			RecvCode = (((int*)szBuff)[1]);
 
+            MingwTransportTraceV2(
+                "[HEADER] socket=%llu size=%d code=0x%08X BuffCnt=%d len=%d",
+                SockInfo ? (unsigned long long)SockInfo->Sock : 0ULL,
+                RecvLen,
+                (unsigned int)RecvCode,
+                BuffCnt,
+                len);
+
 			int PktMask = (RecvCode & 0xFFFF0000);
-			if (RecvCode < OpCode::OPCODE_OPENLIVE || RecvCode > OpCode::OPCODE_SOD_INFO)
+			/* MINGW_ALLOW_LEGACY_LOGIN_OPCODE_V1 */
+            if (RecvCode != OpCode::OPCODE_ID_GETUSERINFO &&
+                (RecvCode < OpCode::OPCODE_OPENLIVE ||
+                 RecvCode > OpCode::OPCODE_SOD_INFO))
 			{
 				RecvLen = 0;
 				BuffCnt = 0;
@@ -1079,6 +1143,15 @@ smTHREAD_ROUTE *FindTransThread(int SRMode)
 
 smTHREAD_ROUTE *RecvThreadRoute(smWINSOCK *lpsmsock)
 {
+
+    MingwTransportTraceV2(
+        "[ROUTE_ENTER] sockobj=%p socket=%llu route=%p NewData=%d WaitRead=%d",
+        lpsmsock,
+        lpsmsock ? (unsigned long long)lpsmsock->sock : 0ULL,
+        lpsmsock ? lpsmsock->lpsmRecvRoute : 0,
+        lpsmsock ? lpsmsock->smRecvState.NewData : -1,
+        lpsmsock ? lpsmsock->WaitReadMessage : -1);
+
 	smTHREAD_ROUTE *lpRoute = 0;
 
 
@@ -1212,6 +1285,14 @@ extern int DisconnectPlayer(smWINSOCK* lpsmSock);
 
 int smWINSOCK::mesAccept(WPARAM wParam, LPARAM lParam)
 {
+
+    MingwTransportTraceV2(
+        "[MES_ACCEPT] this=%p listen=%llu event=%d error=%d",
+        this,
+        (unsigned long long)(SOCKET)wParam,
+        (int)WSAGETSELECTEVENT(lParam),
+        (int)WSAGETSELECTERROR(lParam));
+
 
 	HWND hWnd = hMsgWnd;
 
@@ -1434,6 +1515,17 @@ int smWINSOCK::ConnectSock(char* szIP, WORD port)
 
 int smWINSOCK::CloseSocket()
 {
+
+    MingwTransportTraceV2(
+        "[CLOSE_SOCKET] this=%p socket=%llu ip=%s WaitRead=%d NewData=%d recvRoute=%p sendRoute=%p",
+        this,
+        (unsigned long long)sock,
+        szIPAddr,
+        WaitReadMessage,
+        smRecvState.NewData,
+        lpsmRecvRoute,
+        lpsmSendRoute);
+
 	DWORD dwExitCode;
 
 	DisconnectPlayer(MyPoint);
@@ -1506,6 +1598,17 @@ int smWINSOCK::CloseSocket()
 
 int smWINSOCK::mesReceve(LPARAM lParam)
 {
+
+    MingwTransportTraceV2(
+        "[MES_RECV] this=%p socket=%llu event=%d error=%d WaitRead=%d NewData=%d route=%p",
+        this,
+        (unsigned long long)sock,
+        (int)WSAGETSELECTEVENT(lParam),
+        (int)WSAGETSELECTERROR(lParam),
+        WaitReadMessage,
+        smRecvState.NewData,
+        lpsmRecvRoute);
+
 	HWND	hWnd = hMsgWnd;
 
 	switch(WSAGETSELECTEVENT(lParam))
@@ -2398,6 +2501,14 @@ smWINSOCK *smFindSocket2(DWORD dwIP)
 
 int WSAMessage_Accept(DWORD wParam, DWORD lParam)
 {
+
+    MingwTransportTraceV2(
+        "[WSA_ACCEPT] listen=%lu lParam=0x%08lX event=%d error=%d",
+        (unsigned long)wParam,
+        (unsigned long)lParam,
+        (int)WSAGETSELECTEVENT(lParam),
+        (int)WSAGETSELECTERROR(lParam));
+
 	int cnt;
 	int Result;
 
@@ -2465,6 +2576,14 @@ void smLeaveCSectionSocket()
 
 int WSAMessage_Read(DWORD wParam, DWORD lParam)
 {
+
+    MingwTransportTraceV2(
+        "[WSA_EVENT] socket=%lu lParam=0x%08lX event=%d error=%d",
+        (unsigned long)wParam,
+        (unsigned long)lParam,
+        (int)WSAGETSELECTEVENT(lParam),
+        (int)WSAGETSELECTERROR(lParam));
+
 	int cnt;
 	int Result;
 

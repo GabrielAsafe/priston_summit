@@ -23869,6 +23869,56 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 
 					LoginPacket* command = (LoginPacket*)SockInfo->Buff;
 
+                    {
+                        FILE *fpProbe =
+                            fopen("mingw_real_server_login.txt", "a");
+
+                        if(fpProbe)
+                        {
+                            /* MINGW_LOGIN_VALIDATION_PROBE_V1 */
+                            size_t probeAccountLen = 0;
+                            size_t probePasswordLen = 0;
+                            size_t probeHashLen = 0;
+                            size_t probeMacLen = 0;
+
+                            if(command)
+                            {
+                                probeAccountLen =
+                                    strnlen(command->account, ACCOUNT_SIZE);
+
+                                probePasswordLen =
+                                    strnlen(command->password, PASSWORD_SIZE);
+
+                                probeHashLen =
+                                    strnlen(command->hash, sizeof(command->hash));
+
+                                probeMacLen =
+                                    strnlen(command->mac, sizeof(command->mac));
+                            }
+
+                            fprintf(
+                                fpProbe,
+                                "[HANDLER] command=%p size=%d code=0x%08X "
+                                "account=[%.*s] accountLen=%u passwordLen=%u "
+                                "hashLen=%u macLen=%u player=%p\n",
+                                (void *)command,
+                                command ? command->size : -1,
+                                command ?
+                                    (unsigned int)command->code : 0,
+                                command ? ACCOUNT_SIZE : 0,
+                                command ? command->account : "",
+                                (unsigned int)probeAccountLen,
+                                (unsigned int)probePasswordLen,
+                                (unsigned int)probeHashLen,
+                                (unsigned int)probeMacLen,
+                                (void *)playInfo
+                            );
+
+                            fflush(fpProbe);
+                            fclose(fpProbe);
+                        }
+                    }
+
 					const struct Schema
 					{
 						JoiString account = JoiString::build().maximum(ACCOUNT_SIZE - 1);
@@ -23885,6 +23935,24 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 
 					if (validation.error())
 					{
+                        /* MINGW_LOGIN_VALIDATION_ERROR_PROBE_V1 */
+                        {
+                            FILE *fpProbe =
+                                fopen("mingw_real_server_login.txt", "a");
+
+                            if(fpProbe)
+                            {
+                                fprintf(
+                                    fpProbe,
+                                    "[VALIDATION_ERROR] %s\\n",
+                                    validation.description().c_str()
+                                );
+
+                                fflush(fpProbe);
+                                fclose(fpProbe);
+                            }
+                        }
+
 						recordAttack(playInfo, "Login Crash [ " + validation.description() + "]");
 
 						bool banFirewall(rsPLAYINFO * player);
@@ -23915,7 +23983,38 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 
 					playInfo->dwCode_ID = GetSpeedSum(playInfo->getAccount());
 
-					bool request_login = rsLogAccount(playInfo, command->account, command->password, command->mac, command->szPath, command->szPCName);
+					/* MINGW_AUTH_DIRECT_TRACE_V1 */
+                        {
+                            FILE *fpAuth = fopen("mingw_auth_direct.txt", "a");
+                            if(fpAuth)
+                            {
+                                fprintf(
+                                    fpAuth,
+                                    "[HANDLER_BEFORE_RSLOG] account=%s Server_SqlReady=%d sock=%p\n",
+                                    command->account,
+                                    Server_SqlReady,
+                                    (void *)playInfo->lpsmSock);
+                                fflush(fpAuth);
+                                fclose(fpAuth);
+                            }
+                        }
+
+						bool request_login = rsLogAccount(playInfo, command->account, command->password, command->mac, command->szPath, command->szPCName);
+
+                        {
+                            FILE *fpAuth = fopen("mingw_auth_direct.txt", "a");
+                            if(fpAuth)
+                            {
+                                fprintf(
+                                    fpAuth,
+                                    "[HANDLER_AFTER_RSLOG] account=%s request_login=%d Server_SqlReady=%d\n",
+                                    command->account,
+                                    request_login ? 1 : 0,
+                                    Server_SqlReady);
+                                fflush(fpAuth);
+                                fclose(fpAuth);
+                            }
+                        }
 
 					if (Server_SqlReady && !request_login)
 					{
@@ -24281,6 +24380,47 @@ void BannedIP(rsPLAYINFO* lpPlayInfo)
 
 int RecvMessage(smTHREADSOCK *SockInfo)
 {
+    /* MINGW_REAL_SERVER_LOGIN_PROBE_V1 */
+    {
+        FILE *fpProbe = fopen("mingw_real_server_login.txt", "a");
+
+        if(fpProbe)
+        {
+            unsigned int probeSize = 0;
+            unsigned int probeCode = 0;
+
+            if(SockInfo)
+            {
+                memcpy(&probeSize, SockInfo->Buff, sizeof(probeSize));
+                memcpy(&probeCode, SockInfo->Buff + 4, sizeof(probeCode));
+            }
+
+            fprintf(
+                fpProbe,
+                "\n[RECV] SockInfo=%p smMySock=%p "
+                "RecvLen=%d size=%u code=0x%08X\n",
+                (void *)SockInfo,
+                SockInfo ? (void *)SockInfo->smMySock : NULL,
+                SockInfo ? SockInfo->RecvLen : -1,
+                probeSize,
+                probeCode
+            );
+
+            if(SockInfo && SockInfo->smMySock)
+            {
+                fprintf(
+                    fpProbe,
+                    "[RECV] socket=%lld ip=%s ExtData1=%p\n",
+                    (long long)SockInfo->smMySock->sock,
+                    SockInfo->smMySock->szIPAddr,
+                    SockInfo->smMySock->ExtData1
+                );
+            }
+
+            fflush(fpProbe);
+            fclose(fpProbe);
+        }
+    }
 
 #ifdef _W_SERVER
 
@@ -27064,7 +27204,38 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			break;
 
 		case OpCode::OPCODE_ID_GETUSERINFO:
-			handlePlayerLoginOpcode(SockInfo);
+			{
+                FILE *fpProbe = fopen("mingw_real_server_login.txt", "a");
+
+                if(fpProbe)
+                {
+                    fprintf(
+                        fpProbe,
+                        "[DISPATCH] OPCODE_ID_GETUSERINFO reached\n"
+                    );
+                    fflush(fpProbe);
+                    fclose(fpProbe);
+                }
+            }
+
+            {
+                bool probeLoginResult =
+                    handlePlayerLoginOpcode(SockInfo);
+
+                FILE *fpProbe =
+                    fopen("mingw_real_server_login.txt", "a");
+
+                if(fpProbe)
+                {
+                    fprintf(
+                        fpProbe,
+                        "[DISPATCH] handlePlayerLoginOpcode returned=%d\n",
+                        probeLoginResult ? 1 : 0
+                    );
+                    fflush(fpProbe);
+                    fclose(fpProbe);
+                }
+            }
 
 			ReLoadSkillInfo(lpPlayInfo);
 			break;
@@ -32235,7 +32406,37 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 
 				lstrcpy(szTempID, LogAccount->szID);
 
-				val = bSql_LogOn(szTempID, LogAccount->szPassword, szIP, szGPCode, (char *)&DisuseDay, (char *)&UsePeriod, szGuid, (char *)&Bl_RNo, (char *)&MeterCode);
+				{
+                        FILE *fpAuth = fopen("mingw_auth_direct.txt", "a");
+                        if(fpAuth)
+                        {
+                            fprintf(
+                                fpAuth,
+                                "[WORKER_BEFORE_SQL] id=%s UseDLL_Code=%d ip=%s\n",
+                                szTempID,
+                                UseDLL_Code,
+                                szIP ? szIP : "");
+                            fflush(fpAuth);
+                            fclose(fpAuth);
+                        }
+                    }
+
+					val = bSql_LogOn(szTempID, LogAccount->szPassword, szIP, szGPCode, (char *)&DisuseDay, (char *)&UsePeriod, szGuid, (char *)&Bl_RNo, (char *)&MeterCode);
+
+                    {
+                        FILE *fpAuth = fopen("mingw_auth_direct.txt", "a");
+                        if(fpAuth)
+                        {
+                            fprintf(
+                                fpAuth,
+                                "[WORKER_AFTER_SQL] id=%s result=%d LogOnFlag=%d\n",
+                                szTempID,
+                                val,
+                                LogOnFlag);
+                            fflush(fpAuth);
+                            fclose(fpAuth);
+                        }
+                    }
 
 				if (val == -5)
 				{
@@ -32486,6 +32687,20 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 }
 int rsLogAccount(rsPLAYINFO* lpPlayInfo, char* szID, char* szPassword, char* szMac, char* szPath, char* szPCName)
 {
+    {
+        FILE *fpAuth = fopen("mingw_auth_direct.txt", "a");
+        if(fpAuth)
+        {
+            fprintf(
+                fpAuth,
+                "[RSLOG_ENTER] id=%s hLogAccountThread=%p sock=%p\n",
+                szID ? szID : "",
+                (void *)hLogAccountThread,
+                (void *)(lpPlayInfo ? lpPlayInfo->lpsmSock : 0));
+            fflush(fpAuth);
+            fclose(fpAuth);
+        }
+    }
 
 	int iCount = 0;
 
@@ -32606,7 +32821,47 @@ int rsLogAccount(rsPLAYINFO* lpPlayInfo, char* szID, char* szPassword, char* szM
 
 	if(lpPlayInfo->lpsmSock)
 	{
-		return PushLogAccount(lpPlayInfo, szID, szPassword, lpPlayInfo->lpsmSock->szIPAddr, szMac);
+		{
+            FILE *fpAuth = fopen("mingw_auth_direct.txt", "a");
+            if(fpAuth)
+            {
+                fprintf(
+                    fpAuth,
+                    "[RSLOG_BEFORE_PUSH] id=%s push=%d pop=%d thread=%p\n",
+                    szID ? szID : "",
+                    PushLogAccountQue,
+                    PopLogAccountQue,
+                    (void *)hLogAccountThread);
+                fflush(fpAuth);
+                fclose(fpAuth);
+            }
+        }
+
+        int mingwPushResult =
+            PushLogAccount(
+                lpPlayInfo,
+                szID,
+                szPassword,
+                lpPlayInfo->lpsmSock->szIPAddr,
+                szMac);
+
+        {
+            FILE *fpAuth = fopen("mingw_auth_direct.txt", "a");
+            if(fpAuth)
+            {
+                fprintf(
+                    fpAuth,
+                    "[RSLOG_AFTER_PUSH] id=%s result=%d push=%d pop=%d\n",
+                    szID ? szID : "",
+                    mingwPushResult,
+                    PushLogAccountQue,
+                    PopLogAccountQue);
+                fflush(fpAuth);
+                fclose(fpAuth);
+            }
+        }
+
+        return mingwPushResult;
 	}
 	else
 	{

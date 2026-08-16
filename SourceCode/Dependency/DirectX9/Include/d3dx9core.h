@@ -123,6 +123,51 @@ DEFINE_GUID( IID_ID3DXFont,
 #undef INTERFACE
 #define INTERFACE ID3DXFont
 
+
+/*
+ * Forward declarations required by the DirectX 9 ID3DXFont ABI.
+ * Keep these before DECLARE_INTERFACE_(ID3DXFont, IUnknown).
+ */
+
+typedef interface ID3DXSprite ID3DXSprite;
+typedef interface ID3DXSprite *LPD3DXSPRITE;
+
+typedef struct _D3DXFONT_DESCA
+{
+    INT Height;
+    UINT Width;
+    UINT Weight;
+    UINT MipLevels;
+    BOOL Italic;
+    BYTE CharSet;
+    BYTE OutputPrecision;
+    BYTE Quality;
+    BYTE PitchAndFamily;
+    CHAR FaceName[LF_FACESIZE];
+} D3DXFONT_DESCA, *LPD3DXFONT_DESCA;
+
+typedef struct _D3DXFONT_DESCW
+{
+    INT Height;
+    UINT Width;
+    UINT Weight;
+    UINT MipLevels;
+    BOOL Italic;
+    BYTE CharSet;
+    BYTE OutputPrecision;
+    BYTE Quality;
+    BYTE PitchAndFamily;
+    WCHAR FaceName[LF_FACESIZE];
+} D3DXFONT_DESCW, *LPD3DXFONT_DESCW;
+
+#ifdef UNICODE
+typedef D3DXFONT_DESCW D3DXFONT_DESC;
+typedef LPD3DXFONT_DESCW LPD3DXFONT_DESC;
+#else
+typedef D3DXFONT_DESCA D3DXFONT_DESC;
+typedef LPD3DXFONT_DESCA LPD3DXFONT_DESC;
+#endif
+
 DECLARE_INTERFACE_(ID3DXFont, IUnknown)
 {
     // IUnknown
@@ -131,16 +176,35 @@ DECLARE_INTERFACE_(ID3DXFont, IUnknown)
     STDMETHOD_(ULONG, Release)(THIS) PURE;
 
     // ID3DXFont
-    STDMETHOD(GetDevice)(THIS_ LPDIRECT3DDEVICE9* ppDevice) PURE;
-    STDMETHOD(GetLogFont)(THIS_ LOGFONT* pLogFont) PURE;
+    STDMETHOD(GetDevice)(THIS_ LPDIRECT3DDEVICE9 *ppDevice) PURE;
+    STDMETHOD(GetDescA)(THIS_ D3DXFONT_DESCA *pDesc) PURE;
+    STDMETHOD(GetDescW)(THIS_ D3DXFONT_DESCW *pDesc) PURE;
+    STDMETHOD_(BOOL, GetTextMetricsA)(THIS_ TEXTMETRICA *pTextMetrics) PURE;
+    STDMETHOD_(BOOL, GetTextMetricsW)(THIS_ TEXTMETRICW *pTextMetrics) PURE;
 
-    STDMETHOD(Begin)(THIS) PURE;
-    STDMETHOD_(INT, DrawTextA)(THIS_ LPCSTR  pString, INT Count, LPRECT pRect, DWORD Format, D3DCOLOR Color) PURE;
-    STDMETHOD_(INT, DrawTextW)(THIS_ LPCWSTR pString, INT Count, LPRECT pRect, DWORD Format, D3DCOLOR Color) PURE;
-    STDMETHOD(End)(THIS) PURE;
+    STDMETHOD_(HDC, GetDC)(THIS) PURE;
+    STDMETHOD(GetGlyphData)(THIS_ UINT Glyph, LPDIRECT3DTEXTURE9 *ppTexture, RECT *pBlackBox, POINT *pCellInc) PURE;
+
+    STDMETHOD(PreloadCharacters)(THIS_ UINT First, UINT Last) PURE;
+    STDMETHOD(PreloadGlyphs)(THIS_ UINT First, UINT Last) PURE;
+    STDMETHOD(PreloadTextA)(THIS_ LPCSTR pString, INT Count) PURE;
+    STDMETHOD(PreloadTextW)(THIS_ LPCWSTR pString, INT Count) PURE;
+
+    STDMETHOD_(INT, DrawTextA)(THIS_ LPD3DXSPRITE pSprite, LPCSTR pString, INT Count, LPRECT pRect, DWORD Format, D3DCOLOR Color) PURE;
+    STDMETHOD_(INT, DrawTextW)(THIS_ LPD3DXSPRITE pSprite, LPCWSTR pString, INT Count, LPRECT pRect, DWORD Format, D3DCOLOR Color) PURE;
 
     STDMETHOD(OnLostDevice)(THIS) PURE;
     STDMETHOD(OnResetDevice)(THIS) PURE;
+
+#ifdef __cplusplus
+#ifdef UNICODE
+    HRESULT GetDesc(D3DXFONT_DESCW *pDesc) { return GetDescW(pDesc); }
+    HRESULT PreloadText(LPCWSTR pString, INT Count) { return PreloadTextW(pString, Count); }
+#else
+    HRESULT GetDesc(D3DXFONT_DESCA *pDesc) { return GetDescA(pDesc); }
+    HRESULT PreloadText(LPCSTR pString, INT Count) { return PreloadTextA(pString, Count); }
+#endif
+#endif //__cplusplus
 };
 
 #ifndef DrawText

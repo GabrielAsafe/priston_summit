@@ -57,6 +57,98 @@ static void MINGW_LoginTrace(const char* fmt, ...)
     fclose(f);
 }
 
+
+static unsigned int MINGW_SafeStringLength(
+	const char *text,
+	unsigned int capacity)
+{
+	unsigned int length = 0;
+
+	if (!text)
+		return 0;
+
+	while (length < capacity && text[length] != '\0')
+		++length;
+
+	return length;
+}
+
+
+static void MINGW_CheckUserAccount(const char *place)
+{
+	static unsigned char previous[ACCOUNT_SIZE];
+	static int initialized = 0;
+
+	if (!initialized)
+	{
+		memcpy(previous, UserAccount, sizeof(previous));
+		initialized = 1;
+		return;
+	}
+
+	if (memcmp(previous, UserAccount, sizeof(previous)) != 0)
+	{
+		FILE *f = fopen("mingw_useraccount_changes.txt", "a");
+
+		if (f)
+		{
+			unsigned int i;
+
+			fprintf(
+				f,
+				"CHANGE at %s addr=%p strlen=%u text=[",
+				place ? place : "(null)",
+				(void *)UserAccount,
+				MINGW_SafeStringLength(
+					UserAccount,
+					(unsigned int)sizeof(UserAccount))
+			);
+
+			/*
+			 * Nï¿½o usar diretamente %s aqui:
+			 * durante a corrupï¿½ï¿½o o buffer pode nï¿½o ter terminador NUL.
+			 */
+			for (
+				i = 0;
+				i < MINGW_SafeStringLength(
+					UserAccount,
+					(unsigned int)sizeof(UserAccount));
+				++i)
+			{
+				unsigned char c = (unsigned char)UserAccount[i];
+
+				if (c >= 32 && c <= 126)
+					fputc(c, f);
+				else
+					fprintf(f, "\\x%02X", (unsigned int)c);
+			}
+
+			fprintf(f, "]\nOLD: ");
+
+			for (i = 0; i < sizeof(previous); ++i)
+				fprintf(f, "%02X ", (unsigned int)previous[i]);
+
+			fprintf(f, "\nNEW: ");
+
+			for (i = 0; i < sizeof(UserAccount); ++i)
+			{
+				fprintf(
+					f,
+					"%02X ",
+					(unsigned int)(unsigned char)UserAccount[i]
+				);
+			}
+
+			fprintf(f, "\n\n");
+			fflush(f);
+			fclose(f);
+		}
+
+		memcpy(previous, UserAccount, sizeof(previous));
+	}
+}
+
+
 HoOpening::HoOpening()
 {
 
@@ -740,7 +832,7 @@ int HoOpening::Draw()
 	{
 		DrawImage(iBtnExit[0], startLogoX + 284,
 			startLogoY + 305,
-			148, 70);
+			148, 70);	
 	}
 
 	char buffer[256];
@@ -810,12 +902,15 @@ int HoOpening::Draw()
 				{
 					if (LoginInputState == 1)
 					{
-						MINGW_LoginTrace("CLICK_PLAY before LoginDataServer user=%s LoginInputState=%d StartConnectServerFlag=%d ConnectError=%d", UserAccount, LoginInputState, StartConnectServerFlag, ConnectError);
+						MINGW_CheckUserAccount("CLICK_PLAY entered");
+				MINGW_LoginTrace("CLICK_PLAY before LoginDataServer user=%s LoginInputState=%d StartConnectServerFlag=%d ConnectError=%d", UserAccount, LoginInputState, StartConnectServerFlag, ConnectError);
 						CurrentWorkState = STATE_LOGIN_INPUT;
 						LoginDataServer();
 						MINGW_LoginTrace("CLICK_PLAY after LoginDataServer");
 						LoginInputState = 0;
-						SetWindowText(hFocusWnd, UserAccount);
+						MINGW_CheckUserAccount("before click SetWindowText");
+				SetWindowText(hFocusWnd, UserAccount);
+				MINGW_CheckUserAccount("after click SetWindowText");
 						SendMessage(hTextWnd, EM_SETSEL, lstrlen(UserAccount), lstrlen(UserAccount) + 1);
 					}
 				}
@@ -845,32 +940,179 @@ int HoOpening::Draw()
 			{
 				if (LoginInputState == 0)
 				{
-					{ FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"before GetWindowText UserAccount hFocusWnd=%p\n",(void*)hFocusWnd); fclose(f);} }
-					GetWindowText(hFocusWnd, UserAccount, sizeof(UserAccount));
-					{ FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"after GetWindowText UserAccount text=%s\n", UserAccount); fclose(f);} }
-					KeyFilter(UserAccount);
-					{ FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"after KeyFilter UserAccount\n"); fclose(f);} }
+					{
+						char className[64] = { 0 };
+						GetClassNameA(hFocusWnd, className, sizeof(className));
+
+						FILE *f = fopen("mingw_login_input_deep.txt", "a");
+						if (f)
+						{
+							fprintf(
+								f,
+								"before GetWindowTextA UserAccount hFocusWnd=%p class=%s textLengthA=%d bufferSize=%u\\n",
+								(void *)hFocusWnd,
+								className,
+								GetWindowTextLengthA(hFocusWnd),
+								(unsigned int)sizeof(UserAccount)
+							);
+							fclose(f);
+						}
+					}
+
+					MINGW_CheckUserAccount("before account memset/GetWindowTextA");
+				memset(UserAccount, 0, sizeof(UserAccount));
+					SetLastError(ERROR_SUCCESS);
+
+					int copiedAccount = GetWindowTextA(
+						hFocusWnd,
+						UserAccount,
+						(int)sizeof(UserAccount)
+					);
+
+					DWORD accountTextError = GetLastError();
+
+				MINGW_CheckUserAccount("after account KeyFilter");
+
+				{
+					FILE *f = fopen("mingw_login_input_deep.txt", "a");
+					if (f)
+					{
+						fprintf(
+							f,
+							"after KeyFilter UserAccount strlen=%u text=[%s] bytes=",
+							(unsigned int)strlen(UserAccount),
+							UserAccount
+						);
+
+						for (unsigned int i = 0;
+							i < sizeof(UserAccount) && i < 32;
+							++i)
+						{
+							fprintf(
+								f,
+								"%02X ",
+								(unsigned int)(unsigned char)UserAccount[i]
+							);
+						}
+
+						fprintf(f, "\\n");
+						fclose(f);
+					}
+				}
+
+				MINGW_CheckUserAccount("after account debug-file block");
+
+				MINGW_CheckUserAccount("before account KeyFilter");
+				KeyFilter(UserAccount);
+				MINGW_CheckUserAccount("after account KeyFilter");
+
+					{
+						FILE *f = fopen("mingw_login_input_deep.txt", "a");
+						if (f)
+						{
+							fprintf(
+								f,
+								"after KeyFilter UserAccount strlen=%u text=[%s] bytes=",
+								(unsigned int)strlen(UserAccount),
+								UserAccount
+							);
+
+							for (unsigned int i = 0;
+								i < sizeof(UserAccount) && i < 32;
+								++i)
+							{
+								fprintf(
+									f,
+									"%02X ",
+									(unsigned int)(unsigned char)UserAccount[i]
+								);
+							}
+
+							fprintf(f, "\\n");
+							fclose(f);
+						}
+					}
 
 				}
 				else if (LoginInputState == 1)
 				{
 					{ FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"before GetWindowText UserPassword hFocusWnd=%p\n",(void*)hFocusWnd); fclose(f);} }
-					GetWindowText(hFocusWnd, UserPassword, sizeof(UserPassword));
+					
+#ifdef __MINGW32__
+				/* MINGW_PASSWORD_PROBE_V1 */
+				{
+					FILE *f = fopen("mingw_password_probe.txt", "a");
+					if (f)
+					{
+						fprintf(
+							f,
+							"BEFORE password GetWindowText state=%d hwnd=%p windowLen=%d bufferLen=%u\n",
+							LoginInputState,
+							(void *)hFocusWnd,
+							GetWindowTextLengthA(hFocusWnd),
+							(unsigned int)strlen(UserPassword)
+						);
+						fclose(f);
+					}
+				}
+#endif
+				GetWindowText(hFocusWnd, UserPassword, sizeof(UserPassword));
 					{ FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"after GetWindowText UserPassword\n"); fclose(f);} }
 					KeyFilter(UserPassword);
+#ifdef __MINGW32__
+				{
+					FILE *f = fopen("mingw_password_probe.txt", "a");
+					if (f)
+					{
+						fprintf(
+							f,
+							"AFTER password GetWindowText state=%d hwnd=%p windowLen=%d passwordLen=%u\n",
+							LoginInputState,
+							(void *)hFocusWnd,
+							GetWindowTextLengthA(hFocusWnd),
+							(unsigned int)strlen(UserPassword)
+						);
+						fclose(f);
+					}
+				}
+#endif
+
 					{ FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"after KeyFilter UserPassword\n"); fclose(f);} }
 				}
 			}
 
 			if (hFocusWnd)
 			{
-				FILE *f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"before EM_GETSEL hFocusWnd=%p End_before=%d\n",(void*)hFocusWnd, End); fclose(f); }
-				SendMessage(hFocusWnd, EM_GETSEL, NULL, (LPARAM)&End);
-				f=fopen("mingw_login_input_deep.txt","a"); if(f){ fprintf(f,"after EM_GETSEL End=%d\n", End); fclose(f); }
+				MINGW_CheckUserAccount("before account EM_GETSEL");
+
+				FILE *f = fopen("mingw_login_input_deep.txt", "a");
+				if (f)
+				{
+					fprintf(
+						f,
+						"before EM_GETSEL hFocusWnd=%p End_before=%d\n",
+						(void *)hFocusWnd,
+						End
+					);
+					fclose(f);
+				}
+
+				SendMessage(hFocusWnd, EM_GETSEL, 0, (LPARAM)&End);
+
+				MINGW_CheckUserAccount("after account EM_GETSEL");
+
+				f = fopen("mingw_login_input_deep.txt", "a");
+				if (f)
+				{
+					fprintf(f, "after EM_GETSEL End=%d\n", End);
+					fclose(f);
+				}
 			}
 
 			{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"before SetFontTextColor End=%d CaretCount=%d LoginInputState=%d hFocusWnd=%p\n", End, CaretCount, LoginInputState, (void*)hFocusWnd); fclose(f);} }
+			MINGW_CheckUserAccount("before account SetFontTextColor");
 			SetFontTextColor(RGB(255, 255, 255));
+			MINGW_CheckUserAccount("after account SetFontTextColor");
 			{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"after SetFontTextColor\n"); fclose(f);} }
 
 			if (hFocusWnd)
@@ -899,7 +1141,11 @@ int HoOpening::Draw()
 				CaretCount++;
 				if (CaretCount > 32)
 					CaretCount = 0;
-				{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"after caret block CaretCount=%d\n", CaretCount); fclose(f);} }
+				
+				{ 
+					FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"after caret block CaretCount=%d\n", CaretCount); fclose(f);} 
+					MINGW_CheckUserAccount("after account caret block");
+				}
 			}
 
 			int sp, len;
@@ -913,7 +1159,107 @@ int HoOpening::Draw()
 				len -= sp;
 			}
 			{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"before account text draw sp=%d len=%d ptr=%p\n", sp, len, (void*)(UserAccount + sp)); fclose(f);} }
-			dsTextLineOut(  startLogoX + startAccountAddX + 25 , startLogoY + startAccountAddY - 60, UserAccount + sp, len);
+			MINGW_CheckUserAccount("before account dsTextLineOut");
+			/* MINGW_SAFE_ACCOUNT_DRAW_BEGIN
+			 *
+			 * Nunca entrega o buffer global UserAccount diretamente ao
+			 * sistema de desenho. O cliente MinGW apresentou corrupção deste
+			 * buffer imediatamente depois de dsTextLineOut().
+			 */
+			{
+				char mingwAccountBefore[ACCOUNT_SIZE];
+				char mingwAccountDraw[ACCOUNT_SIZE];
+				int mingwAccountDrawLen;
+				int mingwAccountDrawOffset;
+
+				memcpy(
+					mingwAccountBefore,
+					UserAccount,
+					sizeof(mingwAccountBefore)
+				);
+
+				memcpy(
+					mingwAccountDraw,
+					UserAccount,
+					sizeof(mingwAccountDraw)
+				);
+
+				mingwAccountBefore[ACCOUNT_SIZE - 1] = 0;
+				mingwAccountDraw[ACCOUNT_SIZE - 1] = 0;
+
+				mingwAccountDrawLen = (int)strlen(mingwAccountDraw);
+				mingwAccountDrawOffset = sp;
+
+				if (mingwAccountDrawOffset < 0)
+					mingwAccountDrawOffset = 0;
+
+				if (mingwAccountDrawOffset > mingwAccountDrawLen)
+					mingwAccountDrawOffset = mingwAccountDrawLen;
+
+				mingwAccountDrawLen -= mingwAccountDrawOffset;
+
+				dsTextLineOut(
+					startLogoX + startAccountAddX + 25,
+					startLogoY + startAccountAddY - 60,
+					mingwAccountDraw + mingwAccountDrawOffset,
+					mingwAccountDrawLen
+				);
+
+				/*
+				 * Se alguma rotina de desenho modificar o buffer global,
+				 * regista a alteração e recupera imediatamente a conta.
+				 */
+				if (memcmp(
+					mingwAccountBefore,
+					UserAccount,
+					sizeof(mingwAccountBefore)
+				) != 0)
+				{
+					FILE *mingwAccountLog =
+						fopen("mingw_useraccount_draw_guard.txt", "a");
+
+					if (mingwAccountLog)
+					{
+						unsigned int mingwIndex;
+
+						fprintf(
+							mingwAccountLog,
+							"CORRUPTION after dsTextLineOut "
+							"UserAccount=%p before=[%s] after-bytes=",
+							(void *)UserAccount,
+							mingwAccountBefore
+						);
+
+						for (
+							mingwIndex = 0;
+							mingwIndex < sizeof(mingwAccountBefore);
+							++mingwIndex
+						)
+						{
+							fprintf(
+								mingwAccountLog,
+								"%02X ",
+								(unsigned int)
+								(unsigned char)UserAccount[mingwIndex]
+							);
+						}
+
+						fprintf(mingwAccountLog, "\n");
+						fclose(mingwAccountLog);
+					}
+
+					memcpy(
+						UserAccount,
+						mingwAccountBefore,
+						sizeof(mingwAccountBefore)
+					);
+
+					UserAccount[ACCOUNT_SIZE - 1] = 0;
+				}
+			}
+			/* MINGW_SAFE_ACCOUNT_DRAW_END */
+			MINGW_CheckUserAccount("after account dsTextLineOut");
+			
 			{ FILE *f=fopen("mingw_login_text_draw.txt","a"); if(f){ fprintf(f,"after account text draw\n"); fclose(f);} }
 
 			len = lstrlen(UserPassword);
@@ -975,9 +1321,14 @@ int HoOpening::Draw()
 		DrawMessage(295 + m_AddWidth, 300 + m_AddHeight, HoTextLoginMessage[18], 30);
 
 	{ FILE *f=fopen("mingw_mousebutton_frame.txt","a"); if(f){ fprintf(f,"DRAW before cSettings.Draw\n"); fclose(f);} }
+	MINGW_CheckUserAccount("before cSettings.Draw");
 	cSettings.Draw();
+	MINGW_CheckUserAccount("after cSettings.Draw");
+
+
 	{ FILE *f=fopen("mingw_mousebutton_frame.txt","a"); if(f){ fprintf(f,"DRAW after cSettings.Draw return TRUE\n"); fclose(f);} }
 
+	MINGW_CheckUserAccount("before HoOpening Draw return");
 	return TRUE;
 }
 
@@ -1013,13 +1364,34 @@ DWORD WINAPI HoLoginThreadProc(void* pInfo)
 				memcpy(UserPassword, HoCommandInfo.Pass, strlen(HoCommandInfo.Pass));
 			}
 
-			MINGW_LoginTrace(
-				"before requestLogin user=%s",
-				UserAccount
-			);
+			// MINGW_LoginTrace(
+			// 	"before requestLogin user=%s",
+			// 	UserAccount
+			// );
+			{
+			FILE *f = fopen("mingw_login_thread.txt", "a");
+			if (f)
+			{
+				fprintf(
+					f,
+					"before requestLogin addr=%p strlen=%u text=[%s] bytes=",
+					(void *)UserAccount,
+					(unsigned)strlen(UserAccount),
+					UserAccount
+				);
+
+				for (unsigned i = 0; i < 32; ++i)
+					fprintf(f, "%02X ", (unsigned char)UserAccount[i]);
+
+				fprintf(f, "\n");
+				fclose(f);
+			}
+		}
+
+			MINGW_CheckUserAccount("immediately before requestLogin");
 
 			LoginResult result =
-			requestLogin(UserAccount, UserPassword);
+				requestLogin(UserAccount, UserPassword);
 
 			MINGW_LoginTrace(
 				"after requestLogin result=%d",
@@ -1120,7 +1492,7 @@ int HoOpening::KeyFilter(char* message)
 
 	for (int index = 0; index < (int)strlen(message); index++)
 	{
-		if (message[index] == '/t')
+		if (message[index] == '\t')
 		{
 			message[index] = 0;
 			SetWindowText(hFocusWnd, 0);

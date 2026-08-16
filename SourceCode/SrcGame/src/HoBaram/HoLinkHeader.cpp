@@ -1,4 +1,5 @@
 #include "opcodes.h"
+#include <stdio.h>
 #include "sinbaram/sinLinkHeader.h"
 #include "../HoBaram/HoLinkHeader.h"
 #include "../smreg.h"
@@ -220,11 +221,60 @@ int						DownUserCharacterCount;
 
 int HoRecvMessage(DWORD dwCode, void *RecvBuff)
 {
+#ifdef __MINGW32__
+	/* MINGW_HORECV_TRACE_V1 */
+	{
+		FILE *fp = fopen("mingw_ho_recv.txt", "a");
+		if(fp)
+		{
+			fprintf(
+				fp,
+				"HoRecvMessage code=0x%08lX RecvBuff=%p "
+				"SETUSERINFO=0x%08lX SERVER_INFO=0x%08lX "
+				"FAILCONNECT=0x%08lX\n",
+				(unsigned long)dwCode,
+				RecvBuff,
+				(unsigned long)OpCode::OPCODE_ID_SETUSERINFO,
+				(unsigned long)OpCode::OPCODE_SERVER_INFO,
+				(unsigned long)OpCode::OPCODE_FAILCONNECT
+			);
+			fclose(fp);
+		}
+	}
+#endif
 	if(dwCode == OpCode::OPCODE_ID_SETUSERINFO)
 	{
 		ServerUserCharacterInfo = (TRANS_USERCHAR_INFO *)RecvBuff;
+
+#ifdef __MINGW32__
+		{
+			FILE *fp = fopen("mingw_ho_recv.txt", "a");
+			if(fp)
+			{
+				fprintf(
+					fp,
+					"SETUSERINFO local=[%s] server=[%s] count=%d\n",
+					UserAccount,
+					ServerUserCharacterInfo->szID,
+					ServerUserCharacterInfo->PlayUserCount
+				);
+				fclose(fp);
+			}
+		}
+#endif
+
 		if(strcmp(UserAccount, ServerUserCharacterInfo->szID) != 0)
+		{
+#ifdef __MINGW32__
+			FILE *fp = fopen("mingw_ho_recv.txt", "a");
+			if(fp)
+			{
+				fprintf(fp, "SETUSERINFO rejected: ID mismatch\n");
+				fclose(fp);
+			}
+#endif
 			return FALSE;
+		}
 
 		memset(DownUserCharacterInfo, 0, sizeof(DownUserCharacterInfo));
 		DownUserCharacterCount = 0;
@@ -252,6 +302,22 @@ int HoRecvMessage(DWORD dwCode, void *RecvBuff)
 	{
 		DownServerListInfo = (TRANS_SERVER_LIST *)RecvBuff;
 
+#ifdef __MINGW32__
+		{
+			FILE *fp = fopen("mingw_ho_recv.txt", "a");
+			if(fp)
+			{
+				fprintf(
+					fp,
+					"SERVER_INFO name=[%s] count=%d\n",
+					DownServerListInfo->szServerName,
+					DownServerListInfo->ServerCount
+				);
+				fclose(fp);
+			}
+		}
+#endif
+
 		memset(UserServerListInfo, 0, sizeof(UserServerListInfo));
 		UserServerListInfoCount = 0;
 
@@ -273,7 +339,23 @@ int HoRecvMessage(DWORD dwCode, void *RecvBuff)
 		}
 	}
 	else if(dwCode == OpCode::OPCODE_FAILCONNECT)
+	{
 		ServerLoginError = (smTRANS_COMMAND *)RecvBuff;
+
+#ifdef __MINGW32__
+		FILE *fp = fopen("mingw_ho_recv.txt", "a");
+		if(fp)
+		{
+			fprintf(
+				fp,
+				"FAILCONNECT WParam=%d LParam=%d\n",
+				ServerLoginError->WParam,
+				ServerLoginError->LParam
+			);
+			fclose(fp);
+		}
+#endif
+	}
 	else
 		ServerReturn = (smTRANS_CHAR_COMMAND2 *)RecvBuff;
 

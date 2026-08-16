@@ -89,8 +89,8 @@ extern char	szConnServerName[16];
 #define PARTY_PROCESS	2000
 #define PARTY_END		3000
 
-char UserAccount[ACCOUNT_SIZE];
-char szConnServerName[16];
+extern char UserAccount[ACCOUNT_SIZE];
+extern char szConnServerName[16];
 
 extern int MouseButton[3];
 extern int MouseDblClick;
