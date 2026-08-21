@@ -1061,9 +1061,107 @@ int smModelDecode(char *iniFile, smMODELINFO *Info)
 					fread(&smModelInfo, sizeof(smMODELINFO), 1, fp);
 					fclose(fp);
 
-					DWORD dwCode = GetSpeedSum(lpFile);
-					if(ModelKeyWordDecode(dwCode, &smModelInfo) == FALSE)
+					// MINGW_MODEL_PATH_CHECKSUM_V2
+#ifdef __MINGW32__
+					char mingwModelCodePath[260] = { 0 };
+					int mingwSrcPos = 0;
+					int mingwDstPos = 0;
+					int mingwLastWasSeparator = FALSE;
+
+					while(
+						lpFile[mingwSrcPos] &&
+						mingwDstPos <
+							(int)sizeof(mingwModelCodePath) - 1
+					)
+					{
+						char mingwChar =
+							lpFile[mingwSrcPos++];
+
+						if(
+							mingwChar == '/' ||
+							mingwChar == '\\'
+						)
+						{
+							if(mingwLastWasSeparator)
+								continue;
+
+							mingwChar = '\\';
+							mingwLastWasSeparator = TRUE;
+						}
+						else
+						{
+							mingwLastWasSeparator = FALSE;
+						}
+
+						mingwModelCodePath[
+							mingwDstPos++
+						] = mingwChar;
+					}
+
+					mingwModelCodePath[
+						mingwDstPos
+					] = 0;
+
+					DWORD dwCode =
+						GetSpeedSum(
+							mingwModelCodePath
+						);
+
+					int mingwKeywordResult =
+						ModelKeyWordDecode(
+							dwCode,
+							&smModelInfo
+						);
+
+					{
+						FILE *mingwTrace =
+							fopen(
+								"mingw_model_decode_trace.txt",
+								"a"
+							);
+
+						if(mingwTrace)
+						{
+							fprintf(
+								mingwTrace,
+								"input=[%s] "
+								"canonical=[%s] "
+								"size=%lu "
+								"code=0x%08lX "
+								"keyword=%d "
+								"model=[%s] "
+								"link=[%s] "
+								"motionCount=%lu\n",
+								lpFile,
+								mingwModelCodePath,
+								(unsigned long)dwFileLen,
+								(unsigned long)dwCode,
+								mingwKeywordResult,
+								smModelInfo.szModelFile,
+								smModelInfo.szLinkFile,
+								(unsigned long)
+									smModelInfo.MotionCount
+							);
+
+							fflush(mingwTrace);
+							fclose(mingwTrace);
+						}
+					}
+
+					if(!mingwKeywordResult)
 						return FALSE;
+#else
+					DWORD dwCode =
+						GetSpeedSum(lpFile);
+
+					if(
+						ModelKeyWordDecode(
+							dwCode,
+							&smModelInfo
+						) == FALSE
+					)
+						return FALSE;
+#endif
 
 					if(Info->szModelFile[0] && i > 0)
 					{

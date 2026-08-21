@@ -1,4 +1,4 @@
-#include <cstring>
+#include <objbase.h>\n#include <cstring>
 #include <windows.h>
 #include <io.h>
 #include <stdio.h>         
@@ -475,7 +475,69 @@ DWORD WINAPI LogSqlDataThreadProc(void *pInfo)
 
 
 	hThread = GetCurrentThread();
+
+	/* MINGW_LOGSQL_COM_INIT_V1
+	 * Database.dll usa OLE DB/COM. COM deve ser inicializado
+	 * na propria LogSqlDataThreadProc antes de LoadLogSqlDLL(),
+	 * pois BillSql.Init() pode chamar SetAllGameUser imediatamente.
+	 */
+	HRESULT mingwLogSqlComHr =
+		CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
+
+	BOOL mingwLogSqlComInitialized =
+		SUCCEEDED(mingwLogSqlComHr);
+
+	{
+		FILE *fp = fopen("mingw_logsql_worker.txt", "a");
+
+		if(fp)
+		{
+			fprintf(
+				fp,
+				"[THREAD-INIT] tid=%lu comHr=0x%08lX initialized=%d\n",
+				(unsigned long)GetCurrentThreadId(),
+				(unsigned long)mingwLogSqlComHr,
+				mingwLogSqlComInitialized ? 1 : 0
+			);
+			fflush(fp);
+			fclose(fp);
+		}
+	}
+
 	LoadLogSqlDLL();
+
+	{
+		FILE *fp = fopen("mingw_logsql_worker.txt", "a");
+
+		if(fp)
+		{
+			char modulePath[MAX_PATH] = { 0 };
+
+			if(BillSql.hLogSqlDLL)
+			{
+				GetModuleFileNameA(
+					BillSql.hLogSqlDLL,
+					modulePath,
+					MAX_PATH - 1
+				);
+			}
+
+			fprintf(
+				fp,
+				"[DLL] tid=%lu handle=%p path='%s' "
+				"CharRecordLog=%p CharLog=%p\n",
+				(unsigned long)GetCurrentThreadId(),
+				(void *)BillSql.hLogSqlDLL,
+				modulePath,
+				(void *)BillSql.CharRecordLog,
+				(void *)BillSql.CharLog
+			);
+
+			fflush(fp);
+			fclose(fp);
+		}
+	}
+
 	Server_SqlReady = TRUE;
 
 	while(1)
@@ -522,7 +584,57 @@ DWORD WINAPI LogSqlDataThreadProc(void *pInfo)
 				if(BillSql.CharRecordLog)
 				{
 
-					BillSql.CharRecordLog(logSqlData.szUserID, logSqlData.Occupation, logSqlData.szCharName, logSqlData.szGPCode, logSqlData.szIP, szServerName, logSqlData.Level, logSqlData.Exp64, logSqlData.dwMoney, 1);
+					{
+						FILE *fp = fopen("mingw_logsql_worker.txt", "a");
+
+						if(fp)
+						{
+							fprintf(
+								fp,
+								"[NEWCHAR-BEFORE] tid=%lu fn=%p "
+								"id='%s' char='%s' occupation=%d "
+								"level=%lu exp=%lld money=%lu\n",
+								(unsigned long)GetCurrentThreadId(),
+								(void *)BillSql.CharRecordLog,
+								logSqlData.szUserID,
+								logSqlData.szCharName,
+								logSqlData.Occupation,
+								(unsigned long)logSqlData.Level,
+								(long long)logSqlData.Exp64,
+								(unsigned long)logSqlData.dwMoney
+							);
+							fflush(fp);
+							fclose(fp);
+						}
+
+						int mingwCharRecordResult =
+							BillSql.CharRecordLog(
+								logSqlData.szUserID,
+								logSqlData.Occupation,
+								logSqlData.szCharName,
+								logSqlData.szGPCode,
+								logSqlData.szIP,
+								szServerName,
+								logSqlData.Level,
+								logSqlData.Exp64,
+								logSqlData.dwMoney,
+								1
+							);
+
+						fp = fopen("mingw_logsql_worker.txt", "a");
+
+						if(fp)
+						{
+							fprintf(
+								fp,
+								"[NEWCHAR-AFTER] tid=%lu result=%d\n",
+								(unsigned long)GetCurrentThreadId(),
+								mingwCharRecordResult
+							);
+							fflush(fp);
+							fclose(fp);
+						}
+					}
 				}
 				else if(BillSql.CharLog)
 				{
@@ -935,6 +1047,9 @@ DWORD WINAPI LogSqlDataThreadProc(void *pInfo)
 
 		}
 	}
+
+	if(mingwLogSqlComInitialized)
+		CoUninitialize();
 
 	ExitThread(TRUE);
 	return TRUE;

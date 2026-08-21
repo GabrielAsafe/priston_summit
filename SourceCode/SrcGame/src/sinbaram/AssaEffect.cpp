@@ -30,7 +30,12 @@ void AssaEffectKeyDown()
 
 void InitAssaEffect()
 {
-	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"ENTER InitAssaEffect\n"); fclose(f);} }
+	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,
+        "ENTER InitAssaEffect sizeof_class=%u sizeof_array=%u max=%d ptr=%u\n",
+        (unsigned)sizeof(cASSAEFFECT),
+        (unsigned)sizeof(cAssaEffect),
+        (int)cASSAEFFECT_MAX,
+        (unsigned)sizeof(void *)); fclose(f);} }
 
 	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"before InitAssaRes\n"); fclose(f);} }
 	InitAssaRes();
@@ -40,7 +45,7 @@ void InitAssaEffect()
 	LoadAssaRes();
 	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"after LoadAssaRes\n"); fclose(f);} }
 
-	memset(cAssaEffect, 0, sizeof(cASSAEFFECT));
+	memset(cAssaEffect, 0, sizeof(cAssaEffect));
 	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"after memset cAssaEffect\n"); fclose(f);} }
 
 	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"LEAVE InitAssaEffect\n"); fclose(f);} }

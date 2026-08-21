@@ -2237,6 +2237,84 @@ int smCHAR::SetDinaPattern2(smDPAT	*lpDPat)
 int smCHAR::ChangeMotion(int Motion, int DpMode)
 {
 
+	// MINGW_CHANGEMOTION_NULL_GUARD_V1
+#ifdef __MINGW32__
+	{
+		BOOL mingwNullMotion = FALSE;
+		const char *mingwReason = "";
+
+		if(DpMode)
+		{
+			if(MotionSelectFrame)
+			{
+				if(!smMotionInfo2)
+				{
+					mingwNullMotion = TRUE;
+					mingwReason = "smMotionInfo2";
+				}
+			}
+			else
+			{
+				if(!smMotionInfo)
+				{
+					mingwNullMotion = TRUE;
+					mingwReason = "smMotionInfo";
+				}
+			}
+		}
+		else
+		{
+			if(!smMotionInfo)
+			{
+				mingwNullMotion = TRUE;
+				mingwReason = "smMotionInfo";
+			}
+		}
+
+		if(mingwNullMotion)
+		{
+			FILE *f = fopen(
+				"mingw_changemotion_null.txt",
+				"a"
+			);
+
+			if(f)
+			{
+				fprintf(
+					f,
+					"NULL reason=%s this=%p motion=%d "
+					"dp=%d selectFrame=%d "
+					"job=0x%08X "
+					"smMotionInfo=%p smMotionInfo2=%p "
+					"MotionInfo=%p "
+					"Pattern=%p Pattern2=%p "
+					"lpDinaPattern=%p lpDinaPattern2=%p\n",
+					mingwReason,
+					(void *)this,
+					Motion,
+					DpMode,
+					MotionSelectFrame,
+					(unsigned int)smCharInfo.JOB_CODE,
+					(void *)smMotionInfo,
+					(void *)smMotionInfo2,
+					(void *)MotionInfo,
+					(void *)Pattern,
+					(void *)Pattern2,
+					(void *)lpDinaPattern,
+					(void *)lpDinaPattern2
+				);
+
+				fflush(f);
+				fclose(f);
+			}
+
+			return FALSE;
+		}
+	}
+#endif
+
+
+
 	if (DpMode)
 	{
 

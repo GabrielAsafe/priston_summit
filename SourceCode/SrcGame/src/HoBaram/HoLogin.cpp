@@ -325,46 +325,78 @@ void HoLogin::Init_UseMor()
 		menuPos[1].bottom = menuPos[1].top + 128;
 }
 
+
+/* MINGW_HOLOGIN_INIT_STEPS_V2 */
+static void MingwHoLoginInitStepV2(const char *step)
+{
+    FILE *f = fopen("mingw_hologin_init_steps.txt", "a");
+    if(f)
+    {
+        fprintf(f, "%s\n", step);
+        fflush(f);
+        fclose(f);
+    }
+}
+
 int HoLogin::Init()
 {
+	MingwHoLoginInitStepV2("STEP 00 ENTER HoLogin::Init");
 	StartErrorDelayFlag = FALSE;
 	ClanMarkUpdateSuccessFlag = FALSE;
+	MingwHoLoginInitStepV2("STEP 01 BEFORE ParticleMgr.Init");
 	g_NewParticleMgr.Init();
+	MingwHoLoginInitStepV2("STEP 02 AFTER ParticleMgr.Init");
+	MingwHoLoginInitStepV2("STEP 03 BEFORE InitAssaEffect");
 	InitAssaEffect();
+	MingwHoLoginInitStepV2("STEP 04 AFTER InitAssaEffect");
 	POINT3D pos;
 
 	pos.x = -70 * fONE;
 	pos.y = 55 * fONE;
 	pos.z = -156 * fONE;
 
+	MingwHoLoginInitStepV2("STEP 05 BEFORE Fire#1");
 	g_NewParticleMgr.Start("Fire", pos);
+	MingwHoLoginInitStepV2("STEP 06 AFTER Fire#1");
+	MingwHoLoginInitStepV2("STEP 07 BEFORE Fire#2");
 	g_NewParticleMgr.Start("Fire", pos);
+	MingwHoLoginInitStepV2("STEP 08 AFTER Fire#2");
 
 	pos.x = -77 * fONE;
 	pos.y = 60 * fONE;
 	pos.z = -143 * fONE;
+	MingwHoLoginInitStepV2("STEP 09 BEFORE Fire#3");
 	g_NewParticleMgr.Start("Fire", pos);
+	MingwHoLoginInitStepV2("STEP 10 AFTER Fire#3");
 
 	pos.x = -81 * fONE;
 	pos.y = 65 * fONE;
 	pos.z = -143 * fONE;
+	MingwHoLoginInitStepV2("STEP 11 BEFORE Fire#4");
 	g_NewParticleMgr.Start("Fire", pos);
+	MingwHoLoginInitStepV2("STEP 12 AFTER Fire#4");
 
 
 	pos.x = 70 * fONE;
 	pos.y = 56 * fONE;
 	pos.z = -155 * fONE;
+	MingwHoLoginInitStepV2("STEP 13 BEFORE Fire#5");
 	g_NewParticleMgr.Start("Fire", pos);
+	MingwHoLoginInitStepV2("STEP 14 AFTER Fire#5");
 
 	pos.x = 75 * fONE;
 	pos.y = 60 * fONE;
 	pos.z = -152 * fONE;
+	MingwHoLoginInitStepV2("STEP 15 BEFORE Fire#6");
 	g_NewParticleMgr.Start("Fire", pos);
+	MingwHoLoginInitStepV2("STEP 16 AFTER Fire#6");
 
 	pos.x = 81 * fONE;
 	pos.y = 66 * fONE;
 	pos.z = -142 * fONE;
+	MingwHoLoginInitStepV2("STEP 17 BEFORE Fire#7");
 	g_NewParticleMgr.Start("Fire", pos);
+	MingwHoLoginInitStepV2("STEP 18 AFTER Fire#7");
 
 	FocusWndFlag = FALSE;
 	CharacterStopFlag = FALSE;
@@ -408,21 +440,37 @@ int HoLogin::Init()
 	FadeNextState = FADE_OUT;
 
 
+	MingwHoLoginInitStepV2("STEP 20 BEFORE StopBGM");
 	StopBGM();
+	MingwHoLoginInitStepV2("STEP 21 AFTER StopBGM");
+	MingwHoLoginInitStepV2("STEP 22 BEFORE OpenBGM");
 	OpenBGM("StartImage//login//CharacterSelect.wav");
+	MingwHoLoginInitStepV2("STEP 23 AFTER OpenBGM");
+	MingwHoLoginInitStepV2("STEP 24 BEFORE PlayBGM");
 	PlayBGM();
+	MingwHoLoginInitStepV2("STEP 25 AFTER PlayBGM");
 
+	MingwHoLoginInitStepV2("STEP 26 BEFORE PlayWav2#1");
 	PlayWav2(9 - 1, 1);
+	MingwHoLoginInitStepV2("STEP 27 AFTER PlayWav2#1");
+	MingwHoLoginInitStepV2("STEP 28 BEFORE PlayWav2#2");
 	PlayWav2(10 - 1, 1);
+	MingwHoLoginInitStepV2("STEP 29 AFTER PlayWav2#2");
+	MingwHoLoginInitStepV2("STEP 30 BEFORE PlayWav2#3");
 	PlayWav2(11 - 1, 1);
+	MingwHoLoginInitStepV2("STEP 31 AFTER PlayWav2#3");
 
 	SetVolumeBGM(0);
 	PlayWav_VolChange(9 - 1, 0);
 	PlayWav_VolChange(10 - 1, 0);
 	PlayWav_VolChange(11 - 1, 0);
 
+	MingwHoLoginInitStepV2("STEP 32 BEFORE SetFade");
 	SetFade();
-	smInitColorZClip(21, 17, 14); // Loading apos selecionar personagem
+	MingwHoLoginInitStepV2("STEP 33 AFTER SetFade");
+	MingwHoLoginInitStepV2("STEP 34 BEFORE smInitColorZClip");
+	smInitColorZClip(21, 17, 14);
+	MingwHoLoginInitStepV2("STEP 35 AFTER smInitColorZClip"); // Loading apos selecionar personagem
 	smRender.Color_R = 0;
 	smRender.Color_G = 0;
 	smRender.Color_B = 0;
@@ -430,19 +478,27 @@ int HoLogin::Init()
 
 
 	void InitSelectCha();
+	MingwHoLoginInitStepV2("STEP 40 BEFORE InitSelectCha");
 	InitSelectCha();
+	MingwHoLoginInitStepV2("STEP 41 AFTER InitSelectCha");
 
 
 	void web_DB_start();
+	MingwHoLoginInitStepV2("STEP 42 BEFORE web_DB_start");
 	web_DB_start();
+	MingwHoLoginInitStepV2("STEP 43 AFTER web_DB_start");
 
 
 	void clanMENU_INIT(int setN);
+	MingwHoLoginInitStepV2("STEP 44 BEFORE clanMENU_INIT");
 	clanMENU_INIT(0);
+	MingwHoLoginInitStepV2("STEP 45 AFTER clanMENU_INIT");
 
 
 	void ClearSelectCha();
+	MingwHoLoginInitStepV2("STEP 46 BEFORE ClearSelectCha");
 	ClearSelectCha();
+	MingwHoLoginInitStepV2("STEP 47 AFTER ClearSelectCha");
 
 	int HONG_GetChaClanName(char* id, char* chaname);
 	if (DownUserCharacterCount > 0)
@@ -457,6 +513,7 @@ int HoLogin::Init()
 	}
 
 	m_ScreenHalf = SETTINGSHANDLER->getWidth() / 2;
+	MingwHoLoginInitStepV2("STEP 99 LEAVE HoLogin::Init SUCCESS");
 	return TRUE;
 }
 
@@ -750,6 +807,54 @@ int	HoLogin::AddUserCharacter(char *chrFile1, char *chrFile2, int jobCode)
 	return TRUE;
 }
 
+
+// MINGW_JOB_LOAD_TRACE_V1
+#ifdef __MINGW32__
+static void MINGW_JobLoadTraceV1(
+	const char *phase,
+	int index,
+	const char *body,
+	const char *face,
+	int result,
+	smCHAR *ch
+)
+{
+	FILE *f = fopen(
+		"mingw_job_load_trace.txt",
+		"a"
+	);
+
+	if(!f)
+		return;
+
+	fprintf(
+		f,
+		"%s index=%d result=%d "
+		"job=0x%08X char=%p "
+		"body=[%s] face=[%s] "
+		"motion=%p motion2=%p "
+		"pattern=%p pattern2=%p "
+		"dina1=%p dina2=%p\n",
+		phase ? phase : "",
+		index,
+		result,
+		ch ? (unsigned int)ch->smCharInfo.JOB_CODE : 0,
+		(void *)ch,
+		body ? body : "",
+		face ? face : "",
+		ch ? (void *)ch->smMotionInfo : NULL,
+		ch ? (void *)ch->smMotionInfo2 : NULL,
+		ch ? (void *)ch->Pattern : NULL,
+		ch ? (void *)ch->Pattern2 : NULL,
+		ch ? (void *)ch->lpDinaPattern : NULL,
+		ch ? (void *)ch->lpDinaPattern2 : NULL
+	);
+
+	fflush(f);
+	fclose(f);
+}
+#endif
+
 int HoLogin::AddJobCharacter(char *chrFile1, char *chrFile2, int index)
 {
 	if (index == -1)
@@ -759,7 +864,36 @@ int HoLogin::AddJobCharacter(char *chrFile1, char *chrFile2, int index)
 		JobCharacter[JobCharacterCount].smCharInfo.wPlayerKilling[0] = 0;
 
 
-		SetLoadPattern(&JobCharacter[JobCharacterCount], chrFile1, chrFile2, 0, 0);
+		#ifdef __MINGW32__
+		int mingwLoadResultV1 = SetLoadPattern(
+			&JobCharacter[JobCharacterCount],
+			chrFile1,
+			chrFile2,
+			0,
+			0
+		);
+
+		MINGW_JobLoadTraceV1(
+			"ADD NEW AFTER SetLoadPattern",
+			JobCharacterCount,
+			chrFile1,
+			chrFile2,
+			mingwLoadResultV1,
+			&JobCharacter[JobCharacterCount]
+		);
+
+		// MINGW_ADDJOB_LOAD_FAIL_GUARD_V2
+		if(!mingwLoadResultV1)
+			return FALSE;
+#else
+		SetLoadPattern(
+			&JobCharacter[JobCharacterCount],
+			chrFile1,
+			chrFile2,
+			0,
+			0
+		);
+#endif
 
 		JobCharacter[JobCharacterCount].SetPosi(JobCharacterPos[JobCharacterCount][0] * fONE,
 			Stage->GetHeight(JobCharacterPos[JobCharacterCount][0] * fONE, JobCharacterPos[JobCharacterCount][1] * fONE),
@@ -768,15 +902,29 @@ int HoLogin::AddJobCharacter(char *chrFile1, char *chrFile2, int index)
 		memset(JobCharacter[JobCharacterCount].szChatMessage, 0, sizeof(JobCharacter[JobCharacterCount].szChatMessage));
 		memset(JobCharacter[JobCharacterCount].smCharInfo.szName, 0, sizeof(JobCharacter[JobCharacterCount].smCharInfo.szName));
 
+		#ifdef __MINGW32__
+		int mingwMotionResultV1 =
+			JobCharacter[JobCharacterCount].ChangeMotion(10);
+
+		MINGW_JobLoadTraceV1(
+			"ADD NEW AFTER ChangeMotion",
+			JobCharacterCount,
+			chrFile1,
+			chrFile2,
+			mingwMotionResultV1,
+			&JobCharacter[JobCharacterCount]
+		);
+#else
 		JobCharacter[JobCharacterCount].ChangeMotion(10);
+#endif
 
 		JobCharacterCount++;
 		ReadTextures();
 		JobCharacter[JobCharacterCount - 1].lpDinaPattern->Pat->smMaterialGroup->CheckMatreialTextureSwap();
 		JobCharacter[JobCharacterCount - 1].lpDinaPattern2->Pat->smMaterialGroup->CheckMatreialTextureSwap();
 
-		JobCharacter[JobCharacterCount].smCharInfo.Stamina[0] = 100;
-		JobCharacter[JobCharacterCount].smCharInfo.Stamina[1] = 100;
+		JobCharacter[JobCharacterCount - 1].smCharInfo.Stamina[0] = 100;
+		JobCharacter[JobCharacterCount - 1].smCharInfo.Stamina[1] = 100;
 
 	}
 	else
@@ -788,7 +936,35 @@ int HoLogin::AddJobCharacter(char *chrFile1, char *chrFile2, int index)
 			JobCharacter[index].smCharInfo.wPlayerKilling[0] = 0;
 
 
-			SetLoadPattern(&JobCharacter[index], chrFile1, chrFile2, 0, 0);
+			#ifdef __MINGW32__
+			int mingwLoadResultIndexedV1 = SetLoadPattern(
+				&JobCharacter[index],
+				chrFile1,
+				chrFile2,
+				0,
+				0
+			);
+
+			MINGW_JobLoadTraceV1(
+				"ADD INDEX AFTER SetLoadPattern",
+				index,
+				chrFile1,
+				chrFile2,
+				mingwLoadResultIndexedV1,
+				&JobCharacter[index]
+			);
+
+			if(!mingwLoadResultIndexedV1)
+				return FALSE;
+#else
+			SetLoadPattern(
+				&JobCharacter[index],
+				chrFile1,
+				chrFile2,
+				0,
+				0
+			);
+#endif
 			JobCharacter[index].SetPosi(JobCharacterPos[index][0] * fONE,
 				Stage->GetHeight(JobCharacterPos[index][0] * fONE, JobCharacterPos[index][1] * fONE)
 				, JobCharacterPos[index][1] * fONE, 0, ANGLE_180, 0);
@@ -863,15 +1039,215 @@ int HoLogin::GetSelectCharacter(smCHAR *lpChar)
 	return FALSE;
 }
 
+
+// MINGW_CHAR_CREATE_TRACE_V4
+#ifdef __MINGW32__
+static void MINGW_CharCreateTraceV4(
+	const char *step,
+	int a,
+	int b,
+	const void *p1,
+	const void *p2,
+	const void *p3
+)
+{
+	FILE *f = fopen(
+		"mingw_char_create_trace.txt",
+		"a"
+	);
+
+	if(!f)
+		return;
+
+	fprintf(
+		f,
+		"%s a=%d b=%d p1=%p p2=%p p3=%p\n",
+		step ? step : "",
+		a,
+		b,
+		(void *)p1,
+		(void *)p2,
+		(void *)p3
+	);
+
+	fflush(f);
+	fclose(f);
+}
+#endif
+
 int HoLogin::SetChangeJobFace(char *charFile1, char *chrFile2, int jobIndex)
 {
-	int PosX, PosZ;
-	PosX = JobCharacter[jobIndex].pX;
-	PosZ = JobCharacter[jobIndex].pZ;
-	AddJobCharacter(charFile1, chrFile2, jobIndex);
-	JobCharacter[jobIndex].SetPosi(PosX, 10, PosZ, 0, ANGLE_180, 0);
+#ifdef __MINGW32__
+	MINGW_CharCreateTraceV4(
+		"SetChangeJobFace ENTER",
+		jobIndex,
+		JobCharacterCount,
+		charFile1,
+		chrFile2,
+		NULL
+	);
+#endif
+
+	if(
+		jobIndex < 0 ||
+		jobIndex >= JobCharacterCount
+	)
+	{
+#ifdef __MINGW32__
+		MINGW_CharCreateTraceV4(
+			"SetChangeJobFace INVALID INDEX",
+			jobIndex,
+			JobCharacterCount,
+			NULL,
+			NULL,
+			NULL
+		);
+#endif
+		return FALSE;
+	}
+
+	int PosX = JobCharacter[jobIndex].pX;
+	int PosZ = JobCharacter[jobIndex].pZ;
+
+#ifdef __MINGW32__
+	MINGW_CharCreateTraceV4(
+		"SetChangeJobFace BEFORE AddJobCharacter",
+		jobIndex,
+		0,
+		&JobCharacter[jobIndex],
+		JobCharacter[jobIndex].lpDinaPattern2,
+		NULL
+	);
+#endif
+
+	AddJobCharacter(
+		charFile1,
+		chrFile2,
+		jobIndex
+	);
+
+#ifdef __MINGW32__
+	MINGW_CharCreateTraceV4(
+		"SetChangeJobFace AFTER AddJobCharacter",
+		jobIndex,
+		0,
+		&JobCharacter[jobIndex],
+		JobCharacter[jobIndex].lpDinaPattern2,
+		NULL
+	);
+#endif
+
+	JobCharacter[jobIndex].SetPosi(
+		PosX,
+		10,
+		PosZ,
+		0,
+		ANGLE_180,
+		0
+	);
+
+#ifdef __MINGW32__
+	MINGW_CharCreateTraceV4(
+		"SetChangeJobFace BEFORE ReadTextures",
+		jobIndex,
+		0,
+		&JobCharacter[jobIndex],
+		JobCharacter[jobIndex].lpDinaPattern2,
+		NULL
+	);
+#endif
+
 	ReadTextures();
-	JobCharacter[jobIndex].lpDinaPattern2->Pat->smMaterialGroup->CheckMatreialTextureSwap();
+
+#ifdef __MINGW32__
+	MINGW_CharCreateTraceV4(
+		"SetChangeJobFace AFTER ReadTextures",
+		jobIndex,
+		0,
+		&JobCharacter[jobIndex],
+		JobCharacter[jobIndex].lpDinaPattern2,
+		NULL
+	);
+#endif
+
+	if(!JobCharacter[jobIndex].lpDinaPattern2)
+	{
+#ifdef __MINGW32__
+		MINGW_CharCreateTraceV4(
+			"SetChangeJobFace NULL lpDinaPattern2",
+			jobIndex,
+			0,
+			&JobCharacter[jobIndex],
+			NULL,
+			NULL
+		);
+#endif
+		return FALSE;
+	}
+
+	if(!JobCharacter[jobIndex].lpDinaPattern2->Pat)
+	{
+#ifdef __MINGW32__
+		MINGW_CharCreateTraceV4(
+			"SetChangeJobFace NULL Pat",
+			jobIndex,
+			0,
+			JobCharacter[jobIndex].lpDinaPattern2,
+			NULL,
+			NULL
+		);
+#endif
+		return FALSE;
+	}
+
+	if(
+		!JobCharacter[jobIndex]
+			.lpDinaPattern2
+			->Pat
+			->smMaterialGroup
+	)
+	{
+#ifdef __MINGW32__
+		MINGW_CharCreateTraceV4(
+			"SetChangeJobFace NULL smMaterialGroup",
+			jobIndex,
+			0,
+			JobCharacter[jobIndex].lpDinaPattern2,
+			JobCharacter[jobIndex].lpDinaPattern2->Pat,
+			NULL
+		);
+#endif
+		return FALSE;
+	}
+
+#ifdef __MINGW32__
+	MINGW_CharCreateTraceV4(
+		"SetChangeJobFace BEFORE TextureSwap",
+		jobIndex,
+		0,
+		JobCharacter[jobIndex].lpDinaPattern2,
+		JobCharacter[jobIndex].lpDinaPattern2->Pat,
+		JobCharacter[jobIndex].lpDinaPattern2->Pat->smMaterialGroup
+	);
+#endif
+
+	JobCharacter[jobIndex]
+		.lpDinaPattern2
+		->Pat
+		->smMaterialGroup
+		->CheckMatreialTextureSwap();
+
+#ifdef __MINGW32__
+	MINGW_CharCreateTraceV4(
+		"SetChangeJobFace AFTER TextureSwap",
+		jobIndex,
+		0,
+		JobCharacter[jobIndex].lpDinaPattern2,
+		JobCharacter[jobIndex].lpDinaPattern2->Pat,
+		JobCharacter[jobIndex].lpDinaPattern2->Pat->smMaterialGroup
+	);
+#endif
+
 	return TRUE;
 }
 
@@ -1180,6 +1556,33 @@ int HoLogin::Main()
 		}
 		else if (SelectCurrentState == COMPLETE_SELECT_STATE)
 		{
+#ifdef __MINGW32__
+			// MINGW_COMPLETE_STATE_TRACE_V1
+			{
+				static int s_completeTraceCount = 0;
+				if (s_completeTraceCount < 120)
+				{
+					FILE *fp = fopen("mingw_complete_state.txt", "a");
+					if (fp)
+					{
+						fprintf(fp,
+							"COMPLETE cur=%d next=%d fadeCur=%d fadeNext=%d blend=%d mapBlend=%d mouse0=%d dbl=%d sub=%d\\n",
+							SelectCurrentState,
+							SelectNextState,
+							FadeCurrentState,
+							FadeNextState,
+							BlendValue,
+							MapBlendCount,
+							MouseButton[0],
+							MouseDblClick,
+							SelectSubState);
+						fclose(fp);
+					}
+					s_completeTraceCount++;
+				}
+			}
+#endif
+
 			if (FadeCurrentState == FADE_OUT)
 			{
 				SelectNextState = START_GAME_STATE;
@@ -1387,7 +1790,28 @@ int HoLogin::MainDefaultButton()
 				JobCharacter[JobBodySelectNum].smCharInfo.ArrowPosi[1] = 0;
 
 				JobCharacter[JobBodySelectNum].Flag = 1;
+				#ifdef __MINGW32__
+				MINGW_CharCreateTraceV4(
+					"OpenEach #1 BEFORE",
+					JobBodySelectNum,
+					JobCharacterCount,
+					(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? &JobCharacter[JobBodySelectNum] : NULL,
+					(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? JobCharacter[JobBodySelectNum].lpDinaPattern2 : NULL,
+					(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount && JobCharacter[JobBodySelectNum].lpDinaPattern2) ? JobCharacter[JobBodySelectNum].lpDinaPattern2->Pat : NULL
+				);
+				#endif
 				OpenEachPlayer(&JobCharacter[JobBodySelectNum]);
+				#ifdef __MINGW32__
+				MINGW_CharCreateTraceV4(
+					"OpenEach #1 AFTER",
+					JobBodySelectNum,
+					JobCharacterCount,
+					(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? &JobCharacter[JobBodySelectNum] : NULL,
+					(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? JobCharacter[JobBodySelectNum].lpDinaPattern2 : NULL,
+					NULL
+				);
+				#endif
+
 				MouseDownCharacterNum = -1;
 				CharacterReturnFlag = TRUE;
 			}
@@ -1423,8 +1847,51 @@ int HoLogin::MainDefaultButton()
 
 	if (QuitButton.Main(pCursorPos.x, pCursorPos.y, MouseButton[0]))
 	{
+
+		// MINGW_SELECT_QUIT_TRACE_V1
+		{
+			FILE *mingwQuitTrace = fopen(
+				"mingw_select_quit_trace.txt",
+				"a"
+			);
+
+			if(mingwQuitTrace)
+			{
+				fprintf(
+					mingwQuitTrace,
+					"QUIT HIT x=%ld y=%ld MouseButton0=%d Current=%d Next=%d SubBefore=%d\n",
+					pCursorPos.x,
+					pCursorPos.y,
+					MouseButton[0],
+					SelectCurrentState,
+					SelectNextState,
+					SelectSubState
+				);
+
+				fclose(mingwQuitTrace);
+			}
+		}
+
 		PlayWav(4 - 1);
 		SelectSubState = SUB_SELECT_BACK;
+		{
+			FILE *mingwQuitTrace = fopen(
+				"mingw_select_quit_trace.txt",
+				"a"
+			);
+
+			if(mingwQuitTrace)
+			{
+				fprintf(
+					mingwQuitTrace,
+					"QUIT SET SUB_SELECT_BACK SubAfter=%d\n",
+					SelectSubState
+				);
+
+				fclose(mingwQuitTrace);
+			}
+		}
+
 	}
 
 	if (BackButton.Main(pCursorPos.x, pCursorPos.y, MouseButton[0]) && SelectCurrentState != CHARACTER_SELECT_STATE)
@@ -1485,6 +1952,17 @@ int HoLogin::DrawJobCharacter(int x, int y, int z, int ax, int ay, int az)
 			if (MouseDownCharacterNum == index)
 			{
 				JobBodySelectNum = index;
+				#ifdef __MINGW32__
+				MINGW_CharCreateTraceV4(
+					"CLASS INDEX ASSIGNED",
+					index,
+					JobCharacterCount,
+					&JobCharacter[index],
+					JobCharacter[index].lpDinaPattern2,
+					NULL
+				);
+				#endif
+
 				smRender.Color_R = 120;
 				smRender.Color_G = 120;
 				smRender.Color_B = 120;
@@ -1493,24 +1971,177 @@ int HoLogin::DrawJobCharacter(int x, int y, int z, int ax, int ay, int az)
 
 				if (MouseDblClick)
 				{
+
+				if(
+					JobBodySelectNum < 0 ||
+					JobBodySelectNum >= JobCharacterCount
+				)
+				{
+#ifdef __MINGW32__
+					MINGW_CharCreateTraceV4(
+						"DBLCLICK INVALID INDEX",
+						JobBodySelectNum,
+						JobCharacterCount,
+						NULL,
+						NULL,
+						NULL
+					);
+#endif
+					MouseDblClick = FALSE;
+					MouseButton[0] = FALSE;
+					return TRUE;
+				}
+
+				#ifdef __MINGW32__
+				MINGW_CharCreateTraceV4(
+					"DBLCLICK ENTER",
+					index,
+					JobBodySelectNum,
+					&JobCharacter[index],
+					JobCharacter[index].lpDinaPattern2,
+					NULL
+				);
+				#endif
+
 					SelectNextState = FACE_SELECT_STATE;
 
 					JobCharacter[JobBodySelectNum].smCharInfo.Stamina[0] = 100;
+					#ifdef __MINGW32__
+					MINGW_CharCreateTraceV4(
+						"DBLCLICK FIELD 01",
+						JobBodySelectNum,
+						JobCharacterCount,
+						&JobCharacter[JobBodySelectNum],
+						JobCharacter[JobBodySelectNum].lpDinaPattern2,
+						NULL
+					);
+					#endif
 					JobCharacter[JobBodySelectNum].smCharInfo.Stamina[1] = 100;
+					#ifdef __MINGW32__
+					MINGW_CharCreateTraceV4(
+						"DBLCLICK FIELD 02",
+						JobBodySelectNum,
+						JobCharacterCount,
+						&JobCharacter[JobBodySelectNum],
+						JobCharacter[JobBodySelectNum].lpDinaPattern2,
+						NULL
+					);
+					#endif
 
 					JobCharacter[JobBodySelectNum].SetTargetPosi(0, (-420 * fONE) >> FLOATNS);
+					#ifdef __MINGW32__
+					MINGW_CharCreateTraceV4(
+						"DBLCLICK FIELD 03",
+						JobBodySelectNum,
+						JobCharacterCount,
+						&JobCharacter[JobBodySelectNum],
+						JobCharacter[JobBodySelectNum].lpDinaPattern2,
+						NULL
+					);
+					#endif
 					JobCharacter[JobBodySelectNum].MoveMode = TRUE;
+					#ifdef __MINGW32__
+					MINGW_CharCreateTraceV4(
+						"DBLCLICK FIELD 04",
+						JobBodySelectNum,
+						JobCharacterCount,
+						&JobCharacter[JobBodySelectNum],
+						JobCharacter[JobBodySelectNum].lpDinaPattern2,
+						NULL
+					);
+					#endif
 					CharacterReturnFlag = TRUE;
 
 					JobCharacter[JobBodySelectNum].smCharInfo.Weight[0] = 0;
+					#ifdef __MINGW32__
+					MINGW_CharCreateTraceV4(
+						"DBLCLICK FIELD 05",
+						JobBodySelectNum,
+						JobCharacterCount,
+						&JobCharacter[JobBodySelectNum],
+						JobCharacter[JobBodySelectNum].lpDinaPattern2,
+						NULL
+					);
+					#endif
 					JobCharacter[JobBodySelectNum].smCharInfo.Weight[1] = 1000;
+					#ifdef __MINGW32__
+					MINGW_CharCreateTraceV4(
+						"DBLCLICK FIELD 06",
+						JobBodySelectNum,
+						JobCharacterCount,
+						&JobCharacter[JobBodySelectNum],
+						JobCharacter[JobBodySelectNum].lpDinaPattern2,
+						NULL
+					);
+					#endif
 					JobCharacter[JobBodySelectNum].smCharInfo.Stamina[0] = 1000;
+					#ifdef __MINGW32__
+					MINGW_CharCreateTraceV4(
+						"DBLCLICK FIELD 07",
+						JobBodySelectNum,
+						JobCharacterCount,
+						&JobCharacter[JobBodySelectNum],
+						JobCharacter[JobBodySelectNum].lpDinaPattern2,
+						NULL
+					);
+					#endif
 					JobCharacter[JobBodySelectNum].smCharInfo.ArrowPosi[0] = 0;
+					#ifdef __MINGW32__
+					MINGW_CharCreateTraceV4(
+						"DBLCLICK FIELD 08",
+						JobBodySelectNum,
+						JobCharacterCount,
+						&JobCharacter[JobBodySelectNum],
+						JobCharacter[JobBodySelectNum].lpDinaPattern2,
+						NULL
+					);
+					#endif
 					JobCharacter[JobBodySelectNum].smCharInfo.ArrowPosi[1] = 0;
+					#ifdef __MINGW32__
+					MINGW_CharCreateTraceV4(
+						"DBLCLICK FIELD 09",
+						JobBodySelectNum,
+						JobCharacterCount,
+						&JobCharacter[JobBodySelectNum],
+						JobCharacter[JobBodySelectNum].lpDinaPattern2,
+						NULL
+					);
+					#endif
 
 					JobCharacter[JobBodySelectNum].Flag = 1;
+					#ifdef __MINGW32__
+					MINGW_CharCreateTraceV4(
+						"DBLCLICK FIELD 10",
+						JobBodySelectNum,
+						JobCharacterCount,
+						&JobCharacter[JobBodySelectNum],
+						JobCharacter[JobBodySelectNum].lpDinaPattern2,
+						NULL
+					);
+					#endif
 
+					#ifdef __MINGW32__
+					MINGW_CharCreateTraceV4(
+						"OpenEach #2 BEFORE",
+						JobBodySelectNum,
+						JobCharacterCount,
+						(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? &JobCharacter[JobBodySelectNum] : NULL,
+						(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? JobCharacter[JobBodySelectNum].lpDinaPattern2 : NULL,
+						(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount && JobCharacter[JobBodySelectNum].lpDinaPattern2) ? JobCharacter[JobBodySelectNum].lpDinaPattern2->Pat : NULL
+					);
+					#endif
 					OpenEachPlayer(&JobCharacter[JobBodySelectNum]);
+					#ifdef __MINGW32__
+					MINGW_CharCreateTraceV4(
+						"OpenEach #2 AFTER",
+						JobBodySelectNum,
+						JobCharacterCount,
+						(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? &JobCharacter[JobBodySelectNum] : NULL,
+						(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? JobCharacter[JobBodySelectNum].lpDinaPattern2 : NULL,
+						NULL
+					);
+					#endif
+
 					MouseDblClick = FALSE;
 					MouseButton[0] = FALSE;
 				}
@@ -1868,13 +2499,99 @@ int HoLogin::DrawSelectSubState()
 
 	case SUB_SELECT_CHARACTER_NEW:
 	{
+#ifdef __MINGW32__
+		// MINGW_NEW_CONFIRM_TRACE_V1
+		{
+			static int s_newConfirmTraceCount = 0;
+
+			if ((MouseButton[0] || VRKeyBuff[VK_RETURN]) &&
+				s_newConfirmTraceCount < 40)
+			{
+				FILE *fp = fopen("mingw_new_confirm.txt", "a");
+				if (fp)
+				{
+					fprintf(fp,
+						"BEFORE x=%d y=%d mouse=%d enter=%d msgFlag=%d sub=%d\\n",
+						pCursorPos.x,
+						pCursorPos.y,
+						MouseButton[0],
+						VRKeyBuff[VK_RETURN],
+						MessageBox.Flag,
+						SelectSubState);
+					fclose(fp);
+				}
+			}
+		}
+#endif
+
 		flag = MessageBox.Main(pCursorPos.x, pCursorPos.y, MouseButton[0]);
+
+#ifdef __MINGW32__
+		{
+			static int s_newConfirmAfterCount = 0;
+
+			if ((MouseButton[0] || VRKeyBuff[VK_RETURN] || flag != 0) &&
+				s_newConfirmAfterCount < 40)
+			{
+				FILE *fp = fopen("mingw_new_confirm.txt", "a");
+				if (fp)
+				{
+					fprintf(fp,
+						"AFTER x=%d y=%d mouse=%d enter=%d flag=%d msgFlag=%d sub=%d\\n",
+						pCursorPos.x,
+						pCursorPos.y,
+						MouseButton[0],
+						VRKeyBuff[VK_RETURN],
+						flag,
+						MessageBox.Flag,
+						SelectSubState);
+					fclose(fp);
+				}
+			}
+
+			if (MouseButton[0] || VRKeyBuff[VK_RETURN] || flag != 0)
+				s_newConfirmAfterCount++;
+		}
+#endif
+
 		if (flag == 1 || VRKeyBuff[VK_RETURN])
 		{
 			PlayWav2(12 - 1);
 			ServerReturn = NULL;
+
+#ifdef __MINGW32__
+			// MINGW_NEW_SERVER_TRACE_V1
+			{
+				FILE *fp = fopen("mingw_new_server.txt", "a");
+				if (fp)
+				{
+					fprintf(fp,
+						"SEND BEFORE sub=%d serverReturn=%p name=[%s]\n",
+						SelectSubState,
+						(void*)ServerReturn,
+						UserCharacterNewName);
+					fclose(fp);
+				}
+			}
+#endif
+
 			TransUserCommand(OpCode::OPCODE_INSRECORDDATA, UserAccount, UserCharacterNewName);
 			SelectSubState = SUB_SELECT_CHARACTER_NEW_SERVER;
+
+#ifdef __MINGW32__
+			{
+				FILE *fp = fopen("mingw_new_server.txt", "a");
+				if (fp)
+				{
+					fprintf(fp,
+						"SEND AFTER sub=%d serverReturn=%p\n",
+						SelectSubState,
+						(void*)ServerReturn);
+					fclose(fp);
+				}
+			}
+#endif
+
 			LoadLoadingImage(0);
 		}
 		else if (flag == 2)
@@ -1892,6 +2609,34 @@ int HoLogin::DrawSelectSubState()
 
 	case SUB_SELECT_CHARACTER_NEW_SERVER:
 	{
+#ifdef __MINGW32__
+		{
+			static int s_newServerWaitTrace = 0;
+
+			if (s_newServerWaitTrace < 120)
+			{
+				FILE *fp = fopen("mingw_new_server.txt", "a");
+				if (fp)
+				{
+					if (ServerReturn)
+						fprintf(fp,
+							"WAIT sub=%d serverReturn=%p wParam=%ld\n",
+							SelectSubState,
+							(void*)ServerReturn,
+							(long)ServerReturn->WParam);
+					else
+						fprintf(fp,
+							"WAIT sub=%d serverReturn=NULL\n",
+							SelectSubState);
+
+					fclose(fp);
+				}
+
+				s_newServerWaitTrace++;
+			}
+		}
+#endif
+
 		if (ServerReturn != NULL)
 		{
 			if (ServerReturn->WParam == 1)
@@ -2668,7 +3413,28 @@ int HoLogin::Draw()
 					break;
 				}
 				JobCharacter[JobBodySelectNum].Flag = 1;
+				#ifdef __MINGW32__
+				MINGW_CharCreateTraceV4(
+					"OpenEach #3 BEFORE",
+					JobBodySelectNum,
+					JobCharacterCount,
+					(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? &JobCharacter[JobBodySelectNum] : NULL,
+					(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? JobCharacter[JobBodySelectNum].lpDinaPattern2 : NULL,
+					(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount && JobCharacter[JobBodySelectNum].lpDinaPattern2) ? JobCharacter[JobBodySelectNum].lpDinaPattern2->Pat : NULL
+				);
+				#endif
 				OpenEachPlayer(&JobCharacter[JobBodySelectNum]);
+				#ifdef __MINGW32__
+				MINGW_CharCreateTraceV4(
+					"OpenEach #3 AFTER",
+					JobBodySelectNum,
+					JobCharacterCount,
+					(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? &JobCharacter[JobBodySelectNum] : NULL,
+					(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? JobCharacter[JobBodySelectNum].lpDinaPattern2 : NULL,
+					NULL
+				);
+				#endif
+
 			}
 
 			int addX = SETTINGSHANDLER->getWidth() / 2 - 800 / 2;
@@ -2746,7 +3512,28 @@ int HoLogin::Draw()
 								JobFaceSelectNum = index;
 
 								JobCharacter[JobBodySelectNum].Flag = 1;
+								#ifdef __MINGW32__
+								MINGW_CharCreateTraceV4(
+									"OpenEach #4 BEFORE",
+									JobBodySelectNum,
+									JobCharacterCount,
+									(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? &JobCharacter[JobBodySelectNum] : NULL,
+									(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? JobCharacter[JobBodySelectNum].lpDinaPattern2 : NULL,
+									(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount && JobCharacter[JobBodySelectNum].lpDinaPattern2) ? JobCharacter[JobBodySelectNum].lpDinaPattern2->Pat : NULL
+								);
+								#endif
 								OpenEachPlayer(&JobCharacter[JobBodySelectNum]);
+								#ifdef __MINGW32__
+								MINGW_CharCreateTraceV4(
+									"OpenEach #4 AFTER",
+									JobBodySelectNum,
+									JobCharacterCount,
+									(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? &JobCharacter[JobBodySelectNum] : NULL,
+									(JobBodySelectNum >= 0 && JobBodySelectNum < JobCharacterCount) ? JobCharacter[JobBodySelectNum].lpDinaPattern2 : NULL,
+									NULL
+								);
+								#endif
+
 							}
 
 							if (JobBodySelectNum != -1)

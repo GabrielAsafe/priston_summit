@@ -409,10 +409,22 @@ DWORD WINAPI smTransRecvThreadProc(void *pInfo)
                 len);
 
 			int PktMask = (RecvCode & 0xFFFF0000);
-			/* MINGW_ALLOW_LEGACY_LOGIN_OPCODE_V1 */
+
+			/*
+			 * MINGW_GAME_OPCODE_FAMILY_FILTER_V2
+			 *
+			 * Legacy code previously accepted only OPENLIVE..SOD_INFO,
+			 * which incorrectly rejects valid 0x7000xxxx packets such as
+			 * OPCODE_INSRECORDDATA (0x7000006A).
+			 *
+			 * Accept the normal 0x7000xxxx protocol family and preserve
+			 * the legacy login opcode explicitly.
+			 */
+			const int GameOpcodeFamily =
+				(OpCode::OPCODE_OPENLIVE & 0xFFFF0000);
+
             if (RecvCode != OpCode::OPCODE_ID_GETUSERINFO &&
-                (RecvCode < OpCode::OPCODE_OPENLIVE ||
-                 RecvCode > OpCode::OPCODE_SOD_INFO))
+                PktMask != GameOpcodeFamily)
 			{
 				RecvLen = 0;
 				BuffCnt = 0;

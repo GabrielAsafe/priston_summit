@@ -574,6 +574,13 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 	InitDirectSound();
     MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
 
+	// MINGW_WINDOWMODE_STATE_FIX_V1
+#ifdef __MINGW32__
+	// MinGW window creation was already forced into the windowed branch.
+	// Keep logical window state consistent for WM_SIZE and other subsystems.
+	SETTINGSHANDLER->setWindowMode(1);
+#endif
+
 	WinSizeX = SETTINGSHANDLER->getWidth();
 	WinSizeY = SETTINGSHANDLER->getHeight();
 	WinColBit = SETTINGSHANDLER->getBitDepth();
@@ -604,7 +611,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
     MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
 	}
 
-	if(1 /* TEMP_MINGW_FORCE_WINDOWMODE */ || SETTINGSHANDLER->getWindowMode())
+	if(SETTINGSHANDLER->getWindowMode())
 	{
 		RECT wrect;
 		wrect.left = 0;
@@ -683,7 +690,29 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 	Sleep(300);
 	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after Sleep\n"); fclose(f);} }
 
+	// MINGW_SYSTEM_CURSOR_VISIBLE_V1
+#ifdef __MINGW32__
+	/*
+	 * O cliente original esconde o cursor do sistema porque
+	 * DrawCursor() desenha um cursor por textura.
+	 *
+	 * No port MinGW mantemos IDC_ARROW visivel como fallback
+	 * real, pois o caminho de textura pode criar o material
+	 * sem produzir pixels visiveis.
+	 */
+	while(ShowCursor(TRUE) < 0)
+	{
+	}
+
+	SetCursor(
+		LoadCursor(
+			NULL,
+			IDC_ARROW
+		)
+	);
+#else
 	ShowCursor(FALSE);
+#endif
 	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after ShowCursor\n"); fclose(f);} }
 
 	if (InitD3D(hwnd) == NULL)
@@ -1773,6 +1802,54 @@ switch (messg)
 		{
 			xPs = LOWORD(lParam);
 			yPs = HIWORD(lParam);
+
+			// MINGW_MOUSE_COORD_TRACE_V1
+			{
+				static int s_MouseCoordTraceCount = 0;
+				static int s_LastTraceX = -10000;
+				static int s_LastTraceY = -10000;
+
+				if (s_MouseCoordTraceCount < 24 &&
+					(abs(xPs - s_LastTraceX) >= 120 ||
+					 abs(yPs - s_LastTraceY) >= 90))
+				{
+					RECT rcClient = { 0, 0, 0, 0 };
+
+					if (GetClientRect(hWnd, &rcClient))
+					{
+						int clientW = rcClient.right - rcClient.left;
+						int clientH = rcClient.bottom - rcClient.top;
+
+						FILE *fpMouseTrace = fopen("mouse_coord_trace.txt", "a");
+						if (fpMouseTrace)
+						{
+							fprintf(fpMouseTrace,
+								"MOUSE_COORD raw=%d,%d "
+								"client=%dx%d "
+								"WinSize=%dx%d "
+								"smScreen=%dx%d "
+								"settings=%dx%d "
+								"backbuffer=%ux%u "
+								"windowMode=%d\n",
+								xPs, yPs,
+								clientW, clientH,
+								WinSizeX, WinSizeY,
+								smScreenWidth, smScreenHeight,
+								SETTINGSHANDLER->getWidth(),
+								SETTINGSHANDLER->getHeight(),
+								(unsigned)d3dpp.BackBufferWidth,
+								(unsigned)d3dpp.BackBufferHeight,
+								SETTINGSHANDLER->getWindowMode());
+
+							fclose(fpMouseTrace);
+						}
+
+						s_LastTraceX = xPs;
+						s_LastTraceY = yPs;
+						s_MouseCoordTraceCount++;
+					}
+				}
+			}
 
 			AutoMouse_Distance += abs(pCursorPos.x - xPs);
 			AutoMouse_Distance += abs(pCursorPos.y - yPs);

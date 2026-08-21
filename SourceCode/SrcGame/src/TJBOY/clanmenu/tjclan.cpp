@@ -1,3 +1,31 @@
+
+// MINGW_CLAN_TRACE_V6
+#ifdef __MINGW32__
+#include <stdio.h>
+#include <stdarg.h>
+
+static void MINGW_ClanTrace(const char *fmt, ...)
+{
+    FILE *f = fopen("mingw_clan_init_trace.txt", "a");
+
+    if(!f)
+        return;
+
+    va_list ap;
+    va_start(ap, fmt);
+    vfprintf(f, fmt, ap);
+    va_end(ap);
+
+    fputc('\n', f);
+    fflush(f);
+    fclose(f);
+}
+#else
+static void MINGW_ClanTrace(const char *, ...)
+{
+}
+#endif
+
 #include "opcodes.h"
 #define TJCLAN_CPP
 
@@ -386,6 +414,12 @@ void GoNotice()
 
 void clanMENU_INIT(int setN)
 {
+	MINGW_ClanTrace(
+		"clanMENU_INIT ENTER setN=%d bCheck=%d",
+		setN,
+		(int)bCheckHostNameandPort
+	);
+
 	if(bCheckHostNameandPort == 0)
 	{
 
@@ -393,7 +427,9 @@ void clanMENU_INIT(int setN)
 		{
 			case 0:
 			void ReadWEBDebugOption();
+			MINGW_ClanTrace("clanMENU_INIT ReadWEBDebugOption #1 BEFORE");
 			ReadWEBDebugOption();
+			MINGW_ClanTrace("clanMENU_INIT ReadWEBDebugOption #1 AFTER");
 
 
 			break;
@@ -419,12 +455,18 @@ void clanMENU_INIT(int setN)
 	{
 		case -1:
 		void ReadWEBDebugOption();
+		MINGW_ClanTrace("clanMENU_INIT ReadWEBDebugOption #2 BEFORE");
 		ReadWEBDebugOption();
+		MINGW_ClanTrace("clanMENU_INIT ReadWEBDebugOption #2 AFTER");
 
 
+		MINGW_ClanTrace("clanMENU_INIT ZeroMemory #1 BEFORE");
 		ZeroMemory(&ClanWonList, sizeof(CLANWONLIST));
+		MINGW_ClanTrace("clanMENU_INIT ZeroMemory #1 AFTER");
 
+		MINGW_ClanTrace("clanMENU_INIT Interface.CLANmenu_INIT #1 BEFORE");
 		Interface_clanmenu.CLANmenu_INIT();
+		MINGW_ClanTrace("clanMENU_INIT Interface.CLANmenu_INIT #1 AFTER");
 
 		Interface_clanmenu.CLANmenu_clanPOSITION();
 
@@ -434,20 +476,30 @@ void clanMENU_INIT(int setN)
 
 		case 0:
 		void ReadWEBDebugOption();
+		MINGW_ClanTrace("clanMENU_INIT ReadWEBDebugOption #3 BEFORE");
 		ReadWEBDebugOption();
+		MINGW_ClanTrace("clanMENU_INIT ReadWEBDebugOption #3 AFTER");
 
 		int LoadClanMessage();
+		MINGW_ClanTrace("clanMENU_INIT LoadClanMessage #1 BEFORE");
 		LoadClanMessage();
+		MINGW_ClanTrace("clanMENU_INIT LoadClanMessage #1 AFTER");
 
 		void CreateSaveData_dir();
+		MINGW_ClanTrace("clanMENU_INIT CreateSaveData_dir #1 BEFORE");
 		CreateSaveData_dir();
+		MINGW_ClanTrace("clanMENU_INIT CreateSaveData_dir #1 AFTER");
 
 
 
 
 
+		MINGW_ClanTrace("clanMENU_INIT ZeroMemory #2 BEFORE");
 		ZeroMemory(&ClanWonList, sizeof(CLANWONLIST));
+		MINGW_ClanTrace("clanMENU_INIT ZeroMemory #2 AFTER");
+		MINGW_ClanTrace("clanMENU_INIT Interface.CLANmenu_INIT #2 BEFORE");
 		Interface_clanmenu.CLANmenu_INIT();
+		MINGW_ClanTrace("clanMENU_INIT Interface.CLANmenu_INIT #2 AFTER");
 	#ifdef VOICE_CHAT
 
 
@@ -488,6 +540,8 @@ void clanMENU_INIT(int setN)
 	#endif
 		break;
 	}
+
+	MINGW_ClanTrace("clanMENU_INIT LEAVE setN=%d", setN);
 }
 
 
@@ -643,10 +697,18 @@ void CLAN_MENU::NoticeMessage_Init2()
 
 void CLAN_MENU::CLANmenu_INIT()
 {
+	MINGW_ClanTrace(
+		"CLAN_MENU::CLANmenu_INIT ENTER bCheck=%d sinChar=%p",
+		(int)bCheckHostNameandPort,
+		(void *)sinChar
+	);
+
 	if(!bCheckHostNameandPort) return;
 
 
+	MINGW_ClanTrace("CLAN_MENU::CLANmenu_INIT Init #1 BEFORE");
 	Init();
+	MINGW_ClanTrace("CLAN_MENU::CLANmenu_INIT Init #1 AFTER");
 
 
 #ifdef  USE_PROSTONTALE
@@ -658,11 +720,14 @@ void CLAN_MENU::CLANmenu_INIT()
 
 #ifdef USE_YAHEL
 
+	MINGW_ClanTrace("CLAN_MENU::CLANmenu_INIT SetUserData BEGIN 1 sinChar=%p", (void *)sinChar);
 	SetUserData(UserAccount, sinChar->szName, "���չ�����",
 			#else
+	MINGW_ClanTrace("CLAN_MENU::CLANmenu_INIT SetUserData BEGIN 2 sinChar=%p", (void *)sinChar);
 	SetUserData(UserAccount, sinChar->szName, szConnServerName,
 			#endif
 				sinChar->Money, 500000);
+				MINGW_ClanTrace("CLAN_MENU::CLANmenu_INIT SetUserData AFTER");
 
 
 
@@ -674,7 +739,9 @@ void CLAN_MENU::CLANmenu_INIT()
 
 
 	strcpy(szConnServerName, "��ϼ���");
+	MINGW_ClanTrace("CLAN_MENU::CLANmenu_INIT SetUserData BEGIN 3 sinChar=%p", (void *)sinChar);
 	SetUserData("Red", "����", szConnServerName, 500000, 100000);
+	MINGW_ClanTrace("CLAN_MENU::CLANmenu_INIT SetUserData BEGIN 4 sinChar=%p", (void *)sinChar);
 	SetUserData("ccc", "����4", szConnServerName, 500000, 100000);
 
 
@@ -685,6 +752,8 @@ void CLAN_MENU::CLANmenu_INIT()
 
 
 #endif
+
+	MINGW_ClanTrace("CLAN_MENU::CLANmenu_INIT LEAVE");
 }
 
 
@@ -1151,6 +1220,8 @@ POINT clanBoxPos;
 POINT clanCLBoxPos;
 void CLAN_MENU::Init()
 {
+	MINGW_ClanTrace("CLAN_MENU::Init ENTER");
+
 	OpenFlag = 0;
 
 	C_menuN = 0;
@@ -1197,55 +1268,121 @@ void CLAN_MENU::Init()
 	LoadClanMessage();
 #endif
 
+	MINGW_ClanTrace("CLAN_MENU::Init Load #1 BEFORE");
 	Load();
+	MINGW_ClanTrace("CLAN_MENU::Init Load #1 AFTER");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 01 BEFORE [cClanChatting.Load();]");
 	cClanChatting.Load();
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 01 AFTER [cClanChatting.Load();]");
 
 
 
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 02 BEFORE [cBaseMenu.Load();]");
 	cBaseMenu.Load();
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 02 AFTER [cBaseMenu.Load();]");
 
 
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 03 BEFORE [cIsClanMember.Init(1);]");
 	cIsClanMember.Init(1);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 03 AFTER [cIsClanMember.Init(1);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 04 BEFORE [cIsClanMember.setParent(&cBaseMenu);]");
 	cIsClanMember.setParent(&cBaseMenu);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 04 AFTER [cIsClanMember.setParent(&cBaseMenu);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 05 BEFORE [cBaseMenu.copy_LoadResource(&cIsClanMember);]");
 	cBaseMenu.copy_LoadResource(&cIsClanMember);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 05 AFTER [cBaseMenu.copy_LoadResource(&cIsClanMember);]");
 
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 06 BEFORE [cClanChip.Init(1);]");
 	cClanChip.Init(1);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 06 AFTER [cClanChip.Init(1);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 07 BEFORE [cClanChip.setParent(&cBaseMenu);]");
 	cClanChip.setParent(&cBaseMenu);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 07 AFTER [cClanChip.setParent(&cBaseMenu);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 08 BEFORE [cBaseMenu.copy_LoadResource(&cClanChip);]");
 	cBaseMenu.copy_LoadResource(&cClanChip);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 08 AFTER [cBaseMenu.copy_LoadResource(&cClanChip);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 09 BEFORE [cBaseMenu.SetBase(&cClanChip);]");
 	cBaseMenu.SetBase(&cClanChip);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 09 AFTER [cBaseMenu.SetBase(&cClanChip);]");
 
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 10 BEFORE [cClanUser.Init(1);]");
 	cClanUser.Init(1);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 10 AFTER [cClanUser.Init(1);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 11 BEFORE [cClanUser.setParent(&cBaseMenu);]");
 	cClanUser.setParent(&cBaseMenu);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 11 AFTER [cClanUser.setParent(&cBaseMenu);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 12 BEFORE [cBaseMenu.copy_LoadResource(&cClanUser);]");
 	cBaseMenu.copy_LoadResource(&cClanUser);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 12 AFTER [cBaseMenu.copy_LoadResource(&cClanUser);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 13 BEFORE [cBaseMenu.SetBase(&cClanUser);]");
 	cBaseMenu.SetBase(&cClanUser);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 13 AFTER [cBaseMenu.SetBase(&cClanUser);]");
 
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 14 BEFORE [cClanMake.Init(1);]");
 	cClanMake.Init(1);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 14 AFTER [cClanMake.Init(1);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 15 BEFORE [cClanMake.setParent(&cBaseMenu);]");
 	cClanMake.setParent(&cBaseMenu);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 15 AFTER [cClanMake.setParent(&cBaseMenu);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 16 BEFORE [cBaseMenu.copy_LoadResource(&cClanMake);]");
 	cBaseMenu.copy_LoadResource(&cClanMake);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 16 AFTER [cBaseMenu.copy_LoadResource(&cClanMake);]");
 
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 17 BEFORE [cClanReport.Init(1);]");
 	cClanReport.Init(1);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 17 AFTER [cClanReport.Init(1);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 18 BEFORE [cClanReport.setParent(&cBaseMenu);]");
 	cClanReport.setParent(&cBaseMenu);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 18 AFTER [cClanReport.setParent(&cBaseMenu);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 19 BEFORE [cBaseMenu.copy_LoadResource(&cClanReport);]");
 	cBaseMenu.copy_LoadResource(&cClanReport);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 19 AFTER [cBaseMenu.copy_LoadResource(&cClanReport);]");
 
 
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 20 BEFORE [cClanChatting.Init(1);]");
 	cClanChatting.Init(1);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 20 AFTER [cClanChatting.Init(1);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 21 BEFORE [cClanChatting.setParent(&cBaseMenu);]");
 	cClanChatting.setParent(&cBaseMenu);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 21 AFTER [cClanChatting.setParent(&cBaseMenu);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 22 BEFORE [cBaseMenu.copy_LoadResource(&cClanChatting);]");
 	cBaseMenu.copy_LoadResource(&cClanChatting);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 22 AFTER [cBaseMenu.copy_LoadResource(&cClanChatting);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 23 BEFORE [cBaseMenu.SetBase(&cClanChatting);]");
 	cBaseMenu.SetBase(&cClanChatting);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 23 AFTER [cBaseMenu.SetBase(&cClanChatting);]");
 
 
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 24 BEFORE [cClanDeleteCha.Init(1);]");
 	cClanDeleteCha.Init(1);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 24 AFTER [cClanDeleteCha.Init(1);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 25 BEFORE [cClanDeleteCha.setParent(&cBaseMenu);]");
 	cClanDeleteCha.setParent(&cBaseMenu);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 25 AFTER [cClanDeleteCha.setParent(&cBaseMenu);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 26 BEFORE [cBaseMenu.copy_LoadResource(&cClanDeleteCha);]");
 	cBaseMenu.copy_LoadResource(&cClanDeleteCha);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 26 AFTER [cBaseMenu.copy_LoadResource(&cClanDeleteCha);]");
 
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 27 BEFORE [cClanJoin.Init(1);]");
 	cClanJoin.Init(1);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 27 AFTER [cClanJoin.Init(1);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 28 BEFORE [cClanJoin.setParent(&cBaseMenu);]");
 	cClanJoin.setParent(&cBaseMenu);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 28 AFTER [cClanJoin.setParent(&cBaseMenu);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 29 BEFORE [cBaseMenu.copy_LoadResource(&cClanJoin);]");
 	cBaseMenu.copy_LoadResource(&cClanJoin);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 29 AFTER [cBaseMenu.copy_LoadResource(&cClanJoin);]");
 
 
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 30 BEFORE [cClanNotice.Init(1);]");
 	cClanNotice.Init(1);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 30 AFTER [cClanNotice.Init(1);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 31 BEFORE [cClanNotice.setParent(&cBaseMenu);]");
 	cClanNotice.setParent(&cBaseMenu);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 31 AFTER [cClanNotice.setParent(&cBaseMenu);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 32 BEFORE [cBaseMenu.copy_LoadResource(&cClanNotice);]");
 	cBaseMenu.copy_LoadResource(&cClanNotice);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 32 AFTER [cBaseMenu.copy_LoadResource(&cClanNotice);]");
 
 
 
@@ -1253,11 +1390,21 @@ void CLAN_MENU::Init()
 
 
 
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 33 BEFORE [g_GuideHelp.Init(1);]");
 	g_GuideHelp.Init(1);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 33 AFTER [g_GuideHelp.Init(1);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 34 BEFORE [g_GuideHelp.setParent(&cBaseMenu);]");
 	g_GuideHelp.setParent(&cBaseMenu);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 34 AFTER [g_GuideHelp.setParent(&cBaseMenu);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 35 BEFORE [cBaseMenu.copy_LoadResource(&g_GuideHelp);]");
 	cBaseMenu.copy_LoadResource(&g_GuideHelp);
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 35 AFTER [cBaseMenu.copy_LoadResource(&g_GuideHelp);]");
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 36 BEFORE [g_GuideHelp.InitLevelHelpLabel();]");
 	g_GuideHelp.InitLevelHelpLabel();
+	MINGW_ClanTrace("CLAN_MENU::Init CALL 36 AFTER [g_GuideHelp.InitLevelHelpLabel();]");
 
+
+	MINGW_ClanTrace("CLAN_MENU::Init LEAVE");
 }
 
 
@@ -2472,39 +2619,61 @@ void Text_Out(HDC hdc, int x, int y, char *str)
 
 void CLAN_MENU::Load()
 {
+	MINGW_ClanTrace("CLAN_MENU::Load ENTER");
+
 #ifdef USE_PROSTONTALE		
 
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 01 BEFORE [image//Sinimage//Help//party_win.tga]");
 	MatPartyBackGround =
 		CreateTextureMaterial("image//Sinimage//Help//party_win.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 01 AFTER [image//Sinimage//Help//party_win.tga]");
 
 
 
 
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 02 BEFORE [image//Sinimage//Help//HelpBoxCorner.tga]");
 	hBox1 =
 		CreateTextureMaterial("image//Sinimage//Help//HelpBoxCorner.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 02 AFTER [image//Sinimage//Help//HelpBoxCorner.tga]");
 
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 03 BEFORE [image//Sinimage//Help//HelpBoxLine.tga]");
 	hBox2 =
 		CreateTextureMaterial("image//Sinimage//Help//HelpBoxLine.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 03 AFTER [image//Sinimage//Help//HelpBoxLine.tga]");
 
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 04 BEFORE [image//Sinimage//Help//box3.tga]");
 	hBox3 =
 		CreateTextureMaterial("image//Sinimage//Help//box3.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 04 AFTER [image//Sinimage//Help//box3.tga]");
 
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 05 BEFORE [image//Sinimage//Help//box4.tga]");
 	hBox4 =
 		CreateTextureMaterial("image//Sinimage//Help//box4.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 05 AFTER [image//Sinimage//Help//box4.tga]");
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 06 BEFORE [image//Sinimage//Help//box5.tga]");
 	hBox5 =
 		CreateTextureMaterial("image//Sinimage//Help//box5.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 06 AFTER [image//Sinimage//Help//box5.tga]");
 
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 07 BEFORE [image//Sinimage//Help//box6.tga]");
 	hBox6 =
 		CreateTextureMaterial("image//Sinimage//Help//box6.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 07 AFTER [image//Sinimage//Help//box6.tga]");
 
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 08 BEFORE [image//Sinimage//Help//box7.tga]");
 	hBox7 =
 		CreateTextureMaterial("image//Sinimage//Help//box7.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 08 AFTER [image//Sinimage//Help//box7.tga]");
 
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 09 BEFORE [image//Sinimage//Help//box8.tga]");
 	hBox8 =
 		CreateTextureMaterial("image//Sinimage//Help//box8.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 09 AFTER [image//Sinimage//Help//box8.tga]");
 
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 10 BEFORE [image//Sinimage//Help//box9.tga]");
 	hBox9 =
 		CreateTextureMaterial("image//Sinimage//Help//box9.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MINGW_ClanTrace("CLAN_MENU::Load TEX 10 AFTER [image//Sinimage//Help//box9.tga]");
 
 
 
@@ -2799,6 +2968,8 @@ void CLAN_MENU::Load()
 
 
 #endif
+
+	MINGW_ClanTrace("CLAN_MENU::Load LEAVE");
 }
 
 
@@ -2962,16 +3133,20 @@ void MakeDirectory(char *dir)
 
 void CreateSaveData_dir()
 {
+	MINGW_ClanTrace("CreateSaveData_dir ENTER server=[%s]", szConnServerName);
+
 	char szTemp[100];
 	if(!SearchDirectory(SAVEDATA_DIR)) MakeDirectory(SAVEDATA_DIR);
 	if(!SearchDirectory(CLANDATA_DIR)) MakeDirectory(CLANDATA_DIR);
 
 	ZeroMemory(szTemp, sizeof(szTemp));
-	wsprintf(szTemp, "%s", CLANDATA_DIR);
-	wsprintf(szTemp, "%s//%s", szTemp, szConnServerName);
+	wsprintf(szTemp, "%s//%s", CLANDATA_DIR, szConnServerName);
+	MINGW_ClanTrace("CreateSaveData_dir PATH=[%s]", szTemp);
 
 	if(!SearchDirectory(szTemp)) MakeDirectory(szTemp);
 
+
+	MINGW_ClanTrace("CreateSaveData_dir LEAVE");
 }
 
 
@@ -2984,14 +3159,16 @@ void CreateSaveData_dir()
 
 
 
-#define CLANMESSAGE_DIR "image/clanImage/Help/clanText.msg"
+#define CLANMESSAGE_DIR "image/clanImage/Help/ClanText.msg"
 
 int LoadClanMessage()
 {
+	MINGW_ClanTrace("LoadClanMessage ENTER path=[%s]", CLANMESSAGE_DIR);
+
 	char *g_ClanMessage;
 
 
-	HANDLE hFile = NULL;
+	HANDLE hFile = INVALID_HANDLE_VALUE;
 	DWORD dwFileSize;
 	DWORD dwRead = 0;
 	char c;
@@ -2999,50 +3176,144 @@ int LoadClanMessage()
 	hFile = CreateFile(CLANMESSAGE_DIR, GENERIC_READ, FILE_SHARE_READ,
 					   NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
-	if(hFile == NULL) return -1;
+	if(hFile == INVALID_HANDLE_VALUE)
+	{
+		MINGW_ClanTrace(
+			"LoadClanMessage OPEN FAILED error=%lu",
+			(unsigned long)GetLastError()
+		);
+		return -1;
+	}
 
 	dwFileSize = GetFileSize(hFile, NULL);
+	MINGW_ClanTrace("LoadClanMessage SIZE=%lu", (unsigned long)dwFileSize);
 
-	g_ClanMessage = new char[dwFileSize];
+	g_ClanMessage = new char[dwFileSize + 1];
 
-	ReadFile(hFile, g_ClanMessage, dwFileSize, &dwRead, NULL);
+	BOOL mingwClanReadOK =
+		ReadFile(
+			hFile,
+			g_ClanMessage,
+			dwFileSize,
+			&dwRead,
+			NULL
+		);
+
+	MINGW_ClanTrace(
+		"LoadClanMessage READ ok=%d size=%lu read=%lu",
+		(int)mingwClanReadOK,
+		(unsigned long)dwFileSize,
+		(unsigned long)dwRead
+	);
 	CloseHandle(hFile);
+
+	if(!mingwClanReadOK)
+	{
+		MINGW_ClanTrace("LoadClanMessage READ FAILED");
+		delete[] g_ClanMessage;
+		return -1;
+	}
+
+	g_ClanMessage[dwRead] = 0;
+
+	MINGW_ClanTrace(
+		"LoadClanMessage BUFFER READY nul=%d",
+		(int)(unsigned char)g_ClanMessage[dwRead]
+	);
 
 	int ReadMessage(char *save, char *savename, char *readbuf);
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 001 BEFORE");
 	ReadMessage(clanMake1.szMsg, "szMsg1", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 001 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 001 BEFORE");
 	CheckMsgPos(&clanMake1, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 001 AFTER");
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 002 BEFORE");
 	ReadMessage(clanMake2.szMsg, "szMsg2", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 002 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 002 BEFORE");
 	CheckMsgPos(&clanMake2, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 002 AFTER");
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 003 BEFORE");
 	ReadMessage(clanMake4.szMsg, "szMsg4", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 003 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 003 BEFORE");
 	CheckMsgPos(&clanMake4, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 003 AFTER");
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 004 BEFORE");
 	ReadMessage(clanMake5.szMsg, "szMsg5", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 004 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 004 BEFORE");
 	CheckMsgPos(&clanMake5, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 004 AFTER");
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 005 BEFORE");
 	ReadMessage(clanMake6.szMsg, "szClanMakeFinishMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 005 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 005 BEFORE");
 	CheckMsgPos(&clanMake6, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 005 AFTER");
 
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 006 BEFORE");
 	ReadMessage(szMsg3, "szMsg3", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 006 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 007 BEFORE");
 	ReadMessage(clanMsg21.szMsg, "szMsg21", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 007 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 006 BEFORE");
 	CheckMsgPos(&clanMsg21, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 006 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 008 BEFORE");
 	ReadMessage(clanMsg254.szMsg, "szMsg254", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 008 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 007 BEFORE");
 	CheckMsgPos(&clanMsg254, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 007 AFTER");
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 009 BEFORE");
 	ReadMessage(clanMsg15.szMsg, "szMsg15", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 009 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 008 BEFORE");
 	CheckMsgPos(&clanMsg15, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 008 AFTER");
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 010 BEFORE");
 	ReadMessage(clanJoin.szMsg, "szJoin", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 010 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 009 BEFORE");
 	CheckMsgPos(&clanJoin, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 009 AFTER");
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 011 BEFORE");
 	ReadMessage(clanSecession.szMsg, "szSecession", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 011 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 010 BEFORE");
 	CheckMsgPos(&clanSecession, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 010 AFTER");
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 012 BEFORE");
 	ReadMessage(clanServerConnectErrorMsg.szMsg, "szServerConnectErrorMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 012 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 011 BEFORE");
 	CheckMsgPos(&clanServerConnectErrorMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 011 AFTER");
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 013 BEFORE");
 	ReadMessage(clanszError_Msg.szMsg, "szError_Msg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 013 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 012 BEFORE");
 	CheckMsgPos(&clanszError_Msg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 012 AFTER");
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 014 BEFORE");
 	ReadMessage(clanCancelMakeClan.szMsg, "szCancelMakeClan", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 014 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 013 BEFORE");
 	CheckMsgPos(&clanCancelMakeClan, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 013 AFTER");
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 015 BEFORE");
 	ReadMessage(clanClanNameError.szMsg, "szClanNameError", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 015 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 014 BEFORE");
 	CheckMsgPos(&clanClanNameError, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 014 AFTER");
 
 
 
@@ -3066,171 +3337,369 @@ int LoadClanMessage()
 
 
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 016 BEFORE");
 	ReadMessage(clanSecession6DownMsg.szMsg, "szSecession6DownMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 016 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 015 BEFORE");
 	CheckMsgPos(&clanSecession6DownMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 015 AFTER");
 
 
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 017 BEFORE");
 	ReadMessage(clanClanJoinMsg.szMsg, "szClanJoinMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 017 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 016 BEFORE");
 	CheckMsgPos(&clanClanJoinMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 016 AFTER");
 
 
 
 
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 018 BEFORE");
 	ReadMessage(clanClanJoinCancelMsg.szMsg, "szClanJoinCancelMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 018 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 017 BEFORE");
 	CheckMsgPos(&clanClanJoinCancelMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 017 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 019 BEFORE");
 	ReadMessage(clanClanJoinsucesssMsg.szMsg, "szClanJoinsucesssMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 019 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 018 BEFORE");
 	CheckMsgPos(&clanClanJoinsucesssMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 018 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 020 BEFORE");
 	ReadMessage(clanszReMoveClanWonMsg.szMsg, "szReMoveClanWonMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 020 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 019 BEFORE");
 	CheckMsgPos(&clanszReMoveClanWonMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 019 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 021 BEFORE");
 	ReadMessage(clanReMoveHeaderMsg.szMsg, "szReMoveHeaderMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 021 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 020 BEFORE");
 	CheckMsgPos(&clanReMoveHeaderMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 020 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 022 BEFORE");
 	ReadMessage(clanszReConfReleaseMsg.szMsg, "szReConfReleaseMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 022 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 021 BEFORE");
 	CheckMsgPos(&clanszReConfReleaseMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 021 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 023 BEFORE");
 	ReadMessage(clanNoRecordReleaseMsg.szMsg, "szNoRecordReleaseMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 023 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 022 BEFORE");
 	CheckMsgPos(&clanNoRecordReleaseMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 022 AFTER");
 
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 024 BEFORE");
 	ReadMessage(clanFinishReleaseMsg.szMsg, "szFinishReleaseMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 024 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 023 BEFORE");
 	CheckMsgPos(&clanFinishReleaseMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 023 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 025 BEFORE");
 	ReadMessage(clanSecessionMsg.szMsg, "szSecessionMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 025 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 024 BEFORE");
 	CheckMsgPos(&clanSecessionMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 024 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 026 BEFORE");
 	ReadMessage(clanFinishSecessionMsg.szMsg, "szFinishSecessionMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 026 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 025 BEFORE");
 	CheckMsgPos(&clanFinishSecessionMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 025 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 027 BEFORE");
 	ReadMessage(clanisCheckClanJangErrorMsg.szMsg, "szisCheckClanJangErrorMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 027 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 026 BEFORE");
 	CheckMsgPos(&clanisCheckClanJangErrorMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 026 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 028 BEFORE");
 	ReadMessage(clanMoneyErrorMsg.szMsg, "szMoneyErrorMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 028 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 027 BEFORE");
 	CheckMsgPos(&clanMoneyErrorMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 027 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 029 BEFORE");
 	ReadMessage(clanAbilityErrorMsg.szMsg, "szAbilityErrorMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 029 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 028 BEFORE");
 	CheckMsgPos(&clanAbilityErrorMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 028 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 030 BEFORE");
 	ReadMessage(clanszRemoveShortClanWonMsg.szMsg, "szRemoveShortClanWonMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 030 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 029 BEFORE");
 	CheckMsgPos(&clanszRemoveShortClanWonMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 029 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 031 BEFORE");
 	ReadMessage(clanRemoveShowrtClanWonResultMsg.szMsg, "szRemoveShowrtClanWonResultMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 031 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 030 BEFORE");
 	CheckMsgPos(&clanRemoveShowrtClanWonResultMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 030 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 032 BEFORE");
 	ReadMessage(clanNoName.szMsg, "szNoName", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 032 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 031 BEFORE");
 	CheckMsgPos(&clanNoName, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 031 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 033 BEFORE");
 	ReadMessage(clanLoading.szMsg, "szLoading", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 033 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 032 BEFORE");
 	CheckMsgPos(&clanLoading, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 032 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 034 BEFORE");
 	ReadMessage(clanMsg6.szMsg, "szMsg6", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 034 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 033 BEFORE");
 	CheckMsgPos(&clanMsg6, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 033 AFTER");
 
 
 
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 035 BEFORE");
 	ReadMessage(szDeleteChaReleaseBefore, "szDeleteChaReleaseBefore", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 035 AFTER");
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 036 BEFORE");
 	ReadMessage(szDeleteChaReleaseFinish, "szDeleteChaReleaseFinish", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 036 AFTER");
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 037 BEFORE");
 	ReadMessage(szDeleteChaSecessionBefore, "szDeleteChaSecessionBefore", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 037 AFTER");
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 038 BEFORE");
 	ReadMessage(szDeleteChaSecessionFinish, "szDeleteChaSecessionFinish", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 038 AFTER");
 
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 039 BEFORE");
 	ReadMessage(clanDeleteChaError.szMsg, "szDeleteChaError", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 039 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 034 BEFORE");
 	CheckMsgPos(&clanDeleteChaError, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 034 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 040 BEFORE");
 	ReadMessage(clanMakeFinishClan.szMsg, "szMakeFinishClan", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 040 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 035 BEFORE");
 	CheckMsgPos(&clanMakeFinishClan, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 035 AFTER");
 
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 041 BEFORE");
 	ReadMessage(szClanWon6Down, "szClanWon6Down", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 041 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 042 BEFORE");
 	ReadMessage(clanClanUserNoMakeMsg.szMsg, "szClanUserNoMakeMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 042 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 036 BEFORE");
 	CheckMsgPos(&clanClanUserNoMakeMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 036 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 043 BEFORE");
 	ReadMessage(clanMakeFinishClanWon.szMsg, "szMakeFinishClanWon", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 043 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 037 BEFORE");
 	CheckMsgPos(&clanMakeFinishClanWon, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 037 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 044 BEFORE");
 	ReadMessage(clanClanServerInspect.szMsg, "ClanServerInspect", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 044 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 038 BEFORE");
 	CheckMsgPos(&clanClanServerInspect, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 038 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 045 BEFORE");
 	ReadMessage(clanClanUserRelease.szMsg, "szClanUserRelease", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 045 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 039 BEFORE");
 	CheckMsgPos(&clanClanUserRelease, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 039 AFTER");
 
 
 
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 046 BEFORE");
 	ReadMessage(clanClanMakedowninfo.szMsg, "szClanMakedowninfo", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 046 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 040 BEFORE");
 	CheckMsgPos(&clanClanMakedowninfo, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 040 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 047 BEFORE");
 	ReadMessage(clanClanUserReleaseMsg.szMsg, "szClanUserReleaseMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 047 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 041 BEFORE");
 	CheckMsgPos(&clanClanUserReleaseMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 041 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 048 BEFORE");
 	ReadMessage(clanClanUserRemove.szMsg, "szClanUserRemove", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 048 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 042 BEFORE");
 	CheckMsgPos(&clanClanUserRemove, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 042 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 049 BEFORE");
 	ReadMessage(clanClanWonOver.szMsg, "szClanWonOver", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 049 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 043 BEFORE");
 	CheckMsgPos(&clanClanWonOver, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 043 AFTER");
 
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 050 BEFORE");
 	ReadMessage(clanMsg7.szMsg, "szMsg7", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 050 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 044 BEFORE");
 	CheckMsgPos(&clanMsg7, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 044 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 051 BEFORE");
 	ReadMessage(clanNoLevel.szMsg, "szNoLevel", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 051 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 045 BEFORE");
 	CheckMsgPos(&clanNoLevel, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 045 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 052 BEFORE");
 	ReadMessage(clanRemoveSecond.szMsg, "szRemoveSecond", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 052 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 046 BEFORE");
 	CheckMsgPos(&clanRemoveSecond, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 046 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 053 BEFORE");
 	ReadMessage(clanRemoveSecondResult.szMsg, "szRemoveSecondResult", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 053 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 047 BEFORE");
 	CheckMsgPos(&clanRemoveSecondResult, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 047 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 054 BEFORE");
 	ReadMessage(LeaveClanConfirm.szMsg, "szLeaveClanConfirm", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 054 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 048 BEFORE");
 	CheckMsgPos(&LeaveClanConfirm, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 048 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 055 BEFORE");
 	ReadMessage(LeaveClanNoMoney.szMsg, "szLeaveClanNoMoney", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 055 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 049 BEFORE");
 	CheckMsgPos(&LeaveClanNoMoney, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 049 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 056 BEFORE");
 	ReadMessage(LeaveClanSuccess.szMsg, "szLeaveClanSuccess", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 056 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 050 BEFORE");
 	CheckMsgPos(&LeaveClanSuccess, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 050 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 057 BEFORE");
 	ReadMessage(LeaveClanNoLevel.szMsg, "szLeaveClanNoLevel", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 057 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 051 BEFORE");
 	CheckMsgPos(&LeaveClanNoLevel, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 051 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 058 BEFORE");
 	ReadMessage(LeaveClanReConfirm.szMsg, "szLeaveClanReConfirm", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 058 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 052 BEFORE");
 	CheckMsgPos(&LeaveClanReConfirm, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 052 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 059 BEFORE");
 	ReadMessage(NoLeaveClan.szMsg, "szNoLeaveClan", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 059 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 053 BEFORE");
 	CheckMsgPos(&NoLeaveClan, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 053 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 060 BEFORE");
 	ReadMessage(LeaveClanMessage.szMsg, "szLeaveClanMessage", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 060 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 054 BEFORE");
 	CheckMsgPos(&LeaveClanMessage, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 054 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 061 BEFORE");
 	ReadMessage(LeaveClanDownLevel.szMsg, "szLeaveClanDownLevel", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 061 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 055 BEFORE");
 	CheckMsgPos(&LeaveClanDownLevel, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 055 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 062 BEFORE");
 	ReadMessage(SubChipAppoint.szMsg, "szSubChipAppoint", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 062 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 056 BEFORE");
 	CheckMsgPos(&SubChipAppoint, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 056 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 063 BEFORE");
 	ReadMessage(SubChipAppointEnd.szMsg, "szSubChipAppointEnd", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 063 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 057 BEFORE");
 	CheckMsgPos(&SubChipAppointEnd, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 057 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 064 BEFORE");
 	ReadMessage(SubChipRelease.szMsg, "szSubChipRelease", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 064 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 058 BEFORE");
 	CheckMsgPos(&SubChipRelease, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 058 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 065 BEFORE");
 	ReadMessage(SubChipReleaseEnd.szMsg, "szSubChipReleseEnd", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 065 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 059 BEFORE");
 	CheckMsgPos(&SubChipReleaseEnd, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 059 AFTER");
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 066 BEFORE");
 	ReadMessage(NoSubChip.szMsg, "szNoSubChip", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 066 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 060 BEFORE");
 	CheckMsgPos(&NoSubChip, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 060 AFTER");
 
 
 
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 067 BEFORE");
 	ReadMessage(ClanIs4DayCheckMsg.szMsg, "szClanIs4DayCheckMsg", g_ClanMessage);
+	MINGW_ClanTrace("LoadClanMessage ReadMessage 067 AFTER");
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 061 BEFORE");
 	CheckMsgPos(&ClanIs4DayCheckMsg, BOX_MAX_WIDTH, 0);
+	MINGW_ClanTrace("LoadClanMessage CheckMsgPos 061 AFTER");
 
 
 
@@ -3240,57 +3709,258 @@ int LoadClanMessage()
 	delete[] g_ClanMessage;
 	g_ClanMessage = NULL;
 	return 1;
+
+	MINGW_ClanTrace("LoadClanMessage LEAVE");
 }
 
 int ReadMessage(char *save, char *savename, char *readbuf)
 {
+	// MINGW_READMESSAGE_SAFE_V2
 	char szTemp[256];
 	char *pBuf;
 	char szReadData[1024];
+
+	size_t readLen;
+	size_t markerLen;
+	size_t offset;
+
 	int nCount = 0;
 	int nCount1 = 0;
-	BOOL bFlag = FALSE;
 
-	ZeroMemory(szReadData, sizeof(szReadData));
-	wsprintf(szTemp, "*%s", savename);
-
-	pBuf = strstr(readbuf, szTemp);
-	if(pBuf == NULL)
+	if(!save || !savename || !readbuf)
 	{
+		MINGW_ClanTrace(
+			"ReadMessage INVALID_ARG name=%p readbuf=%p save=%p",
+			(void *)savename,
+			(void *)readbuf,
+			(void *)save
+		);
+
 		return -1;
 	}
 
-	pBuf = pBuf + strlen(szTemp) + 2;
-	nCount = (int)(pBuf - readbuf);
+	MINGW_ClanTrace(
+		"ReadMessage ENTER name=[%s] save=%p readbuf=%p",
+		savename,
+		(void *)save,
+		(void *)readbuf
+	);
 
-	if(readbuf[nCount] == 0x0a)
+	save[0] = 0;
+
+	ZeroMemory(
+		szTemp,
+		sizeof(szTemp)
+	);
+
+	ZeroMemory(
+		szReadData,
+		sizeof(szReadData)
+	);
+
+	if(strlen(savename) + 2 >= sizeof(szTemp))
+	{
+		MINGW_ClanTrace(
+			"ReadMessage NAME_TOO_LONG name=[%s]",
+			savename
+		);
+
+		return -1;
+	}
+
+	wsprintf(
+		szTemp,
+		"*%s",
+		savename
+	);
+
+	readLen = strlen(readbuf);
+	markerLen = strlen(szTemp);
+
+	MINGW_ClanTrace(
+		"ReadMessage SEARCH name=[%s] marker=[%s]",
+		savename,
+		szTemp
+	);
+
+	pBuf = strstr(
+		readbuf,
+		szTemp
+	);
+
+	if(pBuf == NULL)
+	{
+		MINGW_ClanTrace(
+			"ReadMessage NOT_FOUND name=[%s]",
+			savename
+		);
+
+		return -1;
+	}
+
+	offset = (size_t)(pBuf - readbuf);
+
+	MINGW_ClanTrace(
+		"ReadMessage FOUND name=[%s] offset=%lu total=%lu",
+		savename,
+		(unsigned long)offset,
+		(unsigned long)readLen
+	);
+
+	if(offset > readLen ||
+	   markerLen > readLen - offset)
+	{
+		MINGW_ClanTrace(
+			"ReadMessage MARKER_RANGE name=[%s]",
+			savename
+		);
+
+		return -1;
+	}
+
+	/*
+	 * Preserva exatamente o avanço legado:
+	 *
+	 * pBuf = pBuf + strlen(szTemp) + 2;
+	 */
+	offset += markerLen;
+
+	if(offset + 2 > readLen)
+	{
+		MINGW_ClanTrace(
+			"ReadMessage SEPARATOR_EOF name=[%s]",
+			savename
+		);
+
+		return -1;
+	}
+
+	offset += 2;
+	nCount = (int)offset;
+
+	if((size_t)nCount < readLen &&
+	   readbuf[nCount] == 0x0a)
 	{
 		nCount++;
 	}
 
-
-	while(1)
+	while((size_t)nCount < readLen)
 	{
-		if((readbuf[nCount] == 0x5c))
+		unsigned char ch =
+			(unsigned char)readbuf[nCount];
+
+		/*
+		 * O código antigo não verificava NUL.
+		 * Este era um dos caminhos para sair do buffer.
+		 */
+		if(ch == 0x00)
+			break;
+
+		if(ch == 0x0d || ch == 0x0a)
+			break;
+
+		if(nCount1 >=
+		   (int)sizeof(szReadData) - 1)
 		{
-			szReadData[nCount1] = '/n';
+			MINGW_ClanTrace(
+				"ReadMessage OUTPUT_OVERFLOW "
+				"name=[%s] sourceOffset=%d",
+				savename,
+				nCount
+			);
+
+			return -2;
+		}
+
+		if(ch == 0x5c)
+		{
+			/*
+			 * Preserva o comportamento legado:
+			 * '\' produz o marcador '/n'
+			 * e avança três bytes.
+			 */
+			szReadData[nCount1] = '\n';
 			nCount1++;
+
+			if((size_t)nCount + 3 >= readLen)
+			{
+				MINGW_ClanTrace(
+					"ReadMessage ESCAPE_EOF "
+					"name=[%s] sourceOffset=%d",
+					savename,
+					nCount
+				);
+
+				break;
+			}
+
 			nCount += 3;
+
 			if(readbuf[nCount] == 0x0a)
 			{
 				nCount++;
 				continue;
 			}
 
+			/*
+			 * O código antigo continuava abaixo
+			 * quando não encontrava LF depois
+			 * do avanço de três bytes.
+			 */
 		}
-		if((readbuf[nCount] == 0x0d) || (readbuf[nCount] == 0x0a)) break;
-		szReadData[nCount1] = readbuf[nCount];
+
+		if((size_t)nCount >= readLen)
+			break;
+
+		if(readbuf[nCount] == 0x00 ||
+		   readbuf[nCount] == 0x0d ||
+		   readbuf[nCount] == 0x0a)
+		{
+			break;
+		}
+
+		if(nCount1 >=
+		   (int)sizeof(szReadData) - 1)
+		{
+			MINGW_ClanTrace(
+				"ReadMessage OUTPUT_OVERFLOW2 "
+				"name=[%s] sourceOffset=%d",
+				savename,
+				nCount
+			);
+
+			return -2;
+		}
+
+		szReadData[nCount1] =
+			readbuf[nCount];
+
 		nCount++;
 		nCount1++;
-
 	}
 
-	strcpy(save, szReadData);
+	szReadData[nCount1] = 0;
+
+	/*
+	 * Preflight confirmou que todos os destinos desta
+	 * rotina possuem 1024 bytes.
+	 */
+	strncpy(
+		save,
+		szReadData,
+		1023
+	);
+
+	save[1023] = 0;
+
+	MINGW_ClanTrace(
+		"ReadMessage SUCCESS name=[%s] "
+		"len=%d sourceOffset=%d",
+		savename,
+		nCount1,
+		nCount
+	);
+
 	return 1;
 }
 
@@ -3299,49 +3969,99 @@ int ReadMessage(char *save, char *savename, char *readbuf)
 
 void MsgXsu_Ysu(CLANMSG* clanmsg, int *xsu, int *ysu)
 {
-	char strbuf[256], strbuf2[256];
-	ZeroMemory(strbuf, sizeof(strbuf));
+	// MINGW_MSGXSU_SAFE_V3
 
-	int nCount = 0;
-	int maxXsu = 0;
-	int cntX = 0, cntY = 0;
+	if(!xsu || !ysu)
+		return;
 
-	while(1)
+	*xsu = 0;
+	*ysu = 0;
+
+	if(!clanmsg)
 	{
-		strbuf[cntX] = clanmsg->szMsg[nCount];
+		MINGW_ClanTrace(
+			"MsgXsu_Ysu NULL clanmsg"
+		);
 
-		if(clanmsg->szMsg[nCount] == '/n')
+		return;
+	}
+
+	const int msgCapacity =
+		(int)sizeof(clanmsg->szMsg);
+
+	int maxXsu = 0;
+	int cntX = 0;
+	int cntY = 0;
+	int nCount = 0;
+
+	MINGW_ClanTrace(
+		"MsgXsu_Ysu ENTER msg=%p capacity=%d",
+		(void *)clanmsg,
+		msgCapacity
+	);
+
+	for(
+		nCount = 0;
+		nCount < msgCapacity;
+		nCount++
+	)
+	{
+		unsigned char ch =
+			(unsigned char)
+			clanmsg->szMsg[nCount];
+
+		if(ch == 0x00)
 		{
-			strbuf[cntX] = 0;
 			if(cntX > maxXsu)
-			{
 				maxXsu = cntX;
-				strcpy(strbuf2, strbuf);
-			}
 
 			cntY++;
-			cntX = -1;
+
+			*xsu = maxXsu;
+			*ysu = cntY;
+
+			MINGW_ClanTrace(
+				"MsgXsu_Ysu DONE chars=%d lines=%d maxX=%d",
+				nCount,
+				cntY,
+				maxXsu
+			);
+
+			return;
 		}
 
-		if(clanmsg->szMsg[nCount] == 0x00)
+		if(ch == '\n')
 		{
-			strbuf[cntX] = 0;
 			if(cntX > maxXsu)
-			{
 				maxXsu = cntX;
-				strcpy(strbuf2, strbuf);
-			}
-			cntY++;
-			break;
-		}
 
+			cntY++;
+			cntX = 0;
+
+			continue;
+		}
 
 		cntX++;
-		nCount += 1;
 	}
+
+	/*
+	 * Não existe NUL dentro do próprio array.
+	 * Para aqui em vez de ler memória adjacente.
+	 */
+	if(cntX > maxXsu)
+		maxXsu = cntX;
+
+	cntY++;
 
 	*xsu = maxXsu;
 	*ysu = cntY;
+
+	MINGW_ClanTrace(
+		"MsgXsu_Ysu NO_NUL limit=%d lines=%d maxX=%d",
+		msgCapacity,
+		cntY,
+		maxXsu
+	);
 }
 
 

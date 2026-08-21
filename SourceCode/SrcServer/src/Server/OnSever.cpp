@@ -27240,31 +27240,148 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			ReLoadSkillInfo(lpPlayInfo);
 			break;
 
+		// case OpCode::OPCODE_INSRECORDDATA:
+
+		// 	lpRecordBase = new rsRECORD_DBASE;
+
+		// 	lpTransCharCommand2 = (smTRANS_CHAR_COMMAND2 *)SockInfo->Buff;
+
+		// 	lpTransCharCommand2->WParam = FALSE;
+
+		// 	lpPlayInfo2 = FindUserFromName2(lpTransCharCommand2->szName);
+
+		// 	if(!lpPlayInfo2 && !lpPlayInfo->szServerID[0])
+		// 	{
+		// 		lpTransCharCommand2->WParam = lpRecordBase->InsertCharData(lpPlayInfo->getAccount(), lpTransCharCommand2->szName);
+		// 	}
+
+		// 	lpsmSock->Send((char *)lpTransCharCommand2, lpTransCharCommand2->size, TRUE);
+
+		// 	if(lpTransCharCommand2->WParam == TRUE)
+		// 	{
+		// 		//strcpy_s(lpPlayInfo->password, lpTransCharCommand2->szName);
+
+		// 		lpPlayInfo->setName(lpTransCharCommand2->szName);
+
+		// 		lpPlayInfo->dwCode_Name = GetSpeedSum(lpPlayInfo->getName());
+		// 		RecordLogSql(LOG_SQL_NEWCHAR, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->szGPCode, 0, 0, 0, 0, 0);
+
+		// 		if(rsServerConfig.StartUser_PresentItem)
+		// 			lpPlayInfo->dwStartUser_PresentItem_Count = 1;
+		// 	}
+
+		// 	if(lpRecordBase)
+		// 	{
+		// 		delete lpRecordBase;
+		// 		lpRecordBase = 0;
+		// 	}
+
+		// 	break;
 		case OpCode::OPCODE_INSRECORDDATA:
+		{
+			FILE *fpIns = fopen("mingw_insrecord_probe.txt", "a");
 
 			lpRecordBase = new rsRECORD_DBASE;
 
-			lpTransCharCommand2 = (smTRANS_CHAR_COMMAND2 *)SockInfo->Buff;
+			lpTransCharCommand2 =
+				(smTRANS_CHAR_COMMAND2 *)SockInfo->Buff;
+
+			if(fpIns)
+			{
+				fprintf(
+					fpIns,
+					"\n[INS-BEGIN] size=%u code=0x%08X "
+					"account='%s' packetId='%s' name='%s' "
+					"serverId='%s'\n",
+					(unsigned int)lpTransCharCommand2->size,
+					(unsigned int)lpTransCharCommand2->code,
+					lpPlayInfo->getAccount(),
+					lpTransCharCommand2->szId,
+					lpTransCharCommand2->szName,
+					lpPlayInfo->szServerID
+				);
+				fflush(fpIns);
+			}
 
 			lpTransCharCommand2->WParam = FALSE;
 
-			lpPlayInfo2 = FindUserFromName2(lpTransCharCommand2->szName);
+			lpPlayInfo2 =
+				FindUserFromName2(lpTransCharCommand2->szName);
+
+			if(fpIns)
+			{
+				fprintf(
+					fpIns,
+					"[INS-CHECK] FindUserFromName2=%p "
+					"serverIdFirst=%d\n",
+					(void *)lpPlayInfo2,
+					(int)(unsigned char)lpPlayInfo->szServerID[0]
+				);
+				fflush(fpIns);
+			}
 
 			if(!lpPlayInfo2 && !lpPlayInfo->szServerID[0])
 			{
-				lpTransCharCommand2->WParam = lpRecordBase->InsertCharData(lpPlayInfo->getAccount(), lpTransCharCommand2->szName);
+				if(fpIns)
+				fprintf(fpIns, "[INS-CALL] calling InsertCharData\n");
+
+				lpTransCharCommand2->WParam =
+					lpRecordBase->InsertCharData(
+						lpPlayInfo->getAccount(),
+						lpTransCharCommand2->szName
+					);
+
+				if(fpIns)
+				fprintf(
+					fpIns,
+					"[INS-RESULT] InsertCharData returned=%d\n",
+					(int)lpTransCharCommand2->WParam
+				);
+			}
+			else if(fpIns)
+			{
+				fprintf(
+					fpIns,
+					"[INS-SKIP] insertion skipped "
+					"existing=%d serverIdSet=%d\n",
+					lpPlayInfo2 ? 1 : 0,
+					lpPlayInfo->szServerID[0] ? 1 : 0
+				);
 			}
 
-			lpsmSock->Send((char *)lpTransCharCommand2, lpTransCharCommand2->size, TRUE);
+			if(fpIns)
+			{
+				fprintf(
+					fpIns,
+					"[INS-SEND] WParam=%d size=%u name='%s'\n",
+					(int)lpTransCharCommand2->WParam,
+					(unsigned int)lpTransCharCommand2->size,
+					lpTransCharCommand2->szName
+				);
+				fflush(fpIns);
+			}
+
+			lpsmSock->Send(
+				(char *)lpTransCharCommand2,
+				lpTransCharCommand2->size,
+				TRUE
+			);
 
 			if(lpTransCharCommand2->WParam == TRUE)
 			{
-				//strcpy_s(lpPlayInfo->password, lpTransCharCommand2->szName);
-
 				lpPlayInfo->setName(lpTransCharCommand2->szName);
 
-				lpPlayInfo->dwCode_Name = GetSpeedSum(lpPlayInfo->getName());
-				RecordLogSql(LOG_SQL_NEWCHAR, lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->szGPCode, 0, 0, 0, 0, 0);
+				lpPlayInfo->dwCode_Name =
+					GetSpeedSum(lpPlayInfo->getName());
+
+				RecordLogSql(
+					LOG_SQL_NEWCHAR,
+					lpPlayInfo->lpsmSock->szIPAddr,
+					lpPlayInfo->getAccount(),
+					lpPlayInfo->getName(),
+					lpPlayInfo->szGPCode,
+					0, 0, 0, 0, 0
+				);
 
 				if(rsServerConfig.StartUser_PresentItem)
 					lpPlayInfo->dwStartUser_PresentItem_Count = 1;
@@ -27276,8 +27393,15 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				lpRecordBase = 0;
 			}
 
-			break;
+			if(fpIns)
+			{
+				fprintf(fpIns, "[INS-END]\n");
+				fclose(fpIns);
+			}
 
+			break;
+		}
+		
 		case OpCode::OPCODE_DELRECORDDATA:
 
 
@@ -31704,7 +31828,7 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 // {
 // 	MSG Msg;
 
-// 	SQL::GetInstance()->Connect(".//SQLEXPRESS", "sa", "#$pdl32xq");
+// 	SQL::GetInstance()->Connect(".//SQLEXPRESS", "sa", "SummitTale@12345");
 
 
 // 	LoadSkillInfo();
@@ -31760,7 +31884,7 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 // {
 //     MSG Msg;
 
-//     SQL::GetInstance()->Connect(".//SQLEXPRESS", "sa", "#$pdl32xq");
+//     SQL::GetInstance()->Connect(".//SQLEXPRESS", "sa", "SummitTale@12345");
 
 //     LoadSkillInfo();
 //     InitializeCriticalSection(&cSerSection);
@@ -31813,7 +31937,7 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 //     fprintf(stderr, "[SERVER] inicio | Quit=%d | quit=%d\n", Quit, quit);
 //     fflush(stderr);
 
-//     SQL::GetInstance()->Connect(".//SQLEXPRESS", "sa", "#$pdl32xq");
+//     SQL::GetInstance()->Connect(".//SQLEXPRESS", "sa", "SummitTale@12345");
 
 //     LoadSkillInfo();
 //     InitializeCriticalSection(&cSerSection);
@@ -31932,7 +32056,7 @@ int ServerWinMain()
     fprintf(stderr, "[SERVER] inicio | Quit=%d | quit=%d\n", Quit, quit);
     fflush(stderr);
 
-    SQL::GetInstance()->Connect(".//SQLEXPRESS", "sa", "#$pdl32xq");
+    SQL::GetInstance()->Connect(".//SQLEXPRESS", "sa", "SummitTale@12345");
 
     LoadSkillInfo();
     InitializeCriticalSection(&cSerSection);
@@ -32240,6 +32364,27 @@ int OpenRecordPCJung_Thread()
 
 DWORD WINAPI LogAccountThreadProc(void *pInfo)
 {
+    /* MINGW_LOGIN_WORKER_COM_INIT_V1
+       Database.dll!SQLLogon uses ADO/COM from this worker thread.
+       COM must be initialized per-thread before CoCreateInstance. */
+    HRESULT mingwLoginComHr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
+
+    {
+        FILE *fpCom = fopen("mingw_auth_direct.txt", "a");
+        if(fpCom)
+        {
+            fprintf(
+                fpCom,
+                "[WORKER_COM_INIT] thread=%lu hr=0x%08lX success=%d\n",
+                (unsigned long)GetCurrentThreadId(),
+                (unsigned long)mingwLoginComHr,
+                SUCCEEDED(mingwLoginComHr) ? 1 : 0
+            );
+            fflush(fpCom);
+            fclose(fpCom);
+        }
+    }
+
 	int val = 0;
 
 
@@ -32429,10 +32574,18 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
                         {
                             fprintf(
                                 fpAuth,
-                                "[WORKER_AFTER_SQL] id=%s result=%d LogOnFlag=%d\n",
+                                "[WORKER_AFTER_SQL_V2] id=%s result=%d LogOnFlag=%d "
+                                "GPCode=[%s] DisuseDay=%d UsePeriod=%d "
+                                "Guid=[%s] Bl_RNo=%d MeterCode=%d\n",
                                 szTempID,
                                 val,
-                                LogOnFlag);
+                                LogOnFlag,
+                                szGPCode,
+                                (int)DisuseDay,
+                                (int)UsePeriod,
+                                szGuid,
+                                (int)Bl_RNo,
+                                (int)MeterCode);
                             fflush(fpAuth);
                             fclose(fpAuth);
                         }

@@ -140,7 +140,7 @@ DatabaseStructureData * SQLConnection::GetDatabaseData(EDatabaseID eDatabaseID)
 // 	}
 // #ifdef YWEENZY_PC
 // 	wsprintfA(szStringConnectionSQL, "Persist Security Info=False; Integrated Security=False; Driver=%s; Server=%s; Database=%s; Uid=%s; Pwd=%s;",
-// 		"{SQL Server}", "PTL//SQLEXPRES", szDatabaseName, "sa", "#$pdl32xq");
+// 		"{SQL Server}", "PTL//SQLEXPRES", szDatabaseName, "sa", "SummitTale@12345");
 // #else
 // 	wsprintfA(szStringConnectionSQL, "Persist Security Info=False; Integrated Security=False; Driver=%s; Server=%s; Database=%s; Uid=%s; Pwd=%s;",
 // 			  Driver.c_str(), Host.c_str(), szDatabaseName, User.c_str(), Password.c_str());

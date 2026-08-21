@@ -142,20 +142,118 @@ void CloseSub()
 }
 
 
+
+// MINGW_ORIGINAL_CURSOR_TRACE_V1
+#ifdef __MINGW32__
+static void MINGW_OriginalCursorInitTrace(
+	const char *name,
+	int material
+)
+{
+	FILE *f = fopen(
+		"mingw_original_cursor_trace.txt",
+		"a"
+	);
+
+	if(!f)
+		return;
+
+	fprintf(
+		f,
+		"INIT %-20s material=%d\n",
+		name ? name : "",
+		material
+	);
+
+	fflush(f);
+	fclose(f);
+}
+
+static void MINGW_OriginalCursorDrawTrace(
+	int cursorClass,
+	int materialDefault,
+	long x,
+	long y
+)
+{
+	static int count = 0;
+
+	if(count >= 20)
+		return;
+
+	count++;
+
+	FILE *f = fopen(
+		"mingw_original_cursor_trace.txt",
+		"a"
+	);
+
+	if(!f)
+		return;
+
+	fprintf(
+		f,
+		"DRAW %02d class=%d default=%d x=%ld y=%ld\n",
+		count,
+		cursorClass,
+		materialDefault,
+		x,
+		y
+	);
+
+	fflush(f);
+	fclose(f);
+}
+#endif
+
 void InitCursor()
 {
 	MatCursorDefault = CreateTextureMaterial("image//Sinimage//Cursor//DefaultCursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+#ifdef __MINGW32__
+	MINGW_OriginalCursorInitTrace("Default", MatCursorDefault);
+#endif
 	MatCursorSell = CreateTextureMaterial("image//Sinimage//Cursor//SellCursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+#ifdef __MINGW32__
+	MINGW_OriginalCursorInitTrace("Sell", MatCursorSell);
+#endif
 	MatCursorBuy = CreateTextureMaterial("image//Sinimage//Cursor//BuyCursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+#ifdef __MINGW32__
+	MINGW_OriginalCursorInitTrace("Buy", MatCursorBuy);
+#endif
 	MatCursorRepair = CreateTextureMaterial("image//Sinimage//Cursor//RepairCursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+#ifdef __MINGW32__
+	MINGW_OriginalCursorInitTrace("Repair", MatCursorRepair);
+#endif
 	MatCursorAttack = CreateTextureMaterial("image//Sinimage//Cursor//Attack_Cursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+#ifdef __MINGW32__
+	MINGW_OriginalCursorInitTrace("Attack", MatCursorAttack);
+#endif
 	MatCursorGetItem1 = CreateTextureMaterial("image//Sinimage//Cursor//GetItem_Cursor1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+#ifdef __MINGW32__
+	MINGW_OriginalCursorInitTrace("GetItem1", MatCursorGetItem1);
+#endif
 	MatCursorGetItem2 = CreateTextureMaterial("image//Sinimage//Cursor//GetItem_Cursor2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+#ifdef __MINGW32__
+	MINGW_OriginalCursorInitTrace("GetItem2", MatCursorGetItem2);
+#endif
 	MatCursorTalk = CreateTextureMaterial("image//Sinimage//Cursor//Talk_Cursor.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+#ifdef __MINGW32__
+	MINGW_OriginalCursorInitTrace("Talk", MatCursorTalk);
+#endif
 }
 
 void DrawCursor()
 {
+
+#ifdef __MINGW32__
+	MINGW_OriginalCursorDrawTrace(
+		CursorClass,
+		MatCursorDefault,
+		pCursorPos.x,
+		pCursorPos.y
+	);
+#endif
+
 	POINT sinMousePosi;
 
 	if(g_IsDxProjectZoomIn)

@@ -3487,6 +3487,21 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 		if(!lpCurPlayer->smCharInfo.JOB_CODE && smConfig.getSecurity() < AccountTypes::SEC_MODERATOR)
 		{
+			/* MINGW_FAILRECORD_JOB_PROBE_V1 */
+			FILE *fp = fopen("mingw_disconnect_origin.txt", "a");
+			if(fp)
+			{
+				fprintf(fp,
+					"ORIGIN=FAILRECORD_JOB0 job=%d name='%s' W=%u L=%u S=%u\n",
+					lpCurPlayer->smCharInfo.JOB_CODE,
+					lpCurPlayer->smCharInfo.szName,
+					(unsigned int)lpTransCharCommand->WParam,
+					(unsigned int)lpTransCharCommand->LParam,
+					(unsigned int)lpTransCharCommand->SParam);
+				fflush(fp);
+				fclose(fp);
+			}
+
 			//Utils_Log(LOG_DEBUG, "SetDisconnectFlag: 11");
 			DisconnectFlag = GetCurrentTime();
 			break;

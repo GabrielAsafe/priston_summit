@@ -1773,6 +1773,20 @@ int InitPat3D()
 
 				if(size < 40 && smConfig.getSecurity() < AccountTypes::SEC_MODERATOR)
 				{
+					/* MINGW_DISCONNECT_ORIGIN_PROBE_V1 */
+					FILE *fp = fopen("mingw_disconnect_origin.txt", "a");
+					if(fp)
+					{
+						fprintf(fp,
+							"ORIGIN=PLAYMAIN_ATTACK size=%d job=%d char1='%s' char2='%s'\n",
+							size,
+							lpCurPlayer->smCharInfo.JOB_CODE,
+							CharacterName1,
+							CharacterName2);
+						fflush(fp);
+						fclose(fp);
+					}
+
 					DisconnectFlag = GetCurrentTime();
 					quit = TRUE;
 				}
@@ -1781,6 +1795,18 @@ int InitPat3D()
 
 		if(cnt2 == 0 && smConfig.getSecurity() < AccountTypes::SEC_MODERATOR)
 		{
+			FILE *fp = fopen("mingw_disconnect_origin.txt", "a");
+			if(fp)
+			{
+				fprintf(fp,
+					"ORIGIN=PLAYMAIN_NO_DEAD_MOTION cnt2=%d job=%d char1='%s' char2='%s'\n",
+					cnt2,
+					lpCurPlayer->smCharInfo.JOB_CODE,
+					CharacterName1,
+					CharacterName2);
+				fflush(fp);
+				fclose(fp);
+			}
 
 			DisconnectFlag = GetCurrentTime();
 			quit = TRUE;
