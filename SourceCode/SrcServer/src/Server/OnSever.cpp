@@ -25013,10 +25013,52 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 			std::string path = lpTransChatMessage->szMessage;
 
+\
 			size_t size = path.size();
-			size_t backslash = path.find('//');
 
-			if((lpTransChatMessage->dwObjectSerial > MAXDWORD) || (size > 200 || backslash == std::string::npos))
+			// MINGW_PROCESSINFO_PATH_SEPARATOR_FIX_V1
+			// Caminho Windows pode usar '\' e o legado tambem usa '/'.
+			size_t slash = path.find('/');
+			size_t backslash = path.find('\\');
+
+#ifdef __MINGW32__
+			// MINGW_PROCESSINFO_PATH_TRACE_V1
+			{
+				FILE *fpProcess =
+					fopen("mingw_processinfo.txt", "a");
+
+				if(fpProcess)
+				{
+					fprintf(
+						fpProcess,
+						"[PROCESSINFO] account='%s' char='%s' "
+						"checksum=0x%08X size=%u "
+						"slash=%d backslash=%d "
+						"checkCount=%d checkOut=%d "
+						"path='%s'\n",
+						lpPlayInfo->getAccount() ?
+							lpPlayInfo->getAccount() : "",
+						lpPlayInfo->getName() ?
+							lpPlayInfo->getName() : "",
+						(unsigned int)lpTransChatMessage->dwObjectSerial,
+						(unsigned int)size,
+						slash != std::string::npos ? 1 : 0,
+						backslash != std::string::npos ? 1 : 0,
+						rsServerConfig.ClientCheckSumCount,
+						rsServerConfig.ClientCheckOut,
+						path.c_str()
+					);
+
+					fflush(fpProcess);
+					fclose(fpProcess);
+				}
+			}
+#endif
+
+			if((lpTransChatMessage->dwObjectSerial > MAXDWORD) ||
+				(size > 200 ||
+				(slash == std::string::npos &&
+				 backslash == std::string::npos)))
 			{
 				recordAttack(lpPlayInfo, "Process Checksum Error OverFlow");
 
@@ -26236,6 +26278,31 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 
 			lpTransCharCommand = (smTRANS_CHAR_COMMAND *)SockInfo->Buff;
+#ifdef __MINGW32__
+			// MINGW_GETRECORD_DISCONNECT_TRACE_V1
+			{
+				FILE *fpGet = fopen("mingw_getrecord_trace.txt", "a");
+				if(fpGet)
+				{
+					fprintf(
+						fpGet,
+						"\n[GET-BEGIN] player=%p sock=%p account='%s' currentName='%s' requestName='%s' "
+						"security=%d charLoading=%d LParam=%d\n",
+						(void *)lpPlayInfo,
+						(void *)lpsmSock,
+						lpPlayInfo->getAccount() ? lpPlayInfo->getAccount() : "",
+						lpPlayInfo->getName() ? lpPlayInfo->getName() : "",
+						lpTransCharCommand->szName,
+						(int)lpPlayInfo->getSecurity(),
+						(int)lpPlayInfo->CharLoadingCount,
+						(int)lpTransCharCommand->LParam
+					);
+					fflush(fpGet);
+					fclose(fpGet);
+				}
+			}
+#endif
+
 
 			if((!lpPlayInfo->getAccount() || !lpPlayInfo->getAccount()[0])) break;
 			if(lpPlayInfo->getSecurity() < AccountTypes::SEC_MODERATOR && lpPlayInfo->dwTime_Disconnect) break;
@@ -26316,14 +26383,66 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 						if(lpPlayInfo->dwCode_ID == rsPlayInfo[cnt].dwCode_ID &&
 							lstrcmpi(lpPlayInfo->getAccount(), rsPlayInfo[cnt].getAccount()) == 0)
 						{
-							DisconnectUser(lpsmSock);
+							
+#ifdef __MINGW32__
+							{
+								FILE *fpGet = fopen("mingw_getrecord_trace.txt", "a");
+								if(fpGet)
+								{
+									fprintf(
+										fpGet,
+										"[DISCONNECT-DUP-ACCOUNT] cnt=%d curPlayer=%p otherPlayer=%p "
+										"curSock=%p otherSock=%p account='%s' otherAccount='%s' "
+										"requestName='%s' otherName='%s'\n",
+										cnt,
+										(void *)lpPlayInfo,
+										(void *)&rsPlayInfo[cnt],
+										(void *)lpsmSock,
+										(void *)rsPlayInfo[cnt].lpsmSock,
+										lpPlayInfo->getAccount() ? lpPlayInfo->getAccount() : "",
+										rsPlayInfo[cnt].getAccount() ? rsPlayInfo[cnt].getAccount() : "",
+										lpTransCharCommand->szName,
+										rsPlayInfo[cnt].getName() ? rsPlayInfo[cnt].getName() : ""
+									);
+									fflush(fpGet);
+									fclose(fpGet);
+								}
+							}
+#endif
+DisconnectUser(lpsmSock);
 							DisconnectUser(rsPlayInfo[cnt].lpsmSock);
 							break;
 						}
 
 						if(lstrcmpi(lpTransCharCommand->szName, rsPlayInfo[cnt].getName()) == 0)
 						{
-							DisconnectUser(lpsmSock);
+							
+#ifdef __MINGW32__
+							{
+								FILE *fpGet = fopen("mingw_getrecord_trace.txt", "a");
+								if(fpGet)
+								{
+									fprintf(
+										fpGet,
+										"[DISCONNECT-DUP-NAME] cnt=%d curPlayer=%p otherPlayer=%p "
+										"curSock=%p otherSock=%p account='%s' requestName='%s' "
+										"otherAccount='%s' otherName='%s'\n",
+										cnt,
+										(void *)lpPlayInfo,
+										(void *)&rsPlayInfo[cnt],
+										(void *)lpsmSock,
+										(void *)rsPlayInfo[cnt].lpsmSock,
+										lpPlayInfo->getAccount() ? lpPlayInfo->getAccount() : "",
+										lpTransCharCommand->szName,
+										rsPlayInfo[cnt].getAccount() ? rsPlayInfo[cnt].getAccount() : "",
+										rsPlayInfo[cnt].getName() ? rsPlayInfo[cnt].getName() : ""
+									);
+									fflush(fpGet);
+									fclose(fpGet);
+								}
+							}
+#endif
+DisconnectUser(lpsmSock);
 							DisconnectUser(rsPlayInfo[cnt].lpsmSock);
 							break;
 						}
@@ -26372,7 +26491,28 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					delete lpRecordBase;
 					lpRecordBase = 0;
 				}
-				DisconnectUser(lpsmSock);
+				
+#ifdef __MINGW32__
+				{
+					FILE *fpGet = fopen("mingw_getrecord_trace.txt", "a");
+					if(fpGet)
+					{
+						fprintf(
+							fpGet,
+							"[DISCONNECT-ACCOUNTCHAR] account='%s' requestName='%s' "
+							"security=%d charLoading=%d objectSerial=%u\n",
+							lpPlayInfo->getAccount() ? lpPlayInfo->getAccount() : "",
+							lpTransCharCommand->szName,
+							(int)lpPlayInfo->getSecurity(),
+							(int)lpPlayInfo->CharLoadingCount,
+							(unsigned int)lpPlayInfo->dwObjectSerial
+						);
+						fflush(fpGet);
+						fclose(fpGet);
+					}
+				}
+#endif
+DisconnectUser(lpsmSock);
 
 				break;
 			}
@@ -26383,7 +26523,29 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					lpPlayInfo->dwNSpriteTime = dwTime + 1 * 60000;
 			}
 
-			if(cnt >= CONNECTMAX)
+			
+#ifdef __MINGW32__
+			{
+				FILE *fpGet = fopen("mingw_getrecord_trace.txt", "a");
+				if(fpGet)
+				{
+					fprintf(
+						fpGet,
+						"[GET-CHECKS-PASSED] cnt=%d CONNECTMAX=%d account='%s' "
+						"requestName='%s' currentName='%s' sock=%p\n",
+						cnt,
+						CONNECTMAX,
+						lpPlayInfo->getAccount() ? lpPlayInfo->getAccount() : "",
+						lpTransCharCommand->szName,
+						lpPlayInfo->getName() ? lpPlayInfo->getName() : "",
+						(void *)lpsmSock
+					);
+					fflush(fpGet);
+					fclose(fpGet);
+				}
+			}
+#endif
+if(cnt >= CONNECTMAX)
 			{
 				if(lpRecordBase->SendRecordDataToClient(lpPlayInfo, lpTransCharCommand->szName, lpsmSock, lpTransCharCommand->LParam) == FALSE)
 				{
@@ -26589,6 +26751,41 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 					}
 
 					Server_DebugCount = 1050;
+
+#ifdef __MINGW32__
+					// MINGW_CHECKUSERMODEL_TRACE_V1
+					{
+						smCHAR_INFO *ci =
+							&lpRecordBase->TransRecordData.smCharInfo;
+
+						int modelResult = CheckUserModel(ci);
+
+						FILE *fpModel =
+							fopen("mingw_checkusermodel.txt", "a");
+
+						if(fpModel)
+						{
+							fprintf(
+								fpModel,
+								"[MODEL] account='%s' char='%s' "
+								"job=%d level=%d "
+								"body='%s' face='%s' "
+								"result=%d\n",
+								lpPlayInfo->getAccount() ?
+									lpPlayInfo->getAccount() : "",
+								ci->szName,
+								(int)ci->JOB_CODE,
+								(int)ci->Level,
+								ci->szModelName,
+								ci->szModelName2,
+								modelResult
+							);
+
+							fflush(fpModel);
+							fclose(fpModel);
+						}
+					}
+#endif
 
 
 					if(lpPlayInfo->getSecurity() < AccountTypes::SEC_MODERATOR && CheckUserModel(&lpRecordBase->TransRecordData.smCharInfo) == FALSE)
@@ -31385,6 +31582,65 @@ extern CRITICAL_SECTION	cSocketSection;
 
 int DisconnectUser(smWINSOCK *lpsmSock)
 {
+
+#ifdef __MINGW32__
+	/* MINGW_DISCONNECT_CALLER_TRACE_V1 */
+	{
+		void *callerPtr = __builtin_return_address(0);
+		unsigned long caller =
+			(unsigned long)callerPtr;
+
+		unsigned long imageBase =
+			(unsigned long)GetModuleHandleA(NULL);
+
+		unsigned long callerRva = 0;
+
+		if(caller >= imageBase)
+			callerRva = caller - imageBase;
+
+		rsPLAYINFO *tracePlayer = NULL;
+
+		if(lpsmSock && lpsmSock->ExtData1)
+			tracePlayer =
+				(rsPLAYINFO *)lpsmSock->ExtData1;
+
+		FILE *fpDc =
+			fopen("mingw_disconnect_caller.txt", "a");
+
+		if(fpDc)
+		{
+			fprintf(
+				fpDc,
+				"[DISCONNECT] tid=%lu caller=%08lX "
+				"exeBase=%08lX rva=%08lX "
+				"Server_DebugCount=%d "
+				"sockobj=%p socket=%llu ip='%s' "
+				"player=%p account='%s' name='%s'\n",
+				(unsigned long)GetCurrentThreadId(),
+				caller,
+				imageBase,
+				callerRva,
+				Server_DebugCount,
+				(void *)lpsmSock,
+				lpsmSock ?
+					(unsigned long long)lpsmSock->sock : 0ULL,
+				(lpsmSock && lpsmSock->szIPAddr) ?
+					lpsmSock->szIPAddr : "",
+				(void *)tracePlayer,
+				(tracePlayer &&
+				 tracePlayer->getAccount()) ?
+					tracePlayer->getAccount() : "",
+				(tracePlayer &&
+				 tracePlayer->getName()) ?
+					tracePlayer->getName() : ""
+			);
+
+			fflush(fpDc);
+			fclose(fpDc);
+		}
+	}
+#endif
+
 	rsPLAYINFO *tpInfo;
 
 	DWORD	dwExitCode;

@@ -5639,7 +5639,8 @@ int	CheckUserModel(smCHAR_INFO *lpCharInfo)
 	strcpy_s(szBuff, lpCharInfo->szModelName);
 	for (cnt = len - 1; cnt >= 0; cnt--)
 	{
-		if (szBuff[cnt] == '//')
+		// MINGW_CHECKUSERMODEL_SEPARATOR_FIX_V1
+		if (szBuff[cnt] == '/')
 		{
 			szBuff[cnt + 1] = 0;
 			break;
