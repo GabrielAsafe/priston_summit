@@ -1,0 +1,11 @@
+--- before/OnSever.cpp
++++ after/OnSever.cpp
+@@ -2276,7 +2276,7 @@
+ 
+ 	while(cnt > 0)
+ 	{
+-		if(szFieldPath[cnt] == '//')
++		if(szFieldPath[cnt] == '/' || szFieldPath[cnt] == '\\') // BUGFIX_002_NPC_FIELD_PATH
+ 		{
+ 			szFile = &szFieldPath[cnt + 1];
+ 			break;

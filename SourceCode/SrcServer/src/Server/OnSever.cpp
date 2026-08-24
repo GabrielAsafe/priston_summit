@@ -2276,7 +2276,7 @@ char *SetFieldInfoPath(char *SaveBuff, char *szFieldPath, char *InfoExt)
 
 	while(cnt > 0)
 	{
-		if(szFieldPath[cnt] == '//')
+		if(szFieldPath[cnt] == '/' || szFieldPath[cnt] == '\\') // BUGFIX_002_NPC_FIELD_PATH
 		{
 			szFile = &szFieldPath[cnt + 1];
 			break;
