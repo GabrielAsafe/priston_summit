@@ -1,0 +1,120 @@
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+/home/gabriel/Área de Trabalho/summit/design_work/pt_ase_import_v4.py:622: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+================================================================================
+PT ASE IMPORT V4 - TEXTURED MESH + BIPED + PHYSIQUE
+================================================================================
+ASE        : /home/gabriel/Área de Trabalho/summit/design_work/blender_pipeline/MfbC13_roundtrip_v5c_1_MahC20.ASE
+CLIENT ROOT: /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente
+OUT        : /home/gabriel/Área de Trabalho/summit/design_work/blender_pipeline/MfbC13_v5c_1_reimport_v4.blend
+CACHE      : /home/gabriel/Área de Trabalho/summit/design_work/blender_pipeline/decoded_textures_v2
+
+GEOMOBJECT blocks: 67
+Top materials    : 2
+  MATERIAL 0: name='Material #4a' submaterials=2 bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\MfbC19_01.TGA'
+    SUB 0: name='Material #434' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\MfbC19_01.TGA'
+    SUB 1: name='Material #435' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\MfbC19_02.BMP'
+  MATERIAL 1: name='Material 2360' submaterials=2 bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\pr100_yun01.tga'
+    SUB 0: name='13 - Default' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\pr100_yun01.tga'
+    SUB 1: name='8 - Defaul' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\pr100_yun02.tga'
+
+Indexing client textures...
+Indexed image files: 22298
+Unique basenames   : 12806
+
+
+================================================================================
+BIPED / SKELETON RESULT
+================================================================================
+Bip nodes found     : 63
+Bones created       : 63
+Parent links        : 62
+Missing positions   : 0
+Display tail length : 1.4715559763053532
+Biped bbox min      : (-7.8173, -5.2734, -0.0244)
+Biped bbox max      : (7.8173, 13.3201, 36.3955)
+
+First Biped nodes:
+  'Bip01' parent=None pos=(0.0, 0.0, 23.3484) source=TM_ROW3
+  'Bip01 Footsteps' parent='Bip01' pos=(0.0, 0.0, -0.0244) source=TM_ROW3
+  'Bip01 Pelvis' parent='Bip01' pos=(0.0, 0.6861, 23.3484) source=TM_ROW3
+  'Bip01 Spine' parent='Bip01 Pelvis' pos=(-0.0, 0.6896, 25.7071) source=TM_ROW3
+  'Bip01 Spine1' parent='Bip01 Spine' pos=(-0.0, 0.9233, 30.1598) source=TM_ROW3
+  'Bip01 Neck' parent='Bip01 Spine1' pos=(-0.0, 2.3519, 34.993) source=TM_ROW3
+  'Bip01 Head' parent='Bip01 Neck' pos=(-0.0, 2.3386, 36.3955) source=TM_ROW3
+  'Bip01 L Clavicle' parent='Bip01 Neck' pos=(0.8256, 2.3508, 34.993) source=TM_ROW3
+  'Bip01 L UpperArm' parent='Bip01 L Clavicle' pos=(3.5276, 2.2856, 34.4408) source=TM_ROW3
+  'Bip01 L Forearm' parent='Bip01 L UpperArm' pos=(5.3914, 1.8798, 28.252) source=TM_ROW3
+  'Bip01 L Hand' parent='Bip01 L Forearm' pos=(7.1253, 0.7226, 22.5562) source=TM_ROW3
+  'Bip01 L Finger0' parent='Bip01 L Hand' pos=(6.7604, -1.3604, 22.059) source=TM_ROW3
+  'Bip01 L Finger01' parent='Bip01 L Finger0' pos=(6.6208, -2.6347, 21.3549) source=TM_ROW3
+  'Bip01 L Finger1' parent='Bip01 L Hand' pos=(7.5696, -0.9126, 20.289) source=TM_ROW3
+  'Bip01 L Finger11' parent='Bip01 L Finger1' pos=(7.8173, -1.4006, 18.9211) source=TM_ROW3
+  'Bip01 L Finger2' parent='Bip01 L Hand' pos=(7.597, 0.604, 19.7529) source=TM_ROW3
+  'Bip01 L Finger21' parent='Bip01 L Finger2' pos=(7.5089, 0.0989, 18.3194) source=TM_ROW3
+  'Bip01 R Clavicle' parent='Bip01 Neck' pos=(-0.8256, 2.3508, 34.993) source=TM_ROW3
+  'Bip01 R UpperArm' parent='Bip01 R Clavicle' pos=(-3.5276, 2.2856, 34.4408) source=TM_ROW3
+  'Bip01 R Forearm' parent='Bip01 R UpperArm' pos=(-5.3914, 1.8798, 28.252) source=TM_ROW3
+
+================================================================================
+PHYSIQUE / SKIN RESULT
+================================================================================
+MshC19: present=True declared=163 parsed=163 applied=163 groups=11 unassigned=0 missingBone=0 invalidVertex=0 duplicates=0
+MbhC19: present=True declared=143 parsed=143 applied=143 groups=21 unassigned=0 missingBone=0 invalidVertex=0 duplicates=0
+MlhC20: present=True declared=286 parsed=286 applied=286 groups=6 unassigned=0 missingBone=0 invalidVertex=0 duplicates=0
+MahC20: present=True declared=80 parsed=80 applied=80 groups=18 unassigned=0 missingBone=0 invalidVertex=0 duplicates=0
+
+Physique meshes      : 4
+Assignments parsed   : 672
+Vertices applied     : 672
+Unassigned vertices  : 0
+Missing-bone assigns : 0
+Invalid-vertex refs  : 0
+Unsupported lines    : 0
+
+================================================================================
+IMPORT RESULT
+================================================================================
+Imported: 4
+Skipped : 63
+
+MshC19: V=163 F=264 TV=250 TF=264 UVfaces=264 MATREF=0
+  PHYSIQUE present=True declared=163 parsed=163 applied=163 groups=11 unassigned=0
+  MTLID 0 -> name='Material #434' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\MfbC19_01.TGA'
+           resolved='/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC19_01.tga' candidates=1
+           decode=TGA_PRISTON_CUSTOM18_FOOTER26_256x256_32bpp load=LOADED
+MbhC19: V=143 F=248 TV=212 TF=248 UVfaces=248 MATREF=0
+  PHYSIQUE present=True declared=143 parsed=143 applied=143 groups=21 unassigned=0
+  MTLID 0 -> name='Material #434' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\MfbC19_01.TGA'
+           resolved='/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC19_01.tga' candidates=1
+           decode=TGA_PRISTON_CUSTOM18_FOOTER26_256x256_32bpp load=LOADED
+  MTLID 1 -> name='Material #435' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\MfbC19_02.BMP'
+           resolved='/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC19_02.bmp' candidates=1
+           decode=BMP_PRISTON_PREFIX14_256x256_24bpp load=LOADED
+MlhC20: V=286 F=428 TV=296 TF=428 UVfaces=428 MATREF=1
+  PHYSIQUE present=True declared=286 parsed=286 applied=286 groups=6 unassigned=0
+  MTLID 0 -> name='13 - Default' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\pr100_yun01.tga'
+           resolved='/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/pr100_yun01.tga' candidates=1
+           decode=TGA_PRISTON_CUSTOM18_FOOTER26_256x256_32bpp load=LOADED
+  MTLID 1 -> name='8 - Defaul' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\pr100_yun02.tga'
+           resolved='/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/pr100_yun02.tga' candidates=1
+           decode=TGA_PRISTON_CUSTOM18_FOOTER26_256x256_32bpp load=LOADED
+MahC20: V=80 F=146 TV=124 TF=146 UVfaces=146 MATREF=1
+  PHYSIQUE present=True declared=80 parsed=80 applied=80 groups=18 unassigned=0
+  MTLID 0 -> name='13 - Default' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\pr100_yun01.tga'
+           resolved='/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/pr100_yun01.tga' candidates=1
+           decode=TGA_PRISTON_CUSTOM18_FOOTER26_256x256_32bpp load=LOADED
+
+Material texture loads:
+  LOADED : 6
+  MISSING: 0
+  FAILED : 0
+Info: Saved as "MfbC13_v5c_1_reimport_v4.blend"
+
+BLEND saved: /home/gabriel/Área de Trabalho/summit/design_work/blender_pipeline/MfbC13_v5c_1_reimport_v4.blend
+================================================================================
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

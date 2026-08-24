@@ -1,0 +1,287 @@
+============================================================
+1. CLIENT sinItem CURRENT vs BACKUP
+============================================================
+f08b20afb1d3b0238d25744e4743bddc48ae212b24aaf5071c1055f7ecd9e2a3  SrcGame/src/sinbaram/sinItem.cpp
+f08b20afb1d3b0238d25744e4743bddc48ae212b24aaf5071c1055f7ecd9e2a3  SrcGame/src/sinbaram/sinItem.cpp.bak_sitem_table_restore_20260823
+
+76-
+77-
+78:sITEM sItem[MAX_ITEM] = {
+79-#include "items.h"
+80-};
+81-
+
+============================================================
+2. SERVER sinItem CURRENT vs BACKUP
+============================================================
+f77fe963ccfd192d9ed0af828fddb403d42685f2abdf4e0894b0862c6972be00  SrcServer/src/sinbaram/sinItem.cpp
+f77fe963ccfd192d9ed0af828fddb403d42685f2abdf4e0894b0862c6972be00  SrcServer/src/sinbaram/sinItem.cpp.bak_sitem_table_restore_20260823
+
+
+============================================================
+3. ALL RELEVANT BACKUPS CREATED AROUND THESE CHANGES
+============================================================
+2026-07-05 11:44:07.0970909680  234866  SrcGame/src/sinbaram/sinItem.cpp
+2026-07-05 11:44:07.0970909680  234866  SrcGame/src/sinbaram/sinItem.cpp.bak_sitem_table_restore_20260823
+2026-07-05 19:53:14.8683177210  156716  SrcGame/src/fileread.cpp.bak_static_getword
+2026-07-06 14:47:28.9912431880  150460  SrcGame/src/fileread.cpp.bak_rename_local_getword
+2026-07-06 14:47:29.0503658090  153511  SrcGame/src/fileread.cpp.bak_before_mingw_model_checksum_v2
+2026-07-16 14:51:56.2922495260  154  Shared/items.h
+2026-07-16 14:51:56.3252499110  149799  SrcServer/src/fileread.cpp.bak_local_getword_20260720_084353
+2026-07-16 14:51:56.3302499690  75040  SrcServer/src/sinbaram/sinItem.cpp
+2026-07-16 14:51:56.3302499690  75040  SrcServer/src/sinbaram/sinItem.cpp.bak_sitem_table_restore_20260823
+2026-07-20 08:43:53.7935422730  149937  SrcServer/src/fileread.cpp.bak_spm_cp949_v1
+2026-08-21 15:19:03.1669159080  155253  SrcGame/src/fileread.cpp.logs_backup
+2026-08-22 14:13:36.9777211270  150062  SrcServer/src/fileread.cpp.bak_spm_actor_trace_v1
+2026-08-22 14:20:14.6896493490  152570  SrcServer/src/fileread.cpp.bak_charinf_cp949_v1
+2026-08-22 14:40:02.6911541480  154069  SrcServer/src/fileread.cpp.bak_decodeitem_cp949_literals_20260823
+2026-08-22 19:04:45.7980129210  155259  SrcGame/src/fileread.cpp
+2026-08-23 22:14:13.2243051180  155247  SrcServer/src/fileread.cpp
+2026-08-23 22:44:05.0644858370  156883  SrcGame/src/sinbaram/items_table.inc
+2026-08-23 22:54:23.2946551910  156883  SrcServer/src/sinbaram/items_table.inc
+
+============================================================
+4. BYTE-LEVEL ENCODING STATE
+============================================================
+
+FILE=SrcGame/src/fileread.cpp
+SIZE=155259
+UTF8_REPLACEMENT_EF_BF_BD=2008
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=SrcServer/src/fileread.cpp
+SIZE=155247
+UTF8_REPLACEMENT_EF_BF_BD=1061
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=1
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=SrcGame/src/sinbaram/sinItem.cpp
+SIZE=234866
+UTF8_REPLACEMENT_EF_BF_BD=229
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=SrcServer/src/sinbaram/sinItem.cpp
+SIZE=75040
+UTF8_REPLACEMENT_EF_BF_BD=2
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=Shared/items.h
+SIZE=154
+UTF8_REPLACEMENT_EF_BF_BD=0
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=SrcGame/src/fileread.cpp.bak_static_getword
+SIZE=156716
+UTF8_REPLACEMENT_EF_BF_BD=2008
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=SrcGame/src/fileread.cpp.bak_rename_local_getword
+SIZE=150460
+UTF8_REPLACEMENT_EF_BF_BD=2008
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=SrcGame/src/fileread.cpp.bak_before_mingw_model_checksum_v2
+SIZE=153511
+UTF8_REPLACEMENT_EF_BF_BD=2008
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=SrcGame/src/fileread.cpp.logs_backup
+SIZE=155253
+UTF8_REPLACEMENT_EF_BF_BD=2008
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=SrcGame/src/sinbaram/sinItem.cpp.bak_sitem_table_restore_20260823
+SIZE=234866
+UTF8_REPLACEMENT_EF_BF_BD=229
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=SrcServer/src/fileread.cpp.bak_local_getword_20260720_084353
+SIZE=149799
+UTF8_REPLACEMENT_EF_BF_BD=1978
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=SrcServer/src/fileread.cpp.bak_spm_cp949_v1
+SIZE=149937
+UTF8_REPLACEMENT_EF_BF_BD=1978
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=SrcServer/src/fileread.cpp.bak_spm_actor_trace_v1
+SIZE=150062
+UTF8_REPLACEMENT_EF_BF_BD=1949
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=SrcServer/src/fileread.cpp.bak_charinf_cp949_v1
+SIZE=152570
+UTF8_REPLACEMENT_EF_BF_BD=1949
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=SrcServer/src/fileread.cpp.bak_decodeitem_cp949_literals_20260823
+SIZE=154069
+UTF8_REPLACEMENT_EF_BF_BD=1440
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+FILE=SrcServer/src/sinbaram/sinItem.cpp.bak_sitem_table_restore_20260823
+SIZE=75040
+UTF8_REPLACEMENT_EF_BF_BD=2
+CP949_STAR_CODE=0
+CPP_HEX_ESCAPE_STAR_CODE=0
+UTF8_KOREAN_STAR_CODE=0
+
+============================================================
+5. EXACT *CODE LINES IN CURRENT FILEREAD FILES
+============================================================
+SrcGame/src/fileread.cpp:323:			if(lstrcmp(decode, szIniCommand[CmdNum]) == 0)
+SrcGame/src/fileread.cpp:1251:	if(lstrcmp(decode, "*�����ڵ��ȣ") == 0 ||
+SrcGame/src/fileread.cpp:1259:	if(!flag && (lstrcmp(decode, "*�ڵ�ĳ���ͻ��") == 0 ||
+SrcGame/src/fileread.cpp:1266:	if(!flag && (lstrcmp(decode, "*������ۻ��") == 0 ||
+SrcGame/src/fileread.cpp:1274:	if(!flag && lstrcmp(decode, "*�������") == 0)
+SrcGame/src/fileread.cpp:1279:	if(!flag && (lstrcmp(decode, "*���������ο�") == 0 ||
+SrcGame/src/fileread.cpp:1287:	if(!flag && (lstrcmp(decode, "*�׽�Ʈ����") == 0 ||
+SrcGame/src/fileread.cpp:1299:	if(!flag && (lstrcmp(decode, "*���Ӱ����ڵ�") == 0 ||
+SrcGame/src/fileread.cpp:1313:	if(!flag && (lstrcmp(decode, "*�ڵ���������") == 0 ||
+SrcGame/src/fileread.cpp:1320:	if(!flag && (lstrcmp(decode, "*���κ�ȣ�ڵ�") == 0 ||
+SrcGame/src/fileread.cpp:1337:	if(!flag && (lstrcmp(decode, "*��ȣ�ڵ��������") == 0 ||
+SrcGame/src/fileread.cpp:1345:	if(!flag && (lstrcmp(decode, "*���ѹ���") == 0 ||
+SrcGame/src/fileread.cpp:1355:	if(!flag && (lstrcmp(decode, "*������IP�ּ�") == 0 ||
+SrcGame/src/fileread.cpp:1363:	if(!flag && (lstrcmp(decode, "*���������Ӿ�ȣ") == 0 ||
+SrcGame/src/fileread.cpp:1371:	if(!flag && (lstrcmp(decode, "*�����̸�") == 0 ||
+SrcGame/src/fileread.cpp:1379:	if(!flag && (lstrcmp(decode, "*PK�㰡") == 0 ||
+SrcGame/src/fileread.cpp:1390:	if(!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+SrcGame/src/fileread.cpp:1402:	if(!flag && (lstrcmp(decode, "*PK����ʵ�") == 0 || lstrcmpi(decode, "*PK_FIELD_ALL") == 0))
+SrcGame/src/fileread.cpp:1410:	if(!flag && (lstrcmp(decode, "*���న��") == 0 ||
+SrcGame/src/fileread.cpp:1423:	if(!flag && (lstrcmp(decode, "*���Ȱ˻�") == 0 ||
+SrcGame/src/fileread.cpp:1442:	if(!flag && (lstrcmp(decode, "*��������") == 0 ||
+SrcGame/src/fileread.cpp:1451:	if(!flag && (lstrcmp(decode, "*����ܰ�") == 0 ||
+SrcGame/src/fileread.cpp:1459:	if(!flag && (lstrcmp(decode, "*����ƿ�") == 0 ||
+SrcGame/src/fileread.cpp:1466:	if(!flag && (lstrcmp(decode, "*�����ۿ�������") == 0 ||
+SrcGame/src/fileread.cpp:1478:	if(!flag && (lstrcmp(decode, "*��ǰ˻�") == 0 ||
+SrcGame/src/fileread.cpp:1487:	if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1493:	if(!flag && (lstrcmp(decode, "*�ϵ��ھ��̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1506:	if(!flag && (lstrcmp(decode, "*���ݷ�Ȱ���̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1537:	if(!flag && (lstrcmp(decode, "*���������̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1548:	if(!flag && (lstrcmp(decode, "*����̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1562:	if(!flag && (lstrcmp(decode, "*ũ����Ż�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1574:	if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1582:	if(!flag && (lstrcmp(decode, "*������Ʈ�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1595:	if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1608:	if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1621:	if(!flag && (lstrcmp(decode, "*�ٺ����̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1636:	if(!flag && (lstrcmp(decode, "*����ȣ�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1650:	if(!flag && (lstrcmp(decode, "*ũ���������̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1661:	if(!flag && (lstrcmp(decode, "*�߷�Ÿ�ε���_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1675:	if(!flag && (lstrcmp(decode, "*Ŀ�ø�_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1688:	if(!flag && (lstrcmp(decode, "*����_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1701:	if(!flag && (lstrcmp(decode, "*�߷�Ÿ��_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1715:	if(!flag && (lstrcmp(decode, "*ĵ������_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1729:	if(!flag && (lstrcmp(decode, "*���ϴüҿ�_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1742:	if(!flag && (lstrcmp(decode, "*���ĺ�����_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1755:	if(!flag && (lstrcmp(decode, "*ȭ��Ʈ��Ʈ��Ʈ_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1768:	if(!flag && (lstrcmp(decode, "*����������ȥ_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1781:	if(!flag && (lstrcmp(decode, "*�����ñ׸�_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1794:	if(!flag && (lstrcmp(decode, "*ī���Ǵ���_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1808:	if(!flag && (lstrcmp(decode, "*ȭ��Ʈ����_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1821:	if(!flag && (lstrcmp(decode, "*�����ǽ���_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1834:	if(!flag && (lstrcmp(decode, "*������_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1848:	if(!flag && (lstrcmp(decode, "*���ڸ���_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1863:	if(!flag && (lstrcmp(decode, "*����ʹ���_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1877:	if(!flag && (lstrcmp(decode, "*����_�̺�Ʈ") == 0 || lstrcmpi(decode, "*EVENT_CHICHEN_DAY") == 0))
+SrcGame/src/fileread.cpp:1888:	if(!flag && (lstrcmp(decode, "*���Ʈ_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1901:	if(!flag && (lstrcmp(decode, "*��Ÿ����_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1914:	if(!flag && (lstrcmp(decode, "*�����_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1927:	if(!flag && (lstrcmp(decode, "*�ǽù���_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1940:	if(!flag && (lstrcmp(decode, "*����ġ��_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:1978:	if(!flag && (lstrcmp(decode, "*����ġ��_�̺�Ʈ_��ƾ") == 0 || lstrcmpi(decode, "*EVENT_EXPUP_LATIN") == 0))
+SrcGame/src/fileread.cpp:1999:	if(!flag && (lstrcmp(decode, "*��������_�̺�Ʈ") == 0 ||
+SrcGame/src/fileread.cpp:2017:	if(!flag && (lstrcmp(decode, "*�ð�����ġ") == 0 || lstrcmpi(decode, "*EXP_GAMETIME") == 0))
+SrcGame/src/fileread.cpp:2029:	if(!flag && (lstrcmp(decode, "*�����ĳ��") == 0 ||
+SrcGame/src/fileread.cpp:2041:	if(!flag && (lstrcmp(decode, "*�����ð�") == 0 ||
+SrcGame/src/fileread.cpp:2055:	if(!flag && (lstrcmp(decode, "*�̺�Ʈ��Ʈ����") == 0 ||
+SrcGame/src/fileread.cpp:2066:	if(!flag && (lstrcmp(decode, "*�ű���������") == 0 ||
+SrcGame/src/fileread.cpp:2080:	if(!flag && (lstrcmp(decode, "*�����ڱ��") == 0 ||
+SrcGame/src/fileread.cpp:2087:	if(!flag && (lstrcmp(decode, "*��������㰡") == 0 ||
+SrcGame/src/fileread.cpp:2094:	if(!flag && (lstrcmp(decode, "*����ġ��������") == 0 ||
+SrcGame/src/fileread.cpp:2101:	if(!flag && (lstrcmp(decode, "*����������") == 0 ||
+SrcGame/src/fileread.cpp:2109:	if(!flag && (lstrcmp(decode, "*���μ����ð�����") == 0 ||
+SrcGame/src/fileread.cpp:2116:	if(!flag && (lstrcmp(decode, "*���μ����ð�����") == 0 ||
+SrcGame/src/fileread.cpp:2122:	if(!flag && (lstrcmp(decode, "*���హ��Ȯ��") == 0 ||
+SrcGame/src/fileread.cpp:2129:	if(!flag && (lstrcmp(decode, "*��������ġ���") == 0 ||
+SrcGame/src/fileread.cpp:2140:	if(!flag && (lstrcmp(decode, "*����������") == 0 ||
+SrcGame/src/fileread.cpp:2148:	if(!flag && (lstrcmp(decode, "*���ð�ǥ��") == 0 ||
+SrcGame/src/fileread.cpp:2161:	//if(!flag && (lstrcmp(decode, "*�α��α���") == 0 ||
+SrcGame/src/fileread.cpp:2189:	if(!flag && (lstrcmp(decode, "*�α�ť����") == 0 ||
+SrcGame/src/fileread.cpp:2195:	if(!flag && (lstrcmp(decode, "*�α׾ƿ�Ȯ�α���") == 0 ||
+SrcGame/src/fileread.cpp:2202:	//if(!flag && (lstrcmp(decode, "*�α�������") == 0 ||
+SrcGame/src/fileread.cpp:2210:	if(!flag && (lstrcmp(decode, "*���᷹��") == 0 ||
+SrcGame/src/fileread.cpp:2223:	if(!flag && (lstrcmp(decode, "*��������") == 0 ||
+SrcGame/src/fileread.cpp:2231:	if(!flag && (lstrcmp(decode, "*������������") == 0 ||
+SrcGame/src/fileread.cpp:2239:	if(!flag && (lstrcmp(decode, "*�ʵ������˻�") == 0 ||
+SrcGame/src/fileread.cpp:2248:	if(!flag && (lstrcmp(decode, "*�����ϰ˻�") == 0 ||
+SrcGame/src/fileread.cpp:2257:	if(!flag && (lstrcmp(decode, "*��������IP") == 0 ||
+SrcGame/src/fileread.cpp:2273:	if(!flag && (lstrcmp(decode, "*�����㰡IP") == 0 ||
+SrcGame/src/fileread.cpp:2289:	if(!flag && (lstrcmp(decode, "*��������IP") == 0 ||
+SrcGame/src/fileread.cpp:2305:	if(!flag && (lstrcmp(decode, "*�ý���IP") == 0 ||
+SrcGame/src/fileread.cpp:2321:	if(!flag && (lstrcmp(decode, "*�α��μ���IP") == 0 ||
+SrcGame/src/fileread.cpp:2337:	if(!flag && (lstrcmp(decode, "*�����κ��丮") == 0 ||
+SrcGame/src/fileread.cpp:2345:	if(!flag && (lstrcmp(decode, "*��������̸�") == 0 ||
+SrcGame/src/fileread.cpp:2353:	if(!flag && (lstrcmp(decode, "*��ų����Ʈ���ҺҰ�") == 0 ||
+SrcGame/src/fileread.cpp:2361:	if(!flag && (lstrcmp(decode, "*����Ʈ����") == 0 ||
+SrcGame/src/fileread.cpp:2370:	if(!flag && (lstrcmp(decode, "*�����ʵ����") == 0 ||
+SrcGame/src/fileread.cpp:2380:	if(!flag && (lstrcmp(decode, "*�����۹�������") == 0 ||
+SrcGame/src/fileread.cpp:2395:	if(!flag && (lstrcmp(decode, "*ũ��������Ŷ") == 0 ||
+SrcGame/src/fileread.cpp:2403:	if(!flag && (lstrcmp(decode, "*�뺸�ּ�") == 0 ||
+SrcGame/src/fileread.cpp:2411:	if(!flag && (lstrcmp(decode, "*������ɱ��") == 0 ||
+SrcGame/src/fileread.cpp:2424:	if(!flag && (lstrcmp(decode, "*��������IP") == 0 ||
+SrcGame/src/fileread.cpp:2433:	if(!flag && (lstrcmp(decode, "*��������") == 0 ||
+SrcGame/src/fileread.cpp:2453:	if(!flag && (lstrcmp(decode, "*��ʸ�Ʈ��������") == 0 ||
+SrcGame/src/fileread.cpp:2503:	if(lstrcmp(decode, "*���Ӽ�������") == 0 ||
+SrcGame/src/fileread.cpp:2539:	if(!flag && (lstrcmp(decode, "*Ŭ����������") == 0 ||
+SrcGame/src/fileread.cpp:2715:		if(lstrcmp(decode, "*�̸�") == 0)
+SrcGame/src/fileread.cpp:2736:		if(!NextFlag && lstrcmp(decode, "*�ڵ�") == 0)
+SrcGame/src/fileread.cpp:2753:		if(!NextFlag && lstrcmp(decode, "*����ũ") == 0)
+SrcGame/src/fileread.cpp:2764:		if(!NextFlag && lstrcmp(decode, "*����ũ����") == 0)
+SrcGame/src/fileread.cpp:2783:		if(!NextFlag && lstrcmp(decode, "*����Ʈ����") == 0)
+SrcGame/src/fileread.cpp:2794:		if(!NextFlag && lstrcmp(decode, "*������") == 0)
+SrcGame/src/fileread.cpp:2804:		if(!NextFlag && lstrcmp(decode, "*����") == 0)
+SrcGame/src/fileread.cpp:2812:		if(!NextFlag && lstrcmp(decode, "*����") == 0)
+SrcGame/src/fileread.cpp:2820:		if(!NextFlag && lstrcmp(decode, "*��ü") == 0)
+SrcGame/src/fileread.cpp:2828:		if(!NextFlag && lstrcmp(decode, "*���ڿ�") == 0)
+SrcGame/src/fileread.cpp:2836:		if(!NextFlag && lstrcmp(decode, "*��") == 0)
+SrcGame/src/fileread.cpp:2844:		if(!NextFlag && lstrcmp(decode, "*�ñ�") == 0)
+SrcGame/src/fileread.cpp:2852:		if(!NextFlag && lstrcmp(decode, "*����") == 0)
+SrcGame/src/fileread.cpp:2860:		if(!NextFlag && lstrcmp(decode, "*��") == 0)
+SrcGame/src/fileread.cpp:2868:		if(!NextFlag && lstrcmp(decode, "*��") == 0)
+
+============================================================
+6. HASHES OF CURRENT/KNOWN SERVER FILEREAD BACKUP
+============================================================
+4b836a67c315767d08d596b0f6226ef0d65829be7ff6806f3d986ee805854a32  SrcServer/src/fileread.cpp
+04734a8c9ef18ed47d7c5ebbef04a7f206d59ac35126ec6e30b8e5a9194b3f76  SrcServer/src/fileread.cpp.bak_decodeitem_cp949_literals_20260823

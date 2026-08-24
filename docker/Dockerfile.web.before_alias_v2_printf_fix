@@ -1,0 +1,86 @@
+FROM debian:jessie
+
+RUN set -eux; \
+    printf '%s\n' \
+      'deb http://archive.debian.org/debian jessie main' \
+      'deb http://archive.debian.org/debian-security jessie/updates main' \
+      > /etc/apt/sources.list; \
+    echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid-until
+
+RUN apt-get update -o Acquire::AllowInsecureRepositories=true && \
+    apt-get install -y --force-yes --no-install-recommends \
+      apache2 \
+      libapache2-mod-php5 \
+      php5 \
+      php5-cli \
+      php5-odbc \
+      unixodbc \
+      tdsodbc \
+      freetds-bin \
+      freetds-common && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN printf "[FreeTDS]\nDescription=FreeTDS Driver for Linux\nDriver=/usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so\nSetup=/usr/lib/x86_64-linux-gnu/odbc/libtdsS.so\nUsageCount=1\n" > /etc/odbcinst.ini
+
+RUN cat > /etc/freetds/freetds.conf <<'EOT'
+[global]
+    tds version = 7.4
+
+[summitdb]
+    host = summittale-mssql
+    port = 1433
+    tds version = 7.4
+EOT
+
+RUN cat > /etc/odbc.ini <<'EOT'
+[SummitSQL]
+Driver = FreeTDS
+Servername = summitdb
+Database = AccountDB
+Port = 1433
+TDS_Version = 7.4
+EOT
+
+RUN a2enmod rewrite php5 && \
+    echo "ServerName localhost" > /etc/apache2/conf-available/servername.conf && \
+    a2enconf servername
+
+RUN { \
+      echo 'short_open_tag=On'; \
+      echo 'display_errors=Off'; \
+      echo 'display_startup_errors=Off'; \
+      echo 'log_errors=On'; \
+      echo 'error_log=/proc/self/fd/2'; \
+      echo 'date.timezone=Europe/Lisbon'; \
+    } > /etc/php5/apache2/conf.d/99-summit.ini && \
+    cp /etc/php5/apache2/conf.d/99-summit.ini /etc/php5/cli/conf.d/99-summit.ini
+
+WORKDIR /var/www/html
+
+EXPOSE 80
+
+CMD ["apache2ctl", "-D", "FOREGROUND"]
+
+RUN cat > /etc/php5/apache2/conf.d/00-legacy-polyfills.php.ini <<'EOT'
+auto_prepend_file=/var/www/html/legacy_polyfills.php
+EOT
+
+RUN cat > /etc/php5/cli/conf.d/00-legacy-polyfills.php.ini <<'EOT'
+auto_prepend_file=/var/www/html/legacy_polyfills.php
+EOT
+
+
+# SUMMIT_ISCLANMEMBER_ALIAS_V2
+# Compatibilidade Linux/PHP para a URL Classic ASP usada pelo cliente.
+# AliasMatch aceita também as barras duplicadas do protocolo legado.
+RUN printf '%s
+' \
+    'AliasMatch "^/+ServerMain/+isClanMember\.asp$" "/var/www/html/ServerMain/isClanMember.php"' \
+    '' \
+    '<LocationMatch "^/+ServerMain/+isClanMember\.asp$">' \
+    '    SetHandler application/x-httpd-php' \
+    '</LocationMatch>' \
+    > /etc/apache2/conf-available/summit-isclanmember.conf && \
+    a2enconf summit-isclanmember
+

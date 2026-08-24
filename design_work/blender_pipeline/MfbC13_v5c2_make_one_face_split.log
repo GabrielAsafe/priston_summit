@@ -1,0 +1,16 @@
+00:00.019  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.019  color_management | Using fallback mode for management
+00:01.716  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender_pipeline/MfbC13_import_v4.blend"
+Traceback (most recent call last):
+  File "/home/gabriel/Área de Trabalho/summit/design_work/pt_v5c_make_one_face_split_test.py", line 368, in <module>
+    main()
+    ~~~~^^
+  File "/home/gabriel/Área de Trabalho/summit/design_work/pt_v5c_make_one_face_split_test.py", line 286, in main
+    raise RuntimeError(
+        f"Missing vertex group after mesh swap: {group_name!r}"
+    )
+RuntimeError: Missing vertex group after mesh swap: 'Bip01 R Forearm'
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

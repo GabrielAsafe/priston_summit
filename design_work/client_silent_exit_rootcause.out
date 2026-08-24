@@ -1,0 +1,1206 @@
+======================================================================
+1. BDEBUGFOUND / DWTICKHACK - TODAS AS LEITURAS E ESCRITAS
+======================================================================
+SrcGame/src/AntiCheat/AntiCheat.cpp-426- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-427- mov eax, dword ptr fs : [0x18]
+SrcGame/src/AntiCheat/AntiCheat.cpp-428-
+SrcGame/src/AntiCheat/AntiCheat.cpp-429- mov eax, dword ptr[eax + 0x30]
+SrcGame/src/AntiCheat/AntiCheat.cpp-430-
+SrcGame/src/AntiCheat/AntiCheat.cpp-431- cmp byte ptr[eax + 2], 0
+SrcGame/src/AntiCheat/AntiCheat.cpp-432- je blocEnd
+SrcGame/src/AntiCheat/AntiCheat.cpp-433- mov bRet, 1
+SrcGame/src/AntiCheat/AntiCheat.cpp-434- blocEnd :
+SrcGame/src/AntiCheat/AntiCheat.cpp-435- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-436-
+SrcGame/src/AntiCheat/AntiCheat.cpp-437- return bRet;
+SrcGame/src/AntiCheat/AntiCheat.cpp-438-#endif
+SrcGame/src/AntiCheat/AntiCheat.cpp-439-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-440-
+SrcGame/src/AntiCheat/AntiCheat.cpp-441-DWORD dwTickCount = 0;
+SrcGame/src/AntiCheat/AntiCheat.cpp-442-DWORD dwTickCount2 = 0;
+SrcGame/src/AntiCheat/AntiCheat.cpp-443-
+SrcGame/src/AntiCheat/AntiCheat.cpp:444:bool bdebugfound = false;
+SrcGame/src/AntiCheat/AntiCheat.cpp:445:extern DWORD dwtickhack;
+SrcGame/src/AntiCheat/AntiCheat.cpp-446-
+SrcGame/src/AntiCheat/AntiCheat.cpp-447-DWORD WINAPI AntiCheat::ThreadAntiCheatHandler()
+SrcGame/src/AntiCheat/AntiCheat.cpp-448-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-449-	pcAntiCheat->AddNewThreadException(GetCurrentThreadId());
+SrcGame/src/AntiCheat/AntiCheat.cpp-450-
+SrcGame/src/AntiCheat/AntiCheat.cpp-451-	while (true)
+SrcGame/src/AntiCheat/AntiCheat.cpp-452-	{
+SrcGame/src/AntiCheat/AntiCheat.cpp-453- void AntiInject();
+SrcGame/src/AntiCheat/AntiCheat.cpp-454-
+SrcGame/src/AntiCheat/AntiCheat.cpp-455- if ((GetTickCount() - dwTickCount) >= 15000)
+SrcGame/src/AntiCheat/AntiCheat.cpp-456- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-457- pcAntiCheat->ChecksumFunctionHandler();
+SrcGame/src/AntiCheat/AntiCheat.cpp-458-
+SrcGame/src/AntiCheat/AntiCheat.cpp-459- if (pcAntiCheat->psPacketWindowCheat)
+SrcGame/src/AntiCheat/AntiCheat.cpp-460- pcAntiCheat->WindowFunctionHandler();
+SrcGame/src/AntiCheat/AntiCheat.cpp-461-
+SrcGame/src/AntiCheat/AntiCheat.cpp-462- dwTickCount = GetTickCount();
+SrcGame/src/AntiCheat/AntiCheat.cpp-463- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-464-
+SrcGame/src/AntiCheat/AntiCheat.cpp-465- if ((GetTickCount() - dwTickCount2) >= 1000)
+SrcGame/src/AntiCheat/AntiCheat.cpp-466- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-467- if (antidebug1())
+SrcGame/src/AntiCheat/AntiCheat.cpp-468- {
+SrcGame/src/AntiCheat/AntiCheat.cpp:469: bdebugfound = true;
+SrcGame/src/AntiCheat/AntiCheat.cpp-470- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-471-
+SrcGame/src/AntiCheat/AntiCheat.cpp-472- if (IsDebuggerPresent())
+SrcGame/src/AntiCheat/AntiCheat.cpp-473- {
+SrcGame/src/AntiCheat/AntiCheat.cpp:474: bdebugfound = true;
+SrcGame/src/AntiCheat/AntiCheat.cpp-475- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-476-
+SrcGame/src/AntiCheat/AntiCheat.cpp:477: dwtickhack = GetTickCount();
+SrcGame/src/AntiCheat/AntiCheat.cpp-478- dwTickCount2 = GetTickCount();
+SrcGame/src/AntiCheat/AntiCheat.cpp-479- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-480-	}
+SrcGame/src/AntiCheat/AntiCheat.cpp-481-	return TRUE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-482-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-483-
+SrcGame/src/AntiCheat/AntiCheat.cpp-484-void AntiCheat::CheckThread()
+SrcGame/src/AntiCheat/AntiCheat.cpp-485-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-486-	DWORD dwThreadID = GetCurrentThreadId();
+SrcGame/src/AntiCheat/AntiCheat.cpp-487-	BOOL bThreadFound = FALSE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-488-
+SrcGame/src/AntiCheat/AntiCheat.cpp-489-
+SrcGame/src/AntiCheat/AntiCheat.cpp-490-	for (int i = 0; i < _countof(pcAntiCheat->dwThreadsID); i++)
+SrcGame/src/AntiCheat/AntiCheat.cpp-491-	{
+SrcGame/src/AntiCheat/AntiCheat.cpp-492- if (pcAntiCheat->dwThreadsID[i] == dwThreadID)
+SrcGame/src/AntiCheat/AntiCheat.cpp-493- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-494- bThreadFound = TRUE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-495- break;
+--
+SrcGame/src/AntiCheat/AntiCheat.cpp-580-
+SrcGame/src/AntiCheat/AntiCheat.cpp-581-void AntiCheat::FindHackDllThread()
+SrcGame/src/AntiCheat/AntiCheat.cpp-582-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-583-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-584-
+SrcGame/src/AntiCheat/AntiCheat.cpp-585-void AntiCheat::WindowFunctionHandler()
+SrcGame/src/AntiCheat/AntiCheat.cpp-586-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-587-
+SrcGame/src/AntiCheat/AntiCheat.cpp-588-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-589-
+SrcGame/src/AntiCheat/AntiCheat.cpp-590-bool antidebug1()
+SrcGame/src/AntiCheat/AntiCheat.cpp-591-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-592-	return false;
+SrcGame/src/AntiCheat/AntiCheat.cpp-593-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-594-
+SrcGame/src/AntiCheat/AntiCheat.cpp-595-DWORD dwTickCount = 0;
+SrcGame/src/AntiCheat/AntiCheat.cpp-596-DWORD dwTickCount2 = 0;
+SrcGame/src/AntiCheat/AntiCheat.cpp-597-
+SrcGame/src/AntiCheat/AntiCheat.cpp:598:bool bdebugfound = false;
+SrcGame/src/AntiCheat/AntiCheat.cpp:599:extern DWORD dwtickhack;
+SrcGame/src/AntiCheat/AntiCheat.cpp-600-
+SrcGame/src/AntiCheat/AntiCheat.cpp-601-DWORD WINAPI AntiCheat::ThreadAntiCheatHandler()
+SrcGame/src/AntiCheat/AntiCheat.cpp-602-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-603-	return TRUE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-604-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-605-
+SrcGame/src/AntiCheat/AntiCheat.cpp-606-void AntiCheat::CheckThread()
+SrcGame/src/AntiCheat/AntiCheat.cpp-607-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-608-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-609-
+SrcGame/src/AntiCheat/AntiCheat.cpp-610-void AntiCheat::ReceivePacketHandler(PacketChecksumFunctionList* psPacket)
+SrcGame/src/AntiCheat/AntiCheat.cpp-611-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-612-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-613-
+SrcGame/src/AntiCheat/AntiCheat.cpp-614-void AntiCheat::HandlePacket(PacketWindowList* psPacket)
+SrcGame/src/AntiCheat/AntiCheat.cpp-615-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-616-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-617-
+--
+SrcGame/src/smwsock.cpp-222-		{
+SrcGame/src/smwsock.cpp-223-			if(lpsmSock->Send(PacketSendQue[QuePos].PacketQue, PacketSendQue[QuePos].Len) == TRUE)
+SrcGame/src/smwsock.cpp-224-			{
+SrcGame/src/smwsock.cpp-225-
+SrcGame/src/smwsock.cpp-226-				PacketSendQue[QuePos].lpsmSock = 0;
+SrcGame/src/smwsock.cpp-227-				lpsmSock->PacketSendQueCnt--;
+SrcGame/src/smwsock.cpp-228-				LeaveCriticalSection(&cPacketQueSection);
+SrcGame/src/smwsock.cpp-229-				return TRUE;
+SrcGame/src/smwsock.cpp-230-			}
+SrcGame/src/smwsock.cpp-231-			break;
+SrcGame/src/smwsock.cpp-232-		}
+SrcGame/src/smwsock.cpp-233-	}
+SrcGame/src/smwsock.cpp-234-
+SrcGame/src/smwsock.cpp-235-	LeaveCriticalSection(&cPacketQueSection);
+SrcGame/src/smwsock.cpp-236-
+SrcGame/src/smwsock.cpp-237-	return FALSE;
+SrcGame/src/smwsock.cpp-238-}
+SrcGame/src/smwsock.cpp-239-
+SrcGame/src/smwsock.cpp:240:extern bool bdebugfound;
+SrcGame/src/smwsock.cpp:241:DWORD dwtickhack = 0;
+SrcGame/src/smwsock.cpp-242-
+SrcGame/src/smwsock.cpp-243-
+SrcGame/src/smwsock.cpp-244-int SucessPacketSending(smTHREADSOCK *SockInfo)
+SrcGame/src/smwsock.cpp-245-{
+SrcGame/src/smwsock.cpp-246-
+SrcGame/src/smwsock.cpp-247-
+SrcGame/src/smwsock.cpp-248-	if(SockInfo->smMySock->PacketSendQueCnt)
+SrcGame/src/smwsock.cpp-249-	{
+SrcGame/src/smwsock.cpp-250-		PopSendPacketQue(SockInfo->smMySock);
+SrcGame/src/smwsock.cpp-251-	}
+SrcGame/src/smwsock.cpp-252-	else
+SrcGame/src/smwsock.cpp-253-	{
+SrcGame/src/smwsock.cpp-254-		SendMessage(hMsgWnd, SWM_SENDSUCCESS, (WPARAM)SockInfo, 0);
+SrcGame/src/smwsock.cpp-255-
+SrcGame/src/smwsock.cpp:256:		if((bdebugfound) && ((GetTickCount() - dwtickhack) >= 5000))
+SrcGame/src/smwsock.cpp-257-			ExitProcess(0);
+SrcGame/src/smwsock.cpp-258-	}
+SrcGame/src/smwsock.cpp-259-
+SrcGame/src/smwsock.cpp-260-	return TRUE;
+SrcGame/src/smwsock.cpp-261-}
+SrcGame/src/smwsock.cpp-262-
+SrcGame/src/smwsock.cpp-263-
+SrcGame/src/smwsock.cpp-264-DWORD WINAPI smTransRecvThreadProc(void *pInfo)
+SrcGame/src/smwsock.cpp-265-{
+SrcGame/src/smwsock.cpp-266-	smTHREAD_ROUTE *ThreadRoute;
+SrcGame/src/smwsock.cpp-267-	smTHREADSOCK *SockInfo;
+SrcGame/src/smwsock.cpp-268-	smWINSOCK	*lpsmsock;
+SrcGame/src/smwsock.cpp-269-	int len;
+SrcGame/src/smwsock.cpp-270-	char szBuff[smSOCKBUFF_SIZE];
+SrcGame/src/smwsock.cpp-271-	char *Buff;
+SrcGame/src/smwsock.cpp-272-	int RecvLen;
+SrcGame/src/smwsock.cpp-273-	int BuffCnt;
+SrcGame/src/smwsock.cpp-274-	int BuffSize;
+--
+SrcGame/src/smwsock.cpp-1624-		break;
+SrcGame/src/smwsock.cpp-1625-	}
+SrcGame/src/smwsock.cpp-1626-
+SrcGame/src/smwsock.cpp-1627-	return TRUE;
+SrcGame/src/smwsock.cpp-1628-}
+SrcGame/src/smwsock.cpp-1629-
+SrcGame/src/smwsock.cpp-1630-extern char *szNetLogFile;
+SrcGame/src/smwsock.cpp-1631-extern FILE *fpNetLog;
+SrcGame/src/smwsock.cpp-1632-
+SrcGame/src/smwsock.cpp-1633-#ifndef _AH
+SrcGame/src/smwsock.cpp-1634-#define _AH
+SrcGame/src/smwsock.cpp-1635-
+SrcGame/src/smwsock.cpp-1636-#include "AntiCheat/AntiCheat.h"
+SrcGame/src/smwsock.cpp-1637-
+SrcGame/src/smwsock.cpp-1638-#endif
+SrcGame/src/smwsock.cpp-1639-
+SrcGame/src/smwsock.cpp-1640-extern AntiCheat * pcAntiCheat;
+SrcGame/src/smwsock.cpp-1641-
+SrcGame/src/smwsock.cpp:1642:extern bool bdebugfound;
+SrcGame/src/smwsock.cpp-1643-
+SrcGame/src/smwsock.cpp-1644-int smWINSOCK::Send(char *SendData, int len, int ImpMode)
+SrcGame/src/smwsock.cpp-1645-{
+SrcGame/src/smwsock.cpp-1646-
+SrcGame/src/smwsock.cpp-1647-	EnterCriticalSection(&cSendingSection);
+SrcGame/src/smwsock.cpp-1648-
+SrcGame/src/smwsock.cpp-1649-	if(smSendState.Sucess == TRUE)
+SrcGame/src/smwsock.cpp-1650-	{
+SrcGame/src/smwsock.cpp-1651-
+SrcGame/src/smwsock.cpp-1652-		memcpy(smSendState.Buff, SendData, len);
+SrcGame/src/smwsock.cpp-1653-		smSendState.BuffCnt = len;
+SrcGame/src/smwsock.cpp-1654-		smSendState.Sucess = FALSE;
+SrcGame/src/smwsock.cpp-1655-		smSendState.NewData = TRUE;
+SrcGame/src/smwsock.cpp-1656-
+SrcGame/src/smwsock.cpp-1657-		LeaveCriticalSection(&cSendingSection);
+SrcGame/src/smwsock.cpp-1658-
+SrcGame/src/smwsock.cpp-1659-
+SrcGame/src/smwsock.cpp-1660-		if(smTransThreadMode)
+
+======================================================================
+2. ANTICHEAT WindowFunctionHandler - QUEM CHAMA
+======================================================================
+SrcGame/src/AntiCheat/AntiCheat.h-98-	UINT									uWidthScreen;
+SrcGame/src/AntiCheat/AntiCheat.h-99-	UINT									uHeightScreen;
+SrcGame/src/AntiCheat/AntiCheat.h-100-
+SrcGame/src/AntiCheat/AntiCheat.h-101-	int										iSystemOS;
+SrcGame/src/AntiCheat/AntiCheat.h-102-};
+SrcGame/src/AntiCheat/AntiCheat.h-103-
+SrcGame/src/AntiCheat/AntiCheat.h-104-class AntiCheat
+SrcGame/src/AntiCheat/AntiCheat.h-105-{
+SrcGame/src/AntiCheat/AntiCheat.h-106-protected:
+SrcGame/src/AntiCheat/AntiCheat.h-107-	struct PacketChecksumFunctionList			* psPacketChecksum = NULL;
+SrcGame/src/AntiCheat/AntiCheat.h-108-	OSVERSIONINFO		  os_version_info;
+SrcGame/src/AntiCheat/AntiCheat.h-109-	OSVERSIONINFOEX		  os_version_info_ex;
+SrcGame/src/AntiCheat/AntiCheat.h-110-	SYSTEM_INFO			  sys_info;
+SrcGame/src/AntiCheat/AntiCheat.h-111-	LANGID				  lang_id;
+SrcGame/src/AntiCheat/AntiCheat.h-112-	DWORD										dwChecksumRet = 0;
+SrcGame/src/AntiCheat/AntiCheat.h-113-	HANDLE										hThread = NULL;
+SrcGame/src/AntiCheat/AntiCheat.h-114-private:
+SrcGame/src/AntiCheat/AntiCheat.h-115-	BOOL										ChecksumCheckMismatch(struct ChecksumFunction * pChecksum);
+SrcGame/src/AntiCheat/AntiCheat.h-116-	BOOL										GetModuleName(DWORD dwThreadID, char * pszBuf, int iSizeBuf);
+SrcGame/src/AntiCheat/AntiCheat.h-117-	static DWORD WINAPI							EnumWindowsProc(HWND hWnd, LPARAM lParam);
+SrcGame/src/AntiCheat/AntiCheat.h:118:	void										WindowFunctionHandler();
+SrcGame/src/AntiCheat/AntiCheat.h-119-public:
+SrcGame/src/AntiCheat/AntiCheat.h-120-
+SrcGame/src/AntiCheat/AntiCheat.h-121-	struct PacketWindowList						* psPacketWindowCheat = NULL;
+SrcGame/src/AntiCheat/AntiCheat.h-122-
+SrcGame/src/AntiCheat/AntiCheat.h-123-	DWORD										dwThreadsID[8];
+SrcGame/src/AntiCheat/AntiCheat.h-124-
+SrcGame/src/AntiCheat/AntiCheat.h-125-	AntiCheat();
+SrcGame/src/AntiCheat/AntiCheat.h-126-	virtual ~AntiCheat();
+SrcGame/src/AntiCheat/AntiCheat.h-127-
+SrcGame/src/AntiCheat/AntiCheat.h-128-	BOOL										AddNewThreadException(DWORD dwThreadID);
+SrcGame/src/AntiCheat/AntiCheat.h-129-
+SrcGame/src/AntiCheat/AntiCheat.h-130-	BOOL										IsGameModules(char * pszFile);
+SrcGame/src/AntiCheat/AntiCheat.h-131-	void										ChecksumFunctionHandler();
+SrcGame/src/AntiCheat/AntiCheat.h-132-	void										FindHackDllThread();
+SrcGame/src/AntiCheat/AntiCheat.h-133-
+SrcGame/src/AntiCheat/AntiCheat.h-134-	static DWORD WINAPI							ThreadAntiCheatHandler();
+SrcGame/src/AntiCheat/AntiCheat.h-135-
+SrcGame/src/AntiCheat/AntiCheat.h-136-	static void __cdecl							CheckThread();
+SrcGame/src/AntiCheat/AntiCheat.h-137-
+SrcGame/src/AntiCheat/AntiCheat.h-138-	void										ReceivePacketHandler(struct PacketChecksumFunctionList * psPacket);
+SrcGame/src/AntiCheat/AntiCheat.h-139-
+SrcGame/src/AntiCheat/AntiCheat.h-140-	void										HandlePacket(PacketWindowList * psPacket);
+SrcGame/src/AntiCheat/AntiCheat.h-141-	void										SendLoginData();
+SrcGame/src/AntiCheat/AntiCheat.h-142-	ESystemOS									GetSystemOS();
+SrcGame/src/AntiCheat/AntiCheat.h-143-};
+SrcGame/src/AntiCheat/AntiCheat.h-144-
+SrcGame/src/AntiCheat/AntiCheat.h-145-
+SrcGame/src/AntiCheat/AntiCheat.h-146-
+--
+SrcGame/src/AntiCheat/AntiCheat.cpp-369- while (Thread32Next(hSnapshot, &threadEntry32))
+SrcGame/src/AntiCheat/AntiCheat.cpp-370- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-371- if (threadEntry32.th32OwnerProcessID == GetCurrentProcessId())
+SrcGame/src/AntiCheat/AntiCheat.cpp-372- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-373- hThread = OpenThread(THREAD_QUERY_INFORMATION, FALSE, threadEntry32.th32ThreadID);
+SrcGame/src/AntiCheat/AntiCheat.cpp-374- dwThreadStartAddr = GetThreadStartAddress(hThread);
+SrcGame/src/AntiCheat/AntiCheat.cpp-375- MatchAddressToModule(GetCurrentProcessId(), lpstrModuleName, dwThreadStartAddr, &dwModuleBaseAddr);
+SrcGame/src/AntiCheat/AntiCheat.cpp-376- if (!IsGameModules(lpstrModuleName))
+SrcGame/src/AntiCheat/AntiCheat.cpp-377- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-378- FreeLibraryAndExitThread(GetModuleHandleA(lpstrModuleName), 0);
+SrcGame/src/AntiCheat/AntiCheat.cpp-379- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-380- CloseHandle(hThread);
+SrcGame/src/AntiCheat/AntiCheat.cpp-381- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-382- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-383-	}
+SrcGame/src/AntiCheat/AntiCheat.cpp-384-	LeaveCriticalSection(&cSection);
+SrcGame/src/AntiCheat/AntiCheat.cpp-385-	DeleteCriticalSection(&cSection);
+SrcGame/src/AntiCheat/AntiCheat.cpp-386-	CloseHandle(hSnapshot);
+SrcGame/src/AntiCheat/AntiCheat.cpp-387-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-388-
+SrcGame/src/AntiCheat/AntiCheat.cpp:389:void AntiCheat::WindowFunctionHandler()
+SrcGame/src/AntiCheat/AntiCheat.cpp-390-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-391-	char szTempName[256];
+SrcGame/src/AntiCheat/AntiCheat.cpp-392-	for (int i = 0; i < 50; i++)
+SrcGame/src/AntiCheat/AntiCheat.cpp-393-	{
+SrcGame/src/AntiCheat/AntiCheat.cpp-394- if (lstrlenA(pcAntiCheat->psPacketWindowCheat->szaWindowName[i]) && FindWindowPartialName(pcAntiCheat->psPacketWindowCheat->szaWindowName[i], szTempName))
+SrcGame/src/AntiCheat/AntiCheat.cpp-395- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-396-
+SrcGame/src/AntiCheat/AntiCheat.cpp-397- PacketLogCheatEx sPacket;
+SrcGame/src/AntiCheat/AntiCheat.cpp-398- sPacket.iLength = sizeof(PacketLogCheatEx);
+SrcGame/src/AntiCheat/AntiCheat.cpp-399- sPacket.iHeader = OpCode::FIND_CHEAT;
+SrcGame/src/AntiCheat/AntiCheat.cpp-400- sPacket.iCheatID = 8955;
+SrcGame/src/AntiCheat/AntiCheat.cpp-401- lstrcpyA(sPacket.szParam, szTempName);
+SrcGame/src/AntiCheat/AntiCheat.cpp-402-
+SrcGame/src/AntiCheat/AntiCheat.cpp-403- if (smWsockDataServer)
+SrcGame/src/AntiCheat/AntiCheat.cpp-404- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-405- smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
+SrcGame/src/AntiCheat/AntiCheat.cpp-406- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-407- else
+SrcGame/src/AntiCheat/AntiCheat.cpp-408- exit(0);
+SrcGame/src/AntiCheat/AntiCheat.cpp-409-
+SrcGame/src/AntiCheat/AntiCheat.cpp-410- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-411-	}
+SrcGame/src/AntiCheat/AntiCheat.cpp-412-	return;
+SrcGame/src/AntiCheat/AntiCheat.cpp-413-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-414-
+SrcGame/src/AntiCheat/AntiCheat.cpp-415-bool antidebug1()
+SrcGame/src/AntiCheat/AntiCheat.cpp-416-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-417-#ifdef __GNUC__
+SrcGame/src/AntiCheat/AntiCheat.cpp-418- // TEMP_MINGW_COMPAT:
+SrcGame/src/AntiCheat/AntiCheat.cpp-419- // O código original usa inline assembly MSVC x86 (__asm { mov ... fs:[...] }),
+--
+SrcGame/src/AntiCheat/AntiCheat.cpp-440-
+SrcGame/src/AntiCheat/AntiCheat.cpp-441-DWORD dwTickCount = 0;
+SrcGame/src/AntiCheat/AntiCheat.cpp-442-DWORD dwTickCount2 = 0;
+SrcGame/src/AntiCheat/AntiCheat.cpp-443-
+SrcGame/src/AntiCheat/AntiCheat.cpp-444-bool bdebugfound = false;
+SrcGame/src/AntiCheat/AntiCheat.cpp-445-extern DWORD dwtickhack;
+SrcGame/src/AntiCheat/AntiCheat.cpp-446-
+SrcGame/src/AntiCheat/AntiCheat.cpp-447-DWORD WINAPI AntiCheat::ThreadAntiCheatHandler()
+SrcGame/src/AntiCheat/AntiCheat.cpp-448-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-449-	pcAntiCheat->AddNewThreadException(GetCurrentThreadId());
+SrcGame/src/AntiCheat/AntiCheat.cpp-450-
+SrcGame/src/AntiCheat/AntiCheat.cpp-451-	while (true)
+SrcGame/src/AntiCheat/AntiCheat.cpp-452-	{
+SrcGame/src/AntiCheat/AntiCheat.cpp-453- void AntiInject();
+SrcGame/src/AntiCheat/AntiCheat.cpp-454-
+SrcGame/src/AntiCheat/AntiCheat.cpp-455- if ((GetTickCount() - dwTickCount) >= 15000)
+SrcGame/src/AntiCheat/AntiCheat.cpp-456- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-457- pcAntiCheat->ChecksumFunctionHandler();
+SrcGame/src/AntiCheat/AntiCheat.cpp-458-
+SrcGame/src/AntiCheat/AntiCheat.cpp-459- if (pcAntiCheat->psPacketWindowCheat)
+SrcGame/src/AntiCheat/AntiCheat.cpp:460: pcAntiCheat->WindowFunctionHandler();
+SrcGame/src/AntiCheat/AntiCheat.cpp-461-
+SrcGame/src/AntiCheat/AntiCheat.cpp-462- dwTickCount = GetTickCount();
+SrcGame/src/AntiCheat/AntiCheat.cpp-463- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-464-
+SrcGame/src/AntiCheat/AntiCheat.cpp-465- if ((GetTickCount() - dwTickCount2) >= 1000)
+SrcGame/src/AntiCheat/AntiCheat.cpp-466- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-467- if (antidebug1())
+SrcGame/src/AntiCheat/AntiCheat.cpp-468- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-469- bdebugfound = true;
+SrcGame/src/AntiCheat/AntiCheat.cpp-470- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-471-
+SrcGame/src/AntiCheat/AntiCheat.cpp-472- if (IsDebuggerPresent())
+SrcGame/src/AntiCheat/AntiCheat.cpp-473- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-474- bdebugfound = true;
+SrcGame/src/AntiCheat/AntiCheat.cpp-475- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-476-
+SrcGame/src/AntiCheat/AntiCheat.cpp-477- dwtickhack = GetTickCount();
+SrcGame/src/AntiCheat/AntiCheat.cpp-478- dwTickCount2 = GetTickCount();
+SrcGame/src/AntiCheat/AntiCheat.cpp-479- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-480-	}
+SrcGame/src/AntiCheat/AntiCheat.cpp-481-	return TRUE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-482-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-483-
+SrcGame/src/AntiCheat/AntiCheat.cpp-484-void AntiCheat::CheckThread()
+SrcGame/src/AntiCheat/AntiCheat.cpp-485-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-486-	DWORD dwThreadID = GetCurrentThreadId();
+SrcGame/src/AntiCheat/AntiCheat.cpp-487-	BOOL bThreadFound = FALSE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-488-
+SrcGame/src/AntiCheat/AntiCheat.cpp-489-
+SrcGame/src/AntiCheat/AntiCheat.cpp-490-	for (int i = 0; i < _countof(pcAntiCheat->dwThreadsID); i++)
+--
+SrcGame/src/AntiCheat/AntiCheat.cpp-565-void AntiCheat::ChecksumFunctionHandler()
+SrcGame/src/AntiCheat/AntiCheat.cpp-566-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-567-
+SrcGame/src/AntiCheat/AntiCheat.cpp-568-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-569-
+SrcGame/src/AntiCheat/AntiCheat.cpp-570-DWORD WINAPI GetThreadStartAddress(HANDLE hThread)
+SrcGame/src/AntiCheat/AntiCheat.cpp-571-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-572-	return NULL;
+SrcGame/src/AntiCheat/AntiCheat.cpp-573-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-574-
+SrcGame/src/AntiCheat/AntiCheat.cpp-575-BOOL MatchAddressToModule(DWORD dwProcId, LPTSTR lpstrModule, DWORD dwThreadStartAddr, PDWORD pModuleStartAddr)
+SrcGame/src/AntiCheat/AntiCheat.cpp-576-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-577-	return FALSE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-578-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-579-
+SrcGame/src/AntiCheat/AntiCheat.cpp-580-
+SrcGame/src/AntiCheat/AntiCheat.cpp-581-void AntiCheat::FindHackDllThread()
+SrcGame/src/AntiCheat/AntiCheat.cpp-582-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-583-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-584-
+SrcGame/src/AntiCheat/AntiCheat.cpp:585:void AntiCheat::WindowFunctionHandler()
+SrcGame/src/AntiCheat/AntiCheat.cpp-586-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-587-
+SrcGame/src/AntiCheat/AntiCheat.cpp-588-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-589-
+SrcGame/src/AntiCheat/AntiCheat.cpp-590-bool antidebug1()
+SrcGame/src/AntiCheat/AntiCheat.cpp-591-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-592-	return false;
+SrcGame/src/AntiCheat/AntiCheat.cpp-593-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-594-
+SrcGame/src/AntiCheat/AntiCheat.cpp-595-DWORD dwTickCount = 0;
+SrcGame/src/AntiCheat/AntiCheat.cpp-596-DWORD dwTickCount2 = 0;
+SrcGame/src/AntiCheat/AntiCheat.cpp-597-
+SrcGame/src/AntiCheat/AntiCheat.cpp-598-bool bdebugfound = false;
+SrcGame/src/AntiCheat/AntiCheat.cpp-599-extern DWORD dwtickhack;
+SrcGame/src/AntiCheat/AntiCheat.cpp-600-
+SrcGame/src/AntiCheat/AntiCheat.cpp-601-DWORD WINAPI AntiCheat::ThreadAntiCheatHandler()
+SrcGame/src/AntiCheat/AntiCheat.cpp-602-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-603-	return TRUE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-604-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-605-
+SrcGame/src/AntiCheat/AntiCheat.cpp-606-void AntiCheat::CheckThread()
+SrcGame/src/AntiCheat/AntiCheat.cpp-607-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-608-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-609-
+SrcGame/src/AntiCheat/AntiCheat.cpp-610-void AntiCheat::ReceivePacketHandler(PacketChecksumFunctionList* psPacket)
+SrcGame/src/AntiCheat/AntiCheat.cpp-611-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-612-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-613-
+SrcGame/src/AntiCheat/AntiCheat.cpp-614-void AntiCheat::HandlePacket(PacketWindowList* psPacket)
+SrcGame/src/AntiCheat/AntiCheat.cpp-615-{
+
+======================================================================
+3. ANTICHEAT THREADS / STARTUP
+======================================================================
+SrcGame/src/AntiCheat/AntiCheat.h-103-
+SrcGame/src/AntiCheat/AntiCheat.h-104-class AntiCheat
+SrcGame/src/AntiCheat/AntiCheat.h-105-{
+SrcGame/src/AntiCheat/AntiCheat.h-106-protected:
+SrcGame/src/AntiCheat/AntiCheat.h-107-	struct PacketChecksumFunctionList			* psPacketChecksum = NULL;
+SrcGame/src/AntiCheat/AntiCheat.h-108-	OSVERSIONINFO		  os_version_info;
+SrcGame/src/AntiCheat/AntiCheat.h-109-	OSVERSIONINFOEX		  os_version_info_ex;
+SrcGame/src/AntiCheat/AntiCheat.h-110-	SYSTEM_INFO			  sys_info;
+SrcGame/src/AntiCheat/AntiCheat.h-111-	LANGID				  lang_id;
+SrcGame/src/AntiCheat/AntiCheat.h-112-	DWORD										dwChecksumRet = 0;
+SrcGame/src/AntiCheat/AntiCheat.h-113-	HANDLE										hThread = NULL;
+SrcGame/src/AntiCheat/AntiCheat.h-114-private:
+SrcGame/src/AntiCheat/AntiCheat.h-115-	BOOL										ChecksumCheckMismatch(struct ChecksumFunction * pChecksum);
+SrcGame/src/AntiCheat/AntiCheat.h-116-	BOOL										GetModuleName(DWORD dwThreadID, char * pszBuf, int iSizeBuf);
+SrcGame/src/AntiCheat/AntiCheat.h-117-	static DWORD WINAPI							EnumWindowsProc(HWND hWnd, LPARAM lParam);
+SrcGame/src/AntiCheat/AntiCheat.h:118:	void										WindowFunctionHandler();
+SrcGame/src/AntiCheat/AntiCheat.h-119-public:
+SrcGame/src/AntiCheat/AntiCheat.h-120-
+SrcGame/src/AntiCheat/AntiCheat.h-121-	struct PacketWindowList						* psPacketWindowCheat = NULL;
+SrcGame/src/AntiCheat/AntiCheat.h-122-
+SrcGame/src/AntiCheat/AntiCheat.h-123-	DWORD										dwThreadsID[8];
+SrcGame/src/AntiCheat/AntiCheat.h-124-
+SrcGame/src/AntiCheat/AntiCheat.h-125-	AntiCheat();
+SrcGame/src/AntiCheat/AntiCheat.h-126-	virtual ~AntiCheat();
+SrcGame/src/AntiCheat/AntiCheat.h-127-
+SrcGame/src/AntiCheat/AntiCheat.h:128:	BOOL										AddNewThreadException(DWORD dwThreadID);
+SrcGame/src/AntiCheat/AntiCheat.h-129-
+SrcGame/src/AntiCheat/AntiCheat.h-130-	BOOL										IsGameModules(char * pszFile);
+SrcGame/src/AntiCheat/AntiCheat.h-131-	void										ChecksumFunctionHandler();
+SrcGame/src/AntiCheat/AntiCheat.h-132-	void										FindHackDllThread();
+SrcGame/src/AntiCheat/AntiCheat.h-133-
+SrcGame/src/AntiCheat/AntiCheat.h-134-	static DWORD WINAPI							ThreadAntiCheatHandler();
+SrcGame/src/AntiCheat/AntiCheat.h-135-
+SrcGame/src/AntiCheat/AntiCheat.h-136-	static void __cdecl							CheckThread();
+SrcGame/src/AntiCheat/AntiCheat.h-137-
+SrcGame/src/AntiCheat/AntiCheat.h-138-	void										ReceivePacketHandler(struct PacketChecksumFunctionList * psPacket);
+SrcGame/src/AntiCheat/AntiCheat.h-139-
+SrcGame/src/AntiCheat/AntiCheat.h-140-	void										HandlePacket(PacketWindowList * psPacket);
+SrcGame/src/AntiCheat/AntiCheat.h-141-	void										SendLoginData();
+SrcGame/src/AntiCheat/AntiCheat.h-142-	ESystemOS									GetSystemOS();
+SrcGame/src/AntiCheat/AntiCheat.h-143-};
+SrcGame/src/AntiCheat/AntiCheat.h-144-
+SrcGame/src/AntiCheat/AntiCheat.h-145-
+SrcGame/src/AntiCheat/AntiCheat.h-146-
+--
+SrcGame/src/AntiCheat/AntiCheat.cpp-10-#include <tlhelp32.h>
+SrcGame/src/AntiCheat/AntiCheat.cpp-11-
+SrcGame/src/AntiCheat/AntiCheat.cpp-12-
+SrcGame/src/AntiCheat/AntiCheat.cpp-13-
+SrcGame/src/AntiCheat/AntiCheat.cpp-14-typedef LONG NTSTATUS;
+SrcGame/src/AntiCheat/AntiCheat.cpp-15-
+SrcGame/src/AntiCheat/AntiCheat.cpp-16-
+SrcGame/src/AntiCheat/AntiCheat.cpp-17-bool bLoadedNTDLL = false;
+SrcGame/src/AntiCheat/AntiCheat.cpp-18-
+SrcGame/src/AntiCheat/AntiCheat.cpp-19-#define STATUS_SUCCESS ((NTSTATUS)0x00000000L)
+SrcGame/src/AntiCheat/AntiCheat.cpp-20-#define ThreadQuerySetWin32StartAddress 9
+SrcGame/src/AntiCheat/AntiCheat.cpp-21-
+SrcGame/src/AntiCheat/AntiCheat.cpp-22-typedef NTSTATUS(WINAPI* NTQUERYINFOMATIONTHREAD)(HANDLE, LONG, PVOID, ULONG, PULONG);
+SrcGame/src/AntiCheat/AntiCheat.cpp-23-
+SrcGame/src/AntiCheat/AntiCheat.cpp-24-extern smWINSOCK* smWsockDataServer;
+SrcGame/src/AntiCheat/AntiCheat.cpp:25:extern AntiCheat* pcAntiCheat;
+SrcGame/src/AntiCheat/AntiCheat.cpp-26-
+SrcGame/src/AntiCheat/AntiCheat.cpp-27-std::vector<ChecksumFunction> vChecksumFunction;
+SrcGame/src/AntiCheat/AntiCheat.cpp-28-
+SrcGame/src/AntiCheat/AntiCheat.cpp-29-AntiCheat::AntiCheat()
+SrcGame/src/AntiCheat/AntiCheat.cpp-30-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-31-	ZeroMemory(&dwThreadsID, sizeof(DWORD) * 8);
+SrcGame/src/AntiCheat/AntiCheat.cpp-32-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-33-
+SrcGame/src/AntiCheat/AntiCheat.cpp-34-AntiCheat::~AntiCheat()
+SrcGame/src/AntiCheat/AntiCheat.cpp-35-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-36-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-37-
+SrcGame/src/AntiCheat/AntiCheat.cpp-38-#ifdef ANTI_CHEAT_ENABLE
+SrcGame/src/AntiCheat/AntiCheat.cpp-39-
+SrcGame/src/AntiCheat/AntiCheat.cpp-40-BOOLEAN BlockAPI(HANDLE hProcess, CHAR* libName, CHAR* apiName)
+SrcGame/src/AntiCheat/AntiCheat.cpp-41-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-42-	CHAR pRet[] = { 0xC3 };
+SrcGame/src/AntiCheat/AntiCheat.cpp-43-	HINSTANCE hLib = NULL;
+SrcGame/src/AntiCheat/AntiCheat.cpp-44-	VOID* pAddr = NULL;
+SrcGame/src/AntiCheat/AntiCheat.cpp-45-	BOOL bRet = FALSE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-46-	SIZE_T dwRet = 0;
+SrcGame/src/AntiCheat/AntiCheat.cpp-47-
+SrcGame/src/AntiCheat/AntiCheat.cpp-48-	hLib = LoadLibrary(libName);
+SrcGame/src/AntiCheat/AntiCheat.cpp-49-	if (hLib) {
+SrcGame/src/AntiCheat/AntiCheat.cpp-50- pAddr = (VOID*)GetProcAddress(hLib, apiName);
+--
+SrcGame/src/AntiCheat/AntiCheat.cpp-163- while (Module32Next(hSnapshot, &moduleEntry32))
+SrcGame/src/AntiCheat/AntiCheat.cpp-164- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-165-
+SrcGame/src/AntiCheat/AntiCheat.cpp-166- if (GetModuleHandleA(NULL) == moduleEntry32.hModule)
+SrcGame/src/AntiCheat/AntiCheat.cpp-167- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-168- lstrcpynA(pszBuf, moduleEntry32.szExePath, iSizeBuf);
+SrcGame/src/AntiCheat/AntiCheat.cpp-169- break;
+SrcGame/src/AntiCheat/AntiCheat.cpp-170- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-171- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-172- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-173-	}
+SrcGame/src/AntiCheat/AntiCheat.cpp-174-	CloseHandle(hSnapshot);
+SrcGame/src/AntiCheat/AntiCheat.cpp-175-	return FALSE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-176-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-177-
+SrcGame/src/AntiCheat/AntiCheat.cpp:178:BOOL AntiCheat::AddNewThreadException(DWORD dwThreadID)
+SrcGame/src/AntiCheat/AntiCheat.cpp-179-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-180-	if (!dwThreadID)
+SrcGame/src/AntiCheat/AntiCheat.cpp-181- return FALSE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-182-
+SrcGame/src/AntiCheat/AntiCheat.cpp-183-
+SrcGame/src/AntiCheat/AntiCheat.cpp-184-	for (int i = 0; i < _countof(dwThreadsID); i++)
+SrcGame/src/AntiCheat/AntiCheat.cpp-185-	{
+SrcGame/src/AntiCheat/AntiCheat.cpp-186- if (dwThreadsID[i] == dwThreadID)
+SrcGame/src/AntiCheat/AntiCheat.cpp-187- return TRUE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-188-	}
+SrcGame/src/AntiCheat/AntiCheat.cpp-189-
+SrcGame/src/AntiCheat/AntiCheat.cpp-190-	for (int i = 0; i < _countof(dwThreadsID); i++)
+SrcGame/src/AntiCheat/AntiCheat.cpp-191-	{
+SrcGame/src/AntiCheat/AntiCheat.cpp-192- if (!dwThreadsID[i])
+SrcGame/src/AntiCheat/AntiCheat.cpp-193- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-194- dwThreadsID[i] = dwThreadID;
+SrcGame/src/AntiCheat/AntiCheat.cpp-195- return TRUE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-196- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-197-	}
+SrcGame/src/AntiCheat/AntiCheat.cpp-198-	return FALSE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-199-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-200-
+SrcGame/src/AntiCheat/AntiCheat.cpp-201-BOOL AntiCheat::IsGameModules(char* pszFile)
+SrcGame/src/AntiCheat/AntiCheat.cpp-202-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-203-	char path[2048];
+--
+SrcGame/src/AntiCheat/AntiCheat.cpp-245-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-246-
+SrcGame/src/AntiCheat/AntiCheat.cpp-247-void AntiCheat::ChecksumFunctionHandler()
+SrcGame/src/AntiCheat/AntiCheat.cpp-248-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-249-	for (int i = 0; i < CHECKSUM_FUNCTION_TOTAL; i++)
+SrcGame/src/AntiCheat/AntiCheat.cpp-250-	{
+SrcGame/src/AntiCheat/AntiCheat.cpp-251-
+SrcGame/src/AntiCheat/AntiCheat.cpp-252- if (psPacketChecksum && psPacketChecksum->sCheckSum[i].dwSize)
+SrcGame/src/AntiCheat/AntiCheat.cpp-253- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-254-
+SrcGame/src/AntiCheat/AntiCheat.cpp-255- if (!ChecksumCheckMismatch(&psPacketChecksum->sCheckSum[i]))
+SrcGame/src/AntiCheat/AntiCheat.cpp-256- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-257-
+SrcGame/src/AntiCheat/AntiCheat.cpp-258- PacketLogCheat sPacket;
+SrcGame/src/AntiCheat/AntiCheat.cpp-259- sPacket.iLength = sizeof(PacketLogCheat);
+SrcGame/src/AntiCheat/AntiCheat.cpp:260: sPacket.iHeader = OpCode::FIND_CHEAT;
+SrcGame/src/AntiCheat/AntiCheat.cpp-261- sPacket.iCheatID = 8954;
+SrcGame/src/AntiCheat/AntiCheat.cpp-262- sPacket.LParam = psPacketChecksum->sCheckSum[i].dwSize;
+SrcGame/src/AntiCheat/AntiCheat.cpp-263- sPacket.SParam = psPacketChecksum->sCheckSum[i].dwAddress;
+SrcGame/src/AntiCheat/AntiCheat.cpp-264- sPacket.EParam = psPacketChecksum->sCheckSum[i].dwCheckSum;
+SrcGame/src/AntiCheat/AntiCheat.cpp-265- sPacket.LxParam = dwChecksumRet;
+SrcGame/src/AntiCheat/AntiCheat.cpp-266-
+SrcGame/src/AntiCheat/AntiCheat.cpp-267- smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
+SrcGame/src/AntiCheat/AntiCheat.cpp-268-
+SrcGame/src/AntiCheat/AntiCheat.cpp-269- break;
+SrcGame/src/AntiCheat/AntiCheat.cpp-270- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-271- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-272-	}
+SrcGame/src/AntiCheat/AntiCheat.cpp-273-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-274-
+SrcGame/src/AntiCheat/AntiCheat.cpp-275-DWORD WINAPI GetThreadStartAddress(HANDLE hThread)
+SrcGame/src/AntiCheat/AntiCheat.cpp-276-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-277-	NTSTATUS ntStatus;
+SrcGame/src/AntiCheat/AntiCheat.cpp-278-	DWORD dwThreadStartAddr = 0;
+SrcGame/src/AntiCheat/AntiCheat.cpp-279-	HANDLE hPeusdoCurrentProcess, hNewThreadHandle;
+SrcGame/src/AntiCheat/AntiCheat.cpp-280-	NTQUERYINFOMATIONTHREAD NtQueryInformationThread;
+SrcGame/src/AntiCheat/AntiCheat.cpp-281-	if (!bLoadedNTDLL)
+SrcGame/src/AntiCheat/AntiCheat.cpp-282-	{
+SrcGame/src/AntiCheat/AntiCheat.cpp-283- LoadLibraryA("ntdll.dll");
+SrcGame/src/AntiCheat/AntiCheat.cpp-284- bLoadedNTDLL = true;
+SrcGame/src/AntiCheat/AntiCheat.cpp-285-	}
+--
+SrcGame/src/AntiCheat/AntiCheat.cpp-374- dwThreadStartAddr = GetThreadStartAddress(hThread);
+SrcGame/src/AntiCheat/AntiCheat.cpp-375- MatchAddressToModule(GetCurrentProcessId(), lpstrModuleName, dwThreadStartAddr, &dwModuleBaseAddr);
+SrcGame/src/AntiCheat/AntiCheat.cpp-376- if (!IsGameModules(lpstrModuleName))
+SrcGame/src/AntiCheat/AntiCheat.cpp-377- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-378- FreeLibraryAndExitThread(GetModuleHandleA(lpstrModuleName), 0);
+SrcGame/src/AntiCheat/AntiCheat.cpp-379- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-380- CloseHandle(hThread);
+SrcGame/src/AntiCheat/AntiCheat.cpp-381- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-382- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-383-	}
+SrcGame/src/AntiCheat/AntiCheat.cpp-384-	LeaveCriticalSection(&cSection);
+SrcGame/src/AntiCheat/AntiCheat.cpp-385-	DeleteCriticalSection(&cSection);
+SrcGame/src/AntiCheat/AntiCheat.cpp-386-	CloseHandle(hSnapshot);
+SrcGame/src/AntiCheat/AntiCheat.cpp-387-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-388-
+SrcGame/src/AntiCheat/AntiCheat.cpp:389:void AntiCheat::WindowFunctionHandler()
+SrcGame/src/AntiCheat/AntiCheat.cpp-390-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-391-	char szTempName[256];
+SrcGame/src/AntiCheat/AntiCheat.cpp-392-	for (int i = 0; i < 50; i++)
+SrcGame/src/AntiCheat/AntiCheat.cpp-393-	{
+SrcGame/src/AntiCheat/AntiCheat.cpp:394: if (lstrlenA(pcAntiCheat->psPacketWindowCheat->szaWindowName[i]) && FindWindowPartialName(pcAntiCheat->psPacketWindowCheat->szaWindowName[i], szTempName))
+SrcGame/src/AntiCheat/AntiCheat.cpp-395- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-396-
+SrcGame/src/AntiCheat/AntiCheat.cpp-397- PacketLogCheatEx sPacket;
+SrcGame/src/AntiCheat/AntiCheat.cpp-398- sPacket.iLength = sizeof(PacketLogCheatEx);
+SrcGame/src/AntiCheat/AntiCheat.cpp:399: sPacket.iHeader = OpCode::FIND_CHEAT;
+SrcGame/src/AntiCheat/AntiCheat.cpp-400- sPacket.iCheatID = 8955;
+SrcGame/src/AntiCheat/AntiCheat.cpp-401- lstrcpyA(sPacket.szParam, szTempName);
+SrcGame/src/AntiCheat/AntiCheat.cpp-402-
+SrcGame/src/AntiCheat/AntiCheat.cpp-403- if (smWsockDataServer)
+SrcGame/src/AntiCheat/AntiCheat.cpp-404- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-405- smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
+SrcGame/src/AntiCheat/AntiCheat.cpp-406- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-407- else
+SrcGame/src/AntiCheat/AntiCheat.cpp-408- exit(0);
+SrcGame/src/AntiCheat/AntiCheat.cpp-409-
+SrcGame/src/AntiCheat/AntiCheat.cpp-410- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-411-	}
+SrcGame/src/AntiCheat/AntiCheat.cpp-412-	return;
+SrcGame/src/AntiCheat/AntiCheat.cpp-413-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-414-
+SrcGame/src/AntiCheat/AntiCheat.cpp-415-bool antidebug1()
+SrcGame/src/AntiCheat/AntiCheat.cpp-416-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-417-#ifdef __GNUC__
+SrcGame/src/AntiCheat/AntiCheat.cpp-418- // TEMP_MINGW_COMPAT:
+SrcGame/src/AntiCheat/AntiCheat.cpp-419- // O código original usa inline assembly MSVC x86 (__asm { mov ... fs:[...] }),
+SrcGame/src/AntiCheat/AntiCheat.cpp-420- // que não compila em GCC/MinGW x64. Stub temporário para desbloquear build.
+SrcGame/src/AntiCheat/AntiCheat.cpp-421- return false;
+SrcGame/src/AntiCheat/AntiCheat.cpp-422-#else
+SrcGame/src/AntiCheat/AntiCheat.cpp-423- bool bRet = false;
+SrcGame/src/AntiCheat/AntiCheat.cpp-424-
+--
+SrcGame/src/AntiCheat/AntiCheat.cpp-434- blocEnd :
+SrcGame/src/AntiCheat/AntiCheat.cpp-435- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-436-
+SrcGame/src/AntiCheat/AntiCheat.cpp-437- return bRet;
+SrcGame/src/AntiCheat/AntiCheat.cpp-438-#endif
+SrcGame/src/AntiCheat/AntiCheat.cpp-439-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-440-
+SrcGame/src/AntiCheat/AntiCheat.cpp-441-DWORD dwTickCount = 0;
+SrcGame/src/AntiCheat/AntiCheat.cpp-442-DWORD dwTickCount2 = 0;
+SrcGame/src/AntiCheat/AntiCheat.cpp-443-
+SrcGame/src/AntiCheat/AntiCheat.cpp-444-bool bdebugfound = false;
+SrcGame/src/AntiCheat/AntiCheat.cpp-445-extern DWORD dwtickhack;
+SrcGame/src/AntiCheat/AntiCheat.cpp-446-
+SrcGame/src/AntiCheat/AntiCheat.cpp-447-DWORD WINAPI AntiCheat::ThreadAntiCheatHandler()
+SrcGame/src/AntiCheat/AntiCheat.cpp-448-{
+SrcGame/src/AntiCheat/AntiCheat.cpp:449:	pcAntiCheat->AddNewThreadException(GetCurrentThreadId());
+SrcGame/src/AntiCheat/AntiCheat.cpp-450-
+SrcGame/src/AntiCheat/AntiCheat.cpp-451-	while (true)
+SrcGame/src/AntiCheat/AntiCheat.cpp-452-	{
+SrcGame/src/AntiCheat/AntiCheat.cpp-453- void AntiInject();
+SrcGame/src/AntiCheat/AntiCheat.cpp-454-
+SrcGame/src/AntiCheat/AntiCheat.cpp-455- if ((GetTickCount() - dwTickCount) >= 15000)
+SrcGame/src/AntiCheat/AntiCheat.cpp-456- {
+SrcGame/src/AntiCheat/AntiCheat.cpp:457: pcAntiCheat->ChecksumFunctionHandler();
+SrcGame/src/AntiCheat/AntiCheat.cpp-458-
+SrcGame/src/AntiCheat/AntiCheat.cpp:459: if (pcAntiCheat->psPacketWindowCheat)
+SrcGame/src/AntiCheat/AntiCheat.cpp:460: pcAntiCheat->WindowFunctionHandler();
+SrcGame/src/AntiCheat/AntiCheat.cpp-461-
+SrcGame/src/AntiCheat/AntiCheat.cpp-462- dwTickCount = GetTickCount();
+SrcGame/src/AntiCheat/AntiCheat.cpp-463- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-464-
+SrcGame/src/AntiCheat/AntiCheat.cpp-465- if ((GetTickCount() - dwTickCount2) >= 1000)
+SrcGame/src/AntiCheat/AntiCheat.cpp-466- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-467- if (antidebug1())
+SrcGame/src/AntiCheat/AntiCheat.cpp-468- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-469- bdebugfound = true;
+SrcGame/src/AntiCheat/AntiCheat.cpp-470- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-471-
+SrcGame/src/AntiCheat/AntiCheat.cpp-472- if (IsDebuggerPresent())
+SrcGame/src/AntiCheat/AntiCheat.cpp-473- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-474- bdebugfound = true;
+SrcGame/src/AntiCheat/AntiCheat.cpp-475- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-476-
+SrcGame/src/AntiCheat/AntiCheat.cpp-477- dwtickhack = GetTickCount();
+SrcGame/src/AntiCheat/AntiCheat.cpp-478- dwTickCount2 = GetTickCount();
+SrcGame/src/AntiCheat/AntiCheat.cpp-479- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-480-	}
+SrcGame/src/AntiCheat/AntiCheat.cpp-481-	return TRUE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-482-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-483-
+SrcGame/src/AntiCheat/AntiCheat.cpp-484-void AntiCheat::CheckThread()
+SrcGame/src/AntiCheat/AntiCheat.cpp-485-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-486-	DWORD dwThreadID = GetCurrentThreadId();
+SrcGame/src/AntiCheat/AntiCheat.cpp-487-	BOOL bThreadFound = FALSE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-488-
+SrcGame/src/AntiCheat/AntiCheat.cpp-489-
+SrcGame/src/AntiCheat/AntiCheat.cpp:490:	for (int i = 0; i < _countof(pcAntiCheat->dwThreadsID); i++)
+SrcGame/src/AntiCheat/AntiCheat.cpp-491-	{
+SrcGame/src/AntiCheat/AntiCheat.cpp:492: if (pcAntiCheat->dwThreadsID[i] == dwThreadID)
+SrcGame/src/AntiCheat/AntiCheat.cpp-493- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-494- bThreadFound = TRUE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-495- break;
+SrcGame/src/AntiCheat/AntiCheat.cpp-496- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-497-	}
+SrcGame/src/AntiCheat/AntiCheat.cpp-498-
+SrcGame/src/AntiCheat/AntiCheat.cpp-499-
+SrcGame/src/AntiCheat/AntiCheat.cpp-500-	if (!bThreadFound)
+SrcGame/src/AntiCheat/AntiCheat.cpp-501-	{
+SrcGame/src/AntiCheat/AntiCheat.cpp-502-
+SrcGame/src/AntiCheat/AntiCheat.cpp-503- char szModuleName[128] = { 0 };
+SrcGame/src/AntiCheat/AntiCheat.cpp-504- PacketLogCheat sPacket;
+SrcGame/src/AntiCheat/AntiCheat.cpp-505- sPacket.iLength = sizeof(PacketLogCheat);
+SrcGame/src/AntiCheat/AntiCheat.cpp:506: sPacket.iHeader = OpCode::FIND_CHEAT;
+SrcGame/src/AntiCheat/AntiCheat.cpp-507- sPacket.iCheatID = 8720;
+SrcGame/src/AntiCheat/AntiCheat.cpp-508- sPacket.LParam = dwThreadID;
+SrcGame/src/AntiCheat/AntiCheat.cpp-509-
+SrcGame/src/AntiCheat/AntiCheat.cpp-510- smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
+SrcGame/src/AntiCheat/AntiCheat.cpp-511-	}
+SrcGame/src/AntiCheat/AntiCheat.cpp-512-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-513-
+SrcGame/src/AntiCheat/AntiCheat.cpp-514-void AntiCheat::ReceivePacketHandler(PacketChecksumFunctionList* psPacket)
+SrcGame/src/AntiCheat/AntiCheat.cpp-515-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-516-	if (!psPacketChecksum)
+SrcGame/src/AntiCheat/AntiCheat.cpp-517- psPacketChecksum = new PacketChecksumFunctionList;
+SrcGame/src/AntiCheat/AntiCheat.cpp-518-
+SrcGame/src/AntiCheat/AntiCheat.cpp-519-	ZeroMemory(psPacketChecksum, sizeof(PacketChecksumFunctionList));
+SrcGame/src/AntiCheat/AntiCheat.cpp-520-
+SrcGame/src/AntiCheat/AntiCheat.cpp-521-	CopyMemory(psPacketChecksum, psPacket, sizeof(PacketChecksumFunctionList));
+SrcGame/src/AntiCheat/AntiCheat.cpp-522-
+SrcGame/src/AntiCheat/AntiCheat.cpp-523-	if (!hThread)
+SrcGame/src/AntiCheat/AntiCheat.cpp:524: hThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)ThreadAntiCheatHandler, NULL, NULL, NULL);
+SrcGame/src/AntiCheat/AntiCheat.cpp-525-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-526-
+SrcGame/src/AntiCheat/AntiCheat.cpp-527-void AntiCheat::HandlePacket(PacketWindowList* psPacket)
+SrcGame/src/AntiCheat/AntiCheat.cpp-528-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-529-	if (!psPacketWindowCheat)
+SrcGame/src/AntiCheat/AntiCheat.cpp-530- psPacketWindowCheat = new PacketWindowList;
+SrcGame/src/AntiCheat/AntiCheat.cpp-531-
+SrcGame/src/AntiCheat/AntiCheat.cpp-532-	ZeroMemory(psPacketWindowCheat, sizeof(PacketWindowList));
+SrcGame/src/AntiCheat/AntiCheat.cpp-533-
+SrcGame/src/AntiCheat/AntiCheat.cpp-534-	CopyMemory(psPacketWindowCheat, psPacket, sizeof(PacketWindowList));
+SrcGame/src/AntiCheat/AntiCheat.cpp-535-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-536-
+SrcGame/src/AntiCheat/AntiCheat.cpp-537-#else
+SrcGame/src/AntiCheat/AntiCheat.cpp-538-HWND FindWindowPartialName(char* pszWindowName, char* pszTempVar)
+SrcGame/src/AntiCheat/AntiCheat.cpp-539-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-540-	return NULL;
+SrcGame/src/AntiCheat/AntiCheat.cpp-541-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-542-
+SrcGame/src/AntiCheat/AntiCheat.cpp-543-
+SrcGame/src/AntiCheat/AntiCheat.cpp-544-BOOL AntiCheat::ChecksumCheckMismatch(ChecksumFunction* pChecksum)
+SrcGame/src/AntiCheat/AntiCheat.cpp-545-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-546-	return FALSE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-547-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-548-
+SrcGame/src/AntiCheat/AntiCheat.cpp-549-BOOL AntiCheat::GetModuleName(DWORD dwThreadID, char* pszBuf, int iSizeBuf)
+SrcGame/src/AntiCheat/AntiCheat.cpp-550-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-551-
+SrcGame/src/AntiCheat/AntiCheat.cpp-552-	return FALSE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-553-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-554-
+SrcGame/src/AntiCheat/AntiCheat.cpp:555:BOOL AntiCheat::AddNewThreadException(DWORD dwThreadID)
+SrcGame/src/AntiCheat/AntiCheat.cpp-556-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-557-	return FALSE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-558-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-559-
+SrcGame/src/AntiCheat/AntiCheat.cpp-560-BOOL AntiCheat::IsGameModules(char* pszFile)
+SrcGame/src/AntiCheat/AntiCheat.cpp-561-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-562-	return FALSE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-563-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-564-
+SrcGame/src/AntiCheat/AntiCheat.cpp-565-void AntiCheat::ChecksumFunctionHandler()
+SrcGame/src/AntiCheat/AntiCheat.cpp-566-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-567-
+SrcGame/src/AntiCheat/AntiCheat.cpp-568-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-569-
+SrcGame/src/AntiCheat/AntiCheat.cpp-570-DWORD WINAPI GetThreadStartAddress(HANDLE hThread)
+SrcGame/src/AntiCheat/AntiCheat.cpp-571-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-572-	return NULL;
+SrcGame/src/AntiCheat/AntiCheat.cpp-573-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-574-
+SrcGame/src/AntiCheat/AntiCheat.cpp-575-BOOL MatchAddressToModule(DWORD dwProcId, LPTSTR lpstrModule, DWORD dwThreadStartAddr, PDWORD pModuleStartAddr)
+SrcGame/src/AntiCheat/AntiCheat.cpp-576-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-577-	return FALSE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-578-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-579-
+SrcGame/src/AntiCheat/AntiCheat.cpp-580-
+SrcGame/src/AntiCheat/AntiCheat.cpp-581-void AntiCheat::FindHackDllThread()
+SrcGame/src/AntiCheat/AntiCheat.cpp-582-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-583-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-584-
+SrcGame/src/AntiCheat/AntiCheat.cpp:585:void AntiCheat::WindowFunctionHandler()
+SrcGame/src/AntiCheat/AntiCheat.cpp-586-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-587-
+SrcGame/src/AntiCheat/AntiCheat.cpp-588-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-589-
+SrcGame/src/AntiCheat/AntiCheat.cpp-590-bool antidebug1()
+SrcGame/src/AntiCheat/AntiCheat.cpp-591-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-592-	return false;
+SrcGame/src/AntiCheat/AntiCheat.cpp-593-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-594-
+SrcGame/src/AntiCheat/AntiCheat.cpp-595-DWORD dwTickCount = 0;
+SrcGame/src/AntiCheat/AntiCheat.cpp-596-DWORD dwTickCount2 = 0;
+SrcGame/src/AntiCheat/AntiCheat.cpp-597-
+SrcGame/src/AntiCheat/AntiCheat.cpp-598-bool bdebugfound = false;
+SrcGame/src/AntiCheat/AntiCheat.cpp-599-extern DWORD dwtickhack;
+SrcGame/src/AntiCheat/AntiCheat.cpp-600-
+SrcGame/src/AntiCheat/AntiCheat.cpp-601-DWORD WINAPI AntiCheat::ThreadAntiCheatHandler()
+SrcGame/src/AntiCheat/AntiCheat.cpp-602-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-603-	return TRUE;
+SrcGame/src/AntiCheat/AntiCheat.cpp-604-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-605-
+SrcGame/src/AntiCheat/AntiCheat.cpp-606-void AntiCheat::CheckThread()
+SrcGame/src/AntiCheat/AntiCheat.cpp-607-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-608-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-609-
+SrcGame/src/AntiCheat/AntiCheat.cpp-610-void AntiCheat::ReceivePacketHandler(PacketChecksumFunctionList* psPacket)
+--
+SrcGame/src/Winmain.cpp-369-
+SrcGame/src/Winmain.cpp-370-
+SrcGame/src/Winmain.cpp-371-extern int	CheckServerRecordData();
+SrcGame/src/Winmain.cpp-372-
+SrcGame/src/Winmain.cpp-373-
+SrcGame/src/Winmain.cpp-374-extern int RestoreBackupData(char *szListFile, char *BackupPath);
+SrcGame/src/Winmain.cpp-375-
+SrcGame/src/Winmain.cpp-376-
+SrcGame/src/Winmain.cpp-377-#ifndef _AC
+SrcGame/src/Winmain.cpp-378-#define _AC
+SrcGame/src/Winmain.cpp-379-
+SrcGame/src/Winmain.cpp-380-#include "AntiCheat/AntiCheat.h"
+SrcGame/src/Winmain.cpp-381-
+SrcGame/src/Winmain.cpp-382-#endif
+SrcGame/src/Winmain.cpp-383-
+SrcGame/src/Winmain.cpp:384:extern AntiCheat * pcAntiCheat;
+SrcGame/src/Winmain.cpp-385-
+SrcGame/src/Winmain.cpp-386-HBITMAP hBitmap;
+SrcGame/src/Winmain.cpp-387-BITMAP myBitmap;
+SrcGame/src/Winmain.cpp-388-HDC WinDC;
+SrcGame/src/Winmain.cpp-389-HDC ImageDC;
+SrcGame/src/Winmain.cpp-390-
+SrcGame/src/Winmain.cpp-391-void LoadScreen(char* filename, HINSTANCE hInst, HWND hWnd) 
+SrcGame/src/Winmain.cpp-392-{
+SrcGame/src/Winmain.cpp-393-
+SrcGame/src/Winmain.cpp-394-	hBitmap = (HBITMAP)LoadImage(hInst, filename, IMAGE_BITMAP, 800, 600, LR_LOADFROMFILE);
+SrcGame/src/Winmain.cpp-395-	if(!hBitmap)
+SrcGame/src/Winmain.cpp-396-	{
+SrcGame/src/Winmain.cpp-397-		MessageBox(NULL, "Error loading imagem", "ERROR IMG", MB_OK);
+SrcGame/src/Winmain.cpp-398-	}
+SrcGame/src/Winmain.cpp-399-
+SrcGame/src/Winmain.cpp-400-	GetObject(hBitmap, sizeof(myBitmap), &myBitmap);
+SrcGame/src/Winmain.cpp-401-	WinDC = GetDC(hwnd);
+SrcGame/src/Winmain.cpp-402-	ImageDC = CreateCompatibleDC(WinDC);
+SrcGame/src/Winmain.cpp-403-	HBITMAP hBitmapOld = (HBITMAP)SelectObject(ImageDC, hBitmap);
+SrcGame/src/Winmain.cpp-404-	BitBlt(WinDC, WinSizeX / 2 - 400, WinSizeY / 2 - 350, 800, 600, ImageDC, 0, 0, SRCCOPY);
+SrcGame/src/Winmain.cpp-405-
+SrcGame/src/Winmain.cpp-406-	DeleteDC(WinDC);
+SrcGame/src/Winmain.cpp-407-	DeleteDC(ImageDC);
+SrcGame/src/Winmain.cpp-408-
+SrcGame/src/Winmain.cpp-409-	ReleaseD3D();
+--
+SrcGame/src/Winmain.cpp-537-	//	si.cb = sizeof(si);
+SrcGame/src/Winmain.cpp-538-	//	ZeroMemory(&pi, sizeof(pi));
+SrcGame/src/Winmain.cpp-539-
+SrcGame/src/Winmain.cpp-540-	//	CreateProcess("Launcher.exe", NULL, NULL, NULL, FALSE, NULL, NULL, NULL, &si, &pi);
+SrcGame/src/Winmain.cpp-541-	//	exit(0);
+SrcGame/src/Winmain.cpp-542-	//} 
+SrcGame/src/Winmain.cpp-543-	// FIM
+SrcGame/src/Winmain.cpp-544-
+SrcGame/src/Winmain.cpp-545-	// ABRIR CONSOLE DEBUG 
+SrcGame/src/Winmain.cpp-546-
+SrcGame/src/Winmain.cpp-547-#ifdef _DEBUG
+SrcGame/src/Winmain.cpp-548-	allocConsole(); 
+SrcGame/src/Winmain.cpp-549-
+SrcGame/src/Winmain.cpp-550-#endif
+SrcGame/src/Winmain.cpp-551-
+SrcGame/src/Winmain.cpp:552:	pcAntiCheat = new AntiCheat();
+SrcGame/src/Winmain.cpp:553:	pcAntiCheat->AddNewThreadException(GetCurrentThreadId());
+SrcGame/src/Winmain.cpp:554:	pcAntiCheat->CheckThread();
+SrcGame/src/Winmain.cpp-555-    //MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp-556-
+SrcGame/src/Winmain.cpp-557-	MSG msg;
+SrcGame/src/Winmain.cpp-558-	WNDCLASS wndclass;
+SrcGame/src/Winmain.cpp-559-	hinst = hInst;
+SrcGame/src/Winmain.cpp-560-
+SrcGame/src/Winmain.cpp-561-	strcpy_s(szCmdLine, lpCmdLine);
+SrcGame/src/Winmain.cpp-562-
+SrcGame/src/Winmain.cpp-563-	initSinCos();
+SrcGame/src/Winmain.cpp-564-
+SrcGame/src/Winmain.cpp-565-	SETTINGSHANDLER->readConfig();
+SrcGame/src/Winmain.cpp-566-    //MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp-567-	
+SrcGame/src/Winmain.cpp-568-	InitializeCriticalSection(&cSection);
+SrcGame/src/Winmain.cpp-569-	InitializeCriticalSection(&cDrawSection);
+SrcGame/src/Winmain.cpp-570-	InitializeCriticalSection(&cSection_Main);
+SrcGame/src/Winmain.cpp-571-
+SrcGame/src/Winmain.cpp-572-	srand(GetCurrentTime());
+SrcGame/src/Winmain.cpp-573-
+SrcGame/src/Winmain.cpp-574-	InitDirectSound();
+SrcGame/src/Winmain.cpp-575-    //MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp-576-
+SrcGame/src/Winmain.cpp-577-	// MINGW_WINDOWMODE_STATE_FIX_V1
+SrcGame/src/Winmain.cpp-578-#ifdef __MINGW32__
+SrcGame/src/Winmain.cpp-579-	// MinGW window creation was already forced into the windowed branch.
+--
+SrcGame/src/Winmain.cpp-813-				SaveGameData();
+SrcGame/src/Winmain.cpp-814-				QuitSave = TRUE;
+SrcGame/src/Winmain.cpp-815-			}
+SrcGame/src/Winmain.cpp-816-			else
+SrcGame/src/Winmain.cpp-817-			{
+SrcGame/src/Winmain.cpp-818-				if (!smWsockServer || GetSaveResult() == TRUE)
+SrcGame/src/Winmain.cpp-819-					break;
+SrcGame/src/Winmain.cpp-820-				if ((dwPlayTime - rsRecorder.dwRecordTime) > 15000)
+SrcGame/src/Winmain.cpp-821-					break;
+SrcGame/src/Winmain.cpp-822-			}
+SrcGame/src/Winmain.cpp-823-		}
+SrcGame/src/Winmain.cpp-824-	}
+SrcGame/src/Winmain.cpp-825-
+SrcGame/src/Winmain.cpp-826-	SetGameMode(0);
+SrcGame/src/Winmain.cpp-827-
+SrcGame/src/Winmain.cpp:828:	if (pcAntiCheat)
+SrcGame/src/Winmain.cpp-829-	{
+SrcGame/src/Winmain.cpp:830:		delete pcAntiCheat;
+SrcGame/src/Winmain.cpp:831:		pcAntiCheat = nullptr;
+SrcGame/src/Winmain.cpp-832-	}
+SrcGame/src/Winmain.cpp-833-
+SrcGame/src/Winmain.cpp-834-	CloseBindSock();
+SrcGame/src/Winmain.cpp-835-	CloseD3d();
+SrcGame/src/Winmain.cpp-836-
+SrcGame/src/Winmain.cpp-837-#ifdef BMFONT
+SrcGame/src/Winmain.cpp-838-
+SrcGame/src/Winmain.cpp-839-	for (int i = 0; i < 2; i++)
+SrcGame/src/Winmain.cpp-840-	{
+SrcGame/src/Winmain.cpp-841-		if (font[i])
+SrcGame/src/Winmain.cpp-842-		{
+SrcGame/src/Winmain.cpp-843-			delete font[i];
+SrcGame/src/Winmain.cpp-844-			font[i] = nullptr;
+SrcGame/src/Winmain.cpp-845-		}
+SrcGame/src/Winmain.cpp-846-	}
+SrcGame/src/Winmain.cpp-847-#endif
+SrcGame/src/Winmain.cpp-848-
+SrcGame/src/Winmain.cpp-849-	if (fpNetLog)
+SrcGame/src/Winmain.cpp-850-		fclose(fpNetLog);
+SrcGame/src/Winmain.cpp-851-
+SrcGame/src/Winmain.cpp-852-	if (szExitInfo_URL[0])
+SrcGame/src/Winmain.cpp-853-		ShellExecute(NULL, NULL, szExitInfo_URL, NULL, NULL, NULL);
+SrcGame/src/Winmain.cpp-854-
+SrcGame/src/Winmain.cpp-855-	{
+SrcGame/src/Winmain.cpp-856-		FILE *f=fopen("LOGS\\mingw_winmain_final_return.txt","a");
+
+======================================================================
+4. ALLOCCONSOLE / EXCEPTION HANDLER - TODAS AS CHAMADAS
+======================================================================
+SrcGame/src/Dump/WinDump.cpp-37-
+SrcGame/src/Dump/WinDump.cpp-38-		const DWORD Flags = MiniDumpWithFullMemory |
+SrcGame/src/Dump/WinDump.cpp-39-			MiniDumpWithFullMemoryInfo |
+SrcGame/src/Dump/WinDump.cpp-40-			MiniDumpWithHandleData |
+SrcGame/src/Dump/WinDump.cpp-41-			MiniDumpWithUnloadedModules |
+SrcGame/src/Dump/WinDump.cpp-42-			MiniDumpWithThreadInfo;
+SrcGame/src/Dump/WinDump.cpp-43-
+SrcGame/src/Dump/WinDump.cpp-44-		MiniDumpWriteDump_(GetCurrentProcess(), GetCurrentProcessId(),
+SrcGame/src/Dump/WinDump.cpp-45-						   hDump_File, (MINIDUMP_TYPE)Flags,
+SrcGame/src/Dump/WinDump.cpp-46-						   (apExceptionInfo) ? &M : NULL, NULL, NULL);
+SrcGame/src/Dump/WinDump.cpp-47-
+SrcGame/src/Dump/WinDump.cpp-48-		CloseHandle(hDump_File);
+SrcGame/src/Dump/WinDump.cpp-49-	}
+SrcGame/src/Dump/WinDump.cpp-50-
+SrcGame/src/Dump/WinDump.cpp-51-}
+SrcGame/src/Dump/WinDump.cpp-52-
+SrcGame/src/Dump/WinDump.cpp:53:LONG WINAPI unhandled_handler(struct _EXCEPTION_POINTERS* apExceptionInfo)
+SrcGame/src/Dump/WinDump.cpp-54-{
+SrcGame/src/Dump/WinDump.cpp-55-	create_minidump(apExceptionInfo);
+SrcGame/src/Dump/WinDump.cpp-56-	ExitProcess(0);
+SrcGame/src/Dump/WinDump.cpp-57-	return EXCEPTION_CONTINUE_SEARCH;
+SrcGame/src/Dump/WinDump.cpp-58-}
+SrcGame/src/Dump/WinDump.cpp-59-
+SrcGame/src/Dump/WinDump.cpp-60-
+SrcGame/src/Dump/WinDump.cpp-61-
+SrcGame/src/Dump/WinDump.cpp-62-
+SrcGame/src/Dump/WinDump.cpp-63-
+--
+SrcGame/src/Dump/WinDump.h-1-#ifdef WIN32
+SrcGame/src/Dump/WinDump.h-2-
+SrcGame/src/Dump/WinDump.h:3:LONG WINAPI unhandled_handler( struct _EXCEPTION_POINTERS* apExceptionInfo );
+SrcGame/src/Dump/WinDump.h-4-
+SrcGame/src/Dump/WinDump.h-5-#endif // WIN32
+SrcGame/src/Dump/WinDump.h-6-
+SrcGame/src/Dump/WinDump.h-7-
+SrcGame/src/Dump/WinDump.h-8-
+--
+SrcGame/src/Winmain.cpp-421-	void * pAPIHandle = GetProcAddress(GetModuleHandleA(moduleName), apiName);
+SrcGame/src/Winmain.cpp-422-
+SrcGame/src/Winmain.cpp-423-	if (pAPIHandle == NULL)
+SrcGame/src/Winmain.cpp-424-		return FALSE;
+SrcGame/src/Winmain.cpp-425-
+SrcGame/src/Winmain.cpp-426-	if (backup != NULL)
+SrcGame/src/Winmain.cpp-427-		MoveMemory(backup, pAPIHandle, 5);
+SrcGame/src/Winmain.cpp-428-
+SrcGame/src/Winmain.cpp-429-	VirtualProtect(pAPIHandle, 5, PAGE_EXECUTE_READWRITE, &old);
+SrcGame/src/Winmain.cpp-430-	*(BYTE*)((DWORD)pAPIHandle) = 0xE9;
+SrcGame/src/Winmain.cpp-431-	*(DWORD*)((DWORD)pAPIHandle + 1) = (DWORD)callBack - (DWORD)pAPIHandle - 5;
+SrcGame/src/Winmain.cpp-432-	VirtualProtect(pAPIHandle, 5, old, &old);
+SrcGame/src/Winmain.cpp-433-
+SrcGame/src/Winmain.cpp-434-	return TRUE;
+SrcGame/src/Winmain.cpp-435-}
+SrcGame/src/Winmain.cpp-436-
+SrcGame/src/Winmain.cpp:437:LONG WINAPI RedirectedSetUnhandledExceptionFilter(EXCEPTION_POINTERS * p)
+SrcGame/src/Winmain.cpp-438-{
+SrcGame/src/Winmain.cpp-439-	return NULL;
+SrcGame/src/Winmain.cpp-440-}
+SrcGame/src/Winmain.cpp-441-
+SrcGame/src/Winmain.cpp-442-#include <iostream>
+SrcGame/src/Winmain.cpp-443-extern "C" WINBASEAPI int WINAPI AllocConsole();
+SrcGame/src/Winmain.cpp-444-
+SrcGame/src/Winmain.cpp:445:void allocConsole()
+SrcGame/src/Winmain.cpp-446-{
+SrcGame/src/Winmain.cpp-447-
+SrcGame/src/Winmain.cpp-448-	AllocConsole();
+SrcGame/src/Winmain.cpp-449-	//Redirect the CRT standard input, output, and error handles to the console
+SrcGame/src/Winmain.cpp-450-	freopen("CONIN$", "r", stdin);
+SrcGame/src/Winmain.cpp-451-	freopen("CONOUT$", "w", stdout);
+SrcGame/src/Winmain.cpp-452-	freopen("CONOUT$", "w", stderr);
+SrcGame/src/Winmain.cpp-453-
+SrcGame/src/Winmain.cpp-454-	//Clear the error state for each of the C++ standard stream objects. We need to do this, as
+SrcGame/src/Winmain.cpp-455-	//attempts to access the standard streams before they refer to a valid target will cause the
+SrcGame/src/Winmain.cpp-456-	//iostream objects to enter an error state. In versions of Visual Studio after 2005, this seems
+SrcGame/src/Winmain.cpp-457-	//to always occur during startup regardless of whether anything has been read from or written to
+SrcGame/src/Winmain.cpp-458-	//the console or not.
+SrcGame/src/Winmain.cpp-459-	std::wcout.clear();
+SrcGame/src/Winmain.cpp-460-	std::cout.clear();
+SrcGame/src/Winmain.cpp-461-	std::wcerr.clear();
+SrcGame/src/Winmain.cpp-462-	std::cerr.clear();
+SrcGame/src/Winmain.cpp-463-	std::wcin.clear();
+SrcGame/src/Winmain.cpp-464-	std::cin.clear();
+SrcGame/src/Winmain.cpp-465-
+SrcGame/src/Winmain.cpp:466:	SetUnhandledExceptionFilter(unhandled_handler);
+SrcGame/src/Winmain.cpp:467:	HookAPI("kernel32.dll", "SetUnhandledExceptionFilter", RedirectedSetUnhandledExceptionFilter);
+SrcGame/src/Winmain.cpp-468-}
+SrcGame/src/Winmain.cpp-469-#endif
+SrcGame/src/Winmain.cpp-470-
+SrcGame/src/Winmain.cpp-471-void initipgame()
+SrcGame/src/Winmain.cpp-472-{
+SrcGame/src/Winmain.cpp-473-	FILE* arq;
+SrcGame/src/Winmain.cpp-474-	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp-475-	arq = fopen("image/system.txt", "rt");
+SrcGame/src/Winmain.cpp-476-	char result[64];
+SrcGame/src/Winmain.cpp-477-	fscanf(arq, "%s", result);
+SrcGame/src/Winmain.cpp-478-	fclose(arq);
+SrcGame/src/Winmain.cpp-479-	//DeleteFile("image/system.txt");
+SrcGame/src/Winmain.cpp-480-
+SrcGame/src/Winmain.cpp-481-
+SrcGame/src/Winmain.cpp-482-	if (SQL::GetInstance()->Connect("189.79.242.5,31220", "PrimeSys", "1qasw2!QASW@"))
+SrcGame/src/Winmain.cpp-483-	{
+--
+SrcGame/src/Winmain.cpp-532-	//{
+SrcGame/src/Winmain.cpp-533-	//	STARTUPINFO si;
+SrcGame/src/Winmain.cpp-534-	//	PROCESS_INFORMATION pi;
+SrcGame/src/Winmain.cpp-535-
+SrcGame/src/Winmain.cpp-536-	//	ZeroMemory(&si, sizeof(si));
+SrcGame/src/Winmain.cpp-537-	//	si.cb = sizeof(si);
+SrcGame/src/Winmain.cpp-538-	//	ZeroMemory(&pi, sizeof(pi));
+SrcGame/src/Winmain.cpp-539-
+SrcGame/src/Winmain.cpp-540-	//	CreateProcess("Launcher.exe", NULL, NULL, NULL, FALSE, NULL, NULL, NULL, &si, &pi);
+SrcGame/src/Winmain.cpp-541-	//	exit(0);
+SrcGame/src/Winmain.cpp-542-	//} 
+SrcGame/src/Winmain.cpp-543-	// FIM
+SrcGame/src/Winmain.cpp-544-
+SrcGame/src/Winmain.cpp-545-	// ABRIR CONSOLE DEBUG 
+SrcGame/src/Winmain.cpp-546-
+SrcGame/src/Winmain.cpp-547-#ifdef _DEBUG
+SrcGame/src/Winmain.cpp:548:	allocConsole(); 
+SrcGame/src/Winmain.cpp-549-
+SrcGame/src/Winmain.cpp-550-#endif
+SrcGame/src/Winmain.cpp-551-
+SrcGame/src/Winmain.cpp-552-	pcAntiCheat = new AntiCheat();
+SrcGame/src/Winmain.cpp-553-	pcAntiCheat->AddNewThreadException(GetCurrentThreadId());
+SrcGame/src/Winmain.cpp-554-	pcAntiCheat->CheckThread();
+SrcGame/src/Winmain.cpp-555-    //MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp-556-
+SrcGame/src/Winmain.cpp-557-	MSG msg;
+SrcGame/src/Winmain.cpp-558-	WNDCLASS wndclass;
+SrcGame/src/Winmain.cpp-559-	hinst = hInst;
+SrcGame/src/Winmain.cpp-560-
+SrcGame/src/Winmain.cpp-561-	strcpy_s(szCmdLine, lpCmdLine);
+SrcGame/src/Winmain.cpp-562-
+SrcGame/src/Winmain.cpp-563-	initSinCos();
+SrcGame/src/Winmain.cpp-564-
+
+======================================================================
+5. BUILD FLAGS DO CLIENTE
+======================================================================
+./link_client_mingw_i686.sh:138:    if command -v i686-w64-mingw32-objdump >/dev/null 2>&1; then
+./link_client_mingw_i686.sh:139:        i686-w64-mingw32-objdump -p "$OUTPUT" 2>/dev/null \
+./depricated/add_missing_opcodes_safe.sh:323:i686-w64-mingw32-g++ \
+./depricated/auto_patch_onserver_compat.sh:253:i686-w64-mingw32-g++     -m32 -std=gnu++14 -fpermissive -w     -fmax-errors=300     -DWIN32 -D_WINDOWS -D_M_IX86 -Di386 -D__i386__ -D_SERVER     -I.     -ISrcServer/src     -ISrcServer/src/sinbaram     -ISrcServer/src/Skills     -ISrcGame/src     -IShared -IShared/Lua -IShared2     -Imodules -Imodules/File     "-IDependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Include"     -c "$ONSEVER"     -o /tmp/OnSever.o     2>/tmp/OnSever.err || true
+./depricated/auto_patch_onserver_disable_incompatible_functions.sh:332:i686-w64-mingw32-g++ \
+./depricated/auto_patch_onserver_disable_legacy_features.sh:248:i686-w64-mingw32-g++ \
+./depricated/auto_patch_onserver_remaining_safe.sh:362:i686-w64-mingw32-g++ \
+./depricated/build_client_mingw_i686.sh:39:i686-w64-mingw32-g++ \
+./depricated/patch_onserver_easy_remaining.sh:287:i686-w64-mingw32-g++ \
+./depricated/patch_onserver_easy_remaining_v2.sh:217:i686-w64-mingw32-g++ \
+./depricated/patch_onserver_easy_remaining_v3.sh:237:i686-w64-mingw32-g++ \
+
+======================================================================
+6. CLIENTE.SH - TRECHO DE FLAGS / LINK
+======================================================================
+     1	#!/usr/bin/env bash
+     2	set -euo pipefail
+     3	
+     4	################################################################################
+     5	# SummitTale — build, link e envio do cliente MinGW i686
+     6	################################################################################
+     7	
+     8	ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+     9	cd "$ROOT"
+    10	
+    11	BUILD_SCRIPT="${BUILD_SCRIPT:-build_client_mingw_i686_multicore.sh}"
+    12	LINK_SCRIPT="${LINK_SCRIPT:-link_client_mingw_i686.sh}"
+    13	DIST_DIR="${DIST_DIR:-dist_mingw_client_i686}"
+    14	CLIENT_EXE="${CLIENT_EXE:-Game.exe}"
+    15	
+    16	# Pode ser alterado sem editar o script:
+    17	# DEST='utilizador@host:C:/caminho' PORT=2223 ./cliente.sh
+    18	DEST="${DEST:-server@127.0.0.1:C:/Users/server/Desktop/cli}"
+    19	
+    20	
+    21	PORT="${PORT:-2223}"
+    22	
+    23	MINGW_BIN="${MINGW_BIN:-/usr/i686-w64-mingw32/sys-root/mingw/bin}"
+    24	
+    25	RUNTIME_DLLS=(
+    26	    libgcc_s_dw2-1.dll
+    27	    libstdc++-6.dll
+    28	    libwinpthread-1.dll
+    29	)
+    30	
+    31	log_section()
+    32	{
+    33	    echo
+    34	    echo "===================================="
+    35	    echo "$1"
+    36	    echo "===================================="
+    37	}
+    38	
+    39	require_file()
+    40	{
+    41	    if [ ! -f "$1" ]; then
+    42	        echo "Erro: ficheiro não encontrado: $1" >&2
+    43	        exit 1
+    44	    fi
+    45	}
+    46	
+    47	require_command()
+    48	{
+    49	    if ! command -v "$1" >/dev/null 2>&1; then
+    50	        echo "Erro: comando não encontrado: $1" >&2
+    51	        exit 1
+    52	    fi
+    53	}
+    54	
+    55	require_file "$BUILD_SCRIPT"
+    56	require_file "$LINK_SCRIPT"
+    57	require_command bash
+    58	require_command scp
+    59	
+    60	log_section "1/4 — COMPILAÇÃO DO CLIENTE"
+    61	bash "$BUILD_SCRIPT"
+    62	
+    63	log_section "2/4 — LINK DO CLIENTE"
+    64	bash "$LINK_SCRIPT"
+    65	
+    66	OUTPUT="$DIST_DIR/$CLIENT_EXE"
+    67	require_file "$OUTPUT"
+    68	
+    69	log_section "3/4 — DLLs DE RUNTIME"
+    70	mkdir -p "$DIST_DIR"
+    71	
+    72	FILES_TO_SEND=("$OUTPUT")
+    73	
+    74	for dll in "${RUNTIME_DLLS[@]}"; do
+    75	    source_path="$MINGW_BIN/$dll"
+    76	    target_path="$DIST_DIR/$dll"
+    77	
+    78	    if [ -f "$source_path" ]; then
+    79	        cp -f "$source_path" "$target_path"
+    80	        FILES_TO_SEND+=("$target_path")
+    81	        echo "OK   $dll"
+    82	    elif [ -f "$target_path" ]; then
+    83	        FILES_TO_SEND+=("$target_path")
+    84	        echo "OK   $dll (já existente em $DIST_DIR)"
+    85	    else
+    86	        echo "Aviso: DLL não encontrada: $source_path" >&2
+    87	    fi
+    88	done
+    89	
+    90	log_section "4/4 — ENVIO DO CLIENTE"
+    91	echo "Destino : $DEST"
+    92	echo "Porta   : $PORT"
+    93	echo "Ficheiros:"
+    94	printf '  %s\n' "${FILES_TO_SEND[@]}"
+    95	echo
+    96	
+    97	scp -P "$PORT" "${FILES_TO_SEND[@]}" "$DEST"
+    98	
+    99	log_section "CLIENTE CONCLUÍDO"
+   100	echo "Executável: $OUTPUT"
+   101	echo "Enviado para: $DEST"

@@ -1,0 +1,59 @@
+SrcGame/src/BattleEvents/CRollWindow.cpp:18:			if (sItem[cnt].CODE == lpItemInfo->CODE)
+SrcGame/src/BattleEvents/CRollWindow.cpp:20:				memcpy(&Item, &sItem[cnt], sizeof(sITEM));
+SrcGame/src/Server/OnSever.cpp:15569:			if(sItem[cnt].CODE == (sinGG1 | sin01)) break;
+SrcGame/src/Server/OnSever.cpp:15571:			if(sItem[cnt].CODE == eWeaponCode)
+SrcGame/src/Server/OnSever.cpp:15573:				if(sItem[cnt].Class == ITEM_CLASS_WEAPON_TWO)
+SrcGame/src/sinbaram/sinInvenTory.cpp:4954:					memcpy(&sinTempItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinInvenTory.cpp:5014:					memcpy(&sinTempItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinInvenTory.cpp:5270:				memcpy(&sinTempItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinInvenTory.cpp:9657:		memcpy(&TestItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinInvenTory.cpp:9666:				strcpy_s(sinTestBuff, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinMessageBox.cpp:2892:			if(sItem[j].CODE == MessageBoxItem.sItemInfo.CODE)
+SrcGame/src/sinbaram/sinMessageBox.cpp:2894:				memcpy(&MessageBoxItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinShop.cpp:2835:					memcpy(&TempItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinShop.cpp:2844:							memcpy(&TempItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinShop.cpp:2903:			memcpy(&TempItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinSubMain.cpp:342:		if(sItem[j].CODE == CODE)
+SrcGame/src/sinbaram/sinSubMain.cpp:731:			memcpy(TempItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinSubMain.cpp:743:							memcpy(TempItem, &sItem[k], sizeof(sITEM));
+SrcGame/src/sinbaram/sinSubMain.cpp:761:				strcpy_s(szTestBuff2, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinTrade.cpp:2377:							if (sItem[i].CODE == (sinPR1 | sin01))
+SrcGame/src/sinbaram/sinTrade.cpp:2491:								if (sItem[cnt].CODE == ResultItem.ItemCode)
+SrcGame/src/character.cpp:269:		if (sItem[j].CODE == CODE)
+SrcGame/src/character.cpp:1821:				if (sItem[cnt].CODE == dwItemCode)
+SrcGame/src/character.cpp:1823:					if (sItem[cnt].Class == ITEM_CLASS_WEAPON_TWO && !ShootingMode)
+SrcGame/src/character.cpp:2536:			if (sItem[i].CODE == dwActionItemCode)
+SrcGame/src/effectsnd.cpp:1420:		if(sItem[cnt].CODE == lpChar->dwActionItemCode)
+SrcGame/src/netplay.cpp:11224:		if(sItem[j].CODE == sItemMoney.sItemInfo.CODE)
+SrcGame/src/netplay.cpp:11226:			memcpy(&sItemMoney, &sItem[j], sizeof(sITEM));
+SrcGame/src/playsub.cpp:562:		if (sItem[cnt].CODE == (sinGG1 | sin01) || sItem[cnt].CODE == (sinGG1 | sin02))
+SrcServer/src/Server/OnSever.cpp:17598:			if(sItem[cnt].CODE == (sinGG1 | sin01)) break;
+SrcServer/src/Server/OnSever.cpp:17600:			if(sItem[cnt].CODE == eWeaponCode)
+SrcServer/src/Server/OnSever.cpp:17602:				if(sItem[cnt].Class == ITEM_CLASS_WEAPON_TWO)
+SrcServer/src/sinbaram/sinInvenTory.cpp:3307:					memcpy(&sinTempItem, &sItem[j], sizeof(sITEM));
+SrcServer/src/sinbaram/sinInvenTory.cpp:3367:					memcpy(&sinTempItem, &sItem[j], sizeof(sITEM));
+SrcServer/src/sinbaram/sinInvenTory.cpp:3623:				memcpy(&sinTempItem, &sItem[j], sizeof(sITEM));
+SrcServer/src/sinbaram/sinInvenTory.cpp:7644:		memcpy(&TestItem, &sItem[j], sizeof(sITEM));
+SrcServer/src/sinbaram/sinInvenTory.cpp:7653:				strcpy_s(sinTestBuff, sItem[j].LastCategory);
+SrcServer/src/sinbaram/sinMessageBox.cpp:2531:			if(sItem[j].CODE == MessageBoxItem.sItemInfo.CODE)
+SrcServer/src/sinbaram/sinMessageBox.cpp:2533:				memcpy(&MessageBoxItem, &sItem[j], sizeof(sITEM));
+SrcServer/src/sinbaram/sinShop.cpp:2645:					memcpy(&TempItem, &sItem[j], sizeof(sITEM));
+SrcServer/src/sinbaram/sinShop.cpp:2654:							memcpy(&TempItem, &sItem[j], sizeof(sITEM));
+SrcServer/src/sinbaram/sinShop.cpp:2711:			memcpy(&TempItem, &sItem[j], sizeof(sITEM));
+SrcServer/src/sinbaram/sinSubMain.cpp:261:		if(sItem[j].CODE == CODE)
+SrcServer/src/sinbaram/sinSubMain.cpp:630:			memcpy(TempItem, &sItem[j], sizeof(sITEM));
+SrcServer/src/sinbaram/sinSubMain.cpp:642:							memcpy(TempItem, &sItem[k], sizeof(sITEM));
+SrcServer/src/sinbaram/sinSubMain.cpp:660:				strcpy_s(szTestBuff2, sItem[j].LastCategory);
+SrcServer/src/sinbaram/sinTrade.cpp:2011:							if(sItem[i].CODE == (sinPR1 | sin01))
+SrcServer/src/sinbaram/sinTrade.cpp:2125:								if(sItem[cnt].CODE == ResultItem.ItemCode)
+SrcServer/src/cQuestHandler.cpp:814:									if (sItem[cnt].CODE == DefaultItems[cnt2].Item.CODE)
+SrcServer/src/cQuestHandler.cpp:940:									if (sItem[cnt].CODE == DefaultItems[cnt2].Item.CODE)
+SrcServer/src/cQuestHandler.cpp:1066:									if (sItem[cnt].CODE == DefaultItems[cnt2].Item.CODE)
+SrcServer/src/character.cpp:271:		if(sItem[j].CODE == CODE)
+SrcServer/src/character.cpp:1797:				if(sItem[cnt].CODE == dwItemCode)
+SrcServer/src/character.cpp:1799:					if(sItem[cnt].Class == ITEM_CLASS_WEAPON_TWO && !ShootingMode)
+SrcServer/src/character.cpp:2446:			if(sItem[i].CODE == dwActionItemCode)
+SrcServer/src/effectsnd.cpp:1306:		if(sItem[cnt].CODE == lpChar->dwActionItemCode)
+SrcServer/src/netplay.cpp:5753:		if(sItem[j].CODE == sItemMoney.sItemInfo.CODE)
+SrcServer/src/netplay.cpp:5755:			memcpy(&sItemMoney, &sItem[j], sizeof(sITEM));
+SrcServer/src/playsub.cpp:561:		if (sItem[cnt].CODE == (sinGG1 | sin01) || sItem[cnt].CODE == (sinGG1 | sin02))

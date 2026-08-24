@@ -1,0 +1,53 @@
+00:00.017  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.017  color_management | Using fallback mode for management
+00:01.867  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_direct_smd_v3_static_armature.blend"
+PT_BLENDER_MOTION_BAKE_V2
+input_blend=/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_direct_smd_v3_static_armature.blend
+motion_count=64
+motion_index=40
+state=ATTACK
+repeat=0
+motion_frame=5
+engine_half_open=[236480,242880)
+blender_frames=1..40
+bones=95
+visible_meshes=['MbmC01', 'MlmC01', 'MsmC01']
+
+BAKE
+
+POST_BAKE_SOURCE_COMPARISON
+frame=1 engine=236480 max_vertex_error=0.0200363303 rms_vertex_error=0.00678864144
+  source_bbox=x[-8.2510,9.1909] y[-10.9860,6.5554] z[-0.0129,36.9770]
+  blender_bbox=x[-8.2680,9.2079] y[-10.9855,6.5561] z[-0.0127,36.9758]
+  source_rot_active=78 source_pos_active=16 source_rot_end_clamps=0
+frame=20 engine=239520 max_vertex_error=0.0202315422 rms_vertex_error=0.00634885931
+  source_bbox=x[-8.6984,9.0155] y[-35.8573,5.3114] z[-0.2285,30.4114]
+  blender_bbox=x[-8.6999,9.0150] y[-35.8588,5.3125] z[-0.2279,30.4149]
+  source_rot_active=78 source_pos_active=16 source_rot_end_clamps=0
+frame=40 engine=242720 max_vertex_error=0.0216734026 rms_vertex_error=0.00686616895
+  source_bbox=x[-7.0543,7.9132] y[-12.0512,8.3292] z[-0.0279,36.4169]
+  blender_bbox=x[-7.0566,7.9292] y[-12.0507,8.3299] z[-0.0276,36.4157]
+  source_rot_active=78 source_pos_active=16 source_rot_end_clamps=3
+
+VALIDATION_METRICS
+action=PT_m5_ATTACK_motion40_V2
+keyed_bones=95
+keyed_frames=40
+interpolation_keypoints_set=0
+total_vertex_samples=9800
+max_vertex_error=0.0453997975
+overall_rms_vertex_error=0.00763088828
+worst_frame=(17, 239040, 0.045399797537211684)
+worst_rms_frame=(12, 238240, 0.011573592227431841)
+max_vertex_error_where=(17, 239040, 'MsmC01', 43, 'Bip01 L Forearm', (9.484894901641503, -11.378214386961961, 36.5568979140003), (9.481447219848633, -11.41463851928711, 36.5300178527832))
+Info: Saved as "MfbC01_attack40_bake_v2.blend"
+
+FINAL
+timeline=1..40
+output=/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_attack40_bake_v2.blend
+post_bake_source_skin_check=PASS
+blender_motion_bake_v2_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

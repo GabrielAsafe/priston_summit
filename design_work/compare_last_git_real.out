@@ -1,0 +1,77 @@
+CURRENT = /home/gabriel/Área de Trabalho/summit/SourceCode
+BASE    = /home/gabriel/Transferências/priston_summit-main/SourceCode
+
+CURRENT_FILES = 1207
+BASE_FILES    = 1208
+SAME          = 1179
+CHANGED       = 28
+CURRENT_ONLY  = 0
+BASE_ONLY     = 1
+SAFE_CHANGED  = 27
+SENSITIVE     = 1
+
+==============================================================================
+SENSITIVE - NAO PORTAR AUTOMATICAMENTE
+==============================================================================
+SrcServer/src/sinbaram/sinItem.cpp
+
+==============================================================================
+SAFE CHANGED
+==============================================================================
+SrcGame/src/character.cpp
+SrcGame/src/cSettingsWindow.cpp
+SrcGame/src/fileread.cpp
+SrcGame/src/HoBaram/HoLinkHeader.cpp
+SrcGame/src/HoBaram/HoLogin.cpp
+SrcGame/src/HoBaram/HoOpening.cpp
+SrcGame/src/HoBaram/LowLevelPetSystem.cpp
+SrcGame/src/mingw_debug_entry.cpp
+SrcGame/src/netplay.cpp
+SrcGame/src/playmain.cpp
+SrcGame/src/Server/OnSever.cpp
+SrcGame/src/Settings/Settings.cpp
+SrcGame/src/sinbaram/AssaEffect.cpp
+SrcGame/src/sinbaram/AssaUtil.cpp
+SrcGame/src/sinbaram/sinHelpPet.cpp
+SrcGame/src/sinbaram/sinInterFace.cpp
+SrcGame/src/sinbaram/sinSubMain.cpp
+SrcGame/src/smLib3d/smDsx.cpp
+SrcGame/src/smLib3d/smRead3d.cpp
+SrcGame/src/smwsock.cpp
+SrcGame/src/TJBOY/clanmenu/tjclan.cpp
+SrcGame/src/UIList.cpp
+SrcGame/src/Winmain.cpp
+SrcServer/src/character.cpp
+SrcServer/src/fileread.cpp
+SrcServer/src/Server/OnSever.cpp
+SrcServer/src/sinbaram/sinInvenTory.cpp
+
+==============================================================================
+MINGW/TEMP MARKERS SO NO CURRENT
+==============================================================================
+SrcGame/src/cSettingsWindow.cpp | MINGW_SETTINGS_OPEN_TRACE_V1
+SrcGame/src/cSettingsWindow.cpp | MINGW_SETTINGS_VIDEO_GRANULAR_TRACE_V1
+SrcGame/src/HoBaram/LowLevelPetSystem.cpp | MINGW_LOWLEVELPET_TRACE_V1
+SrcGame/src/Settings/Settings.cpp | MINGW_RUNTIME_RESOLUTION_DEPRECATED_NOTE_V1
+SrcGame/src/sinbaram/sinHelpPet.cpp | MINGW_PETMESSAGE_TRACE_V1
+SrcGame/src/sinbaram/sinInterFace.cpp | MINGW_CHATDEFAULT_TGA_PATH_FIX_V1
+SrcGame/src/smLib3d/smRead3d.cpp | MINGW_GETSTRING_BOUNDS_FIX_V1
+SrcGame/src/smLib3d/smRead3d.cpp | MINGW_GETWORD_LINE_TERMINATOR_FIX_V1
+SrcGame/src/UIList.cpp | MINGW_UILIST_SELECTED_INIT_V1
+SrcServer/src/character.cpp | MINGW_FINDMOTION_NULL_GUARD_V1
+SrcServer/src/fileread.cpp | MINGW_CHARINF_CP949_TOKEN_FIX_V1
+SrcServer/src/fileread.cpp | MINGW_SPM_ACTOR_MATCH_TRACE_V1
+SrcServer/src/fileread.cpp | MINGW_SPM_CP949_TOKEN_FIX_V1
+SrcServer/src/Server/OnSever.cpp | MINGW_SETFIELDINFOPATH_SEPARATOR_FIX_V1
+SrcServer/src/Server/OnSever.cpp | MINGW_SITEM_CODEMAP_STARTUP_V1
+SrcServer/src/Server/OnSever.cpp | MINGW_STAGE_SPAWN_LOAD_TRACE_V1
+SrcServer/src/sinbaram/sinInvenTory.cpp | MINGW_SETITEM_CRASH_TRACE_V1
+
+==============================================================================
+CURRENT ONLY
+==============================================================================
+
+==============================================================================
+BASE ONLY
+==============================================================================
+SrcGame/src/Winmain.bak2.cpp

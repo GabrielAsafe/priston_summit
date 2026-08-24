@@ -1,0 +1,38 @@
+00:00.013  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.013  color_management | Using fallback mode for management
+00:01.506  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_direct_smd_v3_static_armature.blend"
+PT_BLENDER_DIRECT_SOURCE_SKIN_V1
+input_blend=/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_direct_smd_v3_static_armature.blend
+smd=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC01.smd
+skeleton=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/m5.smb
+motion_index=10
+state=STAND
+engine_frame=1600
+logical_frame=10
+visible_meshes=['MbmC01', 'MlmC01', 'MsmC01']
+
+SOURCE_SKIN
+changed_vertices=245
+used_bones=43
+source_active_rot=80
+source_active_pos=13
+source_rot_end_clamps=1
+nonfinite_vertices=0
+max_vertex_displacement=5.551672
+max_vertex_displacement_where=('MbmC01', 23, 'Bip-0038')
+
+BBOX
+bind_bbox=x[-8.1523,8.1445] y[-5.7266,5.2617] z[0.0000,37.5078]
+source_pose_bbox=x[-8.3705,7.9991] y[-9.2923,5.4636] z[0.0091,37.2498]
+
+Info: Saved as "MfbC01_direct_source_skin_stand10_frame1600.blend"
+VALIDATION
+no_keyframes=YES
+armature_modifiers_disabled=YES
+source_pose_bbox_finite=YES
+output=/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_direct_source_skin_stand10_frame1600.blend
+direct_source_skin_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

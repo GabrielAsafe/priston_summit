@@ -1,0 +1,40 @@
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+00:01.530  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_direct_smd_v3_static_armature.blend"
+PT_BLENDER_DIRECT_POSE_PROBE_V1
+input_blend=/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_direct_smd_v3_static_armature.blend
+motion_index=10
+state=STAND
+motion_engine_range=[1600,8000)
+engine_frame=1600
+logical_frame=10
+bones=95
+visible_meshes=['MbmC01', 'MlmC01', 'MsmC01']
+
+OBJECT_TRANSFORMS
+armature_world_identity_error=0
+mesh_world_identity_error_max=0
+
+DIRECT_ASSIGNMENT
+max_effective_deform_error=58.3323221
+max_effective_deform_error_bone='Bip-h23'
+effective_deform_det_range=0.992603183..12.1660004
+source_active_rot=80
+source_active_pos=13
+source_rot_end_clamps=1
+
+VISIBLE_MESH
+bind_bbox=x[-8.1523,8.1445] y[-5.7266,5.2617] z[0.0000,37.5078]
+direct_pose_bbox=x[-12.9706,6.3849] y[-23.9984,3.3129] z[-1.6275,34.9400]
+
+Info: Saved as "MfbC01_direct_pose_stand10_frame1600.blend"
+VALIDATION
+no_keyframes=YES
+effective_deform_assignment=FAIL
+visible_mesh_bbox_finite=YES
+output=/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_direct_pose_stand10_frame1600.blend
+direct_pose_probe_check=FAIL
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

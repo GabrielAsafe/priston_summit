@@ -1,0 +1,434 @@
+================================================================================
+MESH: MshC19
+================================================================================
+TVERT count : 250
+W min       : -2.1609
+W max       : 2.21
+W unique(6) : 118
+Most common W values:
+   1.623400 -> 6
+   2.160900 -> 6
+   0.570500 -> 4
+   0.571100 -> 4
+  -2.160900 -> 4
+   0.545000 -> 2
+   0.523700 -> 2
+   0.582900 -> 2
+   0.524800 -> 2
+   0.467700 -> 2
+   0.455600 -> 2
+   0.439600 -> 2
+
+Face count  : 264
+AB/BC/CA patterns:
+  (1, 1, 1) -> 236
+  (0, 1, 1) -> 10
+  (1, 1, 0) -> 10
+  (1, 0, 1) -> 8
+Smoothing groups:
+  '1' -> 264
+MTLID distribution:
+  0 -> 264
+
+================================================================================
+MESH: MbhC19
+================================================================================
+TVERT count : 212
+W min       : -1.2273
+W max       : 3.74
+W unique(6) : 92
+Most common W values:
+   0.429200 -> 8
+   0.712200 -> 8
+   1.073800 -> 6
+  -0.039700 -> 6
+   0.619100 -> 4
+   0.616300 -> 4
+  -0.763000 -> 4
+  -0.274100 -> 4
+   0.746700 -> 2
+   0.531400 -> 2
+   0.494400 -> 2
+   0.754100 -> 2
+
+Face count  : 246
+AB/BC/CA patterns:
+  (1, 1, 1) -> 214
+  (1, 1, 0) -> 11
+  (0, 1, 1) -> 11
+  (1, 0, 1) -> 10
+Smoothing groups:
+  '1' -> 246
+MTLID distribution:
+  0 -> 150
+  1 -> 96
+
+================================================================================
+MESH: MlhC20
+================================================================================
+TVERT count : 296
+W min       : -0.0055
+W max       : 0.9945
+W unique(6) : 113
+Most common W values:
+   0.000000 -> 22
+   0.549200 -> 4
+   0.481700 -> 4
+   0.465600 -> 4
+   0.430900 -> 4
+   0.506500 -> 4
+   0.606700 -> 4
+   0.610800 -> 4
+   0.635800 -> 4
+   0.721300 -> 4
+   0.663900 -> 4
+   0.669900 -> 4
+
+Face count  : 420
+AB/BC/CA patterns:
+  (1, 1, 0) -> 332
+  (1, 1, 1) -> 88
+Smoothing groups:
+  '1' -> 420
+MTLID distribution:
+  0 -> 208
+  1 -> 212
+
+================================================================================
+MESH: MahC20
+================================================================================
+TVERT count : 124
+W min       : -1.638
+W max       : 1.719
+W unique(6) : 61
+Most common W values:
+   0.823300 -> 4
+  -0.039000 -> 2
+  -0.771500 -> 2
+  -0.499500 -> 2
+   0.693800 -> 2
+  -0.669700 -> 2
+   0.375100 -> 2
+   0.920200 -> 2
+  -0.326900 -> 2
+   0.528000 -> 2
+   0.924100 -> 2
+  -0.189500 -> 2
+
+Face count  : 146
+AB/BC/CA patterns:
+  (1, 1, 0) -> 128
+  (1, 1, 1) -> 18
+Smoothing groups:
+  '1' -> 146
+MTLID distribution:
+  0 -> 146
+
+================================================================================
+SOURCE SCAN
+================================================================================
+Root: /home/gabriel/Área de Trabalho/summit/SourceCode
+Hits: 2013
+
+depricated/backup_safe_patch_20260704_095605/netplay.cpp:971: 	ChangeModelSkin(lpCurPlayer, 0, lpCurPlayer->smCharInfo.ChangeJob, 0, GetFaceHairSkin(lpCurPlayer));
+depricated/backup_safe_patch_20260704_095605/netplay.cpp:3244: 					ChangeModelSkin(lpCurPlayer, 0, lpCurPlayer->smCharInfo.ChangeJob, 0, GetFaceHairSkin(lpCurPlayer));
+depricated/backup_server_wave2_20260709_120402/SrcServer/src/smLib3d/smObj3d.h:172: 	int SetFaceMaterial(int FaceNum, int MatNum);
+depricated/backup_server_wave2_20260709_120402/SrcServer/src/smLib3d/smObj3d.h:188: 	void SortVertex();
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:812: 	POINT3D outVertex[4];
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:880: 			outVertex[index].x = inVertex[index].x * outMatrix._11 +
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:885: 			outVertex[index].y = inVertex[index].x * outMatrix._12 +
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:890: 			outVertex[index].z = inVertex[index].x * outMatrix._13 +
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:894: 			outVertex[index].x = outVertex[index].x / fONE + x;
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:895: 			outVertex[index].y = outVertex[index].y / fONE + y;
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:896: 			outVertex[index].z = outVertex[index].z / fONE + z;
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:900: 		memcpy(inVertex, outVertex, sizeof(inVertex));
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:913: 		outVertex[index].x = inVertex[index].x*smRender.mCamera._11 +
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:917: 		outVertex[index].y = inVertex[index].x*smRender.mCamera._12 +
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:921: 		outVertex[index].z = inVertex[index].x*smRender.mCamera._13 +
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:925: 		outVertex[index].x = outVertex[index].x >> FLOATS_EM;
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:926: 		outVertex[index].y = outVertex[index].y >> FLOATS_EM;
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:927: 		outVertex[index].z = outVertex[index].z >> FLOATS_EM;
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:929: 		if(outVertex[index].z < SMFLOAT_DIST_NEARZ)
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:935: 	v[0] = smRender.AddRendVertex(outVertex[0].x, outVertex[0].y, outVertex[0].z, sColor);
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:936: 	v[1] = smRender.AddRendVertex(outVertex[1].x, outVertex[1].y, outVertex[1].z, sColor);
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:937: 	v[2] = smRender.AddRendVertex(outVertex[2].x, outVertex[2].y, outVertex[2].z, sColor);
+depricated/backup_server_patch_safe_01_20260708_200514/SrcServer/src/sinbaram/AssaUtil.cpp:938: 	v[3] = smRender.AddRendVertex(outVertex[3].x, outVertex[3].y, outVertex[3].z, sColor);
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:812: 	POINT3D outVertex[4];
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:880: 			outVertex[index].x = inVertex[index].x * outMatrix._11 +
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:885: 			outVertex[index].y = inVertex[index].x * outMatrix._12 +
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:890: 			outVertex[index].z = inVertex[index].x * outMatrix._13 +
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:894: 			outVertex[index].x = outVertex[index].x / fONE + x;
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:895: 			outVertex[index].y = outVertex[index].y / fONE + y;
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:896: 			outVertex[index].z = outVertex[index].z / fONE + z;
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:900: 		memcpy(inVertex, outVertex, sizeof(inVertex));
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:913: 		outVertex[index].x = inVertex[index].x*smRender.mCamera._11 +
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:917: 		outVertex[index].y = inVertex[index].x*smRender.mCamera._12 +
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:921: 		outVertex[index].z = inVertex[index].x*smRender.mCamera._13 +
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:925: 		outVertex[index].x = outVertex[index].x >> FLOATS_EM;
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:926: 		outVertex[index].y = outVertex[index].y >> FLOATS_EM;
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:927: 		outVertex[index].z = outVertex[index].z >> FLOATS_EM;
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:929: 		if(outVertex[index].z < SMFLOAT_DIST_NEARZ)
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:935: 	v[0] = smRender.AddRendVertex(outVertex[0].x, outVertex[0].y, outVertex[0].z, sColor);
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:936: 	v[1] = smRender.AddRendVertex(outVertex[1].x, outVertex[1].y, outVertex[1].z, sColor);
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:937: 	v[2] = smRender.AddRendVertex(outVertex[2].x, outVertex[2].y, outVertex[2].z, sColor);
+depricated/backup_server_patch_all_v2_20260708_201456/SrcServer/src/sinbaram/AssaUtil.cpp:938: 	v[3] = smRender.AddRendVertex(outVertex[3].x, outVertex[3].y, outVertex[3].z, sColor);
+depricated/backup_server_blockers_20260708_201748/SrcServer/src/smLib3d/smDsx.h:44: } TVERTEX, *LPTVERTEX;
+SrcServer/src/pbackground.cpp:281: 			smObjBG->SetFaceMaterial(fNum, BGMatNum);
+SrcServer/src/pbackground.cpp:318: 			smObjBG->SetFaceMaterial(fNum, BGMatNum);
+SrcServer/src/playmodel.h:1075: char *szModel_KnightFaceName[FACE_MODEL_MAX][HEAREPOTION_MAX] = {
+SrcServer/src/playsub.h:38: char *GetFaceHairSkin(smCHAR *lpChar);
+SrcServer/src/character.cpp:7973: 		smRender.ObjectVertexScale = smCharInfo.wPlayClass[1];
+SrcServer/src/character.cpp:8136: 	smRender.ObjectVertexScale = 0;
+SrcServer/src/character.cpp:16236: 			smRender.ObjectVertexScale = scale + fONE;
+SrcServer/src/character.cpp:16265: 	smRender.ObjectVertexScale = 0;
+SrcServer/src/playmain.cpp:1039: 	objIceFoot->SetFaceMaterial(0, MatShadow);
+SrcServer/src/playmain.cpp:1040: 	objIceFoot->SetFaceMaterial(1, MatShadow);
+SrcServer/src/playmain.cpp:1077: 	objShadow->SetFaceMaterial(0, MatShadow);
+SrcServer/src/playmain.cpp:1078: 	objShadow->SetFaceMaterial(1, MatShadow);
+SrcServer/src/playmain.cpp:1141: 	objShadow->SetFaceMaterial(0, MatShadow);
+SrcServer/src/playmain.cpp:1142: 	objShadow->SetFaceMaterial(1, MatShadow);
+SrcServer/src/playmain.cpp:1143: 	objShadow->SetFaceMaterial(2, MatShadow);
+SrcServer/src/playmain.cpp:1144: 	objShadow->SetFaceMaterial(3, MatShadow);
+SrcServer/src/playmain.cpp:1145: 	objShadow->SetFaceMaterial(4, MatShadow);
+SrcServer/src/playmain.cpp:1146: 	objShadow->SetFaceMaterial(5, MatShadow);
+SrcServer/src/playmain.cpp:1147: 	objShadow->SetFaceMaterial(6, MatShadow);
+SrcServer/src/playmain.cpp:1148: 	objShadow->SetFaceMaterial(7, MatShadow);
+SrcServer/src/playsub.cpp:392: 			if (LoadOftenMeshPattern(szModel_KnightFaceName[cnt][cnt2]) == FALSE)
+SrcServer/src/playsub.cpp:500: 			if (LoadOftenMeshPattern(szModel_KnightFaceName[cnt][cnt2]) == FALSE)
+SrcServer/src/playsub.cpp:688: char *GetFaceHairSkin(smCHAR *lpChar)
+SrcServer/src/playsub.cpp:717: 		szHeadName = szModel_KnightFaceName[FaceCode][HairCode];
+SrcServer/src/playsub.cpp:827: 				if (lstrcmpi(szModel_KnightFaceName[cnt][cnt2], lpHeadName) == 0)
+SrcServer/src/playsub.cpp:829: 					*lpSelFace = szModel_KnightFaceName[cnt];
+SrcServer/src/playsub.cpp:830: 					*lpSelFaceName = szModel_KnightFaceName[cnt][cnt2];
+SrcServer/src/playsub.cpp:993: 		strcpy_s(szHeadName, szModel_KnightFaceName[SelCount][HairCode]);
+SrcServer/src/playsub.cpp:5756: 				if (lstrcmpi(szModel_KnightFaceName[cnt][cnt2], lpCharInfo->szModelName2) == 0)
+SrcServer/src/playsub.cpp:5765: 			strcpy_s(lpCharInfo->szModelName2, szModel_KnightFaceName[0][0]);
+SrcServer/src/playsub.cpp:6991: 		ChangeModelSkin(lpCurPlayer, 0, lpCurPlayer->smCharInfo.ChangeJob, 0, GetFaceHairSkin(lpCurPlayer));
+SrcServer/src/HoBaram/AssaParticle.cpp:2499: 		smRender.AddObjectVertex(&lpVertex[cnt]);
+SrcServer/src/HoBaram/AssaParticle.cpp:2513: 			smRender.AddObjectFace(&lpFace[cnt]);
+SrcServer/src/HoBaram/AssaParticle.cpp:2514: 			smRender.AddObjectFace(&lpFace[cnt + 1]);
+SrcServer/src/HoBaram/AssaParticle.cpp:3084: 		smRender.AddObjectVertex(&lpVertex[cnt]);
+SrcServer/src/HoBaram/AssaParticle.cpp:3098: 			smRender.AddObjectFace(&lpFace[cnt]);
+SrcServer/src/HoBaram/AssaParticle.cpp:3099: 			smRender.AddObjectFace(&lpFace[cnt + 1]);
+SrcServer/src/HoBaram/HoNewParticle.h:1208: 	smSTAGE_FACE		FlatFace[2];
+SrcServer/src/HoBaram/LowLevelPetSystem.cpp:59: 		smRender.ObjectVertexScale = 256 + 80;
+SrcServer/src/HoBaram/LowLevelPetSystem.cpp:62: 		smRender.ObjectVertexScale = 0;
+SrcServer/src/HoBaram/PCBangPetSystem.cpp:69: 		smRender.ObjectVertexScale = 256 + 80;
+SrcServer/src/HoBaram/PCBangPetSystem.cpp:72: 		smRender.ObjectVertexScale = 0;
+SrcServer/src/HoBaram/HoLogin.cpp:205: char *szMorKnightFaceName[2][3] = {
+SrcServer/src/HoBaram/HoLogin.cpp:433: 	FaceSelectImage = LoadDibSurfaceOffscreen("Assets//GUI//Opening//Select//UI//SelectFace.bmp");
+SrcServer/src/HoBaram/HoLogin.cpp:978: 						memcpy(CharacterName2, szMorKnightFaceName[0][JobFaceSelectNum], sizeof(CharacterName2));
+SrcServer/src/HoBaram/HoNewParticle.cpp:1987: 	POINT3D outVertex[4];
+SrcServer/src/HoBaram/HoNewParticle.cpp:2018: 		outVertex[index].x = inVertex[index].x*smRender.mCamera._11 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2022: 		outVertex[index].y = inVertex[index].x*smRender.mCamera._12 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2026: 		outVertex[index].z = inVertex[index].x*smRender.mCamera._13 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2030: 		outVertex[index].x = outVertex[index].x >> FLOATS_EM;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2031: 		outVertex[index].y = outVertex[index].y >> FLOATS_EM;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2032: 		outVertex[index].z = outVertex[index].z >> FLOATS_EM;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2034: 		if(outVertex[index].z < SMFLOAT_DIST_NEARZ)
+SrcServer/src/HoBaram/HoNewParticle.cpp:2039: 	v[0] = smRender.AddRendVertex(outVertex[0].x, outVertex[0].y, outVertex[0].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2040: 	v[1] = smRender.AddRendVertex(outVertex[1].x, outVertex[1].y, outVertex[1].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2041: 	v[2] = smRender.AddRendVertex(outVertex[2].x, outVertex[2].y, outVertex[2].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2042: 	v[3] = smRender.AddRendVertex(outVertex[3].x, outVertex[3].y, outVertex[3].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2095: 	POINT3D outVertex[4];
+SrcServer/src/HoBaram/HoNewParticle.cpp:2163: 		outVertex[index].x = inVertex[index].x * outMatrix._11 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2168: 		outVertex[index].y = inVertex[index].x * outMatrix._12 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2173: 		outVertex[index].z = inVertex[index].x * outMatrix._13 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2177: 		outVertex[index].x = outVertex[index].x / fONE + x;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2178: 		outVertex[index].y = outVertex[index].y / fONE + y;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2179: 		outVertex[index].z = outVertex[index].z / fONE + z;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2183: 	memcpy(inVertex, outVertex, sizeof(inVertex));
+SrcServer/src/HoBaram/HoNewParticle.cpp:2196: 		outVertex[index].x = inVertex[index].x*smRender.mCamera._11 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2200: 		outVertex[index].y = inVertex[index].x*smRender.mCamera._12 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2204: 		outVertex[index].z = inVertex[index].x*smRender.mCamera._13 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2208: 		outVertex[index].x = outVertex[index].x >> FLOATS_EM;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2209: 		outVertex[index].y = outVertex[index].y >> FLOATS_EM;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2210: 		outVertex[index].z = outVertex[index].z >> FLOATS_EM;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2212: 		if(outVertex[index].z < SMFLOAT_DIST_NEARZ)
+SrcServer/src/HoBaram/HoNewParticle.cpp:2218: 	v[0] = smRender.AddRendVertex(outVertex[0].x, outVertex[0].y, outVertex[0].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2219: 	v[1] = smRender.AddRendVertex(outVertex[1].x, outVertex[1].y, outVertex[1].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2220: 	v[2] = smRender.AddRendVertex(outVertex[2].x, outVertex[2].y, outVertex[2].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2221: 	v[3] = smRender.AddRendVertex(outVertex[3].x, outVertex[3].y, outVertex[3].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2299: 	POINT3D outVertex[4];
+SrcServer/src/HoBaram/HoNewParticle.cpp:2300: 	memset(outVertex, 0, sizeof(outVertex));
+SrcServer/src/HoBaram/HoNewParticle.cpp:2301: 	outVertex[0].x = -width;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2302: 	outVertex[0].y = -height;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2303: 	outVertex[0].z = 0;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2305: 	outVertex[1].x = width;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2306: 	outVertex[1].y = -height;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2307: 	outVertex[1].z = 0;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2309: 	outVertex[2].x = -width;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2310: 	outVertex[2].y = height;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2311: 	outVertex[2].z = 0;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2313: 	outVertex[3].x = width;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2314: 	outVertex[3].y = height;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2315: 	outVertex[3].z = 0;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2318: 	v[0] = smRender.AddRendVertex(x + outVertex[0].x, y + outVertex[0].y, z + outVertex[0].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2319: 	v[1] = smRender.AddRendVertex(x + outVertex[1].x, y + outVertex[1].y, z + outVertex[1].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2320: 	v[2] = smRender.AddRendVertex(x + outVertex[2].x, y + outVertex[2].y, z + outVertex[2].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2321: 	v[3] = smRender.AddRendVertex(x + outVertex[3].x, y + outVertex[3].y, z + outVertex[3].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2430: 	POINT3D outVertex[2];
+SrcServer/src/HoBaram/HoNewParticle.cpp:2460: 		outVertex[index].x = inVertex[index].x * outMatrix._11 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2463: 		outVertex[index].x = outVertex[index].x >> FLOATNS;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2465: 		outVertex[index].y = inVertex[index].x * outMatrix._12 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2468: 		outVertex[index].y = outVertex[index].y >> FLOATNS;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2470: 		outVertex[index].z = inVertex[index].x * outMatrix._13 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2473: 		outVertex[index].z = outVertex[index].z >> FLOATNS;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2476: 	memcpy(&currentPos, &outVertex[0], sizeof(currentPos));
+SrcServer/src/HoBaram/HoNewParticle.cpp:2477: 	memcpy(&destPos, &outVertex[1], sizeof(destPos));
+SrcServer/src/HoBaram/HoNewParticle.cpp:2847: 	POINT3D outVertex[4];
+SrcServer/src/HoBaram/HoNewParticle.cpp:2849: 	memset(outVertex, 0, sizeof(outVertex));
+SrcServer/src/HoBaram/HoNewParticle.cpp:2886: 		outVertex[index].x = inVertex[index].x * outMatrix._11 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2889: 		outVertex[index].x = outVertex[index].x >> FLOATNS;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2891: 		outVertex[index].y = inVertex[index].x * outMatrix._12 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2894: 		outVertex[index].y = outVertex[index].y >> FLOATNS;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2896: 		outVertex[index].z = inVertex[index].x * outMatrix._13 +
+SrcServer/src/HoBaram/HoNewParticle.cpp:2899: 		outVertex[index].z = outVertex[index].z >> FLOATNS;
+SrcServer/src/HoBaram/HoNewParticle.cpp:2903: 	v[0] = smRender.AddRendVertex(x + outVertex[0].x, y + outVertex[0].y, z + outVertex[0].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2904: 	v[1] = smRender.AddRendVertex(x + outVertex[1].x, y + outVertex[1].y, z + outVertex[1].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2905: 	v[2] = smRender.AddRendVertex(x + outVertex[2].x, y + outVertex[2].y, z + outVertex[2].z, sColor);
+SrcServer/src/HoBaram/HoNewParticle.cpp:2906: 	v[3] = smRender.AddRendVertex(x + outVertex[3].x, y + outVertex[3].y, z + outVertex[3].z, sColor);
+SrcServer/src/sinbaram/sinEffect.cpp:13: smFACE2D sinSetFace(int Mat, int x, int y, int z, int w, int h,
+SrcServer/src/sinbaram/sinEffect.cpp:16: 	smFACE2D tFace;
+SrcServer/src/sinbaram/sinEffect.cpp:18: 	tFace.MatNum = Mat;
+SrcServer/src/sinbaram/sinEffect.cpp:19: 	tFace.x = x;
+SrcServer/src/sinbaram/sinEffect.cpp:20: 	tFace.y = y;
+SrcServer/src/sinbaram/sinEffect.cpp:21: 	tFace.z = z;
+SrcServer/src/sinbaram/sinEffect.cpp:23: 	tFace.width = w;
+SrcServer/src/sinbaram/sinEffect.cpp:24: 	tFace.height = h;
+SrcServer/src/sinbaram/sinEffect.cpp:26: 	tFace.TexRect.left = sinTexRect.left;
+SrcServer/src/sinbaram/sinEffect.cpp:27: 	tFace.TexRect.top = sinTexRect.top;
+SrcServer/src/sinbaram/sinEffect.cpp:28: 	tFace.TexRect.right = sinTexRect.right;
+SrcServer/src/sinbaram/sinEffect.cpp:29: 	tFace.TexRect.bottom = sinTexRect.bottom;
+SrcServer/src/sinbaram/sinEffect.cpp:32: 	tFace.r = R;
+SrcServer/src/sinbaram/sinEffect.cpp:33: 	tFace.g = G;
+SrcServer/src/sinbaram/sinEffect.cpp:34: 	tFace.b = B;
+SrcServer/src/sinbaram/sinEffect.cpp:35: 	tFace.Transparency = A;
+SrcServer/src/sinbaram/sinEffect.cpp:37: 	return tFace;
+SrcServer/src/sinbaram/sinEffect.cpp:76: 				sinEffect[i].sinFace = sinSetFace(cSin3D.MatParticleGold[0], x + SIN_RAND_1000 - 1000, y + SIN_RAND_1000, z + SIN_RAND_1000 - 1000, ResultSize, ResultSize, 255, 255, 255, 255);
+SrcServer/src/sinbaram/sinEffect.cpp:106: 				sinEffect[i].sinFace = sinSetFace(cSin3D.MatParticleBlue[0], x + SIN_RAND_1000 - 1000 + sinEffect[i].MoveAngle.x,
+SrcServer/src/sinbaram/sinEffect.cpp:547: 	pEffect->sinObj->SetFaceMaterial(0, pEffect->ObjectMat);
+SrcServer/src/sinbaram/sinEffect.cpp:548: 	pEffect->sinObj->SetFaceMaterial(1, pEffect->ObjectMat);
+SrcServer/src/sinbaram/sinEffect.h:115: smFACE2D sinSetFace(int Mat, int x, int y, int z, int w, int h, int R, int G, int B, int A);
+SrcServer/src/sinbaram/sinEffect2.cpp:427: 	pEffect->sinObj->SetFaceMaterial(0, pEffect->ObjMat);
+SrcServer/src/sinbaram/sinEffect2.cpp:428: 	pEffect->sinObj->SetFaceMaterial(1, pEffect->ObjMat);
+SrcServer/src/sinbaram/AssaUtil.cpp:813: 	POINT3D outVertex[4];
+SrcServer/src/sinbaram/AssaUtil.cpp:881: 			outVertex[index].x = inVertex[index].x * outMatrix._11 +
+SrcServer/src/sinbaram/AssaUtil.cpp:886: 			outVertex[index].y = inVertex[index].x * outMatrix._12 +
+SrcServer/src/sinbaram/AssaUtil.cpp:891: 			outVertex[index].z = inVertex[index].x * outMatrix._13 +
+SrcServer/src/sinbaram/AssaUtil.cpp:895: 			outVertex[index].x = outVertex[index].x / fONE + x;
+SrcServer/src/sinbaram/AssaUtil.cpp:896: 			outVertex[index].y = outVertex[index].y / fONE + y;
+SrcServer/src/sinbaram/AssaUtil.cpp:897: 			outVertex[index].z = outVertex[index].z / fONE + z;
+SrcServer/src/sinbaram/AssaUtil.cpp:901: 		memcpy(inVertex, outVertex, sizeof(inVertex));
+SrcServer/src/sinbaram/AssaUtil.cpp:914: 		outVertex[index].x = inVertex[index].x*smRender.mCamera._11 +
+SrcServer/src/sinbaram/AssaUtil.cpp:918: 		outVertex[index].y = inVertex[index].x*smRender.mCamera._12 +
+SrcServer/src/sinbaram/AssaUtil.cpp:922: 		outVertex[index].z = inVertex[index].x*smRender.mCamera._13 +
+SrcServer/src/sinbaram/AssaUtil.cpp:926: 		outVertex[index].x = outVertex[index].x >> FLOATS_EM;
+SrcServer/src/sinbaram/AssaUtil.cpp:927: 		outVertex[index].y = outVertex[index].y >> FLOATS_EM;
+SrcServer/src/sinbaram/AssaUtil.cpp:928: 		outVertex[index].z = outVertex[index].z >> FLOATS_EM;
+SrcServer/src/sinbaram/AssaUtil.cpp:930: 		if(outVertex[index].z < SMFLOAT_DIST_NEARZ)
+SrcServer/src/sinbaram/AssaUtil.cpp:936: 	v[0] = smRender.AddRendVertex(outVertex[0].x, outVertex[0].y, outVertex[0].z, sColor);
+SrcServer/src/sinbaram/AssaUtil.cpp:937: 	v[1] = smRender.AddRendVertex(outVertex[1].x, outVertex[1].y, outVertex[1].z, sColor);
+SrcServer/src/sinbaram/AssaUtil.cpp:938: 	v[2] = smRender.AddRendVertex(outVertex[2].x, outVertex[2].y, outVertex[2].z, sColor);
+SrcServer/src/sinbaram/AssaUtil.cpp:939: 	v[3] = smRender.AddRendVertex(outVertex[3].x, outVertex[3].y, outVertex[3].z, sColor);
+SrcServer/src/smLib3d/smObj3d.cpp:18: smPOINT3D	smTestVertex;
+SrcServer/src/smLib3d/smObj3d.cpp:302: int smOBJ3D::SetFaceMaterial(int FaceNum, int MatNum)
+SrcServer/src/smLib3d/smObj3d.cpp:563: void smOBJ3D::SortVertex()
+SrcServer/src/smLib3d/smObj3d.cpp:826: 		smRender.AddObjectVertex(&smWorldVertex[cnt], Head);
+SrcServer/src/smLib3d/smObj3d.cpp:830: 		smRender.AddObjectFace(&Face[cnt]);
+SrcServer/src/smLib3d/smObj3d.h:172: 	int SetFaceMaterial(int FaceNum, int MatNum);
+SrcServer/src/smLib3d/smObj3d.h:188: 	void SortVertex();
+SrcServer/src/smLib3d/smRend3d.cpp:273: 	ObjectVertexScale = 0;
+SrcServer/src/smLib3d/smRend3d.cpp:1081: smRENDVERTEX *smRENDER3D::AddObjectVertex(smVERTEX *sv, DWORD dwObjHead)
+SrcServer/src/smLib3d/smRend3d.cpp:1092: 	if(ObjectVertexScale)
+SrcServer/src/smLib3d/smRend3d.cpp:1094: 		x = (x*ObjectVertexScale) / fONE;
+SrcServer/src/smLib3d/smRend3d.cpp:1095: 		y = (y*ObjectVertexScale) / fONE;
+SrcServer/src/smLib3d/smRend3d.cpp:1096: 		z = (z*ObjectVertexScale) / fONE;
+SrcServer/src/smLib3d/smRend3d.cpp:1203: 		if(ObjectVertexScale)
+SrcServer/src/smLib3d/smRend3d.cpp:1205: 			x = (x*ObjectVertexScale) / fONE;
+SrcServer/src/smLib3d/smRend3d.cpp:1206: 			y = (y*ObjectVertexScale) / fONE;
+SrcServer/src/smLib3d/smRend3d.cpp:1207: 			z = (z*ObjectVertexScale) / fONE;
+SrcServer/src/smLib3d/smRend3d.cpp:1289: smRENDFACE *smRENDER3D::AddObjectFace(smFACE *face)
+SrcServer/src/smLib3d/smRend3d.cpp:1693: int smRENDER3D::GetFaceSide(smRENDFACE *rendface)
+SrcServer/src/smLib3d/smRend3d.cpp:2345: 					rmat->StartFace = &RendFace[cnt];
+SrcServer/src/smLib3d/smRend3d.cpp:2843: 		rendface = RendMatrial[matrial].TexClip_StartFace;
+SrcServer/src/smLib3d/smRend3d.cpp:2849: 		rendface = RendMatrial[matrial].StartFace;
+SrcServer/src/smLib3d/smRend3d.cpp:3004: 		rendface = RendMatrial[matrial].TexClip_StartFace;
+SrcServer/src/smLib3d/smRend3d.cpp:3010: 		rendface = RendMatrial[matrial].StartFace;
+SrcServer/src/smLib3d/smRend3d.cpp:3169: 		rendface = RendMatrial[matrial].TexClip_StartFace;
+SrcServer/src/smLib3d/smRend3d.cpp:3175: 		rendface = RendMatrial[matrial].StartFace;
+SrcServer/src/smLib3d/smRend3d.cpp:4095: 	smRENDFACE *rendface = RendMatrial[MatNum].StartFace;
+SrcServer/src/smLib3d/smrend3d.h:153: 	int	ObjectVertexScale;
+SrcServer/src/smLib3d/smrend3d.h:230: 	smRENDVERTEX *AddObjectVertex(smVERTEX *sv, DWORD dwObjHead = 0);
+SrcServer/src/smLib3d/smrend3d.h:234: 	smRENDFACE *AddObjectFace(smFACE *face);
+SrcServer/src/smLib3d/smrend3d.h:255: 	int GetFaceSide(smRENDFACE *rendface);
+SrcServer/src/smLib3d/smStage3d.cpp:1087: int smSTAGE3D::SetFaceMaterial(int FaceNum, int MatNum)
+SrcServer/src/smLib3d/smStage3d.cpp:1095: int smSTAGE3D::SetVertexColor(DWORD NumVertex, BYTE r, BYTE g, BYTE b, BYTE a)
+SrcServer/src/smLib3d/smStage3d.cpp:1158: int smSTAGE3D::SetVertexShade(int isSetLight)
+SrcServer/src/smLib3d/smStage3d.h:74: 	int SetFaceMaterial(int FaceNum, int MatNum);
+SrcServer/src/smLib3d/smStage3d.h:77: 	int SetVertexColor(DWORD NumVertex, BYTE r, BYTE g, BYTE b, BYTE a = 255);
+SrcServer/src/smLib3d/smStage3d.h:85: 	int SetVertexShade(int isSetLight = TRUE);
+SrcServer/src/smLib3d/smType.h:296: 	smRENDFACE	*StartFace;
+SrcServer/src/smLib3d/smType.h:301: 	smRENDFACE	*TexClip_StartFace;
+SrcServer/src/smLib3d/smDsx.h:48: } TVERTEX, *LPTVERTEX;
+SrcServer/src/smLib3d/smRead3d.cpp:11: struct smTFACE
+SrcServer/src/smLib3d/smRead3d.cpp:1110: 	int nTVertex;
+SrcServer/src/smLib3d/smRead3d.cpp:1111: 	int nTFace;
+SrcServer/src/smLib3d/smRead3d.cpp:1117: 	int TVertexCnt;
+SrcServer/src/smLib3d/smRead3d.cpp:1118: 	int TFaceCnt;
+SrcServer/src/smLib3d/smRead3d.cpp:1126: 	smTFACE		*tFace;
+SrcServer/src/smLib3d/smRead3d.cpp:1150: 	tFace = 0;
+SrcServer/src/smLib3d/smRead3d.cpp:1156: 	nTVertex = -1;
+SrcServer/src/smLib3d/smRead3d.cpp:1157: 	nTFace = -1;
+SrcServer/src/smLib3d/smRead3d.cpp:1160: 	TVertexCnt = 0;
+SrcServer/src/smLib3d/smRead3d.cpp:1161: 	TFaceCnt = 0;
+SrcServer/src/smLib3d/smRead3d.cpp:1172: 	smTFACE		*tLightMapFace = NULL;
+SrcServer/src/smLib3d/smRead3d.cpp:1174: 	smTFACE		*lpTexFace = NULL;
+SrcServer/src/smLib3d/smRead3d.cpp:1220: 		if(lstrcmp(decode, "*MESH_NUMTVERTEX") == 0)
+SrcServer/src/smLib3d/smRead3d.cpp:1223: 			nTVertex = atoi(strBuff);
+SrcServer/src/smLib3d/smRead3d.cpp:1227: 				tLightMapPoint = new smFTPOINT[nTVertex];
+SrcServer/src/smLib3d/smRead3d.cpp:1228: 				tLightMapFace = new smTFACE[nFace];
+SrcServer/src/smLib3d/smRead3d.cpp:1235: 				tPoint = new smFTPOINT[nTVertex];
+SrcServer/src/smLib3d/smRead3d.cpp:1236: 				tFace = new smTFACE[nFace];
+SrcServer/src/smLib3d/smRead3d.cpp:1239: 				lpTexFace = tFace;
+SrcServer/src/smLib3d/smRead3d.cpp:1242: 			TVertexCnt = TFaceCnt = 0;
+SrcServer/src/smLib3d/smRead3d.cpp:1244: 			ZeroMemory(lpTexVertex, sizeof(smFTPOINT) * nTVertex);
+SrcServer/src/smLib3d/smRead3d.cpp:1245: 			ZeroMemory(lpTexFace, sizeof(smTFACE) * nFace);
+SrcServer/src/smLib3d/smRead3d.cpp:1454: 		if(lstrcmp(decode, "*MESH_FACE") == 0)
+SrcServer/src/smLib3d/smRead3d.cpp:1476: 				if(lstrcmp(strBuff, "*MESH_MTLID") == 0)
+SrcServer/src/smLib3d/smRead3d.cpp:1488: 		if(lstrcmp(decode, "*MESH_TVERT") == 0)
+SrcServer/src/smLib3d/smRead3d.cpp:1492: 			if(atoi(strBuff) != TVertexCnt)
+SrcServer/src/smLib3d/smRead3d.cpp:1498: 			lpTexVertex[TVertexCnt].u = (float)atof(strBuff);
+SrcServer/src/smLib3d/smRead3d.cpp:1500: 			lpTexVertex[TVertexCnt].v = (float)atof(strBuff);
+SrcServer/src/smLib3d/smRead3d.cpp:1503: 			TVertexCnt++;
+SrcServer/src/smLib3d/smRead3d.cpp:1507: 		if(lstrcmp(decode, "*MESH_TFACE") == 0)
+SrcServer/src/smLib3d/smRead3d.cpp:1511: 			if(atoi(strBuff) != TFaceCnt)
+SrcServer/src/smLib3d/smRead3d.cpp:1513: 				////Utils_//LOG(LOG_ERROR, "TFace Counter Error (ReadAse)");
+SrcServer/src/smLib3d/smRead3d.cpp:1517: 			lpTexFace[TFaceCnt].t[0] = (int)atoi(strBuff);
+SrcServer/src/smLib3d/smRead3d.cpp:1519: 			lpTexFace[TFaceCnt].t[1] = (int)atoi(strBuff);
+SrcServer/src/smLib3d/smRead3d.cpp:1521: 			lpTexFace[TFaceCnt].t[2] = (int)atoi(strBuff);
+SrcServer/src/smLib3d/smRead3d.cpp:1523: 			TFaceCnt++;
+SrcServer/src/smLib3d/smRead3d.cpp:1640: 				fU = (float)(tPoint[tFace[cnt].t[cnt2]].u - 0.5);
+SrcServer/src/smLib3d/smRead3d.cpp:1641: 				fV = (float)(tPoint[tFace[cnt].t[cnt2]].v - 0.5);
+SrcServer/src/smLib3d/smRead3d.cpp:1701: 		obj->SetFaceMaterial(cnt, mNum);
+SrcServer/src/smLib3d/smRead3d.cpp:1707: 	if(tFace) delete tFace;
+SrcServer/src/smLib3d/smRead3d.cpp:2008: 				obj->SortVertex();
+SrcServer/src/smLib3d/smRead3d.cpp:2466: 	int nTVertex;
+SrcServer/src/smLib3d/smRead3d.cpp:2467: 	int nTFace;
+SrcServer/src/smLib3d/smRead3d.cpp:2472: 	int TVertexCnt;
+SrcServer/src/smLib3d/smRead3d.cpp:2473: 	int TFaceCnt;
+SrcServer/src/smLib3d/smRead3d.cpp:2481: 	smTFACE		*tFace;
+SrcServer/src/smLib3d/smRead3d.cpp:2484: 	smTFACE		*cFace = 0;
+SrcServer/src/smLib3d/smRead3d.cpp:2501: 	smTFACE		*tLightMapFace = NULL;
+SrcServer/src/smLib3d/smRead3d.cpp:2503: 	smTFACE		*lpTexFace = NULL;
+SrcServer/src/smLib3d/smRead3d.cpp:2511: 	tFace = 0;
+SrcServer/src/smLib3d/smRead3d.cpp:2516: 	nTVertex = -1;
+SrcServer/src/smLib3d/smRead3d.cpp:2517: 	nTFace = -1;
+SrcServer/src/smLib3d/smRead3d.cpp:2520: 	TVertexCnt = 0;
+SrcServer/src/smLib3d/smRead3d.cpp:2521: 	TFaceCnt = 0;
+SrcServer/src/smLib3d/smRead3d.cpp:2562: 		if(lstrcmp(decode, "*MESH_NUMTVERTEX") == 0)
+SrcServer/src/smLib3d/smRead3d.cpp:2565: 			nTVertex = atoi(strBuff);
+SrcServer/src/smLib3d/smRead3d.cpp:2569: 				tLightMapPoint = new smFTPOINT[nTVertex];
+SrcServer/src/smLib3d/smRead3d.cpp:2570: 				tLightMapFace = new smTFACE[nFace];
+
+... 1713 additional hits omitted

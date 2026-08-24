@@ -1,0 +1,58 @@
+FILEREAD ENCODING RECOVERY CANDIDATES
+========================================================================================================================
+
+/home/gabriel/Área de Trabalho/summit/SourceCode/depricated/backup_fix_failed_patch_20260704_100410/fileread.cpp
+  size=156847
+  CP949_*CODE_count=0
+  UTF8_REPLACEMENT_count=2008
+  DecodeItemInfo=YES
+  lpItem_CODE=YES
+  STATUS=CORRUPTED_OR_CONVERTED_WITH_REPLACEMENT
+
+/home/gabriel/Área de Trabalho/summit/SourceCode/depricated/backup_safe_patch_20260704_095605/fileread.cpp
+  size=156846
+  CP949_*CODE_count=0
+  UTF8_REPLACEMENT_count=2008
+  DecodeItemInfo=YES
+  lpItem_CODE=YES
+  STATUS=CORRUPTED_OR_CONVERTED_WITH_REPLACEMENT
+
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp
+  size=154069
+  CP949_*CODE_count=0
+  UTF8_REPLACEMENT_count=1440
+  DecodeItemInfo=YES
+  lpItem_CODE=YES
+  STATUS=CORRUPTED_OR_CONVERTED_WITH_REPLACEMENT
+
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/fileread.cpp
+  size=155259
+  CP949_*CODE_count=0
+  UTF8_REPLACEMENT_count=2008
+  DecodeItemInfo=YES
+  lpItem_CODE=YES
+  STATUS=CORRUPTED_OR_CONVERTED_WITH_REPLACEMENT
+
+/home/gabriel/armazem/priston/Source Summit Tale/SrcGame/src/fileread.cpp
+  size=152955
+  CP949_*CODE_count=2
+  UTF8_REPLACEMENT_count=0
+  DecodeItemInfo=YES
+  lpItem_CODE=YES
+  STATUS=HAS_INTACT_CP949_CODE_TOKEN
+
+/home/gabriel/armazem/priston/Source Summit Tale/SrcServer/src/fileread.cpp
+  size=150076
+  CP949_*CODE_count=2
+  UTF8_REPLACEMENT_count=0
+  DecodeItemInfo=YES
+  lpItem_CODE=YES
+  STATUS=HAS_INTACT_CP949_CODE_TOKEN
+
+/home/gabriel/armazem/priston/pristontale-1-master/src/fileread.cpp
+  size=196513
+  CP949_*CODE_count=2
+  UTF8_REPLACEMENT_count=0
+  DecodeItemInfo=YES
+  lpItem_CODE=YES
+  STATUS=HAS_INTACT_CP949_CODE_TOKEN

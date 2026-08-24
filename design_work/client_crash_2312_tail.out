@@ -1,0 +1,331 @@
+============================================================
+LOGIN THREAD
+============================================================
+CLICK_PLAY before LoginDataServer user=alface LoginInputState=1 StartConnectServerFlag=0 ConnectError=0
+ENTER LoginDataServer
+before CreateThread
+after CreateThread handle=00000194 threadId=308
+CLICK_PLAY after LoginDataServer
+ENTER HoLoginThreadProc
+before ConnectServer_InfoMain
+after ConnectServer_InfoMain smWsockDataServer=034943e0
+before requestLogin addr=00b598e0 strlen=6 text=[alface] bytes=61 6C 66 61 63 65 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+after requestLogin result=0
+
+============================================================
+SOCKET RECV
+============================================================
+REAL_CONNECTSOCK_V2 async_status=0 error=0 msock=408 hMsgWnd=00070052 hwnd=00070052 isWindow=1 WSA_READ=0x401
+POSTMESSAGE_TEST result=1 error=0 hwnd=00070052 msg=0x804D
+ConnectSock ASSIGNED this=034943e0 sock=408 smRecvState.Sock_before=0
+RecvThread START SockInfo=03494404 smMySock=034943e0 sock=408
+WSAMessage_Read ENTER wParamSock=408 lParam=0x00000002 event=2 error=0
+WSAMessage_Read CHECK index=0 storedSock=408 wait=0 match=1
+WSAMessage_Read MATCH index=0 socket=408
+mesReceve this=034943e0 event=2 error=0 sock=408 hMsgWnd=00070052
+WSAMessage_Read EXIT Result=1
+WSAMessage_Read ENTER wParamSock=408 lParam=0x00000001 event=1 error=0
+WSAMessage_Read CHECK index=0 storedSock=408 wait=0 match=1
+WSAMessage_Read MATCH index=0 socket=408
+mesReceve this=034943e0 event=1 error=0 sock=408 hMsgWnd=00070052
+FD_READ NewData_before=0 threadMode=0 recvThread=000001a4
+WSAMessage_Read EXIT Result=1
+RecvThread WAKE NewData=1 BuffCnt=0
+FIONREAD size=24 wsaerr=0
+recv len=24 BuffCnt_before=0 BuffSize=8192 err=0
+HEADER RecvLen=24 RecvCode=0x700000F9 total=24
+BEFORE SendMessage hwnd=00070052 msg=0x40B SockInfo=03494404 RecvLen=24 code=0x700000F9
+AFTER SendMessage result=0
+RecvThread WAKE NewData=1 BuffCnt=0
+FIONREAD size=0 wsaerr=0
+WSAMessage_Read ENTER wParamSock=408 lParam=0x00000001 event=1 error=0
+WSAMessage_Read CHECK index=0 storedSock=408 wait=0 match=1
+WSAMessage_Read MATCH index=0 socket=408
+mesReceve this=034943e0 event=1 error=0 sock=408 hMsgWnd=00070052
+FD_READ NewData_before=0 threadMode=0 recvThread=000001a4
+WSAMessage_Read EXIT Result=1
+RecvThread WAKE NewData=1 BuffCnt=0
+FIONREAD size=6064 wsaerr=0
+recv len=6064 BuffCnt_before=0 BuffSize=8192 err=0
+HEADER RecvLen=2208 RecvCode=0x484700C1 total=6064
+BEFORE SendMessage hwnd=00070052 msg=0x40B SockInfo=03494404 RecvLen=2208 code=0x484700C1
+AFTER SendMessage result=0
+WSAMessage_Read ENTER wParamSock=408 lParam=0x00000001 event=1 error=0
+BEFORE SendMessage hwnd=00070052 msg=0x40B SockInfo=03494404 RecvLen=1848 code=0x484700C2
+WSAMessage_Read CHECK index=0 storedSock=408 wait=1 match=1
+WSAMessage_Read MATCH index=0 socket=408
+mesReceve this=034943e0 event=1 error=0 sock=408 hMsgWnd=00070052
+FD_READ NewData_before=0 threadMode=0 recvThread=000001a4
+WSAMessage_Read EXIT Result=1
+AFTER SendMessage result=0
+BEFORE SendMessage hwnd=00070052 msg=0x40B SockInfo=03494404 RecvLen=2008 code=0x484700C3
+AFTER SendMessage result=0
+RecvThread WAKE NewData=1 BuffCnt=0
+FIONREAD size=10840 wsaerr=0
+recv len=8192 BuffCnt_before=0 BuffSize=8192 err=0
+HEADER RecvLen=2448 RecvCode=0x484700C4 total=8192
+BEFORE SendMessage hwnd=00070052 msg=0x40B SockInfo=03494404 RecvLen=2448 code=0x484700C4
+AFTER SendMessage result=0
+WSAMessage_Read ENTER wParamSock=408 lParam=0x00000001 event=1 error=0
+BEFORE SendMessage hwnd=00070052 msg=0x40B SockInfo=03494404 RecvLen=1928 code=0x484700C5
+WSAMessage_Read CHECK index=0 storedSock=408 wait=1 match=1
+WSAMessage_Read MATCH index=0 socket=408
+mesReceve this=034943e0 event=1 error=0 sock=408 hMsgWnd=00070052
+FD_READ NewData_before=0 threadMode=0 recvThread=000001a4
+WSAMessage_Read EXIT Result=1
+AFTER SendMessage result=0
+BEFORE SendMessage hwnd=00070052 msg=0x40B SockInfo=03494404 RecvLen=1808 code=0x484700C6
+AFTER SendMessage result=0
+RecvThread WAKE NewData=1 BuffCnt=2008
+FIONREAD size=2648 wsaerr=0
+recv len=2648 BuffCnt_before=2008 BuffSize=6184 err=0
+BEFORE SendMessage hwnd=00070052 msg=0x40B SockInfo=03494404 RecvLen=2088 code=0x484700C7
+AFTER SendMessage result=0
+BEFORE SendMessage hwnd=00070052 msg=0x40B SockInfo=03494404 RecvLen=2568 code=0x484700C8
+AFTER SendMessage result=0
+RecvThread WAKE NewData=1 BuffCnt=0
+FIONREAD size=0 wsaerr=0
+WSAMessage_Read ENTER wParamSock=408 lParam=0x00000001 event=1 error=0
+WSAMessage_Read CHECK index=0 storedSock=408 wait=0 match=1
+WSAMessage_Read MATCH index=0 socket=408
+mesReceve this=034943e0 event=1 error=0 sock=408 hMsgWnd=00070052
+FD_READ NewData_before=0 threadMode=0 recvThread=000001a4
+WSAMessage_Read EXIT Result=1
+RecvThread WAKE NewData=1 BuffCnt=0
+FIONREAD size=2944 wsaerr=0
+recv len=2944 BuffCnt_before=0 BuffSize=8192 err=0
+HEADER RecvLen=2684 RecvCode=0x70000069 total=2944
+BEFORE SendMessage hwnd=00070052 msg=0x40B SockInfo=03494404 RecvLen=2684 code=0x70000069
+AFTER SendMessage result=0
+BEFORE SendMessage hwnd=00070052 msg=0x40B SockInfo=03494404 RecvLen=260 code=0x700000D0
+AFTER SendMessage result=0
+RecvThread WAKE NewData=1 BuffCnt=0
+FIONREAD size=0 wsaerr=0
+
+============================================================
+WNDPROC SOCKET
+============================================================
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x401 wParam=408 lParam=0x2 event=2 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x804D wParam=408 lParam=0x12345678 event=22136 error=4660
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x401 wParam=408 lParam=0x1 event=1 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x40B wParam=55133188 lParam=0x0 event=0 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x401 wParam=408 lParam=0x1 event=1 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x40B wParam=55133188 lParam=0x0 event=0 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x401 wParam=408 lParam=0x1 event=1 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x40B wParam=55133188 lParam=0x0 event=0 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x40B wParam=55133188 lParam=0x0 event=0 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x40B wParam=55133188 lParam=0x0 event=0 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x401 wParam=408 lParam=0x1 event=1 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x40B wParam=55133188 lParam=0x0 event=0 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x40B wParam=55133188 lParam=0x0 event=0 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x40B wParam=55133188 lParam=0x0 event=0 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x40B wParam=55133188 lParam=0x0 event=0 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x401 wParam=408 lParam=0x1 event=1 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x40B wParam=55133188 lParam=0x0 event=0 error=0
+WndProc hwnd=00070052 mainHwnd=00070052 msg=0x40B wParam=55133188 lParam=0x0 event=0 error=0
+
+============================================================
+HO RECV
+============================================================
+HoRecvMessage code=0x70000069 RecvBuff=03494430 SETUSERINFO=0x70000069 SERVER_INFO=0x700000D0 FAILCONNECT=0x70000052
+SETUSERINFO local=[alface] server=[alface] count=2
+HoRecvMessage code=0x700000D0 RecvBuff=03494430 SETUSERINFO=0x70000069 SERVER_INFO=0x700000D0 FAILCONNECT=0x70000052
+SERVER_INFO name=[Alfa] count=1
+
+============================================================
+DISPATCH
+============================================================
+RecvMessage MessageLoading=0 opcode=0x700000F9 (1879048441)
+RecvMessage MessageLoading=0 opcode=0x700000F9 (1879048441)
+dispatch opcode=0x700000F9 (1879048441)
+RecvMessage MessageLoading=0 opcode=0x484700C1 (1212612801)
+RecvMessage MessageLoading=0 opcode=0x484700C1 (1212612801)
+dispatch opcode=0x484700C1 (1212612801)
+RecvMessage MessageLoading=0 opcode=0x484700C2 (1212612802)
+RecvMessage MessageLoading=0 opcode=0x484700C2 (1212612802)
+dispatch opcode=0x484700C2 (1212612802)
+RecvMessage MessageLoading=0 opcode=0x484700C3 (1212612803)
+RecvMessage MessageLoading=0 opcode=0x484700C3 (1212612803)
+dispatch opcode=0x484700C3 (1212612803)
+RecvMessage MessageLoading=0 opcode=0x484700C4 (1212612804)
+RecvMessage MessageLoading=0 opcode=0x484700C4 (1212612804)
+dispatch opcode=0x484700C4 (1212612804)
+RecvMessage MessageLoading=0 opcode=0x484700C5 (1212612805)
+RecvMessage MessageLoading=0 opcode=0x484700C5 (1212612805)
+dispatch opcode=0x484700C5 (1212612805)
+RecvMessage MessageLoading=0 opcode=0x484700C6 (1212612806)
+RecvMessage MessageLoading=0 opcode=0x484700C6 (1212612806)
+dispatch opcode=0x484700C6 (1212612806)
+RecvMessage MessageLoading=0 opcode=0x484700C7 (1212612807)
+RecvMessage MessageLoading=0 opcode=0x484700C7 (1212612807)
+dispatch opcode=0x484700C7 (1212612807)
+RecvMessage MessageLoading=0 opcode=0x484700C8 (1212612808)
+RecvMessage MessageLoading=0 opcode=0x484700C8 (1212612808)
+dispatch opcode=0x484700C8 (1212612808)
+RecvMessage MessageLoading=0 opcode=0x70000069 (1879048297)
+RecvMessage MessageLoading=0 opcode=0x70000069 (1879048297)
+dispatch opcode=0x70000069 (1879048297)
+FAILCONNECT case
+RecvMessage MessageLoading=0 opcode=0x700000D0 (1879048400)
+RecvMessage MessageLoading=0 opcode=0x700000D0 (1879048400)
+dispatch opcode=0x700000D0 (1879048400)
+
+============================================================
+WNDPROC ALL LAST 120
+============================================================
+MSG=0x0084 wParam=0 lParam=43778979
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=39256995
+MSG=0x0084 wParam=0 lParam=44041120
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=39519136
+MSG=0x0084 wParam=0 lParam=44041119
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=39519135
+MSG=0x0084 wParam=0 lParam=44106653
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=39584669
+MSG=0x0084 wParam=0 lParam=44172188
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=39650204
+MSG=0x0084 wParam=0 lParam=44237724
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=39715740
+MSG=0x0084 wParam=0 lParam=44237723
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=39715739
+MSG=0x0084 wParam=0 lParam=44368793
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=39846809
+MSG=0x0084 wParam=0 lParam=44434328
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=39912344
+MSG=0x0084 wParam=0 lParam=44499863
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=39977879
+MSG=0x0084 wParam=0 lParam=44565398
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=40043414
+MSG=0x0113 wParam=0 lParam=0
+MSG=0x0084 wParam=0 lParam=44565398
+MSG=0x0020 wParam=458834 lParam=33619969
+MSG=0x0201 wParam=1 lParam=40043414
+MSG=0x0401 wParam=408 lParam=2
+MSG=0x040A wParam=55141680 lParam=0
+MSG=0x804D wParam=408 lParam=305419896
+MSG=0x0401 wParam=408 lParam=1
+MSG=0x040B wParam=55133188 lParam=0
+MSG=0x0113 wParam=0 lParam=0
+MSG=0x0401 wParam=408 lParam=1
+MSG=0x040B wParam=55133188 lParam=0
+MSG=0x0401 wParam=408 lParam=1
+MSG=0x040B wParam=55133188 lParam=0
+MSG=0x0084 wParam=0 lParam=44565398
+MSG=0x0020 wParam=458834 lParam=33685505
+MSG=0x0202 wParam=0 lParam=40043414
+MSG=0x040B wParam=55133188 lParam=0
+MSG=0x040B wParam=55133188 lParam=0
+MSG=0x0401 wParam=408 lParam=1
+MSG=0x040B wParam=55133188 lParam=0
+MSG=0x040B wParam=55133188 lParam=0
+MSG=0x040B wParam=55133188 lParam=0
+MSG=0x040B wParam=55133188 lParam=0
+MSG=0x0084 wParam=0 lParam=44499864
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=39977880
+MSG=0x0084 wParam=0 lParam=44172201
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=39650217
+MSG=0x0113 wParam=0 lParam=0
+MSG=0x0084 wParam=0 lParam=43647943
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=39125959
+MSG=0x0084 wParam=0 lParam=42992613
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=38470629
+MSG=0x0084 wParam=0 lParam=42468355
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=37946371
+MSG=0x0084 wParam=0 lParam=41944095
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=37422111
+MSG=0x0084 wParam=0 lParam=41419835
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=36897851
+MSG=0x0084 wParam=0 lParam=40895573
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=36373589
+MSG=0x0084 wParam=0 lParam=40109181
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=35587197
+MSG=0x0084 wParam=0 lParam=39584917
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=35062933
+MSG=0x0084 wParam=0 lParam=38798512
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=34276528
+MSG=0x0084 wParam=0 lParam=38536378
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=34014394
+MSG=0x0084 wParam=0 lParam=38143170
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=33621186
+MSG=0x0084 wParam=0 lParam=38077636
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=33555652
+MSG=0x0084 wParam=0 lParam=38012102
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=33490118
+MSG=0x0084 wParam=0 lParam=37946567
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=33424583
+MSG=0x0084 wParam=0 lParam=37946568
+MSG=0x0020 wParam=458834 lParam=33554433
+MSG=0x0200 wParam=0 lParam=33424584
+MSG=0x0113 wParam=0 lParam=0
+MSG=0x0113 wParam=0 lParam=0
+MSG=0x0113 wParam=0 lParam=0
+MSG=0x0113 wParam=0 lParam=0
+MSG=0x0113 wParam=0 lParam=0
+MSG=0x0113 wParam=0 lParam=0
+MSG=0x0113 wParam=0 lParam=0
+MSG=0x0401 wParam=408 lParam=1
+MSG=0x040B wParam=55133188 lParam=0
+MSG=0x040B wParam=55133188 lParam=0
+MSG=0x0113 wParam=0 lParam=0
+
+============================================================
+USERACCOUNT
+============================================================
+CHANGE at after account KeyFilter addr=00b598e0 strlen=1 text=[a]
+OLD: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+NEW: 61 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+CHANGE at after account KeyFilter addr=00b598e0 strlen=2 text=[al]
+OLD: 61 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+NEW: 61 6C 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+CHANGE at after account KeyFilter addr=00b598e0 strlen=3 text=[alf]
+OLD: 61 6C 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+NEW: 61 6C 66 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+CHANGE at after account KeyFilter addr=00b598e0 strlen=4 text=[alfa]
+OLD: 61 6C 66 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+NEW: 61 6C 66 61 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+CHANGE at after account KeyFilter addr=00b598e0 strlen=5 text=[alfac]
+OLD: 61 6C 66 61 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+NEW: 61 6C 66 61 63 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+CHANGE at after account KeyFilter addr=00b598e0 strlen=6 text=[alface]
+OLD: 61 6C 66 61 63 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+NEW: 61 6C 66 61 63 65 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+CHANGE at after account KeyFilter addr=00b598e0 strlen=7 text=[alface\x09]
+OLD: 61 6C 66 61 63 65 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+NEW: 61 6C 66 61 63 65 09 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+
+CHANGE at after account KeyFilter addr=00b598e0 strlen=6 text=[alface]
+OLD: 61 6C 66 61 63 65 09 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+NEW: 61 6C 66 61 63 65 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+

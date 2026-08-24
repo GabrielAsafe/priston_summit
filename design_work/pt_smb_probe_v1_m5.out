@@ -1,0 +1,1829 @@
+PT_SMD_PROBE_V1
+file=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/m5.smb
+file_size=13931704
+header='SMD Model data Ver 0.62'
+header_check=OK
+ObjCounter=95
+MatCounter=0
+MatFilePoint=4356
+First_ObjInfoPoint=4356
+TmFrameCounter=7
+obj_table_start=556
+obj_table_end=4356
+material_region_size=0
+MatFilePoint_check=OK
+
+OBJECT_TABLE
+[00] name='Bip01' Length=228028 ObjFilePoint=4356
+[01] name='Bip01 Footsteps' Length=228380 ObjFilePoint=232384
+[02] name='Bip01 Pelvis' Length=43140 ObjFilePoint=460764
+[03] name='Bip01 Spine' Length=222188 ObjFilePoint=503904
+[04] name='Bip01 Spine1' Length=215700 ObjFilePoint=726092
+[05] name='Bip01 Neck' Length=38944 ObjFilePoint=941792
+[06] name='Bip01 Head' Length=217108 ObjFilePoint=980736
+[07] name='Bip01 L Clavicle' Length=65840 ObjFilePoint=1197844
+[08] name='Bip01 L UpperArm' Length=219964 ObjFilePoint=1263684
+[09] name='Bip01 L Forearm' Length=216520 ObjFilePoint=1483648
+[10] name='Bip01 L Hand' Length=211312 ObjFilePoint=1700168
+[11] name='Bip01 L Finger0' Length=179056 ObjFilePoint=1911480
+[12] name='Bip01 L Finger01' Length=173176 ObjFilePoint=2090536
+[13] name='Bip01 L Finger1' Length=179140 ObjFilePoint=2263712
+[14] name='Bip01 L Finger11' Length=178300 ObjFilePoint=2442852
+[15] name='Bip01 L Finger2' Length=180316 ObjFilePoint=2621152
+[16] name='Bip01 L Finger21' Length=176956 ObjFilePoint=2801468
+[17] name='Bip01 R Clavicle' Length=87848 ObjFilePoint=2978424
+[18] name='Bip01 R UpperArm' Length=220972 ObjFilePoint=3066272
+[19] name='Bip01 R Forearm' Length=216856 ObjFilePoint=3287244
+[20] name='Bip01 R Hand' Length=213748 ObjFilePoint=3504100
+[21] name='Bip01 R Finger0' Length=137644 ObjFilePoint=3717848
+[22] name='Bip01 R Finger01' Length=135460 ObjFilePoint=3855492
+[23] name='Bip01 R Finger1' Length=139240 ObjFilePoint=3990952
+[24] name='Bip01 R Finger11' Length=137560 ObjFilePoint=4130192
+[25] name='Bip01 R Finger2' Length=139240 ObjFilePoint=4267752
+[26] name='Bip01 R Finger21' Length=137560 ObjFilePoint=4406992
+[27] name='Bip-0032' Length=172264 ObjFilePoint=4544552
+[28] name='Bip-0033' Length=193756 ObjFilePoint=4716816
+[29] name='Bip-0034' Length=193840 ObjFilePoint=4910572
+[30] name='Bip-0035' Length=193840 ObjFilePoint=5104412
+[31] name='Bip-0036' Length=2236 ObjFilePoint=5298252
+[32] name='Bip01 L Thigh' Length=255464 ObjFilePoint=5300488
+[33] name='Bip01 L Calf' Length=206524 ObjFilePoint=5555952
+[34] name='Bip01 L Foot' Length=211228 ObjFilePoint=5762476
+[35] name='Bip01 L Toe0' Length=159232 ObjFilePoint=5973704
+[36] name='Bip01 R Thigh' Length=258208 ObjFilePoint=6132936
+[37] name='Bip01 R Calf' Length=208456 ObjFilePoint=6391144
+[38] name='Bip01 R Foot' Length=210304 ObjFilePoint=6599600
+[39] name='Bip01 R Toe0' Length=168136 ObjFilePoint=6809904
+[40] name='Bip-0019' Length=200644 ObjFilePoint=6978040
+[41] name='Bip-0020' Length=183004 ObjFilePoint=7178684
+[42] name='Bip-0021' Length=2236 ObjFilePoint=7361688
+[43] name='Bip-0010' Length=176436 ObjFilePoint=7363924
+[44] name='Bip-0011' Length=172504 ObjFilePoint=7540360
+[45] name='Bip-0012' Length=172504 ObjFilePoint=7712864
+[46] name='Bip-0030' Length=2236 ObjFilePoint=7885368
+[47] name='Bip-0016' Length=172212 ObjFilePoint=7887604
+[48] name='Bip-0017' Length=183340 ObjFilePoint=8059816
+[49] name='Bip-0018' Length=2236 ObjFilePoint=8243156
+[50] name='Bip-0007' Length=215284 ObjFilePoint=8245392
+[51] name='Bip-0008' Length=184516 ObjFilePoint=8460676
+[52] name='Bip-0009' Length=2236 ObjFilePoint=8645192
+[53] name='Bip-0022' Length=199216 ObjFilePoint=8647428
+[54] name='Bip-0023' Length=178384 ObjFilePoint=8846644
+[55] name='Bip-0024' Length=2236 ObjFilePoint=9025028
+[56] name='Bip-0014' Length=174692 ObjFilePoint=9027264
+[57] name='Bip-0015' Length=172504 ObjFilePoint=9201956
+[58] name='Bip-0013' Length=172504 ObjFilePoint=9374460
+[59] name='Bip-0031' Length=2236 ObjFilePoint=9546964
+[60] name='Bip-0037' Length=217668 ObjFilePoint=9549200
+[61] name='Bip-0038' Length=180736 ObjFilePoint=9766868
+[62] name='Bip-0039' Length=2236 ObjFilePoint=9947604
+[63] name='Bip-h11' Length=169984 ObjFilePoint=9949840
+[64] name='Bip-h12' Length=199468 ObjFilePoint=10119824
+[65] name='Bip-h13' Length=202576 ObjFilePoint=10319292
+[66] name='Bip-h14' Length=202240 ObjFilePoint=10521868
+[67] name='Bip-h15' Length=202240 ObjFilePoint=10724108
+[68] name='Bip-h16' Length=202240 ObjFilePoint=10926348
+[69] name='Bip-h17' Length=2236 ObjFilePoint=11128588
+[70] name='Bip-h18' Length=169984 ObjFilePoint=11130824
+[71] name='Bip-h19' Length=196864 ObjFilePoint=11300808
+[72] name='Bip-h20' Length=196864 ObjFilePoint=11497672
+[73] name='Bip-h21' Length=196444 ObjFilePoint=11694536
+[74] name='Bip-h22' Length=196444 ObjFilePoint=11890980
+[75] name='Bip-h23' Length=196444 ObjFilePoint=12087424
+[76] name='Bip-h24' Length=2236 ObjFilePoint=12283868
+[77] name='Bip-h01' Length=200392 ObjFilePoint=12286104
+[78] name='Bip-h02' Length=188212 ObjFilePoint=12486496
+[79] name='Bip-h03' Length=188212 ObjFilePoint=12674708
+[80] name='Bip-h04' Length=185692 ObjFilePoint=12862920
+[81] name='Bip-h05' Length=2236 ObjFilePoint=13048612
+[82] name='Bip-h06' Length=199888 ObjFilePoint=13050848
+[83] name='Bip-h07' Length=194344 ObjFilePoint=13250736
+[84] name='Bip-h08' Length=194344 ObjFilePoint=13445080
+[85] name='Bip-h09' Length=192832 ObjFilePoint=13639424
+[86] name='Bip-h10' Length=2236 ObjFilePoint=13832256
+[87] name='Bip weapon01' Length=24060 ObjFilePoint=13834492
+[88] name='Bip weapon02' Length=3036 ObjFilePoint=13858552
+[89] name='Bip in01' Length=20836 ObjFilePoint=13861588
+[90] name='Bip in02' Length=2536 ObjFilePoint=13882424
+[91] name='Bip in-cro' Length=20836 ObjFilePoint=13884960
+[92] name='Bip in03' Length=2536 ObjFilePoint=13905796
+[93] name='Bip in-bow' Length=20836 ObjFilePoint=13908332
+[94] name='Bip in04' Length=2536 ObjFilePoint=13929168
+
+OBJECT_VALIDATION
+
+--- object[00] 'Bip01' ---
+Head=0xC1424344
+ptrs=Vertex:0x11F672D0 Face:0x11FA9120 TexLink:0x12185FD0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01' NodeParent=''
+pParent=0x00000000
+anim_ptrs=TmRot:0x13024ED0 TmPos:0x1302FC30 TmScale:0x13039750 TmPrevRot:0x13039790
+anim_counts=TmRotCnt:2216 TmPosCnt:2478 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=228028
+table_Length=228028
+calculated_end=232384
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:6592 F:6592 T:6592 R:6592 P:50912 S:90560 PrevR:90560
+
+--- object[01] 'Bip01 Footsteps' ---
+Head=0xC1424344
+ptrs=Vertex:0x12183548 Face:0x12183588 TexLink:0x121835C8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 Footsteps' NodeParent='Bip01'
+pParent=0x12182C50
+anim_ptrs=TmRot:0x1305C1D0 TmPos:0x13066F30 TmScale:0x13070BB0 TmPrevRot:0x13070BF0
+anim_counts=TmRotCnt:2216 TmPosCnt:2500 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=228380
+table_Length=228380
+calculated_end=460764
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:234620 F:234620 T:234620 R:234620 P:278940 S:318940 PrevR:318940
+
+--- object[02] 'Bip01 Pelvis' ---
+Head=0xC1424344
+ptrs=Vertex:0x12183608 Face:0x12183648 TexLink:0x12183688 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 Pelvis' NodeParent='Bip01'
+pParent=0x12182C50
+anim_ptrs=TmRot:0x13093630 TmPos:0x13095B78 TmScale:0x13095FF8 TmPrevRot:0x13096038
+anim_counts=TmRotCnt:474 TmPosCnt:68 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=43140
+table_Length=43140
+calculated_end=503904
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:463000 F:463000 T:463000 R:463000 P:472480 S:473568 PrevR:473568
+
+--- object[03] 'Bip01 Spine' ---
+Head=0xC1424344
+ptrs=Vertex:0x121836C8 Face:0x12183708 TexLink:0x12FEDA28 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 Spine' NodeParent='Bip01 Pelvis'
+pParent=0x12FEC838
+anim_ptrs=TmRot:0x1309D6F8 TmPos:0x130A9BC8 TmScale:0x130ABDA8 TmPrevRot:0x130ABDE8
+anim_counts=TmRotCnt:2516 TmPosCnt:538 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=222188
+table_Length=222188
+calculated_end=726092
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:506140 F:506140 T:506140 R:506140 P:556460 S:565068 PrevR:565068
+
+--- object[04] 'Bip01 Spine1' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FEE360 Face:0x12FEE3A0 TexLink:0x12FEE3E0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 Spine1' NodeParent='Bip01 Spine'
+pParent=0x12FED130
+anim_ptrs=TmRot:0x130D3328 TmPos:0x130DF820 TmScale:0x130E0000 TmPrevRot:0x130E0040
+anim_counts=TmRotCnt:2518 TmPosCnt:122 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=215700
+table_Length=215700
+calculated_end=941792
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:728328 F:728328 T:728328 R:728328 P:778688 S:780640 PrevR:780640
+
+--- object[05] 'Bip01 Neck' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FEED18 Face:0x12FEED58 TexLink:0x12FEED98 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 Neck' NodeParent='Bip01 Spine1'
+pParent=0x12FEDA68
+anim_ptrs=TmRot:0x13107600 TmPos:0x13109860 TmScale:0x131098A0 TmPrevRot:0x131098E0
+anim_counts=TmRotCnt:437 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=38944
+table_Length=38944
+calculated_end=980736
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:944028 F:944028 T:944028 R:944028 P:952768 S:952768 PrevR:952768
+
+--- object[06] 'Bip01 Head' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FEF6D0 Face:0x12FEF710 TexLink:0x12FEF750 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 Head' NodeParent='Bip01 Neck'
+pParent=0x12FEE420
+anim_ptrs=TmRot:0x13110660 TmPos:0x1311CE78 TmScale:0x1311CEB8 TmPrevRot:0x1311CEF8
+anim_counts=TmRotCnt:2558 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=217108
+table_Length=217108
+calculated_end=1197844
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:982972 F:982972 T:982972 R:982972 P:1034132 S:1034132 PrevR:1034132
+
+--- object[07] 'Bip01 L Clavicle' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF0088 Face:0x12FF00C8 TexLink:0x12FF0108 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 L Clavicle' NodeParent='Bip01 Neck'
+pParent=0x12FEE420
+anim_ptrs=TmRot:0x13144EB8 TmPos:0x13148838 TmScale:0x13149068 TmPrevRot:0x131490A8
+anim_counts=TmRotCnt:733 TmPosCnt:127 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=65840
+table_Length=65840
+calculated_end=1263684
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:1200080 F:1200080 T:1200080 R:1200080 P:1214740 S:1216772 PrevR:1216772
+
+--- object[08] 'Bip01 L UpperArm' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF0A40 Face:0x12FF0A80 TexLink:0x12FF0AC0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 L UpperArm' NodeParent='Bip01 L Clavicle'
+pParent=0x12FEF790
+anim_ptrs=TmRot:0x13154828 TmPos:0x131612E8 TmScale:0x13161328 TmPrevRot:0x13161368
+anim_counts=TmRotCnt:2592 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=219964
+table_Length=219964
+calculated_end=1483648
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:1265920 F:1265920 T:1265920 R:1265920 P:1317760 S:1317760 PrevR:1317760
+
+--- object[09] 'Bip01 L Forearm' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF13F8 Face:0x12FF1438 TexLink:0x12FF1478 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 L Forearm' NodeParent='Bip01 L UpperArm'
+pParent=0x12FF0148
+anim_ptrs=TmRot:0x13189BA8 TmPos:0x13196330 TmScale:0x13196370 TmPrevRot:0x131963B0
+anim_counts=TmRotCnt:2551 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=216520
+table_Length=216520
+calculated_end=1700168
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:1485884 F:1485884 T:1485884 R:1485884 P:1536904 S:1536904 PrevR:1536904
+
+--- object[10] 'Bip01 L Hand' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF1DB0 Face:0x12FF1DF0 TexLink:0x12FF1E30 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 L Hand' NodeParent='Bip01 L Forearm'
+pParent=0x12FF0B00
+anim_ptrs=TmRot:0x131BE1B0 TmPos:0x131CA460 TmScale:0x131CA4A0 TmPrevRot:0x131CA4E0
+anim_counts=TmRotCnt:2489 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=211312
+table_Length=211312
+calculated_end=1911480
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:1702404 F:1702404 T:1702404 R:1702404 P:1752184 S:1752184 PrevR:1752184
+
+--- object[11] 'Bip01 L Finger0' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF2768 Face:0x12FF27A8 TexLink:0x12FF27E8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 L Finger0' NodeParent='Bip01 L Hand'
+pParent=0x12FF14B8
+anim_ptrs=TmRot:0x131F1360 TmPos:0x131FB810 TmScale:0x131FB850 TmPrevRot:0x131FB890
+anim_counts=TmRotCnt:2105 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=179056
+table_Length=179056
+calculated_end=2090536
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:1913716 F:1913716 T:1913716 R:1913716 P:1955816 S:1955816 PrevR:1955816
+
+--- object[12] 'Bip01 L Finger01' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF3120 Face:0x12FF3160 TexLink:0x12FF31A0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 L Finger01' NodeParent='Bip01 L Finger0'
+pParent=0x12FF1E70
+anim_ptrs=TmRot:0x1321C710 TmPos:0x13226648 TmScale:0x13226688 TmPrevRot:0x132266C8
+anim_counts=TmRotCnt:2035 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=173176
+table_Length=173176
+calculated_end=2263712
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:2092772 F:2092772 T:2092772 R:2092772 P:2133472 S:2133472 PrevR:2133472
+
+--- object[13] 'Bip01 L Finger1' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF3AD8 Face:0x12FF3B18 TexLink:0x12FF3B58 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 L Finger1' NodeParent='Bip01 L Hand'
+pParent=0x12FF14B8
+anim_ptrs=TmRot:0x132463C8 TmPos:0x13250890 TmScale:0x132508D0 TmPrevRot:0x13250910
+anim_counts=TmRotCnt:2106 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=179140
+table_Length=179140
+calculated_end=2442852
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:2265948 F:2265948 T:2265948 R:2265948 P:2308068 S:2308068 PrevR:2308068
+
+--- object[14] 'Bip01 L Finger11' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF4490 Face:0x12FF44D0 TexLink:0x12FF4510 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 L Finger11' NodeParent='Bip01 L Finger1'
+pParent=0x12FF31E0
+anim_ptrs=TmRot:0x132717D0 TmPos:0x1327BBD0 TmScale:0x1327BC10 TmPrevRot:0x1327BC50
+anim_counts=TmRotCnt:2096 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=178300
+table_Length=178300
+calculated_end=2621152
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:2445088 F:2445088 T:2445088 R:2445088 P:2487008 S:2487008 PrevR:2487008
+
+--- object[15] 'Bip01 L Finger2' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF4E48 Face:0x12FF4E88 TexLink:0x12FF4EC8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 L Finger2' NodeParent='Bip01 L Hand'
+pParent=0x12FF14B8
+anim_ptrs=TmRot:0x1329C890 TmPos:0x132A6E70 TmScale:0x132A6EB0 TmPrevRot:0x132A6EF0
+anim_counts=TmRotCnt:2120 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=180316
+table_Length=180316
+calculated_end=2801468
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:2623388 F:2623388 T:2623388 R:2623388 P:2665788 S:2665788 PrevR:2665788
+
+--- object[16] 'Bip01 L Finger21' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF5800 Face:0x12FF5840 TexLink:0x12FF5880 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 L Finger21' NodeParent='Bip01 L Finger2'
+pParent=0x12FF4550
+anim_ptrs=TmRot:0x132C8130 TmPos:0x132D23F0 TmScale:0x132D2430 TmPrevRot:0x132D2470
+anim_counts=TmRotCnt:2080 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=176956
+table_Length=176956
+calculated_end=2978424
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:2803704 F:2803704 T:2803704 R:2803704 P:2845304 S:2845304 PrevR:2845304
+
+--- object[17] 'Bip01 R Clavicle' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF61B8 Face:0x12FF61F8 TexLink:0x12FF6238 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 R Clavicle' NodeParent='Bip01 Neck'
+pParent=0x12FEE420
+anim_ptrs=TmRot:0x132F2CB0 TmPos:0x132F7AA8 TmScale:0x132F82D8 TmPrevRot:0x132F8318
+anim_counts=TmRotCnt:995 TmPosCnt:127 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=87848
+table_Length=87848
+calculated_end=3066272
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:2980660 F:2980660 T:2980660 R:2980660 P:3000560 S:3002592 PrevR:3002592
+
+--- object[18] 'Bip01 R UpperArm' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF6B70 Face:0x12FF6BB0 TexLink:0x12FF6BF0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 R UpperArm' NodeParent='Bip01 R Clavicle'
+pParent=0x12FF58C0
+anim_ptrs=TmRot:0x13307C18 TmPos:0x133147C8 TmScale:0x13314808 TmPrevRot:0x13314848
+anim_counts=TmRotCnt:2604 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=220972
+table_Length=220972
+calculated_end=3287244
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:3068508 F:3068508 T:3068508 R:3068508 P:3120588 S:3120588 PrevR:3120588
+
+--- object[19] 'Bip01 R Forearm' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF7528 Face:0x12FF7568 TexLink:0x12FF75A8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 R Forearm' NodeParent='Bip01 R UpperArm'
+pParent=0x12FF6278
+anim_ptrs=TmRot:0x1333D388 TmPos:0x13349B60 TmScale:0x13349BA0 TmPrevRot:0x13349BE0
+anim_counts=TmRotCnt:2555 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=216856
+table_Length=216856
+calculated_end=3504100
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:3289480 F:3289480 T:3289480 R:3289480 P:3340580 S:3340580 PrevR:3340580
+
+--- object[20] 'Bip01 R Hand' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF7EE0 Face:0x12FF7F20 TexLink:0x12FF7F60 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 R Hand' NodeParent='Bip01 R Forearm'
+pParent=0x12FF6C30
+anim_ptrs=TmRot:0x13371AE0 TmPos:0x1337DFD8 TmScale:0x1337E018 TmPrevRot:0x1337E058
+anim_counts=TmRotCnt:2518 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=213748
+table_Length=213748
+calculated_end=3717848
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:3506336 F:3506336 T:3506336 R:3506336 P:3556696 S:3556696 PrevR:3556696
+
+--- object[21] 'Bip01 R Finger0' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF8898 Face:0x12FF88D8 TexLink:0x12FF8918 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 R Finger0' NodeParent='Bip01 R Hand'
+pParent=0x12FF75E8
+anim_ptrs=TmRot:0x133A5618 TmPos:0x133AD448 TmScale:0x133AD488 TmPrevRot:0x133AD4C8
+anim_counts=TmRotCnt:1612 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=137644
+table_Length=137644
+calculated_end=3855492
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:3720084 F:3720084 T:3720084 R:3720084 P:3752324 S:3752324 PrevR:3752324
+
+--- object[22] 'Bip01 R Finger01' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF9250 Face:0x12FF9290 TexLink:0x12FF92D0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 R Finger01' NodeParent='Bip01 R Finger0'
+pParent=0x12FF7FA0
+anim_ptrs=TmRot:0x133C6808 TmPos:0x133CE430 TmScale:0x133CE470 TmPrevRot:0x133CE4B0
+anim_counts=TmRotCnt:1586 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=135460
+table_Length=135460
+calculated_end=3990952
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:3857728 F:3857728 T:3857728 R:3857728 P:3889448 S:3889448 PrevR:3889448
+
+--- object[23] 'Bip01 R Finger1' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FF9C08 Face:0x12FF9C48 TexLink:0x12FF9C88 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 R Finger1' NodeParent='Bip01 R Hand'
+pParent=0x12FF75E8
+anim_ptrs=TmRot:0x133E7170 TmPos:0x133EF118 TmScale:0x133EF158 TmPrevRot:0x133EF198
+anim_counts=TmRotCnt:1631 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=139240
+table_Length=139240
+calculated_end=4130192
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:3993188 F:3993188 T:3993188 R:3993188 P:4025808 S:4025808 PrevR:4025808
+
+--- object[24] 'Bip01 R Finger11' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FFA5C0 Face:0x12FFA600 TexLink:0x12FFA640 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 R Finger11' NodeParent='Bip01 R Finger1'
+pParent=0x12FF9310
+anim_ptrs=TmRot:0x13408998 TmPos:0x134107B0 TmScale:0x134107F0 TmPrevRot:0x13410830
+anim_counts=TmRotCnt:1611 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=137560
+table_Length=137560
+calculated_end=4267752
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:4132428 F:4132428 T:4132428 R:4132428 P:4164648 S:4164648 PrevR:4164648
+
+--- object[25] 'Bip01 R Finger2' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FFAF78 Face:0x12FFAFB8 TexLink:0x12FFAFF8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 R Finger2' NodeParent='Bip01 R Hand'
+pParent=0x12FF75E8
+anim_ptrs=TmRot:0x13429B30 TmPos:0x13431AD8 TmScale:0x13431B18 TmPrevRot:0x13431B58
+anim_counts=TmRotCnt:1631 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=139240
+table_Length=139240
+calculated_end=4406992
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:4269988 F:4269988 T:4269988 R:4269988 P:4302608 S:4302608 PrevR:4302608
+
+--- object[26] 'Bip01 R Finger21' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FFB930 Face:0x12FFB970 TexLink:0x12FFB9B0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 R Finger21' NodeParent='Bip01 R Finger2'
+pParent=0x12FFA680
+anim_ptrs=TmRot:0x1344B358 TmPos:0x13453170 TmScale:0x134531B0 TmPrevRot:0x134531F0
+anim_counts=TmRotCnt:1611 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=137560
+table_Length=137560
+calculated_end=4544552
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:4409228 F:4409228 T:4409228 R:4409228 P:4441448 S:4441448 PrevR:4441448
+
+--- object[27] 'Bip-0032' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FFC2E8 Face:0x12FFC328 TexLink:0x12FFC368 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0032' NodeParent='Bip01 Spine1'
+pParent=0x12FEDA68
+anim_ptrs=TmRot:0x1346C4F0 TmPos:0x13476298 TmScale:0x134765D8 TmPrevRot:0x13476618
+anim_counts=TmRotCnt:2015 TmPosCnt:48 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=172264
+table_Length=172264
+calculated_end=4716816
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:4546788 F:4546788 T:4546788 R:4546788 P:4587088 S:4587856 PrevR:4587856
+
+--- object[28] 'Bip-0033' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FFCCA0 Face:0x12FFCCE0 TexLink:0x12FFCD20 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0033' NodeParent='Bip-0032'
+pParent=0x12FFB9F0
+anim_ptrs=TmRot:0x13495E18 TmPos:0x134A1078 TmScale:0x134A10B8 TmPrevRot:0x134A10F8
+anim_counts=TmRotCnt:2280 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=193756
+table_Length=193756
+calculated_end=4910572
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:4719052 F:4719052 T:4719052 R:4719052 P:4764652 S:4764652 PrevR:4764652
+
+--- object[29] 'Bip-0034' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FFD658 Face:0x12FFD698 TexLink:0x12FFD6D8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0034' NodeParent='Bip-0033'
+pParent=0x12FFC3A8
+anim_ptrs=TmRot:0x134C4B38 TmPos:0x134CFDA8 TmScale:0x134CFDE8 TmPrevRot:0x134CFE28
+anim_counts=TmRotCnt:2281 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=193840
+table_Length=193840
+calculated_end=5104412
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:4912808 F:4912808 T:4912808 R:4912808 P:4958428 S:4958428 PrevR:4958428
+
+--- object[30] 'Bip-0035' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FFE010 Face:0x12FFE050 TexLink:0x12FFE090 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0035' NodeParent='Bip-0034'
+pParent=0x12FFCD60
+anim_ptrs=TmRot:0x134F38A8 TmPos:0x134FEB18 TmScale:0x134FEB58 TmPrevRot:0x134FEB98
+anim_counts=TmRotCnt:2281 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=193840
+table_Length=193840
+calculated_end=5298252
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:5106648 F:5106648 T:5106648 R:5106648 P:5152268 S:5152268 PrevR:5152268
+
+--- object[31] 'Bip-0036' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FFE9C8 Face:0x12FFEA08 TexLink:0x12FFEA48 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0036' NodeParent='Bip-0035'
+pParent=0x12FFD718
+anim_ptrs=TmRot:0x13522618 TmPos:0x13522658 TmScale:0x13522698 TmPrevRot:0x135226D8
+anim_counts=TmRotCnt:0 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2236
+table_Length=2236
+calculated_end=5300488
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:5300488 F:5300488 T:5300488 R:5300488 P:5300488 S:5300488 PrevR:5300488
+
+--- object[32] 'Bip01 L Thigh' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FFF380 Face:0x12FFF3C0 TexLink:0x12FFF400 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 L Thigh' NodeParent='Bip01 Spine'
+pParent=0x12FED130
+anim_ptrs=TmRot:0x13522718 TmPos:0x1352EEA0 TmScale:0x13538700 TmPrevRot:0x13538740
+anim_counts=TmRotCnt:2551 TmPosCnt:2434 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=255464
+table_Length=255464
+calculated_end=5555952
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:5302724 F:5302724 T:5302724 R:5302724 P:5353744 S:5392688 PrevR:5392688
+
+--- object[33] 'Bip01 L Calf' ---
+Head=0xC1424344
+ptrs=Vertex:0x12FFFD38 Face:0x12FFFD78 TexLink:0x12FFFDB8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 L Calf' NodeParent='Bip01 L Thigh'
+pParent=0x12FFEA88
+anim_ptrs=TmRot:0x13560540 TmPos:0x1356C380 TmScale:0x1356C3C0 TmPrevRot:0x1356C400
+anim_counts=TmRotCnt:2432 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=206524
+table_Length=206524
+calculated_end=5762476
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:5558188 F:5558188 T:5558188 R:5558188 P:5606828 S:5606828 PrevR:5606828
+
+--- object[34] 'Bip01 L Foot' ---
+Head=0xC1424344
+ptrs=Vertex:0x130006F0 Face:0x13000730 TexLink:0x13000770 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 L Foot' NodeParent='Bip01 L Calf'
+pParent=0x12FFF440
+anim_ptrs=TmRot:0x13592440 TmPos:0x1359E6E0 TmScale:0x1359E720 TmPrevRot:0x1359E760
+anim_counts=TmRotCnt:2488 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=211228
+table_Length=211228
+calculated_end=5973704
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:5764712 F:5764712 T:5764712 R:5764712 P:5814472 S:5814472 PrevR:5814472
+
+--- object[35] 'Bip01 L Toe0' ---
+Head=0xC1424344
+ptrs=Vertex:0x130010A8 Face:0x130010E8 TexLink:0x13001128 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 L Toe0' NodeParent='Bip01 L Foot'
+pParent=0x12FFFDF8
+anim_ptrs=TmRot:0x135C55A0 TmPos:0x135CE7E0 TmScale:0x135CE820 TmPrevRot:0x135CE860
+anim_counts=TmRotCnt:1869 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=159232
+table_Length=159232
+calculated_end=6132936
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:5975940 F:5975940 T:5975940 R:5975940 P:6013320 S:6013320 PrevR:6013320
+
+--- object[36] 'Bip01 R Thigh' ---
+Head=0xC1424344
+ptrs=Vertex:0x13001A60 Face:0x13001AA0 TexLink:0x13001AE0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 R Thigh' NodeParent='Bip01 Spine'
+pParent=0x12FED130
+anim_ptrs=TmRot:0x135EBBE0 TmPos:0x135F8520 TmScale:0x13602100 TmPrevRot:0x13602140
+anim_counts=TmRotCnt:2573 TmPosCnt:2490 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=258208
+table_Length=258208
+calculated_end=6391144
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:6135172 F:6135172 T:6135172 R:6135172 P:6186632 S:6226472 PrevR:6226472
+
+--- object[37] 'Bip01 R Calf' ---
+Head=0xC1424344
+ptrs=Vertex:0x13002418 Face:0x13002458 TexLink:0x13002498 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 R Calf' NodeParent='Bip01 R Thigh'
+pParent=0x13001168
+anim_ptrs=TmRot:0x1362A4C0 TmPos:0x136364C8 TmScale:0x13636508 TmPrevRot:0x13636548
+anim_counts=TmRotCnt:2455 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=208456
+table_Length=208456
+calculated_end=6599600
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:6393380 F:6393380 T:6393380 R:6393380 P:6442480 S:6442480 PrevR:6442480
+
+--- object[38] 'Bip01 R Foot' ---
+Head=0xC1424344
+ptrs=Vertex:0x13002DD0 Face:0x13002E10 TexLink:0x13002E50 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 R Foot' NodeParent='Bip01 R Calf'
+pParent=0x13001B20
+anim_ptrs=TmRot:0x1365CB48 TmPos:0x13668D08 TmScale:0x13668D48 TmPrevRot:0x13668D88
+anim_counts=TmRotCnt:2477 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=210304
+table_Length=210304
+calculated_end=6809904
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:6601836 F:6601836 T:6601836 R:6601836 P:6651376 S:6651376 PrevR:6651376
+
+--- object[39] 'Bip01 R Toe0' ---
+Head=0xC1424344
+ptrs=Vertex:0x13003788 Face:0x130037C8 TexLink:0x13003808 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip01 R Toe0' NodeParent='Bip01 R Foot'
+pParent=0x130024D8
+anim_ptrs=TmRot:0x1368F908 TmPos:0x13699390 TmScale:0x136993D0 TmPrevRot:0x13699410
+anim_counts=TmRotCnt:1975 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=168136
+table_Length=168136
+calculated_end=6978040
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:6812140 F:6812140 T:6812140 R:6812140 P:6851640 S:6851640 PrevR:6851640
+
+--- object[40] 'Bip-0019' ---
+Head=0xC1424344
+ptrs=Vertex:0x13004140 Face:0x13004180 TexLink:0x130041C0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0019' NodeParent='Bip01 Pelvis'
+pParent=0x12FEC838
+anim_ptrs=TmRot:0x136B8210 TmPos:0x136C3AD8 TmScale:0x136C3B18 TmPrevRot:0x136C3B58
+anim_counts=TmRotCnt:2362 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=200644
+table_Length=200644
+calculated_end=7178684
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:6980276 F:6980276 T:6980276 R:6980276 P:7027516 S:7027516 PrevR:7027516
+
+--- object[41] 'Bip-0020' ---
+Head=0xC1424344
+ptrs=Vertex:0x13004AF8 Face:0x13004B38 TexLink:0x13004B78 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0020' NodeParent='Bip-0019'
+pParent=0x13003848
+anim_ptrs=TmRot:0x136E8A18 TmPos:0x136F3278 TmScale:0x136F32B8 TmPrevRot:0x136F32F8
+anim_counts=TmRotCnt:2152 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=183004
+table_Length=183004
+calculated_end=7361688
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:7180920 F:7180920 T:7180920 R:7180920 P:7223960 S:7223960 PrevR:7223960
+
+--- object[42] 'Bip-0021' ---
+Head=0xC1424344
+ptrs=Vertex:0x130054B0 Face:0x130054F0 TexLink:0x13005530 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0021' NodeParent='Bip-0020'
+pParent=0x13004200
+anim_ptrs=TmRot:0x13714D38 TmPos:0x13714D78 TmScale:0x13714DB8 TmPrevRot:0x13714DF8
+anim_counts=TmRotCnt:0 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2236
+table_Length=2236
+calculated_end=7363924
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:7363924 F:7363924 T:7363924 R:7363924 P:7363924 S:7363924 PrevR:7363924
+
+--- object[43] 'Bip-0010' ---
+Head=0xC1424344
+ptrs=Vertex:0x13005E68 Face:0x13005EA8 TexLink:0x13005EE8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0010' NodeParent='Bip01 Pelvis'
+pParent=0x12FEC838
+anim_ptrs=TmRot:0x13714E38 TmPos:0x1371F030 TmScale:0x1371F1B0 TmPrevRot:0x1371F1F0
+anim_counts=TmRotCnt:2070 TmPosCnt:20 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=176436
+table_Length=176436
+calculated_end=7540360
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:7366160 F:7366160 T:7366160 R:7366160 P:7407560 S:7407880 PrevR:7407880
+
+--- object[44] 'Bip-0011' ---
+Head=0xC1424344
+ptrs=Vertex:0x13006820 Face:0x13006860 TexLink:0x130068A0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0011' NodeParent='Bip-0010'
+pParent=0x13005570
+anim_ptrs=TmRot:0x1373F7B0 TmPos:0x13749648 TmScale:0x13749688 TmPrevRot:0x137496C8
+anim_counts=TmRotCnt:2027 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=172504
+table_Length=172504
+calculated_end=7712864
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:7542596 F:7542596 T:7542596 R:7542596 P:7583136 S:7583136 PrevR:7583136
+
+--- object[45] 'Bip-0012' ---
+Head=0xC1424344
+ptrs=Vertex:0x130071D8 Face:0x13007218 TexLink:0x13007258 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0012' NodeParent='Bip-0011'
+pParent=0x13005F28
+anim_ptrs=TmRot:0x137691C8 TmPos:0x13773060 TmScale:0x137730A0 TmPrevRot:0x137730E0
+anim_counts=TmRotCnt:2027 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=172504
+table_Length=172504
+calculated_end=7885368
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:7715100 F:7715100 T:7715100 R:7715100 P:7755640 S:7755640 PrevR:7755640
+
+--- object[46] 'Bip-0030' ---
+Head=0xC1424344
+ptrs=Vertex:0x13007B90 Face:0x13007BD0 TexLink:0x13007C10 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0030' NodeParent='Bip-0012'
+pParent=0x130068E0
+anim_ptrs=TmRot:0x13792BE0 TmPos:0x13792C20 TmScale:0x13792C60 TmPrevRot:0x13792CA0
+anim_counts=TmRotCnt:0 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2236
+table_Length=2236
+calculated_end=7887604
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:7887604 F:7887604 T:7887604 R:7887604 P:7887604 S:7887604 PrevR:7887604
+
+--- object[47] 'Bip-0016' ---
+Head=0xC1424344
+ptrs=Vertex:0x13008548 Face:0x13008588 TexLink:0x130085C8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0016' NodeParent='Bip01 Pelvis'
+pParent=0x12FEC838
+anim_ptrs=TmRot:0x13792CE0 TmPos:0x1379CA78 TmScale:0x1379CDD8 TmPrevRot:0x1379CE18
+anim_counts=TmRotCnt:2014 TmPosCnt:50 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=172212
+table_Length=172212
+calculated_end=8059816
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:7889840 F:7889840 T:7889840 R:7889840 P:7930120 S:7930920 PrevR:7930920
+
+--- object[48] 'Bip-0017' ---
+Head=0xC1424344
+ptrs=Vertex:0x13008F00 Face:0x13008F40 TexLink:0x13008F80 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0017' NodeParent='Bip-0016'
+pParent=0x13007C50
+anim_ptrs=TmRot:0x137BC5D8 TmPos:0x137C6E88 TmScale:0x137C6EC8 TmPrevRot:0x137C6F08
+anim_counts=TmRotCnt:2156 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=183340
+table_Length=183340
+calculated_end=8243156
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:8062052 F:8062052 T:8062052 R:8062052 P:8105172 S:8105172 PrevR:8105172
+
+--- object[49] 'Bip-0018' ---
+Head=0xC1424344
+ptrs=Vertex:0x130098B8 Face:0x130098F8 TexLink:0x13009938 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0018' NodeParent='Bip-0017'
+pParent=0x13008608
+anim_ptrs=TmRot:0x137E8A48 TmPos:0x137E8A88 TmScale:0x137E8AC8 TmPrevRot:0x137E8B08
+anim_counts=TmRotCnt:0 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2236
+table_Length=2236
+calculated_end=8245392
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:8245392 F:8245392 T:8245392 R:8245392 P:8245392 S:8245392 PrevR:8245392
+
+--- object[50] 'Bip-0007' ---
+Head=0xC1424344
+ptrs=Vertex:0x1300A270 Face:0x1300A2B0 TexLink:0x1300A2F0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0007' NodeParent='Bip01 Pelvis'
+pParent=0x12FEC838
+anim_ptrs=TmRot:0x137E8B48 TmPos:0x137F4D70 TmScale:0x137F5F80 TmPrevRot:0x137F5FC0
+anim_counts=TmRotCnt:2482 TmPosCnt:285 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=215284
+table_Length=215284
+calculated_end=8460676
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:8247628 F:8247628 T:8247628 R:8247628 P:8297268 S:8301828 PrevR:8301828
+
+--- object[51] 'Bip-0008' ---
+Head=0xC1424344
+ptrs=Vertex:0x1300AC28 Face:0x1300AC68 TexLink:0x1300ACA8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0008' NodeParent='Bip-0007'
+pParent=0x13009978
+anim_ptrs=TmRot:0x1381CC80 TmPos:0x13827648 TmScale:0x13827688 TmPrevRot:0x138276C8
+anim_counts=TmRotCnt:2170 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=184516
+table_Length=184516
+calculated_end=8645192
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:8462912 F:8462912 T:8462912 R:8462912 P:8506312 S:8506312 PrevR:8506312
+
+--- object[52] 'Bip-0009' ---
+Head=0xC1424344
+ptrs=Vertex:0x1300B5E0 Face:0x1300B620 TexLink:0x1300B660 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0009' NodeParent='Bip-0008'
+pParent=0x1300A330
+anim_ptrs=TmRot:0x13849588 TmPos:0x138495C8 TmScale:0x13849608 TmPrevRot:0x13849648
+anim_counts=TmRotCnt:0 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2236
+table_Length=2236
+calculated_end=8647428
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:8647428 F:8647428 T:8647428 R:8647428 P:8647428 S:8647428 PrevR:8647428
+
+--- object[53] 'Bip-0022' ---
+Head=0xC1424344
+ptrs=Vertex:0x1300BF98 Face:0x1300BFD8 TexLink:0x1300C018 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0022' NodeParent='Bip01 Pelvis'
+pParent=0x12FEC838
+anim_ptrs=TmRot:0x13849688 TmPos:0x13854DF8 TmScale:0x13854E38 TmPrevRot:0x13854E78
+anim_counts=TmRotCnt:2345 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=199216
+table_Length=199216
+calculated_end=8846644
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:8649664 F:8649664 T:8649664 R:8649664 P:8696564 S:8696564 PrevR:8696564
+
+--- object[54] 'Bip-0023' ---
+Head=0xC1424344
+ptrs=Vertex:0x1300C950 Face:0x1300C990 TexLink:0x1300C9D0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0023' NodeParent='Bip-0022'
+pParent=0x1300B6A0
+anim_ptrs=TmRot:0x138798F8 TmPos:0x13883D08 TmScale:0x13883D48 TmPrevRot:0x13883D88
+anim_counts=TmRotCnt:2097 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=178384
+table_Length=178384
+calculated_end=9025028
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:8848880 F:8848880 T:8848880 R:8848880 P:8890820 S:8890820 PrevR:8890820
+
+--- object[55] 'Bip-0024' ---
+Head=0xC1424344
+ptrs=Vertex:0x1300D308 Face:0x1300D348 TexLink:0x1300D388 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0024' NodeParent='Bip-0023'
+pParent=0x1300C058
+anim_ptrs=TmRot:0x138A4A08 TmPos:0x138A4A48 TmScale:0x138A4A88 TmPrevRot:0x138A4AC8
+anim_counts=TmRotCnt:0 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2236
+table_Length=2236
+calculated_end=9027264
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:9027264 F:9027264 T:9027264 R:9027264 P:9027264 S:9027264 PrevR:9027264
+
+--- object[56] 'Bip-0014' ---
+Head=0xC1424344
+ptrs=Vertex:0x1300DCC0 Face:0x1300DD00 TexLink:0x1300DD40 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0014' NodeParent='Bip01 Pelvis'
+pParent=0x12FEC838
+anim_ptrs=TmRot:0x138A4B08 TmPos:0x138AE990 TmScale:0x138AF2B0 TmPrevRot:0x138AF2F0
+anim_counts=TmRotCnt:2026 TmPosCnt:142 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=174692
+table_Length=174692
+calculated_end=9201956
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:9029500 F:9029500 T:9029500 R:9029500 P:9070020 S:9072292 PrevR:9072292
+
+--- object[57] 'Bip-0015' ---
+Head=0xC1424344
+ptrs=Vertex:0x1300E678 Face:0x1300E6B8 TexLink:0x1300E6F8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0015' NodeParent='Bip-0014'
+pParent=0x1300D3C8
+anim_ptrs=TmRot:0x138CEDB0 TmPos:0x138D8C48 TmScale:0x138D8C88 TmPrevRot:0x138D8CC8
+anim_counts=TmRotCnt:2027 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=172504
+table_Length=172504
+calculated_end=9374460
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:9204192 F:9204192 T:9204192 R:9204192 P:9244732 S:9244732 PrevR:9244732
+
+--- object[58] 'Bip-0013' ---
+Head=0xC1424344
+ptrs=Vertex:0x1300F030 Face:0x1300F070 TexLink:0x1300F0B0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0013' NodeParent='Bip-0015'
+pParent=0x1300DD80
+anim_ptrs=TmRot:0x138F87C8 TmPos:0x13902660 TmScale:0x139026A0 TmPrevRot:0x139026E0
+anim_counts=TmRotCnt:2027 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=172504
+table_Length=172504
+calculated_end=9546964
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:9376696 F:9376696 T:9376696 R:9376696 P:9417236 S:9417236 PrevR:9417236
+
+--- object[59] 'Bip-0031' ---
+Head=0xC1424344
+ptrs=Vertex:0x1300F9E8 Face:0x1300FA28 TexLink:0x1300FA68 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0031' NodeParent='Bip-0013'
+pParent=0x1300E738
+anim_ptrs=TmRot:0x139221E0 TmPos:0x13922220 TmScale:0x13922260 TmPrevRot:0x139222A0
+anim_counts=TmRotCnt:0 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2236
+table_Length=2236
+calculated_end=9549200
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:9549200 F:9549200 T:9549200 R:9549200 P:9549200 S:9549200 PrevR:9549200
+
+--- object[60] 'Bip-0037' ---
+Head=0xC1424344
+ptrs=Vertex:0x130103A0 Face:0x130103E0 TexLink:0x13010420 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0037' NodeParent='Bip01 Pelvis'
+pParent=0x12FEC838
+anim_ptrs=TmRot:0x139222E0 TmPos:0x1392E508 TmScale:0x13930068 TmPrevRot:0x139300A8
+anim_counts=TmRotCnt:2482 TmPosCnt:434 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=217668
+table_Length=217668
+calculated_end=9766868
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:9551436 F:9551436 T:9551436 R:9551436 P:9601076 S:9608020 PrevR:9608020
+
+--- object[61] 'Bip-0038' ---
+Head=0xC1424344
+ptrs=Vertex:0x13010D58 Face:0x13010D98 TexLink:0x13010DD8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0038' NodeParent='Bip-0037'
+pParent=0x1300FAA8
+anim_ptrs=TmRot:0x13956D68 TmPos:0x139613A8 TmScale:0x139613E8 TmPrevRot:0x13961428
+anim_counts=TmRotCnt:2125 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=180736
+table_Length=180736
+calculated_end=9947604
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:9769104 F:9769104 T:9769104 R:9769104 P:9811604 S:9811604 PrevR:9811604
+
+--- object[62] 'Bip-0039' ---
+Head=0xC1424344
+ptrs=Vertex:0x13011710 Face:0x13011750 TexLink:0x13011790 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-0039' NodeParent='Bip-0038'
+pParent=0x13010460
+anim_ptrs=TmRot:0x139827A8 TmPos:0x139827E8 TmScale:0x13982828 TmPrevRot:0x13982868
+anim_counts=TmRotCnt:0 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2236
+table_Length=2236
+calculated_end=9949840
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:9949840 F:9949840 T:9949840 R:9949840 P:9949840 S:9949840 PrevR:9949840
+
+--- object[63] 'Bip-h11' ---
+Head=0xC1424344
+ptrs=Vertex:0x130120C8 Face:0x13012108 TexLink:0x13012148 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h11' NodeParent='Bip01 Head'
+pParent=0x12FEEDD8
+anim_ptrs=TmRot:0x139828A8 TmPos:0x1398C4E8 TmScale:0x1398C528 TmPrevRot:0x1398C568
+anim_counts=TmRotCnt:1997 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=169984
+table_Length=169984
+calculated_end=10119824
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:9952076 F:9952076 T:9952076 R:9952076 P:9992016 S:9992016 PrevR:9992016
+
+--- object[64] 'Bip-h12' ---
+Head=0xC1424344
+ptrs=Vertex:0x13012A80 Face:0x13012AC0 TexLink:0x13012B00 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h12' NodeParent='Bip-h11'
+pParent=0x130117D0
+anim_ptrs=TmRot:0x139AB8E8 TmPos:0x139B7098 TmScale:0x139B70D8 TmPrevRot:0x139B7118
+anim_counts=TmRotCnt:2348 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=199468
+table_Length=199468
+calculated_end=10319292
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:10122060 F:10122060 T:10122060 R:10122060 P:10169020 S:10169020 PrevR:10169020
+
+--- object[65] 'Bip-h13' ---
+Head=0xC1424344
+ptrs=Vertex:0x13013438 Face:0x13013478 TexLink:0x130134B8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h13' NodeParent='Bip-h12'
+pParent=0x13012188
+anim_ptrs=TmRot:0x139DBC58 TmPos:0x139E76E8 TmScale:0x139E7728 TmPrevRot:0x139E7768
+anim_counts=TmRotCnt:2385 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=202576
+table_Length=202576
+calculated_end=10521868
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:10321528 F:10321528 T:10321528 R:10321528 P:10369228 S:10369228 PrevR:10369228
+
+--- object[66] 'Bip-h14' ---
+Head=0xC1424344
+ptrs=Vertex:0x13013DF0 Face:0x13013E30 TexLink:0x13013E70 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h14' NodeParent='Bip-h13'
+pParent=0x13012B40
+anim_ptrs=TmRot:0x13A0CBE8 TmPos:0x13A18628 TmScale:0x13A18668 TmPrevRot:0x13A186A8
+anim_counts=TmRotCnt:2381 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=202240
+table_Length=202240
+calculated_end=10724108
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:10524104 F:10524104 T:10524104 R:10524104 P:10571724 S:10571724 PrevR:10571724
+
+--- object[67] 'Bip-h15' ---
+Head=0xC1424344
+ptrs=Vertex:0x130147A8 Face:0x130147E8 TexLink:0x13014828 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h15' NodeParent='Bip-h14'
+pParent=0x130134F8
+anim_ptrs=TmRot:0x13A3DA28 TmPos:0x13A49468 TmScale:0x13A494A8 TmPrevRot:0x13A494E8
+anim_counts=TmRotCnt:2381 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=202240
+table_Length=202240
+calculated_end=10926348
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:10726344 F:10726344 T:10726344 R:10726344 P:10773964 S:10773964 PrevR:10773964
+
+--- object[68] 'Bip-h16' ---
+Head=0xC1424344
+ptrs=Vertex:0x13015160 Face:0x130151A0 TexLink:0x130151E0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h16' NodeParent='Bip-h15'
+pParent=0x13013EB0
+anim_ptrs=TmRot:0x13A6E868 TmPos:0x13A7A2A8 TmScale:0x13A7A2E8 TmPrevRot:0x13A7A328
+anim_counts=TmRotCnt:2381 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=202240
+table_Length=202240
+calculated_end=11128588
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:10928584 F:10928584 T:10928584 R:10928584 P:10976204 S:10976204 PrevR:10976204
+
+--- object[69] 'Bip-h17' ---
+Head=0xC1424344
+ptrs=Vertex:0x13015B18 Face:0x13015B58 TexLink:0x13015B98 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h17' NodeParent='Bip-h16'
+pParent=0x13014868
+anim_ptrs=TmRot:0x13A9F6A8 TmPos:0x13A9F6E8 TmScale:0x13A9F728 TmPrevRot:0x13A9F768
+anim_counts=TmRotCnt:0 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2236
+table_Length=2236
+calculated_end=11130824
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:11130824 F:11130824 T:11130824 R:11130824 P:11130824 S:11130824 PrevR:11130824
+
+--- object[70] 'Bip-h18' ---
+Head=0xC1424344
+ptrs=Vertex:0x130164D0 Face:0x13016510 TexLink:0x13016550 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h18' NodeParent='Bip01 Head'
+pParent=0x12FEEDD8
+anim_ptrs=TmRot:0x13A9F7A8 TmPos:0x13AA93E8 TmScale:0x13AA9428 TmPrevRot:0x13AA9468
+anim_counts=TmRotCnt:1997 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=169984
+table_Length=169984
+calculated_end=11300808
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:11133060 F:11133060 T:11133060 R:11133060 P:11173000 S:11173000 PrevR:11173000
+
+--- object[71] 'Bip-h19' ---
+Head=0xC1424344
+ptrs=Vertex:0x13016E88 Face:0x13016EC8 TexLink:0x13016F08 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h19' NodeParent='Bip-h18'
+pParent=0x13015BD8
+anim_ptrs=TmRot:0x13AC87E8 TmPos:0x13AD3D28 TmScale:0x13AD3D68 TmPrevRot:0x13AD3DA8
+anim_counts=TmRotCnt:2317 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=196864
+table_Length=196864
+calculated_end=11497672
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:11303044 F:11303044 T:11303044 R:11303044 P:11349384 S:11349384 PrevR:11349384
+
+--- object[72] 'Bip-h20' ---
+Head=0xC1424344
+ptrs=Vertex:0x13017840 Face:0x13017880 TexLink:0x130178C0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h20' NodeParent='Bip-h19'
+pParent=0x13016590
+anim_ptrs=TmRot:0x13AF8128 TmPos:0x13B03668 TmScale:0x13B036A8 TmPrevRot:0x13B036E8
+anim_counts=TmRotCnt:2317 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=196864
+table_Length=196864
+calculated_end=11694536
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:11499908 F:11499908 T:11499908 R:11499908 P:11546248 S:11546248 PrevR:11546248
+
+--- object[73] 'Bip-h21' ---
+Head=0xC1424344
+ptrs=Vertex:0x130181F8 Face:0x13018238 TexLink:0x13018278 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h21' NodeParent='Bip-h20'
+pParent=0x13016F48
+anim_ptrs=TmRot:0x13B27A68 TmPos:0x13B32F48 TmScale:0x13B32F88 TmPrevRot:0x13B32FC8
+anim_counts=TmRotCnt:2312 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=196444
+table_Length=196444
+calculated_end=11890980
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:11696772 F:11696772 T:11696772 R:11696772 P:11743012 S:11743012 PrevR:11743012
+
+--- object[74] 'Bip-h22' ---
+Head=0xC1424344
+ptrs=Vertex:0x13018BB0 Face:0x13018BF0 TexLink:0x13018C30 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h22' NodeParent='Bip-h21'
+pParent=0x13017900
+anim_ptrs=TmRot:0x13B57208 TmPos:0x13B626E8 TmScale:0x13B62728 TmPrevRot:0x13B62768
+anim_counts=TmRotCnt:2312 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=196444
+table_Length=196444
+calculated_end=12087424
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:11893216 F:11893216 T:11893216 R:11893216 P:11939456 S:11939456 PrevR:11939456
+
+--- object[75] 'Bip-h23' ---
+Head=0xC1424344
+ptrs=Vertex:0x13019568 Face:0x130195A8 TexLink:0x130195E8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h23' NodeParent='Bip-h22'
+pParent=0x130182B8
+anim_ptrs=TmRot:0x13B869A8 TmPos:0x13B91E88 TmScale:0x13B91EC8 TmPrevRot:0x13B91F08
+anim_counts=TmRotCnt:2312 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=196444
+table_Length=196444
+calculated_end=12283868
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:12089660 F:12089660 T:12089660 R:12089660 P:12135900 S:12135900 PrevR:12135900
+
+--- object[76] 'Bip-h24' ---
+Head=0xC1424344
+ptrs=Vertex:0x13019F20 Face:0x13019F60 TexLink:0x13019FA0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h24' NodeParent='Bip-h23'
+pParent=0x13018C70
+anim_ptrs=TmRot:0x13BB6148 TmPos:0x13BB6188 TmScale:0x13BB61C8 TmPrevRot:0x13BB6208
+anim_counts=TmRotCnt:0 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2236
+table_Length=2236
+calculated_end=12286104
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:12286104 F:12286104 T:12286104 R:12286104 P:12286104 S:12286104 PrevR:12286104
+
+--- object[77] 'Bip-h01' ---
+Head=0xC1424344
+ptrs=Vertex:0x1301A8D8 Face:0x1301A918 TexLink:0x1301A958 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h01' NodeParent='Bip01 Head'
+pParent=0x12FEEDD8
+anim_ptrs=TmRot:0x13BB6248 TmPos:0x13BC1AD0 TmScale:0x13BC1B10 TmPrevRot:0x13BC1B50
+anim_counts=TmRotCnt:2359 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=200392
+table_Length=200392
+calculated_end=12486496
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:12288340 F:12288340 T:12288340 R:12288340 P:12335520 S:12335520 PrevR:12335520
+
+--- object[78] 'Bip-h02' ---
+Head=0xC1424344
+ptrs=Vertex:0x1301B290 Face:0x1301B2D0 TexLink:0x1301B310 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h02' NodeParent='Bip-h01'
+pParent=0x13019FE0
+anim_ptrs=TmRot:0x13BE6950 TmPos:0x13BF1688 TmScale:0x13BF16C8 TmPrevRot:0x13BF1708
+anim_counts=TmRotCnt:2214 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=188212
+table_Length=188212
+calculated_end=12674708
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:12488732 F:12488732 T:12488732 R:12488732 P:12533012 S:12533012 PrevR:12533012
+
+--- object[79] 'Bip-h03' ---
+Head=0xC1424344
+ptrs=Vertex:0x1301BC48 Face:0x1301BC88 TexLink:0x1301BCC8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h03' NodeParent='Bip-h02'
+pParent=0x1301A998
+anim_ptrs=TmRot:0x13C140C8 TmPos:0x13C1EE00 TmScale:0x13C1EE40 TmPrevRot:0x13C1EE80
+anim_counts=TmRotCnt:2214 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=188212
+table_Length=188212
+calculated_end=12862920
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:12676944 F:12676944 T:12676944 R:12676944 P:12721224 S:12721224 PrevR:12721224
+
+--- object[80] 'Bip-h04' ---
+Head=0xC1424344
+ptrs=Vertex:0x1301C600 Face:0x1301C640 TexLink:0x1301C680 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h04' NodeParent='Bip-h03'
+pParent=0x1301B350
+anim_ptrs=TmRot:0x13C41840 TmPos:0x13C4C320 TmScale:0x13C4C360 TmPrevRot:0x13C4C3A0
+anim_counts=TmRotCnt:2184 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=185692
+table_Length=185692
+calculated_end=13048612
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:12865156 F:12865156 T:12865156 R:12865156 P:12908836 S:12908836 PrevR:12908836
+
+--- object[81] 'Bip-h05' ---
+Head=0xC1424344
+ptrs=Vertex:0x1301CFB8 Face:0x1301CFF8 TexLink:0x1301D038 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h05' NodeParent='Bip-h04'
+pParent=0x1301BD08
+anim_ptrs=TmRot:0x13C6E5E0 TmPos:0x13C6E620 TmScale:0x13C6E660 TmPrevRot:0x13C6E6A0
+anim_counts=TmRotCnt:0 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2236
+table_Length=2236
+calculated_end=13050848
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:13050848 F:13050848 T:13050848 R:13050848 P:13050848 S:13050848 PrevR:13050848
+
+--- object[82] 'Bip-h06' ---
+Head=0xC1424344
+ptrs=Vertex:0x1301D970 Face:0x1301D9B0 TexLink:0x1301D9F0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h06' NodeParent='Bip01 Head'
+pParent=0x12FEEDD8
+anim_ptrs=TmRot:0x13C6E6E0 TmPos:0x13C79EF0 TmScale:0x13C79F30 TmPrevRot:0x13C79F70
+anim_counts=TmRotCnt:2353 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=199888
+table_Length=199888
+calculated_end=13250736
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:13053084 F:13053084 T:13053084 R:13053084 P:13100144 S:13100144 PrevR:13100144
+
+--- object[83] 'Bip-h07' ---
+Head=0xC1424344
+ptrs=Vertex:0x1301E328 Face:0x1301E368 TexLink:0x1301E3A8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h07' NodeParent='Bip-h06'
+pParent=0x1301D078
+anim_ptrs=TmRot:0x13C9EBF0 TmPos:0x13CA9ED8 TmScale:0x13CA9F18 TmPrevRot:0x13CA9F58
+anim_counts=TmRotCnt:2287 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=194344
+table_Length=194344
+calculated_end=13445080
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:13252972 F:13252972 T:13252972 R:13252972 P:13298712 S:13298712 PrevR:13298712
+
+--- object[84] 'Bip-h08' ---
+Head=0xC1424344
+ptrs=Vertex:0x1301ECE0 Face:0x1301ED20 TexLink:0x1301ED60 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h08' NodeParent='Bip-h07'
+pParent=0x1301DA30
+anim_ptrs=TmRot:0x13CCDB58 TmPos:0x13CD8E40 TmScale:0x13CD8E80 TmPrevRot:0x13CD8EC0
+anim_counts=TmRotCnt:2287 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=194344
+table_Length=194344
+calculated_end=13639424
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:13447316 F:13447316 T:13447316 R:13447316 P:13493056 S:13493056 PrevR:13493056
+
+--- object[85] 'Bip-h09' ---
+Head=0xC1424344
+ptrs=Vertex:0x1301F698 Face:0x1301F6D8 TexLink:0x1301F718 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h09' NodeParent='Bip-h08'
+pParent=0x1301E3E8
+anim_ptrs=TmRot:0x13CFCAC0 TmPos:0x13D07C40 TmScale:0x13D07C80 TmPrevRot:0x13D07CC0
+anim_counts=TmRotCnt:2269 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=192832
+table_Length=192832
+calculated_end=13832256
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:13641660 F:13641660 T:13641660 R:13641660 P:13687040 S:13687040 PrevR:13687040
+
+--- object[86] 'Bip-h10' ---
+Head=0xC1424344
+ptrs=Vertex:0x13020050 Face:0x13020090 TexLink:0x130200D0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip-h10' NodeParent='Bip-h09'
+pParent=0x1301EDA0
+anim_ptrs=TmRot:0x13D2B440 TmPos:0x13D2B480 TmScale:0x13D2B4C0 TmPrevRot:0x13D2B500
+anim_counts=TmRotCnt:0 TmPosCnt:0 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2236
+table_Length=2236
+calculated_end=13834492
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:13834492 F:13834492 T:13834492 R:13834492 P:13834492 S:13834492 PrevR:13834492
+
+--- object[87] 'Bip weapon01' ---
+Head=0xC1424344
+ptrs=Vertex:0x13020A08 Face:0x13020A48 TexLink:0x13020A88 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip weapon01' NodeParent='Bip01 R Hand'
+pParent=0x12FF75E8
+anim_ptrs=TmRot:0x13D2B540 TmPos:0x13D2C6B0 TmScale:0x13D2D400 TmPrevRot:0x13D2D440
+anim_counts=TmRotCnt:220 TmPosCnt:209 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=24060
+table_Length=24060
+calculated_end=13858552
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:13836728 F:13836728 T:13836728 R:13836728 P:13841128 S:13844472 PrevR:13844472
+
+--- object[88] 'Bip weapon02' ---
+Head=0xC1424344
+ptrs=Vertex:0x130213C0 Face:0x13021400 TexLink:0x13021440 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip weapon02' NodeParent='Bip weapon01'
+pParent=0x13020110
+anim_ptrs=TmRot:0x13D30B80 TmPos:0x13D30C60 TmScale:0x13D30D20 TmPrevRot:0x13D30D60
+anim_counts=TmRotCnt:8 TmPosCnt:8 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=3036
+table_Length=3036
+calculated_end=13861588
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:13860788 F:13860788 T:13860788 R:13860788 P:13860948 S:13861076 PrevR:13861076
+
+--- object[89] 'Bip in01' ---
+Head=0xC1424344
+ptrs=Vertex:0x13021D78 Face:0x13021DB8 TexLink:0x13021DF8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip in01' NodeParent='Bip01 Spine1'
+pParent=0x12FEDA68
+anim_ptrs=TmRot:0x13D30FA0 TmPos:0x13D31E68 TmScale:0x13D32A48 TmPrevRot:0x13D32A88
+anim_counts=TmRotCnt:186 TmPosCnt:186 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=20836
+table_Length=20836
+calculated_end=13882424
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:13863824 F:13863824 T:13863824 R:13863824 P:13867544 S:13870520 PrevR:13870520
+
+--- object[90] 'Bip in02' ---
+Head=0xC1424344
+ptrs=Vertex:0x13022730 Face:0x13022770 TexLink:0x130227B0 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip in02' NodeParent='Bip in01'
+pParent=0x13021480
+anim_ptrs=TmRot:0x13D35948 TmPos:0x13D359C0 TmScale:0x13D35A30 TmPrevRot:0x13D35A70
+anim_counts=TmRotCnt:3 TmPosCnt:3 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2536
+table_Length=2536
+calculated_end=13884960
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:13884660 F:13884660 T:13884660 R:13884660 P:13884720 S:13884768 PrevR:13884768
+
+--- object[91] 'Bip in-cro' ---
+Head=0xC1424344
+ptrs=Vertex:0x130230E8 Face:0x13023128 TexLink:0x13023168 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip in-cro' NodeParent='Bip01 Spine1'
+pParent=0x12FEDA68
+anim_ptrs=TmRot:0x13D35B70 TmPos:0x13D36A38 TmScale:0x13D37618 TmPrevRot:0x13D37658
+anim_counts=TmRotCnt:186 TmPosCnt:186 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=20836
+table_Length=20836
+calculated_end=13905796
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:13887196 F:13887196 T:13887196 R:13887196 P:13890916 S:13893892 PrevR:13893892
+
+--- object[92] 'Bip in03' ---
+Head=0xC1424344
+ptrs=Vertex:0x13023AA0 Face:0x13023AE0 TexLink:0x13023B20 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip in03' NodeParent='Bip in-cro'
+pParent=0x130227F0
+anim_ptrs=TmRot:0x13D3A518 TmPos:0x13D3A590 TmScale:0x13D3A600 TmPrevRot:0x13D3A640
+anim_counts=TmRotCnt:3 TmPosCnt:3 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2536
+table_Length=2536
+calculated_end=13908332
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:13908032 F:13908032 T:13908032 R:13908032 P:13908092 S:13908140 PrevR:13908140
+
+--- object[93] 'Bip in-bow' ---
+Head=0xC1424344
+ptrs=Vertex:0x13024458 Face:0x13024498 TexLink:0x130244D8 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip in-bow' NodeParent='Bip01 Spine1'
+pParent=0x12FEDA68
+anim_ptrs=TmRot:0x13D3A740 TmPos:0x13D3B608 TmScale:0x13D3C1E8 TmPrevRot:0x13D3C228
+anim_counts=TmRotCnt:186 TmPosCnt:186 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=20836
+table_Length=20836
+calculated_end=13929168
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+next_object_check=OK
+array_offsets=V:13910568 F:13910568 T:13910568 R:13910568 P:13914288 S:13917264 PrevR:13917264
+
+--- object[94] 'Bip in04' ---
+Head=0xC1424344
+ptrs=Vertex:0x13024E10 Face:0x13024E50 TexLink:0x13024E90 Physique:0x00000000
+counts=nVertex:0 nFace:0 nTexLink:0
+NodeName='Bip in04' NodeParent='Bip in-bow'
+pParent=0x13023B60
+anim_ptrs=TmRot:0x13D3F0E8 TmPos:0x13D3F160 TmScale:0x13D3F1D0 TmPrevRot:0x13D3F210
+anim_counts=TmRotCnt:3 TmPosCnt:3 TmScaleCnt:0 TmFrameCnt:7
+has_physique=0
+calculated_Length=2536
+table_Length=2536
+calculated_end=13931704
+NodeName_check=OK
+Length_check=OK
+bounds_check=OK
+final_file_size_check=OK
+array_offsets=V:13931404 F:13931404 T:13931404 R:13931404 P:13931464 S:13931512 PrevR:13931512
+
+SUMMARY
+objects=95
+last_calculated_end=13931704
+file_size=13931704
+structural_check=PASS

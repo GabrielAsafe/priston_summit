@@ -1,0 +1,346 @@
+<?php
+/*
+ * SUMMIT_ISCLANMEMBER_PHP_PORT_V1
+ *
+ * Port Linux/PHP do ServerMain/isClanMember.asp legado.
+ * Mantem o contrato textual esperado pelo cliente:
+ *
+ *   Code=0  -> personagem sem clan
+ *   Code=1  -> membro
+ *   Code=2  -> lider
+ *   Code=5  -> sublider
+ *   Code=100 -> erro
+ *
+ * Separador original do protocolo: CR (0x0D).
+ */
+
+header('Content-Type: text/plain; charset=ISO-8859-1');
+
+function proto_exit($text)
+{
+    echo $text;
+    exit;
+}
+
+function code0()
+{
+    proto_exit(
+        "Code=0\r" .
+        "CMoney=500000\r" .
+        "CNFlag=0\r"
+    );
+}
+
+function code100()
+{
+    proto_exit("Code=100\r");
+}
+
+function cfg_value($cfg, $name)
+{
+    $re = '/\$' . preg_quote($name, '/') .
+          '\s*=\s*[\'"]([^\'"]+)[\'"]\s*;/';
+
+    if (!preg_match($re, $cfg, $m))
+        return false;
+
+    return $m[1];
+}
+
+/*
+ * SUMMIT_ISCLANMEMBER_ODBC_EXEC_V2
+ *
+ * O FreeTDS/unixODBC legado deste container nao suporta
+ * odbc_prepare(). Mantemos queries parametrizadas no codigo,
+ * mas substituimos os placeholders localmente com escaping
+ * antes de chamar odbc_exec().
+ */
+function db_exec_params($conn, $sql, $params)
+{
+    foreach ($params as $value) {
+
+        if ($value === null) {
+            $replacement = "NULL";
+        } else {
+            $escaped = str_replace("'", "''", (string)$value);
+            $replacement = "'" . $escaped . "'";
+        }
+
+        $pos = strpos($sql, "?");
+
+        if ($pos === false)
+            return false;
+
+        $sql =
+            substr($sql, 0, $pos) .
+            $replacement .
+            substr($sql, $pos + 1);
+    }
+
+    /*
+     * Nao deve sobrar placeholder depois de consumir params.
+     */
+    if (strpos($sql, "?") !== false)
+        return false;
+
+    return @odbc_exec($conn, $sql);
+}
+
+function field_text($stmt, $index)
+{
+    $v = @odbc_result($stmt, $index);
+
+    if ($v === false || $v === null)
+        return "";
+
+    return trim((string)$v);
+}
+
+function add_field(&$out, $name, $value)
+{
+    $out .= $name . "=" . $value . "\r";
+}
+
+
+/* ---------------------------------------------------------
+ * Parametros
+ * --------------------------------------------------------- */
+
+$userid  = isset($_GET["userid"])  ? trim($_GET["userid"])  : "";
+$gserver = isset($_GET["gserver"]) ? trim($_GET["gserver"]) : "";
+$chname  = isset($_GET["chname"])  ? trim($_GET["chname"])  : "";
+
+if ($userid === "" || $gserver === "" || $chname === "")
+    code100();
+
+
+/* ---------------------------------------------------------
+ * Reutiliza a configuracao SQL ja existente no web Docker.
+ *
+ * Nao incluimos configura.php diretamente porque o arquivo
+ * executa codigo PHP legado incompatível no modo CLI/web atual.
+ * Apenas extraimos DSN/usuario/senha ja configurados.
+ * --------------------------------------------------------- */
+
+$cfgPath = "/var/www/html/padm/incluir/configura.php";
+$cfg = @file_get_contents($cfgPath);
+
+if ($cfg === false)
+    code100();
+
+$dsn  = cfg_value($cfg, "connection_string");
+$user = cfg_value($cfg, "user");
+$pass = cfg_value($cfg, "pass");
+
+if ($dsn === false || $user === false || $pass === false)
+    code100();
+
+$conn = @odbc_connect($dsn, $user, $pass);
+
+if (!$conn)
+    code100();
+
+if (!@odbc_exec($conn, "USE ClanDB")) {
+    @odbc_close($conn);
+    code100();
+}
+
+
+/* ---------------------------------------------------------
+ * 1. Procura personagem em UL
+ * --------------------------------------------------------- */
+
+$stmt = db_exec_params(
+    $conn,
+    "SELECT ClanName FROM dbo.UL WHERE ChName=?",
+    array($chname)
+);
+
+if (!$stmt) {
+    @odbc_close($conn);
+    code100();
+}
+
+if (!@odbc_fetch_row($stmt)) {
+    @odbc_close($conn);
+    code0();
+}
+
+$clname = field_text($stmt, 1);
+
+
+/*
+ * ASP original remove registro UL orfao quando ClanName esta vazio.
+ */
+if ($clname === "") {
+
+    db_exec_params(
+        $conn,
+        "DELETE FROM dbo.UL WHERE ChName=?",
+        array($chname)
+    );
+
+    @odbc_close($conn);
+    code0();
+}
+
+
+/* ---------------------------------------------------------
+ * 2. Busca clan
+ * --------------------------------------------------------- */
+
+$stmt = db_exec_params(
+    $conn,
+    "SELECT ClanZang, MemCnt, Note, MIconCnt, RegiDate, " .
+    "LimitDate, PFlag, KFlag, ClanMoney, Cpoint " .
+    "FROM dbo.CL WHERE ClanName=?",
+    array($clname)
+);
+
+if (!$stmt) {
+    @odbc_close($conn);
+    code100();
+}
+
+
+/*
+ * Registro UL aponta para clan inexistente:
+ * comportamento original = limpa UL e trata como sem clan.
+ */
+if (!@odbc_fetch_row($stmt)) {
+
+    db_exec_params(
+        $conn,
+        "DELETE FROM dbo.UL WHERE ChName=?",
+        array($chname)
+    );
+
+    @odbc_close($conn);
+    code0();
+}
+
+$ClanLeader  = field_text($stmt, 1);
+$ClanMembers = field_text($stmt, 2);
+$ClanNote    = field_text($stmt, 3);
+$ClanIMG     = field_text($stmt, 4);
+$CreateDate  = field_text($stmt, 5);
+$EndDate     = field_text($stmt, 6);
+$PFlag       = field_text($stmt, 7);
+$KFlag       = field_text($stmt, 8);
+$ClanMoney   = field_text($stmt, 9);
+
+
+/* ---------------------------------------------------------
+ * 3. Ranking/CNFlag
+ * --------------------------------------------------------- */
+
+$CNFlag = 0;
+
+$rank = @odbc_exec(
+    $conn,
+    "SELECT ClanName, Cpoint FROM dbo.CL ORDER BY Cpoint DESC"
+);
+
+if ($rank) {
+
+    $position = 0;
+
+    while (@odbc_fetch_row($rank)) {
+
+        $position++;
+
+        $rankClan  = field_text($rank, 1);
+        $rankPoint = intval(field_text($rank, 2));
+
+        if ($rankClan === $clname) {
+
+            if ($rankPoint > 0 && $position >= 1 && $position <= 3)
+                $CNFlag = $position;
+
+            break;
+        }
+    }
+}
+
+
+/* ---------------------------------------------------------
+ * 4. Sublider
+ * --------------------------------------------------------- */
+
+$ClanSubChief = "";
+
+$sub = db_exec_params(
+    $conn,
+    "SELECT TOP 1 ChName FROM dbo.UL " .
+    "WHERE ClanName=? AND Permi=2",
+    array($clname)
+);
+
+if ($sub && @odbc_fetch_row($sub))
+    $ClanSubChief = field_text($sub, 1);
+
+
+/* ---------------------------------------------------------
+ * 5. Monta resposta no formato original
+ * --------------------------------------------------------- */
+
+if ($ClanLeader === $chname)
+    $code = 2;
+else
+    $code = 1;
+
+if ($ClanSubChief !== "" &&
+    $ClanSubChief === $chname &&
+    $ClanLeader !== $chname)
+{
+    $code = 5;
+}
+
+$out = "";
+
+add_field($out, "Code", $code);
+add_field($out, "CName", $clname);
+add_field($out, "CNote", $ClanNote);
+add_field($out, "CZang", $ClanLeader);
+
+if ($ClanSubChief !== "")
+    add_field($out, "CSubChip", $ClanSubChief);
+
+add_field($out, "CStats", 1);
+add_field($out, "CMCnt", $ClanMembers);
+add_field($out, "CIMG", $ClanIMG);
+add_field($out, "CSec", 60);
+add_field($out, "CRegiD", $CreateDate);
+add_field($out, "CLimitD", $EndDate);
+add_field($out, "CDelActive", 0);
+
+/*
+ * ASP original zera PFlag/KFlag para membro comum.
+ * Lider e sublider recebem os valores do clan.
+ */
+if ($code == 1) {
+    add_field($out, "CPFlag", 0);
+    add_field($out, "CKFlag", 0);
+}
+else {
+    add_field($out, "CPFlag", $PFlag);
+    add_field($out, "CKFlag", $KFlag);
+}
+
+add_field($out, "CMoney", $ClanMoney);
+add_field($out, "CNFlag", $CNFlag);
+
+
+/*
+ * Mantem MIconCnt sincronizado em UL como o ASP original.
+ */
+db_exec_params(
+    $conn,
+    "UPDATE dbo.UL SET MIconCnt=? WHERE ChName=?",
+    array($ClanIMG, $chname)
+);
+
+@odbc_close($conn);
+
+echo $out;
+?>

@@ -1,0 +1,403 @@
+============================================================
+TIMESTAMPS
+============================================================
+2026-08-23 22:44:05.102486593 +0100  234874  SrcGame/src/sinbaram/sinItem.cpp
+2026-08-23 22:44:05.064485837 +0100  156883  SrcGame/src/sinbaram/items_table.inc
+2026-08-23 22:45:27.120272542 +0100  8316387  dist_mingw_server_i686/Server.exe
+
+============================================================
+ALL sItem DEFINITIONS IN SOURCE TREE
+============================================================
+SrcGame/src/sinbaram/sinItem.cpp:78:sITEM sItem[MAX_ITEM] = {
+
+============================================================
+BUILD SCRIPT REFERENCES TO sinItem
+============================================================
+./SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lib/Makefile:10:SRCS= lauxlib.c lbaselib.c ldblib.c liolib.c lmathlib.c ltablib.c lstrlib.c loadlib.c
+./SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lib/Makefile:24:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lib/Makefile:27:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lua/Makefile:9:SRCS= lua.c
+./SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lua/Makefile:28:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lua/Makefile:31:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/luac/Makefile:9:SRCS= luac.c print.c
+./SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/luac/Makefile:32:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/luac/Makefile:35:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/Makefile:29:SRCS=	\
+./SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/Makefile:82:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/Makefile:85:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua/lib/Makefile:10:SRCS= lauxlib.c lbaselib.c ldblib.c liolib.c lmathlib.c ltablib.c lstrlib.c loadlib.c
+./SrcGame/src/Library/LuaSrc/Lua/lib/Makefile:24:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua/lib/Makefile:27:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua/lua/Makefile:9:SRCS= lua.c
+./SrcGame/src/Library/LuaSrc/Lua/lua/Makefile:28:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua/lua/Makefile:31:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua/luac/Makefile:9:SRCS= luac.c print.c
+./SrcGame/src/Library/LuaSrc/Lua/luac/Makefile:32:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua/luac/Makefile:35:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua/Makefile:29:SRCS=	\
+./SrcGame/src/Library/LuaSrc/Lua/Makefile:82:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua/Makefile:85:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lib/Makefile:10:SRCS= lauxlib.c lbaselib.c ldblib.c liolib.c lmathlib.c ltablib.c lstrlib.c loadlib.c
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lib/Makefile:24:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lib/Makefile:27:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lua/Makefile:9:SRCS= lua.c
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lua/Makefile:28:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lua/Makefile:31:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/luac/Makefile:9:SRCS= luac.c print.c
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/luac/Makefile:32:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/luac/Makefile:35:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Makefile:29:SRCS=	\
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Makefile:82:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Makefile:85:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lib/Makefile:10:SRCS= lauxlib.c lbaselib.c ldblib.c liolib.c lmathlib.c ltablib.c lstrlib.c loadlib.c
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lib/Makefile:24:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lib/Makefile:27:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lua/Makefile:9:SRCS= lua.c
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lua/Makefile:28:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lua/Makefile:31:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/luac/Makefile:9:SRCS= luac.c print.c
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/luac/Makefile:32:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/luac/Makefile:35:	rm -f $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/Makefile:29:SRCS=	\
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/Makefile:82:	co -q -f -M $(SRCS)
+./SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/Makefile:85:	rm -f $(SRCS)
+./Shared/Lua/Makefile:29:SRCS=	\
+./Shared/Lua/Makefile:82:	co -q -f -M $(SRCS)
+./Shared/Lua/Makefile:85:	rm -f $(SRCS)
+./Shared/Lua/lib/Makefile:10:SRCS= lauxlib.c lbaselib.c ldblib.c liolib.c lmathlib.c ltablib.c lstrlib.c loadlib.c
+./Shared/Lua/lib/Makefile:24:	co -q -f -M $(SRCS)
+./Shared/Lua/lib/Makefile:27:	rm -f $(SRCS)
+./Shared/Lua/lua/Makefile:9:SRCS= lua.c
+./Shared/Lua/lua/Makefile:28:	co -q -f -M $(SRCS)
+./Shared/Lua/lua/Makefile:31:	rm -f $(SRCS)
+./Shared/Lua/luac/Makefile:9:SRCS= luac.c print.c
+./Shared/Lua/luac/Makefile:32:	co -q -f -M $(SRCS)
+./Shared/Lua/luac/Makefile:35:	rm -f $(SRCS)
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:41:  -ISrcServer/src
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:42:  -ISrcServer/src/sinbaram
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:43:  -ISrcServer/src/Skills
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:44:  -ISrcServer/src/HoBaram/NewEffect/Script
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:45:  -ISrcServer/src/HoBaram/NewEffect/Script/lua
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:46:  -ISrcGame/src
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:57:find SrcServer/src modules \
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:63:SrcServer/src/Winmain.cpp
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:64:SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:65:SrcServer/src/TJBOY/Ygy/Process/Process.cpp
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:66:SrcServer/src/TJBOY/Ygy/Util.cpp
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:67:SrcServer/src/TJBOY/Ygy/memmap/memmap.cpp
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:68:SrcServer/src/sinbaram/sinInvenTory.cpp
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:69:SrcServer/src/sinbaram/sinSkill.cpp
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:70:SrcServer/src/sinbaram/sinSkill_Info.cpp
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:71:SrcServer/src/sinbaram/SkillFunction/Morayion.cpp
+./backup_server_after_copilot_20260709_130448/build_server_mingw_i686.sh:72:SrcServer/src/sinbaram/SkillFunction/Tempskron.cpp
+./build_client_mingw_i686_multicore.sh:59:    -ISrcGame/src
+./build_client_mingw_i686_multicore.sh:60:    -ISrcGame/src/smLib3d
+./build_client_mingw_i686_multicore.sh:61:    -ISrcGame/src/sinbaram
+./build_client_mingw_i686_multicore.sh:62:    -ISrcGame/src/Skills
+./build_client_mingw_i686_multicore.sh:63:    -ISrcGame/src/Language
+./build_client_mingw_i686_multicore.sh:64:    -ISrcGame/src/Resources
+./build_client_mingw_i686_multicore.sh:65:    -ISrcGame/src/Sound
+./build_client_mingw_i686_multicore.sh:66:    -ISrcGame/src/HoBaram
+./build_client_mingw_i686_multicore.sh:67:    -ISrcGame/src/HoBaram/NewEffect
+./build_client_mingw_i686_multicore.sh:68:    -ISrcGame/src/HoBaram/NewEffect/math
+./build_client_mingw_i686_multicore.sh:69:    -ISrcGame/src/HoBaram/NewEffect/Script
+./build_client_mingw_i686_multicore.sh:70:    -ISrcGame/src/HoBaram/NewEffect/Script/lua
+./build_client_mingw_i686_multicore.sh:71:    -ISrcGame/src/Library/LuaSrc
+./build_client_mingw_i686_multicore.sh:72:    -ISrcGame/src/Library/LuaSrc/Lua
+./build_client_mingw_i686_multicore.sh:73:    -ISrcGame/src/TJBOY/clanmenu
+./build_client_mingw_i686_multicore.sh:74:    -ISrcGame/src/TJBOY/isaocheck
+./build_client_mingw_i686_multicore.sh:75:    -ISrcGame/src/TJBOY/park
+./build_client_mingw_i686_multicore.sh:76:    -ISrcGame/src/TJBOY/Ygy
+./build_client_mingw_i686_multicore.sh:77:    -ISrcGame/src/TJBOY/Ygy/memmap
+./build_client_mingw_i686_multicore.sh:78:    -ISrcGame/src/Server
+./build_client_mingw_i686_multicore.sh:79:    -ISrcGame/src/WinInt
+./build_client_mingw_i686_multicore.sh:80:    -ISrcGame/src/Security
+./build_client_mingw_i686_multicore.sh:81:    -ISrcGame/src/Settings
+./build_client_mingw_i686_multicore.sh:106:if [ ! -d "$ROOT/SrcGame/src" ]; then
+./build_client_mingw_i686_multicore.sh:107:    echo "Erro: diretório SrcGame/src não encontrado"
+./build_client_mingw_i686_multicore.sh:132:    find SrcGame/src -type f \
+./build_server_mingw_i686_j8.sh:33:    -ISrcServer/src
+./build_server_mingw_i686_j8.sh:34:    -ISrcServer/src/sinbaram
+./build_server_mingw_i686_j8.sh:35:    -ISrcServer/src/Skills
+./build_server_mingw_i686_j8.sh:36:    -ISrcServer/src/HoBaram/NewEffect
+./build_server_mingw_i686_j8.sh:37:    -ISrcServer/src/HoBaram/NewEffect/Script
+./build_server_mingw_i686_j8.sh:38:    -ISrcServer/src/HoBaram/NewEffect/Script/lua
+./build_server_mingw_i686_j8.sh:40:    -ISrcGame/src
+./build_server_mingw_i686_j8.sh:69:find SrcServer/src modules \
+./build_server_mingw_i686_j8.sh:83:SrcServer/src/Winmain.cpp
+./build_server_mingw_i686_j8.sh:84:SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp
+./build_server_mingw_i686_j8.sh:85:SrcServer/src/TJBOY/Ygy/Process/Process.cpp
+./build_server_mingw_i686_j8.sh:86:SrcServer/src/TJBOY/Ygy/Util.cpp
+./build_server_mingw_i686_j8.sh:87:SrcServer/src/TJBOY/Ygy/memmap/memmap.cpp
+./build_server_mingw_i686_j8.sh:88:SrcServer/src/sinbaram/sinInvenTory.cpp
+./build_server_mingw_i686_j8.sh:89:SrcServer/src/sinbaram/sinSkill.cpp
+./build_server_mingw_i686_j8.sh:90:SrcServer/src/sinbaram/sinSkill_Info.cpp
+./build_server_mingw_i686_j8.sh:91:SrcServer/src/sinbaram/SkillFunction/Morayion.cpp
+./build_server_mingw_i686_j8.sh:92:SrcServer/src/sinbaram/SkillFunction/Tempskron.cpp
+./build_server_mingw_i686_j8.sh:138:#        SrcServer/src/Sound/Dxwav.cpp)
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:41:  -ISrcServer/src
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:42:  -ISrcServer/src/sinbaram
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:43:  -ISrcServer/src/Skills
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:44:  -ISrcServer/src/HoBaram/NewEffect/Script
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:45:  -ISrcServer/src/HoBaram/NewEffect/Script/lua
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:46:  -ISrcGame/src
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:57:find SrcServer/src modules \
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:63:SrcServer/src/Winmain.cpp
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:64:SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:65:SrcServer/src/TJBOY/Ygy/Process/Process.cpp
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:66:SrcServer/src/TJBOY/Ygy/Util.cpp
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:67:SrcServer/src/TJBOY/Ygy/memmap/memmap.cpp
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:68:SrcServer/src/sinbaram/sinInvenTory.cpp
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:69:SrcServer/src/sinbaram/sinSkill.cpp
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:70:SrcServer/src/sinbaram/sinSkill_Info.cpp
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:71:SrcServer/src/sinbaram/SkillFunction/Morayion.cpp
+./depricated/backup_server_immediate3_20260709_133543/build_server_mingw_i686.sh:72:SrcServer/src/sinbaram/SkillFunction/Tempskron.cpp
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:41:  -ISrcServer/src
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:42:  -ISrcServer/src/sinbaram
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:43:  -ISrcServer/src/Skills
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:44:  -ISrcServer/src/HoBaram/NewEffect/Script
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:45:  -ISrcServer/src/HoBaram/NewEffect/Script/lua
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:46:  -ISrcGame/src
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:57:find SrcServer/src modules \
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:63:SrcServer/src/Winmain.cpp
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:64:SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:65:SrcServer/src/TJBOY/Ygy/Process/Process.cpp
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:66:SrcServer/src/TJBOY/Ygy/Util.cpp
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:67:SrcServer/src/TJBOY/Ygy/memmap/memmap.cpp
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:68:SrcServer/src/sinbaram/sinInvenTory.cpp
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:69:SrcServer/src/sinbaram/sinSkill.cpp
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:70:SrcServer/src/sinbaram/sinSkill_Info.cpp
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:71:SrcServer/src/sinbaram/SkillFunction/Morayion.cpp
+./depricated/backup_server_immediate3_fixed_20260709_133826/build_server_mingw_i686.sh:72:SrcServer/src/sinbaram/SkillFunction/Tempskron.cpp
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:41:  -ISrcServer/src
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:42:  -ISrcServer/src/sinbaram
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:43:  -ISrcServer/src/Skills
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:44:  -ISrcServer/src/HoBaram/NewEffect/Script
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:45:  -ISrcServer/src/HoBaram/NewEffect/Script/lua
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:46:  -ISrcGame/src
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:57:find SrcServer/src modules \
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:63:SrcServer/src/Winmain.cpp
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:64:SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:65:SrcServer/src/TJBOY/Ygy/Process/Process.cpp
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:66:SrcServer/src/TJBOY/Ygy/Util.cpp
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:67:SrcServer/src/TJBOY/Ygy/memmap/memmap.cpp
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:68:SrcServer/src/sinbaram/sinInvenTory.cpp
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:69:SrcServer/src/sinbaram/sinSkill.cpp
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:70:SrcServer/src/sinbaram/sinSkill_Info.cpp
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:71:SrcServer/src/sinbaram/SkillFunction/Morayion.cpp
+./depricated/backup_server_next_blockers_20260709_103401/build_server_mingw_i686.sh:72:SrcServer/src/sinbaram/SkillFunction/Tempskron.cpp
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:41:  -ISrcServer/src
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:42:  -ISrcServer/src/sinbaram
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:43:  -ISrcServer/src/Skills
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:44:  -ISrcServer/src/HoBaram/NewEffect/Script
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:45:  -ISrcServer/src/HoBaram/NewEffect/Script/lua
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:46:  -ISrcGame/src
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:57:find SrcServer/src modules \
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:63:SrcServer/src/Winmain.cpp
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:64:SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:65:SrcServer/src/TJBOY/Ygy/Process/Process.cpp
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:66:SrcServer/src/TJBOY/Ygy/Util.cpp
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:67:SrcServer/src/TJBOY/Ygy/memmap/memmap.cpp
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:68:SrcServer/src/sinbaram/sinInvenTory.cpp
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:69:SrcServer/src/sinbaram/sinSkill.cpp
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:70:SrcServer/src/sinbaram/sinSkill_Info.cpp
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:71:SrcServer/src/sinbaram/SkillFunction/Morayion.cpp
+./depricated/backup_server_next_compile_wave_20260709_113123/build_server_mingw_i686.sh:72:SrcServer/src/sinbaram/SkillFunction/Tempskron.cpp
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:42:  -ISrcServer/src
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:43:  -ISrcServer/src/sinbaram
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:44:  -ISrcServer/src/Skills
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:45:  -ISrcServer/src/HoBaram/NewEffect/Script
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:46:  -ISrcServer/src/HoBaram/NewEffect/Script/lua
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:47:  -ISrcGame/src
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:58:find SrcServer/src modules \
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:64:SrcServer/src/Winmain.cpp
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:65:SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:66:SrcServer/src/TJBOY/Ygy/Process/Process.cpp
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:67:SrcServer/src/TJBOY/Ygy/Util.cpp
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:68:SrcServer/src/TJBOY/Ygy/memmap/memmap.cpp
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:69:SrcServer/src/sinbaram/sinInvenTory.cpp
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:70:SrcServer/src/sinbaram/sinSkill.cpp
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:71:SrcServer/src/sinbaram/sinSkill_Info.cpp
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:72:SrcServer/src/sinbaram/SkillFunction/Morayion.cpp
+./depricated/backup_server_patch_all_v2_20260708_201456/build_server_mingw_i686.sh:73:SrcServer/src/sinbaram/SkillFunction/Tempskron.cpp
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:38:  -ISrcServer/src
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:39:  -ISrcServer/src/sinbaram
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:40:  -ISrcServer/src/Skills
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:41:  -ISrcServer/src/HoBaram/NewEffect/Script
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:42:  -ISrcServer/src/HoBaram/NewEffect/Script/lua
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:43:  -ISrcGame/src
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:54:find SrcServer/src modules \
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:60:SrcServer/src/Winmain.cpp
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:61:SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:62:SrcServer/src/TJBOY/Ygy/Process/Process.cpp
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:63:SrcServer/src/TJBOY/Ygy/Util.cpp
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:64:SrcServer/src/TJBOY/Ygy/memmap/memmap.cpp
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:65:SrcServer/src/sinbaram/sinInvenTory.cpp
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:66:SrcServer/src/sinbaram/sinSkill.cpp
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:67:SrcServer/src/sinbaram/sinSkill_Info.cpp
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:68:SrcServer/src/sinbaram/SkillFunction/Morayion.cpp
+./depricated/backup_server_patch_safe_01_20260708_200514/build_server_mingw_i686.sh:69:SrcServer/src/sinbaram/SkillFunction/Tempskron.cpp
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:41:  -ISrcServer/src
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:42:  -ISrcServer/src/sinbaram
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:43:  -ISrcServer/src/Skills
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:44:  -ISrcServer/src/HoBaram/NewEffect/Script
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:45:  -ISrcServer/src/HoBaram/NewEffect/Script/lua
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:46:  -ISrcGame/src
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:57:find SrcServer/src modules \
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:63:SrcServer/src/Winmain.cpp
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:64:SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:65:SrcServer/src/TJBOY/Ygy/Process/Process.cpp
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:66:SrcServer/src/TJBOY/Ygy/Util.cpp
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:67:SrcServer/src/TJBOY/Ygy/memmap/memmap.cpp
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:68:SrcServer/src/sinbaram/sinInvenTory.cpp
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:69:SrcServer/src/sinbaram/sinSkill.cpp
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:70:SrcServer/src/sinbaram/sinSkill_Info.cpp
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:71:SrcServer/src/sinbaram/SkillFunction/Morayion.cpp
+./depricated/backup_server_sal_strclass_20260709_110342/build_server_mingw_i686.sh:72:SrcServer/src/sinbaram/SkillFunction/Tempskron.cpp
+./depricated/lixo_2026_07/build_client_mingw.sh:13:  find SrcGame/src -iname '*.cpp'
+./depricated/lixo_2026_07/build_client_mingw.sh:56:-ISrcGame/src \
+./depricated/lixo_2026_07/build_client_mingw.sh:57:-ISrcGame/src/smLib3d \
+./depricated/lixo_2026_07/build_client_mingw.sh:58:-ISrcGame/src/sinbaram \
+./depricated/lixo_2026_07/build_client_mingw.sh:59:-ISrcGame/src/Language \
+./depricated/lixo_2026_07/build_client_mingw.sh:60:-ISrcGame/src/Resources \
+./depricated/lixo_2026_07/build_client_mingw.sh:61:-ISrcGame/src/Sound \
+./depricated/lixo_2026_07/build_client_mingw.sh:62:-ISrcGame/src/HoBaram \
+./depricated/lixo_2026_07/build_client_mingw.sh:63:-ISrcGame/src/HoBaram/NewEffect \
+
+============================================================
+SERVER.EXE sItem SYMBOL
+============================================================
+0700fa60 B sItem
+
+============================================================
+SERVER.EXE STATIC CONSTRUCTOR SYMBOLS
+============================================================
+007c69c4 D CandydaysItem
+0088cf6c r .eh_frame$_ZN5sITEMC1Ev
+00886624 r .eh_frame$_ZN6psITEMC1Ev
+00888ac8 r .eh_frame$_ZN7pssITEMC1Ev
+008863fc r .eh_frame$_ZN9sITEMINFOC1Ev
+0088a808 r .eh_frame$_ZNKSt12_Vector_baseIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE19_M_get_Tp_allocatorEv
+00889af8 r .eh_frame$_ZNKSt12_Vector_baseIPN9cCOINSHOP9sITEMSHOPESaIS2_EE19_M_get_Tp_allocatorEv
+0088ab6c r .eh_frame$_ZNKSt13move_iteratorIPPN11cCOINSHOP_T9sITEMSHOPEE4baseEv
+0088aa84 r .eh_frame$_ZNKSt13move_iteratorIPPN11cCOINSHOP_T9sITEMSHOPEEdeEv
+00889e5c r .eh_frame$_ZNKSt13move_iteratorIPPN9cCOINSHOP9sITEMSHOPEE4baseEv
+00889d74 r .eh_frame$_ZNKSt13move_iteratorIPPN9cCOINSHOP9sITEMSHOPEEdeEv
+0088a560 r .eh_frame$_ZNKSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE12_M_check_lenEjPKc
+0088a1cc r .eh_frame$_ZNKSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE4sizeEv
+0088a6f0 r .eh_frame$_ZNKSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE8max_sizeEv
+00889850 r .eh_frame$_ZNKSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE12_M_check_lenEjPKc
+00889484 r .eh_frame$_ZNKSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE4sizeEv
+008899e0 r .eh_frame$_ZNKSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE8max_sizeEv
+0088a59c r .eh_frame$_ZNSt12_Vector_baseIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE11_M_allocateEj
+0088a118 r .eh_frame$_ZNSt12_Vector_baseIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE12_Vector_implC1Ev
+00889e94 r .eh_frame$_ZNSt12_Vector_baseIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE12_Vector_implD1Ev
+0088a358 r .eh_frame$_ZNSt12_Vector_baseIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE13_M_deallocateEPS2_j
+0088a2e8 r .eh_frame$_ZNSt12_Vector_baseIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE17_Vector_impl_dataC2Ev
+0088a390 r .eh_frame$_ZNSt12_Vector_baseIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE19_M_get_Tp_allocatorEv
+00889ecc r .eh_frame$_ZNSt12_Vector_baseIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EEC2Ev
+0088a150 r .eh_frame$_ZNSt12_Vector_baseIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EED2Ev
+0088988c r .eh_frame$_ZNSt12_Vector_baseIPN9cCOINSHOP9sITEMSHOPESaIS2_EE11_M_allocateEj
+008893d0 r .eh_frame$_ZNSt12_Vector_baseIPN9cCOINSHOP9sITEMSHOPESaIS2_EE12_Vector_implC1Ev
+0088914c r .eh_frame$_ZNSt12_Vector_baseIPN9cCOINSHOP9sITEMSHOPESaIS2_EE12_Vector_implD1Ev
+00889648 r .eh_frame$_ZNSt12_Vector_baseIPN9cCOINSHOP9sITEMSHOPESaIS2_EE13_M_deallocateEPS2_j
+008895d8 r .eh_frame$_ZNSt12_Vector_baseIPN9cCOINSHOP9sITEMSHOPESaIS2_EE17_Vector_impl_dataC2Ev
+00889680 r .eh_frame$_ZNSt12_Vector_baseIPN9cCOINSHOP9sITEMSHOPESaIS2_EE19_M_get_Tp_allocatorEv
+00889184 r .eh_frame$_ZNSt12_Vector_baseIPN9cCOINSHOP9sITEMSHOPESaIS2_EEC2Ev
+00889408 r .eh_frame$_ZNSt12_Vector_baseIPN9cCOINSHOP9sITEMSHOPESaIS2_EED2Ev
+0088a8b4 r .eh_frame$_ZNSt13move_iteratorIPPN11cCOINSHOP_T9sITEMSHOPEEC1ES3_
+0088aa4c r .eh_frame$_ZNSt13move_iteratorIPPN11cCOINSHOP_T9sITEMSHOPEEppEv
+00889ba4 r .eh_frame$_ZNSt13move_iteratorIPPN9cCOINSHOP9sITEMSHOPEEC1ES3_
+00889d3c r .eh_frame$_ZNSt13move_iteratorIPPN9cCOINSHOP9sITEMSHOPEEppEv
+0088a6b8 r .eh_frame$_ZNSt15__new_allocatorIPN11cCOINSHOP_T9sITEMSHOPEE10deallocateEPS2_j
+0088a840 r .eh_frame$_ZNSt15__new_allocatorIPN11cCOINSHOP_T9sITEMSHOPEE8allocateEjPKv
+0088a320 r .eh_frame$_ZNSt15__new_allocatorIPN11cCOINSHOP_T9sITEMSHOPEED2Ev
+008899a8 r .eh_frame$_ZNSt15__new_allocatorIPN9cCOINSHOP9sITEMSHOPEE10deallocateEPS2_j
+00889b30 r .eh_frame$_ZNSt15__new_allocatorIPN9cCOINSHOP9sITEMSHOPEE8allocateEjPKv
+00889610 r .eh_frame$_ZNSt15__new_allocatorIPN9cCOINSHOP9sITEMSHOPEED2Ev
+0088aaf8 r .eh_frame$_ZNSt19_UninitDestroyGuardIPPN11cCOINSHOP_T9sITEMSHOPEvE7releaseEv
+0088a9a4 r .eh_frame$_ZNSt19_UninitDestroyGuardIPPN11cCOINSHOP_T9sITEMSHOPEvEC1ERS3_
+0088a9dc r .eh_frame$_ZNSt19_UninitDestroyGuardIPPN11cCOINSHOP_T9sITEMSHOPEvED1Ev
+00889de8 r .eh_frame$_ZNSt19_UninitDestroyGuardIPPN9cCOINSHOP9sITEMSHOPEvE7releaseEv
+00889c94 r .eh_frame$_ZNSt19_UninitDestroyGuardIPPN9cCOINSHOP9sITEMSHOPEvEC1ERS3_
+00889ccc r .eh_frame$_ZNSt19_UninitDestroyGuardIPPN9cCOINSHOP9sITEMSHOPEvED1Ev
+0088a7d0 r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE11_S_max_sizeERKS3_
+0088a644 r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE11_S_relocateEPS2_S5_S5_RS3_
+0088a5d4 r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE12_Guard_allocC1EPS2_jRSt12_Vector_baseIS2_S3_E
+0088a60c r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE12_Guard_allocD1Ev
+0088a728 r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE14_S_do_relocateEPS2_S5_S5_RS3_St17integral_constantIbLb1EE
+0088a3c8 r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE15_M_erase_at_endEPS2_
+0088a400 r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE15_S_use_relocateEv
+0088a4e0 r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE17_M_realloc_appendIJRKS2_EEEvDpOT_
+0088a438 r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE19_S_nothrow_relocateESt17integral_constantIbLb1EE
+0088a23c r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE3endEv
+0088a204 r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE5beginEv
+0088a274 r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE5clearEv
+0088a2ac r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE9push_backERKS2_
+00889f04 r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EEC1Ev
+0088a194 r .eh_frame$_ZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EED1Ev
+00889ac0 r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE11_S_max_sizeERKS3_
+00889934 r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE11_S_relocateEPS2_S5_S5_RS3_
+008898c4 r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE12_Guard_allocC1EPS2_jRSt12_Vector_baseIS2_S3_E
+008898fc r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE12_Guard_allocD1Ev
+00889a18 r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE14_S_do_relocateEPS2_S5_S5_RS3_St17integral_constantIbLb1EE
+008896b8 r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE15_M_erase_at_endEPS2_
+008896f0 r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE15_S_use_relocateEv
+008897d0 r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE17_M_realloc_appendIJRKS2_EEEvDpOT_
+00889728 r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE19_S_nothrow_relocateESt17integral_constantIbLb1EE
+008894f4 r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE3endEv
+008894bc r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE5beginEv
+0088952c r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE5clearEv
+0088959c r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE9push_backERKS2_
+008891bc r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EEC1Ev
+0088944c r .eh_frame$_ZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EED1Ev
+0088aabc r .eh_frame$_ZSt10_ConstructIPN11cCOINSHOP_T9sITEMSHOPEJS2_EEvPT_DpOT0_
+00889dac r .eh_frame$_ZSt10_ConstructIPN9cCOINSHOP9sITEMSHOPEJS2_EEvPT_DpOT0_
+0088a878 r .eh_frame$_ZSt12__relocate_aIPPN11cCOINSHOP_T9sITEMSHOPES3_SaIS2_EET0_T_S6_S5_RT1_
+00889b68 r .eh_frame$_ZSt12__relocate_aIPPN9cCOINSHOP9sITEMSHOPES3_SaIS2_EET0_T_S6_S5_RT1_
+0088a924 r .eh_frame$_ZSt14__relocate_a_1IPN11cCOINSHOP_T9sITEMSHOPES2_ENSt9enable_ifIXsrSt24__is_bitwise_relocatableIT_vE5valueEPS5_E4typeES7_S7_S7_RSaIT0_E
+00889c14 r .eh_frame$_ZSt14__relocate_a_1IPN9cCOINSHOP9sITEMSHOPES2_ENSt9enable_ifIXsrSt24__is_bitwise_relocatableIT_vE5valueEPS5_E4typeES7_S7_S7_RSaIT0_E
+0088a95c r .eh_frame$_ZSt16__do_uninit_copyISt13move_iteratorIPPN11cCOINSHOP_T9sITEMSHOPEES5_S4_ET1_T_T0_S6_
+00889c4c r .eh_frame$_ZSt16__do_uninit_copyISt13move_iteratorIPPN9cCOINSHOP9sITEMSHOPEES5_S4_ET1_T_T0_S6_
+0088a8ec r .eh_frame$_ZSt18uninitialized_copyISt13move_iteratorIPPN11cCOINSHOP_T9sITEMSHOPEES4_ET0_T_S7_S6_
+00889bdc r .eh_frame$_ZSt18uninitialized_copyISt13move_iteratorIPPN9cCOINSHOP9sITEMSHOPEES4_ET0_T_S7_S6_
+0088a798 r .eh_frame$_ZSt22__uninitialized_copy_aISt13move_iteratorIPPN11cCOINSHOP_T9sITEMSHOPEES5_S4_S3_ET1_T_T0_S6_RSaIT2_E
+00889a88 r .eh_frame$_ZSt22__uninitialized_copy_aISt13move_iteratorIPPN9cCOINSHOP9sITEMSHOPEES5_S4_S3_ET1_T_T0_S6_RSaIT2_E
+0088a760 r .eh_frame$_ZSt32__make_move_if_noexcept_iteratorIPN11cCOINSHOP_T9sITEMSHOPESt13move_iteratorIPS2_EET0_PT_
+00889a50 r .eh_frame$_ZSt32__make_move_if_noexcept_iteratorIPN9cCOINSHOP9sITEMSHOPESt13move_iteratorIPS2_EET0_PT_
+0088a67c r .eh_frame$_ZSt34__uninitialized_move_if_noexcept_aIPPN11cCOINSHOP_T9sITEMSHOPES3_SaIS2_EET0_T_S6_S5_RT1_
+0088996c r .eh_frame$_ZSt34__uninitialized_move_if_noexcept_aIPPN9cCOINSHOP9sITEMSHOPES3_SaIS2_EET0_T_S6_S5_RT1_
+0088a528 r .eh_frame$_ZSt8_DestroyIPPN11cCOINSHOP_T9sITEMSHOPEEvT_S4_
+00889818 r .eh_frame$_ZSt8_DestroyIPPN9cCOINSHOP9sITEMSHOPEEvT_S4_
+0088ab30 r .eh_frame$_ZSteqIPPN11cCOINSHOP_T9sITEMSHOPEEbRKSt13move_iteratorIT_ES8_
+00889e20 r .eh_frame$_ZSteqIPPN9cCOINSHOP9sITEMSHOPEEbRKSt13move_iteratorIT_ES8_
+0088aa14 r .eh_frame$_ZStneIPPN11cCOINSHOP_T9sITEMSHOPEEbRKSt13move_iteratorIT_ES8_
+00889d04 r .eh_frame$_ZStneIPPN9cCOINSHOP9sITEMSHOPEEbRKSt13move_iteratorIT_ES8_
+0088a470 r .eh_frame$_ZZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE17_M_realloc_appendIJRKS2_EEEvDpOT_EN11_Guard_eltsC1EPS2_RS3_
+0088a4a8 r .eh_frame$_ZZNSt6vectorIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE17_M_realloc_appendIJRKS2_EEEvDpOT_EN11_Guard_eltsD1Ev
+00889760 r .eh_frame$_ZZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE17_M_realloc_appendIJRKS2_EEEvDpOT_EN11_Guard_eltsC1EPS2_RS3_
+00889798 r .eh_frame$_ZZNSt6vectorIPN9cCOINSHOP9sITEMSHOPESaIS2_EE17_M_realloc_appendIJRKS2_EEEvDpOT_EN11_Guard_eltsD1Ev
+0722afcc B ExpressItemCode
+07196d64 B ExpressItemFlag
+00bb7780 B Recv_TransItemInfo_Que
+00bdb784 B RecvTransItemQue_Pop
+00bdb780 B RecvTransItemQue_Push
+06e1d238 B rsItemBuffOverCount
+06e1d230 B rsItemOpenCount
+007ba5a0 D rsITEM_SecCode_Xor
+0700fa60 B sItem
+0722afe0 B szExpressItemName
+0077e598 t .text$_ZN5sITEMC1Ev
+0077e9dc t .text$_ZN6psITEMC1Ev
+0077eb94 t .text$_ZN7pssITEMC1Ev
+00781098 t .text$_ZN9sITEMINFOC1Ev
+0078195c t .text$_ZNKSt12_Vector_baseIPN11cCOINSHOP_T9sITEMSHOPESaIS2_EE19_M_get_Tp_allocatorEv
+
+============================================================
+OBJECT FILES NAMED sinItem
+============================================================
+./SrcServer/src/Release/sinItem.obj
+./depricated/lixo_2026_07/build_mingw_client/SrcGame_src_sinbaram_sinItem.o
+./depricated/lixo_2026_07/build_mingw_client_i686/SrcGame_src_sinbaram_sinItem.o
+./build_mingw_client_i686/objects/SrcGame/src/sinbaram/sinItem.o
+./build_mingw_server_i686/SrcServer_src_sinbaram_sinItem.o

@@ -1,0 +1,46 @@
+00:00.015  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.015  color_management | Using fallback mode for management
+00:01.791  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_direct_smd_v3_static_armature.blend"
+PT_BLENDER_APPLY_MOTION_V1
+blend_input=/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_direct_smd_v3_static_armature.blend
+skeleton=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/m5.smb
+inx=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/M5Bip.inx
+logical_path='char\\tmABCD\\M5Bip.inx'
+armature=PT_m5_Armature
+
+MOTION
+MotionCount=64
+index=10
+State=0x00000040 name=STAND
+MotionFrame=2
+TmFrame_slot=1
+global_logical=10..50
+engine_half_open=[1600,8000)
+Repeat=1
+
+BAKE
+blender_frames=1..40
+engine_samples=1600..7840
+sample_step_engine=160
+bones=95
+visible_meshes=['MbmC01', 'MlmC01', 'MsmC01']
+frame=1 engine=1600 visible_mesh_bbox=x[-12.9706,6.3849] y[-23.9984,3.3129] z[-1.6275,34.9400]
+frame=20 engine=4640 visible_mesh_bbox=x[-8.3090,8.4838] y[-9.2865,5.4529] z[0.0037,37.1258]
+frame=40 engine=7840 visible_mesh_bbox=x[-8.3676,8.0123] y[-9.3018,5.4431] z[0.0027,37.2538]
+Info: Saved as "MfbC01_direct_smd_v4_stand10.blend"
+
+VALIDATION
+action=PT_m5_STAND_motion10
+keyed_bones=95
+keyed_frames=40
+nonfinite_engine_matrices=0
+max_pose_matrix_assignment_error=186.839317
+max_pose_matrix_assignment_where=(7, 2560, 'Bip-h24')
+visible_mesh_bbox_samples=3
+visible_mesh_bboxes_finite=YES
+output=/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_direct_smd_v4_stand10.blend
+blender_motion_bake_check=FAIL
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

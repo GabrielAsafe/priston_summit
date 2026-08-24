@@ -1,0 +1,673 @@
+============================================================
+GIT HEAD
+============================================================
+/home/gabriel/Área de Trabalho/summit
+8916069 (HEAD -> main, origin/main, origin/HEAD) primeira build funcional do cliente e servidor
+
+============================================================
+STATUS - CLIENTE SrcGame
+============================================================
+ M SrcGame/src/HoBaram/HoLinkHeader.cpp
+ M SrcGame/src/HoBaram/HoLogin.cpp
+ M SrcGame/src/HoBaram/HoOpening.cpp
+ M SrcGame/src/HoBaram/LowLevelPetSystem.cpp
+ M SrcGame/src/Server/OnSever.cpp
+ M SrcGame/src/Settings/Settings.cpp
+ M SrcGame/src/TJBOY/clanmenu/tjclan.cpp
+ M SrcGame/src/UIList.cpp
+ D SrcGame/src/Winmain.bak2.cpp
+ M SrcGame/src/Winmain.cpp
+ M SrcGame/src/cSettingsWindow.cpp
+ M SrcGame/src/character.cpp
+ M SrcGame/src/fileread.cpp
+ M SrcGame/src/mingw_debug_entry.cpp
+ M SrcGame/src/netplay.cpp
+ M SrcGame/src/playmain.cpp
+ M SrcGame/src/sinbaram/AssaEffect.cpp
+ M SrcGame/src/sinbaram/AssaUtil.cpp
+ M SrcGame/src/sinbaram/sinHelpPet.cpp
+ M SrcGame/src/sinbaram/sinInterFace.cpp
+ M SrcGame/src/sinbaram/sinSubMain.cpp
+ M SrcGame/src/smLib3d/smDsx.cpp
+ M SrcGame/src/smLib3d/smRead3d.cpp
+ M SrcGame/src/smwsock.cpp
+?? SrcGame/src/HoBaram/HoLinkHeader.cpp.logs_backup
+?? SrcGame/src/HoBaram/HoLogin.cpp.logs_backup
+?? SrcGame/src/HoBaram/HoOpening.cpp.logs_backup
+?? SrcGame/src/HoBaram/LowLevelPetSystem.cpp.bak_lowlevelpet_trace_v1
+?? SrcGame/src/Server/OnSever.cpp.logs_backup
+?? SrcGame/src/Settings/Settings.cpp.before_runtime_resolution_deprecated_comment
+?? SrcGame/src/TJBOY/clanmenu/tjclan.cpp.logs_backup
+?? SrcGame/src/UIList.cpp.f11_v2_backup
+?? SrcGame/src/Winmain.bak2.cpp.disabled
+?? SrcGame/src/Winmain.cpp.before_logs_folder
+?? SrcGame/src/Winmain.cpp.logs_backup
+?? SrcGame/src/cSettingsWindow.cpp.bak_settings_open_trace_v1
+?? SrcGame/src/cSettingsWindow.cpp.f11_v2_backup
+?? SrcGame/src/cSettingsWindow.cpp.logs_backup
+?? SrcGame/src/character.cpp.logs_backup
+?? SrcGame/src/fileread.cpp.logs_backup
+?? SrcGame/src/mingw_debug_entry.cpp.logs_backup
+?? SrcGame/src/netplay.cpp.logs_backup
+?? SrcGame/src/playmain.cpp.logs_backup
+?? SrcGame/src/sinbaram/AssaEffect.cpp.logs_backup
+?? SrcGame/src/sinbaram/AssaUtil.cpp.logs_backup
+?? SrcGame/src/sinbaram/items_table.inc
+?? SrcGame/src/sinbaram/sinHelpPet.cpp.bak_petmessage_trace_v1
+?? SrcGame/src/sinbaram/sinInterFace.cpp.bak_chatdefault_tga_v1
+?? SrcGame/src/sinbaram/sinItem.cpp.bak_sitem_table_restore_20260823
+?? SrcGame/src/sinbaram/sinSubMain.cpp.logs_backup
+?? SrcGame/src/smLib3d/smDsx.cpp.logs_backup
+?? SrcGame/src/smLib3d/smRead3d.cpp.bak_word_string_v1
+?? SrcGame/src/smwsock.cpp.logs_backup
+
+============================================================
+STATUS - SERVIDOR SrcServer
+============================================================
+ M SrcServer/src/Server/OnSever.cpp
+ M SrcServer/src/character.cpp
+ M SrcServer/src/fileread.cpp
+ M SrcServer/src/sinbaram/sinInvenTory.cpp
+?? SrcServer/src/Server/OnSever.cpp.bak_defaultitemcount_probe
+?? SrcServer/src/Server/OnSever.cpp.bak_defaultitems_runtime_probe_v2
+?? SrcServer/src/Server/OnSever.cpp.bak_setfieldinfo_v1
+?? SrcServer/src/Server/OnSever.cpp.bak_sitem_runtime_probe_20260823
+?? SrcServer/src/Server/OnSever.cpp.bak_spawn_load_v1
+?? SrcServer/src/character.cpp.bak_findmotion_null_v1
+?? SrcServer/src/fileread.cpp.bak_after_cp949_patch_20260823
+?? SrcServer/src/fileread.cpp.bak_before_full_encoding_rollback_20260823
+?? SrcServer/src/fileread.cpp.bak_charinf_cp949_v1
+?? SrcServer/src/fileread.cpp.bak_decodeitem_cp949_literals_20260823
+?? SrcServer/src/fileread.cpp.bak_otherchat_regressed_20260823
+?? SrcServer/src/fileread.cpp.bak_spm_actor_trace_v1
+?? SrcServer/src/fileread.cpp.bak_spm_cp949_v1
+?? SrcServer/src/sinbaram/items_table.inc
+?? SrcServer/src/sinbaram/sinInvenTory.cpp.bak_setitem_crash_trace_v1
+?? SrcServer/src/sinbaram/sinItem.cpp.bak_sitem_table_restore_20260823
+
+============================================================
+DIFF NAMES - CLIENTE
+============================================================
+M	SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp
+M	SourceCode/SrcGame/src/HoBaram/HoLogin.cpp
+M	SourceCode/SrcGame/src/HoBaram/HoOpening.cpp
+M	SourceCode/SrcGame/src/HoBaram/LowLevelPetSystem.cpp
+M	SourceCode/SrcGame/src/Server/OnSever.cpp
+M	SourceCode/SrcGame/src/Settings/Settings.cpp
+M	SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp
+M	SourceCode/SrcGame/src/UIList.cpp
+D	SourceCode/SrcGame/src/Winmain.bak2.cpp
+M	SourceCode/SrcGame/src/Winmain.cpp
+M	SourceCode/SrcGame/src/cSettingsWindow.cpp
+M	SourceCode/SrcGame/src/character.cpp
+M	SourceCode/SrcGame/src/fileread.cpp
+M	SourceCode/SrcGame/src/mingw_debug_entry.cpp
+M	SourceCode/SrcGame/src/netplay.cpp
+M	SourceCode/SrcGame/src/playmain.cpp
+M	SourceCode/SrcGame/src/sinbaram/AssaEffect.cpp
+M	SourceCode/SrcGame/src/sinbaram/AssaUtil.cpp
+M	SourceCode/SrcGame/src/sinbaram/sinHelpPet.cpp
+M	SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp
+M	SourceCode/SrcGame/src/sinbaram/sinSubMain.cpp
+M	SourceCode/SrcGame/src/smLib3d/smDsx.cpp
+M	SourceCode/SrcGame/src/smLib3d/smRead3d.cpp
+M	SourceCode/SrcGame/src/smwsock.cpp
+
+============================================================
+DIFF NAMES - SERVIDOR
+============================================================
+M	SourceCode/SrcServer/src/Server/OnSever.cpp
+M	SourceCode/SrcServer/src/character.cpp
+M	SourceCode/SrcServer/src/fileread.cpp
+M	SourceCode/SrcServer/src/sinbaram/sinInvenTory.cpp
+
+============================================================
+STAGED DIFF NAMES
+============================================================
+
+============================================================
+RECENT HISTORY / POSSIVEIS ROLLBACKS
+============================================================
+8916069 HEAD@{Sat Aug 22 11:03:57 2026}: commit: primeira build funcional do cliente e servidor
+5a1a7e2 HEAD@{Fri Aug 21 19:24:36 2026}: commit: consegui logar o personagem mas crasha quando nasce em pilai
+12f7db4 HEAD@{Sun Aug 16 12:45:54 2026}: commit: finalmente o servidor e o cliente estão começando a comunicar
+8b63865 HEAD@{Sat Jul 25 10:06:33 2026}: commit: docs: iniciar investigação da conexão cliente-servidor
+9750716 HEAD@{Sat Jul 25 09:51:58 2026}: commit: servidor compilado e funcinal a aceitar connections
+10ea2bf HEAD@{Mon Jul 20 08:31:16 2026}: commit: Tentando corrigir o servidor crashando
+b1db7c3 HEAD@{Thu Jul 16 14:51:56 2026}: reset: moving to origin/main
+bd96128 HEAD@{Thu Jul 16 14:50:34 2026}: reset: moving to HEAD
+bd96128 HEAD@{Thu Jul 16 14:49:40 2026}: reset: moving to HEAD
+bd96128 HEAD@{Wed Jul 8 19:14:58 2026}: commit: não muito avanço
+933f5e1 HEAD@{Tue Jul 7 18:39:08 2026}: commit: atualizando o readme
+439530c HEAD@{Tue Jul 7 18:36:12 2026}: commit: cliente compila
+1fca0a0 HEAD@{Mon Jul 6 18:58:23 2026}: commit: servidor compila mas não funciona
+f488f94 HEAD@{Mon Jul 6 08:35:35 2026}: commit: Ignore large dependency files
+
+============================================================
+HANGUL / COREANO - CLIENTE
+============================================================
+SrcGame/src/Language/Brazil/b_Set_EventSpawn.h:19:	{ "�C�r�G�h�N�r��", "?�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "?�a?�X : ��Ɛ킢�����Ȃ�A�܂���̕�����?���Ă݂�I���������瑊�����Ă��I" },
+SrcGame/src/Language/Brazil/b_Set_EventSpawn.h:20:	{ "�C�N���N�u��", "?�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "?�a?�X : ��Ɛ킢�����Ȃ�A�܂���̕�����?���Ă݂�I���������瑊�����Ă��I" },
+SrcGame/src/Language/Brazil/b_Set_EventSpawn.h:21:	{ "�N�x���e�B�O�q", "?�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "?�a?�X : ��Ɛ킢�����Ȃ�A�܂���̕�����?���Ă݂�I���������瑊�����Ă��I" },
+SrcGame/src/Language/Brazil/b_sinMsg.h:973:char *MagicalGreenJadeItem = "7���� ���븦";
+SrcGame/src/Language/Chinese/C_clanText.h:48:�޷��쵼���� /n/
+SrcGame/src/Language/Chinese/C_clanText.h:59:char *szJoin = "�������� : %s/n�᳤���� : %s/n/n���������빫��./n/
+SrcGame/src/Language/Chinese/C_clanText.h:60:Ҫ���빫����?/n";
+SrcGame/src/Language/Chinese/C_clanText.h:114:char *szClanJoinCancelMsg = "%s �ܾ��˼��빫�������/n";
+SrcGame/src/Language/Chinese/C_clanText.h:116:char *szClanJoinsucesssMsg = "������%s �� /n���빫������./n"; 
+SrcGame/src/Language/Chinese/C_clanText.h:148:char *szNoName = "�����빫������./n";
+SrcGame/src/Language/Chinese/C_clanText.h:167:char *szClanWon6Down = "�����Ա����6��./n�뾡���ټ��µĳ�Ա/n/n/
+SrcGame/src/Language/Chinese/C_clanText.h:171:char *szClanUserNoMakeMsg = "��������: %s/n�������빫��.";
+SrcGame/src/Language/Chinese/C_HoTextFile.h:13:				"�������㣬�뵽http:
+SrcGame/src/Language/Chinese/C_HoTextFile.h:46:		" �ó�Զ���빥������Ҫʹ�ù�������������̬��ӯ��������ݡ� ",
+SrcGame/src/Language/Chinese/C_PartyMsg.h:6:char *srPartyMsg5 = "%s�뿪�˶���";
+SrcGame/src/Language/Chinese/C_ServerMsg.h:23:char *srMsg_022 = "���Ѿ��뿪�˶��顣";
+SrcGame/src/Language/Chinese/C_ServerMsg.h:44:char *srMsg_102 = "����������ߵȼ��޲����޻���볡ȯ.�볡ȯֻ��10��Ԫ.^^";
+SrcGame/src/Language/Chinese/C_ServerMsg.h:48:char *srMsg_106 = "Ŀǰ�볡ȯ�Ѿ�ȫ������";
+SrcGame/src/Language/Chinese/C_ServerMsg.h:51:char *srMsg_110 = "����Ŷ��뿪(no.%d) ������%dGold";
+SrcGame/src/Language/Chinese/C_ServerMsg.h:58:char *srMsg_300 = "     ��������루�绰���룩����ȷ!";
+SrcGame/src/Language/Chinese/C_ServerMsg.h:71:	"�벻Ҫ����ĥ������.",
+SrcGame/src/Language/Chinese/C_ServerMsg.h:73:	"�벻Ҫ����ĥ������."
+SrcGame/src/Language/Chinese/C_ServerMsg.h:92:	"��Ҳ������ ~ ������취ʹ��ǿ׳�� ?",
+SrcGame/src/Language/Chinese/C_ServerMsg.h:157:	"Ŷ�ҵ��찡! ��ֻ���˺��ٵġ�",
+SrcGame/src/Language/Chinese/C_ServerMsg.h:237:     	"��һ��Ҫʹ�Լ��ļ������죬�ڻ�����֮�� .",
+SrcGame/src/Language/Chinese/C_ServerMsg.h:238:      	"�Դ������������뿪�Ժ��Ѿ�������ô�� !",
+SrcGame/src/Language/Chinese/C_sinMsg.h:76:	{"����ʹ���뵱ǰ����һ����Ⱦ����."},
+SrcGame/src/Language/Chinese/C_sinMsg.h:82:	{"���칫ʽ������˳�����"}, 
+SrcGame/src/Language/Chinese/C_sinMsg.h:86:	{"������Ʒ","���빺��?"},
+SrcGame/src/Language/Chinese/C_sinMsg.h:91:	{"���ٽ�Ǯ "," ���뽻��?"},
+SrcGame/src/Language/Chinese/C_sinMsg.h:94:	{"�������� ","���빺��?"},
+SrcGame/src/Language/Chinese/C_sinMsg.h:97:	{"������Ʒ","���빺��?"},  
+SrcGame/src/Language/Chinese/C_sinMsg.h:143:	{"���빺��","һ��ˮ������?"},      
+SrcGame/src/Language/Chinese/C_sinMsg.h:166:	"     �뿪��Ϸ"
+SrcGame/src/Language/Chinese/C_sinMsg.h:179:	"        �뿪��Ϸ     ",
+SrcGame/src/Language/Chinese/C_sinMsg.h:303:char *sinFireBallDamage3 = "(�����뾶 60  (1/3 �˺�))/r";
+SrcGame/src/Language/Chinese/C_sinMsg.h:313:char *Area17 ="�뾶:/r";
+SrcGame/src/Language/Chinese/C_sinMsg.h:325:char *Area18 = "��Ч�뾶:/r";
+SrcGame/src/Language/Chinese/C_sinMsg.h:548:	"���볷��˰����?.",
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:165:{"쫷�Ϯ��","����ǿ�ҵ���ת�������ˡ�",
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:177:{"����ǹ��",			"ͬʱ��������������ˣ����ܽ���������һ�ξ��롣",
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:202:{"ǹ֮쫷�",			"����ǿ����ת���������ĵ��ˡ�",
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:373:{"�������",			"�����Ч�뾶�ڵ����е��ˡ�",
+SrcGame/src/Language/Chinese/C_TextMessage.h:15:char *mgCloseGame = "�뿪��Ϸ";
+SrcGame/src/Language/Chinese/C_TextMessage.h:16:char *mgCloseWindow = "�����ȹر����д򿪵Ĵ��ڣ�Ȼ����뿪��Ϸ";
+SrcGame/src/Language/Chinese/C_TextMessage.h:17:char *mgCloseBattle = "ս���в����뿪��Ϸ";
+SrcGame/src/Language/Chinese/C_TimeLimit.h:7:char	*MSG_TL_3_30 = " ������ƣ����Ϸʱ��.������Ϸ���潫��Ϊ1/2.�뾡��������Ϣ,�ʵ��˶�,�������ѧϰ����. ";
+SrcGame/src/Language/Chinese/C_TimeLimit.h:10:char	*MSG_TL_X_00 = " �����벻������Ϸʱ��.��������Ϣ.������Ϸ�����ѽ�Ϊ0.����ʱ���ۼ���5Сʱ��ɻָ�����. ";
+SrcGame/src/Language/English/e_ServerMsg.h:249:    "?�תʪ����Ъ��Ǫ����ĪĪ��ƪ�룡",
+SrcGame/src/Language/English/e_ServerMsg.h:253:    "�ʪ�Ȫ��êƪ⪳�쪫�������������ԣ�"
+SrcGame/src/Language/English/e_ServerMsg.h:261:    "�᪸���ʪ��������٣���?���ƪ�롣",
+SrcGame/src/Language/English/e_ServerMsg.h:324:char *szMon_Curse_Soldier_A = "��쪿��ܲ";
+SrcGame/src/Language/English/e_ServerMsg.h:325:char *szMon_Curse_Soldier_B = "��쪿����ܲ";
+SrcGame/src/Language/English/e_ServerMsg.h:326:char *szMon_Curse_Soldier_C = "��쪿����ܲ";
+SrcGame/src/Language/English/e_ServerMsg.h:331:char *StateInitEvent2 = "���꫹���֪Ϫ⪦᮪êƪ롣��ê�鰪�����Ы����ƫ૷��ëת����êƪߪʪ�����";
+SrcGame/src/Language/English/E_Set_EventSpawn.h:19:	{ "�C�r�G�h�N�r��", "?�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "?�a?�X : ��Ɛ킢�����Ȃ�A�܂���̕�����?���Ă݂�I���������瑊�����Ă��I" },
+SrcGame/src/Language/English/E_Set_EventSpawn.h:20:	{ "�C�N���N�u��", "?�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "?�a?�X : ��Ɛ킢�����Ȃ�A�܂���̕�����?���Ă݂�I���������瑊�����Ă��I" },
+SrcGame/src/Language/English/E_Set_EventSpawn.h:21:	{ "�N�x���e�B�O�q", "?�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "?�a?�X : ��Ɛ킢�����Ȃ�A�܂���̕�����?���Ă݂�I���������瑊�����Ă��I" },
+SrcGame/src/Language/Japanese/J_clanText.h:138:�N�����Ɋւ��邷�ׂĂ̋L?���폜/n����܂��B/n/
+SrcGame/src/Language/Japanese/J_clanText.h:144:char *szSecessionMsg = "�N������މ��ƁA�N�����Ɋւ���??��/n�폜����܂��B/n?���ɑމ�܂����B/n";
+SrcGame/src/Language/Japanese/J_clanText.h:165:char *szDeleteChaReleaseBefore = "�폜����L�����N??�̓N����??�t�ł��B/n/
+SrcGame/src/Language/Japanese/J_clanText.h:166:�L�����N??��폜����ƃN�������U����܂��B/n/
+SrcGame/src/Language/Japanese/J_clanText.h:167:�L�����N??��폜���܂����B/n";
+SrcGame/src/Language/Japanese/J_clanText.h:171:char *szDeleteChaSecessionBefore = "�폜����L�����N??�̓N�����ɉ������Ă��܂��B/n/
+SrcGame/src/Language/Japanese/J_clanText.h:172:�L�����N??��폜����ƃN��������E�ނ��܂��B/n/
+SrcGame/src/Language/Japanese/J_clanText.h:173:�L�����N??��폜���܂����B/n";
+SrcGame/src/Language/Japanese/J_clanText.h:176:char *szDeleteChaError = "�N�����폜�Ɏ��s���܂����B/n�L�����N??��폜�ł��܂���B/n";
+SrcGame/src/Language/Japanese/J_HoTextFile.h:14:				 "  ���[�U�[ID�̍폜���/�����܂�Ă��܂� ",
+SrcGame/src/Language/Japanese/J_HoTextFile.h:25:char *HoTextSelectMessage[12] = { "�L�����N�^�[��폜���܂���",
+SrcGame/src/Language/Japanese/J_HoTextFile.h:28:				  "�L�����N�^�[���쐬����܂����B�ݒ��m�F���Ă�������", 
+SrcGame/src/Language/Japanese/J_HoTextFile.h:32:				  " �푰�̃}�[�N��N���b�N���Ă������� ", 
+SrcGame/src/Language/Japanese/J_HoTextFile.h:35:				  "�N�����`�[�t�͍폜�ł��܂���", 
+SrcGame/src/Language/Japanese/J_HoTextFile.h:39:char *HoTextTempscronInfo[5] = {" �e���X�N�������́A�퓬�͂���߂i�����Ă����푰�B�l�X�ȕ���𗘗p�������ʂȋZ�p������A�S�푰�̒��ŗB��@�B��������͂ȑ̗͂̎�����ł����B",
+SrcGame/src/Language/Japanese/J_HoTextFile.h:43:								" �p�C�N�}���́A����啐��Ƃ���L�����N�^�[�B���삪�L���A�ϋv�͂̍����X�P�[���A�[�}�[��D�ނ̂�����̂ЂƂB",
+SrcGame/src/Language/Japanese/J_HoTextFile.h:49:	"�v���X�g���嗤�̖k���ɏZ�ރ����C�I�����́A�v���g�X�Ƃ����_�Ɏd���ď@���I�ɐ����鉷���Ȏ푰�B�����C�I�����͖��@���������B���Ă���A��m�Ƃ����Ă�u�p���t���v���u�e�N�j�V�����v�Ƃ�����킢���𓾈ӂƂ���B�܂��A�S�̓I�ɖ��邭�ؗ�ȕ��͋C���Y���Ă���B",
+SrcGame/src/Language/Japanese/J_HoTextFile.h:52:	"�A�^�����^�́A�����C�I�����炵����ʗ͋�����ۂ�^���鏗���ŁA����g���Ă̍U���𓾈ӂƂ���B�e���X�N�������̎q�����Ƃ����/����邪�A�ڂ������Ƃ͂킩���Ă��Ȃ��B�����A��������̓����C�I�����炵�����͋C���Y���Ă���B",
+SrcGame/src/Language/Japanese/j_QuestMsg.h:58:	{	"���낵���I�[��"	    ,"���낵���I�[��(����)"       , "HaQuest//Quest_terrified_1start_T.msg" , "HaQuest//Quest_terrified_1end.msg" },
+SrcGame/src/Language/Japanese/j_QuestMsg.h:59:	{	"���낵���I�[��" 	    ,"���낵���I�[��(����)"       , "HaQuest//Quest_terrified_1start_M.msg" , "HaQuest//Quest_terrified_1end.msg" },
+SrcGame/src/Language/Japanese/J_ServerMsg.h:9:char *srMsg_009 = "�A�C�e��%s��쐬���܂����B";
+SrcGame/src/Language/Japanese/J_ServerMsg.h:48:char *srMsg_107 = "���̃��x���ł́A�Q���Ɋ댯�������܂��B�����΂炭�C�s�𑱂��Ă��������B";
+SrcGame/src/Language/Japanese/J_ServerMsg.h:69:	"�������푰�̕��Q���B ",
+SrcGame/src/Language/Japanese/J_ServerMsg.h:122:char *szMonsterFlagMsg= "�댯!�����X�^�[�o�v�n��";
+SrcGame/src/Language/Japanese/J_ServerMsg.h:138: 	"�ӂ��B���̉��l�A�I���T�ɒ��킷��Ƃͥ���g�̒��m�炸�߁I",
+SrcGame/src/Language/Japanese/J_ServerMsg.h:140: 	"�������΂�����̌I�͉����������A���O�ɂ�����Ă�낤���H",
+SrcGame/src/Language/Japanese/J_ServerMsg.h:142:	"�낢��邺��[�������Ă���āH�����S���H�ׂ��Ⴄ���I",
+SrcGame/src/Language/Japanese/J_ServerMsg.h:143:	"�����͂��O�ɂ�����邾�낤����I���H�ׂ�����������E ",
+SrcGame/src/Language/Japanese/J_ServerMsg.h:155:	"�I�݌ɐ؂�Ł[���B�낢��邺��[�����Ă��Ăˁ`�I�I",
+SrcGame/src/Language/Japanese/J_ServerMsg.h:223:	"����ȗ͂Ŗ����Ɛ킦�邩! ����ƏW������!!!",
+SrcGame/src/Language/Japanese/J_ServerMsg.h:231:	"����k�̃s�[���C�ɍs�����Ƃ��������烌�C�����ɂ�낵���`���Ă���B",
+SrcGame/src/Language/Japanese/J_ServerMsg.h:250:	"�����̃��J���f���^�E���ɍs�����Ƃ���������x���J���ɂ�낵���`���Ă���B",
+SrcGame/src/Language/Japanese/J_ServerMsg.h:284:char *srBlessCastle_LeagueMsg_01 = "����u���X�L���b�X������킪�ēx�s���܂��B�Q���������͏������Ă��������B"; 
+SrcGame/src/Language/Japanese/J_ServerMsg.h:285:char *srBlessCastle_LeagueMsg_02 = "�����A�u���X�L���b�X���̌���킪�n�܂�܂����B�Q�����ꂽ�F�l�撣���Ă��������B"; 
+SrcGame/src/Language/Japanese/J_ServerMsg.h:286:char *srBlessCastle_LeagueMsg_03 = "����킪�I������܂����B���Q���������F�l�A�L��������܂����B"; 
+SrcGame/src/Language/Japanese/J_ServerMsg.h:287:char *srBlessCastle_LeagueMsg_04 = "��������30����A�u���X�L���b�X������킪�n�܂�܂��B�Q���������͏������Ă��������B"; 
+SrcGame/src/Language/Japanese/J_ServerMsg.h:288:char *srBlessCastle_LeagueMsg_05 = "��������1���Ԍ�A�u���X�L���b�X������킪�n�܂�܂��B�Q���������͏������Ă��������B"; 
+SrcGame/src/Language/Japanese/J_ServerMsg.h:319:char *szMon_Curse_Soldier_C = "���ꂽ��앺";
+SrcGame/src/Language/Japanese/J_ServerMsg.h:320:char *szMon_Castledoor_Soldier = "����앺";
+SrcGame/src/Language/Japanese/J_Set_EventSpawn.h:19:	{ "�C�r�G�h�N�r��", "�_�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "�_�a�{�X : ��Ɛ킢�����Ȃ�A�܂���̕�����|���Ă݂�I���������瑊�����Ă��I" },
+SrcGame/src/Language/Japanese/J_Set_EventSpawn.h:20:	{ "�C�N���N�u��", "�_�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "�_�a�{�X : ��Ɛ킢�����Ȃ�A�܂���̕�����|���Ă݂�I���������瑊�����Ă��I" },
+SrcGame/src/Language/Japanese/J_Set_EventSpawn.h:21:	{ "�N�x���e�B�O�q", "�_�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "�_�a�{�X : ��Ɛ킢�����Ȃ�A�܂���̕�����|���Ă݂�I���������瑊�����Ă��I" },
+SrcGame/src/Language/Japanese/J_sinMsg.h:60:	{"�u���X�L���b�X���ֈړ��ł��܂���B�i���₢���킹���������j"},
+SrcGame/src/Language/Japanese/J_sinMsg.h:72:	{"�_�Αg���킹��Ԃł̎������͂ł��܂���"},
+SrcGame/src/Language/Japanese/J_sinMsg.h:73:	{"�_�Αg���킹��Ԃŕ��������Ƃ͂ł��܂���"},
+SrcGame/src/Language/Japanese/J_sinMsg.h:77:	{"�_�΂�쐬���͍z��/������ړ������邱�Ƃ��ł��܂���B"}, 
+SrcGame/src/Language/Japanese/J_sinMsg.h:78:	{"���[����쐬���̓��V�s��ړ������邱�Ƃ��ł��܂���B"}, 
+SrcGame/src/Language/Japanese/J_sinMsg.h:168:	{"�A�C�e��", "�𐻍삵�܂���?"}, 
+SrcGame/src/Language/Japanese/J_sinMsg.h:341:char *IncreWeaponAttack_RateName = "���햽���͑���:/r";
+SrcGame/src/Language/Japanese/J_sinMsg.h:541:char *sinEvent87 = "�댯�ȃR���N�V�����̂��肢";
+SrcGame/src/Language/Japanese/J_sinMsg.h:592:	"�����Ō������ꂽ�퓬����",
+SrcGame/src/Language/Japanese/J_sinMsg.h:593:	"�l�i����������ɐ퓬�͂���Ԏア�ł��B",
+SrcGame/src/Language/Japanese/J_sinMsg.h:599:	"�����̐퓬�͂�����Ă��܂��B",
+SrcGame/src/Language/Japanese/J_sinMsg.h:605:	"�퓬�͂���ԋ����ł��B",
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:64:{"�X�p�[�N�V�[���h",		"�U�������������ɋ����d�C�Ռ���^����ی얋����B",
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:205:{"�X�s�A�f�B�t�F���X",		"���n�̕���𗘗p�����퓬���ɕ���Ŗh�䂷��Z�p��K������B",
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:581:{"�T�������X�y��",	"�A���f�b�g�U���̈ꕔ��z�����A�����҂�ی삷��V�g���������",
+SrcGame/src/Language/Japanese/J_TextMessage.h:17:char *mgCloseBattle = "�퓬���͏I���ł��܂���B";
+SrcGame/src/Language/Korean/k_ServerMsg.h:74:	"�츮�� �������� ����.",
+SrcGame/src/Language/Korean/k_ServerMsg.h:76:	"�츮�� �������� ����."
+SrcGame/src/Language/Korean/k_ServerMsg.h:117:	"������~�� ���� �츮 ���� �������Ʈ��~!",
+SrcGame/src/Language/Korean/k_ServerMsg.h:120:	"�� ������� �뼭 �ޱ� �ٶ��~? ",
+SrcGame/src/Language/Korean/k_ServerMsg.h:128:	"��! ���� ��, �޹���ģ ���뿡�� �����ϴٴ�.",
+SrcGame/src/Language/Korean/k_ServerMsg.h:191:	"���� �̰��뽺�� �����ϰ� ���� ���� ���� ���� ��!",
+SrcGame/src/Language/Korean/k_ServerMsg.h:205:	"�̷����� ����Ʈ ����Ʈ�� �츱�� �ְڴ���!",
+SrcGame/src/Language/Korean/k_ServerMsg.h:206:	"��ų��뿡 ��ƴ�� ���̴±�! ������ ������!",
+SrcGame/src/Language/Korean/k_ServerMsg.h:209:	"�츮 ����̿��� �⺻�� �ž��� ���������ϴ� ������ �����̴�! ���� �������� ���ݿ� ������!",
+SrcGame/src/Language/Korean/k_ServerMsg.h:227:	"�ϰ� �츮 �ֱ� ���ȴ�?",
+SrcGame/src/Language/Korean/k_ServerMsg.h:293:	"�ѱ��� �츮�� ù�� �����̾�!!",
+SrcGame/src/Language/Korean/k_ServerMsg.h:294:	"���Ѷ�. �ѱ� 16���� �츮�� �����Ѵ�",
+SrcGame/src/Language/Korean/k_ServerMsg.h:299:	"�� ���� ������ ���뽺���� ���ָ�",
+SrcGame/src/Language/Korean/k_ServerMsg.h:326:	"��~ �� �뵥..�ΰ����",
+SrcGame/src/Language/Korean/k_ServerMsg.h:327:	"���뱳ü�� �̷�� ���� ���� ���� ���̱���.",
+SrcGame/src/Language/Korean/k_ServerMsg.h:329:	"�� ���� ���ѹα��� ��� �걸��, �����ſ��� ���� �͵� �����~ -.��"
+SrcGame/src/Language/taiwan/T_HoTextFile.h:50:	"�~��b���F�j�����_���A�H���ۦW�sPritos�����C�L�̥H��w���H���A�۹ꪺ�ʮ�A�x�j�a�ͬ��b���F�j���C�L�����M�O�өʳ�ª��رڡA���]���h���h������ơA���H�n�_�C�믫�׾i�������峣�P�˨���L�̪������A�o�i�X�W�S���H���P�]�k�A����ۥѨϥΥL�̪��믫�O�q�C",
+SrcGame/src/Language/taiwan/T_HoTextFile.h:52:    "�Ӯ�ªZ���]�C�h�֦��j�j���믫�O�P��O�A��B�ί��t���O�q�����ĤH�C�b�]�O�����@�ɤ��O�۷�F�`���e�W������C",
+SrcGame/src/Language/taiwan/T_sinMsg.h:70:	"        �^�쳥�~     ",
+SrcGame/src/Language/taiwan/T_sinMsg.h:71:	"        �^�쫰��     ",
+SrcGame/src/Language/taiwan/T_sinMsg.h:80:	"      ����^�쳥�~   ",
+SrcGame/src/Language/taiwan/T_sinMsg.h:98:char *TownName[3] = {"�^���d�n��/r","�^��Ǻ�����/r","�^���֥쫰/r"};
+SrcGame/src/Language/taiwan/T_sinMsg.h:217:char *LinkCoreName = "���ʨ줽�|�|��/r";
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:24:{"�F���@��",		"�V���۵M�ɤ��F��A�Ȯɱj�ƨ���A����쪫�z�������ˮ`�C",
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:71:{"�k�P�F��",		"�N�����R���v���ɨ췥���A�����ĤH�ֳ̧t���ˮ`�C",
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:86:{"�z���꾽",		"����������O�A�ƨg�a�i�淴���ʪ������C",
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:145:{"�e�����b",			"�g�X�p�e���뭸�֪��b�A���������O�M�����t�סC",
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:166:{"�g�ɽb�B",		"�e�`��������A�Ϯg�X���b�b�ĤH���W�Űn���A�p�P�ɫB�몺���˼ĤH�C",
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:171:{"���Y�b�P",			"�b�@�����l�g�p���Y�몺�j�q�b�ڡA�T�S�ĤH�C",
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:209:{"�g�òr��",			"�H�j�P������O�q�P�믫�O�q�����ĤH�C",
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:214:{"���K�믫",	"�@�w�ɶ����������m�O�C",
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:226:{"�ƪ�j�N",			"�ֳt�{�ʪ����j�A�����p��ä���Ư몺�ݼv�A�H��t�����Ӯ����ĤH�C",
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:277:{"���t�믫",			"�H���t��ë�i�A�z�ƼĤH�����c���O�C",
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:314:{"�����ާ�",			"�H�j�j���믫�O�A�b�@�w���ɶ����ɤ����ݩʡA�Ϩ��m�[���C",
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:324:{"�믫�Τ@",	"�W�[�]�k�ȳ̤j�ȡC",
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:334:{"�����W�O",	"�⤸���ݩʽᤩ�춤�����Z���W�C",
+SrcGame/src/Server/OnSever.cpp:4101:	{ { "����" , 0, 40 }		, { "�뾲����", 0, 40 }		, { "�������� Ʈ��", 0, 20 }		, { "", 0, 0 }		, { "", 0, 0 }		, 100 , 6 , 0 , 40	,	SOD_DEFAULT_DELAY	},
+SrcGame/src/Server/OnSever.cpp:4107:	{ { "�ٿ츰" , 0, 30 }			, { "��Ƽ����", 0, 40 }	, { "��ũ", 0, 20 }	, { "�� ����", 0, 10 }	, { "", 0, 0 }		, 100 , 21 , 0 , 20,	SOD_DEFAULT_DELAY * 3	},
+SrcGame/src/sinbaram/sinMsg.cpp:29:	{"Ŭ������ ��밡���մϴ� "},
+SrcGame/src/sinbaram/sinMsg.cpp:52:	{"  ��� ���긦 ����Ҽ� ���� �����Դϴ�  "},
+SrcGame/src/sinbaram/sinMsg.cpp:53:	{"     ���� ���갡 ������Դϴ�    "},
+SrcGame/src/sinbaram/sinMsg.cpp:67:	{"�뺴���ڸ� �ʰ� �Ͽ����ϴ�."},
+SrcGame/src/sinbaram/sinMsg.cpp:80:	{"����Ŀ� ��밡�� �մϴ�"},
+SrcGame/src/sinbaram/sinMsg.cpp:90:	{"�� �������� 10�������� ��밡���մϴ�."},
+SrcGame/src/sinbaram/sinMsg.cpp:122:	{"����� �뺴��","�����Ͻðڽ��ϱ�?"}
+SrcGame/src/sinbaram/sinMsg.cpp:252:char *UseItemGroupName = "��밡�� �����۱�/r";
+SrcGame/src/sinbaram/sinMsg.cpp:318:char *SparkNum7 = "�ִ뽺��ũ��:/r";
+SrcGame/src/sinbaram/sinMsg.cpp:354:char *WarpGateName[] = { "���� ����Ʈ","�� ī �� ��","�ʶ��� Ÿ��","Ȳȥ��  ��","�볪��  ��","���̳� �����","�׺��� Ÿ��","�ݴ���  ��","���� �����","�ν�Ʈ���Ϸ���" };
+SrcGame/src/sinbaram/sinMsg.cpp:429:char *MaxBoltNum4 = "�ִ뺼Ʈ:/r";
+SrcGame/src/sinbaram/sinMsg.cpp:480:char *BrandishDamage3 = "�귻�� ������";
+SrcGame/src/sinbaram/sinMsg.cpp:493:						 "�������� ����","���ƽý� ����","��밨��1�� ����" };
+SrcGame/src/sinbaram/sinMsg.cpp:532:char *MagicalGreenJadeItem = "7���� ���븦";
+SrcGame/src/sinbaram/sinMsg.cpp:561:char *SheltomName2[] = { "������","�극�׿�","�ĵ���","����Ű","���̴�Ʈ","Ʈ�����з�","��Ű","�����","��������", "�̶���", "���丣��", "�̴ϱ׸�" };
+SrcGame/src/sinbaram/sinMsg.cpp:580:"���� ����Ʈ�󿡼� �츮 Ŭ������ ����",
+SrcGame/src/sinbaram/sinMsg.cpp:585:"���� ����Ʈ�󿡼� �츮 Ŭ������ ����",
+SrcGame/src/sinbaram/sinMsg.cpp:607:	"�ִ�뺴�ο�:20 / %d",
+SrcGame/src/sinbaram/sinMsg.cpp:611:	"���� ���� ��� ���� �ִ� �뺴����",
+SrcGame/src/sinbaram/sinMsg.cpp:613:	"�ִ�뺴�ο�:20 / %d",
+SrcGame/src/sinbaram/sinMsg.cpp:617:	"���� ������ ��� �뺴���μ�",
+SrcGame/src/sinbaram/sinMsg.cpp:619:	"�ִ�뺴�ο�:20 / %d",
+SrcGame/src/sinbaram/sinMsg.cpp:639:char *SiegeMessage_MerMoney = "�뺴 ���: ";
+SrcGame/src/sinbaram/sinMsg.cpp:692:	"�ٿ츰",
+SrcGame/src/sinbaram/sinMsg.cpp:750:char *SiegeMessage_MerComplete = "�뺴���� �Ϸ�";
+SrcGame/src/sinbaram/sinMsg.cpp:757:	"�뾲����",
+SrcGame/src/sinbaram/sinSkill.cpp:201:	{"�ַο� ���극����",SKILL_ARROW_OF_RAGE	,"TA26 A_Rage"},
+SrcGame/src/sinbaram/sinSkill.cpp:222:	{"Ȧ�� �뷯"	    ,SKILL_HOLY_VALOR       ,"MN20 H_Valor","Kt2_H_VALOR.tga"},
+SrcGame/src/sinbaram/sinSkill.cpp:223:	{"�귣��"	        ,SKILL_BRANDISH         ,"MN23 Brandish"},
+SrcGame/src/sinbaram/sinSkill.cpp:227:	{"������ �귣��"	,SKILL_SWORD_MASTERY   ,"MN40 S_Mastery"},
+SrcGame/src/sinbaram/sinSkill.cpp:4051:			wsprintf(szTempSkillDoc2, "%d + %d/r", T_Of_Valhalla_Damage[pSkill->Point + i - 1], sinChar->Level / 4); // �庰 - ��ų�뷱�� ����(10.08.10)
+SrcGame/src/sinbaram/sinSkill.cpp:4160:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcGame/src/sinbaram/sinSkill.cpp:4185:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcGame/src/sinbaram/sinSkill.cpp:4210:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcGame/src/sinbaram/sinSkill.cpp:4318:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcGame/src/sinbaram/sinSkill.cpp:4351:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcGame/src/sinbaram/sinSkill.cpp:4415:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcGame/src/sinbaram/sinSkill.cpp:4480:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcGame/src/sinbaram/sinSkill.cpp:4862:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:3://ͽƮ   // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:13:// ۼҼ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:28://ƽø  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:33://̼   // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:39://ũ  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:44://Ż Ƹ  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:49://׷ ޽  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:54://ī  ͸ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:57://ũ   // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:103://Ʈ̼ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:115://Ʈ  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:171://Ͻ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:178://ũƼ ͸ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:209://Ǹ   // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:220://  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:232://  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:257://Ȧ ٵ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:270://Ȧ   // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:275://귻
+SrcGame/src/sinbaram/sinSkill_Info.cpp:285://巡ƽ Ǹ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:290://ҵ ͸  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:293:// 귻 
+SrcGame/src/sinbaram/sinSkill_Info.cpp:297:// Ȧ̼ (  ̸ ٲ) // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:303://Ȧ ̼ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:326:// ͸ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:333:// // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:343://ҿ Ŀ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:351://ø  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:358://Ʈ̾  Ҷ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:367://  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:373:// // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:377://Ȧ Ʈ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:381://Ƽũ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:395:// Ʈ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:400://Ȧ ÷ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:405://׷  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:410://  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:424://߾  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:434://̾ Ʈ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:438://Ͼ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:443://̾  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:452://̵ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:458://þƮ  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:465://  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:470://  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:475://ƽƮ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:480://Ǹ Ż // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:486:// ҵ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:506://޼ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:512://׳ƽ Ǿ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:520://Ż  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:534://Ŀ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:548://νƮ ｺ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:565://̱  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:585://̺̼ ͸  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:593://   // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:624://Ȧ  Ҷ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:634://νƮ  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:642://  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:650://۷ ũ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:663://üζƮ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:670://  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:681://̾ Ż  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:688://÷ ̺  // 庰 - ų뷱 (10.08.10)
+SrcGame/src/sinbaram/sinSkill_Info.cpp:702://ƼƮ // 庰 - ų뷱 (10.08.10)
+SrcGame/src/fileread.cpp:121:	"*���빫��",
+SrcGame/src/fileread.cpp:2403:	if(!flag && (lstrcmp(decode, "*�뺸�ּ�") == 0 ||
+SrcGame/src/fileread.cpp:4783:		if(!NextFlag && (lstrcmp(decode, "*�ִ뵿��������") == 0 || lstrcmp(decode, "*MAX_ACTOR_POS") == 0))
+
+============================================================
+HANGUL / COREANO - SERVIDOR
+============================================================
+SrcServer/src/Language/Brazil/b_Set_EventSpawn.h:19:	{ "�C�r�G�h�N�r��", "?�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "?�a?�X : ��Ɛ킢�����Ȃ�A�܂���̕�����?���Ă݂�I���������瑊�����Ă��I" },
+SrcServer/src/Language/Brazil/b_Set_EventSpawn.h:20:	{ "�C�N���N�u��", "?�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "?�a?�X : ��Ɛ킢�����Ȃ�A�܂���̕�����?���Ă݂�I���������瑊�����Ă��I" },
+SrcServer/src/Language/Brazil/b_Set_EventSpawn.h:21:	{ "�N�x���e�B�O�q", "?�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "?�a?�X : ��Ɛ킢�����Ȃ�A�܂���̕�����?���Ă݂�I���������瑊�����Ă��I" },
+SrcServer/src/Language/Brazil/b_sinMsg.h:779:char *MagicalGreenJadeItem = "7���� ���븦";
+SrcServer/src/Language/Chinese/C_clanText.h:48:�޷��쵼���� /n/
+SrcServer/src/Language/Chinese/C_clanText.h:59:char *szJoin = "�������� : %s/n�᳤���� : %s/n/n���������빫��./n/
+SrcServer/src/Language/Chinese/C_clanText.h:60:Ҫ���빫����?/n";
+SrcServer/src/Language/Chinese/C_clanText.h:114:char *szClanJoinCancelMsg = "%s �ܾ��˼��빫�������/n";
+SrcServer/src/Language/Chinese/C_clanText.h:116:char *szClanJoinsucesssMsg = "������%s �� /n���빫������./n"; 
+SrcServer/src/Language/Chinese/C_clanText.h:148:char *szNoName = "�����빫������./n";
+SrcServer/src/Language/Chinese/C_clanText.h:167:char *szClanWon6Down = "�����Ա����6��./n�뾡���ټ��µĳ�Ա/n/n/
+SrcServer/src/Language/Chinese/C_clanText.h:171:char *szClanUserNoMakeMsg = "��������: %s/n�������빫��.";
+SrcServer/src/Language/Chinese/C_HoTextFile.h:13:				"�������㣬�뵽http:
+SrcServer/src/Language/Chinese/C_HoTextFile.h:46:		" �ó�Զ���빥������Ҫʹ�ù�������������̬��ӯ��������ݡ� ",
+SrcServer/src/Language/Chinese/C_PartyMsg.h:6:char *srPartyMsg5 = "%s�뿪�˶���";
+SrcServer/src/Language/Chinese/C_ServerMsg.h:23:char *srMsg_022 = "���Ѿ��뿪�˶��顣";
+SrcServer/src/Language/Chinese/C_ServerMsg.h:44:char *srMsg_102 = "����������ߵȼ��޲����޻���볡ȯ.�볡ȯֻ��10��Ԫ.^^";
+SrcServer/src/Language/Chinese/C_ServerMsg.h:48:char *srMsg_106 = "Ŀǰ�볡ȯ�Ѿ�ȫ������";
+SrcServer/src/Language/Chinese/C_ServerMsg.h:51:char *srMsg_110 = "����Ŷ��뿪(no.%d) ������%dGold";
+SrcServer/src/Language/Chinese/C_ServerMsg.h:58:char *srMsg_300 = "     ��������루�绰���룩����ȷ!";
+SrcServer/src/Language/Chinese/C_ServerMsg.h:71:	"�벻Ҫ����ĥ������.",
+SrcServer/src/Language/Chinese/C_ServerMsg.h:73:	"�벻Ҫ����ĥ������."
+SrcServer/src/Language/Chinese/C_ServerMsg.h:92:	"��Ҳ������ ~ ������취ʹ��ǿ׳�� ?",
+SrcServer/src/Language/Chinese/C_ServerMsg.h:157:	"Ŷ�ҵ��찡! ��ֻ���˺��ٵġ�",
+SrcServer/src/Language/Chinese/C_ServerMsg.h:237:     	"��һ��Ҫʹ�Լ��ļ������죬�ڻ�����֮�� .",
+SrcServer/src/Language/Chinese/C_ServerMsg.h:238:      	"�Դ������������뿪�Ժ��Ѿ�������ô�� !",
+SrcServer/src/Language/Chinese/C_sinMsg.h:76:	{"����ʹ���뵱ǰ����һ����Ⱦ����."},
+SrcServer/src/Language/Chinese/C_sinMsg.h:82:	{"���칫ʽ������˳�����"}, 
+SrcServer/src/Language/Chinese/C_sinMsg.h:86:	{"������Ʒ","���빺��?"},
+SrcServer/src/Language/Chinese/C_sinMsg.h:91:	{"���ٽ�Ǯ "," ���뽻��?"},
+SrcServer/src/Language/Chinese/C_sinMsg.h:94:	{"�������� ","���빺��?"},
+SrcServer/src/Language/Chinese/C_sinMsg.h:97:	{"������Ʒ","���빺��?"},  
+SrcServer/src/Language/Chinese/C_sinMsg.h:143:	{"���빺��","һ��ˮ������?"},      
+SrcServer/src/Language/Chinese/C_sinMsg.h:166:	"     �뿪��Ϸ"
+SrcServer/src/Language/Chinese/C_sinMsg.h:179:	"        �뿪��Ϸ     ",
+SrcServer/src/Language/Chinese/C_sinMsg.h:303:char *sinFireBallDamage3 = "(�����뾶 60  (1/3 �˺�))/r";
+SrcServer/src/Language/Chinese/C_sinMsg.h:313:char *Area17 ="�뾶:/r";
+SrcServer/src/Language/Chinese/C_sinMsg.h:325:char *Area18 = "��Ч�뾶:/r";
+SrcServer/src/Language/Chinese/C_sinMsg.h:548:	"���볷��˰����?.",
+SrcServer/src/Language/Chinese/C_sinSkill_Info.h:165:{"쫷�Ϯ��","����ǿ�ҵ���ת�������ˡ�",
+SrcServer/src/Language/Chinese/C_sinSkill_Info.h:177:{"����ǹ��",			"ͬʱ��������������ˣ����ܽ���������һ�ξ��롣",
+SrcServer/src/Language/Chinese/C_sinSkill_Info.h:202:{"ǹ֮쫷�",			"����ǿ����ת���������ĵ��ˡ�",
+SrcServer/src/Language/Chinese/C_sinSkill_Info.h:373:{"�������",			"�����Ч�뾶�ڵ����е��ˡ�",
+SrcServer/src/Language/Chinese/C_TextMessage.h:15:char *mgCloseGame = "�뿪��Ϸ";
+SrcServer/src/Language/Chinese/C_TextMessage.h:16:char *mgCloseWindow = "�����ȹر����д򿪵Ĵ��ڣ�Ȼ����뿪��Ϸ";
+SrcServer/src/Language/Chinese/C_TextMessage.h:17:char *mgCloseBattle = "ս���в����뿪��Ϸ";
+SrcServer/src/Language/Chinese/C_TimeLimit.h:7:char	*MSG_TL_3_30 = " ������ƣ����Ϸʱ��.������Ϸ���潫��Ϊ1/2.�뾡��������Ϣ,�ʵ��˶�,�������ѧϰ����. ";
+SrcServer/src/Language/Chinese/C_TimeLimit.h:10:char	*MSG_TL_X_00 = " �����벻������Ϸʱ��.��������Ϣ.������Ϸ�����ѽ�Ϊ0.����ʱ���ۼ���5Сʱ��ɻָ�����. ";
+SrcServer/src/Language/English/e_ServerMsg.h:249:    "?�תʪ����Ъ��Ǫ����ĪĪ��ƪ�룡",
+SrcServer/src/Language/English/e_ServerMsg.h:253:    "�ʪ�Ȫ��êƪ⪳�쪫�������������ԣ�"
+SrcServer/src/Language/English/e_ServerMsg.h:261:    "�᪸���ʪ��������٣���?���ƪ�롣",
+SrcServer/src/Language/English/e_ServerMsg.h:324:char *szMon_Curse_Soldier_A = "��쪿��ܲ";
+SrcServer/src/Language/English/e_ServerMsg.h:325:char *szMon_Curse_Soldier_B = "��쪿����ܲ";
+SrcServer/src/Language/English/e_ServerMsg.h:326:char *szMon_Curse_Soldier_C = "��쪿����ܲ";
+SrcServer/src/Language/English/e_ServerMsg.h:331:char *StateInitEvent2 = "���꫹���֪Ϫ⪦᮪êƪ롣��ê�鰪�����Ы����ƫ૷��ëת����êƪߪʪ�����";
+SrcServer/src/Language/English/E_Set_EventSpawn.h:19:	{ "�C�r�G�h�N�r��", "?�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "?�a?�X : ��Ɛ킢�����Ȃ�A�܂���̕�����?���Ă݂�I���������瑊�����Ă��I" },
+SrcServer/src/Language/English/E_Set_EventSpawn.h:20:	{ "�C�N���N�u��", "?�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "?�a?�X : ��Ɛ킢�����Ȃ�A�܂���̕�����?���Ă݂�I���������瑊�����Ă��I" },
+SrcServer/src/Language/English/E_Set_EventSpawn.h:21:	{ "�N�x���e�B�O�q", "?�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "?�a?�X : ��Ɛ킢�����Ȃ�A�܂���̕�����?���Ă݂�I���������瑊�����Ă��I" },
+SrcServer/src/Language/Japanese/J_clanText.h:138:�N�����Ɋւ��邷�ׂĂ̋L?���폜/n����܂��B/n/
+SrcServer/src/Language/Japanese/J_clanText.h:144:char *szSecessionMsg = "�N������މ��ƁA�N�����Ɋւ���??��/n�폜����܂��B/n?���ɑމ�܂����B/n";
+SrcServer/src/Language/Japanese/J_clanText.h:165:char *szDeleteChaReleaseBefore = "�폜����L�����N??�̓N����??�t�ł��B/n/
+SrcServer/src/Language/Japanese/J_clanText.h:166:�L�����N??��폜����ƃN�������U����܂��B/n/
+SrcServer/src/Language/Japanese/J_clanText.h:167:�L�����N??��폜���܂����B/n";
+SrcServer/src/Language/Japanese/J_clanText.h:171:char *szDeleteChaSecessionBefore = "�폜����L�����N??�̓N�����ɉ������Ă��܂��B/n/
+SrcServer/src/Language/Japanese/J_clanText.h:172:�L�����N??��폜����ƃN��������E�ނ��܂��B/n/
+SrcServer/src/Language/Japanese/J_clanText.h:173:�L�����N??��폜���܂����B/n";
+SrcServer/src/Language/Japanese/J_clanText.h:176:char *szDeleteChaError = "�N�����폜�Ɏ��s���܂����B/n�L�����N??��폜�ł��܂���B/n";
+SrcServer/src/Language/Japanese/J_HoTextFile.h:14:				 "  ���[�U�[ID�̍폜���/�����܂�Ă��܂� ",
+SrcServer/src/Language/Japanese/J_HoTextFile.h:25:char *HoTextSelectMessage[12] = { "�L�����N�^�[��폜���܂���",
+SrcServer/src/Language/Japanese/J_HoTextFile.h:28:				  "�L�����N�^�[���쐬����܂����B�ݒ��m�F���Ă�������", 
+SrcServer/src/Language/Japanese/J_HoTextFile.h:32:				  " �푰�̃}�[�N��N���b�N���Ă������� ", 
+SrcServer/src/Language/Japanese/J_HoTextFile.h:35:				  "�N�����`�[�t�͍폜�ł��܂���", 
+SrcServer/src/Language/Japanese/J_HoTextFile.h:39:char *HoTextTempscronInfo[5] = {" �e���X�N�������́A�퓬�͂���߂i�����Ă����푰�B�l�X�ȕ���𗘗p�������ʂȋZ�p������A�S�푰�̒��ŗB��@�B��������͂ȑ̗͂̎�����ł����B",
+SrcServer/src/Language/Japanese/J_HoTextFile.h:43:								" �p�C�N�}���́A����啐��Ƃ���L�����N�^�[�B���삪�L���A�ϋv�͂̍����X�P�[���A�[�}�[��D�ނ̂�����̂ЂƂB",
+SrcServer/src/Language/Japanese/J_HoTextFile.h:49:	"�v���X�g���嗤�̖k���ɏZ�ރ����C�I�����́A�v���g�X�Ƃ����_�Ɏd���ď@���I�ɐ����鉷���Ȏ푰�B�����C�I�����͖��@���������B���Ă���A��m�Ƃ����Ă�u�p���t���v���u�e�N�j�V�����v�Ƃ�����킢���𓾈ӂƂ���B�܂��A�S�̓I�ɖ��邭�ؗ�ȕ��͋C���Y���Ă���B",
+SrcServer/src/Language/Japanese/J_HoTextFile.h:52:	"�A�^�����^�́A�����C�I�����炵����ʗ͋�����ۂ�^���鏗���ŁA����g���Ă̍U���𓾈ӂƂ���B�e���X�N�������̎q�����Ƃ����/����邪�A�ڂ������Ƃ͂킩���Ă��Ȃ��B�����A��������̓����C�I�����炵�����͋C���Y���Ă���B",
+SrcServer/src/Language/Japanese/j_QuestMsg.h:58:	{	"���낵���I�[��"	    ,"���낵���I�[��(����)"       , "HaQuest//Quest_terrified_1start_T.msg" , "HaQuest//Quest_terrified_1end.msg" },
+SrcServer/src/Language/Japanese/j_QuestMsg.h:59:	{	"���낵���I�[��" 	    ,"���낵���I�[��(����)"       , "HaQuest//Quest_terrified_1start_M.msg" , "HaQuest//Quest_terrified_1end.msg" },
+SrcServer/src/Language/Japanese/J_ServerMsg.h:9:char *srMsg_009 = "�A�C�e��%s��쐬���܂����B";
+SrcServer/src/Language/Japanese/J_ServerMsg.h:48:char *srMsg_107 = "���̃��x���ł́A�Q���Ɋ댯�������܂��B�����΂炭�C�s�𑱂��Ă��������B";
+SrcServer/src/Language/Japanese/J_ServerMsg.h:69:	"�������푰�̕��Q���B ",
+SrcServer/src/Language/Japanese/J_ServerMsg.h:122:char *szMonsterFlagMsg= "�댯!�����X�^�[�o�v�n��";
+SrcServer/src/Language/Japanese/J_ServerMsg.h:138: 	"�ӂ��B���̉��l�A�I���T�ɒ��킷��Ƃͥ���g�̒��m�炸�߁I",
+SrcServer/src/Language/Japanese/J_ServerMsg.h:140: 	"�������΂�����̌I�͉����������A���O�ɂ�����Ă�낤���H",
+SrcServer/src/Language/Japanese/J_ServerMsg.h:142:	"�낢��邺��[�������Ă���āH�����S���H�ׂ��Ⴄ���I",
+SrcServer/src/Language/Japanese/J_ServerMsg.h:143:	"�����͂��O�ɂ�����邾�낤����I���H�ׂ�����������E ",
+SrcServer/src/Language/Japanese/J_ServerMsg.h:155:	"�I�݌ɐ؂�Ł[���B�낢��邺��[�����Ă��Ăˁ`�I�I",
+SrcServer/src/Language/Japanese/J_ServerMsg.h:223:	"����ȗ͂Ŗ����Ɛ킦�邩! ����ƏW������!!!",
+SrcServer/src/Language/Japanese/J_ServerMsg.h:231:	"����k�̃s�[���C�ɍs�����Ƃ��������烌�C�����ɂ�낵���`���Ă���B",
+SrcServer/src/Language/Japanese/J_ServerMsg.h:250:	"�����̃��J���f���^�E���ɍs�����Ƃ���������x���J���ɂ�낵���`���Ă���B",
+SrcServer/src/Language/Japanese/J_ServerMsg.h:284:char *srBlessCastle_LeagueMsg_01 = "����u���X�L���b�X������킪�ēx�s���܂��B�Q���������͏������Ă��������B"; 
+SrcServer/src/Language/Japanese/J_ServerMsg.h:285:char *srBlessCastle_LeagueMsg_02 = "�����A�u���X�L���b�X���̌���킪�n�܂�܂����B�Q�����ꂽ�F�l�撣���Ă��������B"; 
+SrcServer/src/Language/Japanese/J_ServerMsg.h:286:char *srBlessCastle_LeagueMsg_03 = "����킪�I������܂����B���Q���������F�l�A�L��������܂����B"; 
+SrcServer/src/Language/Japanese/J_ServerMsg.h:287:char *srBlessCastle_LeagueMsg_04 = "��������30����A�u���X�L���b�X������킪�n�܂�܂��B�Q���������͏������Ă��������B"; 
+SrcServer/src/Language/Japanese/J_ServerMsg.h:288:char *srBlessCastle_LeagueMsg_05 = "��������1���Ԍ�A�u���X�L���b�X������킪�n�܂�܂��B�Q���������͏������Ă��������B"; 
+SrcServer/src/Language/Japanese/J_ServerMsg.h:319:char *szMon_Curse_Soldier_C = "���ꂽ��앺";
+SrcServer/src/Language/Japanese/J_ServerMsg.h:320:char *szMon_Castledoor_Soldier = "����앺";
+SrcServer/src/Language/Japanese/J_Set_EventSpawn.h:19:	{ "�C�r�G�h�N�r��", "�_�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "�_�a�{�X : ��Ɛ킢�����Ȃ�A�܂���̕�����|���Ă݂�I���������瑊�����Ă��I" },
+SrcServer/src/Language/Japanese/J_Set_EventSpawn.h:20:	{ "�C�N���N�u��", "�_�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "�_�a�{�X : ��Ɛ킢�����Ȃ�A�܂���̕�����|���Ă݂�I���������瑊�����Ă��I" },
+SrcServer/src/Language/Japanese/J_Set_EventSpawn.h:21:	{ "�N�x���e�B�O�q", "�_�a�鏑 : ��͂������O�o���Ă���܂��B�܂�������炵�Ă��������܂����H" , "�_�a�{�X : ��Ɛ킢�����Ȃ�A�܂���̕�����|���Ă݂�I���������瑊�����Ă��I" },
+SrcServer/src/Language/Japanese/J_sinMsg.h:60:	{"�u���X�L���b�X���ֈړ��ł��܂���B�i���₢���킹���������j"},
+SrcServer/src/Language/Japanese/J_sinMsg.h:72:	{"�_�Αg���킹��Ԃł̎������͂ł��܂���"},
+SrcServer/src/Language/Japanese/J_sinMsg.h:73:	{"�_�Αg���킹��Ԃŕ��������Ƃ͂ł��܂���"},
+SrcServer/src/Language/Japanese/J_sinMsg.h:77:	{"�_�΂�쐬���͍z��/������ړ������邱�Ƃ��ł��܂���B"}, 
+SrcServer/src/Language/Japanese/J_sinMsg.h:78:	{"���[����쐬���̓��V�s��ړ������邱�Ƃ��ł��܂���B"}, 
+SrcServer/src/Language/Japanese/J_sinMsg.h:168:	{"�A�C�e��", "�𐻍삵�܂���?"}, 
+SrcServer/src/Language/Japanese/J_sinMsg.h:341:char *IncreWeaponAttack_RateName = "���햽���͑���:/r";
+SrcServer/src/Language/Japanese/J_sinMsg.h:541:char *sinEvent87 = "�댯�ȃR���N�V�����̂��肢";
+SrcServer/src/Language/Japanese/J_sinMsg.h:592:	"�����Ō������ꂽ�퓬����",
+SrcServer/src/Language/Japanese/J_sinMsg.h:593:	"�l�i����������ɐ퓬�͂���Ԏア�ł��B",
+SrcServer/src/Language/Japanese/J_sinMsg.h:599:	"�����̐퓬�͂�����Ă��܂��B",
+SrcServer/src/Language/Japanese/J_sinMsg.h:605:	"�퓬�͂���ԋ����ł��B",
+SrcServer/src/Language/Japanese/J_sinSkill_Info.h:64:{"�X�p�[�N�V�[���h",		"�U�������������ɋ����d�C�Ռ���^����ی얋����B",
+SrcServer/src/Language/Japanese/J_sinSkill_Info.h:205:{"�X�s�A�f�B�t�F���X",		"���n�̕���𗘗p�����퓬���ɕ���Ŗh�䂷��Z�p��K������B",
+SrcServer/src/Language/Japanese/J_sinSkill_Info.h:581:{"�T�������X�y��",	"�A���f�b�g�U���̈ꕔ��z�����A�����҂�ی삷��V�g���������",
+SrcServer/src/Language/Japanese/J_TextMessage.h:17:char *mgCloseBattle = "�퓬���͏I���ł��܂���B";
+SrcServer/src/Language/Korean/k_ServerMsg.h:74:	"�츮�� �������� ����.",
+SrcServer/src/Language/Korean/k_ServerMsg.h:76:	"�츮�� �������� ����."
+SrcServer/src/Language/Korean/k_ServerMsg.h:117:	"������~�� ���� �츮 ���� �������Ʈ��~!",
+SrcServer/src/Language/Korean/k_ServerMsg.h:120:	"�� ������� �뼭 �ޱ� �ٶ��~? ",
+SrcServer/src/Language/Korean/k_ServerMsg.h:128:	"��! ���� ��, �޹���ģ ���뿡�� �����ϴٴ�.",
+SrcServer/src/Language/Korean/k_ServerMsg.h:191:	"���� �̰��뽺�� �����ϰ� ���� ���� ���� ���� ��!",
+SrcServer/src/Language/Korean/k_ServerMsg.h:205:	"�̷����� ����Ʈ ����Ʈ�� �츱�� �ְڴ���!",
+SrcServer/src/Language/Korean/k_ServerMsg.h:206:	"��ų��뿡 ��ƴ�� ���̴±�! ������ ������!",
+SrcServer/src/Language/Korean/k_ServerMsg.h:209:	"�츮 ����̿��� �⺻�� �ž��� ���������ϴ� ������ �����̴�! ���� �������� ���ݿ� ������!",
+SrcServer/src/Language/Korean/k_ServerMsg.h:227:	"�ϰ� �츮 �ֱ� ���ȴ�?",
+SrcServer/src/Language/Korean/k_ServerMsg.h:293:	"�ѱ��� �츮�� ù�� �����̾�!!",
+SrcServer/src/Language/Korean/k_ServerMsg.h:294:	"���Ѷ�. �ѱ� 16���� �츮�� �����Ѵ�",
+SrcServer/src/Language/Korean/k_ServerMsg.h:299:	"�� ���� ������ ���뽺���� ���ָ�",
+SrcServer/src/Language/Korean/k_ServerMsg.h:326:	"��~ �� �뵥..�ΰ����",
+SrcServer/src/Language/Korean/k_ServerMsg.h:327:	"���뱳ü�� �̷�� ���� ���� ���� ���̱���.",
+SrcServer/src/Language/Korean/k_ServerMsg.h:329:	"�� ���� ���ѹα��� ��� �걸��, �����ſ��� ���� �͵� �����~ -.��"
+SrcServer/src/Language/taiwan/T_HoTextFile.h:50:	"�~��b���F�j�����_���A�H���ۦW�sPritos�����C�L�̥H��w���H���A�۹ꪺ�ʮ�A�x�j�a�ͬ��b���F�j���C�L�����M�O�өʳ�ª��رڡA���]���h���h������ơA���H�n�_�C�믫�׾i�������峣�P�˨���L�̪������A�o�i�X�W�S���H���P�]�k�A����ۥѨϥΥL�̪��믫�O�q�C",
+SrcServer/src/Language/taiwan/T_HoTextFile.h:52:    "�Ӯ�ªZ���]�C�h�֦��j�j���믫�O�P��O�A��B�ί��t���O�q�����ĤH�C�b�]�O�����@�ɤ��O�۷�F�`���e�W������C",
+SrcServer/src/Language/taiwan/T_sinMsg.h:70:	"        �^�쳥�~     ",
+SrcServer/src/Language/taiwan/T_sinMsg.h:71:	"        �^�쫰��     ",
+SrcServer/src/Language/taiwan/T_sinMsg.h:80:	"      ����^�쳥�~   ",
+SrcServer/src/Language/taiwan/T_sinMsg.h:98:char *TownName[3] = {"�^���d�n��/r","�^��Ǻ�����/r","�^���֥쫰/r"};
+SrcServer/src/Language/taiwan/T_sinMsg.h:217:char *LinkCoreName = "���ʨ줽�|�|��/r";
+SrcServer/src/Language/taiwan/T_sinSkill_Info.h:24:{"�F���@��",		"�V���۵M�ɤ��F��A�Ȯɱj�ƨ���A����쪫�z�������ˮ`�C",
+SrcServer/src/Language/taiwan/T_sinSkill_Info.h:71:{"�k�P�F��",		"�N�����R���v���ɨ췥���A�����ĤH�ֳ̧t���ˮ`�C",
+SrcServer/src/Language/taiwan/T_sinSkill_Info.h:86:{"�z���꾽",		"����������O�A�ƨg�a�i�淴���ʪ������C",
+SrcServer/src/Language/taiwan/T_sinSkill_Info.h:145:{"�e�����b",			"�g�X�p�e���뭸�֪��b�A���������O�M�����t�סC",
+SrcServer/src/Language/taiwan/T_sinSkill_Info.h:166:{"�g�ɽb�B",		"�e�`��������A�Ϯg�X���b�b�ĤH���W�Űn���A�p�P�ɫB�몺���˼ĤH�C",
+SrcServer/src/Language/taiwan/T_sinSkill_Info.h:171:{"���Y�b�P",			"�b�@�����l�g�p���Y�몺�j�q�b�ڡA�T�S�ĤH�C",
+SrcServer/src/Language/taiwan/T_sinSkill_Info.h:209:{"�g�òr��",			"�H�j�P������O�q�P�믫�O�q�����ĤH�C",
+SrcServer/src/Language/taiwan/T_sinSkill_Info.h:214:{"���K�믫",	"�@�w�ɶ����������m�O�C",
+SrcServer/src/Language/taiwan/T_sinSkill_Info.h:226:{"�ƪ�j�N",			"�ֳt�{�ʪ����j�A�����p��ä���Ư몺�ݼv�A�H��t�����Ӯ����ĤH�C",
+SrcServer/src/Language/taiwan/T_sinSkill_Info.h:277:{"���t�믫",			"�H���t��ë�i�A�z�ƼĤH�����c���O�C",
+SrcServer/src/Language/taiwan/T_sinSkill_Info.h:314:{"�����ާ�",			"�H�j�j���믫�O�A�b�@�w���ɶ����ɤ����ݩʡA�Ϩ��m�[���C",
+SrcServer/src/Language/taiwan/T_sinSkill_Info.h:324:{"�믫�Τ@",	"�W�[�]�k�ȳ̤j�ȡC",
+SrcServer/src/Language/taiwan/T_sinSkill_Info.h:334:{"�����W�O",	"�⤸���ݩʽᤩ�춤�����Z���W�C",
+SrcServer/src/sinbaram/sinMsg.cpp:29:	{"Ŭ������ ��밡���մϴ� "},
+SrcServer/src/sinbaram/sinMsg.cpp:52:	{"  ��� ���긦 ����Ҽ� ���� �����Դϴ�  "},
+SrcServer/src/sinbaram/sinMsg.cpp:53:	{"     ���� ���갡 ������Դϴ�    "},
+SrcServer/src/sinbaram/sinMsg.cpp:67:	{"�뺴���ڸ� �ʰ� �Ͽ����ϴ�."},
+SrcServer/src/sinbaram/sinMsg.cpp:80:	{"����Ŀ� ��밡�� �մϴ�"},
+SrcServer/src/sinbaram/sinMsg.cpp:90:	{"�� �������� 10�������� ��밡���մϴ�."},
+SrcServer/src/sinbaram/sinMsg.cpp:122:	{"����� �뺴��","�����Ͻðڽ��ϱ�?"}
+SrcServer/src/sinbaram/sinMsg.cpp:252:char *UseItemGroupName = "��밡�� �����۱�/r";
+SrcServer/src/sinbaram/sinMsg.cpp:318:char *SparkNum7 = "�ִ뽺��ũ��:/r";
+SrcServer/src/sinbaram/sinMsg.cpp:354:char *WarpGateName[] = { "���� ����Ʈ","�� ī �� ��","�ʶ��� Ÿ��","Ȳȥ��  ��","�볪��  ��","���̳� �����","�׺��� Ÿ��","�ݴ���  ��","���� �����","�ν�Ʈ���Ϸ���" };
+SrcServer/src/sinbaram/sinMsg.cpp:429:char *MaxBoltNum4 = "�ִ뺼Ʈ:/r";
+SrcServer/src/sinbaram/sinMsg.cpp:480:char *BrandishDamage3 = "�귻�� ������";
+SrcServer/src/sinbaram/sinMsg.cpp:493:						 "�������� ����","���ƽý� ����","��밨��1�� ����" };
+SrcServer/src/sinbaram/sinMsg.cpp:532:char *MagicalGreenJadeItem = "7���� ���븦";
+SrcServer/src/sinbaram/sinMsg.cpp:561:char *SheltomName2[] = { "������","�극�׿�","�ĵ���","����Ű","���̴�Ʈ","Ʈ�����з�","��Ű","�����","��������", "�̶���", "���丣��", "�̴ϱ׸�" };
+SrcServer/src/sinbaram/sinMsg.cpp:580:"���� ����Ʈ�󿡼� �츮 Ŭ������ ����",
+SrcServer/src/sinbaram/sinMsg.cpp:585:"���� ����Ʈ�󿡼� �츮 Ŭ������ ����",
+SrcServer/src/sinbaram/sinMsg.cpp:607:	"�ִ�뺴�ο�:20 / %d",
+SrcServer/src/sinbaram/sinMsg.cpp:611:	"���� ���� ��� ���� �ִ� �뺴����",
+SrcServer/src/sinbaram/sinMsg.cpp:613:	"�ִ�뺴�ο�:20 / %d",
+SrcServer/src/sinbaram/sinMsg.cpp:617:	"���� ������ ��� �뺴���μ�",
+SrcServer/src/sinbaram/sinMsg.cpp:619:	"�ִ�뺴�ο�:20 / %d",
+SrcServer/src/sinbaram/sinMsg.cpp:639:char *SiegeMessage_MerMoney = "�뺴 ���: ";
+SrcServer/src/sinbaram/sinMsg.cpp:692:	"�ٿ츰",
+SrcServer/src/sinbaram/sinMsg.cpp:750:char *SiegeMessage_MerComplete = "�뺴���� �Ϸ�";
+SrcServer/src/sinbaram/sinMsg.cpp:757:	"�뾲����",
+SrcServer/src/sinbaram/SkillTables.cpp:3://ͽƮ   // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:13:// ۼҼ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:28://ƽø  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:33://̼   // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:39://ũ  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:44://Ż Ƹ  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:49://׷ ޽  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:54://ī  ͸ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:57://ũ   // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:103://Ʈ̼ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:115://Ʈ  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:171://Ͻ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:178://ũƼ ͸ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:209://Ǹ   // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:220://  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:232://  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:257://Ȧ ٵ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:270://Ȧ   // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:275://귻
+SrcServer/src/sinbaram/SkillTables.cpp:285://巡ƽ Ǹ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:290://ҵ ͸  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:293:// 귻 
+SrcServer/src/sinbaram/SkillTables.cpp:297:// Ȧ̼ (  ̸ ٲ) // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:303://Ȧ ̼ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:326:// ͸ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:333:// // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:343://ҿ Ŀ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:351://ø  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:358://Ʈ̾  Ҷ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:367://  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:373:// // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:377://Ȧ Ʈ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:381://Ƽũ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:395:// Ʈ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:400://Ȧ ÷ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:405://׷  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:410://  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:424://߾  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:434://̾ Ʈ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:438://Ͼ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:443://̾  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:452://̵ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:458://þƮ  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:465://  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:470://  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:475://ƽƮ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:480://Ǹ Ż // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:486:// ҵ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:506://޼ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:512://׳ƽ Ǿ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:520://Ż  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:534://Ŀ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:548://νƮ ｺ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:565://̱  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:585://̺̼ ͸  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:593://   // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:624://Ȧ  Ҷ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:634://νƮ  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:642://  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:650://۷ ũ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:663://üζƮ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:670://  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:681://̾ Ż  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:688://÷ ̺  // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/SkillTables.cpp:702://ƼƮ // 庰 - ų뷱 (10.08.10)
+SrcServer/src/sinbaram/sinSkill.cpp:203:	{"�ַο� ���극����",SKILL_ARROW_OF_RAGE	,"TA26 A_Rage"},
+SrcServer/src/sinbaram/sinSkill.cpp:224:	{"Ȧ�� �뷯"	    ,SKILL_HOLY_VALOR       ,"MN20 H_Valor","Kt2_H_VALOR.tga"},
+SrcServer/src/sinbaram/sinSkill.cpp:225:	{"�귣��"	        ,SKILL_BRANDISH         ,"MN23 Brandish"},
+SrcServer/src/sinbaram/sinSkill.cpp:229:	{"������ �귣��"	,SKILL_SWORD_MASTERY   ,"MN40 S_Mastery"},
+SrcServer/src/sinbaram/sinSkill.cpp:3955:			wsprintf(szTempSkillDoc2, "%d + %d/r", T_Of_Valhalla_Damage[pSkill->Point + i - 1], sinChar->Level / 4); // �庰 - ��ų�뷱�� ����(10.08.10)
+SrcServer/src/sinbaram/sinSkill.cpp:4064:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcServer/src/sinbaram/sinSkill.cpp:4089:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcServer/src/sinbaram/sinSkill.cpp:4114:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcServer/src/sinbaram/sinSkill.cpp:4217:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcServer/src/sinbaram/sinSkill.cpp:4250:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcServer/src/sinbaram/sinSkill.cpp:4314:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcServer/src/sinbaram/sinSkill.cpp:4379:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcServer/src/sinbaram/sinSkill.cpp:4468:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcServer/src/sinbaram/sinSkill.cpp:4780:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcServer/src/sinbaram/sinSkill.cpp:4845:			// �庰 - ��ų�뷱�� ����(10.08.10)
+SrcServer/src/fileread.cpp:144:	"*���빫��",
+SrcServer/src/fileread.cpp:2310:	if(!flag && (lstrcmp(decode, "*�뺸�ּ�") == 0 ||

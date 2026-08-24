@@ -1,0 +1,634 @@
+============================================================
+HASHES
+============================================================
+4b836a67c315767d08d596b0f6226ef0d65829be7ff6806f3d986ee805854a32  SrcServer/src/fileread.cpp
+04734a8c9ef18ed47d7c5ebbef04a7f206d59ac35126ec6e30b8e5a9194b3f76  SrcServer/src/fileread.cpp.bak_decodeitem_cp949_literals_20260823
+
+============================================================
+FULL DIFF STAT
+============================================================
+ fileread.cpp |  120 +++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 60 insertions(+), 60 deletions(-)
+
+============================================================
+DIFF AROUND DecodeItemInfo
+============================================================
+@@ -2605,7 +2605,7 @@
+ 		NextFlag = 0;
+ 
+ 
+-		if(lstrcmp(decode, "*�̸�") == 0)
++		if(lstrcmp(decode, "\x2A\xC0\xCC\xB8\xA7") == 0)
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 
+@@ -2626,7 +2626,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*�ڵ�") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC4\xDA\xB5\xE5") == 0)
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 
+@@ -2643,7 +2643,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*����ũ") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xAF\xB4\xCF\xC5\xA9") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			if(strBuff[0])
+@@ -2654,7 +2654,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*����ũ����") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xAF\xB4\xCF\xC5\xA9\xBB\xF6\xBB\xF3") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->EffectColor[0] = atoi(strBuff);
+@@ -2673,7 +2673,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*����Ʈ����") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xC6\xE5\xC6\xAE\xBC\xB3\xC1\xA4") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->DispEffect = atoi(strBuff);
+@@ -2684,7 +2684,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*������") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB3\xBB\xB1\xB8\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sDurability[0] = atoi(strBuff);
+@@ -2694,7 +2694,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*����") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xAB\xB0\xD4") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Weight = atoi(strBuff);
+@@ -2702,7 +2702,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*����") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xA1\xB0\xDD") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Price = atoi(strBuff);
+@@ -2710,7 +2710,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*��ü") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBB\xFD\xC3\xBC") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_BIONIC][0] = atoi(strBuff);
+@@ -2718,7 +2718,7 @@
+ 			lpDefItem->sResistance[sITEMINFO_BIONIC][1] = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+-		if(!NextFlag && lstrcmp(decode, "*���ڿ�") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB4\xEB\xC0\xDA\xBF\xAC") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_EARTH][0] = atoi(strBuff);
+@@ -2726,7 +2726,7 @@
+ 			lpDefItem->sResistance[sITEMINFO_EARTH][1] = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+-		if(!NextFlag && lstrcmp(decode, "*��") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xD2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_FIRE][0] = atoi(strBuff);
+@@ -2734,7 +2734,7 @@
+ 			lpDefItem->sResistance[sITEMINFO_FIRE][1] = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+-		if(!NextFlag && lstrcmp(decode, "*�ñ�") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB3\xC3\xB1\xE2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_ICE][0] = atoi(strBuff);
+@@ -2742,7 +2742,7 @@
+ 			lpDefItem->sResistance[sITEMINFO_ICE][1] = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+-		if(!NextFlag && lstrcmp(decode, "*����") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xF8\xB0\xB3") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_LIGHTING][0] = atoi(strBuff);
+@@ -2750,7 +2750,7 @@
+ 			lpDefItem->sResistance[sITEMINFO_LIGHTING][1] = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+-		if(!NextFlag && lstrcmp(decode, "*��") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB5\xB6") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_POISON][0] = atoi(strBuff);
+@@ -2758,7 +2758,7 @@
+ 			lpDefItem->sResistance[sITEMINFO_POISON][1] = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+-		if(!NextFlag && lstrcmp(decode, "*��") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xB0") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_WATER][0] = atoi(strBuff);
+@@ -2766,7 +2766,7 @@
+ 			lpDefItem->sResistance[sITEMINFO_WATER][1] = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+-		if(!NextFlag && lstrcmp(decode, "*�ٶ�") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xD9\xB6\xF7") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_WIND][0] = atoi(strBuff);
+@@ -2780,7 +2780,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*���ݷ�") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sDamage[0] = atoi(strBuff);
+@@ -2794,14 +2794,14 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*�����Ÿ�") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBB\xE7\xC1\xA4\xB0\xC5\xB8\xAE") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Shooting_Range = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*���ݼӵ�") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xBC\xD3\xB5\xB5") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Attack_Speed = atoi(strBuff);
+@@ -2809,7 +2809,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*���߷�") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xED\xC1\xDF\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sAttack_Rating[0] = atoi(strBuff);
+@@ -2819,7 +2819,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ũ��Ƽ��") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC5\xA9\xB8\xAE\xC6\xBC\xC4\xC3") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Critical_Hit = atoi(strBuff);
+@@ -2830,7 +2830,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*�����") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xED\xBC\xF6\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fAbsorb[0] = (float)atof(strBuff);
+@@ -2840,7 +2840,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*����") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xE6\xBE\xEE\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sDefence[0] = atoi(strBuff);
+@@ -2850,7 +2850,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*�����") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xED\xB7\xB0\xC0\xB2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fBlock_Rating[0] = (float)atof(strBuff);
+@@ -2861,7 +2861,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*�̵��ӵ�") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xB5\xBF\xBC\xD3\xB5\xB5") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fSpeed[0] = (float)atof(strBuff);
+@@ -2872,7 +2872,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*��������") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xB8\xC0\xAF\xB0\xF8\xB0\xA3") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Potion_Space = atoi(strBuff);
+@@ -2881,14 +2881,14 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*�������õ�") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xB6\xB9\xFD\xBC\xF7\xB7\xC3\xB5\xB5") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->fMagic_Mastery = (float)atof(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*�������") == 0 || lstrcmp(decode, "*������") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xB8\xB6\xB3\xAA\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\xB1\xE2\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fMana_Regen[0] = (float)atof(strBuff);
+@@ -2897,7 +2897,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*���������") == 0 || lstrcmp(decode, "*��������") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fLife_Regen[0] = (float)atof(strBuff);
+@@ -2906,7 +2906,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*���׹̳����") == 0 || lstrcmp(decode, "*�ٷ����") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xAA\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\xB1\xD9\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fStamina_Regen[0] = (float)atof(strBuff);
+@@ -2916,7 +2916,7 @@
+ 
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*�����߰�") == 0 || lstrcmp(decode, "*����߰�") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xB8\xB6\xB3\xAA\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\xB1\xE2\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->Increase_Mana[0] = atoi(strBuff);
+@@ -2925,7 +2925,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*�������߰�") == 0 || lstrcmp(decode, "*������߰�") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->Increase_Life[0] = atoi(strBuff);
+@@ -2934,7 +2934,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*���׹̳��߰�") == 0 || lstrcmp(decode, "*�ٷ��߰�") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xAA\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\xB1\xD9\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->Increase_Stamina[0] = atoi(strBuff);
+@@ -2947,7 +2947,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*����") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB7\xB9\xBA\xA7") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Level = atoi(strBuff);
+@@ -2955,7 +2955,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*��") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xFB") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Strength = atoi(strBuff);
+@@ -2963,28 +2963,28 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*���ŷ�") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC1\xA4\xBD\xC5\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Spirit = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*���") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xE7\xB4\xC9") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Talent = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*��ø��") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xCE\xC3\xB8\xBC\xBA") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Dexterity = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*�ǰ�") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xC7\xB0\xAD") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Health = atoi(strBuff);
+@@ -2995,7 +2995,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*���׹̳ʻ��") == 0 || lstrcmp(decode, "*�ٷ»��") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xCA\xBB\xF3\xBD\xC2") == 0 || lstrcmp(decode, "\x2A\xB1\xD9\xB7\xC2\xBB\xF3\xBD\xC2") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Stamina[0] = atoi(strBuff);
+@@ -3005,7 +3005,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*�������") == 0 || lstrcmp(decode, "*��»��") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xB8\xB6\xB3\xAA\xBB\xF3\xBD\xC2") == 0 || lstrcmp(decode, "\x2A\xB1\xE2\xB7\xC2\xBB\xF3\xBD\xC2") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Mana[0] = atoi(strBuff);
+@@ -3015,7 +3015,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*���������") == 0 || lstrcmp(decode, "*����»��") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xBB\xF3\xBD\xC2") == 0 || lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2\xBB\xF3\xBD\xC2") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Life[0] = atoi(strBuff);
+@@ -3053,7 +3053,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "**Ưȭ����") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xC6\xAF\xC8\xAD\xB7\xA3\xB4\xFD") == 0)
+ 		{
+ 			while(1)
+ 			{
+@@ -3083,7 +3083,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "**�����") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xC8\xED\xBC\xF6\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fSpecial_Absorb[0] = (float)atof(strBuff);
+@@ -3093,7 +3093,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "**����") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xB9\xE6\xBE\xEE\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sSpecial_Defence[0] = atoi(strBuff);
+
+============================================================
+CURRENT HEX ESCAPES IN DecodeItemInfo AREA
+============================================================
+2608:		if(lstrcmp(decode, "\x2A\xC0\xCC\xB8\xA7") == 0)
+2629:		if(!NextFlag && lstrcmp(decode, "\x2A\xC4\xDA\xB5\xE5") == 0)
+2646:		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xAF\xB4\xCF\xC5\xA9") == 0)
+2657:		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xAF\xB4\xCF\xC5\xA9\xBB\xF6\xBB\xF3") == 0)
+2676:		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xC6\xE5\xC6\xAE\xBC\xB3\xC1\xA4") == 0)
+2687:		if(!NextFlag && lstrcmp(decode, "\x2A\xB3\xBB\xB1\xB8\xB7\xC2") == 0)
+2697:		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xAB\xB0\xD4") == 0)
+2705:		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xA1\xB0\xDD") == 0)
+2713:		if(!NextFlag && lstrcmp(decode, "\x2A\xBB\xFD\xC3\xBC") == 0)
+2721:		if(!NextFlag && lstrcmp(decode, "\x2A\xB4\xEB\xC0\xDA\xBF\xAC") == 0)
+2729:		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xD2") == 0)
+2737:		if(!NextFlag && lstrcmp(decode, "\x2A\xB3\xC3\xB1\xE2") == 0)
+2745:		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xF8\xB0\xB3") == 0)
+2753:		if(!NextFlag && lstrcmp(decode, "\x2A\xB5\xB6") == 0)
+2761:		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xB0") == 0)
+2769:		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xD9\xB6\xF7") == 0)
+2783:		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xB7\xC2") == 0)
+2797:		if(!NextFlag && lstrcmp(decode, "\x2A\xBB\xE7\xC1\xA4\xB0\xC5\xB8\xAE") == 0)
+2804:		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xBC\xD3\xB5\xB5") == 0)
+2812:		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xED\xC1\xDF\xB7\xC2") == 0)
+2822:		if(!NextFlag && lstrcmp(decode, "\x2A\xC5\xA9\xB8\xAE\xC6\xBC\xC4\xC3") == 0)
+2833:		if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xED\xBC\xF6\xB7\xC2") == 0)
+2843:		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xE6\xBE\xEE\xB7\xC2") == 0)
+2853:		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xED\xB7\xB0\xC0\xB2") == 0)
+2864:		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xB5\xBF\xBC\xD3\xB5\xB5") == 0)
+2875:		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xB8\xC0\xAF\xB0\xF8\xB0\xA3") == 0)
+2884:		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xB6\xB9\xFD\xBC\xF7\xB7\xC3\xB5\xB5") == 0)
+2891:		if(!NextFlag && (lstrcmp(decode, "\x2A\xB8\xB6\xB3\xAA\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\xB1\xE2\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+2900:		if(!NextFlag && (lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+2909:		if(!NextFlag && (lstrcmp(decode, "\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xAA\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\xB1\xD9\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+2919:		if(!NextFlag && (lstrcmp(decode, "\x2A\xB8\xB6\xB3\xAA\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\xB1\xE2\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
+2928:		if(!NextFlag && (lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
+2937:		if(!NextFlag && (lstrcmp(decode, "\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xAA\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\xB1\xD9\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
+2950:		if(!NextFlag && lstrcmp(decode, "\x2A\xB7\xB9\xBA\xA7") == 0)
+2958:		if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xFB") == 0)
+2966:		if(!NextFlag && lstrcmp(decode, "\x2A\xC1\xA4\xBD\xC5\xB7\xC2") == 0)
+2973:		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xE7\xB4\xC9") == 0)
+2980:		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xCE\xC3\xB8\xBC\xBA") == 0)
+2987:		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xC7\xB0\xAD") == 0)
+2998:		if(!NextFlag && (lstrcmp(decode, "\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xCA\xBB\xF3\xBD\xC2") == 0 || lstrcmp(decode, "\x2A\xB1\xD9\xB7\xC2\xBB\xF3\xBD\xC2") == 0))
+3008:		if(!NextFlag && (lstrcmp(decode, "\x2A\xB8\xB6\xB3\xAA\xBB\xF3\xBD\xC2") == 0 || lstrcmp(decode, "\x2A\xB1\xE2\xB7\xC2\xBB\xF3\xBD\xC2") == 0))
+3018:		if(!NextFlag && (lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xBB\xF3\xBD\xC2") == 0 || lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2\xBB\xF3\xBD\xC2") == 0))
+3056:		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xC6\xAF\xC8\xAD\xB7\xA3\xB4\xFD") == 0)
+3086:		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xC8\xED\xBC\xF6\xB7\xC2") == 0)
+3096:		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xB9\xE6\xBE\xEE\xB7\xC2") == 0)
+3108:		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xC0\xCC\xB5\xBF\xBC\xD3\xB5\xB5") == 0)
+3118:		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xBA\xED\xB7\xB0\xC0\xB2") == 0)
+3125:		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xB0\xF8\xB0\xDD\xBC\xD3\xB5\xB5") == 0)
+3132:		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xC5\xA9\xB8\xAE\xC6\xBC\xC4\xC3") == 0)
+3139:		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xBB\xE7\xC1\xA4\xB0\xC5\xB8\xAE") == 0)
+3146:		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xB8\xB6\xB9\xFD\xBC\xF7\xB7\xC3\xB5\xB5") == 0)
+3164:		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xB8\xB6\xB3\xAA\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\x2A\xB1\xE2\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
+3171:		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\x2A\xBB\xFD\xB8\xED\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
+3178:		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xB8\xED\xC1\xDF\xB7\xC2") == 0)
+3188:		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xB0\xF8\xB0\xDD\xB7\xC2") == 0)
+3202:		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xB8\xB6\xB3\xAA\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\x2A\xB1\xE2\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+3213:		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\x2A\xBB\xFD\xB8\xED\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+3220:		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xAA\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\x2A\xB1\xD9\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+3227:		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xDF\xBB\xFD\xC1\xA6\xC7\xD1") == 0)
+3235:		if(!NextFlag && lstrcmp(decode, "\x2A\xBF\xAC\xB0\xE1\xC6\xC4\xC0\xCF") == 0)
+3591:		if(lstrcmp(decode, "\x2A\xC0\xCC\xB8\xA7") == 0)
+3614:		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xF0\xBE\xE7\xC6\xC4\xC0\xCF") == 0)
+3628:		if(!NextFlag && lpDialogMessage && lstrcmp(decode, "\x2A\xB4\xEB\xC8\xAD") == 0)
+3663:		if(!NextFlag && lstrcmp(decode, "\x2A\xBC\xD3\xBC\xBA") == 0)
+3667:			if(lstrcmp(strBuff, "\xC0\xFB") == 0)
+3676:		if(!NextFlag && lstrcmp(decode, "\x2A\xC5\xA9\xB1\xE2") == 0)
+3696:		if(!NextFlag && (lstrcmp(decode, "\x2A\xBC\xD2\xB8\xAE") == 0 || lstrcmp(decode, "\x2A\xC8\xBF\xB0\xFA\xC0\xBD") == 0))
+3715:		if(!NextFlag && lstrcmp(decode, "\x2A\xB7\xB9\xBA\xA7") == 0)
+3723:		if(!NextFlag && lstrcmp(decode, "\x2A\xB5\xCE\xB8\xF1") == 0)
+3730:		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xE8\xB1\xDE") == 0)
+3738:		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xF0\xB5\xA8\xC5\xA9\xB1\xE2") == 0)
+3748:		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xB5\xBF\xB7\xC2") == 0)
+3756:		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xB7\xC2") == 0)
+3767:		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xBC\xD3\xB5\xB5") == 0)
+3778:		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xB9\xFC\xC0\xA7") == 0)
+3788:		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xED\xC1\xDF\xB7\xC2") == 0)
+3797:		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xE6\xBE\xEE\xB7\xC2") == 0)
+3805:		if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xED\xBC\xF6\xC0\xB2") == 0)
+3813:		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xED\xB7\xB0\xC0\xB2") == 0)
+3822:		if(!NextFlag && (lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2") == 0 || lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1") == 0))
+3832:		if(!NextFlag && lstrcmp(decode, "\x2A\xBB\xFD\xC3\xBC") == 0)
+3839:		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xB0") == 0)
+3846:		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xF8\xB0\xB3") == 0)
+3854:		if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xF3\xC0\xBD") == 0)
+3861:		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xD9\xB6\xF7") == 0)
+3868:		if(!NextFlag && lstrcmp(decode, "\x2A\xC1\xF6\xB5\xBF\xB7\xC2") == 0)
+3875:		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xD2") == 0)
+3882:		if(!NextFlag && lstrcmp(decode, "\x2A\xB5\xB6") == 0)
+3896:		if(!NextFlag && lstrcmp(decode, "\x2A\xBD\xC3\xBE\xDF") == 0)
+3907:		if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xAD\xB8\xE9\xBA\xB8\xC1\xA4") == 0)
+3923:			if(!NextFlag && lstrcmp(decode, "\x2A\xBF\xB9\xBA\xF1\xB8\xF0\xB5\xA8") == 0)
+3932:			if(!NextFlag && lstrcmp(decode, "\x2A\xB1\xE2\xBC\xFA\xB0\xF8\xB0\xDD\xB7\xC2") == 0)
+3943:			if(!NextFlag && lstrcmp(decode, "\x2A\xB1\xE2\xBC\xFA\xB0\xF8\xB0\xDD\xB0\xC5\xB8\xAE") == 0)
+3953:			if(!NextFlag && lstrcmp(decode, "\x2A\xB1\xE2\xBC\xFA\xB0\xF8\xB0\xDD\xB9\xFC\xC0\xA7") == 0)
+3962:			if(!NextFlag && lstrcmp(decode, "\x2A\xB1\xE2\xBC\xFA\xB0\xF8\xB0\xDD\xB7\xFC") == 0)
+3971:			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xFA\xC1\xD6\xB1\xE2\xBC\xFA") == 0)
+3979:			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xB5\xBF\xC5\xB8\xC0\xD4") == 0)
+3987:			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xB5\xBF\xB9\xFC\xC0\xA7") == 0)
+3996:			if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xB0\xB5\xBF\xBD\xC3\xB0\xA3") == 0)
+4000:				if(lstrcmpi(strBuff, "\xB3\xB7") == 0)
+4002:				if(lstrcmpi(strBuff, "\xB9\xE3") == 0)
+4008:			if(!NextFlag && lstrcmp(decode, "\x2A\xC1\xB6\xC1\xF7") == 0)
+4018:			if(!NextFlag && lstrcmp(decode, "\x2A\xC1\xF6\xB4\xC9") == 0)
+4026:			if(!NextFlag && lstrcmp(decode, "\x2A\xB1\xB8\xBA\xB0\xC4\xDA\xB5\xE5") == 0)
+4034:			if(!NextFlag && (lstrcmp(decode, "\x2A\xBD\xBA\xC5\xCF\xC0\xB2") == 0 || lstrcmp(decode, "\x2A\xBD\xBA\xC5\xCF\xB7\xFC") == 0))
+4042:			if(!NextFlag && lstrcmp(decode, "\x2A\xC7\xB0\xBC\xBA") == 0)
+4062:			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xBA\xA5\xC6\xAE\xC4\xDA\xB5\xE5") == 0)
+4069:			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xBA\xA5\xC6\xAE\xC1\xA4\xBA\xB8") == 0)
+4076:			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xBA\xA5\xC6\xAE\xBE\xC6\xC0\xCC\xC5\xDB") == 0)
+4094:			if(!NextFlag && lstrcmp(decode, "\x2A\xC6\xAF\xBC\xF6\xB0\xF8\xB0\xDD\xB7\xFC") == 0)
+4101:			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xF0\xB5\xA5\xB5\xE5") == 0)
+4104:				if(lstrcmp(strBuff, "\xC0\xAF") == 0 || lstrcmp(strBuff, "\xC0\xD6\xC0\xBD") == 0)
+4118:			if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xF3\xBD\xBA\xC5\xCD\xC1\xBE\xC1\xB7") == 0)
+4126:					if(lstrcmp(strBuff, "\xBE\xF0\xB5\xA5\xB5\xE5") == 0)
+4130:					else if(lstrcmp(strBuff, "\xB9\xC2\xC5\xCF\xC6\xAE") == 0)
+4134:					else if(lstrcmp(strBuff, "\xB5\xF0\xB8\xD5") == 0)
+4138:					else if(lstrcmp(strBuff, "\xB8\xDE\xC4\xAB\xB4\xD0") == 0)
+4147:			if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xE6\xC7\xE8\xC4\xA1") == 0)
+4156:			if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xB0\xBE\xE0\xBA\xB8\xC0\xAF\xBC\xF6") == 0)
+4164:			if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xB0\xBE\xE0\xBA\xB8\xC0\xAF\xB7\xFC") == 0)
+4174:			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB\xB8\xF0\xB5\xCE") == 0)
+4180:			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB\xC4\xAB\xBF\xEE\xC5\xCD") == 0)
+4187:			if(!NextFlag && lstrcmp(decode, "\x2A\xC3\xDF\xB0\xA1\xBE\xC6\xC0\xCC\xC5\xDB") == 0)
+4208:			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB") == 0)
+4216:				if(lstrcmp(strBuff, "\xBE\xF8\xC0\xBD") == 0)
+4233:					if(lstrcmp(strBuff, "\xB5\xB7") == 0)
+4290:			if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xAB\xB1\xE2\xC6\xC7\xB8\xC5") == 0)
+4310:			if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xE6\xBE\xEE\xB1\xB8\xC6\xC7\xB8\xC5") == 0)
+4330:			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xE2\xC8\xAD\xC6\xC7\xB8\xC5") == 0)
+4350:			if(!NextFlag && lstrcmp(decode, "\x2A\xBD\xBA\xC5\xB3\xBC\xF6\xB7\xC3") == 0)
+4355:			if(!NextFlag && lstrcmp(decode, "\x2A\xC1\xF7\xBE\xF7\xC0\xFC\xC8\xAF") == 0)
+4366:			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xBA\xA5\xC6\xAE\xB8\xC5\xC7\xA5\xBC\xD2") == 0)
+4376:			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB\xBA\xB8\xB0\xFC") == 0)
+4381:			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB\xC1\xB6\xC7\xD5") == 0)
+4387:			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB\xC1\xA6\xB7\xC3") == 0)
+4393:			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB\xC1\xA6\xC0\xDB") == 0)
+4398:			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB\xBF\xAC\xB1\xDD") == 0)
+4403:			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB\xBF\xA1\xC0\xCC\xC2\xA1") == 0)
+4409:			if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xCD\xBD\xBA\xC3\xB3\xB8\xAE\xBC\xC2") == 0)
+4461:			if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xF0\xB1\xDD\xC7\xD4") == 0)
+4467:			if(!NextFlag && lstrcmp(decode, "\x2A\xB2\xCE\xC0\xCC\xC1\xF6\xB7\xD5") == 0)
+4473:			if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xE6\xC7\xB0\xC3\xDF\xC3\xB7") == 0)
+4478:			if(!NextFlag && lstrcmp(decode, "\x2A\xC5\xAC\xB7\xA3\xB1\xE2\xB4\xC9") == 0)
+4483:			if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xE6\xC7\xB0\xB9\xE8\xB4\xDE") == 0)
+4489:			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xAE\xC4\xF9\xBD\xBA\xC6\xAE") == 0)
+4499:			if(!NextFlag && lstrcmp(decode, "\x2A\xC4\xF9\xBD\xBA\xC6\xAE\xC0\xCC\xBA\xA5\xC6\xAE") == 0)
+4511:			if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xB0\xC6\xF7\xC0\xCE\xC6\xAE\xC0\xFB\xB8\xB3") == 0)
+4521:			if(!NextFlag && lstrcmp(decode, "\x2A\xB1\xE2\xBA\xCE\xC7\xD4") == 0)
+4527:			if(!NextFlag && lstrcmp(decode, "\x2A\xC5\xDA\xB7\xB9\xC6\xF7\xC6\xAE") == 0)
+4537:			if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xED\xB7\xB9\xBD\xBA\xC4\xB3\xBD\xBD") == 0)
+
+============================================================
+BACKUP SAME REGION
+============================================================
+2608:		if(lstrcmp(decode, "*�̸�") == 0)
+2629:		if(!NextFlag && lstrcmp(decode, "*�ڵ�") == 0)
+2646:		if(!NextFlag && lstrcmp(decode, "*����ũ") == 0)
+2657:		if(!NextFlag && lstrcmp(decode, "*����ũ����") == 0)
+2676:		if(!NextFlag && lstrcmp(decode, "*����Ʈ����") == 0)
+2687:		if(!NextFlag && lstrcmp(decode, "*������") == 0)
+2697:		if(!NextFlag && lstrcmp(decode, "*����") == 0)
+2705:		if(!NextFlag && lstrcmp(decode, "*����") == 0)
+2713:		if(!NextFlag && lstrcmp(decode, "*��ü") == 0)
+2721:		if(!NextFlag && lstrcmp(decode, "*���ڿ�") == 0)
+2729:		if(!NextFlag && lstrcmp(decode, "*��") == 0)
+2737:		if(!NextFlag && lstrcmp(decode, "*�ñ�") == 0)
+2745:		if(!NextFlag && lstrcmp(decode, "*����") == 0)
+2753:		if(!NextFlag && lstrcmp(decode, "*��") == 0)
+2761:		if(!NextFlag && lstrcmp(decode, "*��") == 0)
+2769:		if(!NextFlag && lstrcmp(decode, "*�ٶ�") == 0)
+2783:		if(!NextFlag && lstrcmp(decode, "*���ݷ�") == 0)
+2797:		if(!NextFlag && lstrcmp(decode, "*�����Ÿ�") == 0)
+2804:		if(!NextFlag && lstrcmp(decode, "*���ݼӵ�") == 0)
+2812:		if(!NextFlag && lstrcmp(decode, "*���߷�") == 0)
+2822:		if(!NextFlag && lstrcmp(decode, "*ũ��Ƽ��") == 0)
+2833:		if(!NextFlag && lstrcmp(decode, "*�����") == 0)
+2843:		if(!NextFlag && lstrcmp(decode, "*����") == 0)
+2853:		if(!NextFlag && lstrcmp(decode, "*�����") == 0)
+2864:		if(!NextFlag && lstrcmp(decode, "*�̵��ӵ�") == 0)
+2875:		if(!NextFlag && lstrcmp(decode, "*��������") == 0)
+2884:		if(!NextFlag && lstrcmp(decode, "*�������õ�") == 0)
+2891:		if(!NextFlag && (lstrcmp(decode, "*�������") == 0 || lstrcmp(decode, "*������") == 0))
+2900:		if(!NextFlag && (lstrcmp(decode, "*���������") == 0 || lstrcmp(decode, "*��������") == 0))
+2909:		if(!NextFlag && (lstrcmp(decode, "*���׹̳����") == 0 || lstrcmp(decode, "*�ٷ����") == 0))
+2919:		if(!NextFlag && (lstrcmp(decode, "*�����߰�") == 0 || lstrcmp(decode, "*����߰�") == 0))
+2928:		if(!NextFlag && (lstrcmp(decode, "*�������߰�") == 0 || lstrcmp(decode, "*������߰�") == 0))
+2937:		if(!NextFlag && (lstrcmp(decode, "*���׹̳��߰�") == 0 || lstrcmp(decode, "*�ٷ��߰�") == 0))
+2950:		if(!NextFlag && lstrcmp(decode, "*����") == 0)
+2958:		if(!NextFlag && lstrcmp(decode, "*��") == 0)
+2966:		if(!NextFlag && lstrcmp(decode, "*���ŷ�") == 0)
+2973:		if(!NextFlag && lstrcmp(decode, "*���") == 0)
+2980:		if(!NextFlag && lstrcmp(decode, "*��ø��") == 0)
+2987:		if(!NextFlag && lstrcmp(decode, "*�ǰ�") == 0)
+2998:		if(!NextFlag && (lstrcmp(decode, "*���׹̳ʻ��") == 0 || lstrcmp(decode, "*�ٷ»��") == 0))
+3008:		if(!NextFlag && (lstrcmp(decode, "*�������") == 0 || lstrcmp(decode, "*��»��") == 0))
+3018:		if(!NextFlag && (lstrcmp(decode, "*���������") == 0 || lstrcmp(decode, "*����»��") == 0))
+3032:		if(!NextFlag && lstrcmp(decode, "**Ưȭ") == 0)
+3056:		if(!NextFlag && lstrcmp(decode, "**Ưȭ����") == 0)
+3086:		if(!NextFlag && lstrcmp(decode, "**�����") == 0)
+3096:		if(!NextFlag && lstrcmp(decode, "**����") == 0)
+3108:		if(!NextFlag && lstrcmp(decode, "**�̵��ӵ�") == 0)
+3118:		if(!NextFlag && lstrcmp(decode, "**�����") == 0)
+3125:		if(!NextFlag && lstrcmp(decode, "**���ݼӵ�") == 0)
+3132:		if(!NextFlag && lstrcmp(decode, "**ũ��Ƽ��") == 0)
+3139:		if(!NextFlag && lstrcmp(decode, "**�����Ÿ�") == 0)
+3146:		if(!NextFlag && lstrcmp(decode, "**�������õ�") == 0)
+3164:		if(!NextFlag && (lstrcmp(decode, "**�����߰�") == 0 || lstrcmp(decode, "**����߰�") == 0))
+3171:		if(!NextFlag && (lstrcmp(decode, "**�������߰�") == 0 || lstrcmp(decode, "**������߰�") == 0))
+3178:		if(!NextFlag && lstrcmp(decode, "**���߷�") == 0)
+3188:		if(!NextFlag && lstrcmp(decode, "**���ݷ�") == 0)
+3202:		if(!NextFlag && (lstrcmp(decode, "**�������") == 0 || lstrcmp(decode, "**������") == 0))
+3213:		if(!NextFlag && (lstrcmp(decode, "**���������") == 0 || lstrcmp(decode, "**��������") == 0))
+3220:		if(!NextFlag && (lstrcmp(decode, "**���׹̳����") == 0 || lstrcmp(decode, "**�ٷ����") == 0))
+3227:		if(!NextFlag && lstrcmp(decode, "*�߻�����") == 0)
+3235:		if(!NextFlag && lstrcmp(decode, "*��������") == 0)

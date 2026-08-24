@@ -1,0 +1,13 @@
+=== SummitTale Server MinGW Risk Audit ===
+qua 08 jul 2026 20:01:29 WEST
+Bad SkillSub includes: 2
+Bad '/0': 79
+DirectX includes: 62
+SAL macro refs: 4565
+C++11 refs: 268
+Encoding suspects: 156
+Packet/tCnt refs: 9
+Client MinGW stub files: 4
+Entrypoints: 12
+Current server objects: 28
+Current compile errors: 3088

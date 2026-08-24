@@ -1,0 +1,43 @@
+00:00.015  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.015  color_management | Using fallback mode for management
+00:01.741  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender_pipeline/MfbC13_import_v4.blend"
+================================================================================
+PT BLENDER -> ASE V5c.1
+CANONICAL FULL-MESH REBUILD / SAME TOPOLOGY
+================================================================================
+Template : /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC13.ASE
+Output   : /home/gabriel/Área de Trabalho/summit/design_work/blender_pipeline/MfbC13_roundtrip_v5c_1_MahC20.ASE
+Object   : MahC20
+
+Template bytes : 456373
+Template SHA256: 86a45454c98db4ef8239a1264413a7b34ec558f993c3d4148a1ccd0c03935887
+Output bytes   : 452853
+Output SHA256  : cca7817ba202203def589979349a4caccf74da3588890097b43663cf412aa785
+
+Vertices       : 80
+Faces          : 146
+TVERT          : 124
+TFACE          : 146
+Orphan TVERTs  : 0 []
+
+Canonicalized  :
+  AB/BC/CA        = 1/1/1
+  MESH_SMOOTHING  = 1
+  referenced W    = 0.0
+  orphan TVERT    = preserved
+
+PHYSIQUE        : preserved from template
+MATERIAL_REF    : preserved from template
+NODE_TM         : preserved from template
+
+SELF-CHECK:
+  serialized vertex count : OK
+  serialized face topology: OK
+  serialized MTLID        : OK
+  serialized TVERT count  : OK
+  serialized TFACE mapping: OK
+================================================================================
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

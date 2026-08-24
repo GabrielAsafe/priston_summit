@@ -1,0 +1,67 @@
+PT_SMD_SMB_BONE_MATCH_V1
+mesh=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC01.smd
+skeleton=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/m5.smb
+
+MESH
+objects=15
+physique_assignments=1444
+unique_physique_names=44
+empty_physique_names=0
+
+SKELETON
+objects=95
+unique_node_names=95
+duplicate_node_names=0
+
+MATCH
+matched_unique_names=44
+missing_unique_names=0
+all_physique_names_found=YES
+
+PHYSIQUE_BONES
+'Bip-0007': assignments=11 smb_parent='Bip01 Pelvis'
+'Bip-0008': assignments=6 smb_parent='Bip-0007'
+'Bip-0010': assignments=3 smb_parent='Bip01 Pelvis'
+'Bip-0011': assignments=3 smb_parent='Bip-0010'
+'Bip-0014': assignments=6 smb_parent='Bip01 Pelvis'
+'Bip-0015': assignments=3 smb_parent='Bip-0014'
+'Bip-0016': assignments=8 smb_parent='Bip01 Pelvis'
+'Bip-0017': assignments=1 smb_parent='Bip-0016'
+'Bip-0019': assignments=12 smb_parent='Bip01 Pelvis'
+'Bip-0020': assignments=6 smb_parent='Bip-0019'
+'Bip-0022': assignments=9 smb_parent='Bip01 Pelvis'
+'Bip-0023': assignments=6 smb_parent='Bip-0022'
+'Bip-0037': assignments=12 smb_parent='Bip01 Pelvis'
+'Bip-0038': assignments=6 smb_parent='Bip-0037'
+'Bip01 Head': assignments=24 smb_parent='Bip01 Neck'
+'Bip01 L Calf': assignments=100 smb_parent='Bip01 L Thigh'
+'Bip01 L Clavicle': assignments=36 smb_parent='Bip01 Neck'
+'Bip01 L Finger0': assignments=16 smb_parent='Bip01 L Hand'
+'Bip01 L Finger01': assignments=14 smb_parent='Bip01 L Finger0'
+'Bip01 L Finger1': assignments=11 smb_parent='Bip01 L Hand'
+'Bip01 L Finger11': assignments=8 smb_parent='Bip01 L Finger1'
+'Bip01 L Finger2': assignments=14 smb_parent='Bip01 L Hand'
+'Bip01 L Finger21': assignments=8 smb_parent='Bip01 L Finger2'
+'Bip01 L Foot': assignments=56 smb_parent='Bip01 L Calf'
+'Bip01 L Forearm': assignments=108 smb_parent='Bip01 L UpperArm'
+'Bip01 L Hand': assignments=19 smb_parent='Bip01 L Forearm'
+'Bip01 L Thigh': assignments=20 smb_parent='Bip01 Spine'
+'Bip01 L UpperArm': assignments=111 smb_parent='Bip01 L Clavicle'
+'Bip01 Pelvis': assignments=64 smb_parent='Bip01'
+'Bip01 R Calf': assignments=100 smb_parent='Bip01 R Thigh'
+'Bip01 R Clavicle': assignments=36 smb_parent='Bip01 Neck'
+'Bip01 R Finger0': assignments=16 smb_parent='Bip01 R Hand'
+'Bip01 R Finger01': assignments=14 smb_parent='Bip01 R Finger0'
+'Bip01 R Finger1': assignments=11 smb_parent='Bip01 R Hand'
+'Bip01 R Finger11': assignments=8 smb_parent='Bip01 R Finger1'
+'Bip01 R Finger2': assignments=8 smb_parent='Bip01 R Hand'
+'Bip01 R Finger21': assignments=8 smb_parent='Bip01 R Finger2'
+'Bip01 R Foot': assignments=56 smb_parent='Bip01 R Calf'
+'Bip01 R Forearm': assignments=108 smb_parent='Bip01 R UpperArm'
+'Bip01 R Hand': assignments=25 smb_parent='Bip01 R Forearm'
+'Bip01 R Thigh': assignments=20 smb_parent='Bip01 Spine'
+'Bip01 R UpperArm': assignments=111 smb_parent='Bip01 R Clavicle'
+'Bip01 Spine': assignments=20 smb_parent='Bip01 Pelvis'
+'Bip01 Spine1': assignments=202 smb_parent='Bip01 Spine'
+
+bone_match_check=PASS

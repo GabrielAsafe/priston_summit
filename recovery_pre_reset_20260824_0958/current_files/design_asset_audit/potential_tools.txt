@@ -1,0 +1,53 @@
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/FlameMaiden/RazorGodTool.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/Igniculus/RazorGodTool.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/Insec/RazorGodTool.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/SMDReader.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/Database.dll
+/home/gabriel/Área de Trabalho/summit/Servidor/@Editor de Monstros.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/Field/Title/RazorGodTool.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/NpcEditor.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/NPC Editor.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/NPCManager.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/@ItemEditor.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/@Level Editor.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/Management/Editor de conta.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/Management/Editor De Equipamentos.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/Management/Editor de Itens.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/Management/Editor de Monstros.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/Management/Editor Japaokiko.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/Management/ItemEditor.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/Management/Level Editor.exe
+/home/gabriel/Área de Trabalho/summit/Servidor/Todas ferramentas em 1 Tools.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Documentation/DirectX9/mshelp2tool.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D10/Bin/x64/CubeMapGS.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D10/Bin/x64/DepthOfField10.1.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D10/Bin/x64/MeshFromOBJ10.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D10/Bin/x86/CubeMapGS.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D10/Bin/x86/DepthOfField10.1.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D10/Bin/x86/MeshFromOBJ10.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D11/Bin/x64/CascadedShadowMaps11.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D11/Bin/x64/HDRToneMappingCS11.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D11/Bin/x86/CascadedShadowMaps11.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D11/Bin/x86/HDRToneMappingCS11.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D/Bin/x64/DepthOfField.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D/Bin/x64/HDRCubeMap.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D/Bin/x64/MeshFromOBJ.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D/Bin/x64/OptimizedMesh.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D/Bin/x64/ParallaxOcclusionMapping.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D/Bin/x64/ShadowMap.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D/Bin/x64/SkinnedMesh.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D/Bin/x86/DepthOfField.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D/Bin/x86/HDRCubeMap.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D/Bin/x86/MeshFromOBJ.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D/Bin/x86/OptimizedMesh.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D/Bin/x86/ParallaxOcclusionMapping.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D/Bin/x86/ShadowMap.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/Direct3D/Bin/x86/SkinnedMesh.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/XAudio2/Bin/x64/XAudio2CustomAPO.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Samples/C++/XAudio2/Bin/x86/XAudio2CustomAPO.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/system/uninstall/sqmapi.dll
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Utilities/bin/x64/DXCapsViewer.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Utilities/bin/x64/MeshConvert.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Utilities/bin/x86/DXCapsViewer.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Utilities/bin/x86/MeshConvert.exe
+/home/gabriel/Área de Trabalho/summit/SourceCode/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Utilities/bin/x86/Microsoft Games for Windows Test Tool/setup.exe

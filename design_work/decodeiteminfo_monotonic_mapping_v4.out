@@ -1,0 +1,519 @@
+SUMMARY
+current_blocks=62
+master_blocks=70
+matched=62
+current_gaps=0
+master_gaps=8
+score=5864.264
+
+========================================================================================================================
+CORRUPTED BLOCK MAPPING
+========================================================================================================================
+
+CURRENT_BLOCK=0 CURRENT_LINE=27
+CURRENT=if(lstrcmp(decode, "*�̸�") == 0)
+MASTER_BLOCK=0 MASTER_LINE=27
+MASTER=if ( lstrcmp( decode , "*이름" )==0 ) {
+BODY_SIMILARITY=0.925676
+MASTER_LITERAL_0='*이름' CP949=2A C0 CC B8 A7
+STATUS=GOOD
+
+CURRENT_BLOCK=2 CURRENT_LINE=48
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�ڵ�") == 0)
+MASTER_BLOCK=9 MASTER_LINE=101
+MASTER=if ( !NextFlag && lstrcmp( decode , "*코드" )==0 ) {
+BODY_SIMILARITY=0.973872
+MASTER_LITERAL_0='*코드' CP949=2A C4 DA B5 E5
+STATUS=GOOD
+
+CURRENT_BLOCK=3 CURRENT_LINE=65
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����ũ") == 0)
+MASTER_BLOCK=10 MASTER_LINE=114
+MASTER=if ( !NextFlag && lstrcmp( decode , "*유니크" )==0 ) {
+BODY_SIMILARITY=0.966942
+MASTER_LITERAL_0='*유니크' CP949=2A C0 AF B4 CF C5 A9
+STATUS=GOOD
+
+CURRENT_BLOCK=4 CURRENT_LINE=76
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����ũ����") == 0)
+MASTER_BLOCK=11 MASTER_LINE=124
+MASTER=if ( !NextFlag && lstrcmp( decode , "*유니크색상" )==0 ) {
+BODY_SIMILARITY=0.954869
+MASTER_LITERAL_0='*유니크색상' CP949=2A C0 AF B4 CF C5 A9 BB F6 BB F3
+STATUS=GOOD
+
+CURRENT_BLOCK=5 CURRENT_LINE=95
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����Ʈ����") == 0)
+MASTER_BLOCK=12 MASTER_LINE=142
+MASTER=if ( !NextFlag && lstrcmp( decode , "*이펙트설정" )==0 ) {
+BODY_SIMILARITY=0.947368
+MASTER_LITERAL_0='*이펙트설정' CP949=2A C0 CC C6 E5 C6 AE BC B3 C1 A4
+STATUS=GOOD
+
+CURRENT_BLOCK=6 CURRENT_LINE=106
+CURRENT=if(!NextFlag && lstrcmp(decode, "*������") == 0)
+MASTER_BLOCK=13 MASTER_LINE=152
+MASTER=if ( !NextFlag && lstrcmp( decode , "*내구력" )==0 ) {
+BODY_SIMILARITY=0.953020
+MASTER_LITERAL_0='*내구력' CP949=2A B3 BB B1 B8 B7 C2
+STATUS=GOOD
+
+CURRENT_BLOCK=7 CURRENT_LINE=116
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����") == 0)
+MASTER_BLOCK=14 MASTER_LINE=161
+MASTER=if ( !NextFlag && lstrcmp( decode , "*무게" )==0 ) {
+BODY_SIMILARITY=0.944444
+MASTER_LITERAL_0='*무게' CP949=2A B9 AB B0 D4
+STATUS=GOOD
+
+CURRENT_BLOCK=8 CURRENT_LINE=124
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����") == 0)
+MASTER_BLOCK=15 MASTER_LINE=168
+MASTER=if ( !NextFlag && lstrcmp( decode , "*가격" )==0 ) {
+BODY_SIMILARITY=0.943662
+MASTER_LITERAL_0='*가격' CP949=2A B0 A1 B0 DD
+STATUS=GOOD
+
+CURRENT_BLOCK=9 CURRENT_LINE=132
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��ü") == 0)
+MASTER_BLOCK=16 MASTER_LINE=175
+MASTER=if ( !NextFlag && lstrcmp( decode , "*생체" )==0 ) {
+BODY_SIMILARITY=0.962162
+MASTER_LITERAL_0='*생체' CP949=2A BB FD C3 BC
+STATUS=GOOD
+
+CURRENT_BLOCK=10 CURRENT_LINE=140
+CURRENT=if(!NextFlag && lstrcmp(decode, "*���ڿ�") == 0)
+MASTER_BLOCK=17 MASTER_LINE=182
+MASTER=if ( !NextFlag && lstrcmp( decode , "*대자연" )==0 ) {
+BODY_SIMILARITY=0.961749
+MASTER_LITERAL_0='*대자연' CP949=2A B4 EB C0 DA BF AC
+STATUS=GOOD
+
+CURRENT_BLOCK=11 CURRENT_LINE=148
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��") == 0)
+MASTER_BLOCK=18 MASTER_LINE=189
+MASTER=if ( !NextFlag && lstrcmp( decode , "*불" )==0 ) {
+BODY_SIMILARITY=0.961326
+MASTER_LITERAL_0='*불' CP949=2A BA D2
+STATUS=GOOD
+
+CURRENT_BLOCK=12 CURRENT_LINE=156
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�ñ�") == 0)
+MASTER_BLOCK=19 MASTER_LINE=196
+MASTER=if ( !NextFlag && lstrcmp( decode , "*냉기" )==0 ) {
+BODY_SIMILARITY=0.960894
+MASTER_LITERAL_0='*냉기' CP949=2A B3 C3 B1 E2
+STATUS=GOOD
+
+CURRENT_BLOCK=13 CURRENT_LINE=164
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����") == 0)
+MASTER_BLOCK=20 MASTER_LINE=203
+MASTER=if ( !NextFlag && lstrcmp( decode , "*번개" )==0 ) {
+BODY_SIMILARITY=0.962963
+MASTER_LITERAL_0='*번개' CP949=2A B9 F8 B0 B3
+STATUS=GOOD
+
+CURRENT_BLOCK=14 CURRENT_LINE=172
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��") == 0)
+MASTER_BLOCK=21 MASTER_LINE=210
+MASTER=if ( !NextFlag && lstrcmp( decode , "*독" )==0 ) {
+BODY_SIMILARITY=0.962162
+MASTER_LITERAL_0='*독' CP949=2A B5 B6
+STATUS=GOOD
+
+CURRENT_BLOCK=15 CURRENT_LINE=180
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��") == 0)
+MASTER_BLOCK=22 MASTER_LINE=217
+MASTER=if ( !NextFlag && lstrcmp( decode , "*물" )==0 ) {
+BODY_SIMILARITY=0.961749
+MASTER_LITERAL_0='*물' CP949=2A B9 B0
+STATUS=GOOD
+
+CURRENT_BLOCK=16 CURRENT_LINE=188
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�ٶ�") == 0)
+MASTER_BLOCK=23 MASTER_LINE=224
+MASTER=if ( !NextFlag && lstrcmp( decode , "*바람" )==0 ) {
+BODY_SIMILARITY=0.961326
+MASTER_LITERAL_0='*바람' CP949=2A B9 D9 B6 F7
+STATUS=GOOD
+
+CURRENT_BLOCK=17 CURRENT_LINE=202
+CURRENT=if(!NextFlag && lstrcmp(decode, "*���ݷ�") == 0)
+MASTER_BLOCK=24 MASTER_LINE=237
+MASTER=if ( !NextFlag && lstrcmp( decode , "*공격력" )==0 ) {
+BODY_SIMILARITY=0.950943
+MASTER_LITERAL_0='*공격력' CP949=2A B0 F8 B0 DD B7 C2
+STATUS=GOOD
+
+CURRENT_BLOCK=18 CURRENT_LINE=216
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�����Ÿ�") == 0)
+MASTER_BLOCK=25 MASTER_LINE=250
+MASTER=if ( !NextFlag && lstrcmp( decode , "*사정거리" )==0 ) {
+BODY_SIMILARITY=0.950000
+MASTER_LITERAL_0='*사정거리' CP949=2A BB E7 C1 A4 B0 C5 B8 AE
+STATUS=GOOD
+
+CURRENT_BLOCK=19 CURRENT_LINE=223
+CURRENT=if(!NextFlag && lstrcmp(decode, "*���ݼӵ�") == 0)
+MASTER_BLOCK=26 MASTER_LINE=256
+MASTER=if ( !NextFlag && lstrcmp( decode , "*공격속도" )==0 ) {
+BODY_SIMILARITY=0.948718
+MASTER_LITERAL_0='*공격속도' CP949=2A B0 F8 B0 DD BC D3 B5 B5
+STATUS=GOOD
+
+CURRENT_BLOCK=20 CURRENT_LINE=231
+CURRENT=if(!NextFlag && lstrcmp(decode, "*���߷�") == 0)
+MASTER_BLOCK=27 MASTER_LINE=263
+MASTER=if ( !NextFlag && lstrcmp( decode , "*명중력" )==0 ) {
+BODY_SIMILARITY=0.954839
+MASTER_LITERAL_0='*명중력' CP949=2A B8 ED C1 DF B7 C2
+STATUS=GOOD
+
+CURRENT_BLOCK=21 CURRENT_LINE=241
+CURRENT=if(!NextFlag && lstrcmp(decode, "*ũ��Ƽ��") == 0)
+MASTER_BLOCK=28 MASTER_LINE=272
+MASTER=if ( !NextFlag && lstrcmp( decode , "*크리티컬" )==0 ) {
+BODY_SIMILARITY=0.948718
+MASTER_LITERAL_0='*크리티컬' CP949=2A C5 A9 B8 AE C6 BC C4 C3
+STATUS=GOOD
+
+CURRENT_BLOCK=22 CURRENT_LINE=252
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�����") == 0)
+MASTER_BLOCK=29 MASTER_LINE=282
+MASTER=if ( !NextFlag && lstrcmp( decode , "*흡수력" )==0 ) {
+BODY_SIMILARITY=0.954839
+MASTER_LITERAL_0='*흡수력' CP949=2A C8 ED BC F6 B7 C2
+STATUS=GOOD
+
+CURRENT_BLOCK=23 CURRENT_LINE=262
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����") == 0)
+MASTER_BLOCK=30 MASTER_LINE=291
+MASTER=if ( !NextFlag && lstrcmp( decode , "*방어력" )==0 ) {
+BODY_SIMILARITY=0.951049
+MASTER_LITERAL_0='*방어력' CP949=2A B9 E6 BE EE B7 C2
+STATUS=GOOD
+
+CURRENT_BLOCK=24 CURRENT_LINE=272
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�����") == 0)
+MASTER_BLOCK=31 MASTER_LINE=300
+MASTER=if ( !NextFlag && lstrcmp( decode , "*블럭율" )==0 ) {
+BODY_SIMILARITY=0.958084
+MASTER_LITERAL_0='*블럭율' CP949=2A BA ED B7 B0 C0 B2
+STATUS=GOOD
+
+CURRENT_BLOCK=25 CURRENT_LINE=283
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�̵��ӵ�") == 0)
+MASTER_BLOCK=32 MASTER_LINE=310
+MASTER=if ( !NextFlag && lstrcmp( decode , "*이동속도" )==0 ) {
+BODY_SIMILARITY=0.954248
+MASTER_LITERAL_0='*이동속도' CP949=2A C0 CC B5 BF BC D3 B5 B5
+STATUS=GOOD
+
+CURRENT_BLOCK=26 CURRENT_LINE=294
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��������") == 0)
+MASTER_BLOCK=33 MASTER_LINE=320
+MASTER=if ( !NextFlag && lstrcmp( decode , "*보유공간" )==0 ) {
+BODY_SIMILARITY=0.948718
+MASTER_LITERAL_0='*보유공간' CP949=2A BA B8 C0 AF B0 F8 B0 A3
+STATUS=GOOD
+
+CURRENT_BLOCK=27 CURRENT_LINE=303
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�������õ�") == 0)
+MASTER_BLOCK=34 MASTER_LINE=328
+MASTER=if ( !NextFlag && lstrcmp( decode , "*마법숙련도" )==0 ) {
+BODY_SIMILARITY=0.954023
+MASTER_LITERAL_0='*마법숙련도' CP949=2A B8 B6 B9 FD BC F7 B7 C3 B5 B5
+STATUS=GOOD
+
+CURRENT_BLOCK=28 CURRENT_LINE=310
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*�������") == 0 || lstrcmp(decode, "*������") == 0))
+MASTER_BLOCK=35 MASTER_LINE=334
+MASTER=if ( !NextFlag && ( lstrcmp( decode , "*마나재생" )==0 || lstrcmp( decode , "*기력재생" )==0 ) ) {
+BODY_SIMILARITY=0.957055
+MASTER_LITERAL_0='*마나재생' CP949=2A B8 B6 B3 AA C0 E7 BB FD
+MASTER_LITERAL_1='*기력재생' CP949=2A B1 E2 B7 C2 C0 E7 BB FD
+STATUS=GOOD
+
+CURRENT_BLOCK=29 CURRENT_LINE=319
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*���������") == 0 || lstrcmp(decode, "*��������") == 0))
+MASTER_BLOCK=36 MASTER_LINE=342
+MASTER=if ( !NextFlag && ( lstrcmp( decode , "*라이프재생" )==0 || lstrcmp( decode , "*생명력재생" )==0 )) {
+BODY_SIMILARITY=0.957055
+MASTER_LITERAL_0='*라이프재생' CP949=2A B6 F3 C0 CC C7 C1 C0 E7 BB FD
+MASTER_LITERAL_1='*생명력재생' CP949=2A BB FD B8 ED B7 C2 C0 E7 BB FD
+STATUS=GOOD
+
+CURRENT_BLOCK=30 CURRENT_LINE=328
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*���׹̳����") == 0 || lstrcmp(decode, "*�ٷ����") == 0))
+MASTER_BLOCK=37 MASTER_LINE=350
+MASTER=if ( !NextFlag && ( lstrcmp( decode , "*스테미나재생" )==0 || lstrcmp( decode , "*근력재생" )==0 )) {
+BODY_SIMILARITY=0.958580
+MASTER_LITERAL_0='*스테미나재생' CP949=2A BD BA C5 D7 B9 CC B3 AA C0 E7 BB FD
+MASTER_LITERAL_1='*근력재생' CP949=2A B1 D9 B7 C2 C0 E7 BB FD
+STATUS=GOOD
+
+CURRENT_BLOCK=31 CURRENT_LINE=338
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*�����߰�") == 0 || lstrcmp(decode, "*����߰�") == 0))
+MASTER_BLOCK=38 MASTER_LINE=359
+MASTER=if ( !NextFlag && ( lstrcmp( decode , "*마나추가" )==0 || lstrcmp( decode , "*기력추가" )==0 )) {
+BODY_SIMILARITY=0.954248
+MASTER_LITERAL_0='*마나추가' CP949=2A B8 B6 B3 AA C3 DF B0 A1
+MASTER_LITERAL_1='*기력추가' CP949=2A B1 E2 B7 C2 C3 DF B0 A1
+STATUS=GOOD
+
+CURRENT_BLOCK=32 CURRENT_LINE=347
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*�������߰�") == 0 || lstrcmp(decode, "*������߰�") == 0))
+MASTER_BLOCK=39 MASTER_LINE=367
+MASTER=if ( !NextFlag && ( lstrcmp( decode , "*라이프추가" )==0 || lstrcmp( decode , "*생명력추가" )==0 ) ) {
+BODY_SIMILARITY=0.954248
+MASTER_LITERAL_0='*라이프추가' CP949=2A B6 F3 C0 CC C7 C1 C3 DF B0 A1
+MASTER_LITERAL_1='*생명력추가' CP949=2A BB FD B8 ED B7 C2 C3 DF B0 A1
+STATUS=GOOD
+
+CURRENT_BLOCK=33 CURRENT_LINE=356
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*���׹̳��߰�") == 0 || lstrcmp(decode, "*�ٷ��߰�") == 0))
+MASTER_BLOCK=40 MASTER_LINE=375
+MASTER=if ( !NextFlag && ( lstrcmp( decode , "*스테미나추가" )==0 || lstrcmp( decode , "*근력추가" )==0 ) ) {
+BODY_SIMILARITY=0.955975
+MASTER_LITERAL_0='*스테미나추가' CP949=2A BD BA C5 D7 B9 CC B3 AA C3 DF B0 A1
+MASTER_LITERAL_1='*근력추가' CP949=2A B1 D9 B7 C2 C3 DF B0 A1
+STATUS=GOOD
+
+CURRENT_BLOCK=34 CURRENT_LINE=369
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����") == 0)
+MASTER_BLOCK=41 MASTER_LINE=387
+MASTER=if ( !NextFlag && lstrcmp( decode , "*레벨" )==0 ) {
+BODY_SIMILARITY=0.943662
+MASTER_LITERAL_0='*레벨' CP949=2A B7 B9 BA A7
+STATUS=GOOD
+
+CURRENT_BLOCK=35 CURRENT_LINE=377
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��") == 0)
+MASTER_BLOCK=42 MASTER_LINE=394
+MASTER=if ( !NextFlag && lstrcmp( decode , "*힘" )==0 ) {
+BODY_SIMILARITY=0.945946
+MASTER_LITERAL_0='*힘' CP949=2A C8 FB
+STATUS=GOOD
+
+CURRENT_BLOCK=36 CURRENT_LINE=385
+CURRENT=if(!NextFlag && lstrcmp(decode, "*���ŷ�") == 0)
+MASTER_BLOCK=43 MASTER_LINE=401
+MASTER=if ( !NextFlag && lstrcmp( decode , "*정신력" )==0 ) {
+BODY_SIMILARITY=0.944444
+MASTER_LITERAL_0='*정신력' CP949=2A C1 A4 BD C5 B7 C2
+STATUS=GOOD
+
+CURRENT_BLOCK=37 CURRENT_LINE=392
+CURRENT=if(!NextFlag && lstrcmp(decode, "*���") == 0)
+MASTER_BLOCK=44 MASTER_LINE=407
+MASTER=if ( !NextFlag && lstrcmp( decode , "*재능" )==0 ) {
+BODY_SIMILARITY=0.944444
+MASTER_LITERAL_0='*재능' CP949=2A C0 E7 B4 C9
+STATUS=GOOD
+
+CURRENT_BLOCK=38 CURRENT_LINE=399
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��ø��") == 0)
+MASTER_BLOCK=45 MASTER_LINE=413
+MASTER=if ( !NextFlag && lstrcmp( decode , "*민첩성" )==0 ) {
+BODY_SIMILARITY=0.946667
+MASTER_LITERAL_0='*민첩성' CP949=2A B9 CE C3 B8 BC BA
+STATUS=GOOD
+
+CURRENT_BLOCK=39 CURRENT_LINE=406
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�ǰ�") == 0)
+MASTER_BLOCK=46 MASTER_LINE=419
+MASTER=if ( !NextFlag && lstrcmp( decode , "*건강" )==0 ) {
+BODY_SIMILARITY=0.944444
+MASTER_LITERAL_0='*건강' CP949=2A B0 C7 B0 AD
+STATUS=GOOD
+
+CURRENT_BLOCK=40 CURRENT_LINE=417
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*���׹̳ʻ��") == 0 || lstrcmp(decode, "*�ٷ»��") == 0))
+MASTER_BLOCK=47 MASTER_LINE=429
+MASTER=if ( !NextFlag && ( lstrcmp( decode , "*스테미너상승" )==0 || lstrcmp( decode , "*근력상승" )==0 ) ) {
+BODY_SIMILARITY=0.948148
+MASTER_LITERAL_0='*스테미너상승' CP949=2A BD BA C5 D7 B9 CC B3 CA BB F3 BD C2
+MASTER_LITERAL_1='*근력상승' CP949=2A B1 D9 B7 C2 BB F3 BD C2
+STATUS=GOOD
+
+CURRENT_BLOCK=41 CURRENT_LINE=427
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*�������") == 0 || lstrcmp(decode, "*��»��") == 0))
+MASTER_BLOCK=48 MASTER_LINE=438
+MASTER=if ( !NextFlag && ( lstrcmp( decode , "*마나상승" )==0 || lstrcmp( decode , "*기력상승" )==0 )) {
+BODY_SIMILARITY=0.945736
+MASTER_LITERAL_0='*마나상승' CP949=2A B8 B6 B3 AA BB F3 BD C2
+MASTER_LITERAL_1='*기력상승' CP949=2A B1 E2 B7 C2 BB F3 BD C2
+STATUS=GOOD
+
+CURRENT_BLOCK=42 CURRENT_LINE=437
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*���������") == 0 || lstrcmp(decode, "*����»��") == 0))
+MASTER_BLOCK=49 MASTER_LINE=447
+MASTER=if ( !NextFlag && ( lstrcmp( decode , "*라이프상승" )==0 || lstrcmp( decode , "*생명력상승" )==0 )) {
+BODY_SIMILARITY=0.945736
+MASTER_LITERAL_0='*라이프상승' CP949=2A B6 F3 C0 CC C7 C1 BB F3 BD C2
+MASTER_LITERAL_1='*생명력상승' CP949=2A BB FD B8 ED B7 C2 BB F3 BD C2
+STATUS=GOOD
+
+CURRENT_BLOCK=44 CURRENT_LINE=475
+CURRENT=if(!NextFlag && lstrcmp(decode, "**Ưȭ����") == 0)
+MASTER_BLOCK=51 MASTER_LINE=480
+MASTER=if ( !NextFlag && lstrcmp( decode , "**특화랜덤" )==0 ) {
+BODY_SIMILARITY=0.984952
+MASTER_LITERAL_0='**특화랜덤' CP949=2A 2A C6 AF C8 AD B7 A3 B4 FD
+STATUS=GOOD
+
+CURRENT_BLOCK=45 CURRENT_LINE=505
+CURRENT=if(!NextFlag && lstrcmp(decode, "**�����") == 0)
+MASTER_BLOCK=52 MASTER_LINE=506
+MASTER=if ( !NextFlag && lstrcmp( decode , "**흡수력" )==0 ) {
+BODY_SIMILARITY=0.959064
+MASTER_LITERAL_0='**흡수력' CP949=2A 2A C8 ED BC F6 B7 C2
+STATUS=GOOD
+
+CURRENT_BLOCK=46 CURRENT_LINE=515
+CURRENT=if(!NextFlag && lstrcmp(decode, "**����") == 0)
+MASTER_BLOCK=53 MASTER_LINE=515
+MASTER=if ( !NextFlag && lstrcmp( decode , "**방어력" )==0 ) {
+BODY_SIMILARITY=0.947040
+MASTER_LITERAL_0='**방어력' CP949=2A 2A B9 E6 BE EE B7 C2
+STATUS=GOOD
+
+CURRENT_BLOCK=47 CURRENT_LINE=527
+CURRENT=if(!NextFlag && lstrcmp(decode, "**�̵��ӵ�") == 0)
+MASTER_BLOCK=55 MASTER_LINE=534
+MASTER=if ( !NextFlag && lstrcmp( decode , "**이동속도" )==0 ) {
+BODY_SIMILARITY=0.959064
+MASTER_LITERAL_0='**이동속도' CP949=2A 2A C0 CC B5 BF BC D3 B5 B5
+STATUS=GOOD
+
+CURRENT_BLOCK=48 CURRENT_LINE=537
+CURRENT=if(!NextFlag && lstrcmp(decode, "**�����") == 0)
+MASTER_BLOCK=56 MASTER_LINE=543
+MASTER=if ( !NextFlag && lstrcmp( decode , "**블럭율" )==0 ) {
+BODY_SIMILARITY=0.959184
+MASTER_LITERAL_0='**블럭율' CP949=2A 2A BA ED B7 B0 C0 B2
+STATUS=GOOD
+
+CURRENT_BLOCK=49 CURRENT_LINE=544
+CURRENT=if(!NextFlag && lstrcmp(decode, "**���ݼӵ�") == 0)
+MASTER_BLOCK=57 MASTER_LINE=549
+MASTER=if ( !NextFlag && lstrcmp( decode , "**공격속도" )==0 ) {
+BODY_SIMILARITY=0.955556
+MASTER_LITERAL_0='**공격속도' CP949=2A 2A B0 F8 B0 DD BC D3 B5 B5
+STATUS=GOOD
+
+CURRENT_BLOCK=50 CURRENT_LINE=551
+CURRENT=if(!NextFlag && lstrcmp(decode, "**ũ��Ƽ��") == 0)
+MASTER_BLOCK=58 MASTER_LINE=555
+MASTER=if ( !NextFlag && lstrcmp( decode , "**크리티컬" )==0 ) {
+BODY_SIMILARITY=0.955556
+MASTER_LITERAL_0='**크리티컬' CP949=2A 2A C5 A9 B8 AE C6 BC C4 C3
+STATUS=GOOD
+
+CURRENT_BLOCK=51 CURRENT_LINE=558
+CURRENT=if(!NextFlag && lstrcmp(decode, "**�����Ÿ�") == 0)
+MASTER_BLOCK=59 MASTER_LINE=561
+MASTER=if ( !NextFlag && lstrcmp( decode , "**사정거리" )==0 ) {
+BODY_SIMILARITY=0.956522
+MASTER_LITERAL_0='**사정거리' CP949=2A 2A BB E7 C1 A4 B0 C5 B8 AE
+STATUS=GOOD
+
+CURRENT_BLOCK=52 CURRENT_LINE=565
+CURRENT=if(!NextFlag && lstrcmp(decode, "**�������õ�") == 0)
+MASTER_BLOCK=60 MASTER_LINE=567
+MASTER=if ( !NextFlag && lstrcmp( decode , "**마법숙련도" )==0 ) {
+BODY_SIMILARITY=0.962162
+MASTER_LITERAL_0='**마법숙련도' CP949=2A 2A B8 B6 B9 FD BC F7 B7 C3 B5 B5
+STATUS=GOOD
+
+CURRENT_BLOCK=53 CURRENT_LINE=583
+CURRENT=if(!NextFlag && (lstrcmp(decode, "**�����߰�") == 0 || lstrcmp(decode, "**����߰�") == 0))
+MASTER_BLOCK=61 MASTER_LINE=584
+MASTER=if ( !NextFlag && ( lstrcmp( decode , "**마나추가" )==0 || lstrcmp( decode , "**기력추가" )==0 ) ) {
+BODY_SIMILARITY=0.951220
+MASTER_LITERAL_0='**마나추가' CP949=2A 2A B8 B6 B3 AA C3 DF B0 A1
+MASTER_LITERAL_1='**기력추가' CP949=2A 2A B1 E2 B7 C2 C3 DF B0 A1
+STATUS=GOOD
+
+CURRENT_BLOCK=54 CURRENT_LINE=590
+CURRENT=if(!NextFlag && (lstrcmp(decode, "**�������߰�") == 0 || lstrcmp(decode, "**������߰�") == 0))
+MASTER_BLOCK=62 MASTER_LINE=590
+MASTER=if ( !NextFlag && ( lstrcmp( decode , "**라이프추가" )==0 || lstrcmp( decode , "**생명력추가" )==0 ) ) {
+BODY_SIMILARITY=0.951220
+MASTER_LITERAL_0='**라이프추가' CP949=2A 2A B6 F3 C0 CC C7 C1 C3 DF B0 A1
+MASTER_LITERAL_1='**생명력추가' CP949=2A 2A BB FD B8 ED B7 C2 C3 DF B0 A1
+STATUS=GOOD
+
+CURRENT_BLOCK=55 CURRENT_LINE=597
+CURRENT=if(!NextFlag && lstrcmp(decode, "**���߷�") == 0)
+MASTER_BLOCK=63 MASTER_LINE=596
+MASTER=if ( !NextFlag && lstrcmp( decode , "**명중력" )==0 ) {
+BODY_SIMILARITY=0.956522
+MASTER_LITERAL_0='**명중력' CP949=2A 2A B8 ED C1 DF B7 C2
+STATUS=GOOD
+
+CURRENT_BLOCK=56 CURRENT_LINE=607
+CURRENT=if(!NextFlag && lstrcmp(decode, "**���ݷ�") == 0)
+MASTER_BLOCK=64 MASTER_LINE=605
+MASTER=if ( !NextFlag && lstrcmp( decode , "**공격력" )==0 ) {
+BODY_SIMILARITY=0.777202
+MASTER_LITERAL_0='**공격력' CP949=2A 2A B0 F8 B0 DD B7 C2
+STATUS=GOOD
+
+CURRENT_BLOCK=57 CURRENT_LINE=621
+CURRENT=if(!NextFlag && (lstrcmp(decode, "**�������") == 0 || lstrcmp(decode, "**������") == 0))
+MASTER_BLOCK=65 MASTER_LINE=622
+MASTER=if ( !NextFlag && ( lstrcmp( decode , "**마나재생" )==0 || lstrcmp( decode , "**기력재생" )==0 ) ) {
+BODY_SIMILARITY=0.960894
+MASTER_LITERAL_0='**마나재생' CP949=2A 2A B8 B6 B3 AA C0 E7 BB FD
+MASTER_LITERAL_1='**기력재생' CP949=2A 2A B1 E2 B7 C2 C0 E7 BB FD
+STATUS=GOOD
+
+CURRENT_BLOCK=58 CURRENT_LINE=632
+CURRENT=if(!NextFlag && (lstrcmp(decode, "**���������") == 0 || lstrcmp(decode, "**��������") == 0))
+MASTER_BLOCK=66 MASTER_LINE=632
+MASTER=if ( !NextFlag && ( lstrcmp( decode , "**라이프재생" )==0 || lstrcmp( decode , "**생명력재생" )==0 )) {
+BODY_SIMILARITY=0.957895
+MASTER_LITERAL_0='**라이프재생' CP949=2A 2A B6 F3 C0 CC C7 C1 C0 E7 BB FD
+MASTER_LITERAL_1='**생명력재생' CP949=2A 2A BB FD B8 ED B7 C2 C0 E7 BB FD
+STATUS=GOOD
+
+CURRENT_BLOCK=59 CURRENT_LINE=639
+CURRENT=if(!NextFlag && (lstrcmp(decode, "**���׹̳����") == 0 || lstrcmp(decode, "**�ٷ����") == 0))
+MASTER_BLOCK=67 MASTER_LINE=638
+MASTER=if ( !NextFlag && ( lstrcmp( decode , "**스테미나재생" )==0 || lstrcmp( decode , "**근력재생" )==0 ) ) {
+BODY_SIMILARITY=0.959184
+MASTER_LITERAL_0='**스테미나재생' CP949=2A 2A BD BA C5 D7 B9 CC B3 AA C0 E7 BB FD
+MASTER_LITERAL_1='**근력재생' CP949=2A 2A B1 D9 B7 C2 C0 E7 BB FD
+STATUS=GOOD
+
+CURRENT_BLOCK=60 CURRENT_LINE=646
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�߻�����") == 0)
+MASTER_BLOCK=68 MASTER_LINE=644
+MASTER=if ( !NextFlag && lstrcmp( decode , "*발생제한" )==0 ) {
+BODY_SIMILARITY=0.949367
+MASTER_LITERAL_0='*발생제한' CP949=2A B9 DF BB FD C1 A6 C7 D1
+STATUS=GOOD
+
+CURRENT_BLOCK=61 CURRENT_LINE=654
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��������") == 0)
+MASTER_BLOCK=69 MASTER_LINE=651
+MASTER=if ( !NextFlag && lstrcmp( decode , "*연결파일" )==0 ) {
+BODY_SIMILARITY=0.969828
+MASTER_LITERAL_0='*연결파일' CP949=2A BF AC B0 E1 C6 C4 C0 CF
+STATUS=GOOD
+
+========================================================================================================================
+ANCHOR CHECKS
+========================================================================================================================
+current_block=0 expected='*이름' actual='*이름' PASS=YES
+current_block=2 expected='*코드' actual='*코드' PASS=YES
+current_block=3 expected='*유니크' actual='*유니크' PASS=YES
+current_block=4 expected='*유니크색상' actual='*유니크색상' PASS=YES
+current_block=5 expected='*이펙트설정' actual='*이펙트설정' PASS=YES
+
+========================================================================================================================
+RESULT
+corrupted_good=60
+corrupted_review=0

@@ -1,0 +1,190 @@
+SrcGame/src/AntiCheat/AntiCheat.cpp:433:    // TEMP_MINGW_COMPAT:
+SrcGame/src/HoBaram/HoOpening.cpp:45:static void MINGW_LoginTrace(const char* fmt, ...)
+SrcGame/src/HoBaram/HoOpening.cpp:813:						MINGW_LoginTrace("CLICK_PLAY before LoginDataServer user=%s LoginInputState=%d StartConnectServerFlag=%d ConnectError=%d", UserAccount, LoginInputState, StartConnectServerFlag, ConnectError);
+SrcGame/src/HoBaram/HoOpening.cpp:816:						MINGW_LoginTrace("CLICK_PLAY after LoginDataServer");
+SrcGame/src/HoBaram/HoOpening.cpp:836:					/* TEMP_MINGW_BLOCK_AUTO_EXIT:
+SrcGame/src/HoBaram/HoOpening.cpp:886:						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp:893:						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp:926:				/* TEMP_MINGW_SKIP_LOGIN_PASSWORD_STAR: dsTextLineOut("*") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp:991:	MINGW_LoginTrace("ENTER HoLoginThreadProc");
+SrcGame/src/HoBaram/HoOpening.cpp:996:		MINGW_LoginTrace("before ConnectServer_InfoMain");
+SrcGame/src/HoBaram/HoOpening.cpp:998:	MINGW_LoginTrace("after ConnectServer_InfoMain smWsockDataServer=%p", smWsockDataServer);
+SrcGame/src/HoBaram/HoOpening.cpp:1016:			LoginResult result = MINGW_LoginTrace("before requestLogin user=%s", UserAccount);
+SrcGame/src/HoBaram/HoOpening.cpp:1018:	MINGW_LoginTrace("after requestLogin");
+SrcGame/src/HoBaram/HoOpening.cpp:1022:				MINGW_LoginTrace("before DisconnectServerFull");
+SrcGame/src/HoBaram/HoOpening.cpp:1024:	MINGW_LoginTrace("after DisconnectServerFull");
+SrcGame/src/HoBaram/HoOpening.cpp:1040:	MINGW_LoginTrace("LEAVE HoLoginThreadProc return TRUE");
+SrcGame/src/HoBaram/HoOpening.cpp:1046:	MINGW_LoginTrace("ENTER LoginDataServer");
+SrcGame/src/HoBaram/HoOpening.cpp:1051:		hHoLoginThread = MINGW_LoginTrace("before CreateThread");
+SrcGame/src/HoBaram/HoOpening.cpp.bak_mousebutton_draw_trace_20260708:807:					/* TEMP_MINGW_BLOCK_AUTO_EXIT:
+SrcGame/src/HoBaram/HoOpening.cpp.bak_login_input_deep_trace_20260708:815:					/* TEMP_MINGW_BLOCK_AUTO_EXIT:
+SrcGame/src/HoBaram/HoOpening.cpp.bak_login_text_draw_trace_20260708:817:					/* TEMP_MINGW_BLOCK_AUTO_EXIT:
+SrcGame/src/HoBaram/HoOpening.cpp.bak_skip_login_caret_20260708:817:					/* TEMP_MINGW_BLOCK_AUTO_EXIT:
+SrcGame/src/HoBaram/HoOpening.cpp.bak_skip_login_password_stars_20260708:817:					/* TEMP_MINGW_BLOCK_AUTO_EXIT:
+SrcGame/src/HoBaram/HoOpening.cpp.bak_skip_login_password_stars_20260708:867:						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp.bak_skip_login_password_stars_20260708:874:						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp.bak_login_thread_trace:817:					/* TEMP_MINGW_BLOCK_AUTO_EXIT:
+SrcGame/src/HoBaram/HoOpening.cpp.bak_login_thread_trace:867:						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp.bak_login_thread_trace:874:						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp.bak_login_thread_trace:907:				/* TEMP_MINGW_SKIP_LOGIN_PASSWORD_STAR: dsTextLineOut("*") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp.broken_login_thread_trace:21:static void MINGW_LoginThreadLog(const char* msg)
+SrcGame/src/HoBaram/HoOpening.cpp.broken_login_thread_trace:32:static void MINGW_LoginThreadLogFmt(const char* fmt, ...)
+SrcGame/src/HoBaram/HoOpening.cpp.broken_login_thread_trace:261:	MINGW_LoginThreadLog("LEAVE HoLoginThreadProc");
+SrcGame/src/HoBaram/HoOpening.cpp.broken_login_thread_trace:847:					/* TEMP_MINGW_BLOCK_AUTO_EXIT:
+SrcGame/src/HoBaram/HoOpening.cpp.broken_login_thread_trace:897:						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp.broken_login_thread_trace:904:						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp.broken_login_thread_trace:937:				/* TEMP_MINGW_SKIP_LOGIN_PASSWORD_STAR: dsTextLineOut("*") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp.broken_login_thread_trace:1002:	MINGW_LoginThreadLog("ENTER HoLoginThreadProc");
+SrcGame/src/HoBaram/HoOpening.cpp.broken_login_thread_trace:1007:		MINGW_LoginThreadLog("before ConnectServer_InfoMain");
+SrcGame/src/HoBaram/HoOpening.cpp.broken_login_thread_trace:1009:	MINGW_LoginThreadLogFmt("after ConnectServer_InfoMain smWsockDataServer=%p", smWsockDataServer);
+SrcGame/src/HoBaram/HoOpening.cpp.broken_login_thread_trace:1027:			LoginResult result = MINGW_LoginThreadLogFmt("before requestLogin user=%s", UserAccount);
+SrcGame/src/HoBaram/HoOpening.cpp.broken_login_thread_trace:1029:	MINGW_LoginThreadLogFmt("after requestLogin result=%d", mingwLoginResult);
+SrcGame/src/HoBaram/HoOpening.cpp.broken_login_thread_trace:1033:				MINGW_LoginThreadLog("before DisconnectServerFull");
+SrcGame/src/HoBaram/HoOpening.cpp.broken_login_thread_trace:1035:	MINGW_LoginThreadLog("after DisconnectServerFull");
+SrcGame/src/HoBaram/HoOpening.cpp.bak_before_wine_text_trace:817:					/* TEMP_MINGW_BLOCK_AUTO_EXIT:
+SrcGame/src/HoBaram/HoOpening.cpp.bak_before_wine_text_trace:867:						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp.bak_before_wine_text_trace:874:						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp.bak_before_wine_text_trace:907:				/* TEMP_MINGW_SKIP_LOGIN_PASSWORD_STAR: dsTextLineOut("*") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp.bak_enter_login_trace:817:					/* TEMP_MINGW_BLOCK_AUTO_EXIT:
+SrcGame/src/HoBaram/HoOpening.cpp.bak_enter_login_trace:867:						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp.bak_enter_login_trace:874:						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
+SrcGame/src/HoBaram/HoOpening.cpp.bak_enter_login_trace:907:				/* TEMP_MINGW_SKIP_LOGIN_PASSWORD_STAR: dsTextLineOut("*") crashes in MinGW build */
+SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lib/loadlib.c:22:* have dlfcn, an implementation for Windows,  and a stub for other systems.
+SrcGame/src/Library/LuaSrc/Lua/lib/loadlib.c:22:* have dlfcn, an implementation for Windows,  and a stub for other systems.
+SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lib/loadlib.c:22:* have dlfcn, an implementation for Windows,  and a stub for other systems.
+SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lib/loadlib.c:22:* have dlfcn, an implementation for Windows,  and a stub for other systems.
+SrcGame/src/sinbaram/amstream.h:21:#error this stub requires an updated version of <rpcndr.h>
+SrcGame/src/sinbaram/skill_missing_globals_mingw.cpp:1:// TEMP_MINGW_COMPAT:
+SrcGame/src/sinbaram/skill_missing_globals_mingw.cpp.bak_remove_duplicates:1:// TEMP_MINGW_COMPAT:
+SrcGame/src/smLib3d/ddraw.h:2815: * intend to use antialiasing. Only valid if DDSCAPS_3DDEVICE is also set.
+SrcGame/src/smLib3d/smDsx.cpp:166:	// TEMP_MINGW_I686_D3D_FIX:
+SrcGame/src/smLib3d/ddraw.h.bak_slash_fix:2815: * intend to use antialiasing. Only valid if DDSCAPS_3DDEVICE is also set.
+SrcGame/src/smLib3d/smDsx.cpp.bak_wine_font_quality:166:	// TEMP_MINGW_I686_D3D_FIX:
+SrcGame/src/smLib3d/smDsx.cpp.bak_windowed_800x600_wine_font:166:	// TEMP_MINGW_I686_D3D_FIX:
+SrcGame/src/smLib3d/smDsx.cpp.broken_windowed_800x600_wine_font:166:	// TEMP_MINGW_I686_D3D_FIX:
+SrcGame/src/smLib3d/smDsx.cpp.bak_preserve_backbuffer_format:166:	// TEMP_MINGW_I686_D3D_FIX:
+SrcGame/src/Winmain.cpp:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp:607:	if(1 /* TEMP_MINGW_FORCE_WINDOWMODE */ || SETTINGSHANDLER->getWindowMode())
+SrcGame/src/Winmain.cpp:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp:661:		MessageBoxA(NULL, "CreateWindow/CreateWindowEx failed. See mingw_hwnd_check.txt", "DEBUG MINGW", MB_OK | MB_ICONERROR);
+SrcGame/src/client_server_stubs.cpp:1:// TEMP_MINGW_CLIENT_STUB
+SrcGame/src/mingw_debug_entry.cpp:15:    MessageBoxA(NULL, "ENTROU NO ENTRYPOINT DEBUG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_disable_ipinfo_system:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_disable_ipinfo_system:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_disable_ipinfo_system:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_disable_ipinfo_system:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_disable_ipinfo_system:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_disable_ipinfo_system:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_log_quit_reason:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp.bak_log_quit_reason:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_log_quit_reason:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_log_quit_reason:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_log_quit_reason:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_log_quit_reason:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_log_quit_reason:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_log_window_lifecycle:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp.bak_log_window_lifecycle:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_log_window_lifecycle:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_log_window_lifecycle:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_log_window_lifecycle:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_log_window_lifecycle:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_log_window_lifecycle:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_restore_20260708:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp.bak_before_restore_20260708:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_restore_20260708:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_restore_20260708:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_restore_20260708:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_restore_20260708:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_restore_20260708:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_hwnd_check_20260708:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp.bak_before_hwnd_check_20260708:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_hwnd_check_20260708:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_hwnd_check_20260708:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_hwnd_check_20260708:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_hwnd_check_20260708:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_hwnd_check_20260708:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_force_windowmode_20260708:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp.bak_force_windowmode_20260708:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_force_windowmode_20260708:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_force_windowmode_20260708:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_force_windowmode_20260708:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_force_windowmode_20260708:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_force_windowmode_20260708:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_force_windowmode_20260708:661:		MessageBoxA(NULL, "CreateWindow/CreateWindowEx failed. See mingw_hwnd_check.txt", "DEBUG MINGW", MB_OK | MB_ICONERROR);
+SrcGame/src/Winmain.cpp.bak_before_wm_close_destroy_log_20260708:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp.bak_before_wm_close_destroy_log_20260708:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_wm_close_destroy_log_20260708:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_wm_close_destroy_log_20260708:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_wm_close_destroy_log_20260708:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_wm_close_destroy_log_20260708:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_wm_close_destroy_log_20260708:607:	if(1 /* TEMP_MINGW_FORCE_WINDOWMODE */ || SETTINGSHANDLER->getWindowMode())
+SrcGame/src/Winmain.cpp.bak_before_wm_close_destroy_log_20260708:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_wm_close_destroy_log_20260708:661:		MessageBoxA(NULL, "CreateWindow/CreateWindowEx failed. See mingw_hwnd_check.txt", "DEBUG MINGW", MB_OK | MB_ICONERROR);
+SrcGame/src/Winmain.cpp.bak_after_showwindow_steps_20260708:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp.bak_after_showwindow_steps_20260708:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_after_showwindow_steps_20260708:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_after_showwindow_steps_20260708:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_after_showwindow_steps_20260708:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_after_showwindow_steps_20260708:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_after_showwindow_steps_20260708:607:	if(1 /* TEMP_MINGW_FORCE_WINDOWMODE */ || SETTINGSHANDLER->getWindowMode())
+SrcGame/src/Winmain.cpp.bak_after_showwindow_steps_20260708:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_after_showwindow_steps_20260708:661:		MessageBoxA(NULL, "CreateWindow/CreateWindowEx failed. See mingw_hwnd_check.txt", "DEBUG MINGW", MB_OK | MB_ICONERROR);
+SrcGame/src/Winmain.cpp.bak_before_setgamemode_probe_20260708:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp.bak_before_setgamemode_probe_20260708:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_setgamemode_probe_20260708:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_setgamemode_probe_20260708:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_setgamemode_probe_20260708:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_setgamemode_probe_20260708:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_setgamemode_probe_20260708:607:	if(1 /* TEMP_MINGW_FORCE_WINDOWMODE */ || SETTINGSHANDLER->getWindowMode())
+SrcGame/src/Winmain.cpp.bak_before_setgamemode_probe_20260708:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_before_setgamemode_probe_20260708:661:		MessageBoxA(NULL, "CreateWindow/CreateWindowEx failed. See mingw_hwnd_check.txt", "DEBUG MINGW", MB_OK | MB_ICONERROR);
+SrcGame/src/Winmain.cpp.bak_inside_setgamemode_log_20260708:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp.bak_inside_setgamemode_log_20260708:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_inside_setgamemode_log_20260708:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_inside_setgamemode_log_20260708:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_inside_setgamemode_log_20260708:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_inside_setgamemode_log_20260708:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_inside_setgamemode_log_20260708:607:	if(1 /* TEMP_MINGW_FORCE_WINDOWMODE */ || SETTINGSHANDLER->getWindowMode())
+SrcGame/src/Winmain.cpp.bak_inside_setgamemode_log_20260708:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_inside_setgamemode_log_20260708:661:		MessageBoxA(NULL, "CreateWindow/CreateWindowEx failed. See mingw_hwnd_check.txt", "DEBUG MINGW", MB_OK | MB_ICONERROR);
+SrcGame/src/Winmain.cpp.bak_loop_quit_probe_20260708:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp.bak_loop_quit_probe_20260708:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_loop_quit_probe_20260708:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_loop_quit_probe_20260708:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_loop_quit_probe_20260708:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_loop_quit_probe_20260708:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_loop_quit_probe_20260708:607:	if(1 /* TEMP_MINGW_FORCE_WINDOWMODE */ || SETTINGSHANDLER->getWindowMode())
+SrcGame/src/Winmain.cpp.bak_loop_quit_probe_20260708:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_loop_quit_probe_20260708:661:		MessageBoxA(NULL, "CreateWindow/CreateWindowEx failed. See mingw_hwnd_check.txt", "DEBUG MINGW", MB_OK | MB_ICONERROR);
+SrcGame/src/Winmain.cpp.bak_fix_duplicate_checkcrack_20260708:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp.bak_fix_duplicate_checkcrack_20260708:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_fix_duplicate_checkcrack_20260708:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_fix_duplicate_checkcrack_20260708:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_fix_duplicate_checkcrack_20260708:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_fix_duplicate_checkcrack_20260708:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_fix_duplicate_checkcrack_20260708:607:	if(1 /* TEMP_MINGW_FORCE_WINDOWMODE */ || SETTINGSHANDLER->getWindowMode())
+SrcGame/src/Winmain.cpp.bak_fix_duplicate_checkcrack_20260708:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_fix_duplicate_checkcrack_20260708:661:		MessageBoxA(NULL, "CreateWindow/CreateWindowEx failed. See mingw_hwnd_check.txt", "DEBUG MINGW", MB_OK | MB_ICONERROR);
+SrcGame/src/Winmain.cpp.bak_winmain_final_return_log_20260708:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp.bak_winmain_final_return_log_20260708:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_winmain_final_return_log_20260708:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_winmain_final_return_log_20260708:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_winmain_final_return_log_20260708:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_winmain_final_return_log_20260708:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_winmain_final_return_log_20260708:607:	if(1 /* TEMP_MINGW_FORCE_WINDOWMODE */ || SETTINGSHANDLER->getWindowMode())
+SrcGame/src/Winmain.cpp.bak_winmain_final_return_log_20260708:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_winmain_final_return_log_20260708:661:		MessageBoxA(NULL, "CreateWindow/CreateWindowEx failed. See mingw_hwnd_check.txt", "DEBUG MINGW", MB_OK | MB_ICONERROR);
+SrcGame/src/Winmain.cpp.bak_click_trace_20260708:474:	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp.bak_click_trace_20260708:504:    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_click_trace_20260708:555:    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_click_trace_20260708:566:    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_click_trace_20260708:575:    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_click_trace_20260708:604:    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_click_trace_20260708:607:	if(1 /* TEMP_MINGW_FORCE_WINDOWMODE */ || SETTINGSHANDLER->getWindowMode())
+SrcGame/src/Winmain.cpp.bak_click_trace_20260708:617:		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+SrcGame/src/Winmain.cpp.bak_click_trace_20260708:661:		MessageBoxA(NULL, "CreateWindow/CreateWindowEx failed. See mingw_hwnd_check.txt", "DEBUG MINGW", MB_OK | MB_ICONERROR);

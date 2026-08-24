@@ -1,0 +1,264 @@
+============================================================
+Game.map - sItem / sinItem SYMBOLS
+============================================================
+4615: 0001:001d7030       ??0cITEM@@QAE@XZ           00a48030 f   sinItem.obj
+4616: 0001:001d7040       ??1cITEM@@QAE@XZ           00a48040 f   sinItem.obj
+4617: 0001:001d7050       ?Init@cITEM@@QAEXXZ        00a48050 f   sinItem.obj
+4618: 0001:001d72a0       ?Load@cITEM@@QAEXXZ        00a482a0 f   sinItem.obj
+4619: 0001:001d72d0       ?Release@cITEM@@QAEXXZ     00a482d0 f   sinItem.obj
+4620: 0001:001d7320       ?Close@cITEM@@QAEXXZ       00a48320 f   sinItem.obj
+4621: 0001:001d7330       ?Draw@cITEM@@QAEXXZ        00a48330 f   sinItem.obj
+4622: 0001:001d7930       ?Main@cITEM@@QAEXXZ        00a48930 f   sinItem.obj
+4623: 0001:001d79e0       ?LButtonDown@cITEM@@QAEXHH@Z 00a489e0 f   sinItem.obj
+4624: 0001:001d79f0       ?LButtonUp@cITEM@@QAEXHH@Z 00a489f0 f   sinItem.obj
+4625: 0001:001d7a00       ?RButtonDown@cITEM@@QAEXHH@Z 00a48a00 f   sinItem.obj
+4626: 0001:001d7a20       ?RButtonUp@cITEM@@QAEXHH@Z 00a48a20 f   sinItem.obj
+4627: 0001:001d7a30       ?KeyDown@cITEM@@QAEXXZ     00a48a30 f   sinItem.obj
+4628: 0001:001d7a40       ?ShowItemInfo@cITEM@@QAEHPAUsITEM@@HH@Z 00a48a40 f   sinItem.obj
+4629: 0001:001e6f00       ?ShowItemInfo2@cITEM@@QAEHPAUsITEM@@HH@Z 00a57f00 f   sinItem.obj
+4630: 0001:001e86a0       ?DrawItemText@cITEM@@QAEHXZ 00a596a0 f   sinItem.obj
+4631: 0001:001e9060       ?SearchSpecialItemJob@cITEM@@QAEHK@Z 00a5a060 f   sinItem.obj
+4632: 0001:001e9160       ?GetInfoBoxSize@cITEM@@QAEHPAUsITEM@@H@Z 00a5a160 f   sinItem.obj
+4633: 0001:001e9210       ?CheckItemTable@cITEM@@QAEHXZ 00a5a210 f   sinItem.obj
+4634: 0001:001e9240       ?GetItemLimitTime@cITEM@@QAEHPAUsITEM@@@Z 00a5a240 f   sinItem.obj
+4635: 0001:001e9250       ?GetMousePos@cITEM@@QAEXPAH0@Z 00a5a250 f   sinItem.obj
+4636: 0001:001e92e0       ??0sITEM@@QAE@KPBD0HH0H0KHH@Z 00a5a2e0 f i sinItem.obj
+20579: 0002:0002f3f0       ??_C@_05BCGIDJFL@dg116@    00c1d3f0     sinItem.obj
+20580: 0002:0002f3f8       ??_C@_05NEAFBDGJ@DG116@    00c1d3f8     sinItem.obj
+20581: 0002:0002f400       ??_C@_0BA@OBHKNMIN@Saint?5Gauntlets@ 00c1d400     sinItem.obj
+20582: 0002:0002f410       ??_C@_05LHDAIBK@dg117@     00c1d410     sinItem.obj
+20583: 0002:0002f418       ??_C@_05MNBOCCCI@DG117@    00c1d418     sinItem.obj
+20584: 0002:0002f420       ??_C@_0BC@ODLEDAO@Diamond?5Gauntlets@ 00c1d420     sinItem.obj
+20585: 0002:0002f434       ??_C@_05IMOLBENF@dg118@    00c1d434     sinItem.obj
+20586: 0002:0002f43c       ??_C@_05EKIGDOOH@DG118@    00c1d43c     sinItem.obj
+20587: 0002:0002f444       ??_C@_0BA@PCDDHFMM@Angel?5Gauntlets@ 00c1d444     sinItem.obj
+20588: 0002:0002f454       ??_C@_05JFPACFJE@dg119@    00c1d454     sinItem.obj
+20589: 0002:0002f45c       ??_C@_05FDJNAPKG@DG119@    00c1d45c     sinItem.obj
+20590: 0002:0002f464       ??_C@_0BA@EEDOEEDJ@Relic?5Gauntlets@ 00c1d464     sinItem.obj
+20591: 0002:0002f474       ??_C@_05EGHECAIE@dg120@    00c1d474     sinItem.obj
+20592: 0002:0002f47c       ??_C@_05IABJAKLG@DG120@    00c1d47c     sinItem.obj
+20593: 0002:0002f484       ??_C@_0BB@KDBFEHCK@Dragon?5Gauntlets@ 00c1d484     sinItem.obj
+20594: 0002:0002f498       ??_C@_05FPGPBBMF@dg121@    00c1d498     sinItem.obj
+20595: 0002:0002f4a0       ??_C@_05JJACDLPH@DG121@    00c1d4a0     sinItem.obj
+20596: 0002:0002f4a8       ??_C@_0BC@GBALBOJP@INferno?5Gauntlets@ 00c1d4a8     sinItem.obj
+20597: 0002:0002f4bc       ??_C@_05HEECECAG@dg122@    00c1d4bc     sinItem.obj
+20598: 0002:0002f4c4       ??_C@_05LCCPGIDE@DG122@    00c1d4c4     sinItem.obj
+20599: 0002:0002f4cc       ??_C@_0BC@KKPDHOCM@Phoenix?5Gauntlets@ 00c1d4cc     sinItem.obj
+20600: 0002:0002f4e0       ??_C@_05GNFJHDEH@dg123@    00c1d4e0     sinItem.obj
+20601: 0002:0002f4e8       ??_C@_05KLDEFJHF@DG123@    00c1d4e8     sinItem.obj
+20602: 0002:0002f4f0       ??_C@_0BB@ICKLFMHE@Frenzy?5Gauntlets@ 00c1d4f0     sinItem.obj
+20603: 0002:0002f504       ??_C@_05CCBIOFIA@dg124@    00c1d504     sinItem.obj
+20604: 0002:0002f50c       ??_C@_05OEHFMPLC@DG124@    00c1d50c     sinItem.obj
+20605: 0002:0002f514       ??_C@_09IDFBIOOI@Gauntlets@ 00c1d514     sinItem.obj
+20606: 0002:0002f520       ??_C@_05DLADNEMB@dg125@    00c1d520     sinItem.obj
+20607: 0002:0002f528       ??_C@_05PNGOPOPD@DG125@    00c1d528     sinItem.obj
+20608: 0002:0002f530       ??_C@_05BACOIHAC@dg126@    00c1d530     sinItem.obj
+20609: 0002:0002f538       ??_C@_05NGEDKNDA@DG126@    00c1d538     sinItem.obj
+20610: 0002:0002f540       ??_C@_05JDFLGED@dg127@     00c1d540     sinItem.obj
+20611: 0002:0002f548       ??_C@_05MPFIJMHB@DG127@    00c1d548     sinItem.obj
+20612: 0002:0002f550       ??_C@_05IOKNKKIM@dg128@    00c1d550     sinItem.obj
+20613: 0002:0002f558       ??_C@_05EIMAIALO@DG128@    00c1d558     sinItem.obj
+20614: 0002:0002f560       ??_C@_05JHLGJLMN@dg129@    00c1d560     sinItem.obj
+20615: 0002:0002f568       ??_C@_05FBNLLBPP@DG129@    00c1d568     sinItem.obj
+20616: 0002:0002f570       ??_C@_05EHLGEKLD@dg130@    00c1d570     sinItem.obj
+20617: 0002:0002f578       ??_C@_05IBNLGAIB@DG130@    00c1d578     sinItem.obj
+20618: 0002:0002f580       ??_C@_05IEJEHGAE@DG140@    00c1d580     sinItem.obj
+20619: 0002:0002f588       ??_C@_05JNIPEHEF@DG141@    00c1d588     sinItem.obj
+20620: 0002:0002f590       ??_C@_05LGKCBEIG@DG142@    00c1d590     sinItem.obj
+20621: 0002:0002f598       ??_C@_05KPLJCFMH@DG143@    00c1d598     sinItem.obj
+20622: 0002:0002f5a0       ??_C@_05MJILPEOJ@ds101@    00c1d5a0     sinItem.obj
+20623: 0002:0002f5a8       ??_C@_05POGNONL@DS101@     00c1d5a8     sinItem.obj
+20624: 0002:0002f5b0       ??_C@_0M@PJOMPFBJ@Wood?5Shield@ 00c1d5b0     sinItem.obj
+20625: 0002:0002f5bc       ??_C@_05OCKGKHCK@ds102@    00c1d5bc     sinItem.obj
+20626: 0002:0002f5c4       ??_C@_05CEMLINBI@DS102@    00c1d5c4     sinItem.obj
+20627: 0002:0002f5cc       ??_C@_05OJFEGABA@Targe@    00c1d5cc     sinItem.obj
+20628: 0002:0002f5d4       ??_C@_05PLLNJGGL@ds103@    00c1d5d4     sinItem.obj
+20629: 0002:0002f5dc       ??_C@_05DNNALMFJ@DS103@    00c1d5dc     sinItem.obj
+20630: 0002:0002f5e4       ??_C@_0O@EALEGCOD@Steel?5Buckler@ 00c1d5e4     sinItem.obj
+20631: 0002:0002f5f4       ??_C@_05LEPMAAKM@ds104@    00c1d5f4     sinItem.obj
+20632: 0002:0002f5fc       ??_C@_05HCJBCKJO@DS104@    00c1d5fc     sinItem.obj
+20633: 0002:0002f604       ??_C@_0M@NAHOPBHL@Kite?5Shield@ 00c1d604     sinItem.obj
+20634: 0002:0002f610       ??_C@_05KNOHDBON@ds105@    00c1d610     sinItem.obj
+20635: 0002:0002f618       ??_C@_05GLIKBLNP@DS105@    00c1d618     sinItem.obj
+20636: 0002:0002f620       ??_C@_0N@IKJGOGFF@Tower?5Shield@ 00c1d620     sinItem.obj
+20637: 0002:0002f630       ??_C@_05IGMKGCCO@ds106@    00c1d630     sinItem.obj
+20638: 0002:0002f638       ??_C@_05EAKHEIBM@DS106@    00c1d638     sinItem.obj
+20639: 0002:0002f640       ??_C@_0P@BKKFCGNN@Metalic?5Shield@ 00c1d640     sinItem.obj
+20640: 0002:0002f650       ??_C@_05JPNBFDGP@ds107@    00c1d650     sinItem.obj
+20641: 0002:0002f658       ??_C@_05FJLMHJFN@DS107@    00c1d658     sinItem.obj
+20642: 0002:0002f660       ??_C@_06KJMIEJHK@Scutum@   00c1d660     sinItem.obj
+20643: 0002:0002f668       ??_C@_05BIEJEPKA@ds108@    00c1d668     sinItem.obj
+20644: 0002:0002f670       ??_C@_05NOCEGFJC@DS108@    00c1d670     sinItem.obj
+20645: 0002:0002f678       ??_C@_0N@JNIHGEKJ@Great?5Shield@ 00c1d678     sinItem.obj
+20646: 0002:0002f688       ??_C@_05BFCHOOB@ds109@     00c1d688     sinItem.obj
+20647: 0002:0002f690       ??_C@_05MHDPFEND@DS109@    00c1d690     sinItem.obj
+20648: 0002:0002f698       ??_C@_0N@HHELJICE@Brass?5Shield@ 00c1d698     sinItem.obj
+20649: 0002:0002f6a8       ??_C@_05NBFCKPJP@ds110@    00c1d6a8     sinItem.obj
+20650: 0002:0002f6b0       ??_C@_05BHDPIFKN@DS110@    00c1d6b0     sinItem.obj
+20651: 0002:0002f6b8       ??_C@_0M@OEJEALJM@Claw?5Shield@ 00c1d6b8     sinItem.obj
+20652: 0002:0002f6c4       ??_C@_05MIEJJONO@ds111@    00c1d6c4     sinItem.obj
+20653: 0002:0002f6cc       ??_C@_05OCELEOM@DS111@     00c1d6cc     sinItem.obj
+20654: 0002:0002f6d4       ??_C@_0O@LMEDIGED@Winged?5Shield@ 00c1d6d4     sinItem.obj
+20655: 0002:0002f6e4       ??_C@_05ODGEMNBN@ds112@    00c1d6e4     sinItem.obj
+20656: 0002:0002f6ec       ??_C@_05CFAJOHCP@DS112@    00c1d6ec     sinItem.obj
+20657: 0002:0002f6f4       ??_C@_0O@OIPPNOCC@Spiked?5Shield@ 00c1d6f4     sinItem.obj
+20658: 0002:0002f704       ??_C@_05PKHPPMFM@ds113@    00c1d704     sinItem.obj
+20659: 0002:0002f70c       ??_C@_05DMBCNGGO@DS113@    00c1d70c     sinItem.obj
+20660: 0002:0002f714       ??_C@_0N@HAJFAONH@Grand?5Shield@ 00c1d714     sinItem.obj
+20661: 0002:0002f724       ??_C@_05LFDOGKJL@ds114@    00c1d724     sinItem.obj
+20662: 0002:0002f72c       ??_C@_05HDFDEAKJ@DS114@    00c1d72c     sinItem.obj
+20663: 0002:0002f734       ??_C@_0N@LPFGDEKL@Titan?5Shield@ 00c1d734     sinItem.obj
+20664: 0002:0002f744       ??_C@_05KMCFFLNK@ds115@    00c1d744     sinItem.obj
+20665: 0002:0002f74c       ??_C@_05GKEIHBOI@DS115@    00c1d74c     sinItem.obj
+20666: 0002:0002f754       ??_C@_0BB@OGKKCACE@Gladiator?5Shield@ 00c1d754     sinItem.obj
+20667: 0002:0002f768       ??_C@_05IHAIAIBJ@ds116@    00c1d768     sinItem.obj
+20668: 0002:0002f770       ??_C@_05EBGFCCCL@DS116@    00c1d770     sinItem.obj
+20669: 0002:0002f778       ??_C@_0M@KNNHGHLL@Fury?5Shield@ 00c1d778     sinItem.obj
+20670: 0002:0002f784       ??_C@_05JOBDDJFI@ds117@    00c1d784     sinItem.obj
+20671: 0002:0002f78c       ??_C@_05FIHOBDGK@DS117@    00c1d78c     sinItem.obj
+20672: 0002:0002f794       ??_C@_05BJILCFJH@ds118@    00c1d794     sinItem.obj
+20673: 0002:0002f79c       ??_C@_05NPOGAPKF@DS118@    00c1d79c     sinItem.obj
+20674: 0002:0002f7a4       ??_C@_0O@GHDPAFPB@Mystic?5Shield@ 00c1d7a4     sinItem.obj
+20675: 0002:0002f7b4       ??_C@_05JABENG@ds119@      00c1d7b4     sinItem.obj
+20676: 0002:0002f7bc       ??_C@_05MGPNDOOE@DS119@    00c1d7bc     sinItem.obj
+20677: 0002:0002f7c4       ??_C@_0P@OALDDCAB@Vampire?5Shield@ 00c1d7c4     sinItem.obj
+20678: 0002:0002f7d4       ??_C@_05NDBEBBMG@ds120@    00c1d7d4     sinItem.obj
+20679: 0002:0002f7dc       ??_C@_05BFHJDLPE@DS120@    00c1d7dc     sinItem.obj
+20680: 0002:0002f7e4       ??_C@_0O@FMGADKL@Dragon?5Shield@ 00c1d7e4     sinItem.obj
+20681: 0002:0002f7f4       ??_C@_05MKAPCAIH@ds121@    00c1d7f4     sinItem.obj
+20682: 0002:0002f7fc       ??_C@_05MGCAKLF@DS121@     00c1d7fc     sinItem.obj
+20683: 0002:0002f804       ??_C@_0P@DDACPMKO@Phoenix?5Shield@ 00c1d804     sinItem.obj
+20684: 0002:0002f814       ??_C@_05OBCCHDEE@ds122@    00c1d814     sinItem.obj
+20685: 0002:0002f81c       ??_C@_05CHEPFJHG@DS122@    00c1d81c     sinItem.obj
+20686: 0002:0002f824       ??_C@_0BD@HMDLEHFE@Dreadnaught?5Shield@ 00c1d824     sinItem.obj
+20687: 0002:0002f838       ??_C@_05PIDJECAF@ds123@    00c1d838     sinItem.obj
+20688: 0002:0002f840       ??_C@_05DOFEGIDH@DS123@    00c1d840     sinItem.obj
+20689: 0002:0002f848       ??_C@_0P@PANEFHBN@Inferno?5Shield@ 00c1d848     sinItem.obj
+20690: 0002:0002f858       ??_C@_05LHHINEMC@ds124@    00c1d858     sinItem.obj
+20691: 0002:0002f860       ??_C@_05HBBFPOPA@DS124@    00c1d860     sinItem.obj
+20692: 0002:0002f868       ??_C@_06EMIPNAHG@Shield@   00c1d868     sinItem.obj
+20693: 0002:0002f870       ??_C@_05KOGDOFID@ds125@    00c1d870     sinItem.obj
+20694: 0002:0002f878       ??_C@_05GIAOMPLB@DS125@    00c1d878     sinItem.obj
+20695: 0002:0002f880       ??_C@_05IFEOLGEA@ds126@    00c1d880     sinItem.obj
+20696: 0002:0002f888       ??_C@_05EDCDJMHC@DS126@    00c1d888     sinItem.obj
+20697: 0002:0002f890       ??_C@_05JMFFIHAB@ds127@    00c1d890     sinItem.obj
+20698: 0002:0002f898       ??_C@_05FKDIKNDD@DS127@    00c1d898     sinItem.obj
+20699: 0002:0002f8a0       ??_C@_05BLMNJLMO@ds128@    00c1d8a0     sinItem.obj
+20700: 0002:0002f8a8       ??_C@_05NNKALBPM@DS128@    00c1d8a8     sinItem.obj
+20701: 0002:0002f8b0       ??_C@_05MLMNEKLA@ds131@    00c1d8b0     sinItem.obj
+20702: 0002:0002f8b8       ??_C@_05NKAGAIC@DS131@     00c1d8b8     sinItem.obj
+20703: 0002:0002f8c0       ??_C@_05OAOABJHD@ds132@    00c1d8c0     sinItem.obj
+20704: 0002:0002f8c8       ??_C@_05CGINDDEB@DS132@    00c1d8c8     sinItem.obj
+20705: 0002:0002f8d0       ??_C@_05PJPLCIDC@ds133@    00c1d8d0     sinItem.obj
+20706: 0002:0002f8d8       ??_C@_05DPJGACAA@DS133@    00c1d8d8     sinItem.obj
+20707: 0002:0002f8e0       ??_C@_05HEFKOIHF@DS154@    00c1d8e0     sinItem.obj
+20708: 0002:0002f8e8       ??_C@_06LEBKBMLE@Vertex@   00c1d8e8     sinItem.obj
+20709: 0002:0002f8f0       ??_C@_05IOBMJNIH@pm101@    00c1d8f0     sinItem.obj
+20710: 0002:0002f8f8       ??_C@_06EKGNEAAL@Potion@   00c1d8f8     sinItem.obj
+20711: 0002:0002f900       ??_C@_05EIHBLHLF@PM101@    00c1d900     sinItem.obj
+20712: 0002:0002f908       ??_C@_0BC@GIILMMEK@Small?5Mana?5Potion@ 00c1d908     sinItem.obj
+20713: 0002:0002f91c       ??_C@_05GDFMOEHG@PM102@    00c1d91c     sinItem.obj
+20714: 0002:0002f924       ??_C@_0BD@HLGCDBFD@Middle?5Mana?5Potion@ 00c1d924     sinItem.obj
+20715: 0002:0002f938       ??_C@_05HKEHNFDH@PM103@    00c1d938     sinItem.obj
+20716: 0002:0002f940       ??_C@_0BB@NGJBGLHM@High?5Mana?5Potion@ 00c1d940     sinItem.obj
+20717: 0002:0002f954       ??_C@_05DFAGEDPA@PM104@    00c1d954     sinItem.obj
+20718: 0002:0002f95c       ??_C@_0BD@KDBHEAMM@Greate?5Mana?5Potion@ 00c1d95c     sinItem.obj
+20719: 0002:0002f970       ??_C@_05CMBNHCLB@PM105@    00c1d970     sinItem.obj
+20720: 0002:0002f978       ??_C@_0BF@JMFDPGOE@Especial?5Mana?5Potion@ 00c1d978     sinItem.obj
+20721: 0002:0002f990       ??_C@_05LDHMLEDH@pl101@    00c1d990     sinItem.obj
+20722: 0002:0002f998       ??_C@_05HFBBJOAF@PL101@    00c1d998     sinItem.obj
+20723: 0002:0002f9a0       ??_C@_0BC@HNGHAJI@Small?5Life?5Potion@ 00c1d9a0     sinItem.obj
+20724: 0002:0002f9b4       ??_C@_05FODMMNMG@PL102@    00c1d9b4     sinItem.obj
+20725: 0002:0002f9bc       ??_C@_0BD@BEDPINIB@Middle?5Life?5Potion@ 00c1d9bc     sinItem.obj
+20726: 0002:0002f9d0       ??_C@_05EHCHPMIH@PL103@    00c1d9d0     sinItem.obj
+20727: 0002:0002f9d8       ??_C@_0BB@LJMMNHKO@High?5Life?5Potion@ 00c1d9d8     sinItem.obj
+20728: 0002:0002f9ec       ??_C@_05IGGGKEA@PL104@     00c1d9ec     sinItem.obj
+20729: 0002:0002f9f4       ??_C@_0BD@MMEKPMBO@Greate?5Life?5Potion@ 00c1d9f4     sinItem.obj
+20730: 0002:0002fa08       ??_C@_05BBHNFLAB@PL105@    00c1da08     sinItem.obj
+20731: 0002:0002fa10       ??_C@_0BF@PDAOEKDG@Especial?5Life?5Potion@ 00c1da10     sinItem.obj
+20732: 0002:0002fa28       ??_C@_05FBMMLEGE@ps101@    00c1da28     sinItem.obj
+20733: 0002:0002fa30       ??_C@_05JHKBJOFG@PS101@    00c1da30     sinItem.obj
+20734: 0002:0002fa38       ??_C@_0BF@CCLDCJEL@Small?5Stamina?5Potion@ 00c1da38     sinItem.obj
+20735: 0002:0002fa50       ??_C@_05LMIMMNJF@PS102@    00c1da50     sinItem.obj
+20736: 0002:0002fa58       ??_C@_0BG@EJIAHEIL@Middle?5Stamina?5Potion@ 00c1da58     sinItem.obj
+20737: 0002:0002fa70       ??_C@_05KFJHPMNE@PS103@    00c1da70     sinItem.obj
+20738: 0002:0002fa78       ??_C@_0BE@BOHBGDID@High?5Stamina?5Potion@ 00c1da78     sinItem.obj
+20739: 0002:0002fa8c       ??_C@_05OKNGGKBD@PS104@    00c1da8c     sinItem.obj
+20740: 0002:0002fa94       ??_C@_0BG@KJIEEGJK@Greate?5Stamina?5Potion@ 00c1da94     sinItem.obj
+20741: 0002:0002faac       ??_C@_05PDMNFLFC@PS105@    00c1daac     sinItem.obj
+20742: 0002:0002fab4       ??_C@_0BI@FMPENNEK@Especial?5Stamina?5Potion@ 00c1dab4     sinItem.obj
+20743: 0002:0002facc       ??_C@_05GCDHLAMO@ec101@    00c1dacc     sinItem.obj
+20744: 0002:0002fad4       ??_C@_05KEFKJKPM@EC101@    00c1dad4     sinItem.obj
+20745: 0002:0002fadc       ??_C@_0BE@CADBJGFG@?$KC?$KM?$KC?gA?$KB?l?$KC?$KM?$KB?LAU?5?$KB?$LOIE?$DP@ 00c1dadc     sinItem.obj
+20746: 0002:0002faf0       ??_C@_05EJBKODAN@ec102@    00c1daf0     sinItem.obj
+20747: 0002:0002faf8       ??_C@_05IPHHMJDP@EC102@    00c1daf8     sinItem.obj
+20748: 0002:0002fb00       ??_C@_0BE@IDINGAML@?$KJ?x?$KB?$LP?$KI?$KMn?$KI?v?$KI?$KMAU?5?$KB?$LOIE?$DP@ 00c1db00     sinItem.obj
+20749: 0002:0002fb14       ??_C@_05JGGMPIHO@EC103@    00c1db14     sinItem.obj
+20750: 0002:0002fb1c       ??_C@_0P@KKOIBJKI@?$KB?$KEcAI?$KJ?xU?5?$KB?$LOIE?$DP@ 00c1db1c     sinItem.obj
+20751: 0002:0002fb2c       ??_C@_05NJCNGOLJ@EC104@    00c1db2c     sinItem.obj
+20752: 0002:0002fb34       ??_C@_0O@NFIOKDCK@CE?$KC?RoAI?5?$KB?$LOIE?$DP@ 00c1db34     sinItem.obj
+20753: 0002:0002fb44       ??_C@_05MADGFPPI@EC105@    00c1db44     sinItem.obj
+20754: 0002:0002fb4c       ??_C@_0P@JEAIHBEK@A?$DP?$KC?$KFI?$KC?$KPA?5AU?$KI?zi@ 00c1db4c     sinItem.obj
+20755: 0002:0002fb5c       ??_C@_05OLBLAMDL@EC106@    00c1db5c     sinItem.obj
+20756: 0002:0002fb64       ??_C@_05PCAADNHK@EC107@    00c1db64     sinItem.obj
+
+============================================================
+Game.map - CONTEXT AROUND WA101
+============================================================
+21815- 0002:000327e8       ??_C@_06FOAEGGCB@DRCOIN@   00c207e8     sinItem.obj
+21816- 0002:000327f0       ??_C@_05BMBCJNDH@GG101@    00c207f0     sinItem.obj
+21817- 0002:000327f8       ??_C@_05EBDAGCJM@DRExp@    00c207f8     sinItem.obj
+21818- 0002:00032800       ??_C@_05DHDPMOPE@GG102@    00c20800     sinItem.obj
+21819- 0002:00032808       ??_C@_05NMOGLCJE@Coins@    00c20808     sinItem.obj
+21820- 0002:00032810       ??_C@_05HIHOFIDD@GG105@    00c20810     sinItem.obj
+21821- 0002:00032818       ??_C@_05LKGFOGMJ@BI156@    00c20818     sinItem.obj
+21822- 0002:00032820       ??_C@_0P@LDLPNGBI@STM?5Premium?53h@ 00c20820     sinItem.obj
+21823- 0002:00032830       ??_C@_05KDHONHII@BI157@    00c20830     sinItem.obj
+21824- 0002:00032838       ??_C@_0P@BMIOENHK@STM?5Premium?51d@ 00c20838     sinItem.obj
+21825- 0002:00032848       ??_C@_05CEOGMLEH@BI158@    00c20848     sinItem.obj
+21826- 0002:00032850       ??_C@_0P@BIADDBMI@STM?5Premium?57d@ 00c20850     sinItem.obj
+21827: 0002:00032860       ??_C@_05JAIEGKAM@WA101@    00c20860     sinItem.obj
+21828- 0002:00032868       ??_C@_06KLEAFNAE@Weapon@   00c20868     sinItem.obj
+21829- 0002:00032870       ??_C@_09MJGDJFAL@Stone?5Axe@ 00c20870     sinItem.obj
+21830- 0002:0003287c       ??_C@_05LLKJDJMP@WA102@    00c2087c     sinItem.obj
+21831- 0002:00032884       ??_C@_09HNKLIMPB@Steel?5Axe@ 00c20884     sinItem.obj
+21832- 0002:00032890       ??_C@_05KCLCAIIO@WA103@    00c20890     sinItem.obj
+21833- 0002:00032898       ??_C@_0L@BFACICOO@Battle?5Axe@ 00c20898     sinItem.obj
+21834- 0002:000328a4       ??_C@_05ONPDJOEJ@WA104@    00c208a4     sinItem.obj
+21835- 0002:000328ac       ??_C@_07OBEIHIE@War?5Axe@  00c208ac     sinItem.obj
+21836- 0002:000328b4       ??_C@_05PEOIKPAI@WA105@    00c208b4     sinItem.obj
+21837- 0002:000328bc       ??_C@_0BC@FLPINBOB@DoubleSidedWarAxe@ 00c208bc     sinItem.obj
+21838- 0002:000328d0       ??_C@_05NPMFPMML@WA106@    00c208d0     sinItem.obj
+21839- 0002:000328d8       ??_C@_07OMBGFLNG@Bat?5Axe@ 00c208d8     sinItem.obj
+21840- 0002:000328e0       ??_C@_05MGNOMNIK@WA107@    00c208e0     sinItem.obj
+21841- 0002:000328e8       ??_C@_0N@POLACPH@Mechanic?5Axe@ 00c208e8     sinItem.obj
+21842- 0002:000328f8       ??_C@_05EBEGNBEF@WA108@    00c208f8     sinItem.obj
+21843- 0002:00032900       ??_C@_0BA@FPLMJBDM@Double?5Head?5Axe@ 00c20900     sinItem.obj
+21844- 0002:00032910       ??_C@_05FIFNOAAE@WA109@    00c20910     sinItem.obj
+21845- 0002:00032918       ??_C@_09DLDOHAAM@Great?5Axe@ 00c20918     sinItem.obj
+21846- 0002:00032924       ??_C@_05IIFNDBHK@WA110@    00c20924     sinItem.obj
+21847- 0002:0003292c       ??_C@_0M@OOPJGKKK@Diamond?5Axe@ 00c2092c     sinItem.obj
+21848- 0002:00032938       ??_C@_05JBEGAADL@WA111@    00c20938     sinItem.obj
+21849- 0002:00032940       ??_C@_0L@JGHMLNKB@Jagged?5Axe@ 00c20940     sinItem.obj
+21850- 0002:0003294c       ??_C@_05LKGLFDPI@WA112@    00c2094c     sinItem.obj
+21851- 0002:00032954       ??_C@_07JAPDOOOC@Cleaver@  00c20954     sinItem.obj
+21852- 0002:0003295c       ??_C@_05KDHAGCLJ@WA113@    00c2095c     sinItem.obj
+
+============================================================
+Game.map - REPRESENTATIVE ITEM TOKENS
+============================================================
+21827: 0002:00032860       ??_C@_05JAIEGKAM@WA101@    00c20860     sinItem.obj
+21836: 0002:000328b4       ??_C@_05PEOIKPAI@WA105@    00c208b4     sinItem.obj
+21858: 0002:000329a0       ??_C@_05OKEEDJGM@WC101@    00c209a0     sinItem.obj
+21886: 0002:00032abc       ??_C@_05JNJEAIHN@WH101@    00c20abc     sinItem.obj
+21896: 0002:00032b18       ??_C@_05NCNFJOLK@WH106@    00c20b18     sinItem.obj
+21918: 0002:00032bf4       ??_C@_05FFHEIHAN@WM101@    00c20bf4     sinItem.obj
+21924: 0002:00032c2c       ??_C@_05CIADHDEI@WM104@    00c20c2c     sinItem.obj
+21950: 0002:00032d3c       ??_C@_05MNAENEDO@WP101@    00c20d3c     sinItem.obj
+21956: 0002:00032d6c       ??_C@_05LAHDCAHL@WP104@    00c20d6c     sinItem.obj
+21982: 0002:00032e78       ??_C@_05IKKEKOOO@WS101@    00c20e78     sinItem.obj
+21984: 0002:00032e8c       ??_C@_05KBIJPNCN@WS102@    00c20e8c     sinItem.obj
+21988: 0002:00032eb8       ??_C@_05PHNDFKKL@WS104@    00c20eb8     sinItem.obj
+22016: 0002:00032fec       ??_C@_05JIBBABAA@WS201@    00c20fec     sinItem.obj
+22024: 0002:00033040       ??_C@_05PMHNMEAE@WS205@    00c21040     sinItem.obj
+22052: 0002:00033168       ??_C@_05DIIEHCPO@WT101@    00c21168     sinItem.obj

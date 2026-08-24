@@ -1,0 +1,113 @@
+PT_SMB_MOTION_EVALUATOR_V1
+skeleton=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/m5.smb
+inx=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/M5Bip.inx
+logical_path='char\\tmABCD\\M5Bip.inx'
+skeleton_size=13931704
+
+MOTION
+MotionCount=64
+index=10
+State=0x00000040 name=STAND
+MotionFrame=2
+TmFrame_slot=1
+local_logical=10..50
+global_logical=10..50
+engine_half_open=[1600,8000)
+Repeat=1
+KeyCode=0
+FrameInfo.StartFrame=1600 FrameInfo.EndFrame=8000
+
+HIERARCHY
+bones=95
+roots=['Bip01']
+TmSort_count=95
+TmSort_parent_first=YES
+TmSort_first12=['Bip01', 'Bip01 Footsteps', 'Bip01 Pelvis', 'Bip01 Spine', 'Bip-0019', 'Bip-0010', 'Bip-0016', 'Bip-0007', 'Bip-0022', 'Bip-0014', 'Bip-0037', 'Bip01 Spine1']
+
+POSE_SAMPLES
+frame=1600 logical=10 bbox=x[-7.7774,7.3847] y[-8.7518,11.1064] z[-0.0168,45.3795] rot_active=80 pos_active=13 rot_end_clamps=1
+  Bip01: (0.00000,-1.59374,23.02652)
+  Bip01 Pelvis: (0.10533,-0.91436,23.02905)
+  Bip01 Spine: (0.11913,-0.92176,25.38757)
+  Bip01 Spine1: (0.19044,-0.59884,29.83474)
+  Bip01 Neck: (0.37769,0.37380,34.77549)
+  Bip01 Head: (0.15721,0.08437,36.12576)
+  Bip01 L Hand: (6.49629,-3.21393,22.55911)
+  Bip01 R Hand: (-6.49170,1.66821,22.18888)
+  Bip01 L Foot: (2.03957,-1.74335,4.18887)
+  Bip01 R Foot: (-1.88425,3.27744,4.22709)
+  Bip weapon01: (-6.84973,1.39062,19.68838)
+frame=3040 logical=19 bbox=x[-7.7452,7.6609] y[-8.7516,10.4219] z[-0.0167,45.3420] rot_active=80 pos_active=13 rot_end_clamps=1
+  Bip01: (0.00000,-1.59374,22.92852)
+  Bip01 Pelvis: (0.10537,-0.91446,22.94014)
+  Bip01 Spine: (0.11351,-0.95255,25.29839)
+  Bip01 Spine1: (0.16413,-0.72531,29.75185)
+  Bip01 Neck: (0.30879,0.10162,34.72049)
+  Bip01 Head: (0.07402,-0.22074,36.06086)
+  Bip01 L Hand: (6.45815,-3.23811,22.56009)
+  Bip01 R Hand: (-6.53133,1.65161,22.23518)
+  Bip01 L Foot: (2.00946,-1.74862,4.18817)
+  Bip01 R Foot: (-1.85736,3.26722,4.22644)
+  Bip weapon01: (-6.82433,1.27635,19.73897)
+frame=4640 logical=29 bbox=x[-7.7080,7.9551] y[-8.7518,10.4558] z[-0.0167,45.3006] rot_active=80 pos_active=13 rot_end_clamps=1
+  Bip01: (0.00000,-1.59374,22.84381)
+  Bip01 Pelvis: (0.10539,-0.91465,22.86335)
+  Bip01 Spine: (0.10838,-0.97942,25.22103)
+  Bip01 Spine1: (0.14098,-0.83548,29.67823)
+  Bip01 Neck: (0.24853,-0.13583,34.66732)
+  Bip01 Head: (0.00133,-0.48659,35.99829)
+  Bip01 L Hand: (6.41939,-3.25957,22.57775)
+  Bip01 R Hand: (-6.56031,1.63244,22.29273)
+  Bip01 L Foot: (1.98296,-1.75365,4.18816)
+  Bip01 R Foot: (-1.83443,3.25753,4.22629)
+  Bip weapon01: (-6.79428,1.17476,19.80406)
+frame=6240 logical=39 bbox=x[-7.7371,7.7245] y[-8.7513,11.0009] z[-0.0167,45.3312] rot_active=80 pos_active=13 rot_end_clamps=1
+  Bip01: (0.00000,-1.59374,22.90428)
+  Bip01 Pelvis: (0.10538,-0.91451,22.91817)
+  Bip01 Spine: (0.11035,-0.95998,25.27630)
+  Bip01 Spine1: (0.15577,-0.75660,29.73118)
+  Bip01 Neck: (0.28980,0.03388,34.70605)
+  Bip01 Head: (0.05146,-0.29665,36.04380)
+  Bip01 L Hand: (6.44579,-3.24403,22.56363)
+  Bip01 R Hand: (-6.54177,1.64717,22.25043)
+  Bip01 L Foot: (2.00023,-1.74969,4.18818)
+  Bip01 R Foot: (-1.85244,3.26489,4.22642)
+  Bip weapon01: (-6.81811,1.24811,19.75602)
+frame=7840 logical=49 bbox=x[-7.7816,7.3816] y[-8.7516,11.0682] z[-0.0167,45.3792] rot_active=80 pos_active=13 rot_end_clamps=4
+  Bip01: (0.00000,-1.59374,23.02564)
+  Bip01 Pelvis: (0.10533,-0.91436,23.02819)
+  Bip01 Spine: (0.11528,-0.92122,25.38673)
+  Bip01 Spine1: (0.18648,-0.59845,29.83432)
+  Bip01 Neck: (0.37364,0.37390,34.77513)
+  Bip01 Head: (0.15313,0.08441,36.12539)
+  Bip01 L Hand: (6.49258,-3.21273,22.55928)
+  Bip01 R Hand: (-6.49597,1.66823,22.18828)
+  Bip01 L Foot: (2.03561,-1.74309,4.18819)
+  Bip01 R Foot: (-1.88811,3.27778,4.22639)
+  Bip weapon01: (-6.85387,1.39044,19.68779)
+
+RUNTIME_DIAGNOSTICS
+logical_frames_scanned=40
+engine_frame_first=1600
+engine_frame_last=7840
+engine_frame_end_exclusive=8000
+nonfinite_matrices=0
+max_affine_error=0
+det3_range=0.988157698..1.01388722
+max_joint_displacement_from_rest=10.022188 frame=1600 bone='Bip-0036'
+max_joint_step_per_160=0.772193 ending_frame=6880 bone='Bip-h24'
+
+SOURCE_BRANCH_COUNTS_AGGREGATE
+active_rot=3200
+active_pos=520
+active_scale=0
+bind_local_fallback=600
+rot_before_first=2
+pos_before_first=0
+scale_before_first=0
+rot_end_clamps=58
+rot_search_steps=69799
+pos_search_steps=4522
+scale_search_steps=0
+
+source_evaluator_structural_check=PASS

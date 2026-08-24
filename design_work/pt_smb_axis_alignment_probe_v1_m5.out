@@ -1,0 +1,74 @@
+PT_SMB_AXIS_ALIGNMENT_PROBE_V1
+skeleton=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/m5.smb
+
+MATRIX_BASIS_QUALITY
+bones=95
+basis_vectors=285
+basis_length_min=0.245131
+basis_length_median=0.997946
+basis_length_max=1.002545
+orthogonality_absdot_max=0.011185
+determinant_min=0.088444
+determinant_median=0.993317
+determinant_max=1.004913
+
+ROW_BASIS_ALIGNMENT
+single_child_samples=62
+best_axis_counts=X:16 Y:6 Z:40
+best_absdot_min=0.861265
+best_absdot_median=0.999992
+best_absdot_mean=0.993927
+best_absdot_max=1.000000
+X: count=16 positive=16 negative=0 median_absdot=0.999989
+Y: count=6 positive=6 negative=0 median_absdot=0.950793
+Z: count=40 positive=13 negative=27 median_absdot=0.999993
+weak_under_0_90=2
+  'Bip01 L Foot' -> 'Bip01 L Toe0' best=Y signed=0.861265 X=0.508156 Y=0.861265 Z=0.000000
+  'Bip01 R Foot' -> 'Bip01 R Toe0' best=Y signed=0.861265 X=0.508156 Y=0.861265 Z=0.000000
+
+COLUMN_BASIS_ALIGNMENT
+single_child_samples=62
+best_axis_counts=X:11 Y:12 Z:39
+best_absdot_min=0.727537
+best_absdot_median=0.975157
+best_absdot_mean=0.931028
+best_absdot_max=0.999929
+X: count=11 positive=6 negative=5 median_absdot=0.920103
+Y: count=12 positive=8 negative=4 median_absdot=0.858906
+Z: count=39 positive=15 negative=24 median_absdot=0.981288
+weak_under_0_90=18
+  'Bip-h11' -> 'Bip-h12' best=Z signed=0.727537 X=0.055795 Y=0.683444 Z=0.727537
+  'Bip-0035' -> 'Bip-0036' best=Y signed=-0.748367 X=0.022355 Y=0.748367 Z=0.663054
+  'Bip-h18' -> 'Bip-h19' best=Z signed=0.766055 X=0.061487 Y=0.640088 Z=0.766055
+  'Bip weapon01' -> 'Bip weapon02' best=Z signed=-0.766849 X=0.610904 Y=0.194899 Z=0.766849
+  'Bip01 L Finger0' -> 'Bip01 L Finger01' best=Z signed=0.791712 X=0.484003 Y=0.381166 Z=0.791712
+  'Bip in-cro' -> 'Bip in03' best=Y signed=0.799390 X=0.178059 Y=0.799390 Z=0.572559
+  'Bip01 R Forearm' -> 'Bip01 R Hand' best=X signed=-0.809849 X=0.809849 Y=0.115256 Z=0.577196
+  'Bip-h12' -> 'Bip-h13' best=Y signed=-0.812392 X=0.059352 Y=0.812392 Z=0.580332
+  'Bip01 L Forearm' -> 'Bip01 L Hand' best=X signed=-0.820311 X=0.820311 Y=0.260439 Z=0.505367
+  'Bip-0034' -> 'Bip-0035' best=Z signed=0.821781 X=0.016734 Y=0.569698 Z=0.821781
+  'Bip01 L UpperArm' -> 'Bip01 L Forearm' best=X signed=-0.831900 X=0.831900 Y=0.098664 Z=0.545885
+  'Bip01 R UpperArm' -> 'Bip01 R Forearm' best=X signed=-0.831900 X=0.831900 Y=0.027807 Z=0.554283
+  'Bip-h19' -> 'Bip-h20' best=Y signed=0.847958 X=0.034088 Y=0.847958 Z=0.528612
+  'Bip in-bow' -> 'Bip in04' best=Y signed=0.854322 X=0.510540 Y=0.854322 Z=0.102861
+  'Bip01 R Finger2' -> 'Bip01 R Finger21' best=Y signed=0.856548 X=0.343038 Y=0.856548 Z=0.382222
+  'Bip01 L Foot' -> 'Bip01 L Toe0' best=Y signed=0.861265 X=0.508156 Y=0.861265 Z=0.000000
+  'Bip01 R Foot' -> 'Bip01 R Toe0' best=Y signed=0.861265 X=0.508156 Y=0.861265 Z=0.000000
+  'Bip01 L Finger2' -> 'Bip01 L Finger21' best=Y signed=-0.882385 X=0.313199 Y=0.882385 Z=0.351228
+
+KEY_SINGLE_CHILD_BONES
+'Bip01 L Clavicle' -> 'Bip01 L UpperArm': best_row_axis=X signed=0.999999 X=0.999999 Y=0.008328 Z=0.001610
+'Bip01 L UpperArm' -> 'Bip01 L Forearm': best_row_axis=X signed=0.999987 X=0.999987 Y=0.000113 Z=0.002642
+'Bip01 L Forearm' -> 'Bip01 L Hand': best_row_axis=X signed=0.999991 X=0.999991 Y=0.003015 Z=0.000083
+'Bip01 R Clavicle' -> 'Bip01 R UpperArm': best_row_axis=X signed=0.999999 X=0.999999 Y=0.008328 Z=0.001610
+'Bip01 R UpperArm' -> 'Bip01 R Forearm': best_row_axis=X signed=0.999987 X=0.999987 Y=0.000113 Z=0.002642
+'Bip01 R Forearm' -> 'Bip01 R Hand': best_row_axis=X signed=0.999991 X=0.999991 Y=0.003015 Z=0.000083
+'Bip01 L Thigh' -> 'Bip01 L Calf': best_row_axis=X signed=0.999986 X=0.999986 Y=0.005208 Z=0.000000
+'Bip01 L Calf' -> 'Bip01 L Foot': best_row_axis=X signed=0.999997 X=0.999997 Y=0.002463 Z=0.000000
+'Bip01 L Foot' -> 'Bip01 L Toe0': best_row_axis=Y signed=0.861265 X=0.508156 Y=0.861265 Z=0.000000
+'Bip01 R Thigh' -> 'Bip01 R Calf': best_row_axis=X signed=0.999986 X=0.999986 Y=0.005208 Z=0.000000
+'Bip01 R Calf' -> 'Bip01 R Foot': best_row_axis=X signed=0.999997 X=0.999997 Y=0.002463 Z=0.000000
+'Bip01 R Foot' -> 'Bip01 R Toe0': best_row_axis=Y signed=0.861265 X=0.508156 Y=0.861265 Z=0.000000
+'Bip01 Spine': not_single_child_or_missing
+
+axis_alignment_probe=PASS

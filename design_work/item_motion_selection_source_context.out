@@ -1,0 +1,564 @@
+============================================================
+smType.h - MOTION STRUCT
+============================================================
+   470	
+   471	
+   472	
+   473	
+   474	
+   475	
+   476	
+   477	#define NPC_MOTION_INFO_MAX		 30
+   478	#define TALK_MOTION_INFO_MAX	 30
+   479	
+   480	
+   481	
+   482	
+   483	#define TALK_MOTION_FILE_MAX	 2
+   484	#define TALK_MOTION_FILE		 0
+   485	#define FACIAL_MOTION_FILE		 1
+   486	
+   487	
+   488	struct smMOTIONINFO
+   489	{
+   490		DWORD	State;
+   491	
+   492	
+   493	
+   494		DWORD	MotionKeyWord_1;
+   495		DWORD	StartFrame;
+   496		DWORD	MotionKeyWord_2;
+   497		DWORD	EndFrame;
+   498	
+   499	
+   500		DWORD	EventFrame[4];
+   501	
+   502		int		ItemCodeCount;
+   503		BYTE	ItemCodeList[MOTION_TOOL_MAX];
+   504		DWORD	dwJobCodeBit;
+   505		BYTE	SkillCodeList[MOTION_SKIL_MAX];
+   506	
+   507	
+   508		int		MapPosition;
+   509	
+   510		DWORD	Repeat;
+   511		CHAR	KeyCode;
+   512		int		MotionFrame;
+   513	};
+   514	
+   515	struct _MODELGROUP
+
+============================================================
+fileread.cpp - ITEM CODE LIST PARSER
+============================================================
+   620					if(lpModelGroup->ModelNameCnt < 4)
+   621					{
+   622						strcpy_s(lpModelGroup->szModelName[lpModelGroup->ModelNameCnt++], strBuff);
+   623					}
+   624				}
+   625				break;
+   626	
+   627			case 9:
+   628	
+   629	
+   630	
+   631				break;
+   632			case 10:
+   633	
+   634	
+   635	
+   636				break;
+   637	
+   638	
+   639	
+   640	
+   641			case 11:
+   642	
+   643				while(true)
+   644				{
+   645					if(p[0] == 0)
+   646						break;
+   647					strBuff[0] = 0;
+   648					p = fileread_GetWord(strBuff, p);
+   649					if(strBuff[0])
+   650					{
+   651						if(lstrcmp(strBuff, "���") == 0)
+   652						{
+   653							Info->MotionInfo[MotionLastPos].ItemCodeCount = 0; break;
+   654						}
+   655	
+   656						if(lstrcmp(strBuff, "����") == 0)
+   657						{
+   658							Info->MotionInfo[MotionLastPos].ItemCodeList[Info->MotionInfo[MotionLastPos].ItemCodeCount++] = 0xFF;
+   659						}
+   660						else
+   661						{
+   662	
+   663							for(cnt = 0; cnt < MAX_ITEM; cnt++)
+   664							{
+   665								if(lstrcmp(strBuff, sItem[cnt].LastCategory) == 0)
+   666								{
+   667									Info->MotionInfo[MotionLastPos].ItemCodeList[
+   668										Info->MotionInfo[MotionLastPos].ItemCodeCount++] = cnt;
+   669									break;
+   670								}
+   671							}
+   672						}
+   673	
+   674					}
+   675					else
+   676						break;
+   677				}
+   678	
+   679				break;
+   680			case 12:
+   681	
+   682	
+   683				Info->MotionInfo[MotionLastPos].dwJobCodeBit = 0;
+   684				while(true)
+   685				{
+   686					p = fileread_GetWord(strBuff, p);
+   687					if(strBuff[0] == 0) break;
+   688					JobCount = 0;
+   689					while(true)
+   690					{
+
+============================================================
+character.cpp - MOTION SELECTION
+============================================================
+  2360	
+  2361		return TRUE;
+  2362	}
+  2363	
+  2364	
+  2365	
+  2366	int smCHAR::AutoChangeTalkMotion(int TalkModeType)
+  2367	{
+  2368		if (TalkPattern == NULL)
+  2369			return 0;
+  2370	
+  2371		int TalkCnt = 0;
+  2372		if (lpTalkModelParent->TalkMotionRate[CHRMOTION_EXT])
+  2373		{
+  2374			TalkCnt = rand() % 100;
+  2375			TalkCnt = lpTalkModelParent->TalkMotionRateCnt[TalkModeType][TalkCnt];
+  2376		}
+  2377		else
+  2378			TalkCnt = rand() % lpTalkModelParent->TalkMotionCount;
+  2379	
+  2380		lpTalkMotionInfo = &lpTalkModelParent->TalkMotionInfo[TalkCnt];
+  2381		TalkFrame = lpTalkMotionInfo->StartFrame * 160;
+  2382	
+  2383		return 1;
+  2384	}
+  2385	
+  2386	int smCHAR::FindMotionCountFromCode(DWORD MotionCode)
+  2387	{
+  2388		int FindCnt = 0;
+  2389	
+  2390		for (DWORD cnt = 0; cnt < smMotionInfo->MotionCount; cnt++)
+  2391		{
+  2392			if (smMotionInfo->MotionInfo[cnt].State == MotionCode)
+  2393				FindCnt++;
+  2394		}
+  2395	
+  2396		return FindCnt;
+  2397	}
+  2398	
+  2399	enum EItemType
+  2400	{
+  2401		ITEMTYPE_1Hand,
+  2402		ITEMTYPE_2Hand,
+  2403	};
+  2404	
+  2405	struct ItemPivot
+  2406	{
+  2407		DWORD itemID;
+  2408		EItemType eItemType;
+  2409	};
+  2410	
+  2411	std::vector<ItemPivot> vItemPivot;
+  2412	BOOL bPivotItems = FALSE;
+  2413	
+  2414	int smCHAR::SetMotionFromCode(DWORD MotionCode)
+  2415	{
+  2416		int cnt, cnt2, itcnt;
+  2417		int FoundNum[64];
+  2418		int FindCnt;
+  2419	
+  2420		int FoundNum2[64];
+  2421		int FindCnt2;
+  2422		int StageVillage;
+  2423		int	dwActItemCode;
+  2424		int	atSkill = 0;
+  2425		int	skillCode;
+  2426		BYTE	bSkill;
+  2427	
+  2428		DWORD	dwJobCodeMask;
+  2429	
+  2430		DWORD dwFindCode;
+  2431	
+  2432		smMODELINFO	*lpMotionInfo;
+  2433	
+  2434		if (smCharInfo.JOB_CODE && smCharInfo.JOB_CODE < 16)
+  2435			dwJobCodeMask = BitMaskJobNames[smCharInfo.JOB_CODE - 1].dwBitMask;
+  2436		else
+  2437			dwJobCodeMask = 0;
+  2438	
+  2439	
+  2440		FindCnt = 0;
+  2441		FindCnt2 = 0;
+  2442		MotionSelectFrame = 0;
+  2443	
+  2444		dwActItemCode = dwActionItemCode;
+  2445	
+  2446		if (OnStageField >= 0)
+  2447		{
+  2448			if (StageField[OnStageField]->State == FIELD_STATE_VILLAGE)
+  2449			{
+  2450				StageVillage = 1;
+  2451				dwActItemCode = 0;
+  2452			}
+  2453			else
+  2454				StageVillage = 2;
+  2455		}
+  2456		else
+  2457		{
+  2458	#ifdef _W_SERVER
+  2459			StageVillage = 3;
+  2460	#else
+  2461			if (GameMode == 1) StageVillage = 1;
+  2462			else StageVillage = 3;
+  2463	#endif
+  2464		}
+  2465	
+  2466	
+  2467		lpMotionInfo = smMotionInfo;
+  2468	
+  2469		if (MotionCode == CHRMOTION_STATE_SKILL && AttackSkil)
+  2470		{
+  2471			atSkill = AttackSkil;
+  2472		}
+  2473	
+  2474		for (cnt = 0; cnt < (int)smMotionInfo->MotionCount; cnt++)
+  2475		{
+  2476			if (smMotionInfo->MotionInfo[cnt].State == MotionCode &&
+  2477				(!smMotionInfo->MotionInfo[cnt].MapPosition || (smMotionInfo->MotionInfo[cnt].MapPosition&StageVillage)) &&
+  2478				(!smMotionInfo->MotionInfo[cnt].dwJobCodeBit || !dwJobCodeMask ||
+  2479				(smMotionInfo->MotionInfo[cnt].dwJobCodeBit&dwJobCodeMask)))
+  2480			{
+  2481	
+  2482				if (atSkill)
+  2483				{
+  2484					cnt2 = 0;
+  2485					skillCode = atSkill & 0xFF;
+  2486					while (1)
+  2487					{
+  2488						bSkill = smMotionInfo->MotionInfo[cnt].SkillCodeList[cnt2];
+  2489						if (bSkill == 0) break;
+  2490						if (SkillDataCode[bSkill].dwPlaySkillCode == skillCode)
+  2491						{
+  2492							break;
+  2493						}
+  2494						cnt2++;
+  2495					}
+  2496					if (bSkill)
+  2497					{
+  2498						FoundNum[FindCnt++] = cnt;
+  2499						if (FindCnt >= 32) break;
+  2500					}
+  2501				}
+  2502				else
+  2503				{
+  2504					FoundNum[FindCnt++] = cnt;
+  2505					if (FindCnt >= 32) break;
+  2506				}
+  2507			}
+  2508		}
+  2509	
+  2510	
+  2511		if (FindCnt == 0 && AnimDispMode && lpDinaPattern2)
+  2512		{
+  2513			for (cnt = 0; cnt < (int)smMotionInfo2->MotionCount; cnt++)
+  2514			{
+  2515				if (smMotionInfo2->MotionInfo[cnt].State == MotionCode &&
+  2516					(!smMotionInfo2->MotionInfo[cnt].MapPosition || (smMotionInfo2->MotionInfo[cnt].MapPosition&StageVillage)))
+  2517				{
+  2518					FoundNum[FindCnt++] = cnt;
+  2519					if (FindCnt >= 32) break;
+  2520				}
+  2521			}
+  2522	
+  2523			if (FindCnt)
+  2524			{
+  2525				MotionSelectFrame = 1;
+  2526				lpMotionInfo = smMotionInfo2;
+  2527			}
+  2528		}
+  2529	
+  2530		int hand = ITEM_CLASS_WEAPON_ONE;
+  2531	
+  2532		if (dwActItemCode)
+  2533		{
+  2534			for (int i = 0; i < MAX_ITEM; i++)
+  2535			{
+  2536				if (sItem[i].CODE == dwActionItemCode)
+  2537				{
+  2538					hand = sItem[i].Class;
+  2539					break;
+  2540				}
+  2541			}
+  2542		}
+  2543	
+  2544	
+  2545		for (cnt = 0; cnt < FindCnt; cnt++)
+  2546		{
+  2547			itcnt = lpMotionInfo->MotionInfo[FoundNum[cnt]].ItemCodeCount;
+  2548			if (itcnt == 0)
+  2549			{
+  2550				FoundNum2[FindCnt2++] = FoundNum[cnt];
+  2551			}
+  2552			else
+  2553			{
+  2554				if (dwActItemCode)
+  2555				{
+  2556					for (int cnt2 = 0; cnt2 < itcnt; cnt2++)
+  2557					{
+  2558						DWORD dwFindCode = lpMotionInfo->MotionInfo[FoundNum[cnt]].ItemCodeList[cnt2];
+  2559	
+  2560						switch (dwActItemCode & 0xFFFF0000)
+  2561						{
+  2562	
+  2563						case sinWA1:
+  2564						{
+  2565							if (hand == ITEM_CLASS_WEAPON_ONE)
+  2566							{
+  2567								dwActItemCode = sinWA1 | sin01;
+  2568							}
+  2569							else
+  2570							{
+  2571								dwActItemCode = sinWA1 | sin05;
+  2572							}
+  2573						}
+  2574						break;
+  2575	
+  2576						case sinWC1:
+  2577						{
+  2578							dwActItemCode = sinWC1 | sin01;
+  2579						}
+  2580						break;
+  2581	
+  2582						case sinWH1:
+  2583						{
+  2584							if (hand == ITEM_CLASS_WEAPON_ONE)
+  2585							{
+  2586								dwActItemCode = sinWH1 | sin01;
+  2587							}
+  2588							else
+  2589							{
+  2590								dwActItemCode = sinWH1 | sin06;
+  2591							}
+  2592						}
+  2593						break;
+  2594	
+  2595						case sinWM1:
+  2596						{
+  2597							if (hand == ITEM_CLASS_WEAPON_ONE)
+  2598							{
+  2599								dwActItemCode = sinWM1 | sin01;
+  2600							}
+  2601							else
+  2602							{
+  2603								dwActItemCode = sinWM1 | sin04;
+  2604							}
+  2605						}
+  2606						break;
+  2607	
+  2608						case sinWP1:
+  2609						{
+  2610							if (hand == ITEM_CLASS_WEAPON_ONE)
+  2611							{
+  2612								dwActItemCode = sinWP1 | sin01;
+  2613							}
+  2614							else
+  2615							{
+  2616								dwActItemCode = sinWP1 | sin04;
+  2617							}
+  2618						}
+  2619						break;
+  2620	
+  2621						case sinWS1:
+  2622						{
+  2623							switch (dwActItemCode & 0x0000FFFF)
+  2624							{
+  2625							case sin04:
+  2626							case sin08:
+  2627							case sin10:
+  2628							case sin13:
+  2629							case sin17:
+  2630							case sin20:
+  2631								dwActItemCode = sinWS1 | sin04;
+  2632								break;
+  2633	
+  2634							default:
+  2635								if (hand == ITEM_CLASS_WEAPON_ONE)
+  2636								{
+  2637									dwActItemCode = sinWS1 | sin02;
+  2638								}
+  2639								else
+  2640								{
+  2641									dwActItemCode = sinWS1 | sin01;
+  2642									
+  2643								}
+  2644								break;
+  2645														
+  2646							}
+  2647						}
+  2648						break;
+  2649	
+  2650						case sinWS2:
+  2651						{
+  2652							if (hand == ITEM_CLASS_WEAPON_ONE)
+  2653							{
+  2654								dwActItemCode = sinWS2 | sin01;
+  2655							}
+  2656							else
+  2657							{
+  2658								dwActItemCode = sinWS2 | sin05;
+  2659							}
+  2660						}
+  2661						break;
+  2662	
+  2663						case sinWT1:
+  2664						{
+  2665							dwActItemCode = sinWT1 | sin01;
+  2666						}
+  2667						break;
+  2668	
+  2669						}
+  2670	
+  2671						if (dwActItemCode == (int)sItem[dwFindCode].CODE)
+  2672						{
+  2673							FoundNum2[FindCnt2++] = FoundNum[cnt];
+  2674							break;
+  2675						}
+  2676					}
+  2677				}
+  2678				else
+  2679				{
+  2680					for (cnt2 = 0; cnt2 < itcnt; cnt2++)
+  2681					{
+  2682						dwFindCode = lpMotionInfo->MotionInfo[FoundNum[cnt]].ItemCodeList[cnt2];
+  2683						if (dwFindCode == 0xFF)
+  2684						{
+  2685							FoundNum2[FindCnt2++] = FoundNum[cnt];
+  2686							break;
+  2687						}
+  2688					}
+  2689				}
+  2690			}
+  2691		}
+  2692	
+  2693		if (FindCnt2 == 0)
+  2694		{
+  2695			if (FindCnt == 1)
+  2696				ChangeMotion(FoundNum[0], AnimDispMode);
+  2697			else
+  2698				if (FindCnt) ChangeMotion(FoundNum[(rand() % FindCnt)], AnimDispMode);
+  2699	
+  2700			if (atSkill) AttackSkil = atSkill;
+  2701	
+  2702			return NULL;
+  2703		}
+  2704	
+  2705	
+  2706		if (FindCnt2 == 1) ChangeMotion(FoundNum2[0], AnimDispMode);
+  2707		else
+  2708			if (FindCnt2) ChangeMotion(FoundNum2[(rand() % FindCnt2)], AnimDispMode);
+  2709	
+  2710	
+  2711		if (atSkill) AttackSkil = atSkill;
+  2712	
+  2713		return FindCnt;
+  2714	}
+  2715	
+  2716	void CancelBuffSkills()
+  2717	{
+  2718		bool bContinue = false;
+  2719	
+  2720		for (int k = 0; k < MAX_CONTINUE_SKILL; k++)
+
+============================================================
+character.cpp - SPECIAL ITEM MOTION CASE
+============================================================
+  4870							{
+  4871								keycode = lpTalkModelParent->TalkMotionInfo[cnt].KeyCode;
+  4872								if(keycode)
+  4873								{
+  4874									if(VRKeyBuff[keycode])
+  4875									{
+  4876										lpTalkMotionInfo = &lpTalkModelParent->TalkMotionInfo[cnt];
+  4877										TalkFrame = lpTalkMotionInfo->StartFrame * 160;
+  4878										break;
+  4879									}
+  4880								}
+  4881							}
+  4882						}
+  4883					}
+  4884					else
+  4885					{
+  4886						for(cnt = 0; cnt < (int)smMotionInfo->MotionCount; cnt++)
+  4887						{
+  4888							keycode = smMotionInfo->MotionInfo[cnt].KeyCode;
+  4889							if(keycode && keycode >= 'A')
+  4890							{
+  4891								if(VRKeyBuff[keycode])
+  4892								{
+  4893									ChangeMotion(cnt);
+  4894									break;
+  4895								}
+  4896							}
+  4897						}
+  4898					}
+  4899				}
+  4900			}
+  4901	
+  4902			if (MotionInfo->State == CHRMOTION_STATE_ATTACK || MotionInfo->State == CHRMOTION_STATE_SKILL)
+  4903			{
+  4904				if (!MotionLoop)
+  4905				{
+  4906					FrameStep = (80 * AttackSpeed) >> FLOATNS;
+  4907	
+  4908	
+  4909					if (smCharInfo.JOB_CODE == 8 &&
+  4910						MotionInfo->ItemCodeCount && sItem[MotionInfo->ItemCodeList[0]].CODE == (sinWM1 | sin04))
+  4911					{
+  4912						FrameStep -= 16;
+  4913					}
+  4914				}
+  4915				else
+  4916					FrameStep = MotionLoopSpeed;
+  4917	
+  4918				if (PlaySlowCount)
+  4919					FrameStep = (FrameStep*UserSlowSpeed) >> 8;
+  4920			}
+  4921			else
+  4922			{
+  4923				if (MotionInfo->State == CHRMOTION_STATE_DAMAGE || MotionInfo->State == CHRMOTION_STATE_EAT)
+  4924				{
+  4925					FrameStep = 92;
+  4926	
+  4927					if (PlaySlowCount)
+  4928						FrameStep = (FrameStep*UserSlowSpeed) >> 8;
+  4929				}
+  4930			}
+  4931	
+  4932			if (PlaySlowCount > 0)
+  4933			{
+  4934				PlaySlowCount--;
+  4935				if (PlaySlowCount == 0 && AttackIce != 0)
+  4936				{
+  4937					AttackIce = -AttackIce;
+  4938				}
+  4939			}
+  4940			if (PlayDistortion > 0) PlayDistortion--;

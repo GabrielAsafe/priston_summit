@@ -1,0 +1,1561 @@
+==========================================================================================
+REBASE HUNK AUDIT
+==========================================================================================
+CURRENT = /home/gabriel/Área de Trabalho/summit/SourceCode
+BASE    = /home/gabriel/Transferências/priston_summit-main/SourceCode
+
+FILE                                                           CATEGORY                   ALL  SAFE  ITEM
+--------------------------------------------------------------------------------------------------------------
+SrcGame/src/character.cpp                                      SAFE                         1     1     0
+SrcGame/src/cSettingsWindow.cpp                                SAFE                         8     8     0
+SrcGame/src/fileread.cpp                                       SAFE                         1     1     0
+SrcGame/src/HoBaram/HoLinkHeader.cpp                           SAFE                         7     7     0
+SrcGame/src/HoBaram/HoLogin.cpp                                SAFE                        11    11     0
+SrcGame/src/HoBaram/HoOpening.cpp                              SAFE                        11    11     0
+SrcGame/src/HoBaram/LowLevelPetSystem.cpp                      SAFE                         6     6     0
+SrcGame/src/mingw_debug_entry.cpp                              SAFE                         1     1     0
+SrcGame/src/netplay.cpp                                        SAFE                         7     7     0
+SrcGame/src/playmain.cpp                                       SAFE                         2     2     0
+SrcGame/src/Server/OnSever.cpp                                 SAFE                         1     1     0
+SrcGame/src/Settings/Settings.cpp                              SAFE                         1     1     0
+SrcGame/src/sinbaram/AssaEffect.cpp                            SAFE                         1     1     0
+SrcGame/src/sinbaram/AssaUtil.cpp                              SAFE                         3     3     0
+SrcGame/src/sinbaram/sinHelpPet.cpp                            SAFE                         5     5     0
+SrcGame/src/sinbaram/sinInterFace.cpp                          SAFE                         1     1     0
+SrcGame/src/sinbaram/sinSubMain.cpp                            SAFE                         2     2     0
+SrcGame/src/smLib3d/smDsx.cpp                                  SAFE                         1     1     0
+SrcGame/src/smLib3d/smRead3d.cpp                               SAFE                         2     2     0
+SrcGame/src/smwsock.cpp                                        SAFE                         1     1     0
+SrcGame/src/TJBOY/clanmenu/tjclan.cpp                          SAFE                         1     1     0
+SrcGame/src/UIList.cpp                                         SAFE                         1     1     0
+SrcGame/src/Winmain.cpp                                        SAFE                        25    25     0
+SrcServer/src/character.cpp                                    SAFE                         1     1     0
+SrcServer/src/fileread.cpp                                     MIXED                      115   114     1
+SrcServer/src/Server/OnSever.cpp                               MIXED                        4     2     2
+SrcServer/src/sinbaram/sinInvenTory.cpp                        SAFE                         2     2     0
+SrcServer/src/sinbaram/sinItem.cpp                             PROTECTED_FILE               2     0     2
+
+==========================================================================================
+CLIENT CHANGED
+==========================================================================================
+SAFE                     SrcGame/src/character.cpp
+SAFE                     SrcGame/src/cSettingsWindow.cpp
+SAFE                     SrcGame/src/fileread.cpp
+SAFE                     SrcGame/src/HoBaram/HoLinkHeader.cpp
+SAFE                     SrcGame/src/HoBaram/HoLogin.cpp
+SAFE                     SrcGame/src/HoBaram/HoOpening.cpp
+SAFE                     SrcGame/src/HoBaram/LowLevelPetSystem.cpp
+SAFE                     SrcGame/src/mingw_debug_entry.cpp
+SAFE                     SrcGame/src/netplay.cpp
+SAFE                     SrcGame/src/playmain.cpp
+SAFE                     SrcGame/src/Server/OnSever.cpp
+SAFE                     SrcGame/src/Settings/Settings.cpp
+SAFE                     SrcGame/src/sinbaram/AssaEffect.cpp
+SAFE                     SrcGame/src/sinbaram/AssaUtil.cpp
+SAFE                     SrcGame/src/sinbaram/sinHelpPet.cpp
+SAFE                     SrcGame/src/sinbaram/sinInterFace.cpp
+SAFE                     SrcGame/src/sinbaram/sinSubMain.cpp
+SAFE                     SrcGame/src/smLib3d/smDsx.cpp
+SAFE                     SrcGame/src/smLib3d/smRead3d.cpp
+SAFE                     SrcGame/src/smwsock.cpp
+SAFE                     SrcGame/src/TJBOY/clanmenu/tjclan.cpp
+SAFE                     SrcGame/src/UIList.cpp
+SAFE                     SrcGame/src/Winmain.cpp
+
+==========================================================================================
+SERVER CHANGED
+==========================================================================================
+SAFE                     SrcServer/src/character.cpp
+MIXED                    SrcServer/src/fileread.cpp
+MIXED                    SrcServer/src/Server/OnSever.cpp
+SAFE                     SrcServer/src/sinbaram/sinInvenTory.cpp
+PROTECTED_FILE           SrcServer/src/sinbaram/sinItem.cpp
+
+==========================================================================================
+MIXED FILES - PORTAR SOMENTE HUNKS SAFE
+==========================================================================================
+
+### SrcServer/src/fileread.cpp
+
+[SAFE] @@ -2605,7 +2605,7 @@
+ 		NextFlag = 0;
+ 
+ 
+-		if(lstrcmp(decode, "*ï¿½Ì¸ï¿½") == 0)
++		if(lstrcmp(decode, "\x2A\xC0\xCC\xB8\xA7") == 0)
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 
+
+[SAFE] @@ -2626,7 +2626,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½Úµï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC4\xDA\xB5\xE5") == 0)
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 
+
+[SAFE] @@ -2643,7 +2643,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Å©") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xAF\xB4\xCF\xC5\xA9") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			if(strBuff[0])
+
+[SAFE] @@ -2654,7 +2654,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xAF\xB4\xCF\xC5\xA9\xBB\xF6\xBB\xF3") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->EffectColor[0] = atoi(strBuff);
+
+[SAFE] @@ -2673,7 +2673,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xC6\xE5\xC6\xAE\xBC\xB3\xC1\xA4") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->DispEffect = atoi(strBuff);
+
+[SAFE] @@ -2684,7 +2684,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB3\xBB\xB1\xB8\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sDurability[0] = atoi(strBuff);
+
+[SAFE] @@ -2694,7 +2694,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xAB\xB0\xD4") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Weight = atoi(strBuff);
+
+[SAFE] @@ -2702,7 +2702,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xA1\xB0\xDD") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Price = atoi(strBuff);
+
+[SAFE] @@ -2710,7 +2710,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½Ã¼") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBB\xFD\xC3\xBC") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_BIONIC][0] = atoi(strBuff);
+
+[SAFE] @@ -2718,7 +2718,7 @@
+ 			lpDefItem->sResistance[sITEMINFO_BIONIC][1] = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Ú¿ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB4\xEB\xC0\xDA\xBF\xAC") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_EARTH][0] = atoi(strBuff);
+
+[SAFE] @@ -2726,7 +2726,7 @@
+ 			lpDefItem->sResistance[sITEMINFO_EARTH][1] = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xD2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_FIRE][0] = atoi(strBuff);
+
+[SAFE] @@ -2734,7 +2734,7 @@
+ 			lpDefItem->sResistance[sITEMINFO_FIRE][1] = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½Ã±ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB3\xC3\xB1\xE2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_ICE][0] = atoi(strBuff);
+
+[SAFE] @@ -2742,7 +2742,7 @@
+ 			lpDefItem->sResistance[sITEMINFO_ICE][1] = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xF8\xB0\xB3") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_LIGHTING][0] = atoi(strBuff);
+
+[SAFE] @@ -2750,7 +2750,7 @@
+ 			lpDefItem->sResistance[sITEMINFO_LIGHTING][1] = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB5\xB6") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_POISON][0] = atoi(strBuff);
+
+[SAFE] @@ -2758,7 +2758,7 @@
+ 			lpDefItem->sResistance[sITEMINFO_POISON][1] = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xB0") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_WATER][0] = atoi(strBuff);
+
+[SAFE] @@ -2766,7 +2766,7 @@
+ 			lpDefItem->sResistance[sITEMINFO_WATER][1] = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½Ù¶ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xD9\xB6\xF7") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sResistance[sITEMINFO_WIND][0] = atoi(strBuff);
+
+[SAFE] @@ -2780,7 +2780,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Ý·ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sDamage[0] = atoi(strBuff);
+
+[SAFE] @@ -2794,14 +2794,14 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBB\xE7\xC1\xA4\xB0\xC5\xB8\xAE") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Shooting_Range = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Ý¼Óµï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xBC\xD3\xB5\xB5") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Attack_Speed = atoi(strBuff);
+
+[SAFE] @@ -2809,7 +2809,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ß·ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xED\xC1\xDF\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sAttack_Rating[0] = atoi(strBuff);
+
+[SAFE] @@ -2819,7 +2819,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*Å©ï¿½ï¿½Æ¼ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC5\xA9\xB8\xAE\xC6\xBC\xC4\xC3") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Critical_Hit = atoi(strBuff);
+
+[SAFE] @@ -2830,7 +2830,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xED\xBC\xF6\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fAbsorb[0] = (float)atof(strBuff);
+
+[SAFE] @@ -2840,7 +2840,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xE6\xBE\xEE\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sDefence[0] = atoi(strBuff);
+
+[SAFE] @@ -2850,7 +2850,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xED\xB7\xB0\xC0\xB2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fBlock_Rating[0] = (float)atof(strBuff);
+
+[SAFE] @@ -2861,7 +2861,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½Ìµï¿½ï¿½Óµï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xB5\xBF\xBC\xD3\xB5\xB5") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fSpeed[0] = (float)atof(strBuff);
+
+[SAFE] @@ -2872,7 +2872,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xB8\xC0\xAF\xB0\xF8\xB0\xA3") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Potion_Space = atoi(strBuff);
+
+[SAFE] @@ -2881,14 +2881,14 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xB6\xB9\xFD\xBC\xF7\xB7\xC3\xB5\xB5") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->fMagic_Mastery = (float)atof(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xB8\xB6\xB3\xAA\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\xB1\xE2\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fMana_Regen[0] = (float)atof(strBuff);
+
+[SAFE] @@ -2897,7 +2897,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fLife_Regen[0] = (float)atof(strBuff);
+
+[SAFE] @@ -2906,7 +2906,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½×¹Ì³ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½Ù·ï¿½ï¿½ï¿½ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xAA\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\xB1\xD9\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fStamina_Regen[0] = (float)atof(strBuff);
+
+[SAFE] @@ -2916,7 +2916,7 @@
+ 
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xB8\xB6\xB3\xAA\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\xB1\xE2\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->Increase_Mana[0] = atoi(strBuff);
+
+[SAFE] @@ -2925,7 +2925,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->Increase_Life[0] = atoi(strBuff);
+
+[SAFE] @@ -2934,7 +2934,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½×¹Ì³ï¿½ï¿½ß°ï¿½") == 0 || lstrcmp(decode, "*ï¿½Ù·ï¿½ï¿½ß°ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xAA\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\xB1\xD9\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->Increase_Stamina[0] = atoi(strBuff);
+
+[SAFE] @@ -2947,7 +2947,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB7\xB9\xBA\xA7") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Level = atoi(strBuff);
+
+[SAFE] @@ -2955,7 +2955,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xFB") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Strength = atoi(strBuff);
+
+[SAFE] @@ -2963,28 +2963,28 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Å·ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC1\xA4\xBD\xC5\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Spirit = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xE7\xB4\xC9") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Talent = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½Ã¸ï¿½ï¿½") == 0)
+...
+
+[SAFE] @@ -2995,7 +2995,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½×¹Ì³Ê»ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½Ù·Â»ï¿½ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xCA\xBB\xF3\xBD\xC2") == 0 || lstrcmp(decode, "\x2A\xB1\xD9\xB7\xC2\xBB\xF3\xBD\xC2") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Stamina[0] = atoi(strBuff);
+
+[SAFE] @@ -3005,7 +3005,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½Â»ï¿½ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xB8\xB6\xB3\xAA\xBB\xF3\xBD\xC2") == 0 || lstrcmp(decode, "\x2A\xB1\xE2\xB7\xC2\xBB\xF3\xBD\xC2") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Mana[0] = atoi(strBuff);
+
+[SAFE] @@ -3015,7 +3015,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Â»ï¿½ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xBB\xF3\xBD\xC2") == 0 || lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2\xBB\xF3\xBD\xC2") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Life[0] = atoi(strBuff);
+
+[SAFE] @@ -3053,7 +3053,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "**Æ¯È­ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xC6\xAF\xC8\xAD\xB7\xA3\xB4\xFD") == 0)
+ 		{
+ 			while(1)
+ 			{
+
+[SAFE] @@ -3083,7 +3083,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xC8\xED\xBC\xF6\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fSpecial_Absorb[0] = (float)atof(strBuff);
+
+[SAFE] @@ -3093,7 +3093,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xB9\xE6\xBE\xEE\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sSpecial_Defence[0] = atoi(strBuff);
+
+[SAFE] @@ -3105,7 +3105,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "**ï¿½Ìµï¿½ï¿½Óµï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xC0\xCC\xB5\xBF\xBC\xD3\xB5\xB5") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->fSpecial_fSpeed[0] = (float)atof(strBuff);
+
+[SAFE] @@ -3115,35 +3115,35 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xBA\xED\xB7\xB0\xC0\xB2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->JobItem.Add_fBlock_Rating = (float)atof(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "**ï¿½ï¿½ï¿½Ý¼Óµï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xB0\xF8\xB0\xDD\xBC\xD3\xB5\xB5") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->JobItem.Add_Attack_Speed = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "**Å©ï¿½ï¿½Æ¼ï¿½ï¿½") == 0)
+...
+
+[SAFE] @@ -3161,21 +3161,21 @@
+ 
+ 
+ 
+-		if(!NextFlag && (lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0 || lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xB8\xB6\xB3\xAA\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\x2A\xB1\xE2\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->JobItem.Lev_Mana = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0 || lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\x2A\xBB\xFD\xB8\xED\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->JobItem.Lev_Life = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "**ï¿½ï¿½ï¿½ß·ï¿½") == 0)
+...
+
+[SAFE] @@ -3185,7 +3185,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "**ï¿½ï¿½ï¿½Ý·ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xB0\xF8\xB0\xDD\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->JobItem.Lev_Damage[0] = atoi(strBuff);
+
+[SAFE] @@ -3199,7 +3199,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && (lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xB8\xB6\xB3\xAA\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\x2A\xB1\xE2\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 
+
+[SAFE] @@ -3210,21 +3210,21 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\x2A\xBB\xFD\xB8\xED\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->JobItem.Per_Life_Regen = (float)atof(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "**ï¿½ï¿½ï¿½×¹Ì³ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "**ï¿½Ù·ï¿½ï¿½ï¿½ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xAA\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\x2A\xB1\xD9\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->JobItem.Per_Stamina_Regen = (float)atof(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ß»ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
+...
+
+[SAFE] @@ -3232,7 +3232,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBF\xAC\xB0\xE1\xC6\xC4\xC0\xCF") == 0)
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 
+
+[SAFE] @@ -3537,6 +3537,7 @@
+ 
+ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	*lpMonInfo, char *lpDialogMessage, size_t DialogMessageSize)
+ {
++	// MINGW_CHARINF_CP949_TOKEN_FIX_V1 - legacy CP949 literals restored as ASCII hex escapes
+ 
+ 	FILE	*fp;
+ 
+
+[SAFE] @@ -3587,7 +3588,7 @@
+ 		NextFlag = 0;
+ 
+ 
+-		if(lstrcmp(decode, "*ï¿½Ì¸ï¿½") == 0)
++		if(lstrcmp(decode, "\x2A\xC0\xCC\xB8\xA7") == 0)
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 
+
+[SAFE] @@ -3610,7 +3611,7 @@
+ 		}
+ #endif
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xF0\xBE\xE7\xC6\xC4\xC0\xCF") == 0)
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 
+
+[SAFE] @@ -3624,7 +3625,7 @@
+ 
+ 		DialogFlag = 0;
+ 
+-		if(!NextFlag && lpDialogMessage && lstrcmp(decode, "*ï¿½ï¿½È­") == 0)
++		if(!NextFlag && lpDialogMessage && lstrcmp(decode, "\x2A\xB4\xEB\xC8\xAD") == 0)
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 
+
+[SAFE] @@ -3659,11 +3660,11 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½Ó¼ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBC\xD3\xBC\xBA") == 0)
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 
+-			if(lstrcmp(strBuff, "ï¿½ï¿½") == 0)
++			if(lstrcmp(strBuff, "\xC0\xFB") == 0)
+ 				lpCharInfo->State = TRUE;
+ 			else
+ 				lpCharInfo->State = FALSE;
+
+[SAFE] @@ -3672,7 +3673,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*Å©ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC5\xA9\xB1\xE2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			cnt = 0;
+
+[SAFE] @@ -3692,7 +3693,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*ï¿½Ò¸ï¿½") == 0 || lstrcmp(decode, "*È¿ï¿½ï¿½ï¿½ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xBC\xD2\xB8\xAE") == 0 || lstrcmp(decode, "\x2A\xC8\xBF\xB0\xFA\xC0\xBD") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			cnt = 0;
+
+[SAFE] @@ -3711,7 +3712,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB7\xB9\xBA\xA7") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Level = atoi(strBuff);
+
+[SAFE] @@ -3719,14 +3720,14 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½Î¸ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB5\xCE\xB8\xF1") == 0)
+ 		{
+ 
+ 			lpCharInfo->wPlayClass[0] = MONSTER_CLASS_BOSS;
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xE8\xB1\xDE") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->wPlayClass[0] = atoi(strBuff);
+
+[SAFE] @@ -3734,7 +3735,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½Å©ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xF0\xB5\xA8\xC5\xA9\xB1\xE2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->wPlayClass[1] = (short)(atof(strBuff)*fONE);
+
+[SAFE] @@ -3744,7 +3745,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½Ìµï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xB5\xBF\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Move_Speed = ConvMoveSpeed((float)atof(strBuff));
+
+[SAFE] @@ -3752,7 +3753,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Ý·ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Attack_Damage[0] = atoi(strBuff);
+
+[SAFE] @@ -3763,7 +3764,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Ý¼Óµï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xBC\xD3\xB5\xB5") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Attack_Speed = (int)(atof(strBuff)*fONE);
+
+[SAFE] @@ -3774,7 +3775,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xB9\xFC\xC0\xA7") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Shooting_Range = atoi(strBuff)*fONE;
+
+[SAFE] @@ -3784,7 +3785,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ß·ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xED\xC1\xDF\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Attack_Rating = atoi(strBuff);
+
+[SAFE] @@ -3793,7 +3794,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xE6\xBE\xEE\xB7\xC2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Defence = atoi(strBuff);
+
+[SAFE] @@ -3801,7 +3802,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xED\xBC\xF6\xC0\xB2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Absorption = atoi(strBuff);
+
+[SAFE] @@ -3809,7 +3810,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xED\xB7\xB0\xC0\xB2") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Chance_Block = atoi(strBuff);
+
+[SAFE] @@ -3818,7 +3819,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2") == 0 || lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Life[0] = atoi(strBuff);
+
+[SAFE] @@ -3828,21 +3829,21 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½Ã¼") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBB\xFD\xC3\xBC") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Resistance[sITEMINFO_BIONIC] = (short)atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xB0") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Resistance[sITEMINFO_WATER] = (short)atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
+...
+
+[SAFE] @@ -3850,35 +3851,35 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xF3\xC0\xBD") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Resistance[sITEMINFO_ICE] = (short)atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½Ù¶ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xD9\xB6\xF7") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Resistance[sITEMINFO_WIND] = (short)atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
+...
+
+[SAFE] @@ -3892,7 +3893,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½Ã¾ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBD\xC3\xBE\xDF") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpCharInfo->Sight = atoi(strBuff);
+
+[SAFE] @@ -3903,7 +3904,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*È­ï¿½éº¸ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xAD\xB8\xE9\xBA\xB8\xC1\xA4") == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			if(strBuff[0])
+
+[SAFE] @@ -3919,7 +3920,7 @@
+ 		{
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xBF\xB9\xBA\xF1\xB8\xF0\xB5\xA8") == 0)
+ 			{
+ 				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 				strcpy_s(lpCharInfo->szModelName2 + 1, sizeof(lpCharInfo->szModelName2) - 1, strBuff);
+
+[SAFE] @@ -3928,7 +3929,7 @@
+ 			}
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý·ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB1\xE2\xBC\xFA\xB0\xF8\xB0\xDD\xB7\xC2") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->SkillDamage[0] = atoi(strBuff);
+
+[SAFE] @@ -3939,7 +3940,7 @@
+ 			}
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°Å¸ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB1\xE2\xBC\xFA\xB0\xF8\xB0\xDD\xB0\xC5\xB8\xAE") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->SkillDistance = atoi(strBuff);
+
+[SAFE] @@ -3949,7 +3950,7 @@
+ 
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB1\xE2\xBC\xFA\xB0\xF8\xB0\xDD\xB9\xFC\xC0\xA7") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->SkillRange = atoi(strBuff);
+
+[SAFE] @@ -3958,7 +3959,7 @@
+ 			}
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý·ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB1\xE2\xBC\xFA\xB0\xF8\xB0\xDD\xB7\xFC") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->SkillRating = atoi(strBuff);
+
+[SAFE] @@ -3967,7 +3968,7 @@
+ 			}
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½Ö±ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xFA\xC1\xD6\xB1\xE2\xBC\xFA") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->SkillCurse = atoi(strBuff);
+
+[SAFE] @@ -3975,7 +3976,7 @@
+ 			}
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½Ìµï¿½Å¸ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xB5\xBF\xC5\xB8\xC0\xD4") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 
+
+[SAFE] @@ -3983,7 +3984,7 @@
+ 			}
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xB5\xBF\xB9\xFC\xC0\xA7") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->MoveRange = (int)(atof(strBuff)*fONE);
+
+[SAFE] @@ -3992,19 +3993,19 @@
+ 
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*È°ï¿½ï¿½ï¿½Ã°ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xB0\xB5\xBF\xBD\xC3\xB0\xA3") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->ActiveHour = 0;
+-				if(lstrcmpi(strBuff, "ï¿½ï¿½") == 0)
++				if(lstrcmpi(strBuff, "\xB3\xB7") == 0)
+ 					lpMonInfo->ActiveHour = 1;
+-				if(lstrcmpi(strBuff, "ï¿½ï¿½") == 0)
++				if(lstrcmpi(strBuff, "\xB9\xE3") == 0)
+ 					lpMonInfo->ActiveHour = -1;
+ 				NextFlag = TRUE;
+ 			}
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC1\xB6\xC1\xF7") == 0)
+...
+
+[SAFE] @@ -4014,7 +4015,7 @@
+ 			}
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC1\xF6\xB4\xC9") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->IQ = atoi(strBuff);
+
+[SAFE] @@ -4022,7 +4023,7 @@
+ 			}
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB1\xB8\xBA\xB0\xC4\xDA\xB5\xE5") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->ClassCode = atoi(strBuff);
+
+[SAFE] @@ -4030,7 +4031,7 @@
+ 			}
+ 
+ 
+-			if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*ï¿½ï¿½ï¿½Ï·ï¿½") == 0))
++			if(!NextFlag && (lstrcmp(decode, "\x2A\xBD\xBA\xC5\xCF\xC0\xB2") == 0 || lstrcmp(decode, "\x2A\xBD\xBA\xC5\xCF\xB7\xFC") == 0))
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->DamageStunPers = atoi(strBuff);
+
+[SAFE] @@ -4038,7 +4039,7 @@
+ 			}
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*Ç°ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC7\xB0\xBC\xBA") == 0)
+ 			{
+ 				lpMonInfo->Nature = smCHAR_MONSTER_NATURAL;
+ 
+
+[SAFE] @@ -4058,21 +4059,21 @@
+ 			}
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½Ìºï¿½Æ®ï¿½Úµï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xBA\xA5\xC6\xAE\xC4\xDA\xB5\xE5") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 
+ 				lpMonInfo->EventCode = atoi(strBuff);
+ 				NextFlag = TRUE;
+ 			}
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½Ìºï¿½Æ®ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xBA\xA5\xC6\xAE\xC1\xA4\xBA\xB8") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 
+ 				lpMonInfo->EventInfo = atoi(strBuff);
+ 				NextFlag = TRUE;
+ 			}
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½Ìºï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
+...
+
+[SAFE] @@ -4090,17 +4091,17 @@
+ 
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*Æ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ý·ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC6\xAF\xBC\xF6\xB0\xF8\xB0\xDD\xB7\xFC") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->SpAttackPercetage = ConvPercent8(atoi(strBuff));
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ðµ¥µï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xF0\xB5\xA5\xB5\xE5") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+-				if(lstrcmp(strBuff, "ï¿½ï¿½") == 0 || lstrcmp(strBuff, "ï¿½ï¿½ï¿½ï¿½") == 0)
++				if(lstrcmp(strBuff, "\xC0\xAF") == 0 || lstrcmp(strBuff, "\xC0\xD6\xC0\xBD") == 0)
+ 				{
+ 					lpMonInfo->Undead = TRUE;
+ 					lpCharInfo->Brood = smCHAR_MONSTER_UNDEAD;
+
+[SAFE] @@ -4114,7 +4115,7 @@
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xF3\xBD\xBA\xC5\xCD\xC1\xBE\xC1\xB7") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				if(strBuff[0])
+
+[SAFE] @@ -4122,19 +4123,19 @@
+ 
+ 					lpCharInfo->Brood = smCHAR_MONSTER_NORMAL;
+ 
+-					if(lstrcmp(strBuff, "ï¿½ðµ¥µï¿½") == 0)
++					if(lstrcmp(strBuff, "\xBE\xF0\xB5\xA5\xB5\xE5") == 0)
+ 					{
+ 						lpCharInfo->Brood = smCHAR_MONSTER_UNDEAD;
+ 					}
+-					else if(lstrcmp(strBuff, "ï¿½ï¿½ï¿½ï¿½Æ®") == 0)
++					else if(lstrcmp(strBuff, "\xB9\xC2\xC5\xCF\xC6\xAE") == 0)
+ 					{
+ 						lpCharInfo->Brood = smCHAR_MONSTER_MUTANT;
+ 					}
+-					else if(lstrcmp(strBuff, "ï¿½ï¿½ï¿½") == 0)
++					else if(lstrcmp(strBuff, "\xB5\xF0\xB8\xD5") == 0)
+ 					{
+ 						lpCharInfo->Brood = smCHAR_MONSTER_DEMON;
+ 					}
+-					else if(lstrcmp(strBuff, "ï¿½ï¿½Ä«ï¿½ï¿½") == 0)
++					else if(lstrcmp(strBuff, "\xB8\xDE\xC4\xAB\xB4\xD0") == 0)
+...
+
+[SAFE] @@ -4143,7 +4144,7 @@
+ 
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Ä¡") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xE6\xC7\xE8\xC4\xA1") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->GetExp = atoi(strBuff);
+
+[SAFE] @@ -4152,7 +4153,7 @@
+ 			}
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½àº¸ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xB0\xBE\xE0\xBA\xB8\xC0\xAF\xBC\xF6") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->PotionCount = atoi(strBuff);
+
+[SAFE] @@ -4160,7 +4161,7 @@
+ 			}
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½àº¸ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xB0\xBE\xE0\xBA\xB8\xC0\xAF\xB7\xFC") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->PotionPercent = atoi(strBuff);
+
+[SAFE] @@ -4170,20 +4171,20 @@
+ 
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Û¸ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB\xB8\xF0\xB5\xCE") == 0)
+ 			{
+ 				lpMonInfo->AllSeeItem = TRUE;
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB\xC4\xAB\xBF\xEE\xC5\xCD") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->FallItemMax = atoi(strBuff);
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC3\xDF\xB0\xA1\xBE\xC6\xC0\xCC\xC5\xDB") == 0)
+...
+
+[SAFE] @@ -4204,7 +4205,7 @@
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				percent = atoi(strBuff);
+
+[SAFE] @@ -4212,7 +4213,7 @@
+ 				lpMonInfo->FallItemPerMax += percent;
+ 
+ 				p = local_GetWord(strBuff, p);
+-				if(lstrcmp(strBuff, "ï¿½ï¿½ï¿½ï¿½") == 0)
++				if(lstrcmp(strBuff, "\xBE\xF8\xC0\xBD") == 0)
+ 				{
+ 
+ 					if(rsServerConfig.TestSeverMode)
+
+[ITEM/SENSITIVE] @@ -4229,7 +4230,7 @@
+ 				}
+ 				else
+ 				{
+-					if(lstrcmp(strBuff, "ï¿½ï¿½") == 0)
++					if(lstrcmp(strBuff, "\xB5\xB7") == 0)
+ 					{
+ 
+ 						lpMonInfo->FallItems[lpMonInfo->FallItemCount].dwItemCode = sinGG1 | sin01;
+
+[SAFE] @@ -4286,7 +4287,7 @@
+ 			}
+ 
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xAB\xB1\xE2\xC6\xC7\xB8\xC5") == 0)
+ 			{
+ 				while(1)
+ 				{
+
+[SAFE] @@ -4306,7 +4307,7 @@
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½î±¸ï¿½Ç¸ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xE6\xBE\xEE\xB1\xB8\xC6\xC7\xB8\xC5") == 0)
+ 			{
+ 				while(1)
+ 				{
+
+[SAFE] @@ -4326,7 +4327,7 @@
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½È­ï¿½Ç¸ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xE2\xC8\xAD\xC6\xC7\xB8\xC5") == 0)
+ 			{
+ 				while(1)
+ 				{
+
+[SAFE] @@ -4346,12 +4347,12 @@
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xBD\xBA\xC5\xB3\xBC\xF6\xB7\xC3") == 0)
+ 			{
+ 				lpMonInfo->SkillMaster = TRUE;
+ 				NextFlag = TRUE;
+ 			}
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¯") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC1\xF7\xBE\xF7\xC0\xFC\xC8\xAF") == 0)
+ 			{
+ 				lpMonInfo->SkillChangeJob = TRUE;
+ 
+
+[SAFE] @@ -4362,7 +4363,7 @@
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½Ìºï¿½Æ®ï¿½ï¿½Ç¥ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xBA\xA5\xC6\xAE\xB8\xC5\xC7\xA5\xBC\xD2") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				if(strBuff[0])
+
+[SAFE] @@ -4372,40 +4373,40 @@
+ 
+ 				NextFlag = TRUE;
+ 			}
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ûºï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB\xBA\xB8\xB0\xFC") == 0)
+ 			{
+ 				lpMonInfo->WareHouseMaster = TRUE;
+ 				NextFlag = TRUE;
+ 			}
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB\xC1\xB6\xC7\xD5") == 0)
+ 			{
+ 				lpMonInfo->ItemMix = TRUE;
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xC6\xC0\xCC\xC5\xDB\xC1\xA6\xB7\xC3") == 0)
+ 			{
+ 				lpMonInfo->Smelting = TRUE;
+...
+
+[SAFE] @@ -4457,35 +4458,35 @@
+ 				NextFlag = TRUE;
+ 			}
+ 						
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xF0\xB1\xDD\xC7\xD4") == 0)
+ 			{
+ 				lpMonInfo->CollectMoney = TRUE;
+ 				NextFlag = TRUE;
+ 			}
+ #ifdef _LANGUAGE_VEITNAM
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB2\xCE\xC0\xCC\xC1\xF6\xB7\xD5") == 0)
+ 			{
+ 				lpMonInfo->WowEvent = TRUE;
+ 				NextFlag = TRUE;
+ 			}
+ #endif
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½Ç°ï¿½ï¿½Ã·") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xE6\xC7\xB0\xC3\xDF\xC3\xB7") == 0)
+ 			{
+...
+
+[SAFE] @@ -4495,7 +4496,7 @@
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ìºï¿½Æ®") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC4\xF9\xBD\xBA\xC6\xAE\xC0\xCC\xBA\xA5\xC6\xAE") == 0)
+ 			{
+ 
+ 				p = local_GetWord(strBuff, p);
+
+[SAFE] @@ -4507,7 +4508,7 @@
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xB0\xC6\xF7\xC0\xCE\xC6\xAE\xC0\xFB\xB8\xB3") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				if(strBuff[0])
+
+[SAFE] @@ -4517,13 +4518,13 @@
+ 
+ 				NextFlag = TRUE;
+ 			}
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB1\xE2\xBA\xCE\xC7\xD4") == 0)
+ 			{
+ 				lpMonInfo->GiveMoneyNpc = TRUE;
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½Ú·ï¿½ï¿½ï¿½Æ®") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC5\xDA\xB7\xB9\xC6\xF7\xC6\xAE") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				if(strBuff[0])
+
+[SAFE] @@ -4533,7 +4534,7 @@
+ 
+ 				NextFlag = TRUE;
+ 			}
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xED\xB7\xB9\xBD\xBA\xC4\xB3\xBD\xBD") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				if(strBuff[0])
+
+[SAFE] @@ -4543,7 +4544,7 @@
+ 
+ 				NextFlag = TRUE;
+ 			}
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xBC\xB3\xB9\xAE\xC1\xB6\xBB\xE7") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				if(strBuff[0])
+
+[SAFE] @@ -4554,7 +4555,7 @@
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB5\xBF\xBF\xB5\xBB\xF3\xC1\xA6\xB8\xF1") == 0)
+ 			{
+ 				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 				if(strBuff[0])
+
+[SAFE] @@ -4563,7 +4564,7 @@
+ 				}
+ 				NextFlag = TRUE;
+ 			}
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xB5\xBF\xBF\xB5\xBB\xF3\xB0\xE6\xB7\xCE") == 0)
+ 			{
+ 				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 				if(strBuff[0])
+
+[SAFE] @@ -4573,7 +4574,7 @@
+ 				NextFlag = TRUE;
+ 			}
+ 
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC3\xE2\xC7\xF6\xB0\xA3\xB0\xDD") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->OpenCount[0] = atoi(strBuff);
+
+[SAFE] @@ -4581,7 +4582,7 @@
+ 				lpMonInfo->OpenCount[1] = atoi(strBuff);
+ 				NextFlag = TRUE;
+ 			}
+-			if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Úµï¿½") == 0)
++			if(!NextFlag && lstrcmp(decode, "\x2A\xC4\xF9\xBD\xBA\xC6\xAE\xC4\xDA\xB5\xE5") == 0)
+ 			{
+ 				p = local_GetWord(strBuff, p);
+ 				lpMonInfo->QuestCode = atoi(strBuff);
+
+[SAFE] @@ -4592,7 +4593,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xBF\xAC\xB0\xE1\xC6\xC4\xC0\xCF") == 0)
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 
+
+[SAFE] @@ -4653,10 +4654,17 @@
+ 		NextFlag = 0;
+ 
+ 
+-		if(lstrcmp(decode, "*ï¿½â¿¬ï¿½ï¿½") == 0 || lstrcmpi(decode, "*ACTOR") == 0)
++		if((lstrcmp(decode, "\x2A\xC3\xE2\xBF\xAC\xC0\xDA") == 0 || lstrcmpi(decode, "*ACTOR") == 0)) // MINGW_SPM_CP949_TOKEN_FIX_V1
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 			strcpy_s(lpStgMonList->rsMonster[MonCnt].szMonsterName, strBuff);
++#ifdef __MINGW32__
++            // MINGW_SPM_ACTOR_MATCH_TRACE_V1
++            char dbgActorName[128] = { 0 };
++            strncpy(dbgActorName, strBuff, sizeof(dbgActorName) - 1);
++            dbgActorName[sizeof(dbgActorName) - 1] = 0;
++#endif
++
+ 			for(cnt = 0; cnt < ListCnt; cnt++)
+ 			{
+ 				if(lstrcmp(strBuff, lpCharInfoList[cnt].szName) == 0)
+
+[SAFE] @@ -4673,10 +4681,81 @@
+ 				}
+ 			}
+ 
+-			NextFlag = TRUE;
+-		}
+-
+-		if(lstrcmp(decode, "*ï¿½â¿¬ï¿½ÚµÎ¸ï¿½") == 0 || lstrcmpi(decode, "*BOSS_ACTOR") == 0)
++			
++#ifdef __MINGW32__
++            {
++                int dbgActorMatch = -1;
++
++                for(int dbgI = 0; dbgI < ListCnt; dbgI++)
++                {
++                    if(lstrcmp(dbgActorName,
++                               lpCharInfoList[dbgI].szName) == 0)
++                    {
++                        dbgActorMatch = dbgI;
++                        break;
++                    }
+...
+
+[SAFE] @@ -4717,14 +4796,14 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*ï¿½Ö´ëµ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*MAX_ACTOR_POS") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xC3\xD6\xB4\xEB\xB5\xBF\xBD\xC3\xC3\xE2\xC7\xF6\xBC\xF6") == 0 || lstrcmp(decode, "*MAX_ACTOR_POS") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpStgMonList->LimitMax = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*DELAY") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xC3\xE2\xC7\xF6\xB0\xA3\xB0\xDD") == 0 || lstrcmp(decode, "*DELAY") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpStgMonList->OpenInterval = (1 << atoi(strBuff));
+
+[SAFE] @@ -4737,7 +4816,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0 || lstrcmp(decode, "*MAX_ACTOR") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xC3\xE2\xC7\xF6\xBC\xF6") == 0 || lstrcmp(decode, "*MAX_ACTOR") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpStgMonList->OpenLimit = atoi(strBuff);
+
+### SrcServer/src/Server/OnSever.cpp
+
+[ITEM/SENSITIVE] @@ -2220,7 +2220,21 @@
+ 
+ int InitItems()
+ {
+-	HANDLE hFindHandle;
++	
++	/* MINGW_SITEM_CODEMAP_STARTUP_V1 */
++	extern int MingwPopulateItemCodeMap();
++
++	int MingwMapCount = MingwPopulateItemCodeMap();
++
++	cout << "[SITEM_CODEMAP_INIT]"
++		 << " count=" << MingwMapCount
++		 << " i0_CODE=0x" << hex << sItem[0].CODE << dec
++		 << " i0_CAT='" << sItem[0].LastCategory << "'"
++		 << " i4_CODE=0x" << hex << sItem[4].CODE << dec
++		 << " i4_CAT='" << sItem[4].LastCategory << "'"
++		 << endl;
++
++HANDLE hFindHandle;
+ 	WIN32_FIND_DATA	fd;
+...
+
+[SAFE] @@ -2276,7 +2290,7 @@
+ 
+ 	while(cnt > 0)
+ 	{
+-		if(szFieldPath[cnt] == '//')
++		if(szFieldPath[cnt] == '/' || szFieldPath[cnt] == '\\') // MINGW_SETFIELDINFOPATH_SEPARATOR_FIX_V1
+ 		{
+ 			szFile = &szFieldPath[cnt + 1];
+ 			break;
+
+[SAFE] @@ -8584,6 +8598,39 @@
+ 
+ 
+ 		DecodeOpenMonster(szCharMonsterFile, &rsMonsterList, chrMonsterList, chrMonsterCnt);
++
++		// MINGW_STAGE_SPAWN_LOAD_TRACE_V1
++		{
++			int dbgStartPoints = 0;
++
++			for(int dbgCnt = 0; dbgCnt < STG_START_POINT_MAX; dbgCnt++)
++			{
++				if(StartPoint[dbgCnt].state)
++					dbgStartPoints++;
++			}
++
++			FILE *dbgFp = fopen("spawn_trace.txt", "a");
++			if(dbgFp)
++			{
++				fprintf(dbgFp,
++					"[SPAWN_LOAD] stage=%s spp=%s starts=%d spm=%s "
++					"counter=%d pct=%d limit=%d openLimit=%d "
+...
+
+[ITEM/SENSITIVE] @@ -12490,6 +12537,51 @@
+ 
+ 	cout << "Carregando Itens..." << endl;
+ 	InitItems();
++
++	{
++		int ProbeNonZero = 0;
++		int ProbeWA101 = 0;
++		int ProbeFirst = -1;
++
++		for (int ProbeIndex = 0; ProbeIndex < DefaultItemCount; ProbeIndex++)
++		{
++			if (DefaultItems[ProbeIndex].Item.CODE)
++			{
++				ProbeNonZero++;
++
++				if (ProbeFirst < 0)
++					ProbeFirst = ProbeIndex;
++			}
++
++			if (DefaultItems[ProbeIndex].Item.CODE == 0x01010100)
+...
+
+==========================================================================================
+BASE ONLY
+==========================================================================================
+SrcGame/src/Winmain.bak2.cpp
+
+==========================================================================================
+CURRENT ONLY
+==========================================================================================
+SrcGame/src/sinbaram/items_table.inc
+SrcServer/src/sinbaram/item_code_map_mingw.inc
+SrcServer/src/sinbaram/items_table.inc

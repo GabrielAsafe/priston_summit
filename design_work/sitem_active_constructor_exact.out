@@ -1,0 +1,297 @@
+============================================================
+SRCGAME sITEM FULL CONSTRUCTOR AREA
+============================================================
+   500		int		iMixType = 0;
+   501	};
+   502	
+   503	
+   504	struct sITEM
+   505	{
+   506		DWORD	CODE;
+   507		char	ItemNameIndex[32];
+   508	
+   509	
+   510		char	LastCategory[16];
+   511		int		w;
+   512		int     h;
+   513		char	ItemFilePath[64];
+   514		DWORD	Class;
+   515		char    DorpItem[64];
+   516		DWORD   SetModelPosi;
+   517		int		SoundIndex;
+   518		int     WeaponClass;
+   519	
+   520	
+   521	
+   522	
+   523		int Flag;
+   524		int x, y;
+   525		int SetX, SetY;
+   526	
+   527		LPDIRECT3DTEXTURE9 lpItem;
+   528		int		ItemPosition;
+   529	
+   530		int     PotionCount;
+   531		int     NotUseFlag;
+   532		int     SellPrice;
+   533		int     CoinPrice;
+   534	
+   535		int     OldX, OldY;
+   536		LPDIRECT3DTEXTURE9	lpTempItem;
+   537	
+   538	
+   539		sITEMINFO sItemInfo;
+   540	
+   541		sITEM()
+   542		{
+   543			CODE = 0;
+   544			ZeroMemory(ItemNameIndex, sizeof(ItemNameIndex));
+   545			ZeroMemory(LastCategory, sizeof(LastCategory));
+   546			w = 0;
+   547			h = 0;
+   548			ZeroMemory(ItemFilePath, sizeof(ItemFilePath));
+   549			Class = 0;
+   550			ZeroMemory(DorpItem, sizeof(DorpItem));
+   551			SetModelPosi = 0;
+   552			SoundIndex = 0;
+   553			WeaponClass = 0;
+   554			Flag = 0;
+   555			x = 0;
+   556			y = 0;
+   557			SetX = 0;
+   558			SetY = 0;
+   559	
+   560			lpItem = NULL;
+   561			ItemPosition = 0;
+   562	
+   563			PotionCount = 0;
+   564			NotUseFlag = 0;
+   565			SellPrice = 0;
+   566			CoinPrice = 0;
+   567	
+   568			OldX = 0;
+   569			OldY = 0;
+   570			lpTempItem = NULL;
+   571	
+   572		}
+   573		sITEM(DWORD CODE, const char* ItemNameIndex, const char* LastCategory, int w, int h, const char* ItemFilePath, int Class,
+   574			const char* DorpItem, DWORD SetModelPosi, int SoundIndex, int WeaponClass = 0)
+   575		{
+   576			this->CODE = CODE;
+   577			strcpy_s(this->ItemNameIndex, sizeof(this->ItemNameIndex), ItemNameIndex);
+   578			strcpy_s(this->LastCategory, sizeof(this->LastCategory), LastCategory);
+   579			this->w = w;
+   580			this->h = h;
+   581			strcpy_s(this->ItemFilePath, sizeof(this->ItemFilePath), ItemFilePath);
+   582			this->Class = Class;
+   583			strcpy_s(this->DorpItem, sizeof(this->DorpItem), DorpItem);
+   584			this->SetModelPosi = SetModelPosi;
+   585			this->SoundIndex = SoundIndex;
+   586			this->WeaponClass = WeaponClass;
+   587			this->Flag = 0;
+   588			this->x = 0;
+   589			this->y = 0;
+   590			this->SetX = 0;
+   591			this->SetY = 0;
+   592	
+   593			this->lpItem = NULL;
+   594			this->ItemPosition = 0;
+   595	
+   596			this->PotionCount = 0;
+   597			this->NotUseFlag = 0;
+   598			this->SellPrice = 0;
+   599	
+   600			this->OldX = 0;
+   601			this->OldY = 0;
+   602			this->lpTempItem = NULL;
+   603	
+   604		}
+   605	
+   606	};
+   607	
+   608	struct sITEMPRICE
+   609	{
+   610		int PureSellPrice;
+   611		int SellPrice;
+   612		int RepairCost;
+   613	};
+   614	
+   615	
+   616	struct sITEMREQUIRE
+   617	{
+   618		int     rBattleLevel;
+   619		int     rLevel;
+   620		int     rStrength;
+   621		int     rSpirit;
+   622		int     rTalent;
+   623		int     rDexterity;
+   624		int     rHealth;
+   625	};
+   626	
+   627	
+   628	class cITEM
+   629	{
+   630	public:
+   631		char *DropItemPath;
+   632		char *CharSetItemPath;
+   633	
+   634		int MatItemInfoBox;
+   635	
+   636		int MatItemInfoBox_TopLeft;
+   637		int MatItemInfoBox_TopRight;
+   638		int MatItemInfoBox_TopCenter;
+   639	
+   640		int MatItemInfoBox_BottomLeft;
+
+============================================================
+SRCSERVER sITEM FULL CONSTRUCTOR AREA
+============================================================
+   490	
+   491	};
+   492	
+   493	
+   494	struct sITEM
+   495	{
+   496		DWORD	CODE;
+   497		char	ItemNameIndex[32];
+   498	
+   499	
+   500		char	LastCategory[16];
+   501		int		w;
+   502		int     h;
+   503		char	ItemFilePath[64];
+   504		DWORD	Class;
+   505		char    DorpItem[64];
+   506		DWORD   SetModelPosi;
+   507		int		SoundIndex;
+   508		int     WeaponClass;
+   509	
+   510	
+   511	
+   512	
+   513		int Flag;
+   514		int x, y;
+   515		int SetX, SetY;
+   516	
+   517		DIRECTDRAWSURFACE lpItem;
+   518		int		ItemPosition;
+   519	
+   520		int     PotionCount;
+   521		int     NotUseFlag;
+   522		int     SellPrice;
+   523		int		CoinPrice;
+   524	
+   525		int     OldX, OldY;
+   526		DIRECTDRAWSURFACE	lpTempItem;
+   527	
+   528	
+   529		sITEMINFO sItemInfo;
+   530	
+   531		sITEM()
+   532		{
+   533			CODE = 0;
+   534			ZeroMemory(ItemNameIndex, sizeof(ItemNameIndex));
+   535			ZeroMemory(LastCategory, sizeof(LastCategory));
+   536			w = 0;
+   537			h = 0;
+   538			ZeroMemory(ItemFilePath, sizeof(ItemFilePath));
+   539			Class = 0;
+   540			ZeroMemory(DorpItem, sizeof(DorpItem));
+   541			SetModelPosi = 0;
+   542			SoundIndex = 0;
+   543			WeaponClass = 0;
+   544			Flag = 0;
+   545			x = 0;
+   546			y = 0;
+   547			SetX = 0;
+   548			SetY = 0;
+   549	
+   550			lpItem = NULL;
+   551			ItemPosition = 0;
+   552	
+   553			PotionCount = 0;
+   554			NotUseFlag = 0;
+   555			SellPrice = 0;
+   556			CoinPrice = 0;
+   557	
+   558			OldX = 0;
+   559			OldY = 0;
+   560			lpTempItem = NULL;
+   561	
+   562		}
+   563		sITEM(DWORD CODE, const char* ItemNameIndex, const char* LastCategory, int w, int h, const char* ItemFilePath, int Class,
+   564			  const char* DorpItem, DWORD SetModelPosi, int SoundIndex, int WeaponClass = 0)
+   565		{
+   566			this->CODE = CODE;
+   567			strcpy_s(this->ItemNameIndex, sizeof(this->ItemNameIndex), ItemNameIndex);
+   568			strcpy_s(this->LastCategory, sizeof(this->LastCategory), LastCategory);
+   569			this->w = w;
+   570			this->h = h;
+   571			strcpy_s(this->ItemFilePath, sizeof(this->ItemFilePath), ItemFilePath);
+   572			this->Class = Class;
+   573			strcpy_s(this->DorpItem, sizeof(this->DorpItem), DorpItem);
+   574			this->SetModelPosi = SetModelPosi;
+   575			this->SoundIndex = SoundIndex;
+   576			this->WeaponClass = WeaponClass;
+   577			this->Flag = 0;
+   578			this->x = 0;
+   579			this->y = 0;
+   580			this->SetX = 0;
+   581			this->SetY = 0;
+   582	
+   583			this->lpItem = NULL;
+   584			this->ItemPosition = 0;
+   585	
+   586			this->PotionCount = 0;
+   587			this->NotUseFlag = 0;
+   588			this->SellPrice = 0;
+   589	
+   590			this->OldX = 0;
+   591			this->OldY = 0;
+   592			this->lpTempItem = NULL;
+   593	
+   594		}
+   595	
+   596	};
+   597	
+   598	struct sITEMPRICE
+   599	{
+   600		int PureSellPrice;
+   601		int SellPrice;
+   602		int RepairCost;
+   603	};
+   604	
+   605	
+   606	struct sITEMREQUIRE
+   607	{
+   608		int     rLevel;
+   609		int     rStrength;
+   610		int     rSpirit;
+   611		int     rTalent;
+   612		int     rDexterity;
+   613		int     rHealth;
+   614	};
+   615	
+   616	
+   617	class cITEM
+   618	{
+   619	public:
+   620		char *DropItemPath;
+   621		char *CharSetItemPath;
+   622	
+   623		int MatItemInfoBox;
+   624	
+   625		int MatItemInfoBox_TopLeft;
+   626		int MatItemInfoBox_TopRight;
+   627		int MatItemInfoBox_TopCenter;
+   628	
+   629		int MatItemInfoBox_BottomLeft;
+   630		int MatItemInfoBox_BottomRight;
+
+============================================================
+ALL sITEM CONSTRUCTOR DECLARATIONS
+============================================================
+SrcGame/src/sinbaram/sinItem.h:541:	sITEM()
+SrcGame/src/sinbaram/sinItem.h:573:	sITEM(DWORD CODE, const char* ItemNameIndex, const char* LastCategory, int w, int h, const char* ItemFilePath, int Class,
+SrcServer/src/sinbaram/sinItem.h:531:	sITEM()
+SrcServer/src/sinbaram/sinItem.h:563:	sITEM(DWORD CODE, const char* ItemNameIndex, const char* LastCategory, int w, int h, const char* ItemFilePath, int Class,

@@ -1,0 +1,375 @@
+{
+  "file": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC01.smd",
+  "file_size": 290229,
+  "MatCounterHeader": 6,
+  "MatFilePoint": 1156,
+  "First_ObjInfoPoint": 3309,
+  "material_region_size": 2153,
+  "material_group": {
+    "Head": 3452816845,
+    "old_smMaterial_ptr": 552301280,
+    "MaterialCount": 6,
+    "ReformTexture": 0,
+    "MaxMaterial": 6,
+    "LastSearchMaterial": -842150451,
+    "LastSearchName": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+  },
+  "materials": [
+    {
+      "index": 0,
+      "InUse": 57,
+      "TextureCounter": 0,
+      "AnimTexCounter": 0,
+      "TextureType": 0,
+      "TextureTypeName": "SMTEX_TYPE_MULTIMIX",
+      "AutoAnimation": false,
+      "BlendType": 1,
+      "BlendName": "SMMAT_BLEND_ALPHA",
+      "Shade": 1,
+      "TwoSide": 0,
+      "Transparency": 0.0,
+      "SelfIllum": 0.0,
+      "MapOpacity": 0,
+      "ReformTexture": 0,
+      "TextureSwap": 0,
+      "MatFrame": 0,
+      "TextureClip": 0,
+      "UseState": 0,
+      "MeshState": 1,
+      "WindMeshBottom": 0,
+      "SerialNum": 0,
+      "DiffuseRawHex": "ec51383e713d0a3fcdcc0c3f",
+      "DiffuseFloatView": [
+        0.18000000715255737,
+        0.5400000214576721,
+        0.550000011920929
+      ],
+      "TextureStageState": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "TextureFormState": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "textures": [],
+      "anim_textures": [],
+      "StrLen": 0,
+      "material_check": true
+    },
+    {
+      "index": 1,
+      "InUse": 1991,
+      "TextureCounter": 1,
+      "AnimTexCounter": 0,
+      "TextureType": 0,
+      "TextureTypeName": "SMTEX_TYPE_MULTIMIX",
+      "AutoAnimation": false,
+      "BlendType": 1,
+      "BlendName": "SMMAT_BLEND_ALPHA",
+      "Shade": 1,
+      "TwoSide": 0,
+      "Transparency": 0.0,
+      "SelfIllum": 0.0,
+      "MapOpacity": 0,
+      "ReformTexture": 0,
+      "TextureSwap": 0,
+      "MatFrame": 0,
+      "TextureClip": 0,
+      "UseState": 0,
+      "MeshState": 1,
+      "WindMeshBottom": 0,
+      "SerialNum": 0,
+      "DiffuseRawHex": "ec51383e713d0a3fcdcc0c3f",
+      "DiffuseFloatView": [
+        0.18000000715255737,
+        0.5400000214576721,
+        0.550000011920929
+      ],
+      "TextureStageState": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "TextureFormState": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "textures": [
+        {
+          "Name": "char\\tmABCD\\MfbC01.bmp",
+          "NameA": ""
+        }
+      ],
+      "anim_textures": [],
+      "StrLen": 24,
+      "material_check": true
+    },
+    {
+      "index": 2,
+      "InUse": 119,
+      "TextureCounter": 1,
+      "AnimTexCounter": 0,
+      "TextureType": 0,
+      "TextureTypeName": "SMTEX_TYPE_MULTIMIX",
+      "AutoAnimation": false,
+      "BlendType": 1,
+      "BlendName": "SMMAT_BLEND_ALPHA",
+      "Shade": 1,
+      "TwoSide": 1,
+      "Transparency": 0.0,
+      "SelfIllum": 0.0,
+      "MapOpacity": 0,
+      "ReformTexture": 0,
+      "TextureSwap": 0,
+      "MatFrame": 0,
+      "TextureClip": 0,
+      "UseState": 0,
+      "MeshState": 1,
+      "WindMeshBottom": 0,
+      "SerialNum": 0,
+      "DiffuseRawHex": "ec51383e713d0a3fcdcc0c3f",
+      "DiffuseFloatView": [
+        0.18000000715255737,
+        0.5400000214576721,
+        0.550000011920929
+      ],
+      "TextureStageState": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "TextureFormState": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "textures": [
+        {
+          "Name": "char\\tmABCD\\MfbC01.bmp",
+          "NameA": ""
+        }
+      ],
+      "anim_textures": [],
+      "StrLen": 24,
+      "material_check": true
+    },
+    {
+      "index": 3,
+      "InUse": 998,
+      "TextureCounter": 1,
+      "AnimTexCounter": 0,
+      "TextureType": 0,
+      "TextureTypeName": "SMTEX_TYPE_MULTIMIX",
+      "AutoAnimation": false,
+      "BlendType": 1,
+      "BlendName": "SMMAT_BLEND_ALPHA",
+      "Shade": 1,
+      "TwoSide": 0,
+      "Transparency": 0.0,
+      "SelfIllum": 0.0,
+      "MapOpacity": 0,
+      "ReformTexture": 0,
+      "TextureSwap": 0,
+      "MatFrame": 0,
+      "TextureClip": 0,
+      "UseState": 0,
+      "MeshState": 1,
+      "WindMeshBottom": 0,
+      "SerialNum": 0,
+      "DiffuseRawHex": "ec51383e713d0a3fcdcc0c3f",
+      "DiffuseFloatView": [
+        0.18000000715255737,
+        0.5400000214576721,
+        0.550000011920929
+      ],
+      "TextureStageState": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "TextureFormState": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "textures": [
+        {
+          "Name": "char\\tmABCD\\MfbC03.bmp",
+          "NameA": ""
+        }
+      ],
+      "anim_textures": [],
+      "StrLen": 24,
+      "material_check": true
+    },
+    {
+      "index": 4,
+      "InUse": 57,
+      "TextureCounter": 1,
+      "AnimTexCounter": 0,
+      "TextureType": 0,
+      "TextureTypeName": "SMTEX_TYPE_MULTIMIX",
+      "AutoAnimation": false,
+      "BlendType": 1,
+      "BlendName": "SMMAT_BLEND_ALPHA",
+      "Shade": 1,
+      "TwoSide": 1,
+      "Transparency": 0.0,
+      "SelfIllum": 0.0,
+      "MapOpacity": 0,
+      "ReformTexture": 0,
+      "TextureSwap": 0,
+      "MatFrame": 0,
+      "TextureClip": 0,
+      "UseState": 0,
+      "MeshState": 1,
+      "WindMeshBottom": 0,
+      "SerialNum": 0,
+      "DiffuseRawHex": "ec51383e713d0a3fcdcc0c3f",
+      "DiffuseFloatView": [
+        0.18000000715255737,
+        0.5400000214576721,
+        0.550000011920929
+      ],
+      "TextureStageState": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "TextureFormState": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "textures": [
+        {
+          "Name": "char\\tmABCD\\MfbC03.bmp",
+          "NameA": ""
+        }
+      ],
+      "anim_textures": [],
+      "StrLen": 24,
+      "material_check": true
+    },
+    {
+      "index": 5,
+      "InUse": 247,
+      "TextureCounter": 1,
+      "AnimTexCounter": 0,
+      "TextureType": 0,
+      "TextureTypeName": "SMTEX_TYPE_MULTIMIX",
+      "AutoAnimation": false,
+      "BlendType": 1,
+      "BlendName": "SMMAT_BLEND_ALPHA",
+      "Shade": 1,
+      "TwoSide": 1,
+      "Transparency": 0.0,
+      "SelfIllum": 0.0,
+      "MapOpacity": 0,
+      "ReformTexture": 0,
+      "TextureSwap": 0,
+      "MatFrame": 0,
+      "TextureClip": 0,
+      "UseState": 0,
+      "MeshState": 1,
+      "WindMeshBottom": 0,
+      "SerialNum": 0,
+      "DiffuseRawHex": "3d0a173f3d0a173f3d0a173f",
+      "DiffuseFloatView": [
+        0.5899999737739563,
+        0.5899999737739563,
+        0.5899999737739563
+      ],
+      "TextureStageState": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "TextureFormState": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "textures": [
+        {
+          "Name": "char\\tmABCD\\mo-p-ac.BMP",
+          "NameA": ""
+        }
+      ],
+      "anim_textures": [],
+      "StrLen": 25,
+      "material_check": true
+    }
+  ],
+  "summary": {
+    "used_materials": 6,
+    "string_payload_bytes": 121,
+    "material_cursor": 3309,
+    "remaining_bytes": 0,
+    "material_semantic_check": true
+  }
+}

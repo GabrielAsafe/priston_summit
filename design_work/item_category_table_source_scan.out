@@ -1,0 +1,1552 @@
+SrcGame/src/BattleEvents/CRollWindow.cpp:18:			if (sItem[cnt].CODE == lpItemInfo->CODE)
+SrcGame/src/BattleEvents/CRollWindow.cpp:20:				memcpy(&Item, &sItem[cnt], sizeof(sITEM));
+SrcGame/src/HoBaram/AssaParticle.cpp:1338:		if((character->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWT1)
+SrcGame/src/HoBaram/AssaParticle.cpp:1343:		else if((character->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWS2)
+SrcGame/src/HoBaram/AssaParticle.cpp:1360:		else if((character->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWM1)
+SrcGame/src/HoBaram/AssaParticle.cpp:1476:		if((character->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWT1)
+SrcGame/src/HoBaram/AssaParticle.cpp:1747:			((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) != sinWT1) ||
+SrcGame/src/HoBaram/AssaParticle.cpp:1799:			((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) != sinWT1) ||
+SrcGame/src/HoBaram/AssaParticle.cpp:3051:	if(pChar->FlagShow == FALSE || ((pChar->dwActionItemCode & sinITEM_MASK2) != sinWA1))
+SrcGame/src/HoBaram/AssaParticle.cpp:7046:		if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWT1)
+SrcGame/src/HoBaram/AssaParticle.cpp:7050:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWS2)
+SrcGame/src/HoBaram/AssaParticle.cpp:7057:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWC1)
+SrcGame/src/HoBaram/AssaParticle.cpp:7061:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWM1)
+SrcGame/src/HoBaram/AssaParticle.cpp:7063:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWS1)
+SrcGame/src/HoBaram/AssaParticle.cpp:7088:		if((pChar->HvLeftHand.dwItemCode & sinITEM_MASK2) == sinWS1)
+SrcGame/src/HoBaram/AssaParticle.cpp:7162:		if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWC1 ||
+SrcGame/src/HoBaram/AssaParticle.cpp:7163:			(pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWS1)
+SrcGame/src/HoBaram/AssaParticle.cpp:7177:		if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWC1 ||
+SrcGame/src/HoBaram/AssaParticle.cpp:7178:			(pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWS1)
+SrcGame/src/HoBaram/AssaParticle.cpp:8552:		if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWT1)
+SrcGame/src/HoBaram/AssaParticle.cpp:8564:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWP1)
+SrcGame/src/HoBaram/AssaParticle.cpp:8577:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWC1)
+SrcGame/src/HoBaram/AssaParticle.cpp:8590:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWS1)
+SrcGame/src/HoBaram/AssaParticle.cpp:8936:		if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWT1)
+SrcGame/src/HoBaram/AssaParticle.cpp:8940:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWS2)
+SrcGame/src/HoBaram/AssaParticle.cpp:8965:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWC1)
+SrcGame/src/HoBaram/AssaParticle.cpp:8969:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWM1)
+SrcGame/src/HoBaram/AssaParticle.cpp:8971:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWS1)
+SrcGame/src/HoBaram/AssaParticle.cpp:8989:		if((pChar->HvLeftHand.dwItemCode & sinITEM_MASK2) == sinWS1)
+SrcGame/src/HoBaram/AssaParticle.cpp:9052:		if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWC1 ||
+SrcGame/src/HoBaram/AssaParticle.cpp:9053:			(pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWS1)
+SrcGame/src/HoBaram/AssaParticle.cpp:9067:		if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWC1 ||
+SrcGame/src/HoBaram/AssaParticle.cpp:9068:			(pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWS1)
+SrcGame/src/HoBaram/AssaParticle.cpp:9359:		if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWT1)
+SrcGame/src/HoBaram/AssaParticle.cpp:9370:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWC1)
+SrcGame/src/HoBaram/AssaParticle.cpp:9380:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWM1)
+SrcGame/src/HoBaram/AssaParticle.cpp:9396:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWS1)
+SrcGame/src/HoBaram/AssaParticle.cpp:9415:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWH1)
+SrcGame/src/HoBaram/AssaParticle.cpp:9431:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWA1)
+SrcGame/src/HoBaram/AssaParticle.cpp:9465:		else if((pChar->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWP1)
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:40:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:47:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:54:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:61:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:68:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:75:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:82:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:89:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:96:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:103:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:110:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:117:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:124:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:131:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:138:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:145:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:152:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:159:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:166:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:173:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:180:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:187:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:194:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:201:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:208:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:215:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:222:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:229:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinCraftItem.h:236:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:31:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:36:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,sinWS1,sinWT1,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:41:{0,0,0},			{sinWS1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:56:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:72:{1,0,0},            {sinWC1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:94:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:104:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:109:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:114:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:119:{0,0,0},			{sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:129:{0,0,0},			{sinWA1,sinWH1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:134:{0,0,0},			{sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:139:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:144:{0,0,0},			{sinWA1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:149:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:155:{1,0,0},			{sinWA1,sinWH1,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:165:{1,0,0},			{sinWA1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:176:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:186:{0,0,0},			{sinWP1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:191:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:196:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:201:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:206:{0,0,0},			{sinWA1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:212:{0,0,0},			{sinWA1,sinWH1,sinWP1,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:217:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:227:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:232:{0,0,0},			{sinWC1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:238:{1,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:243:{1,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:248:{1,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:253:{1,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:265:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:270:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:275:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:281:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:291:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:296:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:301:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:311:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:316:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:332:{1,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:337:{1,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:345:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:360:{0,0,0},			{sinWA1,sinWC1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:370:{0,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:375:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:385:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:400:{0,0,0},			{sinWH1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:406:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:416:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:421:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:432:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:437:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:442:{0,0,0},			{sinWP1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:447:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:452:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:462:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:467:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:472:{0,0,0},			{sinWT1,sinWS2,sinWS1,sinWP1,sinWH1,sinWA1,sinWC1,sinWM1},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:477:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:482:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:488:{1,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS1,sinWT1,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:493:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:498:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:503:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:509:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:514:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:519:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:524:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:534:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:539:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:544:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:549:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:554:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:559:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:564:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:570:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:575:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:580:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:585:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:591:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:596:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:601:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:606:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:616:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:621:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:626:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:631:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:636:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:641:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:646:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:652:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:657:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:662:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Argentina/a_sinSkill_Info.h:667:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:35:{0,0,0}, {sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:40:{0,0,0}, {sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:45:{0,0,0}, {sinWS1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:60:{0,0,0}, {sinWA1,sinWC1,sinWP1,sinWS2, sinWH1,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:76:{1,0,0},{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:98:{0,0,0}, {sinWA1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:108:{0,0,0}, {sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:113:{0,0,0}, {sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:118:{0,0,0}, {sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:123:{0,0,0}, {sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:133:{0,0,0}, {sinWA1,sinWH1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:138:{0,0,0}, {sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:143:{0,0,0}, {sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:148:{0,0,0}, {sinWA1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:153:{0,0,0}, {sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:159:{1,0,0}, {sinWA1,sinWH1,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:169:{1,0,0}, {sinWA1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:180:{0,0,0}, {sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:190:{0,0,0}, {sinWP1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:195:{0,0,0}, {sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:200:{0,0,0}, {sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:205:{0,0,0}, {sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:210:{0,0,0}, {sinWA1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:216:{0,0,0}, {sinWA1,sinWH1,sinWP1,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:221:{0,0,0}, {sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:231:{0,0,0}, {sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:236:{0,0,0}, {sinWC1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:242:{1,0,0}, {sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:247:{1,0,0}, {sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:252:{1,0,0}, {sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:257:{1,0,0}, {sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:269:{0,0,0}, {sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:274:{0,0,0}, {sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:279:{0,0,0}, {sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:284:{0,0,0}, {sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:294:{0,0,0}, {sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:299:{0,0,0}, {sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:304:{0,0,0}, {sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:314:{0,0,0}, {sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:319:{0,0,0}, {sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:335:{1,0,0}, {sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:340:{1,0,0}, {sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:350:{0,0,0}, {sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:365:{0,0,0}, {sinWA1,sinWC1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:375:{0,0,0}, {sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:380:{0,0,0}, {sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:390:{0,0,0}, {sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:405:{0,0,0}, {sinWH1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:411:{1,0,0}, {sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:421:{1,0,0}, {sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:426:{1,0,0}, {sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:438:{0,0,0}, {sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:443:{0,0,0}, {sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:448:{0,0,0}, {sinWP1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:453:{0,0,0}, {sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:458:{0,0,0}, {sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:468:{0,0,0}, {sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:473:{0,0,0}, {sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:478:{0,0,0}, {sinWT1,sinWS2,sinWS1,sinWP1,sinWH1,sinWA1,sinWC1,sinWM1},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:483:{0,0,0}, {sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:488:{0,0,0}, {sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:494:{1,0,0}, {sinWA1,sinWC1,sinWH1,sinWP1,sinWS1,sinWT1,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:499:{1,0,0}, {sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:504:{1,0,0}, {sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:509:{1,0,0}, {sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:515:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:520:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:525:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:530:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:535:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:540:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:545:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:550:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:555:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:560:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:565:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:570:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:576:{1,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:581:{1,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:586:{1,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:591:{1,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:597:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:602:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:607:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:612:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:622:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:627:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:632:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:637:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:642:{ 0, 0, 0 }, { sinWM1, 0, 0, 0, 0, 0, 0, 0 },
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:647:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:652:{0,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:658:{1,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:663:{1,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:668:{1,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Brazil/b_sinSkill_Info.h:673:{1,0,0}, {sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:31:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:36:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,sinWS1,sinWT1,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:41:{0,0,0},			{sinWS1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:56:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:73:{1,0,0},            {sinWC1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:95:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:105:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:110:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:115:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:120:{0,0,0},			{sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:130:{0,0,0},			{sinWA1,sinWH1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:135:{0,0,0},			{sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:140:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:145:{0,0,0},			{sinWA1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:150:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:157:{1,0,0},			{sinWA1,sinWH1,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:167:{1,0,0},			{sinWA1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:179:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:189:{0,0,0},			{sinWP1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:194:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:199:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:204:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:209:{0,0,0},			{sinWA1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:214:{0,0,0},			{sinWA1,sinWH1,sinWP1,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:219:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:229:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:234:{0,0,0},			{sinWC1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:243:{1,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:248:{1,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:253:{1,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:258:{1,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:270:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:275:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:280:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:286:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:296:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:301:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:306:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:311:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:316:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:321:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:338:{1,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:343:{1,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:350:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:365:{0,0,0},			{sinWA1,sinWC1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:375:{0,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:380:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:390:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:407:{0,0,0},			{sinWH1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:413:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:423:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:428:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:439:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:444:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:449:{0,0,0},			{sinWP1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:454:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:459:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:469:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:474:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:479:{0,0,0},			{sinWT1,sinWS2,sinWS1,sinWP1,sinWH1,sinWA1,sinWC1,sinWM1},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:484:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:489:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:495:{1,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS1,sinWT1,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:500:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:505:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:510:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:516:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:521:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:526:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:531:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:541:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:546:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:551:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:556:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:561:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:566:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:571:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:577:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:582:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:587:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:593:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:599:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:604:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:609:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:614:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:624:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:629:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:634:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:639:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:644:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:649:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:654:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:660:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:665:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:670:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Chinese/C_sinSkill_Info.h:675:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinCraftItem.h:40:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:47:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:54:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:61:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:68:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:75:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:82:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:89:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:96:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:103:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:110:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:117:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:124:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:131:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:138:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:145:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:152:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:159:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:166:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:173:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:180:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:187:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:194:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:201:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:208:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:215:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:222:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:229:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinCraftItem.h:236:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/English/e_sinSkill_Info.h:31:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:36:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,sinWS1,sinWT1,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:41:{0,0,0},			{sinWS1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:56:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:72:{1,0,0},            {sinWC1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:94:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:104:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:109:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:114:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:119:{0,0,0},			{sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:129:{0,0,0},			{sinWA1,sinWH1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:134:{0,0,0},			{sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:139:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:144:{0,0,0},			{sinWA1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:149:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:155:{1,0,0},			{sinWA1,sinWH1,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:165:{1,0,0},			{sinWA1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:176:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:186:{0,0,0},			{sinWP1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:191:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:196:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:201:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:206:{0,0,0},			{sinWA1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:212:{0,0,0},			{sinWA1,sinWH1,sinWP1,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:217:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:227:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:232:{0,0,0},			{sinWC1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:238:{1,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:243:{1,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:248:{1,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:253:{1,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:265:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:270:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:275:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:281:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:291:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:296:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:301:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:311:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:316:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:332:{1,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:337:{1,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:345:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:360:{0,0,0},			{sinWA1,sinWC1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:370:{0,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:375:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:385:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:400:{0,0,0},			{sinWH1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:406:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:416:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:421:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:432:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:437:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:442:{0,0,0},			{sinWP1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:447:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:452:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:462:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:467:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:472:{0,0,0},			{sinWT1,sinWS2,sinWS1,sinWP1,sinWH1,sinWA1,sinWC1,sinWM1},
+SrcGame/src/Language/English/e_sinSkill_Info.h:477:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:482:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:488:{1,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS1,sinWT1,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:493:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:498:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:503:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:509:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:514:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:519:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:524:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:534:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:539:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:544:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:549:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:554:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:559:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:564:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:570:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:575:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:580:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:585:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:591:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:596:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:601:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:606:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:616:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:621:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:626:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:631:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:636:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:641:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:646:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:652:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:657:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:662:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/English/e_sinSkill_Info.h:667:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:40:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:47:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:54:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:61:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:68:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:75:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:82:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:89:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:96:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:103:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:110:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:117:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:124:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:131:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:138:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:145:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:152:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:159:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:166:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:173:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:180:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:187:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:194:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:201:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:208:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:215:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:222:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:229:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:239:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:246:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:253:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:260:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:268:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:275:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinCraftItem.h:282:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:31:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:36:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,sinWS1,sinWT1,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:41:{0,0,0},			{sinWS1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:56:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:72:{1,0,0},            {sinWC1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:94:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:104:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:109:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:114:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:119:{0,0,0},			{sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:129:{0,0,0},			{sinWA1,sinWH1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:134:{0,0,0},			{sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:139:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:144:{0,0,0},			{sinWA1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:149:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:155:{1,0,0},			{sinWA1,sinWH1,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:165:{1,0,0},			{sinWA1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:176:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:186:{0,0,0},			{sinWP1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:191:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:197:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:202:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:207:{0,0,0},			{sinWA1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:212:{0,0,0},			{sinWA1,sinWH1,sinWP1,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:217:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:227:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:232:{0,0,0},			{sinWC1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:238:{1,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:243:{1,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:248:{1,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:253:{1,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:264:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:269:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:274:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:280:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:290:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:295:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:300:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:310:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:315:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:331:{1,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:336:{1,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:343:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:358:{0,0,0},			{sinWA1,sinWC1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:368:{0,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:373:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:383:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:398:{0,0,0},			{sinWH1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:404:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:414:{1,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,sinWS1,sinWT1,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:419:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:430:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:435:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:440:{0,0,0},			{sinWP1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:445:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:450:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:460:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:465:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:470:{0,0,0},			{sinWT1,sinWS2,sinWS1,sinWP1,sinWH1,sinWA1,sinWC1,sinWM1},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:475:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:480:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:486:{1,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS1,sinWT1,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:491:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:496:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:501:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:507:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:512:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:517:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:522:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:532:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:537:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:542:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:547:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:552:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:557:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:562:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:568:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:573:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:578:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:583:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:590:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:595:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:600:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:605:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:615:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:620:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:625:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:630:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:635:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:640:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:645:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:651:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:656:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:661:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/Japanese/J_sinSkill_Info.h:666:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:42:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:50:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:58:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:66:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:74:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:82:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:90:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:98:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:106:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:114:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:122:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:130:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:138:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:146:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:154:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:162:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:170:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:179:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:187:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:195:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:203:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:211:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:219:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:227:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:235:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:243:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:251:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:259:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:267:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:275:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:283:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:291:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:299:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:307:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:315:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinCraftItem.h:323:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:31:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:36:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,sinWS1,sinWT1,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:41:{0,0,0},			{sinWS1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:53:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:63:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:68:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:73:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:78:{0,0,0},			{sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:88:{0,0,0},			{sinWA1,sinWH1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:95:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:105:{0,0,0},			{sinWS2,sinWP1,sinWH1,sinWC1,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:110:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:115:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:120:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:125:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:130:{0,0,0},			{sinWA1,sinWH1,sinWP1,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:142:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:147:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:152:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:158:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:168:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:173:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:181:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:196:{0,0,0},			{sinWA1,sinWC1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:206:{0,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:211:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:228:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:233:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:238:{0,0,0},			{sinWP1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:243:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:248:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:258:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:264:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:269:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:274:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:279:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:289:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:294:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:299:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:306:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:311:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:316:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:321:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:331:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:336:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/taiwan/T_sinSkill_Info.h:341:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinCraftItem.h:40:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:47:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:54:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:61:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:68:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:75:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:82:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:89:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:96:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:103:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:110:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:117:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:124:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:131:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:138:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:145:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:152:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:159:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:166:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:173:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:180:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:187:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:194:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:201:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:208:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:215:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:222:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:229:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinCraftItem.h:236:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:31:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:36:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,sinWS1,sinWT1,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:41:{0,0,0},			{sinWS1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:56:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:71:{1,0,0},            {sinWC1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:93:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:103:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:108:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:113:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:118:{0,0,0},			{sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:128:{0,0,0},			{sinWA1,sinWH1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:133:{0,0,0},			{sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:138:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:143:{0,0,0},			{sinWA1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:148:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:153:{1,0,0},			{sinWA1,sinWH1,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:163:{1,0,0},			{sinWA1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:175:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:185:{0,0,0},			{sinWP1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:190:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:195:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:200:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:205:{0,0,0},			{sinWA1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:210:{0,0,0},			{sinWA1,sinWH1,sinWP1,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:215:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:225:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:230:{0,0,0},			{sinWC1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:235:{1,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:240:{1,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:245:{1,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:250:{1,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:261:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:266:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:271:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:277:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:287:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:292:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:297:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:307:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:312:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:327:{1,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:332:{1,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:340:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:355:{0,0,0},			{sinWA1,sinWC1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:365:{0,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:370:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:380:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:395:{0,0,0},			{sinWH1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:400:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:410:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:415:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:426:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:431:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:436:{0,0,0},			{sinWP1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:441:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:446:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:456:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:461:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:466:{0,0,0},			{sinWT1,sinWS2,sinWS1,sinWP1,sinWH1,sinWA1,sinWC1,sinWM1},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:471:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:476:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:481:{1,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS1,sinWT1,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:486:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:491:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:496:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:502:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:507:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:512:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:517:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:527:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:532:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:537:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:542:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:547:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:552:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:557:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:562:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:567:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:572:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:577:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:583:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:588:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:593:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:598:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:608:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:613:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:618:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:623:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:628:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:633:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:638:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:643:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:648:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:653:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/thai/th_sinSkill_Info.h:658:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:40:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:47:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:54:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:61:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:68:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:75:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:82:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:89:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:96:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:103:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:110:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:117:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:124:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:131:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:138:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:145:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:152:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:159:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:166:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:173:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:180:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:187:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:194:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:201:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:208:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:215:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:222:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:229:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinCraftItem.h:236:{{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:30:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:35:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,sinWS1,sinWT1,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:40:{0,0,0},			{sinWS1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:55:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:70:{1,0,0},            {sinWC1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:91:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:101:{0,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS2,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:106:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:111:{0,0,0},			{sinWA1,sinWC1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:116:{0,0,0},			{sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:126:{0,0,0},			{sinWA1,sinWH1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:131:{0,0,0},			{sinWA1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:136:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:141:{0,0,0},			{sinWA1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:146:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:151:{1,0,0},			{sinWA1,sinWH1,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:161:{1,0,0},			{sinWA1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:172:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:182:{0,0,0},			{sinWP1,sinWC1,sinWH1,sinWS2,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:187:{0,0,0},			{sinWA1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:192:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:197:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:202:{0,0,0},			{sinWA1,sinWH1,sinWP1,sinWS2,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:208:{0,0,0},			{sinWA1,sinWH1,sinWP1,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:213:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:223:{0,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:228:{0,0,0},			{sinWC1,sinWP1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:233:{1,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:238:{1,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:243:{1,0,0},			{sinWP1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:248:{1,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:259:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:264:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:269:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:274:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:284:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:289:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:294:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:304:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:309:{0,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:324:{1,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:329:{1,0,0},			{sinWS1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:338:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:354:{0,0,0},			{sinWA1,sinWC1,sinWS2,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:364:{0,0,0},			{sinWP1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:369:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:379:{0,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:394:{0,0,0},			{sinWH1,sinWS2,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:399:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:409:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:414:{1,0,0},			{sinWS2,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:425:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:430:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:435:{0,0,0},			{sinWP1,sinWT1,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:440:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:445:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:455:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:460:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:465:{0,0,0},			{sinWT1,sinWS2,sinWS1,sinWP1,sinWH1,sinWA1,sinWC1,sinWM1},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:470:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:475:{0,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:480:{1,0,0},			{sinWA1,sinWC1,sinWH1,sinWP1,sinWS1,sinWT1,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:485:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:490:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:495:{1,0,0},			{sinWT1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:501:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:506:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:511:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:516:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:526:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:531:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:536:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:541:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:546:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:551:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:556:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:561:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:566:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:571:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:576:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:582:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:587:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:592:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:597:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:607:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:612:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:617:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:622:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:627:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:632:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:637:{0,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:642:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:647:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:652:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Language/veitnam/v_sinSkill_Info.h:657:{1,0,0},			{sinWM1,0,0,0,0,0,0,0},
+SrcGame/src/Server/AutoDropItem.h:5:		{	12,	sinWA1 | sin05	},
+SrcGame/src/Server/AutoDropItem.h:6:		{	26,	sinWA1 | sin07	},
+SrcGame/src/Server/AutoDropItem.h:7:		{	38,	sinWA1 | sin09	}
+SrcGame/src/Server/AutoDropItem.h:11:		{	12,	sinWC1 | sin05	},
+SrcGame/src/Server/AutoDropItem.h:12:		{	26,	sinWS1 | sin07	},
+SrcGame/src/Server/AutoDropItem.h:13:		{	38,	sinWS1 | sin09	}
+SrcGame/src/Server/AutoDropItem.h:17:		{	12,	sinWS1 | sin06	},
+SrcGame/src/Server/AutoDropItem.h:18:		{	26,	sinWS1 | sin09	},
+SrcGame/src/Server/AutoDropItem.h:19:		{	38,	sinWS1 | sin11	}
+SrcGame/src/Server/AutoDropItem.h:23:		{	12,	sinWP1 | sin06	},
+SrcGame/src/Server/AutoDropItem.h:24:		{	26,	sinWP1 | sin08	},
+SrcGame/src/Server/AutoDropItem.h:25:		{	38,	sinWP1 | sin10	}
+SrcGame/src/Server/AutoDropItem.h:29:		{	12,	sinWT1 | sin06	},
+SrcGame/src/Server/AutoDropItem.h:30:		{	26,	sinWT1 | sin08	},
+SrcGame/src/Server/AutoDropItem.h:31:		{	38,	sinWT1 | sin10	}
+SrcGame/src/Server/AutoDropItem.h:35:		{	12,	sinWS2 | sin07	},
+SrcGame/src/Server/AutoDropItem.h:36:		{	26,	sinWS2 | sin09	},
+SrcGame/src/Server/AutoDropItem.h:37:		{	38,	sinWS2 | sin11	}
+SrcGame/src/Server/AutoDropItem.h:41:		{	12,	sinWM1 | sin06	},
+SrcGame/src/Server/AutoDropItem.h:42:		{	26,	sinWM1 | sin08	},
+SrcGame/src/Server/AutoDropItem.h:43:		{	38,	sinWM1 | sin10	}
+SrcGame/src/Server/AutoDropItem.h:47:		{	12,	sinWM1 | sin06	},
+SrcGame/src/Server/AutoDropItem.h:48:		{	26,	sinWM1 | sin08	},
+SrcGame/src/Server/AutoDropItem.h:49:		{	38,	sinWM1 | sin10	}
+SrcGame/src/Server/AutoDropItem.h:56:		{	8,	sinWA1 | sin04	},
+SrcGame/src/Server/AutoDropItem.h:57:		{	20,	sinWA1 | sin06	},
+SrcGame/src/Server/AutoDropItem.h:58:		{	35,	sinWA1 | sin08	}
+SrcGame/src/Server/AutoDropItem.h:62:		{	8,	sinWC1 | sin04	},
+SrcGame/src/Server/AutoDropItem.h:63:		{	20,	sinWC1 | sin06	},
+SrcGame/src/Server/AutoDropItem.h:64:		{	35,	sinWC1 | sin08	}
+SrcGame/src/Server/AutoDropItem.h:68:		{	8,	sinWS1 | sin05	},
+SrcGame/src/Server/AutoDropItem.h:69:		{	20,	sinWS1 | sin06	},
+SrcGame/src/Server/AutoDropItem.h:70:		{	35,	sinWS1 | sin10	}
+SrcGame/src/Server/AutoDropItem.h:74:		{	8,	sinWP1 | sin04	},
+SrcGame/src/Server/AutoDropItem.h:75:		{	20,	sinWP1 | sin07	},
+SrcGame/src/Server/AutoDropItem.h:76:		{	35,	sinWP1 | sin09	}
+SrcGame/src/Server/AutoDropItem.h:80:		{	8,	sinWT1 | sin05	},
+SrcGame/src/Server/AutoDropItem.h:81:		{	20,	sinWT1 | sin07	},
+SrcGame/src/Server/AutoDropItem.h:82:		{	35,	sinWT1 | sin09	}
+SrcGame/src/Server/AutoDropItem.h:86:		{	8,	sinWS2 | sin05	},
+SrcGame/src/Server/AutoDropItem.h:87:		{	20,	sinWS2 | sin08	},
+SrcGame/src/Server/AutoDropItem.h:88:		{	35,	sinWS2 | sin10	}
+SrcGame/src/Server/AutoDropItem.h:92:		{	8,	sinWM1 | sin05	},
+SrcGame/src/Server/AutoDropItem.h:93:		{	20,	sinWM1 | sin07	},
+SrcGame/src/Server/AutoDropItem.h:94:		{	35,	sinWM1 | sin09	}
+SrcGame/src/Server/AutoDropItem.h:98:		{	8,	sinWM1 | sin05	},
+SrcGame/src/Server/AutoDropItem.h:99:		{	20,	sinWM1 | sin07	},
+SrcGame/src/Server/AutoDropItem.h:100:		{	35,	sinWM1 | sin09	}
+SrcGame/src/Server/OnSever.cpp:1859:		if(lstrcmpi(szCoed, sItem[cnt].LastCategory) == 0)
+SrcGame/src/Server/OnSever.cpp:1861:			dwCode = sItem[cnt].CODE; break;
+SrcGame/src/Server/OnSever.cpp:14162:	DWORD CreateItemCode[176] = { (sinWA1 | sin14), (sinWC1 | sin14), (sinWH1 | sin15), (sinWP1 | sin15), (sinWS1 | sin16), (sinWS2 | sin17), (sinWT1 | sin15), (sinWM1 | sin15),
+SrcGame/src/Server/OnSever.cpp:14163:									(sinWA1 | sin15), (sinWC1 | sin15), (sinWH1 | sin16), (sinWP1 | sin16), (sinWS1 | sin17), (sinWS2 | sin18), (sinWT1 | sin16), (sinWM1 | sin16),
+SrcGame/src/Server/OnSever.cpp:14164:									(sinWA1 | sin16), (sinWC1 | sin16), (sinWH1 | sin17), (sinWP1 | sin17), (sinWS1 | sin18), (sinWS2 | sin19), (sinWT1 | sin17), (sinWM1 | sin17),
+SrcGame/src/Server/OnSever.cpp:14165:									(sinWA1 | sin17), (sinWC1 | sin17), (sinWH1 | sin18), (sinWP1 | sin18), (sinWS1 | sin19), (sinWS2 | sin20), (sinWT1 | sin18), (sinWM1 | sin18),
+SrcGame/src/Server/OnSever.cpp:14166:									(sinWA1 | sin18), (sinWC1 | sin18), (sinWH1 | sin19), (sinWP1 | sin19), (sinWS1 | sin20), (sinWS2 | sin21), (sinWT1 | sin19), (sinWM1 | sin19),
+SrcGame/src/Server/OnSever.cpp:14167:									(sinWA1 | sin19), (sinWC1 | sin19), (sinWH1 | sin20), (sinWP1 | sin20), (sinWS1 | sin21), (sinWS2 | sin22), (sinWT1 | sin20), (sinWM1 | sin20),
+SrcGame/src/Server/OnSever.cpp:14168:									(sinWA1 | sin21), (sinWC1 | sin21), (sinWH1 | sin22), (sinWP1 | sin22), (sinWS1 | sin23), (sinWS2 | sin24), (sinWT1 | sin22), (sinWM1 | sin22),
+SrcGame/src/Server/OnSever.cpp:14169:									(sinWA1 | sin22), (sinWC1 | sin22), (sinWH1 | sin23), (sinWP1 | sin23), (sinWS1 | sin24), (sinWS2 | sin25), (sinWT1 | sin23), (sinWM1 | sin23),
+SrcGame/src/Server/OnSever.cpp:15313:			dwCode = sinWA1;
+SrcGame/src/Server/OnSever.cpp:15320:		case sinWA1:
+SrcGame/src/Server/OnSever.cpp:15453:			dwCode = sinWA1;
+SrcGame/src/Server/OnSever.cpp:15460:		case sinWA1:
+SrcGame/src/Server/OnSever.cpp:15569:			if(sItem[cnt].CODE == (sinGG1 | sin01)) break;
+SrcGame/src/Server/OnSever.cpp:15571:			if(sItem[cnt].CODE == eWeaponCode)
+SrcGame/src/Server/OnSever.cpp:15573:				if(sItem[cnt].Class == ITEM_CLASS_WEAPON_TWO)
+SrcGame/src/Server/OnSever.cpp:27078:			lpDefItem = rsPutItem3(lpPlayInfo, (sinWS1 | sin01));
+SrcGame/src/Server/OnSever.cpp:27080:			lpDefItem = rsPutItem3(lpPlayInfo, (sinWT1 | sin01));
+SrcGame/src/Server/OnSever.cpp:27082:			lpDefItem = rsPutItem3(lpPlayInfo, (sinWM1 | sin01));
+SrcGame/src/Server/OnSever.cpp:27084:			lpDefItem = rsPutItem3(lpPlayInfo, (sinWM1 | sin01));
+SrcGame/src/Server/OnSever.cpp:27091:				lpDefItem = rsPutItem3(lpPlayInfo, (sinWS2 | sin01));
+SrcGame/src/Server/OnSever.cpp:27094:				lpDefItem = rsPutItem3(lpPlayInfo, (sinWA1 | sin01));
+SrcGame/src/Server/OnSever.cpp:27097:				lpDefItem = rsPutItem3(lpPlayInfo, (sinWH1 | sin01));
+SrcGame/src/Server/OnSever.cpp:27554:	DWORD CreateItemCode[2][11][8] = { {	{ (sinWA1 | sin14), (sinWC1 | sin14), (sinWH1 | sin15), (sinWP1 | sin15), (sinWS1 | sin16), (sinWS2 | sin17), (sinWT1 | sin15), (sinWM1 | sin15) },
+SrcGame/src/Server/OnSever.cpp:27555:											{ (sinWA1 | sin15), (sinWC1 | sin15), (sinWH1 | sin16), (sinWP1 | sin16), (sinWS1 | sin17), (sinWS2 | sin18), (sinWT1 | sin16), (sinWM1 | sin16) },
+SrcGame/src/Server/OnSever.cpp:27556:											{ (sinWA1 | sin16), (sinWC1 | sin16), (sinWH1 | sin17), (sinWP1 | sin17), (sinWS1 | sin18), (sinWS2 | sin19), (sinWT1 | sin17), (sinWM1 | sin17) },
+SrcGame/src/Server/OnSever.cpp:27557:											{ (sinWA1 | sin17), (sinWC1 | sin17), (sinWH1 | sin18), (sinWP1 | sin18), (sinWS1 | sin19), (sinWS2 | sin20), (sinWT1 | sin18), (sinWM1 | sin18) },
+SrcGame/src/Server/OnSever.cpp:27558:											{ (sinWA1 | sin18), (sinWC1 | sin18), (sinWH1 | sin19), (sinWP1 | sin19), (sinWS1 | sin20), (sinWS2 | sin21), (sinWT1 | sin19), (sinWM1 | sin19) },
+SrcGame/src/Server/OnSever.cpp:27559:											{ (sinWA1 | sin19), (sinWC1 | sin19), (sinWH1 | sin20), (sinWP1 | sin20), (sinWS1 | sin21), (sinWS2 | sin22), (sinWT1 | sin20), (sinWM1 | sin20) },
+SrcGame/src/Server/OnSever.cpp:27560:											{ (sinWA1 | sin21), (sinWC1 | sin21), (sinWH1 | sin22), (sinWP1 | sin22), (sinWS1 | sin23), (sinWS2 | sin24), (sinWT1 | sin22), (sinWM1 | sin22) },
+SrcGame/src/Server/OnSever.cpp:27561:											{ (sinWA1 | sin22), (sinWC1 | sin22), (sinWH1 | sin23), (sinWP1 | sin23), (sinWS1 | sin24), (sinWS2 | sin25), (sinWT1 | sin23), (sinWM1 | sin23) },
+SrcGame/src/Server/OnSever.cpp:28064:	if(((pItem->CODE & sinITEM_MASK2) >= sinWA1) && ((pItem->CODE & sinITEM_MASK2) <= sinDA2))
+SrcGame/src/Server/svrHaQuest.h:18:			dwItemCode = sinWC1 | sin02;
+SrcGame/src/Server/svrHaQuest.h:22:			dwItemCode = sinWA1 | sin02;
+SrcGame/src/Server/svrHaQuest.h:26:			dwItemCode = sinWP1 | sin02;
+SrcGame/src/Server/svrHaQuest.h:30:			dwItemCode = sinWS1 | sin02;
+SrcGame/src/Server/svrHaQuest.h:34:			dwItemCode = sinWS2 | sin02;
+SrcGame/src/Server/svrHaQuest.h:38:			dwItemCode = sinWT1 | sin02;
+SrcGame/src/Server/svrHaQuest.h:42:			dwItemCode = sinWM1 | sin01;
+SrcGame/src/Server/svrHaQuest.h:46:			dwItemCode = sinWM1 | sin01;
+SrcGame/src/Server/svrHaQuest.h:148:			dwItemCode = sinWC1 | sin06;
+SrcGame/src/Server/svrHaQuest.h:152:			dwItemCode = sinWA1 | sin06;
+SrcGame/src/Server/svrHaQuest.h:156:			dwItemCode = sinWP1 | sin06;
+SrcGame/src/Server/svrHaQuest.h:160:			dwItemCode = sinWS1 | sin06;
+SrcGame/src/Server/svrHaQuest.h:164:			dwItemCode = sinWS2 | sin06;
+SrcGame/src/Server/svrHaQuest.h:168:			dwItemCode = sinWT1 | sin06;
+SrcGame/src/Server/svrHaQuest.h:172:			dwItemCode = sinWM1 | sin06;
+SrcGame/src/Server/svrHaQuest.h:176:			dwItemCode = sinWM1 | sin06;
+SrcGame/src/Server/svrHaQuest.h:234:			dwItemCode = sinWC1 | sin11;
+SrcGame/src/Server/svrHaQuest.h:238:			dwItemCode = sinWA1 | sin11;
+SrcGame/src/Server/svrHaQuest.h:242:			dwItemCode = sinWP1 | sin11;
+SrcGame/src/Server/svrHaQuest.h:246:			dwItemCode = sinWS1 | sin11;
+SrcGame/src/Server/svrHaQuest.h:250:			dwItemCode = sinWS2 | sin11;
+SrcGame/src/Server/svrHaQuest.h:254:			dwItemCode = sinWT1 | sin11;
+SrcGame/src/Server/svrHaQuest.h:258:			dwItemCode = sinWM1 | sin11;
+SrcGame/src/Server/svrHaQuest.h:262:			dwItemCode = sinWM1 | sin11;
+SrcGame/src/Server/svrHaQuest.h:279:			rsPutItemUnique(lpPlayInfo, sinWA1 | sin20, lpPlayInfo->smCharInfo.JOB_CODE, ITEM_UNIQUE_CODE_QUEST);
+SrcGame/src/Server/svrHaQuest.h:282:			rsPutItemUnique(lpPlayInfo, sinWC1 | sin20, lpPlayInfo->smCharInfo.JOB_CODE, ITEM_UNIQUE_CODE_QUEST);
+SrcGame/src/Server/svrHaQuest.h:285:			rsPutItemUnique(lpPlayInfo, sinWH1 | sin21, lpPlayInfo->smCharInfo.JOB_CODE, ITEM_UNIQUE_CODE_QUEST);
+SrcGame/src/Server/svrHaQuest.h:288:			rsPutItemUnique(lpPlayInfo, sinWP1 | sin21, lpPlayInfo->smCharInfo.JOB_CODE, ITEM_UNIQUE_CODE_QUEST);
+SrcGame/src/Server/svrHaQuest.h:291:			rsPutItemUnique(lpPlayInfo, sinWS1 | sin22, lpPlayInfo->smCharInfo.JOB_CODE, ITEM_UNIQUE_CODE_QUEST);
+SrcGame/src/Server/svrHaQuest.h:294:			rsPutItemUnique(lpPlayInfo, sinWS2 | sin23, lpPlayInfo->smCharInfo.JOB_CODE, ITEM_UNIQUE_CODE_QUEST);
+SrcGame/src/Server/svrHaQuest.h:297:			rsPutItemUnique(lpPlayInfo, sinWT1 | sin21, lpPlayInfo->smCharInfo.JOB_CODE, ITEM_UNIQUE_CODE_QUEST);
+SrcGame/src/Server/svrHaQuest.h:300:			rsPutItemUnique(lpPlayInfo, sinWM1 | sin21, lpPlayInfo->smCharInfo.JOB_CODE, ITEM_UNIQUE_CODE_QUEST);
+SrcGame/src/Server/Svr_Damge.cpp:3583:		if(dwWeaponCode == sinWS1 || dwWeaponCode == sinWT1)
+SrcGame/src/Server/Svr_Damge.cpp:3700:		if(dwWeaponCode == sinWT1)
+SrcGame/src/sinbaram/AssaUtil.cpp:1207:	if((character->HvRightHand.dwItemCode & sinITEM_MASK2) == sinWT1)
+SrcGame/src/sinbaram/sinCharStatus.cpp:1139:				if (sinWP1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2)) {
+SrcGame/src/sinbaram/sinCraftItem_Client.h:51:		sinWA1, sinWC1, sinWH1, sinWM1, sinWP1, sinWS1, sinWS2, sinWT1
+SrcGame/src/sinbaram/sinCraftItem_Client.h:59:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:66:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:73:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:80:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:87:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:94:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:101:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:108:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:115:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:122:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:129:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:136:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:143:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:150:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:157:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:164:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:171:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:178:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:185:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:192:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:199:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:206:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:213:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:220:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:227:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:234:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:241:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:250:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:257:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:264:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Client.h:271:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:51:		sinWA1, sinWC1, sinWH1, sinWM1, sinWP1, sinWS1, sinWS2, sinWT1
+SrcGame/src/sinbaram/sinCraftItem_Server.h:59:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:66:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:73:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:80:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:87:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:94:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:101:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:108:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:115:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:122:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:129:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:136:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:143:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:150:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:157:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:164:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:171:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:178:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:185:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:192:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:199:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:206:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:213:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:220:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:227:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:234:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:241:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:251:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:258:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:265:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:272:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:280:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:287:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinCraftItem_Server.h:294:			{ {sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
+SrcGame/src/sinbaram/sinHelp.cpp:1171:								TempItem.CODE = (sinWA1 | sin08);
+SrcGame/src/sinbaram/sinHelp.cpp:1174:								TempItem.CODE = (sinWC1 | sin08);
+SrcGame/src/sinbaram/sinHelp.cpp:1177:								TempItem.CODE = (sinWS1 | sin10);
+SrcGame/src/sinbaram/sinHelp.cpp:1180:								TempItem.CODE = (sinWP1 | sin09);
+SrcGame/src/sinbaram/sinHelp.cpp:1183:								TempItem.CODE = (sinWT1 | sin09);
+SrcGame/src/sinbaram/sinHelp.cpp:1186:								TempItem.CODE = (sinWS2 | sin10);
+SrcGame/src/sinbaram/sinHelp.cpp:1189:								TempItem.CODE = (sinWM1 | sin09);
+SrcGame/src/sinbaram/sinHelp.cpp:1192:								TempItem.CODE = (sinWM1 | sin09);
+SrcGame/src/sinbaram/sinInvenTory.cpp:429:				if(InvenItem[i].CODE == sItem[j].CODE)
+SrcGame/src/sinbaram/sinInvenTory.cpp:431:					wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinInvenTory.cpp:433:					if(!sItem[j].lpTempItem)
+SrcGame/src/sinbaram/sinInvenTory.cpp:435:						sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinInvenTory.cpp:438:					InvenItem[i].lpItem = sItem[j].lpTempItem;
+SrcGame/src/sinbaram/sinInvenTory.cpp:447:				if(InvenItemTemp[i].CODE == sItem[j].CODE)
+SrcGame/src/sinbaram/sinInvenTory.cpp:449:					wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinInvenTory.cpp:450:					if(!sItem[j].lpTempItem)
+SrcGame/src/sinbaram/sinInvenTory.cpp:451:						sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinInvenTory.cpp:452:					InvenItemTemp[i].lpItem = sItem[j].lpTempItem;
+SrcGame/src/sinbaram/sinInvenTory.cpp:465:		if(sItem[i].lpTempItem)
+SrcGame/src/sinbaram/sinInvenTory.cpp:467:			sItem[i].lpTempItem->Release();
+SrcGame/src/sinbaram/sinInvenTory.cpp:468:			sItem[i].lpTempItem = 0;
+SrcGame/src/sinbaram/sinInvenTory.cpp:4952:				if(InvenItem[i].sItemInfo.CODE == sItem[j].CODE)
+SrcGame/src/sinbaram/sinInvenTory.cpp:4954:					memcpy(&sinTempItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinInvenTory.cpp:4956:					wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinInvenTory.cpp:4958:					if(!sItem[j].lpTempItem)
+SrcGame/src/sinbaram/sinInvenTory.cpp:4960:						sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinInvenTory.cpp:4962:						if(!sItem[j].lpTempItem)
+SrcGame/src/sinbaram/sinInvenTory.cpp:4972:								if(sItem[cnt].sItemInfo.CODE == (sinPZ1 | sin00))
+SrcGame/src/sinbaram/sinInvenTory.cpp:4975:							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
+SrcGame/src/sinbaram/sinInvenTory.cpp:4976:							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinInvenTory.cpp:4977:							sinTempItem.w = sItem[cnt].w;
+SrcGame/src/sinbaram/sinInvenTory.cpp:4978:							sinTempItem.h = sItem[cnt].h;
+SrcGame/src/sinbaram/sinInvenTory.cpp:4982:							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinInvenTory.cpp:4983:							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinInvenTory.cpp:4984:							sinTempItem.w = sItem[j].w;
+SrcGame/src/sinbaram/sinInvenTory.cpp:4985:							sinTempItem.h = sItem[j].h;
+SrcGame/src/sinbaram/sinInvenTory.cpp:4989:					sinTempItem.lpItem = sItem[j].lpTempItem;
+SrcGame/src/sinbaram/sinInvenTory.cpp:5012:				if(InvenItemTemp[i].sItemInfo.CODE == sItem[j].CODE)
+SrcGame/src/sinbaram/sinInvenTory.cpp:5014:					memcpy(&sinTempItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinInvenTory.cpp:5016:					wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinInvenTory.cpp:5018:					if(!sItem[j].lpTempItem)
+SrcGame/src/sinbaram/sinInvenTory.cpp:5020:						sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinInvenTory.cpp:5022:						if(!sItem[j].lpTempItem)
+SrcGame/src/sinbaram/sinInvenTory.cpp:5036:								if(sItem[cnt].sItemInfo.CODE == (sinPZ1 | sin00))
+SrcGame/src/sinbaram/sinInvenTory.cpp:5039:							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
+SrcGame/src/sinbaram/sinInvenTory.cpp:5040:							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinInvenTory.cpp:5041:							sinTempItem.w = sItem[cnt].w;
+SrcGame/src/sinbaram/sinInvenTory.cpp:5042:							sinTempItem.h = sItem[cnt].h;
+SrcGame/src/sinbaram/sinInvenTory.cpp:5046:							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinInvenTory.cpp:5047:							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinInvenTory.cpp:5048:							sinTempItem.w = sItem[j].w;
+SrcGame/src/sinbaram/sinInvenTory.cpp:5049:							sinTempItem.h = sItem[j].h;
+SrcGame/src/sinbaram/sinInvenTory.cpp:5053:					sinTempItem.lpItem = sItem[j].lpTempItem;
+SrcGame/src/sinbaram/sinInvenTory.cpp:5268:			if(MouseItem.sItemInfo.CODE == sItem[j].CODE)
+SrcGame/src/sinbaram/sinInvenTory.cpp:5270:				memcpy(&sinTempItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinInvenTory.cpp:5272:				wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinInvenTory.cpp:5274:				if(!sItem[j].lpTempItem)
+SrcGame/src/sinbaram/sinInvenTory.cpp:5276:					sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinInvenTory.cpp:5279:				sinTempItem.lpItem = sItem[j].lpTempItem;
+SrcGame/src/sinbaram/sinInvenTory.cpp:7085:		if(strcmpi(saCostume[i].szItemCode, pItem->LastCategory) == 0)
+SrcGame/src/sinbaram/sinInvenTory.cpp:7941:				/*if (sinWS1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE & sinITEM_MASK2) ||
+SrcGame/src/sinbaram/sinInvenTory.cpp:7942:					sinWT1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE & sinITEM_MASK2))
+SrcGame/src/sinbaram/sinInvenTory.cpp:7961:				if(sinWT1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
+SrcGame/src/sinbaram/sinInvenTory.cpp:8074:				if(sinWT1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
+SrcGame/src/sinbaram/sinInvenTory.cpp:8405:		if(sinWA1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
+SrcGame/src/sinbaram/sinInvenTory.cpp:8421:		if(sinWS1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
+SrcGame/src/sinbaram/sinInvenTory.cpp:8426:		if(sinWP1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
+SrcGame/src/sinbaram/sinInvenTory.cpp:8431:		if(sinWS2 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
+SrcGame/src/sinbaram/sinInvenTory.cpp:8436:		if(sinWT1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
+SrcGame/src/sinbaram/sinInvenTory.cpp:8441:		if(sinWM1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
+SrcGame/src/sinbaram/sinInvenTory.cpp:8446:		if(sinWM1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
+SrcGame/src/sinbaram/sinInvenTory.cpp:9656:		wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinInvenTory.cpp:9657:		memcpy(&TestItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinInvenTory.cpp:9664:			if(TestPoint.x != sItem[j].w || TestPoint.y != sItem[j].h)
+SrcGame/src/sinbaram/sinInvenTory.cpp:9666:				strcpy_s(sinTestBuff, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinInvenTory.cpp:10899:	DWORD WeaponCode[7] = { sinWA1,sinWS1,sinWP1,sinWS2,sinWT1,sinWM1,sinWM1 };
+SrcGame/src/sinbaram/sinInvenTory.cpp:11491:		if(pItem->CODE == sItem[j].CODE)
+SrcGame/src/sinbaram/sinInvenTory.cpp:11493:			wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinInvenTory.cpp:11495:			if(!sItem[j].lpTempItem)
+SrcGame/src/sinbaram/sinInvenTory.cpp:11497:				sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinInvenTory.cpp:11500:			pItem->lpItem = sItem[j].lpTempItem;
+SrcGame/src/sinbaram/sinInvenTory.cpp:11501:			pItem->w = sItem[j].w;
+SrcGame/src/sinbaram/sinInvenTory.cpp:11502:			pItem->h = sItem[j].h;
+SrcGame/src/sinbaram/sinInvenTory.cpp:12204:				if(pItem->sItemInfo.CODE == sItem[j].CODE)
+SrcGame/src/sinbaram/sinInvenTory.cpp:12208:					wsprintf(szTestBuff2, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinInvenTory.cpp:12209:					sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szTestBuff2);
+SrcGame/src/sinbaram/sinInvenTory.cpp:12210:					pItem->lpItem = sItem[j].lpTempItem;
+SrcGame/src/sinbaram/sinInvenTory.cpp:12211:					pItem->w = sItem[j].w;
+SrcGame/src/sinbaram/sinInvenTory.cpp:12212:					pItem->h = sItem[j].h;
+SrcGame/src/sinbaram/sinInvenTory.cpp:12213:					pItem->CODE = sItem[j].CODE;
+SrcGame/src/sinbaram/sinItem.cpp:78:sITEM sItem[MAX_ITEM] = {
+SrcGame/src/sinbaram/sinItem.cpp:96:		sItem[cnt].sItemInfo.CODE = sItem[cnt].CODE;
+SrcGame/src/sinbaram/sinItem.cpp:445:	if (pItem->Class == ITEM_CLASS_WEAPON_ONE)
+SrcGame/src/sinbaram/sinItem.cpp:502:		(pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWA1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWC1 ||
+SrcGame/src/sinbaram/sinItem.cpp:503:		(pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWH1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWM1 ||
+SrcGame/src/sinbaram/sinItem.cpp:504:		(pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWP1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWS1 ||
+SrcGame/src/sinbaram/sinItem.cpp:505:		(pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWS2 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWT1 ||
+SrcGame/src/sinbaram/sinItem.cpp:541:		if (sInfo.CODE == (sinWA1 | sin20))
+SrcGame/src/sinbaram/sinItem.cpp:546:		if (sInfo.CODE == (sinWC1 | sin20))
+SrcGame/src/sinbaram/sinItem.cpp:551:		if (sInfo.CODE == (sinWH1 | sin21))
+SrcGame/src/sinbaram/sinItem.cpp:556:		if (sInfo.CODE == (sinWM1 | sin21))
+SrcGame/src/sinbaram/sinItem.cpp:561:		if (sInfo.CODE == (sinWP1 | sin21))
+SrcGame/src/sinbaram/sinItem.cpp:566:		if (sInfo.CODE == (sinWS1 | sin22))
+SrcGame/src/sinbaram/sinItem.cpp:571:		if (sInfo.CODE == (sinWS2 | sin23))
+SrcGame/src/sinbaram/sinItem.cpp:576:		if (sInfo.CODE == (sinWT1 | sin21))
+SrcGame/src/sinbaram/sinItem.cpp:585:		if (sInfo.CODE == (sinWA1 | sin20))
+SrcGame/src/sinbaram/sinItem.cpp:590:		if (sInfo.CODE == (sinWC1 | sin20))
+SrcGame/src/sinbaram/sinItem.cpp:595:		if (sInfo.CODE == (sinWH1 | sin21))
+SrcGame/src/sinbaram/sinItem.cpp:600:		if (sInfo.CODE == (sinWM1 | sin21))
+SrcGame/src/sinbaram/sinItem.cpp:605:		if (sInfo.CODE == (sinWP1 | sin21))
+SrcGame/src/sinbaram/sinItem.cpp:610:		if (sInfo.CODE == (sinWS1 | sin22))
+SrcGame/src/sinbaram/sinItem.cpp:615:		if (sInfo.CODE == (sinWS2 | sin23))
+SrcGame/src/sinbaram/sinItem.cpp:620:		if (sInfo.CODE == (sinWT1 | sin21))
+SrcGame/src/sinbaram/sinItem.cpp:631:		if (sInfo.CODE == (sinWA1 | sin20))
+SrcGame/src/sinbaram/sinItem.cpp:636:		if (sInfo.CODE == (sinWC1 | sin20))
+SrcGame/src/sinbaram/sinItem.cpp:641:		if (sInfo.CODE == (sinWH1 | sin21))
+SrcGame/src/sinbaram/sinItem.cpp:646:		if (sInfo.CODE == (sinWM1 | sin21))
+SrcGame/src/sinbaram/sinItem.cpp:651:		if (sInfo.CODE == (sinWP1 | sin21))
+SrcGame/src/sinbaram/sinItem.cpp:656:		if (sInfo.CODE == (sinWS1 | sin22))
+SrcGame/src/sinbaram/sinItem.cpp:661:		if (sInfo.CODE == (sinWS2 | sin23))
+SrcGame/src/sinbaram/sinItem.cpp:666:		if (sInfo.CODE == (sinWT1 | sin21))
+SrcGame/src/sinbaram/sinItem.cpp:5538:			if ((sInfo.CODE & sinITEM_MASK2) == sinWA1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5539:				(sInfo.CODE & sinITEM_MASK2) == sinWC1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5540:				(sInfo.CODE & sinITEM_MASK2) == sinWH1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5541:				(sInfo.CODE & sinITEM_MASK2) == sinWM1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5542:				(sInfo.CODE & sinITEM_MASK2) == sinWP1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5543:				(sInfo.CODE & sinITEM_MASK2) == sinWS1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5544:				(sInfo.CODE & sinITEM_MASK2) == sinWS2 ||
+SrcGame/src/sinbaram/sinItem.cpp:5545:				(sInfo.CODE & sinITEM_MASK2) == sinWT1)
+SrcGame/src/sinbaram/sinItem.cpp:5617:			if ((sInfo.CODE & sinITEM_MASK2) == sinWC1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5618:				(sInfo.CODE & sinITEM_MASK2) == sinWP1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5619:				(sInfo.CODE & sinITEM_MASK2) == sinWS1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5620:				(sInfo.CODE & sinITEM_MASK2) == sinWT1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5621:				(sInfo.CODE & sinITEM_MASK2) == sinWS2)
+SrcGame/src/sinbaram/sinItem.cpp:5687:			if ((sInfo.CODE & sinITEM_MASK2) == sinWA1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5688:				(sInfo.CODE & sinITEM_MASK2) == sinWC1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5689:				(sInfo.CODE & sinITEM_MASK2) == sinWM1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5690:				(sInfo.CODE & sinITEM_MASK2) == sinWH1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5691:				(sInfo.CODE & sinITEM_MASK2) == sinWP1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5692:				(sInfo.CODE & sinITEM_MASK2) == sinWS2 ||
+SrcGame/src/sinbaram/sinItem.cpp:5808:			if ((sInfo.CODE & sinITEM_MASK2) == sinWA1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5809:				(sInfo.CODE & sinITEM_MASK2) == sinWC1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5810:				(sInfo.CODE & sinITEM_MASK2) == sinWH1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5811:				(sInfo.CODE & sinITEM_MASK2) == sinWM1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5812:				(sInfo.CODE & sinITEM_MASK2) == sinWS1 ||
+SrcGame/src/sinbaram/sinItem.cpp:5813:				(sInfo.CODE & sinITEM_MASK2) == sinWS2 ||
+SrcGame/src/sinbaram/sinItem.cpp:5814:				(sInfo.CODE & sinITEM_MASK2) == sinWT1 ||
+SrcGame/src/sinbaram/sinItem.cpp:6104:			if ((sInfo.CODE & sinITEM_MASK2) == sinWM1 ||
+SrcGame/src/sinbaram/sinItem.cpp:6105:				(sInfo.CODE & sinITEM_MASK2) == sinWS1 ||
+SrcGame/src/sinbaram/sinItem.cpp:6106:				(sInfo.CODE & sinITEM_MASK2) == sinWT1)
+SrcGame/src/sinbaram/sinItem.cpp:7879:		wsprintf(szTemp, "Code: %s/r", pItem->LastCategory);
+SrcGame/src/sinbaram/sinItem.cpp:8437:		if (sItem[i].CODE)
+SrcGame/src/sinbaram/sinItem.cpp:8439:			CheckSumItemDataADD += sItem[i].CODE * i;
+SrcGame/src/sinbaram/sinItem.cpp:8440:			CheckSumItemDataADD += sItem[i].h * i;
+SrcGame/src/sinbaram/sinItem.cpp:8441:			CheckSumItemDataADD += sItem[i].w * i;
+SrcGame/src/sinbaram/sinItem.cpp:8442:			CheckSumItemDataADD += sItem[i].Class * i;
+SrcGame/src/sinbaram/sinItem.cpp:8443:			CheckSumItemDataADD += sItem[i].ItemPosition * i;
+SrcGame/src/sinbaram/sinMessageBox.cpp:2892:			if(sItem[j].CODE == MessageBoxItem.sItemInfo.CODE)
+SrcGame/src/sinbaram/sinMessageBox.cpp:2894:				memcpy(&MessageBoxItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinQuest.cpp:1479:	case sinWA1:
+SrcGame/src/sinbaram/sinQuest.cpp:1480:	case sinWC1:
+SrcGame/src/sinbaram/sinQuest.cpp:1481:	case sinWP1:
+SrcGame/src/sinbaram/sinQuest.cpp:1482:	case sinWS2:
+SrcGame/src/sinbaram/sinQuest.cpp:1507:	case sinWS1:
+SrcGame/src/sinbaram/sinQuest.cpp:1508:	case sinWT1:
+SrcGame/src/sinbaram/sinQuest.cpp:1534:	case sinWM1:
+SrcGame/src/sinbaram/sinQuest.cpp:1621:				sLost_Item.LostItem[0].CODE = (sinWA1 | sin08);
+SrcGame/src/sinbaram/sinQuest.cpp:1627:				sLost_Item.LostItem[0].CODE = (sinWC1 | sin08);
+SrcGame/src/sinbaram/sinQuest.cpp:1632:				sLost_Item.LostItem[0].CODE = (sinWS1 | sin10);
+SrcGame/src/sinbaram/sinQuest.cpp:1637:				sLost_Item.LostItem[0].CODE = (sinWP1 | sin09);
+SrcGame/src/sinbaram/sinQuest.cpp:1642:				sLost_Item.LostItem[0].CODE = (sinWT1 | sin09);
+SrcGame/src/sinbaram/sinQuest.cpp:1647:				sLost_Item.LostItem[0].CODE = (sinWS2 | sin10);
+SrcGame/src/sinbaram/sinQuest.cpp:1653:				sLost_Item.LostItem[0].CODE = (sinWM1 | sin09);
+SrcGame/src/sinbaram/sinShop.cpp:2832:				if (sMyShop->sMyShopItem[i].sItem.CODE == sItem[j].CODE)
+SrcGame/src/sinbaram/sinShop.cpp:2834:					wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinShop.cpp:2835:					memcpy(&TempItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinShop.cpp:2843:							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinShop.cpp:2844:							memcpy(&TempItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinShop.cpp:2845:							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinShop.cpp:2851:					if (!sItem[j].lpTempItem)
+SrcGame/src/sinbaram/sinShop.cpp:2852:						sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinShop.cpp:2853:					TempItem.lpItem = sItem[j].lpTempItem;
+SrcGame/src/sinbaram/sinShop.cpp:2898:		if(pItem_Info->CODE == sItem[j].CODE)
+SrcGame/src/sinbaram/sinShop.cpp:2900:			wsprintf(szTestBuff2, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinShop.cpp:2901:			if(!sItem[j].lpTempItem)
+SrcGame/src/sinbaram/sinShop.cpp:2902:				sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szTestBuff2);
+SrcGame/src/sinbaram/sinShop.cpp:2903:			memcpy(&TempItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinShop.cpp:2905:			TempItem.lpItem = sItem[j].lpTempItem;
+SrcGame/src/sinbaram/sinSkill.cpp:2090:DWORD UseSkillItemInfo[10] = { 0,sinWA1,sinWM1,sinWH1,sinDS1,sinWP1,sinWS2,sinWC1,sinWS1,sinWT1 };
+SrcGame/src/sinbaram/sinSubMain.cpp:342:		if(sItem[j].CODE == CODE)
+SrcGame/src/sinbaram/sinSubMain.cpp:344:			wsprintf(szImagePath, "Image//sinImage//Items//DropItem//it%s.ASE", sItem[j].DorpItem);
+SrcGame/src/sinbaram/sinSubMain.cpp:728:		if(sItemInfo->CODE == sItem[j].CODE)
+SrcGame/src/sinbaram/sinSubMain.cpp:730:			wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinSubMain.cpp:731:			memcpy(TempItem, &sItem[j], sizeof(sITEM));
+SrcGame/src/sinbaram/sinSubMain.cpp:740:						if((sinPZ1 | sin00) == sItem[k].CODE)
+SrcGame/src/sinbaram/sinSubMain.cpp:742:							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[k].ItemFilePath, sItem[k].LastCategory);
+SrcGame/src/sinbaram/sinSubMain.cpp:743:							memcpy(TempItem, &sItem[k], sizeof(sITEM));
+SrcGame/src/sinbaram/sinSubMain.cpp:744:							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinSubMain.cpp:752:			if(!sItem[j].lpTempItem)
+SrcGame/src/sinbaram/sinSubMain.cpp:753:				sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinSubMain.cpp:755:			TempItem->lpItem = sItem[j].lpTempItem;
+SrcGame/src/sinbaram/sinSubMain.cpp:761:				strcpy_s(szTestBuff2, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinSubMain.cpp:2263:		case sinWA1:
+SrcGame/src/sinbaram/sinSubMain.cpp:2272:		case sinWC1:
+SrcGame/src/sinbaram/sinSubMain.cpp:2282:		case sinWH1:
+SrcGame/src/sinbaram/sinSubMain.cpp:2292:		case sinWM1:
+SrcGame/src/sinbaram/sinSubMain.cpp:2303:		case sinWP1:
+SrcGame/src/sinbaram/sinSubMain.cpp:2314:		case sinWS1:
+SrcGame/src/sinbaram/sinSubMain.cpp:2325:		case sinWS2:
+SrcGame/src/sinbaram/sinSubMain.cpp:2337:		case sinWT1:
+SrcGame/src/sinbaram/sinSubMain.cpp:2589:		case sinWA1:
+SrcGame/src/sinbaram/sinSubMain.cpp:2598:		case sinWC1:
+SrcGame/src/sinbaram/sinSubMain.cpp:2608:		case sinWH1:
+SrcGame/src/sinbaram/sinSubMain.cpp:2618:		case sinWM1:
+SrcGame/src/sinbaram/sinSubMain.cpp:2629:		case sinWP1:
+SrcGame/src/sinbaram/sinSubMain.cpp:2640:		case sinWS1:
+SrcGame/src/sinbaram/sinSubMain.cpp:2651:		case sinWS2:
+SrcGame/src/sinbaram/sinSubMain.cpp:2663:		case sinWT1:
+SrcGame/src/sinbaram/sinSubMain.cpp:2767:		if((cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE &sinITEM_MASK2) == sinWA1 ||
+SrcGame/src/sinbaram/sinSubMain.cpp:2768:			(cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE &sinITEM_MASK2) == sinWH1 ||
+SrcGame/src/sinbaram/sinSubMain.cpp:2769:		   (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE &sinITEM_MASK2) == sinWM1)
+SrcGame/src/sinbaram/sinSubMain.cpp:2779:		if((cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE &sinITEM_MASK2) == sinWC1 ||
+SrcGame/src/sinbaram/sinSubMain.cpp:2780:			(cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE &sinITEM_MASK2) == sinWS2 ||
+SrcGame/src/sinbaram/sinSubMain.cpp:2781:		   (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE &sinITEM_MASK2) == sinWS1 ||
+SrcGame/src/sinbaram/sinSubMain.cpp:2782:		   (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE &sinITEM_MASK2) == sinWP1 ||
+SrcGame/src/sinbaram/sinSubMain.cpp:2783:		   (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE &sinITEM_MASK2) == sinWT1)
+SrcGame/src/sinbaram/sinSubMain.cpp:3969:								if(lstrcmpi(pPresentWeaponName[i][PresentItemIndex], sItem[j].LastCategory) == 0)
+SrcGame/src/sinbaram/sinSubMain.cpp:3971:									pWingItem->DesCraftItem.sItemInfo.CODE = sItem[j].CODE;
+SrcGame/src/sinbaram/sinSubMain.cpp:4002:								if(lstrcmpi(pPresentArmorName[i][PresentItemIndex], sItem[j].LastCategory) == 0)
+SrcGame/src/sinbaram/sinSubMain.cpp:4004:									pWingItem->DesCraftItem.sItemInfo.CODE = sItem[j].CODE;
+SrcGame/src/sinbaram/sinSubMain.cpp:4059:			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWA1 | sin08);
+SrcGame/src/sinbaram/sinSubMain.cpp:4062:			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWC1 | sin08);
+SrcGame/src/sinbaram/sinSubMain.cpp:4065:			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWS1 | sin10);
+SrcGame/src/sinbaram/sinSubMain.cpp:4068:			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWP1 | sin09);
+SrcGame/src/sinbaram/sinSubMain.cpp:4071:			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWT1 | sin09);
+SrcGame/src/sinbaram/sinSubMain.cpp:4074:			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWS2 | sin10);
+SrcGame/src/sinbaram/sinSubMain.cpp:4077:			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWM1 | sin09);
+SrcGame/src/sinbaram/sinSubMain.cpp:4080:			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWM1 | sin09);
+SrcGame/src/sinbaram/sinTrade.cpp:2076:				else if ((MouseItem.CODE & sinITEM_MASK2) == sinWA1 || (MouseItem.CODE & sinITEM_MASK2) == sinWH1
+SrcGame/src/sinbaram/sinTrade.cpp:2077:					|| (MouseItem.CODE & sinITEM_MASK2) == sinWM1 || (MouseItem.CODE & sinITEM_MASK2) == sinWC1
+SrcGame/src/sinbaram/sinTrade.cpp:2078:					|| (MouseItem.CODE & sinITEM_MASK2) == sinWP1 || (MouseItem.CODE & sinITEM_MASK2) == sinWT1
+SrcGame/src/sinbaram/sinTrade.cpp:2079:					|| (MouseItem.CODE & sinITEM_MASK2) == sinWS1 || (MouseItem.CODE & sinITEM_MASK2) == sinWS2
+SrcGame/src/sinbaram/sinTrade.cpp:2377:							if (sItem[i].CODE == (sinPR1 | sin01))
+SrcGame/src/sinbaram/sinTrade.cpp:2379:								temp = sItem[i];
+SrcGame/src/sinbaram/sinTrade.cpp:2491:								if (sItem[cnt].CODE == ResultItem.ItemCode)
+SrcGame/src/sinbaram/sinTrade.cpp:2493:									temp = sItem[cnt];
+SrcGame/src/sinbaram/sinTrade.cpp:3823:				if (sTradeRecv.TradeItem[i].sItemInfo.CODE == sItem[j].CODE)
+SrcGame/src/sinbaram/sinTrade.cpp:3825:					wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinTrade.cpp:3827:					if (!sItem[j].lpTempItem)
+SrcGame/src/sinbaram/sinTrade.cpp:3828:						sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinTrade.cpp:3833:						sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinTrade.cpp:3839:								if (sItem[cnt].sItemInfo.CODE == (sinPZ1 | sin00))
+SrcGame/src/sinbaram/sinTrade.cpp:3844:							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
+SrcGame/src/sinbaram/sinTrade.cpp:3845:							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinTrade.cpp:3848:					sTradeRecv.TradeItem[i].lpItem = sItem[j].lpTempItem;
+SrcGame/src/sinbaram/sinTrade.cpp:4238:				if (sWareHouse.WareHouseItem[i].sItemInfo.CODE == sItem[j].CODE)
+SrcGame/src/sinbaram/sinTrade.cpp:4240:					sWareHouse.WareHouseItem[i].w = sItem[j].w;
+SrcGame/src/sinbaram/sinTrade.cpp:4241:					sWareHouse.WareHouseItem[i].h = sItem[j].h;
+SrcGame/src/sinbaram/sinTrade.cpp:4242:					wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinTrade.cpp:4243:					if (!sItem[j].lpTempItem)
+SrcGame/src/sinbaram/sinTrade.cpp:4244:						sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinTrade.cpp:4250:							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
+SrcGame/src/sinbaram/sinTrade.cpp:4251:							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinTrade.cpp:4252:							sWareHouse.WareHouseItem[i].w = sItem[j].w;
+SrcGame/src/sinbaram/sinTrade.cpp:4253:							sWareHouse.WareHouseItem[i].h = sItem[j].h;
+SrcGame/src/sinbaram/sinTrade.cpp:4261:								if (sItem[cnt].sItemInfo.CODE == (sinPZ1 | sin00))
+SrcGame/src/sinbaram/sinTrade.cpp:4266:							wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[cnt].ItemFilePath, sItem[cnt].LastCategory);
+SrcGame/src/sinbaram/sinTrade.cpp:4267:							sItem[j].lpTempItem = LoadDibSurfaceOffscreen(szFilePath);
+SrcGame/src/sinbaram/sinTrade.cpp:4268:							sWareHouse.WareHouseItem[i].w = sItem[cnt].w;
+SrcGame/src/sinbaram/sinTrade.cpp:4269:							sWareHouse.WareHouseItem[i].h = sItem[cnt].h;
+SrcGame/src/sinbaram/sinTrade.cpp:4273:					sWareHouse.WareHouseItem[i].lpItem = sItem[j].lpTempItem;
+SrcGame/src/sinbaram/sinTrade.cpp:6242:	if ((pItem->CODE & sinITEM_MASK2) == sinWC1 ||
+SrcGame/src/sinbaram/sinTrade.cpp:6243:		(pItem->CODE & sinITEM_MASK2) == sinWS2 ||
+SrcGame/src/sinbaram/sinTrade.cpp:6244:		(pItem->CODE & sinITEM_MASK2) == sinWP1) {
+SrcGame/src/sinbaram/sinTrade.cpp:6251:	if ((pItem->CODE & sinITEM_MASK2) == sinWA1 ||
+SrcGame/src/sinbaram/sinTrade.cpp:6252:		(pItem->CODE & sinITEM_MASK2) == sinWH1 ||
+SrcGame/src/sinbaram/sinTrade.cpp:6253:		(pItem->CODE & sinITEM_MASK2) == sinWM1 ||
+SrcGame/src/sinbaram/sinTrade.cpp:6254:		(pItem->CODE & sinITEM_MASK2) == sinWS1 ||
+SrcGame/src/sinbaram/sinTrade.cpp:6255:		(pItem->CODE & sinITEM_MASK2) == sinWT1) {
+SrcGame/src/sinbaram/sinTrade.cpp:6375:DWORD AgingItemCode3[14] = { sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1,sinDA1,sinDS1,sinOM1,sinDA2,/*sinDG1,sinDB1,sinOA2,*/sinDA3,sinDA4 };
+SrcGame/src/sinbaram/sinTrade.cpp:7643:	static DWORD MixItemCode[20] = { sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1,sinDA1,sinDS1,sinOM1,sinDA2,sinDG1,sinDB1,sinOA2, sinOA1, sinOR1, sinOR1, sinDA3, sinDA4 };
+SrcGame/src/sinbaram/sinTrade.cpp:7867:		if ((pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWA1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWH1
+SrcGame/src/sinbaram/sinTrade.cpp:7868:			|| (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWC1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWM1
+SrcGame/src/sinbaram/sinTrade.cpp:7869:			|| (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWP1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWT1
+SrcGame/src/sinbaram/sinTrade.cpp:7870:			|| (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWS1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWS2
+SrcGame/src/sinbaram/sinTrade.cpp:7889:				if (pItem->Class == ITEM_CLASS_WEAPON_ONE || pItem->Class == ITEM_CLASS_SHIELDS)
+SrcGame/src/sinbaram/sinTrade.cpp:10276:	DWORD CreateItemCode[2][11][8] = { {	{ (sinWA1 | sin14), (sinWC1 | sin14), (sinWH1 | sin15), (sinWP1 | sin15), (sinWS1 | sin16), (sinWS2 | sin17), (sinWT1 | sin15), (sinWM1 | sin15) },
+SrcGame/src/sinbaram/sinTrade.cpp:10277:											{ (sinWA1 | sin15), (sinWC1 | sin15), (sinWH1 | sin16), (sinWP1 | sin16), (sinWS1 | sin17), (sinWS2 | sin18), (sinWT1 | sin16), (sinWM1 | sin16) },
+SrcGame/src/sinbaram/sinTrade.cpp:10278:											{ (sinWA1 | sin16), (sinWC1 | sin16), (sinWH1 | sin17), (sinWP1 | sin17), (sinWS1 | sin18), (sinWS2 | sin19), (sinWT1 | sin17), (sinWM1 | sin17) },
+SrcGame/src/sinbaram/sinTrade.cpp:10279:											{ (sinWA1 | sin17), (sinWC1 | sin17), (sinWH1 | sin18), (sinWP1 | sin18), (sinWS1 | sin19), (sinWS2 | sin20), (sinWT1 | sin18), (sinWM1 | sin18) },
+SrcGame/src/sinbaram/sinTrade.cpp:10280:											{ (sinWA1 | sin18), (sinWC1 | sin18), (sinWH1 | sin19), (sinWP1 | sin19), (sinWS1 | sin20), (sinWS2 | sin21), (sinWT1 | sin19), (sinWM1 | sin19) },
+SrcGame/src/sinbaram/sinTrade.cpp:10281:											{ (sinWA1 | sin19), (sinWC1 | sin19), (sinWH1 | sin20), (sinWP1 | sin20), (sinWS1 | sin21), (sinWS2 | sin22), (sinWT1 | sin20), (sinWM1 | sin20) },
+SrcGame/src/sinbaram/sinTrade.cpp:10282:											{ (sinWA1 | sin21), (sinWC1 | sin21), (sinWH1 | sin22), (sinWP1 | sin22), (sinWS1 | sin23), (sinWS2 | sin24), (sinWT1 | sin22), (sinWM1 | sin22) },
+SrcGame/src/sinbaram/sinTrade.cpp:10283:											{ (sinWA1 | sin22), (sinWC1 | sin22), (sinWH1 | sin23), (sinWP1 | sin23), (sinWS1 | sin24), (sinWS2 | sin25), (sinWT1 | sin23), (sinWM1 | sin23) },
+SrcGame/src/sinbaram/sinItem.h:47:#define ITEM_CLASS_WEAPON_ONE			INVENTORY_POS_RHAND 
+SrcGame/src/sinbaram/sinItem.h:74:#define sinWA1			0x01010000	
+SrcGame/src/sinbaram/sinItem.h:75:#define sinWC1			0x01020000	
+SrcGame/src/sinbaram/sinItem.h:76:#define sinWH1			0x01030000	
+SrcGame/src/sinbaram/sinItem.h:77:#define sinWM1			0x01040000	
+SrcGame/src/sinbaram/sinItem.h:78:#define sinWP1			0x01050000	
+SrcGame/src/sinbaram/sinItem.h:79:#define sinWS1			0x01060000	
+SrcGame/src/sinbaram/sinItem.h:80:#define sinWS2			0x01070000	
+SrcGame/src/sinbaram/sinItem.h:81:#define sinWT1			0x01080000	
+SrcGame/src/sinbaram/sinItem.h:510:	char	LastCategory[16];
+SrcGame/src/sinbaram/sinItem.h:545:		ZeroMemory(LastCategory, sizeof(LastCategory));
+SrcGame/src/sinbaram/sinItem.h:573:	sITEM(DWORD CODE, const char* ItemNameIndex, const char* LastCategory, int w, int h, const char* ItemFilePath, int Class,
+SrcGame/src/sinbaram/sinItem.h:578:		strcpy_s(this->LastCategory, sizeof(this->LastCategory), LastCategory);
+SrcGame/src/sinbaram/sinItem.h:693:extern sITEM sItem[MAX_ITEM];
+SrcGame/src/TJBOY/clanmenu/Help.cpp:1058:	if((Code&sinITEM_MASK2) == sinWA1 || (Code&sinITEM_MASK2) == sinWC1 || (Code&sinITEM_MASK2) == sinWH1 || (Code&sinITEM_MASK2) == sinWM1 ||
+SrcGame/src/TJBOY/clanmenu/Help.cpp:1059:		(Code&sinITEM_MASK2) == sinWP1 || (Code&sinITEM_MASK2) == sinWS1 || (Code&sinITEM_MASK2) == sinWS2 || (Code&sinITEM_MASK2) == sinWT1)
+SrcGame/src/character.cpp:269:		if (sItem[j].CODE == CODE)
+SrcGame/src/character.cpp:1561:	sinWC1 | sin01 , sinWC1 | sin02 , sinWC1 | sin03 , sinWC1 | sin04 , sinWC1 | sin05 ,
+SrcGame/src/character.cpp:1562:	sinWC1 | sin06 , sinWC1 | sin07 , sinWC1 | sin08 , sinWC1 | sin09 , sinWC1 | sin10 ,
+SrcGame/src/character.cpp:1563:	sinWC1 | sin11 , sinWC1 | sin12 , sinWC1 | sin13 , sinWC1 | sin14 , sinWC1 | sin15 ,
+SrcGame/src/character.cpp:1564:	sinWC1 | sin16 , sinWC1 | sin17 , sinWC1 | sin18 , sinWC1 | sin19 , sinWC1 | sin20 ,	
+SrcGame/src/character.cpp:1565:	sinWC1 | sin21 , sinWC1 | sin22 , sinWC1 | sin23 , sinWC1 | sin24 , sinWC1 | sin25 ,
+SrcGame/src/character.cpp:1566:	sinWC1 | sin26 , sinWC1 | sin27 , sinWC1 | sin28 , sinWC1 | sin29 , sinWC1 | sin30 ,
+SrcGame/src/character.cpp:1567:	sinWC1 | sin31 , sinWC1 | sin32 , sinWC1 | sin33 , sinWC1 | sin34 , sinWC1 | sin35 ,
+SrcGame/src/character.cpp:1568:	sinWC1 | sin36 , sinWC1 | sin37 , sinWC1 | sin38 , sinWC1 | sin39 , sinWC1 | sin35 ,
+SrcGame/src/character.cpp:1569:	sinWC1 | sin40 , sinWC1 | sin41 , sinWC1 | sin42 ,
+SrcGame/src/character.cpp:1570:	sinWC1 | sin51 , sinWC1 | sin52 , sinWC1 | sin53 , sinWC1 | sin54 ,
+SrcGame/src/character.cpp:1572:	sinWS2 | sin01 , sinWS2 | sin02 , sinWS2 | sin03 , sinWS2 | sin60 , sinWS2 | sin61 ,
+SrcGame/src/character.cpp:1573:	sinWS2 | sin62 , sinWS2 | sin63 ,
+SrcGame/src/character.cpp:1575:	sinWS1 | sin02, sinWS1 | sin03,
+SrcGame/src/character.cpp:1576:	sinWS1 | sin09, sinWS1 | sin60, sinWS1 | sin61, sinWP1 | sin63,
+SrcGame/src/character.cpp:1589:	sinWS1 | sin01,sinWS1 | sin05,sinWS1 | sin06, sinWS1 | sin07,
+SrcGame/src/character.cpp:1590:	sinWS1 | sin11, sinWS1 | sin12,sinWS1 | sin14, sinWS1 | sin15,sinWS1 | sin16,
+SrcGame/src/character.cpp:1798:	if ((dwActionItemCode&sinITEM_MASK2) == sinWS1 || (dwActionItemCode&sinITEM_MASK2) == sinWT1 ||
+SrcGame/src/character.cpp:1799:		((dwActionItemCode&sinITEM_MASK2) == sinWM1 && (smCharInfo.JOB_CODE == 7 || smCharInfo.JOB_CODE == 8)))
+SrcGame/src/character.cpp:1821:				if (sItem[cnt].CODE == dwItemCode)
+SrcGame/src/character.cpp:1823:					if (sItem[cnt].Class == ITEM_CLASS_WEAPON_TWO && !ShootingMode)
+SrcGame/src/character.cpp:2530:	int hand = ITEM_CLASS_WEAPON_ONE;
+SrcGame/src/character.cpp:2536:			if (sItem[i].CODE == dwActionItemCode)
+SrcGame/src/character.cpp:2538:				hand = sItem[i].Class;
+SrcGame/src/character.cpp:2563:					case sinWA1:
+SrcGame/src/character.cpp:2565:						if (hand == ITEM_CLASS_WEAPON_ONE)
+SrcGame/src/character.cpp:2567:							dwActItemCode = sinWA1 | sin01;
+SrcGame/src/character.cpp:2571:							dwActItemCode = sinWA1 | sin05;
+SrcGame/src/character.cpp:2576:					case sinWC1:
+SrcGame/src/character.cpp:2578:						dwActItemCode = sinWC1 | sin01;
+SrcGame/src/character.cpp:2582:					case sinWH1:
+SrcGame/src/character.cpp:2584:						if (hand == ITEM_CLASS_WEAPON_ONE)
+SrcGame/src/character.cpp:2586:							dwActItemCode = sinWH1 | sin01;
+SrcGame/src/character.cpp:2590:							dwActItemCode = sinWH1 | sin06;
+SrcGame/src/character.cpp:2595:					case sinWM1:
+SrcGame/src/character.cpp:2597:						if (hand == ITEM_CLASS_WEAPON_ONE)
+SrcGame/src/character.cpp:2599:							dwActItemCode = sinWM1 | sin01;
+SrcGame/src/character.cpp:2603:							dwActItemCode = sinWM1 | sin04;
+SrcGame/src/character.cpp:2608:					case sinWP1:
+SrcGame/src/character.cpp:2610:						if (hand == ITEM_CLASS_WEAPON_ONE)
+SrcGame/src/character.cpp:2612:							dwActItemCode = sinWP1 | sin01;
+SrcGame/src/character.cpp:2616:							dwActItemCode = sinWP1 | sin04;
+SrcGame/src/character.cpp:2621:					case sinWS1:
+SrcGame/src/character.cpp:2631:							dwActItemCode = sinWS1 | sin04;
+SrcGame/src/character.cpp:2635:							if (hand == ITEM_CLASS_WEAPON_ONE)
+SrcGame/src/character.cpp:2637:								dwActItemCode = sinWS1 | sin02;
+SrcGame/src/character.cpp:2641:								dwActItemCode = sinWS1 | sin01;
+SrcGame/src/character.cpp:2650:					case sinWS2:
+SrcGame/src/character.cpp:2652:						if (hand == ITEM_CLASS_WEAPON_ONE)
+SrcGame/src/character.cpp:2654:							dwActItemCode = sinWS2 | sin01;
+SrcGame/src/character.cpp:2658:							dwActItemCode = sinWS2 | sin05;
+SrcGame/src/character.cpp:2663:					case sinWT1:
+SrcGame/src/character.cpp:2665:						dwActItemCode = sinWT1 | sin01;
+SrcGame/src/character.cpp:2671:					if (dwActItemCode == (int)sItem[dwFindCode].CODE)
+SrcGame/src/character.cpp:3031:	if ((dwActionItemCode&sinITEM_MASK2) == sinWS1)
+SrcGame/src/character.cpp:3582:						dwActionItemCode = sinWS1;
+SrcGame/src/character.cpp:4058:						dwActionItemCode = sinWS1;
+SrcGame/src/character.cpp:4297:						dwActionItemCode = sinWS1;
+SrcGame/src/character.cpp:4394:					if (wp == sinWS1 || wp == sinWT1)
+SrcGame/src/character.cpp:4399:							(dwDispAppSkill&SKILL_APPMASK_GODLY_SHIELD) && wp == sinWT1)
+SrcGame/src/character.cpp:4446:					if (wp == sinWM1)
+SrcGame/src/character.cpp:4910:					MotionInfo->ItemCodeCount && sItem[MotionInfo->ItemCodeList[0]].CODE == (sinWM1 | sin04))
+SrcGame/src/character.cpp:5548:						if ((dwActionItemCode&sinITEM_MASK2) == sinWA1)
+SrcGame/src/character.cpp:7477:						SetTool(sItem[playBuff->wStickItems[smPLAYBUFF_ITEM_LEFT]].CODE, hvPOSI_LHAND);
+SrcGame/src/character.cpp:7489:						SetTool(sItem[playBuff->wStickItems[smPLAYBUFF_ITEM_RIGHT]].CODE, hvPOSI_RHAND);
+SrcGame/src/character.cpp:8410:				if ((dwActionItemCode&sinITEM_MASK2) == sinWT1 && ShootingFlag)
+SrcGame/src/character.cpp:8591:			&& (dwActionItemCode&sinITEM_MASK2) == sinWS1
+SrcGame/src/character.cpp:8623:		if ((dwActionItemCode&sinITEM_MASK2) == sinWS1) {
+SrcGame/src/character.cpp:10816:							SetTool(sItem[lpTransPlayBuff->PlayBuff.wStickItems[smPLAYBUFF_ITEM_LEFT]].CODE, hvPOSI_LHAND);
+SrcGame/src/character.cpp:10829:							SetTool(sItem[lpTransPlayBuff->PlayBuff.wStickItems[smPLAYBUFF_ITEM_RIGHT]].CODE, hvPOSI_RHAND);
+SrcGame/src/CoinShop.cpp:358:	lstrcpy(TransBuy.szItemCode, SelectedBox->psItem->LastCategory);
+SrcGame/src/CoinShop_T.cpp:356:	lstrcpy(TransBuy.szItemCode, SelectedBox->psItem->LastCategory);
+SrcGame/src/Damage.cpp:267:	if (((lpCurPlayer->dwActionItemCode^sinWM1)&sinITEM_MASK2) != 0)
+SrcGame/src/effectsnd.cpp:1420:		if(sItem[cnt].CODE == lpChar->dwActionItemCode)
+SrcGame/src/effectsnd.cpp:1423:			HandType = sItem[cnt].Class;
+SrcGame/src/effectsnd.cpp:1432:		if(HandType == ITEM_CLASS_WEAPON_ONE)
+SrcGame/src/effectsnd.cpp:1443:			case sinWA1:
+SrcGame/src/effectsnd.cpp:1445:			if(HandType == ITEM_CLASS_WEAPON_ONE)
+SrcGame/src/effectsnd.cpp:1451:			case sinWS2:
+SrcGame/src/effectsnd.cpp:1461:			if(HandType == ITEM_CLASS_WEAPON_ONE)
+SrcGame/src/effectsnd.cpp:1467:			case sinWP1:
+SrcGame/src/effectsnd.cpp:1469:			if(HandType == ITEM_CLASS_WEAPON_ONE)
+SrcGame/src/effectsnd.cpp:1475:			case sinWC1:
+SrcGame/src/effectsnd.cpp:1480:			case sinWS1:
+SrcGame/src/effectsnd.cpp:1485:			case sinWM1:
+SrcGame/src/effectsnd.cpp:1491:				if(HandType == ITEM_CLASS_WEAPON_ONE)
+SrcGame/src/effectsnd.cpp:1499:				if(HandType == ITEM_CLASS_WEAPON_ONE)
+SrcGame/src/effectsnd.cpp:1506:			case sinWH1:
+SrcGame/src/effectsnd.cpp:1508:			if(HandType == ITEM_CLASS_WEAPON_ONE)
+SrcGame/src/effectsnd.cpp:1514:			case sinWT1:
+SrcGame/src/netplay.cpp:11224:		if(sItem[j].CODE == sItemMoney.sItemInfo.CODE)
+SrcGame/src/netplay.cpp:11226:			memcpy(&sItemMoney, &sItem[j], sizeof(sITEM));
+SrcGame/src/playsub.cpp:549:		if (sItem[cnt].DorpItem == NULL)
+SrcGame/src/playsub.cpp:554:		wsprintf(szBuff, "Image//sinImage//Items//DropItem//it%s.ASE", sItem[cnt].DorpItem);
+SrcGame/src/playsub.cpp:562:		if (sItem[cnt].CODE == (sinGG1 | sin01) || sItem[cnt].CODE == (sinGG1 | sin02))
+SrcGame/src/playsub.cpp:654:		if (((sItem[ItemNum].CODE&sinITEM_MASK3) >> 8) > 25)
+SrcGame/src/playsub.cpp:655:			armor = (((sItem[ItemNum].CODE&sinITEM_MASK3) >> 8) - 16);
+SrcGame/src/playsub.cpp:657:			armor = (sItem[ItemNum].CODE&sinITEM_MASK3) >> 8;
+SrcGame/src/playsub.cpp:664:	if ((sItem[ItemNum].CODE&sinITEM_MASK2) == sinCA5 || (sItem[ItemNum].CODE&sinITEM_MASK2) == sinCA6)
+SrcGame/src/playsub.cpp:668:	else if ((sItem[ItemNum].CODE&sinITEM_MASK2) == sinDA3 || (sItem[ItemNum].CODE&sinITEM_MASK2) == sinDA4)
+SrcGame/src/UIItemFrame.cpp:154:		Item.lpItem = LoadDibSurfaceOffscreen((char*)FormatString("image//Sinimage//Items//%s//it%s.bmp", Item.ItemFilePath, Item.LastCategory));
+SrcGame/src/fileread.cpp:665:							if(lstrcmp(strBuff, sItem[cnt].LastCategory) == 0)
+SrcGame/src/fileread.cpp:2742:				if(lstrcmpi(strBuff, sItem[cnt].LastCategory) == 0)
+SrcGame/src/fileread.cpp:2744:					lpItem->CODE = sItem[cnt].CODE; break;
+SrcGame/src/fileread.cpp:4190:					if(lstrcmpi(strBuff, sItem[cnt].LastCategory) == 0)
+SrcGame/src/fileread.cpp:4192:						lpMonInfo->dwEvnetItem = sItem[cnt].CODE;
+SrcGame/src/fileread.cpp:4304:						if(lstrcmpi(strBuff, sItem[cnt].LastCategory) == 0)
+SrcGame/src/fileread.cpp:4306:							lpMonInfo->FallItems_Plus[lpMonInfo->FallItemPlusCount].dwItemCode = sItem[cnt].CODE;
+SrcGame/src/fileread.cpp:4363:									if(lstrcmpi(strBuff, sItem[cnt].LastCategory) == 0)
+SrcGame/src/fileread.cpp:4365:										dwItemCode[ItemCodeCnt++] = sItem[cnt].CODE;
+SrcGame/src/fileread.cpp:4406:						if(lstrcmpi(strBuff, sItem[cnt].LastCategory) == 0)
+SrcGame/src/fileread.cpp:4409:								(void *)sItem[cnt].CODE;
+SrcGame/src/fileread.cpp:4426:						if(lstrcmpi(strBuff, sItem[cnt].LastCategory) == 0)
+SrcGame/src/fileread.cpp:4429:								(void *)sItem[cnt].CODE;
+SrcGame/src/fileread.cpp:4446:						if(lstrcmpi(strBuff, sItem[cnt].LastCategory) == 0)
+SrcGame/src/fileread.cpp:4449:								(void *)sItem[cnt].CODE;
+SrcGame/src/record.cpp:4749:						if (lstrcmpi(sItem[cnt].LastCategory, strBuff) == 0)
+SrcGame/src/record.cpp:4751:							lpPostItem->dwItemCode = sItem[cnt].CODE;

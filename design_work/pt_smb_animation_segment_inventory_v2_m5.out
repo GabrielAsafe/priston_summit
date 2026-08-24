@@ -1,0 +1,321 @@
+PT_SMB_ANIMATION_SEGMENT_INVENTORY_V2
+skeleton=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/m5.smb
+file_size=13931704
+
+SOURCE_SEMANTICS
+active_segment = PosCnt > 0
+frame_match = StartFrame <= frame < EndFrame
+returned_track_index = PosNum
+inactive_PosNum_is_ignored = YES
+
+HEADER
+objects=95
+materials=0
+TmFrameCounter=7
+
+HEADER_SLOTS
+[0] EMPTY StartFrame=0 EndFrame=0 raw_PosNum=-858993460 raw_PosCnt=-858993460
+[1] ACTIVE_RANGE StartFrame=0 EndFrame=76160 raw_PosNum=-858993460 raw_PosCnt=-858993460
+[2] ACTIVE_RANGE StartFrame=76160 EndFrame=156320 raw_PosNum=-858993460 raw_PosCnt=-858993460
+[3] ACTIVE_RANGE StartFrame=156320 EndFrame=234880 raw_PosNum=-858993460 raw_PosCnt=-858993460
+[4] ACTIVE_RANGE StartFrame=234880 EndFrame=324640 raw_PosNum=-858993460 raw_PosCnt=-858993460
+[5] ACTIVE_RANGE StartFrame=324640 EndFrame=422400 raw_PosNum=-858993460 raw_PosCnt=-858993460
+[6] ACTIVE_RANGE StartFrame=422400 EndFrame=500160 raw_PosNum=-858993460 raw_PosCnt=-858993460
+header_active_range_slots=[1, 2, 3, 4, 5, 6]
+header_active_range_count=6
+
+TRACK_TOTALS
+objects_with_rotation=83
+objects_with_position=23
+objects_with_scale=0
+total_rotation_keys=160864
+total_position_keys=12647
+total_scale_keys=0
+
+ACTIVE_OBJECTS_BY_SLOT
+slot=0 range=0..0 ROT:objects=0,keys=0 POS:objects=0,keys=0 SCALE:objects=0,keys=0
+slot=1 range=0..76160 ROT:objects=80,keys=18301 POS:objects=13,keys=1341 SCALE:objects=0,keys=0
+slot=2 range=76160..156320 ROT:objects=79,keys=27233 POS:objects=13,keys=2546 SCALE:objects=0,keys=0
+slot=3 range=156320..234880 ROT:objects=82,keys=29148 POS:objects=14,keys=1928 SCALE:objects=0,keys=0
+slot=4 range=234880..324640 ROT:objects=78,keys=32434 POS:objects=16,keys=2813 SCALE:objects=0,keys=0
+slot=5 range=324640..422400 ROT:objects=79,keys=38062 POS:objects=15,keys=2736 SCALE:objects=0,keys=0
+slot=6 range=422400..500160 ROT:objects=65,keys=15686 POS:objects=7,keys=1283 SCALE:objects=0,keys=0
+
+KEY_BONE_SEGMENTS
+'Bip01': R=2216 P=2478 S=0
+  ROT slot1 active range=0..76160 slice=0:223 keys=223 keyframes=0..48320
+  ROT slot2 active range=76160..156320 slice=223:593 keys=370 keyframes=76160..156320
+  ROT slot3 active range=156320..234880 slice=593:825 keys=232 keyframes=156320..234880
+  ROT slot4 active range=234880..324640 slice=825:1323 keys=498 keyframes=234880..324640
+  ROT slot5 active range=324640..422400 slice=1323:1879 keys=556 keyframes=324640..422240
+  ROT slot6 active range=422400..500160 slice=1879:2216 keys=337 keyframes=422400..500160
+  POS slot1 active range=0..76160 slice=0:243 keys=243 keyframes=0..48320
+  POS slot2 active range=76160..156320 slice=243:613 keys=370 keyframes=76160..156320
+  POS slot3 active range=156320..234880 slice=613:1079 keys=466 keyframes=156320..234880
+  POS slot4 active range=234880..324640 slice=1079:1579 keys=500 keyframes=234880..324640
+  POS slot5 active range=324640..422400 slice=1579:2143 keys=564 keyframes=324640..422240
+  POS slot6 active range=422400..500160 slice=2143:2478 keys=335 keyframes=422400..500160
+'Bip01 Pelvis': R=474 P=68 S=0
+  ROT slot1 active range=0..76160 slice=0:52 keys=52 keyframes=0..48320
+  ROT slot2 active range=76160..156320 slice=52:422 keys=370 keyframes=76160..156320
+  ROT slot5 active range=324640..422400 slice=422:474 keys=52 keyframes=324640..422240
+  POS slot5 active range=324640..422400 slice=0:68 keys=68 keyframes=324640..422240
+'Bip01 Spine': R=2516 P=538 S=0
+  ROT slot1 active range=0..76160 slice=0:255 keys=255 keyframes=0..48320
+  ROT slot2 active range=76160..156320 slice=255:721 keys=466 keyframes=76160..156320
+  ROT slot3 active range=156320..234880 slice=721:1163 keys=442 keyframes=156320..234880
+  ROT slot4 active range=234880..324640 slice=1163:1663 keys=500 keyframes=234880..324640
+  ROT slot5 active range=324640..422400 slice=1663:2219 keys=556 keyframes=324640..422240
+  ROT slot6 active range=422400..500160 slice=2219:2516 keys=297 keyframes=422400..500160
+  POS slot1 active range=0..76160 slice=0:60 keys=60 keyframes=0..48320
+  POS slot2 active range=76160..156320 slice=60:416 keys=356 keyframes=76160..156320
+  POS slot3 active range=156320..234880 slice=416:423 keys=7 keyframes=156320..234880
+  POS slot4 active range=234880..324640 slice=423:448 keys=25 keyframes=234880..324640
+  POS slot5 active range=324640..422400 slice=448:524 keys=76 keyframes=324640..422240
+  POS slot6 active range=422400..500160 slice=524:538 keys=14 keyframes=422400..500160
+'Bip01 Spine1': R=2518 P=122 S=0
+  ROT slot1 active range=0..76160 slice=0:255 keys=255 keyframes=0..48320
+  ROT slot2 active range=76160..156320 slice=255:721 keys=466 keyframes=76160..156320
+  ROT slot3 active range=156320..234880 slice=721:1165 keys=444 keyframes=156320..234880
+  ROT slot4 active range=234880..324640 slice=1165:1665 keys=500 keyframes=234880..324640
+  ROT slot5 active range=324640..422400 slice=1665:2221 keys=556 keyframes=324640..422240
+  ROT slot6 active range=422400..500160 slice=2221:2518 keys=297 keyframes=422400..500160
+  POS slot1 active range=0..76160 slice=0:13 keys=13 keyframes=0..48320
+  POS slot2 active range=76160..156320 slice=13:19 keys=6 keyframes=76160..156320
+  POS slot3 active range=156320..234880 slice=19:28 keys=9 keyframes=156320..234880
+  POS slot4 active range=234880..324640 slice=28:71 keys=43 keyframes=234880..324640
+  POS slot5 active range=324640..422400 slice=71:107 keys=36 keyframes=324640..422240
+  POS slot6 active range=422400..500160 slice=107:122 keys=15 keyframes=422400..500160
+'Bip01 Neck': R=437 P=0 S=0
+  ROT slot1 active range=0..76160 slice=0:100 keys=100 keyframes=0..48320
+  ROT slot2 active range=76160..156320 slice=100:186 keys=86 keyframes=76160..156320
+  ROT slot3 active range=156320..234880 slice=186:236 keys=50 keyframes=156320..234880
+  ROT slot4 active range=234880..324640 slice=236:357 keys=121 keyframes=234880..324640
+  ROT slot5 active range=324640..422400 slice=357:437 keys=80 keyframes=324640..422240
+'Bip01 Head': R=2558 P=0 S=0
+  ROT slot1 active range=0..76160 slice=0:256 keys=256 keyframes=0..48320
+  ROT slot2 active range=76160..156320 slice=256:722 keys=466 keyframes=76160..156320
+  ROT slot3 active range=156320..234880 slice=722:1166 keys=444 keyframes=156320..234880
+  ROT slot4 active range=234880..324640 slice=1166:1666 keys=500 keyframes=234880..324640
+  ROT slot5 active range=324640..422400 slice=1666:2222 keys=556 keyframes=324640..422240
+  ROT slot6 active range=422400..500160 slice=2222:2558 keys=336 keyframes=422400..500160
+'Bip01 L UpperArm': R=2592 P=0 S=0
+  ROT slot1 active range=0..76160 slice=0:256 keys=256 keyframes=0..48320
+  ROT slot2 active range=76160..156320 slice=256:724 keys=468 keyframes=76160..156320
+  ROT slot3 active range=156320..234880 slice=724:1180 keys=456 keyframes=156320..234880
+  ROT slot4 active range=234880..324640 slice=1180:1690 keys=510 keyframes=234880..324640
+  ROT slot5 active range=324640..422400 slice=1690:2255 keys=565 keyframes=324640..422240
+  ROT slot6 active range=422400..500160 slice=2255:2592 keys=337 keyframes=422400..500160
+'Bip01 R UpperArm': R=2604 P=0 S=0
+  ROT slot1 active range=0..76160 slice=0:256 keys=256 keyframes=0..48320
+  ROT slot2 active range=76160..156320 slice=256:730 keys=474 keyframes=76160..156320
+  ROT slot3 active range=156320..234880 slice=730:1194 keys=464 keyframes=156320..234880
+  ROT slot4 active range=234880..324640 slice=1194:1703 keys=509 keyframes=234880..324640
+  ROT slot5 active range=324640..422400 slice=1703:2267 keys=564 keyframes=324640..422240
+  ROT slot6 active range=422400..500160 slice=2267:2604 keys=337 keyframes=422400..500160
+'Bip01 L Thigh': R=2551 P=2434 S=0
+  ROT slot1 active range=0..76160 slice=0:257 keys=257 keyframes=0..48320
+  ROT slot2 active range=76160..156320 slice=257:723 keys=466 keyframes=76160..156320
+  ROT slot3 active range=156320..234880 slice=723:1190 keys=467 keyframes=156320..234880
+  ROT slot4 active range=234880..324640 slice=1190:1690 keys=500 keyframes=234880..324640
+  ROT slot5 active range=324640..422400 slice=1690:2254 keys=564 keyframes=324640..422240
+  ROT slot6 active range=422400..500160 slice=2254:2551 keys=297 keyframes=422400..500160
+  POS slot1 active range=0..76160 slice=0:250 keys=250 keyframes=0..48320
+  POS slot2 active range=76160..156320 slice=250:716 keys=466 keyframes=76160..156320
+  POS slot3 active range=156320..234880 slice=716:1092 keys=376 keyframes=156320..234880
+  POS slot4 active range=234880..324640 slice=1092:1591 keys=499 keyframes=234880..324640
+  POS slot5 active range=324640..422400 slice=1591:2143 keys=552 keyframes=324640..422240
+  POS slot6 active range=422400..500160 slice=2143:2434 keys=291 keyframes=422400..500160
+'Bip01 R Thigh': R=2573 P=2490 S=0
+  ROT slot1 active range=0..76160 slice=0:259 keys=259 keyframes=0..48320
+  ROT slot2 active range=76160..156320 slice=259:725 keys=466 keyframes=76160..156320
+  ROT slot3 active range=156320..234880 slice=725:1194 keys=469 keyframes=156320..234880
+  ROT slot4 active range=234880..324640 slice=1194:1712 keys=518 keyframes=234880..324640
+  ROT slot5 active range=324640..422400 slice=1712:2276 keys=564 keyframes=324640..422240
+  ROT slot6 active range=422400..500160 slice=2276:2573 keys=297 keyframes=422400..500160
+  POS slot1 active range=0..76160 slice=0:249 keys=249 keyframes=0..48320
+  POS slot2 active range=76160..156320 slice=249:715 keys=466 keyframes=76160..156320
+  POS slot3 active range=156320..234880 slice=715:1149 keys=434 keyframes=156320..234880
+  POS slot4 active range=234880..324640 slice=1149:1645 keys=496 keyframes=234880..324640
+  POS slot5 active range=324640..422400 slice=1645:2198 keys=553 keyframes=324640..422240
+  POS slot6 active range=422400..500160 slice=2198:2490 keys=292 keyframes=422400..500160
+'Bip weapon01': R=220 P=209 S=0
+  ROT slot1 active range=0..76160 slice=0:28 keys=28 keyframes=0..48320
+  ROT slot2 active range=76160..156320 slice=28:86 keys=58 keyframes=76160..156320
+  ROT slot3 active range=156320..234880 slice=86:115 keys=29 keyframes=157760..234880
+  ROT slot4 active range=234880..324640 slice=115:163 keys=48 keyframes=236320..324640
+  ROT slot5 active range=324640..422400 slice=163:217 keys=54 keyframes=326080..422400
+  ROT slot6 active range=422400..500160 slice=217:220 keys=3 keyframes=345280..500160
+  POS slot1 active range=0..76160 slice=0:28 keys=28 keyframes=0..48320
+  POS slot2 active range=76160..156320 slice=28:86 keys=58 keyframes=76160..156320
+  POS slot3 active range=156320..234880 slice=86:115 keys=29 keyframes=157760..234880
+  POS slot4 active range=234880..324640 slice=115:163 keys=48 keyframes=236320..324640
+  POS slot5 active range=324640..422400 slice=163:206 keys=43 keyframes=326080..422400
+  POS slot6 active range=422400..500160 slice=206:209 keys=3 keyframes=345280..500160
+'Bip weapon02': R=8 P=8 S=0
+  ROT slot1 active range=0..76160 slice=0:5 keys=5 keyframes=1440..48320
+  ROT slot3 active range=156320..234880 slice=5:8 keys=3 keyframes=204320..234880
+  POS slot1 active range=0..76160 slice=0:5 keys=5 keyframes=1440..48320
+  POS slot3 active range=156320..234880 slice=5:8 keys=3 keyframes=204320..234880
+'Bip in01': R=186 P=186 S=0
+  ROT slot1 active range=0..76160 slice=0:44 keys=44 keyframes=0..76160
+  ROT slot2 active range=76160..156320 slice=44:89 keys=45 keyframes=76160..156320
+  ROT slot3 active range=156320..234880 slice=89:134 keys=45 keyframes=156320..234880
+  ROT slot4 active range=234880..324640 slice=134:179 keys=45 keyframes=234880..324640
+  ROT slot5 active range=324640..422400 slice=179:186 keys=7 keyframes=324640..422240
+  POS slot1 active range=0..76160 slice=0:44 keys=44 keyframes=0..76160
+  POS slot2 active range=76160..156320 slice=44:89 keys=45 keyframes=76160..156320
+  POS slot3 active range=156320..234880 slice=89:134 keys=45 keyframes=156320..234880
+  POS slot4 active range=234880..324640 slice=134:179 keys=45 keyframes=234880..324640
+  POS slot5 active range=324640..422400 slice=179:186 keys=7 keyframes=324640..422240
+'Bip in-bow': R=186 P=186 S=0
+  ROT slot1 active range=0..76160 slice=0:44 keys=44 keyframes=0..76160
+  ROT slot2 active range=76160..156320 slice=44:89 keys=45 keyframes=76160..156320
+  ROT slot3 active range=156320..234880 slice=89:134 keys=45 keyframes=156320..234880
+  ROT slot4 active range=234880..324640 slice=134:179 keys=45 keyframes=234880..324640
+  ROT slot5 active range=324640..422400 slice=179:186 keys=7 keyframes=324640..422240
+  POS slot1 active range=0..76160 slice=0:44 keys=44 keyframes=0..76160
+  POS slot2 active range=76160..156320 slice=44:89 keys=45 keyframes=76160..156320
+  POS slot3 active range=156320..234880 slice=89:134 keys=45 keyframes=156320..234880
+  POS slot4 active range=234880..324640 slice=134:179 keys=45 keyframes=234880..324640
+  POS slot5 active range=324640..422400 slice=179:186 keys=7 keyframes=324640..422240
+'Bip in-cro': R=186 P=186 S=0
+  ROT slot1 active range=0..76160 slice=0:44 keys=44 keyframes=0..76160
+  ROT slot2 active range=76160..156320 slice=44:89 keys=45 keyframes=76160..156320
+  ROT slot3 active range=156320..234880 slice=89:134 keys=45 keyframes=156320..234880
+  ROT slot4 active range=234880..324640 slice=134:179 keys=45 keyframes=234880..324640
+  ROT slot5 active range=324640..422400 slice=179:186 keys=7 keyframes=324640..422240
+  POS slot1 active range=0..76160 slice=0:44 keys=44 keyframes=0..76160
+  POS slot2 active range=76160..156320 slice=44:89 keys=45 keyframes=76160..156320
+  POS slot3 active range=156320..234880 slice=89:134 keys=45 keyframes=156320..234880
+  POS slot4 active range=234880..324640 slice=134:179 keys=45 keyframes=234880..324640
+  POS slot5 active range=324640..422400 slice=179:186 keys=7 keyframes=324640..422240
+
+VALIDATION
+errors=298
+warnings=0
+ERROR Bip01 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 POS slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 POS slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 Footsteps ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 Footsteps ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 Footsteps POS slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 Footsteps POS slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 Pelvis ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 Pelvis ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 Pelvis POS slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 Spine ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 Spine ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 Spine POS slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 Spine POS slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 Spine1 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 Spine1 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 Spine1 POS slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 Spine1 POS slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 Neck ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 Neck ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 Head ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 Head ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Clavicle ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Clavicle ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Clavicle POS slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Clavicle POS slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L UpperArm ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L UpperArm ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Forearm ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Forearm ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Hand ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Hand ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Finger0 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Finger0 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Finger01 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Finger01 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Finger1 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Finger1 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Finger11 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Finger11 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Finger2 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Finger2 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Finger21 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Finger21 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Clavicle ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Clavicle ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Clavicle POS slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Clavicle POS slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R UpperArm ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R UpperArm ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Forearm ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Forearm ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Hand ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Hand ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Finger0 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Finger0 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Finger01 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Finger01 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Finger1 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Finger1 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Finger11 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Finger11 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Finger2 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Finger2 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Finger21 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Finger21 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip-0032 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip-0032 ROT slot=4: first_key=236320 > StartFrame=234880
+ERROR Bip-0032 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip-0032 POS slot=4: first_key=236320 > StartFrame=234880
+ERROR Bip-0033 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip-0033 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip-0034 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip-0034 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip-0035 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip-0035 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Thigh ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Thigh ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Thigh POS slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Thigh POS slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Calf ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Calf ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Foot ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Foot ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 L Toe0 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 L Toe0 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Thigh ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Thigh ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Thigh POS slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Thigh POS slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Calf ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Calf ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Foot ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Foot ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip01 R Toe0 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip01 R Toe0 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip-0019 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip-0019 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip-0020 ROT slot=1: first_key=320 > StartFrame=0
+ERROR Bip-0020 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip-0020 ROT slot=2: first_key=76320 > StartFrame=76160
+ERROR Bip-0020 ROT slot=3: first_key=156640 > StartFrame=156320
+ERROR Bip-0020 ROT slot=4: first_key=235200 > StartFrame=234880
+ERROR Bip-0020 ROT slot=5: first_key=324960 > StartFrame=324640
+ERROR Bip-0020 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip-0010 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip-0010 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip-0011 ROT slot=1: first_key=320 > StartFrame=0
+ERROR Bip-0011 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip-0011 ROT slot=2: first_key=76320 > StartFrame=76160
+ERROR Bip-0011 ROT slot=3: first_key=156640 > StartFrame=156320
+ERROR Bip-0011 ROT slot=4: first_key=235200 > StartFrame=234880
+ERROR Bip-0011 ROT slot=5: first_key=324960 > StartFrame=324640
+ERROR Bip-0011 ROT slot=5: last_key=422240 < EndFrame=422400
+ERROR Bip-0012 ROT slot=1: first_key=320 > StartFrame=0
+ERROR Bip-0012 ROT slot=1: last_key=48320 < EndFrame=76160
+ERROR Bip-0012 ROT slot=2: first_key=76320 > StartFrame=76160
+ERROR Bip-0012 ROT slot=3: first_key=156640 > StartFrame=156320
+ERROR Bip-0012 ROT slot=4: first_key=235200 > StartFrame=234880
+
+TMFRAMECOUNT_HISTOGRAM
+TmFrameCnt=7: objects=95
+
+animation_segment_inventory_check=FAIL

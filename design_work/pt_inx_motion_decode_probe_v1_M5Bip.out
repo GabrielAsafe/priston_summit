@@ -1,0 +1,109 @@
+PT_INX_MOTION_DECODE_PROBE_V1
+inx=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/M5Bip.inx
+skeleton=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/m5.smb
+logical_path='char\\tmABCD\\M5Bip.inx'
+file_size=95268
+
+ABI_LAYOUT
+smMODELINFO_size=95268
+smMOTIONINFO_size_assumed=172
+MotionInfo_offset=0x018C
+MotionCount_offset=0x1598C
+MotionCount=64
+
+MODEL_KEYWORD
+FileTypeKeyWord=0x157575F4
+LinkFileKeyWord=0xF4414115
+szLinkFile='char\\tmABCD\\M5Bip.in'
+embedded_file_code=0xF4154175
+logical_path_code=0xF4154175
+logical_path_code_match=YES
+link_inx_path='char\\tmABCD\\M5Bip.inx'
+embedded_link_code=0xF4154175
+calculated_link_code=0xF4154175
+link_path_code_match=YES
+
+SMB_TMFRAME
+TmFrameCounter=7
+slot=0 fixed=0..0 logical=0..0
+slot=1 fixed=0..76160 logical=0..476
+slot=2 fixed=76160..156320 logical=476..977
+slot=3 fixed=156320..234880 logical=977..1468
+slot=4 fixed=234880..324640 logical=1468..2029
+slot=5 fixed=324640..422400 logical=2029..2640
+slot=6 fixed=422400..500160 logical=2640..3126
+
+MOTIONS
+[000] State=0x00000000 MotionFrame=0 slot=- local=0..0 global=-..- Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000000 ItemCount=0 SkillsNonZero=[]
+[001] State=0x00000000 MotionFrame=0 slot=- local=0..0 global=-..- Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000000 ItemCount=0 SkillsNonZero=[]
+[002] State=0x00000000 MotionFrame=0 slot=- local=0..0 global=-..- Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000000 ItemCount=0 SkillsNonZero=[]
+[003] State=0x00000000 MotionFrame=0 slot=- local=0..0 global=-..- Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000000 ItemCount=0 SkillsNonZero=[]
+[004] State=0x00000000 MotionFrame=0 slot=- local=0..0 global=-..- Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000000 ItemCount=0 SkillsNonZero=[]
+[005] State=0x00000000 MotionFrame=0 slot=- local=0..0 global=-..- Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000000 ItemCount=0 SkillsNonZero=[]
+[006] State=0x00000000 MotionFrame=0 slot=- local=0..0 global=-..- Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000000 ItemCount=0 SkillsNonZero=[]
+[007] State=0x00000000 MotionFrame=0 slot=- local=0..0 global=-..- Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000000 ItemCount=0 SkillsNonZero=[]
+[008] State=0x00000000 MotionFrame=0 slot=- local=0..0 global=-..- Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000000 ItemCount=0 SkillsNonZero=[]
+[009] State=0x00000000 MotionFrame=0 slot=- local=0..0 global=-..- Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000000 ItemCount=0 SkillsNonZero=[]
+[010] State=0x00000040 MotionFrame=2 slot=1 local=10..50 global=10..50 Repeat=1 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=1 SkillsNonZero=[]
+[011] State=0x00000040 MotionFrame=2 slot=1 local=60..110 global=60..110 Repeat=1 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=1 SkillsNonZero=[]
+[012] State=0x00000200 MotionFrame=2 slot=1 local=120..190 global=120..190 Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=0 SkillsNonZero=[]
+[013] State=0x00000080 MotionFrame=2 slot=1 local=200..210 global=200..210 Repeat=1 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=0 SkillsNonZero=[]
+[014] State=0x00000170 MotionFrame=2 slot=1 local=220..235 global=220..235 Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=0 SkillsNonZero=[]
+[015] State=0x00000180 MotionFrame=2 slot=1 local=240..290 global=240..290 Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=0 SkillsNonZero=[]
+[016] State=0x00000050 MotionFrame=3 slot=2 local=10..40 global=486..516 Repeat=1 KeyCode=0 EventOffsets=[2, 17] JobBits=0x00000080 ItemCount=26 SkillsNonZero=[]
+[017] State=0x00000050 MotionFrame=3 slot=2 local=50..80 global=526..556 Repeat=1 KeyCode=0 EventOffsets=[2, 17] JobBits=0x00000080 ItemCount=48 SkillsNonZero=[]
+[018] State=0x00000050 MotionFrame=3 slot=2 local=90..120 global=566..596 Repeat=1 KeyCode=0 EventOffsets=[2, 17] JobBits=0x00000080 ItemCount=36 SkillsNonZero=[]
+[019] State=0x00000050 MotionFrame=3 slot=2 local=130..160 global=606..636 Repeat=1 KeyCode=0 EventOffsets=[2, 17] JobBits=0x00000080 ItemCount=33 SkillsNonZero=[]
+[020] State=0x00000050 MotionFrame=3 slot=2 local=170..200 global=646..676 Repeat=1 KeyCode=0 EventOffsets=[2, 17] JobBits=0x00000080 ItemCount=23 SkillsNonZero=[]
+[021] State=0x00000050 MotionFrame=3 slot=2 local=210..240 global=686..716 Repeat=1 KeyCode=0 EventOffsets=[2, 17] JobBits=0x00000080 ItemCount=15 SkillsNonZero=[]
+[022] State=0x00000050 MotionFrame=3 slot=2 local=250..280 global=726..756 Repeat=1 KeyCode=0 EventOffsets=[2, 17] JobBits=0x00000080 ItemCount=6 SkillsNonZero=[]
+[023] State=0x00000060 MotionFrame=3 slot=2 local=300..320 global=776..796 Repeat=1 KeyCode=0 EventOffsets=[2, 12] JobBits=0x00000080 ItemCount=26 SkillsNonZero=[]
+[024] State=0x00000060 MotionFrame=3 slot=2 local=330..350 global=806..826 Repeat=1 KeyCode=0 EventOffsets=[2, 12] JobBits=0x00000080 ItemCount=48 SkillsNonZero=[]
+[025] State=0x00000060 MotionFrame=3 slot=2 local=360..380 global=836..856 Repeat=1 KeyCode=0 EventOffsets=[2, 12] JobBits=0x00000080 ItemCount=32 SkillsNonZero=[]
+[026] State=0x00000060 MotionFrame=3 slot=2 local=390..410 global=866..886 Repeat=1 KeyCode=0 EventOffsets=[2, 12] JobBits=0x00000080 ItemCount=33 SkillsNonZero=[]
+[027] State=0x00000060 MotionFrame=3 slot=2 local=420..440 global=896..916 Repeat=1 KeyCode=0 EventOffsets=[2, 12] JobBits=0x00000080 ItemCount=23 SkillsNonZero=[]
+[028] State=0x00000060 MotionFrame=3 slot=2 local=450..470 global=926..946 Repeat=1 KeyCode=0 EventOffsets=[2, 12] JobBits=0x00000080 ItemCount=15 SkillsNonZero=[]
+[029] State=0x00000060 MotionFrame=3 slot=2 local=480..500 global=956..976 Repeat=1 KeyCode=0 EventOffsets=[2, 12] JobBits=0x00000080 ItemCount=6 SkillsNonZero=[]
+[030] State=0x00000140 MotionFrame=4 slot=3 local=360..380 global=1337..1357 Repeat=0 KeyCode=0 EventOffsets=[19] JobBits=0x00000080 ItemCount=0 SkillsNonZero=[]
+[031] State=0x00000040 MotionFrame=4 slot=3 local=10..50 global=987..1027 Repeat=1 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=26 SkillsNonZero=[]
+[032] State=0x00000040 MotionFrame=4 slot=3 local=60..100 global=1037..1077 Repeat=1 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=48 SkillsNonZero=[]
+[033] State=0x00000040 MotionFrame=4 slot=3 local=110..150 global=1087..1127 Repeat=1 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=36 SkillsNonZero=[]
+[034] State=0x00000040 MotionFrame=4 slot=3 local=160..200 global=1137..1177 Repeat=1 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=33 SkillsNonZero=[]
+[035] State=0x00000040 MotionFrame=4 slot=3 local=210..250 global=1187..1227 Repeat=1 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=23 SkillsNonZero=[]
+[036] State=0x00000040 MotionFrame=4 slot=3 local=260..300 global=1237..1277 Repeat=1 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=15 SkillsNonZero=[]
+[037] State=0x00000040 MotionFrame=4 slot=3 local=310..350 global=1287..1327 Repeat=1 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=6 SkillsNonZero=[]
+[038] State=0x00000110 MotionFrame=4 slot=3 local=390..410 global=1367..1387 Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=0 SkillsNonZero=[]
+[039] State=0x00000120 MotionFrame=4 slot=3 local=420..482 global=1397..1459 Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=0 SkillsNonZero=[]
+[040] State=0x00000100 MotionFrame=5 slot=4 local=10..50 global=1478..1518 Repeat=0 KeyCode=0 EventOffsets=[20] JobBits=0x00000080 ItemCount=1 SkillsNonZero=[]
+[041] State=0x00000100 MotionFrame=5 slot=4 local=160..200 global=1628..1668 Repeat=0 KeyCode=0 EventOffsets=[20] JobBits=0x00000080 ItemCount=48 SkillsNonZero=[]
+[042] State=0x00000100 MotionFrame=5 slot=4 local=210..260 global=1678..1728 Repeat=0 KeyCode=0 EventOffsets=[25] JobBits=0x00000080 ItemCount=36 SkillsNonZero=[]
+[043] State=0x00000100 MotionFrame=5 slot=4 local=270..310 global=1738..1778 Repeat=0 KeyCode=0 EventOffsets=[22] JobBits=0x00000080 ItemCount=33 SkillsNonZero=[]
+[044] State=0x00000100 MotionFrame=5 slot=4 local=370..410 global=1838..1878 Repeat=0 KeyCode=0 EventOffsets=[20] JobBits=0x00000080 ItemCount=3 SkillsNonZero=[]
+[045] State=0x00000100 MotionFrame=5 slot=4 local=320..360 global=1788..1828 Repeat=0 KeyCode=0 EventOffsets=[22] JobBits=0x00000080 ItemCount=23 SkillsNonZero=[]
+[046] State=0x00000100 MotionFrame=5 slot=4 local=420..460 global=1888..1928 Repeat=0 KeyCode=0 EventOffsets=[20] JobBits=0x00000080 ItemCount=15 SkillsNonZero=[]
+[047] State=0x00000100 MotionFrame=5 slot=4 local=60..100 global=1528..1568 Repeat=0 KeyCode=0 EventOffsets=[18] JobBits=0x00000080 ItemCount=20 SkillsNonZero=[]
+[048] State=0x00000100 MotionFrame=5 slot=4 local=110..150 global=1578..1618 Repeat=0 KeyCode=0 EventOffsets=[17] JobBits=0x00000080 ItemCount=2 SkillsNonZero=[]
+[049] State=0x00000100 MotionFrame=5 slot=4 local=520..560 global=1988..2028 Repeat=0 KeyCode=0 EventOffsets=[18] JobBits=0x00000080 ItemCount=3 SkillsNonZero=[]
+[050] State=0x00000100 MotionFrame=5 slot=4 local=470..510 global=1938..1978 Repeat=0 KeyCode=0 EventOffsets=[15] JobBits=0x00000080 ItemCount=6 SkillsNonZero=[]
+[051] State=0x00000150 MotionFrame=6 slot=5 local=10..60 global=2039..2089 Repeat=0 KeyCode=0 EventOffsets=[30] JobBits=0x00000080 ItemCount=23 SkillsNonZero=[95, 98, 105, 104, 102, 101, 106]
+[052] State=0x00000150 MotionFrame=6 slot=5 local=70..115 global=2099..2144 Repeat=0 KeyCode=0 EventOffsets=[22] JobBits=0x00000080 ItemCount=23 SkillsNonZero=[96, 97]
+[053] State=0x00000150 MotionFrame=6 slot=5 local=120..170 global=2149..2199 Repeat=0 KeyCode=0 EventOffsets=[34] JobBits=0x00000080 ItemCount=23 SkillsNonZero=[]
+[054] State=0x00000150 MotionFrame=6 slot=5 local=240..290 global=2269..2319 Repeat=0 KeyCode=0 EventOffsets=[30] JobBits=0x00000080 ItemCount=11 SkillsNonZero=[100]
+[055] State=0x00000150 MotionFrame=6 slot=5 local=300..350 global=2329..2379 Repeat=0 KeyCode=0 EventOffsets=[30] JobBits=0x00000080 ItemCount=13 SkillsNonZero=[100]
+[056] State=0x00000150 MotionFrame=6 slot=5 local=360..410 global=2389..2439 Repeat=0 KeyCode=0 EventOffsets=[27] JobBits=0x00000080 ItemCount=23 SkillsNonZero=[]
+[057] State=0x00000220 MotionFrame=6 slot=5 local=420..470 global=2449..2499 Repeat=0 KeyCode=0 EventOffsets=[] JobBits=0x00000080 ItemCount=0 SkillsNonZero=[]
+[058] State=0x00000150 MotionFrame=6 slot=5 local=480..540 global=2509..2569 Repeat=0 KeyCode=0 EventOffsets=[29, 44] JobBits=0x00000080 ItemCount=11 SkillsNonZero=[103]
+[059] State=0x00000150 MotionFrame=6 slot=5 local=550..610 global=2579..2639 Repeat=0 KeyCode=0 EventOffsets=[29, 44] JobBits=0x00000080 ItemCount=13 SkillsNonZero=[103]
+[060] State=0x00000150 MotionFrame=7 slot=6 local=10..85 global=2650..2725 Repeat=0 KeyCode=0 EventOffsets=[45] JobBits=0x00000080 ItemCount=24 SkillsNonZero=[107]
+[061] State=0x00000150 MotionFrame=7 slot=6 local=140..270 global=2780..2910 Repeat=0 KeyCode=0 EventOffsets=[40, 80] JobBits=0x00000080 ItemCount=24 SkillsNonZero=[108]
+[062] State=0x00000150 MotionFrame=7 slot=6 local=280..340 global=2920..2980 Repeat=0 KeyCode=0 EventOffsets=[25] JobBits=0x00000080 ItemCount=24 SkillsNonZero=[109]
+[063] State=0x00000150 MotionFrame=7 slot=6 local=380..470 global=3020..3110 Repeat=0 KeyCode=0 EventOffsets=[50] JobBits=0x00000080 ItemCount=24 SkillsNonZero=[110]
+
+VALIDATION
+decode_errors=0
+frame_errors=0
+abi_layout_consistent=YES
+keyword_paths_consistent=YES
+motion_decode_consistent=YES
+motion_ranges_consistent=YES
+inx_motion_decode_check=PASS

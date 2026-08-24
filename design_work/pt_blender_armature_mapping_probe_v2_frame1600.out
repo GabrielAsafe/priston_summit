@@ -1,0 +1,47 @@
+00:00.027  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.027  color_management | Using fallback mode for management
+00:01.704  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_direct_smd_v3_static_armature.blend"
+PT_BLENDER_ARMATURE_MAPPING_PROBE_V2
+input_blend=/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_direct_smd_v3_static_armature.blend
+motion_index=10
+state=STAND
+engine_frame=1600
+logical_frame=10
+bones=95
+visible_meshes=['MbmC01', 'MlmC01', 'MsmC01']
+
+POSE_ASSIGNMENT
+max_error_during_assignment=0.587631486
+max_error_during_assignment_bone='Bip weapon02'
+final_pose_max_error=0.587631486
+final_pose_max_error_bone='Bip weapon02'
+
+VERTEX_COMPARISON
+total_vertices=245
+max_vertex_error=0.0217075676
+rms_vertex_error=0.00728398075
+max_vertex_error_where=('MsmC01', 106, 'Bip01 R Forearm', (-6.798899734016672, 0.5292459932006832, 22.725856450818377), (-6.8111371994018555, 0.5471563339233398, 22.726682662963867))
+  MbmC01: max_error=0.0164394186 rms_error=0.00513597241
+  MlmC01: max_error=0.00396071551 rms_error=0.00213614052
+  MsmC01: max_error=0.0217075676 rms_error=0.00919788691
+
+BBOX
+source_bbox=x[-8.3705,7.9991] y[-9.2923,5.4636] z[0.0091,37.2498]
+armature_bbox=x[-8.3788,8.0125] y[-9.2922,5.4641] z[0.0091,37.2486]
+
+SOURCE_BRANCH
+active_rot=80
+active_pos=13
+rot_end_clamps=1
+
+Info: Saved as "MfbC01_armature_mapping_v2_frame1600.blend"
+VALIDATION
+no_keyframes=YES
+pose_matrix_mapping=FAIL
+armature_vs_source_skin=FAIL
+output=/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_armature_mapping_v2_frame1600.blend
+armature_mapping_probe_check=FAIL
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

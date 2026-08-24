@@ -1,0 +1,6566 @@
+# Priston Tale 3D — Source Única de Referência
+
+> Compilação consolidada dos materiais e discussões desta conversa sobre edição de modelos 3D no Priston Tale, com foco principal em **armaduras, heads, meshes de personagem, ASE, Physique, UV, materiais e integração com o cliente**.
+>
+> Esta source elimina mensagens de fórum sem utilidade prática, repetições e palpites contraditórios. Onde os materiais não confirmam algo, isso é explicitamente marcado.
+
+---
+
+# 1. Objetivo
+
+O workflow documentado aqui serve para:
+
+- editar armaduras existentes;
+- substituir partes de armadura;
+- criar novas peças visuais usando uma armadura funcional como base;
+- editar heads/capacetes e peças rígidas;
+- trabalhar com `.ASE` de personagem;
+- preservar rigging/Physique;
+- corrigir UV, materiais e texturas;
+- integrar a nova geometria no arquivo que o jogo já reconhece.
+
+A estratégia mais segura é:
+
+```text
+INX / INI
+   ↓
+descobrir arquivo ASE + nomes de mesh
+   ↓
+usar um ASE funcional como base
+   ↓
+modelar nova peça
+   ↓
+UV + textura
+   ↓
+posicionar no personagem
+   ↓
+Physique / bones
+   ↓
+Export Selected
+   ↓
+editar/integrar dados no ASE funcional
+   ↓
+corrigir materiais e caminhos
+   ↓
+testar no cliente
+```
+
+A filosofia principal é **não recriar toda a estrutura da armadura do zero** quando existe um ASE funcional que já contém bones, hierarquia, nomes e estrutura aceitos pelo jogo.
+
+---
+
+# 2. Arquivos principais
+
+## 2.1 Arquivos de personagem
+
+Os materiais descrevem os arquivos aproximadamente assim:
+
+```text
+.INX  → configuração compilada da armadura/personagem
+.INI  → versão legível da configuração
+.SMD  → modelo 3D usado pelo cliente
+.SMB  → dados de movimento/animação associados
+.ASE  → representação ASCII/editável do modelo
+.BMP  → textura bitmap
+.TGA  → textura com suporte a alpha em determinados usos
+```
+
+O `.INX/.INI` é especialmente importante porque informa:
+
+- qual arquivo de modelo é carregado;
+- quais nomes de mesh o jogo procura;
+- ligação com dados de animação/bones.
+
+---
+
+# 3. Diretórios e representações diferentes
+
+## 3.1 Modelo vestido pelo personagem
+
+Os materiais antigos usam como referência:
+
+```text
+Char/TMABCD
+```
+
+Essa pasta contém os modelos que os personagens realmente vestem.
+
+## 3.2 Item no chão / inventário
+
+Os modelos que aparecem jogados no chão e as imagens de inventário ficam em estruturas relacionadas a:
+
+```text
+Image/Sinimage/Items
+```
+
+Subdiretórios citados:
+
+```text
+DropItem
+Defense
+Accessory
+```
+
+Separação descrita:
+
+```text
+DropItem:
+- modelo ASE do item no chão
+- textura do item no chão
+
+Defense:
+- imagem de inventário de armor / boots / gauntlets
+
+Accessory:
+- imagem de inventário de bracelets
+```
+
+Tamanhos citados nos materiais antigos:
+
+```text
+66x88 → inventário de armor / boots / gauntlets
+44x44 → inventário de bracelets
+```
+
+Não confunda:
+
+```text
+armadura vestida
+≠
+armadura no chão
+≠
+ícone de inventário
+```
+
+São assets diferentes.
+
+---
+
+# 4. Convenções de classe
+
+## 4.1 Classes citadas nos materiais mais antigos
+
+```text
+A  = Mechanician
+B  = Fighter
+C  = Pikeman
+D  = Archer
+
+mA = Knight
+mB = Atalanta
+mC = Priestess
+mD = Magician
+```
+
+## 4.2 Classes adicionais citadas no material mais recente
+
+```text
+E  = Assassin
+mE = Shaman
+mF = Martial Artist
+```
+
+Logo, a convenção histórica `TMABCD` não representa literalmente todas as classes de builds posteriores.
+
+---
+
+# 5. Motion files / SMB por classe
+
+O material mais recente fornecido na conversa lista:
+
+```text
+m1.smb → Knight / Mechanician / Fighter
+m2.smb → Atalanta / Archer
+m3.smb → Magician
+m4.smb → Pikeman
+m5.smb → Priestess
+m6.smb → Assassin
+m7.smb → Shaman
+m8.smb → Martial Artist
+```
+
+Use isso como referência para identificar qual conjunto de movimento/animação está relacionado ao personagem.
+
+Para o workflow básico de substituição de mesh, normalmente a ideia é **reaproveitar o SMB existente**, não recriá-lo.
+
+---
+
+# 6. Exemplos históricos de ASE funcionais
+
+Os guias antigos citam ASEs que eram conhecidos por funcionar:
+
+```text
+tmbA14_p.ase → Mechanician
+tmbB14_p.ase → Fighter
+TmbC14_p.ase → Pikeman
+tfbD14_p.ase → Archer
+
+MmbA16.ase   → Knight
+MfbB18_p.ase → Atalanta
+MfbC11_p.ase → Priestess
+MmbD11_p.ase → Magician
+```
+
+Esses nomes são exemplos históricos.
+
+Não trate essa lista como garantia de que sua distribuição atual usa exatamente os mesmos arquivos.
+
+A regra correta é:
+
+```text
+descobrir qual INX/INI sua build realmente usa
+```
+
+---
+
+# 7. Como descobrir qual modelo e quais meshes o jogo espera
+
+Em um dos guias, uma conta administrativa podia usar:
+
+```text
+F9
+```
+
+para visualizar qual INX o personagem estava utilizando.
+
+Isso depende da build.
+
+Se existir no seu cliente, use como ferramenta de diagnóstico.
+
+Depois abra o `.INI` equivalente ou uma versão legível da configuração.
+
+Um exemplo apresentado nos materiais:
+
+```text
+*모양파일----- tmbA14_p.ASE
+
+*정밀모양----- "TAHA19"
+*정밀모양----- "TBHA19"
+*정밀모양----- "TLHA19"
+*정밀모양----- "TSHA19"
+
+*보통모양----- "TAHA19"
+*보통모양----- "TBHA19"
+*보통모양----- "TLHA19"
+*보통모양----- "TSHA19"
+
+*저질모양----- "TAHA19"
+*저질모양----- "TBHA19"
+*저질모양----- "TLHA19"
+*저질모양----- "TSHA19"
+
+*파일연결----- M1Bip.in
+```
+
+Interpretação prática:
+
+```text
+modelo → arquivo ASE
+precisão/alta → nomes de meshes high-res
+normal → nomes de meshes medium
+baixa → nomes de meshes low
+file connection → ligação com bones/animação
+```
+
+A tradução exata dos rótulos coreanos não é o ponto mais importante.
+
+O importante é:
+
+```text
+o INX/INI informa quais nomes de mesh o jogo procura
+```
+
+---
+
+# 8. Convenção dos nomes de mesh
+
+Exemplo documentado:
+
+```text
+TAHA19
+```
+
+Interpretação usada pelo guia:
+
+```text
+T  = Tempskron
+A  = Arms
+H  = High Resolution
+A  = Mechanician
+19 = número/conjunto da armadura
+```
+
+Partes:
+
+```text
+A = Arms
+B = Body
+S = Shoulder
+L = Legs
+```
+
+Resolução:
+
+```text
+H = High
+M = Medium
+L = Low
+```
+
+Exemplo dado para uma ombreira de Atalanta:
+
+```text
+MSHB19
+```
+
+Interpretado como:
+
+```text
+M = Morion
+S = Shoulder
+H = High Resolution
+B = Atalanta
+19 = conjunto
+```
+
+## Regra crítica
+
+A mesh final precisa manter o nome esperado pelo `INX/INI`.
+
+Não deixe nomes arbitrários como:
+
+```text
+Plane01
+Cube003
+Object001
+MyShoulder
+```
+
+quando o jogo espera algo como:
+
+```text
+MSHB19
+```
+
+Os materiais relacionam nomes errados de mesh com objetos invisíveis no jogo.
+
+---
+
+# 9. Backup obrigatório
+
+Antes de editar:
+
+```text
+ASE original
+SMD original
+INI / INX
+SMB
+texturas
+```
+
+Estrutura recomendada:
+
+```text
+ArmorMod/
+├── original/
+├── working/
+├── exported/
+└── textures/
+```
+
+Nunca trabalhe diretamente sobre a única cópia funcional.
+
+---
+
+# 10. Estratégia recomendada: editar um ASE funcional
+
+O método mais confiável documentado é:
+
+```text
+ASE funcional
++
+dados da nova mesh
+```
+
+em vez de:
+
+```text
+ASE novo criado completamente do zero
+```
+
+Preserve no ASE funcional tudo o que já está correto:
+
+- hierarquia;
+- bones;
+- estrutura geral;
+- nomes;
+- organização dos objetos;
+- sintaxe que o jogo já aceita.
+
+Substitua somente os blocos necessários.
+
+---
+
+# 11. Ferramentas citadas
+
+## 11.1 Toolchain legado
+
+Os materiais antigos recomendam:
+
+```text
+3ds Max 7
++
+Sandurr ASE Exporter
+```
+
+Motivo:
+
+```text
+o exporter suporta PHYSIQUE
+```
+
+Também aparecem referências históricas ao Max 5 e 6, mas o guia preferia o Max 7.
+
+Um relato antigo menciona que o Sandurr exporter só passou a carregar corretamente após instalação do runtime:
+
+```text
+Microsoft Visual C++ 2005
+```
+
+e reparo da instalação do 3ds Max 7.
+
+Isso é troubleshooting de software legado.
+
+## 11.2 Toolchain moderno citado
+
+O tutorial mais recente enviado pelo usuário cita:
+
+```text
+3ds Max 2020
+.ASE Export & Import 2025 (By IgorSegalla)
+XNA Lara XPS
+Microsoft XNA Framework Redistributable 3.0
+```
+
+Porém, o trecho fornecido não contém a parte de importação/exportação — ela ainda estava marcada como:
+
+```text
+soon...
+```
+
+Portanto:
+
+**não está confirmado pelos materiais disponíveis se o exporter 2025 substitui completamente o Sandurr para Physique/bones.**
+
+Até essa capacidade ser verificada, trate o Sandurr workflow como o processo documentado para preservar `PHYSIQUE`.
+
+---
+
+# 12. Modelagem
+
+Modele a peça normalmente:
+
+```text
+capacete
+head
+ombreira
+braço
+peitoral
+perna
+bota
+acessório rígido
+```
+
+Os materiais insistem em:
+
+```text
+Think low-poly
+```
+
+O PT é um engine antigo.
+
+Não existe nos materiais usados aqui um limite numérico confiável e universal de polígonos.
+
+Portanto:
+
+- mantenha a primeira versão simples;
+- reduza geometria desnecessária;
+- teste em etapas;
+- não comece com um modelo extremamente denso.
+
+Uma ombreira simples é recomendada como primeiro teste.
+
+---
+
+# 13. UV e textura antes do rig
+
+Workflow recomendado:
+
+```text
+1. finalizar geometria
+2. criar UV
+3. aplicar textura
+4. conferir visualmente
+5. só então riggar
+```
+
+Se o modelo for criado em uma versão moderna do Max e depois passado para um Max antigo:
+
+- preserve o UVW;
+- se necessário, salve/carregue os dados UVW;
+- confira a malha antes da exportação final.
+
+---
+
+# 14. Posicionamento no personagem
+
+Importe/carregue um modelo funcional como referência.
+
+Ajuste:
+
+```text
+posição
+escala
+rotação
+orientação
+```
+
+A nova peça deve encaixar corretamente no corpo original antes do rig.
+
+Exemplo:
+
+```text
+nova ombreira
+↓
+encaixar no ombro da armadura funcional
+```
+
+---
+
+# 15. Physique
+
+No workflow legado:
+
+```text
+Modifiers
+→ Physique
+→ Attach to Node
+```
+
+Depois:
+
+```text
+Physique
+→ Vertex
+```
+
+Os materiais orientam:
+
+```text
+No Blending
+```
+
+e então:
+
+```text
+Select
+→ Assign to Link
+```
+
+A lógica é associar cada região da mesh ao link/bone correto.
+
+---
+
+# 16. Associação dos vértices
+
+Exemplo de peça rígida:
+
+```text
+todos os vértices
+→ um único bone
+```
+
+Exemplo apresentado em um tutorial:
+
+```text
+Bip01 Head
+```
+
+para uma pequena peça presa à cabeça.
+
+Para uma peça de braço/ombro, use o link apropriado.
+
+Não invente nomes de bone.
+
+Use nomes existentes no arquivo funcional.
+
+---
+
+# 17. Todos os vértices precisam estar ligados
+
+Os materiais alertam que vértices não associados corretamente podem causar:
+
+```text
+stretching
+mesh deformada
+vértices presos
+deformações extremas
+```
+
+Portanto:
+
+```text
+cada vértice relevante
+→ precisa estar corretamente associado
+```
+
+---
+
+# 18. Teste o rig antes de exportar
+
+No 3ds Max:
+
+1. selecione o bone/link;
+2. rotacione;
+3. movimente;
+4. observe a peça.
+
+A peça não deve:
+
+- ficar parada;
+- se separar;
+- esticar de forma absurda;
+- girar em torno de um ponto incorreto.
+
+Só exporte depois que o rig funcionar no Max.
+
+---
+
+# 19. Exporte uma peça por vez
+
+O workflow mais organizado é:
+
+```text
+shoulder.ase
+arms.ase
+body.ase
+legs.ase
+```
+
+Use:
+
+```text
+Export Selected
+```
+
+Vantagens:
+
+- ASE menor;
+- apenas um `GEOMOBJECT` relevante;
+- integração textual mais fácil;
+- menor chance de misturar UV/material de várias peças.
+
+Há relatos nos materiais de que exportar várias peças de uma vez podia prejudicar UVW.
+
+---
+
+# 20. Mapping Coordinates
+
+Ao exportar, preserve:
+
+```text
+Mapping Coordinates
+```
+
+Isso é essencial para:
+
+```text
+*MESH_TVERTLIST
+*MESH_TFACELIST
+```
+
+Sem isso, a geometria pode aparecer, mas a textura ficará incorreta.
+
+---
+
+# 21. Workaround para UV quebrado no Sandurr
+
+Um workaround avançado relatado:
+
+```text
+Export A:
+Max 7 + Sandurr
+→ usar PHYSIQUE
+
+Export B:
+Max moderno
+→ usar mapping/UV
+```
+
+Depois combinar manualmente:
+
+```text
+MESH / TVERT / TFACE do export moderno
++
+PHYSIQUE do Sandurr
+```
+
+Use somente se o Sandurr preservar Physique mas corromper mapping.
+
+---
+
+# 22. Edição textual do ASE
+
+Abra:
+
+```text
+ASE funcional
+ASE da nova peça
+```
+
+em um editor como:
+
+```text
+VS Code
+Notepad++
+MadEdit
+```
+
+O Notepad antigo pode ficar lento em arquivos grandes.
+
+---
+
+# 23. GEOMOBJECT
+
+No ASE, objetos geométricos aparecem como:
+
+```text
+*GEOMOBJECT {
+```
+
+Dentro dele podem aparecer:
+
+```text
+*NODE_NAME
+*NODE_TM
+*MESH
+*MATERIAL_REF
+*PHYSIQUE
+```
+
+A nova peça normalmente será integrada em um `GEOMOBJECT` correspondente à parte que o jogo espera.
+
+---
+
+# 24. Blocos importantes do MESH
+
+Os materiais destacam:
+
+```text
+*MESH_VERTEX_LIST
+```
+
+coordenadas dos vértices.
+
+```text
+*MESH_FACE_LIST
+```
+
+faces, smoothing e IDs de material.
+
+```text
+*MESH_NUMTVERTEX
+*MESH_TVERTLIST
+```
+
+coordenadas UV.
+
+```text
+*MESH_NUMTVFACES
+*MESH_TFACELIST
+```
+
+faces de UV.
+
+```text
+*MESH_NORMALS
+```
+
+normais.
+
+```text
+*PHYSIQUE
+```
+
+associação vértice → bone/link.
+
+---
+
+# 25. Preservar sintaxe funcional
+
+Exporters diferentes podem produzir ASEs com pequenas diferenças.
+
+Por isso:
+
+```text
+ASE original funcional
+→ referência estrutural
+```
+
+Evite substituir o arquivo inteiro por um ASE recém-exportado se o objetivo é apenas trocar uma parte.
+
+Prefira:
+
+```text
+estrutura funcional original
++
+dados da nova mesh
+```
+
+---
+
+# 26. MATERIAL_REF x MESH_MTLID
+
+São coisas diferentes.
+
+```text
+*MATERIAL_REF 0
+```
+
+seleciona o material principal/top-level usado pelo objeto.
+
+Dentro das faces:
+
+```text
+*MESH_MTLID 15
+```
+
+seleciona o submaterial aplicado àquela face.
+
+---
+
+# 27. MATERIAL_COUNT x NUMSUBMTLS
+
+Também são contadores diferentes.
+
+Exemplo:
+
+```text
+*MATERIAL_COUNT 2
+```
+
+quantidade de materiais top-level.
+
+Dentro de um `Multi/Sub-Object`:
+
+```text
+*NUMSUBMTLS 15
+```
+
+quantidade de submateriais.
+
+Se existem IDs:
+
+```text
+0 até 14
+```
+
+e você adiciona:
+
+```text
+*SUBMATERIAL 15
+```
+
+então atualize:
+
+```text
+*NUMSUBMTLS 16
+```
+
+---
+
+# 28. Exemplo de submaterial
+
+```text
+*SUBMATERIAL 15 {
+    *MATERIAL_NAME "CustomArmor"
+    *MATERIAL_CLASS "Standard"
+    *MATERIAL_AMBIENT 0.5880 0.5880 0.5880
+    *MATERIAL_DIFFUSE 0.5880 0.5880 0.5880
+    *MATERIAL_SPECULAR 0.9000 0.9000 0.9000
+    *MATERIAL_SHINE 0.1000
+    *MATERIAL_SHINESTRENGTH 0.0000
+    *MATERIAL_TRANSPARENCY 0.0000
+    *MATERIAL_SHADING Blinn
+
+    *MAP_DIFFUSE {
+        *MAP_NAME "Map #1"
+        *MAP_CLASS "Bitmap"
+        *MAP_SUBNO 1
+        *MAP_AMOUNT 1.0000
+        *BITMAP "CustomArmor\\armor.bmp"
+        *MAP_TYPE Screen
+    }
+}
+```
+
+Depois associe as faces:
+
+```text
+*MESH_MTLID 15
+```
+
+---
+
+# 29. PHYSIQUE manual
+
+O workflow preferível é exportar o `PHYSIQUE`.
+
+Porém, um tutorial anterior mostrou que ele também pode ser construído manualmente.
+
+Exemplo:
+
+```text
+*PHYSIQUE {
+    *PHYSIQUE_NUMVERTEXASSIGNMENT 4
+
+    *PHYSIQUE_VERTEXASSIGNMENT_NONBLENDED_RIGIDTYPE 0 "Bip01 Head"
+    *PHYSIQUE_VERTEXASSIGNMENT_NONBLENDED_RIGIDTYPE 1 "Bip01 Head"
+    *PHYSIQUE_VERTEXASSIGNMENT_NONBLENDED_RIGIDTYPE 2 "Bip01 Head"
+    *PHYSIQUE_VERTEXASSIGNMENT_NONBLENDED_RIGIDTYPE 3 "Bip01 Head"
+}
+```
+
+Use isso como fallback.
+
+Para uma mesh grande, editar centenas de associações manualmente é muito menos prático que exportar Physique corretamente.
+
+---
+
+# 30. Contagem de vértices e Physique
+
+Se:
+
+```text
+*MESH_NUMVERTEX 120
+```
+
+o `PHYSIQUE` precisa fazer referência de maneira válida aos vértices dessa mesh.
+
+Inconsistências entre:
+
+```text
+índices reais de vértices
+PHYSIQUE_NUMVERTEXASSIGNMENT
+PHYSIQUE_VERTEXASSIGNMENT...
+```
+
+podem gerar deformações ou crash.
+
+---
+
+# 31. NODE_NAME
+
+No tutorial mais antigo havia uma tentativa prática de reutilizar nomes existentes no ASE quando um objeto não aparecia.
+
+Com os materiais posteriores, a regra pode ser formulada de forma melhor:
+
+```text
+o nome do objeto/mesh deve respeitar o que o INX/INI espera
+```
+
+Ou seja:
+
+não trate `NODE_NAME` como tentativa e erro arbitrária.
+
+Primeiro descubra o nome correto na configuração.
+
+---
+
+# 32. Múltiplas meshes para uma mesma parte
+
+Um dos guias relata o uso de mais de uma geometria para a mesma parte lógica.
+
+Exemplo:
+
+```text
+mesh base
++
+mesh overlay para reflexo/efeito
+```
+
+É possível que ambas sejam usadas sob o mesmo nome lógico esperado para a peça.
+
+Trate isso como recurso avançado.
+
+Primeiro faça uma única mesh funcionar.
+
+---
+
+# 33. Texturas
+
+## 33.1 BMP
+
+Boa escolha para primeiro teste:
+
+```text
+BMP 24-bit
+```
+
+Mais simples para diagnóstico.
+
+## 33.2 TGA
+
+Os materiais documentam TGA com alpha para transparência seletiva.
+
+Use quando realmente precisar de:
+
+```text
+alpha
+overlay
+efeito específico
+```
+
+---
+
+# 34. Caminhos de textura
+
+Evite caminhos absolutos como:
+
+```text
+C:\Users\Nome\Desktop\Projeto\armor.bmp
+```
+
+Os materiais de troubleshooting dizem que o cliente precisa de caminhos relativos apropriados ao tipo de objeto.
+
+A base desse caminho pode variar conforme a rotina de renderização.
+
+Regra prática:
+
+```text
+abra um ASE funcional do mesmo tipo
+→ copie a convenção de path
+```
+
+Não invente uma estrutura diferente sem necessidade.
+
+---
+
+# 35. Texturas são client-side
+
+Um dos relatos técnicos destaca que o servidor não precisa das texturas para renderizar o objeto.
+
+Se a mesh está:
+
+```text
+branca
+sem textura
+com textura incorreta
+```
+
+investigue primeiro o cliente e os paths do ASE.
+
+---
+
+# 36. Tamanho de textura
+
+Um troubleshooting específico relata:
+
+```text
+1024x1024 → grande demais naquele ambiente
+512x512  → citado como máximo
+256x256  → recomendado para peças pequenas
+128x128  → usado com sucesso em teste
+```
+
+Como isso é relato de uma build antiga, trate como regra prática conservadora, não como especificação universal.
+
+Para começar:
+
+```text
+128x128 ou 256x256
+```
+
+Depois aumente somente se necessário.
+
+---
+
+# 37. Troubleshooting — textura branca
+
+Confira:
+
+```text
+arquivo existe?
+nome está correto?
+extensão está correta?
+ASE referencia BMP mas arquivo é TGA?
+ASE referencia TGA mas arquivo é BMP?
+path está correto?
+path é relativo?
+arquivo está no diretório correto?
+```
+
+---
+
+# 38. Troubleshooting — textura embaralhada
+
+Confira:
+
+```text
+MESH_MTLID
+MESH_TVERTLIST
+MESH_TFACELIST
+Mapping Coordinates
+UV original
+```
+
+Diferença:
+
+```text
+Material ID errado
+→ polígono recebe material/textura errada
+
+UV errado
+→ textura correta aparece deformada
+```
+
+---
+
+# 39. Troubleshooting — UV quebra depois da exportação
+
+Tente nesta ordem:
+
+```text
+1. exportar apenas uma peça
+2. habilitar Mapping Coordinates
+3. preservar UVW ao trocar de versão do Max
+4. aplicar/recarregar Unwrap UVW
+5. comparar TVERT/TFACE entre exports
+6. usar mapping de Max moderno + PHYSIQUE do Sandurr
+```
+
+---
+
+# 40. Troubleshooting — mesh invisível
+
+Confira:
+
+```text
+INX/INI pede esse nome?
+NODE_NAME / mesh name está correto?
+ASE correto está sendo carregado?
+GEOMOBJECT existe?
+estrutura está no nível correto?
+MATERIAL_REF existe?
+MESH_MTLID é válido?
+```
+
+A primeira suspeita deve ser:
+
+```text
+nome da mesh ≠ nome esperado pelo INX
+```
+
+---
+
+# 41. Troubleshooting — crash / game.exe
+
+Investigue:
+
+```text
+bone incorreto
+PHYSIQUE inválido
+índices de vértice inválidos
+chaves { } quebradas
+contadores errados
+MESH inconsistente
+estrutura ASE inválida
+```
+
+Os materiais associam bones/Physique incorretos a crashes do cliente.
+
+---
+
+# 42. Troubleshooting — stretching
+
+Confira:
+
+```text
+todos os vértices estão ligados?
+bone correto?
+link correto?
+No Blending?
+algum vértice ficou sem assignment?
+```
+
+Teste novamente movimentando o bone no Max.
+
+---
+
+# 43. Troubleshooting — peça em posição errada
+
+Corrija no software 3D:
+
+```text
+posição
+escala
+rotação
+transform
+```
+
+Não tente corrigir um grande erro de alinhamento editando dezenas de coordenadas manualmente no ASE se ainda possui o projeto 3D.
+
+---
+
+# 44. Troubleshooting — material errado em parte da mesh
+
+Confira:
+
+```text
+*MESH_MTLID
+```
+
+face por face.
+
+Uma mesh pode ter:
+
+```text
+UV correto
+textura correta
+geometria correta
+```
+
+e ainda parecer errada porque certas faces usam o submaterial incorreto.
+
+---
+
+# 45. Troubleshooting — modelo pesado
+
+Se uma geometria simples funciona e a final não:
+
+```text
+reduza polígonos
+reduza textura
+simplifique materiais
+teste por partes
+```
+
+Não existe nos materiais compilados aqui um limite numérico universal confiável de triângulos.
+
+---
+
+# 46. Erros do Sandurr exporter
+
+Há relatos de que o Sandurr pode exibir erros durante exportações riggadas e ainda assim gerar um arquivo utilizável.
+
+Isso é uma observação de fórum, não uma garantia.
+
+Regra segura:
+
+```text
+não confie somente na mensagem de erro
+→ verifique se o ASE foi gerado
+→ abra-o
+→ confira PHYSIQUE
+→ teste em cópia do cliente
+```
+
+---
+
+# 47. Heads e capacetes
+
+O material mais recente cita como base:
+
+```text
+OG Head Models
+61 Helmets
+```
+
+mas o trecho enviado não contém o tutorial de importação/exportação desses assets.
+
+A lógica geral documentada para uma peça rígida de head é:
+
+```text
+modelar
+UV
+posicionar
+ligar ao bone da cabeça
+exportar
+integrar no ASE funcional
+```
+
+O nome exato do bone deve ser copiado de um modelo funcional.
+
+Um exemplo histórico usa:
+
+```text
+Bip01 Head
+```
+
+Não assuma que toda build usa exatamente o mesmo nome sem conferir.
+
+---
+
+# 48. Efeitos avançados / overlay
+
+Outro material antigo descreve:
+
+```text
+duplicar GEOMOBJECT
+→ mudar material
+→ usar self illumination
+→ usar TGA com alpha
+```
+
+para efeitos seletivos.
+
+Isso pode ser usado em:
+
+```text
+reflexo
+brilho
+overlay
+partes transparentes
+```
+
+É avançado e não faz parte do primeiro teste.
+
+---
+
+# 49. Fluxo mínimo recomendado para aprender
+
+Faça primeiro uma ombreira simples.
+
+```text
+1. escolher uma armadura funcional
+2. descobrir o INX/INI
+3. descobrir o nome exato da ombreira
+4. fazer backup
+5. modelar uma ombreira low-poly
+6. criar UV
+7. aplicar BMP pequena
+8. posicionar no personagem
+9. aplicar Physique
+10. usar No Blending
+11. ligar todos os vértices ao link correto
+12. testar movimentando o bone
+13. Export Selected
+14. usar exporter que preserve Physique
+15. preservar Mapping Coordinates
+16. abrir ASE novo
+17. abrir ASE funcional
+18. localizar o GEOMOBJECT original
+19. preservar o nome esperado pelo INX
+20. integrar MESH
+21. integrar UV
+22. integrar PHYSIQUE
+23. corrigir MATERIAL_REF
+24. corrigir MESH_MTLID
+25. adicionar/corrigir submaterial
+26. corrigir path de textura
+27. salvar
+28. testar no cliente
+```
+
+Se isso funcionar, você comprovou todo o pipeline:
+
+```text
+INX
++
+mesh name
++
+modelo
++
+UV
++
+material
++
+Physique
++
+ASE
++
+cliente
+```
+
+Depois passe para peças mais complexas.
+
+---
+
+# 50. Testes no jogo
+
+Teste pelo menos:
+
+```text
+Idle
+Walk
+Run
+Attack
+Skill
+Death
+```
+
+Observe separadamente:
+
+```text
+posição
+escala
+rotação
+textura
+UV
+smoothing
+rigging
+```
+
+---
+
+# 51. Workflow consolidado
+
+```text
+                 INX / INI
+                     │
+                     ▼
+        descobrir ASE + mesh names
+                     │
+                     ▼
+          ASE funcional original
+                     │
+          ┌──────────┴──────────┐
+          │                     │
+          │                modelar peça
+          │                     │
+          │                     ▼
+          │                    UVW
+          │                     │
+          │                     ▼
+          │                  textura
+          │                     │
+          │                     ▼
+          │             posicionar no char
+          │                     │
+          │                     ▼
+          │                  Physique
+          │                     │
+          │             No Blending / Links
+          │                     │
+          │                     ▼
+          │             testar movimentação
+          │                     │
+          │                     ▼
+          │               Export Selected
+          │                     │
+          │      exporter com suporte a rig
+          │                     │
+          └──────────┬──────────┘
+                     ▼
+                edição textual
+                     │
+              preservar mesh name
+                     │
+              integrar MESH
+                     │
+               integrar UV
+                     │
+            integrar PHYSIQUE
+                     │
+         MATERIAL_REF / MTLID
+                     │
+              path relativo
+                     │
+                     ▼
+                  CLIENT
+                     │
+                     ▼
+                   TESTAR
+```
+
+---
+
+# 52. O que está confirmado pelos materiais
+
+Os materiais compilados sustentam diretamente:
+
+- `.ASE` como formato ASCII/editável usado nesse workflow;
+- uso de ASE funcional como base;
+- relação de `.INX/.INI` com modelo e nomes de mesh;
+- necessidade de preservar nomes esperados pelo INX;
+- uso de Physique;
+- uso de `No Blending`;
+- associação dos vértices a links/bones;
+- importância de `PHYSIQUE`;
+- importância de Mapping Coordinates;
+- distinção entre `MATERIAL_REF` e `MESH_MTLID`;
+- uso de submateriais;
+- importância de UV;
+- exportação de peças separadamente;
+- caminhos de textura relativos;
+- BMP/TGA;
+- uso de TGA alpha em efeitos específicos;
+- separação entre armadura vestida e drop item;
+- classes e motion files listados;
+- troubleshooting de UV, textura, rig e nomes de mesh.
+
+---
+
+# 53. O que ainda não está confirmado
+
+Com os materiais enviados nesta conversa, ainda não está confirmado:
+
+## 53.1 ASE Export & Import 2025
+
+O tópico moderno cita:
+
+```text
+.ASE Export & Import 2025 (By IgorSegalla)
+```
+
+mas não foi fornecida documentação técnica mostrando:
+
+- se importa Physique;
+- se exporta Physique;
+- se preserva bones;
+- se substitui o Sandurr;
+- quais opções de exportação usar;
+- compatibilidade exata com 3ds Max 2020.
+
+Portanto não é correto afirmar ainda que ele elimina o workflow legado.
+
+## 53.2 XNA Lara XPS
+
+O programa foi citado como ferramenta, mas não foi fornecido um pipeline técnico completo:
+
+```text
+XPS → Max → ASE → PT
+```
+
+Logo, ele não faz parte do procedimento principal desta source.
+
+## 53.3 Adicionar uma armadura totalmente nova sem substituir outra
+
+Os guias usados focam principalmente em:
+
+```text
+substituir / editar assets funcionais
+```
+
+A parte de registrar uma armadura totalmente nova no cliente/servidor/executáveis não está documentada de maneira suficiente aqui.
+
+## 53.4 Limites exatos do engine
+
+Não há nos materiais uma especificação técnica confiável e universal para:
+
+```text
+máximo de polígonos
+máximo de vértices
+máximo de materiais
+```
+
+Existem apenas relatos práticos recomendando low-poly.
+
+---
+
+# 54. Regra final
+
+O método mais confiável compilado de todos os materiais é:
+
+```text
+usar um ASE funcional
++
+usar o INX/INI como autoridade para nomes
++
+modelar/UV/riggar a nova peça
++
+exportar dados compatíveis
++
+preservar PHYSIQUE
++
+integrar somente o necessário
++
+usar materiais e paths compatíveis
++
+testar em etapas
+```
+
+Isso minimiza:
+
+```text
+mesh invisível
+textura branca
+UV quebrado
+stretching
+crash
+game.exe
+```
+
+e mantém o máximo possível da estrutura original que o Priston Tale já reconhece.
+
+---
+
+# 55. Fontes consolidadas usadas nesta conversa
+
+Esta source foi compilada a partir de:
+
+- tutorial antigo de edição manual de ASE e inserção de `GEOMOBJECT`, submaterial e `PHYSIQUE`;
+- guia “Notes on Armors / Armors 101” e respostas técnicas relacionadas;
+- troubleshooting de UV, textura, paths e complexidade de modelo;
+- documentação de diretórios e formatos do Priston Tale;
+- tópico moderno “Customizando Modelos 3D” fornecido pelo usuário;
+- informações modernas fornecidas pelo usuário sobre classes adicionais e motion files;
+- discussões e refinamentos feitos ao longo desta conversa.
+
+Mensagens de fórum sem conteúdo técnico relevante foram omitidas.
+
+---
+
+# 56. Estado atual da source
+
+Esta versão deve ser tratada como:
+
+```text
+SOURCE OF TRUTH v1
+```
+
+para o workflow de:
+
+```text
+Armadura / Head / Mesh de personagem
+→ ASE
+→ UV
+→ Material
+→ Physique
+→ integração
+→ teste
+```
+
+Próxima expansão útil, caso apareça documentação confiável:
+
+```text
+ASE Export & Import 2025
+Sandurr SMD Converter
+workflow moderno confirmado
+monstros
+armas
+mapas
+animações
+efeitos
+```
+---
+
+# 57. Summit Tale — resultados verificados em 2026-08-23
+
+Esta seção registra descobertas obtidas diretamente no fork **Summit Tale**, separando explicitamente o que foi confirmado por inspeção de arquivo, Blender e teste visual/runtime.
+
+## 57.1 Convenção de evidência
+
+Use estas etiquetas nesta documentação:
+
+```text
+PROVADO
+    confirmado por teste direto e reproduzível.
+
+CONFIRMADO ESTRUTURALMENTE
+    estrutura/arquivo/parser conferido, mas sem fechar todo o comportamento
+    dentro do cliente.
+
+HIPÓTESE
+    inferência ainda não testada.
+
+PENDENTE
+    etapa ainda não executada.
+```
+
+Não elevar uma hipótese a `PROVADO` apenas porque o formato "parece correto".
+
+---
+
+# 58. Ambiente atual da pipeline Blender
+
+Blender confirmado:
+
+```text
+Blender 5.1.1
+instalação Flatpak
+application id: org.blender.Blender
+```
+
+O executável deve ser chamado como:
+
+```bash
+flatpak run --filesystem=home org.blender.Blender
+```
+
+O caminho `/usr/bin/blender` não deve ser usado neste ambiente.
+
+O Flatpak emite atualmente um warning de OpenColorIO relacionado à diferença:
+
+```text
+config.ocio 2.5
+OpenColorIO library 2.4.2
+```
+
+e entra em fallback de color management.
+
+Esse warning não impediu:
+
+- importação de geometria;
+- UV;
+- materiais;
+- decode de textura;
+- armature;
+- Physique;
+- deformação da mesh.
+
+Portanto ele não é bloqueador da pipeline 3D atual.
+
+---
+
+# 59. Asset de referência usado na validação
+
+ASE de teste:
+
+```text
+char/tmABCD/MfbC13.ASE
+```
+
+O teste visual confirmou que o conjunto importado corresponde à:
+
+```text
+Sacerdotisa
+roupa / armadura de nível 80
+```
+
+Importante:
+
+o nome do ASE contém `C13`, enquanto as meshes e materiais internos usam referências como:
+
+```text
+MshC19
+MbhC19
+MlhC20
+MahC20
+
+MfbC19_01.TGA
+MfbC19_02.BMP
+pr100_yun01.tga
+pr100_yun02.tga
+```
+
+Portanto não inferir o nível ou a identidade visual apenas pelo número embutido no nome de um arquivo interno.
+
+A autoridade prática continua sendo:
+
+```text
+configuração
++
+referências internas
++
+teste visual/runtime
+```
+
+---
+
+# 60. Estrutura encontrada no MfbC13.ASE
+
+Auditoria:
+
+```text
+GEOMOBJECT blocks: 67
+```
+
+Meshes texturizadas importadas:
+
+```text
+MshC19
+    vertices: 163
+    faces:    264
+    TVERT:    250
+    TFACE:    264
+    material IDs: 0
+
+MbhC19
+    vertices: 143
+    faces:    248
+    TVERT:    212
+    TFACE:    248
+    material IDs: 0, 1
+
+MlhC20
+    vertices: 286
+    faces:    428
+    TVERT:    296
+    TFACE:    428
+    material IDs: 0, 1
+
+MahC20
+    vertices: 80
+    faces:    146
+    TVERT:    124
+    TFACE:    146
+    material IDs: 0
+```
+
+Totais:
+
+```text
+vertices geométricos: 672
+faces:                1086
+TVERT:                  882
+TFACE:                 1086
+```
+
+A geometria apareceu reconhecível e em pé no Blender.
+
+As quatro meshes formam o conjunto visual esperado.
+
+A UV também foi inspecionada no Blender e apareceu corretamente.
+
+Estado:
+
+```text
+GEOMETRIA: PROVADO
+FACES:     PROVADO
+UV:        PROVADO
+```
+
+---
+
+# 61. MATERIAL_REF e MESH_MTLID — validação prática
+
+A pipeline encontrou dois materiais top-level.
+
+Material principal 0:
+
+```text
+SUB 0 -> MfbC19_01.TGA
+SUB 1 -> MfbC19_02.BMP
+```
+
+Material principal 1:
+
+```text
+SUB 0 -> pr100_yun01.tga
+SUB 1 -> pr100_yun02.tga
+```
+
+Mapeamento observado:
+
+```text
+MshC19
+    MATERIAL_REF 0
+    MTLID 0 -> MfbC19_01.TGA
+
+MbhC19
+    MATERIAL_REF 0
+    MTLID 0 -> MfbC19_01.TGA
+    MTLID 1 -> MfbC19_02.BMP
+
+MlhC20
+    MATERIAL_REF 1
+    MTLID 0 -> pr100_yun01.tga
+    MTLID 1 -> pr100_yun02.tga
+
+MahC20
+    MATERIAL_REF 1
+    MTLID 0 -> pr100_yun01.tga
+```
+
+Todos os nomes foram resolvidos para um único arquivo existente no cliente.
+
+Estado:
+
+```text
+ASE MATERIAL_REF -> material top-level: PROVADO
+MESH_MTLID -> submaterial por face:     PROVADO
+resolução de BITMAP no cliente:         PROVADO
+```
+
+---
+
+# 62. BMP proprietário do Summit / Priston
+
+## 62.1 Layout confirmado
+
+Para BMPs testados como:
+
+```text
+MfbC01.bmp
+TmbC01.bmp
+MfbC19_02.bmp
+```
+
+foi encontrado um layout em que os primeiros 14 bytes substituem o `BITMAPFILEHEADER` padrão.
+
+Exemplo de header proprietário já observado:
+
+```text
+41 38 3a 09 13 19 24 31 40 51 9a 79 90 a9
+```
+
+Depois desses 14 bytes começa um `BITMAPINFOHEADER` Windows normal:
+
+```text
+size:   40
+width:  256
+height: 256
+planes: 1
+bpp:    24
+```
+
+Tamanho típico:
+
+```text
+256 * 256 * 3 + 54
+= 196662 bytes
+```
+
+## 62.2 Decode para edição
+
+Para imagens desse layout 256x256 RGB24:
+
+```text
+1. salvar bytes 0..13;
+2. substituir por BITMAPFILEHEADER normal;
+3. manter bytes 14..fim;
+4. editar como BMP padrão;
+5. manter dimensão / bpp / tamanho;
+6. recolocar exatamente os 14 bytes proprietários.
+```
+
+Header BMP padrão usado para decode desse caso:
+
+```text
+42 4d 36 00 03 00 00 00 00 00 36 00 00 00
+```
+
+A pipeline Blender reconstruiu:
+
+```text
+MfbC19_02.bmp
+-> BMP padrão 256x256x24
+-> Blender
+```
+
+e o material apareceu corretamente.
+
+Estado:
+
+```text
+decode BMP protegido -> Blender: PROVADO
+reproteção de BMP editado -> cliente: PROVADO em testes anteriores
+```
+
+Não generalizar ainda para todo BMP existente no jogo.
+
+---
+
+# 63. TGA proprietário — formato descoberto
+
+Esta foi uma descoberta nova da pipeline Blender.
+
+Arquivos testados:
+
+```text
+MfbC19_01.tga
+pr100_yun01.tga
+pr100_yun02.tga
+```
+
+Todos tinham:
+
+```text
+tamanho total = 262188 bytes
+```
+
+A estrutura foi comprovada como:
+
+```text
+18 bytes proprietários
++
+256 * 256 * 4 bytes de pixels BGRA
++
+26 bytes de footer TGA 2.0
+```
+
+Cálculo:
+
+```text
+18
++ 262144
++ 26
+= 262188
+```
+
+Os 18 bytes proprietários observados:
+
+```text
+47 38 06 09 10 19 24 31 40 51 64 79 90 aa c4 e2 20 29
+```
+
+Footer observado:
+
+```text
+00 00 00 00 00 00 00 00
+54 52 55 45 56 49 53 49 4f 4e 2d 58 46 49 4c 45 2e 00
+```
+
+Os últimos 18 bytes representam:
+
+```text
+TRUEVISION-XFILE.\0
+```
+
+## 63.1 Decode comprovado
+
+Reconstrução:
+
+```text
+header TGA padrão de 18 bytes
+image type 2
+256x256
+32-bit
+8-bit alpha
++
+data[18:-26]
+```
+
+O arquivo reconstruído foi reconhecido como:
+
+```text
+Targa image data - RGBA 256 x 256 x 32 - 8-bit alpha
+```
+
+e pelo ImageMagick como:
+
+```text
+TGA 256x256
+8-bit sRGB
+```
+
+A V2.2 carregou os três TGAs no Blender sem falha e o modelo apareceu texturizado.
+
+Estado:
+
+```text
+layout TGA deste grupo:          PROVADO
+decode TGA protegido -> padrão:  PROVADO
+TGA padrão -> Blender:           PROVADO
+```
+
+Ainda não foi comprovado que todos os TGAs do jogo usam exatamente este layout.
+
+---
+
+# 64. Pipeline Blender V1 — geometria e UV
+
+Script:
+
+```text
+pt_ase_import_v1.py
+```
+
+Funções validadas:
+
+```text
+ASE
+-> GEOMOBJECT
+-> MESH_VERTEX
+-> MESH_FACE
+-> MESH_TVERT
+-> MESH_TFACE
+-> MESH_MTLID
+-> Blender mesh
+```
+
+Resultado no `MfbC13.ASE`:
+
+```text
+67 GEOMOBJECT encontrados
+4 meshes texturizadas importadas
+63 objetos ignorados nesta fase
+```
+
+Teste visual:
+
+```text
+geometria reconhecível
+em pé
+quatro partes presentes
+UV visível
+```
+
+Estado:
+
+```text
+V1: PROVADO
+```
+
+---
+
+# 65. Pipeline Blender V2 / V2.2 — materiais e texturas
+
+V2 adicionou:
+
+```text
+MATERIAL_LIST
+SUBMATERIAL
+MATERIAL_REF
+MESH_MTLID
+BITMAP
+resolver de path
+```
+
+A primeira V2 descobriu um comportamento importante do Blender:
+
+```text
+bpy.data.images.load()
+```
+
+pode criar um datablock de imagem sem que o conteúdo tenha sido efetivamente decodificado.
+
+Isso produziu inicialmente um falso:
+
+```text
+load=LOADED
+```
+
+e a falha só apareceu quando o `.blend` foi aberto.
+
+A partir da V2.1/V2.2, o importer passou a:
+
+```text
+image.reload()
+consultar image.size
+tocar o pixel buffer
+```
+
+para forçar decode real durante a importação.
+
+V2.2 corrigiu também a detecção do footer TGA.
+
+Resultado final:
+
+```text
+Material texture loads:
+    LOADED : 6
+    MISSING: 0
+    FAILED : 0
+```
+
+Arquivos decodificados:
+
+```text
+MfbC19_01...decoded.tga  -> 262162 bytes
+MfbC19_02...decoded.bmp  -> 196662 bytes
+pr100_yun01...decoded.tga -> 262162 bytes
+pr100_yun02...decoded.tga -> 262162 bytes
+```
+
+Teste visual:
+
+```text
+personagem apareceu texturizado no Blender
+```
+
+Estado:
+
+```text
+V2.2: PROVADO
+```
+
+---
+
+# 66. Pipeline Blender V3 — Biped / skeleton
+
+Script:
+
+```text
+pt_ase_import_v3.py
+```
+
+Dados usados:
+
+```text
+NODE_NAME
+NODE_PARENT
+NODE_TM
+TM_ROW3
+```
+
+Também são preservados como metadata para trabalho futuro:
+
+```text
+TM_ROW0
+TM_ROW1
+TM_ROW2
+TM_ROW3
+```
+
+O importer cria:
+
+```text
+PT_BIPED
+```
+
+como Blender Armature.
+
+Objetivo da V3:
+
+```text
+reconstruir posições dos joints
++
+hierarquia pai/filho
+```
+
+A cauda visual dos bones no Blender é heurística.
+
+Portanto:
+
+```text
+sticks não encostarem perfeitamente
+!=
+hierarquia incorreta
+```
+
+O teste relevante é se joints e cadeia lógica ficam corretamente posicionados dentro do personagem.
+
+Teste visual confirmou:
+
+```text
+bones seguem coerentemente o personagem
+hierarquia visual faz sentido
+skeleton fica dentro da personagem
+```
+
+Estado:
+
+```text
+posições / hierarquia V3: PROVADO
+bone roll exato:           NÃO PROVADO
+orientação local exata:    NÃO PROVADO
+```
+
+---
+
+# 67. Pipeline Blender V4 — PHYSIQUE / skinning
+
+Script:
+
+```text
+pt_ase_import_v4.py
+```
+
+O formato rígido encontrado/esperado:
+
+```text
+*PHYSIQUE_VERTEXASSIGNMENT_NONBLENDED_RIGIDTYPE
+    vertex_index
+    "Bip bone name"
+```
+
+A V4 mapeia:
+
+```text
+ASE vertex index
+-> Blender vertex group com o nome do Bip bone
+-> weight 1.0
+-> Armature Modifier
+```
+
+Isso é coerente com o workflow legado `No Blending`.
+
+O importer preserva a ordem de vértices ASE ao criar a mesh Blender, permitindo que os índices do `PHYSIQUE` sejam usados diretamente.
+
+## 67.1 Teste decisivo
+
+No Blender:
+
+```text
+PT_BIPED
+-> Pose Mode
+-> escolher bone
+-> G
+```
+
+Ao transladar um bone, a parte associada da mesh acompanhou.
+
+Isso prova a cadeia:
+
+```text
+PHYSIQUE ASE
+-> índice de vértice
+-> nome Bip
+-> vertex group
+-> Armature Modifier
+-> deformação da mesh
+```
+
+Estado:
+
+```text
+V4: PROVADO
+```
+
+Ainda pendente:
+
+```text
+bone roll exato
+rotação local compatível com animação original
+controladores de animação
+round-trip de skeleton
+```
+
+---
+
+# 68. Estado consolidado da pipeline em 2026-08-23
+
+```text
+V1
+ASE -> geometry/faces/UV
+PROVADO
+
+V2.2
+ASE -> materials -> protected BMP/TGA -> Blender
+PROVADO
+
+V3
+ASE -> Biped hierarchy/joint positions
+PROVADO
+
+V4
+ASE PHYSIQUE -> Blender vertex groups -> deformation
+PROVADO
+```
+
+Pipeline atual:
+
+```text
+Priston ASE
+      ↓
+GEOMOBJECT
+      ↓
+Geometry / Faces
+      ↓
+UV
+      ↓
+MATERIAL_REF / MESH_MTLID
+      ↓
+BITMAP
+      ↓
+BMP/TGA proprietário
+      ↓
+decode
+      ↓
+Blender materials
+      ↓
+NODE hierarchy
+      ↓
+PT_BIPED
+      ↓
+PHYSIQUE
+      ↓
+vertex groups weight 1.0
+      ↓
+Armature Modifier
+      ↓
+mesh deformável
+```
+
+---
+
+# 69. Estratégia de exportação Blender -> ASE
+
+A exportação deve continuar incremental.
+
+Não é seguro começar recriando um ASE inteiro do zero.
+
+A estratégia recomendada agora é:
+
+```text
+ASE funcional original
++
+Blender modificado
++
+patch somente dos dados que realmente mudaram
+```
+
+Isso segue a regra já documentada anteriormente de preservar a estrutura de um ASE aceito pelo engine.
+
+---
+
+# 70. V5a — round-trip conservador de coordenadas
+
+Objetivo:
+
+```text
+Blender V4
+-> ASE funcional usado como template
+-> validar que topologia / UV / Physique continuam iguais
+-> substituir somente coordenadas MESH_VERTEX alteradas
+```
+
+V5a NÃO deve reescrever ainda:
+
+```text
+MESH_FACE_LIST
+MESH_TVERTLIST
+MESH_TFACELIST
+MESH_NORMALS
+PHYSIQUE
+NODE_TM
+materials
+Biped
+animation
+```
+
+## 70.1 Teste zero
+
+Sem modificar o `.blend`:
+
+```text
+original ASE
+-> V5a
+-> exported ASE
+```
+
+Resultado obrigatório:
+
+```text
+SHA256 original == SHA256 exportado
+```
+
+ou seja:
+
+```text
+byte-identical round trip
+```
+
+Esse teste prova que o exporter não modifica dados que não deveriam mudar.
+
+## 70.2 Teste de um único vértice
+
+Depois:
+
+```text
+duplicar / fazer backup do .blend
+-> Edit Mode
+-> mover exatamente 1 vértice
+-> V5a
+```
+
+Rodar o exporter com limite:
+
+```text
+--max-changed 1
+```
+
+Resultado esperado:
+
+```text
+1 vértice alterado
+topologia idêntica
+UV idêntica
+Physique idêntico
+restante do ASE preservado
+```
+
+Depois comparar:
+
+```bash
+diff -u original.ASE modificado.ASE
+```
+
+O diff deve ficar restrito à linha `MESH_VERTEX` escolhida.
+
+Observação:
+
+como `MESH_NORMALS` ainda é preservado nesta fase, o arquivo de um-vértice é apenas um teste de round-trip/pipeline, não o exporter final para remodelagem completa.
+
+---
+
+# 71. V5b — exporter completo de mesh
+
+Somente após V5a funcionar.
+
+V5b deverá implementar:
+
+```text
+MESH_NUMVERTEX
+MESH_VERTEX_LIST
+
+MESH_NUMFACES
+MESH_FACE_LIST
+
+MESH_NUMTVERTEX
+MESH_TVERTLIST
+
+MESH_NUMTVFACES
+MESH_TFACELIST
+
+MESH_NORMALS
+
+MATERIAL_REF
+MESH_MTLID
+
+PHYSIQUE
+```
+
+Requisitos:
+
+- triangulação determinística;
+- vertex indices consistentes;
+- UV per-loop convertido corretamente para TVERT/TFACE;
+- IDs de material preservados;
+- normals regeneradas;
+- vertex groups convertidos novamente para Physique rígido;
+- validação de bones inexistentes;
+- nenhuma referência de vértice fora do range.
+
+---
+
+# 72. V5c / V6 — skeleton, animação e formato runtime
+
+Depois da exportação completa de mesh:
+
+```text
+V5c
+Blender Armature
+-> NODE hierarchy / NODE_TM
+-> bind transforms
+```
+
+Só depois:
+
+```text
+animações
+```
+
+O ponto crítico ainda não provado é reconstruir exatamente:
+
+```text
+bone orientation
+bone roll
+transform local
+controllers/keyframes
+```
+
+A etapa runtime será:
+
+```text
+Blender
+-> ASE compatível
+-> conversão/carregamento aceito pelo Priston
+-> SMD/SMB/INX quando necessário
+-> cliente
+```
+
+O conversor/runtime exato para fechar:
+
+```text
+ASE editado -> SMD/SMB final
+```
+
+ainda precisa ser estabelecido e testado.
+
+---
+
+# 73. Regra de trabalho para o remaster
+
+Para cada alteração:
+
+```text
+1. manter backup;
+2. registrar SHA256;
+3. alterar uma variável por teste;
+4. validar estrutura;
+5. validar visual;
+6. só então marcar PROVADO;
+7. nunca substituir famílias inteiras de assets sem necessidade.
+```
+
+Para personagem:
+
+```text
+mesh
+-> UV
+-> material
+-> textura
+-> Physique
+-> runtime
+```
+
+Para textura:
+
+```text
+decode proprietário
+-> editar formato padrão
+-> preservar dimensão/bpp inicialmente
+-> reencodar/reproteger
+-> testar
+```
+
+Não aumentar resolução ou mudar formato interno até a pipeline original estar estável.
+
+---
+
+# 74. Estado desta documentação
+
+A partir desta seção, o documento passa a ser:
+
+```text
+SUMMIT TALE 3D / BLENDER
+SOURCE OF TRUTH v2
+2026-08-23
+```
+
+A parte antiga continua útil como consolidação dos guias e materiais históricos.
+
+As seções 57 em diante têm prioridade quando uma conclusão antiga conflitar com um teste direto feito no Summit Tale.
+---
+
+# 75. V5a — no-op round-trip Blender -> ASE PROVADO
+
+Teste executado em 2026-08-23.
+
+Template original:
+
+```text
+char/tmABCD/MfbC13.ASE
+```
+
+Tamanho:
+
+```text
+456373 bytes
+```
+
+SHA256 original:
+
+```text
+86a45454c98db4ef8239a1264413a7b34ec558f993c3d4148a1ccd0c03935887
+```
+
+O `.blend` usado foi o resultado da V4, sem qualquer edição de mesh.
+
+O exporter V5a validou:
+
+```text
+MahC20
+    V=80
+    F=146
+    TV=124
+    TF=146
+    PHYS=80
+    CHANGED=0
+
+MbhC19
+    V=143
+    F=248
+    TV=212
+    TF=248
+    PHYS=143
+    CHANGED=0
+
+MlhC20
+    V=286
+    F=428
+    TV=296
+    TF=428
+    PHYS=286
+    CHANGED=0
+
+MshC19
+    V=163
+    F=264
+    TV=250
+    TF=264
+    PHYS=163
+    CHANGED=0
+```
+
+Resultado:
+
+```text
+Total changed vertices: 0
+Output bytes:           456373
+Output SHA256:          86a45454c98db4ef8239a1264413a7b34ec558f993c3d4148a1ccd0c03935887
+Byte-identical:         True
+NO-OP ROUND-TRIP: BYTE-IDENTICAL
+```
+
+Validação externa:
+
+```text
+sha256sum original == sha256sum exportado
+cmp -s original exportado == idêntico
+```
+
+Estado:
+
+```text
+Blender V4 -> V5a -> ASE sem edição: PROVADO BYTE A BYTE
+```
+
+Isto prova que a estratégia de usar o ASE funcional original como template preserva 100% dos bytes quando nenhuma coordenada de vértice foi alterada.
+
+Também prova que, para este arquivo, as validações atuais do V5a aceitam corretamente:
+
+```text
+topologia original
+UV original
+PHYSIQUE rígido original
+ordem original dos vértices
+```
+
+sem introduzir alterações colaterais.
+
+---
+
+# 76. Próximo teste — exatamente um MESH_VERTEX alterado
+
+O próximo teste da V5a deve modificar apenas:
+
+```text
+MahC20
+vertex 0
+X += 1.0
+```
+
+em uma cópia do `.blend` V4.
+
+O `.blend` original deve permanecer intacto.
+
+Depois o V5a deve ser executado com:
+
+```text
+--max-changed 1
+```
+
+Resultado esperado:
+
+```text
+MahC20 CHANGED=1
+MbhC19 CHANGED=0
+MlhC20 CHANGED=0
+MshC19 CHANGED=0
+
+Total changed vertices: 1
+Byte-identical: False
+```
+
+A comparação de linhas entre o ASE original e o ASE exportado deve apontar exatamente:
+
+```text
+1 linha diferente
+```
+
+e essa linha deve ser:
+
+```text
+*MESH_VERTEX 0 ...
+```
+
+dentro do `GEOMOBJECT` de `MahC20`.
+
+Importante:
+
+a V5a ainda NÃO recalcula `MESH_NORMALS`.
+
+Portanto o ASE de um-vértice é um artefato de validação da pipeline:
+
+```text
+Blender -> coordenada editada -> ASE
+```
+
+e não deve ainda ser tratado como exporter final para remodelagem completa ou teste runtime definitivo.
+
+Se esse teste passar, o próximo estágio será V5b:
+
+```text
+Blender mesh
+-> vertices
+-> faces
+-> UV
+-> normals
+-> material IDs
+-> PHYSIQUE
+-> ASE consistente
+```
+---
+
+# 77. V5a — teste de exatamente um vértice PROVADO
+
+Teste executado em 2026-08-23.
+
+Foi criada uma cópia do `.blend` V4:
+
+```text
+MfbC13_import_v4_onevertex.blend
+```
+
+Alteração aplicada:
+
+```text
+objeto: MahC20
+vertex: 0
+eixo:   X
+delta:  +1.0
+```
+
+Coordenada antes no Blender:
+
+```text
+(-6.557600021362305, 1.332800030708313, 22.271799087524414)
+```
+
+Depois:
+
+```text
+(-5.557600021362305, 1.332800030708313, 22.271799087524414)
+```
+
+O V5a foi executado com:
+
+```text
+--max-changed 1
+```
+
+Resultado do exporter:
+
+```text
+MahC20: V=80  F=146 TV=124 TF=146 PHYS=80  CHANGED=1
+MbhC19: V=143 F=248 TV=212 TF=248 PHYS=143 CHANGED=0
+MlhC20: V=286 F=428 TV=296 TF=428 PHYS=286 CHANGED=0
+MshC19: V=163 F=264 TV=250 TF=264 PHYS=163 CHANGED=0
+
+Total changed vertices: 1
+Byte-identical: False
+```
+
+Tamanho original:
+
+```text
+456373 bytes
+```
+
+Tamanho exportado:
+
+```text
+456375 bytes
+```
+
+A diferença de tamanho ocorre apenas pela representação textual da nova coordenada.
+
+Validação linha a linha:
+
+```text
+linhas original:  8678
+linhas exportado: 8678
+linhas diferentes: 1
+```
+
+Única linha alterada:
+
+```text
+ORIGINAL:
+*MESH_VERTEX 0  -6.5576  1.3328  22.2718
+
+NOVO:
+*MESH_VERTEX 0  -5.5576  1.3328  22.271799
+```
+
+Resultado:
+
+```text
+PROVADO: somente uma linha MESH_VERTEX foi alterada
+```
+
+Também:
+
+```text
+cmp -s original exportado
+-> arquivos diferem, como esperado
+```
+
+Estado consolidado da V5a:
+
+```text
+no-op Blender -> ASE byte-identical:      PROVADO
+1 vertex Blender -> 1 MESH_VERTEX no ASE: PROVADO
+topologia preservada:                     PROVADO neste teste
+UV preservada:                            PROVADO neste teste
+PHYSIQUE preservado:                      PROVADO neste teste
+alterações colaterais:                    nenhuma detectada
+```
+
+Isto prova a direção:
+
+```text
+Blender
+-> coordenada de vértice editada
+-> template ASE funcional
+-> patch controlado
+-> somente dado escolhido alterado
+```
+
+A V5a continua sendo um exporter de validação, pois ainda preserva os
+`MESH_NORMALS` originais após uma edição geométrica.
+
+---
+
+# 78. Gate antes da V5b — provar convenção de normals
+
+Antes de recalcular `MESH_NORMALS`, medir diretamente no ASE funcional se:
+
+```text
+MESH_FACENORMAL
+<->
+Blender polygon.normal
+```
+
+e:
+
+```text
+MESH_VERTEXNORMAL por corner
+<->
+Blender corner normal
+```
+
+também preservam:
+
+```text
+ordem de faces
+ordem de corners
+índice de vértice
+orientação / handedness
+smoothing
+```
+
+A V5b só deve ser implementada após esse probe.
+
+Motivo:
+
+```text
+normals erradas
+-> iluminação errada
+-> costuras visuais
+-> shading invertido
+```
+
+Mesmo que a geometria e a UV estejam corretas.
+---
+
+# 79. MfbC13.ASE — ausência de MESH_NORMALS PROVADA
+
+Diagnóstico executado em 2026-08-23 no ASE funcional:
+
+```text
+char/tmABCD/MfbC13.ASE
+```
+
+Contagem no arquivo inteiro:
+
+```text
+MESH_NORMALS:      0
+MESH_FACENORMAL:   0
+MESH_VERTEXNORMAL: 0
+```
+
+Também foi isolado o `GEOMOBJECT`:
+
+```text
+MahC20
+```
+
+Resultado:
+
+```text
+MESH_NORMALS:      0
+MESH_FACENORMAL:   0
+MESH_VERTEXNORMAL: 0
+```
+
+As linhas de face contêm, porém:
+
+```text
+*MESH_SMOOTHING 1
+```
+
+junto com:
+
+```text
+*MESH_MTLID
+```
+
+Exemplo estrutural:
+
+```text
+*MESH_FACE 0:
+    A: ...
+    B: ...
+    C: ...
+    AB: ...
+    BC: ...
+    CA: ...
+    *MESH_SMOOTHING 1
+    *MESH_MTLID 0
+```
+
+Conclusão para este ASE:
+
+```text
+normals explícitas no arquivo: NÃO EXISTEM
+smoothing por face:            EXISTE
+```
+
+Estado:
+
+```text
+ausência de MESH_NORMALS no MfbC13.ASE: PROVADO
+```
+
+Portanto a pipeline Summit não deve adicionar `MESH_NORMALS` ao exportar
+edições desse template apenas porque ASE genérico pode suportar esse bloco.
+
+A regra correta é:
+
+```text
+preservar a convenção do ASE funcional
+```
+
+Neste caso:
+
+```text
+vertices
+faces + smoothing
+UV
+material IDs
+Physique
+```
+
+sem bloco explícito de normals.
+
+Isso invalida a premissa anterior de que a V5b precisaria obrigatoriamente
+recalcular e escrever:
+
+```text
+MESH_FACENORMAL
+MESH_VERTEXNORMAL
+```
+
+para este asset.
+
+---
+
+# 80. V5b — exporter de atributos com topologia preservada
+
+A próxima etapa segura é ampliar a V5a sem ainda reconstruir topologia.
+
+V5b deve aceitar alterações em:
+
+```text
+MESH_VERTEX
+TVERT já existente
+MESH_MTLID
+PHYSIQUE rígido / No Blending
+```
+
+e preservar:
+
+```text
+quantidade de vertices
+quantidade de faces
+índices A/B/C das faces
+AB/BC/CA
+MESH_SMOOTHING
+quantidade de TVERT
+TFACE
+estrutura do GEOMOBJECT
+NODE_TM
+materiais top-level
+Biped
+demais bytes do template
+```
+
+## 80.1 UV na V5b
+
+Como Blender usa UV por loop/corner e o ASE deste arquivo usa:
+
+```text
+TVERT
++
+TFACE
+```
+
+a V5b mantém os índices TVERT existentes.
+
+Se vários corners apontam para o mesmo TVERT:
+
+```text
+todos precisam continuar com a mesma coordenada UV
+```
+
+Se o usuário separar esses corners no Blender e criar implicitamente uma
+nova seam que exigiria dois TVERTs diferentes, a V5b deve parar.
+
+Essa operação será suportada na fase de rebuild de UV/topologia.
+
+## 80.2 Material ID
+
+A V5b converte:
+
+```text
+Blender polygon.material_index
+-> slot criado pelo importer
+-> MESH_MTLID original associado ao slot
+```
+
+e modifica somente o número após:
+
+```text
+*MESH_MTLID
+```
+
+preservando smoothing e flags de borda da linha da face.
+
+## 80.3 Physique
+
+Para este workflow rígido:
+
+```text
+cada vertex
+-> exatamente um vertex group Bip*
+-> weight 1.0
+```
+
+A V5b pode converter novamente:
+
+```text
+Blender vertex group
+-> bone name
+-> PHYSIQUE_VERTEXASSIGNMENT_NONBLENDED_RIGIDTYPE
+```
+
+Se um vertex possuir:
+
+```text
+zero grupos Bip
+mais de um grupo Bip
+peso não rígido
+```
+
+o exporter deve parar em vez de produzir um ASE ambíguo.
+
+## 80.4 Limite desta fase
+
+A V5b ainda não suporta:
+
+```text
+adicionar/remover vertices
+adicionar/remover faces
+mudar triangulação
+nova seam que exija novo TVERT
+alterar quantidade de TVERT
+```
+
+Essas operações exigem reconstrução de listas/contadores e ficam para a
+etapa seguinte.
+---
+
+# 81. V5b.1 — no-op round-trip PROVADO
+
+Teste executado em 2026-08-23.
+
+A V5b inicial encontrou uma característica válida do ASE:
+
+```text
+MlhC20 possui pelo menos um TVERT não referenciado por TFACE.
+```
+
+Exemplo observado:
+
+```text
+TVERT 56
+```
+
+A primeira implementação tratava isso como erro.
+
+Correção V5b.1:
+
+```text
+TVERT sem referência por TFACE
+-> não possui loop Blender correspondente
+-> preservar bytes originais
+-> não considerar erro
+```
+
+Após a correção, a V5b.1 foi executada sobre o `.blend` V4 original.
+
+Resultado:
+
+```text
+MahC20:
+VCHG=0
+UVCHG=0
+MTLCHG=0
+PHYSCHG=0
+
+MbhC19:
+VCHG=0
+UVCHG=0
+MTLCHG=0
+PHYSCHG=0
+
+MlhC20:
+VCHG=0
+UVCHG=0
+MTLCHG=0
+PHYSCHG=0
+
+MshC19:
+VCHG=0
+UVCHG=0
+MTLCHG=0
+PHYSCHG=0
+```
+
+Totais:
+
+```text
+Total vertex changes: 0
+Total TVERT changes:  0
+Total MTLID changes:  0
+Total PHYS changes:   0
+```
+
+ASE original:
+
+```text
+456373 bytes
+SHA256:
+86a45454c98db4ef8239a1264413a7b34ec558f993c3d4148a1ccd0c03935887
+```
+
+ASE V5b.1 no-op:
+
+```text
+456373 bytes
+SHA256:
+86a45454c98db4ef8239a1264413a7b34ec558f993c3d4148a1ccd0c03935887
+```
+
+Validação externa:
+
+```text
+cmp -s
+-> byte a byte idêntico
+```
+
+Estado:
+
+```text
+V5b.1 no-op: PROVADO
+```
+
+Também fica confirmado para este asset:
+
+```text
+ASE pode conter TVERT órfão/não referenciado
+```
+
+e esse dado deve ser preservado pelo exporter template-based.
+
+---
+
+# 82. Próximo teste V5b.1 — exatamente um TVERT
+
+Objetivo:
+
+```text
+Blender UV
+-> alterar coordenadas de todos os loops que apontam para um mesmo TVERT
+-> exporter V5b.1
+-> exatamente uma linha MESH_TVERT alterada
+```
+
+O helper deve escolher um TVERT realmente referenciado por `TFACE`.
+
+Se o mesmo TVERT for utilizado por múltiplos corners:
+
+```text
+todos esses corners devem receber exatamente a mesma nova UV
+```
+
+Isso preserva a relação:
+
+```text
+1 ASE TVERT
+<-
+N corners Blender compartilhando a mesma coordenada
+```
+
+Teste esperado:
+
+```text
+VCHG=0
+UVCHG=1
+MTLCHG=0
+PHYSCHG=0
+```
+
+e comparação textual:
+
+```text
+1 linha diferente
+*MESH_TVERT ...
+```
+
+Esse teste provará:
+
+```text
+Blender UV
+-> índice TVERT existente
+-> ASE
+```
+
+sem reconstrução de TFACE ou criação de nova seam.
+---
+
+# 83. V5b.1 — teste de um TVERT PROVADO semanticamente
+
+Teste executado em 2026-08-23.
+
+Objeto:
+
+```text
+MahC20
+```
+
+TVERT escolhido:
+
+```text
+0
+```
+
+UV original:
+
+```text
+(0.3804, 0.0128, -0.0390)
+```
+
+O mesmo TVERT era referenciado por dois corners:
+
+```text
+face 0  / corner 1
+face 10 / corner 1
+```
+
+Os dois loops Blender foram movidos juntos:
+
+```text
+U += 0.01
+```
+
+Resultado da V5b.1:
+
+```text
+MahC20:
+VCHG=0
+UVCHG=1
+MTLCHG=0
+PHYSCHG=0
+
+demais meshes:
+todas as mudanças = 0
+```
+
+Totais:
+
+```text
+Total vertex changes: 0
+Total TVERT changes:  1
+Total MTLID changes:  0
+Total PHYS changes:   0
+```
+
+Comparação de arquivo:
+
+```text
+8678 linhas original
+8678 linhas exportado
+1 linha diferente
+```
+
+Linha alterada:
+
+```text
+ORIGINAL:
+*MESH_TVERT 0  0.3804  0.0128  -0.0390
+
+NOVO:
+*MESH_TVERT 0  0.3904  0.0128  -0.039
+```
+
+Conclusão funcional:
+
+```text
+Blender UV
+-> TVERT existente
+-> exatamente uma linha MESH_TVERT
+```
+
+Estado:
+
+```text
+mapeamento UV -> TVERT: PROVADO
+```
+
+## 83.1 Detalhe de preservação textual encontrado
+
+Embora apenas U tenha sido editado, a V5b.1 reformatou também o token W:
+
+```text
+-0.0390
+->
+-0.039
+```
+
+O valor numérico não mudou, mas os bytes mudaram.
+
+O mesmo tipo de normalização textual havia ocorrido no teste V5a de um
+vértice, onde um componente não editado foi reformatado por precisão
+float32.
+
+Portanto distinguir:
+
+```text
+alteração semântica
+vs
+alteração textual byte-minimal
+```
+
+A V5b.1 está provada para o primeiro caso, mas será refinada para o segundo.
+
+---
+
+# 84. V5b.2 — patch por componente
+
+A V5b.2 altera a estratégia de escrita de:
+
+```text
+reescrever X/Y/Z inteiro de um MESH_VERTEX alterado
+reescrever U/V/W inteiro de um MESH_TVERT alterado
+```
+
+para:
+
+```text
+comparar cada componente individualmente com epsilon
+```
+
+e:
+
+```text
+componente realmente alterado
+-> formatar novo valor
+
+componente não alterado
+-> reutilizar literalmente o token original do ASE
+```
+
+Exemplo esperado:
+
+```text
+ORIGINAL:
+*MESH_TVERT 0  0.3804  0.0128  -0.0390
+
+EDIT:
+U += 0.01
+
+V5b.2:
+*MESH_TVERT 0  0.3904  0.0128  -0.0390
+```
+
+Assim:
+
+```text
+V e W permanecem byte-identical
+```
+
+O mesmo princípio vale para:
+
+```text
+MESH_VERTEX X/Y/Z
+```
+
+Objetivo:
+
+```text
+alterar somente os bytes correspondentes ao dado efetivamente editado
+```
+
+sempre que a estrutura da linha permitir.
+---
+
+# 85. V5b.2 — UV byte-minimal PROVADO
+
+Teste executado em 2026-08-23.
+
+Foi reutilizado:
+
+```text
+MfbC13_import_v4_one_tvert.blend
+```
+
+Objeto:
+
+```text
+MahC20
+```
+
+TVERT:
+
+```text
+0
+```
+
+O TVERT é compartilhado por dois corners Blender:
+
+```text
+face 0  / corner 1
+face 10 / corner 1
+```
+
+Os dois loops foram movidos juntos:
+
+```text
+U += 0.01
+```
+
+Resultado da V5b.2:
+
+```text
+MahC20:
+VCHG=0
+UVCHG=1
+MTLCHG=0
+PHYSCHG=0
+
+MbhC19:
+VCHG=0
+UVCHG=0
+MTLCHG=0
+PHYSCHG=0
+
+MlhC20:
+VCHG=0
+UVCHG=0
+MTLCHG=0
+PHYSCHG=0
+
+MshC19:
+VCHG=0
+UVCHG=0
+MTLCHG=0
+PHYSCHG=0
+```
+
+Totais:
+
+```text
+Total vertex changes: 0
+Total TVERT changes:  1
+Total MTLID changes:  0
+Total PHYS changes:   0
+```
+
+O arquivo manteve:
+
+```text
+456373 bytes
+```
+
+A comparação encontrou:
+
+```text
+linhas diferentes: 1
+```
+
+Única linha alterada:
+
+```text
+ORIGINAL:
+*MESH_TVERT 0  0.3804  0.0128  -0.0390
+
+NOVO:
+*MESH_TVERT 0  0.3904  0.0128  -0.0390
+```
+
+Portanto:
+
+```text
+U: alterado
+V: byte-identical
+W: byte-identical
+```
+
+Estado:
+
+```text
+Blender UV -> MESH_TVERT existente: PROVADO
+patch por componente:                PROVADO
+preservação textual de V/W:          PROVADO
+1 TVERT lógico -> 1 linha ASE:        PROVADO
+```
+
+---
+
+# 86. Próximo teste V5b.2 — exatamente um MESH_MTLID
+
+O próximo teste isolado usa:
+
+```text
+MbhC19
+```
+
+porque essa mesh usa:
+
+```text
+MTLID 0
+MTLID 1
+```
+
+e possui slots Blender correspondentes aos dois submateriais.
+
+O helper deve:
+
+```text
+1. localizar os slots ASE_M..._S0 e ASE_M..._S1;
+2. escolher uma única face;
+3. trocar polygon.material_index para o outro submaterial;
+4. salvar em novo .blend;
+5. não modificar geometria, UV ou Physique.
+```
+
+Resultado esperado da V5b.2:
+
+```text
+VCHG=0
+UVCHG=0
+MTLCHG=1
+PHYSCHG=0
+```
+
+Comparação textual esperada:
+
+```text
+1 linha diferente
+```
+
+e dentro dessa linha somente:
+
+```text
+*MESH_MTLID 0
+->
+*MESH_MTLID 1
+```
+
+ou o inverso.
+
+Todo o restante da linha de face deve permanecer literalmente igual:
+
+```text
+A/B/C
+AB/BC/CA
+MESH_SMOOTHING
+tabs/espaçamento
+```
+
+Se passar, o mapping:
+
+```text
+Blender polygon.material_index
+-> material slot ASE
+-> MESH_MTLID
+```
+
+estará PROVADO.
+---
+
+# 87. V5b.2 — MESH_MTLID byte-minimal PROVADO
+
+Teste executado em 2026-08-23.
+
+Objeto:
+
+```text
+MbhC19
+```
+
+Face escolhida:
+
+```text
+0
+```
+
+Estado original:
+
+```text
+Blender slot: 0
+material:
+ASE_M0_S0_Material_434_MfbC19_01.TGA.001
+
+MATERIAL_REF: 0
+MESH_MTLID:  0
+```
+
+Novo estado:
+
+```text
+Blender slot: 1
+material:
+ASE_M0_S1_Material_435_MfbC19_02.BMP
+
+MATERIAL_REF: 0
+MESH_MTLID:  1
+```
+
+O MATERIAL_REF permaneceu:
+
+```text
+0
+```
+
+portanto a operação foi exclusivamente uma troca entre submateriais
+válidos do mesmo material top-level.
+
+Resultado V5b.2:
+
+```text
+MahC20:
+VCHG=0 UVCHG=0 MTLCHG=0 PHYSCHG=0
+
+MbhC19:
+VCHG=0 UVCHG=0 MTLCHG=1 PHYSCHG=0
+
+MlhC20:
+VCHG=0 UVCHG=0 MTLCHG=0 PHYSCHG=0
+
+MshC19:
+VCHG=0 UVCHG=0 MTLCHG=0 PHYSCHG=0
+```
+
+Totais:
+
+```text
+Total vertex changes: 0
+Total TVERT changes:  0
+Total MTLID changes:  1
+Total PHYS changes:   0
+```
+
+Comparação textual:
+
+```text
+linhas diferentes: 1
+```
+
+Única linha alterada:
+
+```text
+ORIGINAL:
+*MESH_FACE 0:
+A: 4 B: 3 C: 2
+AB: 1 BC: 1 CA: 1
+*MESH_SMOOTHING 1
+*MESH_MTLID 0
+
+NOVO:
+*MESH_FACE 0:
+A: 4 B: 3 C: 2
+AB: 1 BC: 1 CA: 1
+*MESH_SMOOTHING 1
+*MESH_MTLID 1
+```
+
+Portanto permaneceram literalmente preservados:
+
+```text
+face index
+A/B/C
+AB/BC/CA
+MESH_SMOOTHING
+espaçamento restante da linha
+```
+
+Estado:
+
+```text
+Blender polygon.material_index -> MESH_MTLID: PROVADO
+patch de uma única face:                     PROVADO
+preservação do restante da linha:            PROVADO
+```
+
+---
+
+# 88. Estado V5b.2 antes do teste PHYSIQUE
+
+Já estão provados individualmente:
+
+```text
+Blender vertex coordinate
+-> MESH_VERTEX
+
+Blender UV
+-> MESH_TVERT
+
+Blender polygon material
+-> MESH_MTLID
+```
+
+Falta provar isoladamente:
+
+```text
+Blender rigid vertex group
+-> PHYSIQUE_VERTEXASSIGNMENT_NONBLENDED_RIGIDTYPE
+```
+
+Depois disso, a V5b.2 terá fechado todos os atributos que ela se propõe
+a editar mantendo a topologia existente.
+
+---
+
+# 89. Próximo teste — exatamente uma associação PHYSIQUE
+
+O teste deve:
+
+```text
+1. usar o .blend V4 original;
+2. escolher uma mesh com mais de um grupo Bip*;
+3. escolher um único vértice;
+4. descobrir seu bone atual;
+5. remover esse vértice do grupo atual;
+6. adicioná-lo a outro grupo Bip* existente com weight 1.0;
+7. salvar em outro .blend;
+8. executar V5b.2 com --max-physique-changed 1.
+```
+
+Nenhum outro atributo deve mudar.
+
+Resultado esperado:
+
+```text
+VCHG=0
+UVCHG=0
+MTLCHG=0
+PHYSCHG=1
+```
+
+Comparação textual esperada:
+
+```text
+1 linha diferente
+```
+
+com somente:
+
+```text
+*PHYSIQUE_VERTEXASSIGNMENT_NONBLENDED_RIGIDTYPE
+<vertex> "Bone Antigo"
+
+->
+<vertex> "Bone Novo"
+```
+
+O índice do vértice deve permanecer idêntico.
+
+Se passar, estará provado:
+
+```text
+Blender vertex group Bip*
+-> bone name PHYSIQUE
+-> ASE
+```
+---
+
+# 90. V5b.2 — PHYSIQUE byte-minimal PROVADO
+
+Teste executado em 2026-08-23.
+
+Objeto:
+
+```text
+MbhC19
+```
+
+Vértice:
+
+```text
+0
+```
+
+Associação original no Blender:
+
+```text
+Bip01 Spine1
+weight 1.0
+```
+
+Associação nova:
+
+```text
+Bip-0007
+weight 1.0
+```
+
+Após a alteração, o vértice possuía exatamente:
+
+```text
+[('Bip-0007', 1.0)]
+```
+
+Resultado V5b.2:
+
+```text
+MahC20:
+VCHG=0 UVCHG=0 MTLCHG=0 PHYSCHG=0
+
+MbhC19:
+VCHG=0 UVCHG=0 MTLCHG=0 PHYSCHG=1
+
+MlhC20:
+VCHG=0 UVCHG=0 MTLCHG=0 PHYSCHG=0
+
+MshC19:
+VCHG=0 UVCHG=0 MTLCHG=0 PHYSCHG=0
+```
+
+Totais:
+
+```text
+Total vertex changes: 0
+Total TVERT changes:  0
+Total MTLID changes:  0
+Total PHYS changes:   1
+```
+
+Comparação textual:
+
+```text
+linhas diferentes: 1
+```
+
+Única linha alterada:
+
+```text
+ORIGINAL:
+*PHYSIQUE_VERTEXASSIGNMENT_NONBLENDED_RIGIDTYPE
+0 "Bip01 Spine1"
+
+NOVO:
+*PHYSIQUE_VERTEXASSIGNMENT_NONBLENDED_RIGIDTYPE
+0 "Bip-0007"
+```
+
+O índice do vértice permaneceu:
+
+```text
+0
+```
+
+Estado:
+
+```text
+Blender rigid vertex group -> PHYSIQUE bone name: PROVADO
+patch de uma única associação:                       PROVADO
+preservação do vertex index:                         PROVADO
+```
+
+---
+
+# 91. V5b.2 — estado final
+
+A V5b.2 fecha o round-trip com topologia preservada.
+
+Todos os caminhos abaixo estão PROVADOS:
+
+```text
+Blender vertex coordinate
+-> MESH_VERTEX
+
+Blender UV
+-> MESH_TVERT
+
+Blender polygon material
+-> MESH_MTLID
+
+Blender rigid Bip vertex group
+-> PHYSIQUE_VERTEXASSIGNMENT_NONBLENDED_RIGIDTYPE
+```
+
+Também foram provados:
+
+```text
+no-op byte-identical
+TVERT órfão preservado
+ausência de MESH_NORMALS no MfbC13.ASE
+MESH_SMOOTHING preservado
+patch por componente para valores float
+```
+
+Portanto:
+
+```text
+V5b.2 = EXPORTER DE ATRIBUTOS COM TOPOLOGIA EXISTENTE
+PROVADO
+```
+
+---
+
+# 92. Gate para V5c — dados que passam a precisar ser criados
+
+A V5c permitirá mudança de topologia:
+
+```text
+adicionar/remover vértices
+adicionar/remover faces
+nova triangulação
+novas seams UV
+novo número de TVERT
+novo TFACE
+novo PHYSIQUE para vértices novos
+```
+
+Isso exige reconstruir informações que até V5b.2 eram preservadas do
+template.
+
+Dois campos precisam ser medidos antes de definir regras de geração:
+
+## 92.1 TVERT W
+
+ASE usa:
+
+```text
+*MESH_TVERT index U V W
+```
+
+A importação Blender atual usa U/V para o UV Editor.
+
+O terceiro componente W não é editado no Blender.
+
+Exemplo já observado:
+
+```text
+*MESH_TVERT 0  0.3804  0.0128  -0.0390
+```
+
+Portanto W não deve ser automaticamente definido como zero sem auditoria.
+
+A V5c precisa descobrir por mesh:
+
+```text
+mínimo W
+máximo W
+quantos valores W distintos
+se W é constante
+se W depende de U/V
+```
+
+## 92.2 Face edge flags AB/BC/CA
+
+ASE usa em cada face:
+
+```text
+A:
+B:
+C:
+AB:
+BC:
+CA:
+*MESH_SMOOTHING
+*MESH_MTLID
+```
+
+V5b.2 preservava esses flags literalmente.
+
+Ao criar faces novas, a V5c precisa saber se:
+
+```text
+AB/BC/CA são usados pelo loader/runtime
+```
+
+ou se são apenas metadata do ASE/3ds Max.
+
+Antes de inventar:
+
+```text
+AB=1 BC=1 CA=1
+```
+
+é necessário auditar:
+
+```text
+distribuição no asset funcional
++
+parser do source
+```
+
+---
+
+# 93. Estratégia V5c
+
+Somente após o gate acima:
+
+```text
+ASE funcional como template
+-> manter MATERIAL_LIST / NODE_TM / Biped / animation
+-> reconstruir apenas MESH do objeto alterado
+-> reconstruir PHYSIQUE desse objeto
+```
+
+Primeiro teste V5c recomendado:
+
+```text
+uma única face subdividida
+```
+
+ou:
+
+```text
+um único vértice novo + triangulação controlada
+```
+
+e depois:
+
+```text
+exportar
+-> reimportar com V4
+-> comparar geometria/UV/material/Physique
+```
+
+O runtime vem apenas depois desse round-trip estrutural.
+---
+
+# 94. V5c gate — W de TVERT varia de verdade
+
+Auditoria executada no `MfbC13.ASE`.
+
+Resultados:
+
+```text
+MshC19
+TVERT: 250
+W min: -2.1609
+W max:  2.21
+W distintos (6 casas): 118
+
+MbhC19
+TVERT: 212
+W min: -1.2273
+W max:  3.74
+W distintos (6 casas): 92
+
+MlhC20
+TVERT: 296
+W min: -0.0055
+W max:  0.9945
+W distintos (6 casas): 113
+
+MahC20
+TVERT: 124
+W min: -1.638
+W max:  1.719
+W distintos (6 casas): 61
+```
+
+Conclusão:
+
+```text
+W NÃO é constante.
+```
+
+Portanto a V5c não pode assumir:
+
+```text
+W = 0
+```
+
+ao criar novos TVERTs sem antes estabelecer a função/semântica correta.
+
+Estado:
+
+```text
+TVERT W variável no asset funcional: PROVADO
+significado exato de W:               PENDENTE
+```
+
+---
+
+# 95. V5c gate — AB/BC/CA não são constantes
+
+O primeiro probe encontrou múltiplos padrões nas faces.
+
+Exemplos:
+
+```text
+MshC19
+(1,1,1)
+(0,1,1)
+(1,1,0)
+(1,0,1)
+
+MbhC19
+(1,1,1)
+(1,1,0)
+(0,1,1)
+(1,0,1)
+
+MlhC20
+(1,1,0)
+(1,1,1)
+
+MahC20
+(1,1,0)
+(1,1,1)
+```
+
+Conclusão:
+
+```text
+AB/BC/CA NÃO são valores fixos universais.
+```
+
+Portanto a V5c não deve preencher toda nova face com:
+
+```text
+AB=1 BC=1 CA=1
+```
+
+sem entender a regra.
+
+Estado:
+
+```text
+flags mistos no ASE funcional: PROVADO
+semântica/runtime desses flags: PENDENTE
+```
+
+---
+
+# 96. Falha detectada no primeiro face gate
+
+O primeiro probe exigia que uma linha de face tivesse simultaneamente:
+
+```text
+A/B/C
+AB/BC/CA
+MESH_SMOOTHING
+MESH_MTLID
+```
+
+para entrar na contagem.
+
+Isso produziu:
+
+```text
+MbhC19: 246 faces
+MlhC20: 420 faces
+```
+
+mas a pipeline V1-V5 já havia provado:
+
+```text
+MbhC19: 248 faces
+MlhC20: 428 faces
+```
+
+Portanto:
+
+```text
+10 linhas MESH_FACE válidas foram ignoradas pela regex do probe.
+```
+
+Isso NÃO invalida o ASE.
+
+Invalida apenas a contagem/distribuição incompleta do primeiro auditor.
+
+Antes de definir regras de geração para V5c, essas linhas precisam ser
+identificadas e classificadas.
+
+Novo probe:
+
+```text
+pt_v5c_face_gate_probe_v2.py
+```
+
+Ele:
+
+```text
+conta toda linha MESH_FACE primeiro;
+parseia A/B/C e AB/BC/CA separadamente;
+trata smoothing como opcional;
+trata MTLID como opcional;
+mostra índices ausentes/duplicados;
+imprime linhas incomuns.
+```
+
+Estado:
+
+```text
+primeiro face gate: PARCIAL
+face gate v2:       PENDENTE TESTE
+```
+---
+
+# 97. V5c face gate v2 — PROVADO
+
+Auditoria corrigida executada em 2026-08-23.
+
+O probe v2 passou a contar toda linha:
+
+```text
+*MESH_FACE
+```
+
+antes de exigir `MESH_SMOOTHING` ou `MESH_MTLID`.
+
+Resultado:
+
+```text
+MshC19
+MESH_FACE physical lines: 264
+parsed:                   264
+indices:                  0..263
+missing:                  0
+duplicates:               0
+malformed:                0
+
+MbhC19
+MESH_FACE physical lines: 248
+parsed:                   248
+indices:                  0..247
+missing:                  0
+duplicates:               0
+malformed:                0
+
+MlhC20
+MESH_FACE physical lines: 428
+parsed:                   428
+indices:                  0..427
+missing:                  0
+duplicates:               0
+malformed:                0
+
+MahC20
+MESH_FACE physical lines: 146
+parsed:                   146
+indices:                  0..145
+missing:                  0
+duplicates:               0
+malformed:                0
+```
+
+Essas contagens agora batem exatamente com V1-V5.
+
+Estado:
+
+```text
+face gate v2: PROVADO
+```
+
+---
+
+# 98. Causa da contagem incompleta do primeiro probe
+
+A diferença anterior era causada por faces com:
+
+```text
+*MESH_SMOOTHING
+```
+
+presente, porém sem número/grupo depois da palavra.
+
+Em `MbhC19`:
+
+```text
+face 34
+face 158
+```
+
+Total:
+
+```text
+2 faces com smoothing vazio
+```
+
+Em `MlhC20`:
+
+```text
+face 157
+face 158
+face 159
+face 160
+face 371
+face 372
+face 373
+face 374
+```
+
+Total:
+
+```text
+8 faces com smoothing vazio
+```
+
+Somando:
+
+```text
+10 faces
+```
+
+que eram exatamente as 10 linhas descartadas pela regex antiga.
+
+Importante:
+
+todas essas faces continuam possuindo:
+
+```text
+A/B/C
+AB/BC/CA
+MESH_MTLID
+```
+
+e não apresentam índice ausente ou duplicado.
+
+Estado:
+
+```text
+smoothing vazio presente em faces funcionais do template: PROVADO
+```
+
+Portanto a V5c não deve obrigar toda nova face a ter necessariamente:
+
+```text
+*MESH_SMOOTHING 1
+```
+
+sem antes entender como o loader interpreta smoothing vazio.
+
+---
+
+# 99. Distribuições corrigidas de AB/BC/CA
+
+Com todas as faces incluídas:
+
+```text
+MshC19
+(1,1,1) -> 236
+(0,1,1) -> 10
+(1,1,0) -> 10
+(1,0,1) -> 8
+
+MbhC19
+(1,1,1) -> 216
+(1,1,0) -> 11
+(0,1,1) -> 11
+(1,0,1) -> 10
+
+MlhC20
+(1,1,0) -> 332
+(1,1,1) -> 96
+
+MahC20
+(1,1,0) -> 128
+(1,1,1) -> 18
+```
+
+Estado:
+
+```text
+AB/BC/CA mistos: PROVADO
+```
+
+Ainda não está provado:
+
+```text
+se esses flags são usados pelo loader/runtime
+```
+
+---
+
+# 100. Distribuições corrigidas de smoothing e material
+
+```text
+MshC19
+smoothing 1: 264
+MTLID 0:    264
+
+MbhC19
+smoothing 1:   246
+smoothing vazio: 2
+MTLID 0:       152
+MTLID 1:        96
+
+MlhC20
+smoothing 1:   420
+smoothing vazio: 8
+MTLID 0:       216
+MTLID 1:       212
+
+MahC20
+smoothing 1: 146
+MTLID 0:      146
+```
+
+Isso confirma que o `MESH_MTLID` não era a causa do mismatch anterior.
+
+---
+
+# 101. Próximo gate — parser real smRead3d.cpp
+
+O source scan encontrou o parser ASE em:
+
+```text
+smLib3d/smRead3d.cpp
+```
+
+regiões relevantes:
+
+```text
+*MESH_FACE
+*MESH_MTLID
+*MESH_TVERT
+*MESH_TFACE
+```
+
+O scan preliminar indica que, em `MESH_TVERT`, o código parece armazenar:
+
+```text
+u
+v
+```
+
+e incrementar o contador sem armazenar explicitamente o terceiro valor W.
+
+Isso é apenas:
+
+```text
+INDÍCIO FORTE
+```
+
+até a leitura do bloco completo do parser.
+
+Também é necessário verificar no bloco de `MESH_FACE` se:
+
+```text
+AB
+BC
+CA
+MESH_SMOOTHING
+```
+
+são lidos, ignorados ou apenas saltados pelo tokenizer.
+
+Somente depois dessa inspeção será definida a regra de geração V5c.
+---
+
+# 102. Parser Summit — AB/BC/CA e smoothing ignorados: PROVADO
+
+Inspeção executada em 2026-08-23 em:
+
+```text
+SrcGame/src/smLib3d/smRead3d.cpp
+SrcServer/src/smLib3d/smRead3d.cpp
+```
+
+No bloco:
+
+```text
+*MESH_FACE
+```
+
+o loader:
+
+```text
+1. consome o índice da face;
+2. lê A;
+3. lê B;
+4. lê C;
+5. chama obj->AddFace(a,b,c);
+6. percorre até 16 tokens procurando *MESH_MTLID;
+7. lê somente o valor do MESH_MTLID.
+```
+
+O código não possui comparação direta com:
+
+```text
+AB:
+BC:
+CA:
+*MESH_SMOOTHING
+```
+
+na implementação inspecionada.
+
+Portanto esses tokens são apenas atravessados pelo loop que procura:
+
+```text
+*MESH_MTLID
+```
+
+Estado para o loader Summit inspecionado:
+
+```text
+A/B/C:          USADOS
+MESH_MTLID:     USADO
+AB/BC/CA:       IGNORADOS
+MESH_SMOOTHING: IGNORADO
+```
+
+Isso também explica por que faces com:
+
+```text
+*MESH_SMOOTHING
+```
+
+vazio continuam parseáveis: o loader não tenta converter o valor de
+smoothing.
+
+Conclusão:
+
+```text
+AB/BC/CA ignorados pelo loader Summit:       PROVADO
+MESH_SMOOTHING ignorado pelo loader Summit:  PROVADO
+```
+
+---
+
+# 103. Parser Summit — terceiro componente W de TVERT ignorado: PROVADO
+
+No bloco:
+
+```text
+*MESH_TVERT
+```
+
+o código inspecionado faz:
+
+```text
+ler índice;
+ler U -> lpTexVertex[].u;
+ler V -> lpTexVertex[].v;
+GetWord(...) para o terceiro token;
+não armazena esse terceiro token;
+incrementa TVertexCnt.
+```
+
+Posteriormente, na criação dos texture links, somente:
+
+```text
+tPoint[...].u
+tPoint[...].v
+```
+
+são utilizados.
+
+Portanto:
+
+```text
+MESH_TVERT U: USADO
+MESH_TVERT V: USADO
+MESH_TVERT W: CONSUMIDO E DESCARTADO
+```
+
+Estado:
+
+```text
+W ignorado pelo loader Summit inspecionado: PROVADO
+```
+
+Isto explica por que o W do ASE original pode variar sem fazer parte do
+mapeamento UV runtime dessa implementação.
+
+---
+
+# 104. Regras canônicas para novos dados V5c
+
+Com base no parser real da build atual, a V5c pode usar para dados novos:
+
+```text
+*MESH_TVERT index U V 0.0
+```
+
+O `0.0` é um valor canônico de serialização.
+
+Ele não participa do resultado runtime do loader inspecionado.
+
+Para faces novas:
+
+```text
+AB: 1
+BC: 1
+CA: 1
+*MESH_SMOOTHING 1
+```
+
+também podem ser usados como forma canônica.
+
+Esses campos são mantidos porque fazem parte da sintaxe ASE legível e
+compatível com ferramentas, mas não são usados para criar a face no loader
+Summit inspecionado.
+
+O dado runtime relevante continua sendo:
+
+```text
+A
+B
+C
+MESH_MTLID
+```
+
+---
+
+# 105. V5c.1 — gate de reconstrução completa sem topologia nova
+
+Antes de inserir um vértice ou face nova:
+
+```text
+não mudar a topologia;
+reconstruir as listas MESH de uma única peça;
+usar serialização canônica;
+validar que os dados efetivamente usados pelo loader são os mesmos.
+```
+
+Alvo inicial:
+
+```text
+MahC20
+```
+
+Motivo:
+
+```text
+80 vertices
+146 faces
+124 TVERT
+146 TFACE
+1 MTLID
+```
+
+e portanto é a peça mais simples para esse gate.
+
+A V5c.1 deve reconstruir:
+
+```text
+MESH_NUMVERTEX
+MESH_VERTEX_LIST
+MESH_NUMFACES
+MESH_FACE_LIST
+MESH_NUMTVERTEX
+MESH_TVERTLIST
+MESH_NUMTVFACES
+MESH_TFACELIST
+```
+
+mas preservar:
+
+```text
+NODE_TM
+MATERIAL_REF
+PHYSIQUE
+Biped
+animação
+todo o restante do GEOMOBJECT/template
+```
+
+A topologia V5c real só será habilitada após esse rebuild sem alteração
+passar.
+---
+
+# 106. V5c.1 — rebuild interno passou, validação externa ainda pendente
+
+Teste executado em 2026-08-23 sobre:
+
+```text
+MahC20
+```
+
+Fonte Blender:
+
+```text
+MfbC13_import_v4.blend
+```
+
+Template:
+
+```text
+MfbC13.ASE
+```
+
+Saída:
+
+```text
+MfbC13_roundtrip_v5c_1_MahC20.ASE
+```
+
+Resultado do exporter:
+
+```text
+Vertices: 80
+Faces:    146
+TVERT:    124
+TFACE:    146
+Orphan TVERTs: 0
+```
+
+A V5c.1 preservou do template:
+
+```text
+PHYSIQUE
+MATERIAL_REF
+NODE_TM
+```
+
+e reconstruiu o MESH com a forma canônica definida pelo source audit:
+
+```text
+AB/BC/CA       = 1/1/1
+MESH_SMOOTHING = 1
+W referenciado = 0.0
+```
+
+Self-check do arquivo serializado:
+
+```text
+serialized vertex count : OK
+serialized face topology: OK
+serialized MTLID        : OK
+serialized TVERT count  : OK
+serialized TFACE mapping: OK
+```
+
+Tamanhos:
+
+```text
+template: 456373 bytes
+output:   452853 bytes
+```
+
+Hashes:
+
+```text
+template:
+86a45454c98db4ef8239a1264413a7b34ec558f993c3d4148a1ccd0c03935887
+
+output:
+cca7817ba202203def589979349a4caccf74da3588890097b43663cf412aa785
+```
+
+A diferença de tamanho é esperável porque as listas foram reserializadas
+em formato canônico e não são mais um patch byte-minimal.
+
+Estado correto:
+
+```text
+V5c.1 serialização + self-check interno: PASSOU
+V5c.1 round-trip independente via importer V4: PENDENTE
+V5c.1 runtime cliente: PENDENTE
+```
+
+Não marcar ainda como:
+
+```text
+V5c.1 PROVADO
+```
+
+até o importer V4 reabrir a saída.
+
+---
+
+# 107. Próximo teste — reimport independente com V4
+
+O próximo gate usa:
+
+```text
+pt_ase_import_v4.py
+```
+
+sobre:
+
+```text
+MfbC13_roundtrip_v5c_1_MahC20.ASE
+```
+
+O importer V4 é independente da lógica de rebuild V5c.1 e já foi validado
+em etapas anteriores.
+
+Critérios mínimos:
+
+```text
+MahC20:
+V=80
+F=146
+TV=124
+TF=146
+UVfaces=146
+
+PHYSIQUE:
+declared=80
+parsed=80
+applied=80
+unassigned=0
+invalidVertex=0
+missingBone=0
+```
+
+Os demais três meshes devem continuar com suas contagens originais porque
+a V5c.1 substituiu somente o MESH de `MahC20`.
+
+Se esse reimport passar:
+
+```text
+ASE template
+-> Blender V4
+-> V5c.1 rebuild completo de MahC20
+-> ASE
+-> Blender V4 novamente
+```
+
+estará fechado estruturalmente.
+
+Só depois será criada topologia nova.
+---
+
+# 108. V5c.1 — round-trip independente via importer V4 PROVADO
+
+Teste executado em 2026-08-23.
+
+ASE reconstruído:
+
+```text
+MfbC13_roundtrip_v5c_1_MahC20.ASE
+```
+
+foi aberto pelo importer independente:
+
+```text
+pt_ase_import_v4.py
+```
+
+Resultado do skeleton:
+
+```text
+Bip nodes found:   63
+Bones created:     63
+Parent links:      62
+Missing positions: 0
+```
+
+Resultado PHYSIQUE:
+
+```text
+MshC19:
+declared=163 parsed=163 applied=163
+unassigned=0 missingBone=0 invalidVertex=0 duplicates=0
+
+MbhC19:
+declared=143 parsed=143 applied=143
+unassigned=0 missingBone=0 invalidVertex=0 duplicates=0
+
+MlhC20:
+declared=286 parsed=286 applied=286
+unassigned=0 missingBone=0 invalidVertex=0 duplicates=0
+
+MahC20:
+declared=80 parsed=80 applied=80
+unassigned=0 missingBone=0 invalidVertex=0 duplicates=0
+```
+
+Totais:
+
+```text
+Physique meshes:       4
+Assignments parsed:  672
+Vertices applied:    672
+Unassigned vertices:   0
+Missing-bone assigns:  0
+Invalid-vertex refs:   0
+Unsupported lines:     0
+```
+
+Resultado das meshes:
+
+```text
+MshC19
+V=163 F=264 TV=250 TF=264 UVfaces=264 MATREF=0
+
+MbhC19
+V=143 F=248 TV=212 TF=248 UVfaces=248 MATREF=0
+
+MlhC20
+V=286 F=428 TV=296 TF=428 UVfaces=428 MATREF=1
+
+MahC20
+V=80 F=146 TV=124 TF=146 UVfaces=146 MATREF=1
+```
+
+Todas as seis resoluções/carregamentos de textura usados pelo importer:
+
+```text
+LOADED:  6
+MISSING: 0
+FAILED:  0
+```
+
+O `.blend` de reimport também foi salvo com sucesso.
+
+Pipeline provada:
+
+```text
+ASE funcional
+-> importer V4
+-> Blender
+-> V5c.1 full-MESH rebuild
+-> ASE reconstruído
+-> importer V4 independente
+-> Blender novamente
+```
+
+Estado:
+
+```text
+V5c.1 rebuild estrutural sem topologia nova: PROVADO
+runtime cliente desse ASE:                   PENDENTE
+```
+
+---
+
+# 109. V5c.2 — primeiro teste real de topologia nova
+
+A próxima alteração controlada será:
+
+```text
+1 triângulo
+->
+3 triângulos
+```
+
+com:
+
+```text
++1 vértice geométrico
++2 faces líquidas
++1 TVERT central
++2 TFACE líquidos
++1 associação PHYSIQUE
+```
+
+Alvo:
+
+```text
+MahC20
+```
+
+Estado esperado:
+
+```text
+antes:
+V=80
+F=146
+TV=124
+TF=146
+PHYS=80
+
+depois:
+V=81
+F=148
+TV=125
+TF=148
+PHYS=81
+```
+
+## 109.1 Seleção segura da face
+
+O helper deve escolher apenas uma face cujos três vértices:
+
+```text
+tenham exatamente um grupo Bip* ativo;
+tenham weight 1.0;
+pertençam ao mesmo bone.
+```
+
+Assim o vértice central possui uma associação rígida inequívoca:
+
+```text
+novo vértice -> mesmo bone
+```
+
+sem inventar blend weights.
+
+## 109.2 Geometria
+
+Para face original:
+
+```text
+(A,B,C)
+```
+
+novo vértice:
+
+```text
+D = centroid(A,B,C)
+```
+
+novas faces:
+
+```text
+(A,B,D)
+(B,C,D)
+(C,A,D)
+```
+
+A face original é substituída pelas três.
+
+## 109.3 UV
+
+Para TFACE original:
+
+```text
+(tA,tB,tC)
+```
+
+novo TVERT central:
+
+```text
+tD.u = média(Ua,Ub,Uc)
+tD.v = média(Va,Vb,Vc)
+tD.w = 0.0
+```
+
+novos TFACE:
+
+```text
+(tA,tB,tD)
+(tB,tC,tD)
+(tC,tA,tD)
+```
+
+O mesmo `tD` é compartilhado pelos três corners centrais.
+
+## 109.4 Material
+
+As três faces novas herdam:
+
+```text
+MESH_MTLID
+```
+
+da face original.
+
+## 109.5 PHYSIQUE
+
+Os vértices antigos devem manter exatamente as associações originais.
+
+Somente o novo índice:
+
+```text
+80
+```
+
+receberá uma nova linha rígida:
+
+```text
+*PHYSIQUE_VERTEXASSIGNMENT_NONBLENDED_RIGIDTYPE
+80 "<bone comum>"
+```
+
+## 109.6 Critério de prova
+
+O primeiro gate da V5c.2 será novamente independente:
+
+```text
+Blender V4 original
+-> helper split 1 face
+-> V5c.2 export
+-> ASE com topologia nova
+-> importer V4
+```
+
+Esperado no reimport:
+
+```text
+MahC20:
+V=81
+F=148
+TV=125
+TF=148
+UVfaces=148
+
+PHYSIQUE:
+declared=81
+parsed=81
+applied=81
+unassigned=0
+missingBone=0
+invalidVertex=0
+```
+
+Somente após esse round-trip estrutural será considerado teste runtime.
+---
+
+# 110. V5c.2 helper v1 — falha de vertex-group após mesh swap
+
+Primeira execução do helper de split controlado:
+
+```text
+pt_v5c_make_one_face_split_test.py
+```
+
+falhou depois da criação/substituição do novo datablock `Mesh`.
+
+Erro:
+
+```text
+RuntimeError:
+Missing vertex group after mesh swap: 'Bip01 R Forearm'
+```
+
+A falha ocorreu na etapa de reaplicar os pesos antigos após:
+
+```text
+obj.data = new_mesh
+```
+
+Portanto o problema observado foi:
+
+```text
+helper Blender / reconstrução da tabela de vertex groups
+```
+
+e NÃO:
+
+```text
+ASE parser
+V5c serializer
+regra de TVERT
+regra de face
+PHYSIQUE do formato
+```
+
+O ASE ainda nem havia sido exportado nessa etapa.
+
+Estado:
+
+```text
+V5c.2 topologia Blender: ainda não testada até o fim
+helper v1: corrigido para v2
+```
+
+---
+
+# 111. V5c.2 helper v2 — recriação determinística de vertex groups
+
+A correção captura antes do mesh swap:
+
+```text
+lista completa dos vertex groups
+ordem dos grupos
+todos os memberships/weights antigos por vertex
+```
+
+Depois de:
+
+```text
+obj.data = new_mesh
+```
+
+o helper v2:
+
+```text
+1. remove qualquer tabela parcial/restante de vertex groups;
+2. recria todos os grupos na ordem original;
+3. valida que os nomes/ordem são idênticos;
+4. reaplica todos os memberships/weights antigos;
+5. adiciona o novo vértice somente ao bone comum da face;
+6. valida rigid_bone(new_vertex) == common_bone.
+```
+
+Essa estratégia preserva:
+
+```text
+grupos Bip*
+outros grupos eventualmente existentes
+nomes
+ordem
+pesos antigos
+```
+
+e evita depender do comportamento da build Blender ao trocar o datablock
+de mesh de um objeto.
+
+Próximo teste:
+
+```text
+repetir somente a criação do .blend de split
+```
+
+Critérios:
+
+```text
+Old vertices: 80
+New vertices: 81
+Old faces:    146
+New faces:    148
+Vertex groups: <N> restored
+New vertex bone == Common rigid bone
+```
+
+Somente depois desse helper passar será criada a V5c.2 ASE exporter.
+---
+
+# 112. V5c.2 helper v2 — topologia nova no Blender PROVADA
+
+Teste executado em 2026-08-23.
+
+Alvo:
+
+```text
+MahC20
+```
+
+Operação:
+
+```text
+SPLIT_ONE_FACE_1_TO_3
+```
+
+Face selecionada:
+
+```text
+0
+```
+
+Triângulo original:
+
+```text
+(1, 0, 3)
+```
+
+Os três vértices originais pertenciam rigidamente ao mesmo bone:
+
+```text
+Bip01 R Forearm
+```
+
+Novo estado:
+
+```text
+Old vertices: 80
+New vertices: 81
+New vertex index: 80
+
+Old faces: 146
+New faces: 148
+```
+
+Coordenada do novo vértice:
+
+```text
+(-5.91700013478597,
+  1.2815333207448323,
+ 23.50393295288086)
+```
+
+Faces substitutas:
+
+```text
+(1, 0, 80)
+(0, 3, 80)
+(3, 1, 80)
+```
+
+UV central:
+
+```text
+(0.36763333280881244,
+ 0.05793333395073811)
+```
+
+A tabela de deform groups foi restaurada:
+
+```text
+18 vertex groups restored
+```
+
+e o novo vértice recebeu:
+
+```text
+Bip01 R Forearm
+weight 1.0
+```
+
+Estado:
+
+```text
+primeira mudança controlada de topologia dentro do Blender: PROVADO
+```
+
+Ainda pendente:
+
+```text
+export ASE dessa topologia;
+reimport independente;
+runtime.
+```
+
+---
+
+# 113. V5c.2 exporter — escopo controlado
+
+Foi criada a primeira versão do exporter de topologia:
+
+```text
+pt_blender_to_ase_v5c_2.py
+```
+
+Ela NÃO é um exporter genérico ainda.
+
+Aceita exclusivamente a operação registrada pelo helper:
+
+```text
+SPLIT_ONE_FACE_1_TO_3
+```
+
+e valida antes de escrever:
+
+```text
++1 vertex apenas
++2 faces líquidas apenas
+novo vertex == índice V antigo
+target face == metadata do helper
+old vertices sem mudança
+topologia das faces antigas preservada
+três faces novas exatamente no padrão esperado
+material das faces novas herdado da face original
+UVs antigos preservados
+novo UV == centro da UV da face original
+old Physique == template
+novo vertex rigidamente no bone comum
+```
+
+---
+
+# 114. V5c.2 — alterações ASE esperadas
+
+Para `MahC20`:
+
+```text
+MESH_NUMVERTEX
+80 -> 81
+
+MESH_NUMFACES
+146 -> 148
+
+MESH_NUMTVERTEX
+124 -> 125
+
+MESH_NUMTVFACES
+146 -> 148
+
+PHYSIQUE_NUMVERTEXASSIGNMENT
+80 -> 81
+```
+
+Novo vertex:
+
+```text
+80
+```
+
+Novo TVERT:
+
+```text
+124
+```
+
+com:
+
+```text
+U = centro da face
+V = centro da face
+W = 0.0
+```
+
+Novos TFACE da área dividida:
+
+```text
+(tA,tB,124)
+(tB,tC,124)
+(tC,tA,124)
+```
+
+Novo Physique:
+
+```text
+vertex 80
+-> "Bip01 R Forearm"
+```
+
+---
+
+# 115. Safety stop para blocos ainda não tratados
+
+Antes de exportar topologia nova, a V5c.2 recusa o target MESH caso encontre:
+
+```text
+MESH_NUMCVERTEX
+MESH_CVERTLIST
+MESH_NUMCVFACES
+MESH_CFACELIST
+MESH_NORMALS
+MESH_FACENORMAL
+MESH_VERTEXNORMAL
+```
+
+A razão é evitar manter dados per-vertex/per-face obsoletos depois de uma
+mudança de topologia.
+
+Para `MfbC13.ASE`, a ausência global de normals explícitas já foi provada.
+
+Os blocos de color vertex/face ainda serão aceitos somente depois de serem
+medidos, se algum asset futuro os utilizar.
+
+---
+
+# 116. Próximo gate V5c.2
+
+Executar:
+
+```text
+MfbC13_import_v4_v5c2_one_face_split_v2.blend
+->
+pt_blender_to_ase_v5c_2.py
+->
+ASE
+```
+
+Critérios do self-check:
+
+```text
+V:    80 -> 81
+F:   146 -> 148
+TV:  124 -> 125
+TF:  146 -> 148
+PHYS: 80 -> 81
+
+new vertex coordinate: OK
+split face topology:   OK
+split TFACE topology:  OK
+old Physique:          OK
+new Physique:          OK
+```
+
+Somente depois:
+
+```text
+reimport independente com V4
+```
+---
+
+# 117. V5c.2 — export de topologia nova passou o self-check
+
+Teste executado em 2026-08-23.
+
+Entrada Blender:
+
+```text
+MfbC13_import_v4_v5c2_one_face_split_v2.blend
+```
+
+Template:
+
+```text
+MfbC13.ASE
+```
+
+Exporter:
+
+```text
+pt_blender_to_ase_v5c_2.py
+```
+
+Saída:
+
+```text
+MfbC13_roundtrip_v5c_2_one_face_split.ASE
+```
+
+Operação:
+
+```text
+SPLIT_ONE_FACE_1_TO_3
+```
+
+Face original:
+
+```text
+0
+```
+
+Triângulo original:
+
+```text
+(1, 0, 3)
+```
+
+Novo vértice:
+
+```text
+80
+```
+
+Coordenada serializada:
+
+```text
+(-5.917000000000001,
+  1.2815333333333332,
+ 23.503933333333332)
+```
+
+Bone rígido:
+
+```text
+Bip01 R Forearm
+```
+
+Novo TVERT:
+
+```text
+124
+```
+
+UV central:
+
+```text
+(0.3676333333333333,
+ 0.05793333333333334)
+```
+
+## 117.1 Contagens
+
+```text
+Vertices : 80  -> 81
+Faces    : 146 -> 148
+TVERT    : 124 -> 125
+TFACE    : 146 -> 148
+PHYSIQUE : 80  -> 81
+```
+
+## 117.2 Faces substitutas
+
+```text
+0: (1, 0, 80)
+1: (0, 3, 80)
+2: (3, 1, 80)
+```
+
+## 117.3 TFACE substitutos
+
+```text
+0: (1, 0, 124)
+1: (0, 3, 124)
+2: (3, 1, 124)
+```
+
+## 117.4 Self-check
+
+```text
+serialized counts:        OK
+new vertex coordinate:    OK
+split face topology:      OK
+split TFACE topology:     OK
+old Physique assignments: OK
+new Physique assignment:  OK
+```
+
+Hashes:
+
+```text
+template:
+86a45454c98db4ef8239a1264413a7b34ec558f993c3d4148a1ccd0c03935887
+
+output:
+b1150ca297cde307338228db22f7cc0992490f0dc38322637945307a348cfb9b
+```
+
+Tamanhos:
+
+```text
+template: 456373 bytes
+output:   453250 bytes
+```
+
+Estado correto neste ponto:
+
+```text
+V5c.2 Blender topology edit:      PROVADO
+V5c.2 ASE serialization/selfcheck: PASSOU
+V5c.2 independent V4 reimport:    PENDENTE
+V5c.2 runtime client:             PENDENTE
+```
+
+Não marcar ainda a V5c.2 completa como PROVADA até o importer V4
+reabrir a topologia nova.
+
+---
+
+# 118. Próximo gate — importer V4 sobre topologia nova
+
+Executar:
+
+```text
+MfbC13_roundtrip_v5c_2_one_face_split.ASE
+->
+pt_ase_import_v4.py
+->
+novo .blend
+```
+
+Critérios para `MahC20`:
+
+```text
+V=81
+F=148
+TV=125
+TF=148
+UVfaces=148
+
+PHYSIQUE:
+declared=81
+parsed=81
+applied=81
+unassigned=0
+missingBone=0
+invalidVertex=0
+duplicates=0
+```
+
+As outras três meshes devem permanecer exatamente:
+
+```text
+MshC19: V=163 F=264 TV=250 TF=264
+MbhC19: V=143 F=248 TV=212 TF=248
+MlhC20: V=286 F=428 TV=296 TF=428
+```
+
+Se esse gate passar, estará provado:
+
+```text
+Blender
+-> topology edit
+-> V5c.2 ASE
+-> independent V4 importer
+-> Blender novamente
+```
+
+A etapa seguinte será escolher entre:
+
+```text
+a) runtime controlado no cliente;
+b) antes disso, um segundo round-trip V5c.2 -> V4 -> V5c.2
+   para testar estabilidade do novo ASE.
+```
+
+A abordagem conservadora recomenda primeiro o reimport independente.
+---
+
+# 119. V5c.2 — reimport independente com topologia nova PROVADO
+
+Teste executado em 2026-08-23.
+
+ASE com topologia nova:
+
+```text
+MfbC13_roundtrip_v5c_2_one_face_split.ASE
+```
+
+foi reaberto por:
+
+```text
+pt_ase_import_v4.py
+```
+
+sem usar a lógica interna de self-check do exporter.
+
+## 119.1 Skeleton
+
+O skeleton permaneceu íntegro:
+
+```text
+Bip nodes found:   63
+Bones created:     63
+Parent links:      62
+Missing positions: 0
+```
+
+## 119.2 Meshes
+
+As três meshes não editadas permaneceram:
+
+```text
+MshC19:
+V=163 F=264 TV=250 TF=264 UVfaces=264
+
+MbhC19:
+V=143 F=248 TV=212 TF=248 UVfaces=248
+
+MlhC20:
+V=286 F=428 TV=296 TF=428 UVfaces=428
+```
+
+A mesh alterada voltou como:
+
+```text
+MahC20:
+V=81
+F=148
+TV=125
+TF=148
+UVfaces=148
+MATREF=1
+```
+
+Isso corresponde exatamente à operação:
+
+```text
++1 vertex
++2 faces líquidas
++1 TVERT
++2 TFACE líquidos
+```
+
+## 119.3 PHYSIQUE
+
+Resultado:
+
+```text
+MshC19:
+declared=163 parsed=163 applied=163
+unassigned=0 missingBone=0 invalidVertex=0 duplicates=0
+
+MbhC19:
+declared=143 parsed=143 applied=143
+unassigned=0 missingBone=0 invalidVertex=0 duplicates=0
+
+MlhC20:
+declared=286 parsed=286 applied=286
+unassigned=0 missingBone=0 invalidVertex=0 duplicates=0
+
+MahC20:
+declared=81 parsed=81 applied=81
+unassigned=0 missingBone=0 invalidVertex=0 duplicates=0
+```
+
+Totais:
+
+```text
+Physique meshes:       4
+Assignments parsed:  673
+Vertices applied:    673
+Unassigned vertices:   0
+Missing-bone assigns:  0
+Invalid-vertex refs:   0
+Unsupported lines:     0
+```
+
+## 119.4 Materiais e texturas
+
+O importer também manteve:
+
+```text
+LOADED:  6
+MISSING: 0
+FAILED:  0
+```
+
+## 119.5 Resultado
+
+Pipeline agora provada:
+
+```text
+ASE funcional
+-> importer V4
+-> Blender
+-> mudança real de topologia
+-> V5c.2
+-> ASE com topologia nova
+-> importer V4 independente
+-> Blender novamente
+```
+
+Estado:
+
+```text
+V5c.2 topologia nova / round-trip estrutural: PROVADO
+V5c.2 runtime cliente:                         PENDENTE
+```
+
+---
+
+# 120. Primeiro runtime gate para modelo com topologia nova
+
+O próximo teste deve responder somente:
+
+```text
+o cliente Summit consegue carregar/renderizar o ASE V5c.2?
+```
+
+Não é necessário tentar avaliar visualmente a qualidade da remodelagem:
+a alteração atual é minúscula e foi feita apenas para validar o pipeline.
+
+Procedimento:
+
+```text
+1. confirmar qual MfbC13.* está presente no cliente;
+2. criar backup com timestamp e SHA256;
+3. instalar somente o ASE V5c.2;
+4. iniciar o cliente;
+5. equipar/visualizar a Priestess level-80 correspondente;
+6. observar:
+   - crash;
+   - model missing;
+   - deformação extrema;
+   - textura/UV;
+   - animação;
+7. restaurar o original após o teste.
+```
+
+Critério mínimo:
+
+```text
+cliente inicia;
+modelo aparece;
+não ocorre crash na carga/render;
+animação continua;
+não há corrupção evidente da mesh.
+```
+
+Somente após isso:
+
+```text
+ASE com topologia nova no runtime Summit: PROVADO
+```
+
+A partir desse ponto a V5c pode evoluir de um split controlado para um
+exporter de remodelagem arbitrária triangular, com reconstrução geral de:
+
+```text
+vertices
+faces
+TVERT
+TFACE
+MTLID
+PHYSIQUE rígido
+```
+
+mantendo template para:
+
+```text
+materials
+NODE_TM
+Biped
+animation/controllers
+demais metadados do asset
+```
+---
+
+# 121. Runtime preflight MfbC13 — arquivo concorrente ausente
+
+Preflight executado em 2026-08-23 no diretório:
+
+```text
+cliente/char/tmABCD
+```
+
+Para o basename:
+
+```text
+MfbC13
+```
+
+foi encontrado apenas:
+
+```text
+MfbC13.ASE
+456373 bytes
+```
+
+Não foram encontrados no mesmo diretório:
+
+```text
+MfbC13.SMD
+MfbC13.SMB
+MfbC13.INX
+```
+
+Hash do ASE original instalado:
+
+```text
+86a45454c98db4ef8239a1264413a7b34ec558f993c3d4148a1ccd0c03935887
+```
+
+Hash do ASE V5c.2:
+
+```text
+b1150ca297cde307338228db22f7cc0992490f0dc38322637945307a348cfb9b
+```
+
+Ambos foram identificados pelo `file` como:
+
+```text
+ASCII text, with CRLF line terminators
+```
+
+Conclusão:
+
+```text
+não existe outro arquivo MfbC13.* lado a lado que possa mascarar
+o teste substituindo o ASE pelo V5c.2.
+```
+
+Estado:
+
+```text
+runtime asset preflight: PASSOU
+runtime load/render:      PENDENTE
+```
+
+---
+
+# 122. Runtime gate controlado — instalação com backup e hash
+
+Procedimento definido:
+
+```text
+1. copiar MfbC13.ASE original para backup timestamped;
+2. registrar SHA256 original;
+3. instalar somente o ASE V5c.2;
+4. confirmar SHA256 instalado;
+5. iniciar o cliente;
+6. visualizar a Priestess / outfit correspondente;
+7. observar crash, missing model, deformação, UV e animação;
+8. restaurar o backup após o teste.
+```
+
+Critério de runtime mínimo:
+
+```text
+cliente carrega;
+modelo aparece;
+animação continua;
+não ocorre crash/corrupção evidente ao carregar a peça.
+```
+
+Observação importante:
+
+o split atual é geometricamente coplanar e usa UV central interpolado.
+Portanto ele foi desenhado para ser visualmente quase ou totalmente
+indistinguível do triângulo original.
+
+Consequentemente:
+
+```text
+ausência de diferença visual é esperada.
+```
+
+O objetivo desse primeiro runtime gate é compatibilidade de carga/render,
+não demonstrar uma remodelagem visível.
+---
+
+# 123. Correção — nível de MfbC13 não está provado
+
+A associação anterior:
+
+```text
+MfbC13.ASE = armadura/outfit Priestess level 80
+```
+
+não possui, até este ponto, prova suficiente na source nem na documentação
+operacional do Summit Tale.
+
+Portanto essa associação deve ser rebaixada para:
+
+```text
+MfbC13.ASE = modelo Priestess de progressão/índice C13
+nível exato requerido = PENDENTE
+```
+
+Não utilizar o número `13` do filename como level.
+
+Também não interpretar automaticamente:
+
+```text
+Drop 80a
+Drop 80b
+Drop 80c
+Drop 80d
+```
+
+da documentação Summit como uma relação direta com `MfbC13`.
+
+Esses blocos documentam grupos de códigos de item/drop, não o filename do
+body mesh.
+
+---
+
+# 124. Evidências atuais sobre progressão de armor
+
+A source já observada contém tabelas sequenciais em `playmodel.h` com nomes:
+
+```text
+C001.ini
+C002.ini
+...
+C019.ini
+
+mC001.ini
+mC002.ini
+...
+mC019.ini
+```
+
+e variantes `...t.ini`.
+
+Para a família Moryon, `mC` é uma forte pista para a classe Priestess, mas
+a relação exata:
+
+```text
+armor item code
+-> índice de armor
+-> mCxxx.ini
+-> MfbCxx mesh
+-> required level
+```
+
+ainda precisa ser lida no código/dados.
+
+A existência de:
+
+```text
+mC001.ini
+```
+
+na primeira posição torna `C01` a candidata natural para o próximo teste de
+armadura inicial, mas isto ainda não deve ser marcado como nível 1 até
+inspecionar `SetPlayerArmor` e o conteúdo/configuração correspondente.
+
+---
+
+# 125. Documentação Summit — o que ela realmente informa sobre level/item
+
+A documentação operacional informa:
+
+```text
+Level Inicial 1
+Level Cap 120
+Itens BPT até 118
+```
+
+e contém comandos administrativos como:
+
+```text
+/setlevelpt
+/Levelup
+```
+
+Ela também agrupa códigos por blocos:
+
+```text
+Drop 80a
+Drop 80b
+Drop 80c
+Drop 80d
+Drop 90
+Drop 100
+...
+```
+
+Mas não fornece uma tabela direta:
+
+```text
+MfbCxx -> level
+```
+
+nem:
+
+```text
+mCxxx.ini -> level
+```
+
+Portanto ela não confirma `MfbC13 = level 80`.
+
+---
+
+# 126. Novo objetivo de runtime
+
+Em vez de depender de uma Priestess de level alto, o runtime gate deve
+migrar para uma armadura/body de início de progressão que possa ser
+visualizado em um personagem recém-criado.
+
+Primeiros candidatos a auditar:
+
+```text
+mC001.ini
+MfbC01.*
+```
+
+Antes de portar o teste V5c.2 para esse modelo, é necessário provar a cadeia:
+
+```text
+item inicial Priestess
+-> SetPlayerArmor index
+-> mC001.ini (ou outro)
+-> mesh/body efetivamente carregado
+```
+
+Assim o teste runtime poderá ser reproduzido desde level 1.
+---
+
+# 127. Auditoria de armor Priestess — evidência direta de `playmodel.h`
+
+A auditoria de `SrcGame/src/playmodel.h` confirmou que `szArmorNumFile` possui uma
+linha explicitamente marcada:
+
+```cpp
+//PRIESTESS
+```
+
+e sua sequência inicial é:
+
+```text
+mC001.ini
+mC001.ini
+mC002.ini
+mC003.ini
+mC004.ini
+mC005.ini
+mC006.ini
+mC007.ini
+mC008.ini
+mC009.ini
+mC010.ini
+mC011.ini
+mC012.ini
+mC013.ini
+...
+```
+
+Isto PROVA que `mC` é a família normal de armor da Priestess dentro da tabela
+`szArmorNumFile`.
+
+Também existe a tabela `szArmorNumFile_Comic`, cuja linha Priestess começa:
+
+```text
+mC001t.ini
+mC001t.ini
+mC002.ini
+mC003t.ini
+...
+```
+
+Portanto as variantes `...t.ini` pertencem ao caminho Comic/Traje e não devem ser
+confundidas com a sequência normal.
+
+O nível exato de cada posição ainda NÃO está provado por essa tabela sozinha.
+
+---
+
+# 128. Candidato inicial Priestess ficou muito mais forte
+
+No cliente atual existem:
+
+```text
+MfbC01.smd
+MfbC01.smb
+MfbC01.bmp
+MfbC01b.smd
+```
+
+e também progressões como:
+
+```text
+MfbC03.smd
+MfbC03.bmp
+MfbC05.smd
+MfbC05.bmp
+```
+
+Assim:
+
+```text
+mC001.ini + MfbC01.*
+```
+
+é agora o par candidato principal para o body/armor inicial da Priestess.
+
+Ainda falta ler `SetPlayerArmor()` / `ChangeModelSkin()` para provar a transformação:
+
+```text
+índice/código de armor
+-> szArmorNumFile[classe][posição]
+-> arquivo mCxxx.ini
+-> body MfbCxx
+```
+
+Não marcar ainda `MfbC01 = level 1` apenas pelo nome.
+
+---
+
+# 129. Limitação importante — só existe um ASE Priestess no cliente auditado
+
+A busca por:
+
+```text
+MfbC*.ASE
+```
+
+retornou somente:
+
+```text
+MfbC13.ASE
+```
+
+Enquanto os modelos iniciais `MfbC01`, `MfbC03` e `MfbC05` estão em SMD/SMB.
+
+Consequência prática:
+
+- o pipeline ASE/Blender atual não pode simplesmente trocar de `MfbC13` para
+  `MfbC01` usando um ASE original do cliente, porque esse ASE não está presente;
+- para um runtime gate em armor inicial será necessário:
+  - encontrar uma fonte ASE correspondente em outro conjunto confiável; ou
+  - converter/reconstruir a partir do SMD/SMB; ou
+  - temporariamente forçar o modelo ASE C13 em runtime, se a source permitir,
+    apenas para validar o loader/exporter independentemente do level.
+
+A escolha só deve ser feita depois de fechar `SetPlayerArmor()` e
+`ChangeModelSkin()`.
+
+---
+
+# 130. Estado atual de `MfbC13.ASE` no cliente
+
+Na auditoria atual, o arquivo localizado no cliente possui:
+
+```text
+MfbC13.ASE = 453250 bytes
+```
+
+Isto deve ser tratado como estado atual do arquivo, e não automaticamente como o
+template original usado nos primeiros testes.
+
+Antes de novos testes runtime com esse arquivo, comparar hash/tamanho com os
+backups/templates conhecidos e evitar sobrescrever a referência boa.
+
+---
+
+# 131. Próxima auditoria exata
+
+Próximo passo:
+
+```text
+ler somente:
+- LoadOftenArmor()
+- SetPlayerArmor()
+- ChangeModelSkin()
+- região que calcula a variável Armor antes de chamar SetPlayerArmor()
+```
+
+Objetivo:
+
+```text
+PROVAR o significado do índice da tabela;
+PROVAR se a seleção visual possui ou não checagem de level;
+PROVAR se podemos forçar um armor visual para teste sem alterar level/item.
+```
+
+Somente depois disso escolher o modelo do runtime gate.
+---
+
+# 132. Base visual da Priestess após criação — índice 0 PROVADO
+
+A inspeção de `SrcGame/src/playsub.cpp` fechou a seleção visual de armor.
+
+`SetPlayerArmor(int nItem_LowCode, int nItem_HiCode)`:
+
+```text
+- converte nItem_LowCode == -1 para 0;
+- usa JOB_CODE para selecionar a linha da classe;
+- para armor normal usa:
+  szArmorNumFile[ArmorJobNum[jobNum]][nItem_LowCode];
+- chama AddLoaderPattern() com esse nome;
+- não consulta Level / RequiredLevel nessa função.
+```
+
+No slot `INVENTORY_POS_ARMOR`:
+
+```text
+equipado:
+Armor = ((dwCode & sinITEM_MASK3) >> 8)
+if Armor > 25: Armor -= 16
+SetPlayerArmor(Armor, itemHighCode)
+
+desequipado:
+SetPlayerArmor(0, -1)
+
+sem CODE:
+SetPlayerArmor(-1, -1)
+```
+
+Como `-1` é normalizado para `0`, ambos os caminhos de "sem armor" resultam em
+índice visual 0.
+
+Na tabela `szArmorNumFile`, a linha `//PRIESTESS` possui:
+
+```text
+index 0 -> mC001.ini
+index 1 -> mC001.ini
+index 2 -> mC002.ini
+...
+```
+
+Portanto, para uma Priestess normal, sem comic/costume especial:
+
+```text
+base visual / sem armor
+-> SetPlayerArmor(0, -1)
+-> szArmorNumFile[PRIESTESS][0]
+-> mC001.ini
+```
+
+Estado:
+
+```text
+Priestess base usa índice visual 0: PROVADO
+Priestess índice 0 aponta mC001.ini: PROVADO
+nível não participa da troca visual em SetPlayerArmor: PROVADO
+```
+
+---
+
+# 133. Consequência — personagem base é o melhor runtime gate
+
+Para testes reproduzíveis, o personagem recém-criado é melhor que um armor de
+progressão alta.
+
+Vantagens:
+
+```text
+- disponível imediatamente;
+- independe de level;
+- independe de obter/equipar item;
+- pode ser reproduzido criando uma nova Priestess;
+- base visual é selecionada por índice 0.
+```
+
+Isso torna `mC001.ini` / família `MfbC01.*` o alvo preferencial de design e
+runtime.
+
+---
+
+# 134. Textura base Priestess — já temos evidência runtime
+
+O arquivo:
+
+```text
+MfbC01.bmp
+```
+
+já foi alterado em teste visual anterior e a mudança apareceu no corpo/dress da
+Priestess.
+
+Portanto, para reskin 2D do personagem base:
+
+```text
+MfbC01.bmp
+```
+
+é um alvo runtime já confirmado.
+
+A pipeline de BMP protegido também já foi provada:
+
+```text
+preservar header proprietário de 14 bytes;
+editar payload RGB24 256x256;
+restaurar header proprietário;
+mesmo tamanho/dimensões/bpp;
+cliente renderiza.
+```
+
+Assim a parte "design da personagem base por textura" pode começar agora sem
+depender do Blender ou de level.
+
+---
+
+# 135. Geometria base — bloqueio atual é formato, não level
+
+Os arquivos encontrados para o começo da progressão Priestess são:
+
+```text
+MfbC01.smd
+MfbC01.smb
+MfbC01b.smd
+MfbC01.bmp
+```
+
+Não existe `MfbC01.ASE` no cliente auditado.
+
+O único `MfbC*.ASE` encontrado foi `MfbC13.ASE`.
+
+Consequência:
+
+```text
+editar geometria base no Blender pelo pipeline ASE atual:
+AINDA NÃO DIRETO
+```
+
+O bloqueio é:
+
+```text
+SMD/SMB -> representação Blender/ASE editável
+```
+
+e não requirement de level.
+
+Próximo objetivo técnico para geometria base:
+
+```text
+provar como mC001.ini resolve para MfbC01.smd/smb;
+depois abrir/converter o SMD/SMB ou localizar ASE fonte equivalente.
+```
+
+---
+
+# 136. Seleção visual não possui checagem de level
+
+A inspeção de `SetPlayerArmor()` e do caminho `INVENTORY_POS_ARMOR` não mostrou
+qualquer uso de:
+
+```text
+Level
+RequireLevel
+ItemInfo.Level
+lpCurPlayer->smCharInfo.Level
+```
+
+para escolher o arquivo visual.
+
+Logo:
+
+```text
+requirement de item e seleção visual são camadas separadas nesse trecho.
+```
+
+Isso significa que, para fins de debug, um índice visual pode em princípio ser
+forçado independentemente do level, desde que o caminho de modelo correspondente
+seja válido.
+
+Não aplicar patch de força ainda; primeiro preferir o personagem base index 0.
+

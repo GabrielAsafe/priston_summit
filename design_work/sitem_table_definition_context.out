@@ -1,0 +1,299 @@
+============================================================
+sinItem.cpp - sItem TABLE BEGIN
+============================================================
+    60	extern int RShyRing;
+    61	extern int TullaAmulet;
+    62	extern int SetBonus1;
+    63	extern int SetBonus2;
+    64	
+    65	DWORD NotSell_Item_CODE[] = { (sinQT1 | sin07),(sinQT1 | sin08),0 };
+    66	DWORD NotSell_Item_MASK[] = { 0 };
+    67	DWORD NotSell_Item_KIND[] = { ITEM_KIND_QUEST_WEAPON,0 };
+    68	
+    69	DWORD NotDrow_Item_CODE[] = { (sinQT1 | sin07),(sinQT1 | sin08),0 };
+    70	DWORD NotDrow_Item_MASK[] = { 0 };
+    71	DWORD NotDrow_Item_KIND[] = { ITEM_KIND_QUEST_WEAPON,0 };
+    72	
+    73	DWORD NotSet_Item_CODE[] = { (sinQT1 | sin07),(sinQT1 | sin08),0 };
+    74	DWORD NotSet_Item_MASK[] = { 0 };
+    75	DWORD NotSet_Item_KIND[] = { ITEM_KIND_QUEST_WEAPON,0 };
+    76	
+    77	
+    78	sITEM sItem[MAX_ITEM] = {
+    79	#include "items.h"
+    80	};
+    81	
+    82	cITEM::cITEM()
+    83	{
+    84	
+    85	}
+    86	
+    87	cITEM::~cITEM()
+    88	{
+    89	
+    90	}
+    91	
+    92	void cITEM::Init()
+    93	{
+    94		for (int cnt = 0; cnt < MAX_ITEM; cnt++)
+    95		{
+    96			sItem[cnt].sItemInfo.CODE = sItem[cnt].CODE;
+    97		}
+    98	
+    99		MatItemInfoBox = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+   100	
+   101		MatItemInfoBox_TopLeft = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxTopLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+   102		MatItemInfoBox_TopRight = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxTopRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+   103		MatItemInfoBox_TopCenter = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxTopCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+   104	
+   105		MatItemInfoBox_BottomLeft = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxBottomLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+   106		MatItemInfoBox_BottomRight = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxBottomRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+   107		MatItemInfoBox_BottomCenter = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxBottomCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+   108	
+   109		MatItemInfoBox_Left = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxLeft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+   110		MatItemInfoBox_Right = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxRight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+   111		MatItemInfoBox_Center = CreateTextureMaterial("Image//SinImage//Items//ItemInfoBox//BoxCenter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+   112	
+   113		Load();
+   114	
+   115	
+   116		int CheckCount = 0;
+   117		while (1)
+   118		{
+   119	
+   120			if (NotSell_Item_CODE[NotSell_Item_CODECnt])
+   121				NotSell_Item_CODECnt++;
+   122			else
+   123				CheckCount++;
+   124	
+   125			if (NotSell_Item_MASK[NotSell_Item_MASKCnt])
+   126				NotSell_Item_MASKCnt++;
+   127			else
+   128				CheckCount++;
+   129	
+   130			if (NotSell_Item_KIND[NotSell_Item_KINDCnt])
+   131				NotSell_Item_KINDCnt++;
+   132			else
+   133				CheckCount++;
+   134	
+   135	
+   136			if (NotDrow_Item_CODE[NotDrow_Item_CODECnt])
+   137				NotDrow_Item_CODECnt++;
+   138			else
+   139				CheckCount++;
+   140	
+   141			if (NotDrow_Item_MASK[NotDrow_Item_MASKCnt])
+   142				NotDrow_Item_MASKCnt++;
+   143			else
+   144				CheckCount++;
+   145	
+   146			if (NotDrow_Item_KIND[NotDrow_Item_KINDCnt])
+   147				NotDrow_Item_KINDCnt++;
+   148			else
+   149				CheckCount++;
+   150	
+   151	
+   152			if (NotSet_Item_CODE[NotSet_Item_CODECnt])
+   153				NotSet_Item_CODECnt++;
+   154			else
+   155				CheckCount++;
+   156	
+   157			if (NotSet_Item_MASK[NotSet_Item_MASKCnt])
+   158				NotSet_Item_MASKCnt++;
+   159			else
+   160				CheckCount++;
+   161	
+   162			if (NotSet_Item_KIND[NotSet_Item_KINDCnt])
+   163				NotSet_Item_KINDCnt++;
+   164			else
+   165				CheckCount++;
+   166	
+   167			if (CheckCount >= 9)
+   168				break;
+   169	
+   170		}
+   171	
+   172		memset(g_Manufacture_ItemInfo, 0, sizeof(SManufacture_ResultItemInfo));
+   173	}
+   174	
+   175	void cITEM::Load()
+   176	{
+   177		AgingBar = LoadDibSurfaceOffscreen("image//Sinimage//shopall//Aging//Bar.bmp");
+   178		AgingGage = LoadDibSurfaceOffscreen("image//Sinimage//shopall//Aging//Bar_.bmp");
+   179		AgingBar2 = LoadDibSurfaceOffscreen("image//Sinimage//shopall//Aging//Aging.bmp");
+   180	}
+
+============================================================
+sinItem.h - WEAPON CODE DEFINES
+============================================================
+    55	#define ITEM_CLASS_LEGION				INVENTORY_POS_SHELTOM 
+    56	#define ITEM_CLASS_AMULET				INVENTORY_POS_AMULET 
+    57	#define ITEM_CLASS_ARMLET				INVENTORY_POS_ARMLET 
+    58	#define ITEM_CLASS_MAGICIAL_STUFFS		INVENTORY_POS_LHAND
+    59	#define ITEM_CLASS_POTION				INVENTORY_POS_POTION
+    60	#define ITEM_CLASS_COSTUME              INVENTORY_POS_COSTUME
+    61	#define ITEM_CLASS_ECORE				INVENTORY_POS_BOX
+    62	#define ITEM_CLASS_QUEST				INVENTORY_POS_BOX
+    63	#define ITEM_CLASS_FORCEORB				INVENTORY_POS_BOX
+    64	#define ITEM_CLASS_SEEL					INVENTORY_POS_BOX
+    65	#define ITEM_CLASS_EARRRINGS			(INVENTORY_POS_EARRINGSL|INVENTORY_POS_EARRINGSR)
+    66	
+    67	
+    68	#define ITEM_WEAPONCLASS_NOT_SHOOTING	1 
+    69	#define ITEM_WEAPONCLASS_SHOOTING		2 
+    70	#define ITEM_WEAPONCLASS_CASTING		3 
+    71	
+    72	
+    73	
+    74	#define sinWA1			0x01010000	
+    75	#define sinWC1			0x01020000	
+    76	#define sinWH1			0x01030000	
+    77	#define sinWM1			0x01040000	
+    78	#define sinWP1			0x01050000	
+    79	#define sinWS1			0x01060000	
+    80	#define sinWS2			0x01070000	
+    81	#define sinWT1			0x01080000	
+    82	
+    83	
+    84	#define sinDA1			0x02010000	
+    85	#define sinDB1			0x02020000	
+    86	#define sinDG1			0x02030000	
+    87	#define sinDS1			0x02040000	
+    88	#define sinDA2			0x02050000
+    89	
+    90	#define sinCA1			0x02060000	
+    91	#define sinCA2			0x02070000	
+    92	
+    93	#define sinCA5			0x02100000	
+    94	#define sinCA6			0x02110000	
+    95	#define sinCA7			0x02120000
+    96	#define sinDA3			0x02120000
+    97	#define sinDA4			0x02130000
+    98	
+    99	
+   100	#define sinOA1			0x03010000	
+
+============================================================
+sinItem.h - sITEM STRUCT / CONSTRUCTOR
+============================================================
+   490	
+   491		short   ItemAgingNum[2];
+   492		short   ItemAgingCount[2];
+   493		short   ItemAgingProtect[2];
+   494	
+   495		short   SpecialItemFlag[3];
+   496	
+   497		DWORD	dwCreateTime;
+   498		DWORD	dwTemp[9];
+   499		
+   500		int		iMixType = 0;
+   501	};
+   502	
+   503	
+   504	struct sITEM
+   505	{
+   506		DWORD	CODE;
+   507		char	ItemNameIndex[32];
+   508	
+   509	
+   510		char	LastCategory[16];
+   511		int		w;
+   512		int     h;
+   513		char	ItemFilePath[64];
+   514		DWORD	Class;
+   515		char    DorpItem[64];
+   516		DWORD   SetModelPosi;
+   517		int		SoundIndex;
+   518		int     WeaponClass;
+   519	
+   520	
+   521	
+   522	
+   523		int Flag;
+   524		int x, y;
+   525		int SetX, SetY;
+   526	
+   527		LPDIRECT3DTEXTURE9 lpItem;
+   528		int		ItemPosition;
+   529	
+   530		int     PotionCount;
+   531		int     NotUseFlag;
+   532		int     SellPrice;
+   533		int     CoinPrice;
+   534	
+   535		int     OldX, OldY;
+   536		LPDIRECT3DTEXTURE9	lpTempItem;
+   537	
+   538	
+   539		sITEMINFO sItemInfo;
+   540	
+   541		sITEM()
+   542		{
+   543			CODE = 0;
+   544			ZeroMemory(ItemNameIndex, sizeof(ItemNameIndex));
+   545			ZeroMemory(LastCategory, sizeof(LastCategory));
+   546			w = 0;
+   547			h = 0;
+   548			ZeroMemory(ItemFilePath, sizeof(ItemFilePath));
+   549			Class = 0;
+   550			ZeroMemory(DorpItem, sizeof(DorpItem));
+   551			SetModelPosi = 0;
+   552			SoundIndex = 0;
+   553			WeaponClass = 0;
+   554			Flag = 0;
+   555			x = 0;
+   556			y = 0;
+   557			SetX = 0;
+   558			SetY = 0;
+   559	
+   560			lpItem = NULL;
+   561			ItemPosition = 0;
+   562	
+   563			PotionCount = 0;
+   564			NotUseFlag = 0;
+   565			SellPrice = 0;
+   566			CoinPrice = 0;
+   567	
+   568			OldX = 0;
+   569			OldY = 0;
+   570			lpTempItem = NULL;
+   571	
+   572		}
+   573		sITEM(DWORD CODE, const char* ItemNameIndex, const char* LastCategory, int w, int h, const char* ItemFilePath, int Class,
+   574			const char* DorpItem, DWORD SetModelPosi, int SoundIndex, int WeaponClass = 0)
+   575		{
+   576			this->CODE = CODE;
+   577			strcpy_s(this->ItemNameIndex, sizeof(this->ItemNameIndex), ItemNameIndex);
+   578			strcpy_s(this->LastCategory, sizeof(this->LastCategory), LastCategory);
+   579			this->w = w;
+   580			this->h = h;
+   581			strcpy_s(this->ItemFilePath, sizeof(this->ItemFilePath), ItemFilePath);
+   582			this->Class = Class;
+   583			strcpy_s(this->DorpItem, sizeof(this->DorpItem), DorpItem);
+   584			this->SetModelPosi = SetModelPosi;
+   585			this->SoundIndex = SoundIndex;
+   586			this->WeaponClass = WeaponClass;
+   587			this->Flag = 0;
+   588			this->x = 0;
+   589			this->y = 0;
+   590			this->SetX = 0;
+   591			this->SetY = 0;
+   592	
+   593			this->lpItem = NULL;
+   594			this->ItemPosition = 0;
+   595	
+   596			this->PotionCount = 0;
+   597			this->NotUseFlag = 0;
+   598			this->SellPrice = 0;
+   599	
+   600			this->OldX = 0;
+   601			this->OldY = 0;
+   602			this->lpTempItem = NULL;
+   603	
+   604		}
+   605	
+   606	};
+   607	
+   608	struct sITEMPRICE
+   609	{
+   610		int PureSellPrice;

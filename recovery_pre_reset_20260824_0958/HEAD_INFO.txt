@@ -1,0 +1,4 @@
+89160698de338fdbb18cd93c1fbcaad22857a976
+2026-08-22 11:03:57 +0100
+GabrielAsafe
+primeira build funcional do cliente e servidor

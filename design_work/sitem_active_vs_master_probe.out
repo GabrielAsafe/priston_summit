@@ -1,0 +1,53 @@
+============================================================
+ACTIVE sItem DEFINITION
+============================================================
+SrcGame/src/Server/OnSever.cpp:8718:	psITEM		sItem;
+SrcGame/src/sinbaram/sinItem.cpp:78:sITEM sItem[MAX_ITEM] = {
+SrcGame/src/sinbaram/sinItem.cpp:79:#include "items.h"
+SrcGame/src/sinbaram/sinItem.h:693:extern sITEM sItem[MAX_ITEM];
+SrcGame/src/CChatBox.h:11:#include "items.h"
+SrcGame/src/netplay.cpp:11216:	sITEM	sItemMoney;
+SrcGame/src/record.cpp:1179:	sITEM	sItem_Buff;
+SrcServer/src/Server/OnSever.cpp:9741:	psITEM		sItem;
+SrcServer/src/sinbaram/sinItem.h:684:extern sITEM sItem[MAX_ITEM];
+SrcServer/src/fileread.cpp:1:#include "items.h"
+SrcServer/src/netplay.cpp:5745:	sITEM	sItemMoney;
+SrcServer/src/playsub.cpp:1:#include "items.h"
+SrcServer/src/record.cpp:1202:	sITEM	sItem_Buff;
+Shared/skillsPacket.h:4:#include "items.h"
+Shared/smPacket.h:2317:	sITEM	sItem;			//�����ϴ� ������
+
+============================================================
+ACTIVE Shared/items.h
+============================================================
+     1	#pragma once
+     2	#define ITEM_KIND_SKIN 0x9999
+     3	#include "SrcGame/src/sinbaram/sinItem.h"
+     4	
+     5	
+     6	
+     7	#ifndef ITEM_KIND_PERFECT
+     8	#define ITEM_KIND_PERFECT 9
+     9	#endif
+
+============================================================
+ACTIVE sinItem.cpp AROUND sItem
+============================================================
+SrcGame/src/sinbaram/sinItem.cpp:78:sITEM sItem[MAX_ITEM] = {
+SrcGame/src/sinbaram/sinItem.cpp:79:#include "items.h"
+
+============================================================
+MASTER sItem DEFINITION
+============================================================
+/home/gabriel/armazem/priston/pristontale-1-master/src/sinbaram/sinItem.cpp:67:sITEM sItem[MAX_ITEM] = {
+/home/gabriel/armazem/priston/pristontale-1-master/src/sinbaram/sinItem.cpp:74:		{sinWA1|sin01  ,"Stone Axe"			,"WA101",  ITEMSIZE*1, ITEMSIZE*3,"Weapon",ITEM_CLASS_WEAPON_ONE,"WA101" ,INVENTORY_POS_RHAND,SIN_SOUND_AXES,ITEM_WEAPONCLASS_NOT_SHOOTING},
+/home/gabriel/armazem/priston/pristontale-1-master/src/sinbaram/sinItem.cpp:78:		{sinWA1|sin05  ,"DoubleSidedWarAxe" ,"WA105",  ITEMSIZE*2, ITEMSIZE*4,"Weapon",ITEM_CLASS_WEAPON_TWO,"WA105" ,INVENTORY_POS_RHAND,SIN_SOUND_AXES,ITEM_WEAPONCLASS_NOT_SHOOTING},
+/home/gabriel/armazem/priston/pristontale-1-master/src/sinbaram/sinItem.cpp:91:		{sinWC1|sin01  ,"Eagle Claw"	,"WC101",  ITEMSIZE*1, ITEMSIZE*2,"Weapon",ITEM_CLASS_WEAPON_ONE,"WC101" ,INVENTORY_POS_RHAND,SIN_SOUND_CLAWS,ITEM_WEAPONCLASS_NOT_SHOOTING},
+
+============================================================
+MASTER INITIALIZER COUNT
+============================================================
+FILE=/home/gabriel/armazem/priston/pristontale-1-master/src/sinbaram/sinItem.cpp
+SIZE=261641
+REPRESENTATIVE_CODE_STRINGS=458
+FIRST_CODES=['WA101', 'WA101', 'WA102', 'WA102', 'WA103', 'WA103', 'WA104', 'WA104', 'WA105', 'WA105', 'WA106', 'WA106', 'WA107', 'WA107', 'WA108', 'WA108', 'WA109', 'WA109', 'WA110', 'WA110']

@@ -1,0 +1,330 @@
+FILES
+current=/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp
+master =/home/gabriel/armazem/priston/pristontale-1-master/src/fileread.cpp
+
+SUMMARY
+current_function_lines=678
+master_function_lines=673
+current_replacement_chars=379
+corrupted_lines=60
+
+CORRUPTED_LITERAL_MAPPING
+==============================================================================================================
+
+CURRENT_LINE=27
+STATUS=NO_MATCH
+SHAPE=if(lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(lstrcmp(decode, "*�̸�") == 0)
+
+CURRENT_LINE=48
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�ڵ�") == 0)
+
+CURRENT_LINE=65
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����ũ") == 0)
+
+CURRENT_LINE=76
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����ũ����") == 0)
+
+CURRENT_LINE=95
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����Ʈ����") == 0)
+
+CURRENT_LINE=106
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*������") == 0)
+
+CURRENT_LINE=116
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����") == 0)
+
+CURRENT_LINE=124
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����") == 0)
+
+CURRENT_LINE=132
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��ü") == 0)
+
+CURRENT_LINE=140
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*���ڿ�") == 0)
+
+CURRENT_LINE=148
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��") == 0)
+
+CURRENT_LINE=156
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�ñ�") == 0)
+
+CURRENT_LINE=164
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����") == 0)
+
+CURRENT_LINE=172
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��") == 0)
+
+CURRENT_LINE=180
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��") == 0)
+
+CURRENT_LINE=188
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�ٶ�") == 0)
+
+CURRENT_LINE=202
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*���ݷ�") == 0)
+
+CURRENT_LINE=216
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�����Ÿ�") == 0)
+
+CURRENT_LINE=223
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*���ݼӵ�") == 0)
+
+CURRENT_LINE=231
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*���߷�") == 0)
+
+CURRENT_LINE=241
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*ũ��Ƽ��") == 0)
+
+CURRENT_LINE=252
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�����") == 0)
+
+CURRENT_LINE=262
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����") == 0)
+
+CURRENT_LINE=272
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�����") == 0)
+
+CURRENT_LINE=283
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�̵��ӵ�") == 0)
+
+CURRENT_LINE=294
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��������") == 0)
+
+CURRENT_LINE=303
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�������õ�") == 0)
+
+CURRENT_LINE=310
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && (lstrcmp(decode, "<STR>") == 0 || lstrcmp(decode, "<STR>") == 0))
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*�������") == 0 || lstrcmp(decode, "*������") == 0))
+
+CURRENT_LINE=319
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && (lstrcmp(decode, "<STR>") == 0 || lstrcmp(decode, "<STR>") == 0))
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*���������") == 0 || lstrcmp(decode, "*��������") == 0))
+
+CURRENT_LINE=328
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && (lstrcmp(decode, "<STR>") == 0 || lstrcmp(decode, "<STR>") == 0))
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*���׹̳����") == 0 || lstrcmp(decode, "*�ٷ����") == 0))
+
+CURRENT_LINE=338
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && (lstrcmp(decode, "<STR>") == 0 || lstrcmp(decode, "<STR>") == 0))
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*�����߰�") == 0 || lstrcmp(decode, "*����߰�") == 0))
+
+CURRENT_LINE=347
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && (lstrcmp(decode, "<STR>") == 0 || lstrcmp(decode, "<STR>") == 0))
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*�������߰�") == 0 || lstrcmp(decode, "*������߰�") == 0))
+
+CURRENT_LINE=356
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && (lstrcmp(decode, "<STR>") == 0 || lstrcmp(decode, "<STR>") == 0))
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*���׹̳��߰�") == 0 || lstrcmp(decode, "*�ٷ��߰�") == 0))
+
+CURRENT_LINE=369
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*����") == 0)
+
+CURRENT_LINE=377
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��") == 0)
+
+CURRENT_LINE=385
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*���ŷ�") == 0)
+
+CURRENT_LINE=392
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*���") == 0)
+
+CURRENT_LINE=399
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��ø��") == 0)
+
+CURRENT_LINE=406
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�ǰ�") == 0)
+
+CURRENT_LINE=417
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && (lstrcmp(decode, "<STR>") == 0 || lstrcmp(decode, "<STR>") == 0))
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*���׹̳ʻ��") == 0 || lstrcmp(decode, "*�ٷ»��") == 0))
+
+CURRENT_LINE=427
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && (lstrcmp(decode, "<STR>") == 0 || lstrcmp(decode, "<STR>") == 0))
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*�������") == 0 || lstrcmp(decode, "*��»��") == 0))
+
+CURRENT_LINE=437
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && (lstrcmp(decode, "<STR>") == 0 || lstrcmp(decode, "<STR>") == 0))
+CURRENT=if(!NextFlag && (lstrcmp(decode, "*���������") == 0 || lstrcmp(decode, "*����»��") == 0))
+
+CURRENT_LINE=475
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "**Ưȭ����") == 0)
+
+CURRENT_LINE=505
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "**�����") == 0)
+
+CURRENT_LINE=515
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "**����") == 0)
+
+CURRENT_LINE=527
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "**�̵��ӵ�") == 0)
+
+CURRENT_LINE=537
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "**�����") == 0)
+
+CURRENT_LINE=544
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "**���ݼӵ�") == 0)
+
+CURRENT_LINE=551
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "**ũ��Ƽ��") == 0)
+
+CURRENT_LINE=558
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "**�����Ÿ�") == 0)
+
+CURRENT_LINE=565
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "**�������õ�") == 0)
+
+CURRENT_LINE=583
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && (lstrcmp(decode, "<STR>") == 0 || lstrcmp(decode, "<STR>") == 0))
+CURRENT=if(!NextFlag && (lstrcmp(decode, "**�����߰�") == 0 || lstrcmp(decode, "**����߰�") == 0))
+
+CURRENT_LINE=590
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && (lstrcmp(decode, "<STR>") == 0 || lstrcmp(decode, "<STR>") == 0))
+CURRENT=if(!NextFlag && (lstrcmp(decode, "**�������߰�") == 0 || lstrcmp(decode, "**������߰�") == 0))
+
+CURRENT_LINE=597
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "**���߷�") == 0)
+
+CURRENT_LINE=607
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "**���ݷ�") == 0)
+
+CURRENT_LINE=621
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && (lstrcmp(decode, "<STR>") == 0 || lstrcmp(decode, "<STR>") == 0))
+CURRENT=if(!NextFlag && (lstrcmp(decode, "**�������") == 0 || lstrcmp(decode, "**������") == 0))
+
+CURRENT_LINE=632
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && (lstrcmp(decode, "<STR>") == 0 || lstrcmp(decode, "<STR>") == 0))
+CURRENT=if(!NextFlag && (lstrcmp(decode, "**���������") == 0 || lstrcmp(decode, "**��������") == 0))
+
+CURRENT_LINE=639
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && (lstrcmp(decode, "<STR>") == 0 || lstrcmp(decode, "<STR>") == 0))
+CURRENT=if(!NextFlag && (lstrcmp(decode, "**���׹̳����") == 0 || lstrcmp(decode, "**�ٷ����") == 0))
+
+CURRENT_LINE=646
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*�߻�����") == 0)
+
+CURRENT_LINE=654
+STATUS=NO_MATCH
+SHAPE=if(!NextFlag && lstrcmp(decode, "<STR>") == 0)
+CURRENT=if(!NextFlag && lstrcmp(decode, "*��������") == 0)
+
+==============================================================================================================
+RESULT
+unique=0
+ambiguous=0
+no_match=60
+
+CODE_TOKEN_CHECK
+==============================================================================================================
+master_line=100
+///////////////// 코드 ///////////////////////
+expected_CP949=2A C4 DA B5 E5
+master_line=101
+if ( !NextFlag && lstrcmp( decode , "*코드" )==0 ) {
+expected_CP949=2A C4 DA B5 E5
+master_line=113
+///////////////// 코드 ///////////////////////
+expected_CP949=2A C4 DA B5 E5

@@ -1,0 +1,83 @@
+PT_SMD_ABI_PROBE_V2
+sizeof(void*)=4
+sizeof(smFRAME_POS)=16
+sizeof(smDFILE_HEADER)=556
+sizeof(smDFILE_OBJINFO)=40
+sizeof(smMATRIX)=64
+sizeof(smFMATRIX)=64
+sizeof(smTEXLINK)=32
+sizeof(smVERTEX)=24
+sizeof(smFACE)=36
+sizeof(smTM_ROT)=20
+sizeof(smTM_POS)=16
+sizeof(smTM_SCALE)=16
+sizeof(smOBJ3D)=2236
+-- smDFILE_HEADER --
+offsetof(smDFILE_HEADER,szHeader)=0
+offsetof(smDFILE_HEADER,ObjCounter)=24
+offsetof(smDFILE_HEADER,MatCounter)=28
+offsetof(smDFILE_HEADER,MatFilePoint)=32
+offsetof(smDFILE_HEADER,First_ObjInfoPoint)=36
+offsetof(smDFILE_HEADER,TmFrameCounter)=40
+offsetof(smDFILE_HEADER,TmFrame)=44
+-- smDFILE_OBJINFO --
+offsetof(smDFILE_OBJINFO,szNodeName)=0
+offsetof(smDFILE_OBJINFO,Length)=32
+offsetof(smDFILE_OBJINFO,ObjFilePoint)=36
+-- smTEXLINK --
+offsetof(smTEXLINK,u)=0
+offsetof(smTEXLINK,v)=12
+offsetof(smTEXLINK,hTexture)=24
+offsetof(smTEXLINK,NextTex)=28
+-- smVERTEX --
+offsetof(smVERTEX,x)=0
+offsetof(smVERTEX,nx)=12
+-- smFACE --
+offsetof(smFACE,v)=0
+offsetof(smFACE,t)=8
+offsetof(smFACE,lpTexLink)=32
+-- animation structs --
+offsetof(smTM_ROT,frame)=0
+offsetof(smTM_ROT,x)=4
+offsetof(smTM_POS,frame)=0
+offsetof(smTM_POS,x)=4
+offsetof(smTM_SCALE,frame)=0
+offsetof(smTM_SCALE,x)=4
+-- smOBJ3D --
+offsetof(smOBJ3D,Vertex)=4
+offsetof(smOBJ3D,Face)=8
+offsetof(smOBJ3D,TexLink)=12
+offsetof(smOBJ3D,Physique)=16
+offsetof(smOBJ3D,ZeroVertex)=20
+offsetof(smOBJ3D,maxZ)=44
+offsetof(smOBJ3D,MaxVertex)=76
+offsetof(smOBJ3D,nVertex)=84
+offsetof(smOBJ3D,nFace)=88
+offsetof(smOBJ3D,nTexLink)=92
+offsetof(smOBJ3D,ColorEffect)=96
+offsetof(smOBJ3D,ClipStates)=100
+offsetof(smOBJ3D,Posi)=104
+offsetof(smOBJ3D,NodeName)=172
+offsetof(smOBJ3D,NodeParent)=204
+offsetof(smOBJ3D,pParent)=236
+offsetof(smOBJ3D,Tm)=240
+offsetof(smOBJ3D,TmInvert)=304
+offsetof(smOBJ3D,TmResult)=368
+offsetof(smOBJ3D,TmRotate)=432
+offsetof(smOBJ3D,mWorld)=496
+offsetof(smOBJ3D,mLocal)=560
+offsetof(smOBJ3D,lFrame)=624
+offsetof(smOBJ3D,qx)=628
+offsetof(smOBJ3D,sx)=644
+offsetof(smOBJ3D,px)=656
+offsetof(smOBJ3D,TmRot)=668
+offsetof(smOBJ3D,TmPos)=672
+offsetof(smOBJ3D,TmScale)=676
+offsetof(smOBJ3D,TmPrevRot)=680
+offsetof(smOBJ3D,TmRotCnt)=684
+offsetof(smOBJ3D,TmPosCnt)=688
+offsetof(smOBJ3D,TmScaleCnt)=692
+offsetof(smOBJ3D,TmRotFrame)=696
+offsetof(smOBJ3D,TmPosFrame)=1208
+offsetof(smOBJ3D,TmScaleFrame)=1720
+offsetof(smOBJ3D,TmFrameCnt)=2232

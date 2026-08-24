@@ -1,0 +1,67 @@
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+/home/gabriel/Área de Trabalho/summit/design_work/pt_ase_import_v2.py:478: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+================================================================================
+PT ASE IMPORT V2 - MATERIALS / TEXTURES
+================================================================================
+ASE        : /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC13.ASE
+CLIENT ROOT: /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente
+OUT        : /home/gabriel/Área de Trabalho/summit/design_work/blender_pipeline/MfbC13_import_v2.blend
+CACHE      : /home/gabriel/Área de Trabalho/summit/design_work/blender_pipeline/decoded_textures_v2
+
+GEOMOBJECT blocks: 67
+Top materials    : 2
+  MATERIAL 0: name='Material #4a' submaterials=2 bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\MfbC19_01.TGA'
+    SUB 0: name='Material #434' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\MfbC19_01.TGA'
+    SUB 1: name='Material #435' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\MfbC19_02.BMP'
+  MATERIAL 1: name='Material 2360' submaterials=2 bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\pr100_yun01.tga'
+    SUB 0: name='13 - Default' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\pr100_yun01.tga'
+    SUB 1: name='8 - Defaul' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\pr100_yun02.tga'
+
+Indexing client textures...
+Indexed image files: 22298
+Unique basenames   : 12806
+
+
+================================================================================
+IMPORT RESULT
+================================================================================
+Imported: 4
+Skipped : 63
+
+MshC19: V=163 F=264 TV=250 TF=264 UVfaces=264 MATREF=0
+  MTLID 0 -> name='Material #434' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\MfbC19_01.TGA'
+           resolved='/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC19_01.tga' candidates=1
+           decode=TGA_UNKNOWN_HEADER load=LOADED
+MbhC19: V=143 F=248 TV=212 TF=248 UVfaces=248 MATREF=0
+  MTLID 0 -> name='Material #434' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\MfbC19_01.TGA'
+           resolved='/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC19_01.tga' candidates=1
+           decode=TGA_UNKNOWN_HEADER load=LOADED
+  MTLID 1 -> name='Material #435' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\MfbC19_02.BMP'
+           resolved='/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC19_02.bmp' candidates=1
+           decode=BMP_PRISTON_PREFIX14_256x256_24bpp load=LOADED
+MlhC20: V=286 F=428 TV=296 TF=428 UVfaces=428 MATREF=1
+  MTLID 0 -> name='13 - Default' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\pr100_yun01.tga'
+           resolved='/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/pr100_yun01.tga' candidates=1
+           decode=TGA_UNKNOWN_HEADER load=LOADED
+  MTLID 1 -> name='8 - Defaul' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\pr100_yun02.tga'
+           resolved='/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/pr100_yun02.tga' candidates=1
+           decode=TGA_UNKNOWN_HEADER load=LOADED
+MahC20: V=80 F=146 TV=124 TF=146 UVfaces=146 MATREF=1
+  MTLID 0 -> name='13 - Default' bitmap='D:\\______\\1. ____1\\01. ____(______)\\05. __________ 100\\________\\__________9-1__\\pr100_yun01.tga'
+           resolved='/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/pr100_yun01.tga' candidates=1
+           decode=TGA_UNKNOWN_HEADER load=LOADED
+
+Material texture loads:
+  LOADED : 6
+  MISSING: 0
+  FAILED : 0
+Info: Saved as "MfbC13_import_v2.blend"
+
+BLEND saved: /home/gabriel/Área de Trabalho/summit/design_work/blender_pipeline/MfbC13_import_v2.blend
+================================================================================
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

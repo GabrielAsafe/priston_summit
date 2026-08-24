@@ -1,0 +1,296 @@
+
+==============================================================================
+1. EXTRAÇÃO DOS OBJETOS HISTÓRICOS
+==============================================================================
+
+SERVER_RELEASE_2024
+PATH = /home/gabriel/armazem/priston/Source Summit Tale/SrcServer/src/Release/sinItem.obj
+OBJDUMP_RC       = 0
+DISASM_CHARS     = 2106394
+EXTRACTED_IDS    = 1805
+INTERNAL_CONFLICTS = 4
+WA101    got=0x01010100   expected=0x01010100 OK
+WA102    got=0x01010200   expected=0x01010200 OK
+BC101    got=0x080A0100   expected=0x080A0100 OK
+BC102    got=0x080A0200   expected=0x080A0200 OK
+CONTROL_OK       = 4/4
+CONFLICT SK277    0x081B5D00 0x081A5D00
+CONFLICT SK245    0x081B3D00 0x081A3D00
+CONFLICT SK252    0x081B4400 0x081A4400
+CONFLICT CA702    0x02115200 0x02115300
+
+CLIENT_RELEASE_2024
+PATH = /home/gabriel/armazem/priston/Source Summit Tale/SrcGame/src/Release/sinItem.obj
+OBJDUMP_RC       = 0
+DISASM_CHARS     = 2939032
+EXTRACTED_IDS    = 1805
+INTERNAL_CONFLICTS = 4
+WA101    got=0x01010100   expected=0x01010100 OK
+WA102    got=0x01010200   expected=0x01010200 OK
+BC101    got=0x080A0100   expected=0x080A0100 OK
+BC102    got=0x080A0200   expected=0x080A0200 OK
+CONTROL_OK       = 4/4
+CONFLICT SK277    0x081B5D00 0x081A5D00
+CONFLICT SK245    0x081B3D00 0x081A3D00
+CONFLICT SK252    0x081B4400 0x081A4400
+CONFLICT CA702    0x02115200 0x02115300
+
+CLIENT_DEBUG_2025
+PATH = /home/gabriel/armazem/priston/Source Summit Tale/SrcGame/src/Debug/sinItem.obj
+OBJDUMP_RC       = 0
+DISASM_CHARS     = 4913253
+EXTRACTED_IDS    = 0
+INTERNAL_CONFLICTS = 0
+WA101    got=MISSING      expected=0x01010100 BAD
+WA102    got=MISSING      expected=0x01010200 BAD
+BC101    got=MISSING      expected=0x080A0100 BAD
+BC102    got=MISSING      expected=0x080A0200 BAD
+CONTROL_OK       = 0/4
+
+==============================================================================
+2. OPENITEM / SEMÂNTICA FIRST x LAST
+==============================================================================
+FILES_WITH_CODE       = 1826
+ALL_DIRECTIVE_IDS     = 1760
+FIRST_UNIQUE_IDS      = 1760
+LAST_UNIQUE_IDS       = 1758
+MULTI_CODE_FILES      = 2
+MULTI CA115.txt            CA115 -> DA147
+MULTI CA715.txt            CA715 -> DA247
+
+==============================================================================
+3. COBERTURA DE CADA OBJETO
+==============================================================================
+SERVER_RELEASE_2024    FIRST=1554/1760 88.30%   LAST=1552/1758 88.28%
+CLIENT_RELEASE_2024    FIRST=1554/1760 88.30%   LAST=1552/1758 88.28%
+CLIENT_DEBUG_2025      FIRST=   0/1760 0.00%   LAST=   0/1758 0.00%
+
+==============================================================================
+4. CONFLITOS ENTRE OBJETOS HISTÓRICOS
+==============================================================================
+CROSS_OBJECT_CONFLICTS = 0
+
+==============================================================================
+5. COBERTURA DA UNIÃO HISTÓRICA
+==============================================================================
+MASTER_IDS             = 978
+COMPILED_UNION_IDS     = 1805
+HISTORICAL_UNION_IDS   = 1867
+FIRST_STILL_MISSING    = 172
+LAST_STILL_MISSING     = 172
+
+==============================================================================
+6. IDs PROBLEMÁTICOS POR OBJETO
+==============================================================================
+
+BI901
+  SEM_FONTE_HISTORICA
+
+CX101
+  SERVER_RELEASE_2024    0x080F0100
+  CLIENT_RELEASE_2024    0x080F0100
+
+DA649
+  SEM_FONTE_HISTORICA
+
+DB226
+  SEM_FONTE_HISTORICA
+
+DG226
+  SEM_FONTE_HISTORICA
+
+JV101
+  SEM_FONTE_HISTORICA
+
+OM226
+  SEM_FONTE_HISTORICA
+
+RS101
+  SERVER_RELEASE_2024    0x03070500
+  CLIENT_RELEASE_2024    0x03070500
+
+TW101
+  SERVER_RELEASE_2024    0x01074C00
+  CLIENT_RELEASE_2024    0x01074C00
+
+WD109
+  SEM_FONTE_HISTORICA
+
+WN109
+  SEM_FONTE_HISTORICA
+
+==============================================================================
+7. FIRST IDs AINDA SEM FONTE
+==============================================================================
+BC117
+BC118
+BC133
+BI199
+BI200
+BI238
+BI239
+BI254
+BI299
+BI325
+BI901
+CA201
+CA202
+CA203
+CA204
+CA205
+CA206
+CA207
+CA208
+CA209
+CA210
+CA212
+CA703
+CX114
+CX115
+DA130
+DA166
+DA167
+DA168
+DA169
+DA170
+DA230
+DA266
+DA267
+DA268
+DA269
+DA270
+DA649
+DA650
+DA651
+DA652
+DA653
+DA654
+DA655
+DA656
+DA657
+DA658
+DA659
+DA660
+DA661
+DA662
+DA663
+DA664
+DB136
+DB137
+DB138
+DB144
+DB145
+DB153
+DB226
+DG131
+DG135
+DG136
+DG144
+DG145
+DG153
+DG226
+DS129
+DS130
+DS134
+DS135
+DS136
+DS137
+DS138
+DS139
+DS160
+GB105
+GB106
+JV101
+JV102
+JV103
+JV104
+JV105
+JV106
+JV107
+JV108
+OA129
+OA131
+OA144
+OA153
+OA154
+OA155
+OA156
+OA230
+OA235
+OA237
+OA244
+OA245
+OA252
+OA253
+OE104
+OE105
+OE106
+OE107
+OE130
+OE131
+OM126
+OM127
+OM128
+OM129
+OM130
+OM131
+OM226
+OR129
+OR131
+OR132
+OR151
+OR152
+OR243
+OR244
+OR245
+OR246
+OR247
+OR248
+OR249
+OR254
+OR255
+OR256
+OS120
+OS135
+OS136
+QT117
+QT118
+QT119
+QT120
+QT121
+QT122
+QT123
+QT124
+QT125
+QT126
+QT127
+QT128
+QT129
+QT130
+QT131
+QT132
+QT133
+SE105
+SK306
+SK406
+SP111
+SP112
+SP113
+SP123
+SP124
+SP125
+SP179
+TW160
+WA160
+WC160
+WC161
+WD109
+WD121
+WH160
+WN109
+WN121
+WP160
+WS160
+WS161
+WS260
+WS261

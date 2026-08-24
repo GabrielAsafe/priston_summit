@@ -1,0 +1,15 @@
+refatorar o cla
+criar um sistema de guilda tipo guilda dos aventureiros que dá buffs ao jogador ou tipo darksouls nas covenents
+
+
+sistemas:
+pesca
+mineração
+caça
+missões decentes
+
+
+
+ajeitar história
+
+

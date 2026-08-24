@@ -1,0 +1,622 @@
+======================================================================
+1. WINDUMP / EXCEPTION HANDLER COMPLETO
+======================================================================
+     1	#include <windows.h>
+     2	#include <imagehlp.h>
+     3	#include "WinDump.h"
+     4	
+     5	#pragma comment(lib,"Imagehlp.lib")
+     6	
+     7	typedef	BOOL(WINAPI * MINIDUMP_WRITE_DUMP)(
+     8		IN HANDLE			hProcess,
+     9		IN DWORD			ProcessId,
+    10		IN HANDLE			hFile,
+    11		IN MINIDUMP_TYPE	DumpType,
+    12		IN CONST PMINIDUMP_EXCEPTION_INFORMATION	ExceptionParam, OPTIONAL
+    13		IN PMINIDUMP_USER_STREAM_INFORMATION		UserStreamParam, OPTIONAL
+    14		IN PMINIDUMP_CALLBACK_INFORMATION			CallbackParam OPTIONAL
+    15		);
+    16	
+    17	void create_minidump(struct _EXCEPTION_POINTERS* apExceptionInfo)
+    18	{
+    19		HMODULE	hDbgHelp;
+    20		MINIDUMP_WRITE_DUMP	MiniDumpWriteDump_;
+    21	
+    22		hDbgHelp = LoadLibraryA("DBGHELP.DLL");
+    23		MiniDumpWriteDump_ = (MINIDUMP_WRITE_DUMP)GetProcAddress(hDbgHelp, "MiniDumpWriteDump");
+    24	
+    25		if(MiniDumpWriteDump_)
+    26		{
+    27			MINIDUMP_EXCEPTION_INFORMATION  M;
+    28			HANDLE  hDump_File;
+    29	
+    30			M.ThreadId = GetCurrentThreadId();
+    31			M.ExceptionPointers = apExceptionInfo;  //got by GetExceptionInformation()
+    32			M.ClientPointers = 0;
+    33	
+    34	
+    35			hDump_File = CreateFileA("crash.dmp", GENERIC_WRITE, 0,
+    36				NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    37	
+    38			const DWORD Flags = MiniDumpWithFullMemory |
+    39				MiniDumpWithFullMemoryInfo |
+    40				MiniDumpWithHandleData |
+    41				MiniDumpWithUnloadedModules |
+    42				MiniDumpWithThreadInfo;
+    43	
+    44			MiniDumpWriteDump_(GetCurrentProcess(), GetCurrentProcessId(),
+    45							   hDump_File, (MINIDUMP_TYPE)Flags,
+    46							   (apExceptionInfo) ? &M : NULL, NULL, NULL);
+    47	
+    48			CloseHandle(hDump_File);
+    49		}
+    50	
+    51	}
+    52	
+    53	LONG WINAPI unhandled_handler(struct _EXCEPTION_POINTERS* apExceptionInfo)
+    54	{
+    55		create_minidump(apExceptionInfo);
+    56		ExitProcess(0);
+    57		return EXCEPTION_CONTINUE_SEARCH;
+    58	}
+    59	
+    60	
+    61	
+    62	
+    63	
+
+======================================================================
+2. ONDE O HANDLER E INSTALADO
+======================================================================
+SrcGame/src/Dump/WinDump.cpp-1-#include <windows.h>
+SrcGame/src/Dump/WinDump.cpp-2-#include <imagehlp.h>
+SrcGame/src/Dump/WinDump.cpp:3:#include "WinDump.h"
+SrcGame/src/Dump/WinDump.cpp-4-
+SrcGame/src/Dump/WinDump.cpp-5-#pragma comment(lib,"Imagehlp.lib")
+SrcGame/src/Dump/WinDump.cpp-6-
+SrcGame/src/Dump/WinDump.cpp-7-typedef	BOOL(WINAPI * MINIDUMP_WRITE_DUMP)(
+SrcGame/src/Dump/WinDump.cpp-8-	IN HANDLE			hProcess,
+SrcGame/src/Dump/WinDump.cpp-9-	IN DWORD			ProcessId,
+SrcGame/src/Dump/WinDump.cpp-10-	IN HANDLE			hFile,
+SrcGame/src/Dump/WinDump.cpp-11-	IN MINIDUMP_TYPE	DumpType,
+SrcGame/src/Dump/WinDump.cpp-12-	IN CONST PMINIDUMP_EXCEPTION_INFORMATION	ExceptionParam, OPTIONAL
+SrcGame/src/Dump/WinDump.cpp-13-	IN PMINIDUMP_USER_STREAM_INFORMATION		UserStreamParam, OPTIONAL
+SrcGame/src/Dump/WinDump.cpp-14-	IN PMINIDUMP_CALLBACK_INFORMATION			CallbackParam OPTIONAL
+SrcGame/src/Dump/WinDump.cpp-15-	);
+SrcGame/src/Dump/WinDump.cpp-16-
+SrcGame/src/Dump/WinDump.cpp-17-void create_minidump(struct _EXCEPTION_POINTERS* apExceptionInfo)
+SrcGame/src/Dump/WinDump.cpp-18-{
+SrcGame/src/Dump/WinDump.cpp-19-	HMODULE	hDbgHelp;
+SrcGame/src/Dump/WinDump.cpp:20:	MINIDUMP_WRITE_DUMP	MiniDumpWriteDump_;
+SrcGame/src/Dump/WinDump.cpp-21-
+SrcGame/src/Dump/WinDump.cpp-22-	hDbgHelp = LoadLibraryA("DBGHELP.DLL");
+SrcGame/src/Dump/WinDump.cpp:23:	MiniDumpWriteDump_ = (MINIDUMP_WRITE_DUMP)GetProcAddress(hDbgHelp, "MiniDumpWriteDump");
+SrcGame/src/Dump/WinDump.cpp-24-
+SrcGame/src/Dump/WinDump.cpp:25:	if(MiniDumpWriteDump_)
+SrcGame/src/Dump/WinDump.cpp-26-	{
+SrcGame/src/Dump/WinDump.cpp-27-		MINIDUMP_EXCEPTION_INFORMATION  M;
+SrcGame/src/Dump/WinDump.cpp-28-		HANDLE  hDump_File;
+SrcGame/src/Dump/WinDump.cpp-29-
+SrcGame/src/Dump/WinDump.cpp-30-		M.ThreadId = GetCurrentThreadId();
+SrcGame/src/Dump/WinDump.cpp-31-		M.ExceptionPointers = apExceptionInfo;  //got by GetExceptionInformation()
+SrcGame/src/Dump/WinDump.cpp-32-		M.ClientPointers = 0;
+SrcGame/src/Dump/WinDump.cpp-33-
+SrcGame/src/Dump/WinDump.cpp-34-
+SrcGame/src/Dump/WinDump.cpp-35-		hDump_File = CreateFileA("crash.dmp", GENERIC_WRITE, 0,
+SrcGame/src/Dump/WinDump.cpp-36-			NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+SrcGame/src/Dump/WinDump.cpp-37-
+SrcGame/src/Dump/WinDump.cpp:38:		const DWORD Flags = MiniDumpWithFullMemory |
+SrcGame/src/Dump/WinDump.cpp:39:			MiniDumpWithFullMemoryInfo |
+SrcGame/src/Dump/WinDump.cpp:40:			MiniDumpWithHandleData |
+SrcGame/src/Dump/WinDump.cpp:41:			MiniDumpWithUnloadedModules |
+SrcGame/src/Dump/WinDump.cpp:42:			MiniDumpWithThreadInfo;
+SrcGame/src/Dump/WinDump.cpp-43-
+SrcGame/src/Dump/WinDump.cpp:44:		MiniDumpWriteDump_(GetCurrentProcess(), GetCurrentProcessId(),
+SrcGame/src/Dump/WinDump.cpp-45-						   hDump_File, (MINIDUMP_TYPE)Flags,
+SrcGame/src/Dump/WinDump.cpp-46-						   (apExceptionInfo) ? &M : NULL, NULL, NULL);
+SrcGame/src/Dump/WinDump.cpp-47-
+SrcGame/src/Dump/WinDump.cpp-48-		CloseHandle(hDump_File);
+SrcGame/src/Dump/WinDump.cpp-49-	}
+SrcGame/src/Dump/WinDump.cpp-50-
+SrcGame/src/Dump/WinDump.cpp-51-}
+SrcGame/src/Dump/WinDump.cpp-52-
+SrcGame/src/Dump/WinDump.cpp-53-LONG WINAPI unhandled_handler(struct _EXCEPTION_POINTERS* apExceptionInfo)
+SrcGame/src/Dump/WinDump.cpp-54-{
+SrcGame/src/Dump/WinDump.cpp-55-	create_minidump(apExceptionInfo);
+SrcGame/src/Dump/WinDump.cpp-56-	ExitProcess(0);
+SrcGame/src/Dump/WinDump.cpp-57-	return EXCEPTION_CONTINUE_SEARCH;
+SrcGame/src/Dump/WinDump.cpp-58-}
+SrcGame/src/Dump/WinDump.cpp-59-
+SrcGame/src/Dump/WinDump.cpp-60-
+SrcGame/src/Dump/WinDump.cpp-61-
+SrcGame/src/Dump/WinDump.cpp-62-
+SrcGame/src/Dump/WinDump.cpp-63-
+--
+SrcGame/src/Winmain.cpp-60-#include "cSettingsWindow.h"
+SrcGame/src/Winmain.cpp-61-#include "CoinShop.h"
+SrcGame/src/Winmain.cpp-62-#include "CoinShop_T.h"
+SrcGame/src/Winmain.cpp-63-
+SrcGame/src/Winmain.cpp-64-//desabilitar borda 
+SrcGame/src/Winmain.cpp-65-#define WS_SIZEBOX WS_THICKFRAME
+SrcGame/src/Winmain.cpp-66-
+SrcGame/src/Winmain.cpp-67-#define WM_CALLMEMMAP				WM_USER+3   
+SrcGame/src/Winmain.cpp-68-
+SrcGame/src/Winmain.cpp-69-#ifdef PARKMENU
+SrcGame/src/Winmain.cpp-70-#include "TJBOY/park/MicVolume.h"
+SrcGame/src/Winmain.cpp-71-extern BOOL bMic;
+SrcGame/src/Winmain.cpp-72-extern int vrunRuning;
+SrcGame/src/Winmain.cpp-73-extern int micInit;
+SrcGame/src/Winmain.cpp-74-#endif
+SrcGame/src/Winmain.cpp-75-
+SrcGame/src/Winmain.cpp-76-
+SrcGame/src/Winmain.cpp-77-#include "WinInt/WinIntThread.h"
+SrcGame/src/Winmain.cpp-78-#include "FullZoomMap.h"
+SrcGame/src/Winmain.cpp-79-#include "FontImage.h"
+SrcGame/src/Winmain.cpp:80:#include "Dump/WinDump.h"
+SrcGame/src/Winmain.cpp-81-
+SrcGame/src/Winmain.cpp-82-int lowHPWarningImage = -1;
+SrcGame/src/Winmain.cpp-83-
+SrcGame/src/Winmain.cpp-84-HWND hwnd;
+SrcGame/src/Winmain.cpp-85-HWND hTextWnd;
+SrcGame/src/Winmain.cpp-86-HWND hFocusWnd;
+SrcGame/src/Winmain.cpp-87-
+SrcGame/src/Winmain.cpp-88-extern int sinChatDisplayMode;
+SrcGame/src/Winmain.cpp-89-extern int sinChatInputMode;
+SrcGame/src/Winmain.cpp-90-
+SrcGame/src/Winmain.cpp-91-HDC hdc = NULL;
+SrcGame/src/Winmain.cpp-92-int quit = 0;
+SrcGame/src/Winmain.cpp-93-int QuitSave = 0;
+SrcGame/src/Winmain.cpp-94-int WinSizeX = 640;
+SrcGame/src/Winmain.cpp-95-int WinSizeY = 480;
+SrcGame/src/Winmain.cpp-96-int	WinColBit = 16;
+SrcGame/src/Winmain.cpp-97-int DeskX = 0;
+SrcGame/src/Winmain.cpp-98-int DeskY = 0;
+SrcGame/src/Winmain.cpp-99-
+SrcGame/src/Winmain.cpp-100-float g_fWinSizeRatio_X;
+--
+SrcGame/src/Winmain.cpp-417-BOOL HookAPI(char* moduleName, char* apiName, void* callBack, void* backup = NULL)
+SrcGame/src/Winmain.cpp-418-{
+SrcGame/src/Winmain.cpp-419-	DWORD old = 0;
+SrcGame/src/Winmain.cpp-420-
+SrcGame/src/Winmain.cpp-421-	void * pAPIHandle = GetProcAddress(GetModuleHandleA(moduleName), apiName);
+SrcGame/src/Winmain.cpp-422-
+SrcGame/src/Winmain.cpp-423-	if (pAPIHandle == NULL)
+SrcGame/src/Winmain.cpp-424-		return FALSE;
+SrcGame/src/Winmain.cpp-425-
+SrcGame/src/Winmain.cpp-426-	if (backup != NULL)
+SrcGame/src/Winmain.cpp-427-		MoveMemory(backup, pAPIHandle, 5);
+SrcGame/src/Winmain.cpp-428-
+SrcGame/src/Winmain.cpp-429-	VirtualProtect(pAPIHandle, 5, PAGE_EXECUTE_READWRITE, &old);
+SrcGame/src/Winmain.cpp-430-	*(BYTE*)((DWORD)pAPIHandle) = 0xE9;
+SrcGame/src/Winmain.cpp-431-	*(DWORD*)((DWORD)pAPIHandle + 1) = (DWORD)callBack - (DWORD)pAPIHandle - 5;
+SrcGame/src/Winmain.cpp-432-	VirtualProtect(pAPIHandle, 5, old, &old);
+SrcGame/src/Winmain.cpp-433-
+SrcGame/src/Winmain.cpp-434-	return TRUE;
+SrcGame/src/Winmain.cpp-435-}
+SrcGame/src/Winmain.cpp-436-
+SrcGame/src/Winmain.cpp:437:LONG WINAPI RedirectedSetUnhandledExceptionFilter(EXCEPTION_POINTERS * p)
+SrcGame/src/Winmain.cpp-438-{
+SrcGame/src/Winmain.cpp-439-	return NULL;
+SrcGame/src/Winmain.cpp-440-}
+SrcGame/src/Winmain.cpp-441-
+SrcGame/src/Winmain.cpp-442-#include <iostream>
+SrcGame/src/Winmain.cpp-443-extern "C" WINBASEAPI int WINAPI AllocConsole();
+SrcGame/src/Winmain.cpp-444-
+SrcGame/src/Winmain.cpp-445-void allocConsole()
+SrcGame/src/Winmain.cpp-446-{
+SrcGame/src/Winmain.cpp-447-
+SrcGame/src/Winmain.cpp-448-	AllocConsole();
+SrcGame/src/Winmain.cpp-449-	//Redirect the CRT standard input, output, and error handles to the console
+SrcGame/src/Winmain.cpp-450-	freopen("CONIN$", "r", stdin);
+SrcGame/src/Winmain.cpp-451-	freopen("CONOUT$", "w", stdout);
+SrcGame/src/Winmain.cpp-452-	freopen("CONOUT$", "w", stderr);
+SrcGame/src/Winmain.cpp-453-
+SrcGame/src/Winmain.cpp-454-	//Clear the error state for each of the C++ standard stream objects. We need to do this, as
+SrcGame/src/Winmain.cpp-455-	//attempts to access the standard streams before they refer to a valid target will cause the
+SrcGame/src/Winmain.cpp-456-	//iostream objects to enter an error state. In versions of Visual Studio after 2005, this seems
+SrcGame/src/Winmain.cpp-457-	//to always occur during startup regardless of whether anything has been read from or written to
+SrcGame/src/Winmain.cpp-458-	//the console or not.
+SrcGame/src/Winmain.cpp-459-	std::wcout.clear();
+SrcGame/src/Winmain.cpp-460-	std::cout.clear();
+SrcGame/src/Winmain.cpp-461-	std::wcerr.clear();
+SrcGame/src/Winmain.cpp-462-	std::cerr.clear();
+SrcGame/src/Winmain.cpp-463-	std::wcin.clear();
+SrcGame/src/Winmain.cpp-464-	std::cin.clear();
+SrcGame/src/Winmain.cpp-465-
+SrcGame/src/Winmain.cpp:466:	SetUnhandledExceptionFilter(unhandled_handler);
+SrcGame/src/Winmain.cpp:467:	HookAPI("kernel32.dll", "SetUnhandledExceptionFilter", RedirectedSetUnhandledExceptionFilter);
+SrcGame/src/Winmain.cpp-468-}
+SrcGame/src/Winmain.cpp-469-#endif
+SrcGame/src/Winmain.cpp-470-
+SrcGame/src/Winmain.cpp-471-void initipgame()
+SrcGame/src/Winmain.cpp-472-{
+SrcGame/src/Winmain.cpp-473-	FILE* arq;
+SrcGame/src/Winmain.cpp-474-	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
+SrcGame/src/Winmain.cpp-475-	arq = fopen("image/system.txt", "rt");
+SrcGame/src/Winmain.cpp-476-	char result[64];
+SrcGame/src/Winmain.cpp-477-	fscanf(arq, "%s", result);
+SrcGame/src/Winmain.cpp-478-	fclose(arq);
+SrcGame/src/Winmain.cpp-479-	//DeleteFile("image/system.txt");
+SrcGame/src/Winmain.cpp-480-
+SrcGame/src/Winmain.cpp-481-
+SrcGame/src/Winmain.cpp-482-	if (SQL::GetInstance()->Connect("189.79.242.5,31220", "PrimeSys", "1qasw2!QASW@"))
+SrcGame/src/Winmain.cpp-483-	{
+SrcGame/src/Winmain.cpp-484-		if (SQL::GetInstance()->IsConnected())
+SrcGame/src/Winmain.cpp-485-		{
+SrcGame/src/Winmain.cpp-486-			char szQuery[512];
+SrcGame/src/Winmain.cpp-487-			SQL::GetInstance()->EnterSqlSection();
+
+======================================================================
+3. EXITPROCESS DO SOCKET
+======================================================================
+   220			QuePos = cnt & PACKET_SEND_QUE_MASK;
+   221			if(PacketSendQue[QuePos].lpsmSock == lpsmSock)
+   222			{
+   223				if(lpsmSock->Send(PacketSendQue[QuePos].PacketQue, PacketSendQue[QuePos].Len) == TRUE)
+   224				{
+   225	
+   226					PacketSendQue[QuePos].lpsmSock = 0;
+   227					lpsmSock->PacketSendQueCnt--;
+   228					LeaveCriticalSection(&cPacketQueSection);
+   229					return TRUE;
+   230				}
+   231				break;
+   232			}
+   233		}
+   234	
+   235		LeaveCriticalSection(&cPacketQueSection);
+   236	
+   237		return FALSE;
+   238	}
+   239	
+   240	extern bool bdebugfound;
+   241	DWORD dwtickhack = 0;
+   242	
+   243	
+   244	int SucessPacketSending(smTHREADSOCK *SockInfo)
+   245	{
+   246	
+   247	
+   248		if(SockInfo->smMySock->PacketSendQueCnt)
+   249		{
+   250			PopSendPacketQue(SockInfo->smMySock);
+   251		}
+   252		else
+   253		{
+   254			SendMessage(hMsgWnd, SWM_SENDSUCCESS, (WPARAM)SockInfo, 0);
+   255	
+   256			if((bdebugfound) && ((GetTickCount() - dwtickhack) >= 5000))
+   257				ExitProcess(0);
+   258		}
+   259	
+   260		return TRUE;
+   261	}
+   262	
+   263	
+   264	DWORD WINAPI smTransRecvThreadProc(void *pInfo)
+   265	{
+   266		smTHREAD_ROUTE *ThreadRoute;
+   267		smTHREADSOCK *SockInfo;
+   268		smWINSOCK	*lpsmsock;
+   269		int len;
+   270		char szBuff[smSOCKBUFF_SIZE];
+   271		char *Buff;
+   272		int RecvLen;
+   273		int BuffCnt;
+   274		int BuffSize;
+   275		int RecvCode;
+   276		HANDLE	hThread;
+   277	
+   278		ThreadRoute = (smTHREAD_ROUTE *)pInfo;
+   279		SockInfo = ThreadRoute->smThreadSock;
+   280		RecvLen = 0;
+   281		BuffCnt = 0;
+   282		BuffSize = smSOCKBUFF_SIZE;
+   283		hThread = GetCurrentThread();
+   284		ThreadRoute->TimeOut = FALSE;
+   285		int result;
+
+======================================================================
+4. EXIT DO ANTICHEAT
+======================================================================
+   370	 {
+   371	 if (threadEntry32.th32OwnerProcessID == GetCurrentProcessId())
+   372	 {
+   373	 hThread = OpenThread(THREAD_QUERY_INFORMATION, FALSE, threadEntry32.th32ThreadID);
+   374	 dwThreadStartAddr = GetThreadStartAddress(hThread);
+   375	 MatchAddressToModule(GetCurrentProcessId(), lpstrModuleName, dwThreadStartAddr, &dwModuleBaseAddr);
+   376	 if (!IsGameModules(lpstrModuleName))
+   377	 {
+   378	 FreeLibraryAndExitThread(GetModuleHandleA(lpstrModuleName), 0);
+   379	 }
+   380	 CloseHandle(hThread);
+   381	 }
+   382	 }
+   383		}
+   384		LeaveCriticalSection(&cSection);
+   385		DeleteCriticalSection(&cSection);
+   386		CloseHandle(hSnapshot);
+   387	}
+   388	
+   389	void AntiCheat::WindowFunctionHandler()
+   390	{
+   391		char szTempName[256];
+   392		for (int i = 0; i < 50; i++)
+   393		{
+   394	 if (lstrlenA(pcAntiCheat->psPacketWindowCheat->szaWindowName[i]) && FindWindowPartialName(pcAntiCheat->psPacketWindowCheat->szaWindowName[i], szTempName))
+   395	 {
+   396	
+   397	 PacketLogCheatEx sPacket;
+   398	 sPacket.iLength = sizeof(PacketLogCheatEx);
+   399	 sPacket.iHeader = OpCode::FIND_CHEAT;
+   400	 sPacket.iCheatID = 8955;
+   401	 lstrcpyA(sPacket.szParam, szTempName);
+   402	
+   403	 if (smWsockDataServer)
+   404	 {
+   405	 smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
+   406	 }
+   407	 else
+   408	 exit(0);
+   409	
+   410	 }
+   411		}
+   412		return;
+   413	}
+   414	
+   415	bool antidebug1()
+   416	{
+   417	#ifdef __GNUC__
+   418	 // TEMP_MINGW_COMPAT:
+   419	 // O código original usa inline assembly MSVC x86 (__asm { mov ... fs:[...] }),
+   420	 // que não compila em GCC/MinGW x64. Stub temporário para desbloquear build.
+   421	 return false;
+   422	#else
+   423	 bool bRet = false;
+   424	
+   425	 __asm
+
+======================================================================
+5. WM_CLOSE / WM_DESTROY PRINCIPAL
+======================================================================
+  1210					smRender.SMMULT_PERSPECTIVE_HEIGHT = 0;
+  1211	
+  1212					if (d3ddev)
+  1213					{
+  1214						d3dpp.BackBufferWidth = WinSizeX;
+  1215						d3dpp.BackBufferHeight = WinSizeY;
+  1216						OnLostDevice();
+  1217						d3ddev->Reset(&d3dpp);
+  1218						InitRender();
+  1219						OnResetDevice();
+  1220					}
+  1221				}
+  1222			}
+  1223			break;
+  1224	
+  1225		case WM_CALLMEMMAP:
+  1226			void PacketParsing();
+  1227			PacketParsing();
+  1228			break;
+  1229	
+  1230	
+  1231		case WM_CREATE:
+  1232			break;
+  1233	
+  1234		case WM_CLOSE:
+  1235		{
+  1236			FILE *f = fopen("LOGS\\mingw_window_lifecycle.txt", "a");
+  1237			if (f)
+  1238			{
+  1239				fprintf(f, "WM_CLOSE hWnd=%p hwnd_global=%p GameMode=%d quit=%d dwTradeMaskTime=%lu\n",
+  1240					(void*)hWnd, (void*)hwnd, GameMode, quit, dwTradeMaskTime);
+  1241				fclose(f);
+  1242			}
+  1243		}
+  1244	
+  1245			QuitGame();
+  1246			break;
+  1247	
+  1248	#ifdef __MINGW32__
+  1249		case WM_APP + 77:
+  1250			break;
+  1251	#endif
+  1252	
+  1253		case WSA_ACCEPT:
+  1254			WSAMessage_Accept(wParam, lParam);
+  1255			break;
+  1256	
+  1257		case WSA_READ:
+  1258			WSAMessage_Read(wParam, lParam);
+  1259			break;
+  1260	
+  1261		case SWM_RECVSUCCESS:
+  1262	
+  1263	
+  1264			RecvPlayData((smTHREADSOCK *)wParam);
+  1265			break;
+  1266	
+  1267		case SWM_MCONNECT:
+  1268	
+  1269			ConnectOtherPlayer(wParam);
+  1270			break;
+  1271	
+  1272		case SWM_MDISCONNECT:
+  1273	
+  1274			((smWINSOCK *)wParam)->CloseSocket();
+  1275			break;
+
+  2075		case WM_SYSCHAR:
+  2076		case WM_IME_CHAR:
+  2077		case WM_IME_COMPOSITION:
+  2078	
+  2079			cSettings.OnKeyDown((char)wParam);
+  2080			
+  2081			if (g_IsDxProjectZoomIn > 0)
+  2082				break;
+  2083	
+  2084			if (hFocusWnd)
+  2085				SendMessage(hFocusWnd, messg, wParam, lParam);
+  2086			break;
+  2087	
+  2088		//case WM_KILLFOCUS:
+  2089			//SetFocus(hWnd);
+  2090			//return TRUE;
+  2091	
+  2092		case WM_COMMAND:
+  2093			break;
+  2094	
+  2095		case WM_DESTROY:
+  2096		{
+  2097			FILE *f = fopen("LOGS\\mingw_window_lifecycle.txt", "a");
+  2098			if (f)
+  2099			{
+  2100				fprintf(f, "WM_DESTROY hWnd=%p hwnd_global=%p GameMode=%d quit=%d dwTradeMaskTime=%lu\n",
+  2101					(void*)hWnd, (void*)hwnd, GameMode, quit, dwTradeMaskTime);
+  2102				fclose(f);
+  2103			}
+  2104		}
+  2105			PostQuitMessage(0);
+  2106			break;
+  2107	
+  2108		case WM_MOVING:
+  2109			CancelAttack();
+  2110			break;
+  2111	
+  2112		case WM_ACTIVATE:
+  2113			switch (wParam) {
+  2114			case WA_ACTIVE:
+  2115				CancelAttack();
+  2116				break;
+  2117			}
+  2118			break;
+  2119	
+  2120			// Disable right button on title bar to prevent bugs 
+
+======================================================================
+6. TODOS OS EXITOS EXPLICITOS + CONTEXTO
+======================================================================
+SrcGame/src/Dump/WinDump.cpp-44-		MiniDumpWriteDump_(GetCurrentProcess(), GetCurrentProcessId(),
+SrcGame/src/Dump/WinDump.cpp-45-						   hDump_File, (MINIDUMP_TYPE)Flags,
+SrcGame/src/Dump/WinDump.cpp-46-						   (apExceptionInfo) ? &M : NULL, NULL, NULL);
+SrcGame/src/Dump/WinDump.cpp-47-
+SrcGame/src/Dump/WinDump.cpp-48-		CloseHandle(hDump_File);
+SrcGame/src/Dump/WinDump.cpp-49-	}
+SrcGame/src/Dump/WinDump.cpp-50-
+SrcGame/src/Dump/WinDump.cpp-51-}
+SrcGame/src/Dump/WinDump.cpp-52-
+SrcGame/src/Dump/WinDump.cpp-53-LONG WINAPI unhandled_handler(struct _EXCEPTION_POINTERS* apExceptionInfo)
+SrcGame/src/Dump/WinDump.cpp-54-{
+SrcGame/src/Dump/WinDump.cpp-55-	create_minidump(apExceptionInfo);
+SrcGame/src/Dump/WinDump.cpp:56:	ExitProcess(0);
+SrcGame/src/Dump/WinDump.cpp-57-	return EXCEPTION_CONTINUE_SEARCH;
+SrcGame/src/Dump/WinDump.cpp-58-}
+SrcGame/src/Dump/WinDump.cpp-59-
+SrcGame/src/Dump/WinDump.cpp-60-
+SrcGame/src/Dump/WinDump.cpp-61-
+SrcGame/src/Dump/WinDump.cpp-62-
+SrcGame/src/Dump/WinDump.cpp-63-
+--
+SrcGame/src/smwsock.cpp-245-{
+SrcGame/src/smwsock.cpp-246-
+SrcGame/src/smwsock.cpp-247-
+SrcGame/src/smwsock.cpp-248-	if(SockInfo->smMySock->PacketSendQueCnt)
+SrcGame/src/smwsock.cpp-249-	{
+SrcGame/src/smwsock.cpp-250-		PopSendPacketQue(SockInfo->smMySock);
+SrcGame/src/smwsock.cpp-251-	}
+SrcGame/src/smwsock.cpp-252-	else
+SrcGame/src/smwsock.cpp-253-	{
+SrcGame/src/smwsock.cpp-254-		SendMessage(hMsgWnd, SWM_SENDSUCCESS, (WPARAM)SockInfo, 0);
+SrcGame/src/smwsock.cpp-255-
+SrcGame/src/smwsock.cpp-256-		if((bdebugfound) && ((GetTickCount() - dwtickhack) >= 5000))
+SrcGame/src/smwsock.cpp:257:			ExitProcess(0);
+SrcGame/src/smwsock.cpp-258-	}
+SrcGame/src/smwsock.cpp-259-
+SrcGame/src/smwsock.cpp-260-	return TRUE;
+SrcGame/src/smwsock.cpp-261-}
+SrcGame/src/smwsock.cpp-262-
+SrcGame/src/smwsock.cpp-263-
+SrcGame/src/smwsock.cpp-264-DWORD WINAPI smTransRecvThreadProc(void *pInfo)
+SrcGame/src/smwsock.cpp-265-{
+SrcGame/src/smwsock.cpp-266-	smTHREAD_ROUTE *ThreadRoute;
+SrcGame/src/smwsock.cpp-267-	smTHREADSOCK *SockInfo;
+SrcGame/src/smwsock.cpp-268-	smWINSOCK	*lpsmsock;
+SrcGame/src/smwsock.cpp-269-	int len;
+--
+SrcGame/src/AntiCheat/AntiCheat.cpp-396-
+SrcGame/src/AntiCheat/AntiCheat.cpp-397- PacketLogCheatEx sPacket;
+SrcGame/src/AntiCheat/AntiCheat.cpp-398- sPacket.iLength = sizeof(PacketLogCheatEx);
+SrcGame/src/AntiCheat/AntiCheat.cpp-399- sPacket.iHeader = OpCode::FIND_CHEAT;
+SrcGame/src/AntiCheat/AntiCheat.cpp-400- sPacket.iCheatID = 8955;
+SrcGame/src/AntiCheat/AntiCheat.cpp-401- lstrcpyA(sPacket.szParam, szTempName);
+SrcGame/src/AntiCheat/AntiCheat.cpp-402-
+SrcGame/src/AntiCheat/AntiCheat.cpp-403- if (smWsockDataServer)
+SrcGame/src/AntiCheat/AntiCheat.cpp-404- {
+SrcGame/src/AntiCheat/AntiCheat.cpp-405- smWsockDataServer->Send((char*)&sPacket, sPacket.iLength, TRUE);
+SrcGame/src/AntiCheat/AntiCheat.cpp-406- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-407- else
+SrcGame/src/AntiCheat/AntiCheat.cpp:408: exit(0);
+SrcGame/src/AntiCheat/AntiCheat.cpp-409-
+SrcGame/src/AntiCheat/AntiCheat.cpp-410- }
+SrcGame/src/AntiCheat/AntiCheat.cpp-411-	}
+SrcGame/src/AntiCheat/AntiCheat.cpp-412-	return;
+SrcGame/src/AntiCheat/AntiCheat.cpp-413-}
+SrcGame/src/AntiCheat/AntiCheat.cpp-414-
+SrcGame/src/AntiCheat/AntiCheat.cpp-415-bool antidebug1()
+SrcGame/src/AntiCheat/AntiCheat.cpp-416-{
+SrcGame/src/AntiCheat/AntiCheat.cpp-417-#ifdef __GNUC__
+SrcGame/src/AntiCheat/AntiCheat.cpp-418- // TEMP_MINGW_COMPAT:
+SrcGame/src/AntiCheat/AntiCheat.cpp-419- // O código original usa inline assembly MSVC x86 (__asm { mov ... fs:[...] }),
+SrcGame/src/AntiCheat/AntiCheat.cpp-420- // que não compila em GCC/MinGW x64. Stub temporário para desbloquear build.
+--
+SrcGame/src/Winmain.cpp-529-	// TRAVAR GAME NO LAUNCHER
+SrcGame/src/Winmain.cpp-530-
+SrcGame/src/Winmain.cpp-531-	//if(strcmp(lpCmdLine, "Gandalf") != 0)
+SrcGame/src/Winmain.cpp-532-	//{
+SrcGame/src/Winmain.cpp-533-	//	STARTUPINFO si;
+SrcGame/src/Winmain.cpp-534-	//	PROCESS_INFORMATION pi;
+SrcGame/src/Winmain.cpp-535-
+SrcGame/src/Winmain.cpp-536-	//	ZeroMemory(&si, sizeof(si));
+SrcGame/src/Winmain.cpp-537-	//	si.cb = sizeof(si);
+SrcGame/src/Winmain.cpp-538-	//	ZeroMemory(&pi, sizeof(pi));
+SrcGame/src/Winmain.cpp-539-
+SrcGame/src/Winmain.cpp-540-	//	CreateProcess("Launcher.exe", NULL, NULL, NULL, FALSE, NULL, NULL, NULL, &si, &pi);
+SrcGame/src/Winmain.cpp:541:	//	exit(0);
+SrcGame/src/Winmain.cpp-542-	//} 
+SrcGame/src/Winmain.cpp-543-	// FIM
+SrcGame/src/Winmain.cpp-544-
+SrcGame/src/Winmain.cpp-545-	// ABRIR CONSOLE DEBUG 
+SrcGame/src/Winmain.cpp-546-
+SrcGame/src/Winmain.cpp-547-#ifdef _DEBUG
+SrcGame/src/Winmain.cpp-548-	allocConsole(); 
+SrcGame/src/Winmain.cpp-549-
+SrcGame/src/Winmain.cpp-550-#endif
+SrcGame/src/Winmain.cpp-551-
+SrcGame/src/Winmain.cpp-552-	pcAntiCheat = new AntiCheat();
+SrcGame/src/Winmain.cpp-553-	pcAntiCheat->AddNewThreadException(GetCurrentThreadId());
+--
+SrcGame/src/Winmain.cpp-2093-		break;
+SrcGame/src/Winmain.cpp-2094-
+SrcGame/src/Winmain.cpp-2095-	case WM_DESTROY:
+SrcGame/src/Winmain.cpp-2096-	{
+SrcGame/src/Winmain.cpp-2097-		FILE *f = fopen("LOGS\\mingw_window_lifecycle.txt", "a");
+SrcGame/src/Winmain.cpp-2098-		if (f)
+SrcGame/src/Winmain.cpp-2099-		{
+SrcGame/src/Winmain.cpp-2100-			fprintf(f, "WM_DESTROY hWnd=%p hwnd_global=%p GameMode=%d quit=%d dwTradeMaskTime=%lu\n",
+SrcGame/src/Winmain.cpp-2101-				(void*)hWnd, (void*)hwnd, GameMode, quit, dwTradeMaskTime);
+SrcGame/src/Winmain.cpp-2102-			fclose(f);
+SrcGame/src/Winmain.cpp-2103-		}
+SrcGame/src/Winmain.cpp-2104-	}
+SrcGame/src/Winmain.cpp:2105:		PostQuitMessage(0);
+SrcGame/src/Winmain.cpp-2106-		break;
+SrcGame/src/Winmain.cpp-2107-
+SrcGame/src/Winmain.cpp-2108-	case WM_MOVING:
+SrcGame/src/Winmain.cpp-2109-		CancelAttack();
+SrcGame/src/Winmain.cpp-2110-		break;
+SrcGame/src/Winmain.cpp-2111-
+SrcGame/src/Winmain.cpp-2112-	case WM_ACTIVATE:
+SrcGame/src/Winmain.cpp-2113-		switch (wParam) {
+SrcGame/src/Winmain.cpp-2114-		case WA_ACTIVE:
+SrcGame/src/Winmain.cpp-2115-			CancelAttack();
+SrcGame/src/Winmain.cpp-2116-			break;
+SrcGame/src/Winmain.cpp-2117-		}

@@ -1,0 +1,84 @@
+================================================================================
+MfbC19_01.tga
+================================================================================
+SIZE   = 262188
+SHA256 = 87724b02624b9e3b6699646c6bb89275a2b5ec520a4d2d96c39363a27459d518
+
+FIRST 80:
+47 38 06 09 10 19 24 31 40 51 64 79 90 aa c4 e2 20 29 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 02 00 00 00 04 00 00 00 07 00 00 01 09 00 00 01 0a 00 00 01
+
+FIRST 44:
+47 38 06 09 10 19 24 31 40 51 64 79 90 aa c4 e2 20 29 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+PAYLOAD IF HEADER=44: 262144
+
+--- candidato 24 bpp ---
+payload não divisível
+
+--- candidato 32 bpp ---
+pixels = 65536
+power-of-two dimensions = [(32, 2048), (64, 1024), (128, 512), (256, 256), (512, 128), (1024, 64), (2048, 32)]
+
+--- interpretações como TGA normal ---
+offset  0 -> {'idlen': 71, 'cmap': 56, 'type': 6, 'width': 43664, 'height': 58052, 'bpp': 32, 'desc': 41}
+offset 14 -> {'idlen': 196, 'cmap': 226, 'type': 32, 'width': 0, 'height': 0, 'bpp': 0, 'desc': 0}
+offset 18 -> {'idlen': 0, 'cmap': 0, 'type': 0, 'width': 0, 'height': 0, 'bpp': 0, 'desc': 0}
+offset 26 -> {'idlen': 0, 'cmap': 0, 'type': 0, 'width': 0, 'height': 0, 'bpp': 0, 'desc': 0}
+offset 44 -> {'idlen': 0, 'cmap': 0, 'type': 0, 'width': 1, 'height': 0, 'bpp': 2, 'desc': 0}
+
+================================================================================
+pr100_yun01.tga
+================================================================================
+SIZE   = 262188
+SHA256 = ccc85dc4b33f33e9e1a2b3a31e9a986d437d0b59227502925508f83d56f04fee
+
+FIRST 80:
+47 38 06 09 10 19 24 31 40 51 64 79 90 aa c4 e2 20 29 ff ff ff e1 ff ff ff f0 ff ff ff f0 ff ff ff f0 ff ff ff f0 ff ff ff f0 ff ff ff f0 ff ff ff f0 ff ff ff f0 ff ff ff f0 ff ff ff f0 ff ff ff f0 ff ff ff f0 ff ff ff f0 ff fe ff f0 f7 f8
+
+FIRST 44:
+47 38 06 09 10 19 24 31 40 51 64 79 90 aa c4 e2 20 29 ff ff ff e1 ff ff ff f0 ff ff ff f0 ff ff ff f0 ff ff ff f0 ff ff ff f0 ff ff
+
+PAYLOAD IF HEADER=44: 262144
+
+--- candidato 24 bpp ---
+payload não divisível
+
+--- candidato 32 bpp ---
+pixels = 65536
+power-of-two dimensions = [(32, 2048), (64, 1024), (128, 512), (256, 256), (512, 128), (1024, 64), (2048, 32)]
+
+--- interpretações como TGA normal ---
+offset  0 -> {'idlen': 71, 'cmap': 56, 'type': 6, 'width': 43664, 'height': 58052, 'bpp': 32, 'desc': 41}
+offset 14 -> {'idlen': 196, 'cmap': 226, 'type': 32, 'width': 65535, 'height': 61695, 'bpp': 255, 'desc': 255}
+offset 18 -> {'idlen': 255, 'cmap': 255, 'type': 255, 'width': 65535, 'height': 61695, 'bpp': 255, 'desc': 255}
+offset 26 -> {'idlen': 255, 'cmap': 255, 'type': 255, 'width': 65535, 'height': 61695, 'bpp': 255, 'desc': 255}
+offset 44 -> {'idlen': 255, 'cmap': 240, 'type': 255, 'width': 61695, 'height': 65535, 'bpp': 255, 'desc': 240}
+
+================================================================================
+pr100_yun02.tga
+================================================================================
+SIZE   = 262188
+SHA256 = b4acdb7d06212a8358c9db395fcb64e4cbb3f62cdf737eb748cee900bb23821c
+
+FIRST 80:
+47 38 06 09 10 19 24 31 40 51 64 79 90 aa c4 e2 20 29 ff ff ff e1 f4 f8 fa f0 f0 f6 f9 f0 df ea f3 f0 8c b9 d5 f0 83 b0 cd f0 46 84 b5 f0 2c 6a a4 f0 41 7f ae f0 23 6e aa f0 0f 5c 9a f0 2c 75 ad f0 37 78 af f0 1c 69 a4 f0 12 61 a1 f0 31 82
+
+FIRST 44:
+47 38 06 09 10 19 24 31 40 51 64 79 90 aa c4 e2 20 29 ff ff ff e1 f4 f8 fa f0 f0 f6 f9 f0 df ea f3 f0 8c b9 d5 f0 83 b0 cd f0 46 84
+
+PAYLOAD IF HEADER=44: 262144
+
+--- candidato 24 bpp ---
+payload não divisível
+
+--- candidato 32 bpp ---
+pixels = 65536
+power-of-two dimensions = [(32, 2048), (64, 1024), (128, 512), (256, 256), (512, 128), (1024, 64), (2048, 32)]
+
+--- interpretações como TGA normal ---
+offset  0 -> {'idlen': 71, 'cmap': 56, 'type': 6, 'width': 43664, 'height': 58052, 'bpp': 32, 'desc': 41}
+offset 14 -> {'idlen': 196, 'cmap': 226, 'type': 32, 'width': 63216, 'height': 61689, 'bpp': 223, 'desc': 234}
+offset 18 -> {'idlen': 255, 'cmap': 255, 'type': 255, 'width': 60127, 'height': 61683, 'bpp': 140, 'desc': 185}
+offset 26 -> {'idlen': 240, 'cmap': 246, 'type': 249, 'width': 45187, 'height': 61645, 'bpp': 70, 'desc': 132}
+offset 44 -> {'idlen': 181, 'cmap': 240, 'type': 44, 'width': 61610, 'height': 23567, 'bpp': 154, 'desc': 240}
+

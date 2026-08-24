@@ -1,0 +1,12 @@
+============================================================
+Shared/items.h - PRIMEIRAS 180 LINHAS
+============================================================
+     1	#pragma once
+     2	#define ITEM_KIND_SKIN 0x9999
+     3	#include "SrcGame/src/sinbaram/sinItem.h"
+     4	
+     5	
+     6	
+     7	#ifndef ITEM_KIND_PERFECT
+     8	#define ITEM_KIND_PERFECT 9
+     9	#endif
