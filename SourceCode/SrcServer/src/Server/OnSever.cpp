@@ -23871,7 +23871,7 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 
                     {
                         FILE *fpProbe =
-                            fopen("mingw_real_server_login.txt", "a");
+                            fopen("LOGS\\mingw_real_server_login.txt", "a");
 
                         if(fpProbe)
                         {
@@ -23938,7 +23938,7 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
                         /* MINGW_LOGIN_VALIDATION_ERROR_PROBE_V1 */
                         {
                             FILE *fpProbe =
-                                fopen("mingw_real_server_login.txt", "a");
+                                fopen("LOGS\\mingw_real_server_login.txt", "a");
 
                             if(fpProbe)
                             {
@@ -23985,7 +23985,7 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 
 					/* MINGW_AUTH_DIRECT_TRACE_V1 */
                         {
-                            FILE *fpAuth = fopen("mingw_auth_direct.txt", "a");
+                            FILE *fpAuth = fopen("LOGS\\mingw_auth_direct.txt", "a");
                             if(fpAuth)
                             {
                                 fprintf(
@@ -24002,7 +24002,7 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 						bool request_login = rsLogAccount(playInfo, command->account, command->password, command->mac, command->szPath, command->szPCName);
 
                         {
-                            FILE *fpAuth = fopen("mingw_auth_direct.txt", "a");
+                            FILE *fpAuth = fopen("LOGS\\mingw_auth_direct.txt", "a");
                             if(fpAuth)
                             {
                                 fprintf(
@@ -24382,7 +24382,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 {
     /* MINGW_REAL_SERVER_LOGIN_PROBE_V1 */
     {
-        FILE *fpProbe = fopen("mingw_real_server_login.txt", "a");
+        FILE *fpProbe = fopen("LOGS\\mingw_real_server_login.txt", "a");
 
         if(fpProbe)
         {
@@ -25025,7 +25025,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			// MINGW_PROCESSINFO_PATH_TRACE_V1
 			{
 				FILE *fpProcess =
-					fopen("mingw_processinfo.txt", "a");
+					fopen("LOGS\\mingw_processinfo.txt", "a");
 
 				if(fpProcess)
 				{
@@ -26281,7 +26281,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 #ifdef __MINGW32__
 			// MINGW_GETRECORD_DISCONNECT_TRACE_V1
 			{
-				FILE *fpGet = fopen("mingw_getrecord_trace.txt", "a");
+				FILE *fpGet = fopen("LOGS\\mingw_getrecord_trace.txt", "a");
 				if(fpGet)
 				{
 					fprintf(
@@ -26386,7 +26386,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 							
 #ifdef __MINGW32__
 							{
-								FILE *fpGet = fopen("mingw_getrecord_trace.txt", "a");
+								FILE *fpGet = fopen("LOGS\\mingw_getrecord_trace.txt", "a");
 								if(fpGet)
 								{
 									fprintf(
@@ -26419,7 +26419,7 @@ DisconnectUser(lpsmSock);
 							
 #ifdef __MINGW32__
 							{
-								FILE *fpGet = fopen("mingw_getrecord_trace.txt", "a");
+								FILE *fpGet = fopen("LOGS\\mingw_getrecord_trace.txt", "a");
 								if(fpGet)
 								{
 									fprintf(
@@ -26494,7 +26494,7 @@ DisconnectUser(lpsmSock);
 				
 #ifdef __MINGW32__
 				{
-					FILE *fpGet = fopen("mingw_getrecord_trace.txt", "a");
+					FILE *fpGet = fopen("LOGS\\mingw_getrecord_trace.txt", "a");
 					if(fpGet)
 					{
 						fprintf(
@@ -26526,7 +26526,7 @@ DisconnectUser(lpsmSock);
 			
 #ifdef __MINGW32__
 			{
-				FILE *fpGet = fopen("mingw_getrecord_trace.txt", "a");
+				FILE *fpGet = fopen("LOGS\\mingw_getrecord_trace.txt", "a");
 				if(fpGet)
 				{
 					fprintf(
@@ -26761,7 +26761,7 @@ if(cnt >= CONNECTMAX)
 						int modelResult = CheckUserModel(ci);
 
 						FILE *fpModel =
-							fopen("mingw_checkusermodel.txt", "a");
+							fopen("LOGS\\mingw_checkusermodel.txt", "a");
 
 						if(fpModel)
 						{
@@ -27402,7 +27402,7 @@ if(cnt >= CONNECTMAX)
 
 		case OpCode::OPCODE_ID_GETUSERINFO:
 			{
-                FILE *fpProbe = fopen("mingw_real_server_login.txt", "a");
+                FILE *fpProbe = fopen("LOGS\\mingw_real_server_login.txt", "a");
 
                 if(fpProbe)
                 {
@@ -27420,7 +27420,7 @@ if(cnt >= CONNECTMAX)
                     handlePlayerLoginOpcode(SockInfo);
 
                 FILE *fpProbe =
-                    fopen("mingw_real_server_login.txt", "a");
+                    fopen("LOGS\\mingw_real_server_login.txt", "a");
 
                 if(fpProbe)
                 {
@@ -27476,7 +27476,7 @@ if(cnt >= CONNECTMAX)
 		// 	break;
 		case OpCode::OPCODE_INSRECORDDATA:
 		{
-			FILE *fpIns = fopen("mingw_insrecord_probe.txt", "a");
+			FILE *fpIns = fopen("LOGS\\mingw_insrecord_probe.txt", "a");
 
 			lpRecordBase = new rsRECORD_DBASE;
 
@@ -31605,7 +31605,7 @@ int DisconnectUser(smWINSOCK *lpsmSock)
 				(rsPLAYINFO *)lpsmSock->ExtData1;
 
 		FILE *fpDc =
-			fopen("mingw_disconnect_caller.txt", "a");
+			fopen("LOGS\\mingw_disconnect_caller.txt", "a");
 
 		if(fpDc)
 		{
@@ -32626,7 +32626,7 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
     HRESULT mingwLoginComHr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
 
     {
-        FILE *fpCom = fopen("mingw_auth_direct.txt", "a");
+        FILE *fpCom = fopen("LOGS\\mingw_auth_direct.txt", "a");
         if(fpCom)
         {
             fprintf(
@@ -32808,7 +32808,7 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 				lstrcpy(szTempID, LogAccount->szID);
 
 				{
-                        FILE *fpAuth = fopen("mingw_auth_direct.txt", "a");
+                        FILE *fpAuth = fopen("LOGS\\mingw_auth_direct.txt", "a");
                         if(fpAuth)
                         {
                             fprintf(
@@ -32825,7 +32825,7 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 					val = bSql_LogOn(szTempID, LogAccount->szPassword, szIP, szGPCode, (char *)&DisuseDay, (char *)&UsePeriod, szGuid, (char *)&Bl_RNo, (char *)&MeterCode);
 
                     {
-                        FILE *fpAuth = fopen("mingw_auth_direct.txt", "a");
+                        FILE *fpAuth = fopen("LOGS\\mingw_auth_direct.txt", "a");
                         if(fpAuth)
                         {
                             fprintf(
@@ -33097,7 +33097,7 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 int rsLogAccount(rsPLAYINFO* lpPlayInfo, char* szID, char* szPassword, char* szMac, char* szPath, char* szPCName)
 {
     {
-        FILE *fpAuth = fopen("mingw_auth_direct.txt", "a");
+        FILE *fpAuth = fopen("LOGS\\mingw_auth_direct.txt", "a");
         if(fpAuth)
         {
             fprintf(
@@ -33231,7 +33231,7 @@ int rsLogAccount(rsPLAYINFO* lpPlayInfo, char* szID, char* szPassword, char* szM
 	if(lpPlayInfo->lpsmSock)
 	{
 		{
-            FILE *fpAuth = fopen("mingw_auth_direct.txt", "a");
+            FILE *fpAuth = fopen("LOGS\\mingw_auth_direct.txt", "a");
             if(fpAuth)
             {
                 fprintf(
@@ -33255,7 +33255,7 @@ int rsLogAccount(rsPLAYINFO* lpPlayInfo, char* szID, char* szPassword, char* szM
                 szMac);
 
         {
-            FILE *fpAuth = fopen("mingw_auth_direct.txt", "a");
+            FILE *fpAuth = fopen("LOGS\\mingw_auth_direct.txt", "a");
             if(fpAuth)
             {
                 fprintf(

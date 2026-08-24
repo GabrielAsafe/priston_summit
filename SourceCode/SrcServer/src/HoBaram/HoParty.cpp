@@ -21,7 +21,7 @@ void fd222(char *buff)
 {
 	HANDLE hFile;
 	DWORD dwAcess = 0;
-	hFile = CreateFile("abc.txt", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
+	hFile = CreateFile("LOGS\\abc.txt", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
 					   NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
 	if(hFile != INVALID_HANDLE_VALUE)

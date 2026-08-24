@@ -34,7 +34,7 @@ BOOL show_errorSQL(unsigned int handletype, const SQLHANDLE& handle)
 		/*printf(szBufSQLError);
 
 		using namespace std;
-		freopen("SQL.txt", "w", stderr);
+		freopen("LOGS\\SQL.txt", "w", stderr);
 
 		cerr << szBufSQLError << endl;*/
 		return TRUE;

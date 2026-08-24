@@ -3485,7 +3485,7 @@ void DebugMessage(char* msg, ...)
 
 	GetLocalTime(&SystemTime);
 
-	hFile = CreateFile("ClanDebug.txt", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
+	hFile = CreateFile("LOGS\\ClanDebug.txt", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
 					   NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
 	wsprintf(szDebugMsg, "%d.%d��%d��%d�� : %s/r/n", g_nCount++,

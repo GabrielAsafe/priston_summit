@@ -488,7 +488,7 @@ DWORD WINAPI LogSqlDataThreadProc(void *pInfo)
 		SUCCEEDED(mingwLogSqlComHr);
 
 	{
-		FILE *fp = fopen("mingw_logsql_worker.txt", "a");
+		FILE *fp = fopen("LOGS\\mingw_logsql_worker.txt", "a");
 
 		if(fp)
 		{
@@ -507,7 +507,7 @@ DWORD WINAPI LogSqlDataThreadProc(void *pInfo)
 	LoadLogSqlDLL();
 
 	{
-		FILE *fp = fopen("mingw_logsql_worker.txt", "a");
+		FILE *fp = fopen("LOGS\\mingw_logsql_worker.txt", "a");
 
 		if(fp)
 		{
@@ -585,7 +585,7 @@ DWORD WINAPI LogSqlDataThreadProc(void *pInfo)
 				{
 
 					{
-						FILE *fp = fopen("mingw_logsql_worker.txt", "a");
+						FILE *fp = fopen("LOGS\\mingw_logsql_worker.txt", "a");
 
 						if(fp)
 						{
@@ -621,7 +621,7 @@ DWORD WINAPI LogSqlDataThreadProc(void *pInfo)
 								1
 							);
 
-						fp = fopen("mingw_logsql_worker.txt", "a");
+						fp = fopen("LOGS\\mingw_logsql_worker.txt", "a");
 
 						if(fp)
 						{

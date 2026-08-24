@@ -64,7 +64,7 @@ void debug_fd2(char *fmt, ...)
 
 		HANDLE hFile;
 		DWORD dwAcess = 0;
-		hFile = CreateFile("DDD2.txt", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
+		hFile = CreateFile("LOGS\\DDD2.txt", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
 			NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
 		if (hFile != INVALID_HANDLE_VALUE)
@@ -91,7 +91,7 @@ void debug_fd2(char *fmt, ...)
 
 	HANDLE hFile;
 	DWORD dwAcess = 0;
-	hFile = CreateFile("DDD2.txt", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
+	hFile = CreateFile("LOGS\\DDD2.txt", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
 		NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
 	if (hFile != INVALID_HANDLE_VALUE)

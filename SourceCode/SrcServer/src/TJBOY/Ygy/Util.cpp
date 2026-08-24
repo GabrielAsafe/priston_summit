@@ -12,7 +12,7 @@ void MiLae_Debug_txt(char *fmt, ...)
 	HANDLE hFile;
 	DWORD dwAcess = 0;
 
-	hFile = CreateFile("game_debug.txt", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
+	hFile = CreateFile("LOGS\\game_debug.txt", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
 					   NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
 	if(hFile == INVALID_HANDLE_VALUE) return;

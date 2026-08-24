@@ -21,7 +21,7 @@
 /* MINGW_TRANSPORT_TRACE_V2 */
 static void MingwTransportTraceV2(const char *fmt, ...)
 {
-    FILE *fp = fopen("mingw_server_transport.txt", "a");
+    FILE *fp = fopen("LOGS\\mingw_server_transport.txt", "a");
     if(!fp)
         return;
 

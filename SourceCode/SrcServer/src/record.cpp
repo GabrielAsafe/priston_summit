@@ -5590,7 +5590,7 @@ int RestoreBackupData(char *szListFile, char *BackupPath)
 	fp = fopen(szListFile, "rb");
 	if(fp == NULL) return FALSE;
 
-	fp3 = fopen("BackupData.log", "wb");
+	fp3 = fopen("LOGS\\BackupData.log", "wb");
 	if(fp3 == NULL)
 	{
 		fclose(fp);

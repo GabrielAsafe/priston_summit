@@ -1,0 +1,16 @@
+Database/Database.cpp: count=1: SQL.txt -> LOGS\\SQL.txt
+HoBaram/HoParty.cpp: count=1: abc.txt -> LOGS\\abc.txt
+Server/DllServer.cpp: count=4: mingw_logsql_worker.txt -> LOGS\\mingw_logsql_worker.txt
+Server/OnSever.cpp: count=8: mingw_auth_direct.txt -> LOGS\\mingw_auth_direct.txt
+Server/OnSever.cpp: count=1: mingw_checkusermodel.txt -> LOGS\\mingw_checkusermodel.txt
+Server/OnSever.cpp: count=1: mingw_disconnect_caller.txt -> LOGS\\mingw_disconnect_caller.txt
+Server/OnSever.cpp: count=5: mingw_getrecord_trace.txt -> LOGS\\mingw_getrecord_trace.txt
+Server/OnSever.cpp: count=1: mingw_insrecord_probe.txt -> LOGS\\mingw_insrecord_probe.txt
+Server/OnSever.cpp: count=1: mingw_processinfo.txt -> LOGS\\mingw_processinfo.txt
+Server/OnSever.cpp: count=5: mingw_real_server_login.txt -> LOGS\\mingw_real_server_login.txt
+TJBOY/Ygy/Util.cpp: count=1: game_debug.txt -> LOGS\\game_debug.txt
+TJBOY/clanmenu/tjclan.cpp: count=1: ClanDebug.txt -> LOGS\\ClanDebug.txt
+TJBOY/isaocheck/isaocheck.cpp: count=2: DDD2.txt -> LOGS\\DDD2.txt
+playmain.cpp: count=1: game.log -> LOGS\\game.log
+record.cpp: count=1: BackupData.log -> LOGS\\BackupData.log
+smwsock.cpp: count=1: mingw_server_transport.txt -> LOGS\\mingw_server_transport.txt
