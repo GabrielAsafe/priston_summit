@@ -21,3 +21,10 @@ scp -P 2223 \
   dist_mingw_server_i686/libwinpthread-1.dll \
   "$DEST"
 
+# BUGFIX_001_HOTUK_DEPLOY
+HOTUK="$(dirname "$0")/../Servidor/Configs/hotuk.ini"
+HOTUK_DEST='server@127.0.0.1:C:/SummitTale/Servidor/Configs/hotuk.ini'
+
+scp -P 2223 \
+  "$HOTUK" \
+  "$HOTUK_DEST"

@@ -1,0 +1,137 @@
+diff --git a/Servidor/Configs/hotuk.ini b/Servidor/Configs/hotuk.ini
+new file mode 100644
+index 0000000..1af975b
+--- /dev/null
++++ b/Servidor/Configs/hotuk.ini
+@@ -0,0 +1,116 @@
++*MODE SERVER
++*SERVER_AUTOPLAY
++*SERVER_CODE 0
++
++*GAME_SERVER   192.168.1.111  192.168.1.111  192.168.1.111
++*SERVER_NAME  Alfa
++//*VERSION 10000
++
++
++*MAX_USERS 500
++
++//Configuracoes de ClanSystem
++*ENABLE_CLAN  124.198.128.16 80  124.198.128.16 80  124.198.128.16 80
++*CLAN_SERVER  192.168.1.111 80  192.168.1.111 80  192.168.1.111 80
++//Para o sistema de clan funcionar será necessário configurar seu webserver
++
++*EVENT_EXPUP 5000
++//*PERMIT_EXP 0
++//*ENABLE_SERVER_EXP 0
++
++//*EVENT_EXPUP 200//
++//*PERMIT_EXP 239695000000
++//*ENABLE_SERVER_EXP 2396950000000
++
++//Configuracoes de noticias
++
++*NOTICE_URL
++*DISP_BILLING_TIME
++
++//*REMOVE_PROTECT_TIME
++//*DEFAULT_ITEM_USER 3
++*DEFAULT_ITEM_USER
++
++*EVENT_POTION 3
++*EVENT_BITMASK 32
++//*EVENT_BLESSCASTLE 1
++//*EVENT_SIEGE_TIME 0 16
++
++*EVENT_HARDCORE 2
++*BELATRA_TEXT "Olá"
++*BELATRA_DIVSCORE 50000
++*BELATRA_TAX 10
++*BELATRA_TEXT_ERROR   "voce nao tem dinheiro para entrar em sod "
++
++*EVENT_GIRL
++*EVENT_SANTAGOBLIN 6
++//*EVENT_HALLOWEEN 20
++//*EVENT_MOLLYWOLF 15
++*EVENT_MORIFSHELTOM 6
++
++*PRESENT_LEVEL 1
++
++//*EVENT_NINEFOX
++*EVENT_GHOST
++//*EVENT_SUMMER_CHICKEN
++*EVENT_CRISTAL 2
++//*EVENT_WHITEDAY
++//*EVENT_VALENTINEDAY
++//*EVENT_NINEFOX
++//*EVENT_BABELHORN
++//*EVENT_PUZZLE
++//*EVENT_BIRTHDAY
++//*EVENT_STARPOINT
++//*EVENT_CHILD
++//*EVENT_DAMAGEOFF
++//*EVENT_MANDOO
++
++//Configuracoes de mapa Pvp
++
++//*PK_FIELD_ALL 1
++//*PK_FIELD 21
++*PK_FIELD1 11
++*PK_FIELD1 10
++*PK_FIELD2 
++*ENABLE_PK
++
++
++//Configuracoes diversas
++
++//*CRAZY_PACKET
++//*TEST_SERVER
++//*DISABLE_THROWITEM
++*START_FIELD 3
++*DISABLE_QUEST
++//*DISABLE_DEC_SKILLPOINT
++*BLOCK_LEVEL 1
++//*DISCONNECT_ITEM_ERROR
++*CLIENT_PROCESS_TIME_OUT
++
++//Configuracoes de equipe
++*ADMIN_LOGIN "teste3"
++*ADMIN_LOGIN "adensu"
++*ADMIN_LOGIN "amyzinha"
++*REC_ADMIN_CMD
++
++
++//*CLIENT_PROCESS_TIME_OUT
++
++//Configuracoes adcionais
++*ENABLE_PARTYITEM
++
++//*FREE_LEVEL
++
++//Desconectar Player Por checksum
++//*CONNECT_CLIENT_CODE -351562081
++//*DISCONNECT_CLIENT_BADCODE 1
++
++
++//*CLIENT_PROCESS_TIME_OUT
++//*CLSAFE_CODE				  	// Memory //Function Code Error
++//*DISCONNECT_CLSAFE_CODE
++
++//Configuracoes de backup do servidor
++
++*BACKUP_FOLDER_NAME "C:\Server\Logs"
++*BACKUP_PATH "C:\Server\Logs"
+diff --git a/SourceCode/send_to_s.sh b/SourceCode/send_to_s.sh
+index d9d04ca..c2c9216 100755
+--- a/SourceCode/send_to_s.sh
++++ b/SourceCode/send_to_s.sh
+@@ -21,3 +21,10 @@ scp -P 2223 \
+   dist_mingw_server_i686/libwinpthread-1.dll \
+   "$DEST"
+ 
++# BUGFIX_001_HOTUK_DEPLOY
++HOTUK="$(dirname "$0")/../Servidor/Configs/hotuk.ini"
++HOTUK_DEST='server@127.0.0.1:C:/SummitTale/Servidor/Configs/hotuk.ini'
++
++scp -P 2223 \
++  "$HOTUK" \
++  "$HOTUK_DEST"
