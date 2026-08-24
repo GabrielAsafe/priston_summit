@@ -40,7 +40,8 @@ char *GetWord(char *q, char *p)
 
 	while((*p != 32) && (*p != 9) && (*p != 58))
 	{
-		if(*p == '/n' || *p == '/r') break;
+		// MINGW_GETWORD_LINE_TERMINATOR_FIX_V1
+		if(*p == 0 || *p == '\n' || *p == '\r') break;
 		*q++ = *p++;
 	}
 	*q++ = 0;
