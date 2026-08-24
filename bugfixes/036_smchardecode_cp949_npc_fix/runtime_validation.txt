@@ -1,0 +1,19 @@
+Data: 2026-08-24
+Resultado runtime: VALIDADO
+
+Sintoma antes:
+- vários NPCs apareciam repetindo/reutilizando o mesmo modelo.
+
+Alteração:
+- restauração completa do conjunto CP949 recuperado de smCharDecode().
+- 63 hunks.
+- +96/-96 linhas de lstrcmp/lstrcmpi.
+- 100 literais CP949 representados como escapes C \xNN.
+- NAME, MODEL e CHAT incluídos no conjunto.
+
+Resultado observado:
+- problema dos modelos repetidos dos NPCs RESOLVIDO.
+
+Monstros:
+- continuam sem aparecer.
+- permanecem fora do fechamento deste bugfix.

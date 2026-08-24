@@ -1,0 +1,16 @@
+Fonte da restauração:
+  /home/gabriel/Transferências/recovery_pre_reset_20260824_0958/working_tree_vs_HEAD.patch
+
+Autoridade:
+- recovery pré-reset = registro das alterações existentes no working tree antes do reset.
+- CURRENT = base de edição.
+- armazém histórico NÃO foi usado como fonte para este patch.
+
+Patch focal validado anteriormente:
+  SHA-256: 8ec4ebfb2b6b49cd8bcb7f38ec902a5a482101fbd44a8fea2f2e29b39d159fef
+
+Escopo:
+- smCharDecode() somente.
+- nenhum DecodeItemInfo().
+- nenhum DecodeOpenMonster().
+- nenhum item/drop.
