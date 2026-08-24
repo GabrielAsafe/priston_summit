@@ -2274,7 +2274,7 @@ int smCHAR::ChangeMotion(int Motion, int DpMode)
 		if(mingwNullMotion)
 		{
 			FILE *f = fopen(
-				"mingw_changemotion_null.txt",
+				"LOGS\\mingw_changemotion_null.txt",
 				"a"
 			);
 

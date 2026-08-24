@@ -151,7 +151,7 @@ static void MINGW_OriginalCursorInitTrace(
 )
 {
 	FILE *f = fopen(
-		"mingw_original_cursor_trace.txt",
+		"LOGS\\mingw_original_cursor_trace.txt",
 		"a"
 	);
 
@@ -184,7 +184,7 @@ static void MINGW_OriginalCursorDrawTrace(
 	count++;
 
 	FILE *f = fopen(
-		"mingw_original_cursor_trace.txt",
+		"LOGS\\mingw_original_cursor_trace.txt",
 		"a"
 	);
 

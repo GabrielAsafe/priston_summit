@@ -23,7 +23,7 @@
 #ifdef __MINGW32__
 static void MingwSocketTrace(const char *format, ...)
 {
-    FILE *fp = fopen("mingw_socket_recv.txt", "a");
+    FILE *fp = fopen("LOGS\\mingw_socket_recv.txt", "a");
     if(!fp)
         return;
 

@@ -6,7 +6,7 @@
 
 static void MINGW_ClanTrace(const char *fmt, ...)
 {
-    FILE *f = fopen("mingw_clan_init_trace.txt", "a");
+    FILE *f = fopen("LOGS\\mingw_clan_init_trace.txt", "a");
 
     if(!f)
         return;

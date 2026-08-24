@@ -1,0 +1,1031 @@
+diff --git a/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp b/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp
+index f93bcaf..9eb0a47 100644
+--- a/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp
++++ b/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp
+@@ -45,38 +45,38 @@ void CaptureOpening()
+ 
+ int InitOpening()
+ {
+-	{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"ENTER InitOpening WorkMode=%d lpLogin=%p lpOpening=%p\n", WorkMode, (void*)lpLogin, (void*)lpOpening); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"ENTER InitOpening WorkMode=%d lpLogin=%p lpOpening=%p\n", WorkMode, (void*)lpLogin, (void*)lpOpening); fclose(f);} }
+ 
+ 	memset(CharacterName1, 0, sizeof(CharacterName1));
+ 	memset(CharacterName2, 0, sizeof(CharacterName2));
+-	{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after memset names\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after memset names\n"); fclose(f);} }
+ 
+ 	InitCursor();
+-	{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after InitCursor\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after InitCursor\n"); fclose(f);} }
+ 
+ 	lpLogin = new HoLogin();
+-	{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after new HoLogin lpLogin=%p\n", (void*)lpLogin); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after new HoLogin lpLogin=%p\n", (void*)lpLogin); fclose(f);} }
+ 
+ 	lpOpening = new HoOpening();
+-	{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after new HoOpening lpOpening=%p\n", (void*)lpOpening); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after new HoOpening lpOpening=%p\n", (void*)lpOpening); fclose(f);} }
+ 
+ 	if(WorkMode == OPENING_MODE)
+ 	{
+-		{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"before lpOpening->Init\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"before lpOpening->Init\n"); fclose(f);} }
+ 		lpOpening->Init();
+-		{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after lpOpening->Init\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after lpOpening->Init\n"); fclose(f);} }
+ 	}
+ 	else if(WorkMode == LOGIN_MODE)
+ 	{
+-		{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"before lpLogin->Init\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"before lpLogin->Init\n"); fclose(f);} }
+ 		lpLogin->Init();
+-		{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after lpLogin->Init\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after lpLogin->Init\n"); fclose(f);} }
+ 	}
+ 
+ 	CursorShowFlag = TRUE;
+ 	LoginEndFlag = FALSE;
+ 
+-	{ FILE *f=fopen("mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"LEAVE InitOpening\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"LEAVE InitOpening\n"); fclose(f);} }
+ 
+ 	return TRUE;
+ }
+@@ -154,9 +154,9 @@ int MainOpening()
+ 		{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"MAIN #%d after lpOpening->Main result=%d WorkMode=%d\n", mainLogCount, openingMainResult, WorkMode); fflush(f); fclose(f);} }
+ 		if(openingMainResult == 2)
+ 		{
+-			if(mainLogCount < 20){ FILE *f=fopen("mingw_opening_loop.txt","a"); if(f){ fprintf(f,"before lpLogin->Init from opening transition\n"); fclose(f);} }
++			if(mainLogCount < 20){ FILE *f=fopen("LOGS\\mingw_opening_loop.txt","a"); if(f){ fprintf(f,"before lpLogin->Init from opening transition\n"); fclose(f);} }
+ 			lpLogin->Init();
+-			if(mainLogCount < 20){ FILE *f=fopen("mingw_opening_loop.txt","a"); if(f){ fprintf(f,"after lpLogin->Init from opening transition\n"); fclose(f);} }
++			if(mainLogCount < 20){ FILE *f=fopen("LOGS\\mingw_opening_loop.txt","a"); if(f){ fprintf(f,"after lpLogin->Init from opening transition\n"); fclose(f);} }
+ 			WorkMode = LOGIN_MODE;
+ 		}
+ 	}
+@@ -224,7 +224,7 @@ int HoRecvMessage(DWORD dwCode, void *RecvBuff)
+ #ifdef __MINGW32__
+ 	/* MINGW_HORECV_TRACE_V1 */
+ 	{
+-		FILE *fp = fopen("mingw_ho_recv.txt", "a");
++		FILE *fp = fopen("LOGS\\mingw_ho_recv.txt", "a");
+ 		if(fp)
+ 		{
+ 			fprintf(
+@@ -248,7 +248,7 @@ int HoRecvMessage(DWORD dwCode, void *RecvBuff)
+ 
+ #ifdef __MINGW32__
+ 		{
+-			FILE *fp = fopen("mingw_ho_recv.txt", "a");
++			FILE *fp = fopen("LOGS\\mingw_ho_recv.txt", "a");
+ 			if(fp)
+ 			{
+ 				fprintf(
+@@ -266,7 +266,7 @@ int HoRecvMessage(DWORD dwCode, void *RecvBuff)
+ 		if(strcmp(UserAccount, ServerUserCharacterInfo->szID) != 0)
+ 		{
+ #ifdef __MINGW32__
+-			FILE *fp = fopen("mingw_ho_recv.txt", "a");
++			FILE *fp = fopen("LOGS\\mingw_ho_recv.txt", "a");
+ 			if(fp)
+ 			{
+ 				fprintf(fp, "SETUSERINFO rejected: ID mismatch\n");
+@@ -304,7 +304,7 @@ int HoRecvMessage(DWORD dwCode, void *RecvBuff)
+ 
+ #ifdef __MINGW32__
+ 		{
+-			FILE *fp = fopen("mingw_ho_recv.txt", "a");
++			FILE *fp = fopen("LOGS\\mingw_ho_recv.txt", "a");
+ 			if(fp)
+ 			{
+ 				fprintf(
+@@ -343,7 +343,7 @@ int HoRecvMessage(DWORD dwCode, void *RecvBuff)
+ 		ServerLoginError = (smTRANS_COMMAND *)RecvBuff;
+ 
+ #ifdef __MINGW32__
+-		FILE *fp = fopen("mingw_ho_recv.txt", "a");
++		FILE *fp = fopen("LOGS\\mingw_ho_recv.txt", "a");
+ 		if(fp)
+ 		{
+ 			fprintf(
+diff --git a/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp b/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp
+index 555a592..a043da0 100644
+--- a/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp
++++ b/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp
+@@ -329,7 +329,7 @@ void HoLogin::Init_UseMor()
+ /* MINGW_HOLOGIN_INIT_STEPS_V2 */
+ static void MingwHoLoginInitStepV2(const char *step)
+ {
+-    FILE *f = fopen("mingw_hologin_init_steps.txt", "a");
++    FILE *f = fopen("LOGS\\mingw_hologin_init_steps.txt", "a");
+     if(f)
+     {
+         fprintf(f, "%s\n", step);
+@@ -820,7 +820,7 @@ static void MINGW_JobLoadTraceV1(
+ )
+ {
+ 	FILE *f = fopen(
+-		"mingw_job_load_trace.txt",
++		"LOGS\\mingw_job_load_trace.txt",
+ 		"a"
+ 	);
+ 
+@@ -1052,7 +1052,7 @@ static void MINGW_CharCreateTraceV4(
+ )
+ {
+ 	FILE *f = fopen(
+-		"mingw_char_create_trace.txt",
++		"LOGS\\mingw_char_create_trace.txt",
+ 		"a"
+ 	);
+ 
+@@ -1562,7 +1562,7 @@ int HoLogin::Main()
+ 				static int s_completeTraceCount = 0;
+ 				if (s_completeTraceCount < 120)
+ 				{
+-					FILE *fp = fopen("mingw_complete_state.txt", "a");
++					FILE *fp = fopen("LOGS\\mingw_complete_state.txt", "a");
+ 					if (fp)
+ 					{
+ 						fprintf(fp,
+@@ -1851,7 +1851,7 @@ int HoLogin::MainDefaultButton()
+ 		// MINGW_SELECT_QUIT_TRACE_V1
+ 		{
+ 			FILE *mingwQuitTrace = fopen(
+-				"mingw_select_quit_trace.txt",
++				"LOGS\\mingw_select_quit_trace.txt",
+ 				"a"
+ 			);
+ 
+@@ -1876,7 +1876,7 @@ int HoLogin::MainDefaultButton()
+ 		SelectSubState = SUB_SELECT_BACK;
+ 		{
+ 			FILE *mingwQuitTrace = fopen(
+-				"mingw_select_quit_trace.txt",
++				"LOGS\\mingw_select_quit_trace.txt",
+ 				"a"
+ 			);
+ 
+@@ -2507,7 +2507,7 @@ int HoLogin::DrawSelectSubState()
+ 			if ((MouseButton[0] || VRKeyBuff[VK_RETURN]) &&
+ 				s_newConfirmTraceCount < 40)
+ 			{
+-				FILE *fp = fopen("mingw_new_confirm.txt", "a");
++				FILE *fp = fopen("LOGS\\mingw_new_confirm.txt", "a");
+ 				if (fp)
+ 				{
+ 					fprintf(fp,
+@@ -2533,7 +2533,7 @@ int HoLogin::DrawSelectSubState()
+ 			if ((MouseButton[0] || VRKeyBuff[VK_RETURN] || flag != 0) &&
+ 				s_newConfirmAfterCount < 40)
+ 			{
+-				FILE *fp = fopen("mingw_new_confirm.txt", "a");
++				FILE *fp = fopen("LOGS\\mingw_new_confirm.txt", "a");
+ 				if (fp)
+ 				{
+ 					fprintf(fp,
+@@ -2562,7 +2562,7 @@ int HoLogin::DrawSelectSubState()
+ #ifdef __MINGW32__
+ 			// MINGW_NEW_SERVER_TRACE_V1
+ 			{
+-				FILE *fp = fopen("mingw_new_server.txt", "a");
++				FILE *fp = fopen("LOGS\\mingw_new_server.txt", "a");
+ 				if (fp)
+ 				{
+ 					fprintf(fp,
+@@ -2580,7 +2580,7 @@ int HoLogin::DrawSelectSubState()
+ 
+ #ifdef __MINGW32__
+ 			{
+-				FILE *fp = fopen("mingw_new_server.txt", "a");
++				FILE *fp = fopen("LOGS\\mingw_new_server.txt", "a");
+ 				if (fp)
+ 				{
+ 					fprintf(fp,
+@@ -2615,7 +2615,7 @@ int HoLogin::DrawSelectSubState()
+ 
+ 			if (s_newServerWaitTrace < 120)
+ 			{
+-				FILE *fp = fopen("mingw_new_server.txt", "a");
++				FILE *fp = fopen("LOGS\\mingw_new_server.txt", "a");
+ 				if (fp)
+ 				{
+ 					if (ServerReturn)
+diff --git a/SourceCode/SrcGame/src/HoBaram/HoOpening.cpp b/SourceCode/SrcGame/src/HoBaram/HoOpening.cpp
+index 9376aad..4aa7ee9 100644
+--- a/SourceCode/SrcGame/src/HoBaram/HoOpening.cpp
++++ b/SourceCode/SrcGame/src/HoBaram/HoOpening.cpp
+@@ -44,7 +44,7 @@ char	UserPassword[PASSWORD_SIZE];
+ 
+ static void MINGW_LoginTrace(const char* fmt, ...)
+ {
+-    FILE* f = fopen("mingw_login_thread.txt", "a");
++    FILE* f = fopen("LOGS\\mingw_login_thread.txt", "a");
+     if (!f) return;
+ 
+     va_list args;
+@@ -88,7 +88,7 @@ static void MINGW_CheckUserAccount(const char *place)
+ 
+ 	if (memcmp(previous, UserAccount, sizeof(previous)) != 0)
+ 	{
+-		FILE *f = fopen("mingw_useraccount_changes.txt", "a");
++		FILE *f = fopen("LOGS\\mingw_useraccount_changes.txt", "a");
+ 
+ 		if (f)
+ 		{
+@@ -179,7 +179,7 @@ HoOpening::HoOpening()
+ 
+ 	MouseDownServerIndex = -1;
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after MouseDownServerIndex\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after MouseDownServerIndex\\n"); fclose(f);} }
+ 	CameraFrame = 0;
+ }
+ 
+@@ -191,14 +191,14 @@ HoOpening::~HoOpening()
+ int HoOpening::Init()
+ {
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"ENTER HoOpening::Init\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"ENTER HoOpening::Init\\n"); fclose(f);} }
+ 	GameErrorValue = -1;
+ 	ConnectErrorCount = 0;
+ 	FocusWndFlag = FALSE;
+ 	SetWindowText(hTextWnd, "");
+ 	SendMessage(hTextWnd, EM_SETLIMITTEXT, 31, 0);
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SendMessage EM_SETLIMITTEXT\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SendMessage EM_SETLIMITTEXT\\n"); fclose(f);} }
+ 
+ 	LoginInputState = 0;
+ 	ConnectError = ERROR_NONE;
+@@ -234,11 +234,11 @@ int HoOpening::Init()
+ 
+ 	SetFade();
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SetFade\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SetFade\\n"); fclose(f);} }
+ 
+ 	smInitColorZClip(0, 0, 0);
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smInitColorZClip\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smInitColorZClip\\n"); fclose(f);} }
+ 
+ 	smRender.Color_R = 40;
+ 	smRender.Color_G = 0;
+@@ -246,21 +246,21 @@ int HoOpening::Init()
+ 	smRender.Color_A = 0;
+ 	smRender.ClearLight();
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smRender.ClearLight\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smRender.ClearLight\\n"); fclose(f);} }
+ 
+ 	StopBGM();
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after StopBGM\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after StopBGM\\n"); fclose(f);} }
+ 	OpenBGM("game//GUI//Opening//Login//UI//Intro.wav");
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after OpenBGM Intro.wav\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after OpenBGM Intro.wav\\n"); fclose(f);} }
+ 	PlayBGM();
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after PlayBGM\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after PlayBGM\\n"); fclose(f);} }
+ 
+ 	SetVolumeBGM(OpeningBgmVolume);
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SetVolumeBGM\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SetVolumeBGM\\n"); fclose(f);} }
+ 
+ 	std::string id;
+ 
+@@ -268,11 +268,11 @@ int HoOpening::Init()
+ 	{
+ 		File file("Settings.ini");
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after File Settings.ini constructor\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after File Settings.ini constructor\\n"); fclose(f);} }
+ 
+ 		id = file.readString("Game", "LastAccount");
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after read LastAccount\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after read LastAccount\\n"); fclose(f);} }
+ 	}
+ 	catch (FileException& e)
+ 	{
+@@ -290,37 +290,37 @@ int HoOpening::Init()
+ 
+ 	CurrentWorkState = STATE_OPENING;
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after CurrentWorkState STATE_OPENING\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after CurrentWorkState STATE_OPENING\\n"); fclose(f);} }
+ 
+ 	NextWorkState = STATE_OPENING;
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after NextWorkState STATE_OPENING\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after NextWorkState STATE_OPENING\\n"); fclose(f);} }
+ 
+ 	MouseDownServerIndex = -1;
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after Init MouseDownServerIndex\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after Init MouseDownServerIndex\\n"); fclose(f);} }
+ 
+ 	MouseDownFlag = FALSE;
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after MouseDownFlag FALSE\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after MouseDownFlag FALSE\\n"); fclose(f);} }
+ 
+ 	CameraFrame = 160;
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after CameraFrame 160\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after CameraFrame 160\\n"); fclose(f);} }
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before g_NewParticleMgr.Init\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before g_NewParticleMgr.Init\\n"); fclose(f);} }
+ 	g_NewParticleMgr.Init();
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after g_NewParticleMgr.Init\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after g_NewParticleMgr.Init\\n"); fclose(f);} }
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before InitAssaEffect\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before InitAssaEffect\\n"); fclose(f);} }
+ 	InitAssaEffect();
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after InitAssaEffect\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after InitAssaEffect\\n"); fclose(f);} }
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before InitCinemaFadeEffect\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before InitCinemaFadeEffect\\n"); fclose(f);} }
+ 	InitCinemaFadeEffect();
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after InitCinemaFadeEffect\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after InitCinemaFadeEffect\\n"); fclose(f);} }
+ 
+ 	smIdentityMatrix(m_CameraRotInvert);
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smIdentityMatrix\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smIdentityMatrix\\n"); fclose(f);} }
+ 
+ 	m_IsDrawOpening = TRUE;
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after m_IsDrawOpening TRUE\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after m_IsDrawOpening TRUE\\n"); fclose(f);} }
+ 	m_AutoCameraFrameTime = 50;
+ 	m_ParticleSpawnTimeCount = 0;
+ 
+@@ -920,7 +920,7 @@ int HoOpening::Draw()
+ 					pCursorPos.y < (startLogoY + 371) &&
+ 					MouseButton[0])
+ 				{
+-					FILE *f=fopen("mingw_login_exit_button.txt","a");
++					FILE *f=fopen("LOGS\\mingw_login_exit_button.txt","a");
+ 					if(f)
+ 					{
+ 						fprintf(f,"EXIT BUTTON HIT x=%ld y=%ld startLogoX=%d startLogoY=%d MouseButton0=%d LoginInputState=%d CurrentWorkState=%d NextWorkState=%d\n",
+@@ -1223,7 +1223,7 @@ int HoOpening::Draw()
+ 				) != 0)
+ 				{
+ 					FILE *mingwAccountLog =
+-						fopen("mingw_useraccount_draw_guard.txt", "a");
++						fopen("LOGS\\mingw_useraccount_draw_guard.txt", "a");
+ 
+ 					if (mingwAccountLog)
+ 					{
+@@ -1376,7 +1376,7 @@ DWORD WINAPI HoLoginThreadProc(void* pInfo)
+ 			// 	UserAccount
+ 			// );
+ 			{
+-			FILE *f = fopen("mingw_login_thread.txt", "a");
++			FILE *f = fopen("LOGS\\mingw_login_thread.txt", "a");
+ 			if (f)
+ 			{
+ 				fprintf(
+diff --git a/SourceCode/SrcGame/src/Server/OnSever.cpp b/SourceCode/SrcGame/src/Server/OnSever.cpp
+index ddd2c6b..ed8c456 100644
+--- a/SourceCode/SrcGame/src/Server/OnSever.cpp
++++ b/SourceCode/SrcGame/src/Server/OnSever.cpp
+@@ -18358,7 +18358,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
+ {
+     /* MINGW_SERVER_RECV_PROBE_V1 */
+ 
+-    FILE *fp = fopen("mingw_server_recv.txt", "a");
++    FILE *fp = fopen("LOGS\\mingw_server_recv.txt", "a");
+ 
+     if(fp)
+     {
+diff --git a/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp b/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp
+index e655490..5400b3a 100644
+--- a/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp
++++ b/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp
+@@ -6,7 +6,7 @@
+ 
+ static void MINGW_ClanTrace(const char *fmt, ...)
+ {
+-    FILE *f = fopen("mingw_clan_init_trace.txt", "a");
++    FILE *f = fopen("LOGS\\mingw_clan_init_trace.txt", "a");
+ 
+     if(!f)
+         return;
+diff --git a/SourceCode/SrcGame/src/Winmain.cpp b/SourceCode/SrcGame/src/Winmain.cpp
+index 701347f..09d2e6c 100644
+--- a/SourceCode/SrcGame/src/Winmain.cpp
++++ b/SourceCode/SrcGame/src/Winmain.cpp
+@@ -504,7 +504,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
+     MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+ 
+     {
+-        HANDLE f = CreateFileA("mingw_winmain_reached.txt", GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
++        HANDLE f = CreateFileA("LOGS\\mingw_winmain_reached.txt", GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+         if (f != INVALID_HANDLE_VALUE) {
+             const char *msg = "ENTROU NO WINMAIN\n";
+             DWORD written = 0;
+@@ -646,7 +646,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
+ 	}
+ 
+ 	{
+-		FILE *f = fopen("mingw_hwnd_check.txt", "a");
++		FILE *f = fopen("LOGS\\mingw_hwnd_check.txt", "a");
+ 		if (f)
+ 		{
+ 			fprintf(f, "after CreateWindow: hwnd=%p lastError=%lu windowMode=%d startMax=%d nCmdShow=%d sx=%d sy=%d width=%d height=%d\\n",
+@@ -673,7 +673,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
+ 	UpdateWindow(hwnd);
+ 
+ 	{
+-		FILE *f = fopen("mingw_hwnd_check.txt", "a");
++		FILE *f = fopen("LOGS\\mingw_hwnd_check.txt", "a");
+ 		if (f)
+ 		{
+ 			fprintf(f, "after ShowWindow/UpdateWindow: hwnd=%p visible=%d iconic=%d lastError=%lu\\n",
+@@ -686,9 +686,9 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
+ 	}
+ 
+ 	LoadScreen("Image//logo.bmp", hInst, hwnd);
+-	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after LoadScreen\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after LoadScreen\n"); fclose(f);} }
+ 	Sleep(300);
+-	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after Sleep\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after Sleep\n"); fclose(f);} }
+ 
+ 	// MINGW_SYSTEM_CURSOR_VISIBLE_V1
+ #ifdef __MINGW32__
+@@ -713,14 +713,14 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
+ #else
+ 	ShowCursor(FALSE);
+ #endif
+-	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after ShowCursor\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after ShowCursor\n"); fclose(f);} }
+ 
+ 	if (InitD3D(hwnd) == NULL)
+ 	{
+ 		//Utils_Log(LOG_ERROR, "Failed InitD3D()");
+ 		return FALSE;
+ 	}
+-	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after InitD3D OK\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after InitD3D OK\n"); fclose(f);} }
+ 
+ 	hTextWnd = CreateWindow("EDIT", "", WS_CHILD | WS_BORDER | ES_LEFT | ES_MULTILINE | ES_WANTRETURN, 10, 400, 500, 40, hwnd, (HMENU)IDC_TEXT, hInst, NULL);
+ 
+@@ -737,24 +737,24 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
+ 	TextMode = 0;
+ 
+ 	InitGameSocket();
+-	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after InitGameSocket\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after InitGameSocket\n"); fclose(f);} }
+ 
+ 	initipgame();
+-	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after initipgame\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after initipgame\n"); fclose(f);} }
+ 
+-	{ FILE *f=fopen("mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"before DeleteFile ddd.txt\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"before DeleteFile ddd.txt\n"); fclose(f);} }
+ 	DeleteFile("ddd.txt");
+-	{ FILE *f=fopen("mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"after DeleteFile ddd.txt lastError=%lu\n", GetLastError()); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"after DeleteFile ddd.txt lastError=%lu\n", GetLastError()); fclose(f);} }
+ 
+-	{ FILE *f=fopen("mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"before SetGameMode(1)\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"before SetGameMode(1)\n"); fclose(f);} }
+ 	SetGameMode(1);
+-	{ FILE *f=fopen("mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"after SetGameMode(1) GameMode=%d\n", GameMode); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"after SetGameMode(1) GameMode=%d\n", GameMode); fclose(f);} }
+ 
+ 	CharacterName1[0] = 0;
+ 	CharacterName2[0] = 0;
+ 
+ 	SetTimer(hwnd, 0, GAME_WORLDTIME_MIN / 4, NULL);
+-	{ FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after SetTimer\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after SetTimer\n"); fclose(f);} }
+ 
+ #ifdef _LANGUAGE_WINDOW
+ 	SetForegroundWindow(hwnd);
+@@ -762,7 +762,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
+ 
+ 	while (1)
+ 	{
+-		{ static int logged_loop_entry=0; if(!logged_loop_entry){ logged_loop_entry=1; FILE *f=fopen("mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"entered main loop\n"); fclose(f);} } }
++		{ static int logged_loop_entry=0; if(!logged_loop_entry){ logged_loop_entry=1; FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"entered main loop\n"); fclose(f);} } }
+ 		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
+ 		{
+ 			TranslateMessage(&msg);
+@@ -853,7 +853,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
+ 		ShellExecute(NULL, NULL, szExitInfo_URL, NULL, NULL, NULL);
+ 
+ 	{
+-		FILE *f=fopen("mingw_winmain_final_return.txt","a");
++		FILE *f=fopen("LOGS\\mingw_winmain_final_return.txt","a");
+ 		if(f)
+ 		{
+ 			fprintf(f,"WinMain returning msg.wParam=%ld quit=%d GameMode=%d\n", (long)msg.wParam, quit, GameMode);
+@@ -1091,7 +1091,7 @@ if(messg == WSA_READ ||
+    messg == SWM_RECVSUCCESS ||
+    messg == (WM_APP + 77))
+ {
+-    FILE *fp = fopen("mingw_wndproc_socket.txt", "a");
++    FILE *fp = fopen("LOGS\\mingw_wndproc_socket.txt", "a");
+     if(fp)
+     {
+         fprintf(
+@@ -1116,7 +1116,7 @@ if(messg == WSA_READ ||
+ 		static FILE *fp = NULL;
+ 
+ 		if(!fp)
+-			fp = fopen("mingw_wndproc_all.txt", "w");
++			fp = fopen("LOGS\\mingw_wndproc_all.txt", "w");
+ 
+ 		if(fp)
+ 		{
+@@ -1233,7 +1233,7 @@ switch (messg)
+ 
+ 	case WM_CLOSE:
+ 	{
+-		FILE *f = fopen("mingw_window_lifecycle.txt", "a");
++		FILE *f = fopen("LOGS\\mingw_window_lifecycle.txt", "a");
+ 		if (f)
+ 		{
+ 			fprintf(f, "WM_CLOSE hWnd=%p hwnd_global=%p GameMode=%d quit=%d dwTradeMaskTime=%lu\n",
+@@ -1820,7 +1820,7 @@ switch (messg)
+ 						int clientW = rcClient.right - rcClient.left;
+ 						int clientH = rcClient.bottom - rcClient.top;
+ 
+-						FILE *fpMouseTrace = fopen("mouse_coord_trace.txt", "a");
++						FILE *fpMouseTrace = fopen("LOGS\\mouse_coord_trace.txt", "a");
+ 						if (fpMouseTrace)
+ 						{
+ 							fprintf(fpMouseTrace,
+@@ -1908,33 +1908,33 @@ switch (messg)
+ 
+ 	case WM_LBUTTONDOWN:
+ 	{
+-		{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"CLICK enter GameMode=%d x=%ld y=%ld wParam=%lu\n", GameMode, pCursorPos.x, pCursorPos.y, (unsigned long)wParam); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"CLICK enter GameMode=%d x=%ld y=%ld wParam=%lu\n", GameMode, pCursorPos.x, pCursorPos.y, (unsigned long)wParam); fclose(f);} }
+ 
+ 		if (g_IsDxProjectZoomIn <= 0 || g_iFzmCursorFocusGame)
+ 		{
+-			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"before SetMousePlay\n"); fclose(f);} }
++			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"before SetMousePlay\n"); fclose(f);} }
+ 			SetMousePlay(1);
+-			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"after SetMousePlay\n"); fclose(f);} }
++			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"after SetMousePlay\n"); fclose(f);} }
+ 
+-			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"before sinLButtonDown\n"); fclose(f);} }
++			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"before sinLButtonDown\n"); fclose(f);} }
+ 			sinLButtonDown();
+-			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"after sinLButtonDown\n"); fclose(f);} }
++			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"after sinLButtonDown\n"); fclose(f);} }
+ 
+ 			MouseButton[0] = TRUE;
+-			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"after MouseButton TRUE\n"); fclose(f);} }
++			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"after MouseButton TRUE\n"); fclose(f);} }
+ 
+-			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"before cSettings.LButtonDown\n"); fclose(f);} }
++			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"before cSettings.LButtonDown\n"); fclose(f);} }
+ 			cSettings.LButtonDown();
+-			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"after cSettings.LButtonDown\n"); fclose(f);} }
++			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"after cSettings.LButtonDown\n"); fclose(f);} }
+ 			
+-			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"before clan_Mouse\n"); fclose(f);} }
++			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"before clan_Mouse\n"); fclose(f);} }
+ 			clan_Mouse(WM_LBUTTONDOWN, wParam);
+-			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"after clan_Mouse\n"); fclose(f);} }
++			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"after clan_Mouse\n"); fclose(f);} }
+ 		}
+ 		else
+ 		{
+ 			g_FzmMouseButton[0] = TRUE;
+-			{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"zoom branch g_FzmMouseButton TRUE\n"); fclose(f);} }
++			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"zoom branch g_FzmMouseButton TRUE\n"); fclose(f);} }
+ 		}
+ 
+ 		if (GameMode == 2 && DisconnectFlag)
+@@ -1943,7 +1943,7 @@ switch (messg)
+ 		extern bool clickable;
+ 		clickable = true;
+ 
+-		{ FILE *f=fopen("mingw_click_trace.txt","a"); if(f){ fprintf(f,"CLICK leave quit=%d GameMode=%d\n", quit, GameMode); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"CLICK leave quit=%d GameMode=%d\n", quit, GameMode); fclose(f);} }
+ 	}
+ 	break;
+ 
+@@ -2094,7 +2094,7 @@ switch (messg)
+ 
+ 	case WM_DESTROY:
+ 	{
+-		FILE *f = fopen("mingw_window_lifecycle.txt", "a");
++		FILE *f = fopen("LOGS\\mingw_window_lifecycle.txt", "a");
+ 		if (f)
+ 		{
+ 			fprintf(f, "WM_DESTROY hWnd=%p hwnd_global=%p GameMode=%d quit=%d dwTradeMaskTime=%lu\n",
+@@ -3690,23 +3690,23 @@ extern void InitFont();
+ 
+ int SetGameMode(int mode)
+ {
+-	{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"ENTER SetGameMode mode=%d GameMode_before=%d lpCurPlayer=%p\n", mode, GameMode, (void*)lpCurPlayer); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"ENTER SetGameMode mode=%d GameMode_before=%d lpCurPlayer=%p\n", mode, GameMode, (void*)lpCurPlayer); fclose(f);} }
+ 
+ 	int OldMode = GameMode;
+ 	GameMode = mode;
+ 
+-	{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"before sinChar assignment lpCurPlayer=%p\n", (void*)lpCurPlayer); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"before sinChar assignment lpCurPlayer=%p\n", (void*)lpCurPlayer); fclose(f);} }
+ 
+ 	if (!lpCurPlayer)
+ 	{
+-		FILE *f=fopen("mingw_setgamemode_inside.txt","a");
++		FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a");
+ 		if(f){ fprintf(f,"ERROR lpCurPlayer is NULL before sinChar assignment\n"); fclose(f); }
+ 		return FALSE;
+ 	}
+ 
+ 	sinChar = &lpCurPlayer->smCharInfo;
+ 
+-	{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after sinChar assignment sinChar=%p OldMode=%d GameMode=%d\n", (void*)sinChar, OldMode, GameMode); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after sinChar assignment sinChar=%p OldMode=%d GameMode=%d\n", (void*)sinChar, OldMode, GameMode); fclose(f);} }
+ 
+ 
+ 	switch (OldMode)
+@@ -3728,26 +3728,26 @@ int SetGameMode(int mode)
+ 	{
+ 	case 1:
+ 		SetDxProjection((PI / 4.4f), SETTINGSHANDLER->getWidth(), SETTINGSHANDLER->getHeight(), 20.f, 4000.f);
+-		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after SetDxProjection\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after SetDxProjection\n"); fclose(f);} }
+ 
+ 
+ 		smRender.CreateRenderBuff(SETTINGSHANDLER->getSight() ? 1 : 0);
+-		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after CreateRenderBuff\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after CreateRenderBuff\n"); fclose(f);} }
+ 
+ 
+ 		InitMaterial();
+-		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitMaterial\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitMaterial\n"); fclose(f);} }
+ 		smRender.SetMaterialGroup(smMaterialGroup);
+-		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after SetMaterialGroup\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after SetMaterialGroup\n"); fclose(f);} }
+ 		InitEffect();
+-		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitEffect\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitEffect\n"); fclose(f);} }
+ 		InitFont();
+-		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitFont\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitFont\n"); fclose(f);} }
+ 		cSettings.Init();
+-		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after cSettings.Init\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after cSettings.Init\n"); fclose(f);} }
+ 
+ 		InitOpening();
+-		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitOpening\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitOpening\n"); fclose(f);} }
+ 
+ 		if(SETTINGSHANDLER->isWideScreen())
+ 		{
+@@ -3766,10 +3766,10 @@ int SetGameMode(int mode)
+ 
+ 		if(CheckCrackProcess(TRUE))
+ 			quit = 1;
+-		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"before CheckCrackProcess TRUE\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"before CheckCrackProcess TRUE\n"); fclose(f);} }
+ 		if(CheckCrackProcess(TRUE))
+ 			quit = 1;
+-		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after CheckCrackProcess TRUE quit=%d\n", quit); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after CheckCrackProcess TRUE quit=%d\n", quit); fclose(f);} }
+ 
+ 		dwM_BlurTime = 0;
+ 
+@@ -3792,7 +3792,7 @@ int SetGameMode(int mode)
+ 
+ 	WaveCameraFlag = FALSE;
+ 
+-	{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"LEAVE SetGameMode mode=%d GameMode=%d quit=%d\n", mode, GameMode, quit); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"LEAVE SetGameMode mode=%d GameMode=%d quit=%d\n", mode, GameMode, quit); fclose(f);} }
+ 
+ 	return TRUE;
+ }
+diff --git a/SourceCode/SrcGame/src/cSettingsWindow.cpp b/SourceCode/SrcGame/src/cSettingsWindow.cpp
+index 724df9f..85ba4ee 100644
+--- a/SourceCode/SrcGame/src/cSettingsWindow.cpp
++++ b/SourceCode/SrcGame/src/cSettingsWindow.cpp
+@@ -13,39 +13,39 @@ cSettingsWindow::~cSettingsWindow()
+ 
+ void cSettingsWindow::Init()
+ {
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"ENTER cSettingsWindow::Init pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"ENTER cSettingsWindow::Init pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
+ 
+ 	ClearLoadedImages();
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after ClearLoadedImages\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after ClearLoadedImages\n"); fclose(f);} }
+ 
+ 	if (pWindow1)
+ 	{
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before delete pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before delete pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
+ 		delete pWindow1;
+ 		pWindow1 = 0;
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after delete pWindow1\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after delete pWindow1\n"); fclose(f);} }
+ 	}
+ 
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindow1\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindow1\n"); fclose(f);} }
+ 	BuildWindow1();
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindow1 pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindow1 pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
+ 
+ 	if (pWindow1)
+ 	{
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowVideo\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowVideo\n"); fclose(f);} }
+ 		BuildWindowVideo();
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowVideo\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowVideo\n"); fclose(f);} }
+ 
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowAudio\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowAudio\n"); fclose(f);} }
+ 		BuildWindowAudio();
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowAudio\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowAudio\n"); fclose(f);} }
+ 
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowGeneral\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowGeneral\n"); fclose(f);} }
+ 		BuildWindowGeneral();
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowGeneral\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowGeneral\n"); fclose(f);} }
+ 	}
+ 
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"LEAVE cSettingsWindow::Init\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"LEAVE cSettingsWindow::Init\n"); fclose(f);} }
+ }
+ 
+ void cSettingsWindow::Draw()
+@@ -479,7 +479,7 @@ void cSettingsWindow::BuildWindowGeneral()
+ 				pKeyBoard->setY(pTitle3->getY() + (pTitle3->getHeight() - pKeyBoard->getHeight()) / 2);
+ 				pWindowGeneral->AddElement(pKeyBoard);
+ 
+-				{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"TEMP skip macro UIInput block before CTRL+F1\n"); fclose(f);} }
++				{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"TEMP skip macro UIInput block before CTRL+F1\n"); fclose(f);} }
+ 				return;
+ 
+ 				iY = pWindowGeneral->getMaxY() + 10;
+diff --git a/SourceCode/SrcGame/src/character.cpp b/SourceCode/SrcGame/src/character.cpp
+index a12e747..46da5f4 100644
+--- a/SourceCode/SrcGame/src/character.cpp
++++ b/SourceCode/SrcGame/src/character.cpp
+@@ -2274,7 +2274,7 @@ int smCHAR::ChangeMotion(int Motion, int DpMode)
+ 		if(mingwNullMotion)
+ 		{
+ 			FILE *f = fopen(
+-				"mingw_changemotion_null.txt",
++				"LOGS\\mingw_changemotion_null.txt",
+ 				"a"
+ 			);
+ 
+diff --git a/SourceCode/SrcGame/src/fileread.cpp b/SourceCode/SrcGame/src/fileread.cpp
+index 9fa9563..c6ad714 100644
+--- a/SourceCode/SrcGame/src/fileread.cpp
++++ b/SourceCode/SrcGame/src/fileread.cpp
+@@ -1116,7 +1116,7 @@ int smModelDecode(char *iniFile, smMODELINFO *Info)
+ 					{
+ 						FILE *mingwTrace =
+ 							fopen(
+-								"mingw_model_decode_trace.txt",
++								"LOGS\\mingw_model_decode_trace.txt",
+ 								"a"
+ 							);
+ 
+diff --git a/SourceCode/SrcGame/src/netplay.cpp b/SourceCode/SrcGame/src/netplay.cpp
+index 3d5f002..66dde84 100644
+--- a/SourceCode/SrcGame/src/netplay.cpp
++++ b/SourceCode/SrcGame/src/netplay.cpp
+@@ -1668,7 +1668,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
+ 
+ #ifdef __MINGW32__
+ {
+-    FILE *fp = fopen("mingw_dispatch.txt", "a");
++    FILE *fp = fopen("LOGS\\mingw_dispatch.txt", "a");
+     if(fp)
+     {
+         fprintf(
+@@ -1725,7 +1725,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
+ 
+ 	#ifdef __MINGW32__
+ 	{
+-		FILE *fp = fopen("mingw_dispatch.txt", "a");
++		FILE *fp = fopen("LOGS\\mingw_dispatch.txt", "a");
+ 		if(fp)
+ 		{
+ 			fprintf(fp,
+@@ -3488,7 +3488,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
+ 		if(!lpCurPlayer->smCharInfo.JOB_CODE && smConfig.getSecurity() < AccountTypes::SEC_MODERATOR)
+ 		{
+ 			/* MINGW_FAILRECORD_JOB_PROBE_V1 */
+-			FILE *fp = fopen("mingw_disconnect_origin.txt", "a");
++			FILE *fp = fopen("LOGS\\mingw_disconnect_origin.txt", "a");
+ 			if(fp)
+ 			{
+ 				fprintf(fp,
+@@ -3588,7 +3588,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
+ 
+ 	#ifdef __MINGW32__
+ 	{
+-		FILE *fp=fopen("mingw_dispatch.txt","a");
++		FILE *fp=fopen("LOGS\\mingw_dispatch.txt","a");
+ 		if(fp){ fprintf(fp,"SERVER_INFO case\n"); fclose(fp); }
+ 	}
+ 	#endif
+@@ -3623,7 +3623,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
+ 
+ 	#ifdef __MINGW32__
+ 	{
+-		FILE *fp=fopen("mingw_dispatch.txt","a");
++		FILE *fp=fopen("LOGS\\mingw_dispatch.txt","a");
+ 		if(fp){ fprintf(fp,"SETUSERINFO case\n"); fclose(fp); }
+ 	}
+ 	#endif
+@@ -3659,7 +3659,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
+ 
+ 	#ifdef __MINGW32__
+ 	{
+-		FILE *fp=fopen("mingw_dispatch.txt","a");
++		FILE *fp=fopen("LOGS\\mingw_dispatch.txt","a");
+ 		if(fp){ fprintf(fp,"FAILCONNECT case\n"); fclose(fp); }
+ 	}
+ 	#endif
+@@ -7583,7 +7583,7 @@ int RecvPlayData(smTHREADSOCK *pData)
+ 
+ #ifdef __MINGW32__
+ {
+-    FILE *fp = fopen("mingw_dispatch.txt", "a");
++    FILE *fp = fopen("LOGS\\mingw_dispatch.txt", "a");
+     if(fp)
+     {
+         fprintf(
+diff --git a/SourceCode/SrcGame/src/playmain.cpp b/SourceCode/SrcGame/src/playmain.cpp
+index f30b3b2..dbf1fea 100644
+--- a/SourceCode/SrcGame/src/playmain.cpp
++++ b/SourceCode/SrcGame/src/playmain.cpp
+@@ -1774,7 +1774,7 @@ int InitPat3D()
+ 				if(size < 40 && smConfig.getSecurity() < AccountTypes::SEC_MODERATOR)
+ 				{
+ 					/* MINGW_DISCONNECT_ORIGIN_PROBE_V1 */
+-					FILE *fp = fopen("mingw_disconnect_origin.txt", "a");
++					FILE *fp = fopen("LOGS\\mingw_disconnect_origin.txt", "a");
+ 					if(fp)
+ 					{
+ 						fprintf(fp,
+@@ -1795,7 +1795,7 @@ int InitPat3D()
+ 
+ 		if(cnt2 == 0 && smConfig.getSecurity() < AccountTypes::SEC_MODERATOR)
+ 		{
+-			FILE *fp = fopen("mingw_disconnect_origin.txt", "a");
++			FILE *fp = fopen("LOGS\\mingw_disconnect_origin.txt", "a");
+ 			if(fp)
+ 			{
+ 				fprintf(fp,
+diff --git a/SourceCode/SrcGame/src/sinbaram/AssaEffect.cpp b/SourceCode/SrcGame/src/sinbaram/AssaEffect.cpp
+index bfdfd99..4d78b30 100644
+--- a/SourceCode/SrcGame/src/sinbaram/AssaEffect.cpp
++++ b/SourceCode/SrcGame/src/sinbaram/AssaEffect.cpp
+@@ -30,25 +30,25 @@ void AssaEffectKeyDown()
+ 
+ void InitAssaEffect()
+ {
+-	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,
++	{ FILE *f=fopen("LOGS\\mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,
+         "ENTER InitAssaEffect sizeof_class=%u sizeof_array=%u max=%d ptr=%u\n",
+         (unsigned)sizeof(cASSAEFFECT),
+         (unsigned)sizeof(cAssaEffect),
+         (int)cASSAEFFECT_MAX,
+         (unsigned)sizeof(void *)); fclose(f);} }
+ 
+-	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"before InitAssaRes\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"before InitAssaRes\n"); fclose(f);} }
+ 	InitAssaRes();
+-	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"after InitAssaRes\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"after InitAssaRes\n"); fclose(f);} }
+ 
+-	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"before LoadAssaRes\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"before LoadAssaRes\n"); fclose(f);} }
+ 	LoadAssaRes();
+-	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"after LoadAssaRes\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"after LoadAssaRes\n"); fclose(f);} }
+ 
+ 	memset(cAssaEffect, 0, sizeof(cAssaEffect));
+-	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"after memset cAssaEffect\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"after memset cAssaEffect\n"); fclose(f);} }
+ 
+-	{ FILE *f=fopen("mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"LEAVE InitAssaEffect\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_assa_effect_init.txt","a"); if(f){ fprintf(f,"LEAVE InitAssaEffect\n"); fclose(f);} }
+ }
+ 
+ void DrawAssaEffect(POINT3D *pPosi, POINT3D *pAngle)
+diff --git a/SourceCode/SrcGame/src/sinbaram/AssaUtil.cpp b/SourceCode/SrcGame/src/sinbaram/AssaUtil.cpp
+index b515841..aee15cb 100644
+--- a/SourceCode/SrcGame/src/sinbaram/AssaUtil.cpp
++++ b/SourceCode/SrcGame/src/sinbaram/AssaUtil.cpp
+@@ -146,7 +146,7 @@ void LoadResFile(char *path, bool aseExistFlag)
+ 	hSrch = FindFirstFile(path, &wfd);
+ 	if(hSrch == INVALID_HANDLE_VALUE)
+ 	{
+-		FILE *f = fopen("mingw_loadresfile_errors.txt", "a");
++		FILE *f = fopen("LOGS\\mingw_loadresfile_errors.txt", "a");
+ 		if(f)
+ 		{
+ 			fprintf(f, "FindFirstFile failed path=%s lastError=%lu\n", path, GetLastError());
+@@ -389,10 +389,10 @@ void CloseAssaRes()
+ 
+ void LoadAssaRes()
+ {
+-	{ FILE *f=fopen("mingw_loadassares.txt","a"); if(f){ fprintf(f,"ENTER LoadAssaRes AssaResCount=%d security=%d\n", AssaResCount, smConfig.getSecurity()); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"ENTER LoadAssaRes AssaResCount=%d security=%d\n", AssaResCount, smConfig.getSecurity()); fclose(f);} }
+ 
+ 	CloseAssaRes();
+-	{ FILE *f=fopen("mingw_loadassares.txt","a"); if(f){ fprintf(f,"after CloseAssaRes AssaResCount=%d\n", AssaResCount); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"after CloseAssaRes AssaResCount=%d\n", AssaResCount); fclose(f);} }
+ 
+ 	char Path[MAX_RES_PATH] = { 0 };
+ 
+@@ -400,19 +400,19 @@ void LoadAssaRes()
+ 		DeleteFile(AssaLoadingFile);
+ 
+ 	strcpy(Path, "image//Sinimage//AssaEffect//*.*");
+-	{ FILE *f=fopen("mingw_loadassares.txt","a"); if(f){ fprintf(f,"before LoadResFile path1=%s\n", Path); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"before LoadResFile path1=%s\n", Path); fclose(f);} }
+ 	LoadResFile(Path, false);
+-	{ FILE *f=fopen("mingw_loadassares.txt","a"); if(f){ fprintf(f,"after LoadResFile path1 AssaResCount=%d\n", AssaResCount); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"after LoadResFile path1 AssaResCount=%d\n", AssaResCount); fclose(f);} }
+ 
+ 	strcpy(Path, "Effect//AssaEffect//*.*");
+-	{ FILE *f=fopen("mingw_loadassares.txt","a"); if(f){ fprintf(f,"before LoadResFile path2=%s\n", Path); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"before LoadResFile path2=%s\n", Path); fclose(f);} }
+ 	LoadResFile(Path, false);
+-	{ FILE *f=fopen("mingw_loadassares.txt","a"); if(f){ fprintf(f,"after LoadResFile path2 AssaResCount=%d\n", AssaResCount); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"after LoadResFile path2 AssaResCount=%d\n", AssaResCount); fclose(f);} }
+ 
+ 	if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
+ 		DeleteFile(AssaErrorFile);
+ 
+-	{ FILE *f=fopen("mingw_loadassares.txt","a"); if(f){ fprintf(f,"LEAVE LoadAssaRes AssaResCount=%d\n", AssaResCount); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"LEAVE LoadAssaRes AssaResCount=%d\n", AssaResCount); fclose(f);} }
+ }
+ 
+ void *AssaSearchRes(char *resName, int blendType)
+diff --git a/SourceCode/SrcGame/src/sinbaram/sinSubMain.cpp b/SourceCode/SrcGame/src/sinbaram/sinSubMain.cpp
+index 6606cb0..9a254b6 100644
+--- a/SourceCode/SrcGame/src/sinbaram/sinSubMain.cpp
++++ b/SourceCode/SrcGame/src/sinbaram/sinSubMain.cpp
+@@ -151,7 +151,7 @@ static void MINGW_OriginalCursorInitTrace(
+ )
+ {
+ 	FILE *f = fopen(
+-		"mingw_original_cursor_trace.txt",
++		"LOGS\\mingw_original_cursor_trace.txt",
+ 		"a"
+ 	);
+ 
+@@ -184,7 +184,7 @@ static void MINGW_OriginalCursorDrawTrace(
+ 	count++;
+ 
+ 	FILE *f = fopen(
+-		"mingw_original_cursor_trace.txt",
++		"LOGS\\mingw_original_cursor_trace.txt",
+ 		"a"
+ 	);
+ 
+diff --git a/SourceCode/SrcGame/src/smLib3d/smDsx.cpp b/SourceCode/SrcGame/src/smLib3d/smDsx.cpp
+index c29c3e6..55e5ec7 100644
+--- a/SourceCode/SrcGame/src/smLib3d/smDsx.cpp
++++ b/SourceCode/SrcGame/src/smLib3d/smDsx.cpp
+@@ -169,7 +169,7 @@ BOOL SetDisplayMode(HWND hWnd, DWORD Width, DWORD Height, DWORD BPP)
+ 	d3dpp.Windowed = TRUE;
+ 
+ 	{
+-		FILE* f = fopen("mingw_d3d_present_params.txt", "a");
++		FILE* f = fopen("LOGS\\mingw_d3d_present_params.txt", "a");
+ 		if (f)
+ 		{
+ 			fprintf(f,
+diff --git a/SourceCode/SrcGame/src/smwsock.cpp b/SourceCode/SrcGame/src/smwsock.cpp
+index 538f797..8eba6e1 100644
+--- a/SourceCode/SrcGame/src/smwsock.cpp
++++ b/SourceCode/SrcGame/src/smwsock.cpp
+@@ -23,7 +23,7 @@
+ #ifdef __MINGW32__
+ static void MingwSocketTrace(const char *format, ...)
+ {
+-    FILE *fp = fopen("mingw_socket_recv.txt", "a");
++    FILE *fp = fopen("LOGS\\mingw_socket_recv.txt", "a");
+     if(!fp)
+         return;
+ 

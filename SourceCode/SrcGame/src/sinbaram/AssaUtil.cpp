@@ -146,7 +146,7 @@ void LoadResFile(char *path, bool aseExistFlag)
 	hSrch = FindFirstFile(path, &wfd);
 	if(hSrch == INVALID_HANDLE_VALUE)
 	{
-		FILE *f = fopen("mingw_loadresfile_errors.txt", "a");
+		FILE *f = fopen("LOGS\\mingw_loadresfile_errors.txt", "a");
 		if(f)
 		{
 			fprintf(f, "FindFirstFile failed path=%s lastError=%lu\n", path, GetLastError());
@@ -389,10 +389,10 @@ void CloseAssaRes()
 
 void LoadAssaRes()
 {
-	{ FILE *f=fopen("mingw_loadassares.txt","a"); if(f){ fprintf(f,"ENTER LoadAssaRes AssaResCount=%d security=%d\n", AssaResCount, smConfig.getSecurity()); fclose(f);} }
+	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"ENTER LoadAssaRes AssaResCount=%d security=%d\n", AssaResCount, smConfig.getSecurity()); fclose(f);} }
 
 	CloseAssaRes();
-	{ FILE *f=fopen("mingw_loadassares.txt","a"); if(f){ fprintf(f,"after CloseAssaRes AssaResCount=%d\n", AssaResCount); fclose(f);} }
+	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"after CloseAssaRes AssaResCount=%d\n", AssaResCount); fclose(f);} }
 
 	char Path[MAX_RES_PATH] = { 0 };
 
@@ -400,19 +400,19 @@ void LoadAssaRes()
 		DeleteFile(AssaLoadingFile);
 
 	strcpy(Path, "image//Sinimage//AssaEffect//*.*");
-	{ FILE *f=fopen("mingw_loadassares.txt","a"); if(f){ fprintf(f,"before LoadResFile path1=%s\n", Path); fclose(f);} }
+	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"before LoadResFile path1=%s\n", Path); fclose(f);} }
 	LoadResFile(Path, false);
-	{ FILE *f=fopen("mingw_loadassares.txt","a"); if(f){ fprintf(f,"after LoadResFile path1 AssaResCount=%d\n", AssaResCount); fclose(f);} }
+	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"after LoadResFile path1 AssaResCount=%d\n", AssaResCount); fclose(f);} }
 
 	strcpy(Path, "Effect//AssaEffect//*.*");
-	{ FILE *f=fopen("mingw_loadassares.txt","a"); if(f){ fprintf(f,"before LoadResFile path2=%s\n", Path); fclose(f);} }
+	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"before LoadResFile path2=%s\n", Path); fclose(f);} }
 	LoadResFile(Path, false);
-	{ FILE *f=fopen("mingw_loadassares.txt","a"); if(f){ fprintf(f,"after LoadResFile path2 AssaResCount=%d\n", AssaResCount); fclose(f);} }
+	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"after LoadResFile path2 AssaResCount=%d\n", AssaResCount); fclose(f);} }
 
 	if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
 		DeleteFile(AssaErrorFile);
 
-	{ FILE *f=fopen("mingw_loadassares.txt","a"); if(f){ fprintf(f,"LEAVE LoadAssaRes AssaResCount=%d\n", AssaResCount); fclose(f);} }
+	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"LEAVE LoadAssaRes AssaResCount=%d\n", AssaResCount); fclose(f);} }
 }
 
 void *AssaSearchRes(char *resName, int blendType)

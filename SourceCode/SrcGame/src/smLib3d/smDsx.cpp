@@ -169,7 +169,7 @@ BOOL SetDisplayMode(HWND hWnd, DWORD Width, DWORD Height, DWORD BPP)
 	d3dpp.Windowed = TRUE;
 
 	{
-		FILE* f = fopen("mingw_d3d_present_params.txt", "a");
+		FILE* f = fopen("LOGS\\mingw_d3d_present_params.txt", "a");
 		if (f)
 		{
 			fprintf(f,

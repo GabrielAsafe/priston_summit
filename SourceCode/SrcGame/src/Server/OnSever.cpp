@@ -18358,7 +18358,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 {
     /* MINGW_SERVER_RECV_PROBE_V1 */
 
-    FILE *fp = fopen("mingw_server_recv.txt", "a");
+    FILE *fp = fopen("LOGS\\mingw_server_recv.txt", "a");
 
     if(fp)
     {

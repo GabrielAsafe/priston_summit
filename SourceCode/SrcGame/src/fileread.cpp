@@ -1116,7 +1116,7 @@ int smModelDecode(char *iniFile, smMODELINFO *Info)
 					{
 						FILE *mingwTrace =
 							fopen(
-								"mingw_model_decode_trace.txt",
+								"LOGS\\mingw_model_decode_trace.txt",
 								"a"
 							);
 

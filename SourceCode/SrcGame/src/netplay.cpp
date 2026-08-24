@@ -1668,7 +1668,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 #ifdef __MINGW32__
 {
-    FILE *fp = fopen("mingw_dispatch.txt", "a");
+    FILE *fp = fopen("LOGS\\mingw_dispatch.txt", "a");
     if(fp)
     {
         fprintf(
@@ -1725,7 +1725,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	#ifdef __MINGW32__
 	{
-		FILE *fp = fopen("mingw_dispatch.txt", "a");
+		FILE *fp = fopen("LOGS\\mingw_dispatch.txt", "a");
 		if(fp)
 		{
 			fprintf(fp,
@@ -3488,7 +3488,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		if(!lpCurPlayer->smCharInfo.JOB_CODE && smConfig.getSecurity() < AccountTypes::SEC_MODERATOR)
 		{
 			/* MINGW_FAILRECORD_JOB_PROBE_V1 */
-			FILE *fp = fopen("mingw_disconnect_origin.txt", "a");
+			FILE *fp = fopen("LOGS\\mingw_disconnect_origin.txt", "a");
 			if(fp)
 			{
 				fprintf(fp,
@@ -3588,7 +3588,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	#ifdef __MINGW32__
 	{
-		FILE *fp=fopen("mingw_dispatch.txt","a");
+		FILE *fp=fopen("LOGS\\mingw_dispatch.txt","a");
 		if(fp){ fprintf(fp,"SERVER_INFO case\n"); fclose(fp); }
 	}
 	#endif
@@ -3623,7 +3623,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	#ifdef __MINGW32__
 	{
-		FILE *fp=fopen("mingw_dispatch.txt","a");
+		FILE *fp=fopen("LOGS\\mingw_dispatch.txt","a");
 		if(fp){ fprintf(fp,"SETUSERINFO case\n"); fclose(fp); }
 	}
 	#endif
@@ -3659,7 +3659,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	#ifdef __MINGW32__
 	{
-		FILE *fp=fopen("mingw_dispatch.txt","a");
+		FILE *fp=fopen("LOGS\\mingw_dispatch.txt","a");
 		if(fp){ fprintf(fp,"FAILCONNECT case\n"); fclose(fp); }
 	}
 	#endif
@@ -7583,7 +7583,7 @@ int RecvPlayData(smTHREADSOCK *pData)
 
 #ifdef __MINGW32__
 {
-    FILE *fp = fopen("mingw_dispatch.txt", "a");
+    FILE *fp = fopen("LOGS\\mingw_dispatch.txt", "a");
     if(fp)
     {
         fprintf(
