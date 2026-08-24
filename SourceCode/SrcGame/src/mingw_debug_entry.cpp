@@ -12,7 +12,7 @@ extern "C" int WINAPI DebugWinMainCRTStartup()
         CloseHandle(f);
     }
 
-    MessageBoxA(NULL, "ENTROU NO ENTRYPOINT DEBUG", "DEBUG MINGW", MB_OK);
+    // BUGFIX_014_STARTUP_DEBUG_BOX_DISABLED: MessageBoxA(NULL, "ENTROU NO ENTRYPOINT DEBUG", "DEBUG MINGW", MB_OK);
 
     HINSTANCE hInst = GetModuleHandleA(NULL);
     LPSTR cmd = GetCommandLineA();

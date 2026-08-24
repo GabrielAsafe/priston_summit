@@ -1,0 +1,65 @@
+--- bugfixes/014_client_startup_debug_boxes/before/Winmain.cpp	2026-08-24 11:27:32.501220173 +0100
++++ bugfixes/014_client_startup_debug_boxes/after/Winmain.cpp	2026-08-24 11:46:57.299649096 +0100
+@@ -394,7 +394,7 @@
+ 	hBitmap = (HBITMAP)LoadImage(hInst, filename, IMAGE_BITMAP, 800, 600, LR_LOADFROMFILE);
+ 	if(!hBitmap)
+ 	{
+-		MessageBox(NULL, "Error loading imagem", "ERROR IMG", MB_OK);
++		// BUGFIX_014_STARTUP_DEBUG_BOX_DISABLED: MessageBox(NULL, "Error loading imagem", "ERROR IMG", MB_OK);
+ 	}
+ 
+ 	GetObject(hBitmap, sizeof(myBitmap), &myBitmap);
+@@ -501,7 +501,7 @@
+ 
+ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCmdShow)
+ {
+-    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
++    // BUGFIX_014_STARTUP_DEBUG_BOX_DISABLED: MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+ 
+     {
+         HANDLE f = CreateFileA("LOGS\\mingw_winmain_reached.txt", GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+@@ -552,7 +552,7 @@
+ 	pcAntiCheat = new AntiCheat();
+ 	pcAntiCheat->AddNewThreadException(GetCurrentThreadId());
+ 	pcAntiCheat->CheckThread();
+-    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
++    // BUGFIX_014_STARTUP_DEBUG_BOX_DISABLED: MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+ 
+ 	MSG msg;
+ 	WNDCLASS wndclass;
+@@ -563,7 +563,7 @@
+ 	initSinCos();
+ 
+ 	SETTINGSHANDLER->readConfig();
+-    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
++    // BUGFIX_014_STARTUP_DEBUG_BOX_DISABLED: MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+ 	
+ 	InitializeCriticalSection(&cSection);
+ 	InitializeCriticalSection(&cDrawSection);
+@@ -572,7 +572,7 @@
+ 	srand(GetCurrentTime());
+ 
+ 	InitDirectSound();
+-    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
++    // BUGFIX_014_STARTUP_DEBUG_BOX_DISABLED: MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+ 
+ 	// MINGW_WINDOWMODE_STATE_FIX_V1
+ #ifdef __MINGW32__
+@@ -608,7 +608,7 @@
+ 		wndclass.lpszMenuName = NULL;
+ 		wndclass.lpszClassName = szAppName;
+ 		RegisterClass(&wndclass);
+-    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
++    // BUGFIX_014_STARTUP_DEBUG_BOX_DISABLED: MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+ 	}
+ 
+ 	if(SETTINGSHANDLER->getWindowMode())
+@@ -621,7 +621,7 @@
+ 
+ 		AdjustWindowRectEx(&wrect, WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX, FALSE, 0);
+ 
+-		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
++		// BUGFIX_014_STARTUP_DEBUG_BOX_DISABLED: MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+ 
+ 		hwnd = CreateWindowEx(0,
+ 			szAppName,
