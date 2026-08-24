@@ -110,7 +110,7 @@ LONG WINAPI unhandled_handler(struct _EXCEPTION_POINTERS* apExceptionInfo)
 
 		HANDLE h =
 			CreateFileA(
-				"mingw_server_crash_stack.txt",
+				"LOGS\\mingw_server_crash_stack.txt",
 				GENERIC_WRITE,
 				FILE_SHARE_READ | FILE_SHARE_WRITE,
 				NULL,
@@ -346,7 +346,7 @@ LONG WINAPI unhandled_handler(struct _EXCEPTION_POINTERS* apExceptionInfo)
 
 		HANDLE hCrashLog =
 			CreateFileA(
-				"mingw_server_crash.txt",
+				"LOGS\\mingw_server_crash.txt",
 				FILE_APPEND_DATA,
 				FILE_SHARE_READ | FILE_SHARE_WRITE,
 				NULL,
