@@ -52,20 +52,34 @@ char *GetWord(char *q, char *p)
 
 char *GetString(char *q, char *p)
 {
-
-	while(*p != 34) p++;
-
-	p++;
-
-	while((*p != 34))
+	// MINGW_GETSTRING_BOUNDS_FIX_V1
+	while(*p != 34)
 	{
-		if(*p == 0 || *p == 0x0D || *p == 0x0A) break;
-		*q++ = *p++;
+		if(*p == 0 || *p == '\r' || *p == '\n')
+		{
+			*q = 0;
+			return p;
+		}
+		p++;
 	}
 
 	p++;
 
-	*q++ = 0;
+	while(*p != 34)
+	{
+		if(*p == 0 || *p == '\r' || *p == '\n')
+		{
+			*q = 0;
+			return p;
+		}
+
+		*q++ = *p++;
+	}
+
+	if(*p == 34)
+		p++;
+
+	*q = 0;
 
 	return p;
 }
