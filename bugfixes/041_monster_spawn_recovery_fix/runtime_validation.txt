@@ -1,0 +1,116 @@
+VALIDAÇÃO RUNTIME — 2026-08-24
+
+BASE
+----
+Fix 036 já commitado:
+22f79f1 fix(server): restore CP949 character definition tokens
+
+Esse fix restaurou smCharDecode() e resolveu os modelos repetidos dos NPCs.
+
+ETAPA 037 — DecodeOpenMonster
+-----------------------------
+Depois do Fix 036, monstros ainda não apareciam.
+
+Foi reaplicado do recovery pré-reset o conjunto completo existente em
+DecodeOpenMonster().
+
+spm_actor_trace.txt confirmou que o parser .spm passou a reconhecer ACTOR
+e que os nomes estavam encontrando correspondência válida em lpCharInfoList.
+
+Exemplos observados:
+
+GameServer//Field//fore-3.ase.spm
+  Cogumelo Fantasma -> match=63  listCnt=374
+  Duende Macabro    -> match=72  listCnt=374
+  Imp               -> match=18  listCnt=374
+  Planta Assassina  -> match=40  listCnt=374
+  Doral             -> match=30  listCnt=374
+
+GameServer//Field//fore-1.ase.spm
+  Hopi              -> match=55  listCnt=374
+  Cuepi             -> match=54  listCnt=374
+  Tatu              -> match=104 listCnt=374
+  Cogumelo Fantasma -> match=63  listCnt=374
+  Duende Macabro    -> match=72  listCnt=374
+
+Conclusão:
+- ACTOR passou a ser reconhecido;
+- lpCharInfoList estava populada;
+- ACTOR -> NAME funcionava;
+- o caminho de monster loading/spawn foi reativado.
+
+Após isso o servidor crashou.
+
+ETAPA 038 — simbolização do crash
+---------------------------------
+Crash:
+  exception      = 0xC0000005
+  operation      = READ
+  invalid addr   = 0x0001598C
+  crash RVA      = 0x00011DCE
+
+Server.exe:
+  preferred ImageBase = 0x00400000
+
+Logo:
+  RVA 0x00011DCE -> VA 0x00411DCE
+
+Símbolo:
+  smCHAR::FindMotionCountFromCode(unsigned long)
+
+Disassembly:
+
+00411d84 <smCHAR::FindMotionCountFromCode(unsigned long)>:
+...
+411dc5: mov this -> eax
+411dc8: mov 0x4704(eax), eax
+411dce: mov 0x1598c(eax), eax
+
+No crash:
+  EAX = 0x00000000
+
+Interpretação:
+  this->smMotionInfo era NULL;
+  a instrução 0x411DCE tentou ler smMotionInfo + 0x1598C;
+  NULL + 0x1598C = 0x0001598C;
+  esse era exatamente o endereço inválido informado pela exceção.
+
+ETAPA 039 — guard de smMotionInfo
+---------------------------------
+O recovery pré-reset continha exatamente um guard em:
+
+smCHAR::FindMotionCountFromCode()
+
+Comportamento:
+  if(!smMotionInfo)
+  {
+      ...trace...
+      return 0;
+  }
+
+O guard foi reaplicado mantendo a 037 ativa.
+
+RESULTADO FINAL
+---------------
+- servidor deixou de cair nesse ponto;
+- monstros voltaram aos mapas;
+- mobs estão disponíveis para combate;
+- NPCs continuam corretos;
+- bug de monster spawn/loading considerado RESOLVIDO.
+
+Conclusão técnica:
+o estado funcional dependia de MAIS DE UMA alteração pré-reset:
+
+1. Fix 036:
+   smCharDecode() com tokens CP949 corretos.
+
+2. Fix 041 / parte fileread:
+   DecodeOpenMonster() com tokens CP949 corretos para os .spm.
+
+3. Fix 041 / parte character:
+   proteção de smMotionInfo NULL no caminho reativado de motions.
+
+Aplicar apenas uma parte produzia estados híbridos:
+- sem DecodeOpenMonster: mobs não entravam no fluxo;
+- com DecodeOpenMonster mas sem guard: fluxo era reativado e crashava;
+- com ambos: mobs voltaram e ficaram jogáveis.

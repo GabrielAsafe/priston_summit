@@ -1,0 +1,131 @@
+--- "/home/gabriel/Área de Trabalho/summit/bugfixes/041_monster_spawn_recovery_fix/before/fileread.cpp"	2026-08-24 18:00:03.267058911 +0100
++++ "/home/gabriel/Área de Trabalho/summit/bugfixes/041_monster_spawn_recovery_fix/after/fileread.cpp"	2026-08-24 17:40:06.340117694 +0100
+@@ -4653,10 +4653,17 @@
+ 		NextFlag = 0;
+ 
+ 
+-		if(lstrcmp(decode, "*�⿬��") == 0 || lstrcmpi(decode, "*ACTOR") == 0)
++		if((lstrcmp(decode, "\x2A\xC3\xE2\xBF\xAC\xC0\xDA") == 0 || lstrcmpi(decode, "*ACTOR") == 0)) // MINGW_SPM_CP949_TOKEN_FIX_V1
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 			strcpy_s(lpStgMonList->rsMonster[MonCnt].szMonsterName, strBuff);
++#ifdef __MINGW32__
++            // MINGW_SPM_ACTOR_MATCH_TRACE_V1
++            char dbgActorName[128] = { 0 };
++            strncpy(dbgActorName, strBuff, sizeof(dbgActorName) - 1);
++            dbgActorName[sizeof(dbgActorName) - 1] = 0;
++#endif
++
+ 			for(cnt = 0; cnt < ListCnt; cnt++)
+ 			{
+ 				if(lstrcmp(strBuff, lpCharInfoList[cnt].szName) == 0)
+@@ -4673,10 +4680,81 @@
+ 				}
+ 			}
+ 
+-			NextFlag = TRUE;
++			
++#ifdef __MINGW32__
++            {
++                int dbgActorMatch = -1;
++
++                for(int dbgI = 0; dbgI < ListCnt; dbgI++)
++                {
++                    if(lstrcmp(dbgActorName,
++                               lpCharInfoList[dbgI].szName) == 0)
++                    {
++                        dbgActorMatch = dbgI;
++                        break;
++                    }
++                }
++
++                FILE *dbgActorFp =
++                    fopen("spm_actor_trace.txt", "a");
++
++                if(dbgActorFp)
++                {
++                    fprintf(
++                        dbgActorFp,
++                        "[ACTOR] spm=%s requested='%s' "
++                        "match=%d listCnt=%d\n",
++                        szCharFile,
++                        dbgActorName,
++                        dbgActorMatch,
++                        ListCnt
++                    );
++
++                    /*
++                     * No primeiro MISS apenas, mostra os primeiros
++                     * nomes que smCharDecode colocou na lista global.
++                     */
++                    static int dbgListDumped = 0;
++
++                    if(dbgActorMatch < 0 && !dbgListDumped)
++                    {
++                        dbgListDumped = 1;
++
++                        fprintf(
++                            dbgActorFp,
++                            "[MONSTER_LIST_BEGIN]\n"
++                        );
++
++                        int dbgMax =
++                            (ListCnt < 30) ? ListCnt : 30;
++
++                        for(int dbgI = 0; dbgI < dbgMax; dbgI++)
++                        {
++                            fprintf(
++                                dbgActorFp,
++                                "[MONSTER_LIST] index=%d name='%s' "
++                                "level=%d\n",
++                                dbgI,
++                                lpCharInfoList[dbgI].szName,
++                                lpCharInfoList[dbgI].Level
++                            );
++                        }
++
++                        fprintf(
++                            dbgActorFp,
++                            "[MONSTER_LIST_END]\n"
++                        );
++                    }
++
++                    fclose(dbgActorFp);
++                }
++            }
++#endif
++
++            NextFlag = TRUE;
+ 		}
+ 
+-		if(lstrcmp(decode, "*�⿬�ڵθ�") == 0 || lstrcmpi(decode, "*BOSS_ACTOR") == 0)
++		if((lstrcmp(decode, "\x2A\xC3\xE2\xBF\xAC\xC0\xDA\xB5\xCE\xB8\xF1") == 0 || lstrcmpi(decode, "*BOSS_ACTOR") == 0))
+ 		{
+ 
+ 			lpBossMonster = &lpStgMonList->sBossMonsters[lpStgMonList->BossMonsterCount];
+@@ -4717,14 +4795,14 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*�ִ뵿��������") == 0 || lstrcmp(decode, "*MAX_ACTOR_POS") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xC3\xD6\xB4\xEB\xB5\xBF\xBD\xC3\xC3\xE2\xC7\xF6\xBC\xF6") == 0 || lstrcmp(decode, "*MAX_ACTOR_POS") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpStgMonList->LimitMax = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*��������") == 0 || lstrcmp(decode, "*DELAY") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xC3\xE2\xC7\xF6\xB0\xA3\xB0\xDD") == 0 || lstrcmp(decode, "*DELAY") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpStgMonList->OpenInterval = (1 << atoi(strBuff));
+@@ -4737,7 +4815,7 @@
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && (lstrcmp(decode, "*������") == 0 || lstrcmp(decode, "*MAX_ACTOR") == 0))
++		if(!NextFlag && (lstrcmp(decode, "\x2A\xC3\xE2\xC7\xF6\xBC\xF6") == 0 || lstrcmp(decode, "*MAX_ACTOR") == 0))
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpStgMonList->OpenLimit = atoi(strBuff);

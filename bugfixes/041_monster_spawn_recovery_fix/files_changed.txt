@@ -1,0 +1,35 @@
+ARQUIVOS DE SOURCE ALTERADOS NESTE FIX
+
+1. SourceCode/SrcServer/src/fileread.cpp
+   Função:
+     DecodeOpenMonster()
+
+   Alterações recuperadas do working tree pré-reset:
+     - token CP949 ACTOR
+     - token CP949 BOSS_ACTOR
+     - token CP949 MAX_ACTOR_POS
+     - token CP949 DELAY
+     - token CP949 MAX_ACTOR
+     - instrumentação MINGW_SPM_ACTOR_MATCH_TRACE_V1
+
+   Papel:
+     - ler arquivos .spm
+     - reconhecer blocos ACTOR
+     - comparar o nome do ACTOR com lpCharInfoList[].szName
+     - alimentar rsMonster[] / MonCnt
+
+2. SourceCode/SrcServer/src/character.cpp
+   Função:
+     smCHAR::FindMotionCountFromCode(DWORD MotionCode)
+
+   Alteração recuperada do working tree pré-reset:
+     - if(!smMotionInfo)
+     - trace motion_null_trace.txt
+     - return 0 antes da dereferência
+
+   Papel:
+     - impedir crash quando o fluxo reativado de monstros encontra
+       personagem sem smMotionInfo carregado.
+
+Nenhum arquivo do cliente foi alterado.
+Nenhum código de item/drop foi alterado.

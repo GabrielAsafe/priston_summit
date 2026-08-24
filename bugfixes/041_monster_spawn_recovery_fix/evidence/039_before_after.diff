@@ -1,0 +1,32 @@
+--- "/home/gabriel/Área de Trabalho/summit/bugfixes/039_reapply_findmotion_null_guard/before/character.cpp"	2026-08-24 09:59:53.634687944 +0100
++++ "/home/gabriel/Área de Trabalho/summit/bugfixes/039_reapply_findmotion_null_guard/after/character.cpp"	2026-08-24 17:47:14.454652066 +0100
+@@ -2284,6 +2284,29 @@
+ 
+ int smCHAR::FindMotionCountFromCode(DWORD MotionCode)
+ {
++	// MINGW_FINDMOTION_NULL_GUARD_V1
++	if(!smMotionInfo)
++	{
++		FILE *dbgFp = fopen("motion_null_trace.txt", "a");
++		if(dbgFp)
++		{
++			fprintf(dbgFp,
++				"[MOTION_NULL] tid=%lu ret=%p this=%p "
++				"name='%s' model='%s' model2='%s'\n",
++				(unsigned long)GetCurrentThreadId(),
++				__builtin_return_address(0),
++				(void *)this,
++				smCharInfo.szName,
++				smCharInfo.szModelName,
++				smCharInfo.szModelName2);
++
++			fflush(dbgFp);
++			fclose(dbgFp);
++		}
++
++		return 0;
++	}
++
+ 	int FindCnt = 0;
+ 
+ 	for(DWORD cnt = 0; cnt < smMotionInfo->MotionCount; cnt++)
