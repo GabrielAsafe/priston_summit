@@ -59,6 +59,61 @@ sITEM sItem[MAX_ITEM] = {
 #include "items.h"
 };
 
+
+/*
+ * Legacy Summit item identity compatibility map.
+ *
+ * The current items.h does not contain the historical sItem catalog.
+ * Populate the minimum LastCategory -> CODE identity required by
+ * OpenItem parsing and server item lookup.
+ */
+struct MINGW_ITEM_CODE_MAP_ENTRY
+{
+	DWORD CODE;
+	const char *LastCategory;
+};
+
+static const MINGW_ITEM_CODE_MAP_ENTRY g_MingwItemCodeMap[] =
+{
+#include "item_code_map_mingw.inc"
+};
+
+static int MingwPopulateItemCodeMap()
+{
+	const int mapCount =
+		(int)(sizeof(g_MingwItemCodeMap) /
+		      sizeof(g_MingwItemCodeMap[0]));
+
+	const int count =
+		(mapCount < MAX_ITEM) ? mapCount : MAX_ITEM;
+
+	for(int i = 0; i < count; i++)
+	{
+		sItem[i].CODE = g_MingwItemCodeMap[i].CODE;
+
+		ZeroMemory(
+			sItem[i].LastCategory,
+			sizeof(sItem[i].LastCategory)
+		);
+
+		strncpy(
+			sItem[i].LastCategory,
+			g_MingwItemCodeMap[i].LastCategory,
+			sizeof(sItem[i].LastCategory) - 1
+		);
+
+		sItem[i].sItemInfo.CODE =
+			g_MingwItemCodeMap[i].CODE;
+	}
+
+	return count;
+}
+
+int InitializeServerItemCodeMap()
+{
+	return MingwPopulateItemCodeMap();
+}
+
 cITEM::cITEM()
 {
 
@@ -71,6 +126,8 @@ cITEM::~cITEM()
 
 void cITEM::Init()
 {
+	MingwPopulateItemCodeMap();
+
 	for(int cnt = 0; cnt < MAX_ITEM; cnt++)
 	{
 		sItem[cnt].sItemInfo.CODE = sItem[cnt].CODE;
@@ -3139,6 +3196,3 @@ int cITEM::GetItemLimitTime(sITEM *pItem)
 
 	return TRUE;
 }
- 
-
-

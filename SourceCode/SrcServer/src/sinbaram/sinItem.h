@@ -683,6 +683,7 @@ public:
 extern cITEM cItem;
 extern sITEM sItem[MAX_ITEM];
 
+
 extern sITEM TempItem;
 extern sITEM MouseItem;
 
