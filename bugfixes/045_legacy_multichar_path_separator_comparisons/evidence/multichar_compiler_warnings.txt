@@ -1,0 +1,19 @@
+/tmp/test_multichar.cpp:7:32: warning: multi-character character constant [-Wmultichar]
+    7 |     printf("'//' = %d 0x%X\n", '//', '//');
+      |                                ^~~~
+/tmp/test_multichar.cpp:7:38: warning: multi-character character constant [-Wmultichar]
+    7 |     printf("'//' = %d 0x%X\n", '//', '//');
+      |                                      ^~~~
+/tmp/test_multichar.cpp:12:49: warning: multi-character character constant [-Wmultichar]
+   12 |     printf("slash == '//'     : %d\n", slash == '//');
+      |                                                 ^~~~
+/tmp/test_multichar.cpp:13:53: warning: multi-character character constant [-Wmultichar]
+   13 |     printf("backslash == '//' : %d\n", backslash == '//');
+      |                                                     ^~~~
+/tmp/test_multichar.cpp: In function ‘int main()’:
+/tmp/test_multichar.cpp:12:46: warning: comparison is always false due to limited range of data type [-Wtype-limits]
+   12 |     printf("slash == '//'     : %d\n", slash == '//');
+      |                                        ~~~~~~^~~~~~~
+/tmp/test_multichar.cpp:13:50: warning: comparison is always false due to limited range of data type [-Wtype-limits]
+   13 |     printf("backslash == '//' : %d\n", backslash == '//');
+      |                                        ~~~~~~~~~~^~~~~~~

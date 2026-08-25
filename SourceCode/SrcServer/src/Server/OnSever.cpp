@@ -2202,7 +2202,7 @@ int rsCheckActiveFile(char *szFile)
 
 	for(cnt = len - 1; cnt >= 0; cnt--)
 	{
-		if(szFileName[cnt] == '//')
+		if(szFileName[cnt] == '/' || szFileName[cnt] == '\\')
 		{
 			szFileName[cnt] = 0;
 			break;

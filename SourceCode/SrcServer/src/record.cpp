@@ -5340,7 +5340,7 @@ int CheckWareHouseData(char *szFile)
 		}
 		for(cnt = cnt; cnt >= 0; cnt--)
 		{
-			if(szName[cnt] == '//')
+			if(szName[cnt] == '/' || szName[cnt] == '\\')
 			{
 				cnt++;
 				break;

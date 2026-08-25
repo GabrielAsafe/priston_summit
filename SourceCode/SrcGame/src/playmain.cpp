@@ -1151,7 +1151,7 @@ static char *playmain_SetDirectoryFromFile(char *filename)
 	len = lstrlen(szDataDirectory);
 
 	for(cnt = len; cnt >= 0; cnt--)
-		if(szDataDirectory[cnt] == '//') break;
+		if(szDataDirectory[cnt] == '/' || szDataDirectory[cnt] == '\\') break;
 
 	szDataDirectory[cnt + 1] = NULL;
 

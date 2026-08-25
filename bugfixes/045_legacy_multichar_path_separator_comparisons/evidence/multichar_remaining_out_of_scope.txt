@@ -1,0 +1,3 @@
+SrcGame/src/smLib3d/smTexture.cpp:1584:	stBackslashIndex = strFilePath.rfind('//');
+SrcGame/src/cracker.cpp:424:	szBuff[len++] = '//';
+SrcServer/src/cracker.cpp:426:	szBuff[len++] = '//';

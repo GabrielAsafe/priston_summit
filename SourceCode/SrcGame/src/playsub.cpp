@@ -929,7 +929,7 @@ int	ChangeModelSkin(smCHAR *lpChar, int ComicArmor, int ComicHeadNum, char *szAr
 	len = lstrlen(lpArmorFile);
 	for (cnt = len - 1; cnt >= 0; cnt--)
 	{
-		if (lpArmorFile[cnt] == '//')
+		if (lpArmorFile[cnt] == '/' || lpArmorFile[cnt] == '\\')
 		{
 			strcpy_s(szArmorName, &lpArmorFile[cnt + 1]);
 			break;
@@ -4981,7 +4981,7 @@ int	CheckUserModel(smCHAR_INFO *lpCharInfo)
 	strcpy_s(szBuff, lpCharInfo->szModelName);
 	for (cnt = len - 1; cnt >= 0; cnt--)
 	{
-		if (szBuff[cnt] == '//')
+		if (szBuff[cnt] == '/' || szBuff[cnt] == '\\')
 		{
 			szBuff[cnt + 1] = 0;
 			break;

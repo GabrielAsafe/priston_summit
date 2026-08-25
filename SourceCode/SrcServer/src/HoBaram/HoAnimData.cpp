@@ -12,7 +12,7 @@ BOOL GetDirectoryToFileName(char *directoryName, char *getFileName)
 	int  count = 0;
 	for(int index = strlen(directoryName); index > 0; index--)
 	{
-		if(directoryName[index] == '//')
+		if(directoryName[index] == '/' || directoryName[index] == '\\')
 		{
 			memcpy(getFileName, &directoryName[index + 1], count - 1);
 			return TRUE;;
@@ -265,7 +265,7 @@ int HoAnimImageData::Load(char *iniName)
 	int  count = 0;
 	for(int index = strlen(iniName); index > 0; index--)
 	{
-		if(iniName[index] == '//')
+		if(iniName[index] == '/' || iniName[index] == '\\')
 		{
 			memcpy(IniName, &iniName[index + 1], count - 1);
 			break;

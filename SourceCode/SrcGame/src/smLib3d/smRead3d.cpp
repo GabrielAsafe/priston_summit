@@ -96,7 +96,7 @@ char *SetDirectoryFromFile(char *filename)
 	len = lstrlen(DataDirectory);
 
 	for(cnt = len; cnt >= 0; cnt--)
-		if(DataDirectory[cnt] == '//') break;
+		if(DataDirectory[cnt] == '/' || DataDirectory[cnt] == '\\') break;
 
 	DataDirectory[cnt + 1] = NULL;
 
@@ -422,7 +422,7 @@ FILE *ReadASE_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
 			slen = lstrlen(strBuff);
 			for(cnt = slen - 1; cnt > 0; cnt--)
 			{
-				if(strBuff[cnt] == '//' || strBuff[cnt] == ':')
+				if(strBuff[cnt] == '/' || strBuff[cnt] == '\\' || strBuff[cnt] == ':')
 				{
 					cnt++; break;
 				}
@@ -834,7 +834,7 @@ FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
 			slen = lstrlen(strBuff);
 			for(cnt = slen - 1; cnt > 0; cnt--)
 			{
-				if(strBuff[cnt] == '//' || strBuff[cnt] == ':')
+				if(strBuff[cnt] == '/' || strBuff[cnt] == '\\' || strBuff[cnt] == ':')
 				{
 					cnt++; break;
 				}

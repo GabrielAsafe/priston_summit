@@ -1614,7 +1614,7 @@ int rsCheckActiveFile(char *szFile)
 
 	for(cnt = len - 1; cnt >= 0; cnt--)
 	{
-		if(szFileName[cnt] == '//')
+		if(szFileName[cnt] == '/' || szFileName[cnt] == '\\')
 		{
 			szFileName[cnt] = 0;
 			break;
@@ -1689,7 +1689,7 @@ char *SetFieldInfoPath(char *SaveBuff, char *szFieldPath, char *InfoExt)
 
 	while(cnt > 0)
 	{
-		if(szFieldPath[cnt] == '//')
+		if(szFieldPath[cnt] == '/' || szFieldPath[cnt] == '\\')
 		{
 			szFile = &szFieldPath[cnt + 1];
 			break;

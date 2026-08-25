@@ -78,7 +78,7 @@ bool HoNewParticleResMgr::LoadScript(char *scr)
 
 	for(int index = (strlen(directoryBuffer) - 1); index > 0; index--)
 	{
-		if(directoryBuffer[index] == '//')
+		if(directoryBuffer[index] == '/' || directoryBuffer[index] == '\\')
 		{
 			strcpy(fileBuffer, &directoryBuffer[index + 1]);
 			break;

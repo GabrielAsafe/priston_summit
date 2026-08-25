@@ -2569,7 +2569,7 @@ char *GetDirectoryFromFile(char *filename, char *szDirectory, size_t size)
 	len = lstrlen(szDirectory);
 
 	for(cnt = len; cnt >= 0; cnt--)
-		if(szDirectory[cnt] == '//') break;
+		if(szDirectory[cnt] == '/' || szDirectory[cnt] == '\\') break;
 
 	szDirectory[cnt + 1] = NULL;
 

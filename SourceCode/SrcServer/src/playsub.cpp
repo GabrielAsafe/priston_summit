@@ -911,7 +911,7 @@ int	ChangeModelSkin(smCHAR *lpChar, int ComicArmor, int ComicHeadNum, char *szAr
 	len = lstrlen(lpArmorFile);
 	for (cnt = len - 1; cnt >= 0; cnt--)
 	{
-		if (lpArmorFile[cnt] == '//')
+		if (lpArmorFile[cnt] == '/' || lpArmorFile[cnt] == '\\')
 		{
 			strcpy_s(szArmorName, &lpArmorFile[cnt + 1]);
 			break;
