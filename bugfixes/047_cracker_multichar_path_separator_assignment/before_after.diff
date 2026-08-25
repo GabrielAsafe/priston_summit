@@ -1,0 +1,22 @@
+--- before/SourceCode/SrcGame/src/cracker.cpp
++++ after/SourceCode/SrcGame/src/cracker.cpp
+@@ -421,7 +421,7 @@
+ 
+ 	int len = lstrlen(szBuff);
+ 
+-	szBuff[len++] = '//';
++	szBuff[len++] = '\\';
+ 
+ 	lpBuff = szBuff + len;
+ 
+--- before/SourceCode/SrcServer/src/cracker.cpp
++++ after/SourceCode/SrcServer/src/cracker.cpp
+@@ -423,7 +423,7 @@
+ 
+ 	int len = lstrlen(szBuff);
+ 
+-	szBuff[len++] = '//';
++	szBuff[len++] = '\\';
+ 
+ 	lpBuff = szBuff + len;
+ 

@@ -423,7 +423,7 @@ int CheckDLL_Module()
 
 	int len = lstrlen(szBuff);
 
-	szBuff[len++] = '//';
+	szBuff[len++] = '\\';
 
 	lpBuff = szBuff + len;
 
