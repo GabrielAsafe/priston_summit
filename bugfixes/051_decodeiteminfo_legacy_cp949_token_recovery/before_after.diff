@@ -1,0 +1,226 @@
+--- before/SourceCode/SrcGame/src/fileread.cpp
++++ after/SourceCode/SrcGame/src/fileread.cpp
+@@ -2688,6 +2688,30 @@
+ 
+ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
+ {
++
++	// Legacy OpenItem parser tokens.
++	// OpenItem files use historical CP949 byte sequences.
++	// Byte escapes keep this source independent of source-file encoding.
++	static const char *ITEM_TOKEN_CODE =
++		"\x2A\xC4\xDA\xB5\xE5";                  // CODE
++	static const char *ITEM_TOKEN_DURABILITY =
++		"\x2A\xB3\xBB\xB1\xB8\xB7\xC2";          // DURABILITY
++	static const char *ITEM_TOKEN_WEIGHT =
++		"\x2A\xB9\xAB\xB0\xD4";                  // WEIGHT
++	static const char *ITEM_TOKEN_PRICE =
++		"\x2A\xB0\xA1\xB0\xDD";                  // PRICE
++	static const char *ITEM_TOKEN_ATTACK_DAMAGE =
++		"\x2A\xB0\xF8\xB0\xDD\xB7\xC2";          // ATTACK DAMAGE
++	static const char *ITEM_TOKEN_SHOOTING_RANGE =
++		"\x2A\xBB\xE7\xC1\xA4\xB0\xC5\xB8\xAE"; // RANGE
++	static const char *ITEM_TOKEN_ATTACK_SPEED =
++		"\x2A\xB0\xF8\xB0\xDD\xBC\xD3\xB5\xB5"; // ATTACK SPEED
++	static const char *ITEM_TOKEN_ATTACK_RATING =
++		"\x2A\xB8\xED\xC1\xDF\xB7\xC2";          // ATTACK RATING
++	static const char *ITEM_TOKEN_CRITICAL =
++		"\x2A\xC5\xA9\xB8\xAE\xC6\xBC\xC4\xC3"; // CRITICAL
++
++
+ 	FILE	*fp;
+ 	char strBuff[128];
+ 	char *p;
+@@ -2733,7 +2757,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*�ڵ�") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_CODE) == 0)
+ 		{
+ 			pb = p; p = fileread_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 
+@@ -2791,7 +2815,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*������") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_DURABILITY) == 0)
+ 		{
+ 			p = fileread_GetWord(strBuff, p);
+ 			lpDefItem->sDurability[0] = atoi(strBuff);
+@@ -2801,7 +2825,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*����") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_WEIGHT) == 0)
+ 		{
+ 			p = fileread_GetWord(strBuff, p);
+ 			lpItem->Weight = atoi(strBuff);
+@@ -2809,7 +2833,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*����") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_PRICE) == 0)
+ 		{
+ 			p = fileread_GetWord(strBuff, p);
+ 			lpItem->Price = atoi(strBuff);
+@@ -2887,7 +2911,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*���ݷ�") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_ATTACK_DAMAGE) == 0)
+ 		{
+ 			p = fileread_GetWord(strBuff, p);
+ 			lpDefItem->sDamage[0] = atoi(strBuff);
+@@ -2901,14 +2925,14 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*�����Ÿ�") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_SHOOTING_RANGE) == 0)
+ 		{
+ 			p = fileread_GetWord(strBuff, p);
+ 			lpItem->Shooting_Range = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*���ݼӵ�") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_ATTACK_SPEED) == 0)
+ 		{
+ 			p = fileread_GetWord(strBuff, p);
+ 			lpItem->Attack_Speed = atoi(strBuff);
+@@ -2916,7 +2940,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*���߷�") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_ATTACK_RATING) == 0)
+ 		{
+ 			p = fileread_GetWord(strBuff, p);
+ 			lpDefItem->sAttack_Rating[0] = atoi(strBuff);
+@@ -2926,7 +2950,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ũ��Ƽ��") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_CRITICAL) == 0)
+ 		{
+ 			p = fileread_GetWord(strBuff, p);
+ 			lpItem->Critical_Hit = atoi(strBuff);
+--- before/SourceCode/SrcServer/src/fileread.cpp
++++ after/SourceCode/SrcServer/src/fileread.cpp
+@@ -2581,6 +2581,30 @@
+ 
+ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
+ {
++
++	// Legacy OpenItem parser tokens.
++	// OpenItem files use historical CP949 byte sequences.
++	// Byte escapes keep this source independent of source-file encoding.
++	static const char *ITEM_TOKEN_CODE =
++		"\x2A\xC4\xDA\xB5\xE5";                  // CODE
++	static const char *ITEM_TOKEN_DURABILITY =
++		"\x2A\xB3\xBB\xB1\xB8\xB7\xC2";          // DURABILITY
++	static const char *ITEM_TOKEN_WEIGHT =
++		"\x2A\xB9\xAB\xB0\xD4";                  // WEIGHT
++	static const char *ITEM_TOKEN_PRICE =
++		"\x2A\xB0\xA1\xB0\xDD";                  // PRICE
++	static const char *ITEM_TOKEN_ATTACK_DAMAGE =
++		"\x2A\xB0\xF8\xB0\xDD\xB7\xC2";          // ATTACK DAMAGE
++	static const char *ITEM_TOKEN_SHOOTING_RANGE =
++		"\x2A\xBB\xE7\xC1\xA4\xB0\xC5\xB8\xAE"; // RANGE
++	static const char *ITEM_TOKEN_ATTACK_SPEED =
++		"\x2A\xB0\xF8\xB0\xDD\xBC\xD3\xB5\xB5"; // ATTACK SPEED
++	static const char *ITEM_TOKEN_ATTACK_RATING =
++		"\x2A\xB8\xED\xC1\xDF\xB7\xC2";          // ATTACK RATING
++	static const char *ITEM_TOKEN_CRITICAL =
++		"\x2A\xC5\xA9\xB8\xAE\xC6\xBC\xC4\xC3"; // CRITICAL
++
++
+ 	FILE	*fp;
+ 	char strBuff[128];
+ 	char *p;
+@@ -2626,7 +2650,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*�ڵ�") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_CODE) == 0)
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 
+@@ -2684,7 +2708,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*������") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_DURABILITY) == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sDurability[0] = atoi(strBuff);
+@@ -2694,7 +2718,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*����") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_WEIGHT) == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Weight = atoi(strBuff);
+@@ -2702,7 +2726,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*����") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_PRICE) == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Price = atoi(strBuff);
+@@ -2780,7 +2804,7 @@
+ 
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*���ݷ�") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_ATTACK_DAMAGE) == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sDamage[0] = atoi(strBuff);
+@@ -2794,14 +2818,14 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*�����Ÿ�") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_SHOOTING_RANGE) == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Shooting_Range = atoi(strBuff);
+ 			NextFlag = TRUE;
+ 		}
+ 
+-		if(!NextFlag && lstrcmp(decode, "*���ݼӵ�") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_ATTACK_SPEED) == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Attack_Speed = atoi(strBuff);
+@@ -2809,7 +2833,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*���߷�") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_ATTACK_RATING) == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpDefItem->sAttack_Rating[0] = atoi(strBuff);
+@@ -2819,7 +2843,7 @@
+ 		}
+ 
+ 
+-		if(!NextFlag && lstrcmp(decode, "*ũ��Ƽ��") == 0)
++		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_CRITICAL) == 0)
+ 		{
+ 			p = local_GetWord(strBuff, p);
+ 			lpItem->Critical_Hit = atoi(strBuff);

@@ -1,0 +1,238 @@
+=== GAME ===
+
+[000] AMBIGUOUS
+SUMMIT = *�̸�
+HEX    = 2a ef bf bd cc b8 ef bf bd
+SIG    = lpItem->ItemName
+MASTER = *이름 | *C_NAME | *J_NAME | *T_NAME | *J_NAME | *TH_NAME | *V_NAME | *B_NAME | *A_NAME
+
+[001] AMBIGUOUS
+SUMMIT = *J_NAME
+HEX    = 2a 4a 5f 4e 41 4d 45
+SIG    = lpItem->ItemName
+MASTER = *이름 | *C_NAME | *J_NAME | *T_NAME | *J_NAME | *TH_NAME | *V_NAME | *B_NAME | *A_NAME
+
+[028] NO_MATCH
+SUMMIT = *�������
+HEX    = 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+[030] NO_MATCH
+SUMMIT = *���������
+HEX    = 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+[032] NO_MATCH
+SUMMIT = *���׹̳����
+HEX    = 2a ef bf bd ef bf bd ef bf bd d7 b9 cc b3 ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+[034] NO_MATCH
+SUMMIT = *�����߰�
+HEX    = 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+SIG    = 
+
+[036] NO_MATCH
+SUMMIT = *�������߰�
+HEX    = 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+SIG    = 
+
+[038] NO_MATCH
+SUMMIT = *���׹̳��߰�
+HEX    = 2a ef bf bd ef bf bd ef bf bd d7 b9 cc b3 ef bf bd ef bf bd df b0 ef bf bd
+SIG    = 
+
+[046] NO_MATCH
+SUMMIT = *���׹̳ʻ��
+HEX    = 2a ef bf bd ef bf bd ef bf bd d7 b9 cc b3 ca bb ef bf bd ef bf bd
+SIG    = 
+
+[048] NO_MATCH
+SUMMIT = *�������
+HEX    = 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+[050] NO_MATCH
+SUMMIT = *���������
+HEX    = 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+[053] NO_MATCH
+SUMMIT = **Ưȭ����
+HEX    = 2a 2a c6 af c8 ad ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = lpDefItem->JobBitCodeRandomCount ; lpDefItem->dwJobBitCode_Random[]
+
+[054] NO_MATCH
+SUMMIT = **�����
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = lpDefItem->fSpecial_Absorb[]
+
+[055] NO_MATCH
+SUMMIT = **����
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = lpDefItem->sSpecial_Defence[]
+
+[056] NO_MATCH
+SUMMIT = **�̵��ӵ�
+HEX    = 2a 2a ef bf bd cc b5 ef bf bd ef bf bd d3 b5 ef bf bd
+SIG    = lpDefItem->fSpecial_fSpeed[]
+
+[061] NO_MATCH
+SUMMIT = **�������õ�
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd c3 b5 ef bf bd
+SIG    = lpDefItem->fSpecial_Magic_Mastery[]
+
+[062] NO_MATCH
+SUMMIT = **�����߰�
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+SIG    = 
+
+[064] NO_MATCH
+SUMMIT = **�������߰�
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+SIG    = 
+
+[066] NO_MATCH
+SUMMIT = **���߷�
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd df b7 ef bf bd
+SIG    = lpDefItem->Lev_Attack_Rating[]
+
+[068] NO_MATCH
+SUMMIT = **�������
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+[069] NO_MATCH
+SUMMIT = **������
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = lpDefItem->fSpecial_Mana_Regen[]
+
+[070] NO_MATCH
+SUMMIT = **���������
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+[072] NO_MATCH
+SUMMIT = **���׹̳����
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd d7 b9 cc b3 ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+=== SERVER ===
+
+[000] AMBIGUOUS
+SUMMIT = *�̸�
+HEX    = 2a ef bf bd cc b8 ef bf bd
+SIG    = lpItem->ItemName
+MASTER = *이름 | *C_NAME | *J_NAME | *T_NAME | *J_NAME | *TH_NAME | *V_NAME | *B_NAME | *A_NAME
+
+[001] AMBIGUOUS
+SUMMIT = *J_NAME
+HEX    = 2a 4a 5f 4e 41 4d 45
+SIG    = lpItem->ItemName
+MASTER = *이름 | *C_NAME | *J_NAME | *T_NAME | *J_NAME | *TH_NAME | *V_NAME | *B_NAME | *A_NAME
+
+[028] NO_MATCH
+SUMMIT = *�������
+HEX    = 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+[030] NO_MATCH
+SUMMIT = *���������
+HEX    = 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+[032] NO_MATCH
+SUMMIT = *���׹̳����
+HEX    = 2a ef bf bd ef bf bd ef bf bd d7 b9 cc b3 ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+[034] NO_MATCH
+SUMMIT = *�����߰�
+HEX    = 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+SIG    = 
+
+[036] NO_MATCH
+SUMMIT = *�������߰�
+HEX    = 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+SIG    = 
+
+[038] NO_MATCH
+SUMMIT = *���׹̳��߰�
+HEX    = 2a ef bf bd ef bf bd ef bf bd d7 b9 cc b3 ef bf bd ef bf bd df b0 ef bf bd
+SIG    = 
+
+[046] NO_MATCH
+SUMMIT = *���׹̳ʻ��
+HEX    = 2a ef bf bd ef bf bd ef bf bd d7 b9 cc b3 ca bb ef bf bd ef bf bd
+SIG    = 
+
+[048] NO_MATCH
+SUMMIT = *�������
+HEX    = 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+[050] NO_MATCH
+SUMMIT = *���������
+HEX    = 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+[053] NO_MATCH
+SUMMIT = **Ưȭ����
+HEX    = 2a 2a c6 af c8 ad ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = lpDefItem->JobBitCodeRandomCount ; lpDefItem->dwJobBitCode_Random[]
+
+[054] NO_MATCH
+SUMMIT = **�����
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = lpDefItem->fSpecial_Absorb[]
+
+[055] NO_MATCH
+SUMMIT = **����
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = lpDefItem->sSpecial_Defence[]
+
+[056] NO_MATCH
+SUMMIT = **�̵��ӵ�
+HEX    = 2a 2a ef bf bd cc b5 ef bf bd ef bf bd d3 b5 ef bf bd
+SIG    = lpDefItem->fSpecial_fSpeed[]
+
+[061] NO_MATCH
+SUMMIT = **�������õ�
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd c3 b5 ef bf bd
+SIG    = lpDefItem->fSpecial_Magic_Mastery[]
+
+[062] NO_MATCH
+SUMMIT = **�����߰�
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+SIG    = 
+
+[064] NO_MATCH
+SUMMIT = **�������߰�
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+SIG    = 
+
+[066] NO_MATCH
+SUMMIT = **���߷�
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd df b7 ef bf bd
+SIG    = lpDefItem->Lev_Attack_Rating[]
+
+[068] NO_MATCH
+SUMMIT = **�������
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+[069] NO_MATCH
+SUMMIT = **������
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = lpDefItem->fSpecial_Mana_Regen[]
+
+[070] NO_MATCH
+SUMMIT = **���������
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
+[072] NO_MATCH
+SUMMIT = **���׹̳����
+HEX    = 2a 2a ef bf bd ef bf bd ef bf bd d7 b9 cc b3 ef bf bd ef bf bd ef bf bd ef bf bd
+SIG    = 
+
