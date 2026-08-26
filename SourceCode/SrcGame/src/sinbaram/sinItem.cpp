@@ -76,7 +76,7 @@ DWORD NotSet_Item_KIND[] = { ITEM_KIND_QUEST_WEAPON,0 };
 
 
 sITEM sItem[MAX_ITEM] = {
-#include "items.h"
+#include "item_catalog_recovered.inc"
 };
 
 cITEM::cITEM()
