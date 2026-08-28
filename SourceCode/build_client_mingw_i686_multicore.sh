@@ -10,15 +10,17 @@ ROOT="$(pwd)"
 BUILD_DIR="$ROOT/build_mingw_client_i686"
 OBJ_DIR="$BUILD_DIR/objects"
 ERR_DIR="$BUILD_DIR/errors"
+DEP_DIR="$BUILD_DIR/deps"
 
 CPP_LIST="$ROOT/cpp_files_client_i686.txt"
 OBJ_LIST="$ROOT/object_files_client_mingw.txt"
 LOG="$ROOT/build_client_i686_compile_errors.log"
+SIGNATURE_FILE="$BUILD_DIR/compile_signature.sha256"
 
 CXX="${CXX:-i686-w64-mingw32-g++}"
 
 # Usa todos os processadores lógicos disponíveis.
-# Pode ser sobrescrito: JOBS=16 ./build_client_mingw_i686_multicore.sh
+# Pode ser sobrescrito: JOBS=16 ./build_client_mingw_i686_multicore_cached.sh
 if command -v nproc >/dev/null 2>&1; then
     DEFAULT_JOBS="$(nproc)"
 elif command -v getconf >/dev/null 2>&1; then
@@ -28,6 +30,25 @@ else
 fi
 
 JOBS="${JOBS:-$DEFAULT_JOBS}"
+
+# CLEAN=1 força uma compilação totalmente limpa.
+CLEAN="${CLEAN:-0}"
+
+# Usa ccache automaticamente se estiver disponível.
+if command -v ccache >/dev/null 2>&1; then
+    USE_CCACHE=1
+else
+    USE_CCACHE=0
+fi
+
+# O make é usado apenas para consultar os .d e saber se algum header mudou.
+# Se não existir, o script continua correto, mas não faz SKIP incremental;
+# nesse caso o ccache ainda pode acelerar recompilações.
+if command -v make >/dev/null 2>&1; then
+    USE_MAKE_DEPS=1
+else
+    USE_MAKE_DEPS=0
+fi
 
 ################################################################################
 # FLAGS
@@ -85,7 +106,6 @@ CXXFLAGS=(
     -Imodules/MD5
     -Imodules/Helper
 
-    # Usa os headers DirectX compatíveis já separados para o cliente.
     -IDependency/DirectX9/Include
 )
 
@@ -95,6 +115,11 @@ CXXFLAGS=(
 
 if ! command -v "$CXX" >/dev/null 2>&1; then
     echo "Erro: compilador não encontrado: $CXX"
+    exit 1
+fi
+
+if ! command -v sha256sum >/dev/null 2>&1; then
+    echo "Erro: sha256sum não encontrado"
     exit 1
 fi
 
@@ -117,8 +142,40 @@ fi
 # PREPARAÇÃO
 ################################################################################
 
-rm -rf "$BUILD_DIR"
-mkdir -p "$OBJ_DIR" "$ERR_DIR"
+if [ "$CLEAN" = "1" ]; then
+    rm -rf "$BUILD_DIR"
+fi
+
+mkdir -p "$OBJ_DIR" "$ERR_DIR" "$DEP_DIR"
+
+# O cache incremental por .d só conhece timestamps de source/headers.
+# Esta assinatura também invalida objetos quando mudam o script, o compilador
+# ou as flags de compilação, evitando SKIP de .o produzidos por outro comando.
+SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
+SCRIPT_HASH="$(sha256sum "$SCRIPT_PATH" | awk '{print $1}')"
+COMPILER_PATH="$(command -v "$CXX")"
+COMPILER_VERSION="$("$CXX" --version 2>/dev/null | head -n 1)"
+BUILD_SIGNATURE="$(
+    {
+        printf 'script=%s\n' "$SCRIPT_HASH"
+        printf 'compiler=%s\n' "$COMPILER_PATH"
+        printf 'version=%s\n' "$COMPILER_VERSION"
+        printf 'flags='
+        printf '%q ' "${CXXFLAGS[@]}"
+        printf '\n'
+    } | sha256sum | awk '{print $1}'
+)"
+PREVIOUS_SIGNATURE=""
+if [ -f "$SIGNATURE_FILE" ]; then
+    PREVIOUS_SIGNATURE="$(cat "$SIGNATURE_FILE")"
+fi
+
+if [ "$PREVIOUS_SIGNATURE" != "$BUILD_SIGNATURE" ]; then
+    echo "CACHE  : configuração de compilação mudou; invalidando objetos"
+    rm -rf "$OBJ_DIR" "$ERR_DIR" "$DEP_DIR"
+    mkdir -p "$OBJ_DIR" "$ERR_DIR" "$DEP_DIR"
+fi
+printf '%s\n' "$BUILD_SIGNATURE" > "$SIGNATURE_FILE"
 
 : > "$CPP_LIST"
 : > "$OBJ_LIST"
@@ -159,6 +216,17 @@ echo "Fontes : $TOTAL"
 echo "JOBS   : $JOBS"
 echo "CPU(s) : $DEFAULT_JOBS"
 echo "CXX    : $CXX"
+if [ "$USE_CCACHE" = "1" ]; then
+    echo "CCACHE : ativo"
+else
+    echo "CCACHE : não encontrado"
+fi
+if [ "$USE_MAKE_DEPS" = "1" ]; then
+    echo "CACHE  : incremental + headers (.d)"
+else
+    echo "CACHE  : ccache/compilação normal (make ausente)"
+fi
+echo "CLEAN  : $CLEAN"
 echo "===================================="
 echo
 
@@ -168,12 +236,8 @@ echo
 
 CXXFLAGS_SERIALIZED="$(declare -p CXXFLAGS)"
 
-export ROOT
-export BUILD_DIR
-export OBJ_DIR
-export ERR_DIR
-export CXX
-export CXXFLAGS_SERIALIZED
+export ROOT BUILD_DIR OBJ_DIR ERR_DIR DEP_DIR
+export CXX CXXFLAGS_SERIALIZED USE_CCACHE USE_MAKE_DEPS
 
 ################################################################################
 # COMPILAÇÃO UNITÁRIA
@@ -184,25 +248,43 @@ compile_one()
     eval "$CXXFLAGS_SERIALIZED"
 
     src="$1"
-
     rel="${src%.*}"
     obj="$OBJ_DIR/$rel.o"
+    dep="$DEP_DIR/$rel.d"
     err="$ERR_DIR/$rel.err"
 
-    mkdir -p "$(dirname "$obj")" "$(dirname "$err")"
+    mkdir -p "$(dirname "$obj")" "$(dirname "$dep")" "$(dirname "$err")"
+
+    # O arquivo .d conhece todos os headers usados por este objeto.
+    # make -q retorna 0 quando o objeto está atualizado em relação a todas
+    # as dependências; se algo mudou, seguimos para a recompilação.
+    if [ "$USE_MAKE_DEPS" = "1" ] && [ -f "$obj" ] && [ -f "$dep" ]; then
+        if printf '%%.o:\n\t@:\n' | make -rR -s -q -f "$dep" -f - "$obj" >/dev/null 2>&1; then
+            rm -f "$err"
+            printf 'SKIP %s\n' "$src"
+            return 0
+        fi
+    fi
 
     EXTRA_FLAGS=()
-
     case "$src" in
         *.c)
-            # Mantém compatibilidade com fontes C legadas que dependem de C++.
             EXTRA_FLAGS+=(-x c++)
             ;;
     esac
 
-    "$CXX" \
+    if [ "$USE_CCACHE" = "1" ]; then
+        COMPILER=(ccache "$CXX")
+    else
+        COMPILER=("$CXX")
+    fi
+
+    "${COMPILER[@]}" \
         "${CXXFLAGS[@]}" \
         "${EXTRA_FLAGS[@]}" \
+        -MMD -MP \
+        -MF "$dep" \
+        -MQ "$obj" \
         -c "$src" \
         -o "$obj" \
         >"$err" 2>&1
@@ -213,7 +295,7 @@ compile_one()
         rm -f "$err"
         printf 'OK   %s\n' "$src"
     else
-        rm -f "$obj"
+        rm -f "$obj" "$dep"
         printf 'FAIL %s\n' "$src"
     fi
 
@@ -239,8 +321,11 @@ parallel \
     --env BUILD_DIR \
     --env OBJ_DIR \
     --env ERR_DIR \
+    --env DEP_DIR \
     --env CXX \
     --env CXXFLAGS_SERIALIZED \
+    --env USE_CCACHE \
+    --env USE_MAKE_DEPS \
     compile_one \
     :::: "$CPP_LIST"
 
@@ -264,11 +349,14 @@ find "$ERR_DIR" \
     } >> "$LOG"
 done
 
-find "$OBJ_DIR" \
-    -type f \
-    -name "*.o" \
-    | sort \
-    > "$OBJ_LIST"
+# Gera a lista apenas com objetos correspondentes às fontes atuais.
+while IFS= read -r src; do
+    rel="${src%.*}"
+    obj="$OBJ_DIR/$rel.o"
+    if [ -f "$obj" ]; then
+        printf '%s\n' "$obj"
+    fi
+done < "$CPP_LIST" | sort > "$OBJ_LIST"
 
 OK="$(wc -l < "$OBJ_LIST")"
 FAIL=$((TOTAL - OK))
