@@ -19,7 +19,14 @@ long tServerTime = 0;
 unsigned char rsBlessCastle[4096] = {0};
 unsigned char rsHardCoreEventOpenPos[4096] = {0};
 
-int GetClanCode(int) { return 0; }
+DWORD GetClanCode(int ClassClanCode)
+{
+    DWORD dwCode = ClassClanCode % 1000000;
+    DWORD dwCode1 = ClassClanCode / 100000000;
+    DWORD dwCode2 = dwCode1 * 100000000;
+
+    return dwCode + dwCode2;
+}
 
 int rsProcessQuest(rsPLAYINFO*, smCHAR*, int, int) { return 0; }
 smCHAR* rsGetLinkChar(smCHAR*) { return 0; }
