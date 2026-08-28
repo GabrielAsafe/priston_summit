@@ -446,11 +446,9 @@ struct SACER_INFO{
 	int Healing_Heal[10][2];
 
 	int HolyBolt_UseMana[10];
-	int HolyBolt_Damage[10][2];
     int HolyBolt_DamagePercent[10];
 	
 	int M_Spark_UseMana[10];
-	int M_Spark_Damage[10][2];
 	int M_Spark_Damage_Percent[10];
 	int M_Spark_Num[10];
 
@@ -459,9 +457,7 @@ struct SACER_INFO{
 	int HolyMind_Time[10];
 
 	float Meditation_Regen[10];
-    int Meditation_Power[10];
 	
-	int Divine_Lightning_Damage[10][2];
 	int Divine_Lightning_Damage_Percent[10];
 	int Divine_Lightning_Num[10];
 	int Divine_Lightning_Mana[10];
@@ -474,7 +470,6 @@ struct SACER_INFO{
 	int Grand_Healing_Range[10];
 	int Grand_Healing_Mana[10];
 
-	int Vigor_Ball_Damage[10][2];
 	int Vigor_Ball_Damage_Percent[10];
 	int Vigor_Ball_UseMana[10];
 
@@ -490,7 +485,6 @@ struct SACER_INFO{
 	int Virtual_Life_Time[10];
 	int Virtual_Life_UseMana[10];
 
-	int Glacial_Spike_Damage[10][2];
 	int Glacial_Spike_Damage_Percent[10];
 	int Glacial_Spike_Area[10];
 	int Glacial_Spike_UseMana[10];
@@ -501,7 +495,6 @@ struct SACER_INFO{
 	int Regeneration_Field_Area[10];
 	int Regeneration_Field_UseMana[10];
 
-	int Chain_Lightning_Damage[10][2];
 	int Chain_Lightning_Damage_Percent[10];
 	int Chain_Lightning_Num[10];
 	int Chain_Lightning_Range[10];

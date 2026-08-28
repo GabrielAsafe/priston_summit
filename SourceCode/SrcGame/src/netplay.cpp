@@ -2186,7 +2186,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		memcpy(Healing_Heal, lpSacerInfo->Healing_Heal, sizeof(Healing_Heal));
 
 		memcpy(HolyBolt_UseMana, lpSacerInfo->HolyBolt_UseMana, sizeof(HolyBolt_UseMana));
-		memcpy(HolyBolt_Damage, lpSacerInfo->HolyBolt_Damage, sizeof(HolyBolt_Damage));
+		memcpy(HolyBolt_DamagePercent, lpSacerInfo->HolyBolt_DamagePercent, sizeof(HolyBolt_DamagePercent));
 
 		memcpy(M_Spark_UseMana, lpSacerInfo->M_Spark_UseMana, sizeof(M_Spark_UseMana));
 		memcpy(M_Spark_Damage_Percent, lpSacerInfo->M_Spark_Damage_Percent, sizeof(M_Spark_Damage_Percent));
@@ -2225,7 +2225,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		memcpy(Virtual_Life_Time, lpSacerInfo->Virtual_Life_Time, sizeof(Virtual_Life_Time));
 		memcpy(Virtual_Life_UseMana, lpSacerInfo->Virtual_Life_UseMana, sizeof(Virtual_Life_UseMana));
 
-		memcpy(Glacial_Spike_Damage, lpSacerInfo->Glacial_Spike_Damage, sizeof(Glacial_Spike_Damage));
+		memcpy(Glacial_Spike_Damage_Percent, lpSacerInfo->Glacial_Spike_Damage_Percent, sizeof(Glacial_Spike_Damage_Percent));
 		memcpy(Glacial_Spike_Area, lpSacerInfo->Glacial_Spike_Area, sizeof(Glacial_Spike_Area));
 		memcpy(Glacial_Spike_UseMana, lpSacerInfo->Glacial_Spike_UseMana, sizeof(Glacial_Spike_UseMana));
 
