@@ -312,7 +312,6 @@ export -f compile_one
 parallel \
     --jobs "$JOBS" \
     --load 100% \
-    --noswap \
     --line-buffer \
     --eta \
     --halt never \
