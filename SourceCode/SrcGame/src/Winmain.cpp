@@ -470,32 +470,8 @@ void allocConsole()
 
 void initipgame()
 {
-	FILE* arq;
-	/* TEMP_MINGW_DISABLE_EXTERNAL_IP_CHECK */ int ipexts = 0;
-	arq = fopen("image/system.txt", "rt");
-	char result[64];
-	fscanf(arq, "%s", result);
-	fclose(arq);
-	//DeleteFile("image/system.txt");
-
-
-	if (SQL::GetInstance()->Connect("189.79.242.5,31220", "PrimeSys", "1qasw2!QASW@"))
-	{
-		if (SQL::GetInstance()->IsConnected())
-		{
-			char szQuery[512];
-			SQL::GetInstance()->EnterSqlSection();
-
-
-
-			wsprintf(szQuery, "IF NOT EXISTS(SELECT * FROM [PrimeRPG].[dbo].[RequestIP] WHERE IPAddress ='%s' ) BEGIN INSERT INTO [PrimeRPG].[dbo].[RequestIP] ([IPAddress],[Included],[Datetm],[Font]) values('%s',%d,getdate(),'%s') end", result, result, 0,"Program");
-			if (SQL::GetInstance()->Execute(szQuery))
-			{
-			}
-
-			SQL::GetInstance()->LeaveSqlSection();
-		}
-	}
+	// External IP reporting is intentionally disabled for the local environment.
+	return;
 }
 
 
