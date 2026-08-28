@@ -479,8 +479,6 @@ void cSettingsWindow::BuildWindowGeneral()
 				pKeyBoard->setY(pTitle3->getY() + (pTitle3->getHeight() - pKeyBoard->getHeight()) / 2);
 				pWindowGeneral->AddElement(pKeyBoard);
 
-				{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"TEMP skip macro UIInput block before CTRL+F1\n"); fclose(f);} }
-				return;
 
 				iY = pWindowGeneral->getMaxY() + 10;
 				pWindowGeneral->AddElement(new UIText(0, "CTRL + F1", 23, iY));
