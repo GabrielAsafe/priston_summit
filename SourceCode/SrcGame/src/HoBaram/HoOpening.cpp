@@ -1132,15 +1132,13 @@ int HoOpening::Draw()
 					if (LoginInputState == 0)
 					{
 						{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"before caret account draw x=%d y=%d End=%d\n", startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY - 60, End); fclose(f);} }
-						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
-						/* dsTextLineOut(startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY - 60, "|", 1); */
+						dsTextLineOut(startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY - 60, "|", 1);
 						{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"after caret account draw\n"); fclose(f);} }
 					}
 					else if (LoginInputState == 1)
 					{
 						{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"before caret pass draw x=%d y=%d End=%d\n", startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY + 4, End); fclose(f);} }
-						/* TEMP_MINGW_SKIP_LOGIN_CARET: dsTextLineOut("|") crashes in MinGW build */
-						/* dsTextLineOut(startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY + 4, "|", 1); */
+						dsTextLineOut(startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY + 4, "|", 1);
 						{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"after caret pass draw\n"); fclose(f);} }
 					}
 				}
@@ -1276,8 +1274,7 @@ int HoOpening::Draw()
 			for (int count = 0; count < len; count++)
 			{
 				{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"before password star draw count=%d\n", count); fclose(f);} }
-				/* TEMP_MINGW_SKIP_LOGIN_PASSWORD_STAR: dsTextLineOut("*") crashes in MinGW build */
-				/* dsTextLineOut( startLogoX + startAccountAddX + 25 + count * 6, startLogoY + startAccountAddY + 8, "*", 1); */
+				dsTextLineOut( startLogoX + startAccountAddX + 25 + count * 6, startLogoY + startAccountAddY + 8, "*", 1);
 				{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"after password star draw count=%d\n", count); fclose(f);} }
 			}
 
