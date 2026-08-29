@@ -2682,7 +2682,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*����ũ����") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xAF\xB4\xCF\xC5\xA9\xBB\xF6\xBB\xF3") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->EffectColor[0] = atoi(strBuff);
@@ -2701,7 +2701,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*����Ʈ����") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xC6\xE5\xC6\xAE\xBC\xB3\xC1\xA4") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->DispEffect = atoi(strBuff);
@@ -2738,7 +2738,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*��ü") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xBB\xFD\xC3\xBC") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_BIONIC][0] = atoi(strBuff);
@@ -2746,7 +2746,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			lpDefItem->sResistance[sITEMINFO_BIONIC][1] = atoi(strBuff);
 			NextFlag = TRUE;
 		}
-		if(!NextFlag && lstrcmp(decode, "*���ڿ�") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xB4\xEB\xC0\xDA\xBF\xAC") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_EARTH][0] = atoi(strBuff);
@@ -2754,7 +2754,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			lpDefItem->sResistance[sITEMINFO_EARTH][1] = atoi(strBuff);
 			NextFlag = TRUE;
 		}
-		if(!NextFlag && lstrcmp(decode, "*��") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xD2") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_FIRE][0] = atoi(strBuff);
@@ -2762,7 +2762,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			lpDefItem->sResistance[sITEMINFO_FIRE][1] = atoi(strBuff);
 			NextFlag = TRUE;
 		}
-		if(!NextFlag && lstrcmp(decode, "*�ñ�") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xB3\xC3\xB1\xE2") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_ICE][0] = atoi(strBuff);
@@ -2770,7 +2770,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			lpDefItem->sResistance[sITEMINFO_ICE][1] = atoi(strBuff);
 			NextFlag = TRUE;
 		}
-		if(!NextFlag && lstrcmp(decode, "*����") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xF8\xB0\xB3") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_LIGHTING][0] = atoi(strBuff);
@@ -2778,7 +2778,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			lpDefItem->sResistance[sITEMINFO_LIGHTING][1] = atoi(strBuff);
 			NextFlag = TRUE;
 		}
-		if(!NextFlag && lstrcmp(decode, "*��") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xB5\xB6") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_POISON][0] = atoi(strBuff);
@@ -2786,7 +2786,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			lpDefItem->sResistance[sITEMINFO_POISON][1] = atoi(strBuff);
 			NextFlag = TRUE;
 		}
-		if(!NextFlag && lstrcmp(decode, "*��") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xB0") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_WATER][0] = atoi(strBuff);
@@ -2794,7 +2794,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			lpDefItem->sResistance[sITEMINFO_WATER][1] = atoi(strBuff);
 			NextFlag = TRUE;
 		}
-		if(!NextFlag && lstrcmp(decode, "*�ٶ�") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xD9\xB6\xF7") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->sResistance[sITEMINFO_WIND][0] = atoi(strBuff);
@@ -2858,7 +2858,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*�����") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xED\xBC\xF6\xB7\xC2") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->fAbsorb[0] = (float)atof(strBuff);
@@ -2868,7 +2868,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*����") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xE6\xBE\xEE\xB7\xC2") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->sDefence[0] = atoi(strBuff);
@@ -2878,7 +2878,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*�����") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xED\xB7\xB0\xC0\xB2") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->fBlock_Rating[0] = (float)atof(strBuff);
@@ -2889,7 +2889,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*�̵��ӵ�") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xB5\xBF\xBC\xD3\xB5\xB5") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->fSpeed[0] = (float)atof(strBuff);
@@ -2900,7 +2900,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*��������") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xB8\xC0\xAF\xB0\xF8\xB0\xA3") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->Potion_Space = atoi(strBuff);
@@ -2909,14 +2909,14 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*�������õ�") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xB6\xB9\xFD\xBC\xF7\xB7\xC3\xB5\xB5") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->fMagic_Mastery = (float)atof(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "*�������") == 0 || lstrcmp(decode, "*������") == 0))
+		if(!NextFlag && (lstrcmp(decode, "\x2A\xB8\xB6\xB3\xAA\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\xB1\xE2\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->fMana_Regen[0] = (float)atof(strBuff);
@@ -2925,7 +2925,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "*���������") == 0 || lstrcmp(decode, "*��������") == 0))
+		if(!NextFlag && (lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->fLife_Regen[0] = (float)atof(strBuff);
@@ -2934,7 +2934,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "*���׹̳����") == 0 || lstrcmp(decode, "*�ٷ����") == 0))
+		if(!NextFlag && (lstrcmp(decode, "\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xAA\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\xB1\xD9\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->fStamina_Regen[0] = (float)atof(strBuff);
@@ -2944,7 +2944,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "*�����߰�") == 0 || lstrcmp(decode, "*����߰�") == 0))
+		if(!NextFlag && (lstrcmp(decode, "\x2A\xB8\xB6\xB3\xAA\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\xB1\xE2\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->Increase_Mana[0] = atoi(strBuff);
@@ -2953,7 +2953,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "*�������߰�") == 0 || lstrcmp(decode, "*������߰�") == 0))
+		if(!NextFlag && (lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->Increase_Life[0] = atoi(strBuff);
@@ -2962,7 +2962,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "*���׹̳��߰�") == 0 || lstrcmp(decode, "*�ٷ��߰�") == 0))
+		if(!NextFlag && (lstrcmp(decode, "\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xAA\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\xB1\xD9\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->Increase_Stamina[0] = atoi(strBuff);
@@ -2975,7 +2975,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*����") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xB7\xB9\xBA\xA7") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->Level = atoi(strBuff);
@@ -2983,7 +2983,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*��") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xFB") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->Strength = atoi(strBuff);
@@ -2991,28 +2991,28 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*���ŷ�") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xC1\xA4\xBD\xC5\xB7\xC2") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->Spirit = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*���") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xE7\xB4\xC9") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->Talent = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*��ø��") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xCE\xC3\xB8\xBC\xBA") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->Dexterity = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*�ǰ�") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xC7\xB0\xAD") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->Health = atoi(strBuff);
@@ -3023,7 +3023,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && (lstrcmp(decode, "*���׹̳ʻ��") == 0 || lstrcmp(decode, "*�ٷ»��") == 0))
+		if(!NextFlag && (lstrcmp(decode, "\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xCA\xBB\xF3\xBD\xC2") == 0 || lstrcmp(decode, "\x2A\xB1\xD9\xB7\xC2\xBB\xF3\xBD\xC2") == 0))
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->Stamina[0] = atoi(strBuff);
@@ -3033,7 +3033,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && (lstrcmp(decode, "*�������") == 0 || lstrcmp(decode, "*��»��") == 0))
+		if(!NextFlag && (lstrcmp(decode, "\x2A\xB8\xB6\xB3\xAA\xBB\xF3\xBD\xC2") == 0 || lstrcmp(decode, "\x2A\xB1\xE2\xB7\xC2\xBB\xF3\xBD\xC2") == 0))
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->Mana[0] = atoi(strBuff);
@@ -3043,7 +3043,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && (lstrcmp(decode, "*���������") == 0 || lstrcmp(decode, "*����»��") == 0))
+		if(!NextFlag && (lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xBB\xF3\xBD\xC2") == 0 || lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2\xBB\xF3\xBD\xC2") == 0))
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->Life[0] = atoi(strBuff);
@@ -3081,7 +3081,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "**Ưȭ����") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xC6\xAF\xC8\xAD\xB7\xA3\xB4\xFD") == 0)
 		{
 			while(1)
 			{
@@ -3111,7 +3111,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "**�����") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xC8\xED\xBC\xF6\xB7\xC2") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->fSpecial_Absorb[0] = (float)atof(strBuff);
@@ -3121,7 +3121,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**����") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xB9\xE6\xBE\xEE\xB7\xC2") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->sSpecial_Defence[0] = atoi(strBuff);
@@ -3133,7 +3133,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "**�̵��ӵ�") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xC0\xCC\xB5\xBF\xBC\xD3\xB5\xB5") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->fSpecial_fSpeed[0] = (float)atof(strBuff);
@@ -3143,35 +3143,35 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**�����") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xBA\xED\xB7\xB0\xC0\xB2") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->JobItem.Add_fBlock_Rating = (float)atof(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**���ݼӵ�") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xB0\xF8\xB0\xDD\xBC\xD3\xB5\xB5") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->JobItem.Add_Attack_Speed = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**ũ��Ƽ��") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xC5\xA9\xB8\xAE\xC6\xBC\xC4\xC3") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->JobItem.Add_Critical_Hit = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**�����Ÿ�") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xBB\xE7\xC1\xA4\xB0\xC5\xB8\xAE") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->JobItem.Add_Shooting_Range = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**�������õ�") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xB8\xB6\xB9\xFD\xBC\xF7\xB7\xC3\xB5\xB5") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 
@@ -3189,21 +3189,21 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && (lstrcmp(decode, "**�����߰�") == 0 || lstrcmp(decode, "**����߰�") == 0))
+		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xB8\xB6\xB3\xAA\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\x2A\xB1\xE2\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->JobItem.Lev_Mana = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "**�������߰�") == 0 || lstrcmp(decode, "**������߰�") == 0))
+		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xC3\xDF\xB0\xA1") == 0 || lstrcmp(decode, "\x2A\x2A\xBB\xFD\xB8\xED\xB7\xC2\xC3\xDF\xB0\xA1") == 0))
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->JobItem.Lev_Life = atoi(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**���߷�") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xB8\xED\xC1\xDF\xB7\xC2") == 0)
 		{
 
 			p = local_GetWord(strBuff, p);
@@ -3213,7 +3213,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "**���ݷ�") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\x2A\xB0\xF8\xB0\xDD\xB7\xC2") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->JobItem.Lev_Damage[0] = atoi(strBuff);
@@ -3227,7 +3227,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && (lstrcmp(decode, "**�������") == 0 || lstrcmp(decode, "**������") == 0))
+		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xB8\xB6\xB3\xAA\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\x2A\xB1\xE2\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
 		{
 			p = local_GetWord(strBuff, p);
 
@@ -3238,21 +3238,21 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "**���������") == 0 || lstrcmp(decode, "**��������") == 0))
+		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xB6\xF3\xC0\xCC\xC7\xC1\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\x2A\xBB\xFD\xB8\xED\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->JobItem.Per_Life_Regen = (float)atof(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && (lstrcmp(decode, "**���׹̳����") == 0 || lstrcmp(decode, "**�ٷ����") == 0))
+		if(!NextFlag && (lstrcmp(decode, "\x2A\x2A\xBD\xBA\xC5\xD7\xB9\xCC\xB3\xAA\xC0\xE7\xBB\xFD") == 0 || lstrcmp(decode, "\x2A\x2A\xB1\xD9\xB7\xC2\xC0\xE7\xBB\xFD") == 0))
 		{
 			p = local_GetWord(strBuff, p);
 			lpItem->JobItem.Per_Stamina_Regen = (float)atof(strBuff);
 			NextFlag = TRUE;
 		}
 
-		if(!NextFlag && lstrcmp(decode, "*�߻�����") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xDF\xBB\xFD\xC1\xA6\xC7\xD1") == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			lpDefItem->sGenDay[0] = atoi(strBuff);
@@ -3260,7 +3260,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		}
 
 
-		if(!NextFlag && lstrcmp(decode, "*��������") == 0)
+		if(!NextFlag && lstrcmp(decode, "\x2A\xBF\xAC\xB0\xE1\xC6\xC4\xC0\xCF") == 0)
 		{
 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 
