@@ -7990,16 +7990,16 @@ int cITEM::DrawItemText()
 
 	for (i = 0; i < len; i++) {
 		for (j = 0; j < len2; j++) {
-			if (szInfoBuffBack[i] == '/r') {
-				if (szInfoBuff2Back[j] == '/r') {
+			if (szInfoBuffBack[i] == '/' && i + 1 < len && szInfoBuffBack[i + 1] == 'r') {
+				if (szInfoBuff2Back[j] == '/' && j + 1 < len2 && szInfoBuff2Back[j + 1] == 'r') {
 					pItemInfo[Count] = &szInfoBuffBack[TempLen];
 					pItemInfo2[Count] = &szInfoBuff2Back[TempLen2];
 
 					szInfoBuffBack[i] = 0;
 					szInfoBuff2Back[j] = 0;
 
-					TempLen = i + 1;
-					TempLen2 = j + 1;
+					TempLen = i + 2;
+					TempLen2 = j + 2;
 
 					Textlen = lstrlen(pItemInfo[Count]);
 					Textlen2 = lstrlen(pItemInfo2[Count]);
