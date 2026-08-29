@@ -498,7 +498,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 
 	bItemInfoPerf = false;
 
-	if (cCoinShop.isOpen() || cCoinShop_T.isOpen() || VRKeyBuff['P'] && sInfo.SpecialItemFlag[2] != ITEM_KIND_SKIN && !bSendGetItemInfoPerf && (
+	if (cCoinShop.isOpen() || cCoinShop_T.isOpen() || pItem->sItemInfo.SpecialItemFlag[2] != ITEM_KIND_SKIN && !bSendGetItemInfoPerf && (
 		(pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWA1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWC1 ||
 		(pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWH1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWM1 ||
 		(pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWP1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinWS1 ||
