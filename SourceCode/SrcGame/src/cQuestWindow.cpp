@@ -804,7 +804,7 @@ void sSPOILER::DrawQuest(int BaseX, int BaseY)
 		wsprintf(buff, "%d-%d", pQuestInfo->LevelMin, pQuestInfo->LevelMax);
 		dsTextLineOut(BaseX + 411, BaseY + 135, buff, lstrlen(buff));
 
-		DrawFontText(BaseX + 322, BaseY + 135, "Level Requerido:", Orange, 0);
+		DrawFontText(BaseX + 322, BaseY + 135, "Level:", Orange, 0);
 	}
 
 	if (pQuestInfo->QuestDesc[0])
