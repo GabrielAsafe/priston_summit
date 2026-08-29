@@ -1117,7 +1117,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 				db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
 				db->BindInputParameter(&QuestID, 2, PARAMTYPE_Integer);
 				db->BindInputParameter(&QuestKind, 3, PARAMTYPE_Integer);
-				db->BindInputParameter(&QuestID, 4, PARAMTYPE_Integer);
+				db->BindInputParameter(&QuestType, 4, PARAMTYPE_Integer);
 				db->BindInputParameter(playerName, 5, PARAMTYPE_String);
 				if (db->Execute(false))
 				{
@@ -1130,7 +1130,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 					{
 						db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
 						db->BindInputParameter(&QuestKind, 2, PARAMTYPE_Integer);
-						db->BindInputParameter(&QuestID, 3, PARAMTYPE_Integer);
+						db->BindInputParameter(&QuestType, 3, PARAMTYPE_Integer);
 
 						if (db->Execute(false))
 						{
@@ -1158,7 +1158,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 								db->BindInputParameter(&MonsterCounts[i], 2, PARAMTYPE_Integer);
 								db->BindInputParameter(&QuestID, 3, PARAMTYPE_Integer);
 								db->BindInputParameter(&QuestKind, 4, PARAMTYPE_Integer);
-								db->BindInputParameter(&QuestID, 5, PARAMTYPE_Integer);
+								db->BindInputParameter(&QuestType, 5, PARAMTYPE_Integer);
 								db->BindInputParameter(playerName, 6, PARAMTYPE_String);
 								db->BindInputParameter(&PartyFlag, 7, PARAMTYPE_Integer);
 								db->BindInputParameter(&MonsterMaps[i], 8, PARAMTYPE_Integer);
@@ -1183,7 +1183,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 				db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
 				db->BindInputParameter(&QuestID, 2, PARAMTYPE_Integer);
 				db->BindInputParameter(&QuestKind, 3, PARAMTYPE_Integer);
-				db->BindInputParameter(&QuestID, 4, PARAMTYPE_Integer);
+				db->BindInputParameter(&QuestType, 4, PARAMTYPE_Integer);
 				db->BindInputParameter(playerName, 5, PARAMTYPE_String);
 				if (db->Execute(false))
 				{
@@ -1196,7 +1196,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 					{
 						db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
 						db->BindInputParameter(&QuestKind, 2, PARAMTYPE_Integer);
-						db->BindInputParameter(&QuestID, 3, PARAMTYPE_Integer);
+						db->BindInputParameter(&QuestType, 3, PARAMTYPE_Integer);
 
 						if (db->Execute(false))
 						{
@@ -1224,7 +1224,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 								db->BindInputParameter(&MonsterCounts[i], 2, PARAMTYPE_Integer);
 								db->BindInputParameter(&QuestID, 3, PARAMTYPE_Integer);
 								db->BindInputParameter(&QuestKind, 4, PARAMTYPE_Integer);
-								db->BindInputParameter(&QuestID, 5, PARAMTYPE_Integer);
+								db->BindInputParameter(&QuestType, 5, PARAMTYPE_Integer);
 								db->BindInputParameter(playerName, 6, PARAMTYPE_String);
 								db->BindInputParameter(&PartyFlag, 7, PARAMTYPE_Integer);
 								db->BindInputParameter(&MonsterMaps[i], 8, PARAMTYPE_Integer);
@@ -1249,7 +1249,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 				db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
 				db->BindInputParameter(&QuestID, 2, PARAMTYPE_Integer);
 				db->BindInputParameter(&QuestKind, 3, PARAMTYPE_Integer);
-				db->BindInputParameter(&QuestID, 4, PARAMTYPE_Integer);
+				db->BindInputParameter(&QuestType, 4, PARAMTYPE_Integer);
 				db->BindInputParameter(playerName, 5, PARAMTYPE_String);
 				if (db->Execute(false))
 				{
@@ -1262,7 +1262,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 					{
 						db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
 						db->BindInputParameter(&QuestKind, 2, PARAMTYPE_Integer);
-						db->BindInputParameter(&QuestID, 3, PARAMTYPE_Integer);
+						db->BindInputParameter(&QuestType, 3, PARAMTYPE_Integer);
 
 						if (db->Execute(false))
 						{
@@ -1290,7 +1290,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 								db->BindInputParameter(&MonsterCounts[i], 2, PARAMTYPE_Integer);
 								db->BindInputParameter(&QuestID, 3, PARAMTYPE_Integer);
 								db->BindInputParameter(&QuestKind, 4, PARAMTYPE_Integer);
-								db->BindInputParameter(&QuestID, 5, PARAMTYPE_Integer);
+								db->BindInputParameter(&QuestType, 5, PARAMTYPE_Integer);
 								db->BindInputParameter(playerName, 6, PARAMTYPE_String);
 								db->BindInputParameter(&PartyFlag, 7, PARAMTYPE_Integer);
 								db->BindInputParameter(&MonsterMaps[i], 8, PARAMTYPE_Integer);
