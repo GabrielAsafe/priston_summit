@@ -1347,6 +1347,8 @@ void cQUESTHANDLER::CancelQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKi
 extern int CreatePerfCommandItem(rsPLAYINFO* lpPlayInfo, rsPLAYINFO* lpPlayInfo2, char* szItem);
 
 extern int GetPostBoxFile(const char* szID, char* szFileName);
+extern int rsSavePostBox(rsPLAYINFO* lpPlayInfo);
+extern int rsLoadPostBox(rsPLAYINFO* lpPlayInfo);
 
 void SendPostBox(char* szID, char* szItemCode, int spec)
 {
@@ -1519,6 +1521,9 @@ void cQUESTHANDLER::GetReward(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind
 
 								if (ItemCount)
 								{
+									if (lpPlayInfo->lpPostBoxItem)
+										rsSavePostBox(lpPlayInfo);
+
 									for (int i = 0; i < ItemCount; i++)
 									{
 										if (toupper(szItemCode[i][0]) == 'P' || (toupper(szItemCode[i][0]) == 'G' && toupper(szItemCode[i][1]) == 'G'))
@@ -1529,6 +1534,13 @@ void cQUESTHANDLER::GetReward(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind
 												SendPostBox(playerID, szItemCode[i], lpPlayInfo->smCharInfo.JOB_CODE);
 										}
 									}
+
+									if (lpPlayInfo->lpPostBoxItem)
+									{
+										delete lpPlayInfo->lpPostBoxItem;
+										lpPlayInfo->lpPostBoxItem = NULL;
+									}
+									rsLoadPostBox(lpPlayInfo);
 
 									TRANS_CHATMESSAGE Message = {};
 									Message.code = OpCode::OPCODE_MESSAGEBOX;
