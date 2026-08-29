@@ -2585,6 +2585,8 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 	// Legacy OpenItem parser tokens.
 	// OpenItem files use historical CP949 byte sequences.
 	// Byte escapes keep this source independent of source-file encoding.
+	static const char *ITEM_TOKEN_NAME =
+		"\x2A\xC0\xCC\xB8\xA7";                  // NAME
 	static const char *ITEM_TOKEN_CODE =
 		"\x2A\xC4\xDA\xB5\xE5";                  // CODE
 	static const char *ITEM_TOKEN_DURABILITY =
@@ -2629,7 +2631,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		NextFlag = 0;
 
 
-		if(lstrcmp(decode, "*�̸�") == 0)
+		if(lstrcmp(decode, ITEM_TOKEN_NAME) == 0)
 		{
 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
 
