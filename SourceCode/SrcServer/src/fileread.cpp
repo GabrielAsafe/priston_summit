@@ -3543,7 +3543,7 @@ szSTATE_CODE	dwCharSoundCode[] = {
 
 
 char	*szCharSizeCodeName[] = {
-	"����" , "����" , "�ߴ���" , "����" , ""
+	"\xBC\xD2\xC7\xFC" , "\xC1\xDF\xC7\xFC" , "\xC1\xDF\xB4\xEB\xC7\xFC" , "\xB4\xEB\xC7\xFC" , ""
 };
 
 
