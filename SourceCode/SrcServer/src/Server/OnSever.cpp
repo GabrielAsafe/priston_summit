@@ -12599,6 +12599,8 @@ int InitAll()
 	fprintf(stderr, "[STARTUP][CHAR] END\n");
 	fflush(stderr);
 
+	InitializeServerItemCodeMap();
+
 	fprintf(stderr, "[STARTUP][MONSTER] BEGIN\n");
 	fflush(stderr);
 	InitMonster();
