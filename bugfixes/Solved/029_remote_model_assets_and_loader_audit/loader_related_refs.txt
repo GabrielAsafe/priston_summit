@@ -1,0 +1,209 @@
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1987:			LoadOftenMeshPattern(chrMonsterList[cnt].szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:1122:int smOBJ3D::TmAnimation(int frame, int ax, int ay, int az, smPAT3D *TalkPattern, SMotionStEndInfo *lpFrameInfo)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:1879:int smOBJ3D::LoadFile(HANDLE hFile, smPAT3D *PatPhysique)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:1962:smPAT3D::smPAT3D()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:1968:smPAT3D::~smPAT3D()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:1973:void smPAT3D::Init()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2003:void smPAT3D::Close()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2017:int smPAT3D::AddObject(smOBJ3D *obj)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2055:int smPAT3D::ReformTM()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2069:int smPAT3D::ReformPhysique()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2084:int smPAT3D::LinkObject()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2135:smOBJ3D *smPAT3D::GetObjectFromName(char *name)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2147:void smPAT3D::ZeroNormals()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2157:void smPAT3D::SetPosi(POINT3D *point, POINT3D *angle)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2178:void smPAT3D::SetFixPosi()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2206:int smPAT3D::RenderD3D(POINT3D *camera, POINT3D *angle, smPAT3D *TalkPattern, SMotionStEndInfo *lpFrameInfo)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2300:int smPAT3D::ChoiseRenderD3D(POINT3D *camera, POINT3D *angle, char **szNodeList, int ListCnt, smPAT3D *TalkPattern, SMotionStEndInfo *lpFrameInfo)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2350:int smPAT3D::RenderD3D(POINT3D *camera, POINT3D *angle, SMotionStEndInfo *lpFrameInfo)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2432:int smPAT3D::ChoiseRenderD3D(POINT3D *camera, POINT3D *angle, char **szNodeList, int ListCnt, SMotionStEndInfo *lpFrameInfo)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2480:int smPAT3D::RenderD3dOpening(POINT3D *camera, POINT3D *angle)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2504:int smPAT3D::SetFrame(int frame, smPAT3D *TalkPattern, SMotionStEndInfo *lpFrameInfo)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2518:int smPAT3D::TmTalkAnimation(int frame)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2534:int smPAT3D::TmAnimation(int frame, int ax, int ay, int az, smPAT3D *TalkPattern, SMotionStEndInfo *lpFrameInfo)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2554:int smPAT3D::SetFrame(int frame, SMotionStEndInfo *lpFrameInfo)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2578:int smPAT3D::TmAnimation(int frame, int ax, int ay, int az, SMotionStEndInfo *lpFrameInfo)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2602:int smPAT3D::LinkParentObject(smPAT3D *patParent, smOBJ3D *objParent)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2625:int	smPAT3D::SaveFile(char *szFile)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2678:	hFile = CreateFile(szFile, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2709:int	smPAT3D::LoadFile(char *szFile, char *szNodeName)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2716:	smPAT3D *BipPat;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2723:	BipPat = smASE_GetPhysique();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2725:	hFile = CreateFile(szFile, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.cpp:2810:		hFile = CreateFile(szFileName, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.h:6:class smPAT3D;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.h:223:	int TmAnimation(int frame, int ax, int ay, int az, smPAT3D *TalkPattern, SMotionStEndInfo *lpFrameInfo = NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.h:253:	int  LoadFile(HANDLE hFile, smPAT3D *PatPhysique = 0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.h:256:class smPAT3D
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.h:263:	smPAT3D	*TmParent;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.h:288:	smPAT3D();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.h:289:	~smPAT3D();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.h:301:	int		LinkParentObject(smPAT3D *patParent, smOBJ3D *objParent = 0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.h:312:	int		SetFrame(int frame, smPAT3D *TalkPattern, SMotionStEndInfo *lpFrameInfo = NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.h:314:	int		TmAnimation(int frame, int ax, int ay, int az, smPAT3D *TalkPattern, SMotionStEndInfo *lpFrameInfo = NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.h:331:	int		RenderD3D(POINT3D *camera, POINT3D *angle, smPAT3D *TalkPattern, SMotionStEndInfo *lpFrameInfo = NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smObj3d.h:332:	int		ChoiseRenderD3D(POINT3D *camera, POINT3D *angle, char **szNodeList, int ListCnt, smPAT3D *TalkPattern, SMotionStEndInfo *lpFrameInfo = NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.h:17:void  smASE_SetPhysique(smPAT3D *p);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.h:19:smPAT3D *smASE_GetPhysique();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.h:21:smPAT3D *smASE_ReadBone(char *file);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.h:22:smPAT3D *smASE_Read(char *file, char *szModelName = 0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.h:26:smPAT3D* smASE_TalkReadBone(char *file);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.h:32:smPAT3D *smASE_MergeBone(char *szMeshFile, char **FileList, int FileCnt, int ReadType = 1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.h:35:int smMAP3D_ReadASE(char *file);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.h:38:smSTAGE3D *smSTAGE3D_ReadASE(char *file, smSTAGE3D *smStagep = NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStage3d.cpp:2231:	hFile = CreateFile(szFile, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStage3d.cpp:2278:// 	HANDLE hFile = CreateFile(szFile, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStage3d.cpp:2337://     HANDLE hFile = CreateFile(
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStage3d.cpp:2535:    HANDLE hFile = CreateFile(
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStgObj.cpp:32:int smSTAGE_OBJECT::AddObject(smPAT3D *Pat, int x, int y, int z, int angX, int angY, int angZ)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStgObj.cpp:77:int smSTAGE_OBJECT::AddObject(smPAT3D *Pat)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStgObj.cpp:132:	smPAT3D *Pat;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStgObj.cpp:133:	smPAT3D *BipPat;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStgObj.cpp:142:		smASE_SetPhysique(0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStgObj.cpp:145:		BipPat = smASE_ReadBone(szBipFile);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStgObj.cpp:146:		smASE_SetPhysique(BipPat);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStgObj.cpp:151:		smASE_SetPhysique(0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStgObj.cpp:155:	Pat = smASE_Read(szFile);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStgObj.h:9:	smPAT3D *BipPattern;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStgObj.h:10:	smPAT3D *Pattern;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStgObj.h:36:	int AddObject(smPAT3D *Pat, int x, int y, int z, int angX, int angY, int angZ);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStgObj.h:38:	int AddObject(smPAT3D *Pat);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smType.h:734:struct smASE_LIGHT
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:273:FILE *ReadASE_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:631:FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1105:smPAT3D *smPhysique = 0;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1112:FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1822:void  smASE_SetPhysique(smPAT3D *p)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1828:smPAT3D *smASE_GetPhysique()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1901:smPAT3D *smReadModel(char *file, char *szModelName)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1903:	smPAT3D *pat;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1906:	pat = new smPAT3D;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1919:smPAT3D *smReadModel_Bip(char *file)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1921:	smPAT3D *pat;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1924:	pat = new smPAT3D;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1941:smPAT3D *smASE_Read(char *file, char *szModelName)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1945:	smPAT3D *pat;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1962:	fp = fopen(file, "rt");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1966:	pat = new smPAT3D;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:1991:			if((fp = ReadASE_LIGHTMAP_MATERIAL(fp, &lpMaterialGroup)) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2013:			fp = ReadASE_GEOMOBJECT(fp, obj);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2058:smPAT3D *smASE_ReadBone(char *file)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2062:	smPAT3D *pat;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2075:	fp = fopen(file, "rt");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2085:	pat = new smPAT3D;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2118:			fp = ReadASE_GEOMOBJECT(fp, obj);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2143:smPAT3D* smASE_TalkReadBone(char *file)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2148:	smPAT3D *pat;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2162:	fp = fopen(file, "rt");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2172:	pat = new smPAT3D;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2192:			fp = ReadASE_GEOMOBJECT(fp, obj);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2235:smPAT3D* smASE_MergeBone(char *szMeshFile, char **FileList, int FileCnt, int ReadType)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2238:	smPAT3D *PatList[256];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2239:	smPAT3D *Pat3d;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2264:			PatList[cnt] = smASE_ReadBone(FileList[cnt]);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2272:			PatList[cnt] = smASE_TalkReadBone(FileList[cnt]);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2277:	Pat3d = new smPAT3D;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2474:FILE *smSTAGE3D_ReadASE_GEOMOBJECT(FILE *fp, smSTAGE3D *smStage)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:2988:FILE *smReadASE_LIGHTOBJECT(FILE *fp, smASE_LIGHT *smLight)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:3236:smSTAGE3D *smSTAGE3D_ReadASE(char *file, smSTAGE3D *smStagep)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:3249:	smASE_LIGHT	smAseLight[256];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:3268:	fp = fopen(file, "rt");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:3295:			if((fp = ReadASE_LIGHTMAP_MATERIAL(fp, &lpMaterialGroup)) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:3337:	fp = fopen(file, "rt");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:3357:			fp = smReadASE_LIGHTOBJECT(fp, &smAseLight[AseLightCnt++]);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp:3364:				fp = smSTAGE3D_ReadASE_GEOMOBJECT(fp, smStage);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smTexture.cpp:1774:	HANDLE hFile = CreateFile(Filename, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smTexture.cpp:1877:	HANDLE hFile = CreateFile(Filename, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smTexture.cpp:4774:	HANDLE hFile = CreateFile(Filename, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smTexture.cpp:4831:	hFile = CreateFile(Filename, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/TJBOY/clanmenu/BMPsmooth.cpp:141:	fp = fopen(loadfname, "rb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/TJBOY/clanmenu/BMPsmooth.cpp:188:	fp = fopen(savefname, "wb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.h:954:int	AddLoaderPattern(smCHAR *lpChar, char *szName, char *szName2 = 0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.h:104:int	LoadOftenMeshPattern(char *szFileName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp:1235:		AddLoaderPattern(lpCurPlayer, lpCurPlayer->smCharInfo.szModelName, lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp:1242:	AddLoaderPattern(lpCurPlayer, szCharFileList[CharPlayCnt], lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp:1262:	AddLoaderPattern(lpCurPlayer, szBuff, lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp:1276:	AddLoaderPattern(lpCurPlayer, szFile, 0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp:1351:		AddLoaderPattern(lpCurPlayer, lpCurPlayer->smCharInfo.szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:281:int	LoadOftenMeshPattern(char *szFileName)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:298:int	LoadOftenMeshPatternCheckSum(char *szFileName)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:362:			if (LoadOftenMeshPattern(szBuff) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:374:			if (LoadOftenMeshPattern(szBuff) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:384:			if (LoadOftenMeshPattern(szModel_FighterFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:386:			if (LoadOftenMeshPattern(szModel_MechFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:388:			if (LoadOftenMeshPattern(szModel_ArcherFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:390:			if (LoadOftenMeshPattern(szModel_PikeFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:392:			if (LoadOftenMeshPattern(szModel_KnightFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:394:			if (LoadOftenMeshPattern(szModel_AtalantaFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:396:			if (LoadOftenMeshPattern(szModel_PristessFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:398:			if (LoadOftenMeshPattern(szModel_MagicanFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:425:			LoadOftenMeshPattern(szFilePath);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:472:		LoadOftenMeshPattern(szOftenNPC[cnt]);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:492:			if (LoadOftenMeshPattern(szModel_FighterFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:494:			if (LoadOftenMeshPattern(szModel_MechFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:496:			if (LoadOftenMeshPattern(szModel_ArcherFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:498:			if (LoadOftenMeshPattern(szModel_PikeFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:500:			if (LoadOftenMeshPattern(szModel_KnightFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:502:			if (LoadOftenMeshPattern(szModel_AtalantaFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:504:			if (LoadOftenMeshPattern(szModel_PristessFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:506:			if (LoadOftenMeshPattern(szModel_MagicanFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:533:				LoadOftenMeshPattern(szName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:556:		LoadOftenMeshPatternCheckSum(szBuff);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:559:		LoadOftenMeshPattern(szBuff);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:617:	AddLoaderPattern(lpCurPlayer, szbuff, lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:662:	AddLoaderPattern(lpChar, szbuff, lpChar->smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:1008:	AddLoaderPattern(lpChar, szbuff1, szbuff2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:1040:	AddLoaderPattern(lpChar, lpChar->smCharInfo.szModelName, lpChar->smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:5419:	AddLoaderPattern(&chrPartyPlayer, szModelFile1, szModelFile2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:5610:	AddLoaderPattern(lpCurPlayer, lpCurPlayer->smCharInfo.szModelName, lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:7087:							LoadOftenMeshPattern(szFilePath);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smReg.cpp:94:	fp = fopen(szRegFileName, "rb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smReg.cpp:120:	fp = fopen(szRegFileName, "wb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smwsock.cpp:24:    FILE *fp = fopen("LOGS\\mingw_server_transport.txt", "a");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:152:void DrawTalkZoom(smCHAR *lpChar, smPAT3D *lpPattern, float fx, float fy)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:405:smPATTERN::smPATTERN(void)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:411:smPATTERN::~smPATTERN(void)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:418:void smPATTERN::Init()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:429:int smPATTERN::Close()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:453:int smPATTERN::FindFromName(char *szName)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:472:int smPATTERN::FindFromCode(DWORD dwCode)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:486:int smPATTERN::GetNew()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:500:smDPAT *smPATTERN::LoadBipPattern(char *szFileName)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:512:			DinaPat[Num].Pat = smASE_ReadBone(szFileName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:532:smDPAT *smPATTERN::LoadCharactor(char *szFileName)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:537:	smPAT3D	*AnimPat;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:551:		smASE_SetPhysique(0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:563:				smASE_SetPhysique(dMotionPat->Pat);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:585:		DinaPat[Num].Pat = smASE_Read(modelInfo.szModelFile);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:628:extern smPAT3D *PatKnife;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:659:smPATTERN smBipPattern;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:660:smPATTERN smPattern;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:683:int	AddLoaderPattern(smCHAR *lpChar, char *szName, char *szName2)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:755:		if(smSTAGE3D_ReadASE(smLoader[cnt].szLoadName, smLoader[cnt].lpStage))
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:993:int SetLoadPattern(smCHAR *smChar, char *szName, char *szName2, POINT3D *Posi, POINT3D *Angle)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:1042:int SetLoadPattern(smCHAR *smChar, char *szName, POINT3D *Posi, POINT3D *Angle)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:1044:	return SetLoadPattern(smChar, szName, 0, Posi, Angle);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:1495:int smCHAR::SetPattern(smPAT3D *pat)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:1497:	smPAT3D *AnimPat;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:1542:int smCHAR::SetPattern2(smPAT3D *pat)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:6629:										SetLoadPattern(smCharInfo.szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:7800:	smPAT3D *pat = nullptr;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:8571:	smPAT3D *pat;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:8932:int smCHAR::SetLoadPattern(char *szName)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:8936:	return AddLoaderPattern((smCHAR *)&Head, szName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:10112:		AddLoaderPattern((smCHAR *)&Head, smCharInfo.szModelName, smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:10148:		AddLoaderPattern((smCHAR *)&Head, smCharInfo.szModelName, smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:16092:int scITEM::SetPattern(smPAT3D *pat)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:317:	smPAT3D *pat3d = nullptr;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:327:	fopen_s(&fp, iniFile, "rb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:963:			pat3d = smASE_MergeBone(Info->szMotionFile, szMotionFileList, MotionFileListCnt);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:974:			pat3d = smASE_MergeBone(Info->szTalkMotionFile, szMotionFileList, MotionFileListCnt, 0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1005:	fopen_s(&fp, szFile, "wb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1080:				fopen_s(&fp, lpFile, "rb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2596:	fp = fopen(szItemFile, "rb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:3245:			fp = fopen(szNextFile, "rb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:3558:	fp = fopen(szFile, "rb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:4605:			fp = fopen(szNextFile, "rb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:4641:	fp = fopen(szCharFile, "rb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:6072:	fp = fopen(szFileName, "rb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:6192:	fp = fopen(szCrackFile, "rb");

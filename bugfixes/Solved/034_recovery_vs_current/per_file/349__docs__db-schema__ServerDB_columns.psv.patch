@@ -1,0 +1,32 @@
+diff --git a/docs/db-schema/ServerDB_columns.psv b/docs/db-schema/ServerDB_columns.psv
+deleted file mode 100644
+index a8d8229..0000000
+--- a/docs/db-schema/ServerDB_columns.psv
++++ /dev/null
+@@ -1,26 +0,0 @@
+-DatabaseName|SchemaName|TableName|ColumnName|DataType|MaxLength|IsNullable|DefaultValue|OrdinalPosition
+-------------|----------|---------|----------|--------|---------|----------|------------|---------------
+-ServerDB|dbo|BoxRewards|Kind|int||YES||1
+-ServerDB|dbo|BoxRewards|ItemCode|varchar|32|YES||2
+-ServerDB|dbo|BoxRewards|Count|int||YES||3
+-ServerDB|dbo|BoxRewards|Class|int||YES||4
+-ServerDB|dbo|DropLogAlert|ItemCode|varchar|32|YES||1
+-ServerDB|dbo|NoticeSystem|ID|int||NO||1
+-ServerDB|dbo|NoticeSystem|Message|varchar|50|YES||2
+-ServerDB|dbo|NoticeSystem|Type|int||YES||3
+-ServerDB|dbo|NoticeSystem|Activated|int||YES||4
+-ServerDB|dbo|PremiumData|ID|int||NO||1
+-ServerDB|dbo|PremiumData|CharacterName|varchar|50|NO||2
+-ServerDB|dbo|PremiumData|TimeLeft|int||NO||3
+-ServerDB|dbo|PremiumData|ItemType|int||NO||4
+-ServerDB|dbo|PVP|ID|varchar|32|YES||1
+-ServerDB|dbo|PVP|Name|varchar|32|YES||2
+-ServerDB|dbo|PVP|Class|int||YES||3
+-ServerDB|dbo|PVP|Lvl|int||YES||4
+-ServerDB|dbo|PVP|Kills|int||YES||5
+-ServerDB|dbo|PVP|Deads|int||YES||6
+-ServerDB|dbo|Vip|ID|int||NO||1
+-ServerDB|dbo|Vip|PlayerName|nvarchar|50|NO||2
+-ServerDB|dbo|Vip|IdVIp|int||NO||3
+-ServerDB|dbo|Vip|DateStart|datetime||YES|(getdate())|4
+-ServerDB|dbo|Vip|DateEnd|datetime||YES||5

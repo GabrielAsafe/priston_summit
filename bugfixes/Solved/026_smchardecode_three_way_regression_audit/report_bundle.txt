@@ -1,0 +1,175 @@
+######################################################################
+TREE HASHES
+######################################################################
+
+### CURRENT
+043af4af9cd796549ad72e2d8df231706c0bb70dc50c9ad33838af872fb54993  /home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp
+74b7884009144e4f1df7518b7a25f3a8df2564e3e2f9517c6fd047f626beb8e6  /home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp
+6e254f2c96f17b15cd93c43c13d1c02f13a98c8984e278836939533bf31490e1  /home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp
+
+### BASE_PREREGRESSION
+4b836a67c315767d08d596b0f6226ef0d65829be7ff6806f3d986ee805854a32  /home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/fileread.cpp
+b424fd6b7536f56def11bf9f923f36df414e8f0c72a9230c2d91e9378178beec  /home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/Server/OnSever.cpp
+6e254f2c96f17b15cd93c43c13d1c02f13a98c8984e278836939533bf31490e1  /home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp
+
+### ARMAZEM_REFERENCE
+MISSING /home/gabriel/armazem/priston/pristontale-1-master/src/SrcServer/src/fileread.cpp
+MISSING /home/gabriel/armazem/priston/pristontale-1-master/src/SrcServer/src/Server/OnSever.cpp
+MISSING /home/gabriel/armazem/priston/pristontale-1-master/src/SrcServer/src/playsub.cpp
+
+######################################################################
+NAME MODEL THREE-WAY
+######################################################################
+
+######################################################################
+BASE VS CURRENT smCharDecode
+######################################################################
+
+######################################################################
+BASE VS ARMAZEM smCharDecode
+######################################################################
+
+######################################################################
+CURRENT VS ARMAZEM smCharDecode
+######################################################################
+
+######################################################################
+BASE VS CURRENT InitMonster
+######################################################################
+
+######################################################################
+BASE VS ARMAZEM InitMonster
+######################################################################
+
+######################################################################
+BASE VS CURRENT OpenNpc
+######################################################################
+
+######################################################################
+BASE VS ARMAZEM OpenNpc
+######################################################################
+
+######################################################################
+RECOVERY PATCH RELATED
+######################################################################
+4:diff --git a/SourceCode/CharInfo[cnt].szModelName[x b/SourceCode/CharInfo[cnt].szModelName[x
+6042:-						wsprintf(szBuff, mgRequestTrade, chrEachMaster->smCharInfo.szName);
+6046:-						wsprintf(szBuff, mgRequestTrade2, chrEachMaster->smCharInfo.szName);
+6052:-					wsprintf(szBuff, "//party %s", chrEachMaster->smCharInfo.szName);
+6058:-					InterfaceParty.latest_Insert(chrEachMaster->smCharInfo.szName);
+6059:-					InterfaceParty.friend_Insert(chrEachMaster->smCharInfo.szName);
+6088:-				wsprintf(szBuff, mgRequestTrade, chrEachMaster->smCharInfo.szName);
+6093:-				wsprintf(szBuff, mgRequestTrade2, chrEachMaster->smCharInfo.szName);
+6873:-					DrawCharacterMessage(scItems[cnt].RendPoint.x, scItems[cnt].RendPoint.y, scItems[cnt].szName, 0, 0, 0, RGB(173, 51, 243));
+6882:-					DrawCharacterMessage(scItems[cnt].RendPoint.x, scItems[cnt].RendPoint.y, scItems[cnt].szName, 0, 0, 0, RGB(250, 235, 65));
+6890:-					DrawCharacterMessage(scItems[cnt].RendPoint.x, scItems[cnt].RendPoint.y, scItems[cnt].szName, 0, 0, 0, RGB(235, 235, 235));
+6903:-		DrawCharacterMessage(Disp_tx, Disp_ty, lpSelItem->szName, 0, 0, 0, RGB(50, 244, 105));
+6914:-		if (chrOtherPlayer[cnt].Flag && chrOtherPlayer[cnt].RendSucess && chrOtherPlayer[cnt].smCharInfo.szName[0])
+6996:-		if (chrOtherPlayer[cnt].Flag && chrOtherPlayer[cnt].RendSucess && chrOtherPlayer[cnt].smCharInfo.szName[0])
+7146:-				wsprintf(strBuff, "[%s]", lpCharMsgSort[cnt]->smCharInfo.szModelName2 + 1);
+7148:-					lpCharMsgSort[cnt]->smCharInfo.szName, strBuff, dwColor, RGB(224, 215, 64), 0, selectedBox);
+7169:-							strBuff, "VIP", lpCharMsgSort[cnt]->smCharInfo.szName, RGB(150, 255, 200), RGB(230, 160, 255), dwColor, lpDDS_clanMark, selectedBox, dwClanMgrBit);
+7175:-						 strBuff, lpCharMsgSort[cnt]->smCharInfo.szName, "", dwColorClan, dwColor, dwColorGM, lpDDS_clanMark, selectedBox, dwClanMgrBit);
+7185:-						DrawTwoLineMessage(lpCharMsgSort[cnt]->RendPoint.x, lpCharMsgSort[cnt]->RendRect2D.top + y, "Vip", lpCharMsgSort[cnt]->smCharInfo.szName, RGB(230, 160, 255), dwColor, lpDDS_clanMark, selectedBox, dwClanMgrBit);
+7190:-							lpCharMsgSort[cnt]->smCharInfo.szName, 50, lpDDS_clanMark, szClanName, dwColor, selectedBox, dwClanMgrBit);
+7427:-				wsprintf(strBuff, "%s", lpCurPlayer->smCharInfo.szName);
+7503:-				wsprintf(strBuff, "%s", chrOtherPlayer[i].smCharInfo.szName);
+7532:-					if (MonCharBuff[cnt] >= 0 && lstrcmp(chrOtherPlayer[MonCharBuff[cnt]].smCharInfo.szName,
+7533:-						chrOtherPlayer[MonCharBuff[i]].smCharInfo.szName) == 0)
+7540:-				wsprintf(strBuff, "%s x %d", chrOtherPlayer[MonCharBuff[i]].smCharInfo.szName, MonCnt);
+12225:-			cMessageBox.ShowMessage3(MESSAGE_CHANGE_JOB, sinJobList->szName2);
+15658:+			cMessageBox.ShowMessage3(MESSAGE_CHANGE_JOB, sinJobList->szName2);
+19298:-smPAT3D *smReadModel(char *file, char *szModelName)
+19305:-	result = pat->LoadFile(file, szModelName);
+19338:-smPAT3D *smASE_Read(char *file, char *szModelName)
+19343:-	char *szName = nullptr;
+19348:-	szName = szModelName;
+19350:-	if(szName && szName[0] == 0)
+19352:-		szName = 0;
+19359:-		pat = smReadModel(szFile, szName);
+19460:-	pat = smReadModel(szFile, szName);
+22749:+smPAT3D *smReadModel(char *file, char *szModelName)
+22756:+	result = pat->LoadFile(file, szModelName);
+22789:+smPAT3D *smASE_Read(char *file, char *szModelName)
+22794:+	char *szName = nullptr;
+22799:+	szName = szModelName;
+22801:+	if(szName && szName[0] == 0)
+22803:+		szName = 0;
+22810:+		pat = smReadModel(szFile, szName);
+22911:+	pat = smReadModel(szFile, szName);
+24353:+		// MINGW_STAGE_SPAWN_LOAD_TRACE_V1
+24438: 	LoadOftenNpc();
+24460:+				smCharInfo.szName,
+24461:+				smCharInfo.szModelName,
+24462:+				smCharInfo.szModelName2);
+25007: int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	*lpMonInfo, char *lpDialogMessage, size_t DialogMessageSize)
+25009:+	// MINGW_CHARINF_CP949_TOKEN_FIX_V1 - legacy CP949 literals restored as ASCII hex escapes
+25013:@@ -3587,7 +3588,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25022:@@ -3610,7 +3611,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25031:@@ -3624,7 +3625,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25040:@@ -3659,11 +3660,11 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25054:@@ -3672,7 +3673,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25063:@@ -3692,7 +3693,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25072:@@ -3711,7 +3712,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25081:@@ -3719,14 +3720,14 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25098:@@ -3734,7 +3735,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25107:@@ -3744,7 +3745,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25116:@@ -3752,7 +3753,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25125:@@ -3763,7 +3764,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25134:@@ -3774,7 +3775,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25143:@@ -3784,7 +3785,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25152:@@ -3793,7 +3794,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25161:@@ -3801,7 +3802,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25170:@@ -3809,7 +3810,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25179:@@ -3818,7 +3819,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25188:@@ -3828,21 +3829,21 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25213:@@ -3850,35 +3851,35 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25254:@@ -3892,7 +3893,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25263:@@ -3903,7 +3904,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25272:@@ -3919,7 +3920,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25280: 				strcpy_s(lpCharInfo->szModelName2 + 1, sizeof(lpCharInfo->szModelName2) - 1, strBuff);
+25281:@@ -3928,7 +3929,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25290:@@ -3939,7 +3940,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25299:@@ -3949,7 +3950,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25308:@@ -3958,7 +3959,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25317:@@ -3967,7 +3968,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25326:@@ -3975,7 +3976,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25335:@@ -3983,7 +3984,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25344:@@ -3992,19 +3993,19 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25368:@@ -4014,7 +4015,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25377:@@ -4022,7 +4023,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25386:@@ -4030,7 +4031,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25395:@@ -4038,7 +4039,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25404:@@ -4058,21 +4059,21 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25429:@@ -4090,17 +4091,17 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25450:@@ -4114,7 +4115,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25459:@@ -4122,19 +4123,19 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25483:@@ -4143,7 +4144,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25492:@@ -4152,7 +4153,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25501:@@ -4160,7 +4161,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25510:@@ -4170,20 +4171,20 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25534:@@ -4204,7 +4205,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25543:@@ -4212,7 +4213,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25552:@@ -4229,7 +4230,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25561:@@ -4286,7 +4287,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25570:@@ -4306,7 +4307,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25579:@@ -4326,7 +4327,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25588:@@ -4346,12 +4347,12 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25603:@@ -4362,7 +4363,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25612:@@ -4372,40 +4373,40 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25660:@@ -4457,35 +4458,35 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25702:@@ -4495,7 +4496,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25711:@@ -4507,7 +4508,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25720:@@ -4517,13 +4518,13 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25736:@@ -4533,7 +4534,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25745:@@ -4543,7 +4544,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25754:@@ -4554,7 +4555,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25763:@@ -4563,7 +4564,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25772:@@ -4573,7 +4574,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25781:@@ -4581,7 +4582,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25790:@@ -4592,7 +4593,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO
+25809:+            // MINGW_SPM_ACTOR_MATCH_TRACE_V1
+25817: 				if(lstrcmp(strBuff, lpCharInfoList[cnt].szName) == 0)
+25831:+                               lpCharInfoList[dbgI].szName) == 0)
+25855:+                     * nomes que smCharDecode colocou na lista global.
+25878:+                                lpCharInfoList[dbgI].szName,

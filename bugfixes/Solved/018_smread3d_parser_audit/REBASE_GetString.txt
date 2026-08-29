@@ -1,0 +1,33 @@
+GetString(char *q, char *p)
+{
+	// MINGW_GETSTRING_BOUNDS_FIX_V1
+	while(*p != 34)
+	{
+		if(*p == 0 || *p == '\r' || *p == '\n')
+		{
+			*q = 0;
+			return p;
+		}
+		p++;
+	}
+
+	p++;
+
+	while(*p != 34)
+	{
+		if(*p == 0 || *p == '\r' || *p == '\n')
+		{
+			*q = 0;
+			return p;
+		}
+
+		*q++ = *p++;
+	}
+
+	if(*p == 34)
+		p++;
+
+	*q = 0;
+
+	return p;
+}

@@ -1,0 +1,99 @@
+{
+  "format": "PT_OBJECT_LOCAL_SOURCE_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Effect/ObjAnimationData/MonsterWeb/Web.smd",
+  "file_size": 7170,
+  "object_count": 1,
+  "object_local_object_count": 1,
+  "animated_object_count": 1,
+  "hold_object_count": 0,
+  "max_engine_frame": 16000,
+  "objects": [
+    {
+      "index": 0,
+      "name": "Cone02",
+      "parent": "",
+      "nVertex": 28,
+      "nFace": 42,
+      "nTexLink": 42,
+      "nRot": 0,
+      "nPos": 11,
+      "nScale": 11,
+      "TmFrameCnt": 0,
+      "channels_serialized": [
+        "POS",
+        "SCALE"
+      ],
+      "channels_animated": [
+        "POS",
+        "SCALE"
+      ],
+      "motion_class": "ANIMATED",
+      "reference_engine_frame": 0,
+      "max_engine_frame": 16000,
+      "rotation_semantics_check": "NOT_APPLICABLE",
+      "rotation_cumulative_max_error": 0.0,
+      "normalized_samples": [
+        {
+          "engine_frame": 0.0,
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "rotation_xyzw": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "engine_frame": 800.0,
+          "location": [
+            0.0,
+            44.208800315856934,
+            0.0
+          ],
+          "scale": [
+            16.0,
+            18.958620689655174,
+            14.872727272727273
+          ],
+          "rotation_xyzw": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "engine_frame": 16000.0,
+          "location": [
+            0.0,
+            5.921299934387207,
+            0.0
+          ],
+          "scale": [
+            10.733333333333333,
+            2.717241379310345,
+            8.745454545454546
+          ],
+          "rotation_xyzw": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        }
+      ]
+    }
+  ],
+  "rotation_semantics": "ACCUMULATED_TM_PREV_ROT",
+  "source_rot_key_semantics": "INCREMENTAL_LOCAL_QUATERNION",
+  "preview_reference": "FIRST_KEY_NORMALIZED_OBJECT_LOCAL"
+}

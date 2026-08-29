@@ -1,0 +1,14 @@
+00:00.016  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.016  color_management | Using fallback mode for management
+00:01.533  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-7C03254AF683/multilayer_texlink_roundtrip/multilayer_pristine.blend"
+Info: Saved as "multilayer_uv_witness.blend"
+PT_MULTILAYER_TEXLINK_UV_WITNESS_V1
+object=BGuardian_m blender=BGuardian_m face=1674 stage=1 corner=0
+profile=SAME_TEXTURE_DYNAMIC_FORM before_u=0.40110001 after_u=0.43235001
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-7C03254AF683/multilayer_texlink_roundtrip/multilayer_uv_witness.blend
+client_modified=False
+texlink_uv_witness_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

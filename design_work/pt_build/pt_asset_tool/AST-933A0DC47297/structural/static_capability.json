@@ -1,0 +1,30 @@
+{
+  "tool": "PT_SMD_STATIC_CAPABILITY_PROBE_V1",
+  "smd": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/Items/DropItem/itPR101.smd",
+  "sha256": "6c52df3c38229953f225bc797f507d95922e5871553d84cd89d81d02c3fa9466",
+  "object_count": 1,
+  "material_count": 1,
+  "ready_objects": [
+    "itpr101"
+  ],
+  "blocked_objects": [],
+  "objects": [
+    {
+      "index": 0,
+      "name": "itpr101",
+      "vertices": 5,
+      "faces": 4,
+      "texlinks": 4,
+      "material_count_header": 1,
+      "physique": false,
+      "rot_keys": 0,
+      "pos_keys": 0,
+      "scale_keys": 0,
+      "referenced_texlinks": 4,
+      "static_edit_v1_ready": true,
+      "blockers": []
+    }
+  ],
+  "client_modified": false,
+  "static_capability_probe_check": "PASS"
+}

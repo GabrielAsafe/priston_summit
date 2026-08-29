@@ -1,0 +1,28 @@
+{
+  "asset_id": "AST-21EFE278A58E",
+  "asset": "Field/AncientW/RotObj01.smd",
+  "texture_count": 1,
+  "serialized_texture_count": 1,
+  "usage_semantics": "FACE_REFERENCED_MATERIALS",
+  "usage_error": null,
+  "used_material_ids": [
+    0
+  ],
+  "required_texture_count": 1,
+  "historical_unused_texture_count": 0,
+  "required_failures": 0,
+  "historical_unused_failures": 0,
+  "ready": true,
+  "overlay": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-21EFE278A58E/object_local_animation/texture_overlay_client",
+  "entries": [
+    {
+      "logical": "field/ancientW/electric_bottom06.bmp",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/AncientW/electric_bottom06.bmp",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-21EFE278A58E/object_local_animation/texture_overlay_client/field/ancientW/electric_bottom06.bmp",
+      "status": "LINK_READY",
+      "required_by_faces": true,
+      "affects_ready": true
+    }
+  ],
+  "client_modified": false
+}

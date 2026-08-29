@@ -1,0 +1,94 @@
+2658-				strstr(szItemFile, "2_WA108.txt") != NULL ||
+2659-				strstr(szItemFile, "WA101.txt") != NULL ||
+2660-				strstr(szItemFile, "BC102.txt") != NULL;
+2661-
+2662-			if(ItemCodeAuditTarget)
+2663-			{
+2664-				fprintf(
+2665-					stderr,
+2666:					"[ITEMCODE] PARSED file=\"%s\" parsed=\"%s\"\n",
+2667-					szItemFile,
+2668-					strBuff);
+2669-				fflush(stderr);
+2670-
+2671-				int NonEmptyItemCategories = 0;
+2672-				int NonZeroItemCodes = 0;
+2673-
+2674-				for(int ItemAuditIndex = 0;
+2675-					ItemAuditIndex < MAX_ITEM;
+2676-					ItemAuditIndex++)
+2677-				{
+2678-					if(sItem[ItemAuditIndex].LastCategory[0])
+2679-						NonEmptyItemCategories++;
+2680-
+2681-					if(sItem[ItemAuditIndex].CODE)
+2682-						NonZeroItemCodes++;
+2683-				}
+2684-
+2685-				fprintf(
+2686-					stderr,
+2687-					"[ITEMCODE] SITEM_SUMMARY file=\"%s\" "
+2688-					"categories=%d codes=%d max=%d\n",
+2689-					szItemFile,
+2690-					NonEmptyItemCategories,
+2691-					NonZeroItemCodes,
+2692-					MAX_ITEM);
+2693-				fflush(stderr);
+2694-			}
+2695-
+2696-			BOOL ItemCodeMatched = FALSE;
+2697-
+2698-			for(cnt = 0; cnt < MAX_ITEM; cnt++)
+2699-			{
+2700-				if(lstrcmpi(strBuff, sItem[cnt].LastCategory) == 0)
+2701-				{
+2702-					lpItem->CODE = sItem[cnt].CODE;
+2703-					ItemCodeMatched = TRUE;
+2704-
+2705-					if(ItemCodeAuditTarget)
+2706-					{
+2707-						fprintf(
+2708-							stderr,
+2709-							"[ITEMCODE] MATCH file=\"%s\" parsed=\"%s\" "
+2710-							"sItemIndex=%d lastCategory=\"%s\" "
+2711-							"code=0x%08lX\n",
+2712-							szItemFile,
+2713-							strBuff,
+2714-							cnt,
+2715-							sItem[cnt].LastCategory,
+2716-							(unsigned long)sItem[cnt].CODE);
+2717-						fflush(stderr);
+2718-					}
+2719-
+2720-					break;
+2721-				}
+2722-			}
+2723-
+2724-			if(ItemCodeAuditTarget && !ItemCodeMatched)
+2725-			{
+2726-				fprintf(
+2727-					stderr,
+2728-					"[ITEMCODE] NO_MATCH file=\"%s\" parsed=\"%s\"\n",
+2729-					szItemFile,
+2730-					strBuff);
+2731-				fflush(stderr);
+2732-			}
+2733-
+2734-			NextFlag = TRUE;
+2735-		}
+2736-
+2737-
+2738-
+2739-		if(!NextFlag && lstrcmp(decode, "*����ũ") == 0)
+2740-		{
+2741-			p = local_GetWord(strBuff, p);
+2742-			if(strBuff[0])
+2743-				lpItem->UniqueItem = atoi(strBuff);
+2744-			else
+2745-				lpItem->UniqueItem = TRUE;
+2746-
+2747-			NextFlag = TRUE;
+2748-		}
+2749-
+2750-		if(!NextFlag && lstrcmp(decode, "*����ũ����") == 0)
+2751-		{

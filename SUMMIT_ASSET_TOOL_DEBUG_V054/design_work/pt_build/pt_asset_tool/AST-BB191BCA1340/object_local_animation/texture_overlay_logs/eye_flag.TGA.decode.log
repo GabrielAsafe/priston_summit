@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=0a9449c8e08b66c170e78b44bce8a03bcd384205fd4ee92ccbc00a7bc8415648
+output_sha256=8ce2325975bf9876f1fb332fc04493c0c87c5d146d92654872c24ade98cf7dfa
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/texture_overlay_client/field/castle/eye_flag.TGA
+format=TGA_PRISTON_HEADER18_KEEP_00_16
+client_modified=False
+tga_decode_check=PASS

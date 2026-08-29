@@ -1,0 +1,9 @@
+=== SUMMARY ===
+recovery_files_total=373
+client_files=24
+chat_white_focus_files=19
+focus_apply_clean=6
+focus_conflict_or_diverged=3
+focus_already_present=10
+current_chat_visual_files=113
+direct_crossrefs=7

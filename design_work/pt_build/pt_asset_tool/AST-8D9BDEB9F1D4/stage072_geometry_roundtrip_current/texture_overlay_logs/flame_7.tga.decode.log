@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=46b5769f0b245804d11846ce1835d593e582859e35e5677782e10199ea509209
+output_sha256=46b5769f0b245804d11846ce1835d593e582859e35e5677782e10199ea509209
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-8D9BDEB9F1D4/stage072_geometry_roundtrip_current/texture_overlay_client/field/endless/flame_7.tga
+format=TGA_STANDARD
+client_modified=False
+tga_decode_check=PASS

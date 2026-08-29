@@ -1,0 +1,317 @@
+{
+  "tool": "PT_FREE_MESH_VALIDATE_V2",
+  "blend": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/blender/TmbC01_character_asset_g7_v1_game_normalized.blend",
+  "object": "TbhC01",
+  "source_smd": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/TmbC01.smd",
+  "source_sha256": "9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c",
+  "source_object": {
+    "name": "TbhC01",
+    "vertices": 85,
+    "faces": 156,
+    "texlinks": 156,
+    "rot_keys": 0,
+    "pos_keys": 0,
+    "scale_keys": 0,
+    "physique": true,
+    "allowed_materials": [
+      1
+    ]
+  },
+  "mode_sync": {
+    "original_mode": "OBJECT",
+    "current_mode": "OBJECT",
+    "edit_mode_synchronized": false
+  },
+  "vertices": 85,
+  "source_polygons": 156,
+  "export_triangles": 156,
+  "triangulation": {
+    "method": "TEMP_BMESH_BEAUTY",
+    "source_vertices": 85,
+    "source_polygons": 156,
+    "export_triangles": 156,
+    "vertex_count_preserved": true,
+    "artist_mesh_modified": false
+  },
+  "loops": 468,
+  "uv_layers": [
+    {
+      "index": 0,
+      "name": "SMD_UV",
+      "active": true,
+      "active_render": true,
+      "data_len": 468
+    }
+  ],
+  "active_uv": "SMD_UV",
+  "active_uv_data_count": 468,
+  "used_materials": {
+    "1": 156
+  },
+  "allowed_materials": [
+    1
+  ],
+  "rigid_bone_count": 12,
+  "rigid_bone_histogram": {
+    "Bip01 Pelvis": 18,
+    "Bip01 Head": 4,
+    "Bip01 Spine1": 24,
+    "Bip01 R Thigh": 7,
+    "Bip01 R UpperArm": 2,
+    "Bip01 R Clavicle": 6,
+    "Bip01 Spine": 7,
+    "Bip01 Tailba1": 1,
+    "Bip01 Tail": 1,
+    "Bip01 L Thigh": 7,
+    "Bip01 L UpperArm": 1,
+    "Bip01 L Clavicle": 7
+  },
+  "max_vertex_fit_error": 0.0033182910139652696,
+  "mean_vertex_fit_error": 0.001567907847960649,
+  "bbox": {
+    "x": [
+      -5.905661582946777,
+      5.888088226318359
+    ],
+    "y": [
+      -3.04927396774292,
+      5.214788436889648
+    ],
+    "z": [
+      20.12890625,
+      40.86328125
+    ]
+  },
+  "edge_degree_histogram": {
+    "8": 1,
+    "3": 8,
+    "6": 2,
+    "5": 2,
+    "4": 5,
+    "2": 178,
+    "1": 38
+  },
+  "boundary_edge_count": 38,
+  "nonmanifold_edge_count": 18,
+  "nonmanifold_edges": [
+    {
+      "edge": [
+        1,
+        4
+      ],
+      "faces": [
+        0,
+        2,
+        81,
+        83,
+        145,
+        147,
+        150,
+        152
+      ]
+    },
+    {
+      "edge": [
+        0,
+        1
+      ],
+      "faces": [
+        0,
+        5,
+        81
+      ]
+    },
+    {
+      "edge": [
+        0,
+        4
+      ],
+      "faces": [
+        0,
+        81,
+        87
+      ]
+    },
+    {
+      "edge": [
+        3,
+        6
+      ],
+      "faces": [
+        1,
+        60,
+        82,
+        86,
+        146,
+        151
+      ]
+    },
+    {
+      "edge": [
+        1,
+        3
+      ],
+      "faces": [
+        1,
+        10,
+        82,
+        147,
+        152
+      ]
+    },
+    {
+      "edge": [
+        1,
+        6
+      ],
+      "faces": [
+        1,
+        2,
+        82,
+        83
+      ]
+    },
+    {
+      "edge": [
+        4,
+        6
+      ],
+      "faces": [
+        2,
+        83,
+        92,
+        146,
+        151
+      ]
+    },
+    {
+      "edge": [
+        2,
+        5
+      ],
+      "faces": [
+        3,
+        69,
+        70,
+        84,
+        148,
+        153
+      ]
+    },
+    {
+      "edge": [
+        0,
+        5
+      ],
+      "faces": [
+        3,
+        84,
+        90
+      ]
+    },
+    {
+      "edge": [
+        0,
+        2
+      ],
+      "faces": [
+        3,
+        8,
+        84
+      ]
+    },
+    {
+      "edge": [
+        7,
+        9
+      ],
+      "faces": [
+        4,
+        80,
+        93,
+        149
+      ]
+    },
+    {
+      "edge": [
+        8,
+        9
+      ],
+      "faces": [
+        4,
+        79,
+        80,
+        149
+      ]
+    },
+    {
+      "edge": [
+        7,
+        8
+      ],
+      "faces": [
+        4,
+        11,
+        80,
+        149
+      ]
+    },
+    {
+      "edge": [
+        2,
+        12
+      ],
+      "faces": [
+        8,
+        33,
+        39
+      ]
+    },
+    {
+      "edge": [
+        3,
+        13
+      ],
+      "faces": [
+        10,
+        59,
+        85
+      ]
+    },
+    {
+      "edge": [
+        5,
+        59
+      ],
+      "faces": [
+        90,
+        115,
+        121
+      ]
+    },
+    {
+      "edge": [
+        6,
+        60
+      ],
+      "faces": [
+        92,
+        143,
+        144
+      ]
+    },
+    {
+      "edge": [
+        3,
+        4
+      ],
+      "faces": [
+        146,
+        147,
+        151,
+        152
+      ]
+    }
+  ],
+  "validation_check": "PASS"
+}

@@ -1,0 +1,34 @@
+347:	g_NewParticleMgr.Init();
+410:	memset(UserCharacterNewName, 0, sizeof(UserCharacterNewName));
+676:	Message.Init();
+677:	MessageBox.Init();
+780:			UserCharacter[index].Init();
+858:int HoLogin::AddJobCharacter(char *chrFile1, char *chrFile2, int index)
+862:		JobCharacter[JobCharacterCount].Init();
+902:		memset(JobCharacter[JobCharacterCount].szChatMessage, 0, sizeof(JobCharacter[JobCharacterCount].szChatMessage));
+903:		memset(JobCharacter[JobCharacterCount].smCharInfo.szName, 0, sizeof(JobCharacter[JobCharacterCount].smCharInfo.szName));
+934:			JobCharacter[index].Init();
+972:			memset(JobCharacter[index].szChatMessage, 0, sizeof(JobCharacter[JobCharacterCount].szChatMessage));
+973:			memset(JobCharacter[index].smCharInfo.szName, 0, sizeof(JobCharacter[JobCharacterCount].smCharInfo.szName));
+1114:		"SetChangeJobFace BEFORE AddJobCharacter",
+1123:	AddJobCharacter(
+1131:		"SetChangeJobFace AFTER AddJobCharacter",
+1269:		UserCharacter[index].Init();
+1272:		JobCharacter[index].Init();
+1604:		InitUserCharacter();
+1674:			memset(UserCharacterNewName, 0, sizeof(UserCharacterNewName));
+1906:int HoLogin::InitUserCharacter()
+1911:			UserCharacter[index].Init();
+2442:				UserCharacter[MouseDownCharacterNum].Init();
+2651:				memset(UserCharacterNewName, 0, sizeof(UserCharacterNewName));
+2682:		memset(UserCharacterNewName, 0, sizeof(UserCharacterNewName));
+2979:			ZeroMemory(UserCharacterNewName, sizeof(char) * 256);
+3208:					AddJobCharacter(szTempMechBodyName[0], szTempMechFaceName[0][0]);
+3211:					AddJobCharacter(szTempFighterBodyName[0], szTempFighterFaceName[0][0]);
+3214:					AddJobCharacter(szTempPikeBodyName[0], szTempPikeFaceName[0][0]);
+3217:					AddJobCharacter(szTempArcherBodyName[0], szTempArcherFaceName[0][0]);
+3220:					AddJobCharacter(szTempAssassineBodyName[0], szTempAssassineFaceName[0][0]);*/
+3264:					AddJobCharacter(szMorKnightBodyName[0], szMorKnightFaceName[0][0]);
+3267:					AddJobCharacter(szMorAtalantaBodyName[0], szMorAtalantaFaceName[0][0]);
+3270:					AddJobCharacter(szMorPriestessBodyName[0], szMorPriestessFaceName[0][0]);
+3273:					AddJobCharacter(szMorMagicianBodyName[0], szMorMagicianFaceName[0][0]);

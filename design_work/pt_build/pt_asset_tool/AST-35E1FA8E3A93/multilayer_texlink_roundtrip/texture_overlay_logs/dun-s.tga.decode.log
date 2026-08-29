@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=e8fe9eec78f846dba880621275536c9408f53814a350c337278f78dea835d17f
+output_sha256=e8fe9eec78f846dba880621275536c9408f53814a350c337278f78dea835d17f
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-35E1FA8E3A93/multilayer_texlink_roundtrip/texture_overlay_client/field/dungeon/dun-s.tga
+format=TGA_STANDARD
+client_modified=False
+tga_decode_check=PASS

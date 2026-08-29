@@ -1,0 +1,73 @@
+{
+  "asset_id": "AST-21DEF886F2A7",
+  "asset": "char/monster/Monbagon/Monbagon-C.smd",
+  "family": "SMD_MODEL_062_RIGID_PHYSIQUE",
+  "requested_lod": "auto",
+  "lod": "default",
+  "selected_action": "PT_STAND_011",
+  "selected_motion_index": 11,
+  "frames_checked": 50,
+  "worst_frame": {
+    "frame": 1,
+    "engine_frame": 6880,
+    "vertices": 662,
+    "max_error": 0.12289635524141573,
+    "rms_error": 0.033775414068716876,
+    "p95_error": 0.06880970682620607
+  },
+  "top_bone_max_error": [
+    {
+      "bone": "Bip01 L Hand",
+      "max_error": 0.12289635524141573
+    },
+    {
+      "bone": "Bip01 R Hand",
+      "max_error": 0.07374621887801082
+    },
+    {
+      "bone": "Bip01 R Forearm",
+      "max_error": 0.06263871743153956
+    },
+    {
+      "bone": "Bip01 L Forearm",
+      "max_error": 0.05483061534054968
+    },
+    {
+      "bone": "Bip01 L Toe0",
+      "max_error": 0.042434960316204286
+    },
+    {
+      "bone": "Bip01 L Foot",
+      "max_error": 0.04090003386632239
+    },
+    {
+      "bone": "Bip01 R Toe0",
+      "max_error": 0.03883555019646355
+    },
+    {
+      "bone": "Bip01 R Foot",
+      "max_error": 0.0353867562115685
+    },
+    {
+      "bone": "Bip01 R UpperArm",
+      "max_error": 0.03377225041921571
+    },
+    {
+      "bone": "Bip01 L UpperArm",
+      "max_error": 0.032449314594930875
+    }
+  ],
+  "source_pose_reference": "GLOBAL_BIND",
+  "pose_guard": "MONBAGON_STAND_BIND_LOCAL_V1",
+  "pose_guard_bones": [
+    "Bip01 Neck",
+    "Bip01 Head"
+  ],
+  "source_direct_visual": "PASS",
+  "armature_match_visual": "PASS",
+  "diagnostic_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-21DEF886F2A7/animation_diagnostic/source_vs_armature_diagnostic.blend",
+  "diagnostic_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-21DEF886F2A7/animation_diagnostic/animation_bridge_diagnostic.json",
+  "source_sha256": "6eb504b97382f6c1570b78f5ae2b0d6ecef4431c3c73d731c6492e54c1ab5621",
+  "artifact_sha256": "e1e9a96c31a52e3b91e1d3eb18e04e3434f8915120662969f0bf7d69dd0c1d59",
+  "client_modified": false
+}

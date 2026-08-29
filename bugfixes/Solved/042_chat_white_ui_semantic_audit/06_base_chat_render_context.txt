@@ -1,0 +1,1809 @@
+
+===== around line 9 =====
+    9: sSHADOWSTATE sShadowState[3];
+   10: 
+   11: int sinBmpLength[5] = { 0,0,0,0,0 };
+   12: 
+   13: 
+   14: int sinChatEnter = 0;
+   15: int SubChatHeight = 0;
+   16: int sinChatDisplayMode = 0;
+   17: int sinChatInputMode = 0;
+   18: 
+   19: 
+   20: 
+   21: int TestKeyAniFlag = 0;
+   22: 
+
+===== around line 45 =====
+   45: 
+   46: 
+   47: 
+   48: char szInfoMsgBuff5[512];
+   49: char szInfoMsgBuff6[128];
+   50: POINT InfoMessageBoxPos;
+   51: 
+   52: 
+   53: 
+   54: int ReStartFlag = 0;
+   55: POINT ReStartMainXY = { 0,0 };
+
+===== around line 133 =====
+  133: 	int   Flag;
+  134: 	int   Time;
+  135: 	POINT Posi;
+  136: 	POINT Size;
+  137: 	int   Mat;
+  138: 	int   Alpha;
+  139: };
+  140: char *HaEffectFilePath[] = {
+  141: 	0,
+  142: 	"image//Sinimage//Inter//defense.tga",
+  143: 	"image//Sinimage//Inter//block.tga",
+  144: 	"image//Sinimage//Inter//Evade.tga",
+  145: 	0,
+  146: };
+  147: #define  MAX_HAEFFECTNUM 10 
+  148: 
+  149: int HA_EffectIndex[4] = { 0, };
+
+===== around line 183 =====
+  183: 
+  184: 	InitState();
+  185: 
+  186: 
+  187: 
+  188: 	MatMenu[0] = CreateTextureMaterial("image//Sinimage//Inter//Menu-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+  189: 	MatMenu[1] = CreateTextureMaterial("image//Sinimage//Inter//Menu-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+  190: 
+  191: 	MatChatDefault[0] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDefault-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); // MINGW_CHATDEFAULT_TGA_PATH_FIX_V1
+  192: 	MatChatDefault[1] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDefault-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+  193: 
+  194: 	MatChatSmall[0] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatSmall-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+  195: 	MatChatSmall[1] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatSmall-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+  196: 
+  197: 	MatChatDoc[0] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDoc-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+  198: 	MatChatDoc[1] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDoc-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+  199: 
+  200: 
+  201: 	MatExitMenu = CreateTextureMaterial("image//Sinimage//Inter//ExitMenu.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+  202: 
+  203: 
+  204: 	MatClock = CreateTextureMaterial("image//Sinimage//Inter//Clock.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+  205: 	MatComPass = CreateTextureMaterial("image//Sinimage//Inter//Compass.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+  206: 
+  207: 	MatLife = CreateTextureMaterial("image//Sinimage//Inter//ShadowLife.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+  208: 	MatMana = CreateTextureMaterial("image//Sinimage//Inter//ShadowMana.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+  209: 	MatStamina = CreateTextureMaterial("image//Sinimage//Inter//ShadowStamina.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+  210: 		
+  211: 	Load();
+  212: 
+  213: 
+  214: }
+  215: 
+  216: void cINTERFACE::Load()
+  217: {
+  218: 	lpLIFE = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_Life.bmp");
+  219: 	lpMP = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_Mana.bmp");
+  220: 	lpSTM = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_Stamina.bmp");
+  221: 
+  222: 	lpButton[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bStatus.bmp");
+  223: 	lpButton[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bInvenTory.bmp");
+  224: 	lpButton[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bSkill.bmp");
+  225: 	lpButton[3] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bParty.bmp");
+  226: 	lpButton[4] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bQuest.bmp");
+  227: 	lpButton[5] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bSystem.bmp");
+  228: 
+  229: 	lpButton2[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bStatus-1.bmp");
+  230: 	lpButton2[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bInvenTory-1.bmp");
+  231: 	lpButton2[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bSkill-1.bmp");
+  232: 	lpButton2[3] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bParty-1.bmp");
+  233: 	lpButton2[4] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bQuest-1.bmp");
+  234: 	lpButton2[5] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bSystem-1.bmp");
+  235: 
+  236: 	lpInfoBox[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//StatusInfo.bmp");
+  237: 	lpInfoBox[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//InvenInfo.bmp");
+  238: 	lpInfoBox[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//SkillInfo.bmp");
+  239: 	lpInfoBox[3] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//PartyInfo.bmp");
+  240: 	lpInfoBox[4] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//QuestInfo.bmp");
+  241: 	lpInfoBox[5] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//SystemInfo.bmp");
+  242: 
+  243: 
+  244: 	lpMenuButton[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Option.bmp");
+  245: 	lpMenuButton[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Setting.bmp");
+  246: 	lpMenuButton[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Exit.bmp");
+  247: 
+  248: 
+  249: 	lpWalk = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Button//Walk.bmp");
+  250: 
+  251: 	lpChatShowButton = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Chat//ChatDownButton.bmp");
+  252: 
+  253: 
+  254: 	lpSun = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Flash//Sun.bmp");
+  255: 	lpMoon = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Flash//Moon.bmp");
+  256: 
+  257: 	lpGage[0] = LoadDibSurfaceOffscreen("Image//SinImage//Skill//P-skill.bmp");
+  258: 	lpGage[1] = LoadDibSurfaceOffscreen("Image//SinImage//Skill//P-skill2.bmp");
+  259: 
+  260: 	lpBar_Anger = LoadDibSurfaceOffscreen("image//Sinimage//Inter//sinGage//Bar_Anger.bmp");
+  261: 	lpBar_Time = LoadDibSurfaceOffscreen("image//Sinimage//Inter//sinGage//Bar_Time.bmp");
+  262: 	lpBar_Exp = LoadDibSurfaceOffscreen("image//Sinimage//Inter//sinGage//Bar_Exp.bmp");
+  263: 	lpButton_Anger = LoadDibSurfaceOffscreen("image//Sinimage//Inter//sinGage//Button_Anger.bmp");
+  264: 
+  265: 	lpRunInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Run.bmp");
+  266: 	lpWalkInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Walk.bmp");
+  267: 
+  268: 	lpCameraHandInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Camera_Hand.bmp");
+  269: 	lpCameraFixInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Camera_Fix.bmp");
+  270: 	lpCameraAutoInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Camera_Auto.bmp");
+  271: 
+  272: 	lpMapOnInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//MapOn.bmp");
+  273: 	lpMapOffInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//MapOff.bmp");
+  274: 
+  275: 	lpMapOnImage = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Button//MapOnImage.bmp");
+  276: 	lpCameraImage[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Button//AutoCameraImage.bmp");
+  277: 	lpCameraImage[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Button//PixCameraImage.bmp");
+  278: 
+  279: 	lpLIFESpot = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_LifeSpot.bmp");
+  280: 	lpSTMSpot = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_StaminaSpot.bmp");
+  281: 	lpMANASpot = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_ManaSpot.bmp");
+  282: 
+  283: 	lpReStartMain = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ReStart//ReStartMain.bmp");
+  284: 	lpReStartButton[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ReStart//ReStart_Field.bmp");
+  285: 	lpReStartButton[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ReStart//ReStart_Town.bmp");
+  286: 	lpReStartButton[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ReStart//ReStart_Exit.bmp");
+  287: 
+  288: 
+  289: 	lpSelectSkill_Main[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//G_Select_Skill.bmp");
+  290: 	lpSelectSkill_Main[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//Select_Skill.bmp");
+  291: 
+  292: 	lpSelectChangeJob[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//G_Select_ChangeJob.bmp");
+  293: 	lpSelectChangeJob[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//Select_ChangeJob.bmp");
+  294: 
+  295: 	lpTime7 = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//Select_ChangeJob.bmp");
+  296: 
+  297: 	lpGrowInterLeft = LoadDibSurfaceOffscreen("image//Sinimage//Inter//inter_01.bmp");
+  298: 	lpGrowInterMiddle = LoadDibSurfaceOffscreen("image//Sinimage//Inter//inter_02.bmp");
+  299: 	lpGrowInterRight = LoadDibSurfaceOffscreen("image//Sinimage//Inter//inter_03.bmp");
+  300: 
+  301: 
+  302: }
+  303: 
+  304: void cINTERFACE::Release()
+
+===== around line 353 =====
+  353: 	if(lpWalk)
+  354: 	{
+  355: 		lpWalk->Release();
+  356: 		lpWalk = 0;
+  357: 	}
+  358: 	if(lpChatShowButton)
+  359: 	{
+  360: 		lpChatShowButton->Release();
+  361: 		lpChatShowButton = 0;
+  362: 	}
+  363: 	if(lpSun)
+  364: 	{
+  365: 		lpSun->Release();
+  366: 		lpSun = 0;
+
+===== around line 432 =====
+  432: 	if(lpMapOffInfo)
+  433: 	{
+  434: 		lpMapOffInfo->Release();
+  435: 		lpMapOffInfo = 0;
+  436: 	}
+  437: 	if(lpMapOnImage)
+  438: 	{
+  439: 		lpMapOnImage->Release();
+  440: 		lpMapOnImage = 0;
+  441: 	}
+  442: 	if(lpCameraImage[0])
+  443: 	{
+  444: 		lpCameraImage[0]->Release();
+  445: 		lpCameraImage[0] = 0;
+  446: 	}
+  447: 	if(lpCameraImage[1])
+  448: 	{
+  449: 		lpCameraImage[1]->Release();
+  450: 		lpCameraImage[1] = 0;
+  451: 	}
+  452: 
+  453: 	if(lpLIFESpot)
+  454: 	{
+  455: 		lpLIFESpot->Release();
+
+===== around line 513 =====
+  513: 	}
+  514: }
+  515: 
+  516: int sinWinSizeX[] = { 1024,1280,1600 };
+  517: int sinWinSizeXindex[] = { 2,6,11 };
+  518: int nCheckSkillDraw = 0;
+  519: void cINTERFACE::Draw()
+  520: {
+  521: 
+  522: 	int i = 0;
+  523: 	int j = 0;
+  524: 	ReStartMainXY.x = (WinSizeX / 2) - (187 / 2);
+
+===== around line 531 =====
+  531: 	SkillMasterMainXY.y = (WinSizeY / 2) - (127 / 2) - 100; 
+  532: 
+  533: 	SkillMasterTextXY.x = SkillMasterMainXY.x + 23;
+  534: 	SkillMasterTextXY.y = SkillMasterMainXY.y + 65;
+  535: 
+  536: 	dsDrawTexImage(cInterFace.MatMenu[0], 800 - 256 - 256, 600 - 128, 256, 128, 255);
+  537: 	dsDrawTexImage(cInterFace.MatMenu[1], 800 - 256, 600 - 64, 256, 64, 255);
+  538: 
+  539: 
+  540: 	DrawSprite(800, WinSizeY - 64, lpGrowInterLeft, 0, 0, 66, 64, 777);
+  541: 
+  542: 	for(i = 0; i < 3; i++)
+  543: 	{
+  544: 		if(sinWinSizeX[i] == WinSizeX)
+  545: 		{
+  546: 			for(j = 0; j < sinWinSizeXindex[i]; j++)
+  547: 			{
+  548: 				DrawSprite(800 + 66 + (64 * j), WinSizeY - 64, lpGrowInterMiddle, 0, 0, 64, 64, 777);
+  549: 			}
+  550: 		}
+  551: 	}
+  552: 
+  553: 	DrawSprite(800 + 66 + (64 * j), WinSizeY - 64, lpGrowInterRight, 0, 0, 40, 64, 777);
+  554:     //DrawSprite(WinSizeX - 40,WinSizeY-64,lpGrowInterRight,0,0,40,64,777);
+  555: 
+  556: 
+  557: 
+  558: 
+  559: 	for(i = 0; i < 3; i++)
+  560: 	{
+  561: 		if(sShadowState[i].Flag)
+  562: 		{
+  563: 			dsDrawColorBox(sShadowState[i].Color, sShadowState[i].Posi.x, sShadowState[i].Posi.y,
+  564: 						   sShadowState[i].Size.x, sShadowState[i].Size.y);
+  565: 
+  566: 		}
+  567: 	}
+  568: 
+  569: 	DrawSprite(319, 500 + (94 - sinBmpLength[0]), lpLIFE, 0, (94 - sinBmpLength[0]), 16, 94);
+  570: 	DrawSprite(465, 500 + (94 - sinBmpLength[1]), lpMP, 0, (94 - sinBmpLength[1]), 16, 94);
+  571: 	DrawSprite(303, 518 + (76 - sinBmpLength[2]), lpSTM, 0, (76 - sinBmpLength[2]), 8, 76);
+  572: 
+  573: 
+  574: 	if(ExitButtonClick)
+  575: 	{
+  576: 		dsDrawTexImage( MatExitMenu , 698, 504 - 30, 128, 94 , 255 );
+  577: 
+  578: 		if(sinMenuBottonPosi == 1)
+  579: 			DrawSprite(698,504,lpMenuButton[0],0,0,96,19);
+  580: 
+  581: 		if(sinMenuBottonPosi == 2)
+  582: 			DrawSprite(698,504-31,lpMenuButton[1],0,0,96,19);
+  583: 
+  584: 		if(sinMenuBottonPosi == 3)
+  585: 			DrawSprite(698,535,lpMenuButton[2],0,0,96,19); 
+  586: 
+  587: 
+  588: 	}
+  589: 
+  590: 
+  591: 	if(hFocusWnd && sinChatInputMode && !usehFocus)
+  592: 	{
+  593: 
+  594: 		DrawSprite(7, 580 - SubChatHeight, lpChatShowButton, 0, 0, 22, 19);
+  595: 	}
+  596: 
+  597: 
+  598: 	if(DayOrNightFlag == 1)
+  599: 	{
+  600: 		DrawSprite(363, 589, lpSun, 0, 0, 13, 13);
+  601: 		DrawSprite(375, 593, lpBar_Time, 0, 0, sinGageTime2, 5);
+  602: 	}
+  603: 	else
+  604: 	{
+  605: 		DrawSprite(426, 589, lpMoon, 0, 0, 13, 13);
+  606: 		DrawSprite(375 + (50 - sinGageTime2), 593, lpBar_Time, (50 - sinGageTime2), 0, 50, 5);
+  607: 
+  608: 	}
+  609: 
+  610: 	int TempGage = 0;
+  611: 
+  612: 
+  613: 	if(sinSkill.pLeftSkill)
+  614: 	{
+  615: 		TempGage = (int)((41.0f*(float)sinSkill.pLeftSkill->GageLength) / 35.0f);
+  616: 		DrawSprite(338, 542 + (41 - TempGage), lpGage[0], 0, 41 - TempGage, 16, 41);
+  617: 	}
+  618: 
+  619: 	if(sinSkill.pRightSkill)
+  620: 	{
+  621: 		TempGage = (int)((41.0f*(float)sinSkill.pRightSkill->GageLength) / 35.0f);
+  622: 		DrawSprite(446, 542 + (41 - TempGage), lpGage[1], 0, 41 - TempGage, 16, 41);
+  623: 
+  624: 	}
+  625: 
+  626: 	//posi��o da barra de exp
+  627: 
+  628: 	//posi��o da barra de exp
+  629: 	if (sinPKWarningExpFlag) {
+  630: 		if (sinPKWarnigExpTime <= 15)
+  631: 			DrawSprite(575, 592, lpBar_Exp, 0, 0, sinBmpLength[3], 5);
+  632: 
+  633: 
+  634: 	}
+  635: 	else
+  636: 		DrawSprite(575, 592, lpBar_Exp, 0, 0, sinBmpLength[3], 5);
+  637: 
+  638: 	//DrawSprite(505,588,lpBar_Time,0,0,sinBmpLength[4],5); 
+  639: 
+  640: 	if(!sInterFlags.RunFlag)
+  641: 		DrawSprite(575, 565, lpWalk, 0, 0, 24, 25);
+  642: 
+  643: 	if(sInterFlags.CameraAutoFlag == 1)
+  644: 		DrawSprite(575 + 24, 565, lpCameraImage[0], 0, 0, 24, 25);
+  645: 
+  646: 	if(sInterFlags.CameraAutoFlag == 2)
+  647: 		DrawSprite(575 + 24, 565, lpCameraImage[1], 0, 0, 24, 25);
+  648: 
+  649: 
+  650: 	if(sInterFlags.MapOnFlag)
+  651: 	{
+  652: 		DrawSprite(575 + 24 + 24, 565, lpMapOnImage, 0, 0, 24, 25);
+  653: 	}
+  654: 
+  655: 	switch(sinRunCameraMapPosi)
+  656: 	{
+  657: 		case 1:
+  658: 		if(sInterFlags.RunFlag)
+  659: 		{
+  660: 			DrawSprite(575 + 12 - (76 / 2), 565 - 29, lpRunInfo, 0, 0, 77, 27);
+  661: 		}
+  662: 		else
+  663: 		{
+  664: 			DrawSprite(575 + 12 - (76 / 2), 565 - 29, lpWalkInfo, 0, 0, 77, 27);
+  665: 
+  666: 		}
+  667: 		break;
+  668: 		case 2:
+  669: 		if(sInterFlags.CameraAutoFlag == 0)
+  670: 		{
+  671: 			DrawSprite(575 + 24 + 12 - (76 / 2), 565 - 29, lpCameraHandInfo, 0, 0, 77, 27);
+  672: 			cHelpPet.PetMessage("*Camera_Hand", 0);
+  673: 		}
+  674: 		if(sInterFlags.CameraAutoFlag == 2)
+  675: 		{
+  676: 			DrawSprite(575 + 24 + 12 - (76 / 2), 565 - 29, lpCameraFixInfo, 0, 0, 77, 27);
+  677: 			cHelpPet.PetMessage("*Camera_Fix", 0);
+  678: 
+  679: 		}
+  680: 		if(sInterFlags.CameraAutoFlag == 1)
+  681: 		{
+  682: 			DrawSprite(575 + 26 + 13 - (76 / 2), 565 - 29, lpCameraAutoInfo, 0, 0, 77, 27);
+  683: 			cHelpPet.PetMessage("*Camera_Auto", 0);
+  684: 
+  685: 		}
+  686: 		break;
+  687: 		case 3:
+  688: 		if(sInterFlags.MapOnFlag)
+  689: 		{
+  690: 			DrawSprite(575 + 24 + 24 + 12 - (76 / 2), 565 - 29, lpMapOffInfo, 0, 0, 77, 27);
+  691: 
+  692: 		}
+  693: 		else
+  694: 		{
+  695: 			DrawSprite(575 + 24 + 24 + 12 - (76 / 2), 565 - 29, lpMapOnInfo, 0, 0, 77, 27);
+  696: 
+  697: 		}
+  698: 		break;
+  699: 
+  700: 	}
+
+===== around line 703 =====
+  703: 	{
+  704: 		if(MouseButtonPosi == t + 1)
+  705: 		{
+  706: 			if(InterButtonDown)
+  707: 			{
+  708: 				DrawSprite(648 + (t * 25), 560, lpButton2[t], 0, 0, 25, 27);
+  709: 
+  710: 			}
+  711: 			else
+  712: 			{
+  713: 				DrawSprite(648 + (t * 25), 560, lpButton[t], 0, 0, 25, 27);
+  714: 				DrawSprite(648 - (77 - 23 - 1) + (t * 25), 560 - 27, lpInfoBox[t], 0, 0, 77, 27);
+  715: 			}
+  716: 		}
+  717: 	}
+  718: 
+  719: 
+
+===== around line 721 =====
+  721: 
+  722: 
+  723: 
+  724: 	if(SkillNpcFlag)
+  725: 	{
+  726: 		DrawSprite(SkillMasterMainXY.x, SkillMasterMainXY.y, lpReStartMain, 0, 0, 188, 128);
+  727: 		DrawSprite(SkillMasterMainXY.x + ReStartButtonRect[0][0], SkillMasterMainXY.y + ReStartButtonRect[0][1], lpSelectSkill_Main[0], 0, 0, 44, 44);
+  728: 		DrawSprite(SkillMasterMainXY.x + ReStartButtonRect[1][0], SkillMasterMainXY.y + ReStartButtonRect[1][1], lpSelectChangeJob[0], 0, 0, 44, 44);
+  729: 		if(SkillMasterIndex)
+  730: 		{
+  731: 			if(SkillMasterIndex == 1 && SkillMasterOkFlag[0])
+  732: 				DrawSprite(SkillMasterMainXY.x + ReStartButtonRect[SkillMasterIndex - 1][0], SkillMasterMainXY.y + ReStartButtonRect[SkillMasterIndex - 1][1], lpSelectSkill_Main[1], 0, 0, 44, 44);
+  733: 			if(SkillMasterIndex == 2 && SkillMasterOkFlag[1])
+  734: 				DrawSprite(SkillMasterMainXY.x + ReStartButtonRect[SkillMasterIndex - 1][0], SkillMasterMainXY.y + ReStartButtonRect[SkillMasterIndex - 1][1], lpSelectChangeJob[1], 0, 0, 44, 44);
+  735: 			if(SkillMasterIndex == 3)
+  736: 				DrawSprite(SkillMasterMainXY.x + ReStartButtonRect[SkillMasterIndex - 1][0], SkillMasterMainXY.y + ReStartButtonRect[SkillMasterIndex - 1][1], lpReStartButton[2], 0, 0, 44, 44);
+  737: 
+  738: 		}
+  739: 	}
+  740: 
+  741: 
+  742: 	if(ShowSkillClose)
+  743: 	{
+  744: 		DrawSprite(269, 571 + (256 - sinMoveKindInter[SIN_SKILL]), cShop.lpExit, 0, 0, 20, 20);
+  745: 		DrawSprite(269, 571 - 27 + (256 - sinMoveKindInter[SIN_SKILL]), cInvenTory.lpExitInfo, 0, 0, 47, 27);
+  746: 	}
+  747: 
+  748: 
+  749: 	for(int k = 0; k < 10; k++)
+  750: 	{
+  751: 		if(HaEffect[k].Flag)
+  752: 		{
+  753: 			dsDrawTexImage(HaEffect[k].Mat, HaEffect[k].Posi.x, HaEffect[k].Posi.y, HaEffect[k].Size.x,
+  754: 						   HaEffect[k].Size.y, HaEffect[k].Alpha);
+  755: 		}
+  756: 	}
+  757: 
+  758: 
+  759: 
+
+===== around line 765 =====
+  765: 	int x = 0, y = 0;
+  766: 
+  767: 	char *lpInput;
+  768: 
+  769: 
+  770: 	if(hFocusWnd && sinChatInputMode && !usehFocus)
+  771: 	{
+  772: 
+  773: 
+  774: 
+  775: 		GetWindowText(hTextWnd, strBuff2, 240);
+
+===== around line 785 =====
+  785: 			len = 44;
+  786: 		}
+  787: 		else
+  788: 			lpInput = strBuff;
+  789: 
+  790: 		if(sinChatInputMode == 1)
+  791: 		{
+  792: 			x = 16; y = 584 - SubChatHeight;
+  793: 		}
+  794: 		else
+  795: 		{
+  796: 			x = 16; y = 584 - SubChatHeight;
+  797: 		}
+  798: 
+  799: 		SetFontTextColor( RGB(0, 0, 0));
+  800: 
+  801: 	#ifdef _LANGUAGE_VEITNAM
+  802: 		dsTextLineOut( x + 6, y, lpInput, len);
+  803: 		SetFontTextColor( RGB(255, 255, 255));
+  804: 		dsTextLineOut( x + 5, y - 1, lpInput, len);
+  805: 	#else
+  806: 		dsTextLineOut( x + 1, y + 1, lpInput, len);
+  807: 		SetFontTextColor( RGB(255, 255, 255));
+  808: 		dsTextLineOut( x, y, lpInput, len);
+  809: 	#endif
+  810: 
+  811: 	}
+  812: 
+  813: #include "Language/language.h"
+  814: #ifdef _LANGUAGE_JAPANESE
+  815: #include <imm.h>
+  816: 
+  817: 	if(ImeChatLen != len || ImePositon.x != len || ImePositon.y != y)
+  818: 	{
+  819: 		HIMC	h = ImmGetContext(hwnd);
+  820: 		COMPOSITIONFORM	cf;
+  821: 
+  822: 		int addPoint = 0;
+
+===== around line 832 =====
+  832: 			cf.ptCurrentPos.y = y + addPoint;
+  833: 			ImmSetCompositionWindow(h, &cf);
+  834: 
+  835: 			ImePositon.x = len;
+  836: 			ImePositon.y = y;
+  837: 			ImeChatLen = len;
+  838: 		}
+  839: 	}
+  840: #endif
+  841: 
+  842: 
+  843: 	if(sinChatDisplayMode)
+  844: 	{
+  845: 		if(sinChatDisplayMode == 1)
+  846: 		{
+  847: 			if(NoticeChatIndex == 1)
+  848: 			{
+  849: 
+  850: 
+  851: 				x = 16; y = 570 - SubChatHeight - 125; i = 3;
+  852: 				DisplayChatMessage3( x, y, 44, i, 5);
+  853: 
+  854: 
+  855: 				x = 16; y = 570 - SubChatHeight - 20; i = 8;
+  856: 				DisplayChatMessage2( x, y, 44, i);
+  857: 
+  858: 			}
+  859: 			else if(NoticeChatIndex == 2)
+  860: 			{
+  861: 				x = 16; y = 570 - SubChatHeight - 20; i = 12;
+  862: 				DisplayChatMessage3( x, y, 44, i, 5);
+  863: 			}
+  864: 			else
+  865: 			{
+  866: 				x = 16; y = 570 - SubChatHeight - 20; i = 12;
+  867: 				DisplayChatMessage2( x, y, 44, i);
+  868: 			}
+  869: 		}
+  870: 		else
+  871: 		{
+  872: 			if(NoticeChatIndex == 2)
+  873: 			{
+  874: 				x = 16; y = 570 - SubChatHeight - 5; i = 8;
+  875: 				DisplayChatMessage3( x, y, 44, i, 5);
+  876: 			}
+  877: 			else
+  878: 			{
+  879: 				x = 16; y = 570 - SubChatHeight - 5; i = 8;
+  880: 				DisplayChatMessage2( x, y, 44, i);
+  881: 			}
+  882: 		}
+  883: 
+  884: 
+  885: 
+  886: 	}
+  887: 
+  888: 	int dsDrawOffsetArrayBackup = dsDrawOffsetArray;
+  889: 
+  890: 	dsDrawOffsetArray = dsARRAY_TOP;
+  891: 
+  892: 
+  893: 	if(SkillMasterFlag == 1)
+  894: 	{
+  895: 		for(i = 0; i < SkillUpInfo.x; i++)
+  896: 		{
+  897: 			for(int j = 0; j < SkillUpInfo.y; j++)
+  898: 			{
+  899: 				if(i == 0 && j == 0)
+  900: 					dsDrawTexImage(cItem.MatItemInfoBox_TopLeft, SkillUpInfoPosi.x + (i * 16), SkillUpInfoPosi.y + (j * 16), 16, 16, 255);
+  901: 				if(j == 0 && i != 0 && i + 1 < SkillUpInfo.x)
+  902: 					dsDrawTexImage(cItem.MatItemInfoBox_TopCenter, SkillUpInfoPosi.x + (i * 16), SkillUpInfoPosi.y + (j * 16), 16, 16, 255);
+  903: 				if(j == 0 && i + 1 == SkillUpInfo.x)
+  904: 					dsDrawTexImage(cItem.MatItemInfoBox_TopRight, SkillUpInfoPosi.x + (i * 16), SkillUpInfoPosi.y + (j * 16), 16, 16, 255);
+  905: 
+  906: 				if(i == 0 && j != 0 && j + 1 != SkillUpInfo.y)
+  907: 					dsDrawTexImage(cItem.MatItemInfoBox_Left, SkillUpInfoPosi.x + (i * 16), SkillUpInfoPosi.y + (j * 16), 16, 16, 255);
+  908: 				if(i != 0 && j != 0 && i + 1 != SkillUpInfo.x && j + 1 != SkillUpInfo.y)
+  909: 					dsDrawTexImage(cItem.MatItemInfoBox_Center, SkillUpInfoPosi.x + (i * 16), SkillUpInfoPosi.y + (j * 16), 16, 16, 255);
+  910: 				if(i + 1 == SkillUpInfo.x && j != 0 && j + 1 != SkillUpInfo.y)
+  911: 					dsDrawTexImage(cItem.MatItemInfoBox_Right, SkillUpInfoPosi.x + (i * 16), SkillUpInfoPosi.y + (j * 16), 16, 16, 255);
+  912: 
+  913: 				if(i == 0 && j + 1 == SkillUpInfo.y)
+  914: 					dsDrawTexImage(cItem.MatItemInfoBox_BottomLeft, SkillUpInfoPosi.x + (i * 16), SkillUpInfoPosi.y + (j * 16), 16, 16, 255);
+  915: 				if(i != 0 && j + 1 == SkillUpInfo.y && i + 1 != SkillUpInfo.x)
+  916: 					dsDrawTexImage(cItem.MatItemInfoBox_BottomCenter, SkillUpInfoPosi.x + (i * 16), SkillUpInfoPosi.y + (j * 16), 16, 16, 255);
+  917: 				if(j + 1 == SkillUpInfo.y && i + 1 == SkillUpInfo.x)
+  918: 					dsDrawTexImage(cItem.MatItemInfoBox_BottomRight, SkillUpInfoPosi.x + (i * 16), SkillUpInfoPosi.y + (j * 16), 16, 16, 255);
+  919: 
+  920: 
+  921: 			}
+  922: 		}
+  923: 
+
+===== around line 925 =====
+  925: 		{
+  926: 			for(i = 0; i < 10; i++)
+  927: 			{
+  928: 				if(SkillIconIndex[i])
+  929: 				{
+  930: 					DrawSprite(SkillUpInfoPosi.x + SkillIconPosi.x + (i * 18) - 10, SkillUpInfoPosi.y + SkillIconPosi.y, cSkill.lpWeaponIcon[SkillIconIndex[i]], 0, 0, 18, 24);
+  931: 				}
+  932: 			}
+  933: 
+  934: 		}
+  935: 
+
+===== around line 940 =====
+  940: 		int MasteryShowX = 0;
+  941: 
+  942: 		char strBuff[128];
+  943: 		memset(strBuff, 0, sizeof(strBuff));
+  944: 
+  945: 		SetFontTextColor( RGB(255, 255, 255));
+  946: 
+  947: 		if(SkillMasterFlag == 1 && !ShowSkillUpInfo)
+  948: 		{
+  949: 
+  950: 			SetFontTextColor( RGB(222, 231, 255));
+  951: 			dsTextLineOut( 100, 225 - 80, SkillUseInfoText[0], lstrlen(SkillUseInfoText[0]));
+  952: 
+  953: 
+  954: 			if(sinSkill.SkillPoint || sinSkill.SkillPoint4)
+  955: 			{
+  956: 				SetFontTextColor( RGB(255, 255, 255));
+  957: 
+  958: 				dsTextLineOut( 100, 260 - 80, SkillUseInfoText[1], lstrlen(SkillUseInfoText[1]));
+  959: 				dsTextLineOut( 100, 280 - 80, SkillUseInfoText[2], lstrlen(SkillUseInfoText[2]));
+  960: 				wsprintf(strBuff, sinMsgSkillPoint, sinSkill.SkillPoint);
+  961: 
+  962: 				SetFontTextColor( RGB(247, 243, 193));
+  963: 				dsTextLineOut( 100, 310 - 80, strBuff, lstrlen(strBuff));
+  964: 
+  965: 				wsprintf(strBuff, sinMsgEliteSkillPoint, sinSkill.SkillPoint4);
+  966: 
+  967: 				SetFontTextColor( RGB(147, 243, 193));
+  968: 				dsTextLineOut( 103, 310 - 55, strBuff, lstrlen(strBuff));
+  969: 			}
+  970: 			else
+  971: 			{
+  972: 				SetFontTextColor( RGB(255, 64, 64));
+  973: 
+  974: 				dsTextLineOut( 100, 260 - 80, SkillUseInfoText[3], lstrlen(SkillUseInfoText[3]));
+  975: 				dsTextLineOut( 100, 280 - 80, SkillUseInfoText[4], lstrlen(SkillUseInfoText[4]));
+  976: 
+  977: 			}
+
+===== around line 983 =====
+  983: 
+  984: 	if(SkillMasterFlag && !ShowSkillUpInfo && (CheckQuestButtonShow1 || CheckQuestButtonShow2 || CheckQuestButtonShow3))
+  985: 	{
+  986: 		if(sinChangeJobButtonShow || sinChangeJobButtonShow2 || sinChangeJobButtonShow3 || sinChangeJobButtonShow4)
+  987: 		{
+  988: 			DrawSprite(240, 380, lpSelectChangeJob[1], 0, 0, 44, 44);
+  989: 			nCheckSkillDraw = 1;
+  990: 		}
+  991: 		else
+  992: 		{
+  993: 			DrawSprite(240, 380, lpSelectChangeJob[0], 0, 0, 44, 44);
+  994: 			nCheckSkillDraw = 2;
+  995: 		}
+  996: 	}
+  997: 
+  998: 	if(SkillMasterFlag && !ShowSkillUpInfo && (nCheckSkillDraw == 1))
+  999: 	{
+ 1000: 		DrawSprite(240, 380, lpSelectChangeJob[1], 0, 0, 44, 44);
+ 1001: 	}
+ 1002: 
+ 1003: 	if(SkillMasterFlag && !ShowSkillUpInfo && (nCheckSkillDraw == 2))
+ 1004: 	{
+ 1005: 		DrawSprite(240, 380, lpSelectChangeJob[0], 0, 0, 44, 44);
+ 1006: 	}
+ 1007: 
+ 1008: 	dsDrawOffsetArray = dsDrawOffsetArrayBackup;
+ 1009: 
+ 1010: 
+ 1011: 	if(SkillInfoShowFlag && !ShowSkillUpInfo)
+ 1012: 	{
+ 1013: 		if(SkillInfoShowFlag == 2)
+ 1014: 			dsDrawOffsetArray = dsARRAY_TOP;
+ 1015: 		for(i = 0; i < SkillBoxSize.x; i++)
+ 1016: 		{
+ 1017: 			for(int j = 0; j < SkillBoxSize.y; j++)
+ 1018: 			{
+ 1019: 				if(i == 0 && j == 0)
+ 1020: 					dsDrawTexImage(cItem.MatItemInfoBox_TopLeft, SkillInfoBoxPosi.x + (i * 16), SkillInfoBoxPosi.y + (j * 16), 16, 16, 255);
+ 1021: 				if(j == 0 && i != 0 && i + 1 < SkillBoxSize.x)
+ 1022: 					dsDrawTexImage(cItem.MatItemInfoBox_TopCenter, SkillInfoBoxPosi.x + (i * 16), SkillInfoBoxPosi.y + (j * 16), 16, 16, 255);
+ 1023: 				if(j == 0 && i + 1 == SkillBoxSize.x)
+ 1024: 
+ 1025: 					dsDrawTexImage(cItem.MatItemInfoBox_TopRight, SkillInfoBoxPosi.x + (i * 16), SkillInfoBoxPosi.y + (j * 16), 16, 16, 255);
+ 1026: 
+ 1027: 				if(i == 0 && j != 0 && j + 1 != SkillBoxSize.y)
+ 1028: 					dsDrawTexImage(cItem.MatItemInfoBox_Left, SkillInfoBoxPosi.x + (i * 16), SkillInfoBoxPosi.y + (j * 16), 16, 16, 255);
+ 1029: 				if(i != 0 && j != 0 && i + 1 != SkillBoxSize.x && j + 1 != SkillBoxSize.y)
+ 1030: 					dsDrawTexImage(cItem.MatItemInfoBox_Center, SkillInfoBoxPosi.x + (i * 16), SkillInfoBoxPosi.y + (j * 16), 16, 16, 255);
+ 1031: 				if(i + 1 == SkillBoxSize.x && j != 0 && j + 1 != SkillBoxSize.y)
+ 1032: 					dsDrawTexImage(cItem.MatItemInfoBox_Right, SkillInfoBoxPosi.x + (i * 16), SkillInfoBoxPosi.y + (j * 16), 16, 16, 255);
+ 1033: 
+ 1034: 				if(i == 0 && j + 1 == SkillBoxSize.y)
+ 1035: 					dsDrawTexImage(cItem.MatItemInfoBox_BottomLeft, SkillInfoBoxPosi.x + (i * 16), SkillInfoBoxPosi.y + (j * 16), 16, 16, 255);
+ 1036: 				if(i != 0 && j + 1 == SkillBoxSize.y && i + 1 != SkillBoxSize.x)
+ 1037: 					dsDrawTexImage(cItem.MatItemInfoBox_BottomCenter, SkillInfoBoxPosi.x + (i * 16), SkillInfoBoxPosi.y + (j * 16), 16, 16, 255);
+ 1038: 				if(j + 1 == SkillBoxSize.y && i + 1 == SkillBoxSize.x)
+ 1039: 					dsDrawTexImage(cItem.MatItemInfoBox_BottomRight, SkillInfoBoxPosi.x + (i * 16), SkillInfoBoxPosi.y + (j * 16), 16, 16, 255);
+ 1040: 
+ 1041: 
+ 1042: 			}
+ 1043: 		}
+ 1044: 		for(i = 0; i < 10; i++)
+ 1045: 		{
+ 1046: 			if(SkillIconIndex[i])
+ 1047: 			{
+ 1048: 				DrawSprite(SkillInfoBoxPosi.x + SkillIconPosi.x + (i * 18), SkillInfoBoxPosi.y + SkillIconPosi.y, cSkill.lpWeaponIcon[SkillIconIndex[i]], 0, 0, 18, 24);
+ 1049: 
+ 1050: 			}
+ 1051: 		}
+ 1052: 	}
+ 1053: 
+ 1054: 	if(InfoMessageBoxPos.x != 0 || InfoMessageBoxPos.y != 0)
+ 1055: 	{
+ 1056: 		dsDrawTexImage(cItem.MatItemInfoBox_Center, InfoMessageBoxPos.x - 5, InfoMessageBoxPos.y - 1, lstrlen(szInfoMsgBuff5) * 6, 13, 255);
+ 1057: 	}
+ 1058: 
+ 1059: 
+ 1060: 	cSkill.ShowClearSkillPointButton(SkillInfoBoxPosi.x + (SkillBoxSize.x * 16), SkillInfoBoxPosi.y + (SkillBoxSize.y * 16));
+ 1061: 	
+
+===== around line 1089 =====
+ 1089: int   CheckExpFlag = 0;
+ 1090: int   CheckExpFlag2 = 0;
+ 1091: int   CheckExpTime = 0;
+ 1092: 
+ 1093: DWORD dwTestKeyTime = 0;
+ 1094: int   TeskKeyMessageCnt = 0;
+ 1095: char *szTestKeyMsg[6] = { "��!  &(^_^)&    ",
+ 1096: 						 "��!  /(^_^)/   ",
+ 1097: 						 "��!  *(^_^)*  ",
+ 1098: 						 "",
+ 1099: 						 "",
+
+===== around line 1101 =====
+ 1101: 
+ 1102: void cINTERFACE::Main()
+ 1103: {
+ 1104: 	if(GetFieldMapCursor() == TRUE && cInterFace.sInterFlags.MapOnFlag)
+ 1105: 	{
+ 1106: 		cHelpPet.PetMessage("*Mini_Map", 0);
+ 1107: 	}
+ 1108: 
+ 1109: 
+ 1110: 
+ 1111: 	if(sinChatEnter)
+ 1112: 	{
+ 1113: 
+ 1114: 
+ 1115: 
+ 1116: 	}
+ 1117: 
+ 1118: 
+ 1119: 
+ 1120: 	if(cInterFace.ChatFlag)
+ 1121: 	{
+ 1122: 		if(SubChatHeight)
+ 1123: 		{
+ 1124: 			if(0 < pCursorPos.x && 300 > pCursorPos.x &&
+ 1125: 			   294 < pCursorPos.y && 294 + 116 > pCursorPos.y)
+ 1126: 			{
+ 1127: 				if(!ChatKindIndexNum)
+ 1128: 				{
+ 1129: 					cHelpPet.PetMessage("*ChatBox", 0);
+ 1130: 				}
+ 1131: 
+ 1132: 			}
+ 1133: 		}
+ 1134: 		else
+ 1135: 		{
+ 1136: 			if(0 < pCursorPos.x && 305 > pCursorPos.x &&
+ 1137: 			   600 - 192 < pCursorPos.y && 600 - 192 + 210 > pCursorPos.y)
+ 1138: 			{
+ 1139: 				if(!ChatKindIndexNum)
+ 1140: 				{
+ 1141: 					cHelpPet.PetMessage("*ChatBox", 0);
+ 1142: 				}
+ 1143: 
+ 1144: 			}
+ 1145: 		}
+ 1146: 	}
+ 1147: 
+ 1148: 
+ 1149: 	if(365 < pCursorPos.x && 435 > pCursorPos.x &&
+ 1150: 	   589 < pCursorPos.y && 596 > pCursorPos.y)
+ 1151: 	{
+ 1152: 		cHelpPet.PetMessage("*DayandNight", 0);
+ 1153: 
+ 1154: 	}
+ 1155: 
+ 1156: 
+ 1157: 	GetWordTimeDisplay();
+
+===== around line 1173 =====
+ 1173: 	{
+ 1174: 		dwTestKeyTime++;
+ 1175: 		if(dwTestKeyTime > 30)
+ 1176: 		{
+ 1177: 			dwTestKeyTime = 0;
+ 1178: 			SendChatMessageToServer(szTestKeyMsg[TeskKeyMessageCnt]);
+ 1179: 			TeskKeyMessageCnt++;
+ 1180: 			if(TeskKeyMessageCnt >= 6)
+ 1181: 			{
+ 1182: 				TestKeyAniFlag = 0;
+ 1183: 				dwTestKeyTime = 0;
+ 1184: 				TeskKeyMessageCnt = 0;
+ 1185: 
+ 1186: 			}
+ 1187: 		}
+ 1188: 	}
+ 1189: 
+
+===== around line 1238 =====
+ 1238: 		{
+ 1239: 			MouseButtonPosi = i + 1;
+ 1240: 			switch(MouseButtonPosi)
+ 1241: 			{
+ 1242: 				case 1:
+ 1243: 				cHelpPet.PetMessage("*CarStatus", 0);
+ 1244: 				break;
+ 1245: 				case 2:
+ 1246: 				cHelpPet.PetMessage("*InvenTory", 0);
+ 1247: 				break;
+ 1248: 				case 3:
+ 1249: 				cHelpPet.PetMessage("*Skill", 0);
+ 1250: 				break;
+ 1251: 				case 4:
+ 1252: 				cHelpPet.PetMessage("*Party", 0);
+ 1253: 				break;
+ 1254: 				case 5:
+ 1255: 				cHelpPet.PetMessage("*Quest", 0);
+ 1256: 				break;
+ 1257: 				case 6:
+ 1258: 				cHelpPet.PetMessage("*System", 0);
+ 1259: 				break;
+ 1260: 
+ 1261: 			}
+ 1262: 		}
+ 1263: 	}
+
+===== around line 1269 =====
+ 1269: 		{
+ 1270: 			sinRunCameraMapPosi = i + 1;
+ 1271: 			switch(sinRunCameraMapPosi)
+ 1272: 			{
+ 1273: 				case 1:
+ 1274: 				cHelpPet.PetMessage("*RunAndWalk", 0);
+ 1275: 				break;
+ 1276: 				case 2:
+ 1277: 
+ 1278: 				break;
+ 1279: 				case 3:
+
+===== around line 1305 =====
+ 1305: 	}
+ 1306: 
+ 1307: 
+ 1308: 	if(cInvenTory.OpenFlag || cCharStatus.OpenFlag || cSkill.OpenFlag)
+ 1309: 	{
+ 1310: 		SubChatHeight = 170;
+ 1311: 		sinChatInputMode = 0;
+ 1312: 		sinChatDisplayMode = 0;
+ 1313: 		if(SubChatHeight >= 170)
+ 1314: 		{
+ 1315: 			SubChatHeight = 170;
+ 1316: 
+ 1317: 		}
+ 1318: 
+ 1319: 	}
+ 1320: 	else
+ 1321: 		SubChatHeight = 0;
+ 1322: 
+ 1323: 	if(sinChatEnter)
+ 1324: 	{
+ 1325: 		if(SubChatHeight >= 170)
+ 1326: 			sinChatInputMode = 2;
+ 1327: 		else
+ 1328: 			sinChatInputMode = 1;
+ 1329: 
+ 1330: 	}
+ 1331: 	else
+ 1332: 		sinChatInputMode = 0;
+ 1333: 
+ 1334: 	if(ChatFlag)
+ 1335: 	{
+ 1336: 		if(SubChatHeight >= 170)
+ 1337: 			sinChatDisplayMode = 2;
+ 1338: 		else
+ 1339: 			sinChatDisplayMode = 1;
+ 1340: 
+ 1341: 	}
+ 1342: 	else
+ 1343: 		sinChatDisplayMode = 0;
+ 1344: 
+ 1345: 
+ 1346: 
+ 1347: 	CheckingState();
+ 1348: 	ShowParaState();
+
+===== around line 1475 =====
+ 1475: 				HaEffect[k].Time += 20;
+ 1476: 
+ 1477: 			switch(HaEffect[k].Time / 255)
+ 1478: 			{
+ 1479: 				case 0:
+ 1480: 				HaEffect[k].Alpha = 255;
+ 1481: 				break;
+ 1482: 				case 1:
+ 1483: 				HaEffect[k].Alpha = 255;
+ 1484: 				break;
+ 1485: 				case 2:
+ 1486: 				case 3:
+ 1487: 				case 4:
+ 1488: 				case 5:
+ 1489: 				case 6:
+ 1490: 
+ 1491: 				HaEffect[k].Alpha -= 10;
+ 1492: 				HaEffect[k].Posi.x -= 1;
+ 1493: 				HaEffect[k].Posi.y -= 1;
+ 1494: 				HaEffect[k].Size.x += 3;
+ 1495: 				HaEffect[k].Size.y += 3;
+ 1496: 				if(HaEffect[k].Alpha <= 0)
+ 1497: 				{
+ 1498: 					HaEffect[k].Alpha = 0;
+ 1499: 					HaEffect[k].Time = 0;
+ 1500: 					HaEffect[k].Flag = 0;
+ 1501: 				}
+ 1502: 				break;
+ 1503: 			};
+
+===== around line 1529 =====
+ 1529: 
+ 1530: 
+ 1531: 	if(365 < pCursorPos.x && 435 > pCursorPos.x &&
+ 1532: 	   589 < pCursorPos.y && 596 > pCursorPos.y)
+ 1533: 	{
+ 1534: 		cHelpPet.PetMessage("*DayandNight", 1);
+ 1535: 
+ 1536: 	}
+ 1537: 
+ 1538: 
+ 1539: 	if(pCursorPos.x > 315 && pCursorPos.x < 337 && pCursorPos.y > 500 && pCursorPos.y < 594)
+ 1540: 	{
+ 1541: 		cHelpPet.PetMessage("*Bar_Life", 1);
+ 1542: 	}
+ 1543: 	if(pCursorPos.x > 463 && pCursorPos.x < 483 && pCursorPos.y > 498 && pCursorPos.y < 595)
+ 1544: 	{
+ 1545: 		cHelpPet.PetMessage("*Bar_Mana", 1);
+ 1546: 	}
+ 1547: 	if(pCursorPos.x > 300 && pCursorPos.x < 313 && pCursorPos.y > 513 && pCursorPos.y < 595)
+ 1548: 	{
+ 1549: 		cHelpPet.PetMessage("*Bar_Stamina", 1);
+ 1550: 	}
+ 1551: 	if(pCursorPos.x > 483 && pCursorPos.x < 483 + 10 && pCursorPos.y > 513 && pCursorPos.y < 595)
+ 1552: 	{
+ 1553: 		cHelpPet.PetMessage("*Bar_Exp", 1);
+ 1554: 	}
+ 1555: 	if(pCursorPos.x > 500 && pCursorPos.x < 570 && pCursorPos.y > 540 && pCursorPos.y < 594)
+ 1556: 	{
+ 1557: 		cHelpPet.PetMessage("*Exp_Num", 1);
+ 1558: 	}
+ 1559: 	if(GetFieldMapCursor() == TRUE && cInterFace.sInterFlags.MapOnFlag)
+ 1560: 	{
+ 1561: 		cHelpPet.PetMessage("*Mini_Map", 1);
+ 1562: 
+ 1563: 	}
+ 1564: 
+ 1565: 
+ 1566: 
+ 1567: 
+ 1568: 	if(cInterFace.ChatFlag)
+ 1569: 	{
+ 1570: 		if(SubChatHeight)
+ 1571: 		{
+ 1572: 			if(0 < pCursorPos.x && 300 > pCursorPos.x &&
+ 1573: 			   294 < pCursorPos.y && 294 + 116 > pCursorPos.y)
+ 1574: 			{
+ 1575: 				if(!ChatKindIndexNum)
+ 1576: 				{
+ 1577: 					cHelpPet.PetMessage("*ChatBox", 1);
+ 1578: 				}
+ 1579: 
+ 1580: 			}
+ 1581: 		}
+ 1582: 		else
+ 1583: 		{
+ 1584: 			if(0 < pCursorPos.x && 305 > pCursorPos.x &&
+ 1585: 			   600 - 192 < pCursorPos.y && 600 - 192 + 210 > pCursorPos.y)
+ 1586: 			{
+ 1587: 				if(!ChatKindIndexNum)
+ 1588: 				{
+ 1589: 					cHelpPet.PetMessage("*ChatBox", 1);
+ 1590: 				}
+ 1591: 
+ 1592: 			}
+ 1593: 		}
+ 1594: 	}
+ 1595: 
+ 1596: 	SkillMouseButtonPosi[0] = 1;
+ 1597: 	ChangeJobButtonclick = 0;
+ 1598: 	ReStartOptionIndex = 0;
+ 1599: 
+ 1600: 	if(x > 7 && 22 > x && y > 579 - SubChatHeight && y < 579 + 19 - SubChatHeight)
+ 1601: 	{
+ 1602: 		if(!ChatFlag)ChatFlag = 1;
+ 1603: 		else ChatFlag = 0;
+ 1604: 		if(ChatFlag)sinChatEnter = 1;
+ 1605: 	}
+ 1606: 	switch(sinRunCameraMapPosi)
+ 1607: 	{
+ 1608: 		case 1:
+ 1609: 		if(sInterFlags.RunFlag)sInterFlags.RunFlag = 0;
+
+===== around line 1633 =====
+ 1633: 			cSettings.Open();
+ 1634: 
+ 1635: 		ExitButtonClick = 0;
+ 1636: 	}
+ 1637: 
+ 1638: 	char *HelpFilePath = "image//Sinimage//Help//Help.sin";
+ 1639: 	if(sinMenuBottonPosi == 1)
+ 1640: 	{
+ 1641: 		cSinHelp.sinShowHelp(SIN_HELP_KIND_NORMAL, 208, 61 - 50, 11, 11, D3DCOLOR_RGBA(19, 27, 20, 165), HelpFilePath);
+ 1642: 		ExitButtonClick = 0;
+ 1643: 		HelpBoxKindIndex = SIN_HELP;
+
+===== around line 1647 =====
+ 1647: 	{
+ 1648: 		InterButtonDown = 1;
+ 1649: 		switch(MouseButtonPosi)
+ 1650: 		{
+ 1651: 			case 1:
+ 1652: 			cHelpPet.PetMessage("*CarStatus", 1);
+ 1653: 			break;
+ 1654: 			case 2:
+ 1655: 			cHelpPet.PetMessage("*InvenTory", 1);
+ 1656: 			break;
+ 1657: 			case 3:
+ 1658: 			cHelpPet.PetMessage("*Skill", 1);
+ 1659: 			break;
+ 1660: 			case 4:
+ 1661: 			cHelpPet.PetMessage("*Party", 1);
+ 1662: 			break;
+ 1663: 			case 5:
+ 1664: 			cHelpPet.PetMessage("*Quest", 1);
+ 1665: 			break;
+ 1666: 			case 6:
+ 1667: 			cHelpPet.PetMessage("*System", 1);
+ 1668: 			break;
+ 1669: 		}
+ 1670: 
+ 1671: 	}
+ 1672: 	if(ReStartFlag)
+
+===== around line 1715 =====
+ 1715: 		{
+ 1716: 			SkillMasterFlag = SkillMasterIndex;
+ 1717: 			SkillNpcFlag = 0;
+ 1718: 
+ 1719: 			sinJobList = GetJobDataCode(sinChar->JOB_CODE, sinChar->ChangeJob + 1);
+ 1720: 			cMessageBox.ShowMessage3(MESSAGE_CHANGE_JOB, sinJobList->szName2);
+ 1721: 
+ 1722: 
+ 1723: 		}
+ 1724: 
+ 1725: 		if(SkillMasterIndex == 3)
+
+===== around line 1818 =====
+ 1818: void cINTERFACE::RButtonDown(int x, int y)
+ 1819: {
+ 1820: 
+ 1821: 	if(GetFieldMapCursor() == TRUE && cInterFace.sInterFlags.MapOnFlag)
+ 1822: 	{
+ 1823: 		cHelpPet.PetMessage("*Mini_Map", 2);
+ 1824: 
+ 1825: 	}
+ 1826: 
+ 1827: 
+ 1828: 	if(MouseButtonPosi)
+ 1829: 	{
+ 1830: 		switch(MouseButtonPosi)
+ 1831: 		{
+ 1832: 			case 1:
+ 1833: 			cHelpPet.PetMessage("*CarStatus", 2);
+ 1834: 			break;
+ 1835: 			case 2:
+ 1836: 			cHelpPet.PetMessage("*InvenTory", 2);
+ 1837: 			break;
+ 1838: 			case 3:
+ 1839: 			cHelpPet.PetMessage("*Skill", 2);
+ 1840: 			break;
+ 1841: 			case 4:
+ 1842: 			cHelpPet.PetMessage("*Party", 2);
+ 1843: 			break;
+ 1844: 			case 5:
+ 1845: 			cHelpPet.PetMessage("*Quest", 2);
+ 1846: 			break;
+ 1847: 			case 6:
+ 1848: 			cHelpPet.PetMessage("*System", 2);
+ 1849: 			break;
+ 1850: 		}
+ 1851: 
+ 1852: 	}
+ 1853: 
+ 1854: 	switch(sinRunCameraMapPosi)
+ 1855: 	{
+ 1856: 		case 1:
+ 1857: 		cHelpPet.PetMessage("*RunAndWalk", 2);
+ 1858: 		break;
+ 1859: 		case 2:
+ 1860: 		if(sInterFlags.CameraAutoFlag == 0)
+ 1861: 		{
+ 1862: 			cHelpPet.PetMessage("*Camera_Hand", 2);
+ 1863: 		}
+ 1864: 		if(sInterFlags.CameraAutoFlag == 2)
+ 1865: 		{
+ 1866: 			cHelpPet.PetMessage("*Camera_Fix", 2);
+ 1867: 		}
+ 1868: 		if(sInterFlags.CameraAutoFlag == 1)
+ 1869: 		{
+ 1870: 			cHelpPet.PetMessage("*Camera_Auto", 2);
+ 1871: 		}
+ 1872: 
+ 1873: 		break;
+ 1874: 		case 3:
+ 1875: 
+
+===== around line 1881 =====
+ 1881: 
+ 1882: 
+ 1883: 	if(365 < pCursorPos.x && 435 > pCursorPos.x &&
+ 1884: 	   589 < pCursorPos.y && 596 > pCursorPos.y)
+ 1885: 	{
+ 1886: 		cHelpPet.PetMessage("*DayandNight", 2);
+ 1887: 
+ 1888: 	}
+ 1889: 
+ 1890: 
+ 1891: 	if(pCursorPos.x > 315 && pCursorPos.x < 337 && pCursorPos.y > 500 && pCursorPos.y < 594)
+ 1892: 	{
+ 1893: 		cHelpPet.PetMessage("*Bar_Life", 2);
+ 1894: 	}
+ 1895: 	if(pCursorPos.x > 463 && pCursorPos.x < 483 && pCursorPos.y > 498 && pCursorPos.y < 595)
+ 1896: 	{
+ 1897: 		cHelpPet.PetMessage("*Bar_Mana", 2);
+ 1898: 	}
+ 1899: 	if(pCursorPos.x > 300 && pCursorPos.x < 313 && pCursorPos.y > 513 && pCursorPos.y < 595)
+ 1900: 	{
+ 1901: 		cHelpPet.PetMessage("*Bar_Stamina", 2);
+ 1902: 	}
+ 1903: 	if(pCursorPos.x > 483 && pCursorPos.x < 483 + 10 && pCursorPos.y > 513 && pCursorPos.y < 595)
+ 1904: 	{
+ 1905: 		cHelpPet.PetMessage("*Bar_Exp", 2);
+ 1906: 	}
+ 1907: 	if(pCursorPos.x > 500 && pCursorPos.x < 570 && pCursorPos.y > 540 && pCursorPos.y < 594)
+ 1908: 	{
+ 1909: 		cHelpPet.PetMessage("*Exp_Num", 2);
+ 1910: 	}
+ 1911: 
+ 1912: 
+ 1913: 
+ 1914: 	if(cInterFace.ChatFlag)
+ 1915: 	{
+ 1916: 		if(SubChatHeight)
+ 1917: 		{
+ 1918: 			if(0 < pCursorPos.x && 300 > pCursorPos.x &&
+ 1919: 			   294 < pCursorPos.y && 294 + 116 > pCursorPos.y)
+ 1920: 			{
+ 1921: 				if(!ChatKindIndexNum)
+ 1922: 				{
+ 1923: 					cHelpPet.PetMessage("*ChatBox", 2);
+ 1924: 				}
+ 1925: 
+ 1926: 			}
+ 1927: 		}
+ 1928: 		else
+ 1929: 		{
+ 1930: 			if(0 < pCursorPos.x && 305 > pCursorPos.x &&
+ 1931: 			   600 - 192 < pCursorPos.y && 600 - 192 + 210 > pCursorPos.y)
+ 1932: 			{
+ 1933: 				if(!ChatKindIndexNum)
+ 1934: 				{
+ 1935: 					cHelpPet.PetMessage("*ChatBox", 2);
+ 1936: 				}
+ 1937: 
+ 1938: 			}
+ 1939: 		}
+ 1940: 	}
+
+===== around line 1984 =====
+ 1984: 
+ 1985: 	if(sinGetKeyClick(VK_RETURN))
+ 1986: 	{
+ 1987: 		if(VRKeyBuff[VK_CONTROL])
+ 1988: 		{
+ 1989: 			if(!ChatFlag)
+ 1990: 				ChatFlag = 1;
+ 1991: 			else ChatFlag = 0;
+ 1992: 
+ 1993: 		}
+ 1994: 
+ 1995: 	if(!lstrcmpi(sinBuff, "/????????") || !lstrcmpi(sinBuff, "/PassMature"))
+ 1996: 		{
+
+===== around line 2008 =====
+ 2008: 			memset(cInvenTory.InvenItemTemp, 0, sizeof(sITEM) * 100);
+ 2009: 			cInvenTory.ReFormInvenItem();
+ 2010: 			cInvenTory.ReFormPotionNum();
+ 2011: 			ReformCharForm();
+ 2012: 			SaveGameData();
+ 2013: 			SendChatMessageToServer(" T.T Oh, No ~~~");
+ 2014: 
+ 2015: 		}
+ 2016: 
+ 2017: 
+ 2018: 		char sinTestBuff5[256], sinTestBuff6[256];
+
+===== around line 2044 =====
+ 2044: 							if(haElementaryQuestLog)
+ 2045: 								haElementaryQuestLog = (haElementaryQuestLog - QUESTBIT_FURYOFPHANTOM);
+ 2046: 							chaQuest.sHaQuest100LV.State = 12;
+ 2047: 						}
+ 2048: 						SaveGameData();
+ 2049: 						SendChatMessageToServer("MrIm: It's me");
+ 2050: 						memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
+ 2051: 						memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
+ 2052: 						memset(sinBuff, 0, sizeof(sinBuff));
+ 2053: 					#endif
+ 2054: 					}
+
+===== around line 2068 =====
+ 2068: 								memset(&chaQuest.sHaQuestElementary[i], 0, sizeof(sQUEST_ELEMENTARY));
+ 2069: 								cSkill.CancelContinueSkill(CHANGE_ELEMENTARY_QUEST);
+ 2070: 							}
+ 2071: 						}
+ 2072: 						SaveGameData();
+ 2073: 						SendChatMessageToServer("MrIm:Reset OK");
+ 2074: 						memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
+ 2075: 						memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
+ 2076: 						memset(sinBuff, 0, sizeof(sinBuff));
+ 2077: 					#endif
+ 2078: 					}
+
+===== around line 2102 =====
+ 2102: 						ResetQuset3Flag = atoi(sinTestBuff6);
+ 2103: 						if(ResetQuset3Flag == 1)
+ 2104: 						{
+ 2105: 							memset(&sinQuest_ChangeJob3, 0, sizeof(sQUEST_CHANGEJOB3));
+ 2106: 							SaveGameData();
+ 2107: 							SendChatMessageToServer("MrLee:Retry change Job Quest~ ");
+ 2108: 						}
+ 2109: 						if(ResetQuset3Flag == 2)
+ 2110: 						{
+ 2111: 							CheckChangeJob3QuestItem(0);
+ 2112: 						}
+
+===== around line 2125 =====
+ 2125: 						switch(ResetQuset3Flag)
+ 2126: 						{
+ 2127: 							case 30:
+ 2128: 							memset(&sinQuest_Level30, 0, sizeof(sQUEST_CHANGEJOB3));
+ 2129: 							SaveGameData();
+ 2130: 							SendChatMessageToServer("MrLee: Clear 30th Quest ~");
+ 2131: 							break;
+ 2132: 							case 55:
+ 2133: 							memset(&sinQuest_Level55, 0, sizeof(sQUEST_CHANGEJOB3));
+ 2134: 							memset(&sinQuest_Level55_2, 0, sizeof(sQUEST_CHANGEJOB3));
+ 2135: 							SaveGameData();
+ 2136: 							SendChatMessageToServer("MrLee: Clear 55th Quest ~");
+ 2137: 							break;
+ 2138: 							case 70:
+ 2139: 							memset(&sinQuest_Level70, 0, sizeof(sQUEST_CHANGEJOB3));
+ 2140: 							SaveGameData();
+ 2141: 							SendChatMessageToServer("MrLee: Clear 70th Quest ~");
+ 2142: 
+ 2143: 							break;
+ 2144: 							case 80:
+ 2145: 							memset(&sinQuest_Level80, 0, sizeof(sQUEST_CHANGEJOB3));
+ 2146: 							SaveGameData();
+ 2147: 							SendChatMessageToServer("MrLee: Clear 80th Quest ~");
+ 2148: 
+ 2149: 							break;
+ 2150: 							case 85:
+ 2151: 							memset(&sinQuest_Level85, 0, sizeof(sQUEST_CHANGEJOB3));
+ 2152: 							SaveGameData();
+ 2153: 							SendChatMessageToServer("MrLee: Clear 85th Quest ~");
+ 2154: 
+ 2155: 							break;
+ 2156: 							case 90:
+ 2157: 							memset(&sinQuest_Level90, 0, sizeof(sQUEST_CHANGEJOB3));
+ 2158: 							SaveGameData();
+ 2159: 							SendChatMessageToServer("MrLee: Clear 90th Quest ~");
+ 2160: 
+ 2161: 							break;
+ 2162: 
+ 2163: 							case 802:
+ 2164: 							memset(&sinQuest_Level80_2, 0, sizeof(sQUEST_CHANGEJOB3));
+ 2165: 							SaveGameData();
+ 2166: 							SendChatMessageToServer("MrLee: Clear 80_2nd Quest ~");
+ 2167: 
+ 2168: 							break;
+ 2169: 
+ 2170: 							case 902:
+ 2171: 							memset(&sinQuest_Level90_2, 0, sizeof(sQUEST_CHANGEJOB3));
+ 2172: 							SaveGameData();
+ 2173: 							SendChatMessageToServer("MrLee: Clear 90_2nd Quest ~(re-connect) ");
+ 2174: 
+ 2175: 							break;
+ 2176: 						}
+ 2177: 						if(ResetQuset3Flag == 1)
+ 2178: 						{
+ 2179: 							memset(&sinQuest_ChangeJob3, 0, sizeof(sQUEST_CHANGEJOB3));
+ 2180: 							SaveGameData();
+ 2181: 							SendChatMessageToServer("MrLee: Try again Quest~");
+ 2182: 						}
+ 2183: 						if(ResetQuset3Flag == 2)
+ 2184: 						{
+ 2185: 							CheckChangeJob3QuestItem(0);
+ 2186: 						}
+
+===== around line 2210 =====
+ 2210: 						ReformCharForm();
+ 2211: 						SendPlayUpdateInfo();
+ 2212: 						SaveGameData();
+ 2213: 						cCharStatus.CheckLevel();
+ 2214: 						
+ 2215: 						SendChatMessageToServer("MrLee: OK! Level up finalizado /(-_-)/ ");
+ 2216: 
+ 2217: 						memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
+ 2218: 						memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
+ 2219: 						memset(sinBuff, 0, sizeof(sinBuff));
+ 2220: 					#endif
+
+===== around line 2226 =====
+ 2226: 					#ifdef	GAME_GM
+ 2227: 
+ 2228: 					if (sinQuest_Level30.State < 3 && sinChar->Level >= 30) {
+ 2229: 						CheckCharForm();
+ 2230: 						sinChar->StatePoint += 5;
+ 2231: 						cMessageBox.ShowMessage(MESSAGE_PLUS_STATE_POINT5);
+ 2232: 						sinPlaySound(SIN_SOUND_EAT_POTION2);
+ 2233: 						sinQuest_levelLog |= QUESTBIT_LEVEL_30;
+ 2234: 						sinQuest_Level30.State = 3;
+ 2235: 						sinQuest_Level30.BackUpCode = sinQuest_Level30.CODE;
+ 2236: 						sinQuest_Level30.CODE = 0;
+ 2237: 						EndQuest_Code(sinQuest_Level30.BackUpCode);
+ 2238: 						sinQuest_Level30.CODE = 0;
+ 2239: 						ReformCharForm();
+ 2240: 					}
+ 2241: 					
+ 2242: 					if (sinQuest_Level55.State < 2 && sinChar->Level >= 55 && sinChar->JOB_CODE < 5) {
+ 2243: 						CheckCharForm();
+ 2244: 						sinSkill.SkillPoint += 1;
+ 2245: 						cMessageBox.ShowMessage(MESSAGE_PLUS_SKILL_POINT);
+ 2246: 						sinPlaySound(SIN_SOUND_EAT_POTION2);
+ 2247: 						sinQuest_levelLog |= QUESTBIT_LEVEL_55;
+ 2248: 						sinQuest_Level55.State = 3;
+ 2249: 						sinQuest_Level55.BackUpCode = sinQuest_Level55.CODE;
+ 2250: 						sinQuest_Level55.CODE = 0;
+ 2251: 						EndQuest_Code(sinQuest_Level55.BackUpCode);
+ 2252: 						sinQuest_Level55.CODE = 0;
+ 2253: 						ReformCharForm();
+ 2254: 					}
+ 2255: 					
+ 2256: 					if (sinQuest_Level55_2.State < 2 && sinChar->Level >= 55 && sinChar->JOB_CODE > 4) {
+ 2257: 						CheckCharForm();
+ 2258: 						sinSkill.SkillPoint += 1;
+ 2259: 						cMessageBox.ShowMessage(MESSAGE_PLUS_SKILL_POINT);
+ 2260: 						sinPlaySound(SIN_SOUND_EAT_POTION2);
+ 2261: 						sinQuest_levelLog |= QUESTBIT_LEVEL_55;
+ 2262: 						sinQuest_Level55_2.State = 3;
+ 2263: 						sinQuest_Level55_2.BackUpCode = sinQuest_Level55_2.CODE;
+ 2264: 						sinQuest_Level55_2.CODE = 0;
+ 2265: 						EndQuest_Code(sinQuest_Level55_2.BackUpCode);
+ 2266: 						sinQuest_Level55_2.CODE = 0;
+ 2267: 						ReformCharForm();
+ 2268: 					}
+ 2269: 					
+ 2270: 					if (sinQuest_Level70.State < 2 && sinChar->Level >= 70) {
+ 2271: 						CheckCharForm();
+ 2272: 						sinChar->StatePoint += 5;
+ 2273: 						sinSkill.SkillPoint += 1;
+ 2274: 						cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_70);
+ 2275: 						sinPlaySound(SIN_SOUND_EAT_POTION2);
+ 2276: 						sinQuest_levelLog |= QUESTBIT_LEVEL_70;
+ 2277: 						sinQuest_Level70.State = 3;
+ 2278: 						sinQuest_Level70.BackUpCode = sinQuest_Level70.CODE;
+ 2279: 						sinQuest_Level70.CODE = 0;
+ 2280: 						EndQuest_Code(sinQuest_Level70.BackUpCode);
+ 2281: 						sinQuest_Level70.CODE = 0;
+ 2282: 						ReformCharForm();
+ 2283: 					}
+ 2284: 
+ 2285: 					if (sinQuest_Level80.State < 2 && sinChar->Level >= 80) {
+ 2286: 						CheckCharForm();
+ 2287: 						sinChar->StatePoint += 5;
+ 2288: 						sinSkill.SkillPoint += 2;
+ 2289: 						cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_80);
+ 2290: 						sinPlaySound(SIN_SOUND_EAT_POTION2);
+ 2291: 						sinQuest_levelLog |= QUESTBIT_LEVEL_80;
+ 2292: 						sinQuest_Level80.State = 3;
+ 2293: 						sinQuest_Level80.BackUpCode = sinQuest_Level80.CODE;
+ 2294: 						sinQuest_Level80.CODE = 0;
+ 2295: 						EndQuest_Code(sinQuest_Level80.BackUpCode);
+ 2296: 						sinQuest_Level80.CODE = 0;
+ 2297: 						ReformCharForm();
+ 2298: 					}
+ 2299: 
+ 2300: 					if (sinQuest_Level85.State < 4 && sinChar->Level >= 85) {
+ 2301: 						CheckCharForm();
+ 2302: 						sinQuest_levelLog |= QUESTBIT_LEVEL_85;
+ 2303: 						sinQuest_Level85.State = 4;
+ 2304: 						sinQuest_Level85.BackUpCode = sinQuest_Level85.CODE;
+ 2305: 						sinQuest_Level85.CODE = 0;
+ 2306: 						EndQuest_Code(sinQuest_Level85.BackUpCode);
+ 2307: 						sinQuest_Level85.CODE = 0;
+ 2308: 						ReformCharForm();
+ 2309: 					}
+ 2310: 
+ 2311: 					if (sinQuest_Level90.State < 3 && sinChar->Level >= 90) {
+ 2312: 						CheckCharForm();
+ 2313: 						sinQuest_levelLog |= QUESTBIT_LEVEL_90;
+ 2314: 						sinQuest_Level90.State = 3;
+ 2315: 						sinQuest_Level90.BackUpCode = sinQuest_Level90.CODE;
+ 2316: 						sinQuest_Level90.CODE = 0;
+ 2317: 						EndQuest_Code(sinQuest_Level90.BackUpCode);
+ 2318: 						sinQuest_Level90.CODE = 0;
+ 2319: 						ReformCharForm();
+ 2320: 						cInvenTory.SetItemToChar();
+ 2321: 						if (!cInvenTory.SearchItemCode(sinQT1 | sin07)) {
+ 2322: 							SendQuestCommandToServer(SIN_QUEST_CODE_LEVEL90, 0, 0, 0);
+
+===== around line 2330 =====
+ 2330: 					}
+ 2331: 					
+ 2332: 					if (sinQuest_Level80_2.State < 5 && sinChar->Level >= 80) {
+ 2333: 						CheckCharForm();
+ 2334: 						sinQuest_levelLog |= QUESTBIT_LEVEL_80_2;
+ 2335: 						sinQuest_Level80_2.BackUpCode = sinQuest_Level80_2.CODE;
+ 2336: 						sinQuest_Level80_2.CODE = 0;
+ 2337: 						EndQuest_Code(sinQuest_Level80_2.BackUpCode);
+ 2338: 						sinQuest_Level80_2.CODE = 0;
+ 2339: 						sinQuest_Level80_2.State = 5;
+ 2340: 
+ 2341: 						if (cInvenTory.SearchItemCode(sinQT1 | sin12)) {
+ 2342: 							DeleteQuestItem(sinQT1 | sin12);
+
+===== around line 2344 =====
+ 2344: 
+ 2345: 						ReformCharStatePoint(sinChar, sinQuest_levelLog);
+ 2346: 						ReformCharForm();
+ 2347: 						cInvenTory.SetItemToChar();
+ 2348: 						sinPlaySound(SIN_SOUND_EAT_POTION2);
+ 2349: 						cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_80_2);
+ 2350: 						SetQuestBoard();
+ 2351: 					}
+ 2352: 
+ 2353: 					if (sinQuest_Level90_2.State < 4 && sinChar->Level >= 90) {
+ 2354: 						CheckCharForm();
+ 2355: 						sinQuest_levelLog |= QUESTBIT_LEVEL_90_2;
+ 2356: 						sinQuest_Level90_2.BackUpCode = sinQuest_Level90_2.CODE;
+ 2357: 							sinQuest_Level90_2.CODE = 0;
+ 2358: 						EndQuest_Code(sinQuest_Level90_2.BackUpCode);
+ 2359: 						sinQuest_Level90_2.CODE = 0;
+ 2360: 						sinQuest_Level90_2.State = 4;
+ 2361: 						if (cInvenTory.SearchItemCode(sinQT1 | sin13)) {
+ 2362: 							DeleteQuestItem(sinQT1 | sin13);
+ 2363: 						}
+ 2364: 						ReformCharStatePoint(sinChar, sinQuest_levelLog);
+ 2365: 						ReformCharForm();
+ 2366: 						cInvenTory.SetItemToChar();
+ 2367: 						sinPlaySound(SIN_SOUND_EAT_POTION2);
+ 2368: 						cMessageBox.ShowMessage(MESSAGE_PLUS_POINT_90_2);
+ 2369: 						SetQuestBoard();
+ 2370: 					}
+ 2371: 
+ 2372: 					SendChatMessageToServer("MeLee: Todas as quest terminadas");
+ 2373: 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
+ 2374: 					memset(sinBuff, 0, sizeof(sinBuff));
+ 2375: 
+ 2376: 					#endif
+ 2377: 				}
+ 2378: 
+ 2379: 				if(lstrcmp(sinTestBuff5, "/?????????") == 0 || lstrcmp(sinTestBuff5, "/LeeHelpMeSkill") == 0)
+ 2380: 				{
+ 2381: 				#ifdef	GAME_GM
+ 2382: 					cSkill.InitSkillPoint(1);
+ 2383: 					SendChatMessageToServer("MrLee: Skill reset/(-_-)/ ");
+ 2384: 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
+ 2385: 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
+ 2386: 					memset(sinBuff, 0, sizeof(sinBuff));
+ 2387: 				#endif
+ 2388: 				}
+
+===== around line 2396 =====
+ 2396: 					{
+ 2397: 						sinSetLife(sinChar->Life[1]);
+ 2398: 						ReformCharForm();
+ 2399: 						ResetEnergyGraph(4);
+ 2400: 					}
+ 2401: 					SendChatMessageToServer("MrLee: Stat Reset/(-_-)/ ");
+ 2402: 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
+ 2403: 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
+ 2404: 					memset(sinBuff, 0, sizeof(sinBuff));
+ 2405: 				#endif
+ 2406: 				}
+
+===== around line 2409 =====
+ 2409: 				#ifdef	GAME_GM
+ 2410: 					if(MouseItem.Flag)
+ 2411: 					{
+ 2412: 						MouseItem.sItemInfo.SpecialItemFlag[0] = CHECK_GIVE_ITEM;
+ 2413: 					}
+ 2414: 					SendChatMessageToServer("???: ???(-_-)/ ");
+ 2415: 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
+ 2416: 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
+ 2417: 					memset(sinBuff, 0, sizeof(sinBuff));
+ 2418: 				#endif
+ 2419: 				}
+ 2420: 				if(lstrcmp(sinTestBuff5, "/?????") == 0 || lstrcmp(sinTestBuff5, "/PassRankUp") == 0)
+ 2421: 				{
+ 2422: 				#ifdef	GAME_GM
+ 2423: 					SendChatMessageToServer("MeLee: it's good /(-_-)/ ");
+ 2424: 					sinChar->ChangeJob++;
+ 2425: 					if(sinChar->ChangeJob > 3)sinChar->ChangeJob = 3;
+ 2426: 					cSkill.SearchUseSkill();
+ 2427: 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
+ 2428: 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
+
+===== around line 2432 =====
+ 2432: 				}
+ 2433: 
+ 2434: 				/*if (lstrcmp(sinTestBuff5, "/tierup") == 0)
+ 2435: 				{
+ 2436: 				#ifdef	GAME_GM
+ 2437: 					SendChatMessageToServer("MrLee: Classe evoluida!!");
+ 2438: 					sinChar->ChangeJob = 3;
+ 2439: 					cSkill.SearchUseSkill();
+ 2440: 					ChangeJobFace();
+ 2441: 
+ 2442: 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
+
+===== around line 2452 =====
+ 2452: 						ResetQuset3Flag = atoi(sinTestBuff6);
+ 2453: 						if(ResetQuset3Flag == 1)
+ 2454: 						{
+ 2455: 							memset(&sinQuest_ChangeJob, 0, sizeof(sQUEST_CHANGEJOB));
+ 2456: 							SaveGameData();
+ 2457: 							SendChatMessageToServer("MrLee: Clear Job Quest of Temscron 2th");
+ 2458: 						}
+ 2459: 						if(ResetQuset3Flag == 2)
+ 2460: 						{
+ 2461: 
+ 2462: 							memset(&sinQuest_ChangeJob2, 0, sizeof(sQUEST_CHANGEJOB));
+ 2463: 							SaveGameData();
+ 2464: 							SendChatMessageToServer("MrLee: Clear Job Quest of Moryon 2th");
+ 2465: 						}
+ 2466: 						if(ResetQuset3Flag == 3)
+ 2467: 						{
+ 2468: 
+ 2469: 							memset(&sinQuest_ChangeJob3, 0, sizeof(sQUEST_CHANGEJOB3));
+ 2470: 							SaveGameData();
+ 2471: 							SendChatMessageToServer("MrLee: Clear Job Quest of 3th ");
+ 2472: 						}
+ 2473: 						if(ResetQuset3Flag == 4)
+ 2474: 						{
+ 2475: 							if(sinChar->ChangeJob == 3)
+ 2476: 							{
+ 2477: 								sinChar->ChangeJob = 2;
+ 2478: 							}
+ 2479: 							memset(&sinQuest_ChangeJob4, 0, sizeof(sQUEST_CHANGEJOB3));
+ 2480: 							SaveGameData();
+ 2481: 							SendChatMessageToServer("MrLee:Reconnect again!! ");
+ 2482: 						}
+ 2483: 
+ 2484: 						memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
+ 2485: 						memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
+ 2486: 						memset(sinBuff, 0, sizeof(sinBuff));
+
+===== around line 2491 =====
+ 2491: 
+ 2492: 				if(lstrcmp(sinTestBuff5, "/????????") == 0 || lstrcmp(sinTestBuff5, "/LeeShotKeyReset") == 0)
+ 2493: 				{
+ 2494: 				#ifdef	GAME_GM
+ 2495: 					cSkill.SkillShortKeyInit();
+ 2496: 					SendChatMessageToServer("MtLee: ShortKey Skill reset ");
+ 2497: 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
+ 2498: 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
+ 2499: 					memset(sinBuff, 0, sizeof(sinBuff));
+ 2500: 				#endif
+ 2501: 				}
+
+===== around line 2506 =====
+ 2506: 					for(int i = 0; i < 9; i++)
+ 2507: 					{
+ 2508: 						chaPremiumitem.UpKeepItem[i].PosiX = 0;
+ 2509: 						chaPremiumitem.UpKeepItem[i].PosiY = 0;
+ 2510: 						chaPremiumitem.UpKeepItem[i].Visible = false;
+ 2511: 						chaPremiumitem.UpKeepItem[i].TGAImageNumber = 0;
+ 2512: 						chaPremiumitem.UpKeepItem[i].IconTime[0] = 0;
+ 2513: 						chaPremiumitem.UpKeepItem[i].IconTime[1] = 0;
+ 2514: 						chaPremiumitem.UpKeepItem[i].Alpha = 255;
+ 2515: 						chaPremiumitem.UpKeepItem[i].Alphakind = 0;
+ 2516: 						chaPremiumitem.UpKeepItem[i].Per = 0;
+ 2517: 						memset(chaPremiumitem.UpKeepItem[i].Id, NULL, sizeof(chaPremiumitem.UpKeepItem[i].Id));
+ 2518: 					}
+ 2519: 					SendChatMessageToServer("???:????? ");
+ 2520: 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
+ 2521: 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
+ 2522: 					memset(sinBuff, 0, sizeof(sinBuff));
+ 2523: 				#endif
+ 2524: 				}
+ 2525: 			}
+ 2526: 		}
+ 2527: 	}
+ 2528: 
+ 2529: 	if(!hFocusWnd)
+ 2530: 		sinChatEnter = 0;
+ 2531: 	else sinChatEnter = 1;
+ 2532: 	if(ChatFlag)sinChatEnter = 1;
+ 2533: }
+ 2534: 
+ 2535: int DefaultLength[4] = { 94,94,76,221 }; //tamanho da barra de exp
+ 2536: float sinOldNowState[4] = { 0,0,0,0 };
+ 2537: float sinOldMaxState[4] = { 0,0,0,0 };
+
+===== around line 2615 =====
+ 2615: 
+ 2616: 
+ 2617: void cINTERFACE::ShowParaState()
+ 2618: {
+ 2619: 
+ 2620: 	InfoMessageBoxPos.x = 0;
+ 2621: 	InfoMessageBoxPos.y = 0;
+ 2622: 
+ 2623: 	szInfoMsgBuff5[0] = 0;
+ 2624: 	strcpy_s(szInfoMsgBuff5, "");
+ 2625: 
+ 2626: 
+
+===== around line 2629 =====
+ 2629: 		if(AddVirtualLife[1])
+ 2630: 		{
+ 2631: 			AddVirtualLife[0] = (int)((float)sinGetLife() * ((float)sinVirtualLifePercent / 100.f));
+ 2632: 		}
+ 2633: 
+ 2634: 		cHelpPet.PetMessage("*Bar_Life", 0);
+ 2635: 		wsprintf(szInfoMsgBuff5, sinStateName[0], (int)sinGetLife() + AddVirtualLife[0], (int)sinChar->Life[1] + AddVirtualLife[1]);
+ 2636: 		InfoMessageBoxPos.x = 343;
+ 2637: 		InfoMessageBoxPos.y = 500;
+ 2638: 
+ 2639: 	}
+ 2640: 
+ 2641: 
+ 2642: 	if(pCursorPos.x > 463 && pCursorPos.x < 483 && pCursorPos.y > 498 && pCursorPos.y < 595)
+
+===== around line 2645 =====
+ 2645: 		if(AddVirtualMana[1])
+ 2646: 		{
+ 2647: 			AddVirtualMana[0] = (int)((float)sinGetMana() * ((float)sinVirtualManaPercent / 100.f));
+ 2648: 		}
+ 2649: 		wsprintf(szInfoMsgBuff5, sinStateName[1], (int)sinGetMana(), (int)sinChar->Mana[1]);
+ 2650: 		cHelpPet.PetMessage("*Bar_Mana", 0);
+ 2651: 		InfoMessageBoxPos.x = 490;
+ 2652: 		InfoMessageBoxPos.y = 498;
+ 2653: 
+ 2654: 	}
+ 2655: 	if(pCursorPos.x > 300 && pCursorPos.x < 313 && pCursorPos.y > 513 && pCursorPos.y < 595)
+ 2656: 	{
+ 2657: 
+ 2658: 		if(AddVirtualStamina[1])
+ 2659: 		{
+ 2660: 			AddVirtualStamina[0] = (int)((float)sinGetStamina() * ((float)sinVirtualStaminaPercent / 100.f));
+ 2661: 		}
+ 2662: 		cHelpPet.PetMessage("*Bar_Stamina", 0);
+ 2663: 		wsprintf(szInfoMsgBuff5, sinStateName[2], (int)sinGetStamina(), (int)sinChar->Stamina[1]);
+ 2664: 		InfoMessageBoxPos.x = 320;
+ 2665: 		InfoMessageBoxPos.y = 513;
+ 2666: 
+ 2667: 	}
+ 2668: 
+ 2669: 	if(pCursorPos.x > 483 && pCursorPos.x < 483 + 10 && pCursorPos.y > 513 && pCursorPos.y < 595)
+ 2670: 	{
+ 2671: 		cHelpPet.PetMessage("*Bar_Exp", 0);
+ 2672: 
+ 2673: 	}
+ 2674: 	if(pCursorPos.x > 500 && pCursorPos.x < 570 && pCursorPos.y > 540 && pCursorPos.y < 594)
+ 2675: 	{
+ 2676: 		cHelpPet.PetMessage("*Exp_Num", 0);
+ 2677: 	}
+ 2678: 
+ 2679: 
+ 2680: 
+ 2681: 
+
+===== around line 2685 =====
+ 2685: 
+ 2686: 
+ 2687: }
+ 2688: 
+ 2689: 
+ 2690: void cINTERFACE::DrawInterText()
+ 2691: {
+ 2692: 	HDC	hdc = NULL;
+ 2693: 
+ 2694: 	SetFontTextColor( RGB(255, 255, 255));
+ 2695: 
+ 2696: 	if(InfoMessageBoxPos.x != 0 || InfoMessageBoxPos.y != 0)
+ 2697: 		dsTextLineOut( InfoMessageBoxPos.x, InfoMessageBoxPos.y, szInfoMsgBuff5, lstrlen(szInfoMsgBuff5));
+ 2698: 	if(ShowExpPercentFlag)
+ 2699: 	{
+ 2700: 		SetFontTextColor( RGB(202, 254, 251));
+ 2701: 		dsDrawOffsetArray = dsARRAY_BOTTOM;
+ 2702: 		//dsTextLineOut( 525, 586, szInfoMsgBuff6, lstrlen(szInfoMsgBuff6));
+ 2703: 		dsTextLineOut( 511,551, szInfoMsgBuff6, lstrlen(szInfoMsgBuff6));
+ 2704: 		dsDrawOffsetArray = dsARRAY_TOP;
+ 2705: 		//barra de exp
+ 2706: 	}
+ 2707: 
+ 2708: 
+ 2709: 
+ 2710: 	SetFontTextColor( RGB(255, 255, 255));
+ 2711: 	if(SkillNpcFlag)
+ 2712: 	{
+ 2713: 		if(szSkillMasterMsg[0])
+ 2714: 		{
+ 2715: 			dsTextLineOut( SkillMasterTextXY.x, SkillMasterTextXY.y + 2, szSkillMasterMsg, lstrlen(szSkillMasterMsg));
+
+===== around line 3185 =====
+ 3185: 
+ 3186: 
+ 3187: 
+ 3188: }
+ 3189: 
+ 3190: int cINTERFACE::DrawClockArrow(int x, int y, int Angle)
+ 3191: {
+ 3192: 
+ 3193: 
+ 3194: 
+ 3195: 
+
+===== around line 3226 =====
+ 3226: 		fx[cnt] += (float)x;
+ 3227: 		fy[cnt] += (float)y;
+ 3228: 	}
+ 3229: 
+ 3230: 
+ 3231: 	psDrawTexImage2(smMaterial[cInterFace.MatClock].smTexture[0], fx, fy, 0, 0, 1, 1, 255, 0);
+ 3232: 
+ 3233: 
+ 3234: 
+ 3235: 	return TRUE;
+ 3236: }
+ 3237: 
+ 3238: 
+ 3239: int cINTERFACE::DrawCompass(int x, int y, int Angle)
+ 3240: {
+ 3241: 
+ 3242: 	float fx[4], fy[4];
+ 3243: 	int sinY, cosY;
+ 3244: 	int dx[4], dy[4];
+
+===== around line 3261 =====
+ 3261: 		fx[cnt] += (float)x;
+ 3262: 		fy[cnt] += (float)y;
+ 3263: 	}
+ 3264: 
+ 3265: 
+ 3266: 	psDrawTexImage2(smMaterial[cInterFace.MatComPass].smTexture[0], fx, fy, 0, 0, 1, 1, 255, 0);
+ 3267: 
+ 3268: 
+ 3269: 	return TRUE;
+ 3270: }
+ 3271: 
+
+===== around line 3403 =====
+ 3403: 	if (smWsockServer)
+ 3404: 		smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+ 3405: 
+ 3406: 	/*if(!HA_EffectIndex[Index])
+ 3407: 	{
+ 3408: 		HA_EffectIndex[Index] = CreateTextureMaterial(HaEffectFilePath[Index], 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+ 3409: 		ReadTextures();
+ 3410: 	}
+ 3411: 	for(int i = 0; i < MAX_HAEFFECTNUM; i++)
+ 3412: 	{
+ 3413: 		if(!HaEffect[i].Flag)
+ 3414: 		{

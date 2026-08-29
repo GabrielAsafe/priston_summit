@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=8e098c72633fe901eb068bedf3b8d432f1f055db3492d8188fd5a52d6bad4322
+output_sha256=ef51cbb56c0600833177b2a07b5df8f66e4f4c85a48c31f45c5825f35f552a1f
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/texture_overlay_client/field/castle/tem_rope_01.TGA
+format=TGA_PRISTON_HEADER18_KEEP_00_16
+client_modified=False
+tga_decode_check=PASS

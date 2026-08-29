@@ -1,0 +1,45 @@
+{
+  "asset_id": "AST-97A54A9D37F1",
+  "asset": "Field/forest/3ani-04.smd",
+  "family": "SMD_MODEL_062_STATIC",
+  "mode": "STATIC_OBJECT_LOCAL",
+  "preview_version": 2,
+  "object_count": 2,
+  "animated_object_count": 2,
+  "animated_objects": [
+    "3ani-05",
+    "3ani-04"
+  ],
+  "root_objects": [
+    "3ani-05",
+    "3ani-04"
+  ],
+  "parent_edge_count": 0,
+  "parent_edges": [],
+  "channels_animated": [
+    "ROT"
+  ],
+  "reference_engine_frame": 160,
+  "max_engine_frame": 16000,
+  "preview_frame_start": 1,
+  "preview_frame_end": 100,
+  "preview_fps": 30,
+  "preview_reference": "FIRST_KEY_NORMALIZED_PER_OBJECT",
+  "hierarchy_semantics": "LOCAL_QMAT_TIMES_PARENT_TMRESULT",
+  "rotation_semantics": "ACCUMULATED_TM_PREV_ROT",
+  "source_rot_key_semantics": "INCREMENTAL_LOCAL_QUATERNION",
+  "interpolation": "LINEAR_SAMPLED_EVERY_SOURCE_TICK",
+  "timing_status": "PREVIEW_NOT_RUNTIME_SPEED_CERTIFIED",
+  "rotation_cumulative_max_error": 6.796536256015173e-08,
+  "source_semantics": "PASS",
+  "animation_visual": "PASS",
+  "texture_material_visual": "PASS",
+  "visual_object_local_asset": "PASS",
+  "texture_prepare": "PASS",
+  "preview_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-97A54A9D37F1/object_local_animation/object_local_preview.blend",
+  "source_sha256": "e44cc31aec00222502c0d0bf3b53ea46e2230008359f241bc29048651deff4e4",
+  "artifact_sha256": "846f83e2639e2daabfc37524adae53e26320401e12622027182b41f74cde1fc7",
+  "certification_id": "CERT-7036ACBA1C71",
+  "automatic_certification_id": "CERT-19D2E7E586C9",
+  "client_modified": false
+}

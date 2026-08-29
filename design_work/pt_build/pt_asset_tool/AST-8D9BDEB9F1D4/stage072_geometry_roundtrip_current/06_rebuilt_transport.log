@@ -1,0 +1,23 @@
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+00:01.638  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-8D9BDEB9F1D4/stage072_geometry_roundtrip_current/rebuilt_stage072_geometry_preview.blend"
+{
+  "format": "PT_STAGE072_BLENDER_TRANSPORT_CHECK_V1",
+  "check": "PASS",
+  "source": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-8D9BDEB9F1D4/stage072_geometry_roundtrip_current/rebuilt_stage072_geometry_roundtrip.smd",
+  "source_sha256": "6385df2939d80da42d40d12e2020f43d609faac8fee680decae7cde71cbc9993",
+  "vertices": 25356,
+  "faces": 43539,
+  "loops": 130617,
+  "max_texlink_depth": 3,
+  "max_position_abs_error": 0.0,
+  "max_uv_abs_error": 4.76837158203125e-07,
+  "max_color_abs_error": 2.9685450542160652e-08,
+  "light_metadata_count": 0,
+  "errors": [],
+  "client_modified": false
+}
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

@@ -1,0 +1,19 @@
+{
+  "format": "PT_ROOT_SKELETON_BINDINGS_V2",
+  "entries": {
+    "char/tmabcd/cmfbb02.smd": {
+      "asset": "char/tmABCD/CmfbB02.smd",
+      "source_sha256": "12478d4ae2ba77b7cfb95ae3d5b9cc8c06511243dbfaef8aa2a3cc2216b6bda0",
+      "updated_at": "2026-08-28T14:40:39.781724+00:00",
+      "tested_skeletons": 1,
+      "distinct_skeleton_passes": 0,
+      "smb_files": 958,
+      "skeleton_group_universe": 1,
+      "signature_index": "/home/gabriel/Área de Trabalho/summit/design_work/logs/asset_family_refine_v2/smb_skeleton_signatures_v1.json",
+      "probe_state": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/probe_state_v2.json",
+      "status": "NO_MATCH",
+      "passes": [],
+      "source": "SKELETON_SIGNATURE_GATE"
+    }
+  }
+}

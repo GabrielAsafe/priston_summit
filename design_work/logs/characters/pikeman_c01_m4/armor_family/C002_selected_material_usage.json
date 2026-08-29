@@ -1,0 +1,10 @@
+{
+  "objects": [
+    "TamC01",
+    "TbmC03"
+  ],
+  "material_face_counts": {
+    "1": 282,
+    "0": 122
+  }
+}

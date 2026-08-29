@@ -1,0 +1,727 @@
+
+=== NORMALIZE TbhC03 ===
+00:00.015  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.015  color_management | Using fallback mode for management
+00:01.574  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_m4/artist/C001_C002_character_asset_g7_auto_witness_v1.blend"
+Info: Saved as "01_normalize_TbhC03.blend"
+PT_RIGID_SKIN_NORMALIZE_COPY_V2
+object=TbhC03
+source_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_m4/artist/C001_C002_character_asset_g7_auto_witness_v1.blend
+source_blend_sha256=e239304686870628991689f8ab9b27382d6eb1fe4ab245177e39dd3dcc776ffb
+output_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/01_normalize_TbhC03.blend
+vertices=92
+strict_rigid_before=92
+mixed_before=0
+empty_before=0
+preserved_rigid=92
+auto_resolved=0
+unresolved=0
+policy_histogram={'ALREADY_RIGID': 92}
+review_group=None
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TbhC03.json
+
+ARTIST_MESSAGE
+WHY: O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.
+AUTOMATIC: 0 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.
+MANUAL: Nenhum vértice exige revisão manual.
+
+normalize_copy_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit
+
+=== NORMALIZE TbmC03 ===
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+00:01.591  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/01_normalize_TbhC03.blend"
+Info: Saved as "02_normalize_TbmC03.blend"
+PT_RIGID_SKIN_NORMALIZE_COPY_V2
+object=TbmC03
+source_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/01_normalize_TbhC03.blend
+source_blend_sha256=cf49e7340ba87613c3aed2f3643e05767b687fba030824d439d30e574e6462e8
+output_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/02_normalize_TbmC03.blend
+vertices=82
+strict_rigid_before=80
+mixed_before=2
+empty_before=0
+preserved_rigid=80
+auto_resolved=2
+unresolved=0
+policy_histogram={'ALREADY_RIGID': 80, 'TIE_ADJACENT_RIGID_MAJORITY': 1, 'TIE_ADJACENT_RIGID_DISTANCE': 1}
+review_group=None
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TbmC03.json
+
+ARTIST_MESSAGE
+WHY: O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.
+AUTOMATIC: 2 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.
+MANUAL: Nenhum vértice exige revisão manual.
+
+normalize_copy_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit
+
+=== NORMALIZE TblC03 ===
+00:00.015  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.015  color_management | Using fallback mode for management
+00:01.731  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/02_normalize_TbmC03.blend"
+Info: Saved as "03_normalize_TblC03.blend"
+PT_RIGID_SKIN_NORMALIZE_COPY_V2
+object=TblC03
+source_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/02_normalize_TbmC03.blend
+source_blend_sha256=72ec9807240fc1db2d7175e83fe63dc6755f3057bcc23e724e58f2b6343096d7
+output_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/03_normalize_TblC03.blend
+vertices=63
+strict_rigid_before=63
+mixed_before=0
+empty_before=0
+preserved_rigid=63
+auto_resolved=0
+unresolved=0
+policy_histogram={'ALREADY_RIGID': 63}
+review_group=None
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TblC03.json
+
+ARTIST_MESSAGE
+WHY: O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.
+AUTOMATIC: 0 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.
+MANUAL: Nenhum vértice exige revisão manual.
+
+normalize_copy_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit
+
+=== NORMALIZE TblC01 ===
+00:00.016  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.016  color_management | Using fallback mode for management
+00:02.075  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/03_normalize_TblC03.blend"
+Info: Saved as "04_normalize_TblC01.blend"
+PT_RIGID_SKIN_NORMALIZE_COPY_V2
+object=TblC01
+source_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/03_normalize_TblC03.blend
+source_blend_sha256=15770d9b0ffc0ea2ba797d841709f025ef38d252adaa41762ae21643e4ff2e33
+output_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/04_normalize_TblC01.blend
+vertices=73
+strict_rigid_before=73
+mixed_before=0
+empty_before=0
+preserved_rigid=73
+auto_resolved=0
+unresolved=0
+policy_histogram={'ALREADY_RIGID': 73}
+review_group=None
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TblC01.json
+
+ARTIST_MESSAGE
+WHY: O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.
+AUTOMATIC: 0 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.
+MANUAL: Nenhum vértice exige revisão manual.
+
+normalize_copy_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit
+
+=== NORMALIZE TbmC01 ===
+00:00.017  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.017  color_management | Using fallback mode for management
+00:01.804  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/04_normalize_TblC01.blend"
+Info: Saved as "05_normalize_TbmC01.blend"
+PT_RIGID_SKIN_NORMALIZE_COPY_V2
+object=TbmC01
+source_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/04_normalize_TblC01.blend
+source_blend_sha256=ed80c51a7746353d7a82b55564688542fe4d6a7c46830a9895232ca38ccf21ca
+output_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/05_normalize_TbmC01.blend
+vertices=74
+strict_rigid_before=74
+mixed_before=0
+empty_before=0
+preserved_rigid=74
+auto_resolved=0
+unresolved=0
+policy_histogram={'ALREADY_RIGID': 74}
+review_group=None
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TbmC01.json
+
+ARTIST_MESSAGE
+WHY: O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.
+AUTOMATIC: 0 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.
+MANUAL: Nenhum vértice exige revisão manual.
+
+normalize_copy_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit
+
+=== NORMALIZE TbhC01 ===
+00:00.017  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.017  color_management | Using fallback mode for management
+00:01.670  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/05_normalize_TbmC01.blend"
+Info: Saved as "06_normalize_TbhC01.blend"
+PT_RIGID_SKIN_NORMALIZE_COPY_V2
+object=TbhC01
+source_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/05_normalize_TbmC01.blend
+source_blend_sha256=359d231dec282e2ae360d4079baac7d499e63f019159a2bf648cedacc82f2899
+output_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/06_normalize_TbhC01.blend
+vertices=85
+strict_rigid_before=85
+mixed_before=0
+empty_before=0
+preserved_rigid=85
+auto_resolved=0
+unresolved=0
+policy_histogram={'ALREADY_RIGID': 85}
+review_group=None
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TbhC01.json
+
+ARTIST_MESSAGE
+WHY: O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.
+AUTOMATIC: 0 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.
+MANUAL: Nenhum vértice exige revisão manual.
+
+normalize_copy_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit
+
+=== NORMALIZE TahC01 ===
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+00:01.685  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/06_normalize_TbhC01.blend"
+Info: Saved as "07_normalize_TahC01.blend"
+PT_RIGID_SKIN_NORMALIZE_COPY_V2
+object=TahC01
+source_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/06_normalize_TbhC01.blend
+source_blend_sha256=a9b6e8424fbbde140040962f5a065910fc7c4244fec0881044890105330e1260
+output_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/07_normalize_TahC01.blend
+vertices=222
+strict_rigid_before=222
+mixed_before=0
+empty_before=0
+preserved_rigid=222
+auto_resolved=0
+unresolved=0
+policy_histogram={'ALREADY_RIGID': 222}
+review_group=None
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TahC01.json
+
+ARTIST_MESSAGE
+WHY: O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.
+AUTOMATIC: 0 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.
+MANUAL: Nenhum vértice exige revisão manual.
+
+normalize_copy_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit
+
+=== NORMALIZE TamC01 ===
+00:00.015  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.015  color_management | Using fallback mode for management
+00:01.696  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/07_normalize_TahC01.blend"
+Info: Saved as "08_normalize_TamC01.blend"
+PT_RIGID_SKIN_NORMALIZE_COPY_V2
+object=TamC01
+source_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/07_normalize_TahC01.blend
+source_blend_sha256=d5d71023d3d44cd70a3de1ef8355ee10eb5271dd0d4e7534a547c32f43312fdf
+output_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/08_normalize_TamC01.blend
+vertices=157
+strict_rigid_before=157
+mixed_before=0
+empty_before=0
+preserved_rigid=157
+auto_resolved=0
+unresolved=0
+policy_histogram={'ALREADY_RIGID': 157}
+review_group=None
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TamC01.json
+
+ARTIST_MESSAGE
+WHY: O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.
+AUTOMATIC: 0 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.
+MANUAL: Nenhum vértice exige revisão manual.
+
+normalize_copy_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit
+
+=== NORMALIZE TalC01 ===
+00:00.017  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.017  color_management | Using fallback mode for management
+00:01.624  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/08_normalize_TamC01.blend"
+Info: Saved as "09_normalize_TalC01.blend"
+PT_RIGID_SKIN_NORMALIZE_COPY_V2
+object=TalC01
+source_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/08_normalize_TamC01.blend
+source_blend_sha256=ec902e7cad8184d7e1e612dd7b8a0384a1d649637dfeb7dca0a0c349e4cca357
+output_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/09_normalize_TalC01.blend
+vertices=115
+strict_rigid_before=115
+mixed_before=0
+empty_before=0
+preserved_rigid=115
+auto_resolved=0
+unresolved=0
+policy_histogram={'ALREADY_RIGID': 115}
+review_group=None
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TalC01.json
+
+ARTIST_MESSAGE
+WHY: O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.
+AUTOMATIC: 0 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.
+MANUAL: Nenhum vértice exige revisão manual.
+
+normalize_copy_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit
+
+=== VALIDATE MULTI-OBJECT ===
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+00:01.495  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_character_asset_g7_v1_game_normalized.blend"
+
+--- VALIDATE TbhC03 ---
+PT_FREE_MESH_VALIDATE_V2
+object=TbhC03
+source_sha256=9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c
+source_counts=92/152/152
+original_object_mode=OBJECT
+current_object_mode=OBJECT
+edit_mode_synchronized=False
+vertices=92
+source_polygons=152
+export_triangles=152
+triangulation_delta=+0
+triangulation_method=TEMP_BMESH_BEAUTY
+artist_mesh_modified=False
+loops=456
+uv_layers=[{'index': 0, 'name': 'SMD_UV', 'active': True, 'active_render': True, 'data_len': 456}]
+active_uv='SMD_UV'
+active_uv_data_count=456
+used_materials={0: 152}
+allowed_materials=[0]
+rigid_bone_count=11
+max_vertex_fit_error=0.000219345092773
+mean_vertex_fit_error=9.53674316406e-06
+edge_degree_histogram={2: 207, 3: 1, 1: 39}
+boundary_edge_count=39
+nonmanifold_edge_count=1
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_object_validation/TbhC03_validation.json
+free_mesh_validation_check=PASS
+
+--- VALIDATE TbmC03 ---
+PT_FREE_MESH_VALIDATE_V2
+object=TbmC03
+source_sha256=9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c
+source_counts=74/122/122
+original_object_mode=OBJECT
+current_object_mode=OBJECT
+edit_mode_synchronized=False
+vertices=82
+source_polygons=129
+export_triangles=160
+triangulation_delta=+31
+triangulation_method=TEMP_BMESH_BEAUTY
+artist_mesh_modified=False
+loops=418
+uv_layers=[{'index': 0, 'name': 'SMD_UV', 'active': True, 'active_render': True, 'data_len': 418}]
+active_uv='SMD_UV'
+active_uv_data_count=418
+used_materials={0: 160}
+allowed_materials=[0]
+rigid_bone_count=11
+max_vertex_fit_error=0.0023069479374
+mean_vertex_fit_error=0.00016505020067
+edge_degree_histogram={2: 173, 3: 5, 1: 36, 4: 4, 5: 1}
+boundary_edge_count=36
+nonmanifold_edge_count=10
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_object_validation/TbmC03_validation.json
+free_mesh_validation_check=PASS
+
+--- VALIDATE TblC03 ---
+PT_FREE_MESH_VALIDATE_V2
+object=TblC03
+source_sha256=9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c
+source_counts=63/100/100
+original_object_mode=OBJECT
+current_object_mode=OBJECT
+edit_mode_synchronized=False
+vertices=63
+source_polygons=100
+export_triangles=100
+triangulation_delta=+0
+triangulation_method=TEMP_BMESH_BEAUTY
+artist_mesh_modified=False
+loops=300
+uv_layers=[{'index': 0, 'name': 'SMD_UV', 'active': True, 'active_render': True, 'data_len': 300}]
+active_uv='SMD_UV'
+active_uv_data_count=300
+used_materials={0: 100}
+allowed_materials=[0]
+rigid_bone_count=11
+max_vertex_fit_error=0.00109195709229
+mean_vertex_fit_error=3.4665304517e-05
+edge_degree_histogram={2: 132, 3: 1, 1: 33}
+boundary_edge_count=33
+nonmanifold_edge_count=1
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_object_validation/TblC03_validation.json
+free_mesh_validation_check=PASS
+
+--- VALIDATE TblC01 ---
+PT_FREE_MESH_VALIDATE_V2
+object=TblC01
+source_sha256=9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c
+source_counts=73/112/112
+original_object_mode=OBJECT
+current_object_mode=OBJECT
+edit_mode_synchronized=False
+vertices=73
+source_polygons=112
+export_triangles=112
+triangulation_delta=+0
+triangulation_method=TEMP_BMESH_BEAUTY
+artist_mesh_modified=False
+loops=336
+uv_layers=[{'index': 0, 'name': 'SMD_UV', 'active': True, 'active_render': True, 'data_len': 336}]
+active_uv='SMD_UV'
+active_uv_data_count=336
+used_materials={1: 112}
+allowed_materials=[1]
+rigid_bone_count=12
+max_vertex_fit_error=0.0024145869466
+mean_vertex_fit_error=0.00138128444361
+edge_degree_histogram={2: 138, 3: 6, 1: 42}
+boundary_edge_count=42
+nonmanifold_edge_count=6
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_object_validation/TblC01_validation.json
+free_mesh_validation_check=PASS
+
+--- VALIDATE TbmC01 ---
+PT_FREE_MESH_VALIDATE_V2
+object=TbmC01
+source_sha256=9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c
+source_counts=74/128/128
+original_object_mode=OBJECT
+current_object_mode=OBJECT
+edit_mode_synchronized=False
+vertices=74
+source_polygons=128
+export_triangles=128
+triangulation_delta=+0
+triangulation_method=TEMP_BMESH_BEAUTY
+artist_mesh_modified=False
+loops=384
+uv_layers=[{'index': 0, 'name': 'SMD_UV', 'active': True, 'active_render': True, 'data_len': 384}]
+active_uv='SMD_UV'
+active_uv_data_count=384
+used_materials={1: 128}
+allowed_materials=[1]
+rigid_bone_count=10
+max_vertex_fit_error=0.00382330897701
+mean_vertex_fit_error=0.00160862206391
+edge_degree_histogram={2: 167, 3: 6, 1: 32}
+boundary_edge_count=32
+nonmanifold_edge_count=6
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_object_validation/TbmC01_validation.json
+free_mesh_validation_check=PASS
+
+--- VALIDATE TbhC01 ---
+PT_FREE_MESH_VALIDATE_V2
+object=TbhC01
+source_sha256=9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c
+source_counts=85/156/156
+original_object_mode=OBJECT
+current_object_mode=OBJECT
+edit_mode_synchronized=False
+vertices=85
+source_polygons=156
+export_triangles=156
+triangulation_delta=+0
+triangulation_method=TEMP_BMESH_BEAUTY
+artist_mesh_modified=False
+loops=468
+uv_layers=[{'index': 0, 'name': 'SMD_UV', 'active': True, 'active_render': True, 'data_len': 468}]
+active_uv='SMD_UV'
+active_uv_data_count=468
+used_materials={1: 156}
+allowed_materials=[1]
+rigid_bone_count=12
+max_vertex_fit_error=0.00331829101397
+mean_vertex_fit_error=0.00156790784796
+edge_degree_histogram={8: 1, 3: 8, 6: 2, 5: 2, 4: 5, 2: 178, 1: 38}
+boundary_edge_count=38
+nonmanifold_edge_count=18
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_object_validation/TbhC01_validation.json
+free_mesh_validation_check=PASS
+
+--- VALIDATE TahC01 ---
+PT_FREE_MESH_VALIDATE_V2
+object=TahC01
+source_sha256=9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c
+source_counts=222/406/406
+original_object_mode=OBJECT
+current_object_mode=OBJECT
+edit_mode_synchronized=False
+vertices=222
+source_polygons=406
+export_triangles=406
+triangulation_delta=+0
+triangulation_method=TEMP_BMESH_BEAUTY
+artist_mesh_modified=False
+loops=1218
+uv_layers=[{'index': 0, 'name': 'SMD_UV', 'active': True, 'active_render': True, 'data_len': 1218}]
+active_uv='SMD_UV'
+active_uv_data_count=1218
+used_materials={1: 406}
+allowed_materials=[1]
+rigid_bone_count=27
+max_vertex_fit_error=0.00322295668242
+mean_vertex_fit_error=0.00147583605014
+edge_degree_histogram={2: 594, 1: 30}
+boundary_edge_count=30
+nonmanifold_edge_count=0
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_object_validation/TahC01_validation.json
+free_mesh_validation_check=PASS
+
+--- VALIDATE TamC01 ---
+PT_FREE_MESH_VALIDATE_V2
+object=TamC01
+source_sha256=9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c
+source_counts=157/282/282
+original_object_mode=OBJECT
+current_object_mode=OBJECT
+edit_mode_synchronized=False
+vertices=157
+source_polygons=282
+export_triangles=282
+triangulation_delta=+0
+triangulation_method=TEMP_BMESH_BEAUTY
+artist_mesh_modified=False
+loops=846
+uv_layers=[{'index': 0, 'name': 'SMD_UV', 'active': True, 'active_render': True, 'data_len': 846}]
+active_uv='SMD_UV'
+active_uv_data_count=846
+used_materials={1: 282}
+allowed_materials=[1]
+rigid_bone_count=28
+max_vertex_fit_error=0.00339102797859
+mean_vertex_fit_error=0.0015670991382
+edge_degree_histogram={2: 410, 1: 26}
+boundary_edge_count=26
+nonmanifold_edge_count=0
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_object_validation/TamC01_validation.json
+free_mesh_validation_check=PASS
+
+--- VALIDATE TalC01 ---
+PT_FREE_MESH_VALIDATE_V2
+object=TalC01
+source_sha256=9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c
+source_counts=115/192/192
+original_object_mode=OBJECT
+current_object_mode=OBJECT
+edit_mode_synchronized=False
+vertices=115
+source_polygons=192
+export_triangles=192
+triangulation_delta=+0
+triangulation_method=TEMP_BMESH_BEAUTY
+artist_mesh_modified=False
+loops=576
+uv_layers=[{'index': 0, 'name': 'SMD_UV', 'active': True, 'active_render': True, 'data_len': 576}]
+active_uv='SMD_UV'
+active_uv_data_count=576
+used_materials={1: 192}
+allowed_materials=[1]
+rigid_bone_count=20
+max_vertex_fit_error=0.00306182155648
+mean_vertex_fit_error=0.00159163195874
+edge_degree_histogram={2: 270, 1: 36}
+boundary_edge_count=36
+nonmanifold_edge_count=0
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_object_validation/TalC01_validation.json
+free_mesh_validation_check=PASS
+
+PT_FREE_MESH_MULTI_VALIDATE_V1
+objects=['TbhC03', 'TbmC03', 'TblC03', 'TblC01', 'TbmC01', 'TbhC01', 'TahC01', 'TamC01', 'TalC01']
+object_count=9
+OBJECT TbhC03: V=92 F=152 materials={'0': 152} bones=11 check=PASS
+OBJECT TbmC03: V=82 F=160 materials={'0': 160} bones=11 check=PASS
+OBJECT TblC03: V=63 F=100 materials={'0': 100} bones=11 check=PASS
+OBJECT TblC01: V=73 F=112 materials={'1': 112} bones=12 check=PASS
+OBJECT TbmC01: V=74 F=128 materials={'1': 128} bones=10 check=PASS
+OBJECT TbhC01: V=85 F=156 materials={'1': 156} bones=12 check=PASS
+OBJECT TahC01: V=222 F=406 materials={'1': 406} bones=27 check=PASS
+OBJECT TamC01: V=157 F=282 materials={'1': 282} bones=28 check=PASS
+OBJECT TalC01: V=115 F=192 materials={'1': 192} bones=20 check=PASS
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_validation.json
+multi_object_validation_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit
+
+=== EXPORT MULTI-OBJECT SMD ===
+00:00.017  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.017  color_management | Using fallback mode for management
+00:01.624  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_character_asset_g7_v1_game_normalized.blend"
+
+--- BUILD TbhC03 ---
+TbhC03: source=92/152/152 output=92/152/152 materials=[0] bones=11
+
+--- BUILD TbmC03 ---
+TbmC03: source=74/122/122 output=82/160/160 materials=[0] bones=11
+
+--- BUILD TblC03 ---
+TblC03: source=63/100/100 output=63/100/100 materials=[0] bones=11
+
+--- BUILD TblC01 ---
+TblC01: source=73/112/112 output=73/112/112 materials=[1] bones=12
+
+--- BUILD TbmC01 ---
+TbmC01: source=74/128/128 output=74/128/128 materials=[1] bones=10
+
+--- BUILD TbhC01 ---
+TbhC01: source=85/156/156 output=85/156/156 materials=[1] bones=12
+
+--- BUILD TahC01 ---
+TahC01: source=222/406/406 output=222/406/406 materials=[1] bones=27
+
+--- BUILD TamC01 ---
+TamC01: source=157/282/282 output=157/282/282 materials=[1] bones=28
+
+--- BUILD TalC01 ---
+TalC01: source=115/192/192 output=115/192/192 materials=[1] bones=20
+
+PT_SMD_MODEL_062_FREE_MESH_WRITER_V4_MULTI
+targets=['TbhC03', 'TbmC03', 'TblC03', 'TblC01', 'TbmC01', 'TbhC01', 'TahC01', 'TamC01', 'TalC01']
+target_count=9
+OBJECT TbhC03: V=92 F=152 T=152 vertex_delta=+0 face_delta=+0 materials=[0] bones=11 check=PASS
+OBJECT TbmC03: V=82 F=160 T=160 vertex_delta=+8 face_delta=+38 materials=[0] bones=11 check=PASS
+OBJECT TblC03: V=63 F=100 T=100 vertex_delta=+0 face_delta=+0 materials=[0] bones=11 check=PASS
+OBJECT TblC01: V=73 F=112 T=112 vertex_delta=+0 face_delta=+0 materials=[1] bones=12 check=PASS
+OBJECT TbmC01: V=74 F=128 T=128 vertex_delta=+0 face_delta=+0 materials=[1] bones=10 check=PASS
+OBJECT TbhC01: V=85 F=156 T=156 vertex_delta=+0 face_delta=+0 materials=[1] bones=12 check=PASS
+OBJECT TahC01: V=222 F=406 T=406 vertex_delta=+0 face_delta=+0 materials=[1] bones=27 check=PASS
+OBJECT TamC01: V=157 F=282 T=282 vertex_delta=+0 face_delta=+0 materials=[1] bones=28 check=PASS
+OBJECT TalC01: V=115 F=192 T=192 vertex_delta=+0 face_delta=+0 materials=[1] bones=20 check=PASS
+non_target_object_blocks_byte_identical=0
+input_size=187504
+output_size=190536
+growth_bytes=+3032
+input_sha256=9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c
+output_sha256=72e98cd163c9a96ce6f2cc388855c06cf016bdae2bbaefe5752b3c5e5775657f
+report=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_export_report.json
+semantic_check=PASS
+multi_object_writer_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit
+
+=== INDEPENDENT V3 REIMPORT (HIGH) ===
+00:00.015  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.015  color_management | Using fallback mode for management
+/home/gabriel/Área de Trabalho/summit/design_work/history_py/pt_smd_blender_import_v3_static_armature.py:977: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+PT_SMD_BLENDER_IMPORT_V3_STATIC_ARMATURE
+SMD        : /home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1.smd
+Skeleton   : /home/gabriel/Área de Trabalho/summit/design_work/m4.smb
+Model info : /home/gabriel/Área de Trabalho/summit/design_work/M4Bip.inx
+LOD        : high
+Client root: /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente
+Output     : /home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_character_asset_g7_v1_reimport.blend
+Objects    : 9
+Materials  : 2
+Skeleton objects: 58
+Bind vertices   : 963
+Bind bones used : 32
+Bind bbox       : x=[-10.258,10.242] y=[-6.730,6.004] z=[0.000,40.863]
+MATERIAL 0: tex='char\\tmABCD\\TmbC03.bmp' resolved='/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/TmbC03.bmp' prepared='/home/gabriel/Área de Trabalho/summit/design_work/blender/_pt_smd_texture_cache/TmbC03.2eb7d0ba56.decoded.bmp' decode=BMP_PRISTON_PREFIX14_256x256_24bpp load=LOADED
+MATERIAL 1: tex='char\\tmABCD\\TmbC01.bmp' resolved='/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/TmbC01.bmp' prepared='/home/gabriel/Área de Trabalho/summit/design_work/blender/_pt_smd_texture_cache/TmbC01.4b79e5c085.decoded.bmp' decode=BMP_PRISTON_PREFIX14_256x256_24bpp load=LOADED
+OBJECT TbhC03: V=92 F=152 UV=152 layers=1 groups=11
+OBJECT TbmC03: V=82 F=160 UV=160 layers=1 groups=11
+OBJECT TblC03: V=63 F=100 UV=100 layers=1 groups=11
+OBJECT TblC01: V=73 F=112 UV=112 layers=1 groups=12
+OBJECT TbmC01: V=74 F=128 UV=128 layers=1 groups=10
+OBJECT TbhC01: V=85 F=156 UV=156 layers=1 groups=12
+OBJECT TahC01: V=222 F=406 UV=406 layers=1 groups=27
+OBJECT TamC01: V=157 F=282 UV=282 layers=1 groups=28
+OBJECT TalC01: V=115 F=192 UV=192 layers=1 groups=20
+
+STATIC_ARMATURE
+bones=58
+roots=['Bip01']
+mesh_armature_modifiers=9
+primary_axis_histogram={'X': 40, 'Z': 11, 'Y': 7}
+tail_rule_histogram={'Bip01 Pelvis': 1, '<leaf-parent-extension>': 18, 'Bip01 Spine': 1, 'Bip01 Spine1': 1, 'Bip01 Neck': 1, 'Bip01 Head': 1, 'Bip01 Ponytail1': 1, 'Bip01 Ponytail11': 1, 'Bip01 Ponytail12': 1, '<branch-average>': 4, 'Bip01 L Forearm': 1, 'Bip01 L Hand': 1, 'Bip01 L Finger01': 1, 'Bip01 L Finger11': 1, 'Bip01 L Finger21': 1, 'Bip01 bbong02': 1, 'Bip01 bbong03': 1, 'Bip01 R Forearm': 1, 'Bip01 R Hand': 1, 'Bip01 R Finger01': 1, 'Bip01 R Finger11': 1, 'Bip01 R Finger21': 1, 'Bip01 bbong05': 1, 'Bip01 bbong06': 1, 'Bip01 L Calf': 1, 'Bip01 L Foot': 1, 'Bip01 L Toe0': 1, 'Bip01 R Calf': 1, 'Bip01 R Foot': 1, 'Bip01 R Toe0': 1, 'Bip01 Tail1': 1, 'Bip01 Tail2': 1, 'Bip01 Tailba2': 1, 'Bip01 Tailba3': 1, 'Bip weapon02': 1, 'Bip in02': 1, 'Bip in03': 1, 'Bip in04': 1}
+
+INX_MODEL_GROUPS
+high: count=2 active=['TbhC01', 'TahC01']
+default: count=2 active=['TbmC01', 'TamC01']
+low: count=2 active=['TblC01', 'TalC01']
+selected_lod=high
+visible_objects=['TbhC01', 'TahC01']
+hidden_objects=['TbhC03', 'TbmC03', 'TblC03', 'TblC01', 'TbmC01', 'TamC01', 'TalC01']
+Info: Saved as "TmbC01_character_asset_g7_v1_reimport.blend"
+SUMMARY
+objects=9
+materials=2
+vertices=963
+faces=1688
+uv_faces=1688
+bind_vertices=963
+bind_bones_used=32
+model_info=/home/gabriel/Área de Trabalho/summit/design_work/M4Bip.inx
+lod=high
+visible_count=2
+visible_objects=['TbhC01', 'TahC01']
+hidden_count=7
+armature_bones=58
+armature_roots=['Bip01']
+mesh_armature_modifiers=9
+blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_character_asset_g7_v1_reimport.blend
+static_armature_import_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit
+
+PT_CHARACTER_MULTI_OBJECT_LOD_PIPELINE_V2
+profile_id=pikeman_c01_m4
+all_lods=false
+lod=None
+objects=['TbhC03', 'TbmC03', 'TblC03', 'TblC01', 'TbmC01', 'TbhC01', 'TahC01', 'TamC01', 'TalC01']
+reimport_lods=['high']
+object_count=9
+artist_master_overwritten=False
+test_force_ambiguous_used=false
+OBJECT TbhC03: output_counts=92/152/152
+OBJECT TbmC03: output_counts=82/160/160
+OBJECT TblC03: output_counts=63/100/100
+OBJECT TblC01: output_counts=73/112/112
+OBJECT TbmC01: output_counts=74/128/128
+OBJECT TbhC01: output_counts=85/156/156
+OBJECT TahC01: output_counts=222/406/406
+OBJECT TamC01: output_counts=157/282/282
+OBJECT TalC01: output_counts=115/192/192
+non_target_object_blocks_byte_identical=0
+smd=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1.smd
+smd_size=190536
+smd_sha256=72e98cd163c9a96ce6f2cc388855c06cf016bdae2bbaefe5752b3c5e5775657f
+reimport_high=/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_character_asset_g7_v1_reimport.blend
+manifest=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_pipeline_manifest.json
+roundtrip_published=false
+runtime_installed=False
+multi_object_pipeline_v2_check=PASS

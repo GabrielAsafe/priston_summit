@@ -1,0 +1,15 @@
+
+### CURRENT
+043af4af9cd796549ad72e2d8df231706c0bb70dc50c9ad33838af872fb54993  /home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp
+74b7884009144e4f1df7518b7a25f3a8df2564e3e2f9517c6fd047f626beb8e6  /home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp
+6e254f2c96f17b15cd93c43c13d1c02f13a98c8984e278836939533bf31490e1  /home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp
+
+### BASE_PREREGRESSION
+4b836a67c315767d08d596b0f6226ef0d65829be7ff6806f3d986ee805854a32  /home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/fileread.cpp
+b424fd6b7536f56def11bf9f923f36df414e8f0c72a9230c2d91e9378178beec  /home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/Server/OnSever.cpp
+6e254f2c96f17b15cd93c43c13d1c02f13a98c8984e278836939533bf31490e1  /home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp
+
+### ARMAZEM_REFERENCE
+MISSING /home/gabriel/armazem/priston/pristontale-1-master/src/SrcServer/src/fileread.cpp
+MISSING /home/gabriel/armazem/priston/pristontale-1-master/src/SrcServer/src/Server/OnSever.cpp
+MISSING /home/gabriel/armazem/priston/pristontale-1-master/src/SrcServer/src/playsub.cpp

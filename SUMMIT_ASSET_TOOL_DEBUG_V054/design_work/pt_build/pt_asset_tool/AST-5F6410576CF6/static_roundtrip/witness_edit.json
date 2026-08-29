@@ -1,0 +1,25 @@
+{
+  "tool": "PT_ASSET_TOOL_GEOMETRY_WITNESS_V1",
+  "object": "Cylinder01",
+  "mesh_vertices": 10,
+  "bbox_diagonal": 31.959545074395297,
+  "strength": 0.08,
+  "changed_vertices": [
+    {
+      "vertex": 1,
+      "before": [
+        -1.40234375,
+        1.25390625,
+        -15.859375
+      ],
+      "after": [
+        -1.6897683143615723,
+        1.4687576293945312,
+        -18.390830993652344
+      ]
+    }
+  ],
+  "output": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-5F6410576CF6/static_roundtrip/edited_authoring.blend",
+  "client_modified": false,
+  "check": "PASS"
+}

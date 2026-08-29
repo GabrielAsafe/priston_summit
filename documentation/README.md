@@ -1,35 +1,21 @@
-# Summit Documentation Package
+# Summit Tale — documentação organizada
 
-Copiar para a raiz do projeto `summit/`:
+Este repositório reorganiza o pacote histórico sem alterar o conteúdo dos ficheiros originais.
 
-```bash
-cp -r docs config tools "/home/gabriel/Área de Trabalho/summit/"
-cd "/home/gabriel/Área de Trabalho/summit"
-cp config/summit.local.env.example config/summit.local.env
-bash tools/generate-sql-reg.sh config/summit.local.env Servidor/sql.reg
-```
+## Estrutura
 
-<!-- BEGIN AUTO:current-status-connection -->
-## Estado atual
+- `docs/current/` — documentação numerada que funciona como referência operacional atual.
+- `docs/guides/` — guias temáticos, incluindo PHP.
+- `docs/reference/` — inventários, esquemas, diagramas e referências técnicas.
+- `docs/history/` — documentação histórica, retomadas, relatórios, migrações e snapshots antigos.
+- `artifacts/` — binários, PCAPs, dumps e resultados de análise; mantidos no pacote, mas fora do versionamento Git por padrão.
+- `config/` — exemplos de configuração existentes no pacote original.
+- `tools/` — ferramentas auxiliares existentes no pacote original.
 
-O servidor SummitTale já:
+## Integridade do conteúdo
 
-- compila em MinGW i686;
-- conecta ao SQL Server;
-- carrega os sistemas principais;
-- abre a porta TCP;
-- permanece em execução;
-- executa como aplicação de consola.
+Os ficheiros provenientes do pacote original foram apenas movidos: o conteúdo é preservado byte a byte. Isto inclui a documentação de credenciais/passwords e os valores nela existentes. O ficheiro `SOURCE_MAP.tsv` permite rastrear cada caminho original para o novo caminho.
 
-O trabalho atual está concentrado na conexão entre o cliente e o servidor.
+## Git
 
-Documentos principais:
-
-- `MINGW_PORT_STATUS_2026_07.md`
-- `docs/milestone_servidorcompilado_funcional.md`
-- `docs/09_CLIENT_SERVER_CONNECTION.md`
-- `investigando cliente e server não conectarem.md`
-- `docs/04_SERVER.md`
-- `docs/05_CLIENT.md`
-- `opcodes.md`
-<!-- END AUTO:current-status-connection -->
+A documentação textual, incluindo a documentação histórica, deve ser versionada. `artifacts/` fica ignorado por padrão porque contém binários, capturas e dumps pesados/derivados. Se esses artefatos precisarem de histórico próprio, use Git LFS ou armazenamento de releases em vez de misturá-los ao histórico normal.

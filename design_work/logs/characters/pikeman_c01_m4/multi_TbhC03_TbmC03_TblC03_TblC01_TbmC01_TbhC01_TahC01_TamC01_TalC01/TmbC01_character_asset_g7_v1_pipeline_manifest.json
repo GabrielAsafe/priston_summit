@@ -1,0 +1,109 @@
+{
+  "tool": "PT_CHARACTER_MULTI_OBJECT_LOD_PIPELINE_V2",
+  "pipeline_check": "PASS",
+  "profile": "/home/gabriel/Área de Trabalho/summit/design_work/profiles/pt_character_profile_pikeman_c01_m4_v1.json",
+  "profile_id": "pikeman_c01_m4",
+  "selection": {
+    "all_lods": false,
+    "lod": null,
+    "objects": [
+      "TbhC03",
+      "TbmC03",
+      "TblC03",
+      "TblC01",
+      "TbmC01",
+      "TbhC01",
+      "TahC01",
+      "TamC01",
+      "TalC01"
+    ],
+    "reimport_lods": [
+      "high"
+    ]
+  },
+  "artist_master": "/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_m4/artist/C001_C002_pristine_auto_uv_g7_v1_edited.blend",
+  "artist_master_sha256": "cd01c6a820cce114efe770508aa79c2ed3d8a20ca9722f7943fc4d3a02146cc5",
+  "artist_master_overwritten": false,
+  "normalized_copy": "/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_character_asset_g7_v1_game_normalized.blend",
+  "game_copy_used": "/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_character_asset_g7_v1_game_normalized.blend",
+  "test_force_ambiguous_used": false,
+  "unresolved_targets_before_force_test": [],
+  "normalize_reports": [
+    "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TbhC03.json",
+    "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TbmC03.json",
+    "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TblC03.json",
+    "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TblC01.json",
+    "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TbmC01.json",
+    "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TbhC01.json",
+    "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TahC01.json",
+    "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TamC01.json",
+    "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TalC01.json"
+  ],
+  "validation_report": "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_validation.json",
+  "export_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_export_report.json",
+  "smd": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1.smd",
+  "smd_size": 187504,
+  "smd_sha256": "c1eda19ffba8798dc769820e3de196babba550719c71f044d9019c75c3360652",
+  "reimports": {
+    "high": {
+      "blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_character_asset_g7_v1_reimport.blend",
+      "log": "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_reimport_high.log",
+      "visible_objects_expected": [
+        "TbhC01",
+        "TahC01"
+      ],
+      "check": "PASS"
+    }
+  },
+  "output_counts": {
+    "TbhC03": {
+      "vertices": 92,
+      "faces": 152,
+      "texlinks": 152
+    },
+    "TbmC03": {
+      "vertices": 74,
+      "faces": 122,
+      "texlinks": 122
+    },
+    "TblC03": {
+      "vertices": 63,
+      "faces": 100,
+      "texlinks": 100
+    },
+    "TblC01": {
+      "vertices": 73,
+      "faces": 112,
+      "texlinks": 112
+    },
+    "TbmC01": {
+      "vertices": 74,
+      "faces": 128,
+      "texlinks": 128
+    },
+    "TbhC01": {
+      "vertices": 85,
+      "faces": 156,
+      "texlinks": 156
+    },
+    "TahC01": {
+      "vertices": 222,
+      "faces": 406,
+      "texlinks": 406
+    },
+    "TamC01": {
+      "vertices": 157,
+      "faces": 282,
+      "texlinks": 282
+    },
+    "TalC01": {
+      "vertices": 115,
+      "faces": 192,
+      "texlinks": 192
+    }
+  },
+  "non_target_object_blocks_byte_identical": 0,
+  "roundtrip_published": false,
+  "runtime_installed": false,
+  "timestamp": "2026-08-27T14:57:08.478230+00:00"
+}

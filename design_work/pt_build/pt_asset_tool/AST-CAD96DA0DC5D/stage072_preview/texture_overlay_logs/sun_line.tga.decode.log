@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=3719a1956e7e41195e1b1269e694e3df5227942f4a5eadfd89247f637d4ff87d
+output_sha256=af46a60f22c273de8c14955a92a3871f267ed2d6fc13b400f3713b1a4ef1443c
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-CAD96DA0DC5D/stage072_preview/texture_overlay_client/field/Sod/sun_line.tga
+format=TGA_PRISTON_HEADER18_FULL18
+client_modified=False
+tga_decode_check=PASS

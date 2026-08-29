@@ -1,0 +1,30 @@
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+00:01.429  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/MfbC01_high_artist_multi_gate_v1/01_normalize_MbhC01.blend"
+Info: Saved as "02_normalize_MshC01.blend"
+PT_RIGID_SKIN_NORMALIZE_COPY_V2
+object=MshC01
+source_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/MfbC01_high_artist_multi_gate_v1/01_normalize_MbhC01.blend
+source_blend_sha256=21eb1ee641f3146241e07cb3e1639bbfe9888eb95d7b9ad396e7eeb1d349e291
+output_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/MfbC01_high_artist_multi_gate_v1/02_normalize_MshC01.blend
+vertices=656
+strict_rigid_before=399
+mixed_before=257
+empty_before=0
+preserved_rigid=399
+auto_resolved=190
+unresolved=67
+policy_histogram={'ALREADY_RIGID': 399, 'TIE_ADJACENT_RIGID_MAJORITY': 40, 'TIE_ADJACENT_RIGID_DISTANCE': 30, 'TIE_STILL_AMBIGUOUS': 17, 'TIE_NO_RIGID_NEIGHBOR': 50, 'UNIQUE_MAX_WEIGHT': 120}
+review_group='PT_REVIEW_REQUIRED'
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m5/lod_high/MfbC01_high_artist_multi_gate_v1_normalize_MshC01.json
+
+ARTIST_MESSAGE
+WHY: O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.
+AUTOMATIC: 190 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.
+MANUAL: 67 vértices continuam ambíguos e foram marcados no vertex group 'PT_REVIEW_REQUIRED'. Selecione esse grupo na cópia, escolha manualmente um único bone para cada vértice com weight 1.0 e depois remova o grupo marcador antes de validar/exportar.
+
+normalize_copy_check=REVIEW_REQUIRED
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

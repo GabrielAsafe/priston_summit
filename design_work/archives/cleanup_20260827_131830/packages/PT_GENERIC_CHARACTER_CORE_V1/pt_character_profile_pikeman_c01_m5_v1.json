@@ -1,0 +1,109 @@
+{
+  "profile_version": 1,
+  "profile_id": "pikeman_c01_m5",
+  "description": "Summit Tale / Priston Tale Pikeman C01 model profile used by the proven Blender free-mesh pipeline.",
+  "model_smd": "MfbC01.smd",
+  "model_smd_sha256": "9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b",
+  "skeleton_smb": "m5.smb",
+  "model_info_inx": "M5Bip.inx",
+  "roundtrip_target": "char/tmABCD/MfbC01.smd",
+  "runtime_object_limit": 128,
+  "runtime_vertex_limit_per_object": 30000,
+  "runtime_face_limit_per_object": 30000,
+  "lod_groups": {
+    "high": [
+      "MbhC01",
+      "MshC01",
+      "MlhC01"
+    ],
+    "default": [
+      "MbmC01",
+      "MsmC01",
+      "MlmC01"
+    ],
+    "low": [
+      "MblC01",
+      "MslC01",
+      "MllC01"
+    ]
+  },
+  "known_mesh_objects": [
+    "MsmC01",
+    "MshC01",
+    "MslC01",
+    "MsmC03",
+    "MslC03",
+    "MlhC01",
+    "MlhC03",
+    "MbhC01",
+    "MshC03",
+    "MlmC01",
+    "MlmC03",
+    "MbmC01",
+    "MllC01",
+    "MllC03",
+    "MblC01"
+  ],
+  "baseline_counts": {
+    "MsmC01": {
+      "vertices": 125,
+      "faces": 238
+    },
+    "MshC01": {
+      "vertices": 173,
+      "faces": 331
+    },
+    "MslC01": {
+      "vertices": 93,
+      "faces": 174
+    },
+    "MsmC03": {
+      "vertices": 157,
+      "faces": 270
+    },
+    "MslC03": {
+      "vertices": 109,
+      "faces": 190
+    },
+    "MlhC01": {
+      "vertices": 46,
+      "faces": 78
+    },
+    "MlhC03": {
+      "vertices": 68,
+      "faces": 120
+    },
+    "MbhC01": {
+      "vertices": 130,
+      "faces": 217
+    },
+    "MshC03": {
+      "vertices": 231,
+      "faces": 415
+    },
+    "MlmC01": {
+      "vertices": 34,
+      "faces": 56
+    },
+    "MlmC03": {
+      "vertices": 46,
+      "faces": 76
+    },
+    "MbmC01": {
+      "vertices": 86,
+      "faces": 138
+    },
+    "MllC01": {
+      "vertices": 28,
+      "faces": 44
+    },
+    "MllC03": {
+      "vertices": 36,
+      "faces": 60
+    },
+    "MblC01": {
+      "vertices": 82,
+      "faces": 130
+    }
+  }
+}

@@ -1,0 +1,15 @@
+# Artefatos binários/forenses preservados no pacote, não no Git normal
+/artifacts/
+
+# SO / editores
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Temporários
+*.tmp
+*.bak
+*~

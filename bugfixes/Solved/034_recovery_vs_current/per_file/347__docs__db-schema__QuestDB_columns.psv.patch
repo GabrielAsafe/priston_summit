@@ -1,0 +1,61 @@
+diff --git a/docs/db-schema/QuestDB_columns.psv b/docs/db-schema/QuestDB_columns.psv
+deleted file mode 100644
+index bef320f..0000000
+--- a/docs/db-schema/QuestDB_columns.psv
++++ /dev/null
+@@ -1,55 +0,0 @@
+-DatabaseName|SchemaName|TableName|ColumnName|DataType|MaxLength|IsNullable|DefaultValue|OrdinalPosition
+-------------|----------|---------|----------|--------|---------|----------|------------|---------------
+-QuestDB|dbo|Complete|QuestID|int||YES||1
+-QuestDB|dbo|Complete|QuestKind|int||YES||2
+-QuestDB|dbo|Complete|QuestType|int||YES||3
+-QuestDB|dbo|Complete|PlayerName|varchar|32|YES||4
+-QuestDB|dbo|Complete|EndDate|datetime||YES||5
+-QuestDB|dbo|DailyQuest|QuestID|int||YES||1
+-QuestDB|dbo|DailyQuest|QuestName|varchar|128|YES||2
+-QuestDB|dbo|DailyQuest|QuestTitle|varchar|16|YES||3
+-QuestDB|dbo|DailyQuest|LevelMin|int||YES||4
+-QuestDB|dbo|DailyQuest|LevelMax|int||YES||5
+-QuestDB|dbo|DailyQuest|PartyFlag|int||YES||6
+-QuestDB|dbo|DailyQuest|QuestDesc|varchar|500|YES||7
+-QuestDB|dbo|DailyQuest|QuestType|int||YES||8
+-QuestDB|dbo|ItemRewards|QuestID|int||YES||1
+-QuestDB|dbo|ItemRewards|QuestKind|int||YES||2
+-QuestDB|dbo|ItemRewards|ItemCode|varchar|32|YES||3
+-QuestDB|dbo|ItemRewards|ItemCount|int||YES||4
+-QuestDB|dbo|ItemRewards|QuestType|int||YES||5
+-QuestDB|dbo|MonsterKilled|MonsterName|varchar|32|YES||1
+-QuestDB|dbo|MonsterKilled|Killed|int||YES||2
+-QuestDB|dbo|MonsterKilled|Count|int||YES||3
+-QuestDB|dbo|MonsterKilled|QuestID|int||YES||4
+-QuestDB|dbo|MonsterKilled|QuestKind|int||YES||5
+-QuestDB|dbo|MonsterKilled|QuestType|int||YES||6
+-QuestDB|dbo|MonsterKilled|PlayerName|varchar|32|YES||7
+-QuestDB|dbo|MonsterKilled|PartyFlag|int||YES||8
+-QuestDB|dbo|MonsterKilled|QuestMap|int||YES||9
+-QuestDB|dbo|Progress|QuestID|int||YES||1
+-QuestDB|dbo|Progress|QuestKind|int||YES||2
+-QuestDB|dbo|Progress|QuestType|int||YES||3
+-QuestDB|dbo|Progress|PlayerName|varchar|32|YES||4
+-QuestDB|dbo|Progress|Started|datetime||YES||5
+-QuestDB|dbo|QuestMonsters|QuestID|int||YES||1
+-QuestDB|dbo|QuestMonsters|QuestKind|int||YES||2
+-QuestDB|dbo|QuestMonsters|MonsterName|varchar|32|YES||3
+-QuestDB|dbo|QuestMonsters|Quantity|int||YES||4
+-QuestDB|dbo|QuestMonsters|QuestType|int||YES||5
+-QuestDB|dbo|QuestMonsters|QuestMap|int||YES||6
+-QuestDB|dbo|Rewards|QuestID|int||YES||1
+-QuestDB|dbo|Rewards|QuestKind|int||YES||2
+-QuestDB|dbo|Rewards|Gold|int||YES||3
+-QuestDB|dbo|Rewards|Exp|bigint||YES||4
+-QuestDB|dbo|Rewards|QuestType|int||YES||5
+-QuestDB|dbo|Rewards|Coin|int||YES||6
+-QuestDB|dbo|Rewards|TCoin|int||YES||7
+-QuestDB|dbo|SingleQuest|QuestID|int||YES||1
+-QuestDB|dbo|SingleQuest|QuestName|varchar|128|YES||2
+-QuestDB|dbo|SingleQuest|QuestTitle|varchar|16|YES||3
+-QuestDB|dbo|SingleQuest|LevelMin|int||YES||4
+-QuestDB|dbo|SingleQuest|LevelMax|int||YES||5
+-QuestDB|dbo|SingleQuest|PartyFlag|int||YES||6
+-QuestDB|dbo|SingleQuest|QuestDesc|varchar|500|YES||7
+-QuestDB|dbo|SingleQuest|QuestType|int||YES||8

@@ -1,0 +1,30 @@
+00:00.015  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.015  color_management | Using fallback mode for management
+00:01.525  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/pikeman_c01_character_asset_gate_v1/04_normalize_MbmC01.blend"
+Info: Saved as "05_normalize_MsmC01.blend"
+PT_RIGID_SKIN_NORMALIZE_COPY_V2
+object=MsmC01
+source_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/pikeman_c01_character_asset_gate_v1/04_normalize_MbmC01.blend
+source_blend_sha256=766478753a5f1f5640a2379084022f9e7867e54bf1cee1465822ed77e1af9087
+output_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/pikeman_c01_character_asset_gate_v1/05_normalize_MsmC01.blend
+vertices=125
+strict_rigid_before=125
+mixed_before=0
+empty_before=0
+preserved_rigid=125
+auto_resolved=0
+unresolved=0
+policy_histogram={'ALREADY_RIGID': 125}
+review_group=None
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m5/all_lods/pikeman_c01_character_asset_gate_v1_normalize_MsmC01.json
+
+ARTIST_MESSAGE
+WHY: O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.
+AUTOMATIC: 0 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.
+MANUAL: Nenhum vértice exige revisão manual.
+
+normalize_copy_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

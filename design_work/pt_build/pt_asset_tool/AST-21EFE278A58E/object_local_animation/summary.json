@@ -1,0 +1,87 @@
+{
+  "asset_id": "AST-21EFE278A58E",
+  "asset": "Field/AncientW/RotObj01.smd",
+  "family": "SMD_MODEL_062_STATIC",
+  "mode": "STATIC_OBJECT_LOCAL",
+  "preview_version": 3,
+  "object_count": 5,
+  "animated_object_count": 4,
+  "animated_objects": [
+    "ani-002",
+    "ani-003",
+    "ani-004",
+    "ani-005"
+  ],
+  "root_objects": [
+    "ani-001"
+  ],
+  "parent_edge_count": 4,
+  "parent_edges": [
+    {
+      "parent": "ani-001",
+      "parent_index": 0,
+      "child": "ani-002",
+      "child_index": 1,
+      "child_motion_class": "ANIMATED",
+      "bind_local_identity_error": 65536.0
+    },
+    {
+      "parent": "ani-001",
+      "parent_index": 0,
+      "child": "ani-003",
+      "child_index": 2,
+      "child_motion_class": "ANIMATED",
+      "bind_local_identity_error": 65536.0
+    },
+    {
+      "parent": "ani-001",
+      "parent_index": 0,
+      "child": "ani-004",
+      "child_index": 3,
+      "child_motion_class": "ANIMATED",
+      "bind_local_identity_error": 65536.0
+    },
+    {
+      "parent": "ani-001",
+      "parent_index": 0,
+      "child": "ani-005",
+      "child_index": 4,
+      "child_motion_class": "ANIMATED",
+      "bind_local_identity_error": 65536.0
+    }
+  ],
+  "unresolved_parent_count": 0,
+  "unresolved_parents": [],
+  "duplicate_node_name_group_count": 0,
+  "duplicate_node_name_groups": {},
+  "parent_resolution_semantics": "CLIENT_LINKOBJECT_FIRST_MATCH_UNRESOLVED_AS_ROOT",
+  "channels_animated": [
+    "POS",
+    "ROT"
+  ],
+  "reference_engine_frame": 0,
+  "max_engine_frame": 48000,
+  "preview_frame_start": 1,
+  "preview_frame_end": 301,
+  "preview_fps": 30,
+  "preview_reference": "FIRST_KEY_NORMALIZED_PER_OBJECT_DELTA_OVER_STATIC_BIND",
+  "hierarchy_semantics": "LOCAL_QMAT_TIMES_PARENT_TMRESULT",
+  "blender_transform_semantics": "DELTA_TRANSFORMS_OVER_STATIC_BIND",
+  "animated_child_count": 4,
+  "rotation_semantics": "ACCUMULATED_TM_PREV_ROT",
+  "source_rot_key_semantics": "INCREMENTAL_LOCAL_QUATERNION",
+  "interpolation": "LINEAR_SAMPLED_EVERY_SOURCE_TICK",
+  "timing_status": "PREVIEW_NOT_RUNTIME_SPEED_CERTIFIED",
+  "rotation_cumulative_max_error": 6.433542742989573e-08,
+  "source_semantics": "PASS",
+  "animation_visual": "PASS",
+  "texture_material_visual": "PASS",
+  "visual_object_local_asset": "PASS",
+  "texture_prepare": "PASS",
+  "preview_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-21EFE278A58E/object_local_animation/object_local_preview.blend",
+  "source_sha256": "6a26720c030c4624da3c1d8eca5371428e2446a9d4f8a051ceca1d538acccc2b",
+  "artifact_sha256": "82287032870a13122333e0e8b6374cda4041f3ec4376936993a8a6b9c66fd1b1",
+  "certification_id": "CERT-223D4C1B95D7",
+  "automatic_certification_id": "CERT-5687768660ED",
+  "client_modified": false
+}

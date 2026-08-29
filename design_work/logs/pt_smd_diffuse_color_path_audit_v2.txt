@@ -1,0 +1,986 @@
+PT_SMD_DIFFUSE_COLOR_PATH_AUDIT_V2
+source_root=/home/gabriel/Área de Trabalho/summit
+text_files_scanned=1549
+setblink_definition_count=2
+setblink_call_count=6
+smrend_diffuse_call_context_count=2
+color_path_hit_count=1443
+
+=== SETBLINKCOLOR DEFINITIONS ===
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=81
+    81: static void SetBlinkColor(short sColors[4], smFCOLOR BlinkCol, int BlinkStep)
+    82: {
+    83: 	int r = int(BlinkCol.r * 255);
+    84: 	int g = int(BlinkCol.g * 255);
+    85: 	int b = int(BlinkCol.b * 255);
+    86: 
+    87: 	int BlinkTime = 1 << BlinkStep;
+    88: 	int BlinkMsk = BlinkTime - 1;
+    89: 	int bTime = dwPlayTime & BlinkMsk;
+    90: 
+    91: 	if((dwPlayTime & BlinkTime) == 0)
+    92: 		bTime = BlinkMsk - bTime;
+    93: 
+    94: 	sColors[SMC_R] = (bTime * r) >> BlinkStep;
+    95: 	sColors[SMC_G] = (bTime * g) >> BlinkStep;
+    96: 	sColors[SMC_B] = (bTime * b) >> BlinkStep;
+    97: 
+    98: 
+    99: 
+   100: 
+   101: 
+   102: 	sColors[SMC_A] = 0;
+   103: }
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=73
+    73: static void SetBlinkColor(short sColors[4], smFCOLOR BlinkCol, int BlinkStep)
+    74: {
+    75: 	int r = int(BlinkCol.r * 255);
+    76: 	int g = int(BlinkCol.g * 255);
+    77: 	int b = int(BlinkCol.b * 255);
+    78: 
+    79: 	int BlinkTime = 1 << BlinkStep;
+    80: 	int BlinkMsk = BlinkTime - 1;
+    81: 	int bTime = dwPlayTime & BlinkMsk;
+    82: 
+    83: 	if((dwPlayTime & BlinkTime) == 0)
+    84: 		bTime = BlinkMsk - bTime;
+    85: 
+    86: 	sColors[SMC_R] = (bTime * r) >> BlinkStep;
+    87: 	sColors[SMC_G] = (bTime * g) >> BlinkStep;
+    88: 	sColors[SMC_B] = (bTime * b) >> BlinkStep;
+    89: 
+    90: 
+    91: 
+    92: 
+    93: 
+    94: 	sColors[SMC_A] = 0;
+    95: }
+
+=== PROVEN smRendMaterial.Diffuse CALL CONTEXTS ===
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp
+CONTEXT lines=4126..4241
+  4126: 		d3ddev->SetTextureStageState(cnt, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
+  4127: 		d3ddev->SetTextureStageState(cnt, D3DTSS_ALPHAARG2, D3DTA_CURRENT);
+  4128: 
+  4129: 
+  4130: 		d3ddev->SetTexture(cnt, 0);
+  4131: 	}
+  4132: 
+  4133: 
+  4134: 
+  4135: 	d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+  4136: 	d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+  4137: 	d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+  4138: 
+  4139: 	if(lpMaterial->TwoSide)
+  4140: 		d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+  4141: 	else
+  4142: 		d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CW);
+  4143: 	
+  4144: 
+  4145: 
+  4146: 
+  4147: 
+  4148: 
+  4149: 
+  4150: 
+  4151: 
+  4152: 
+  4153: 	d3ddev->SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);
+  4154: 
+  4155: 	return TRUE;
+  4156: }
+  4157: 
+  4158: 
+  4159: 
+  4160: int smRENDER3D::RenderD3D(int MatNum)
+  4161: {
+  4162: 	int rendcnt;
+  4163: 
+  4164: 
+  4165: 	if (smRendMaterial[MatNum].TextureCounter == 0 && smRendMaterial[MatNum].AnimTexCounter == 0) return FALSE;
+  4166: 
+  4167: 	
+  4168: 
+  4169: 	short sColors[4] = { 0, };
+  4170: 	if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  4171: 		SetBlinkColor(sColors, smRendMaterial[MatNum].Diffuse, smRendMaterial[MatNum].WindMeshBottom);
+  4172: 
+  4173: 
+  4174: 	
+  4175: 	if(RendMatrial[MatNum].MatrialCounter)
+  4176: 	{
+  4177: 
+  4178: 		
+  4179: 		int TexCnt = 0;
+  4180: 		if(s_lpItem2PassTexHandle)
+  4181: 		{
+  4182: 			RendAlphaFlag = SetItem2PassD3DRendState(&smRendMaterial[MatNum]);
+  4183: 			TexCnt = 1;
+  4184: 		}
+  4185: 		else
+  4186: 			RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], FALSE);
+  4187: 		
+  4188: 		
+  4189: 
+  4190: 
+  4191: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  4192: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, FALSE);
+  4193: 		
+  4194: 		
+  4195: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  4196: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, FALSE, sColors);
+  4197: 		else
+  4198: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, FALSE);
+  4199: 
+  4200: 
+  4201: 		
+  4202: 		
+  4203: 		d3ddev->SetFVF(D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4204: 		if ((rendcnt / 3) > 0)
+  4205: 			d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4206: 
+  4207: 
+  4208: 		if(RendAlphaFlag)
+  4209: 		{
+  4210: 
+  4211: 			SetD3DRendStateOnlyAlpha(&smRendMaterial[MatNum], FALSE);
+  4212: 			d3ddev->SetFVF(D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4213: 			if ((rendcnt / 3) > 0)
+  4214: 				d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4215: 		}
+  4216: 	}
+  4217: 
+  4218: 
+  4219: 	if(RendMatrial[MatNum].TexClip_MatrialCounter)
+  4220: 	{
+  4221: 		RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], TRUE);
+  4222: 
+  4223: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  4224: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, TRUE);
+  4225: 
+  4226: 
+  4227: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  4228: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, TRUE, sColors);
+  4229: 		else
+  4230: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, TRUE);
+  4231: 
+  4232: 
+  4233: 		d3ddev->SetFVF(D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter]);
+  4234: 		if ((rendcnt / 3) > 0)
+  4235: 			d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter]);
+  4236: 
+  4237: 		if(RendAlphaFlag)
+  4238: 		{
+  4239: 
+  4240: 			SetD3DRendStateOnlyAlpha(&smRendMaterial[MatNum], TRUE);
+  4241: 			d3ddev->SetFVF(D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter]);
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp
+CONTEXT lines=3693..3808
+  3693: 
+  3694: 		renderDevice.SetTextureStageState(cnt, D3DTSS_TEXCOORDINDEX, 0);
+  3695: 
+  3696: 
+  3697: 		renderDevice.SetTextureStageState(cnt, D3DTSS_COLOROP, D3DTOP_DISABLE);
+  3698: 		renderDevice.SetTextureStageState(cnt, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+  3699: 		renderDevice.SetTextureStageState(cnt, D3DTSS_COLORARG2, D3DTA_CURRENT);
+  3700: 
+  3701: 		renderDevice.SetTextureStageState(cnt, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+  3702: 		renderDevice.SetTextureStageState(cnt, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
+  3703: 		renderDevice.SetTextureStageState(cnt, D3DTSS_ALPHAARG2, D3DTA_CURRENT);
+  3704: 
+  3705: 		renderDevice.SetTextureStageState(cnt, D3DTSS_MINFILTER, D3DTFN_POINT);
+  3706: 		renderDevice.SetTextureStageState(cnt, D3DTSS_MAGFILTER, D3DTFG_POINT);
+  3707: 
+  3708: 		renderDevice.SetTexture(cnt, 0);
+  3709: 	}
+  3710: 
+  3711: 	renderDevice.SetRenderState(D3DRENDERSTATE_TEXTUREMAPBLEND, D3DTBLEND_MODULATE);
+  3712: 
+  3713: 
+  3714: 	renderDevice.SetRenderState(D3DRENDERSTATE_ALPHABLENDENABLE, TRUE);
+  3715: 	renderDevice.SetRenderState(D3DRENDERSTATE_DESTBLEND, D3DBLEND_INVSRCALPHA);
+  3716: 	renderDevice.SetRenderState(D3DRENDERSTATE_SRCBLEND, D3DBLEND_SRCALPHA);
+  3717: 
+  3718: 	if(lpMaterial->TwoSide)
+  3719: 		renderDevice.SetRenderState(D3DRENDERSTATE_CULLMODE, D3DCULL_NONE);
+  3720: 	else
+  3721: 		renderDevice.SetRenderState(D3DRENDERSTATE_CULLMODE, D3DCULL_CW);
+  3722: 
+  3723: 	renderDevice.SetRenderState(D3DRENDERSTATE_ALPHATESTENABLE, FALSE);
+  3724: 
+  3725: 	return TRUE;
+  3726: }
+  3727: 
+  3728: 
+  3729: int smRENDER3D::RenderD3D(int MatNum)
+  3730: {
+  3731: 	int rendcnt;
+  3732: 
+  3733: 	if(smRendMaterial[MatNum].TextureCounter == 0 && smRendMaterial[MatNum].AnimTexCounter == 0)
+  3734: 		return FALSE;
+  3735: 
+  3736: 	short sColors[4] = { 0, };
+  3737: 	if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  3738: 		SetBlinkColor(sColors, smRendMaterial[MatNum].Diffuse, smRendMaterial[MatNum].WindMeshBottom);
+  3739: 
+  3740: 
+  3741: 	if(RendMatrial[MatNum].MatrialCounter)
+  3742: 	{
+  3743: 
+  3744: 		int TexCnt = 0;
+  3745: 		if(s_lpItem2PassTexHandle)
+  3746: 		{
+  3747: 			RendAlphaFlag = SetItem2PassD3DRendState(&smRendMaterial[MatNum]);
+  3748: 			TexCnt = 1;
+  3749: 		}
+  3750: 		else
+  3751: 		{
+  3752: 			RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], FALSE);
+  3753: 		}
+  3754: 
+  3755: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  3756: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, FALSE);
+  3757: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  3758: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, FALSE, sColors);
+  3759: 		else
+  3760: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, FALSE);
+  3761: 
+  3762: 		renderDevice.DrawPrimitive(D3DPT_TRIANGLELIST, D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter + TexCnt],
+  3763: 			(LPVOID)RendBuff, rendcnt, NULL);
+  3764: 
+  3765: 
+  3766: 		if(RendAlphaFlag)
+  3767: 		{
+  3768: 
+  3769: 			SetD3DRendStateOnlyAlpha(&smRendMaterial[MatNum], FALSE);
+  3770: 			renderDevice.DrawPrimitive(D3DPT_TRIANGLELIST,
+  3771: 									   D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter],
+  3772: 									   (LPVOID)RendBuff,
+  3773: 									   rendcnt,
+  3774: 									   NULL);
+  3775: 
+  3776: 		}
+  3777: 	}
+  3778: 
+  3779: 
+  3780: 	if(RendMatrial[MatNum].TexClip_MatrialCounter)
+  3781: 	{
+  3782: 		RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], TRUE);
+  3783: 
+  3784: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  3785: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, TRUE);
+  3786: 
+  3787: 
+  3788: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  3789: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, TRUE, sColors);
+  3790: 		else
+  3791: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, TRUE);
+  3792: 
+  3793: 
+  3794: 		renderDevice.DrawPrimitive(D3DPT_TRIANGLELIST,
+  3795: 								   D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter],
+  3796: 								   (LPVOID)RendBuff,
+  3797: 								   rendcnt,
+  3798: 								   NULL);
+  3799: 
+  3800: 		if(RendAlphaFlag)
+  3801: 		{
+  3802: 
+  3803: 			SetD3DRendStateOnlyAlpha(&smRendMaterial[MatNum], TRUE);
+  3804: 			renderDevice.DrawPrimitive(D3DPT_TRIANGLELIST,
+  3805: 									   D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter],
+  3806: 									   (LPVOID)RendBuff,
+  3807: 									   rendcnt,
+  3808: 									   NULL);
+
+=== SETBLINKCOLOR CALLS ===
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=106
+    76: 
+    77: 
+    78: 
+    79: 
+    80: extern DWORD dwPlayTime;
+    81: static void SetBlinkColor(short sColors[4], smFCOLOR BlinkCol, int BlinkStep)
+    82: {
+    83: 	int r = int(BlinkCol.r * 255);
+    84: 	int g = int(BlinkCol.g * 255);
+    85: 	int b = int(BlinkCol.b * 255);
+    86: 
+    87: 	int BlinkTime = 1 << BlinkStep;
+    88: 	int BlinkMsk = BlinkTime - 1;
+    89: 	int bTime = dwPlayTime & BlinkMsk;
+    90: 
+    91: 	if((dwPlayTime & BlinkTime) == 0)
+    92: 		bTime = BlinkMsk - bTime;
+    93: 
+    94: 	sColors[SMC_R] = (bTime * r) >> BlinkStep;
+    95: 	sColors[SMC_G] = (bTime * g) >> BlinkStep;
+    96: 	sColors[SMC_B] = (bTime * b) >> BlinkStep;
+    97: 
+    98: 
+    99: 
+   100: 
+   101: 
+   102: 	sColors[SMC_A] = 0;
+   103: }
+   104: 
+   105: 
+   106: static int SetBlinkColorVertex(smRENDVERTEX *rv, short sColors[4], BYTE Color[4], BYTE Specular[4])
+   107: {
+   108: 	short BlinkColor[4] = { 0, };
+   109: 	::CopyMemory(BlinkColor, sColors, sizeof(BlinkColor));
+   110: 
+   111: 	int z = rv->tz >> FLOATNS;//ddd
+   112: 	if(z > ccDistZMin)
+   113: 	{
+   114: 		int lev = ((z - ccDistZMin) << (13 - ShiftMAPCELL_MULT)) >> 8;
+   115: 		if(lev >= 256)
+   116: 			return FALSE;
+   117: 
+   118: 		BlinkColor[SMC_R] -= ((sColors[SMC_R] * lev) >> 8);
+   119: 		BlinkColor[SMC_G] -= ((sColors[SMC_G] * lev) >> 8);
+   120: 		BlinkColor[SMC_B] -= ((sColors[SMC_B] * lev) >> 8);
+   121: 		BlinkColor[SMC_A] -= ((sColors[SMC_A] * lev) >> 8);
+   122: 	}
+   123: 
+   124: 	for(int cnt = 0; cnt < 4; cnt++)
+   125: 	{
+   126: 		BlinkColor[cnt] += rv->bCol[cnt];
+   127: 		if(BlinkColor[cnt] > 255)
+   128: 		{
+   129: 			short spe = rv->bSpe[cnt] + (BlinkColor[cnt] - 256);
+   130: 			Color[cnt] = 255;
+   131: 			if(spe > 255)
+   132: 				Specular[cnt] = 255;
+   133: 			else
+   134: 				Specular[cnt] = (BYTE)spe;
+   135: 		}
+   136: 		else
+   137: 		{
+   138: 			Color[cnt] = (BYTE)BlinkColor[cnt];
+   139: 			Specular[cnt] = rv->bSpe[cnt];
+   140: 		}
+   141: 	}
+   142: 
+   143: 	return TRUE;
+   144: }
+   145: 
+   146: 
+   147: 
+   148: 
+   149: 
+   150: 
+   151: static float s_DxProjection_w;
+   152: static float s_DxProjection_h;
+   153: static float s_DxProjection_q1;
+   154: static float s_DxProjection_q2;
+   155: static int   s_CenterX;
+   156: static int   s_CenterY;
+   157: 
+   158: 
+   159: int			 g_IsDxProjectZoomIn;
+   160: 
+   161: float		 g_fZoomInAdd_x;
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=3619
+  3589: 
+  3590: 	rendcnt = 0;
+  3591: 
+  3592: 	for(cnt = 0; cnt < mcnt; cnt++)
+  3593: 	{
+  3594: 		if(!(rendface->ClipStatus&SMCLIP_DISPLAYOUT))
+  3595: 		{
+  3596: 			for(vcnt = 0; vcnt < 3; vcnt++)
+  3597: 			{
+  3598: 
+  3599: 				rv = rendface->lpRendVertex[vcnt];
+  3600: 
+  3601: 				*(RenderBuff++) = (float)rv->xy[0];
+  3602: 				*(RenderBuff++) = (float)rv->xy[1];
+  3603: 				*(RenderBuff++) = (float)rv->zb;
+  3604: 				*(RenderBuff++) = (float)rv->rhw;
+  3605: 
+  3606: 
+  3607: 				if(RendAlphaFlag && rv->tz > (ccDistZMin << FLOATNS))
+  3608: 				{
+  3609: 					*((DWORD *)dwColor) = *((DWORD *)rv->bCol);
+  3610: 					*((DWORD *)dwSpecular) = *((DWORD *)rv->bSpe);
+  3611: 					dwSpecular[3] = dwSpecular[3] / 2 + dwSpecular[3] / 3;
+  3612: 					dwColor[3] = dwColor[3] / 2 + dwColor[3] / 3;
+  3613: 
+  3614: 					*((DWORD *)(RenderBuff++)) = *((DWORD *)dwColor);
+  3615: 					*((DWORD *)(RenderBuff++)) = *((DWORD *)dwSpecular);
+  3616: 				}
+  3617: 				else
+  3618: 				{
+  3619: 					if(SetBlinkColorVertex(rv, sColors, dwColor, dwSpecular))
+  3620: 					{
+  3621: 						*((DWORD *)(RenderBuff++)) = *((DWORD *)dwColor);
+  3622: 						*((DWORD *)(RenderBuff++)) = *((DWORD *)dwSpecular);
+  3623: 					}
+  3624: 					else
+  3625: 					{
+  3626: 						*((DWORD *)(RenderBuff++)) = *((DWORD *)rv->bCol);
+  3627: 						*((DWORD *)(RenderBuff++)) = *((DWORD *)rv->bSpe);
+  3628: 					}
+  3629: 				}
+  3630: 
+  3631: 				tl = rendface->lpTexLink;
+  3632: 				for(tcnt = 0; tcnt < 8; tcnt++)
+  3633: 				{
+  3634: 					if(!tl) break;
+  3635: 					if (TextureFormState[tcnt]) {
+  3636: 						switch (TextureFormState[tcnt]) {
+  3637: 
+  3638: 							case smTEXSTATE_FS_FORMX:
+  3639: 							case smTEXSTATE_FS_FORMY:
+  3640: 							case smTEXSTATE_FS_FORMZ:
+  3641: 
+  3642: 							case smTEXSTATE_FS_NONE:
+  3643: 
+  3644: 							*(RenderBuff++) = (float)tl->u[vcnt];
+  3645: 							*(RenderBuff++) = (float)tl->v[vcnt];
+  3646: 							break;
+  3647: 
+  3648: 							case smTEXSTATE_FS_SCROLL:
+  3649: 
+  3650: 							*(RenderBuff++) = (float)(tl->u[vcnt] + fwtime);
+  3651: 							*(RenderBuff++) = (float)(tl->v[vcnt]);
+  3652: 							break;
+  3653: 
+  3654: 							case smTEXSTATE_FS_REFLEX:
+  3655: 							*(RenderBuff++) = (float)(tl->u[vcnt] + ((float)(rv->tx >> 1) / 65536));
+  3656: 							*(RenderBuff++) = (float)(tl->v[vcnt] + ((float)(rv->ty >> 2) / 65536));
+  3657: 							break;
+  3658: 
+  3659: 						}
+  3660: 
+  3661: 						if (TextureFormState[tcnt] >= smTEXSTATE_FS_SCROLL2 && TextureFormState[tcnt] <= smTEXSTATE_FS_SCROLL10) {
+  3662: 
+  3663: 							*(RenderBuff++) = (float)(tl->u[vcnt] + fwtime* (TextureFormState[tcnt] - (smTEXSTATE_FS_SCROLL2 - 2)));
+  3664: 							*(RenderBuff++) = (float)(tl->v[vcnt]);
+  3665: 						}
+  3666: 
+  3667: 
+  3668: 						else if(TextureFormState[tcnt] >= smTEXSTATE_FS_SCROLLSLOW1 && TextureFormState[tcnt] <= smTEXSTATE_FS_SCROLLSLOW4)
+  3669: 						{
+  3670: 							int factor = smTEXSTATE_FS_SCROLLSLOW4 - TextureFormState[tcnt] + 4;
+  3671: 							wtime = (RendStatTime >> 6) & (0xFFFF >> factor);
+  3672: 
+  3673: 							fwtime = float(wtime) / float(0xFFFF >> factor);
+  3674: 							*(RenderBuff++) = (float)(tl->u[vcnt] + fwtime);
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=4171
+  4141: 	else
+  4142: 		d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CW);
+  4143: 	
+  4144: 
+  4145: 
+  4146: 
+  4147: 
+  4148: 
+  4149: 
+  4150: 
+  4151: 
+  4152: 
+  4153: 	d3ddev->SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);
+  4154: 
+  4155: 	return TRUE;
+  4156: }
+  4157: 
+  4158: 
+  4159: 
+  4160: int smRENDER3D::RenderD3D(int MatNum)
+  4161: {
+  4162: 	int rendcnt;
+  4163: 
+  4164: 
+  4165: 	if (smRendMaterial[MatNum].TextureCounter == 0 && smRendMaterial[MatNum].AnimTexCounter == 0) return FALSE;
+  4166: 
+  4167: 	
+  4168: 
+  4169: 	short sColors[4] = { 0, };
+  4170: 	if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  4171: 		SetBlinkColor(sColors, smRendMaterial[MatNum].Diffuse, smRendMaterial[MatNum].WindMeshBottom);
+  4172: 
+  4173: 
+  4174: 	
+  4175: 	if(RendMatrial[MatNum].MatrialCounter)
+  4176: 	{
+  4177: 
+  4178: 		
+  4179: 		int TexCnt = 0;
+  4180: 		if(s_lpItem2PassTexHandle)
+  4181: 		{
+  4182: 			RendAlphaFlag = SetItem2PassD3DRendState(&smRendMaterial[MatNum]);
+  4183: 			TexCnt = 1;
+  4184: 		}
+  4185: 		else
+  4186: 			RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], FALSE);
+  4187: 		
+  4188: 		
+  4189: 
+  4190: 
+  4191: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  4192: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, FALSE);
+  4193: 		
+  4194: 		
+  4195: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  4196: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, FALSE, sColors);
+  4197: 		else
+  4198: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, FALSE);
+  4199: 
+  4200: 
+  4201: 		
+  4202: 		
+  4203: 		d3ddev->SetFVF(D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4204: 		if ((rendcnt / 3) > 0)
+  4205: 			d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4206: 
+  4207: 
+  4208: 		if(RendAlphaFlag)
+  4209: 		{
+  4210: 
+  4211: 			SetD3DRendStateOnlyAlpha(&smRendMaterial[MatNum], FALSE);
+  4212: 			d3ddev->SetFVF(D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4213: 			if ((rendcnt / 3) > 0)
+  4214: 				d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4215: 		}
+  4216: 	}
+  4217: 
+  4218: 
+  4219: 	if(RendMatrial[MatNum].TexClip_MatrialCounter)
+  4220: 	{
+  4221: 		RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], TRUE);
+  4222: 
+  4223: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  4224: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, TRUE);
+  4225: 
+  4226: 
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=98
+    68: 	s_Item2PassTexFormState = TexFormState;
+    69: }
+    70: 
+    71: 
+    72: extern DWORD dwPlayTime;
+    73: static void SetBlinkColor(short sColors[4], smFCOLOR BlinkCol, int BlinkStep)
+    74: {
+    75: 	int r = int(BlinkCol.r * 255);
+    76: 	int g = int(BlinkCol.g * 255);
+    77: 	int b = int(BlinkCol.b * 255);
+    78: 
+    79: 	int BlinkTime = 1 << BlinkStep;
+    80: 	int BlinkMsk = BlinkTime - 1;
+    81: 	int bTime = dwPlayTime & BlinkMsk;
+    82: 
+    83: 	if((dwPlayTime & BlinkTime) == 0)
+    84: 		bTime = BlinkMsk - bTime;
+    85: 
+    86: 	sColors[SMC_R] = (bTime * r) >> BlinkStep;
+    87: 	sColors[SMC_G] = (bTime * g) >> BlinkStep;
+    88: 	sColors[SMC_B] = (bTime * b) >> BlinkStep;
+    89: 
+    90: 
+    91: 
+    92: 
+    93: 
+    94: 	sColors[SMC_A] = 0;
+    95: }
+    96: 
+    97: 
+    98: static int SetBlinkColorVertex(smRENDVERTEX *rv, short sColors[4], BYTE Color[4], BYTE Specular[4])
+    99: {
+   100: 	short BlinkColor[4] = { 0, };
+   101: 	::CopyMemory(BlinkColor, sColors, sizeof(BlinkColor));
+   102: 
+   103: 	int z = rv->tz >> FLOATNS;
+   104: 	if(z > ccDistZMin)
+   105: 	{
+   106: 		int lev = ((z - ccDistZMin) << (13 - ShiftMAPCELL_MULT)) >> 8;
+   107: 		if(lev >= 256)
+   108: 			return FALSE;
+   109: 
+   110: 		BlinkColor[SMC_R] -= ((sColors[SMC_R] * lev) >> 8);
+   111: 		BlinkColor[SMC_G] -= ((sColors[SMC_G] * lev) >> 8);
+   112: 		BlinkColor[SMC_B] -= ((sColors[SMC_B] * lev) >> 8);
+   113: 		BlinkColor[SMC_A] -= ((sColors[SMC_A] * lev) >> 8);
+   114: 	}
+   115: 
+   116: 	for(int cnt = 0; cnt < 4; cnt++)
+   117: 	{
+   118: 		BlinkColor[cnt] += rv->bCol[cnt];
+   119: 		if(BlinkColor[cnt] > 255)
+   120: 		{
+   121: 			short spe = rv->bSpe[cnt] + (BlinkColor[cnt] - 256);
+   122: 			Color[cnt] = 255;
+   123: 			if(spe > 255)
+   124: 				Specular[cnt] = 255;
+   125: 			else
+   126: 				Specular[cnt] = (BYTE)spe;
+   127: 		}
+   128: 		else
+   129: 		{
+   130: 			Color[cnt] = (BYTE)BlinkColor[cnt];
+   131: 			Specular[cnt] = rv->bSpe[cnt];
+   132: 		}
+   133: 	}
+   134: 
+   135: 	return TRUE;
+   136: }
+   137: 
+   138: 
+   139: 
+   140: 
+   141: static float s_DxProjection_w;
+   142: static float s_DxProjection_h;
+   143: static float s_DxProjection_q1;
+   144: static float s_DxProjection_q2;
+   145: static int   s_CenterX;
+   146: static int   s_CenterY;
+   147: 
+   148: 
+   149: int			 g_IsDxProjectZoomIn;
+   150: 
+   151: float		 g_fZoomInAdd_x;
+   152: float		 g_fZoomInAdd_y;
+   153: float		 g_fZoomInDiv_x;
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=3208
+  3178: 
+  3179: 	rendcnt = 0;
+  3180: 
+  3181: 	for(cnt = 0; cnt < mcnt; cnt++)
+  3182: 	{
+  3183: 		if(!(rendface->ClipStatus&SMCLIP_DISPLAYOUT))
+  3184: 		{
+  3185: 			for(vcnt = 0; vcnt < 3; vcnt++)
+  3186: 			{
+  3187: 
+  3188: 				rv = rendface->lpRendVertex[vcnt];
+  3189: 
+  3190: 				*(RenderBuff++) = (float)rv->xy[0];
+  3191: 				*(RenderBuff++) = (float)rv->xy[1];
+  3192: 				*(RenderBuff++) = (float)rv->zb;
+  3193: 				*(RenderBuff++) = (float)rv->rhw;
+  3194: 
+  3195: 
+  3196: 				if(RendAlphaFlag && rv->tz > (ccDistZMin << FLOATNS))
+  3197: 				{
+  3198: 					*((DWORD *)dwColor) = *((DWORD *)rv->bCol);
+  3199: 					*((DWORD *)dwSpecular) = *((DWORD *)rv->bSpe);
+  3200: 					dwSpecular[3] = dwSpecular[3] / 2 + dwSpecular[3] / 3;
+  3201: 					dwColor[3] = dwColor[3] / 2 + dwColor[3] / 3;
+  3202: 
+  3203: 					*((DWORD *)(RenderBuff++)) = *((DWORD *)dwColor);
+  3204: 					*((DWORD *)(RenderBuff++)) = *((DWORD *)dwSpecular);
+  3205: 				}
+  3206: 				else
+  3207: 				{
+  3208: 					if(SetBlinkColorVertex(rv, sColors, dwColor, dwSpecular))
+  3209: 					{
+  3210: 						*((DWORD *)(RenderBuff++)) = *((DWORD *)dwColor);
+  3211: 						*((DWORD *)(RenderBuff++)) = *((DWORD *)dwSpecular);
+  3212: 					}
+  3213: 					else
+  3214: 					{
+  3215: 						*((DWORD *)(RenderBuff++)) = *((DWORD *)rv->bCol);
+  3216: 						*((DWORD *)(RenderBuff++)) = *((DWORD *)rv->bSpe);
+  3217: 					}
+  3218: 				}
+  3219: 
+  3220: 				tl = rendface->lpTexLink;
+  3221: 				for(tcnt = 0; tcnt < 8; tcnt++)
+  3222: 				{
+  3223: 					if(!tl) break;
+  3224: 					if(TextureFormState[tcnt])
+  3225: 					{
+  3226: 						switch(TextureFormState[tcnt])
+  3227: 						{
+  3228: 
+  3229: 							case smTEXSTATE_FS_FORMX:
+  3230: 							case smTEXSTATE_FS_FORMY:
+  3231: 							case smTEXSTATE_FS_FORMZ:
+  3232: 
+  3233: 							case smTEXSTATE_FS_NONE:
+  3234: 
+  3235: 							*(RenderBuff++) = (float)tl->u[vcnt];
+  3236: 							*(RenderBuff++) = (float)tl->v[vcnt];
+  3237: 							break;
+  3238: 
+  3239: 							case smTEXSTATE_FS_SCROLL:
+  3240: 
+  3241: 							*(RenderBuff++) = (float)(tl->u[vcnt] + fwtime);
+  3242: 							*(RenderBuff++) = (float)(tl->v[vcnt]);
+  3243: 							break;
+  3244: 
+  3245: 							case smTEXSTATE_FS_REFLEX:
+  3246: 							*(RenderBuff++) = (float)(tl->u[vcnt] + ((float)(rv->tx >> 1) / 65536));
+  3247: 							*(RenderBuff++) = (float)(tl->v[vcnt] + ((float)(rv->ty >> 2) / 65536));
+  3248: 							break;
+  3249: 
+  3250: 						}
+  3251: 
+  3252: 						if(TextureFormState[tcnt] >= smTEXSTATE_FS_SCROLL2 && TextureFormState[tcnt] <= smTEXSTATE_FS_SCROLL10)
+  3253: 						{
+  3254: 
+  3255: 							*(RenderBuff++) = (float)(tl->u[vcnt] + fwtime* (TextureFormState[tcnt] - (smTEXSTATE_FS_SCROLL2 - 2)));
+  3256: 							*(RenderBuff++) = (float)(tl->v[vcnt]);
+  3257: 						}
+  3258: 
+  3259: 
+  3260: 						else if(TextureFormState[tcnt] >= smTEXSTATE_FS_SCROLLSLOW1 && TextureFormState[tcnt] <= smTEXSTATE_FS_SCROLLSLOW4)
+  3261: 						{
+  3262: 							int factor = smTEXSTATE_FS_SCROLLSLOW4 - TextureFormState[tcnt] + 4;
+  3263: 							wtime = (RendStatTime >> 6) & (0xFFFF >> factor);
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=3738
+  3708: 		renderDevice.SetTexture(cnt, 0);
+  3709: 	}
+  3710: 
+  3711: 	renderDevice.SetRenderState(D3DRENDERSTATE_TEXTUREMAPBLEND, D3DTBLEND_MODULATE);
+  3712: 
+  3713: 
+  3714: 	renderDevice.SetRenderState(D3DRENDERSTATE_ALPHABLENDENABLE, TRUE);
+  3715: 	renderDevice.SetRenderState(D3DRENDERSTATE_DESTBLEND, D3DBLEND_INVSRCALPHA);
+  3716: 	renderDevice.SetRenderState(D3DRENDERSTATE_SRCBLEND, D3DBLEND_SRCALPHA);
+  3717: 
+  3718: 	if(lpMaterial->TwoSide)
+  3719: 		renderDevice.SetRenderState(D3DRENDERSTATE_CULLMODE, D3DCULL_NONE);
+  3720: 	else
+  3721: 		renderDevice.SetRenderState(D3DRENDERSTATE_CULLMODE, D3DCULL_CW);
+  3722: 
+  3723: 	renderDevice.SetRenderState(D3DRENDERSTATE_ALPHATESTENABLE, FALSE);
+  3724: 
+  3725: 	return TRUE;
+  3726: }
+  3727: 
+  3728: 
+  3729: int smRENDER3D::RenderD3D(int MatNum)
+  3730: {
+  3731: 	int rendcnt;
+  3732: 
+  3733: 	if(smRendMaterial[MatNum].TextureCounter == 0 && smRendMaterial[MatNum].AnimTexCounter == 0)
+  3734: 		return FALSE;
+  3735: 
+  3736: 	short sColors[4] = { 0, };
+  3737: 	if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  3738: 		SetBlinkColor(sColors, smRendMaterial[MatNum].Diffuse, smRendMaterial[MatNum].WindMeshBottom);
+  3739: 
+  3740: 
+  3741: 	if(RendMatrial[MatNum].MatrialCounter)
+  3742: 	{
+  3743: 
+  3744: 		int TexCnt = 0;
+  3745: 		if(s_lpItem2PassTexHandle)
+  3746: 		{
+  3747: 			RendAlphaFlag = SetItem2PassD3DRendState(&smRendMaterial[MatNum]);
+  3748: 			TexCnt = 1;
+  3749: 		}
+  3750: 		else
+  3751: 		{
+  3752: 			RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], FALSE);
+  3753: 		}
+  3754: 
+  3755: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  3756: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, FALSE);
+  3757: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  3758: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, FALSE, sColors);
+  3759: 		else
+  3760: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, FALSE);
+  3761: 
+  3762: 		renderDevice.DrawPrimitive(D3DPT_TRIANGLELIST, D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter + TexCnt],
+  3763: 			(LPVOID)RendBuff, rendcnt, NULL);
+  3764: 
+  3765: 
+  3766: 		if(RendAlphaFlag)
+  3767: 		{
+  3768: 
+  3769: 			SetD3DRendStateOnlyAlpha(&smRendMaterial[MatNum], FALSE);
+  3770: 			renderDevice.DrawPrimitive(D3DPT_TRIANGLELIST,
+  3771: 									   D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter],
+  3772: 									   (LPVOID)RendBuff,
+  3773: 									   rendcnt,
+  3774: 									   NULL);
+  3775: 
+  3776: 		}
+  3777: 	}
+  3778: 
+  3779: 
+  3780: 	if(RendMatrial[MatNum].TexClip_MatrialCounter)
+  3781: 	{
+  3782: 		RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], TRUE);
+  3783: 
+  3784: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  3785: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, TRUE);
+  3786: 
+  3787: 
+  3788: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  3789: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, TRUE, sColors);
+  3790: 		else
+  3791: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, TRUE);
+  3792: 
+  3793: 
+
+=== COLOR PATH INDEX ===
+SourceCode/Shared/smPacket.h:1898: 	short	sColors[4];
+SourceCode/SrcGame/src/BellatraFontEffect.cpp:150: 							 D3DCOLOR_RGBA(255, 255, 255, 255));
+SourceCode/SrcGame/src/BellatraFontEffect.cpp:651: 									  D3DCOLOR_RGBA(255, 230, 0, int(lpMinFontEffectPtr->fBlend)), 2.f*g_fWinSizeRatio_X);
+SourceCode/SrcGame/src/BellatraFontEffect.cpp:656: 									  D3DCOLOR_RGBA(255, 230, 0, int(lpMinFontEffectPtr->fBlend)), 2.f*g_fWinSizeRatio_X);
+SourceCode/SrcGame/src/BellatraFontEffect.cpp:661: 									  D3DCOLOR_RGBA(255, 230, 0, int(lpMinFontEffectPtr->fBlend)), 2.f*g_fWinSizeRatio_X);
+SourceCode/SrcGame/src/BellatraFontEffect.cpp:666: 									  D3DCOLOR_RGBA(255, 230, 0, int(lpMinFontEffectPtr->fBlend)), 2.f*g_fWinSizeRatio_X);
+SourceCode/SrcGame/src/BellatraFontEffect.cpp:671: 									  D3DCOLOR_RGBA(255, 230, 0, int(lpMinFontEffectPtr->fBlend)), 2.f*g_fWinSizeRatio_X);
+SourceCode/SrcGame/src/BellatraFontEffect.cpp:676: 									  D3DCOLOR_RGBA(255, 230, 0, int(lpMinFontEffectPtr->fBlend)), 2.f*g_fWinSizeRatio_X);
+SourceCode/SrcGame/src/BellatraFontEffect.cpp:681: 									  D3DCOLOR_RGBA(255, 230, 0, int(lpMinFontEffectPtr->fBlend)), 2.f*g_fWinSizeRatio_X);
+SourceCode/SrcGame/src/CChatBox.cpp:132: 					pTextMessage->SetHighlightTextColor( D3DCOLOR_XRGB( 100, 255, 50 ) );
+SourceCode/SrcGame/src/CChatBox.cpp:140: 					pTextMessage->SetColor( D3DCOLOR_ARGB( 255, 240, 240, 0 ) );
+SourceCode/SrcGame/src/CChatBox.cpp:681: 			return D3DCOLOR_ARGB( 255, 255, 128, 96 );
+SourceCode/SrcGame/src/CChatBox.cpp:683: 			return D3DCOLOR_ARGB( 255, 150, 190, 255 );
+SourceCode/SrcGame/src/CChatBox.cpp:685: 			return D3DCOLOR_ARGB( 255, 150, 190, 255 );
+SourceCode/SrcGame/src/CChatBox.cpp:687: 			return D3DCOLOR_ARGB( 255, 230, 160, 255 );
+SourceCode/SrcGame/src/CChatBox.cpp:689: 			return D3DCOLOR_ARGB( 255, 200, 255, 0 );
+SourceCode/SrcGame/src/CChatBox.cpp:691: 			return D3DCOLOR_ARGB( 255, 255, 255, 80 );
+SourceCode/SrcGame/src/CChatBox.cpp:693: 			return D3DCOLOR_ARGB( 255, 200, 255, 255 );
+SourceCode/SrcGame/src/CChatBox.cpp:695: 			return D3DCOLOR_ARGB( 255, 200, 128, 128 );
+SourceCode/SrcGame/src/CChatBox.cpp:697: 			return D3DCOLOR_ARGB( 255, 255, 180, 70 );
+SourceCode/SrcGame/src/CChatBox.cpp:699: 			return D3DCOLOR_ARGB( 255, 255, 255, 128 );
+SourceCode/SrcGame/src/CChatBox.cpp:701: 			return D3DCOLOR_ARGB( 255, 40, 240, 230 );
+SourceCode/SrcGame/src/CChatBox.cpp:704: 	return D3DCOLOR_XRGB( 255, 255, 255 );
+SourceCode/SrcGame/src/DrawDamage.cpp:121: 					FontDamageShadow->DrawText(NULL, buff, strlen(buff), &rc2, DT_LEFT | DT_NOCLIP, D3DCOLOR_RGBA(255, 0, 0, CurDamageList[i].Alpha));
+SourceCode/SrcGame/src/DrawDamage.cpp:123: 					FontDamageShadow->DrawText(NULL, buff, strlen(buff), &rc2, DT_LEFT | DT_NOCLIP, D3DCOLOR_RGBA(0, 191, 255, CurDamageList[i].Alpha));
+SourceCode/SrcGame/src/DrawDamage.cpp:125: 					FontDamageShadow->DrawText(NULL, buff, strlen(buff), &rc2, DT_LEFT | DT_NOCLIP, D3DCOLOR_RGBA(123, 104, 238, CurDamageList[i].Alpha));
+SourceCode/SrcGame/src/DrawDamage.cpp:127: 					FontDamageShadow->DrawText(NULL, buff, strlen(buff), &rc2, DT_LEFT | DT_NOCLIP, D3DCOLOR_RGBA(255, 215, 0, CurDamageList[i].Alpha));
+SourceCode/SrcGame/src/DrawDamage.cpp:129: 					FontDamageShadow->DrawText(NULL, buff, strlen(buff), &rc2, DT_LEFT | DT_NOCLIP, D3DCOLOR_RGBA(200, 0, 0, CurDamageList[i].Alpha));
+SourceCode/SrcGame/src/DrawDamage.cpp:131: 					FontDamageShadow->DrawText(NULL, buff, strlen(buff), &rc2, DT_LEFT | DT_NOCLIP, D3DCOLOR_RGBA(0, 255, 0, CurDamageList[i].Alpha));
+SourceCode/SrcGame/src/DrawDamage.cpp:133: 					FontDamageShadow->DrawText(NULL, buff, strlen(buff), &rc2, DT_LEFT | DT_NOCLIP, D3DCOLOR_RGBA(75, 0, 130, CurDamageList[i].Alpha));
+SourceCode/SrcGame/src/DrawDamage.cpp:178: 						FontDamageShadow->DrawText(NULL, buff, strlen(buff), &rc2, DT_LEFT | DT_NOCLIP, D3DCOLOR_RGBA(255, 165, 0, DamageList[i].Alpha));
+SourceCode/SrcGame/src/DrawDamage.cpp:180: 						FontDamageShadow->DrawText(NULL, buff, strlen(buff), &rc2, DT_LEFT | DT_NOCLIP, D3DCOLOR_RGBA(0, 191, 255, DamageList[i].Alpha));
+SourceCode/SrcGame/src/DrawDamage.cpp:182: 						FontDamageShadow->DrawText(NULL, buff, strlen(buff), &rc2, DT_LEFT | DT_NOCLIP, D3DCOLOR_RGBA(123, 104, 238, DamageList[i].Alpha));
+SourceCode/SrcGame/src/DrawDamage.cpp:184: 						FontDamageShadow->DrawText(NULL, buff, strlen(buff), &rc2, DT_LEFT | DT_NOCLIP, D3DCOLOR_RGBA(255, 215, 0, DamageList[i].Alpha));
+SourceCode/SrcGame/src/DrawDamage.cpp:186: 						FontDamageShadow->DrawText(NULL, buff, strlen(buff), &rc2, DT_LEFT | DT_NOCLIP, D3DCOLOR_RGBA(200, 0, 0, DamageList[i].Alpha));
+SourceCode/SrcGame/src/DrawDamage.cpp:188: 						FontDamageShadow->DrawText(NULL, buff, strlen(buff), &rc2, DT_LEFT | DT_NOCLIP, D3DCOLOR_RGBA(0, 255, 0, DamageList[i].Alpha));
+SourceCode/SrcGame/src/DrawDamage.cpp:190: 						FontDamageShadow->DrawText(NULL, buff, strlen(buff), &rc2, DT_LEFT | DT_NOCLIP, D3DCOLOR_RGBA(75, 0, 130, DamageList[i].Alpha));
+SourceCode/SrcGame/src/Drawsub.cpp:112: 	FontColor = D3DCOLOR_RGBA(GetRValue(crColor), GetGValue(crColor), GetBValue(crColor), 255);
+SourceCode/SrcGame/src/Drawsub.cpp:117: 	FontColor = D3DCOLOR_RGBA(GetRValue(crColor), GetGValue(crColor), GetBValue(crColor), FontOpacity);
+SourceCode/SrcGame/src/Drawsub.cpp:262: 		tlVertex[cnt].specular = D3DCOLOR_RGBA(0, 0, 0, 0);
+SourceCode/SrcGame/src/Drawsub.cpp:315: 		tlVertex[cnt].color = D3DCOLOR_RGBA(255, 255, 255, Transp);
+SourceCode/SrcGame/src/Drawsub.cpp:316: 		tlVertex[cnt].specular = D3DCOLOR_RGBA(0, 0, 0, 0);
+SourceCode/SrcGame/src/Drawsub.cpp:359: 		dwClr = D3DCOLOR_RGBA(255, 255, 255, dwColor);
+SourceCode/SrcGame/src/Drawsub.cpp:366: 		tlVertex[cnt].specular = D3DCOLOR_RGBA(specular, specular, specular, 0);
+SourceCode/SrcGame/src/Drawsub.cpp:397: 		tlVertex[cnt].specular = D3DCOLOR_RGBA(0, 0, 0, 0);
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:100: 		TLVertex[count].color = D3DCOLOR_RGBA(255, 255, 255, 255);
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:101: 		TLVertex[count].specular = D3DCOLOR_RGBA(0, 0, 0, 0);
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:493: 	Vertex[0].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:494: 	Vertex[0].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:495: 	Vertex[0].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:496: 	Vertex[0].sDef_Color[3] = (int)CurrentBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:498: 	Vertex[1].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:499: 	Vertex[1].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:500: 	Vertex[1].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:501: 	Vertex[1].sDef_Color[3] = (int)CurrentBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:503: 	Vertex[2].sDef_Color[0] = 100;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:504: 	Vertex[2].sDef_Color[1] = 100;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:505: 	Vertex[2].sDef_Color[2] = 100;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:506: 	Vertex[2].sDef_Color[3] = (int)CurrentBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:548: 	Vertex[VertexCount].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:549: 	Vertex[VertexCount].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:550: 	Vertex[VertexCount].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:551: 	Vertex[VertexCount].sDef_Color[3] = (int)CurrentBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:553: 	Vertex[VertexCount + 1].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:554: 	Vertex[VertexCount + 1].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:555: 	Vertex[VertexCount + 1].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:556: 	Vertex[VertexCount + 1].sDef_Color[3] = (int)CurrentBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:558: 	Vertex[VertexCount + 2].sDef_Color[0] = 100;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:559: 	Vertex[VertexCount + 2].sDef_Color[1] = 100;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:560: 	Vertex[VertexCount + 2].sDef_Color[2] = 100;
+SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:561: 	Vertex[VertexCount + 2].sDef_Color[3] = (int)CurrentBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:721: 		tlVertex[cnt].color = D3DCOLOR_RGBA(255, 255, 255, alpha);
+SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:722: 		tlVertex[cnt].specular = D3DCOLOR_RGBA(0, 0, 0, 0);
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:489: 			Vertex[VertexCount].sDef_Color[0] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:490: 			Vertex[VertexCount].sDef_Color[1] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:491: 			Vertex[VertexCount].sDef_Color[2] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:492: 			Vertex[VertexCount].sDef_Color[3] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:497: 			Vertex[VertexCount + 1].sDef_Color[0] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:498: 			Vertex[VertexCount + 1].sDef_Color[1] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:499: 			Vertex[VertexCount + 1].sDef_Color[2] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:500: 			Vertex[VertexCount + 1].sDef_Color[3] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:506: 			Vertex[VertexCount + 2].sDef_Color[0] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:507: 			Vertex[VertexCount + 2].sDef_Color[1] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:508: 			Vertex[VertexCount + 2].sDef_Color[2] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:509: 			Vertex[VertexCount + 2].sDef_Color[3] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:515: 			Vertex[VertexCount + 3].sDef_Color[0] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:516: 			Vertex[VertexCount + 3].sDef_Color[1] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:517: 			Vertex[VertexCount + 3].sDef_Color[2] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:518: 			Vertex[VertexCount + 3].sDef_Color[3] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:526: 			Vertex[VertexCount].sDef_Color[0] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:527: 			Vertex[VertexCount].sDef_Color[1] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:528: 			Vertex[VertexCount].sDef_Color[2] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:529: 			Vertex[VertexCount].sDef_Color[3] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:534: 			Vertex[VertexCount + 1].sDef_Color[0] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:535: 			Vertex[VertexCount + 1].sDef_Color[1] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:536: 			Vertex[VertexCount + 1].sDef_Color[2] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:537: 			Vertex[VertexCount + 1].sDef_Color[3] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:543: 			Vertex[VertexCount + 2].sDef_Color[0] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:544: 			Vertex[VertexCount + 2].sDef_Color[1] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:545: 			Vertex[VertexCount + 2].sDef_Color[2] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:546: 			Vertex[VertexCount + 2].sDef_Color[3] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:552: 			Vertex[VertexCount + 3].sDef_Color[0] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:553: 			Vertex[VertexCount + 3].sDef_Color[1] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:554: 			Vertex[VertexCount + 3].sDef_Color[2] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:555: 			Vertex[VertexCount + 3].sDef_Color[3] = (int)BlurBlendValue;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:883: 			Vertex[VertexCount].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:884: 			Vertex[VertexCount].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:885: 			Vertex[VertexCount].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:886: 			Vertex[VertexCount].sDef_Color[3] = (int)CurrentBlendValue - index * blendStep;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:891: 			Vertex[VertexCount + 1].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:892: 			Vertex[VertexCount + 1].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:893: 			Vertex[VertexCount + 1].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:894: 			Vertex[VertexCount + 1].sDef_Color[3] = (int)CurrentBlendValue - index * blendStep;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:900: 			Vertex[VertexCount + 2].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:901: 			Vertex[VertexCount + 2].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:902: 			Vertex[VertexCount + 2].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:903: 			Vertex[VertexCount + 2].sDef_Color[3] = (int)CurrentBlendValue - index * blendStep;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:909: 			Vertex[VertexCount + 3].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:910: 			Vertex[VertexCount + 3].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:911: 			Vertex[VertexCount + 3].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:912: 			Vertex[VertexCount + 3].sDef_Color[3] = (int)CurrentBlendValue - index * blendStep;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:920: 			Vertex[VertexCount].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:921: 			Vertex[VertexCount].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:922: 			Vertex[VertexCount].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:923: 			Vertex[VertexCount].sDef_Color[3] = (int)CurrentBlendValue - index * blendStep;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:928: 			Vertex[VertexCount + 1].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:929: 			Vertex[VertexCount + 1].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:930: 			Vertex[VertexCount + 1].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:931: 			Vertex[VertexCount + 1].sDef_Color[3] = (int)CurrentBlendValue - index * blendStep;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:937: 			Vertex[VertexCount + 2].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:938: 			Vertex[VertexCount + 2].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:939: 			Vertex[VertexCount + 2].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:940: 			Vertex[VertexCount + 2].sDef_Color[3] = (int)CurrentBlendValue - index * blendStep;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:946: 			Vertex[VertexCount + 3].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:947: 			Vertex[VertexCount + 3].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:948: 			Vertex[VertexCount + 3].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:949: 			Vertex[VertexCount + 3].sDef_Color[3] = (int)CurrentBlendValue - index * blendStep;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1719: 			Vertex[VertexCount].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1720: 			Vertex[VertexCount].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1721: 			Vertex[VertexCount].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1722: 			Vertex[VertexCount].sDef_Color[3] = (int)CurrentBlendValue - index * blendStep;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1727: 			Vertex[VertexCount + 1].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1728: 			Vertex[VertexCount + 1].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1729: 			Vertex[VertexCount + 1].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1730: 			Vertex[VertexCount + 1].sDef_Color[3] = (int)CurrentBlendValue - index * blendStep;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1736: 			Vertex[VertexCount + 2].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1737: 			Vertex[VertexCount + 2].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1738: 			Vertex[VertexCount + 2].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1739: 			Vertex[VertexCount + 2].sDef_Color[3] = (int)CurrentBlendValue - index * blendStep;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1745: 			Vertex[VertexCount + 3].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1746: 			Vertex[VertexCount + 3].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1747: 			Vertex[VertexCount + 3].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1748: 			Vertex[VertexCount + 3].sDef_Color[3] = (int)CurrentBlendValue - index * blendStep;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1756: 			Vertex[VertexCount].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1757: 			Vertex[VertexCount].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1758: 			Vertex[VertexCount].sDef_Color[2] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1759: 			Vertex[VertexCount].sDef_Color[3] = (int)CurrentBlendValue - index * blendStep;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1764: 			Vertex[VertexCount + 1].sDef_Color[0] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1765: 			Vertex[VertexCount + 1].sDef_Color[1] = 255;
+SourceCode/SrcGame/src/HoBaram/HoLogic.cpp:1766: 			Vertex[VertexCount + 1].sDef_Color[2] = 255;
+
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/pt_smd_diffuse_color_path_audit_v2.json
+source_modified=False
+client_modified=False
+diffuse_color_path_audit_check=PASS

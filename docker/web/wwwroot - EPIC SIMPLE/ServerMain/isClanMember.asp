@@ -1,218 +1,346 @@
-<!-- #include file ="settings.asp" -->
-<%
-'Written By Sandurr COPYRIGHT Sandurr 2006
-'Written By Sandurr COPYRIGHT Sandurr 2006
-'Written By Sandurr COPYRIGHT Sandurr 2006
-'Written By Sandurr COPYRIGHT Sandurr 2006
-'Written By Sandurr COPYRIGHT Sandurr 2006
-'Version 2.0 NOVEMBER 2006
+<?php
+/*
+ * SUMMIT_ISCLANMEMBER_PHP_PORT_V1
+ *
+ * Port Linux/PHP do ServerMain/isClanMember.asp legado.
+ * Mantem o contrato textual esperado pelo cliente:
+ *
+ *   Code=0  -> personagem sem clan
+ *   Code=1  -> membro
+ *   Code=2  -> lider
+ *   Code=5  -> sublider
+ *   Code=100 -> erro
+ *
+ * Separador original do protocolo: CR (0x0D).
+ */
 
-' Assign Global Variables
-Dim dbhost, dbuser, dbpass, dbname, userid, gserver, chname
+header('Content-Type: text/plain; charset=ISO-8859-1');
 
-Dim tTime
-tTime = " ¿ÀÈÄ "
+function proto_exit($text)
+{
+    echo $text;
+    exit;
+}
 
-FillSettings()
+function code0()
+{
+    proto_exit(
+        "Code=0\r" .
+        "CMoney=500000\r" .
+        "CNFlag=0\r"
+    );
+}
 
-Dim strSplit
-strSplit = Chr("&H" & "0D")
+function code100()
+{
+    proto_exit("Code=100\r");
+}
 
-' Parameter Variables
-' isClanMember (userid, gserver, chname)
-userid = Trim(Request("userid"))
-gserver = Trim(Request("gserver"))
-chname = Trim(Request("chname"))
+function cfg_value($cfg, $name)
+{
+    $re = '/\$' . preg_quote($name, '/') .
+          '\s*=\s*[\'"]([^\'"]+)[\'"]\s*;/';
 
-if userid = "" Or gserver = "" Or chname = "" Then
-	Response.Write("Code=100" & strSplit)
-	Response.End
-End if
+    if (!preg_match($re, $cfg, $m))
+        return false;
 
-Dim QUERY, RS, objConn
+    return $m[1];
+}
 
-Set objConn = Server.CreateObject("ADODB.Connection")
-objConn.Open "Provider=SQLOLEDB; Data Source=" & dbhost & "; Initial Catalog=" & dbname & "; User ID=" & dbuser & "; Password=" & dbpass
+/*
+ * SUMMIT_ISCLANMEMBER_ODBC_EXEC_V2
+ *
+ * O FreeTDS/unixODBC legado deste container nao suporta
+ * odbc_prepare(). Mantemos queries parametrizadas no codigo,
+ * mas substituimos os placeholders localmente com escaping
+ * antes de chamar odbc_exec().
+ */
+function db_exec_params($conn, $sql, $params)
+{
+    foreach ($params as $value) {
 
-QUERY = "SELECT ClanName FROM UL WHERE ChName='" & chname & "'"
+        if ($value === null) {
+            $replacement = "NULL";
+        } else {
+            $escaped = str_replace("'", "''", (string)$value);
+            $replacement = "'" . $escaped . "'";
+        }
 
-Set RS = Server.CreateObject("ADODB.Recordset")
-RS.Open QUERY, objConn, 3, 1
+        $pos = strpos($sql, "?");
 
-if RS.RecordCount = 0 Then
-	RS.Close
-	Set RS = Nothing
-	objConn.Close
-	Set objConn = Nothing
-	Response.Write("Code=0" & strSplit & "CMoney=500000" & strSplit & "CNFlag=0" & strSplit)
-	Response.End
-End if
+        if ($pos === false)
+            return false;
 
-Dim clname
-clname = RS("ClanName").Value
-if clname = "" Then
-	RS.Close
-	QUERY = "DELETE FROM UL WHERE ChName='" & chname & "'"
-	RS.Open QUERY, objConn, 3, 1
-	Set RS = Nothing
-	objConn.Close
-	Set objConn = Nothing
-	Response.Write("Code=0" & strSplit & "CMoney=500000" & strSplit & "CNFlag=0" & strSplit)
-	Response.End
-End if
+        $sql =
+            substr($sql, 0, $pos) .
+            $replacement .
+            substr($sql, $pos + 1);
+    }
 
-RS.Close
-QUERY = "SELECT ClanZang,MemCnt,Note,MIconCnt,RegiDate,LimitDate,PFlag,KFlag,ClanMoney,MIconCnt FROM CL WHERE ClanName='" & clname & "'"
-RS.Open QUERY, objConn, 3, 1
+    /*
+     * Nao deve sobrar placeholder depois de consumir params.
+     */
+    if (strpos($sql, "?") !== false)
+        return false;
 
-if RS.RecordCount = 0 Then
-	RS.Close
-	QUERY = "DELETE FROM UL WHERE ChName='" & chname & "'"
-	RS.Open QUERY, objConn, 3, 1
-	Set RS = Nothing
-	objConn.Close
-	Set objConn = Nothing
-	Response.Write("Code=0" & strSplit & "CMoney=500000" & strSplit & "CNFlag=0" & strSplit)
-	Response.End
-End if
+    return @odbc_exec($conn, $sql);
+}
 
-Dim ClanLeader, ClanMembers, ClanNote, ClanIMG, CreateDate, ClanSubChief, EndDate, PFlag, KFlag, ClanMoney, iIMG
-ClanLeader = RS("ClanZang").Value
-ClanMembers = RS("MemCnt").Value
-ClanNote = RS("Note").Value
-ClanIMG = RS("MIconCnt").Value
-CreateDate = RS("RegiDate").Value
-EndDate = RS("LimitDate").Value
-PFlag = RS("PFlag").Value
-KFlag = RS("KFlag").Value
-ClanMoney = RS("ClanMoney").Value
-iIMG = RS("MIconCnt").Value
+function field_text($stmt, $index)
+{
+    $v = @odbc_result($stmt, $index);
 
-Dim strReturn
+    if ($v === false || $v === null)
+        return "";
 
-RS.Close
+    return trim((string)$v);
+}
 
-QUERY = "SELECT ClanName,Cpoint FROM CL ORDER BY Cpoint DESC"
-RS.Open QUERY, objConn, 3, 1
+function add_field(&$out, $name, $value)
+{
+    $out .= $name . "=" . $value . "\r";
+}
 
-Dim tclName, CNFlag
-Dim Pontos, Rows, i
 
-If RS.RecordCount > 0 Then
-	Rows = RS.RecordCount
-	For i = 1 To Rows
-		RS.AbsolutePosition = i
-		tclName = RS("ClanName").Value
-		Pontos = RS("Cpoint").Value
-		If (tclName = clname) Then
-			If Pontos > 0 Then
-				Select Case i
-					Case 1
-						CNFlag = 1
-						Exit For
-					Case 2
-						CNFlag = 2
-						Exit For
-					Case 3
-						CNFlag = 3
-						Exit For
-					Case Else
-						CNFlag = 0
-						Exit For
-				End Select
-			Else
-				CNFlag = 0
-			End If
-		End If
-	Next
-	RS.Close
-End If
+/* ---------------------------------------------------------
+ * Parametros
+ * --------------------------------------------------------- */
 
-Dim tSubDate, tSubTime, y, tSub, tSub2
-For y = 1 To Len(CreateDate)
-	tSub = Mid(CreateDate,y,1)
-	If tSub2 = 0 Then
-		If Not tSub = " " Then
-			tSubDate = tSubDate & tSub
-		Else
-			tSub2 = 1
-		End If
-	Else
-		If tSub2 = 1 Then
-			If Not tSub = " " Then
-				tSubTime = tSubTime & tSub
-			Else
-				tSub2 = 2
-			End If
-		End If
-	End If
-Next
+$userid  = isset($_GET["userid"])  ? trim($_GET["userid"])  : "";
+$gserver = isset($_GET["gserver"]) ? trim($_GET["gserver"]) : "";
+$chname  = isset($_GET["chname"])  ? trim($_GET["chname"])  : "";
 
-CreateDate = tSubDate & tTime & tSubTime
-y = 1
-tSub = ""
-tSub2 = 0
-tSubDate = ""
-tSubTime = ""
+if ($userid === "" || $gserver === "" || $chname === "")
+    code100();
 
-For y = 1 To Len(EndDate)
-	tSub = Mid(EndDate,y,1)
-	If tSub2 = 0 Then
-		If Not tSub = " " Then
-			tSubDate = tSubDate & tSub
-		Else
-			tSub2 = 1
-		End If
-	Else
-		If tSub2 = 1 Then
-			If Not tSub = " " Then
-				tSubTime = tSubTime & tSub
-			Else
-				tSub2 = 2
-			End If
-		End If
-	End If
-Next
 
-EndDate = tSubDate & tTime & tSubTime
+/* ---------------------------------------------------------
+ * Reutiliza a configuracao SQL ja existente no web Docker.
+ *
+ * Nao incluimos configura.php diretamente porque o arquivo
+ * executa codigo PHP legado incompatível no modo CLI/web atual.
+ * Apenas extraimos DSN/usuario/senha ja configurados.
+ * --------------------------------------------------------- */
 
-QUERY = "SELECT ChName FROM UL WHERE ClanName='" & clname & "' AND Permi=2"
-RS.Open QUERY, objConn, 3, 1
+$cfgPath = "/var/www/html/padm/incluir/configura.php";
+$cfg = @file_get_contents($cfgPath);
 
-If RS.RecordCount = 0 Then
-	ClanSubChief = ""
-Else
-	ClanSubChief = RS("ChName").Value
-End If
+if ($cfg === false)
+    code100();
 
-If ClanLeader = chname Then
-	if ClanSubChief = "" Then
-		strReturn = "Code=2" & strSplit & "CName=" & clname & strSplit & "CNote=" & ClanNote & strSplit & "CZang=" & ClanLeader & strSplit & "CStats=1" & strSplit & "CMCnt=" & ClanMembers & strSplit & "CIMG=" & ClanIMG & strSplit & "CSec=60" & strSplit & "CRegiD=" & CreateDate & strSplit & "CLimitD=" & EndDate & strSplit & "CDelActive=0" & strSplit & "CPFlag=" & PFlag & strSplit & "CKFlag=" & KFlag & strSplit & "CMoney=" & ClanMoney & strSplit & "CNFlag=" & CNFlag & strSplit
-	Else
-		strReturn = "Code=2" & strSplit & "CName=" & clname & strSplit & "CNote=" & ClanNote & strSplit & "CZang=" & ClanLeader & strSplit & "CSubChip=" & ClanSubChief & strSplit & "CStats=1" & strSplit & "CMCnt=" & ClanMembers & strSplit & "CIMG=" & ClanIMG & strSplit & "CSec=60" & strSplit & "CRegiD=" & CreateDate & strSplit & "CLimitD=" & EndDate & strSplit & "CDelActive=0" & strSplit & "CPFlag=" & PFlag & strSplit & "CKFlag=" & KFlag & strSplit & "CMoney=" & ClanMoney & strSplit & "CNFlag=" & CNFlag & strSplit
-	End if
-Else
-	if ClanSubChief = "" Then
-		strReturn = "Code=1" & strSplit & "CName=" & clname & strSplit & "CNote=" & ClanNote & strSplit & "CZang=" & ClanLeader & strSplit & "CStats=1" & strSplit & "CMCnt=" & ClanMembers & strSplit & "CIMG=" & ClanIMG & strSplit & "CSec=60" & strSplit & "CRegiD=" & CreateDate & strSplit & "CLimitD=" & EndDate & strSplit & "CDelActive=0" & strSplit & "CPFlag=0" & strSplit & "CKFlag=0" & strSplit & "CMoney=" & ClanMoney & strSplit & "CNFlag=" & CNFlag & strSplit
-	Else
-		strReturn = "Code=1" & strSplit & "CName=" & clname & strSplit & "CNote=" & ClanNote & strSplit & "CZang=" & ClanLeader & strSplit & "CSubChip=" & ClanSubChief & strSplit & "CStats=1" & strSplit & "CMCnt=" & ClanMembers & strSplit & "CIMG=" & ClanIMG & strSplit & "CSec=60" & strSplit & "CRegiD=" & CreateDate & strSplit & "CLimitD=" & EndDate & strSplit & "CDelActive=0" & strSplit & "CPFlag=0" & strSplit & "CKFlag=0" & strSplit & "CMoney=" & ClanMoney & strSplit & "CNFlag=" & CNFlag & strSplit
-	End if
-End if
+$dsn  = cfg_value($cfg, "connection_string");
+$user = cfg_value($cfg, "user");
+$pass = cfg_value($cfg, "pass");
 
-RS.Close
+if ($dsn === false || $user === false || $pass === false)
+    code100();
 
-If ClanSubChief = chname Then
-	If Not ClanLeader = chname Then
-		strReturn = "Code=5" & strSplit & "CName=" & clname & strSplit & "CNote=" & ClanNote & strSplit & "CZang=" & ClanLeader & strSplit & "CSubChip=" & ClanSubChief & strSplit & "CStats=1" & strSplit & "CMCnt=" & ClanMembers & strSplit & "CIMG=" & ClanIMG & strSplit & "CSec=60" & strSplit & "CRegiD=" & CreateDate & strSplit & "CLimitD=" & EndDate & strSplit & "CDelActive=0" & strSplit & "CPFlag=" & PFlag & strSplit & "CKFlag=" & KFlag & strSplit & "CMoney=" & ClanMoney & strSplit & "CNFlag=" & CNFlag & strSplit
-	End If
-End if
+$conn = @odbc_connect($dsn, $user, $pass);
 
-QUERY = "UPDATE UL SET MIconCnt='" & iIMG & "' WHERE ChName='" & chname & "'"
-RS.Open QUERY, objConn, 3, 1
+if (!$conn)
+    code100();
 
-Set RS = Nothing
-objConn.Close
-Set objConn = Nothing
+if (!@odbc_exec($conn, "USE ClanDB")) {
+    @odbc_close($conn);
+    code100();
+}
 
-Response.Write(strReturn)
-%>
+
+/* ---------------------------------------------------------
+ * 1. Procura personagem em UL
+ * --------------------------------------------------------- */
+
+$stmt = db_exec_params(
+    $conn,
+    "SELECT ClanName FROM dbo.UL WHERE ChName=?",
+    array($chname)
+);
+
+if (!$stmt) {
+    @odbc_close($conn);
+    code100();
+}
+
+if (!@odbc_fetch_row($stmt)) {
+    @odbc_close($conn);
+    code0();
+}
+
+$clname = field_text($stmt, 1);
+
+
+/*
+ * ASP original remove registro UL orfao quando ClanName esta vazio.
+ */
+if ($clname === "") {
+
+    db_exec_params(
+        $conn,
+        "DELETE FROM dbo.UL WHERE ChName=?",
+        array($chname)
+    );
+
+    @odbc_close($conn);
+    code0();
+}
+
+
+/* ---------------------------------------------------------
+ * 2. Busca clan
+ * --------------------------------------------------------- */
+
+$stmt = db_exec_params(
+    $conn,
+    "SELECT ClanZang, MemCnt, Note, MIconCnt, RegiDate, " .
+    "LimitDate, PFlag, KFlag, ClanMoney, Cpoint " .
+    "FROM dbo.CL WHERE ClanName=?",
+    array($clname)
+);
+
+if (!$stmt) {
+    @odbc_close($conn);
+    code100();
+}
+
+
+/*
+ * Registro UL aponta para clan inexistente:
+ * comportamento original = limpa UL e trata como sem clan.
+ */
+if (!@odbc_fetch_row($stmt)) {
+
+    db_exec_params(
+        $conn,
+        "DELETE FROM dbo.UL WHERE ChName=?",
+        array($chname)
+    );
+
+    @odbc_close($conn);
+    code0();
+}
+
+$ClanLeader  = field_text($stmt, 1);
+$ClanMembers = field_text($stmt, 2);
+$ClanNote    = field_text($stmt, 3);
+$ClanIMG     = field_text($stmt, 4);
+$CreateDate  = field_text($stmt, 5);
+$EndDate     = field_text($stmt, 6);
+$PFlag       = field_text($stmt, 7);
+$KFlag       = field_text($stmt, 8);
+$ClanMoney   = field_text($stmt, 9);
+
+
+/* ---------------------------------------------------------
+ * 3. Ranking/CNFlag
+ * --------------------------------------------------------- */
+
+$CNFlag = 0;
+
+$rank = @odbc_exec(
+    $conn,
+    "SELECT ClanName, Cpoint FROM dbo.CL ORDER BY Cpoint DESC"
+);
+
+if ($rank) {
+
+    $position = 0;
+
+    while (@odbc_fetch_row($rank)) {
+
+        $position++;
+
+        $rankClan  = field_text($rank, 1);
+        $rankPoint = intval(field_text($rank, 2));
+
+        if ($rankClan === $clname) {
+
+            if ($rankPoint > 0 && $position >= 1 && $position <= 3)
+                $CNFlag = $position;
+
+            break;
+        }
+    }
+}
+
+
+/* ---------------------------------------------------------
+ * 4. Sublider
+ * --------------------------------------------------------- */
+
+$ClanSubChief = "";
+
+$sub = db_exec_params(
+    $conn,
+    "SELECT TOP 1 ChName FROM dbo.UL " .
+    "WHERE ClanName=? AND Permi=2",
+    array($clname)
+);
+
+if ($sub && @odbc_fetch_row($sub))
+    $ClanSubChief = field_text($sub, 1);
+
+
+/* ---------------------------------------------------------
+ * 5. Monta resposta no formato original
+ * --------------------------------------------------------- */
+
+if ($ClanLeader === $chname)
+    $code = 2;
+else
+    $code = 1;
+
+if ($ClanSubChief !== "" &&
+    $ClanSubChief === $chname &&
+    $ClanLeader !== $chname)
+{
+    $code = 5;
+}
+
+$out = "";
+
+add_field($out, "Code", $code);
+add_field($out, "CName", $clname);
+add_field($out, "CNote", $ClanNote);
+add_field($out, "CZang", $ClanLeader);
+
+if ($ClanSubChief !== "")
+    add_field($out, "CSubChip", $ClanSubChief);
+
+add_field($out, "CStats", 1);
+add_field($out, "CMCnt", $ClanMembers);
+add_field($out, "CIMG", $ClanIMG);
+add_field($out, "CSec", 60);
+add_field($out, "CRegiD", $CreateDate);
+add_field($out, "CLimitD", $EndDate);
+add_field($out, "CDelActive", 0);
+
+/*
+ * ASP original zera PFlag/KFlag para membro comum.
+ * Lider e sublider recebem os valores do clan.
+ */
+if ($code == 1) {
+    add_field($out, "CPFlag", 0);
+    add_field($out, "CKFlag", 0);
+}
+else {
+    add_field($out, "CPFlag", $PFlag);
+    add_field($out, "CKFlag", $KFlag);
+}
+
+add_field($out, "CMoney", $ClanMoney);
+add_field($out, "CNFlag", $CNFlag);
+
+
+/*
+ * Mantem MIconCnt sincronizado em UL como o ASP original.
+ */
+db_exec_params(
+    $conn,
+    "UPDATE dbo.UL SET MIconCnt=? WHERE ChName=?",
+    array($ClanIMG, $chname)
+);
+
+@odbc_close($conn);
+
+echo $out;
+?>

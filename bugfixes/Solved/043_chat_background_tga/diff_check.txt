@@ -1,0 +1,32 @@
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:147: trailing whitespace.
++#define  MAX_HAEFFECTNUM 10 
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:210: trailing whitespace.
++		
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:526: trailing whitespace.
++	
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:531: trailing whitespace.
++	SkillMasterMainXY.y = (WinSizeY / 2) - (127 / 2) - 100; 
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:585: trailing whitespace.
++			DrawSprite(698,535,lpMenuButton[2],0,0,96,19); 
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:638: trailing whitespace.
++	//DrawSprite(505,588,lpBar_Time,0,0,sinBmpLength[4],5); 
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:1061: trailing whitespace.
++	
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:1624: trailing whitespace.
++		
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:2214: trailing whitespace.
++						
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:2241: trailing whitespace.
++					
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:2255: trailing whitespace.
++					
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:2269: trailing whitespace.
++					
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:2325: trailing whitespace.
++					
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:2331: trailing whitespace.
++					
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:2977: trailing whitespace.
++		
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:3278: trailing whitespace.
++	

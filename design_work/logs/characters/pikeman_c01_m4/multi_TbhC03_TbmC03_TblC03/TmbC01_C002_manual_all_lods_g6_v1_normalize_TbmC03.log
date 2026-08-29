@@ -1,0 +1,30 @@
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+00:01.499  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_C002_manual_all_lods_g6_v1/01_normalize_TbhC03.blend"
+Info: Saved as "02_normalize_TbmC03.blend"
+PT_RIGID_SKIN_NORMALIZE_COPY_V2
+object=TbmC03
+source_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_C002_manual_all_lods_g6_v1/01_normalize_TbhC03.blend
+source_blend_sha256=6123d8f083e38b8e0139215f3cd358625e60be8ea1cedd33835fc4160f328543
+output_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_C002_manual_all_lods_g6_v1/02_normalize_TbmC03.blend
+vertices=83
+strict_rigid_before=80
+mixed_before=3
+empty_before=0
+preserved_rigid=80
+auto_resolved=3
+unresolved=0
+policy_histogram={'ALREADY_RIGID': 80, 'TIE_ADJACENT_RIGID_DISTANCE': 1, 'TIE_ADJACENT_RIGID_MAJORITY': 2}
+review_group=None
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03/TmbC01_C002_manual_all_lods_g6_v1_normalize_TbmC03.json
+
+ARTIST_MESSAGE
+WHY: O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.
+AUTOMATIC: 3 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.
+MANUAL: Nenhum vértice exige revisão manual.
+
+normalize_copy_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

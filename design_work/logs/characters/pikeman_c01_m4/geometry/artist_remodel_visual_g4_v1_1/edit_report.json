@@ -1,0 +1,77 @@
+{
+  "tool": "PT_PIKEMAN_ARTIST_REMODEL_VISUAL_G4_V1_1",
+  "profile_id": "pikeman_c01_m4",
+  "object": "TbmC03",
+  "source_counts": {
+    "vertices": 74,
+    "faces": 122
+  },
+  "output_counts": {
+    "vertices": 82,
+    "faces": 138
+  },
+  "vertex_delta": 8,
+  "face_delta": 16,
+  "patch_face_count": 8,
+  "patch_bone": "Bip01 Spine1",
+  "selected_source_faces": [
+    6,
+    5,
+    76,
+    4,
+    80,
+    26,
+    3,
+    79
+  ],
+  "moved_source_vertices": [
+    0,
+    1,
+    2,
+    3,
+    16,
+    17,
+    18,
+    30,
+    53,
+    54
+  ],
+  "moved_source_vertex_count": 10,
+  "source_vertex_push": 2.5,
+  "center_extra_push": 1.5,
+  "max_old_vertex_move": 2.500000000000003,
+  "source_bbox": {
+    "min": [
+      -4.921875,
+      -2.35546875,
+      20.12890625
+    ],
+    "max": [
+      4.90625,
+      4.52734375,
+      40.86328125
+    ]
+  },
+  "output_bbox": {
+    "min": [
+      -5.875229009005568,
+      -5.3619085138738996,
+      20.12890625
+    ],
+    "max": [
+      5.872293717543799,
+      4.52734375,
+      40.86328125
+    ]
+  },
+  "source_vertex_group_count": 11,
+  "output_vertex_group_count": 11,
+  "restored_weight_memberships": 74,
+  "old_vertex_weight_max_error": 0.0,
+  "new_vertices_rigid": true,
+  "uv_centers_interpolated": true,
+  "nonmanifold_edge_count": 1,
+  "boundary_edge_count": 33,
+  "client_modified": false,
+  "edit_check": "PASS"
+}

@@ -1,0 +1,3 @@
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:509:			AddUserCharacter(DownUserCharacterInfo[index].BodyName, DownUserCharacterInfo[index].FaceName, DownUserCharacterInfo[index].Job);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:774:int	HoLogin::AddUserCharacter(char *chrFile1, char *chrFile2, int jobCode)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.h:250:	int		AddUserCharacter(char *chrFile1, char *chrFile2, int jobCode = 0);

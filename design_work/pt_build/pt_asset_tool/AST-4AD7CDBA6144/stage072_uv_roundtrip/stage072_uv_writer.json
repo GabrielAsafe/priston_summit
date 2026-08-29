@@ -1,0 +1,50 @@
+{
+  "tool": "PT_STAGE072_STRICT_UV_WRITER_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/cSelect/select.smd",
+  "output": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4AD7CDBA6144/stage072_uv_roundtrip/rebuilt_stage072_uv_roundtrip.smd",
+  "source_sha256": "4b26699faebede81352e89efaceb959734d3a70833a8cb40f52d59afb590f41d",
+  "output_sha256": "49aaa669a341b539103404cdbd51102769ad4116f422f7e4a8a57feaefe07343",
+  "edit_count": 1,
+  "applied_edits": [
+    {
+      "face_index": 5156,
+      "material_id": 18,
+      "stage_index": 1,
+      "corner": 0,
+      "component": "u",
+      "texlink_index": 5117,
+      "texlink_file_offset": 685717,
+      "field_file_offset": 685717,
+      "before": 0.39640000462532043,
+      "after": 0.42765000462532043
+    }
+  ],
+  "authorized_byte_ranges": [
+    [
+      685717,
+      685721
+    ]
+  ],
+  "source_parse": "PASS",
+  "rebuilt_parse": "PASS",
+  "client_modified": false,
+  "check": "PASS",
+  "blender_uv_change_scan_count": 1,
+  "blender_uv_changes": [
+    {
+      "face_index": 5156,
+      "material_id": 18,
+      "stage_index": 1,
+      "corner": 0,
+      "component": "u",
+      "before": 0.39640000462532043,
+      "after": 0.42765000462532043,
+      "texlink_index": 5117,
+      "loop_index": 15468
+    }
+  ],
+  "strict_blender_edit_set": "PASS",
+  "geometry_edit_policy": "FORBIDDEN_UNTIL_STAGEAREA_REBUILD_IS_PROVEN",
+  "witness_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4AD7CDBA6144/stage072_uv_roundtrip/stage072_uv_witness.json",
+  "normalized_witness_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4AD7CDBA6144/stage072_uv_roundtrip/stage072_uv_writer.normalized_witness.json"
+}

@@ -1,0 +1,12 @@
+--- before/smRead3d.cpp
++++ after/smRead3d.cpp
+@@ -40,7 +40,8 @@
+ 
+ 	while((*p != 32) && (*p != 9) && (*p != 58))
+ 	{
+-		if(*p == '/n' || *p == '/r') break;
++		// BUGFIX_018_SMREAD3D_GETWORD_LINE_TERMINATOR
++		if(*p == 0 || *p == '\n' || *p == '\r') break;
+ 		*q++ = *p++;
+ 	}
+ 	*q++ = 0;

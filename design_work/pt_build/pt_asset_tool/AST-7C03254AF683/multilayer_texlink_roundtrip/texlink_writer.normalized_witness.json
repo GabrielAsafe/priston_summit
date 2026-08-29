@@ -1,0 +1,41 @@
+{
+  "tool": "PT_MULTILAYER_TEXLINK_UV_WITNESS_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/Bguardian/Bguardian.smd",
+  "source_sha256": "48d16514f1e337e878edbe413d3d464158ce2e39003ec64bd54cf31397ed658e",
+  "output_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-7C03254AF683/multilayer_texlink_roundtrip/multilayer_uv_witness.blend",
+  "delta_u_requested": 0.03125,
+  "edits": [
+    {
+      "object_index": 2,
+      "object_name": "BGuardian_m",
+      "blender_object_name": "BGuardian_m",
+      "face_index": 1674,
+      "material_id": 3,
+      "stage_index": 1,
+      "corner": 0,
+      "source_vertex": 974,
+      "loop_index": 5022,
+      "component": "u",
+      "before": 0.4011000096797943,
+      "after": 0.4323500096797943,
+      "before_uv": [
+        0.4011000096797943,
+        0.2896999716758728
+      ],
+      "after_uv": [
+        0.4323500096797943,
+        0.2896999716758728
+      ],
+      "delta_u": 0.03125,
+      "profile": "SAME_TEXTURE_DYNAMIC_FORM",
+      "stage1_form_state": 9,
+      "stage1_form_state_name": "FS_SCROLL5",
+      "stage1_stage_state": 0,
+      "stage1_stage_state_name": "DEFAULT",
+      "texlink_index": 3349,
+      "texlink_file_offset": 750526
+    }
+  ],
+  "client_modified": false,
+  "check": "PASS"
+}

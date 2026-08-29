@@ -1,0 +1,14 @@
+{
+  "asset_id": "AST-C86525E60A58",
+  "asset": "char/tmABCD/MfhB02.smd",
+  "source_sha256": "514f29ec89cb06c94706f49bca21443049690c0d079285b3782dba8b9ada7cc5",
+  "mode": "RIGID",
+  "binding_mode": "ROOT_SKELETON_BOUND",
+  "binding_source": "INX_LINK_FILE",
+  "binding_root_models": [
+    "char/tmabcd/tfbd01.smd"
+  ],
+  "structural_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-C86525E60A58/structural/character_structural.json",
+  "inx_checks": 1,
+  "check": "PASS"
+}

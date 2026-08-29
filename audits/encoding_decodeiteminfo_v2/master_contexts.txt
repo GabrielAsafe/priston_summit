@@ -1,0 +1,656 @@
+MASTER comparison count = 84
+
+=== [000] ===
+TOKEN_HEX=2a c0 cc b8 a7
+TOKEN_TEXT=*이름
+    lstrcmp( decode , "*이름" )==0 ) {
+    pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//단어 찾기
+    lstrcpy( lpItem->ItemName , strBuff );
+
+=== [001] ===
+TOKEN_HEX=2a 43 5f 4e 41 4d 45
+TOKEN_TEXT=*C_NAME
+    lstrcmpi( decode , "*C_NAME" )==0 ) {
+    pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//단어 찾기
+    lstrcpy( lpItem->ItemName , strBuff );
+
+=== [002] ===
+TOKEN_HEX=2a 4a 5f 4e 41 4d 45
+TOKEN_TEXT=*J_NAME
+    lstrcmpi( decode , "*J_NAME" )==0 ) {
+    pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//단어 찾기
+    lstrcpy( lpItem->ItemName , strBuff );
+
+=== [003] ===
+TOKEN_HEX=2a 54 5f 4e 41 4d 45
+TOKEN_TEXT=*T_NAME
+    lstrcmpi( decode , "*T_NAME" )==0 ) {
+    pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//단어 찾기
+    lstrcpy( lpItem->ItemName , strBuff );
+
+=== [004] ===
+TOKEN_HEX=2a 4a 5f 4e 41 4d 45
+TOKEN_TEXT=*J_NAME
+    lstrcmpi( decode , "*J_NAME" )==0 ) {
+    pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//단어 찾기
+    lstrcpy( lpItem->ItemName , strBuff );
+
+=== [005] ===
+TOKEN_HEX=2a 54 48 5f 4e 41 4d 45
+TOKEN_TEXT=*TH_NAME
+    lstrcmpi( decode , "*TH_NAME" )==0 ) {
+    pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//단어 찾기
+    lstrcpy( lpItem->ItemName , strBuff );
+
+=== [006] ===
+TOKEN_HEX=2a 56 5f 4e 41 4d 45
+TOKEN_TEXT=*V_NAME
+    lstrcmpi( decode , "*V_NAME" )==0 ) {
+    pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//단어 찾기
+    lstrcpy( lpItem->ItemName , strBuff );
+
+=== [007] ===
+TOKEN_HEX=2a 42 5f 4e 41 4d 45
+TOKEN_TEXT=*B_NAME
+    lstrcmpi( decode , "*B_NAME" )==0 ) {
+    pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//단어 찾기
+    lstrcpy( lpItem->ItemName , strBuff );
+
+=== [008] ===
+TOKEN_HEX=2a 41 5f 4e 41 4d 45
+TOKEN_TEXT=*A_NAME
+    lstrcmpi( decode , "*A_NAME" )==0 ) {
+    pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//단어 찾기
+    lstrcpy( lpItem->ItemName , strBuff );
+
+=== [009] ===
+TOKEN_HEX=2a c4 da b5 e5
+TOKEN_TEXT=*코드
+    lstrcmp( decode , "*코드" )==0 ) {
+    pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//단어 찾기
+    if ( lstrcmpi( strBuff , sItem[cnt].LastCategory )==0 ) {
+    lpItem->CODE = sItem[cnt].CODE; break; }
+
+=== [010] ===
+TOKEN_HEX=2a c0 af b4 cf c5 a9
+TOKEN_TEXT=*유니크
+    lstrcmp( decode , "*유니크" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->UniqueItem = atoi(strBuff);
+    lpItem->UniqueItem = TRUE;
+
+=== [011] ===
+TOKEN_HEX=2a c0 af b4 cf c5 a9 bb f6 bb f3
+TOKEN_TEXT=*유니크색상
+    lstrcmp( decode , "*유니크색상" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->EffectColor[0] = atoi(strBuff);			//R
+    p=GetWord(strBuff,p);
+    lpItem->EffectColor[1] = atoi(strBuff);			//G
+    p=GetWord(strBuff,p);
+    lpItem->EffectColor[2] = atoi(strBuff);			//B
+    p=GetWord(strBuff,p);
+    lpItem->EffectColor[3] = atoi(strBuff);			//A
+    p=GetWord(strBuff,p);
+    lpItem->EffectBlink[0] = atoi(strBuff);			//Blink
+    p=GetWord(strBuff,p);
+    lpItem->ScaleBlink[0] = (int)(atof(strBuff)*fONE);	//Scale
+
+=== [012] ===
+TOKEN_HEX=2a c0 cc c6 e5 c6 ae bc b3 c1 a4
+TOKEN_TEXT=*이펙트설정
+    lstrcmp( decode , "*이펙트설정" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->DispEffect = atoi(strBuff);
+
+=== [013] ===
+TOKEN_HEX=2a b3 bb b1 b8 b7 c2
+TOKEN_TEXT=*내구력
+    lstrcmp( decode , "*내구력" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sDurability[0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sDurability[1] = atoi(strBuff);
+
+=== [014] ===
+TOKEN_HEX=2a b9 ab b0 d4
+TOKEN_TEXT=*무게
+    lstrcmp( decode , "*무게" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->Weight = atoi(strBuff);
+
+=== [015] ===
+TOKEN_HEX=2a b0 a1 b0 dd
+TOKEN_TEXT=*가격
+    lstrcmp( decode , "*가격" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->Price = atoi(strBuff);
+
+=== [016] ===
+TOKEN_HEX=2a bb fd c3 bc
+TOKEN_TEXT=*생체
+    lstrcmp( decode , "*생체" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_BIONIC][0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_BIONIC][1] = atoi(strBuff);
+
+=== [017] ===
+TOKEN_HEX=2a b4 eb c0 da bf ac
+TOKEN_TEXT=*대자연
+    lstrcmp( decode , "*대자연" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_EARTH][0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_EARTH][1] = atoi(strBuff);
+
+=== [018] ===
+TOKEN_HEX=2a ba d2
+TOKEN_TEXT=*불
+    lstrcmp( decode , "*불" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_FIRE][0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_FIRE][1] = atoi(strBuff);
+
+=== [019] ===
+TOKEN_HEX=2a b3 c3 b1 e2
+TOKEN_TEXT=*냉기
+    lstrcmp( decode , "*냉기" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_ICE][0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_ICE][1] = atoi(strBuff);
+
+=== [020] ===
+TOKEN_HEX=2a b9 f8 b0 b3
+TOKEN_TEXT=*번개
+    lstrcmp( decode , "*번개" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_LIGHTING][0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_LIGHTING][1] = atoi(strBuff);
+
+=== [021] ===
+TOKEN_HEX=2a b5 b6
+TOKEN_TEXT=*독
+    lstrcmp( decode , "*독" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_POISON][0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_POISON][1] = atoi(strBuff);
+
+=== [022] ===
+TOKEN_HEX=2a b9 b0
+TOKEN_TEXT=*물
+    lstrcmp( decode , "*물" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_WATER][0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_WATER][1] = atoi(strBuff);
+
+=== [023] ===
+TOKEN_HEX=2a b9 d9 b6 f7
+TOKEN_TEXT=*바람
+    lstrcmp( decode , "*바람" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_WIND][0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sResistance[sITEMINFO_WIND][1] = atoi(strBuff);
+
+=== [024] ===
+TOKEN_HEX=2a b0 f8 b0 dd b7 c2
+TOKEN_TEXT=*공격력
+    lstrcmp( decode , "*공격력" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sDamage[0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sDamage[1] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sDamage[2] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sDamage[3] = atoi(strBuff);
+
+=== [025] ===
+TOKEN_HEX=2a bb e7 c1 a4 b0 c5 b8 ae
+TOKEN_TEXT=*사정거리
+    lstrcmp( decode , "*사정거리" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->Shooting_Range = atoi(strBuff);
+
+=== [026] ===
+TOKEN_HEX=2a b0 f8 b0 dd bc d3 b5 b5
+TOKEN_TEXT=*공격속도
+    lstrcmp( decode , "*공격속도" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->Attack_Speed = atoi(strBuff);
+
+=== [027] ===
+TOKEN_HEX=2a b8 ed c1 df b7 c2
+TOKEN_TEXT=*명중력
+    lstrcmp( decode , "*명중력" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sAttack_Rating[0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sAttack_Rating[1] = atoi(strBuff);
+
+=== [028] ===
+TOKEN_HEX=2a c5 a9 b8 ae c6 bc c4 c3
+TOKEN_TEXT=*크리티컬
+    lstrcmp( decode , "*크리티컬" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->Critical_Hit = atoi(strBuff);
+
+=== [029] ===
+TOKEN_HEX=2a c8 ed bc f6 b7 c2
+TOKEN_TEXT=*흡수력
+    lstrcmp( decode , "*흡수력" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->fAbsorb[0] = (float)atof(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->fAbsorb[1] = (float)atof(strBuff);
+
+=== [030] ===
+TOKEN_HEX=2a b9 e6 be ee b7 c2
+TOKEN_TEXT=*방어력
+    lstrcmp( decode , "*방어력" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sDefence[0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sDefence[1] = atoi(strBuff);
+
+=== [031] ===
+TOKEN_HEX=2a ba ed b7 b0 c0 b2
+TOKEN_TEXT=*블럭율
+    lstrcmp( decode , "*블럭율" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->fBlock_Rating[0] = (float)atof(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->fBlock_Rating[1] = (float)atof(strBuff);
+
+=== [032] ===
+TOKEN_HEX=2a c0 cc b5 bf bc d3 b5 b5
+TOKEN_TEXT=*이동속도
+    lstrcmp( decode , "*이동속도" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->fSpeed[0] = (float)atof(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->fSpeed[1] = (float)atof(strBuff);
+
+=== [033] ===
+TOKEN_HEX=2a ba b8 c0 af b0 f8 b0 a3
+TOKEN_TEXT=*보유공간
+    lstrcmp( decode , "*보유공간" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->Potion_Space = atoi(strBuff);
+
+=== [034] ===
+TOKEN_HEX=2a b8 b6 b9 fd bc f7 b7 c3 b5 b5
+TOKEN_TEXT=*마법숙련도
+    lstrcmp( decode , "*마법숙련도" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->fMagic_Mastery = (float)atof(strBuff);
+
+=== [035] ===
+TOKEN_HEX=2a b8 b6 b3 aa c0 e7 bb fd
+TOKEN_TEXT=*마나재생
+    lstrcmp( decode , "*마나재생" )==0 ||
+
+=== [036] ===
+TOKEN_HEX=2a b1 e2 b7 c2 c0 e7 bb fd
+TOKEN_TEXT=*기력재생
+    lstrcmp( decode , "*기력재생" )==0 ) ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->fMana_Regen[0] = (float)atof(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->fMana_Regen[1] = (float)atof(strBuff);
+
+=== [037] ===
+TOKEN_HEX=2a b6 f3 c0 cc c7 c1 c0 e7 bb fd
+TOKEN_TEXT=*라이프재생
+    lstrcmp( decode , "*라이프재생" )==0 ||
+
+=== [038] ===
+TOKEN_HEX=2a bb fd b8 ed b7 c2 c0 e7 bb fd
+TOKEN_TEXT=*생명력재생
+    lstrcmp( decode , "*생명력재생" )==0 )) {
+    p=GetWord(strBuff,p);
+    lpDefItem->fLife_Regen[0] = (float)atof(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->fLife_Regen[1] = (float)atof(strBuff);
+
+=== [039] ===
+TOKEN_HEX=2a bd ba c5 d7 b9 cc b3 aa c0 e7 bb fd
+TOKEN_TEXT=*스테미나재생
+    lstrcmp( decode , "*스테미나재생" )==0 ||
+
+=== [040] ===
+TOKEN_HEX=2a b1 d9 b7 c2 c0 e7 bb fd
+TOKEN_TEXT=*근력재생
+    lstrcmp( decode , "*근력재생" )==0 )) {
+    p=GetWord(strBuff,p);
+    lpDefItem->fStamina_Regen[0] = (float)atof(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->fStamina_Regen[1] = (float)atof(strBuff);
+
+=== [041] ===
+TOKEN_HEX=2a b8 b6 b3 aa c3 df b0 a1
+TOKEN_TEXT=*마나추가
+    lstrcmp( decode , "*마나추가" )==0 ||
+
+=== [042] ===
+TOKEN_HEX=2a b1 e2 b7 c2 c3 df b0 a1
+TOKEN_TEXT=*기력추가
+    lstrcmp( decode , "*기력추가" )==0 )) {
+    p=GetWord(strBuff,p);
+    lpDefItem->Increase_Mana[0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->Increase_Mana[1] = atoi(strBuff);
+
+=== [043] ===
+TOKEN_HEX=2a b6 f3 c0 cc c7 c1 c3 df b0 a1
+TOKEN_TEXT=*라이프추가
+    lstrcmp( decode , "*라이프추가" )==0 ||
+
+=== [044] ===
+TOKEN_HEX=2a bb fd b8 ed b7 c2 c3 df b0 a1
+TOKEN_TEXT=*생명력추가
+    lstrcmp( decode , "*생명력추가" )==0 ) ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->Increase_Life[0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->Increase_Life[1] = atoi(strBuff);
+
+=== [045] ===
+TOKEN_HEX=2a bd ba c5 d7 b9 cc b3 aa c3 df b0 a1
+TOKEN_TEXT=*스테미나추가
+    lstrcmp( decode , "*스테미나추가" )==0 ||
+
+=== [046] ===
+TOKEN_HEX=2a b1 d9 b7 c2 c3 df b0 a1
+TOKEN_TEXT=*근력추가
+    lstrcmp( decode , "*근력추가" )==0 ) ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->Increase_Stamina[0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->Increase_Stamina[1] = atoi(strBuff);
+
+=== [047] ===
+TOKEN_HEX=2a b7 b9 ba a7
+TOKEN_TEXT=*레벨
+    lstrcmp( decode , "*레벨" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->Level = atoi(strBuff);
+
+=== [048] ===
+TOKEN_HEX=2a c8 fb
+TOKEN_TEXT=*힘
+    lstrcmp( decode , "*힘" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->Strength = atoi(strBuff);
+
+=== [049] ===
+TOKEN_HEX=2a c1 a4 bd c5 b7 c2
+TOKEN_TEXT=*정신력
+    lstrcmp( decode , "*정신력" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->Spirit = atoi(strBuff);
+
+=== [050] ===
+TOKEN_HEX=2a c0 e7 b4 c9
+TOKEN_TEXT=*재능
+    lstrcmp( decode , "*재능" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->Talent = atoi(strBuff);
+
+=== [051] ===
+TOKEN_HEX=2a b9 ce c3 b8 bc ba
+TOKEN_TEXT=*민첩성
+    lstrcmp( decode , "*민첩성" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->Dexterity = atoi(strBuff);
+
+=== [052] ===
+TOKEN_HEX=2a b0 c7 b0 ad
+TOKEN_TEXT=*건강
+    lstrcmp( decode , "*건강" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->Health = atoi(strBuff);
+
+=== [053] ===
+TOKEN_HEX=2a bd ba c5 d7 b9 cc b3 ca bb f3 bd c2
+TOKEN_TEXT=*스테미너상승
+    lstrcmp( decode , "*스테미너상승" )==0 ||
+
+=== [054] ===
+TOKEN_HEX=2a b1 d9 b7 c2 bb f3 bd c2
+TOKEN_TEXT=*근력상승
+    lstrcmp( decode , "*근력상승" )==0 ) ) {
+    p=GetWord(strBuff,p);
+    lpItem->Stamina[0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpItem->Stamina[1] = atoi(strBuff);
+
+=== [055] ===
+TOKEN_HEX=2a b8 b6 b3 aa bb f3 bd c2
+TOKEN_TEXT=*마나상승
+    lstrcmp( decode , "*마나상승" )==0 ||
+
+=== [056] ===
+TOKEN_HEX=2a b1 e2 b7 c2 bb f3 bd c2
+TOKEN_TEXT=*기력상승
+    lstrcmp( decode , "*기력상승" )==0 )) {
+    p=GetWord(strBuff,p);
+    lpItem->Mana[0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpItem->Mana[1] = atoi(strBuff);
+
+=== [057] ===
+TOKEN_HEX=2a b6 f3 c0 cc c7 c1 bb f3 bd c2
+TOKEN_TEXT=*라이프상승
+    lstrcmp( decode , "*라이프상승" )==0 ||
+
+=== [058] ===
+TOKEN_HEX=2a bb fd b8 ed b7 c2 bb f3 bd c2
+TOKEN_TEXT=*생명력상승
+    lstrcmp( decode , "*생명력상승" )==0 )) {
+    p=GetWord(strBuff,p);
+    lpItem->Life[0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpItem->Life[1] = atoi(strBuff);
+
+=== [059] ===
+TOKEN_HEX=2a 2a c6 af c8 ad
+TOKEN_TEXT=**특화
+    lstrcmp( decode , "**Ưȭ" )==0 ) {
+    p=GetWord(strBuff,p);
+    if ( lstrcmpi( JobDataBase[cnt].szName  , strBuff )==0 ) {
+    //lpItem->JobCodeMask |= JobDataBase[cnt].JobBitCode;
+    lpItem->JobCodeMask = JobDataBase[cnt].JobBitCode;
+
+=== [060] ===
+TOKEN_HEX=2a 2a c6 af c8 ad b7 a3 b4 fd
+TOKEN_TEXT=**특화랜덤
+    lstrcmp( decode , "**특화랜덤" )==0 ) {
+    p=GetWord(strBuff,p);
+    if ( lstrcmpi( JobDataBase[cnt].szName  , strBuff )==0 ) {
+    if ( lpDefItem->JobBitCodeRandomCount>=SPECIAL_JOB_RANDOM_MAX ) break;
+    lpDefItem->dwJobBitCode_Random[lpDefItem->JobBitCodeRandomCount++] = JobDataBase[cnt].JobBitCode;
+    //lpItem->JobCodeMask |= JobDataBase[cnt].JobBitCode;
+
+=== [061] ===
+TOKEN_HEX=2a 2a c8 ed bc f6 b7 c2
+TOKEN_TEXT=**흡수력
+    lstrcmp( decode , "**흡수력" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->fSpecial_Absorb[0] = (float)atof(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->fSpecial_Absorb[1] = (float)atof(strBuff);
+    //lpItem->JobItem.Add_fAbsorb = (float)atof(strBuff);
+
+=== [062] ===
+TOKEN_HEX=2a 2a b9 e6 be ee b7 c2
+TOKEN_TEXT=**방어력
+    lstrcmp( decode , "**방어력" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sSpecial_Defence[0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sSpecial_Defence[1] = atoi(strBuff);
+    //			p=GetWord(strBuff,p);
+    //			lpItem->JobItem.Add_Defence = atoi(strBuff);
+
+=== [063] ===
+TOKEN_HEX=2a b9 e6 be ee b7 c2
+TOKEN_TEXT=*방어력
+    lstrcmp( decode , "*방어력" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sSpecial_Defence[0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->sDefence[1] = atoi(strBuff);
+
+=== [064] ===
+TOKEN_HEX=2a 2a c0 cc b5 bf bc d3 b5 b5
+TOKEN_TEXT=**이동속도
+    lstrcmp( decode , "**이동속도" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->fSpecial_fSpeed[0] = (float)atof(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->fSpecial_fSpeed[1] = (float)atof(strBuff);
+    //lpItem->JobItem.Add_fSpeed = (float)atof(strBuff);
+
+=== [065] ===
+TOKEN_HEX=2a 2a ba ed b7 b0 c0 b2
+TOKEN_TEXT=**블럭율
+    lstrcmp( decode , "**블럭율" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->JobItem.Add_fBlock_Rating = (float)atof(strBuff);
+
+=== [066] ===
+TOKEN_HEX=2a 2a b0 f8 b0 dd bc d3 b5 b5
+TOKEN_TEXT=**공격속도
+    lstrcmp( decode , "**공격속도" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->JobItem.Add_Attack_Speed = atoi(strBuff);
+
+=== [067] ===
+TOKEN_HEX=2a 2a c5 a9 b8 ae c6 bc c4 c3
+TOKEN_TEXT=**크리티컬
+    lstrcmp( decode , "**크리티컬" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->JobItem.Add_Critical_Hit = atoi(strBuff);
+
+=== [068] ===
+TOKEN_HEX=2a 2a bb e7 c1 a4 b0 c5 b8 ae
+TOKEN_TEXT=**사정거리
+    lstrcmp( decode , "**사정거리" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->JobItem.Add_Shooting_Range = atoi(strBuff);
+
+=== [069] ===
+TOKEN_HEX=2a 2a b8 b6 b9 fd bc f7 b7 c3 b5 b5
+TOKEN_TEXT=**마법숙련도
+    lstrcmp( decode , "**마법숙련도" )==0 ) {
+    p=GetWord(strBuff,p);
+    //lpItem->JobItem.Add_fMagic_Mastery = (float)atof(strBuff);
+    lpDefItem->fSpecial_Magic_Mastery[0] = (float)atof(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->fSpecial_Magic_Mastery[1] = (float)atof(strBuff);
+
+=== [070] ===
+TOKEN_HEX=2a 2a b8 b6 b3 aa c3 df b0 a1
+TOKEN_TEXT=**마나추가
+    lstrcmp( decode , "**마나추가" )==0 ||
+
+=== [071] ===
+TOKEN_HEX=2a 2a b1 e2 b7 c2 c3 df b0 a1
+TOKEN_TEXT=**기력추가
+    lstrcmp( decode , "**기력추가" )==0 ) ) {
+    p=GetWord(strBuff,p);
+    lpItem->JobItem.Lev_Mana  = atoi(strBuff);
+
+=== [072] ===
+TOKEN_HEX=2a 2a b6 f3 c0 cc c7 c1 c3 df b0 a1
+TOKEN_TEXT=**라이프추가
+    lstrcmp( decode , "**라이프추가" )==0 ||
+
+=== [073] ===
+TOKEN_HEX=2a 2a bb fd b8 ed b7 c2 c3 df b0 a1
+TOKEN_TEXT=**생명력추가
+    lstrcmp( decode , "**생명력추가" )==0 ) ) {
+    p=GetWord(strBuff,p);
+    lpItem->JobItem.Lev_Life = atoi(strBuff);
+
+=== [074] ===
+TOKEN_HEX=2a 2a b8 ed c1 df b7 c2
+TOKEN_TEXT=**명중력
+    lstrcmp( decode , "**명중력" )==0 ) {
+    //lpItem->JobItem.Lev_Attack_Rating = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->Lev_Attack_Rating[0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->Lev_Attack_Rating[1] = atoi(strBuff);
+
+=== [075] ===
+TOKEN_HEX=2a 2a b0 f8 b0 dd b7 c2
+TOKEN_TEXT=**공격력
+    lstrcmp( decode , "**공격력" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpItem->JobItem.Lev_Damage[0] = atoi(strBuff);
+    p=GetWord(strBuff,p);
+    lpItem->JobItem.Lev_Damage[1] = atoi(strBuff);
+
+=== [076] ===
+TOKEN_HEX=2a 2a b8 b6 b3 aa c0 e7 bb fd
+TOKEN_TEXT=**마나재생
+    lstrcmp( decode , "**마나재생" )==0 ||
+
+=== [077] ===
+TOKEN_HEX=2a 2a b1 e2 b7 c2 c0 e7 bb fd
+TOKEN_TEXT=**기력재생
+    lstrcmp( decode , "**기력재생" )==0 ) ) {
+    p=GetWord(strBuff,p);
+    //lpItem->JobItem.Per_Mana_Regen = (float)atof(strBuff);
+    lpDefItem->fSpecial_Mana_Regen[0] = (float)atof(strBuff);
+    p=GetWord(strBuff,p);
+    lpDefItem->fSpecial_Mana_Regen[1] = (float)atof(strBuff);
+
+=== [078] ===
+TOKEN_HEX=2a 2a b6 f3 c0 cc c7 c1 c0 e7 bb fd
+TOKEN_TEXT=**라이프재생
+    lstrcmp( decode , "**라이프재생" )==0 ||
+
+=== [079] ===
+TOKEN_HEX=2a 2a bb fd b8 ed b7 c2 c0 e7 bb fd
+TOKEN_TEXT=**생명력재생
+    lstrcmp( decode , "**생명력재생" )==0 )) {
+    p=GetWord(strBuff,p);
+    lpItem->JobItem.Per_Life_Regen = (float)atof(strBuff);
+
+=== [080] ===
+TOKEN_HEX=2a 2a bd ba c5 d7 b9 cc b3 aa c0 e7 bb fd
+TOKEN_TEXT=**스테미나재생
+    lstrcmp( decode , "**스테미나재생" )==0 ||
+
+=== [081] ===
+TOKEN_HEX=2a 2a b1 d9 b7 c2 c0 e7 bb fd
+TOKEN_TEXT=**근력재생
+    lstrcmp( decode , "**근력재생" )==0 ) ) {
+    p=GetWord(strBuff,p);
+    lpItem->JobItem.Per_Stamina_Regen = (float)atof(strBuff);
+
+=== [082] ===
+TOKEN_HEX=2a b9 df bb fd c1 a6 c7 d1
+TOKEN_TEXT=*발생제한
+    lstrcmp( decode , "*발생제한" )==0 ) {
+    p=GetWord(strBuff,p);
+    lpDefItem->sGenDay[0] = atoi(strBuff);
+
+=== [083] ===
+TOKEN_HEX=2a bf ac b0 e1 c6 c4 c0 cf
+TOKEN_TEXT=*연결파일
+    lstrcmp( decode , "*연결파일" )==0 ) {
+    pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//단어 찾기
+    if ( lpItem->EffectBlink[0] ) {
+    lpItem->EffectBlink[1] =
+    ( lpItem->EffectColor[0]+lpItem->EffectColor[1]+lpItem->EffectColor[2]+lpItem->EffectColor[3]+(short)lpItem->DispEffect );
+

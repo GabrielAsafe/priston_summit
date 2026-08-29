@@ -1,0 +1,232 @@
+{
+  "format": "PT_MULTILAYER_TEXLINK_SEMANTICS_V1",
+  "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/Morgon/Morgon.smd",
+  "sha256": "21e3c961c2977308c5761ee972c9aa1dfcfd611d8aef84f23c9fe8890eee2a8b",
+  "object_count": 2,
+  "material_count": 6,
+  "total_faces": 2646,
+  "multilayer_faces": 2646,
+  "singlelayer_faces": 0,
+  "uv_distinct_multilayer_faces": 0,
+  "max_layers": 2,
+  "runtime_material_array_base": 1758245744,
+  "htexture_slot_mapping": "SMATERIAL_SM_TEXTURE_SLOT_EXACT",
+  "htexture_mapping_error_count": 0,
+  "stage_index_error_count": 0,
+  "inert_zero_texture_texlink_face_count": 0,
+  "inert_zero_texture_texlink_face_sample": [],
+  "profile_counts": {
+    "REFLEX_ADD": 4,
+    "SAME_TEXTURE_DYNAMIC_FORM": 1
+  },
+  "mixed_chain_depth_material_count": 0,
+  "multilayer_materials": [
+    {
+      "material_id": 1,
+      "face_count": 1162,
+      "chain_depth_histogram": {
+        "2": 1162
+      },
+      "uv_distinct_multilayer_faces": 0,
+      "TextureCounter": 2,
+      "TextureStageState": [
+        0,
+        7
+      ],
+      "TextureFormState": [
+        0,
+        5
+      ],
+      "ReformTexture": 5,
+      "BlendType": 1,
+      "TwoSide": 0,
+      "profile": "REFLEX_ADD",
+      "textures": [
+        {
+          "stage_index": 0,
+          "name": "char/monster/Morgon/morgon01.TGA",
+          "name_a": "char/monster/Morgon/morgon01.TGA",
+          "stage_state": 0,
+          "stage_state_name": "DEFAULT",
+          "form_state": 0,
+          "form_state_name": "FS_NONE"
+        },
+        {
+          "stage_index": 1,
+          "name": "char/monster/Morgon/env.bmp",
+          "name_a": "",
+          "stage_state": 7,
+          "stage_state_name": "D3DTOP_ADD",
+          "form_state": 5,
+          "form_state_name": "FS_REFLEX"
+        }
+      ]
+    },
+    {
+      "material_id": 2,
+      "face_count": 1002,
+      "chain_depth_histogram": {
+        "2": 1002
+      },
+      "uv_distinct_multilayer_faces": 0,
+      "TextureCounter": 2,
+      "TextureStageState": [
+        0,
+        7
+      ],
+      "TextureFormState": [
+        0,
+        5
+      ],
+      "ReformTexture": 5,
+      "BlendType": 1,
+      "TwoSide": 0,
+      "profile": "REFLEX_ADD",
+      "textures": [
+        {
+          "stage_index": 0,
+          "name": "char/monster/Morgon/morgon02.BMP",
+          "name_a": "",
+          "stage_state": 0,
+          "stage_state_name": "DEFAULT",
+          "form_state": 0,
+          "form_state_name": "FS_NONE"
+        },
+        {
+          "stage_index": 1,
+          "name": "char/monster/Morgon/env.bmp",
+          "name_a": "",
+          "stage_state": 7,
+          "stage_state_name": "D3DTOP_ADD",
+          "form_state": 5,
+          "form_state_name": "FS_REFLEX"
+        }
+      ]
+    },
+    {
+      "material_id": 3,
+      "face_count": 416,
+      "chain_depth_histogram": {
+        "2": 416
+      },
+      "uv_distinct_multilayer_faces": 0,
+      "TextureCounter": 2,
+      "TextureStageState": [
+        0,
+        7
+      ],
+      "TextureFormState": [
+        0,
+        5
+      ],
+      "ReformTexture": 5,
+      "BlendType": 1,
+      "TwoSide": 0,
+      "profile": "REFLEX_ADD",
+      "textures": [
+        {
+          "stage_index": 0,
+          "name": "char/monster/Morgon/morgon03.BMP",
+          "name_a": "",
+          "stage_state": 0,
+          "stage_state_name": "DEFAULT",
+          "form_state": 0,
+          "form_state_name": "FS_NONE"
+        },
+        {
+          "stage_index": 1,
+          "name": "char/monster/Morgon/env.bmp",
+          "name_a": "",
+          "stage_state": 7,
+          "stage_state_name": "D3DTOP_ADD",
+          "form_state": 5,
+          "form_state_name": "FS_REFLEX"
+        }
+      ]
+    },
+    {
+      "material_id": 4,
+      "face_count": 58,
+      "chain_depth_histogram": {
+        "2": 58
+      },
+      "uv_distinct_multilayer_faces": 0,
+      "TextureCounter": 2,
+      "TextureStageState": [
+        0,
+        0
+      ],
+      "TextureFormState": [
+        4,
+        4
+      ],
+      "ReformTexture": 8,
+      "BlendType": 1,
+      "TwoSide": 0,
+      "profile": "SAME_TEXTURE_DYNAMIC_FORM",
+      "textures": [
+        {
+          "stage_index": 0,
+          "name": "char/monster/Morgon/morgon4.BMP",
+          "name_a": "",
+          "stage_state": 0,
+          "stage_state_name": "DEFAULT",
+          "form_state": 4,
+          "form_state_name": "FS_SCROLL"
+        },
+        {
+          "stage_index": 1,
+          "name": "char/monster/Morgon/morgon4.BMP",
+          "name_a": "",
+          "stage_state": 0,
+          "stage_state_name": "DEFAULT",
+          "form_state": 4,
+          "form_state_name": "FS_SCROLL"
+        }
+      ]
+    },
+    {
+      "material_id": 5,
+      "face_count": 8,
+      "chain_depth_histogram": {
+        "2": 8
+      },
+      "uv_distinct_multilayer_faces": 0,
+      "TextureCounter": 2,
+      "TextureStageState": [
+        0,
+        7
+      ],
+      "TextureFormState": [
+        0,
+        5
+      ],
+      "ReformTexture": 5,
+      "BlendType": 1,
+      "TwoSide": 0,
+      "profile": "REFLEX_ADD",
+      "textures": [
+        {
+          "stage_index": 0,
+          "name": "char/monster/Morgon/morgon01.TGA",
+          "name_a": "char/monster/Morgon/morgon01.TGA",
+          "stage_state": 0,
+          "stage_state_name": "DEFAULT",
+          "form_state": 0,
+          "form_state_name": "FS_NONE"
+        },
+        {
+          "stage_index": 1,
+          "name": "char/monster/Morgon/env.bmp",
+          "name_a": "",
+          "stage_state": 7,
+          "stage_state_name": "D3DTOP_ADD",
+          "form_state": 5,
+          "form_state_name": "FS_REFLEX"
+        }
+      ]
+    }
+  ],
+  "source_semantics": "PASS",
+  "client_modified": false
+}

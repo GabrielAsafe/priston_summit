@@ -1,0 +1,105 @@
+{
+  "tool": "PT_FREE_MESH_VALIDATE_V2",
+  "blend": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/blender/MfbC01_high_multi_gate_v1_game_normalized.blend",
+  "object": "MbhC01",
+  "source_smd": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/MfbC01.smd",
+  "source_sha256": "9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b",
+  "source_object": {
+    "name": "MbhC01",
+    "vertices": 130,
+    "faces": 217,
+    "texlinks": 217,
+    "rot_keys": 0,
+    "pos_keys": 0,
+    "scale_keys": 0,
+    "physique": true,
+    "allowed_materials": [
+      1,
+      2
+    ]
+  },
+  "mode_sync": {
+    "original_mode": "OBJECT",
+    "current_mode": "OBJECT",
+    "edit_mode_synchronized": false
+  },
+  "vertices": 130,
+  "source_polygons": 217,
+  "export_triangles": 217,
+  "triangulation": {
+    "method": "TEMP_BMESH_BEAUTY",
+    "source_vertices": 130,
+    "source_polygons": 217,
+    "export_triangles": 217,
+    "vertex_count_preserved": true,
+    "artist_mesh_modified": false
+  },
+  "loops": 651,
+  "uv_layers": [
+    {
+      "index": 0,
+      "name": "SMD_UV",
+      "active": true,
+      "active_render": true,
+      "data_len": 651
+    }
+  ],
+  "active_uv": "SMD_UV",
+  "active_uv_data_count": 651,
+  "used_materials": {
+    "1": 195,
+    "2": 22
+  },
+  "allowed_materials": [
+    1,
+    2
+  ],
+  "rigid_bone_count": 21,
+  "rigid_bone_histogram": {
+    "Bip01 Pelvis": 34,
+    "Bip01 Spine": 8,
+    "Bip01 Spine1": 12,
+    "Bip-0037": 5,
+    "Bip-0019": 4,
+    "Bip-0016": 4,
+    "Bip-0010": 1,
+    "Bip-0020": 2,
+    "Bip-0038": 2,
+    "Bip-0011": 1,
+    "Bip01 L Thigh": 10,
+    "Bip01 L Calf": 11,
+    "Bip-0007": 4,
+    "Bip-0017": 1,
+    "Bip-0008": 2,
+    "Bip-0022": 3,
+    "Bip-0014": 2,
+    "Bip-0023": 2,
+    "Bip-0015": 1,
+    "Bip01 R Thigh": 10,
+    "Bip01 R Calf": 11
+  },
+  "max_vertex_fit_error": 0.0,
+  "mean_vertex_fit_error": 0.0,
+  "bbox": {
+    "x": [
+      -4.9921875,
+      4.99609375
+    ],
+    "y": [
+      -2.20703125,
+      5.2734375
+    ],
+    "z": [
+      9.98046875,
+      30.40234375
+    ]
+  },
+  "edge_degree_histogram": {
+    "2": 303,
+    "1": 45
+  },
+  "boundary_edge_count": 45,
+  "nonmanifold_edge_count": 0,
+  "nonmanifold_edges": [],
+  "validation_check": "PASS"
+}

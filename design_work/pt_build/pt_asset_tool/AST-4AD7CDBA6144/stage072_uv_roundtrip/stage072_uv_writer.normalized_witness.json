@@ -1,0 +1,33 @@
+{
+  "tool": "PT_STAGE072_UV_WITNESS_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/cSelect/select.smd",
+  "source_sha256": "4b26699faebede81352e89efaceb959734d3a70833a8cb40f52d59afb590f41d",
+  "output_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4AD7CDBA6144/stage072_uv_roundtrip/stage072_uv_witness.blend",
+  "delta_u_requested": 0.03125,
+  "uv_edits": [
+    {
+      "face_index": 5156,
+      "material_id": 18,
+      "stage_index": 1,
+      "corner": 0,
+      "component": "u",
+      "before": 0.39640000462532043,
+      "after": 0.42765000462532043,
+      "before_uv": [
+        0.39640000462532043,
+        -0.41499996185302734
+      ],
+      "after_uv": [
+        0.42765000462532043,
+        -0.41499996185302734
+      ],
+      "delta_u": 0.03125,
+      "texlink_index": 5117,
+      "source_vertex": 3309,
+      "loop_index": 15468
+    }
+  ],
+  "geometry_edit_policy": "FORBIDDEN_UNTIL_STAGEAREA_REBUILD_IS_PROVEN",
+  "client_modified": false,
+  "check": "PASS"
+}

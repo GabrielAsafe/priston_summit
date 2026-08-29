@@ -1,0 +1,56 @@
+{
+  "tool": "PT_CHARACTER_MULTI_OBJECT_LOD_PIPELINE_V1",
+  "pipeline_check": "PASS",
+  "profile": "/home/gabriel/Área de Trabalho/summit/design_work/profiles/pt_character_profile_pikeman_c01_m5_v1.json",
+  "profile_id": "pikeman_c01_m5",
+  "selection": {
+    "lod": "high",
+    "objects": [
+      "MbhC01",
+      "MshC01",
+      "MlhC01"
+    ],
+    "reimport_lod": "high"
+  },
+  "artist_master": "/home/gabriel/Área de Trabalho/summit/design_work/blender/MfbC01_artist_free_mesh_v1.blend",
+  "artist_master_sha256": "4d55a64b7b7987a5fd849e64d3c7ff758dd3cf1afbcf55ba4c03fe6e9ceac817",
+  "artist_master_overwritten": false,
+  "normalized_copy": "/home/gabriel/Área de Trabalho/summit/design_work/blender/MfbC01_high_artist_multi_gate_v1_game_normalized.blend",
+  "game_copy_used": "/home/gabriel/Área de Trabalho/summit/design_work/blender/MfbC01_high_artist_multi_gate_v1_game_normalized_forced_test.blend",
+  "test_force_ambiguous_used": true,
+  "unresolved_targets_before_force_test": [
+    "MshC01"
+  ],
+  "normalize_reports": [
+    "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m5/lod_high/MfbC01_high_artist_multi_gate_v1_normalize_MbhC01.json",
+    "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m5/lod_high/MfbC01_high_artist_multi_gate_v1_normalize_MshC01.json",
+    "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m5/lod_high/MfbC01_high_artist_multi_gate_v1_normalize_MlhC01.json"
+  ],
+  "validation_report": "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m5/lod_high/MfbC01_high_artist_multi_gate_v1_validation.json",
+  "export_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m5/lod_high/MfbC01_high_artist_multi_gate_v1_export_report.json",
+  "smd": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m5/lod_high/MfbC01_high_artist_multi_gate_v1.smd",
+  "smd_size": 382625,
+  "smd_sha256": "a9234559979fe82243207c901c41a08c3de1b0e5447d9dea01f8f6096114f48f",
+  "reimport_blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/MfbC01_high_artist_multi_gate_v1_reimport.blend",
+  "output_counts": {
+    "MbhC01": {
+      "vertices": 130,
+      "faces": 217,
+      "texlinks": 217
+    },
+    "MshC01": {
+      "vertices": 656,
+      "faces": 1292,
+      "texlinks": 1292
+    },
+    "MlhC01": {
+      "vertices": 46,
+      "faces": 78,
+      "texlinks": 78
+    }
+  },
+  "non_target_object_blocks_byte_identical": 12,
+  "roundtrip_published": false,
+  "runtime_installed": false,
+  "timestamp": "2026-08-27T06:30:28.683281+00:00"
+}

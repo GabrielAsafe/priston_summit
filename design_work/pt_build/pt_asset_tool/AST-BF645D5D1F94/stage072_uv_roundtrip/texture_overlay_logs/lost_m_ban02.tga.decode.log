@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=3c5477590a58b5cfee4ff71945fc2018b43cb7296c90c221799fa098b97f9b84
+output_sha256=3c5477590a58b5cfee4ff71945fc2018b43cb7296c90c221799fa098b97f9b84
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BF645D5D1F94/stage072_uv_roundtrip/texture_overlay_client/field/lost/lost_m_ban02.tga
+format=TGA_STANDARD
+client_modified=False
+tga_decode_check=PASS

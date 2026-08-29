@@ -1,0 +1,30 @@
+{
+  "asset_id": "AST-99CAC5204F4A",
+  "asset": "char/npc/Ahin/Ahin.smd",
+  "family": "SMD_MODEL_062_RIGID_PHYSIQUE",
+  "requested_lod": "auto",
+  "lod": "default",
+  "selected_action": "PT_WALK_010",
+  "selected_motion_index": 10,
+  "actions_loaded": [
+    "PT_WALK_010"
+  ],
+  "active_motion_count": 2,
+  "animated_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-99CAC5204F4A/visual_animation/animated_validation.blend",
+  "source_sha256": "c53c9a435279128625e4fe359c28b8abf5a9558b3ceb7cb00330e8c21a7f7503",
+  "artifact_sha256": "fa98349a050b1156382a275196c668f0463ca78ae826741498aa08f50ce558be",
+  "rig_visual": "PASS",
+  "animation_visual": "PASS",
+  "texture_material_visual": "PASS",
+  "visual_animation_asset": "PASS",
+  "preview_fps": 30,
+  "timing_status": "PREVIEW_NOT_RUNTIME_SPEED_CERTIFIED",
+  "quaternion_null_semantics": "IDENTITY",
+  "source_pose_reference": "GLOBAL_BIND",
+  "pose_guard": "NONE",
+  "pose_guard_bones": [],
+  "quaternion_sign_continuity": true,
+  "interpolation": "LINEAR",
+  "certification_id": "CERT-A989AA426757",
+  "client_modified": false
+}

@@ -1,0 +1,257 @@
+================ CURRENT ================
+FILE: SrcServer/src/character.cpp
+SHA256: 44a122a1ff5b14934e622a3879e0ccb40ad135184c223d4efd1e34903cdfa365
+TOTAL EF BF BD: 44
+Occurrence 1: source line 546, window 426-805
+Window EF BF BD count: 0
+   453: int smPATTERN::FindFromName(char *szName)
+   461: 			if(lstrcmpi(szName, DinaPat[cnt].szPatName) == 0)
+   500: smDPAT *smPATTERN::LoadBipPattern(char *szFileName)
+   516: 				strcpy_s(DinaPat[Num].szPatName, szFileName);
+   532: smDPAT *smPATTERN::LoadCharactor(char *szFileName)
+   536: 	smDPAT *dMotionPat;
+   537: 	smPAT3D	*AnimPat;
+   558: 		if(BipPattern && modelInfo.szMotionFile[0])
+   560: 			dMotionPat = BipPattern->LoadBipPattern(modelInfo.szMotionFile);
+   576: 			smDPAT *lpTalkLink = BipPattern->LoadBipPattern(modelInfo.szTalkMotionFile);
+   585: 		DinaPat[Num].Pat = smASE_Read(modelInfo.szModelFile);
+   593: 				wsprintf(szErrorMsg, "Loading Error , ( %s )", modelInfo.szModelFile);
+   616: 		memcpy(DinaPat[Num].lpModelInfo, &modelInfo, sizeof(smMODELINFO));
+   617: 		strcpy_s(DinaPat[Num].szPatName, szFileName);
+   628: extern smPAT3D *PatKnife;
+   629: char *szDefaultCharName = "char//woman.ini";
+   635: DWORD WINAPI smLoaderThreadProc(void *pInfo);
+   639: 	smSTAGE3D	*lpStage;
+   640: 	smCHAR		*lpChar;
+   641: 	scITEM		*lpItem;
+   663: int AddLoaderStage(smSTAGE3D *lpStage, char *szName)
+   674: 	strcpy_s(smLoader[cnt].szLoadName, szName);
+   683: int	AddLoaderPattern(smCHAR *lpChar, char *szName, char *szName2)
+   694: 	strcpy_s(smLoader[cnt].szLoadName, szName);
+   697: 		strcpy_s(smLoader[cnt].szLoadName2, szName2);
+   710: int	AddLoaderItem(scITEM *lpItem, char *szName)
+   721: 	strcpy_s(smLoader[cnt].szLoadName, szName);
+   731: DWORD WINAPI smLoaderThreadProc(void *pInfo)
+   736: 	smDPAT	*smDPat;
+   737: 	smDPAT  *smDPat2;
+   740: 	smDPAT *lpPatOld;
+   741: 	smDPAT *lpPatOld2;
+   805: 			strcpy_s(smLoader[cnt].lpItem->szModelName, smDPat->szPatName);
+
+FILE: SrcServer/src/fileread.cpp
+SHA256: 043af4af9cd796549ad72e2d8df231706c0bb70dc50c9ad33838af872fb54993
+TOTAL EF BF BD: 1978
+Occurrence 1: source line 1024, window 904-1283
+Window EF BF BD count: 110
+   907: 			int *lpRateBuff = RateBuff[loop];
+   961: 		if(smFindPatFile(Info->szMotionFile, "smb") == FALSE)
+   963: 			pat3d = smASE_MergeBone(Info->szMotionFile, szMotionFileList, MotionFileListCnt);
+   974: 			pat3d = smASE_MergeBone(Info->szTalkMotionFile, szMotionFileList, MotionFileListCnt, 0);
+   985: 			if(szMotionFileList[cnt])
+   987: 				delete szMotionFileList[cnt];
+   988: 				szMotionFileList[cnt] = nullptr;
+   995: 	char *szFile = ChangeFileExt(iniFile, szFileExt);
+  1024: int smModelDecode(char *iniFile, smMODELINFO *Info)
+  1028: 	char *lpFile;
+  1029: 	FILE *fp = nullptr;
+  1051: 		strcpy_s(Info->szModelFile, iniFile);
+  1062: 			strcpy_s(szFile, iniFile);
+  1066: 			strcpy_s(szFile, Info->szLinkFile);
+  1070: 			strcpy_s(szFile, Info->szTalkLinkFile);
+  1091: 					if(Info->szModelFile[0] && i > 0)
+  1099: 							strcpy_s(Info->szMotionFile, smModelInfo.szMotionFile);
+  1110: 							strcpy_s(Info->szTalkLinkFile, smModelInfo.szTalkLinkFile);
+  1111: 							strcpy_s(Info->szTalkMotionFile, smModelInfo.szTalkMotionFile);
+  1128: 						memcpy(Info, &smModelInfo, sizeof(smMODELINFO));
+  1151: char *szWordTexQualty[4] = { "����" , "����" , "����" , "���ֳ���" };
+  1152: char *InfoRegPath = "SOFTWARE//Triglow Pictures//PristonTale";
+  1157: DWORD GetSwapIPCode(char *szIP);
+  1159: int SetServerConfig(char *decode, char *lpPoint)
+  1163: 	char *p = lpPoint;
+  1164: 	char *pb;
+  1174: 	if(lstrcmp(decode, "*�����ڵ��ȣ") == 0 ||
+  1175: 		lstrcmpi(decode, "*SERVER_CODE") == 0)
+  1177: 		pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1182: 	if(!flag && (lstrcmp(decode, "*�ڵ�ĳ���ͻ��") == 0 ||
+  1183: 		lstrcmpi(decode, "*SERVER_AUTOPLAY") == 0))
+  1189: 	if(!flag && (lstrcmp(decode, "*������ۻ��") == 0 ||
+  1190: 		lstrcmpi(decode, "*SERVER_RECORD_MEM") == 0))
+  1197: 	if(!flag && lstrcmp(decode, "*�������") == 0)
+  1202: 	if(!flag && (lstrcmp(decode, "*���������ο�") == 0 ||
+  1203: 		lstrcmpi(decode, "*MAX_USERS") == 0))
+  1205: 		pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1210: 	if(!flag && (lstrcmp(decode, "*�׽�Ʈ����") == 0 ||
+  1211: 		lstrcmpi(decode, "*TEST_SERVER") == 0))
+  1214: 		pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1222: 	if(!flag && (lstrcmp(decode, "*���Ӱ����ڵ�") == 0 ||
+  1223: 		lstrcmpi(decode, "*CONNECT_CLIENT_CODE") == 0))
+  1227: 			p = local_GetWord(strBuff, p);
+  1236: 	if(!flag && (lstrcmp(decode, "*�ڵ���������") == 0 ||
+  1237: 		lstrcmpi(decode, "*DISCONNECT_CLIENT_BADCODE") == 0))
+  1243: 	if(!flag && (lstrcmp(decode, "*���κ�ȣ�ڵ�") == 0 ||
+  1244: 		lstrcmpi(decode, "*CLSAFE_CODE") == 0))
+  1249: 			p = local_GetWord(strBuff, p);
+  1260: 	if(!flag && (lstrcmp(decode, "*��ȣ�ڵ��������") == 0 ||
+  1261: 		lstrcmpi(decode, "*DISCONNECT_CLSAFE_CODE") == 0))
+  1268: 	if(!flag && (lstrcmp(decode, "*���ѹ���") == 0 ||
+  1269: 		lstrcmpi(decode, "*VERSION") == 0))
+  1271: 		pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1278: 	if(!flag && (lstrcmp(decode, "*�����̸�") == 0 ||
+  1279: 		lstrcmpi(decode, "*SERVER_NAME") == 0))
+  1281: 		pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1282: 		strcpy_s(rsServerConfig.szServerName, strBuff);
+
+FILE: SrcServer/src/fileread.h
+SHA256: 0ded457a1e060ccf02a65adefa832a3c1c897930ef3f48e930fda193f23adbf3
+TOTAL EF BF BD: 0
+Occurrence 1: source line 18, window 1-260
+Window EF BF BD count: 0
+    11: smCONFIG *smConfigDecode(char *iniFile);
+    14: int ReadCustomCracker(char *szCrackFile, TRANS_FIND_CRACKER *lpTransFindCrack);
+    18: int smModelDecode(char *iniFile, smMODELINFO *Info);
+    21: int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	*lpMonInfo, char *lpDialogMessage = 0, size_t DialogMessageSize = 0);
+    32: 	smCHAR_INFO	*lpCharInfo;
+    41: 	smCHAR_INFO		*MasterMonster;
+    42: 	smCHAR_INFO		*SlaveMonster;
+   108: 	BYTE	*DefCompressData[sizeof(sITEMINFO)];
+   146: 	char *szName;
+   154: int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR_INFO *lpCharInfoList, int ListCnt);
+   156: int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem);
+   158: int CreateDefItem(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode = 0);
+   160: int CreateDefItem(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode, int ItemNormam);
+   162: int CreateDefItemPerf(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode);
+   164: int SetLowerItem(sDEF_ITEMINFO *lpDefItem);
+   171: int	Open_SODConfig(char *szFileName, void *lphCoreMonster, int *SodTax, char *szSodText, size_t szSodTextSize, int *SodScoreDiv);
+   230: 	char	*szName;
+   231: 	char	*szName2;
+   246: 	char	*szSkillName;
+   254: JOB_DATA_CODE	*GetJobDataCode(DWORD BaseJob, int	JobCnt);
+
+================ BASE ================
+FILE: SrcServer/src/character.cpp
+SHA256: fb066ac583c24584a758a13e0e8640204944e62e195a8d2b32337a5b347aad6e
+TOTAL EF BF BD: 44
+Occurrence 1: source line 546, window 426-805
+Window EF BF BD count: 0
+   453: int smPATTERN::FindFromName(char *szName)
+   461: 			if(lstrcmpi(szName, DinaPat[cnt].szPatName) == 0)
+   500: smDPAT *smPATTERN::LoadBipPattern(char *szFileName)
+   516: 				strcpy_s(DinaPat[Num].szPatName, szFileName);
+   532: smDPAT *smPATTERN::LoadCharactor(char *szFileName)
+   536: 	smDPAT *dMotionPat;
+   537: 	smPAT3D	*AnimPat;
+   558: 		if(BipPattern && modelInfo.szMotionFile[0])
+   560: 			dMotionPat = BipPattern->LoadBipPattern(modelInfo.szMotionFile);
+   576: 			smDPAT *lpTalkLink = BipPattern->LoadBipPattern(modelInfo.szTalkMotionFile);
+   585: 		DinaPat[Num].Pat = smASE_Read(modelInfo.szModelFile);
+   593: 				wsprintf(szErrorMsg, "Loading Error , ( %s )", modelInfo.szModelFile);
+   616: 		memcpy(DinaPat[Num].lpModelInfo, &modelInfo, sizeof(smMODELINFO));
+   617: 		strcpy_s(DinaPat[Num].szPatName, szFileName);
+   628: extern smPAT3D *PatKnife;
+   629: char *szDefaultCharName = "char//woman.ini";
+   635: DWORD WINAPI smLoaderThreadProc(void *pInfo);
+   639: 	smSTAGE3D	*lpStage;
+   640: 	smCHAR		*lpChar;
+   641: 	scITEM		*lpItem;
+   663: int AddLoaderStage(smSTAGE3D *lpStage, char *szName)
+   674: 	strcpy_s(smLoader[cnt].szLoadName, szName);
+   683: int	AddLoaderPattern(smCHAR *lpChar, char *szName, char *szName2)
+   694: 	strcpy_s(smLoader[cnt].szLoadName, szName);
+   697: 		strcpy_s(smLoader[cnt].szLoadName2, szName2);
+   710: int	AddLoaderItem(scITEM *lpItem, char *szName)
+   721: 	strcpy_s(smLoader[cnt].szLoadName, szName);
+   731: DWORD WINAPI smLoaderThreadProc(void *pInfo)
+   736: 	smDPAT	*smDPat;
+   737: 	smDPAT  *smDPat2;
+   740: 	smDPAT *lpPatOld;
+   741: 	smDPAT *lpPatOld2;
+   805: 			strcpy_s(smLoader[cnt].lpItem->szModelName, smDPat->szPatName);
+
+FILE: SrcServer/src/fileread.cpp
+SHA256: 4b836a67c315767d08d596b0f6226ef0d65829be7ff6806f3d986ee805854a32
+TOTAL EF BF BD: 1061
+Occurrence 1: source line 1024, window 904-1283
+Window EF BF BD count: 110
+   907: 			int *lpRateBuff = RateBuff[loop];
+   961: 		if(smFindPatFile(Info->szMotionFile, "smb") == FALSE)
+   963: 			pat3d = smASE_MergeBone(Info->szMotionFile, szMotionFileList, MotionFileListCnt);
+   974: 			pat3d = smASE_MergeBone(Info->szTalkMotionFile, szMotionFileList, MotionFileListCnt, 0);
+   985: 			if(szMotionFileList[cnt])
+   987: 				delete szMotionFileList[cnt];
+   988: 				szMotionFileList[cnt] = nullptr;
+   995: 	char *szFile = ChangeFileExt(iniFile, szFileExt);
+  1024: int smModelDecode(char *iniFile, smMODELINFO *Info)
+  1028: 	char *lpFile;
+  1029: 	FILE *fp = nullptr;
+  1051: 		strcpy_s(Info->szModelFile, iniFile);
+  1062: 			strcpy_s(szFile, iniFile);
+  1066: 			strcpy_s(szFile, Info->szLinkFile);
+  1070: 			strcpy_s(szFile, Info->szTalkLinkFile);
+  1091: 					if(Info->szModelFile[0] && i > 0)
+  1099: 							strcpy_s(Info->szMotionFile, smModelInfo.szMotionFile);
+  1110: 							strcpy_s(Info->szTalkLinkFile, smModelInfo.szTalkLinkFile);
+  1111: 							strcpy_s(Info->szTalkMotionFile, smModelInfo.szTalkMotionFile);
+  1128: 						memcpy(Info, &smModelInfo, sizeof(smMODELINFO));
+  1151: char *szWordTexQualty[4] = { "����" , "����" , "����" , "���ֳ���" };
+  1152: char *InfoRegPath = "SOFTWARE//Triglow Pictures//PristonTale";
+  1157: DWORD GetSwapIPCode(char *szIP);
+  1159: int SetServerConfig(char *decode, char *lpPoint)
+  1163: 	char *p = lpPoint;
+  1164: 	char *pb;
+  1174: 	if(lstrcmp(decode, "*�����ڵ��ȣ") == 0 ||
+  1175: 		lstrcmpi(decode, "*SERVER_CODE") == 0)
+  1177: 		pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1182: 	if(!flag && (lstrcmp(decode, "*�ڵ�ĳ���ͻ��") == 0 ||
+  1183: 		lstrcmpi(decode, "*SERVER_AUTOPLAY") == 0))
+  1189: 	if(!flag && (lstrcmp(decode, "*������ۻ��") == 0 ||
+  1190: 		lstrcmpi(decode, "*SERVER_RECORD_MEM") == 0))
+  1197: 	if(!flag && lstrcmp(decode, "*�������") == 0)
+  1202: 	if(!flag && (lstrcmp(decode, "*���������ο�") == 0 ||
+  1203: 		lstrcmpi(decode, "*MAX_USERS") == 0))
+  1205: 		pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1210: 	if(!flag && (lstrcmp(decode, "*�׽�Ʈ����") == 0 ||
+  1211: 		lstrcmpi(decode, "*TEST_SERVER") == 0))
+  1214: 		pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1222: 	if(!flag && (lstrcmp(decode, "*���Ӱ����ڵ�") == 0 ||
+  1223: 		lstrcmpi(decode, "*CONNECT_CLIENT_CODE") == 0))
+  1227: 			p = local_GetWord(strBuff, p);
+  1236: 	if(!flag && (lstrcmp(decode, "*�ڵ���������") == 0 ||
+  1237: 		lstrcmpi(decode, "*DISCONNECT_CLIENT_BADCODE") == 0))
+  1243: 	if(!flag && (lstrcmp(decode, "*���κ�ȣ�ڵ�") == 0 ||
+  1244: 		lstrcmpi(decode, "*CLSAFE_CODE") == 0))
+  1249: 			p = local_GetWord(strBuff, p);
+  1260: 	if(!flag && (lstrcmp(decode, "*��ȣ�ڵ��������") == 0 ||
+  1261: 		lstrcmpi(decode, "*DISCONNECT_CLSAFE_CODE") == 0))
+  1268: 	if(!flag && (lstrcmp(decode, "*���ѹ���") == 0 ||
+  1269: 		lstrcmpi(decode, "*VERSION") == 0))
+  1271: 		pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1278: 	if(!flag && (lstrcmp(decode, "*�����̸�") == 0 ||
+  1279: 		lstrcmpi(decode, "*SERVER_NAME") == 0))
+  1281: 		pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1282: 		strcpy_s(rsServerConfig.szServerName, strBuff);
+
+FILE: SrcServer/src/fileread.h
+SHA256: 0ded457a1e060ccf02a65adefa832a3c1c897930ef3f48e930fda193f23adbf3
+TOTAL EF BF BD: 0
+Occurrence 1: source line 18, window 1-260
+Window EF BF BD count: 0
+    11: smCONFIG *smConfigDecode(char *iniFile);
+    14: int ReadCustomCracker(char *szCrackFile, TRANS_FIND_CRACKER *lpTransFindCrack);
+    18: int smModelDecode(char *iniFile, smMODELINFO *Info);
+    21: int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	*lpMonInfo, char *lpDialogMessage = 0, size_t DialogMessageSize = 0);
+    32: 	smCHAR_INFO	*lpCharInfo;
+    41: 	smCHAR_INFO		*MasterMonster;
+    42: 	smCHAR_INFO		*SlaveMonster;
+   108: 	BYTE	*DefCompressData[sizeof(sITEMINFO)];
+   146: 	char *szName;
+   154: int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR_INFO *lpCharInfoList, int ListCnt);
+   156: int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem);
+   158: int CreateDefItem(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode = 0);
+   160: int CreateDefItem(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode, int ItemNormam);
+   162: int CreateDefItemPerf(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode);
+   164: int SetLowerItem(sDEF_ITEMINFO *lpDefItem);
+   171: int	Open_SODConfig(char *szFileName, void *lphCoreMonster, int *SodTax, char *szSodText, size_t szSodTextSize, int *SodScoreDiv);
+   230: 	char	*szName;
+   231: 	char	*szName2;
+   246: 	char	*szSkillName;
+   254: JOB_DATA_CODE	*GetJobDataCode(DWORD BaseJob, int	JobCnt);

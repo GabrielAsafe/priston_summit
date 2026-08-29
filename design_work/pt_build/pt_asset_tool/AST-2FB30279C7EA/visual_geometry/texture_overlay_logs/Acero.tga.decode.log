@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=80fe1985a3318702734659deb3e5c48162335198e24668f12f0a6da18f81ddac
+output_sha256=bc8fc118a44ade43e9581954080c98f936c0e533caaf10adaafa5cebcdf04caf
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-2FB30279C7EA/visual_geometry/texture_overlay_client/char/monster/Acero/Acero.tga
+format=TGA_PRISTON_HEADER18_FULL18
+client_modified=False
+tga_decode_check=PASS

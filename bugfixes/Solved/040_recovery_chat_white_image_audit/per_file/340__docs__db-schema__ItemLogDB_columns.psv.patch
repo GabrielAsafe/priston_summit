@@ -1,0 +1,30 @@
+diff --git a/docs/db-schema/ItemLogDB_columns.psv b/docs/db-schema/ItemLogDB_columns.psv
+deleted file mode 100644
+index 63e0d63..0000000
+--- a/docs/db-schema/ItemLogDB_columns.psv
++++ /dev/null
+@@ -1,24 +0,0 @@
+-DatabaseName|SchemaName|TableName|ColumnName|DataType|MaxLength|IsNullable|DefaultValue|OrdinalPosition
+-------------|----------|---------|----------|--------|---------|----------|------------|---------------
+-ItemLogDB|dbo|AItemCode|ItemCode|nvarchar|25|NO||1
+-ItemLogDB|dbo|AItemCode|KorName|nvarchar|50|NO||2
+-ItemLogDB|dbo|AItemCode|EngName|nvarchar|50|YES||3
+-ItemLogDB|dbo|IL|ITEMNo|int||NO||1
+-ItemLogDB|dbo|IL|UserID|varchar|50|YES||2
+-ItemLogDB|dbo|IL|CharName|varchar|50|YES||3
+-ItemLogDB|dbo|IL|IP|varchar|50|YES||4
+-ItemLogDB|dbo|IL|Flag|int||YES||5
+-ItemLogDB|dbo|IL|TUserID|varchar|50|YES||6
+-ItemLogDB|dbo|IL|TCharName|varchar|50|YES||7
+-ItemLogDB|dbo|IL|TMoney|int||YES||8
+-ItemLogDB|dbo|IL|TIP|varchar|50|YES||9
+-ItemLogDB|dbo|IL|ItemCount|int||YES||10
+-ItemLogDB|dbo|IL|ItemCode|int||YES||11
+-ItemLogDB|dbo|IL|ItemINo|int||YES||12
+-ItemLogDB|dbo|IL|ItemINo_1|int||YES||13
+-ItemLogDB|dbo|IL|RegistDay|datetime||YES||14
+-ItemLogDB|dbo|ITEMCODE|ITEMNo|int||NO||1
+-ItemLogDB|dbo|ITEMCODE|Category|varchar|50|YES||2
+-ItemLogDB|dbo|ITEMCODE|CodeHName|varchar|50|YES||3
+-ItemLogDB|dbo|ITEMCODE|CodeEName|varchar|50|YES||4
+-ItemLogDB|dbo|ITEMCODE|Code|int||YES||5

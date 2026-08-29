@@ -1,0 +1,2 @@
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Cash Falta na pasta Monster

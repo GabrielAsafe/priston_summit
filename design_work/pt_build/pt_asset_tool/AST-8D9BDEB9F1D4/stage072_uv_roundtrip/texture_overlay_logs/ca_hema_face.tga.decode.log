@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=be3218dc38ba4cbb04ace380e25fc899736a7f671bac844a9041368c9b84b008
+output_sha256=be3218dc38ba4cbb04ace380e25fc899736a7f671bac844a9041368c9b84b008
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-8D9BDEB9F1D4/stage072_uv_roundtrip/texture_overlay_client/field/endless/ca_hema_face.tga
+format=TGA_STANDARD
+client_modified=False
+tga_decode_check=PASS

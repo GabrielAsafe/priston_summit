@@ -1,0 +1,14 @@
+### FILEREAD
+043af4af9cd796549ad72e2d8df231706c0bb70dc50c9ad33838af872fb54993  /home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp
+4b836a67c315767d08d596b0f6226ef0d65829be7ff6806f3d986ee805854a32  /home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/fileread.cpp
+d8c3619f7a4ea5cd0a85a5ac8f35f88be4fc0ec5827ea7bff2377e141ea601a4  /home/gabriel/armazem/priston/pristontale-1-master/src/fileread.cpp
+
+### ONSERVER
+74b7884009144e4f1df7518b7a25f3a8df2564e3e2f9517c6fd047f626beb8e6  /home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp
+b424fd6b7536f56def11bf9f923f36df414e8f0c72a9230c2d91e9378178beec  /home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/Server/OnSever.cpp
+7b1245b26b4f50240af66392357060b3a3189523d26a7b3ed497b52151cad05a  /home/gabriel/armazem/priston/pristontale-1-master/src/Server/OnSever.cpp
+
+### PLAYSUB
+6e254f2c96f17b15cd93c43c13d1c02f13a98c8984e278836939533bf31490e1  /home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp
+6e254f2c96f17b15cd93c43c13d1c02f13a98c8984e278836939533bf31490e1  /home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp
+2cb0a0a869c82418a45fda57c7dde54d15a033830900def1594b53dda46655f1  /home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp

@@ -1,0 +1,140 @@
+{
+  "tool": "PT_PIKEMAN_MANUAL_ARTIST_INSPECT_G5_V1_1",
+  "profile_id": "pikeman_c01_m4",
+  "target": "TbmC03",
+  "source_counts": {
+    "vertices": 74,
+    "faces": 122
+  },
+  "artist_counts": {
+    "vertices": 83,
+    "faces": 132
+  },
+  "vertex_delta": 9,
+  "face_delta": 10,
+  "target_changed": true,
+  "topology_changed": true,
+  "positions_changed": true,
+  "uv_changed": true,
+  "weights_changed": true,
+  "used_materials": [
+    0
+  ],
+  "uv_layer": "SMD_UV",
+  "vertex_group_count": 11,
+  "non_target_objects": [
+    {
+      "object": "TbhC03",
+      "counts": [
+        92,
+        152
+      ],
+      "expected_counts": [
+        92,
+        152
+      ],
+      "unchanged": true
+    },
+    {
+      "object": "TblC03",
+      "counts": [
+        63,
+        100
+      ],
+      "expected_counts": [
+        63,
+        100
+      ],
+      "unchanged": true
+    },
+    {
+      "object": "TblC01",
+      "counts": [
+        73,
+        112
+      ],
+      "expected_counts": [
+        73,
+        112
+      ],
+      "unchanged": true
+    },
+    {
+      "object": "TbmC01",
+      "counts": [
+        74,
+        128
+      ],
+      "expected_counts": [
+        74,
+        128
+      ],
+      "unchanged": true
+    },
+    {
+      "object": "TbhC01",
+      "counts": [
+        85,
+        156
+      ],
+      "expected_counts": [
+        85,
+        156
+      ],
+      "unchanged": true
+    },
+    {
+      "object": "TahC01",
+      "counts": [
+        222,
+        406
+      ],
+      "expected_counts": [
+        222,
+        406
+      ],
+      "unchanged": true
+    },
+    {
+      "object": "TamC01",
+      "counts": [
+        157,
+        282
+      ],
+      "expected_counts": [
+        157,
+        282
+      ],
+      "unchanged": true
+    },
+    {
+      "object": "TalC01",
+      "counts": [
+        115,
+        192
+      ],
+      "expected_counts": [
+        115,
+        192
+      ],
+      "unchanged": true
+    }
+  ],
+  "non_target_unchanged_count": 8,
+  "artist_target_signature": {
+    "mesh": "a8a3534af2221cb840e6f1934214de5a241db0c75213eceb4ddef1f8dd76373e",
+    "topology": "16fe3c0c99a5b75d773aafac6d4cfd251f407c2eec04737e3974a4adcfe2800e",
+    "positions": "31e1078961de8520405ce1fb6be3493563d2bde8b994a2eef2eb58ad85e9c3b0",
+    "uv": "ee0e753d3f71f7a196f0adc6c167bf341406a4738cbe8c23ebef6125c85937e0",
+    "weights": "91240ed44ec6075c2efb481ceafeba5b411a686a9a0691db86cc4eaf97125d5e"
+  },
+  "baseline_target_signature": {
+    "mesh": "bae5788a6f41d947f38f28a277fc41328919599f84e85eb6cd0814870f623430",
+    "topology": "a391de4f3dfec859dbec75bc644df4eeeb1a6cdb8a599f1027d9aad0d99b63f5",
+    "positions": "b0178bf7a5c8ee39d9aa63a871a4ce88f8c3cb77ba2cbbd68ec5bb26d005266d",
+    "uv": "69f669e778619b1ace6c20ef7ff67a0f057bfc589b44e4c9741fc60acb85c1d1",
+    "weights": "0e43c525cc095fbf927e3597757ddb33f459716c159d6b289e0fd969f2f5fec5"
+  },
+  "client_modified": false,
+  "manual_artist_inspect_check": "PASS"
+}

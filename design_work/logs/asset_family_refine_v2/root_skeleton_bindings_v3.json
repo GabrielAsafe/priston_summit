@@ -1,0 +1,2151 @@
+{
+  "format": "PT_ROOT_SKELETON_BINDINGS_V2",
+  "entries": {
+    "char/tmabcd/cmfbb02.smd": {
+      "asset": "char/tmABCD/CmfbB02.smd",
+      "source_sha256": "12478d4ae2ba77b7cfb95ae3d5b9cc8c06511243dbfaef8aa2a3cc2216b6bda0",
+      "updated_at": "2026-08-28T15:02:39.204372+00:00",
+      "candidate_universe": 958,
+      "tested_candidates": 958,
+      "scan_complete": true,
+      "structural_passes": 303,
+      "distinct_signed_skeletons": 0,
+      "unsigned_structural_passes": 303,
+      "probe_state": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/probe_state_v3.json",
+      "pass_signature_error_counts": {
+        "TypeError": 303
+      },
+      "pass_signature_error_samples": {
+        "TypeError": {
+          "path": "char/monster/Adevayo/worldtogo.smb",
+          "error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        }
+      },
+      "status": "PASS_SIGNATURE_INCOMPLETE",
+      "passes": [
+        {
+          "path": "char/monster/Adevayo/worldtogo.smb",
+          "sha256": "a237a606f669643ac71cf54ae8e51b0729e7cd40bf3a65686eba9d9cfdc62114",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/0C606F054B16.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Adevayo/worldtogo_attack.smb",
+          "sha256": "a7964d2aa28fbada396ab9d22b4ed518643031ab8e9b04231883cc3f3e49c386",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2E467E8AA1DA.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/ArmBeetle/ArmBeetle.smb",
+          "sha256": "210eb1527ea5ec52749e0945e4053e0dbf9333d68448f064c97aeefb88642ae7",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/5DF4C06ADB61.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/BadWolf/B1511.smb",
+          "sha256": "aa588217885a57f47a0aa420917ad16e97035a94f9c61dfaea41302ee245ce9e",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B8AD0C5E22E3.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Bloodyknight/Bknight.smb",
+          "sha256": "8025e822ee89a43b4cf717bddd613f5939d2009f85ff4b5672c8264ac6c41bfe",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2A4AB726A47E.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/BS_Midranda/BS_Midranda.smb",
+          "sha256": "7d33cb1525c05055b3d315950052a0e468e449d82540980ce027f35a3c517294",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F8EB32427F04.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/CaveMush/Cmush.smb",
+          "sha256": "59902556f2c2cc3a3de76c096ec04a944fdd2faf75a2f7674573ade0109ab7ac",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/26BA295F61C0.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/d_ar/dar.smb",
+          "sha256": "2bc0735345a4a1c6d5df43beaa30e0c6c40a70770751de971d2ff88a42fea40c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/7676C241B770.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/d_atal/datal.smb",
+          "sha256": "1b5cc541465dc2bc5c73c7fbbe52171968d9e436ac3d58695948df70fc65c64a",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/6C13D3841F4C.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/d_fi/dfi.smb",
+          "sha256": "d55fff6434022efab029104c9dde60874577ccd25fdadf17fa59149d6925ed66",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/71BE306CDE20.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/d_kn/dkn.smb",
+          "sha256": "0bc111f2e3d793d69a6be78892cbbe1bdc3bf70e50da8f9a70e2b719f5b11637",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/4D45F7E40008.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/d_magi/dmegi.smb",
+          "sha256": "c45b935eb50b6a115aff101ffae6229c04d632c0433586b187cdc4770bbf7e74",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/D46E932DE6CE.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/d_meca/dmeca.smb",
+          "sha256": "45af2ad6dca91a31f79278c7f737ea1daf5312284b5e4e63b89c98e3f85f685a",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/037B59113FC6.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/d_pa/dpike.smb",
+          "sha256": "70d5a38c24851eb4d851418611ae7f5ab58b6aad59074d5eef23e996979ba0d8",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/EC2682BEE98B.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/d_pr/dpr.smb",
+          "sha256": "1533c5e794ab09a70cf7f75bd062d5910796bb5044d1e10a625edf892462d091",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/4298E93F32B6.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Darkguard/skullac.smb",
+          "sha256": "f4a6762a72623b3f0e32ba990f596cb7682420cc05e7004d64d7ebb7f2c80e92",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/9A91084749F2.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Darkguard/skullac_A.smb",
+          "sha256": "a9708d54f5fc315f0f17ef2d91a85934a8c2c0966f2cd289234f2c1697c46351",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/6C17457FED43.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Darkmage/skullma.smb",
+          "sha256": "b27208ce3d96f7cc454f4a8cef08fc4608830ead4034acc48534269a4f0c177f",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/A3D24A32A255.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Darkmage/skullma_A.smb",
+          "sha256": "f926a9df2fbd1ff9aa40628305b873af9a0afa3ee4ccb02b7ba85dfcc67c95d8",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/A0634B1BFD4D.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Darkphalanx/darkphalanx.smb",
+          "sha256": "a92378dacf622eb7fb6d0becfbc001d9225e34b57f7a8c5dbfffa8e5c59329ea",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/0D110DDA7F11.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Draxos/Draxos.smb",
+          "sha256": "47c98d853414b2bc8d401fc90065db7a936584ea6a410d7e300d832a3333a161",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/3D1B85352487.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/frost/frost.smb",
+          "sha256": "57ce80bc80bf95924953bfa673a2749a99f7cbb79fababd176cf93d29fbdc6fa",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/705B93FF2F9D.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/gorgon/gorgon.smb",
+          "sha256": "ea5f7b17f930d16d030278b0abcbb1546b39713e736a151d014e7b1d1ae8d612",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/14405F3379AF.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Greedy/Greedy.smb",
+          "sha256": "25032e21a46b20c6017a34048c625ab7ca96f477a2de5827d9b3b4eb3b56e76d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/FF45983F52A9.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/hongky/Hongky.smb",
+          "sha256": "e0100c951545a690cc809710e8d02e2d113556204c7774efc586fc6a2fa34244",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/7FEB272C6D34.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/hongky/mHongky.smb",
+          "sha256": "6fb75ab839a2e9ccb87c13bd9ea26ddc08afd832b1e4e7ee650f6cca9ae66578",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/BFFD5C6A9373.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/IBomber/IBomber.smb",
+          "sha256": "a1b44642d6d5d89a577b14a34bae49eb3760dd34e0dbcf4c483350b104054ec8",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/5C47FC2DD980.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/icegoblin/icegoblin.smb",
+          "sha256": "8778a64c92f350b6bc20446d84719cd69d27270bd6014a157d0d7fc609d75567",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/33DAC3870D91.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/icegolem/icegolem.smb",
+          "sha256": "a8988cde4a18854a82c4ffe2e1206bb634601506eebf4bb6f2dc8f6fcad4bba5",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/256187C13E4F.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/IElite/IElite.smb",
+          "sha256": "f7c61d52241f4e9b59b0ad72a75dbf93938c40938a97b024519e44b525c078be",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/497173777EF9.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Incubussummer/Incubussummer.smb",
+          "sha256": "2b69f64410fba7d7b6d7c2ce9a50c524ef77bb597532e1ff191350f59d616288",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C601395D718D.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/ISoldier/ISoldier.smb",
+          "sha256": "681c03d1243bf4b328f6ddbdc747d2b121d4ebeeb1d960fc485f553542aec1c4",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F6CD1B3269E1.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/ITechnician/ITechnician.smb",
+          "sha256": "3a86d77886ca257a839951ddfc385bd8cbb8cf17a378748e85d8b5fa1d4e270d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/A3A8011E4ECC.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Koon/Koon.smb",
+          "sha256": "566ef97d6061a7b96dfde9ad1e009b8d05e4f8981a15a54f6a81eba7eb15edb2",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/01C2CFCB9D01.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Koon/Koon1.smb",
+          "sha256": "296f440bc57e73546586356f916d670106a8f9f6b81469379f7e44f2a99a7030",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/CF8A5F9A7008.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/LEngineer/LEngineer.smb",
+          "sha256": "17dd6133114ddd228c41f5e1a814f0f7fc306caafb14c2c03b350c3163aabf71",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/9D097830B13B.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/LEngineer_1/LEngineer.smb",
+          "sha256": "34c5675a094fc7e67eef7ed923bc74de1e92ecfa81eb23ab3bd357c667579c70",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2F150CD71FE4.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/LGuardian/LGuardian.smb",
+          "sha256": "68d4c852c32bb087c2c5a09613e4bee9a67c249cf49b303e809c902ceac7d3eb",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/031580B91F35.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_bigmama/Lizard_Bigmama.smb",
+          "sha256": "7106b6bcd1419194761d90980751a78ffd4bd35797ef4ff7e49f82fabd2eda70",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/1E0F0FAE1992.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_bigmama/Lizard_Bigmama_Blue.smb",
+          "sha256": "69e5558fe44b4c2f9d1660a756ab702592625dbdca51b219204c3cebb8a313b2",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B7E5A742D390.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_bigmama/Lizard_Bigmama_Green.smb",
+          "sha256": "454435f0b10b880838681cd63184857028d40a6988e6fffd931ca6e5c815f2ad",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/05CCDB22D6C5.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Commander/Lizard_Commander.smb",
+          "sha256": "c4422e16406190a5aa0a6c09b8b3b36b4dbd201d78d925efb3fb13fd1c6b4bc7",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/CF171D1F7771.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Commander/Lizard_Commander_Blue.smb",
+          "sha256": "897d9e00ddd94a4f39ba492c21c92868678bcf53f6e7df0060fa4e025a58f36c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2263361ADE4E.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Commander/Lizard_Commander_Green.smb",
+          "sha256": "fe25e3150cd3fb6f710b3d75e4d4e532c376851dd015ec0d3b3b62cf76dc25b8",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/3AD039281083.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Doctor/Lizard_Doctor.smb",
+          "sha256": "d6eff8adc4dcb560f08437d1c8f383a44fef743cdf7e526b7ee0d28c06b19a4a",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/32331CC1732E.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Doctor/Lizard_Doctor_Blue.smb",
+          "sha256": "2db89ff0e2b807a1a4f67457d44002edc3f5faa8befb78f44325b25c2318d9e9",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/90A28F460E3D.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Doctor/Lizard_Doctor_Red.smb",
+          "sha256": "95d765bee469012904b2a52c55454ea3fcc95cf1fc1222b08f686c12f12e93aa",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2ACDBD873130.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Elder/Lizard_Elder.smb",
+          "sha256": "3a405a1eaaa92f44a418391aeb6d06a310213ccd24d650de23a248baa3310ec6",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/AD0F2E4F65AA.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Elder/Lizard_Elder_Blue.smb",
+          "sha256": "e2152aa64fa47f6bdb7bcb01e2ac667f2062ee71b85d2941f5f989b03756abec",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/6C6249D625AB.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Elder/Lizard_Elder_Red.smb",
+          "sha256": "7f9cf4481dc5a6451c9ff3244c644557ea7079f8bffde44e41e1fa64eaf5fca1",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/303BFB5731F8.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Papa/lizard_papa.smb",
+          "sha256": "05010516b32447741667b86d57b09224080b16bf5fee78ed37a508742547dade",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C36953EE7D2B.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Papa/lizard_papa_Blue.smb",
+          "sha256": "31b99c700137adbeaddd8b26cebe9876bdfd1bde579ff5aca9f4eef3eaa9a405",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2A9F0DCA8AA9.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Papa/lizard_papa_Green.smb",
+          "sha256": "caa8cbdd92d806510bbfa8ef9d08b06a2aa67e99d6da6cf4148346fa43b08d38",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2790A2C8A6CC.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Soldier/Lizard_Soldier.smb",
+          "sha256": "b15100622d3c223ef82c27ddb3882232b42eb75b804a56237b3409bfa3b36eaa",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/1A03B52E0BB1.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Soldier/Lizard_Soldier_Blue.smb",
+          "sha256": "5eaad154cfc285eee1c448d21aff4ad7025457f15f0e2a0684693d529cf0aa01",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/E60223DC862C.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Lizard_Soldier/Lizard_Soldier_Green.smb",
+          "sha256": "499936cd985971560995223015875b0235349de6f7101e886b8059d0672c9e03",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B0FB25D2CAB8.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/lizardfolk/lizardfolk.smb",
+          "sha256": "b4fed8e925a908ac6fedb238cb1fefbb6b64e6b9cdeb927530b040ab231a19d3",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/AA81BC2AB20C.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/LTechnician/LTechnician.smb",
+          "sha256": "98599676dddbcb17c47e239d2ba01a6f117861ee64661cc16739fb268bd25645",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/DD8394FF9938.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/LTechnician_1/LTechnician.smb",
+          "sha256": "ac4f57bb852a6a3961ee1ee0531c980cedc18c1a90ba52e4f470763b214b3402",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/530C4B8EB91E.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/m_lord/m_load.smb",
+          "sha256": "0387bb2d17499064273f1419c74ede6b12ffb55e042892aafbe591b4301833a8",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/7E0BFC281E04.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Midranda/Midranda.smb",
+          "sha256": "834abb8d134479c7dd50e9dac44352c86da97935d4b6c3c62fa63220611d0cc6",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/5A572096DBEE.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monavellriskbow/monavelriskbow.smb",
+          "sha256": "33900adae28854bc2b9afa294a84528e4cb581d74191667ca3978d1244f09a9d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C585DAB63640.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monavellriskstf/monavelriskstf.smb",
+          "sha256": "67aed17e3070cde8253085cf8c6f22b93df60a3aa6749ead6289c506bf01a915",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/31D729EA339D.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monavelrisk/mmonavelrisk-mass.smb",
+          "sha256": "6da29be521cbe907e523dbd4bdbd3254d74fff8305f2d5dec4e4692095daf165",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/9487C47AC16E.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monavelrisk/mmonavelrisk-spear.smb",
+          "sha256": "ccf7d6819255d1f3438b4023dfb9ae1f4cb9713084ad2332be2be452803ae465",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/DB4E4E741A86.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monavelrisk/mmonavelrisk-sword.smb",
+          "sha256": "818c7aef0fdf6631273495fb8a86f54fd6e1a9b50c3bba6435d27b03f55a5895",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/353608F082E7.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monavelrisk/monavelrisk-ani.smb",
+          "sha256": "7661e5d7acd870c5821b84c806b9f0019b99f5ff445143a1a9f0bcaeb6f3165e",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/7DC3E9AE27D0.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monavelrisk/monavelrisk-mass.smb",
+          "sha256": "f83f8f0bf7f3f3e208e7bbbd9cd5bad9b909055b153dd038bea3a4aeaa835ba4",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/AE05ED0442C1.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monavelrisk/monavelrisk-spear.smb",
+          "sha256": "526778830d7963e2e755578850fa11aa281e0114efd2ebc344a7003bb8ca58a7",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/295884679CC7.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monavelrisk/monavelrisk-sword.smb",
+          "sha256": "d9cb7621e9cd046644660dbbac1b8ce810f136c0f1c954c32e90e8d3c0b3002e",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/ACAF75670F02.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monbabyhulk/mMonbabyhulk.smb",
+          "sha256": "0f061e445e428b282b3bb925266eef9f20ec6e439abe3ebf5e849b7995e7504d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/7D2F111E947A.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monbabyhulk/Monbabyhulk.smb",
+          "sha256": "6658fee204d09c270724178bd31cfd16c78927adc867558674cf392d7527035b",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/AF44DCC59A78.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monberserker/mMonberserker.smb",
+          "sha256": "86c44911ec205a552ca9355eb5d542b2b53a737fd950c8b5074fe69e5147d8ac",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/203434FD5EDE.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monberserker/Monberserker.smb",
+          "sha256": "048cc8933b75870a081074e254e169a0c359d22ecbab311553a7f28b3b926856",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/DACD6418B22C.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monegan/mMonegan.smb",
+          "sha256": "57d17ae5ea89d2056e2c9837ced91a02d67cadd9ec62ca938a4c7fb339cd7f57",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/544E6B94AE85.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monegan/Monegan.smb",
+          "sha256": "c9eb124fc39034a4683a30faad763dde53066a97cda298570e6ab601961d24c8",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/3B78639019AB.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/MonGknight/mG2knight.smb",
+          "sha256": "494c1eff89be3a1aa5ef2f3bee195cfa7bb5ca2d4e83b43c5c0ae637fbceed2c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/D093670D3BEA.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/MonGknight/mGknight.smb",
+          "sha256": "6f27ba9e6d722853a85326553aabc5ac574be8334111f102dd75392788bc4411",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/853FC242A06E.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/MonGknight/MonG2knight-model.smb",
+          "sha256": "ece62bc7173ec175d58cc8dfc9cf221402231a0a3df5aa0ba3daf02efb434a59",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/78D5BE72F03D.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/MonGknight/MonG2knight-motion.smb",
+          "sha256": "af5eaff1f6f25902620c6bfbe5db0baa25fdc2cf3b8ffcdff20228fdbe876f56",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/EAC82995EA91.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/MonGknight/MonGknight-model.smb",
+          "sha256": "81a250449d6f82598bf79b075301e23104ddb8e19b814765d6adfa6a2e235e32",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/FEEB1D18DC98.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/MonGknight/MonGknight-motion.smb",
+          "sha256": "6abb5ce4871a45b71bfb56defe680ff963d0cb219640eaefafac82cb10383910",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/5920DD081F08.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monheavygoblin/Monheavygoblin.smb",
+          "sha256": "1ea0e1351cf937f0bfef95da2dd71d6215e1a86d2910ff2aea0617acaa4d3374",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/3D78F64A5613.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monhulk-1/mMonhulk-01.smb",
+          "sha256": "62b7bbf3e7367b59bedb736033aafc24c36768d74612779093f8f7487436184e",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/00B2226A393B.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monhulk-1/Monhulk-01.smb",
+          "sha256": "e1485ec3db66a07af323fc84273ab574e7dc8cd7ffbc2b73b744e9f2d8153240",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C172EDDCF87B.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monhulk/mMonhulk-00.smb",
+          "sha256": "2bdf112804aabd5298d62fe6a8a2fb993ea08dbe1804111630419712e5e0fa2a",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/4244835E4E4C.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monhulk/Monhulk-00.smb",
+          "sha256": "9986f909a6e21def2a85f236b8e4d38d8455788d7610dc8da1e1701c686f4af3",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/FC0421C36C5A.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monigad/Monigad.smb",
+          "sha256": "35e4c0dc6a9fd498054bd508600bf0d48a646f936fd9a6c53d4b31077cbf82c8",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/5EC09DE659FE.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monigad/Rguard.smb",
+          "sha256": "c41e80d71429b59b13f0999be5d26226f062398236c2514ed068e808181e0c02",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/58B8B24606E3.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monmightygoblin/Monmightygoblin.smb",
+          "sha256": "b2c0da3d485892041314ade9fa18e8e80ec48dca6c5bf53881897dcf70168cee",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/05F334B567B9.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/MonMokova/mokova.smb",
+          "sha256": "506bb4fcd70158daa54e83f3dfe7bb38fb5a0db44046cea392d1a2b3f42e90be",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/1DDA7EEF655A.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monmummy/mMonmummy.smb",
+          "sha256": "02380cf3f1c49661ba8d93259175a4c43d33d8746650500564106423ba81b764",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/9D14FEDB67BF.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monmummy/Monmummy.smb",
+          "sha256": "08d2f0adc47b00b0a7eed917b07ef359dd497f346556cba12b363fc19ccc76ca",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/58F6756E4E09.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monnazz-1/mMonnazz-1.smb",
+          "sha256": "ffa62de47dc53e0b4bb0e5e42f05ac09698857d32fade85c7b3c0dcce6a14179",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/613B73AA6A88.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monnazz-1/mMonnazz-a-01.smb",
+          "sha256": "f0539161bc28e698d02864aeaae1641f95bd408b88513d05c467adabee204818",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/1B1F901FCB82.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monnazz-1/Monnazz-1.smb",
+          "sha256": "e4045df7d89eb6a8baf453bb3a26e174cebf4b3e745c88e40068242f98f8078e",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/D3BA180F21F4.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monnazz-1/Monnazz-a-01.smb",
+          "sha256": "84b836dfd0f2562732f25c2817c94c9c2bbaa05ee77cea72cc33a10ad62b6a01",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/219DB9A88FDE.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monnazz/mMonnazz-01.smb",
+          "sha256": "54192d3bd434a527a430ee0a237f166e820ac52c18cb0836e0a8b40fdf2e62dc",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/DB809DB2ADCF.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monnazz/mMonnazz.smb",
+          "sha256": "9116033b951fea2cda1a049526e5363a365d8551200eeff57baab7549dde3960",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/0EAFE00D3CFC.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monnazz/Monnazz-01.smb",
+          "sha256": "342fee5d0d08d91d9d323832691e6e970efa63716d8b397793581c6f444332b0",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2E04C02F4B45.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monnazz/Monnazz.smb",
+          "sha256": "1c2d0cc7527dee3af4d875784a152031261d0c4adb18ffdad05d1e54deccac2e",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/36B6477F14A2.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monomicron-1/monomicron-1.smb",
+          "sha256": "28b19171a864778be360c9d3697c4ddeaf47d47512304ffa34ea2780d1ee8129",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/39651595C3B3.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monomicron/monomicron.smb",
+          "sha256": "7d56342a471857ed35519f7ad010debab4d58a70eb8c72beb5ef6ebf94779f62",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/96A5026011D5.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monshadow-1/DMystery.smb",
+          "sha256": "a3f2625515260440de143871c05018bb8436ac9c6a440cd5652b598599a012ae",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/E855B28DD09C.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monshadow-1/mDMystery.smb",
+          "sha256": "678cdc27a50d49def568402bc60e5e54ae670ad863117365f55262d599c3ebfd",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/32C76605F9EB.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monshadow-1/mMonshadow-1.smb",
+          "sha256": "344c00d0ba493f3101fbda4e8524a058a69a23f86f8075becebc15f1602d91c8",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B47C6B5067D1.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monshadow-1/Monshadow-1.smb",
+          "sha256": "f2d376aca18ca7ad39444df502cd4afe32fa7e10afa7fde5ec8a07c81b45344c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B032832423B0.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monshadow/mMonshadow.smb",
+          "sha256": "6cd92edb1f738735a5ef727fa13258e8ed3b406f76c84868c70acc5d805a1a8c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/EB922CCF725F.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monshadow/Monshadow.smb",
+          "sha256": "3cf1bcc25ff1c510db82a506a3c6ec2f96cb61bd1d19b3a5623d4b266820d22e",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/744112C22A82.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monsliver/mMonsliver.smb",
+          "sha256": "02c395cd408c902619ecbe26ea9a9bfa6471cac88685f0755d319dfdd86b3d13",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/74E00CB883CB.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monsliver/Monsliver.smb",
+          "sha256": "fe97fb2158c06f764d103df674ca45f3827fe562c38e722f65ce1759292f8f57",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C47256D71271.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monstonegolem/Monstonegolem.smb",
+          "sha256": "1fbf06ad23a3a6a3216796120c63069af3e95d98775ef2bff4a3fafaa750787d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2F57A847B388.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/MonTempleguard/templeguard.smb",
+          "sha256": "a4cbe7a1bd1946b5e0813b88d481e642645b16f5bd9e924cebad461b1640b8c3",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/27F3A7F50903.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monwitch/mMonwitch.smb",
+          "sha256": "0c5552ae5e316e825e31795ffaf156231ffc53a6953f40754403e783b485b6ca",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/FA4B8645529A.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monwitch/mMonwitch1.smb",
+          "sha256": "1ae7fad55eb8d03ca2cddf5d9ef42f76d35874648476caf864271c31f0dbdf91",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/6DEB5328C061.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monwitch/mMonwitch2.smb",
+          "sha256": "e30132a1bd4299f651f2cb3aeede8f19b1f25928b4038fdaefcc0afed96b7ae4",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/92468586DCA6.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monwitch/Monwitch.smb",
+          "sha256": "22f173b11cf8b9796f87195ea85c768be612a61040a20f19e78e92b62cc69dce",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/0FF495068742.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monwitch/Monwitch1.smb",
+          "sha256": "8ba84a3c39a27d99504f8198fe2abf99592502c397b440a2897a4d8c2003eb67",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/BDA6B7F8E0FE.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Monwitch/Monwitch2.smb",
+          "sha256": "8f95a1732d9450b78b629051c0cae2aa3d5a903af480be6e48e77f59393d851a",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/7511DE0C45DA.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Morgon/mMorgon.smb",
+          "sha256": "558c8ab13b554b8fc0dc5eb7120a6f803f95d42112dd0dcce76b0720dd8958d7",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/1C394E884ED0.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Morgon/mMorgonia.smb",
+          "sha256": "a84d14e013a22956e760a7ed4e886b78346d467a41bf95a527d6f8b97e075d47",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/BC2DBA21DC85.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Morgon/Morgon.smb",
+          "sha256": "cf11dd168ce341306738e10f91f686ae64ecf89905a14e29f492a677074eaadd",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/A9B904225F00.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Morgon/Morgonia.smb",
+          "sha256": "c79549ee454eaaf35e69a2a9017c91c20046c60231d86e939e3b287be53a2bd9",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/909723B13DAB.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Mountain/B_Mountain.smb",
+          "sha256": "5126484fdc11dd790e3fe78c1bfa9d7dbca6535be53c72693bb137b57355e3f2",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/7DCB5DC50471.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Mountain/mB_Mountain.smb",
+          "sha256": "b98573737095dc49d5cf7e12a9fc9021c67d8346b2436742ed86363e4fbea203",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/71FFF75CFBF1.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Mountain/mMountain.smb",
+          "sha256": "9541ef596270dbde86abec04fb3940735fbd6fe8409923ce38802283a09f05c4",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/9D286E417C72.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Mountain/Mountain.smb",
+          "sha256": "d1b6e41515d5af9efa0c383de7366017b2a79ec329894a1dde231e4f2dc4ce80",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/5799D6630964.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Najan/Najan.smb",
+          "sha256": "55859ef68c9b74986342036d0b2d931299f6399c24e80b93515d1e44df9e350c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/53402A45662D.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/NazSenior/NazSenior-01.smb",
+          "sha256": "fab95c501c250651e1985576a0a4a9ae8da19923e22b5346e6d3738d7c19d56b",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/D68648738D7F.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/NazSenior/NazSenior.smb",
+          "sha256": "7165eab094f0518e4d0818bfa792ee9cfcaa5cda204585c399de8187621731c3",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/22481BF31377.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Niken/mNiken.smb",
+          "sha256": "9616cbf2a25732cd1398d8da0bebec6bde3043bfcee9f1a50b4b0547552facf4",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/1E753A786477.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Niken/Niken-Attack1.smb",
+          "sha256": "c77dab81bc0987e3e1597375471c98b6835a5742f54ba5cbdb2842f82059e1bd",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/D9E8617FB956.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Niken/Niken-Attack2.smb",
+          "sha256": "c41b9879cb9832f38b6687b1fc980654c09320049c41774518ac3136fba6b2e0",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/E53CE8E2FD07.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Niken/Niken-Death.smb",
+          "sha256": "175bbec0a1c31c4f045a64cad51b441bc3efbcd6daf7f6f904e680724570764d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/58FD7C05C6B0.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Niken/Niken-Run.smb",
+          "sha256": "737f058107e05ce9e09f7219083e7f84d2f8c999699ec834817a1fbd2b2a7d77",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/1C6A60CBF9CF.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Niken/Niken-Stop.smb",
+          "sha256": "3adc4d110abd184dfb1e4f3cfdfd1db3103b47cedad482d915182eee8ea6395d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C10CD6E1A118.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Niken/Niken-Walk.smb",
+          "sha256": "033c58ed0351db0b6c6a370eaea51782e463819f204b9f50ae4c9af8e8bde028",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B3A35D5EBE44.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Niken/Niken.smb",
+          "sha256": "9355b9a9ea44408824e1c1c768cde5fb5aa7818f8ee36d21c7cb4cf424cdf1be",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F77298187C1D.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Omicronos/monomicron_B.smb",
+          "sha256": "f3f2c596ed125f61d9c29e0f5f3c6d03b7362aab3e300ba2d7f32795b08fcd74",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F7F305BF49A0.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Rampage/rampage.smb",
+          "sha256": "ebd39f257b273c7ce77c8b8e42b26c20d77d36679a65967b3103644d99459561",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/92B7009C71D5.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/RoyalMummy/mummy-H_1.smb",
+          "sha256": "0737184627584ce1008ab54864d116a9f30dc93fb859ae52f36a3f0051f172cd",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/1885BE17D323.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/S_Bloodyknight/S_Bknight.smb",
+          "sha256": "b2ae101c4c3465e8554020e947dad3b50d3d533d818b6ebde6ec6111ebdbfdbb",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F55EF8FA7412.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/scorpion/mscorpion-skin.smb",
+          "sha256": "2060573769c25a1e5932be6843da58e1679c0c542d1a8dd09056ad09ffb30fab",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/797CA0FE81F1.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/scorpion/scorpion-ani.smb",
+          "sha256": "d492f4f44e57c2c1e22eff958e2881cc79cddd772e5bdf9add2bbae14609def7",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/04CA042FB72B.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/scorpion/scorpion-skin.smb",
+          "sha256": "5dfb985fa50769ad359b9b5ba6660c2084a1804fc0a23d777deab676223843db",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2CE92AC0B193.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Sendelost/worldswi.smb",
+          "sha256": "ab2caddc672a3535ecfda068c3b4a5534446fbfe697c42572b400fb398c8a19c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/64764F9D8966.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Sendelost/worldswi_attack.smb",
+          "sha256": "8ba0b7404ec01a9f9bae3093d8484116c3226ae6dcbd76d6bd9617c13622b5f7",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/671CE5D135FB.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/spider/spider.smb",
+          "sha256": "36f4b0462c1c0ea7b6c206f316627df0c3e7fb773acad2cdf1984a884830dbd5",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/547D7AADAEDE.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/TBomber/TBomber.smb",
+          "sha256": "52990c5519812a8d2256535071db3e276c59c40e7d94c6d8d8373790c86a6cc9",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/ABBD4F5958F6.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/TElite/TElite.smb",
+          "sha256": "473dd2634ddda11d9f6e471b015a45469b339951bbd2bfefbab42538681765e9",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/1E2D21CFA016.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/TSoldier/TSoldier.smb",
+          "sha256": "603d394d58b011674035844b656c2a4df572300779f13be5ea5555ad1f686632",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/9DAE3DCAF811.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/TTechnician/TTechnician.smb",
+          "sha256": "14608e4c6ba750e6e719a014579cf15b813c3dcc911c22c4ce6b4bfa02ff3739",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/EA23A78FAF80.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/WLord/WLord.smb",
+          "sha256": "aac0e316ee2caee5daf128caa678817da2b50d7c431f1a0a33e783b2a8f747cc",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/AB6737741446.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/WLord/WLord1.smb",
+          "sha256": "225eaa4e612297e29189ff91b0d53a60a39954be44c6ff8f4061beb06e0dc95f",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/916FD0E83572.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Yagditha/Yagditha.smb",
+          "sha256": "051f506eda8b4200b84fe8997ee4c78adeb8689704ffe850415ebd58a02eed88",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/1E195D7B3C7E.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Ziddane/worldfran.smb",
+          "sha256": "f78932c00d736aefc0e8d17549d8df398528946020137d662739dc7059e175fe",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/06604BFAF154.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/monster/Ziddane/worldfran_attack.smb",
+          "sha256": "b10763586f0e4461c244d34bcf7f0bc22e39ab45db0104de1dc0ddf59790db71",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/60B808719BA6.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Ahin/Ahin.smb",
+          "sha256": "1614547cdd57460fb9aa3be2a95d7366ee8e00cb04bfbc6065441b5a91e9ec23",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/65BFECA510A6.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/arad/arad.smb",
+          "sha256": "7c2e191ed9a9a8530427b0bac1efb0790c77e5d8aaa6daa7856f5f15600086e9",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F37148E54147.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Bcn01/Bcn01.smb",
+          "sha256": "11d5222110d5e3602f37798c0259f7603222f6c24469578114c27f002df40e3d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/5F20571D28C5.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Bcn02/Bcn02.smb",
+          "sha256": "d3328a50c00f79f1e18d914f30bdc0fa5c5161ce7bc5fe9ca443cae08aa0a893",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F558247FB5A7.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Bcn02/Bcn02f.smb",
+          "sha256": "803b345d263ce4c066c8f224764da6911acc5966d71b22fa48c41a7dc3d31b7a",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/776925DF45A3.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Bcn03/Bcn03.smb",
+          "sha256": "85e17e7c0e4e8ff7fd0c129959814518205151383964d9525d9d6f1d5637a98d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/081990E11CA6.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Bcn03/Bcn03f.smb",
+          "sha256": "3df15ea10499385b11b9638d2e7a9b7774382b9fb4714a6c057b944e4622d6e6",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/E295629D5586.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Bcn04/Bcn04.smb",
+          "sha256": "7fed0924e88ac55705e144666f4086e00da2a4c12924a576c9c706782939d816",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/27D6FF95E479.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Bcn04/Bcn04f.smb",
+          "sha256": "230900e25149846d8a32cd5efa3088b699f0ae5206e00454902f5d40f91d7118",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/7E640DD71BA7.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Bcn06/Bcn06.smb",
+          "sha256": "659863c0e9b615a28a34120d01a2a487c53603b9be79ef3c03e0f964d2080dc1",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/E3252F05DA7C.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/evenmorif/evenmorif.smb",
+          "sha256": "9fd5cb05c6643862c3de620a1e218f3ec04ba91bcbfcf61eaccb9731a666ccb8",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/6B2AACF87C62.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/eventmolly/eventmolly.smb",
+          "sha256": "ecddfe4f6c7ab76d3b7bce7473e1eadc8d1d207a693f64b69c17c75d6dbe6a7c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/DF959B035E3A.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Hunter/Hunter.smb",
+          "sha256": "42e2add69c461876ac028ebc8ff3d6e7e96fdcc0676c16f01b3758d889a2dec9",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/60C6B8805D77.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Hunter/mHunter.smb",
+          "sha256": "e9755551766f3b442c8356588c668f0f580846d7ab2dc0c1f3308edfa416bde0",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/94F97FB36BE9.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/IceN-01/IceN-01.smb",
+          "sha256": "71067742eb1547a6e1309fb3df93aa5aea800711b44bd3d1c7eadf285e70b1ed",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/4C8067C31F1A.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/IceN-02/IceN-02.smb",
+          "sha256": "c6c5abd9cc9e8fe661620c3bc0689de273803a4e892637d84a3b691da8af8d02",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/AAB3E028DADB.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Jin/Jin.smb",
+          "sha256": "740651f7110894747883e9305bd3ae015e070b854bc4bf7686de3f7ebb90d4f2",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/DE8C3158BA08.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Jin/mJin.smb",
+          "sha256": "cdeef8a6f216e99318443a49c2b3d467699209e7cd076a623109f360cb8cc532",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/FD873ACA09DF.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/M_Messenger/M_Messenger.smb",
+          "sha256": "a121f1835b1bc56aee80435c5b32ddf33e5c5b6b1c7d98e69974d1b8359128b0",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/239ADD08CBFD.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/M_Messenger/mM_Messenger.smb",
+          "sha256": "d1f1c54e6793a18c9d30bb818ea2514abb2153b611ca1a4b1dae30e127c097e7",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/E5E1112AB07A.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/maskedman/MaskedMan.smb",
+          "sha256": "151f8387b9de363b03c542a1f64999ca1c9003c3e24ac2e906bbec78462b4507",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B8F0CF937EDF.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/maskedwoman/maskedwoman.smb",
+          "sha256": "5675178d83355026a906dc6a0a3784af5f7e048ab6100cb1edd34f34ba70e4a5",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2EB465A60371.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/milter/milter.smb",
+          "sha256": "6ff5a6269fc748c30220e19911fce30a1d712709c4894ffd31a040c77c8038c3",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/3A987F13C8B9.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/MN-001/GM-001.smb",
+          "sha256": "5c2e70dae12605499cb31b7b9e7d28cdac4a5e61dbfd02405448ad8d314d1a70",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B408B8079EE5.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/MN-001/MN-001.smb",
+          "sha256": "63a3ae79915c7831089480134692fa52c1948642ea53dd01f8f5e87a24ea1406",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/57CD0E1A84AE.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/MN-002/MN-002.smb",
+          "sha256": "7618c5a22c3413be7184848f07320463c3fec876dacc441ea233c9217b94a445",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/040FE9521E14.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/MN-002/MN-002_1.smb",
+          "sha256": "458f49aa13b51ac048afc36d777be8e9e5325505ab0713782f2f6cdb02660a3e",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/A36F8C4F38EE.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/MN-003/MN-003.smb",
+          "sha256": "d187bcd4dea87794335fcc274fcc640a00c1748c3987c8bbaa02fa869e0e2e28",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/CD9A89059FA9.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/MN-003/MN-003_1.smb",
+          "sha256": "2b338e377255eb0be7e94616a40ff01a5de9030d1351e6e87cf32e567dea5778",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B0D23208FB2A.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/MN-004/MN-004.smb",
+          "sha256": "6d26a074135a165d677556d518c7ee6d6e74ec51d679f551a44f2cbed0ebab8c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/69110973E2E2.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/MN-005/MN-005.smb",
+          "sha256": "74ebc9b5a111903388bb69376ca62785f7bd946017cd1d4f7d14c331bd59415d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/515293029321.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/MN-007/MN-007.smb",
+          "sha256": "ac8bb840600c1ae63d1f3aca35bcba3d138f0af10e31e6e63fab8ac9295c0205",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/8E84AD29A56E.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/MN-008/MN-008.smb",
+          "sha256": "037e641bd078a93e7c73946c2273223881d794b426f1497e5e7711a775db924c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/112F368180EE.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/MN-008/MN-008_1.smb",
+          "sha256": "e9314ea0e564dd86ea67f19f81ddbfc059e00092718c8004db772692b7276bb2",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/3EC45C152280.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/MN-009/MN-009.smb",
+          "sha256": "b64cf7b1016a9b19143b5ffb74c9ebe3141d1955d5cec9bb60704d8b2f30138c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/0BF94B672FFC.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/MN-009/MN-009_1.smb",
+          "sha256": "8e0443df0d8ce19eb74aaf06d4e870b91a5c4da8214d1875e6108b4d4c91fd80",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/0C9EB7E8D36F.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/MN-010/MN-010.smb",
+          "sha256": "ea42093d850f9b144c4cd567658f87e4022e724d4b5cfda5888160226b14f886",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/6F4A3B0CDF52.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/NineFox/npc_ninefox.smb",
+          "sha256": "e63f6316bd4d95a9ac01c1c9fc828bfdecc4eba0236544c9cd18befef690c10d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/5FEBC968EC26.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/PCmanager/pcmanager.smb",
+          "sha256": "13d24384be29d04d0e06312878a84e3ef043373cb4274402114b996df1dbc996",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C8CF07C14288.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/reddevil-01/worldkor01.smb",
+          "sha256": "7cc9ba01c8c71de29224d1b2853d6b79ac5328ff78b13853b167194c45a37a3d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/A49067E0C3F3.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/reddevil/worldkor.smb",
+          "sha256": "8e03116f6c21205e5a8e0061b8a1dfbf2b9d8e928dc6df866ad7b785e6ed46c7",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/9D6DF1F627B1.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/salon/salon.smb",
+          "sha256": "dde0db578ad57c2e4194f5dfd0375db468ce379f1d88a0959525df5be86c0a35",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/CDE1B4FEBE1A.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Sambagirl/msambagirl.smb",
+          "sha256": "ccae45ffc30660feeacb5fc12678adbf3b293ced060b408f05b308047778d058",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/E6EBB56BB56D.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Sambagirl/sambagirl.smb",
+          "sha256": "0563d8ab28f00495b1d3d8dc1d125300329ade83ed1b5371c22a61ff79e2bded",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/AE28D7D4F48B.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Skadi/mSkadi.smb",
+          "sha256": "0baed26c3faab9430a6b977291b7c04e292b77c9e1fd4cfd82fe21666a1aa9c5",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/79062092EFA8.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/Skadi/Skadi.smb",
+          "sha256": "89548c3c781df334bf59ed2b82ed48f12f90df922dee9fcbb2eebad021906239",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C7595AF1870C.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/SkillMaster/SkillMaster.smb",
+          "sha256": "0497e73a54932e2965125de6af52da894ebb9c2e13424e91d0fad5d2ab4c7499",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/470FAC75FA35.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/SN-001/SN-001.smb",
+          "sha256": "ef223efe10b284319ad50eceac408cd7984deb95e7989a4d2bdc5264ba4ec28f",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/06A847A1752E.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/SN-002/SN-002.smb",
+          "sha256": "147f0641730e629fb8e93e27f1cb1e3aef56851da24b5372db63ecd9568530c9",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/A0BB0A625B15.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/SN-003/SN-003.smb",
+          "sha256": "7df7e18c5b666d50f82bd1588db5c79778a6657ec578f11408adf00f364129ac",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/5D9E219A4BD2.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/SN-004/SN-004.smb",
+          "sha256": "462fbda6907e5cc197dcb1487ea703b4570fdccbccb54c5ba17d61c2c0faa05f",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/68779A1D4140.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/SN-005/SN-005.smb",
+          "sha256": "adc5846b6772b7ee3acd0f51460a3413d34f9f675cfacea060d21231da6ca410",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/FB5C52E1D6ED.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/T_Messenger/mT_Messenger.smb",
+          "sha256": "54a9502cfd2df3bce027fbf97f21a84ec02435f9b1f2937de7e3246183a9067d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B9135514D404.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/T_Messenger/T_Messenger.smb",
+          "sha256": "27c11b841384496da09a216784198cc168b038ca525722648346f99d840b3331",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F136C98020F6.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/TN-003/TN-003.smb",
+          "sha256": "8019f3f821cfa438b1e66c0eb62c4d3aee12bbd826d09fdb924f4e565e05d8e2",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B0BF3B3A9ADC.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/TN-004/TN-004.smb",
+          "sha256": "49ad87badcab3e78399c756286c3b1a1b1e86456e8ba80b116b7c4126069744b",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/7E40DA7DB662.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/TN-005/TN-005.smb",
+          "sha256": "7e755cdef549a170e6d720fffd7012289946deed36d668ce54b6ca6ba2002703",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/800423FF3A1C.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/TN-007/tn-007.smb",
+          "sha256": "338d0a5e480e569daed0b2dac4cd9f549b542b779abcc07def282af3fe8ec6dd",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/DBB26F899C96.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/TN-009/TN-009.smb",
+          "sha256": "9ba625f936b5714ffe24b08f63e07d7d018d287406672bc9464c296e30a686c3",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/ADC8C2594250.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/TN-010/TN-010.smb",
+          "sha256": "fc8b375406b411f22a1435173d627b2990bd982ca4044808d8757fae96eee085",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/A1D65C2B54BB.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/TN-012/TN-012.smb",
+          "sha256": "0ff9b9735870c7ea6625961dd844b93099c5c7bf09934c070b9efd3152eef42e",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/D6180F488051.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/TN-016/TN-016.smb",
+          "sha256": "dec109d0b49b6dd3ef6f26da08528738cc8ee23889aa8d219e02d74908a2ef36",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F3CF2A0B9721.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/npc/TN-017/TN-017.smb",
+          "sha256": "e061d4d6257b4d25ca1ae867bbaef6af13d7dbfc0b5f22ff6a24de183a366d45",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/8E968FD49349.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M1-motion1.smb",
+          "sha256": "e09ad7a104294aa58de6412f06bd80dd269581e2669fb542b587544e70fdb60f",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F941C026C018.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M1-motion10.smb",
+          "sha256": "756cbc4889527b10b350d6fa519c7382212ac744423453ba9408d15357aad9ab",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/22F8265D2FFA.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M1-motion11.smb",
+          "sha256": "d44c5f858e472a2f5f56c0b3a9c729cfc86ff4572748e715485b5428c4a22f6b",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/5B0DEBA1076A.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M1-motion12.smb",
+          "sha256": "4ff5e5da552df8e0f975d0cbee351c6808d270b00739cc44ee75e5174d9e25bb",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/44FC3B2F8937.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M1-motion13.smb",
+          "sha256": "3529194d8c92167e18089f45e0e14373c0354e5014008e8ca22d49a977862ae2",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/EF3BD0042211.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M1-motion14.smb",
+          "sha256": "dc4d179a476eebcc736442d0e9f556a558cd6958c9f47d8ef35e1f57750d66a0",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/55DD8A9A1253.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M1-motion2.smb",
+          "sha256": "48c26aa2132cc2fa70bdb5c9fbd5f9ced7a93188fcc9c061162c48173f92c582",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/9D3BDFEF5DD8.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M1-motion3.smb",
+          "sha256": "196ddbe27d58bdaf6dd0100cfeaa1ebf2182a02532fe97b69b3110aab40ae73b",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B0597D7CDACE.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M1-motion4.smb",
+          "sha256": "1cf22d0be81eabb8721eb78949885efd56426db15ab066b738a42a83e0559d2d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C33C33B12020.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M1-motion5.smb",
+          "sha256": "f7695ac6be14318d3cec14839db4df54c634b07ee440327a72ce457f376a1b18",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/474168595540.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M1-motion6.smb",
+          "sha256": "54cf9b2fbda2d54c79eb712c62bbc2fff3acbc59f14b839b04302ba197e5836b",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C01BDCE0FA32.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M1-motion7.smb",
+          "sha256": "b4fdb851bf4208082ee16d26f38971ce8e30bf68cf9c2b830d92cf94cdde4a5b",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C51FAA4D3A2A.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M1-motion8.smb",
+          "sha256": "7b8027c036b8c90090a03d0ce55e8013202cee91a3b3e07e469b4710352cd002",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/48E0C67A8213.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M1-motion9.smb",
+          "sha256": "90e973421ff0a3335dcd58a7132b8d4fdf9bdbc7806db00029133389b3210627",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/CAFC38164044.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/m1.smb",
+          "sha256": "bafe2699157f13f4bc6f053c30e050eae45dcf158578b10ae5e3e89b61cb1d0e",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/DC39D32D9F08.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M2-motion1.smb",
+          "sha256": "06f0789309f830cee2dfdb9c9957aa6f7f475522620bef60b8b54fbd80d923eb",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/089198B6CFD1.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M2-motion10.smb",
+          "sha256": "6caa0fa677b43bb7f2c50981bd82f6dd8a3ab87d7e481a1c8cdc6902eaee2614",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B092965EFA70.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M2-motion11.smb",
+          "sha256": "96a43f25c8bdf13c4396bc4280a7edcce4bb366e340ac4f0c54cd390d719b2bb",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/49DDA049025B.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M2-motion2.smb",
+          "sha256": "b51a6c66a88b21249722ca55b73f9c1bf7d3d9badbe2e7e191fac8522ef2aede",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/A6988DCCA4B1.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M2-motion3.smb",
+          "sha256": "ca14ecfb158043ae0bd5ef2f2ef1b135ded68c0de02f54cb6e1790f5d3b311ed",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F68AE9F8F598.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M2-motion4.smb",
+          "sha256": "98687ec8afef24e9ad41279ced484fa906e6f8075fa6457c30abdda52921b332",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C17619F71976.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M2-motion5.smb",
+          "sha256": "3ddda1a4028bb9b006dae2849119a38882ace4c4e25827c196c547db88d0ffcb",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/E8D81F33A372.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M2-motion6.smb",
+          "sha256": "f085b77e985bfdeb85cad77bdec246c9445d9e7e51e3a08839d0dc51bd298881",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/3F5638FC9982.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M2-motion7.smb",
+          "sha256": "9ef89c2e47a7cc3225ffc891569cbc0627851095ec19f40c23689861077bf45b",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2506853C89BF.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M2-motion8.smb",
+          "sha256": "5393dfd0bcd6441b88a3531c16a4877a6906ce3fb1608efd6d5603bcf7d8ac5d",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/26961080DD39.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M2-motion9.smb",
+          "sha256": "198101e18716b26e55952ff9ae36ff305e080c63676897411c1651e960e6e20c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/4B6A001959C6.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/m2.smb",
+          "sha256": "edf5418abe5ea640e88e14c8b895f889462e68f0e552fe67e97e33d8bb299f40",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F74B3D865243.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M3-motion1.smb",
+          "sha256": "9b1da2539bd8328c4ce876c8b8f03af43044a4297512212e41106b3233b9185b",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F304B68FCD40.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M3-motion2.smb",
+          "sha256": "4d9dae58e8ade9b71588b164112d60113a435f64939cc628f11ced5b63e9cf5c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/FC90D0861851.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M3-motion3.smb",
+          "sha256": "276dcee049b2d32f9cef3d32d3cba8cc0b800794d1712c367bb866e5d9f0ec06",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/A65FFA28088D.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M3-motion4.smb",
+          "sha256": "b0f09713763e871d11f0589d998715b1739ee6afda2fd9770339b6c46847c74c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/9FD269EFC6CB.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M3-motion5.smb",
+          "sha256": "c4424e47dae389ddbd2b29048c19eb59091b1174fe1d70db10e03a0bbbe6602c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/012E29B764D8.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M3-motion6.smb",
+          "sha256": "57419115cb7907cb59125d0408404be4b6fda3abf2e8f1da1129fac280c632ae",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/3AED3C5038DD.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M3-motion7.smb",
+          "sha256": "37b5aa4c311a9db2f640a2d126d3e0d2902e6195508e821e142421cccd863dbe",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/96257EC66CCF.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/m3.smb",
+          "sha256": "0e2e5f86f8d5e4b0c4ea002e0af2774d6ca356bd7c1920ba7cb85e5cbd09eeea",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2EB9C38CC0DB.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M4-motion1.smb",
+          "sha256": "f27ccc54da5b61f40ec5ee1dad38130db7da2435bcdf7fd54dd9b6686d5e30dc",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/89402846AC26.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M4-motion2.smb",
+          "sha256": "11d7344622ec13b4772b6acceced64588a84eef64b37342727906d4590a9dde2",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/6CEBB4CDA1D9.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M4-motion3.smb",
+          "sha256": "898202fcef7899409a3412142f0c3297697d43a479a33baaf1d699ebc724dba1",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/05E8C0237649.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M4-motion4.smb",
+          "sha256": "fceebdb72be9dd08780562badbcd4ce4a0fda2449eee19cf3c066de67006b1ad",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/9A03E7547D71.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M4-motion5.smb",
+          "sha256": "8911a57aed1bb8112d57a4b454cd5d0d86bbc85b9bb92837aa87a7ad4fdc66ea",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B9324DFB0834.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M4-motion6.smb",
+          "sha256": "11f5b1bb1e21b1eaece182b23939db3d090ca588ed92bd2a81a4a81f1598c124",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F9CFDE16B79D.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M4-motion7.smb",
+          "sha256": "127e22913d3a066e6373d1dbbbce345475228b93a8a16494e65e2bb2dc2aa031",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/3CD7BC2B0425.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/m4.smb",
+          "sha256": "48af614678593eaa0b659c2be514bd60f86b94f72cfb4305ed8352f48f12cc4a",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/8F14114A3912.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M5-motion1.smb",
+          "sha256": "42465b8ba67c160f3c1b6a6c788d3fad479f3de65ac0db202c366a9af29cc531",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/AF8A4C69C757.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M5-motion2.smb",
+          "sha256": "b7d341bda2cbb3c88ea6468e7fe882c0ba6bcec1287c55a81c4b22e433f5db13",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/A60EE07A6CD9.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M5-motion3.smb",
+          "sha256": "750c7e8b994ca89b0e1985d7475d2507f102b268069c40650523ec237fb24526",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/9F5F512BC9A7.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M5-motion4.smb",
+          "sha256": "596f382e5ed90a631681b843e8852d2bf402eb8135b4751e0af7924e382b687f",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2FBFFD2F12BC.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M5-motion5.smb",
+          "sha256": "32741aad48f30f7d3d5745bc533f382b4bb4264fa43731204c26a25cdaf27cfd",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/EA97028F197C.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M5-motion6.smb",
+          "sha256": "98b3bac58ec2c0784320c77c22735af2368a25634ffce5daf6e10fcba40f5aca",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/E612217358E2.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M5-motion7.smb",
+          "sha256": "1968b8b0c61d7166b8eb49d0961ef57ec315198d2e3edb921782ac472e852a6c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/4E35FC490E07.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/m5.smb",
+          "sha256": "14cfac93a08d807bb2dd93c73b4426ad6b402ed5d96877bcf1952da95da3b072",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/E61A61E599F0.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M6-motion1.smb",
+          "sha256": "8a4896d537494e382008f90f39b253e508cbf037c3814a7933b13c19f85baba4",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B75D14AA669C.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M6-motion2.smb",
+          "sha256": "961096894a9c2677324355424b43b94a03efe2bd77881dc773eaca1e54173b55",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/4BE5105F95D3.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M6-motion3.smb",
+          "sha256": "6b0f20ccdf81de89f48da5eca8fbbda8bb98b8941c435ec440cbaa885b95a0f7",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C6E5252C0579.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M6-motion4.smb",
+          "sha256": "f06ed916e3f18fe8f5ec338c1a606684f237dc6f7fa0d8338e761bdbc4675bfd",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/047F96A60936.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M6-motion5.smb",
+          "sha256": "5038be4362c3d1de75741bb2f64b7ae278a16f0d90b8ba4096f2607b37e64bd8",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2036AE7A72BC.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M6-motion6.smb",
+          "sha256": "734fb4b59f0b6d1fe1d02e1f37f74ac71c62785542bb82eee4e6fc91bf70e4ff",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/7AA9AB4CC3DE.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M6-motion7.smb",
+          "sha256": "f79daec7ceca2a4ac81e1e67642f328325da269272f2c589252b3d77f3645738",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/350A89C477B7.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M6-motion8.smb",
+          "sha256": "a1f152a1dee84591dbeb912897338142e5be47d7a4e3245e3669016ed0ac8d2a",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/6484BA388D54.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M6-motion9.smb",
+          "sha256": "f20d0cad0df75f196caca54ea06f11858571f07f25e95b7ca54055b6a14b7447",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B3192CB4D0C4.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/m6.smb",
+          "sha256": "c789f8d7a7f0c7215077c5b82f97f23d180c2e328b0a4189241e018dbb134708",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/78409AD277A1.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M7-motion1.smb",
+          "sha256": "0b0c1213570320b50412e5f91d069e3ede8aac05b4685df03a7f980be3b8dc38",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C3B2AA6DCED1.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M7-motion2.smb",
+          "sha256": "f92779a5fc314f7a7f26e980765a107a688c120d1a6a6906607e2e897f512923",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/99708048C879.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M7-motion3.smb",
+          "sha256": "bb2c65b4a38ecde02febd1c9b1981badd46171083127ac645bf825034406dab3",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/8782E2B70945.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M7-motion4.smb",
+          "sha256": "03e7878506a350eac049310d661898013a38462aebf80cce0b59266357b1dfb7",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/D2367BDD72BD.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M7-motion5.smb",
+          "sha256": "3fc168382af30cc20c4efad467112ac876d160a2165f73f2f98f3a67fb43ac0e",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/0F51CB9C29AC.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M7-motion6.smb",
+          "sha256": "6611b87d974f7c6a96da5eaa8d3c456e5bce0dbfae7591f6cb889e3c7248db8c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/D33FD2AFBFD0.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M7-motion7.smb",
+          "sha256": "4edd40d1ea64202939f9ee9b0376a54dc96925d8e3153453265c7204bd2d1f5c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/48D514DB543D.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M7-motion8.smb",
+          "sha256": "b0a0de81c828f9f5a5cade5aefb27d06cae6c74cecfccf9e9d2d8dea64d8c33c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/7F0095339A68.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/M7-motion9.smb",
+          "sha256": "20cef01926d8384c01a1b25b8b397b77cecead5c5caee913dc6e4ec7e1eb6fc6",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F338FADEC755.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/m7.smb",
+          "sha256": "386b4f7b2e69a80aaacd17c2ba7a3effbe0f41c533db76aaa8280c0d75fca3f9",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/BBF918BE303A.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/MfbC01.smb",
+          "sha256": "56fce3bd2786f9862a11f0dd48794fa89d162d543a1a11d399e42a31df9e94f1",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/EB3D62BA1B72.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/MmbD01.smb",
+          "sha256": "4ca6dc1648fed978c67f31d8919448cf52b8262b78c16f55f9304bbcbe6a6ae2",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/90115CD08ADD.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/MmbE01.smb",
+          "sha256": "325e1bbddbead3b76f7f953a41c889bfa6aae25e74a2093fd16407e2acd1b2e8",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/239F48EA709F.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/tfbD01.smb",
+          "sha256": "31b0406852c6a363bbbb4f49bb3c57240439f420343593154d5b58681fd65c24",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/6307B80194DF.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/TfbE01.smb",
+          "sha256": "92346f0135c5b40c157574b4a8d89394e44866845ae59dd554ca686692a5c879",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/EC026B8119C2.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/tmbA01.smb",
+          "sha256": "829a151b5ed45855a331bc008a85f01eb7f435616163d89cd4d5623125493fd7",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/63C16DE081CE.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "char/tmABCD/tmbC01.smb",
+          "sha256": "2d8bbfd3f6e5989772b28737072056f1a079cb3f1af5554ee984e9fdbe1794d3",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/1CFD91F601FA.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "Effect/AssaEffect/RegenerationField/b_PT_4-2-40.smb",
+          "sha256": "370e99b3223d6b89aec29103c815e3c8d04235935afd6f8cb80104203d8beaa7",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/3E7BC8282716.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "Effect/NewEffect/Res/Object/PT_4-2-40.smb",
+          "sha256": "0bf1e5915f40808e597b62718a39a94b70ce955bc07cdedae6f408a24ad3310c",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/CFDF0E96872A.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "StartImage/Opening/npc/opening_NPC_A.smb",
+          "sha256": "defa5b31cb0956ef69f213859af5cde9d2510321177d7d0e0f3b34aed4043b74",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/34AE80B85241.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "StartImage/Opening/npc/opening_NPC_B.smb",
+          "sha256": "5b46339bf53ab82c06a8f966959fa86f7dc58b23bc8098831511e46a4a63cabd",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/D8DAD7ED9C65.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        },
+        {
+          "path": "StartImage/Opening/npc/opening_NPC_C.smb",
+          "sha256": "94f1a9a3a141fd810172e5ea225f0b0fc9af08417ccd1e4c325a7fb3a4979843",
+          "report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/C85B708214E7.json",
+          "signature_error_bucket": "TypeError",
+          "signature_error": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"
+        }
+      ],
+      "source": "GATE_FIRST_SIGNATURE_INCOMPLETE"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "tool": "PT_STAGE072_GEOMETRY_WITNESS_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/endless/dun-7.smd",
+  "source_sha256": "74d6280ee0cad8eb7b5ab51411742cd920e34de810c15f78810b7f19f3a6fd50",
+  "output_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-8D9BDEB9F1D4/stage072_geometry_roundtrip_current/stage072_geometry_witness.blend",
+  "geometry_edits": [
+    {
+      "vertex_index": 0,
+      "component": "x",
+      "before_raw": [
+        3724302,
+        56128,
+        -10593467
+      ],
+      "after_raw": [
+        3740686,
+        56128,
+        -10593467
+      ],
+      "before_world": [
+        14548.0546875,
+        219.25,
+        -41380.73046875
+      ],
+      "after_world": [
+        14612.0546875,
+        219.25,
+        -41380.73046875
+      ],
+      "delta_raw": 16384,
+      "delta_world": 64.0,
+      "incident_faces": [
+        5
+      ],
+      "incident_face_count": 1
+    }
+  ],
+  "client_modified": false,
+  "check": "PASS"
+}

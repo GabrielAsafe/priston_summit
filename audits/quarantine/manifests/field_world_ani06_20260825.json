@@ -1,0 +1,23 @@
+{
+  "run_id": "field_world_ani06_20260825",
+  "project_root": "/home/gabriel/Área de Trabalho/summit",
+  "audits_root": "/home/gabriel/Área de Trabalho/summit/audits",
+  "records": [
+    {
+      "run_id": "field_world_ani06_20260825",
+      "side": "client",
+      "relpath": "Field/Ricarten/world_ani06.ASE",
+      "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Ricarten/world_ani06.ASE",
+      "destination": "/home/gabriel/Área de Trabalho/summit/audits/quarantine/cliente/field_world_ani06_20260825/Field/Ricarten/world_ani06.ASE",
+      "confidence": "HIGH",
+      "reason": "QUARANTINE_HIGH_NO_RUNTIME_REFERENCE",
+      "moved_at": "2026-08-25T11:18:39",
+      "status": "MOVED",
+      "sha256": "",
+      "kind": "file",
+      "file_count": 1,
+      "size_bytes": 813667
+    }
+  ],
+  "errors": []
+}

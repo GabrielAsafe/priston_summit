@@ -1,0 +1,29 @@
+{
+  "tool": "PT_CHARACTER_ARTIST_PIPELINE_V2_1",
+  "pipeline_check": "PASS",
+  "profile": "/home/gabriel/Área de Trabalho/summit/design_work/profiles/pt_character_profile_pikeman_c01_m4_v1.json",
+  "profile_id": "pikeman_c01_m4",
+  "object": "TbmC03",
+  "lod": "default",
+  "artist_master": "/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_m4/geometry/C002_TbmC03_artist_remodel_visual_g4_v1_1.blend",
+  "artist_master_sha256": "a91a9c63647aeb1b627261b3086152d888c384bea55f7a34fe0a48eb88ba65e9",
+  "artist_master_overwritten": false,
+  "normalized_copy": "/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_TbmC03_artist_remodel_visual_g4_v1_1_game_normalized.blend",
+  "game_copy_used": "/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_TbmC03_artist_remodel_visual_g4_v1_1_game_normalized.blend",
+  "test_force_ambiguous_used": false,
+  "normalize_unresolved_before_test_force": 0,
+  "validator_report": "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/TbmC03/TmbC01_TbmC03_artist_remodel_visual_g4_v1_1_validation.json",
+  "export_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m4/TbmC03/TmbC01_TbmC03_artist_remodel_visual_g4_v1_1_export_report.json",
+  "smd": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m4/TbmC03/TmbC01_TbmC03_artist_remodel_visual_g4_v1_1.smd",
+  "smd_size": 189040,
+  "smd_sha256": "6ffa5dd9b45ae2d1b9ae0e7a30074c5fb1bdb85efd4129693e88eb6eff7544f1",
+  "reimport_blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_TbmC03_artist_remodel_visual_g4_v1_1_reimport.blend",
+  "output_counts": {
+    "vertices": 82,
+    "faces": 138,
+    "texlinks": 138
+  },
+  "runtime_installed": false,
+  "roundtrip_published": false,
+  "timestamp": "2026-08-27T13:17:10.410382+00:00"
+}

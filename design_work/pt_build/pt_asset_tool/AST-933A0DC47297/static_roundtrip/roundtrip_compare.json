@@ -1,0 +1,85 @@
+{
+  "tool": "PT_STATIC_ROUNDTRIP_COMPARE_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/Items/DropItem/itPR101.smd",
+  "output": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-933A0DC47297/static_roundtrip/rebuilt_roundtrip.smd",
+  "source_sha256": "6c52df3c38229953f225bc797f507d95922e5871553d84cd89d81d02c3fa9466",
+  "output_sha256": "5a31e59e9c8313f66c0e06ffe1bde5d295ed5ad1c60d804a893bd296d14d7158",
+  "target": "itpr101",
+  "details": {
+    "source_counts": [
+      5,
+      4,
+      4
+    ],
+    "output_counts": [
+      5,
+      4,
+      4
+    ],
+    "face_uv_material_semantic_exact": true,
+    "source_animation_keys": [
+      0,
+      0,
+      0
+    ],
+    "output_animation_keys": [
+      0,
+      0,
+      0
+    ],
+    "source_physique": false,
+    "output_physique": false,
+    "witness_reported_vertices": [
+      0
+    ],
+    "expected_changed_vertices": [
+      0
+    ],
+    "actual_changed_vertices": [
+      0
+    ],
+    "changed_vertex_deltas": [
+      {
+        "vertex": 0,
+        "source_fixed": [
+          -612,
+          -612,
+          0
+        ],
+        "output_fixed": [
+          -710,
+          -710,
+          -4
+        ],
+        "delta_fixed": [
+          -98,
+          -98,
+          -4
+        ],
+        "delta_units": [
+          -0.3828125,
+          -0.3828125,
+          -0.015625
+        ]
+      }
+    ],
+    "witness_source_mismatch": [],
+    "wrong_changed_positions": [],
+    "untouched_wrong_vertices": [],
+    "allowed_xyz_byte_ranges": [
+      [
+        3328,
+        3340
+      ]
+    ],
+    "diff_byte_count": 6,
+    "diff_bytes_outside_witness_xyz": [],
+    "non_xyz_bytes_byte_identical": true
+  },
+  "non_target_changed": [],
+  "errors": [],
+  "byte_identical": false,
+  "intentional_geometry_edit": true,
+  "client_modified": false,
+  "check": "PASS"
+}

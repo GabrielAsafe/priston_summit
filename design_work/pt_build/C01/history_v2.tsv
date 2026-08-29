@@ -1,0 +1,6 @@
+timestamp	action	sha256	note
+2026-08-26T15:38:20+01:00	export	66bc6b933f8ab2bd6ddf4427dbbe16b796e0364c41b5069e4132a1eb9c67583f	/home/gabriel/Área de Trabalho/summit/design_work/pt_build/C01/MfbC01_current.smd
+2026-08-26T15:38:20+01:00	push	66bc6b933f8ab2bd6ddf4427dbbe16b796e0364c41b5069e4132a1eb9c67583f	/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC01.smd
+2026-08-26T15:38:20+01:00	undo	9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b	/home/gabriel/Área de Trabalho/summit/design_work/client_backups/C01_v2/undo_20260826_153820_714004365
+2026-08-26T15:38:21+01:00	redo	66bc6b933f8ab2bd6ddf4427dbbe16b796e0364c41b5069e4132a1eb9c67583f	/home/gabriel/Área de Trabalho/summit/design_work/client_backups/C01_v2/undo_reverse_20260826_153820_864846290
+2026-08-26T15:38:21+01:00	restore_original	9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b	/home/gabriel/Área de Trabalho/summit/design_work/MfbC01.smd

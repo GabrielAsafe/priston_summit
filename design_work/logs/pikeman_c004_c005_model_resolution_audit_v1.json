@@ -1,0 +1,251 @@
+{
+  "tool": "PT_PIKEMAN_C004_MODEL_RESOLUTION_AUDIT_V1",
+  "client_root": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente",
+  "smd_scanned": 3216,
+  "selected_node_universe": [
+    "TbhC03",
+    "TahC06",
+    "TshC03",
+    "TlhC06",
+    "TbmC03",
+    "TamC06",
+    "TsmC03",
+    "TlmC06",
+    "TblC03",
+    "TalC06",
+    "TslC03",
+    "TllC06",
+    "TshC06",
+    "TsmC06",
+    "TslC06"
+  ],
+  "configs": [
+    {
+      "config": "C004.inx",
+      "config_sha256": "8933f264f03cc07f1564e1d12be74e32d9266e475cdc80914337f969e5d81b75",
+      "szModelFile": "char\\tmABCD\\tmbC03.ASE",
+      "szMotionFile": "",
+      "szSubModelFile": "",
+      "expected_model_smd_target": "char/tmABCD/tmbC03.smd",
+      "groups": {
+        "high": [
+          "TbhC03",
+          "TahC06",
+          "TshC03",
+          "TlhC06"
+        ],
+        "default": [
+          "TbmC03",
+          "TamC06",
+          "TsmC03",
+          "TlmC06"
+        ],
+        "low": [
+          "TblC03",
+          "TalC06",
+          "TslC03",
+          "TllC06"
+        ]
+      },
+      "all_selected_nodes": [
+        "TbhC03",
+        "TahC06",
+        "TshC03",
+        "TlhC06",
+        "TbmC03",
+        "TamC06",
+        "TsmC03",
+        "TlmC06",
+        "TblC03",
+        "TalC06",
+        "TslC03",
+        "TllC06"
+      ],
+      "expected_model_exists": true,
+      "expected_model_missing_nodes_by_lod": {
+        "high": [
+          "TshC03"
+        ],
+        "default": [
+          "TsmC03"
+        ],
+        "low": [
+          "TslC03"
+        ]
+      },
+      "candidate_smds": [
+        {
+          "path": "char/tmABCD/tmbC03.smd",
+          "matched_selected_node_count": 9,
+          "selected_node_count": 12,
+          "lod_complete": {
+            "high": false,
+            "default": false,
+            "low": false
+          },
+          "all_lods_complete": false
+        },
+        {
+          "path": "char/tmABCD/tmbC06.smd",
+          "matched_selected_node_count": 6,
+          "selected_node_count": 12,
+          "lod_complete": {
+            "high": false,
+            "default": false,
+            "low": false
+          },
+          "all_lods_complete": false
+        },
+        {
+          "path": "char/tmABCD/TmbC01.smd",
+          "matched_selected_node_count": 3,
+          "selected_node_count": 12,
+          "lod_complete": {
+            "high": false,
+            "default": false,
+            "low": false
+          },
+          "all_lods_complete": false
+        }
+      ]
+    },
+    {
+      "config": "C005.inx",
+      "config_sha256": "d3fa3531817676471a4300afc431804b4ce97cdf73152a049a62d49b34fad02d",
+      "szModelFile": "char\\tmABCD\\tmbC03.ASE",
+      "szMotionFile": "",
+      "szSubModelFile": "",
+      "expected_model_smd_target": "char/tmABCD/tmbC03.smd",
+      "groups": {
+        "high": [
+          "TbhC03",
+          "TahC06",
+          "TshC06",
+          "TlhC06"
+        ],
+        "default": [
+          "TbmC03",
+          "TamC06",
+          "TsmC06",
+          "TlmC06"
+        ],
+        "low": [
+          "TblC03",
+          "TalC06",
+          "TslC06",
+          "TllC06"
+        ]
+      },
+      "all_selected_nodes": [
+        "TbhC03",
+        "TahC06",
+        "TshC06",
+        "TlhC06",
+        "TbmC03",
+        "TamC06",
+        "TsmC06",
+        "TlmC06",
+        "TblC03",
+        "TalC06",
+        "TslC06",
+        "TllC06"
+      ],
+      "expected_model_exists": true,
+      "expected_model_missing_nodes_by_lod": {
+        "high": [],
+        "default": [],
+        "low": []
+      },
+      "candidate_smds": [
+        {
+          "path": "char/tmABCD/tmbC03.smd",
+          "matched_selected_node_count": 12,
+          "selected_node_count": 12,
+          "lod_complete": {
+            "high": true,
+            "default": true,
+            "low": true
+          },
+          "all_lods_complete": true
+        },
+        {
+          "path": "char/tmABCD/tmbC06.smd",
+          "matched_selected_node_count": 9,
+          "selected_node_count": 12,
+          "lod_complete": {
+            "high": false,
+            "default": false,
+            "low": false
+          },
+          "all_lods_complete": false
+        },
+        {
+          "path": "char/tmABCD/TmbC01.smd",
+          "matched_selected_node_count": 3,
+          "selected_node_count": 12,
+          "lod_complete": {
+            "high": false,
+            "default": false,
+            "low": false
+          },
+          "all_lods_complete": false
+        }
+      ]
+    }
+  ],
+  "node_locations": {
+    "TbhC03": [
+      "char/tmABCD/TmbC01.smd",
+      "char/tmABCD/tmbC03.smd"
+    ],
+    "TahC06": [
+      "char/tmABCD/tmbC03.smd",
+      "char/tmABCD/tmbC06.smd"
+    ],
+    "TshC03": [],
+    "TlhC06": [
+      "char/tmABCD/tmbC03.smd",
+      "char/tmABCD/tmbC06.smd"
+    ],
+    "TbmC03": [
+      "char/tmABCD/TmbC01.smd",
+      "char/tmABCD/tmbC03.smd"
+    ],
+    "TamC06": [
+      "char/tmABCD/tmbC03.smd",
+      "char/tmABCD/tmbC06.smd"
+    ],
+    "TsmC03": [],
+    "TlmC06": [
+      "char/tmABCD/tmbC03.smd",
+      "char/tmABCD/tmbC06.smd"
+    ],
+    "TblC03": [
+      "char/tmABCD/TmbC01.smd",
+      "char/tmABCD/tmbC03.smd"
+    ],
+    "TalC06": [
+      "char/tmABCD/tmbC03.smd",
+      "char/tmABCD/tmbC06.smd"
+    ],
+    "TslC03": [],
+    "TllC06": [
+      "char/tmABCD/tmbC03.smd",
+      "char/tmABCD/tmbC06.smd"
+    ],
+    "TshC06": [
+      "char/tmABCD/tmbC03.smd",
+      "char/tmABCD/tmbC06.smd"
+    ],
+    "TsmC06": [
+      "char/tmABCD/tmbC03.smd",
+      "char/tmABCD/tmbC06.smd"
+    ],
+    "TslC06": [
+      "char/tmABCD/tmbC03.smd",
+      "char/tmABCD/tmbC06.smd"
+    ]
+  },
+  "client_modified": false,
+  "model_resolution_audit_check": "PASS"
+}

@@ -1,0 +1,29 @@
+{
+  "asset_id": "AST-6170851B31AF",
+  "asset": "Effect/ObjAnimationData/MonsterWeb/Web.smd",
+  "texture_count": 1,
+  "serialized_texture_count": 1,
+  "usage_semantics": "FACE_REFERENCED_MATERIALS",
+  "usage_error": null,
+  "used_material_ids": [
+    0
+  ],
+  "required_texture_count": 1,
+  "historical_unused_texture_count": 0,
+  "required_failures": 0,
+  "historical_unused_failures": 0,
+  "ready": true,
+  "overlay": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6170851B31AF/object_local_animation/texture_overlay_client",
+  "entries": [
+    {
+      "logical": "Effect//ObjAnimationData//MonsterWeb//dd.tga",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Effect/ObjAnimationData/MonsterWeb/dd.tga",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6170851B31AF/object_local_animation/texture_overlay_client/Effect/ObjAnimationData/MonsterWeb/dd.tga",
+      "status": "TGA_READY",
+      "required_by_faces": true,
+      "affects_ready": true,
+      "log": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6170851B31AF/object_local_animation/texture_overlay_logs/dd.tga.decode.log"
+    }
+  ],
+  "client_modified": false
+}

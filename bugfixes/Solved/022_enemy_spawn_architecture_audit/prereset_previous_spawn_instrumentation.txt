@@ -1,0 +1,177 @@
+================ PRERESET ================
+
+######## fileread.cpp / MINGW_SPM_ACTOR_MATCH_TRACE_V1 ########
+004637: 
+004638: 
+004639: 	lpStgMonList->OpenInterval = 0x7F;
+004640: 	lpStgMonList->OpenLimit = 3;
+004641: 
+004642: 	fp = fopen(szCharFile, "rb");
+004643: 	if(fp == NULL) return FALSE;
+004644: 
+004645: 	MonCnt = 0;
+004646: 	PercentCnt = 0;
+004647: 
+004648: 	while(!feof(fp))
+004649: 	{
+004650: 		if(fgets(line, 255, fp) == NULL)	break;
+004651: 
+004652: 		p = local_GetWord(decode, line);
+004653: 
+004654: 		NextFlag = 0;
+004655: 
+004656: 
+004657: 		if((lstrcmp(decode, "\x2A\xC3\xE2\xBF\xAC\xC0\xDA") == 0 || lstrcmpi(decode, "*ACTOR") == 0)) // MINGW_SPM_CP949_TOKEN_FIX_V1
+004658: 		{
+004659: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+004660: 			strcpy_s(lpStgMonList->rsMonster[MonCnt].szMonsterName, strBuff);
+004661: #ifdef __MINGW32__
+004662:             // MINGW_SPM_ACTOR_MATCH_TRACE_V1
+004663:             char dbgActorName[128] = { 0 };
+004664:             strncpy(dbgActorName, strBuff, sizeof(dbgActorName) - 1);
+004665:             dbgActorName[sizeof(dbgActorName) - 1] = 0;
+004666: #endif
+004667: 
+004668: 			for(cnt = 0; cnt < ListCnt; cnt++)
+004669: 			{
+004670: 				if(lstrcmp(strBuff, lpCharInfoList[cnt].szName) == 0)
+004671: 				{
+004672: 					lpStgMonList->rsMonster[MonCnt].lpCharInfo = &lpCharInfoList[cnt];
+004673: 
+004674: 					p = local_GetWord(strBuff, p);
+004675: 					cnt = atoi(strBuff);
+004676: 					lpStgMonList->rsMonster[MonCnt].NumOpenStart = PercentCnt;
+004677: 					lpStgMonList->rsMonster[MonCnt].OpenPercentage = cnt;
+004678: 					PercentCnt += cnt;
+004679: 					MonCnt++;
+004680: 					break;
+004681: 				}
+004682: 			}
+004683: 
+004684: 			
+004685: #ifdef __MINGW32__
+004686:             {
+004687:                 int dbgActorMatch = -1;
+004688: 
+004689:                 for(int dbgI = 0; dbgI < ListCnt; dbgI++)
+004690:                 {
+004691:                     if(lstrcmp(dbgActorName,
+004692:                                lpCharInfoList[dbgI].szName) == 0)
+004693:                     {
+004694:                         dbgActorMatch = dbgI;
+004695:                         break;
+004696:                     }
+004697:                 }
+004698: 
+004699:                 FILE *dbgActorFp =
+004700:                     fopen("spm_actor_trace.txt", "a");
+004701: 
+004702:                 if(dbgActorFp)
+004703:                 {
+004704:                     fprintf(
+004705:                         dbgActorFp,
+004706:                         "[ACTOR] spm=%s requested='%s' "
+004707:                         "match=%d listCnt=%d\n",
+004708:                         szCharFile,
+004709:                         dbgActorName,
+004710:                         dbgActorMatch,
+004711:                         ListCnt
+004712:                     );
+004713: 
+004714:                     /*
+004715:                      * No primeiro MISS apenas, mostra os primeiros
+004716:                      * nomes que smCharDecode colocou na lista global.
+004717:                      */
+004718:                     static int dbgListDumped = 0;
+004719: 
+004720:                     if(dbgActorMatch < 0 && !dbgListDumped)
+004721:                     {
+004722:                         dbgListDumped = 1;
+004723: 
+004724:                         fprintf(
+004725:                             dbgActorFp,
+004726:                             "[MONSTER_LIST_BEGIN]\n"
+004727:                         );
+004728: 
+004729:                         int dbgMax =
+004730:                             (ListCnt < 30) ? ListCnt : 30;
+004731: 
+004732:                         for(int dbgI = 0; dbgI < dbgMax; dbgI++)
+
+######## OnSever.cpp / MINGW_STAGE_SPAWN_LOAD_TRACE_V1 ########
+008572: 	smSTAGE3D *lpRes;
+008573: 	int cnt;
+008574: 
+008575: 	lpStage = new smSTAGE3D;
+008576: 	lpRes = smSTAGE3D_ReadASE(szFile, lpStage);
+008577: 	lpStage->Head = TRUE;
+008578: 
+008579: 
+008580: 	if(lpRes)
+008581: 	{
+008582: 
+008583: 		SetFieldInfoPath(szStartPointFile, szFile, "spp");
+008584: 		LoadStartPoint(szStartPointFile);
+008585: 
+008586: 		SetFieldInfoPath(szCharFixedFile, szFile, "spc");
+008587: 		if(LoadCharInfoFixed(szCharFixedFile))
+008588: 		{
+008589: 			for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008590: 			{
+008591: 				if(TransCharFixed[cnt].code)
+008592: 					OpenNpc(&TransCharFixed[cnt]);
+008593: 			}
+008594: 			dwActiveMode |= 2;
+008595: 		}
+008596: 
+008597: 		SetFieldInfoPath(szCharMonsterFile, szFile, "spm");
+008598: 
+008599: 
+008600: 		DecodeOpenMonster(szCharMonsterFile, &rsMonsterList, chrMonsterList, chrMonsterCnt);
+008601: 
+008602: 		// MINGW_STAGE_SPAWN_LOAD_TRACE_V1
+008603: 		{
+008604: 			int dbgStartPoints = 0;
+008605: 
+008606: 			for(int dbgCnt = 0; dbgCnt < STG_START_POINT_MAX; dbgCnt++)
+008607: 			{
+008608: 				if(StartPoint[dbgCnt].state)
+008609: 					dbgStartPoints++;
+008610: 			}
+008611: 
+008612: 			FILE *dbgFp = fopen("spawn_trace.txt", "a");
+008613: 			if(dbgFp)
+008614: 			{
+008615: 				fprintf(dbgFp,
+008616: 					"[SPAWN_LOAD] stage=%s spp=%s starts=%d spm=%s "
+008617: 					"counter=%d pct=%d limit=%d openLimit=%d "
+008618: 					"interval=%d chrMonsterCnt=%d\\n",
+008619: 					szFile,
+008620: 					szStartPointFile,
+008621: 					dbgStartPoints,
+008622: 					szCharMonsterFile,
+008623: 					rsMonsterList.Counter,
+008624: 					rsMonsterList.PecetageCount,
+008625: 					rsMonsterList.LimitMax,
+008626: 					rsMonsterList.OpenLimit,
+008627: 					rsMonsterList.OpenInterval,
+008628: 					chrMonsterCnt);
+008629: 
+008630: 				fclose(dbgFp);
+008631: 			}
+008632: 		}
+008633: 
+008634: 		if(!rsMonsterList.LimitMax) rsMonsterList.LimitMax = 10; //Limite de mobs por mapas
+008635: 
+008636: 		return TRUE;
+008637: 	}
+008638: 
+008639: 	delete lpStage;
+008640: 	lpStage = 0;
+008641: 
+008642: 	return FALSE;
+008643: }
+008644: 
+008645: 
+008646: 
+008647: int STG_AREA::FindStartPoint(int x, int z)

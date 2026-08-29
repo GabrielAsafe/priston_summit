@@ -1,0 +1,19 @@
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+00:01.416  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-21EFE278A58E/object_local_animation/pristine_import.blend"
+Info: Saved as "object_local_preview.blend"
+PT_OBJECT_LOCAL_BLENDER_PREVIEW_V3
+objects=5 animated=4 parent_edges=4
+animated_objects=['ani-002', 'ani-003', 'ani-004', 'ani-005']
+source_frames=0..48000
+preview_frames=1..301
+preview_fps=30
+hierarchy_semantics=LOCAL_QMAT_TIMES_PARENT_TMRESULT
+blender_transform_semantics=DELTA_TRANSFORMS_OVER_STATIC_BIND
+timing_status=PREVIEW_NOT_RUNTIME_SPEED_CERTIFIED
+client_modified=False
+object_local_preview_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

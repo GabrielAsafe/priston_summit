@@ -1,0 +1,337 @@
+{
+  "latest_patch_kept": [
+    0,
+    4,
+    6
+  ],
+  "moves": [
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_2_animation_diagnostic",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_2_animation_diagnostic"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_2_animation_diagnostic.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_2_animation_diagnostic.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_3_animation_live_diagnostic",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_3_animation_live_diagnostic"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_3_animation_live_diagnostic.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_3_animation_live_diagnostic.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_4_blender51_compat",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_4_blender51_compat"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_4_blender51_compat.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_4_blender51_compat.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_5_pose_basis_bridge",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_5_pose_basis_bridge"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_5_pose_basis_bridge.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_5_pose_basis_bridge.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_6_source_motion_audit",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_6_source_motion_audit"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_6_source_motion_audit.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_6_source_motion_audit.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_7_segment_key_audit",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_7_segment_key_audit"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_7_segment_key_audit.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_7_segment_key_audit.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_8_stand_container_anchor",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_8_stand_container_anchor"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_8_stand_container_anchor.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_8_stand_container_anchor.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_9_stand_neck_head_guard",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_9_stand_neck_head_guard"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_2_9_stand_neck_head_guard.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_2_9_stand_neck_head_guard.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_0_root_skeleton_binding",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_0_root_skeleton_binding"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_0_root_skeleton_binding.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_0_root_skeleton_binding.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_1_structural_root_discovery",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_1_structural_root_discovery"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_1_structural_root_discovery.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_1_structural_root_discovery.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_2_skeleton_signature_binding",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_2_skeleton_signature_binding"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_2_skeleton_signature_binding.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_2_skeleton_signature_binding.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_3_gate_first_binding",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_3_gate_first_binding"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_3_gate_first_binding.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_3_gate_first_binding.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_4_signature_root_fix",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_4_signature_root_fix"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_4_signature_root_fix.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_4_signature_root_fix.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_5_physique_subset_binding",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_5_physique_subset_binding"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_5_physique_subset_binding.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_5_physique_subset_binding.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_6_config_context_binding",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_6_config_context_binding"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_6_config_context_binding.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_6_config_context_binding.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_7_assembly_graph_binding",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_7_assembly_graph_binding"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_7_assembly_graph_binding.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_7_assembly_graph_binding.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_8_inx_link_binding",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_8_inx_link_binding"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_8_inx_link_binding.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_8_inx_link_binding.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_9_player_head_assembly",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_9_player_head_assembly"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_3_9_player_head_assembly.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_3_9_player_head_assembly.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_4_0_player_head_tiers",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_4_0_player_head_tiers"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_4_0_player_head_tiers.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_4_0_player_head_tiers.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_4_1_static_roundtrip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_4_1_static_roundtrip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_4_1_static_roundtrip.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_4_1_static_roundtrip.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_4_2_static_witness_writer",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_4_2_static_witness_writer"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_4_2_static_witness_writer.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_4_2_static_witness_writer.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_4_3_texture_usage_gate",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_4_3_texture_usage_gate"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_4_3_texture_usage_gate.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_4_3_texture_usage_gate.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_4_5_object_local_discovery",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_4_5_object_local_discovery"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/asset_v0_4_5_object_local_discovery.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/patches/asset_v0_4_5_object_local_discovery.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/PT_ASSET_DEBUG_V037.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/debug_bundles/PT_ASSET_DEBUG_V037.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_130459",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_130459"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_131811",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_131811"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_132255",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_132255"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_135250",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_135250"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_140406",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_140406"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_142217",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_142217"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_142842",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_142842"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_151818",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_151818"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_153242",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_153242"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_153957",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_153957"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_160035",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_160035"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_160814",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_160814"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_163225",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_163225"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_165331",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_165331"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_170318",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_170318"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_173837",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_173837"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_175836",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_175836"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_183128",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_183128"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_185017",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_185017"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_192815",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_192815"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_195326",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_195326"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_200947",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_200947"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/pt_asset_tool.backup_20260828_203454",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/backups/pt_asset_tool.backup_20260828_203454"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/PT_ASSET_TOOL_BACKEND_V0_1",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/legacy_backend/PT_ASSET_TOOL_BACKEND_V0_1"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/PT_ASSET_TOOL_BACKEND_V0_1.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/legacy_backend/PT_ASSET_TOOL_BACKEND_V0_1.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/PT_ASSET_TOOL_BACKEND_V0_1_1_PATCH",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/legacy_backend/PT_ASSET_TOOL_BACKEND_V0_1_1_PATCH"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/PT_ASSET_TOOL_BACKEND_V0_1_1_PATCH.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/legacy_backend/PT_ASSET_TOOL_BACKEND_V0_1_1_PATCH.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/PT_ASSET_TOOL_BACKEND_V0_2_1_ANIMATION_FIX",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/legacy_backend/PT_ASSET_TOOL_BACKEND_V0_2_1_ANIMATION_FIX"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/PT_ASSET_TOOL_BACKEND_V0_2_1_ANIMATION_FIX.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/legacy_backend/PT_ASSET_TOOL_BACKEND_V0_2_1_ANIMATION_FIX.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/PT_ASSET_TOOL_BACKEND_V0_2_2_ANIMATION_DIAGNOSTIC",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/legacy_backend/PT_ASSET_TOOL_BACKEND_V0_2_2_ANIMATION_DIAGNOSTIC"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/PT_ASSET_TOOL_BACKEND_V0_2_2_ANIMATION_DIAGNOSTIC.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/legacy_backend/PT_ASSET_TOOL_BACKEND_V0_2_2_ANIMATION_DIAGNOSTIC.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/PT_ASSET_TOOL_BACKEND_V0_2_ANIMATION_PATCH",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/legacy_backend/PT_ASSET_TOOL_BACKEND_V0_2_ANIMATION_PATCH"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/PT_ASSET_TOOL_BACKEND_V0_2_ANIMATION_PATCH.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/legacy_backend/PT_ASSET_TOOL_BACKEND_V0_2_ANIMATION_PATCH.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/PT_OBJECT_LOCAL_MULTI_REPS.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/debug_bundles/PT_OBJECT_LOCAL_MULTI_REPS.zip"
+    },
+    {
+      "from": "/home/gabriel/Área de Trabalho/summit/design_work/PT_OBJECT_LOCAL_REPS.zip",
+      "to": "/home/gabriel/Área de Trabalho/summit/design_work/archives/debug_bundles/PT_OBJECT_LOCAL_REPS.zip"
+    }
+  ]
+}

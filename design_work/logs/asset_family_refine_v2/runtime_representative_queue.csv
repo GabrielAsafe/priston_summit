@@ -1,0 +1,19 @@
+priority,purpose,cluster_file_count,representative,object_count,material_bucket,geometry_bucket,recommended_gate
+1,RIGID_MOB_MONSTER,75,char/monster/Monbagon/Monbagon-C.smd,2,2-4,300-999V,existing rigid character core + auto profile
+1,RIGID_MOB_MONSTER,34,char/monster/Monshadow/Monshadow-01.smd,1,2-4,300-999V,existing rigid character core + auto profile
+1,RIGID_MOB_MONSTER,27,char/monster/Vampiric/vemp.smd,2,5-8,300-999V,existing rigid character core + auto profile
+2,RIGID_NPC,12,char/npc/SN-002/SN-002.smd,2,2-4,1000-4999V,existing rigid character core + auto profile
+2,RIGID_NPC,12,char/npc/MN-005/MN-005.smd,2,5-8,300-999V,existing rigid character core + auto profile
+2,RIGID_NPC,10,char/npc/MN-009/MN-009.smd,2,2-4,300-999V,existing rigid character core + auto profile
+3,RIGID_CHARACTER,283,char/tmABCD/CtmbA16.smd,1,1,300-999V,existing rigid character core + auto profile
+3,RIGID_CHARACTER,210,char/tmABCD/CtmbC05.smd,1,2-4,300-999V,existing rigid character core + auto profile
+3,RIGID_CHARACTER,117,char/tmABCD/MmhA22.smd,1,2-4,50-299V,existing rigid character core + auto profile
+4,STATIC_WEAPON_ITEM,280,image/Sinimage/Items/DropItem/itPR101.smd,1,1,<50V,static/no-Physique writer adapter
+4,STATIC_WEAPON_ITEM,80,image/Sinimage/Items/DropItem/itWA104.smd,1,1,50-299V,static/no-Physique writer adapter
+4,STATIC_WEAPON_ITEM,52,image/Sinimage/Items/DropItem/itWH118.smd,1,9-32,50-299V,static/no-Physique writer adapter
+5,STATIC_EFFECT,96,Effect/sky/sky07/evening/07eveningsky.smd,1,5-8,<50V,static/no-Physique writer adapter
+5,STATIC_EFFECT,27,Effect/sky/Boss/08b-mark.smd,1,5-8,50-299V,static/no-Physique writer adapter
+5,STATIC_EFFECT,21,Effect/AssaEffect/ColumnOfWater/ColumnOfWaterHit.smd,1,1,50-299V,static/no-Physique writer adapter
+6,STATIC_MAP_STAGE,117,Field/forever-fall/1ani-07.smd,1,129+,50-299V,static/no-Physique writer adapter
+6,STATIC_MAP_STAGE,37,Field/Ice/ice_bip_leaf03.smd,1,129+,<50V,static/no-Physique writer adapter
+6,STATIC_MAP_STAGE,26,Field/forever-fall/1ani-26.smd,2,129+,50-299V,static/no-Physique writer adapter

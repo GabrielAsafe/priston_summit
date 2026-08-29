@@ -1,0 +1,161 @@
+   850			ch ? (void *)ch->lpDinaPattern2 : NULL
+   851		);
+   852	
+   853		fflush(f);
+   854		fclose(f);
+   855	}
+   856	#endif
+   857	
+   858	int HoLogin::AddJobCharacter(char *chrFile1, char *chrFile2, int index)
+   859	{
+   860		if (index == -1)
+   861		{
+   862			JobCharacter[JobCharacterCount].Init();
+   863			JobCharacter[JobCharacterCount].lpStage = Stage;
+   864			JobCharacter[JobCharacterCount].smCharInfo.wPlayerKilling[0] = 0;
+   865	
+   866	
+   867			#ifdef __MINGW32__
+   868			int mingwLoadResultV1 = SetLoadPattern(
+   869				&JobCharacter[JobCharacterCount],
+   870				chrFile1,
+   871				chrFile2,
+   872				0,
+   873				0
+   874			);
+   875	
+   876			MINGW_JobLoadTraceV1(
+   877				"ADD NEW AFTER SetLoadPattern",
+   878				JobCharacterCount,
+   879				chrFile1,
+   880				chrFile2,
+   881				mingwLoadResultV1,
+   882				&JobCharacter[JobCharacterCount]
+   883			);
+   884	
+   885			// MINGW_ADDJOB_LOAD_FAIL_GUARD_V2
+   886			if(!mingwLoadResultV1)
+   887				return FALSE;
+   888	#else
+   889			SetLoadPattern(
+   890				&JobCharacter[JobCharacterCount],
+   891				chrFile1,
+   892				chrFile2,
+   893				0,
+   894				0
+   895			);
+   896	#endif
+   897	
+   898			JobCharacter[JobCharacterCount].SetPosi(JobCharacterPos[JobCharacterCount][0] * fONE,
+   899				Stage->GetHeight(JobCharacterPos[JobCharacterCount][0] * fONE, JobCharacterPos[JobCharacterCount][1] * fONE),
+   900				JobCharacterPos[JobCharacterCount][1] * fONE, 0, ANGLE_180, 0);
+   901			JobCharacter[JobCharacterCount].ActionPattern = 0;
+   902			memset(JobCharacter[JobCharacterCount].szChatMessage, 0, sizeof(JobCharacter[JobCharacterCount].szChatMessage));
+   903			memset(JobCharacter[JobCharacterCount].smCharInfo.szName, 0, sizeof(JobCharacter[JobCharacterCount].smCharInfo.szName));
+   904	
+   905			#ifdef __MINGW32__
+   906			int mingwMotionResultV1 =
+   907				JobCharacter[JobCharacterCount].ChangeMotion(10);
+   908	
+   909			MINGW_JobLoadTraceV1(
+   910				"ADD NEW AFTER ChangeMotion",
+   911				JobCharacterCount,
+   912				chrFile1,
+   913				chrFile2,
+   914				mingwMotionResultV1,
+   915				&JobCharacter[JobCharacterCount]
+   916			);
+   917	#else
+   918			JobCharacter[JobCharacterCount].ChangeMotion(10);
+   919	#endif
+   920	
+   921			JobCharacterCount++;
+   922			ReadTextures();
+   923			JobCharacter[JobCharacterCount - 1].lpDinaPattern->Pat->smMaterialGroup->CheckMatreialTextureSwap();
+   924			JobCharacter[JobCharacterCount - 1].lpDinaPattern2->Pat->smMaterialGroup->CheckMatreialTextureSwap();
+   925	
+   926			JobCharacter[JobCharacterCount - 1].smCharInfo.Stamina[0] = 100;
+   927			JobCharacter[JobCharacterCount - 1].smCharInfo.Stamina[1] = 100;
+   928	
+   929		}
+   930		else
+   931		{
+   932			if (index >= 0 && index < CHARACTER_JOB_MAX)
+   933			{
+   934				JobCharacter[index].Init();
+   935				JobCharacter[index].lpStage = Stage;
+   936				JobCharacter[index].smCharInfo.wPlayerKilling[0] = 0;
+   937	
+   938	
+   939				#ifdef __MINGW32__
+   940				int mingwLoadResultIndexedV1 = SetLoadPattern(
+   941					&JobCharacter[index],
+   942					chrFile1,
+   943					chrFile2,
+   944					0,
+   945					0
+   946				);
+   947	
+   948				MINGW_JobLoadTraceV1(
+   949					"ADD INDEX AFTER SetLoadPattern",
+   950					index,
+   951					chrFile1,
+   952					chrFile2,
+   953					mingwLoadResultIndexedV1,
+   954					&JobCharacter[index]
+   955				);
+   956	
+   957				if(!mingwLoadResultIndexedV1)
+   958					return FALSE;
+   959	#else
+   960				SetLoadPattern(
+   961					&JobCharacter[index],
+   962					chrFile1,
+   963					chrFile2,
+   964					0,
+   965					0
+   966				);
+   967	#endif
+   968				JobCharacter[index].SetPosi(JobCharacterPos[index][0] * fONE,
+   969					Stage->GetHeight(JobCharacterPos[index][0] * fONE, JobCharacterPos[index][1] * fONE)
+   970					, JobCharacterPos[index][1] * fONE, 0, ANGLE_180, 0);
+   971				JobCharacter[index].ActionPattern = 0;
+   972				memset(JobCharacter[index].szChatMessage, 0, sizeof(JobCharacter[JobCharacterCount].szChatMessage));
+   973				memset(JobCharacter[index].smCharInfo.szName, 0, sizeof(JobCharacter[JobCharacterCount].smCharInfo.szName));
+   974	
+   975				ReadTextures();
+   976				JobCharacter[index].lpDinaPattern->Pat->smMaterialGroup->CheckMatreialTextureSwap();
+   977				JobCharacter[index].lpDinaPattern2->Pat->smMaterialGroup->CheckMatreialTextureSwap();
+   978	
+   979				JobCharacter[index].smCharInfo.Stamina[0] = 100;
+   980				JobCharacter[index].smCharInfo.Stamina[1] = 100;
+   981	
+   982			}
+   983			else
+   984				return FALSE;
+   985		}
+   986	
+   987	
+   988		return TRUE;
+   989	}
+   990	
+   991	
+   992	
+   993	
+   994	int HoLogin::GetSelectCharacter(smCHAR *lpChar)
+   995	{
+   996		if (lpChar == NULL)
+   997			return FALSE;
+   998		if (lpChar->DisplayFlag == FALSE)
+   999			return FALSE;
+  1000	
+  1001		RECT rect;
+  1002		POINT	sPos;
+  1003		int sez;
+  1004		int SelZ = 65536 * 16384;
+  1005	
+  1006	
+  1007		if (lpChar)
+  1008		{
+  1009			int x, y, z;
+  1010			int anx, any;

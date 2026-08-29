@@ -1,0 +1,91 @@
+		InitUserCharacter();
+		return 2;
+	}
+
+
+	if (SelectCurrentState != SelectNextState)
+	{
+		if (SelectCurrentState != COMPLETE_SELECT_STATE && SelectNextState != COMPLETE_SELECT_STATE &&
+			SelectCurrentState != START_GAME_STATE && SelectNextState != START_GAME_STATE)
+		{
+
+			if ((SelectCurrentState == RACE_SELECT_STATE) && (SelectNextState == JOB_SELECT_STATE))
+				RaceMarkScaleSize--;
+
+			MouseDownCharacterNum = -1;
+			MouseMoveCharacterNum = -1;
+			RaceMarkBlendCount = 0;
+
+
+			static int step = 1000;
+			if (SelectNextState >= 0 && SelectNextState < COMPLETE_SELECT_STATE &&
+				SelectCurrentState >= 0 && SelectCurrentState < COMPLETE_SELECT_STATE)
+			{
+				if (SelectNextState > SelectCurrentState)
+				{
+
+					TarDist += step;
+					if (TarDist > CameraZPos[SelectNextState] + 800)
+					{
+						TarDist = CameraZPos[SelectNextState];
+						SelectCurrentState = SelectNextState;
+						step = 1000;
+					}
+
+					if ((CameraZPos[SelectNextState] - CameraZPos[SelectCurrentState]) / 16 * 15 + CameraZPos[SelectCurrentState] < TarDist)
+						step = 100;
+				}
+				else if (SelectNextState < SelectCurrentState)
+				{
+					TarDist -= step;
+					if (TarDist < CameraZPos[SelectNextState] - 800)
+					{
+						TarDist = CameraZPos[SelectNextState];
+						SelectCurrentState = SelectNextState;
+						step = 1000;
+					}
+
+					if ((CameraZPos[SelectCurrentState] - CameraZPos[SelectNextState]) / 16 + CameraZPos[SelectNextState] > TarDist)
+						step = 100;
+				}
+			}
+		}
+
+		if (SelectNextState == COMPLETE_SELECT_STATE)
+		{
+			if (FadeCurrentState == FadeNextState)
+			{
+				SelectCurrentState = COMPLETE_SELECT_STATE;
+			}
+		}
+
+		if (SelectNextState == START_GAME_STATE)
+		{
+			SelectCurrentState = START_GAME_STATE;
+		}
+
+		if (SelectCurrentState == FACE_SELECT_STATE && SelectNextState == JOB_SELECT_STATE)
+		{
+			JobBodySelectNum = -1;
+			JobFaceSelectNum = -1;
+			memset(UserCharacterNewName, 0, sizeof(UserCharacterNewName));
+			SetWindowText(hTextWnd, 0);
+			hFocusWnd = NULL;
+		}
+
+
+		if (SelectCurrentState == JOB_SELECT_STATE && SelectNextState == FACE_SELECT_STATE)
+		{
+			if (JobFaceSelectNum == -1)
+			{
+				JobFaceSelectNum = 1;
+				hFocusWnd = hTextWnd;
+				FocusWndFlag = TRUE;
+#ifdef	_LANGUAGE_JAPANESE		
+				SetIME_Mode(1);
+#endif
+
+				FaceSelectFirstFlag = FALSE;
+			}
+		}
+	}

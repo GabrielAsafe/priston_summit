@@ -1,0 +1,41 @@
+
+######################################################################
+/home/gabriel/Área de Trabalho/summit/Servidor/char
+######################################################################
+INI total      : 7
+Monster INI    : 2
+NPC INI        : 1
+Primeiros arquivos:
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/chaoscara/chaoscara.ini
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/Greedy/Greedy.ini
+/home/gabriel/Área de Trabalho/summit/Servidor/char/npc/ji_woo/ji_woo.ini
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Rub1.ini
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/RubXfsx.ini
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/RubXfsx2.ini
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/z1EFR.ini
+
+######################################################################
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char
+######################################################################
+INI total      : 2
+Monster INI    : 1
+NPC INI        : 1
+Primeiros arquivos:
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/death_night/death_knight.ini
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/npc/ji_woo/ji_woo.ini
+
+######################################################################
+/home/gabriel/armazem/priston/pristontale-1-master/bin/Client/char
+######################################################################
+INI total      : 1
+Monster INI    : 0
+NPC INI        : 1
+Primeiros arquivos:
+/home/gabriel/armazem/priston/pristontale-1-master/bin/Client/char/npc/ji_woo/ji_woo.ini
+
+######################################################################
+/home/gabriel/armazem/priston/pristontale-1-master/bin/Server/char
+######################################################################
+INI total      : 1
+Monster INI    : 0
+NPC INI        : 

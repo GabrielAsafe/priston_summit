@@ -1,0 +1,20 @@
+
+######################################################################
+CURRENT
+######################################################################
+
+######################################################################
+PRERESET
+######################################################################
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/Server/OnSever.cpp:8602:		// MINGW_STAGE_SPAWN_LOAD_TRACE_V1
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/fileread.cpp:3540:	// MINGW_CHARINF_CP949_TOKEN_FIX_V1 - legacy CP949 literals restored as ASCII hex escapes
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/fileread.cpp:4657:		if((lstrcmp(decode, "\x2A\xC3\xE2\xBF\xAC\xC0\xDA") == 0 || lstrcmpi(decode, "*ACTOR") == 0)) // MINGW_SPM_CP949_TOKEN_FIX_V1
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/fileread.cpp:4662:            // MINGW_SPM_ACTOR_MATCH_TRACE_V1
+
+######################################################################
+REBASE
+######################################################################
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/SrcServer/src/Server/OnSever.cpp:8588:		// MINGW_STAGE_SPAWN_LOAD_TRACE_V1
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/SrcServer/src/fileread.cpp:3540:	// MINGW_CHARINF_CP949_TOKEN_FIX_V1 - legacy CP949 literals restored as ASCII hex escapes
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/SrcServer/src/fileread.cpp:4657:		if((lstrcmp(decode, "\x2A\xC3\xE2\xBF\xAC\xC0\xDA") == 0 || lstrcmpi(decode, "*ACTOR") == 0)) // MINGW_SPM_CP949_TOKEN_FIX_V1
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/SrcServer/src/fileread.cpp:4662:            // MINGW_SPM_ACTOR_MATCH_TRACE_V1

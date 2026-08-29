@@ -1,0 +1,20 @@
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLogin.cpp:603:			SetLoadPattern(&UserCharacter[index], chrFile1, chrFile2, 0, 0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLogin.cpp:639:		SetLoadPattern(&JobCharacter[JobCharacterCount], chrFile1, chrFile2, 0, 0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLogin.cpp:668:			SetLoadPattern(&JobCharacter[index], chrFile1, chrFile2, 0, 0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4599:			lpChar->SetLoadPattern(lpChar->smCharInfo.szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7132:		lpChar->SetLoadPattern(lpChar->smCharInfo.szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7816:		lpChar->SetLoadPattern(lpChar->smCharInfo.szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7959:			lpChar->SetLoadPattern(lpChar->smCharInfo.szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8390:						chrAutoPlayer[cnt].SetLoadPattern(chrAutoPlayer[cnt].smCharInfo.szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8483:						chrAutoPlayer[cnt].SetLoadPattern(chrAutoPlayer[cnt].smCharInfo.szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:9536:	lpChar->SetLoadPattern(lpChar->smCharInfo.szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.h:794:	int SetLoadPattern(char *szName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.h:950:int SetLoadPattern(smCHAR *smChar, char *szName, POINT3D *Posi, POINT3D *Angle);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.h:952:int SetLoadPattern(smCHAR *smChar, char *szName, char *szName2, POINT3D *Posi, POINT3D *Angle);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp:1701:		SetLoadPattern(lpCurPlayer, CharacterName1, CharacterName2, &Posi, &Angle);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp:1733:		SetLoadPattern(lpCurPlayer, smConfig.szFile_Player, 0, &Posi, &Angle);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:993:int SetLoadPattern(smCHAR *smChar, char *szName, char *szName2, POINT3D *Posi, POINT3D *Angle)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:1042:int SetLoadPattern(smCHAR *smChar, char *szName, POINT3D *Posi, POINT3D *Angle)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:1044:	return SetLoadPattern(smChar, szName, 0, Posi, Angle);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:6629:										SetLoadPattern(smCharInfo.szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:8932:int smCHAR::SetLoadPattern(char *szName)

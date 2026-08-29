@@ -1,0 +1,341 @@
+  3528	int ConvMoveSpeed(float fSpeed)
+  3529	{
+  3530		int sp;
+  3531	
+  3532		sp = (int)((fSpeed - 9) * 16) + fONE;
+  3533	
+  3534		return sp;
+  3535	}
+  3536	
+  3537	
+  3538	int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	*lpMonInfo, char *lpDialogMessage, size_t DialogMessageSize)
+  3539	{
+  3540		// MINGW_CHARINF_CP949_TOKEN_FIX_V1 - legacy CP949 literals restored as ASCII hex escapes
+  3541	
+  3542		FILE	*fp;
+  3543	
+  3544		char strBuff[256];
+  3545		char szFile[128];
+  3546		char *p;
+  3547		char *pb;
+  3548		int NextFlag;
+  3549		int cnt;
+  3550		int	percent;
+  3551		int	DialogFlag;
+  3552	
+  3553		DWORD	dwItemCode[32];
+  3554		int		ItemCodeCnt;
+  3555	
+  3556	
+  3557		strcpy_s(szFile, szCharFile);
+  3558	
+  3559		fp = fopen(szFile, "rb");
+  3560		if(fp == NULL) return FALSE;
+  3561	
+  3562	
+  3563	
+  3564	
+  3565		lpCharInfo->szModelName2[0] = 0;
+  3566		lpCharInfo->wPlayClass[1] = 0;
+  3567		lpCharInfo->ArrowPosi[0] = 0;
+  3568		lpCharInfo->ArrowPosi[1] = 0;
+  3569	
+  3570		if(lpMonInfo)
+  3571		{
+  3572			ZeroMemory(lpMonInfo, sizeof(smCHAR_MONSTER_INFO));
+  3573			lpMonInfo->MoveRange = 64 * fONE;
+  3574			lpMonInfo->FallItemCount = 0;
+  3575			lpMonInfo->FallItemMax = 0;
+  3576			lpMonInfo->FallItemPerMax = 0;
+  3577	
+  3578			lpMonInfo->DamageStunPers = 100;
+  3579			lpMonInfo->UseEventModel = 0;
+  3580		}
+  3581	
+  3582		while(!feof(fp))
+  3583		{
+  3584			if(fgets(line, 255, fp) == NULL)	break;
+  3585	
+  3586			p = local_GetWord(decode, line);
+  3587	
+  3588			NextFlag = 0;
+  3589	
+  3590	
+  3591			if(lstrcmp(decode, "\x2A\xC0\xCC\xB8\xA7") == 0)
+  3592			{
+  3593				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  3594	
+  3595				strcpy_s(lpCharInfo->szName, strBuff);
+  3596				NextFlag = TRUE;
+  3597			}
+  3598	
+  3599	
+  3600	#ifdef _LANGUAGE_BRAZIL
+  3601			if(lstrcmpi(decode, "*J_NAME") == 0)
+  3602			{
+  3603				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  3604	
+  3605				if(lpMonInfo)
+  3606					strcpy_s(lpMonInfo->szName, strBuff);
+  3607				else
+  3608					strcpy_s(lpCharInfo->szName, strBuff);
+  3609	
+  3610				NextFlag = TRUE;
+  3611			}
+  3612	#endif
+  3613	
+  3614			if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xF0\xBE\xE7\xC6\xC4\xC0\xCF") == 0)
+  3615			{
+  3616				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  3617	
+  3618	
+  3619	
+  3620				strcpy_s(lpCharInfo->szModelName, strBuff);
+  3621				NextFlag = TRUE;
+  3622			}
+  3623	
+  3624	
+  3625	
+  3626			DialogFlag = 0;
+  3627	
+  3628			if(!NextFlag && lpDialogMessage && lstrcmp(decode, "\x2A\xB4\xEB\xC8\xAD") == 0)
+  3629			{
+  3630				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  3631	
+  3632				strcpy_s(lpDialogMessage, DialogMessageSize, strBuff);
+  3633				NextFlag = TRUE;
+  3634				DialogFlag++;
+  3635			}
+  3636	
+  3637	
+  3638	#ifdef _LANGUAGE_BRAZIL
+  3639			if(lpDialogMessage && lstrcmpi(decode, "*J_CHAT") == 0)
+  3640			{
+  3641				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  3642	
+  3643				strcpy_s(lpDialogMessage, DialogMessageSize, strBuff);
+  3644				NextFlag = TRUE;
+  3645				DialogFlag++;
+  3646			}
+  3647	#endif
+  3648	
+  3649	
+  3650			if(DialogFlag && lpMonInfo)
+  3651			{
+  3652				if(lpMonInfo->NpcMsgCount < NPC_MESSAGE_MAX)
+  3653				{
+  3654	
+  3655					lpMonInfo->lpNpcMessage[lpMonInfo->NpcMsgCount++] = SetNPCMsg(lpDialogMessage);
+  3656	
+  3657	
+  3658	
+  3659				}
+  3660			}
+  3661	
+  3662	
+  3663			if(!NextFlag && lstrcmp(decode, "\x2A\xBC\xD3\xBC\xBA") == 0)
+  3664			{
+  3665				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  3666	
+  3667				if(lstrcmp(strBuff, "\xC0\xFB") == 0)
+  3668					lpCharInfo->State = TRUE;
+  3669				else
+  3670					lpCharInfo->State = FALSE;
+  3671	
+  3672				NextFlag = TRUE;
+  3673			}
+  3674	
+  3675	
+  3676			if(!NextFlag && lstrcmp(decode, "\x2A\xC5\xA9\xB1\xE2") == 0)
+  3677			{
+  3678				p = local_GetWord(strBuff, p);
+  3679				cnt = 0;
+  3680	
+  3681				lpCharInfo->SizeLevel = -1;
+  3682	
+  3683				while(1)
+  3684				{
+  3685					if(szCharSizeCodeName[cnt][0] == 0) break;
+  3686					if(lstrcmp(szCharSizeCodeName[cnt], strBuff) == 0)
+  3687					{
+  3688						lpCharInfo->SizeLevel = cnt;
+  3689					}
+  3690					cnt++;
+  3691				}
+  3692				NextFlag = TRUE;
+  3693			}
+  3694	
+  3695	
+  3696			if(!NextFlag && (lstrcmp(decode, "\x2A\xBC\xD2\xB8\xAE") == 0 || lstrcmp(decode, "\x2A\xC8\xBF\xB0\xFA\xC0\xBD") == 0))
+  3697			{
+  3698				p = local_GetWord(strBuff, p);
+  3699				cnt = 0;
+  3700	
+  3701				while(1)
+  3702				{
+  3703					if(dwCharSoundCode[cnt].dwCode == 0) break;
+  3704					if(lstrcmpi(dwCharSoundCode[cnt].szCodeName, strBuff) == 0)
+  3705					{
+  3706						lpCharInfo->dwCharSoundCode = dwCharSoundCode[cnt].dwCode;
+  3707					}
+  3708					cnt++;
+  3709				}
+  3710				NextFlag = TRUE;
+  3711			}
+  3712	
+  3713	
+  3714	
+  3715			if(!NextFlag && lstrcmp(decode, "\x2A\xB7\xB9\xBA\xA7") == 0)
+  3716			{
+  3717				p = local_GetWord(strBuff, p);
+  3718				lpCharInfo->Level = atoi(strBuff);
+  3719				NextFlag = TRUE;
+  3720			}
+  3721	
+  3722	
+  3723			if(!NextFlag && lstrcmp(decode, "\x2A\xB5\xCE\xB8\xF1") == 0)
+  3724			{
+  3725	
+  3726				lpCharInfo->wPlayClass[0] = MONSTER_CLASS_BOSS;
+  3727				NextFlag = TRUE;
+  3728			}
+  3729	
+  3730			if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xE8\xB1\xDE") == 0)
+  3731			{
+  3732				p = local_GetWord(strBuff, p);
+  3733				lpCharInfo->wPlayClass[0] = atoi(strBuff);
+  3734				NextFlag = TRUE;
+  3735			}
+  3736	
+  3737	
+  3738			if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xF0\xB5\xA8\xC5\xA9\xB1\xE2") == 0)
+  3739			{
+  3740				p = local_GetWord(strBuff, p);
+  3741				lpCharInfo->wPlayClass[1] = (short)(atof(strBuff)*fONE);
+  3742				if(lpCharInfo->wPlayClass[1] == fONE) lpCharInfo->wPlayClass[1] = 0;
+  3743				NextFlag = TRUE;
+  3744			}
+  3745	
+  3746	
+  3747	
+  3748			if(!NextFlag && lstrcmp(decode, "\x2A\xC0\xCC\xB5\xBF\xB7\xC2") == 0)
+  3749			{
+  3750				p = local_GetWord(strBuff, p);
+  3751				lpCharInfo->Move_Speed = ConvMoveSpeed((float)atof(strBuff));
+  3752				NextFlag = TRUE;
+  3753			}
+  3754	
+  3755	
+  3756			if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xB7\xC2") == 0)
+  3757			{
+  3758				p = local_GetWord(strBuff, p);
+  3759				lpCharInfo->Attack_Damage[0] = atoi(strBuff);
+  3760				p = local_GetWord(strBuff, p);
+  3761				lpCharInfo->Attack_Damage[1] = atoi(strBuff);
+  3762	
+  3763				NextFlag = TRUE;
+  3764			}
+  3765	
+  3766	
+  3767			if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xBC\xD3\xB5\xB5") == 0)
+  3768			{
+  3769				p = local_GetWord(strBuff, p);
+  3770				lpCharInfo->Attack_Speed = (int)(atof(strBuff)*fONE);
+  3771				p = local_GetWord(strBuff, p);
+  3772				lpCharInfo->Attack_Speed = (int)(atof(strBuff)*fONE);
+  3773	
+  3774				NextFlag = TRUE;
+  3775			}
+  3776	
+  3777	
+  3778			if(!NextFlag && lstrcmp(decode, "\x2A\xB0\xF8\xB0\xDD\xB9\xFC\xC0\xA7") == 0)
+  3779			{
+  3780				p = local_GetWord(strBuff, p);
+  3781				lpCharInfo->Shooting_Range = atoi(strBuff)*fONE;
+  3782				NextFlag = TRUE;
+  3783			}
+  3784	
+  3785	
+  3786	
+  3787	
+  3788			if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xED\xC1\xDF\xB7\xC2") == 0)
+  3789			{
+  3790				p = local_GetWord(strBuff, p);
+  3791				lpCharInfo->Attack_Rating = atoi(strBuff);
+  3792	
+  3793				NextFlag = TRUE;
+  3794			}
+  3795	
+  3796	
+  3797			if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xE6\xBE\xEE\xB7\xC2") == 0)
+  3798			{
+  3799				p = local_GetWord(strBuff, p);
+  3800				lpCharInfo->Defence = atoi(strBuff);
+  3801	
+  3802				NextFlag = TRUE;
+  3803			}
+  3804	
+  3805			if(!NextFlag && lstrcmp(decode, "\x2A\xC8\xED\xBC\xF6\xC0\xB2") == 0)
+  3806			{
+  3807				p = local_GetWord(strBuff, p);
+  3808				lpCharInfo->Absorption = atoi(strBuff);
+  3809	
+  3810				NextFlag = TRUE;
+  3811			}
+  3812	
+  3813			if(!NextFlag && lstrcmp(decode, "\x2A\xBA\xED\xB7\xB0\xC0\xB2") == 0)
+  3814			{
+  3815				p = local_GetWord(strBuff, p);
+  3816				lpCharInfo->Chance_Block = atoi(strBuff);
+  3817	
+  3818				NextFlag = TRUE;
+  3819			}
+  3820	
+  3821	
+  3822			if(!NextFlag && (lstrcmp(decode, "\x2A\xBB\xFD\xB8\xED\xB7\xC2") == 0 || lstrcmp(decode, "\x2A\xB6\xF3\xC0\xCC\xC7\xC1") == 0))
+  3823			{
+  3824				p = local_GetWord(strBuff, p);
+  3825				lpCharInfo->Life[0] = atoi(strBuff);
+  3826				lpCharInfo->Life[1] = lpCharInfo->Life[0];
+  3827	
+  3828				NextFlag = TRUE;
+  3829			}
+  3830	
+  3831	
+  3832			if(!NextFlag && lstrcmp(decode, "\x2A\xBB\xFD\xC3\xBC") == 0)
+  3833			{
+  3834				p = local_GetWord(strBuff, p);
+  3835				lpCharInfo->Resistance[sITEMINFO_BIONIC] = (short)atoi(strBuff);
+  3836				NextFlag = TRUE;
+  3837			}
+  3838	
+  3839			if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xB0") == 0)
+  3840			{
+  3841				p = local_GetWord(strBuff, p);
+  3842				lpCharInfo->Resistance[sITEMINFO_WATER] = (short)atoi(strBuff);
+  3843				NextFlag = TRUE;
+  3844			}
+  3845	
+  3846			if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xF8\xB0\xB3") == 0)
+  3847			{
+  3848				p = local_GetWord(strBuff, p);
+  3849				lpCharInfo->Resistance[sITEMINFO_LIGHTING] = (short)atoi(strBuff);
+  3850	
+  3851				NextFlag = TRUE;
+  3852			}
+  3853	
+  3854			if(!NextFlag && lstrcmp(decode, "\x2A\xBE\xF3\xC0\xBD") == 0)
+  3855			{
+  3856				p = local_GetWord(strBuff, p);
+  3857				lpCharInfo->Resistance[sITEMINFO_ICE] = (short)atoi(strBuff);
+  3858				NextFlag = TRUE;
+  3859			}
+  3860	
+  3861			if(!NextFlag && lstrcmp(decode, "\x2A\xB9\xD9\xB6\xF7") == 0)
+  3862			{
+  3863				p = local_GetWord(strBuff, p);
+  3864				lpCharInfo->Resistance[sITEMINFO_WIND] = (short)atoi(strBuff);
+  3865				NextFlag = TRUE;
+  3866			}
+  3867	
+  3868			if(!NextFlag && lstrcmp(decode, "\x2A\xC1\xF6\xB5\xBF\xB7\xC2") == 0)

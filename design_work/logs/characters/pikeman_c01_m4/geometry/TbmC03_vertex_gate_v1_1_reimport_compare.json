@@ -1,0 +1,10 @@
+{
+  "tool": "PT_PIKEMAN_GEOMETRY_REIMPORT_COMPARE_V1_1",
+  "target_object": "TbmC03",
+  "vertex_count": 74,
+  "max_vertex_position_error": 0.006880095711502966,
+  "mean_vertex_position_error": 0.0033065730096220923,
+  "worst_vertex": 39,
+  "allowed_max_error": 0.01,
+  "geometry_reimport_compare_check": "PASS"
+}

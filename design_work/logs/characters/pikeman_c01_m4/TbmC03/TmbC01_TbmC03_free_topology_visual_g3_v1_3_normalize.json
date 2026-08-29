@@ -1,0 +1,45 @@
+{
+  "tool": "PT_RIGID_SKIN_NORMALIZE_COPY_V2",
+  "status": "PASS",
+  "source_blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_m4/geometry/C002_TbmC03_free_topology_visual_g3_v1_3.blend",
+  "source_blend_sha256": "c8819aa6b9e55d2bbdf3ac5da9f978b6fe8e241b71e03d4d1ae3a9f007168803",
+  "output_blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_TbmC03_free_topology_visual_g3_v1_3_game_normalized.blend",
+  "object": "TbmC03",
+  "mode_sync": {
+    "original_mode": "OBJECT",
+    "current_mode": "OBJECT",
+    "edit_mode_synchronized": false
+  },
+  "vertices": 75,
+  "strict_rigid_before": 75,
+  "mixed_before": 0,
+  "empty_before": 0,
+  "preserved_rigid": 75,
+  "auto_resolved": 0,
+  "unresolved": 0,
+  "review_group": null,
+  "policy_histogram": {
+    "ALREADY_RIGID": 75
+  },
+  "chosen_bone_histogram": {
+    "Bip01 Spine1": 23,
+    "Bip01 Spine": 7,
+    "Bip01 Pelvis": 13,
+    "Bip01 Head": 4,
+    "Bip01 Tail": 2,
+    "Bip01 R Clavicle": 6,
+    "Bip01 R UpperArm": 2,
+    "Bip01 R Thigh": 5,
+    "Bip01 L Clavicle": 7,
+    "Bip01 L Thigh": 5,
+    "Bip01 L UpperArm": 1
+  },
+  "unresolved_vertices": [],
+  "auto_resolved_vertices": [],
+  "artist_message": {
+    "summary": "A cópia foi normalizada para o Physique rígido do jogo. O arquivo artístico original não foi alterado.",
+    "why": "O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.",
+    "automatic": "0 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.",
+    "manual": "Nenhum vértice exige revisão manual."
+  }
+}

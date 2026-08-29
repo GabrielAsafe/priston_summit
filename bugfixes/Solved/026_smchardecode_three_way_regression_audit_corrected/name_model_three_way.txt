@@ -1,0 +1,395 @@
+
+######################################################################
+CURRENT
+######################################################################
+00002: {
+00003: 
+00004: 	FILE	*fp;
+00005: 
+00006: 	char strBuff[256];
+00007: 	char szFile[128];
+00008: 	char *p;
+00009: 	char *pb;
+00010: 	int NextFlag;
+00011: 	int cnt;
+00012: 	int	percent;
+00013: 	int	DialogFlag;
+00014: 
+00015: 	DWORD	dwItemCode[32];
+00016: 	int		ItemCodeCnt;
+00017: 
+00018: 
+00019: 	strcpy_s(szFile, szCharFile);
+00020: 
+00021: 	fp = fopen(szFile, "rb");
+00022: 	if(fp == NULL) return FALSE;
+00023: 
+00024: 
+00025: 
+00026: 
+00027: 	lpCharInfo->szModelName2[0] = 0;
+       HEX: 096c7043686172496e666f2d3e737a4d6f64656c4e616d65325b305d203d20303b
+00028: 	lpCharInfo->wPlayClass[1] = 0;
+00029: 	lpCharInfo->ArrowPosi[0] = 0;
+00030: 	lpCharInfo->ArrowPosi[1] = 0;
+00031: 
+00032: 	if(lpMonInfo)
+00033: 	{
+00034: 		ZeroMemory(lpMonInfo, sizeof(smCHAR_MONSTER_INFO));
+00035: 		lpMonInfo->MoveRange = 64 * fONE;
+00036: 		lpMonInfo->FallItemCount = 0;
+00037: 		lpMonInfo->FallItemMax = 0;
+00038: 		lpMonInfo->FallItemPerMax = 0;
+00039: 
+00040: 		lpMonInfo->DamageStunPers = 100;
+00041: 		lpMonInfo->UseEventModel = 0;
+00042: 	}
+00043: 
+00044: 	while(!feof(fp))
+00045: 	{
+00046: 		if(fgets(line, 255, fp) == NULL)	break;
+00047: 
+00048: 		p = local_GetWord(decode, line);
+00049: 
+00050: 		NextFlag = 0;
+00051: 
+00052: 
+00053: 		if(lstrcmp(decode, "*�̸�") == 0)
+       HEX: 09096966286c737472636d70286465636f64652c20222aefbfbdccb8efbfbd2229203d3d203029
+00054: 		{
+00055: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+00056: 
+00057: 			strcpy_s(lpCharInfo->szName, strBuff);
+       HEX: 0909097374726370795f73286c7043686172496e666f2d3e737a4e616d652c2073747242756666293b
+00058: 			NextFlag = TRUE;
+00059: 		}
+00060: 
+00061: 
+00062: #ifdef _LANGUAGE_BRAZIL
+00063: 		if(lstrcmpi(decode, "*J_NAME") == 0)
+       HEX: 09096966286c737472636d7069286465636f64652c20222a4a5f4e414d452229203d3d203029
+00064: 		{
+00065: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+00066: 
+00067: 			if(lpMonInfo)
+00068: 				strcpy_s(lpMonInfo->szName, strBuff);
+       HEX: 090909097374726370795f73286c704d6f6e496e666f2d3e737a4e616d652c2073747242756666293b
+00069: 			else
+00070: 				strcpy_s(lpCharInfo->szName, strBuff);
+       HEX: 090909097374726370795f73286c7043686172496e666f2d3e737a4e616d652c2073747242756666293b
+00071: 
+00072: 			NextFlag = TRUE;
+00073: 		}
+00074: #endif
+00075: 
+00076: 		if(!NextFlag && lstrcmp(decode, "*�������") == 0)
+       HEX: 0909696628214e657874466c6167202626206c737472636d70286465636f64652c20222aefbfbdefbfbdefbfbdefbfbdefbfbdefbfbdefbfbd2229203d3d203029
+00077: 		{
+00078: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+00079: 
+00080: 
+00081: 
+00082: 			strcpy_s(lpCharInfo->szModelName, strBuff);
+       HEX: 0909097374726370795f73286c7043686172496e666f2d3e737a4d6f64656c4e616d652c2073747242756666293b
+00083: 			NextFlag = TRUE;
+00084: 		}
+00085: 
+00086: 
+00087: 
+00088: 		DialogFlag = 0;
+00089: 
+00090: 		if(!NextFlag && lpDialogMessage && lstrcmp(decode, "*��ȭ") == 0)
+       HEX: 0909696628214e657874466c6167202626206c704469616c6f674d657373616765202626206c737472636d70286465636f64652c20222aefbfbdefbfbdc8ad2229203d3d203029
+00091: 		{
+00092: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+00093: 
+00094: 			strcpy_s(lpDialogMessage, DialogMessageSize, strBuff);
+00095: 			NextFlag = TRUE;
+00096: 			DialogFlag++;
+00097: 		}
+00098: 
+00099: 
+00100: #ifdef _LANGUAGE_BRAZIL
+00101: 		if(lpDialogMessage && lstrcmpi(decode, "*J_CHAT") == 0)
+       HEX: 09096966286c704469616c6f674d657373616765202626206c737472636d7069286465636f64652c20222a4a5f434841542229203d3d203029
+00102: 		{
+00103: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+00104: 
+00105: 			strcpy_s(lpDialogMessage, DialogMessageSize, strBuff);
+00106: 			NextFlag = TRUE;
+00107: 			DialogFlag++;
+00108: 		}
+00109: #endif
+00110: 
+00111: 
+00112: 		if(DialogFlag && lpMonInfo)
+00113: 		{
+00114: 			if(lpMonInfo->NpcMsgCount < NPC_MESSAGE_MAX)
+00115: 			{
+00116: 
+
+######################################################################
+BASE_PRE_REGRESSION
+######################################################################
+00003: 	// MINGW_CHARINF_CP949_TOKEN_FIX_V1 - legacy CP949 literals restored as ASCII hex escapes
+00004: 
+00005: 	FILE	*fp;
+00006: 
+00007: 	char strBuff[256];
+00008: 	char szFile[128];
+00009: 	char *p;
+00010: 	char *pb;
+00011: 	int NextFlag;
+00012: 	int cnt;
+00013: 	int	percent;
+00014: 	int	DialogFlag;
+00015: 
+00016: 	DWORD	dwItemCode[32];
+00017: 	int		ItemCodeCnt;
+00018: 
+00019: 
+00020: 	strcpy_s(szFile, szCharFile);
+00021: 
+00022: 	fp = fopen(szFile, "rb");
+00023: 	if(fp == NULL) return FALSE;
+00024: 
+00025: 
+00026: 
+00027: 
+00028: 	lpCharInfo->szModelName2[0] = 0;
+       HEX: 096c7043686172496e666f2d3e737a4d6f64656c4e616d65325b305d203d20303b
+00029: 	lpCharInfo->wPlayClass[1] = 0;
+00030: 	lpCharInfo->ArrowPosi[0] = 0;
+00031: 	lpCharInfo->ArrowPosi[1] = 0;
+00032: 
+00033: 	if(lpMonInfo)
+00034: 	{
+00035: 		ZeroMemory(lpMonInfo, sizeof(smCHAR_MONSTER_INFO));
+00036: 		lpMonInfo->MoveRange = 64 * fONE;
+00037: 		lpMonInfo->FallItemCount = 0;
+00038: 		lpMonInfo->FallItemMax = 0;
+00039: 		lpMonInfo->FallItemPerMax = 0;
+00040: 
+00041: 		lpMonInfo->DamageStunPers = 100;
+00042: 		lpMonInfo->UseEventModel = 0;
+00043: 	}
+00044: 
+00045: 	while(!feof(fp))
+00046: 	{
+00047: 		if(fgets(line, 255, fp) == NULL)	break;
+00048: 
+00049: 		p = local_GetWord(decode, line);
+00050: 
+00051: 		NextFlag = 0;
+00052: 
+00053: 
+00054: 		if(lstrcmp(decode, "\x2A\xC0\xCC\xB8\xA7") == 0)
+       HEX: 09096966286c737472636d70286465636f64652c20225c7832415c7843305c7843435c7842385c7841372229203d3d203029
+00055: 		{
+00056: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+00057: 
+00058: 			strcpy_s(lpCharInfo->szName, strBuff);
+       HEX: 0909097374726370795f73286c7043686172496e666f2d3e737a4e616d652c2073747242756666293b
+00059: 			NextFlag = TRUE;
+00060: 		}
+00061: 
+00062: 
+00063: #ifdef _LANGUAGE_BRAZIL
+00064: 		if(lstrcmpi(decode, "*J_NAME") == 0)
+       HEX: 09096966286c737472636d7069286465636f64652c20222a4a5f4e414d452229203d3d203029
+00065: 		{
+00066: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+00067: 
+00068: 			if(lpMonInfo)
+00069: 				strcpy_s(lpMonInfo->szName, strBuff);
+       HEX: 090909097374726370795f73286c704d6f6e496e666f2d3e737a4e616d652c2073747242756666293b
+00070: 			else
+00071: 				strcpy_s(lpCharInfo->szName, strBuff);
+       HEX: 090909097374726370795f73286c7043686172496e666f2d3e737a4e616d652c2073747242756666293b
+00072: 
+00073: 			NextFlag = TRUE;
+00074: 		}
+00075: #endif
+00076: 
+00077: 		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xF0\xBE\xE7\xC6\xC4\xC0\xCF") == 0)
+       HEX: 0909696628214e657874466c6167202626206c737472636d70286465636f64652c20225c7832415c7842385c7846305c7842455c7845375c7843365c7843345c7843305c7843462229203d3d203029
+00078: 		{
+00079: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+00080: 
+00081: 
+00082: 
+00083: 			strcpy_s(lpCharInfo->szModelName, strBuff);
+       HEX: 0909097374726370795f73286c7043686172496e666f2d3e737a4d6f64656c4e616d652c2073747242756666293b
+00084: 			NextFlag = TRUE;
+00085: 		}
+00086: 
+00087: 
+00088: 
+00089: 		DialogFlag = 0;
+00090: 
+00091: 		if(!NextFlag && lpDialogMessage && lstrcmp(decode, "\x2A\xB4\xEB\xC8\xAD") == 0)
+       HEX: 0909696628214e657874466c6167202626206c704469616c6f674d657373616765202626206c737472636d70286465636f64652c20225c7832415c7842345c7845425c7843385c7841442229203d3d203029
+00092: 		{
+00093: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+00094: 
+00095: 			strcpy_s(lpDialogMessage, DialogMessageSize, strBuff);
+00096: 			NextFlag = TRUE;
+00097: 			DialogFlag++;
+00098: 		}
+00099: 
+00100: 
+00101: #ifdef _LANGUAGE_BRAZIL
+00102: 		if(lpDialogMessage && lstrcmpi(decode, "*J_CHAT") == 0)
+       HEX: 09096966286c704469616c6f674d657373616765202626206c737472636d7069286465636f64652c20222a4a5f434841542229203d3d203029
+00103: 		{
+00104: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+00105: 
+00106: 			strcpy_s(lpDialogMessage, DialogMessageSize, strBuff);
+00107: 			NextFlag = TRUE;
+00108: 			DialogFlag++;
+00109: 		}
+00110: #endif
+00111: 
+00112: 
+00113: 		if(DialogFlag && lpMonInfo)
+00114: 		{
+00115: 			if(lpMonInfo->NpcMsgCount < NPC_MESSAGE_MAX)
+00116: 			{
+00117: 
+
+######################################################################
+ARMAZEM_REFERENCE
+######################################################################
+00002: {
+00003: 
+00004: 	FILE	*fp;
+00005: 	//char	*szDirecotry;
+00006: 	char strBuff[256];
+00007: 	char szFile[128];
+00008: 	char *p;
+00009: 	char *pb;
+00010: 	int NextFlag;
+00011: 	int cnt;
+00012: 	int	percent;
+00013: 	int	DialogFlag;
+00014: 
+00015: 	DWORD	dwItemCode[32];
+00016: 	int		ItemCodeCnt;
+00017: 
+00018: 
+00019: 	lstrcpy( szFile , szCharFile );
+00020: 
+00021: 	fp = fopen( szFile , "rb" );
+00022: 	if ( fp==NULL ) return FALSE;
+00023: 
+00024: 	//���� �̸����� ���� ���丮�� ã�� ����
+00025: 	//szDirecotry = SetDirectoryFromFile( szCharFile );
+00026: 
+00027: 	lpCharInfo->szModelName2[0] = 0;
+       HEX: 096c7043686172496e666f2d3e737a4d6f64656c4e616d65325b305d203d20303b
+00028: 	lpCharInfo->wPlayClass[1] = 0;
+00029: 	lpCharInfo->ArrowPosi[0] = 0;
+00030: 	lpCharInfo->ArrowPosi[1] = 0;
+00031: 
+00032: 	if ( lpMonInfo ) {
+00033: 		ZeroMemory( lpMonInfo , sizeof(smCHAR_MONSTER_INFO) );
+00034: 		lpMonInfo->MoveRange = 64*fONE;
+00035: 		lpMonInfo->FallItemCount = 0;
+00036: 		lpMonInfo->FallItemMax = 0;
+00037: 		lpMonInfo->FallItemPerMax = 0;
+00038: 
+00039: 		lpMonInfo->DamageStunPers = 100;			//�⺻ ���Ϸ� 100%
+00040: 		lpMonInfo->UseEventModel = 0;
+00041: 	}
+00042: 
+00043: 	while( !feof( fp ) )//  feof: file end���� �о�� 
+00044: 	{
+00045: 		if( fgets( line, 255, fp ) == NULL)	break;
+00046: 
+00047: 		p = GetWord( decode , line);
+00048: 
+00049: 		NextFlag = 0;
+00050: 
+00051: 		///////////////// �̸� ///////////////////////
+00052: 		if ( lstrcmp( decode , "*�̸�" )==0 ) {
+       HEX: 090969662028206c737472636d7028206465636f6465202c20222ac0ccb8a72220293d3d302029207b
+00053: 			pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//�ܾ� ã��
+00054: 
+00055: 			lstrcpy( lpCharInfo->szName , strBuff );
+       HEX: 0909096c73747263707928206c7043686172496e666f2d3e737a4e616d65202c207374724275666620293b
+00056: 			NextFlag = TRUE;
+00057: 		}
+00058: 
+00059: #ifdef	_LANGUAGE_CHINESE
+00060: 		if ( lstrcmpi( decode , "*C_NAME" )==0 ) {
+       HEX: 090969662028206c737472636d706928206465636f6465202c20222a435f4e414d452220293d3d302029207b
+00061: 			pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//�ܾ� ã��
+00062: 
+00063: 			if ( lpMonInfo )
+00064: 				lstrcpy( lpMonInfo->szName , strBuff );
+       HEX: 090909096c73747263707928206c704d6f6e496e666f2d3e737a4e616d65202c207374724275666620293b
+00065: 			else
+00066: 				lstrcpy( lpCharInfo->szName , strBuff );
+       HEX: 090909096c73747263707928206c7043686172496e666f2d3e737a4e616d65202c207374724275666620293b
+00067: 
+00068: 			NextFlag = TRUE;
+00069: 		}
+00070: #endif
+00071: #ifdef	_LANGUAGE_JAPANESE
+00072: 		if ( lstrcmpi( decode , "*J_NAME" )==0 ) {
+       HEX: 090969662028206c737472636d706928206465636f6465202c20222a4a5f4e414d452220293d3d302029207b
+00073: 			pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//�ܾ� ã��
+00074: 
+00075: 			if ( lpMonInfo )
+00076: 				lstrcpy( lpMonInfo->szName , strBuff );
+       HEX: 090909096c73747263707928206c704d6f6e496e666f2d3e737a4e616d65202c207374724275666620293b
+00077: 			else
+00078: 				lstrcpy( lpCharInfo->szName , strBuff );
+       HEX: 090909096c73747263707928206c7043686172496e666f2d3e737a4e616d65202c207374724275666620293b
+00079: 
+00080: 			NextFlag = TRUE;
+00081: 		}
+00082: #endif
+00083: #ifdef	_LANGUAGE_TAIWAN
+00084: 		if ( lstrcmpi( decode , "*T_NAME" )==0 ) {
+       HEX: 090969662028206c737472636d706928206465636f6465202c20222a545f4e414d452220293d3d302029207b
+00085: 			pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//�ܾ� ã��
+00086: 
+00087: 			if ( lpMonInfo )
+00088: 				lstrcpy( lpMonInfo->szName , strBuff );
+       HEX: 090909096c73747263707928206c704d6f6e496e666f2d3e737a4e616d65202c207374724275666620293b
+00089: 			else
+00090: 				lstrcpy( lpCharInfo->szName , strBuff );
+       HEX: 090909096c73747263707928206c7043686172496e666f2d3e737a4e616d65202c207374724275666620293b
+00091: 
+00092: 			NextFlag = TRUE;
+00093: 		}
+00094: #endif
+00095: #ifdef	_LANGUAGE_ENGLISH
+00096: 		if ( lstrcmpi( decode , "*J_NAME" )==0 ) {
+       HEX: 090969662028206c737472636d706928206465636f6465202c20222a4a5f4e414d452220293d3d302029207b
+00097: 			pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//�ܾ� ã��
+00098: 
+00099: 			if ( lpMonInfo )
+00100: 				lstrcpy( lpMonInfo->szName , strBuff );
+       HEX: 090909096c73747263707928206c704d6f6e496e666f2d3e737a4e616d65202c207374724275666620293b
+00101: 			else
+00102: 				lstrcpy( lpCharInfo->szName , strBuff );
+       HEX: 090909096c73747263707928206c7043686172496e666f2d3e737a4e616d65202c207374724275666620293b
+00103: 
+00104: 			NextFlag = TRUE;
+00105: 		}
+00106: #endif
+00107: #ifdef	_LANGUAGE_THAI
+00108: 		if ( lstrcmpi( decode , "*TH_NAME" )==0 ) {
+       HEX: 090969662028206c737472636d706928206465636f6465202c20222a54485f4e414d452220293d3d302029207b
+00109: 			pb=p;p=GetWord(strBuff,p);if(strBuff[0]==34)p=GetString(strBuff,pb);	//�ܾ� ã��
+00110: 
+00111: 			if ( lpMonInfo )
+00112: 				lstrcpy( lpMonInfo->szName , strBuff );
+       HEX: 090909096c73747263707928206c704d6f6e496e666f2d3e737a4e616d65202c207374724275666620293b
+00113: 			else
+00114: 				lstrcpy( lpCharInfo->szName , strBuff );
+       HEX: 090909096c73747263707928206c7043686172496e666f2d3e737a4e616d65202c207374724275666620293b
+00115: 
+00116: 			NextFlag = TRUE;

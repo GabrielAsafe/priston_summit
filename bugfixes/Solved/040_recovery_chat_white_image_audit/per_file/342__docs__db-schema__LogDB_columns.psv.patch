@@ -1,0 +1,29 @@
+diff --git a/docs/db-schema/LogDB_columns.psv b/docs/db-schema/LogDB_columns.psv
+deleted file mode 100644
+index 5083a20..0000000
+--- a/docs/db-schema/LogDB_columns.psv
++++ /dev/null
+@@ -1,23 +0,0 @@
+-DatabaseName|SchemaName|TableName|ColumnName|DataType|MaxLength|IsNullable|DefaultValue|OrdinalPosition
+-------------|----------|---------|----------|--------|---------|----------|------------|---------------
+-LogDB|dbo|AccountLogin|ID|int||NO||1
+-LogDB|dbo|AccountLogin|Account|varchar|32|YES||2
+-LogDB|dbo|AccountLogin|Password|varchar|32|YES||3
+-LogDB|dbo|AccountLogin|IP|varchar|50|YES||4
+-LogDB|dbo|AccountLogin|MacAddress|varchar|20|YES||5
+-LogDB|dbo|AccountLogin|Path|varchar|260|YES||6
+-LogDB|dbo|AccountLogin|PCName|varchar|16|YES||7
+-LogDB|dbo|AccountLogin|Date|varchar|50|YES||8
+-LogDB|dbo|ChangePassword|AccountName|ntext|1073741823|YES||1
+-LogDB|dbo|ChangePassword|Password|ntext|1073741823|YES||2
+-LogDB|dbo|CheatLog|ID|bigint||NO||1
+-LogDB|dbo|CheatLog|IP|varchar|20|NO||2
+-LogDB|dbo|CheatLog|AccountName|varchar|32|NO||3
+-LogDB|dbo|CheatLog|Action|int||NO|((0))|4
+-LogDB|dbo|CheatLog|LogID|int||NO||5
+-LogDB|dbo|CheatLog|Description|varchar|256|NO||6
+-LogDB|dbo|CheatLog|Date|varchar|50|NO||7
+-LogDB|dbo|ClanLogin|AccountName|ntext|1073741823|YES||1
+-LogDB|dbo|ClanLogin|Password|ntext|1073741823|YES||2
+-LogDB|dbo|Register|AccountName|ntext|1073741823|YES||1
+-LogDB|dbo|Register|Password|ntext|1073741823|YES||2

@@ -1,0 +1,33 @@
+--- a/SourceCode/SrcServer/src/cQuestHandler.cpp
++++ b/SourceCode/SrcServer/src/cQuestHandler.cpp
+@@ -1354,9 +1354,18 @@
+ 	char strBuff[255];
+ 	DWORD dwAcess = 0;
+ 	GetPostBoxFile(szID, szFileName);
++	fprintf(stderr, "[DIST][WRITE][QUEST] account=%s item=%s spec=%d file=%s\n",
++		szID ? szID : "(null)", szItemCode ? szItemCode : "(null)", spec, szFileName);
++	fflush(stderr);
++
++	SetLastError(ERROR_SUCCESS);
+ 	HANDLE hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+ 	if (hFile == INVALID_HANDLE_VALUE)
+ 	{
++		DWORD dwError = GetLastError();
++		fprintf(stderr, "[DIST][WRITE][QUEST] CreateFile=FAIL error=%lu file=%s\n",
++			(unsigned long)dwError, szFileName);
++		fflush(stderr);
+ 		return;
+ 	}
+ 	else
+@@ -1365,7 +1374,10 @@
+ 		SetFilePointer(hFile, FileLength, NULL, FILE_BEGIN);
+ 
+ 		sprintf_s(strBuff, "* %s %d \"Shop\"\r\n", szItemCode, spec);
+-		WriteFile(hFile, strBuff, lstrlen(strBuff), &dwAcess, NULL);
++		BOOL bWrite = WriteFile(hFile, strBuff, lstrlen(strBuff), &dwAcess, NULL);
++		fprintf(stderr, "[DIST][WRITE][QUEST] CreateFile=OK write=%d bytes=%lu expected=%d file=%s\n",
++			bWrite ? 1 : 0, (unsigned long)dwAcess, lstrlen(strBuff), szFileName);
++		fflush(stderr);
+ 		CloseHandle(hFile);
+ 	}
+ }

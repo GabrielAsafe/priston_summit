@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=4967f79550cb031c4e387f6ffcf10b8885b684f83d3a696964828ac13cd33971
+output_sha256=440e1b4bffd8af4f3679bb40da5f3de579c9cea4b9a22c0e4bf52bc5aa644144
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-CAD96DA0DC5D/stage072_preview/texture_overlay_client/field/Sod/f-flame_7.tga
+format=TGA_PRISTON_HEADER18_FULL18
+client_modified=False
+tga_decode_check=PASS

@@ -1,0 +1,588 @@
+[000] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd cc b8 ef bf bd
+    SUMMIT utf8  : *�̸�
+    SUMMIT cp949 : *占싱몌옙
+    MASTER hex   : 2a c0 cc b8 a7
+    MASTER cp949 : *이름
+
+[001] LOW    same=False fffd=False
+    SUMMIT hex   : 2a 4a 5f 4e 41 4d 45
+    SUMMIT utf8  : *J_NAME
+    SUMMIT cp949 : *J_NAME
+    MASTER hex   : 2a 43 5f 4e 41 4d 45
+    MASTER cp949 : *C_NAME
+
+[002] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd da b5 ef bf bd
+    SUMMIT utf8  : *�ڵ�
+    SUMMIT cp949 : *占쌘듸옙
+    MASTER hex   : 2a 4a 5f 4e 41 4d 45
+    MASTER cp949 : *J_NAME
+
+[003] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd c5 a9
+    SUMMIT utf8  : *����ũ
+    SUMMIT cp949 : *占쏙옙占쏙옙크
+    MASTER hex   : 2a 54 5f 4e 41 4d 45
+    MASTER cp949 : *T_NAME
+
+[004] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd c5 a9 ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *����ũ����
+    SUMMIT cp949 : *占쏙옙占쏙옙크占쏙옙占쏙옙
+    MASTER hex   : 2a 4a 5f 4e 41 4d 45
+    MASTER cp949 : *J_NAME
+
+[005] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd c6 ae ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *����Ʈ����
+    SUMMIT cp949 : *占쏙옙占쏙옙트占쏙옙占쏙옙
+    MASTER hex   : 2a 54 48 5f 4e 41 4d 45
+    MASTER cp949 : *TH_NAME
+
+[006] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *������
+    SUMMIT cp949 : *占쏙옙占쏙옙占쏙옙
+    MASTER hex   : 2a 56 5f 4e 41 4d 45
+    MASTER cp949 : *V_NAME
+
+[007] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *����
+    SUMMIT cp949 : *占쏙옙占쏙옙
+    MASTER hex   : 2a 42 5f 4e 41 4d 45
+    MASTER cp949 : *B_NAME
+
+[008] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *����
+    SUMMIT cp949 : *占쏙옙占쏙옙
+    MASTER hex   : 2a 41 5f 4e 41 4d 45
+    MASTER cp949 : *A_NAME
+
+[009] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd c3 bc
+    SUMMIT utf8  : *��ü
+    SUMMIT cp949 : *占쏙옙체
+    MASTER hex   : 2a c4 da b5 e5
+    MASTER cp949 : *코드
+
+[010] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd da bf ef bf bd
+    SUMMIT utf8  : *���ڿ�
+    SUMMIT cp949 : *占쏙옙占쌘울옙
+    MASTER hex   : 2a c0 af b4 cf c5 a9
+    MASTER cp949 : *유니크
+
+[011] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd
+    SUMMIT utf8  : *��
+    SUMMIT cp949 : *占쏙옙
+    MASTER hex   : 2a c0 af b4 cf c5 a9 bb f6 bb f3
+    MASTER cp949 : *유니크색상
+
+[012] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd c3 b1 ef bf bd
+    SUMMIT utf8  : *�ñ�
+    SUMMIT cp949 : *占시깍옙
+    MASTER hex   : 2a c0 cc c6 e5 c6 ae bc b3 c1 a4
+    MASTER cp949 : *이펙트설정
+
+[013] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *����
+    SUMMIT cp949 : *占쏙옙占쏙옙
+    MASTER hex   : 2a b3 bb b1 b8 b7 c2
+    MASTER cp949 : *내구력
+
+[014] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd
+    SUMMIT utf8  : *��
+    SUMMIT cp949 : *占쏙옙
+    MASTER hex   : 2a b9 ab b0 d4
+    MASTER cp949 : *무게
+
+[015] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd
+    SUMMIT utf8  : *��
+    SUMMIT cp949 : *占쏙옙
+    MASTER hex   : 2a b0 a1 b0 dd
+    MASTER cp949 : *가격
+
+[016] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd d9 b6 ef bf bd
+    SUMMIT utf8  : *�ٶ�
+    SUMMIT cp949 : *占쌕띰옙
+    MASTER hex   : 2a bb fd c3 bc
+    MASTER cp949 : *생체
+
+[017] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd dd b7 ef bf bd
+    SUMMIT utf8  : *���ݷ�
+    SUMMIT cp949 : *占쏙옙占쌥뤄옙
+    MASTER hex   : 2a b4 eb c0 da bf ac
+    MASTER cp949 : *대자연
+
+[018] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd c5 b8 ef bf bd
+    SUMMIT utf8  : *�����Ÿ�
+    SUMMIT cp949 : *占쏙옙占쏙옙占신몌옙
+    MASTER hex   : 2a ba d2
+    MASTER cp949 : *불
+
+[019] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd dd bc d3 b5 ef bf bd
+    SUMMIT utf8  : *���ݼӵ�
+    SUMMIT cp949 : *占쏙옙占쌥속듸옙
+    MASTER hex   : 2a b3 c3 b1 e2
+    MASTER cp949 : *냉기
+
+[020] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd df b7 ef bf bd
+    SUMMIT utf8  : *���߷�
+    SUMMIT cp949 : *占쏙옙占쌩뤄옙
+    MASTER hex   : 2a b9 f8 b0 b3
+    MASTER cp949 : *번개
+
+[021] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a c5 a9 ef bf bd ef bf bd c6 bc ef bf bd ef bf bd
+    SUMMIT utf8  : *ũ��Ƽ��
+    SUMMIT cp949 : *크占쏙옙티占쏙옙
+    MASTER hex   : 2a b5 b6
+    MASTER cp949 : *독
+
+[022] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *�����
+    SUMMIT cp949 : 
+    MASTER hex   : 2a b9 b0
+    MASTER cp949 : *물
+
+[023] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *����
+    SUMMIT cp949 : *占쏙옙占쏙옙
+    MASTER hex   : 2a b9 d9 b6 f7
+    MASTER cp949 : *바람
+
+[024] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *�����
+    SUMMIT cp949 : 
+    MASTER hex   : 2a b0 f8 b0 dd b7 c2
+    MASTER cp949 : *공격력
+
+[025] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd cc b5 ef bf bd ef bf bd d3 b5 ef bf bd
+    SUMMIT utf8  : *�̵��ӵ�
+    SUMMIT cp949 : *占싱듸옙占쌈듸옙
+    MASTER hex   : 2a bb e7 c1 a4 b0 c5 b8 ae
+    MASTER cp949 : *사정거리
+
+[026] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *��������
+    SUMMIT cp949 : *占쏙옙占쏙옙占쏙옙占쏙옙
+    MASTER hex   : 2a b0 f8 b0 dd bc d3 b5 b5
+    MASTER cp949 : *공격속도
+
+[027] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd c3 b5 ef bf bd
+    SUMMIT utf8  : *�������õ�
+    SUMMIT cp949 : *占쏙옙占쏙옙占쏙옙占시듸옙
+    MASTER hex   : 2a b8 ed c1 df b7 c2
+    MASTER cp949 : *명중력
+
+[028] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *�������
+    SUMMIT cp949 : 
+    MASTER hex   : 2a c5 a9 b8 ae c6 bc c4 c3
+    MASTER cp949 : *크리티컬
+
+[029] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *������
+    SUMMIT cp949 : *占쏙옙占쏙옙占쏙옙
+    MASTER hex   : 2a c8 ed bc f6 b7 c2
+    MASTER cp949 : *흡수력
+
+[030] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *���������
+    SUMMIT cp949 : 
+    MASTER hex   : 2a b9 e6 be ee b7 c2
+    MASTER cp949 : *방어력
+
+[031] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *��������
+    SUMMIT cp949 : *占쏙옙占쏙옙占쏙옙占쏙옙
+    MASTER hex   : 2a ba ed b7 b0 c0 b2
+    MASTER cp949 : *블럭율
+
+[032] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd d7 b9 cc b3 ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *���׹̳����
+    SUMMIT cp949 : 
+    MASTER hex   : 2a c0 cc b5 bf bc d3 b5 b5
+    MASTER cp949 : *이동속도
+
+[033] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd d9 b7 ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *�ٷ����
+    SUMMIT cp949 : 
+    MASTER hex   : 2a ba b8 c0 af b0 f8 b0 a3
+    MASTER cp949 : *보유공간
+
+[034] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+    SUMMIT utf8  : *�����߰�
+    SUMMIT cp949 : *占쏙옙占쏙옙占쌩곤옙
+    MASTER hex   : 2a b8 b6 b9 fd bc f7 b7 c3 b5 b5
+    MASTER cp949 : *마법숙련도
+
+[035] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+    SUMMIT utf8  : *����߰�
+    SUMMIT cp949 : 
+    MASTER hex   : 2a b8 b6 b3 aa c0 e7 bb fd
+    MASTER cp949 : *마나재생
+
+[036] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+    SUMMIT utf8  : *�������߰�
+    SUMMIT cp949 : *占쏙옙占쏙옙占쏙옙占쌩곤옙
+    MASTER hex   : 2a b1 e2 b7 c2 c0 e7 bb fd
+    MASTER cp949 : *기력재생
+
+[037] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+    SUMMIT utf8  : *������߰�
+    SUMMIT cp949 : 
+    MASTER hex   : 2a b6 f3 c0 cc c7 c1 c0 e7 bb fd
+    MASTER cp949 : *라이프재생
+
+[038] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd d7 b9 cc b3 ef bf bd ef bf bd df b0 ef bf bd
+    SUMMIT utf8  : *���׹̳��߰�
+    SUMMIT cp949 : *占쏙옙占쌓미놂옙占쌩곤옙
+    MASTER hex   : 2a bb fd b8 ed b7 c2 c0 e7 bb fd
+    MASTER cp949 : *생명력재생
+
+[039] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd d9 b7 ef bf bd ef bf bd df b0 ef bf bd
+    SUMMIT utf8  : *�ٷ��߰�
+    SUMMIT cp949 : *占쌕뤄옙占쌩곤옙
+    MASTER hex   : 2a bd ba c5 d7 b9 cc b3 aa c0 e7 bb fd
+    MASTER cp949 : *스테미나재생
+
+[040] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *����
+    SUMMIT cp949 : *占쏙옙占쏙옙
+    MASTER hex   : 2a b1 d9 b7 c2 c0 e7 bb fd
+    MASTER cp949 : *근력재생
+
+[041] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd
+    SUMMIT utf8  : *��
+    SUMMIT cp949 : *占쏙옙
+    MASTER hex   : 2a b8 b6 b3 aa c3 df b0 a1
+    MASTER cp949 : *마나추가
+
+[042] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd c5 b7 ef bf bd
+    SUMMIT utf8  : *���ŷ�
+    SUMMIT cp949 : *占쏙옙占신뤄옙
+    MASTER hex   : 2a b1 e2 b7 c2 c3 df b0 a1
+    MASTER cp949 : *기력추가
+
+[043] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *���
+    SUMMIT cp949 : 
+    MASTER hex   : 2a b6 f3 c0 cc c7 c1 c3 df b0 a1
+    MASTER cp949 : *라이프추가
+
+[044] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd c3 b8 ef bf bd ef bf bd
+    SUMMIT utf8  : *��ø��
+    SUMMIT cp949 : *占쏙옙첩占쏙옙
+    MASTER hex   : 2a bb fd b8 ed b7 c2 c3 df b0 a1
+    MASTER cp949 : *생명력추가
+
+[045] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd c7 b0 ef bf bd
+    SUMMIT utf8  : *�ǰ�
+    SUMMIT cp949 : *占실곤옙
+    MASTER hex   : 2a bd ba c5 d7 b9 cc b3 aa c3 df b0 a1
+    MASTER cp949 : *스테미나추가
+
+[046] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd d7 b9 cc b3 ca bb ef bf bd ef bf bd
+    SUMMIT utf8  : *���׹̳ʻ��
+    SUMMIT cp949 : 
+    MASTER hex   : 2a b1 d9 b7 c2 c3 df b0 a1
+    MASTER cp949 : *근력추가
+
+[047] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd d9 b7 c2 bb ef bf bd ef bf bd
+    SUMMIT utf8  : *�ٷ»��
+    SUMMIT cp949 : 
+    MASTER hex   : 2a b7 b9 ba a7
+    MASTER cp949 : *레벨
+
+[048] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *�������
+    SUMMIT cp949 : 
+    MASTER hex   : 2a c8 fb
+    MASTER cp949 : *힘
+
+[049] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd c2 bb ef bf bd ef bf bd
+    SUMMIT utf8  : *��»��
+    SUMMIT cp949 : *占쏙옙쨩占쏙옙
+    MASTER hex   : 2a c1 a4 bd c5 b7 c2
+    MASTER cp949 : *정신력
+
+[050] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *���������
+    SUMMIT cp949 : 
+    MASTER hex   : 2a c0 e7 b4 c9
+    MASTER cp949 : *재능
+
+[051] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd c2 bb ef bf bd ef bf bd
+    SUMMIT utf8  : *����»��
+    SUMMIT cp949 : *占쏙옙占쏙옙쨩占쏙옙
+    MASTER hex   : 2a b9 ce c3 b8 bc ba
+    MASTER cp949 : *민첩성
+
+[052] LOW    same=False fffd=False
+    SUMMIT hex   : 2a 2a c6 af c8 ad
+    SUMMIT utf8  : **Ưȭ
+    SUMMIT cp949 : **특화
+    MASTER hex   : 2a b0 c7 b0 ad
+    MASTER cp949 : *건강
+
+[053] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a c6 af c8 ad ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : **Ưȭ����
+    SUMMIT cp949 : **특화占쏙옙占쏙옙
+    MASTER hex   : 2a bd ba c5 d7 b9 cc b3 ca bb f3 bd c2
+    MASTER cp949 : *스테미너상승
+
+[054] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : **�����
+    SUMMIT cp949 : 
+    MASTER hex   : 2a b1 d9 b7 c2 bb f3 bd c2
+    MASTER cp949 : *근력상승
+
+[055] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : **����
+    SUMMIT cp949 : **占쏙옙占쏙옙
+    MASTER hex   : 2a b8 b6 b3 aa bb f3 bd c2
+    MASTER cp949 : *마나상승
+
+[056] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd cc b5 ef bf bd ef bf bd d3 b5 ef bf bd
+    SUMMIT utf8  : **�̵��ӵ�
+    SUMMIT cp949 : **占싱듸옙占쌈듸옙
+    MASTER hex   : 2a b1 e2 b7 c2 bb f3 bd c2
+    MASTER cp949 : *기력상승
+
+[057] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : **�����
+    SUMMIT cp949 : 
+    MASTER hex   : 2a b6 f3 c0 cc c7 c1 bb f3 bd c2
+    MASTER cp949 : *라이프상승
+
+[058] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd dd bc d3 b5 ef bf bd
+    SUMMIT utf8  : **���ݼӵ�
+    SUMMIT cp949 : **占쏙옙占쌥속듸옙
+    MASTER hex   : 2a bb fd b8 ed b7 c2 bb f3 bd c2
+    MASTER cp949 : *생명력상승
+
+[059] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a c5 a9 ef bf bd ef bf bd c6 bc ef bf bd ef bf bd
+    SUMMIT utf8  : **ũ��Ƽ��
+    SUMMIT cp949 : **크占쏙옙티占쏙옙
+    MASTER hex   : 2a 2a c6 af c8 ad
+    MASTER cp949 : **특화
+
+[060] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd c5 b8 ef bf bd
+    SUMMIT utf8  : **�����Ÿ�
+    SUMMIT cp949 : **占쏙옙占쏙옙占신몌옙
+    MASTER hex   : 2a 2a c6 af c8 ad b7 a3 b4 fd
+    MASTER cp949 : **특화랜덤
+
+[061] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd c3 b5 ef bf bd
+    SUMMIT utf8  : **�������õ�
+    SUMMIT cp949 : **占쏙옙占쏙옙占쏙옙占시듸옙
+    MASTER hex   : 2a 2a c8 ed bc f6 b7 c2
+    MASTER cp949 : **흡수력
+
+[062] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+    SUMMIT utf8  : **�����߰�
+    SUMMIT cp949 : **占쏙옙占쏙옙占쌩곤옙
+    MASTER hex   : 2a 2a b9 e6 be ee b7 c2
+    MASTER cp949 : **방어력
+
+[063] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+    SUMMIT utf8  : **����߰�
+    SUMMIT cp949 : 
+    MASTER hex   : 2a b9 e6 be ee b7 c2
+    MASTER cp949 : *방어력
+
+[064] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+    SUMMIT utf8  : **�������߰�
+    SUMMIT cp949 : **占쏙옙占쏙옙占쏙옙占쌩곤옙
+    MASTER hex   : 2a 2a c0 cc b5 bf bc d3 b5 b5
+    MASTER cp949 : **이동속도
+
+[065] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd df b0 ef bf bd
+    SUMMIT utf8  : **������߰�
+    SUMMIT cp949 : 
+    MASTER hex   : 2a 2a ba ed b7 b0 c0 b2
+    MASTER cp949 : **블럭율
+
+[066] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd df b7 ef bf bd
+    SUMMIT utf8  : **���߷�
+    SUMMIT cp949 : **占쏙옙占쌩뤄옙
+    MASTER hex   : 2a 2a b0 f8 b0 dd bc d3 b5 b5
+    MASTER cp949 : **공격속도
+
+[067] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd dd b7 ef bf bd
+    SUMMIT utf8  : **���ݷ�
+    SUMMIT cp949 : **占쏙옙占쌥뤄옙
+    MASTER hex   : 2a 2a c5 a9 b8 ae c6 bc c4 c3
+    MASTER cp949 : **크리티컬
+
+[068] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : **�������
+    SUMMIT cp949 : 
+    MASTER hex   : 2a 2a bb e7 c1 a4 b0 c5 b8 ae
+    MASTER cp949 : **사정거리
+
+[069] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : **������
+    SUMMIT cp949 : **占쏙옙占쏙옙占쏙옙
+    MASTER hex   : 2a 2a b8 b6 b9 fd bc f7 b7 c3 b5 b5
+    MASTER cp949 : **마법숙련도
+
+[070] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : **���������
+    SUMMIT cp949 : 
+    MASTER hex   : 2a 2a b8 b6 b3 aa c3 df b0 a1
+    MASTER cp949 : **마나추가
+
+[071] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : **��������
+    SUMMIT cp949 : **占쏙옙占쏙옙占쏙옙占쏙옙
+    MASTER hex   : 2a 2a b1 e2 b7 c2 c3 df b0 a1
+    MASTER cp949 : **기력추가
+
+[072] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd ef bf bd ef bf bd d7 b9 cc b3 ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : **���׹̳����
+    SUMMIT cp949 : 
+    MASTER hex   : 2a 2a b6 f3 c0 cc c7 c1 c3 df b0 a1
+    MASTER cp949 : **라이프추가
+
+[073] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a 2a ef bf bd d9 b7 ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : **�ٷ����
+    SUMMIT cp949 : 
+    MASTER hex   : 2a 2a bb fd b8 ed b7 c2 c3 df b0 a1
+    MASTER cp949 : **생명력추가
+
+[074] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd df bb ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *�߻�����
+    SUMMIT cp949 : *占쌩삼옙占쏙옙占쏙옙
+    MASTER hex   : 2a 2a b8 ed c1 df b7 c2
+    MASTER cp949 : **명중력
+
+[075] HIGH   same=False fffd=True
+    SUMMIT hex   : 2a ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd ef bf bd
+    SUMMIT utf8  : *��������
+    SUMMIT cp949 : *占쏙옙占쏙옙占쏙옙占쏙옙
+    MASTER hex   : 2a 2a b0 f8 b0 dd b7 c2
+    MASTER cp949 : **공격력
+
+[076] LOW    same=False fffd=False
+    SUMMIT hex   : 
+    SUMMIT utf8  : 
+    SUMMIT cp949 : 
+    MASTER hex   : 2a 2a b8 b6 b3 aa c0 e7 bb fd
+    MASTER cp949 : **마나재생
+
+[077] LOW    same=False fffd=False
+    SUMMIT hex   : 
+    SUMMIT utf8  : 
+    SUMMIT cp949 : 
+    MASTER hex   : 2a 2a b1 e2 b7 c2 c0 e7 bb fd
+    MASTER cp949 : **기력재생
+
+[078] LOW    same=False fffd=False
+    SUMMIT hex   : 
+    SUMMIT utf8  : 
+    SUMMIT cp949 : 
+    MASTER hex   : 2a 2a b6 f3 c0 cc c7 c1 c0 e7 bb fd
+    MASTER cp949 : **라이프재생
+
+[079] LOW    same=False fffd=False
+    SUMMIT hex   : 
+    SUMMIT utf8  : 
+    SUMMIT cp949 : 
+    MASTER hex   : 2a 2a bb fd b8 ed b7 c2 c0 e7 bb fd
+    MASTER cp949 : **생명력재생
+
+[080] LOW    same=False fffd=False
+    SUMMIT hex   : 
+    SUMMIT utf8  : 
+    SUMMIT cp949 : 
+    MASTER hex   : 2a 2a bd ba c5 d7 b9 cc b3 aa c0 e7 bb fd
+    MASTER cp949 : **스테미나재생
+
+[081] LOW    same=False fffd=False
+    SUMMIT hex   : 
+    SUMMIT utf8  : 
+    SUMMIT cp949 : 
+    MASTER hex   : 2a 2a b1 d9 b7 c2 c0 e7 bb fd
+    MASTER cp949 : **근력재생
+
+[082] LOW    same=False fffd=False
+    SUMMIT hex   : 
+    SUMMIT utf8  : 
+    SUMMIT cp949 : 
+    MASTER hex   : 2a b9 df bb fd c1 a6 c7 d1
+    MASTER cp949 : *발생제한
+
+[083] LOW    same=False fffd=False
+    SUMMIT hex   : 
+    SUMMIT utf8  : 
+    SUMMIT cp949 : 
+    MASTER hex   : 2a bf ac b0 e1 c6 c4 c0 cf
+    MASTER cp949 : *연결파일
+

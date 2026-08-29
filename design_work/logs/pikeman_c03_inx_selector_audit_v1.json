@@ -1,0 +1,15 @@
+{
+  "tool": "PT_PIKEMAN_C03_INX_SELECTOR_AUDIT_V1",
+  "client_root": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente",
+  "wanted_nodes": [
+    "TbhC03",
+    "TbmC03",
+    "TblC03"
+  ],
+  "inx_scanned": 2046,
+  "valid_modelinfo_count": 2046,
+  "match_count": 0,
+  "matches": [],
+  "client_modified": false,
+  "c03_selector_audit_check": "PASS"
+}\n

@@ -1,0 +1,16 @@
+{
+  "asset_id": "AST-C71E841986E6",
+  "asset": "image/Sinimage/Items/DropItem/itWA104.smd",
+  "texture_count": 1,
+  "ready": true,
+  "overlay": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-C71E841986E6/static_roundtrip/texture_overlay_client",
+  "entries": [
+    {
+      "logical": "Image/sinImage/Items/DropItem/Itwa104.bmp",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/Items/DropItem/itwa104.bmp",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-C71E841986E6/static_roundtrip/texture_overlay_client/Image/sinImage/Items/DropItem/Itwa104.bmp",
+      "status": "LINK_READY"
+    }
+  ],
+  "client_modified": false
+}

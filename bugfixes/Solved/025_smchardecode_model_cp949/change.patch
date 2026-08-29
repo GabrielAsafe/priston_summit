@@ -1,0 +1,11 @@
+--- BEFORE/fileread.cpp
++++ AFTER/fileread.cpp
+@@ -3610,7 +3610,7 @@
+ 		}
+ #endif
+ 
+-		if(!NextFlag && lstrcmp(decode, "*�������") == 0)
++		if(!NextFlag && lstrcmp(decode, "\x2A\xB8\xF0\xBE\xE7\xC6\xC4\xC0\xCF") == 0) // BUGFIX_025_SMCHAR_MODEL_CP949
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+ 

@@ -1,0 +1,42 @@
+{
+  "tool": "PT_MULTILAYER_TEXLINK_ROUNDTRIP_COMPARE_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Fall_Game/chandelier-ani01.smd",
+  "output": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-AA3A9D23F7D8/multilayer_texlink_roundtrip/rebuilt_texlink_roundtrip.smd",
+  "source_sha256": "ef5b5be5c7d018b24cbc5ea0987f8b45f69b38f1e67bd3ccae37bba45ca39a5a",
+  "output_sha256": "15aaae86eb12a39a33c7c30b24001bd020ea1c9767e8595e30d213a2d381c6e2",
+  "source_semantics": "PASS",
+  "output_semantics": "PASS",
+  "max_layers_preserved": true,
+  "multilayer_faces_preserved": true,
+  "htexture_slot_mapping_preserved": true,
+  "texlink_structure_exact": true,
+  "htexture_nexttex_byte_identical": true,
+  "materials_exact": true,
+  "witness_checks": [
+    {
+      "object_index": 4,
+      "face_index": 0,
+      "stage_index": 1,
+      "corner": 0,
+      "component": "u",
+      "before": 0.875,
+      "after": 0.90625,
+      "expected_after": 0.90625,
+      "field_file_offset": 77816
+    }
+  ],
+  "authorized_byte_ranges": [
+    [
+      77816,
+      77820
+    ]
+  ],
+  "diff_byte_count": 1,
+  "diff_bytes_outside_witness": [],
+  "non_witness_bytes_byte_identical": true,
+  "byte_identical": false,
+  "intentional_uv_edit": true,
+  "errors": [],
+  "client_modified": false,
+  "check": "PASS"
+}

@@ -1,0 +1,245 @@
+{
+  "tool": "PT_BLENDER_TO_SMD_TOPOLOGY_V2_APPEND_SAFE",
+  "scope": "MsmC01 append-safe topology",
+  "blend": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/blender/MfbC01_topology_patch_v2.blend",
+  "source_smd": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/MfbC01.smd",
+  "source_sha256": "9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b",
+  "output": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/pt_build/C01_topology/MfbC01_patch_v2.smd",
+  "output_sha256": "30b8352d18074fe82982b67b7e670934505d182751ec7529284e614ae5b132d9",
+  "source_counts": {
+    "vertices": 125,
+    "faces": 238,
+    "texlinks": 238
+  },
+  "output_counts": {
+    "vertices": 129,
+    "faces": 246,
+    "texlinks": 246
+  },
+  "new_vertices": 4,
+  "face_delta": 8,
+  "input_size": 290229,
+  "output_size": 290997,
+  "growth_bytes": 768,
+  "max_old_vertex_error": 0.0,
+  "max_new_vertex_fit_error": 0.002036875521597975,
+  "new_vertex_rows": [
+    {
+      "index": 125,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -0.5130208730697632,
+        3.574265956878662,
+        32.03587341308594
+      ],
+      "local_fixed": [
+        654,
+        -522,
+        -131
+      ],
+      "represented_world": [
+        -0.51171875,
+        3.57421875,
+        32.03515625
+      ],
+      "fit_error": 0.0014873049015026857,
+      "normal_local": [
+        4125,
+        -30254,
+        -108
+      ],
+      "normal_scale": 30534.4816723651
+    },
+    {
+      "index": 126,
+      "bone": "Bip01 Spine1",
+      "world": [
+        0.5950521230697632,
+        3.7357239723205566,
+        33.15306091308594
+      ],
+      "local_fixed": [
+        941,
+        -481,
+        152
+      ],
+      "represented_world": [
+        0.59375,
+        3.734375,
+        33.15234375
+      ],
+      "fit_error": 0.002007379810167688,
+      "normal_local": [
+        4408,
+        -30214,
+        164
+      ],
+      "normal_scale": 30534.4816723651
+    },
+    {
+      "index": 127,
+      "bone": "Bip01 Spine1",
+      "world": [
+        0.3815104365348816,
+        3.632524251937866,
+        34.89984893798828
+      ],
+      "local_fixed": [
+        1365,
+        -331,
+        98
+      ],
+      "represented_world": [
+        0.3828125,
+        3.6328125,
+        34.8984375
+      ],
+      "fit_error": 0.0019418067378818786,
+      "normal_local": [
+        21665,
+        -21510,
+        562
+      ],
+      "normal_scale": 30534.4816723651
+    },
+    {
+      "index": 128,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -0.5130208730697632,
+        3.40726375579834,
+        35.31130599975586
+      ],
+      "local_fixed": [
+        1451,
+        -246,
+        -131
+      ],
+      "represented_world": [
+        -0.51171875,
+        3.40625,
+        35.3125
+      ],
+      "fit_error": 0.002036875521597975,
+      "normal_local": [
+        22310,
+        -20819,
+        -1094
+      ],
+      "normal_scale": 30534.4816723651
+    }
+  ],
+  "normal_mode": "preserve original normals; new=BONE_ROW+EQUAL",
+  "normal_scale_mode": "median source normal magnitude for assigned bone",
+  "material_id": 1,
+  "hTexture": 552301608,
+  "object_table": [
+    {
+      "name": "MsmC01",
+      "old_start": 3309,
+      "new_start": 3309,
+      "old_length": 25420,
+      "new_length": 26188
+    },
+    {
+      "name": "MshC01",
+      "old_start": 28729,
+      "new_start": 29497,
+      "old_length": 34432,
+      "new_length": 34432
+    },
+    {
+      "name": "MslC01",
+      "old_start": 63161,
+      "new_start": 63929,
+      "old_length": 19276,
+      "new_length": 19276
+    },
+    {
+      "name": "MsmC03",
+      "old_start": 82437,
+      "new_start": 83205,
+      "old_length": 29388,
+      "new_length": 29388
+    },
+    {
+      "name": "MslC03",
+      "old_start": 111825,
+      "new_start": 112593,
+      "old_length": 21260,
+      "new_length": 21260
+    },
+    {
+      "name": "MlhC01",
+      "old_start": 133085,
+      "new_start": 133853,
+      "old_length": 10116,
+      "new_length": 10116
+    },
+    {
+      "name": "MlhC03",
+      "old_start": 143201,
+      "new_start": 143969,
+      "old_length": 14204,
+      "new_length": 14204
+    },
+    {
+      "name": "MbhC01",
+      "old_start": 157405,
+      "new_start": 158173,
+      "old_length": 24272,
+      "new_length": 24272
+    },
+    {
+      "name": "MshC03",
+      "old_start": 181677,
+      "new_start": 182445,
+      "old_length": 43392,
+      "new_length": 43392
+    },
+    {
+      "name": "MlmC01",
+      "old_start": 225069,
+      "new_start": 225837,
+      "old_length": 7948,
+      "new_length": 7948
+    },
+    {
+      "name": "MlmC03",
+      "old_start": 233017,
+      "new_start": 233785,
+      "old_length": 9980,
+      "new_length": 9980
+    },
+    {
+      "name": "MbmC01",
+      "old_start": 242997,
+      "new_start": 243765,
+      "old_length": 16436,
+      "new_length": 16436
+    },
+    {
+      "name": "MllC01",
+      "old_start": 259433,
+      "new_start": 260201,
+      "old_length": 6796,
+      "new_length": 6796
+    },
+    {
+      "name": "MllC03",
+      "old_start": 266229,
+      "new_start": 266997,
+      "old_length": 8332,
+      "new_length": 8332
+    },
+    {
+      "name": "MblC01",
+      "old_start": 274561,
+      "new_start": 275329,
+      "old_length": 15668,
+      "new_length": 15668
+    }
+  ],
+  "semantic_check": "PASS",
+  "append_safe_topology_export_check": "PASS"
+}

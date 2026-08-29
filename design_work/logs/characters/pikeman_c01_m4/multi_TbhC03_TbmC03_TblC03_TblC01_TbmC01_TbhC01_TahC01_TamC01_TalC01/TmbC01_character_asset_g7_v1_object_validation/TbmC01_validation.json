@@ -1,0 +1,159 @@
+{
+  "tool": "PT_FREE_MESH_VALIDATE_V2",
+  "blend": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/blender/TmbC01_character_asset_g7_v1_game_normalized.blend",
+  "object": "TbmC01",
+  "source_smd": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/TmbC01.smd",
+  "source_sha256": "9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c",
+  "source_object": {
+    "name": "TbmC01",
+    "vertices": 74,
+    "faces": 128,
+    "texlinks": 128,
+    "rot_keys": 0,
+    "pos_keys": 0,
+    "scale_keys": 0,
+    "physique": true,
+    "allowed_materials": [
+      1
+    ]
+  },
+  "mode_sync": {
+    "original_mode": "OBJECT",
+    "current_mode": "OBJECT",
+    "edit_mode_synchronized": false
+  },
+  "vertices": 74,
+  "source_polygons": 128,
+  "export_triangles": 128,
+  "triangulation": {
+    "method": "TEMP_BMESH_BEAUTY",
+    "source_vertices": 74,
+    "source_polygons": 128,
+    "export_triangles": 128,
+    "vertex_count_preserved": true,
+    "artist_mesh_modified": false
+  },
+  "loops": 384,
+  "uv_layers": [
+    {
+      "index": 0,
+      "name": "SMD_UV",
+      "active": true,
+      "active_render": true,
+      "data_len": 384
+    }
+  ],
+  "active_uv": "SMD_UV",
+  "active_uv_data_count": 384,
+  "used_materials": {
+    "1": 128
+  },
+  "allowed_materials": [
+    1
+  ],
+  "rigid_bone_count": 10,
+  "rigid_bone_histogram": {
+    "Bip01 Spine1": 22,
+    "Bip01 Spine": 7,
+    "Bip01 Pelvis": 15,
+    "Bip01 Head": 4,
+    "Bip01 L Thigh": 5,
+    "Bip01 R Thigh": 5,
+    "Bip01 R Clavicle": 6,
+    "Bip01 R UpperArm": 2,
+    "Bip01 L Clavicle": 7,
+    "Bip01 L UpperArm": 1
+  },
+  "max_vertex_fit_error": 0.0,
+  "mean_vertex_fit_error": 0.0,
+  "bbox": {
+    "x": [
+      -4.921875,
+      4.90625
+    ],
+    "y": [
+      -2.35546875,
+      4.53125
+    ],
+    "z": [
+      20.12890625,
+      40.86328125
+    ]
+  },
+  "edge_degree_histogram": {
+    "2": 167,
+    "3": 6,
+    "1": 32
+  },
+  "boundary_edge_count": 32,
+  "nonmanifold_edge_count": 6,
+  "nonmanifold_edges": [
+    {
+      "edge": [
+        5,
+        24
+      ],
+      "faces": [
+        0,
+        9,
+        23
+      ]
+    },
+    {
+      "edge": [
+        22,
+        24
+      ],
+      "faces": [
+        9,
+        75,
+        127
+      ]
+    },
+    {
+      "edge": [
+        5,
+        23
+      ],
+      "faces": [
+        10,
+        125,
+        126
+      ]
+    },
+    {
+      "edge": [
+        9,
+        10
+      ],
+      "faces": [
+        12,
+        109,
+        123
+      ]
+    },
+    {
+      "edge": [
+        9,
+        26
+      ],
+      "faces": [
+        13,
+        14,
+        25
+      ]
+    },
+    {
+      "edge": [
+        26,
+        30
+      ],
+      "faces": [
+        13,
+        59,
+        73
+      ]
+    }
+  ],
+  "validation_check": "PASS"
+}

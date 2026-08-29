@@ -1,0 +1,57 @@
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:209:TRANS_USERCHAR_INFO		 *ServerUserCharacterInfo = NULL;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:247:		ServerUserCharacterInfo = (TRANS_USERCHAR_INFO *)RecvBuff;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:259:					ServerUserCharacterInfo->PlayUserCount
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:283:		for(int index = 0; index < ServerUserCharacterInfo->PlayUserCount; index++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:285:			wsprintf(DownUserCharacterInfo[index].Name, "%s", ServerUserCharacterInfo->CharInfo[index].szName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:286:			DownUserCharacterInfo[index].Level = ServerUserCharacterInfo->CharInfo[index].Level;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:288:			wsprintf(DownUserCharacterInfo[index].BodyName, "%s", ServerUserCharacterInfo->CharInfo[index].szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:289:			wsprintf(DownUserCharacterInfo[index].FaceName, "%s", ServerUserCharacterInfo->CharInfo[index].szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:291:			DownUserCharacterInfo[index].Job = ServerUserCharacterInfo->CharInfo[index].JOB_CODE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:292:			DownUserCharacterInfo[index].StartField = ServerUserCharacterInfo->CharInfo[index].StartField;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:294:			DownUserCharacterInfo[index].PosX = ServerUserCharacterInfo->CharInfo[index].PosX;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:295:			DownUserCharacterInfo[index].PosZ = ServerUserCharacterInfo->CharInfo[index].PosZ;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:299:		DownUserCharacterCount = ServerUserCharacterInfo->PlayUserCount;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.h:89:extern TRANS_USERCHAR_INFO		 *ServerUserCharacterInfo;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/netplay.cpp:3634:			TRANS_USERCHAR_INFO	*lpTransUserCharInfo = (TRANS_USERCHAR_INFO	*)pData->Buff;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/netplay.cpp:3636:			for(cnt = 0; cnt < lpTransUserCharInfo->PlayUserCount; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/netplay.cpp:3638:				if(!lpTransUserCharInfo->CharInfo[cnt].szModelName2[0])
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/netplay.cpp:3640:					fp = fopen(lpTransUserCharInfo->CharInfo[cnt].szModelName, "rb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/netplay.cpp:3643:						x = lstrlen(lpTransUserCharInfo->CharInfo[cnt].szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/netplay.cpp:3644:						lpTransUserCharInfo->CharInfo[cnt].szModelName[x - 1] = 'x';
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/netplay.cpp:3645:						fp = fopen(lpTransUserCharInfo->CharInfo[cnt].szModelName, "rb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/netplay.cpp:3653:						strcpy_s(lpTransUserCharInfo->CharInfo[cnt].szModelName,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/record.cpp:3294:	TRANS_USERCHAR_INFO	TransUserCharInfo;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/record.cpp:3355:	TransUserCharInfo.size = sizeof(TRANS_USERCHAR_INFO);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/record.cpp:3382:					lpCharInfo = (_TRANS_CHAR_INFO *)&TransUserCharInfo.CharInfo[FindCnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/record.cpp:3454:	TransUserCharInfo.PlayUserCount = FindCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/record.h:236:struct	TRANS_USERCHAR_INFO
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/record.h:241:	int		PlayUserCount;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/record.h:243:	_TRANS_CHAR_INFO	CharInfo[sPLAY_CHAR_MAX];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Server/OnSever.cpp:10293:	TransOver = lpPlayInfo->LastTransPlayUserCount + CONNECTMAX;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Server/OnSever.cpp:10296:	for(cnt = lpPlayInfo->LastTransPlayUserCount; cnt < TransOver; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Server/OnSever.cpp:10430:	lpPlayInfo->LastTransPlayUserCount = ClipCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Server/OnSever.cpp:11312:	rsPlayInfo[cnt].LastTransPlayUserCount = 0;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:168:TRANS_USERCHAR_INFO		 *ServerUserCharacterInfo = NULL;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:185:		ServerUserCharacterInfo = (TRANS_USERCHAR_INFO *)RecvBuff;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:193:		for(int index = 0; index < ServerUserCharacterInfo->PlayUserCount; index++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:195:			wsprintf(DownUserCharacterInfo[index].Name, "%s", ServerUserCharacterInfo->CharInfo[index].szName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:196:			DownUserCharacterInfo[index].Level = ServerUserCharacterInfo->CharInfo[index].Level;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:198:			wsprintf(DownUserCharacterInfo[index].BodyName, "%s", ServerUserCharacterInfo->CharInfo[index].szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:199:			wsprintf(DownUserCharacterInfo[index].FaceName, "%s", ServerUserCharacterInfo->CharInfo[index].szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:201:			DownUserCharacterInfo[index].Job = ServerUserCharacterInfo->CharInfo[index].JOB_CODE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:202:			DownUserCharacterInfo[index].StartField = ServerUserCharacterInfo->CharInfo[index].StartField;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:204:			DownUserCharacterInfo[index].PosX = ServerUserCharacterInfo->CharInfo[index].PosX;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:205:			DownUserCharacterInfo[index].PosZ = ServerUserCharacterInfo->CharInfo[index].PosZ;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:209:		DownUserCharacterCount = ServerUserCharacterInfo->PlayUserCount;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.h:88:extern TRANS_USERCHAR_INFO		 *ServerUserCharacterInfo;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/record.cpp:3270:	TRANS_USERCHAR_INFO	TransUserCharInfo;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/record.cpp:3331:	TransUserCharInfo.size = sizeof(TRANS_USERCHAR_INFO);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/record.cpp:3358:					lpCharInfo = (_TRANS_CHAR_INFO *)&TransUserCharInfo.CharInfo[FindCnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/record.cpp:3430:	TransUserCharInfo.PlayUserCount = FindCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/record.h:237:struct	TRANS_USERCHAR_INFO
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/record.h:242:	int		PlayUserCount;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/record.h:244:	_TRANS_CHAR_INFO	CharInfo[sPLAY_CHAR_MAX];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:11570:	TransOver = lpPlayInfo->LastTransPlayUserCount + CONNECTMAX;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:11573:	for(cnt = lpPlayInfo->LastTransPlayUserCount; cnt < TransOver; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:11707:	lpPlayInfo->LastTransPlayUserCount = ClipCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:12758:	rsPlayInfo[cnt].LastTransPlayUserCount = 0;

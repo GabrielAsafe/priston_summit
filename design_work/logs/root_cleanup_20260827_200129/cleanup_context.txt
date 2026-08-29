@@ -1,0 +1,2 @@
+ROOT=/home/gabriel/Área de Trabalho/summit/design_work
+STAMP=20260827_200129

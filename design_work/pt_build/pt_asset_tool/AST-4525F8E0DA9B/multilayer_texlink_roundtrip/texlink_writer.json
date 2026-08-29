@@ -1,0 +1,56 @@
+{
+  "tool": "PT_MULTILAYER_TEXLINK_STRICT_WRITER_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/CtmbC008.smd",
+  "output": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4525F8E0DA9B/multilayer_texlink_roundtrip/rebuilt_texlink_roundtrip.smd",
+  "source_sha256": "be2a42146e1e1587da87587955b807304ffee3b221ab39a719e7097e40df72e2",
+  "output_sha256": "dff030d423493239e4b42fa87402db95bcc68ea9517c577f784a410116f68d09",
+  "edit_count": 1,
+  "applied_edits": [
+    {
+      "object_index": 0,
+      "object_name": "CtmbC008",
+      "face_index": 0,
+      "material_id": 0,
+      "stage_index": 1,
+      "corner": 0,
+      "component": "u",
+      "texlink_index": 1,
+      "texlink_file_offset": 71752,
+      "field_file_offset": 71752,
+      "before": 0.31369999051094055,
+      "after": 0.34494999051094055
+    }
+  ],
+  "authorized_byte_ranges": [
+    [
+      71752,
+      71756
+    ]
+  ],
+  "source_semantics": "PASS",
+  "rebuilt_semantics": "PASS",
+  "htexture_slot_mapping": "SMATERIAL_SM_TEXTURE_SLOT_EXACT",
+  "client_modified": false,
+  "check": "PASS",
+  "blender_change_scan_count": 1,
+  "blender_changes": [
+    {
+      "object_index": 0,
+      "object_name": "CtmbC008",
+      "blender_object_name": "CtmbC008",
+      "face_index": 0,
+      "material_id": 0,
+      "stage_index": 1,
+      "corner": 0,
+      "component": "u",
+      "before": 0.31369999051094055,
+      "after": 0.34494999051094055,
+      "loop_index": 0,
+      "texlink_index": 1,
+      "texlink_file_offset": 71752
+    }
+  ],
+  "witness_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4525F8E0DA9B/multilayer_texlink_roundtrip/texlink_uv_witness.json",
+  "normalized_witness_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4525F8E0DA9B/multilayer_texlink_roundtrip/texlink_writer.normalized_witness.json",
+  "strict_blender_edit_set": "PASS"
+}

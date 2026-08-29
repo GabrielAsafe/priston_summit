@@ -1,0 +1,30 @@
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+00:01.412  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/05_normalize_TbmC01.blend"
+Info: Saved as "06_normalize_TbhC01.blend"
+PT_RIGID_SKIN_NORMALIZE_COPY_V2
+object=TbhC01
+source_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/05_normalize_TbmC01.blend
+source_blend_sha256=05c65d172e286309fe5fdb882e26a724a84d98b5181d62bbb9723a45ab310399
+output_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/TmbC01_character_asset_g7_v1/06_normalize_TbhC01.blend
+vertices=85
+strict_rigid_before=85
+mixed_before=0
+empty_before=0
+preserved_rigid=85
+auto_resolved=0
+unresolved=0
+policy_histogram={'ALREADY_RIGID': 85}
+review_group=None
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03_TblC01_TbmC01_TbhC01_TahC01_TamC01_TalC01/TmbC01_character_asset_g7_v1_normalize_TbhC01.json
+
+ARTIST_MESSAGE
+WHY: O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.
+AUTOMATIC: 0 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.
+MANUAL: Nenhum vértice exige revisão manual.
+
+normalize_copy_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

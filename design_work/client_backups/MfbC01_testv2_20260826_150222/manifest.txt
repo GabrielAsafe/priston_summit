@@ -1,0 +1,7 @@
+created_at=2026-08-26T15:02:22+01:00
+client_root=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente
+target=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC01.smd
+target_relative=char/tmABCD/MfbC01.smd
+original_sha256=9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b
+replacement=/home/gabriel/Área de Trabalho/summit/design_work/MfbC01_testv2.smd
+replacement_sha256=e9fa4db4afb39849fa9105df5f09aba1c7d4a52cb939bd26a3318608d577955b

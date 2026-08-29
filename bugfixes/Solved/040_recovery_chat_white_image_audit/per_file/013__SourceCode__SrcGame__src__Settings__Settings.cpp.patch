@@ -1,0 +1,22 @@
+diff --git a/SourceCode/SrcGame/src/Settings/Settings.cpp b/SourceCode/SrcGame/src/Settings/Settings.cpp
+index 3ab55c6..45154cc 100644
+--- a/SourceCode/SrcGame/src/Settings/Settings.cpp
++++ b/SourceCode/SrcGame/src/Settings/Settings.cpp
+@@ -261,6 +261,17 @@ void Settings::setResolution(int iResolution)
+ 		setHeight(Resolutions169[iResolution - 1][1]);
+ 	}
+ 
++	// MINGW_RUNTIME_RESOLUTION_DEPRECATED_NOTE_V1
++	// DEPRECATED: live resolution switching is only partially supported.
++	// The window, Direct3D backbuffer and projection can be resized at runtime,
++	// but the legacy HUD/UI has no complete centralized resolution relayout.
++	//
++	// TODO BUGFIX FUTURE:
++	// Implement a safe global resolution-change notification/relayout for the
++	// legacy HUD and modern UI components (including CChatBox::OnResolutionChanged)
++	// before considering runtime resolution switching fully supported.
++	// Until then, restarting the client after changing Ratio/Resolution is the
++	// supported path for a fully consistent HUD layout.
+ 	if ((getWidth() != WinSizeX || getHeight() != WinSizeY) && bLoaded)
+ 		resizeWindow(getWidth(), getHeight());
+ }

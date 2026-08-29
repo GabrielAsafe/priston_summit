@@ -1,0 +1,38 @@
+diff --git a/docs/db-schema/SecurityDB_columns.psv b/docs/db-schema/SecurityDB_columns.psv
+deleted file mode 100644
+index 305e01e..0000000
+--- a/docs/db-schema/SecurityDB_columns.psv
++++ /dev/null
+@@ -1,32 +0,0 @@
+-DatabaseName|SchemaName|TableName|ColumnName|DataType|MaxLength|IsNullable|DefaultValue|OrdinalPosition
+-------------|----------|---------|----------|--------|---------|----------|------------|---------------
+-SecurityDB|dbo|AgingFailed|ID|int||NO||1
+-SecurityDB|dbo|AgingFailed|PlayerID|varchar|32|YES||2
+-SecurityDB|dbo|AgingFailed|PlayerName|varchar|32|YES||3
+-SecurityDB|dbo|AgingFailed|ItemName|varchar|32|YES||4
+-SecurityDB|dbo|AgingFailed|ItemAging|int||YES||5
+-SecurityDB|dbo|AgingFailed|Head|int||YES||6
+-SecurityDB|dbo|AgingFailed|ChkSum|int||YES||7
+-SecurityDB|dbo|AgingFailed|Date|datetime||YES||8
+-SecurityDB|dbo|AttackLog|id|int||NO||1
+-SecurityDB|dbo|AttackLog|accountId|varchar|32|YES||2
+-SecurityDB|dbo|AttackLog|IP|varchar|16|YES||3
+-SecurityDB|dbo|AttackLog|description|varchar|256|YES||4
+-SecurityDB|dbo|AttackLog|date|datetime||NO||5
+-SecurityDB|dbo|CheatLog|ID|bigint||NO||1
+-SecurityDB|dbo|CheatLog|IP|varchar|20|NO||2
+-SecurityDB|dbo|CheatLog|AccountName|varchar|32|NO||3
+-SecurityDB|dbo|CheatLog|Action|int||NO|((0))|4
+-SecurityDB|dbo|CheatLog|LogID|int||NO||5
+-SecurityDB|dbo|CheatLog|Description|varchar|256|NO||6
+-SecurityDB|dbo|CheatLog|Date|varchar|50|NO||7
+-SecurityDB|dbo|FunctionChecksumList|ID|int||NO||1
+-SecurityDB|dbo|FunctionChecksumList|Size|int||NO||2
+-SecurityDB|dbo|FunctionChecksumList|Address|varchar|50|NO||3
+-SecurityDB|dbo|FunctionChecksumList|Checksum|varchar|32|NO||4
+-SecurityDB|dbo|Security|AccountId|varchar|30|YES||1
+-SecurityDB|dbo|Security|IP|varchar|30|YES||2
+-SecurityDB|dbo|Security|Date|datetime||NO||3
+-SecurityDB|dbo|Security|Protocol|varchar|50|NO||4
+-SecurityDB|dbo|WindowCheatList|ID|int||NO||1
+-SecurityDB|dbo|WindowCheatList|WindowName|varchar|64|NO||2

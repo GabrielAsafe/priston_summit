@@ -1,0 +1,38 @@
+/home/gabriel/Área de Trabalho/summit/Servidor/Server.exe: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/binary-analysis/Server.exe.strings.txt: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/recovery_pre_reset_20260824_0958/current_files/design_asset_audit/all_ase.tsv: ji_woo.ASE
+/home/gabriel/Área de Trabalho/summit/recovery_pre_reset_20260824_0958/current_files/design_asset_audit/all_potential_tools.tsv: Greedy.ASE, ji_woo.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/dist_mingw_client_i686/Game.exe: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/dist_mingw_server_i686/Server.exe: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/build_mingw_server_i686/SrcServer_src_field.o: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/build_mingw_client_i686/objects/SrcGame/src/field.o: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/SrcServer/src/field.cpp: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/SrcServer/src/Release/field.obj: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/SrcGame/src/field.cpp: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/SrcGame/src/Debug/field.obj: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode/dist_mingw_client_i686/Game.exe: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode/dist_mingw_server_i686/Server.exe: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode/build_mingw_server_i686/SrcServer_src_field.o: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/field.o: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode/depricated/lixo_2026_07/build_mingw_client/SrcGame_src_field.o: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode/depricated/lixo_2026_07/build_mingw_client_i686/SrcGame_src_field.o: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Release/field.obj: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/field.cpp: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Debug/field.obj: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Game.exe.bak_124ip: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/.SummitTaleClient.exe: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Game.exe: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/npc/ji_woo/ji_woo.ini: ji_woo.ASE
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/chaoscara/chaoscara.inx: chaoscara.ASE
+/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/Greedy/Greedy.inx: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/forensic/bin/cliente_Summit_Tale_Client_Full_cliente_Game.exe: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/forensic/bin/Servidor_Server.exe: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/forensic/strings/cliente_Summit_Tale_Client_Full_cliente_Game.exe.strings.txt: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/forensic/strings/Servidor_Server.exe.strings.txt: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/analysis/server-binary-grep/Server.exe.strings.txt: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/npc/ji_woo/ji_woo.ini: ji_woo.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/chaoscara/chaoscara.ini: chaoscara.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/chaoscara/chaoscara.inx: chaoscara.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/Greedy/Greedy.ini: Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/Greedy/Greedy.inx: Greedy.ASE

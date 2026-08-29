@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=49e8347d90bd233ca064cc2ca61394a54d05a8ed4723e4e98d1dde07b85ab468
+output_sha256=49e8347d90bd233ca064cc2ca61394a54d05a8ed4723e4e98d1dde07b85ab468
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BF645D5D1F94/stage072_uv_roundtrip/texture_overlay_client/field/lost/lost_h_rope.tga
+format=TGA_STANDARD
+client_modified=False
+tga_decode_check=PASS

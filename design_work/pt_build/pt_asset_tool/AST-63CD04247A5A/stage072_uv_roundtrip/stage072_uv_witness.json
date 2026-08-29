@@ -1,0 +1,33 @@
+{
+  "tool": "PT_STAGE072_UV_WITNESS_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/dungeon/dun-1.smd",
+  "source_sha256": "08ad3beaaa8687ea21b969cbc53865835f7b75953ed7b6e7db19c591f211bbda",
+  "output_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-63CD04247A5A/stage072_uv_roundtrip/stage072_uv_witness.blend",
+  "delta_u_requested": 0.03125,
+  "uv_edits": [
+    {
+      "face_index": 558,
+      "material_id": 11,
+      "stage_index": 1,
+      "corner": 0,
+      "component": "u",
+      "before": 0.09240001440048218,
+      "after": 0.12365001440048218,
+      "before_uv": [
+        0.09240001440048218,
+        -0.5248000621795654
+      ],
+      "after_uv": [
+        0.12365001440048218,
+        -0.5248000621795654
+      ],
+      "delta_u": 0.03125,
+      "texlink_index": 547,
+      "source_vertex": 1007,
+      "loop_index": 1674
+    }
+  ],
+  "geometry_edit_policy": "FORBIDDEN_UNTIL_STAGEAREA_REBUILD_IS_PROVEN",
+  "client_modified": false,
+  "check": "PASS"
+}

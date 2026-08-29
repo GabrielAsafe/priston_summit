@@ -1,0 +1,2 @@
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Dump/WinDump.cpp:113:				"mingw_server_crash_stack.txt",
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Dump/WinDump.cpp:349:				"mingw_server_crash.txt",

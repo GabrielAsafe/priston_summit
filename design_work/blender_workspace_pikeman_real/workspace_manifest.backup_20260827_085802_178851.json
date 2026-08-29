@@ -1,0 +1,138 @@
+{
+  "workspace_version": 1,
+  "workspace_kind": "character_asset",
+  "game_root": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente",
+  "files": [
+    {
+      "asset_id": "AST-8458E2A433E5",
+      "workspace_path": "Characters/Pikeman/C01/Model/TmbC01.smd",
+      "roundtrip_target": "char/tmABCD/TmbC01.smd",
+      "category": "Characters",
+      "subcategory": "Character Model",
+      "representation": "Equipped Body Mesh",
+      "owner_name": "Pikeman",
+      "class_code": "C",
+      "source_sha256": "9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c",
+      "source_size": 187504,
+      "registry_origin": "physical_bridge_v1",
+      "registered_at": "2026-08-27T07:54:30.584971+00:00"
+    },
+    {
+      "asset_id": "AST-258E652FA224",
+      "workspace_path": "Characters/Pikeman/C01/Skeleton/m4.smb",
+      "roundtrip_target": "char/tmABCD/m4.smb",
+      "category": "Characters",
+      "subcategory": "Character Skeleton",
+      "representation": "Skeleton",
+      "owner_name": "Pikeman",
+      "class_code": "C",
+      "source_sha256": "48af614678593eaa0b659c2be514bd60f86b94f72cfb4305ed8352f48f12cc4a",
+      "source_size": 12414984,
+      "registry_origin": "physical_bridge_v1",
+      "registered_at": "2026-08-27T07:54:30.716262+00:00"
+    },
+    {
+      "asset_id": "AST-E94514E5E4C5",
+      "workspace_path": "Characters/Pikeman/C01/Config/M4Bip.inx",
+      "roundtrip_target": "char/tmABCD/M4Bip.inx",
+      "category": "Characters",
+      "subcategory": "Character Model Info",
+      "representation": "INX",
+      "owner_name": "Pikeman",
+      "class_code": "C",
+      "source_sha256": "b8bb4adaaa2175b57fa604ccdacf419ca699d48d47bb04710e6169189de2f192",
+      "source_size": 95268,
+      "registry_origin": "physical_bridge_v1",
+      "registered_at": "2026-08-27T07:54:30.785104+00:00"
+    },
+    {
+      "asset_id": "AST-BDEC5D38222F",
+      "workspace_path": "Characters/Pikeman/C01/Textures/TmbC01.bmp",
+      "roundtrip_target": "char/tmABCD/TmbC01.bmp",
+      "category": "Textures",
+      "subcategory": "Character Texture",
+      "representation": "Diffuse/Character Texture",
+      "owner_name": "Pikeman",
+      "class_code": "C",
+      "source_sha256": "5555429bd3c123d6cfb0a234d111debaa950fd763f13b476d8b5be1dd1559323",
+      "source_size": 196662,
+      "registry_origin": "physical_bridge_v1",
+      "registered_at": "2026-08-27T07:54:30.858470+00:00"
+    },
+    {
+      "asset_id": "AST-A6FE26CE650F",
+      "workspace_path": "Characters/Pikeman/C01/Textures/TmbC03.bmp",
+      "roundtrip_target": "char/tmABCD/TmbC03.bmp",
+      "category": "Textures",
+      "subcategory": "Character Texture",
+      "representation": "Variant Character Texture",
+      "owner_name": "Pikeman",
+      "class_code": "C",
+      "source_sha256": "1ffd503b4bca2ecb42178c7975de52e862a88d5a388033adea2070fc02d99fad",
+      "source_size": 196662,
+      "registry_origin": "physical_bridge_v1",
+      "registered_at": "2026-08-27T07:54:30.938173+00:00"
+    }
+  ],
+  "bridge_history": [
+    {
+      "action": "register",
+      "asset_id": "AST-8458E2A433E5",
+      "roundtrip_target": "char/tmABCD/TmbC01.smd",
+      "workspace_path": "Characters/Pikeman/C01/Model/TmbC01.smd",
+      "source_sha256": "9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c",
+      "source_size": 187504,
+      "manifest_backup": "/home/gabriel/Área de Trabalho/summit/design_work/blender_workspace_pikeman_real/workspace_manifest.backup_20260827_085430_581234.json",
+      "timestamp": "2026-08-27T07:54:30.584992+00:00"
+    },
+    {
+      "action": "register",
+      "asset_id": "AST-258E652FA224",
+      "roundtrip_target": "char/tmABCD/m4.smb",
+      "workspace_path": "Characters/Pikeman/C01/Skeleton/m4.smb",
+      "source_sha256": "48af614678593eaa0b659c2be514bd60f86b94f72cfb4305ed8352f48f12cc4a",
+      "source_size": 12414984,
+      "manifest_backup": "/home/gabriel/Área de Trabalho/summit/design_work/blender_workspace_pikeman_real/workspace_manifest.backup_20260827_085430_652712.json",
+      "timestamp": "2026-08-27T07:54:30.716288+00:00"
+    },
+    {
+      "action": "register",
+      "asset_id": "AST-E94514E5E4C5",
+      "roundtrip_target": "char/tmABCD/M4Bip.inx",
+      "workspace_path": "Characters/Pikeman/C01/Config/M4Bip.inx",
+      "source_sha256": "b8bb4adaaa2175b57fa604ccdacf419ca699d48d47bb04710e6169189de2f192",
+      "source_size": 95268,
+      "manifest_backup": "/home/gabriel/Área de Trabalho/summit/design_work/blender_workspace_pikeman_real/workspace_manifest.backup_20260827_085430_783300.json",
+      "timestamp": "2026-08-27T07:54:30.785121+00:00"
+    },
+    {
+      "action": "register",
+      "asset_id": "AST-BDEC5D38222F",
+      "roundtrip_target": "char/tmABCD/TmbC01.bmp",
+      "workspace_path": "Characters/Pikeman/C01/Textures/TmbC01.bmp",
+      "source_sha256": "5555429bd3c123d6cfb0a234d111debaa950fd763f13b476d8b5be1dd1559323",
+      "source_size": 196662,
+      "manifest_backup": "/home/gabriel/Área de Trabalho/summit/design_work/blender_workspace_pikeman_real/workspace_manifest.backup_20260827_085430_854917.json",
+      "timestamp": "2026-08-27T07:54:30.858496+00:00"
+    },
+    {
+      "action": "register",
+      "asset_id": "AST-A6FE26CE650F",
+      "roundtrip_target": "char/tmABCD/TmbC03.bmp",
+      "workspace_path": "Characters/Pikeman/C01/Textures/TmbC03.bmp",
+      "source_sha256": "1ffd503b4bca2ecb42178c7975de52e862a88d5a388033adea2070fc02d99fad",
+      "source_size": 196662,
+      "manifest_backup": "/home/gabriel/Área de Trabalho/summit/design_work/blender_workspace_pikeman_real/workspace_manifest.backup_20260827_085430_933892.json",
+      "timestamp": "2026-08-27T07:54:30.938206+00:00"
+    }
+  ],
+  "character_asset": {
+    "profile_id": "pikeman_c01_m4",
+    "asset_set_id": "CHARSET-PIKEMAN-C01-M4",
+    "display_name": "Pikeman C01 / M4",
+    "profile": "/home/gabriel/Área de Trabalho/summit/design_work/profiles/pt_character_profile_pikeman_c01_m4_v1.json",
+    "profile_sha256_at_init": "dd8abd1ce54abd756026974bb626c16d990674095827f3ac9e7f0495dcbd95df"
+  },
+  "created_at": "2026-08-27T07:53:49.944569+00:00",
+  "client_modified": false
+}

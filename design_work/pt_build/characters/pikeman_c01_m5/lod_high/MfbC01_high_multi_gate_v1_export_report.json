@@ -1,0 +1,340 @@
+{
+  "tool": "PT_SMD_MODEL_062_FREE_MESH_WRITER_V4_MULTI",
+  "blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/MfbC01_high_multi_gate_v1_game_normalized.blend",
+  "source_smd": "/home/gabriel/Área de Trabalho/summit/design_work/MfbC01.smd",
+  "source_sha256": "9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b",
+  "targets": [
+    "MbhC01",
+    "MshC01",
+    "MlhC01"
+  ],
+  "target_count": 3,
+  "objects": [
+    {
+      "object": "MbhC01",
+      "mode_sync": {
+        "original_mode": "OBJECT",
+        "current_mode": "OBJECT",
+        "edit_mode_synchronized": false
+      },
+      "source_counts": {
+        "vertices": 130,
+        "faces": 217,
+        "texlinks": 217
+      },
+      "artist_mesh": {
+        "vertices": 130,
+        "source_polygons": 217,
+        "export_triangles": 217,
+        "triangulation_delta": 0,
+        "triangulation": {
+          "method": "TEMP_BMESH_BEAUTY",
+          "source_vertices": 130,
+          "source_polygons": 217,
+          "export_triangles": 217,
+          "vertex_count_preserved": true,
+          "artist_mesh_modified": false
+        }
+      },
+      "output_counts": {
+        "vertices": 130,
+        "faces": 217,
+        "texlinks": 217
+      },
+      "vertex_delta": 0,
+      "face_delta": 0,
+      "allowed_materials": [
+        1,
+        2
+      ],
+      "hTexture_by_material": {
+        "1": 552301608,
+        "2": 552301928
+      },
+      "unique_rigid_bones": [
+        "Bip-0007",
+        "Bip-0008",
+        "Bip-0010",
+        "Bip-0011",
+        "Bip-0014",
+        "Bip-0015",
+        "Bip-0016",
+        "Bip-0017",
+        "Bip-0019",
+        "Bip-0020",
+        "Bip-0022",
+        "Bip-0023",
+        "Bip-0037",
+        "Bip-0038",
+        "Bip01 L Calf",
+        "Bip01 L Thigh",
+        "Bip01 Pelvis",
+        "Bip01 R Calf",
+        "Bip01 R Thigh",
+        "Bip01 Spine",
+        "Bip01 Spine1"
+      ],
+      "rigid_bone_count": 21,
+      "max_vertex_fit_error": 0.0,
+      "mean_vertex_fit_error": 0.0,
+      "all_vertices_rebuilt": true,
+      "all_faces_rebuilt": true,
+      "all_texlinks_rebuilt": true,
+      "all_physique_rebuilt": true
+    },
+    {
+      "object": "MshC01",
+      "mode_sync": {
+        "original_mode": "OBJECT",
+        "current_mode": "OBJECT",
+        "edit_mode_synchronized": false
+      },
+      "source_counts": {
+        "vertices": 173,
+        "faces": 331,
+        "texlinks": 331
+      },
+      "artist_mesh": {
+        "vertices": 173,
+        "source_polygons": 331,
+        "export_triangles": 331,
+        "triangulation_delta": 0,
+        "triangulation": {
+          "method": "TEMP_BMESH_BEAUTY",
+          "source_vertices": 173,
+          "source_polygons": 331,
+          "export_triangles": 331,
+          "vertex_count_preserved": true,
+          "artist_mesh_modified": false
+        }
+      },
+      "output_counts": {
+        "vertices": 173,
+        "faces": 331,
+        "texlinks": 331
+      },
+      "vertex_delta": 0,
+      "face_delta": 0,
+      "allowed_materials": [
+        1
+      ],
+      "hTexture_by_material": {
+        "1": 552301608
+      },
+      "unique_rigid_bones": [
+        "Bip01 Head",
+        "Bip01 L Clavicle",
+        "Bip01 L Finger0",
+        "Bip01 L Finger01",
+        "Bip01 L Finger1",
+        "Bip01 L Finger11",
+        "Bip01 L Finger2",
+        "Bip01 L Finger21",
+        "Bip01 L Forearm",
+        "Bip01 L Hand",
+        "Bip01 L UpperArm",
+        "Bip01 R Clavicle",
+        "Bip01 R Finger0",
+        "Bip01 R Finger01",
+        "Bip01 R Finger1",
+        "Bip01 R Finger11",
+        "Bip01 R Finger2",
+        "Bip01 R Finger21",
+        "Bip01 R Forearm",
+        "Bip01 R Hand",
+        "Bip01 R UpperArm",
+        "Bip01 Spine1"
+      ],
+      "rigid_bone_count": 22,
+      "max_vertex_fit_error": 0.0,
+      "mean_vertex_fit_error": 0.0,
+      "all_vertices_rebuilt": true,
+      "all_faces_rebuilt": true,
+      "all_texlinks_rebuilt": true,
+      "all_physique_rebuilt": true
+    },
+    {
+      "object": "MlhC01",
+      "mode_sync": {
+        "original_mode": "OBJECT",
+        "current_mode": "OBJECT",
+        "edit_mode_synchronized": false
+      },
+      "source_counts": {
+        "vertices": 46,
+        "faces": 78,
+        "texlinks": 78
+      },
+      "artist_mesh": {
+        "vertices": 46,
+        "source_polygons": 78,
+        "export_triangles": 78,
+        "triangulation_delta": 0,
+        "triangulation": {
+          "method": "TEMP_BMESH_BEAUTY",
+          "source_vertices": 46,
+          "source_polygons": 78,
+          "export_triangles": 78,
+          "vertex_count_preserved": true,
+          "artist_mesh_modified": false
+        }
+      },
+      "output_counts": {
+        "vertices": 46,
+        "faces": 78,
+        "texlinks": 78
+      },
+      "vertex_delta": 0,
+      "face_delta": 0,
+      "allowed_materials": [
+        1
+      ],
+      "hTexture_by_material": {
+        "1": 552301608
+      },
+      "unique_rigid_bones": [
+        "Bip01 L Calf",
+        "Bip01 L Foot",
+        "Bip01 R Calf",
+        "Bip01 R Foot"
+      ],
+      "rigid_bone_count": 4,
+      "max_vertex_fit_error": 0.0,
+      "mean_vertex_fit_error": 0.0,
+      "all_vertices_rebuilt": true,
+      "all_faces_rebuilt": true,
+      "all_texlinks_rebuilt": true,
+      "all_physique_rebuilt": true
+    }
+  ],
+  "non_target_object_blocks_byte_identical": 12,
+  "input_size": 290229,
+  "output_size": 290229,
+  "growth_bytes": 0,
+  "input_sha256": "9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b",
+  "output_sha256": "42ac9148846d0234981227065335367cdf4208b5204ec26bb1fda2c261defc2a",
+  "object_table": [
+    {
+      "name": "MsmC01",
+      "target": false,
+      "old_start": 3309,
+      "new_start": 3309,
+      "old_length": 25420,
+      "new_length": 25420
+    },
+    {
+      "name": "MshC01",
+      "target": true,
+      "old_start": 28729,
+      "new_start": 28729,
+      "old_length": 34432,
+      "new_length": 34432
+    },
+    {
+      "name": "MslC01",
+      "target": false,
+      "old_start": 63161,
+      "new_start": 63161,
+      "old_length": 19276,
+      "new_length": 19276
+    },
+    {
+      "name": "MsmC03",
+      "target": false,
+      "old_start": 82437,
+      "new_start": 82437,
+      "old_length": 29388,
+      "new_length": 29388
+    },
+    {
+      "name": "MslC03",
+      "target": false,
+      "old_start": 111825,
+      "new_start": 111825,
+      "old_length": 21260,
+      "new_length": 21260
+    },
+    {
+      "name": "MlhC01",
+      "target": true,
+      "old_start": 133085,
+      "new_start": 133085,
+      "old_length": 10116,
+      "new_length": 10116
+    },
+    {
+      "name": "MlhC03",
+      "target": false,
+      "old_start": 143201,
+      "new_start": 143201,
+      "old_length": 14204,
+      "new_length": 14204
+    },
+    {
+      "name": "MbhC01",
+      "target": true,
+      "old_start": 157405,
+      "new_start": 157405,
+      "old_length": 24272,
+      "new_length": 24272
+    },
+    {
+      "name": "MshC03",
+      "target": false,
+      "old_start": 181677,
+      "new_start": 181677,
+      "old_length": 43392,
+      "new_length": 43392
+    },
+    {
+      "name": "MlmC01",
+      "target": false,
+      "old_start": 225069,
+      "new_start": 225069,
+      "old_length": 7948,
+      "new_length": 7948
+    },
+    {
+      "name": "MlmC03",
+      "target": false,
+      "old_start": 233017,
+      "new_start": 233017,
+      "old_length": 9980,
+      "new_length": 9980
+    },
+    {
+      "name": "MbmC01",
+      "target": false,
+      "old_start": 242997,
+      "new_start": 242997,
+      "old_length": 16436,
+      "new_length": 16436
+    },
+    {
+      "name": "MllC01",
+      "target": false,
+      "old_start": 259433,
+      "new_start": 259433,
+      "old_length": 6796,
+      "new_length": 6796
+    },
+    {
+      "name": "MllC03",
+      "target": false,
+      "old_start": 266229,
+      "new_start": 266229,
+      "old_length": 8332,
+      "new_length": 8332
+    },
+    {
+      "name": "MblC01",
+      "target": false,
+      "old_start": 274561,
+      "new_start": 274561,
+      "old_length": 15668,
+      "new_length": 15668
+    }
+  ],
+  "semantic_check": "PASS",
+  "multi_object_writer_check": "PASS"
+}

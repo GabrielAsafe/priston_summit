@@ -1,0 +1,8 @@
+[C:/folder/file.txt] -> [txt]
+[C:\folder\file.txt] -> [txt]
+[C:/folder.ext/file] -> []
+[C:\folder.ext\file] -> []
+[folder/file.dds] -> [dds]
+[folder\file.dds] -> [dds]
+[file.tga] -> [tga]
+[file] -> []

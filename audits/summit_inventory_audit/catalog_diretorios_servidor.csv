@@ -1,0 +1,668 @@
+﻿directory,files,bytes,backup_like,temp_like,categories
+char/tmABCD,6067,1297495398,0,0,animation_index=1934; model_mesh=1934; texture_image=1566; other=628; config_data_text=4; binary_runtime=1
+,51,720774615,0,3,binary_runtime=34; config_data_text=9; other=7; binary_data=1
+Configs,7,614698877,0,0,config_data_text=6; other=1
+Field/Custom,1496,124847381,0,0,texture_image=1481; model_mesh=14; other=1
+Field/forever-fall,950,96894949,0,0,texture_image=846; model_mesh=103; other=1
+Field/dungeon,500,95179624,0,0,texture_image=420; model_mesh=79; other=1
+Field/Fall_Game,311,92881724,0,0,texture_image=291; model_mesh=19; other=1
+Field/old_forest,1487,92182149,0,0,texture_image=1480; model_mesh=7
+Field/Ice,565,87065034,0,0,texture_image=550; model_mesh=14; other=1
+Field/old_dungeon,1484,72684869,0,0,texture_image=1480; model_mesh=4
+Field/Lost,414,72111329,0,0,texture_image=405; model_mesh=8; other=1
+Field/forest,1456,68395365,0,0,texture_image=1435; model_mesh=20; other=1
+LogItemData,124823,67404420,0,0,other=124823
+Field/swamp,107,62544350,0,0,texture_image=106; model_mesh=1
+char/monster/RPT_TheColossi,36,62197338,0,0,model_mesh=18; texture_image=12; animation_index=6
+Field/Ricarten,380,61375308,0,0,texture_image=358; model_mesh=21; other=1
+Field/Iron,311,59012544,0,0,texture_image=257; model_mesh=53; other=1
+Field/mar,172,47012335,0,0,texture_image=170; other=1; model_mesh=1
+Field/castle,572,46921547,0,0,texture_image=561; model_mesh=8; config_data_text=2; other=1
+Field/Ruin,940,46877584,0,0,texture_image=934; model_mesh=5; other=1
+char/monster/Lizard_bigmama,15,44066822,0,0,model_mesh=6; texture_image=6; animation_index=3
+Field/SeaA,98,43942996,0,0,texture_image=85; model_mesh=12; other=1
+Field/endless,133,38336655,0,0,texture_image=125; other=5; model_mesh=3
+char/monster/Brazilbear,30,37077306,0,0,model_mesh=18; animation_index=6; texture_image=6
+Field/AncientW,128,35094078,0,0,texture_image=117; model_mesh=11
+Field/Greedy,285,33288137,0,0,texture_image=253; model_mesh=31; other=1
+Field/Slab,158,33136020,0,0,texture_image=156; model_mesh=1; other=1
+Field/Losttemple,180,32442465,0,0,texture_image=178; model_mesh=1; other=1
+Field/Sod,248,32405272,0,0,texture_image=209; model_mesh=38; other=1
+Field/cave,281,30505325,0,0,texture_image=230; model_mesh=50; other=1
+Field/desert,204,29176669,0,0,texture_image=198; model_mesh=5; other=1
+Field/map,62,25989116,0,0,texture_image=62
+char/monster/UndeadStalker,6,23695173,0,0,model_mesh=4; texture_image=1; animation_index=1
+char/monster/UndeadStalker_s,6,23695167,0,0,model_mesh=4; texture_image=1; animation_index=1
+char/monster/Lizard_Soldier,15,18099324,0,0,model_mesh=6; texture_image=6; animation_index=3
+Field/Mine,93,17858486,0,0,texture_image=91; model_mesh=1; other=1
+LogFile,186,16859707,0,186,other=186
+char/monster/Lena_s,6,14957942,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/Lizard_Papa,21,14850345,0,0,texture_image=12; model_mesh=6; animation_index=3
+char/monster/Lizard_Commander,15,13863414,0,0,model_mesh=6; texture_image=6; animation_index=3
+char/monster/Lena,6,13588904,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/Lizard_Elder,15,13426498,0,0,model_mesh=6; texture_image=6; animation_index=3
+Field/Boss,88,13263965,0,0,texture_image=85; model_mesh=2; other=1
+char/monster/Marionette_s,5,12883314,0,0,model_mesh=3; animation_index=1; texture_image=1
+Maps,41,12474482,0,0,texture_image=40; other=1
+char/monster/Hound_s,6,12458406,0,0,model_mesh=4; texture_image=1; animation_index=1
+char/monster/Hound,6,12458400,0,0,model_mesh=4; animation_index=1; texture_image=1
+char/monster/Bear,10,12323066,0,0,model_mesh=6; texture_image=2; animation_index=2
+char/npc/Teacher,15,12226891,0,0,texture_image=6; model_mesh=6; animation_index=3
+char/monster/Lizard_Doctor,13,11937902,0,0,model_mesh=6; texture_image=4; animation_index=3
+char/monster/marionette,5,11787863,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/Billy_s,6,10884885,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/npc/stella,19,10480952,0,0,model_mesh=9; texture_image=6; animation_index=3; other=1
+char/monster/Billy,6,10398853,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/Monshadow-1,18,10074784,0,0,model_mesh=12; animation_index=4; texture_image=2
+char/monster/Monwitch,19,9938375,0,0,model_mesh=9; texture_image=7; animation_index=3
+char/monster/IceSerpent,5,9585284,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/Monskeleton,38,9131170,0,0,model_mesh=19; texture_image=11; animation_index=8
+char/monster/firegremlin,5,9100157,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/Greedy,5,8367778,0,0,model_mesh=2; config_data_text=1; animation_index=1; texture_image=1
+char/monster/s_kn,11,8000253,0,0,texture_image=8; model_mesh=2; animation_index=1
+char/monster/LavaGiant,5,7966374,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/d_kn,11,7869173,0,0,texture_image=8; model_mesh=2; animation_index=1
+char/monster/Tulla,7,7685656,0,0,model_mesh=3; texture_image=3; animation_index=1
+Field/Quest,66,7383331,0,0,texture_image=64; model_mesh=1; other=1
+char/monster/Hest,15,7203365,0,0,model_mesh=11; texture_image=3; animation_index=1
+char/monster/Midranda,4,7099070,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Boitata,6,6930618,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/Monavelrisk,22,6902856,0,0,model_mesh=10; texture_image=9; animation_index=3
+char/monster/DevilShy,8,6787724,0,0,texture_image=4; model_mesh=3; animation_index=1
+char/monster/Morgon,16,6577940,0,0,texture_image=8; model_mesh=6; animation_index=2
+char/monster/Minebat,5,6511954,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/LavaArcher,4,6498230,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/figon,32,6301306,0,0,model_mesh=20; animation_index=6; texture_image=6
+char/monster/Firechick,5,6070482,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/LavaArmor,4,6048038,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/PaPachick,5,6040906,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/Monbagon,39,6030221,0,0,model_mesh=23; texture_image=10; animation_index=6
+Management,21,6010585,0,1,binary_runtime=17; config_data_text=2; other=2
+char/monster/Eragon,4,5992864,0,0,model_mesh=2; texture_image=1; animation_index=1
+char/monster/Mountain,15,5926516,0,0,texture_image=7; model_mesh=6; animation_index=2
+char/monster/Yagditha,5,5901373,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/RPTsoldier1,7,5837469,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/Darkphalanx,7,5814365,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/s_meca,13,5787340,0,0,texture_image=10; model_mesh=2; animation_index=1
+char/monster/d_meca,13,5787330,0,0,texture_image=10; model_mesh=2; animation_index=1
+char/monster/FlameMaiden,6,5772686,0,0,texture_image=2; model_mesh=2; animation_index=1; binary_runtime=1
+char/monster/death_knight,11,5633261,0,0,texture_image=6; model_mesh=4; animation_index=1
+char/monster/Snowman,5,5575010,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/s_atal,10,5497154,0,0,texture_image=7; model_mesh=2; animation_index=1
+char/monster/d_atal,10,5497142,0,0,texture_image=7; model_mesh=2; animation_index=1
+char/monster/s_ar,12,5489807,0,0,texture_image=9; model_mesh=2; animation_index=1
+char/monster/d_ar,12,5489799,0,0,texture_image=9; model_mesh=2; animation_index=1
+char/monster/Flamo,4,5299134,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Adevayo,10,5218138,0,0,texture_image=4; model_mesh=4; animation_index=2
+char/monster/goblinchief,14,5190456,0,0,texture_image=6; model_mesh=6; animation_index=2
+char/monster/Sendelost,10,5158666,0,0,texture_image=4; model_mesh=4; animation_index=2
+char/monster/Ziddane,10,5157180,0,0,texture_image=4; model_mesh=4; animation_index=2
+char/monster/MonGknight,23,5088410,0,0,model_mesh=14; texture_image=5; animation_index=4
+char/monster/LavaGolem,4,5059062,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/npc/reddevil,8,5040824,0,0,texture_image=5; model_mesh=2; animation_index=1
+char/monster/MonSKnight,32,5036716,0,0,model_mesh=16; texture_image=8; animation_index=8
+char/monster/Monberserker,8,5021039,0,0,texture_image=4; model_mesh=3; animation_index=1
+char/monster/chaoscara,11,5018126,0,0,texture_image=6; model_mesh=3; config_data_text=1; animation_index=1
+char/monster/s_pa,12,4983543,0,0,texture_image=9; model_mesh=2; animation_index=1
+char/monster/shcl,12,4983543,0,0,texture_image=9; model_mesh=2; animation_index=1
+char/monster/d_pa,12,4983527,0,0,texture_image=9; model_mesh=2; animation_index=1
+char/monster/Monigad,11,4919800,0,0,texture_image=5; model_mesh=4; animation_index=2
+char/monster/Darkmage,9,4894032,0,0,model_mesh=4; texture_image=3; animation_index=2
+char/monster/Kelvezu,8,4808933,0,0,texture_image=5; model_mesh=2; animation_index=1
+Field/Room,44,4803481,0,0,texture_image=42; model_mesh=1; other=1
+char/monster/hellhound,16,4766200,0,0,model_mesh=8; animation_index=4; texture_image=4
+char/monster/Monfury,10,4710240,0,0,texture_image=7; model_mesh=2; animation_index=1
+char/monster/phmgod,7,4601421,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/gorgon,7,4601419,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/Koon,4,4562818,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/s_fi,10,4464652,0,0,texture_image=7; model_mesh=2; animation_index=1
+char/monster/d_fi,10,4464638,0,0,texture_image=7; model_mesh=2; animation_index=1
+char/monster/MonSRazorArcher,29,4389447,0,0,model_mesh=13; texture_image=12; animation_index=4
+char/monster/MonminiG,41,4386049,0,0,model_mesh=26; texture_image=9; animation_index=6
+char/monster/Insec,5,4353374,0,0,model_mesh=2; animation_index=1; texture_image=1; binary_runtime=1
+char/monster/Minegolem,5,4324614,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/Draxos,6,4317183,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Monplant,33,4296498,0,0,model_mesh=14; texture_image=14; animation_index=5
+char/monster/headcut,15,4279560,0,2,model_mesh=7; texture_image=6; animation_index=2
+char/monster/Hestian,5,4275346,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/npc/MN-008,12,4273183,0,0,model_mesh=5; texture_image=4; animation_index=3
+char/monster/Tarantulika,5,4242870,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/Igolation,15,4228171,0,0,texture_image=11; model_mesh=3; animation_index=1
+char/monster/UndeadMaple,5,4204662,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/hobogolem,24,4193320,0,0,texture_image=18; model_mesh=4; animation_index=2
+char/npc/MN-003,15,4170080,0,0,texture_image=7; model_mesh=5; animation_index=3
+char/npc/MN-009,11,4083562,0,0,model_mesh=5; animation_index=3; texture_image=3
+char/monster/GoblinShaman,13,4072724,0,0,model_mesh=10; texture_image=2; animation_index=1
+char/monster/PumpkinGhost,5,4068458,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/S_Bloodyknight,6,4060130,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/RPTxxxPrince,9,4055164,0,0,texture_image=6; model_mesh=2; animation_index=1
+char/monster/Moncyclops,33,4037742,0,0,model_mesh=17; texture_image=12; animation_index=4
+char/monster/Bloodyknight,6,4035490,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Kakoa,6,3987775,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/Bguardian,10,3983698,0,0,texture_image=7; model_mesh=2; animation_index=1
+char/monster/Sathla,4,3947600,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/UndeadManager,5,3926814,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/npc/SHunter,5,3926808,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/Crios,6,3906760,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/npc/Sambagirl,6,3896382,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/turtlecannon,11,3856450,0,0,texture_image=5; model_mesh=4; animation_index=2
+char/npc/Hosean,5,3795012,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Monshadow,9,3786208,0,0,model_mesh=6; animation_index=2; texture_image=1
+char/monster/TElite,5,3778941,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/IElite,5,3750849,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/Monmummy,10,3741264,0,0,model_mesh=6; animation_index=2; texture_image=2
+char/monster/Monzombi,22,3740854,0,0,model_mesh=13; texture_image=6; animation_index=3
+char/monster/MonKingspider,6,3720454,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/npc/TN-002,18,3711250,0,0,model_mesh=8; texture_image=5; animation_index=5
+char/monster/Dey,5,3660776,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Nihil,5,3621398,0,0,animation_index=2; model_mesh=2; texture_image=1
+char/monster/s_pr,10,3620549,0,0,texture_image=7; model_mesh=2; animation_index=1
+char/monster/d_pr,10,3620543,0,0,texture_image=7; model_mesh=2; animation_index=1
+char/monster/arcuda,5,3609922,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/WLord,5,3598572,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Niken,11,3581037,0,0,model_mesh=9; texture_image=1; animation_index=1
+char/monster/Acero,4,3554622,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/deadzone,10,3529832,0,0,model_mesh=5; texture_image=3; animation_index=2
+char/monster/TSoldier,5,3519597,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Monmudy,12,3501858,0,0,model_mesh=6; texture_image=4; animation_index=2
+char/monster/s_magi,10,3491100,0,0,texture_image=7; model_mesh=2; animation_index=1
+char/monster/d_magi,10,3491094,0,0,texture_image=7; model_mesh=2; animation_index=1
+char/monster/MonSGuard,18,3450758,0,0,model_mesh=8; texture_image=6; animation_index=4
+char/monster/Chalybs,4,3442022,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Monhulk-1,6,3437746,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/Monhulk,6,3436392,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/Najan,4,3434630,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/ssnail,6,3368200,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/npc/Hunter,6,3361031,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/Ignis,4,3358630,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Guardian,6,3350294,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/MonMokova,7,3336220,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/MonMokovian,7,3336220,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/MPTratu,7,3308816,0,0,texture_image=3; model_mesh=3; animation_index=1
+char/monster/Xetan,6,3299558,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/sandlem,13,3285410,0,0,model_mesh=7; texture_image=4; animation_index=2
+char/monster/Soldier_D,7,3284338,0,0,texture_image=3; model_mesh=3; animation_index=1
+char/monster/frost,6,3281731,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Shogoth,5,3277431,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Darkguard,11,3273386,0,0,texture_image=5; model_mesh=4; animation_index=2
+char/monster/Mimic,11,3255196,0,0,model_mesh=9; texture_image=1; animation_index=1
+char/monster/UndeadMiner,5,3240112,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/ghost,6,3189291,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/TBomber,4,3181422,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/npc/Skadi,6,3168769,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/MPTomicron,7,3160567,0,0,texture_image=3; model_mesh=3; animation_index=1
+char/monster/Monimp,19,3155411,0,0,model_mesh=10; texture_image=6; animation_index=3
+char/npc/Jin,6,3152373,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/MonSWarrior,21,3091089,0,0,texture_image=9; model_mesh=8; animation_index=4
+char/monster/Monhauntplant,11,3066054,0,0,model_mesh=5; texture_image=4; animation_index=2
+char/monster/MPTshurikar,8,3060208,0,0,model_mesh=5; texture_image=2; animation_index=1
+char/npc/reddevil-01,8,3054369,0,0,texture_image=5; model_mesh=2; animation_index=1
+char/npc/Bcn05,8,3041370,0,0,model_mesh=3; texture_image=3; animation_index=2
+char/npc/SkillMaster,9,3041199,0,0,texture_image=6; model_mesh=2; animation_index=1
+char/npc/Rudolf,10,3033893,0,0,texture_image=7; model_mesh=2; animation_index=1
+char/monster/Monclip,13,3029722,0,0,model_mesh=7; texture_image=4; animation_index=2
+char/npc/IceN-03,10,3026603,0,0,texture_image=5; model_mesh=3; animation_index=2
+char/monster/Arhdyra,4,3008066,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Metalgolem,9,2971204,0,0,model_mesh=4; animation_index=2; texture_image=2; other=1
+char/monster/chimmyl,6,2963602,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Chimera,6,2941266,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/TTechnician,4,2928542,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Beetle,5,2921048,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/Monrebion,11,2912772,0,0,model_mesh=6; texture_image=2; animation_index=2; other=1
+char/monster/Monnazz-1,10,2876356,0,0,model_mesh=6; animation_index=2; texture_image=2
+char/monster/Monnazz,10,2876336,0,0,model_mesh=6; animation_index=2; texture_image=2
+char/monster/Monegan,5,2875964,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/KingBat,11,2874345,0,0,model_mesh=9; texture_image=1; animation_index=1
+char/npc/MN-002,16,2864186,0,0,texture_image=8; model_mesh=5; animation_index=3
+char/npc/SN-004,7,2848311,0,0,model_mesh=3; animation_index=2; texture_image=2
+char/npc/MN-001,15,2826342,0,0,model_mesh=6; texture_image=5; animation_index=4
+char/monster/MPThell,7,2813067,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/RPThell,7,2813067,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/m_lord,10,2785978,0,0,texture_image=4; model_mesh=4; animation_index=2
+char/monster/Monratoo-1,8,2770079,0,0,model_mesh=3; texture_image=3; animation_index=1; other=1
+char/npc/SN-002,7,2760615,0,0,model_mesh=3; animation_index=2; texture_image=2
+char/monster/Igniculus,5,2756046,0,0,model_mesh=2; animation_index=1; texture_image=1; binary_runtime=1
+char/monster/esnail,5,2735134,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/ISoldier,5,2710985,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Gurkob,5,2700286,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Monratoo,8,2697044,0,0,model_mesh=3; texture_image=3; animation_index=1; other=1
+char/monster/Wolverin,4,2680166,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Buma,13,2644346,0,2,model_mesh=7; texture_image=4; animation_index=2
+char/monster/icegolem,10,2641906,0,0,model_mesh=4; texture_image=4; animation_index=2
+char/monster/Darkwitch_MPT,6,2633106,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/decoy,11,2632738,0,2,model_mesh=7; texture_image=2; animation_index=2
+char/monster/Sprin,5,2621082,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/npc/arad,10,2607033,0,0,texture_image=5; model_mesh=2; other=2; animation_index=1
+char/npc/M_Messenger,6,2602426,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/LGuardian,5,2577739,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/MonSeto,5,2565304,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Monstygianlord-1,7,2525530,0,0,texture_image=3; model_mesh=3; animation_index=1
+char/monster/Monstygianlord,7,2525519,0,0,texture_image=3; model_mesh=3; animation_index=1
+char/npc/MN-012,7,2524756,0,0,model_mesh=3; texture_image=3; animation_index=1
+char/monster/Monhobgoblin,15,2505050,0,0,model_mesh=7; texture_image=6; animation_index=2
+char/npc/T_Messenger,6,2496250,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/npc/MN-013,7,2495012,0,0,model_mesh=3; texture_image=3; animation_index=1
+char/npc/ji_woo,8,2468015,0,0,texture_image=3; model_mesh=3; animation_index=1; config_data_text=1
+char/npc/TN-006,9,2443683,0,0,texture_image=4; model_mesh=3; animation_index=2
+char/npc/SN-005,7,2438947,0,0,model_mesh=3; animation_index=2; texture_image=2
+char/monster/Faugn,4,2430170,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Monsliver,10,2429332,0,0,model_mesh=6; animation_index=2; texture_image=2
+char/monster/MonGreven,7,2425488,0,0,model_mesh=5; texture_image=1; animation_index=1
+char/monster/spider,7,2424155,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/MonSArcher,15,2418616,0,0,texture_image=7; model_mesh=6; animation_index=2
+char/npc/SN-003,7,2410584,0,0,model_mesh=3; animation_index=2; texture_image=2
+char/monster/MPThulkzh,5,2402250,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/npc/TN-012,13,2376200,0,0,texture_image=8; model_mesh=3; animation_index=2
+char/npc/TN-017,14,2372904,0,0,texture_image=9; model_mesh=3; animation_index=2
+char/monster/MonWolverin,9,2372584,0,0,texture_image=4; animation_index=3; model_mesh=2
+char/monster/IBomber,4,2369774,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Omicronos,7,2365192,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/Mondawlin,7,2349983,0,0,texture_image=3; model_mesh=3; animation_index=1
+char/npc/Baurin,7,2344811,0,0,texture_image=3; model_mesh=3; animation_index=1
+char/monster/Ruca,5,2337850,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/scorpion,6,2331974,0,0,model_mesh=4; texture_image=1; animation_index=1
+char/monster/wingdemon,6,2287368,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/devilbird,6,2264642,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Golem,14,2248520,0,1,model_mesh=10; texture_image=2; animation_index=2
+char/monster/doral,13,2240354,0,1,model_mesh=11; animation_index=1; texture_image=1
+char/monster/RunicGuardian,7,2233031,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/MonTempleguard,6,2215270,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/npc/Packjjangpy,8,2211110,0,0,texture_image=4; model_mesh=3; animation_index=1
+char/monster/LEngineer_1,4,2208850,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/LEngineer,4,2208846,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Rampage,5,2199096,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Monavellriskstf,7,2167266,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/Monbeedog,7,2164854,0,0,model_mesh=3; texture_image=3; animation_index=1
+char/monster/ironfist,7,2162032,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/DarkStalker,5,2161694,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/npc/Mage,9,2150128,0,0,texture_image=6; model_mesh=2; animation_index=1
+char/npc/Bcn04,14,2142603,0,0,texture_image=8; model_mesh=3; animation_index=2; other=1
+char/monster/ITechnician,4,2122502,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Monavellriskbow,7,2115484,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/npc/nadia,6,2085865,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/npc/Bcn03,13,2085811,0,0,texture_image=7; model_mesh=3; animation_index=2; other=1
+char/monster/RoyalMummy,8,2056360,0,0,model_mesh=4; texture_image=2; animation_index=2
+char/monster/blizzardgiant,6,2052604,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/LTechnician_1,4,2030354,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/LTechnician,4,2030350,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/coldeye,8,2019698,0,0,model_mesh=4; animation_index=2; texture_image=2
+char/npc/NineFox,7,2015480,0,0,model_mesh=3; animation_index=2; texture_image=2
+char/monster/Monhobsanta,7,2008153,0,0,model_mesh=3; texture_image=3; animation_index=1
+char/monster/Monbabyhulk,5,2003441,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/frozen,6,1986714,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/sentry,5,1981957,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/npc/Marina,4,1964926,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/npc/Zarad,4,1951304,0,0,model_mesh=2; texture_image=1; animation_index=1
+char/monster/HellPlant,6,1946889,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/npc/salon,6,1945620,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/npc/TN-008,11,1938620,0,0,texture_image=6; model_mesh=3; animation_index=2
+char/npc/Bcn02,13,1932727,0,0,texture_image=7; model_mesh=3; animation_index=2; other=1
+char/monster/IceWorm,5,1910940,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/npc/maskedman,7,1906697,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/npc/IceN-02,8,1884495,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/monster/watermelon,5,1878074,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/Fireworm,5,1874890,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/npc/MN-011,8,1869888,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/monster/strider,7,1864995,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/npc/eventmolly,5,1819551,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/lizardfolk,6,1802688,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Vampiric,8,1790844,0,0,texture_image=5; model_mesh=2; animation_index=1
+char/monster/rptlavagolem1,9,1782980,0,0,model_mesh=4; texture_image=3; animation_index=2
+char/monster/icegoblin,6,1771464,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Monrebi,11,1763372,0,0,model_mesh=6; texture_image=2; animation_index=2; other=1
+char/monster/Monstonegolem,9,1758334,0,0,model_mesh=4; texture_image=3; animation_index=2
+_pt_protector_reloaded_1_3-Developer,4,1757488,0,0,other=3; binary_runtime=1
+char/monster/MPTslicer,8,1739828,0,0,model_mesh=4; animation_index=2; texture_image=2
+char/npc/maskedwoman,5,1737062,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/Incubussummer,6,1722202,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/npc/TN-007,10,1709984,0,0,texture_image=5; model_mesh=3; animation_index=2
+char/npc/TN-014,8,1697754,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/npc/Ascam,8,1697742,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/npc/Bcn01,7,1696680,0,0,model_mesh=3; texture_image=2; animation_index=2
+char/npc/Ahin,7,1696672,0,0,model_mesh=3; texture_image=2; animation_index=2
+char/monster/Coma,5,1690098,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/rptlavagolem2,8,1687712,0,0,model_mesh=4; texture_image=3; animation_index=1
+char/monster/castledoor,5,1669416,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/Bebechick,5,1644716,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/MPTargos,7,1642898,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/Monheavygoblin,6,1638070,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/cyclopswarrior,7,1627466,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/npc/MN-005,8,1618676,0,0,model_mesh=3; texture_image=3; animation_index=2
+char/npc/BroomMan,5,1602895,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/Monrafra,5,1590136,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/KhanDoor,5,1584740,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/Monmightygoblin,6,1582440,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/NazSenior,8,1578248,0,0,model_mesh=4; animation_index=2; texture_image=2
+char/monster/Mystic,9,1573998,0,0,model_mesh=4; texture_image=3; animation_index=2
+char/monster/Crow,9,1573946,0,0,model_mesh=4; texture_image=3; animation_index=2
+char/monster/Grotesque,7,1568960,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/npc/SN-001,7,1554992,0,0,model_mesh=3; animation_index=2; texture_image=2
+char/monster/hammer_goblin,8,1547600,0,0,texture_image=4; model_mesh=3; animation_index=1
+char/monster/Chaingolem,8,1537769,0,0,texture_image=5; model_mesh=2; animation_index=1
+GameServer/Field,146,1537343,0,0,other=143; binary_runtime=3
+char/monster/Soldier_C,8,1532769,0,0,texture_image=5; model_mesh=2; animation_index=1
+char/monster/SealCrasher,7,1524420,0,0,model_mesh=4; animation_index=2; texture_image=1
+char/monster/EvilSpirit,8,1496836,0,0,model_mesh=4; animation_index=2; texture_image=2
+char/npc/TN-005,12,1494392,0,0,texture_image=7; model_mesh=3; animation_index=2
+char/monster/Firegolem,8,1457606,0,0,model_mesh=4; texture_image=2; animation_index=2
+char/monster/Sadness,6,1456182,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Monmetron,6,1442382,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/npc/Derik,9,1441951,0,0,texture_image=4; model_mesh=3; animation_index=2
+char/monster/Monburntree,5,1429426,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/EvilMaple,5,1427793,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/TowerGolem,10,1399880,0,0,model_mesh=5; texture_image=2; animation_index=2; other=1
+char/monster/Slayer,8,1396620,0,0,model_mesh=4; texture_image=2; animation_index=2
+char/monster/stingray,4,1390624,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/hammer_plant,6,1390265,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/AncientGolem,8,1387580,0,0,model_mesh=4; animation_index=2; texture_image=2
+char/npc/Hermit,4,1374170,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Soldier_B,6,1358690,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/hammer_decoy,6,1340024,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/npc/evenmorif,6,1321780,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Monsen,5,1315916,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/MireKeeper,5,1309730,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/npc/IceN-01,8,1292627,0,0,model_mesh=3; texture_image=3; animation_index=2
+char/monster/Monomicron-1,6,1288937,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Monomicron,6,1288929,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/npc/TN-001,9,1271451,0,0,texture_image=4; model_mesh=3; animation_index=2
+char/npc/MN-007,11,1268330,0,0,texture_image=6; model_mesh=3; animation_index=2
+char/npc/TN-009,6,1262049,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/V_bee,5,1257187,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/npc/TN-010,9,1252493,0,0,texture_image=4; model_mesh=3; animation_index=2
+char/monster/leech,7,1249230,0,0,model_mesh=4; texture_image=2; animation_index=1
+char/monster/Bsnake,7,1249228,0,0,model_mesh=4; texture_image=2; animation_index=1
+char/monster/Great_Greven,5,1240895,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/npc/villain,3,1235550,0,0,model_mesh=2; animation_index=1
+char/npc/MN-004,8,1234603,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/npc/dailyquest,5,1233034,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/npc/PCmanager,5,1224880,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/npc/TN-016,5,1224868,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/Web,7,1215446,0,0,model_mesh=4; texture_image=2; animation_index=1
+char/npc/MN-010,8,1213382,0,0,model_mesh=3; texture_image=3; animation_index=2
+char/tmABCD/Escravo/Armors,4,1212636,0,0,model_mesh=3; texture_image=1
+char/npc/Bcn06,8,1191762,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/npc/TN-015,8,1172158,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/npc/cashshop,4,1140782,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/npc/TN-003,9,1136229,0,0,texture_image=4; model_mesh=3; animation_index=2
+char/npc/TN-004,9,1136229,0,0,texture_image=4; model_mesh=3; animation_index=2
+char/monster/EvilPlant,5,1135405,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/Hyper,6,1135050,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Soldier_A,7,1131983,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/npc/milter,7,1102195,0,0,model_mesh=3; texture_image=2; animation_index=2
+char/monster/cokris,7,1100694,0,0,model_mesh=4; texture_image=2; animation_index=1
+char/monster/Moncavemummy,7,1100166,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/npc/Enzo,5,1072438,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/LizardDoor,4,1070615,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/CaveMush,4,1065178,0,0,model_mesh=2; texture_image=1; animation_index=1
+char/npc/Quest_ray,5,1041687,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Deadkinghopy,5,1038758,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/npc/phl,3,1023788,0,0,model_mesh=2; animation_index=1
+char/monster/ArmBeetle,4,997712,0,0,model_mesh=2; texture_image=1; animation_index=1
+char/monster/Bumb,5,993959,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/npc/hobsanta,6,988760,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/hopyking,6,963732,0,0,model_mesh=4; texture_image=1; animation_index=1
+char/npc/TN-011,8,949230,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/npc/Barba,8,949227,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/npc/MN-006,5,943277,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/Mondmachine,6,940864,0,0,texture_image=3; model_mesh=2; animation_index=1
+GameServer/OpenItem,1828,917763,0,0,config_data_text=1827; archive=1
+char/monster/Monthorncrowler,4,825128,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/VampiricBat,5,817982,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Monbeechief,5,799880,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/Monmushroom-mo,10,773094,0,0,model_mesh=6; texture_image=2; animation_index=2
+char/monster/Monmushroom,10,760344,0,0,model_mesh=6; texture_image=2; animation_index=2
+char/monster/Mondirebee,5,723596,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/t_crystal_b,8,721739,0,0,model_mesh=4; texture_image=2; animation_index=2
+char/monster/t_crystal_r,8,721739,0,0,model_mesh=4; texture_image=2; animation_index=2
+char/monster/omu,5,711508,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/hopy,9,698131,0,0,model_mesh=5; animation_index=2; texture_image=2
+Field/Title,75,690872,0,0,texture_image=74; binary_runtime=1
+char/monster/t_crystal_n,8,683060,0,0,model_mesh=4; texture_image=2; animation_index=2
+char/monster/Sakura,5,666498,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/npc/Sakura,5,666486,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/Deadhopy,4,657730,0,0,model_mesh=2; texture_image=1; animation_index=1
+GameServer/Monster,375,616149,0,0,other=374; archive=1
+char/monster/bal_crystal,8,553598,0,0,model_mesh=4; animation_index=2; texture_image=2
+char/monster/Cstone,5,543438,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/Mouse,6,457667,0,0,model_mesh=4; texture_image=1; animation_index=1
+char/monster/t_crystal_g,8,426823,0,0,model_mesh=4; texture_image=2; animation_index=2
+char/monster/Ribbonhopy,5,373921,0,0,texture_image=2; model_mesh=2; animation_index=1
+ptprotector,1,299008,0,0,binary_runtime=1
+char/monster/Moneye,5,245888,0,0,model_mesh=2; texture_image=2; animation_index=1
+_pt_protector_reloaded_1_3-Developer/extra,2,214872,0,0,config_data_text=1; other=1
+ptprotector/extra,2,214872,0,0,config_data_text=1; other=1
+GameServer/OpenItem/Tier5,95,118384,0,0,config_data_text=95
+DataServer/userdata/218,1,111376,0,0,binary_data=1
+char/Flag,4,110196,0,0,texture_image=2; animation_index=1; model_mesh=1
+Field/ani,5,104878,0,0,model_mesh=3; texture_image=1; config_data_text=1
+GameServer/NPC,156,90543,0,0,other=156
+DataServer/deleted,5,81920,0,0,binary_data=5
+TopLevel,6,65682,0,0,binary_runtime=5; config_data_text=1
+GameServer/NPC/name,222,57297,0,0,other=222
+COINSHOP_LOG,27,50681,0,27,other=27
+GameServer/OpenItem/name,1700,49259,1,0,other=1699; config_data_text=1
+DataServer/userdata/117,3,49152,0,0,binary_data=3
+DataServer/userdata/162,3,49152,0,0,binary_data=3
+DataServer/userdata/51,3,49152,0,0,binary_data=3
+DataServer/userdata/0,2,32768,0,0,binary_data=2
+DataServer/userdata/105,2,32768,0,0,binary_data=2
+DataServer/userdata/109,2,32768,0,0,binary_data=2
+DataServer/userdata/127,2,32768,0,0,binary_data=2
+DataServer/userdata/136,2,32768,0,0,binary_data=2
+DataServer/userdata/138,2,32768,0,0,binary_data=2
+DataServer/userdata/163,2,32768,0,0,binary_data=2
+DataServer/userdata/174,2,32768,0,0,binary_data=2
+DataServer/userdata/175,2,32768,0,0,binary_data=2
+DataServer/userdata/176,2,32768,0,0,binary_data=2
+DataServer/userdata/180,2,32768,0,0,binary_data=2
+DataServer/userdata/192,2,32768,0,0,binary_data=2
+DataServer/userdata/206,2,32768,0,0,binary_data=2
+DataServer/userdata/22,2,32768,0,0,binary_data=2
+DataServer/userdata/222,2,32768,0,0,binary_data=2
+DataServer/userdata/24,2,32768,0,0,binary_data=2
+DataServer/userdata/247,2,32768,0,0,binary_data=2
+DataServer/userdata/32,2,32768,0,0,binary_data=2
+DataServer/userdata/41,2,32768,0,0,binary_data=2
+DataServer/userdata/48,2,32768,0,0,binary_data=2
+DataServer/userdata/53,2,32768,0,0,binary_data=2
+DataServer/userdata/64,2,32768,0,0,binary_data=2
+DataServer/userdata/69,2,32768,0,0,binary_data=2
+DataServer/userdata/8,2,32768,0,0,binary_data=2
+DataServer/userdata/87,2,32768,0,0,binary_data=2
+Configs/Skill,8,32452,0,0,config_data_text=8
+DataServer/userdata/129,1,24576,0,0,binary_data=1
+TIMESHOP_LOG,25,18030,0,25,other=25
+DataServer/userdata/10,1,16384,0,0,binary_data=1
+DataServer/userdata/101,1,16384,0,0,binary_data=1
+DataServer/userdata/104,1,16384,0,0,binary_data=1
+DataServer/userdata/106,1,16384,0,0,binary_data=1
+DataServer/userdata/108,1,16384,0,0,binary_data=1
+DataServer/userdata/110,1,16384,0,0,binary_data=1
+DataServer/userdata/118,1,16384,0,0,binary_data=1
+DataServer/userdata/12,1,16384,0,0,binary_data=1
+DataServer/userdata/120,1,16384,0,0,binary_data=1
+DataServer/userdata/124,1,16384,0,0,binary_data=1
+DataServer/userdata/125,1,16384,0,0,binary_data=1
+DataServer/userdata/130,1,16384,0,0,binary_data=1
+DataServer/userdata/132,1,16384,0,0,binary_data=1
+DataServer/userdata/133,1,16384,0,0,binary_data=1
+DataServer/userdata/139,1,16384,0,0,binary_data=1
+DataServer/userdata/14,1,16384,0,0,binary_data=1
+DataServer/userdata/140,1,16384,0,0,binary_data=1
+DataServer/userdata/141,1,16384,0,0,binary_data=1
+DataServer/userdata/146,1,16384,0,0,binary_data=1
+DataServer/userdata/147,1,16384,0,0,binary_data=1
+DataServer/userdata/15,1,16384,0,0,binary_data=1
+DataServer/userdata/152,1,16384,0,0,binary_data=1
+DataServer/userdata/153,1,16384,0,0,binary_data=1
+DataServer/userdata/158,1,16384,0,0,binary_data=1
+DataServer/userdata/159,1,16384,0,0,binary_data=1
+DataServer/userdata/167,1,16384,0,0,binary_data=1
+DataServer/userdata/181,1,16384,0,0,binary_data=1
+DataServer/userdata/187,1,16384,0,0,binary_data=1
+DataServer/userdata/190,1,16384,0,0,binary_data=1
+DataServer/userdata/194,1,16384,0,0,binary_data=1
+DataServer/userdata/20,1,16384,0,0,binary_data=1
+DataServer/userdata/204,1,16384,0,0,binary_data=1
+DataServer/userdata/209,1,16384,0,0,binary_data=1
+DataServer/userdata/211,1,16384,0,0,binary_data=1
+DataServer/userdata/215,1,16384,0,0,binary_data=1
+DataServer/userdata/219,1,16384,0,0,binary_data=1
+DataServer/userdata/224,1,16384,0,0,binary_data=1
+DataServer/userdata/225,1,16384,0,0,binary_data=1
+DataServer/userdata/226,1,16384,0,0,binary_data=1
+DataServer/userdata/230,1,16384,0,0,binary_data=1
+DataServer/userdata/233,1,16384,0,0,binary_data=1
+DataServer/userdata/238,1,16384,0,0,binary_data=1
+DataServer/userdata/243,1,16384,0,0,binary_data=1
+DataServer/userdata/245,1,16384,0,0,binary_data=1
+DataServer/userdata/246,1,16384,0,0,binary_data=1
+DataServer/userdata/248,1,16384,0,0,binary_data=1
+DataServer/userdata/250,1,16384,0,0,binary_data=1
+DataServer/userdata/26,1,16384,0,0,binary_data=1
+DataServer/userdata/27,1,16384,0,0,binary_data=1
+DataServer/userdata/28,1,16384,0,0,binary_data=1
+DataServer/userdata/30,1,16384,0,0,binary_data=1
+DataServer/userdata/33,1,16384,0,0,binary_data=1
+DataServer/userdata/34,1,16384,0,0,binary_data=1
+DataServer/userdata/36,1,16384,0,0,binary_data=1
+DataServer/userdata/39,1,16384,0,0,binary_data=1
+DataServer/userdata/40,1,16384,0,0,binary_data=1
+DataServer/userdata/43,1,16384,0,0,binary_data=1
+DataServer/userdata/5,1,16384,0,0,binary_data=1
+DataServer/userdata/61,1,16384,0,0,binary_data=1
+DataServer/userdata/66,1,16384,0,0,binary_data=1
+DataServer/userdata/68,1,16384,0,0,binary_data=1
+DataServer/userdata/76,1,16384,0,0,binary_data=1
+DataServer/userdata/80,1,16384,0,0,binary_data=1
+DataServer/userdata/88,1,16384,0,0,binary_data=1
+DataServer/userdata/94,1,16384,0,0,binary_data=1
+DataServer/userdata/95,1,16384,0,0,binary_data=1
+_pt_protector_reloaded_1_3-Developer/protector,18,13203,0,14,other=14; config_data_text=4
+LogAdmin,5,12635,0,5,other=5
+DataServer/warehouse/2,2,12441,0,0,other=2
+GameServer/Monster/Name,415,9538,0,0,other=414; config_data_text=1
+DataServer/warehouse/180,1,8163,0,0,other=1
+_pt_protector_reloaded_1_3-Developer/lng,1,7655,0,0,other=1
+ptprotector/lng,1,7655,0,0,other=1
+DataServer/warehouse/42,1,7496,0,0,other=1
+DataServer/warehouse/61,1,7433,0,0,other=1
+GameServer/Monster/Cash Falta na pasta Monster,4,6935,0,0,other=4
+DataServer/warehouse/126,1,6833,0,0,other=1
+DataServer/warehouse/114,1,6794,0,0,other=1
+DataServer/warehouse/184,2,6723,0,0,other=2
+DataServer/warehouse/210,1,6175,0,0,other=1
+DataServer/warehouse/137,1,6120,0,0,other=1
+DataServer/warehouse/240,1,5866,0,0,other=1
+DataServer/warehouse/167,1,5849,0,0,other=1
+DataServer/warehouse,6,5544,0,0,other=6
+DataServer/warehouse/168,1,5136,0,0,other=1
+DataServer/warehouse/227,1,4918,0,0,other=1
+DataServer/warehouse/161,1,4872,0,0,other=1
+DataServer/warehouse/190,1,4830,0,0,other=1
+DataServer/warehouse/15,1,4770,0,0,other=1
+DataServer/warehouse/7,1,4627,0,0,other=1
+DataServer/warehouse/160,1,4560,0,0,other=1
+DataServer/warehouse/247,1,4557,0,0,other=1
+GameServer/OpenItem/name/ITENS TIER 5,97,4154,0,0,other=97
+PK_LOG,10,3903,0,10,other=10
+DataServer/warehouse/124,1,3751,0,0,other=1
+DataServer/warehouse/205,1,3648,0,0,other=1
+GameServer/Monster/Evento de Páscoa,3,3647,0,0,other=3
+DataServer/warehouse/149,1,3626,0,0,other=1
+DataServer/warehouse/125,2,3544,0,0,other=2
+DataServer/warehouse/93,1,3305,0,0,other=1
+DataServer/warehouse/47,1,3199,0,0,other=1
+DataServer/warehouse/222,1,2889,0,0,other=1
+DataServer/warehouse/127,1,2702,0,0,other=1
+DataServer/warehouse/73,1,2621,0,0,other=1
+DataServer/warehouse/11,1,2473,0,0,other=1
+DataServer/warehouse/192,1,2138,0,0,other=1
+DataServer/warehouse/70,1,2128,0,0,other=1
+GameServer/OpenItem/Backup,3,1574,0,0,config_data_text=3
+DataServer/warehouse/224,1,1457,0,0,other=1
+DataServer/warehouse/51,1,1318,0,0,other=1
+ptprotector/protector,5,1278,0,1,config_data_text=4; other=1
+DataServer/warehouse/218,1,1226,0,0,other=1
+DataServer/userinfo/118,3,1200,0,0,binary_data=3
+DataServer/userinfo/125,3,1200,0,0,binary_data=3
+DataServer/userinfo/184,3,1200,0,0,binary_data=3
+DataServer/warehouse/123,1,1132,0,0,other=1
+DataServer/warehouse/158,1,933,0,0,other=1
+DataServer/userinfo/123,2,800,0,0,binary_data=2
+DataServer/userinfo/124,2,800,0,0,binary_data=2
+DataServer/userinfo/126,2,800,0,0,binary_data=2
+DataServer/userinfo/129,2,800,0,0,binary_data=2
+DataServer/userinfo/15,2,800,0,0,binary_data=2
+DataServer/userinfo/156,2,800,0,0,binary_data=2
+DataServer/userinfo/176,2,800,0,0,binary_data=2
+DataServer/userinfo/2,2,800,0,0,binary_data=2
+DataServer/userinfo/201,2,800,0,0,binary_data=2
+DataServer/userinfo/203,2,800,0,0,binary_data=2
+DataServer/userinfo/210,2,800,0,0,binary_data=2
+DataServer/userinfo/223,2,800,0,0,binary_data=2
+DataServer/userinfo/240,2,800,0,0,binary_data=2
+DataServer/userinfo/26,2,800,0,0,binary_data=2
+DataServer/userinfo/61,2,800,0,0,binary_data=2
+DataServer/userinfo/73,2,800,0,0,binary_data=2
+FuncBox,1,788,0,0,binary_data=1
+DataServer/userinfo/102,1,400,0,0,binary_data=1
+DataServer/userinfo/11,1,400,0,0,binary_data=1
+DataServer/userinfo/110,1,400,0,0,binary_data=1
+DataServer/userinfo/112,1,400,0,0,binary_data=1
+DataServer/userinfo/114,1,400,0,0,binary_data=1
+DataServer/userinfo/115,1,400,0,0,binary_data=1
+DataServer/userinfo/120,1,400,0,0,binary_data=1
+DataServer/userinfo/122,1,400,0,0,binary_data=1
+DataServer/userinfo/127,1,400,0,0,binary_data=1
+DataServer/userinfo/128,1,400,0,0,binary_data=1
+DataServer/userinfo/133,1,400,0,0,binary_data=1
+DataServer/userinfo/137,1,400,0,0,binary_data=1
+DataServer/userinfo/140,1,400,0,0,binary_data=1
+DataServer/userinfo/142,1,400,0,0,binary_data=1
+DataServer/userinfo/144,1,400,0,0,binary_data=1
+DataServer/userinfo/148,1,400,0,0,binary_data=1
+DataServer/userinfo/149,1,400,0,0,binary_data=1
+DataServer/userinfo/150,1,400,0,0,binary_data=1
+DataServer/userinfo/158,1,400,0,0,binary_data=1
+DataServer/userinfo/160,1,400,0,0,binary_data=1
+DataServer/userinfo/161,1,400,0,0,binary_data=1
+DataServer/userinfo/167,1,400,0,0,binary_data=1
+DataServer/userinfo/168,1,400,0,0,binary_data=1
+DataServer/userinfo/179,1,400,0,0,binary_data=1
+DataServer/userinfo/180,1,400,0,0,binary_data=1
+DataServer/userinfo/187,1,400,0,0,binary_data=1
+DataServer/userinfo/190,1,400,0,0,binary_data=1
+DataServer/userinfo/192,1,400,0,0,binary_data=1
+DataServer/userinfo/199,1,400,0,0,binary_data=1
+DataServer/userinfo/200,1,400,0,0,binary_data=1
+DataServer/userinfo/204,1,400,0,0,binary_data=1
+DataServer/userinfo/205,1,400,0,0,binary_data=1
+DataServer/userinfo/206,1,400,0,0,binary_data=1
+DataServer/userinfo/207,1,400,0,0,binary_data=1
+DataServer/userinfo/21,1,400,0,0,binary_data=1
+DataServer/userinfo/218,1,400,0,0,binary_data=1
+DataServer/userinfo/222,1,400,0,0,binary_data=1
+DataServer/userinfo/224,1,400,0,0,binary_data=1
+DataServer/userinfo/227,1,400,0,0,binary_data=1
+DataServer/userinfo/229,1,400,0,0,binary_data=1
+DataServer/userinfo/238,1,400,0,0,binary_data=1
+DataServer/userinfo/24,1,400,0,0,binary_data=1
+DataServer/userinfo/244,1,400,0,0,binary_data=1
+DataServer/userinfo/247,1,400,0,0,binary_data=1
+DataServer/userinfo/25,1,400,0,0,binary_data=1
+DataServer/userinfo/27,1,400,0,0,binary_data=1
+DataServer/userinfo/32,1,400,0,0,binary_data=1
+DataServer/userinfo/33,1,400,0,0,binary_data=1
+DataServer/userinfo/42,1,400,0,0,binary_data=1
+DataServer/userinfo/46,1,400,0,0,binary_data=1
+DataServer/userinfo/47,1,400,0,0,binary_data=1
+DataServer/userinfo/51,1,400,0,0,binary_data=1
+DataServer/userinfo/59,1,400,0,0,binary_data=1
+DataServer/userinfo/67,1,400,0,0,binary_data=1
+DataServer/userinfo/7,1,400,0,0,binary_data=1
+DataServer/userinfo/70,1,400,0,0,binary_data=1
+DataServer/userinfo/88,1,400,0,0,binary_data=1
+DataServer/userinfo/93,1,400,0,0,binary_data=1
+DataServer/userinfo/97,1,400,0,0,binary_data=1
+GameServer/Monster/Evento de Páscoa/Name,3,78,0,0,other=3

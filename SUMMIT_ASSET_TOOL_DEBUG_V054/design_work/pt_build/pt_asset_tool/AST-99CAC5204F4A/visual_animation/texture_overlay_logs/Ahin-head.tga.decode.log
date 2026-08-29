@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=a0c9cba38d07dbb3117a9c9fe93effe6be3c32a4970c762d6458bbd673f7aacd
+output_sha256=8e410173dd46a060fdb215b6506e0365b40d20df8db99c7af2c9ee77b9da1b32
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-99CAC5204F4A/visual_animation/texture_overlay_client/char/npc/Ahin/Ahin-head.tga
+format=TGA_PRISTON_HEADER18_FULL18
+client_modified=False
+tga_decode_check=PASS

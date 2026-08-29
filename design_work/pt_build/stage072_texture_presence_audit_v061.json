@@ -1,0 +1,1884 @@
+{
+  "format": "PT_STAGE072_TEXTURE_PRESENCE_AUDIT_V1",
+  "status": "PASS",
+  "candidate_files_expected": 63,
+  "physical_files_audited": 63,
+  "scan_errors": [],
+  "face_material_scoped_texture_reference_occurrences": 13942,
+  "unique_face_material_scoped_texture_references": 4799,
+  "present_unique_texture_references": 4754,
+  "missing_unique_texture_references": 45,
+  "files_with_missing_client_textures": 16,
+  "missing_references": [
+    {
+      "logical": "field/castle/",
+      "present": false,
+      "files": [
+        "Field/castle/castle.smd",
+        "Field/castle/Castle_.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/castle/castle.smd",
+          "material_id": 17
+        },
+        {
+          "file": "Field/castle/Castle_.smd",
+          "material_id": 18
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 1
+        }
+      ],
+      "face_uses_sum": 36,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/dungeon/Ì",
+      "present": false,
+      "files": [
+        "Field/dungeon/dun-5.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/dungeon/dun-5.smd",
+          "material_id": 153
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 391,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/forest/07-g9 copy.bmp",
+      "present": false,
+      "files": [
+        "Field/forest/fore-3.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/forest/fore-3.smd",
+          "material_id": 89
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/forest/dam_jang copy.tga",
+      "present": false,
+      "files": [
+        "Field/forest/fore-3.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/forest/fore-3.smd",
+          "material_id": 91
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 10,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/forest/pan copy.bmp",
+      "present": false,
+      "files": [
+        "Field/forest/fore-3.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/forest/fore-3.smd",
+          "material_id": 106
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 36,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/forever-fall/Ì",
+      "present": false,
+      "files": [
+        "Field/forever-fall/pilai.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/forever-fall/pilai.smd",
+          "material_id": 337
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 573,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/Iron/i02-10 copy.bmp",
+      "present": false,
+      "files": [
+        "Field/Iron/iron-1.smd",
+        "Field/Iron/iron-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Iron/iron-1.smd",
+          "material_id": 58
+        },
+        {
+          "file": "Field/Iron/iron-2.smd",
+          "material_id": 56
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 619,
+      "resolved_paths": []
+    },
+    {
+      "logical": "Field/Losttemple/FOA_PORTAL_01.tga",
+      "present": false,
+      "files": [
+        "StartImage/Opening/Map/stage.smd"
+      ],
+      "materials": [
+        {
+          "file": "StartImage/Opening/Map/stage.smd",
+          "material_id": 3
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 880,
+      "resolved_paths": []
+    },
+    {
+      "logical": "Field/Losttemple/FOA_PORTAL_02.tga",
+      "present": false,
+      "files": [
+        "StartImage/Opening/Map/stage.smd"
+      ],
+      "materials": [
+        {
+          "file": "StartImage/Opening/Map/stage.smd",
+          "material_id": 2
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 320,
+      "resolved_paths": []
+    },
+    {
+      "logical": "Field/mar/_Ow01-2.bmp",
+      "present": false,
+      "files": [
+        "Field/mar/ruin-arenaSF.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/mar/ruin-arenaSF.smd",
+          "material_id": 130
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 256,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/quest/fw.bmp",
+      "present": false,
+      "files": [
+        "Field/Quest/quest_IV.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Quest/quest_IV.smd",
+          "material_id": 6
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 67,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/Ricarten/tem_wall04.bmp",
+      "present": false,
+      "files": [
+        "Field/Ricarten/village-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Ricarten/village-2.smd",
+          "material_id": 173
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 1,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/Ruin/WA01.BMP",
+      "present": false,
+      "files": [
+        "Field/Ruin/ruin-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Ruin/ruin-2.smd",
+          "material_id": 292
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 1345,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/Sod/",
+      "present": false,
+      "files": [
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 174
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 126,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/Sod/001.bmp",
+      "present": false,
+      "files": [
+        "Field/Sod/sod-1.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 15
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 8,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/Sod/f-flame_0.tga ",
+      "present": false,
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/Sod/f-flame_1.tga ",
+      "present": false,
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 1
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/Sod/f-flame_2.tga ",
+      "present": false,
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 2
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/Sod/f-flame_3.tga ",
+      "present": false,
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 3
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/Sod/f-flame_4.tga ",
+      "present": false,
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 4
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/Sod/f-flame_5.tga ",
+      "present": false,
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 5
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/Sod/f-flame_6.tga ",
+      "present": false,
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 6
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/Sod/f-flame_7.tga ",
+      "present": false,
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 7
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": []
+    },
+    {
+      "logical": "field/Sod/Ì",
+      "present": false,
+      "files": [
+        "Field/Sod/sod-1.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 102
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 126,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/bg_CHECK.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 6
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 102,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/cs_01.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 3
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 10,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/cs_ground_line.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 7
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 280,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/cs_ground_linetop.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 16
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 306,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/doma_body01.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 27
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 304,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/doma_face01.TGA",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 25
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 308,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/doma_tag01.bmp",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 28
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 38,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/eff_j_2.bmp",
+      "present": false,
+      "files": [
+        "game/maps/chrselect/scene.smd"
+      ],
+      "materials": [
+        {
+          "file": "game/maps/chrselect/scene.smd",
+          "material_id": 8
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 1
+        }
+      ],
+      "face_uses_sum": 332,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/fg_1_04.bmp",
+      "present": false,
+      "files": [
+        "game/maps/chrselect/scene.smd"
+      ],
+      "materials": [
+        {
+          "file": "game/maps/chrselect/scene.smd",
+          "material_id": 167
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 148,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/line_light03.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 5
+        },
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 18
+        },
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 19
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 1
+        }
+      ],
+      "face_uses_sum": 270,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/new_mask01.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 19
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 90,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/new_mask02.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 18
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 90,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/new_mask03.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 5
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 90,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/op_line.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 12
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 976,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/opda.TGA",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 10
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 144,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/se_poza.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 8
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 1830,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/se_poza03.TGA",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 4
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 112,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/se_roundpoza.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 9
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 42,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/se_roundpoza01.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 11
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 40,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/sky_c.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 13
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 80,
+      "resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/wo.BMP",
+      "present": false,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 22
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 268,
+      "resolved_paths": []
+    }
+  ],
+  "texture_presence_complete_candidate": false,
+  "transport_policy": {
+    "missing_client_file": "preserve logical texture reference and allow structural Blender transport; preview material remains incomplete",
+    "decode_or_load_error_for_existing_file": "fail closed",
+    "substitution_by_filename_guess": "forbidden",
+    "client_modified": false
+  },
+  "sourcecode_runtime_note": "material loading keeps serialized texture handles; texture creation can return -1 without aborting material-group load, so a missing shipped image is a client/reference condition rather than a Stage0.72 structural parse failure",
+  "bundle": "/home/gabriel/Área de Trabalho/summit/design_work/PT_STAGE072_MISSING_TEXTURE_REPS_V061.zip",
+  "rows": [
+    {
+      "relative_path": "cSelect/Login.smd",
+      "texture_reference_occurrences": 22,
+      "present_reference_occurrences": 22,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "cSelect/select.smd",
+      "texture_reference_occurrences": 22,
+      "present_reference_occurrences": 1,
+      "missing_reference_occurrences": 21,
+      "missing_references": [
+        {
+          "material_id": 3,
+          "face_uses": 10,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/cs_01.BMP"
+        },
+        {
+          "material_id": 4,
+          "face_uses": 112,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/se_poza03.TGA"
+        },
+        {
+          "material_id": 5,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/new_mask03.BMP"
+        },
+        {
+          "material_id": 5,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "game/maps/chrselect/line_light03.BMP"
+        },
+        {
+          "material_id": 6,
+          "face_uses": 102,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/bg_CHECK.BMP"
+        },
+        {
+          "material_id": 7,
+          "face_uses": 280,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/cs_ground_line.BMP"
+        },
+        {
+          "material_id": 8,
+          "face_uses": 1830,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/se_poza.BMP"
+        },
+        {
+          "material_id": 9,
+          "face_uses": 42,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/se_roundpoza.BMP"
+        },
+        {
+          "material_id": 10,
+          "face_uses": 144,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/opda.TGA"
+        },
+        {
+          "material_id": 11,
+          "face_uses": 40,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/se_roundpoza01.BMP"
+        },
+        {
+          "material_id": 12,
+          "face_uses": 976,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/op_line.BMP"
+        },
+        {
+          "material_id": 13,
+          "face_uses": 80,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/sky_c.BMP"
+        },
+        {
+          "material_id": 16,
+          "face_uses": 306,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/cs_ground_linetop.BMP"
+        },
+        {
+          "material_id": 18,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/new_mask02.BMP"
+        },
+        {
+          "material_id": 18,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "game/maps/chrselect/line_light03.BMP"
+        },
+        {
+          "material_id": 19,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/new_mask01.BMP"
+        },
+        {
+          "material_id": 19,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "game/maps/chrselect/line_light03.BMP"
+        },
+        {
+          "material_id": 22,
+          "face_uses": 268,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/wo.BMP"
+        },
+        {
+          "material_id": 25,
+          "face_uses": 308,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/doma_face01.TGA"
+        },
+        {
+          "material_id": 27,
+          "face_uses": 304,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/doma_body01.BMP"
+        },
+        {
+          "material_id": 28,
+          "face_uses": 38,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/doma_tag01.bmp"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/AncientW/ancientW.smd",
+      "texture_reference_occurrences": 260,
+      "present_reference_occurrences": 260,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Boss/Boss.smd",
+      "texture_reference_occurrences": 51,
+      "present_reference_occurrences": 51,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Boss/dark_boss.smd",
+      "texture_reference_occurrences": 65,
+      "present_reference_occurrences": 65,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/castle/castle.smd",
+      "texture_reference_occurrences": 276,
+      "present_reference_occurrences": 275,
+      "missing_reference_occurrences": 1,
+      "missing_references": [
+        {
+          "material_id": 17,
+          "face_uses": 18,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "field/castle/"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/castle/Castle_.smd",
+      "texture_reference_occurrences": 277,
+      "present_reference_occurrences": 276,
+      "missing_reference_occurrences": 1,
+      "missing_references": [
+        {
+          "material_id": 18,
+          "face_uses": 18,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "field/Castle/"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/cave/Dcave.smd",
+      "texture_reference_occurrences": 78,
+      "present_reference_occurrences": 78,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/cave/Mcave.smd",
+      "texture_reference_occurrences": 54,
+      "present_reference_occurrences": 54,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/cave/Tcave.smd",
+      "texture_reference_occurrences": 104,
+      "present_reference_occurrences": 104,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/desert/De-1.smd",
+      "texture_reference_occurrences": 67,
+      "present_reference_occurrences": 67,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/desert/De-2.smd",
+      "texture_reference_occurrences": 64,
+      "present_reference_occurrences": 64,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/desert/De-3.smd",
+      "texture_reference_occurrences": 76,
+      "present_reference_occurrences": 76,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/desert/De-4.smd",
+      "texture_reference_occurrences": 64,
+      "present_reference_occurrences": 64,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/dungeon/dun-1.smd",
+      "texture_reference_occurrences": 341,
+      "present_reference_occurrences": 341,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/dungeon/dun-2.smd",
+      "texture_reference_occurrences": 385,
+      "present_reference_occurrences": 385,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/dungeon/dun-3.smd",
+      "texture_reference_occurrences": 417,
+      "present_reference_occurrences": 417,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/dungeon/dun-4.smd",
+      "texture_reference_occurrences": 645,
+      "present_reference_occurrences": 645,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/dungeon/dun-5.smd",
+      "texture_reference_occurrences": 817,
+      "present_reference_occurrences": 816,
+      "missing_reference_occurrences": 1,
+      "missing_references": [
+        {
+          "material_id": 153,
+          "face_uses": 391,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/dungeon/Ì"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/dungeon/Dun-6a.smd",
+      "texture_reference_occurrences": 363,
+      "present_reference_occurrences": 363,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/endless/dun-7.smd",
+      "texture_reference_occurrences": 539,
+      "present_reference_occurrences": 539,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/endless/dun-8.smd",
+      "texture_reference_occurrences": 677,
+      "present_reference_occurrences": 677,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/endless/dun-9.smd",
+      "texture_reference_occurrences": 459,
+      "present_reference_occurrences": 459,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Fall_Game/fall_game.smd",
+      "texture_reference_occurrences": 264,
+      "present_reference_occurrences": 264,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/forest/fore-1.smd",
+      "texture_reference_occurrences": 256,
+      "present_reference_occurrences": 256,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/forest/fore-2.smd",
+      "texture_reference_occurrences": 332,
+      "present_reference_occurrences": 332,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/forest/fore-3.smd",
+      "texture_reference_occurrences": 315,
+      "present_reference_occurrences": 312,
+      "missing_reference_occurrences": 3,
+      "missing_references": [
+        {
+          "material_id": 89,
+          "face_uses": 16,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/forest/07-g9 copy.bmp"
+        },
+        {
+          "material_id": 91,
+          "face_uses": 10,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/forest/dam_jang copy.tga"
+        },
+        {
+          "material_id": 106,
+          "face_uses": 36,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/forest/pan copy.bmp"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/forest/village-1.smd",
+      "texture_reference_occurrences": 271,
+      "present_reference_occurrences": 271,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/forever-fall/forever-fall-01.smd",
+      "texture_reference_occurrences": 205,
+      "present_reference_occurrences": 205,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/forever-fall/forever-fall-02.smd",
+      "texture_reference_occurrences": 206,
+      "present_reference_occurrences": 206,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/forever-fall/forever-fall-03.smd",
+      "texture_reference_occurrences": 184,
+      "present_reference_occurrences": 184,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/forever-fall/forever-fall-04.smd",
+      "texture_reference_occurrences": 120,
+      "present_reference_occurrences": 120,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/forever-fall/pilai.smd",
+      "texture_reference_occurrences": 243,
+      "present_reference_occurrences": 242,
+      "missing_reference_occurrences": 1,
+      "missing_references": [
+        {
+          "material_id": 337,
+          "face_uses": 573,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/forever-fall/Ì"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Greedy/Greedy.smd",
+      "texture_reference_occurrences": 220,
+      "present_reference_occurrences": 220,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Ice/ice1.smd",
+      "texture_reference_occurrences": 204,
+      "present_reference_occurrences": 204,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Ice/ice_2.smd",
+      "texture_reference_occurrences": 233,
+      "present_reference_occurrences": 233,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Ice/ice_ura.smd",
+      "texture_reference_occurrences": 129,
+      "present_reference_occurrences": 129,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Iron/iron-1.smd",
+      "texture_reference_occurrences": 95,
+      "present_reference_occurrences": 94,
+      "missing_reference_occurrences": 1,
+      "missing_references": [
+        {
+          "material_id": 58,
+          "face_uses": 56,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Iron/i02-10 copy.bmp"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Iron/iron-2.smd",
+      "texture_reference_occurrences": 86,
+      "present_reference_occurrences": 85,
+      "missing_reference_occurrences": 1,
+      "missing_references": [
+        {
+          "material_id": 56,
+          "face_uses": 563,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Iron/i02-10 copy.bmp"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Iron/iron3.smd",
+      "texture_reference_occurrences": 94,
+      "present_reference_occurrences": 94,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Lost/lost.smd",
+      "texture_reference_occurrences": 223,
+      "present_reference_occurrences": 223,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Lost/lost3.smd",
+      "texture_reference_occurrences": 186,
+      "present_reference_occurrences": 186,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Lost/lostisland.smd",
+      "texture_reference_occurrences": 223,
+      "present_reference_occurrences": 223,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Losttemple/lost_temple.smd",
+      "texture_reference_occurrences": 160,
+      "present_reference_occurrences": 160,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/mar/ruin-arenaSF.smd",
+      "texture_reference_occurrences": 154,
+      "present_reference_occurrences": 153,
+      "missing_reference_occurrences": 1,
+      "missing_references": [
+        {
+          "material_id": 130,
+          "face_uses": 256,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "Field/mar/_Ow01-2.bmp"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Mine/mine-1.smd",
+      "texture_reference_occurrences": 159,
+      "present_reference_occurrences": 159,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Quest/quest_IV.smd",
+      "texture_reference_occurrences": 44,
+      "present_reference_occurrences": 43,
+      "missing_reference_occurrences": 1,
+      "missing_references": [
+        {
+          "material_id": 6,
+          "face_uses": 67,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/quest/fw.bmp"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Ricarten/village-2.smd",
+      "texture_reference_occurrences": 275,
+      "present_reference_occurrences": 274,
+      "missing_reference_occurrences": 1,
+      "missing_references": [
+        {
+          "material_id": 173,
+          "face_uses": 1,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Ricarten/tem_wall04.bmp"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Room/office.smd",
+      "texture_reference_occurrences": 37,
+      "present_reference_occurrences": 37,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Ruin/ruin-1.smd",
+      "texture_reference_occurrences": 393,
+      "present_reference_occurrences": 393,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Ruin/ruin-2.smd",
+      "texture_reference_occurrences": 389,
+      "present_reference_occurrences": 388,
+      "missing_reference_occurrences": 1,
+      "missing_references": [
+        {
+          "material_id": 292,
+          "face_uses": 1345,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Ruin/WA01.BMP"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Ruin/ruin-3.smd",
+      "texture_reference_occurrences": 387,
+      "present_reference_occurrences": 387,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Ruin/ruin-4.smd",
+      "texture_reference_occurrences": 418,
+      "present_reference_occurrences": 418,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/SeaA/SeaA.smd",
+      "texture_reference_occurrences": 111,
+      "present_reference_occurrences": 111,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/SeaA/Stemple.smd",
+      "texture_reference_occurrences": 76,
+      "present_reference_occurrences": 76,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Slab/Slab.smd",
+      "texture_reference_occurrences": 344,
+      "present_reference_occurrences": 344,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "Field/Sod/sod-1.smd",
+      "texture_reference_occurrences": 227,
+      "present_reference_occurrences": 217,
+      "missing_reference_occurrences": 10,
+      "missing_references": [
+        {
+          "material_id": 15,
+          "face_uses": 8,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Sod/001.bmp"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 0,
+          "logical": "field/Sod/f-flame_0.tga "
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 1,
+          "logical": "field/Sod/f-flame_1.tga "
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 2,
+          "logical": "field/Sod/f-flame_2.tga "
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 3,
+          "logical": "field/Sod/f-flame_3.tga "
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 4,
+          "logical": "field/Sod/f-flame_4.tga "
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 5,
+          "logical": "field/Sod/f-flame_5.tga "
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 6,
+          "logical": "field/Sod/f-flame_6.tga "
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 7,
+          "logical": "field/Sod/f-flame_7.tga "
+        },
+        {
+          "material_id": 102,
+          "face_uses": 126,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Sod/Ì"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Sod/sod-2.smd",
+      "texture_reference_occurrences": 225,
+      "present_reference_occurrences": 216,
+      "missing_reference_occurrences": 9,
+      "missing_references": [
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 0,
+          "logical": "field/Sod/f-flame_0.tga "
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 1,
+          "logical": "field/Sod/f-flame_1.tga "
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 2,
+          "logical": "field/Sod/f-flame_2.tga "
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 3,
+          "logical": "field/Sod/f-flame_3.tga "
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 4,
+          "logical": "field/Sod/f-flame_4.tga "
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 5,
+          "logical": "field/Sod/f-flame_5.tga "
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 6,
+          "logical": "field/Sod/f-flame_6.tga "
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 7,
+          "logical": "field/Sod/f-flame_7.tga "
+        },
+        {
+          "material_id": 174,
+          "face_uses": 126,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Sod/"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/swamp/swamp.smd",
+      "texture_reference_occurrences": 81,
+      "present_reference_occurrences": 81,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "game/maps/chrselect/login.smd",
+      "texture_reference_occurrences": 37,
+      "present_reference_occurrences": 37,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "game/maps/chrselect/scene.smd",
+      "texture_reference_occurrences": 64,
+      "present_reference_occurrences": 62,
+      "missing_reference_occurrences": 2,
+      "missing_references": [
+        {
+          "material_id": 8,
+          "face_uses": 332,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "game/maps/chrselect/eff_j_2.bmp"
+        },
+        {
+          "material_id": 167,
+          "face_uses": 148,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/fg_1_04.bmp"
+        }
+      ]
+    },
+    {
+      "relative_path": "game/maps/login/login.smd",
+      "texture_reference_occurrences": 32,
+      "present_reference_occurrences": 32,
+      "missing_reference_occurrences": 0,
+      "missing_references": []
+    },
+    {
+      "relative_path": "StartImage/Opening/Map/stage.smd",
+      "texture_reference_occurrences": 117,
+      "present_reference_occurrences": 115,
+      "missing_reference_occurrences": 2,
+      "missing_references": [
+        {
+          "material_id": 2,
+          "face_uses": 320,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "Field/Losttemple/FOA_PORTAL_02.tga"
+        },
+        {
+          "material_id": 3,
+          "face_uses": 880,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "Field/Losttemple/FOA_PORTAL_01.tga"
+        }
+      ]
+    }
+  ]
+}

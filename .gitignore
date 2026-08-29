@@ -17,7 +17,9 @@ docker/db/data/
 /todos os outros coisos da pasta
 /Summit Tale Client Full
 
-
+SourceCode/ccache
+SourceCode_rebase_20260824/
+SourceCode_rebase_20260824/Dependency/
 # Large dependency files
 SourceCode/Dependency/DXSDK_Jun10.exe
 SourceCode/Dependency/DirectXSDK.7z

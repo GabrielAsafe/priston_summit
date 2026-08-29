@@ -1,0 +1,21 @@
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/CChatBox.cpp:895:void CChatBox::OnResolutionChanged()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/CChatBox.cpp:950:void CChatBox::CheckCollideWindow( BOOL bResolutionChanged )
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/CChatBox.cpp:952:	if ( (((pWindow1->GetY() + pWindow1->GetHeight()) > (RESOLUTION_HEIGHT - 175)) && (pWindow1->GetX() < 800)) || bResolutionChanged )
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/CChatBox.cpp:955:		if ( WINDOW_INVENTORY && WINDOW_YINVENTORYMOVE > 0 && (WINDOW_YINVENTORYMOVE != 256 || bResolutionChanged) )
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/CChatBox.cpp:958:		if ( WINDOW_SKILLS && WINDOW_SKILLMOVE > 0 && (WINDOW_SKILLMOVE != 256 || bResolutionChanged) )
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/CChatBox.cpp:961:		if ( WINDOW_CHARACTERINFO && WINDOW_CHARACTERINFOMOVE > 0 && (WINDOW_CHARACTERINFOMOVE != 256 || bResolutionChanged) )
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/CChatBox.h:102:	void							OnResolutionChanged();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/CChatBox.h:114:	void							CheckCollideWindow( BOOL bResolutionChanged );
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/record.cpp:5330:	UpdateWindow(hWndMon);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/record.cpp:5336:	UpdateWindow(hDialog);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Server/OnSever.cpp:529:	UpdateWindow(hwnd);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Settings/Settings.cpp:221:void Settings::resizeWindow(int iWidth, int iHeight)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Settings/Settings.cpp:265:		resizeWindow(getWidth(), getHeight());
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Settings/Settings.h:157:	void resizeWindow(int iWidth, int iHeight);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/clan_Enti.cpp:1739:	UpdateWindow(m_hClanName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/park/ParkDXPlayer.cpp:70:	UpdateWindow(HPlayer);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/park/ParkDXPlayer.cpp:80:	UpdateWindow(HPlayer);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.bak2.cpp:666:	UpdateWindow(hwnd);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.bak2.cpp:672:			fprintf(f, "after ShowWindow/UpdateWindow: hwnd=%p visible=%d iconic=%d lastError=%lu\\n",
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.cpp:673:	UpdateWindow(hwnd);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.cpp:679:			fprintf(f, "after ShowWindow/UpdateWindow: hwnd=%p visible=%d iconic=%d lastError=%lu\\n",

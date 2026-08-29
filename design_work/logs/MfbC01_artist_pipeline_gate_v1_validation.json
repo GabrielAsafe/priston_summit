@@ -1,0 +1,134 @@
+{
+  "tool": "PT_FREE_MESH_VALIDATE_V1_4",
+  "blend": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/blender/MfbC01_artist_pipeline_gate_v1_game_normalized_forced_test.blend",
+  "object": "MshC01",
+  "mode_sync": {
+    "original_mode": "OBJECT",
+    "current_mode": "OBJECT",
+    "edit_mode_synchronized": false
+  },
+  "vertices": 656,
+  "source_polygons": 1129,
+  "export_triangles": 1292,
+  "triangulation": {
+    "method": "TEMP_BMESH_BEAUTY",
+    "source_vertices": 656,
+    "source_polygons": 1129,
+    "export_triangles": 1292,
+    "vertex_count_preserved": true,
+    "artist_mesh_modified": false
+  },
+  "loops": 3550,
+  "uv_layers": [
+    {
+      "index": 0,
+      "name": "SMD_UV",
+      "active": true,
+      "active_render": true,
+      "data_len": 3550
+    }
+  ],
+  "active_uv": "SMD_UV",
+  "active_uv_data_count": 3550,
+  "used_materials": {
+    "1": 1292
+  },
+  "allowed_materials": [
+    1
+  ],
+  "rigid_bone_count": 22,
+  "rigid_bone_histogram": {
+    "Bip01 Spine1": 99,
+    "Bip01 Head": 13,
+    "Bip01 L Clavicle": 14,
+    "Bip01 L UpperArm": 46,
+    "Bip01 L Forearm": 48,
+    "Bip01 L Finger1": 23,
+    "Bip01 L Finger2": 7,
+    "Bip01 L Finger21": 8,
+    "Bip01 L Finger11": 16,
+    "Bip01 L Hand": 22,
+    "Bip01 L Finger0": 43,
+    "Bip01 L Finger01": 21,
+    "Bip01 R Clavicle": 13,
+    "Bip01 R UpperArm": 67,
+    "Bip01 R Forearm": 58,
+    "Bip01 R Finger1": 29,
+    "Bip01 R Finger2": 12,
+    "Bip01 R Finger21": 2,
+    "Bip01 R Finger11": 16,
+    "Bip01 R Hand": 36,
+    "Bip01 R Finger0": 50,
+    "Bip01 R Finger01": 13
+  },
+  "max_vertex_fit_error": 0.004367320268554277,
+  "mean_vertex_fit_error": 0.0016304052808876956,
+  "bbox": {
+    "x": [
+      -8.15234375,
+      8.208041191101074
+    ],
+    "y": [
+      -3.5703125,
+      3.546875
+    ],
+    "z": [
+      17.0546875,
+      37.5078125
+    ]
+  },
+  "edge_degree_histogram": {
+    "2": 1758,
+    "3": 4,
+    "1": 22
+  },
+  "boundary_edge_count": 22,
+  "nonmanifold_edge_count": 4,
+  "nonmanifold_edges": [
+    {
+      "edge": [
+        1,
+        5
+      ],
+      "faces": [
+        7,
+        158,
+        168
+      ]
+    },
+    {
+      "edge": [
+        1,
+        82
+      ],
+      "faces": [
+        151,
+        158,
+        168
+      ]
+    },
+    {
+      "edge": [
+        82,
+        286
+      ],
+      "faces": [
+        158,
+        168,
+        178
+      ]
+    },
+    {
+      "edge": [
+        5,
+        286
+      ],
+      "faces": [
+        158,
+        168,
+        562
+      ]
+    }
+  ],
+  "validation_check": "PASS"
+}

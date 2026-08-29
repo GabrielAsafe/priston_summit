@@ -1,0 +1,95 @@
+{
+  "tool": "PT_STAGE072_GEOMETRY_CURRENT_FAMILY_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Quest/quest_IV.smd",
+  "output": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-2F724BA2B0E7/stage072_geometry_roundtrip_current/rebuilt_stage072_geometry_roundtrip.smd",
+  "source_sha256": "48d147adee0dcfd0c7694c5f1f6c8f50a230603dd88286917d853d452cc0f355",
+  "output_sha256": "6360bf3274c6ae97a7378e14a37f2230a83b6507768499d3685d322bbadcce6a",
+  "normal_family": "CURRENT_FLOAT32_DIV_SQRT_MUL32767_TRUNC",
+  "vertex_edit": {
+    "vertex_index": 1,
+    "component": "x",
+    "before_raw": [
+      5764606,
+      323625,
+      2228878
+    ],
+    "after_raw": [
+      5780990,
+      323625,
+      2228878
+    ],
+    "delta_raw": 16384,
+    "delta_world": 64.0
+  },
+  "incident_faces": [
+    0
+  ],
+  "normal_changes": [
+    {
+      "face_index": 0,
+      "before": [
+        -27639,
+        -17599,
+        0
+      ],
+      "after": [
+        -19970,
+        -17932,
+        -18795
+      ],
+      "vectnormal3_preserved": -12851
+    }
+  ],
+  "normal_change_face_count": 1,
+  "stagearea": {
+    "encoding": "DWORD32",
+    "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+    "active_cells": 2500,
+    "wAreaSize": 159028,
+    "payload_bytes": 176528,
+    "stage_map_rect": [
+      5261598,
+      2088413,
+      6076463,
+      2897970
+    ],
+    "max_face_area_cell_span": 189
+  },
+  "source_parse": "PASS",
+  "rebuilt_parse": "PASS",
+  "rebuilt_normal_family": "CURRENT_FLOAT32_DIV_SQRT_MUL32767_TRUNC",
+  "client_modified": false,
+  "check": "PASS",
+  "blender_geometry_change_scan_count": 1,
+  "blender_geometry_changes": [
+    {
+      "vertex_index": 1,
+      "before_raw": [
+        5764606,
+        323625,
+        2228878
+      ],
+      "after_raw": [
+        5780990,
+        323625,
+        2228878
+      ],
+      "before_world": [
+        22517.9921875,
+        1264.16015625,
+        8706.5546875
+      ],
+      "after_world": [
+        22581.9921875,
+        1264.16015625,
+        8706.5546875
+      ],
+      "changed_components": [
+        0
+      ]
+    }
+  ],
+  "strict_blender_edit_set": "PASS",
+  "witness_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-2F724BA2B0E7/stage072_geometry_roundtrip_current/stage072_geometry_witness.json",
+  "normalized_witness_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-2F724BA2B0E7/stage072_geometry_roundtrip_current/stage072_geometry_writer.normalized_witness.json"
+}

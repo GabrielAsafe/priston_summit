@@ -1,0 +1,14 @@
+{
+  "asset_id": "AST-F7A2AC7A8F9B",
+  "asset": "char/tmABCD/Mfh_B01b.smd",
+  "source_sha256": "fab404e2821e7ce876e7520fdda1d69e0b1bbba520b53d7467bb343c239dc05a",
+  "mode": "RIGID",
+  "binding_mode": "ROOT_SKELETON_BOUND",
+  "binding_source": "INX_LINK_FILE",
+  "binding_root_models": [
+    "char/tmabcd/tfbd01.smd"
+  ],
+  "structural_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-F7A2AC7A8F9B/structural/character_structural.json",
+  "inx_checks": 1,
+  "check": "PASS"
+}

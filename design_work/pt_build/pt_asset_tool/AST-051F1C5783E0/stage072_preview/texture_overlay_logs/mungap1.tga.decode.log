@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=53fe583ed77732a5cd4741de56300aba68adb480123001b36cd81e0c0f2f0561
+output_sha256=53fe583ed77732a5cd4741de56300aba68adb480123001b36cd81e0c0f2f0561
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-051F1C5783E0/stage072_preview/texture_overlay_client/field/room/mungap1.tga
+format=TGA_STANDARD
+client_modified=False
+tga_decode_check=PASS

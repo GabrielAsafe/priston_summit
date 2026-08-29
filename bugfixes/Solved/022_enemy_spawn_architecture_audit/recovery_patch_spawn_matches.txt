@@ -1,0 +1,38 @@
+8110:-						SendAddStartPoint(lpCurPlayer->pX, lpCurPlayer->pZ);
+8118:-							SendDeleteStartPoint(lpSelItem->pX, lpSelItem->pZ);
+24351: 		DecodeOpenMonster(szCharMonsterFile, &rsMonsterList, chrMonsterList, chrMonsterCnt);
+24353:+		// MINGW_STAGE_SPAWN_LOAD_TRACE_V1
+24355:+			int dbgStartPoints = 0;
+24359:+				if(StartPoint[dbgCnt].state)
+24360:+					dbgStartPoints++;
+24363:+			FILE *dbgFp = fopen("spawn_trace.txt", "a");
+24369:+					"interval=%d chrMonsterCnt=%d\\n",
+24371:+					szStartPointFile,
+24372:+					dbgStartPoints,
+24373:+					szCharMonsterFile,
+24374:+					rsMonsterList.Counter,
+24375:+					rsMonsterList.PecetageCount,
+24376:+					rsMonsterList.LimitMax,
+24377:+					rsMonsterList.OpenLimit,
+24378:+					rsMonsterList.OpenInterval,
+24379:+					chrMonsterCnt);
+24385: 		if(!rsMonsterList.LimitMax) rsMonsterList.LimitMax = 10; //Limite de mobs por mapas
+25799:@@ -4653,10 +4654,17 @@ int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR
+25803:-		if(lstrcmp(decode, "*�⿬��") == 0 || lstrcmpi(decode, "*ACTOR") == 0)
+25804:+		if((lstrcmp(decode, "\x2A\xC3\xE2\xBF\xAC\xC0\xDA") == 0 || lstrcmpi(decode, "*ACTOR") == 0)) // MINGW_SPM_CP949_TOKEN_FIX_V1
+25807: 			strcpy_s(lpStgMonList->rsMonster[MonCnt].szMonsterName, strBuff);
+25809:+            // MINGW_SPM_ACTOR_MATCH_TRACE_V1
+25818:@@ -4673,10 +4681,81 @@ int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR
+25845:+                        "[ACTOR] spm=%s requested='%s' "
+25897:-		if(lstrcmp(decode, "*�⿬�ڵθ�") == 0 || lstrcmpi(decode, "*BOSS_ACTOR") == 0)
+25898:+		if((lstrcmp(decode, "\x2A\xC3\xE2\xBF\xAC\xC0\xDA\xB5\xCE\xB8\xF1") == 0 || lstrcmpi(decode, "*BOSS_ACTOR") == 0))
+25901: 			lpBossMonster = &lpStgMonList->sBossMonsters[lpStgMonList->BossMonsterCount];
+25902:@@ -4717,14 +4796,14 @@ int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR
+25906:-		if(!NextFlag && (lstrcmp(decode, "*�ִ뵿��������") == 0 || lstrcmp(decode, "*MAX_ACTOR_POS") == 0))
+25907:+		if(!NextFlag && (lstrcmp(decode, "\x2A\xC3\xD6\xB4\xEB\xB5\xBF\xBD\xC3\xC3\xE2\xC7\xF6\xBC\xF6") == 0 || lstrcmp(decode, "*MAX_ACTOR_POS") == 0))
+25910: 			lpStgMonList->LimitMax = atoi(strBuff);
+25918: 			lpStgMonList->OpenInterval = (1 << atoi(strBuff));
+25919:@@ -4737,7 +4816,7 @@ int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR
+25923:-		if(!NextFlag && (lstrcmp(decode, "*������") == 0 || lstrcmp(decode, "*MAX_ACTOR") == 0))
+25924:+		if(!NextFlag && (lstrcmp(decode, "\x2A\xC3\xE2\xC7\xF6\xBC\xF6") == 0 || lstrcmp(decode, "*MAX_ACTOR") == 0))
+25927: 			lpStgMonList->OpenLimit = atoi(strBuff);

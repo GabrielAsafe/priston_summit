@@ -1,0 +1,398 @@
+SourceCode/SrcGame/src/HoBaram/HoNewParticle.cpp:1834:				_snprintf(buf, sizeof(buf), "Unexpected \"%s\" in Particle System Block!", TokenIter->StrValue.c_str());
+SourceCode/SrcGame/src/Language/English/e_clanText.h:189:char *ClanServerInspect = "Server maintenance./n";
+SourceCode/SrcGame/src/Language/English/e_HoTextFile.h:10:				"      Server is full       ",
+SourceCode/SrcGame/src/Language/English/e_HoTextFile.h:15:				 "Server is overloaded, please try again later.",
+SourceCode/SrcGame/src/Language/English/e_ServerMsg.h:18:char *srMsg_016 = "Client authorization has been disabled";
+SourceCode/SrcGame/src/Language/English/e_TextMessage.h:9:char *mgDiconnect = "Connection lost with Server";
+SourceCode/SrcGame/src/Language/English/e_TextMessage.h:10:char *mgDiconnect1 = "Connection lost with Server (1)";
+SourceCode/SrcGame/src/Language/English/e_TextMessage.h:11:char *mgDiconnect2 = "Connection lost with Server (2)";
+SourceCode/SrcGame/src/Language/English/e_TextMessage.h:12:char *mgDiconnect3 = "Connection lost with Server (3)";
+SourceCode/SrcGame/src/Language/English/e_TextMessage.h:13:char *mgDiconnect4 = "Connection lost with Server (4)";
+SourceCode/SrcGame/src/Language/thai/th_clanText.h:68:char *szServerConnectErrorMsg =  "�Դ��͡�?Clan Server ����� /n/
+SourceCode/SrcGame/src/Language/thai/th_clanText.h:153:char *szLoading =  "���ѧ�Դ��͡Ѻ Server/n "  ;
+SourceCode/SrcGame/src/Language/thai/th_clanText.h:176:char *ClanServerInspect =  "Server maintenance./n "  ;
+SourceCode/SrcGame/src/Language/thai/th_HoTextFile.h:3:char *HoTextLoginMessage[18] =  { "���ѧ�Դ��͡Ѻ Server.... "  ,
+SourceCode/SrcGame/src/Language/thai/th_HoTextFile.h:4:			"�������ö�Դ��͡Ѻ Server �� ",
+SourceCode/SrcGame/src/Language/thai/th_HoTextFile.h:7:			"Server �Դ "  ,
+SourceCode/SrcGame/src/Language/thai/th_HoTextFile.h:10:			"Server ������.. "  ,
+SourceCode/SrcGame/src/Language/thai/th_HoTextFile.h:11:			"�Ҵ��õԴ��͡Ѻ Server "  ,
+SourceCode/SrcGame/src/Language/thai/th_HoTextFile.h:15:			"Server �������ö����ԡ���颳й��  ",
+SourceCode/SrcGame/src/Language/thai/th_ServerMsg.h:13:char *srMsg_012 =  "�ӹǹ�٧�ش�ͧ������� Server ��˹������  %d �� "  ;
+SourceCode/SrcGame/src/Language/thai/th_ServerMsg.h:14:char *srMsg_013 =  "�Ѩ�غѹ�ըӹǹ����������� Server  %d �� "  ;
+SourceCode/SrcGame/src/Language/thai/th_ServerMsg.h:17:char *srMsg_016 = "¡��ԡ��õ�Ǩ�ͺ Client";
+SourceCode/SrcGame/src/Language/thai/th_ServerMsg.h:246:	 "��С��> �ҧ����ҹ PT �ͻԴ Server ���Ǣ�����ͷӡ�û�Ѻ��ا "  ,
+SourceCode/SrcGame/src/Language/thai/th_ServerMsg.h:248:	 "��С��> Server �ж١�Դ������ "  ,
+SourceCode/SrcGame/src/Language/thai/th_ServerMsg.h:252:char *szSeverDownCountMsg =  "�Դ Server> ���� %d �ҷ� %d �Թҷ� ��س��͡�ҡ�� "  ;
+SourceCode/SrcGame/src/Language/veitnam/v_TextMessage.h:9:char *mgDiconnect = "K��t n��i v��i Server bi� ng��t";
+SourceCode/SrcGame/src/Language/veitnam/v_TextMessage.h:10:char *mgDiconnect1 = "K��t n��i v��i Server bi� ng��t (1)";
+SourceCode/SrcGame/src/Language/veitnam/v_TextMessage.h:11:char *mgDiconnect2 = "K��t n��i v��i Server bi� ng��t (2)";
+SourceCode/SrcGame/src/Language/veitnam/v_TextMessage.h:12:char *mgDiconnect3 = "K��t n��i v��i Server bi� ng��t (3)";
+SourceCode/SrcGame/src/Language/veitnam/v_TextMessage.h:13:char *mgDiconnect4 = "K��t n��i v��i Server bi� ng��t (4)";
+SourceCode/SrcGame/src/Server/DllServer.cpp:30:char szServerName[64] = "Unnamed Server";
+SourceCode/SrcGame/src/Server/E_serverlog.h:32:#define msg1102		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Checksum Error ( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:36:#define msg1130		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Function Checking Error ( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:37:#define msg1132		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Function Checking Count Error ( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:72:#define msg5200		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Game Server IP Error ( %d )( %s )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:76:#define msg6500		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server and Client Exp Error ( %d )( %d ) - %d/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:77:#define msg6510		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server and Client Moeny Error ( %d )( %d ) - %d/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:78:#define msg6600		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server EXP Error ( %dk )( %dk )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:79:#define msg6610		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Money Error ( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:80:#define msg6611		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Money Error2 ( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:81:#define msg6612		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Money Error3 ( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:83:#define msg6630		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client EXP Error ( %d )/( %dk )( %dk )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:89:#define msg7000		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Process Time Out ( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:94:#define msg7100		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Attack/Defence Error ( %d )( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:95:#define msg7110		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Energy Bar Error ( %d )( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:102:#define msg8000		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Inventory [Item] Error ( %d ) - ( %s )( %d )( %d / %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:103:#define msg8010		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Inventory [Money] Error ( %d ) - ( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:104:#define msg8020		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server To Server Moving Item Error ( %d ) - ( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:107:#define msg8050		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Inventory Used Full ( %d )( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:109:#define msg8070		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Inventory Loading Found [Copied Item] ( %d ) - ( %s )( %d )( %d / %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:118:#define msg8300		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Reconnect Server ( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:122:#define msg8520		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Warning [Motion Speed] ( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:123:#define msg8530		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Warning [Skill Attack] ( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:124:#define msg8540		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Warning [Skill Forgery] ( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:125:#define msg8550		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Warning [Skill Forgery - 2] ( %d )( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:128:#define msg8580		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Damage Packet Error ( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:134:#define msg8800		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Potion Error ( %d )( %d )( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:135:#define msg8810		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Potion Moving Error ( [%d]  %d )/( %d )/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:138:#define msg8840		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) *Server Money overflow( %d ) - ( %s ) (%d)(%d) = (%d)/r/n"
+SourceCode/SrcGame/src/Server/E_serverlog.h:159:#define msg11000	"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Shutdown Service/r/n"
+SourceCode/SrcGame/src/Server/OnSever.cpp:50:#include "Database/Database.h"
+SourceCode/SrcGame/src/Server/OnSever.cpp:11094:			MessageBox(NULL, "Error Record Memory", "Alloc Failed - Hotuk Server", MB_OK);
+SourceCode/SrcGame/src/Server/OnSever.cpp:18545:			wsprintf(szMessageBuff, "[Login Server]/r/nUsu?ios : %d/r/nFalha no Login: %d/r/nProcesso Login: %d/%d Proc(%d) DLL_Code(%d)/r/n?timo Login: %s (%d)/r/nLogin Que: %d/r/nLogQue Using: %d/r/nLogQue Process: %d/ Avg(%d) Max(%d)/r/nLogQue Failed: %d/r/nItem Log: Using(%d) Failed(%d)/r/nEvent Log: Using(%d) Failed(%d)/r/n",
+SourceCode/SrcGame/src/Server/OnSever.cpp:21157:		wsprintf(szBuff, "%d:%d:%d >**** Shutdown Service **** - ( %d / %d )/r/n",
+SourceCode/SrcGame/src/Server/OnSever.cpp:21163:		wsprintf(szBuff, "%d:%d:%d >**** Starting Service **** - ( %d / %d )/r/n",
+SourceCode/SrcGame/src/Server/OnSever.cpp:21169:		wsprintf(szBuff, "%d:%d:%d >**** Closed Service **** - ( %d / %d )/r/n",
+SourceCode/SrcGame/src/sinbaram/sinInvenTory.cpp:7:#include "Server/onserver.h"
+SourceCode/SrcGame/src/sinbaram/sinMain.cpp:510:			cHelpPet.PetMessage("*System", 3);
+SourceCode/SrcGame/src/sinbaram/sinSOD2.cpp:10:#include "Server/onserver.h"
+SourceCode/SrcGame/src/sinbaram/sinWarpGate.cpp:5:#include "Server/onserver.h"
+SourceCode/SrcGame/src/sinbaram/sinHelpPet.cpp:212:	"*System",
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:1258:				cHelpPet.PetMessage("*System", 0);
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:1667:			cHelpPet.PetMessage("*System", 1);
+SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:1848:			cHelpPet.PetMessage("*System", 2);
+SourceCode/SrcGame/src/smLib3d/ddraw.h:479:    DWORD       dwSVBCaps;              // driver specific capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:480:    DWORD       dwSVBCKeyCaps;          // driver color key capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:481:    DWORD       dwSVBFXCaps;            // driver FX capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:482:    DWORD       dwSVBRops[DD_ROP_SPACE];// ROPS supported for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:483:    DWORD       dwVSBCaps;              // driver specific capabilities for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:484:    DWORD       dwVSBCKeyCaps;          // driver color key capabilities for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:485:    DWORD       dwVSBFXCaps;            // driver FX capabilities for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:486:    DWORD       dwVSBRops[DD_ROP_SPACE];// ROPS supported for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:487:    DWORD       dwSSBCaps;              // driver specific capabilities for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:488:    DWORD       dwSSBCKeyCaps;          // driver color key capabilities for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:489:    DWORD       dwSSBFXCaps;            // driver FX capabilities for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:490:    DWORD       dwSSBRops[DD_ROP_SPACE];// ROPS supported for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:539:/* ac*/ DWORD   dwSVBCaps;              // driver specific capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:540:/* b0*/ DWORD   dwSVBCKeyCaps;          // driver color key capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:541:/* b4*/ DWORD   dwSVBFXCaps;            // driver FX capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:542:/* b8*/ DWORD   dwSVBRops[DD_ROP_SPACE];// ROPS supported for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:543:/* d8*/ DWORD   dwVSBCaps;              // driver specific capabilities for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:544:/* dc*/ DWORD   dwVSBCKeyCaps;          // driver color key capabilities for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:545:/* e0*/ DWORD   dwVSBFXCaps;            // driver FX capabilities for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:546:/* e4*/ DWORD   dwVSBRops[DD_ROP_SPACE];// ROPS supported for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:547:/*104*/ DWORD   dwSSBCaps;              // driver specific capabilities for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:548:/*108*/ DWORD   dwSSBCKeyCaps;          // driver color key capabilities for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:549:/*10c*/ DWORD   dwSSBFXCaps;            // driver FX capabilities for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:550:/*110*/ DWORD   dwSSBRops[DD_ROP_SPACE];// ROPS supported for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:554:/*138*/ DWORD   dwSVBCaps2;             // more driver specific capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:601:/* ac*/ DWORD   dwSVBCaps;              // driver specific capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:602:/* b0*/ DWORD   dwSVBCKeyCaps;          // driver color key capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:603:/* b4*/ DWORD   dwSVBFXCaps;            // driver FX capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:604:/* b8*/ DWORD   dwSVBRops[DD_ROP_SPACE];// ROPS supported for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:605:/* d8*/ DWORD   dwVSBCaps;              // driver specific capabilities for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:606:/* dc*/ DWORD   dwVSBCKeyCaps;          // driver color key capabilities for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:607:/* e0*/ DWORD   dwVSBFXCaps;            // driver FX capabilities for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:608:/* e4*/ DWORD   dwVSBRops[DD_ROP_SPACE];// ROPS supported for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:609:/*104*/ DWORD   dwSSBCaps;              // driver specific capabilities for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:610:/*108*/ DWORD   dwSSBCKeyCaps;          // driver color key capabilities for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:611:/*10c*/ DWORD   dwSSBFXCaps;            // driver FX capabilities for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:612:/*110*/ DWORD   dwSSBRops[DD_ROP_SPACE];// ROPS supported for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:615:/*138*/ DWORD   dwSVBCaps2;             // more driver specific capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:664:/* ac*/ DWORD   dwSVBCaps;              // driver specific capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:665:/* b0*/ DWORD   dwSVBCKeyCaps;          // driver color key capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:666:/* b4*/ DWORD   dwSVBFXCaps;            // driver FX capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:667:/* b8*/ DWORD   dwSVBRops[DD_ROP_SPACE];// ROPS supported for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:668:/* d8*/ DWORD   dwVSBCaps;              // driver specific capabilities for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:669:/* dc*/ DWORD   dwVSBCKeyCaps;          // driver color key capabilities for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:670:/* e0*/ DWORD   dwVSBFXCaps;            // driver FX capabilities for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:671:/* e4*/ DWORD   dwVSBRops[DD_ROP_SPACE];// ROPS supported for Vmem->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:672:/*104*/ DWORD   dwSSBCaps;              // driver specific capabilities for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:673:/*108*/ DWORD   dwSSBCKeyCaps;          // driver color key capabilities for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:674:/*10c*/ DWORD   dwSSBFXCaps;            // driver FX capabilities for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:675:/*110*/ DWORD   dwSSBRops[DD_ROP_SPACE];// ROPS supported for System->System blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:678:/*138*/ DWORD   dwSVBCaps2;             // more driver specific capabilities for System->Vmem blts
+SourceCode/SrcGame/src/smLib3d/ddraw.h:1181:    /*** Added in the V4 Interface ***/
+SourceCode/SrcGame/src/smLib3d/ddraw.h:1281:    /*** Added in the V4 Interface ***/
+SourceCode/SrcGame/src/smLib3d/ddraw.h:2657: * bit must be set in order to query for a Direct3D Device Interface
+SourceCode/SrcGame/src/smLib3d/ddraw.h:2922: * format and the pixel format is typically GDI (Graphics Device Interface) couldn't handle,
+SourceCode/SrcGame/src/smLib3d/smDsx.cpp:54:		MessageBox(0, "Could not Create Direct3D", "Engine Graphic", 0);
+SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:467:		MINGW_ClanTrace("clanMENU_INIT Interface.CLANmenu_INIT #1 BEFORE");
+SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:469:		MINGW_ClanTrace("clanMENU_INIT Interface.CLANmenu_INIT #1 AFTER");
+SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:500:		MINGW_ClanTrace("clanMENU_INIT Interface.CLANmenu_INIT #2 BEFORE");
+SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:502:		MINGW_ClanTrace("clanMENU_INIT Interface.CLANmenu_INIT #2 AFTER");
+SourceCode/SrcGame/src/ActionGame.cpp:27:#include "Server/onserver.h"
+SourceCode/SrcGame/src/AreaServer.cpp:205:						wsprintf(szBuff, "Region Server Connection (%s)", lpBuff);
+SourceCode/SrcGame/src/CChatBox.cpp:940:			Engine::ObjectOwnerUnit * pcOwner = new Engine::ObjectOwnerUnit( UNITDATATOUNIT( pcUnitData ) );
+SourceCode/SrcGame/src/SQL.cpp:21:				wsprintf(InConnectionString, "DRIVER={SQL Server};SERVER=%s;UID=%s;PWD=%s;", szServer, szUser, szPw);
+SourceCode/SrcGame/src/Winmain.bak2.cpp:4449:					wsprintf(strBuff, "Area Server[0]: (%s)", lpWSockServer_Area[0]->szIPAddr);
+SourceCode/SrcGame/src/Winmain.bak2.cpp:4457:					wsprintf(strBuff, "Area Server[1]: (%s)", lpWSockServer_Area[1]->szIPAddr);
+SourceCode/SrcGame/src/Winmain.bak2.cpp:4466:					wsprintf(strBuff, "Area Server[0]: (%s)", lpWSockServer_DispArea[0]->szIPAddr);
+SourceCode/SrcGame/src/Winmain.bak2.cpp:4475:					wsprintf(strBuff, "Area Server[1]: (%s)", lpWSockServer_DispArea[1]->szIPAddr);
+SourceCode/SrcGame/src/Winmain.bak2.cpp:5079:				//Desativa Interface
+SourceCode/SrcGame/src/Winmain.cpp:4582:					wsprintf(strBuff, "Area Server[0]: (%s)", lpWSockServer_Area[0]->szIPAddr);
+SourceCode/SrcGame/src/Winmain.cpp:4590:					wsprintf(strBuff, "Area Server[1]: (%s)", lpWSockServer_Area[1]->szIPAddr);
+SourceCode/SrcGame/src/Winmain.cpp:4599:					wsprintf(strBuff, "Area Server[0]: (%s)", lpWSockServer_DispArea[0]->szIPAddr);
+SourceCode/SrcGame/src/Winmain.cpp:4608:					wsprintf(strBuff, "Area Server[1]: (%s)", lpWSockServer_DispArea[1]->szIPAddr);
+SourceCode/SrcGame/src/Winmain.cpp:5212:				//Desativa Interface
+SourceCode/SrcGame/src/character.cpp:28:#include "Server/svr_Damage.h"
+SourceCode/SrcGame/src/character.cpp:29:#include "Server/onserver.h"
+SourceCode/SrcGame/src/netplay.cpp:125:#include "Server/onserver.h"
+SourceCode/SrcGame/src/netplay.cpp:7322:		AddChatBuff("Connection lost to Server");
+SourceCode/SrcGame/src/netplay.cpp:7362:		AddChatBuff("Connection lost to Server");
+SourceCode/SrcGame/src/netplay.cpp:7378:		AddChatBuff("Connection lost to Server");
+SourceCode/SrcGame/src/netplay.cpp:7402:				wsprintf(szBuff, "Disconnect Area Server (%s)", lpWSockServer_Area[0]->szIPAddr);
+SourceCode/SrcGame/src/netplay.cpp:7415:				wsprintf(szBuff, "Disconnect Area Server (%s)", lpWSockServer_Area[1]->szIPAddr);
+SourceCode/SrcGame/src/netplay.cpp:8032:						AddChatBuff("Error Server(Main)");
+SourceCode/SrcGame/src/netplay.cpp:8048:						AddChatBuff("Error Server(User)");
+SourceCode/SrcGame/src/netplay.cpp:8064:						AddChatBuff("Error Server(Extend)");
+SourceCode/SrcGame/src/netplay.cpp:9394:				wsprintf(szBuff, "Reconnect Server(Extend)");
+SourceCode/SrcGame/src/netplay.cpp:9437:						wsprintf(szBuff, "Reconnect Server Area (%d)", cnt);
+SourceCode/SrcGame/src/playsub.cpp:30:#include "Server/onserver.h"
+SourceCode/SrcGame/src/record.cpp:25:#include "Server/onserver.h"
+SourceCode/SrcGame/src/fileread.cpp:15:#include "Server/onserver.h"
+SourceCode/SrcGame/src/playmain.cpp:34:#include "Server/onserver.h"
+SourceCode/SrcServer/src/CLI/CLI.cpp:6:#include "Server/onserver.h"
+SourceCode/SrcServer/src/Database/Database.cpp:1:#include "Database/Database.h"
+SourceCode/SrcServer/src/Database/Database.cpp:9:#include "Database/Database.h"
+SourceCode/SrcServer/src/Database/Database.cpp:132:// 		Driver = file.readString("Database", "Driver");
+SourceCode/SrcServer/src/Database/Database.cpp:133:// 		Host = file.readString("Database", "Host");
+SourceCode/SrcServer/src/Database/Database.cpp:134:// 		User = file.readString("Database", "User");
+SourceCode/SrcServer/src/Database/Database.cpp:135:// 		Password = file.readString("Database", "Password");
+SourceCode/SrcServer/src/Database/Database.cpp:142:// 	wsprintfA(szStringConnectionSQL, "Persist Security Info=False; Integrated Security=False; Driver=%s; Server=%s; Database=%s; Uid=%s; Pwd=%s;",
+SourceCode/SrcServer/src/Database/Database.cpp:143:// 		"{SQL Server}", "PTL//SQLEXPRES", szDatabaseName, "sa", "SummitTale@12345");
+SourceCode/SrcServer/src/Database/Database.cpp:145:// 	wsprintfA(szStringConnectionSQL, "Persist Security Info=False; Integrated Security=False; Driver=%s; Server=%s; Database=%s; Uid=%s; Pwd=%s;",
+SourceCode/SrcServer/src/Database/Database.cpp:175:		Utils_Log(LOG_SQL, "SQLDATA: Database ID invalido.");
+SourceCode/SrcServer/src/Database/Database.cpp:248:		Driver = file.readString("Database", "Driver");
+SourceCode/SrcServer/src/Database/Database.cpp:249:		Host = file.readString("Database", "Host");
+SourceCode/SrcServer/src/Database/Database.cpp:250:		User = file.readString("Database", "User");
+SourceCode/SrcServer/src/Database/Database.cpp:251:		Password = file.readString("Database", "Password");
+SourceCode/SrcServer/src/Database/Database.cpp:302:		"Server=%s;"
+SourceCode/SrcServer/src/Database/Database.cpp:303:		"Database=%s;"
+SourceCode/SrcServer/src/Database/Database.cpp:353:			<< " / Database="
+SourceCode/SrcServer/src/Database/Database.cpp:753:		// Mismatch Database? return pointer of class
+SourceCode/SrcServer/src/Firewall/Firewall.cpp:76:		BSTR RuleName = SysAllocString(L"PT Server Firewall");
+SourceCode/SrcServer/src/GameMasters/GameMasters.cpp:2:#include "Database/Database.h"
+SourceCode/SrcServer/src/HoBaram/HoNewParticle.cpp:1835:				_snprintf(buf, sizeof(buf), "Unexpected \"%s\" in Particle System Block!", TokenIter->StrValue.c_str());
+SourceCode/SrcServer/src/Language/English/e_clanText.h:189:char *ClanServerInspect = "Server maintenance./n";
+SourceCode/SrcServer/src/Language/English/e_HoTextFile.h:10:				"      Server is full       ",
+SourceCode/SrcServer/src/Language/English/e_HoTextFile.h:15:				 "Server is overloaded, please try again later.",
+SourceCode/SrcServer/src/Language/English/e_ServerMsg.h:18:char *srMsg_016 = "Client authorization has been disabled";
+SourceCode/SrcServer/src/Language/English/e_TextMessage.h:9:char *mgDiconnect = "Connection lost with Server";
+SourceCode/SrcServer/src/Language/English/e_TextMessage.h:10:char *mgDiconnect1 = "Connection lost with Server (1)";
+SourceCode/SrcServer/src/Language/English/e_TextMessage.h:11:char *mgDiconnect2 = "Connection lost with Server (2)";
+SourceCode/SrcServer/src/Language/English/e_TextMessage.h:12:char *mgDiconnect3 = "Connection lost with Server (3)";
+SourceCode/SrcServer/src/Language/English/e_TextMessage.h:13:char *mgDiconnect4 = "Connection lost with Server (4)";
+SourceCode/SrcServer/src/Language/thai/th_clanText.h:68:char *szServerConnectErrorMsg =  "�Դ��͡�?Clan Server ����� /n/
+SourceCode/SrcServer/src/Language/thai/th_clanText.h:153:char *szLoading =  "���ѧ�Դ��͡Ѻ Server/n "  ;
+SourceCode/SrcServer/src/Language/thai/th_clanText.h:176:char *ClanServerInspect =  "Server maintenance./n "  ;
+SourceCode/SrcServer/src/Language/thai/th_HoTextFile.h:3:char *HoTextLoginMessage[18] =  { "���ѧ�Դ��͡Ѻ Server.... "  ,
+SourceCode/SrcServer/src/Language/thai/th_HoTextFile.h:4:			"�������ö�Դ��͡Ѻ Server �� ",
+SourceCode/SrcServer/src/Language/thai/th_HoTextFile.h:7:			"Server �Դ "  ,
+SourceCode/SrcServer/src/Language/thai/th_HoTextFile.h:10:			"Server ������.. "  ,
+SourceCode/SrcServer/src/Language/thai/th_HoTextFile.h:11:			"�Ҵ��õԴ��͡Ѻ Server "  ,
+SourceCode/SrcServer/src/Language/thai/th_HoTextFile.h:15:			"Server �������ö����ԡ���颳й��  ",
+SourceCode/SrcServer/src/Language/thai/th_ServerMsg.h:13:char *srMsg_012 =  "�ӹǹ�٧�ش�ͧ������� Server ��˹������  %d �� "  ;
+SourceCode/SrcServer/src/Language/thai/th_ServerMsg.h:14:char *srMsg_013 =  "�Ѩ�غѹ�ըӹǹ����������� Server  %d �� "  ;
+SourceCode/SrcServer/src/Language/thai/th_ServerMsg.h:17:char *srMsg_016 = "¡��ԡ��õ�Ǩ�ͺ Client";
+SourceCode/SrcServer/src/Language/thai/th_ServerMsg.h:246:	 "��С��> �ҧ����ҹ PT �ͻԴ Server ���Ǣ�����ͷӡ�û�Ѻ��ا "  ,
+SourceCode/SrcServer/src/Language/thai/th_ServerMsg.h:248:	 "��С��> Server �ж١�Դ������ "  ,
+SourceCode/SrcServer/src/Language/thai/th_ServerMsg.h:252:char *szSeverDownCountMsg =  "�Դ Server> ���� %d �ҷ� %d �Թҷ� ��س��͡�ҡ�� "  ;
+SourceCode/SrcServer/src/Language/veitnam/v_TextMessage.h:9:char *mgDiconnect = "K��t n��i v��i Server bi� ng��t";
+SourceCode/SrcServer/src/Language/veitnam/v_TextMessage.h:10:char *mgDiconnect1 = "K��t n��i v��i Server bi� ng��t (1)";
+SourceCode/SrcServer/src/Language/veitnam/v_TextMessage.h:11:char *mgDiconnect2 = "K��t n��i v��i Server bi� ng��t (2)";
+SourceCode/SrcServer/src/Language/veitnam/v_TextMessage.h:12:char *mgDiconnect3 = "K��t n��i v��i Server bi� ng��t (3)";
+SourceCode/SrcServer/src/Language/veitnam/v_TextMessage.h:13:char *mgDiconnect4 = "K��t n��i v��i Server bi� ng��t (4)";
+SourceCode/SrcServer/src/News/News.cpp:7:#include "Database/Database.h"
+SourceCode/SrcServer/src/Server/E_serverlog.h:32:#define msg1102		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Checksum Error ( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:36:#define msg1130		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Function Checking Error ( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:37:#define msg1132		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Function Checking Count Error ( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:72:#define msg5200		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Game Server IP Error ( %d )( %s )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:76:#define msg6500		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server and Client Exp Error ( %d )( %d ) - %d/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:77:#define msg6510		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server and Client Moeny Error ( %d )( %d ) - %d/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:78:#define msg6600		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server EXP Error ( %dk )( %dk )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:79:#define msg6610		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Money Error ( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:80:#define msg6611		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Money Error2 ( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:81:#define msg6612		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Money Error3 ( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:83:#define msg6630		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client EXP Error ( %d )/( %dk )( %dk )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:89:#define msg7000		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Process Time Out ( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:94:#define msg7100		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Attack/Defence Error ( %d )( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:95:#define msg7110		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Energy Bar Error ( %d )( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:102:#define msg8000		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Inventory [Item] Error ( %d ) - ( %s )( %d )( %d / %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:103:#define msg8010		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Inventory [Money] Error ( %d ) - ( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:104:#define msg8020		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server To Server Moving Item Error ( %d ) - ( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:107:#define msg8050		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Inventory Used Full ( %d )( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:109:#define msg8070		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Inventory Loading Found [Copied Item] ( %d ) - ( %s )( %d )( %d / %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:118:#define msg8300		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Reconnect Server ( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:122:#define msg8520		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Warning [Motion Speed] ( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:123:#define msg8530		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Warning [Skill Attack] ( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:124:#define msg8540		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Warning [Skill Forgery] ( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:125:#define msg8550		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Warning [Skill Forgery - 2] ( %d )( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:128:#define msg8580		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Client Damage Packet Error ( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:134:#define msg8800		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Potion Error ( %d )( %d )( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:135:#define msg8810		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Server Potion Moving Error ( [%d]  %d )/( %d )/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:138:#define msg8840		"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) *Server Money overflow( %d ) - ( %s ) (%d)(%d) = (%d)/r/n"
+SourceCode/SrcServer/src/Server/E_serverlog.h:159:#define msg11000	"%d:%d:%d - ID:( %s ) / Name:( %s ) / IP ( %s ) Shutdown Service/r/n"
+SourceCode/SrcServer/src/Server/CRollHandler.cpp:4:#include "Server/onserver.h"
+SourceCode/SrcServer/src/Server/DllServer.cpp:33:char szServerName[64] = "Unnamed Server";
+SourceCode/SrcServer/src/Server/DllServer.cpp:316:	hLogSqlDLL = LoadLibrary("Database");
+SourceCode/SrcServer/src/Server/DllServer.cpp:480:	 * Database.dll usa OLE DB/COM. COM deve ser inicializado
+SourceCode/SrcServer/src/Server/SvrCaravan.cpp:3:#include "Server/SvrCaravan.h"
+SourceCode/SrcServer/src/Server/SvrCaravan.cpp:4:#include "Server/onserver.h"
+SourceCode/SrcServer/src/Server/Svr_Damge.cpp:32:#include "Server/SvrCaravan.h"
+SourceCode/SrcServer/src/Server/OnSever.cpp:54:#include "Server/SvrCaravan.h"
+SourceCode/SrcServer/src/Server/OnSever.cpp:80:#include "Database/Database.h"
+SourceCode/SrcServer/src/Server/OnSever.cpp:12614:			cerr << "Error Record Memory: Alloc Failed - Hotuk Server" << endl;
+SourceCode/SrcServer/src/Server/OnSever.cpp:12616:			Utils_Log(LOG_SERVER, "Error Record Memory: Alloc Failed - Hotuk Server");
+SourceCode/SrcServer/src/Server/OnSever.cpp:22598:		wsprintf(TransChatMessage.szMessage, "> Server Money ( %d )( %d )",
+SourceCode/SrcServer/src/Server/OnSever.cpp:24404:		bMaintenanceMode = file.readInt("Server", "Manutencao");
+SourceCode/SrcServer/src/Server/OnSever.cpp:30001:				recordAttack(lpPlayInfo, "Game Server IP Error OverFlow [" + validation.description() + "]");
+SourceCode/SrcServer/src/Server/OnSever.cpp:30004:				cout << "Game Server IP Error OverFlow";
+SourceCode/SrcServer/src/Server/OnSever.cpp:30543:        //Client Attack/Defence Error
+SourceCode/SrcServer/src/Server/OnSever.cpp:32871:       Database.dll!SQLLogon uses ADO/COM from this worker thread.
+SourceCode/SrcServer/src/Server/OnSever.cpp:35079:		wsprintf(szBuff, "%d:%d:%d >**** Shutdown Service **** - ( %d / %d )/r/n",
+SourceCode/SrcServer/src/Server/OnSever.cpp:35085:		wsprintf(szBuff, "%d:%d:%d >**** Starting Service **** - ( %d / %d )/r/n",
+SourceCode/SrcServer/src/Server/OnSever.cpp:35091:		wsprintf(szBuff, "%d:%d:%d >**** Closed Service **** - ( %d / %d )/r/n",
+SourceCode/SrcServer/src/sinbaram/sinWarpGate.cpp:5:#include "Server/onserver.h"
+SourceCode/SrcServer/src/sinbaram/sinCharStatus.cpp:135:	MatChatBotton_Glay = CreateTextureMaterial("Assets//GUI//Interface//Chat//Chatting06.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinCharStatus.cpp:138:	//sinMatMike = CreateTextureMaterial("Assets//GUI//Interface//mike.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinCharStatus.cpp:158:	lpChatButton[0] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_01.bmp");
+SourceCode/SrcServer/src/sinbaram/sinCharStatus.cpp:159:	lpChatButton[1] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_02.bmp");
+SourceCode/SrcServer/src/sinbaram/sinCharStatus.cpp:160:	lpChatButton[2] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_03.bmp");
+SourceCode/SrcServer/src/sinbaram/sinCharStatus.cpp:161:	lpChatButton[3] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_04.bmp");
+SourceCode/SrcServer/src/sinbaram/sinCharStatus.cpp:162:	lpChatButton[4] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_05.bmp");
+SourceCode/SrcServer/src/sinbaram/sinCharStatus.cpp:164:	lpChatButton_Notice[0] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_N11.bmp");
+SourceCode/SrcServer/src/sinbaram/sinCharStatus.cpp:165:	lpChatButton_Notice[1] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_N12.bmp");
+SourceCode/SrcServer/src/sinbaram/sinCharStatus.cpp:166:	lpChatButton_Notice[2] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatTap_N22.bmp");
+SourceCode/SrcServer/src/sinbaram/sinCharStatus.cpp:168:	lpChatLine = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//n_line.bmp");
+SourceCode/SrcServer/src/sinbaram/sinHelpPet.cpp:219:	"*System",
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:138:	"Assets//GUI//Interface//defense.tga",
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:139:	"Assets//GUI//Interface//block.tga",
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:140:	"Assets//GUI//Interface//Evade.tga",
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:183:	MatMenu[0] = CreateTextureMaterial("Assets//GUI//Interface//Menu-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:184:	MatMenu[1] = CreateTextureMaterial("Assets//GUI//Interface//Menu-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:186:	MatChatDefault[0] = CreateTextureMaterial("Assets//GUI//Interface//Chat//ChatDefault-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:187:	MatChatDefault[1] = CreateTextureMaterial("Assets//GUI//Interface//Chat//ChatDefault-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:189:	MatChatSmall[0] = CreateTextureMaterial("Assets//GUI//Interface//Chat//ChatSmall-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:190:	MatChatSmall[1] = CreateTextureMaterial("Assets//GUI//Interface//Chat//ChatSmall-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:192:	MatChatDoc[0] = CreateTextureMaterial("Assets//GUI//Interface//Chat//ChatDoc-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:193:	MatChatDoc[1] = CreateTextureMaterial("Assets//GUI//Interface//Chat//ChatDoc-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:196:	MatExitMenu = CreateTextureMaterial("Assets//GUI//Interface//ExitMenu.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:199:	MatClock = CreateTextureMaterial("Assets//GUI//Interface//Clock.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:200:	MatComPass = CreateTextureMaterial("Assets//GUI//Interface//Compass.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:202:	MatLife = CreateTextureMaterial("Assets//GUI//Interface//ShadowLife.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:203:	MatMana = CreateTextureMaterial("Assets//GUI//Interface//ShadowMana.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:204:	MatStamina = CreateTextureMaterial("Assets//GUI//Interface//ShadowStamina.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:214:	lpLIFE = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Bar_Life.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:215:	lpMP = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Bar_Mana.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:216:	lpSTM = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Bar_Stamina.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:218:	lpButton[0] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//bStatus.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:219:	lpButton[1] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//bInvenTory.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:220:	lpButton[2] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//bSkill.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:221:	lpButton[3] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//bParty.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:222:	lpButton[4] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//bQuest.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:223:	lpButton[5] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//bSystem.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:225:	lpButton2[0] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//bStatus-1.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:226:	lpButton2[1] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//bInvenTory-1.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:227:	lpButton2[2] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//bSkill-1.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:228:	lpButton2[3] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//bParty-1.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:229:	lpButton2[4] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//bQuest-1.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:230:	lpButton2[5] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//bSystem-1.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:232:	lpInfoBox[0] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ButtonInfo//StatusInfo.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:233:	lpInfoBox[1] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ButtonInfo//InvenInfo.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:234:	lpInfoBox[2] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ButtonInfo//SkillInfo.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:235:	lpInfoBox[3] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ButtonInfo//PartyInfo.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:236:	lpInfoBox[4] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ButtonInfo//QuestInfo.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:237:	lpInfoBox[5] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ButtonInfo//SystemInfo.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:240:	lpMenuButton[0] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Option.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:241:	lpMenuButton[1] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Replay.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:242:	lpMenuButton[2] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Exit.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:245:	lpWalk = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Button//Walk.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:247:	lpChatShowButton = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Chat//ChatDownButton.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:250:	lpSun = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Flash//Sun.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:251:	lpMoon = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Flash//Moon.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:256:	lpBar_Anger = LoadDibSurfaceOffscreen("Assets//GUI//Interface//sinGage//Bar_Anger.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:257:	lpBar_Time = LoadDibSurfaceOffscreen("Assets//GUI//Interface//sinGage//Bar_Time.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:258:	lpBar_Exp = LoadDibSurfaceOffscreen("Assets//GUI//Interface//sinGage//Bar_Exp.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:259:	lpButton_Anger = LoadDibSurfaceOffscreen("Assets//GUI//Interface//sinGage//Button_Anger.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:261:	lpRunInfo = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ButtonInfo//Run.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:262:	lpWalkInfo = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ButtonInfo//Walk.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:264:	lpCameraHandInfo = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ButtonInfo//Camera_Hand.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:265:	lpCameraFixInfo = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ButtonInfo//Camera_Fix.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:266:	lpCameraAutoInfo = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ButtonInfo//Camera_Auto.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:268:	lpMapOnInfo = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ButtonInfo//MapOn.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:269:	lpMapOffInfo = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ButtonInfo//MapOff.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:271:	lpMapOnImage = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Button//MapOnImage.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:272:	lpCameraImage[0] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Button//AutoCameraImage.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:273:	lpCameraImage[1] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Button//PixCameraImage.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:275:	lpLIFESpot = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Bar_LifeSpot.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:276:	lpSTMSpot = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Bar_StaminaSpot.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:277:	lpMANASpot = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Bar_ManaSpot.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:279:	lpReStartMain = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ReStart//ReStartMain.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:280:	lpReStartButton[0] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ReStart//ReStart_Field.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:281:	lpReStartButton[1] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ReStart//ReStart_Town.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:282:	lpReStartButton[2] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//ReStart//ReStart_Exit.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:285:	lpSelectSkill_Main[0] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//SkillIcon//G_Select_Skill.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:286:	lpSelectSkill_Main[1] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//SkillIcon//Select_Skill.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:288:	lpSelectChangeJob[0] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//SkillIcon//G_Select_ChangeJob.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:289:	lpSelectChangeJob[1] = LoadDibSurfaceOffscreen("Assets//GUI//Interface//SkillIcon//Select_ChangeJob.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:291:	lpTime7 = LoadDibSurfaceOffscreen("Assets//GUI//Interface//SkillIcon//Select_ChangeJob.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:293:	lpGrowInterLeft = LoadDibSurfaceOffscreen("Assets//GUI//Interface//inter_01.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:294:	lpGrowInterMiddle = LoadDibSurfaceOffscreen("Assets//GUI//Interface//inter_02.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:295:	lpGrowInterRight = LoadDibSurfaceOffscreen("Assets//GUI//Interface//inter_03.bmp");
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:1286:				cHelpPet.PetMessage("*System", 0);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:1687:			cHelpPet.PetMessage("*System", 1);
+SourceCode/SrcServer/src/sinbaram/sinInterFace.cpp:1871:			cHelpPet.PetMessage("*System", 2);
+SourceCode/SrcServer/src/sinbaram/sinSOD2.cpp:11:#include "Server/onserver.h"
+SourceCode/SrcServer/src/sinbaram/sinInvenTory.cpp:11:#include "Server/onserver.h"
+SourceCode/SrcServer/src/Skills/Skills.cpp:4:#include "Server/onserver.h"
+SourceCode/SrcServer/src/ActionGame.cpp:27:#include "Server/onserver.h"
+SourceCode/SrcServer/src/Alerta.cpp:3:#include "Database/Database.h"
+SourceCode/SrcServer/src/Rank.h:5:#include "Database/Database.h"
+SourceCode/SrcServer/src/SQL.cpp:21:				wsprintf(InConnectionString, "DRIVER={SQL Server};SERVER=%s;UID=%s;PWD=%s;", szServer, szUser, szPw);
+SourceCode/SrcServer/src/AreaServer.cpp:205:						wsprintf(szBuff, "Region Server Connection (%s)", lpBuff);
+SourceCode/SrcServer/src/BattlePass.cpp:5:#include "Server/onserver.h"
+SourceCode/SrcServer/src/ClanCustom.cpp:5:#include "Server/onserver.h"
+SourceCode/SrcServer/src/CoinShop.h:5:#include "Database/Database.h"
+SourceCode/SrcServer/src/CoinShop_T.h:5:#include "Database/Database.h"
+SourceCode/SrcServer/src/JOBS.cpp:5:#include "Server/onserver.h"
+SourceCode/SrcServer/src/Rank.cpp:2:#include "Server/onserver.h"
+SourceCode/SrcServer/src/Winmain.cpp:75:#include "Database/Database.h" //acesso ao banco de dados
+SourceCode/SrcServer/src/Winmain.cpp:286:	//Connections SQL Server
+SourceCode/SrcServer/src/Winmain.cpp:1406:					wsprintf(strBuff, "Area Server[0]: (%s)", lpWSockServer_Area[0]->szIPAddr);
+SourceCode/SrcServer/src/Winmain.cpp:1414:					wsprintf(strBuff, "Area Server[1]: (%s)", lpWSockServer_Area[1]->szIPAddr);
+SourceCode/SrcServer/src/Winmain.cpp:1423:					wsprintf(strBuff, "Area Server[0]: (%s)", lpWSockServer_DispArea[0]->szIPAddr);
+SourceCode/SrcServer/src/Winmain.cpp:1432:					wsprintf(strBuff, "Area Server[1]: (%s)", lpWSockServer_DispArea[1]->szIPAddr);
+SourceCode/SrcServer/src/cQuestHandler.cpp:704:#include "Server/onserver.h"
+SourceCode/SrcServer/src/cRestaureHandler.cpp:4:#include "Database/Database.h"
+SourceCode/SrcServer/src/cRestaureHandler.cpp:5:#include "Server/onserver.h"
+SourceCode/SrcServer/src/cVipHandler.cpp:3:#include "Server/onserver.h"
+SourceCode/SrcServer/src/cVipHandler.cpp:5:#include "Database/Database.h"
+SourceCode/SrcServer/src/netplay.cpp:32:#include "Server/onserver.h"
+SourceCode/SrcServer/src/netplay.cpp:2537:		AddChatBuff("Connection lost to Server");
+SourceCode/SrcServer/src/netplay.cpp:2577:		AddChatBuff("Connection lost to Server");
+SourceCode/SrcServer/src/netplay.cpp:2593:		AddChatBuff("Connection lost to Server");
+SourceCode/SrcServer/src/netplay.cpp:2617:				wsprintf(szBuff, "Disconnect Area Server (%s)", lpWSockServer_Area[0]->szIPAddr);
+SourceCode/SrcServer/src/netplay.cpp:2630:				wsprintf(szBuff, "Disconnect Area Server (%s)", lpWSockServer_Area[1]->szIPAddr);
+SourceCode/SrcServer/src/netplay.cpp:3842:			wsprintf(szBuff, "Reconnect Server(Main)");
+SourceCode/SrcServer/src/netplay.cpp:3912:				wsprintf(szBuff, "Reconnect Server(User)");
+SourceCode/SrcServer/src/netplay.cpp:3951:				wsprintf(szBuff, "Reconnect Server(Extend)");
+SourceCode/SrcServer/src/netplay.cpp:3994:						wsprintf(szBuff, "Reconnect Server Area (%d)", cnt);
+SourceCode/SrcServer/src/netplay.cpp:9031:#include "XTrapSrcD5/Client/XTrap4Client.h"	
+SourceCode/SrcServer/src/character.cpp:29:#include "Server/svr_Damage.h"
+SourceCode/SrcServer/src/character.cpp:30:#include "Server/onserver.h"
+SourceCode/SrcServer/src/playmain.cpp:35:#include "Server/onserver.h"
+SourceCode/SrcServer/src/playsub.cpp:34:#include "Server/onserver.h"
+SourceCode/SrcServer/src/record.cpp:27:#include "Server/onserver.h"
+SourceCode/SrcServer/src/fileread.cpp:22:#include "Server/onserver.h"

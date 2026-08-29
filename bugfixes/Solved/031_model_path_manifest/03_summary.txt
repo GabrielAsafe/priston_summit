@@ -1,0 +1,160 @@
+=== MODEL MANIFEST SUMMARY ===
+
+MODEL records found: 630
+Unique MODEL values: 627
+Records resolved in local staging: 0
+Records unresolved in local staging: 630
+
+=== Most repeated MODEL values ===
+    2  TmhC01c.ASE
+    2  TmhC02c.ASE
+    2  TmhC03c.ASE
+    1  Greedy.ASE
+    1  chaoscara.ASE
+    1  ji_woo.ASE
+    1  MfhB01.ASE
+    1  MfhB01a.ASE
+    1  MfhB01c.ase
+    1  MfhB01t.ASE
+    1  MfhB02.ASE
+    1  MfhB02a.ASE
+    1  MfhB02c.ase
+    1  MfhB02t.ASE
+    1  MfhB03.ASE
+    1  MfhB03a.ASE
+    1  MfhB03c.ase
+    1  MfhB03t.ASE
+    1  MfhB04.ASE
+    1  MfhB04a.ASE
+    1  MfhB04c.ASE
+    1  MfhB05.ASE
+    1  MfhB05a.ASE
+    1  MfhB05c.ASE
+    1  MfhB06.ASE
+    1  MfhB06a.ASE
+    1  MfhB06c.ASE
+    1  MfhB07.ASE
+    1  MfhB07a.ASE
+    1  MfhB07c.ASE
+    1  MfhB08.ASE
+    1  MfhB08a.ASE
+    1  MfhB08c.ASE
+    1  MfhB09.ASE
+    1  MfhB09a.ASE
+    1  MfhB09c.ASE
+    1  MfhB10.ASE
+    1  MfhB10a.ASE
+    1  MfhB10c.ASE
+    1  MfhB11.ASE
+    1  MfhB11a.ASE
+    1  MfhB11c.ASE
+    1  MfhB12.ASE
+    1  MfhB12a.ASE
+    1  MfhB12c.ASE
+    1  MfhB13.ASE
+    1  MfhB13a.ASE
+    1  MfhB13c.ASE
+    1  MfhB19.ASE
+    1  MfhB20.ASE
+
+=== First 100 unresolved MODEL records ===
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/Greedy/Greedy.ini:2 -> Greedy.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/chaoscara/chaoscara.ini:3 -> chaoscara.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/npc/ji_woo/ji_woo.ini:3 -> ji_woo.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B01.inf:4 -> MfhB01.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B01a.inf:4 -> MfhB01a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B01c.inf:4 -> MfhB01c.ase
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B01t.inf:4 -> MfhB01t.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B02.inf:4 -> MfhB02.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B02a.inf:4 -> MfhB02a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B02c.inf:4 -> MfhB02c.ase
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B02t.inf:4 -> MfhB02t.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B03.inf:4 -> MfhB03.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B03a.inf:4 -> MfhB03a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B03c.inf:4 -> MfhB03c.ase
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B03t.inf:4 -> MfhB03t.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B04.inf:4 -> MfhB04.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B04a.inf:4 -> MfhB04a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B04c.inf:4 -> MfhB04c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B05.inf:4 -> MfhB05.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B05a.inf:4 -> MfhB05a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B05c.inf:4 -> MfhB05c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B06.inf:4 -> MfhB06.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B06a.inf:4 -> MfhB06a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B06c.inf:4 -> MfhB06c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B07.inf:4 -> MfhB07.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B07a.inf:4 -> MfhB07a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B07c.inf:4 -> MfhB07c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B08.inf:4 -> MfhB08.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B08a.inf:4 -> MfhB08a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B08c.inf:4 -> MfhB08c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B09.inf:4 -> MfhB09.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B09a.inf:4 -> MfhB09a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B09c.inf:4 -> MfhB09c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B10.inf:4 -> MfhB10.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B10a.inf:4 -> MfhB10a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B10c.inf:4 -> MfhB10c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B11.inf:4 -> MfhB11.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B11a.inf:4 -> MfhB11a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B11c.inf:4 -> MfhB11c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B12.inf:4 -> MfhB12.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B12a.inf:4 -> MfhB12a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B12c.inf:4 -> MfhB12c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B13.inf:4 -> MfhB13.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B13a.inf:4 -> MfhB13a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B13c.inf:4 -> MfhB13c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B19.inf:4 -> MfhB19.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B20.inf:4 -> MfhB20.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B21.inf:4 -> MfhB21.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B22.inf:4 -> MfhB22.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B23.inf:4 -> MfhB23.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B25.inf:4 -> MfhB25.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-B26.inf:4 -> MfhB26.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C01.inf:4 -> MfhC01.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C01a.inf:4 -> MfhC01a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C01c.inf:4 -> MfhC01c.ase
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C01t.inf:4 -> MfhC01t.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C02.inf:4 -> MfhC02.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C02a.inf:4 -> MfhC02a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C02c.inf:4 -> MfhC02c.ase
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C02t.inf:4 -> MfhC02t.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C03.inf:4 -> MfhC03.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C03a.inf:4 -> MfhC03a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C03c.inf:4 -> MfhC03c.ase
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C03t.inf:4 -> MfhC03t.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C04.inf:4 -> MfhC04.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C04a.inf:4 -> MfhC04a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C04c.inf:4 -> MfhC04c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C05.inf:4 -> MfhC05.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C05a.inf:4 -> MfhC05a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C05c.inf:4 -> MfhC05c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C06.inf:4 -> MfhC06.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C06a.inf:4 -> MfhC06a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C06c.inf:4 -> MfhC06c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C07.inf:4 -> MfhC07.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C07a.inf:4 -> MfhC07a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C07c.inf:4 -> MfhC07c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C08.inf:4 -> MfhC08.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C08a.inf:4 -> MfhC08a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C08c.inf:4 -> MfhC08c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C09.inf:4 -> MfhC09.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C09a.inf:4 -> MfhC09a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C09c.inf:4 -> MfhC09c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C10.inf:4 -> MfhC10.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C10a.inf:4 -> MfhC10a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C10c.inf:4 -> MfhC10c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C11.inf:4 -> MfhC11.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C11a.inf:4 -> MfhC11a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C11c.inf:4 -> MfhC11c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C12.inf:4 -> MfhC12.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C12a.inf:4 -> MfhC12a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C12c.inf:4 -> MfhC12c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C13.inf:4 -> MfhC13.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C13a.inf:4 -> MfhC13a.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C13c.inf:4 -> MfhC13c.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C19.inf:4 -> MfhC19.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C20.inf:4 -> MfhC20.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C21.inf:4 -> MfhC21.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C22.inf:4 -> MfhC22.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C23.inf:4 -> MfhC23.ASE
+/home/gabriel/Área de Trabalho/summit/Servidor/char/tmABCD/Mfh-C25.inf:4 -> MfhC25.ASE

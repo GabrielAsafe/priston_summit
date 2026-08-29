@@ -1,0 +1,3280 @@
+PT_SMD_BLINK_COLOR_CONTROL_SOURCE_AUDIT_V1_1
+source_root=/home/gabriel/Área de Trabalho/summit
+text_files_scanned=1549
+script_constant_count=34
+use_state_hit_count=36
+wind_mesh_bottom_hit_count=49
+blink_step_numeric_candidate_count=0
+
+=== sMATS_SCRIPT CONSTANTS ===
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:44: sMATS_SCRIPT_WIND = 1
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:45: sMATS_SCRIPT_ANIM2 = 2
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:46: sMATS_SCRIPT_ANIM4 = 4
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:47: sMATS_SCRIPT_ANIM8 = 8
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:48: sMATS_SCRIPT_ANIM16 = 16
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:50: sMATS_SCRIPT_WINDZ1 = 0x0020
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:51: sMATS_SCRIPT_WINDZ2 = 0x0040
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:52: sMATS_SCRIPT_WINDX1 = 0x0080
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:53: sMATS_SCRIPT_WINDX2 = 0x0100
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:55: sMATS_SCRIPT_WATER = 0x0200
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:56: sMATS_SCRIPT_NOTVIEW = 0x0400
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:58: sMATS_SCRIPT_PASS = 0x0800
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:59: sMATS_SCRIPT_NOTPASS = 0x1000
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:61: sMATS_SCRIPT_RENDLATTER = 0x2000
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:65: sMATS_SCRIPT_BLINK_COLOR = 0x4000
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:71: sMATS_SCRIPT_CHECK_ICE = 0x8000
+SourceCode/SrcGame/src/smLib3d/smRead3d.h:77: sMATS_SCRIPT_ORG_WATER = 0x10000
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:44: sMATS_SCRIPT_WIND = 1
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:45: sMATS_SCRIPT_ANIM2 = 2
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:46: sMATS_SCRIPT_ANIM4 = 4
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:47: sMATS_SCRIPT_ANIM8 = 8
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:48: sMATS_SCRIPT_ANIM16 = 16
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:50: sMATS_SCRIPT_WINDZ1 = 0x0020
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:51: sMATS_SCRIPT_WINDZ2 = 0x0040
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:52: sMATS_SCRIPT_WINDX1 = 0x0080
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:53: sMATS_SCRIPT_WINDX2 = 0x0100
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:55: sMATS_SCRIPT_WATER = 0x0200
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:56: sMATS_SCRIPT_NOTVIEW = 0x0400
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:58: sMATS_SCRIPT_PASS = 0x0800
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:59: sMATS_SCRIPT_NOTPASS = 0x1000
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:61: sMATS_SCRIPT_RENDLATTER = 0x2000
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:65: sMATS_SCRIPT_BLINK_COLOR = 0x4000
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:71: sMATS_SCRIPT_CHECK_ICE = 0x8000
+SourceCode/SrcServer/src/smLib3d/smRead3d.h:77: sMATS_SCRIPT_ORG_WATER = 0x10000
+
+=== BLINK COLOR FLAG CONTEXTS ===
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRead3d.cpp line=238
+   224: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   225: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   226: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   227: 
+   228: 	{ "water:" , sMATS_SCRIPT_WATER },
+   229: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   230: 
+   231: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   232: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   233: 
+   234: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   235: 
+   236: 
+   237: 
+   238: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   239: 
+   240: 
+   241: 
+   242: 
+   243: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   244: 
+   245: 
+   246: 
+   247: 
+   248: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   249: 
+   250: };
+   251: 
+   252: 
+   253: #define		MATS_BLEND_MAX		5
+   254: 
+   255: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   256: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   257: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   258: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   259: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   260: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   261: };
+   262: 
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRead3d.h line=65
+    51: #define sMATS_SCRIPT_WINDZ2		0x0040
+    52: #define sMATS_SCRIPT_WINDX1		0x0080
+    53: #define sMATS_SCRIPT_WINDX2		0x0100
+    54: 
+    55: #define sMATS_SCRIPT_WATER		0x0200
+    56: #define sMATS_SCRIPT_NOTVIEW	0x0400
+    57: 
+    58: #define sMATS_SCRIPT_PASS		0x0800
+    59: #define sMATS_SCRIPT_NOTPASS	0x1000
+    60: 
+    61: #define sMATS_SCRIPT_RENDLATTER	0x2000
+    62: 
+    63: 
+    64: 
+    65: #define sMATS_SCRIPT_BLINK_COLOR		0x4000
+    66: 
+    67: 
+    68: 
+    69: 
+    70: 
+    71: #define sMATS_SCRIPT_CHECK_ICE			0x8000
+    72: 
+    73: 
+    74: 
+    75: 
+    76: 
+    77: #define sMATS_SCRIPT_ORG_WATER			0x10000
+    78: 
+    79: 
+    80: 
+    81: 
+    82: 
+    83: 
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=984
+   970: 	int x, y, z;
+   971: 	int ad;
+   972: 	DWORD ClipStatus;
+   973: 	int ShiftMesh;
+   974: 
+   975: 	DWORD *dwColor, *dwDefColor;
+   976: 
+   977: 
+   978: 	int ttCnt, ttFlag;
+   979: 
+   980: 
+   981: 
+   982: 
+   983: 
+   984: 	if(lpMaterial->WindMeshBottom && (lpMaterial->UseState & sMATS_SCRIPT_BLINK_COLOR) == 0)
+   985: 	{
+   986: 
+   987: 		switch(lpMaterial->WindMeshBottom & 0x7FF)
+   988: 		{
+   989: 			case sMATS_SCRIPT_WINDX1:
+   990: 			ttCnt = (RendStatTime >> 2) & 0xFF;
+   991: 			ttFlag = (RendStatTime >> 10) & 1;
+   992: 
+   993: 			if(!ttFlag) ttCnt = 255 - ttCnt;
+   994: 			ShiftMesh = (GetCos[ttCnt + 256]) >> 5;
+   995: 
+   996: 			z = sv->z;
+   997: 			y = sv->y;
+   998: 			x = (sv->x - ShiftMesh);
+   999: 			break;
+  1000: 
+  1001: 			case sMATS_SCRIPT_WINDZ1:
+  1002: 			ttCnt = (RendStatTime >> 2) & 0xFF;
+  1003: 			ttFlag = (RendStatTime >> 10) & 1;
+  1004: 
+  1005: 			if(!ttFlag) ttCnt = 255 - ttCnt;
+  1006: 			ShiftMesh = (GetCos[ttCnt + 256]) >> 5;
+  1007: 
+  1008: 			x = sv->x;
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=4170
+  4156: }
+  4157: 
+  4158: 
+  4159: 
+  4160: int smRENDER3D::RenderD3D(int MatNum)
+  4161: {
+  4162: 	int rendcnt;
+  4163: 
+  4164: 
+  4165: 	if (smRendMaterial[MatNum].TextureCounter == 0 && smRendMaterial[MatNum].AnimTexCounter == 0) return FALSE;
+  4166: 
+  4167: 	
+  4168: 
+  4169: 	short sColors[4] = { 0, };
+  4170: 	if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  4171: 		SetBlinkColor(sColors, smRendMaterial[MatNum].Diffuse, smRendMaterial[MatNum].WindMeshBottom);
+  4172: 
+  4173: 
+  4174: 	
+  4175: 	if(RendMatrial[MatNum].MatrialCounter)
+  4176: 	{
+  4177: 
+  4178: 		
+  4179: 		int TexCnt = 0;
+  4180: 		if(s_lpItem2PassTexHandle)
+  4181: 		{
+  4182: 			RendAlphaFlag = SetItem2PassD3DRendState(&smRendMaterial[MatNum]);
+  4183: 			TexCnt = 1;
+  4184: 		}
+  4185: 		else
+  4186: 			RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], FALSE);
+  4187: 		
+  4188: 		
+  4189: 
+  4190: 
+  4191: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  4192: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, FALSE);
+  4193: 		
+  4194: 		
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=4195
+  4181: 		{
+  4182: 			RendAlphaFlag = SetItem2PassD3DRendState(&smRendMaterial[MatNum]);
+  4183: 			TexCnt = 1;
+  4184: 		}
+  4185: 		else
+  4186: 			RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], FALSE);
+  4187: 		
+  4188: 		
+  4189: 
+  4190: 
+  4191: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  4192: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, FALSE);
+  4193: 		
+  4194: 		
+  4195: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  4196: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, FALSE, sColors);
+  4197: 		else
+  4198: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, FALSE);
+  4199: 
+  4200: 
+  4201: 		
+  4202: 		
+  4203: 		d3ddev->SetFVF(D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4204: 		if ((rendcnt / 3) > 0)
+  4205: 			d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4206: 
+  4207: 
+  4208: 		if(RendAlphaFlag)
+  4209: 		{
+  4210: 
+  4211: 			SetD3DRendStateOnlyAlpha(&smRendMaterial[MatNum], FALSE);
+  4212: 			d3ddev->SetFVF(D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4213: 			if ((rendcnt / 3) > 0)
+  4214: 				d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4215: 		}
+  4216: 	}
+  4217: 
+  4218: 
+  4219: 	if(RendMatrial[MatNum].TexClip_MatrialCounter)
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=4227
+  4213: 			if ((rendcnt / 3) > 0)
+  4214: 				d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4215: 		}
+  4216: 	}
+  4217: 
+  4218: 
+  4219: 	if(RendMatrial[MatNum].TexClip_MatrialCounter)
+  4220: 	{
+  4221: 		RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], TRUE);
+  4222: 
+  4223: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  4224: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, TRUE);
+  4225: 
+  4226: 
+  4227: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  4228: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, TRUE, sColors);
+  4229: 		else
+  4230: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, TRUE);
+  4231: 
+  4232: 
+  4233: 		d3ddev->SetFVF(D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter]);
+  4234: 		if ((rendcnt / 3) > 0)
+  4235: 			d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter]);
+  4236: 
+  4237: 		if(RendAlphaFlag)
+  4238: 		{
+  4239: 
+  4240: 			SetD3DRendStateOnlyAlpha(&smRendMaterial[MatNum], TRUE);
+  4241: 			d3ddev->SetFVF(D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter]);
+  4242: 			if ((rendcnt / 3) > 0)
+  4243: 				d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter]);
+  4244: 		}
+  4245: 	}
+  4246: 
+  4247: 	return rendcnt;
+  4248: }
+  4249: 
+  4250: 
+  4251: 
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smTexture.cpp line=933
+   919: 				}
+   920: 
+   921: 				ChangeMaterialToAnimation(&smMaterial[MatNum], lpAnimFileList, AnimCount, smMaterial[MatNum].BlendType, TRUE);
+   922: 				if (FrameSpeed) smMaterial[MatNum].Shift_FrameSpeed = FrameSpeed;			
+   923: 
+   924: 				smMaterial[MatNum].Transparency = aseMaterial->Transparency;		
+   925: 
+   926: 				for (cnt = AnimCount - 1; cnt >= 0; cnt--) delete lpAnimFileList[cnt];
+   927: 			}
+   928: 		}
+   929: 	}
+   930: 
+   931: 	
+   932: 	
+   933: 	if ((aseMaterial->ScriptState & sMATS_SCRIPT_BLINK_COLOR) && smMaterial[MatNum].WindMeshBottom == 0)
+   934: 	{
+   935: 		for (cnt = 0; cnt < MAX_MAP_BLINK_COLOR_TIME; cnt++)
+   936: 		{
+   937: 			if (strstr(szScript, szBlinkTimeScript[cnt]) != 0)
+   938: 				break;
+   939: 		}
+   940: 
+   941: 		if (cnt >= MAX_MAP_BLINK_COLOR_TIME)
+   942: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[0];
+   943: 		else
+   944: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[cnt];
+   945: 	}
+   946: 	
+   947: 
+   948: 	aseMaterial->Regist++;												
+   949: 	aseMaterial->RegistNum = MatNum;
+   950: 
+   951: 	return MatNum;
+   952: }
+   953: 
+   954: 
+   955: int smMATERIAL_GROUP::CreateTextureMaterial(char *szBitmap, char *szOpacity, int TwoSide, int Shade, DWORD TexSwap, DWORD BlendType)
+   956: {
+   957: 	int MatNum;
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRead3d.cpp line=237
+   223: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   224: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   225: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   226: 
+   227: 	{ "water:" , sMATS_SCRIPT_WATER },
+   228: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   229: 
+   230: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   231: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   232: 
+   233: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   234: 
+   235: 
+   236: 
+   237: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   238: 
+   239: 
+   240: 
+   241: 
+   242: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   243: 
+   244: 
+   245: 
+   246: 
+   247: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   248: 
+   249: };
+   250: 
+   251: 
+   252: #define		MATS_BLEND_MAX		5
+   253: 
+   254: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   255: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   256: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   257: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   258: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   259: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   260: };
+   261: 
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRead3d.h line=65
+    51: #define sMATS_SCRIPT_WINDZ2		0x0040
+    52: #define sMATS_SCRIPT_WINDX1		0x0080
+    53: #define sMATS_SCRIPT_WINDX2		0x0100
+    54: 
+    55: #define sMATS_SCRIPT_WATER		0x0200
+    56: #define sMATS_SCRIPT_NOTVIEW	0x0400
+    57: 
+    58: #define sMATS_SCRIPT_PASS		0x0800
+    59: #define sMATS_SCRIPT_NOTPASS	0x1000
+    60: 
+    61: #define sMATS_SCRIPT_RENDLATTER	0x2000
+    62: 
+    63: 
+    64: 
+    65: #define sMATS_SCRIPT_BLINK_COLOR		0x4000
+    66: 
+    67: 
+    68: 
+    69: 
+    70: 
+    71: #define sMATS_SCRIPT_CHECK_ICE			0x8000
+    72: 
+    73: 
+    74: 
+    75: 
+    76: 
+    77: #define sMATS_SCRIPT_ORG_WATER			0x10000
+    78: 
+    79: 
+    80: 
+    81: 
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=869
+   855: {
+   856: 	int rx, rz;
+   857: 	int x, y, z;
+   858: 	int ad;
+   859: 	DWORD ClipStatus;
+   860: 	int ShiftMesh;
+   861: 
+   862: 	DWORD *dwColor, *dwDefColor;
+   863: 
+   864: 	int ttCnt, ttFlag;
+   865: 
+   866: 
+   867: 
+   868: 
+   869: 	if(lpMaterial->WindMeshBottom && (lpMaterial->UseState & sMATS_SCRIPT_BLINK_COLOR) == 0)
+   870: 	{
+   871: 
+   872: 		switch(lpMaterial->WindMeshBottom & 0x7FF)
+   873: 		{
+   874: 			case sMATS_SCRIPT_WINDX1:
+   875: 			ttCnt = (RendStatTime >> 2) & 0xFF;
+   876: 			ttFlag = (RendStatTime >> 10) & 1;
+   877: 
+   878: 			if(!ttFlag) ttCnt = 255 - ttCnt;
+   879: 			ShiftMesh = (GetCos[ttCnt + 256]) >> 5;
+   880: 
+   881: 			z = sv->z;
+   882: 			y = sv->y;
+   883: 			x = (sv->x - ShiftMesh);
+   884: 			break;
+   885: 
+   886: 			case sMATS_SCRIPT_WINDZ1:
+   887: 			ttCnt = (RendStatTime >> 2) & 0xFF;
+   888: 			ttFlag = (RendStatTime >> 10) & 1;
+   889: 
+   890: 			if(!ttFlag) ttCnt = 255 - ttCnt;
+   891: 			ShiftMesh = (GetCos[ttCnt + 256]) >> 5;
+   892: 
+   893: 			x = sv->x;
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=3737
+  3723: 	renderDevice.SetRenderState(D3DRENDERSTATE_ALPHATESTENABLE, FALSE);
+  3724: 
+  3725: 	return TRUE;
+  3726: }
+  3727: 
+  3728: 
+  3729: int smRENDER3D::RenderD3D(int MatNum)
+  3730: {
+  3731: 	int rendcnt;
+  3732: 
+  3733: 	if(smRendMaterial[MatNum].TextureCounter == 0 && smRendMaterial[MatNum].AnimTexCounter == 0)
+  3734: 		return FALSE;
+  3735: 
+  3736: 	short sColors[4] = { 0, };
+  3737: 	if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  3738: 		SetBlinkColor(sColors, smRendMaterial[MatNum].Diffuse, smRendMaterial[MatNum].WindMeshBottom);
+  3739: 
+  3740: 
+  3741: 	if(RendMatrial[MatNum].MatrialCounter)
+  3742: 	{
+  3743: 
+  3744: 		int TexCnt = 0;
+  3745: 		if(s_lpItem2PassTexHandle)
+  3746: 		{
+  3747: 			RendAlphaFlag = SetItem2PassD3DRendState(&smRendMaterial[MatNum]);
+  3748: 			TexCnt = 1;
+  3749: 		}
+  3750: 		else
+  3751: 		{
+  3752: 			RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], FALSE);
+  3753: 		}
+  3754: 
+  3755: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  3756: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, FALSE);
+  3757: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  3758: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, FALSE, sColors);
+  3759: 		else
+  3760: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, FALSE);
+  3761: 
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=3757
+  3743: 
+  3744: 		int TexCnt = 0;
+  3745: 		if(s_lpItem2PassTexHandle)
+  3746: 		{
+  3747: 			RendAlphaFlag = SetItem2PassD3DRendState(&smRendMaterial[MatNum]);
+  3748: 			TexCnt = 1;
+  3749: 		}
+  3750: 		else
+  3751: 		{
+  3752: 			RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], FALSE);
+  3753: 		}
+  3754: 
+  3755: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  3756: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, FALSE);
+  3757: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  3758: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, FALSE, sColors);
+  3759: 		else
+  3760: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, FALSE);
+  3761: 
+  3762: 		renderDevice.DrawPrimitive(D3DPT_TRIANGLELIST, D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter + TexCnt],
+  3763: 			(LPVOID)RendBuff, rendcnt, NULL);
+  3764: 
+  3765: 
+  3766: 		if(RendAlphaFlag)
+  3767: 		{
+  3768: 
+  3769: 			SetD3DRendStateOnlyAlpha(&smRendMaterial[MatNum], FALSE);
+  3770: 			renderDevice.DrawPrimitive(D3DPT_TRIANGLELIST,
+  3771: 									   D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter],
+  3772: 									   (LPVOID)RendBuff,
+  3773: 									   rendcnt,
+  3774: 									   NULL);
+  3775: 
+  3776: 		}
+  3777: 	}
+  3778: 
+  3779: 
+  3780: 	if(RendMatrial[MatNum].TexClip_MatrialCounter)
+  3781: 	{
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=3788
+  3774: 									   NULL);
+  3775: 
+  3776: 		}
+  3777: 	}
+  3778: 
+  3779: 
+  3780: 	if(RendMatrial[MatNum].TexClip_MatrialCounter)
+  3781: 	{
+  3782: 		RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], TRUE);
+  3783: 
+  3784: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  3785: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, TRUE);
+  3786: 
+  3787: 
+  3788: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  3789: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, TRUE, sColors);
+  3790: 		else
+  3791: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, TRUE);
+  3792: 
+  3793: 
+  3794: 		renderDevice.DrawPrimitive(D3DPT_TRIANGLELIST,
+  3795: 								   D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter],
+  3796: 								   (LPVOID)RendBuff,
+  3797: 								   rendcnt,
+  3798: 								   NULL);
+  3799: 
+  3800: 		if(RendAlphaFlag)
+  3801: 		{
+  3802: 
+  3803: 			SetD3DRendStateOnlyAlpha(&smRendMaterial[MatNum], TRUE);
+  3804: 			renderDevice.DrawPrimitive(D3DPT_TRIANGLELIST,
+  3805: 									   D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter],
+  3806: 									   (LPVOID)RendBuff,
+  3807: 									   rendcnt,
+  3808: 									   NULL);
+  3809: 		}
+  3810: 	}
+  3811: 
+  3812: 	return rendcnt;
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smTexture.cpp line=1084
+  1070: 				{
+  1071: 					if(lpAnimFileList[cnt])
+  1072: 					{
+  1073: 						delete[] lpAnimFileList[cnt];
+  1074: 						lpAnimFileList[cnt] = nullptr;
+  1075: 					}
+  1076: 
+  1077: 				}
+  1078: 			}
+  1079: 		}
+  1080: 	}
+  1081: 
+  1082: 
+  1083: 
+  1084: 	if((aseMaterial->ScriptState & sMATS_SCRIPT_BLINK_COLOR) && smMaterial[MatNum].WindMeshBottom == 0)
+  1085: 	{
+  1086: 		for(cnt = 0; cnt < MAX_MAP_BLINK_COLOR_TIME; cnt++)
+  1087: 		{
+  1088: 			if(strstr(szScript, szBlinkTimeScript[cnt]) != 0)
+  1089: 				break;
+  1090: 		}
+  1091: 
+  1092: 		if(cnt >= MAX_MAP_BLINK_COLOR_TIME)
+  1093: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[0];
+  1094: 		else
+  1095: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[cnt];
+  1096: 	}
+  1097: 
+  1098: 
+  1099: 	aseMaterial->Regist++;
+  1100: 	aseMaterial->RegistNum = MatNum;
+  1101: 
+  1102: 	return MatNum;
+  1103: }
+  1104: 
+  1105: 
+  1106: int smMATERIAL_GROUP::CreateTextureMaterial(char *szBitmap, char *szOpacity, int TwoSide, int Shade, DWORD TexSwap, DWORD BlendType)
+  1107: {
+  1108: 	int MatNum = MaterialCount;
+SOURCE_FILE bugfixes/Solved/018_smread3d_getword/after/smRead3d.cpp line=224
+   210: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   211: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   212: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   213: 
+   214: 	{ "water:" , sMATS_SCRIPT_WATER },
+   215: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   216: 
+   217: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   218: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   219: 
+   220: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   221: 
+   222: 
+   223: 
+   224: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   225: 
+   226: 
+   227: 
+   228: 
+   229: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   230: 
+   231: 
+   232: 
+   233: 
+   234: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   235: 
+   236: };
+   237: 
+   238: 
+   239: #define		MATS_BLEND_MAX		5
+   240: 
+   241: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   242: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   243: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   244: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   245: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   246: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   247: };
+   248: 
+SOURCE_FILE bugfixes/Solved/018_smread3d_getword/before/smRead3d.cpp line=223
+   209: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   210: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   211: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   212: 
+   213: 	{ "water:" , sMATS_SCRIPT_WATER },
+   214: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   215: 
+   216: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   217: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   218: 
+   219: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   220: 
+   221: 
+   222: 
+   223: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   224: 
+   225: 
+   226: 
+   227: 
+   228: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   229: 
+   230: 
+   231: 
+   232: 
+   233: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   234: 
+   235: };
+   236: 
+   237: 
+   238: #define		MATS_BLEND_MAX		5
+   239: 
+   240: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   241: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   242: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   243: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   244: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   245: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   246: };
+   247: 
+SOURCE_FILE bugfixes/Solved/018_smread3d_getword/head_smRead3d.cpp line=223
+   209: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   210: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   211: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   212: 
+   213: 	{ "water:" , sMATS_SCRIPT_WATER },
+   214: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   215: 
+   216: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   217: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   218: 
+   219: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   220: 
+   221: 
+   222: 
+   223: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   224: 
+   225: 
+   226: 
+   227: 
+   228: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   229: 
+   230: 
+   231: 
+   232: 
+   233: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   234: 
+   235: };
+   236: 
+   237: 
+   238: #define		MATS_BLEND_MAX		5
+   239: 
+   240: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   241: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   242: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   243: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   244: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   245: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   246: };
+   247: 
+SOURCE_FILE bugfixes/Solved/019_smread3d_getstring/after/smRead3d.cpp line=238
+   224: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   225: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   226: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   227: 
+   228: 	{ "water:" , sMATS_SCRIPT_WATER },
+   229: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   230: 
+   231: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   232: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   233: 
+   234: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   235: 
+   236: 
+   237: 
+   238: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   239: 
+   240: 
+   241: 
+   242: 
+   243: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   244: 
+   245: 
+   246: 
+   247: 
+   248: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   249: 
+   250: };
+   251: 
+   252: 
+   253: #define		MATS_BLEND_MAX		5
+   254: 
+   255: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   256: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   257: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   258: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   259: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   260: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   261: };
+   262: 
+SOURCE_FILE bugfixes/Solved/019_smread3d_getstring/before/smRead3d.cpp line=224
+   210: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   211: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   212: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   213: 
+   214: 	{ "water:" , sMATS_SCRIPT_WATER },
+   215: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   216: 
+   217: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   218: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   219: 
+   220: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   221: 
+   222: 
+   223: 
+   224: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   225: 
+   226: 
+   227: 
+   228: 
+   229: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   230: 
+   231: 
+   232: 
+   233: 
+   234: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   235: 
+   236: };
+   237: 
+   238: 
+   239: #define		MATS_BLEND_MAX		5
+   240: 
+   241: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   242: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   243: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   244: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   245: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   246: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   247: };
+   248: 
+SOURCE_FILE bugfixes/Solved/020_server_getstring/after/smRead3d.cpp line=236
+   222: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   223: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   224: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   225: 
+   226: 	{ "water:" , sMATS_SCRIPT_WATER },
+   227: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   228: 
+   229: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   230: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   231: 
+   232: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   233: 
+   234: 
+   235: 
+   236: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   237: 
+   238: 
+   239: 
+   240: 
+   241: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   242: 
+   243: 
+   244: 
+   245: 
+   246: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   247: 
+   248: };
+   249: 
+   250: 
+   251: #define		MATS_BLEND_MAX		5
+   252: 
+   253: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   254: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   255: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   256: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   257: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   258: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   259: };
+   260: 
+SOURCE_FILE bugfixes/Solved/020_server_getstring/before/smRead3d.cpp line=222
+   208: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   209: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   210: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   211: 
+   212: 	{ "water:" , sMATS_SCRIPT_WATER },
+   213: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   214: 
+   215: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   216: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   217: 
+   218: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   219: 
+   220: 
+   221: 
+   222: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   223: 
+   224: 
+   225: 
+   226: 
+   227: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   228: 
+   229: 
+   230: 
+   231: 
+   232: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   233: 
+   234: };
+   235: 
+   236: 
+   237: #define		MATS_BLEND_MAX		5
+   238: 
+   239: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   240: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   241: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   242: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   243: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   244: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   245: };
+   246: 
+SOURCE_FILE bugfixes/Solved/021_server_getword/after/smRead3d.cpp line=237
+   223: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   224: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   225: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   226: 
+   227: 	{ "water:" , sMATS_SCRIPT_WATER },
+   228: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   229: 
+   230: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   231: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   232: 
+   233: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   234: 
+   235: 
+   236: 
+   237: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   238: 
+   239: 
+   240: 
+   241: 
+   242: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   243: 
+   244: 
+   245: 
+   246: 
+   247: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   248: 
+   249: };
+   250: 
+   251: 
+   252: #define		MATS_BLEND_MAX		5
+   253: 
+   254: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   255: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   256: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   257: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   258: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   259: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   260: };
+   261: 
+SOURCE_FILE bugfixes/Solved/021_server_getword/before/smRead3d.cpp line=236
+   222: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   223: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   224: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   225: 
+   226: 	{ "water:" , sMATS_SCRIPT_WATER },
+   227: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   228: 
+   229: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   230: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   231: 
+   232: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   233: 
+   234: 
+   235: 
+   236: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   237: 
+   238: 
+   239: 
+   240: 
+   241: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   242: 
+   243: 
+   244: 
+   245: 
+   246: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   247: 
+   248: };
+   249: 
+   250: 
+   251: #define		MATS_BLEND_MAX		5
+   252: 
+   253: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   254: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   255: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   256: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   257: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   258: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   259: };
+   260: 
+SOURCE_FILE bugfixes/Solved/045_legacy_multichar_path_separator_comparisons/after/SourceCode/SrcGame/src/smLib3d/smRead3d.cpp line=238
+   224: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   225: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   226: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   227: 
+   228: 	{ "water:" , sMATS_SCRIPT_WATER },
+   229: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   230: 
+   231: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   232: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   233: 
+   234: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   235: 
+   236: 
+   237: 
+   238: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   239: 
+   240: 
+   241: 
+   242: 
+   243: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   244: 
+   245: 
+   246: 
+   247: 
+   248: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   249: 
+   250: };
+   251: 
+   252: 
+   253: #define		MATS_BLEND_MAX		5
+   254: 
+   255: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   256: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   257: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   258: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   259: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   260: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   261: };
+   262: 
+SOURCE_FILE bugfixes/Solved/045_legacy_multichar_path_separator_comparisons/after/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp line=237
+   223: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   224: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   225: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   226: 
+   227: 	{ "water:" , sMATS_SCRIPT_WATER },
+   228: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   229: 
+   230: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   231: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   232: 
+   233: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   234: 
+   235: 
+   236: 
+   237: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   238: 
+   239: 
+   240: 
+   241: 
+   242: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   243: 
+   244: 
+   245: 
+   246: 
+   247: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   248: 
+   249: };
+   250: 
+   251: 
+   252: #define		MATS_BLEND_MAX		5
+   253: 
+   254: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   255: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   256: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   257: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   258: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   259: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   260: };
+   261: 
+SOURCE_FILE bugfixes/Solved/045_legacy_multichar_path_separator_comparisons/before/SourceCode/SrcGame/src/smLib3d/smRead3d.cpp line=238
+   224: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   225: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   226: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   227: 
+   228: 	{ "water:" , sMATS_SCRIPT_WATER },
+   229: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   230: 
+   231: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   232: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   233: 
+   234: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   235: 
+   236: 
+   237: 
+   238: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   239: 
+   240: 
+   241: 
+   242: 
+   243: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   244: 
+   245: 
+   246: 
+   247: 
+   248: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   249: 
+   250: };
+   251: 
+   252: 
+   253: #define		MATS_BLEND_MAX		5
+   254: 
+   255: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   256: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   257: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   258: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   259: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   260: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   261: };
+   262: 
+SOURCE_FILE bugfixes/Solved/045_legacy_multichar_path_separator_comparisons/before/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp line=237
+   223: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   224: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   225: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   226: 
+   227: 	{ "water:" , sMATS_SCRIPT_WATER },
+   228: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   229: 
+   230: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   231: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   232: 
+   233: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   234: 
+   235: 
+   236: 
+   237: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   238: 
+   239: 
+   240: 
+   241: 
+   242: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   243: 
+   244: 
+   245: 
+   246: 
+   247: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   248: 
+   249: };
+   250: 
+   251: 
+   252: #define		MATS_BLEND_MAX		5
+   253: 
+   254: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   255: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   256: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   257: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   258: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   259: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   260: };
+   261: 
+SOURCE_FILE bugfixes/Solved/046_getfileextension_backslash_separator/after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp line=933
+   919: 				}
+   920: 
+   921: 				ChangeMaterialToAnimation(&smMaterial[MatNum], lpAnimFileList, AnimCount, smMaterial[MatNum].BlendType, TRUE);
+   922: 				if (FrameSpeed) smMaterial[MatNum].Shift_FrameSpeed = FrameSpeed;			
+   923: 
+   924: 				smMaterial[MatNum].Transparency = aseMaterial->Transparency;		
+   925: 
+   926: 				for (cnt = AnimCount - 1; cnt >= 0; cnt--) delete lpAnimFileList[cnt];
+   927: 			}
+   928: 		}
+   929: 	}
+   930: 
+   931: 	
+   932: 	
+   933: 	if ((aseMaterial->ScriptState & sMATS_SCRIPT_BLINK_COLOR) && smMaterial[MatNum].WindMeshBottom == 0)
+   934: 	{
+   935: 		for (cnt = 0; cnt < MAX_MAP_BLINK_COLOR_TIME; cnt++)
+   936: 		{
+   937: 			if (strstr(szScript, szBlinkTimeScript[cnt]) != 0)
+   938: 				break;
+   939: 		}
+   940: 
+   941: 		if (cnt >= MAX_MAP_BLINK_COLOR_TIME)
+   942: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[0];
+   943: 		else
+   944: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[cnt];
+   945: 	}
+   946: 	
+   947: 
+   948: 	aseMaterial->Regist++;												
+   949: 	aseMaterial->RegistNum = MatNum;
+   950: 
+   951: 	return MatNum;
+   952: }
+   953: 
+   954: 
+   955: int smMATERIAL_GROUP::CreateTextureMaterial(char *szBitmap, char *szOpacity, int TwoSide, int Shade, DWORD TexSwap, DWORD BlendType)
+   956: {
+   957: 	int MatNum;
+SOURCE_FILE bugfixes/Solved/046_getfileextension_backslash_separator/before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp line=933
+   919: 				}
+   920: 
+   921: 				ChangeMaterialToAnimation(&smMaterial[MatNum], lpAnimFileList, AnimCount, smMaterial[MatNum].BlendType, TRUE);
+   922: 				if (FrameSpeed) smMaterial[MatNum].Shift_FrameSpeed = FrameSpeed;			
+   923: 
+   924: 				smMaterial[MatNum].Transparency = aseMaterial->Transparency;		
+   925: 
+   926: 				for (cnt = AnimCount - 1; cnt >= 0; cnt--) delete lpAnimFileList[cnt];
+   927: 			}
+   928: 		}
+   929: 	}
+   930: 
+   931: 	
+   932: 	
+   933: 	if ((aseMaterial->ScriptState & sMATS_SCRIPT_BLINK_COLOR) && smMaterial[MatNum].WindMeshBottom == 0)
+   934: 	{
+   935: 		for (cnt = 0; cnt < MAX_MAP_BLINK_COLOR_TIME; cnt++)
+   936: 		{
+   937: 			if (strstr(szScript, szBlinkTimeScript[cnt]) != 0)
+   938: 				break;
+   939: 		}
+   940: 
+   941: 		if (cnt >= MAX_MAP_BLINK_COLOR_TIME)
+   942: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[0];
+   943: 		else
+   944: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[cnt];
+   945: 	}
+   946: 	
+   947: 
+   948: 	aseMaterial->Regist++;												
+   949: 	aseMaterial->RegistNum = MatNum;
+   950: 
+   951: 	return MatNum;
+   952: }
+   953: 
+   954: 
+   955: int smMATERIAL_GROUP::CreateTextureMaterial(char *szBitmap, char *szOpacity, int TwoSide, int Shade, DWORD TexSwap, DWORD BlendType)
+   956: {
+   957: 	int MatNum;
+
+=== UseState ACCESSES ===
+SourceCode/SrcGame/src/smLib3d/smRend3d.cpp:984 class=READ_OR_USE: 	if(lpMaterial->WindMeshBottom && (lpMaterial->UseState & sMATS_SCRIPT_BLINK_COLOR) == 0)
+SourceCode/SrcGame/src/smLib3d/smRend3d.cpp:1212 class=READ_OR_USE: 		if(lpMaterial->UseState & dwMatDispMask)
+SourceCode/SrcGame/src/smLib3d/smRend3d.cpp:4170 class=READ_OR_USE: 	if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+SourceCode/SrcGame/src/smLib3d/smRend3d.cpp:4195 class=READ_OR_USE: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+SourceCode/SrcGame/src/smLib3d/smRend3d.cpp:4227 class=READ_OR_USE: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+SourceCode/SrcGame/src/smLib3d/smTexture.cpp:808 class=WRITE_LHS: 	smMaterial[MatNum].UseState = aseMaterial->ScriptState;
+SourceCode/SrcGame/src/smLib3d/smTexture.cpp:985 class=WRITE_LHS: 	smMaterial[MatNum].UseState = 0;
+SourceCode/SrcGame/src/smLib3d/smTexture.cpp:1087 class=WRITE_LHS: 	lpMaterial->UseState = 0;
+SourceCode/SrcGame/src/smLib3d/smType.h:698 class=READ_OR_USE: 	int				UseState;
+SourceCode/SrcServer/src/Mouse/Mouse.cpp:13 class=READ_OR_USE: void Mouse::setEvent(MouseState state, std::function<void(void)> click)
+SourceCode/SrcServer/src/Mouse/Mouse.cpp:17 class=READ_OR_USE: 	case MouseState::ON_LEFT_CLICK:
+SourceCode/SrcServer/src/Mouse/Mouse.cpp:20 class=READ_OR_USE: 	case MouseState::ON_RIGHT_CLICK:
+SourceCode/SrcServer/src/Mouse/Mouse.cpp:26 class=WRITE_LHS: bool Mouse::performClick(MouseState state = MouseState::ON_LEFT_CLICK)
+SourceCode/SrcServer/src/Mouse/Mouse.cpp:31 class=READ_OR_USE: bool Mouse::onClick(MouseState state)
+SourceCode/SrcServer/src/Mouse/Mouse.cpp:37 class=READ_OR_USE: 	case MouseState::ON_LEFT_CLICK:
+SourceCode/SrcServer/src/Mouse/Mouse.cpp:50 class=READ_OR_USE: 	case MouseState::ON_RIGHT_CLICK:
+SourceCode/SrcServer/src/Mouse/Mouse.h:7 class=READ_OR_USE: enum class MouseState
+SourceCode/SrcServer/src/Mouse/Mouse.h:58 class=READ_OR_USE: 	void setEvent(MouseState state, std::function<void(void)> click);
+SourceCode/SrcServer/src/Mouse/Mouse.h:59 class=READ_OR_USE: 	bool performClick(MouseState state);
+SourceCode/SrcServer/src/Mouse/Mouse.h:60 class=READ_OR_USE: 	virtual bool onClick(MouseState state);
+SourceCode/SrcServer/src/smLib3d/smRend3d.cpp:869 class=READ_OR_USE: 	if(lpMaterial->WindMeshBottom && (lpMaterial->UseState & sMATS_SCRIPT_BLINK_COLOR) == 0)
+SourceCode/SrcServer/src/smLib3d/smRend3d.cpp:1048 class=READ_OR_USE: 		if(lpMaterial->UseState & dwMatDispMask)
+SourceCode/SrcServer/src/smLib3d/smRend3d.cpp:3737 class=READ_OR_USE: 	if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+SourceCode/SrcServer/src/smLib3d/smRend3d.cpp:3757 class=READ_OR_USE: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+SourceCode/SrcServer/src/smLib3d/smRend3d.cpp:3788 class=READ_OR_USE: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+SourceCode/SrcServer/src/smLib3d/smTexture.cpp:929 class=WRITE_LHS: 	smMaterial[MatNum].UseState = aseMaterial->ScriptState;
+SourceCode/SrcServer/src/smLib3d/smTexture.cpp:1133 class=WRITE_LHS: 	smMaterial[MatNum].UseState = 0;
+SourceCode/SrcServer/src/smLib3d/smTexture.cpp:1238 class=WRITE_LHS: 	lpMaterial->UseState = 0;
+SourceCode/SrcServer/src/smLib3d/smType.h:687 class=READ_OR_USE: 	int				UseState;
+bugfixes/Solved/046_getfileextension_backslash_separator/after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:808 class=WRITE_LHS: 	smMaterial[MatNum].UseState = aseMaterial->ScriptState;
+bugfixes/Solved/046_getfileextension_backslash_separator/after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:985 class=WRITE_LHS: 	smMaterial[MatNum].UseState = 0;
+bugfixes/Solved/046_getfileextension_backslash_separator/after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:1087 class=WRITE_LHS: 	lpMaterial->UseState = 0;
+bugfixes/Solved/046_getfileextension_backslash_separator/before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:808 class=WRITE_LHS: 	smMaterial[MatNum].UseState = aseMaterial->ScriptState;
+bugfixes/Solved/046_getfileextension_backslash_separator/before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:985 class=WRITE_LHS: 	smMaterial[MatNum].UseState = 0;
+bugfixes/Solved/046_getfileextension_backslash_separator/before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:1087 class=WRITE_LHS: 	lpMaterial->UseState = 0;
+depricated-DO-NOT-DELETE/recovery_pre_reset_20260824_0958/current_files/pt_smd_material_abi_probe_v1.cpp:50 class=READ_OR_USE:     OFFSETOF_T(smMATERIAL, UseState);
+
+=== WindMeshBottom ACCESSES ===
+SourceCode/SrcGame/src/smLib3d/smRend3d.cpp:984 class=READ_OR_USE: 	if(lpMaterial->WindMeshBottom && (lpMaterial->UseState & sMATS_SCRIPT_BLINK_COLOR) == 0)
+SourceCode/SrcGame/src/smLib3d/smRend3d.cpp:987 class=READ_OR_USE: 		switch(lpMaterial->WindMeshBottom & 0x7FF)
+SourceCode/SrcGame/src/smLib3d/smRend3d.cpp:4171 class=READ_OR_USE: 		SetBlinkColor(sColors, smRendMaterial[MatNum].Diffuse, smRendMaterial[MatNum].WindMeshBottom);
+SourceCode/SrcGame/src/smLib3d/smTexture.cpp:820 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ1;
+SourceCode/SrcGame/src/smLib3d/smTexture.cpp:824 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDX1;
+SourceCode/SrcGame/src/smLib3d/smTexture.cpp:828 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDX2;
+SourceCode/SrcGame/src/smLib3d/smTexture.cpp:832 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ1;
+SourceCode/SrcGame/src/smLib3d/smTexture.cpp:836 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ2;
+SourceCode/SrcGame/src/smLib3d/smTexture.cpp:841 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ2;
+SourceCode/SrcGame/src/smLib3d/smTexture.cpp:846 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WATER;
+SourceCode/SrcGame/src/smLib3d/smTexture.cpp:933 class=READ_OR_USE: 	if ((aseMaterial->ScriptState & sMATS_SCRIPT_BLINK_COLOR) && smMaterial[MatNum].WindMeshBottom == 0)
+SourceCode/SrcGame/src/smLib3d/smTexture.cpp:942 class=WRITE_LHS: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[0];
+SourceCode/SrcGame/src/smLib3d/smTexture.cpp:944 class=WRITE_LHS: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[cnt];
+SourceCode/SrcGame/src/smLib3d/smType.h:702 class=READ_OR_USE: 	int				WindMeshBottom;
+SourceCode/SrcServer/src/smLib3d/smRend3d.cpp:869 class=READ_OR_USE: 	if(lpMaterial->WindMeshBottom && (lpMaterial->UseState & sMATS_SCRIPT_BLINK_COLOR) == 0)
+SourceCode/SrcServer/src/smLib3d/smRend3d.cpp:872 class=READ_OR_USE: 		switch(lpMaterial->WindMeshBottom & 0x7FF)
+SourceCode/SrcServer/src/smLib3d/smRend3d.cpp:3738 class=READ_OR_USE: 		SetBlinkColor(sColors, smRendMaterial[MatNum].Diffuse, smRendMaterial[MatNum].WindMeshBottom);
+SourceCode/SrcServer/src/smLib3d/smTexture.cpp:942 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ1;
+SourceCode/SrcServer/src/smLib3d/smTexture.cpp:947 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDX1;
+SourceCode/SrcServer/src/smLib3d/smTexture.cpp:952 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDX2;
+SourceCode/SrcServer/src/smLib3d/smTexture.cpp:957 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ1;
+SourceCode/SrcServer/src/smLib3d/smTexture.cpp:962 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ2;
+SourceCode/SrcServer/src/smLib3d/smTexture.cpp:968 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ2;
+SourceCode/SrcServer/src/smLib3d/smTexture.cpp:974 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WATER;
+SourceCode/SrcServer/src/smLib3d/smTexture.cpp:1084 class=READ_OR_USE: 	if((aseMaterial->ScriptState & sMATS_SCRIPT_BLINK_COLOR) && smMaterial[MatNum].WindMeshBottom == 0)
+SourceCode/SrcServer/src/smLib3d/smTexture.cpp:1093 class=WRITE_LHS: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[0];
+SourceCode/SrcServer/src/smLib3d/smTexture.cpp:1095 class=WRITE_LHS: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[cnt];
+SourceCode/SrcServer/src/smLib3d/smType.h:691 class=READ_OR_USE: 	int				WindMeshBottom;
+bugfixes/Solved/046_getfileextension_backslash_separator/after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:820 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ1;
+bugfixes/Solved/046_getfileextension_backslash_separator/after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:824 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDX1;
+bugfixes/Solved/046_getfileextension_backslash_separator/after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:828 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDX2;
+bugfixes/Solved/046_getfileextension_backslash_separator/after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:832 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ1;
+bugfixes/Solved/046_getfileextension_backslash_separator/after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:836 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ2;
+bugfixes/Solved/046_getfileextension_backslash_separator/after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:841 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ2;
+bugfixes/Solved/046_getfileextension_backslash_separator/after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:846 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WATER;
+bugfixes/Solved/046_getfileextension_backslash_separator/after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:933 class=READ_OR_USE: 	if ((aseMaterial->ScriptState & sMATS_SCRIPT_BLINK_COLOR) && smMaterial[MatNum].WindMeshBottom == 0)
+bugfixes/Solved/046_getfileextension_backslash_separator/after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:942 class=WRITE_LHS: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[0];
+bugfixes/Solved/046_getfileextension_backslash_separator/after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:944 class=WRITE_LHS: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[cnt];
+bugfixes/Solved/046_getfileextension_backslash_separator/before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:820 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ1;
+bugfixes/Solved/046_getfileextension_backslash_separator/before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:824 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDX1;
+bugfixes/Solved/046_getfileextension_backslash_separator/before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:828 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDX2;
+bugfixes/Solved/046_getfileextension_backslash_separator/before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:832 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ1;
+bugfixes/Solved/046_getfileextension_backslash_separator/before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:836 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ2;
+bugfixes/Solved/046_getfileextension_backslash_separator/before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:841 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WINDZ2;
+bugfixes/Solved/046_getfileextension_backslash_separator/before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:846 class=WRITE_LHS: 		smMaterial[MatNum].WindMeshBottom = sMATS_SCRIPT_WATER;
+bugfixes/Solved/046_getfileextension_backslash_separator/before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:933 class=READ_OR_USE: 	if ((aseMaterial->ScriptState & sMATS_SCRIPT_BLINK_COLOR) && smMaterial[MatNum].WindMeshBottom == 0)
+bugfixes/Solved/046_getfileextension_backslash_separator/before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:942 class=WRITE_LHS: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[0];
+bugfixes/Solved/046_getfileextension_backslash_separator/before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp:944 class=WRITE_LHS: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[cnt];
+depricated-DO-NOT-DELETE/recovery_pre_reset_20260824_0958/current_files/pt_smd_material_abi_probe_v1.cpp:52 class=READ_OR_USE:     OFFSETOF_T(smMATERIAL, WindMeshBottom);
+
+=== BLINK STEP NUMERIC CANDIDATES ===
+NONE
+
+=== BLINK / SCRIPT PRIORITY CONTEXTS ===
+TERM BLINK_COLOR: matches=49
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRead3d.cpp line=238
+   224: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   225: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   226: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   227: 
+   228: 	{ "water:" , sMATS_SCRIPT_WATER },
+   229: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   230: 
+   231: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   232: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   233: 
+   234: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   235: 
+   236: 
+   237: 
+   238: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   239: 
+   240: 
+   241: 
+   242: 
+   243: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   244: 
+   245: 
+   246: 
+   247: 
+   248: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   249: 
+   250: };
+   251: 
+   252: 
+   253: #define		MATS_BLEND_MAX		5
+   254: 
+   255: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   256: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   257: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   258: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   259: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   260: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   261: };
+   262: 
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRead3d.h line=65
+    51: #define sMATS_SCRIPT_WINDZ2		0x0040
+    52: #define sMATS_SCRIPT_WINDX1		0x0080
+    53: #define sMATS_SCRIPT_WINDX2		0x0100
+    54: 
+    55: #define sMATS_SCRIPT_WATER		0x0200
+    56: #define sMATS_SCRIPT_NOTVIEW	0x0400
+    57: 
+    58: #define sMATS_SCRIPT_PASS		0x0800
+    59: #define sMATS_SCRIPT_NOTPASS	0x1000
+    60: 
+    61: #define sMATS_SCRIPT_RENDLATTER	0x2000
+    62: 
+    63: 
+    64: 
+    65: #define sMATS_SCRIPT_BLINK_COLOR		0x4000
+    66: 
+    67: 
+    68: 
+    69: 
+    70: 
+    71: #define sMATS_SCRIPT_CHECK_ICE			0x8000
+    72: 
+    73: 
+    74: 
+    75: 
+    76: 
+    77: #define sMATS_SCRIPT_ORG_WATER			0x10000
+    78: 
+    79: 
+    80: 
+    81: 
+    82: 
+    83: 
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=984
+   970: 	int x, y, z;
+   971: 	int ad;
+   972: 	DWORD ClipStatus;
+   973: 	int ShiftMesh;
+   974: 
+   975: 	DWORD *dwColor, *dwDefColor;
+   976: 
+   977: 
+   978: 	int ttCnt, ttFlag;
+   979: 
+   980: 
+   981: 
+   982: 
+   983: 
+   984: 	if(lpMaterial->WindMeshBottom && (lpMaterial->UseState & sMATS_SCRIPT_BLINK_COLOR) == 0)
+   985: 	{
+   986: 
+   987: 		switch(lpMaterial->WindMeshBottom & 0x7FF)
+   988: 		{
+   989: 			case sMATS_SCRIPT_WINDX1:
+   990: 			ttCnt = (RendStatTime >> 2) & 0xFF;
+   991: 			ttFlag = (RendStatTime >> 10) & 1;
+   992: 
+   993: 			if(!ttFlag) ttCnt = 255 - ttCnt;
+   994: 			ShiftMesh = (GetCos[ttCnt + 256]) >> 5;
+   995: 
+   996: 			z = sv->z;
+   997: 			y = sv->y;
+   998: 			x = (sv->x - ShiftMesh);
+   999: 			break;
+  1000: 
+  1001: 			case sMATS_SCRIPT_WINDZ1:
+  1002: 			ttCnt = (RendStatTime >> 2) & 0xFF;
+  1003: 			ttFlag = (RendStatTime >> 10) & 1;
+  1004: 
+  1005: 			if(!ttFlag) ttCnt = 255 - ttCnt;
+  1006: 			ShiftMesh = (GetCos[ttCnt + 256]) >> 5;
+  1007: 
+  1008: 			x = sv->x;
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=4170
+  4156: }
+  4157: 
+  4158: 
+  4159: 
+  4160: int smRENDER3D::RenderD3D(int MatNum)
+  4161: {
+  4162: 	int rendcnt;
+  4163: 
+  4164: 
+  4165: 	if (smRendMaterial[MatNum].TextureCounter == 0 && smRendMaterial[MatNum].AnimTexCounter == 0) return FALSE;
+  4166: 
+  4167: 	
+  4168: 
+  4169: 	short sColors[4] = { 0, };
+  4170: 	if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  4171: 		SetBlinkColor(sColors, smRendMaterial[MatNum].Diffuse, smRendMaterial[MatNum].WindMeshBottom);
+  4172: 
+  4173: 
+  4174: 	
+  4175: 	if(RendMatrial[MatNum].MatrialCounter)
+  4176: 	{
+  4177: 
+  4178: 		
+  4179: 		int TexCnt = 0;
+  4180: 		if(s_lpItem2PassTexHandle)
+  4181: 		{
+  4182: 			RendAlphaFlag = SetItem2PassD3DRendState(&smRendMaterial[MatNum]);
+  4183: 			TexCnt = 1;
+  4184: 		}
+  4185: 		else
+  4186: 			RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], FALSE);
+  4187: 		
+  4188: 		
+  4189: 
+  4190: 
+  4191: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  4192: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, FALSE);
+  4193: 		
+  4194: 		
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=4195
+  4181: 		{
+  4182: 			RendAlphaFlag = SetItem2PassD3DRendState(&smRendMaterial[MatNum]);
+  4183: 			TexCnt = 1;
+  4184: 		}
+  4185: 		else
+  4186: 			RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], FALSE);
+  4187: 		
+  4188: 		
+  4189: 
+  4190: 
+  4191: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  4192: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, FALSE);
+  4193: 		
+  4194: 		
+  4195: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  4196: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, FALSE, sColors);
+  4197: 		else
+  4198: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, FALSE);
+  4199: 
+  4200: 
+  4201: 		
+  4202: 		
+  4203: 		d3ddev->SetFVF(D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4204: 		if ((rendcnt / 3) > 0)
+  4205: 			d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4206: 
+  4207: 
+  4208: 		if(RendAlphaFlag)
+  4209: 		{
+  4210: 
+  4211: 			SetD3DRendStateOnlyAlpha(&smRendMaterial[MatNum], FALSE);
+  4212: 			d3ddev->SetFVF(D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4213: 			if ((rendcnt / 3) > 0)
+  4214: 				d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4215: 		}
+  4216: 	}
+  4217: 
+  4218: 
+  4219: 	if(RendMatrial[MatNum].TexClip_MatrialCounter)
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=4227
+  4213: 			if ((rendcnt / 3) > 0)
+  4214: 				d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter + TexCnt]);
+  4215: 		}
+  4216: 	}
+  4217: 
+  4218: 
+  4219: 	if(RendMatrial[MatNum].TexClip_MatrialCounter)
+  4220: 	{
+  4221: 		RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], TRUE);
+  4222: 
+  4223: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  4224: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, TRUE);
+  4225: 
+  4226: 
+  4227: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  4228: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, TRUE, sColors);
+  4229: 		else
+  4230: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, TRUE);
+  4231: 
+  4232: 
+  4233: 		d3ddev->SetFVF(D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter]);
+  4234: 		if ((rendcnt / 3) > 0)
+  4235: 			d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter]);
+  4236: 
+  4237: 		if(RendAlphaFlag)
+  4238: 		{
+  4239: 
+  4240: 			SetD3DRendStateOnlyAlpha(&smRendMaterial[MatNum], TRUE);
+  4241: 			d3ddev->SetFVF(D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter]);
+  4242: 			if ((rendcnt / 3) > 0)
+  4243: 				d3ddev->DrawPrimitiveUP(D3DPT_TRIANGLELIST, rendcnt / 3, (LPVOID)RendBuff, D3DFVF_SIZE[smRendMaterial[MatNum].TextureCounter]);
+  4244: 		}
+  4245: 	}
+  4246: 
+  4247: 	return rendcnt;
+  4248: }
+  4249: 
+  4250: 
+  4251: 
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smTexture.cpp line=60
+    46: 	}
+    47: 
+    48: 	return TRUE;
+    49: }
+    50: 
+    51: 
+    52: 
+    53: 
+    54: 
+    55: DWORD	VramTotal = 0;
+    56: 
+    57: 
+    58: 
+    59: 
+    60: #define	MAX_MAP_BLINK_COLOR_TIME				8
+    61: 
+    62: const char *szBlinkTimeScript[MAX_MAP_BLINK_COLOR_TIME] =
+    63: {
+    64: 	"BLINK_TIME1:",
+    65: 	"BLINK_TIME2:",
+    66: 	"BLINK_TIME3:",
+    67: 	"BLINK_TIME4:",
+    68: 	"BLINK_TIME5:",
+    69: 	"BLINK_TIME6:",
+    70: 	"BLINK_TIME7:",
+    71: 	"BLINK_TIME8:",
+    72: };
+    73: 
+    74: const DWORD dwBlinkTimeCode[MAX_MAP_BLINK_COLOR_TIME] =
+    75: {
+    76: 	9, 10, 11, 12, 13, 14, 15, 16,
+    77: };
+    78: 
+    79: 
+    80: 
+    81: 
+    82: 
+    83: int MipMapModeCreate;						
+    84: int TextureSwapMode = TRUE;					
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smTexture.cpp line=62
+    48: 	return TRUE;
+    49: }
+    50: 
+    51: 
+    52: 
+    53: 
+    54: 
+    55: DWORD	VramTotal = 0;
+    56: 
+    57: 
+    58: 
+    59: 
+    60: #define	MAX_MAP_BLINK_COLOR_TIME				8
+    61: 
+    62: const char *szBlinkTimeScript[MAX_MAP_BLINK_COLOR_TIME] =
+    63: {
+    64: 	"BLINK_TIME1:",
+    65: 	"BLINK_TIME2:",
+    66: 	"BLINK_TIME3:",
+    67: 	"BLINK_TIME4:",
+    68: 	"BLINK_TIME5:",
+    69: 	"BLINK_TIME6:",
+    70: 	"BLINK_TIME7:",
+    71: 	"BLINK_TIME8:",
+    72: };
+    73: 
+    74: const DWORD dwBlinkTimeCode[MAX_MAP_BLINK_COLOR_TIME] =
+    75: {
+    76: 	9, 10, 11, 12, 13, 14, 15, 16,
+    77: };
+    78: 
+    79: 
+    80: 
+    81: 
+    82: 
+    83: int MipMapModeCreate;						
+    84: int TextureSwapMode = TRUE;					
+    85: static int TexturHalfSize = FALSE;			
+    86: 
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smTexture.cpp line=74
+    60: #define	MAX_MAP_BLINK_COLOR_TIME				8
+    61: 
+    62: const char *szBlinkTimeScript[MAX_MAP_BLINK_COLOR_TIME] =
+    63: {
+    64: 	"BLINK_TIME1:",
+    65: 	"BLINK_TIME2:",
+    66: 	"BLINK_TIME3:",
+    67: 	"BLINK_TIME4:",
+    68: 	"BLINK_TIME5:",
+    69: 	"BLINK_TIME6:",
+    70: 	"BLINK_TIME7:",
+    71: 	"BLINK_TIME8:",
+    72: };
+    73: 
+    74: const DWORD dwBlinkTimeCode[MAX_MAP_BLINK_COLOR_TIME] =
+    75: {
+    76: 	9, 10, 11, 12, 13, 14, 15, 16,
+    77: };
+    78: 
+    79: 
+    80: 
+    81: 
+    82: 
+    83: int MipMapModeCreate;						
+    84: int TextureSwapMode = TRUE;					
+    85: static int TexturHalfSize = FALSE;			
+    86: 
+    87: 
+    88: 
+    89: 
+    90: static char MipMapFileListBuff[MIPMAP_FILELIST][16] = { "", "_mm1", "_mm2", "_mm3", "_mm4", };
+    91: 
+    92: static int  MipMapCount = 0;
+    93: static char MipMapFileBuff[MIPMAP_FILELIST][126] = { 0, };
+    94: static int  MipMapCountA = 0;
+    95: static char MipMapFileABuff[MIPMAP_FILELIST][126] = { 0, };
+    96: static char FileTypeBuff[16] = { 0, };
+    97: 
+    98: 
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smTexture.cpp line=933
+   919: 				}
+   920: 
+   921: 				ChangeMaterialToAnimation(&smMaterial[MatNum], lpAnimFileList, AnimCount, smMaterial[MatNum].BlendType, TRUE);
+   922: 				if (FrameSpeed) smMaterial[MatNum].Shift_FrameSpeed = FrameSpeed;			
+   923: 
+   924: 				smMaterial[MatNum].Transparency = aseMaterial->Transparency;		
+   925: 
+   926: 				for (cnt = AnimCount - 1; cnt >= 0; cnt--) delete lpAnimFileList[cnt];
+   927: 			}
+   928: 		}
+   929: 	}
+   930: 
+   931: 	
+   932: 	
+   933: 	if ((aseMaterial->ScriptState & sMATS_SCRIPT_BLINK_COLOR) && smMaterial[MatNum].WindMeshBottom == 0)
+   934: 	{
+   935: 		for (cnt = 0; cnt < MAX_MAP_BLINK_COLOR_TIME; cnt++)
+   936: 		{
+   937: 			if (strstr(szScript, szBlinkTimeScript[cnt]) != 0)
+   938: 				break;
+   939: 		}
+   940: 
+   941: 		if (cnt >= MAX_MAP_BLINK_COLOR_TIME)
+   942: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[0];
+   943: 		else
+   944: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[cnt];
+   945: 	}
+   946: 	
+   947: 
+   948: 	aseMaterial->Regist++;												
+   949: 	aseMaterial->RegistNum = MatNum;
+   950: 
+   951: 	return MatNum;
+   952: }
+   953: 
+   954: 
+   955: int smMATERIAL_GROUP::CreateTextureMaterial(char *szBitmap, char *szOpacity, int TwoSide, int Shade, DWORD TexSwap, DWORD BlendType)
+   956: {
+   957: 	int MatNum;
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smTexture.cpp line=935
+   921: 				ChangeMaterialToAnimation(&smMaterial[MatNum], lpAnimFileList, AnimCount, smMaterial[MatNum].BlendType, TRUE);
+   922: 				if (FrameSpeed) smMaterial[MatNum].Shift_FrameSpeed = FrameSpeed;			
+   923: 
+   924: 				smMaterial[MatNum].Transparency = aseMaterial->Transparency;		
+   925: 
+   926: 				for (cnt = AnimCount - 1; cnt >= 0; cnt--) delete lpAnimFileList[cnt];
+   927: 			}
+   928: 		}
+   929: 	}
+   930: 
+   931: 	
+   932: 	
+   933: 	if ((aseMaterial->ScriptState & sMATS_SCRIPT_BLINK_COLOR) && smMaterial[MatNum].WindMeshBottom == 0)
+   934: 	{
+   935: 		for (cnt = 0; cnt < MAX_MAP_BLINK_COLOR_TIME; cnt++)
+   936: 		{
+   937: 			if (strstr(szScript, szBlinkTimeScript[cnt]) != 0)
+   938: 				break;
+   939: 		}
+   940: 
+   941: 		if (cnt >= MAX_MAP_BLINK_COLOR_TIME)
+   942: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[0];
+   943: 		else
+   944: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[cnt];
+   945: 	}
+   946: 	
+   947: 
+   948: 	aseMaterial->Regist++;												
+   949: 	aseMaterial->RegistNum = MatNum;
+   950: 
+   951: 	return MatNum;
+   952: }
+   953: 
+   954: 
+   955: int smMATERIAL_GROUP::CreateTextureMaterial(char *szBitmap, char *szOpacity, int TwoSide, int Shade, DWORD TexSwap, DWORD BlendType)
+   956: {
+   957: 	int MatNum;
+   958: 
+   959: 
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smTexture.cpp line=941
+   927: 			}
+   928: 		}
+   929: 	}
+   930: 
+   931: 	
+   932: 	
+   933: 	if ((aseMaterial->ScriptState & sMATS_SCRIPT_BLINK_COLOR) && smMaterial[MatNum].WindMeshBottom == 0)
+   934: 	{
+   935: 		for (cnt = 0; cnt < MAX_MAP_BLINK_COLOR_TIME; cnt++)
+   936: 		{
+   937: 			if (strstr(szScript, szBlinkTimeScript[cnt]) != 0)
+   938: 				break;
+   939: 		}
+   940: 
+   941: 		if (cnt >= MAX_MAP_BLINK_COLOR_TIME)
+   942: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[0];
+   943: 		else
+   944: 			smMaterial[MatNum].WindMeshBottom = dwBlinkTimeCode[cnt];
+   945: 	}
+   946: 	
+   947: 
+   948: 	aseMaterial->Regist++;												
+   949: 	aseMaterial->RegistNum = MatNum;
+   950: 
+   951: 	return MatNum;
+   952: }
+   953: 
+   954: 
+   955: int smMATERIAL_GROUP::CreateTextureMaterial(char *szBitmap, char *szOpacity, int TwoSide, int Shade, DWORD TexSwap, DWORD BlendType)
+   956: {
+   957: 	int MatNum;
+   958: 
+   959: 
+   960: 	MatNum = MaterialCount;
+   961: 	MaterialCount++;
+   962: 
+   963: 	smMaterial[MatNum].InUse = TRUE;
+   964: 	smMaterial[MatNum].Shade = Shade;
+   965: 	smMaterial[MatNum].TwoSide = TwoSide;
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRead3d.cpp line=237
+   223: 	{ "wind_z2:" , sMATS_SCRIPT_WINDZ2 },
+   224: 	{ "wind_x1:" , sMATS_SCRIPT_WINDX1 },
+   225: 	{ "wind_x2:" , sMATS_SCRIPT_WINDX2 },
+   226: 
+   227: 	{ "water:" , sMATS_SCRIPT_WATER },
+   228: 	{ "wall:" , sMATS_SCRIPT_NOTVIEW },
+   229: 
+   230: 	{ "pass:" , sMATS_SCRIPT_PASS },
+   231: 	{ "notpass:" , sMATS_SCRIPT_NOTPASS },
+   232: 
+   233: 	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+   234: 
+   235: 
+   236: 
+   237: 	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+   238: 
+   239: 
+   240: 
+   241: 
+   242: 	{ "ice:", sMATS_SCRIPT_CHECK_ICE },
+   243: 
+   244: 
+   245: 
+   246: 
+   247: 	{ "orgwater:", sMATS_SCRIPT_ORG_WATER },
+   248: 
+   249: };
+   250: 
+   251: 
+   252: #define		MATS_BLEND_MAX		5
+   253: 
+   254: MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+   255: 	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+   256: 	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+   257: 	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+   258: 	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+   259: 	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+   260: };
+   261: 
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRead3d.h line=65
+    51: #define sMATS_SCRIPT_WINDZ2		0x0040
+    52: #define sMATS_SCRIPT_WINDX1		0x0080
+    53: #define sMATS_SCRIPT_WINDX2		0x0100
+    54: 
+    55: #define sMATS_SCRIPT_WATER		0x0200
+    56: #define sMATS_SCRIPT_NOTVIEW	0x0400
+    57: 
+    58: #define sMATS_SCRIPT_PASS		0x0800
+    59: #define sMATS_SCRIPT_NOTPASS	0x1000
+    60: 
+    61: #define sMATS_SCRIPT_RENDLATTER	0x2000
+    62: 
+    63: 
+    64: 
+    65: #define sMATS_SCRIPT_BLINK_COLOR		0x4000
+    66: 
+    67: 
+    68: 
+    69: 
+    70: 
+    71: #define sMATS_SCRIPT_CHECK_ICE			0x8000
+    72: 
+    73: 
+    74: 
+    75: 
+    76: 
+    77: #define sMATS_SCRIPT_ORG_WATER			0x10000
+    78: 
+    79: 
+    80: 
+    81: 
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=869
+   855: {
+   856: 	int rx, rz;
+   857: 	int x, y, z;
+   858: 	int ad;
+   859: 	DWORD ClipStatus;
+   860: 	int ShiftMesh;
+   861: 
+   862: 	DWORD *dwColor, *dwDefColor;
+   863: 
+   864: 	int ttCnt, ttFlag;
+   865: 
+   866: 
+   867: 
+   868: 
+   869: 	if(lpMaterial->WindMeshBottom && (lpMaterial->UseState & sMATS_SCRIPT_BLINK_COLOR) == 0)
+   870: 	{
+   871: 
+   872: 		switch(lpMaterial->WindMeshBottom & 0x7FF)
+   873: 		{
+   874: 			case sMATS_SCRIPT_WINDX1:
+   875: 			ttCnt = (RendStatTime >> 2) & 0xFF;
+   876: 			ttFlag = (RendStatTime >> 10) & 1;
+   877: 
+   878: 			if(!ttFlag) ttCnt = 255 - ttCnt;
+   879: 			ShiftMesh = (GetCos[ttCnt + 256]) >> 5;
+   880: 
+   881: 			z = sv->z;
+   882: 			y = sv->y;
+   883: 			x = (sv->x - ShiftMesh);
+   884: 			break;
+   885: 
+   886: 			case sMATS_SCRIPT_WINDZ1:
+   887: 			ttCnt = (RendStatTime >> 2) & 0xFF;
+   888: 			ttFlag = (RendStatTime >> 10) & 1;
+   889: 
+   890: 			if(!ttFlag) ttCnt = 255 - ttCnt;
+   891: 			ShiftMesh = (GetCos[ttCnt + 256]) >> 5;
+   892: 
+   893: 			x = sv->x;
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=3737
+  3723: 	renderDevice.SetRenderState(D3DRENDERSTATE_ALPHATESTENABLE, FALSE);
+  3724: 
+  3725: 	return TRUE;
+  3726: }
+  3727: 
+  3728: 
+  3729: int smRENDER3D::RenderD3D(int MatNum)
+  3730: {
+  3731: 	int rendcnt;
+  3732: 
+  3733: 	if(smRendMaterial[MatNum].TextureCounter == 0 && smRendMaterial[MatNum].AnimTexCounter == 0)
+  3734: 		return FALSE;
+  3735: 
+  3736: 	short sColors[4] = { 0, };
+  3737: 	if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  3738: 		SetBlinkColor(sColors, smRendMaterial[MatNum].Diffuse, smRendMaterial[MatNum].WindMeshBottom);
+  3739: 
+  3740: 
+  3741: 	if(RendMatrial[MatNum].MatrialCounter)
+  3742: 	{
+  3743: 
+  3744: 		int TexCnt = 0;
+  3745: 		if(s_lpItem2PassTexHandle)
+  3746: 		{
+  3747: 			RendAlphaFlag = SetItem2PassD3DRendState(&smRendMaterial[MatNum]);
+  3748: 			TexCnt = 1;
+  3749: 		}
+  3750: 		else
+  3751: 		{
+  3752: 			RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], FALSE);
+  3753: 		}
+  3754: 
+  3755: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  3756: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, FALSE);
+  3757: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  3758: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, FALSE, sColors);
+  3759: 		else
+  3760: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, FALSE);
+  3761: 
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=3757
+  3743: 
+  3744: 		int TexCnt = 0;
+  3745: 		if(s_lpItem2PassTexHandle)
+  3746: 		{
+  3747: 			RendAlphaFlag = SetItem2PassD3DRendState(&smRendMaterial[MatNum]);
+  3748: 			TexCnt = 1;
+  3749: 		}
+  3750: 		else
+  3751: 		{
+  3752: 			RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], FALSE);
+  3753: 		}
+  3754: 
+  3755: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  3756: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, FALSE);
+  3757: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  3758: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, FALSE, sColors);
+  3759: 		else
+  3760: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, FALSE);
+  3761: 
+  3762: 		renderDevice.DrawPrimitive(D3DPT_TRIANGLELIST, D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter + TexCnt],
+  3763: 			(LPVOID)RendBuff, rendcnt, NULL);
+  3764: 
+  3765: 
+  3766: 		if(RendAlphaFlag)
+  3767: 		{
+  3768: 
+  3769: 			SetD3DRendStateOnlyAlpha(&smRendMaterial[MatNum], FALSE);
+  3770: 			renderDevice.DrawPrimitive(D3DPT_TRIANGLELIST,
+  3771: 									   D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter],
+  3772: 									   (LPVOID)RendBuff,
+  3773: 									   rendcnt,
+  3774: 									   NULL);
+  3775: 
+  3776: 		}
+  3777: 	}
+  3778: 
+  3779: 
+  3780: 	if(RendMatrial[MatNum].TexClip_MatrialCounter)
+  3781: 	{
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=3788
+  3774: 									   NULL);
+  3775: 
+  3776: 		}
+  3777: 	}
+  3778: 
+  3779: 
+  3780: 	if(RendMatrial[MatNum].TexClip_MatrialCounter)
+  3781: 	{
+  3782: 		RendAlphaFlag = SetD3DRendState(&smRendMaterial[MatNum], TRUE);
+  3783: 
+  3784: 		if(smRendMaterial[MatNum].SelfIllum != 0)
+  3785: 			rendcnt = SetD3DRendBuff2(RendBuff, MatNum, TRUE);
+  3786: 
+  3787: 
+  3788: 		else if(smRendMaterial[MatNum].UseState & sMATS_SCRIPT_BLINK_COLOR)
+  3789: 			rendcnt = SetD3DRendBuff3(RendBuff, MatNum, TRUE, sColors);
+  3790: 		else
+  3791: 			rendcnt = SetD3DRendBuff(RendBuff, MatNum, TRUE);
+  3792: 
+  3793: 
+  3794: 		renderDevice.DrawPrimitive(D3DPT_TRIANGLELIST,
+  3795: 								   D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter],
+  3796: 								   (LPVOID)RendBuff,
+  3797: 								   rendcnt,
+  3798: 								   NULL);
+  3799: 
+  3800: 		if(RendAlphaFlag)
+  3801: 		{
+  3802: 
+  3803: 			SetD3DRendStateOnlyAlpha(&smRendMaterial[MatNum], TRUE);
+  3804: 			renderDevice.DrawPrimitive(D3DPT_TRIANGLELIST,
+  3805: 									   D3DFVF_TEXTURE[smRendMaterial[MatNum].TextureCounter],
+  3806: 									   (LPVOID)RendBuff,
+  3807: 									   rendcnt,
+  3808: 									   NULL);
+  3809: 		}
+  3810: 	}
+  3811: 
+  3812: 	return rendcnt;
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smTexture.cpp line=79
+    65: 	}
+    66: 
+    67: 	return TRUE;
+    68: }
+    69: 
+    70: 
+    71: 
+    72: 
+    73: 
+    74: DWORD VramTotal = 0;
+    75: 
+    76: 
+    77: 
+    78: 
+    79: #define MAX_MAP_BLINK_COLOR_TIME 8
+    80: 
+    81: const char *szBlinkTimeScript[MAX_MAP_BLINK_COLOR_TIME] =
+    82: {
+    83: 	"BLINK_TIME1:",
+    84: 	"BLINK_TIME2:",
+    85: 	"BLINK_TIME3:",
+    86: 	"BLINK_TIME4:",
+    87: 	"BLINK_TIME5:",
+    88: 	"BLINK_TIME6:",
+    89: 	"BLINK_TIME7:",
+    90: 	"BLINK_TIME8:",
+    91: };
+    92: 
+    93: const DWORD dwBlinkTimeCode[MAX_MAP_BLINK_COLOR_TIME] =
+    94: {
+    95: 	9, 10, 11, 12, 13, 14, 15, 16,
+    96: };
+    97: 
+    98: 
+    99: 
+   100: 
+   101: 
+   102: int MipMapModeCreate;
+   103: int TextureSwapMode = TRUE;
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smTexture.cpp line=81
+    67: 	return TRUE;
+    68: }
+    69: 
+    70: 
+    71: 
+    72: 
+    73: 
+    74: DWORD VramTotal = 0;
+    75: 
+    76: 
+    77: 
+    78: 
+    79: #define MAX_MAP_BLINK_COLOR_TIME 8
+    80: 
+    81: const char *szBlinkTimeScript[MAX_MAP_BLINK_COLOR_TIME] =
+    82: {
+    83: 	"BLINK_TIME1:",
+    84: 	"BLINK_TIME2:",
+    85: 	"BLINK_TIME3:",
+    86: 	"BLINK_TIME4:",
+    87: 	"BLINK_TIME5:",
+    88: 	"BLINK_TIME6:",
+    89: 	"BLINK_TIME7:",
+    90: 	"BLINK_TIME8:",
+    91: };
+    92: 
+    93: const DWORD dwBlinkTimeCode[MAX_MAP_BLINK_COLOR_TIME] =
+    94: {
+    95: 	9, 10, 11, 12, 13, 14, 15, 16,
+    96: };
+    97: 
+    98: 
+    99: 
+   100: 
+   101: 
+   102: int MipMapModeCreate;
+   103: int TextureSwapMode = TRUE;
+   104: static int TexturHalfSize = FALSE;
+   105: 
+TERM BlinkColor: matches=352
+SOURCE_FILE SourceCode/SrcGame/src/HoBaram/HoSky.cpp line=120
+   106: 
+   107: 				int alphaTestDepth = smRender.AlphaTestDepth;
+   108: 				smRender.AlphaTestDepth = 0;
+   109: 
+   110: 				oldR = smRender.Color_R;
+   111: 				oldG = smRender.Color_G;
+   112: 				oldB = smRender.Color_B;
+   113: 				oldA = smRender.Color_A;
+   114: 
+   115: 
+   116: 				if(BlinkFlag && BlinkDrawFlag)
+   117: 				{
+   118: 					if(index == 0)
+   119: 					{
+   120: 						drawR = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorR + BlinkColor;
+   121: 						drawG = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorG + BlinkColor;
+   122: 						drawB = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorB + BlinkColor;
+   123: 						drawA = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorA + BlinkColor;
+   124: 					}
+   125: 					else
+   126: 					{
+   127: 						drawR = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorR;
+   128: 						drawG = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorG;
+   129: 						drawB = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorB;
+   130: 						drawA = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorA;
+   131: 					}
+   132: 				}
+   133: 				else
+   134: 				{
+   135: 
+   136: 					drawR = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorR;
+   137: 					drawG = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorG;
+   138: 					drawB = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorB;
+   139: 					drawA = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorA;
+   140: 				}
+   141: 
+   142: 				if(SkyDrawInfoList[drawIndex].SkyResInfoList[index].fadeSlowFlag == 0)
+   143: 				{
+   144: 					if(alphaCount == 100)
+SOURCE_FILE SourceCode/SrcGame/src/HoBaram/HoSky.cpp line=121
+   107: 				int alphaTestDepth = smRender.AlphaTestDepth;
+   108: 				smRender.AlphaTestDepth = 0;
+   109: 
+   110: 				oldR = smRender.Color_R;
+   111: 				oldG = smRender.Color_G;
+   112: 				oldB = smRender.Color_B;
+   113: 				oldA = smRender.Color_A;
+   114: 
+   115: 
+   116: 				if(BlinkFlag && BlinkDrawFlag)
+   117: 				{
+   118: 					if(index == 0)
+   119: 					{
+   120: 						drawR = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorR + BlinkColor;
+   121: 						drawG = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorG + BlinkColor;
+   122: 						drawB = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorB + BlinkColor;
+   123: 						drawA = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorA + BlinkColor;
+   124: 					}
+   125: 					else
+   126: 					{
+   127: 						drawR = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorR;
+   128: 						drawG = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorG;
+   129: 						drawB = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorB;
+   130: 						drawA = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorA;
+   131: 					}
+   132: 				}
+   133: 				else
+   134: 				{
+   135: 
+   136: 					drawR = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorR;
+   137: 					drawG = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorG;
+   138: 					drawB = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorB;
+   139: 					drawA = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorA;
+   140: 				}
+   141: 
+   142: 				if(SkyDrawInfoList[drawIndex].SkyResInfoList[index].fadeSlowFlag == 0)
+   143: 				{
+   144: 					if(alphaCount == 100)
+   145: 					{
+SOURCE_FILE SourceCode/SrcGame/src/HoBaram/HoSky.cpp line=122
+   108: 				smRender.AlphaTestDepth = 0;
+   109: 
+   110: 				oldR = smRender.Color_R;
+   111: 				oldG = smRender.Color_G;
+   112: 				oldB = smRender.Color_B;
+   113: 				oldA = smRender.Color_A;
+   114: 
+   115: 
+   116: 				if(BlinkFlag && BlinkDrawFlag)
+   117: 				{
+   118: 					if(index == 0)
+   119: 					{
+   120: 						drawR = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorR + BlinkColor;
+   121: 						drawG = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorG + BlinkColor;
+   122: 						drawB = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorB + BlinkColor;
+   123: 						drawA = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorA + BlinkColor;
+   124: 					}
+   125: 					else
+   126: 					{
+   127: 						drawR = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorR;
+   128: 						drawG = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorG;
+   129: 						drawB = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorB;
+   130: 						drawA = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorA;
+   131: 					}
+   132: 				}
+   133: 				else
+   134: 				{
+   135: 
+   136: 					drawR = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorR;
+   137: 					drawG = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorG;
+   138: 					drawB = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorB;
+   139: 					drawA = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorA;
+   140: 				}
+   141: 
+   142: 				if(SkyDrawInfoList[drawIndex].SkyResInfoList[index].fadeSlowFlag == 0)
+   143: 				{
+   144: 					if(alphaCount == 100)
+   145: 					{
+   146: 						smRender.Color_R = drawR - 255;
+SOURCE_FILE SourceCode/SrcGame/src/HoBaram/HoSky.cpp line=123
+   109: 
+   110: 				oldR = smRender.Color_R;
+   111: 				oldG = smRender.Color_G;
+   112: 				oldB = smRender.Color_B;
+   113: 				oldA = smRender.Color_A;
+   114: 
+   115: 
+   116: 				if(BlinkFlag && BlinkDrawFlag)
+   117: 				{
+   118: 					if(index == 0)
+   119: 					{
+   120: 						drawR = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorR + BlinkColor;
+   121: 						drawG = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorG + BlinkColor;
+   122: 						drawB = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorB + BlinkColor;
+   123: 						drawA = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorA + BlinkColor;
+   124: 					}
+   125: 					else
+   126: 					{
+   127: 						drawR = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorR;
+   128: 						drawG = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorG;
+   129: 						drawB = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorB;
+   130: 						drawA = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorA;
+   131: 					}
+   132: 				}
+   133: 				else
+   134: 				{
+   135: 
+   136: 					drawR = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorR;
+   137: 					drawG = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorG;
+   138: 					drawB = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorB;
+   139: 					drawA = SkyDrawInfoList[drawIndex].SkyResInfoList[index].colorA;
+   140: 				}
+   141: 
+   142: 				if(SkyDrawInfoList[drawIndex].SkyResInfoList[index].fadeSlowFlag == 0)
+   143: 				{
+   144: 					if(alphaCount == 100)
+   145: 					{
+   146: 						smRender.Color_R = drawR - 255;
+   147: 						smRender.Color_G = drawG - 255;
+SOURCE_FILE SourceCode/SrcGame/src/HoBaram/HoSky.cpp line=303
+   289: 
+   290: int HoSky::Main()
+   291: {
+   292: 	if(((DrawIndex == 21) && (CodeID == FIELD_BACKIMAGE_IRONBOSS)) ||
+   293: 		(CodeID == 0x80))
+   294: 	{
+   295: 		BlinkTime--;
+   296: 		if(BlinkTime <= 0)
+   297: 			BlinkTime = 400;
+   298: 
+   299: 		if((BlinkTime % 300) == 0 && !BlinkFlag)
+   300: 		{
+   301: 			BlinkFlag = TRUE;
+   302: 			BlinkCount = 0;
+   303: 			BlinkColor = 90;
+   304: 		}
+   305: 
+   306: 		if(BlinkFlag)
+   307: 		{
+   308: 			if((BlinkTime % 5) == 0)
+   309: 			{
+   310: 				BlinkDrawFlag = !BlinkDrawFlag;
+   311: 				BlinkCount++;
+   312: 				BlinkColor -= 5;
+   313: 				if(BlinkCount >= 7)
+   314: 				{
+   315: 					BlinkFlag = FALSE;
+   316: 					BlinkDrawFlag = FALSE;
+   317: 					BlinkCount = 0;
+   318: 
+   319: 				}
+   320: 			}
+   321: 		}
+   322: 		if(CodeID != 0x23)
+   323: 		{
+   324: 			if((ParticleCount <= 70 * 8) && (BlinkTime % 60) == 0)
+   325: 				ParticleEffectSpawn();
+   326: 			if((ParticleCount > 70 * 8) && (BlinkTime % 350) == 0)
+   327: 				ParticleEffectSpawn();
+SOURCE_FILE SourceCode/SrcGame/src/HoBaram/HoSky.cpp line=312
+   298: 
+   299: 		if((BlinkTime % 300) == 0 && !BlinkFlag)
+   300: 		{
+   301: 			BlinkFlag = TRUE;
+   302: 			BlinkCount = 0;
+   303: 			BlinkColor = 90;
+   304: 		}
+   305: 
+   306: 		if(BlinkFlag)
+   307: 		{
+   308: 			if((BlinkTime % 5) == 0)
+   309: 			{
+   310: 				BlinkDrawFlag = !BlinkDrawFlag;
+   311: 				BlinkCount++;
+   312: 				BlinkColor -= 5;
+   313: 				if(BlinkCount >= 7)
+   314: 				{
+   315: 					BlinkFlag = FALSE;
+   316: 					BlinkDrawFlag = FALSE;
+   317: 					BlinkCount = 0;
+   318: 
+   319: 				}
+   320: 			}
+   321: 		}
+   322: 		if(CodeID != 0x23)
+   323: 		{
+   324: 			if((ParticleCount <= 70 * 8) && (BlinkTime % 60) == 0)
+   325: 				ParticleEffectSpawn();
+   326: 			if((ParticleCount > 70 * 8) && (BlinkTime % 350) == 0)
+   327: 				ParticleEffectSpawn();
+   328: 			ParticleCount++;
+   329: 		}
+   330: 	}
+   331: 	else
+   332: 	{
+   333: 		BlinkFlag = FALSE;
+   334: 		BlinkDrawFlag = FALSE;
+   335: 		BlinkCount = 0;
+   336: 		ParticleCount = 0;
+SOURCE_FILE SourceCode/SrcGame/src/HoBaram/HoSky.cpp line=698
+   684: 	FogStartColorA = 0;
+   685: 
+   686: 	FogEndColorR = 0;
+   687: 	FogEndColorG = 0;
+   688: 	FogEndColorB = 0;
+   689: 	FogEndColorA = 0;
+   690: 
+   691: 	FogStartPos1 = 1000;
+   692: 	FogStartPos2 = 1000;
+   693: 
+   694: 	FogEndPos1 = 3000;
+   695: 	FogEndPos2 = 3000;
+   696: 
+   697: 	BlinkTime = 200;
+   698: 	BlinkColor = 65;
+   699: 	BlinkFlag = FALSE;
+   700: 	BlinkDrawFlag = FALSE;
+   701: 	BlinkCount = 0;
+   702: 	ParticleCount = 0;
+   703: 	SnowParticleNum = -1;
+   704: 	StartSnowFlag = FALSE;
+   705: }
+   706: 
+   707: 
+   708: 
+   709: void HoSky::Destroy()
+   710: {
+   711: 	DestroyRes();
+   712: 	SkyDrawInfoList.erase(SkyDrawInfoList.begin(), SkyDrawInfoList.end());
+   713: 	DrawIndex = -1;
+   714: }
+   715: 
+   716: 
+   717: unsigned int HoSky::SetDrawIndex(unsigned drawIndex, int codeID)
+   718: {
+   719: 
+   720: 	CodeID = codeID;
+   721: 	if(drawIndex >= SkyDrawInfoList.size() && drawIndex < -1)
+   722: 		return -1;
+SOURCE_FILE SourceCode/SrcGame/src/HoBaram/HoSky.h line=124
+   110: 	int							FogEndColorR;
+   111: 	int							FogEndColorG;
+   112: 	int							FogEndColorB;
+   113: 	int							FogEndColorA;
+   114: 
+   115: 	int							FogStartPos1;
+   116: 	int							FogStartPos2;
+   117: 
+   118: 	int							FogEndPos1;
+   119: 	int							FogEndPos2;
+   120: 	int							FieldStartColorDelay;
+   121: 
+   122: 
+   123: 	int							BlinkTime;
+   124: 	int							BlinkColor;
+   125: 	BOOL						BlinkFlag;
+   126: 	BOOL						BlinkDrawFlag;
+   127: 	int							BlinkCount;
+   128: 	int							ParticleCount;
+   129: 	int							SnowParticleNum;
+   130: 	BOOL						StartSnowFlag;
+   131: public:
+   132: 	int							FieldColorR, FieldColorG, FieldColorB;
+   133: 	BOOL						FirstSkyLoadFlag;
+   134: 	BOOL						TestModeFlag;
+   135: 
+   136: private:
+   137: 	void		ParticleEffectSpawn();
+   138: 
+   139: public:
+   140: 	HoSky();
+   141: 	~HoSky();
+   142: 
+   143: 	int			Main();
+   144: 	int			Draw(int x, int y, int z, int ax, int ay, int az);
+   145: 	int			Draw(int x, int y, int z, int ax, int ay, int az, unsigned int index, int alphaCount = 100, int alphaNextCount = 100);
+   146: 
+   147: 	void		Destroy();
+   148: 	void		Create();
+SOURCE_FILE SourceCode/SrcGame/src/character.cpp line=3225
+  3211: }
+  3212: 
+  3213: 
+  3214: extern int MatLight[2];
+  3215: 
+  3216: #define SERVER_CHAR_FRAME_STEP			320
+  3217: #define SERVER_CHAR_SKIP				4
+  3218: 
+  3219: #define VIEW_HIGH_DIST	36864			
+  3220: #define VIEW_MID_DIST	102400			
+  3221: 
+  3222: 
+  3223: int bb_r, bb_g, bb_b, bb_a;
+  3224: 
+  3225: int SetRenderBlinkColor(smCHARTOOL *smCharTool)
+  3226: {
+  3227: 	int BlinkMsk;
+  3228: 	int BlinkTime;
+  3229: 	int bTime;
+  3230: 	int Blink, r, g, b, a;
+  3231: 
+  3232: 	bb_r = smRender.Color_R;
+  3233: 	bb_g = smRender.Color_G;
+  3234: 	bb_b = smRender.Color_B;
+  3235: 	bb_a = smRender.Color_A;
+  3236: 
+  3237: 	if (smCharTool->ColorBlink == 0) return NULL;
+  3238: 
+  3239: 	Blink = smCharTool->ColorBlink;
+  3240: 	r = smCharTool->sColors[SMC_R];
+  3241: 	g = smCharTool->sColors[SMC_G];
+  3242: 	b = smCharTool->sColors[SMC_B];
+  3243: 	a = smCharTool->sColors[SMC_A];
+  3244: 
+  3245: 	if (Blink < 0)
+  3246: 	{
+  3247: 		smRender.Color_R += r;
+  3248: 		smRender.Color_G += g;
+  3249: 		smRender.Color_B += b;
+SOURCE_FILE SourceCode/SrcGame/src/character.cpp line=3290
+  3276: 	if (a > 0)
+  3277: 		smRender.Color_A -= a;
+  3278: 
+  3279: 	bTime = (bTime*fONE) >> Blink;
+  3280: 	if (!bTime) bTime = 1;
+  3281: 
+  3282: 	if (smCharTool->TexMixCode >= 0)
+  3283: 	{
+  3284: 		SetItem2PassTexture(smCharTool->TexMixCode, smCharTool->TexScroll);
+  3285: 	}
+  3286: 
+  3287: 	return  bTime;
+  3288: }
+  3289: 
+  3290: int RestoreRenderBlinkColor()
+  3291: {
+  3292: 	smRender.Color_R = bb_r;
+  3293: 	smRender.Color_G = bb_g;
+  3294: 	smRender.Color_B = bb_b;
+  3295: 	smRender.Color_A = bb_a;
+  3296: 
+  3297: 	SetItem2PassTexture(-1);
+  3298: 
+  3299: 	return TRUE;
+  3300: }
+  3301: 
+  3302: 
+  3303: 
+  3304: int smCHAR::ChargingSkill()
+  3305: {
+  3306: 	DWORD dwFrame;
+  3307: 
+  3308: 	if (this != lpCurPlayer) return FALSE;
+  3309: 
+  3310: 	dwFrame = frame - MotionInfo->StartFrame * 160;
+  3311: 
+  3312: 	if (SkillChargingFlag && MouseButton[1] == 0) SkillChargingFlag = 0;
+  3313: 
+  3314: 	switch (AttackSkil & 0xFF)
+SOURCE_FILE SourceCode/SrcGame/src/character.cpp line=8363
+  8349: 				else
+  8350: 				{
+  8351: 					pat->LinkParentObject(AnimPattern, HvLeftHand.ObjBip);
+  8352: 				}
+  8353: 
+  8354: 				pat->SetPosi(&Posi, &angle);
+  8355: 				pat->Frame = frame;
+  8356: 
+  8357: 
+  8358: 				memcpy(&HvLeftHand_Matrix, &HvLeftHand.ObjBip->mWorld, sizeof(smMATRIX));
+  8359: 
+  8360: 				if (!HvLeftHand.ColorBlink || !HvLeftHand.sColors[SMC_A])
+  8361: 				{
+  8362: 
+  8363: 					BlinkLevel = SetRenderBlinkColor(&HvLeftHand);
+  8364: 
+  8365: 
+  8366: 					if (HvLeftHand.BlinkScale && BlinkLevel)
+  8367: 					{
+  8368: 						smIdentityMatrix(Mat);
+  8369: 						if (HvLeftHand.BlinkScale < 0)
+  8370: 							BlinkScale = -HvLeftHand.BlinkScale;
+  8371: 						else
+  8372: 							BlinkScale = (BlinkLevel*HvLeftHand.BlinkScale) >> FLOATNS;
+  8373: 						Mat._11 = BlinkScale;
+  8374: 						Mat._22 = BlinkScale;
+  8375: 						Mat._33 = BlinkScale;
+  8376: 						pat->Frame = -1;
+  8377: 						memcpy(&pat->obj3d[0]->mWorld, &HvLeftHand.ObjBip->mWorld, sizeof(smMATRIX));
+  8378: 						smMatrixMult(pat->obj3d[0]->mWorld, Mat, pat->obj3d[0]->mWorld);
+  8379: 					}
+  8380: 
+  8381: 					pat->RenderD3D(&CameraPosi, &CameraAngle);
+  8382: 					RestoreRenderBlinkColor();
+  8383: 
+  8384: 
+  8385: 					if (MotionInfo->State == CHRMOTION_STATE_SKILL && (AttackSkil & 0xFF) == SKILL_PLAY_SHIELD_STRIKE && ShieldObjBip)
+  8386: 					{
+  8387: 
+SOURCE_FILE SourceCode/SrcGame/src/character.cpp line=8382
+  8368: 						smIdentityMatrix(Mat);
+  8369: 						if (HvLeftHand.BlinkScale < 0)
+  8370: 							BlinkScale = -HvLeftHand.BlinkScale;
+  8371: 						else
+  8372: 							BlinkScale = (BlinkLevel*HvLeftHand.BlinkScale) >> FLOATNS;
+  8373: 						Mat._11 = BlinkScale;
+  8374: 						Mat._22 = BlinkScale;
+  8375: 						Mat._33 = BlinkScale;
+  8376: 						pat->Frame = -1;
+  8377: 						memcpy(&pat->obj3d[0]->mWorld, &HvLeftHand.ObjBip->mWorld, sizeof(smMATRIX));
+  8378: 						smMatrixMult(pat->obj3d[0]->mWorld, Mat, pat->obj3d[0]->mWorld);
+  8379: 					}
+  8380: 
+  8381: 					pat->RenderD3D(&CameraPosi, &CameraAngle);
+  8382: 					RestoreRenderBlinkColor();
+  8383: 
+  8384: 
+  8385: 					if (MotionInfo->State == CHRMOTION_STATE_SKILL && (AttackSkil & 0xFF) == SKILL_PLAY_SHIELD_STRIKE && ShieldObjBip)
+  8386: 					{
+  8387: 
+  8388: 
+  8389: 						smRender.Color_R = cr;
+  8390: 						smRender.Color_G = cg;
+  8391: 						smRender.Color_B = cb;
+  8392: 
+  8393: 						sPos3.x = pat->obj3d[0]->mWorld._41 + pX;
+  8394: 						sPos3.z = pat->obj3d[0]->mWorld._42 + pZ;
+  8395: 						sPos3.y = pat->obj3d[0]->mWorld._43 + pY;
+  8396: 						sinEffect_Shield_Strike(&sPos3);
+  8397: 					}
+  8398: 				}
+  8399: 				else
+  8400: 					Rend_HvLeftHand = FALSE;
+  8401: 
+  8402: 				pat->LinkParentObject(0, 0);
+  8403: 				pat->TmLastFrame = -1;
+  8404: 			}
+  8405: 
+  8406: 
+SOURCE_FILE SourceCode/SrcGame/src/character.cpp line=8428
+  8414: 				else
+  8415: 				{
+  8416: 
+  8417: 					pat = HvRightHand.PatTool;
+  8418: 					pat->LinkParentObject(AnimPattern, HvRightHand.ObjBip);
+  8419: 					pat->SetPosi(&Posi, &angle);
+  8420: 					pat->Frame = frame;
+  8421: 
+  8422: 
+  8423: 					memcpy(&HvRightHand_Matrix, &HvRightHand.ObjBip->mWorld, sizeof(smMATRIX));
+  8424: 
+  8425: 					if (!HvRightHand.ColorBlink || !HvRightHand.sColors[SMC_A])
+  8426: 					{
+  8427: 
+  8428: 						BlinkLevel = SetRenderBlinkColor(&HvRightHand);
+  8429: 
+  8430: 
+  8431: 						if (HvRightHand.BlinkScale && BlinkLevel)
+  8432: 						{
+  8433: 							smIdentityMatrix(Mat);
+  8434: 							if (HvRightHand.BlinkScale < 0)
+  8435: 								BlinkScale = -HvRightHand.BlinkScale;
+  8436: 							else
+  8437: 								BlinkScale = (BlinkLevel*HvRightHand.BlinkScale) >> FLOATNS;
+  8438: 
+  8439: 							Mat._11 = BlinkScale;
+  8440: 							Mat._22 = BlinkScale;
+  8441: 							Mat._33 = BlinkScale;
+  8442: 							pat->Frame = -1;
+  8443: 							memcpy(&pat->obj3d[0]->mWorld, &HvRightHand.ObjBip->mWorld, sizeof(smMATRIX));
+  8444: 							smMatrixMult(pat->obj3d[0]->mWorld, Mat, pat->obj3d[0]->mWorld);
+  8445: 						}
+  8446: 
+  8447: 						pat->RenderD3D(&CameraPosi, &CameraAngle);
+  8448: 						RestoreRenderBlinkColor();
+  8449: 					}
+  8450: 					else
+  8451: 						Rend_HvRightHand = FALSE;
+  8452: 
+SOURCE_FILE SourceCode/SrcGame/src/character.cpp line=8448
+  8434: 							if (HvRightHand.BlinkScale < 0)
+  8435: 								BlinkScale = -HvRightHand.BlinkScale;
+  8436: 							else
+  8437: 								BlinkScale = (BlinkLevel*HvRightHand.BlinkScale) >> FLOATNS;
+  8438: 
+  8439: 							Mat._11 = BlinkScale;
+  8440: 							Mat._22 = BlinkScale;
+  8441: 							Mat._33 = BlinkScale;
+  8442: 							pat->Frame = -1;
+  8443: 							memcpy(&pat->obj3d[0]->mWorld, &HvRightHand.ObjBip->mWorld, sizeof(smMATRIX));
+  8444: 							smMatrixMult(pat->obj3d[0]->mWorld, Mat, pat->obj3d[0]->mWorld);
+  8445: 						}
+  8446: 
+  8447: 						pat->RenderD3D(&CameraPosi, &CameraAngle);
+  8448: 						RestoreRenderBlinkColor();
+  8449: 					}
+  8450: 					else
+  8451: 						Rend_HvRightHand = FALSE;
+  8452: 
+  8453: 					pat->LinkParentObject(0, 0);
+  8454: 					pat->TmLastFrame = -1;
+  8455: 				}
+  8456: 			}
+  8457: 		}
+  8458: 		else
+  8459: 		{
+  8460: 			if (dwActionItemCode)
+  8461: 			{
+  8462: 
+  8463: 				BlinkScale = 0;
+  8464: 
+  8465: 
+  8466: 				if (HvLeftHand.dwItemCode == dwActionItemCode)
+  8467: 				{
+  8468: 					pat = HvLeftHand.PatTool;
+  8469: 					if (!HvLeftHand.ColorBlink || !HvLeftHand.sColors[SMC_A])
+  8470: 					{
+  8471: 
+  8472: 						BlinkLevel = SetRenderBlinkColor(&HvLeftHand);
+SOURCE_FILE SourceCode/SrcGame/src/character.cpp line=8472
+  8458: 		else
+  8459: 		{
+  8460: 			if (dwActionItemCode)
+  8461: 			{
+  8462: 
+  8463: 				BlinkScale = 0;
+  8464: 
+  8465: 
+  8466: 				if (HvLeftHand.dwItemCode == dwActionItemCode)
+  8467: 				{
+  8468: 					pat = HvLeftHand.PatTool;
+  8469: 					if (!HvLeftHand.ColorBlink || !HvLeftHand.sColors[SMC_A])
+  8470: 					{
+  8471: 
+  8472: 						BlinkLevel = SetRenderBlinkColor(&HvLeftHand);
+  8473: 
+  8474: 						if (HvLeftHand.BlinkScale && BlinkLevel)
+  8475: 						{
+  8476: 							if (HvLeftHand.BlinkScale < 0)
+  8477: 								BlinkScale = -HvLeftHand.BlinkScale;
+  8478: 							else
+  8479: 								BlinkScale = (BlinkLevel*HvLeftHand.BlinkScale) >> FLOATNS;
+  8480: 							memcpy(&pat->obj3d[0]->mWorld, &HvLeftHand.ObjBip->mWorld, sizeof(smMATRIX));
+  8481: 						}
+  8482: 					}
+  8483: 					else
+  8484: 						Rend_HvLeftHand = FALSE;
+  8485: 				}
+  8486: 				if (HvRightHand.dwItemCode == dwActionItemCode)
+  8487: 				{
+  8488: 					pat = HvRightHand.PatTool;
+  8489: 					if (!HvRightHand.ColorBlink || !HvRightHand.sColors[SMC_A])
+  8490: 					{
+  8491: 
+  8492: 						BlinkLevel = SetRenderBlinkColor(&HvRightHand);
+  8493: 
+  8494: 						if (HvRightHand.BlinkScale && BlinkLevel)
+  8495: 						{
+  8496: 							if (HvRightHand.BlinkScale < 0)
+SOURCE_FILE SourceCode/SrcGame/src/character.cpp line=8492
+  8478: 							else
+  8479: 								BlinkScale = (BlinkLevel*HvLeftHand.BlinkScale) >> FLOATNS;
+  8480: 							memcpy(&pat->obj3d[0]->mWorld, &HvLeftHand.ObjBip->mWorld, sizeof(smMATRIX));
+  8481: 						}
+  8482: 					}
+  8483: 					else
+  8484: 						Rend_HvLeftHand = FALSE;
+  8485: 				}
+  8486: 				if (HvRightHand.dwItemCode == dwActionItemCode)
+  8487: 				{
+  8488: 					pat = HvRightHand.PatTool;
+  8489: 					if (!HvRightHand.ColorBlink || !HvRightHand.sColors[SMC_A])
+  8490: 					{
+  8491: 
+  8492: 						BlinkLevel = SetRenderBlinkColor(&HvRightHand);
+  8493: 
+  8494: 						if (HvRightHand.BlinkScale && BlinkLevel)
+  8495: 						{
+  8496: 							if (HvRightHand.BlinkScale < 0)
+  8497: 								BlinkScale = -HvRightHand.BlinkScale;
+  8498: 							else
+  8499: 								BlinkScale = (BlinkLevel*HvRightHand.BlinkScale) >> FLOATNS;
+  8500: 
+  8501: 							memcpy(&pat->obj3d[0]->mWorld, &HvRightHand.ObjBip->mWorld, sizeof(smMATRIX));
+  8502: 						}
+  8503: 					}
+  8504: 					else
+  8505: 						Rend_HvRightHand = FALSE;
+  8506: 				}
+  8507: 
+  8508: 				pat->LinkParentObject(AnimPattern, BackObjBip[dwItemSetting - 1]);
+  8509: 				pat->SetPosi(&Posi, &angle);
+  8510: 				pat->Frame = frame;
+  8511: 
+  8512: 
+  8513: 				if (BlinkScale)
+  8514: 				{
+  8515: 					smIdentityMatrix(Mat);
+  8516: 					Mat._11 = BlinkScale;
+SOURCE_FILE SourceCode/SrcGame/src/character.cpp line=8530
+  8516: 					Mat._11 = BlinkScale;
+  8517: 					Mat._22 = BlinkScale;
+  8518: 					Mat._33 = BlinkScale;
+  8519: 					pat->Frame = -1;
+  8520: 					smMatrixMult(pat->obj3d[0]->mWorld, Mat, pat->obj3d[0]->mWorld);
+  8521: 				}
+  8522: 
+  8523: 
+  8524: 				if (HvLeftHand.dwItemCode == dwActionItemCode)
+  8525: 				{
+  8526: 					memcpy(&HvLeftHand_Matrix, &BackObjBip[dwItemSetting - 1]->mWorld, sizeof(smMATRIX));
+  8527: 					if (Rend_HvLeftHand)
+  8528: 					{
+  8529: 						pat->RenderD3D(&CameraPosi, &CameraAngle);
+  8530: 						RestoreRenderBlinkColor();
+  8531: 					}
+  8532: 				}
+  8533: 				else
+  8534: 				{
+  8535: 					memcpy(&HvRightHand_Matrix, &BackObjBip[dwItemSetting - 1]->mWorld, sizeof(smMATRIX));
+  8536: 					if (Rend_HvRightHand)
+  8537: 					{
+  8538: 						pat->RenderD3D(&CameraPosi, &CameraAngle);
+  8539: 						RestoreRenderBlinkColor();
+  8540: 					}
+  8541: 				}
+  8542: 
+  8543: 				pat->LinkParentObject(0, 0);
+  8544: 				pat->TmLastFrame = -1;
+  8545: 			}
+  8546: 
+  8547: 			if (HvLeftHand.PatTool &&  dwActionItemCode != HvLeftHand.dwItemCode)
+  8548: 			{
+  8549: 				pat = HvLeftHand.PatTool;
+  8550: 				pat->LinkParentObject(AnimPattern, HvLeftHand.ObjBip);
+  8551: 				pat->SetPosi(&Posi, &angle);
+  8552: 				pat->Frame = frame;
+  8553: 
+  8554: 				memcpy(&HvLeftHand_Matrix, &HvLeftHand.ObjBip->mWorld, sizeof(smMATRIX));
+SOURCE_FILE SourceCode/SrcGame/src/character.cpp line=8539
+  8525: 				{
+  8526: 					memcpy(&HvLeftHand_Matrix, &BackObjBip[dwItemSetting - 1]->mWorld, sizeof(smMATRIX));
+  8527: 					if (Rend_HvLeftHand)
+  8528: 					{
+  8529: 						pat->RenderD3D(&CameraPosi, &CameraAngle);
+  8530: 						RestoreRenderBlinkColor();
+  8531: 					}
+  8532: 				}
+  8533: 				else
+  8534: 				{
+  8535: 					memcpy(&HvRightHand_Matrix, &BackObjBip[dwItemSetting - 1]->mWorld, sizeof(smMATRIX));
+  8536: 					if (Rend_HvRightHand)
+  8537: 					{
+  8538: 						pat->RenderD3D(&CameraPosi, &CameraAngle);
+  8539: 						RestoreRenderBlinkColor();
+  8540: 					}
+  8541: 				}
+  8542: 
+  8543: 				pat->LinkParentObject(0, 0);
+  8544: 				pat->TmLastFrame = -1;
+  8545: 			}
+  8546: 
+  8547: 			if (HvLeftHand.PatTool &&  dwActionItemCode != HvLeftHand.dwItemCode)
+  8548: 			{
+  8549: 				pat = HvLeftHand.PatTool;
+  8550: 				pat->LinkParentObject(AnimPattern, HvLeftHand.ObjBip);
+  8551: 				pat->SetPosi(&Posi, &angle);
+  8552: 				pat->Frame = frame;
+  8553: 
+  8554: 				memcpy(&HvLeftHand_Matrix, &HvLeftHand.ObjBip->mWorld, sizeof(smMATRIX));
+  8555: 
+  8556: 				if (!HvLeftHand.ColorBlink || !HvLeftHand.sColors[SMC_A])
+  8557: 				{
+  8558: 
+  8559: 					BlinkLevel = SetRenderBlinkColor(&HvLeftHand);
+  8560: 
+  8561: 
+  8562: 					if (HvLeftHand.BlinkScale && BlinkLevel)
+  8563: 					{
+SOURCE_FILE SourceCode/SrcGame/src/character.cpp line=8559
+  8545: 			}
+  8546: 
+  8547: 			if (HvLeftHand.PatTool &&  dwActionItemCode != HvLeftHand.dwItemCode)
+  8548: 			{
+  8549: 				pat = HvLeftHand.PatTool;
+  8550: 				pat->LinkParentObject(AnimPattern, HvLeftHand.ObjBip);
+  8551: 				pat->SetPosi(&Posi, &angle);
+  8552: 				pat->Frame = frame;
+  8553: 
+  8554: 				memcpy(&HvLeftHand_Matrix, &HvLeftHand.ObjBip->mWorld, sizeof(smMATRIX));
+  8555: 
+  8556: 				if (!HvLeftHand.ColorBlink || !HvLeftHand.sColors[SMC_A])
+  8557: 				{
+  8558: 
+  8559: 					BlinkLevel = SetRenderBlinkColor(&HvLeftHand);
+  8560: 
+  8561: 
+  8562: 					if (HvLeftHand.BlinkScale && BlinkLevel)
+  8563: 					{
+  8564: 						smIdentityMatrix(Mat);
+  8565: 						if (HvLeftHand.BlinkScale < 0)
+  8566: 							BlinkScale = -HvLeftHand.BlinkScale;
+  8567: 						else
+  8568: 							BlinkScale = (BlinkLevel*HvLeftHand.BlinkScale) >> FLOATNS;
+  8569: 
+  8570: 						Mat._11 = BlinkScale;
+  8571: 						Mat._22 = BlinkScale;
+  8572: 						Mat._33 = BlinkScale;
+  8573: 						pat->Frame = -1;
+  8574: 						memcpy(&pat->obj3d[0]->mWorld, &HvLeftHand.ObjBip->mWorld, sizeof(smMATRIX));
+  8575: 						smMatrixMult(pat->obj3d[0]->mWorld, Mat, pat->obj3d[0]->mWorld);
+  8576: 					}
+  8577: 					pat->RenderD3D(&CameraPosi, &CameraAngle);
+  8578: 					RestoreRenderBlinkColor();
+  8579: 				}
+  8580: 				else
+  8581: 					Rend_HvLeftHand = FALSE;
+  8582: 
+  8583: 				pat->LinkParentObject(0, 0);
+SOURCE_FILE SourceCode/SrcGame/src/character.cpp line=8578
+  8564: 						smIdentityMatrix(Mat);
+  8565: 						if (HvLeftHand.BlinkScale < 0)
+  8566: 							BlinkScale = -HvLeftHand.BlinkScale;
+  8567: 						else
+  8568: 							BlinkScale = (BlinkLevel*HvLeftHand.BlinkScale) >> FLOATNS;
+  8569: 
+  8570: 						Mat._11 = BlinkScale;
+  8571: 						Mat._22 = BlinkScale;
+  8572: 						Mat._33 = BlinkScale;
+  8573: 						pat->Frame = -1;
+  8574: 						memcpy(&pat->obj3d[0]->mWorld, &HvLeftHand.ObjBip->mWorld, sizeof(smMATRIX));
+  8575: 						smMatrixMult(pat->obj3d[0]->mWorld, Mat, pat->obj3d[0]->mWorld);
+  8576: 					}
+  8577: 					pat->RenderD3D(&CameraPosi, &CameraAngle);
+  8578: 					RestoreRenderBlinkColor();
+  8579: 				}
+  8580: 				else
+  8581: 					Rend_HvLeftHand = FALSE;
+  8582: 
+  8583: 				pat->LinkParentObject(0, 0);
+  8584: 				pat->TmLastFrame = -1;
+  8585: 			}
+  8586: 
+  8587: 		}
+  8588: 
+  8589: 
+  8590: 		if ((MotionInfo->State == CHRMOTION_STATE_ATTACK || MotionInfo->State == CHRMOTION_STATE_SKILL)
+  8591: 			&& (dwActionItemCode&sinITEM_MASK2) == sinWS1
+  8592: 			&& !HvRightHand.PatTool && !ShootingFlag && !HideWeapon)
+  8593: 		{
+  8594: 			pat = PatArrow;
+  8595: 			pat->LinkParentObject(AnimPattern, HvRightHand.ObjBip);
+  8596: 			pat->SetPosi(&Posi, &angle);
+  8597: 			pat->Frame = frame;
+  8598: 			pat->RenderD3D(&CameraPosi, &CameraAngle);
+  8599: 			pat->LinkParentObject(0, 0);
+  8600: 			pat->TmLastFrame = -1;
+  8601: 		}
+  8602: 	}
+TERM BlinkStep: matches=10
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=81
+    67: 	{
+    68: 		s_lpItem2PassTexHandle = NULL;
+    69: 		return;
+    70: 	}
+    71: 
+    72: 	s_lpItem2PassTexHandle = s_Item2PassTexHandleBuff[TexHandleNum];
+    73: 	s_Item2PassTexFormState = TexFormState;
+    74: }
+    75: 
+    76: 
+    77: 
+    78: 
+    79: 
+    80: extern DWORD dwPlayTime;
+    81: static void SetBlinkColor(short sColors[4], smFCOLOR BlinkCol, int BlinkStep)
+    82: {
+    83: 	int r = int(BlinkCol.r * 255);
+    84: 	int g = int(BlinkCol.g * 255);
+    85: 	int b = int(BlinkCol.b * 255);
+    86: 
+    87: 	int BlinkTime = 1 << BlinkStep;
+    88: 	int BlinkMsk = BlinkTime - 1;
+    89: 	int bTime = dwPlayTime & BlinkMsk;
+    90: 
+    91: 	if((dwPlayTime & BlinkTime) == 0)
+    92: 		bTime = BlinkMsk - bTime;
+    93: 
+    94: 	sColors[SMC_R] = (bTime * r) >> BlinkStep;
+    95: 	sColors[SMC_G] = (bTime * g) >> BlinkStep;
+    96: 	sColors[SMC_B] = (bTime * b) >> BlinkStep;
+    97: 
+    98: 
+    99: 
+   100: 
+   101: 
+   102: 	sColors[SMC_A] = 0;
+   103: }
+   104: 
+   105: 
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=87
+    73: 	s_Item2PassTexFormState = TexFormState;
+    74: }
+    75: 
+    76: 
+    77: 
+    78: 
+    79: 
+    80: extern DWORD dwPlayTime;
+    81: static void SetBlinkColor(short sColors[4], smFCOLOR BlinkCol, int BlinkStep)
+    82: {
+    83: 	int r = int(BlinkCol.r * 255);
+    84: 	int g = int(BlinkCol.g * 255);
+    85: 	int b = int(BlinkCol.b * 255);
+    86: 
+    87: 	int BlinkTime = 1 << BlinkStep;
+    88: 	int BlinkMsk = BlinkTime - 1;
+    89: 	int bTime = dwPlayTime & BlinkMsk;
+    90: 
+    91: 	if((dwPlayTime & BlinkTime) == 0)
+    92: 		bTime = BlinkMsk - bTime;
+    93: 
+    94: 	sColors[SMC_R] = (bTime * r) >> BlinkStep;
+    95: 	sColors[SMC_G] = (bTime * g) >> BlinkStep;
+    96: 	sColors[SMC_B] = (bTime * b) >> BlinkStep;
+    97: 
+    98: 
+    99: 
+   100: 
+   101: 
+   102: 	sColors[SMC_A] = 0;
+   103: }
+   104: 
+   105: 
+   106: static int SetBlinkColorVertex(smRENDVERTEX *rv, short sColors[4], BYTE Color[4], BYTE Specular[4])
+   107: {
+   108: 	short BlinkColor[4] = { 0, };
+   109: 	::CopyMemory(BlinkColor, sColors, sizeof(BlinkColor));
+   110: 
+   111: 	int z = rv->tz >> FLOATNS;//ddd
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=94
+    80: extern DWORD dwPlayTime;
+    81: static void SetBlinkColor(short sColors[4], smFCOLOR BlinkCol, int BlinkStep)
+    82: {
+    83: 	int r = int(BlinkCol.r * 255);
+    84: 	int g = int(BlinkCol.g * 255);
+    85: 	int b = int(BlinkCol.b * 255);
+    86: 
+    87: 	int BlinkTime = 1 << BlinkStep;
+    88: 	int BlinkMsk = BlinkTime - 1;
+    89: 	int bTime = dwPlayTime & BlinkMsk;
+    90: 
+    91: 	if((dwPlayTime & BlinkTime) == 0)
+    92: 		bTime = BlinkMsk - bTime;
+    93: 
+    94: 	sColors[SMC_R] = (bTime * r) >> BlinkStep;
+    95: 	sColors[SMC_G] = (bTime * g) >> BlinkStep;
+    96: 	sColors[SMC_B] = (bTime * b) >> BlinkStep;
+    97: 
+    98: 
+    99: 
+   100: 
+   101: 
+   102: 	sColors[SMC_A] = 0;
+   103: }
+   104: 
+   105: 
+   106: static int SetBlinkColorVertex(smRENDVERTEX *rv, short sColors[4], BYTE Color[4], BYTE Specular[4])
+   107: {
+   108: 	short BlinkColor[4] = { 0, };
+   109: 	::CopyMemory(BlinkColor, sColors, sizeof(BlinkColor));
+   110: 
+   111: 	int z = rv->tz >> FLOATNS;//ddd
+   112: 	if(z > ccDistZMin)
+   113: 	{
+   114: 		int lev = ((z - ccDistZMin) << (13 - ShiftMAPCELL_MULT)) >> 8;
+   115: 		if(lev >= 256)
+   116: 			return FALSE;
+   117: 
+   118: 		BlinkColor[SMC_R] -= ((sColors[SMC_R] * lev) >> 8);
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=95
+    81: static void SetBlinkColor(short sColors[4], smFCOLOR BlinkCol, int BlinkStep)
+    82: {
+    83: 	int r = int(BlinkCol.r * 255);
+    84: 	int g = int(BlinkCol.g * 255);
+    85: 	int b = int(BlinkCol.b * 255);
+    86: 
+    87: 	int BlinkTime = 1 << BlinkStep;
+    88: 	int BlinkMsk = BlinkTime - 1;
+    89: 	int bTime = dwPlayTime & BlinkMsk;
+    90: 
+    91: 	if((dwPlayTime & BlinkTime) == 0)
+    92: 		bTime = BlinkMsk - bTime;
+    93: 
+    94: 	sColors[SMC_R] = (bTime * r) >> BlinkStep;
+    95: 	sColors[SMC_G] = (bTime * g) >> BlinkStep;
+    96: 	sColors[SMC_B] = (bTime * b) >> BlinkStep;
+    97: 
+    98: 
+    99: 
+   100: 
+   101: 
+   102: 	sColors[SMC_A] = 0;
+   103: }
+   104: 
+   105: 
+   106: static int SetBlinkColorVertex(smRENDVERTEX *rv, short sColors[4], BYTE Color[4], BYTE Specular[4])
+   107: {
+   108: 	short BlinkColor[4] = { 0, };
+   109: 	::CopyMemory(BlinkColor, sColors, sizeof(BlinkColor));
+   110: 
+   111: 	int z = rv->tz >> FLOATNS;//ddd
+   112: 	if(z > ccDistZMin)
+   113: 	{
+   114: 		int lev = ((z - ccDistZMin) << (13 - ShiftMAPCELL_MULT)) >> 8;
+   115: 		if(lev >= 256)
+   116: 			return FALSE;
+   117: 
+   118: 		BlinkColor[SMC_R] -= ((sColors[SMC_R] * lev) >> 8);
+   119: 		BlinkColor[SMC_G] -= ((sColors[SMC_G] * lev) >> 8);
+SOURCE_FILE SourceCode/SrcGame/src/smLib3d/smRend3d.cpp line=96
+    82: {
+    83: 	int r = int(BlinkCol.r * 255);
+    84: 	int g = int(BlinkCol.g * 255);
+    85: 	int b = int(BlinkCol.b * 255);
+    86: 
+    87: 	int BlinkTime = 1 << BlinkStep;
+    88: 	int BlinkMsk = BlinkTime - 1;
+    89: 	int bTime = dwPlayTime & BlinkMsk;
+    90: 
+    91: 	if((dwPlayTime & BlinkTime) == 0)
+    92: 		bTime = BlinkMsk - bTime;
+    93: 
+    94: 	sColors[SMC_R] = (bTime * r) >> BlinkStep;
+    95: 	sColors[SMC_G] = (bTime * g) >> BlinkStep;
+    96: 	sColors[SMC_B] = (bTime * b) >> BlinkStep;
+    97: 
+    98: 
+    99: 
+   100: 
+   101: 
+   102: 	sColors[SMC_A] = 0;
+   103: }
+   104: 
+   105: 
+   106: static int SetBlinkColorVertex(smRENDVERTEX *rv, short sColors[4], BYTE Color[4], BYTE Specular[4])
+   107: {
+   108: 	short BlinkColor[4] = { 0, };
+   109: 	::CopyMemory(BlinkColor, sColors, sizeof(BlinkColor));
+   110: 
+   111: 	int z = rv->tz >> FLOATNS;//ddd
+   112: 	if(z > ccDistZMin)
+   113: 	{
+   114: 		int lev = ((z - ccDistZMin) << (13 - ShiftMAPCELL_MULT)) >> 8;
+   115: 		if(lev >= 256)
+   116: 			return FALSE;
+   117: 
+   118: 		BlinkColor[SMC_R] -= ((sColors[SMC_R] * lev) >> 8);
+   119: 		BlinkColor[SMC_G] -= ((sColors[SMC_G] * lev) >> 8);
+   120: 		BlinkColor[SMC_B] -= ((sColors[SMC_B] * lev) >> 8);
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=73
+    59: void SetItem2PassTexture(int TexHandleNum, int TexFormState)
+    60: {
+    61: 	if(TexHandleNum < 0 || TexHandleNum >= MAX_ITEM2PASS_TEX || s_Item2PassTexHandleBuff[TexHandleNum] == NULL)
+    62: 	{
+    63: 		s_lpItem2PassTexHandle = NULL;
+    64: 		return;
+    65: 	}
+    66: 
+    67: 	s_lpItem2PassTexHandle = s_Item2PassTexHandleBuff[TexHandleNum];
+    68: 	s_Item2PassTexFormState = TexFormState;
+    69: }
+    70: 
+    71: 
+    72: extern DWORD dwPlayTime;
+    73: static void SetBlinkColor(short sColors[4], smFCOLOR BlinkCol, int BlinkStep)
+    74: {
+    75: 	int r = int(BlinkCol.r * 255);
+    76: 	int g = int(BlinkCol.g * 255);
+    77: 	int b = int(BlinkCol.b * 255);
+    78: 
+    79: 	int BlinkTime = 1 << BlinkStep;
+    80: 	int BlinkMsk = BlinkTime - 1;
+    81: 	int bTime = dwPlayTime & BlinkMsk;
+    82: 
+    83: 	if((dwPlayTime & BlinkTime) == 0)
+    84: 		bTime = BlinkMsk - bTime;
+    85: 
+    86: 	sColors[SMC_R] = (bTime * r) >> BlinkStep;
+    87: 	sColors[SMC_G] = (bTime * g) >> BlinkStep;
+    88: 	sColors[SMC_B] = (bTime * b) >> BlinkStep;
+    89: 
+    90: 
+    91: 
+    92: 
+    93: 
+    94: 	sColors[SMC_A] = 0;
+    95: }
+    96: 
+    97: 
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=79
+    65: 	}
+    66: 
+    67: 	s_lpItem2PassTexHandle = s_Item2PassTexHandleBuff[TexHandleNum];
+    68: 	s_Item2PassTexFormState = TexFormState;
+    69: }
+    70: 
+    71: 
+    72: extern DWORD dwPlayTime;
+    73: static void SetBlinkColor(short sColors[4], smFCOLOR BlinkCol, int BlinkStep)
+    74: {
+    75: 	int r = int(BlinkCol.r * 255);
+    76: 	int g = int(BlinkCol.g * 255);
+    77: 	int b = int(BlinkCol.b * 255);
+    78: 
+    79: 	int BlinkTime = 1 << BlinkStep;
+    80: 	int BlinkMsk = BlinkTime - 1;
+    81: 	int bTime = dwPlayTime & BlinkMsk;
+    82: 
+    83: 	if((dwPlayTime & BlinkTime) == 0)
+    84: 		bTime = BlinkMsk - bTime;
+    85: 
+    86: 	sColors[SMC_R] = (bTime * r) >> BlinkStep;
+    87: 	sColors[SMC_G] = (bTime * g) >> BlinkStep;
+    88: 	sColors[SMC_B] = (bTime * b) >> BlinkStep;
+    89: 
+    90: 
+    91: 
+    92: 
+    93: 
+    94: 	sColors[SMC_A] = 0;
+    95: }
+    96: 
+    97: 
+    98: static int SetBlinkColorVertex(smRENDVERTEX *rv, short sColors[4], BYTE Color[4], BYTE Specular[4])
+    99: {
+   100: 	short BlinkColor[4] = { 0, };
+   101: 	::CopyMemory(BlinkColor, sColors, sizeof(BlinkColor));
+   102: 
+   103: 	int z = rv->tz >> FLOATNS;
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=86
+    72: extern DWORD dwPlayTime;
+    73: static void SetBlinkColor(short sColors[4], smFCOLOR BlinkCol, int BlinkStep)
+    74: {
+    75: 	int r = int(BlinkCol.r * 255);
+    76: 	int g = int(BlinkCol.g * 255);
+    77: 	int b = int(BlinkCol.b * 255);
+    78: 
+    79: 	int BlinkTime = 1 << BlinkStep;
+    80: 	int BlinkMsk = BlinkTime - 1;
+    81: 	int bTime = dwPlayTime & BlinkMsk;
+    82: 
+    83: 	if((dwPlayTime & BlinkTime) == 0)
+    84: 		bTime = BlinkMsk - bTime;
+    85: 
+    86: 	sColors[SMC_R] = (bTime * r) >> BlinkStep;
+    87: 	sColors[SMC_G] = (bTime * g) >> BlinkStep;
+    88: 	sColors[SMC_B] = (bTime * b) >> BlinkStep;
+    89: 
+    90: 
+    91: 
+    92: 
+    93: 
+    94: 	sColors[SMC_A] = 0;
+    95: }
+    96: 
+    97: 
+    98: static int SetBlinkColorVertex(smRENDVERTEX *rv, short sColors[4], BYTE Color[4], BYTE Specular[4])
+    99: {
+   100: 	short BlinkColor[4] = { 0, };
+   101: 	::CopyMemory(BlinkColor, sColors, sizeof(BlinkColor));
+   102: 
+   103: 	int z = rv->tz >> FLOATNS;
+   104: 	if(z > ccDistZMin)
+   105: 	{
+   106: 		int lev = ((z - ccDistZMin) << (13 - ShiftMAPCELL_MULT)) >> 8;
+   107: 		if(lev >= 256)
+   108: 			return FALSE;
+   109: 
+   110: 		BlinkColor[SMC_R] -= ((sColors[SMC_R] * lev) >> 8);
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=87
+    73: static void SetBlinkColor(short sColors[4], smFCOLOR BlinkCol, int BlinkStep)
+    74: {
+    75: 	int r = int(BlinkCol.r * 255);
+    76: 	int g = int(BlinkCol.g * 255);
+    77: 	int b = int(BlinkCol.b * 255);
+    78: 
+    79: 	int BlinkTime = 1 << BlinkStep;
+    80: 	int BlinkMsk = BlinkTime - 1;
+    81: 	int bTime = dwPlayTime & BlinkMsk;
+    82: 
+    83: 	if((dwPlayTime & BlinkTime) == 0)
+    84: 		bTime = BlinkMsk - bTime;
+    85: 
+    86: 	sColors[SMC_R] = (bTime * r) >> BlinkStep;
+    87: 	sColors[SMC_G] = (bTime * g) >> BlinkStep;
+    88: 	sColors[SMC_B] = (bTime * b) >> BlinkStep;
+    89: 
+    90: 
+    91: 
+    92: 
+    93: 
+    94: 	sColors[SMC_A] = 0;
+    95: }
+    96: 
+    97: 
+    98: static int SetBlinkColorVertex(smRENDVERTEX *rv, short sColors[4], BYTE Color[4], BYTE Specular[4])
+    99: {
+   100: 	short BlinkColor[4] = { 0, };
+   101: 	::CopyMemory(BlinkColor, sColors, sizeof(BlinkColor));
+   102: 
+   103: 	int z = rv->tz >> FLOATNS;
+   104: 	if(z > ccDistZMin)
+   105: 	{
+   106: 		int lev = ((z - ccDistZMin) << (13 - ShiftMAPCELL_MULT)) >> 8;
+   107: 		if(lev >= 256)
+   108: 			return FALSE;
+   109: 
+   110: 		BlinkColor[SMC_R] -= ((sColors[SMC_R] * lev) >> 8);
+   111: 		BlinkColor[SMC_G] -= ((sColors[SMC_G] * lev) >> 8);
+SOURCE_FILE SourceCode/SrcServer/src/smLib3d/smRend3d.cpp line=88
+    74: {
+    75: 	int r = int(BlinkCol.r * 255);
+    76: 	int g = int(BlinkCol.g * 255);
+    77: 	int b = int(BlinkCol.b * 255);
+    78: 
+    79: 	int BlinkTime = 1 << BlinkStep;
+    80: 	int BlinkMsk = BlinkTime - 1;
+    81: 	int bTime = dwPlayTime & BlinkMsk;
+    82: 
+    83: 	if((dwPlayTime & BlinkTime) == 0)
+    84: 		bTime = BlinkMsk - bTime;
+    85: 
+    86: 	sColors[SMC_R] = (bTime * r) >> BlinkStep;
+    87: 	sColors[SMC_G] = (bTime * g) >> BlinkStep;
+    88: 	sColors[SMC_B] = (bTime * b) >> BlinkStep;
+    89: 
+    90: 
+    91: 
+    92: 
+    93: 
+    94: 	sColors[SMC_A] = 0;
+    95: }
+    96: 
+    97: 
+    98: static int SetBlinkColorVertex(smRENDVERTEX *rv, short sColors[4], BYTE Color[4], BYTE Specular[4])
+    99: {
+   100: 	short BlinkColor[4] = { 0, };
+   101: 	::CopyMemory(BlinkColor, sColors, sizeof(BlinkColor));
+   102: 
+   103: 	int z = rv->tz >> FLOATNS;
+   104: 	if(z > ccDistZMin)
+   105: 	{
+   106: 		int lev = ((z - ccDistZMin) << (13 - ShiftMAPCELL_MULT)) >> 8;
+   107: 		if(lev >= 256)
+   108: 			return FALSE;
+   109: 
+   110: 		BlinkColor[SMC_R] -= ((sColors[SMC_R] * lev) >> 8);
+   111: 		BlinkColor[SMC_G] -= ((sColors[SMC_G] * lev) >> 8);
+   112: 		BlinkColor[SMC_B] -= ((sColors[SMC_B] * lev) >> 8);
+TERM MATERIAL_SCRIPT: matches=0
+
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/pt_smd_blink_color_control_source_audit_v1_1.json
+source_modified=False
+client_modified=False
+blink_color_control_source_audit_check=PASS

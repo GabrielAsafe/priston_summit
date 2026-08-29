@@ -1,0 +1,12 @@
+VALIDATED_RECOVERY_SET=YES
+function=DecodeOpenMonster
+hunks=4
+additions=84
+deletions=6
+ACTOR=present
+BOSS_ACTOR=present
+MAX_ACTOR_POS=present
+DELAY=present
+MAX_ACTOR=present
+MINGW_SPM_ACTOR_MATCH_TRACE_V1=present
+patch_sha256=6e28f3645c15960061959deb147164f964cb25cbe6158d2a095a0bf1ebd01075

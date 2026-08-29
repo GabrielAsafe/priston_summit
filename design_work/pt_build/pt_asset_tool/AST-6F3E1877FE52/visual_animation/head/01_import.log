@@ -1,0 +1,82 @@
+00:00.015  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.015  color_management | Using fallback mode for management
+/home/gabriel/Área de Trabalho/summit/design_work/history_py/pt_smd_blender_import_v3_static_armature.py:977: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+PT_SMD_BLENDER_IMPORT_V3_STATIC_ARMATURE
+SMD        : /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/Mfh_B01b.smd
+Skeleton   : /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/m2.smb
+Model info : /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/Mfh_B01b.inx
+LOD        : high
+Client root: /home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client
+Output     : /home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/pristine_import.blend
+Objects    : 6
+Materials  : 21
+Skeleton objects: 67
+Bind vertices   : 766
+Bind bones used : 4
+Bind bbox       : x=[-3.559,4.383] y=[-2.777,7.008] z=[33.645,46.969]
+MATERIAL 0: tex='' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 1: tex='' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 2: tex='' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 3: tex='' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 4: tex='' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 5: tex='' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 6: tex='char\\tmABCD\\MfhB01-f.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB01-f.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB01-f.6a831fb977.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+MATERIAL 7: tex='char\\tmABCD\\MfhB01-h.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB01-h.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB01-h.4929201d0c.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+MATERIAL 8: tex='char\\tmABCD\\MfhB01-h.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB01-h.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB01-h.4929201d0c.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+MATERIAL 9: tex='char\\tmABCD\\MfhB03a.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB03a.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB03a.58c9a10d2e.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+MATERIAL 10: tex='char\\tmABCD\\MfhB01-a_3.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB01-a_3.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB01-a_3.611cd90f93.decoded.bmp' decode=BMP_PRISTON_PREFIX14_256x128_24bpp load=LOADED
+MATERIAL 11: tex='char\\tmABCD\\MfhB02-f.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB02-f.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB02-f.b9f919a960.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+MATERIAL 12: tex='char\\tmABCD\\MfhB02-h.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB02-h.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB02-h.67ed4d65e1.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+MATERIAL 13: tex='char\\tmABCD\\MfhB02-h.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB02-h.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB02-h.67ed4d65e1.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+MATERIAL 14: tex='char\\tmABCD\\MfhB02a.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB02a.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB02a.4081d9b943.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+MATERIAL 15: tex='char\\tmABCD\\MfhB02a.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB02a.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB02a.4081d9b943.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+MATERIAL 16: tex='char\\tmABCD\\MfhB03-f.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB03-f.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB03-f.a1c0f758bb.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+MATERIAL 17: tex='char\\tmABCD\\MfhB03-h.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB03-h.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB03-h.8b1bd8f980.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+MATERIAL 18: tex='char\\tmABCD\\MfhB03-h.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB03-h.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB03-h.8b1bd8f980.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+MATERIAL 19: tex='char\\tmABCD\\MfhB01a.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB01a.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB01a.32ec8ec6a7.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+MATERIAL 20: tex='char\\tmABCD\\MfhB01a.BMP' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB01a.BMP' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/_pt_smd_texture_cache/MfhB01a.32ec8ec6a7.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+OBJECT l: V=197 F=275 UV=275 layers=1 groups=4
+OBJECT h: V=304 F=463 UV=463 layers=1 groups=4
+OBJECT m: V=153 F=261 UV=261 layers=1 groups=4
+OBJECT Object04: V=0 F=0 UV=0 layers=0 groups=0
+OBJECT Object05: V=0 F=0 UV=0 layers=0 groups=0
+OBJECT m: V=112 F=126 UV=126 layers=1 groups=1
+
+STATIC_ARMATURE
+bones=67
+roots=['Bip01']
+mesh_armature_modifiers=6
+primary_axis_histogram={'X': 32, 'Z': 24, 'Y': 11}
+tail_rule_histogram={'Bip01 Pelvis': 1, '<leaf-parent-extension>': 23, 'Bip01 Spine': 1, 'Bip01 Spine1': 1, 'Bip01 Neck': 1, 'Bip01 Head': 1, '<branch-average>': 6, 'Bip01 L Forearm': 1, 'Bip01 L Finger01': 1, 'Bip01 L Finger11': 1, 'Bip01 L Finger21': 1, 'Bip01 R Forearm': 1, 'Bip01 R Hand': 1, 'Bip01 R Finger01': 1, 'Bip01 R Finger11': 1, 'Bip01 R Finger21': 1, 'Bip weapon02': 1, 'Bip in02': 1, 'Bip01 L Calf': 1, 'Bip01 L Foot': 1, 'Bip01 L Toe0': 1, 'Bip01 R Calf': 1, 'Bip01 R Foot': 1, 'Bip01 R Toe0': 1, 'Bip01 Tailba2': 1, 'Bip01 Tailba3': 1, 'Bip01 Tailba05': 1, 'Bip01 Tailba06': 1, 'Bip-hair07': 1, 'Bip-hair09': 1, 'Bip-hair02': 1, 'Bip-hair03': 1, 'Bip-hair11': 1, 'Bip-hair12': 1, 'Bip-hair14': 1, 'Bip-hair15': 1, 'Bip aV01': 1, 'Bip aV02': 1, 'Bip in03': 1, 'Bip in04': 1}
+
+INX_MODEL_GROUPS
+high: count=1 active=['h']
+default: count=1 active=['m']
+low: count=1 active=['l']
+selected_lod=high
+visible_objects=['h']
+hidden_objects=['l', 'm', 'Object04', 'Object05', 'm.001']
+Info: Saved as "pristine_import.blend"
+SUMMARY
+objects=6
+materials=21
+vertices=766
+faces=1125
+uv_faces=1125
+bind_vertices=766
+bind_bones_used=4
+model_info=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/Mfh_B01b.inx
+lod=high
+visible_count=1
+visible_objects=['h']
+hidden_count=5
+armature_bones=67
+armature_roots=['Bip01']
+mesh_armature_modifiers=6
+blend=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/pristine_import.blend
+static_armature_import_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

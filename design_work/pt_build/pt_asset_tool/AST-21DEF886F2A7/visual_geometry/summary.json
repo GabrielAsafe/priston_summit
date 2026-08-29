@@ -1,0 +1,13 @@
+{
+  "asset_id": "AST-21DEF886F2A7",
+  "asset": "char/monster/Monbagon/Monbagon-C.smd",
+  "family": "SMD_MODEL_062_RIGID_PHYSIQUE",
+  "mode": "RIGID",
+  "lod": "default",
+  "witness": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-21DEF886F2A7/visual_geometry/visual_geometry_witness.blend",
+  "source_sha256": "6eb504b97382f6c1570b78f5ae2b0d6ecef4431c3c73d731c6492e54c1ab5621",
+  "artifact_sha256": "388d0bc4e04e87d4b1c53c48add464765a7cac5f3a2d13ba12c91ae9e3e4e181",
+  "human_visual": "PASS",
+  "certification_id": "CERT-63B8C02833F5",
+  "client_modified": false
+}

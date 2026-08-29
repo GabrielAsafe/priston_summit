@@ -1,0 +1,250 @@
+===== /home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp :: smModelDecode :: occurrence 1 :: lines 501-591 =====
+   501: {
+   502: 	DWORD dwCode = GetSpeedSum(szFileName);
+   503: 	int Num = FindFromCode(dwCode);
+   504: 
+   505: 	if(Num < 0)
+   506: 	{
+   507: 
+   508: 
+   509: 		Num = GetNew();
+   510: 		if(Num >= 0)
+   511: 		{
+   512: 			DinaPat[Num].Pat = smASE_ReadBone(szFileName);
+   513: 			if(DinaPat[Num].Pat)
+   514: 			{
+   515: 				DinaPat[Num].smDinaLink = 0;
+   516: 				strcpy_s(DinaPat[Num].szPatName, szFileName);
+   517: 				DinaPat[Num].dwSpeedFindSum = dwCode;
+   518: 				DinaPat[Num].UseCount = 1;
+   519: 				return &DinaPat[Num];
+   520: 			}
+   521: 		}
+   522: 		else
+   523: 			return NULL;
+   524: 	}
+   525: 
+   526: 	DinaPat[Num].UseCount++;
+   527: 
+   528: 	return &DinaPat[Num];
+   529: }
+   530: 
+   531: 
+   532: smDPAT *smPATTERN::LoadCharactor(char *szFileName)
+   533: {
+   534: 	int Num, sframe;
+   535: 	DWORD cnt;
+   536: 	smDPAT *dMotionPat;
+   537: 	smPAT3D	*AnimPat;
+   538: 	smMODELINFO	modelInfo;
+   539: 
+   540: 
+   541: 	DWORD dwCode = GetSpeedSum(szFileName);
+   542: 	Num = FindFromCode(dwCode);
+   543: 
+   544: 	if(Num < 0)
+   545: 	{
+   546: 		if(smModelDecode(szFileName, &modelInfo) == NULL)
+   547: 			return NULL;
+   548: 
+   549: 
+   550: 
+   551: 		smASE_SetPhysique(0);
+   552: 
+   553: 		Num = GetNew();
+   554: 
+   555: 		if(Num < 0)
+   556: 			return NULL;
+   557: 
+   558: 		if(BipPattern && modelInfo.szMotionFile[0])
+   559: 		{
+   560: 			dMotionPat = BipPattern->LoadBipPattern(modelInfo.szMotionFile);
+   561: 			if(dMotionPat)
+   562: 			{
+   563: 				smASE_SetPhysique(dMotionPat->Pat);
+   564: 				DinaPat[Num].smDinaLink = dMotionPat;
+   565: 			}
+   566: 			else
+   567: 				return NULL;
+   568: 		}
+   569: 		else
+   570: 			DinaPat[Num].smDinaLink = 0;
+   571: 
+   572: 
+   573: 
+   574: 		if(BipPattern && modelInfo.szTalkMotionFile[0])
+   575: 		{
+   576: 			smDPAT *lpTalkLink = BipPattern->LoadBipPattern(modelInfo.szTalkMotionFile);
+   577: 			if(lpTalkLink)
+   578: 				DinaPat[Num].lpTalkLink = lpTalkLink;
+   579: 			else
+   580: 				return NULL;
+   581: 		}
+   582: 		else
+   583: 			DinaPat[Num].lpTalkLink = NULL;
+   584: 
+   585: 		DinaPat[Num].Pat = smASE_Read(modelInfo.szModelFile);
+   586: 
+   587: 		if(!DinaPat[Num].Pat)
+   588: 		{
+   589: 			if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
+   590: 			{
+   591: 				char szErrorMsg[128];
+
+===== /home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp :: smModelDecode :: occurrence 1 :: lines 979-1069 =====
+   979: 				pat3d = nullptr;
+   980: 			}
+   981: 		}
+   982: 
+   983: 		for(cnt = MotionFileListCnt - 1; cnt >= 0; cnt--)
+   984: 		{
+   985: 			if(szMotionFileList[cnt])
+   986: 			{
+   987: 				delete szMotionFileList[cnt];
+   988: 				szMotionFileList[cnt] = nullptr;
+   989: 			}
+   990: 
+   991: 		}
+   992: 	}
+   993: 
+   994: 
+   995: 	char *szFile = ChangeFileExt(iniFile, szFileExt);
+   996: 	DWORD dwCode = GetSpeedSum(szFile);
+   997: 	ModelKeyWordEncode(dwCode, Info);
+   998: 
+   999: 
+  1000: 	if(Info->MotionCount > CHRMOTION_EXT && Info->TalkMotionCount <= CHRMOTION_EXT)
+  1001: 		MotionKeyWordEncode(dwCode, Info);
+  1002: 
+  1003: 
+  1004: 	szFile = ChangeFileExt(iniFile, szFileExt);
+  1005: 	fopen_s(&fp, szFile, "wb");
+  1006: 	if(fp)
+  1007: 	{
+  1008: 		fwrite(Info, sizeof(smMODELINFO), 1, fp);
+  1009: 		fclose(fp);
+  1010: 	}
+  1011: 
+  1012: 
+  1013: 	if(Info->MotionCount > CHRMOTION_EXT && Info->TalkMotionCount <= CHRMOTION_EXT)
+  1014: 		MotionKeyWordDecode(dwCode, Info);
+  1015: 
+  1016: 
+  1017: 	return TRUE;
+  1018: }
+  1019: 
+  1020: 
+  1021: 
+  1022: 
+  1023: 
+  1024: int smModelDecode(char *iniFile, smMODELINFO *Info)
+  1025: {
+  1026: 	char szFile[64];
+  1027: 	DWORD dwFileLen;
+  1028: 	char *lpFile;
+  1029: 	FILE *fp = nullptr;
+  1030: 	int len;
+  1031: 
+  1032: 	smMODELINFO smModelInfo;
+  1033: 	ZeroMemory(Info, sizeof(smMODELINFO));
+  1034: 
+  1035: 	Info->TalkMotionCount = CHRMOTION_EXT;
+  1036: 
+  1037: 	Info->MotionCount = CHRMOTION_EXT;
+  1038: 	Info->HighModel.ModelNameCnt = 0;
+  1039: 	Info->DefaultModel.ModelNameCnt = 0;
+  1040: 	Info->LowModel.ModelNameCnt = 0;
+  1041: 
+  1042: 	len = lstrlen(iniFile);
+  1043: 
+  1044: 
+  1045: 	if(iniFile[len - 4] == '.' &&
+  1046: 		(iniFile[len - 3] == 'a' || iniFile[len - 3] == 'A') &&
+  1047: 		(iniFile[len - 2] == 's' || iniFile[len - 2] == 'S') &&
+  1048: 		(iniFile[len - 1] == 'e' || iniFile[len - 1] == 'E'))
+  1049: 	{
+  1050: 
+  1051: 		strcpy_s(Info->szModelFile, iniFile);
+  1052: 
+  1053: 		return TRUE;
+  1054: 	}
+  1055: 
+  1056: 
+  1057: 	for(int i = 0; i < 3; i++)
+  1058: 	{
+  1059: 		switch(i)
+  1060: 		{
+  1061: 		case 0:
+  1062: 			strcpy_s(szFile, iniFile);
+  1063: 			break;
+  1064: 
+  1065: 		case 1:
+  1066: 			strcpy_s(szFile, Info->szLinkFile);
+  1067: 			break;
+  1068: 
+  1069: 		case 2:
+
+===== /home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.h :: smModelDecode :: occurrence 1 :: lines 1-63 =====
+     1: #ifndef	_FILEREAD_HEADER
+     2: 
+     3: #define	_FILEREAD_HEADER
+     4: 
+     5: #include "smLib3d/smType.h"
+     6: #include "smPacket.h"
+     7: 
+     8: extern smCONFIG	smConfig;
+     9: 
+    10: 
+    11: smCONFIG *smConfigDecode(char *iniFile);
+    12: 
+    13: 
+    14: int ReadCustomCracker(char *szCrackFile, TRANS_FIND_CRACKER *lpTransFindCrack);
+    15: 
+    16: 
+    17: 
+    18: int smModelDecode(char *iniFile, smMODELINFO *Info);
+    19: 
+    20: 
+    21: int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	*lpMonInfo, char *lpDialogMessage = 0, size_t DialogMessageSize = 0);
+    22: 
+    23: extern char	szShotCutMessage[10][100];
+    24: 
+    25: 
+    26: 
+    27: struct rsSTG_MONSTER
+    28: {
+    29: 	char	szMonsterName[32];
+    30: 	int		OpenPercentage;
+    31: 
+    32: 	smCHAR_INFO	*lpCharInfo;
+    33: 	int		NumOpenStart;
+    34: };
+    35: 
+    36: #define rsSTG_MONSTER_MAX	50
+    37: #define rsBOSS_MONSTER_MAX	16
+    38: 
+    39: struct sBOSS_MONSTER
+    40: {
+    41: 	smCHAR_INFO		*MasterMonster;
+    42: 	smCHAR_INFO		*SlaveMonster;
+    43: 	int				SlaveCount;
+    44: 	BYTE			bOpenTime[32];
+    45: 	int				OpenTimeCount;
+    46: };
+    47: 
+    48: struct	rsSTG_MONSTER_LIST
+    49: {
+    50: 
+    51: 	rsSTG_MONSTER	rsMonster[rsSTG_MONSTER_MAX];
+    52: 
+    53: 	int		PecetageCount;
+    54: 	int		Counter;
+    55: 	int		LimitMax;
+    56: 	int		OpenInterval;
+    57: 	int		OpenLimit;
+    58: 	DWORD	dwIntervalTime;
+    59: 
+    60: 	sBOSS_MONSTER	sBossMonsters[rsBOSS_MONSTER_MAX];
+    61: 	int	BossMonsterCount;
+    62: 
+    63: };

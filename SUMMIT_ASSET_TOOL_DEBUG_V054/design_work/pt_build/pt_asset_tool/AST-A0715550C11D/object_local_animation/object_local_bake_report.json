@@ -1,0 +1,1059 @@
+{
+  "format": "PT_OBJECT_LOCAL_BLENDER_PREVIEW_V5",
+  "status": "PASS",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Effect/AssaEffect/Skill3Mesh/mg3_danceSd40_110_125.smd",
+  "blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-A0715550C11D/object_local_animation/object_local_preview.blend",
+  "object_count": 6,
+  "animated_object_count": 1,
+  "animated_objects": [
+    "Box01"
+  ],
+  "parent_edge_count": 5,
+  "parent_edges": [
+    {
+      "parent": "Box01",
+      "parent_index": 0,
+      "child": "bip 01",
+      "child_index": 1,
+      "child_motion_class": "NONE",
+      "bind_local_identity_error": 26.76336669921875
+    },
+    {
+      "parent": "Box01",
+      "parent_index": 0,
+      "child": "bip 02",
+      "child_index": 2,
+      "child_motion_class": "NONE",
+      "bind_local_identity_error": 23.49609375
+    },
+    {
+      "parent": "Box01",
+      "parent_index": 0,
+      "child": "bip 03",
+      "child_index": 3,
+      "child_motion_class": "NONE",
+      "bind_local_identity_error": 17.35296630859375
+    },
+    {
+      "parent": "Box01",
+      "parent_index": 0,
+      "child": "bip 04",
+      "child_index": 4,
+      "child_motion_class": "NONE",
+      "bind_local_identity_error": 11.808334350585938
+    },
+    {
+      "parent": "Box01",
+      "parent_index": 0,
+      "child": "bip 05",
+      "child_index": 5,
+      "child_motion_class": "NONE",
+      "bind_local_identity_error": 6.069305419921875
+    }
+  ],
+  "root_objects": [
+    "Box01"
+  ],
+  "unresolved_parent_count": 0,
+  "unresolved_parents": [],
+  "duplicate_node_name_group_count": 0,
+  "duplicate_node_name_groups": {},
+  "parent_resolution_semantics": "CLIENT_LINKOBJECT_FIRST_MATCH_UNRESOLVED_AS_ROOT",
+  "channels_animated": [
+    "POS",
+    "ROT_AFFINE"
+  ],
+  "reference_engine_frame": 0,
+  "max_engine_frame": 10400,
+  "engine_units_per_preview_frame": 160,
+  "preview_frame_start": 1,
+  "preview_frame_end": 66,
+  "preview_fps": 30,
+  "preview_reference": "FIRST_KEY_NORMALIZED_FULL_AFFINE_SHAPEKEY",
+  "blender_transform_semantics": "AFFINE_WORLD_DELTA_RELATIVE_SHAPE_KEY_CROSSFADE",
+  "legacy_affine_object_count": 1,
+  "legacy_affine_objects": [
+    "Box01"
+  ],
+  "affine_affected_objects": [
+    "Box01",
+    "bip 01",
+    "bip 02",
+    "bip 03",
+    "bip 04",
+    "bip 05"
+  ],
+  "hierarchy_semantics": "LOCAL_QMAT_TIMES_PARENT_TMRESULT",
+  "hierarchy_sourcecode_proof": "smOBJ3D::TmAnimation qmat * pParent->TmResult; smPAT3D::LinkObject parent-first TmSort",
+  "rotation_semantics": "RAW_NONUNIT_QUATERNION_MATRIX",
+  "source_rot_key_semantics": "INCREMENTAL_LOCAL_QUATERNION",
+  "legacy_affine_interpolation": "D3DMATH_ZERO_TO_NEXT_INCREMENTAL_SLERP_COMPAT_SAMPLED_EVERY_SOURCE_TICK",
+  "quaternion_sign_continuity": true,
+  "interpolation": "LINEAR_SAMPLED_EVERY_SOURCE_TICK",
+  "timing_status": "PREVIEW_NOT_RUNTIME_SPEED_CERTIFIED",
+  "samples": [
+    {
+      "object": "Box01",
+      "object_index": 0,
+      "engine_frame": 0,
+      "blender_frame": 1.0,
+      "affine_identity_error": 6.529499163576702e-15,
+      "affine_matrix_blender_column": [
+        [
+          1.0,
+          6.288372600415926e-18,
+          0.0,
+          0.0
+        ],
+        [
+          4.445228907190568e-18,
+          1.0,
+          -1.3904892862126594e-17,
+          -2.6020852139652106e-15
+        ],
+        [
+          -1.214306433183765e-17,
+          -1.1359728262216873e-16,
+          0.9999999999999998,
+          6.529499163576702e-15
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "Box01",
+      "object_index": 0,
+      "engine_frame": 5280,
+      "blender_frame": 34.0,
+      "affine_identity_error": 12.601842776308894,
+      "affine_matrix_blender_column": [
+        [
+          0.315610765870756,
+          0.7418580835738663,
+          0.259792506768876,
+          12.601842776308894
+        ],
+        [
+          -0.7716631468710368,
+          0.3403010177576823,
+          -0.08773247050856443,
+          0.7825701419494501
+        ],
+        [
+          -0.11076753369328823,
+          -0.21013203013484616,
+          0.9589239253506038,
+          -3.7922878718382225
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "Box01",
+      "object_index": 0,
+      "engine_frame": 10400,
+      "blender_frame": 66.0,
+      "affine_identity_error": 98.17590800902211,
+      "affine_matrix_blender_column": [
+        [
+          1.0668794635054812,
+          -0.23057732471195222,
+          0.07623729198248899,
+          -5.223074497617795
+        ],
+        [
+          -0.017272580945668053,
+          -0.4494507935505164,
+          -0.9222173881219301,
+          28.850718932637353
+        ],
+        [
+          0.2452783493419976,
+          0.9721170939575341,
+          -0.386379535067899,
+          98.17590800902211
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 01",
+      "object_index": 1,
+      "engine_frame": 0,
+      "blender_frame": 1.0,
+      "affine_identity_error": 4.343747583845925e-15,
+      "affine_matrix_blender_column": [
+        [
+          0.9999999999999999,
+          -2.6020852139652106e-18,
+          -4.7704895589362195e-18,
+          -2.220446049250313e-16
+        ],
+        [
+          -8.673617379884035e-19,
+          1.0,
+          -1.3660947373317356e-17,
+          -6.938893903907228e-18
+        ],
+        [
+          -4.7704895589362195e-18,
+          -9.128982292327947e-17,
+          1.0,
+          4.343747583845925e-15
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 01",
+      "object_index": 1,
+      "engine_frame": 5280,
+      "blender_frame": 34.0,
+      "affine_identity_error": 12.601842776308894,
+      "affine_matrix_blender_column": [
+        [
+          0.315610765870756,
+          0.7418580835738665,
+          0.2597925067688761,
+          12.601842776308894
+        ],
+        [
+          -0.7716631468710368,
+          0.3403010177576824,
+          -0.08773247050856445,
+          0.7825701419494513
+        ],
+        [
+          -0.11076753369328823,
+          -0.21013203013484621,
+          0.958923925350604,
+          -3.7922878718382296
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 01",
+      "object_index": 1,
+      "engine_frame": 10400,
+      "blender_frame": 66.0,
+      "affine_identity_error": 98.17590800902211,
+      "affine_matrix_blender_column": [
+        [
+          1.0668794635054808,
+          -0.23057732471195225,
+          0.07623729198248899,
+          -5.223074497617796
+        ],
+        [
+          -0.017272580945668064,
+          -0.4494507935505165,
+          -0.9222173881219302,
+          28.85071893263735
+        ],
+        [
+          0.24527834934199758,
+          0.9721170939575343,
+          -0.3863795350678991,
+          98.17590800902211
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 02",
+      "object_index": 2,
+      "engine_frame": 0,
+      "blender_frame": 1.0,
+      "affine_identity_error": 7.278899705198683e-15,
+      "affine_matrix_blender_column": [
+        [
+          1.0,
+          -4.336808689942018e-18,
+          1.734723475976807e-18,
+          -1.1102230246251565e-16
+        ],
+        [
+          0.0,
+          1.0000000000000002,
+          -1.3660947373317356e-17,
+          1.9012569296705806e-15
+        ],
+        [
+          -1.734723475976807e-18,
+          -6.353424730765056e-17,
+          1.0,
+          7.278899705198683e-15
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 02",
+      "object_index": 2,
+      "engine_frame": 5280,
+      "blender_frame": 34.0,
+      "affine_identity_error": 12.601842776308898,
+      "affine_matrix_blender_column": [
+        [
+          0.315610765870756,
+          0.7418580835738666,
+          0.2597925067688761,
+          12.601842776308898
+        ],
+        [
+          -0.7716631468710369,
+          0.34030101775768246,
+          -0.08773247050856445,
+          0.7825701419494524
+        ],
+        [
+          -0.11076753369328822,
+          -0.21013203013484621,
+          0.9589239253506041,
+          -3.792287871838228
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 02",
+      "object_index": 2,
+      "engine_frame": 10400,
+      "blender_frame": 66.0,
+      "affine_identity_error": 98.17590800902211,
+      "affine_matrix_blender_column": [
+        [
+          1.066879463505481,
+          -0.23057732471195228,
+          0.07623729198248902,
+          -5.223074497617797
+        ],
+        [
+          -0.017272580945668067,
+          -0.4494507935505166,
+          -0.9222173881219303,
+          28.850718932637342
+        ],
+        [
+          0.24527834934199763,
+          0.9721170939575344,
+          -0.38637953506789907,
+          98.17590800902211
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 03",
+      "object_index": 3,
+      "engine_frame": 0,
+      "blender_frame": 1.0,
+      "affine_identity_error": 3.2404634531246757e-15,
+      "affine_matrix_blender_column": [
+        [
+          0.9999999999999999,
+          -8.673617379884035e-19,
+          2.168404344971009e-18,
+          2.0816681711721685e-16
+        ],
+        [
+          -1.734723475976807e-18,
+          1.0,
+          -4.141652298894627e-17,
+          4.891920202254596e-16
+        ],
+        [
+          2.168404344971009e-18,
+          -1.4690939437178585e-16,
+          1.0,
+          3.2404634531246757e-15
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 03",
+      "object_index": 3,
+      "engine_frame": 5280,
+      "blender_frame": 34.0,
+      "affine_identity_error": 12.601842776308896,
+      "affine_matrix_blender_column": [
+        [
+          0.315610765870756,
+          0.7418580835738665,
+          0.2597925067688761,
+          12.601842776308896
+        ],
+        [
+          -0.7716631468710368,
+          0.3403010177576824,
+          -0.08773247050856445,
+          0.7825701419494491
+        ],
+        [
+          -0.11076753369328822,
+          -0.21013203013484627,
+          0.9589239253506041,
+          -3.792287871838229
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 03",
+      "object_index": 3,
+      "engine_frame": 10400,
+      "blender_frame": 66.0,
+      "affine_identity_error": 98.17590800902211,
+      "affine_matrix_blender_column": [
+        [
+          1.0668794635054808,
+          -0.23057732471195225,
+          0.07623729198248902,
+          -5.223074497617796
+        ],
+        [
+          -0.01727258094566807,
+          -0.4494507935505165,
+          -0.9222173881219303,
+          28.85071893263735
+        ],
+        [
+          0.24527834934199758,
+          0.9721170939575343,
+          -0.3863795350678991,
+          98.17590800902211
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 04",
+      "object_index": 4,
+      "engine_frame": 0,
+      "blender_frame": 1.0,
+      "affine_identity_error": 8.31279489688086e-15,
+      "affine_matrix_blender_column": [
+        [
+          0.9999999999999999,
+          -1.734723475976807e-18,
+          -4.7704895589362195e-18,
+          1.8041124150158794e-16
+        ],
+        [
+          8.673617379884035e-19,
+          1.0,
+          1.4094628242311558e-17,
+          -4.638650574761982e-15
+        ],
+        [
+          -4.336808689942018e-18,
+          4.7596475372113645e-17,
+          0.9999999999999999,
+          8.31279489688086e-15
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 04",
+      "object_index": 4,
+      "engine_frame": 5280,
+      "blender_frame": 34.0,
+      "affine_identity_error": 12.601842776308894,
+      "affine_matrix_blender_column": [
+        [
+          0.315610765870756,
+          0.7418580835738665,
+          0.25979250676887605,
+          12.601842776308894
+        ],
+        [
+          -0.7716631468710368,
+          0.34030101775768234,
+          -0.08773247050856442,
+          0.7825701419494493
+        ],
+        [
+          -0.11076753369328823,
+          -0.21013203013484608,
+          0.9589239253506039,
+          -3.792287871838221
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 04",
+      "object_index": 4,
+      "engine_frame": 10400,
+      "blender_frame": 66.0,
+      "affine_identity_error": 98.17590800902211,
+      "affine_matrix_blender_column": [
+        [
+          1.0668794635054808,
+          -0.23057732471195225,
+          0.07623729198248896,
+          -5.223074497617795
+        ],
+        [
+          -0.017272580945668064,
+          -0.4494507935505166,
+          -0.9222173881219301,
+          28.85071893263735
+        ],
+        [
+          0.24527834934199758,
+          0.9721170939575342,
+          -0.386379535067899,
+          98.17590800902211
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 05",
+      "object_index": 5,
+      "engine_frame": 0,
+      "blender_frame": 1.0,
+      "affine_identity_error": 1.341982081015658e-14,
+      "affine_matrix_blender_column": [
+        [
+          0.9999999999999999,
+          -1.734723475976807e-18,
+          -5.204170427930421e-18,
+          2.706168622523819e-16
+        ],
+        [
+          -8.673617379884035e-19,
+          1.0000000000000002,
+          1.4094628242311558e-17,
+          3.094746681142624e-15
+        ],
+        [
+          -4.7704895589362195e-18,
+          -2.859041128844275e-16,
+          1.0,
+          -1.341982081015658e-14
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 05",
+      "object_index": 5,
+      "engine_frame": 5280,
+      "blender_frame": 34.0,
+      "affine_identity_error": 12.601842776308894,
+      "affine_matrix_blender_column": [
+        [
+          0.315610765870756,
+          0.7418580835738665,
+          0.2597925067688761,
+          12.601842776308894
+        ],
+        [
+          -0.7716631468710368,
+          0.34030101775768246,
+          -0.08773247050856445,
+          0.7825701419494526
+        ],
+        [
+          -0.11076753369328823,
+          -0.21013203013484644,
+          0.958923925350604,
+          -3.792287871838243
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "object": "bip 05",
+      "object_index": 5,
+      "engine_frame": 10400,
+      "blender_frame": 66.0,
+      "affine_identity_error": 98.17590800902212,
+      "affine_matrix_blender_column": [
+        [
+          1.0668794635054808,
+          -0.2305773247119523,
+          0.07623729198248899,
+          -5.223074497617798
+        ],
+        [
+          -0.017272580945668064,
+          -0.4494507935505164,
+          -0.9222173881219302,
+          28.850718932637363
+        ],
+        [
+          0.24527834934199758,
+          0.9721170939575345,
+          -0.38637953506789907,
+          98.17590800902212
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  ],
+  "source_summary": {
+    "format": "PT_OBJECT_LOCAL_SOURCE_V1",
+    "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Effect/AssaEffect/Skill3Mesh/mg3_danceSd40_110_125.smd",
+    "file_size": 27372,
+    "object_count": 6,
+    "object_local_object_count": 1,
+    "animated_object_count": 1,
+    "hold_object_count": 0,
+    "max_engine_frame": 10400,
+    "objects": [
+      {
+        "index": 0,
+        "name": "Box01",
+        "parent": "",
+        "nVertex": 37,
+        "nFace": 64,
+        "nTexLink": 64,
+        "nRot": 19,
+        "nPos": 23,
+        "nScale": 0,
+        "TmFrameCnt": 0,
+        "channels_serialized": [
+          "ROT",
+          "POS"
+        ],
+        "channels_animated": [
+          "ROT_AFFINE",
+          "POS"
+        ],
+        "motion_class": "ANIMATED",
+        "reference_engine_frame": 0,
+        "max_engine_frame": 10400,
+        "rotation_semantics_check": "PASS",
+        "rotation_mode": "LEGACY_AFFINE_RAW_QUATERNION_MATRIX",
+        "legacy_affine_rotation": true,
+        "rotation_cumulative_max_error": 9.610535656179309e-08,
+        "rotation_normalized_cumulative_max_error": 0.05278271389068237,
+        "max_quaternion_norm_deviation": 0.020376392379459096,
+        "parent_index": null,
+        "bind_local_identity_error": null,
+        "normalized_samples": [
+          {
+            "engine_frame": 0.0,
+            "location": [
+              0.0,
+              -2.6020852139652106e-15,
+              6.529499163576702e-15
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "rotation_xyzw": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "affine_matrix_row": [
+              [
+                1.0,
+                4.445228907190568e-18,
+                -1.214306433183765e-17,
+                0.0
+              ],
+              [
+                6.288372600415926e-18,
+                1.0,
+                -1.1359728262216873e-16,
+                0.0
+              ],
+              [
+                0.0,
+                -1.3904892862126594e-17,
+                0.9999999999999998,
+                0.0
+              ],
+              [
+                0.0,
+                -2.6020852139652106e-15,
+                6.529499163576702e-15,
+                1.0
+              ]
+            ],
+            "affine_identity_error": 6.529499163576702e-15
+          },
+          {
+            "engine_frame": 8000.0,
+            "location": [
+              -5.223074497617795,
+              -52.65490752112372,
+              71.51476466750422
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "rotation_xyzw": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "affine_matrix_row": [
+              [
+                1.0668794635054812,
+                -0.15293980163054036,
+                -0.1925337147377882,
+                0.0
+              ],
+              [
+                -0.23057732471195222,
+                -0.3252071302418158,
+                -1.0204205650068938,
+                0.0
+              ],
+              [
+                0.07623729198248899,
+                0.9410224553877063,
+                -0.33801004876290974,
+                0.0
+              ],
+              [
+                -5.223074497617795,
+                -52.65490752112372,
+                71.51476466750422,
+                1.0
+              ]
+            ],
+            "affine_identity_error": 71.51476466750422
+          },
+          {
+            "engine_frame": 10400.0,
+            "location": [
+              -5.223074497617795,
+              28.850718932637353,
+              98.17590800902211
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "rotation_xyzw": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "affine_matrix_row": [
+              [
+                1.0668794635054812,
+                -0.017272580945668053,
+                0.2452783493419976,
+                0.0
+              ],
+              [
+                -0.23057732471195222,
+                -0.4494507935505164,
+                0.9721170939575341,
+                0.0
+              ],
+              [
+                0.07623729198248899,
+                -0.9222173881219301,
+                -0.386379535067899,
+                0.0
+              ],
+              [
+                -5.223074497617795,
+                28.850718932637353,
+                98.17590800902211,
+                1.0
+              ]
+            ],
+            "affine_identity_error": 98.17590800902211
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "name": "bip 01",
+        "parent": "Box01",
+        "nVertex": 8,
+        "nFace": 12,
+        "nTexLink": 12,
+        "nRot": 0,
+        "nPos": 0,
+        "nScale": 0,
+        "TmFrameCnt": 0,
+        "channels_serialized": [],
+        "channels_animated": [],
+        "motion_class": "NONE",
+        "reference_engine_frame": 0,
+        "max_engine_frame": 0,
+        "rotation_semantics_check": "NOT_APPLICABLE",
+        "rotation_mode": "NOT_APPLICABLE",
+        "legacy_affine_rotation": false,
+        "rotation_cumulative_max_error": 0.0,
+        "rotation_normalized_cumulative_max_error": 0.0,
+        "max_quaternion_norm_deviation": 0.0,
+        "parent_index": 0,
+        "bind_local_identity_error": 26.76336669921875
+      },
+      {
+        "index": 2,
+        "name": "bip 02",
+        "parent": "Box01",
+        "nVertex": 8,
+        "nFace": 12,
+        "nTexLink": 12,
+        "nRot": 0,
+        "nPos": 0,
+        "nScale": 0,
+        "TmFrameCnt": 0,
+        "channels_serialized": [],
+        "channels_animated": [],
+        "motion_class": "NONE",
+        "reference_engine_frame": 0,
+        "max_engine_frame": 0,
+        "rotation_semantics_check": "NOT_APPLICABLE",
+        "rotation_mode": "NOT_APPLICABLE",
+        "legacy_affine_rotation": false,
+        "rotation_cumulative_max_error": 0.0,
+        "rotation_normalized_cumulative_max_error": 0.0,
+        "max_quaternion_norm_deviation": 0.0,
+        "parent_index": 0,
+        "bind_local_identity_error": 23.49609375
+      },
+      {
+        "index": 3,
+        "name": "bip 03",
+        "parent": "Box01",
+        "nVertex": 8,
+        "nFace": 12,
+        "nTexLink": 12,
+        "nRot": 0,
+        "nPos": 0,
+        "nScale": 0,
+        "TmFrameCnt": 0,
+        "channels_serialized": [],
+        "channels_animated": [],
+        "motion_class": "NONE",
+        "reference_engine_frame": 0,
+        "max_engine_frame": 0,
+        "rotation_semantics_check": "NOT_APPLICABLE",
+        "rotation_mode": "NOT_APPLICABLE",
+        "legacy_affine_rotation": false,
+        "rotation_cumulative_max_error": 0.0,
+        "rotation_normalized_cumulative_max_error": 0.0,
+        "max_quaternion_norm_deviation": 0.0,
+        "parent_index": 0,
+        "bind_local_identity_error": 17.35296630859375
+      },
+      {
+        "index": 4,
+        "name": "bip 04",
+        "parent": "Box01",
+        "nVertex": 8,
+        "nFace": 12,
+        "nTexLink": 12,
+        "nRot": 0,
+        "nPos": 0,
+        "nScale": 0,
+        "TmFrameCnt": 0,
+        "channels_serialized": [],
+        "channels_animated": [],
+        "motion_class": "NONE",
+        "reference_engine_frame": 0,
+        "max_engine_frame": 0,
+        "rotation_semantics_check": "NOT_APPLICABLE",
+        "rotation_mode": "NOT_APPLICABLE",
+        "legacy_affine_rotation": false,
+        "rotation_cumulative_max_error": 0.0,
+        "rotation_normalized_cumulative_max_error": 0.0,
+        "max_quaternion_norm_deviation": 0.0,
+        "parent_index": 0,
+        "bind_local_identity_error": 11.808334350585938
+      },
+      {
+        "index": 5,
+        "name": "bip 05",
+        "parent": "Box01",
+        "nVertex": 8,
+        "nFace": 12,
+        "nTexLink": 12,
+        "nRot": 0,
+        "nPos": 0,
+        "nScale": 0,
+        "TmFrameCnt": 0,
+        "channels_serialized": [],
+        "channels_animated": [],
+        "motion_class": "NONE",
+        "reference_engine_frame": 0,
+        "max_engine_frame": 0,
+        "rotation_semantics_check": "NOT_APPLICABLE",
+        "rotation_mode": "NOT_APPLICABLE",
+        "legacy_affine_rotation": false,
+        "rotation_cumulative_max_error": 0.0,
+        "rotation_normalized_cumulative_max_error": 0.0,
+        "max_quaternion_norm_deviation": 0.0,
+        "parent_index": 0,
+        "bind_local_identity_error": 6.069305419921875
+      }
+    ],
+    "root_objects": [
+      "Box01"
+    ],
+    "parent_edges": [
+      {
+        "parent": "Box01",
+        "parent_index": 0,
+        "child": "bip 01",
+        "child_index": 1,
+        "child_motion_class": "NONE",
+        "bind_local_identity_error": 26.76336669921875
+      },
+      {
+        "parent": "Box01",
+        "parent_index": 0,
+        "child": "bip 02",
+        "child_index": 2,
+        "child_motion_class": "NONE",
+        "bind_local_identity_error": 23.49609375
+      },
+      {
+        "parent": "Box01",
+        "parent_index": 0,
+        "child": "bip 03",
+        "child_index": 3,
+        "child_motion_class": "NONE",
+        "bind_local_identity_error": 17.35296630859375
+      },
+      {
+        "parent": "Box01",
+        "parent_index": 0,
+        "child": "bip 04",
+        "child_index": 4,
+        "child_motion_class": "NONE",
+        "bind_local_identity_error": 11.808334350585938
+      },
+      {
+        "parent": "Box01",
+        "parent_index": 0,
+        "child": "bip 05",
+        "child_index": 5,
+        "child_motion_class": "NONE",
+        "bind_local_identity_error": 6.069305419921875
+      }
+    ],
+    "parent_edge_count": 5,
+    "unresolved_parent_count": 0,
+    "unresolved_parents": [],
+    "duplicate_node_name_group_count": 0,
+    "duplicate_node_name_groups": {},
+    "parent_resolution_semantics": "CLIENT_LINKOBJECT_FIRST_MATCH_UNRESOLVED_AS_ROOT",
+    "animated_child_count": 0,
+    "legacy_affine_object_count": 1,
+    "legacy_affine_objects": [
+      "Box01"
+    ],
+    "hierarchy_semantics": "LOCAL_QMAT_TIMES_PARENT_TMRESULT",
+    "rotation_semantics": "RAW_QUATERNION_MATRIX_OR_ACCUMULATED_TM_PREV_ROT",
+    "source_rot_key_semantics": "INCREMENTAL_LOCAL_QUATERNION",
+    "preview_reference": "FIRST_KEY_NORMALIZED_OBJECT_LOCAL"
+  },
+  "client_modified": false
+}

@@ -1,0 +1,27 @@
+{
+  "tool": "PT_STATIC_WITNESS_WRITER_V1",
+  "source_smd": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/Items/DropItem/itPR101.smd",
+  "source_sha256": "6c52df3c38229953f225bc797f507d95922e5871553d84cd89d81d02c3fa9466",
+  "object": "itpr101",
+  "source_counts": {
+    "vertices": 5,
+    "faces": 4,
+    "texlinks": 4
+  },
+  "changed_vertices": [
+    0
+  ],
+  "changed_xyz_byte_ranges": [
+    [
+      3328,
+      3340
+    ]
+  ],
+  "non_xyz_bytes_byte_identical": true,
+  "normals_preserved_byte_identical": true,
+  "faces_uv_material_texlink_preserved_byte_identical": true,
+  "output": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-933A0DC47297/static_roundtrip/rebuilt_roundtrip.smd",
+  "output_sha256": "5a31e59e9c8313f66c0e06ffe1bde5d295ed5ad1c60d804a893bd296d14d7158",
+  "client_modified": false,
+  "static_writer_check": "PASS"
+}

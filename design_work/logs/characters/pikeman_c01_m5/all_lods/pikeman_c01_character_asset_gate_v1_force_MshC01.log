@@ -1,0 +1,25 @@
+00:00.015  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.015  color_management | Using fallback mode for management
+00:01.491  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_character_asset_gate_v1_game_normalized.blend"
+Info: Saved as "01_force_MshC01.blend"
+PT_RIGID_SKIN_FORCE_RESOLVE_TEST_V2
+object=MshC01
+test_only=True
+production_policy=False
+source_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_character_asset_gate_v1_game_normalized.blend
+source_blend_sha256=1a54f68eb859c412ca83de5e899bb23cf4534d48978e591dac72ec01b0696a0a
+output_blend=/home/gabriel/Área de Trabalho/summit/design_work/blender/_pipeline_work/pikeman_c01_character_asset_gate_v1/01_force_MshC01.blend
+vertices=656
+review_vertices_before=67
+forced_resolved=67
+invalid_after=0
+review_group_removed=True
+policy_histogram={'NEAREST_RIGID_SEED': 43, 'NEAREST_RIGID_SEED_DISTANCE_TIE_LEXICAL': 24}
+chosen_bone_histogram={'Bip01 L Finger21': 3, 'Bip01 L Finger1': 9, 'Bip01 L Finger2': 3, 'Bip01 L Finger11': 3, 'Bip01 L Hand': 4, 'Bip01 L Forearm': 3, 'Bip01 L Finger0': 3, 'Bip01 R Finger1': 10, 'Bip01 R Finger11': 3, 'Bip01 R Finger2': 5, 'Bip01 R Forearm': 10, 'Bip01 R Finger0': 6, 'Bip01 R Hand': 1, 'Bip01 R Finger01': 1, 'Bip01 L Finger01': 3}
+final_rigid_bone_count=22
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m5/all_lods/pikeman_c01_character_asset_gate_v1_force_MshC01.json
+force_resolve_test_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

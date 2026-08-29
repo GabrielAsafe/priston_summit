@@ -1,3 +1,4 @@
+
 FROM debian:jessie
 
 RUN set -eux; \
@@ -56,11 +57,21 @@ RUN { \
     } > /etc/php5/apache2/conf.d/99-summit.ini && \
     cp /etc/php5/apache2/conf.d/99-summit.ini /etc/php5/cli/conf.d/99-summit.ini
 
+
+# Execute only the PHP-ported legacy clan URLs as PHP.
+# Other .asp/.aspx files remain untouched.
+RUN cat > /etc/apache2/conf-available/legacy-clan-php.conf <<'EOT'
+<LocationMatch "^/(?:Clan/(?:verificarcl\.asp|ClanInsert\.aspx)|ServerMain/(?:ClanSubChipRelease|ClanSubChipUpdate|GetAllMyClanMember|clanChipChange|clanInsertClanWon|clanRemove|clanWonRelease|clanWonSelfLeave|isCheckClanJang|isCheckClanName|isCheckClanNum|isCheckClanwon|isClanMember|isKflag|isPFlag|sod2info)\.asp)$">
+    SetHandler application/x-httpd-php
+</LocationMatch>
+EOT
+RUN a2enconf legacy-clan-php
+
 WORKDIR /var/www/html
 
 EXPOSE 80
 
-CMD ["apache2ctl", "-D", "FOREGROUND"]
+CMD ["bash", "-lc", "rm -f /var/run/apache2/apache2.pid /run/apache2/apache2.pid; exec apache2ctl -D FOREGROUND"]
 
 RUN cat > /etc/php5/apache2/conf.d/00-legacy-polyfills.php.ini <<'EOT'
 auto_prepend_file=/var/www/html/legacy_polyfills.php

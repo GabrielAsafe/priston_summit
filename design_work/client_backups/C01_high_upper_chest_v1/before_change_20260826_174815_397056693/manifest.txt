@@ -1,0 +1,5 @@
+created_at=2026-08-26T17:48:15+01:00
+client_target=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC01.smd
+backup=/home/gabriel/Área de Trabalho/summit/design_work/client_backups/C01_high_upper_chest_v1/before_change_20260826_174815_397056693/MfbC01.smd
+size=297737
+sha256=010f854cd536e799d89aec65b175683da22da8892252031d71ef5630fdf0449c

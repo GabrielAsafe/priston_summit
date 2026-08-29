@@ -1,0 +1,493 @@
+635-				pb = p;
+636-				p = local_GetWord(strBuff, p);
+637-				if(!strBuff[0]) break;
+638-
+639-				if(strBuff[0] == 34)
+640-				{
+641-					p = GetString(strBuff, pb);
+642-				}
+643-				if(lpModelGroup->ModelNameCnt < 4)
+644-				{
+645:					strcpy_s(lpModelGroup->szModelName[lpModelGroup->ModelNameCnt++], strBuff);
+646-				}
+647-			}
+648-			break;
+649-
+650-		case 9:
+651-
+652-
+653-
+654-			break;
+655-		case 10:
+656-
+657-
+658-
+659-			break;
+660-
+661-
+662-
+663-
+664-		case 11:
+665-
+666-			while(true)
+667-			{
+--
+705-
+706-			Info->MotionInfo[MotionLastPos].dwJobCodeBit = 0;
+707-			while(true)
+708-			{
+709-				p = local_GetWord(strBuff, p);
+710-				if(strBuff[0] == 0) break;
+711-				JobCount = 0;
+712-				while(true)
+713-				{
+714-					if(!BitMaskJobNames[JobCount].dwBitMask) break;
+715:					if(lstrcmpi(strBuff, BitMaskJobNames[JobCount].szName) == 0)
+716-					{
+717-						Info->MotionInfo[MotionLastPos].dwJobCodeBit |= BitMaskJobNames[JobCount].dwBitMask;
+718-						break;
+719-					}
+720-					JobCount++;
+721-				}
+722-			}
+723-
+724-			break;
+725-		case 13:
+726-
+727-			p = local_GetWord(strBuff, p);
+728-			cnt = 0;
+729-
+730-			if(lstrcmp(strBuff, "����") == 0)
+731-			{
+732-				cnt |= 1;
+733-			}
+734-			if(lstrcmp(strBuff, "�ʵ�") == 0)
+735-			{
+736-				cnt |= 2;
+737-			}
+--
+3031-
+3032-		if(!NextFlag && lstrcmp(decode, "**Ưȭ") == 0)
+3033-		{
+3034-			while(1)
+3035-			{
+3036-				p = local_GetWord(strBuff, p);
+3037-				if(strBuff[0] == 0) break;
+3038-				cnt = 0;
+3039-				while(1)
+3040-				{
+3041:					if(!JobDataBase[cnt].szName[0]) break;
+3042:					if(lstrcmpi(JobDataBase[cnt].szName, strBuff) == 0)
+3043-					{
+3044-
+3045-						lpItem->JobCodeMask = JobDataBase[cnt].JobBitCode;
+3046-						break;
+3047-					}
+3048-					cnt++;
+3049-				}
+3050-			}
+3051-
+3052-			NextFlag = TRUE;
+3053-		}
+3054-
+3055-
+3056-		if(!NextFlag && lstrcmp(decode, "**Ưȭ����") == 0)
+3057-		{
+3058-			while(1)
+3059-			{
+3060-				p = local_GetWord(strBuff, p);
+3061-				if(strBuff[0] == 0) break;
+3062-				cnt = 0;
+3063-				while(1)
+3064-				{
+3065:					if(!JobDataBase[cnt].szName[0]) break;
+3066:					if(lstrcmpi(JobDataBase[cnt].szName, strBuff) == 0)
+3067-					{
+3068-						if(lpDefItem->JobBitCodeRandomCount >= SPECIAL_JOB_RANDOM_MAX) break;
+3069-						lpDefItem->dwJobBitCode_Random[lpDefItem->JobBitCodeRandomCount++] = JobDataBase[cnt].JobBitCode;
+3070-
+3071-						break;
+3072-					}
+3073-					cnt++;
+3074-				}
+3075-			}
+3076-
+3077-			NextFlag = TRUE;
+3078-		}
+3079-
+3080-
+3081-
+3082-
+3083-
+3084-
+3085-
+3086-		if(!NextFlag && lstrcmp(decode, "**�����") == 0)
+3087-		{
+3088-			p = local_GetWord(strBuff, p);
+--
+3554-
+3555-
+3556-	strcpy_s(szFile, szCharFile);
+3557-
+3558-	fp = fopen(szFile, "rb");
+3559-	if(fp == NULL) return FALSE;
+3560-
+3561-
+3562-
+3563-
+3564:	lpCharInfo->szModelName2[0] = 0;
+3565-	lpCharInfo->wPlayClass[1] = 0;
+3566-	lpCharInfo->ArrowPosi[0] = 0;
+3567-	lpCharInfo->ArrowPosi[1] = 0;
+3568-
+3569-	if(lpMonInfo)
+3570-	{
+3571-		ZeroMemory(lpMonInfo, sizeof(smCHAR_MONSTER_INFO));
+3572-		lpMonInfo->MoveRange = 64 * fONE;
+3573-		lpMonInfo->FallItemCount = 0;
+3574-		lpMonInfo->FallItemMax = 0;
+3575-		lpMonInfo->FallItemPerMax = 0;
+3576-
+3577-		lpMonInfo->DamageStunPers = 100;
+3578-		lpMonInfo->UseEventModel = 0;
+3579-	}
+3580-
+3581-	while(!feof(fp))
+3582-	{
+3583-		if(fgets(line, 255, fp) == NULL)	break;
+3584-
+3585-		p = local_GetWord(decode, line);
+3586-
+3587-		NextFlag = 0;
+3588-
+3589-
+3590-		if(lstrcmp(decode, "*�̸�") == 0)
+3591-		{
+3592-			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+3593-
+3594:			strcpy_s(lpCharInfo->szName, strBuff);
+3595-			NextFlag = TRUE;
+3596-		}
+3597-
+3598-
+3599-#ifdef _LANGUAGE_BRAZIL
+3600-		if(lstrcmpi(decode, "*J_NAME") == 0)
+3601-		{
+3602-			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+3603-
+3604-			if(lpMonInfo)
+3605:				strcpy_s(lpMonInfo->szName, strBuff);
+3606-			else
+3607:				strcpy_s(lpCharInfo->szName, strBuff);
+3608-
+3609-			NextFlag = TRUE;
+3610-		}
+3611-#endif
+3612-
+3613-		if(!NextFlag && lstrcmp(decode, "*�������") == 0)
+3614-		{
+3615-			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+3616-
+3617-
+3618-
+3619:			strcpy_s(lpCharInfo->szModelName, strBuff);
+3620-			NextFlag = TRUE;
+3621-		}
+3622-
+3623-
+3624-
+3625-		DialogFlag = 0;
+3626-
+3627-		if(!NextFlag && lpDialogMessage && lstrcmp(decode, "*��ȭ") == 0)
+3628-		{
+3629-			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+3630-
+3631-			strcpy_s(lpDialogMessage, DialogMessageSize, strBuff);
+3632-			NextFlag = TRUE;
+3633-			DialogFlag++;
+3634-		}
+3635-
+3636-
+3637-#ifdef _LANGUAGE_BRAZIL
+3638-		if(lpDialogMessage && lstrcmpi(decode, "*J_CHAT") == 0)
+3639-		{
+3640-			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+3641-
+--
+3915-
+3916-		}
+3917-
+3918-		if(lpMonInfo && !NextFlag)
+3919-		{
+3920-
+3921-
+3922-			if(!NextFlag && lstrcmp(decode, "*�����") == 0)
+3923-			{
+3924-				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+3925:				strcpy_s(lpCharInfo->szModelName2 + 1, sizeof(lpCharInfo->szModelName2) - 1, strBuff);
+3926-				lpMonInfo->UseEventModel = TRUE;
+3927-				NextFlag = TRUE;
+3928-			}
+3929-
+3930-
+3931-			if(!NextFlag && lstrcmp(decode, "*������ݷ�") == 0)
+3932-			{
+3933-				p = local_GetWord(strBuff, p);
+3934-				lpMonInfo->SkillDamage[0] = atoi(strBuff);
+3935-				p = local_GetWord(strBuff, p);
+3936-				lpMonInfo->SkillDamage[1] = atoi(strBuff);
+3937-
+3938-				NextFlag = TRUE;
+3939-			}
+3940-
+3941-
+3942-			if(!NextFlag && lstrcmp(decode, "*������ݰŸ�") == 0)
+3943-			{
+3944-				p = local_GetWord(strBuff, p);
+3945-				lpMonInfo->SkillDistance = atoi(strBuff);
+3946-
+3947-				NextFlag = TRUE;
+--
+4652-
+4653-		NextFlag = 0;
+4654-
+4655-
+4656-		if(lstrcmp(decode, "*�⿬��") == 0 || lstrcmpi(decode, "*ACTOR") == 0)
+4657-		{
+4658-			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+4659-			strcpy_s(lpStgMonList->rsMonster[MonCnt].szMonsterName, strBuff);
+4660-			for(cnt = 0; cnt < ListCnt; cnt++)
+4661-			{
+4662:				if(lstrcmp(strBuff, lpCharInfoList[cnt].szName) == 0)
+4663-				{
+4664-					lpStgMonList->rsMonster[MonCnt].lpCharInfo = &lpCharInfoList[cnt];
+4665-
+4666-					p = local_GetWord(strBuff, p);
+4667-					cnt = atoi(strBuff);
+4668-					lpStgMonList->rsMonster[MonCnt].NumOpenStart = PercentCnt;
+4669-					lpStgMonList->rsMonster[MonCnt].OpenPercentage = cnt;
+4670-					PercentCnt += cnt;
+4671-					MonCnt++;
+4672-					break;
+4673-				}
+4674-			}
+4675-
+4676-			NextFlag = TRUE;
+4677-		}
+4678-
+4679-		if(lstrcmp(decode, "*�⿬�ڵθ�") == 0 || lstrcmpi(decode, "*BOSS_ACTOR") == 0)
+4680-		{
+4681-
+4682-			lpBossMonster = &lpStgMonList->sBossMonsters[lpStgMonList->BossMonsterCount];
+4683-
+4684-			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+4685-			for(cnt = 0; cnt < ListCnt; cnt++)
+4686-			{
+4687:				if(lstrcmp(strBuff, lpCharInfoList[cnt].szName) == 0)
+4688-				{
+4689-					lpBossMonster->MasterMonster = &lpCharInfoList[cnt];
+4690-					break;
+4691-				}
+4692-			}
+4693-
+4694-			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+4695-			for(cnt = 0; cnt < ListCnt; cnt++)
+4696-			{
+4697:				if(lstrcmp(strBuff, lpCharInfoList[cnt].szName) == 0)
+4698-				{
+4699-					lpBossMonster->SlaveMonster = &lpCharInfoList[cnt];
+4700-					break;
+4701-				}
+4702-			}
+4703-
+4704-			p = local_GetWord(strBuff, p);
+4705-			lpBossMonster->SlaveCount = atoi(strBuff);
+4706-
+4707-
+4708-			for(cnt = 0; cnt < 32; cnt++)
+4709-			{
+4710-				p = local_GetWord(strBuff, p);
+4711-				if(!strBuff[0]) break;
+4712-				lpBossMonster->bOpenTime[lpBossMonster->OpenTimeCount++] = atoi(strBuff);
+4713-			}
+4714-
+4715-			lpStgMonList->BossMonsterCount++;
+4716-			NextFlag = TRUE;
+4717-		}
+4718-
+4719-
+--
+5644-	int	bJob = BaseJob & 0xFFFF;
+5645-
+5646-	if(!JobCnt)
+5647-	{
+5648-		JobCount2 = BaseJob >> 24;
+5649-	}
+5650-
+5651-	int cnt = 0;
+5652-	while(1)
+5653-	{
+5654:		if(!JobDataBase[cnt].szName[0])
+5655-			break;
+5656-		if(bJob == JobDataBase[cnt].JobCode)
+5657-		{
+5658-			if(JobCount2 == JobCount)
+5659-				return &JobDataBase[cnt];
+5660-			JobCount++;
+5661-		}
+5662-		cnt++;
+5663-	}
+5664-
+5665-	//LOG(LOG_DEBUG, "error.....");
+5666-	return NULL;
+5667-}
+5668-
+5669-
+5670-#ifdef _LANGUAGE_BRAZIL
+5671-#include "Language/Brazil/b_JobCode.h"
+5672-#endif
+5673-
+5674-
+5675-
+5676-SKILL_DATA_CODE	SkillDataCode[] = {
+--
+6038-	char m_szSodText[256];
+6039-	sHCORE_MONSTER	hcMonster[hCORE_ROUND_MAX];
+6040-	sHCORE_MONSTER	*lpSod_Monster = (sHCORE_MONSTER *)lphCoreMonster;
+6041-
+6042-	m_szSodText[0] = 0;
+6043-	memcpy(hcMonster, lpSod_Monster, sizeof(sHCORE_MONSTER)*hCORE_ROUND_MAX);
+6044-
+6045-	for(cnt = 0; cnt < rsHARDCORE_COUNT_END; cnt++)
+6046-	{
+6047-
+6048:		hcMonster[cnt].hCoreMonster1.szName[0] = 0;
+6049-		hcMonster[cnt].hCoreMonster1.lpCharInfo = 0;
+6050-		hcMonster[cnt].hCoreMonster1.perCount = 0;
+6051-
+6052:		hcMonster[cnt].hCoreMonster2.szName[0] = 0;
+6053-		hcMonster[cnt].hCoreMonster2.lpCharInfo = 0;
+6054-		hcMonster[cnt].hCoreMonster2.perCount = 0;
+6055-
+6056:		hcMonster[cnt].hCoreMonster3.szName[0] = 0;
+6057-		hcMonster[cnt].hCoreMonster3.lpCharInfo = 0;
+6058-		hcMonster[cnt].hCoreMonster3.perCount = 0;
+6059-
+6060:		hcMonster[cnt].hCoreMonster4.szName[0] = 0;
+6061-		hcMonster[cnt].hCoreMonster4.lpCharInfo = 0;
+6062-		hcMonster[cnt].hCoreMonster4.perCount = 0;
+6063-
+6064:		hcMonster[cnt].hCoreMonsterBoss.szName[0] = 0;
+6065-		hcMonster[cnt].hCoreMonsterBoss.lpCharInfo = 0;
+6066-		hcMonster[cnt].hCoreMonsterBoss.perCount = 0;
+6067-
+6068-		hcMonster[cnt].MaxMonster = 0;
+6069-	}
+6070-
+6071-
+6072-	fp = fopen(szFileName, "rb");
+6073-	if(fp == NULL) return FALSE;
+6074-
+6075-
+6076-	while(!feof(fp))
+6077-	{
+6078-		if(fgets(line, 255, fp) == NULL)	break;
+6079-
+6080-		p = local_GetWord(decode, line);
+6081-
+6082-		NextFlag = 0;
+6083-
+6084-
+6085-		if(lstrcmpi(decode, "*BELATRA_TAX") == 0)
+6086-		{
+--
+6112-			NextFlag = TRUE;
+6113-		}
+6114-
+6115-
+6116-
+6117-		if(!NextFlag && lstrcmpi(decode, "*BELATRA_MONSTER") == 0)
+6118-		{
+6119-			if(hcRoundCount < rsHARDCORE_COUNT_END)
+6120-			{
+6121-				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+6122:				strcpy_s(hcMonster[hcRoundCount].hCoreMonster1.szName, strBuff);
+6123-				p = local_GetWord(strBuff, p);
+6124-				hcMonster[hcRoundCount].hCoreMonster1.perCount = atoi(strBuff);
+6125-
+6126-				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+6127:				strcpy_s(hcMonster[hcRoundCount].hCoreMonster2.szName, strBuff);
+6128-				p = local_GetWord(strBuff, p);
+6129-				hcMonster[hcRoundCount].hCoreMonster2.perCount = atoi(strBuff);
+6130-
+6131-				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+6132:				strcpy_s(hcMonster[hcRoundCount].hCoreMonster3.szName, strBuff);
+6133-				p = local_GetWord(strBuff, p);
+6134-				hcMonster[hcRoundCount].hCoreMonster3.perCount = atoi(strBuff);
+6135-
+6136-				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+6137:				strcpy_s(hcMonster[hcRoundCount].hCoreMonster4.szName, strBuff);
+6138-				p = local_GetWord(strBuff, p);
+6139-				hcMonster[hcRoundCount].hCoreMonster4.perCount = atoi(strBuff);
+6140-
+6141-				pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+6142:				strcpy_s(hcMonster[hcRoundCount].hCoreMonsterBoss.szName, strBuff);
+6143-				hcMonster[hcRoundCount].hCoreMonsterBoss.perCount = 0;
+6144-
+6145-				p = local_GetWord(strBuff, p);
+6146-				hcMonster[hcRoundCount].MaxMonster = atoi(strBuff);
+6147-
+6148-				hcRoundCount++;
+6149-			}
+6150-			NextFlag = TRUE;
+6151-		}
+6152-	}
+6153-	fclose(fp);
+6154-
+6155-	if(hcRoundCount < rsHARDCORE_COUNT_END)
+6156-	{
+6157-		return 0;
+6158-	}
+6159-
+6160-	if(m_SodTax >= 0 && m_SodTax < 100)
+6161-	{
+6162-		*SodTax = m_SodTax;
+6163-	}
+6164-
+--
+6203-		if(fgets(line, 255, fp) == NULL)	break;
+6204-
+6205-		p = local_GetWord(decode, line);
+6206-
+6207-
+6208-		if(lstrcmpi(decode, "*CRACK") == 0)
+6209-		{
+6210-
+6211-
+6212-			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+6213:			strcpy_s(lpTransFindCrack->CrackName[cnt].szName1, strBuff);
+6214-
+6215-			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+6216:			strcpy_s(lpTransFindCrack->CrackName[cnt].szName2, strBuff);
+6217-
+6218-			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+6219-			strcpy_s(lpTransFindCrack->CrackName[cnt].szClass, strBuff);
+6220-
+6221-			cnt++;
+6222-		}
+6223-		if(cnt >= FIND_CRACK_LIST_MAX) break;
+6224-
+6225-	}
+6226-
+6227-	lpTransFindCrack->code = OpCode::OPCODE_FINDCRACK;
+6228-	lpTransFindCrack->size = sizeof(_CRACK_NAME)*cnt + 16;
+6229-	lpTransFindCrack->FindCounter = cnt;
+6230-
+6231-	fclose(fp);
+6232-
+6233-	return cnt;
+6234-}
+6235-
+6236-
+6237-
+6238-

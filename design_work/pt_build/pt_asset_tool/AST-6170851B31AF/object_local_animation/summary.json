@@ -1,0 +1,40 @@
+{
+  "asset_id": "AST-6170851B31AF",
+  "asset": "Effect/ObjAnimationData/MonsterWeb/Web.smd",
+  "family": "SMD_MODEL_062_STATIC",
+  "mode": "STATIC_OBJECT_LOCAL",
+  "object": "Cone02",
+  "channels_serialized": [
+    "POS",
+    "SCALE"
+  ],
+  "channels_animated": [
+    "POS",
+    "SCALE"
+  ],
+  "nRot": 0,
+  "nPos": 11,
+  "nScale": 11,
+  "reference_engine_frame": 0,
+  "max_engine_frame": 16000,
+  "preview_frame_start": 1,
+  "preview_frame_end": 101,
+  "preview_fps": 30,
+  "preview_reference": "FIRST_KEY_NORMALIZED_OBJECT_LOCAL",
+  "rotation_semantics": "ACCUMULATED_TM_PREV_ROT",
+  "source_rot_key_semantics": "INCREMENTAL_LOCAL_QUATERNION",
+  "interpolation": "LINEAR_SAMPLED_EVERY_SOURCE_TICK",
+  "timing_status": "PREVIEW_NOT_RUNTIME_SPEED_CERTIFIED",
+  "rotation_cumulative_max_error": 0.0,
+  "source_semantics": "PASS",
+  "animation_visual": "PASS",
+  "texture_material_visual": "PASS",
+  "visual_object_local_asset": "PASS",
+  "texture_prepare": "PASS",
+  "preview_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6170851B31AF/object_local_animation/object_local_preview.blend",
+  "source_sha256": "142987b0c1991cb5a26d5295d2317290aedb84947836dcfdadda799ba75d9e45",
+  "artifact_sha256": "4b71819eb12c442a11a47496efbe76897648fa86b46bba9a183d6f7420078d03",
+  "certification_id": "CERT-7536C01D4DCF",
+  "automatic_certification_id": "CERT-92091DF1E5E7",
+  "client_modified": false
+}

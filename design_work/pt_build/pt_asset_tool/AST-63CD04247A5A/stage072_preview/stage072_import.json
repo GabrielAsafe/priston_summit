@@ -1,0 +1,28 @@
+{
+  "format": "PT_STAGE072_BLENDER_IMPORT_V1",
+  "check": "PASS",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/dungeon/dun-1.smd",
+  "source_sha256": "08ad3beaaa8687ea21b969cbc53865835f7b75953ed7b6e7db19c591f211bbda",
+  "blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-63CD04247A5A/stage072_preview/stage072_preview.blend",
+  "vertices": 26202,
+  "faces": 34809,
+  "used_materials": 168,
+  "serialized_materials": 207,
+  "lights": 97,
+  "max_texlink_depth": 2,
+  "uv_layers": [
+    "PT_STAGE072_TEXLINK_STAGE_0",
+    "PT_STAGE072_TEXLINK_STAGE_1"
+  ],
+  "custom_vertex_color_vertices": 0,
+  "inert_zero_texture_texlink_faces": 962,
+  "area_encoding": "DWORD32",
+  "opaque_trailing_bytes": 0,
+  "combiner_exact_frame0_material_count": 168,
+  "combiner_approximate_frame0_material_count": 0,
+  "texture_load_failure_count": 0,
+  "texture_load_failures": [],
+  "dynamic_form_preview": "FRAME0_ONLY",
+  "light_preview": "METADATA_ONLY_NOT_RUNTIME_LIGHTING",
+  "client_modified": false
+}

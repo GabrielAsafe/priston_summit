@@ -1,0 +1,22 @@
+00:00.015  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.015  color_management | Using fallback mode for management
+MATERIAL 0: tex='Effect\\\\ObjAnimationData\\\\Test\\\\TEST1.tga' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+Info: Saved as "pristine_import.blend"
+PT_SMD_BLENDER_IMPORT_V4_GENERIC
+pt_import_mode=STATIC_NO_PHYSIQUE
+objects=1
+materials=1
+vertices=10
+faces=8
+uv_faces=8
+armature_bones=0
+mesh_armature_modifiers=0
+visible_objects=['Cylinder01']
+hidden_objects=[]
+blend=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-5F6410576CF6/object_local_animation/pristine_import.blend
+client_modified=False
+generic_import_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

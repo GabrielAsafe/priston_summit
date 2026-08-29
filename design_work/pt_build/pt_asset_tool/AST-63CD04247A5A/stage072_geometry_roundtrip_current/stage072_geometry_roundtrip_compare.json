@@ -1,0 +1,136 @@
+{
+  "tool": "PT_STAGE072_GEOMETRY_ROUNDTRIP_COMPARE_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/dungeon/dun-1.smd",
+  "output": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-63CD04247A5A/stage072_geometry_roundtrip_current/rebuilt_stage072_geometry_roundtrip.smd",
+  "source_sha256": "08ad3beaaa8687ea21b969cbc53865835f7b75953ed7b6e7db19c591f211bbda",
+  "output_sha256": "47b3cbc3886bde282775570ff7fd04d18a20842dbae799b836fc7668e8deb0cc",
+  "source_parse": "PASS",
+  "output_parse": "PASS",
+  "normal_family": "CURRENT_FLOAT32_DIV_SQRT_MUL32767_TRUNC",
+  "vertex_index": 14,
+  "incident_face_count": 1,
+  "file_size_before": 4539876,
+  "file_size_after": 4539888,
+  "stagearea_changed": true,
+  "stagearea_source": {
+    "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+    "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/dungeon/dun-1.smd",
+    "sha256": "08ad3beaaa8687ea21b969cbc53865835f7b75953ed7b6e7db19c591f211bbda",
+    "check": "PASS",
+    "errors": [],
+    "area_encoding": "DWORD32",
+    "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+    "counts": {
+      "vertices": 26202,
+      "faces": 34809,
+      "active_area_cells": 3624,
+      "serialized_slots": 71838,
+      "referenced_face_occurrences": 68214,
+      "wAreaSize_physical": 276480,
+      "wAreaSize_rebuilt": 276480
+    },
+    "stage_map_rect_physical": [
+      -4383469,
+      -7480934,
+      -2841836,
+      -6147921
+    ],
+    "stage_map_rect_rebuilt": [
+      -4383469,
+      -7480934,
+      -2841836,
+      -6147921
+    ],
+    "max_face_area_cell_span": 25,
+    "area_list_capacity": 4096,
+    "faces_exceeding_area_list_capacity": [],
+    "area_core_bytes": 301848,
+    "opaque_trailing_bytes": 0,
+    "checks": {
+      "physical_parser": "PASS",
+      "cell_face_membership_and_order_exact": "PASS",
+      "stagearea_pointer_layout_exact": "PASS",
+      "wAreaSize_bug_compatible_formula_exact": "PASS",
+      "stage_map_rect_exact": "PASS",
+      "serialized_area_core_byte_exact": "PASS",
+      "area_list_4096_capacity_safe": "PASS"
+    },
+    "sourcecode_reconstruction": {
+      "fixed_to_world_shift": 8,
+      "world_to_area_shift": 6,
+      "combined_cell_shift": 14,
+      "grid_wrap": "cell & 0xFF",
+      "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+      "cell_face_order": "ascending source face order",
+      "active_cell_serialization_order": "y outer, x inner",
+      "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+    },
+    "client_modified": false
+  },
+  "stagearea_output": {
+    "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+    "path": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-63CD04247A5A/stage072_geometry_roundtrip_current/rebuilt_stage072_geometry_roundtrip.smd",
+    "sha256": "47b3cbc3886bde282775570ff7fd04d18a20842dbae799b836fc7668e8deb0cc",
+    "check": "PASS",
+    "errors": [],
+    "area_encoding": "DWORD32",
+    "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+    "counts": {
+      "vertices": 26202,
+      "faces": 34809,
+      "active_area_cells": 3625,
+      "serialized_slots": 71840,
+      "referenced_face_occurrences": 68215,
+      "wAreaSize_physical": 276485,
+      "wAreaSize_rebuilt": 276485
+    },
+    "stage_map_rect_physical": [
+      -4383469,
+      -7480934,
+      -2841836,
+      -6147921
+    ],
+    "stage_map_rect_rebuilt": [
+      -4383469,
+      -7480934,
+      -2841836,
+      -6147921
+    ],
+    "max_face_area_cell_span": 25,
+    "area_list_capacity": 4096,
+    "faces_exceeding_area_list_capacity": [],
+    "area_core_bytes": 301860,
+    "opaque_trailing_bytes": 0,
+    "checks": {
+      "physical_parser": "PASS",
+      "cell_face_membership_and_order_exact": "PASS",
+      "stagearea_pointer_layout_exact": "PASS",
+      "wAreaSize_bug_compatible_formula_exact": "PASS",
+      "stage_map_rect_exact": "PASS",
+      "serialized_area_core_byte_exact": "PASS",
+      "area_list_4096_capacity_safe": "PASS"
+    },
+    "sourcecode_reconstruction": {
+      "fixed_to_world_shift": 8,
+      "world_to_area_shift": 6,
+      "combined_cell_shift": 14,
+      "grid_wrap": "cell & 0xFF",
+      "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+      "cell_face_order": "ascending source face order",
+      "active_cell_serialization_order": "y outer, x inner",
+      "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+    },
+    "client_modified": false
+  },
+  "texlinks_byte_identical": true,
+  "lights_byte_identical": true,
+  "vectnormal3_byte_identical": true,
+  "header_unexpected_diff_count": 0,
+  "vertex_unexpected_diff_count": 0,
+  "face_unexpected_diff_count": 0,
+  "errors": [],
+  "check": "PASS",
+  "client_modified": false
+}

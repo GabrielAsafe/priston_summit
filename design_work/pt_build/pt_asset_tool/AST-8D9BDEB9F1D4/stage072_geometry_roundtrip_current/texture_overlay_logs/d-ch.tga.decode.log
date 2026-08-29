@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=f7e89903d5719e1d33cdc2ea2a838a7e92a281d7d524bd1d6a1a618006c7c10f
+output_sha256=f7e89903d5719e1d33cdc2ea2a838a7e92a281d7d524bd1d6a1a618006c7c10f
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-8D9BDEB9F1D4/stage072_geometry_roundtrip_current/texture_overlay_client/field/endless/d-ch.tga
+format=TGA_STANDARD
+client_modified=False
+tga_decode_check=PASS

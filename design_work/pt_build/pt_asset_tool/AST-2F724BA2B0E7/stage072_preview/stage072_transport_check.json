@@ -1,0 +1,16 @@
+{
+  "format": "PT_STAGE072_BLENDER_TRANSPORT_CHECK_V1",
+  "check": "PASS",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Quest/quest_IV.smd",
+  "source_sha256": "48d147adee0dcfd0c7694c5f1f6c8f50a230603dd88286917d853d452cc0f355",
+  "vertices": 5388,
+  "faces": 5844,
+  "loops": 17532,
+  "max_texlink_depth": 2,
+  "max_position_abs_error": 0.0,
+  "max_uv_abs_error": 2.384185791015625e-07,
+  "max_color_abs_error": 2.9685450542160652e-08,
+  "light_metadata_count": 42,
+  "errors": [],
+  "client_modified": false
+}

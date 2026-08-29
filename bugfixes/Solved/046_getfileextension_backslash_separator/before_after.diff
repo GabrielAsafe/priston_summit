@@ -1,0 +1,11 @@
+--- before/SourceCode/SrcGame/src/smLib3d/smTexture.cpp
++++ after/SourceCode/SrcGame/src/smLib3d/smTexture.cpp
+@@ -1581,7 +1581,7 @@
+ 	std::string::size_type stDotIndex;
+ 
+ 	stSlashIndex = strFilePath.rfind('/');
+-	stBackslashIndex = strFilePath.rfind('//');
++	stBackslashIndex = strFilePath.rfind('\\');
+ 	stDotIndex = strFilePath.rfind('.');
+ 
+ 	if (stDotIndex != std::string::npos)

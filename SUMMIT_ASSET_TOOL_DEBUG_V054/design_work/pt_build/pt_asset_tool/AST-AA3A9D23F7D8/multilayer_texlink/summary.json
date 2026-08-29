@@ -1,0 +1,33 @@
+{
+  "asset_id": "AST-AA3A9D23F7D8",
+  "asset": "Field/Fall_Game/chandelier-ani01.smd",
+  "family": "SMD_MODEL_062_STATIC",
+  "mode": "STATIC",
+  "requested_lod": "auto",
+  "lod": "default",
+  "max_layers": 2,
+  "multilayer_faces": 758,
+  "singlelayer_faces": 0,
+  "uv_distinct_multilayer_faces": 758,
+  "profile_counts": {
+    "SECOND_UV_LIGHTMAP_MODULATE": 4
+  },
+  "htexture_slot_mapping": "SMATERIAL_SM_TEXTURE_SLOT_EXACT",
+  "uv_layers": [
+    "PT_TEXLINK_STAGE_0",
+    "PT_TEXLINK_STAGE_1"
+  ],
+  "dynamic_form_preview": "FRAME0_ONLY",
+  "combiner_exact_material_count": 0,
+  "combiner_approximate_material_count": 4,
+  "multilayer_visual": "PASS",
+  "texture_material_visual": "PASS",
+  "visual_multilayer_asset": "PASS",
+  "texture_prepare": "PASS",
+  "preview_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-AA3A9D23F7D8/multilayer_texlink/multilayer_preview.blend",
+  "source_sha256": "ef5b5be5c7d018b24cbc5ea0987f8b45f69b38f1e67bd3ccae37bba45ca39a5a",
+  "artifact_sha256": "2da3c36e0b9e55807e9bda00b84aab09148507f7a402260c1f36075ba0c97676",
+  "certification_id": "CERT-8E229FE380E3",
+  "automatic_certification_id": "CERT-8A58ECF1E120",
+  "client_modified": false
+}

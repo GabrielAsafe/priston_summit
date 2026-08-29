@@ -1,0 +1,114 @@
+{
+  "tool": "PT_FREE_MESH_VALIDATE_V1_2",
+  "blend": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/blender/MfbC01_artist_free_mesh_v1.blend",
+  "object": "MshC01",
+  "mode_sync": {
+    "original_mode": "EDIT",
+    "current_mode": "OBJECT",
+    "edit_mode_synchronized": true
+  },
+  "vertices": 173,
+  "faces": 331,
+  "loops": 993,
+  "uv_layers": [
+    {
+      "index": 0,
+      "name": "SMD_UV",
+      "active": true,
+      "active_render": true,
+      "data_len": 993
+    }
+  ],
+  "active_uv": "SMD_UV",
+  "active_uv_data_count": 993,
+  "used_materials": {
+    "1": 331
+  },
+  "allowed_materials": [
+    1
+  ],
+  "rigid_bone_count": 22,
+  "rigid_bone_histogram": {
+    "Bip01 Spine1": 41,
+    "Bip01 Head": 4,
+    "Bip01 L Clavicle": 7,
+    "Bip01 L UpperArm": 21,
+    "Bip01 L Forearm": 13,
+    "Bip01 L Finger1": 2,
+    "Bip01 L Finger2": 3,
+    "Bip01 L Finger21": 2,
+    "Bip01 L Finger11": 2,
+    "Bip01 L Hand": 5,
+    "Bip01 L Finger0": 5,
+    "Bip01 L Finger01": 4,
+    "Bip01 R Clavicle": 7,
+    "Bip01 R UpperArm": 21,
+    "Bip01 R Forearm": 13,
+    "Bip01 R Finger1": 2,
+    "Bip01 R Finger2": 2,
+    "Bip01 R Finger21": 2,
+    "Bip01 R Finger11": 2,
+    "Bip01 R Hand": 6,
+    "Bip01 R Finger0": 5,
+    "Bip01 R Finger01": 4
+  },
+  "max_vertex_fit_error": 0.0031524530832559797,
+  "mean_vertex_fit_error": 0.00023065902223451507,
+  "bbox": {
+    "x": [
+      -8.15234375,
+      8.208041191101074
+    ],
+    "y": [
+      -3.5703125,
+      3.546875
+    ],
+    "z": [
+      17.0546875,
+      37.5078125
+    ]
+  },
+  "edge_degree_histogram": {
+    "2": 484,
+    "1": 16,
+    "3": 3
+  },
+  "boundary_edge_count": 16,
+  "nonmanifold_edge_count": 3,
+  "nonmanifold_edges": [
+    {
+      "edge": [
+        1,
+        5
+      ],
+      "faces": [
+        7,
+        158,
+        168
+      ]
+    },
+    {
+      "edge": [
+        1,
+        82
+      ],
+      "faces": [
+        151,
+        158,
+        168
+      ]
+    },
+    {
+      "edge": [
+        5,
+        82
+      ],
+      "faces": [
+        158,
+        168,
+        178
+      ]
+    }
+  ],
+  "validation_check": "PASS"
+}

@@ -1,0 +1,27 @@
+{
+  "format": "PT_STAGE072_BLENDER_IMPORT_V1",
+  "check": "PASS",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Lost/lost.smd",
+  "source_sha256": "7489d4af994afb3cd3c42dd941017594cd95437dbde31bb2a7ea2738aec38e44",
+  "blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BF645D5D1F94/stage072_uv_roundtrip/stage072_pristine.blend",
+  "vertices": 42582,
+  "faces": 61858,
+  "used_materials": 223,
+  "serialized_materials": 292,
+  "lights": 62,
+  "max_texlink_depth": 1,
+  "uv_layers": [
+    "PT_STAGE072_TEXLINK_STAGE_0"
+  ],
+  "custom_vertex_color_vertices": 42455,
+  "inert_zero_texture_texlink_faces": 0,
+  "area_encoding": "WORD16",
+  "opaque_trailing_bytes": 0,
+  "combiner_exact_frame0_material_count": 223,
+  "combiner_approximate_frame0_material_count": 0,
+  "texture_load_failure_count": 0,
+  "texture_load_failures": [],
+  "dynamic_form_preview": "FRAME0_ONLY",
+  "light_preview": "METADATA_ONLY_NOT_RUNTIME_LIGHTING",
+  "client_modified": false
+}

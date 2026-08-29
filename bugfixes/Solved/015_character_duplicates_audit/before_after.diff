@@ -1,0 +1,29 @@
+--- before/HoLinkHeader.cpp
++++ after/HoLinkHeader.cpp
+@@ -280,7 +280,16 @@
+ 		DownUserCharacterCount = 0;
+ 
+ 
+-		for(int index = 0; index < ServerUserCharacterInfo->PlayUserCount; index++)
++		// BUGFIX_015_CHARACTER_LIST_BOUNDS
++		int characterCount = ServerUserCharacterInfo->PlayUserCount;
++
++		if(characterCount < 0)
++			characterCount = 0;
++
++		if(characterCount > CHARACTER_USER_MAX)
++			characterCount = CHARACTER_USER_MAX;
++
++		for(int index = 0; index < characterCount; index++)
+ 		{
+ 			wsprintf(DownUserCharacterInfo[index].Name, "%s", ServerUserCharacterInfo->CharInfo[index].szName);
+ 			DownUserCharacterInfo[index].Level = ServerUserCharacterInfo->CharInfo[index].Level;
+@@ -296,7 +305,7 @@
+ 
+ 
+ 		}
+-		DownUserCharacterCount = ServerUserCharacterInfo->PlayUserCount;
++		DownUserCharacterCount = characterCount;
+ 	}
+ 	else if(dwCode == OpCode::OPCODE_SERVER_INFO)
+ 	{

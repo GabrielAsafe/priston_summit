@@ -1,0 +1,14 @@
+{
+  "asset_id": "AST-CCF0079F7024",
+  "asset": "char/tmABCD/Mfh-B01d.smd",
+  "source_sha256": "48657d162a180fa3ca5adaccedb1902c04252228871b9527c8b11f74afb69290",
+  "mode": "RIGID",
+  "binding_mode": "ROOT_SKELETON_BOUND",
+  "binding_source": "INX_LINK_FILE",
+  "binding_root_models": [
+    "char/tmabcd/tfbd01.smd"
+  ],
+  "structural_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-CCF0079F7024/structural/character_structural.json",
+  "inx_checks": 1,
+  "check": "PASS"
+}

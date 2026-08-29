@@ -1,0 +1,21 @@
+{
+  "tool": "PT_BLENDER_BAKE_ACTIONS_V1",
+  "armature": "PT_m5_Armature",
+  "actions": [
+    {
+      "name": "PT_DAMAGE_013",
+      "frames": 20,
+      "state": "DAMAGE",
+      "index": 13
+    }
+  ],
+  "selected_action": "PT_DAMAGE_013",
+  "scene_frame_start": 1,
+  "scene_frame_end": 20,
+  "fps": 30,
+  "quaternion_null_semantics": "IDENTITY",
+  "quaternion_sign_continuity": true,
+  "interpolation": "LINEAR",
+  "client_modified": false,
+  "check": "PASS"
+}

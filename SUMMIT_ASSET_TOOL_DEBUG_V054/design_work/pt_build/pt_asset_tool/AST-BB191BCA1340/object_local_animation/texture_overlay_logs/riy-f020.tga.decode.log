@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=47c9fe2e666cabb7fb6caacf0aeaca9d97c5f75a2ad085c74bc9cf871769ae4f
+output_sha256=c87d4101a96bbb26edb47117ca1e429c60506d25f072c64015d2cacff801a2e5
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/texture_overlay_client/field/castle/riy-f020.tga
+format=TGA_PRISTON_HEADER18_KEEP_00_16
+client_modified=False
+tga_decode_check=PASS

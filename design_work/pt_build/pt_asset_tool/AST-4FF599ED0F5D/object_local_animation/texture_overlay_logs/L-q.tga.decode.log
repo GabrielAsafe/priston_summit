@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=d7ef83cb2abe5140c776160898f9ced12245e68f3b038ee328d61929fa06c1a2
+output_sha256=d7ef83cb2abe5140c776160898f9ced12245e68f3b038ee328d61929fa06c1a2
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4FF599ED0F5D/object_local_animation/texture_overlay_client/field/SeaA/L-q.tga
+format=TGA_STANDARD
+client_modified=False
+tga_decode_check=PASS

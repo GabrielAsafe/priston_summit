@@ -1,0 +1,5 @@
+=== ONLY CURRENT IMAGE PATHS ===
+image//Sinimage//Inter//Chat//ChatDefault-1.png
+
+=== ONLY BASE IMAGE PATHS ===
+image//Sinimage//Inter//Chat//ChatDefault-1.tga

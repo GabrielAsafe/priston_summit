@@ -1,0 +1,17 @@
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:220:int						DownUserCharacterCount;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:280:		DownUserCharacterCount = 0;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:299:		DownUserCharacterCount = ServerUserCharacterInfo->PlayUserCount;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.h:133:extern  int						DownUserCharacterCount;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:1268:	for (int index = 0; index < UserCharacterCount; index++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:1382:				for (int n = 0; n < DownUserCharacterCount; n++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:1514:		for (int index = 0; index < UserCharacterCount; index++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:1738:		for (int index = 0; index < DownUserCharacterCount; index++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:1913:	UserCharacterCount = 0;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:2443:				UserCharacterCount--;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:285:	UserCharacterCount = 0;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:3120:			for (int index = 0; index < DownUserCharacterCount; index++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:3136:					if (UserCharacterCount < CHARACTER_USER_MAX)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:504:	if (DownUserCharacterCount > 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:507:		for (int index = 0; index < DownUserCharacterCount; index++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:792:			UserCharacterCount++;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.h:144:	int						UserCharacterCount;

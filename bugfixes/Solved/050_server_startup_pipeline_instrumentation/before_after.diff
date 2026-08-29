@@ -1,0 +1,191 @@
+--- bugfixes/050_server_startup_pipeline_instrumentation/before/SourceCode/SrcServer/src/Server/OnSever.cpp	2026-08-25 12:36:59.053256485 +0100
++++ SourceCode/SrcServer/src/Server/OnSever.cpp	2026-08-25 17:14:50.604307631 +0100
+@@ -2226,38 +2226,136 @@
+ 	char	szFilePath[64];
+ 	sDEF_ITEMINFO	DefItem;
+ 
++	FILE *fpItemAudit = fopen("server_startup_items.log", "wt");
++
++	fprintf(stderr, "[STARTUP][ITEMS] BEGIN\n");
++	fflush(stderr);
++
++	if(fpItemAudit)
++	{
++		fprintf(fpItemAudit, "=== ITEM LOAD BEGIN ===\n");
++		fprintf(fpItemAudit, "ItemPath=%s\n", ItemPath);
++	}
++
+ 	DefaultItemCount = 0;
+ 
+ 	strcpy_s(szFindPath, ItemPath);
+ 	lstrcat(szFindPath, "*.txt");
+ 
++	if(fpItemAudit)
++		fprintf(fpItemAudit, "SearchPattern=%s\n\n", szFindPath);
++
+ 	hFindHandle = FindFirstFile(szFindPath, &fd);
+-	if(hFindHandle != INVALID_HANDLE_VALUE)
++
++	if(hFindHandle == INVALID_HANDLE_VALUE)
++	{
++		fprintf(stderr,
++			"[STARTUP][ITEMS] WARNING: FindFirstFile failed for %s error=%lu\n",
++			szFindPath,
++			(unsigned long)GetLastError());
++		fflush(stderr);
++
++		if(fpItemAudit)
++		{
++			fprintf(fpItemAudit,
++				"FIND_FIRST_FILE_FAILED error=%lu\n",
++				(unsigned long)GetLastError());
++		}
++	}
++	else
+ 	{
+ 		while(1)
+ 		{
+ 			strcpy_s(szFilePath, ItemPath);
+ 			lstrcat(szFilePath, fd.cFileName);
+ 
+-			DecodeItemInfo(szFilePath, &DefaultItems[DefaultItemCount]);
++			if(fpItemAudit)
++			{
++				fprintf(fpItemAudit,
++					"[BEFORE] INDEX=%d FILE=%s\n",
++					DefaultItemCount,
++					szFilePath);
++			}
++
++			DecodeItemInfo(
++				szFilePath,
++				&DefaultItems[DefaultItemCount]);
++
++			if(fpItemAudit)
++			{
++				fprintf(fpItemAudit,
++					"[AFTER ] INDEX=%d CODE=0x%08lX NAME=\"%s\" "
++					"ITEM_INDEX=%d UNIQUE=0x%08lX PRICE=%d LEVEL=%d\n",
++					DefaultItemCount,
++					(unsigned long)DefaultItems[DefaultItemCount].Item.CODE,
++					DefaultItems[DefaultItemCount].Item.ItemName,
++					DefaultItems[DefaultItemCount].Item.Index,
++					(unsigned long)DefaultItems[DefaultItemCount].Item.UniqueItem,
++					DefaultItems[DefaultItemCount].Item.Price,
++					DefaultItems[DefaultItemCount].Item.Level);
++			}
++
++			memcpy(
++				&DefItem,
++				&DefaultItems[DefaultItemCount],
++				sizeof(sDEF_ITEMINFO));
+ 
+-			memcpy(&DefItem, &DefaultItems[DefaultItemCount], sizeof(sDEF_ITEMINFO));
+ 			SetLowerItem(&DefItem);
+ 
+ 			DefItem.Item.BackUpKey = 0;
+ 			DefItem.Item.BackUpChkSum = 0;
+ 			DefItem.Item.dwCreateTime = 0;
+ 
+-			DefaultItems[DefaultItemCount].DefCompressDataLen = EecodeCompress((BYTE *)&DefItem.Item, (BYTE *)DefaultItems[DefaultItemCount].DefCompressData, sizeof(sITEMINFO));
++			DefaultItems[DefaultItemCount].DefCompressDataLen =
++				EecodeCompress(
++					(BYTE *)&DefItem.Item,
++					(BYTE *)DefaultItems[DefaultItemCount].DefCompressData,
++					sizeof(sITEMINFO));
++
++			if(fpItemAudit)
++			{
++				fprintf(fpItemAudit,
++					"[COMP  ] INDEX=%d LEN=%d\n\n",
++					DefaultItemCount,
++					DefaultItems[DefaultItemCount].DefCompressDataLen);
++			}
+ 
+ 			DefaultItemCount++;
+ 
+-			if(FindNextFile(hFindHandle, &fd) == FALSE) break;
+-			if(DefaultItemCount >= DEF_ITEM_MAX) break;
++			if(FindNextFile(hFindHandle, &fd) == FALSE)
++				break;
++
++			if(DefaultItemCount >= DEF_ITEM_MAX)
++			{
++				fprintf(stderr,
++					"[STARTUP][ITEMS] WARNING: DEF_ITEM_MAX reached (%d)\n",
++					DefaultItemCount);
++				fflush(stderr);
++
++				if(fpItemAudit)
++					fprintf(fpItemAudit,
++						"DEF_ITEM_MAX_REACHED=%d\n",
++						DefaultItemCount);
++
++				break;
++			}
+ 		}
++
++		FindClose(hFindHandle);
++	}
++
++	if(fpItemAudit)
++	{
++		fprintf(fpItemAudit, "\n=== ITEM LOAD SUMMARY ===\n");
++		fprintf(fpItemAudit, "DEFAULT_ITEM_COUNT=%d\n", DefaultItemCount);
++		fprintf(fpItemAudit, "=== ITEM LOAD END ===\n");
++		fclose(fpItemAudit);
+ 	}
+-	FindClose(hFindHandle);
+ 
++	fprintf(stderr,
++		"[STARTUP][ITEMS] END count=%d\n",
++		DefaultItemCount);
++	fflush(stderr);
+ 
+ 	return TRUE;
+ }
+@@ -12479,22 +12577,39 @@
+ 		}
+ 	}
+ 
+-	cout << "Carregando Material..." << endl;
++	fprintf(stderr, "[STARTUP][MATERIAL] BEGIN\n");
++	fflush(stderr);
+ 	InitMaterial();
++	fprintf(stderr, "[STARTUP][MATERIAL] END\n");
++	fflush(stderr);
+ 
+-	cout << "Carregando Char..." << endl;
++	fprintf(stderr, "[STARTUP][CHAR] BEGIN\n");
++	fflush(stderr);
+ 	srInitChar();
++	fprintf(stderr, "[STARTUP][CHAR] END\n");
++	fflush(stderr);
+ 
+-	cout << "Carregando Monstros..." << endl;
++	fprintf(stderr, "[STARTUP][MONSTER] BEGIN\n");
++	fflush(stderr);
+ 	InitMonster();
++	fprintf(stderr, "[STARTUP][MONSTER] END\n");
++	fflush(stderr);
+ 
+-	cout << "Carregando Itens..." << endl;
++	fprintf(stderr, "[STARTUP][ITEMS] CALL\n");
++	fflush(stderr);
+ 	InitItems();
+ 
+-	cout << "Carregando NPCS..." << endl;
++	fprintf(stderr, "[STARTUP][NPC] BEGIN\n");
++	fflush(stderr);
+ 	LoadOftenNpc();
++	fprintf(stderr, "[STARTUP][NPC] END\n");
++	fflush(stderr);
+ 
++	fprintf(stderr, "[STARTUP][CRACK] BEGIN\n");
++	fflush(stderr);
+ 	InitCrackFinding();
++	fprintf(stderr, "[STARTUP][CRACK] END\n");
++	fflush(stderr);
+ 
+ 	Stage_StepHeight = fONE * 20;
+ 

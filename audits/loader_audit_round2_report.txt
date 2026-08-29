@@ -1,0 +1,89 @@
+LOADER AUDIT — ROUND 2
+========================================================================================
+
+DECISÃO PRINCIPAL
+
+Field/old_forest e Field/old_dungeon passam de HOLD para QUARENTENA DE ALTA CONFIANÇA.
+Motivos:
+  - field.cpp monta caminhos como 'field//' + referência definida em SetName/AddStageObject.
+  - não há referência a old_forest/old_dungeon no field.cpp cliente ou servidor fornecidos.
+  - AddStageObject não procura globalmente; GetStageObjectName apenas prefixa 'field//'.
+  - smASE_Read/smSTAGE3D_ReadASE tentam o .smd no MESMO caminho da referência .ASE.
+  - não existe fallback por basename/old_forest/old_dungeon.
+  - arestas resolvidas entrando nas duas pastas a partir de fora delas: 0.
+
+VOLUME EM QUARENTENA
+  old_forest:  1487 arquivos / 87.91 MiB
+  old_dungeon: 1484 arquivos / 69.32 MiB
+  total dirs:  2971 arquivos / 157.23 MiB
+  mapas/títulos legados associados: 20 arquivos / 2.58 MiB
+  total potencial desta família: 159.81 MiB
+
+CORREÇÃO IMPORTANTE DA FASE 2
+
+Referências literais SetName/AddStageObject encontradas em field.cpp: 427
+  - referência .ASE com .SMD correspondente existente: 414
+  - referência sem .ASE e sem .SMD: 13
+  - dessas faltantes, condicionais WORLDCUP_FIELD: 6
+  - faltantes não condicionais: 7
+
+Isto significa que muitos .SMD marcados UNRESOLVED_UNUSED na Fase 2 são, na realidade,
+ativos: o código pede 'foo.ASE' e o loader prefere/encontra 'foo.smd' no mesmo caminho.
+
+EXEMPLO CONFIRMADO
+  código: field.cpp -> forest//3ani-08.ASE
+  cliente: Field/forest/3ani-08.ASE não existe
+  cliente: Field/forest/3ani-08.smd existe
+  loader: troca extensão para .smd e carrega o SMD.
+
+FALSO POSITIVO CONFIRMADO DA FASE 1/2
+  Field/forever-fall/3ani-08.ASE
+  foi marcado direto por basename por causa de forest//3ani-08.ASE.
+  field.cpp de forever-fall carrega 3ani-01..3ani-07, mas não 3ani-08.
+  => candidato forte a quarentena.
+
+REFERÊNCIAS DE FIELD FALTANDO
+  - forever-fall//1ani-27.ase
+  - forever-fall//piani-41.ase
+  - forever-fall//ani_world01.ASE [CONDICIONAL WORLDCUP_FIELD]
+  - forever-fall//ani_world02.ASE [CONDICIONAL WORLDCUP_FIELD]
+  - forever-fall//ani_world03.ASE [CONDICIONAL WORLDCUP_FIELD]
+  - forever-fall//ani_world04.ASE [CONDICIONAL WORLDCUP_FIELD]
+  - forever-fall//ani_world05.ASE [CONDICIONAL WORLDCUP_FIELD]
+  - forever-fall//ani_world06.ASE [CONDICIONAL WORLDCUP_FIELD]
+  - cave//Dcave_ani14.ASE
+  - lost//ani_shop01.ASE
+  - lost//ani_shop02.ASE
+  - lost//ani_shop03.ASE
+  - lost//ani_shop04.ASE
+
+MAP/TITLE DINÂMICOS
+  SetName(stage, mapName) encontrados: 51
+  mapas existentes em Field/map: 49
+  títulos existentes em Field/title: 49
+  Portanto Field/map e Field/title NÃO podem ser tratados como pastas soltas.
+  SetName monta diretamente field//map//<map>.tga e field//title//<map>t.tga.
+
+INX
+  No código fornecido, LoadOftenNpc (_W_SERVER) procura *.inx apenas como marcador de arquivo.
+  LoadFolder_Ini troca a extensão encontrada de .inx para .ini e chama LoadOftenMeshPattern no .ini.
+  O conteúdo binário do .inx não é lido nesse fluxo.
+  Portanto referências '.ASE' encontradas dentro do INX NÃO devem, por si sós, criar arestas runtime.
+  Ainda não recomendo remover INX em massa, pois esta conclusão é sobre o fluxo fornecido.
+
+BUG DO PARSER ASE
+  SetDirectoryFromFile/ReadASE_* usam comparação com a constante multi-caractere '//'.
+  Isto não equivale a '/' nem a '\\'. O parser de ASE bruto tem tratamento de caminho defeituoso.
+  Como o cliente de Field usa majoritariamente SMD pré-convertido, o SMD é a evidência runtime mais forte.
+
+ARQUIVOS GERADOS
+  field_runtime_smd_implied_used.csv - 414 SMDs implicados por referências ASE do código.
+  field_runtime_missing_references.csv - referências de Field sem ASE/SMD.
+  field_dynamic_map_title_usage.csv - mapa/título construídos dinamicamente.
+  field_legacy_quarantine_candidates.csv - família legacy recomendada para quarentena.
+  field_loose_ase_review.csv - seis ASE soltos de Field para revisão.
+
+RECOMENDAÇÃO OPERACIONAL
+  Não apagar ainda. Mover a família old_forest/old_dungeon para uma pasta de quarentena
+  fora de 'cliente', iniciar cliente, entrar nos mapas forest/dungeon e observar logs/texturas.
+  Se não houver regressão, a família pode ser promovida para 'removível'.

@@ -1,0 +1,14 @@
+Server and client built and started successfully.
+
+server_startup_items.log:
+- DefaultItemCount = 1826
+- PRICE fields are being decoded after bugfix 051.
+- CODE fields remain zero.
+
+Runtime probe 052:
+- No [ITEMCODE] output was emitted.
+- Therefore execution did not enter the ITEM_TOKEN_CODE conditional block
+  for WA101.txt, 2_WA108.txt or BC102.txt.
+
+Next investigation:
+Inspect the raw `decode` token before ITEM_TOKEN_CODE comparison.

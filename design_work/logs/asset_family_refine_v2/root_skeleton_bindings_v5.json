@@ -1,0 +1,2781 @@
+{
+  "format": "PT_ROOT_SKELETON_BINDINGS_V2",
+  "entries": {
+    "char/tmabcd/cmfbb02.smd": {
+      "asset": "char/tmABCD/CmfbB02.smd",
+      "source_sha256": "12478d4ae2ba77b7cfb95ae3d5b9cc8c06511243dbfaef8aa2a3cc2216b6bda0",
+      "updated_at": "2026-08-28T15:32:30.877369+00:00",
+      "candidate_universe": 958,
+      "tested_candidates": 958,
+      "scan_complete": true,
+      "structural_passes": 303,
+      "distinct_signed_skeletons": 225,
+      "unsigned_structural_passes": 0,
+      "probe_state": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/probe_state_v5.json",
+      "reused_v4_scan": true,
+      "reused_v3_structural_results": false,
+      "resigned_structural_passes": 0,
+      "resign_ok": 0,
+      "resign_fail": 0,
+      "pass_signature_error_counts": {},
+      "pass_signature_error_samples": {},
+      "status": "PHYSIQUE_SUBSET_INCOMPLETE",
+      "source": "PHYSIQUE_SUBSET",
+      "representative_probe_smb": "char/tmABCD/M1-motion1.smb",
+      "lod": "high",
+      "weighted_group_count": 29,
+      "weighted_groups": [
+        "Bip01 Spine1",
+        "Bip01 Pelvis",
+        "Bip01 Head",
+        "Bip01 R Finger01",
+        "Bip01 R Hand",
+        "Bip01 R Finger21",
+        "Bip01 R Finger2",
+        "Bip01 R Finger1",
+        "Bip01 R Finger0",
+        "Bip01 R Finger11",
+        "Bip01 R UpperArm",
+        "Bip01 R Forearm",
+        "Bip01 R Calf",
+        "Bip01 Spine",
+        "Bip01 R Thigh",
+        "Bip01 R Foot",
+        "Bip01 L Clavicle",
+        "Bip01 L Finger01",
+        "Bip01 L Hand",
+        "Bip01 L Finger21",
+        "Bip01 L Finger2",
+        "Bip01 L Finger1",
+        "Bip01 L Finger0",
+        "Bip01 L Finger11",
+        "Bip01 L UpperArm",
+        "Bip01 L Forearm",
+        "Bip01 L Calf",
+        "Bip01 L Thigh",
+        "Bip01 L Foot"
+      ],
+      "used_bone_indices": [
+        2,
+        3,
+        4,
+        6,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        46,
+        47,
+        48,
+        50,
+        51,
+        52
+      ],
+      "physique_usage_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/physique_subset_v1/physique_usage.json",
+      "physique_probe_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/physique_subset_v1/physique_probe.blend",
+      "physique_subset_count": 101,
+      "physique_topology_subset_count": 52,
+      "subset_parse_failures": [
+        {
+          "path": "char/tmABCD/M2-motion10.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [48, 50, 51, 52] bone_count=48"
+        },
+        {
+          "path": "char/tmABCD/M2-motion5.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=49"
+        },
+        {
+          "path": "char/tmABCD/M2-motion7.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=49"
+        },
+        {
+          "path": "char/tmABCD/M2-motion8.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=49"
+        },
+        {
+          "path": "char/tmABCD/M4-motion5.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [52] bone_count=52"
+        },
+        {
+          "path": "char/tmABCD/M4-motion6.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [52] bone_count=52"
+        },
+        {
+          "path": "char/tmABCD/M7-motion1.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/tmABCD/M7-motion2.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/tmABCD/M7-motion3.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/tmABCD/M7-motion4.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/tmABCD/M7-motion5.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/tmABCD/M7-motion6.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/tmABCD/M7-motion7.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/tmABCD/M7-motion8.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/tmABCD/M7-motion9.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/tmABCD/m7.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/tmABCD/MmbE01.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/tmABCD/tfbD01.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=45"
+        },
+        {
+          "path": "char/tmABCD/tmbC01.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Adevayo/worldtogo.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/monster/Adevayo/worldtogo_attack.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/monster/BadWolf/B1511.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=35"
+        },
+        {
+          "path": "char/monster/Bloodyknight/Bknight.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/CaveMush/Cmush.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [47, 48, 50, 51, 52] bone_count=47"
+        },
+        {
+          "path": "char/monster/d_ar/dar.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=46"
+        },
+        {
+          "path": "char/monster/d_pa/dpike.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [52] bone_count=52"
+        },
+        {
+          "path": "char/monster/Darkphalanx/darkphalanx.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=46"
+        },
+        {
+          "path": "char/monster/Draxos/Draxos.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [47, 48, 50, 51, 52] bone_count=47"
+        },
+        {
+          "path": "char/monster/frost/frost.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=39"
+        },
+        {
+          "path": "char/monster/gorgon/gorgon.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [48, 50, 51, 52] bone_count=48"
+        },
+        {
+          "path": "char/monster/Greedy/Greedy.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=39"
+        },
+        {
+          "path": "char/monster/hongky/Hongky.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=36"
+        },
+        {
+          "path": "char/monster/hongky/mHongky.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=36"
+        },
+        {
+          "path": "char/monster/IBomber/IBomber.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=35"
+        },
+        {
+          "path": "char/monster/icegoblin/icegoblin.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/icegolem/icegolem.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=35"
+        },
+        {
+          "path": "char/monster/IElite/IElite.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=39"
+        },
+        {
+          "path": "char/monster/Incubussummer/Incubussummer.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/ISoldier/ISoldier.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=37"
+        },
+        {
+          "path": "char/monster/ITechnician/ITechnician.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=35"
+        },
+        {
+          "path": "char/monster/Koon/Koon.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [48, 50, 51, 52] bone_count=48"
+        },
+        {
+          "path": "char/monster/Koon/Koon1.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [48, 50, 51, 52] bone_count=48"
+        },
+        {
+          "path": "char/monster/LEngineer/LEngineer.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/monster/LEngineer_1/LEngineer.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/monster/LGuardian/LGuardian.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=39"
+        },
+        {
+          "path": "char/monster/Lizard_bigmama/Lizard_Bigmama.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Lizard_bigmama/Lizard_Bigmama_Blue.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Lizard_bigmama/Lizard_Bigmama_Green.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Lizard_Commander/Lizard_Commander.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Lizard_Commander/Lizard_Commander_Blue.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Lizard_Commander/Lizard_Commander_Green.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Lizard_Doctor/Lizard_Doctor.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=37"
+        },
+        {
+          "path": "char/monster/Lizard_Doctor/Lizard_Doctor_Blue.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=37"
+        },
+        {
+          "path": "char/monster/Lizard_Doctor/Lizard_Doctor_Red.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=37"
+        },
+        {
+          "path": "char/monster/Lizard_Elder/Lizard_Elder.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=42"
+        },
+        {
+          "path": "char/monster/Lizard_Elder/Lizard_Elder_Blue.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=42"
+        },
+        {
+          "path": "char/monster/Lizard_Elder/Lizard_Elder_Red.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=42"
+        },
+        {
+          "path": "char/monster/Lizard_Papa/lizard_papa.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Lizard_Papa/lizard_papa_Blue.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Lizard_Papa/lizard_papa_Green.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Lizard_Soldier/Lizard_Soldier.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=42"
+        },
+        {
+          "path": "char/monster/Lizard_Soldier/Lizard_Soldier_Blue.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=42"
+        },
+        {
+          "path": "char/monster/Lizard_Soldier/Lizard_Soldier_Green.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=42"
+        },
+        {
+          "path": "char/monster/LTechnician/LTechnician.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=35"
+        },
+        {
+          "path": "char/monster/LTechnician_1/LTechnician.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=35"
+        },
+        {
+          "path": "char/monster/Monavelrisk/mmonavelrisk-mass.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monavelrisk/mmonavelrisk-spear.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monavelrisk/mmonavelrisk-sword.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monavelrisk/monavelrisk-ani.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monavelrisk/monavelrisk-mass.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monavelrisk/monavelrisk-spear.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monavelrisk/monavelrisk-sword.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monbabyhulk/mMonbabyhulk.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=36"
+        },
+        {
+          "path": "char/monster/Monbabyhulk/Monbabyhulk.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=36"
+        },
+        {
+          "path": "char/monster/Monberserker/mMonberserker.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monberserker/Monberserker.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/MonGknight/mG2knight.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/MonGknight/mGknight.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/MonGknight/MonG2knight-model.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/MonGknight/MonG2knight-motion.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/MonGknight/MonGknight-model.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/MonGknight/MonGknight-motion.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Monheavygoblin/Monheavygoblin.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=42"
+        },
+        {
+          "path": "char/monster/Monhulk-1/mMonhulk-01.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/monster/Monhulk-1/Monhulk-01.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/monster/Monhulk/mMonhulk-00.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/monster/Monhulk/Monhulk-00.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/monster/Monigad/Monigad.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=43"
+        },
+        {
+          "path": "char/monster/Monigad/Rguard.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=43"
+        },
+        {
+          "path": "char/monster/Monmightygoblin/Monmightygoblin.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=42"
+        },
+        {
+          "path": "char/monster/Monmummy/mMonmummy.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monmummy/Monmummy.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monnazz-1/mMonnazz-1.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Monnazz-1/mMonnazz-a-01.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Monnazz-1/Monnazz-1.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Monnazz-1/Monnazz-a-01.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Monnazz/mMonnazz-01.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Monnazz/mMonnazz.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Monnazz/Monnazz-01.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Monnazz/Monnazz.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Monomicron-1/monomicron-1.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/monster/Monomicron/monomicron.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/monster/Monshadow/mMonshadow.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=44"
+        },
+        {
+          "path": "char/monster/Monshadow/Monshadow.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=44"
+        },
+        {
+          "path": "char/monster/Monsliver/mMonsliver.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=39"
+        },
+        {
+          "path": "char/monster/Monsliver/Monsliver.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=39"
+        },
+        {
+          "path": "char/monster/Monstonegolem/Monstonegolem.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=35"
+        },
+        {
+          "path": "char/monster/MonTempleguard/templeguard.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=35"
+        },
+        {
+          "path": "char/monster/Monwitch/mMonwitch.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monwitch/mMonwitch1.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monwitch/mMonwitch2.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monwitch/Monwitch.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monwitch/Monwitch1.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Monwitch/Monwitch2.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/Morgon/mMorgon.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=43"
+        },
+        {
+          "path": "char/monster/Morgon/mMorgonia.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=43"
+        },
+        {
+          "path": "char/monster/Morgon/Morgon.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=43"
+        },
+        {
+          "path": "char/monster/Morgon/Morgonia.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=43"
+        },
+        {
+          "path": "char/monster/Mountain/B_Mountain.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=36"
+        },
+        {
+          "path": "char/monster/Mountain/mB_Mountain.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=36"
+        },
+        {
+          "path": "char/monster/Mountain/mMountain.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=36"
+        },
+        {
+          "path": "char/monster/Mountain/Mountain.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=36"
+        },
+        {
+          "path": "char/monster/Najan/Najan.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=49"
+        },
+        {
+          "path": "char/monster/NazSenior/NazSenior-01.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/NazSenior/NazSenior.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=41"
+        },
+        {
+          "path": "char/monster/Omicronos/monomicron_B.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/monster/RoyalMummy/mummy-H_1.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/S_Bloodyknight/S_Bknight.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/monster/scorpion/mscorpion-skin.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [51, 52] bone_count=51"
+        },
+        {
+          "path": "char/monster/scorpion/scorpion-ani.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [51, 52] bone_count=51"
+        },
+        {
+          "path": "char/monster/scorpion/scorpion-skin.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [51, 52] bone_count=51"
+        },
+        {
+          "path": "char/monster/Sendelost/worldswi.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/monster/Sendelost/worldswi_attack.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/monster/TBomber/TBomber.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=35"
+        },
+        {
+          "path": "char/monster/TElite/TElite.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=39"
+        },
+        {
+          "path": "char/monster/TSoldier/TSoldier.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=37"
+        },
+        {
+          "path": "char/monster/TTechnician/TTechnician.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=35"
+        },
+        {
+          "path": "char/monster/WLord/WLord.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=42"
+        },
+        {
+          "path": "char/monster/WLord/WLord1.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=42"
+        },
+        {
+          "path": "char/monster/Yagditha/Yagditha.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=45"
+        },
+        {
+          "path": "char/monster/Ziddane/worldfran.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/monster/Ziddane/worldfran_attack.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/npc/arad/arad.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=35"
+        },
+        {
+          "path": "char/npc/Bcn02/Bcn02.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=35"
+        },
+        {
+          "path": "char/npc/Bcn02/Bcn02f.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [48, 50, 51, 52] bone_count=48"
+        },
+        {
+          "path": "char/npc/Bcn03/Bcn03.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [47, 48, 50, 51, 52] bone_count=47"
+        },
+        {
+          "path": "char/npc/Bcn03/Bcn03f.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [48, 50, 51, 52] bone_count=48"
+        },
+        {
+          "path": "char/npc/Bcn04/Bcn04.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [47, 48, 50, 51, 52] bone_count=47"
+        },
+        {
+          "path": "char/npc/Bcn04/Bcn04f.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [48, 50, 51, 52] bone_count=48"
+        },
+        {
+          "path": "char/npc/Bcn06/Bcn06.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/npc/Hunter/Hunter.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=40"
+        },
+        {
+          "path": "char/npc/Hunter/mHunter.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=40"
+        },
+        {
+          "path": "char/npc/IceN-01/IceN-01.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/npc/Jin/Jin.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=40"
+        },
+        {
+          "path": "char/npc/Jin/mJin.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=40"
+        },
+        {
+          "path": "char/npc/M_Messenger/M_Messenger.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=40"
+        },
+        {
+          "path": "char/npc/M_Messenger/mM_Messenger.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=40"
+        },
+        {
+          "path": "char/npc/maskedman/MaskedMan.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=35"
+        },
+        {
+          "path": "char/npc/maskedwoman/maskedwoman.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=34"
+        },
+        {
+          "path": "char/npc/milter/milter.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [52] bone_count=52"
+        },
+        {
+          "path": "char/npc/MN-003/MN-003.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=45"
+        },
+        {
+          "path": "char/npc/MN-003/MN-003_1.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=45"
+        },
+        {
+          "path": "char/npc/MN-008/MN-008.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [52] bone_count=52"
+        },
+        {
+          "path": "char/npc/MN-008/MN-008_1.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [52] bone_count=52"
+        },
+        {
+          "path": "char/npc/MN-010/MN-010.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [48, 50, 51, 52] bone_count=48"
+        },
+        {
+          "path": "char/npc/PCmanager/pcmanager.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/npc/reddevil-01/worldkor01.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/npc/reddevil/worldkor.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "char/npc/salon/salon.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=35"
+        },
+        {
+          "path": "char/npc/Sambagirl/msambagirl.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/npc/Sambagirl/sambagirl.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/npc/Skadi/mSkadi.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=40"
+        },
+        {
+          "path": "char/npc/Skadi/Skadi.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=40"
+        },
+        {
+          "path": "char/npc/SN-001/SN-001.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=45"
+        },
+        {
+          "path": "char/npc/T_Messenger/mT_Messenger.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=40"
+        },
+        {
+          "path": "char/npc/T_Messenger/T_Messenger.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=40"
+        },
+        {
+          "path": "char/npc/TN-003/TN-003.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [52] bone_count=52"
+        },
+        {
+          "path": "char/npc/TN-004/TN-004.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [52] bone_count=52"
+        },
+        {
+          "path": "char/npc/TN-005/TN-005.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [47, 48, 50, 51, 52] bone_count=47"
+        },
+        {
+          "path": "char/npc/TN-009/TN-009.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=36"
+        },
+        {
+          "path": "char/npc/TN-010/TN-010.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [50, 51, 52] bone_count=50"
+        },
+        {
+          "path": "char/npc/TN-016/TN-016.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        },
+        {
+          "path": "Effect/AssaEffect/RegenerationField/b_PT_4-2-40.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=43"
+        },
+        {
+          "path": "Effect/NewEffect/Res/Object/PT_4-2-40.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=43"
+        },
+        {
+          "path": "StartImage/Opening/npc/opening_NPC_B.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [52] bone_count=52"
+        },
+        {
+          "path": "StartImage/Opening/npc/opening_NPC_C.smb",
+          "error": "RuntimeError: Physique bone indices outside skeleton: [46, 47, 48, 50, 51, 52] bone_count=38"
+        }
+      ],
+      "physique_subset_groups_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/physique_subset_v1/physique_subset_groups.json",
+      "physique_subset_group_sample": [
+        {
+          "physique_subset_signature": "7aec3026358f63e2d99f413bdd94c793d0c57faf4009e8c6af36218c23638512",
+          "physique_topology_signature": "4bd75aa9c8aff5791dfa96a1f7952a10bd8f52b84cc86edbe397935efde7bda1",
+          "used_bone_indices": [
+            2,
+            3,
+            4,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "used_bone_names": [
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Head",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 R Finger21",
+            "Bip-wing-06",
+            "Bip-wing-07",
+            "Bip-wing-08",
+            "Bip-wing-09",
+            "Bip-wing-10",
+            "Bip01 R Toe0",
+            "Bip01 Tail",
+            "Bip01 Tail1",
+            "Bip01 Tail3",
+            "Bip01 Tail4",
+            "Bip-a01"
+          ],
+          "closure_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52
+          ],
+          "closure_bone_names": [
+            "Bip01",
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Neck",
+            "Bip01 Head",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 R Finger21",
+            "Bip-wing-06",
+            "Bip-wing-07",
+            "Bip-wing-08",
+            "Bip-wing-09",
+            "Bip-wing-10",
+            "Bip01 R Thigh",
+            "Bip01 R Calf",
+            "Bip01 R HorseLink",
+            "Bip01 R Foot",
+            "Bip01 R Toe0",
+            "Bip01 Tail",
+            "Bip01 Tail1",
+            "Bip01 Tail2",
+            "Bip01 Tail3",
+            "Bip01 Tail4",
+            "Bip-a01"
+          ],
+          "closure_bone_count": 40,
+          "smb_aliases": [
+            "char/monster/Monshadow-1/DMystery.smb",
+            "char/monster/Monshadow-1/mDMystery.smb",
+            "char/monster/Monshadow-1/mMonshadow-1.smb",
+            "char/monster/Monshadow-1/Monshadow-1.smb"
+          ]
+        },
+        {
+          "physique_subset_signature": "9c66d59ec7825cacd9f861e4bd8d6a83f18adfab1d9c8c5283507d80c90a4c91",
+          "physique_topology_signature": "1ce474817c37e0e569678a95247899e3418474385a15e4bd7a38ae0ae9939c67",
+          "used_bone_indices": [
+            2,
+            3,
+            4,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "used_bone_names": [
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Head",
+            "Bip01 Ponytail2",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger4",
+            "Bip01 L Finger41",
+            "Bip01 Xtra05",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger0",
+            "Bip01 R Finger01",
+            "Bip01 Xtra03",
+            "Bip01 Xtra04",
+            "Bip01 Xtra01Opp",
+            "Bip01 Xtra01Opp03",
+            "Bip01 Xtra01Opp04",
+            "Bip01 Xtra02Opp"
+          ],
+          "closure_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            41,
+            42,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52
+          ],
+          "closure_bone_names": [
+            "Bip01",
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Neck",
+            "Bip01 Head",
+            "Bip01 Ponytail2",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger4",
+            "Bip01 L Finger41",
+            "Bip01 Xtra05",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger0",
+            "Bip01 R Finger01",
+            "Bip01 Xtra01",
+            "Bip01 Xtra0102",
+            "Bip01 Xtra03",
+            "Bip01 Xtra04",
+            "Bip01 Xtra01Opp",
+            "Bip01 Xtra01Opp02",
+            "Bip01 Xtra01Opp03",
+            "Bip01 Xtra01Opp04",
+            "Bip01 Xtra02Opp"
+          ],
+          "closure_bone_count": 34,
+          "smb_aliases": [
+            "char/monster/BS_Midranda/BS_Midranda.smb",
+            "char/monster/Midranda/Midranda.smb"
+          ]
+        },
+        {
+          "physique_subset_signature": "e3555d30a1c4c7a113d493645ff5e762ee9e7318354cc0c7baf97656691d42d6",
+          "physique_topology_signature": "6b0871db9642c7aa92be1179d5420bbbdac059bfe8cd8677ffeb3e8227d5ba67",
+          "used_bone_indices": [
+            2,
+            3,
+            4,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "used_bone_names": [
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Spine3",
+            "Bip01 Ponytail11",
+            "Bip01 Ponytail12",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger0",
+            "Bip01 R Finger01",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 R Finger21",
+            "Bip01 R Calf",
+            "Bip01 R HorseLink",
+            "Bip01 R Foot",
+            "Bip01 Tail",
+            "Bip01 Tail1",
+            "Bip01 Tail2"
+          ],
+          "closure_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            45,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "closure_bone_names": [
+            "Bip01",
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Spine2",
+            "Bip01 Spine3",
+            "Bip01 Neck",
+            "Bip01 Head",
+            "Bip01 Ponytail1",
+            "Bip01 Ponytail11",
+            "Bip01 Ponytail12",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger0",
+            "Bip01 R Finger01",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 R Finger21",
+            "Bip01 R Thigh",
+            "Bip01 R Calf",
+            "Bip01 R HorseLink",
+            "Bip01 R Foot",
+            "Bip01 Tail",
+            "Bip01 Tail1",
+            "Bip01 Tail2"
+          ],
+          "closure_bone_count": 36,
+          "smb_aliases": [
+            "char/monster/Monavellriskbow/monavelriskbow.smb",
+            "char/monster/Monavellriskstf/monavelriskstf.smb"
+          ]
+        },
+        {
+          "physique_subset_signature": "dc04963bef07ae4aea27f58030f7bfdf44757fe8aa53ec9485baa7932ee32d38",
+          "physique_topology_signature": "7146136187fa0d8d37122000f830adbfd4548cc4d34346d4d68797e1fd5933f5",
+          "used_bone_indices": [
+            2,
+            3,
+            4,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "used_bone_names": [
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 L Thigh",
+            "Bip01 L Foot",
+            "Bip01 R Thigh",
+            "Bip01 R Calf",
+            "Bip01 R Foot",
+            "Bip01 R Toe0",
+            "Bip01 R Toe01",
+            "Bip01 R Toe02",
+            "Bip01 Spine1",
+            "Bip01 Neck",
+            "Bip01 Head",
+            "Bip01 Ponytail1",
+            "Bip01 box08",
+            "Bip01 box09",
+            "Bip01 box10",
+            "Bip01 box11",
+            "Bip01 box12",
+            "Bip01 box13",
+            "Bip01 box14",
+            "Bip01 box15",
+            "Bip01 L Clavicle",
+            "Bip01 R Finger21",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger01",
+            "Bip01 box02",
+            "Bip01 box03"
+          ],
+          "closure_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52
+          ],
+          "closure_bone_names": [
+            "Bip01",
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 L Thigh",
+            "Bip01 L Calf",
+            "Bip01 L Foot",
+            "Bip01 R Thigh",
+            "Bip01 R Calf",
+            "Bip01 R Foot",
+            "Bip01 R Toe0",
+            "Bip01 R Toe01",
+            "Bip01 R Toe02",
+            "Bip01 Spine1",
+            "Bip01 Neck",
+            "Bip01 Head",
+            "Bip01 Ponytail1",
+            "Bip01 box08",
+            "Bip01 box09",
+            "Bip01 box10",
+            "Bip01 box11",
+            "Bip01 box12",
+            "Bip01 box13",
+            "Bip01 box14",
+            "Bip01 box15",
+            "Bip01 L Clavicle",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger2",
+            "Bip01 R Finger21",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger0",
+            "Bip01 R Finger01",
+            "Bip01 box02",
+            "Bip01 box03"
+          ],
+          "closure_bone_count": 37,
+          "smb_aliases": [
+            "char/monster/Monegan/mMonegan.smb",
+            "char/monster/Monegan/Monegan.smb"
+          ]
+        },
+        {
+          "physique_subset_signature": "76c51a0b7437d9d2282f56c7a8df7fa46c7c6c347d31f006f16e5ddc5b46d535",
+          "physique_topology_signature": "6d3917979c3e9ea838cb6c7d6183f27bcdf4f7ca49a905851b4fee65c8011073",
+          "used_bone_indices": [
+            2,
+            3,
+            4,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "used_bone_names": [
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Head",
+            "Bip01 Ponytail2",
+            "Bip01 Bone03",
+            "Bip01 Bone04",
+            "Bip01 Bone05",
+            "Bip01 Bone06",
+            "Bip01 Bone01",
+            "Bip01 Bone02",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Finger02",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger12",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 L Finger22",
+            "Bip01 L Finger3",
+            "Bip01 L Finger31",
+            "Bip01 R Finger3",
+            "Bip01 R Finger31",
+            "Bip01 R Finger32",
+            "Bip01 L Calf",
+            "Bip01 L Foot",
+            "Bip01 L Toe0"
+          ],
+          "closure_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            33,
+            34,
+            35,
+            36,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52
+          ],
+          "closure_bone_names": [
+            "Bip01",
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Neck",
+            "Bip01 Head",
+            "Bip01 Ponytail2",
+            "Bip01 Bone03",
+            "Bip01 Bone04",
+            "Bip01 Bone05",
+            "Bip01 Bone06",
+            "Bip01 Bone01",
+            "Bip01 Bone02",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger02",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger12",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 L Finger22",
+            "Bip01 L Finger3",
+            "Bip01 L Finger31",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger3",
+            "Bip01 R Finger31",
+            "Bip01 R Finger32",
+            "Bip01 L Thigh",
+            "Bip01 L Calf",
+            "Bip01 L Foot",
+            "Bip01 L Toe0"
+          ],
+          "closure_bone_count": 39,
+          "smb_aliases": [
+            "char/monster/Niken/mNiken.smb",
+            "char/monster/Niken/Niken.smb"
+          ]
+        },
+        {
+          "physique_subset_signature": "211a871bfa84086878682381b839b2eb8cd8ea5f5be7de8dfcc36b699d344883",
+          "physique_topology_signature": "c66ccf75313ddc0a2cc97f188147e7a9a97e4d47c9d198cc3fa3a985d49ac721",
+          "used_bone_indices": [
+            2,
+            3,
+            4,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "used_bone_names": [
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Head",
+            "Bip01 cheek",
+            "Bip01 nose",
+            "Bip01 Umouth",
+            "Bip01 Rmouth",
+            "Bip01 Lmouth",
+            "Bip01 jaw",
+            "Bip01 Dmouth",
+            "Bip01 Ponytail1",
+            "Bip01 Ponytail11",
+            "Bip01 Ponytail12",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Foot",
+            "Bip01 R Toe0",
+            "Bip01 L cloth01",
+            "Bip01 L cloth03",
+            "Bip01 L cloth04",
+            "Bip01 R cloth01"
+          ],
+          "closure_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52
+          ],
+          "closure_bone_names": [
+            "Bip01",
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Neck",
+            "Bip01 Head",
+            "Bip01 cheek",
+            "Bip01 nose",
+            "Bip01 Umouth",
+            "Bip01 Rmouth",
+            "Bip01 Lmouth",
+            "Bip01 jaw",
+            "Bip01 Dmouth",
+            "Bip01 Ponytail1",
+            "Bip01 Ponytail11",
+            "Bip01 Ponytail12",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Thigh",
+            "Bip01 R Calf",
+            "Bip01 R Foot",
+            "Bip01 R Toe0",
+            "Bip01 L cloth01",
+            "Bip01 L cloth02",
+            "Bip01 L cloth03",
+            "Bip01 L cloth04",
+            "Bip01 R cloth01"
+          ],
+          "closure_bone_count": 37,
+          "smb_aliases": [
+            "char/npc/Ahin/Ahin.smb",
+            "char/npc/Bcn01/Bcn01.smb"
+          ]
+        },
+        {
+          "physique_subset_signature": "20a12128c666c195e06f4838dfe7ac3256db825dbc51a864aa0afb0406c350e3",
+          "physique_topology_signature": "460b913dcc217da453061edde2308c4da94aa6fc2af17187b85f5cb752b06c2e",
+          "used_bone_indices": [
+            2,
+            3,
+            4,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "used_bone_names": [
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Head",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger0",
+            "Bip01 R Finger01",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 R Finger21",
+            "Bip01 L Thigh",
+            "Bip01 L Calf",
+            "Bip01 L Foot",
+            "Bip01 R Thigh",
+            "Bip01 R Calf",
+            "Bip01 R Foot"
+          ],
+          "closure_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "closure_bone_names": [
+            "Bip01",
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Neck",
+            "Bip01 Head",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger0",
+            "Bip01 R Finger01",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 R Finger21",
+            "Bip01 L Thigh",
+            "Bip01 L Calf",
+            "Bip01 L Foot",
+            "Bip01 R Thigh",
+            "Bip01 R Calf",
+            "Bip01 R Foot"
+          ],
+          "closure_bone_count": 32,
+          "smb_aliases": [
+            "char/tmABCD/M1-motion3.smb",
+            "char/tmABCD/M1-motion4.smb"
+          ]
+        },
+        {
+          "physique_subset_signature": "7228dd2675a2891bec215bbce0b67370d7bbfce8bebbfa72fcfcc78bd533e4e3",
+          "physique_topology_signature": "853bfa7749e5941eea9cd085a8279203573ce97cef713e8394af946aad6a1cda",
+          "used_bone_indices": [
+            2,
+            3,
+            4,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "used_bone_names": [
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Head",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger0",
+            "Bip01 R Finger01",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 R Finger21",
+            "Bip01 Tail",
+            "Bip01 Tail1",
+            "Bip01 Tail2",
+            "Bip01 Tailba2",
+            "Bip01 Tailba3",
+            "Bip01 m01"
+          ],
+          "closure_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52
+          ],
+          "closure_bone_names": [
+            "Bip01",
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Neck",
+            "Bip01 Head",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger0",
+            "Bip01 R Finger01",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 R Finger21",
+            "Bip01 Tail",
+            "Bip01 Tail1",
+            "Bip01 Tail2",
+            "Bip01 Tailba1",
+            "Bip01 Tailba2",
+            "Bip01 Tailba3",
+            "Bip01 m01"
+          ],
+          "closure_bone_count": 33,
+          "smb_aliases": [
+            "char/tmABCD/m1.smb",
+            "char/tmABCD/tmbA01.smb"
+          ]
+        },
+        {
+          "physique_subset_signature": "89b8989902dd0476e862855513b891c8fd6ac3823262c72273dfe0f2f4173816",
+          "physique_topology_signature": "a452463a4e20906a32ea755f9101f43b7ca2fe2c2121ecbdbe30135025a0bcba",
+          "used_bone_indices": [
+            2,
+            3,
+            4,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "used_bone_names": [
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Head",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 R Finger21",
+            "Bip P-LF01",
+            "Bip P-LF02",
+            "Bip P-LB01",
+            "Bip P-LB02",
+            "Bip P-RF01",
+            "Bip P03-03",
+            "Bip P03-04",
+            "Bip P03-01",
+            "Bip01 R Thigh",
+            "Bip01 R Calf",
+            "Bip01 R Foot"
+          ],
+          "closure_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            37,
+            38,
+            45,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "closure_bone_names": [
+            "Bip01",
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Neck",
+            "Bip01 Head",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 R Finger21",
+            "Bip P-LF01",
+            "Bip P-LF02",
+            "Bip P-LB01",
+            "Bip P-LB02",
+            "Bip P-RF01",
+            "Bip01 L Thigh",
+            "Bip01 L Calf",
+            "Bip P03-02",
+            "Bip P03-03",
+            "Bip P03-04",
+            "Bip P03-01",
+            "Bip01 R Thigh",
+            "Bip01 R Calf",
+            "Bip01 R Foot"
+          ],
+          "closure_bone_count": 38,
+          "smb_aliases": [
+            "char/tmABCD/m3.smb",
+            "char/tmABCD/MmbD01.smb"
+          ]
+        },
+        {
+          "physique_subset_signature": "f8af13e524705baffb7fb288800a328b9fb018e3d2fd220fb105376d945e5317",
+          "physique_topology_signature": "857b7e16287e8889d6cf2790dd53714bd142fb2085a4d2975baebb3b00088f9d",
+          "used_bone_indices": [
+            2,
+            3,
+            4,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "used_bone_names": [
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Head",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger0",
+            "Bip01 R Finger01",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 L Foot",
+            "Bip01 L Toe0",
+            "Bip01 R Thigh",
+            "Bip01 R Foot",
+            "Bip01 R Toe0",
+            "Bip01 Tail"
+          ],
+          "closure_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52
+          ],
+          "closure_bone_names": [
+            "Bip01",
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Neck",
+            "Bip01 Head",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger0",
+            "Bip01 R Finger01",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 L Thigh",
+            "Bip01 L Calf",
+            "Bip01 L Foot",
+            "Bip01 L Toe0",
+            "Bip01 R Thigh",
+            "Bip01 R Calf",
+            "Bip01 R Foot",
+            "Bip01 R Toe0",
+            "Bip01 Tail"
+          ],
+          "closure_bone_count": 34,
+          "smb_aliases": [
+            "char/tmABCD/M4-motion3.smb",
+            "char/tmABCD/M4-motion4.smb"
+          ]
+        },
+        {
+          "physique_subset_signature": "b19311a5dbc451bcd1b90ac95f3db2f659f92f21cbae89282a817ecd56414ed8",
+          "physique_topology_signature": "c3d400fbaaefc7f9e06d3d6f6ae41d52376ec66e52e9e46b56670c41d57b9b34",
+          "used_bone_indices": [
+            2,
+            3,
+            4,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "used_bone_names": [
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Head",
+            "Bip-h14",
+            "Bip-h15",
+            "Bip-h16",
+            "Bip-h17",
+            "Bip-h18",
+            "Bip-h19",
+            "Bip-h20",
+            "Bip-h21",
+            "Bip-h22",
+            "Bip-h23",
+            "Bip-h03",
+            "Bip-h04",
+            "Bip-h05",
+            "Bip-h06",
+            "Bip-h07",
+            "Bip-h08",
+            "Bip-h09",
+            "Bip-h10",
+            "Bip01 L Clavicle",
+            "Bip01 R Finger01",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger21",
+            "Bip weapon01",
+            "Bip weapon02"
+          ],
+          "closure_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52
+          ],
+          "closure_bone_names": [
+            "Bip01",
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Neck",
+            "Bip01 Head",
+            "Bip-h11",
+            "Bip-h12",
+            "Bip-h13",
+            "Bip-h14",
+            "Bip-h15",
+            "Bip-h16",
+            "Bip-h17",
+            "Bip-h18",
+            "Bip-h19",
+            "Bip-h20",
+            "Bip-h21",
+            "Bip-h22",
+            "Bip-h23",
+            "Bip-h01",
+            "Bip-h02",
+            "Bip-h03",
+            "Bip-h04",
+            "Bip-h05",
+            "Bip-h06",
+            "Bip-h07",
+            "Bip-h08",
+            "Bip-h09",
+            "Bip-h10",
+            "Bip01 L Clavicle",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger0",
+            "Bip01 R Finger01",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 R Finger21",
+            "Bip weapon01",
+            "Bip weapon02"
+          ],
+          "closure_bone_count": 42,
+          "smb_aliases": [
+            "char/tmABCD/M5-motion3.smb",
+            "char/tmABCD/M5-motion4.smb"
+          ]
+        },
+        {
+          "physique_subset_signature": "e9b3b857cb2ab7ee85095562c7932aebbc771b924dcd595d2a9bf649725d886b",
+          "physique_topology_signature": "713d749c23f2d36b2cb513c47d96913d83c0edd0e05e9e408d112952bbc32677",
+          "used_bone_indices": [
+            2,
+            3,
+            4,
+            6,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "used_bone_names": [
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Head",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 R Finger21",
+            "Bip-0032",
+            "Bip-0033",
+            "Bip-0034",
+            "Bip-0035",
+            "Bip-0036",
+            "Bip-0030",
+            "Bip-0016",
+            "Bip-0017",
+            "Bip-0007",
+            "Bip-0008",
+            "Bip-0009"
+          ],
+          "closure_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            50,
+            51,
+            52
+          ],
+          "closure_bone_names": [
+            "Bip01",
+            "Bip01 Pelvis",
+            "Bip01 Spine",
+            "Bip01 Spine1",
+            "Bip01 Neck",
+            "Bip01 Head",
+            "Bip01 L Clavicle",
+            "Bip01 L UpperArm",
+            "Bip01 L Forearm",
+            "Bip01 L Hand",
+            "Bip01 L Finger0",
+            "Bip01 L Finger01",
+            "Bip01 L Finger1",
+            "Bip01 L Finger11",
+            "Bip01 L Finger2",
+            "Bip01 L Finger21",
+            "Bip01 R Clavicle",
+            "Bip01 R UpperArm",
+            "Bip01 R Forearm",
+            "Bip01 R Hand",
+            "Bip01 R Finger1",
+            "Bip01 R Finger11",
+            "Bip01 R Finger2",
+            "Bip01 R Finger21",
+            "Bip-0032",
+            "Bip-0033",
+            "Bip-0034",
+            "Bip-0035",
+            "Bip-0036",
+            "Bip-0010",
+            "Bip-0011",
+            "Bip-0012",
+            "Bip-0030",
+            "Bip-0016",
+            "Bip-0017",
+            "Bip-0007",
+            "Bip-0008",
+            "Bip-0009"
+          ],
+          "closure_bone_count": 38,
+          "smb_aliases": [
+            "char/tmABCD/m5.smb",
+            "char/tmABCD/MfbC01.smb"
+          ]
+        }
+      ],
+      "full_skeleton_group_sample": [
+        {
+          "skeleton_signature": "1ba954edaa31a9b134162ef0d52fcb1f36407d843dab18552bdcb789b7d2bf16",
+          "topology_signature": "3499b32caa044bcc2816c123f94dca2959cc2187141e21cea02275ecb0359f11",
+          "bone_count": 38,
+          "root_bones": [
+            "Bip01",
+            "Bip-ball01"
+          ],
+          "smb_aliases": [
+            "char/monster/Adevayo/worldtogo.smb",
+            "char/monster/Sendelost/worldswi.smb",
+            "char/monster/Ziddane/worldfran.smb"
+          ],
+          "reports": [
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/06604BFAF154.json",
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/0C606F054B16.json",
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/64764F9D8966.json"
+          ]
+        },
+        {
+          "skeleton_signature": "13ac1489c0ed7929de44397a77d1e01c5600be7950d813fbe6c12abe5aee88e1",
+          "topology_signature": "3499b32caa044bcc2816c123f94dca2959cc2187141e21cea02275ecb0359f11",
+          "bone_count": 38,
+          "root_bones": [
+            "Bip01",
+            "Bip-ball01"
+          ],
+          "smb_aliases": [
+            "char/monster/Adevayo/worldtogo_attack.smb",
+            "char/monster/Ziddane/worldfran_attack.smb"
+          ],
+          "reports": [
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2E467E8AA1DA.json",
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/60B808719BA6.json"
+          ]
+        },
+        {
+          "skeleton_signature": "5ae163996798fb9f87e9b46bdf5c79c4846d04f63a4dd18daedafcc46e45df16",
+          "topology_signature": "ad2ea045dd829757a1f2d08359e9b52f865eadc39772b45a91e9f8f73edd864c",
+          "bone_count": 60,
+          "root_bones": [
+            "Bip01"
+          ],
+          "smb_aliases": [
+            "char/monster/ArmBeetle/ArmBeetle.smb"
+          ],
+          "reports": [
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/5DF4C06ADB61.json"
+          ]
+        },
+        {
+          "skeleton_signature": "ccb7025e630a549ca2bf157c9acaac0377f4f6ccaeeef67b283e97fa134a1efc",
+          "topology_signature": "31df1ad548987ab402a5c910d0542a87f2b3037b6b4cb421f29ddacd157cfccf",
+          "bone_count": 35,
+          "root_bones": [
+            "Bip01"
+          ],
+          "smb_aliases": [
+            "char/monster/BadWolf/B1511.smb"
+          ],
+          "reports": [
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/B8AD0C5E22E3.json"
+          ]
+        },
+        {
+          "skeleton_signature": "90732ffcbc9e676ea3c29d44f481bda72f03d5eaa8fddef5e35a0587545c4ba5",
+          "topology_signature": "b656a74d81729196759d147f9be57e5ad08fa5e65bc497b97b056e0543040a96",
+          "bone_count": 50,
+          "root_bones": [
+            "Bip01"
+          ],
+          "smb_aliases": [
+            "char/monster/Bloodyknight/Bknight.smb",
+            "char/monster/S_Bloodyknight/S_Bknight.smb"
+          ],
+          "reports": [
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/2A4AB726A47E.json",
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F55EF8FA7412.json"
+          ]
+        },
+        {
+          "skeleton_signature": "479301765b17408fe4942e8009da8ce1d8718e3125eef907b37d60d6f5dd1d0b",
+          "topology_signature": "686a2155e15db85055fee72b50fdc90bed881f80cf9945ee8fdf25946102796f",
+          "bone_count": 63,
+          "root_bones": [
+            "Bip01"
+          ],
+          "smb_aliases": [
+            "char/monster/BS_Midranda/BS_Midranda.smb",
+            "char/monster/Midranda/Midranda.smb"
+          ],
+          "reports": [
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/5A572096DBEE.json",
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/F8EB32427F04.json"
+          ]
+        },
+        {
+          "skeleton_signature": "5de02a6b458a286b4ce1227b2dcc5877c94380f72e8cab875bef0ca96980630f",
+          "topology_signature": "263c7e3a0b84dc94f7d0c7e3104276caf234412382e8a427b90b07806bdb788b",
+          "bone_count": 47,
+          "root_bones": [
+            "Bip01"
+          ],
+          "smb_aliases": [
+            "char/monster/CaveMush/Cmush.smb"
+          ],
+          "reports": [
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/26BA295F61C0.json"
+          ]
+        },
+        {
+          "skeleton_signature": "576724b71e811acc02d7137e2213360f0ec740e8e4b78f1cbb6e9733fbc66faf",
+          "topology_signature": "e9f29d8a8a6783f0b163f23f694ab4188ffa650bc0e9c068149a19e0fb047c5d",
+          "bone_count": 46,
+          "root_bones": [
+            "Bip01"
+          ],
+          "smb_aliases": [
+            "char/monster/d_ar/dar.smb"
+          ],
+          "reports": [
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/7676C241B770.json"
+          ]
+        },
+        {
+          "skeleton_signature": "188ce96b3ed6d405f2feb30c57bd99bd5217bbda5435f1130312a5f824aa007a",
+          "topology_signature": "37f1f73542edeb79139572064bc4aea5769e26dc7eeece5f1516edd69f6721e3",
+          "bone_count": 56,
+          "root_bones": [
+            "Bip01"
+          ],
+          "smb_aliases": [
+            "char/monster/d_atal/datal.smb"
+          ],
+          "reports": [
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/6C13D3841F4C.json"
+          ]
+        },
+        {
+          "skeleton_signature": "9d55954749d4b08e7846fcfbf0d1917a44603a57277839f05c435b065dfc05fb",
+          "topology_signature": "0c80d5e679e17911586cafd222d87429f9397c6b8f7607fda5f9e9c54cc74d5e",
+          "bone_count": 58,
+          "root_bones": [
+            "Bip01"
+          ],
+          "smb_aliases": [
+            "char/monster/d_fi/dfi.smb"
+          ],
+          "reports": [
+            "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/reports_v3/71BE306CDE20.json"
+          ]
+        }
+      ],
+      "full_skeleton_groups": 225
+    }
+  }
+}

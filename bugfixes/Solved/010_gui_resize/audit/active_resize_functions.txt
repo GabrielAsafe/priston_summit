@@ -1,0 +1,77 @@
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/BattleEvents/CRollHandler.cpp:79:void CRollHandler::Resize()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/BattleEvents/CRollHandler.h:19:	void Resize();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:132:void resizeOpening()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:136:		lpOpening->resize();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:32:void resizeLogin()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:36:		lpLogin->resize();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:3898:void HoLogin::resize()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.h:243:	void resize();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoOpening.cpp:670:void HoOpening::resize()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoOpening.h:160:	void resize();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoOpeningOFF.cpp:396:void HoOpening::resize()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoParty.cpp:514:void HoParty::resize()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoParty.cpp:533:void resizePartyUI()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoParty.cpp:535:	InterfaceParty.resize();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoParty.h:63:	void resize();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/NewEffect/HoEffectController.cpp:37:	//m_EffectEvents.resize(200);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lgc.c:397:    luaS_resize(L, G(L)->strt.size/2);  /* table is too big */
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lgc.c:401:    luaZ_resizebuffer(L, &G(L)->buff, newsize);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lstate.c:118:  luaS_resize(L, MINSTRTABSIZE);  /* initial size of string table */
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lstring.c:27:void luaS_resize (lua_State *L, int newsize) {
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lstring.c:67:    luaS_resize(L, tb->size*2);  /* too crowded */
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lstring.h:23:void luaS_resize (lua_State *L, int newsize);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/ltable.c:272:static void resize (lua_State *L, Table *t, int nasize, int nhsize) {
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/ltable.c:317:  resize(L, t, nasize, luaO_log2(nhsize)+1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lzio.h:40:#define luaZ_resizebuffer(L, buff, size) \
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_before_slash_fix/lzio.h:44:#define luaZ_freebuffer(L, buff)	luaZ_resizebuffer(L, buff, 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lgc.c:397:    luaS_resize(L, G(L)->strt.size/2);  /* table is too big */
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lgc.c:401:    luaZ_resizebuffer(L, &G(L)->buff, newsize);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lstate.c:118:  luaS_resize(L, MINSTRTABSIZE);  /* initial size of string table */
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lstring.c:27:void luaS_resize (lua_State *L, int newsize) {
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lstring.c:67:    luaS_resize(L, tb->size*2);  /* too crowded */
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lstring.h:23:void luaS_resize (lua_State *L, int newsize);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/ltable.c:272:static void resize (lua_State *L, Table *t, int nasize, int nhsize) {
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/ltable.c:317:  resize(L, t, nasize, luaO_log2(nhsize)+1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lgc.c:395:    luaS_resize(L, G(L)->strt.size/2);  /* table is too big *\
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lgc.c:399:    luaZ_resizebuffer(L, &G(L)->buff, newsize);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lstate.c:116:  luaS_resize(L, MINSTRTABSIZE);  /* initial size of string table *\
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lstring.c:25:void luaS_resize (lua_State *L, int newsize) {
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lstring.c:65:    luaS_resize(L, tb->size*2);  /* too crowded *\
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lstring.h:23:void luaS_resize (lua_State *L, int newsize);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/ltable.c:267:static void resize (lua_State *L, Table *t, int nasize, int nhsize) {
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/ltable.c:312:  resize(L, t, nasize, luaO_log2(nhsize)+1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lzio.h:40:#define luaZ_resizebuffer(L, buff, size) \
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/lzio.h:44:#define luaZ_freebuffer(L, buff)	luaZ_resizebuffer(L, buff, 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lzio.h:40:#define luaZ_resizebuffer(L, buff, size) \
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lzio.h:44:#define luaZ_freebuffer(L, buff)	luaZ_resizebuffer(L, buff, 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua/lgc.c:395:    luaS_resize(L, G(L)->strt.size/2);  /* table is too big */
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua/lgc.c:399:    luaZ_resizebuffer(L, &G(L)->buff, newsize);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua/lstate.c:116:  luaS_resize(L, MINSTRTABSIZE);  /* initial size of string table */
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua/lstring.c:25:void luaS_resize (lua_State *L, int newsize) {
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua/lstring.c:65:    luaS_resize(L, tb->size*2);  /* too crowded */
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua/lstring.h:23:void luaS_resize (lua_State *L, int newsize);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua/ltable.c:267:static void resize (lua_State *L, Table *t, int nasize, int nhsize) {
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua/ltable.c:312:  resize(L, t, nasize, luaO_log2(nhsize)+1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua/lzio.h:40:#define luaZ_resizebuffer(L, buff, size) \
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua/lzio.h:44:#define luaZ_freebuffer(L, buff)	luaZ_resizebuffer(L, buff, 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Settings/Settings.cpp:12:extern void resizeOpening();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Settings/Settings.cpp:13:extern void resizeLogin();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Settings/Settings.cpp:221:void Settings::resizeWindow(int iWidth, int iHeight)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Settings/Settings.cpp:265:		resizeWindow(getWidth(), getHeight());
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Settings/Settings.h:157:	void resizeWindow(int iWidth, int iHeight);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:1065:void cINTERFACE::resize()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:1080:void resizeSin()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:1082:	cInterFace.resize();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinInterFace.h:119:	void resize();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.bak2.cpp:1044:extern void resizeOpening();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.bak2.cpp:1045:extern void resizeLogin();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.bak2.cpp:1078:			resizeOpening();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.bak2.cpp:1079:			resizeLogin();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.bak2.cpp:1120:				resizeOpening();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.bak2.cpp:1121:				resizeLogin();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.cpp:1073:extern void resizeOpening();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.cpp:1074:extern void resizeLogin();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.cpp:1154:			resizeOpening();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.cpp:1155:			resizeLogin();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.cpp:1196:				resizeOpening();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.cpp:1197:				resizeLogin();

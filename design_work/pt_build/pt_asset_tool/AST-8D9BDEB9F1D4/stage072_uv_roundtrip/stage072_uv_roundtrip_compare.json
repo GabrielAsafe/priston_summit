@@ -1,0 +1,38 @@
+{
+  "tool": "PT_STAGE072_STRICT_UV_ROUNDTRIP_COMPARE_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/endless/dun-7.smd",
+  "output": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-8D9BDEB9F1D4/stage072_uv_roundtrip/rebuilt_stage072_uv_roundtrip.smd",
+  "source_sha256": "74d6280ee0cad8eb7b5ab51411742cd920e34de810c15f78810b7f19f3a6fd50",
+  "output_sha256": "914caea5f28a34f6b5208402ef8961dcda7b5412b2bb29075fb9d3fa67421788",
+  "source_parse": "PASS",
+  "output_parse": "PASS",
+  "area_encoding": "DWORD32",
+  "opaque_trailing_bytes": 0,
+  "max_texlink_depth": 3,
+  "witness_checks": [
+    {
+      "face_index": 4206,
+      "stage_index": 2,
+      "corner": 0,
+      "component": "u",
+      "texlink_index": 7124,
+      "before": 0.3146800100803375,
+      "after": 0.3459300100803375,
+      "field_file_offset": 2668305
+    }
+  ],
+  "diff_byte_count": 1,
+  "unexpected_diff_byte_count": 0,
+  "stage_header_byte_identical": true,
+  "materials_byte_identical": true,
+  "geometry_byte_identical": true,
+  "faces_byte_identical": true,
+  "lights_byte_identical": true,
+  "stage_area_and_suffix_byte_identical": true,
+  "opaque_trailing_byte_identical": true,
+  "htexture_nexttex_byte_identical": true,
+  "non_witness_bytes_byte_identical": true,
+  "errors": [],
+  "check": "PASS",
+  "client_modified": false
+}

@@ -1,0 +1,53 @@
+{
+  "asset_id": "AST-CAD96DA0DC5D",
+  "asset": "Field/Sod/sod-2.smd",
+  "family": "STAGE_072_MAP_SEPARATE",
+  "source_sha256": "6ff0adfbef3638a00c0629e03c525724cde4766b35b89f09f76873e258423890",
+  "artifact_sha256": "616197fa698b914a8629226612f4dfed63e3e99438b088757959ceb5ce50783c",
+  "source_parse": "PASS",
+  "stage072_blender_transport": "PASS",
+  "vertices": 42535,
+  "faces": 48461,
+  "loops": 145383,
+  "max_texlink_depth": 2,
+  "uv_layers": [
+    "PT_STAGE072_TEXLINK_STAGE_0",
+    "PT_STAGE072_TEXLINK_STAGE_1"
+  ],
+  "position_max_abs_error": 0.0,
+  "uv_max_abs_error": 4.76837158203125e-07,
+  "color_max_abs_error": 2.9685450542160652e-08,
+  "custom_vertex_color_vertices": 42452,
+  "lights": 0,
+  "area_encoding": "DWORD32",
+  "opaque_trailing_bytes": 0,
+  "inert_zero_texture_texlink_faces": 8,
+  "combiner_exact_frame0_material_count": 194,
+  "combiner_approximate_frame0_material_count": 0,
+  "texture_prepare": "PARTIAL_REFERENCE_INCOMPLETE",
+  "texture_reference_presence": "INCOMPLETE_REFERENCE_SET",
+  "client_missing_texture_reference_count": 0,
+  "client_missing_texture_references": [],
+  "serialized_invalid_texture_reference_count": 1,
+  "serialized_invalid_texture_references": [
+    "field/Sod/"
+  ],
+  "runtime_texture_alias_count": 8,
+  "runtime_texture_aliases": {
+    "field/Sod/f-flame_0.tga ": "field/Sod/f-flame_0.tga",
+    "field/Sod/f-flame_1.tga ": "field/Sod/f-flame_1.tga",
+    "field/Sod/f-flame_2.tga ": "field/Sod/f-flame_2.tga",
+    "field/Sod/f-flame_3.tga ": "field/Sod/f-flame_3.tga",
+    "field/Sod/f-flame_4.tga ": "field/Sod/f-flame_4.tga",
+    "field/Sod/f-flame_5.tga ": "field/Sod/f-flame_5.tga",
+    "field/Sod/f-flame_6.tga ": "field/Sod/f-flame_6.tga",
+    "field/Sod/f-flame_7.tga ": "field/Sod/f-flame_7.tga"
+  },
+  "material_preview_complete": false,
+  "texture_load_failure_count": 1,
+  "dynamic_form_preview": "FRAME0_ONLY",
+  "light_preview": "METADATA_ONLY_NOT_RUNTIME_LIGHTING",
+  "preview_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-CAD96DA0DC5D/stage072_preview/stage072_preview.blend",
+  "certification_id": "CERT-27C1A66D3CE0",
+  "client_modified": false
+}

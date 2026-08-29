@@ -1,0 +1,152 @@
+RELATÓRIO COMPACTO — AUDITORIA DE CARACTERES / ENCODING — SUMMIT
+======================================================================================
+
+Escopo: código/arquivos ativos; DirectX* ignorado; bugfixes/depricated/recovery/rebase/documentation/design_work ignorados.
+
+RESUMO
+------
+Arquivos texto ativos catalogados: 5095
+Arquivos-fonte C/C++ ativos: 1398
+Encodings em arquivos-fonte: {'utf-8': 1393, 'cp1252': 4, 'cp949': 1}
+Arquivos-fonte contendo U+FFFD �: 313
+Total de U+FFFD nos arquivos-fonte: 231687
+Arquivos-fonte não UTF-8: 5
+Arquivos-fonte com Hangul detectado: 59
+Estouros de buffer por literal detectados: 2
+Referências de asset com case/Unicode divergente: 1041
+Colisões de caminho após casefold/NFC: 22
+
+P0 — CORRIGIR/INVESTIGAR PRIMEIRO
+--------------------------------
+- SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:741
+  szConnServerName[16] precisa de 18 bytes UTF-8 incluindo NUL.
+  strcpy(szConnServerName, "��ϼ���");
+- SourceCode/SrcServer/src/TJBOY/clanmenu/tjclan.cpp:685
+  szConnServerName[16] precisa de 18 bytes UTF-8 incluindo NUL.
+  strcpy(szConnServerName, "��ϼ���");
+
+- 313 arquivos-fonte contêm o caractere de substituição U+FFFD (�).
+  Isso é diferente de apenas estar em CP949/CP1252: U+FFFD costuma indicar que uma conversão anterior já perdeu o byte/caractere original.
+
+TOP 30 ARQUIVOS-FONTE COM TEXTO JÁ QUEBRADO
+---------------------------------------------
+-  10017 x � | utf-8    |   91899 bytes | SourceCode/Shared/smPacket.h
+-   7895 x � | utf-8    |   42546 bytes | SourceCode/SrcGame/src/Language/Japanese/J_sinMsg.h
+-   7895 x � | utf-8    |   42542 bytes | SourceCode/SrcServer/src/Language/Japanese/J_sinMsg.h
+-   7469 x � | utf-8    |   41619 bytes | SourceCode/SrcServer/src/sinbaram/sinMsg.cpp
+-   7468 x � | utf-8    |   41642 bytes | SourceCode/SrcGame/src/sinbaram/sinMsg.cpp
+-   5451 x � | utf-8    |   32097 bytes | SourceCode/SrcGame/src/Language/Chinese/C_sinMsg.h
+-   5451 x � | utf-8    |   32095 bytes | SourceCode/SrcServer/src/Language/Chinese/C_sinMsg.h
+-   5431 x � | utf-8    |   24923 bytes | SourceCode/SrcGame/src/Language/Japanese/J_ServerMsg.h
+-   5431 x � | utf-8    |   24921 bytes | SourceCode/SrcServer/src/Language/Japanese/J_ServerMsg.h
+-   5275 x � | utf-8    |   23605 bytes | SourceCode/SrcGame/src/Language/Korean/k_ServerMsg.h
+-   5275 x � | utf-8    |   23601 bytes | SourceCode/SrcServer/src/Language/Korean/k_ServerMsg.h
+-   5186 x � | utf-8    |   39812 bytes | SourceCode/SrcGame/src/Language/Japanese/J_sinSkill_Info.h
+-   5186 x � | utf-8    |   39808 bytes | SourceCode/SrcServer/src/Language/Japanese/J_sinSkill_Info.h
+-   4707 x � | utf-8    |   22313 bytes | SourceCode/SrcGame/src/Language/thai/th_ServerMsg.h
+-   4707 x � | utf-8    |   22309 bytes | SourceCode/SrcServer/src/Language/thai/th_ServerMsg.h
+-   4006 x � | utf-8    |   34518 bytes | SourceCode/SrcGame/src/Language/Chinese/C_sinSkill_Info.h
+-   4006 x � | utf-8    |   34516 bytes | SourceCode/SrcServer/src/Language/Chinese/C_sinSkill_Info.h
+-   3934 x � | utf-8    |   35013 bytes | SourceCode/SrcGame/src/Language/thai/th_sinMsg.h
+-   3934 x � | utf-8    |   35009 bytes | SourceCode/SrcServer/src/Language/thai/th_sinMsg.h
+-   3612 x � | utf-8    |   17722 bytes | SourceCode/SrcGame/src/Language/Chinese/C_ServerMsg.h
+-   3612 x � | utf-8    |   17718 bytes | SourceCode/SrcServer/src/Language/Chinese/C_ServerMsg.h
+-   2901 x � | utf-8    |   33716 bytes | SourceCode/SrcGame/src/Language/veitnam/v_sinMsg.h
+-   2901 x � | utf-8    |   33712 bytes | SourceCode/SrcServer/src/Language/veitnam/v_sinMsg.h
+-   2674 x � | utf-8    |   20757 bytes | SourceCode/SrcGame/src/Language/veitnam/v_ServerMsg.h
+-   2674 x � | utf-8    |   20753 bytes | SourceCode/SrcServer/src/Language/veitnam/v_ServerMsg.h
+-   2215 x � | utf-8    |   10401 bytes | SourceCode/SrcGame/src/Language/Japanese/J_clanText.h
+-   2215 x � | utf-8    |   10397 bytes | SourceCode/SrcServer/src/Language/Japanese/J_clanText.h
+-   2179 x � | utf-8    |  233370 bytes | SourceCode/SrcGame/src/sinbaram/sinSkill.cpp
+-   2097 x � | utf-8    |   30285 bytes | SourceCode/SrcGame/src/Language/thai/th_sinSkill_Info.h
+-   2097 x � | utf-8    |   30281 bytes | SourceCode/SrcServer/src/Language/thai/th_sinSkill_Info.h
+
+P1 — CASE / ASSETS / COLISÕES
+------------------------------
+- 1041 referências de asset só casam após normalização de case/NFC.
+- 22 colisões reais de nomes/caminhos após casefold/NFC.
+
+Exemplos de referências de asset:
+- SourceCode/SrcGame/src/BattleEvents/CRollWindow.cpp:9 | pWindow1 = new UIWindow(iRollID, "game//roll//background.png", x, y); | {"referenced": "game//roll//background.png", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/Roll/background.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/roll/background.png"}
+- SourceCode/SrcGame/src/BattleEvents/CRollWindow.cpp:38 | pWindow1->AddElement(new UIButton(-2, "game//roll//skip.png", "game//roll//skip_.png", 165, 102, true, false, bind(&CRollWindow::OnClickSkipButton, this))); | {"referenced": "game//roll//skip.png", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/Roll/skip.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/roll/skip.png"}
+- SourceCode/SrcGame/src/BattleEvents/CRollWindow.cpp:38 | pWindow1->AddElement(new UIButton(-2, "game//roll//skip.png", "game//roll//skip_.png", 165, 102, true, false, bind(&CRollWindow::OnClickSkipButton, this))); | {"referenced": "game//roll//skip_.png", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/Roll/skip_.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/roll/skip_.png"}
+- SourceCode/SrcGame/src/BattlePass.cpp:95 | Image[0] = CreateTextureMaterial("game//images//battlepass//Select_Item_Free.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Select_Item_Free.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Select_Item_Free.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Select_Item_Free.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:98 | Image[3] = CreateTextureMaterial("game//images//battlepass//Select_Item_Premium.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Select_Item_Premium.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Select_Item_Premium.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Select_Item_Premium.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:109 | Image[14] = CreateTextureMaterial("game//images//battlepass//Resgate//0.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//0.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:110 | Image[15] = CreateTextureMaterial("game//images//battlepass//Resgate//1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//1.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/1.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/1.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:111 | Image[16] = CreateTextureMaterial("game//images//battlepass//Resgate//2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//2.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/2.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/2.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:112 | Image[17] = CreateTextureMaterial("game//images//battlepass//Resgate//3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//3.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/3.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/3.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:113 | Image[18] = CreateTextureMaterial("game//images//battlepass//Resgate//4.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//4.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/4.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/4.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:114 | Image[19] = CreateTextureMaterial("game//images//battlepass//Resgate//5.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//5.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/5.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/5.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:115 | Image[20] = CreateTextureMaterial("game//images//battlepass//Resgate//6.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//6.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/6.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/6.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:116 | Image[21] = CreateTextureMaterial("game//images//battlepass//Resgate//7.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//7.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/7.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/7.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:117 | Image[22] = CreateTextureMaterial("game//images//battlepass//Resgate//8.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//8.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/8.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/8.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:118 | Image[23] = CreateTextureMaterial("game//images//battlepass//Resgate//9.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//9.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/9.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/9.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:119 | Image[24] = CreateTextureMaterial("game//images//battlepass//Resgate//10.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//10.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/10.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/10.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:120 | Image[25] = CreateTextureMaterial("game//images//battlepass//Resgate//11.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//11.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/11.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/11.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:121 | Image[26] = CreateTextureMaterial("game//images//battlepass//Resgate//12.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//12.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/12.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/12.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:122 | Image[27] = CreateTextureMaterial("game//images//battlepass//Resgate//13.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//13.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/13.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/13.PNG"}
+- SourceCode/SrcGame/src/BattlePass.cpp:123 | Image[28] = CreateTextureMaterial("game//images//battlepass//Resgate//14.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//14.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/14.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/14.PNG"}
+
+Exemplos de colisões:
+- SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lua | {"paths": ["/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua", "/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lua"]}
+- SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lua/Makefile | {"paths": ["/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/Makefile", "/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lua/Makefile"]}
+- SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lua/README | {"paths": ["/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/Lua/README", "/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Library/LuaSrc/Lua.bak_corrupt_original_confirmed/lua/README"]}
+- SourceCode/SrcServer/src/HoBaram/NewEffect/Script/lua | {"paths": ["/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/NewEffect/Script/Lua", "/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/NewEffect/Script/lua"]}
+- Summit Tale Client Full/cliente/StartImage/sky/DGsky00.bmp | {"paths": ["/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/DGsky00.bmp", "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/dgsky00.bmp"]}
+- Summit Tale Client Full/cliente/StartImage/sky/DGsky00.tga | {"paths": ["/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/DGsky00.tga", "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/dgsky00.tga"]}
+- Summit Tale Client Full/cliente/StartImage/sky/DNsky00.bmp | {"paths": ["/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/DNsky00.bmp", "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/dnsky00.bmp"]}
+- Summit Tale Client Full/cliente/StartImage/sky/Dsky00.bmp | {"paths": ["/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/Dsky00.bmp", "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/dsky00.bmp"]}
+- Summit Tale Client Full/cliente/StartImage/sky/Dsky00.tga | {"paths": ["/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/Dsky00.tga", "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/dsky00.tga"]}
+- Summit Tale Client Full/cliente/StartImage/sky/FGsky00.bmp | {"paths": ["/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/FGsky00.bmp", "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/fgsky00.bmp"]}
+- Summit Tale Client Full/cliente/StartImage/sky/Fsky00.bmp | {"paths": ["/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/Fsky00.bmp", "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/fsky00.bmp"]}
+- Summit Tale Client Full/cliente/StartImage/sky/Fsky00.tga | {"paths": ["/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/Fsky00.tga", "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/fsky00.tga"]}
+- Summit Tale Client Full/cliente/StartImage/sky/Nsky00.bmp | {"paths": ["/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/Nsky00.bmp", "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/nsky00.bmp"]}
+- Summit Tale Client Full/cliente/StartImage/sky/Ruinsky.bmp | {"paths": ["/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/RuinSky.bmp", "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/sky/Ruinsky.bmp"]}
+- docker/web/wwwroot - BPT/padm/imgs/player.png | {"paths": ["/home/gabriel/Área de Trabalho/summit/docker/web/wwwroot - BPT/padm/imgs/Player.png", "/home/gabriel/Área de Trabalho/summit/docker/web/wwwroot - BPT/padm/imgs/player.png"]}
+
+P1/P2 — ENCODINGS LEGADOS EM ARQUIVOS-FONTE
+-------------------------------------------
+- cp1252  |   22445 bytes | Hangul=0 | SourceCode/Shared2/b_sinCraftItem.h
+- cp949   |   72515 bytes | Hangul=6863 | SourceCode/Shared2/smPacket.h
+- cp1252  |   52223 bytes | Hangul=0 | SourceCode/SrcGame/src/HoBaram/HoOpening.cpp
+- cp1252  |    3976 bytes | Hangul=0 | SourceCode/SrcServer/src/Sound/Dxwav.h
+- cp1252  |    6430 bytes | Hangul=0 | SourceCode/SrcServer/src/Sound/STREAM.H
+
+COREANO / HANGUL
+----------------
+Arquivos CP949 não devem ser “consertados” abrindo como CP1252 ou UTF-8 com replace. Primeiro decodifique explicitamente como CP949 e só então converta para UTF-8, preservando os caracteres.
+
+Top arquivos-fonte com Hangul detectado:
+- Hangul= 6863 | cp949   | �=0 | SourceCode/Shared2/smPacket.h
+- Hangul=   65 | utf-8   | �=0 | SourceCode/SrcGame/src/sinbaram/sinSkill_Info.cpp
+- Hangul=   65 | utf-8   | �=0 | SourceCode/SrcServer/src/sinbaram/SkillTables.cpp
+- Hangul=   26 | utf-8   | �=7468 | SourceCode/SrcGame/src/sinbaram/sinMsg.cpp
+- Hangul=   26 | utf-8   | �=7469 | SourceCode/SrcServer/src/sinbaram/sinMsg.cpp
+- Hangul=   19 | utf-8   | �=5431 | SourceCode/SrcGame/src/Language/Japanese/J_ServerMsg.h
+- Hangul=   19 | utf-8   | �=5431 | SourceCode/SrcServer/src/Language/Japanese/J_ServerMsg.h
+- Hangul=   16 | utf-8   | �=5275 | SourceCode/SrcGame/src/Language/Korean/k_ServerMsg.h
+- Hangul=   16 | utf-8   | �=5275 | SourceCode/SrcServer/src/Language/Korean/k_ServerMsg.h
+- Hangul=   15 | utf-8   | �=2094 | SourceCode/SrcServer/src/sinbaram/sinSkill.cpp
+- Hangul=   13 | utf-8   | �=3612 | SourceCode/SrcGame/src/Language/Chinese/C_ServerMsg.h
+- Hangul=   13 | utf-8   | �=5451 | SourceCode/SrcGame/src/Language/Chinese/C_sinMsg.h
+- Hangul=   13 | utf-8   | �=1833 | SourceCode/SrcGame/src/Language/taiwan/T_sinSkill_Info.h
+- Hangul=   13 | utf-8   | �=2179 | SourceCode/SrcGame/src/sinbaram/sinSkill.cpp
+- Hangul=   13 | utf-8   | �=3612 | SourceCode/SrcServer/src/Language/Chinese/C_ServerMsg.h
+- Hangul=   13 | utf-8   | �=5451 | SourceCode/SrcServer/src/Language/Chinese/C_sinMsg.h
+- Hangul=   13 | utf-8   | �=1833 | SourceCode/SrcServer/src/Language/taiwan/T_sinSkill_Info.h
+- Hangul=   12 | utf-8   | �=1440 | SourceCode/SrcGame/src/Language/Japanese/J_HoTextFile.h
+- Hangul=   12 | utf-8   | �=7895 | SourceCode/SrcGame/src/Language/Japanese/J_sinMsg.h
+- Hangul=   12 | utf-8   | �=1440 | SourceCode/SrcServer/src/Language/Japanese/J_HoTextFile.h
+
+OBSERVAÇÕES SOBRE FALSOS POSITIVOS
+---------------------------------
+- MOJIBAKE_LATIN e MOJIBAKE_KOREAN no CSV bruto são heurísticos e se sobrepõem bastante em texto coreano legado.
+- NARROW_NONASCII_LITERAL foi aplicado também a arquivos de configuração/texto; não deve ser tratado como bug C++ automaticamente.
+- strlen mede bytes em UTF-8, mas isso só é problema quando o código espera quantidade de caracteres visíveis; em buffers/protocolos de bytes pode estar correto.
+- A prioridade real deve partir de U+FFFD, estouros de buffer, encodings legados conhecidos, case de assets e fronteiras ANSI/Unicode.
+
+ARQUIVOS GERADOS
+---------------
+- auditoria_caracteres_priorizada.csv: fila completa e filtrada de correção.
+- relatorio_caracteres_compacto.txt: este resumo.

@@ -1,0 +1,24 @@
+{
+  "asset_id": "AST-99CAC5204F4A",
+  "asset": "char/npc/Ahin/Ahin.smd",
+  "texture_count": 2,
+  "ready": true,
+  "overlay": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-99CAC5204F4A/visual_geometry/texture_overlay_client",
+  "entries": [
+    {
+      "logical": "char/npc/Ahin/Ahin-body.TGA",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/npc/Ahin/Ahin-body.tga",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-99CAC5204F4A/visual_geometry/texture_overlay_client/char/npc/Ahin/Ahin-body.TGA",
+      "status": "TGA_READY",
+      "log": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-99CAC5204F4A/visual_geometry/texture_overlay_logs/Ahin-body.TGA.decode.log"
+    },
+    {
+      "logical": "char/npc/Ahin/Ahin-head.tga",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/npc/Ahin/Ahin-head.tga",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-99CAC5204F4A/visual_geometry/texture_overlay_client/char/npc/Ahin/Ahin-head.tga",
+      "status": "TGA_READY",
+      "log": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-99CAC5204F4A/visual_geometry/texture_overlay_logs/Ahin-head.tga.decode.log"
+    }
+  ],
+  "client_modified": false
+}

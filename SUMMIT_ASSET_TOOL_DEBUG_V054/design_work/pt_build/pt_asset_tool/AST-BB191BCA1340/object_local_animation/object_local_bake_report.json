@@ -1,0 +1,192 @@
+{
+  "format": "PT_OBJECT_LOCAL_BLENDER_PREVIEW_V1",
+  "status": "PASS",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/castle/crystal_ani01.smd",
+  "blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/object_local_preview.blend",
+  "object": "crystal_ani01",
+  "channels_serialized": [
+    "ROT",
+    "POS"
+  ],
+  "channels_animated": [
+    "ROT",
+    "POS"
+  ],
+  "nRot": 201,
+  "nPos": 198,
+  "nScale": 0,
+  "reference_engine_frame": 0,
+  "max_engine_frame": 32000,
+  "engine_units_per_preview_frame": 160,
+  "preview_frame_start": 1,
+  "preview_frame_end": 201,
+  "preview_fps": 30,
+  "preview_reference": "FIRST_KEY_NORMALIZED_OBJECT_LOCAL",
+  "rotation_semantics": "ACCUMULATED_TM_PREV_ROT",
+  "source_rot_key_semantics": "INCREMENTAL_LOCAL_QUATERNION",
+  "quaternion_sign_continuity": true,
+  "interpolation": "LINEAR_SAMPLED_EVERY_SOURCE_TICK",
+  "timing_status": "PREVIEW_NOT_RUNTIME_SPEED_CERTIFIED",
+  "samples": [
+    {
+      "engine_frame": 0.0,
+      "blender_frame": 1.0,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation_xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "engine_frame": 16000.0,
+      "blender_frame": 101.0,
+      "location": [
+        0.0,
+        0.0,
+        0.60491943359375
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation_xyzw": [
+        4.1829378917657514e-13,
+        4.878039860642446e-13,
+        0.9199292574010811,
+        0.3920843804304061
+      ]
+    },
+    {
+      "engine_frame": 32000.0,
+      "blender_frame": 201.0,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rotation_xyzw": [
+        4.3878664865441915e-13,
+        1.1809220449597916e-12,
+        -0.00029991461927969006,
+        0.9999999550256096
+      ]
+    }
+  ],
+  "source_summary": {
+    "format": "PT_OBJECT_LOCAL_SOURCE_V1",
+    "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/castle/crystal_ani01.smd",
+    "file_size": 315120,
+    "object_count": 1,
+    "object_local_object_count": 1,
+    "animated_object_count": 1,
+    "hold_object_count": 0,
+    "max_engine_frame": 32000,
+    "objects": [
+      {
+        "index": 0,
+        "name": "crystal_ani01",
+        "parent": "",
+        "nVertex": 7,
+        "nFace": 10,
+        "nTexLink": 10,
+        "nRot": 201,
+        "nPos": 198,
+        "nScale": 0,
+        "TmFrameCnt": 0,
+        "channels_serialized": [
+          "ROT",
+          "POS"
+        ],
+        "channels_animated": [
+          "ROT",
+          "POS"
+        ],
+        "motion_class": "ANIMATED",
+        "reference_engine_frame": 0,
+        "max_engine_frame": 32000,
+        "rotation_semantics_check": "PASS",
+        "rotation_cumulative_max_error": 6.881101599631734e-08,
+        "normalized_samples": [
+          {
+            "engine_frame": 0.0,
+            "location": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "rotation_xyzw": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "engine_frame": 16000.0,
+            "location": [
+              0.0,
+              0.0,
+              0.60491943359375
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "rotation_xyzw": [
+              4.1829378917657514e-13,
+              4.878039860642446e-13,
+              0.9199292574010811,
+              0.3920843804304061
+            ]
+          },
+          {
+            "engine_frame": 32000.0,
+            "location": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "rotation_xyzw": [
+              4.3878664865441915e-13,
+              1.1809220449597916e-12,
+              -0.00029991461927969006,
+              0.9999999550256096
+            ]
+          }
+        ]
+      }
+    ],
+    "rotation_semantics": "ACCUMULATED_TM_PREV_ROT",
+    "source_rot_key_semantics": "INCREMENTAL_LOCAL_QUATERNION",
+    "preview_reference": "FIRST_KEY_NORMALIZED_OBJECT_LOCAL"
+  },
+  "client_modified": false
+}

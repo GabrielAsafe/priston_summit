@@ -1,0 +1,4095 @@
+
+######################################################################
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp
+######################################################################
+
+--- around line 1693 ---
+001658: 					db->GetData(&items.Bracelet, 32, 14, PARAMTYPE_String);
+001659: 					db->GetData(&items.Aging5, 0, 15, PARAMTYPE_Integer);
+001660: 					db->GetData(&items.Mix5, 0, 16, PARAMTYPE_Integer);
+001661: 
+001662: 					db->GetData(&items.Shield, 32, 17, PARAMTYPE_String);
+001663: 					db->GetData(&items.Aging6, 0, 18, PARAMTYPE_Integer);
+001664: 					db->GetData(&items.Mix6, 0, 19, PARAMTYPE_Integer);
+001665: 
+001666: 					vStartUserItems.push_back(items);
+001667: 
+001668: 					if (!db->NextRow())
+001669: 						break;
+001670: 				}
+001671: 			}
+001672: 		}
+001673: 
+001674: 		if (db->Prepare("SELECT * FROM ExtraItems"))
+001675: 		{
+001676: 			if (db->Execute())
+001677: 			{
+001678: 				do
+001679: 				{
+001680: 					ZeroMemory(&eitems, sizeof(sStartUserExtraItems));
+001681: 					eitems.Flag = 1;
+001682: 					db->GetData(eitems.szItem, 32, 2, PARAMTYPE_String);
+001683: 					vStartUserExtraItems.push_back(eitems);
+001684: 				} while (db->NextRow());
+001685: 			}
+001686: 		}
+001687: 
+001688: 		db->Close();
+001689: 	}
+001690: }
+001691: 
+001692: int AgingEventoGlobalOn();
+001693: int InitMonster();
+001694: int	OpenBossTimeMin = 1;
+001695: 
+001696: int rsRefreshConfig()
+001697: {
+001698: 
+001699: #ifdef _W_SERVER
+001700: 
+001701: 	EnterCriticalSection(&cSerSection);
+001702: 
+001703: 	bool readWarline();
+001704: 	readWarline();
+001705: 	
+001706: 	if (!smConfigDecode("Configs//hotuk.ini"))
+001707: 	{
+001708: 		Sleep(5000);
+001709: 		quit = 1;
+001710: 
+001711: 		return FALSE;
+001712: 	}
+001713: 
+001714: 	StartUser_PresentItem_Init();
+001715: 
+001716: 	if (AgingEvento) 
+001717: 	{
+001718: 		cout << "Aging Free ON" << endl;
+001719: 	}
+001720: 	else 
+001721: 	{
+001722: 		cout << "Aging Free OFF" << endl;
+001723: 	}
+001724: 	if (bMaintenanceMode) 
+001725: 	{
+001726: 		cout << "Modo Manutencao Ativo!" << endl;
+001727: 	}
+001728: 
+001729: 	AgingEventoGlobalOn();
+001730: 
+001731: 	OpenBossTimeMin = boss;
+001732: 
+001733: 	if(rsServerConfig.LimitVersion)
+001734: 	{
+001735: 		Server_LimitVersion = rsServerConfig.LimitVersion;
+001736: 	}
+001737: 
+001738: 	if(rsServerConfig.szServerName[0] && lstrlen(rsServerConfig.szServerName) < 16)
+001739: 	{
+001740: 		strcpy_s(TransServerList.szServerName, rsServerConfig.szServerName);
+001741: 	}
+001742: 
+001743: 	if(rsServerConfig.Permit_Exp)
+001744: 		Permit_CheckExp = rsServerConfig.Permit_Exp;
+001745: 	else
+001746: 		Permit_CheckExp = TOTAL_CHECK_EXP_MAX;
+001747: 
+001748: 	if(rsServerConfig.Permit_Money)
+001749: 		Permit_CheckMoney = rsServerConfig.Permit_Money;
+001750: 	else
+001751: 		Permit_CheckMoney = TOTAL_CHECK_MONEY_MAX;
+001752: 
+001753: 	rsServerConfig.ServerInventoryMode = TRUE;
+001754: 	rsServerConfig.UseRecorMemory = TRUE;
+001755: 	rsServerConfig.PotionMonitor = TRUE;
+001756: 
+001757: 
+001758: 	if(rsServerConfig.ConnectUserMax > 0)
+001759: 		rsConnectUserLimit = rsServerConfig.ConnectUserMax;
+001760: 
+001761: 	rsResetBackList();
+001762: 
+001763: 	rsResetClientFuncPos();
+001764: 
+001765: 	InitCrackFinding();
+001766: 	
+001767:     cCoinShop.LoadItems();
+001768: 	cCoinShop_T.LoadItems();
+001769: 
+001770: 	LeaveCriticalSection(&cSerSection);
+001771: 
+001772: 	rsInit_SerToServer();
+001773: 	
+001774: #endif
+001775: 
+001776: 	return TRUE;
+001777: }
+001778: 
+001779: 
+001780: int AgingEventoGlobalOn() {
+001781: 	TRANS_CHATMESSAGE	TransChatMessage;
+001782: 	smTRANS_COMMAND smTransCommand;
+001783: 	if (AgingEvento) {
+001784: 
+001785: 
+001786: 		smTransCommand.code = OpCode::OPCODE_AGING_FREE;
+001787: 		smTransCommand.size = sizeof(smTRANS_COMMAND);
+001788: 		smTransCommand.WParam = 1;
+001789: 		smTransCommand.SParam = 0;
+001790: 		smTransCommand.EParam = 0;
+001791: 		for (int cnt = 0; cnt < CONNECTMAX; cnt++) {
+001792: 			if (rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getAccount() && rsPlayInfo[cnt].getAccount()[0])) {
+001793: 				rsPlayInfo[cnt].lpsmSock->Send((char*)& smTransCommand, smTransCommand.size, TRUE);
+001794: 			}
+001795: 		}
+001796: 		wsprintf(TransChatMessage.szMessage, "Alerta> Evento Aging Free Ativado!");
+001797: 		TransChatMessage.code = OpCode::SEND_ALERT;
+001798: 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
+001799: 		TransChatMessage.dwIP = 0; //12
+001800: 		TransChatMessage.dwObjectSerial = 0;
+001801: 
+001802: 		for (int cnt = 0; cnt < CONNECTMAX; cnt++)
+001803: 		{
+001804: 			if (rsPlayInfo[cnt].lpsmSock)
+001805: 			{
+001806: 				rsPlayInfo[cnt].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
+001807: 			}
+001808: 		}
+001809: 
+001810: 	}
+001811: 	else {
+001812: 		smTransCommand.code = OpCode::OPCODE_AGING_FREE;
+
+--- around line 1925 ---
+001890: 			lpPlayInfo->smCharInfo.JOB_CODE, lpPlayInfo->szGuid, BlockTime);
+001891: 
+001892: 
+001893: 
+001894: 		if(lpPlayInfo->szGPCode[0])
+001895: 		{
+001896: 
+001897: 			bSql_Logout(lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->szGPCode,
+001898: 				lpPlayInfo->DisuseDay, lpPlayInfo->UsePeriod, lpPlayInfo->szGuid, lpPlayInfo->Bl_RNo);
+001899: 
+001900: 		}
+001901: 
+001902: 		if(lpPlayInfo->ClanTicketCode && strlen(lpPlayInfo->getName()))
+001903: 			bClan_UserTicket(lpPlayInfo, 1);
+001904: 
+001905: 
+001906: 
+001907: 		rsRecordFixExp(lpPlayInfo);
+001908: 
+001909: 	}
+001910: 
+001911: 
+001912: 	if(rsServerConfig.ExpGameTimeMode)
+001913: 	{
+001914: 		if(lpPlayInfo->dwExpGameTimeCheck)
+001915: 		{
+001916: 			bSql_GetExpGameTime(lpPlayInfo, lpPlayInfo->dwExpGameTime / 1000);
+001917: 		}
+001918: 	}
+001919: 
+001920: 	return TRUE;
+001921: }
+001922: 
+001923: 
+001924: 
+001925: int InitMonster()
+001926: {
+001927: 
+001928: 	HANDLE hFindHandle;
+001929: 	WIN32_FIND_DATA	fd;
+001930: 	char	szFindPath[64];
+001931: 	char	szFilePath[64];
+001932: 
+001933: 	chrMonsterCnt = 0;
+001934: 
+001935: 	//ZeroMemory(chrMonsterList, sizeof(smCHAR_INFO)*CHR_MONSTER_MAX);
+001936: 	//ZeroMemory(chrMonInfoList, sizeof(smCHAR_MONSTER_INFO)*CHR_MONSTER_MAX);
+001937: 
+001938: 	strcpy_s(szFindPath, MonsterPath);
+001939: 	lstrcat(szFindPath, "*.inf");
+001940: 
+001941: 	hFindHandle = FindFirstFile(szFindPath, &fd);
+001942: 	if(hFindHandle != INVALID_HANDLE_VALUE)
+001943: 	{
+001944: 		while(1)
+001945: 		{
+001946: 			strcpy_s(szFilePath, MonsterPath);
+001947: 			lstrcat(szFilePath, fd.cFileName);
+001948: 
+001949: 			smCharDecode(szFilePath, &chrMonsterList[chrMonsterCnt], &chrMonInfoList[chrMonsterCnt], 0);
+001950: 
+001951: 
+001952: 			chrMonInfoList[chrMonsterCnt].dwAutoCharCode = GetSpeedSum(chrMonsterList[chrMonsterCnt].szName);
+001953: 
+001954: 
+001955: 			if(rsServerConfig.TestSeverMode)
+001956: 			{
+001957: 				chrMonsterList[chrMonsterCnt].Exp *= 4;
+001958: 				chrMonInfoList[chrMonsterCnt].GetExp *= 4;
+001959: 			}
+001960: 
+001961: 			ReformCharForm(&chrMonsterList[chrMonsterCnt]);
+001962: 
+001963: 			chrMonsterCnt++;
+001964: 
+001965: 			if(FindNextFile(hFindHandle, &fd) == FALSE) break;
+001966: 			if(chrMonsterCnt >= CHR_MONSTER_MAX) break; 
+001967: 		}
+001968: 	}
+001969: 	FindClose(hFindHandle);
+001970: 
+001971: 	
+001972: 
+001973: 
+001974: 
+001975: 	int cnt, cnt2;
+001976: 
+001977: 
+001978: 	rsInitHardCoreEvent();
+001979: 
+001980: 
+001981: 	for (cnt = 0; cnt < chrMonsterCnt; cnt++)
+001982: 	{
+001983: 
+001984: 
+001985: 		if (chrMonsterList[cnt].szModelName[0])
+001986: 		{
+001987: 			LoadOftenMeshPattern(chrMonsterList[cnt].szModelName);
+001988: 		}
+001989: 
+001990: 
+001991: 		if (lstrcmp(chrMonsterList[cnt].szName, srEventMonName1) == 0)
+001992: 		{
+001993: 			chrNpcMonsterInfo = &chrMonsterList[cnt];
+001994: 		}
+001995: 
+001996: 
+001997: 		for (cnt2 = 0; cnt2 < srCRISTAL_MAX; cnt2++)
+001998: 		{
+001999: 			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonster[cnt2].szName) == 0)
+002000: 			{
+002001: 				srCristalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002002: 			}
+002003: 		}
+002004: 		for (cnt2 = 0; cnt2 < srCRISTAL_MAX; cnt2++)
+002005: 		{
+002006: 			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonsterBoss[cnt2].szName) == 0)
+002007: 			{
+002008: 				srCristalMonsterBoss[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002009: 			}
+002010: 		}
+002011: 		for (cnt2 = 0; cnt2 < srSKILL_MONSTER_MAX; cnt2++)
+002012: 		{
+002013: 			if (lstrcmp(chrMonsterList[cnt].szName, srSkillMonster[cnt2].szName) == 0)
+002014: 			{
+002015: 				srSkillMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002016: 			}
+002017: 		}
+002018: 		for (cnt2 = 0; cnt2 < srBC_MONSTER_TOTAL; cnt2++)
+002019: 		{
+002020: 			if (lstrcmp(chrMonsterList[cnt].szName, srBillingCrystalMonster[cnt2].szName) == 0)
+002021: 			{
+002022: 				srBillingCrystalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002023: 			}
+002024: 		}
+002025: 		for (cnt2 = 0; cnt2 < MIROTIC_MAX; cnt2++)
+002026: 		{
+002027: 			if (lstrcmp(chrMonsterList[cnt].szName, srMiroticCristalMonster[cnt2].szName) == 0)
+002028: 			{
+002029: 				srMiroticCristalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002030: 			}
+002031: 		}
+002032: 		for (cnt2 = 0; cnt2 < SINTETICO_MAX; cnt2++)
+002033: 		{
+002034: 			if (lstrcmp(chrMonsterList[cnt].szName, srSinteticoCristalMonster[cnt2].szName) == 0)
+002035: 			{
+002036: 				srSinteticoCristalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002037: 			}
+002038: 		}
+002039: 		for (cnt2 = 0; cnt2 < GUARDIAO_MAXI; cnt2++)
+002040: 		{
+002041: 			if (lstrcmp(chrMonsterList[cnt].szName, srGuardiaoCristalMonster[cnt2].szName) == 0)
+002042: 			{
+002043: 				srGuardiaoCristalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002044: 			}
+
+--- around line 1949 ---
+001914: 		if(lpPlayInfo->dwExpGameTimeCheck)
+001915: 		{
+001916: 			bSql_GetExpGameTime(lpPlayInfo, lpPlayInfo->dwExpGameTime / 1000);
+001917: 		}
+001918: 	}
+001919: 
+001920: 	return TRUE;
+001921: }
+001922: 
+001923: 
+001924: 
+001925: int InitMonster()
+001926: {
+001927: 
+001928: 	HANDLE hFindHandle;
+001929: 	WIN32_FIND_DATA	fd;
+001930: 	char	szFindPath[64];
+001931: 	char	szFilePath[64];
+001932: 
+001933: 	chrMonsterCnt = 0;
+001934: 
+001935: 	//ZeroMemory(chrMonsterList, sizeof(smCHAR_INFO)*CHR_MONSTER_MAX);
+001936: 	//ZeroMemory(chrMonInfoList, sizeof(smCHAR_MONSTER_INFO)*CHR_MONSTER_MAX);
+001937: 
+001938: 	strcpy_s(szFindPath, MonsterPath);
+001939: 	lstrcat(szFindPath, "*.inf");
+001940: 
+001941: 	hFindHandle = FindFirstFile(szFindPath, &fd);
+001942: 	if(hFindHandle != INVALID_HANDLE_VALUE)
+001943: 	{
+001944: 		while(1)
+001945: 		{
+001946: 			strcpy_s(szFilePath, MonsterPath);
+001947: 			lstrcat(szFilePath, fd.cFileName);
+001948: 
+001949: 			smCharDecode(szFilePath, &chrMonsterList[chrMonsterCnt], &chrMonInfoList[chrMonsterCnt], 0);
+001950: 
+001951: 
+001952: 			chrMonInfoList[chrMonsterCnt].dwAutoCharCode = GetSpeedSum(chrMonsterList[chrMonsterCnt].szName);
+001953: 
+001954: 
+001955: 			if(rsServerConfig.TestSeverMode)
+001956: 			{
+001957: 				chrMonsterList[chrMonsterCnt].Exp *= 4;
+001958: 				chrMonInfoList[chrMonsterCnt].GetExp *= 4;
+001959: 			}
+001960: 
+001961: 			ReformCharForm(&chrMonsterList[chrMonsterCnt]);
+001962: 
+001963: 			chrMonsterCnt++;
+001964: 
+001965: 			if(FindNextFile(hFindHandle, &fd) == FALSE) break;
+001966: 			if(chrMonsterCnt >= CHR_MONSTER_MAX) break; 
+001967: 		}
+001968: 	}
+001969: 	FindClose(hFindHandle);
+001970: 
+001971: 	
+001972: 
+001973: 
+001974: 
+001975: 	int cnt, cnt2;
+001976: 
+001977: 
+001978: 	rsInitHardCoreEvent();
+001979: 
+001980: 
+001981: 	for (cnt = 0; cnt < chrMonsterCnt; cnt++)
+001982: 	{
+001983: 
+001984: 
+001985: 		if (chrMonsterList[cnt].szModelName[0])
+001986: 		{
+001987: 			LoadOftenMeshPattern(chrMonsterList[cnt].szModelName);
+001988: 		}
+001989: 
+001990: 
+001991: 		if (lstrcmp(chrMonsterList[cnt].szName, srEventMonName1) == 0)
+001992: 		{
+001993: 			chrNpcMonsterInfo = &chrMonsterList[cnt];
+001994: 		}
+001995: 
+001996: 
+001997: 		for (cnt2 = 0; cnt2 < srCRISTAL_MAX; cnt2++)
+001998: 		{
+001999: 			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonster[cnt2].szName) == 0)
+002000: 			{
+002001: 				srCristalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002002: 			}
+002003: 		}
+002004: 		for (cnt2 = 0; cnt2 < srCRISTAL_MAX; cnt2++)
+002005: 		{
+002006: 			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonsterBoss[cnt2].szName) == 0)
+002007: 			{
+002008: 				srCristalMonsterBoss[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002009: 			}
+002010: 		}
+002011: 		for (cnt2 = 0; cnt2 < srSKILL_MONSTER_MAX; cnt2++)
+002012: 		{
+002013: 			if (lstrcmp(chrMonsterList[cnt].szName, srSkillMonster[cnt2].szName) == 0)
+002014: 			{
+002015: 				srSkillMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002016: 			}
+002017: 		}
+002018: 		for (cnt2 = 0; cnt2 < srBC_MONSTER_TOTAL; cnt2++)
+002019: 		{
+002020: 			if (lstrcmp(chrMonsterList[cnt].szName, srBillingCrystalMonster[cnt2].szName) == 0)
+002021: 			{
+002022: 				srBillingCrystalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002023: 			}
+002024: 		}
+002025: 		for (cnt2 = 0; cnt2 < MIROTIC_MAX; cnt2++)
+002026: 		{
+002027: 			if (lstrcmp(chrMonsterList[cnt].szName, srMiroticCristalMonster[cnt2].szName) == 0)
+002028: 			{
+002029: 				srMiroticCristalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002030: 			}
+002031: 		}
+002032: 		for (cnt2 = 0; cnt2 < SINTETICO_MAX; cnt2++)
+002033: 		{
+002034: 			if (lstrcmp(chrMonsterList[cnt].szName, srSinteticoCristalMonster[cnt2].szName) == 0)
+002035: 			{
+002036: 				srSinteticoCristalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002037: 			}
+002038: 		}
+002039: 		for (cnt2 = 0; cnt2 < GUARDIAO_MAXI; cnt2++)
+002040: 		{
+002041: 			if (lstrcmp(chrMonsterList[cnt].szName, srGuardiaoCristalMonster[cnt2].szName) == 0)
+002042: 			{
+002043: 				srGuardiaoCristalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002044: 			}
+002045: 		}
+002046: 
+002047: 		for (cnt2 = 0; cnt2 < srSOLO_MONSTER_TOTAL; cnt2++)
+002048: 		{
+002049: 			if (lstrcmp(chrMonsterList[cnt].szName, srBillingSoloCristal[cnt2].szName) == 0)
+002050: 			{
+002051: 				srBillingSoloCristal[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002052: 			}
+002053: 		}
+002054: 
+002055: 		for (cnt2 = 0; cnt2 < 7; cnt2++)
+002056: 		{
+002057: 			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonsterEnemy[cnt2].szName) == 0)
+002058: 			{
+002059: 				srCristalMonsterEnemy[cnt2].lpCharInfo = &chrMonsterList[cnt];
+002060: 			}
+002061: 		}
+002062: 
+002063: 
+002064: 		for (cnt2 = 0; cnt2 < 7; cnt2++)
+002065: 		{
+002066: 			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonsterEnemy2[cnt2].szName) == 0)
+002067: 			{
+002068: 				srCristalMonsterEnemy2[cnt2].lpCharInfo = &chrMonsterList[cnt];
+
+--- around line 6988 ---
+006953: 
+006954: 	if(lpTransPlayerInfo)
+006955: 	{
+006956: 		for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+006957: 		{
+006958: 			if(TransCharFixed[cnt].code &&
+006959: 				TransCharFixed[cnt].dwObjectSerial == lpTransPlayerInfo->dwObjectSerial)
+006960: 				return &TransCharFixed[cnt];
+006961: 		}
+006962: 	}
+006963: 	else
+006964: 	{
+006965: 		for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+006966: 		{
+006967: 			if(TransCharFixed[cnt].code == 0) return &TransCharFixed[cnt];
+006968: 		}
+006969: 	}
+006970: 
+006971: 	return NULL;
+006972: }
+006973: 
+006974: 
+006975: 
+006976: int STG_AREA::AddCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
+006977: {
+006978: 	smTRNAS_PLAYERINFO	*lpFindPlayerInfo;
+006979: 
+006980: 	lpFindPlayerInfo = FindCharInfoFixed(lpTransPlayerInfo);
+006981: 	if(lpFindPlayerInfo) return FALSE;
+006982: 
+006983: 	lpFindPlayerInfo = FindCharInfoFixed(0);
+006984: 	if(lpFindPlayerInfo)
+006985: 	{
+006986: 		rsOpenNPC_RandomPos = -1;
+006987: 		memcpy(lpFindPlayerInfo, lpTransPlayerInfo, sizeof(smTRNAS_PLAYERINFO));
+006988: 		OpenNpc(lpFindPlayerInfo);
+006989: 		SaveCharInfoFixed(szCharFixedFile);
+006990: 		return TRUE;
+006991: 	}
+006992: 
+006993: 	return FALSE;
+006994: }
+006995: 
+006996: 
+006997: int STG_AREA::DeleteCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
+006998: {
+006999: 	smTRNAS_PLAYERINFO	*lpFindPlayerInfo;
+007000: 	smCHAR	*lpChar;
+007001: 
+007002: 	lpFindPlayerInfo = FindCharInfoFixed(lpTransPlayerInfo);
+007003: 	if(lpFindPlayerInfo)
+007004: 	{
+007005: 		lpFindPlayerInfo->code = 0;
+007006: 
+007007: 		lpChar = srFindCharFromSerial(lpTransPlayerInfo->dwObjectSerial);
+007008: 		if(lpChar)
+007009: 		{
+007010: 			lpChar->Close();
+007011: 		}
+007012: 		SaveCharInfoFixed(szCharFixedFile);
+007013: 		return TRUE;
+007014: 	}
+007015: 
+007016: 	return FALSE;
+007017: }
+007018: 
+007019: 
+007020: 
+007021: int STG_AREA::LoadCharInfoFixed(char *szFile)
+007022: {
+007023: 	FILE *fp;
+007024: 
+007025: 	fp = fopen(szFile, "rb");
+007026: 	if(fp)
+007027: 	{
+007028: 		fread(TransCharFixed, sizeof(smTRNAS_PLAYERINFO)*FIX_CHAR_MAX, 1, fp);
+007029: 		fclose(fp);
+007030: 		return TRUE;
+007031: 	}
+007032: 	return FALSE;
+007033: }
+007034: 
+007035: 
+007036: int STG_AREA::SaveCharInfoFixed(char *szFile)
+007037: {
+007038: 	FILE *fp;
+007039: 
+007040: 	fp = fopen(szFile, "wb");
+007041: 	if(fp)
+007042: 	{
+007043: 		fwrite(TransCharFixed, sizeof(smTRNAS_PLAYERINFO)*FIX_CHAR_MAX, 1, fp);
+007044: 		fclose(fp);
+007045: 	}
+007046: 
+007047: 	return TRUE;
+007048: }
+007049: 
+007050: 
+007051: 
+007052: 
+007053: int STG_AREA::OpenNpc(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
+007054: {
+007055: 
+007056: 	smCHAR *lpChar;
+007057: 	char *lpFileName;
+007058: 	int dist, cnt;
+007059: 
+007060: 
+007061: 	for(cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
+007062: 	{
+007063: 		if(chrAutoPlayer[cnt].Flag &&
+007064: 			chrAutoPlayer[cnt].smCharInfo.State == smCHAR_STATE_NPC &&
+007065: 			chrAutoPlayer[cnt].pX == lpTransPlayerInfo->x &&
+007066: 			chrAutoPlayer[cnt].pY == lpTransPlayerInfo->y &&
+007067: 			chrAutoPlayer[cnt].pZ == lpTransPlayerInfo->z)
+007068: 		{
+007069: 
+007070: 
+007071: 
+007072: 			return FALSE;
+007073: 		}
+007074: 	}
+007075: 
+007076: 
+007077: 
+007078: 	lpChar = srFindEmptyChar();
+007079: 	if(lpChar)
+007080: 	{
+007081: 		lpChar->Init();
+007082: 
+007083: 		lpTransPlayerInfo->dwObjectSerial = GetNewObjectSerial();
+007084: 		lpChar->pX = lpTransPlayerInfo->x;
+007085: 		lpChar->pY = lpTransPlayerInfo->y;
+007086: 		lpChar->pZ = lpTransPlayerInfo->z;
+007087: 		lpChar->Angle.x = lpTransPlayerInfo->ax;
+007088: 		lpChar->Angle.y = lpTransPlayerInfo->ay;
+007089: 		lpChar->Angle.z = lpTransPlayerInfo->az;
+007090: 
+007091: 		lpChar->PosiAround.x = lpTransPlayerInfo->x;
+007092: 		lpChar->PosiAround.y = lpTransPlayerInfo->y;
+007093: 		lpChar->PosiAround.z = lpTransPlayerInfo->z;
+007094: 		lpChar->DistAroundDbl = DIST_AROUND_NEAR;
+007095: 
+007096: 
+007097: 		lpChar->lpExt1 = (void *)&Head;
+007098: 		lpChar->dwObjectSerial = lpTransPlayerInfo->dwObjectSerial;
+007099: 		lpChar->ActionPattern = 12;
+007100: 		memcpy(&lpChar->smCharInfo, &lpTransPlayerInfo->smCharInfo, sizeof(smCHAR_INFO));
+007101: 
+007102: 
+007103: 		lpFileName = lpChar->smCharInfo.szModelName2;
+007104: 		if(lpFileName[0])
+007105: 		{
+007106: 
+007107: 			lpChar->szChatMessage[0] = 0;
+
+--- around line 7021 ---
+006986: 		rsOpenNPC_RandomPos = -1;
+006987: 		memcpy(lpFindPlayerInfo, lpTransPlayerInfo, sizeof(smTRNAS_PLAYERINFO));
+006988: 		OpenNpc(lpFindPlayerInfo);
+006989: 		SaveCharInfoFixed(szCharFixedFile);
+006990: 		return TRUE;
+006991: 	}
+006992: 
+006993: 	return FALSE;
+006994: }
+006995: 
+006996: 
+006997: int STG_AREA::DeleteCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
+006998: {
+006999: 	smTRNAS_PLAYERINFO	*lpFindPlayerInfo;
+007000: 	smCHAR	*lpChar;
+007001: 
+007002: 	lpFindPlayerInfo = FindCharInfoFixed(lpTransPlayerInfo);
+007003: 	if(lpFindPlayerInfo)
+007004: 	{
+007005: 		lpFindPlayerInfo->code = 0;
+007006: 
+007007: 		lpChar = srFindCharFromSerial(lpTransPlayerInfo->dwObjectSerial);
+007008: 		if(lpChar)
+007009: 		{
+007010: 			lpChar->Close();
+007011: 		}
+007012: 		SaveCharInfoFixed(szCharFixedFile);
+007013: 		return TRUE;
+007014: 	}
+007015: 
+007016: 	return FALSE;
+007017: }
+007018: 
+007019: 
+007020: 
+007021: int STG_AREA::LoadCharInfoFixed(char *szFile)
+007022: {
+007023: 	FILE *fp;
+007024: 
+007025: 	fp = fopen(szFile, "rb");
+007026: 	if(fp)
+007027: 	{
+007028: 		fread(TransCharFixed, sizeof(smTRNAS_PLAYERINFO)*FIX_CHAR_MAX, 1, fp);
+007029: 		fclose(fp);
+007030: 		return TRUE;
+007031: 	}
+007032: 	return FALSE;
+007033: }
+007034: 
+007035: 
+007036: int STG_AREA::SaveCharInfoFixed(char *szFile)
+007037: {
+007038: 	FILE *fp;
+007039: 
+007040: 	fp = fopen(szFile, "wb");
+007041: 	if(fp)
+007042: 	{
+007043: 		fwrite(TransCharFixed, sizeof(smTRNAS_PLAYERINFO)*FIX_CHAR_MAX, 1, fp);
+007044: 		fclose(fp);
+007045: 	}
+007046: 
+007047: 	return TRUE;
+007048: }
+007049: 
+007050: 
+007051: 
+007052: 
+007053: int STG_AREA::OpenNpc(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
+007054: {
+007055: 
+007056: 	smCHAR *lpChar;
+007057: 	char *lpFileName;
+007058: 	int dist, cnt;
+007059: 
+007060: 
+007061: 	for(cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
+007062: 	{
+007063: 		if(chrAutoPlayer[cnt].Flag &&
+007064: 			chrAutoPlayer[cnt].smCharInfo.State == smCHAR_STATE_NPC &&
+007065: 			chrAutoPlayer[cnt].pX == lpTransPlayerInfo->x &&
+007066: 			chrAutoPlayer[cnt].pY == lpTransPlayerInfo->y &&
+007067: 			chrAutoPlayer[cnt].pZ == lpTransPlayerInfo->z)
+007068: 		{
+007069: 
+007070: 
+007071: 
+007072: 			return FALSE;
+007073: 		}
+007074: 	}
+007075: 
+007076: 
+007077: 
+007078: 	lpChar = srFindEmptyChar();
+007079: 	if(lpChar)
+007080: 	{
+007081: 		lpChar->Init();
+007082: 
+007083: 		lpTransPlayerInfo->dwObjectSerial = GetNewObjectSerial();
+007084: 		lpChar->pX = lpTransPlayerInfo->x;
+007085: 		lpChar->pY = lpTransPlayerInfo->y;
+007086: 		lpChar->pZ = lpTransPlayerInfo->z;
+007087: 		lpChar->Angle.x = lpTransPlayerInfo->ax;
+007088: 		lpChar->Angle.y = lpTransPlayerInfo->ay;
+007089: 		lpChar->Angle.z = lpTransPlayerInfo->az;
+007090: 
+007091: 		lpChar->PosiAround.x = lpTransPlayerInfo->x;
+007092: 		lpChar->PosiAround.y = lpTransPlayerInfo->y;
+007093: 		lpChar->PosiAround.z = lpTransPlayerInfo->z;
+007094: 		lpChar->DistAroundDbl = DIST_AROUND_NEAR;
+007095: 
+007096: 
+007097: 		lpChar->lpExt1 = (void *)&Head;
+007098: 		lpChar->dwObjectSerial = lpTransPlayerInfo->dwObjectSerial;
+007099: 		lpChar->ActionPattern = 12;
+007100: 		memcpy(&lpChar->smCharInfo, &lpTransPlayerInfo->smCharInfo, sizeof(smCHAR_INFO));
+007101: 
+007102: 
+007103: 		lpFileName = lpChar->smCharInfo.szModelName2;
+007104: 		if(lpFileName[0])
+007105: 		{
+007106: 
+007107: 			lpChar->szChatMessage[0] = 0;
+007108: 			ZeroMemory(&lpChar->smMonsterInfo, sizeof(smCHAR_MONSTER_INFO));
+007109: 			smCharDecode(lpFileName, &lpChar->smCharInfo, &lpChar->smMonsterInfo, lpChar->szChatMessage, sizeof(lpChar->szChatMessage));
+007110: 
+007111: 			if(rsOpenNPC_RandomPos != -1 && lpChar->smMonsterInfo.OpenCount[1])
+007112: 			{
+007113: 				if((rsOpenNPC_RandomPos%lpChar->smMonsterInfo.OpenCount[1]) != lpChar->smMonsterInfo.OpenCount[0])
+007114: 				{
+007115: 					lpChar->Flag = 0;
+007116: 					return FALSE;
+007117: 				}
+007118: 			}
+007119: 
+007120: 
+007121: 			if(lpChar->smMonsterInfo.szName[0])
+007122: 			{
+007123: 				strcpy_s(lpChar->smCharInfo.szName, lpChar->smMonsterInfo.szName);
+007124: 				lpChar->smMonsterInfo.szName[0] = 0;
+007125: 			}
+007126: 			srLinkNpcItem(lpChar);
+007127: 
+007128: 			dist = lpChar->smMonsterInfo.MoveRange >> FLOATNS;
+007129: 			lpChar->DistAroundDbl = dist*dist;
+007130: 		}
+007131: 
+007132: 		lpChar->SetLoadPattern(lpChar->smCharInfo.szModelName);
+007133: 		lpChar->lpStage = lpStage;
+007134: 
+007135: 		if(lpChar->FindMotionCountFromCode(CHRMOTION_STATE_WALK) == 0)
+007136: 		{
+007137: 
+007138: 			lpChar->MoveSpeed = 0;
+007139: 		}
+007140: 
+
+--- around line 7053 ---
+007018: 
+007019: 
+007020: 
+007021: int STG_AREA::LoadCharInfoFixed(char *szFile)
+007022: {
+007023: 	FILE *fp;
+007024: 
+007025: 	fp = fopen(szFile, "rb");
+007026: 	if(fp)
+007027: 	{
+007028: 		fread(TransCharFixed, sizeof(smTRNAS_PLAYERINFO)*FIX_CHAR_MAX, 1, fp);
+007029: 		fclose(fp);
+007030: 		return TRUE;
+007031: 	}
+007032: 	return FALSE;
+007033: }
+007034: 
+007035: 
+007036: int STG_AREA::SaveCharInfoFixed(char *szFile)
+007037: {
+007038: 	FILE *fp;
+007039: 
+007040: 	fp = fopen(szFile, "wb");
+007041: 	if(fp)
+007042: 	{
+007043: 		fwrite(TransCharFixed, sizeof(smTRNAS_PLAYERINFO)*FIX_CHAR_MAX, 1, fp);
+007044: 		fclose(fp);
+007045: 	}
+007046: 
+007047: 	return TRUE;
+007048: }
+007049: 
+007050: 
+007051: 
+007052: 
+007053: int STG_AREA::OpenNpc(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
+007054: {
+007055: 
+007056: 	smCHAR *lpChar;
+007057: 	char *lpFileName;
+007058: 	int dist, cnt;
+007059: 
+007060: 
+007061: 	for(cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
+007062: 	{
+007063: 		if(chrAutoPlayer[cnt].Flag &&
+007064: 			chrAutoPlayer[cnt].smCharInfo.State == smCHAR_STATE_NPC &&
+007065: 			chrAutoPlayer[cnt].pX == lpTransPlayerInfo->x &&
+007066: 			chrAutoPlayer[cnt].pY == lpTransPlayerInfo->y &&
+007067: 			chrAutoPlayer[cnt].pZ == lpTransPlayerInfo->z)
+007068: 		{
+007069: 
+007070: 
+007071: 
+007072: 			return FALSE;
+007073: 		}
+007074: 	}
+007075: 
+007076: 
+007077: 
+007078: 	lpChar = srFindEmptyChar();
+007079: 	if(lpChar)
+007080: 	{
+007081: 		lpChar->Init();
+007082: 
+007083: 		lpTransPlayerInfo->dwObjectSerial = GetNewObjectSerial();
+007084: 		lpChar->pX = lpTransPlayerInfo->x;
+007085: 		lpChar->pY = lpTransPlayerInfo->y;
+007086: 		lpChar->pZ = lpTransPlayerInfo->z;
+007087: 		lpChar->Angle.x = lpTransPlayerInfo->ax;
+007088: 		lpChar->Angle.y = lpTransPlayerInfo->ay;
+007089: 		lpChar->Angle.z = lpTransPlayerInfo->az;
+007090: 
+007091: 		lpChar->PosiAround.x = lpTransPlayerInfo->x;
+007092: 		lpChar->PosiAround.y = lpTransPlayerInfo->y;
+007093: 		lpChar->PosiAround.z = lpTransPlayerInfo->z;
+007094: 		lpChar->DistAroundDbl = DIST_AROUND_NEAR;
+007095: 
+007096: 
+007097: 		lpChar->lpExt1 = (void *)&Head;
+007098: 		lpChar->dwObjectSerial = lpTransPlayerInfo->dwObjectSerial;
+007099: 		lpChar->ActionPattern = 12;
+007100: 		memcpy(&lpChar->smCharInfo, &lpTransPlayerInfo->smCharInfo, sizeof(smCHAR_INFO));
+007101: 
+007102: 
+007103: 		lpFileName = lpChar->smCharInfo.szModelName2;
+007104: 		if(lpFileName[0])
+007105: 		{
+007106: 
+007107: 			lpChar->szChatMessage[0] = 0;
+007108: 			ZeroMemory(&lpChar->smMonsterInfo, sizeof(smCHAR_MONSTER_INFO));
+007109: 			smCharDecode(lpFileName, &lpChar->smCharInfo, &lpChar->smMonsterInfo, lpChar->szChatMessage, sizeof(lpChar->szChatMessage));
+007110: 
+007111: 			if(rsOpenNPC_RandomPos != -1 && lpChar->smMonsterInfo.OpenCount[1])
+007112: 			{
+007113: 				if((rsOpenNPC_RandomPos%lpChar->smMonsterInfo.OpenCount[1]) != lpChar->smMonsterInfo.OpenCount[0])
+007114: 				{
+007115: 					lpChar->Flag = 0;
+007116: 					return FALSE;
+007117: 				}
+007118: 			}
+007119: 
+007120: 
+007121: 			if(lpChar->smMonsterInfo.szName[0])
+007122: 			{
+007123: 				strcpy_s(lpChar->smCharInfo.szName, lpChar->smMonsterInfo.szName);
+007124: 				lpChar->smMonsterInfo.szName[0] = 0;
+007125: 			}
+007126: 			srLinkNpcItem(lpChar);
+007127: 
+007128: 			dist = lpChar->smMonsterInfo.MoveRange >> FLOATNS;
+007129: 			lpChar->DistAroundDbl = dist*dist;
+007130: 		}
+007131: 
+007132: 		lpChar->SetLoadPattern(lpChar->smCharInfo.szModelName);
+007133: 		lpChar->lpStage = lpStage;
+007134: 
+007135: 		if(lpChar->FindMotionCountFromCode(CHRMOTION_STATE_WALK) == 0)
+007136: 		{
+007137: 
+007138: 			lpChar->MoveSpeed = 0;
+007139: 		}
+007140: 
+007141: 		return TRUE;
+007142: 	}
+007143: 
+007144: 	return FALSE;
+007145: }
+007146: 
+007147: 
+007148: STG_ITEMS *STG_AREA::FindItem(int x, int y, int z)
+007149: {
+007150: 	int cnt;
+007151: 
+007152: 	for(cnt = 0; cnt < STG_ITEM_MAX; cnt++)
+007153: 	{
+007154: 		if(StgItems[cnt].state &&
+007155: 			StgItems[cnt].x == x && StgItems[cnt].y == y && StgItems[cnt].z == z)
+007156: 		{
+007157: 
+007158: 			return	&StgItems[cnt];
+007159: 
+007160: 		}
+007161: 	}
+007162: 
+007163: 	return NULL;
+007164: }
+007165: 
+007166: 
+007167: STG_ITEMS *STG_AREA::AddItem(psITEM *lpItem, int x, int y, int z, int BeginMode)
+007168: {
+007169: 	int cnt, cnt2;
+007170: 	STG_ITEMS *lpStgItem;
+007171: 	int height;
+007172: 	int dx, dz, dy;
+
+--- around line 7109 ---
+007074: 	}
+007075: 
+007076: 
+007077: 
+007078: 	lpChar = srFindEmptyChar();
+007079: 	if(lpChar)
+007080: 	{
+007081: 		lpChar->Init();
+007082: 
+007083: 		lpTransPlayerInfo->dwObjectSerial = GetNewObjectSerial();
+007084: 		lpChar->pX = lpTransPlayerInfo->x;
+007085: 		lpChar->pY = lpTransPlayerInfo->y;
+007086: 		lpChar->pZ = lpTransPlayerInfo->z;
+007087: 		lpChar->Angle.x = lpTransPlayerInfo->ax;
+007088: 		lpChar->Angle.y = lpTransPlayerInfo->ay;
+007089: 		lpChar->Angle.z = lpTransPlayerInfo->az;
+007090: 
+007091: 		lpChar->PosiAround.x = lpTransPlayerInfo->x;
+007092: 		lpChar->PosiAround.y = lpTransPlayerInfo->y;
+007093: 		lpChar->PosiAround.z = lpTransPlayerInfo->z;
+007094: 		lpChar->DistAroundDbl = DIST_AROUND_NEAR;
+007095: 
+007096: 
+007097: 		lpChar->lpExt1 = (void *)&Head;
+007098: 		lpChar->dwObjectSerial = lpTransPlayerInfo->dwObjectSerial;
+007099: 		lpChar->ActionPattern = 12;
+007100: 		memcpy(&lpChar->smCharInfo, &lpTransPlayerInfo->smCharInfo, sizeof(smCHAR_INFO));
+007101: 
+007102: 
+007103: 		lpFileName = lpChar->smCharInfo.szModelName2;
+007104: 		if(lpFileName[0])
+007105: 		{
+007106: 
+007107: 			lpChar->szChatMessage[0] = 0;
+007108: 			ZeroMemory(&lpChar->smMonsterInfo, sizeof(smCHAR_MONSTER_INFO));
+007109: 			smCharDecode(lpFileName, &lpChar->smCharInfo, &lpChar->smMonsterInfo, lpChar->szChatMessage, sizeof(lpChar->szChatMessage));
+007110: 
+007111: 			if(rsOpenNPC_RandomPos != -1 && lpChar->smMonsterInfo.OpenCount[1])
+007112: 			{
+007113: 				if((rsOpenNPC_RandomPos%lpChar->smMonsterInfo.OpenCount[1]) != lpChar->smMonsterInfo.OpenCount[0])
+007114: 				{
+007115: 					lpChar->Flag = 0;
+007116: 					return FALSE;
+007117: 				}
+007118: 			}
+007119: 
+007120: 
+007121: 			if(lpChar->smMonsterInfo.szName[0])
+007122: 			{
+007123: 				strcpy_s(lpChar->smCharInfo.szName, lpChar->smMonsterInfo.szName);
+007124: 				lpChar->smMonsterInfo.szName[0] = 0;
+007125: 			}
+007126: 			srLinkNpcItem(lpChar);
+007127: 
+007128: 			dist = lpChar->smMonsterInfo.MoveRange >> FLOATNS;
+007129: 			lpChar->DistAroundDbl = dist*dist;
+007130: 		}
+007131: 
+007132: 		lpChar->SetLoadPattern(lpChar->smCharInfo.szModelName);
+007133: 		lpChar->lpStage = lpStage;
+007134: 
+007135: 		if(lpChar->FindMotionCountFromCode(CHRMOTION_STATE_WALK) == 0)
+007136: 		{
+007137: 
+007138: 			lpChar->MoveSpeed = 0;
+007139: 		}
+007140: 
+007141: 		return TRUE;
+007142: 	}
+007143: 
+007144: 	return FALSE;
+007145: }
+007146: 
+007147: 
+007148: STG_ITEMS *STG_AREA::FindItem(int x, int y, int z)
+007149: {
+007150: 	int cnt;
+007151: 
+007152: 	for(cnt = 0; cnt < STG_ITEM_MAX; cnt++)
+007153: 	{
+007154: 		if(StgItems[cnt].state &&
+007155: 			StgItems[cnt].x == x && StgItems[cnt].y == y && StgItems[cnt].z == z)
+007156: 		{
+007157: 
+007158: 			return	&StgItems[cnt];
+007159: 
+007160: 		}
+007161: 	}
+007162: 
+007163: 	return NULL;
+007164: }
+007165: 
+007166: 
+007167: STG_ITEMS *STG_AREA::AddItem(psITEM *lpItem, int x, int y, int z, int BeginMode)
+007168: {
+007169: 	int cnt, cnt2;
+007170: 	STG_ITEMS *lpStgItem;
+007171: 	int height;
+007172: 	int dx, dz, dy;
+007173: 	int ta;
+007174: 	DWORD dwItem;
+007175: 
+007176: 
+007177: 	for(cnt = 0; cnt < 8; cnt++)
+007178: 	{
+007179: 		ItemSettingCount++;
+007180: 		dx = x + ptItemSettingPosi[ItemSettingCount & 7].x;
+007181: 		dz = z + ptItemSettingPosi[ItemSettingCount & 7].y;
+007182: 		dy = y << FLOATNS;
+007183: 
+007184: 
+007185: 		height = lpStage->GetFloorHeight(dx << FLOATNS, dy, dz << FLOATNS, 32 * fONE);
+007186: 		if(height != CLIP_OUT)
+007187: 		{
+007188: 
+007189: 			ta = abs(height - dy);
+007190: 			if(ta < 32 * fONE)
+007191: 			{
+007192: 				lpStgItem = FindItem(x, y, z);
+007193: 				if(!lpStgItem) break;
+007194: 			}
+007195: 		}
+007196: 	}
+007197: 
+007198: 	if(cnt < 8)
+007199: 	{
+007200: 		x = dx;
+007201: 		z = dz;
+007202: 		y = height >> FLOATNS;
+007203: 	}
+007204: 
+007205: 	for(cnt2 = 0; cnt2 < 2; cnt2++)
+007206: 	{
+007207: 		for(cnt = 0; cnt < STG_ITEM_MAX; cnt++)
+007208: 		{
+007209: 			if(!StgItems[cnt].state || (cnt2 && StgItems[cnt].Level == 0))
+007210: 			{
+007211: 				StgItems[cnt].x = x;
+007212: 				StgItems[cnt].y = y;
+007213: 				StgItems[cnt].z = z;
+007214: 				StgItems[cnt].state = TRUE;
+007215: 				memcpy(&StgItems[cnt].Item, lpItem, sizeof(psITEM));
+007216: 
+007217: 				StgItems[cnt].dwCreateTime = GetCurrentTime();
+007218: 				StgItems[cnt].BeginMode = BeginMode;
+007219: 
+007220: 				dwItem = StgItems[cnt].Item.ItemInfo.CODE & sinITEM_MASK2;
+007221: 
+007222: 				if(dwItem == sinGG1 || dwItem == sinPL1 || dwItem == sinPS1)
+007223: 				{
+007224: 
+007225: 					StgItems[cnt].dwLoseTime = StgItems[cnt].dwCreateTime + STG_ITEM_WAIT_TIME_LOW;
+007226: 				}
+007227: 				else
+007228: 				{
+
+--- around line 8423 ---
+008388: 						chrAutoPlayer[cnt].ActionPattern = 5;
+008389: 						MonsterCount++;
+008390: 						chrAutoPlayer[cnt].SetLoadPattern(chrAutoPlayer[cnt].smCharInfo.szModelName);
+008391: 
+008392: 						dist = 64 * 20;
+008393: 						chrAutoPlayer[cnt].DistAroundDbl = dist * dist;
+008394: 						AddMonTable(&chrAutoPlayer[cnt]);
+008395: 						chrAutoPlayer[cnt].ReopenCount = REOPEN_COUNT_NUM;
+008396: 						chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_STAND);
+008397: 
+008398: 						chrAutoPlayer[cnt].smCharInfo.bUpdateInfo[0] = rnd + 1;
+008399: 						chrAutoPlayer[cnt].dwObjectSerial = OsCode;
+008400: 					}
+008401: 				}
+008402: 			}
+008403: 			else
+008404: 			{
+008405: 
+008406: 				for (cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
+008407: 				{
+008408: 					if (chrAutoPlayer[cnt].Flag && chrAutoPlayer[cnt].lpExt1 == this &&
+008409: 						chrAutoPlayer[cnt].smCharInfo.State == smCHAR_STATE_ENEMY)
+008410: 					{
+008411: 
+008412: 
+008413: 						chrAutoPlayer[cnt].smCharInfo.Life[0] = 0;
+008414: 						chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_DEAD);
+008415: 					}
+008416: 				}
+008417: 
+008418: 				rsOpenNPC_RandomPos = rand();
+008419: 
+008420: 				for (cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008421: 				{
+008422: 					if (TransCharFixed[cnt].code)
+008423: 						OpenNpc(&TransCharFixed[cnt]);
+008424: 				}
+008425: 			}
+008426: 		}
+008427: 
+008428: 		if (lpField->FieldCode == 3)
+008429: 		{
+008430: 
+008431: 
+008432: 			if (dwServ_NightDay)
+008433: 			{
+008434: 
+008435: 
+008436: 				rsCloseEventMonster(100);
+008437: 				rsOpenEventMonster(100, 0, 0, 0);
+008438: 
+008439: 			}
+008440: 			else
+008441: 			{
+008442: 				rsCloseEventMonster(100);
+008443: 
+008444: 
+008445: 				for (cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008446: 				{
+008447: 					if (TransCharFixed[cnt].code && TransCharFixed[cnt].smCharInfo.dwCharSoundCode == snCHAR_SOUND_WOLVERLIN)
+008448: 						OpenNpc(&TransCharFixed[cnt]);
+008449: 				}
+008450: 
+008451: 			}
+008452: 		}
+008453: 
+008454: 		FieldNightDay = dwServ_NightDay;
+008455: 	}
+008456: 	/*if(FieldNightDay != dwServ_NightDay)
+008457: 	{
+008458: 		if(lpField->FieldEvent == FIELD_EVENT_NIGHTMARE)
+008459: 		{
+008460: 			if(dwServ_NightDay)
+008461: 			{
+008462: 
+008463: 				for(cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
+008464: 				{
+008465: 					if(chrAutoPlayer[cnt].Flag && chrAutoPlayer[cnt].lpExt1 == this &&
+008466: 					   chrAutoPlayer[cnt].smCharInfo.State == smCHAR_STATE_NPC &&
+008467: 					   chrAutoPlayer[cnt].smMonsterInfo.EventNPC == 0)
+008468: 					{
+008469: 
+008470: 						chrAutoPlayer[cnt].Close();
+008471: 
+008472: 						chrAutoPlayer[cnt].Flag = TRUE;
+008473: 
+008474: 
+008475: 						rnd = chrAutoPlayer[cnt].smCharInfo.bUpdateInfo[0];
+008476: 						OsCode = chrAutoPlayer[cnt].dwObjectSerial;
+008477: 
+008478: 
+008479: 						memcpy(&chrAutoPlayer[cnt].smCharInfo, chrNpcMonsterInfo, sizeof(smCHAR_INFO));
+008480: 						memcpy(&chrAutoPlayer[cnt].smMonsterInfo, chrNpcMonsterInfo->lpMonInfo, sizeof(smCHAR_MONSTER_INFO));
+008481: 						chrAutoPlayer[cnt].ActionPattern = 5;
+008482: 						MonsterCount++;
+008483: 						chrAutoPlayer[cnt].SetLoadPattern(chrAutoPlayer[cnt].smCharInfo.szModelName);
+008484: 
+008485: 						dist = 64 * 20;
+008486: 						chrAutoPlayer[cnt].DistAroundDbl = dist * dist;
+008487: 						AddMonTable(&chrAutoPlayer[cnt]);
+008488: 						chrAutoPlayer[cnt].ReopenCount = REOPEN_COUNT_NUM;
+008489: 						chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_STAND);
+008490: 
+008491: 						chrAutoPlayer[cnt].smCharInfo.bUpdateInfo[0] = rnd + 1;
+008492: 						chrAutoPlayer[cnt].dwObjectSerial = OsCode;
+008493: 					}
+008494: 				}
+008495: 			}
+008496: 			else
+008497: 			{
+008498: 
+008499: 				for(cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
+008500: 				{
+008501: 					if(chrAutoPlayer[cnt].Flag && chrAutoPlayer[cnt].lpExt1 == this &&
+008502: 					   chrAutoPlayer[cnt].smCharInfo.State == smCHAR_STATE_ENEMY)
+008503: 					{
+008504: 
+008505: 
+008506: 						chrAutoPlayer[cnt].smCharInfo.Life[0] = 0;
+008507: 						chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_DEAD);
+008508: 					}
+008509: 				}
+008510: 
+008511: 				rsOpenNPC_RandomPos = rand();
+008512: 
+008513: 				for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008514: 				{
+008515: 					if(TransCharFixed[cnt].code)
+008516: 						OpenNpc(&TransCharFixed[cnt]);
+008517: 				}
+008518: 			}
+008519: 		}
+008520: 
+008521: 		if(lpField->FieldCode == 3)
+008522: 		{
+008523: 
+008524: 
+008525: 			if(dwServ_NightDay)
+008526: 			{
+008527: 
+008528: 
+008529: 				rsCloseEventMonster(100);
+008530: 				rsOpenEventMonster(100, 0, 0, 0);
+008531: 
+008532: 			}
+008533: 			else
+008534: 			{
+008535: 				rsCloseEventMonster(100);
+008536: 
+008537: 
+008538: 				for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008539: 				{
+008540: 					if(TransCharFixed[cnt].code && TransCharFixed[cnt].smCharInfo.dwCharSoundCode == snCHAR_SOUND_WOLVERLIN)
+008541: 						OpenNpc(&TransCharFixed[cnt]);
+008542: 				}
+
+--- around line 8448 ---
+008413: 						chrAutoPlayer[cnt].smCharInfo.Life[0] = 0;
+008414: 						chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_DEAD);
+008415: 					}
+008416: 				}
+008417: 
+008418: 				rsOpenNPC_RandomPos = rand();
+008419: 
+008420: 				for (cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008421: 				{
+008422: 					if (TransCharFixed[cnt].code)
+008423: 						OpenNpc(&TransCharFixed[cnt]);
+008424: 				}
+008425: 			}
+008426: 		}
+008427: 
+008428: 		if (lpField->FieldCode == 3)
+008429: 		{
+008430: 
+008431: 
+008432: 			if (dwServ_NightDay)
+008433: 			{
+008434: 
+008435: 
+008436: 				rsCloseEventMonster(100);
+008437: 				rsOpenEventMonster(100, 0, 0, 0);
+008438: 
+008439: 			}
+008440: 			else
+008441: 			{
+008442: 				rsCloseEventMonster(100);
+008443: 
+008444: 
+008445: 				for (cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008446: 				{
+008447: 					if (TransCharFixed[cnt].code && TransCharFixed[cnt].smCharInfo.dwCharSoundCode == snCHAR_SOUND_WOLVERLIN)
+008448: 						OpenNpc(&TransCharFixed[cnt]);
+008449: 				}
+008450: 
+008451: 			}
+008452: 		}
+008453: 
+008454: 		FieldNightDay = dwServ_NightDay;
+008455: 	}
+008456: 	/*if(FieldNightDay != dwServ_NightDay)
+008457: 	{
+008458: 		if(lpField->FieldEvent == FIELD_EVENT_NIGHTMARE)
+008459: 		{
+008460: 			if(dwServ_NightDay)
+008461: 			{
+008462: 
+008463: 				for(cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
+008464: 				{
+008465: 					if(chrAutoPlayer[cnt].Flag && chrAutoPlayer[cnt].lpExt1 == this &&
+008466: 					   chrAutoPlayer[cnt].smCharInfo.State == smCHAR_STATE_NPC &&
+008467: 					   chrAutoPlayer[cnt].smMonsterInfo.EventNPC == 0)
+008468: 					{
+008469: 
+008470: 						chrAutoPlayer[cnt].Close();
+008471: 
+008472: 						chrAutoPlayer[cnt].Flag = TRUE;
+008473: 
+008474: 
+008475: 						rnd = chrAutoPlayer[cnt].smCharInfo.bUpdateInfo[0];
+008476: 						OsCode = chrAutoPlayer[cnt].dwObjectSerial;
+008477: 
+008478: 
+008479: 						memcpy(&chrAutoPlayer[cnt].smCharInfo, chrNpcMonsterInfo, sizeof(smCHAR_INFO));
+008480: 						memcpy(&chrAutoPlayer[cnt].smMonsterInfo, chrNpcMonsterInfo->lpMonInfo, sizeof(smCHAR_MONSTER_INFO));
+008481: 						chrAutoPlayer[cnt].ActionPattern = 5;
+008482: 						MonsterCount++;
+008483: 						chrAutoPlayer[cnt].SetLoadPattern(chrAutoPlayer[cnt].smCharInfo.szModelName);
+008484: 
+008485: 						dist = 64 * 20;
+008486: 						chrAutoPlayer[cnt].DistAroundDbl = dist * dist;
+008487: 						AddMonTable(&chrAutoPlayer[cnt]);
+008488: 						chrAutoPlayer[cnt].ReopenCount = REOPEN_COUNT_NUM;
+008489: 						chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_STAND);
+008490: 
+008491: 						chrAutoPlayer[cnt].smCharInfo.bUpdateInfo[0] = rnd + 1;
+008492: 						chrAutoPlayer[cnt].dwObjectSerial = OsCode;
+008493: 					}
+008494: 				}
+008495: 			}
+008496: 			else
+008497: 			{
+008498: 
+008499: 				for(cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
+008500: 				{
+008501: 					if(chrAutoPlayer[cnt].Flag && chrAutoPlayer[cnt].lpExt1 == this &&
+008502: 					   chrAutoPlayer[cnt].smCharInfo.State == smCHAR_STATE_ENEMY)
+008503: 					{
+008504: 
+008505: 
+008506: 						chrAutoPlayer[cnt].smCharInfo.Life[0] = 0;
+008507: 						chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_DEAD);
+008508: 					}
+008509: 				}
+008510: 
+008511: 				rsOpenNPC_RandomPos = rand();
+008512: 
+008513: 				for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008514: 				{
+008515: 					if(TransCharFixed[cnt].code)
+008516: 						OpenNpc(&TransCharFixed[cnt]);
+008517: 				}
+008518: 			}
+008519: 		}
+008520: 
+008521: 		if(lpField->FieldCode == 3)
+008522: 		{
+008523: 
+008524: 
+008525: 			if(dwServ_NightDay)
+008526: 			{
+008527: 
+008528: 
+008529: 				rsCloseEventMonster(100);
+008530: 				rsOpenEventMonster(100, 0, 0, 0);
+008531: 
+008532: 			}
+008533: 			else
+008534: 			{
+008535: 				rsCloseEventMonster(100);
+008536: 
+008537: 
+008538: 				for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008539: 				{
+008540: 					if(TransCharFixed[cnt].code && TransCharFixed[cnt].smCharInfo.dwCharSoundCode == snCHAR_SOUND_WOLVERLIN)
+008541: 						OpenNpc(&TransCharFixed[cnt]);
+008542: 				}
+008543: 
+008544: 			}
+008545: 		}
+008546: 
+008547: 		FieldNightDay = dwServ_NightDay;
+008548: 	}*/
+008549: 
+008550: 	return TRUE;
+008551: }
+008552: 
+008553: 
+008554: 
+008555: 
+008556: int STG_AREA::LoadStage(char *szFile)
+008557: {
+008558: 	smSTAGE3D *lpRes;
+008559: 	int cnt;
+008560: 
+008561: 	lpStage = new smSTAGE3D;
+008562: 	lpRes = smSTAGE3D_ReadASE(szFile, lpStage);
+008563: 	lpStage->Head = TRUE;
+008564: 
+008565: 
+008566: 	if(lpRes)
+008567: 	{
+
+--- around line 8516 ---
+008481: 						chrAutoPlayer[cnt].ActionPattern = 5;
+008482: 						MonsterCount++;
+008483: 						chrAutoPlayer[cnt].SetLoadPattern(chrAutoPlayer[cnt].smCharInfo.szModelName);
+008484: 
+008485: 						dist = 64 * 20;
+008486: 						chrAutoPlayer[cnt].DistAroundDbl = dist * dist;
+008487: 						AddMonTable(&chrAutoPlayer[cnt]);
+008488: 						chrAutoPlayer[cnt].ReopenCount = REOPEN_COUNT_NUM;
+008489: 						chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_STAND);
+008490: 
+008491: 						chrAutoPlayer[cnt].smCharInfo.bUpdateInfo[0] = rnd + 1;
+008492: 						chrAutoPlayer[cnt].dwObjectSerial = OsCode;
+008493: 					}
+008494: 				}
+008495: 			}
+008496: 			else
+008497: 			{
+008498: 
+008499: 				for(cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
+008500: 				{
+008501: 					if(chrAutoPlayer[cnt].Flag && chrAutoPlayer[cnt].lpExt1 == this &&
+008502: 					   chrAutoPlayer[cnt].smCharInfo.State == smCHAR_STATE_ENEMY)
+008503: 					{
+008504: 
+008505: 
+008506: 						chrAutoPlayer[cnt].smCharInfo.Life[0] = 0;
+008507: 						chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_DEAD);
+008508: 					}
+008509: 				}
+008510: 
+008511: 				rsOpenNPC_RandomPos = rand();
+008512: 
+008513: 				for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008514: 				{
+008515: 					if(TransCharFixed[cnt].code)
+008516: 						OpenNpc(&TransCharFixed[cnt]);
+008517: 				}
+008518: 			}
+008519: 		}
+008520: 
+008521: 		if(lpField->FieldCode == 3)
+008522: 		{
+008523: 
+008524: 
+008525: 			if(dwServ_NightDay)
+008526: 			{
+008527: 
+008528: 
+008529: 				rsCloseEventMonster(100);
+008530: 				rsOpenEventMonster(100, 0, 0, 0);
+008531: 
+008532: 			}
+008533: 			else
+008534: 			{
+008535: 				rsCloseEventMonster(100);
+008536: 
+008537: 
+008538: 				for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008539: 				{
+008540: 					if(TransCharFixed[cnt].code && TransCharFixed[cnt].smCharInfo.dwCharSoundCode == snCHAR_SOUND_WOLVERLIN)
+008541: 						OpenNpc(&TransCharFixed[cnt]);
+008542: 				}
+008543: 
+008544: 			}
+008545: 		}
+008546: 
+008547: 		FieldNightDay = dwServ_NightDay;
+008548: 	}*/
+008549: 
+008550: 	return TRUE;
+008551: }
+008552: 
+008553: 
+008554: 
+008555: 
+008556: int STG_AREA::LoadStage(char *szFile)
+008557: {
+008558: 	smSTAGE3D *lpRes;
+008559: 	int cnt;
+008560: 
+008561: 	lpStage = new smSTAGE3D;
+008562: 	lpRes = smSTAGE3D_ReadASE(szFile, lpStage);
+008563: 	lpStage->Head = TRUE;
+008564: 
+008565: 
+008566: 	if(lpRes)
+008567: 	{
+008568: 
+008569: 		SetFieldInfoPath(szStartPointFile, szFile, "spp");
+008570: 		LoadStartPoint(szStartPointFile);
+008571: 
+008572: 		SetFieldInfoPath(szCharFixedFile, szFile, "spc");
+008573: 		if(LoadCharInfoFixed(szCharFixedFile))
+008574: 		{
+008575: 			for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008576: 			{
+008577: 				if(TransCharFixed[cnt].code)
+008578: 					OpenNpc(&TransCharFixed[cnt]);
+008579: 			}
+008580: 			dwActiveMode |= 2;
+008581: 		}
+008582: 
+008583: 		SetFieldInfoPath(szCharMonsterFile, szFile, "spm");
+008584: 
+008585: 
+008586: 		DecodeOpenMonster(szCharMonsterFile, &rsMonsterList, chrMonsterList, chrMonsterCnt);
+008587: 		if(!rsMonsterList.LimitMax) rsMonsterList.LimitMax = 10; //Limite de mobs por mapas
+008588: 
+008589: 		return TRUE;
+008590: 	}
+008591: 
+008592: 	delete lpStage;
+008593: 	lpStage = 0;
+008594: 
+008595: 	return FALSE;
+008596: }
+008597: 
+008598: 
+008599: 
+008600: int STG_AREA::FindStartPoint(int x, int z)
+008601: {
+008602: 	int cnt;
+008603: 	for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
+008604: 	{
+008605: 		if(StartPoint[cnt].state &&
+008606: 			StartPoint[cnt].x == x && StartPoint[cnt].z == z)
+008607: 		{
+008608: 			return cnt;
+008609: 		}
+008610: 	}
+008611: 
+008612: 	return -1;
+008613: }
+008614: 
+008615: 
+008616: 
+008617: 
+008618: 
+008619: int STG_AREA::AddStartPoint(int x, int z, int state)
+008620: {
+008621: 	int cnt;
+008622: 
+008623: 
+008624: 	cnt = FindStartPoint(x, z);
+008625: 	if(cnt >= 0) return FALSE;
+008626: 
+008627: 	for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
+008628: 	{
+008629: 		if(!StartPoint[cnt].state)
+008630: 		{
+008631: 			StartPoint[cnt].state = state;
+008632: 			StartPoint[cnt].x = x;
+008633: 			StartPoint[cnt].z = z;
+008634: 			StartPointMonCount[cnt] = 0;
+008635: 			SaveStartPoint(szStartPointFile);
+
+--- around line 8541 ---
+008506: 						chrAutoPlayer[cnt].smCharInfo.Life[0] = 0;
+008507: 						chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_DEAD);
+008508: 					}
+008509: 				}
+008510: 
+008511: 				rsOpenNPC_RandomPos = rand();
+008512: 
+008513: 				for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008514: 				{
+008515: 					if(TransCharFixed[cnt].code)
+008516: 						OpenNpc(&TransCharFixed[cnt]);
+008517: 				}
+008518: 			}
+008519: 		}
+008520: 
+008521: 		if(lpField->FieldCode == 3)
+008522: 		{
+008523: 
+008524: 
+008525: 			if(dwServ_NightDay)
+008526: 			{
+008527: 
+008528: 
+008529: 				rsCloseEventMonster(100);
+008530: 				rsOpenEventMonster(100, 0, 0, 0);
+008531: 
+008532: 			}
+008533: 			else
+008534: 			{
+008535: 				rsCloseEventMonster(100);
+008536: 
+008537: 
+008538: 				for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008539: 				{
+008540: 					if(TransCharFixed[cnt].code && TransCharFixed[cnt].smCharInfo.dwCharSoundCode == snCHAR_SOUND_WOLVERLIN)
+008541: 						OpenNpc(&TransCharFixed[cnt]);
+008542: 				}
+008543: 
+008544: 			}
+008545: 		}
+008546: 
+008547: 		FieldNightDay = dwServ_NightDay;
+008548: 	}*/
+008549: 
+008550: 	return TRUE;
+008551: }
+008552: 
+008553: 
+008554: 
+008555: 
+008556: int STG_AREA::LoadStage(char *szFile)
+008557: {
+008558: 	smSTAGE3D *lpRes;
+008559: 	int cnt;
+008560: 
+008561: 	lpStage = new smSTAGE3D;
+008562: 	lpRes = smSTAGE3D_ReadASE(szFile, lpStage);
+008563: 	lpStage->Head = TRUE;
+008564: 
+008565: 
+008566: 	if(lpRes)
+008567: 	{
+008568: 
+008569: 		SetFieldInfoPath(szStartPointFile, szFile, "spp");
+008570: 		LoadStartPoint(szStartPointFile);
+008571: 
+008572: 		SetFieldInfoPath(szCharFixedFile, szFile, "spc");
+008573: 		if(LoadCharInfoFixed(szCharFixedFile))
+008574: 		{
+008575: 			for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008576: 			{
+008577: 				if(TransCharFixed[cnt].code)
+008578: 					OpenNpc(&TransCharFixed[cnt]);
+008579: 			}
+008580: 			dwActiveMode |= 2;
+008581: 		}
+008582: 
+008583: 		SetFieldInfoPath(szCharMonsterFile, szFile, "spm");
+008584: 
+008585: 
+008586: 		DecodeOpenMonster(szCharMonsterFile, &rsMonsterList, chrMonsterList, chrMonsterCnt);
+008587: 		if(!rsMonsterList.LimitMax) rsMonsterList.LimitMax = 10; //Limite de mobs por mapas
+008588: 
+008589: 		return TRUE;
+008590: 	}
+008591: 
+008592: 	delete lpStage;
+008593: 	lpStage = 0;
+008594: 
+008595: 	return FALSE;
+008596: }
+008597: 
+008598: 
+008599: 
+008600: int STG_AREA::FindStartPoint(int x, int z)
+008601: {
+008602: 	int cnt;
+008603: 	for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
+008604: 	{
+008605: 		if(StartPoint[cnt].state &&
+008606: 			StartPoint[cnt].x == x && StartPoint[cnt].z == z)
+008607: 		{
+008608: 			return cnt;
+008609: 		}
+008610: 	}
+008611: 
+008612: 	return -1;
+008613: }
+008614: 
+008615: 
+008616: 
+008617: 
+008618: 
+008619: int STG_AREA::AddStartPoint(int x, int z, int state)
+008620: {
+008621: 	int cnt;
+008622: 
+008623: 
+008624: 	cnt = FindStartPoint(x, z);
+008625: 	if(cnt >= 0) return FALSE;
+008626: 
+008627: 	for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
+008628: 	{
+008629: 		if(!StartPoint[cnt].state)
+008630: 		{
+008631: 			StartPoint[cnt].state = state;
+008632: 			StartPoint[cnt].x = x;
+008633: 			StartPoint[cnt].z = z;
+008634: 			StartPointMonCount[cnt] = 0;
+008635: 			SaveStartPoint(szStartPointFile);
+008636: 			return TRUE;
+008637: 		}
+008638: 	}
+008639: 
+008640: 	return FALSE;
+008641: }
+008642: 
+008643: 
+008644: int STG_AREA::DeleteStartPoint(int x, int z)
+008645: {
+008646: 	int cnt;
+008647: 
+008648: 	cnt = FindStartPoint(x, z);
+008649: 	if(cnt >= 0)
+008650: 	{
+008651: 		StartPoint[cnt].state = 0;
+008652: 		StartPointMonCount[cnt] = 0;
+008653: 		SaveStartPoint(szStartPointFile);
+008654: 		return TRUE;
+008655: 	}
+008656: 	return FALSE;
+008657: }
+008658: 
+008659: int STG_AREA::StartPosRandomize()
+008660: {
+
+--- around line 8573 ---
+008538: 				for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008539: 				{
+008540: 					if(TransCharFixed[cnt].code && TransCharFixed[cnt].smCharInfo.dwCharSoundCode == snCHAR_SOUND_WOLVERLIN)
+008541: 						OpenNpc(&TransCharFixed[cnt]);
+008542: 				}
+008543: 
+008544: 			}
+008545: 		}
+008546: 
+008547: 		FieldNightDay = dwServ_NightDay;
+008548: 	}*/
+008549: 
+008550: 	return TRUE;
+008551: }
+008552: 
+008553: 
+008554: 
+008555: 
+008556: int STG_AREA::LoadStage(char *szFile)
+008557: {
+008558: 	smSTAGE3D *lpRes;
+008559: 	int cnt;
+008560: 
+008561: 	lpStage = new smSTAGE3D;
+008562: 	lpRes = smSTAGE3D_ReadASE(szFile, lpStage);
+008563: 	lpStage->Head = TRUE;
+008564: 
+008565: 
+008566: 	if(lpRes)
+008567: 	{
+008568: 
+008569: 		SetFieldInfoPath(szStartPointFile, szFile, "spp");
+008570: 		LoadStartPoint(szStartPointFile);
+008571: 
+008572: 		SetFieldInfoPath(szCharFixedFile, szFile, "spc");
+008573: 		if(LoadCharInfoFixed(szCharFixedFile))
+008574: 		{
+008575: 			for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008576: 			{
+008577: 				if(TransCharFixed[cnt].code)
+008578: 					OpenNpc(&TransCharFixed[cnt]);
+008579: 			}
+008580: 			dwActiveMode |= 2;
+008581: 		}
+008582: 
+008583: 		SetFieldInfoPath(szCharMonsterFile, szFile, "spm");
+008584: 
+008585: 
+008586: 		DecodeOpenMonster(szCharMonsterFile, &rsMonsterList, chrMonsterList, chrMonsterCnt);
+008587: 		if(!rsMonsterList.LimitMax) rsMonsterList.LimitMax = 10; //Limite de mobs por mapas
+008588: 
+008589: 		return TRUE;
+008590: 	}
+008591: 
+008592: 	delete lpStage;
+008593: 	lpStage = 0;
+008594: 
+008595: 	return FALSE;
+008596: }
+008597: 
+008598: 
+008599: 
+008600: int STG_AREA::FindStartPoint(int x, int z)
+008601: {
+008602: 	int cnt;
+008603: 	for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
+008604: 	{
+008605: 		if(StartPoint[cnt].state &&
+008606: 			StartPoint[cnt].x == x && StartPoint[cnt].z == z)
+008607: 		{
+008608: 			return cnt;
+008609: 		}
+008610: 	}
+008611: 
+008612: 	return -1;
+008613: }
+008614: 
+008615: 
+008616: 
+008617: 
+008618: 
+008619: int STG_AREA::AddStartPoint(int x, int z, int state)
+008620: {
+008621: 	int cnt;
+008622: 
+008623: 
+008624: 	cnt = FindStartPoint(x, z);
+008625: 	if(cnt >= 0) return FALSE;
+008626: 
+008627: 	for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
+008628: 	{
+008629: 		if(!StartPoint[cnt].state)
+008630: 		{
+008631: 			StartPoint[cnt].state = state;
+008632: 			StartPoint[cnt].x = x;
+008633: 			StartPoint[cnt].z = z;
+008634: 			StartPointMonCount[cnt] = 0;
+008635: 			SaveStartPoint(szStartPointFile);
+008636: 			return TRUE;
+008637: 		}
+008638: 	}
+008639: 
+008640: 	return FALSE;
+008641: }
+008642: 
+008643: 
+008644: int STG_AREA::DeleteStartPoint(int x, int z)
+008645: {
+008646: 	int cnt;
+008647: 
+008648: 	cnt = FindStartPoint(x, z);
+008649: 	if(cnt >= 0)
+008650: 	{
+008651: 		StartPoint[cnt].state = 0;
+008652: 		StartPointMonCount[cnt] = 0;
+008653: 		SaveStartPoint(szStartPointFile);
+008654: 		return TRUE;
+008655: 	}
+008656: 	return FALSE;
+008657: }
+008658: 
+008659: int STG_AREA::StartPosRandomize()
+008660: {
+008661: 	int cnt;
+008662: 	int end;
+008663: 	int rnd;
+008664: 
+008665: 	end = 1;
+008666: 
+008667: 	for(cnt = STG_START_POINT_MAX - 1; cnt >= 0; cnt--)
+008668: 	{
+008669: 		if(StartPoint[cnt].state)
+008670: 		{
+008671: 			end = cnt + 1;
+008672: 		}
+008673: 	}
+008674: 
+008675: 	rnd = rand() % end;
+008676: 
+008677: 	StartPointCnt = rnd;
+008678: 
+008679: 	return TRUE;
+008680: }
+008681: 
+008682: 
+008683: int STG_AREA::SetStartPosChar(smCHAR *lpChar)
+008684: {
+008685: 	int x, y, cnt;
+008686: 	int flag;
+008687: 
+008688: 	flag = 0;
+008689: 
+008690: 	for(cnt = StartPointCnt; cnt < STG_START_POINT_MAX; cnt++)
+008691: 	{
+008692: 		if(StartPoint[cnt].state && StartPointNearPlay[cnt] &&
+
+--- around line 8578 ---
+008543: 
+008544: 			}
+008545: 		}
+008546: 
+008547: 		FieldNightDay = dwServ_NightDay;
+008548: 	}*/
+008549: 
+008550: 	return TRUE;
+008551: }
+008552: 
+008553: 
+008554: 
+008555: 
+008556: int STG_AREA::LoadStage(char *szFile)
+008557: {
+008558: 	smSTAGE3D *lpRes;
+008559: 	int cnt;
+008560: 
+008561: 	lpStage = new smSTAGE3D;
+008562: 	lpRes = smSTAGE3D_ReadASE(szFile, lpStage);
+008563: 	lpStage->Head = TRUE;
+008564: 
+008565: 
+008566: 	if(lpRes)
+008567: 	{
+008568: 
+008569: 		SetFieldInfoPath(szStartPointFile, szFile, "spp");
+008570: 		LoadStartPoint(szStartPointFile);
+008571: 
+008572: 		SetFieldInfoPath(szCharFixedFile, szFile, "spc");
+008573: 		if(LoadCharInfoFixed(szCharFixedFile))
+008574: 		{
+008575: 			for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+008576: 			{
+008577: 				if(TransCharFixed[cnt].code)
+008578: 					OpenNpc(&TransCharFixed[cnt]);
+008579: 			}
+008580: 			dwActiveMode |= 2;
+008581: 		}
+008582: 
+008583: 		SetFieldInfoPath(szCharMonsterFile, szFile, "spm");
+008584: 
+008585: 
+008586: 		DecodeOpenMonster(szCharMonsterFile, &rsMonsterList, chrMonsterList, chrMonsterCnt);
+008587: 		if(!rsMonsterList.LimitMax) rsMonsterList.LimitMax = 10; //Limite de mobs por mapas
+008588: 
+008589: 		return TRUE;
+008590: 	}
+008591: 
+008592: 	delete lpStage;
+008593: 	lpStage = 0;
+008594: 
+008595: 	return FALSE;
+008596: }
+008597: 
+008598: 
+008599: 
+008600: int STG_AREA::FindStartPoint(int x, int z)
+008601: {
+008602: 	int cnt;
+008603: 	for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
+008604: 	{
+008605: 		if(StartPoint[cnt].state &&
+008606: 			StartPoint[cnt].x == x && StartPoint[cnt].z == z)
+008607: 		{
+008608: 			return cnt;
+008609: 		}
+008610: 	}
+008611: 
+008612: 	return -1;
+008613: }
+008614: 
+008615: 
+008616: 
+008617: 
+008618: 
+008619: int STG_AREA::AddStartPoint(int x, int z, int state)
+008620: {
+008621: 	int cnt;
+008622: 
+008623: 
+008624: 	cnt = FindStartPoint(x, z);
+008625: 	if(cnt >= 0) return FALSE;
+008626: 
+008627: 	for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
+008628: 	{
+008629: 		if(!StartPoint[cnt].state)
+008630: 		{
+008631: 			StartPoint[cnt].state = state;
+008632: 			StartPoint[cnt].x = x;
+008633: 			StartPoint[cnt].z = z;
+008634: 			StartPointMonCount[cnt] = 0;
+008635: 			SaveStartPoint(szStartPointFile);
+008636: 			return TRUE;
+008637: 		}
+008638: 	}
+008639: 
+008640: 	return FALSE;
+008641: }
+008642: 
+008643: 
+008644: int STG_AREA::DeleteStartPoint(int x, int z)
+008645: {
+008646: 	int cnt;
+008647: 
+008648: 	cnt = FindStartPoint(x, z);
+008649: 	if(cnt >= 0)
+008650: 	{
+008651: 		StartPoint[cnt].state = 0;
+008652: 		StartPointMonCount[cnt] = 0;
+008653: 		SaveStartPoint(szStartPointFile);
+008654: 		return TRUE;
+008655: 	}
+008656: 	return FALSE;
+008657: }
+008658: 
+008659: int STG_AREA::StartPosRandomize()
+008660: {
+008661: 	int cnt;
+008662: 	int end;
+008663: 	int rnd;
+008664: 
+008665: 	end = 1;
+008666: 
+008667: 	for(cnt = STG_START_POINT_MAX - 1; cnt >= 0; cnt--)
+008668: 	{
+008669: 		if(StartPoint[cnt].state)
+008670: 		{
+008671: 			end = cnt + 1;
+008672: 		}
+008673: 	}
+008674: 
+008675: 	rnd = rand() % end;
+008676: 
+008677: 	StartPointCnt = rnd;
+008678: 
+008679: 	return TRUE;
+008680: }
+008681: 
+008682: 
+008683: int STG_AREA::SetStartPosChar(smCHAR *lpChar)
+008684: {
+008685: 	int x, y, cnt;
+008686: 	int flag;
+008687: 
+008688: 	flag = 0;
+008689: 
+008690: 	for(cnt = StartPointCnt; cnt < STG_START_POINT_MAX; cnt++)
+008691: 	{
+008692: 		if(StartPoint[cnt].state && StartPointNearPlay[cnt] &&
+008693: 			StartPointMonCount[cnt] < rsMonsterList.OpenLimit &&
+008694: 			dwStartPoint_OpenTime[cnt] < dwPlayServTime)
+008695: 		{
+008696: 
+008697: 			x = StartPoint[cnt].x * fONE;
+
+--- around line 12489 ---
+012454: 	if(rsServerConfig.UseRecorMemory)
+012455: 	{
+012456: 		rsRecordDataBuff = new char[(srRECORD_MEMORY_SIZE + 256)*CONNECTMAX];
+012457: 
+012458: 		if(!rsRecordDataBuff)
+012459: 		{
+012460: 			cerr << "Error Record Memory: Alloc Failed - Hotuk Server" << endl;
+012461: 
+012462: 			Utils_Log(LOG_SERVER, "Error Record Memory: Alloc Failed - Hotuk Server");
+012463: 
+012464: 			exit(0);
+012465: 		}
+012466: 	}
+012467: 	else
+012468: 	{
+012469: 		rsRecordDataBuff = 0;
+012470: 	}
+012471: 
+012472: 	for(int cnt = 0; cnt < CONNECTMAX; cnt++)
+012473: 	{
+012474: 		ZeroMemory(&rsPlayInfo[cnt], sizeof(rsPLAYINFO));
+012475: 
+012476: 		if(rsRecordDataBuff)
+012477: 		{
+012478: 			rsPlayInfo[cnt].lpRecordDataBuff = rsRecordDataBuff + ((srRECORD_MEMORY_SIZE + 256)*cnt);
+012479: 		}
+012480: 	}
+012481: 
+012482: 	cout << "Carregando Material..." << endl;
+012483: 	InitMaterial();
+012484: 
+012485: 	cout << "Carregando Char..." << endl;
+012486: 	srInitChar();
+012487: 
+012488: 	cout << "Carregando Monstros..." << endl;
+012489: 	InitMonster();
+012490: 
+012491: 	cout << "Carregando Itens..." << endl;
+012492: 	InitItems();
+012493: 
+012494: 	cout << "Carregando NPCS..." << endl;
+012495: 	LoadOftenNpc();
+012496: 
+012497: 	InitCrackFinding();
+012498: 
+012499: 	Stage_StepHeight = fONE * 20;
+012500: 
+012501: 	//verificando crash do servidor 
+012502: 	// cout << "Carregando Mapas..." << endl;
+012503: 	// StageArea = new STG_AREA[STAGE_AREA_MAX];
+012504: 	// srReadStage();
+012505: 
+012506: 	// cout << "Carregando Nome de Monstros..." << endl;
+012507: 	// ConvertMonsterNames();
+012508: 
+012509: 	// AutoPlayServer = rsServerConfig.AutoPlayer;
+012510: 
+012511: 	// cout << "Carregando horario do servidor..." << endl;
+012512: 	// SetTimer(hwnd, 0, 100, NULL);
+012513: 	// dwPlayServTime = GetCurrentTime();
+012514: 
+012515: 	// cout << "Inicializando logs SQL SERVER..." << endl;
+012516: 	// InitLogSql();
+012517: 
+012518: 	// rsResetClientFuncPos();
+012519: 
+012520: 	// rsLoadCopiedItemList();
+012521: 
+012522: 	// RecordShutdownLog(50020, 0, 0);
+012523: 
+012524:     // rsInit_SerToServer();
+012525: 
+012526: 	// ZeroMemory(&rsUserListDamageTop10, sizeof(rsUSER_LIST_TOP10));
+012527: 	cout << "[INIT] ANTES: alocar StageArea" << endl;
+012528: 	StageArea = new STG_AREA[STAGE_AREA_MAX];
+012529: 	cout << "[INIT] DEPOIS: alocar StageArea" << endl;
+012530: 
+012531: 	cout << "[INIT] ANTES: srReadStage" << endl;
+012532: 	srReadStage();
+012533: 	fprintf(stderr, "[INIT] DEPOIS: srReadStage\n");
+012534: 	fflush(stderr);
+012535: 	//temp change
+012536: 	//cout << "[INIT] DEPOIS: srReadStage" << endl;
+012537: 
+012538: 
+012539: 	cout << "[INIT] ANTES: ConvertMonsterNames" << endl;
+012540: 	ConvertMonsterNames();
+012541: 	cout << "[INIT] DEPOIS: ConvertMonsterNames" << endl;
+012542: 
+012543: 
+012544: 	cout << "[INIT] ANTES: configurar AutoPlayServer" << endl;
+012545: 	AutoPlayServer = rsServerConfig.AutoPlayer;
+012546: 	cout << "[INIT] DEPOIS: configurar AutoPlayServer" << endl;
+012547: 
+012548: 
+012549: 	cout << "[INIT] ANTES: SetTimer" << endl;
+012550: 	SetTimer(hwnd, 0, 100, NULL);
+012551: 	cout << "[INIT] DEPOIS: SetTimer" << endl;
+012552: 
+012553: 
+012554: 	cout << "[INIT] ANTES: GetCurrentTime" << endl;
+012555: 	dwPlayServTime = GetCurrentTime();
+012556: 	cout << "[INIT] DEPOIS: GetCurrentTime" << endl;
+012557: 
+012558: 
+012559: 	cout << "[INIT] ANTES: InitLogSql" << endl;
+012560: 	InitLogSql();
+012561: 	cout << "[INIT] DEPOIS: InitLogSql" << endl;
+012562: 
+012563: 
+012564: 	cout << "[INIT] ANTES: rsResetClientFuncPos" << endl;
+012565: 	rsResetClientFuncPos();
+012566: 	cout << "[INIT] DEPOIS: rsResetClientFuncPos" << endl;
+012567: 
+012568: 
+012569: 	cout << "[INIT] ANTES: rsLoadCopiedItemList" << endl;
+012570: 	rsLoadCopiedItemList();
+012571: 	cout << "[INIT] DEPOIS: rsLoadCopiedItemList" << endl;
+012572: 
+012573: 
+012574: 	cout << "[INIT] ANTES: RecordShutdownLog" << endl;
+012575: 	RecordShutdownLog(50020, 0, 0);
+012576: 	cout << "[INIT] DEPOIS: RecordShutdownLog" << endl;
+012577: 
+012578: 
+012579: 	cout << "[INIT] ANTES: rsInit_SerToServer" << endl;
+012580: 	rsInit_SerToServer();
+012581: 	cout << "[INIT] DEPOIS: rsInit_SerToServer" << endl;
+012582: 
+012583: 
+012584: 	cout << "[INIT] ANTES: zerar rsUserListDamageTop10" << endl;
+012585: 	ZeroMemory(&rsUserListDamageTop10, sizeof(rsUSER_LIST_TOP10));
+012586: 	cout << "[INIT] DEPOIS: zerar rsUserListDamageTop10" << endl;
+012587: 
+012588: 
+012589: 	cout << "[INIT] ANTES: rsInit_Castle" << endl;
+012590: 	rsInit_Castle();
+012591: 	cout << "[INIT] DEPOIS: rsInit_Castle" << endl;
+012592: 
+012593: 
+012594: 	cout << "[INIT] ANTES: ALERTAHANDLER->Init" << endl;
+012595: 	ALERTAHANDLER->Init();
+012596: 	cout << "[INIT] DEPOIS: ALERTAHANDLER->Init" << endl;
+012597: 
+012598: 
+012599: 	cout << "[INIT] ANTES: zerar CurrencyLog" << endl;
+012600: 	ZeroMemory(&CurrencyLog, sizeof(rsCURRENCY_LOG));
+012601: 	cout << "[INIT] DEPOIS: zerar CurrencyLog" << endl;
+012602: 
+012603: 	cout << "[INIT] INICIALIZACAO CONCLUIDA" << endl;
+012604: 	// cout << "Carregando informacoes do Castelo Sagrado " << endl;
+012605: 	// rsInit_Castle();
+012606: 
+012607: 	// ALERTAHANDLER->Init();
+012608: 
+
+--- around line 12495 ---
+012460: 			cerr << "Error Record Memory: Alloc Failed - Hotuk Server" << endl;
+012461: 
+012462: 			Utils_Log(LOG_SERVER, "Error Record Memory: Alloc Failed - Hotuk Server");
+012463: 
+012464: 			exit(0);
+012465: 		}
+012466: 	}
+012467: 	else
+012468: 	{
+012469: 		rsRecordDataBuff = 0;
+012470: 	}
+012471: 
+012472: 	for(int cnt = 0; cnt < CONNECTMAX; cnt++)
+012473: 	{
+012474: 		ZeroMemory(&rsPlayInfo[cnt], sizeof(rsPLAYINFO));
+012475: 
+012476: 		if(rsRecordDataBuff)
+012477: 		{
+012478: 			rsPlayInfo[cnt].lpRecordDataBuff = rsRecordDataBuff + ((srRECORD_MEMORY_SIZE + 256)*cnt);
+012479: 		}
+012480: 	}
+012481: 
+012482: 	cout << "Carregando Material..." << endl;
+012483: 	InitMaterial();
+012484: 
+012485: 	cout << "Carregando Char..." << endl;
+012486: 	srInitChar();
+012487: 
+012488: 	cout << "Carregando Monstros..." << endl;
+012489: 	InitMonster();
+012490: 
+012491: 	cout << "Carregando Itens..." << endl;
+012492: 	InitItems();
+012493: 
+012494: 	cout << "Carregando NPCS..." << endl;
+012495: 	LoadOftenNpc();
+012496: 
+012497: 	InitCrackFinding();
+012498: 
+012499: 	Stage_StepHeight = fONE * 20;
+012500: 
+012501: 	//verificando crash do servidor 
+012502: 	// cout << "Carregando Mapas..." << endl;
+012503: 	// StageArea = new STG_AREA[STAGE_AREA_MAX];
+012504: 	// srReadStage();
+012505: 
+012506: 	// cout << "Carregando Nome de Monstros..." << endl;
+012507: 	// ConvertMonsterNames();
+012508: 
+012509: 	// AutoPlayServer = rsServerConfig.AutoPlayer;
+012510: 
+012511: 	// cout << "Carregando horario do servidor..." << endl;
+012512: 	// SetTimer(hwnd, 0, 100, NULL);
+012513: 	// dwPlayServTime = GetCurrentTime();
+012514: 
+012515: 	// cout << "Inicializando logs SQL SERVER..." << endl;
+012516: 	// InitLogSql();
+012517: 
+012518: 	// rsResetClientFuncPos();
+012519: 
+012520: 	// rsLoadCopiedItemList();
+012521: 
+012522: 	// RecordShutdownLog(50020, 0, 0);
+012523: 
+012524:     // rsInit_SerToServer();
+012525: 
+012526: 	// ZeroMemory(&rsUserListDamageTop10, sizeof(rsUSER_LIST_TOP10));
+012527: 	cout << "[INIT] ANTES: alocar StageArea" << endl;
+012528: 	StageArea = new STG_AREA[STAGE_AREA_MAX];
+012529: 	cout << "[INIT] DEPOIS: alocar StageArea" << endl;
+012530: 
+012531: 	cout << "[INIT] ANTES: srReadStage" << endl;
+012532: 	srReadStage();
+012533: 	fprintf(stderr, "[INIT] DEPOIS: srReadStage\n");
+012534: 	fflush(stderr);
+012535: 	//temp change
+012536: 	//cout << "[INIT] DEPOIS: srReadStage" << endl;
+012537: 
+012538: 
+012539: 	cout << "[INIT] ANTES: ConvertMonsterNames" << endl;
+012540: 	ConvertMonsterNames();
+012541: 	cout << "[INIT] DEPOIS: ConvertMonsterNames" << endl;
+012542: 
+012543: 
+012544: 	cout << "[INIT] ANTES: configurar AutoPlayServer" << endl;
+012545: 	AutoPlayServer = rsServerConfig.AutoPlayer;
+012546: 	cout << "[INIT] DEPOIS: configurar AutoPlayServer" << endl;
+012547: 
+012548: 
+012549: 	cout << "[INIT] ANTES: SetTimer" << endl;
+012550: 	SetTimer(hwnd, 0, 100, NULL);
+012551: 	cout << "[INIT] DEPOIS: SetTimer" << endl;
+012552: 
+012553: 
+012554: 	cout << "[INIT] ANTES: GetCurrentTime" << endl;
+012555: 	dwPlayServTime = GetCurrentTime();
+012556: 	cout << "[INIT] DEPOIS: GetCurrentTime" << endl;
+012557: 
+012558: 
+012559: 	cout << "[INIT] ANTES: InitLogSql" << endl;
+012560: 	InitLogSql();
+012561: 	cout << "[INIT] DEPOIS: InitLogSql" << endl;
+012562: 
+012563: 
+012564: 	cout << "[INIT] ANTES: rsResetClientFuncPos" << endl;
+012565: 	rsResetClientFuncPos();
+012566: 	cout << "[INIT] DEPOIS: rsResetClientFuncPos" << endl;
+012567: 
+012568: 
+012569: 	cout << "[INIT] ANTES: rsLoadCopiedItemList" << endl;
+012570: 	rsLoadCopiedItemList();
+012571: 	cout << "[INIT] DEPOIS: rsLoadCopiedItemList" << endl;
+012572: 
+012573: 
+012574: 	cout << "[INIT] ANTES: RecordShutdownLog" << endl;
+012575: 	RecordShutdownLog(50020, 0, 0);
+012576: 	cout << "[INIT] DEPOIS: RecordShutdownLog" << endl;
+012577: 
+012578: 
+012579: 	cout << "[INIT] ANTES: rsInit_SerToServer" << endl;
+012580: 	rsInit_SerToServer();
+012581: 	cout << "[INIT] DEPOIS: rsInit_SerToServer" << endl;
+012582: 
+012583: 
+012584: 	cout << "[INIT] ANTES: zerar rsUserListDamageTop10" << endl;
+012585: 	ZeroMemory(&rsUserListDamageTop10, sizeof(rsUSER_LIST_TOP10));
+012586: 	cout << "[INIT] DEPOIS: zerar rsUserListDamageTop10" << endl;
+012587: 
+012588: 
+012589: 	cout << "[INIT] ANTES: rsInit_Castle" << endl;
+012590: 	rsInit_Castle();
+012591: 	cout << "[INIT] DEPOIS: rsInit_Castle" << endl;
+012592: 
+012593: 
+012594: 	cout << "[INIT] ANTES: ALERTAHANDLER->Init" << endl;
+012595: 	ALERTAHANDLER->Init();
+012596: 	cout << "[INIT] DEPOIS: ALERTAHANDLER->Init" << endl;
+012597: 
+012598: 
+012599: 	cout << "[INIT] ANTES: zerar CurrencyLog" << endl;
+012600: 	ZeroMemory(&CurrencyLog, sizeof(rsCURRENCY_LOG));
+012601: 	cout << "[INIT] DEPOIS: zerar CurrencyLog" << endl;
+012602: 
+012603: 	cout << "[INIT] INICIALIZACAO CONCLUIDA" << endl;
+012604: 	// cout << "Carregando informacoes do Castelo Sagrado " << endl;
+012605: 	// rsInit_Castle();
+012606: 
+012607: 	// ALERTAHANDLER->Init();
+012608: 
+012609: 	// ZeroMemory(&CurrencyLog, sizeof(rsCURRENCY_LOG));
+012610: 
+012611: 
+012612: 	return TRUE;
+012613: }
+012614: 
+
+--- around line 23309 ---
+023274: 
+023275: 	len = rsCompString("/givemoney", szChatCommand);
+023276: 	if (len)
+023277: 	{
+023278: 		lpBuff = szChatCommand + len;
+023279: 		lpBuff2 = rsGetWord(szCmdBuff, lpBuff);
+023280: 
+023281: 		lpBuff2 = rsGetWord(szTempBuff, lpBuff2);
+023282: 
+023283: 		len = atoi(szTempBuff);
+023284: 
+023285: 		lpPlayInfo2 = FindUserFromName3(szCmdBuff);
+023286: 
+023287: 		if (lpPlayInfo2)
+023288: 		{
+023289: 			rsSendMoneyToUser(lpPlayInfo2, len);
+023290: 
+023291: 			wsprintf(TransChatMessage.szMessage, "> Vocï¿½ enviou %d de gold para %s.", len, lpPlayInfo2->getName());
+023292: 
+023293: 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
+023294: 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
+023295: 			TransChatMessage.dwIP = 3;
+023296: 			TransChatMessage.dwObjectSerial = 0;
+023297: 
+023298: 			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+023299: 		}
+023300: 
+023301: 		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+023302: 		return TRUE;
+023303: 	}
+023304: 
+023305: 	len = rsCompString("/reload", szChatCommand);
+023306: 	if (len)
+023307: 	{
+023308: 		rsRefreshConfig();
+023309: 		InitMonster();
+023310: 		ConvertMonsterNames();
+023311: 		cCoinShop.LoadItems();
+023312: 		cCoinShop_T.LoadItems();
+023313: 
+023314: 		PACKET_BUFFS packetc;
+023315: 		packetc.size = sizeof(PACKET_BUFFS);
+023316: 		packetc.code = OpCode::OPCODE_BUFFS;
+023317: 		packetc.NovatoLevel = NovatoLevel;	
+023318: 		packetc.NovatoADD = NovatoADD;
+023319: 		packetc.NovatoRegen = NovatoRegen;
+023320: 		packetc.SetBoss1Bonus1 = SetBoss1Bonus1;
+023321: 		packetc.SetBoss1Bonus2 = SetBoss1Bonus2;
+023322: 		packetc.SetBoss2Bonus1 = SetBoss2Bonus1;
+023323: 		packetc.SetBoss2Bonus2 = SetBoss2Bonus2;
+023324: 
+023325: 		wsprintf(TransChatMessage.szMessage, "Configuraï¿½ï¿½es Recarregadas!");
+023326: 
+023327: 		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
+023328: 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
+023329: 		TransChatMessage.dwIP = 11;
+023330: 		TransChatMessage.dwObjectSerial = 0;
+023331: 		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+023332: 
+023333: 		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+023334: 
+023335: 		return TRUE;
+023336: 	}
+023337: 
+023338: 	len = rsCompString("/rates", szChatCommand);
+023339: 	if (len)
+023340: 	{
+023341: 		wsprintf(TransChatMessage.szMessage, "Gold - x%d | SCoin - x%d", GoldServer, CoinServer);
+023342: 
+023343: 		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
+023344: 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
+023345: 		TransChatMessage.dwIP = 11;
+023346: 		TransChatMessage.dwObjectSerial = 0;
+023347: 		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+023348: 
+023349: 		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
+023350: 
+023351: 		return TRUE;
+023352: 	}
+023353: 
+023354: 	//seta a quantidade de tempo para o logado premiado
+023355: 	len = rsCompString("/settimelogado", szChatCommand);
+023356: 	if (len)
+023357: 	{
+023358: 		lpBuff = szChatCommand + len;
+023359: 
+023360: 		lpBuff = rsGetWord(szCmdBuff, lpBuff);
+023361: 
+023362: 		if (atoi(szCmdBuff)) {
+023363: 			File file(".//Configs//Sistemas.ini");
+023364: 			file.write("Logado", "Delay", szCmdBuff);
+023365: 			LogadoDelay = file.readInt("Logado", "Delay");
+023366: 
+023367: 			wsprintf(TransChatMessage.szMessage, "Tempo para logado premiado alterado para %s", szCmdBuff);
+023368: 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
+023369: 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
+023370: 			TransChatMessage.dwIP = 0;
+023371: 			TransChatMessage.dwObjectSerial = 0;
+023372: 			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+023373: 			return TRUE;
+023374: 		}
+023375: 	}
+023376: 
+023377: 	len = rsCompString("/settimelogado_coin", szChatCommand);
+023378: 	if (len)
+023379: 	{
+023380: 		lpBuff = szChatCommand + len;
+023381: 
+023382: 		lpBuff = rsGetWord(szCmdBuff, lpBuff);
+023383: 
+023384: 		if(atoi(szCmdBuff)){
+023385: 		File file(".//Configs//Sistemas.ini");
+023386: 		file.write("Logado_coin", "Delay", szCmdBuff);
+023387: 		LogadoDelay_Coin = file.readInt("Logado_coin", "Delay");
+023388: 
+023389: 		wsprintf(TransChatMessage.szMessage, "Tempo para sorteio de coin alterado para %s", szCmdBuff);
+023390: 		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
+023391: 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
+023392: 		TransChatMessage.dwIP = 0;
+023393: 		TransChatMessage.dwObjectSerial = 0;
+023394: 		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+023395: 		return TRUE;
+023396: 		}
+023397: 	}
+023398: 	len = rsCompString("/setcoinlogado", szChatCommand);
+023399: 	if (len)
+023400: 	{
+023401: 		lpBuff = szChatCommand + len;
+023402: 
+023403: 		lpBuff = rsGetWord(szCmdBuff, lpBuff);
+023404: 
+023405: 
+023406: 		if (atoi(szCmdBuff)) {
+023407: 			File file(".//Configs//Sistemas.ini");
+023408: 			file.write("Logado_coin", "Sorteio_Quant", szCmdBuff);
+023409: 			Quantidade_Coins = file.readInt("Logado_coin", "Sorteio_Quant");
+023410: 
+023411: 			wsprintf(TransChatMessage.szMessage, "Quantidade de coins para sorteio alterado para %s", szCmdBuff);
+023412: 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
+023413: 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
+023414: 			TransChatMessage.dwIP = 0;
+023415: 			TransChatMessage.dwObjectSerial = 0;
+023416: 			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+023417: 			return TRUE;
+023418: 		}
+023419: 	}
+023420: 
+023421: 	len = rsCompString("/aging", szChatCommand);
+023422: 	if(len)
+023423: 	{
+023424: 		lpBuff = szChatCommand + len;
+023425: 		lpBuff2 = rsGetWord(szCmdBuff, lpBuff);
+023426: 
+023427: 		lpBuff2 = rsGetWord(szTempBuff, lpBuff2);
+023428: 
+
+--- around line 39923 ---
+039888: }
+039889: 
+039890: 
+039891: int	rsEnd_CombatCastle(int DefenceFlag)
+039892: {
+039893: 	int cnt;
+039894: 	STG_AREA	*lpStgArea = &StageArea[rsCASTLE_FIELD];
+039895: 
+039896: 	rsBlessCastle.CastleMode = 3;
+039897: 	rsBlessCastle.dwBattleOverTime = dwPlayServTime + 5000;
+039898: 
+039899: 	for(cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
+039900: 	{
+039901: 		if(chrAutoPlayer[cnt].Flag && chrAutoPlayer[cnt].lpExt1 == lpStgArea && chrAutoPlayer[cnt].smCharInfo.State == smCHAR_STATE_ENEMY)
+039902: 		{
+039903: 			if(DefenceFlag && chrAutoPlayer[cnt].smCharInfo.dwCharSoundCode == snCHAR_SOUND_CASTLE_TOWER_B)
+039904: 			{
+039905: 
+039906: 				chrAutoPlayer[cnt].smCharInfo.Life[0] = chrAutoPlayer[cnt].smCharInfo.Life[1];
+039907: 				chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_STAND);
+039908: 			}
+039909: 			else
+039910: 			{
+039911: 
+039912: 				chrAutoPlayer[cnt].smCharInfo.Life[0] = 0;
+039913: 				chrAutoPlayer[cnt].SetMotionFromCode(CHRMOTION_STATE_DEAD);
+039914: 			}
+039915: 		}
+039916: 	}
+039917: 
+039918: 
+039919: 
+039920: 	for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+039921: 	{
+039922: 		if(lpStgArea->TransCharFixed[cnt].code)
+039923: 			lpStgArea->OpenNpc(&lpStgArea->TransCharFixed[cnt]);
+039924: 	}
+039925: 
+039926: 
+039927: 	return TRUE;
+039928: }
+039929: 
+039930: 
+039931: int	rsEnd_CombatCastle()
+039932: {
+039933: 	int cnt;
+039934: 	STG_AREA	*lpStgArea = &StageArea[rsCASTLE_FIELD];
+039935: 
+039936: 	rsBlessCastle.CastleMode = 0;
+039937: 	rsBlessCastle.TimeSec[0] = 0;
+039938: 	rsBlessCastle.TimeSec[1] = 0;
+039939: 
+039940: 
+039941: 	rsBlessCastle.BlessCastleSetup.MercenaryNum[0] = 0;
+039942: 	rsBlessCastle.BlessCastleSetup.MercenaryNum[1] = 0;
+039943: 	rsBlessCastle.BlessCastleSetup.MercenaryNum[2] = 0;
+039944: 	rsBlessCastle.BlessCastleSetup.MercenaryNum[3] = 0;
+039945: 
+039946: 
+039947: 	ZeroMemory(rsBlessCastle.BlessCastleSetup.Tower, sizeof(short) * 12);
+039948: 
+039949: 	if(rsBlessCastle.lpAttackDamageList)
+039950: 	{
+039951: 		delete rsBlessCastle.lpAttackDamageList;
+039952: 		rsBlessCastle.lpAttackDamageList = 0;
+039953: 	}
+039954: 
+039955: 
+039956: 	for(cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
+039957: 	{
+039958: 		if(chrAutoPlayer[cnt].Flag && chrAutoPlayer[cnt].lpExt1 == lpStgArea)
+039959: 		{
+039960: 			chrAutoPlayer[cnt].Close();
+039961: 			if(lpStgArea->DeleteMonTable(&chrAutoPlayer[cnt]) == TRUE)
+039962: 			{
+039963: 				lpStgArea->MonsterCount--;
+039964: 			}
+039965: 		}
+039966: 	}
+039967: 
+039968: 
+039969: 	for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+039970: 	{
+039971: 		if(lpStgArea->TransCharFixed[cnt].code)
+039972: 			lpStgArea->OpenNpc(&lpStgArea->TransCharFixed[cnt]);
+039973: 	}
+039974: 
+039975: 	rsSetNoticeMessage(srBlessCastle_LeagueMsg_03);
+039976: 
+039977: 	if(rsBlessCastleOpenLeauge.GameMode)
+039978: 	{
+039979: 		rsBlessCastleOpenLeauge.dwRestartTime = dwPlayServTime + 1000 * 60 * 3;
+039980: 		if(rsBlessCastleOpenLeauge.dwRestartTime >= rsBlessCastleOpenLeauge.dwEndTime)
+039981: 		{
+039982: 
+039983: 			rsBlessCastleOpenLeauge.GameMode = 0;
+039984: 			rsBlessCastleOpenLeauge.dwEndTime = 0;
+039985: 			rsBlessCastleOpenLeauge.dwRestartTime = 0;
+039986: 		}
+039987: 		else
+039988: 		{
+039989: 			rsSetNoticeMessage(srBlessCastle_LeagueMsg_01);
+039990: 		}
+039991: 	}
+039992: 
+039993: 	return TRUE;
+039994: }
+039995: 
+039996: 
+039997: 
+039998: int	rsEasy_CastleMode()
+039999: {
+040000: 	STG_AREA *lpStgArea = &StageArea[rsCASTLE_FIELD];
+040001: 
+040002: 	for(int cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
+040003: 	{
+040004: 		if(chrAutoPlayer[cnt].Flag && chrAutoPlayer[cnt].lpExt1 == lpStgArea && chrAutoPlayer[cnt].smCharInfo.State == smCHAR_STATE_ENEMY)
+040005: 		{
+040006: 
+040007: 			chrAutoPlayer[cnt].sObject_VirtualLife[0] = 0;
+040008: 			chrAutoPlayer[cnt].smCharInfo.Life[0] = 1;
+040009: 		}
+040010: 	}
+040011: 
+040012: 	return TRUE;
+040013: }
+040014: 
+040015: 
+040016: int rsCheck_BlessCastleClanSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+040017: {
+040018: 	DWORD Code;
+040019: 
+040020: #ifdef _W_SERVER
+040021: 	Code = 0x0c3c5645;
+040022: 
+040023: 	Code ^= lpTransCommand->WParam << 2;
+040024: 	Code ^= lpTransCommand->LParam << 6;
+040025: 	Code ^= lpTransCommand->SParam << 1;
+040026: 
+040027: 	Code ^= lpPlayInfo->dwObjectSerial << 16;
+040028: 
+040029: #else
+040030: 	Code = 0x3ea832ff;
+040031: #endif
+040032: 
+040033: 	return Code & 0x7FFFFFFF;
+040034: }
+040035: 
+040036: 
+040037: 
+040038: 
+040039: int rsCheck_BlessCastleTax(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTransCommandEx)
+040040: {
+040041: 	DWORD Code;
+040042: 
+
+--- around line 39972 ---
+039937: 	rsBlessCastle.TimeSec[0] = 0;
+039938: 	rsBlessCastle.TimeSec[1] = 0;
+039939: 
+039940: 
+039941: 	rsBlessCastle.BlessCastleSetup.MercenaryNum[0] = 0;
+039942: 	rsBlessCastle.BlessCastleSetup.MercenaryNum[1] = 0;
+039943: 	rsBlessCastle.BlessCastleSetup.MercenaryNum[2] = 0;
+039944: 	rsBlessCastle.BlessCastleSetup.MercenaryNum[3] = 0;
+039945: 
+039946: 
+039947: 	ZeroMemory(rsBlessCastle.BlessCastleSetup.Tower, sizeof(short) * 12);
+039948: 
+039949: 	if(rsBlessCastle.lpAttackDamageList)
+039950: 	{
+039951: 		delete rsBlessCastle.lpAttackDamageList;
+039952: 		rsBlessCastle.lpAttackDamageList = 0;
+039953: 	}
+039954: 
+039955: 
+039956: 	for(cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
+039957: 	{
+039958: 		if(chrAutoPlayer[cnt].Flag && chrAutoPlayer[cnt].lpExt1 == lpStgArea)
+039959: 		{
+039960: 			chrAutoPlayer[cnt].Close();
+039961: 			if(lpStgArea->DeleteMonTable(&chrAutoPlayer[cnt]) == TRUE)
+039962: 			{
+039963: 				lpStgArea->MonsterCount--;
+039964: 			}
+039965: 		}
+039966: 	}
+039967: 
+039968: 
+039969: 	for(cnt = 0; cnt < FIX_CHAR_MAX; cnt++)
+039970: 	{
+039971: 		if(lpStgArea->TransCharFixed[cnt].code)
+039972: 			lpStgArea->OpenNpc(&lpStgArea->TransCharFixed[cnt]);
+039973: 	}
+039974: 
+039975: 	rsSetNoticeMessage(srBlessCastle_LeagueMsg_03);
+039976: 
+039977: 	if(rsBlessCastleOpenLeauge.GameMode)
+039978: 	{
+039979: 		rsBlessCastleOpenLeauge.dwRestartTime = dwPlayServTime + 1000 * 60 * 3;
+039980: 		if(rsBlessCastleOpenLeauge.dwRestartTime >= rsBlessCastleOpenLeauge.dwEndTime)
+039981: 		{
+039982: 
+039983: 			rsBlessCastleOpenLeauge.GameMode = 0;
+039984: 			rsBlessCastleOpenLeauge.dwEndTime = 0;
+039985: 			rsBlessCastleOpenLeauge.dwRestartTime = 0;
+039986: 		}
+039987: 		else
+039988: 		{
+039989: 			rsSetNoticeMessage(srBlessCastle_LeagueMsg_01);
+039990: 		}
+039991: 	}
+039992: 
+039993: 	return TRUE;
+039994: }
+039995: 
+039996: 
+039997: 
+039998: int	rsEasy_CastleMode()
+039999: {
+040000: 	STG_AREA *lpStgArea = &StageArea[rsCASTLE_FIELD];
+040001: 
+040002: 	for(int cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
+040003: 	{
+040004: 		if(chrAutoPlayer[cnt].Flag && chrAutoPlayer[cnt].lpExt1 == lpStgArea && chrAutoPlayer[cnt].smCharInfo.State == smCHAR_STATE_ENEMY)
+040005: 		{
+040006: 
+040007: 			chrAutoPlayer[cnt].sObject_VirtualLife[0] = 0;
+040008: 			chrAutoPlayer[cnt].smCharInfo.Life[0] = 1;
+040009: 		}
+040010: 	}
+040011: 
+040012: 	return TRUE;
+040013: }
+040014: 
+040015: 
+040016: int rsCheck_BlessCastleClanSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
+040017: {
+040018: 	DWORD Code;
+040019: 
+040020: #ifdef _W_SERVER
+040021: 	Code = 0x0c3c5645;
+040022: 
+040023: 	Code ^= lpTransCommand->WParam << 2;
+040024: 	Code ^= lpTransCommand->LParam << 6;
+040025: 	Code ^= lpTransCommand->SParam << 1;
+040026: 
+040027: 	Code ^= lpPlayInfo->dwObjectSerial << 16;
+040028: 
+040029: #else
+040030: 	Code = 0x3ea832ff;
+040031: #endif
+040032: 
+040033: 	return Code & 0x7FFFFFFF;
+040034: }
+040035: 
+040036: 
+040037: 
+040038: 
+040039: int rsCheck_BlessCastleTax(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTransCommandEx)
+040040: {
+040041: 	DWORD Code;
+040042: 
+040043: #ifdef _W_SERVER
+040044: 	Code = 0x056c3c45;
+040045: 
+040046: 	Code ^= lpTransCommandEx->WParam << 1;
+040047: 	Code ^= lpTransCommandEx->LParam << 2;
+040048: 	Code ^= lpTransCommandEx->SParam << 3;
+040049: 	Code ^= lpTransCommandEx->EParam << 4;
+040050: 
+040051: 	Code ^= lpTransCommandEx->WxParam << 16;
+040052: 	Code ^= lpTransCommandEx->LxParam << 17;
+040053: 	Code ^= lpTransCommandEx->SxParam << 18;
+040054: 
+040055: 	Code ^= lpPlayInfo->dwObjectSerial << 16;
+040056: 
+040057: #else
+040058: 	Code = 0x3ea832ff;
+040059: #endif
+040060: 
+040061: 	return Code & 0x7FFFFFFF;
+040062: }
+040063: 
+040064: 
+040065: int	rsSendBlessCastleInfoToDataServer(rsPLAYINFO *lpPlayInfo)
+040066: {
+040067: #ifdef _W_SERVER
+040068: 
+040069: 	smTRANS_COMMAND_EX	smTransCommand;
+040070: 
+040071: 	smTransCommand.code = OpCode::OPCODE_BLESSCASTLE_TAX;
+040072: 	smTransCommand.size = sizeof(smTRANS_COMMAND_EX);
+040073: 	smTransCommand.WParam = (DWORD)rsBlessCastle.dwMasterClan^lpPlayInfo->dwObjectSerial^OpCode::OPCODE_BLESSCASTLE_TAX;
+040074: 	smTransCommand.LParam = rsBlessCastle.Tax^smTransCommand.WParam;
+040075: 	smTransCommand.SParam = rsBlessCastle.NextTax^smTransCommand.LParam;
+040076: 	smTransCommand.EParam = ((rsBlessCastle.SelectedSkill << 16) | (rsBlessCastle.BlessCastleSetup.ClanSkill & 0xFFFF)) ^ smTransCommand.SParam;
+040077: 	smTransCommand.WxParam = 0;
+040078: 	smTransCommand.LxParam = 0;
+040079: 	smTransCommand.SxParam = 0;
+040080: 	smTransCommand.ExParam = rsCheck_BlessCastleTax(lpPlayInfo, &smTransCommand);
+040081: 
+040082: 	if(lpPlayInfo->lpsmSock)
+040083: 		rsSendDataServer(lpPlayInfo->lpsmSock, &smTransCommand);
+040084: #endif
+040085: 	return TRUE;
+040086: }
+040087: 
+040088: 
+040089: 
+040090: 
+040091: int	rsRecvBlessCastleInfoFromGameServer(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX *lpTransCommand)
+
+######################################################################
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h
+######################################################################
+
+--- around line 218 ---
+000183: 	int					EvnMonster;
+000184: 
+000185: 	DWORD				Event_dwMonsterTime;
+000186: 	smCHAR_INFO			*Event_lpChrMonster;
+000187: 	int					Event_MonsterPercentage;
+000188: 
+000189: 	DWORD				dwActiveMode;
+000190: 
+000191: 	STG_AREA();
+000192: 
+000193: 
+000194: 	int	Close();
+000195: 
+000196: 	int LoadStage(char *szFile);
+000197: 
+000198: 	smCHAR *OpenMonster(STG_CHAR_INFO *lpStgCharInfo, int gGroup = 1);
+000199: 	int Main();
+000200: 
+000201: 	int SendStartPos(rsPLAYINFO *lpPlayInfo);
+000202: 
+000203: 	int LoadStartPoint(char *szFile);
+000204: 	int SaveStartPoint(char *szFile);
+000205: 	int FindStartPoint(int x, int z);
+000206: 	int AddStartPoint(int x, int z, int state);
+000207: 	int DeleteStartPoint(int x, int z);
+000208: 	int SetStartPosChar(smCHAR *lpChar);
+000209: 	int SetStartPosNearChar(smCHAR *lpChar, int cx, int cy, int cz);
+000210: 	int SetPosNearChar(smCHAR *lpChar, int cx, int cy, int cz);
+000211: 	int StartPosRandomize();
+000212: 
+000213: 	int SendStartPointFlag();
+000214: 
+000215: 	smTRNAS_PLAYERINFO *FindCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo);
+000216: 	int	AddCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo);
+000217: 	int	DeleteCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo);
+000218: 	int OpenNpc(smTRNAS_PLAYERINFO *lpTransPlayerInfo);
+000219: 	int LoadCharInfoFixed(char *szFile);
+000220: 	int SaveCharInfoFixed(char *szFile);
+000221: 
+000222: 	STG_ITEMS *FindItem(int x, int y, int z);
+000223: 	STG_ITEMS *AddItem(psITEM *lpItem, int x, int y, int z, int BeginMode = 0);
+000224: 	int	DeleteItem(int x, int y, int z);
+000225: 	int DeleteItem(STG_ITEMS *lpStgItem);
+000226: 	int SendStgItem(rsPLAYINFO *lpPlayInfo);
+000227: 	int SendStgItems();
+000228: 	int SendStgItem(rsPLAYINFO *lpPlayInfo, STG_ITEMS *lpStgItem);
+000229: 	int SendStgItemToNearUsers(STG_ITEMS *lpStgItem);
+000230: 	int SendStgItemToPartyUsers(rsPLAYINFO *lpPlayInfo, STG_ITEMS *lpStgItem);
+000231: 
+000232: 	int	FindEmptyMonTable();
+000233: 	int	AddMonTable(smCHAR *lpChar);
+000234: 	int	DeleteMonTable(smCHAR *lpChar);
+000235: 
+000236: 
+000237: 	int LoadEnemyList(char *szFile);
+000238: };
+000239: 
+000240: 
+000241: #define STAGE_AREA_MAX		64
+000242: 
+000243: extern STG_AREA	*StageArea;
+000244: 
+000245: extern DWORD		dwPlayServTime;
+000246: extern rsSERVER_CONFIG		rsServerConfig;
+000247: //extern smCHAR		*chrAutoPlayer;
+000248: //extern rsPLAYINFO	*rsPlayInfo;
+000249: extern smCHAR chrAutoPlayer[AUTOPLAYER_MAX];
+000250: extern rsPLAYINFO rsPlayInfo[CONNECTMAX];
+000251: 
+000252: extern int Server_SqlReady;
+000253: extern HWND	hDebugWnd;
+000254: extern CRITICAL_SECTION	cSerSection;
+000255: extern int Server_SqlReady;
+000256: 
+000257: extern time_t		tServerTime;
+000258: 
+000259: extern DWORD		dwBabelPlayTime;
+000260: extern int			BabelPlayField;
+000261: 
+000262: extern DWORD		dwKelvezuPlayTime;
+000263: extern int			KelvezuPlayField;
+000264: 
+000265: 
+000266: 
+000267: 
+000268: #define srCASLTE_SOLDER_CLAN_MAX	20
+000269: #define srCASLTE_SOLDER_MAX			1
+000270: #define srCASLTE_SOLDER_KIND_MAX	5
+000271: 
+000272: struct	ATTACK_DAMAGE_LIST;
+000273: 
+000274: struct	rsBLESS_CASTLE
+000275: {
+000276: 
+000277: 	int		CastleMode;
+000278: 	DWORD	dwMasterClan;
+000279: 	int		DefenceLevel;
+000280: 	DWORD	dwLimitTime;
+000281: 	int		Counter;
+000282: 
+000283: 	int		Tax;
+000284: 	int		NextTax;
+000285: 
+000286: 	DWORD	dwBattleOverTime;
+000287: 	int		SoulFountain_PotionCount;
+000288: 	DWORD	dwSoulFountainTime;
+000289: 	DWORD	dwSoulFountainTime2;
+000290: 	int		SoulFountain_LastUserCount;
+000291: 
+000292: 	DWORD	dwStartTime;
+000293: 	short	TimeSec[2];
+000294: 	int		SelectedSkill;
+000295: 
+000296: 	int		Temp[10];
+000297: 
+000298: 	smTRANS_BLESSCASTLE	BlessCastleSetup;
+000299: 	rsUSER_LIST_TOP10	ClanTop10;
+000300: 	ATTACK_DAMAGE_LIST	*lpAttackDamageList;
+000301: 	char	bCrystalSolderCount[4];
+000302: 	char	bCrystalTowerCount[4];
+000303: 	smCHAR	*lpChar_ValhallaTower;
+000304: 	DWORD	dwScoreLogTime;
+000305: 
+000306: };
+000307: 
+000308: extern rsBLESS_CASTLE	rsBlessCastle;
+000309: 
+000310: 
+000311: struct	rsCURRENCY_LOG
+000312: {
+000313: 
+000314: 	INT64	int64_CraftMoney;
+000315: 	INT64	int64_AgingMoney;
+000316: 	INT64	int64_ShopMoney;
+000317: 	INT64	int64_ShopPotionMoney[3];
+000318: 
+000319: 	INT64	int64_ForceOrbMoney;
+000320: 	INT64	int64_WarpgateMoney;
+000321: 	INT64	int64_LearnSkillMoney;
+000322: };
+000323: 
+000324: extern	rsCURRENCY_LOG	CurrencyLog;
+000325: 
+000326: 
+000327: 
+000328: #define	srMONSTER_KILL_QUE_MAX		1024
+000329: #define	srMONSTER_KILL_QUE_MASK		1023
+000330: 
+000331: struct	rsKILL_MONSTER_INFO
+000332: {
+000333: 	DWORD	dwAutoCharCode;
+000334: 	DWORD	dwCharSoundCode;
+000335: 	DWORD	dwMonObjectSerial;
+000336: 	DWORD	dwUserObjectSerial;
+000337: 	int		x, y, z, Area;
+
+--- around line 219 ---
+000184: 
+000185: 	DWORD				Event_dwMonsterTime;
+000186: 	smCHAR_INFO			*Event_lpChrMonster;
+000187: 	int					Event_MonsterPercentage;
+000188: 
+000189: 	DWORD				dwActiveMode;
+000190: 
+000191: 	STG_AREA();
+000192: 
+000193: 
+000194: 	int	Close();
+000195: 
+000196: 	int LoadStage(char *szFile);
+000197: 
+000198: 	smCHAR *OpenMonster(STG_CHAR_INFO *lpStgCharInfo, int gGroup = 1);
+000199: 	int Main();
+000200: 
+000201: 	int SendStartPos(rsPLAYINFO *lpPlayInfo);
+000202: 
+000203: 	int LoadStartPoint(char *szFile);
+000204: 	int SaveStartPoint(char *szFile);
+000205: 	int FindStartPoint(int x, int z);
+000206: 	int AddStartPoint(int x, int z, int state);
+000207: 	int DeleteStartPoint(int x, int z);
+000208: 	int SetStartPosChar(smCHAR *lpChar);
+000209: 	int SetStartPosNearChar(smCHAR *lpChar, int cx, int cy, int cz);
+000210: 	int SetPosNearChar(smCHAR *lpChar, int cx, int cy, int cz);
+000211: 	int StartPosRandomize();
+000212: 
+000213: 	int SendStartPointFlag();
+000214: 
+000215: 	smTRNAS_PLAYERINFO *FindCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo);
+000216: 	int	AddCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo);
+000217: 	int	DeleteCharInfoFixed(smTRNAS_PLAYERINFO *lpTransPlayerInfo);
+000218: 	int OpenNpc(smTRNAS_PLAYERINFO *lpTransPlayerInfo);
+000219: 	int LoadCharInfoFixed(char *szFile);
+000220: 	int SaveCharInfoFixed(char *szFile);
+000221: 
+000222: 	STG_ITEMS *FindItem(int x, int y, int z);
+000223: 	STG_ITEMS *AddItem(psITEM *lpItem, int x, int y, int z, int BeginMode = 0);
+000224: 	int	DeleteItem(int x, int y, int z);
+000225: 	int DeleteItem(STG_ITEMS *lpStgItem);
+000226: 	int SendStgItem(rsPLAYINFO *lpPlayInfo);
+000227: 	int SendStgItems();
+000228: 	int SendStgItem(rsPLAYINFO *lpPlayInfo, STG_ITEMS *lpStgItem);
+000229: 	int SendStgItemToNearUsers(STG_ITEMS *lpStgItem);
+000230: 	int SendStgItemToPartyUsers(rsPLAYINFO *lpPlayInfo, STG_ITEMS *lpStgItem);
+000231: 
+000232: 	int	FindEmptyMonTable();
+000233: 	int	AddMonTable(smCHAR *lpChar);
+000234: 	int	DeleteMonTable(smCHAR *lpChar);
+000235: 
+000236: 
+000237: 	int LoadEnemyList(char *szFile);
+000238: };
+000239: 
+000240: 
+000241: #define STAGE_AREA_MAX		64
+000242: 
+000243: extern STG_AREA	*StageArea;
+000244: 
+000245: extern DWORD		dwPlayServTime;
+000246: extern rsSERVER_CONFIG		rsServerConfig;
+000247: //extern smCHAR		*chrAutoPlayer;
+000248: //extern rsPLAYINFO	*rsPlayInfo;
+000249: extern smCHAR chrAutoPlayer[AUTOPLAYER_MAX];
+000250: extern rsPLAYINFO rsPlayInfo[CONNECTMAX];
+000251: 
+000252: extern int Server_SqlReady;
+000253: extern HWND	hDebugWnd;
+000254: extern CRITICAL_SECTION	cSerSection;
+000255: extern int Server_SqlReady;
+000256: 
+000257: extern time_t		tServerTime;
+000258: 
+000259: extern DWORD		dwBabelPlayTime;
+000260: extern int			BabelPlayField;
+000261: 
+000262: extern DWORD		dwKelvezuPlayTime;
+000263: extern int			KelvezuPlayField;
+000264: 
+000265: 
+000266: 
+000267: 
+000268: #define srCASLTE_SOLDER_CLAN_MAX	20
+000269: #define srCASLTE_SOLDER_MAX			1
+000270: #define srCASLTE_SOLDER_KIND_MAX	5
+000271: 
+000272: struct	ATTACK_DAMAGE_LIST;
+000273: 
+000274: struct	rsBLESS_CASTLE
+000275: {
+000276: 
+000277: 	int		CastleMode;
+000278: 	DWORD	dwMasterClan;
+000279: 	int		DefenceLevel;
+000280: 	DWORD	dwLimitTime;
+000281: 	int		Counter;
+000282: 
+000283: 	int		Tax;
+000284: 	int		NextTax;
+000285: 
+000286: 	DWORD	dwBattleOverTime;
+000287: 	int		SoulFountain_PotionCount;
+000288: 	DWORD	dwSoulFountainTime;
+000289: 	DWORD	dwSoulFountainTime2;
+000290: 	int		SoulFountain_LastUserCount;
+000291: 
+000292: 	DWORD	dwStartTime;
+000293: 	short	TimeSec[2];
+000294: 	int		SelectedSkill;
+000295: 
+000296: 	int		Temp[10];
+000297: 
+000298: 	smTRANS_BLESSCASTLE	BlessCastleSetup;
+000299: 	rsUSER_LIST_TOP10	ClanTop10;
+000300: 	ATTACK_DAMAGE_LIST	*lpAttackDamageList;
+000301: 	char	bCrystalSolderCount[4];
+000302: 	char	bCrystalTowerCount[4];
+000303: 	smCHAR	*lpChar_ValhallaTower;
+000304: 	DWORD	dwScoreLogTime;
+000305: 
+000306: };
+000307: 
+000308: extern rsBLESS_CASTLE	rsBlessCastle;
+000309: 
+000310: 
+000311: struct	rsCURRENCY_LOG
+000312: {
+000313: 
+000314: 	INT64	int64_CraftMoney;
+000315: 	INT64	int64_AgingMoney;
+000316: 	INT64	int64_ShopMoney;
+000317: 	INT64	int64_ShopPotionMoney[3];
+000318: 
+000319: 	INT64	int64_ForceOrbMoney;
+000320: 	INT64	int64_WarpgateMoney;
+000321: 	INT64	int64_LearnSkillMoney;
+000322: };
+000323: 
+000324: extern	rsCURRENCY_LOG	CurrencyLog;
+000325: 
+000326: 
+000327: 
+000328: #define	srMONSTER_KILL_QUE_MAX		1024
+000329: #define	srMONSTER_KILL_QUE_MASK		1023
+000330: 
+000331: struct	rsKILL_MONSTER_INFO
+000332: {
+000333: 	DWORD	dwAutoCharCode;
+000334: 	DWORD	dwCharSoundCode;
+000335: 	DWORD	dwMonObjectSerial;
+000336: 	DWORD	dwUserObjectSerial;
+000337: 	int		x, y, z, Area;
+000338: 	int		PartyFlag;
+
+######################################################################
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp
+######################################################################
+
+--- around line 3538 ---
+003503: 	{	"S_SLIVER"				, snCHAR_SOUND_S_SLIVER	},
+003504: 	{	"S_TITAN"					, snCHAR_SOUND_S_TITAN	},
+003505: 	{	"S_TOWERGOLEM"		, snCHAR_SOUND_S_TOWERGOLEM	},
+003506: 	{	"S_TYPHOON"			, snCHAR_SOUND_S_TYPHOON	},
+003507: 	{	"S_VAMPIRICBAT"		, snCHAR_SOUND_S_VAMPIRICBAT	},
+003508: 	{	"S_WITCH"					, snCHAR_SOUND_S_WITCH	},
+003509: 	{	"S_ZOMBIE"				, snCHAR_SOUND_S_ZOMBIE	},
+003510: 
+003511: 	{	"" , 0 }
+003512: };
+003513: 
+003514: 
+003515: 
+003516: 
+003517: char	*szCharSizeCodeName[] = {
+003518: 	"ï¿½ï¿½ï¿½ï¿½" , "ï¿½ï¿½ï¿½ï¿½" , "ï¿½ß´ï¿½ï¿½ï¿½" , "ï¿½ï¿½ï¿½ï¿½" , ""
+003519: };
+003520: 
+003521: 
+003522: 
+003523: int ConvPercent8(int percent100)
+003524: {
+003525: 	return (percent100 * 256) / 100;
+003526: }
+003527: 
+003528: int ConvMoveSpeed(float fSpeed)
+003529: {
+003530: 	int sp;
+003531: 
+003532: 	sp = (int)((fSpeed - 9) * 16) + fONE;
+003533: 
+003534: 	return sp;
+003535: }
+003536: 
+003537: 
+003538: int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	*lpMonInfo, char *lpDialogMessage, size_t DialogMessageSize)
+003539: {
+003540: 
+003541: 	FILE	*fp;
+003542: 
+003543: 	char strBuff[256];
+003544: 	char szFile[128];
+003545: 	char *p;
+003546: 	char *pb;
+003547: 	int NextFlag;
+003548: 	int cnt;
+003549: 	int	percent;
+003550: 	int	DialogFlag;
+003551: 
+003552: 	DWORD	dwItemCode[32];
+003553: 	int		ItemCodeCnt;
+003554: 
+003555: 
+003556: 	strcpy_s(szFile, szCharFile);
+003557: 
+003558: 	fp = fopen(szFile, "rb");
+003559: 	if(fp == NULL) return FALSE;
+003560: 
+003561: 
+003562: 
+003563: 
+003564: 	lpCharInfo->szModelName2[0] = 0;
+003565: 	lpCharInfo->wPlayClass[1] = 0;
+003566: 	lpCharInfo->ArrowPosi[0] = 0;
+003567: 	lpCharInfo->ArrowPosi[1] = 0;
+003568: 
+003569: 	if(lpMonInfo)
+003570: 	{
+003571: 		ZeroMemory(lpMonInfo, sizeof(smCHAR_MONSTER_INFO));
+003572: 		lpMonInfo->MoveRange = 64 * fONE;
+003573: 		lpMonInfo->FallItemCount = 0;
+003574: 		lpMonInfo->FallItemMax = 0;
+003575: 		lpMonInfo->FallItemPerMax = 0;
+003576: 
+003577: 		lpMonInfo->DamageStunPers = 100;
+003578: 		lpMonInfo->UseEventModel = 0;
+003579: 	}
+003580: 
+003581: 	while(!feof(fp))
+003582: 	{
+003583: 		if(fgets(line, 255, fp) == NULL)	break;
+003584: 
+003585: 		p = local_GetWord(decode, line);
+003586: 
+003587: 		NextFlag = 0;
+003588: 
+003589: 
+003590: 		if(lstrcmp(decode, "*ï¿½Ì¸ï¿½") == 0)
+003591: 		{
+003592: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+003593: 
+003594: 			strcpy_s(lpCharInfo->szName, strBuff);
+003595: 			NextFlag = TRUE;
+003596: 		}
+003597: 
+003598: 
+003599: #ifdef _LANGUAGE_BRAZIL
+003600: 		if(lstrcmpi(decode, "*J_NAME") == 0)
+003601: 		{
+003602: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+003603: 
+003604: 			if(lpMonInfo)
+003605: 				strcpy_s(lpMonInfo->szName, strBuff);
+003606: 			else
+003607: 				strcpy_s(lpCharInfo->szName, strBuff);
+003608: 
+003609: 			NextFlag = TRUE;
+003610: 		}
+003611: #endif
+003612: 
+003613: 		if(!NextFlag && lstrcmp(decode, "*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") == 0)
+003614: 		{
+003615: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+003616: 
+003617: 
+003618: 
+003619: 			strcpy_s(lpCharInfo->szModelName, strBuff);
+003620: 			NextFlag = TRUE;
+003621: 		}
+003622: 
+003623: 
+003624: 
+003625: 		DialogFlag = 0;
+003626: 
+003627: 		if(!NextFlag && lpDialogMessage && lstrcmp(decode, "*ï¿½ï¿½È­") == 0)
+003628: 		{
+003629: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+003630: 
+003631: 			strcpy_s(lpDialogMessage, DialogMessageSize, strBuff);
+003632: 			NextFlag = TRUE;
+003633: 			DialogFlag++;
+003634: 		}
+003635: 
+003636: 
+003637: #ifdef _LANGUAGE_BRAZIL
+003638: 		if(lpDialogMessage && lstrcmpi(decode, "*J_CHAT") == 0)
+003639: 		{
+003640: 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+003641: 
+003642: 			strcpy_s(lpDialogMessage, DialogMessageSize, strBuff);
+003643: 			NextFlag = TRUE;
+003644: 			DialogFlag++;
+003645: 		}
+003646: #endif
+003647: 
+003648: 
+003649: 		if(DialogFlag && lpMonInfo)
+003650: 		{
+003651: 			if(lpMonInfo->NpcMsgCount < NPC_MESSAGE_MAX)
+003652: 			{
+003653: 
+003654: 				lpMonInfo->lpNpcMessage[lpMonInfo->NpcMsgCount++] = SetNPCMsg(lpDialogMessage);
+003655: 
+003656: 
+003657: 
+
+######################################################################
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.h
+######################################################################
+
+--- around line 21 ---
+000001: #ifndef	_FILEREAD_HEADER
+000002: 
+000003: #define	_FILEREAD_HEADER
+000004: 
+000005: #include "smLib3d/smType.h"
+000006: #include "smPacket.h"
+000007: 
+000008: extern smCONFIG	smConfig;
+000009: 
+000010: 
+000011: smCONFIG *smConfigDecode(char *iniFile);
+000012: 
+000013: 
+000014: int ReadCustomCracker(char *szCrackFile, TRANS_FIND_CRACKER *lpTransFindCrack);
+000015: 
+000016: 
+000017: 
+000018: int smModelDecode(char *iniFile, smMODELINFO *Info);
+000019: 
+000020: 
+000021: int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	*lpMonInfo, char *lpDialogMessage = 0, size_t DialogMessageSize = 0);
+000022: 
+000023: extern char	szShotCutMessage[10][100];
+000024: 
+000025: 
+000026: 
+000027: struct rsSTG_MONSTER
+000028: {
+000029: 	char	szMonsterName[32];
+000030: 	int		OpenPercentage;
+000031: 
+000032: 	smCHAR_INFO	*lpCharInfo;
+000033: 	int		NumOpenStart;
+000034: };
+000035: 
+000036: #define rsSTG_MONSTER_MAX	50
+000037: #define rsBOSS_MONSTER_MAX	16
+000038: 
+000039: struct sBOSS_MONSTER
+000040: {
+000041: 	smCHAR_INFO		*MasterMonster;
+000042: 	smCHAR_INFO		*SlaveMonster;
+000043: 	int				SlaveCount;
+000044: 	BYTE			bOpenTime[32];
+000045: 	int				OpenTimeCount;
+000046: };
+000047: 
+000048: struct	rsSTG_MONSTER_LIST
+000049: {
+000050: 
+000051: 	rsSTG_MONSTER	rsMonster[rsSTG_MONSTER_MAX];
+000052: 
+000053: 	int		PecetageCount;
+000054: 	int		Counter;
+000055: 	int		LimitMax;
+000056: 	int		OpenInterval;
+000057: 	int		OpenLimit;
+000058: 	DWORD	dwIntervalTime;
+000059: 
+000060: 	sBOSS_MONSTER	sBossMonsters[rsBOSS_MONSTER_MAX];
+000061: 	int	BossMonsterCount;
+000062: 
+000063: };
+000064: 
+000065: 
+000066: #define SPECIAL_JOB_RANDOM_MAX			12
+000067: 
+000068: 
+000069: struct	sDEF_ITEMINFO
+000070: {
+000071: 
+000072: 	sITEMINFO Item;
+000073: 
+000074: 	short	sDurability[2];
+000075: 	short	sResistance[8][2];
+000076: 	short	sDamage[4];
+000077: 	short	sAttack_Rating[2];
+000078: 	short	sDefence[2];
+000079: 	float	fBlock_Rating[2];
+000080: 	float	fAbsorb[2];
+000081: 	float	fSpeed[2];
+000082: 	int		Increase_Life[2];
+000083: 	int		Increase_Mana[2];
+000084: 	int		Increase_Stamina[2];
+000085: 
+000086: 	float	fMana_Regen[2];
+000087: 	float	fLife_Regen[2];
+000088: 	float	fStamina_Regen[2];
+000089: 
+000090: 
+000091: 
+000092: 	short	sSpecial_Defence[2];
+000093: 	float	fSpecial_Absorb[2];
+000094: 	float	fSpecial_fSpeed[2];
+000095: 
+000096: 	float	fSpecial_Magic_Mastery[2];
+000097: 	float	fSpecial_Mana_Regen[2];
+000098: 
+000099: 	int     Lev_Attack_Rating[2];
+000100: 
+000101: 	DWORD	dwJobBitCode_Random[SPECIAL_JOB_RANDOM_MAX];
+000102: 	int		JobBitCodeRandomCount;
+000103: 
+000104: 
+000105: 
+000106: 	short	sGenDay[2];
+000107: 
+000108: 	BYTE	*DefCompressData[sizeof(sITEMINFO)];
+000109: 	int		DefCompressDataLen;
+000110: 
+000111: 	sDEF_ITEMINFO()
+000112: 	{
+000113: 
+000114: 		ZeroMemory(&sDurability, sizeof(sDurability));
+000115: 		ZeroMemory(&sResistance, sizeof(sResistance));
+000116: 		ZeroMemory(&sDamage, sizeof(sDamage));
+000117: 		ZeroMemory(&sAttack_Rating, sizeof(sAttack_Rating));
+000118: 		ZeroMemory(&sDefence, sizeof(sDefence));
+000119: 		ZeroMemory(&fBlock_Rating, sizeof(fBlock_Rating));
+000120: 		ZeroMemory(&fAbsorb, sizeof(fAbsorb));
+000121: 		ZeroMemory(&fSpeed, sizeof(fSpeed));
+000122: 		ZeroMemory(&Increase_Life, sizeof(Increase_Life));
+000123: 		ZeroMemory(&Increase_Mana, sizeof(Increase_Mana));
+000124: 		ZeroMemory(&Increase_Stamina, sizeof(Increase_Stamina));
+000125: 		ZeroMemory(&fMana_Regen, sizeof(fMana_Regen));
+000126: 		ZeroMemory(&fLife_Regen, sizeof(fLife_Regen));
+000127: 		ZeroMemory(&fStamina_Regen, sizeof(fStamina_Regen));
+000128: 		ZeroMemory(&sSpecial_Defence, sizeof(sSpecial_Defence));
+000129: 		ZeroMemory(&fSpecial_Absorb, sizeof(fSpecial_Absorb));
+000130: 		ZeroMemory(&fSpecial_fSpeed, sizeof(fSpecial_fSpeed));
+000131: 		ZeroMemory(&fSpecial_Magic_Mastery, sizeof(fSpecial_Magic_Mastery));
+000132: 		ZeroMemory(&fSpecial_Mana_Regen, sizeof(fSpecial_Mana_Regen));
+000133: 		ZeroMemory(&Lev_Attack_Rating, sizeof(Lev_Attack_Rating));
+000134: 		ZeroMemory(&dwJobBitCode_Random, sizeof(dwJobBitCode_Random));
+000135: 		JobBitCodeRandomCount = 0;
+000136: 		ZeroMemory(&sGenDay, sizeof(sGenDay));
+000137: 		ZeroMemory(DefCompressData, sizeof(DefCompressData));
+000138: 		DefCompressDataLen = 0;
+000139: 
+000140: 	}
+
+######################################################################
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp
+######################################################################
+
+--- around line 1348 ---
+001313: 	}
+001314: 	while(1)
+001315: 	{
+001316: 		strcpy_s(szNpcFileList[NpcFileCnt], szNpcDirectory);
+001317: 		lstrcat(szNpcFileList[NpcFileCnt], fd.cFileName);
+001318: 		NpcFileCnt++;
+001319: 
+001320: 		if(FindNextFile(hFindHandle, &fd) == FALSE)
+001321: 			break;
+001322: 		if(NpcFileCnt > 64)
+001323: 			break;
+001324: 
+001325: 	}
+001326: 	FindClose(hFindHandle);
+001327: 
+001328: 	return TRUE;
+001329: }
+001330: 
+001331: void SetNextNpcPattern()
+001332: {
+001333: 	if(lpCurPlayer->PatLoading)
+001334: 		return;
+001335: 
+001336: 	if(AdminCharMode == 0)
+001337: 		memcpy(&smCharInfo_Back, &lpCurPlayer->smCharInfo, sizeof(smCHAR_INFO));
+001338: 
+001339: 
+001340: 	AdminCharDisable = TRUE;
+001341: 
+001342: 	AdminCharMode = 1;
+001343: 
+001344: 
+001345: 	lpCurPlayer->smCharInfo.dwCharSoundCode = 0;
+001346: 
+001347: 
+001348: 	if(smCharDecode(szNpcFileList[NpcPlayCnt], &lpCurPlayer->smCharInfo, 0))
+001349: 	{
+001350: 		lpCurPlayer->PatLoading = TRUE;
+001351: 		AddLoaderPattern(lpCurPlayer, lpCurPlayer->smCharInfo.szModelName);
+001352: 
+001353: 		lpCurPlayer->DisplayTools = FALSE;
+001354: 		lpCurPlayer->smCharInfo.SizeLevel = 1;
+001355: 
+001356: 		NpcSelectedName = szNpcFileList[NpcPlayCnt];
+001357: 
+001358: 		NpcPlayCnt++;
+001359: 		if(NpcPlayCnt >= NpcFileCnt) NpcPlayCnt = 0;
+001360: 	}
+001361: 	ReformCharForm();
+001362: }
+001363: 
+001364: 
+001365: int LaunchPartyPostion()
+001366: {
+001367: 	int x, y, z, dist, ddist;
+001368: 	int cnt;
+001369: 	smCHAR *lpChar;
+001370: 
+001371: 	x = lpCurPlayer->pX;
+001372: 	y = lpCurPlayer->pY + 48 * fONE;
+001373: 	z = lpCurPlayer->pZ;
+001374: 
+001375: 	if(sPartyPosion.code == OpCode::OPCODE_PARTY_POTION)
+001376: 	{
+001377: 
+001378: 		if(lpCurPlayer->MotionInfo->State != CHRMOTION_STATE_DEAD)
+001379: 		{
+001380: 			CheckCharForm();
+001381: 			if(sPartyPosion.WParam)
+001382: 			{
+001383: 				sinSetLife(sinGetLife() + sPartyPosion.WParam);
+001384: 				StartEffect(x, y, z, EFFECT_POTION1);
+001385: 			}
+001386: 			if(sPartyPosion.LParam)
+001387: 			{
+001388: 				sinSetMana(sinGetMana() + sPartyPosion.LParam);
+001389: 				StartEffect(x, y, z, EFFECT_POTION2);
+001390: 			}
+001391: 			if(sPartyPosion.SParam)
+001392: 			{
+001393: 				sinSetStamina(sinGetStamina() + sPartyPosion.SParam);
+001394: 				StartEffect(x, y, z, EFFECT_POTION3);
+001395: 			}
+001396: 			ResetEnergyGraph(3);
+001397: 			ReformCharForm();
+001398: 			sinPlaySound(SIN_SOUND_EAT_POTION, GetDistVolume(x, y, z));
+001399: 
+001400: 		}
+001401: 
+001402: 
+001403: 
+001404: 		for(cnt = 0; cnt < OTHER_PLAYER_MAX; cnt++)
+001405: 		{
+001406: 			if(chrOtherPlayer[cnt].Flag && chrOtherPlayer[cnt].dwObjectSerial && chrOtherPlayer[cnt].PartyFlag &&
+001407: 				chrOtherPlayer[cnt].dwObjectSerial != sPartyPosion.EParam &&
+001408: 				chrOtherPlayer[cnt].MotionInfo->State != CHRMOTION_STATE_DEAD &&
+001409: 				chrOtherPlayer[cnt].RendSucess)
+001410: 			{
+001411: 
+001412: 				x = chrOtherPlayer[cnt].pX;
+001413: 				y = chrOtherPlayer[cnt].pY + 48 * fONE;
+001414: 				z = chrOtherPlayer[cnt].pZ;
+001415: 
+001416: 				if(sPartyPosion.WParam) 	StartEffect(x, y, z, EFFECT_POTION1);
+001417: 				if(sPartyPosion.LParam) 	StartEffect(x, y, z, EFFECT_POTION2);
+001418: 				if(sPartyPosion.SParam) 	StartEffect(x, y, z, EFFECT_POTION3);
+001419: 			}
+001420: 		}
+001421: 
+001422: 
+001423: 	}
+001424: 
+001425: 	switch(sPartyPosion.code)
+001426: 	{
+001427: 	case OpCode::OPCODE_HEALING:
+001428: 
+001429: 		if(lpCurPlayer->MotionInfo->State != CHRMOTION_STATE_DEAD)
+001430: 		{
+001431: 			CheckCharForm();
+001432: 			if(sPartyPosion.WParam)
+001433: 			{
+001434: 				sinSetLife(sinGetLife() + sPartyPosion.WParam);
+001435: 			}
+001436: 			ResetEnergyGraph(0);
+001437: 			ReformCharForm();
+001438: 		}
+001439: 		break;
+001440: 
+001441: 	case OpCode::OPCODE_GRAND_HEALING:
+001442: 
+001443: 		if(sPartyPosion.EParam == lpCurPlayer->dwObjectSerial)
+001444: 		{
+001445: 			lpChar = lpCurPlayer;
+001446: 		}
+001447: 		else
+001448: 			lpChar = FindAutoPlayer(sPartyPosion.EParam);
+001449: 
+001450: 		if(!lpChar) break;
+001451: 
+001452: 		ddist = sPartyPosion.SParam*sPartyPosion.SParam;
+001453: 
+001454: 		x = (lpCurPlayer->pX - lpChar->pX) >> FLOATNS;
+001455: 		y = (lpCurPlayer->pY - lpChar->pY) >> FLOATNS;
+001456: 		z = (lpCurPlayer->pZ - lpChar->pZ) >> FLOATNS;
+001457: 		dist = x*x + y*y + z*z;
+001458: 		if(dist < ddist && lpCurPlayer->MotionInfo->State != CHRMOTION_STATE_DEAD)
+001459: 		{
+001460: 
+001461: 			if(sPartyPosion.LParam)
+001462: 			{
+001463: 				CheckCharForm();
+001464: 				sinSetLife(sinGetLife() + sPartyPosion.LParam);
+001465: 				ResetEnergyGraph(0);
+001466: 				ReformCharForm();
+001467: 			}
+
+--- around line 1662 ---
+001627: 	CreatePatShadow(1, 17 * fONE, 14 * fONE);
+001628: 	CreatePatShadow2(2, 26 * fONE, 20 * fONE);
+001629: 	CreatePatShadow2(3, 38 * fONE, 30 * fONE);
+001630: 
+001631: 
+001632: 
+001633: 
+001634: 	Posi.x = smConfig.Posi_Player.x;
+001635: 	Posi.z = smConfig.Posi_Player.y;
+001636: 	Posi.y = 0;
+001637: 	Angle.x = 0;
+001638: 	Angle.y = 0;
+001639: 	Angle.z = 0;
+001640: 
+001641: 
+001642: 	invPlayerArmor = 0;
+001643: 
+001644: 
+001645: 
+001646: 	SetCharFileList("char//tmABCD//a001.ini");
+001647: 
+001648: 
+001649: 
+001650: #ifdef _W_SERVER
+001651: 
+001652: 	SetNpcFileList(szNpcInfoPath);
+001653: #endif
+001654: 
+001655: 
+001656: 	LoadOftenArmor();
+001657: 
+001658: 	LoadOftenFace();
+001659: 
+001660: 	LoadOftenItem();
+001661: 
+001662: 	LoadOftenNpc();
+001663: 
+001664: 	LoadOftenModels();
+001665: 
+001666: 
+001667: 	sinChar = &lpCurPlayer->smCharInfo;
+001668: 
+001669: 	CheckCharForm();
+001670: 
+001671: 
+001672: 	if(CharacterName1[0])
+001673: 	{
+001674: 		cnt = NewCharInfo.Dexterity + NewCharInfo.Health + NewCharInfo.Spirit + NewCharInfo.Strength + NewCharInfo.Talent;
+001675: 
+001676: 		lpCurPlayer->smCharInfo.JOB_CODE = NewCharInfo.JobCode;
+001677: 
+001678: 		if(cnt < 103)
+001679: 		{
+001680: 
+001681: 			lpCurPlayer->smCharInfo.Dexterity = NewCharInfo.Dexterity;
+001682: 			lpCurPlayer->smCharInfo.Health = NewCharInfo.Health;
+001683: 			lpCurPlayer->smCharInfo.Spirit = NewCharInfo.Spirit;
+001684: 			lpCurPlayer->smCharInfo.Strength = NewCharInfo.Strength;
+001685: 			lpCurPlayer->smCharInfo.Talent = NewCharInfo.Talent;
+001686: 		}
+001687: 		else
+001688: 		{
+001689: 			lpCurPlayer->smCharInfo.Dexterity = 1;
+001690: 			lpCurPlayer->smCharInfo.Health = 8;
+001691: 			lpCurPlayer->smCharInfo.Spirit = 1;
+001692: 			lpCurPlayer->smCharInfo.Strength = 8;
+001693: 			lpCurPlayer->smCharInfo.Talent = 1;
+001694: 			lpCurPlayer->smCharInfo.StatePoint = 0;
+001695: 		}
+001696: 	}
+001697: 
+001698: 
+001699: 	if(CharacterName1[0])
+001700: 	{
+001701: 		SetLoadPattern(lpCurPlayer, CharacterName1, CharacterName2, &Posi, &Angle);
+001702: 
+001703: 		cnt2 = 0;
+001704: 		for(cnt = 0; cnt < (int)lpCurPlayer->smMotionInfo->MotionCount; cnt++)
+001705: 		{
+001706: 			if(lpCurPlayer->smMotionInfo->MotionInfo[cnt].State == CHRMOTION_STATE_DEAD)
+001707: 			{
+001708: 
+001709: 				size = lpCurPlayer->smMotionInfo->MotionInfo[cnt].EndFrame - lpCurPlayer->smMotionInfo->MotionInfo[cnt].StartFrame;
+001710: 				if(size > 8) cnt2++;
+001711: 			}
+001712: 
+001713: 			if(lpCurPlayer->smMotionInfo->MotionInfo[cnt].State == CHRMOTION_STATE_ATTACK)
+001714: 			{
+001715: 				size = lpCurPlayer->smMotionInfo->MotionInfo[cnt].EndFrame - lpCurPlayer->smMotionInfo->MotionInfo[cnt].StartFrame;
+001716: 
+001717: 				if(size < 40 && smConfig.getSecurity() < AccountTypes::SEC_MODERATOR)
+001718: 				{
+001719: 					DisconnectFlag = GetCurrentTime();
+001720: 					quit = TRUE;
+001721: 				}
+001722: 			}
+001723: 		}
+001724: 
+001725: 		if(cnt2 == 0 && smConfig.getSecurity() < AccountTypes::SEC_MODERATOR)
+001726: 		{
+001727: 
+001728: 			DisconnectFlag = GetCurrentTime();
+001729: 			quit = TRUE;
+001730: 		}
+001731: 	}
+001732: 	else
+001733: 		SetLoadPattern(lpCurPlayer, smConfig.szFile_Player, 0, &Posi, &Angle);
+001734: 
+001735: 	//Level Inicial
+001736: 	lpCurPlayer->smCharInfo.Level = 1;
+001737: 
+001738: 	lpCurPlayer->smCharInfo.Attack_Damage[0] = 5;
+001739: 	lpCurPlayer->smCharInfo.Attack_Damage[1] = 10;
+001740: 
+001741: 	strcpy_s(lpCurPlayer->smCharInfo.szName, PlayerName);
+001742: 	lpCurPlayer->smCharInfo.State = smCHAR_STATE_USER;
+001743: 	lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_RESTART);
+001744: 
+001745: 	lpCurPlayer->smCharInfo.SizeLevel = 1;
+001746: 	lpCurPlayer->PatSizeLevel = 1;
+001747: 
+001748: 	lpCurPlayer->smCharInfo.Attack_Rating = 100;
+001749: 	lpCurPlayer->smCharInfo.Next_Exp = 1000;
+001750: 
+001751: 	lpCurPlayer->smMonsterInfo.dwAutoCharCode = 0;
+001752: 
+001753: 	lpCurPlayer->smCharInfo.Life[0] = 1000;
+001754: 	lpCurPlayer->smCharInfo.Life[1] = 1000;
+001755: 
+001756: 	lpCurPlayer->MoveMode = TRUE;
+001757: 	lpCurPlayer->MoveCnt = 0;
+001758: 
+001759: 	PkMode = 0;
+001760: 
+001761: 	ReformCharForm();
+001762: 
+001763: 
+001764: 
+001765: 	lpCurPlayer->OnStageField = -1;
+001766: 	if(smGameStage[0])
+001767: 	{
+001768: 		cnt = smGameStage[0]->GetFloorHeight(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, lpCurPlayer->Pattern->SizeHeight);
+001769: 		lpCurPlayer->OnStageField = 0;
+001770: 	}
+001771: 	if(cnt == CLIP_OUT && smGameStage[1])
+001772: 	{
+001773: 		lpCurPlayer->OnStageField = 1;
+001774: 	}
+001775: 
+001776: 
+001777: 	for(cnt = 0; cnt < OTHER_PLAYER_MAX; cnt++)
+001778: 	{
+001779: 		chrOtherPlayer[cnt].Init();
+001780: 	}
+001781: 
+
+######################################################################
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp
+######################################################################
+
+--- around line 462 ---
+000427: 
+000428: 			if (FindNextFile(hFindHandle, &fd) == FALSE) break;
+000429: 		}
+000430: 	}
+000431: 	FindClose(hFindHandle);
+000432: 
+000433: 
+000434: 	return ErrorCount;
+000435: }
+000436: 
+000437: 
+000438: int LoadOftenModels()
+000439: {
+000440: 
+000441: 	return TRUE;
+000442: }
+000443: 
+000444: char *szOftenNPC[] = {
+000445: 
+000446: 	0
+000447: };
+000448: 
+000449: 
+000450: int LoadFolder_Ini(char *szPath, char *szWildCard, char *szChgExt, int OftSave);
+000451: 
+000452: int Make_CharAll_SMD()
+000453: {
+000454: 	LoadOftenFullPattern();
+000455: 	LoadFolder_Ini("Char//Npc", "*.ini", 0, 0);
+000456: 	LoadFolder_Ini("Char//Monster", "*.ini", 0, 0);
+000457: 
+000458: 	return TRUE;
+000459: }
+000460: 
+000461: 
+000462: int LoadOftenNpc()
+000463: {
+000464: #ifdef _W_SERVER
+000465: 	LoadFolder_Ini("Char//Npc", "*.inx", "ini", TRUE);
+000466: #else
+000467: 	int cnt = 0;
+000468: 	while (1)
+000469: 	{
+000470: 		if (!szOftenNPC[cnt])
+000471: 			break;
+000472: 		LoadOftenMeshPattern(szOftenNPC[cnt]);
+000473: 		cnt++;
+000474: 	}
+000475: #endif
+000476: 
+000477: 	return TRUE;
+000478: }
+000479: 
+000480: 
+000481: int LoadOftenFace()
+000482: {
+000483: 
+000484: 	int cnt, cnt2;
+000485: 	int ErrorCount = 0;
+000486: 
+000487: 	for (cnt = 0; cnt < 6; cnt++)
+000488: 	{
+000489: 
+000490: 		for (cnt2 = 0; cnt2 < HEAREPOTION_MAX; cnt2++)
+000491: 		{
+000492: 			if (LoadOftenMeshPattern(szModel_FighterFaceName[cnt][cnt2]) == FALSE)
+000493: 				ErrorCount++;
+000494: 			if (LoadOftenMeshPattern(szModel_MechFaceName[cnt][cnt2]) == FALSE)
+000495: 				ErrorCount++;
+000496: 			if (LoadOftenMeshPattern(szModel_ArcherFaceName[cnt][cnt2]) == FALSE)
+000497: 				ErrorCount++;
+000498: 			if (LoadOftenMeshPattern(szModel_PikeFaceName[cnt][cnt2]) == FALSE)
+000499: 				ErrorCount++;
+000500: 			if (LoadOftenMeshPattern(szModel_KnightFaceName[cnt][cnt2]) == FALSE)
+000501: 				ErrorCount++;
+000502: 			if (LoadOftenMeshPattern(szModel_AtalantaFaceName[cnt][cnt2]) == FALSE)
+000503: 				ErrorCount++;
+000504: 			if (LoadOftenMeshPattern(szModel_PristessFaceName[cnt][cnt2]) == FALSE)
+000505: 				ErrorCount++;
+000506: 			if (LoadOftenMeshPattern(szModel_MagicanFaceName[cnt][cnt2]) == FALSE)
+000507: 				ErrorCount++;
+000508: 
+000509: 		}
+000510: 	}
+000511: 
+000512: 	if (ErrorCount)
+000513: 		return FALSE;
+000514: 
+000515: 	return TRUE;
+000516: 
+000517: }
+000518: 
+000519: 
+000520: int LoadOftenArmor()
+000521: {
+000522: 	int cntW, cntH;
+000523: 	char szName[128];
+000524: 
+000525: 	for (cntH = 0; cntH < MAX_JOBNUM; cntH++)
+000526: 	{
+000527: 		for (cntW = 0; cntW < 29; cntW++) // Char Armor
+000528: 		{
+000529: 			if (cntW == 0 || cntW >= 10)
+000530: 			{
+000531: 				strcpy_s(szName, szArmorDirectory);
+000532: 				lstrcat(szName, szArmorNumFile[cntH][cntW]);
+000533: 				LoadOftenMeshPattern(szName);
+000534: 			}
+000535: 		}
+000536: 	}
+000537: 
+000538: 	return TRUE;
+000539: }
+000540: 
+000541: 
+000542: int LoadOftenItem()
+000543: {
+000544: 	char szBuff[256];
+000545: 
+000546: 	for (int cnt = 0; cnt < MAX_ITEM; cnt++)
+000547: 	{
+000548: 		if (sItem[cnt].DorpItem == NULL)
+000549: 		{
+000550: 			continue;
+000551: 		}
+000552: 
+000553: 		wsprintf(szBuff, "Image//sinImage//Items//DropItem//it%s.ASE", sItem[cnt].DorpItem);
+000554: 
+000555: #ifdef _CHECK_MESH
+000556: 		LoadOftenMeshPatternCheckSum(szBuff);
+000557: 
+000558: #else
+000559: 		LoadOftenMeshPattern(szBuff);
+000560: #endif
+000561: 		if (sItem[cnt].CODE == (sinGG1 | sin01) || sItem[cnt].CODE == (sinGG1 | sin02))
+000562: 		{
+000563: 			continue;
+000564: 		}
+000565: 	}
+000566: 
+000567: #ifdef _CHECK_MESH
+000568: 	Send_OftPatSumToDataServer();
+000569: #endif
+000570: 
+000571: 	return TRUE;
+000572: }
+000573: 
+000574: 
+000575: int CheckOftenMeshTextureSwap()
+000576: {
+000577: 	return TRUE;
+000578: 
+000579: 	for (int cnt = 0; cnt < DynTempPatCnt; cnt++)
+000580: 	{
+000581: 		if (DynTempPat[cnt] && DynTempPat[cnt]->Pat && DynTempPat[cnt]->Pat->smMaterialGroup)
+
+######################################################################
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.h
+######################################################################
+
+--- around line 110 ---
+000075: 
+000076: INT64 GetXorExp64(smCHAR_INFO *smCharInfo);
+000077: 
+000078: INT64 CodeXorCharInfo_Exp();
+000079: 
+000080: 
+000081: int CheckFieldContExp();
+000082: 
+000083: 
+000084: 
+000085: int	ActionEtherCore(sITEM	*lpItem);
+000086: 
+000087: 
+000088: int DeadPlayerExp(smCHAR *lpChar);
+000089: 
+000090: int ContGameExp(smCHAR *lpChar);
+000091: 
+000092: int GetPlayDefence(smCHAR_INFO *lpAttackCharInfo, smCHAR_INFO *lpDefenceCharInfo);
+000093: 
+000094: 
+000095: int DrawWeather(int ax);
+000096: int InitWeatherSystem();
+000097: 
+000098: int AddRemoveDynPattern(smDPAT *lpDinaPattern);
+000099: 
+000100: 
+000101: int LoadOftenModels();
+000102: 
+000103: 
+000104: int	LoadOftenMeshPattern(char *szFileName);
+000105: 
+000106: int LoadOftenArmor();
+000107: 
+000108: int LoadOftenItem();
+000109: 
+000110: int LoadOftenNpc();
+000111: 
+000112: int LoadOftenFace();
+000113: 
+000114: int CheckOftenMeshTextureSwap();
+000115: 
+000116: int	ChangeModelSkin(smCHAR *lpChar, int ComicArmor, int ComicHeadNum, char *szArmor, char *szHead);
+000117: 
+000118: int ChangeHairModel(int HairCode);
+000119: 
+000120: 
+000121: 
+000122: int InitFieldMap();
+000123: 
+000124: 
+000125: int MainFieldMap();
+000126: 
+000127: int DrawFieldMap();
+000128: 
+000129: int GetFieldMapCursor();
+000130: 
+000131: int psSetDefaultRenderState();
+000132: 
+000133: 
+000134: 
+000135: int EecodeCompress(BYTE *lpSrcData, BYTE *lpDestData, int size);
+000136: 
+000137: int DecodeCompress(BYTE *lpSrcData, BYTE *lpDestData);
+000138: 
+000139: int DecodeCompress(BYTE *lpSrcData, BYTE *lpDestData, int dCount);
+000140: 
+000141: int EecodeCompress(BYTE *lpSrcData, BYTE *lpDestData, int size, int DestSize);
+000142: 
+000143: 
+000144: int DecodeCompress_ItemPotion(rsPLAYINFO *lpPlayInfo, BYTE *lpSrcData, BYTE *lpDestData, int deCount, void *lpTransRecdata);
+000145: 
+000146: 
+000147: 
+000148: smCHAR *CheckOtherPlayPosi(int x, int y, int z);
+000149: 
+000150: 
+000151: int ReformItemSkin(sITEMINFO *lpItemInfo, DWORD skin);
+000152: int ReformItem(sITEMINFO *lpItemInfo);
+000153: 
+000154: int ReformItem_AdjustTime(sITEMINFO *lpItemInfo, int TimeAdjust);
+000155: 
+000156: 
+000157: int CheckItemForm(sITEMINFO *lpItemInfo);
+000158: 
+000159: int CompareItems(sITEMINFO *lpItemInfo1, sITEMINFO *lpItemInfo2);
+000160: 
+000161: int	rsReformItem_Server(sITEMINFO *lpItemInfo);
+000162: 
+000163: 
+000164: int CheckCharForm();
+000165: 
+000166: int ReformCharForm();
+000167: 
+000168: int ReformCharForm(smCHAR_INFO *lpCharInfo);
+000169: 
+000170: int CheckCharForm(smCHAR_INFO *lpCharInfo);
+000171: 
+000172: int ReformTrade(void *lpTrade);
+000173: 
+000174: int CheckTrade(void *lpTrade);
+000175: 
+000176: 
+000177: int ReformMixItem(sITEMINFO *lpItemInfo);
+000178: 
+000179: int CheckMixItem(sITEMINFO *lpItemInfo);
+000180: 
+000181: 
+000182: float GetItemAbsorb(sITEMINFO *lpItemInfo);
+000183: 
+000184: 
+000185: int	RequestPartyPlayers(smCHAR	*lpChar);
+000186: 
+000187: int psSetDefaultRenderState();
+000188: 
+000189: 
+000190: smTRNAS_PLAYERINFO	*GetCharInfoCache(char *lpData);
+000191: 
+000192: int SaveCharInfoCache(smTRNAS_PLAYERINFO *lpTransPlayInfo);
+000193: 
+000194: extern smCHAR	chrPartyPlayer;
+000195: 
+000196: int OpenPartyPlayer(char *szName, char *szModelFile1, char *szModelFile2);
+000197: 
+000198: 
+000199: 
+000200: int	CheckPlayAttackCount();
+000201: 
+000202: int AttackMotionCountUp();
+000203: 
+000204: int	AttackRecvCountUp();
+000205: 
+000206: int	CheckCopyItem(sITEMINFO *lpItem);
+000207: 
+000208: int ChangeJobFace();
+000209: 
+000210: 
+000211: 
+000212: int InitTimeEffect();
+000213: 
+000214: int AddTimeEffect(DWORD EffectCode, DWORD dwTime, int x, int y, int z);
+000215: int AddTimeEffect(DWORD EffectCode, DWORD dwTime, int x, int y, int z, smCHAR *lpChar);
+000216: 
+000217: int TimeEffectMain();
+000218: 
+000219: 
+000220: 
+000221: smCHAR *SelectRotPlayer(smCHAR *lpCurrentChar);
+000222: 
+000223: int	CloseRotPlayer();
+000224: 
+000225: smCHAR *InitRotPlayer();
+000226: 
+000227: 
+000228: int Check_PlaySubReleaseFunc();
+000229: 

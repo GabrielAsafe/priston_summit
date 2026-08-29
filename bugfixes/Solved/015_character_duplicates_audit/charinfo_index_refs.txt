@@ -1,0 +1,26 @@
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:285:			wsprintf(DownUserCharacterInfo[index].Name, "%s", ServerUserCharacterInfo->CharInfo[index].szName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:286:			DownUserCharacterInfo[index].Level = ServerUserCharacterInfo->CharInfo[index].Level;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:288:			wsprintf(DownUserCharacterInfo[index].BodyName, "%s", ServerUserCharacterInfo->CharInfo[index].szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:289:			wsprintf(DownUserCharacterInfo[index].FaceName, "%s", ServerUserCharacterInfo->CharInfo[index].szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:291:			DownUserCharacterInfo[index].Job = ServerUserCharacterInfo->CharInfo[index].JOB_CODE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:292:			DownUserCharacterInfo[index].StartField = ServerUserCharacterInfo->CharInfo[index].StartField;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:294:			DownUserCharacterInfo[index].PosX = ServerUserCharacterInfo->CharInfo[index].PosX;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLinkHeader.cpp:295:			DownUserCharacterInfo[index].PosZ = ServerUserCharacterInfo->CharInfo[index].PosZ;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/netplay.cpp:3638:				if(!lpTransUserCharInfo->CharInfo[cnt].szModelName2[0])
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/netplay.cpp:3640:					fp = fopen(lpTransUserCharInfo->CharInfo[cnt].szModelName, "rb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/netplay.cpp:3643:						x = lstrlen(lpTransUserCharInfo->CharInfo[cnt].szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/netplay.cpp:3644:						lpTransUserCharInfo->CharInfo[cnt].szModelName[x - 1] = 'x';
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/netplay.cpp:3645:						fp = fopen(lpTransUserCharInfo->CharInfo[cnt].szModelName, "rb");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/netplay.cpp:3653:						strcpy_s(lpTransUserCharInfo->CharInfo[cnt].szModelName,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/record.cpp:3382:					lpCharInfo = (_TRANS_CHAR_INFO *)&TransUserCharInfo.CharInfo[FindCnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/record.h:243:	_TRANS_CHAR_INFO	CharInfo[sPLAY_CHAR_MAX];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:195:			wsprintf(DownUserCharacterInfo[index].Name, "%s", ServerUserCharacterInfo->CharInfo[index].szName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:196:			DownUserCharacterInfo[index].Level = ServerUserCharacterInfo->CharInfo[index].Level;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:198:			wsprintf(DownUserCharacterInfo[index].BodyName, "%s", ServerUserCharacterInfo->CharInfo[index].szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:199:			wsprintf(DownUserCharacterInfo[index].FaceName, "%s", ServerUserCharacterInfo->CharInfo[index].szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:201:			DownUserCharacterInfo[index].Job = ServerUserCharacterInfo->CharInfo[index].JOB_CODE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:202:			DownUserCharacterInfo[index].StartField = ServerUserCharacterInfo->CharInfo[index].StartField;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:204:			DownUserCharacterInfo[index].PosX = ServerUserCharacterInfo->CharInfo[index].PosX;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoLinkHeader.cpp:205:			DownUserCharacterInfo[index].PosZ = ServerUserCharacterInfo->CharInfo[index].PosZ;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/record.cpp:3358:					lpCharInfo = (_TRANS_CHAR_INFO *)&TransUserCharInfo.CharInfo[FindCnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/record.h:244:	_TRANS_CHAR_INFO	CharInfo[sPLAY_CHAR_MAX];

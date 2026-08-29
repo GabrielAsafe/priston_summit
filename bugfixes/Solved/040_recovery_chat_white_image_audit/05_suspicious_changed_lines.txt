@@ -1,0 +1,691 @@
+================ [027] APPLY_CLEAN SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp ================
+-#include "cSettingsWindow.h"
+-int sinChatEnter = 0;
+-int SubChatHeight = 0;
+-int sinChatDisplayMode = 0;
+-int sinChatInputMode = 0;
+-POINT InfoMessageBoxPos;
+-LPDIRECT3DTEXTURE9 lpGrowInterLeft;
+-LPDIRECT3DTEXTURE9 lpGrowInterMiddle;
+-LPDIRECT3DTEXTURE9 lpGrowInterRight;
+-	int   Alpha;
+-	"image//Sinimage//Inter//defense.tga",
+-	"image//Sinimage//Inter//block.tga",
+-	"image//Sinimage//Inter//Evade.tga",
+-	MatMenu[0] = CreateTextureMaterial("image//Sinimage//Inter//Menu-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatMenu[1] = CreateTextureMaterial("image//Sinimage//Inter//Menu-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatChatDefault[0] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDefault-1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatChatDefault[1] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDefault-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatChatSmall[0] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatSmall-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatChatSmall[1] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatSmall-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatChatDoc[0] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDoc-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatChatDoc[1] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDoc-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatExitMenu = CreateTextureMaterial("image//Sinimage//Inter//ExitMenu.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatClock = CreateTextureMaterial("image//Sinimage//Inter//Clock.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatComPass = CreateTextureMaterial("image//Sinimage//Inter//Compass.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatLife = CreateTextureMaterial("image//Sinimage//Inter//ShadowLife.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatMana = CreateTextureMaterial("image//Sinimage//Inter//ShadowMana.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatStamina = CreateTextureMaterial("image//Sinimage//Inter//ShadowStamina.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	lpLIFE = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_Life.bmp");
+-	lpMP = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_Mana.bmp");
+-	lpSTM = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_Stamina.bmp");
+-	lpButton[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bStatus.bmp");
+-	lpButton[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bInvenTory.bmp");
+-	lpButton[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bSkill.bmp");
+-	lpButton[3] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bParty.bmp");
+-	lpButton[4] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bQuest.bmp");
+-	lpButton[5] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bSystem.bmp");
+-	lpButton2[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bStatus-1.bmp");
+-	lpButton2[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bInvenTory-1.bmp");
+-	lpButton2[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bSkill-1.bmp");
+-	lpButton2[3] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bParty-1.bmp");
+-	lpButton2[4] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bQuest-1.bmp");
+-	lpButton2[5] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//bSystem-1.bmp");
+-	lpInfoBox[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//StatusInfo.bmp");
+-	lpInfoBox[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//InvenInfo.bmp");
+-	lpInfoBox[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//SkillInfo.bmp");
+-	lpInfoBox[3] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//PartyInfo.bmp");
+-	lpInfoBox[4] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//QuestInfo.bmp");
+-	lpInfoBox[5] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//SystemInfo.bmp");
+-	lpMenuButton[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Option.bmp");
+-	lpMenuButton[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Setting.bmp");
+-	lpMenuButton[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Exit.bmp");
+-	lpWalk = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Button//Walk.bmp");
+-	lpChatShowButton = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Chat//ChatDownButton.bmp");
+-	lpSun = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Flash//Sun.bmp");
+-	lpMoon = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Flash//Moon.bmp");
+-	lpGage[0] = LoadDibSurfaceOffscreen("Image//SinImage//Skill//P-skill.bmp");
+-	lpGage[1] = LoadDibSurfaceOffscreen("Image//SinImage//Skill//P-skill2.bmp");
+-	lpBar_Anger = LoadDibSurfaceOffscreen("image//Sinimage//Inter//sinGage//Bar_Anger.bmp");
+-	lpBar_Time = LoadDibSurfaceOffscreen("image//Sinimage//Inter//sinGage//Bar_Time.bmp");
+-	lpBar_Exp = LoadDibSurfaceOffscreen("image//Sinimage//Inter//sinGage//Bar_Exp.bmp");
+-	lpButton_Anger = LoadDibSurfaceOffscreen("image//Sinimage//Inter//sinGage//Button_Anger.bmp");
+-	lpRunInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Run.bmp");
+-	lpWalkInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Walk.bmp");
+-	lpCameraHandInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Camera_Hand.bmp");
+-	lpCameraFixInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Camera_Fix.bmp");
+-	lpCameraAutoInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//Camera_Auto.bmp");
+-	lpMapOnInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//MapOn.bmp");
+-	lpMapOffInfo = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ButtonInfo//MapOff.bmp");
+-	lpMapOnImage = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Button//MapOnImage.bmp");
+-	lpCameraImage[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Button//AutoCameraImage.bmp");
+-	lpCameraImage[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Button//PixCameraImage.bmp");
+-	lpLIFESpot = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_LifeSpot.bmp");
+-	lpSTMSpot = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_StaminaSpot.bmp");
+-	lpMANASpot = LoadDibSurfaceOffscreen("image//Sinimage//Inter//Bar_ManaSpot.bmp");
+-	lpReStartMain = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ReStart//ReStartMain.bmp");
+-	lpReStartButton[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ReStart//ReStart_Field.bmp");
+-	lpReStartButton[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ReStart//ReStart_Town.bmp");
+-	lpReStartButton[2] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//ReStart//ReStart_Exit.bmp");
+-	lpSelectSkill_Main[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//G_Select_Skill.bmp");
+-	lpSelectSkill_Main[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//Select_Skill.bmp");
+-	lpSelectChangeJob[0] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//G_Select_ChangeJob.bmp");
+-	lpSelectChangeJob[1] = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//Select_ChangeJob.bmp");
+-	lpTime7 = LoadDibSurfaceOffscreen("image//Sinimage//Inter//SkillIcon//Select_ChangeJob.bmp");
+-	lpGrowInterLeft = LoadDibSurfaceOffscreen("image//Sinimage//Inter//inter_01.bmp");
+-	lpGrowInterMiddle = LoadDibSurfaceOffscreen("image//Sinimage//Inter//inter_02.bmp");
+-	lpGrowInterRight = LoadDibSurfaceOffscreen("image//Sinimage//Inter//inter_03.bmp");
+-	if(lpChatShowButton)
+-		lpChatShowButton->Release();
+-		lpChatShowButton = 0;
+-	if(lpMapOnImage)
+-		lpMapOnImage->Release();
+-		lpMapOnImage = 0;
+-	if(lpCameraImage[0])
+-		lpCameraImage[0]->Release();
+-		lpCameraImage[0] = 0;
+-	if(lpCameraImage[1])
+-		lpCameraImage[1]->Release();
+-		lpCameraImage[1] = 0;
+-int nCheckSkillDraw = 0;
+-void cINTERFACE::Draw()
+-	dsDrawTexImage(cInterFace.MatMenu[0], 800 - 256 - 256, 600 - 128, 256, 128, 255);
+-	dsDrawTexImage(cInterFace.MatMenu[1], 800 - 256, 600 - 64, 256, 64, 255);
+-	DrawSprite(800, WinSizeY - 64, lpGrowInterLeft, 0, 0, 66, 64, 777);
+-				DrawSprite(800 + 66 + (64 * j), WinSizeY - 64, lpGrowInterMiddle, 0, 0, 64, 64, 777);
+-	DrawSprite(800 + 66 + (64 * j), WinSizeY - 64, lpGrowInterRight, 0, 0, 40, 64, 777);
+-    //DrawSprite(WinSizeX - 40,WinSizeY-64,lpGrowInterRight,0,0,40,64,777);
+-			dsDrawColorBox(sShadowState[i].Color, sShadowState[i].Posi.x, sShadowState[i].Posi.y,
+-	DrawSprite(319, 500 + (94 - sinBmpLength[0]), lpLIFE, 0, (94 - sinBmpLength[0]), 16, 94);
+-	DrawSprite(465, 500 + (94 - sinBmpLength[1]), lpMP, 0, (94 - sinBmpLength[1]), 16, 94);
+-	DrawSprite(303, 518 + (76 - sinBmpLength[2]), lpSTM, 0, (76 - sinBmpLength[2]), 8, 76);
+-		dsDrawTexImage( MatExitMenu , 698, 504 - 30, 128, 94 , 255 );
+-			DrawSprite(698,504,lpMenuButton[0],0,0,96,19);
+-			DrawSprite(698,504-31,lpMenuButton[1],0,0,96,19);
+-			DrawSprite(698,535,lpMenuButton[2],0,0,96,19); 
+-	if(hFocusWnd && sinChatInputMode && !usehFocus)
+-		DrawSprite(7, 580 - SubChatHeight, lpChatShowButton, 0, 0, 22, 19);
+-		DrawSprite(363, 589, lpSun, 0, 0, 13, 13);
+-		DrawSprite(375, 593, lpBar_Time, 0, 0, sinGageTime2, 5);
+-		DrawSprite(426, 589, lpMoon, 0, 0, 13, 13);
+-		DrawSprite(375 + (50 - sinGageTime2), 593, lpBar_Time, (50 - sinGageTime2), 0, 50, 5);
+
+================ [016] APPLY_CLEAN SourceCode/SrcGame/src/Winmain.bak2.cpp ================
+-#include <windows.h>
+-#include "TextMessage.h"		
+-#include "BellatraFontEffect.h"
+-#include "Font/Font.h"
+-#include "DrawDamage.h"
+-#include "cQuestWindow.h"
+-#include "cSettingsWindow.h"
+-#include "FontImage.h"
+-int lowHPWarningImage = -1;
+-extern int sinChatDisplayMode;
+-extern int sinChatInputMode;
+-int isChatBox(int x, int y)
+-	if (SubChatHeight) {
+-int DrawGameState();
+-	iSettingsBg = CreateTextureMaterial("game//Settings//window.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	imgPVP = CreateTextureMaterial("game//mash//bp_system.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	iSettingsButton[0] = CreateTextureMaterial("game//UI//settings.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	iSettingsButton[1] = CreateTextureMaterial("game//UI//settings_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	iSettingsRelog = CreateTextureMaterial("game//Settings//help_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	iSettingsSave = CreateTextureMaterial("game//Settings//save_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	iSettingsCheckBox[0] = CreateTextureMaterial("game//Settings//checkbox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	iSettingsCheckBox[1] = CreateTextureMaterial("game//Settings//checkbox_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	iBellatraBg = CreateTextureMaterial("game//bellatra//window.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	iBellatrOK = CreateTextureMaterial("game//bellatra//ok.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-LPDIRECT3DTEXTURE9 lpDDSMenu;
+-int iNumWindowsFound = 0;
+-int	ImeChatLen = 0;
+-int	SetChatingLine(char *szMessage);
+-CRITICAL_SECTION	cDrawSection;
+-int HoInstallFont();
+-int HoUninstallFont();
+-HFONT hFont = 0;
+-int SetCreateFont();
+-HDC ImageDC;
+-	hBitmap = (HBITMAP)LoadImage(hInst, filename, IMAGE_BITMAP, 800, 600, LR_LOADFROMFILE);
+-		MessageBox(NULL, "Error loading imagem", "ERROR IMG", MB_OK);
+-	ImageDC = CreateCompatibleDC(WinDC);
+-	HBITMAP hBitmapOld = (HBITMAP)SelectObject(ImageDC, hBitmap);
+-	BitBlt(WinDC, WinSizeX / 2 - 400, WinSizeY / 2 - 350, 800, 600, ImageDC, 0, 0, SRCCOPY);
+-	DeleteDC(ImageDC);
+-	arq = fopen("image/system.txt", "rt");
+-	//DeleteFile("image/system.txt");
+-			wsprintf(szQuery, "IF NOT EXISTS(SELECT * FROM [PrimeRPG].[dbo].[RequestIP] WHERE IPAddress ='%s' ) BEGIN INSERT INTO [PrimeRPG].[dbo].[RequestIP] ([IPAddress],[Included],[Datetm],[Font]) values('%s',%d,getdate(),'%s') end", result, result, 0,"Program");
+-    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+-	//		/*MessageBox(0, "Jï¿½ existe um jogo aberto", szAppName, MB_OK);*/
+-    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+-    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+-	InitializeCriticalSection(&cDrawSection);
+-    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+-	WindowMode = SETTINGSHANDLER->getWindowMode();
+-	if(!SETTINGSHANDLER->getWindowMode())
+-		wndclass.style = CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
+-		wndclass.hbrBackground = CreateSolidBrush(RGB(21, 17, 14));
+-    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+-	if(1 /* TEMP_MINGW_FORCE_WINDOWMODE */ || SETTINGSHANDLER->getWindowMode())
+-		AdjustWindowRectEx(&wrect, WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX, FALSE, 0);
+-		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+-		hwnd = CreateWindowEx(0,
+-			WS_OVERLAPPEDWINDOW,
+-		hwnd = CreateWindow(szAppName, szAppName,
+-			fprintf(f, "after CreateWindow: hwnd=%p lastError=%lu windowMode=%d startMax=%d nCmdShow=%d sx=%d sy=%d width=%d height=%d\\n",
+-				SETTINGSHANDLER->getWindowMode(),
+-		MessageBoxA(NULL, "CreateWindow/CreateWindowEx failed. See mingw_hwnd_check.txt", "DEBUG MINGW", MB_OK | MB_ICONERROR);
+-	ShowWindow(hwnd, SETTINGSHANDLER->getStartMaximized() ? SW_MAXIMIZE : nCmdShow);
+-	UpdateWindow(hwnd);
+-			fprintf(f, "after ShowWindow/UpdateWindow: hwnd=%p visible=%d iconic=%d lastError=%lu\\n",
+-				IsWindowVisible(hwnd),
+-	LoadScreen("Image//logo.bmp", hInst, hwnd);
+-	hTextWnd = CreateWindow("EDIT", "", WS_CHILD | WS_BORDER | ES_LEFT | ES_MULTILINE | ES_WANTRETURN, 10, 400, 500, 40, hwnd, (HMENU)IDC_TEXT, hInst, NULL);
+-	OldEditProc01 = (WNDPROC)SetWindowLongPtr(hTextWnd, GWLP_WNDPROC, (LONG_PTR)EditWndProc01);
+-	SetCreateFont();
+-#ifdef _LANGUAGE_WINDOW
+-	SetForegroundWindow(hwnd);
+-		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
+-			TranslateMessage(&msg);
+-			if (msg.message == WM_SYSKEYDOWN || msg.message == WM_SYSKEYUP)
+-			DispatchMessage(&msg);
+-			PlayRecvMessageQue();
+-#ifdef BMFONT
+-		if (font[i])
+-			delete font[i];
+-			font[i] = nullptr;
+-DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam);
+-		ImmSetConversionStatus(hImc, IME_CMODE_ALPHANUMERIC, IME_CMODE_ALPHANUMERIC);
+-		ImmSetConversionStatus(hImcEdit, IME_CMODE_ALPHANUMERIC, IME_CMODE_ALPHANUMERIC);
+-LRESULT CALLBACK EditWndProc01(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+-	switch (message)
+-	return CallWindowProc(OldEditProc01, hWnd, message, wParam, lParam);
+-	static BOOL setFont = FALSE;
+-			if (!setFont && (imc = ImmGetContext(hWnd)))
+-				LOGFONT lf;
+-				ZeroMemory(&lf, sizeof(LOGFONT));
+-				ImmSetCompositionFont(imc, &lf);
+-				setFont = TRUE;
+-				ImmSetCandidateWindow(imc, &cf);
+-BOOL bAdjustWindow = TRUE;
+-		if (wParam == SIZE_MAXIMIZED && SETTINGSHANDLER->getAutoAdjust() && SETTINGSHANDLER->getWindowMode())
+-			smRender.SMSHIFT_PERSPECTIVE_WIDTH = 0;
+-			smRender.SMMULT_PERSPECTIVE_HEIGHT = 0;
+-				InitRender();
+-			if (wParam == SIZE_RESTORED && SETTINGSHANDLER->getWindowMode())
+-				smRender.SMSHIFT_PERSPECTIVE_WIDTH = 0;
+-				smRender.SMMULT_PERSPECTIVE_HEIGHT = 0;
+-					InitRender();
+-		FILE *f = fopen("mingw_window_lifecycle.txt", "a");
+-		WSAMessage_Accept(wParam, lParam);
+-		WSAMessage_Read(wParam, lParam);
+-				LONG value = GetWindowLong(hWnd, GWL_STYLE);
+-				SetWindowLong(hWnd, GWL_STYLE, value & 0xDE33FFFF);
+-				value = GetWindowLong(hWnd, GWL_EXSTYLE);
+-				SetWindowLong(hWnd, GWL_STYLE, value & 0xFFFDFDFE);
+-				SetWindowPos(hWnd, HWND_TOP, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_FRAMECHANGED | SWP_NOOWNERZORDER);
+-				ShowWindow(hWnd, SW_SHOWMAXIMIZED);
+-				ShowWindow(hWnd, SW_SHOWDEFAULT);
+-				SetWindowLong(hWnd, GWL_STYLE, 0x94CF0008);
+-				SetWindowLong(hWnd, GWL_EXSTYLE, 0x100);
+-					LONG value = GetWindowLong(hWnd, GWL_STYLE);
+-					SetWindowLong(hWnd, GWL_STYLE, value & 0xDE33FFFF);
+-					value = GetWindowLong(hWnd, GWL_EXSTYLE);
+-					SetWindowLong(hWnd, GWL_STYLE, value & 0xFFFDFDFE);
+
+================ [026] APPLY_CLEAN SourceCode/SrcGame/src/sinbaram/sinHelpPet.cpp ================
+-int MatPetImage[4] = { 0, };
+-int PetMessageOkButtonFlag = 0;
+-	MatPetImage[0] = CreateTextureMaterial("Image//SinImage//PetData//Pet_terry-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatPetImage[1] = CreateTextureMaterial("Image//SinImage//PetData//Pet_nepsys-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatPetImage[2] = CreateTextureMaterial("Image//SinImage//PetData//Pet_io-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-	MatPetImage[3] = CreateTextureMaterial("Image//SinImage//PetData//Pet-mute-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+-void cHELPPET::Draw()
+-			g_Help.DrawBox(3, 3, 32, 4);
+-			dsDrawTexImage(MatPetImage[PetKind - 1], 10, 20, 64, 64, 255);
+-			DrawSprite(522, 94, lpbltr_Button_OK_G, 0, 0, 47, 12);
+-			if(PetMessageOkButtonFlag)
+-				DrawSprite(522, 94, lpbltr_Button_OK, 0, 0, 47, 12);
+-		DrawPetMessage();
+-void cHELPPET::Draw(POINT3D *pPosi, POINT3D *pAngle)
+-void cHELPPET::DrawText()
+-	SetFontTextColor32( RGB(255, 255, 255));
+-		PetRandomNormalMessage();
+-		PetRandomBattleMessage();
+-				MessageIndex = -1;
+-	if(PetMessageOkButtonFlag != 2)
+-		PetMessageOkButtonFlag = 0;
+-			if(PetMessageOkButtonFlag != 2)
+-				PetMessageOkButtonFlag = 1;
+-		if(HelpMsgTime > (70 * 15) || PetMessageOkButtonFlag == 2)
+-			PetMessageOkButtonFlag = 0;
+-			if(lstrcmp(HelpMsgId, "*Level_Message10-2") == 0)
+-			if(!Message_Keep.empty())
+-				TempString = Message_Keep.front();
+-				Message_Keep.pop_front();
+-	if(PetMessageOkButtonFlag)
+-		PetMessageOkButtonFlag = 2;
+-char *szPetMessageCommand[] = {
+-	"*ChatBox",
+-	"*ChatTab_All",
+-	"*ChatTab_Clan",
+-	"*ChatTab_Party",
+-	"*ChatTab_Trade",
+-	"*ChatTab_Whisper",
+-	"*Message",
+-	"*Battle_Message",
+-	"*Normal_Message",
+-	"*Level_Message2-1",
+-	"*Level_Message2-2",
+-	"*Level_Message3",
+-	"*Level_Message4",
+-	"*Level_Message5",
+-	"*Level_Message6-1",
+-	"*Level_Message6-2",
+-	"*Level_Message7",
+-	"*Level_Message8",
+-	"*Level_Message9-1",
+-	"*Level_Message9-2",
+-	"*Level_Message10-1",
+-	"*Level_Message10-2",
+-	"*Special_Message8_Mecha",
+-	"*Special_Message8_Fighter",
+-	"*Special_Message8_Pikeman",
+-	"*Special_Message8_Archer",
+-	"*Special_Message8_Knight",
+-	"*Special_Message8_Atalanta",
+-	"*Special_Message8_Priestess",
+-	"*Special_Message8_Magician",
+-	"*Special_Message9",
+-int sinTestMessageIndex = 0;
+-			len = lstrlen(szPetMessageCommand[38 + sinTestMessageIndex]);
+-				PetMessageHelp(szPetMessageCommand[38 + sinTestMessageIndex]);
+-				sinTestMessageIndex++;
+-				sinTestMessageIndex = 0;
+-	char *szFilePath = "Image//SinImage//PetData//PetMessage.txt";
+-		if(lstrcmp(decode, szPetMessageCommand[CmdNum]) == 0)
+-				PetMsg_Map[szPetMessageCommand[CmdNum]].push_back(new string(decode));
+-int cHELPPET::PetMessage(char *Id, int Index)
+-	MessageIndex = Index;
+-int cHELPPET::DrawPetMessage()
+-		PetRendPoint = HoPetRenderPoint;
+-		DrawCharacterMessage(PetRendPoint.x, PetRendPoint.y, szPetBuff, 30);
+-int cHELPPET::PetMessageHelp(char *Id)
+-		Message_Keep.push_back(Id);
+-		PetMessageHelp("*Welcom_ALL");
+-			PetMessageHelp("*Welcom_Tems");
+-			PetMessageHelp("*Welcom_Mora");
+-	for(i = 0; i < (int)PetMsg_Map["*Normal_Message"].size(); i++)
+-	for(i = 0; i < (int)PetMsg_Map["*Battle_Message"].size(); i++)
+-int cHELPPET::PetRandomNormalMessage()
+-				PetMessage("*Normal_Message", RandomNum);
+-				for(i = 0; i < (int)PetMsg_Map["*Normal_Message"].size(); i++)
+-int PetExpMessage[] = { 5,10,20,30,35,40,50,60,70,80,90,100 };
+-int ExpMessageFlag = 0;
+-int cHELPPET::PetRandomBattleMessage()
+-			if(cHelpPet.PetExp > PetExpMessage[PetExpIndex])
+-					PetMessage("*Battle_Message", RandomNum);
+-					for(i = 0; i < (int)PetMsg_Map["*Battle_Message"].size(); i++)
+-			if(sinChar->Level == 8 && cHelpPet.PetExp >= 90 && !ExpMessageFlag)
+-				ExpMessageFlag = 1;
+-					PetMessageHelp("*Special_Message8_Fighter");
+-					PetMessageHelp("*Special_Message8_Mecha");
+-					PetMessageHelp("*Special_Message8_Archer");
+-					PetMessageHelp("*Special_Message8_Pikeman");
+-					PetMessageHelp("*Special_Message8_Atalanta");
+-					PetMessageHelp("*Special_Message8_Knight");
+-					PetMessageHelp("*Special_Message8_Magician");
+-					PetMessageHelp("*Special_Message8_Priestess");
+-			if(sinChar->Level == 10 && cHelpPet.PetExp >= 90 && ExpMessageFlag != 2)
+-				ExpMessageFlag = 2;
+-				PetMessageHelp("*Special_Message9");
++// MINGW_PETMESSAGE_TRACE_V1
++static void MingwPetMessageTrace(const char *fmt, ...)
++	FILE *fp = fopen("petmessage_trace.txt", "a");
++int MatPetImage[4] = { 0, };
++int PetMessageOkButtonFlag = 0;
++	MatPetImage[0] = CreateTextureMaterial("Image//SinImage//PetData//Pet_terry-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
++	MatPetImage[1] = CreateTextureMaterial("Image//SinImage//PetData//Pet_nepsys-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
++	MatPetImage[2] = CreateTextureMaterial("Image//SinImage//PetData//Pet_io-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
++	MatPetImage[3] = CreateTextureMaterial("Image//SinImage//PetData//Pet-mute-pose.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
++void cHELPPET::Draw()
++			g_Help.DrawBox(3, 3, 32, 4);
++			dsDrawTexImage(MatPetImage[PetKind - 1], 10, 20, 64, 64, 255);
++			DrawSprite(522, 94, lpbltr_Button_OK_G, 0, 0, 47, 12);
++			if(PetMessageOkButtonFlag)
++				DrawSprite(522, 94, lpbltr_Button_OK, 0, 0, 47, 12);
+
+================ [017] CONFLICT_OR_DIVERGED SourceCode/SrcGame/src/Winmain.cpp ================
+-    MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
++    //MessageBoxA(NULL, "ENTROU NO WINMAIN", "DEBUG MINGW", MB_OK);
+-    MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
++    //MessageBoxA(NULL, "AFTER ANTICHEAT", "DEBUG MINGW", MB_OK);
+-    MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
++    //MessageBoxA(NULL, "AFTER READCONFIG", "DEBUG MINGW", MB_OK);
+-    MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
++    //MessageBoxA(NULL, "AFTER DIRECTSOUND", "DEBUG MINGW", MB_OK);
+-    MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
++    //MessageBoxA(NULL, "AFTER REGISTERCLASS", "DEBUG MINGW", MB_OK);
+-		MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
++		//MessageBoxA(NULL, "BEFORE CREATEWINDOWEX", "DEBUG MINGW", MB_OK);
+-		MessageBoxA(NULL, "CreateWindow/CreateWindowEx failed. See mingw_hwnd_check.txt", "DEBUG MINGW", MB_OK | MB_ICONERROR);
++		//MessageBoxA(NULL, "CreateWindow/CreateWindowEx failed. See mingw_hwnd_check.txt", "DEBUG MINGW", MB_OK | MB_ICONERROR);
+-		FILE *f = fopen("mingw_window_lifecycle.txt", "a");
++		FILE *f = fopen("LOGS\\mingw_window_lifecycle.txt", "a");
+-		FILE *f = fopen("mingw_window_lifecycle.txt", "a");
++		FILE *f = fopen("LOGS\\mingw_window_lifecycle.txt", "a");
+-		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after CreateRenderBuff\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after CreateRenderBuff\n"); fclose(f);} }
+-		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitMaterial\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitMaterial\n"); fclose(f);} }
+-		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after SetMaterialGroup\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after SetMaterialGroup\n"); fclose(f);} }
+-		{ FILE *f=fopen("mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitFont\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitFont\n"); fclose(f);} }
+
+================ [018] CONFLICT_OR_DIVERGED SourceCode/SrcGame/src/cSettingsWindow.cpp ================
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"ENTER cSettingsWindow::Init pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"ENTER cSettingsWindow::Init pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after ClearLoadedImages\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after ClearLoadedImages\n"); fclose(f);} }
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before delete pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before delete pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after delete pWindow1\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after delete pWindow1\n"); fclose(f);} }
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindow1\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindow1\n"); fclose(f);} }
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindow1 pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindow1 pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowVideo\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowVideo\n"); fclose(f);} }
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowVideo\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowVideo\n"); fclose(f);} }
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowAudio\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowAudio\n"); fclose(f);} }
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowAudio\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowAudio\n"); fclose(f);} }
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowGeneral\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowGeneral\n"); fclose(f);} }
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowGeneral\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowGeneral\n"); fclose(f);} }
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"LEAVE cSettingsWindow::Init\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"LEAVE cSettingsWindow::Init\n"); fclose(f);} }
++	static int MingwSettingsDrawTraceCount = 0;
++	if(MingwSettingsDrawTraceCount < 8)
++		MingwSettingsOpenTrace("[DRAW_BEFORE_RENDER]");
++	if(MingwSettingsDrawTraceCount < 8)
++		MingwSettingsOpenTrace("[DRAW_AFTER_RENDER]");
++	MingwSettingsDrawTraceCount++;
++	if(!pWindow1)
++		MingwSettingsOpenTrace("[OPEN_NULL_PWINDOW1]");
++			MingwSettingsOpenTrace("[VIDEO_03_BEFORE_GET_WINDOW]");
++			MingwSettingsOpenTrace(pWindowVideo ? "[VIDEO_04_WINDOW_OK]" : "[VIDEO_04_WINDOW_NULL]");
+-					pScreenList->selectItem(SETTINGSHANDLER->getWindowMode() ? OBJID_OFFBox : OBJID_ONBox);
++					MingwSettingsOpenTrace("[VIDEO_07_BEFORE_WINDOWMODE]");
++					int v = SETTINGSHANDLER->getWindowMode();
++					MingwSettingsOpenTrace("[VIDEO_08_AFTER_WINDOWMODE]");
++				MingwSettingsOpenTrace("[VIDEO_26_BEFORE_TEXTURE]");
+-					pTextureList->selectItem(SETTINGSHANDLER->getTextureQuality() == 1 ? OBJID_ONBox : OBJID_OFFBox);
++					int v = SETTINGSHANDLER->getTextureQuality();
++					MingwSettingsOpenTrace("[VIDEO_27_TEXTURE_VALUE_OK]");
++					pTextureList->selectItem(v == 1 ? OBJID_ONBox : OBJID_OFFBox);
++				MingwSettingsOpenTrace("[VIDEO_28_AFTER_TEXTURE]");
+
+================ [015] APPLY_CLEAN SourceCode/SrcGame/src/UIList.cpp ================
+-void UIListBox::Render(int iX, int iY, int iWidth, int iHeight, int iSourceX, int iSourceY)
+-		int iRenderX = cX + iX;
+-		int iRenderY = cY + iY;
+-		int iRenderWidth = low(cWidth, iWidth);
+-		int iRenderHeight = low(cHeight, iHeight);
+-		if (cX + iRenderWidth > iWidth)
+-			iRenderWidth -= (cX + iRenderWidth) - iWidth;
+-		if (cY + iRenderHeight > iHeight)
+-			iRenderHeight -= (cY + iRenderHeight) - iHeight;
+-			pListItem->Render(iRenderX, iRenderY, iRenderWidth, iRenderHeight, iStartX, iStartY);
+-			pListItem->RenderWindows(iX, iY, iWidth, iHeight, iStartX, iStartY);
+-		int iRenderX = cX + iX + iStartX;
+-		int iRenderY = cY + iY + iStartY;
+-		int iRenderWidth = low(cWidth, iWidth);
+-		int iRenderHeight = low(cHeight, iHeight);
+-		if(cX + iRenderWidth > iWidth)
+-			iRenderWidth -= (cX+ iRenderWidth) - iWidth;
+-		if (cY + iRenderHeight > iHeight)
+-			iRenderHeight -= (cY + iRenderHeight) - iHeight;
+-		if (isMousePos(iRenderX, iRenderY - iStartY, iRenderWidth, iRenderHeight))
+-				if (pListItem->OnMouseClick(Type, iRenderX, iRenderY, iRenderWidth, iRenderHeight, 0, 0))
+-			pListItem->OnMouseClickWindows(Type, iX, iY, iWidth, iHeight, 0, 0);
+-		int iRenderX = cX + iX + iStartX;
+-		int iRenderY = cY + iY + iStartY;
+-		int iRenderWidth = low(cWidth, iWidth);
+-		int iRenderHeight = low(cHeight, iHeight);
+-		if(cX + iRenderWidth > iWidth)
+-			iRenderWidth -= (cX+ iRenderWidth) - iWidth;
+-		if (cY + iRenderHeight > iHeight)
+-			iRenderHeight -= (cY + iRenderHeight) - iHeight;
+-		if (isMousePos(iRenderX, iRenderY, iRenderWidth, iRenderHeight))
+-				pListItem->OnMouseMove(iRenderX, iRenderY, iRenderWidth, iRenderHeight, 0, 0);
+-			pListItem->OnMouseMoveWindows(iX, iY, iWidth, iHeight, 0, 0);
+-		int iRenderX = cX + iX + iStartX;
+-		int iRenderY = cY + iY + iStartY;
+-		int iRenderWidth = low(cWidth, iWidth);
+-		int iRenderHeight = low(cHeight, iHeight);
+-		if(cX + iRenderWidth > iWidth)
+-			iRenderWidth -= (cX+ iRenderWidth) - iWidth;
+-		if (cY + iRenderHeight > iHeight)
+-			iRenderHeight -= (cY + iRenderHeight) - iHeight;
+-		if (isMousePos(iRenderX, iRenderY, iRenderWidth, iRenderHeight))
+-				pListItem->OnMouseScroll(zDelta, iRenderX, iRenderY, iRenderWidth, iRenderHeight, 0, 0);
+-			pListItem->OnMouseScrollWindows(zDelta, iX, iY, iWidth, iHeight, 0, 0);
++void UIListBox::Render(int iX, int iY, int iWidth, int iHeight, int iSourceX, int iSourceY)
++		int iRenderX = cX + iX;
++		int iRenderY = cY + iY;
++		int iRenderWidth = low(cWidth, iWidth);
++		int iRenderHeight = low(cHeight, iHeight);
++		if (cX + iRenderWidth > iWidth)
++			iRenderWidth -= (cX + iRenderWidth) - iWidth;
++		if (cY + iRenderHeight > iHeight)
++			iRenderHeight -= (cY + iRenderHeight) - iHeight;
++			pListItem->Render(iRenderX, iRenderY, iRenderWidth, iRenderHeight, iStartX, iStartY);
++			pListItem->RenderWindows(iX, iY, iWidth, iHeight, iStartX, iStartY);
++		int iRenderX = cX + iX + iStartX;
++		int iRenderY = cY + iY + iStartY;
++		int iRenderWidth = low(cWidth, iWidth);
++		int iRenderHeight = low(cHeight, iHeight);
++		if(cX + iRenderWidth > iWidth)
++			iRenderWidth -= (cX+ iRenderWidth) - iWidth;
++		if (cY + iRenderHeight > iHeight)
++			iRenderHeight -= (cY + iRenderHeight) - iHeight;
++		if (isMousePos(iRenderX, iRenderY - iStartY, iRenderWidth, iRenderHeight))
++				if (pListItem->OnMouseClick(Type, iRenderX, iRenderY, iRenderWidth, iRenderHeight, 0, 0))
++			pListItem->OnMouseClickWindows(Type, iX, iY, iWidth, iHeight, 0, 0);
++		int iRenderX = cX + iX + iStartX;
++		int iRenderY = cY + iY + iStartY;
++		int iRenderWidth = low(cWidth, iWidth);
++		int iRenderHeight = low(cHeight, iHeight);
++		if(cX + iRenderWidth > iWidth)
++			iRenderWidth -= (cX+ iRenderWidth) - iWidth;
++		if (cY + iRenderHeight > iHeight)
++			iRenderHeight -= (cY + iRenderHeight) - iHeight;
++		if (isMousePos(iRenderX, iRenderY, iRenderWidth, iRenderHeight))
++				pListItem->OnMouseMove(iRenderX, iRenderY, iRenderWidth, iRenderHeight, 0, 0);
++			pListItem->OnMouseMoveWindows(iX, iY, iWidth, iHeight, 0, 0);
++		int iRenderX = cX + iX + iStartX;
++		int iRenderY = cY + iY + iStartY;
++		int iRenderWidth = low(cWidth, iWidth);
++		int iRenderHeight = low(cHeight, iHeight);
++		if(cX + iRenderWidth > iWidth)
++			iRenderWidth -= (cX+ iRenderWidth) - iWidth;
++		if (cY + iRenderHeight > iHeight)
++			iRenderHeight -= (cY + iRenderHeight) - iHeight;
++		if (isMousePos(iRenderX, iRenderY, iRenderWidth, iRenderHeight))
++				pListItem->OnMouseScroll(zDelta, iRenderX, iRenderY, iRenderWidth, iRenderHeight, 0, 0);
++			pListItem->OnMouseScrollWindows(zDelta, iX, iY, iWidth, iHeight, 0, 0);
+
+================ [030] CONFLICT_OR_DIVERGED SourceCode/SrcGame/src/smLib3d/smRead3d.cpp ================
+-ASE_MATERIAL	aseMaterial[MATRIAL_MAX * 2];
+-int	aseMaterialCnt;
+-MATS_SCRIPT_CODE MaterialFormScript[MATS_SCRIPT_MAX] = {
+-	{ "render_latter:" , sMATS_SCRIPT_RENDLATTER },
+-	{ "BLINK_COLOR:", sMATS_SCRIPT_BLINK_COLOR },
+-#define		MATS_BLEND_MAX		5
+-MATS_SCRIPT_CODE MaterialFormBlend[MATS_BLEND_MAX] = {
+-	{	"BLEND_ALPHA:"		,	SMMAT_BLEND_ALPHA		},
+-	{	"BLEND_COLOR:"		,	SMMAT_BLEND_COLOR		},
+-	{	"BLEND_ADDCOLOR:"	,	SMMAT_BLEND_ADDCOLOR	},
+-	{	"BLEND_SHADOW:"		,	SMMAT_BLEND_SHADOW		},
+-	{	"BLEND_LAMP:"		,	SMMAT_BLEND_LAMP		}
+-FILE *ReadASE_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
+-	ZeroMemory(aseMaterial, sizeof(ASE_MATERIAL)*MATRIAL_MAX * 2);
+-		if(lstrcmp(decode, "*MATERIAL_COUNT") == 0)
+-		if(lstrcmp(decode, "*MATERIAL") == 0)
+-				aseMaterial[MatrialNum].SubPoint = NewMatrial;
+-			if(lstrcmp(decode, "*SUBMATERIAL") == 0)
+-				curMatrialNum = aseMaterial[MatrialNum].SubPoint + SubMatrialNum;
+-		if(lstrcmp(decode, "*MATERIAL_NAME") == 0)
+-				if(strstr(strBuff, MaterialFormScript[cnt].szScript) != 0)
+-					aseMaterial[curMatrialNum].ScriptState |= MaterialFormScript[cnt].dwScriptCode;
+-			if(aseMaterial[curMatrialNum].ScriptState && aseScriptCnt < ase_SCRIPT_MAX)
+-			for(cnt = 0; cnt < MATS_BLEND_MAX; cnt++)
+-				if(strstr(strBuff, MaterialFormBlend[cnt].szScript) != 0)
+-					aseMaterial[curMatrialNum].BlendType = MaterialFormBlend[cnt].dwScriptCode;
+-				strcpy_s(aseMaterial[curMatrialNum].BITMAP[BitmapCnt], strFile);
+-				aseMaterial[curMatrialNum].TextureCounter++;
+-				aseMaterial[curMatrialNum].BitmapStateState[BitmapCnt] = BitmapStageState;
+-				aseMaterial[curMatrialNum].BitmapFormState[BitmapCnt] = BitmapFormState;
+-				strcpy_s(aseMaterial[curMatrialNum].MAP_OPACITY, strFile);
+-			aseMaterial[curMatrialNum].UVW_U_OFFSET[BitmapCnt] = (float)atof(strBuff);
+-			aseMaterial[curMatrialNum].UVW_V_OFFSET[BitmapCnt] = (float)atof(strBuff);
+-			aseMaterial[curMatrialNum].UVW_U_TILING[BitmapCnt] = (float)atof(strBuff);
+-			aseMaterial[curMatrialNum].UVW_V_TILING[BitmapCnt] = (float)atof(strBuff);
+-			aseMaterial[curMatrialNum].UVW_ANGLE[BitmapCnt] = (float)atof(strBuff);
+-		if(lstrcmp(decode, "*MATERIAL_TWOSIDED") == 0)
+-			aseMaterial[curMatrialNum].TwoSide = TRUE;
+-		if(lstrcmp(decode, "*MATERIAL_DIFFUSE") == 0)
+-			aseMaterial[curMatrialNum].Diffuse.r = (float)atof(strBuff);
+-			aseMaterial[curMatrialNum].Diffuse.g = (float)atof(strBuff);
+-			aseMaterial[curMatrialNum].Diffuse.b = (float)atof(strBuff);
+-		if(lstrcmp(decode, "*MATERIAL_TRANSPARENCY") == 0)
+-			if(aseMaterial[curMatrialNum].Transparency == 0)
+-				aseMaterial[curMatrialNum].Transparency = (float)atof(strBuff);
+-		if(lstrcmp(decode, "*MATERIAL_SELFILLUM") == 0)
+-			if(aseMaterial[curMatrialNum].SelfIllum == 0)
+-				aseMaterial[curMatrialNum].SelfIllum = (float)atof(strBuff);
+-	aseMaterialCnt = curMatrialNum + 1;
+-	DWORD	dwMaterialSum[MATRIAL_MAX * 2];
+-	int		aseMaterialLink[MATRIAL_MAX * 2];
+-	for(cnt = 0; cnt < aseMaterialCnt; cnt++)
+-		lpAseMat = (BYTE *)&aseMaterial[cnt];
+-		for(nCnt = 0; nCnt < sizeof(ASE_MATERIAL); nCnt++)
+-		dwMaterialSum[cnt] = dwSum;
+-	for(cnt = 0; cnt < aseMaterialCnt; cnt++)
+-			if(dwMaterialSum[nCnt] == dwMaterialSum[cnt])
+-			stricmp(aseMaterial[cnt].BITMAP[0], aseMaterial[nCnt].BITMAP[0]) == 0)
+-			aseMaterialLink[cnt] = nCnt;
+-			aseMaterialLink[cnt] = -1;
+-	smMATERIAL_GROUP *MGroup;
+-		MGroup = new smMATERIAL_GROUP(rCnt);
+-		MGroup = smMaterialGroup;
+-	for(cnt = 0; cnt < aseMaterialCnt; cnt++)
+-		if(aseMaterialLink[cnt] < 0)
+-			aseMaterial[cnt].RegistNum = MGroup->AddMaterial(&aseMaterial[cnt], lpScript);
+-			aseMaterial[cnt].RegistNum = aseMaterial[aseMaterialLink[cnt]].RegistNum;
+-		aseMaterial[cnt].Regist = TRUE;
+-FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
+-	ZeroMemory(aseMaterial, sizeof(ASE_MATERIAL)*MATRIAL_MAX * 2);
+-		if(lstrcmp(decode, "*MATERIAL_COUNT") == 0)
+-		if(lstrcmp(decode, "*MATERIAL") == 0)
+-		if(lstrcmp(decode, "*MATERIAL_NAME") == 0)
+-					//Utils_Log(LOG_ERROR, "MATERIAL Counter Error (ReadAse)");
+-				if(strstr(strBuff, MaterialFormScript[cnt].szScript) != 0)
+-					aseMaterial[curMatrialNum].ScriptState |= MaterialFormScript[cnt].dwScriptCode;
+-			if(aseMaterial[curMatrialNum].ScriptState && aseScriptCnt < ase_SCRIPT_MAX)
+-			for(cnt = 0; cnt < MATS_BLEND_MAX; cnt++)
+-				if(strstr(strBuff, MaterialFormBlend[cnt].szScript) != 0)
+-					aseMaterial[curMatrialNum].BlendType = MaterialFormBlend[cnt].dwScriptCode;
+-			aseMaterial[curMatrialNum].SubPoint = NewMatrial;
+-		if(lstrcmp(decode, "*SUBMATERIAL") == 0)
+-				strcpy_s(aseMaterial[curMatrialNum].BITMAP[BitmapCnt], strFile);
+-				aseMaterial[curMatrialNum].TextureCounter++;
+-				aseMaterial[curMatrialNum].BitmapStateState[BitmapCnt] = BitmapStageState;
+-				aseMaterial[curMatrialNum].BitmapFormState[BitmapCnt] = BitmapFormState;
+-				strcpy_s(aseMaterial[curMatrialNum].MAP_OPACITY, strFile);
+-			aseMaterial[curMatrialNum].UVW_U_OFFSET[BitmapCnt] = (float)atof(strBuff);
+-			aseMaterial[curMatrialNum].UVW_V_OFFSET[BitmapCnt] = (float)atof(strBuff);
+-			aseMaterial[curMatrialNum].UVW_U_TILING[BitmapCnt] = (float)atof(strBuff);
+-			aseMaterial[curMatrialNum].UVW_V_TILING[BitmapCnt] = (float)atof(strBuff);
+-			aseMaterial[curMatrialNum].UVW_ANGLE[BitmapCnt] = (float)atof(strBuff);
+-		if(lstrcmp(decode, "*MATERIAL_TWOSIDED") == 0)
+-			aseMaterial[curMatrialNum].TwoSide = TRUE;
+-		if(lstrcmp(decode, "*MATERIAL_DIFFUSE") == 0)
+-			aseMaterial[curMatrialNum].Diffuse.r = (float)atof(strBuff);
+-			aseMaterial[curMatrialNum].Diffuse.g = (float)atof(strBuff);
+-			aseMaterial[curMatrialNum].Diffuse.b = (float)atof(strBuff);
+-		if(lstrcmp(decode, "*MATERIAL_TRANSPARENCY") == 0)
+-			if(aseMaterial[curMatrialNum].Transparency == 0)
+-				aseMaterial[curMatrialNum].Transparency = (float)atof(strBuff);
+-		if(lstrcmp(decode, "*MATERIAL_SELFILLUM") == 0)
+-			if(aseMaterial[curMatrialNum].SelfIllum == 0)
+-				aseMaterial[curMatrialNum].SelfIllum = (float)atof(strBuff);
+-	aseMaterialCnt = NewMatrial;
+-		ASE_MATERIAL LightMap_MATERIAL;
+-					LightMap_MATERIAL = aseMaterial[SubPoint + 1];
+-					::CopyMemory(&aseMaterial[EndSubPoint], &aseMaterial[SubPoint + 2],
+-						sizeof(ASE_MATERIAL) * s_LightMapRefBuff[cnt].MaxSubMtl);
+-						int BitmapCnt = aseMaterial[i].TextureCounter;
+-						aseMaterial[i].TextureCounter++;
+-						strcpy_s(aseMaterial[i].BITMAP[BitmapCnt], LightMap_MATERIAL.BITMAP[0]);
+-						aseMaterial[i].BitmapStateState[BitmapCnt] = LightMap_MATERIAL.BitmapStateState[0];
+-						aseMaterial[i].BitmapFormState[BitmapCnt] = LightMap_MATERIAL.BitmapFormState[0];
+-						aseMaterial[i].UVW_U_OFFSET[BitmapCnt] = LightMap_MATERIAL.UVW_U_OFFSET[0];
+-						aseMaterial[i].UVW_V_OFFSET[BitmapCnt] = LightMap_MATERIAL.UVW_V_OFFSET[0];
+-						aseMaterial[i].UVW_U_TILING[BitmapCnt] = LightMap_MATERIAL.UVW_U_TILING[0];
+-						aseMaterial[i].UVW_V_TILING[BitmapCnt] = LightMap_MATERIAL.UVW_V_TILING[0];
+-						aseMaterial[i].UVW_ANGLE[BitmapCnt] = LightMap_MATERIAL.UVW_ANGLE[0];
+-					aseMaterialCnt -= 2;
+
+================ [013] APPLY_CLEAN SourceCode/SrcGame/src/Settings/Settings.cpp ================
++	// The window, Direct3D backbuffer and projection can be resized at runtime,
++	// legacy HUD and modern UI components (including CChatBox::OnResolutionChanged)
+
+================ [011] APPLY_CLEAN SourceCode/SrcGame/src/HoBaram/LowLevelPetSystem.cpp ================
+-POINT3D HoPetRenderPoint;
+-bool HoLowLevelPet::Draw(int x, int y, int z, int angleX, int angleY, int angleZ)
+-		smRender.ObjectVertexScale = 256 + 80;
+-		m_PetMeshRes->RenderD3D(&cameraPos, &cameraAngle);
+-		smRender.ObjectVertexScale = 0;
+-			smRender.SetCameraPosi(x, y, z, angleX, angleY, angleZ);
+-			HoPetRenderPoint.z = smRender.GetRect2D(m_CurrentPos.x, m_CurrentPos.y + (He >> 1), m_CurrentPos.z, 44 * fONE, He, &PetRendRect2D, &sPos);
+-			HoPetRenderPoint.x = sPos.x;
+-			HoPetRenderPoint.y = sPos.y;
+-bool HoLowLevelPetManager::Draw(int x, int y, int z, int angleX, int angleY, int angleZ)
+-			LowLevelPetList[i].Draw(x, y, z, angleX, angleY, angleZ);
+-bool g_DrawPetSystem(int x, int y, int z, int ax, int ay, int az)
+-	s_LowLevelPetManager.Draw(x, y, z, ax, ay, az);
++POINT3D HoPetRenderPoint;
++bool HoLowLevelPet::Draw(int x, int y, int z, int angleX, int angleY, int angleZ)
++	static int mingwDrawTraceCount = 0;
++		if(mingwDrawTraceCount < 32)
++				"[DRAW] this=%p state=%d type=%d target=%p mesh=%p bone=%p frame=%d",
++			mingwDrawTraceCount++;
++				"[DRAW_REJECT_NULL] this=%p state=%d type=%d target=%p mesh=%p bone=%p",
++		smRender.ObjectVertexScale = 256 + 80;
++		m_PetMeshRes->RenderD3D(&cameraPos, &cameraAngle);
++		smRender.ObjectVertexScale = 0;
++			smRender.SetCameraPosi(x, y, z, angleX, angleY, angleZ);
++			HoPetRenderPoint.z = smRender.GetRect2D(m_CurrentPos.x, m_CurrentPos.y + (He >> 1), m_CurrentPos.z, 44 * fONE, He, &PetRendRect2D, &sPos);
++			HoPetRenderPoint.x = sPos.x;
++			HoPetRenderPoint.y = sPos.y;
++bool HoLowLevelPetManager::Draw(int x, int y, int z, int angleX, int angleY, int angleZ)
++			LowLevelPetList[i].Draw(x, y, z, angleX, angleY, angleZ);
++bool g_DrawPetSystem(int x, int y, int z, int ax, int ay, int az)
++	s_LowLevelPetManager.Draw(x, y, z, ax, ay, az);
+

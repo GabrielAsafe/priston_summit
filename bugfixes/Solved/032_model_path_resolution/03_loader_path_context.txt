@@ -1,0 +1,2707 @@
+================ SrcServer/src/HoBaram/HoEffect.cpp ================
+--- lines 3095-3119 ---
+  3095: 
+  3096: 	MaterialNum[index] = CreateTextureMaterial("Effect//ImageData//Particle//Red_KTJimsi.tga", 0, 0, 0, 0, SMMAT_BLEND_SHADOW);
+  3097: 	index++;
+  3098: 
+  3099: 
+  3100: 
+  3101: 	index = 0;
+  3102: 	char buffer[256];
+  3103: 	memset(buffer, 0, sizeof(buffer));
+  3104: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//GameStart//GameStart1.ini");
+  3105: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//GameStart//GameStart1.ini");
+  3106: 	smASE_SetPhysique(NULL);
+  3107: 	PatObj[index] = smASE_Read(buffer);
+  3108: 	PatObj[index]->ZeroNormals();
+  3109: 	PatObj[index]->smMaterialGroup->smMaterial[0].BlendType = SMMAT_BLEND_LAMP;
+  3110: 	index++;
+  3111: 
+  3112: 
+  3113: 	memset(buffer, 0, sizeof(buffer));
+  3114: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//GroundPike//GroundPike.ini");
+  3115: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//GroundPIke//GroundPike.ini");
+  3116: 	smASE_SetPhysique(NULL);
+  3117: 	PatObj[index] = smASE_Read(buffer);
+  3118: 	PatObj[index]->ZeroNormals();
+  3119: 
+
+--- lines 3105-3129 ---
+  3105: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//GameStart//GameStart1.ini");
+  3106: 	smASE_SetPhysique(NULL);
+  3107: 	PatObj[index] = smASE_Read(buffer);
+  3108: 	PatObj[index]->ZeroNormals();
+  3109: 	PatObj[index]->smMaterialGroup->smMaterial[0].BlendType = SMMAT_BLEND_LAMP;
+  3110: 	index++;
+  3111: 
+  3112: 
+  3113: 	memset(buffer, 0, sizeof(buffer));
+  3114: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//GroundPike//GroundPike.ini");
+  3115: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//GroundPIke//GroundPike.ini");
+  3116: 	smASE_SetPhysique(NULL);
+  3117: 	PatObj[index] = smASE_Read(buffer);
+  3118: 	PatObj[index]->ZeroNormals();
+  3119: 
+  3120: 	index++;
+  3121: 
+  3122: 
+  3123: 	memset(buffer, 0, sizeof(buffer));
+  3124: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//PhysicalAbsorb//PhysicalAbsorb.ini");
+  3125: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//PhysicalAbsorb//PhysicalAbsorb.ini");
+  3126: 	smASE_SetPhysique(NULL);
+  3127: 	PatObj[index] = smASE_Read(buffer);
+  3128: 	PatObj[index]->ZeroNormals();
+  3129: 	PatObj[index]->smMaterialGroup->smMaterial[0].BlendType = SMMAT_BLEND_LAMP;
+
+--- lines 3115-3139 ---
+  3115: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//GroundPIke//GroundPike.ini");
+  3116: 	smASE_SetPhysique(NULL);
+  3117: 	PatObj[index] = smASE_Read(buffer);
+  3118: 	PatObj[index]->ZeroNormals();
+  3119: 
+  3120: 	index++;
+  3121: 
+  3122: 
+  3123: 	memset(buffer, 0, sizeof(buffer));
+  3124: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//PhysicalAbsorb//PhysicalAbsorb.ini");
+  3125: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//PhysicalAbsorb//PhysicalAbsorb.ini");
+  3126: 	smASE_SetPhysique(NULL);
+  3127: 	PatObj[index] = smASE_Read(buffer);
+  3128: 	PatObj[index]->ZeroNormals();
+  3129: 	PatObj[index]->smMaterialGroup->smMaterial[0].BlendType = SMMAT_BLEND_LAMP;
+  3130: 	index++;
+  3131: 
+  3132: 
+  3133: 
+  3134: 	memset(buffer, 0, sizeof(buffer));
+  3135: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//PikeWind//bong.ini");
+  3136: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//PikeWind//bong.ini");
+  3137: 	smASE_SetPhysique(NULL);
+  3138: 	PatObj[index] = smASE_Read(buffer);
+  3139: 	PatObj[index]->ZeroNormals();
+
+--- lines 3126-3150 ---
+  3126: 	smASE_SetPhysique(NULL);
+  3127: 	PatObj[index] = smASE_Read(buffer);
+  3128: 	PatObj[index]->ZeroNormals();
+  3129: 	PatObj[index]->smMaterialGroup->smMaterial[0].BlendType = SMMAT_BLEND_LAMP;
+  3130: 	index++;
+  3131: 
+  3132: 
+  3133: 
+  3134: 	memset(buffer, 0, sizeof(buffer));
+  3135: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//PikeWind//bong.ini");
+  3136: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//PikeWind//bong.ini");
+  3137: 	smASE_SetPhysique(NULL);
+  3138: 	PatObj[index] = smASE_Read(buffer);
+  3139: 	PatObj[index]->ZeroNormals();
+  3140: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3141: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3142: 
+  3143: 	index++;
+  3144: 
+  3145: 
+  3146: 	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//ScoutHawk//Hawk-ani.ASE");
+  3147: 	smASE_SetPhysique(PatObj[index]);
+  3148: 	index++;
+  3149: 
+  3150: 	PatObj[index] = smASE_Read("Effect//ObjAnimationData//ScoutHawk//Hawk-ani.ASE", 0);
+
+--- lines 3134-3158 ---
+  3134: 	memset(buffer, 0, sizeof(buffer));
+  3135: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//PikeWind//bong.ini");
+  3136: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//PikeWind//bong.ini");
+  3137: 	smASE_SetPhysique(NULL);
+  3138: 	PatObj[index] = smASE_Read(buffer);
+  3139: 	PatObj[index]->ZeroNormals();
+  3140: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3141: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3142: 
+  3143: 	index++;
+  3144: 
+  3145: 
+  3146: 	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//ScoutHawk//Hawk-ani.ASE");
+  3147: 	smASE_SetPhysique(PatObj[index]);
+  3148: 	index++;
+  3149: 
+  3150: 	PatObj[index] = smASE_Read("Effect//ObjAnimationData//ScoutHawk//Hawk-ani.ASE", 0);
+  3151: 	PatObj[index]->ZeroNormals();
+  3152: 
+  3153: 	smASE_SetPhysique(0);
+  3154: 	PatAnimationEnd[index] = 120;
+  3155: 	index++;
+  3156: 
+  3157: 
+  3158: 	memset(buffer, 0, sizeof(buffer));
+
+--- lines 3138-3162 ---
+  3138: 	PatObj[index] = smASE_Read(buffer);
+  3139: 	PatObj[index]->ZeroNormals();
+  3140: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3141: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3142: 
+  3143: 	index++;
+  3144: 
+  3145: 
+  3146: 	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//ScoutHawk//Hawk-ani.ASE");
+  3147: 	smASE_SetPhysique(PatObj[index]);
+  3148: 	index++;
+  3149: 
+  3150: 	PatObj[index] = smASE_Read("Effect//ObjAnimationData//ScoutHawk//Hawk-ani.ASE", 0);
+  3151: 	PatObj[index]->ZeroNormals();
+  3152: 
+  3153: 	smASE_SetPhysique(0);
+  3154: 	PatAnimationEnd[index] = 120;
+  3155: 	index++;
+  3156: 
+  3157: 
+  3158: 	memset(buffer, 0, sizeof(buffer));
+  3159: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//WindArrow//WindArrow.ini");
+  3160: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//WindArrow//WindArrow.ini");
+  3161: 	smASE_SetPhysique(NULL);
+  3162: 	PatObj[index] = smASE_Read(buffer);
+
+--- lines 3150-3174 ---
+  3150: 	PatObj[index] = smASE_Read("Effect//ObjAnimationData//ScoutHawk//Hawk-ani.ASE", 0);
+  3151: 	PatObj[index]->ZeroNormals();
+  3152: 
+  3153: 	smASE_SetPhysique(0);
+  3154: 	PatAnimationEnd[index] = 120;
+  3155: 	index++;
+  3156: 
+  3157: 
+  3158: 	memset(buffer, 0, sizeof(buffer));
+  3159: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//WindArrow//WindArrow.ini");
+  3160: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//WindArrow//WindArrow.ini");
+  3161: 	smASE_SetPhysique(NULL);
+  3162: 	PatObj[index] = smASE_Read(buffer);
+  3163: 	PatObj[index]->ZeroNormals();
+  3164: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3165: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3166: 	index++;
+  3167: 
+  3168: 
+  3169: 	memset(buffer, 0, sizeof(buffer));
+  3170: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//ArrowRage//ArrowRage.ini");
+  3171: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//ArrowRage//ArrowRage.ini");
+  3172: 	smASE_SetPhysique(NULL);
+  3173: 	PatObj[index] = smASE_Read(buffer);
+  3174: 	PatObj[index]->ZeroNormals();
+
+--- lines 3161-3185 ---
+  3161: 	smASE_SetPhysique(NULL);
+  3162: 	PatObj[index] = smASE_Read(buffer);
+  3163: 	PatObj[index]->ZeroNormals();
+  3164: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3165: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3166: 	index++;
+  3167: 
+  3168: 
+  3169: 	memset(buffer, 0, sizeof(buffer));
+  3170: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//ArrowRage//ArrowRage.ini");
+  3171: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//ArrowRage//ArrowRage.ini");
+  3172: 	smASE_SetPhysique(NULL);
+  3173: 	PatObj[index] = smASE_Read(buffer);
+  3174: 	PatObj[index]->ZeroNormals();
+  3175: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3176: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3177: 	index++;
+  3178: 
+  3179: 
+  3180: 	memset(buffer, 0, sizeof(buffer));
+  3181: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//test//test.ini");
+  3182: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//test//test.ini");
+  3183: 	smASE_SetPhysique(NULL);
+  3184: 	PatObj[index] = smASE_Read(buffer);
+  3185: 	PatObj[index]->ZeroNormals();
+
+--- lines 3172-3196 ---
+  3172: 	smASE_SetPhysique(NULL);
+  3173: 	PatObj[index] = smASE_Read(buffer);
+  3174: 	PatObj[index]->ZeroNormals();
+  3175: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3176: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3177: 	index++;
+  3178: 
+  3179: 
+  3180: 	memset(buffer, 0, sizeof(buffer));
+  3181: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//test//test.ini");
+  3182: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//test//test.ini");
+  3183: 	smASE_SetPhysique(NULL);
+  3184: 	PatObj[index] = smASE_Read(buffer);
+  3185: 	PatObj[index]->ZeroNormals();
+  3186: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3187: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3188: 	index++;
+  3189: 
+  3190: 
+  3191: 
+  3192: 	memset(buffer, 0, sizeof(buffer));
+  3193: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MechanicBomb//MechanicBomb.ini");
+  3194: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MechanicBomb//MechanicBomb.ini");
+  3195: 	smASE_SetPhysique(NULL);
+  3196: 	PatObj[index] = smASE_Read(buffer);
+
+--- lines 3184-3208 ---
+  3184: 	PatObj[index] = smASE_Read(buffer);
+  3185: 	PatObj[index]->ZeroNormals();
+  3186: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3187: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3188: 	index++;
+  3189: 
+  3190: 
+  3191: 
+  3192: 	memset(buffer, 0, sizeof(buffer));
+  3193: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MechanicBomb//MechanicBomb.ini");
+  3194: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MechanicBomb//MechanicBomb.ini");
+  3195: 	smASE_SetPhysique(NULL);
+  3196: 	PatObj[index] = smASE_Read(buffer);
+  3197: 	PatObj[index]->ZeroNormals();
+  3198: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3199: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3200: 	index++;
+  3201: 
+  3202: 
+  3203: 	memset(buffer, 0, sizeof(buffer));
+  3204: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Roar//Roar.ini");
+  3205: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Roar//Roar.ini");
+  3206: 	smASE_SetPhysique(NULL);
+  3207: 	PatObj[index] = smASE_Read(buffer);
+  3208: 	PatObj[index]->ZeroNormals();
+
+--- lines 3195-3219 ---
+  3195: 	smASE_SetPhysique(NULL);
+  3196: 	PatObj[index] = smASE_Read(buffer);
+  3197: 	PatObj[index]->ZeroNormals();
+  3198: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3199: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3200: 	index++;
+  3201: 
+  3202: 
+  3203: 	memset(buffer, 0, sizeof(buffer));
+  3204: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Roar//Roar.ini");
+  3205: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Roar//Roar.ini");
+  3206: 	smASE_SetPhysique(NULL);
+  3207: 	PatObj[index] = smASE_Read(buffer);
+  3208: 	PatObj[index]->ZeroNormals();
+  3209: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3210: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3211: 	index++;
+  3212: 
+  3213: 
+  3214: 	memset(buffer, 0, sizeof(buffer));
+  3215: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterWeb//WebShot.ini");
+  3216: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterWeb//WebShot.ini");
+  3217: 	smASE_SetPhysique(NULL);
+  3218: 	PatObj[index] = smASE_Read(buffer);
+  3219: 	PatObj[index]->ZeroNormals();
+
+--- lines 3206-3230 ---
+  3206: 	smASE_SetPhysique(NULL);
+  3207: 	PatObj[index] = smASE_Read(buffer);
+  3208: 	PatObj[index]->ZeroNormals();
+  3209: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3210: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3211: 	index++;
+  3212: 
+  3213: 
+  3214: 	memset(buffer, 0, sizeof(buffer));
+  3215: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterWeb//WebShot.ini");
+  3216: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterWeb//WebShot.ini");
+  3217: 	smASE_SetPhysique(NULL);
+  3218: 	PatObj[index] = smASE_Read(buffer);
+  3219: 	PatObj[index]->ZeroNormals();
+  3220: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3221: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3222: 	index++;
+  3223: 
+  3224: 
+  3225: 	memset(buffer, 0, sizeof(buffer));
+  3226: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterWeb//WebHit.ini");
+  3227: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterWeb//WebHit.ini");
+  3228: 	smASE_SetPhysique(NULL);
+  3229: 	PatObj[index] = smASE_Read(buffer);
+  3230: 	PatObj[index]->ZeroNormals();
+
+--- lines 3217-3241 ---
+  3217: 	smASE_SetPhysique(NULL);
+  3218: 	PatObj[index] = smASE_Read(buffer);
+  3219: 	PatObj[index]->ZeroNormals();
+  3220: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3221: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3222: 	index++;
+  3223: 
+  3224: 
+  3225: 	memset(buffer, 0, sizeof(buffer));
+  3226: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterWeb//WebHit.ini");
+  3227: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterWeb//WebHit.ini");
+  3228: 	smASE_SetPhysique(NULL);
+  3229: 	PatObj[index] = smASE_Read(buffer);
+  3230: 	PatObj[index]->ZeroNormals();
+  3231: 
+  3232: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3233: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3234: 	index++;
+  3235: 
+  3236: 
+  3237: 	memset(buffer, 0, sizeof(buffer));
+  3238: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Avalanche//avalanche.ini");
+  3239: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Avalanche//avalanche.ini");
+  3240: 	smASE_SetPhysique(NULL);
+  3241: 	PatObj[index] = smASE_Read(buffer);
+
+--- lines 3229-3253 ---
+  3229: 	PatObj[index] = smASE_Read(buffer);
+  3230: 	PatObj[index]->ZeroNormals();
+  3231: 
+  3232: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3233: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3234: 	index++;
+  3235: 
+  3236: 
+  3237: 	memset(buffer, 0, sizeof(buffer));
+  3238: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Avalanche//avalanche.ini");
+  3239: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Avalanche//avalanche.ini");
+  3240: 	smASE_SetPhysique(NULL);
+  3241: 	PatObj[index] = smASE_Read(buffer);
+  3242: 	PatObj[index]->ZeroNormals();
+  3243: 
+  3244: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3245: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3246: 	index++;
+  3247: 
+  3248: 
+  3249: 
+  3250: 	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//Falcon//FalconAni.ase");
+  3251: 	smASE_SetPhysique(PatObj[index]);
+  3252: 	index++;
+  3253: 
+
+--- lines 3238-3262 ---
+  3238: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Avalanche//avalanche.ini");
+  3239: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Avalanche//avalanche.ini");
+  3240: 	smASE_SetPhysique(NULL);
+  3241: 	PatObj[index] = smASE_Read(buffer);
+  3242: 	PatObj[index]->ZeroNormals();
+  3243: 
+  3244: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3245: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3246: 	index++;
+  3247: 
+  3248: 
+  3249: 
+  3250: 	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//Falcon//FalconAni.ase");
+  3251: 	smASE_SetPhysique(PatObj[index]);
+  3252: 	index++;
+  3253: 
+  3254: 	PatObj[index] = smASE_Read("Effect//ObjAnimationData//Falcon//FalconAni.ase", 0);
+  3255: 	PatObj[index]->ZeroNormals();
+  3256: 	smASE_SetPhysique(0);
+  3257: 	PatAnimationEnd[index] = 210;
+  3258: 
+  3259: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3260: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3261: 
+  3262: 	index++;
+
+--- lines 3242-3266 ---
+  3242: 	PatObj[index]->ZeroNormals();
+  3243: 
+  3244: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3245: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3246: 	index++;
+  3247: 
+  3248: 
+  3249: 
+  3250: 	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//Falcon//FalconAni.ase");
+  3251: 	smASE_SetPhysique(PatObj[index]);
+  3252: 	index++;
+  3253: 
+  3254: 	PatObj[index] = smASE_Read("Effect//ObjAnimationData//Falcon//FalconAni.ase", 0);
+  3255: 	PatObj[index]->ZeroNormals();
+  3256: 	smASE_SetPhysique(0);
+  3257: 	PatAnimationEnd[index] = 210;
+  3258: 
+  3259: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3260: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3261: 
+  3262: 	index++;
+  3263: 
+  3264: 
+  3265: 	memset(buffer, 0, sizeof(buffer));
+  3266: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//BrutalSwing//BrutalSwing1.ini");
+
+--- lines 3257-3281 ---
+  3257: 	PatAnimationEnd[index] = 210;
+  3258: 
+  3259: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3260: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3261: 
+  3262: 	index++;
+  3263: 
+  3264: 
+  3265: 	memset(buffer, 0, sizeof(buffer));
+  3266: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//BrutalSwing//BrutalSwing1.ini");
+  3267: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//BrutalSwing//BrutalSwing1.ini");
+  3268: 	smASE_SetPhysique(NULL);
+  3269: 	PatObj[index] = smASE_Read(buffer);
+  3270: 	PatObj[index]->ZeroNormals();
+  3271: 
+  3272: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3273: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3274: 	index++;
+  3275: 
+  3276: 
+  3277: 	memset(buffer, 0, sizeof(buffer));
+  3278: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//BrutalSwing//BrutalSwing2.ini");
+  3279: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//BrutalSwing//BrutalSwing2.ini");
+  3280: 	smASE_SetPhysique(NULL);
+  3281: 	PatObj[index] = smASE_Read(buffer);
+
+--- lines 3269-3293 ---
+  3269: 	PatObj[index] = smASE_Read(buffer);
+  3270: 	PatObj[index]->ZeroNormals();
+  3271: 
+  3272: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3273: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3274: 	index++;
+  3275: 
+  3276: 
+  3277: 	memset(buffer, 0, sizeof(buffer));
+  3278: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//BrutalSwing//BrutalSwing2.ini");
+  3279: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//BrutalSwing//BrutalSwing2.ini");
+  3280: 	smASE_SetPhysique(NULL);
+  3281: 	PatObj[index] = smASE_Read(buffer);
+  3282: 	PatObj[index]->ZeroNormals();
+  3283: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3284: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3285: 
+  3286: 	index++;
+  3287: 
+  3288: 
+  3289: 	memset(buffer, 0, sizeof(buffer));
+  3290: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterHeadCutter//HeadCutterHit1.ini");
+  3291: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterHeadCutter//HeadCutterHit1.ini");
+  3292: 	smASE_SetPhysique(NULL);
+  3293: 	PatObj[index] = smASE_Read(buffer);
+
+--- lines 3281-3305 ---
+  3281: 	PatObj[index] = smASE_Read(buffer);
+  3282: 	PatObj[index]->ZeroNormals();
+  3283: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3284: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3285: 
+  3286: 	index++;
+  3287: 
+  3288: 
+  3289: 	memset(buffer, 0, sizeof(buffer));
+  3290: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterHeadCutter//HeadCutterHit1.ini");
+  3291: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterHeadCutter//HeadCutterHit1.ini");
+  3292: 	smASE_SetPhysique(NULL);
+  3293: 	PatObj[index] = smASE_Read(buffer);
+  3294: 	PatObj[index]->ZeroNormals();
+  3295: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3296: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3297: 	index++;
+  3298: 
+  3299: 
+  3300: 
+  3301: 	index++;
+  3302: 	index++;
+  3303: 
+  3304: 
+  3305: 	memset(buffer, 0, sizeof(buffer));
+
+--- lines 3297-3321 ---
+  3297: 	index++;
+  3298: 
+  3299: 
+  3300: 
+  3301: 	index++;
+  3302: 	index++;
+  3303: 
+  3304: 
+  3305: 	memset(buffer, 0, sizeof(buffer));
+  3306: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//MonsterHeadCutter//HeadCutterHit2.ini");
+  3307: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//MonsterHeadCutter//HeadCutterHit2.ini");
+  3308: 	smASE_SetPhysique(NULL);
+  3309: 	PatObj[index] = smASE_Read(buffer);
+  3310: 	PatObj[index]->ZeroNormals();
+  3311: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3312: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3313: 	index++;
+  3314: 
+  3315: 
+  3316: 
+  3317: 
+  3318: 	memset(buffer, 0, sizeof(buffer));
+  3319: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//OmiCron//omicronHit1.ini");
+  3320: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//OmiCron//omicronHit1.ini");
+  3321: 	smASE_SetPhysique(NULL);
+
+--- lines 3310-3334 ---
+  3310: 	PatObj[index]->ZeroNormals();
+  3311: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3312: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+  3313: 	index++;
+  3314: 
+  3315: 
+  3316: 
+  3317: 
+  3318: 	memset(buffer, 0, sizeof(buffer));
+  3319: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//OmiCron//omicronHit1.ini");
+  3320: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//OmiCron//omicronHit1.ini");
+  3321: 	smASE_SetPhysique(NULL);
+  3322: 	PatObj[index] = smASE_Read(buffer);
+  3323: 	PatObj[index]->ZeroNormals();
+  3324: 	index++;
+  3325: 
+  3326: 
+  3327: 	memset(buffer, 0, sizeof(buffer));
+  3328: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Stygianlord//StygianlordShot1.ini");
+  3329: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Stygianlord//StygianlordShot1.ini");
+  3330: 	smASE_SetPhysique(NULL);
+  3331: 	PatObj[index] = smASE_Read(buffer);
+  3332: 	PatObj[index]->ZeroNormals();
+  3333: 	index++;
+  3334: 
+
+--- lines 3319-3343 ---
+  3319: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//OmiCron//omicronHit1.ini");
+  3320: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//OmiCron//omicronHit1.ini");
+  3321: 	smASE_SetPhysique(NULL);
+  3322: 	PatObj[index] = smASE_Read(buffer);
+  3323: 	PatObj[index]->ZeroNormals();
+  3324: 	index++;
+  3325: 
+  3326: 
+  3327: 	memset(buffer, 0, sizeof(buffer));
+  3328: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Stygianlord//StygianlordShot1.ini");
+  3329: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Stygianlord//StygianlordShot1.ini");
+  3330: 	smASE_SetPhysique(NULL);
+  3331: 	PatObj[index] = smASE_Read(buffer);
+  3332: 	PatObj[index]->ZeroNormals();
+  3333: 	index++;
+  3334: 
+  3335: 
+  3336: 
+  3337: 	memset(buffer, 0, sizeof(buffer));
+  3338: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Shadow//ShadowShot1.ini");
+  3339: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Shadow//ShadowShot1.ini");
+  3340: 	smASE_SetPhysique(NULL);
+  3341: 	PatObj[index] = smASE_Read(buffer);
+  3342: 	PatObj[index]->ZeroNormals();
+  3343: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+
+--- lines 3329-3353 ---
+  3329: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Stygianlord//StygianlordShot1.ini");
+  3330: 	smASE_SetPhysique(NULL);
+  3331: 	PatObj[index] = smASE_Read(buffer);
+  3332: 	PatObj[index]->ZeroNormals();
+  3333: 	index++;
+  3334: 
+  3335: 
+  3336: 
+  3337: 	memset(buffer, 0, sizeof(buffer));
+  3338: 	GetPrivateProfileString("3DANIMATION", "DataName", NULL, buffer, sizeof(buffer), "Effect//ObjAnimationData//Shadow//ShadowShot1.ini");
+  3339: 	PatAnimationEnd[index] = GetPrivateProfileInt("3DANIMATION", "AnimationEnd", 0, "Effect//ObjAnimationData//Shadow//ShadowShot1.ini");
+  3340: 	smASE_SetPhysique(NULL);
+  3341: 	PatObj[index] = smASE_Read(buffer);
+  3342: 	PatObj[index]->ZeroNormals();
+  3343: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3344: 	{
+  3345: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_SHADOW;
+  3346: 		PatObj[index]->smMaterialGroup->smMaterial[i].SelfIllum = TRUE;
+  3347: 	}
+  3348: 	index++;
+  3349: 
+  3350: 
+  3351: 
+  3352: 	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//Falcon//FalconAni.ase");
+  3353: 	smASE_SetPhysique(PatObj[index]);
+
+--- lines 3340-3364 ---
+  3340: 	smASE_SetPhysique(NULL);
+  3341: 	PatObj[index] = smASE_Read(buffer);
+  3342: 	PatObj[index]->ZeroNormals();
+  3343: 	for(int i = 0; i< int(PatObj[index]->smMaterialGroup->MaterialCount); i++)
+  3344: 	{
+  3345: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_SHADOW;
+  3346: 		PatObj[index]->smMaterialGroup->smMaterial[i].SelfIllum = TRUE;
+  3347: 	}
+  3348: 	index++;
+  3349: 
+  3350: 
+  3351: 
+  3352: 	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//Falcon//FalconAni.ase");
+  3353: 	smASE_SetPhysique(PatObj[index]);
+  3354: 	index++;
+  3355: 
+  3356: 	PatObj[index] = smASE_Read("Effect//ObjAnimationData//GoldenFalcon//g-falcon01.ASE", 0);
+  3357: 	PatObj[index]->ZeroNormals();
+  3358: 
+  3359: 	smASE_SetPhysique(0);
+  3360: 	PatAnimationEnd[index] = 120;
+  3361: 
+  3362: 	smASE_SetPhysique(NULL);
+  3363: 	PatMissile = smASE_Read("Effect//ObjAnimationData//Missile//Mis.ase");
+  3364: 	PatMissile->ZeroNormals();
+
+--- lines 3344-3368 ---
+  3344: 	{
+  3345: 		PatObj[index]->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_SHADOW;
+  3346: 		PatObj[index]->smMaterialGroup->smMaterial[i].SelfIllum = TRUE;
+  3347: 	}
+  3348: 	index++;
+  3349: 
+  3350: 
+  3351: 
+  3352: 	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//Falcon//FalconAni.ase");
+  3353: 	smASE_SetPhysique(PatObj[index]);
+  3354: 	index++;
+  3355: 
+  3356: 	PatObj[index] = smASE_Read("Effect//ObjAnimationData//GoldenFalcon//g-falcon01.ASE", 0);
+  3357: 	PatObj[index]->ZeroNormals();
+  3358: 
+  3359: 	smASE_SetPhysique(0);
+  3360: 	PatAnimationEnd[index] = 120;
+  3361: 
+  3362: 	smASE_SetPhysique(NULL);
+  3363: 	PatMissile = smASE_Read("Effect//ObjAnimationData//Missile//Mis.ase");
+  3364: 	PatMissile->ZeroNormals();
+  3365: 
+  3366: 	ReadTextures();
+  3367: }
+  3368: 
+
+--- lines 3351-3375 ---
+  3351: 
+  3352: 	PatObj[index] = smASE_ReadBone("Effect//ObjAnimationData//Falcon//FalconAni.ase");
+  3353: 	smASE_SetPhysique(PatObj[index]);
+  3354: 	index++;
+  3355: 
+  3356: 	PatObj[index] = smASE_Read("Effect//ObjAnimationData//GoldenFalcon//g-falcon01.ASE", 0);
+  3357: 	PatObj[index]->ZeroNormals();
+  3358: 
+  3359: 	smASE_SetPhysique(0);
+  3360: 	PatAnimationEnd[index] = 120;
+  3361: 
+  3362: 	smASE_SetPhysique(NULL);
+  3363: 	PatMissile = smASE_Read("Effect//ObjAnimationData//Missile//Mis.ase");
+  3364: 	PatMissile->ZeroNormals();
+  3365: 
+  3366: 	ReadTextures();
+  3367: }
+  3368: 
+  3369: int HoEffectMgr::EmptyObjectBufferIndex()
+  3370: {
+  3371: 	for(int index = 0; index < MAX_EFFECTOBJECT_BUFFER; index++)
+  3372: 	{
+  3373: 		if(EffectObjectBuffer[index] == NULL)
+  3374: 			return index;
+  3375: 	}
+
+================ SrcServer/src/HoBaram/HoSky.cpp ================
+--- lines 8-32 ---
+     8: HoSky SkyBackGround;
+     9: 
+    10: 
+    11: 
+    12: void HoSkyDrawInfo::LoadRes()
+    13: {
+    14: 	for(unsigned index = 0; index < SkyResInfoList.size(); index++)
+    15: 	{
+    16: 		if(SkyResInfoList[index].stageSky == NULL)
+    17: 		{
+    18: 			char buffer[256];
+    19: 			strcpy(buffer, SkyResInfoList[index].resName.c_str());
+    20: 			smPAT3D *stageSky = smASE_Read(buffer);
+    21: 			if(stageSky)
+    22: 			{
+    23: 				stageSky->ZeroNormals();
+    24: 				for(int i = 0; i < stageSky->nObj3d; i++)
+    25: 				{
+    26: 					if(ClippingFlag)
+    27: 						stageSky->obj3d[i]->ClipStates = (SMCLIP_NEARZ | SMCLIP_LEFT | SMCLIP_RIGHT | SMCLIP_TOP | SMCLIP_BOTTOM);
+    28: 					else
+    29: 						stageSky->obj3d[i]->ClipStates = SMCLIP_NEARZ | SMCLIP_TOP;
+    30: 
+    31: 
+    32: 					stageSky->obj3d[i]->ColorEffect = FALSE;
+
+================ SrcServer/src/HoBaram/LowLevelPetSystem.cpp ================
+--- lines 695-719 ---
+   695: {
+   696: 	Destroy();
+   697: }
+   698: 
+   699: 
+   700: 
+   701: 
+   702: 
+   703: 
+   704: bool HoLowLevelPetManager::Create()
+   705: {
+   706: 	Destroy();
+   707: 	m_Bone = smASE_ReadBone("Effect//LowLevelPet//Pet_motion.ASE");
+   708: 	smASE_SetPhysique(m_Bone);
+   709: 
+   710: 	m_MeshTerry = smASE_Read("Effect//LowLevelPet//Pet_terry.ASE", 0);
+   711: 	m_MeshNepsys = smASE_Read("Effect//LowLevelPet//Pet_nepsys.ASE", 0);
+   712: 	m_MeshIo = smASE_Read("Effect//LowLevelPet//Pet_io.ASE", 0);
+   713: 	m_MeshMute = smASE_Read("Effect//LowLevelPet//Pet_mute.ASE", 0);
+   714: 
+   715: 	return true;
+   716: }
+   717: 
+   718: 
+   719: bool HoLowLevelPetManager::Destroy()
+
+--- lines 698-722 ---
+   698: 
+   699: 
+   700: 
+   701: 
+   702: 
+   703: 
+   704: bool HoLowLevelPetManager::Create()
+   705: {
+   706: 	Destroy();
+   707: 	m_Bone = smASE_ReadBone("Effect//LowLevelPet//Pet_motion.ASE");
+   708: 	smASE_SetPhysique(m_Bone);
+   709: 
+   710: 	m_MeshTerry = smASE_Read("Effect//LowLevelPet//Pet_terry.ASE", 0);
+   711: 	m_MeshNepsys = smASE_Read("Effect//LowLevelPet//Pet_nepsys.ASE", 0);
+   712: 	m_MeshIo = smASE_Read("Effect//LowLevelPet//Pet_io.ASE", 0);
+   713: 	m_MeshMute = smASE_Read("Effect//LowLevelPet//Pet_mute.ASE", 0);
+   714: 
+   715: 	return true;
+   716: }
+   717: 
+   718: 
+   719: bool HoLowLevelPetManager::Destroy()
+   720: {
+   721: 	if(m_Bone != NULL)
+   722: 	{
+
+--- lines 699-723 ---
+   699: 
+   700: 
+   701: 
+   702: 
+   703: 
+   704: bool HoLowLevelPetManager::Create()
+   705: {
+   706: 	Destroy();
+   707: 	m_Bone = smASE_ReadBone("Effect//LowLevelPet//Pet_motion.ASE");
+   708: 	smASE_SetPhysique(m_Bone);
+   709: 
+   710: 	m_MeshTerry = smASE_Read("Effect//LowLevelPet//Pet_terry.ASE", 0);
+   711: 	m_MeshNepsys = smASE_Read("Effect//LowLevelPet//Pet_nepsys.ASE", 0);
+   712: 	m_MeshIo = smASE_Read("Effect//LowLevelPet//Pet_io.ASE", 0);
+   713: 	m_MeshMute = smASE_Read("Effect//LowLevelPet//Pet_mute.ASE", 0);
+   714: 
+   715: 	return true;
+   716: }
+   717: 
+   718: 
+   719: bool HoLowLevelPetManager::Destroy()
+   720: {
+   721: 	if(m_Bone != NULL)
+   722: 	{
+   723: 		if(m_MeshTerry)
+
+--- lines 700-724 ---
+   700: 
+   701: 
+   702: 
+   703: 
+   704: bool HoLowLevelPetManager::Create()
+   705: {
+   706: 	Destroy();
+   707: 	m_Bone = smASE_ReadBone("Effect//LowLevelPet//Pet_motion.ASE");
+   708: 	smASE_SetPhysique(m_Bone);
+   709: 
+   710: 	m_MeshTerry = smASE_Read("Effect//LowLevelPet//Pet_terry.ASE", 0);
+   711: 	m_MeshNepsys = smASE_Read("Effect//LowLevelPet//Pet_nepsys.ASE", 0);
+   712: 	m_MeshIo = smASE_Read("Effect//LowLevelPet//Pet_io.ASE", 0);
+   713: 	m_MeshMute = smASE_Read("Effect//LowLevelPet//Pet_mute.ASE", 0);
+   714: 
+   715: 	return true;
+   716: }
+   717: 
+   718: 
+   719: bool HoLowLevelPetManager::Destroy()
+   720: {
+   721: 	if(m_Bone != NULL)
+   722: 	{
+   723: 		if(m_MeshTerry)
+   724: 		{
+
+--- lines 701-725 ---
+   701: 
+   702: 
+   703: 
+   704: bool HoLowLevelPetManager::Create()
+   705: {
+   706: 	Destroy();
+   707: 	m_Bone = smASE_ReadBone("Effect//LowLevelPet//Pet_motion.ASE");
+   708: 	smASE_SetPhysique(m_Bone);
+   709: 
+   710: 	m_MeshTerry = smASE_Read("Effect//LowLevelPet//Pet_terry.ASE", 0);
+   711: 	m_MeshNepsys = smASE_Read("Effect//LowLevelPet//Pet_nepsys.ASE", 0);
+   712: 	m_MeshIo = smASE_Read("Effect//LowLevelPet//Pet_io.ASE", 0);
+   713: 	m_MeshMute = smASE_Read("Effect//LowLevelPet//Pet_mute.ASE", 0);
+   714: 
+   715: 	return true;
+   716: }
+   717: 
+   718: 
+   719: bool HoLowLevelPetManager::Destroy()
+   720: {
+   721: 	if(m_Bone != NULL)
+   722: 	{
+   723: 		if(m_MeshTerry)
+   724: 		{
+   725: 			delete m_MeshTerry;
+
+================ SrcServer/src/HoBaram/NewEffect/HoEffectResMgr.cpp ================
+--- lines 40-64 ---
+    40:     {
+    41:         delete m_Bone;
+    42:         m_Bone = NULL;
+    43:     }
+    44: }
+    45: 
+    46: bool HoEffectResMesh::LoadingRes(const std::string &meshName)
+    47: {
+    48:     char tempBuffer[128];
+    49:     strcpy(tempBuffer, meshName.c_str());
+    50: 
+    51:     smASE_SetPhysique(NULL);
+    52:     m_Mesh = smASE_Read(tempBuffer);
+    53:     if(m_Mesh == NULL)
+    54:         return false;
+    55: 
+    56:     m_Mesh->ZeroNormals();
+    57:     m_Mesh->smMaterialGroup->ReadTextures();
+    58: 
+    59:     if(m_Mesh->smMaterialGroup)
+    60:     {
+    61:         int matCount = m_Mesh->smMaterialGroup->MaterialCount;
+    62:         for(int i = 0; i < matCount; i++)
+    63:         {
+    64:             m_Mesh->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+
+--- lines 80-104 ---
+    80: 	if(m_Bone == NULL)
+    81: 		return NULL;
+    82: 
+    83: 	return m_Bone;
+    84: }
+    85: 
+    86: bool HoEffectResMesh::LoadingRes(const std::string &meshName, const std::string &boneName)
+    87: {
+    88:     char tempBuffer1[128];
+    89:     char tempBuffer2[128];
+    90:     strcpy(tempBuffer1, meshName.c_str());
+    91:     strcpy(tempBuffer2, boneName.c_str());
+    92:     m_Bone = smASE_ReadBone(tempBuffer1);
+    93: 	smASE_SetPhysique(m_Bone);
+    94: 
+    95:     m_Mesh = smASE_Read(tempBuffer1);
+    96:     m_Mesh->ZeroNormals();
+    97:     m_Mesh->smMaterialGroup->ReadTextures();
+    98: 
+    99:     if(m_Mesh->smMaterialGroup)
+   100:     {
+   101:         int matCount = m_Mesh->smMaterialGroup->MaterialCount;
+   102:         for(int i = 0; i < matCount; i++)
+   103:         {
+   104:             m_Mesh->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+
+--- lines 83-107 ---
+    83: 	return m_Bone;
+    84: }
+    85: 
+    86: bool HoEffectResMesh::LoadingRes(const std::string &meshName, const std::string &boneName)
+    87: {
+    88:     char tempBuffer1[128];
+    89:     char tempBuffer2[128];
+    90:     strcpy(tempBuffer1, meshName.c_str());
+    91:     strcpy(tempBuffer2, boneName.c_str());
+    92:     m_Bone = smASE_ReadBone(tempBuffer1);
+    93: 	smASE_SetPhysique(m_Bone);
+    94: 
+    95:     m_Mesh = smASE_Read(tempBuffer1);
+    96:     m_Mesh->ZeroNormals();
+    97:     m_Mesh->smMaterialGroup->ReadTextures();
+    98: 
+    99:     if(m_Mesh->smMaterialGroup)
+   100:     {
+   101:         int matCount = m_Mesh->smMaterialGroup->MaterialCount;
+   102:         for(int i = 0; i < matCount; i++)
+   103:         {
+   104:             m_Mesh->smMaterialGroup->smMaterial[i].BlendType = SMMAT_BLEND_LAMP;
+   105:         }
+   106:     }
+   107: 
+
+================ SrcServer/src/HoBaram/PCBangPetSystem.cpp ================
+--- lines 730-754 ---
+   730: {
+   731: 	Destroy();
+   732: }
+   733: 
+   734: 
+   735: 
+   736: 
+   737: 
+   738: 
+   739: bool HoPCBangPetManager::Create()
+   740: {
+   741: 	Destroy();
+   742: 	m_BoneBurstP = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   743: 	smASE_SetPhysique(m_BoneBurstP);
+   744: 	m_BoneBurstS = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   745: 	smASE_SetPhysique(m_BoneBurstS);
+   746: 	m_BoneBurstL = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   747: 	smASE_SetPhysique(m_BoneBurstL);
+   748: 	m_BoneBurstD = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   749: 	smASE_SetPhysique(m_BoneBurstD);
+   750: 
+   751: 
+   752: 	m_MeshBurstP = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   753: 	m_MeshBurstS = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   754: 	m_MeshBurstL = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+
+--- lines 732-756 ---
+   732: }
+   733: 
+   734: 
+   735: 
+   736: 
+   737: 
+   738: 
+   739: bool HoPCBangPetManager::Create()
+   740: {
+   741: 	Destroy();
+   742: 	m_BoneBurstP = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   743: 	smASE_SetPhysique(m_BoneBurstP);
+   744: 	m_BoneBurstS = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   745: 	smASE_SetPhysique(m_BoneBurstS);
+   746: 	m_BoneBurstL = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   747: 	smASE_SetPhysique(m_BoneBurstL);
+   748: 	m_BoneBurstD = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   749: 	smASE_SetPhysique(m_BoneBurstD);
+   750: 
+   751: 
+   752: 	m_MeshBurstP = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   753: 	m_MeshBurstS = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   754: 	m_MeshBurstL = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   755: 	m_MeshBurstD = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   756: 
+
+--- lines 734-758 ---
+   734: 
+   735: 
+   736: 
+   737: 
+   738: 
+   739: bool HoPCBangPetManager::Create()
+   740: {
+   741: 	Destroy();
+   742: 	m_BoneBurstP = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   743: 	smASE_SetPhysique(m_BoneBurstP);
+   744: 	m_BoneBurstS = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   745: 	smASE_SetPhysique(m_BoneBurstS);
+   746: 	m_BoneBurstL = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   747: 	smASE_SetPhysique(m_BoneBurstL);
+   748: 	m_BoneBurstD = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   749: 	smASE_SetPhysique(m_BoneBurstD);
+   750: 
+   751: 
+   752: 	m_MeshBurstP = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   753: 	m_MeshBurstS = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   754: 	m_MeshBurstL = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   755: 	m_MeshBurstD = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   756: 
+   757: 	return true;
+   758: }
+
+--- lines 736-760 ---
+   736: 
+   737: 
+   738: 
+   739: bool HoPCBangPetManager::Create()
+   740: {
+   741: 	Destroy();
+   742: 	m_BoneBurstP = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   743: 	smASE_SetPhysique(m_BoneBurstP);
+   744: 	m_BoneBurstS = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   745: 	smASE_SetPhysique(m_BoneBurstS);
+   746: 	m_BoneBurstL = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   747: 	smASE_SetPhysique(m_BoneBurstL);
+   748: 	m_BoneBurstD = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   749: 	smASE_SetPhysique(m_BoneBurstD);
+   750: 
+   751: 
+   752: 	m_MeshBurstP = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   753: 	m_MeshBurstS = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   754: 	m_MeshBurstL = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   755: 	m_MeshBurstD = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   756: 
+   757: 	return true;
+   758: }
+   759: 
+   760: 
+
+--- lines 740-764 ---
+   740: {
+   741: 	Destroy();
+   742: 	m_BoneBurstP = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   743: 	smASE_SetPhysique(m_BoneBurstP);
+   744: 	m_BoneBurstS = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   745: 	smASE_SetPhysique(m_BoneBurstS);
+   746: 	m_BoneBurstL = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   747: 	smASE_SetPhysique(m_BoneBurstL);
+   748: 	m_BoneBurstD = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   749: 	smASE_SetPhysique(m_BoneBurstD);
+   750: 
+   751: 
+   752: 	m_MeshBurstP = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   753: 	m_MeshBurstS = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   754: 	m_MeshBurstL = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   755: 	m_MeshBurstD = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   756: 
+   757: 	return true;
+   758: }
+   759: 
+   760: 
+   761: bool HoPCBangPetManager::Destroy()
+   762: {
+   763: 	if(m_BoneBurstP != NULL)
+   764: 	{
+
+--- lines 741-765 ---
+   741: 	Destroy();
+   742: 	m_BoneBurstP = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   743: 	smASE_SetPhysique(m_BoneBurstP);
+   744: 	m_BoneBurstS = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   745: 	smASE_SetPhysique(m_BoneBurstS);
+   746: 	m_BoneBurstL = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   747: 	smASE_SetPhysique(m_BoneBurstL);
+   748: 	m_BoneBurstD = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   749: 	smASE_SetPhysique(m_BoneBurstD);
+   750: 
+   751: 
+   752: 	m_MeshBurstP = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   753: 	m_MeshBurstS = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   754: 	m_MeshBurstL = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   755: 	m_MeshBurstD = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   756: 
+   757: 	return true;
+   758: }
+   759: 
+   760: 
+   761: bool HoPCBangPetManager::Destroy()
+   762: {
+   763: 	if(m_BoneBurstP != NULL)
+   764: 	{
+   765: 		if(m_MeshBurstP)
+
+--- lines 742-766 ---
+   742: 	m_BoneBurstP = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   743: 	smASE_SetPhysique(m_BoneBurstP);
+   744: 	m_BoneBurstS = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   745: 	smASE_SetPhysique(m_BoneBurstS);
+   746: 	m_BoneBurstL = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   747: 	smASE_SetPhysique(m_BoneBurstL);
+   748: 	m_BoneBurstD = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   749: 	smASE_SetPhysique(m_BoneBurstD);
+   750: 
+   751: 
+   752: 	m_MeshBurstP = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   753: 	m_MeshBurstS = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   754: 	m_MeshBurstL = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   755: 	m_MeshBurstD = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   756: 
+   757: 	return true;
+   758: }
+   759: 
+   760: 
+   761: bool HoPCBangPetManager::Destroy()
+   762: {
+   763: 	if(m_BoneBurstP != NULL)
+   764: 	{
+   765: 		if(m_MeshBurstP)
+   766: 		{
+
+--- lines 743-767 ---
+   743: 	smASE_SetPhysique(m_BoneBurstP);
+   744: 	m_BoneBurstS = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   745: 	smASE_SetPhysique(m_BoneBurstS);
+   746: 	m_BoneBurstL = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   747: 	smASE_SetPhysique(m_BoneBurstL);
+   748: 	m_BoneBurstD = smASE_ReadBone("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE");
+   749: 	smASE_SetPhysique(m_BoneBurstD);
+   750: 
+   751: 
+   752: 	m_MeshBurstP = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   753: 	m_MeshBurstS = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   754: 	m_MeshBurstL = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   755: 	m_MeshBurstD = smASE_Read("Effect//PcBangPet//Pet_Phoenimin//Phoenix.ASE", 0);
+   756: 
+   757: 	return true;
+   758: }
+   759: 
+   760: 
+   761: bool HoPCBangPetManager::Destroy()
+   762: {
+   763: 	if(m_BoneBurstP != NULL)
+   764: 	{
+   765: 		if(m_MeshBurstP)
+   766: 		{
+   767: 			delete m_MeshBurstP;
+
+================ SrcServer/src/Server/OnSever.cpp ================
+--- lines 193-217 ---
+   193: 
+   194: 
+   195: int RecordLog(char* lpLogName, char* lpBuff) {
+   196: 
+   197: 	HANDLE	hFile;
+   198: 	DWORD	dwAcess;
+   199: 	DWORD	FileLength;
+   200: 	SYSTEMTIME	st;
+   201: 	char	szFileName[128];
+   202: 	char	szPath[256];
+   203: 	char	szBuff[512];
+   204: 
+   205: 	GetCurrentDirectory(sizeof(szPath), szPath);
+   206: 
+   207: 	GetLocalTime(&st);
+   208: 	wsprintf(szFileName, "%s//LogFile//(%s)%d-%d.log", szPath, lpLogName, st.wDay, st.wMonth);
+   209: 	wsprintf(szBuff, "%d:%d:%d - %s/r/n", st.wHour, st.wMinute, st.wSecond, lpBuff);
+   210: 
+   211: 	hFile = CreateFile(szFileName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+   212: 	if (hFile == INVALID_HANDLE_VALUE) {
+   213: 		return FALSE;
+   214: 	}
+   215: 
+   216: 	FileLength = GetFileSize(hFile, NULL);
+   217: 	SetFilePointer(hFile, FileLength, NULL, FILE_BEGIN);
+
+--- lines 1039-1063 ---
+  1039: int			srLogFailedCount = 0;
+  1040: 
+  1041: 
+  1042: int			spJobCode = 0;
+  1043: static int			spItemNormal = 0;
+  1044: static DWORD		spJobCodeTime = 0;
+  1045: 
+  1046: 
+  1047: static int			spTimeAdjust = 0;
+  1048: static DWORD		spTimeAdjustTime = 0;
+  1049: 
+  1050: 
+  1051: char	*szLogItemDataDirectory = "LogItemData";
+  1052: 
+  1053: 
+  1054: 
+  1055: rsUSER_LIST_TOP10	rsUserListDamageTop10;
+  1056: 
+  1057: 
+  1058: 
+  1059: 
+  1060: 
+  1061: #ifdef _LANGUAGE_ENGLISH
+  1062: #ifdef _LANGUAGE_PHILIPIN
+  1063: #define	rsBLESSCASTLE_TAX_TIME			23
+
+--- lines 36379-36403 ---
+ 36379: 	return b_PushLogItemQue(1, LogItem.size, &LogItem);
+ 36380: }
+ 36381: 
+ 36382: 
+ 36383: 
+ 36384: int	rsSaveAgingItemToHDD(sITEMINFO *lpItem)
+ 36385: {
+ 36386: 
+ 36387: 	char	szBuff[256];
+ 36388: 	FILE	*fp;
+ 36389: 
+ 36390: 
+ 36391: 	CreateDirectory(szLogItemDataDirectory, NULL);
+ 36392: 
+ 36393: 
+ 36394: 	wsprintf(szBuff, "%s//%d@%d.itm", szLogItemDataDirectory, lpItem->ItemHeader.Head, lpItem->ItemHeader.dwChkSum);
+ 36395: 	fp = fopen(szBuff, "wb");
+ 36396: 	if(fp)
+ 36397: 	{
+ 36398: 		fwrite(lpItem, sizeof(sITEMINFO), 1, fp);
+ 36399: 		fclose(fp);
+ 36400: 		return TRUE;
+ 36401: 	}
+ 36402: 
+ 36403: 	return FALSE;
+
+--- lines 36382-36406 ---
+ 36382: 
+ 36383: 
+ 36384: int	rsSaveAgingItemToHDD(sITEMINFO *lpItem)
+ 36385: {
+ 36386: 
+ 36387: 	char	szBuff[256];
+ 36388: 	FILE	*fp;
+ 36389: 
+ 36390: 
+ 36391: 	CreateDirectory(szLogItemDataDirectory, NULL);
+ 36392: 
+ 36393: 
+ 36394: 	wsprintf(szBuff, "%s//%d@%d.itm", szLogItemDataDirectory, lpItem->ItemHeader.Head, lpItem->ItemHeader.dwChkSum);
+ 36395: 	fp = fopen(szBuff, "wb");
+ 36396: 	if(fp)
+ 36397: 	{
+ 36398: 		fwrite(lpItem, sizeof(sITEMINFO), 1, fp);
+ 36399: 		fclose(fp);
+ 36400: 		return TRUE;
+ 36401: 	}
+ 36402: 
+ 36403: 	return FALSE;
+ 36404: }
+ 36405: 
+ 36406: 
+
+--- lines 36415-36439 ---
+ 36415: 	if(dwCode >= sinPM1) return FALSE;
+ 36416: 	if((dwCode&sinITEM_MASK2) == sinOS1)
+ 36417: 	{
+ 36418: 
+ 36419: 		if((dwCode&sinITEM_MASK3) < sin05) return FALSE;
+ 36420: 	}
+ 36421: 	else
+ 36422: 	{
+ 36423: 
+ 36424: 		if((dwCode&sinITEM_MASK3) < sin08) return FALSE;
+ 36425: 	}
+ 36426: 
+ 36427: 	CreateDirectory(szLogItemDataDirectory, NULL);
+ 36428: 
+ 36429: 
+ 36430: 	wsprintf(szBuff, "%s//%d@%d.itm", szLogItemDataDirectory, lpItem->ItemInfo.ItemHeader.Head, lpItem->ItemInfo.ItemHeader.dwChkSum);
+ 36431: 	fp = fopen(szBuff, "wb");
+ 36432: 	if(fp)
+ 36433: 	{
+ 36434: 		fwrite(&lpItem->ItemInfo, sizeof(sITEMINFO), 1, fp);
+ 36435: 		fclose(fp);
+ 36436: 		return TRUE;
+ 36437: 	}
+ 36438: 
+ 36439: 	return FALSE;
+
+--- lines 36418-36442 ---
+ 36418: 
+ 36419: 		if((dwCode&sinITEM_MASK3) < sin05) return FALSE;
+ 36420: 	}
+ 36421: 	else
+ 36422: 	{
+ 36423: 
+ 36424: 		if((dwCode&sinITEM_MASK3) < sin08) return FALSE;
+ 36425: 	}
+ 36426: 
+ 36427: 	CreateDirectory(szLogItemDataDirectory, NULL);
+ 36428: 
+ 36429: 
+ 36430: 	wsprintf(szBuff, "%s//%d@%d.itm", szLogItemDataDirectory, lpItem->ItemInfo.ItemHeader.Head, lpItem->ItemInfo.ItemHeader.dwChkSum);
+ 36431: 	fp = fopen(szBuff, "wb");
+ 36432: 	if(fp)
+ 36433: 	{
+ 36434: 		fwrite(&lpItem->ItemInfo, sizeof(sITEMINFO), 1, fp);
+ 36435: 		fclose(fp);
+ 36436: 		return TRUE;
+ 36437: 	}
+ 36438: 
+ 36439: 	return FALSE;
+ 36440: }
+ 36441: 
+ 36442: 
+
+--- lines 36438-36462 ---
+ 36438: 
+ 36439: 	return FALSE;
+ 36440: }
+ 36441: 
+ 36442: 
+ 36443: int	rsLoadCreateItemToHDD(psITEM	*lpItem, char *szFileCode)
+ 36444: {
+ 36445: 	FILE *fp;
+ 36446: 	HANDLE hFindHandle;
+ 36447: 	WIN32_FIND_DATA	fd;
+ 36448: 	char	szBuff[256];
+ 36449: 
+ 36450: 	wsprintf(szBuff, "%s//%s.itm", szLogItemDataDirectory, szFileCode);
+ 36451: 
+ 36452: 	hFindHandle = FindFirstFile(szBuff, &fd);
+ 36453: 	if(hFindHandle != INVALID_HANDLE_VALUE)
+ 36454: 	{
+ 36455: 		FindClose(hFindHandle);
+ 36456: 
+ 36457: 		fp = fopen(szBuff, "rb");
+ 36458: 		if(fp)
+ 36459: 		{
+ 36460: 			fread(&lpItem->ItemInfo, sizeof(sITEMINFO), 1, fp);
+ 36461: 			fclose(fp);
+ 36462: 		}
+
+================ SrcServer/src/character.cpp ================
+--- lines 500-524 ---
+   500: smDPAT *smPATTERN::LoadBipPattern(char *szFileName)
+   501: {
+   502: 	DWORD dwCode = GetSpeedSum(szFileName);
+   503: 	int Num = FindFromCode(dwCode);
+   504: 
+   505: 	if(Num < 0)
+   506: 	{
+   507: 
+   508: 
+   509: 		Num = GetNew();
+   510: 		if(Num >= 0)
+   511: 		{
+   512: 			DinaPat[Num].Pat = smASE_ReadBone(szFileName);
+   513: 			if(DinaPat[Num].Pat)
+   514: 			{
+   515: 				DinaPat[Num].smDinaLink = 0;
+   516: 				strcpy_s(DinaPat[Num].szPatName, szFileName);
+   517: 				DinaPat[Num].dwSpeedFindSum = dwCode;
+   518: 				DinaPat[Num].UseCount = 1;
+   519: 				return &DinaPat[Num];
+   520: 			}
+   521: 		}
+   522: 		else
+   523: 			return NULL;
+   524: 	}
+
+--- lines 573-597 ---
+   573: 
+   574: 		if(BipPattern && modelInfo.szTalkMotionFile[0])
+   575: 		{
+   576: 			smDPAT *lpTalkLink = BipPattern->LoadBipPattern(modelInfo.szTalkMotionFile);
+   577: 			if(lpTalkLink)
+   578: 				DinaPat[Num].lpTalkLink = lpTalkLink;
+   579: 			else
+   580: 				return NULL;
+   581: 		}
+   582: 		else
+   583: 			DinaPat[Num].lpTalkLink = NULL;
+   584: 
+   585: 		DinaPat[Num].Pat = smASE_Read(modelInfo.szModelFile);
+   586: 
+   587: 		if(!DinaPat[Num].Pat)
+   588: 		{
+   589: 			if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
+   590: 			{
+   591: 				char szErrorMsg[128];
+   592: 
+   593: 				wsprintf(szErrorMsg, "Loading Error , ( %s )", modelInfo.szModelFile);
+   594: 				AddChatBuff(szErrorMsg);
+   595: 			}
+   596: 			return NULL;
+   597: 		}
+
+================ SrcServer/src/playmain.cpp ================
+--- lines 1149-1173 ---
+  1149: 
+  1150: 	PatShadow[Num] = new smPAT3D;
+  1151: 	PatShadow[Num]->AddObject(objShadow);
+  1152: }
+  1153: 
+  1154: 
+  1155: 
+  1156: int AdminCharMode = 0;
+  1157: 
+  1158: int AdminCharDisable = 0;
+  1159: 
+  1160: 
+  1161: static char szDataDirectory[256];
+  1162: char szCharFileList[256][256];
+  1163: int CharFileCnt;
+  1164: int CharPlayCnt = 0;
+  1165: 
+  1166: 
+  1167: static char *Local_SetDirectoryFromFile(char *filename)
+  1168: {
+  1169: 	int len;
+  1170: 	int cnt;
+  1171: 
+  1172: 	strcpy_s(szDataDirectory, filename);
+  1173: 
+
+--- lines 1160-1184 ---
+  1160: 
+  1161: static char szDataDirectory[256];
+  1162: char szCharFileList[256][256];
+  1163: int CharFileCnt;
+  1164: int CharPlayCnt = 0;
+  1165: 
+  1166: 
+  1167: static char *Local_SetDirectoryFromFile(char *filename)
+  1168: {
+  1169: 	int len;
+  1170: 	int cnt;
+  1171: 
+  1172: 	strcpy_s(szDataDirectory, filename);
+  1173: 
+  1174: 	len = lstrlen(szDataDirectory);
+  1175: 
+  1176: 	for(cnt = len; cnt >= 0; cnt--)
+  1177: 		if(szDataDirectory[cnt] == '//') break;
+  1178: 
+  1179: 	szDataDirectory[cnt + 1] = NULL;
+  1180: 
+  1181: 	return szDataDirectory;
+  1182: }
+  1183: 
+  1184: 
+
+--- lines 1162-1186 ---
+  1162: char szCharFileList[256][256];
+  1163: int CharFileCnt;
+  1164: int CharPlayCnt = 0;
+  1165: 
+  1166: 
+  1167: static char *Local_SetDirectoryFromFile(char *filename)
+  1168: {
+  1169: 	int len;
+  1170: 	int cnt;
+  1171: 
+  1172: 	strcpy_s(szDataDirectory, filename);
+  1173: 
+  1174: 	len = lstrlen(szDataDirectory);
+  1175: 
+  1176: 	for(cnt = len; cnt >= 0; cnt--)
+  1177: 		if(szDataDirectory[cnt] == '//') break;
+  1178: 
+  1179: 	szDataDirectory[cnt + 1] = NULL;
+  1180: 
+  1181: 	return szDataDirectory;
+  1182: }
+  1183: 
+  1184: 
+  1185: int SetCharFileList(char *szCharFile)
+  1186: {
+
+--- lines 1165-1189 ---
+  1165: 
+  1166: 
+  1167: static char *Local_SetDirectoryFromFile(char *filename)
+  1168: {
+  1169: 	int len;
+  1170: 	int cnt;
+  1171: 
+  1172: 	strcpy_s(szDataDirectory, filename);
+  1173: 
+  1174: 	len = lstrlen(szDataDirectory);
+  1175: 
+  1176: 	for(cnt = len; cnt >= 0; cnt--)
+  1177: 		if(szDataDirectory[cnt] == '//') break;
+  1178: 
+  1179: 	szDataDirectory[cnt + 1] = NULL;
+  1180: 
+  1181: 	return szDataDirectory;
+  1182: }
+  1183: 
+  1184: 
+  1185: int SetCharFileList(char *szCharFile)
+  1186: {
+  1187: 	CharFileCnt = 0;
+  1188: 	char szFindPath[256];
+  1189: 
+
+--- lines 1167-1191 ---
+  1167: static char *Local_SetDirectoryFromFile(char *filename)
+  1168: {
+  1169: 	int len;
+  1170: 	int cnt;
+  1171: 
+  1172: 	strcpy_s(szDataDirectory, filename);
+  1173: 
+  1174: 	len = lstrlen(szDataDirectory);
+  1175: 
+  1176: 	for(cnt = len; cnt >= 0; cnt--)
+  1177: 		if(szDataDirectory[cnt] == '//') break;
+  1178: 
+  1179: 	szDataDirectory[cnt + 1] = NULL;
+  1180: 
+  1181: 	return szDataDirectory;
+  1182: }
+  1183: 
+  1184: 
+  1185: int SetCharFileList(char *szCharFile)
+  1186: {
+  1187: 	CharFileCnt = 0;
+  1188: 	char szFindPath[256];
+  1189: 
+  1190: 	Local_SetDirectoryFromFile(szCharFile);
+  1191: 
+
+--- lines 1169-1193 ---
+  1169: 	int len;
+  1170: 	int cnt;
+  1171: 
+  1172: 	strcpy_s(szDataDirectory, filename);
+  1173: 
+  1174: 	len = lstrlen(szDataDirectory);
+  1175: 
+  1176: 	for(cnt = len; cnt >= 0; cnt--)
+  1177: 		if(szDataDirectory[cnt] == '//') break;
+  1178: 
+  1179: 	szDataDirectory[cnt + 1] = NULL;
+  1180: 
+  1181: 	return szDataDirectory;
+  1182: }
+  1183: 
+  1184: 
+  1185: int SetCharFileList(char *szCharFile)
+  1186: {
+  1187: 	CharFileCnt = 0;
+  1188: 	char szFindPath[256];
+  1189: 
+  1190: 	Local_SetDirectoryFromFile(szCharFile);
+  1191: 
+  1192: 	HANDLE hFindHandle;
+  1193: 	WIN32_FIND_DATA	fd;
+
+--- lines 1183-1207 ---
+  1183: 
+  1184: 
+  1185: int SetCharFileList(char *szCharFile)
+  1186: {
+  1187: 	CharFileCnt = 0;
+  1188: 	char szFindPath[256];
+  1189: 
+  1190: 	Local_SetDirectoryFromFile(szCharFile);
+  1191: 
+  1192: 	HANDLE hFindHandle;
+  1193: 	WIN32_FIND_DATA	fd;
+  1194: 
+  1195: 	strcpy_s(szFindPath, szDataDirectory);
+  1196: 	lstrcat(szFindPath, "//*.ini");
+  1197: 
+  1198: 
+  1199: 	hFindHandle = FindFirstFile(szFindPath, &fd);
+  1200: 	if(hFindHandle == INVALID_HANDLE_VALUE)
+  1201: 	{
+  1202: 		FindClose(hFindHandle);
+  1203: 		return 0;
+  1204: 	}
+  1205: 	while(1)
+  1206: 	{
+  1207: 		strcpy_s(szCharFileList[CharFileCnt], szDataDirectory);
+
+--- lines 1195-1219 ---
+  1195: 	strcpy_s(szFindPath, szDataDirectory);
+  1196: 	lstrcat(szFindPath, "//*.ini");
+  1197: 
+  1198: 
+  1199: 	hFindHandle = FindFirstFile(szFindPath, &fd);
+  1200: 	if(hFindHandle == INVALID_HANDLE_VALUE)
+  1201: 	{
+  1202: 		FindClose(hFindHandle);
+  1203: 		return 0;
+  1204: 	}
+  1205: 	while(1)
+  1206: 	{
+  1207: 		strcpy_s(szCharFileList[CharFileCnt], szDataDirectory);
+  1208: 		lstrcat(szCharFileList[CharFileCnt], fd.cFileName);
+  1209: 		CharFileCnt++;
+  1210: 
+  1211: 		if(FindNextFile(hFindHandle, &fd) == FALSE)
+  1212: 			break;
+  1213: 		if(CharFileCnt > 255)
+  1214: 			break;
+  1215: 	}
+  1216: 	FindClose(hFindHandle);
+  1217: 
+  1218: 	return TRUE;
+  1219: }
+
+--- lines 1774-1798 ---
+  1774: 	}
+  1775: 
+  1776: 
+  1777: 	for(cnt = 0; cnt < OTHER_PLAYER_MAX; cnt++)
+  1778: 	{
+  1779: 		chrOtherPlayer[cnt].Init();
+  1780: 	}
+  1781: 
+  1782: 
+  1783: 	smMATERIAL *mat;
+  1784: 
+  1785: 	smASE_SetPhysique(0);
+  1786: 	PatArrow = smASE_Read("weapons//arrow.ase");
+  1787: 	PatEffectShield = smASE_Read("weapons//Test8.ASE");
+  1788: 	PatSparkShield = smASE_Read("weapons//Mc3_sparkShield.ASE");
+  1789: 	PatDivineShield = smASE_Read("weapons//Nt3_DivineI.ASE");
+  1790: 	PatGodlyShield = smASE_Read("weapons//Godly_Shield.ASE");
+  1791: 	PatCrown = smASE_Read("weapons//Crown.ASE");
+  1792: 
+  1793: 
+  1794: 
+  1795: 
+  1796: 	if(PatEffectShield)
+  1797: 	{
+  1798: 		PatEffectShield->Frame = 0;
+
+--- lines 1775-1799 ---
+  1775: 
+  1776: 
+  1777: 	for(cnt = 0; cnt < OTHER_PLAYER_MAX; cnt++)
+  1778: 	{
+  1779: 		chrOtherPlayer[cnt].Init();
+  1780: 	}
+  1781: 
+  1782: 
+  1783: 	smMATERIAL *mat;
+  1784: 
+  1785: 	smASE_SetPhysique(0);
+  1786: 	PatArrow = smASE_Read("weapons//arrow.ase");
+  1787: 	PatEffectShield = smASE_Read("weapons//Test8.ASE");
+  1788: 	PatSparkShield = smASE_Read("weapons//Mc3_sparkShield.ASE");
+  1789: 	PatDivineShield = smASE_Read("weapons//Nt3_DivineI.ASE");
+  1790: 	PatGodlyShield = smASE_Read("weapons//Godly_Shield.ASE");
+  1791: 	PatCrown = smASE_Read("weapons//Crown.ASE");
+  1792: 
+  1793: 
+  1794: 
+  1795: 
+  1796: 	if(PatEffectShield)
+  1797: 	{
+  1798: 		PatEffectShield->Frame = 0;
+  1799: 
+
+--- lines 1776-1800 ---
+  1776: 
+  1777: 	for(cnt = 0; cnt < OTHER_PLAYER_MAX; cnt++)
+  1778: 	{
+  1779: 		chrOtherPlayer[cnt].Init();
+  1780: 	}
+  1781: 
+  1782: 
+  1783: 	smMATERIAL *mat;
+  1784: 
+  1785: 	smASE_SetPhysique(0);
+  1786: 	PatArrow = smASE_Read("weapons//arrow.ase");
+  1787: 	PatEffectShield = smASE_Read("weapons//Test8.ASE");
+  1788: 	PatSparkShield = smASE_Read("weapons//Mc3_sparkShield.ASE");
+  1789: 	PatDivineShield = smASE_Read("weapons//Nt3_DivineI.ASE");
+  1790: 	PatGodlyShield = smASE_Read("weapons//Godly_Shield.ASE");
+  1791: 	PatCrown = smASE_Read("weapons//Crown.ASE");
+  1792: 
+  1793: 
+  1794: 
+  1795: 
+  1796: 	if(PatEffectShield)
+  1797: 	{
+  1798: 		PatEffectShield->Frame = 0;
+  1799: 
+  1800: 		mat = PatEffectShield->smMaterialGroup->FindMaterialFromTextureName(szBangImage);
+
+--- lines 1777-1801 ---
+  1777: 	for(cnt = 0; cnt < OTHER_PLAYER_MAX; cnt++)
+  1778: 	{
+  1779: 		chrOtherPlayer[cnt].Init();
+  1780: 	}
+  1781: 
+  1782: 
+  1783: 	smMATERIAL *mat;
+  1784: 
+  1785: 	smASE_SetPhysique(0);
+  1786: 	PatArrow = smASE_Read("weapons//arrow.ase");
+  1787: 	PatEffectShield = smASE_Read("weapons//Test8.ASE");
+  1788: 	PatSparkShield = smASE_Read("weapons//Mc3_sparkShield.ASE");
+  1789: 	PatDivineShield = smASE_Read("weapons//Nt3_DivineI.ASE");
+  1790: 	PatGodlyShield = smASE_Read("weapons//Godly_Shield.ASE");
+  1791: 	PatCrown = smASE_Read("weapons//Crown.ASE");
+  1792: 
+  1793: 
+  1794: 
+  1795: 
+  1796: 	if(PatEffectShield)
+  1797: 	{
+  1798: 		PatEffectShield->Frame = 0;
+  1799: 
+  1800: 		mat = PatEffectShield->smMaterialGroup->FindMaterialFromTextureName(szBangImage);
+  1801: 		if(mat)
+
+--- lines 1778-1802 ---
+  1778: 	{
+  1779: 		chrOtherPlayer[cnt].Init();
+  1780: 	}
+  1781: 
+  1782: 
+  1783: 	smMATERIAL *mat;
+  1784: 
+  1785: 	smASE_SetPhysique(0);
+  1786: 	PatArrow = smASE_Read("weapons//arrow.ase");
+  1787: 	PatEffectShield = smASE_Read("weapons//Test8.ASE");
+  1788: 	PatSparkShield = smASE_Read("weapons//Mc3_sparkShield.ASE");
+  1789: 	PatDivineShield = smASE_Read("weapons//Nt3_DivineI.ASE");
+  1790: 	PatGodlyShield = smASE_Read("weapons//Godly_Shield.ASE");
+  1791: 	PatCrown = smASE_Read("weapons//Crown.ASE");
+  1792: 
+  1793: 
+  1794: 
+  1795: 
+  1796: 	if(PatEffectShield)
+  1797: 	{
+  1798: 		PatEffectShield->Frame = 0;
+  1799: 
+  1800: 		mat = PatEffectShield->smMaterialGroup->FindMaterialFromTextureName(szBangImage);
+  1801: 		if(mat)
+  1802: 		{
+
+--- lines 1779-1803 ---
+  1779: 		chrOtherPlayer[cnt].Init();
+  1780: 	}
+  1781: 
+  1782: 
+  1783: 	smMATERIAL *mat;
+  1784: 
+  1785: 	smASE_SetPhysique(0);
+  1786: 	PatArrow = smASE_Read("weapons//arrow.ase");
+  1787: 	PatEffectShield = smASE_Read("weapons//Test8.ASE");
+  1788: 	PatSparkShield = smASE_Read("weapons//Mc3_sparkShield.ASE");
+  1789: 	PatDivineShield = smASE_Read("weapons//Nt3_DivineI.ASE");
+  1790: 	PatGodlyShield = smASE_Read("weapons//Godly_Shield.ASE");
+  1791: 	PatCrown = smASE_Read("weapons//Crown.ASE");
+  1792: 
+  1793: 
+  1794: 
+  1795: 
+  1796: 	if(PatEffectShield)
+  1797: 	{
+  1798: 		PatEffectShield->Frame = 0;
+  1799: 
+  1800: 		mat = PatEffectShield->smMaterialGroup->FindMaterialFromTextureName(szBangImage);
+  1801: 		if(mat)
+  1802: 		{
+  1803: 			mat->BlendType = SMMAT_BLEND_ADDCOLOR;
+
+================ SrcServer/src/sinbaram/AssaUtil.cpp ================
+--- lines 44-68 ---
+    44: 		}
+    45: 		bResult = FindNextFile(hSrch, &wfd);
+    46: 	}
+    47: 
+    48: 	FindClose(hSrch);
+    49: 	return FALSE;
+    50: }
+    51: 
+    52: 
+    53: char *FindFile(char *fileName)
+    54: {
+    55: 	char Path[MAX_RES_PATH];
+    56: 	GetCurrentDirectory(MAX_RES_PATH, Path);
+    57: 	strcat(Path, "//image//Sinimage//TestEffect//*.*");
+    58: 
+    59: 
+    60: 	memset(FindFileName, 0, sizeof(FindFileName));
+    61: 	FindFileRecursive(Path, fileName);
+    62: 	return FindFileName;
+    63: }
+    64: 
+    65: #define MAX_RES_NAME	  64
+    66: #define MAX_RES_FULL_NAME 512
+    67: #define MAX_RES_BUFFER    1000			
+    68: 
+
+--- lines 289-313 ---
+   289: 						}
+   290: 						strcpy(AssaRes[AssaResCount].resFullName, fileDirectoryName);
+   291: 
+   292: 					#ifdef _EFFECT_RES_LOADING_
+   293: 						if(HoEffectResLoadingFlag)
+   294: 						{
+   295: 							if((AssaResCount - 1) >= 0)
+   296: 							{
+   297: 
+   298: 								if(AssaRes[AssaResCount - 1].LoadFlag == FALSE)
+   299: 								{
+   300: 
+   301: 									AssaRes[AssaResCount - 1].res = (void *)smASE_ReadBone(AssaRes[AssaResCount - 1].resFullName);
+   302: 									AssaRes[AssaResCount - 1].LoadFlag = TRUE;
+   303: 									smASE_SetPhysique(((smPAT3D *)AssaRes[AssaResCount - 1].res));
+   304: 								}
+   305: 
+   306: 
+   307: 								AssaRes[AssaResCount].res = (void *)smASE_Read(AssaRes[AssaResCount].resFullName);
+   308: 								((smPAT3D *)AssaRes[AssaResCount].res)->ZeroNormals();
+   309: 								smASE_SetPhysique(NULL);
+   310: 
+   311: 								AssaRes[AssaResCount].LoadFlag = TRUE;
+   312: 								((smPAT3D *)AssaRes[AssaResCount].res)->smMaterialGroup->ReadTextures();
+   313: 							}
+
+--- lines 295-319 ---
+   295: 							if((AssaResCount - 1) >= 0)
+   296: 							{
+   297: 
+   298: 								if(AssaRes[AssaResCount - 1].LoadFlag == FALSE)
+   299: 								{
+   300: 
+   301: 									AssaRes[AssaResCount - 1].res = (void *)smASE_ReadBone(AssaRes[AssaResCount - 1].resFullName);
+   302: 									AssaRes[AssaResCount - 1].LoadFlag = TRUE;
+   303: 									smASE_SetPhysique(((smPAT3D *)AssaRes[AssaResCount - 1].res));
+   304: 								}
+   305: 
+   306: 
+   307: 								AssaRes[AssaResCount].res = (void *)smASE_Read(AssaRes[AssaResCount].resFullName);
+   308: 								((smPAT3D *)AssaRes[AssaResCount].res)->ZeroNormals();
+   309: 								smASE_SetPhysique(NULL);
+   310: 
+   311: 								AssaRes[AssaResCount].LoadFlag = TRUE;
+   312: 								((smPAT3D *)AssaRes[AssaResCount].res)->smMaterialGroup->ReadTextures();
+   313: 							}
+   314: 						}
+   315: 
+   316: 					#endif
+   317: 						AssaRes[AssaResCount].type = TYPE_BONE;
+   318: 						AssaResCount++;
+   319: 					}
+
+--- lines 319-343 ---
+   319: 					}
+   320: 					else
+   321: 					{
+   322: 						strcpy(AssaRes[AssaResCount].resName, aseName);
+   323: 						strcpy(AssaRes[AssaResCount].resFullName, fileDirectoryName);
+   324: 
+   325: 					#ifdef _EFFECT_RES_LOADING_
+   326: 						if(HoEffectResLoadingFlag)
+   327: 						{
+   328: 							if(AssaRes[AssaResCount].LoadFlag == FALSE)
+   329: 							{
+   330: 								smASE_SetPhysique(NULL);
+   331: 								AssaRes[AssaResCount].res = (void *)smASE_Read(AssaRes[AssaResCount].resFullName);
+   332: 
+   333: 								((smPAT3D *)AssaRes[AssaResCount].res)->ZeroNormals();
+   334: 								AssaRes[AssaResCount].LoadFlag = TRUE;
+   335: 								((smPAT3D *)AssaRes[AssaResCount].res)->smMaterialGroup->ReadTextures();
+   336: 							}
+   337: 						}
+   338: 					#endif
+   339: 						AssaRes[AssaResCount].type = TYPE_ASE;
+   340: 						AssaResCount++;
+   341: 					}
+   342: 				}
+   343: 			}
+
+--- lines 403-427 ---
+   403: 
+   404: void *AssaSearchRes(char *resName, int blendType)
+   405: {
+   406: 	for(int index = 0; index < AssaResCount; index++)
+   407: 	{
+   408: 		if(stricmp(AssaRes[index].resName, resName) == 0)
+   409: 		{
+   410: 			if(AssaRes[index].type == TYPE_ASE)
+   411: 			{
+   412: 				if(AssaRes[index].LoadFlag == FALSE)
+   413: 				{
+   414: 					smASE_SetPhysique(NULL);
+   415: 					AssaRes[index].res = (void *)smASE_Read(AssaRes[index].resFullName);
+   416: 
+   417: 					((smPAT3D *)AssaRes[index].res)->ZeroNormals();
+   418: 					AssaRes[index].LoadFlag = TRUE;
+   419: 					((smPAT3D *)AssaRes[index].res)->smMaterialGroup->ReadTextures();
+   420: 
+   421: 				}
+   422: 
+   423: 				if(((smPAT3D *)AssaRes[index].res)->smMaterialGroup)
+   424: 				{
+   425: 					int matCount = ((smPAT3D *)AssaRes[index].res)->smMaterialGroup->MaterialCount;
+   426: 					for(int i = 0; i < matCount; i++)
+   427: 						((smPAT3D *)AssaRes[index].res)->smMaterialGroup->smMaterial[i].BlendType = blendType;
+
+--- lines 430-454 ---
+   430: 				return AssaRes[index].res;
+   431: 			}
+   432: 			else if(AssaRes[index].type == TYPE_BONE)
+   433: 			{
+   434: 				if(AssaRes[index].LoadFlag == FALSE)
+   435: 				{
+   436: 					if((index - 1) >= 0)
+   437: 					{
+   438: 
+   439: 						if(AssaRes[index - 1].LoadFlag == FALSE)
+   440: 						{
+   441: 
+   442: 							AssaRes[index - 1].res = (void *)smASE_ReadBone(AssaRes[index - 1].resFullName);
+   443: 							AssaRes[index - 1].LoadFlag = TRUE;
+   444: 						}
+   445: 
+   446: 						smASE_SetPhysique(((smPAT3D *)AssaRes[index - 1].res));
+   447: 
+   448: 
+   449: 						AssaRes[index].res = (void *)smASE_Read(AssaRes[index].resFullName);
+   450: 						((smPAT3D *)AssaRes[index].res)->ZeroNormals();
+   451: 						smASE_SetPhysique(NULL);
+   452: 
+   453: 						AssaRes[index].LoadFlag = TRUE;
+   454: 						((smPAT3D *)AssaRes[index].res)->smMaterialGroup->ReadTextures();
+
+--- lines 437-461 ---
+   437: 					{
+   438: 
+   439: 						if(AssaRes[index - 1].LoadFlag == FALSE)
+   440: 						{
+   441: 
+   442: 							AssaRes[index - 1].res = (void *)smASE_ReadBone(AssaRes[index - 1].resFullName);
+   443: 							AssaRes[index - 1].LoadFlag = TRUE;
+   444: 						}
+   445: 
+   446: 						smASE_SetPhysique(((smPAT3D *)AssaRes[index - 1].res));
+   447: 
+   448: 
+   449: 						AssaRes[index].res = (void *)smASE_Read(AssaRes[index].resFullName);
+   450: 						((smPAT3D *)AssaRes[index].res)->ZeroNormals();
+   451: 						smASE_SetPhysique(NULL);
+   452: 
+   453: 						AssaRes[index].LoadFlag = TRUE;
+   454: 						((smPAT3D *)AssaRes[index].res)->smMaterialGroup->ReadTextures();
+   455: 
+   456: 					}
+   457: 				}
+   458: 
+   459: 				if(((smPAT3D *)AssaRes[index].res)->smMaterialGroup)
+   460: 				{
+   461: 					int matCount = ((smPAT3D *)AssaRes[index].res)->smMaterialGroup->MaterialCount;
+
+--- lines 462-486 ---
+   462: 					for(int i = 0; i < matCount; i++)
+   463: 						((smPAT3D *)AssaRes[index].res)->smMaterialGroup->smMaterial[i].BlendType = blendType;
+   464: 				}
+   465: 
+   466: 				return AssaRes[index].res;
+   467: 			}
+   468: 			else if(AssaRes[index].type == TYPE_BONE_ANI)
+   469: 			{
+   470: 				if(AssaRes[index - 1].LoadFlag == FALSE)
+   471: 				{
+   472: 
+   473: 
+   474: 					AssaRes[index - 1].res = (void *)smASE_ReadBone(AssaRes[index - 1].resFullName);
+   475: 					AssaRes[index - 1].LoadFlag = TRUE;
+   476: 				}
+   477: 				return AssaRes[index].res;
+   478: 			}
+   479: 			else if(AssaRes[index].type == TYPE_MAT)
+   480: 			{
+   481: 				if(AssaRes[index].LoadFlag == FALSE)
+   482: 				{
+   483: 					int *matNum = new int;
+   484: 					(*matNum) = CreateTextureMaterial(AssaRes[index].resFullName, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+   485: 					AssaRes[index].res = matNum;
+   486: 					AssaRes[index].LoadFlag = TRUE;
+
+================ SrcServer/src/sinbaram/sin3D.cpp ================
+--- lines 27-51 ---
+    27: 	char szPath[128];
+    28: 
+    29: 	sinEffect2D_Line = CreateTextureMaterial("Image//SinImage//Effect//Return1.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+    30: 
+    31: 
+    32: 	for(int i = 1; i < 5; i++)
+    33: 	{
+    34: 		wsprintf(szPath, "image//Sinimage//Effect//Particle//%s%d.tga", Partyellow, i);
+    35: 		MatParticleGold[i - 1] = CreateTextureMaterial(szPath, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+    36: 
+    37: 	}
+    38: 
+    39: 	Rage_Of_SinBaRam = smASE_Read("Image//SinImage//Effect//test.ase");
+    40: 
+    41: 	MatWideCircle = CreateTextureMaterial("image//Sinimage//Effect//Effect2D//WideCircle.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+    42: 
+    43: 
+    44: 	MatEffectLine = CreateTextureMaterial("image//Sinimage//Effect//Effect2D//YellowLine.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+    45: 
+    46: 	MatParticle1 = CreateTextureMaterial("image//Sinimage//Effect//Particle//Particle1.tga", 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+    47: 
+    48: 	InitInterEffect();
+    49: 	InitEffect2();
+    50: 	sinInitSkillEffect();
+    51: 	sinInitPublicEffect();
+
+================ SrcServer/src/sinbaram/sinEffect2.cpp ================
+--- lines 173-197 ---
+   173: 
+   174: 	return TRUE;
+   175: }
+   176: 
+   177: 
+   178: int setBossMonsterEffect(smCHAR *pChar, int ProcessCount)
+   179: {
+   180: 	Index = sinSearchEmptyIndex();
+   181: 
+   182: 	smASE_SetPhysique(0);
+   183: 
+   184: 	cSinEffect2[Index].Flag = 1;
+   185: 	cSinEffect2[Index].sinPatMesh = smASE_Read("image//Sinimage//Effect//BossMonster//mon.ASE");
+   186: 	cSinEffect2[Index].CODE = SIN_EFFECT_BOSSAURA;
+   187: 	cSinEffect2[Index].Max_Time = SIN_EFFECT_NO_TIME;
+   188: 	cSinEffect2[Index].Posi.x = pChar->pX;
+   189: 	cSinEffect2[Index].Posi.y = pChar->pY + 1500;
+   190: 	cSinEffect2[Index].Posi.z = pChar->pZ;
+   191: 	cSinEffect2[Index].pChar = pChar;
+   192: 	cSinEffect2[Index].AniCount = 1;
+   193: 	cSinEffect2[Index].AniTime = 3;
+   194: 	cSinEffect2[Index].AniMax = 80;
+   195: 
+   196: 	ReadTextures();
+   197: 
+
+--- lines 1043-1067 ---
+  1043: 				cSinEffect2[Index].sinFace.width = ImageSize.x;
+  1044: 				cSinEffect2[Index].sinFace.height = ImageSize.y;
+  1045: 				cSinEffect2[Index].sinFace.r = 255;
+  1046: 				cSinEffect2[Index].sinFace.g = 255;
+  1047: 				cSinEffect2[Index].sinFace.b = 255;
+  1048: 				cSinEffect2[Index].sinFace.Transparency = 255;
+  1049: 				cSinEffect2[Index].sinFace.TexRect = sinTexRect;
+  1050: 
+  1051: 
+  1052: 			}
+  1053: 			if(FileFormatFlag == 2)
+  1054: 			{
+  1055: 				cSinEffect2[Index].sinPatMesh = smASE_Read(szTempBuff);
+  1056: 
+  1057: 			}
+  1058: 			NextFlag = TRUE;
+  1059: 
+  1060: 		}
+  1061: 
+  1062: 		if(!NextFlag && lstrcmp(sinDecode, "*�ִϸ��̼ǽ���") == 0)
+  1063: 		{
+  1064: 			p = GetWord(strBuff, p);
+  1065: 			cSinEffect2[Index].AniCount = atoi(strBuff);
+  1066: 			NextFlag = TRUE;
+  1067: 
+
+================ SrcServer/src/sinbaram/sinSkillEffect.cpp ================
+--- lines 576-600 ---
+   576: 
+   577: 	}
+   578: }
+   579: 
+   580: int sinEffect_Sword_Blast(smCHAR *pChar, smCHAR *desChar)
+   581: {
+   582: 	if(!pChar)return FALSE;
+   583: 
+   584: 	smASE_SetPhysique(0);
+   585: 	SetDynLight(pChar->pX, pChar->pY, pChar->pZ, 255, 255, 255, 255, 200, 1);
+   586: 	Index2 = sinSearchEmptyIndex();
+   587: 	sinEffectDefaultSet(Index2, SIN_EFFECT_MESH, pChar, 0, 10000);
+   588: 	cSinEffect2[Index2].sinPatMesh = smASE_Read("image//Sinimage//Effect//SkillEffect//SwordBlast//SwordBlast.ASE");
+   589: 	cSinEffect2[Index2].CODE = SKILL_SWORD_BLAST;
+   590: 
+   591: 	cSinEffect2[Index2].Max_Time = 40;
+   592: 	cSinEffect2[Index2].Color_A = 150;
+   593: 	cSinEffect2[Index2].DesChar = desChar;
+   594: 	if(cSinEffect2[Index2].DesChar)
+   595: 	{
+   596: 
+   597: 		GetRadian3D(pChar->pX, pChar->pY, pChar->pZ, cSinEffect2[Index2].DesChar->pX, cSinEffect2[Index2].DesChar->pY, cSinEffect2[Index2].DesChar->pZ);
+   598: 
+   599: 		cSinEffect2[Index2].Angle.x = GeoResult_X;
+   600: 		cSinEffect2[Index2].Angle.y = (-(GeoResult_Y&ANGCLIP) + ANGLE_180)&ANGCLIP;
+
+--- lines 651-675 ---
+   651: }
+   652: 
+   653: 
+   654: int sinEffect_Holy_Body(smCHAR *pChar)
+   655: {
+   656: 	if(!pChar)return FALSE;
+   657: 
+   658: 	int TempIndex = 0;
+   659: 	smASE_SetPhysique(0);
+   660: 	SetDynLight(pChar->pX, pChar->pY, pChar->pZ, 255, 255, 255, 255, 200, 1);
+   661: 	Index2 = sinSearchEmptyIndex();
+   662: 	sinEffectDefaultSet(Index2, SIN_EFFECT_MESH, pChar, 0, 7000);
+   663: 	cSinEffect2[Index2].sinPatMesh = smASE_Read("image//Sinimage//Effect//SkillEffect//HolyBody//h_bodyteg.ASE");
+   664: 	cSinEffect2[Index2].CODE = SKILL_HOLY_BODY;
+   665: 
+   666: 	cSinEffect2[Index2].Max_Time = 90;
+   667: 	cSinEffect2[Index2].AniTime = 5;
+   668: 	cSinEffect2[Index2].AniMax = 100;
+   669: 	cSinEffect2[Index2].AniCount = 1;
+   670: 	cSinEffect2[Index2].AlphaAmount = 20;
+   671: 	cSinEffect2[Index2].AlphaCount = 2;
+   672: 	cSinEffect2[Index2].AlphaTime = cSinEffect2[Index2].Max_Time - 50;
+   673: 	cSinEffect2[Index2].Time = -30;
+   674: 	cSinEffect2[Index2].Index = 1;
+   675: 	TempIndex = Index2;
+
+--- lines 1174-1198 ---
+  1174: 
+  1175: 	return TRUE;
+  1176: }
+  1177: 
+  1178: 
+  1179: int sinEffect_VigorSpear(smCHAR *pChar, smCHAR *desChar)
+  1180: {
+  1181: 	if(!pChar)return FALSE;
+  1182: 	smASE_SetPhysique(0);
+  1183: 	SetDynLight(pChar->pX, pChar->pY, pChar->pZ, 255, 255, 255, 255, 200, 1);
+  1184: 	Index2 = sinSearchEmptyIndex();
+  1185: 	sinEffectDefaultSet(Index2, SIN_EFFECT_MESH, pChar, 0, 10000);
+  1186: 	cSinEffect2[Index2].sinPatMesh = smASE_Read("image//Sinimage//Effect//SkillEffect//VigorSpear//v_spear.ASE");
+  1187: 	cSinEffect2[Index2].CODE = SKILL_VIGOR_SPEAR;
+  1188: 
+  1189: 	cSinEffect2[Index2].Max_Time = 100;
+  1190: 	cSinEffect2[Index2].Color_A = 150;
+  1191: 	cSinEffect2[Index2].DesChar = desChar;
+  1192: 	if(cSinEffect2[Index2].DesChar)
+  1193: 	{
+  1194: 
+  1195: 		GetRadian3D(pChar->pX, pChar->pY, pChar->pZ, cSinEffect2[Index2].DesChar->pX, cSinEffect2[Index2].DesChar->pY, cSinEffect2[Index2].DesChar->pZ);
+  1196: 
+  1197: 		cSinEffect2[Index2].Angle.x = GeoResult_X;
+  1198: 		cSinEffect2[Index2].Angle.y = (-(GeoResult_Y&ANGCLIP) + ANGLE_180)&ANGCLIP;
+
+--- lines 1629-1653 ---
+  1629: 	return TRUE;
+  1630: }
+  1631: 
+  1632: int sinEffect_Healing2(smCHAR *pChar)
+  1633: {
+  1634: 	if(!pChar)return FALSE;
+  1635: 	SetDynLight(pChar->pX, pChar->pY, pChar->pZ, 255, 255, 255, 255, 200, 1);
+  1636: 
+  1637: 	for(int i = 0; i < 1; i++)
+  1638: 	{
+  1639: 
+  1640: 		Index2 = sinSearchEmptyIndex();
+  1641: 		cSinEffect2[Index2].sinPatMesh = smASE_ReadBone("image//Sinimage//Effect//SkillEffect//Healing//HIALTEST.ASE");
+  1642: 		smASE_SetPhysique(cSinEffect2[Index2].sinPatMesh);
+  1643: 		sinEffectDefaultSet(Index2, SIN_EFFECT_MESH, pChar, 0, 13000);
+  1644: 
+  1645: 
+  1646: 
+  1647: 
+  1648: 		cSinEffect2[Index2].BoneFlag = 1;
+  1649: 
+  1650: 
+  1651: 
+  1652: 		Index2 = sinSearchEmptyIndex();
+  1653: 		sinEffectDefaultSet(Index2, SIN_EFFECT_MESH, pChar, 0, 7000);
+
+--- lines 1642-1666 ---
+  1642: 		smASE_SetPhysique(cSinEffect2[Index2].sinPatMesh);
+  1643: 		sinEffectDefaultSet(Index2, SIN_EFFECT_MESH, pChar, 0, 13000);
+  1644: 
+  1645: 
+  1646: 
+  1647: 
+  1648: 		cSinEffect2[Index2].BoneFlag = 1;
+  1649: 
+  1650: 
+  1651: 
+  1652: 		Index2 = sinSearchEmptyIndex();
+  1653: 		sinEffectDefaultSet(Index2, SIN_EFFECT_MESH, pChar, 0, 7000);
+  1654: 		cSinEffect2[Index2].sinPatMesh = smASE_Read("image//Sinimage//Effect//SkillEffect//Healing//HIALTEST.ASE");
+  1655: 		cSinEffect2[Index2].sinPatMesh->ZeroNormals();
+  1656: 		smASE_SetPhysique(0);
+  1657: 		cSinEffect2[Index2].Max_Time = 250;
+  1658: 		cSinEffect2[Index2].AniCount = 1;
+  1659: 		cSinEffect2[Index2].AniMax = 30;
+  1660: 		cSinEffect2[Index2].AniTime = 10;
+  1661: 
+  1662: 		cSinEffect2[Index2].AniTime = 1;
+  1663: 		cSinEffect2[Index2].Color_A = 150;
+  1664: 		cSinEffect2[Index2].CODE = SKILL_HEALING;
+  1665: 		cSinEffect2[Index2].RotateAngle = 256;
+  1666: 		cSinEffect2[Index2].RotateDistance.z = 256 * 16;
+
+================ SrcServer/src/sinbaram/sinSkill_Info.cpp ================
+--- lines 42-66 ---
+    42: 
+    43: #include <string>
+    44: #include <sstream>
+    45: 
+    46: int ReadSkillFloat(float* Skill, char* szFileName, char* szSkillName)
+    47: {
+    48: #ifdef _W_SERVER
+    49: 	int i;
+    50: 	char Path[255], decode[255], line[255];
+    51: 	FILE* file;
+    52: 	char* skill;
+    53: 
+    54: 	GetCurrentDirectoryA(sizeof(Path), Path);
+    55: 	wsprintf(Path, "%s//Configs//Skill//%s", Path, szFileName);
+    56: 
+    57: 	file = fopen(Path, "rb");
+    58: 
+    59: 	//fopen(&file, Path, "rb");
+    60: 
+    61: 	if (file == NULL)
+    62: 		return FALSE;
+    63: 
+    64: 	while (!feof(file)) {
+    65: 
+    66: 		if (fgets(line, 255, file) == NULL) break;
+
+--- lines 97-121 ---
+    97: 	fclose(file);
+    98: #endif
+    99: 	return TRUE;
+   100: }
+   101: 
+   102: int ReadSkillInt(int* Skill, char* szFileName, char* szSkillName)
+   103: {
+   104: 	int i;
+   105: 	char Path[255], decode[255], line[255];
+   106: 	FILE* file;
+   107: 	char* skill;
+   108: 
+   109: 	GetCurrentDirectoryA(sizeof(Path), Path);
+   110: 	wsprintf(Path, "%s//Configs//Skill//%s", Path, szFileName);
+   111: 
+   112: 	file = fopen(Path, "rb");
+   113: 
+   114: 
+   115: 	if (file == NULL)
+   116: 		return FALSE;
+   117: 
+   118: 	while (!feof(file)) {
+   119: 
+   120: 		if (fgets(line, 255, file) == NULL) break;
+   121: 
+
+--- lines 140-164 ---
+   140: 	}
+   141: 	fclose(file);
+   142: 	return TRUE;
+   143: }
+   144: 
+   145: int ReadSkillInt2(int Skill[][2], char* szFileName, char* szSkillName)
+   146: {
+   147: 	int i;
+   148: 	char Path[255], decode[255], line[255];
+   149: 	FILE* file;
+   150: 	char* skill;
+   151: 
+   152: 	GetCurrentDirectoryA(sizeof(Path), Path);
+   153: 	wsprintf(Path, "%s//Configs//Skill//%s", Path, szFileName);
+   154: 
+   155: 	file = fopen(Path, "rb");
+   156: 	//fopen_s(&file, Path, "rb");
+   157: 
+   158: 	if (file == NULL)
+   159: 		return FALSE;
+   160: 
+   161: 	while (!feof(file)) {
+   162: 
+   163: 		if (fgets(line, 255, file) == NULL) break;
+   164: 
+
+================ SrcServer/src/smLib3d/smRead3d.cpp ================
+--- lines 1-17 ---
+     1: #include <cstring>
+     2: 
+     3: #include "smd3d.h"
+     4: 
+     5: char DataDirectory[128];
+     6: 
+     7: 
+     8: static int smMeshReload = TRUE;
+     9: static int smMeshSave = 0;
+    10: 
+    11: struct smTFACE
+    12: {
+    13: 	DWORD	t[3];
+    14: };
+    15: 
+    16: struct smFCPOINT
+    17: {
+
+--- lines 81-105 ---
+    81: 		p++;
+    82: 
+    83: 	*q = 0;
+    84: 
+    85: 	return p;
+    86: }
+    87: 
+    88: char *SetDirectoryFromFile(char *filename)
+    89: {
+    90: 	int len;
+    91: 	int cnt;
+    92: 
+    93: 	strcpy_s(DataDirectory, filename);
+    94: 
+    95: 	len = lstrlen(DataDirectory);
+    96: 
+    97: 	for(cnt = len; cnt >= 0; cnt--)
+    98: 		if(DataDirectory[cnt] == '//') break;
+    99: 
+   100: 	DataDirectory[cnt + 1] = NULL;
+   101: 
+   102: 	return DataDirectory;
+   103: }
+   104: 
+   105: 
+
+--- lines 83-107 ---
+    83: 	*q = 0;
+    84: 
+    85: 	return p;
+    86: }
+    87: 
+    88: char *SetDirectoryFromFile(char *filename)
+    89: {
+    90: 	int len;
+    91: 	int cnt;
+    92: 
+    93: 	strcpy_s(DataDirectory, filename);
+    94: 
+    95: 	len = lstrlen(DataDirectory);
+    96: 
+    97: 	for(cnt = len; cnt >= 0; cnt--)
+    98: 		if(DataDirectory[cnt] == '//') break;
+    99: 
+   100: 	DataDirectory[cnt + 1] = NULL;
+   101: 
+   102: 	return DataDirectory;
+   103: }
+   104: 
+   105: 
+   106: char szChangeFileExt[64];
+   107: 
+
+--- lines 86-110 ---
+    86: }
+    87: 
+    88: char *SetDirectoryFromFile(char *filename)
+    89: {
+    90: 	int len;
+    91: 	int cnt;
+    92: 
+    93: 	strcpy_s(DataDirectory, filename);
+    94: 
+    95: 	len = lstrlen(DataDirectory);
+    96: 
+    97: 	for(cnt = len; cnt >= 0; cnt--)
+    98: 		if(DataDirectory[cnt] == '//') break;
+    99: 
+   100: 	DataDirectory[cnt + 1] = NULL;
+   101: 
+   102: 	return DataDirectory;
+   103: }
+   104: 
+   105: 
+   106: char szChangeFileExt[64];
+   107: 
+   108: 
+   109: char *ChangeFileExt(char *filename, char *FileExt)
+   110: {
+
+--- lines 88-112 ---
+    88: char *SetDirectoryFromFile(char *filename)
+    89: {
+    90: 	int len;
+    91: 	int cnt;
+    92: 
+    93: 	strcpy_s(DataDirectory, filename);
+    94: 
+    95: 	len = lstrlen(DataDirectory);
+    96: 
+    97: 	for(cnt = len; cnt >= 0; cnt--)
+    98: 		if(DataDirectory[cnt] == '//') break;
+    99: 
+   100: 	DataDirectory[cnt + 1] = NULL;
+   101: 
+   102: 	return DataDirectory;
+   103: }
+   104: 
+   105: 
+   106: char szChangeFileExt[64];
+   107: 
+   108: 
+   109: char *ChangeFileExt(char *filename, char *FileExt)
+   110: {
+   111: 	int cnt, len;
+   112: 
+
+--- lines 90-114 ---
+    90: 	int len;
+    91: 	int cnt;
+    92: 
+    93: 	strcpy_s(DataDirectory, filename);
+    94: 
+    95: 	len = lstrlen(DataDirectory);
+    96: 
+    97: 	for(cnt = len; cnt >= 0; cnt--)
+    98: 		if(DataDirectory[cnt] == '//') break;
+    99: 
+   100: 	DataDirectory[cnt + 1] = NULL;
+   101: 
+   102: 	return DataDirectory;
+   103: }
+   104: 
+   105: 
+   106: char szChangeFileExt[64];
+   107: 
+   108: 
+   109: char *ChangeFileExt(char *filename, char *FileExt)
+   110: {
+   111: 	int cnt, len;
+   112: 
+   113: 	strcpy_s(szChangeFileExt, sizeof(szChangeFileExt), filename);
+   114: 	len = lstrlen(szChangeFileExt);
+
+--- lines 418-442 ---
+   418: 		{
+   419: 
+   420: 			p = GetString(strBuff, p);
+   421: 			slen = lstrlen(strBuff);
+   422: 			for(cnt = slen - 1; cnt > 0; cnt--)
+   423: 			{
+   424: 				if(strBuff[cnt] == '//' || strBuff[cnt] == ':')
+   425: 				{
+   426: 					cnt++; break;
+   427: 				}
+   428: 			}
+   429: 
+   430: 			strcpy_s(strFile, DataDirectory);
+   431: 			lstrcat(strFile, strBuff + cnt);
+   432: 
+   433: 			switch(BitmapDiffuse)
+   434: 			{
+   435: 				case 1:
+   436: 				BitmapCnt++;
+   437: 				strcpy_s(aseMaterial[curMatrialNum].BITMAP[BitmapCnt], strFile);
+   438: 				aseMaterial[curMatrialNum].TextureCounter++;
+   439: 				aseMaterial[curMatrialNum].BitmapStateState[BitmapCnt] = BitmapStageState;
+   440: 				aseMaterial[curMatrialNum].BitmapFormState[BitmapCnt] = BitmapFormState;
+   441: 
+   442: 				break;
+
+--- lines 830-854 ---
+   830: 		{
+   831: 
+   832: 			p = GetString(strBuff, p);
+   833: 			slen = lstrlen(strBuff);
+   834: 			for(cnt = slen - 1; cnt > 0; cnt--)
+   835: 			{
+   836: 				if(strBuff[cnt] == '//' || strBuff[cnt] == ':')
+   837: 				{
+   838: 					cnt++; break;
+   839: 				}
+   840: 			}
+   841: 
+   842: 			strcpy_s(strFile, DataDirectory);
+   843: 			lstrcat(strFile, strBuff + cnt);
+   844: 
+   845: 			switch(BitmapDiffuse)
+   846: 			{
+   847: 				case 1:
+   848: 				BitmapCnt++;
+   849: 				strcpy_s(aseMaterial[curMatrialNum].BITMAP[BitmapCnt], strFile);
+   850: 				aseMaterial[curMatrialNum].TextureCounter++;
+   851: 				aseMaterial[curMatrialNum].BitmapStateState[BitmapCnt] = BitmapStageState;
+   852: 				aseMaterial[curMatrialNum].BitmapFormState[BitmapCnt] = BitmapFormState;
+   853: 
+   854: 				break;
+
+--- lines 1929-1953 ---
+  1929: 	{
+  1930: 		delete pat;
+  1931: 		return NULL;
+  1932: 	}
+  1933: 
+  1934: 	return pat;
+  1935: }
+  1936: 
+  1937: 
+  1938: 
+  1939: 
+  1940: 
+  1941: smPAT3D *smASE_Read(char *file, char *szModelName)
+  1942: {
+  1943: 	FILE *fp;
+  1944: 	smOBJ3D *obj;
+  1945: 	smPAT3D *pat;
+  1946: 	char *szName;
+  1947: 	char *szFile;
+  1948: 	char strBuff[256];
+  1949: 	char *p;
+  1950: 
+  1951: 	szName = szModelName;
+  1952: 	if(szName && szName[0] == 0) szName = 0;
+  1953: 
+
+--- lines 2046-2070 ---
+  2046: 
+  2047: 
+  2048: 	delete pat;
+  2049: 
+  2050: 	pat = smReadModel(szFile, szName);
+  2051: 
+  2052: 	return pat;
+  2053: 
+  2054: }
+  2055: 
+  2056: 
+  2057: 
+  2058: smPAT3D *smASE_ReadBone(char *file)
+  2059: {
+  2060: 	FILE *fp;
+  2061: 	smOBJ3D *obj;
+  2062: 	smPAT3D *pat;
+  2063: 	char *szFile;
+  2064: 	char strBuff[256];
+  2065: 	char *p;
+  2066: 
+  2067: 	smMatPattern = smMaterial;
+  2068: 
+  2069: 	if(smMeshReload && (szFile = smFindFile(file, szFileModelBip)))
+  2070: 	{
+
+--- lines 2252-2276 ---
+  2252: 
+  2253: 
+  2254: 
+  2255: 
+  2256: 
+  2257: 
+  2258: 
+  2259: 	if(ReadType)
+  2260: 	{
+  2261: 		for(cnt = 0; cnt < FileCnt; cnt++)
+  2262: 		{
+  2263: 			smPhysique = 0;
+  2264: 			PatList[cnt] = smASE_ReadBone(FileList[cnt]);
+  2265: 		}
+  2266: 	}
+  2267: 	else
+  2268: 	{
+  2269: 		for(cnt = 0; cnt < FileCnt; cnt++)
+  2270: 		{
+  2271: 			smPhysique = 0;
+  2272: 			PatList[cnt] = smASE_TalkReadBone(FileList[cnt]);
+  2273: 		}
+  2274: 	}
+  2275: 
+  2276: 
+
+================ SrcServer/src/smLib3d/smRead3d.h ================
+--- lines 9-33 ---
+     9: 
+    10: 
+    11: char *smFindFile(char *szfile, char *FileExt = 0, DWORD *lpFileLen = 0);
+    12: 
+    13: 
+    14: char *ChangeFileExt(char *filename, char *FileExt);
+    15: 
+    16: 
+    17: void  smASE_SetPhysique(smPAT3D *p);
+    18: 
+    19: smPAT3D *smASE_GetPhysique();
+    20: 
+    21: smPAT3D *smASE_ReadBone(char *file);
+    22: smPAT3D *smASE_Read(char *file, char *szModelName = 0);
+    23: 
+    24: 
+    25: 
+    26: smPAT3D* smASE_TalkReadBone(char *file);
+    27: 
+    28: 
+    29: 
+    30: 
+    31: 
+    32: smPAT3D *smASE_MergeBone(char *szMeshFile, char **FileList, int FileCnt, int ReadType = 1);
+    33: 
+
+--- lines 10-34 ---
+    10: 
+    11: char *smFindFile(char *szfile, char *FileExt = 0, DWORD *lpFileLen = 0);
+    12: 
+    13: 
+    14: char *ChangeFileExt(char *filename, char *FileExt);
+    15: 
+    16: 
+    17: void  smASE_SetPhysique(smPAT3D *p);
+    18: 
+    19: smPAT3D *smASE_GetPhysique();
+    20: 
+    21: smPAT3D *smASE_ReadBone(char *file);
+    22: smPAT3D *smASE_Read(char *file, char *szModelName = 0);
+    23: 
+    24: 
+    25: 
+    26: smPAT3D* smASE_TalkReadBone(char *file);
+    27: 
+    28: 
+    29: 
+    30: 
+    31: 
+    32: smPAT3D *smASE_MergeBone(char *szMeshFile, char **FileList, int FileCnt, int ReadType = 1);
+    33: 
+    34: 
+
+================ SrcServer/src/smLib3d/smStgObj.cpp ================
+--- lines 133-157 ---
+   133: 	smPAT3D *BipPat;
+   134: 	int x, y, z;
+   135: 
+   136: 	if(nObj >= MAX_STAGEOBJ) return FALSE;
+   137: 
+   138: 	if(szBipFile)
+   139: 	{
+   140: 
+   141: 
+   142: 		smASE_SetPhysique(0);
+   143: 
+   144: 
+   145: 		BipPat = smASE_ReadBone(szBipFile);
+   146: 		smASE_SetPhysique(BipPat);
+   147: 		if(!BipPat) return FALSE;
+   148: 	}
+   149: 	else
+   150: 	{
+   151: 		smASE_SetPhysique(0);
+   152: 		BipPat = 0;
+   153: 	}
+   154: 
+   155: 	Pat = smASE_Read(szFile);
+   156: 	if(!Pat)
+   157: 	{
+
+--- lines 143-167 ---
+   143: 
+   144: 
+   145: 		BipPat = smASE_ReadBone(szBipFile);
+   146: 		smASE_SetPhysique(BipPat);
+   147: 		if(!BipPat) return FALSE;
+   148: 	}
+   149: 	else
+   150: 	{
+   151: 		smASE_SetPhysique(0);
+   152: 		BipPat = 0;
+   153: 	}
+   154: 
+   155: 	Pat = smASE_Read(szFile);
+   156: 	if(!Pat)
+   157: 	{
+   158: 		if(BipPat)
+   159: 		{
+   160: 			delete BipPat;
+   161: 			BipPat = 0;
+   162: 		}
+   163: 		return FALSE;
+   164: 	}
+   165: 
+   166: 	mObj[nObj].Pattern = Pat;
+   167: 	mObj[nObj].BipPattern = BipPat;

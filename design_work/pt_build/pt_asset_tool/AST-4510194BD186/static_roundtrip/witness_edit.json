@@ -1,0 +1,51 @@
+{
+  "tool": "PT_ASSET_TOOL_GEOMETRY_WITNESS_V1",
+  "object": "itWH118",
+  "mesh_vertices": 94,
+  "bbox_diagonal": 37.25696677785684,
+  "strength": 0.08,
+  "changed_vertices": [
+    {
+      "vertex": 62,
+      "before": [
+        -0.1015625,
+        -0.6015625,
+        -10.02734375
+      ],
+      "after": [
+        -0.12345188856124878,
+        -1.0587098598480225,
+        -12.972553253173828
+      ]
+    },
+    {
+      "vertex": 58,
+      "before": [
+        -0.81640625,
+        -0.30859375,
+        -8.1953125
+      ],
+      "after": [
+        -0.9376046657562256,
+        -0.7642295360565186,
+        -11.13834285736084
+      ]
+    },
+    {
+      "vertex": 61,
+      "before": [
+        -0.12109375,
+        -1.01953125,
+        -8.0859375
+      ],
+      "after": [
+        -0.14749222993850708,
+        -1.5722218751907349,
+        -11.014684677124023
+      ]
+    }
+  ],
+  "output": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4510194BD186/static_roundtrip/edited_authoring.blend",
+  "client_modified": false,
+  "check": "PASS"
+}

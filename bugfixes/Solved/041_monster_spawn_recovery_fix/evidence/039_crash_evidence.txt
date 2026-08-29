@@ -1,0 +1,32 @@
+Crash observado com Fix 036 + experimental 037 e sem a 035:
+
+Exception:
+- code = 0xC0000005
+- operation = READ
+- invalid address = 0x0001598C
+- crash RVA = 0x00011DCE
+
+Simbolização:
+- preferred VA = 0x00411DCE
+- função = smCHAR::FindMotionCountFromCode(unsigned long)
+
+Disassembly crítico:
+
+00411d84 <smCHAR::FindMotionCountFromCode(unsigned long)>:
+...
+411dc5: mov this -> eax
+411dc8: mov 0x4704(eax), eax
+411dce: mov 0x1598c(eax), eax
+
+No crash:
+- EAX = 0x00000000
+
+Logo:
+- this->smMotionInfo, localizado em this+0x4704, é NULL;
+- a instrução seguinte tenta ler smMotionInfo+0x1598c;
+- NULL + 0x1598c = 0x0001598C;
+- esse valor é exatamente o endereço inválido registrado pela exceção.
+
+Conclusão:
+o guard recuperado na 035, que testa `if(!smMotionInfo)` antes do loop,
+protege exatamente a instrução que causou o crash reativado pela 037.

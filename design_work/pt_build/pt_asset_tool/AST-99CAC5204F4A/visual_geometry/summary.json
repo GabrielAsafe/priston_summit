@@ -1,0 +1,17 @@
+{
+  "asset_id": "AST-99CAC5204F4A",
+  "asset": "char/npc/Ahin/Ahin.smd",
+  "family": "SMD_MODEL_062_RIGID_PHYSIQUE",
+  "mode": "RIGID",
+  "requested_lod": "auto",
+  "lod": "default",
+  "witness": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-99CAC5204F4A/visual_geometry/visual_geometry_witness.blend",
+  "source_sha256": "c53c9a435279128625e4fe359c28b8abf5a9558b3ceb7cb00330e8c21a7f7503",
+  "artifact_sha256": "9d4a9bac8d59cac73367e90695f1a3b1cadeb492799530aa26c5049f3ba55de7",
+  "geometry_visual": "PASS",
+  "texture_material_visual": "PASS",
+  "visual_asset": "PASS",
+  "texture_prepare": "PASS",
+  "certification_id": "CERT-59C9A1F159CC",
+  "client_modified": false
+}

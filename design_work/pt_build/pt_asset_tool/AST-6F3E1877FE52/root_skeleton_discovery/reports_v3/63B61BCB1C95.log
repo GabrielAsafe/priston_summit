@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/gabriel/Área de Trabalho/summit/design_work/pt_character_structural_gate_v2.py", line 55, in <module>
+    if __name__=='__main__': main()
+                             ~~~~^^
+  File "/home/gabriel/Área de Trabalho/summit/design_work/pt_character_structural_gate_v2.py", line 49, in main
+    smd=parse_smd(a.smd); smb=parse_smb(a.smb); missing=sorted(x for x in smd['bind_bone_names'] if x and x not in smb['bone_names'])
+                              ~~~~~~~~~^^^^^^^
+  File "/home/gabriel/Área de Trabalho/summit/design_work/pt_character_structural_gate_v2.py", line 26, in parse_smb
+    if end!=inf['start']+inf['length']: raise ValueError(f'{name}: SMB block length')
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Bip01: SMB block length

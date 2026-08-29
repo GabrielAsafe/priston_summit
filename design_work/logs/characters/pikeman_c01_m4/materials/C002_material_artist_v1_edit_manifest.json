@@ -1,0 +1,26 @@
+{
+  "tool": "PT_BLENDER_SUMMIT_MATERIAL_EXPORT_V1",
+  "schema": "PT_SMD_MATERIAL_EDIT_MANIFEST_V1",
+  "materials": [
+    {
+      "material_id": 0,
+      "material_name": "SMD_MAT_00_TmbC03.bmp",
+      "self_illum": 1.0,
+      "editable_fields": [
+        "self_illum"
+      ]
+    },
+    {
+      "material_id": 1,
+      "material_name": "SMD_MAT_01_TmbC01.bmp",
+      "self_illum": 0.0,
+      "editable_fields": [
+        "self_illum"
+      ]
+    }
+  ],
+  "editable_fields": [
+    "self_illum"
+  ],
+  "export_check": "PASS"
+}

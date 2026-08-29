@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=f2da3932093fef03cb1337408f44de8312a10bf3248f6bf3e5e7c96d739e4c0e
+output_sha256=f2da3932093fef03cb1337408f44de8312a10bf3248f6bf3e5e7c96d739e4c0e
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-E3FBAC0624A6/object_local_animation/texture_overlay_client/Effect/AssaEffect/Skill3Mesh/Mg3_Diastrophism.tga
+format=TGA_STANDARD
+client_modified=False
+tga_decode_check=PASS

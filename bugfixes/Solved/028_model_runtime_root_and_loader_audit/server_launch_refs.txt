@@ -1,0 +1,41 @@
+/home/gabriel/Área de Trabalho/summit/documentation/tools/generate-sql-reg.sh:4:OUT_FILE="${2:-Servidor/sql.reg}"
+/home/gabriel/Área de Trabalho/summit/documentation/tools/generate-sql-reg.sh:19:"LogPath"="C:\\ServidorPT\\Logs"
+/home/gabriel/Área de Trabalho/summit/documentation/tools/generate-sql-reg.sh:68: write_block "HKEY_LOCAL_MACHINE\SOFTWARE\PristonTale\GameServer"
+/home/gabriel/Área de Trabalho/summit/documentation/tools/generate-sql-reg.sh:69: write_block "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\PristonTale\GameServer"
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:8:cd "$ROOT"
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:182:| Servidor inicia completamente | Confirmado | Logs de inicialização |
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:183:| Servidor escuta na porta 9000 | Confirmado | `netstat` |
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:197:tasklist /FI "IMAGENAME eq Server.exe"
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:207:grep -RInE "ServerIP|ServerPort|LoginServer|GameServer|AreaServer|WorldServer" SrcGame
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:211:write_block "docs/04_SERVER.md" "server-network" "Servidor" <<'BLOCK'
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:235:tasklist /FI "IMAGENAME eq Server.exe"
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:237:taskkill /IM Server.exe /F
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:267:grep -RInE "ServerIP|ServerPort|LoginServer|GameServer|AreaServer|WorldServer" SrcGame
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:286:tasklist /FI "IMAGENAME eq Server.exe"
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:311:| Cliente → Servidor | Desconhecido | Desconhecido | Primeiro pacote | ? | Pendente |
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:312:| Servidor → Cliente | Desconhecido | Desconhecido | Resposta inicial | ? | Pendente |
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:318:| Cliente → Servidor | | | Conta/senha | | Pendente |
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:319:| Servidor → Cliente | | | Resultado do login | | Pendente |
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:343:### Servidor
+/home/gabriel/Área de Trabalho/summit/documentation/update_connection_docs.sh:346:- Executável: `Server.exe`
+/home/gabriel/Área de Trabalho/summit/analysis/runtime_tests/test_windows_exes.cmd:5:cd /d C:\Users\gamer69\SummitTest\cliente
+/home/gabriel/Área de Trabalho/summit/SourceCode/link_server_mingw_i686.sh:7:OUTPUT="$OUTDIR/Server.exe"
+/home/gabriel/Área de Trabalho/summit/SourceCode/depricated/auto_patch_onserver_compat.sh:5:cd "$ROOT"
+/home/gabriel/Área de Trabalho/summit/SourceCode/send_to_s.sh:15:DEST='server@127.0.0.1:C:/SummitTale/Servidor'
+/home/gabriel/Área de Trabalho/summit/SourceCode/send_to_s.sh:18:  dist_mingw_server_i686/Server.exe \
+/home/gabriel/Área de Trabalho/summit/SourceCode/send_to_s.sh:25:HOTUK="$(dirname "$0")/../Servidor/Configs/hotuk.ini"
+/home/gabriel/Área de Trabalho/summit/SourceCode/send_to_s.sh:26:HOTUK_DEST='server@127.0.0.1:C:/SummitTale/Servidor/Configs/hotuk.ini'
+/home/gabriel/Área de Trabalho/summit/SourceCode/cliente.sh:8:ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+/home/gabriel/Área de Trabalho/summit/SourceCode/cliente.sh:9:cd "$ROOT"
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/cliente.sh:8:ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/cliente.sh:9:cd "$ROOT"
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/depricated/auto_patch_onserver_compat.sh:5:cd "$ROOT"
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/link_server_mingw_i686.sh:7:OUTPUT="$OUTDIR/Server.exe"
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/send_to_s.sh:15:DEST='server@127.0.0.1:C:/SummitTale/Servidor'
+/home/gabriel/Área de Trabalho/summit/SourceCode_rebase_20260824/send_to_s.sh:18:  dist_mingw_server_i686/Server.exe \
+/home/gabriel/Área de Trabalho/summit/bugfixes/001_server_hotuk_deploy/before/SourceCode/send_to_s.sh:15:DEST='server@127.0.0.1:C:/SummitTale/Servidor'
+/home/gabriel/Área de Trabalho/summit/bugfixes/001_server_hotuk_deploy/before/SourceCode/send_to_s.sh:18:  dist_mingw_server_i686/Server.exe \
+/home/gabriel/Área de Trabalho/summit/bugfixes/001_server_hotuk_deploy/after/SourceCode/send_to_s.sh:15:DEST='server@127.0.0.1:C:/SummitTale/Servidor'
+/home/gabriel/Área de Trabalho/summit/bugfixes/001_server_hotuk_deploy/after/SourceCode/send_to_s.sh:18:  dist_mingw_server_i686/Server.exe \
+/home/gabriel/Área de Trabalho/summit/bugfixes/001_server_hotuk_deploy/after/SourceCode/send_to_s.sh:25:HOTUK="$(dirname "$0")/../Servidor/Configs/hotuk.ini"
+/home/gabriel/Área de Trabalho/summit/bugfixes/001_server_hotuk_deploy/after/SourceCode/send_to_s.sh:26:HOTUK_DEST='server@127.0.0.1:C:/SummitTale/Servidor/Configs/hotuk.ini'

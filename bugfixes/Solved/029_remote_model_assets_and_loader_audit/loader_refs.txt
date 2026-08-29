@@ -1,0 +1,141 @@
+
+######################################################################
+CURRENT
+######################################################################
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1987:			LoadOftenMeshPattern(chrMonsterList[cnt].szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.h:954:int	AddLoaderPattern(smCHAR *lpChar, char *szName, char *szName2 = 0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.h:104:int	LoadOftenMeshPattern(char *szFileName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp:1235:		AddLoaderPattern(lpCurPlayer, lpCurPlayer->smCharInfo.szModelName, lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp:1242:	AddLoaderPattern(lpCurPlayer, szCharFileList[CharPlayCnt], lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp:1262:	AddLoaderPattern(lpCurPlayer, szBuff, lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp:1276:	AddLoaderPattern(lpCurPlayer, szFile, 0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp:1351:		AddLoaderPattern(lpCurPlayer, lpCurPlayer->smCharInfo.szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:281:int	LoadOftenMeshPattern(char *szFileName)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:362:			if (LoadOftenMeshPattern(szBuff) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:374:			if (LoadOftenMeshPattern(szBuff) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:384:			if (LoadOftenMeshPattern(szModel_FighterFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:386:			if (LoadOftenMeshPattern(szModel_MechFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:388:			if (LoadOftenMeshPattern(szModel_ArcherFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:390:			if (LoadOftenMeshPattern(szModel_PikeFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:392:			if (LoadOftenMeshPattern(szModel_KnightFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:394:			if (LoadOftenMeshPattern(szModel_AtalantaFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:396:			if (LoadOftenMeshPattern(szModel_PristessFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:398:			if (LoadOftenMeshPattern(szModel_MagicanFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:425:			LoadOftenMeshPattern(szFilePath);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:472:		LoadOftenMeshPattern(szOftenNPC[cnt]);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:492:			if (LoadOftenMeshPattern(szModel_FighterFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:494:			if (LoadOftenMeshPattern(szModel_MechFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:496:			if (LoadOftenMeshPattern(szModel_ArcherFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:498:			if (LoadOftenMeshPattern(szModel_PikeFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:500:			if (LoadOftenMeshPattern(szModel_KnightFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:502:			if (LoadOftenMeshPattern(szModel_AtalantaFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:504:			if (LoadOftenMeshPattern(szModel_PristessFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:506:			if (LoadOftenMeshPattern(szModel_MagicanFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:533:				LoadOftenMeshPattern(szName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:559:		LoadOftenMeshPattern(szBuff);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:617:	AddLoaderPattern(lpCurPlayer, szbuff, lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:662:	AddLoaderPattern(lpChar, szbuff, lpChar->smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:1008:	AddLoaderPattern(lpChar, szbuff1, szbuff2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:1040:	AddLoaderPattern(lpChar, lpChar->smCharInfo.szModelName, lpChar->smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:5419:	AddLoaderPattern(&chrPartyPlayer, szModelFile1, szModelFile2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:5610:	AddLoaderPattern(lpCurPlayer, lpCurPlayer->smCharInfo.szModelName, lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp:7087:							LoadOftenMeshPattern(szFilePath);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:683:int	AddLoaderPattern(smCHAR *lpChar, char *szName, char *szName2)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:8936:	return AddLoaderPattern((smCHAR *)&Head, szName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:10112:		AddLoaderPattern((smCHAR *)&Head, smCharInfo.szModelName, smCharInfo.szModelName2);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:10148:		AddLoaderPattern((smCHAR *)&Head, smCharInfo.szModelName, smCharInfo.szModelName2);
+
+######################################################################
+BASE_PRE_REGRESSION
+######################################################################
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/Server/OnSever.cpp:1987:			LoadOftenMeshPattern(chrMonsterList[cnt].szModelName);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/character.h:954:int	AddLoaderPattern(smCHAR *lpChar, char *szName, char *szName2 = 0);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playmain.cpp:1235:		AddLoaderPattern(lpCurPlayer, lpCurPlayer->smCharInfo.szModelName, lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playmain.cpp:1242:	AddLoaderPattern(lpCurPlayer, szCharFileList[CharPlayCnt], lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playmain.cpp:1262:	AddLoaderPattern(lpCurPlayer, szBuff, lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playmain.cpp:1276:	AddLoaderPattern(lpCurPlayer, szFile, 0);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playmain.cpp:1351:		AddLoaderPattern(lpCurPlayer, lpCurPlayer->smCharInfo.szModelName);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:281:int	LoadOftenMeshPattern(char *szFileName)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:362:			if (LoadOftenMeshPattern(szBuff) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:374:			if (LoadOftenMeshPattern(szBuff) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:384:			if (LoadOftenMeshPattern(szModel_FighterFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:386:			if (LoadOftenMeshPattern(szModel_MechFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:388:			if (LoadOftenMeshPattern(szModel_ArcherFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:390:			if (LoadOftenMeshPattern(szModel_PikeFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:392:			if (LoadOftenMeshPattern(szModel_KnightFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:394:			if (LoadOftenMeshPattern(szModel_AtalantaFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:396:			if (LoadOftenMeshPattern(szModel_PristessFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:398:			if (LoadOftenMeshPattern(szModel_MagicanFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:425:			LoadOftenMeshPattern(szFilePath);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:472:		LoadOftenMeshPattern(szOftenNPC[cnt]);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:492:			if (LoadOftenMeshPattern(szModel_FighterFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:494:			if (LoadOftenMeshPattern(szModel_MechFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:496:			if (LoadOftenMeshPattern(szModel_ArcherFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:498:			if (LoadOftenMeshPattern(szModel_PikeFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:500:			if (LoadOftenMeshPattern(szModel_KnightFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:502:			if (LoadOftenMeshPattern(szModel_AtalantaFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:504:			if (LoadOftenMeshPattern(szModel_PristessFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:506:			if (LoadOftenMeshPattern(szModel_MagicanFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:533:				LoadOftenMeshPattern(szName);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:559:		LoadOftenMeshPattern(szBuff);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:617:	AddLoaderPattern(lpCurPlayer, szbuff, lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:662:	AddLoaderPattern(lpChar, szbuff, lpChar->smCharInfo.szModelName2);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:1008:	AddLoaderPattern(lpChar, szbuff1, szbuff2);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:1040:	AddLoaderPattern(lpChar, lpChar->smCharInfo.szModelName, lpChar->smCharInfo.szModelName2);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:5419:	AddLoaderPattern(&chrPartyPlayer, szModelFile1, szModelFile2);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:5610:	AddLoaderPattern(lpCurPlayer, lpCurPlayer->smCharInfo.szModelName, lpCurPlayer->smCharInfo.szModelName2);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp:7087:							LoadOftenMeshPattern(szFilePath);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.h:104:int	LoadOftenMeshPattern(char *szFileName);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/character.cpp:683:int	AddLoaderPattern(smCHAR *lpChar, char *szName, char *szName2)
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/character.cpp:8959:	return AddLoaderPattern((smCHAR *)&Head, szName);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/character.cpp:10135:		AddLoaderPattern((smCHAR *)&Head, smCharInfo.szModelName, smCharInfo.szModelName2);
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/character.cpp:10171:		AddLoaderPattern((smCHAR *)&Head, smCharInfo.szModelName, smCharInfo.szModelName2);
+
+######################################################################
+ARMAZEM_REFERENCE
+######################################################################
+/home/gabriel/armazem/priston/pristontale-1-master/src/Server/OnSever.cpp:1640:			LoadOftenMeshPattern(chrMonsterList[cnt].szModelName);
+/home/gabriel/armazem/priston/pristontale-1-master/src/character.cpp:664:int	AddLoaderPattern( smCHAR *lpChar , char *szName , char *szName2 )
+/home/gabriel/armazem/priston/pristontale-1-master/src/character.cpp:8615:	return AddLoaderPattern( (smCHAR *)&Head , szName );
+/home/gabriel/armazem/priston/pristontale-1-master/src/character.cpp:9740:		AddLoaderPattern( (smCHAR *)&Head , smCharInfo.szModelName , smCharInfo.szModelName2 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/character.cpp:9776:		AddLoaderPattern( (smCHAR *)&Head , smCharInfo.szModelName , smCharInfo.szModelName2 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/character.h:965:int	AddLoaderPattern( smCHAR *lpChar , char *szName , char *szName2=0 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/netplay.cpp:2387:					AddLoaderPattern( lpCurPlayer , lpCurPlayer->smCharInfo.szModelName , lpCurPlayer->smCharInfo.szModelName2 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/netplay.cpp:2443:					AddLoaderPattern( lpCurPlayer , lpCurPlayer->smCharInfo.szModelName , lpCurPlayer->smCharInfo.szModelName2 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/playmain.cpp:1336:		AddLoaderPattern( lpCurPlayer , lpCurPlayer->smCharInfo.szModelName, lpCurPlayer->smCharInfo.szModelName2 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/playmain.cpp:1343:	AddLoaderPattern( lpCurPlayer , szCharFileList[CharPlayCnt], lpCurPlayer->smCharInfo.szModelName2 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/playmain.cpp:1367:	AddLoaderPattern( lpCurPlayer , szBuff , lpCurPlayer->smCharInfo.szModelName2 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/playmain.cpp:1381:	AddLoaderPattern( lpCurPlayer , szFile , 0 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/playmain.cpp:1455:		AddLoaderPattern( lpCurPlayer , lpCurPlayer->smCharInfo.szModelName );
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:367:int	LoadOftenMeshPattern( char *szFileName )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:446:			if ( LoadOftenMeshPattern( szBuff )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:458:			if ( LoadOftenMeshPattern( szBuff )==FALSE ) 
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:468:			if ( LoadOftenMeshPattern( szModel_FighterFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:470:			if ( LoadOftenMeshPattern( szModel_MechFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:472:			if ( LoadOftenMeshPattern( szModel_ArcherFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:474:			if ( LoadOftenMeshPattern( szModel_PikeFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:476:			if ( LoadOftenMeshPattern( szModel_KnightFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:478:			if ( LoadOftenMeshPattern( szModel_AtalantaFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:480:			if ( LoadOftenMeshPattern( szModel_PristessFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:482:			if (LoadOftenMeshPattern(szModel_MagicanFaceName[cnt][cnt2]) == FALSE)
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:506:			LoadOftenMeshPattern(szFilePath);
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:561:		LoadOftenMeshPattern(szOftenNPC[cnt]);
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:588:			LoadOftenMeshPattern(szFilePath);
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:603: 			if ( LoadOftenMeshPattern( szModel_FighterFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:605:			if ( LoadOftenMeshPattern( szModel_MechFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:607:			if ( LoadOftenMeshPattern( szModel_ArcherFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:609:			if ( LoadOftenMeshPattern( szModel_PikeFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:611:			if ( LoadOftenMeshPattern( szModel_KnightFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:613:			if ( LoadOftenMeshPattern( szModel_AtalantaFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:615:			if ( LoadOftenMeshPattern( szModel_PristessFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:617:			if ( LoadOftenMeshPattern( szModel_MagicanFaceName[cnt][cnt2] )==FALSE )
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:643:				LoadOftenMeshPattern( szName  );
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:676:		LoadOftenMeshPattern( szBuff  );
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:734:	AddLoaderPattern( lpCurPlayer , szbuff , lpCurPlayer->smCharInfo.szModelName2 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:778:	AddLoaderPattern( lpChar , szbuff , lpChar->smCharInfo.szModelName2 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:1112:	AddLoaderPattern( lpChar , szbuff1 , szbuff2 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:1144:	AddLoaderPattern( lpChar , lpChar->smCharInfo.szModelName , lpChar->smCharInfo.szModelName2 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:5035:	AddLoaderPattern( &chrPartyPlayer , szModelFile1 , szModelFile2 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:5222:	AddLoaderPattern( lpCurPlayer , lpCurPlayer->smCharInfo.szModelName , lpCurPlayer->smCharInfo.szModelName2 );
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.cpp:6784:							LoadOftenMeshPattern(szFilePath);
+/home/gabriel/armazem/priston/pristontale-1-master/src/playsub.h:157:int	LoadOftenMeshPattern( char *szFileName );

@@ -1,0 +1,31 @@
+diff --git a/SourceCode/ccache/a/5/stats b/SourceCode/ccache/a/5/stats
+index dcbefd6..e4dc1f9 100644
+--- a/SourceCode/ccache/a/5/stats
++++ b/SourceCode/ccache/a/5/stats
+@@ -20,7 +20,7 @@
+ 0
+ 0
+ 0
+-12
++22
+ 0
+ 0
+ 0
+@@ -33,7 +33,7 @@
+ 0
+ 0
+ 0
+-24
++44
+ 0
+ 0
+ 0
+@@ -42,7 +42,7 @@
+ 0
+ 0
+ 0
+-12
++22
+ 0
+ 0
+ 0

@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=09003f99db726539207de429c30007b873c132a14b125e12ae97536fcd4d04bd
+output_sha256=09003f99db726539207de429c30007b873c132a14b125e12ae97536fcd4d04bd
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-2F724BA2B0E7/stage072_geometry_roundtrip_current/texture_overlay_client/field/quest/f-flame_4.tga
+format=TGA_STANDARD
+client_modified=False
+tga_decode_check=PASS

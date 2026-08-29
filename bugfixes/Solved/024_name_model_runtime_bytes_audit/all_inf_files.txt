@@ -1,0 +1,381 @@
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	100_Arqueira das Cinzas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	100_Esqueleto de Rei Hopi.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	100_Lutador das Cinzas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	100_Mecânico das Cinzas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	100_Pike das Cinzas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	101_Golem Robô.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	102_Atalanta das Cinzas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	102_Cavaleiro das Cinzas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	102_Mago das Cinzas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	102_Sacerdotisa das Cinzas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	104_Gorgon.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	105_Naz das Cinzas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	105_Ruca.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	106_Igolation.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	106_Kakoa.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	107_Sprin.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	108_Árvore das Cinzas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	109_Xetan.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	10_Imp.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	10_Planta Mutante.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	111_Mineiro das Cinzas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	112_Capataz das Cinzas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	112_Explosão Selada.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	113_Verme de Gelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	115_Morcego da Mina.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	117_Golem Minerador.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	118_Tarantulika.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	119_Dey.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	119_Gurkob.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	119_Serpente de Gelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	11_Doral.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	11_Órbita.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	120_Koon.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	120_Nihil.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	121_Chalybs.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	121_Faugn.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	122_Shogoth.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	123_Arhdyra.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	124_Sathla.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	129_Bruxa da Noite.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	12_Árvore Mutante.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	12_Planta Assassina.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	130_Draxos.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	130_Midranda.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	130_Yagditha.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	13_Planta.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	13_Wolverine de Ouro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	15_Árvore.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	15_Cão Abelha.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	17_Esqueleto.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	17_Planta Mortífera.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	19_Esqueleto do Mal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	19_Zumbi.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	1_Coelho.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	1_Cuepi.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	1_Hopi.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	20_Escorpião.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	22_Barata Gigante.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	24_Mephit.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	25_Fantasma.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	27_Decoy.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	29_Cíclope.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	2_Coelha.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	2_Cogumelo Fantasma.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	30_Parasita.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	32_Arqueiro do Mal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	34_Bargon.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	35_Ghoul.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	35_Minigue Prateado.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	37_Besouro Blindado.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	39_Buma.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	3_Cogumelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	3_Duende Macabro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	40_Aranha.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	40_Cripto.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	40_Duende Líder.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	40_Guerreiro do Mal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	41_Patrulheiro do Mal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	42_Múmia.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	42_Titã.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	43_Decapitador.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	45_Cavaleiro Cíclope.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	47_Griven.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	48_Hunki.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	49_Centauro-S.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	4_Duende Selvagem.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	4_Wolverine de Bronze.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	50_Cavaleiro do Mal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	51_Golem de Areia.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	52_Carniceiro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	52_Centauro-L.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	53_Gigante de Pedra.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	55_Abelha Selvagem.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	55_Caramujo do Mal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	55_Golem de Barro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	55_Morcego Vampiro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	56_Guardião de Lama.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	56_Muffin.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	57_Caramujo Rijo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	57_Cavaleiro Negro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	58_Árvore das Trevas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	58_Planta das Trevas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	59_Abelha do Mal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	59_Caramujo Espinhoso.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	5_Tatu.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	5_Zeldi.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	60_Cavaleiro Fantasma.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	62_Figon.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	64_Rei Hopi.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	65_Pesadelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	66_Guardião Maldito.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	67_Bruxa.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	68_Duende Guerreiro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	69_Golem de Pedra.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	6_Duende Mágico.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	6_Minigue.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	70_Grande Griven.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	70_Naz.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	70_Omu.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	71_Lâmina.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	71_Lorde Centauro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	71_Lorde Múmia.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	71_Raia Venenosa.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	72_Lagarto do Lago.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	72_Stygian.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	73_Sereia Profana.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	73_Sombra.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	74_Aranha Rainha.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	75_Dusk.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	75_Succubus.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	76_Dawlin.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	76_Hulk.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	76_Omicron.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	77_Incubus.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	78_Espectro Negro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	79_Ratoo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	7_Barro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	7_Sen.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	80_Abelha Vampira.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	80_Besouro Gigante.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	80_Centauro Arqueira.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	80_Guardião de Aço.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	80_Niken.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	81_Golem de Aço.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	81_Golem Torre.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	81_Híper Máquina.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	81_Imitador.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	81_Morcego Mutante.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	82_Destruidor.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	82_Duende Xamã.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	82_Hest.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	82_Máquina Vampira.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	82_Morte Súbita.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	83_Grotesco.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	84_Berserker.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	84_Centauro Guerreira.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	84_Guardião Antigo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	85_Metron.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	85_Morgon.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	85_Ogro Mecânico.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	85_Tiphoon.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	86_Máquina-D.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	86_Montanha.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	86_Omega.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	87_Punhos de Aço.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	88_Conjuradora.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	88_Duende de Gelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	88_Guerreiro Cíclope.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	88_Místico.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	89_Congelado.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	89_Gelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	89_Olho de Gelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	89_Tartaruga Blindada.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	8_Coelho Mutante.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	8_Wolverine de Prata.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	90_Caos Cara.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	90_Golem de Gelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	90_Nevasca.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	90_Pássaro Demoníaco.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	92_Quimera.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	92_Verme de Fogo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	93_Cão Infernal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	93_Guardião Negro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	94_Mago Negro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	96_Abominação.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	96_Inquisidor Negro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	97_Cavaleiro Sanguinário.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	97_Guardião do Templo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	98_Seto.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	99_Cavaleiro Sanguinário2.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	99_Inquisidor Negro2.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	99_Quimera2.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Acero.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	AD_60_Mestre Raymon.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	AD_60_Mestre Verkan.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	AD_80_Hestian.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	BC_100_Arqueiro do Castelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	BC_100_Cristal de Fogo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	BC_100_Cristal de Gelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	BC_100_Cristal de Raio.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	BC_100_Cristal do Castelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	BC_100_Portão do Castelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	BC_100_Torre de Valhalla.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	BC_70_Polícia do Castelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	BC_80_Milícia do Castelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	BC_90_Guarda do Castelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Boss Mundo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Cash Falta na pasta Monster	Chefe_39_Lunático.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Cash Falta na pasta Monster	Chefe_44_Apostasy.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Cash Falta na pasta Monster	Chefe_54_Cripton.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Cash Falta na pasta Monster	Chefe_9_Coelha Mutante.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_101_Robô Mutante.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_104_Babel.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_104_Gorgônia.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_109_DevilShy.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_110_BesouroD.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_110_CavaleiroD.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_110_HellSingD.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_110_PlantaInfernalD.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_110_Valento.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_120_Mokova.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_121_Greedy.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_130_Kelvezu.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_130_Tulla.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_14_Árvore Maldita.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_14_Planta Infernal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_19_EsqueletoD.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_19_Esqueleto Líder.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_19_Lorde das Árvores.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_1_Zzangpi.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_24_Mekhist.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_29_Ciclone.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_29_Decoy Evoluído.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_34_Bauton.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_34_Parasita do Mal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_39_Grave Shakins.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_44_Múmia Real.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_49_Fright Nemyun.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_4_Duende Chefe.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_4_Duende do Norte.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_54_Cavaleiro Profano.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_54_Lorde de Areia.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_59_Espírito do Mal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_59_Hunki Reverso.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_64_Hell Sing.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_64_Rosa Sangrenta.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_69_Guardião do Mal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_74_Arqueiro Styx.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_74_Mestre Omu.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_79_Omicronos.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_79_Rashas.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_83_Fúria.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_83_Golem Antigo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_87_Montanha Azul.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_87_Morgônia.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_91_Olho de Fogo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_91_Tartaruga Dragão.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_95_Cão Esqueleto.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Chefe_9_Eed.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Coelhão de Páscoa.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Coelho de Páscoa.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Cristal_80_Guardião Santo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Dentuço Gigante.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Desafio_118_ Fúria .inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Desafio_119_  Fúria  .inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Desafio_120_   Fúria   .inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Desafio_1_Pedra Mágica.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Evento_1_Billy.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Evento_1_Boitatá.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Evento_1_Boneco de Neve.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Evento_1_Cabeça de Abóbora.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Evento_1_Duende Noel.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Evento_1_Lobo Procurado.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Evento_1_Moriph Procurado.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Evento_1_Nego Ney.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Evento_1_Zidane.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento de Páscoa	Coelhão de Páscoa.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento de Páscoa	Coelho de Páscoa.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento de Páscoa	Dentuço Gigante.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Mini_Devil_Shy.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Mini_Draxos.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Mini_Greedy.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Mini_Mid.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Mini_Mokova.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Mini_Tulla.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Mini_Yagditha.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	new_sod_avelisk-s.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	new_sod_beevil.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	new_sod_buma.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	new_sod_chain_golem.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	new_sod_crypt.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	new_sod_cursed_web.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	new_sod_cyclops_knight.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	new_sod_dark_knight.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	new_sod_dawlin.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	new_sod_deadzone.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	new_sod_doom_guard.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Pet_1_Arcuda.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Pet_1_Cavaleiro Sombrio.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Pet_60_Chama Elemental.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Pet_60_Wolverine.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Pet_60_Wolverine Sombrio.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Pet_70_Golem de Metal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Premium_1_Caravana.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R1B Vegas Demir.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R1 Caramujo Rijo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R1 Guardião de Lama.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R1 Muffin.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R1 Patrulheiro do Mal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R2B Hellsing.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R2 Cavaleiro Fantasma.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R2 Figon.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R2 Múmia.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R2 Rei Hopi.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R3B Cursed Web.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R3 Cavaleiro Negro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R3 Duende Guerreiro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R3 Golem de Pedra.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R3 Guardião Maldito.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R4B Slayon.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R4 Dawlin.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R4 Lâmina.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R4 Lorde Centauro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R4 Succubus.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R5 Aranha Rainha.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R5B Unseen.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R5 Grande Griven.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R5 Omu.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R5 Sereia Profana.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R6B Doom Lord.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R6 Destruidor.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R6 Metron.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R6 Montanha.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R6 Morte Súbita.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R7B Morgonyte.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R7 Conjuradora.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R7 Duende de Gelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R7 Golem de Gelo.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R7 Nevasca.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R8B Shadow Phalanx.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R8 Cão Infernal.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R8 Guardião Negro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R8 Inquisidor Negro.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	R8 Quimera.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Slab_114_Engenheiro do Laboratório.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Slab_114_Técnico do Laboratório.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Slab_114_Técnico Invasor.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Slab_115_Bombardeiro Invasor.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Slab_115_Soldado Invasor.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Slab_116_Elite Invasor.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Slab_116_Guardião do Laboratório.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Slab_118_Soldado Zumbi.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Slab_118_Técnico Zumbi.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Slab_119_Bombardeiro Zumbi.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	Slab_119_Elite Zumbi.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_armored_beetle.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_avelin_queen.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_doom_lord.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_dusk.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_figon.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_greven.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_heavy_goblin.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_hellsing.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_hulk.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_illusion_knight.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_morgonyte.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_muffin.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_mummy.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_sadness.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_shadow_phalanx.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_skeleton_knight.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_skeleton_ranger.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_slaughter.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_slayon.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_sliver.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_solid_snail.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_stone_golem.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_titan.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_unseen.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_vega_demir.inf
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster	SOD_witch.inf

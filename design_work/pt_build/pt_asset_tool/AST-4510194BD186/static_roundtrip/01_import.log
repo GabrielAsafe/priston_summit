@@ -1,0 +1,34 @@
+00:00.016  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.016  color_management | Using fallback mode for management
+MATERIAL 0: tex='Image\\sinImage\\Items\\DropItem\\itwh110.bmp' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4510194BD186/static_roundtrip/texture_overlay_client/Image/sinImage/Items/DropItem/itwh110.bmp' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4510194BD186/static_roundtrip/_pt_smd_texture_cache/itwh110.e56007285a.decoded.bmp' decode=BMP_PRISTON_PREFIX14_128x128_24bpp load=LOADED
+MATERIAL 1: tex='Image\\sinImage\\Items\\DropItem\\itwh111.bmp' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4510194BD186/static_roundtrip/texture_overlay_client/Image/sinImage/Items/DropItem/itwh111.bmp' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4510194BD186/static_roundtrip/_pt_smd_texture_cache/itwh111.65b6e48e0c.decoded.bmp' decode=BMP_PRISTON_PREFIX14_64x128_24bpp load=LOADED
+MATERIAL 2: tex='Image\\sinImage\\Items\\DropItem\\h116.BMP' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 3: tex='' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 4: tex='' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 5: tex='Image\\sinImage\\Items\\DropItem\\h117.BMP' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 6: tex='' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 7: tex='Image\\sinImage\\Items\\DropItem\\h121.tga' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 8: tex='Image\\sinImage\\Items\\DropItem\\h121.tga' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 9: tex='Image\\sinImage\\Items\\DropItem\\h118.BMP' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 10: tex='Image\\sinImage\\Items\\DropItem\\h118.BMP' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 11: tex='Image\\sinImage\\Items\\DropItem\\itwh118.tga' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4510194BD186/static_roundtrip/texture_overlay_client/Image/sinImage/Items/DropItem/itwh118.tga' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4510194BD186/static_roundtrip/texture_overlay_client/Image/sinImage/Items/DropItem/itwh118.tga' decode=AS_IS load=LOADED
+MATERIAL 12: tex='Image\\sinImage\\Items\\DropItem\\itwh118.tga' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4510194BD186/static_roundtrip/texture_overlay_client/Image/sinImage/Items/DropItem/itwh118.tga' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4510194BD186/static_roundtrip/texture_overlay_client/Image/sinImage/Items/DropItem/itwh118.tga' decode=AS_IS load=LOADED
+Info: Saved as "pristine_import.blend"
+PT_SMD_BLENDER_IMPORT_V4_GENERIC
+pt_import_mode=STATIC_NO_PHYSIQUE
+objects=1
+materials=13
+vertices=94
+faces=150
+uv_faces=150
+armature_bones=0
+mesh_armature_modifiers=0
+visible_objects=['itWH118']
+hidden_objects=[]
+blend=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4510194BD186/static_roundtrip/pristine_import.blend
+client_modified=False
+generic_import_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

@@ -1,0 +1,282 @@
+{
+  "format": "PT_OBJECT_LOCAL_SOURCE_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Effect/ObjAnimationData/PikeWind/bong.smd",
+  "file_size": 22362,
+  "object_count": 3,
+  "object_local_object_count": 3,
+  "animated_object_count": 3,
+  "hold_object_count": 0,
+  "max_engine_frame": 16000,
+  "objects": [
+    {
+      "index": 0,
+      "name": "Plane01",
+      "parent": "",
+      "nVertex": 4,
+      "nFace": 2,
+      "nTexLink": 2,
+      "nRot": 45,
+      "nPos": 45,
+      "nScale": 0,
+      "TmFrameCnt": 0,
+      "channels_serialized": [
+        "ROT",
+        "POS"
+      ],
+      "channels_animated": [
+        "ROT",
+        "POS"
+      ],
+      "motion_class": "ANIMATED",
+      "reference_engine_frame": 0,
+      "max_engine_frame": 16000,
+      "rotation_semantics_check": "PASS",
+      "rotation_cumulative_max_error": 1.9396846018260305e-07,
+      "parent_index": null,
+      "bind_local_identity_error": null,
+      "normalized_samples": [
+        {
+          "engine_frame": 0.0,
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "rotation_xyzw": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "engine_frame": 3520.0,
+          "location": [
+            -36.60000038146973,
+            -95.30000114440918,
+            12.000000476837158
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "rotation_xyzw": [
+            0.0,
+            0.0,
+            0.8912073653058226,
+            0.453596111121617
+          ]
+        },
+        {
+          "engine_frame": 16000.0,
+          "location": [
+            -57.10000228881836,
+            25.100000381469727,
+            -51.000001430511475
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "rotation_xyzw": [
+            0.0,
+            0.0,
+            0.8134155048413878,
+            -0.581683089391148
+          ]
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "name": "Plane03",
+      "parent": "",
+      "nVertex": 4,
+      "nFace": 2,
+      "nTexLink": 2,
+      "nRot": 45,
+      "nPos": 45,
+      "nScale": 0,
+      "TmFrameCnt": 0,
+      "channels_serialized": [
+        "ROT",
+        "POS"
+      ],
+      "channels_animated": [
+        "ROT",
+        "POS"
+      ],
+      "motion_class": "ANIMATED",
+      "reference_engine_frame": 0,
+      "max_engine_frame": 16000,
+      "rotation_semantics_check": "PASS",
+      "rotation_cumulative_max_error": 1.9396846018260305e-07,
+      "parent_index": null,
+      "bind_local_identity_error": null,
+      "normalized_samples": [
+        {
+          "engine_frame": 0.0,
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "rotation_xyzw": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "engine_frame": 4000.0,
+          "location": [
+            -36.60000038146973,
+            -95.20000267028809,
+            11.899999618530273
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "rotation_xyzw": [
+            0.0,
+            0.0,
+            0.8912073653058226,
+            0.453596111121617
+          ]
+        },
+        {
+          "engine_frame": 16000.0,
+          "location": [
+            -57.10000228881836,
+            25.19999885559082,
+            -51.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "rotation_xyzw": [
+            0.0,
+            0.0,
+            0.8134155048413878,
+            -0.581683089391148
+          ]
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "name": "Plane04",
+      "parent": "",
+      "nVertex": 4,
+      "nFace": 2,
+      "nTexLink": 2,
+      "nRot": 45,
+      "nPos": 45,
+      "nScale": 0,
+      "TmFrameCnt": 0,
+      "channels_serialized": [
+        "ROT",
+        "POS"
+      ],
+      "channels_animated": [
+        "ROT",
+        "POS"
+      ],
+      "motion_class": "ANIMATED",
+      "reference_engine_frame": 0,
+      "max_engine_frame": 16000,
+      "rotation_semantics_check": "PASS",
+      "rotation_cumulative_max_error": 1.9396846018260305e-07,
+      "parent_index": null,
+      "bind_local_identity_error": null,
+      "normalized_samples": [
+        {
+          "engine_frame": 0.0,
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "rotation_xyzw": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "engine_frame": 3680.0,
+          "location": [
+            -36.60000038146973,
+            -95.20000267028809,
+            11.899999618530273
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "rotation_xyzw": [
+            0.0,
+            0.0,
+            0.8912073653058226,
+            0.453596111121617
+          ]
+        },
+        {
+          "engine_frame": 16000.0,
+          "location": [
+            -57.10000228881836,
+            25.19999885559082,
+            -51.099998474121094
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "rotation_xyzw": [
+            0.0,
+            0.0,
+            0.8134155048413878,
+            -0.581683089391148
+          ]
+        }
+      ]
+    }
+  ],
+  "root_objects": [
+    "Plane01",
+    "Plane03",
+    "Plane04"
+  ],
+  "parent_edges": [],
+  "parent_edge_count": 0,
+  "animated_child_count": 0,
+  "hierarchy_semantics": "LOCAL_QMAT_TIMES_PARENT_TMRESULT",
+  "rotation_semantics": "ACCUMULATED_TM_PREV_ROT",
+  "source_rot_key_semantics": "INCREMENTAL_LOCAL_QUATERNION",
+  "preview_reference": "FIRST_KEY_NORMALIZED_OBJECT_LOCAL"
+}

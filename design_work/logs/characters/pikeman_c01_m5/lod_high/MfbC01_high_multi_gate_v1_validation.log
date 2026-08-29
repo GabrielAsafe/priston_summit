@@ -1,0 +1,103 @@
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+00:01.544  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/MfbC01_high_multi_gate_v1_game_normalized.blend"
+
+--- VALIDATE MbhC01 ---
+PT_FREE_MESH_VALIDATE_V2
+object=MbhC01
+source_sha256=9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b
+source_counts=130/217/217
+original_object_mode=OBJECT
+current_object_mode=OBJECT
+edit_mode_synchronized=False
+vertices=130
+source_polygons=217
+export_triangles=217
+triangulation_delta=+0
+triangulation_method=TEMP_BMESH_BEAUTY
+artist_mesh_modified=False
+loops=651
+uv_layers=[{'index': 0, 'name': 'SMD_UV', 'active': True, 'active_render': True, 'data_len': 651}]
+active_uv='SMD_UV'
+active_uv_data_count=651
+used_materials={1: 195, 2: 22}
+allowed_materials=[1, 2]
+rigid_bone_count=21
+max_vertex_fit_error=0
+mean_vertex_fit_error=0
+edge_degree_histogram={2: 303, 1: 45}
+boundary_edge_count=45
+nonmanifold_edge_count=0
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m5/lod_high/MfbC01_high_multi_gate_v1_object_validation/MbhC01_validation.json
+free_mesh_validation_check=PASS
+
+--- VALIDATE MshC01 ---
+PT_FREE_MESH_VALIDATE_V2
+object=MshC01
+source_sha256=9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b
+source_counts=173/331/331
+original_object_mode=OBJECT
+current_object_mode=OBJECT
+edit_mode_synchronized=False
+vertices=173
+source_polygons=331
+export_triangles=331
+triangulation_delta=+0
+triangulation_method=TEMP_BMESH_BEAUTY
+artist_mesh_modified=False
+loops=993
+uv_layers=[{'index': 0, 'name': 'SMD_UV', 'active': True, 'active_render': True, 'data_len': 993}]
+active_uv='SMD_UV'
+active_uv_data_count=993
+used_materials={1: 331}
+allowed_materials=[1]
+rigid_bone_count=22
+max_vertex_fit_error=0
+mean_vertex_fit_error=0
+edge_degree_histogram={2: 484, 1: 16, 3: 3}
+boundary_edge_count=16
+nonmanifold_edge_count=3
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m5/lod_high/MfbC01_high_multi_gate_v1_object_validation/MshC01_validation.json
+free_mesh_validation_check=PASS
+
+--- VALIDATE MlhC01 ---
+PT_FREE_MESH_VALIDATE_V2
+object=MlhC01
+source_sha256=9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b
+source_counts=46/78/78
+original_object_mode=OBJECT
+current_object_mode=OBJECT
+edit_mode_synchronized=False
+vertices=46
+source_polygons=78
+export_triangles=78
+triangulation_delta=+0
+triangulation_method=TEMP_BMESH_BEAUTY
+artist_mesh_modified=False
+loops=234
+uv_layers=[{'index': 0, 'name': 'SMD_UV', 'active': True, 'active_render': True, 'data_len': 234}]
+active_uv='SMD_UV'
+active_uv_data_count=234
+used_materials={1: 78}
+allowed_materials=[1]
+rigid_bone_count=4
+max_vertex_fit_error=0
+mean_vertex_fit_error=0
+edge_degree_histogram={2: 112, 1: 10}
+boundary_edge_count=10
+nonmanifold_edge_count=0
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m5/lod_high/MfbC01_high_multi_gate_v1_object_validation/MlhC01_validation.json
+free_mesh_validation_check=PASS
+
+PT_FREE_MESH_MULTI_VALIDATE_V1
+objects=['MbhC01', 'MshC01', 'MlhC01']
+object_count=3
+OBJECT MbhC01: V=130 F=217 materials={'1': 195, '2': 22} bones=21 check=PASS
+OBJECT MshC01: V=173 F=331 materials={'1': 331} bones=22 check=PASS
+OBJECT MlhC01: V=46 F=78 materials={'1': 78} bones=4 check=PASS
+report=/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m5/lod_high/MfbC01_high_multi_gate_v1_validation.json
+multi_object_validation_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

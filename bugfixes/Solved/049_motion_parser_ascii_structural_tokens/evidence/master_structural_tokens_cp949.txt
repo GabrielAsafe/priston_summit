@@ -1,0 +1,16 @@
+*착용무기 = 2a c2 f8 bf eb b9 ab b1 e2
+present_in_master = True
+*적용직업 = 2a c0 fb bf eb c1 f7 be f7
+present_in_master = True
+*해당위치 = 2a c7 d8 b4 e7 c0 a7 c4 a1
+present_in_master = True
+*적용기술 = 2a c0 fb bf eb b1 e2 bc fa
+present_in_master = True
+모두 = b8 f0 b5 ce
+present_in_master = True
+없음 = be f8 c0 bd
+present_in_master = True
+마을 = b8 b6 c0 bb
+present_in_master = True
+필드 = c7 ca b5 e5
+present_in_master = True

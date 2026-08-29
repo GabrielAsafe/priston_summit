@@ -1,0 +1,97 @@
+{
+  "format": "PT_OBJECT_LOCAL_SOURCE_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Effect/ObjAnimationData/Test/Test.smd",
+  "file_size": 5583,
+  "object_count": 1,
+  "object_local_object_count": 1,
+  "animated_object_count": 1,
+  "hold_object_count": 0,
+  "max_engine_frame": 16000,
+  "objects": [
+    {
+      "index": 0,
+      "name": "Cylinder01",
+      "parent": "",
+      "nVertex": 10,
+      "nFace": 8,
+      "nTexLink": 8,
+      "nRot": 18,
+      "nPos": 0,
+      "nScale": 0,
+      "TmFrameCnt": 0,
+      "channels_serialized": [
+        "ROT"
+      ],
+      "channels_animated": [
+        "ROT"
+      ],
+      "motion_class": "ANIMATED",
+      "reference_engine_frame": 0,
+      "max_engine_frame": 16000,
+      "rotation_semantics_check": "PASS",
+      "rotation_cumulative_max_error": 1.942256072223758e-07,
+      "normalized_samples": [
+        {
+          "engine_frame": 0.0,
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "rotation_xyzw": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "engine_frame": 1440.0,
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "rotation_xyzw": [
+            4.060327490895688e-10,
+            -0.9927129907163793,
+            1.0837586994494332e-08,
+            -0.12050277201351758
+          ]
+        },
+        {
+          "engine_frame": 16000.0,
+          "location": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "rotation_xyzw": [
+            8.091270820020924e-09,
+            -0.14943813899520703,
+            2.3170171198350076e-09,
+            0.9887710769503977
+          ]
+        }
+      ]
+    }
+  ],
+  "rotation_semantics": "ACCUMULATED_TM_PREV_ROT",
+  "source_rot_key_semantics": "INCREMENTAL_LOCAL_QUATERNION",
+  "preview_reference": "FIRST_KEY_NORMALIZED_OBJECT_LOCAL"
+}

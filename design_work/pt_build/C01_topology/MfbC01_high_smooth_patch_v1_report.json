@@ -1,0 +1,766 @@
+{
+  "tool": "PT_C01_HIGH_TOPOLOGY_EXPORT_V1_APPEND_SAFE",
+  "blend": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/blender/MfbC01_high_smooth_patch_v1.blend",
+  "source_smd": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/MfbC01.smd",
+  "source_sha256": "9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b",
+  "output": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/pt_build/C01_topology/MfbC01_high_smooth_patch_v1.smd",
+  "output_sha256": "b1678aced23e84f560e65be56a2c11b5f35980228ee9afe32548c1424197ac23",
+  "source_counts": {
+    "vertices": 173,
+    "faces": 331,
+    "texlinks": 331
+  },
+  "output_counts": {
+    "vertices": 197,
+    "faces": 367,
+    "texlinks": 367
+  },
+  "new_vertices": 24,
+  "face_delta": 36,
+  "input_size": 290229,
+  "output_size": 294021,
+  "growth_bytes": 3792,
+  "max_old_vertex_error": 0.0,
+  "max_new_vertex_fit_error": 0.0033829117335329633,
+  "allowed_materials": [
+    1
+  ],
+  "hTexture_by_material": {
+    "1": 552301608
+  },
+  "new_vertex_rows": [
+    {
+      "index": 173,
+      "bone": "Bip01 Spine1",
+      "world": [
+        0.849609375,
+        -0.1015625,
+        34.0703125
+      ],
+      "local_fixed": [
+        894,
+        531,
+        217
+      ],
+      "represented_world": [
+        0.84765625,
+        -0.1015625,
+        34.0703125
+      ],
+      "fit_error": 0.001953125,
+      "normal_local": [
+        17354,
+        26479,
+        751
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 174,
+      "bone": "Bip01 Spine1",
+      "world": [
+        1.853515625,
+        -1.287109375,
+        32.736328125
+      ],
+      "local_fixed": [
+        479,
+        728,
+        474
+      ],
+      "represented_world": [
+        1.8515625,
+        -1.28515625,
+        32.734375
+      ],
+      "fit_error": 0.0033829117335329633,
+      "normal_local": [
+        12586,
+        27306,
+        9941
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 175,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -0.001675933599472046,
+        -0.6649978756904602,
+        33.667991638183594
+      ],
+      "local_fixed": [
+        754,
+        641,
+        0
+      ],
+      "represented_world": [
+        0.0,
+        -0.6640625,
+        33.66796875
+      ],
+      "fit_error": 0.0019194282953763746,
+      "normal_local": [
+        13110,
+        28827,
+        -3
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 176,
+      "bone": "Bip01 Spine1",
+      "world": [
+        0.8617010116577148,
+        -1.102237343788147,
+        32.83428955078125
+      ],
+      "local_fixed": [
+        517,
+        690,
+        221
+      ],
+      "represented_world": [
+        0.86328125,
+        -1.1015625,
+        32.8359375
+      ],
+      "fit_error": 0.002380820023522868,
+      "normal_local": [
+        11400,
+        28980,
+        -5750
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 177,
+      "bone": "Bip01 Spine1",
+      "world": [
+        1.3982264995574951,
+        -1.483393669128418,
+        32.79502868652344
+      ],
+      "local_fixed": [
+        481,
+        781,
+        358
+      ],
+      "represented_world": [
+        1.3984375,
+        -1.484375,
+        32.796875
+      ],
+      "fit_error": 0.0021015244276461576,
+      "normal_local": [
+        14634,
+        28064,
+        -1058
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 178,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -0.8515625,
+        -0.1015625,
+        34.0703125
+      ],
+      "local_fixed": [
+        894,
+        531,
+        -218
+      ],
+      "represented_world": [
+        -0.8515625,
+        -0.1015625,
+        34.0703125
+      ],
+      "fit_error": 0.0,
+      "normal_local": [
+        17356,
+        26478,
+        -751
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 179,
+      "bone": "Bip01 Spine1",
+      "world": [
+        1.55859375,
+        -2.095703125,
+        31.90234375
+      ],
+      "local_fixed": [
+        216,
+        868,
+        399
+      ],
+      "represented_world": [
+        1.55859375,
+        -2.09375,
+        31.90234375
+      ],
+      "fit_error": 0.001953125,
+      "normal_local": [
+        11660,
+        28338,
+        7993
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 180,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -0.8633701801300049,
+        -1.1015000343322754,
+        32.83352279663086
+      ],
+      "local_fixed": [
+        517,
+        689,
+        -221
+      ],
+      "represented_world": [
+        -0.86328125,
+        -1.1015625,
+        32.83203125
+      ],
+      "fit_error": 0.0014955005448661393,
+      "normal_local": [
+        11396,
+        28987,
+        5722
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 181,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -1.8864593505859375,
+        -1.364195466041565,
+        32.771812438964844
+      ],
+      "local_fixed": [
+        483,
+        750,
+        -483
+      ],
+      "represented_world": [
+        -1.88671875,
+        -1.36328125,
+        32.7734375
+      ],
+      "fit_error": 0.001882525536255416,
+      "normal_local": [
+        12997,
+        25789,
+        -12994
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 182,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -2.27734375,
+        -1.1328125,
+        32.5625
+      ],
+      "local_fixed": [
+        448,
+        678,
+        -583
+      ],
+      "represented_world": [
+        -2.27734375,
+        -1.1328125,
+        32.5625
+      ],
+      "fit_error": 0.0,
+      "normal_local": [
+        13386,
+        22161,
+        -18236
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 183,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -1.4020837545394897,
+        -1.482875943183899,
+        32.79454040527344
+      ],
+      "local_fixed": [
+        479,
+        781,
+        -359
+      ],
+      "represented_world": [
+        -1.40234375,
+        -1.484375,
+        32.79296875
+      ],
+      "fit_error": 0.0021874344049385647,
+      "normal_local": [
+        14932,
+        27715,
+        3436
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 184,
+      "bone": "Bip01 Spine1",
+      "world": [
+        0.0,
+        -1.599609375,
+        31.140625
+      ],
+      "local_fixed": [
+        63,
+        692,
+        0
+      ],
+      "represented_world": [
+        0.0,
+        -1.6015625,
+        31.140625
+      ],
+      "fit_error": 0.001953125,
+      "normal_local": [
+        -4256,
+        21885,
+        22490
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 185,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -0.419921875,
+        -2.0546875,
+        30.39453125
+      ],
+      "local_fixed": [
+        -153,
+        750,
+        -108
+      ],
+      "represented_world": [
+        -0.421875,
+        -2.0546875,
+        30.39453125
+      ],
+      "fit_error": 0.001953125,
+      "normal_local": [
+        -5581,
+        22801,
+        21257
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 186,
+      "bone": "Bip01 Spine1",
+      "world": [
+        0.5506640076637268,
+        -1.8339762687683105,
+        31.933570861816406
+      ],
+      "local_fixed": [
+        243,
+        805,
+        141
+      ],
+      "represented_world": [
+        0.55078125,
+        -1.83203125,
+        31.93359375
+      ],
+      "fit_error": 0.00194868356678125,
+      "normal_local": [
+        6998,
+        27077,
+        -14856
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 187,
+      "bone": "Bip01 Spine1",
+      "world": [
+        0.41796875,
+        -1.939453125,
+        31.21484375
+      ],
+      "local_fixed": [
+        57,
+        781,
+        107
+      ],
+      "represented_world": [
+        0.41796875,
+        -1.94140625,
+        31.21484375
+      ],
+      "fit_error": 0.001953125,
+      "normal_local": [
+        -729,
+        27109,
+        -16353
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 188,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -0.5525450706481934,
+        -1.8338567018508911,
+        31.93349838256836
+      ],
+      "local_fixed": [
+        243,
+        805,
+        -141
+      ],
+      "represented_world": [
+        -0.55078125,
+        -1.83203125,
+        31.93359375
+      ],
+      "fit_error": 0.0025401639092650623,
+      "normal_local": [
+        8790,
+        26776,
+        14444
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 189,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -0.38722336292266846,
+        -2.031428575515747,
+        31.179702758789062
+      ],
+      "local_fixed": [
+        42,
+        801,
+        -99
+      ],
+      "represented_world": [
+        -0.38671875,
+        -2.03125,
+        31.1796875
+      ],
+      "fit_error": 0.0005354962625378334,
+      "normal_local": [
+        -2671,
+        24609,
+        19751
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 190,
+      "bone": "Bip01 Spine1",
+      "world": [
+        0.97265625,
+        -2.29296875,
+        31.193359375
+      ],
+      "local_fixed": [
+        26,
+        866,
+        249
+      ],
+      "represented_world": [
+        0.97265625,
+        -2.29296875,
+        31.19140625
+      ],
+      "fit_error": 0.001953125,
+      "normal_local": [
+        -745,
+        27066,
+        -16423
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 191,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -2.431640625,
+        -1.845703125,
+        31.712890625
+      ],
+      "local_fixed": [
+        187,
+        792,
+        -623
+      ],
+      "represented_world": [
+        -2.43359375,
+        -1.84375,
+        31.7109375
+      ],
+      "fit_error": 0.0033829117335329633,
+      "normal_local": [
+        12229,
+        23921,
+        -16766
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 192,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -2.111328125,
+        -2.033203125,
+        31.189453125
+      ],
+      "local_fixed": [
+        44,
+        801,
+        -541
+      ],
+      "represented_world": [
+        -2.11328125,
+        -2.03125,
+        31.1875
+      ],
+      "fit_error": 0.0033829117335329633,
+      "normal_local": [
+        -2577,
+        27897,
+        -14764
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 193,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -1.5658178329467773,
+        -2.136213779449463,
+        31.919761657714844
+      ],
+      "local_fixed": [
+        217,
+        879,
+        -401
+      ],
+      "represented_world": [
+        -1.56640625,
+        -2.13671875,
+        31.91796875
+      ],
+      "fit_error": 0.0019533939590823,
+      "normal_local": [
+        5109,
+        30110,
+        -8376
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 194,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -1.704068660736084,
+        -2.3030846118927,
+        31.203643798828125
+      ],
+      "local_fixed": [
+        28,
+        870,
+        -436
+      ],
+      "represented_world": [
+        -1.703125,
+        -2.3046875,
+        31.203125
+      ],
+      "fit_error": 0.0019310354977093483,
+      "normal_local": [
+        -5102,
+        29851,
+        -9258
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 195,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -1.525390625,
+        -2.23046875,
+        30.48046875
+      ],
+      "local_fixed": [
+        -145,
+        800,
+        -391
+      ],
+      "represented_world": [
+        -1.52734375,
+        -2.23046875,
+        30.48046875
+      ],
+      "fit_error": 0.001953125,
+      "normal_local": [
+        -11967,
+        28634,
+        -6305
+      ],
+      "normal_scale": 31667.911993056947
+    },
+    {
+      "index": 196,
+      "bone": "Bip01 Spine1",
+      "world": [
+        -0.9538524150848389,
+        -2.4029531478881836,
+        31.195056915283203
+      ],
+      "local_fixed": [
+        20,
+        893,
+        -244
+      ],
+      "represented_world": [
+        -0.953125,
+        -2.40234375,
+        31.1953125
+      ],
+      "fit_error": 0.000982762453105479,
+      "normal_local": [
+        -4036,
+        30791,
+        6205
+      ],
+      "normal_scale": 31667.911993056947
+    }
+  ],
+  "object_table": [
+    {
+      "name": "MsmC01",
+      "old_start": 3309,
+      "new_start": 3309,
+      "old_length": 25420,
+      "new_length": 25420
+    },
+    {
+      "name": "MshC01",
+      "old_start": 28729,
+      "new_start": 28729,
+      "old_length": 34432,
+      "new_length": 38224
+    },
+    {
+      "name": "MslC01",
+      "old_start": 63161,
+      "new_start": 66953,
+      "old_length": 19276,
+      "new_length": 19276
+    },
+    {
+      "name": "MsmC03",
+      "old_start": 82437,
+      "new_start": 86229,
+      "old_length": 29388,
+      "new_length": 29388
+    },
+    {
+      "name": "MslC03",
+      "old_start": 111825,
+      "new_start": 115617,
+      "old_length": 21260,
+      "new_length": 21260
+    },
+    {
+      "name": "MlhC01",
+      "old_start": 133085,
+      "new_start": 136877,
+      "old_length": 10116,
+      "new_length": 10116
+    },
+    {
+      "name": "MlhC03",
+      "old_start": 143201,
+      "new_start": 146993,
+      "old_length": 14204,
+      "new_length": 14204
+    },
+    {
+      "name": "MbhC01",
+      "old_start": 157405,
+      "new_start": 161197,
+      "old_length": 24272,
+      "new_length": 24272
+    },
+    {
+      "name": "MshC03",
+      "old_start": 181677,
+      "new_start": 185469,
+      "old_length": 43392,
+      "new_length": 43392
+    },
+    {
+      "name": "MlmC01",
+      "old_start": 225069,
+      "new_start": 228861,
+      "old_length": 7948,
+      "new_length": 7948
+    },
+    {
+      "name": "MlmC03",
+      "old_start": 233017,
+      "new_start": 236809,
+      "old_length": 9980,
+      "new_length": 9980
+    },
+    {
+      "name": "MbmC01",
+      "old_start": 242997,
+      "new_start": 246789,
+      "old_length": 16436,
+      "new_length": 16436
+    },
+    {
+      "name": "MllC01",
+      "old_start": 259433,
+      "new_start": 263225,
+      "old_length": 6796,
+      "new_length": 6796
+    },
+    {
+      "name": "MllC03",
+      "old_start": 266229,
+      "new_start": 270021,
+      "old_length": 8332,
+      "new_length": 8332
+    },
+    {
+      "name": "MblC01",
+      "old_start": 274561,
+      "new_start": 278353,
+      "old_length": 15668,
+      "new_length": 15668
+    }
+  ],
+  "semantic_check": "PASS",
+  "high_append_safe_topology_export_check": "PASS"
+}

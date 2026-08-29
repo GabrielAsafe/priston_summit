@@ -1,0 +1,53 @@
+=== AUDIT 030 — smModelDecode boundary audit ===
+
+seg 24 ago 2026 16:37:40 WEST
+
+CURRENT=/home/gabriel/Área de Trabalho/summit/SourceCode
+BASE=/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode
+OUT=/home/gabriel/Área de Trabalho/summit/bugfixes/030_smmodeldecode_boundary_audit
+
+=== CURRENT git state ===
+CURRENT .git não encontrado
+
+=== Arquivos CURRENT que mencionam os alvos ===
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.h
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoEffect.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/HoSky.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/LowLevelPetSystem.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/NewEffect/HoEffectResMgr.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/HoBaram/PCBangPetSystem.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playsub.h
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/sinbaram/AssaUtil.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/sinbaram/sin3D.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/sinbaram/sinEffect2.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/sinbaram/sinSkillEffect.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smRead3d.h
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smStgObj.cpp
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/smLib3d/smType.h
+
+=== Arquivos BASE que mencionam os alvos ===
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/character.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/fileread.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/fileread.h
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/HoBaram/HoEffect.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/HoBaram/HoSky.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/HoBaram/LowLevelPetSystem.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/HoBaram/NewEffect/HoEffectResMgr.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/HoBaram/PCBangPetSystem.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playmain.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/playsub.h
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/sinbaram/AssaUtil.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/sinbaram/sin3D.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/sinbaram/sinEffect2.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/sinbaram/sinSkillEffect.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/smLib3d/smRead3d.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/smLib3d/smRead3d.h
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/smLib3d/smStgObj.cpp
+/home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/smLib3d/smType.h
+

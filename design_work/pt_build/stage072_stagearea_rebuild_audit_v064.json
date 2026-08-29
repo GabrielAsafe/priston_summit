@@ -1,0 +1,3637 @@
+{
+  "format": "PT_STAGE072_STAGEAREA_REBUILD_CORPUS_AUDIT_V1",
+  "status": "PASS",
+  "candidate_files_expected": 63,
+  "physical_files_audited": 63,
+  "reconstruction_pass_files": 63,
+  "reconstruction_fail_files": 0,
+  "scan_errors": [],
+  "area_encoding_file_counts": {
+    "DWORD32": 59,
+    "DWORD32_TRAILING_OPAQUE": 3,
+    "WORD16": 1
+  },
+  "capacity_model_file_counts": {
+    "DWORD_POINTER_COUNTER_STEP4": 62,
+    "WORD16_LEGACY_POINTER_COUNTER_STEP2": 1
+  },
+  "cell_face_membership_exact_files": 63,
+  "stagearea_pointer_layout_exact_files": 63,
+  "wAreaSize_formula_exact_files": 63,
+  "stage_map_rect_exact_files": 63,
+  "serialized_area_core_byte_exact_files": 63,
+  "max_face_area_cell_span": 2254,
+  "area_list_capacity": 4096,
+  "faces_exceeding_area_list_capacity": 0,
+  "opaque_trailing_files": 3,
+  "stagearea_rebuild_complete_candidate": true,
+  "sourcecode_and_physical_findings": {
+    "setup_poly_areas": "all face memberships derive from triangle X/Z bounding boxes after fixed>>8 and area>>6, wrapping cell coordinates with &0xFF",
+    "DWORD32_capacity_bug": "supplied SourceCode increments DWORD* StageArea cells while using the pointer as a counter; physical DWORD files exactly encode wAreaSize=sum(4*face_count+1) and matching gapped pointer addresses",
+    "WORD16_legacy_capacity": "the one physical WORD16 file exactly encodes the legacy equivalent sum(2*face_count+1) with 2-byte pointer steps; preserve this family rather than converting it",
+    "StageMapRect": "exact min/max raw fixed-point X/Z vertex bounds",
+    "opaque_suffix_policy": "runtime-ignored suffix is outside rebuilt StageArea core and must remain byte-identical in any writer"
+  },
+  "representatives": [
+    "cSelect/select.smd",
+    "Field/dungeon/dun-4.smd",
+    "Field/Lost/lost.smd",
+    "Field/Room/office.smd",
+    "game/maps/chrselect/scene.smd",
+    "game/maps/login/login.smd"
+  ],
+  "bundle": "/home/gabriel/Área de Trabalho/summit/design_work/PT_STAGE072_STAGEAREA_REPS_V064.zip",
+  "rows": [
+    {
+      "relative_path": "cSelect/Login.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/cSelect/Login.smd",
+      "sha256": "490f09a563dacab2d3cb973fc5ea26aced6f1934baa3d2a4e6017a6cbf641e5c",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 3454,
+        "faces": 5426,
+        "active_area_cells": 280,
+        "serialized_slots": 10501,
+        "referenced_face_occurrences": 10221,
+        "wAreaSize_physical": 41164,
+        "wAreaSize_rebuilt": 41164
+      },
+      "stage_map_rect_physical": [
+        -150304,
+        -121501,
+        165960,
+        162994
+      ],
+      "stage_map_rect_rebuilt": [
+        -150304,
+        -121501,
+        165960,
+        162994
+      ],
+      "max_face_area_cell_span": 44,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 43124,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "cSelect/select.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/cSelect/select.smd",
+      "sha256": "4b26699faebede81352e89efaceb959734d3a70833a8cb40f52d59afb590f41d",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32_TRAILING_OPAQUE",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 3454,
+        "faces": 5426,
+        "active_area_cells": 280,
+        "serialized_slots": 10501,
+        "referenced_face_occurrences": 10221,
+        "wAreaSize_physical": 41164,
+        "wAreaSize_rebuilt": 41164
+      },
+      "stage_map_rect_physical": [
+        -150304,
+        -121501,
+        165960,
+        162994
+      ],
+      "stage_map_rect_rebuilt": [
+        -150304,
+        -121501,
+        165960,
+        162994
+      ],
+      "max_face_area_cell_span": 44,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 43124,
+      "opaque_trailing_bytes": 124344,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/AncientW/ancientW.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/AncientW/ancientW.smd",
+      "sha256": "6f6f6e8b5c0ded47e1190e47f2a1ad07e156b2b81ae7319f611df900b35587d2",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 65058,
+        "faces": 100661,
+        "active_area_cells": 21716,
+        "serialized_slots": 334730,
+        "referenced_face_occurrences": 313014,
+        "wAreaSize_physical": 1273772,
+        "wAreaSize_rebuilt": 1273772
+      },
+      "stage_map_rect_physical": [
+        1544432,
+        -19025370,
+        5006767,
+        -13730768
+      ],
+      "stage_map_rect_rebuilt": [
+        1544432,
+        -19025370,
+        5006767,
+        -13730768
+      ],
+      "max_face_area_cell_span": 345,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1425784,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Boss/Boss.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Boss/Boss.smd",
+      "sha256": "4c20996ffc14eb7eea249f2450c9a816ac90390e43cc82f138551b7ee800d41c",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 5436,
+        "faces": 8367,
+        "active_area_cells": 1391,
+        "serialized_slots": 24408,
+        "referenced_face_occurrences": 23017,
+        "wAreaSize_physical": 93459,
+        "wAreaSize_rebuilt": 93459
+      },
+      "stage_map_rect_physical": [
+        8147945,
+        12695517,
+        8762037,
+        13672493
+      ],
+      "stage_map_rect_rebuilt": [
+        8147945,
+        12695517,
+        8762037,
+        13672493
+      ],
+      "max_face_area_cell_span": 550,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 103196,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Boss/dark_boss.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Boss/dark_boss.smd",
+      "sha256": "9dd58a7e59d47faf89342f5ccb988bb97af2fdbf83a89b34724b63151b6b49f4",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 10082,
+        "faces": 17056,
+        "active_area_cells": 1445,
+        "serialized_slots": 47772,
+        "referenced_face_occurrences": 46327,
+        "wAreaSize_physical": 186753,
+        "wAreaSize_rebuilt": 186753
+      },
+      "stage_map_rect_physical": [
+        50456944,
+        61443020,
+        51070776,
+        62404624
+      ],
+      "stage_map_rect_rebuilt": [
+        50456944,
+        61443020,
+        51070776,
+        62404624
+      ],
+      "max_face_area_cell_span": 96,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 196868,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/castle/castle.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/castle/castle.smd",
+      "sha256": "1bf518da54fa00186ad04bbeedf5d5351fbb57d9130862ec23b408343c2d8d46",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 48076,
+        "faces": 65122,
+        "active_area_cells": 23542,
+        "serialized_slots": 240181,
+        "referenced_face_occurrences": 216639,
+        "wAreaSize_physical": 890098,
+        "wAreaSize_rebuilt": 890098
+      },
+      "stage_map_rect_physical": [
+        7960401,
+        -8684768,
+        9845790,
+        -5378640
+      ],
+      "stage_map_rect_rebuilt": [
+        7960401,
+        -8684768,
+        9845790,
+        -5378640
+      ],
+      "max_face_area_cell_span": 810,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1054892,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/castle/Castle_.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/castle/Castle_.smd",
+      "sha256": "2c4a6420b37d057b7b00aeb94b47c8d3ad935036bea4168eeda72e524a4218d1",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 49654,
+        "faces": 66889,
+        "active_area_cells": 23534,
+        "serialized_slots": 245927,
+        "referenced_face_occurrences": 222393,
+        "wAreaSize_physical": 913106,
+        "wAreaSize_rebuilt": 913106
+      },
+      "stage_map_rect_physical": [
+        25994904,
+        -48717896,
+        27880294,
+        -45411768
+      ],
+      "stage_map_rect_rebuilt": [
+        25994904,
+        -48717896,
+        27880294,
+        -45411768
+      ],
+      "max_face_area_cell_span": 810,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1077844,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/cave/Dcave.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/cave/Dcave.smd",
+      "sha256": "3bc7d099ec8e714eb54026072fdbf1e617eb6c0096e52dfceb959ff733b4f4a9",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 38405,
+        "faces": 56932,
+        "active_area_cells": 10505,
+        "serialized_slots": 182655,
+        "referenced_face_occurrences": 172150,
+        "wAreaSize_physical": 699105,
+        "wAreaSize_rebuilt": 699105
+      },
+      "stage_map_rect_physical": [
+        40367672,
+        4259662,
+        42368260,
+        5820103
+      ],
+      "stage_map_rect_rebuilt": [
+        40367672,
+        4259662,
+        42368260,
+        5820103
+      ],
+      "max_face_area_cell_span": 300,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 772640,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/cave/Mcave.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/cave/Mcave.smd",
+      "sha256": "f37a5dc87a8a76be9c7a0caade6c9cf8e0d16848e93b3edf92819e21392e914a",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 13853,
+        "faces": 24172,
+        "active_area_cells": 5090,
+        "serialized_slots": 83241,
+        "referenced_face_occurrences": 78151,
+        "wAreaSize_physical": 317694,
+        "wAreaSize_rebuilt": 317694
+      },
+      "stage_map_rect_physical": [
+        30361128,
+        8347205,
+        32045470,
+        9702886
+      ],
+      "stage_map_rect_rebuilt": [
+        30361128,
+        8347205,
+        32045470,
+        9702886
+      ],
+      "max_face_area_cell_span": 112,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 353324,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/cave/Tcave.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/cave/Tcave.smd",
+      "sha256": "8a287b9e069374ca8f95ff3318810b6725b5db43b04b6024445a93ccdd7de2c6",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 18120,
+        "faces": 27062,
+        "active_area_cells": 6608,
+        "serialized_slots": 104128,
+        "referenced_face_occurrences": 97520,
+        "wAreaSize_physical": 396688,
+        "wAreaSize_rebuilt": 396688
+      },
+      "stage_map_rect_physical": [
+        30361928,
+        5472050,
+        32403616,
+        6992621
+      ],
+      "stage_map_rect_rebuilt": [
+        30361928,
+        5472050,
+        32403616,
+        6992621
+      ],
+      "max_face_area_cell_span": 90,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 442944,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/desert/De-1.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/desert/De-1.smd",
+      "sha256": "22786c07be8102ae3f0bb589caff6475839b583f8bf5a494adb910ffe12946d8",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 47727,
+        "faces": 59548,
+        "active_area_cells": 18424,
+        "serialized_slots": 222688,
+        "referenced_face_occurrences": 204264,
+        "wAreaSize_physical": 835480,
+        "wAreaSize_rebuilt": 835480
+      },
+      "stage_map_rect_physical": [
+        2825314,
+        -1541299,
+        5445785,
+        1761991
+      ],
+      "stage_map_rect_rebuilt": [
+        2825314,
+        -1541299,
+        5445785,
+        1761991
+      ],
+      "max_face_area_cell_span": 56,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 964448,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/desert/De-2.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/desert/De-2.smd",
+      "sha256": "78fbd4d734bbfbafb03e2bec020da6dd8b1ed8c14ce4f7e377a83c82d2b6a600",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 40825,
+        "faces": 54279,
+        "active_area_cells": 16774,
+        "serialized_slots": 210222,
+        "referenced_face_occurrences": 193448,
+        "wAreaSize_physical": 790566,
+        "wAreaSize_rebuilt": 790566
+      },
+      "stage_map_rect_physical": [
+        2478290,
+        -4472099,
+        4962434,
+        -1470833
+      ],
+      "stage_map_rect_rebuilt": [
+        2478290,
+        -4472099,
+        4962434,
+        -1470833
+      ],
+      "max_face_area_cell_span": 49,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 907984,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/desert/De-3.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/desert/De-3.smd",
+      "sha256": "a2a4e0b8f1988a16f6d6f467b8ad31a9724f98f298589d0f7528c3979038b22e",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 44319,
+        "faces": 57458,
+        "active_area_cells": 16264,
+        "serialized_slots": 200687,
+        "referenced_face_occurrences": 184423,
+        "wAreaSize_physical": 753956,
+        "wAreaSize_rebuilt": 753956
+      },
+      "stage_map_rect_physical": [
+        6930038,
+        -1247256,
+        9490331,
+        1095735
+      ],
+      "stage_map_rect_rebuilt": [
+        6930038,
+        -1247256,
+        9490331,
+        1095735
+      ],
+      "max_face_area_cell_span": 72,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 867804,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/desert/De-4.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/desert/De-4.smd",
+      "sha256": "206fd27ce860bdac182adb602795c85ac0d71f068c70f7986176d490751d636d",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 51117,
+        "faces": 64807,
+        "active_area_cells": 22555,
+        "serialized_slots": 256252,
+        "referenced_face_occurrences": 233697,
+        "wAreaSize_physical": 957343,
+        "wAreaSize_rebuilt": 957343
+      },
+      "stage_map_rect_physical": [
+        7926054,
+        941286,
+        11531653,
+        3726615
+      ],
+      "stage_map_rect_rebuilt": [
+        7926054,
+        941286,
+        11531653,
+        3726615
+      ],
+      "max_face_area_cell_span": 88,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1115228,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/dungeon/dun-1.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/dungeon/dun-1.smd",
+      "sha256": "08ad3beaaa8687ea21b969cbc53865835f7b75953ed7b6e7db19c591f211bbda",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 26202,
+        "faces": 34809,
+        "active_area_cells": 3624,
+        "serialized_slots": 71838,
+        "referenced_face_occurrences": 68214,
+        "wAreaSize_physical": 276480,
+        "wAreaSize_rebuilt": 276480
+      },
+      "stage_map_rect_physical": [
+        -4383469,
+        -7480934,
+        -2841836,
+        -6147921
+      ],
+      "stage_map_rect_rebuilt": [
+        -4383469,
+        -7480934,
+        -2841836,
+        -6147921
+      ],
+      "max_face_area_cell_span": 25,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 301848,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/dungeon/dun-2.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/dungeon/dun-2.smd",
+      "sha256": "08613d4119026986753bb1dbac23b570da9bed35de71bfee1e74c3acd11b3c36",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 29915,
+        "faces": 39580,
+        "active_area_cells": 4182,
+        "serialized_slots": 82700,
+        "referenced_face_occurrences": 78518,
+        "wAreaSize_physical": 318254,
+        "wAreaSize_rebuilt": 318254
+      },
+      "stage_map_rect_physical": [
+        -2296160,
+        -7609302,
+        -756383,
+        -6157500
+      ],
+      "stage_map_rect_rebuilt": [
+        -2296160,
+        -7609302,
+        -756383,
+        -6157500
+      ],
+      "max_face_area_cell_span": 25,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 347528,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/dungeon/dun-3.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/dungeon/dun-3.smd",
+      "sha256": "be2d5e4b3391c732d104a98708a2a7ef19fb267e524ed9509e3f133df1ee3b1f",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 28793,
+        "faces": 38350,
+        "active_area_cells": 6967,
+        "serialized_slots": 94178,
+        "referenced_face_occurrences": 87211,
+        "wAreaSize_physical": 355811,
+        "wAreaSize_rebuilt": 355811
+      },
+      "stage_map_rect_physical": [
+        -634998,
+        -7464539,
+        566723,
+        -5840815
+      ],
+      "stage_map_rect_rebuilt": [
+        -634998,
+        -7464539,
+        566723,
+        -5840815
+      ],
+      "max_face_area_cell_span": 63,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 404580,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/dungeon/dun-4.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/dungeon/dun-4.smd",
+      "sha256": "b706981a876f2df5e934e8047ed9fabccfeb86d6690ed5988bcc329ac020cba0",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 37367,
+        "faces": 62242,
+        "active_area_cells": 16467,
+        "serialized_slots": 190395,
+        "referenced_face_occurrences": 173928,
+        "wAreaSize_physical": 712179,
+        "wAreaSize_rebuilt": 712179
+      },
+      "stage_map_rect_physical": [
+        -4170987,
+        -11660693,
+        -2070984,
+        -9583937
+      ],
+      "stage_map_rect_rebuilt": [
+        -4170987,
+        -11660693,
+        -2070984,
+        -9583937
+      ],
+      "max_face_area_cell_span": 2254,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 827448,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/dungeon/dun-5.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/dungeon/dun-5.smd",
+      "sha256": "1069e3a8aa5cb0a0e697c8af6b495f9653ab52d8cf871faa586403364ffa6ea0",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 41285,
+        "faces": 64103,
+        "active_area_cells": 15183,
+        "serialized_slots": 185172,
+        "referenced_face_occurrences": 169989,
+        "wAreaSize_physical": 695139,
+        "wAreaSize_rebuilt": 695139
+      },
+      "stage_map_rect_physical": [
+        -2034413,
+        -11417840,
+        157814,
+        -8817049
+      ],
+      "stage_map_rect_rebuilt": [
+        -2034413,
+        -11417840,
+        157814,
+        -8817049
+      ],
+      "max_face_area_cell_span": 476,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 801420,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/dungeon/Dun-6a.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/dungeon/Dun-6a.smd",
+      "sha256": "9cb29137602f52b084e8670cb1aed67e14afbf59ae301d8eee4068f1c7cd09bd",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 37173,
+        "faces": 62663,
+        "active_area_cells": 5304,
+        "serialized_slots": 125152,
+        "referenced_face_occurrences": 119848,
+        "wAreaSize_physical": 484696,
+        "wAreaSize_rebuilt": 484696
+      },
+      "stage_map_rect_physical": [
+        -1568149,
+        -13009459,
+        8214,
+        -11333402
+      ],
+      "stage_map_rect_rebuilt": [
+        -1568149,
+        -13009459,
+        8214,
+        -11333402
+      ],
+      "max_face_area_cell_span": 775,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 521824,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/endless/dun-7.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/endless/dun-7.smd",
+      "sha256": "74d6280ee0cad8eb7b5ab51411742cd920e34de810c15f78810b7f19f3a6fd50",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 25356,
+        "faces": 43539,
+        "active_area_cells": 14042,
+        "serialized_slots": 145002,
+        "referenced_face_occurrences": 130960,
+        "wAreaSize_physical": 537882,
+        "wAreaSize_rebuilt": 537882
+      },
+      "stage_map_rect_physical": [
+        2686170,
+        -11350528,
+        4606170,
+        -9430528
+      ],
+      "stage_map_rect_rebuilt": [
+        2686170,
+        -11350528,
+        4606170,
+        -9430528
+      ],
+      "max_face_area_cell_span": 81,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 636176,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/endless/dun-8.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/endless/dun-8.smd",
+      "sha256": "74b5ba677d3de56398fd00fc1b2cb80e2b46c12cbf740311517a87a4df24f8e3",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 37121,
+        "faces": 61091,
+        "active_area_cells": 11484,
+        "serialized_slots": 150559,
+        "referenced_face_occurrences": 139075,
+        "wAreaSize_physical": 567784,
+        "wAreaSize_rebuilt": 567784
+      },
+      "stage_map_rect_physical": [
+        399821,
+        -10795214,
+        2293376,
+        -9183150
+      ],
+      "stage_map_rect_rebuilt": [
+        399821,
+        -10795214,
+        2293376,
+        -9183150
+      ],
+      "max_face_area_cell_span": 143,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 648172,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/endless/dun-9.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/endless/dun-9.smd",
+      "sha256": "ace3da81544629cb576a32371f29afe7d9c3b88de2d5aec03c75babf053bf651",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 41560,
+        "faces": 62936,
+        "active_area_cells": 8905,
+        "serialized_slots": 183596,
+        "referenced_face_occurrences": 174691,
+        "wAreaSize_physical": 707669,
+        "wAreaSize_rebuilt": 707669
+      },
+      "stage_map_rect_physical": [
+        129033,
+        -12645746,
+        2542663,
+        -10722616
+      ],
+      "stage_map_rect_rebuilt": [
+        129033,
+        -12645746,
+        2542663,
+        -10722616
+      ],
+      "max_face_area_cell_span": 962,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 770004,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Fall_Game/fall_game.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Fall_Game/fall_game.smd",
+      "sha256": "7d66cf105eaa6412e23f4f184d7ea8f33c4808f553ccf67721a29b5c5bb124de",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 20140,
+        "faces": 28034,
+        "active_area_cells": 443,
+        "serialized_slots": 38595,
+        "referenced_face_occurrences": 38152,
+        "wAreaSize_physical": 153051,
+        "wAreaSize_rebuilt": 153051
+      },
+      "stage_map_rect_physical": [
+        1381417,
+        9254788,
+        2977815,
+        9563490
+      ],
+      "stage_map_rect_rebuilt": [
+        1381417,
+        9254788,
+        2977815,
+        9563490
+      ],
+      "max_face_area_cell_span": 32,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 156152,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/forest/fore-1.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/forest/fore-1.smd",
+      "sha256": "df138775e3b2d15f35e330f2368f7e6e15376af1dd563932cfa5ef100258dc62",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 28732,
+        "faces": 35519,
+        "active_area_cells": 13606,
+        "serialized_slots": 172231,
+        "referenced_face_occurrences": 158625,
+        "wAreaSize_physical": 648106,
+        "wAreaSize_rebuilt": 648106
+      },
+      "stage_map_rect_physical": [
+        -102006,
+        -3871235,
+        1988478,
+        -1592843
+      ],
+      "stage_map_rect_rebuilt": [
+        -102006,
+        -3871235,
+        1988478,
+        -1592843
+      ],
+      "max_face_area_cell_span": 49,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 743348,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/forest/fore-2.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/forest/fore-2.smd",
+      "sha256": "7d4db2675dee8d1beed47a847aa18e9ece07d209c553815151553cf7dc4032cb",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 35801,
+        "faces": 39635,
+        "active_area_cells": 13066,
+        "serialized_slots": 178999,
+        "referenced_face_occurrences": 165933,
+        "wAreaSize_physical": 676798,
+        "wAreaSize_rebuilt": 676798
+      },
+      "stage_map_rect_physical": [
+        -2195188,
+        -3900059,
+        -40137,
+        -1772868
+      ],
+      "stage_map_rect_rebuilt": [
+        -2195188,
+        -3900059,
+        -40137,
+        -1772868
+      ],
+      "max_face_area_cell_span": 28,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 768260,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/forest/fore-3.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/forest/fore-3.smd",
+      "sha256": "a274c1442605a80269b69febb234078818324f50af1b2279012faa88762d0e5d",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 32479,
+        "faces": 40081,
+        "active_area_cells": 23666,
+        "serialized_slots": 233207,
+        "referenced_face_occurrences": 209541,
+        "wAreaSize_physical": 861830,
+        "wAreaSize_rebuilt": 861830
+      },
+      "stage_map_rect_physical": [
+        -5080592,
+        -4022721,
+        -2144073,
+        -1301090
+      ],
+      "stage_map_rect_rebuilt": [
+        -5080592,
+        -4022721,
+        -2144073,
+        -1301090
+      ],
+      "max_face_area_cell_span": 56,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1027492,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/forest/village-1.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/forest/village-1.smd",
+      "sha256": "8f920ff1688fe170336a4523d5609a6191062e05aa121149c350839da075775b",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 17504,
+        "faces": 26014,
+        "active_area_cells": 5354,
+        "serialized_slots": 81536,
+        "referenced_face_occurrences": 76182,
+        "wAreaSize_physical": 310082,
+        "wAreaSize_rebuilt": 310082
+      },
+      "stage_map_rect_physical": [
+        5188072,
+        -950653,
+        6945173,
+        416553
+      ],
+      "stage_map_rect_rebuilt": [
+        5188072,
+        -950653,
+        6945173,
+        416553
+      ],
+      "max_face_area_cell_span": 72,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 347560,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/forever-fall/forever-fall-01.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/forever-fall/forever-fall-01.smd",
+      "sha256": "59f789cb5835a61ea3842f78bb408938e93792cc094ed1e92093bc55cde15af4",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 57534,
+        "faces": 62728,
+        "active_area_cells": 27891,
+        "serialized_slots": 315369,
+        "referenced_face_occurrences": 287478,
+        "wAreaSize_physical": 1177803,
+        "wAreaSize_rebuilt": 1177803
+      },
+      "stage_map_rect_physical": [
+        -644019,
+        15198946,
+        2075536,
+        18729966
+      ],
+      "stage_map_rect_rebuilt": [
+        -644019,
+        15198946,
+        2075536,
+        18729966
+      ],
+      "max_face_area_cell_span": 100,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1373040,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/forever-fall/forever-fall-02.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/forever-fall/forever-fall-02.smd",
+      "sha256": "c06dda3aad5cb57e6e76e7f40156e6d024acf05a393a040acd5cf4976a8eedfa",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 60377,
+        "faces": 65071,
+        "active_area_cells": 15440,
+        "serialized_slots": 262561,
+        "referenced_face_occurrences": 247121,
+        "wAreaSize_physical": 1003924,
+        "wAreaSize_rebuilt": 1003924
+      },
+      "stage_map_rect_physical": [
+        -1487148,
+        12721432,
+        913663,
+        15244360
+      ],
+      "stage_map_rect_rebuilt": [
+        -1487148,
+        12721432,
+        913663,
+        15244360
+      ],
+      "max_face_area_cell_span": 64,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1112004,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/forever-fall/forever-fall-03.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/forever-fall/forever-fall-03.smd",
+      "sha256": "84fff585e1e63da26fb612854a15bc3cf02a269ea7de9a3570ae15013f77afdc",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 45977,
+        "faces": 56073,
+        "active_area_cells": 14799,
+        "serialized_slots": 209426,
+        "referenced_face_occurrences": 194627,
+        "wAreaSize_physical": 793307,
+        "wAreaSize_rebuilt": 793307
+      },
+      "stage_map_rect_physical": [
+        -1860914,
+        10353178,
+        495058,
+        12767231
+      ],
+      "stage_map_rect_rebuilt": [
+        -1860914,
+        10353178,
+        495058,
+        12767231
+      ],
+      "max_face_area_cell_span": 42,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 896900,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/forever-fall/forever-fall-04.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/forever-fall/forever-fall-04.smd",
+      "sha256": "795ac71711e537bf9d49d2623b1e2081c24eb737890d06703de06c708f84a228",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 59887,
+        "faces": 64863,
+        "active_area_cells": 21533,
+        "serialized_slots": 270532,
+        "referenced_face_occurrences": 248999,
+        "wAreaSize_physical": 1017529,
+        "wAreaSize_rebuilt": 1017529
+      },
+      "stage_map_rect_physical": [
+        -1205094,
+        6794831,
+        1893151,
+        10539358
+      ],
+      "stage_map_rect_rebuilt": [
+        -1205094,
+        6794831,
+        1893151,
+        10539358
+      ],
+      "max_face_area_cell_span": 567,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1168260,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/forever-fall/pilai.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/forever-fall/pilai.smd",
+      "sha256": "993bd88160b73bdce167d8e10a7186046d9ce3da820e584a80a53069038243f3",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 36525,
+        "faces": 43093,
+        "active_area_cells": 19840,
+        "serialized_slots": 223749,
+        "referenced_face_occurrences": 203909,
+        "wAreaSize_physical": 835476,
+        "wAreaSize_rebuilt": 835476
+      },
+      "stage_map_rect_physical": [
+        -480851,
+        17728312,
+        1531159,
+        20341516
+      ],
+      "stage_map_rect_rebuilt": [
+        -480851,
+        17728312,
+        1531159,
+        20341516
+      ],
+      "max_face_area_cell_span": 483,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 974356,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Greedy/Greedy.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Greedy/Greedy.smd",
+      "sha256": "cbc09a0a9ed32cee8112ef36d36c5dd29f4ed20ff56414da3885d6d0e8274572",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 55193,
+        "faces": 59489,
+        "active_area_cells": 28329,
+        "serialized_slots": 298085,
+        "referenced_face_occurrences": 269756,
+        "wAreaSize_physical": 1107353,
+        "wAreaSize_rebuilt": 1107353
+      },
+      "stage_map_rect_physical": [
+        3252806,
+        4434653,
+        6115613,
+        7753588
+      ],
+      "stage_map_rect_rebuilt": [
+        3252806,
+        4434653,
+        6115613,
+        7753588
+      ],
+      "max_face_area_cell_span": 1085,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1305656,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Ice/ice1.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Ice/ice1.smd",
+      "sha256": "3119f3e70b019d8c3ca5ed4fcedbdadad5f0caabcb07d3447f5fae178a0449f9",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 45398,
+        "faces": 59602,
+        "active_area_cells": 22509,
+        "serialized_slots": 267443,
+        "referenced_face_occurrences": 244934,
+        "wAreaSize_physical": 1002245,
+        "wAreaSize_rebuilt": 1002245
+      },
+      "stage_map_rect_physical": [
+        6463288,
+        6847260,
+        9264854,
+        10569303
+      ],
+      "stage_map_rect_rebuilt": [
+        6463288,
+        6847260,
+        9264854,
+        10569303
+      ],
+      "max_face_area_cell_span": 45,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1159808,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Ice/ice_2.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Ice/ice_2.smd",
+      "sha256": "6f2c1ae50014564c4783aeec613640cc57e5bf20d35c6329e1a4c621fe2217c1",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 54004,
+        "faces": 62511,
+        "active_area_cells": 58112,
+        "serialized_slots": 429042,
+        "referenced_face_occurrences": 370930,
+        "wAreaSize_physical": 1541832,
+        "wAreaSize_rebuilt": 1541832
+      },
+      "stage_map_rect_physical": [
+        7998874,
+        9151331,
+        11704994,
+        13523875
+      ],
+      "stage_map_rect_rebuilt": [
+        7998874,
+        9151331,
+        11704994,
+        13523875
+      ],
+      "max_face_area_cell_span": 1794,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1948616,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Ice/ice_ura.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Ice/ice_ura.smd",
+      "sha256": "58afd7cdf85efc04f57bd4ed2a52be4b9b4e87aff9bf5f8d114ee3787cf898bd",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 18010,
+        "faces": 19630,
+        "active_area_cells": 5406,
+        "serialized_slots": 78544,
+        "referenced_face_occurrences": 73138,
+        "wAreaSize_physical": 297958,
+        "wAreaSize_rebuilt": 297958
+      },
+      "stage_map_rect_physical": [
+        7390367,
+        5349576,
+        8612378,
+        7150638
+      ],
+      "stage_map_rect_rebuilt": [
+        7390367,
+        5349576,
+        8612378,
+        7150638
+      ],
+      "max_face_area_cell_span": 272,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 335800,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Iron/iron-1.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Iron/iron-1.smd",
+      "sha256": "8dfe20059df821db2f124021f541921dbd18af7160f06bdbce97bd75c6f89bcd",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 45193,
+        "faces": 64515,
+        "active_area_cells": 16363,
+        "serialized_slots": 239168,
+        "referenced_face_occurrences": 222805,
+        "wAreaSize_physical": 907583,
+        "wAreaSize_rebuilt": 907583
+      },
+      "stage_map_rect_physical": [
+        11209121,
+        2865068,
+        13268099,
+        5775501
+      ],
+      "stage_map_rect_rebuilt": [
+        11209121,
+        2865068,
+        13268099,
+        5775501
+      ],
+      "max_face_area_cell_span": 204,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1022124,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Iron/iron-2.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Iron/iron-2.smd",
+      "sha256": "4ffb16842ebda7845abb71e2a41dd3196f2c176730a4b07843e4521e6f8cda2c",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 46855,
+        "faces": 63782,
+        "active_area_cells": 28419,
+        "serialized_slots": 296981,
+        "referenced_face_occurrences": 268562,
+        "wAreaSize_physical": 1102667,
+        "wAreaSize_rebuilt": 1102667
+      },
+      "stage_map_rect_physical": [
+        8580560,
+        4750453,
+        11981818,
+        7713995
+      ],
+      "stage_map_rect_rebuilt": [
+        8580560,
+        4750453,
+        11981818,
+        7713995
+      ],
+      "max_face_area_cell_span": 760,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1301600,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Iron/iron3.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Iron/iron3.smd",
+      "sha256": "0f651dd25252b11ee9b6be9d0b71f2c589f833db29450448af45fa3f9d30fef0",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 32252,
+        "faces": 53538,
+        "active_area_cells": 10191,
+        "serialized_slots": 205693,
+        "referenced_face_occurrences": 195502,
+        "wAreaSize_physical": 792199,
+        "wAreaSize_rebuilt": 792199
+      },
+      "stage_map_rect_physical": [
+        -4945923,
+        4770431,
+        -2675684,
+        6335587
+      ],
+      "stage_map_rect_rebuilt": [
+        -4945923,
+        4770431,
+        -2675684,
+        6335587
+      ],
+      "max_face_area_cell_span": 198,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 863536,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Lost/lost.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Lost/lost.smd",
+      "sha256": "7489d4af994afb3cd3c42dd941017594cd95437dbde31bb2a7ea2738aec38e44",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "WORD16",
+      "capacity_model": "WORD16_LEGACY_POINTER_COUNTER_STEP2",
+      "counts": {
+        "vertices": 42582,
+        "faces": 61858,
+        "active_area_cells": 39728,
+        "serialized_slots": 308862,
+        "referenced_face_occurrences": 269134,
+        "wAreaSize_physical": 577996,
+        "wAreaSize_rebuilt": 577996
+      },
+      "stage_map_rect_physical": [
+        -4881120,
+        -1412117,
+        -1757918,
+        1980382
+      ],
+      "stage_map_rect_rebuilt": [
+        -4881120,
+        -1412117,
+        -1757918,
+        1980382
+      ],
+      "max_face_area_cell_span": 650,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 776636,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "WORD16_LEGACY_POINTER_COUNTER_STEP2"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Lost/lost3.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Lost/lost3.smd",
+      "sha256": "981e6c25e2e96119f10c1c427c00fcb88d13d751588872d4171950f0296e03d7",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 54822,
+        "faces": 66580,
+        "active_area_cells": 45365,
+        "serialized_slots": 353184,
+        "referenced_face_occurrences": 307819,
+        "wAreaSize_physical": 1276641,
+        "wAreaSize_rebuilt": 1276641
+      },
+      "stage_map_rect_physical": [
+        27719642,
+        21704888,
+        31225890,
+        25134920
+      ],
+      "stage_map_rect_rebuilt": [
+        27719642,
+        21704888,
+        31225890,
+        25134920
+      ],
+      "max_face_area_cell_span": 784,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1594196,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Lost/lostisland.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Lost/lostisland.smd",
+      "sha256": "73c2d26795e2c53720ea2b4e6f14346378cfc10117c6138f12857f9efe1c2177",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 43168,
+        "faces": 62434,
+        "active_area_cells": 39728,
+        "serialized_slots": 310303,
+        "referenced_face_occurrences": 270575,
+        "wAreaSize_physical": 1122028,
+        "wAreaSize_rebuilt": 1122028
+      },
+      "stage_map_rect_physical": [
+        -4881120,
+        -1412117,
+        -1757918,
+        1979942
+      ],
+      "stage_map_rect_rebuilt": [
+        -4881120,
+        -1412117,
+        -1757918,
+        1979942
+      ],
+      "max_face_area_cell_span": 650,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1400124,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Losttemple/lost_temple.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Losttemple/lost_temple.smd",
+      "sha256": "6a8fe5f8572e58d350594332d8ba486b65d88827dba2caf232a2a8ec8a271411",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 45472,
+        "faces": 63524,
+        "active_area_cells": 23908,
+        "serialized_slots": 243076,
+        "referenced_face_occurrences": 219168,
+        "wAreaSize_physical": 900580,
+        "wAreaSize_rebuilt": 900580
+      },
+      "stage_map_rect_physical": [
+        -4558701,
+        1967555,
+        -1757420,
+        4238058
+      ],
+      "stage_map_rect_rebuilt": [
+        -4558701,
+        1967555,
+        -1757420,
+        4238058
+      ],
+      "max_face_area_cell_span": 625,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1067936,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/mar/ruin-arenaSF.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/mar/ruin-arenaSF.smd",
+      "sha256": "17212d21016c9a45411fb419789019326c2f11539cc43a0f04ae16a739d1b10f",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 52974,
+        "faces": 61585,
+        "active_area_cells": 32522,
+        "serialized_slots": 302216,
+        "referenced_face_occurrences": 269694,
+        "wAreaSize_physical": 1111298,
+        "wAreaSize_rebuilt": 1111298
+      },
+      "stage_map_rect_physical": [
+        -12929526,
+        -8243194,
+        -10309058,
+        -4952989
+      ],
+      "stage_map_rect_rebuilt": [
+        -12929526,
+        -8243194,
+        -10309058,
+        -4952989
+      ],
+      "max_face_area_cell_span": 954,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1338952,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Mine/mine-1.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Mine/mine-1.smd",
+      "sha256": "50f4f92ac09574a57c432d8ef18767e29c955dbb03e281223c985a0920e62a32",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 41539,
+        "faces": 64026,
+        "active_area_cells": 14002,
+        "serialized_slots": 218772,
+        "referenced_face_occurrences": 204770,
+        "wAreaSize_physical": 833082,
+        "wAreaSize_rebuilt": 833082
+      },
+      "stage_map_rect_physical": [
+        4466565,
+        -10423531,
+        7774330,
+        -8719695
+      ],
+      "stage_map_rect_rebuilt": [
+        4466565,
+        -10423531,
+        7774330,
+        -8719695
+      ],
+      "max_face_area_cell_span": 56,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 931096,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Quest/quest_IV.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Quest/quest_IV.smd",
+      "sha256": "48d147adee0dcfd0c7694c5f1f6c8f50a230603dd88286917d853d452cc0f355",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 5388,
+        "faces": 5844,
+        "active_area_cells": 2500,
+        "serialized_slots": 41630,
+        "referenced_face_occurrences": 39130,
+        "wAreaSize_physical": 159020,
+        "wAreaSize_rebuilt": 159020
+      },
+      "stage_map_rect_physical": [
+        5261598,
+        2088413,
+        6076463,
+        2897970
+      ],
+      "stage_map_rect_rebuilt": [
+        5261598,
+        2088413,
+        6076463,
+        2897970
+      ],
+      "max_face_area_cell_span": 189,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 176520,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Ricarten/village-2.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Ricarten/village-2.smd",
+      "sha256": "059edd5cd22574926f2bfc3a5952d8669c54213d815c9d65a782ed767810481e",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 42222,
+        "faces": 44845,
+        "active_area_cells": 20592,
+        "serialized_slots": 189576,
+        "referenced_face_occurrences": 168984,
+        "wAreaSize_physical": 696528,
+        "wAreaSize_rebuilt": 696528
+      },
+      "stage_map_rect_physical": [
+        -895558,
+        -5727555,
+        1429680,
+        -3377756
+      ],
+      "stage_map_rect_rebuilt": [
+        -895558,
+        -5727555,
+        1429680,
+        -3377756
+      ],
+      "max_face_area_cell_span": 323,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 840672,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Room/office.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Room/office.smd",
+      "sha256": "6913ced9bcd686031b9e50ca216b892e49bf93defe51095d329ba714981bb38f",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 1190,
+        "faces": 2026,
+        "active_area_cells": 676,
+        "serialized_slots": 7017,
+        "referenced_face_occurrences": 6341,
+        "wAreaSize_physical": 26040,
+        "wAreaSize_rebuilt": 26040
+      },
+      "stage_map_rect_physical": [
+        -51404724,
+        50995252,
+        -50995124,
+        51404852
+      ],
+      "stage_map_rect_rebuilt": [
+        -51404724,
+        50995252,
+        -50995124,
+        51404852
+      ],
+      "max_face_area_cell_span": 25,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 30772,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Ruin/ruin-1.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Ruin/ruin-1.smd",
+      "sha256": "b0bad23ed3976c5f6652ccfdf3ab8244d0bb16ef8eb953a53c1cefac2d00e008",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 40655,
+        "faces": 62962,
+        "active_area_cells": 25233,
+        "serialized_slots": 251283,
+        "referenced_face_occurrences": 226050,
+        "wAreaSize_physical": 929433,
+        "wAreaSize_rebuilt": 929433
+      },
+      "stage_map_rect_physical": [
+        2316723,
+        1622723,
+        4950866,
+        4907090
+      ],
+      "stage_map_rect_rebuilt": [
+        2316723,
+        1622723,
+        4950866,
+        4907090
+      ],
+      "max_face_area_cell_span": 63,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1106064,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Ruin/ruin-2.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Ruin/ruin-2.smd",
+      "sha256": "dfa7c8662cc740c5b52028ae9621a4c9afe1e90328d87686649b4ecd1c3346fd",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 39426,
+        "faces": 60443,
+        "active_area_cells": 20243,
+        "serialized_slots": 221599,
+        "referenced_face_occurrences": 201356,
+        "wAreaSize_physical": 825667,
+        "wAreaSize_rebuilt": 825667
+      },
+      "stage_map_rect_physical": [
+        385141,
+        4240584,
+        3376271,
+        7123555
+      ],
+      "stage_map_rect_rebuilt": [
+        385141,
+        4240584,
+        3376271,
+        7123555
+      ],
+      "max_face_area_cell_span": 80,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 967368,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Ruin/ruin-3.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Ruin/ruin-3.smd",
+      "sha256": "bf63bad626d5a7b60ef6c298bb403dcb66870a8e96e545a6428e284bdb3adee2",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 41208,
+        "faces": 62174,
+        "active_area_cells": 29372,
+        "serialized_slots": 271148,
+        "referenced_face_occurrences": 241776,
+        "wAreaSize_physical": 996476,
+        "wAreaSize_rebuilt": 996476
+      },
+      "stage_map_rect_physical": [
+        -917078,
+        1167198,
+        2012334,
+        4321830
+      ],
+      "stage_map_rect_rebuilt": [
+        -917078,
+        1167198,
+        2012334,
+        4321830
+      ],
+      "max_face_area_cell_span": 50,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1202080,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Ruin/ruin-4.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Ruin/ruin-4.smd",
+      "sha256": "5b7d7c54ee8466d41629ca5f6f1ac346b3c3b1b716449a87f1db99e45ba0cc1b",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 39854,
+        "faces": 55322,
+        "active_area_cells": 26739,
+        "serialized_slots": 240541,
+        "referenced_face_occurrences": 213802,
+        "wAreaSize_physical": 881947,
+        "wAreaSize_rebuilt": 881947
+      },
+      "stage_map_rect_physical": [
+        -1126968,
+        -1807076,
+        1648396,
+        1466560
+      ],
+      "stage_map_rect_rebuilt": [
+        -1126968,
+        -1807076,
+        1648396,
+        1466560
+      ],
+      "max_face_area_cell_span": 54,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1069120,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/SeaA/SeaA.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/SeaA/SeaA.smd",
+      "sha256": "436e357ec22a9c4db504beb12d17de4d85b8d9b51c5bb9fb1f967b0097239c4e",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 55453,
+        "faces": 82483,
+        "active_area_cells": 26816,
+        "serialized_slots": 407666,
+        "referenced_face_occurrences": 380850,
+        "wAreaSize_physical": 1550216,
+        "wAreaSize_rebuilt": 1550216
+      },
+      "stage_map_rect_physical": [
+        -7107738,
+        -1652156,
+        -4430003,
+        2290485
+      ],
+      "stage_map_rect_rebuilt": [
+        -7107738,
+        -1652156,
+        -4430003,
+        2290485
+      ],
+      "max_face_area_cell_span": 108,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 1737928,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/SeaA/Stemple.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/SeaA/Stemple.smd",
+      "sha256": "eae6167998450c88d63e97ce80859b9ca9bf5801bc58938495ecaf5b848088d3",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 52915,
+        "faces": 81176,
+        "active_area_cells": 46845,
+        "serialized_slots": 474956,
+        "referenced_face_occurrences": 428111,
+        "wAreaSize_physical": 1759289,
+        "wAreaSize_rebuilt": 1759289
+      },
+      "stage_map_rect_physical": [
+        -10334455,
+        3602001,
+        -6387558,
+        7681715
+      ],
+      "stage_map_rect_rebuilt": [
+        -10334455,
+        3602001,
+        -6387558,
+        7681715
+      ],
+      "max_face_area_cell_span": 192,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 2087204,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Slab/Slab.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Slab/Slab.smd",
+      "sha256": "a75863ab1609d1dbfa49b4f5c10a31edd5428ab0ce0f92f7a131a8dd93d1630a",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 46681,
+        "faces": 69241,
+        "active_area_cells": 11575,
+        "serialized_slots": 211053,
+        "referenced_face_occurrences": 199478,
+        "wAreaSize_physical": 809487,
+        "wAreaSize_rebuilt": 809487
+      },
+      "stage_map_rect_physical": [
+        -4363319,
+        -16175000,
+        -1573653,
+        -13828795
+      ],
+      "stage_map_rect_rebuilt": [
+        -4363319,
+        -16175000,
+        -1573653,
+        -13828795
+      ],
+      "max_face_area_cell_span": 594,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 890512,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Sod/sod-1.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/sod-1.smd",
+      "sha256": "a6f3fae80097c7c42606d10b4b4b9d13bc55c47e99955bc960389ebce671760f",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 42535,
+        "faces": 48461,
+        "active_area_cells": 6101,
+        "serialized_slots": 159581,
+        "referenced_face_occurrences": 153480,
+        "wAreaSize_physical": 620021,
+        "wAreaSize_rebuilt": 620021
+      },
+      "stage_map_rect_physical": [
+        4764457,
+        223832,
+        6742440,
+        1989460
+      ],
+      "stage_map_rect_rebuilt": [
+        4764457,
+        223832,
+        6742440,
+        1989460
+      ],
+      "max_face_area_cell_span": 336,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 662728,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/Sod/sod-2.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/sod-2.smd",
+      "sha256": "6ff0adfbef3638a00c0629e03c525724cde4766b35b89f09f76873e258423890",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 42535,
+        "faces": 48461,
+        "active_area_cells": 6061,
+        "serialized_slots": 159221,
+        "referenced_face_occurrences": 153160,
+        "wAreaSize_physical": 618701,
+        "wAreaSize_rebuilt": 618701
+      },
+      "stage_map_rect_physical": [
+        4655103,
+        2896713,
+        6633086,
+        4662342
+      ],
+      "stage_map_rect_rebuilt": [
+        4655103,
+        2896713,
+        6633086,
+        4662342
+      ],
+      "max_face_area_cell_span": 308,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 661128,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "Field/swamp/swamp.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/swamp/swamp.smd",
+      "sha256": "13a04833d9ec367f102ae9b3e922a1192600ad51cd46480ac9084a514018a4df",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 42409,
+        "faces": 51182,
+        "active_area_cells": 1126,
+        "serialized_slots": 81944,
+        "referenced_face_occurrences": 80818,
+        "wAreaSize_physical": 324398,
+        "wAreaSize_rebuilt": 324398
+      },
+      "stage_map_rect_physical": [
+        881154,
+        10914328,
+        2088445,
+        11235993
+      ],
+      "stage_map_rect_rebuilt": [
+        881154,
+        10914328,
+        2088445,
+        11235993
+      ],
+      "max_face_area_cell_span": 20,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 332280,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "game/maps/chrselect/login.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/maps/chrselect/login.smd",
+      "sha256": "a5d3f99d19db7f53f8e36c71ba4a7a0788798e7a5fd9db90b795c72897fef2af",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 18921,
+        "faces": 14678,
+        "active_area_cells": 1072,
+        "serialized_slots": 26549,
+        "referenced_face_occurrences": 25477,
+        "wAreaSize_physical": 102980,
+        "wAreaSize_rebuilt": 102980
+      },
+      "stage_map_rect_physical": [
+        -383760,
+        -194880,
+        432245,
+        317522
+      ],
+      "stage_map_rect_rebuilt": [
+        -383760,
+        -194880,
+        432245,
+        317522
+      ],
+      "max_face_area_cell_span": 90,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 110484,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "game/maps/chrselect/scene.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/maps/chrselect/scene.smd",
+      "sha256": "cc88a8275f4373dbcc81b21e92731305d37d0b3d4ba6c3f0f3c7c18d39c80299",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32_TRAILING_OPAQUE",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 13558,
+        "faces": 18496,
+        "active_area_cells": 4294,
+        "serialized_slots": 58136,
+        "referenced_face_occurrences": 53842,
+        "wAreaSize_physical": 219662,
+        "wAreaSize_rebuilt": 219662
+      },
+      "stage_map_rect_physical": [
+        -887134,
+        -318234,
+        998252,
+        452257
+      ],
+      "stage_map_rect_rebuilt": [
+        -887134,
+        -318234,
+        998252,
+        452257
+      ],
+      "max_face_area_cell_span": 780,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 249720,
+      "opaque_trailing_bytes": 441728,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "game/maps/login/login.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/maps/login/login.smd",
+      "sha256": "6e6e2578a1055c418c5a8b0acd39a363339e29f851f1558fc2588e73479d1215",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32_TRAILING_OPAQUE",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 11815,
+        "faces": 11559,
+        "active_area_cells": 1043,
+        "serialized_slots": 28690,
+        "referenced_face_occurrences": 27647,
+        "wAreaSize_physical": 111631,
+        "wAreaSize_rebuilt": 111631
+      },
+      "stage_map_rect_physical": [
+        -364065,
+        -15894,
+        307634,
+        491609
+      ],
+      "stage_map_rect_rebuilt": [
+        -364065,
+        -15894,
+        307634,
+        491609
+      ],
+      "max_face_area_cell_span": 112,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 118932,
+      "opaque_trailing_bytes": 10996,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    },
+    {
+      "relative_path": "StartImage/Opening/Map/stage.smd",
+      "format": "PT_STAGE072_STAGEAREA_REBUILD_FILE_V1",
+      "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/StartImage/Opening/Map/stage.smd",
+      "sha256": "aa49d2de29a67fbd90c799b412c0e6a6d7a7c37b78a8ad03859cef4f2e8bb2a5",
+      "check": "PASS",
+      "errors": [],
+      "area_encoding": "DWORD32",
+      "capacity_model": "DWORD_POINTER_COUNTER_STEP4",
+      "counts": {
+        "vertices": 30989,
+        "faces": 40487,
+        "active_area_cells": 13139,
+        "serialized_slots": 135480,
+        "referenced_face_occurrences": 122341,
+        "wAreaSize_physical": 502503,
+        "wAreaSize_rebuilt": 502503
+      },
+      "stage_map_rect_physical": [
+        -1469328,
+        -1027771,
+        1542124,
+        1151317
+      ],
+      "stage_map_rect_rebuilt": [
+        -1469328,
+        -1027771,
+        1542124,
+        1151317
+      ],
+      "max_face_area_cell_span": 775,
+      "area_list_capacity": 4096,
+      "faces_exceeding_area_list_capacity": [],
+      "area_core_bytes": 594476,
+      "opaque_trailing_bytes": 0,
+      "checks": {
+        "physical_parser": "PASS",
+        "cell_face_membership_and_order_exact": "PASS",
+        "stagearea_pointer_layout_exact": "PASS",
+        "wAreaSize_bug_compatible_formula_exact": "PASS",
+        "stage_map_rect_exact": "PASS",
+        "serialized_area_core_byte_exact": "PASS",
+        "area_list_4096_capacity_safe": "PASS"
+      },
+      "sourcecode_reconstruction": {
+        "fixed_to_world_shift": 8,
+        "world_to_area_shift": 6,
+        "combined_cell_shift": 14,
+        "grid_wrap": "cell & 0xFF",
+        "cell_membership": "triangle X/Z bounding-box cells, inclusive",
+        "cell_face_order": "ascending source face order",
+        "active_cell_serialization_order": "y outer, x inner",
+        "serialized_list": "DWORD slen then count+face indices using physical WORD16/DWORD32 width",
+        "capacity_model": "DWORD_POINTER_COUNTER_STEP4"
+      },
+      "client_modified": false
+    }
+  ]
+}

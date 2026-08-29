@@ -1,0 +1,21 @@
+{
+  "tool": "SUMMIT_ROUNDTRIP_RESTORE_V3",
+  "status": "PASS",
+  "workspace": "/home/gabriel/Área de Trabalho/summit/design_work/blender_workspace_pikeman",
+  "game_root": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente",
+  "backup_root": "/home/gabriel/Área de Trabalho/summit/design_work/blender_workspace_pikeman/_roundtrip_backup_v2_20260827_074310_842907",
+  "written": [
+    {
+      "asset_id": "AST-791F1CAE2A4C",
+      "roundtrip_target": "char/tmABCD/MfbC01.smd",
+      "sha256": "9b4a992945b7d0ce30aaff63b1141433132ecf57e17a4036177c9d94d8fa5b9c",
+      "size": 382625,
+      "backup": "/home/gabriel/Área de Trabalho/summit/design_work/blender_workspace_pikeman/_roundtrip_backup_v2_20260827_074310_842907/char/tmABCD/MfbC01.smd",
+      "previous_client_sha256": "a9234559979fe82243207c901c41a08c3de1b0e5447d9dea01f8f6096114f48f",
+      "previous_client_size": 382625,
+      "previous_client_state": "PREVIOUSLY_PUBLISHED_BUILD"
+    }
+  ],
+  "skipped": [],
+  "timestamp": "2026-08-27T06:43:10.851083+00:00"
+}

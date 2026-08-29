@@ -1,0 +1,219 @@
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:80:#define STG_START_POINT_MAX			200
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:148:	char				szStartPointFile[64];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:152:	STG_START_POINT		StartPoint[STG_START_POINT_MAX];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:153:	int					StartPointNearPlay[STG_START_POINT_MAX];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:154:	int					StartPointMonCount[STG_START_POINT_MAX];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:155:	int					StartPointCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:156:	int					StartPointLastOpenCount;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:157:	DWORD				dwStartPoint_OpenTime[STG_START_POINT_MAX];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:159:	int					StartPointOpenCount;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:160:	int					StartPointActiveCount;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:203:	int LoadStartPoint(char *szFile);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:204:	int SaveStartPoint(char *szFile);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:205:	int FindStartPoint(int x, int z);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:206:	int AddStartPoint(int x, int z, int state);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:207:	int DeleteStartPoint(int x, int z);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:213:	int SendStartPointFlag();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2323:POINT	StartPointNpc[START_POINT_MAX] = {
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2330:POINT	StartPoint[START_POINT_MAX] = {
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2343:int StartPointCnt = 0;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4526:	return lpStgArea->StartPointMonCount[lpChar->OpenStartPostion];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4544:	if(lpStgArea->StartPointMonCount[lpMainChar->OpenStartPostion] >= MaxFlag) return FALSE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7635:	StartPointActiveCount = 0;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7636:	StartPointOpenCount = 0;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7641:		if(cnt >= STG_START_POINT_MAX) break;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7643:		if(StartPoint[cnt].state)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7645:			dx = StartPoint[cnt].x - (lpPlayInfo->Position.x >> FLOATNS);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7646:			dz = StartPoint[cnt].z - (lpPlayInfo->Position.z >> FLOATNS);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7653:				StartPointNearPlay[cnt] ++;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7657:					TransItems.Items[scnt].state = StartPoint[cnt].state;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7658:					TransItems.Items[scnt].x = StartPoint[cnt].x << FLOATNS;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7660:					TransItems.Items[scnt].z = StartPoint[cnt].z << FLOATNS;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7666:					wsprintf(TransItems.Items[scnt].szName, szMonsterFlagMsg, cnt, StartPointMonCount[cnt]);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7674:			if(StartPointNearPlay[cnt])	StartPointActiveCount++;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7675:			StartPointOpenCount++;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7696:int STG_AREA::LoadStartPoint(char *szFile)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7703:		fread(StartPoint, sizeof(STG_START_POINT)*STG_START_POINT_MAX, 1, fp);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7711:int STG_AREA::SaveStartPoint(char *szFile)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7718:		fwrite(StartPoint, sizeof(STG_START_POINT)*STG_START_POINT_MAX, 1, fp);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7751:	StartPointMonCount[lpChar->OpenStartPostion] ++;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7778:	if(StartPointMonCount[lpChar->OpenStartPostion] > 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7779:		StartPointMonCount[lpChar->OpenStartPostion] --;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8067:int STG_AREA::SendStartPointFlag()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8071:	ZeroMemory(StartPointNearPlay, sizeof(int) * STG_START_POINT_MAX);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8319:		SendStartPointFlag();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8569:		SetFieldInfoPath(szStartPointFile, szFile, "spp");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8570:		LoadStartPoint(szStartPointFile);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8600:int STG_AREA::FindStartPoint(int x, int z)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8603:	for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8605:		if(StartPoint[cnt].state &&
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8606:			StartPoint[cnt].x == x && StartPoint[cnt].z == z)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8619:int STG_AREA::AddStartPoint(int x, int z, int state)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8624:	cnt = FindStartPoint(x, z);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8627:	for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8629:		if(!StartPoint[cnt].state)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8631:			StartPoint[cnt].state = state;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8632:			StartPoint[cnt].x = x;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8633:			StartPoint[cnt].z = z;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8634:			StartPointMonCount[cnt] = 0;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8635:			SaveStartPoint(szStartPointFile);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8644:int STG_AREA::DeleteStartPoint(int x, int z)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8648:	cnt = FindStartPoint(x, z);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8651:		StartPoint[cnt].state = 0;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8652:		StartPointMonCount[cnt] = 0;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8653:		SaveStartPoint(szStartPointFile);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8667:	for(cnt = STG_START_POINT_MAX - 1; cnt >= 0; cnt--)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8669:		if(StartPoint[cnt].state)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8677:	StartPointCnt = rnd;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8690:	for(cnt = StartPointCnt; cnt < STG_START_POINT_MAX; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8692:		if(StartPoint[cnt].state && StartPointNearPlay[cnt] &&
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8693:			StartPointMonCount[cnt] < rsMonsterList.OpenLimit &&
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8694:			dwStartPoint_OpenTime[cnt] < dwPlayServTime)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8697:			x = StartPoint[cnt].x * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8698:			y = StartPoint[cnt].z * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8699:			StartPointCnt = cnt + 1;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8700:			StartPointLastOpenCount = cnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8708:		for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8710:			if(StartPoint[cnt].state && StartPointNearPlay[cnt] &&
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8711:				StartPointMonCount[cnt] < rsMonsterList.OpenLimit &&
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8712:				dwStartPoint_OpenTime[cnt] < dwPlayServTime)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8715:				x = StartPoint[cnt].x * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8716:				y = StartPoint[cnt].z * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8717:				StartPointCnt = cnt + 1;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8718:				StartPointLastOpenCount = cnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8731:		for(cnt = StartPointCnt; cnt < STG_START_POINT_MAX; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8733:			if(StartPoint[cnt].state && StartPointNearPlay[cnt])
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8735:				x = StartPoint[cnt].x * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8736:				y = StartPoint[cnt].z * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8742:		if(flag == 0 && StartPointCnt < STG_START_POINT_MAX)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8744:			for(cnt = 0; cnt < StartPointCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8746:				if(StartPoint[cnt].state && StartPointNearPlay[cnt])
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8748:					x = StartPoint[cnt].x * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8749:					y = StartPoint[cnt].z * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8758:			for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8760:				if(StartPoint[cnt].state)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8762:					x = StartPoint[cnt].x * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8763:					y = StartPoint[cnt].z * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8789:		lpChar->OpenStartPostion = StartPointLastOpenCount;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8791:		dwStartPoint_OpenTime[StartPointLastOpenCount] = dwPlayServTime + rsMonsterList.dwIntervalTime;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8834:		lpChar->OpenStartPostion = StartPointLastOpenCount;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8886:	cnt = StartPointCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8887:	x = StartPoint[cnt].x * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8888:	y = StartPoint[cnt].y * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8890:	StartPointCnt++;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8891:	if(StartPointCnt >= START_POINT_MAX) StartPointCnt = 0;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:20061://		lpStgArea->StartPointCnt = lpStgArea->StartPointLastOpenCount;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:20319:		lpStgArea->StartPointCnt = lpStgArea->StartPointLastOpenCount;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:22433:			for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:22434:				if(lpStgArea->StartPoint[cnt].state) len++;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:22436:			for(cnt = 0; cnt < STG_START_POINT_MAX; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:22437:				x += lpStgArea->StartPointMonCount[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:25308:					lpStgArea->AddStartPoint(x >> FLOATNS, z >> FLOATNS, TRUE);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:25309:					lpStgArea->SendStartPointFlag();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:25326:					lpStgArea->DeleteStartPoint(x >> FLOATNS, z >> FLOATNS);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:25327:					lpStgArea->SendStartPointFlag();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/sinbaram/amstream.h:237:			DISPPARAMS *pDispParams,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:318:int sFIELD::AddStartPoint(int x, int z)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:320:	if (StartPointCnt >= FIELD_START_POINT_MAX) return FALSE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:322:	StartPoint[StartPointCnt].x = x;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:323:	StartPoint[StartPointCnt].y = z;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:324:	StartPointCnt++;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:330:int sFIELD::GetStartPoint(int x, int z, int *mx, int *mz)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:338:	if (StartPointCnt == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:348:	dx = (x - StartPoint[0].x);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:349:	dz = (z - StartPoint[0].y);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:354:	for (cnt = 1; cnt < StartPointCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:356:		dx = (x - StartPoint[cnt].x);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:357:		dz = (z - StartPoint[cnt].y);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:365:	*mx = StartPoint[NearCnt].x << FLOATNS;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:366:	*mz = StartPoint[NearCnt].y << FLOATNS;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:372:int sFIELD::CheckStartPoint(int x, int z)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:377:	for (cnt = 0; cnt < StartPointCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:379:		dx = StartPoint[cnt].x << FLOATNS;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:380:		dz = StartPoint[cnt].y << FLOATNS;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:467:	sField[cnt].AddStartPoint(-10585, -11810);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:468:	sField[cnt].AddStartPoint(-13659, -9753);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:494:	sField[cnt].AddStartPoint(-2272, -10314);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:495:	sField[cnt].AddStartPoint(-7192, -11175);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:519:	sField[cnt].AddStartPoint(1350, -13672);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:520:	sField[cnt].AddStartPoint(1761, -10815);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:521:	sField[cnt].AddStartPoint(4777, -10916);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:562:	sField[cnt].AddStartPoint(2592, -18566);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:563:	sField[cnt].AddStartPoint(-1047, -16973);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:583:	sField[cnt].AddStartPoint(2578, -5124);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:584:	sField[cnt].AddStartPoint(1873, 3060);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:598:	sField[cnt].AddStartPoint(875, 7910);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:599:	sField[cnt].AddStartPoint(1576, 14307);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:613:	sField[cnt].AddStartPoint(3976, 19645);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:614:	sField[cnt].AddStartPoint(5832, 23751);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:615:	sField[cnt].AddStartPoint(5615, 25117);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:636:	sField[cnt].AddStartPoint(12242, 16034);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:637:	sField[cnt].AddStartPoint(12194, 8969);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:655:	sField[cnt].AddStartPoint(13306, 2000);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:656:	sField[cnt].AddStartPoint(13083, -2249);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:672:	sField[cnt].AddStartPoint(22214, -1182);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:691:	sField[cnt].AddStartPoint(11859, -11257);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:692:	sField[cnt].AddStartPoint(16169, -12768);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:705:	sField[cnt].AddStartPoint(34758, -1323);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:706:	sField[cnt].AddStartPoint(29424, 322);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:732:	sField[cnt].AddStartPoint(33740, 6491);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:733:	sField[cnt].AddStartPoint(40691, 11056);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:820:	sField[cnt].AddStartPoint(-2135, 33668);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:821:	sField[cnt].AddStartPoint(4073, 32119);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:853:	sField[cnt].AddStartPoint(-1516, 45437);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:854:	sField[cnt].AddStartPoint(-3586, 42886);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:883:	sField[cnt].AddStartPoint(-1024, 45437);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:884:	sField[cnt].AddStartPoint(-1543, 52333);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:885:	sField[cnt].AddStartPoint(-1310, 54945);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:911:	sField[cnt].AddStartPoint(1875, 69871);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:912:	sField[cnt].AddStartPoint(2637, 60219);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:964:	sField[cnt].AddStartPoint(2287, 74131);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:965:	sField[cnt].AddStartPoint(3547, 75500);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1174:	sField[cnt].AddStartPoint(119319, 26034);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1175:	sField[cnt].AddStartPoint(125606, 24541);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1211:	sField[cnt].AddStartPoint(119320, 35680);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1212:	sField[cnt].AddStartPoint(124380, 33260);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1279:	sField[cnt].AddStartPoint(46905, 13478);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1280:	sField[cnt].AddStartPoint(47357, 20845);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1281:	sField[cnt].AddStartPoint(46741, 21349);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1310:	sField[cnt].AddStartPoint(35149, 24326);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1311:	sField[cnt].AddStartPoint(44893, 21380);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1428:	sField[cnt].AddStartPoint(33920, -23479);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1429:	sField[cnt].AddStartPoint(35247, -23355);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1430:	sField[cnt].AddStartPoint(36164, -23446);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1680:	sField[cnt].AddStartPoint(4896, -42330);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1681:	sField[cnt].AddStartPoint(6418, -42330);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1751:	sField[cnt].AddStartPoint(12725, -73112);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1776:	sField[cnt].AddStartPoint(-19925, -3858);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1801:	sField[cnt].AddStartPoint(-28284, 27144);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1813:	sField[cnt].AddStartPoint(-45533, -23565);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1825:	sField[cnt].AddStartPoint(116360, 91328);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:1837:	sField[cnt].AddStartPoint(198279, 240452);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2080:	sField[FieldNum].GetStartPoint(x, z, mx, mz);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2111:	if (sField[StartNum].StartPointCnt == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2117:	cnt = rand() % sField[StartNum].StartPointCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2120:		sField[StartNum].StartPoint[cnt].x << FLOATNS,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2121:		sField[StartNum].StartPoint[cnt].y << FLOATNS,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2153:	cnt = rand() % sField[FieldNum].StartPointCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2156:		sField[FieldNum].StartPoint[cnt].x << FLOATNS,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2157:		sField[FieldNum].StartPoint[cnt].y << FLOATNS,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2214:		if (sField[Num].State == FIELD_STATE_CASTLE && sField[Num].StartPointCnt)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2217:			cnt = rand() % sField[Num].StartPointCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2218:			x = sField[Num].StartPoint[cnt].x * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2219:			z = sField[Num].StartPoint[cnt].y * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2283:		else if (sField[Num].State == FIELD_STATE_CASTLE && sField[Num].StartPointCnt)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2286:			cnt = rand() % sField[Num].StartPointCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2287:			x = sField[Num].StartPoint[cnt].x * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.cpp:2288:			z = sField[Num].StartPoint[cnt].y * fONE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.h:157:	POINT	StartPoint[FIELD_START_POINT_MAX];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.h:158:	int		StartPointCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.h:173:	int AddStartPoint(int x, int z);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.h:174:	int GetStartPoint(int x, int z, int *mx, int *mz);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/field.h:175:	int CheckStartPoint(int x, int z);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/netplay.h:93:int SendDeleteStartPoint(int x, int z);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/netplay.h:95:int SendAddStartPoint(int x, int z);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Winmain.cpp:2103:						SendAddStartPoint(lpCurPlayer->pX, lpCurPlayer->pZ);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Winmain.cpp:2111:							SendDeleteStartPoint(lpSelItem->pX, lpSelItem->pZ);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/netplay.cpp:3471:int SendAddStartPoint(int x, int z)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/netplay.cpp:3491:int SendDeleteStartPoint(int x, int z)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/character.cpp:9872:			if(StageField[lpCurPlayer->OnStageField]->CheckStartPoint(lpCurPlayer->pX, lpCurPlayer->pZ) == TRUE)

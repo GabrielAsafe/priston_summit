@@ -1,0 +1,162 @@
+SUMMIT — FASE 2 — ANÁLISE CONSOLIDADA
+======================================
+
+ESCOPO
+- Cliente: char/ + Field/
+- Arquivos: 19.287
+- Tamanho total: 3.376,63 MiB
+- Contêineres analisados: 7.718
+- Bytes lidos em contêineres: 2.136.063.659
+- Arestas asset->asset resolvidas: 86.008
+- Raízes referenciadas na Fase 1: 3.369
+
+STATUS DO GRAFO
+- USED_DIRECT: 570
+- USED_INDIRECT: 298
+- UNRESOLVED_UNUSED: 18.419
+
+IMPORTANTE: UNRESOLVED_UNUSED não significa que o arquivo pode ser apagado.
+O mecanismo do jogo possui carregamento data-driven e nomes construídos em runtime.
+
+CANDIDATOS HIGH / VERY_HIGH
+- Total: 4.039 arquivos
+- Espaço: 352,91 MiB
+- VERY_HIGH: 2.996 arquivos / 163,58 MiB
+- HIGH: 1.043 arquivos / 189,33 MiB
+
+1. CANDIDATOS MAIS CLAROS — TEMP/COPY
+--------------------------------------
+9 arquivos / 4,45 MiB:
+- char/monster/Buma/buma-boss-skin-temp.smb
+- char/monster/Buma/buma-skin-temp.smb
+- char/monster/decoy/decoy-boss-skin-temp.smb
+- char/monster/decoy/decoy-skin-temp.smb
+- char/monster/doral/doral-skin-temp.smb
+- char/monster/Golem/golem-ani-temp.smb
+- char/monster/headcut/headcut-skin-temp.smb
+- char/monster/headcut/headcutaxe-skin-temp.smb
+- Field/Ricarten/pillar01 copy.bmp
+
+Esses são bons candidatos para quarentena/teste antes de remoção definitiva.
+
+2. Field/old_forest E Field/old_dungeon — NÃO APAGAR AINDA
+-----------------------------------------------------------
+- Field/old_forest: 1.487 arquivos / 87,91 MiB / 0 usados pelo grafo
+- Field/old_dungeon: 1.484 arquivos / 69,32 MiB / 0 usados pelo grafo
+- Total: 2.971 arquivos / 157,23 MiB
+
+Sinal forte de legado:
+- 1.480/1.487 arquivos de old_forest têm duplicata idêntica fora da própria pasta.
+- 1.480/1.484 arquivos de old_dungeon têm duplicata idêntica fora da própria pasta.
+
+PORÉM:
+- Existem 322 referências ambíguas provenientes de apenas 3 assets ativos.
+- 518 caminhos candidatos dessas ambiguidades estão em old_forest/old_dungeon
+  (259 em cada pasta).
+- Field/forever-fall/3ani-08.ASE é USED_DIRECT e contém muitas referências a
+  texturas que não existem em forever-fall; nomes equivalentes aparecem nas duas pastas old_*.
+
+Conclusão: as pastas parecem antigas, mas podem estar funcionando como pool/fallback de
+texturas dependendo da lógica do loader. Precisamos auditar a resolução de caminhos do
+loader antes de removê-las.
+
+Arquivos únicos sem cópia fora de old_forest:
+- ba1.smd
+- old_fore-1.smd
+- old_fore-2.smd
+- old_fore-3.smd
+- old_village-2.smd
+- sanc1.smd
+- sanc2.smd
+
+Arquivos únicos sem cópia fora de old_dungeon:
+- old_dun-1-wheel.smd
+- old_dun-1.smd
+- old_dun-2.smd
+- old_dun-3.smd
+
+3. Field/map E Field/Title — HOLD
+---------------------------------
+- Field/map: 64/64 não resolvidos; 25,62 MiB
+- Field/Title: 67/67 não resolvidos; 0,53 MiB
+- Total: 131 arquivos / 26,15 MiB
+
+Os nomes seguem padrões de mapa (dun-1, fore-1, ice1 etc.). Isso é típico de caminho
+construído por ID/nome de mapa em runtime. A ausência de string literal no código não é
+prova suficiente para remoção. Manter em HOLD até auditar a geração desses nomes.
+
+4. CANDIDATOS HIGH/VERY_HIGH RESTANTES
+---------------------------------------
+Excluindo old_forest, old_dungeon, Field/map e Field/Title:
+- 937 arquivos
+- 169,53 MiB
+
+Principais diretórios:
+- Field/Fall_Game: 130 / 62,40 MiB
+- Field/Ricarten: 160 / 20,11 MiB
+- Field/Lost: 88 / 16,65 MiB
+- char/monster: 32 / 13,20 MiB
+- char/tmABCD: 25 / 10,24 MiB
+- Field/swamp: 34 / 6,74 MiB
+- Field/forever-fall: 26 / 5,69 MiB
+- Field/Iron: 54 / 4,58 MiB
+- Field/SeaA: 10 / 4,32 MiB
+- Field/Slab: 37 / 3,92 MiB
+
+Esses continuam sendo candidatos de revisão, não remoção automática.
+
+5. REFERÊNCIAS QUEBRADAS
+-------------------------
+Relatório bruto:
+- 10.201 referências sem match no cliente.
+
+Depois de filtrar somente fontes que o grafo considera usadas:
+- 100 referências quebradas
+- 64 arquivos-fonte de asset usados
+
+Composição:
+- 12 referências .ASE -> .BMP em um asset USED_DIRECT:
+  Field/forever-fall/3ani-08.ASE
+- 87 referências .INX -> .ASE em assets USED_INDIRECT
+- 1 referência .INX -> .INI em asset USED_INDIRECT
+
+As referências .INX -> .ASE podem ser metadados de origem/exportação e não dependências
+necessárias em runtime. Precisamos verificar o loader INX antes de chamar esses ASE de
+assets faltantes.
+
+As 12 texturas ausentes de 3ani-08.ASE são mais relevantes porque o ASE é uma raiz direta.
+
+6. REFERÊNCIAS AMBÍGUAS ATIVAS
+-------------------------------
+- 322 referências ambíguas
+- Apenas 3 sources ativos geram todas elas
+
+Sources:
+- char/monster/death_night/death_knight.ASE
+- char/npc/ji_woo/ji_woo.ASE
+- Field/forever-fall/3ani-08.ASE
+
+Isso indica duplicação de basenames e/ou caminhos antigos de desenvolvimento embutidos em ASE.
+
+7. DUPLICATAS QUE AJUDAM A CONFIRMAR LEGADO
+--------------------------------------------
+Há 64 grupos de hash onde existe ao mesmo tempo:
+- uma cópia USED_DIRECT/USED_INDIRECT
+- uma ou mais cópias UNRESOLVED_UNUSED
+
+Dentro desses grupos existem 69 candidatos HIGH/VERY_HIGH não usados, somando 2,57 MiB.
+Esses são candidatos fortes para quarentena, pois uma cópia idêntica já é alcançada pelo grafo.
+
+8. CONCLUSÃO DA FASE 2
+-----------------------
+A Fase 2 reduziu a incerteza, mas confirmou que remoção automática por simples ausência de
+referência textual seria perigosa.
+
+Fila recomendada:
+P0 — quarentena/teste dos 9 arquivos explicitamente temp/copy.
+P1 — auditar loader de ASE/INX e resolução de paths/basenames.
+P2 — decidir old_forest/old_dungeon após entender o loader.
+P3 — auditar construção dinâmica de Field/map e Field/Title.
+P4 — revisar os 937 candidatos HIGH/VERY_HIGH restantes por família.
+
+Nenhum diretório inteiro deve ser apagado ainda com base somente nesta fase.

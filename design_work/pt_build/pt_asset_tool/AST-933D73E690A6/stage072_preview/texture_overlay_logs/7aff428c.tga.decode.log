@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=7cae27aba93b00a5a75951fa4af0a3989d79f356144088c1772ded661a75a76a
+output_sha256=7cae27aba93b00a5a75951fa4af0a3989d79f356144088c1772ded661a75a76a
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-933D73E690A6/stage072_preview/texture_overlay_client/field/Fall_Game/7aff428c.tga
+format=TGA_STANDARD
+client_modified=False
+tga_decode_check=PASS

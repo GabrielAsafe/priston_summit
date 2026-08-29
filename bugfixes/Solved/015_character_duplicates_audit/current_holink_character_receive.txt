@@ -1,0 +1,66 @@
+   255						fp,
+   256						"SETUSERINFO local=[%s] server=[%s] count=%d\n",
+   257						UserAccount,
+   258						ServerUserCharacterInfo->szID,
+   259						ServerUserCharacterInfo->PlayUserCount
+   260					);
+   261					fclose(fp);
+   262				}
+   263			}
+   264	#endif
+   265	
+   266			if(strcmp(UserAccount, ServerUserCharacterInfo->szID) != 0)
+   267			{
+   268	#ifdef __MINGW32__
+   269				FILE *fp = fopen("LOGS\\mingw_ho_recv.txt", "a");
+   270				if(fp)
+   271				{
+   272					fprintf(fp, "SETUSERINFO rejected: ID mismatch\n");
+   273					fclose(fp);
+   274				}
+   275	#endif
+   276				return FALSE;
+   277			}
+   278	
+   279			memset(DownUserCharacterInfo, 0, sizeof(DownUserCharacterInfo));
+   280			DownUserCharacterCount = 0;
+   281	
+   282	
+   283			for(int index = 0; index < ServerUserCharacterInfo->PlayUserCount; index++)
+   284			{
+   285				wsprintf(DownUserCharacterInfo[index].Name, "%s", ServerUserCharacterInfo->CharInfo[index].szName);
+   286				DownUserCharacterInfo[index].Level = ServerUserCharacterInfo->CharInfo[index].Level;
+   287	
+   288				wsprintf(DownUserCharacterInfo[index].BodyName, "%s", ServerUserCharacterInfo->CharInfo[index].szModelName);
+   289				wsprintf(DownUserCharacterInfo[index].FaceName, "%s", ServerUserCharacterInfo->CharInfo[index].szModelName2);
+   290	
+   291				DownUserCharacterInfo[index].Job = ServerUserCharacterInfo->CharInfo[index].JOB_CODE;
+   292				DownUserCharacterInfo[index].StartField = ServerUserCharacterInfo->CharInfo[index].StartField;
+   293	
+   294				DownUserCharacterInfo[index].PosX = ServerUserCharacterInfo->CharInfo[index].PosX;
+   295				DownUserCharacterInfo[index].PosZ = ServerUserCharacterInfo->CharInfo[index].PosZ;
+   296	
+   297	
+   298			}
+   299			DownUserCharacterCount = ServerUserCharacterInfo->PlayUserCount;
+   300		}
+   301		else if(dwCode == OpCode::OPCODE_SERVER_INFO)
+   302		{
+   303			DownServerListInfo = (TRANS_SERVER_LIST *)RecvBuff;
+   304	
+   305	#ifdef __MINGW32__
+   306			{
+   307				FILE *fp = fopen("LOGS\\mingw_ho_recv.txt", "a");
+   308				if(fp)
+   309				{
+   310					fprintf(
+   311						fp,
+   312						"SERVER_INFO name=[%s] count=%d\n",
+   313						DownServerListInfo->szServerName,
+   314						DownServerListInfo->ServerCount
+   315					);
+   316					fclose(fp);
+   317				}
+   318			}
+   319	#endif
+   320	

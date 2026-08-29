@@ -1,0 +1,22 @@
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+MATERIAL 0: tex='field\\ancientW\\electric_bottom06.bmp' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-21EFE278A58E/object_local_animation/texture_overlay_client/field/ancientW/electric_bottom06.bmp' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-21EFE278A58E/object_local_animation/texture_overlay_client/field/ancientW/electric_bottom06.bmp' decode=BMP_STANDARD load=LOADED
+Info: Saved as "pristine_import.blend"
+PT_SMD_BLENDER_IMPORT_V4_GENERIC
+pt_import_mode=STATIC_NO_PHYSIQUE
+objects=5
+materials=1
+vertices=441
+faces=716
+uv_faces=716
+armature_bones=0
+mesh_armature_modifiers=0
+visible_objects=['ani-001', 'ani-002', 'ani-003', 'ani-004', 'ani-005']
+hidden_objects=[]
+blend=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-21EFE278A58E/object_local_animation/pristine_import.blend
+client_modified=False
+generic_import_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

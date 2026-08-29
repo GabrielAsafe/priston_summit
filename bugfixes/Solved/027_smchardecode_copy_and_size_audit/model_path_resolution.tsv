@@ -1,0 +1,537 @@
+kind	definition	model_len	model	resolved	found
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/100_Arqueira das Cinzas.inf	25	char\monster\d_ar\dar.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/100_Esqueleto de Rei Hopi.inf	42	char\monster\deadkinghopy\deadkinghopy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/100_Lutador das Cinzas.inf	25	char\monster\d_fi\dfi.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/100_Mecânico das Cinzas.inf	29	char\monster\d_meca\dmeca.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/100_Pike das Cinzas.inf	27	char\monster\d_pa\dpike.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/101_Golem Robô.inf	36	char\monster\hobogolem\hobogolem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/102_Atalanta das Cinzas.inf	29	char\monster\d_atal\datal.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/102_Cavaleiro das Cinzas.inf	25	char\monster\d_kn\dkn.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/102_Mago das Cinzas.inf	29	char\monster\d_magi\dmagi.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/102_Sacerdotisa das Cinzas.inf	25	char\monster\d_pr\dpr.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/104_Gorgon.inf	30	char\monster\gorgon\gorgon.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/105_Naz das Cinzas.inf	36	char\monster\nazsenior\nazsenior.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/105_Ruca.inf	26	char\monster\ruca\ruca.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/106_Igolation.inf	36	char\monster\igolation\igolation.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/106_Kakoa.inf	28	char\monster\kakoa\kakoa.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/107_Sprin.inf	28	char\monster\sprin\sprin.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/108_Árvore das Cinzas.inf	40	char\monster\undeadmaple\undeadmaple.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/109_Xetan.inf	28	char\monster\xetan\xetan.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/10_Imp.inf	32	char\monster\monimp\monimp-a.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/10_Planta Mutante.inf	34	char\monster\monrafra\monrafra.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/111_Mineiro das Cinzas.inf	40	char\monster\undeadminer\undeadminer.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/112_Capataz das Cinzas.inf	44	char\monster\undeadmanager\undeadmanager.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/112_Explosão Selada.inf	40	char\monster\sealcrasher\sealcrasher.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/113_Verme de Gelo.inf	32	char\monster\iceworm\iceworm.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/115_Morcego da Mina.inf	32	char\monster\minebat\minebat.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/117_Golem Minerador.inf	36	char\monster\minegolem\minegolem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/118_Tarantulika.inf	40	char\monster\tarantulika\tarantulika.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/119_Dey.inf	24	char\monster\Dey\Dey.inx	/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/Dey/Dey.inx	YES
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/119_Gurkob.inf	30	char\monster\Gurkob\Gurkob.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/119_Serpente de Gelo.inf	38	char\monster\iceserpent\iceserpent.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/11_Doral.inf	28	char\monster\doral\doral.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/11_Órbita.inf	27	char\monster\moneye\eye.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/120_Koon.inf	26	char\monster\Koon\Koon.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/120_Nihil.inf	28	char\monster\Nihil\Nihil.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/121_Chalybs.inf	32	char\monster\Chalybs\Chalybs.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/121_Faugn.inf	28	char\monster\Faugn\Faugn.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/122_Shogoth.inf	32	char\monster\Shogoth\Shogoth.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/123_Arhdyra.inf	32	char\monster\Arhdyra\Arhdyra.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/124_Sathla.inf	30	char\monster\Sathla\Sathla.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/129_Bruxa da Noite.inf	28	char\monster\WLord\WLord.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/12_Planta Assassina.inf	44	char\monster\monhauntplant\monhauntplant.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/12_Árvore Mutante.inf	40	char\monster\monburntree\monburntree.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/130_Draxos.inf	30	char\monster\Draxos\Draxos.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/130_Midranda.inf	34	char\monster\Midranda\Midranda.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/130_Yagditha.inf	34	char\monster\Yagditha\Yagditha.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/13_Planta.inf	36	char\monster\monplant\monplant-c.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/13_Wolverine de Ouro.inf	43	char\monster\monwolverin\monwolverin-02.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/15_Cão Abelha.inf	36	char\monster\monbeedog\monbeedog.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/15_Árvore.inf	36	char\monster\monplant\monplant-a.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/17_Esqueleto.inf	42	char\monster\monskeleton\monskeleton-a.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/17_Planta Mortífera.inf	44	char\monster\monhauntplant\monhauntmaple.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/19_Esqueleto do Mal.inf	42	char\monster\monskeleton\monskeleton-b.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/19_Zumbi.inf	36	char\monster\monzombi\monzombi-a.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/1_Coelho.inf	32	char\monster\monrebi\monrebi.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/1_Cuepi.inf	26	char\monster\hopy\mopy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/1_Hopi.inf	26	char\monster\hopy\hopy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/20_Escorpião.inf	34	char\monster\scorpion\scorpion.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/22_Barata Gigante.inf	30	char\monster\cokris\cokris.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/24_Mephit.inf	32	char\monster\monimp\monimp-b.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/25_Fantasma.inf	28	char\monster\ghost\ghost.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/27_Decoy.inf	28	char\monster\decoy\decoy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/29_Cíclope.inf	40	char\monster\moncyclops\moncyclops-a.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/2_Coelha.inf	34	char\monster\monrebi\monrebi-1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/2_Cogumelo Fantasma.inf	40	char\monster\monmushroom\monmushroom.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/30_Parasita.inf	28	char\monster\leech\leech.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/32_Arqueiro do Mal.inf	38	char\monster\monsarcher\monsarcher.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/34_Bargon.inf	36	char\monster\monbagon\monbagon-a.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/35_Ghoul.inf	36	char\monster\monzombi\monzombi-b.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/35_Minigue Prateado.inf	37	char\monster\monminig\monminig-c1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/37_Besouro Blindado.inf	36	char\monster\armbeetle\armbeetle.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/39_Buma.inf	26	char\monster\buma\buma.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/3_Cogumelo.inf	43	char\monster\monmushroom-mo\monmushroom.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/3_Duende Macabro.inf	44	char\monster\monhobgoblin\monhobgoblin-a.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/40_Aranha.inf	24	char\monster\web\web.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/40_Cripto.inf	32	char\monster\monclip\monclip.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/40_Duende Líder.inf	48	char\monster\monmightygoblin\monmightygoblin.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/40_Guerreiro do Mal.inf	40	char\monster\monswarrior\monswarrior.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/41_Patrulheiro do Mal.inf	48	char\monster\monsrazorarcher\monsrazorarcher.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/42_Múmia.inf	34	char\monster\monmummy\monmummy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/42_Titã.inf	39	char\monster\monbagon\monbagon-boss.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/43_Decapitador.inf	32	char\monster\headcut\headcut.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/45_Cavaleiro Cíclope.inf	40	char\monster\moncyclops\moncyclops-d.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/47_Griven.inf	36	char\monster\mongreven\mongreven.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/48_Hunki.inf	40	char\monster\monbabyhulk\monbabyhulk.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/49_Centauro-S.inf	46	char\monster\monavelrisk\monavelrisk-sword.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/4_Duende Selvagem.inf	44	char\monster\monhobgoblin\monhobgoblin-b.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/4_Wolverine de Bronze.inf	43	char\monster\monwolverin\monwolverin-01.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/50_Cavaleiro do Mal.inf	38	char\monster\monsknight\monsknight.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/51_Golem de Areia.inf	32	char\monster\sandlem\sandlem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/52_Carniceiro.inf	35	char\monster\headcut\headcutaxe.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/52_Centauro-L.inf	46	char\monster\monavelrisk\monavelrisk-spear.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/53_Gigante de Pedra.inf	28	char\monster\golem\golem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/55_Abelha Selvagem.inf	38	char\monster\mondirebee\mondirebee.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/55_Caramujo do Mal.inf	30	char\monster\esnail\esnail.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/55_Golem de Barro.inf	35	char\monster\monplant\mudygolem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/55_Morcego Vampiro.inf	40	char\monster\vampiricbat\vampiricbat.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/56_Guardião de Lama.inf	38	char\monster\mirekeeper\mirekeeper.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/56_Muffin.inf	31	char\monster\cavemush\cmush.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/57_Caramujo Rijo.inf	30	char\monster\ssnail\ssnail.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/57_Cavaleiro Negro.inf	40	char\monster\monsguard\monhauntguard.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/58_Planta das Trevas.inf	36	char\monster\evilplant\evilplant.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/58_Árvore das Trevas.inf	36	char\monster\evilmaple\evilmaple.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/59_Abelha do Mal.inf	40	char\monster\monbeechief\monbeechief.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/59_Caramujo Espinhoso.inf	48	char\monster\monthorncrowler\monthorncrowler.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/5_Tatu.inf	28	char\monster\mouse\mouse.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/5_Zeldi.inf	35	char\monster\monmudy\monmudyjel.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/60_Cavaleiro Fantasma.inf	38	char\monster\mongknight\mongknight.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/62_Figon.inf	28	char\monster\figon\figon.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/64_Rei Hopi.inf	34	char\monster\hopyking\hopyking.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/65_Pesadelo.inf	42	char\monster\moncavemummy\moncavemummy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/66_Guardião Maldito.inf	39	char\monster\monsguard\mondoomguard.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/67_Bruxa.inf	35	char\monster\monwitch\monwitch2.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/68_Duende Guerreiro.inf	46	char\monster\monheavygoblin\monheavygoblin.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/69_Golem de Pedra.inf	44	char\monster\monstonegolem\monstonegolem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/6_Duende Mágico.inf	32	char\monster\monegan\monegan.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/6_Minigue.inf	37	char\monster\monminig\monminig-a1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/70_Grande Griven.inf	42	char\monster\great_greven\great_greven.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/70_Naz.inf	32	char\monster\monnazz\monnazz.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/70_Omu.inf	24	char\monster\omu\omu.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/71_Lorde Centauro.inf	45	char\monster\monavelrisk\monavelrisk-mass.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/71_Lorde Múmia.inf	30	char\monster\m_lord\m_load.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/71_Lâmina.inf	36	char\monster\monsliver\monsliver.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/71_Raia Venenosa.inf	34	char\monster\stingray\stingray.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/72_Lagarto do Lago.inf	38	char\monster\lizardfolk\lizardfolk.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/72_Stygian.inf	46	char\monster\monstygianlord\monstygianlord.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/73_Sereia Profana.inf	32	char\monster\strider\strider.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/73_Sombra.inf	36	char\monster\monshadow\monshadow.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/74_Aranha Rainha.inf	30	char\monster\spider\spider.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/75_Dusk.inf	36	char\monster\monnazz-1\monnazz-1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/75_Succubus.inf	34	char\monster\monwitch\monwitch.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/76_Dawlin.inf	36	char\monster\mondawlin\mondawlin.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/76_Hulk.inf	32	char\monster\monhulk\monhulk.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/76_Omicron.inf	38	char\monster\monomicron\monomicron.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/77_Incubus.inf	35	char\monster\monwitch\monwitch1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/78_Espectro Negro.inf	40	char\monster\monshadow-1\monshadow-1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/79_Ratoo.inf	35	char\monster\monratoo\monaratoo.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/7_Barro.inf	32	char\monster\monmudy\monmudy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/7_Sen.inf	30	char\monster\monsen\monsen.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/80_Abelha Vampira.inf	28	char\monster\v_bee\v_bee.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/80_Besouro Gigante.inf	30	char\monster\beetle\beetle.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/80_Centauro Arqueira.inf	47	char\monster\monavellriskbow\monavelriskbow.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/80_Guardião de Aço.inf	32	char\monster\monigad\monigad.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/80_Niken.inf	28	char\monster\niken\niken.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/81_Golem Torre.inf	38	char\monster\towergolem\towergolem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/81_Golem de Aço.inf	38	char\monster\chaingolem\chaingolem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/81_Híper Máquina.inf	28	char\monster\hyper\hyper.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/81_Imitador.inf	28	char\monster\mimic\mimic.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/81_Morcego Mutante.inf	32	char\monster\kingbat\kingbat.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/82_Destruidor.inf	32	char\monster\rampage\rampage.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/82_Duende Xamã.inf	42	char\monster\goblinshaman\goblinshaman.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/82_Hest.inf	26	char\monster\hest\hest.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/82_Morte Súbita.inf	34	char\monster\deadzone\deadzone.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/82_Máquina Vampira.inf	30	char\monster\vampiric\vemp.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/83_Grotesco.inf	36	char\monster\grotesque\grotesque.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/84_Berserker.inf	42	char\monster\monberserker\monberserker.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/84_Centauro Guerreira.inf	47	char\monster\monavellriskstf\monavelriskstf.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/84_Guardião Antigo.inf	38	char\monster\runicguardian\gurdian.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/85_Metron.inf	36	char\monster\monmetron\monmetron.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/85_Morgon.inf	30	char\monster\morgon\morgon.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/85_Ogro Mecânico.inf	32	char\monster\sadness\sadness.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/85_Tiphoon.inf	36	char\monster\monhulk-1\monhulk-1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/86_Montanha.inf	34	char\monster\mountain\mountain.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/86_Máquina-D.inf	40	char\monster\mondmachine\mondmachine.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/86_Omega.inf	42	char\monster\monomicron-1\monomicron-1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/87_Punhos de Aço.inf	34	char\monster\ironfist\ironfist.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/88_Conjuradora.inf	44	char\monster\incubussummer\incubussummer.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/88_Duende de Gelo.inf	36	char\monster\icegoblin\icegoblin.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/88_Guerreiro Cíclope.inf	46	char\monster\cyclopswarrior\cyclopswarrior.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/88_Místico.inf	30	char\monster\mystic\mystic.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/89_Congelado.inf	30	char\monster\frozen\frozen.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/89_Gelo.inf	28	char\monster\frost\frost.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/89_Olho de Gelo.inf	32	char\monster\coldeye\coldeye.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/89_Tartaruga Blindada.inf	42	char\monster\turtlecannon\turtlecannon.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/8_Coelho Mutante.inf	36	char\monster\monrebion\monrebion.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/8_Wolverine de Prata.inf	43	char\monster\monwolverin\monwolverin-03.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/90_Caos Cara.inf	36	char\monster\chaoscara\chaoscara.ini	/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/chaoscara/chaoscara.ini	YES
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/90_Golem de Gelo.inf	34	char\monster\icegolem\icegolem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/90_Nevasca.inf	44	char\monster\blizzardgiant\blizzardgiant.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/90_Pássaro Demoníaco.inf	36	char\monster\devilbird\devilbird.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/92_Quimera.inf	33	char\monster\chimera\kimera_a.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/92_Verme de Fogo.inf	34	char\monster\fireworm\fireworm.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/93_Cão Infernal.inf	36	char\monster\hellhound\hellhound.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/93_Guardião Negro.inf	34	char\monster\darkguard\skullac.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/94_Mago Negro.inf	33	char\monster\darkmage\skullma.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/96_Abominação.inf	33	char\monster\monkingspider\ks.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/96_Inquisidor Negro.inf	40	char\monster\darkphalanx\darkphalanx.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/97_Cavaleiro Sanguinário.inf	37	char\monster\bloodyknight\bknight.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/97_Guardião do Templo.inf	43	char\monster\montempleguard\templeguard.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/98_Seto.inf	29	char\monster\monseto\seto.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/99_Cavaleiro Sanguinário2.inf	37	char\monster\bloodyknight\bknight.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/99_Inquisidor Negro2.inf	40	char\monster\darkphalanx\darkphalanx.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/99_Quimera2.inf	33	char\monster\chimera\kimera_a.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/AD_60_Mestre Raymon.inf	22	char\npc\mage\mage.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/AD_60_Mestre Verkan.inf	36	char\npc\skillmaster\skillmaster.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/AD_80_Hestian.inf	32	char\monster\hestian\hestian.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Acero.inf	28	char\monster\Acero\Acero.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/BC_100_Arqueiro do Castelo.inf	36	char\monster\soldier_d\soldier_d.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/BC_100_Cristal de Fogo.inf	40	char\monster\t_crystal_r\t_crystal_r.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/BC_100_Cristal de Gelo.inf	40	char\monster\t_crystal_b\t_crystal_b.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/BC_100_Cristal de Raio.inf	40	char\monster\t_crystal_g\t_crystal_g.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/BC_100_Cristal do Castelo.inf	40	char\monster\t_crystal_n\t_crystal_n.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/BC_100_Portão do Castelo.inf	38	char\monster\castledoor\castledoor.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/BC_100_Torre de Valhalla.inf	40	char\monster\bal_crystal\bal_crystal.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/BC_70_Polícia do Castelo.inf	36	char\monster\soldier_a\soldier_a.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/BC_80_Milícia do Castelo.inf	36	char\monster\soldier_b\soldier_b.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/BC_90_Guarda do Castelo.inf	36	char\monster\soldier_c\soldier_c.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Boss Mundo.inf	50	char\monster\Lizard_Commander\Lizard_Commander.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Cash Falta na pasta Monster/Chefe_39_Lunático.inf	34	char\monster\buma\monbuma-boss.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Cash Falta na pasta Monster/Chefe_44_Apostasy.inf	36	char\monster\monbagon\monbagon-c.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Cash Falta na pasta Monster/Chefe_54_Cripton.inf	37	char\monster\monclip\monclip-boss.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Cash Falta na pasta Monster/Chefe_9_Coelha Mutante.inf	38	char\monster\monrebion\monrebion-1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_101_Robô Mutante.inf	36	char\monster\hobogolem\hobogolem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_104_Babel.inf	36	char\monster\bguardian\bguardian.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_104_Gorgônia.inf	30	char\monster\gorgon\gorgon.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_109_DevilShy.inf	34	char\monster\devilshy\devilshy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_110_BesouroD.inf	30	char\monster\beetle\beetle.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_110_CavaleiroD.inf	40	char\monster\monsknight\monsknight-b.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_110_HellSingD.inf	36	char\monster\figon\monfigon-boss.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_110_PlantaInfernalD.inf	36	char\monster\hellplant\hellplant.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_110_Valento.inf	42	char\monster\death_knight\death_knight.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_120_Mokova.inf	33	char\monster\monmokova\mokova.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_121_Greedy.inf	30	char\monster\greedy\greedy.ini	/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/Greedy/Greedy.ini	YES
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_130_Kelvezu.inf	32	char\monster\kelvezu\kelvezu.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_130_Tulla.inf	28	char\monster\tulla\tulla.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_14_Planta Infernal.inf	36	char\monster\hellplant\hellplant.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_14_Árvore Maldita.inf	36	char\monster\monplant\monplant-d.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_19_Esqueleto Líder.inf	30	char\monster\slayer\slayer.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_19_EsqueletoD.inf	30	char\monster\slayer\slayer.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_19_Lorde das Árvores.inf	36	char\monster\monplant\monplant-b.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_1_Zzangpi.inf	26	char\monster\hopy\hopy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_24_Mekhist.inf	32	char\monster\monimp\monimp-c.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_29_Ciclone.inf	40	char\monster\moncyclops\moncyclops-b.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_29_Decoy Evoluído.inf	36	char\monster\decoy\mondecoy-boss.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_34_Bauton.inf	36	char\monster\monbagon\monbagon-b.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_34_Parasita do Mal.inf	30	char\monster\bsnake\bsnake.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_39_Grave Shakins.inf	36	char\monster\monzombi\monzombi-c.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_44_Múmia Real.inf	38	char\monster\royalmummy\royalmummy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_49_Fright Nemyun.inf	40	char\monster\moncyclops\moncyclops-c.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_4_Duende Chefe.inf	40	char\monster\goblinchief\goblinchief.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_4_Duende do Norte.inf	37	char\monster\goblinchief\noschief.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_54_Cavaleiro Profano.inf	40	char\monster\monsknight\monsknight-b.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_54_Lorde de Areia.inf	40	char\monster\sandlem\monsandlem-boss.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_59_Espírito do Mal.inf	38	char\monster\evilspirit\evilspirit.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_59_Hunki Reverso.inf	30	char\monster\hongky\hongky.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_64_Hell Sing.inf	36	char\monster\figon\monfigon-boss.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_64_Rosa Sangrenta.inf	39	char\monster\mongknight\mong2knight.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_69_Guardião do Mal.inf	40	char\monster\darkstalker\darkstalker.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_74_Arqueiro Styx.inf	50	char\monster\monstygianlord-1\monstygianlord-1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_74_Mestre Omu.inf	24	char\monster\omu\omu.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_79_Omicronos.inf	36	char\monster\omicronos\omicronos.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_79_Rashas.inf	38	char\monster\monratoo-1\monratoo-1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_83_Fúria.inf	32	char\monster\monfury\monfury.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_83_Golem Antigo.inf	42	char\monster\ancientgolem\ancientgolem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_87_Montanha Azul.inf	36	char\monster\mountain\b_mountain.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_87_Morgônia.inf	32	char\monster\morgon\morgonia.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_91_Olho de Fogo.inf	31	char\monster\coldeye\redeye.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_91_Tartaruga Dragão.inf	42	char\monster\turtlecannon\turtledragon.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_95_Cão Esqueleto.inf	36	char\monster\hellhound\bonehound.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Chefe_9_Eed.inf	37	char\monster\monminig\monminig-b1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Coelho de Páscoa.inf	32	char\monster\monrebi\monrebi.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Coelhão de Páscoa.inf	34	char\monster\monrebi\monrebi-1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Cristal_80_Guardião Santo.inf	34	char\monster\guardian\guardian.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Dentuço Gigante.inf	36	char\monster\monrebion\monrebion.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Desafio_118_ Fúria .inf	32	char\monster\monfury\monfury.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Desafio_119_  Fúria  .inf	32	char\monster\monfury\monfury.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Desafio_120_   Fúria   .inf	32	char\monster\monfury\monfury.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Desafio_1_Pedra Mágica.inf	30	char\monster\cstone\cstone.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento de Páscoa/Coelho de Páscoa.inf	32	char\monster\monrebi\monrebi.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento de Páscoa/Coelhão de Páscoa.inf	34	char\monster\monrebi\monrebi-1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento de Páscoa/Dentuço Gigante.inf	36	char\monster\monrebion\monrebion.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento_1_Billy.inf	28	char\monster\billy\billy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento_1_Boitatá.inf	32	char\monster\boitata\boitata.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento_1_Boneco de Neve.inf	32	char\monster\snowman\snowman.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento_1_Cabeça de Abóbora.inf	42	char\monster\pumpkinghost\pumpkinghost.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento_1_Duende Noel.inf	40	char\monster\Monhobsanta\Monhobsanta.INI		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento_1_Lobo Procurado.inf	34	char\npc\eventmolly\eventmolly.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento_1_Moriph Procurado.inf	32	char\npc\evenmorif\evenmorif.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento_1_Nego Ney.inf	35	char\monster\Adevayo\world_togo.INI		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Evento_1_Zidane.inf	35	char\monster\Ziddane\world_fran.INI		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Mini_Devil_Shy.inf	34	char\monster\DevilShy\DevilShy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Mini_Draxos.inf	30	char\monster\Draxos\Draxos.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Mini_Greedy.inf	30	char\monster\Greedy\Greedy.ini	/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/Greedy/Greedy.ini	YES
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Mini_Mid.inf	34	char\monster\Midranda\Midranda.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Mini_Mokova.inf	33	char\monster\MonMokova\mokova.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Mini_Tulla.inf	28	char\monster\Tulla\Tulla.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Mini_Yagditha.inf	34	char\monster\Yagditha\Yagditha.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Pet_1_Arcuda.inf	30	char\monster\arcuda\arcuda.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Pet_1_Cavaleiro Sombrio.inf	41	char\monster\s_bloodyknight\s_bknight.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Pet_60_Chama Elemental.inf	36	char\monster\firegolem\firegolem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Pet_60_Wolverine Sombrio.inf	38	char\monster\g_wolverin\wolverin_a.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Pet_60_Wolverine.inf	36	char\monster\wolverin\wolverin_a.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Pet_70_Golem de Metal.inf	38	char\monster\metalgolem\metalgolem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Premium_1_Caravana.inf	38	char\monster\ribbonhopy\ribbonhopy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R1 Caramujo Rijo.inf	30	char\monster\ssnail\ssnail.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R1 Guardião de Lama.inf	38	char\monster\mirekeeper\mirekeeper.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R1 Muffin.inf	31	char\monster\cavemush\cmush.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R1 Patrulheiro do Mal.inf	48	char\monster\monsrazorarcher\monsrazorarcher.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R1B Vegas Demir.inf	32	char\monster\headcut\headcut.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R2 Cavaleiro Fantasma.inf	38	char\monster\mongknight\mongknight.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R2 Figon.inf	28	char\monster\figon\figon.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R2 Múmia.inf	34	char\monster\monmummy\monmummy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R2 Rei Hopi.inf	34	char\monster\hopyking\hopyking.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R2B Hellsing.inf	36	char\monster\figon\Monfigon-boss.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R3 Cavaleiro Negro.inf	40	char\monster\monsguard\monhauntguard.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R3 Duende Guerreiro.inf	46	char\monster\monheavygoblin\monheavygoblin.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R3 Golem de Pedra.inf	44	char\monster\monstonegolem\monstonegolem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R3 Guardião Maldito.inf	39	char\monster\monsguard\mondoomguard.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R3B Cursed Web.inf	24	char\monster\web\web.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R4 Dawlin.inf	36	char\monster\mondawlin\mondawlin.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R4 Lorde Centauro.inf	45	char\monster\monavelrisk\monavelrisk-mass.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R4 Lâmina.inf	36	char\monster\monsliver\monsliver.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R4 Succubus.inf	34	char\monster\monwitch\monwitch.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R4B Slayon.inf	35	char\monster\headcut\headcutaxe.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R5 Aranha Rainha.inf	30	char\monster\spider\spider.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R5 Grande Griven.inf	42	char\monster\great_greven\great_greven.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R5 Omu.inf	24	char\monster\omu\omu.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R5 Sereia Profana.inf	32	char\monster\strider\strider.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R5B Unseen.inf	40	char\monster\Monshadow-1\Monshadow-1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R6 Destruidor.inf	32	char\monster\rampage\rampage.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R6 Metron.inf	36	char\monster\monmetron\monmetron.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R6 Montanha.inf	34	char\monster\mountain\mountain.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R6 Morte Súbita.inf	34	char\monster\deadzone\deadzone.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R6B Doom Lord.inf	39	char\monster\MonSGuard\Mondoomguard.INI		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R7 Conjuradora.inf	44	char\monster\incubussummer\incubussummer.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R7 Duende de Gelo.inf	36	char\monster\icegoblin\icegoblin.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R7 Golem de Gelo.inf	34	char\monster\icegolem\icegolem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R7 Nevasca.inf	44	char\monster\blizzardgiant\blizzardgiant.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R7B Morgonyte.inf	30	char\monster\Morgon\Morgon.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R8 Cão Infernal.inf	36	char\monster\hellhound\hellhound.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R8 Guardião Negro.inf	34	char\monster\darkguard\skullac.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R8 Inquisidor Negro.inf	40	char\monster\darkphalanx\darkphalanx.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R8 Quimera.inf	33	char\monster\chimera\kimera_a.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/R8B Shadow Phalanx.inf	40	char\monster\Darkphalanx\darkphalanx.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_armored_beetle.inf	36	char\monster\ArmBeetle\ArmBeetle.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_avelin_queen.inf	47	char\monster\Monavellriskstf\monavelriskstf.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_doom_lord.inf	39	char\monster\MonSGuard\Mondoomguard.INI		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_dusk.inf	36	char\monster\Monnazz-1\Monnazz-1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_figon.inf	28	char\monster\figon\figon.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_greven.inf	36	char\monster\MONgreven\MONgreven.INI		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_heavy_goblin.inf	46	char\monster\Monheavygoblin\Monheavygoblin.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_hellsing.inf	36	char\monster\figon\Monfigon-boss.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_hulk.inf	32	char\monster\Monhulk\Monhulk.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_illusion_knight.inf	38	char\monster\MonGKnight\MonGKnight.INI		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_morgonyte.inf	30	char\monster\Morgon\Morgon.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_muffin.inf	31	char\monster\CaveMush\Cmush.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_mummy.inf	34	char\monster\MonMummy\MonMummy.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_sadness.inf	32	char\monster\Sadness\sadness.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_shadow_phalanx.inf	40	char\monster\Darkphalanx\darkphalanx.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_skeleton_knight.inf	38	char\monster\MonSKnight\MonSKnight.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_skeleton_ranger.inf	48	char\monster\MonSRazorArcher\MonSRazorArcher.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_slaughter.inf	35	char\monster\headcut\headcutaxe.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_slayon.inf	35	char\monster\headcut\headcutaxe.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_sliver.inf	36	char\monster\Monsliver\Monsliver.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_solid_snail.inf	30	char\monster\ssnail\ssnail.INI		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_stone_golem.inf	44	char\monster\Monstonegolem\Monstonegolem.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_titan.inf	39	char\monster\Monbagon\Monbagon-boss.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_unseen.inf	40	char\monster\Monshadow-1\Monshadow-1.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_vega_demir.inf	32	char\monster\headcut\headcut.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/SOD_witch.inf	35	char\monster\MonWitch\MonWitch2.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Slab_114_Engenheiro do Laboratório.inf	36	char\monster\LEngineer\LEngineer.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Slab_114_Técnico Invasor.inf	40	char\monster\LTechnician\LTechnician.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Slab_114_Técnico do Laboratório.inf	40	char\monster\ITechnician\ITechnician.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Slab_115_Bombardeiro Invasor.inf	32	char\monster\IBomber\IBomber.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Slab_115_Soldado Invasor.inf	34	char\monster\ISoldier\ISoldier.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Slab_116_Elite Invasor.inf	30	char\monster\IElite\IElite.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Slab_116_Guardião do Laboratório.inf	36	char\monster\lguardian\lguardian.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Slab_118_Soldado Zumbi.inf	34	char\monster\TSoldier\TSoldier.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Slab_118_Técnico Zumbi.inf	40	char\monster\TTechnician\TTechnician.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Slab_119_Bombardeiro Zumbi.inf	32	char\monster\TBomber\TBomber.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/Slab_119_Elite Zumbi.inf	30	char\monster\TElite\TElite.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/new_sod_avelisk-s.inf	46	char\monster\Monavelrisk\Monavelrisk-sword.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/new_sod_beevil.inf	40	char\monster\monbeechief\monbeechief.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/new_sod_buma.inf	26	char\monster\buma\buma.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/new_sod_chain_golem.inf	38	char\monster\chaingolem\chaingolem.INI		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/new_sod_crypt.inf	32	char\monster\Monclip\monclip.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/new_sod_cursed_web.inf	24	char\monster\web\web.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/new_sod_cyclops_knight.inf	40	char\monster\Moncyclops\MonCyclops-d.INI		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/new_sod_dark_knight.inf	40	char\monster\MonSGuard\Monhauntguard.INI		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/new_sod_dawlin.inf	36	char\monster\Mondawlin\Mondawlin.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/new_sod_deadzone.inf	34	char\monster\deadzone\deadzone.ini		NO
+MONSTER	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Monster/new_sod_doom_guard.inf	39	char\monster\MonSGuard\Mondoomguard.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/7crystal.npc	26	char\npc\MN-005\MN-005.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Arad.npc	29	char\monster\d_meca\dmeca.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Arena de Batalha.NPC	24	char\npc\Zarad\Zarad.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/BABELQUEST.NPC	26	char\npc\TN-008\TN-008.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/BC-Reporter.npc	26	char\npc\TN-016\TN-016.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Bcn01.npc	24	char\npc\Bcn01\Bcn01.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Bcn02.npc	24	char\npc\Bcn02\Bcn02.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Bcn03.npc	24	char\npc\Bcn03\Bcn03.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Bcn04.npc	24	char\npc\Bcn04\Bcn04.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Bcn05.npc	24	char\npc\Bcn05\Bcn05.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Bcn06.npc	24	char\npc\Bcn06\Bcn06.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Chocolate.npc	26	char\npc\MN-005\MN-005.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ClanMaster.NPC	26	char\monster\Buma\buma.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Coin shop.NPC	26	char\npc\cashshop\cash.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Cristais.npc	26	char\npc\TN-008\TN-008.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Deamon sabio.NPC	26	char\npc\MN-013\MN-013.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Distribuidor.NPC	26	CHAR\NPC\TN-014\TN-014.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Donation Box.NPC	24	CHAR\NPC\BCN05\BCN05.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Enzo, o Restaure.NPC	22	char\npc\Enzo\Enzo.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Eto.npc	26	char\npc\TN-006\TN-006.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Eventgirl.NPC	26	char\npc\TN-016\TN-016.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Force-master.NPC	26	char\npc\MN-012\MN-012.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/HEventgirl.NPC	26	char\npc\TN-016\TN-016.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Item Shop.NPC	24	char\npc\Ascam\Ascam.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Itens 60.NPC	26	char\npc\TN-003\TN-003.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Kamiyu.npc	32	char\npc\NineFox\npc_ninefox.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/KarasTears.npc	36	char\monster\chaoscara\chaoscara.ini	/home/gabriel/Área de Trabalho/summit/Servidor/char/monster/chaoscara/chaoscara.ini	YES
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Lista_mix.NPC	30	CHAR\NPC\TEACHER\TEACHER03.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Loja VIP.NPC	24	char\npc\Bcn06\Bcn06.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Loja da Allya.NPC	26	char\npc\TN-005\TN-005.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Loja de Creditos.NPC	26	CHAR\NPC\CASHSHOP\CASH.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Loja de Cristais.NPC	26	char\npc\TN-008\TN-008.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Loja de Pedras.NPC	24	char\npc\Bcn03\Bcn03.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Loja do Repot I1.NPC	26	char\npc\TN-005\TN-005.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Loja do Repot I2.NPC	26	char\npc\TN-005\TN-005.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Loja do Repot S1.NPC	26	char\npc\TN-005\TN-005.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Loja do Tempo.NPC	30	char\npc\Teacher\Teacher02.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Loja premiun.NPC	24	char\npc\Bcn06\Bcn06.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Lucy.NPC	20	char\npc\phl\phl.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/MagicalGreen.npc	26	char\npc\MN-013\MN-013.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Master Raymon!.NPC	26	CHAR\NPC\MN-012\MN-012.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Mestre Raymon.NPC	26	char\npc\MN-012\MN-012.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Mestre Real Ray.NPC	32	char\npc\Quest_ray\Quest_ray.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Moriph, o Misterioso.NPC	26	char\npc\MN-007\MN-007.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Nadia.NPC	25	char\monster\d_fi\dfi.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Newter, o Sábio.NPC	26	char\npc\MN-008\MN-008.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/PRISTON.npc	26	char\npc\TN-016\TN-016.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Phillai Quest Shop.NPC	26	char\npc\stella\stella.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Pillai Quest Shop.NPC	26	char\npc\stella\stella.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Pumpkin.npc	26	char\npc\MN-005\MN-005.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Quest De Tier.NPC	36	char\npc\M_Messenger\M_Messenger.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Real_ClanMaster.NPC	26	char\npc\TN-011\TN-011.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Resercher.npc	26	char\npc\MN-006\MN-006.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Salão de Beleza.NPC	36	char\npc\maskedwoman\maskedwoman.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Sanc-guard.npc	26	char\npc\MN-013\MN-013.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Sheltom Shop, Moriph's Son.NPC	27	char\monster\d_pa\dpike.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Sheltons.NPC	26	char\npc\TN-005\TN-005.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Soccerfan Nego Ney.NPC	35	CHAR\MONSTER\ADEVAYO\WORLD_TOGO.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Soccerfan.NPC	35	char\monster\Ziddane\world_fran.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Sod_01.NPC	26	char\npc\SN-003\SN-003.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Sod_02.NPC	26	char\npc\SN-002\SN-002.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Sod_03.NPC	26	char\npc\SN-005\SN-005.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Sod_04.NPC	26	char\npc\SN-004\SN-004.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Sod_05.NPC	30	char\npc\bt03\battleportal.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Sod_Buma.NPC	26	char\npc\TN-009\TN-009.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Sod_Goblin.NPC	26	char\npc\TN-008\TN-008.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Star Girl.NPC	26	char\npc\TN-017\TN-017.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Status.NPC	26	char\npc\TN-016\TN-016.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Xmasguy.npc	29	char\npcXms\ChTree_Longbo.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/Zarad, o Elengante.NPC	24	char\npc\Zarad\Zarad.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/acasia-store.NPC	26	char\npc\TN-005\TN-005.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/amanda.NPC	22	char\npc\Enzo\Enzo.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/blesscatle-guard.npc	26	char\npc\TN-001\TN-001.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/bridge-guard.npc	26	char\npc\TN-001\TN-001.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/bronzWolverin.npc	43	char\monster\MonWolverin\MonWolverin-01.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/coinshop.npc	24	char\npc\Ascam\Ascam.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/coward.npc	26	char\npc\TN-008\TN-008.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/cristal.NPC	26	char\npc\TN-008\TN-008.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/dailyquest.npc	22	char\npc\arad\arad.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/derik.NPC	24	char\npc\Derik\derik.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/desert-guard.npc	26	char\npc\TN-002\TN-002.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/donation-box.NPC	26	char\npc\TN-017\TN-017.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/dungeon-keeper.npc	26	char\npc\TN-001\TN-001.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/enquete.npc	26	char\npc\TN-017\TN-017.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/flypitcher-store.npc	26	char\npc\MN-005\MN-005.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/fury.npc	32	char\monster\MonFury\Monfury.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/goldenWolverin.npc	43	char\monster\MonWolverin\MonWolverin-02.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/itempost.npc	26	CHAR\NPC\TN-014\TN-014.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ji_woo.npc	22	char\npc\Enzo\Enzo.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/lake-guard.npc	26	char\npc\TN-002\TN-002.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/lim.npc	26	char\npc\TN-005\TN-005.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/milter.npc	26	char\npc\milter\milter.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/mn-013.npc	26	char\npc\MN-013\MN-013.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/mrcave-keeper.npc	26	char\npc\MN-002\MN-002.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/navisko-civilian2.npc	26	char\npc\TN-006\TN-006.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/navisko-dragoman.npc	26	char\npc\TN-002\TN-013.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/navisko-equip.npc	26	char\npc\TN-003\TN-003.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/navisko-magic.npc	26	char\npc\MN-008\MN-008.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/navisko-store.npc	26	char\npc\TN-005\TN-005.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/navisko-warehouse.npc	19	char\npc\npc-10.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/nevisko-magic.npc	26	char\npc\MN-008\MN-008.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/npc_Hobsanta.NPC	30	char\npc\hobsanta\hobsanta.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/npc_ninefox.NPC	32	char\npc\NineFox\npc_ninefox.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-civilian1.npc	26	char\npc\MN-009\MN-009.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-civilian2.npc	26	char\npc\MN-008\MN-008.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-civilian3.NPC	26	char\npc\MN-008\MN-008.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-dragoman.npc	26	char\npc\MN-001\MN-001.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-dragoman1.npc	26	char\npc\MN-001\MN-001.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-equip1.npc	26	char\npc\MN-003\MN-003.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-equip2.npc	26	char\npc\MN-004\MN-004.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-guard1.npc	26	char\npc\MN-002\MN-002.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-guard2.npc	26	char\npc\MN-002\MN-002.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-guard3.npc	26	char\npc\MN-002\MN-002.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-imbue.npc	26	char\npc\MN-007\MN-007.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-magic.npc	26	char\npc\MN-006\MN-006.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-master.npc	26	CHAR\NPC\MN-012\MN-012.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-store.npc	26	char\npc\MN-005\MN-005.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/phillay-warehouse.npc	26	char\npc\MN-010\MN-010.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/premium.npc	24	char\npc\Bcn06\Bcn06.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/puzzleking.npc	26	char\npc\MN-013\MN-013.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/quest.npc	26	char\npc\MN-011\MN-011.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ray.NPC	32	char\npc\Quest_ray\Quest_ray.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ricarden-civilian1.npc	26	char\npc\TN-006\TN-006.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ricarden-civilian2.npc	19	char\npc\npc-09.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ricarden-civilian3.npc	19	char\npc\npc-04.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ricarden-equip1.NPC	26	char\npc\TN-003\TN-003.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ricarden-equip2.NPC	26	char\npc\TN-004\TN-004.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ricarden-guard.npc	26	char\npc\TN-001\TN-001.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ricarden-guard1.npc	26	char\npc\TN-002\TN-002.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ricarden-guard2.npc	26	char\npc\TN-002\TN-002.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ricarden-imbue.NPC	26	char\npc\TN-012\TN-012.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ricarden-master.npc	26	char\npc\TN-007\TN-007.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ricarden-store.NPC	26	char\npc\TN-005\TN-005.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ricarden-warehouse.npc	26	char\npc\TN-010\TN-010.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/rosemari.npc	26	char\npc\TN-016\TN-016.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ruiden-civilian1.npc	26	char\npc\TN-006\TN-006.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ruiden-equip.npc	26	char\npc\TN-004\TN-004.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ruiden-magic.npc	26	char\npc\MN-008\MN-008.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/ruiden-store.NPC	26	char\npc\TN-005\TN-005.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/salon.npc	29	char\monster\d_meca\dmeca.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/sellquest.NPC	26	char\npc\TN-009\TN-009.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/shelton.npc	26	char\npc\TN-005\TN-005.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/sillverWolverin.npc	43	char\monster\MonWolverin\MonWolverin-03.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/templer.npc	26	char\npc\MN-006\MN-006.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/timeshop.npc	30	char\npc\Teacher\Teacher02.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/tmcave-keeper.npc	26	char\npc\TN-001\TN-001.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/toolspilai.NPC	29	char\npc\Rudolf\snowboard.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/toolsric.NPC	36	CHAR\NPC\PACKJJANGPY\PACKJJANGPY.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/wfzone.npc	26	char\npc\TN-015\TN-015.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/yura-Force-master.NPC	28	char\npc\IceN-03\IceN-03.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/yura-guard.npc	26	char\npc\TN-002\TN-002.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/yura-guard1.npc	26	char\npc\TN-002\TN-002.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/yura-guard2.npc	26	char\npc\TN-002\TN-002.INI		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/yura-store.npc	28	char\npc\IceN-02\IceN-02.ini		NO
+NPC	/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/NPC/yura-warehouse.npc	28	char\npc\IceN-01\IceN-01.ini		NO

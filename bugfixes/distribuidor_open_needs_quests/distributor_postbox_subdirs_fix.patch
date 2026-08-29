@@ -1,0 +1,22 @@
+diff --git a/SrcServer/src/record.cpp b/SrcServer/src/record.cpp
+index c5b26b3..a3c3349 100644
+--- a/SrcServer/src/record.cpp
++++ b/SrcServer/src/record.cpp
+@@ -488,13 +488,11 @@ int CreateDataServerDirectory()
+ 	}
+ 
+ 
+-	if(CreateDirectory(szPostBoxDir, NULL))
++	CreateDirectory(szPostBoxDir, NULL);
++	for(cnt = 0; cnt < 256; cnt++)
+ 	{
+-		for(cnt = 0; cnt < 256; cnt++)
+-		{
+-			wsprintf(szBuff, "%s//%d", szPostBoxDir, cnt);
+-			CreateDirectory(szBuff, NULL);
+-		}
++		wsprintf(szBuff, "%s//%d", szPostBoxDir, cnt);
++		CreateDirectory(szBuff, NULL);
+ 	}
+ 
+ 	return TRUE;

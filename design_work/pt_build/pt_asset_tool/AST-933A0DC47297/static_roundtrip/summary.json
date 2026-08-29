@@ -1,0 +1,28 @@
+{
+  "asset_id": "AST-933A0DC47297",
+  "asset": "image/Sinimage/Items/DropItem/itPR101.smd",
+  "family": "SMD_MODEL_062_STATIC",
+  "mode": "STATIC",
+  "target_object": "itpr101",
+  "source_sha256": "6c52df3c38229953f225bc797f507d95922e5871553d84cd89d81d02c3fa9466",
+  "rebuilt_sha256": "5a31e59e9c8313f66c0e06ffe1bde5d295ed5ad1c60d804a893bd296d14d7158",
+  "rebuilt_smd": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-933A0DC47297/static_roundtrip/rebuilt_roundtrip.smd",
+  "edited_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-933A0DC47297/static_roundtrip/edited_authoring.blend",
+  "rebuilt_reimport": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-933A0DC47297/static_roundtrip/rebuilt_reimport.blend",
+  "intentional_edit": "GEOMETRY_VERTEX_RADIAL",
+  "witness_strength": 0.08,
+  "changed_vertices": [
+    0
+  ],
+  "byte_identical": false,
+  "face_uv_material_semantic_exact": true,
+  "static_roundtrip_structural": "PASS",
+  "rebuilt_capability": "PASS",
+  "geometry_visual": "PASS",
+  "texture_material_visual": "PASS",
+  "static_roundtrip": "PASS",
+  "texture_prepare": "PASS",
+  "certification_id": "CERT-09A5A6F2EA43",
+  "automatic_certification_id": "CERT-5A827DEE2E4E",
+  "client_modified": false
+}

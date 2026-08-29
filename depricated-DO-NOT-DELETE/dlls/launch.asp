@@ -1,0 +1,9 @@
+UPDATE_VERSION=190001
+UPDATE_PATH=http://summittale.com.br/pstale/updates/files
+UPDATE_INFO=http://summittale.com.br/pstale/updates/setfile.lst
+UPDATE_DIRINFO=http://summittale.com.br/pstale/updates/setdir.lst
+HOME_URL=summittale.com.br
+*SERVER_NAME=SummitTale
+SERVER1=124.198.128.16
+SERVER2=124.198.128.16
+SERVER3=124.198.128.16

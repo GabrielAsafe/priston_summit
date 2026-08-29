@@ -1,0 +1,28 @@
+{
+  "tool": "PT_MULTILAYER_TEXLINK_BLENDER_PREVIEW_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/dungeon/Dun-6a-ani-015.smd",
+  "output": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-35E1FA8E3A93/multilayer_texlink_roundtrip/multilayer_pristine.blend",
+  "objects_mapped": 1,
+  "multilayer_faces": 48,
+  "distinct_uv_faces": 0,
+  "uv_layers": [
+    "PT_TEXLINK_STAGE_0",
+    "PT_TEXLINK_STAGE_1"
+  ],
+  "uv_assignment_check": "PASS",
+  "uv_assignment_checked_loops": 360,
+  "uv_assignment_mismatch_count": 0,
+  "uv_assignment_depth_mismatch_count": 0,
+  "uv_assignment_max_abs_error": 0.0,
+  "material_profiles": {
+    "GENERIC_TWO_STAGE": 1
+  },
+  "preview_material_count": 1,
+  "combiner_exact_material_count": 0,
+  "combiner_approximate_material_count": 1,
+  "dynamic_form_preview": "FRAME0_ONLY",
+  "htexture_slot_mapping": "SMATERIAL_SM_TEXTURE_SLOT_EXACT",
+  "source_semantics": "PASS",
+  "client_modified": false,
+  "check": "PASS"
+}

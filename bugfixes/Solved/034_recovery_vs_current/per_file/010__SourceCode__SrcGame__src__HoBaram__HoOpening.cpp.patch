@@ -1,0 +1,181 @@
+diff --git a/SourceCode/SrcGame/src/HoBaram/HoOpening.cpp b/SourceCode/SrcGame/src/HoBaram/HoOpening.cpp
+index 9376aad..4aa7ee9 100644
+--- a/SourceCode/SrcGame/src/HoBaram/HoOpening.cpp
++++ b/SourceCode/SrcGame/src/HoBaram/HoOpening.cpp
+@@ -44,7 +44,7 @@ char	UserPassword[PASSWORD_SIZE];
+ 
+ static void MINGW_LoginTrace(const char* fmt, ...)
+ {
+-    FILE* f = fopen("mingw_login_thread.txt", "a");
++    FILE* f = fopen("LOGS\\mingw_login_thread.txt", "a");
+     if (!f) return;
+ 
+     va_list args;
+@@ -88,7 +88,7 @@ static void MINGW_CheckUserAccount(const char *place)
+ 
+ 	if (memcmp(previous, UserAccount, sizeof(previous)) != 0)
+ 	{
+-		FILE *f = fopen("mingw_useraccount_changes.txt", "a");
++		FILE *f = fopen("LOGS\\mingw_useraccount_changes.txt", "a");
+ 
+ 		if (f)
+ 		{
+@@ -179,7 +179,7 @@ HoOpening::HoOpening()
+ 
+ 	MouseDownServerIndex = -1;
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after MouseDownServerIndex\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after MouseDownServerIndex\\n"); fclose(f);} }
+ 	CameraFrame = 0;
+ }
+ 
+@@ -191,14 +191,14 @@ HoOpening::~HoOpening()
+ int HoOpening::Init()
+ {
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"ENTER HoOpening::Init\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"ENTER HoOpening::Init\\n"); fclose(f);} }
+ 	GameErrorValue = -1;
+ 	ConnectErrorCount = 0;
+ 	FocusWndFlag = FALSE;
+ 	SetWindowText(hTextWnd, "");
+ 	SendMessage(hTextWnd, EM_SETLIMITTEXT, 31, 0);
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SendMessage EM_SETLIMITTEXT\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SendMessage EM_SETLIMITTEXT\\n"); fclose(f);} }
+ 
+ 	LoginInputState = 0;
+ 	ConnectError = ERROR_NONE;
+@@ -234,11 +234,11 @@ int HoOpening::Init()
+ 
+ 	SetFade();
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SetFade\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SetFade\\n"); fclose(f);} }
+ 
+ 	smInitColorZClip(0, 0, 0);
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smInitColorZClip\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smInitColorZClip\\n"); fclose(f);} }
+ 
+ 	smRender.Color_R = 40;
+ 	smRender.Color_G = 0;
+@@ -246,21 +246,21 @@ int HoOpening::Init()
+ 	smRender.Color_A = 0;
+ 	smRender.ClearLight();
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smRender.ClearLight\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smRender.ClearLight\\n"); fclose(f);} }
+ 
+ 	StopBGM();
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after StopBGM\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after StopBGM\\n"); fclose(f);} }
+ 	OpenBGM("game//GUI//Opening//Login//UI//Intro.wav");
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after OpenBGM Intro.wav\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after OpenBGM Intro.wav\\n"); fclose(f);} }
+ 	PlayBGM();
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after PlayBGM\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after PlayBGM\\n"); fclose(f);} }
+ 
+ 	SetVolumeBGM(OpeningBgmVolume);
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SetVolumeBGM\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after SetVolumeBGM\\n"); fclose(f);} }
+ 
+ 	std::string id;
+ 
+@@ -268,11 +268,11 @@ int HoOpening::Init()
+ 	{
+ 		File file("Settings.ini");
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after File Settings.ini constructor\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after File Settings.ini constructor\\n"); fclose(f);} }
+ 
+ 		id = file.readString("Game", "LastAccount");
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after read LastAccount\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after read LastAccount\\n"); fclose(f);} }
+ 	}
+ 	catch (FileException& e)
+ 	{
+@@ -290,37 +290,37 @@ int HoOpening::Init()
+ 
+ 	CurrentWorkState = STATE_OPENING;
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after CurrentWorkState STATE_OPENING\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after CurrentWorkState STATE_OPENING\\n"); fclose(f);} }
+ 
+ 	NextWorkState = STATE_OPENING;
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after NextWorkState STATE_OPENING\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after NextWorkState STATE_OPENING\\n"); fclose(f);} }
+ 
+ 	MouseDownServerIndex = -1;
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after Init MouseDownServerIndex\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after Init MouseDownServerIndex\\n"); fclose(f);} }
+ 
+ 	MouseDownFlag = FALSE;
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after MouseDownFlag FALSE\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after MouseDownFlag FALSE\\n"); fclose(f);} }
+ 
+ 	CameraFrame = 160;
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after CameraFrame 160\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after CameraFrame 160\\n"); fclose(f);} }
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before g_NewParticleMgr.Init\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before g_NewParticleMgr.Init\\n"); fclose(f);} }
+ 	g_NewParticleMgr.Init();
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after g_NewParticleMgr.Init\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after g_NewParticleMgr.Init\\n"); fclose(f);} }
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before InitAssaEffect\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before InitAssaEffect\\n"); fclose(f);} }
+ 	InitAssaEffect();
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after InitAssaEffect\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after InitAssaEffect\\n"); fclose(f);} }
+ 
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before InitCinemaFadeEffect\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"before InitCinemaFadeEffect\\n"); fclose(f);} }
+ 	InitCinemaFadeEffect();
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after InitCinemaFadeEffect\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after InitCinemaFadeEffect\\n"); fclose(f);} }
+ 
+ 	smIdentityMatrix(m_CameraRotInvert);
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smIdentityMatrix\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after smIdentityMatrix\\n"); fclose(f);} }
+ 
+ 	m_IsDrawOpening = TRUE;
+-	{ FILE *f=fopen("mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after m_IsDrawOpening TRUE\\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_hoopening_init.txt","a"); if(f){ fprintf(f,"after m_IsDrawOpening TRUE\\n"); fclose(f);} }
+ 	m_AutoCameraFrameTime = 50;
+ 	m_ParticleSpawnTimeCount = 0;
+ 
+@@ -920,7 +920,7 @@ int HoOpening::Draw()
+ 					pCursorPos.y < (startLogoY + 371) &&
+ 					MouseButton[0])
+ 				{
+-					FILE *f=fopen("mingw_login_exit_button.txt","a");
++					FILE *f=fopen("LOGS\\mingw_login_exit_button.txt","a");
+ 					if(f)
+ 					{
+ 						fprintf(f,"EXIT BUTTON HIT x=%ld y=%ld startLogoX=%d startLogoY=%d MouseButton0=%d LoginInputState=%d CurrentWorkState=%d NextWorkState=%d\n",
+@@ -1223,7 +1223,7 @@ int HoOpening::Draw()
+ 				) != 0)
+ 				{
+ 					FILE *mingwAccountLog =
+-						fopen("mingw_useraccount_draw_guard.txt", "a");
++						fopen("LOGS\\mingw_useraccount_draw_guard.txt", "a");
+ 
+ 					if (mingwAccountLog)
+ 					{
+@@ -1376,7 +1376,7 @@ DWORD WINAPI HoLoginThreadProc(void* pInfo)
+ 			// 	UserAccount
+ 			// );
+ 			{
+-			FILE *f = fopen("mingw_login_thread.txt", "a");
++			FILE *f = fopen("LOGS\\mingw_login_thread.txt", "a");
+ 			if (f)
+ 			{
+ 				fprintf(

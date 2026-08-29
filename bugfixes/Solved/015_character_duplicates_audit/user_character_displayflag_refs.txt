@@ -1,0 +1,6 @@
+778:		if (UserCharacter[index].DisplayFlag == FALSE)
+1516:			if (UserCharacter[index].DisplayFlag)
+1740:			if (UserCharacter[index].DisplayFlag)
+1910:		if (UserCharacter[index].DisplayFlag != FALSE)
+2213:		if (UserCharacter[index].DisplayFlag)
+3122:				if (UserCharacter[index].DisplayFlag)

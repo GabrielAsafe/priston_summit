@@ -1,0 +1,59 @@
+{
+  "tool": "PT_BLENDER_SUMMIT_MATERIAL_EXPORT_V4",
+  "schema": "PT_SMD_MATERIAL_EDIT_MANIFEST_V4",
+  "editable_fields": [
+    "self_illum",
+    "two_side",
+    "blend_type",
+    "blink_color_enabled",
+    "blink_rgb",
+    "blink_time"
+  ],
+  "materials": [
+    {
+      "material_id": 0,
+      "material_name": "SMD_MAT_00_TmbC03.bmp",
+      "self_illum": 0.0,
+      "two_side": 0,
+      "blend_type": 1,
+      "blink_color_enabled": true,
+      "blink_rgb": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "blink_time": 1,
+      "editable_fields": [
+        "self_illum",
+        "two_side",
+        "blend_type",
+        "blink_color_enabled",
+        "blink_rgb",
+        "blink_time"
+      ]
+    },
+    {
+      "material_id": 1,
+      "material_name": "SMD_MAT_01_TmbC01.bmp",
+      "self_illum": 0.0,
+      "two_side": 0,
+      "blend_type": 1,
+      "blink_color_enabled": false,
+      "blink_rgb": [
+        0.6510000228881836,
+        0.28200000524520874,
+        0.23499999940395355
+      ],
+      "blink_time": 1,
+      "editable_fields": [
+        "self_illum",
+        "two_side",
+        "blend_type",
+        "blink_color_enabled",
+        "blink_rgb",
+        "blink_time"
+      ]
+    }
+  ],
+  "export_check": "PASS"
+}

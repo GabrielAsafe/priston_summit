@@ -1,0 +1,17 @@
+--- BASE_PRE_REGRESSION/SetLoadPattern
++++ ARMAZEM_REFERENCE/SetLoadPattern
+@@ -1,7 +1,7 @@
+-int smCHAR::SetLoadPattern(char *szName)
+-{
+-	Pattern = 0;
+-	Flag = 1;
+-	return AddLoaderPattern((smCHAR *)&Head, szName);
+-
++int smCHAR::SetLoadPattern( char *szName )
++{
++	Pattern = 0;
++	Flag = 1;
++	return AddLoaderPattern( (smCHAR *)&Head , szName );
++
+ }
+\ Sem newline no fim do ficheiro

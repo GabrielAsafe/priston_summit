@@ -1,0 +1,963 @@
+﻿directory,files,bytes,backup_like,temp_like,categories
+char/tmABCD,4551,884687337,0,0,animation_index=1503; model_mesh=1484; texture_image=938; other=626
+Field/dungeon,499,93613980,0,0,texture_image=420; model_mesh=79
+Field/Fall_Game,311,92881724,0,0,texture_image=291; model_mesh=19; other=1
+Field/old_forest,1487,92182149,0,0,texture_image=1480; model_mesh=7
+game/maps/chrselect,580,87715043,0,0,texture_image=574; model_mesh=3; config_data_text=2; other=1
+StartImage/login/Loading,14,87091984,0,0,texture_image=14
+Field/Ice,565,87065034,0,0,texture_image=550; model_mesh=14; other=1
+,26,79396545,0,2,binary_runtime=14; other=7; config_data_text=3; texture_image=2
+Field/forever-fall,661,77182667,0,0,texture_image=563; model_mesh=97; other=1
+Field/old_dungeon,1484,72684869,0,0,texture_image=1480; model_mesh=4
+Field/Lost,414,72111329,0,0,texture_image=405; model_mesh=8; other=1
+Field/forest,1456,68395365,0,0,texture_image=1435; model_mesh=20; other=1
+Field/swamp,107,62544350,0,0,texture_image=106; model_mesh=1
+image/Sinimage/Items/DropItem,1255,60719283,0,0,texture_image=665; model_mesh=590
+Field/Iron,311,59012544,0,0,texture_image=257; model_mesh=53; other=1
+Field/castle,575,53747098,0,0,texture_image=561; model_mesh=9; config_data_text=4; other=1
+wav/BGM,9,53738978,0,0,other=9
+Field/Ricarten,485,51161511,1,0,texture_image=462; model_mesh=22; config_data_text=1
+Field/mar,172,47012335,0,0,texture_image=170; other=1; model_mesh=1
+Field/Ruin,940,46877584,0,0,texture_image=934; model_mesh=5; other=1
+char/monster/Lizard_bigmama,15,44066822,0,0,model_mesh=6; texture_image=6; animation_index=3
+Field/SeaA,98,43942996,0,0,texture_image=85; model_mesh=12; other=1
+Field/endless,133,38336655,0,0,texture_image=125; other=5; model_mesh=3
+char/monster/Brazilbear,30,37077306,0,0,model_mesh=18; animation_index=6; texture_image=6
+Field/AncientW,128,35094078,0,0,texture_image=117; model_mesh=11
+Field/Greedy,285,33288137,0,0,texture_image=253; model_mesh=31; other=1
+Field/Slab,158,33136020,0,0,texture_image=156; model_mesh=1; other=1
+Field/Losttemple,180,32442465,0,0,texture_image=178; model_mesh=1; other=1
+Field/Sod,248,32405272,0,0,texture_image=209; model_mesh=38; other=1
+Field/cave,281,30505325,0,0,texture_image=230; model_mesh=50; other=1
+Field/desert,204,29176669,0,0,texture_image=198; model_mesh=5; other=1
+Field/map,64,26867524,0,0,texture_image=64
+game/Jobs,44,24808299,0,0,texture_image=44
+game/images/Jobs,44,24808299,0,0,texture_image=44
+char/monster/UndeadStalker,7,23704389,0,0,model_mesh=4; texture_image=1; other=1; animation_index=1
+char/monster/UndeadStalker_s,6,23695167,0,0,model_mesh=4; texture_image=1; animation_index=1
+game/Loading,13,18720722,0,0,texture_image=13
+StartImage/Loading,3,18662568,0,0,texture_image=3
+wav/Sod/BGM,5,18423866,0,0,audio=3; other=2
+char/monster/Lizard_Soldier,15,18099324,0,0,model_mesh=6; texture_image=6; animation_index=3
+Field/Mine,93,17858486,0,0,texture_image=91; model_mesh=1; other=1
+cSelect,24,16084403,0,0,texture_image=21; model_mesh=2; config_data_text=1
+StartImage/Opening/Map,115,15270660,0,0,texture_image=111; model_mesh=4
+char/monster/Lena_s,6,14957942,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/Lizard_Papa,21,14850345,0,0,texture_image=12; model_mesh=6; animation_index=3
+char/monster/Lizard_Commander,15,13863414,0,0,model_mesh=6; texture_image=6; animation_index=3
+char/monster/Lena,6,13588904,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/Lizard_Elder,15,13426498,0,0,model_mesh=6; texture_image=6; animation_index=3
+Field/Boss,88,13263965,0,0,texture_image=85; model_mesh=2; other=1
+char/monster/Marionette_s,5,12883314,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/Hound,7,12466080,0,0,model_mesh=4; animation_index=1; texture_image=1; other=1
+char/monster/Hound_s,6,12458406,0,0,model_mesh=4; texture_image=1; animation_index=1
+char/monster/Bear,10,12323066,0,0,model_mesh=6; texture_image=2; animation_index=2
+char/monster/Koon,8,12271366,0,0,model_mesh=4; animation_index=2; texture_image=2
+char/npc/Teacher,15,12226891,0,0,texture_image=6; model_mesh=6; animation_index=3
+StartImage/Opening,3,12162424,0,0,audio=1; model_mesh=1; other=1
+wav,16,11968018,0,0,audio=13; other=3
+char/monster/Lizard_Doctor,13,11937902,0,0,model_mesh=6; texture_image=4; animation_index=3
+char/monster/marionette,5,11787863,0,0,model_mesh=3; animation_index=1; texture_image=1
+StartImage/Opening/npc,24,11445617,0,0,texture_image=12; model_mesh=12
+game/maps/login,36,11202013,0,0,texture_image=35; model_mesh=1
+StartImage/sky,32,11142738,0,0,texture_image=32
+wav/Ambient,44,11059816,0,0,audio=44
+char/monster/Billy_s,6,10884885,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/npc/stella,19,10480952,0,0,model_mesh=9; texture_image=6; animation_index=3; other=1
+StartImage/login,47,10475095,0,0,texture_image=45; audio=1; model_mesh=1
+char/monster/Billy,6,10398853,0,0,model_mesh=3; texture_image=2; animation_index=1
+Effect/Particle,144,10322977,0,0,texture_image=142; config_data_text=1; other=1
+char/monster/Monshadow-1,18,10074784,0,0,model_mesh=12; animation_index=4; texture_image=2
+char/monster/Monwitch,19,9938375,0,0,model_mesh=9; texture_image=7; animation_index=3
+image/GuideMap,66,9874420,0,0,texture_image=65; binary_data=1
+char/monster/IceSerpent,5,9585284,0,0,model_mesh=3; animation_index=1; texture_image=1
+LOGS,27,9109478,0,0,config_data_text=27
+weapons,26,9019730,0,0,texture_image=13; model_mesh=12; other=1
+char/monster/Greedy,4,8367346,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Sathla,8,8157345,0,0,model_mesh=4; animation_index=2; texture_image=2
+wav/Effects/Skill/Morion,137,8126518,0,0,audio=137
+Effect/sky,40,7999571,0,0,texture_image=29; model_mesh=6; config_data_text=4; other=1
+char/monster/d_kn,11,7869173,0,0,texture_image=8; model_mesh=2; animation_index=1
+char/monster/Tulla,7,7685656,0,0,model_mesh=3; texture_image=3; animation_index=1
+char/monster/Hest,18,7645107,0,0,model_mesh=11; texture_image=5; animation_index=1; other=1
+image/Bellatra,39,7522516,0,0,texture_image=37; binary_data=2
+char/monster/Dey,10,7504720,0,0,model_mesh=4; texture_image=4; animation_index=2
+char/monster/WLord,10,7499212,0,0,model_mesh=4; texture_image=4; animation_index=2
+char/monster/BS_Midranda,4,7386762,0,0,model_mesh=2; animation_index=1; texture_image=1
+Field/Quest,66,7383331,0,0,texture_image=64; model_mesh=1; other=1
+char/monster/Crios,10,7354681,0,0,model_mesh=4; texture_image=4; animation_index=2
+Effect/sky/sky07/night,24,7354328,0,0,texture_image=13; model_mesh=11
+char/monster/Faugn,8,7219637,0,0,model_mesh=4; animation_index=2; texture_image=2
+char/monster/Midranda,4,7099070,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Monavelrisk,23,6973000,0,0,model_mesh=10; texture_image=9; animation_index=3; other=1
+char/monster/Boitata,6,6930618,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/DevilShy,8,6787724,0,0,texture_image=4; model_mesh=3; animation_index=1
+char/monster/death_night,13,6611279,0,0,texture_image=6; model_mesh=5; config_data_text=1; animation_index=1
+char/monster/Morgon,17,6589204,0,0,texture_image=8; model_mesh=6; animation_index=2; other=1
+char/monster/Minebat,5,6511954,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/BadWolf,5,6489608,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/figon,33,6309498,0,0,model_mesh=20; animation_index=6; texture_image=6; other=1
+char/monster/Arhdyra,8,6265069,0,0,model_mesh=4; animation_index=2; texture_image=2
+char/monster/Monbagon,40,6119821,0,0,model_mesh=23; texture_image=10; animation_index=6; other=1
+char/monster/Firechick,5,6070482,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/PaPachick,5,6040906,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/Mountain,16,5941876,0,0,texture_image=7; model_mesh=6; animation_index=2; other=1
+game/warmode,3,5908345,0,0,texture_image=3
+char/monster/Yagditha,5,5901373,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Darkphalanx,7,5814365,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/d_meca,14,5799618,0,0,texture_image=10; model_mesh=2; animation_index=1; other=1
+wav/Effects/Skill/Tempskron,99,5675682,0,0,audio=99
+char/monster/death_knight,12,5644525,0,0,texture_image=6; model_mesh=4; animation_index=1; other=1
+char/monster/d_atal,11,5617462,0,0,texture_image=7; model_mesh=2; animation_index=1; other=1
+char/monster/Snowman,5,5575010,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/d_ar,13,5520007,0,0,texture_image=9; model_mesh=2; animation_index=1; other=1
+StartImage/login/CharSelect,66,5421912,0,0,texture_image=66
+char/monster/Adevayo,11,5248346,0,0,texture_image=4; model_mesh=4; animation_index=2; other=1
+char/monster/goblinchief,15,5216056,0,0,texture_image=6; model_mesh=6; animation_index=2; other=1
+char/monster/Sendelost,10,5158666,0,0,texture_image=4; model_mesh=4; animation_index=2
+char/monster/Ziddane,10,5157180,0,0,texture_image=4; model_mesh=4; animation_index=2
+char/monster/MonGknight,24,5110938,0,0,model_mesh=14; texture_image=5; animation_index=4; other=1
+char/monster/Monberserker,9,5059887,0,0,texture_image=4; model_mesh=3; animation_index=1; other=1
+char/npc/reddevil,8,5040824,0,0,texture_image=5; model_mesh=2; animation_index=1
+char/monster/d_pa,13,4994279,0,0,texture_image=9; model_mesh=2; animation_index=1; other=1
+char/monster/Monigad,12,4957688,0,0,texture_image=5; model_mesh=4; animation_index=2; other=1
+rain,19,4916046,0,0,texture_image=19
+char/monster/Darkmage,10,4909904,0,0,model_mesh=4; texture_image=3; animation_index=2; other=1
+char/monster/Kelvezu,9,4894437,0,0,texture_image=5; model_mesh=2; animation_index=1; other=1
+Field/Room,44,4803481,0,0,texture_image=42; model_mesh=1; other=1
+char/monster/hellhound,16,4766200,0,0,model_mesh=8; animation_index=4; texture_image=4
+char/monster/Monfury,11,4736864,0,0,texture_image=7; model_mesh=2; animation_index=1; other=1
+char/monster/gorgon,8,4623435,0,0,texture_image=4; model_mesh=2; animation_index=1; other=1
+char/monster/d_fi,11,4529662,0,0,texture_image=7; model_mesh=2; animation_index=1; other=1
+char/monster/MonminiG,42,4427521,0,0,model_mesh=26; texture_image=9; animation_index=6; other=1
+char/monster/Monplant,34,4334386,0,0,model_mesh=14; texture_image=14; animation_index=5; other=1
+char/monster/Minegolem,5,4324614,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/Draxos,6,4317183,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Monskeleton,23,4317124,0,0,model_mesh=12; texture_image=7; animation_index=4
+char/monster/headcut,16,4313864,0,2,model_mesh=7; texture_image=6; animation_index=2; other=1
+char/monster/Hestian,6,4300946,0,0,model_mesh=3; animation_index=1; texture_image=1; other=1
+char/monster/UndeadMaple,6,4289550,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/npc/MN-008,12,4273183,0,0,model_mesh=5; texture_image=4; animation_index=3
+char/monster/Tarantulika,5,4242870,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/Igolation,15,4228171,0,0,texture_image=11; model_mesh=3; animation_index=1
+char/monster/hobogolem,24,4193320,0,0,texture_image=18; model_mesh=4; animation_index=2
+char/npc/MN-003,15,4170080,0,0,texture_image=7; model_mesh=5; animation_index=3
+char/monster/Kakoa,8,4109892,0,0,texture_image=4; model_mesh=3; animation_index=1
+char/monster/Xetan,7,4086044,0,0,model_mesh=3; texture_image=3; animation_index=1
+char/npc/MN-009,11,4083562,0,0,model_mesh=5; animation_index=3; texture_image=3
+char/monster/Moncyclops,34,4081262,0,0,model_mesh=17; texture_image=12; animation_index=4; other=1
+char/monster/GoblinShaman,13,4072724,0,0,model_mesh=10; texture_image=2; animation_index=1
+char/monster/PumpkinGhost,5,4068458,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/S_Bloodyknight,6,4060130,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/RPTxxxPrince,9,4055164,0,0,texture_image=6; model_mesh=2; animation_index=1
+char/monster/Bguardian,11,4044626,0,0,texture_image=7; model_mesh=2; animation_index=1; other=1
+char/monster/Bloodyknight,6,4035490,0,0,texture_image=3; model_mesh=2; animation_index=1
+StartImage/Opening/babel,9,3977430,0,0,texture_image=7; model_mesh=2
+char/monster/UndeadManager,5,3926814,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/npc/SHunter,5,3926808,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/npc/Sambagirl,6,3896382,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/turtlecannon,11,3856450,0,0,texture_image=5; model_mesh=4; animation_index=2
+game/kill/sound,8,3807480,0,0,audio=8
+char/npc/Hosean,5,3795012,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Monshadow,9,3786208,0,0,model_mesh=6; animation_index=2; texture_image=1
+char/monster/TElite,5,3778941,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/Monzombi,23,3769014,0,0,model_mesh=13; texture_image=6; animation_index=3; other=1
+char/monster/MonKingspider,7,3756806,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+char/monster/IElite,5,3750849,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/Monmummy,10,3741264,0,0,model_mesh=6; animation_index=2; texture_image=2
+char/monster/Nihil,6,3716666,0,0,animation_index=3; model_mesh=2; texture_image=1
+char/npc/TN-002,18,3711250,0,0,model_mesh=8; texture_image=5; animation_index=5
+Effect/NewEffect/Res/Object,50,3643411,0,0,model_mesh=30; texture_image=20
+char/monster/d_pr,11,3625663,0,0,texture_image=7; model_mesh=2; animation_index=1; other=1
+char/monster/arcuda,5,3609922,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/Niken,11,3581037,0,0,model_mesh=9; texture_image=1; animation_index=1
+char/monster/deadzone,11,3561576,0,0,model_mesh=5; texture_image=3; animation_index=2; other=1
+char/monster/Monmudy,13,3556642,0,0,model_mesh=6; texture_image=4; animation_index=2; other=1
+char/monster/Acero,4,3554622,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/TSoldier,5,3519597,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/d_magi,11,3518230,0,0,texture_image=7; model_mesh=2; animation_index=1; other=1
+char/monster/Monhulk-1,7,3460786,0,0,model_mesh=3; texture_image=2; animation_index=1; other=1
+char/monster/Monhulk,7,3460456,0,0,model_mesh=3; texture_image=2; animation_index=1; other=1
+char/monster/MonSGuard,18,3450758,0,0,model_mesh=8; texture_image=6; animation_index=4
+char/monster/Chalybs,4,3442022,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Guardian,7,3437846,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+char/monster/Najan,4,3434630,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/ssnail,6,3368200,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/npc/Hunter,6,3361031,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/Ignis,4,3358630,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/frost,7,3342147,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+char/monster/MonMokova,7,3336220,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/sandlem,13,3285410,0,0,model_mesh=7; texture_image=4; animation_index=2
+char/monster/Soldier_D,7,3284338,0,0,texture_image=3; model_mesh=3; animation_index=1
+char/monster/Shogoth,5,3277431,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Darkguard,11,3273386,0,0,texture_image=5; model_mesh=4; animation_index=2
+char/monster/Mimic,12,3260316,0,0,model_mesh=9; texture_image=1; animation_index=1; other=1
+char/monster/UndeadMiner,5,3240112,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/ghost,7,3200555,0,0,model_mesh=3; texture_image=2; animation_index=1; other=1
+image,49,3192284,0,0,texture_image=47; other=2
+char/monster/TBomber,4,3181422,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/npc/Bcn05,14,3179844,0,0,texture_image=6; model_mesh=5; animation_index=3
+char/monster/Monimp,20,3170771,0,0,model_mesh=10; texture_image=6; animation_index=3; other=1
+char/npc/Skadi,6,3168769,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/npc/Jin,6,3152373,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/Monhauntplant,12,3121350,0,0,model_mesh=5; texture_image=4; animation_index=2; other=1
+game/UI,15,3070172,0,0,texture_image=15
+char/monster/Monclip,14,3064538,0,0,model_mesh=7; texture_image=4; animation_index=2; other=1
+char/npc/reddevil-01,8,3054369,0,0,texture_image=5; model_mesh=2; animation_index=1
+char/npc/Bcn05_,8,3041370,0,0,model_mesh=3; texture_image=3; animation_index=2
+char/npc/SkillMaster,9,3041199,0,0,texture_image=6; model_mesh=2; animation_index=1
+char/npc/Rudolf,10,3033893,0,0,texture_image=7; model_mesh=2; animation_index=1
+char/npc/IceN-03,10,3026603,0,0,texture_image=5; model_mesh=3; animation_index=2
+char/monster/Metalgolem,9,2976836,0,0,model_mesh=4; animation_index=2; texture_image=2; other=1
+char/monster/Chimera,6,2941266,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/TTechnician,4,2928542,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Beetle,5,2921048,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/Monnazz-1,11,2916804,0,0,model_mesh=6; animation_index=2; texture_image=2; other=1
+char/monster/Monnazz,11,2916272,0,0,model_mesh=6; animation_index=2; texture_image=2; other=1
+char/monster/Monegan,5,2875964,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/KingBat,11,2874345,0,0,model_mesh=9; texture_image=1; animation_index=1
+char/npc/MN-002,16,2864186,0,0,texture_image=8; model_mesh=5; animation_index=3
+char/monster/Monrebion,10,2852356,0,0,model_mesh=6; texture_image=2; animation_index=2
+image/Sinimage/help,116,2848946,0,0,texture_image=99; other=17
+char/npc/SN-004,7,2848311,0,0,model_mesh=3; animation_index=2; texture_image=2
+char/npc/MN-001,15,2826342,0,0,model_mesh=6; texture_image=5; animation_index=4
+char/monster/RPThell,7,2813067,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/m_lord,11,2796730,0,0,texture_image=4; model_mesh=4; animation_index=2; other=1
+char/npc/SN-002,7,2760615,0,0,model_mesh=3; animation_index=2; texture_image=2
+char/monster/esnail,6,2759198,0,0,model_mesh=3; animation_index=1; other=1; texture_image=1
+char/monster/MonSRazorArcher,17,2739419,0,0,texture_image=7; model_mesh=7; animation_index=2; other=1
+char/monster/Monratoo-1,7,2738335,0,0,model_mesh=3; texture_image=3; animation_index=1
+char/monster/icegolem,11,2717170,0,0,model_mesh=4; texture_image=4; animation_index=2; other=1
+char/monster/ISoldier,5,2710985,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Gurkob,5,2700286,0,0,model_mesh=2; texture_image=2; animation_index=1
+image/Sinimage/Items/Defense,197,2691402,0,0,texture_image=196; model_mesh=1
+char/monster/Monratoo,7,2685268,0,0,model_mesh=3; texture_image=3; animation_index=1
+char/monster/Wolverin,4,2680166,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/MonSKnight,16,2671200,0,0,model_mesh=8; animation_index=4; texture_image=3; other=1
+char/monster/Buma,14,2663290,0,2,model_mesh=7; texture_image=4; animation_index=2; other=1
+char/monster/decoy,11,2632738,0,2,model_mesh=7; texture_image=2; animation_index=2
+char/monster/Sprin,5,2621082,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/npc/arad,10,2607033,0,0,texture_image=5; model_mesh=2; other=2; animation_index=1
+char/npc/M_Messenger,6,2602426,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/monster/LGuardian,5,2577739,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/MonSeto,5,2565304,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Monhobgoblin,16,2534234,0,0,model_mesh=7; texture_image=6; animation_index=2; other=1
+char/monster/Monstygianlord-1,7,2525530,0,0,texture_image=3; model_mesh=3; animation_index=1
+char/monster/Monstygianlord,7,2525519,0,0,texture_image=3; model_mesh=3; animation_index=1
+char/npc/MN-012,7,2524756,0,0,model_mesh=3; texture_image=3; animation_index=1
+image/Sinimage/PetData/Mesh,13,2522670,0,0,model_mesh=5; texture_image=4; config_data_text=4
+Effect/sky/sky02/day,13,2500923,0,0,model_mesh=7; texture_image=6
+char/npc/T_Messenger,6,2496250,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/npc/MN-013,7,2495012,0,0,model_mesh=3; texture_image=3; animation_index=1
+Effect/ImageData/SkillSpiritImpact,9,2490764,0,0,texture_image=9
+char/monster/chaoscara,9,2488035,0,0,texture_image=5; model_mesh=2; animation_index=1; other=1
+char/npc/ji_woo,8,2468015,0,0,texture_image=3; model_mesh=3; animation_index=1; config_data_text=1
+char/npc/TN-006,9,2443683,0,0,texture_image=4; model_mesh=3; animation_index=2
+char/npc/SN-005,7,2438947,0,0,model_mesh=3; animation_index=2; texture_image=2
+wav/Effects/Menu,31,2430890,0,0,audio=31
+char/monster/Monsliver,10,2429332,0,0,model_mesh=6; animation_index=2; texture_image=2
+char/monster/MonGreven,7,2425488,0,0,model_mesh=5; texture_image=1; animation_index=1
+char/monster/spider,7,2424155,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/monster/MonSArcher,15,2418616,0,0,texture_image=7; model_mesh=6; animation_index=2
+char/npc/SN-003,7,2410584,0,0,model_mesh=3; animation_index=2; texture_image=2
+char/monster/Mondawlin,8,2400159,0,0,texture_image=3; model_mesh=3; animation_index=1; other=1
+char/monster/Ruca,6,2386984,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/npc/TN-012,13,2376200,0,0,texture_image=8; model_mesh=3; animation_index=2
+char/npc/TN-017,14,2372904,0,0,texture_image=9; model_mesh=3; animation_index=2
+char/monster/MonWolverin,9,2372584,0,0,texture_image=4; animation_index=3; model_mesh=2
+char/monster/IBomber,4,2369774,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Omicronos,7,2365192,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/npc/Baurin,7,2344811,0,0,texture_image=3; model_mesh=3; animation_index=1
+char/monster/scorpion,6,2331974,0,0,model_mesh=4; texture_image=1; animation_index=1
+char/monster/devilbird,7,2309186,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+char/monster/Golem,15,2259272,0,1,model_mesh=10; texture_image=2; animation_index=2; other=1
+char/monster/RunicGuardian,8,2245319,0,0,texture_image=4; model_mesh=2; animation_index=1; other=1
+char/monster/doral,13,2240354,0,1,model_mesh=11; animation_index=1; texture_image=1
+char/monster/Monavellriskstf,8,2230242,0,0,texture_image=4; model_mesh=2; animation_index=1; other=1
+char/monster/MonTempleguard,6,2215270,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/npc/Packjjangpy,8,2211110,0,0,texture_image=4; model_mesh=3; animation_index=1
+char/monster/LEngineer_1,4,2208850,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/LEngineer,4,2208846,0,0,model_mesh=2; animation_index=1; texture_image=1
+image/Sinimage/Items/Weapon,229,2200992,0,0,texture_image=229
+char/monster/Rampage,5,2199096,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/ironfist,8,2194800,0,0,texture_image=4; model_mesh=2; animation_index=1; other=1
+char/monster/Monbeedog,8,2191990,0,0,model_mesh=3; texture_image=3; animation_index=1; other=1
+char/monster/Monavellriskbow,8,2187676,0,0,texture_image=4; model_mesh=2; animation_index=1; other=1
+Effect/LowLevelPet,9,2175542,0,0,model_mesh=5; texture_image=4
+Effect/LowLevelPet.pre_pt_test,9,2175542,0,0,model_mesh=5; texture_image=4
+char/monster/DarkStalker,5,2161694,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/npc/Mage,9,2150128,0,0,texture_image=6; model_mesh=2; animation_index=1
+char/npc/Bcn04,14,2142603,0,0,texture_image=8; model_mesh=3; animation_index=2; other=1
+char/monster/ITechnician,4,2122502,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/blizzardgiant,7,2106364,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+char/npc/nadia,6,2085865,0,0,model_mesh=3; texture_image=2; animation_index=1
+char/npc/Bcn03,13,2085811,0,0,texture_image=7; model_mesh=3; animation_index=2; other=1
+char/monster/LTechnician,5,2075918,0,0,model_mesh=2; animation_index=1; texture_image=1; other=1
+char/monster/RoyalMummy,8,2056360,0,0,model_mesh=4; texture_image=2; animation_index=2
+Effect/sky/sky02/evening,11,2050562,0,0,model_mesh=6; texture_image=5
+char/monster/frozen,7,2041498,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+char/monster/Monhobsanta,8,2035289,0,0,model_mesh=3; texture_image=3; animation_index=1; other=1
+StartImage/login/Moryon,31,2032980,0,0,texture_image=31
+char/monster/LTechnician_1,4,2030354,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/Monbabyhulk,6,2025457,0,0,model_mesh=3; animation_index=1; texture_image=1; other=1
+char/monster/hongky,5,2022694,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/coldeye,8,2019698,0,0,model_mesh=4; animation_index=2; texture_image=2
+char/npc/NineFox,7,2015480,0,0,model_mesh=3; animation_index=2; texture_image=2
+char/npc/Marina,4,1964926,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/npc/Zarad,4,1951304,0,0,model_mesh=2; texture_image=1; animation_index=1
+char/monster/HellPlant,6,1946889,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/npc/salon,6,1945620,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/npc/TN-008,11,1938620,0,0,texture_image=6; model_mesh=3; animation_index=2
+char/npc/Bcn02,13,1932727,0,0,texture_image=7; model_mesh=3; animation_index=2; other=1
+char/monster/IceWorm,5,1910940,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/npc/maskedman,7,1906697,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/npc/IceN-02,8,1884495,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/monster/watermelon,5,1878074,0,0,model_mesh=3; animation_index=1; texture_image=1
+char/monster/Fireworm,5,1874890,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/npc/MN-011,8,1869888,0,0,texture_image=3; model_mesh=3; animation_index=2
+Effect/sky/Boss,10,1866918,0,0,texture_image=5; model_mesh=5
+char/monster/strider,7,1864995,0,0,texture_image=4; model_mesh=2; animation_index=1
+char/npc/eventmolly,5,1819551,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Vampiric,9,1818492,0,0,texture_image=5; model_mesh=2; other=1; animation_index=1
+char/monster/lizardfolk,7,1811392,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+Effect/sky/sky06/night,12,1802885,0,0,texture_image=6; model_mesh=6
+char/monster/icegoblin,7,1782216,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+char/monster/Monstonegolem,9,1758334,0,0,model_mesh=4; texture_image=3; animation_index=2
+wav/Effects/monster/d_magi,11,1754646,0,0,audio=11
+Effect/sky/sky01/evening,8,1738332,0,0,texture_image=4; model_mesh=4
+Effect/sky/sky01/night,8,1738252,0,0,texture_image=4; model_mesh=4
+Effect/sky/sky01/day,8,1738172,0,0,texture_image=4; model_mesh=4
+char/npc/maskedwoman,5,1737062,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/Incubussummer,7,1735002,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+Effect/sky/sky02/night,10,1711822,0,0,model_mesh=5; texture_image=5
+char/npc/TN-007,10,1709984,0,0,texture_image=5; model_mesh=3; animation_index=2
+Effect/sky/sky04/night,10,1709317,0,0,model_mesh=5; texture_image=5
+char/monster/Monrebi,10,1704492,0,0,model_mesh=6; texture_image=2; animation_index=2
+Effect/NewEffect/Res/TextureHit,33,1702700,0,0,texture_image=33
+char/npc/TN-014,8,1697754,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/npc/Ascam,8,1697742,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/monster/cyclopswarrior,8,1697610,0,0,texture_image=4; model_mesh=2; animation_index=1; other=1
+char/npc/Bcn01,7,1696680,0,0,model_mesh=3; texture_image=2; animation_index=2
+char/npc/Ahin,7,1696672,0,0,model_mesh=3; texture_image=2; animation_index=2
+char/monster/Coma,6,1696242,0,0,model_mesh=3; texture_image=1; animation_index=1; other=1
+Effect/sky/sky07/evening,10,1696212,0,0,texture_image=5; model_mesh=5
+char/monster/castledoor,6,1682728,0,0,texture_image=2; model_mesh=2; animation_index=1; other=1
+char/monster/Monheavygoblin,7,1663158,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+char/monster/Bebechick,6,1655980,0,0,model_mesh=3; texture_image=1; animation_index=1; other=1
+Effect/sky/sky05/evening,9,1650271,0,0,model_mesh=5; texture_image=4
+Effect/sky/sky05/night,9,1650171,0,0,model_mesh=5; texture_image=4
+image/party,112,1627526,3,0,texture_image=112
+game/gui/Quest/images,23,1627382,0,0,texture_image=23
+char/npc/MN-005,8,1618676,0,0,model_mesh=3; texture_image=3; animation_index=2
+char/monster/Grotesque,8,1618624,0,0,texture_image=4; model_mesh=2; animation_index=1; other=1
+Effect/sky/sky08/day,9,1608845,0,0,model_mesh=5; texture_image=4
+char/monster/Crow,10,1607738,0,0,model_mesh=4; texture_image=3; animation_index=2; other=1
+char/monster/Monmightygoblin,7,1607016,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+Effect/sky/sky06/evening,10,1601008,0,0,texture_image=5; model_mesh=5
+Effect/sky/sky03/evening,8,1599946,0,0,model_mesh=4; texture_image=4
+Effect/sky/sky03/night,8,1599874,0,0,model_mesh=4; texture_image=4
+Effect/sky/sky03/day,8,1599802,0,0,model_mesh=4; texture_image=4
+char/monster/NazSenior,9,1599752,0,0,model_mesh=4; animation_index=2; texture_image=2; other=1
+game/ranking,9,1598995,0,0,texture_image=9
+char/monster/KhanDoor,6,1598052,0,0,texture_image=2; model_mesh=2; animation_index=1; other=1
+char/monster/hammer_goblin,9,1597776,0,0,texture_image=4; model_mesh=3; animation_index=1; other=1
+char/monster/Monrafra,5,1590136,0,0,model_mesh=3; texture_image=1; animation_index=1
+char/monster/Mystic,9,1573998,0,0,model_mesh=4; texture_image=3; animation_index=2
+rain/45rain,6,1573128,0,0,texture_image=6
+char/npc/SN-001,7,1554992,0,0,model_mesh=3; animation_index=2; texture_image=2
+char/monster/Chaingolem,9,1548009,0,0,texture_image=5; model_mesh=2; animation_index=1; other=1
+char/monster/Soldier_C,8,1532769,0,0,texture_image=5; model_mesh=2; animation_index=1
+char/monster/SealCrasher,7,1524420,0,0,model_mesh=4; animation_index=2; texture_image=1
+Effect/sky/sky07/day,9,1517025,0,0,model_mesh=5; texture_image=4
+char/monster/EvilSpirit,9,1505028,0,0,model_mesh=4; animation_index=2; texture_image=2; other=1
+char/npc/TN-005,12,1494392,0,0,texture_image=7; model_mesh=3; animation_index=2
+Effect/sky/sky06/day,8,1494067,0,0,texture_image=4; model_mesh=4
+char/monster/MonSWarrior,9,1490928,0,0,model_mesh=4; texture_image=3; animation_index=2
+char/monster/Monmetron,7,1485390,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+char/monster/omu,11,1473944,0,0,model_mesh=5; texture_image=4; animation_index=2
+char/monster/Firegolem,9,1466822,0,0,model_mesh=4; texture_image=2; animation_index=2; other=1
+char/monster/Monburntree,6,1465778,0,0,model_mesh=3; texture_image=1; animation_index=1; other=1
+wav/Effects/monster/Draxos,15,1458760,0,0,audio=15
+char/monster/Sadness,6,1456182,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/EvilMaple,6,1454929,0,0,texture_image=2; model_mesh=2; animation_index=1; other=1
+Effect/sky/sky05/day,7,1447728,0,0,model_mesh=4; texture_image=3
+char/npc/Derik,9,1441951,0,0,texture_image=4; model_mesh=3; animation_index=2
+Effect/AssaEffect/Ramiel,3,1440480,0,0,model_mesh=2; texture_image=1
+char/monster/hammer_plant,7,1432761,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+char/monster/Slayer,8,1396620,0,0,model_mesh=4; texture_image=2; animation_index=2
+char/monster/stingray,4,1390624,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/AncientGolem,8,1387580,0,0,model_mesh=4; animation_index=2; texture_image=2
+Effect/sky/sky04/day,10,1380137,0,0,texture_image=5; model_mesh=5
+char/npc/Hermit,4,1374170,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/TowerGolem,9,1365064,0,0,model_mesh=5; texture_image=2; animation_index=2
+char/monster/Soldier_B,6,1358690,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/hammer_decoy,7,1355896,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+char/monster/MireKeeper,6,1334818,0,0,texture_image=2; model_mesh=2; animation_index=1; other=1
+char/npc/evenmorif,6,1321780,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Monsen,5,1315916,0,0,model_mesh=3; texture_image=1; animation_index=1
+image/Sinimage/Effect/PublicEffect/Light,5,1310940,0,0,texture_image=5
+char/monster/Great_Greven,6,1304383,0,0,texture_image=2; model_mesh=2; animation_index=1; other=1
+Effect/sky/sky04/evening,10,1302652,0,0,texture_image=5; model_mesh=5
+char/npc/IceN-01,8,1292627,0,0,model_mesh=3; texture_image=3; animation_index=2
+game/Login/UI,13,1291778,0,0,texture_image=13
+char/monster/Monomicron-1,6,1288937,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Monomicron,6,1288929,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/leech,8,1271758,0,0,model_mesh=4; texture_image=2; animation_index=1; other=1
+char/npc/TN-001,9,1271451,0,0,texture_image=4; model_mesh=3; animation_index=2
+char/npc/MN-007,11,1268330,0,0,texture_image=6; model_mesh=3; animation_index=2
+wav/Effects/monster/ITechnician,11,1265596,0,0,audio=11
+char/npc/TN-009,6,1262049,0,0,texture_image=3; model_mesh=2; animation_index=1
+Effect/sky/skysod/moonsky,8,1261095,0,0,texture_image=4; model_mesh=4
+Effect/sky/sky08/evening,8,1260863,0,0,texture_image=4; model_mesh=4
+Effect/sky/sky08/night,8,1260702,0,0,texture_image=4; model_mesh=4
+char/monster/V_bee,5,1257187,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/npc/TN-010,9,1252493,0,0,texture_image=4; model_mesh=3; animation_index=2
+wav/Effects/monster/Chalybs,11,1251096,0,0,audio=11
+char/monster/Bsnake,7,1249228,0,0,model_mesh=4; texture_image=2; animation_index=1
+char/npc/MN-004,8,1234603,0,0,texture_image=3; model_mesh=3; animation_index=2
+game/timeshop,22,1228422,0,0,texture_image=22
+char/npc/PCmanager,5,1224880,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/npc/TN-016,5,1224868,0,0,texture_image=2; model_mesh=2; animation_index=1
+Effect/AssaEffect/Muspell,3,1222670,0,0,model_mesh=2; texture_image=1
+char/monster/Web,7,1215446,0,0,model_mesh=4; texture_image=2; animation_index=1
+game/shop,22,1213386,0,0,texture_image=22
+char/npc/MN-010,8,1213382,0,0,model_mesh=3; texture_image=3; animation_index=2
+char/npc/Bcn06,8,1191762,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/monster/Hyper,7,1182666,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+char/npc/TN-015,8,1172158,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/monster/EvilPlant,6,1157933,0,0,texture_image=2; model_mesh=2; animation_index=1; other=1
+char/npc/cashshop,4,1140782,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/npc/TN-003,9,1136229,0,0,texture_image=4; model_mesh=3; animation_index=2
+char/npc/TN-004,9,1136229,0,0,texture_image=4; model_mesh=3; animation_index=2
+char/monster/Soldier_A,7,1131983,0,0,texture_image=4; model_mesh=2; animation_index=1
+Effect/ObjAnimationData/GoldenFalcon,4,1129302,0,0,model_mesh=3; texture_image=1
+char/monster/Moncavemummy,8,1124230,0,0,texture_image=4; model_mesh=2; animation_index=1; other=1
+game/images/NewGUI/target,7,1118094,0,0,texture_image=7
+wav/Effects/monster/Deathknight,10,1104172,0,0,audio=10
+wav/Effects/monster/IceSerpent,10,1104172,0,0,audio=10
+char/npc/milter,7,1102195,0,0,model_mesh=3; texture_image=2; animation_index=2
+char/monster/cokris,7,1100694,0,0,model_mesh=4; texture_image=2; animation_index=1
+char/monster/CaveMush,5,1095386,0,0,model_mesh=2; texture_image=1; animation_index=1; other=1
+game/teleport/Mapas,49,1078465,0,0,texture_image=49
+char/npc/Enzo,5,1072438,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/LizardDoor,4,1070615,0,0,model_mesh=2; animation_index=1; texture_image=1
+wav/Effects/monster/GoblinShaman,9,1063978,0,0,audio=9
+Effect/sky/skysod/flyhigh,6,1059205,0,0,texture_image=3; model_mesh=3
+game/images/battlepass/Resgate,80,1052514,0,0,texture_image=80
+char/npc/Quest_ray,5,1041687,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Deadkinghopy,5,1038758,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/ArmBeetle,5,1022800,0,0,model_mesh=2; texture_image=1; animation_index=1; other=1
+wav/Effects/monster/MonMokova,12,1013156,0,0,audio=12
+wav/Effects/monster/Hestian,14,1010353,0,0,audio=12; other=2
+image/Sinimage/skill,18,1002990,0,0,texture_image=18
+char/npc/hobsanta,6,988760,0,0,texture_image=3; model_mesh=2; animation_index=1
+char/monster/Mondmachine,7,984384,0,0,texture_image=3; model_mesh=2; animation_index=1; other=1
+image/Sinimage/Effect/SkillEffect/HolyBody,15,966082,0,0,texture_image=11; model_mesh=3; config_data_text=1
+char/monster/hopyking,6,963732,0,0,model_mesh=4; texture_image=1; animation_index=1
+char/npc/TN-011,8,949230,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/npc/Barba,8,949227,0,0,texture_image=3; model_mesh=3; animation_index=2
+char/npc/MN-006,5,943277,0,0,texture_image=2; model_mesh=2; animation_index=1
+image/Sinimage/shopall,40,942434,0,0,texture_image=39; other=1
+wav/Effects/monster/SealCrasher,7,938956,0,0,audio=7
+Effect/ObjAnimationData/Falcon,4,934018,0,0,model_mesh=3; texture_image=1
+wav/Effects/monster/Hest,9,929907,0,0,audio=8; other=1
+game/Party/Class,32,884274,0,0,texture_image=32
+image/Sinimage/Effect/SkillEffect/HolyMind,12,883504,0,0,texture_image=9; model_mesh=3
+wav/Effects/event,8,879008,0,0,audio=8
+Effect/AssaEffect/Skill3Mesh,43,853655,0,0,model_mesh=24; texture_image=18; other=1
+wav/Effects/monster/MonSeto,9,839258,0,0,audio=9
+char/monster/Monthorncrowler,4,825128,0,0,model_mesh=2; animation_index=1; texture_image=1
+char/monster/VampiricBat,5,817982,0,0,model_mesh=2; texture_image=2; animation_index=1
+char/monster/Monmushroom-mo,11,815078,0,0,model_mesh=6; texture_image=2; animation_index=2; other=1
+char/monster/Monbeechief,5,799880,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/monster/Monmushroom,11,796696,0,0,model_mesh=6; texture_image=2; animation_index=2; other=1
+image/Sinimage/Effect/SkillEffect/HolyBody/Old,11,792848,0,0,texture_image=8; model_mesh=2; config_data_text=1
+wav/Effects/monster/Lena,7,790592,0,0,audio=7
+image/Sinimage/Sound,28,766108,0,0,audio=28
+game/images/Crown,21,759645,0,0,texture_image=21
+wav/Effects/monster/Darkmage,7,732676,0,0,audio=7
+char/monster/Mondirebee,6,732300,0,0,texture_image=2; model_mesh=2; animation_index=1; other=1
+Effect/ObjAnimationData/ScoutHawk,4,731932,0,0,model_mesh=3; texture_image=1
+wav/Effects/monster/Fury,17,730979,0,0,audio=15; other=2
+char/monster/hopy,10,724243,0,0,model_mesh=5; animation_index=2; texture_image=2; other=1
+char/monster/t_crystal_b,8,721739,0,0,model_mesh=4; texture_image=2; animation_index=2
+char/monster/t_crystal_r,8,721739,0,0,model_mesh=4; texture_image=2; animation_index=2
+wav/Effects/monster/ISoldier,9,721106,0,0,audio=9
+wav/Effects/monster/Mimic,7,704390,0,0,audio=7
+wav/Effects/monster/MineGolem,6,704246,0,0,audio=6
+wav/Effects/monster/Hobogolem,7,699850,0,0,audio=7
+wav/Effects/monster/Nihil,8,693322,0,0,audio=8
+wav/Effects/monster/kelvezu,9,692806,0,0,audio=9
+image/Sinimage/Siege,57,692260,0,0,texture_image=57
+wav/Effects/monster/LGuardian,8,685488,0,0,audio=8
+wav/Effects/monster/Tulla,8,685488,0,0,audio=8
+char/monster/t_crystal_n,8,683060,0,0,model_mesh=4; texture_image=2; animation_index=2
+wav/Effects/monster/DevilShy,6,680872,0,0,audio=6
+image/Sinimage/Inter/Chat,17,676240,0,0,texture_image=17
+Effect/Particle/Script,313,675567,0,0,other=309; texture_image=3; config_data_text=1
+wav/Effects/monster/Minebat,9,668080,0,0,audio=9
+char/monster/Sakura,5,666498,0,0,texture_image=2; model_mesh=2; animation_index=1
+char/npc/Sakura,5,666486,0,0,texture_image=2; model_mesh=2; animation_index=1
+wav/Effects/NPC/MagicMaster,8,664220,0,0,audio=8
+char/monster/Deadhopy,4,657730,0,0,model_mesh=2; texture_image=1; animation_index=1
+wav/Effects/monster/Gorgon,9,644116,0,0,audio=9
+wav/Effects/monster/Bloodyknight,8,640312,0,0,audio=8
+Effect/PcBangPet/Pet_Phoenimin,4,638038,0,0,model_mesh=2; texture_image=1; config_data_text=1
+wav/Effects/monster/D-Machine,11,626616,0,0,audio=11
+image/Sinimage/Inven,16,623660,0,0,texture_image=16
+game/settings,33,621864,0,0,texture_image=33
+wav/Effects/monster/Greedy,8,612870,0,0,audio=8
+Effect/sky/SkyRain,5,611727,0,0,texture_image=2; model_mesh=2; config_data_text=1
+wav/Effects/monster/DarkKnight,13,610676,0,0,audio=13
+wav/Effects/monster/Acero,11,607172,0,0,audio=11
+wav/Effects/monster/BlizzardGiant,9,605704,0,0,audio=9
+wav/effect/monster/BlizzardGiant,9,605704,0,0,audio=9
+Effect/sky/losttemple/day,4,593489,0,0,texture_image=2; model_mesh=2
+Effect/sky/losttemple3/day,4,593489,0,0,texture_image=2; model_mesh=2
+wav/Effects/monster/Nightmare,10,590684,0,0,audio=10
+wav/Effects/monster/Darkphalanx,9,578802,0,0,audio=9
+wav/Effects/monster/LEngineer,9,578802,0,0,audio=9
+image/Sinimage/Items/Event,154,576924,0,0,texture_image=154
+wav/Effects/monster/Babel,12,572646,0,0,audio=12
+wav/Effects/weapon,43,568162,0,0,audio=43
+char/monster/bal_crystal,9,565374,0,0,model_mesh=4; animation_index=2; texture_image=2; other=1
+wav/Sod,25,554198,0,0,audio=25
+wav/Effects/monster/Daeth_Night,10,553066,0,0,audio=10
+Field/Title,67,551812,0,0,texture_image=67
+wav/Effects/monster/UndeadStalker,8,549268,0,0,audio=8
+char/monster/Cstone,5,543438,0,0,model_mesh=3; animation_index=1; texture_image=1
+Effect/sky/losttemple/evening,2,537302,0,0,model_mesh=1; texture_image=1
+Effect/sky/losttemple3/evening,2,537302,0,0,model_mesh=1; texture_image=1
+Effect/sky/losttemple/night,2,537263,0,0,model_mesh=1; texture_image=1
+Effect/sky/losttemple3/night,2,537263,0,0,model_mesh=1; texture_image=1
+wav/Effects/monster/Succubus,10,534246,0,0,audio=10
+wav/Effects/monster/MonTempleguard,7,528888,0,0,audio=7
+image/Sinimage/Effect/MonsterEffect/Ratoo,7,526372,0,0,texture_image=5; model_mesh=2
+wav/Effects/monster/hellhound,8,522104,0,0,audio=8
+Effect/AssaEffect/Skill3Texture,23,517374,0,0,texture_image=23
+wav/Effects/monster/Boitata,9,509264,0,0,audio=9
+game/warning,1,503298,0,0,texture_image=1
+game/kill,17,502182,0,0,texture_image=17
+wav/Effects/NPC/castledoor,14,501348,0,0,audio=14
+wav/Effects/monster/IElite,9,498900,0,0,audio=9
+wav/Effects/monster/Sadness,7,497670,0,0,audio=7
+image/Sinimage/Status,5,489748,0,0,texture_image=5
+game/recover,5,489120,0,0,texture_image=5
+wav/Effects/monster/ColdEye,9,475728,0,0,audio=9
+wav/Effects/monster/Mystic,7,470164,0,0,audio=7
+wav/Effects/monster/Frost,8,467664,0,0,audio=8
+wav/Effects/monster/MonKingSpider,5,461710,0,0,audio=5
+game/bellatra,2,461028,0,0,texture_image=2
+wav/Effects/monster/Hound,8,459662,0,0,audio=8
+char/monster/Mouse,6,457667,0,0,model_mesh=4; texture_image=1; animation_index=1
+wav/Effects/monster/DEADKINGHOPY,10,457068,0,0,audio=10
+wav/Effects/monster/Grotesque,10,452594,0,0,audio=10
+wav/Effects/monster/LTechnician,8,451400,0,0,audio=8
+wav/Effects/monster/UndeadManager,8,451400,0,0,audio=8
+wav/Effects/monster/UndeadMiner,8,451400,0,0,audio=8
+wav/Effects/monster/Chimera,8,451280,0,0,audio=8
+wav/Effects/monster/Billy,7,447622,0,0,audio=7
+image/Sinimage/Inter,35,444004,0,0,texture_image=35
+wav/Effects/monster/StygianLord,8,443412,0,0,audio=8
+wav/Effects/monster/StoneGolem,11,439850,0,0,audio=11
+image/Sinimage/shopall/CraftItem,8,438430,0,0,texture_image=8
+Effect/AssaEffect/EvilMaple,8,436147,0,0,texture_image=5; model_mesh=3
+wav/Effects/monster/Sprin,8,432450,0,0,audio=8
+wav/Effects/monster/NazSenior,8,432186,0,0,audio=8
+wav/Effects/monster/TurtleCannon,7,429574,0,0,audio=7
+wav/effect/monster/TurtleCannon,7,429574,0,0,audio=7
+char/monster/t_crystal_g,8,426823,0,0,model_mesh=4; texture_image=2; animation_index=2
+wav/Effects/monster/Mountain,9,426106,0,0,audio=9
+image/Sinimage/Items/Accessory,159,425481,0,0,texture_image=158; model_mesh=1
+wav/Effects/monster/Metron,10,424744,0,0,audio=10
+image/Sinimage/Effect/SkillEffect/SwordBlast,11,415455,0,0,texture_image=7; model_mesh=3; config_data_text=1
+wav/Effects/monster/d_pr,7,414946,0,0,audio=7
+game/Roll,17,410526,0,0,texture_image=17
+wav/Effects/monster/Darkguard,7,409584,0,0,audio=7
+wav/Effects/monster/Hulk,10,408880,0,0,audio=10
+wav/Effects/monster/Wolverin,11,407312,0,0,audio=11
+wav/Effects/monster/RunicGuardian,8,401972,0,0,audio=8
+wav/Effects/monster/M_Lord,9,398418,0,0,audio=9
+wav/Effects/monster/IronGuard,8,395766,0,0,audio=8
+game/images/battlepass,32,395255,0,0,texture_image=32
+image/Sinimage/Effect/SkillEffect/Bomb,6,393480,0,0,texture_image=6
+wav/Effects/monster/Frozen,8,389616,0,0,audio=8
+wav/Effects/monster/Avelisk,12,388724,0,0,audio=12
+game/gui/Restaure,5,384690,0,0,texture_image=5
+Effect/Party,23,383252,0,0,texture_image=23
+StartImage/Opening/test,1,378365,0,0,model_mesh=1
+wav/Effects/monster/Devilbird,7,375576,0,0,audio=7
+wav/effect/monster/Devilbird,7,375576,0,0,audio=7
+char/monster/Ribbonhopy,5,373921,0,0,texture_image=2; model_mesh=2; animation_index=1
+image/Sinimage/Effect/SkillEffect/MultiSpark,11,370438,0,0,texture_image=10; model_mesh=1
+wav/Effects/monster/Shadow,9,366372,0,0,audio=9
+Effect/AssaEffect/RegenerationField,3,365928,0,0,model_mesh=2; texture_image=1
+wav/Effects/monster/Rampage,9,365356,0,0,audio=9
+wav/Effects/monster/UndeadMaple,7,363650,0,0,audio=7
+wav/Effects/monster/Hypermachine,7,360846,0,0,audio=7
+wav/Effects/monster/ChainGolem,8,355546,0,0,audio=8
+image/Sinimage/AssaEffect/GreatH,6,353719,0,0,model_mesh=4; texture_image=2
+wav/Effects/monster/d_kn,8,339488,0,0,audio=8
+wav/Effects/monster/Stingray,7,336240,0,0,audio=7
+Effect/ImageData/SkillVisTenus,16,335618,0,0,texture_image=16
+image/Sinimage/skill/keep,69,334812,0,0,texture_image=69
+wav/Effects/monster/Dawlin,10,334420,0,0,audio=10
+wav/Effects/monster/Omicron,9,334100,0,0,audio=9
+wav/Effects/monster/KingBat,8,332506,0,0,audio=8
+wav/Effects/monster/MetalGolem,9,331386,0,0,audio=9
+wav/Effects/monster/Fireworm,6,329904,0,0,audio=6
+wav/Effects/monster/IBomber,6,329904,0,0,audio=6
+wav/Effects/monster/IceWorm,6,329904,0,0,audio=6
+wav/Effects/monster/Igolation,6,329422,0,0,audio=6
+wav/Effects/monster/MrGhost,11,326360,0,0,audio=11
+wav/Effects/monster/PumpkinGhost,6,325722,0,0,audio=6
+wav/Effects/monster/Arcuda,7,325622,0,0,audio=7
+Effect/AssaEffect/Spider,3,324174,0,0,model_mesh=2; texture_image=1
+image/Sinimage/AssaEffect/HolyR,13,324174,0,0,texture_image=8; model_mesh=5
+wav/Effects/monster/HopyKing,10,312346,0,0,audio=10
+wav/Effects/monster/TowerGolem,8,311942,0,0,audio=8
+wav/Effects/monster/Xetan,6,311866,0,0,audio=6
+game/messagebox,16,306297,0,0,texture_image=16
+image/clanImage/chipbutton,20,303744,0,0,texture_image=20
+wav/Effects/monster/Morgon,9,303684,0,0,audio=9
+image/Sinimage/Effect/SkillEffect/Healing,3,300292,0,0,model_mesh=2; texture_image=1
+wav/Effects/monster/Ratoo,8,299522,0,0,audio=8
+image/Sinimage/Effect/MonsterEffect/Particle,4,299184,0,0,texture_image=4
+game/Quest,23,297971,0,0,texture_image=23
+wav/Effects/monster/Guardian-Saint,6,296804,0,0,audio=6
+Effect/AssaEffect/BossRunic,3,295080,0,0,texture_image=3
+wav/Effects/monster/MutantTree,8,292526,0,0,audio=8
+wav/Effects/monster/IllusionKnight,8,292028,0,0,audio=8
+wav/Effects/monster/Figon,9,290492,0,0,audio=9
+wav/Effects/monster/SandLem,9,288268,0,0,audio=9
+image/Sinimage/Effect/StartMagic,6,287678,0,0,texture_image=4; model_mesh=2
+image/Sinimage/Effect/SkillEffect/ShieldStrike,7,280416,0,0,texture_image=5; model_mesh=2
+wav/Effects/monster/Cstone,1,274548,0,0,audio=1
+wav/Effects/monster/MutantRabie,8,273830,0,0,audio=8
+wav/Effects/monster/AvelinQueen,8,271012,0,0,audio=8
+wav/Effects/monster/Tarantulika,9,270910,0,0,audio=9
+Effect/AssaEffect/MonsterFury,16,268180,0,0,texture_image=11; model_mesh=5
+wav/Effects/monster/Ruca,7,263604,0,0,audio=7
+wav/Effects/monster/HeavyGoblin,9,262464,0,0,audio=9
+StartImage/StartImage/sky,1,262188,0,0,texture_image=1
+char/monster/Moneye,6,259712,0,0,model_mesh=2; texture_image=2; animation_index=1; other=1
+wav/Effects/NPC/tower-b,4,257664,0,0,audio=4
+wav/Effects/monster/StoneGiant,8,256310,0,0,audio=8
+wav/Effects/monster/Bargon,10,255172,0,0,audio=10
+wav/Effects/monster/d_meca,9,255086,0,0,audio=9
+wav/Effects/monster/Mummy,8,242994,0,0,audio=8
+wav/Effects/Player/Assassin,5,242434,0,0,audio=5
+wav/Effects/monster/AvelinArcher,8,242202,0,0,audio=8
+wav/Effects/monster/d_atal,7,238974,0,0,audio=7
+wav/Effects/monster/LizardFolk,7,237704,0,0,audio=7
+image/Sinimage/shopall/Manufacture,16,237256,0,0,texture_image=16
+wav/Effects/monster/Niken,8,234920,0,0,audio=8
+wav/Effects/monster/ChaosCara,7,233192,0,0,audio=7
+wav/Effects/monster/Spider,5,231206,0,0,audio=5
+wav/Effects/monster/Spidertrooper,5,231206,0,0,audio=5
+wav/Effects/monster/Greven,8,229716,0,0,audio=8
+wav/Effects/monster/Decoy,9,229574,0,0,audio=9
+Effect/AssaEffect/DeathKnight,4,229517,0,0,model_mesh=3; texture_image=1
+wav/Effects/monster/d_fi,6,228464,0,0,audio=6
+wav/Effects/monster/Doral,9,225968,0,0,audio=9
+wav/Effects/monster/DeadZone,8,224442,0,0,audio=8
+wav/Effects/Player/Shaman,5,223068,0,0,audio=5
+image/Sinimage/skill/Archer/Button,32,219648,0,0,texture_image=32
+image/Sinimage/skill/Atalanta/Button,32,219648,0,0,texture_image=32
+image/Sinimage/skill/Fighter/Button,32,219648,0,0,texture_image=32
+image/Sinimage/skill/Knight/Button,32,219648,0,0,texture_image=32
+image/Sinimage/skill/Magician/Button,32,219648,0,0,texture_image=32
+image/Sinimage/skill/Mecha/Button,32,219648,0,0,texture_image=32
+image/Sinimage/skill/Pikeman/Button,32,219648,0,0,texture_image=32
+image/Sinimage/skill/Priestess/Button,32,219648,0,0,texture_image=32
+wav/Effects/monster/ThornCrawler,9,218730,0,0,audio=9
+Effect/Etc,11,217833,0,0,texture_image=10; config_data_text=1
+wav/Effects/Player/Magician,5,217396,0,0,audio=5
+wav/Effects/monster/Omu,8,217218,0,0,audio=8
+image/Sinimage/shopall/SmeltingItem,3,217080,0,0,texture_image=3
+wav/Effects/monster/Naz,8,216814,0,0,audio=8
+Effect/AssaEffect/ColumnOfWater,7,216416,0,0,model_mesh=5; texture_image=2
+wav/Effects/monster/Hungky,8,215828,0,0,audio=8
+Effect/ImageData/SkillSpark,9,213388,0,0,texture_image=9
+wav/Effects/monster/IronFist,8,212276,0,0,audio=8
+wav/Effects/monster/Sliver,8,210748,0,0,audio=8
+wav/Effects/monster/Plant,8,210372,0,0,audio=8
+wav/Effects/monster/HeadCutter,9,210158,0,0,audio=9
+wav/Effects/monster/Zombi,8,210132,0,0,audio=8
+image/Sinimage/AssaEffect/Ratoo/Par,5,209152,0,0,texture_image=5
+game/gui/messagebox,12,207659,0,0,texture_image=11; other=1
+wav/Effects/monster/EvilPlant,8,206254,0,0,audio=8
+wav/Effects/monster/marionette,6,205814,0,0,audio=6
+wav/Effects/monster/Sendelost,7,204466,0,0,audio=7
+game/mix,5,199948,0,0,texture_image=5
+wav/Effects/FootSteps,14,198218,0,0,audio=14
+wav/Effects/monster/Brazilbear,7,196162,0,0,audio=7
+wav/Effects/monster/Strider,7,191414,0,0,audio=7
+wav/Effects/monster/d_ar,6,191040,0,0,audio=6
+wav/Effects/NPC/crystal_b,5,189430,0,0,audio=5
+wav/Effects/monster/MireKeeper,8,189216,0,0,audio=8
+wav/Effects/monster/Crip,8,188386,0,0,audio=8
+wav/Effects/NPC/mollywolf,9,187814,0,0,audio=9
+wav/Effects/monster/BeEvil,8,186534,0,0,audio=8
+wav/Effects/NPC/crystal_r,5,184342,0,0,audio=5
+wav/Effects/monster/HauntingPlant,9,180432,0,0,audio=9
+wav/Effects/Skill,6,179418,0,0,audio=6
+wav/Effects/NPC/SkillMaster,8,178994,0,0,audio=8
+wav/Effects/monster/MiniG,15,178584,0,0,audio=15
+image/Sinimage/Items/Premium,103,178150,0,0,texture_image=103
+Effect/AssaEffect/CaveMummy,5,177752,0,0,model_mesh=4; texture_image=1
+wav/Effects/monster/SolidSnail,9,173230,0,0,audio=9
+image/Sinimage/MessageBox,17,171820,0,0,texture_image=17
+wav/Effects/monster/Cyclops_W,6,169564,0,0,audio=6
+wav/effect/monster/Cyclops_W,6,169564,0,0,audio=6
+wav/Effects/monster/VampiricBat,8,167038,0,0,audio=8
+wav/Effects/monster/Kakoa,6,164404,0,0,audio=6
+image/Sinimage/AssaEffect/HolyMind,3,163212,0,0,model_mesh=2; texture_image=1
+wav/Effects/monster/SkeletonMelee,8,161408,0,0,audio=8
+wav/Effects/monster/Snowman,6,159752,0,0,audio=6
+wav/Effects/monster/DEADHOPT,8,158948,0,0,audio=8
+game/target,6,158591,0,0,texture_image=6
+wav/Effects/monster/SkeletonRange,8,156760,0,0,audio=8
+wav/Effects/NPC/crystal_g,5,156196,0,0,audio=5
+wav/Effects/monster/Buma,8,155328,0,0,audio=8
+wav/Effects/monster/Mudy,8,154432,0,0,audio=8
+Effect/AssaEffect/SpiritElemental,3,154183,0,0,model_mesh=2; texture_image=1
+wav/Effects/monster/Cyclops,8,153992,0,0,audio=8
+wav/Effects/monster/Sen,8,152808,0,0,audio=8
+wav/Effects/monster/Muffin,8,152198,0,0,audio=8
+image/clanImage/MessageBox,24,151490,0,0,texture_image=24
+game/teleport,21,151042,0,0,texture_image=21
+wav/Effects/monster/Hob Goblin,9,146476,0,0,audio=9
+wav/Effects/monster/Egan,8,145792,0,0,audio=8
+wav/Effects/monster/Leech,8,145476,0,0,audio=8
+Effect/ObjAnimationData/MonsterFury,9,143734,0,0,texture_image=5; model_mesh=2; config_data_text=2
+game/images/Crown/BMP,6,141460,0,0,texture_image=6
+wav/Effects/monster/BeeDog,7,139992,0,0,audio=7
+image/Sinimage/Effect/SkillEffect/FireBolt,4,139440,0,0,texture_image=4
+wav/Effects/monster/VampiricBee,6,137512,0,0,audio=6
+image/Sinimage/AssaEffect/StartMagic/P,4,137416,0,0,texture_image=4
+wav/Effects/monster/Imp,8,136972,0,0,audio=8
+wav/Effects/monster/d_pa,4,136238,0,0,audio=4
+wav/Effects/monster/Mushroom,8,135256,0,0,audio=8
+wav/Effects/monster/Rabie,8,132294,0,0,audio=8
+Effect/ImageData/SkillExtremeShield,3,132228,0,0,texture_image=3
+Effect/ImageData/Gas1,8,131424,0,0,texture_image=8
+Effect/ImageData/SkillAutomation,2,131160,0,0,texture_image=2
+Effect/ImageData/SkillMaximize,2,131160,0,0,texture_image=2
+image/Sinimage/Player,20,130948,0,0,texture_image=20
+wav/Effects/monster/VampiricMachine,2,129556,0,0,audio=2
+image/Sinimage/Effect/SkillEffect/VigorSpear,10,128542,0,0,texture_image=9; model_mesh=1
+game/images/Crown/TAGS,40,126232,0,0,texture_image=40
+Effect/AssaEffect/DeadLay,8,123328,0,0,texture_image=8
+image/Sinimage/Effect/SkillEffect/Agony,9,123276,0,0,texture_image=9
+image/Sinimage/Effect/SkillEffect/Farina,9,123276,0,0,texture_image=9
+Effect/AssaEffect/PhoenixShot,2,119442,0,0,texture_image=1; model_mesh=1
+wav/Effects/monster/Obit,8,118256,0,0,audio=8
+char/Flag,5,114804,0,0,texture_image=2; animation_index=1; other=1; model_mesh=1
+wav/Effects/NPC/morif,5,114076,0,0,audio=5
+wav/Effects/monster/Skeleton,8,113482,0,0,audio=8
+wav/Effects/Player/Atalanta,5,111956,0,0,audio=5
+wav/Effects/monster/Web,9,111946,0,0,audio=9
+Field/ani,5,104878,0,0,model_mesh=3; texture_image=1; config_data_text=1
+wav/Effects/Player/Knight,4,99446,0,0,audio=4
+wav/Effects/Player/Mechanician,6,99160,0,0,audio=6
+Effect/AssaEffect,6,99126,0,0,texture_image=6
+image/Sinimage/indishop,17,97680,0,0,texture_image=17
+game/mash,1,96044,0,0,texture_image=1
+wav/Effects/NPC/Soldier_A,6,95338,0,0,audio=6
+game/mix/combobox,5,95060,0,0,texture_image=5
+Effect/ImageData/SkillBrutalSwing,7,94516,0,0,texture_image=7
+Effect/NewEffect/Res/Texture,5,92438,0,0,texture_image=5
+image/Sinimage/AssaEffect/GreatH/P,14,89872,0,0,texture_image=14
+image/Sinimage/Inter/ReStart,4,89840,0,0,texture_image=4
+wav/Effects/Player/Archer,4,89010,0,0,audio=4
+Effect/ObjAnimationData/OmiCron,3,88597,0,0,texture_image=1; model_mesh=1; config_data_text=1
+wav/Effects/monster/Scorpion,8,87922,0,0,audio=8
+image/Sinimage/Premium,22,83044,0,0,texture_image=22
+image/Sinimage/skill/ForceOrb,20,82800,0,0,texture_image=20
+game/settings/scroll,5,82457,0,0,texture_image=5
+image/Sinimage/Inter/ButtonInfo,13,82160,0,0,texture_image=13
+image/Sinimage/Effect/IceVigo,5,82140,0,0,texture_image=5
+image/Sinimage/Effect/SkillEffect/Zenith,5,82140,0,0,texture_image=5
+wav/Effects/NPC/Soldier_D,5,81520,0,0,audio=5
+wav/Effects/monster/HoPT,8,80254,0,0,audio=8
+image/Sinimage/PetData,5,79675,0,0,texture_image=4; config_data_text=1
+wav/Effects/Menu/Event,2,79064,0,0,audio=2
+wav/Effects/Player/Fighter,4,78974,0,0,audio=4
+image/Sinimage/Effect/InterEffect,17,76924,0,0,texture_image=17
+Effect/AssaEffect/Ratoo,3,75954,0,0,texture_image=2; model_mesh=1
+image/Sinimage/Items/Quest,22,74448,0,0,texture_image=22
+Effect/AssaEffect/Guardian,3,73896,0,0,texture_image=3
+Effect/ObjAnimationData/MonsterHeadCutter,7,73789,0,0,texture_image=3; model_mesh=2; config_data_text=2
+Effect/AssaEffect/EnchantWeapon,2,71778,0,0,texture_image=2
+image/Sinimage/shopall/TradeButton,6,71624,0,0,texture_image=6
+image/Sinimage/AssaEffect/DrasticS/P,8,71104,0,0,texture_image=8
+wav/Effects/monster/Arma,8,69174,0,0,audio=8
+wav/Effects/NPC/Soldier_C,5,68602,0,0,audio=5
+StartImage/login/FontImage,1,65580,0,0,texture_image=1
+wav/Effects/NPC/Soldier_B,5,64598,0,0,audio=5
+Effect/ImageData/Particle,12,61968,0,0,texture_image=12
+image/Sinimage/AssaEffect,4,61628,0,0,texture_image=4
+image/Sinimage/AssaEffect/EnergyS,2,59946,0,0,texture_image=1; model_mesh=1
+image/Sinimage/Inven/InfoBox,10,58496,0,0,texture_image=10
+image/Sinimage/AssaEffect/Particle,2,57094,0,0,model_mesh=1; texture_image=1
+Effect/AssaEffect/RollingSmash,2,56884,0,0,texture_image=1; model_mesh=1
+wav/Effects/Player/Priestess,3,56252,0,0,audio=3
+image/Sinimage/AssaEffect/Particle/P,4,55484,0,0,texture_image=4
+image/Sinimage/AssaEffect/Piercing/P,15,54600,0,0,texture_image=15
+Effect/ObjAnimationData/Pung1,5,54278,0,0,texture_image=2; model_mesh=1; config_data_text=1; other=1
+image/Sinimage/Quest,155,53944,0,0,other=155
+Effect/ImageData/Hit2,4,53424,0,0,texture_image=4
+image/Sinimage/AssaEffect/Light,8,52672,0,0,texture_image=8
+image/Sinimage/AssaEffect/DrasticS,4,52460,0,0,model_mesh=2; texture_image=2
+Effect/ObjAnimationData/Shadow,3,51652,0,0,config_data_text=1; model_mesh=1; texture_image=1
+Effect/ImageData/Blood1,4,49840,0,0,texture_image=4
+Effect/ImageData/SkillRoundImpact,4,49840,0,0,texture_image=4
+Effect/ImageData/SkillTripleImpact,4,49840,0,0,texture_image=4
+Effect/ImageData/Potion,12,49680,0,0,texture_image=12
+image/Sinimage/Effect/Particle,12,49680,0,0,texture_image=12
+image/Sinimage/shopall/Aging,19,49558,0,0,texture_image=19
+Effect/ImageData/Hit1,3,49284,0,0,texture_image=3
+Effect/ImageData/SkillMotalBlow,3,49284,0,0,texture_image=3
+Effect/ImageData/SkillThunderRoop,1,49208,0,0,texture_image=1
+Effect/AssaEffect/StoneGolem,2,48703,0,0,texture_image=1; model_mesh=1
+Effect/AssaEffect/IceGolem,2,48699,0,0,texture_image=1; model_mesh=1
+Effect/ImageData/Return1,9,47584,0,0,texture_image=9
+StartImage/MessageBox/ChatBox,64,46848,0,0,texture_image=64
+image/Sinimage/AssaEffect/brandish,3,45935,0,0,texture_image=2; model_mesh=1
+image/Sinimage/AssaEffect/Soul/Particle,10,43568,0,0,texture_image=10
+game/target/menu,4,43341,0,0,texture_image=4
+Effect/NewEffect,41,43067,0,0,script=41
+Effect/AssaEffect/ChaosKara,2,42582,0,0,texture_image=1; model_mesh=1
+image/Sinimage/AssaEffect/StartMagic,4,41570,0,0,model_mesh=2; texture_image=2
+Effect/ImageData/PhysicalAbsorbParticle,6,41224,0,0,texture_image=6
+image/Sinimage/Effect/PublicEffect/Hit,3,41092,0,0,texture_image=3
+image/Sinimage/AssaEffect/EnergyS/P,13,40664,0,0,texture_image=13
+Effect/ImageData/FireParticle,10,40376,0,0,texture_image=10
+image/Sinimage/Items/Potion,19,39344,0,0,texture_image=19
+Effect/ObjAnimationData/PikeWind,3,38885,0,0,config_data_text=1; model_mesh=1; texture_image=1
+image/Sinimage/AssaEffect/Summon,7,38232,0,0,texture_image=7
+image/Sinimage/Status/RegiInfo,8,38140,0,0,texture_image=8
+wav/Effects/Player/Pikeman,2,38100,0,0,audio=2
+game/Party/menu,4,38048,0,0,texture_image=4
+Effect/ImageData/SkillSilraphim,10,37340,0,0,texture_image=10
+Effect/AssaEffect/EnchantWeapon/Ase,4,36317,0,0,model_mesh=2; texture_image=2
+Effect/ObjAnimationData/BrutalSwing,6,35588,0,0,model_mesh=2; config_data_text=2; texture_image=2
+image/Sinimage/Items/Wing,6,35184,0,0,texture_image=6
+Effect/ImageData/blackhole,8,33120,0,0,texture_image=8
+image/Sinimage/Cursor,8,33120,0,0,texture_image=8
+image/Sinimage/Effect/ForceOrb,8,33120,0,0,texture_image=8
+Effect/ImageData/LevelUp1,2,32856,0,0,texture_image=2
+Effect/ImageData/ScoutHawk,2,32856,0,0,texture_image=2
+Effect/ImageData/SkillTornado,2,32856,0,0,texture_image=2
+Effect/ImageData/SkillZecram,2,32856,0,0,texture_image=2
+Effect/ImageData/ContinueStun,1,32812,0,0,texture_image=1
+Effect/ObjAnimationData/Shield,3,32230,0,0,texture_image=1; model_mesh=1; config_data_text=1
+Effect/ObjAnimationData/Roar,3,31237,0,0,texture_image=1; config_data_text=1; model_mesh=1
+image/Sinimage/AssaEffect/UnionCore,8,31096,0,0,texture_image=8
+Effect/ImageData/Round2,3,30864,0,0,texture_image=3
+savedata/clanDATA/Alfa,22,30696,0,0,other=22
+Effect/ObjAnimationData/GameStart,5,29940,0,0,config_data_text=2; model_mesh=2; texture_image=1
+Effect/ObjAnimationData/Pung,2,29770,0,0,texture_image=1; model_mesh=1
+Effect/ObjAnimationData/MonsterWeb,5,29228,0,0,model_mesh=2; config_data_text=2; texture_image=1
+Effect/ObjAnimationData/GroundPike,3,29149,0,0,config_data_text=1; model_mesh=1; texture_image=1
+Effect/AssaEffect/Shelltom,6,28999,0,0,texture_image=3; model_mesh=3
+StartImage/MessageBox/BellaBox,7,28980,0,0,texture_image=7
+image/Sinimage/AssaEffect/Soul,2,28895,0,0,model_mesh=1; texture_image=1
+Effect/ImageData/Shield,5,27868,0,0,texture_image=5
+image/Sinimage/AssaEffect/TwistJavelin,4,27745,0,0,texture_image=3; model_mesh=1
+game/target/Type,8,27108,0,0,texture_image=8
+Effect/ObjAnimationData/PhysicalAbsorb,3,26698,0,0,texture_image=1; config_data_text=1; model_mesh=1
+game/Party,7,26261,0,0,texture_image=7
+image/Sinimage/AssaEffect/Ratoo,2,26183,0,0,model_mesh=1; texture_image=1
+Effect/ImageData/ParticleMeteo1,7,25908,0,0,texture_image=7
+Effect/ObjAnimationData/Test,5,25478,0,0,model_mesh=2; other=1; config_data_text=1; texture_image=1
+image/Sinimage/shopall/ButtonInfo,4,25280,0,0,texture_image=4
+Effect/ImageData/Meteo1,6,24840,0,0,texture_image=6
+Effect/ImageData/MonsterWeb,4,24752,0,0,texture_image=4
+Effect/AssaEffect/Skill5Mesh,4,24610,0,0,texture_image=2; model_mesh=2
+Effect/ObjAnimationData/Avalanche,3,24344,0,0,config_data_text=1; model_mesh=1; texture_image=1
+image/Sinimage/skill/Archer/JobTitle,4,24224,0,0,texture_image=4
+image/Sinimage/skill/Atalanta/JobTitle,4,24224,0,0,texture_image=4
+image/Sinimage/skill/Fighter/JobTitle,4,24224,0,0,texture_image=4
+image/Sinimage/skill/Knight/JobTitle,4,24224,0,0,texture_image=4
+image/Sinimage/skill/Magician/JobTitle,4,24224,0,0,texture_image=4
+image/Sinimage/skill/Mecha/JobTitle,4,24224,0,0,texture_image=4
+image/Sinimage/skill/Pikeman/JobTitle,4,24224,0,0,texture_image=4
+image/Sinimage/skill/Priestess/JobTitle,4,24224,0,0,texture_image=4
+Effect/ObjAnimationData/Stygianlord,3,23851,0,0,texture_image=1; config_data_text=1; model_mesh=1
+image/Sinimage/Inter/SkillIcon,4,23456,0,0,texture_image=4
+game/images/Crown/cat,6,23208,0,0,texture_image=6
+wav/Effects/Impact,3,23010,0,0,audio=3
+game/gui/Quest/images/Current,13,22409,0,0,texture_image=13
+Effect/AssaEffect/TwistJavelin,2,21138,0,0,texture_image=1; model_mesh=1
+image/Sinimage/Items/Make,5,20696,0,0,texture_image=5
+image/Sinimage/MessageBox/CutBox,3,20612,0,0,texture_image=3
+Effect/AnimationData,95,20133,0,0,config_data_text=95
+game/mix/Sheltoms,18,19707,0,0,texture_image=18
+Effect/ObjAnimationData/MechanicBomb,3,19619,0,0,texture_image=1; model_mesh=1; config_data_text=1
+Effect/ImageData/Dust1,6,18768,0,0,texture_image=6
+Effect/ImageData/Blur,2,18520,0,0,texture_image=2
+Effect/ImageData/SkillCircleTrap,2,18520,0,0,texture_image=2
+Effect/ImageData/LevelUp,2,17496,0,0,texture_image=2
+Effect/AssaEffect/ThornCrawler,2,17051,0,0,texture_image=1; model_mesh=1
+image/Sinimage/AssaEffect/HolyMind/Particle,5,16652,0,0,texture_image=5
+Effect/ImageData/MonsterMePhit,4,16560,0,0,texture_image=4
+Effect/ImageData/Pung1,1,16428,0,0,texture_image=1
+Effect/ImageData/Round1,1,16428,0,0,texture_image=1
+Effect/ImageData/SkillRageofZecram,1,16428,0,0,texture_image=1
+Effect/ImageData/WeaponFix1,1,16428,0,0,texture_image=1
+image/Sinimage/Effect/PublicEffect/Line,1,16428,0,0,texture_image=1
+image/clanImage/Help/AutoHelp,36,16419,0,0,other=34; config_data_text=2
+game/boss,1,16418,0,0,texture_image=1
+Effect/AssaEffect/Snail,3,15449,0,0,model_mesh=2; texture_image=1
+Effect/ImageData/SkillRoar,4,14512,0,0,texture_image=4
+image/clanImage/Help,3,14185,0,0,other=3
+image/Sinimage/skill/WeaponIcon,10,13998,0,0,texture_image=10
+StartImage/MessageBox/NormalBox,13,13884,0,0,texture_image=13
+image/Sinimage/AssaEffect/Ball,2,12869,0,0,texture_image=1; model_mesh=1
+StartImage/MessageBox/ClanBox,12,12816,0,0,texture_image=12
+Effect/ImageData/MonsterImp,3,12420,0,0,texture_image=3
+game/ranking/Class,8,12400,0,0,texture_image=8
+Effect/ImageData/SkillPerfectAim,2,12376,0,0,texture_image=2
+Effect/ObjAnimationData/ArrowRage,4,12127,0,0,texture_image=2; model_mesh=1; config_data_text=1
+savedata/Alfa,7,10446,0,0,config_data_text=7
+Effect/ImageData/Power,3,10372,0,0,texture_image=3
+image/Sinimage/Items/ItemInfoBox,9,9612,0,0,texture_image=9
+game/images/NewGUI/type,9,9456,0,0,texture_image=9
+Effect/ImageData/SkillMechanicBomb,3,9384,0,0,texture_image=3
+image/Sinimage/AssaEffect/Windy,3,9384,0,0,texture_image=3
+image/Sinimage/Inter/Button,4,8544,0,0,texture_image=4
+image/Sinimage/AssaEffect/Stune,2,8280,0,0,texture_image=2
+image/Sinimage/Effect/stun,2,8280,0,0,texture_image=2
+Effect/ImageData/SkillUp1,1,8236,0,0,texture_image=1
+Effect/ObjAnimationData/Missile,2,8156,0,0,texture_image=1; model_mesh=1
+game/images/ChatBox,18,8078,0,0,texture_image=18
+Effect/ObjAnimationData/WindArrow,3,7990,0,0,texture_image=1; config_data_text=1; model_mesh=1
+image/Sinimage/AssaEffect/Piercing,2,7452,0,0,texture_image=1; model_mesh=1
+image/Sinimage/skill/ShortKey,8,6592,0,0,texture_image=8
+image/Sinimage/AssaEffect/HolyR/P,2,6256,0,0,texture_image=2
+Effect/ImageData,79,5924,0,0,config_data_text=79
+game/Party/Members,6,4680,0,0,texture_image=6
+image/Sinimage/Inter/sinGage,4,4524,0,0,texture_image=4
+Effect/ImageData/Light1,1,4140,0,0,texture_image=1
+Effect/ImageData/Tail1,1,4140,0,0,texture_image=1
+image/Sinimage/Items,4,3808,0,0,texture_image=4
+image/Sinimage/WarpGateDoc,13,3807,0,0,other=13
+Effect/ImageData/Bandi1,3,3204,0,0,texture_image=3
+image/party/party_DATA/HaQuest,31,2907,0,0,other=31
+savedata/priston,2,2868,0,0,config_data_text=2
+game/global,1,2612,0,0,texture_image=1
+image/party/party_DATA/LevelQuest,23,1556,0,0,other=23
+image/Sinimage/Items/aging,1,1552,0,0,texture_image=1
+image/clanImage/Mark1,2,1548,0,0,texture_image=2
+savedata/lovepk,1,1434,0,0,config_data_text=1
+image/party/party_DATA/Quest3,13,1178,0,0,other=13
+image/Sinimage/Event,2,1160,0,0,other=2
+image/Sinimage/Inter/flash,2,1152,0,0,texture_image=2
+image/party/party_DATA/Quest4,10,836,0,0,other=10
+image/clanImage/Mark,1,774,0,0,texture_image=1
+image/party/party_DATA,4,707,0,0,other=4
+image/party/party_DATA/RepeatQuest,3,268,0,0,other=3
+game/font,1,27,0,0,config_data_text=1
+game/update,1,4,0,0,binary_data=1

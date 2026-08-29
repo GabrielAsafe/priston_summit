@@ -1,0 +1,41 @@
+{
+  "tool": "PT_MULTILAYER_TEXLINK_UV_WITNESS_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/CtmbC008.smd",
+  "source_sha256": "be2a42146e1e1587da87587955b807304ffee3b221ab39a719e7097e40df72e2",
+  "output_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4525F8E0DA9B/multilayer_texlink_roundtrip/multilayer_uv_witness.blend",
+  "delta_u_requested": 0.03125,
+  "edits": [
+    {
+      "object_index": 0,
+      "object_name": "CtmbC008",
+      "blender_object_name": "CtmbC008",
+      "face_index": 0,
+      "material_id": 0,
+      "stage_index": 1,
+      "corner": 0,
+      "source_vertex": 14,
+      "loop_index": 0,
+      "component": "u",
+      "before": 0.31369999051094055,
+      "after": 0.34494999051094055,
+      "before_uv": [
+        0.31369999051094055,
+        0.36000001430511475
+      ],
+      "after_uv": [
+        0.34494999051094055,
+        0.36000001430511475
+      ],
+      "delta_u": 0.03125,
+      "profile": "DUPLICATE_TEXTURE_DEFAULT_STAGE",
+      "stage1_form_state": 0,
+      "stage1_form_state_name": "FS_NONE",
+      "stage1_stage_state": 0,
+      "stage1_stage_state_name": "DEFAULT",
+      "texlink_index": 1,
+      "texlink_file_offset": 71752
+    }
+  ],
+  "client_modified": false,
+  "check": "PASS"
+}

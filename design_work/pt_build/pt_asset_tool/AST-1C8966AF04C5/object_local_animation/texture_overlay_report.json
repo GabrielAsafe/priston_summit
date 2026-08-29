@@ -1,0 +1,27 @@
+{
+  "asset_id": "AST-1C8966AF04C5",
+  "asset": "Effect/AssaEffect/Skill3Mesh/dancesword.smd",
+  "texture_count": 1,
+  "serialized_texture_count": 1,
+  "usage_semantics": "FACE_REFERENCED_MATERIALS",
+  "usage_error": null,
+  "used_material_ids": [
+    1
+  ],
+  "required_texture_count": 1,
+  "historical_unused_texture_count": 0,
+  "required_failures": 1,
+  "historical_unused_failures": 0,
+  "ready": false,
+  "overlay": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-1C8966AF04C5/object_local_animation/texture_overlay_client",
+  "entries": [
+    {
+      "logical": "Effect/AssaEffect/Skill3Mesh/itws213.TGA",
+      "status": "MISSING",
+      "required_by_faces": true,
+      "affects_ready": true,
+      "error": "FileNotFoundError: client asset not found: Effect/AssaEffect/Skill3Mesh/itws213.TGA"
+    }
+  ],
+  "client_modified": false
+}

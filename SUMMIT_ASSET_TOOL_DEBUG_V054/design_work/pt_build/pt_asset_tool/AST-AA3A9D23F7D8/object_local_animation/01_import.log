@@ -1,0 +1,27 @@
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+MATERIAL 0: tex='' resolved=None prepared=None decode=NOT_FOUND load=NO_TEXTURE
+MATERIAL 1: tex='field\\Fall_Game\\oLightingMap_03.bmp' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-AA3A9D23F7D8/object_local_animation/texture_overlay_client/field/Fall_Game/oLightingMap_03.bmp' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-AA3A9D23F7D8/object_local_animation/texture_overlay_client/field/Fall_Game/oLightingMap_03.bmp' decode=BMP_STANDARD load=LOADED
+MATERIAL 2: tex='field\\Fall_Game\\b990a34f.tga' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-AA3A9D23F7D8/object_local_animation/texture_overlay_client/field/Fall_Game/b990a34f.tga' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-AA3A9D23F7D8/object_local_animation/texture_overlay_client/field/Fall_Game/b990a34f.tga' decode=AS_IS load=LOADED
+MATERIAL 3: tex='field\\Fall_Game\\623cf5fc.tga' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-AA3A9D23F7D8/object_local_animation/texture_overlay_client/field/Fall_Game/623cf5fc.tga' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-AA3A9D23F7D8/object_local_animation/texture_overlay_client/field/Fall_Game/623cf5fc.tga' decode=AS_IS load=LOADED
+MATERIAL 4: tex='field\\Fall_Game\\237092b9.tga' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-AA3A9D23F7D8/object_local_animation/texture_overlay_client/field/Fall_Game/237092b9.tga' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-AA3A9D23F7D8/object_local_animation/texture_overlay_client/field/Fall_Game/237092b9.tga' decode=AS_IS load=LOADED
+MATERIAL 5: tex='field\\Fall_Game\\89ec37dd.tga' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-AA3A9D23F7D8/object_local_animation/texture_overlay_client/field/Fall_Game/89ec37dd.tga' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-AA3A9D23F7D8/object_local_animation/texture_overlay_client/field/Fall_Game/89ec37dd.tga' decode=AS_IS load=LOADED
+Info: Saved as "pristine_import.blend"
+PT_SMD_BLENDER_IMPORT_V4_GENERIC
+pt_import_mode=STATIC_NO_PHYSIQUE
+objects=5
+materials=6
+vertices=594
+faces=758
+uv_faces=758
+armature_bones=0
+mesh_armature_modifiers=0
+visible_objects=['Object02', 'Object03', 'Object04', 'Object05', 'Object06']
+hidden_objects=[]
+blend=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-AA3A9D23F7D8/object_local_animation/pristine_import.blend
+client_modified=False
+generic_import_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

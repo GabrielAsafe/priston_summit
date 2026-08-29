@@ -1,0 +1,57 @@
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+/home/gabriel/Área de Trabalho/summit/design_work/history_py/pt_smd_blender_import_v3_static_armature.py:998: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+PT_SMD_BLENDER_IMPORT_V3_STATIC_ARMATURE
+SMD        : /home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4525F8E0DA9B/multilayer_texlink_roundtrip/rebuilt_texlink_roundtrip.smd
+Skeleton   : /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/m4.smb
+Model info : /home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/Cc008.inx
+LOD        : high
+Client root: /home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4525F8E0DA9B/multilayer_texlink_roundtrip/texture_overlay_client
+Output     : /home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4525F8E0DA9B/multilayer_texlink_roundtrip/rebuilt_import.blend
+Objects    : 1
+Materials  : 1
+Skeleton objects: 58
+Bind vertices   : 773
+Bind bones used : 25
+Bind bbox       : x=[-11.352,11.387] y=[-4.992,8.059] z=[0.000,41.273]
+MATERIAL 0: tex='char\\tmABCD\\Ava_M_01.tga' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4525F8E0DA9B/multilayer_texlink_roundtrip/texture_overlay_client/char/tmABCD/Ava_M_01.tga' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4525F8E0DA9B/multilayer_texlink_roundtrip/texture_overlay_client/char/tmABCD/Ava_M_01.tga' decode=AS_IS load=LOADED
+OBJECT CtmbC008: V=773 F=1384 UV=1384 layers=2 groups=25
+
+STATIC_ARMATURE
+bones=58
+roots=['Bip01']
+mesh_armature_modifiers=1
+primary_axis_histogram={'X': 40, 'Z': 11, 'Y': 7}
+tail_rule_histogram={'Bip01 Pelvis': 1, '<leaf-parent-extension>': 18, 'Bip01 Spine': 1, 'Bip01 Spine1': 1, 'Bip01 Neck': 1, 'Bip01 Head': 1, 'Bip01 Ponytail1': 1, 'Bip01 Ponytail11': 1, 'Bip01 Ponytail12': 1, '<branch-average>': 4, 'Bip01 L Forearm': 1, 'Bip01 L Hand': 1, 'Bip01 L Finger01': 1, 'Bip01 L Finger11': 1, 'Bip01 L Finger21': 1, 'Bip01 bbong02': 1, 'Bip01 bbong03': 1, 'Bip01 R Forearm': 1, 'Bip01 R Hand': 1, 'Bip01 R Finger01': 1, 'Bip01 R Finger11': 1, 'Bip01 R Finger21': 1, 'Bip01 bbong05': 1, 'Bip01 bbong06': 1, 'Bip01 L Calf': 1, 'Bip01 L Foot': 1, 'Bip01 L Toe0': 1, 'Bip01 R Calf': 1, 'Bip01 R Foot': 1, 'Bip01 R Toe0': 1, 'Bip01 Tail1': 1, 'Bip01 Tail2': 1, 'Bip01 Tailba2': 1, 'Bip01 Tailba3': 1, 'Bip weapon02': 1, 'Bip in02': 1, 'Bip in03': 1, 'Bip in04': 1}
+
+INX_MODEL_GROUPS
+high: count=1 active=['CtmbC008']
+default: count=0 active=[]
+low: count=0 active=[]
+selected_lod=high
+visible_objects=['CtmbC008']
+hidden_objects=[]
+Info: Saved as "rebuilt_import.blend"
+SUMMARY
+objects=1
+materials=1
+vertices=773
+faces=1384
+uv_faces=1384
+bind_vertices=773
+bind_bones_used=25
+model_info=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/Cc008.inx
+lod=high
+visible_count=1
+visible_objects=['CtmbC008']
+hidden_count=0
+armature_bones=58
+armature_roots=['Bip01']
+mesh_armature_modifiers=1
+blend=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4525F8E0DA9B/multilayer_texlink_roundtrip/rebuilt_import.blend
+static_armature_import_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

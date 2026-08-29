@@ -1,0 +1,8 @@
+created_at=2026-08-26T16:46:41+01:00
+client_target=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC01.smd
+backup=/home/gabriel/Área de Trabalho/summit/design_work/client_backups/C01_high_topology_v1/before_change_20260826_164641_275179366/MfbC01.smd
+size=290997
+sha256=30b8352d18074fe82982b67b7e670934505d182751ec7529284e614ae5b132d9
+replacement=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/C01_topology/MfbC01_high_patch_v1.smd
+replacement_size=291765
+replacement_sha256=474d9e22f36af0732f4e20d1c72f01b64960658b92d8cac2899c6fa5b54b17b8

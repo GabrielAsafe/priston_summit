@@ -1,0 +1,29 @@
+{
+  "tool": "PT_CHARACTER_ARTIST_PIPELINE_V2_1",
+  "pipeline_check": "PASS",
+  "profile": "/home/gabriel/Área de Trabalho/summit/design_work/profiles/pt_character_profile_pikeman_c01_m4_v1.json",
+  "profile_id": "pikeman_c01_m4",
+  "object": "TbmC03",
+  "lod": "default",
+  "artist_master": "/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_m4/geometry/C002_TbmC03_free_topology_visual_g3_v1_3.blend",
+  "artist_master_sha256": "c8819aa6b9e55d2bbdf3ac5da9f978b6fe8e241b71e03d4d1ae3a9f007168803",
+  "artist_master_overwritten": false,
+  "normalized_copy": "/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_TbmC03_free_topology_visual_g3_v1_3_game_normalized.blend",
+  "game_copy_used": "/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_TbmC03_free_topology_visual_g3_v1_3_game_normalized.blend",
+  "test_force_ambiguous_used": false,
+  "normalize_unresolved_before_test_force": 0,
+  "validator_report": "/home/gabriel/Área de Trabalho/summit/design_work/logs/characters/pikeman_c01_m4/TbmC03/TmbC01_TbmC03_free_topology_visual_g3_v1_3_validation.json",
+  "export_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m4/TbmC03/TmbC01_TbmC03_free_topology_visual_g3_v1_3_export_report.json",
+  "smd": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m4/TbmC03/TmbC01_TbmC03_free_topology_visual_g3_v1_3.smd",
+  "smd_size": 187696,
+  "smd_sha256": "728f1dbc0319b9bdb114ee986aca44ff8c4671b09a6c7b4271ba6022177ab4f4",
+  "reimport_blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_TbmC03_free_topology_visual_g3_v1_3_reimport.blend",
+  "output_counts": {
+    "vertices": 75,
+    "faces": 124,
+    "texlinks": 124
+  },
+  "runtime_installed": false,
+  "roundtrip_published": false,
+  "timestamp": "2026-08-27T12:47:03.085978+00:00"
+}

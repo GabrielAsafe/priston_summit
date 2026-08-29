@@ -1,0 +1,28 @@
+{
+  "asset_id": "AST-21DEF886F2A7",
+  "asset": "char/monster/Monbagon/Monbagon-C.smd",
+  "texture_count": 3,
+  "ready": true,
+  "overlay": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-21DEF886F2A7/animation_diagnostic/texture_overlay_client",
+  "entries": [
+    {
+      "logical": "Char/Monster/Monbagon/Monbagon-up.bmp",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/Monbagon/Monbagon-up.bmp",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-21DEF886F2A7/animation_diagnostic/texture_overlay_client/Char/Monster/Monbagon/Monbagon-up.bmp",
+      "status": "LINK_READY"
+    },
+    {
+      "logical": "Char/Monster/Monbagon/Monbagon-uph.bmp",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/Monbagon/Monbagon-uph.bmp",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-21DEF886F2A7/animation_diagnostic/texture_overlay_client/Char/Monster/Monbagon/Monbagon-uph.bmp",
+      "status": "LINK_READY"
+    },
+    {
+      "logical": "Char/Monster/Monbagon/bagon-w02.bmp",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/Monbagon/bagon-w02.bmp",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-21DEF886F2A7/animation_diagnostic/texture_overlay_client/Char/Monster/Monbagon/bagon-w02.bmp",
+      "status": "LINK_READY"
+    }
+  ],
+  "client_modified": false
+}

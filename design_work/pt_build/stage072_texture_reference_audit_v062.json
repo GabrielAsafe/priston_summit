@@ -1,0 +1,3251 @@
+{
+  "format": "PT_STAGE072_TEXTURE_REFERENCE_AUDIT_V2",
+  "status": "PASS",
+  "candidate_files_expected": 63,
+  "physical_files_audited": 63,
+  "scan_errors": [],
+  "face_material_scoped_texture_reference_occurrences": 13942,
+  "unique_face_material_scoped_texture_references": 4799,
+  "exact_present_unique_texture_references": 4754,
+  "exact_missing_unique_texture_references": 45,
+  "runtime_alias_present_unique_texture_references": 8,
+  "serialized_invalid_unique_texture_references": 5,
+  "client_missing_unique_texture_references": 32,
+  "unclassified_unique_texture_references": 0,
+  "files_with_exact_missing_references": 16,
+  "files_with_runtime_alias_references": 2,
+  "files_with_serialized_invalid_references": 6,
+  "files_with_missing_client_textures": 11,
+  "present_unique_texture_references": 4754,
+  "missing_unique_texture_references": 45,
+  "missing_references": [
+    {
+      "logical": "field/castle/",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "SERIALIZED_DIRECTORY_ONLY",
+      "shape": "SERIALIZED_DIRECTORY_ONLY",
+      "runtime_alias": null,
+      "files": [
+        "Field/castle/castle.smd",
+        "Field/castle/Castle_.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/castle/castle.smd",
+          "material_id": 17
+        },
+        {
+          "file": "Field/castle/Castle_.smd",
+          "material_id": 18
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 1
+        }
+      ],
+      "face_uses_sum": 36,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "field/dungeon/Ì",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "SERIALIZED_MSVC_DEBUG_FILL_0XCC",
+      "shape": "SERIALIZED_MSVC_DEBUG_FILL_0XCC",
+      "runtime_alias": null,
+      "files": [
+        "Field/dungeon/dun-5.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/dungeon/dun-5.smd",
+          "material_id": 153
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 391,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "field/forest/07-g9 copy.bmp",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "Field/forest/fore-3.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/forest/fore-3.smd",
+          "material_id": 89
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "field/forest/dam_jang copy.tga",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "Field/forest/fore-3.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/forest/fore-3.smd",
+          "material_id": 91
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 10,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "field/forest/pan copy.bmp",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "Field/forest/fore-3.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/forest/fore-3.smd",
+          "material_id": 106
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 36,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "field/forever-fall/Ì",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "SERIALIZED_MSVC_DEBUG_FILL_0XCC",
+      "shape": "SERIALIZED_MSVC_DEBUG_FILL_0XCC",
+      "runtime_alias": null,
+      "files": [
+        "Field/forever-fall/pilai.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/forever-fall/pilai.smd",
+          "material_id": 337
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 573,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "field/Iron/i02-10 copy.bmp",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "Field/Iron/iron-1.smd",
+        "Field/Iron/iron-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Iron/iron-1.smd",
+          "material_id": 58
+        },
+        {
+          "file": "Field/Iron/iron-2.smd",
+          "material_id": 56
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 619,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "Field/Losttemple/FOA_PORTAL_01.tga",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "StartImage/Opening/Map/stage.smd"
+      ],
+      "materials": [
+        {
+          "file": "StartImage/Opening/Map/stage.smd",
+          "material_id": 3
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 880,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "Field/Losttemple/FOA_PORTAL_02.tga",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "StartImage/Opening/Map/stage.smd"
+      ],
+      "materials": [
+        {
+          "file": "StartImage/Opening/Map/stage.smd",
+          "material_id": 2
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 320,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "Field/mar/_Ow01-2.bmp",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "Field/mar/ruin-arenaSF.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/mar/ruin-arenaSF.smd",
+          "material_id": 130
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 256,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "field/quest/fw.bmp",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "Field/Quest/quest_IV.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Quest/quest_IV.smd",
+          "material_id": 6
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 67,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "field/Ricarten/tem_wall04.bmp",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "Field/Ricarten/village-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Ricarten/village-2.smd",
+          "material_id": 173
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 1,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "field/Ruin/WA01.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "Field/Ruin/ruin-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Ruin/ruin-2.smd",
+          "material_id": 292
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 1345,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "field/Sod/",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "SERIALIZED_DIRECTORY_ONLY",
+      "shape": "SERIALIZED_DIRECTORY_ONLY",
+      "runtime_alias": null,
+      "files": [
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 174
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 126,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "field/Sod/001.bmp",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "Field/Sod/sod-1.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 15
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 8,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "field/Sod/f-flame_0.tga ",
+      "exact_present": false,
+      "runtime_present": true,
+      "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+      "shape": "SERIALIZED_TRAILING_ASCII_SPACE",
+      "runtime_alias": "field/Sod/f-flame_0.tga",
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": [
+        "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_0.tga"
+      ]
+    },
+    {
+      "logical": "field/Sod/f-flame_1.tga ",
+      "exact_present": false,
+      "runtime_present": true,
+      "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+      "shape": "SERIALIZED_TRAILING_ASCII_SPACE",
+      "runtime_alias": "field/Sod/f-flame_1.tga",
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 1
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": [
+        "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_1.tga"
+      ]
+    },
+    {
+      "logical": "field/Sod/f-flame_2.tga ",
+      "exact_present": false,
+      "runtime_present": true,
+      "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+      "shape": "SERIALIZED_TRAILING_ASCII_SPACE",
+      "runtime_alias": "field/Sod/f-flame_2.tga",
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 2
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": [
+        "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_2.tga"
+      ]
+    },
+    {
+      "logical": "field/Sod/f-flame_3.tga ",
+      "exact_present": false,
+      "runtime_present": true,
+      "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+      "shape": "SERIALIZED_TRAILING_ASCII_SPACE",
+      "runtime_alias": "field/Sod/f-flame_3.tga",
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 3
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": [
+        "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_3.tga"
+      ]
+    },
+    {
+      "logical": "field/Sod/f-flame_4.tga ",
+      "exact_present": false,
+      "runtime_present": true,
+      "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+      "shape": "SERIALIZED_TRAILING_ASCII_SPACE",
+      "runtime_alias": "field/Sod/f-flame_4.tga",
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 4
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": [
+        "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_4.tga"
+      ]
+    },
+    {
+      "logical": "field/Sod/f-flame_5.tga ",
+      "exact_present": false,
+      "runtime_present": true,
+      "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+      "shape": "SERIALIZED_TRAILING_ASCII_SPACE",
+      "runtime_alias": "field/Sod/f-flame_5.tga",
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 5
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": [
+        "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_5.tga"
+      ]
+    },
+    {
+      "logical": "field/Sod/f-flame_6.tga ",
+      "exact_present": false,
+      "runtime_present": true,
+      "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+      "shape": "SERIALIZED_TRAILING_ASCII_SPACE",
+      "runtime_alias": "field/Sod/f-flame_6.tga",
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 6
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": [
+        "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_6.tga"
+      ]
+    },
+    {
+      "logical": "field/Sod/f-flame_7.tga ",
+      "exact_present": false,
+      "runtime_present": true,
+      "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+      "shape": "SERIALIZED_TRAILING_ASCII_SPACE",
+      "runtime_alias": "field/Sod/f-flame_7.tga",
+      "files": [
+        "Field/Sod/sod-1.smd",
+        "Field/Sod/sod-2.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 24
+        },
+        {
+          "file": "Field/Sod/sod-2.smd",
+          "material_id": 96
+        }
+      ],
+      "slots": [
+        {
+          "kind": "ANIM",
+          "slot": 7
+        }
+      ],
+      "face_uses_sum": 16,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": [
+        "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_7.tga"
+      ]
+    },
+    {
+      "logical": "field/Sod/Ì",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "SERIALIZED_MSVC_DEBUG_FILL_0XCC",
+      "shape": "SERIALIZED_MSVC_DEBUG_FILL_0XCC",
+      "runtime_alias": null,
+      "files": [
+        "Field/Sod/sod-1.smd"
+      ],
+      "materials": [
+        {
+          "file": "Field/Sod/sod-1.smd",
+          "material_id": 102
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 126,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/bg_CHECK.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 6
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 102,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/cs_01.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 3
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 10,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/cs_ground_line.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 7
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 280,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/cs_ground_linetop.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 16
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 306,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/doma_body01.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 27
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 304,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/doma_face01.TGA",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 25
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 308,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/doma_tag01.bmp",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 28
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 38,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/eff_j_2.bmp",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "game/maps/chrselect/scene.smd"
+      ],
+      "materials": [
+        {
+          "file": "game/maps/chrselect/scene.smd",
+          "material_id": 8
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 1
+        }
+      ],
+      "face_uses_sum": 332,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/fg_1_04.bmp",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "game/maps/chrselect/scene.smd"
+      ],
+      "materials": [
+        {
+          "file": "game/maps/chrselect/scene.smd",
+          "material_id": 167
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 148,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/line_light03.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 5
+        },
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 18
+        },
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 19
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 1
+        }
+      ],
+      "face_uses_sum": 270,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/new_mask01.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 19
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 90,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/new_mask02.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 18
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 90,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/new_mask03.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 5
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 90,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/op_line.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 12
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 976,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/opda.TGA",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 10
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 144,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/se_poza.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 8
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 1830,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/se_poza03.TGA",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 4
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 112,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/se_roundpoza.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 9
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 42,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/se_roundpoza01.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 11
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 40,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/sky_c.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 13
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 80,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    },
+    {
+      "logical": "game/maps/chrselect/wo.BMP",
+      "exact_present": false,
+      "runtime_present": false,
+      "classification": "CLIENT_FILE_MISSING",
+      "shape": "FILE_LIKE_REFERENCE",
+      "runtime_alias": null,
+      "files": [
+        "cSelect/select.smd"
+      ],
+      "materials": [
+        {
+          "file": "cSelect/select.smd",
+          "material_id": 22
+        }
+      ],
+      "slots": [
+        {
+          "kind": "BASE",
+          "slot": 0
+        }
+      ],
+      "face_uses_sum": 268,
+      "resolved_paths": [],
+      "runtime_alias_resolved_paths": []
+    }
+  ],
+  "texture_presence_complete_candidate": false,
+  "texture_reference_classification_complete_candidate": true,
+  "transport_policy": {
+    "exact_client_file": "use exact serialized logical path",
+    "trailing_ascii_space_alias": "allowed only when removing trailing ASCII space from the final component resolves an exact physical client file; SMD string remains unchanged",
+    "serialized_directory_or_0xCC_name": "preserve serialized reference; report invalid historical texture name; structural transport may continue with incomplete material preview",
+    "missing_client_file": "preserve logical texture reference and allow structural Blender transport; preview material remains incomplete",
+    "decode_or_load_error_for_existing_file": "fail closed",
+    "substitution_by_filename_guess": "forbidden",
+    "client_modified": false
+  },
+  "sourcecode_runtime_note": "smMATERIAL_GROUP::LoadFile preserves serialized texture strings; texture creation can fail without aborting material-group load. V0.6.2 additionally distinguishes literal malformed names and a narrowly proven trailing-space path alias from genuine client-file absence.",
+  "bundle": "/home/gabriel/Área de Trabalho/summit/design_work/PT_STAGE072_TEXTURE_REFERENCE_REPS_V062_TRUE.zip",
+  "rows": [
+    {
+      "relative_path": "cSelect/Login.smd",
+      "texture_reference_occurrences": 22,
+      "exact_present_reference_occurrences": 22,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "cSelect/select.smd",
+      "texture_reference_occurrences": 22,
+      "exact_present_reference_occurrences": 1,
+      "exact_missing_reference_occurrences": 21,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 21,
+      "exact_missing_references": [
+        {
+          "material_id": 3,
+          "face_uses": 10,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/cs_01.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 4,
+          "face_uses": 112,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/se_poza03.TGA",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 5,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/new_mask03.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 5,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "game/maps/chrselect/line_light03.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 6,
+          "face_uses": 102,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/bg_CHECK.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 7,
+          "face_uses": 280,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/cs_ground_line.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 8,
+          "face_uses": 1830,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/se_poza.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 9,
+          "face_uses": 42,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/se_roundpoza.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 10,
+          "face_uses": 144,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/opda.TGA",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 11,
+          "face_uses": 40,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/se_roundpoza01.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 12,
+          "face_uses": 976,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/op_line.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 13,
+          "face_uses": 80,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/sky_c.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 16,
+          "face_uses": 306,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/cs_ground_linetop.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 18,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/new_mask02.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 18,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "game/maps/chrselect/line_light03.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 19,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/new_mask01.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 19,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "game/maps/chrselect/line_light03.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 22,
+          "face_uses": 268,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/wo.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 25,
+          "face_uses": 308,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/doma_face01.TGA",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 27,
+          "face_uses": 304,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/doma_body01.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 28,
+          "face_uses": 38,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/doma_tag01.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": [
+        {
+          "material_id": 3,
+          "face_uses": 10,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/cs_01.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 4,
+          "face_uses": 112,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/se_poza03.TGA",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 5,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/new_mask03.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 5,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "game/maps/chrselect/line_light03.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 6,
+          "face_uses": 102,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/bg_CHECK.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 7,
+          "face_uses": 280,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/cs_ground_line.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 8,
+          "face_uses": 1830,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/se_poza.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 9,
+          "face_uses": 42,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/se_roundpoza.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 10,
+          "face_uses": 144,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/opda.TGA",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 11,
+          "face_uses": 40,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/se_roundpoza01.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 12,
+          "face_uses": 976,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/op_line.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 13,
+          "face_uses": 80,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/sky_c.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 16,
+          "face_uses": 306,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/cs_ground_linetop.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 18,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/new_mask02.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 18,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "game/maps/chrselect/line_light03.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 19,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/new_mask01.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 19,
+          "face_uses": 90,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "game/maps/chrselect/line_light03.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 22,
+          "face_uses": 268,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/wo.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 25,
+          "face_uses": 308,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/doma_face01.TGA",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 27,
+          "face_uses": 304,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/doma_body01.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 28,
+          "face_uses": 38,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/doma_tag01.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/AncientW/ancientW.smd",
+      "texture_reference_occurrences": 260,
+      "exact_present_reference_occurrences": 260,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Boss/Boss.smd",
+      "texture_reference_occurrences": 51,
+      "exact_present_reference_occurrences": 51,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Boss/dark_boss.smd",
+      "texture_reference_occurrences": 65,
+      "exact_present_reference_occurrences": 65,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/castle/castle.smd",
+      "texture_reference_occurrences": 276,
+      "exact_present_reference_occurrences": 275,
+      "exact_missing_reference_occurrences": 1,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 1,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [
+        {
+          "material_id": 17,
+          "face_uses": 18,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "field/castle/",
+          "texture_type": 0,
+          "classification": "SERIALIZED_DIRECTORY_ONLY",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [
+        {
+          "material_id": 17,
+          "face_uses": 18,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "field/castle/",
+          "texture_type": 0,
+          "classification": "SERIALIZED_DIRECTORY_ONLY"
+        }
+      ],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/castle/Castle_.smd",
+      "texture_reference_occurrences": 277,
+      "exact_present_reference_occurrences": 276,
+      "exact_missing_reference_occurrences": 1,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 1,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [
+        {
+          "material_id": 18,
+          "face_uses": 18,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "field/Castle/",
+          "texture_type": 0,
+          "classification": "SERIALIZED_DIRECTORY_ONLY",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [
+        {
+          "material_id": 18,
+          "face_uses": 18,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "field/Castle/",
+          "texture_type": 0,
+          "classification": "SERIALIZED_DIRECTORY_ONLY"
+        }
+      ],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/cave/Dcave.smd",
+      "texture_reference_occurrences": 78,
+      "exact_present_reference_occurrences": 78,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/cave/Mcave.smd",
+      "texture_reference_occurrences": 54,
+      "exact_present_reference_occurrences": 54,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/cave/Tcave.smd",
+      "texture_reference_occurrences": 104,
+      "exact_present_reference_occurrences": 104,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/desert/De-1.smd",
+      "texture_reference_occurrences": 67,
+      "exact_present_reference_occurrences": 67,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/desert/De-2.smd",
+      "texture_reference_occurrences": 64,
+      "exact_present_reference_occurrences": 64,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/desert/De-3.smd",
+      "texture_reference_occurrences": 76,
+      "exact_present_reference_occurrences": 76,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/desert/De-4.smd",
+      "texture_reference_occurrences": 64,
+      "exact_present_reference_occurrences": 64,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/dungeon/dun-1.smd",
+      "texture_reference_occurrences": 341,
+      "exact_present_reference_occurrences": 341,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/dungeon/dun-2.smd",
+      "texture_reference_occurrences": 385,
+      "exact_present_reference_occurrences": 385,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/dungeon/dun-3.smd",
+      "texture_reference_occurrences": 417,
+      "exact_present_reference_occurrences": 417,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/dungeon/dun-4.smd",
+      "texture_reference_occurrences": 645,
+      "exact_present_reference_occurrences": 645,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/dungeon/dun-5.smd",
+      "texture_reference_occurrences": 817,
+      "exact_present_reference_occurrences": 816,
+      "exact_missing_reference_occurrences": 1,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 1,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [
+        {
+          "material_id": 153,
+          "face_uses": 391,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/dungeon/Ì",
+          "texture_type": 0,
+          "classification": "SERIALIZED_MSVC_DEBUG_FILL_0XCC",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [
+        {
+          "material_id": 153,
+          "face_uses": 391,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/dungeon/Ì",
+          "texture_type": 0,
+          "classification": "SERIALIZED_MSVC_DEBUG_FILL_0XCC"
+        }
+      ],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/dungeon/Dun-6a.smd",
+      "texture_reference_occurrences": 363,
+      "exact_present_reference_occurrences": 363,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/endless/dun-7.smd",
+      "texture_reference_occurrences": 539,
+      "exact_present_reference_occurrences": 539,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/endless/dun-8.smd",
+      "texture_reference_occurrences": 677,
+      "exact_present_reference_occurrences": 677,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/endless/dun-9.smd",
+      "texture_reference_occurrences": 459,
+      "exact_present_reference_occurrences": 459,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Fall_Game/fall_game.smd",
+      "texture_reference_occurrences": 264,
+      "exact_present_reference_occurrences": 264,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/forest/fore-1.smd",
+      "texture_reference_occurrences": 256,
+      "exact_present_reference_occurrences": 256,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/forest/fore-2.smd",
+      "texture_reference_occurrences": 332,
+      "exact_present_reference_occurrences": 332,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/forest/fore-3.smd",
+      "texture_reference_occurrences": 315,
+      "exact_present_reference_occurrences": 312,
+      "exact_missing_reference_occurrences": 3,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 3,
+      "exact_missing_references": [
+        {
+          "material_id": 89,
+          "face_uses": 16,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/forest/07-g9 copy.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 91,
+          "face_uses": 10,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/forest/dam_jang copy.tga",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 106,
+          "face_uses": 36,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/forest/pan copy.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": [
+        {
+          "material_id": 89,
+          "face_uses": 16,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/forest/07-g9 copy.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 91,
+          "face_uses": 10,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/forest/dam_jang copy.tga",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 106,
+          "face_uses": 36,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/forest/pan copy.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/forest/village-1.smd",
+      "texture_reference_occurrences": 271,
+      "exact_present_reference_occurrences": 271,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/forever-fall/forever-fall-01.smd",
+      "texture_reference_occurrences": 205,
+      "exact_present_reference_occurrences": 205,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/forever-fall/forever-fall-02.smd",
+      "texture_reference_occurrences": 206,
+      "exact_present_reference_occurrences": 206,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/forever-fall/forever-fall-03.smd",
+      "texture_reference_occurrences": 184,
+      "exact_present_reference_occurrences": 184,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/forever-fall/forever-fall-04.smd",
+      "texture_reference_occurrences": 120,
+      "exact_present_reference_occurrences": 120,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/forever-fall/pilai.smd",
+      "texture_reference_occurrences": 243,
+      "exact_present_reference_occurrences": 242,
+      "exact_missing_reference_occurrences": 1,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 1,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [
+        {
+          "material_id": 337,
+          "face_uses": 573,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/forever-fall/Ì",
+          "texture_type": 0,
+          "classification": "SERIALIZED_MSVC_DEBUG_FILL_0XCC",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [
+        {
+          "material_id": 337,
+          "face_uses": 573,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/forever-fall/Ì",
+          "texture_type": 0,
+          "classification": "SERIALIZED_MSVC_DEBUG_FILL_0XCC"
+        }
+      ],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Greedy/Greedy.smd",
+      "texture_reference_occurrences": 220,
+      "exact_present_reference_occurrences": 220,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Ice/ice1.smd",
+      "texture_reference_occurrences": 204,
+      "exact_present_reference_occurrences": 204,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Ice/ice_2.smd",
+      "texture_reference_occurrences": 233,
+      "exact_present_reference_occurrences": 233,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Ice/ice_ura.smd",
+      "texture_reference_occurrences": 129,
+      "exact_present_reference_occurrences": 129,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Iron/iron-1.smd",
+      "texture_reference_occurrences": 95,
+      "exact_present_reference_occurrences": 94,
+      "exact_missing_reference_occurrences": 1,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 1,
+      "exact_missing_references": [
+        {
+          "material_id": 58,
+          "face_uses": 56,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Iron/i02-10 copy.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": [
+        {
+          "material_id": 58,
+          "face_uses": 56,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Iron/i02-10 copy.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Iron/iron-2.smd",
+      "texture_reference_occurrences": 86,
+      "exact_present_reference_occurrences": 85,
+      "exact_missing_reference_occurrences": 1,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 1,
+      "exact_missing_references": [
+        {
+          "material_id": 56,
+          "face_uses": 563,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Iron/i02-10 copy.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": [
+        {
+          "material_id": 56,
+          "face_uses": 563,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Iron/i02-10 copy.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Iron/iron3.smd",
+      "texture_reference_occurrences": 94,
+      "exact_present_reference_occurrences": 94,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Lost/lost.smd",
+      "texture_reference_occurrences": 223,
+      "exact_present_reference_occurrences": 223,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Lost/lost3.smd",
+      "texture_reference_occurrences": 186,
+      "exact_present_reference_occurrences": 186,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Lost/lostisland.smd",
+      "texture_reference_occurrences": 223,
+      "exact_present_reference_occurrences": 223,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Losttemple/lost_temple.smd",
+      "texture_reference_occurrences": 160,
+      "exact_present_reference_occurrences": 160,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/mar/ruin-arenaSF.smd",
+      "texture_reference_occurrences": 154,
+      "exact_present_reference_occurrences": 153,
+      "exact_missing_reference_occurrences": 1,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 1,
+      "exact_missing_references": [
+        {
+          "material_id": 130,
+          "face_uses": 256,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "Field/mar/_Ow01-2.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": [
+        {
+          "material_id": 130,
+          "face_uses": 256,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "Field/mar/_Ow01-2.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Mine/mine-1.smd",
+      "texture_reference_occurrences": 159,
+      "exact_present_reference_occurrences": 159,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Quest/quest_IV.smd",
+      "texture_reference_occurrences": 44,
+      "exact_present_reference_occurrences": 43,
+      "exact_missing_reference_occurrences": 1,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 1,
+      "exact_missing_references": [
+        {
+          "material_id": 6,
+          "face_uses": 67,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/quest/fw.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": [
+        {
+          "material_id": 6,
+          "face_uses": 67,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/quest/fw.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Ricarten/village-2.smd",
+      "texture_reference_occurrences": 275,
+      "exact_present_reference_occurrences": 274,
+      "exact_missing_reference_occurrences": 1,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 1,
+      "exact_missing_references": [
+        {
+          "material_id": 173,
+          "face_uses": 1,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Ricarten/tem_wall04.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": [
+        {
+          "material_id": 173,
+          "face_uses": 1,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Ricarten/tem_wall04.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Room/office.smd",
+      "texture_reference_occurrences": 37,
+      "exact_present_reference_occurrences": 37,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Ruin/ruin-1.smd",
+      "texture_reference_occurrences": 393,
+      "exact_present_reference_occurrences": 393,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Ruin/ruin-2.smd",
+      "texture_reference_occurrences": 389,
+      "exact_present_reference_occurrences": 388,
+      "exact_missing_reference_occurrences": 1,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 1,
+      "exact_missing_references": [
+        {
+          "material_id": 292,
+          "face_uses": 1345,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Ruin/WA01.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": [
+        {
+          "material_id": 292,
+          "face_uses": 1345,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Ruin/WA01.BMP",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Ruin/ruin-3.smd",
+      "texture_reference_occurrences": 387,
+      "exact_present_reference_occurrences": 387,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Ruin/ruin-4.smd",
+      "texture_reference_occurrences": 418,
+      "exact_present_reference_occurrences": 418,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/SeaA/SeaA.smd",
+      "texture_reference_occurrences": 111,
+      "exact_present_reference_occurrences": 111,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/SeaA/Stemple.smd",
+      "texture_reference_occurrences": 76,
+      "exact_present_reference_occurrences": 76,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Slab/Slab.smd",
+      "texture_reference_occurrences": 344,
+      "exact_present_reference_occurrences": 344,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/Sod/sod-1.smd",
+      "texture_reference_occurrences": 227,
+      "exact_present_reference_occurrences": 217,
+      "exact_missing_reference_occurrences": 10,
+      "runtime_alias_reference_occurrences": 8,
+      "serialized_invalid_reference_occurrences": 1,
+      "client_missing_reference_occurrences": 1,
+      "exact_missing_references": [
+        {
+          "material_id": 15,
+          "face_uses": 8,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Sod/001.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 0,
+          "logical": "field/Sod/f-flame_0.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_0.tga"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 1,
+          "logical": "field/Sod/f-flame_1.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_1.tga"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 2,
+          "logical": "field/Sod/f-flame_2.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_2.tga"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 3,
+          "logical": "field/Sod/f-flame_3.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_3.tga"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 4,
+          "logical": "field/Sod/f-flame_4.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_4.tga"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 5,
+          "logical": "field/Sod/f-flame_5.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_5.tga"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 6,
+          "logical": "field/Sod/f-flame_6.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_6.tga"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 7,
+          "logical": "field/Sod/f-flame_7.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_7.tga"
+        },
+        {
+          "material_id": 102,
+          "face_uses": 126,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Sod/Ì",
+          "texture_type": 0,
+          "classification": "SERIALIZED_MSVC_DEBUG_FILL_0XCC",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 0,
+          "logical": "field/Sod/f-flame_0.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_0.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_0.tga"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 1,
+          "logical": "field/Sod/f-flame_1.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_1.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_1.tga"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 2,
+          "logical": "field/Sod/f-flame_2.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_2.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_2.tga"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 3,
+          "logical": "field/Sod/f-flame_3.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_3.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_3.tga"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 4,
+          "logical": "field/Sod/f-flame_4.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_4.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_4.tga"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 5,
+          "logical": "field/Sod/f-flame_5.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_5.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_5.tga"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 6,
+          "logical": "field/Sod/f-flame_6.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_6.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_6.tga"
+        },
+        {
+          "material_id": 24,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 7,
+          "logical": "field/Sod/f-flame_7.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_7.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_7.tga"
+        }
+      ],
+      "serialized_invalid_references": [
+        {
+          "material_id": 102,
+          "face_uses": 126,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Sod/Ì",
+          "texture_type": 0,
+          "classification": "SERIALIZED_MSVC_DEBUG_FILL_0XCC"
+        }
+      ],
+      "client_missing_references": [
+        {
+          "material_id": 15,
+          "face_uses": 8,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Sod/001.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        }
+      ]
+    },
+    {
+      "relative_path": "Field/Sod/sod-2.smd",
+      "texture_reference_occurrences": 225,
+      "exact_present_reference_occurrences": 216,
+      "exact_missing_reference_occurrences": 9,
+      "runtime_alias_reference_occurrences": 8,
+      "serialized_invalid_reference_occurrences": 1,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 0,
+          "logical": "field/Sod/f-flame_0.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_0.tga"
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 1,
+          "logical": "field/Sod/f-flame_1.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_1.tga"
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 2,
+          "logical": "field/Sod/f-flame_2.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_2.tga"
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 3,
+          "logical": "field/Sod/f-flame_3.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_3.tga"
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 4,
+          "logical": "field/Sod/f-flame_4.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_4.tga"
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 5,
+          "logical": "field/Sod/f-flame_5.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_5.tga"
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 6,
+          "logical": "field/Sod/f-flame_6.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_6.tga"
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 7,
+          "logical": "field/Sod/f-flame_7.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_7.tga"
+        },
+        {
+          "material_id": 174,
+          "face_uses": 126,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Sod/",
+          "texture_type": 0,
+          "classification": "SERIALIZED_DIRECTORY_ONLY",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 0,
+          "logical": "field/Sod/f-flame_0.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_0.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_0.tga"
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 1,
+          "logical": "field/Sod/f-flame_1.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_1.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_1.tga"
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 2,
+          "logical": "field/Sod/f-flame_2.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_2.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_2.tga"
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 3,
+          "logical": "field/Sod/f-flame_3.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_3.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_3.tga"
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 4,
+          "logical": "field/Sod/f-flame_4.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_4.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_4.tga"
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 5,
+          "logical": "field/Sod/f-flame_5.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_5.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_5.tga"
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 6,
+          "logical": "field/Sod/f-flame_6.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_6.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_6.tga"
+        },
+        {
+          "material_id": 96,
+          "face_uses": 8,
+          "kind": "ANIM",
+          "slot": 7,
+          "logical": "field/Sod/f-flame_7.tga ",
+          "texture_type": 1,
+          "classification": "RUNTIME_TRAILING_SPACE_ALIAS_PRESENT",
+          "runtime_alias": "field/Sod/f-flame_7.tga",
+          "resolved": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/Field/Sod/f-flame_7.tga"
+        }
+      ],
+      "serialized_invalid_references": [
+        {
+          "material_id": 174,
+          "face_uses": 126,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "field/Sod/",
+          "texture_type": 0,
+          "classification": "SERIALIZED_DIRECTORY_ONLY"
+        }
+      ],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "Field/swamp/swamp.smd",
+      "texture_reference_occurrences": 81,
+      "exact_present_reference_occurrences": 81,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "game/maps/chrselect/login.smd",
+      "texture_reference_occurrences": 37,
+      "exact_present_reference_occurrences": 37,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "game/maps/chrselect/scene.smd",
+      "texture_reference_occurrences": 64,
+      "exact_present_reference_occurrences": 62,
+      "exact_missing_reference_occurrences": 2,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 2,
+      "exact_missing_references": [
+        {
+          "material_id": 8,
+          "face_uses": 332,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "game/maps/chrselect/eff_j_2.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 167,
+          "face_uses": 148,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/fg_1_04.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": [
+        {
+          "material_id": 8,
+          "face_uses": 332,
+          "kind": "BASE",
+          "slot": 1,
+          "logical": "game/maps/chrselect/eff_j_2.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 167,
+          "face_uses": 148,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "game/maps/chrselect/fg_1_04.bmp",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        }
+      ]
+    },
+    {
+      "relative_path": "game/maps/login/login.smd",
+      "texture_reference_occurrences": 32,
+      "exact_present_reference_occurrences": 32,
+      "exact_missing_reference_occurrences": 0,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 0,
+      "exact_missing_references": [],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": []
+    },
+    {
+      "relative_path": "StartImage/Opening/Map/stage.smd",
+      "texture_reference_occurrences": 117,
+      "exact_present_reference_occurrences": 115,
+      "exact_missing_reference_occurrences": 2,
+      "runtime_alias_reference_occurrences": 0,
+      "serialized_invalid_reference_occurrences": 0,
+      "client_missing_reference_occurrences": 2,
+      "exact_missing_references": [
+        {
+          "material_id": 2,
+          "face_uses": 320,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "Field/Losttemple/FOA_PORTAL_02.tga",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        },
+        {
+          "material_id": 3,
+          "face_uses": 880,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "Field/Losttemple/FOA_PORTAL_01.tga",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING",
+          "runtime_alias": null
+        }
+      ],
+      "runtime_alias_references": [],
+      "serialized_invalid_references": [],
+      "client_missing_references": [
+        {
+          "material_id": 2,
+          "face_uses": 320,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "Field/Losttemple/FOA_PORTAL_02.tga",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        },
+        {
+          "material_id": 3,
+          "face_uses": 880,
+          "kind": "BASE",
+          "slot": 0,
+          "logical": "Field/Losttemple/FOA_PORTAL_01.tga",
+          "texture_type": 0,
+          "classification": "CLIENT_FILE_MISSING"
+        }
+      ]
+    }
+  ]
+}

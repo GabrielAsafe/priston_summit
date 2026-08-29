@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=c620f8b067216b7209a3a29f803caaf5487886afc215dfc08513b572658d04b8
+output_sha256=f4279e9e0565d0df211ea7473cc8e1133f44cbbe6df66218921a66aecdbf8509
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/root_skeleton_discovery/physique_subset_v1/texture_overlay_client/char/tmABCD/arc_gap_001_02.TGA
+format=TGA_PRISTON_HEADER18_FULL18
+client_modified=False
+tga_decode_check=PASS

@@ -1,0 +1,40 @@
+{
+  "asset_id": "AST-BB191BCA1340",
+  "asset": "Field/castle/crystal_ani01.smd",
+  "family": "SMD_MODEL_062_STATIC",
+  "mode": "STATIC_OBJECT_LOCAL",
+  "object": "crystal_ani01",
+  "channels_serialized": [
+    "ROT",
+    "POS"
+  ],
+  "channels_animated": [
+    "ROT",
+    "POS"
+  ],
+  "nRot": 201,
+  "nPos": 198,
+  "nScale": 0,
+  "reference_engine_frame": 0,
+  "max_engine_frame": 32000,
+  "preview_frame_start": 1,
+  "preview_frame_end": 201,
+  "preview_fps": 30,
+  "preview_reference": "FIRST_KEY_NORMALIZED_OBJECT_LOCAL",
+  "rotation_semantics": "ACCUMULATED_TM_PREV_ROT",
+  "source_rot_key_semantics": "INCREMENTAL_LOCAL_QUATERNION",
+  "interpolation": "LINEAR_SAMPLED_EVERY_SOURCE_TICK",
+  "timing_status": "PREVIEW_NOT_RUNTIME_SPEED_CERTIFIED",
+  "rotation_cumulative_max_error": 6.881101599631734e-08,
+  "source_semantics": "PASS",
+  "animation_visual": "PASS",
+  "texture_material_visual": "PASS",
+  "visual_object_local_asset": "PASS",
+  "texture_prepare": "PASS",
+  "preview_blend": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/object_local_preview.blend",
+  "source_sha256": "4d4a7b673e83ce7209d86b86a17124db5f4590ceb07ec3f71762ce55a4f145eb",
+  "artifact_sha256": "85c85bffa091eb0e3be11ea5a9699cfdf99c36e5ca7370d1866a214c1f267a98",
+  "certification_id": "CERT-9D83578E83FF",
+  "automatic_certification_id": "CERT-8807755B2333",
+  "client_modified": false
+}

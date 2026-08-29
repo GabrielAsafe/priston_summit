@@ -1,0 +1,56 @@
+{
+  "tool": "PT_CHARACTER_STRUCTURAL_GATE_V2",
+  "smd": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/Mfh-B01d.smd",
+  "smd_sha256": "48657d162a180fa3ca5adaccedb1902c04252228871b9527c8b11f74afb69290",
+  "smb": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/m2.smb",
+  "smb_sha256": "edf5418abe5ea640e88e14c8b895f889462e68f0e552fe67e97e33d8bb299f40",
+  "object_count": 3,
+  "bind_vertices": 1609,
+  "bind_bones_used": 4,
+  "skeleton_bones": 67,
+  "smb_trailing_bytes": 0,
+  "missing_bind_bones": [],
+  "parent_error_count": 0,
+  "objects": [
+    {
+      "name": "MfhB01d_H",
+      "vertices": 541,
+      "faces": 799,
+      "texlinks": 799,
+      "physique": true,
+      "bind_bones": [
+        "Bip-hair01",
+        "Bip-hair02",
+        "Bip-hair03",
+        "Bip01 Head"
+      ]
+    },
+    {
+      "name": "MfhB01d_M",
+      "vertices": 528,
+      "faces": 785,
+      "texlinks": 785,
+      "physique": true,
+      "bind_bones": [
+        "Bip-hair01",
+        "Bip-hair02",
+        "Bip-hair03",
+        "Bip01 Head"
+      ]
+    },
+    {
+      "name": "MfhB01d_L",
+      "vertices": 540,
+      "faces": 791,
+      "texlinks": 791,
+      "physique": true,
+      "bind_bones": [
+        "Bip-hair01",
+        "Bip-hair02",
+        "Bip01 Head"
+      ]
+    }
+  ],
+  "client_modified": false,
+  "check": "PASS"
+}

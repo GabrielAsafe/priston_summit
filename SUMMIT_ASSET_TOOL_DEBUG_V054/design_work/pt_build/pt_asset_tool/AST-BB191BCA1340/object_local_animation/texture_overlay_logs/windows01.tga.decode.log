@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=a5c963f8eeaab8b44747149656ae247a5910900f99a22349a6281c233ca48bf5
+output_sha256=a5c963f8eeaab8b44747149656ae247a5910900f99a22349a6281c233ca48bf5
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/texture_overlay_client/field/castle/windows01.tga
+format=TGA_STANDARD
+client_modified=False
+tga_decode_check=PASS

@@ -1,0 +1,22 @@
+00:00.015  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.015  color_management | Using fallback mode for management
+MATERIAL 0: tex='Image\\sinImage\\Items\\DropItem\\Itwa104.bmp' resolved='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-C71E841986E6/static_roundtrip/texture_overlay_client/Image/sinImage/Items/DropItem/Itwa104.bmp' prepared='/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-C71E841986E6/static_roundtrip/_pt_smd_texture_cache/Itwa104.10cea95175.decoded.bmp' decode=BMP_PRISTON_PREFIX14_64x128_24bpp load=LOADED
+Info: Saved as "pristine_import.blend"
+PT_SMD_BLENDER_IMPORT_V4_GENERIC
+pt_import_mode=STATIC_NO_PHYSIQUE
+objects=1
+materials=1
+vertices=86
+faces=146
+uv_faces=146
+armature_bones=0
+mesh_armature_modifiers=0
+visible_objects=['wa104']
+hidden_objects=[]
+blend=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-C71E841986E6/static_roundtrip/pristine_import.blend
+client_modified=False
+generic_import_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

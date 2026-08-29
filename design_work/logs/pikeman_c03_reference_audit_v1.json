@@ -1,0 +1,533 @@
+{
+  "tool": "PT_PIKEMAN_C03_REFERENCE_AUDIT_V1",
+  "client_root": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente",
+  "tokens": [
+    "TbhC03",
+    "TbmC03",
+    "TblC03",
+    "TmbC03.bmp"
+  ],
+  "files_scanned": 25996,
+  "bytes_scanned": 4299919370,
+  "matched_file_count": 8,
+  "references_by_token": {
+    "TbhC03": [
+      {
+        "path": "char/tmABCD/C002.inx",
+        "category": "INX",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/C003.inx",
+        "category": "INX",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/C004.inx",
+        "category": "INX",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/C005.inx",
+        "category": "INX",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/TmbC01.smd",
+        "category": "SMD",
+        "count": 2
+      },
+      {
+        "path": "char/tmABCD/tmbC03.smd",
+        "category": "SMD",
+        "count": 2
+      }
+    ],
+    "TbmC03": [
+      {
+        "path": "char/tmABCD/C002.inx",
+        "category": "INX",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/C003.inx",
+        "category": "INX",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/C004.inx",
+        "category": "INX",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/C005.inx",
+        "category": "INX",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/TmbC01.smd",
+        "category": "SMD",
+        "count": 2
+      },
+      {
+        "path": "char/tmABCD/tmbC03.smd",
+        "category": "SMD",
+        "count": 2
+      }
+    ],
+    "TblC03": [
+      {
+        "path": "char/tmABCD/C002.inx",
+        "category": "INX",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/C003.inx",
+        "category": "INX",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/C004.inx",
+        "category": "INX",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/C005.inx",
+        "category": "INX",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/TmbC01.smd",
+        "category": "SMD",
+        "count": 2
+      },
+      {
+        "path": "char/tmABCD/tmbC03.smd",
+        "category": "SMD",
+        "count": 2
+      }
+    ],
+    "TmbC03.bmp": [
+      {
+        "path": "char/tmABCD/TmbC01.smd",
+        "category": "SMD",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/TmbC03b.smd",
+        "category": "SMD",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/tmbC03.smd",
+        "category": "SMD",
+        "count": 1
+      },
+      {
+        "path": "char/tmABCD/tmbC06.smd",
+        "category": "SMD",
+        "count": 1
+      }
+    ]
+  },
+  "external_node_references": [
+    {
+      "token": "TbhC03",
+      "path": "char/tmABCD/C002.inx",
+      "category": "INX",
+      "count": 1
+    },
+    {
+      "token": "TbhC03",
+      "path": "char/tmABCD/C003.inx",
+      "category": "INX",
+      "count": 1
+    },
+    {
+      "token": "TbhC03",
+      "path": "char/tmABCD/C004.inx",
+      "category": "INX",
+      "count": 1
+    },
+    {
+      "token": "TbhC03",
+      "path": "char/tmABCD/C005.inx",
+      "category": "INX",
+      "count": 1
+    },
+    {
+      "token": "TbhC03",
+      "path": "char/tmABCD/tmbC03.smd",
+      "category": "SMD",
+      "count": 2
+    },
+    {
+      "token": "TbmC03",
+      "path": "char/tmABCD/C002.inx",
+      "category": "INX",
+      "count": 1
+    },
+    {
+      "token": "TbmC03",
+      "path": "char/tmABCD/C003.inx",
+      "category": "INX",
+      "count": 1
+    },
+    {
+      "token": "TbmC03",
+      "path": "char/tmABCD/C004.inx",
+      "category": "INX",
+      "count": 1
+    },
+    {
+      "token": "TbmC03",
+      "path": "char/tmABCD/C005.inx",
+      "category": "INX",
+      "count": 1
+    },
+    {
+      "token": "TbmC03",
+      "path": "char/tmABCD/tmbC03.smd",
+      "category": "SMD",
+      "count": 2
+    },
+    {
+      "token": "TblC03",
+      "path": "char/tmABCD/C002.inx",
+      "category": "INX",
+      "count": 1
+    },
+    {
+      "token": "TblC03",
+      "path": "char/tmABCD/C003.inx",
+      "category": "INX",
+      "count": 1
+    },
+    {
+      "token": "TblC03",
+      "path": "char/tmABCD/C004.inx",
+      "category": "INX",
+      "count": 1
+    },
+    {
+      "token": "TblC03",
+      "path": "char/tmABCD/C005.inx",
+      "category": "INX",
+      "count": 1
+    },
+    {
+      "token": "TblC03",
+      "path": "char/tmABCD/tmbC03.smd",
+      "category": "SMD",
+      "count": 2
+    }
+  ],
+  "external_texture_references": [
+    {
+      "path": "char/tmABCD/TmbC03b.smd",
+      "category": "SMD",
+      "count": 1
+    },
+    {
+      "path": "char/tmABCD/tmbC03.smd",
+      "category": "SMD",
+      "count": 1
+    },
+    {
+      "path": "char/tmABCD/tmbC06.smd",
+      "category": "SMD",
+      "count": 1
+    }
+  ],
+  "node_reference_status": "EXTERNAL_REFERENCES_FOUND",
+  "matched_files": [
+    {
+      "path": "char/tmABCD/C002.inx",
+      "category": "INX",
+      "size": 95268,
+      "sha256": "87b46a0c9c394126cb86ade5e9cd1fe4f89fbcadf73089cc4d16f4358c0853b4",
+      "hits": {
+        "TbhC03": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 196,
+              "context": "................................................................TbhC03..........TahC01..............................................Tb"
+            }
+          ]
+        },
+        "TbmC03": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 264,
+              "context": "03..........TahC01..............................................TbmC03..........TamC01..............................................Tb"
+            }
+          ]
+        },
+        "TblC03": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 332,
+              "context": "03..........TamC01..............................................TblC03..........TalC01................................................"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "char/tmABCD/C003.inx",
+      "category": "INX",
+      "size": 95268,
+      "sha256": "c437cd37e4d2b1578fbd47aaa9c0698bd2344e785fa8d4e0225d55a0bc37ed29",
+      "hits": {
+        "TbhC03": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 196,
+              "context": "................................................................TbhC03..........TahC03..........TlhC03..............................Tb"
+            }
+          ]
+        },
+        "TbmC03": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 264,
+              "context": "03..........TahC03..........TlhC03..............................TbmC03..........TamC03..........TlmC03..............................Tb"
+            }
+          ]
+        },
+        "TblC03": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 332,
+              "context": "03..........TamC03..........TlmC03..............................TblC03..........TalC03..........TllC03................................"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "char/tmABCD/C004.inx",
+      "category": "INX",
+      "size": 95268,
+      "sha256": "8933f264f03cc07f1564e1d12be74e32d9266e475cdc80914337f969e5d81b75",
+      "hits": {
+        "TbhC03": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 196,
+              "context": "................................................................TbhC03..........TahC06..........TshC03..........TlhC06..............Tb"
+            }
+          ]
+        },
+        "TbmC03": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 264,
+              "context": "03..........TahC06..........TshC03..........TlhC06..............TbmC03..........TamC06..........TsmC03..........TlmC06..............Tb"
+            }
+          ]
+        },
+        "TblC03": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 332,
+              "context": "03..........TamC06..........TsmC03..........TlmC06..............TblC03..........TalC06..........TslC03..........TllC06................"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "char/tmABCD/C005.inx",
+      "category": "INX",
+      "size": 95268,
+      "sha256": "d3fa3531817676471a4300afc431804b4ce97cdf73152a049a62d49b34fad02d",
+      "hits": {
+        "TbhC03": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 196,
+              "context": "................................................................TbhC03..........TahC06..........TshC06..........TlhC06..............Tb"
+            }
+          ]
+        },
+        "TbmC03": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 264,
+              "context": "03..........TahC06..........TshC06..........TlhC06..............TbmC03..........TamC06..........TsmC06..........TlmC06..............Tb"
+            }
+          ]
+        },
+        "TblC03": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 332,
+              "context": "03..........TamC06..........TsmC06..........TlmC06..............TblC03..........TalC06..........TslC06..........TllC06................"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "char/tmABCD/TmbC01.smd",
+      "category": "SMD",
+      "size": 187504,
+      "sha256": "9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c",
+      "hits": {
+        "TbhC03": {
+          "count": 2,
+          "samples": [
+            {
+              "offset": 556,
+              "context": "................................................................TbhC03..........................<E......TbmC03........................"
+            },
+            {
+              "offset": 1872,
+              "context": "................................................................TbhC03................................................................"
+            }
+          ]
+        },
+        "TbmC03": {
+          "count": 2,
+          "samples": [
+            {
+              "offset": 596,
+              "context": "........................TbhC03..........................<E......TbmC03..........................T9...K..TblC03........................"
+            },
+            {
+              "offset": 19596,
+              "context": "................................................................TbmC03................................................................"
+            }
+          ]
+        },
+        "TblC03": {
+          "count": 2,
+          "samples": [
+            {
+              "offset": 636,
+              "context": "................<E......TbmC03..........................T9...K..TblC03...........................1..4...TblC01........................"
+            },
+            {
+              "offset": 34272,
+              "context": "................................................................TblC03................................................................"
+            }
+          ]
+        },
+        "TmbC03.bmp": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 1340,
+              "context": "....................................................char\\tmABCD\\TmbC03.bmp................................................................"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "char/tmABCD/TmbC03b.smd",
+      "category": "SMD",
+      "size": 109152,
+      "sha256": "7d0c64be79e4d493fe06f9270e7db82cfad31f126ea62b0f19b39c10b4da3562",
+      "hits": {
+        "TmbC03.bmp": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 1060,
+              "context": "....................................................char\\tmABCD\\TmbC03.bmp..DCB..9m+.Wm+..m+.Ln+................................=(........"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "char/tmABCD/tmbC03.smd",
+      "category": "SMD",
+      "size": 306326,
+      "sha256": "8ad3cfeff68260723b3ab85e65285859025ab2a20a2bd50cbd062ef31a584a36",
+      "hits": {
+        "TbhC03": {
+          "count": 2,
+          "samples": [
+            {
+              "offset": 556,
+              "context": "................................................................TbhC03...........................E......TbmC03........................"
+            },
+            {
+              "offset": 2906,
+              "context": "................................................................TbhC03................................................................"
+            }
+          ]
+        },
+        "TbmC03": {
+          "count": 2,
+          "samples": [
+            {
+              "offset": 596,
+              "context": "........................TbhC03...........................E......TbmC03...........................:..rP..TblC03........................"
+            },
+            {
+              "offset": 20766,
+              "context": "................................................................TbmC03................................................................"
+            }
+          ]
+        },
+        "TblC03": {
+          "count": 2,
+          "samples": [
+            {
+              "offset": 636,
+              "context": ".................E......TbmC03...........................:..rP..TblC03...........................2..F...TlmC03........................"
+            },
+            {
+              "offset": 35826,
+              "context": "................................................................TblC03................................................................"
+            }
+          ]
+        },
+        "TmbC03.bmp": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 2024,
+              "context": "....................................................char\\tmABCD\\TmbC03.bmp...........M...................................................."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "char/tmABCD/tmbC06.smd",
+      "category": "SMD",
+      "size": 405304,
+      "sha256": "d45a508143fba056910c457b0e2d88c529e182a9b5aa3971e86b12e56dd7bbf3",
+      "hits": {
+        "TmbC03.bmp": {
+          "count": 1,
+          "samples": [
+            {
+              "offset": 2588,
+              "context": "....................................................char\\tmABCD\\TmbC03.bmp...........M...................................................."
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "client_modified": false,
+  "c03_reference_audit_check": "PASS"
+}

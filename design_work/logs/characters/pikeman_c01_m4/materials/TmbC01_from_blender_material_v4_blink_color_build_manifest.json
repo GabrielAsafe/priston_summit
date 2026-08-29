@@ -1,0 +1,113 @@
+{
+  "tool": "PT_SMD_MATERIAL_BUILD_FROM_BLENDER_V4",
+  "roundtrip_target": "char/tmABCD/TmbC01.smd",
+  "source": "/home/gabriel/Área de Trabalho/summit/design_work/TmbC01.smd",
+  "source_sha256": "9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c",
+  "source_size": 187504,
+  "artifact": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m4/materials/TmbC01_from_blender_material_v4_blink_color.smd",
+  "artifact_sha256": "3d992ed899a9ae1f1a6aa725a5761ad42e05e65ce91cb24edc2eb0ee2f0de041",
+  "artifact_size": 187504,
+  "requested_changes": [
+    {
+      "material_id": 0,
+      "old_self_illum": 0.0,
+      "new_self_illum": 0.0,
+      "selfillum_offset": 1152,
+      "old_two_side": 0,
+      "new_two_side": 0,
+      "twoside_offset": 1128,
+      "old_blend_type": 1,
+      "new_blend_type": 1,
+      "blendtype_offset": 1120,
+      "old_diffuse": [
+        0.5370000004768372,
+        0.19599999487400055,
+        0.19599999487400055
+      ],
+      "new_diffuse": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "diffuse_offset": 1136,
+      "old_use_state": 0,
+      "new_use_state": 16384,
+      "usestate_offset": 1168,
+      "old_wind_mesh_bottom": 0,
+      "new_wind_mesh_bottom": 9,
+      "wind_offset": 1176,
+      "blink_color_enabled": true,
+      "blink_time": 1
+    },
+    {
+      "material_id": 1,
+      "old_self_illum": 0.0,
+      "new_self_illum": 0.0,
+      "selfillum_offset": 1500,
+      "old_two_side": 0,
+      "new_two_side": 0,
+      "twoside_offset": 1476,
+      "old_blend_type": 1,
+      "new_blend_type": 1,
+      "blendtype_offset": 1468,
+      "old_diffuse": [
+        0.6510000228881836,
+        0.28200000524520874,
+        0.23499999940395355
+      ],
+      "new_diffuse": [
+        0.6510000228881836,
+        0.28200000524520874,
+        0.23499999940395355
+      ],
+      "diffuse_offset": 1484,
+      "old_use_state": 0,
+      "new_use_state": 0,
+      "usestate_offset": 1516,
+      "old_wind_mesh_bottom": 0,
+      "new_wind_mesh_bottom": 0,
+      "wind_offset": 1524,
+      "blink_color_enabled": false,
+      "blink_time": 1
+    }
+  ],
+  "allowed_fields": [
+    "SelfIllum",
+    "TwoSide",
+    "BlendType",
+    "Diffuse",
+    "UseState.BLINK_COLOR_BIT",
+    "WindMeshBottom"
+  ],
+  "blink_bit_hex": "0x4000",
+  "blink_time_mapping": {
+    "1": 9,
+    "2": 10,
+    "3": 11,
+    "4": 12,
+    "5": 13,
+    "6": 14,
+    "7": 15,
+    "8": 16
+  },
+  "changed_byte_count": 13,
+  "changed_offsets": [
+    1136,
+    1137,
+    1138,
+    1140,
+    1141,
+    1142,
+    1143,
+    1144,
+    1145,
+    1146,
+    1147,
+    1169,
+    1176
+  ],
+  "outside_allowed_field_changed_byte_count": 0,
+  "file_size_preserved": true,
+  "runtime_installed": false,
+  "build_check": "PASS"
+}

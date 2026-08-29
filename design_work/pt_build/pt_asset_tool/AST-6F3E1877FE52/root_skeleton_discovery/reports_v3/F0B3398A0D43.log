@@ -1,0 +1,9 @@
+PT_CHARACTER_STRUCTURAL_GATE_V2
+objects=1
+bind_vertices=880
+bind_bones_used=29
+skeleton_bones=38
+smb_trailing_bytes=32040
+missing_bind_bones=['Bip01 L Finger01', 'Bip01 L Finger1', 'Bip01 L Finger11', 'Bip01 L Finger2', 'Bip01 L Finger21', 'Bip01 R Finger01', 'Bip01 R Finger1', 'Bip01 R Finger11', 'Bip01 R Finger2', 'Bip01 R Finger21']
+client_modified=False
+character_structural_gate_check=FAIL

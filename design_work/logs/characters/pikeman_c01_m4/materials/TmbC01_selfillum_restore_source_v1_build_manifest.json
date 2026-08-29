@@ -1,0 +1,16 @@
+{
+  "tool": "PT_PIKEMAN_SELFILLUM_RESTORE_BUILD_V1",
+  "role": "model_material_selfillum_restore",
+  "roundtrip_target": "char/tmABCD/TmbC01.smd",
+  "source": "/home/gabriel/Área de Trabalho/summit/design_work/TmbC01.smd",
+  "source_sha256": "9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c",
+  "source_size": 187504,
+  "artifact": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m4/materials/TmbC01_selfillum_restore_source_v1.smd",
+  "artifact_sha256": "9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c",
+  "artifact_size": 187504,
+  "changed_byte_count": 0,
+  "noop_build": true,
+  "byte_identical_to_registered_source": true,
+  "runtime_installed": false,
+  "build_check": "PASS"
+}

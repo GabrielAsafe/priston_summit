@@ -1,0 +1,273 @@
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.h:24:	int	OpenCoreMonster(smCHAR_INFO *lpCharInfo, int x, int z);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/SvrCaravan.cpp:6://extern int chrMonsterCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/SvrCaravan.cpp:7://extern smCHAR_INFO* chrMonsterList;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/SvrCaravan.cpp:9:extern int chrMonsterCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/SvrCaravan.cpp:10:extern smCHAR_INFO chrMonsterList[300];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/SvrCaravan.cpp:28:	for (int cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/SvrCaravan.cpp:30:		if (lstrcmp(chrMonsterList[cnt].szName, "Caravana") == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/SvrCaravan.cpp:32:			memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/onserver.h:186:	smCHAR_INFO			*Event_lpChrMonster;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:50:extern int chrMonsterCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:51://extern smCHAR_INFO *chrMonsterList;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:52:extern smCHAR_INFO chrMonsterList[CHR_MONSTER_MAX];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:62:	for(int cnt2 = 0; cnt2 < chrMonsterCnt; cnt2++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:65:		if(!hCoreMonster->hCoreMonster1.lpCharInfo && lstrcmpi(hCoreMonster->hCoreMonster1.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:66:			hCoreMonster->hCoreMonster1.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:68:		if(!hCoreMonster->hCoreMonster2.lpCharInfo && lstrcmpi(hCoreMonster->hCoreMonster2.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:69:			hCoreMonster->hCoreMonster2.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:71:		if(!hCoreMonster->hCoreMonster3.lpCharInfo && lstrcmpi(hCoreMonster->hCoreMonster3.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:72:			hCoreMonster->hCoreMonster3.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:74:		if(!hCoreMonster->hCoreMonster4.lpCharInfo && lstrcmpi(hCoreMonster->hCoreMonster4.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:75:			hCoreMonster->hCoreMonster4.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:77:		if(!hCoreMonster->hCoreMonsterBoss.lpCharInfo && lstrcmpi(hCoreMonster->hCoreMonsterBoss.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:78:			hCoreMonster->hCoreMonsterBoss.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/svrEventSpawn.cpp:90:int	rsEVENT_SPAWN::OpenCoreMonster(smCHAR_INFO *lpCharInfo, int x, int z)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:728:smCHAR_INFO	*srCharInfo_HammerMonster[srHAMMER_MONSTER_MAX];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:965:int chrMonsterCnt;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1010:smCHAR_INFO chrMonsterList[CHR_MONSTER_MAX];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1017:smCHAR_INFO	*chrNpcMonsterInfo = 0;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1555:	memset(chrMonsterList, 0, sizeof(chrMonsterList));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1569:	memset(chrMonsterList, 0, sizeof(chrMonsterList));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1933:	chrMonsterCnt = 0;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1935:	//ZeroMemory(chrMonsterList, sizeof(smCHAR_INFO)*CHR_MONSTER_MAX);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1949:			smCharDecode(szFilePath, &chrMonsterList[chrMonsterCnt], &chrMonInfoList[chrMonsterCnt], 0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1952:			chrMonInfoList[chrMonsterCnt].dwAutoCharCode = GetSpeedSum(chrMonsterList[chrMonsterCnt].szName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1957:				chrMonsterList[chrMonsterCnt].Exp *= 4;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1958:				chrMonInfoList[chrMonsterCnt].GetExp *= 4;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1961:			ReformCharForm(&chrMonsterList[chrMonsterCnt]);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1963:			chrMonsterCnt++;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1966:			if(chrMonsterCnt >= CHR_MONSTER_MAX) break; 
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1981:	for (cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1985:		if (chrMonsterList[cnt].szModelName[0])
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1987:			LoadOftenMeshPattern(chrMonsterList[cnt].szModelName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1991:		if (lstrcmp(chrMonsterList[cnt].szName, srEventMonName1) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1993:			chrNpcMonsterInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:1999:			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonster[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2001:				srCristalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2006:			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonsterBoss[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2008:				srCristalMonsterBoss[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2013:			if (lstrcmp(chrMonsterList[cnt].szName, srSkillMonster[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2015:				srSkillMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2020:			if (lstrcmp(chrMonsterList[cnt].szName, srBillingCrystalMonster[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2022:				srBillingCrystalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2027:			if (lstrcmp(chrMonsterList[cnt].szName, srMiroticCristalMonster[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2029:				srMiroticCristalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2034:			if (lstrcmp(chrMonsterList[cnt].szName, srSinteticoCristalMonster[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2036:				srSinteticoCristalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2041:			if (lstrcmp(chrMonsterList[cnt].szName, srGuardiaoCristalMonster[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2043:				srGuardiaoCristalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2049:			if (lstrcmp(chrMonsterList[cnt].szName, srBillingSoloCristal[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2051:				srBillingSoloCristal[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2057:			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonsterEnemy[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2059:				srCristalMonsterEnemy[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2066:			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonsterEnemy2[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2068:				srCristalMonsterEnemy2[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2075:			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonsterEnemy3[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2077:				srCristalMonsterEnemy3[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2084:			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonsterEnemy4[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2086:				srCristalMonsterEnemy4[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2093:			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonsterEnemy5[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2095:				srCristalMonsterEnemy5[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2102:			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonsterEnemy6[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2104:				srCristalMonsterEnemy6[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2111:			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonsterEnemy7[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2113:				srCristalMonsterEnemy7[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2120:			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonsterEnemy8[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2122:				srCristalMonsterEnemy8[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2129:			if (lstrcmp(chrMonsterList[cnt].szName, srCristalMonsterEnemy9[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2131:				srCristalMonsterEnemy9[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2138:			if (lstrcmp(chrMonsterList[cnt].szName, srMarvelCristalMonster[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2140:				srMarvelCristalMonster[cnt2].lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2146:		if (chrMonsterList[cnt].wPlayClass[0] == MONSTER_CLASS_HAMMER)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2149:				srCharInfo_HammerMonster[srHammerMonsterCount++] = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2153:		if (chrMonInfoList[cnt].szName[0] && !chrMonsterList[cnt].szName[0])
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2155:			strcpy_s(chrMonsterList[cnt].szName, chrMonInfoList[cnt].szName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2170:	for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2173:		if(chrMonInfoList[cnt].szName[0] && chrMonsterList[cnt].szName[0])
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:2175:			strcpy_s(chrMonsterList[cnt].szName, chrMonInfoList[cnt].szName);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:3588:smCHAR_INFO *SetMonsterModelRandom(smCHAR_INFO *lpCharInfo)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:3592:	lpInfo = &chrMonsterList[(rand() % chrMonsterCnt)];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:3611:int OpenEventMonster(smCHAR_INFO *lpCharInfo, STG_AREA *lpStgArea)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:3634:		for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:3636:			if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_HOPYKING)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:3638:				memcpy(lpCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:3694:	memcpy(&StgCharInfo.smCharInfo, lpCristalMonster->lpCharInfo, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4113:		memcpy(&StgCharInfo.smCharInfo, lpCristalMonster->lpCharInfo, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4299:		memcpy(&StgCharInfo.smCharInfo, lpCristalMonster->lpCharInfo, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4416:		for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4418:			if(chrMonsterList[cnt].dwCharSoundCode == dwSndCode && (OpenLevel == 0 || OpenLevel == chrMonsterList[cnt].Level))
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4420:				memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4484:			for (cnt = 0; cnt < chrMonsterCnt; cnt++) {
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4485:				if (lstrcmp(chrMonsterList[cnt].szName, szName) == 0) {
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4486:					memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4562:		for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4564:			if(chrMonsterList[cnt].dwCharSoundCode == dwCharSoundCode)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4566:				memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4930:		for(cnt2 = 0; cnt2 < chrMonsterCnt; cnt2++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4933:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster1.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4935:				sHCoreEvent[cnt].hCoreMonster1.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4938:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster2.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4940:				sHCoreEvent[cnt].hCoreMonster2.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4943:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster3.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4945:				sHCoreEvent[cnt].hCoreMonster3.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4948:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster4.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4950:				sHCoreEvent[cnt].hCoreMonster4.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4953:				lstrcmpi(sHCoreEvent[cnt].hCoreMonsterBoss.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4955:				sHCoreEvent[cnt].hCoreMonsterBoss.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4979:		for(cnt2 = 0; cnt2 < chrMonsterCnt; cnt2++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4982:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster1.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4984:				sHCoreEvent[cnt].hCoreMonster1.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4987:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster2.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4989:				sHCoreEvent[cnt].hCoreMonster2.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4992:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster3.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4994:				sHCoreEvent[cnt].hCoreMonster3.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4997:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster4.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:4999:				sHCoreEvent[cnt].hCoreMonster4.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5002:				lstrcmpi(sHCoreEvent[cnt].hCoreMonsterBoss.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5004:				sHCoreEvent[cnt].hCoreMonsterBoss.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5027:		for(cnt2 = 0; cnt2 < chrMonsterCnt; cnt2++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5030:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster1.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5032:				sHCoreEvent[cnt].hCoreMonster1.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5035:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster2.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5037:				sHCoreEvent[cnt].hCoreMonster2.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5040:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster3.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5042:				sHCoreEvent[cnt].hCoreMonster3.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5045:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster4.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5047:				sHCoreEvent[cnt].hCoreMonster4.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5050:				lstrcmpi(sHCoreEvent[cnt].hCoreMonsterBoss.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5052:				sHCoreEvent[cnt].hCoreMonsterBoss.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5125:		for(cnt2 = 0; cnt2 < chrMonsterCnt; cnt2++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5128:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster1.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5130:				sHCoreEvent[cnt].hCoreMonster1.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5133:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster2.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5135:				sHCoreEvent[cnt].hCoreMonster2.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5138:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster3.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5140:				sHCoreEvent[cnt].hCoreMonster3.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5143:				lstrcmpi(sHCoreEvent[cnt].hCoreMonster4.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5145:				sHCoreEvent[cnt].hCoreMonster4.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5148:				lstrcmpi(sHCoreEvent[cnt].hCoreMonsterBoss.szName, chrMonsterList[cnt2].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5150:				sHCoreEvent[cnt].hCoreMonsterBoss.lpCharInfo = &chrMonsterList[cnt2];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5684:				memcpy(&lpStgCharInfo->smCharInfo, hCoreMonsters[0].lpCharInfo, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5688:				memcpy(&lpStgCharInfo->smCharInfo, hCoreMonsters[1].lpCharInfo, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5692:				memcpy(&lpStgCharInfo->smCharInfo, hCoreMonsters[2].lpCharInfo, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:5696:				memcpy(&lpStgCharInfo->smCharInfo, hCoreMonsters[3].lpCharInfo, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:6006:	for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:6009:		if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_RABIE && chrMonsterList[cnt].szName[0] != ' ')
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:6013:				lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:6018:		if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_MUTANTRABIE && chrMonsterList[cnt].wPlayClass[0] == MONSTER_CLASS_BOSS)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:6020:			if(!lpCharInfoBoss && chrMonsterList[cnt].wPlayClass[0] == MONSTER_CLASS_BOSS)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:6022:				lpCharInfoBoss = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:6126:	for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:6129:		if(chrMonsterList[cnt].dwCharSoundCode == MonSndCode && (Level == 0 || chrMonsterList[cnt].Level == Level))
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:6133:				lpCharInfo = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:7109:			smCharDecode(lpFileName, &lpChar->smCharInfo, &lpChar->smMonsterInfo, lpChar->szChatMessage, sizeof(lpChar->szChatMessage));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8098:	if(chrMonsterCnt > 0 && MonsterCount < rsMonsterList.LimitMax &&
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8116:			memcpy(&StgCharInfo.smCharInfo, rsMonsterList.rsMonster[cnt - 1].lpCharInfo, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8137:						memcpy(&StgCharInfo.smCharInfo, Event_lpChrMonster, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8156:									memcpy(&StgCharInfo.smCharInfo, srCharInfo_HammerMonster[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8162:							memcpy(&StgCharInfo.smCharInfo, srCharInfo_HammerMonster[rand() % srHammerMonsterCount], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8173:						for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8175:							if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_NPC_MORIF && chrMonsterList[cnt].Level == 60)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8177:								memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8193:						for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8195:							if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_WORLDCUP)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8197:								memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8211:						for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8213:							if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_NPC_MOLLYWOLF)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8215:								memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8228:						for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8230:							if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_MRGHOST && chrMonsterList[cnt].wPlayClass[0] == MONSTER_CLASS_GHOST)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8232:								memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8245:						for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8247:							if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_HOBGOBLIN && chrMonsterList[cnt].Level == 60)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8249:								memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8262:						for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8264:							if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_RABIE && chrMonsterList[cnt].Level >= 10 && chrMonsterList[cnt].wPlayClass[1])
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8267:								memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8280:						for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8282:							if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_WATERMELON)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8284:								memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8297:						for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8299:							if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_BEBECHICK)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8301:								memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8348:			memcpy(&StgCharInfo.smCharInfo, rsMonsterList.rsMonster[0].lpCharInfo, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8386:						memcpy(&chrAutoPlayer[cnt].smCharInfo, chrNpcMonsterInfo, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8479:						memcpy(&chrAutoPlayer[cnt].smCharInfo, chrNpcMonsterInfo, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:8586:		DecodeOpenMonster(szCharMonsterFile, &rsMonsterList, chrMonsterList, chrMonsterCnt);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10382:	for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10385:			chrMonsterList[cnt].dwCharSoundCode == lpKillMonInfo->dwCharSoundCode)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10388:			memcpy(&smChar.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10393:	if(cnt >= chrMonsterCnt) return FALSE;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10628:			for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10631:				if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_HULK && chrMonsterList[cnt].szName[0] != ' ')
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10635:						if(chrMonsterList[cnt].Level < 80)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10638:							rsCharChanger(lpChar, &chrMonsterList[cnt], &chrMonInfoList[cnt]);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10644:						if(chrMonsterList[cnt].Level >= 80)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10647:							rsCharChanger(lpChar, &chrMonsterList[cnt], &chrMonInfoList[cnt]);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10659:			for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10661:				if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_DEADKINGHOPY && chrMonsterList[cnt].szName[0] != ' ')
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10665:						if(chrMonsterList[cnt].Level >= 108)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10667:							rsCharChanger(lpChar, &chrMonsterList[cnt], &chrMonInfoList[cnt]);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10673:						if(chrMonsterList[cnt].Level >= 108)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10675:							rsCharChanger(lpChar, &chrMonsterList[cnt], &chrMonInfoList[cnt]);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10690:				for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10692:					if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_PAPACHICK && chrMonsterList[cnt].szName[0] != ' ')
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:10694:						rsCharChanger(lpChar, &chrMonsterList[cnt], &chrMonInfoList[cnt]);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:19447:	for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:19449:		if(chrMonsterList[cnt].lpMonInfo->EventCode == lpChar->smMonsterInfo.EventCode &&
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:19450:			chrMonsterList[cnt].lpMonInfo->EventInfo == lpChar->smMonsterInfo.EventInfo &&
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:19451:			lstrcmp(chrMonsterList[cnt].szName, lpChar->smCharInfo.szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:19454:			memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:19594:		for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:19596:			if(chrMonsterList[cnt].lpMonInfo && chrMonsterList[cnt].lpMonInfo->EventCode == EventCode)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:19598:				memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:19600:				lpStgArea = &StageArea[chrMonsterList[cnt].lpMonInfo->EventInfo];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:20058://		memcpy(&StgCharInfo.smCharInfo, lpBossMonster->MasterMonster, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:20067://		memcpy(&StgCharInfo.smCharInfo, lpBossMonster->SlaveMonster, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:20316:		memcpy(&StgCharInfo.smCharInfo, lpBossMonster->MasterMonster, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:20325:		memcpy(&StgCharInfo.smCharInfo, lpBossMonster->SlaveMonster, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:22860:				for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:22862:					if(lstrcmp(chrMonsterList[cnt].szName, szCmdBuff) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:22864:						lpStgArea->Event_lpChrMonster = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:29505:					memcpy(&StgCharInfo.smCharInfo, lpStgArea->rsMonsterList.rsMonster[cnt - 1].lpCharInfo, sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:29512:					for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:29514:						if(lstrcmp(chrMonsterList[cnt].szName, lpTransCharCommand->szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:29516:							memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39769:	for(cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39771:		if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_CASTLE_DOOR)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39773:			lpChar_CastleDoor = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39775:		if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_CASTLE_TOWER_B)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39777:			lpChar_CastleTower_B = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39779:		if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_CASTLE_CRYSTAL_R)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39781:			lpChar_CastleCrystal_R = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39783:		if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_CASTLE_CRYSTAL_G)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39785:			lpChar_CastleCrystal_G = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39787:		if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_CASTLE_CRYSTAL_B)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39789:			lpChar_CastleCrystal_B = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39791:		if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_CASTLE_CRYSTAL_N)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39793:			lpChar_CastleCrystal_N = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39796:		if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_CASTLE_SOLDER_A)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39798:			lpChar_CastleSolder_A = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39800:		if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_CASTLE_SOLDER_B)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39802:			lpChar_CastleSolder_B = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39804:		if(chrMonsterList[cnt].dwCharSoundCode == snCHAR_SOUND_CASTLE_SOLDER_C)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:39806:			lpChar_CastleSolder_C = &chrMonsterList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:42348:	for(int cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:42350:		if(lstrcmp(chrMonsterList[cnt].szName, srOpenKidMonster[mon_Num].szChildMonName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:42368:					memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:42446:	for(int cnt = 0; cnt < chrMonsterCnt; cnt++)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:42448:		if(lstrcmp(chrMonsterList[cnt].szName, srOpenSODCrystalGuardMonster[rand_num].szChildMonName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/Server/OnSever.cpp:42475:								memcpy(&StgCharInfo.smCharInfo, &chrMonsterList[cnt], sizeof(smCHAR_INFO));
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.h:21:int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	*lpMonInfo, char *lpDialogMessage = 0, size_t DialogMessageSize = 0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.h:41:	smCHAR_INFO		*MasterMonster;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.h:42:	smCHAR_INFO		*SlaveMonster;
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.h:154:int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR_INFO *lpCharInfoList, int ListCnt);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/playmain.cpp:1348:	if(smCharDecode(szNpcFileList[NpcPlayCnt], &lpCurPlayer->smCharInfo, 0))
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:3538:int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	*lpMonInfo, char *lpDialogMessage, size_t DialogMessageSize)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:4624:int DecodeOpenMonster(char *szCharFile, rsSTG_MONSTER_LIST *lpStgMonList, smCHAR_INFO *lpCharInfoList, int ListCnt)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:4662:				if(lstrcmp(strBuff, lpCharInfoList[cnt].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:4664:					lpStgMonList->rsMonster[MonCnt].lpCharInfo = &lpCharInfoList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:4687:				if(lstrcmp(strBuff, lpCharInfoList[cnt].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:4689:					lpBossMonster->MasterMonster = &lpCharInfoList[cnt];
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:4697:				if(lstrcmp(strBuff, lpCharInfoList[cnt].szName) == 0)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:4699:					lpBossMonster->SlaveMonster = &lpCharInfoList[cnt];

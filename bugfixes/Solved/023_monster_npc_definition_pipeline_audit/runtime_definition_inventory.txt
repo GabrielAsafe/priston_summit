@@ -1,0 +1,10 @@
+
+######################################################################
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/monster
+######################################################################
+DIRETORIO NAO EXISTE
+
+######################################################################
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/npc
+######################################################################
+DIRETORIO NAO EXISTE

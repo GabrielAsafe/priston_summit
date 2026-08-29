@@ -1,0 +1,5950 @@
+{
+  "tool": "PT_RIGID_SKIN_NORMALIZE_COPY_V1",
+  "status": "REVIEW_REQUIRED",
+  "source_blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/MfbC01_artist_free_mesh_v1.blend",
+  "source_blend_sha256": "4d55a64b7b7987a5fd849e64d3c7ff758dd3cf1afbcf55ba4c03fe6e9ceac817",
+  "output_blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/teste_producao_game_normalized.blend",
+  "object": "MshC01",
+  "mode_sync": {
+    "original_mode": "EDIT",
+    "current_mode": "OBJECT",
+    "edit_mode_synchronized": true
+  },
+  "vertices": 656,
+  "strict_rigid_before": 399,
+  "mixed_before": 257,
+  "empty_before": 0,
+  "preserved_rigid": 399,
+  "auto_resolved": 190,
+  "unresolved": 67,
+  "review_group": "PT_REVIEW_REQUIRED",
+  "policy_histogram": {
+    "ALREADY_RIGID": 399,
+    "TIE_ADJACENT_RIGID_MAJORITY": 40,
+    "TIE_ADJACENT_RIGID_DISTANCE": 30,
+    "TIE_STILL_AMBIGUOUS": 17,
+    "TIE_NO_RIGID_NEIGHBOR": 50,
+    "UNIQUE_MAX_WEIGHT": 120
+  },
+  "chosen_bone_histogram": {
+    "Bip01 Spine1": 99,
+    "Bip01 Head": 13,
+    "Bip01 L Clavicle": 14,
+    "Bip01 L UpperArm": 46,
+    "Bip01 L Forearm": 45,
+    "Bip01 L Finger1": 14,
+    "Bip01 L Finger2": 4,
+    "Bip01 L Finger21": 5,
+    "Bip01 L Finger11": 13,
+    "Bip01 L Hand": 18,
+    "Bip01 L Finger0": 40,
+    "Bip01 L Finger01": 18,
+    "Bip01 R Clavicle": 13,
+    "Bip01 R UpperArm": 67,
+    "Bip01 R Forearm": 48,
+    "Bip01 R Finger1": 19,
+    "Bip01 R Finger2": 7,
+    "Bip01 R Finger21": 2,
+    "Bip01 R Finger11": 13,
+    "Bip01 R Hand": 35,
+    "Bip01 R Finger0": 44,
+    "Bip01 R Finger01": 12
+  },
+  "unresolved_vertices": [
+    {
+      "vertex": 235,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.5
+        ],
+        [
+          "Bip01 L Finger21",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger1",
+          "Bip01 L Finger21"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger21": 1,
+          "Bip01 L Finger1": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Finger21": 0.7848321851170098,
+          "Bip01 L Finger1": 0.7848321851170098
+        }
+      }
+    },
+    {
+      "vertex": 236,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.5
+        ],
+        [
+          "Bip01 L Finger2",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger1",
+          "Bip01 L Finger2"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger2": 1,
+          "Bip01 L Finger1": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Finger2": 0.7903135747055396,
+          "Bip01 L Finger1": 0.7903135747055396
+        }
+      }
+    },
+    {
+      "vertex": 237,
+      "weights_before": [
+        [
+          "Bip01 L Finger2",
+          0.5
+        ],
+        [
+          "Bip01 L Finger21",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger2",
+          "Bip01 L Finger21"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger21": 1,
+          "Bip01 L Finger2": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Finger21": 1.9400203384088177,
+          "Bip01 L Finger2": 1.9400203384088177
+        }
+      }
+    },
+    {
+      "vertex": 239,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.5
+        ],
+        [
+          "Bip01 L Finger11",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger1",
+          "Bip01 L Finger11"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 242,
+      "weights_before": [
+        [
+          "Bip01 L Finger11",
+          0.5
+        ],
+        [
+          "Bip01 L Finger21",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger11",
+          "Bip01 L Finger21"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 244,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.5
+        ],
+        [
+          "Bip01 L Finger11",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger1",
+          "Bip01 L Finger11"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 246,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.5
+        ],
+        [
+          "Bip01 L Finger11",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger1",
+          "Bip01 L Finger11"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 247,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger1",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 248,
+      "weights_before": [
+        [
+          "Bip01 L Finger2",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger2",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 L Hand": 1,
+          "Bip01 L Finger2": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Hand": 2.24738725844532,
+          "Bip01 L Finger2": 2.24738725844532
+        }
+      }
+    },
+    {
+      "vertex": 253,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 254,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Forearm",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 255,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Forearm",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Forearm"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 260,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger1",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 271,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Finger01",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Finger01"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 388,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Finger11",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger1",
+          "Bip01 R Finger11"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 391,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Finger11",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger1",
+          "Bip01 R Finger11"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 392,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Finger11",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger1",
+          "Bip01 R Finger11"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 393,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Finger2",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger1",
+          "Bip01 R Finger2"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 394,
+      "weights_before": [
+        [
+          "Bip01 R Finger11",
+          0.5
+        ],
+        [
+          "Bip01 R Finger2",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger11",
+          "Bip01 R Finger2"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 396,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger1",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 397,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger1",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 401,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Forearm",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 402,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Forearm",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Forearm"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 408,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Forearm",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Forearm"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 409,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Forearm",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 411,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 R Finger0": 1,
+          "Bip01 R Hand": 1
+        },
+        "inverse_distance": {
+          "Bip01 R Finger0": 1.498935403390822,
+          "Bip01 R Hand": 1.498935403390822
+        }
+      }
+    },
+    {
+      "vertex": 412,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Forearm",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 413,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Forearm",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 414,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger1",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 415,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger1",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 416,
+      "weights_before": [
+        [
+          "Bip01 R Finger2",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger2",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 421,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Finger01",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Finger01"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 422,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Finger01",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Finger01"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 425,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Finger01",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Finger01"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 448,
+      "weights_before": [
+        [
+          "Bip01 L Finger2",
+          0.5
+        ],
+        [
+          "Bip01 L Finger21",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger2",
+          "Bip01 L Finger21"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger2": 1,
+          "Bip01 L Finger21": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Finger2": 1.578601139635609,
+          "Bip01 L Finger21": 1.578601139635609
+        }
+      }
+    },
+    {
+      "vertex": 449,
+      "weights_before": [
+        [
+          "Bip01 L Finger11",
+          0.5
+        ],
+        [
+          "Bip01 L Finger2",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger11",
+          "Bip01 L Finger2"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger2": 1,
+          "Bip01 L Finger11": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Finger2": 0.6877317412349826,
+          "Bip01 L Finger11": 0.6877317412349826
+        }
+      }
+    },
+    {
+      "vertex": 450,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.5
+        ],
+        [
+          "Bip01 L Finger2",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger1",
+          "Bip01 L Finger2"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger2": 1,
+          "Bip01 L Finger1": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Finger2": 0.8122421790119769,
+          "Bip01 L Finger1": 0.8122421790119769
+        }
+      }
+    },
+    {
+      "vertex": 451,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger1",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 L Hand": 1,
+          "Bip01 L Finger1": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Hand": 0.6429959056799947,
+          "Bip01 L Finger1": 0.6429959056799947
+        }
+      }
+    },
+    {
+      "vertex": 459,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger0": 1,
+          "Bip01 L Hand": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Finger0": 2.052899961240221,
+          "Bip01 L Hand": 2.052899961240221
+        }
+      }
+    },
+    {
+      "vertex": 461,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger0": 1,
+          "Bip01 L Hand": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Finger0": 1.3365003249034906,
+          "Bip01 L Hand": 1.3365003249034906
+        }
+      }
+    },
+    {
+      "vertex": 468,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger1",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 L Hand": 1,
+          "Bip01 L Finger1": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Hand": 1.789280347825562,
+          "Bip01 L Finger1": 1.789280347825562
+        }
+      }
+    },
+    {
+      "vertex": 470,
+      "weights_before": [
+        [
+          "Bip01 L Finger2",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger2",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 L Hand": 1,
+          "Bip01 L Finger2": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Hand": 1.3028116350830523,
+          "Bip01 L Finger2": 1.3028116350830523
+        }
+      }
+    },
+    {
+      "vertex": 474,
+      "weights_before": [
+        [
+          "Bip01 L Finger01",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger01",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger01": 1,
+          "Bip01 L Hand": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Finger01": 1.4164468925778113,
+          "Bip01 L Hand": 1.4164468925778113
+        }
+      }
+    },
+    {
+      "vertex": 504,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Finger01",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Finger01"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 506,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger1",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 509,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Forearm",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Forearm"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 515,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.5
+        ],
+        [
+          "Bip01 L Finger11",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger1",
+          "Bip01 L Finger11"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 517,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.5
+        ],
+        [
+          "Bip01 L Finger11",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger1",
+          "Bip01 L Finger11"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 522,
+      "weights_before": [
+        [
+          "Bip01 L Finger11",
+          0.375
+        ],
+        [
+          "Bip01 L Finger21",
+          0.375
+        ],
+        [
+          "Bip01 L Finger2",
+          0.25
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger11",
+          "Bip01 L Finger21"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 523,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.375
+        ],
+        [
+          "Bip01 L Finger01",
+          0.375
+        ],
+        [
+          "Bip01 L Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Finger01"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 529,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.375
+        ],
+        [
+          "Bip01 L Finger11",
+          0.375
+        ],
+        [
+          "Bip01 L Finger2",
+          0.25
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger1",
+          "Bip01 L Finger11"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 534,
+      "weights_before": [
+        [
+          "Bip01 R Finger11",
+          0.5
+        ],
+        [
+          "Bip01 R Finger21",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger11",
+          "Bip01 R Finger21"
+        ],
+        "neighbor_count": {
+          "Bip01 R Finger21": 1,
+          "Bip01 R Finger11": 1
+        },
+        "inverse_distance": {
+          "Bip01 R Finger21": 0.8648623971045152,
+          "Bip01 R Finger11": 0.8648623971045152
+        }
+      }
+    },
+    {
+      "vertex": 536,
+      "weights_before": [
+        [
+          "Bip01 R Finger11",
+          0.5
+        ],
+        [
+          "Bip01 R Finger21",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger11",
+          "Bip01 R Finger21"
+        ],
+        "neighbor_count": {
+          "Bip01 R Finger11": 1,
+          "Bip01 R Finger21": 1
+        },
+        "inverse_distance": {
+          "Bip01 R Finger11": 0.8545959821152076,
+          "Bip01 R Finger21": 0.8545959821152076
+        }
+      }
+    },
+    {
+      "vertex": 540,
+      "weights_before": [
+        [
+          "Bip01 R Finger2",
+          0.5
+        ],
+        [
+          "Bip01 R Finger21",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_STILL_AMBIGUOUS",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger2",
+          "Bip01 R Finger21"
+        ],
+        "neighbor_count": {
+          "Bip01 R Finger2": 1,
+          "Bip01 R Finger21": 1
+        },
+        "inverse_distance": {
+          "Bip01 R Finger2": 1.5865923087303853,
+          "Bip01 R Finger21": 1.5865923087303853
+        }
+      }
+    },
+    {
+      "vertex": 606,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Finger01",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Finger01"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 610,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Finger01",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Finger01"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 619,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger1",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 621,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger1",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 625,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Forearm",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 628,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Forearm",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 630,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Forearm",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 633,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Forearm",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Forearm"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 641,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Forearm",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Forearm"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 644,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger1",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 649,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Finger11",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger1",
+          "Bip01 R Finger11"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 653,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Finger11",
+          0.5
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger1",
+          "Bip01 R Finger11"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    },
+    {
+      "vertex": 654,
+      "weights_before": [
+        [
+          "Bip01 R Finger11",
+          0.375
+        ],
+        [
+          "Bip01 R Finger2",
+          0.375
+        ],
+        [
+          "Bip01 R Finger21",
+          0.25
+        ]
+      ],
+      "chosen_bone": null,
+      "policy": "TIE_NO_RIGID_NEIGHBOR",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger11",
+          "Bip01 R Finger2"
+        ],
+        "neighbor_count": {},
+        "inverse_distance": {}
+      }
+    }
+  ],
+  "auto_resolved_vertices": [
+    {
+      "vertex": 173,
+      "weights_before": [
+        [
+          "Bip01 L Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Clavicle",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Clavicle",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 Spine1": 1,
+          "Bip01 L Clavicle": 2
+        },
+        "inverse_distance": {
+          "Bip01 Spine1": 1.1773226260305134,
+          "Bip01 L Clavicle": 2.268045495058247
+        }
+      }
+    },
+    {
+      "vertex": 174,
+      "weights_before": [
+        [
+          "Bip01 L Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Clavicle",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Clavicle",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 L Clavicle": 2,
+          "Bip01 Spine1": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Clavicle": 2.268045495058247,
+          "Bip01 Spine1": 1.9274079507842634
+        }
+      }
+    },
+    {
+      "vertex": 176,
+      "weights_before": [
+        [
+          "Bip01 L Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 Spine1",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Clavicle",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 L Clavicle": 1,
+          "Bip01 Spine1": 3
+        },
+        "inverse_distance": {
+          "Bip01 L Clavicle": 0.8366850817565296,
+          "Bip01 Spine1": 3.3528746251716006
+        }
+      }
+    },
+    {
+      "vertex": 179,
+      "weights_before": [
+        [
+          "Bip01 L Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Clavicle",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Clavicle",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 L Clavicle": 2,
+          "Bip01 Spine1": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Clavicle": 2.849118728345159,
+          "Bip01 Spine1": 2.262151616184659
+        }
+      }
+    },
+    {
+      "vertex": 180,
+      "weights_before": [
+        [
+          "Bip01 Head",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 Head",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 Head",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 Head": 2,
+          "Bip01 Spine1": 2
+        },
+        "inverse_distance": {
+          "Bip01 Head": 2.2865187666259454,
+          "Bip01 Spine1": 1.7059045277929665
+        }
+      }
+    },
+    {
+      "vertex": 181,
+      "weights_before": [
+        [
+          "Bip01 Head",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 Head",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 Head",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 Head": 2,
+          "Bip01 Spine1": 1
+        },
+        "inverse_distance": {
+          "Bip01 Head": 2.2865187666259454,
+          "Bip01 Spine1": 1.3817867333238145
+        }
+      }
+    },
+    {
+      "vertex": 183,
+      "weights_before": [
+        [
+          "Bip01 Head",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 Spine1",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 Head",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 Head": 1,
+          "Bip01 Spine1": 3
+        },
+        "inverse_distance": {
+          "Bip01 Head": 0.8011724944908358,
+          "Bip01 Spine1": 2.6097747535038036
+        }
+      }
+    },
+    {
+      "vertex": 190,
+      "weights_before": [
+        [
+          "Bip01 L Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 Spine1",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Clavicle",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 L Clavicle": 1,
+          "Bip01 Spine1": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Clavicle": 0.8113044978476305,
+          "Bip01 Spine1": 2.2349556308001817
+        }
+      }
+    },
+    {
+      "vertex": 191,
+      "weights_before": [
+        [
+          "Bip01 L Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 L UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Clavicle",
+          "Bip01 L UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 L UpperArm": 2,
+          "Bip01 L Clavicle": 2
+        },
+        "inverse_distance": {
+          "Bip01 L UpperArm": 2.730245981901021,
+          "Bip01 L Clavicle": 2.4253060564777185
+        }
+      }
+    },
+    {
+      "vertex": 192,
+      "weights_before": [
+        [
+          "Bip01 L Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 L UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Clavicle",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Clavicle",
+          "Bip01 L UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 L UpperArm": 1,
+          "Bip01 L Clavicle": 3
+        },
+        "inverse_distance": {
+          "Bip01 L UpperArm": 1.395193778321617,
+          "Bip01 L Clavicle": 3.502387173395067
+        }
+      }
+    },
+    {
+      "vertex": 193,
+      "weights_before": [
+        [
+          "Bip01 L Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 L UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Clavicle",
+          "Bip01 L UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 L UpperArm": 2,
+          "Bip01 L Clavicle": 2
+        },
+        "inverse_distance": {
+          "Bip01 L UpperArm": 2.9432970282144355,
+          "Bip01 L Clavicle": 2.4722748952389653
+        }
+      }
+    },
+    {
+      "vertex": 196,
+      "weights_before": [
+        [
+          "Bip01 L Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 L UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Clavicle",
+          "Bip01 L UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 L UpperArm": 2,
+          "Bip01 L Clavicle": 1
+        },
+        "inverse_distance": {
+          "Bip01 L UpperArm": 2.730245981901021,
+          "Bip01 L Clavicle": 1.7001337037449198
+        }
+      }
+    },
+    {
+      "vertex": 205,
+      "weights_before": [
+        [
+          "Bip01 L Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 L UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Clavicle",
+          "Bip01 L UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 L UpperArm": 3,
+          "Bip01 L Clavicle": 1
+        },
+        "inverse_distance": {
+          "Bip01 L UpperArm": 4.191072129709019,
+          "Bip01 L Clavicle": 1.8662159112970875
+        }
+      }
+    },
+    {
+      "vertex": 209,
+      "weights_before": [
+        [
+          "Bip01 L Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 L UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Clavicle",
+          "Bip01 L UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 L UpperArm": 2,
+          "Bip01 L Clavicle": 1
+        },
+        "inverse_distance": {
+          "Bip01 L UpperArm": 3.1139910127916712,
+          "Bip01 L Clavicle": 1.2477751014945835
+        }
+      }
+    },
+    {
+      "vertex": 210,
+      "weights_before": [
+        [
+          "Bip01 L Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Clavicle",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Clavicle",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 L Clavicle": 2,
+          "Bip01 Spine1": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Clavicle": 2.849118728345159,
+          "Bip01 Spine1": 2.234956175299352
+        }
+      }
+    },
+    {
+      "vertex": 216,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.5
+        ],
+        [
+          "Bip01 L UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Forearm",
+          "Bip01 L UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 L Forearm": 2,
+          "Bip01 L UpperArm": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Forearm": 0.9232651600249658,
+          "Bip01 L UpperArm": 1.011128004671322
+        }
+      }
+    },
+    {
+      "vertex": 217,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.5
+        ],
+        [
+          "Bip01 L UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Forearm",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Forearm",
+          "Bip01 L UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 L Forearm": 2,
+          "Bip01 L UpperArm": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Forearm": 1.0402969064626493,
+          "Bip01 L UpperArm": 1.011128004671322
+        }
+      }
+    },
+    {
+      "vertex": 218,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.5
+        ],
+        [
+          "Bip01 L UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Forearm",
+          "Bip01 L UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 L Forearm": 2,
+          "Bip01 L UpperArm": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Forearm": 0.8795547166007516,
+          "Bip01 L UpperArm": 0.9546022709391084
+        }
+      }
+    },
+    {
+      "vertex": 219,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.5
+        ],
+        [
+          "Bip01 L UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Forearm",
+          "Bip01 L UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 L Forearm": 1,
+          "Bip01 L UpperArm": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Forearm": 0.5320873553954419,
+          "Bip01 L UpperArm": 0.9546022709391084
+        }
+      }
+    },
+    {
+      "vertex": 221,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.5
+        ],
+        [
+          "Bip01 L UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Forearm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Forearm",
+          "Bip01 L UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 L Forearm": 3,
+          "Bip01 L UpperArm": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Forearm": 1.3457796407402447,
+          "Bip01 L UpperArm": 0.4570408816877378
+        }
+      }
+    },
+    {
+      "vertex": 223,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.5
+        ],
+        [
+          "Bip01 L UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Forearm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Forearm",
+          "Bip01 L UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 L Forearm": 2,
+          "Bip01 L UpperArm": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Forearm": 1.0402973306954664,
+          "Bip01 L UpperArm": 0.4953944031445634
+        }
+      }
+    },
+    {
+      "vertex": 238,
+      "weights_before": [
+        [
+          "Bip01 L Finger11",
+          0.5
+        ],
+        [
+          "Bip01 L Finger21",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger21",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger11",
+          "Bip01 L Finger21"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger11": 1,
+          "Bip01 L Finger21": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Finger11": 0.8481367461557925,
+          "Bip01 L Finger21": 1.7093783759334338
+        }
+      }
+    },
+    {
+      "vertex": 240,
+      "weights_before": [
+        [
+          "Bip01 L Finger11",
+          0.5
+        ],
+        [
+          "Bip01 L Finger21",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger11",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger11",
+          "Bip01 L Finger21"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger21": 2,
+          "Bip01 L Finger11": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Finger21": 1.7093783759334338,
+          "Bip01 L Finger11": 1.712499007655731
+        }
+      }
+    },
+    {
+      "vertex": 249,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Forearm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Forearm",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 L Hand": 1,
+          "Bip01 L Forearm": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Hand": 0.9204212717204217,
+          "Bip01 L Forearm": 1.733759294601692
+        }
+      }
+    },
+    {
+      "vertex": 250,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Forearm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Forearm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Forearm"
+        ],
+        "neighbor_count": {
+          "Bip01 L Forearm": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Forearm": 1.1203474272175444
+        }
+      }
+    },
+    {
+      "vertex": 251,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Forearm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger0",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Forearm"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger0": 2,
+          "Bip01 L Forearm": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Finger0": 2.2996765416971856,
+          "Bip01 L Forearm": 2.0557729251184
+        }
+      }
+    },
+    {
+      "vertex": 257,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Forearm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Forearm",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 L Hand": 1,
+          "Bip01 L Forearm": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Hand": 0.8133380228812702,
+          "Bip01 L Forearm": 1.733759294601692
+        }
+      }
+    },
+    {
+      "vertex": 258,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Forearm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Forearm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Forearm"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger0": 1,
+          "Bip01 L Forearm": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Finger0": 0.8763462502843511,
+          "Bip01 L Forearm": 2.0556753647639923
+        }
+      }
+    },
+    {
+      "vertex": 267,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Finger01",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger01",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Finger01"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger0": 1,
+          "Bip01 L Finger01": 3
+        },
+        "inverse_distance": {
+          "Bip01 L Finger0": 1.6757009555362632,
+          "Bip01 L Finger01": 4.841660242815532
+        }
+      }
+    },
+    {
+      "vertex": 268,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Finger01",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger01",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Finger01"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger0": 1,
+          "Bip01 L Finger01": 3
+        },
+        "inverse_distance": {
+          "Bip01 L Finger0": 1.7030185454196949,
+          "Bip01 L Finger01": 5.6747528839320545
+        }
+      }
+    },
+    {
+      "vertex": 269,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Finger01",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger01",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Finger01"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger01": 2,
+          "Bip01 L Finger0": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Finger01": 3.9990519283957915,
+          "Bip01 L Finger0": 3.997518410295508
+        }
+      }
+    },
+    {
+      "vertex": 272,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Finger01",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger0",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Finger01"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger01": 1,
+          "Bip01 L Finger0": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Finger01": 1.7014850273194118,
+          "Bip01 L Finger0": 3.997518410295508
+        }
+      }
+    },
+    {
+      "vertex": 273,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Finger01",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger01",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Finger01"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger01": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Finger01": 3.348771304417815
+        }
+      }
+    },
+    {
+      "vertex": 274,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Finger01",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger01",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Finger01"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger0": 2,
+          "Bip01 L Finger01": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Finger0": 3.1123838490015183,
+          "Bip01 L Finger01": 3.348771304417815
+        }
+      }
+    },
+    {
+      "vertex": 277,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Finger01",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger01",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Finger01"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger0": 2,
+          "Bip01 L Finger01": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Finger0": 3.1123838490015183,
+          "Bip01 L Finger01": 3.1386416973958378
+        }
+      }
+    },
+    {
+      "vertex": 278,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Forearm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger0",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Finger0",
+          "Bip01 L Forearm"
+        ],
+        "neighbor_count": {
+          "Bip01 L Finger0": 2,
+          "Bip01 L Forearm": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Finger0": 2.2996765416971856,
+          "Bip01 L Forearm": 2.0556753647639923
+        }
+      }
+    },
+    {
+      "vertex": 286,
+      "weights_before": [
+        [
+          "Bip01 Head",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 Head",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 Head",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 Spine1": 1,
+          "Bip01 Head": 2
+        },
+        "inverse_distance": {
+          "Bip01 Spine1": 0.8841540253681831,
+          "Bip01 Head": 1.783764349775061
+        }
+      }
+    },
+    {
+      "vertex": 298,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 Spine1",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 R Clavicle": 1,
+          "Bip01 Spine1": 2
+        },
+        "inverse_distance": {
+          "Bip01 R Clavicle": 1.2695884241789197,
+          "Bip01 Spine1": 2.4455718290341064
+        }
+      }
+    },
+    {
+      "vertex": 299,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 Spine1",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 Spine1": 2,
+          "Bip01 R Clavicle": 2
+        },
+        "inverse_distance": {
+          "Bip01 Spine1": 2.4455718290341064,
+          "Bip01 R Clavicle": 2.265133115673677
+        }
+      }
+    },
+    {
+      "vertex": 302,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R Clavicle",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 R Clavicle": 2,
+          "Bip01 Spine1": 2
+        },
+        "inverse_distance": {
+          "Bip01 R Clavicle": 2.265133115673677,
+          "Bip01 Spine1": 1.9203393517793308
+        }
+      }
+    },
+    {
+      "vertex": 303,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 Spine1",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 R Clavicle": 1,
+          "Bip01 Spine1": 3
+        },
+        "inverse_distance": {
+          "Bip01 R Clavicle": 0.8311896409608409,
+          "Bip01 Spine1": 3.4161397081121425
+        }
+      }
+    },
+    {
+      "vertex": 305,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R Clavicle",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 R Clavicle": 2,
+          "Bip01 Spine1": 2
+        },
+        "inverse_distance": {
+          "Bip01 R Clavicle": 3.1957982821387936,
+          "Bip01 Spine1": 2.3269900702543707
+        }
+      }
+    },
+    {
+      "vertex": 306,
+      "weights_before": [
+        [
+          "Bip01 Head",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 Head",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 Head",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 Head": 2,
+          "Bip01 Spine1": 2
+        },
+        "inverse_distance": {
+          "Bip01 Head": 2.285656959034651,
+          "Bip01 Spine1": 2.2813970577306923
+        }
+      }
+    },
+    {
+      "vertex": 307,
+      "weights_before": [
+        [
+          "Bip01 Head",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 Head",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 Head",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 Spine1": 2,
+          "Bip01 Head": 2
+        },
+        "inverse_distance": {
+          "Bip01 Spine1": 1.7050427202016727,
+          "Bip01 Head": 2.285656959034651
+        }
+      }
+    },
+    {
+      "vertex": 309,
+      "weights_before": [
+        [
+          "Bip01 Head",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 Spine1",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 Head",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 Head": 2,
+          "Bip01 Spine1": 2
+        },
+        "inverse_distance": {
+          "Bip01 Head": 1.783764349775061,
+          "Bip01 Spine1": 2.2813970577306923
+        }
+      }
+    },
+    {
+      "vertex": 322,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 Spine1",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 R Clavicle": 1,
+          "Bip01 Spine1": 3
+        },
+        "inverse_distance": {
+          "Bip01 R Clavicle": 0.7728916592606678,
+          "Bip01 Spine1": 3.4854760846369723
+        }
+      }
+    },
+    {
+      "vertex": 323,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 Spine1",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 R Clavicle": 1,
+          "Bip01 Spine1": 2
+        },
+        "inverse_distance": {
+          "Bip01 R Clavicle": 1.0125871938070297,
+          "Bip01 Spine1": 1.7854816963142888
+        }
+      }
+    },
+    {
+      "vertex": 324,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 R UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 R UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 R UpperArm": 2,
+          "Bip01 R Clavicle": 2
+        },
+        "inverse_distance": {
+          "Bip01 R UpperArm": 2.7489799454392583,
+          "Bip01 R Clavicle": 2.4266021078150235
+        }
+      }
+    },
+    {
+      "vertex": 325,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 R UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R Clavicle",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 R UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 R UpperArm": 1,
+          "Bip01 R Clavicle": 3
+        },
+        "inverse_distance": {
+          "Bip01 R UpperArm": 1.3901499957970995,
+          "Bip01 R Clavicle": 3.504007497381443
+        }
+      }
+    },
+    {
+      "vertex": 326,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 R UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 R UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 R UpperArm": 2,
+          "Bip01 R Clavicle": 2
+        },
+        "inverse_distance": {
+          "Bip01 R UpperArm": 2.941579156774094,
+          "Bip01 R Clavicle": 2.467555385363519
+        }
+      }
+    },
+    {
+      "vertex": 328,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 R UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 R UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 R UpperArm": 2,
+          "Bip01 R Clavicle": 1
+        },
+        "inverse_distance": {
+          "Bip01 R UpperArm": 2.7489799454392583,
+          "Bip01 R Clavicle": 1.7125278334213343
+        }
+      }
+    },
+    {
+      "vertex": 347,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 R UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 R UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 R UpperArm": 3,
+          "Bip01 R Clavicle": 1
+        },
+        "inverse_distance": {
+          "Bip01 R UpperArm": 4.191721338106842,
+          "Bip01 R Clavicle": 1.8641737672076752
+        }
+      }
+    },
+    {
+      "vertex": 351,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 R UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 R UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 R UpperArm": 3,
+          "Bip01 R Clavicle": 1
+        },
+        "inverse_distance": {
+          "Bip01 R UpperArm": 4.040391447105285,
+          "Bip01 R Clavicle": 1.2501421813327485
+        }
+      }
+    },
+    {
+      "vertex": 352,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 R UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 R UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 R UpperArm": 2,
+          "Bip01 R Clavicle": 1
+        },
+        "inverse_distance": {
+          "Bip01 R UpperArm": 2.17621767989761,
+          "Bip01 R Clavicle": 0.9260754985648617
+        }
+      }
+    },
+    {
+      "vertex": 353,
+      "weights_before": [
+        [
+          "Bip01 R Clavicle",
+          0.5
+        ],
+        [
+          "Bip01 Spine1",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R Clavicle",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Clavicle",
+          "Bip01 Spine1"
+        ],
+        "neighbor_count": {
+          "Bip01 R Clavicle": 2,
+          "Bip01 Spine1": 2
+        },
+        "inverse_distance": {
+          "Bip01 R Clavicle": 3.1957982821387936,
+          "Bip01 Spine1": 2.4728898823838
+        }
+      }
+    },
+    {
+      "vertex": 368,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Forearm",
+          "Bip01 R UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 R Forearm": 2,
+          "Bip01 R UpperArm": 2
+        },
+        "inverse_distance": {
+          "Bip01 R Forearm": 1.2961544885180458,
+          "Bip01 R UpperArm": 1.4382961583748655
+        }
+      }
+    },
+    {
+      "vertex": 369,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Forearm",
+          "Bip01 R UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 R Forearm": 1,
+          "Bip01 R UpperArm": 2
+        },
+        "inverse_distance": {
+          "Bip01 R Forearm": 0.7970032510668779,
+          "Bip01 R UpperArm": 1.4382961583748655
+        }
+      }
+    },
+    {
+      "vertex": 370,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Forearm",
+          "Bip01 R UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 R Forearm": 2,
+          "Bip01 R UpperArm": 2
+        },
+        "inverse_distance": {
+          "Bip01 R Forearm": 1.6751061679491197,
+          "Bip01 R UpperArm": 1.50738415748289
+        }
+      }
+    },
+    {
+      "vertex": 371,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Forearm",
+          "Bip01 R UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 R Forearm": 2,
+          "Bip01 R UpperArm": 2
+        },
+        "inverse_distance": {
+          "Bip01 R Forearm": 1.3035925495425857,
+          "Bip01 R UpperArm": 1.50738415748289
+        }
+      }
+    },
+    {
+      "vertex": 373,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Forearm",
+          "Bip01 R UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 R Forearm": 3,
+          "Bip01 R UpperArm": 1
+        },
+        "inverse_distance": {
+          "Bip01 R Forearm": 1.9448854568505731,
+          "Bip01 R UpperArm": 0.6548615812100582
+        }
+      }
+    },
+    {
+      "vertex": 374,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Forearm",
+          "Bip01 R UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 R Forearm": 1,
+          "Bip01 R UpperArm": 2
+        },
+        "inverse_distance": {
+          "Bip01 R Forearm": 0.95560647119191,
+          "Bip01 R UpperArm": 1.772059449990667
+        }
+      }
+    },
+    {
+      "vertex": 375,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R UpperArm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R UpperArm",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Forearm",
+          "Bip01 R UpperArm"
+        ],
+        "neighbor_count": {
+          "Bip01 R Forearm": 2,
+          "Bip01 R UpperArm": 2
+        },
+        "inverse_distance": {
+          "Bip01 R Forearm": 1.6751061679491197,
+          "Bip01 R UpperArm": 1.772059449990667
+        }
+      }
+    },
+    {
+      "vertex": 403,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Forearm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Forearm"
+        ],
+        "neighbor_count": {
+          "Bip01 R Finger0": 1
+        },
+        "inverse_distance": {
+          "Bip01 R Finger0": 1.1863299600924462
+        }
+      }
+    },
+    {
+      "vertex": 405,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 R Finger0": 2,
+          "Bip01 R Hand": 2
+        },
+        "inverse_distance": {
+          "Bip01 R Finger0": 3.3811559904515107,
+          "Bip01 R Hand": 3.4479908720745938
+        }
+      }
+    },
+    {
+      "vertex": 406,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 R Hand": 1
+        },
+        "inverse_distance": {
+          "Bip01 R Hand": 1.3343019079705842
+        }
+      }
+    },
+    {
+      "vertex": 407,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 R Hand": 1
+        },
+        "inverse_distance": {
+          "Bip01 R Hand": 2.0468540824809263
+        }
+      }
+    },
+    {
+      "vertex": 426,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Forearm",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 R Finger0",
+          "Bip01 R Forearm"
+        ],
+        "neighbor_count": {
+          "Bip01 R Finger0": 2,
+          "Bip01 R Forearm": 1
+        },
+        "inverse_distance": {
+          "Bip01 R Finger0": 2.3086755816778286,
+          "Bip01 R Forearm": 1.1863299600924462
+        }
+      }
+    },
+    {
+      "vertex": 442,
+      "weights_before": [
+        [
+          "Bip01 L Finger11",
+          0.75
+        ],
+        [
+          "Bip01 L Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 443,
+      "weights_before": [
+        [
+          "Bip01 L Finger11",
+          0.75
+        ],
+        [
+          "Bip01 L Finger21",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 445,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.75
+        ],
+        [
+          "Bip01 L Finger11",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 447,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.75
+        ],
+        [
+          "Bip01 L Finger11",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 453,
+      "weights_before": [
+        [
+          "Bip01 L Hand",
+          0.75
+        ],
+        [
+          "Bip01 L Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 457,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Forearm",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Forearm",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 L Hand": 1,
+          "Bip01 L Forearm": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Hand": 0.7002603647658483,
+          "Bip01 L Forearm": 1.350321748601225
+        }
+      }
+    },
+    {
+      "vertex": 458,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.75
+        ],
+        [
+          "Bip01 L Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 462,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.75
+        ],
+        [
+          "Bip01 L Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 463,
+      "weights_before": [
+        [
+          "Bip01 L Hand",
+          0.75
+        ],
+        [
+          "Bip01 L Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 464,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.75
+        ],
+        [
+          "Bip01 L Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 466,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Forearm",
+      "policy": "TIE_ADJACENT_RIGID_DISTANCE",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Forearm",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 L Hand": 2,
+          "Bip01 L Forearm": 2
+        },
+        "inverse_distance": {
+          "Bip01 L Hand": 1.299100330834223,
+          "Bip01 L Forearm": 1.350321748601225
+        }
+      }
+    },
+    {
+      "vertex": 467,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.5
+        ],
+        [
+          "Bip01 L Hand",
+          0.5
+        ]
+      ],
+      "chosen_bone": "Bip01 L Hand",
+      "policy": "TIE_ADJACENT_RIGID_MAJORITY",
+      "details": {
+        "top_candidates": [
+          "Bip01 L Forearm",
+          "Bip01 L Hand"
+        ],
+        "neighbor_count": {
+          "Bip01 L Hand": 2,
+          "Bip01 L Forearm": 1
+        },
+        "inverse_distance": {
+          "Bip01 L Hand": 1.299100330834223,
+          "Bip01 L Forearm": 0.6490389469988465
+        }
+      }
+    },
+    {
+      "vertex": 469,
+      "weights_before": [
+        [
+          "Bip01 L Hand",
+          0.75
+        ],
+        [
+          "Bip01 L Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 473,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.75
+        ],
+        [
+          "Bip01 L Finger01",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 475,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.75
+        ],
+        [
+          "Bip01 L Finger01",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 478,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.75
+        ],
+        [
+          "Bip01 L Finger11",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 479,
+      "weights_before": [
+        [
+          "Bip01 L Finger21",
+          0.75
+        ],
+        [
+          "Bip01 L Finger11",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger21",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 481,
+      "weights_before": [
+        [
+          "Bip01 L Finger11",
+          0.75
+        ],
+        [
+          "Bip01 L Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 483,
+      "weights_before": [
+        [
+          "Bip01 L Finger11",
+          0.75
+        ],
+        [
+          "Bip01 L Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 484,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.75
+        ],
+        [
+          "Bip01 L Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 485,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.75
+        ],
+        [
+          "Bip01 L Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 487,
+      "weights_before": [
+        [
+          "Bip01 L Hand",
+          0.75
+        ],
+        [
+          "Bip01 L Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 488,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.75
+        ],
+        [
+          "Bip01 L Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 489,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.75
+        ],
+        [
+          "Bip01 L Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 491,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.75
+        ],
+        [
+          "Bip01 L Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 493,
+      "weights_before": [
+        [
+          "Bip01 L Finger01",
+          0.75
+        ],
+        [
+          "Bip01 L Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger01",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 502,
+      "weights_before": [
+        [
+          "Bip01 L Finger01",
+          0.75
+        ],
+        [
+          "Bip01 L Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger01",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 503,
+      "weights_before": [
+        [
+          "Bip01 L Finger01",
+          0.75
+        ],
+        [
+          "Bip01 L Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger01",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 505,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.75
+        ],
+        [
+          "Bip01 L Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 507,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.75
+        ],
+        [
+          "Bip01 L Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 508,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.75
+        ],
+        [
+          "Bip01 L Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 510,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.75
+        ],
+        [
+          "Bip01 L Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 511,
+      "weights_before": [
+        [
+          "Bip01 L Hand",
+          0.5
+        ],
+        [
+          "Bip01 L Finger0",
+          0.25
+        ],
+        [
+          "Bip01 L Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.5
+      }
+    },
+    {
+      "vertex": 512,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.5
+        ],
+        [
+          "Bip01 L Finger0",
+          0.25
+        ],
+        [
+          "Bip01 L Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.5
+      }
+    },
+    {
+      "vertex": 513,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.5
+        ],
+        [
+          "Bip01 L Forearm",
+          0.25
+        ],
+        [
+          "Bip01 L Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.5
+      }
+    },
+    {
+      "vertex": 514,
+      "weights_before": [
+        [
+          "Bip01 L Finger11",
+          0.75
+        ],
+        [
+          "Bip01 L Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 516,
+      "weights_before": [
+        [
+          "Bip01 L Finger11",
+          0.75
+        ],
+        [
+          "Bip01 L Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 518,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.75
+        ],
+        [
+          "Bip01 L Finger11",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 519,
+      "weights_before": [
+        [
+          "Bip01 L Finger1",
+          0.75
+        ],
+        [
+          "Bip01 L Finger11",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 520,
+      "weights_before": [
+        [
+          "Bip01 L Finger11",
+          0.75
+        ],
+        [
+          "Bip01 L Finger21",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 524,
+      "weights_before": [
+        [
+          "Bip01 L Hand",
+          0.625
+        ],
+        [
+          "Bip01 L Finger1",
+          0.375
+        ]
+      ],
+      "chosen_bone": "Bip01 L Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.625
+      }
+    },
+    {
+      "vertex": 525,
+      "weights_before": [
+        [
+          "Bip01 L Forearm",
+          0.625
+        ],
+        [
+          "Bip01 L Hand",
+          0.375
+        ]
+      ],
+      "chosen_bone": "Bip01 L Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.625
+      }
+    },
+    {
+      "vertex": 526,
+      "weights_before": [
+        [
+          "Bip01 L Hand",
+          0.625
+        ],
+        [
+          "Bip01 L Finger0",
+          0.375
+        ]
+      ],
+      "chosen_bone": "Bip01 L Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.625
+      }
+    },
+    {
+      "vertex": 527,
+      "weights_before": [
+        [
+          "Bip01 L Finger0",
+          0.75
+        ],
+        [
+          "Bip01 L Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 L Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 528,
+      "weights_before": [
+        [
+          "Bip01 L Hand",
+          0.625
+        ],
+        [
+          "Bip01 L Finger1",
+          0.375
+        ]
+      ],
+      "chosen_bone": "Bip01 L Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.625
+      }
+    },
+    {
+      "vertex": 533,
+      "weights_before": [
+        [
+          "Bip01 R Finger11",
+          0.75
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 538,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.75
+        ],
+        [
+          "Bip01 R Finger11",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 539,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.75
+        ],
+        [
+          "Bip01 R Finger11",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 541,
+      "weights_before": [
+        [
+          "Bip01 R Finger2",
+          0.75
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger2",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 542,
+      "weights_before": [
+        [
+          "Bip01 R Finger2",
+          0.75
+        ],
+        [
+          "Bip01 R Finger11",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger2",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 544,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 545,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 547,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 548,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.75
+        ],
+        [
+          "Bip01 R Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 549,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.75
+        ],
+        [
+          "Bip01 R Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 551,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 552,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 553,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.75
+        ],
+        [
+          "Bip01 R Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 554,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 556,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 557,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 558,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 559,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 560,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Finger2",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 563,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.75
+        ],
+        [
+          "Bip01 R Finger01",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 564,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.75
+        ],
+        [
+          "Bip01 R Finger01",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 567,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.75
+        ],
+        [
+          "Bip01 R Finger01",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 571,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.75
+        ],
+        [
+          "Bip01 R Finger11",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 574,
+      "weights_before": [
+        [
+          "Bip01 R Finger11",
+          0.75
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 575,
+      "weights_before": [
+        [
+          "Bip01 R Finger11",
+          0.75
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 576,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.75
+        ],
+        [
+          "Bip01 R Finger2",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 577,
+      "weights_before": [
+        [
+          "Bip01 R Finger11",
+          0.75
+        ],
+        [
+          "Bip01 R Finger2",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 579,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 580,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 582,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 583,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.75
+        ],
+        [
+          "Bip01 R Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 584,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.75
+        ],
+        [
+          "Bip01 R Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 586,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 587,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.75
+        ],
+        [
+          "Bip01 R Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 588,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 590,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 591,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 592,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 593,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 594,
+      "weights_before": [
+        [
+          "Bip01 R Finger2",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger2",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 597,
+      "weights_before": [
+        [
+          "Bip01 R Finger01",
+          0.75
+        ],
+        [
+          "Bip01 R Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger01",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 598,
+      "weights_before": [
+        [
+          "Bip01 R Finger01",
+          0.75
+        ],
+        [
+          "Bip01 R Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger01",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 601,
+      "weights_before": [
+        [
+          "Bip01 R Finger01",
+          0.75
+        ],
+        [
+          "Bip01 R Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger01",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 602,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Finger2",
+          0.25
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.5
+      }
+    },
+    {
+      "vertex": 603,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.5
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ],
+        [
+          "Bip01 R Finger2",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.5
+      }
+    },
+    {
+      "vertex": 604,
+      "weights_before": [
+        [
+          "Bip01 R Finger2",
+          0.5
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger2",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.5
+      }
+    },
+    {
+      "vertex": 605,
+      "weights_before": [
+        [
+          "Bip01 R Finger01",
+          0.75
+        ],
+        [
+          "Bip01 R Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger01",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 607,
+      "weights_before": [
+        [
+          "Bip01 R Finger01",
+          0.75
+        ],
+        [
+          "Bip01 R Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger01",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 608,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.75
+        ],
+        [
+          "Bip01 R Finger01",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 609,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.75
+        ],
+        [
+          "Bip01 R Finger01",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 617,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 618,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 620,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 622,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 623,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 624,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 626,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 627,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 629,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 631,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 632,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.75
+        ],
+        [
+          "Bip01 R Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 634,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.75
+        ],
+        [
+          "Bip01 R Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 635,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.5
+        ],
+        [
+          "Bip01 R Forearm",
+          0.25
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.5
+      }
+    },
+    {
+      "vertex": 636,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.5
+        ],
+        [
+          "Bip01 R Finger0",
+          0.25
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.5
+      }
+    },
+    {
+      "vertex": 637,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.5
+        ],
+        [
+          "Bip01 R Finger0",
+          0.25
+        ],
+        [
+          "Bip01 R Forearm",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.5
+      }
+    },
+    {
+      "vertex": 638,
+      "weights_before": [
+        [
+          "Bip01 R Finger0",
+          0.75
+        ],
+        [
+          "Bip01 R Hand",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger0",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 639,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.75
+        ],
+        [
+          "Bip01 R Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 640,
+      "weights_before": [
+        [
+          "Bip01 R Forearm",
+          0.75
+        ],
+        [
+          "Bip01 R Finger0",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Forearm",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 642,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 643,
+      "weights_before": [
+        [
+          "Bip01 R Hand",
+          0.75
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Hand",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 645,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.5
+        ],
+        [
+          "Bip01 R Finger11",
+          0.25
+        ],
+        [
+          "Bip01 R Finger2",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.5
+      }
+    },
+    {
+      "vertex": 646,
+      "weights_before": [
+        [
+          "Bip01 R Finger2",
+          0.5
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ],
+        [
+          "Bip01 R Finger11",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger2",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.5
+      }
+    },
+    {
+      "vertex": 647,
+      "weights_before": [
+        [
+          "Bip01 R Finger11",
+          0.5
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ],
+        [
+          "Bip01 R Finger2",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.5
+      }
+    },
+    {
+      "vertex": 648,
+      "weights_before": [
+        [
+          "Bip01 R Finger11",
+          0.75
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 650,
+      "weights_before": [
+        [
+          "Bip01 R Finger11",
+          0.75
+        ],
+        [
+          "Bip01 R Finger1",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 651,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.75
+        ],
+        [
+          "Bip01 R Finger11",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 652,
+      "weights_before": [
+        [
+          "Bip01 R Finger1",
+          0.75
+        ],
+        [
+          "Bip01 R Finger11",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger1",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    },
+    {
+      "vertex": 655,
+      "weights_before": [
+        [
+          "Bip01 R Finger11",
+          0.75
+        ],
+        [
+          "Bip01 R Finger21",
+          0.25
+        ]
+      ],
+      "chosen_bone": "Bip01 R Finger11",
+      "policy": "UNIQUE_MAX_WEIGHT",
+      "details": {
+        "top_weight": 0.75
+      }
+    }
+  ],
+  "artist_message": {
+    "summary": "A cópia foi normalizada para o Physique rígido do jogo. O arquivo artístico original não foi alterado.",
+    "why": "O runtime deste pipeline aceita exatamente um bone por vértice. O Blender interpola pesos ao subdividir, criando vértices com dois ou mais bones.",
+    "automatic": "190 vértices mistos foram convertidos automaticamente apenas quando havia uma decisão segura.",
+    "manual": "67 vértices continuam ambíguos e foram marcados no vertex group 'PT_REVIEW_REQUIRED'. Selecione esse grupo na cópia, escolha manualmente um único bone para cada vértice com weight 1.0 e depois remova o grupo marcador antes de validar/exportar."
+  }
+}

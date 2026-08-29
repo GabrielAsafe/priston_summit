@@ -1,0 +1,6000 @@
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1177
+----------------------------------------------------------------------
+  1157	DWORD GetSwapIPCode(char *szIP);
+  1158	
+  1159	int SetServerConfig(char *decode, char *lpPoint)
+  1160	{
+  1161		
+  1162		int flag;
+  1163		char *p = lpPoint;
+  1164		char *pb;
+  1165		char strBuff[128];
+  1166		int cnt;
+  1167	
+  1168		flag = 0;
+  1169	
+  1170		
+  1171	
+  1172	
+  1173	
+  1174		if(lstrcmp(decode, "*�����ڵ��ȣ") == 0 ||
+  1175			lstrcmpi(decode, "*SERVER_CODE") == 0)
+  1176		{
+  1177			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1178			rsServerConfig.ServerCode = atoi(strBuff);
+  1179			flag++;
+  1180		}
+  1181	
+  1182		if(!flag && (lstrcmp(decode, "*�ڵ�ĳ���ͻ��") == 0 ||
+  1183			lstrcmpi(decode, "*SERVER_AUTOPLAY") == 0))
+  1184		{
+  1185			rsServerConfig.AutoPlayer = TRUE;
+  1186			flag++;
+  1187		}
+  1188	
+  1189		if(!flag && (lstrcmp(decode, "*������ۻ��") == 0 ||
+  1190			lstrcmpi(decode, "*SERVER_RECORD_MEM") == 0))
+  1191		{
+  1192			rsServerConfig.UseRecorMemory = TRUE;
+  1193			flag++;
+  1194		}
+  1195		
+  1196	
+  1197		if(!flag && lstrcmp(decode, "*�������") == 0)
+  1198		{
+  1199			rsServerConfig.DisableParty = TRUE;
+  1200			flag++;
+  1201		}
+  1202		if(!flag && (lstrcmp(decode, "*���������ο�") == 0 ||
+  1203			lstrcmpi(decode, "*MAX_USERS") == 0))
+  1204		{
+  1205			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1206			rsServerConfig.ConnectUserMax = atoi(strBuff);
+  1207			flag++;
+  1208		}
+  1209	
+  1210		if(!flag && (lstrcmp(decode, "*�׽�Ʈ����") == 0 ||
+  1211			lstrcmpi(decode, "*TEST_SERVER") == 0))
+  1212		{
+  1213			rsServerConfig.TestSeverMode = TRUE;
+  1214			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1215			if(strBuff[0])
+  1216			{
+  1217				rsServerConfig.TestSeverMode = atoi(strBuff);
+  1218			}
+  1219			flag++;
+  1220		}
+  1221	
+  1222		if(!flag && (lstrcmp(decode, "*���Ӱ����ڵ�") == 0 ||
+  1223			lstrcmpi(decode, "*CONNECT_CLIENT_CODE") == 0))
+  1224		{
+  1225			for(cnt = 0; cnt < 32; cnt++)
+  1226			{
+  1227				p = local_GetWord(strBuff, p);
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1205
+----------------------------------------------------------------------
+  1185			rsServerConfig.AutoPlayer = TRUE;
+  1186			flag++;
+  1187		}
+  1188	
+  1189		if(!flag && (lstrcmp(decode, "*������ۻ��") == 0 ||
+  1190			lstrcmpi(decode, "*SERVER_RECORD_MEM") == 0))
+  1191		{
+  1192			rsServerConfig.UseRecorMemory = TRUE;
+  1193			flag++;
+  1194		}
+  1195		
+  1196	
+  1197		if(!flag && lstrcmp(decode, "*�������") == 0)
+  1198		{
+  1199			rsServerConfig.DisableParty = TRUE;
+  1200			flag++;
+  1201		}
+  1202		if(!flag && (lstrcmp(decode, "*���������ο�") == 0 ||
+  1203			lstrcmpi(decode, "*MAX_USERS") == 0))
+  1204		{
+  1205			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1206			rsServerConfig.ConnectUserMax = atoi(strBuff);
+  1207			flag++;
+  1208		}
+  1209	
+  1210		if(!flag && (lstrcmp(decode, "*�׽�Ʈ����") == 0 ||
+  1211			lstrcmpi(decode, "*TEST_SERVER") == 0))
+  1212		{
+  1213			rsServerConfig.TestSeverMode = TRUE;
+  1214			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1215			if(strBuff[0])
+  1216			{
+  1217				rsServerConfig.TestSeverMode = atoi(strBuff);
+  1218			}
+  1219			flag++;
+  1220		}
+  1221	
+  1222		if(!flag && (lstrcmp(decode, "*���Ӱ����ڵ�") == 0 ||
+  1223			lstrcmpi(decode, "*CONNECT_CLIENT_CODE") == 0))
+  1224		{
+  1225			for(cnt = 0; cnt < 32; cnt++)
+  1226			{
+  1227				p = local_GetWord(strBuff, p);
+  1228				if(!strBuff[0]) break;
+  1229	
+  1230				rsServerConfig.dwClientCheckSum[rsServerConfig.ClientCheckSumCount] = atoi(strBuff);
+  1231				rsServerConfig.ClientCheckSumCount++;
+  1232			}
+  1233			flag++;
+  1234		}
+  1235	
+  1236		if(!flag && (lstrcmp(decode, "*�ڵ���������") == 0 ||
+  1237			lstrcmpi(decode, "*DISCONNECT_CLIENT_BADCODE") == 0))
+  1238		{
+  1239			rsServerConfig.ClientCheckOut = TRUE;
+  1240			flag++;
+  1241		}
+  1242	
+  1243		if(!flag && (lstrcmp(decode, "*���κ�ȣ�ڵ�") == 0 ||
+  1244			lstrcmpi(decode, "*CLSAFE_CODE") == 0))
+  1245		{
+  1246	
+  1247			for(cnt = 0; cnt < 32; cnt++)
+  1248			{
+  1249				p = local_GetWord(strBuff, p);
+  1250				if(!strBuff[0]) break;
+  1251	
+  1252				rsServerConfig.dwSafeClientCode[rsServerConfig.SafeClientCodeCount] = atoi(strBuff);
+  1253				rsServerConfig.SafeClientCodeCount++;
+  1254			}
+  1255			flag++;
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1214
+----------------------------------------------------------------------
+  1194		}
+  1195		
+  1196	
+  1197		if(!flag && lstrcmp(decode, "*�������") == 0)
+  1198		{
+  1199			rsServerConfig.DisableParty = TRUE;
+  1200			flag++;
+  1201		}
+  1202		if(!flag && (lstrcmp(decode, "*���������ο�") == 0 ||
+  1203			lstrcmpi(decode, "*MAX_USERS") == 0))
+  1204		{
+  1205			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1206			rsServerConfig.ConnectUserMax = atoi(strBuff);
+  1207			flag++;
+  1208		}
+  1209	
+  1210		if(!flag && (lstrcmp(decode, "*�׽�Ʈ����") == 0 ||
+  1211			lstrcmpi(decode, "*TEST_SERVER") == 0))
+  1212		{
+  1213			rsServerConfig.TestSeverMode = TRUE;
+  1214			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1215			if(strBuff[0])
+  1216			{
+  1217				rsServerConfig.TestSeverMode = atoi(strBuff);
+  1218			}
+  1219			flag++;
+  1220		}
+  1221	
+  1222		if(!flag && (lstrcmp(decode, "*���Ӱ����ڵ�") == 0 ||
+  1223			lstrcmpi(decode, "*CONNECT_CLIENT_CODE") == 0))
+  1224		{
+  1225			for(cnt = 0; cnt < 32; cnt++)
+  1226			{
+  1227				p = local_GetWord(strBuff, p);
+  1228				if(!strBuff[0]) break;
+  1229	
+  1230				rsServerConfig.dwClientCheckSum[rsServerConfig.ClientCheckSumCount] = atoi(strBuff);
+  1231				rsServerConfig.ClientCheckSumCount++;
+  1232			}
+  1233			flag++;
+  1234		}
+  1235	
+  1236		if(!flag && (lstrcmp(decode, "*�ڵ���������") == 0 ||
+  1237			lstrcmpi(decode, "*DISCONNECT_CLIENT_BADCODE") == 0))
+  1238		{
+  1239			rsServerConfig.ClientCheckOut = TRUE;
+  1240			flag++;
+  1241		}
+  1242	
+  1243		if(!flag && (lstrcmp(decode, "*���κ�ȣ�ڵ�") == 0 ||
+  1244			lstrcmpi(decode, "*CLSAFE_CODE") == 0))
+  1245		{
+  1246	
+  1247			for(cnt = 0; cnt < 32; cnt++)
+  1248			{
+  1249				p = local_GetWord(strBuff, p);
+  1250				if(!strBuff[0]) break;
+  1251	
+  1252				rsServerConfig.dwSafeClientCode[rsServerConfig.SafeClientCodeCount] = atoi(strBuff);
+  1253				rsServerConfig.SafeClientCodeCount++;
+  1254			}
+  1255			flag++;
+  1256	
+  1257	
+  1258	
+  1259		}
+  1260		if(!flag && (lstrcmp(decode, "*��ȣ�ڵ��������") == 0 ||
+  1261			lstrcmpi(decode, "*DISCONNECT_CLSAFE_CODE") == 0))
+  1262		{
+  1263			rsServerConfig.ClientCodeCheckOut = TRUE;
+  1264			flag++;
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1227
+----------------------------------------------------------------------
+  1207			flag++;
+  1208		}
+  1209	
+  1210		if(!flag && (lstrcmp(decode, "*�׽�Ʈ����") == 0 ||
+  1211			lstrcmpi(decode, "*TEST_SERVER") == 0))
+  1212		{
+  1213			rsServerConfig.TestSeverMode = TRUE;
+  1214			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1215			if(strBuff[0])
+  1216			{
+  1217				rsServerConfig.TestSeverMode = atoi(strBuff);
+  1218			}
+  1219			flag++;
+  1220		}
+  1221	
+  1222		if(!flag && (lstrcmp(decode, "*���Ӱ����ڵ�") == 0 ||
+  1223			lstrcmpi(decode, "*CONNECT_CLIENT_CODE") == 0))
+  1224		{
+  1225			for(cnt = 0; cnt < 32; cnt++)
+  1226			{
+  1227				p = local_GetWord(strBuff, p);
+  1228				if(!strBuff[0]) break;
+  1229	
+  1230				rsServerConfig.dwClientCheckSum[rsServerConfig.ClientCheckSumCount] = atoi(strBuff);
+  1231				rsServerConfig.ClientCheckSumCount++;
+  1232			}
+  1233			flag++;
+  1234		}
+  1235	
+  1236		if(!flag && (lstrcmp(decode, "*�ڵ���������") == 0 ||
+  1237			lstrcmpi(decode, "*DISCONNECT_CLIENT_BADCODE") == 0))
+  1238		{
+  1239			rsServerConfig.ClientCheckOut = TRUE;
+  1240			flag++;
+  1241		}
+  1242	
+  1243		if(!flag && (lstrcmp(decode, "*���κ�ȣ�ڵ�") == 0 ||
+  1244			lstrcmpi(decode, "*CLSAFE_CODE") == 0))
+  1245		{
+  1246	
+  1247			for(cnt = 0; cnt < 32; cnt++)
+  1248			{
+  1249				p = local_GetWord(strBuff, p);
+  1250				if(!strBuff[0]) break;
+  1251	
+  1252				rsServerConfig.dwSafeClientCode[rsServerConfig.SafeClientCodeCount] = atoi(strBuff);
+  1253				rsServerConfig.SafeClientCodeCount++;
+  1254			}
+  1255			flag++;
+  1256	
+  1257	
+  1258	
+  1259		}
+  1260		if(!flag && (lstrcmp(decode, "*��ȣ�ڵ��������") == 0 ||
+  1261			lstrcmpi(decode, "*DISCONNECT_CLSAFE_CODE") == 0))
+  1262		{
+  1263			rsServerConfig.ClientCodeCheckOut = TRUE;
+  1264			flag++;
+  1265		}
+  1266	
+  1267	
+  1268		if(!flag && (lstrcmp(decode, "*���ѹ���") == 0 ||
+  1269			lstrcmpi(decode, "*VERSION") == 0))
+  1270		{
+  1271			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1272			rsServerConfig.LimitVersion = atoi(strBuff);
+  1273	
+  1274			flag++;
+  1275		}
+  1276	
+  1277	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1249
+----------------------------------------------------------------------
+  1229	
+  1230				rsServerConfig.dwClientCheckSum[rsServerConfig.ClientCheckSumCount] = atoi(strBuff);
+  1231				rsServerConfig.ClientCheckSumCount++;
+  1232			}
+  1233			flag++;
+  1234		}
+  1235	
+  1236		if(!flag && (lstrcmp(decode, "*�ڵ���������") == 0 ||
+  1237			lstrcmpi(decode, "*DISCONNECT_CLIENT_BADCODE") == 0))
+  1238		{
+  1239			rsServerConfig.ClientCheckOut = TRUE;
+  1240			flag++;
+  1241		}
+  1242	
+  1243		if(!flag && (lstrcmp(decode, "*���κ�ȣ�ڵ�") == 0 ||
+  1244			lstrcmpi(decode, "*CLSAFE_CODE") == 0))
+  1245		{
+  1246	
+  1247			for(cnt = 0; cnt < 32; cnt++)
+  1248			{
+  1249				p = local_GetWord(strBuff, p);
+  1250				if(!strBuff[0]) break;
+  1251	
+  1252				rsServerConfig.dwSafeClientCode[rsServerConfig.SafeClientCodeCount] = atoi(strBuff);
+  1253				rsServerConfig.SafeClientCodeCount++;
+  1254			}
+  1255			flag++;
+  1256	
+  1257	
+  1258	
+  1259		}
+  1260		if(!flag && (lstrcmp(decode, "*��ȣ�ڵ��������") == 0 ||
+  1261			lstrcmpi(decode, "*DISCONNECT_CLSAFE_CODE") == 0))
+  1262		{
+  1263			rsServerConfig.ClientCodeCheckOut = TRUE;
+  1264			flag++;
+  1265		}
+  1266	
+  1267	
+  1268		if(!flag && (lstrcmp(decode, "*���ѹ���") == 0 ||
+  1269			lstrcmpi(decode, "*VERSION") == 0))
+  1270		{
+  1271			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1272			rsServerConfig.LimitVersion = atoi(strBuff);
+  1273	
+  1274			flag++;
+  1275		}
+  1276	
+  1277	
+  1278		if(!flag && (lstrcmp(decode, "*�����̸�") == 0 ||
+  1279			lstrcmpi(decode, "*SERVER_NAME") == 0))
+  1280		{
+  1281			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1282			strcpy_s(rsServerConfig.szServerName, strBuff);
+  1283			flag++;
+  1284		}
+  1285	
+  1286		if(!flag && (lstrcmp(decode, "*PK�㰡") == 0 ||
+  1287			lstrcmpi(decode, "*ENABLE_PK") == 0))
+  1288		{
+  1289	
+  1290			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1291			rsServerConfig.Enable_PK = atoi(strBuff);
+  1292			if(rsServerConfig.Enable_PK == 0) rsServerConfig.Enable_PK = TRUE;
+  1293	
+  1294			flag++;
+  1295		}
+  1296	
+  1297		if(!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1298			lstrcmpi(decode, "*PK_FIELD") == 0))
+  1299		{
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1271
+----------------------------------------------------------------------
+  1251	
+  1252				rsServerConfig.dwSafeClientCode[rsServerConfig.SafeClientCodeCount] = atoi(strBuff);
+  1253				rsServerConfig.SafeClientCodeCount++;
+  1254			}
+  1255			flag++;
+  1256	
+  1257	
+  1258	
+  1259		}
+  1260		if(!flag && (lstrcmp(decode, "*��ȣ�ڵ��������") == 0 ||
+  1261			lstrcmpi(decode, "*DISCONNECT_CLSAFE_CODE") == 0))
+  1262		{
+  1263			rsServerConfig.ClientCodeCheckOut = TRUE;
+  1264			flag++;
+  1265		}
+  1266	
+  1267	
+  1268		if(!flag && (lstrcmp(decode, "*���ѹ���") == 0 ||
+  1269			lstrcmpi(decode, "*VERSION") == 0))
+  1270		{
+  1271			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1272			rsServerConfig.LimitVersion = atoi(strBuff);
+  1273	
+  1274			flag++;
+  1275		}
+  1276	
+  1277	
+  1278		if(!flag && (lstrcmp(decode, "*�����̸�") == 0 ||
+  1279			lstrcmpi(decode, "*SERVER_NAME") == 0))
+  1280		{
+  1281			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1282			strcpy_s(rsServerConfig.szServerName, strBuff);
+  1283			flag++;
+  1284		}
+  1285	
+  1286		if(!flag && (lstrcmp(decode, "*PK�㰡") == 0 ||
+  1287			lstrcmpi(decode, "*ENABLE_PK") == 0))
+  1288		{
+  1289	
+  1290			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1291			rsServerConfig.Enable_PK = atoi(strBuff);
+  1292			if(rsServerConfig.Enable_PK == 0) rsServerConfig.Enable_PK = TRUE;
+  1293	
+  1294			flag++;
+  1295		}
+  1296	
+  1297		if(!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1298			lstrcmpi(decode, "*PK_FIELD") == 0))
+  1299		{
+  1300	
+  1301			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1302			rsServerConfig.Enable_PKField = atoi(strBuff);
+  1303			if(rsServerConfig.Enable_PKField == 0) rsServerConfig.Enable_PKField = 46;
+  1304	
+  1305			flag++;
+  1306		}
+  1307		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1308			lstrcmpi(decode, "*PK_FIELD1") == 0))
+  1309		{
+  1310	
+  1311			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1312			rsServerConfig.Enable_PKField1 = atoi(strBuff);
+  1313			if (rsServerConfig.Enable_PKField1 == 0) rsServerConfig.Enable_PKField1 = 47;
+  1314	
+  1315			flag++;
+  1316		}
+  1317		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1318			lstrcmpi(decode, "*PK_FIELD2") == 0))
+  1319		{
+  1320	
+  1321			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1281
+----------------------------------------------------------------------
+  1261			lstrcmpi(decode, "*DISCONNECT_CLSAFE_CODE") == 0))
+  1262		{
+  1263			rsServerConfig.ClientCodeCheckOut = TRUE;
+  1264			flag++;
+  1265		}
+  1266	
+  1267	
+  1268		if(!flag && (lstrcmp(decode, "*���ѹ���") == 0 ||
+  1269			lstrcmpi(decode, "*VERSION") == 0))
+  1270		{
+  1271			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1272			rsServerConfig.LimitVersion = atoi(strBuff);
+  1273	
+  1274			flag++;
+  1275		}
+  1276	
+  1277	
+  1278		if(!flag && (lstrcmp(decode, "*�����̸�") == 0 ||
+  1279			lstrcmpi(decode, "*SERVER_NAME") == 0))
+  1280		{
+  1281			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1282			strcpy_s(rsServerConfig.szServerName, strBuff);
+  1283			flag++;
+  1284		}
+  1285	
+  1286		if(!flag && (lstrcmp(decode, "*PK�㰡") == 0 ||
+  1287			lstrcmpi(decode, "*ENABLE_PK") == 0))
+  1288		{
+  1289	
+  1290			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1291			rsServerConfig.Enable_PK = atoi(strBuff);
+  1292			if(rsServerConfig.Enable_PK == 0) rsServerConfig.Enable_PK = TRUE;
+  1293	
+  1294			flag++;
+  1295		}
+  1296	
+  1297		if(!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1298			lstrcmpi(decode, "*PK_FIELD") == 0))
+  1299		{
+  1300	
+  1301			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1302			rsServerConfig.Enable_PKField = atoi(strBuff);
+  1303			if(rsServerConfig.Enable_PKField == 0) rsServerConfig.Enable_PKField = 46;
+  1304	
+  1305			flag++;
+  1306		}
+  1307		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1308			lstrcmpi(decode, "*PK_FIELD1") == 0))
+  1309		{
+  1310	
+  1311			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1312			rsServerConfig.Enable_PKField1 = atoi(strBuff);
+  1313			if (rsServerConfig.Enable_PKField1 == 0) rsServerConfig.Enable_PKField1 = 47;
+  1314	
+  1315			flag++;
+  1316		}
+  1317		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1318			lstrcmpi(decode, "*PK_FIELD2") == 0))
+  1319		{
+  1320	
+  1321			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1322			rsServerConfig.Enable_PKField2 = atoi(strBuff);
+  1323			if (rsServerConfig.Enable_PKField2 == 0) rsServerConfig.Enable_PKField2 = 50;
+  1324	
+  1325			flag++;
+  1326		}
+  1327	
+  1328		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1329			lstrcmpi(decode, "*PK_FIELD3") == 0))
+  1330		{
+  1331	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1290
+----------------------------------------------------------------------
+  1270		{
+  1271			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1272			rsServerConfig.LimitVersion = atoi(strBuff);
+  1273	
+  1274			flag++;
+  1275		}
+  1276	
+  1277	
+  1278		if(!flag && (lstrcmp(decode, "*�����̸�") == 0 ||
+  1279			lstrcmpi(decode, "*SERVER_NAME") == 0))
+  1280		{
+  1281			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1282			strcpy_s(rsServerConfig.szServerName, strBuff);
+  1283			flag++;
+  1284		}
+  1285	
+  1286		if(!flag && (lstrcmp(decode, "*PK�㰡") == 0 ||
+  1287			lstrcmpi(decode, "*ENABLE_PK") == 0))
+  1288		{
+  1289	
+  1290			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1291			rsServerConfig.Enable_PK = atoi(strBuff);
+  1292			if(rsServerConfig.Enable_PK == 0) rsServerConfig.Enable_PK = TRUE;
+  1293	
+  1294			flag++;
+  1295		}
+  1296	
+  1297		if(!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1298			lstrcmpi(decode, "*PK_FIELD") == 0))
+  1299		{
+  1300	
+  1301			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1302			rsServerConfig.Enable_PKField = atoi(strBuff);
+  1303			if(rsServerConfig.Enable_PKField == 0) rsServerConfig.Enable_PKField = 46;
+  1304	
+  1305			flag++;
+  1306		}
+  1307		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1308			lstrcmpi(decode, "*PK_FIELD1") == 0))
+  1309		{
+  1310	
+  1311			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1312			rsServerConfig.Enable_PKField1 = atoi(strBuff);
+  1313			if (rsServerConfig.Enable_PKField1 == 0) rsServerConfig.Enable_PKField1 = 47;
+  1314	
+  1315			flag++;
+  1316		}
+  1317		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1318			lstrcmpi(decode, "*PK_FIELD2") == 0))
+  1319		{
+  1320	
+  1321			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1322			rsServerConfig.Enable_PKField2 = atoi(strBuff);
+  1323			if (rsServerConfig.Enable_PKField2 == 0) rsServerConfig.Enable_PKField2 = 50;
+  1324	
+  1325			flag++;
+  1326		}
+  1327	
+  1328		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1329			lstrcmpi(decode, "*PK_FIELD3") == 0))
+  1330		{
+  1331	
+  1332			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1333			rsServerConfig.Enable_PKField3 = atoi(strBuff);
+  1334			if (rsServerConfig.Enable_PKField3 == 0) rsServerConfig.Enable_PKField3 = 37;
+  1335	
+  1336			flag++;
+  1337		}
+  1338	
+  1339	
+  1340		if(!flag && (lstrcmp(decode, "*PK����ʵ�") == 0 || lstrcmpi(decode, "*PK_FIELD_ALL") == 0))
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1301
+----------------------------------------------------------------------
+  1281			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1282			strcpy_s(rsServerConfig.szServerName, strBuff);
+  1283			flag++;
+  1284		}
+  1285	
+  1286		if(!flag && (lstrcmp(decode, "*PK�㰡") == 0 ||
+  1287			lstrcmpi(decode, "*ENABLE_PK") == 0))
+  1288		{
+  1289	
+  1290			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1291			rsServerConfig.Enable_PK = atoi(strBuff);
+  1292			if(rsServerConfig.Enable_PK == 0) rsServerConfig.Enable_PK = TRUE;
+  1293	
+  1294			flag++;
+  1295		}
+  1296	
+  1297		if(!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1298			lstrcmpi(decode, "*PK_FIELD") == 0))
+  1299		{
+  1300	
+  1301			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1302			rsServerConfig.Enable_PKField = atoi(strBuff);
+  1303			if(rsServerConfig.Enable_PKField == 0) rsServerConfig.Enable_PKField = 46;
+  1304	
+  1305			flag++;
+  1306		}
+  1307		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1308			lstrcmpi(decode, "*PK_FIELD1") == 0))
+  1309		{
+  1310	
+  1311			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1312			rsServerConfig.Enable_PKField1 = atoi(strBuff);
+  1313			if (rsServerConfig.Enable_PKField1 == 0) rsServerConfig.Enable_PKField1 = 47;
+  1314	
+  1315			flag++;
+  1316		}
+  1317		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1318			lstrcmpi(decode, "*PK_FIELD2") == 0))
+  1319		{
+  1320	
+  1321			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1322			rsServerConfig.Enable_PKField2 = atoi(strBuff);
+  1323			if (rsServerConfig.Enable_PKField2 == 0) rsServerConfig.Enable_PKField2 = 50;
+  1324	
+  1325			flag++;
+  1326		}
+  1327	
+  1328		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1329			lstrcmpi(decode, "*PK_FIELD3") == 0))
+  1330		{
+  1331	
+  1332			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1333			rsServerConfig.Enable_PKField3 = atoi(strBuff);
+  1334			if (rsServerConfig.Enable_PKField3 == 0) rsServerConfig.Enable_PKField3 = 37;
+  1335	
+  1336			flag++;
+  1337		}
+  1338	
+  1339	
+  1340		if(!flag && (lstrcmp(decode, "*PK����ʵ�") == 0 || lstrcmpi(decode, "*PK_FIELD_ALL") == 0))
+  1341		{
+  1342			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1343			rsServerConfig.Enable_PKField_All = atoi(strBuff);
+  1344			flag++;
+  1345		}
+  1346	
+  1347	
+  1348		if(!flag && (lstrcmp(decode, "*���న��") == 0 ||
+  1349			lstrcmpi(decode, "*POTION_MONITOR") == 0))
+  1350		{
+  1351	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1311
+----------------------------------------------------------------------
+  1291			rsServerConfig.Enable_PK = atoi(strBuff);
+  1292			if(rsServerConfig.Enable_PK == 0) rsServerConfig.Enable_PK = TRUE;
+  1293	
+  1294			flag++;
+  1295		}
+  1296	
+  1297		if(!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1298			lstrcmpi(decode, "*PK_FIELD") == 0))
+  1299		{
+  1300	
+  1301			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1302			rsServerConfig.Enable_PKField = atoi(strBuff);
+  1303			if(rsServerConfig.Enable_PKField == 0) rsServerConfig.Enable_PKField = 46;
+  1304	
+  1305			flag++;
+  1306		}
+  1307		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1308			lstrcmpi(decode, "*PK_FIELD1") == 0))
+  1309		{
+  1310	
+  1311			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1312			rsServerConfig.Enable_PKField1 = atoi(strBuff);
+  1313			if (rsServerConfig.Enable_PKField1 == 0) rsServerConfig.Enable_PKField1 = 47;
+  1314	
+  1315			flag++;
+  1316		}
+  1317		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1318			lstrcmpi(decode, "*PK_FIELD2") == 0))
+  1319		{
+  1320	
+  1321			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1322			rsServerConfig.Enable_PKField2 = atoi(strBuff);
+  1323			if (rsServerConfig.Enable_PKField2 == 0) rsServerConfig.Enable_PKField2 = 50;
+  1324	
+  1325			flag++;
+  1326		}
+  1327	
+  1328		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1329			lstrcmpi(decode, "*PK_FIELD3") == 0))
+  1330		{
+  1331	
+  1332			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1333			rsServerConfig.Enable_PKField3 = atoi(strBuff);
+  1334			if (rsServerConfig.Enable_PKField3 == 0) rsServerConfig.Enable_PKField3 = 37;
+  1335	
+  1336			flag++;
+  1337		}
+  1338	
+  1339	
+  1340		if(!flag && (lstrcmp(decode, "*PK����ʵ�") == 0 || lstrcmpi(decode, "*PK_FIELD_ALL") == 0))
+  1341		{
+  1342			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1343			rsServerConfig.Enable_PKField_All = atoi(strBuff);
+  1344			flag++;
+  1345		}
+  1346	
+  1347	
+  1348		if(!flag && (lstrcmp(decode, "*���న��") == 0 ||
+  1349			lstrcmpi(decode, "*POTION_MONITOR") == 0))
+  1350		{
+  1351	
+  1352			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1353			if(strBuff[0])
+  1354				rsServerConfig.PotionMonitor = atoi(strBuff);
+  1355			else
+  1356				rsServerConfig.PotionMonitor = 1;
+  1357	
+  1358			flag++;
+  1359		}
+  1360	
+  1361		if(!flag && (lstrcmp(decode, "*���Ȱ˻�") == 0 ||
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1321
+----------------------------------------------------------------------
+  1301			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1302			rsServerConfig.Enable_PKField = atoi(strBuff);
+  1303			if(rsServerConfig.Enable_PKField == 0) rsServerConfig.Enable_PKField = 46;
+  1304	
+  1305			flag++;
+  1306		}
+  1307		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1308			lstrcmpi(decode, "*PK_FIELD1") == 0))
+  1309		{
+  1310	
+  1311			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1312			rsServerConfig.Enable_PKField1 = atoi(strBuff);
+  1313			if (rsServerConfig.Enable_PKField1 == 0) rsServerConfig.Enable_PKField1 = 47;
+  1314	
+  1315			flag++;
+  1316		}
+  1317		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1318			lstrcmpi(decode, "*PK_FIELD2") == 0))
+  1319		{
+  1320	
+  1321			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1322			rsServerConfig.Enable_PKField2 = atoi(strBuff);
+  1323			if (rsServerConfig.Enable_PKField2 == 0) rsServerConfig.Enable_PKField2 = 50;
+  1324	
+  1325			flag++;
+  1326		}
+  1327	
+  1328		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1329			lstrcmpi(decode, "*PK_FIELD3") == 0))
+  1330		{
+  1331	
+  1332			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1333			rsServerConfig.Enable_PKField3 = atoi(strBuff);
+  1334			if (rsServerConfig.Enable_PKField3 == 0) rsServerConfig.Enable_PKField3 = 37;
+  1335	
+  1336			flag++;
+  1337		}
+  1338	
+  1339	
+  1340		if(!flag && (lstrcmp(decode, "*PK����ʵ�") == 0 || lstrcmpi(decode, "*PK_FIELD_ALL") == 0))
+  1341		{
+  1342			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1343			rsServerConfig.Enable_PKField_All = atoi(strBuff);
+  1344			flag++;
+  1345		}
+  1346	
+  1347	
+  1348		if(!flag && (lstrcmp(decode, "*���న��") == 0 ||
+  1349			lstrcmpi(decode, "*POTION_MONITOR") == 0))
+  1350		{
+  1351	
+  1352			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1353			if(strBuff[0])
+  1354				rsServerConfig.PotionMonitor = atoi(strBuff);
+  1355			else
+  1356				rsServerConfig.PotionMonitor = 1;
+  1357	
+  1358			flag++;
+  1359		}
+  1360	
+  1361		if(!flag && (lstrcmp(decode, "*���Ȱ˻�") == 0 ||
+  1362			lstrcmpi(decode, "*CL_PROTECT") == 0))
+  1363		{
+  1364	
+  1365			rsServerConfig.CheckProtect = TRUE;
+  1366			flag++;
+  1367		}
+  1368	
+  1369	
+  1370	#ifdef LOG_THE_PK
+  1371	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1332
+----------------------------------------------------------------------
+  1312			rsServerConfig.Enable_PKField1 = atoi(strBuff);
+  1313			if (rsServerConfig.Enable_PKField1 == 0) rsServerConfig.Enable_PKField1 = 47;
+  1314	
+  1315			flag++;
+  1316		}
+  1317		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1318			lstrcmpi(decode, "*PK_FIELD2") == 0))
+  1319		{
+  1320	
+  1321			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1322			rsServerConfig.Enable_PKField2 = atoi(strBuff);
+  1323			if (rsServerConfig.Enable_PKField2 == 0) rsServerConfig.Enable_PKField2 = 50;
+  1324	
+  1325			flag++;
+  1326		}
+  1327	
+  1328		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1329			lstrcmpi(decode, "*PK_FIELD3") == 0))
+  1330		{
+  1331	
+  1332			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1333			rsServerConfig.Enable_PKField3 = atoi(strBuff);
+  1334			if (rsServerConfig.Enable_PKField3 == 0) rsServerConfig.Enable_PKField3 = 37;
+  1335	
+  1336			flag++;
+  1337		}
+  1338	
+  1339	
+  1340		if(!flag && (lstrcmp(decode, "*PK����ʵ�") == 0 || lstrcmpi(decode, "*PK_FIELD_ALL") == 0))
+  1341		{
+  1342			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1343			rsServerConfig.Enable_PKField_All = atoi(strBuff);
+  1344			flag++;
+  1345		}
+  1346	
+  1347	
+  1348		if(!flag && (lstrcmp(decode, "*���న��") == 0 ||
+  1349			lstrcmpi(decode, "*POTION_MONITOR") == 0))
+  1350		{
+  1351	
+  1352			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1353			if(strBuff[0])
+  1354				rsServerConfig.PotionMonitor = atoi(strBuff);
+  1355			else
+  1356				rsServerConfig.PotionMonitor = 1;
+  1357	
+  1358			flag++;
+  1359		}
+  1360	
+  1361		if(!flag && (lstrcmp(decode, "*���Ȱ˻�") == 0 ||
+  1362			lstrcmpi(decode, "*CL_PROTECT") == 0))
+  1363		{
+  1364	
+  1365			rsServerConfig.CheckProtect = TRUE;
+  1366			flag++;
+  1367		}
+  1368	
+  1369	
+  1370	#ifdef LOG_THE_PK
+  1371	
+  1372		if(!flag && (lstrcmpi(decode, "*PK_LOG") == 0))
+  1373		{
+  1374			rsServerConfig.bPK_LOG = true;
+  1375			flag++;
+  1376		}
+  1377	#endif
+  1378	
+  1379	
+  1380		if(!flag && (lstrcmp(decode, "*��������") == 0 ||
+  1381			lstrcmpi(decode, "*REMOVE_PROTECT_TIME") == 0))
+  1382		{
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1342
+----------------------------------------------------------------------
+  1322			rsServerConfig.Enable_PKField2 = atoi(strBuff);
+  1323			if (rsServerConfig.Enable_PKField2 == 0) rsServerConfig.Enable_PKField2 = 50;
+  1324	
+  1325			flag++;
+  1326		}
+  1327	
+  1328		if (!flag && (lstrcmp(decode, "*PK�ʵ�") == 0 ||
+  1329			lstrcmpi(decode, "*PK_FIELD3") == 0))
+  1330		{
+  1331	
+  1332			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1333			rsServerConfig.Enable_PKField3 = atoi(strBuff);
+  1334			if (rsServerConfig.Enable_PKField3 == 0) rsServerConfig.Enable_PKField3 = 37;
+  1335	
+  1336			flag++;
+  1337		}
+  1338	
+  1339	
+  1340		if(!flag && (lstrcmp(decode, "*PK����ʵ�") == 0 || lstrcmpi(decode, "*PK_FIELD_ALL") == 0))
+  1341		{
+  1342			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1343			rsServerConfig.Enable_PKField_All = atoi(strBuff);
+  1344			flag++;
+  1345		}
+  1346	
+  1347	
+  1348		if(!flag && (lstrcmp(decode, "*���న��") == 0 ||
+  1349			lstrcmpi(decode, "*POTION_MONITOR") == 0))
+  1350		{
+  1351	
+  1352			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1353			if(strBuff[0])
+  1354				rsServerConfig.PotionMonitor = atoi(strBuff);
+  1355			else
+  1356				rsServerConfig.PotionMonitor = 1;
+  1357	
+  1358			flag++;
+  1359		}
+  1360	
+  1361		if(!flag && (lstrcmp(decode, "*���Ȱ˻�") == 0 ||
+  1362			lstrcmpi(decode, "*CL_PROTECT") == 0))
+  1363		{
+  1364	
+  1365			rsServerConfig.CheckProtect = TRUE;
+  1366			flag++;
+  1367		}
+  1368	
+  1369	
+  1370	#ifdef LOG_THE_PK
+  1371	
+  1372		if(!flag && (lstrcmpi(decode, "*PK_LOG") == 0))
+  1373		{
+  1374			rsServerConfig.bPK_LOG = true;
+  1375			flag++;
+  1376		}
+  1377	#endif
+  1378	
+  1379	
+  1380		if(!flag && (lstrcmp(decode, "*��������") == 0 ||
+  1381			lstrcmpi(decode, "*REMOVE_PROTECT_TIME") == 0))
+  1382		{
+  1383			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1384			rsServerConfig.RemoveNProtectTime = atoi(strBuff);
+  1385			flag++;
+  1386		}
+  1387	
+  1388	
+  1389		if(!flag && (lstrcmp(decode, "*����ܰ�") == 0 ||
+  1390			lstrcmpi(decode, "*BLOCK_LEVEL") == 0))
+  1391		{
+  1392			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1352
+----------------------------------------------------------------------
+  1332			pb = p; p = local_GetWord(strBuff, p); if (strBuff[0] == 34)p = GetString(strBuff, pb);
+  1333			rsServerConfig.Enable_PKField3 = atoi(strBuff);
+  1334			if (rsServerConfig.Enable_PKField3 == 0) rsServerConfig.Enable_PKField3 = 37;
+  1335	
+  1336			flag++;
+  1337		}
+  1338	
+  1339	
+  1340		if(!flag && (lstrcmp(decode, "*PK����ʵ�") == 0 || lstrcmpi(decode, "*PK_FIELD_ALL") == 0))
+  1341		{
+  1342			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1343			rsServerConfig.Enable_PKField_All = atoi(strBuff);
+  1344			flag++;
+  1345		}
+  1346	
+  1347	
+  1348		if(!flag && (lstrcmp(decode, "*���న��") == 0 ||
+  1349			lstrcmpi(decode, "*POTION_MONITOR") == 0))
+  1350		{
+  1351	
+  1352			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1353			if(strBuff[0])
+  1354				rsServerConfig.PotionMonitor = atoi(strBuff);
+  1355			else
+  1356				rsServerConfig.PotionMonitor = 1;
+  1357	
+  1358			flag++;
+  1359		}
+  1360	
+  1361		if(!flag && (lstrcmp(decode, "*���Ȱ˻�") == 0 ||
+  1362			lstrcmpi(decode, "*CL_PROTECT") == 0))
+  1363		{
+  1364	
+  1365			rsServerConfig.CheckProtect = TRUE;
+  1366			flag++;
+  1367		}
+  1368	
+  1369	
+  1370	#ifdef LOG_THE_PK
+  1371	
+  1372		if(!flag && (lstrcmpi(decode, "*PK_LOG") == 0))
+  1373		{
+  1374			rsServerConfig.bPK_LOG = true;
+  1375			flag++;
+  1376		}
+  1377	#endif
+  1378	
+  1379	
+  1380		if(!flag && (lstrcmp(decode, "*��������") == 0 ||
+  1381			lstrcmpi(decode, "*REMOVE_PROTECT_TIME") == 0))
+  1382		{
+  1383			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1384			rsServerConfig.RemoveNProtectTime = atoi(strBuff);
+  1385			flag++;
+  1386		}
+  1387	
+  1388	
+  1389		if(!flag && (lstrcmp(decode, "*����ܰ�") == 0 ||
+  1390			lstrcmpi(decode, "*BLOCK_LEVEL") == 0))
+  1391		{
+  1392			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1393			rsServerConfig.BlockLevel = atoi(strBuff);
+  1394			flag++;
+  1395		}
+  1396	
+  1397		if(!flag && (lstrcmp(decode, "*����ƿ�") == 0 ||
+  1398			lstrcmpi(decode, "*BLOCK_LOGOUT") == 0))
+  1399		{
+  1400			rsServerConfig.BlockLevel_LogOut = TRUE;
+  1401			flag++;
+  1402		}
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1383
+----------------------------------------------------------------------
+  1363		{
+  1364	
+  1365			rsServerConfig.CheckProtect = TRUE;
+  1366			flag++;
+  1367		}
+  1368	
+  1369	
+  1370	#ifdef LOG_THE_PK
+  1371	
+  1372		if(!flag && (lstrcmpi(decode, "*PK_LOG") == 0))
+  1373		{
+  1374			rsServerConfig.bPK_LOG = true;
+  1375			flag++;
+  1376		}
+  1377	#endif
+  1378	
+  1379	
+  1380		if(!flag && (lstrcmp(decode, "*��������") == 0 ||
+  1381			lstrcmpi(decode, "*REMOVE_PROTECT_TIME") == 0))
+  1382		{
+  1383			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1384			rsServerConfig.RemoveNProtectTime = atoi(strBuff);
+  1385			flag++;
+  1386		}
+  1387	
+  1388	
+  1389		if(!flag && (lstrcmp(decode, "*����ܰ�") == 0 ||
+  1390			lstrcmpi(decode, "*BLOCK_LEVEL") == 0))
+  1391		{
+  1392			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1393			rsServerConfig.BlockLevel = atoi(strBuff);
+  1394			flag++;
+  1395		}
+  1396	
+  1397		if(!flag && (lstrcmp(decode, "*����ƿ�") == 0 ||
+  1398			lstrcmpi(decode, "*BLOCK_LOGOUT") == 0))
+  1399		{
+  1400			rsServerConfig.BlockLevel_LogOut = TRUE;
+  1401			flag++;
+  1402		}
+  1403	
+  1404		if(!flag && (lstrcmp(decode, "*�����ۿ�������") == 0 ||
+  1405			lstrcmpi(decode, "*DISCONNECT_ITEM_ERROR") == 0))
+  1406		{
+  1407			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1408			if(strBuff[0])
+  1409				rsServerConfig.ItemCodeOut = atoi(strBuff);
+  1410			else
+  1411				rsServerConfig.ItemCodeOut = 1;
+  1412	
+  1413			flag++;
+  1414		}
+  1415	
+  1416		if(!flag && (lstrcmp(decode, "*��ǰ˻�") == 0 ||
+  1417			lstrcmpi(decode, "*CLIENT_CHECK_FUNC") == 0))
+  1418		{
+  1419			rsServerConfig.ClientFuncCheckMode = 1;
+  1420			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1421			rsServerConfig.ClientFuncCheckMode = atoi(strBuff);
+  1422			flag++;
+  1423		}
+  1424	
+  1425		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1426			lstrcmpi(decode, "*EVENT_MANDOO") == 0))
+  1427		{
+  1428			rsServerConfig.Event_Mandoo = TRUE;;
+  1429			flag++;
+  1430		}
+  1431		if(!flag && (lstrcmp(decode, "*�ϵ��ھ��̺�Ʈ") == 0 ||
+  1432			lstrcmpi(decode, "*EVENT_HARDCORE") == 0))
+  1433		{
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1392
+----------------------------------------------------------------------
+  1372		if(!flag && (lstrcmpi(decode, "*PK_LOG") == 0))
+  1373		{
+  1374			rsServerConfig.bPK_LOG = true;
+  1375			flag++;
+  1376		}
+  1377	#endif
+  1378	
+  1379	
+  1380		if(!flag && (lstrcmp(decode, "*��������") == 0 ||
+  1381			lstrcmpi(decode, "*REMOVE_PROTECT_TIME") == 0))
+  1382		{
+  1383			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1384			rsServerConfig.RemoveNProtectTime = atoi(strBuff);
+  1385			flag++;
+  1386		}
+  1387	
+  1388	
+  1389		if(!flag && (lstrcmp(decode, "*����ܰ�") == 0 ||
+  1390			lstrcmpi(decode, "*BLOCK_LEVEL") == 0))
+  1391		{
+  1392			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1393			rsServerConfig.BlockLevel = atoi(strBuff);
+  1394			flag++;
+  1395		}
+  1396	
+  1397		if(!flag && (lstrcmp(decode, "*����ƿ�") == 0 ||
+  1398			lstrcmpi(decode, "*BLOCK_LOGOUT") == 0))
+  1399		{
+  1400			rsServerConfig.BlockLevel_LogOut = TRUE;
+  1401			flag++;
+  1402		}
+  1403	
+  1404		if(!flag && (lstrcmp(decode, "*�����ۿ�������") == 0 ||
+  1405			lstrcmpi(decode, "*DISCONNECT_ITEM_ERROR") == 0))
+  1406		{
+  1407			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1408			if(strBuff[0])
+  1409				rsServerConfig.ItemCodeOut = atoi(strBuff);
+  1410			else
+  1411				rsServerConfig.ItemCodeOut = 1;
+  1412	
+  1413			flag++;
+  1414		}
+  1415	
+  1416		if(!flag && (lstrcmp(decode, "*��ǰ˻�") == 0 ||
+  1417			lstrcmpi(decode, "*CLIENT_CHECK_FUNC") == 0))
+  1418		{
+  1419			rsServerConfig.ClientFuncCheckMode = 1;
+  1420			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1421			rsServerConfig.ClientFuncCheckMode = atoi(strBuff);
+  1422			flag++;
+  1423		}
+  1424	
+  1425		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1426			lstrcmpi(decode, "*EVENT_MANDOO") == 0))
+  1427		{
+  1428			rsServerConfig.Event_Mandoo = TRUE;;
+  1429			flag++;
+  1430		}
+  1431		if(!flag && (lstrcmp(decode, "*�ϵ��ھ��̺�Ʈ") == 0 ||
+  1432			lstrcmpi(decode, "*EVENT_HARDCORE") == 0))
+  1433		{
+  1434	
+  1435			p = local_GetWord(strBuff, p);
+  1436			if(strBuff[0])
+  1437				rsServerConfig.Event_HardCore = atoi(strBuff);
+  1438			else
+  1439				rsServerConfig.Event_HardCore = 1;
+  1440	
+  1441			flag++;
+  1442		}
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1407
+----------------------------------------------------------------------
+  1387	
+  1388	
+  1389		if(!flag && (lstrcmp(decode, "*����ܰ�") == 0 ||
+  1390			lstrcmpi(decode, "*BLOCK_LEVEL") == 0))
+  1391		{
+  1392			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1393			rsServerConfig.BlockLevel = atoi(strBuff);
+  1394			flag++;
+  1395		}
+  1396	
+  1397		if(!flag && (lstrcmp(decode, "*����ƿ�") == 0 ||
+  1398			lstrcmpi(decode, "*BLOCK_LOGOUT") == 0))
+  1399		{
+  1400			rsServerConfig.BlockLevel_LogOut = TRUE;
+  1401			flag++;
+  1402		}
+  1403	
+  1404		if(!flag && (lstrcmp(decode, "*�����ۿ�������") == 0 ||
+  1405			lstrcmpi(decode, "*DISCONNECT_ITEM_ERROR") == 0))
+  1406		{
+  1407			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1408			if(strBuff[0])
+  1409				rsServerConfig.ItemCodeOut = atoi(strBuff);
+  1410			else
+  1411				rsServerConfig.ItemCodeOut = 1;
+  1412	
+  1413			flag++;
+  1414		}
+  1415	
+  1416		if(!flag && (lstrcmp(decode, "*��ǰ˻�") == 0 ||
+  1417			lstrcmpi(decode, "*CLIENT_CHECK_FUNC") == 0))
+  1418		{
+  1419			rsServerConfig.ClientFuncCheckMode = 1;
+  1420			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1421			rsServerConfig.ClientFuncCheckMode = atoi(strBuff);
+  1422			flag++;
+  1423		}
+  1424	
+  1425		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1426			lstrcmpi(decode, "*EVENT_MANDOO") == 0))
+  1427		{
+  1428			rsServerConfig.Event_Mandoo = TRUE;;
+  1429			flag++;
+  1430		}
+  1431		if(!flag && (lstrcmp(decode, "*�ϵ��ھ��̺�Ʈ") == 0 ||
+  1432			lstrcmpi(decode, "*EVENT_HARDCORE") == 0))
+  1433		{
+  1434	
+  1435			p = local_GetWord(strBuff, p);
+  1436			if(strBuff[0])
+  1437				rsServerConfig.Event_HardCore = atoi(strBuff);
+  1438			else
+  1439				rsServerConfig.Event_HardCore = 1;
+  1440	
+  1441			flag++;
+  1442		}
+  1443	#ifdef	_LANGUAGE_JAPANESE 
+  1444		if(!flag && (lstrcmp(decode, "*���ݷ�Ȱ���̺�Ʈ") == 0 ||
+  1445			lstrcmpi(decode, "*EVENT_DAMAGEOFF") == 0))
+  1446		{
+  1447			p = local_GetWord(strBuff, p);
+  1448			if(strBuff[0])
+  1449				rsServerConfig.Event_DamageOff = atoi(strBuff);
+  1450			else
+  1451				rsServerConfig.Event_DamageOff = 1;
+  1452			flag++;
+  1453		}
+  1454	#else
+  1455		if(!flag && (lstrcmpi(decode, "*EVENT_DAMAGEOFF1") == 0))
+  1456		{
+  1457			p = local_GetWord(strBuff, p);
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1420
+----------------------------------------------------------------------
+  1400			rsServerConfig.BlockLevel_LogOut = TRUE;
+  1401			flag++;
+  1402		}
+  1403	
+  1404		if(!flag && (lstrcmp(decode, "*�����ۿ�������") == 0 ||
+  1405			lstrcmpi(decode, "*DISCONNECT_ITEM_ERROR") == 0))
+  1406		{
+  1407			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1408			if(strBuff[0])
+  1409				rsServerConfig.ItemCodeOut = atoi(strBuff);
+  1410			else
+  1411				rsServerConfig.ItemCodeOut = 1;
+  1412	
+  1413			flag++;
+  1414		}
+  1415	
+  1416		if(!flag && (lstrcmp(decode, "*��ǰ˻�") == 0 ||
+  1417			lstrcmpi(decode, "*CLIENT_CHECK_FUNC") == 0))
+  1418		{
+  1419			rsServerConfig.ClientFuncCheckMode = 1;
+  1420			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1421			rsServerConfig.ClientFuncCheckMode = atoi(strBuff);
+  1422			flag++;
+  1423		}
+  1424	
+  1425		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1426			lstrcmpi(decode, "*EVENT_MANDOO") == 0))
+  1427		{
+  1428			rsServerConfig.Event_Mandoo = TRUE;;
+  1429			flag++;
+  1430		}
+  1431		if(!flag && (lstrcmp(decode, "*�ϵ��ھ��̺�Ʈ") == 0 ||
+  1432			lstrcmpi(decode, "*EVENT_HARDCORE") == 0))
+  1433		{
+  1434	
+  1435			p = local_GetWord(strBuff, p);
+  1436			if(strBuff[0])
+  1437				rsServerConfig.Event_HardCore = atoi(strBuff);
+  1438			else
+  1439				rsServerConfig.Event_HardCore = 1;
+  1440	
+  1441			flag++;
+  1442		}
+  1443	#ifdef	_LANGUAGE_JAPANESE 
+  1444		if(!flag && (lstrcmp(decode, "*���ݷ�Ȱ���̺�Ʈ") == 0 ||
+  1445			lstrcmpi(decode, "*EVENT_DAMAGEOFF") == 0))
+  1446		{
+  1447			p = local_GetWord(strBuff, p);
+  1448			if(strBuff[0])
+  1449				rsServerConfig.Event_DamageOff = atoi(strBuff);
+  1450			else
+  1451				rsServerConfig.Event_DamageOff = 1;
+  1452			flag++;
+  1453		}
+  1454	#else
+  1455		if(!flag && (lstrcmpi(decode, "*EVENT_DAMAGEOFF1") == 0))
+  1456		{
+  1457			p = local_GetWord(strBuff, p);
+  1458			if(strBuff[0])
+  1459				rsServerConfig.Event_DamageOff1 = atoi(strBuff);
+  1460			else
+  1461				rsServerConfig.Event_DamageOff1 = 1;
+  1462			flag++;
+  1463		}
+  1464		if(!flag && (lstrcmpi(decode, "*EVENT_DAMAGEOFF2") == 0))
+  1465		{
+  1466			p = local_GetWord(strBuff, p);
+  1467			if(strBuff[0])
+  1468				rsServerConfig.Event_DamageOff2 = atoi(strBuff);
+  1469			else
+  1470				rsServerConfig.Event_DamageOff2 = 1;
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1435
+----------------------------------------------------------------------
+  1415	
+  1416		if(!flag && (lstrcmp(decode, "*��ǰ˻�") == 0 ||
+  1417			lstrcmpi(decode, "*CLIENT_CHECK_FUNC") == 0))
+  1418		{
+  1419			rsServerConfig.ClientFuncCheckMode = 1;
+  1420			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  1421			rsServerConfig.ClientFuncCheckMode = atoi(strBuff);
+  1422			flag++;
+  1423		}
+  1424	
+  1425		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1426			lstrcmpi(decode, "*EVENT_MANDOO") == 0))
+  1427		{
+  1428			rsServerConfig.Event_Mandoo = TRUE;;
+  1429			flag++;
+  1430		}
+  1431		if(!flag && (lstrcmp(decode, "*�ϵ��ھ��̺�Ʈ") == 0 ||
+  1432			lstrcmpi(decode, "*EVENT_HARDCORE") == 0))
+  1433		{
+  1434	
+  1435			p = local_GetWord(strBuff, p);
+  1436			if(strBuff[0])
+  1437				rsServerConfig.Event_HardCore = atoi(strBuff);
+  1438			else
+  1439				rsServerConfig.Event_HardCore = 1;
+  1440	
+  1441			flag++;
+  1442		}
+  1443	#ifdef	_LANGUAGE_JAPANESE 
+  1444		if(!flag && (lstrcmp(decode, "*���ݷ�Ȱ���̺�Ʈ") == 0 ||
+  1445			lstrcmpi(decode, "*EVENT_DAMAGEOFF") == 0))
+  1446		{
+  1447			p = local_GetWord(strBuff, p);
+  1448			if(strBuff[0])
+  1449				rsServerConfig.Event_DamageOff = atoi(strBuff);
+  1450			else
+  1451				rsServerConfig.Event_DamageOff = 1;
+  1452			flag++;
+  1453		}
+  1454	#else
+  1455		if(!flag && (lstrcmpi(decode, "*EVENT_DAMAGEOFF1") == 0))
+  1456		{
+  1457			p = local_GetWord(strBuff, p);
+  1458			if(strBuff[0])
+  1459				rsServerConfig.Event_DamageOff1 = atoi(strBuff);
+  1460			else
+  1461				rsServerConfig.Event_DamageOff1 = 1;
+  1462			flag++;
+  1463		}
+  1464		if(!flag && (lstrcmpi(decode, "*EVENT_DAMAGEOFF2") == 0))
+  1465		{
+  1466			p = local_GetWord(strBuff, p);
+  1467			if(strBuff[0])
+  1468				rsServerConfig.Event_DamageOff2 = atoi(strBuff);
+  1469			else
+  1470				rsServerConfig.Event_DamageOff2 = 1;
+  1471			flag++;
+  1472		}
+  1473	#endif
+  1474	
+  1475		if(!flag && (lstrcmp(decode, "*���������̺�Ʈ") == 0 ||
+  1476			lstrcmpi(decode, "*EVENT_DEFENSEOFF") == 0))
+  1477		{
+  1478			p = local_GetWord(strBuff, p);
+  1479			if(strBuff[0])
+  1480				rsServerConfig.Event_DefenseOff = atoi(strBuff);
+  1481			else
+  1482				rsServerConfig.Event_DefenseOff = 1;
+  1483			flag++;
+  1484		}
+  1485	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1447
+----------------------------------------------------------------------
+  1427		{
+  1428			rsServerConfig.Event_Mandoo = TRUE;;
+  1429			flag++;
+  1430		}
+  1431		if(!flag && (lstrcmp(decode, "*�ϵ��ھ��̺�Ʈ") == 0 ||
+  1432			lstrcmpi(decode, "*EVENT_HARDCORE") == 0))
+  1433		{
+  1434	
+  1435			p = local_GetWord(strBuff, p);
+  1436			if(strBuff[0])
+  1437				rsServerConfig.Event_HardCore = atoi(strBuff);
+  1438			else
+  1439				rsServerConfig.Event_HardCore = 1;
+  1440	
+  1441			flag++;
+  1442		}
+  1443	#ifdef	_LANGUAGE_JAPANESE 
+  1444		if(!flag && (lstrcmp(decode, "*���ݷ�Ȱ���̺�Ʈ") == 0 ||
+  1445			lstrcmpi(decode, "*EVENT_DAMAGEOFF") == 0))
+  1446		{
+  1447			p = local_GetWord(strBuff, p);
+  1448			if(strBuff[0])
+  1449				rsServerConfig.Event_DamageOff = atoi(strBuff);
+  1450			else
+  1451				rsServerConfig.Event_DamageOff = 1;
+  1452			flag++;
+  1453		}
+  1454	#else
+  1455		if(!flag && (lstrcmpi(decode, "*EVENT_DAMAGEOFF1") == 0))
+  1456		{
+  1457			p = local_GetWord(strBuff, p);
+  1458			if(strBuff[0])
+  1459				rsServerConfig.Event_DamageOff1 = atoi(strBuff);
+  1460			else
+  1461				rsServerConfig.Event_DamageOff1 = 1;
+  1462			flag++;
+  1463		}
+  1464		if(!flag && (lstrcmpi(decode, "*EVENT_DAMAGEOFF2") == 0))
+  1465		{
+  1466			p = local_GetWord(strBuff, p);
+  1467			if(strBuff[0])
+  1468				rsServerConfig.Event_DamageOff2 = atoi(strBuff);
+  1469			else
+  1470				rsServerConfig.Event_DamageOff2 = 1;
+  1471			flag++;
+  1472		}
+  1473	#endif
+  1474	
+  1475		if(!flag && (lstrcmp(decode, "*���������̺�Ʈ") == 0 ||
+  1476			lstrcmpi(decode, "*EVENT_DEFENSEOFF") == 0))
+  1477		{
+  1478			p = local_GetWord(strBuff, p);
+  1479			if(strBuff[0])
+  1480				rsServerConfig.Event_DefenseOff = atoi(strBuff);
+  1481			else
+  1482				rsServerConfig.Event_DefenseOff = 1;
+  1483			flag++;
+  1484		}
+  1485	
+  1486		if(!flag && (lstrcmp(decode, "*����̺�Ʈ") == 0 ||
+  1487			lstrcmpi(decode, "*EVENT_CHILD") == 0))
+  1488		{
+  1489	
+  1490			p = local_GetWord(strBuff, p);
+  1491			if(strBuff[0])
+  1492				rsServerConfig.Event_Child = atoi(strBuff);
+  1493			else
+  1494				rsServerConfig.Event_Child = 1;
+  1495	
+  1496			flag++;
+  1497		}
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1457
+----------------------------------------------------------------------
+  1437				rsServerConfig.Event_HardCore = atoi(strBuff);
+  1438			else
+  1439				rsServerConfig.Event_HardCore = 1;
+  1440	
+  1441			flag++;
+  1442		}
+  1443	#ifdef	_LANGUAGE_JAPANESE 
+  1444		if(!flag && (lstrcmp(decode, "*���ݷ�Ȱ���̺�Ʈ") == 0 ||
+  1445			lstrcmpi(decode, "*EVENT_DAMAGEOFF") == 0))
+  1446		{
+  1447			p = local_GetWord(strBuff, p);
+  1448			if(strBuff[0])
+  1449				rsServerConfig.Event_DamageOff = atoi(strBuff);
+  1450			else
+  1451				rsServerConfig.Event_DamageOff = 1;
+  1452			flag++;
+  1453		}
+  1454	#else
+  1455		if(!flag && (lstrcmpi(decode, "*EVENT_DAMAGEOFF1") == 0))
+  1456		{
+  1457			p = local_GetWord(strBuff, p);
+  1458			if(strBuff[0])
+  1459				rsServerConfig.Event_DamageOff1 = atoi(strBuff);
+  1460			else
+  1461				rsServerConfig.Event_DamageOff1 = 1;
+  1462			flag++;
+  1463		}
+  1464		if(!flag && (lstrcmpi(decode, "*EVENT_DAMAGEOFF2") == 0))
+  1465		{
+  1466			p = local_GetWord(strBuff, p);
+  1467			if(strBuff[0])
+  1468				rsServerConfig.Event_DamageOff2 = atoi(strBuff);
+  1469			else
+  1470				rsServerConfig.Event_DamageOff2 = 1;
+  1471			flag++;
+  1472		}
+  1473	#endif
+  1474	
+  1475		if(!flag && (lstrcmp(decode, "*���������̺�Ʈ") == 0 ||
+  1476			lstrcmpi(decode, "*EVENT_DEFENSEOFF") == 0))
+  1477		{
+  1478			p = local_GetWord(strBuff, p);
+  1479			if(strBuff[0])
+  1480				rsServerConfig.Event_DefenseOff = atoi(strBuff);
+  1481			else
+  1482				rsServerConfig.Event_DefenseOff = 1;
+  1483			flag++;
+  1484		}
+  1485	
+  1486		if(!flag && (lstrcmp(decode, "*����̺�Ʈ") == 0 ||
+  1487			lstrcmpi(decode, "*EVENT_CHILD") == 0))
+  1488		{
+  1489	
+  1490			p = local_GetWord(strBuff, p);
+  1491			if(strBuff[0])
+  1492				rsServerConfig.Event_Child = atoi(strBuff);
+  1493			else
+  1494				rsServerConfig.Event_Child = 1;
+  1495	
+  1496			flag++;
+  1497		}
+  1498	
+  1499	
+  1500		if(!flag && (lstrcmp(decode, "*ũ����Ż�̺�Ʈ") == 0 ||
+  1501			lstrcmpi(decode, "*EVENT_CRISTAL") == 0))
+  1502		{
+  1503	
+  1504			p = local_GetWord(strBuff, p);
+  1505			if(strBuff[0])
+  1506				rsServerConfig.Event_Cristal = atoi(strBuff);
+  1507			else
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1466
+----------------------------------------------------------------------
+  1446		{
+  1447			p = local_GetWord(strBuff, p);
+  1448			if(strBuff[0])
+  1449				rsServerConfig.Event_DamageOff = atoi(strBuff);
+  1450			else
+  1451				rsServerConfig.Event_DamageOff = 1;
+  1452			flag++;
+  1453		}
+  1454	#else
+  1455		if(!flag && (lstrcmpi(decode, "*EVENT_DAMAGEOFF1") == 0))
+  1456		{
+  1457			p = local_GetWord(strBuff, p);
+  1458			if(strBuff[0])
+  1459				rsServerConfig.Event_DamageOff1 = atoi(strBuff);
+  1460			else
+  1461				rsServerConfig.Event_DamageOff1 = 1;
+  1462			flag++;
+  1463		}
+  1464		if(!flag && (lstrcmpi(decode, "*EVENT_DAMAGEOFF2") == 0))
+  1465		{
+  1466			p = local_GetWord(strBuff, p);
+  1467			if(strBuff[0])
+  1468				rsServerConfig.Event_DamageOff2 = atoi(strBuff);
+  1469			else
+  1470				rsServerConfig.Event_DamageOff2 = 1;
+  1471			flag++;
+  1472		}
+  1473	#endif
+  1474	
+  1475		if(!flag && (lstrcmp(decode, "*���������̺�Ʈ") == 0 ||
+  1476			lstrcmpi(decode, "*EVENT_DEFENSEOFF") == 0))
+  1477		{
+  1478			p = local_GetWord(strBuff, p);
+  1479			if(strBuff[0])
+  1480				rsServerConfig.Event_DefenseOff = atoi(strBuff);
+  1481			else
+  1482				rsServerConfig.Event_DefenseOff = 1;
+  1483			flag++;
+  1484		}
+  1485	
+  1486		if(!flag && (lstrcmp(decode, "*����̺�Ʈ") == 0 ||
+  1487			lstrcmpi(decode, "*EVENT_CHILD") == 0))
+  1488		{
+  1489	
+  1490			p = local_GetWord(strBuff, p);
+  1491			if(strBuff[0])
+  1492				rsServerConfig.Event_Child = atoi(strBuff);
+  1493			else
+  1494				rsServerConfig.Event_Child = 1;
+  1495	
+  1496			flag++;
+  1497		}
+  1498	
+  1499	
+  1500		if(!flag && (lstrcmp(decode, "*ũ����Ż�̺�Ʈ") == 0 ||
+  1501			lstrcmpi(decode, "*EVENT_CRISTAL") == 0))
+  1502		{
+  1503	
+  1504			p = local_GetWord(strBuff, p);
+  1505			if(strBuff[0])
+  1506				rsServerConfig.Event_Cristal = atoi(strBuff);
+  1507			else
+  1508				rsServerConfig.Event_Cristal = 1;
+  1509	
+  1510			flag++;
+  1511		}
+  1512		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1513			lstrcmpi(decode, "*EVENT_POTION") == 0))
+  1514		{
+  1515	
+  1516			p = local_GetWord(strBuff, p);
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1478
+----------------------------------------------------------------------
+  1458			if(strBuff[0])
+  1459				rsServerConfig.Event_DamageOff1 = atoi(strBuff);
+  1460			else
+  1461				rsServerConfig.Event_DamageOff1 = 1;
+  1462			flag++;
+  1463		}
+  1464		if(!flag && (lstrcmpi(decode, "*EVENT_DAMAGEOFF2") == 0))
+  1465		{
+  1466			p = local_GetWord(strBuff, p);
+  1467			if(strBuff[0])
+  1468				rsServerConfig.Event_DamageOff2 = atoi(strBuff);
+  1469			else
+  1470				rsServerConfig.Event_DamageOff2 = 1;
+  1471			flag++;
+  1472		}
+  1473	#endif
+  1474	
+  1475		if(!flag && (lstrcmp(decode, "*���������̺�Ʈ") == 0 ||
+  1476			lstrcmpi(decode, "*EVENT_DEFENSEOFF") == 0))
+  1477		{
+  1478			p = local_GetWord(strBuff, p);
+  1479			if(strBuff[0])
+  1480				rsServerConfig.Event_DefenseOff = atoi(strBuff);
+  1481			else
+  1482				rsServerConfig.Event_DefenseOff = 1;
+  1483			flag++;
+  1484		}
+  1485	
+  1486		if(!flag && (lstrcmp(decode, "*����̺�Ʈ") == 0 ||
+  1487			lstrcmpi(decode, "*EVENT_CHILD") == 0))
+  1488		{
+  1489	
+  1490			p = local_GetWord(strBuff, p);
+  1491			if(strBuff[0])
+  1492				rsServerConfig.Event_Child = atoi(strBuff);
+  1493			else
+  1494				rsServerConfig.Event_Child = 1;
+  1495	
+  1496			flag++;
+  1497		}
+  1498	
+  1499	
+  1500		if(!flag && (lstrcmp(decode, "*ũ����Ż�̺�Ʈ") == 0 ||
+  1501			lstrcmpi(decode, "*EVENT_CRISTAL") == 0))
+  1502		{
+  1503	
+  1504			p = local_GetWord(strBuff, p);
+  1505			if(strBuff[0])
+  1506				rsServerConfig.Event_Cristal = atoi(strBuff);
+  1507			else
+  1508				rsServerConfig.Event_Cristal = 1;
+  1509	
+  1510			flag++;
+  1511		}
+  1512		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1513			lstrcmpi(decode, "*EVENT_POTION") == 0))
+  1514		{
+  1515	
+  1516			p = local_GetWord(strBuff, p);
+  1517			rsServerConfig.Event_Potion = atoi(strBuff);
+  1518			flag++;
+  1519		}
+  1520		if(!flag && (lstrcmp(decode, "*������Ʈ�̺�Ʈ") == 0 ||
+  1521			lstrcmpi(decode, "*EVENT_STARPOINT") == 0))
+  1522		{
+  1523	
+  1524			p = local_GetWord(strBuff, p);
+  1525			if(strBuff[0])
+  1526				rsServerConfig.Event_StarPointTicket = atoi(strBuff);
+  1527			else
+  1528				rsServerConfig.Event_StarPointTicket = 40;
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1490
+----------------------------------------------------------------------
+  1470				rsServerConfig.Event_DamageOff2 = 1;
+  1471			flag++;
+  1472		}
+  1473	#endif
+  1474	
+  1475		if(!flag && (lstrcmp(decode, "*���������̺�Ʈ") == 0 ||
+  1476			lstrcmpi(decode, "*EVENT_DEFENSEOFF") == 0))
+  1477		{
+  1478			p = local_GetWord(strBuff, p);
+  1479			if(strBuff[0])
+  1480				rsServerConfig.Event_DefenseOff = atoi(strBuff);
+  1481			else
+  1482				rsServerConfig.Event_DefenseOff = 1;
+  1483			flag++;
+  1484		}
+  1485	
+  1486		if(!flag && (lstrcmp(decode, "*����̺�Ʈ") == 0 ||
+  1487			lstrcmpi(decode, "*EVENT_CHILD") == 0))
+  1488		{
+  1489	
+  1490			p = local_GetWord(strBuff, p);
+  1491			if(strBuff[0])
+  1492				rsServerConfig.Event_Child = atoi(strBuff);
+  1493			else
+  1494				rsServerConfig.Event_Child = 1;
+  1495	
+  1496			flag++;
+  1497		}
+  1498	
+  1499	
+  1500		if(!flag && (lstrcmp(decode, "*ũ����Ż�̺�Ʈ") == 0 ||
+  1501			lstrcmpi(decode, "*EVENT_CRISTAL") == 0))
+  1502		{
+  1503	
+  1504			p = local_GetWord(strBuff, p);
+  1505			if(strBuff[0])
+  1506				rsServerConfig.Event_Cristal = atoi(strBuff);
+  1507			else
+  1508				rsServerConfig.Event_Cristal = 1;
+  1509	
+  1510			flag++;
+  1511		}
+  1512		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1513			lstrcmpi(decode, "*EVENT_POTION") == 0))
+  1514		{
+  1515	
+  1516			p = local_GetWord(strBuff, p);
+  1517			rsServerConfig.Event_Potion = atoi(strBuff);
+  1518			flag++;
+  1519		}
+  1520		if(!flag && (lstrcmp(decode, "*������Ʈ�̺�Ʈ") == 0 ||
+  1521			lstrcmpi(decode, "*EVENT_STARPOINT") == 0))
+  1522		{
+  1523	
+  1524			p = local_GetWord(strBuff, p);
+  1525			if(strBuff[0])
+  1526				rsServerConfig.Event_StarPointTicket = atoi(strBuff);
+  1527			else
+  1528				rsServerConfig.Event_StarPointTicket = 40;
+  1529	
+  1530			flag++;
+  1531		}
+  1532	
+  1533		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1534			lstrcmpi(decode, "*EVENT_BIRTHDAY") == 0))
+  1535		{
+  1536	
+  1537			p = local_GetWord(strBuff, p);
+  1538			if(strBuff[0])
+  1539				rsServerConfig.Event_ComicBirthDay = atoi(strBuff);
+  1540			else
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1504
+----------------------------------------------------------------------
+  1484		}
+  1485	
+  1486		if(!flag && (lstrcmp(decode, "*����̺�Ʈ") == 0 ||
+  1487			lstrcmpi(decode, "*EVENT_CHILD") == 0))
+  1488		{
+  1489	
+  1490			p = local_GetWord(strBuff, p);
+  1491			if(strBuff[0])
+  1492				rsServerConfig.Event_Child = atoi(strBuff);
+  1493			else
+  1494				rsServerConfig.Event_Child = 1;
+  1495	
+  1496			flag++;
+  1497		}
+  1498	
+  1499	
+  1500		if(!flag && (lstrcmp(decode, "*ũ����Ż�̺�Ʈ") == 0 ||
+  1501			lstrcmpi(decode, "*EVENT_CRISTAL") == 0))
+  1502		{
+  1503	
+  1504			p = local_GetWord(strBuff, p);
+  1505			if(strBuff[0])
+  1506				rsServerConfig.Event_Cristal = atoi(strBuff);
+  1507			else
+  1508				rsServerConfig.Event_Cristal = 1;
+  1509	
+  1510			flag++;
+  1511		}
+  1512		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1513			lstrcmpi(decode, "*EVENT_POTION") == 0))
+  1514		{
+  1515	
+  1516			p = local_GetWord(strBuff, p);
+  1517			rsServerConfig.Event_Potion = atoi(strBuff);
+  1518			flag++;
+  1519		}
+  1520		if(!flag && (lstrcmp(decode, "*������Ʈ�̺�Ʈ") == 0 ||
+  1521			lstrcmpi(decode, "*EVENT_STARPOINT") == 0))
+  1522		{
+  1523	
+  1524			p = local_GetWord(strBuff, p);
+  1525			if(strBuff[0])
+  1526				rsServerConfig.Event_StarPointTicket = atoi(strBuff);
+  1527			else
+  1528				rsServerConfig.Event_StarPointTicket = 40;
+  1529	
+  1530			flag++;
+  1531		}
+  1532	
+  1533		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1534			lstrcmpi(decode, "*EVENT_BIRTHDAY") == 0))
+  1535		{
+  1536	
+  1537			p = local_GetWord(strBuff, p);
+  1538			if(strBuff[0])
+  1539				rsServerConfig.Event_ComicBirthDay = atoi(strBuff);
+  1540			else
+  1541				rsServerConfig.Event_ComicBirthDay = 1;
+  1542	
+  1543			flag++;
+  1544		}
+  1545	
+  1546		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1547			lstrcmpi(decode, "*EVENT_PUZZLE") == 0))
+  1548		{
+  1549	
+  1550			p = local_GetWord(strBuff, p);
+  1551			if(strBuff[0])
+  1552				rsServerConfig.Event_Puzzle = atoi(strBuff);
+  1553			else
+  1554				rsServerConfig.Event_Puzzle = 200;
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1516
+----------------------------------------------------------------------
+  1496			flag++;
+  1497		}
+  1498	
+  1499	
+  1500		if(!flag && (lstrcmp(decode, "*ũ����Ż�̺�Ʈ") == 0 ||
+  1501			lstrcmpi(decode, "*EVENT_CRISTAL") == 0))
+  1502		{
+  1503	
+  1504			p = local_GetWord(strBuff, p);
+  1505			if(strBuff[0])
+  1506				rsServerConfig.Event_Cristal = atoi(strBuff);
+  1507			else
+  1508				rsServerConfig.Event_Cristal = 1;
+  1509	
+  1510			flag++;
+  1511		}
+  1512		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1513			lstrcmpi(decode, "*EVENT_POTION") == 0))
+  1514		{
+  1515	
+  1516			p = local_GetWord(strBuff, p);
+  1517			rsServerConfig.Event_Potion = atoi(strBuff);
+  1518			flag++;
+  1519		}
+  1520		if(!flag && (lstrcmp(decode, "*������Ʈ�̺�Ʈ") == 0 ||
+  1521			lstrcmpi(decode, "*EVENT_STARPOINT") == 0))
+  1522		{
+  1523	
+  1524			p = local_GetWord(strBuff, p);
+  1525			if(strBuff[0])
+  1526				rsServerConfig.Event_StarPointTicket = atoi(strBuff);
+  1527			else
+  1528				rsServerConfig.Event_StarPointTicket = 40;
+  1529	
+  1530			flag++;
+  1531		}
+  1532	
+  1533		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1534			lstrcmpi(decode, "*EVENT_BIRTHDAY") == 0))
+  1535		{
+  1536	
+  1537			p = local_GetWord(strBuff, p);
+  1538			if(strBuff[0])
+  1539				rsServerConfig.Event_ComicBirthDay = atoi(strBuff);
+  1540			else
+  1541				rsServerConfig.Event_ComicBirthDay = 1;
+  1542	
+  1543			flag++;
+  1544		}
+  1545	
+  1546		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1547			lstrcmpi(decode, "*EVENT_PUZZLE") == 0))
+  1548		{
+  1549	
+  1550			p = local_GetWord(strBuff, p);
+  1551			if(strBuff[0])
+  1552				rsServerConfig.Event_Puzzle = atoi(strBuff);
+  1553			else
+  1554				rsServerConfig.Event_Puzzle = 200;
+  1555	
+  1556			flag++;
+  1557		}
+  1558	
+  1559		if(!flag && (lstrcmp(decode, "*�ٺ����̺�Ʈ") == 0 ||
+  1560			lstrcmpi(decode, "*EVENT_BABELHORN") == 0))
+  1561		{
+  1562	
+  1563			p = local_GetWord(strBuff, p);
+  1564			if(strBuff[0])
+  1565				rsServerConfig.Event_BabelHorn = atoi(strBuff);
+  1566			else
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1524
+----------------------------------------------------------------------
+  1504			p = local_GetWord(strBuff, p);
+  1505			if(strBuff[0])
+  1506				rsServerConfig.Event_Cristal = atoi(strBuff);
+  1507			else
+  1508				rsServerConfig.Event_Cristal = 1;
+  1509	
+  1510			flag++;
+  1511		}
+  1512		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1513			lstrcmpi(decode, "*EVENT_POTION") == 0))
+  1514		{
+  1515	
+  1516			p = local_GetWord(strBuff, p);
+  1517			rsServerConfig.Event_Potion = atoi(strBuff);
+  1518			flag++;
+  1519		}
+  1520		if(!flag && (lstrcmp(decode, "*������Ʈ�̺�Ʈ") == 0 ||
+  1521			lstrcmpi(decode, "*EVENT_STARPOINT") == 0))
+  1522		{
+  1523	
+  1524			p = local_GetWord(strBuff, p);
+  1525			if(strBuff[0])
+  1526				rsServerConfig.Event_StarPointTicket = atoi(strBuff);
+  1527			else
+  1528				rsServerConfig.Event_StarPointTicket = 40;
+  1529	
+  1530			flag++;
+  1531		}
+  1532	
+  1533		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1534			lstrcmpi(decode, "*EVENT_BIRTHDAY") == 0))
+  1535		{
+  1536	
+  1537			p = local_GetWord(strBuff, p);
+  1538			if(strBuff[0])
+  1539				rsServerConfig.Event_ComicBirthDay = atoi(strBuff);
+  1540			else
+  1541				rsServerConfig.Event_ComicBirthDay = 1;
+  1542	
+  1543			flag++;
+  1544		}
+  1545	
+  1546		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1547			lstrcmpi(decode, "*EVENT_PUZZLE") == 0))
+  1548		{
+  1549	
+  1550			p = local_GetWord(strBuff, p);
+  1551			if(strBuff[0])
+  1552				rsServerConfig.Event_Puzzle = atoi(strBuff);
+  1553			else
+  1554				rsServerConfig.Event_Puzzle = 200;
+  1555	
+  1556			flag++;
+  1557		}
+  1558	
+  1559		if(!flag && (lstrcmp(decode, "*�ٺ����̺�Ʈ") == 0 ||
+  1560			lstrcmpi(decode, "*EVENT_BABELHORN") == 0))
+  1561		{
+  1562	
+  1563			p = local_GetWord(strBuff, p);
+  1564			if(strBuff[0])
+  1565				rsServerConfig.Event_BabelHorn = atoi(strBuff);
+  1566			else
+  1567				rsServerConfig.Event_BabelHorn = 4;
+  1568	
+  1569			if(rsServerConfig.Event_BabelHorn > 10) rsServerConfig.Event_BabelHorn = 10;
+  1570	
+  1571			flag++;
+  1572		}
+  1573	
+  1574		if(!flag && (lstrcmp(decode, "*����ȣ�̺�Ʈ") == 0 ||
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1537
+----------------------------------------------------------------------
+  1517			rsServerConfig.Event_Potion = atoi(strBuff);
+  1518			flag++;
+  1519		}
+  1520		if(!flag && (lstrcmp(decode, "*������Ʈ�̺�Ʈ") == 0 ||
+  1521			lstrcmpi(decode, "*EVENT_STARPOINT") == 0))
+  1522		{
+  1523	
+  1524			p = local_GetWord(strBuff, p);
+  1525			if(strBuff[0])
+  1526				rsServerConfig.Event_StarPointTicket = atoi(strBuff);
+  1527			else
+  1528				rsServerConfig.Event_StarPointTicket = 40;
+  1529	
+  1530			flag++;
+  1531		}
+  1532	
+  1533		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1534			lstrcmpi(decode, "*EVENT_BIRTHDAY") == 0))
+  1535		{
+  1536	
+  1537			p = local_GetWord(strBuff, p);
+  1538			if(strBuff[0])
+  1539				rsServerConfig.Event_ComicBirthDay = atoi(strBuff);
+  1540			else
+  1541				rsServerConfig.Event_ComicBirthDay = 1;
+  1542	
+  1543			flag++;
+  1544		}
+  1545	
+  1546		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1547			lstrcmpi(decode, "*EVENT_PUZZLE") == 0))
+  1548		{
+  1549	
+  1550			p = local_GetWord(strBuff, p);
+  1551			if(strBuff[0])
+  1552				rsServerConfig.Event_Puzzle = atoi(strBuff);
+  1553			else
+  1554				rsServerConfig.Event_Puzzle = 200;
+  1555	
+  1556			flag++;
+  1557		}
+  1558	
+  1559		if(!flag && (lstrcmp(decode, "*�ٺ����̺�Ʈ") == 0 ||
+  1560			lstrcmpi(decode, "*EVENT_BABELHORN") == 0))
+  1561		{
+  1562	
+  1563			p = local_GetWord(strBuff, p);
+  1564			if(strBuff[0])
+  1565				rsServerConfig.Event_BabelHorn = atoi(strBuff);
+  1566			else
+  1567				rsServerConfig.Event_BabelHorn = 4;
+  1568	
+  1569			if(rsServerConfig.Event_BabelHorn > 10) rsServerConfig.Event_BabelHorn = 10;
+  1570	
+  1571			flag++;
+  1572		}
+  1573	
+  1574		if(!flag && (lstrcmp(decode, "*����ȣ�̺�Ʈ") == 0 ||
+  1575			lstrcmpi(decode, "*EVENT_NINEFOX") == 0))
+  1576		{
+  1577	
+  1578			p = local_GetWord(strBuff, p);
+  1579			if(strBuff[0])
+  1580				rsServerConfig.Event_NineFox = atoi(strBuff);
+  1581			else
+  1582				rsServerConfig.Event_NineFox = 20;
+  1583	
+  1584			flag++;
+  1585		}
+  1586	
+  1587	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1550
+----------------------------------------------------------------------
+  1530			flag++;
+  1531		}
+  1532	
+  1533		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1534			lstrcmpi(decode, "*EVENT_BIRTHDAY") == 0))
+  1535		{
+  1536	
+  1537			p = local_GetWord(strBuff, p);
+  1538			if(strBuff[0])
+  1539				rsServerConfig.Event_ComicBirthDay = atoi(strBuff);
+  1540			else
+  1541				rsServerConfig.Event_ComicBirthDay = 1;
+  1542	
+  1543			flag++;
+  1544		}
+  1545	
+  1546		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1547			lstrcmpi(decode, "*EVENT_PUZZLE") == 0))
+  1548		{
+  1549	
+  1550			p = local_GetWord(strBuff, p);
+  1551			if(strBuff[0])
+  1552				rsServerConfig.Event_Puzzle = atoi(strBuff);
+  1553			else
+  1554				rsServerConfig.Event_Puzzle = 200;
+  1555	
+  1556			flag++;
+  1557		}
+  1558	
+  1559		if(!flag && (lstrcmp(decode, "*�ٺ����̺�Ʈ") == 0 ||
+  1560			lstrcmpi(decode, "*EVENT_BABELHORN") == 0))
+  1561		{
+  1562	
+  1563			p = local_GetWord(strBuff, p);
+  1564			if(strBuff[0])
+  1565				rsServerConfig.Event_BabelHorn = atoi(strBuff);
+  1566			else
+  1567				rsServerConfig.Event_BabelHorn = 4;
+  1568	
+  1569			if(rsServerConfig.Event_BabelHorn > 10) rsServerConfig.Event_BabelHorn = 10;
+  1570	
+  1571			flag++;
+  1572		}
+  1573	
+  1574		if(!flag && (lstrcmp(decode, "*����ȣ�̺�Ʈ") == 0 ||
+  1575			lstrcmpi(decode, "*EVENT_NINEFOX") == 0))
+  1576		{
+  1577	
+  1578			p = local_GetWord(strBuff, p);
+  1579			if(strBuff[0])
+  1580				rsServerConfig.Event_NineFox = atoi(strBuff);
+  1581			else
+  1582				rsServerConfig.Event_NineFox = 20;
+  1583	
+  1584			flag++;
+  1585		}
+  1586	
+  1587	
+  1588		if(!flag && (lstrcmp(decode, "*ũ���������̺�Ʈ") == 0 ||
+  1589			lstrcmpi(decode, "*EVENT_CHRISTMAS") == 0))
+  1590		{
+  1591			p = local_GetWord(strBuff, p);
+  1592			if(strBuff[0])
+  1593				rsServerConfig.EVENT_Christmas = atoi(strBuff);
+  1594			else
+  1595				rsServerConfig.EVENT_Christmas = 100;
+  1596	
+  1597			flag++;
+  1598		}
+  1599		if(!flag && (lstrcmp(decode, "*�߷�Ÿ�ε���_�̺�Ʈ") == 0 ||
+  1600			lstrcmpi(decode, "*EVENT_VALENTINEDAY") == 0))
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1563
+----------------------------------------------------------------------
+  1543			flag++;
+  1544		}
+  1545	
+  1546		if(!flag && (lstrcmp(decode, "*�����̺�Ʈ") == 0 ||
+  1547			lstrcmpi(decode, "*EVENT_PUZZLE") == 0))
+  1548		{
+  1549	
+  1550			p = local_GetWord(strBuff, p);
+  1551			if(strBuff[0])
+  1552				rsServerConfig.Event_Puzzle = atoi(strBuff);
+  1553			else
+  1554				rsServerConfig.Event_Puzzle = 200;
+  1555	
+  1556			flag++;
+  1557		}
+  1558	
+  1559		if(!flag && (lstrcmp(decode, "*�ٺ����̺�Ʈ") == 0 ||
+  1560			lstrcmpi(decode, "*EVENT_BABELHORN") == 0))
+  1561		{
+  1562	
+  1563			p = local_GetWord(strBuff, p);
+  1564			if(strBuff[0])
+  1565				rsServerConfig.Event_BabelHorn = atoi(strBuff);
+  1566			else
+  1567				rsServerConfig.Event_BabelHorn = 4;
+  1568	
+  1569			if(rsServerConfig.Event_BabelHorn > 10) rsServerConfig.Event_BabelHorn = 10;
+  1570	
+  1571			flag++;
+  1572		}
+  1573	
+  1574		if(!flag && (lstrcmp(decode, "*����ȣ�̺�Ʈ") == 0 ||
+  1575			lstrcmpi(decode, "*EVENT_NINEFOX") == 0))
+  1576		{
+  1577	
+  1578			p = local_GetWord(strBuff, p);
+  1579			if(strBuff[0])
+  1580				rsServerConfig.Event_NineFox = atoi(strBuff);
+  1581			else
+  1582				rsServerConfig.Event_NineFox = 20;
+  1583	
+  1584			flag++;
+  1585		}
+  1586	
+  1587	
+  1588		if(!flag && (lstrcmp(decode, "*ũ���������̺�Ʈ") == 0 ||
+  1589			lstrcmpi(decode, "*EVENT_CHRISTMAS") == 0))
+  1590		{
+  1591			p = local_GetWord(strBuff, p);
+  1592			if(strBuff[0])
+  1593				rsServerConfig.EVENT_Christmas = atoi(strBuff);
+  1594			else
+  1595				rsServerConfig.EVENT_Christmas = 100;
+  1596	
+  1597			flag++;
+  1598		}
+  1599		if(!flag && (lstrcmp(decode, "*�߷�Ÿ�ε���_�̺�Ʈ") == 0 ||
+  1600			lstrcmpi(decode, "*EVENT_VALENTINEDAY") == 0))
+  1601		{
+  1602	
+  1603			p = local_GetWord(strBuff, p);
+  1604			if(strBuff[0])
+  1605				rsServerConfig.Event_ValentineDay = atoi(strBuff);
+  1606			else
+  1607				rsServerConfig.Event_ValentineDay = 100;
+  1608	
+  1609			flag++;
+  1610		}
+  1611	
+  1612	
+  1613		if(!flag && (lstrcmp(decode, "*Ŀ�ø�_�̺�Ʈ") == 0 ||
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1578
+----------------------------------------------------------------------
+  1558	
+  1559		if(!flag && (lstrcmp(decode, "*�ٺ����̺�Ʈ") == 0 ||
+  1560			lstrcmpi(decode, "*EVENT_BABELHORN") == 0))
+  1561		{
+  1562	
+  1563			p = local_GetWord(strBuff, p);
+  1564			if(strBuff[0])
+  1565				rsServerConfig.Event_BabelHorn = atoi(strBuff);
+  1566			else
+  1567				rsServerConfig.Event_BabelHorn = 4;
+  1568	
+  1569			if(rsServerConfig.Event_BabelHorn > 10) rsServerConfig.Event_BabelHorn = 10;
+  1570	
+  1571			flag++;
+  1572		}
+  1573	
+  1574		if(!flag && (lstrcmp(decode, "*����ȣ�̺�Ʈ") == 0 ||
+  1575			lstrcmpi(decode, "*EVENT_NINEFOX") == 0))
+  1576		{
+  1577	
+  1578			p = local_GetWord(strBuff, p);
+  1579			if(strBuff[0])
+  1580				rsServerConfig.Event_NineFox = atoi(strBuff);
+  1581			else
+  1582				rsServerConfig.Event_NineFox = 20;
+  1583	
+  1584			flag++;
+  1585		}
+  1586	
+  1587	
+  1588		if(!flag && (lstrcmp(decode, "*ũ���������̺�Ʈ") == 0 ||
+  1589			lstrcmpi(decode, "*EVENT_CHRISTMAS") == 0))
+  1590		{
+  1591			p = local_GetWord(strBuff, p);
+  1592			if(strBuff[0])
+  1593				rsServerConfig.EVENT_Christmas = atoi(strBuff);
+  1594			else
+  1595				rsServerConfig.EVENT_Christmas = 100;
+  1596	
+  1597			flag++;
+  1598		}
+  1599		if(!flag && (lstrcmp(decode, "*�߷�Ÿ�ε���_�̺�Ʈ") == 0 ||
+  1600			lstrcmpi(decode, "*EVENT_VALENTINEDAY") == 0))
+  1601		{
+  1602	
+  1603			p = local_GetWord(strBuff, p);
+  1604			if(strBuff[0])
+  1605				rsServerConfig.Event_ValentineDay = atoi(strBuff);
+  1606			else
+  1607				rsServerConfig.Event_ValentineDay = 100;
+  1608	
+  1609			flag++;
+  1610		}
+  1611	
+  1612	
+  1613		if(!flag && (lstrcmp(decode, "*Ŀ�ø�_�̺�Ʈ") == 0 ||
+  1614			lstrcmpi(decode, "*EVENT_COUPLERING") == 0))
+  1615		{
+  1616			p = local_GetWord(strBuff, p);
+  1617			if(strBuff[0])
+  1618				rsServerConfig.Event_CoupleRing = atoi(strBuff);
+  1619			else
+  1620				rsServerConfig.Event_CoupleRing = 100;
+  1621	
+  1622			flag++;
+  1623		}
+  1624	
+  1625	
+  1626		if(!flag && (lstrcmp(decode, "*����_�̺�Ʈ") == 0 ||
+  1627			lstrcmpi(decode, "*EVENT_WATERMELON") == 0))
+  1628		{
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1591
+----------------------------------------------------------------------
+  1571			flag++;
+  1572		}
+  1573	
+  1574		if(!flag && (lstrcmp(decode, "*����ȣ�̺�Ʈ") == 0 ||
+  1575			lstrcmpi(decode, "*EVENT_NINEFOX") == 0))
+  1576		{
+  1577	
+  1578			p = local_GetWord(strBuff, p);
+  1579			if(strBuff[0])
+  1580				rsServerConfig.Event_NineFox = atoi(strBuff);
+  1581			else
+  1582				rsServerConfig.Event_NineFox = 20;
+  1583	
+  1584			flag++;
+  1585		}
+  1586	
+  1587	
+  1588		if(!flag && (lstrcmp(decode, "*ũ���������̺�Ʈ") == 0 ||
+  1589			lstrcmpi(decode, "*EVENT_CHRISTMAS") == 0))
+  1590		{
+  1591			p = local_GetWord(strBuff, p);
+  1592			if(strBuff[0])
+  1593				rsServerConfig.EVENT_Christmas = atoi(strBuff);
+  1594			else
+  1595				rsServerConfig.EVENT_Christmas = 100;
+  1596	
+  1597			flag++;
+  1598		}
+  1599		if(!flag && (lstrcmp(decode, "*�߷�Ÿ�ε���_�̺�Ʈ") == 0 ||
+  1600			lstrcmpi(decode, "*EVENT_VALENTINEDAY") == 0))
+  1601		{
+  1602	
+  1603			p = local_GetWord(strBuff, p);
+  1604			if(strBuff[0])
+  1605				rsServerConfig.Event_ValentineDay = atoi(strBuff);
+  1606			else
+  1607				rsServerConfig.Event_ValentineDay = 100;
+  1608	
+  1609			flag++;
+  1610		}
+  1611	
+  1612	
+  1613		if(!flag && (lstrcmp(decode, "*Ŀ�ø�_�̺�Ʈ") == 0 ||
+  1614			lstrcmpi(decode, "*EVENT_COUPLERING") == 0))
+  1615		{
+  1616			p = local_GetWord(strBuff, p);
+  1617			if(strBuff[0])
+  1618				rsServerConfig.Event_CoupleRing = atoi(strBuff);
+  1619			else
+  1620				rsServerConfig.Event_CoupleRing = 100;
+  1621	
+  1622			flag++;
+  1623		}
+  1624	
+  1625	
+  1626		if(!flag && (lstrcmp(decode, "*����_�̺�Ʈ") == 0 ||
+  1627			lstrcmpi(decode, "*EVENT_WATERMELON") == 0))
+  1628		{
+  1629			p = local_GetWord(strBuff, p);
+  1630			if(strBuff[0])
+  1631				rsServerConfig.Event_Watermelon = atoi(strBuff);
+  1632			else
+  1633				rsServerConfig.Event_Watermelon = 100;
+  1634	
+  1635			flag++;
+  1636		}
+  1637	
+  1638	
+  1639		if(!flag && (lstrcmp(decode, "*�߷�Ÿ��_�̺�Ʈ") == 0 ||
+  1640			lstrcmpi(decode, "*EVENT_VALENTINE") == 0))
+  1641		{
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1603
+----------------------------------------------------------------------
+  1583	
+  1584			flag++;
+  1585		}
+  1586	
+  1587	
+  1588		if(!flag && (lstrcmp(decode, "*ũ���������̺�Ʈ") == 0 ||
+  1589			lstrcmpi(decode, "*EVENT_CHRISTMAS") == 0))
+  1590		{
+  1591			p = local_GetWord(strBuff, p);
+  1592			if(strBuff[0])
+  1593				rsServerConfig.EVENT_Christmas = atoi(strBuff);
+  1594			else
+  1595				rsServerConfig.EVENT_Christmas = 100;
+  1596	
+  1597			flag++;
+  1598		}
+  1599		if(!flag && (lstrcmp(decode, "*�߷�Ÿ�ε���_�̺�Ʈ") == 0 ||
+  1600			lstrcmpi(decode, "*EVENT_VALENTINEDAY") == 0))
+  1601		{
+  1602	
+  1603			p = local_GetWord(strBuff, p);
+  1604			if(strBuff[0])
+  1605				rsServerConfig.Event_ValentineDay = atoi(strBuff);
+  1606			else
+  1607				rsServerConfig.Event_ValentineDay = 100;
+  1608	
+  1609			flag++;
+  1610		}
+  1611	
+  1612	
+  1613		if(!flag && (lstrcmp(decode, "*Ŀ�ø�_�̺�Ʈ") == 0 ||
+  1614			lstrcmpi(decode, "*EVENT_COUPLERING") == 0))
+  1615		{
+  1616			p = local_GetWord(strBuff, p);
+  1617			if(strBuff[0])
+  1618				rsServerConfig.Event_CoupleRing = atoi(strBuff);
+  1619			else
+  1620				rsServerConfig.Event_CoupleRing = 100;
+  1621	
+  1622			flag++;
+  1623		}
+  1624	
+  1625	
+  1626		if(!flag && (lstrcmp(decode, "*����_�̺�Ʈ") == 0 ||
+  1627			lstrcmpi(decode, "*EVENT_WATERMELON") == 0))
+  1628		{
+  1629			p = local_GetWord(strBuff, p);
+  1630			if(strBuff[0])
+  1631				rsServerConfig.Event_Watermelon = atoi(strBuff);
+  1632			else
+  1633				rsServerConfig.Event_Watermelon = 100;
+  1634	
+  1635			flag++;
+  1636		}
+  1637	
+  1638	
+  1639		if(!flag && (lstrcmp(decode, "*�߷�Ÿ��_�̺�Ʈ") == 0 ||
+  1640			lstrcmpi(decode, "*EVENT_VALENTINE") == 0))
+  1641		{
+  1642			p = local_GetWord(strBuff, p);
+  1643			if(strBuff[0])
+  1644				rsServerConfig.Event_Valentine = atoi(strBuff);
+  1645			else
+  1646				rsServerConfig.Event_Valentine = 100;
+  1647	
+  1648			flag++;
+  1649		}
+  1650	
+  1651	
+  1652	
+  1653		if(!flag && (lstrcmp(decode, "*ĵ������_�̺�Ʈ") == 0 ||
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1616
+----------------------------------------------------------------------
+  1596	
+  1597			flag++;
+  1598		}
+  1599		if(!flag && (lstrcmp(decode, "*�߷�Ÿ�ε���_�̺�Ʈ") == 0 ||
+  1600			lstrcmpi(decode, "*EVENT_VALENTINEDAY") == 0))
+  1601		{
+  1602	
+  1603			p = local_GetWord(strBuff, p);
+  1604			if(strBuff[0])
+  1605				rsServerConfig.Event_ValentineDay = atoi(strBuff);
+  1606			else
+  1607				rsServerConfig.Event_ValentineDay = 100;
+  1608	
+  1609			flag++;
+  1610		}
+  1611	
+  1612	
+  1613		if(!flag && (lstrcmp(decode, "*Ŀ�ø�_�̺�Ʈ") == 0 ||
+  1614			lstrcmpi(decode, "*EVENT_COUPLERING") == 0))
+  1615		{
+  1616			p = local_GetWord(strBuff, p);
+  1617			if(strBuff[0])
+  1618				rsServerConfig.Event_CoupleRing = atoi(strBuff);
+  1619			else
+  1620				rsServerConfig.Event_CoupleRing = 100;
+  1621	
+  1622			flag++;
+  1623		}
+  1624	
+  1625	
+  1626		if(!flag && (lstrcmp(decode, "*����_�̺�Ʈ") == 0 ||
+  1627			lstrcmpi(decode, "*EVENT_WATERMELON") == 0))
+  1628		{
+  1629			p = local_GetWord(strBuff, p);
+  1630			if(strBuff[0])
+  1631				rsServerConfig.Event_Watermelon = atoi(strBuff);
+  1632			else
+  1633				rsServerConfig.Event_Watermelon = 100;
+  1634	
+  1635			flag++;
+  1636		}
+  1637	
+  1638	
+  1639		if(!flag && (lstrcmp(decode, "*�߷�Ÿ��_�̺�Ʈ") == 0 ||
+  1640			lstrcmpi(decode, "*EVENT_VALENTINE") == 0))
+  1641		{
+  1642			p = local_GetWord(strBuff, p);
+  1643			if(strBuff[0])
+  1644				rsServerConfig.Event_Valentine = atoi(strBuff);
+  1645			else
+  1646				rsServerConfig.Event_Valentine = 100;
+  1647	
+  1648			flag++;
+  1649		}
+  1650	
+  1651	
+  1652	
+  1653		if(!flag && (lstrcmp(decode, "*ĵ������_�̺�Ʈ") == 0 ||
+  1654			lstrcmpi(decode, "*EVENT_CANDYDAYS") == 0))
+  1655		{
+  1656	
+  1657			p = local_GetWord(strBuff, p);
+  1658			if(strBuff[0])
+  1659				rsServerConfig.Event_Candydays = atoi(strBuff);
+  1660			else
+  1661				rsServerConfig.Event_Candydays = 100;
+  1662	
+  1663			flag++;
+  1664		}
+  1665	
+  1666	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1629
+----------------------------------------------------------------------
+  1609			flag++;
+  1610		}
+  1611	
+  1612	
+  1613		if(!flag && (lstrcmp(decode, "*Ŀ�ø�_�̺�Ʈ") == 0 ||
+  1614			lstrcmpi(decode, "*EVENT_COUPLERING") == 0))
+  1615		{
+  1616			p = local_GetWord(strBuff, p);
+  1617			if(strBuff[0])
+  1618				rsServerConfig.Event_CoupleRing = atoi(strBuff);
+  1619			else
+  1620				rsServerConfig.Event_CoupleRing = 100;
+  1621	
+  1622			flag++;
+  1623		}
+  1624	
+  1625	
+  1626		if(!flag && (lstrcmp(decode, "*����_�̺�Ʈ") == 0 ||
+  1627			lstrcmpi(decode, "*EVENT_WATERMELON") == 0))
+  1628		{
+  1629			p = local_GetWord(strBuff, p);
+  1630			if(strBuff[0])
+  1631				rsServerConfig.Event_Watermelon = atoi(strBuff);
+  1632			else
+  1633				rsServerConfig.Event_Watermelon = 100;
+  1634	
+  1635			flag++;
+  1636		}
+  1637	
+  1638	
+  1639		if(!flag && (lstrcmp(decode, "*�߷�Ÿ��_�̺�Ʈ") == 0 ||
+  1640			lstrcmpi(decode, "*EVENT_VALENTINE") == 0))
+  1641		{
+  1642			p = local_GetWord(strBuff, p);
+  1643			if(strBuff[0])
+  1644				rsServerConfig.Event_Valentine = atoi(strBuff);
+  1645			else
+  1646				rsServerConfig.Event_Valentine = 100;
+  1647	
+  1648			flag++;
+  1649		}
+  1650	
+  1651	
+  1652	
+  1653		if(!flag && (lstrcmp(decode, "*ĵ������_�̺�Ʈ") == 0 ||
+  1654			lstrcmpi(decode, "*EVENT_CANDYDAYS") == 0))
+  1655		{
+  1656	
+  1657			p = local_GetWord(strBuff, p);
+  1658			if(strBuff[0])
+  1659				rsServerConfig.Event_Candydays = atoi(strBuff);
+  1660			else
+  1661				rsServerConfig.Event_Candydays = 100;
+  1662	
+  1663			flag++;
+  1664		}
+  1665	
+  1666	
+  1667		if(!flag && (lstrcmp(decode, "*���ϴüҿ�_�̺�Ʈ") == 0 ||
+  1668			lstrcmpi(decode, "*EVENT_STAR") == 0))
+  1669		{
+  1670			p = local_GetWord(strBuff, p);
+  1671			if(strBuff[0])
+  1672				rsServerConfig.Event_Star = atoi(strBuff);
+  1673			else
+  1674				rsServerConfig.Event_Star = 100;
+  1675	
+  1676			flag++;
+  1677		}
+  1678	
+  1679	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1642
+----------------------------------------------------------------------
+  1622			flag++;
+  1623		}
+  1624	
+  1625	
+  1626		if(!flag && (lstrcmp(decode, "*����_�̺�Ʈ") == 0 ||
+  1627			lstrcmpi(decode, "*EVENT_WATERMELON") == 0))
+  1628		{
+  1629			p = local_GetWord(strBuff, p);
+  1630			if(strBuff[0])
+  1631				rsServerConfig.Event_Watermelon = atoi(strBuff);
+  1632			else
+  1633				rsServerConfig.Event_Watermelon = 100;
+  1634	
+  1635			flag++;
+  1636		}
+  1637	
+  1638	
+  1639		if(!flag && (lstrcmp(decode, "*�߷�Ÿ��_�̺�Ʈ") == 0 ||
+  1640			lstrcmpi(decode, "*EVENT_VALENTINE") == 0))
+  1641		{
+  1642			p = local_GetWord(strBuff, p);
+  1643			if(strBuff[0])
+  1644				rsServerConfig.Event_Valentine = atoi(strBuff);
+  1645			else
+  1646				rsServerConfig.Event_Valentine = 100;
+  1647	
+  1648			flag++;
+  1649		}
+  1650	
+  1651	
+  1652	
+  1653		if(!flag && (lstrcmp(decode, "*ĵ������_�̺�Ʈ") == 0 ||
+  1654			lstrcmpi(decode, "*EVENT_CANDYDAYS") == 0))
+  1655		{
+  1656	
+  1657			p = local_GetWord(strBuff, p);
+  1658			if(strBuff[0])
+  1659				rsServerConfig.Event_Candydays = atoi(strBuff);
+  1660			else
+  1661				rsServerConfig.Event_Candydays = 100;
+  1662	
+  1663			flag++;
+  1664		}
+  1665	
+  1666	
+  1667		if(!flag && (lstrcmp(decode, "*���ϴüҿ�_�̺�Ʈ") == 0 ||
+  1668			lstrcmpi(decode, "*EVENT_STAR") == 0))
+  1669		{
+  1670			p = local_GetWord(strBuff, p);
+  1671			if(strBuff[0])
+  1672				rsServerConfig.Event_Star = atoi(strBuff);
+  1673			else
+  1674				rsServerConfig.Event_Star = 100;
+  1675	
+  1676			flag++;
+  1677		}
+  1678	
+  1679	
+  1680		if(!flag && (lstrcmp(decode, "*���ĺ�����_�̺�Ʈ") == 0 ||
+  1681			lstrcmpi(decode, "*EVENT_PRISTON_ALPHABET") == 0))
+  1682		{
+  1683			p = local_GetWord(strBuff, p);
+  1684			if(strBuff[0])
+  1685				rsServerConfig.Event_PristonAlphabet = atoi(strBuff);
+  1686			else
+  1687				rsServerConfig.Event_PristonAlphabet = 100;
+  1688			flag++;
+  1689		}
+  1690	
+  1691	
+  1692	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1657
+----------------------------------------------------------------------
+  1637	
+  1638	
+  1639		if(!flag && (lstrcmp(decode, "*�߷�Ÿ��_�̺�Ʈ") == 0 ||
+  1640			lstrcmpi(decode, "*EVENT_VALENTINE") == 0))
+  1641		{
+  1642			p = local_GetWord(strBuff, p);
+  1643			if(strBuff[0])
+  1644				rsServerConfig.Event_Valentine = atoi(strBuff);
+  1645			else
+  1646				rsServerConfig.Event_Valentine = 100;
+  1647	
+  1648			flag++;
+  1649		}
+  1650	
+  1651	
+  1652	
+  1653		if(!flag && (lstrcmp(decode, "*ĵ������_�̺�Ʈ") == 0 ||
+  1654			lstrcmpi(decode, "*EVENT_CANDYDAYS") == 0))
+  1655		{
+  1656	
+  1657			p = local_GetWord(strBuff, p);
+  1658			if(strBuff[0])
+  1659				rsServerConfig.Event_Candydays = atoi(strBuff);
+  1660			else
+  1661				rsServerConfig.Event_Candydays = 100;
+  1662	
+  1663			flag++;
+  1664		}
+  1665	
+  1666	
+  1667		if(!flag && (lstrcmp(decode, "*���ϴüҿ�_�̺�Ʈ") == 0 ||
+  1668			lstrcmpi(decode, "*EVENT_STAR") == 0))
+  1669		{
+  1670			p = local_GetWord(strBuff, p);
+  1671			if(strBuff[0])
+  1672				rsServerConfig.Event_Star = atoi(strBuff);
+  1673			else
+  1674				rsServerConfig.Event_Star = 100;
+  1675	
+  1676			flag++;
+  1677		}
+  1678	
+  1679	
+  1680		if(!flag && (lstrcmp(decode, "*���ĺ�����_�̺�Ʈ") == 0 ||
+  1681			lstrcmpi(decode, "*EVENT_PRISTON_ALPHABET") == 0))
+  1682		{
+  1683			p = local_GetWord(strBuff, p);
+  1684			if(strBuff[0])
+  1685				rsServerConfig.Event_PristonAlphabet = atoi(strBuff);
+  1686			else
+  1687				rsServerConfig.Event_PristonAlphabet = 100;
+  1688			flag++;
+  1689		}
+  1690	
+  1691	
+  1692	
+  1693		if(!flag && (lstrcmp(decode, "*ȭ��Ʈ��Ʈ��Ʈ_�̺�Ʈ") == 0 ||
+  1694			lstrcmpi(decode, "*EVENT_WHITECONTRAST") == 0))
+  1695		{
+  1696			p = local_GetWord(strBuff, p);
+  1697			if(strBuff[0])
+  1698				rsServerConfig.Event_WhiteContrast = atoi(strBuff);
+  1699			else
+  1700				rsServerConfig.Event_WhiteContrast = 100;
+  1701	
+  1702			flag++;
+  1703		}
+  1704	
+  1705	
+  1706		if(!flag && (lstrcmp(decode, "*����������ȥ_�̺�Ʈ") == 0 ||
+  1707			lstrcmpi(decode, "*EVENT_BLACKSMITH") == 0))
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1670
+----------------------------------------------------------------------
+  1650	
+  1651	
+  1652	
+  1653		if(!flag && (lstrcmp(decode, "*ĵ������_�̺�Ʈ") == 0 ||
+  1654			lstrcmpi(decode, "*EVENT_CANDYDAYS") == 0))
+  1655		{
+  1656	
+  1657			p = local_GetWord(strBuff, p);
+  1658			if(strBuff[0])
+  1659				rsServerConfig.Event_Candydays = atoi(strBuff);
+  1660			else
+  1661				rsServerConfig.Event_Candydays = 100;
+  1662	
+  1663			flag++;
+  1664		}
+  1665	
+  1666	
+  1667		if(!flag && (lstrcmp(decode, "*���ϴüҿ�_�̺�Ʈ") == 0 ||
+  1668			lstrcmpi(decode, "*EVENT_STAR") == 0))
+  1669		{
+  1670			p = local_GetWord(strBuff, p);
+  1671			if(strBuff[0])
+  1672				rsServerConfig.Event_Star = atoi(strBuff);
+  1673			else
+  1674				rsServerConfig.Event_Star = 100;
+  1675	
+  1676			flag++;
+  1677		}
+  1678	
+  1679	
+  1680		if(!flag && (lstrcmp(decode, "*���ĺ�����_�̺�Ʈ") == 0 ||
+  1681			lstrcmpi(decode, "*EVENT_PRISTON_ALPHABET") == 0))
+  1682		{
+  1683			p = local_GetWord(strBuff, p);
+  1684			if(strBuff[0])
+  1685				rsServerConfig.Event_PristonAlphabet = atoi(strBuff);
+  1686			else
+  1687				rsServerConfig.Event_PristonAlphabet = 100;
+  1688			flag++;
+  1689		}
+  1690	
+  1691	
+  1692	
+  1693		if(!flag && (lstrcmp(decode, "*ȭ��Ʈ��Ʈ��Ʈ_�̺�Ʈ") == 0 ||
+  1694			lstrcmpi(decode, "*EVENT_WHITECONTRAST") == 0))
+  1695		{
+  1696			p = local_GetWord(strBuff, p);
+  1697			if(strBuff[0])
+  1698				rsServerConfig.Event_WhiteContrast = atoi(strBuff);
+  1699			else
+  1700				rsServerConfig.Event_WhiteContrast = 100;
+  1701	
+  1702			flag++;
+  1703		}
+  1704	
+  1705	
+  1706		if(!flag && (lstrcmp(decode, "*����������ȥ_�̺�Ʈ") == 0 ||
+  1707			lstrcmpi(decode, "*EVENT_BLACKSMITH") == 0))
+  1708		{
+  1709			p = local_GetWord(strBuff, p);
+  1710			if(strBuff[0])
+  1711				rsServerConfig.Event_BlackSmith = atoi(strBuff);
+  1712			else
+  1713				rsServerConfig.Event_BlackSmith = 100;
+  1714	
+  1715			flag++;
+  1716		}
+  1717	
+  1718	
+  1719		if(!flag && (lstrcmp(decode, "*�����ñ׸�_�̺�Ʈ") == 0 ||
+  1720			lstrcmpi(decode, "*EVENT_MAGICALGREEN") == 0))
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1683
+----------------------------------------------------------------------
+  1663			flag++;
+  1664		}
+  1665	
+  1666	
+  1667		if(!flag && (lstrcmp(decode, "*���ϴüҿ�_�̺�Ʈ") == 0 ||
+  1668			lstrcmpi(decode, "*EVENT_STAR") == 0))
+  1669		{
+  1670			p = local_GetWord(strBuff, p);
+  1671			if(strBuff[0])
+  1672				rsServerConfig.Event_Star = atoi(strBuff);
+  1673			else
+  1674				rsServerConfig.Event_Star = 100;
+  1675	
+  1676			flag++;
+  1677		}
+  1678	
+  1679	
+  1680		if(!flag && (lstrcmp(decode, "*���ĺ�����_�̺�Ʈ") == 0 ||
+  1681			lstrcmpi(decode, "*EVENT_PRISTON_ALPHABET") == 0))
+  1682		{
+  1683			p = local_GetWord(strBuff, p);
+  1684			if(strBuff[0])
+  1685				rsServerConfig.Event_PristonAlphabet = atoi(strBuff);
+  1686			else
+  1687				rsServerConfig.Event_PristonAlphabet = 100;
+  1688			flag++;
+  1689		}
+  1690	
+  1691	
+  1692	
+  1693		if(!flag && (lstrcmp(decode, "*ȭ��Ʈ��Ʈ��Ʈ_�̺�Ʈ") == 0 ||
+  1694			lstrcmpi(decode, "*EVENT_WHITECONTRAST") == 0))
+  1695		{
+  1696			p = local_GetWord(strBuff, p);
+  1697			if(strBuff[0])
+  1698				rsServerConfig.Event_WhiteContrast = atoi(strBuff);
+  1699			else
+  1700				rsServerConfig.Event_WhiteContrast = 100;
+  1701	
+  1702			flag++;
+  1703		}
+  1704	
+  1705	
+  1706		if(!flag && (lstrcmp(decode, "*����������ȥ_�̺�Ʈ") == 0 ||
+  1707			lstrcmpi(decode, "*EVENT_BLACKSMITH") == 0))
+  1708		{
+  1709			p = local_GetWord(strBuff, p);
+  1710			if(strBuff[0])
+  1711				rsServerConfig.Event_BlackSmith = atoi(strBuff);
+  1712			else
+  1713				rsServerConfig.Event_BlackSmith = 100;
+  1714	
+  1715			flag++;
+  1716		}
+  1717	
+  1718	
+  1719		if(!flag && (lstrcmp(decode, "*�����ñ׸�_�̺�Ʈ") == 0 ||
+  1720			lstrcmpi(decode, "*EVENT_MAGICALGREEN") == 0))
+  1721		{
+  1722			p = local_GetWord(strBuff, p);
+  1723			if(strBuff[0])
+  1724				rsServerConfig.Event_MagicalGreen = atoi(strBuff);
+  1725			else
+  1726				rsServerConfig.Event_MagicalGreen = 100;
+  1727	
+  1728			flag++;
+  1729		}
+  1730	
+  1731	
+  1732		if(!flag && (lstrcmp(decode, "*ī���Ǵ���_�̺�Ʈ") == 0 ||
+  1733			lstrcmpi(decode, "*EVENT_TEAROFKARA") == 0))
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1696
+----------------------------------------------------------------------
+  1676			flag++;
+  1677		}
+  1678	
+  1679	
+  1680		if(!flag && (lstrcmp(decode, "*���ĺ�����_�̺�Ʈ") == 0 ||
+  1681			lstrcmpi(decode, "*EVENT_PRISTON_ALPHABET") == 0))
+  1682		{
+  1683			p = local_GetWord(strBuff, p);
+  1684			if(strBuff[0])
+  1685				rsServerConfig.Event_PristonAlphabet = atoi(strBuff);
+  1686			else
+  1687				rsServerConfig.Event_PristonAlphabet = 100;
+  1688			flag++;
+  1689		}
+  1690	
+  1691	
+  1692	
+  1693		if(!flag && (lstrcmp(decode, "*ȭ��Ʈ��Ʈ��Ʈ_�̺�Ʈ") == 0 ||
+  1694			lstrcmpi(decode, "*EVENT_WHITECONTRAST") == 0))
+  1695		{
+  1696			p = local_GetWord(strBuff, p);
+  1697			if(strBuff[0])
+  1698				rsServerConfig.Event_WhiteContrast = atoi(strBuff);
+  1699			else
+  1700				rsServerConfig.Event_WhiteContrast = 100;
+  1701	
+  1702			flag++;
+  1703		}
+  1704	
+  1705	
+  1706		if(!flag && (lstrcmp(decode, "*����������ȥ_�̺�Ʈ") == 0 ||
+  1707			lstrcmpi(decode, "*EVENT_BLACKSMITH") == 0))
+  1708		{
+  1709			p = local_GetWord(strBuff, p);
+  1710			if(strBuff[0])
+  1711				rsServerConfig.Event_BlackSmith = atoi(strBuff);
+  1712			else
+  1713				rsServerConfig.Event_BlackSmith = 100;
+  1714	
+  1715			flag++;
+  1716		}
+  1717	
+  1718	
+  1719		if(!flag && (lstrcmp(decode, "*�����ñ׸�_�̺�Ʈ") == 0 ||
+  1720			lstrcmpi(decode, "*EVENT_MAGICALGREEN") == 0))
+  1721		{
+  1722			p = local_GetWord(strBuff, p);
+  1723			if(strBuff[0])
+  1724				rsServerConfig.Event_MagicalGreen = atoi(strBuff);
+  1725			else
+  1726				rsServerConfig.Event_MagicalGreen = 100;
+  1727	
+  1728			flag++;
+  1729		}
+  1730	
+  1731	
+  1732		if(!flag && (lstrcmp(decode, "*ī���Ǵ���_�̺�Ʈ") == 0 ||
+  1733			lstrcmpi(decode, "*EVENT_TEAROFKARA") == 0))
+  1734		{
+  1735	
+  1736			p = local_GetWord(strBuff, p);
+  1737			if(strBuff[0])
+  1738				rsServerConfig.Event_TearOfKara = atoi(strBuff);
+  1739			else
+  1740				rsServerConfig.Event_TearOfKara = 100;
+  1741	
+  1742			flag++;
+  1743		}
+  1744	
+  1745	
+  1746		if(!flag && (lstrcmp(decode, "*ȭ��Ʈ����_�̺�Ʈ") == 0 ||
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1709
+----------------------------------------------------------------------
+  1689		}
+  1690	
+  1691	
+  1692	
+  1693		if(!flag && (lstrcmp(decode, "*ȭ��Ʈ��Ʈ��Ʈ_�̺�Ʈ") == 0 ||
+  1694			lstrcmpi(decode, "*EVENT_WHITECONTRAST") == 0))
+  1695		{
+  1696			p = local_GetWord(strBuff, p);
+  1697			if(strBuff[0])
+  1698				rsServerConfig.Event_WhiteContrast = atoi(strBuff);
+  1699			else
+  1700				rsServerConfig.Event_WhiteContrast = 100;
+  1701	
+  1702			flag++;
+  1703		}
+  1704	
+  1705	
+  1706		if(!flag && (lstrcmp(decode, "*����������ȥ_�̺�Ʈ") == 0 ||
+  1707			lstrcmpi(decode, "*EVENT_BLACKSMITH") == 0))
+  1708		{
+  1709			p = local_GetWord(strBuff, p);
+  1710			if(strBuff[0])
+  1711				rsServerConfig.Event_BlackSmith = atoi(strBuff);
+  1712			else
+  1713				rsServerConfig.Event_BlackSmith = 100;
+  1714	
+  1715			flag++;
+  1716		}
+  1717	
+  1718	
+  1719		if(!flag && (lstrcmp(decode, "*�����ñ׸�_�̺�Ʈ") == 0 ||
+  1720			lstrcmpi(decode, "*EVENT_MAGICALGREEN") == 0))
+  1721		{
+  1722			p = local_GetWord(strBuff, p);
+  1723			if(strBuff[0])
+  1724				rsServerConfig.Event_MagicalGreen = atoi(strBuff);
+  1725			else
+  1726				rsServerConfig.Event_MagicalGreen = 100;
+  1727	
+  1728			flag++;
+  1729		}
+  1730	
+  1731	
+  1732		if(!flag && (lstrcmp(decode, "*ī���Ǵ���_�̺�Ʈ") == 0 ||
+  1733			lstrcmpi(decode, "*EVENT_TEAROFKARA") == 0))
+  1734		{
+  1735	
+  1736			p = local_GetWord(strBuff, p);
+  1737			if(strBuff[0])
+  1738				rsServerConfig.Event_TearOfKara = atoi(strBuff);
+  1739			else
+  1740				rsServerConfig.Event_TearOfKara = 100;
+  1741	
+  1742			flag++;
+  1743		}
+  1744	
+  1745	
+  1746		if(!flag && (lstrcmp(decode, "*ȭ��Ʈ����_�̺�Ʈ") == 0 ||
+  1747			lstrcmpi(decode, "*EVENT_WHITEDAY") == 0))
+  1748		{
+  1749	
+  1750			p = local_GetWord(strBuff, p);
+  1751			if(strBuff[0])
+  1752				rsServerConfig.Event_WhiteDay = atoi(strBuff);
+  1753			else
+  1754				rsServerConfig.Event_WhiteDay = 100;
+  1755	
+  1756			flag++;
+  1757		}
+  1758	
+  1759		if(!flag && (lstrcmp(decode, "*�����ǽ���_�̺�Ʈ") == 0 ||
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1722
+----------------------------------------------------------------------
+  1702			flag++;
+  1703		}
+  1704	
+  1705	
+  1706		if(!flag && (lstrcmp(decode, "*����������ȥ_�̺�Ʈ") == 0 ||
+  1707			lstrcmpi(decode, "*EVENT_BLACKSMITH") == 0))
+  1708		{
+  1709			p = local_GetWord(strBuff, p);
+  1710			if(strBuff[0])
+  1711				rsServerConfig.Event_BlackSmith = atoi(strBuff);
+  1712			else
+  1713				rsServerConfig.Event_BlackSmith = 100;
+  1714	
+  1715			flag++;
+  1716		}
+  1717	
+  1718	
+  1719		if(!flag && (lstrcmp(decode, "*�����ñ׸�_�̺�Ʈ") == 0 ||
+  1720			lstrcmpi(decode, "*EVENT_MAGICALGREEN") == 0))
+  1721		{
+  1722			p = local_GetWord(strBuff, p);
+  1723			if(strBuff[0])
+  1724				rsServerConfig.Event_MagicalGreen = atoi(strBuff);
+  1725			else
+  1726				rsServerConfig.Event_MagicalGreen = 100;
+  1727	
+  1728			flag++;
+  1729		}
+  1730	
+  1731	
+  1732		if(!flag && (lstrcmp(decode, "*ī���Ǵ���_�̺�Ʈ") == 0 ||
+  1733			lstrcmpi(decode, "*EVENT_TEAROFKARA") == 0))
+  1734		{
+  1735	
+  1736			p = local_GetWord(strBuff, p);
+  1737			if(strBuff[0])
+  1738				rsServerConfig.Event_TearOfKara = atoi(strBuff);
+  1739			else
+  1740				rsServerConfig.Event_TearOfKara = 100;
+  1741	
+  1742			flag++;
+  1743		}
+  1744	
+  1745	
+  1746		if(!flag && (lstrcmp(decode, "*ȭ��Ʈ����_�̺�Ʈ") == 0 ||
+  1747			lstrcmpi(decode, "*EVENT_WHITEDAY") == 0))
+  1748		{
+  1749	
+  1750			p = local_GetWord(strBuff, p);
+  1751			if(strBuff[0])
+  1752				rsServerConfig.Event_WhiteDay = atoi(strBuff);
+  1753			else
+  1754				rsServerConfig.Event_WhiteDay = 100;
+  1755	
+  1756			flag++;
+  1757		}
+  1758	
+  1759		if(!flag && (lstrcmp(decode, "*�����ǽ���_�̺�Ʈ") == 0 ||
+  1760			lstrcmpi(decode, "*EVENT_MORIFSHELTOM") == 0))
+  1761		{
+  1762	
+  1763			p = local_GetWord(strBuff, p);
+  1764			if(strBuff[0])
+  1765				rsServerConfig.Event_MorifSheltom = atoi(strBuff);
+  1766			else
+  1767				rsServerConfig.Event_MorifSheltom = 1;
+  1768	
+  1769			flag++;
+  1770		}
+  1771	
+  1772		if(!flag && (lstrcmp(decode, "*������_�̺�Ʈ") == 0 ||
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1736
+----------------------------------------------------------------------
+  1716		}
+  1717	
+  1718	
+  1719		if(!flag && (lstrcmp(decode, "*�����ñ׸�_�̺�Ʈ") == 0 ||
+  1720			lstrcmpi(decode, "*EVENT_MAGICALGREEN") == 0))
+  1721		{
+  1722			p = local_GetWord(strBuff, p);
+  1723			if(strBuff[0])
+  1724				rsServerConfig.Event_MagicalGreen = atoi(strBuff);
+  1725			else
+  1726				rsServerConfig.Event_MagicalGreen = 100;
+  1727	
+  1728			flag++;
+  1729		}
+  1730	
+  1731	
+  1732		if(!flag && (lstrcmp(decode, "*ī���Ǵ���_�̺�Ʈ") == 0 ||
+  1733			lstrcmpi(decode, "*EVENT_TEAROFKARA") == 0))
+  1734		{
+  1735	
+  1736			p = local_GetWord(strBuff, p);
+  1737			if(strBuff[0])
+  1738				rsServerConfig.Event_TearOfKara = atoi(strBuff);
+  1739			else
+  1740				rsServerConfig.Event_TearOfKara = 100;
+  1741	
+  1742			flag++;
+  1743		}
+  1744	
+  1745	
+  1746		if(!flag && (lstrcmp(decode, "*ȭ��Ʈ����_�̺�Ʈ") == 0 ||
+  1747			lstrcmpi(decode, "*EVENT_WHITEDAY") == 0))
+  1748		{
+  1749	
+  1750			p = local_GetWord(strBuff, p);
+  1751			if(strBuff[0])
+  1752				rsServerConfig.Event_WhiteDay = atoi(strBuff);
+  1753			else
+  1754				rsServerConfig.Event_WhiteDay = 100;
+  1755	
+  1756			flag++;
+  1757		}
+  1758	
+  1759		if(!flag && (lstrcmp(decode, "*�����ǽ���_�̺�Ʈ") == 0 ||
+  1760			lstrcmpi(decode, "*EVENT_MORIFSHELTOM") == 0))
+  1761		{
+  1762	
+  1763			p = local_GetWord(strBuff, p);
+  1764			if(strBuff[0])
+  1765				rsServerConfig.Event_MorifSheltom = atoi(strBuff);
+  1766			else
+  1767				rsServerConfig.Event_MorifSheltom = 1;
+  1768	
+  1769			flag++;
+  1770		}
+  1771	
+  1772		if(!flag && (lstrcmp(decode, "*������_�̺�Ʈ") == 0 ||
+  1773			lstrcmpi(decode, "*EVENT_WORLDCUP") == 0))
+  1774		{
+  1775	
+  1776			p = local_GetWord(strBuff, p);
+  1777			if(strBuff[0])
+  1778				rsServerConfig.Event_WorldCup = atoi(strBuff);
+  1779			else
+  1780				rsServerConfig.Event_WorldCup = 5;
+  1781	
+  1782			flag++;
+  1783		}
+  1784	
+  1785	
+  1786		if(!flag && (lstrcmp(decode, "*���ڸ���_�̺�Ʈ") == 0 ||
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1750
+----------------------------------------------------------------------
+  1730	
+  1731	
+  1732		if(!flag && (lstrcmp(decode, "*ī���Ǵ���_�̺�Ʈ") == 0 ||
+  1733			lstrcmpi(decode, "*EVENT_TEAROFKARA") == 0))
+  1734		{
+  1735	
+  1736			p = local_GetWord(strBuff, p);
+  1737			if(strBuff[0])
+  1738				rsServerConfig.Event_TearOfKara = atoi(strBuff);
+  1739			else
+  1740				rsServerConfig.Event_TearOfKara = 100;
+  1741	
+  1742			flag++;
+  1743		}
+  1744	
+  1745	
+  1746		if(!flag && (lstrcmp(decode, "*ȭ��Ʈ����_�̺�Ʈ") == 0 ||
+  1747			lstrcmpi(decode, "*EVENT_WHITEDAY") == 0))
+  1748		{
+  1749	
+  1750			p = local_GetWord(strBuff, p);
+  1751			if(strBuff[0])
+  1752				rsServerConfig.Event_WhiteDay = atoi(strBuff);
+  1753			else
+  1754				rsServerConfig.Event_WhiteDay = 100;
+  1755	
+  1756			flag++;
+  1757		}
+  1758	
+  1759		if(!flag && (lstrcmp(decode, "*�����ǽ���_�̺�Ʈ") == 0 ||
+  1760			lstrcmpi(decode, "*EVENT_MORIFSHELTOM") == 0))
+  1761		{
+  1762	
+  1763			p = local_GetWord(strBuff, p);
+  1764			if(strBuff[0])
+  1765				rsServerConfig.Event_MorifSheltom = atoi(strBuff);
+  1766			else
+  1767				rsServerConfig.Event_MorifSheltom = 1;
+  1768	
+  1769			flag++;
+  1770		}
+  1771	
+  1772		if(!flag && (lstrcmp(decode, "*������_�̺�Ʈ") == 0 ||
+  1773			lstrcmpi(decode, "*EVENT_WORLDCUP") == 0))
+  1774		{
+  1775	
+  1776			p = local_GetWord(strBuff, p);
+  1777			if(strBuff[0])
+  1778				rsServerConfig.Event_WorldCup = atoi(strBuff);
+  1779			else
+  1780				rsServerConfig.Event_WorldCup = 5;
+  1781	
+  1782			flag++;
+  1783		}
+  1784	
+  1785	
+  1786		if(!flag && (lstrcmp(decode, "*���ڸ���_�̺�Ʈ") == 0 ||
+  1787			lstrcmpi(decode, "*EVENT_WATERMELONMONSTER") == 0))
+  1788		{
+  1789	
+  1790			p = local_GetWord(strBuff, p);
+  1791			if(strBuff[0])
+  1792				rsServerConfig.Event_WarerMelonMonster = atoi(strBuff);
+  1793			else
+  1794				rsServerConfig.Event_WarerMelonMonster = 1;
+  1795	
+  1796			flag++;
+  1797		}
+  1798	
+  1799	
+  1800	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1763
+----------------------------------------------------------------------
+  1743		}
+  1744	
+  1745	
+  1746		if(!flag && (lstrcmp(decode, "*ȭ��Ʈ����_�̺�Ʈ") == 0 ||
+  1747			lstrcmpi(decode, "*EVENT_WHITEDAY") == 0))
+  1748		{
+  1749	
+  1750			p = local_GetWord(strBuff, p);
+  1751			if(strBuff[0])
+  1752				rsServerConfig.Event_WhiteDay = atoi(strBuff);
+  1753			else
+  1754				rsServerConfig.Event_WhiteDay = 100;
+  1755	
+  1756			flag++;
+  1757		}
+  1758	
+  1759		if(!flag && (lstrcmp(decode, "*�����ǽ���_�̺�Ʈ") == 0 ||
+  1760			lstrcmpi(decode, "*EVENT_MORIFSHELTOM") == 0))
+  1761		{
+  1762	
+  1763			p = local_GetWord(strBuff, p);
+  1764			if(strBuff[0])
+  1765				rsServerConfig.Event_MorifSheltom = atoi(strBuff);
+  1766			else
+  1767				rsServerConfig.Event_MorifSheltom = 1;
+  1768	
+  1769			flag++;
+  1770		}
+  1771	
+  1772		if(!flag && (lstrcmp(decode, "*������_�̺�Ʈ") == 0 ||
+  1773			lstrcmpi(decode, "*EVENT_WORLDCUP") == 0))
+  1774		{
+  1775	
+  1776			p = local_GetWord(strBuff, p);
+  1777			if(strBuff[0])
+  1778				rsServerConfig.Event_WorldCup = atoi(strBuff);
+  1779			else
+  1780				rsServerConfig.Event_WorldCup = 5;
+  1781	
+  1782			flag++;
+  1783		}
+  1784	
+  1785	
+  1786		if(!flag && (lstrcmp(decode, "*���ڸ���_�̺�Ʈ") == 0 ||
+  1787			lstrcmpi(decode, "*EVENT_WATERMELONMONSTER") == 0))
+  1788		{
+  1789	
+  1790			p = local_GetWord(strBuff, p);
+  1791			if(strBuff[0])
+  1792				rsServerConfig.Event_WarerMelonMonster = atoi(strBuff);
+  1793			else
+  1794				rsServerConfig.Event_WarerMelonMonster = 1;
+  1795	
+  1796			flag++;
+  1797		}
+  1798	
+  1799	
+  1800	
+  1801		if(!flag && (lstrcmp(decode, "*����ʹ���_�̺�Ʈ") == 0 ||
+  1802			lstrcmpi(decode, "*EVENT_MOLLYWOLF") == 0))
+  1803		{
+  1804	
+  1805			p = local_GetWord(strBuff, p);
+  1806			if(strBuff[0])
+  1807				rsServerConfig.Event_MollyWolf = atoi(strBuff);
+  1808			else
+  1809				rsServerConfig.Event_MollyWolf = 9;
+  1810	
+  1811			flag++;
+  1812		}
+  1813	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1776
+----------------------------------------------------------------------
+  1756			flag++;
+  1757		}
+  1758	
+  1759		if(!flag && (lstrcmp(decode, "*�����ǽ���_�̺�Ʈ") == 0 ||
+  1760			lstrcmpi(decode, "*EVENT_MORIFSHELTOM") == 0))
+  1761		{
+  1762	
+  1763			p = local_GetWord(strBuff, p);
+  1764			if(strBuff[0])
+  1765				rsServerConfig.Event_MorifSheltom = atoi(strBuff);
+  1766			else
+  1767				rsServerConfig.Event_MorifSheltom = 1;
+  1768	
+  1769			flag++;
+  1770		}
+  1771	
+  1772		if(!flag && (lstrcmp(decode, "*������_�̺�Ʈ") == 0 ||
+  1773			lstrcmpi(decode, "*EVENT_WORLDCUP") == 0))
+  1774		{
+  1775	
+  1776			p = local_GetWord(strBuff, p);
+  1777			if(strBuff[0])
+  1778				rsServerConfig.Event_WorldCup = atoi(strBuff);
+  1779			else
+  1780				rsServerConfig.Event_WorldCup = 5;
+  1781	
+  1782			flag++;
+  1783		}
+  1784	
+  1785	
+  1786		if(!flag && (lstrcmp(decode, "*���ڸ���_�̺�Ʈ") == 0 ||
+  1787			lstrcmpi(decode, "*EVENT_WATERMELONMONSTER") == 0))
+  1788		{
+  1789	
+  1790			p = local_GetWord(strBuff, p);
+  1791			if(strBuff[0])
+  1792				rsServerConfig.Event_WarerMelonMonster = atoi(strBuff);
+  1793			else
+  1794				rsServerConfig.Event_WarerMelonMonster = 1;
+  1795	
+  1796			flag++;
+  1797		}
+  1798	
+  1799	
+  1800	
+  1801		if(!flag && (lstrcmp(decode, "*����ʹ���_�̺�Ʈ") == 0 ||
+  1802			lstrcmpi(decode, "*EVENT_MOLLYWOLF") == 0))
+  1803		{
+  1804	
+  1805			p = local_GetWord(strBuff, p);
+  1806			if(strBuff[0])
+  1807				rsServerConfig.Event_MollyWolf = atoi(strBuff);
+  1808			else
+  1809				rsServerConfig.Event_MollyWolf = 9;
+  1810	
+  1811			flag++;
+  1812		}
+  1813	
+  1814	
+  1815		if(!flag && (lstrcmp(decode, "*����_�̺�Ʈ") == 0 || lstrcmpi(decode, "*EVENT_CHICHEN_DAY") == 0))
+  1816		{
+  1817			p = local_GetWord(strBuff, p);
+  1818			if(strBuff[0])
+  1819				rsServerConfig.Event_Chichen_Day = atoi(strBuff);
+  1820			else
+  1821				rsServerConfig.Event_Chichen_Day = 1;
+  1822	
+  1823			flag++;
+  1824		}
+  1825	
+  1826		if(!flag && (lstrcmp(decode, "*���Ʈ_�̺�Ʈ") == 0 ||
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1790
+----------------------------------------------------------------------
+  1770		}
+  1771	
+  1772		if(!flag && (lstrcmp(decode, "*������_�̺�Ʈ") == 0 ||
+  1773			lstrcmpi(decode, "*EVENT_WORLDCUP") == 0))
+  1774		{
+  1775	
+  1776			p = local_GetWord(strBuff, p);
+  1777			if(strBuff[0])
+  1778				rsServerConfig.Event_WorldCup = atoi(strBuff);
+  1779			else
+  1780				rsServerConfig.Event_WorldCup = 5;
+  1781	
+  1782			flag++;
+  1783		}
+  1784	
+  1785	
+  1786		if(!flag && (lstrcmp(decode, "*���ڸ���_�̺�Ʈ") == 0 ||
+  1787			lstrcmpi(decode, "*EVENT_WATERMELONMONSTER") == 0))
+  1788		{
+  1789	
+  1790			p = local_GetWord(strBuff, p);
+  1791			if(strBuff[0])
+  1792				rsServerConfig.Event_WarerMelonMonster = atoi(strBuff);
+  1793			else
+  1794				rsServerConfig.Event_WarerMelonMonster = 1;
+  1795	
+  1796			flag++;
+  1797		}
+  1798	
+  1799	
+  1800	
+  1801		if(!flag && (lstrcmp(decode, "*����ʹ���_�̺�Ʈ") == 0 ||
+  1802			lstrcmpi(decode, "*EVENT_MOLLYWOLF") == 0))
+  1803		{
+  1804	
+  1805			p = local_GetWord(strBuff, p);
+  1806			if(strBuff[0])
+  1807				rsServerConfig.Event_MollyWolf = atoi(strBuff);
+  1808			else
+  1809				rsServerConfig.Event_MollyWolf = 9;
+  1810	
+  1811			flag++;
+  1812		}
+  1813	
+  1814	
+  1815		if(!flag && (lstrcmp(decode, "*����_�̺�Ʈ") == 0 || lstrcmpi(decode, "*EVENT_CHICHEN_DAY") == 0))
+  1816		{
+  1817			p = local_GetWord(strBuff, p);
+  1818			if(strBuff[0])
+  1819				rsServerConfig.Event_Chichen_Day = atoi(strBuff);
+  1820			else
+  1821				rsServerConfig.Event_Chichen_Day = 1;
+  1822	
+  1823			flag++;
+  1824		}
+  1825	
+  1826		if(!flag && (lstrcmp(decode, "*���Ʈ_�̺�Ʈ") == 0 ||
+  1827			lstrcmpi(decode, "*EVENT_GHOST") == 0))
+  1828		{
+  1829	
+  1830			p = local_GetWord(strBuff, p);
+  1831			if(strBuff[0])
+  1832				rsServerConfig.Event_Ghost = atoi(strBuff);
+  1833			else
+  1834				rsServerConfig.Event_Ghost = 2;
+  1835	
+  1836			flag++;
+  1837		}
+  1838	
+  1839		if(!flag && (lstrcmp(decode, "*��Ÿ����_�̺�Ʈ") == 0 ||
+  1840			lstrcmpi(decode, "*EVENT_SANTAGOBLIN") == 0))
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1805
+----------------------------------------------------------------------
+  1785	
+  1786		if(!flag && (lstrcmp(decode, "*���ڸ���_�̺�Ʈ") == 0 ||
+  1787			lstrcmpi(decode, "*EVENT_WATERMELONMONSTER") == 0))
+  1788		{
+  1789	
+  1790			p = local_GetWord(strBuff, p);
+  1791			if(strBuff[0])
+  1792				rsServerConfig.Event_WarerMelonMonster = atoi(strBuff);
+  1793			else
+  1794				rsServerConfig.Event_WarerMelonMonster = 1;
+  1795	
+  1796			flag++;
+  1797		}
+  1798	
+  1799	
+  1800	
+  1801		if(!flag && (lstrcmp(decode, "*����ʹ���_�̺�Ʈ") == 0 ||
+  1802			lstrcmpi(decode, "*EVENT_MOLLYWOLF") == 0))
+  1803		{
+  1804	
+  1805			p = local_GetWord(strBuff, p);
+  1806			if(strBuff[0])
+  1807				rsServerConfig.Event_MollyWolf = atoi(strBuff);
+  1808			else
+  1809				rsServerConfig.Event_MollyWolf = 9;
+  1810	
+  1811			flag++;
+  1812		}
+  1813	
+  1814	
+  1815		if(!flag && (lstrcmp(decode, "*����_�̺�Ʈ") == 0 || lstrcmpi(decode, "*EVENT_CHICHEN_DAY") == 0))
+  1816		{
+  1817			p = local_GetWord(strBuff, p);
+  1818			if(strBuff[0])
+  1819				rsServerConfig.Event_Chichen_Day = atoi(strBuff);
+  1820			else
+  1821				rsServerConfig.Event_Chichen_Day = 1;
+  1822	
+  1823			flag++;
+  1824		}
+  1825	
+  1826		if(!flag && (lstrcmp(decode, "*���Ʈ_�̺�Ʈ") == 0 ||
+  1827			lstrcmpi(decode, "*EVENT_GHOST") == 0))
+  1828		{
+  1829	
+  1830			p = local_GetWord(strBuff, p);
+  1831			if(strBuff[0])
+  1832				rsServerConfig.Event_Ghost = atoi(strBuff);
+  1833			else
+  1834				rsServerConfig.Event_Ghost = 2;
+  1835	
+  1836			flag++;
+  1837		}
+  1838	
+  1839		if(!flag && (lstrcmp(decode, "*��Ÿ����_�̺�Ʈ") == 0 ||
+  1840			lstrcmpi(decode, "*EVENT_SANTAGOBLIN") == 0))
+  1841		{
+  1842	
+  1843			p = local_GetWord(strBuff, p);
+  1844			if(strBuff[0])
+  1845				rsServerConfig.Event_SantaGoblin = atoi(strBuff);
+  1846			else
+  1847				rsServerConfig.Event_SantaGoblin = 5;
+  1848	
+  1849			flag++;
+  1850		}
+  1851	
+  1852		if(!flag && (lstrcmp(decode, "*�����_�̺�Ʈ") == 0 ||
+  1853			lstrcmpi(decode, "*EVENT_SUMMER_CHICKEN") == 0))
+  1854		{
+  1855	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1817
+----------------------------------------------------------------------
+  1797		}
+  1798	
+  1799	
+  1800	
+  1801		if(!flag && (lstrcmp(decode, "*����ʹ���_�̺�Ʈ") == 0 ||
+  1802			lstrcmpi(decode, "*EVENT_MOLLYWOLF") == 0))
+  1803		{
+  1804	
+  1805			p = local_GetWord(strBuff, p);
+  1806			if(strBuff[0])
+  1807				rsServerConfig.Event_MollyWolf = atoi(strBuff);
+  1808			else
+  1809				rsServerConfig.Event_MollyWolf = 9;
+  1810	
+  1811			flag++;
+  1812		}
+  1813	
+  1814	
+  1815		if(!flag && (lstrcmp(decode, "*����_�̺�Ʈ") == 0 || lstrcmpi(decode, "*EVENT_CHICHEN_DAY") == 0))
+  1816		{
+  1817			p = local_GetWord(strBuff, p);
+  1818			if(strBuff[0])
+  1819				rsServerConfig.Event_Chichen_Day = atoi(strBuff);
+  1820			else
+  1821				rsServerConfig.Event_Chichen_Day = 1;
+  1822	
+  1823			flag++;
+  1824		}
+  1825	
+  1826		if(!flag && (lstrcmp(decode, "*���Ʈ_�̺�Ʈ") == 0 ||
+  1827			lstrcmpi(decode, "*EVENT_GHOST") == 0))
+  1828		{
+  1829	
+  1830			p = local_GetWord(strBuff, p);
+  1831			if(strBuff[0])
+  1832				rsServerConfig.Event_Ghost = atoi(strBuff);
+  1833			else
+  1834				rsServerConfig.Event_Ghost = 2;
+  1835	
+  1836			flag++;
+  1837		}
+  1838	
+  1839		if(!flag && (lstrcmp(decode, "*��Ÿ����_�̺�Ʈ") == 0 ||
+  1840			lstrcmpi(decode, "*EVENT_SANTAGOBLIN") == 0))
+  1841		{
+  1842	
+  1843			p = local_GetWord(strBuff, p);
+  1844			if(strBuff[0])
+  1845				rsServerConfig.Event_SantaGoblin = atoi(strBuff);
+  1846			else
+  1847				rsServerConfig.Event_SantaGoblin = 5;
+  1848	
+  1849			flag++;
+  1850		}
+  1851	
+  1852		if(!flag && (lstrcmp(decode, "*�����_�̺�Ʈ") == 0 ||
+  1853			lstrcmpi(decode, "*EVENT_SUMMER_CHICKEN") == 0))
+  1854		{
+  1855	
+  1856			p = local_GetWord(strBuff, p);
+  1857			if(strBuff[0])
+  1858				rsServerConfig.Event_SummerChicken = atoi(strBuff);
+  1859			else
+  1860				rsServerConfig.Event_SummerChicken = 5;
+  1861	
+  1862			flag++;
+  1863		}
+  1864	
+  1865		if(!flag && (lstrcmp(decode, "*�ǽù���_�̺�Ʈ") == 0 ||
+  1866			lstrcmpi(decode, "*EVENT_PCBANG_PET") == 0))
+  1867		{
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1830
+----------------------------------------------------------------------
+  1810	
+  1811			flag++;
+  1812		}
+  1813	
+  1814	
+  1815		if(!flag && (lstrcmp(decode, "*����_�̺�Ʈ") == 0 || lstrcmpi(decode, "*EVENT_CHICHEN_DAY") == 0))
+  1816		{
+  1817			p = local_GetWord(strBuff, p);
+  1818			if(strBuff[0])
+  1819				rsServerConfig.Event_Chichen_Day = atoi(strBuff);
+  1820			else
+  1821				rsServerConfig.Event_Chichen_Day = 1;
+  1822	
+  1823			flag++;
+  1824		}
+  1825	
+  1826		if(!flag && (lstrcmp(decode, "*���Ʈ_�̺�Ʈ") == 0 ||
+  1827			lstrcmpi(decode, "*EVENT_GHOST") == 0))
+  1828		{
+  1829	
+  1830			p = local_GetWord(strBuff, p);
+  1831			if(strBuff[0])
+  1832				rsServerConfig.Event_Ghost = atoi(strBuff);
+  1833			else
+  1834				rsServerConfig.Event_Ghost = 2;
+  1835	
+  1836			flag++;
+  1837		}
+  1838	
+  1839		if(!flag && (lstrcmp(decode, "*��Ÿ����_�̺�Ʈ") == 0 ||
+  1840			lstrcmpi(decode, "*EVENT_SANTAGOBLIN") == 0))
+  1841		{
+  1842	
+  1843			p = local_GetWord(strBuff, p);
+  1844			if(strBuff[0])
+  1845				rsServerConfig.Event_SantaGoblin = atoi(strBuff);
+  1846			else
+  1847				rsServerConfig.Event_SantaGoblin = 5;
+  1848	
+  1849			flag++;
+  1850		}
+  1851	
+  1852		if(!flag && (lstrcmp(decode, "*�����_�̺�Ʈ") == 0 ||
+  1853			lstrcmpi(decode, "*EVENT_SUMMER_CHICKEN") == 0))
+  1854		{
+  1855	
+  1856			p = local_GetWord(strBuff, p);
+  1857			if(strBuff[0])
+  1858				rsServerConfig.Event_SummerChicken = atoi(strBuff);
+  1859			else
+  1860				rsServerConfig.Event_SummerChicken = 5;
+  1861	
+  1862			flag++;
+  1863		}
+  1864	
+  1865		if(!flag && (lstrcmp(decode, "*�ǽù���_�̺�Ʈ") == 0 ||
+  1866			lstrcmpi(decode, "*EVENT_PCBANG_PET") == 0))
+  1867		{
+  1868	
+  1869			p = local_GetWord(strBuff, p);
+  1870			if(strBuff[0])
+  1871				rsServerConfig.Event_PCBangPet = atoi(strBuff);
+  1872			else
+  1873				rsServerConfig.Event_PCBangPet = 1;
+  1874	
+  1875			flag++;
+  1876		}
+  1877	
+  1878		if(!flag && (lstrcmp(decode, "*����ġ��_�̺�Ʈ") == 0 ||
+  1879			lstrcmpi(decode, "*EVENT_EXPUP") == 0))
+  1880		{
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1843
+----------------------------------------------------------------------
+  1823			flag++;
+  1824		}
+  1825	
+  1826		if(!flag && (lstrcmp(decode, "*���Ʈ_�̺�Ʈ") == 0 ||
+  1827			lstrcmpi(decode, "*EVENT_GHOST") == 0))
+  1828		{
+  1829	
+  1830			p = local_GetWord(strBuff, p);
+  1831			if(strBuff[0])
+  1832				rsServerConfig.Event_Ghost = atoi(strBuff);
+  1833			else
+  1834				rsServerConfig.Event_Ghost = 2;
+  1835	
+  1836			flag++;
+  1837		}
+  1838	
+  1839		if(!flag && (lstrcmp(decode, "*��Ÿ����_�̺�Ʈ") == 0 ||
+  1840			lstrcmpi(decode, "*EVENT_SANTAGOBLIN") == 0))
+  1841		{
+  1842	
+  1843			p = local_GetWord(strBuff, p);
+  1844			if(strBuff[0])
+  1845				rsServerConfig.Event_SantaGoblin = atoi(strBuff);
+  1846			else
+  1847				rsServerConfig.Event_SantaGoblin = 5;
+  1848	
+  1849			flag++;
+  1850		}
+  1851	
+  1852		if(!flag && (lstrcmp(decode, "*�����_�̺�Ʈ") == 0 ||
+  1853			lstrcmpi(decode, "*EVENT_SUMMER_CHICKEN") == 0))
+  1854		{
+  1855	
+  1856			p = local_GetWord(strBuff, p);
+  1857			if(strBuff[0])
+  1858				rsServerConfig.Event_SummerChicken = atoi(strBuff);
+  1859			else
+  1860				rsServerConfig.Event_SummerChicken = 5;
+  1861	
+  1862			flag++;
+  1863		}
+  1864	
+  1865		if(!flag && (lstrcmp(decode, "*�ǽù���_�̺�Ʈ") == 0 ||
+  1866			lstrcmpi(decode, "*EVENT_PCBANG_PET") == 0))
+  1867		{
+  1868	
+  1869			p = local_GetWord(strBuff, p);
+  1870			if(strBuff[0])
+  1871				rsServerConfig.Event_PCBangPet = atoi(strBuff);
+  1872			else
+  1873				rsServerConfig.Event_PCBangPet = 1;
+  1874	
+  1875			flag++;
+  1876		}
+  1877	
+  1878		if(!flag && (lstrcmp(decode, "*����ġ��_�̺�Ʈ") == 0 ||
+  1879			lstrcmpi(decode, "*EVENT_EXPUP") == 0))
+  1880		{
+  1881	
+  1882			p = local_GetWord(strBuff, p);
+  1883			if(strBuff[0])
+  1884				rsServerConfig.Event_ExpUp = atoi(strBuff);
+  1885			else
+  1886				rsServerConfig.Event_ExpUp = 120;
+  1887	
+  1888	
+  1889	
+  1890			//if (rsServerConfig.Event_ExpUp >= 100 && rsServerConfig.Event_ExpUp < 200)
+  1891			//{
+  1892			//	rsServerConfig.Event_ExpUp = 100;
+  1893			//}
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1856
+----------------------------------------------------------------------
+  1836			flag++;
+  1837		}
+  1838	
+  1839		if(!flag && (lstrcmp(decode, "*��Ÿ����_�̺�Ʈ") == 0 ||
+  1840			lstrcmpi(decode, "*EVENT_SANTAGOBLIN") == 0))
+  1841		{
+  1842	
+  1843			p = local_GetWord(strBuff, p);
+  1844			if(strBuff[0])
+  1845				rsServerConfig.Event_SantaGoblin = atoi(strBuff);
+  1846			else
+  1847				rsServerConfig.Event_SantaGoblin = 5;
+  1848	
+  1849			flag++;
+  1850		}
+  1851	
+  1852		if(!flag && (lstrcmp(decode, "*�����_�̺�Ʈ") == 0 ||
+  1853			lstrcmpi(decode, "*EVENT_SUMMER_CHICKEN") == 0))
+  1854		{
+  1855	
+  1856			p = local_GetWord(strBuff, p);
+  1857			if(strBuff[0])
+  1858				rsServerConfig.Event_SummerChicken = atoi(strBuff);
+  1859			else
+  1860				rsServerConfig.Event_SummerChicken = 5;
+  1861	
+  1862			flag++;
+  1863		}
+  1864	
+  1865		if(!flag && (lstrcmp(decode, "*�ǽù���_�̺�Ʈ") == 0 ||
+  1866			lstrcmpi(decode, "*EVENT_PCBANG_PET") == 0))
+  1867		{
+  1868	
+  1869			p = local_GetWord(strBuff, p);
+  1870			if(strBuff[0])
+  1871				rsServerConfig.Event_PCBangPet = atoi(strBuff);
+  1872			else
+  1873				rsServerConfig.Event_PCBangPet = 1;
+  1874	
+  1875			flag++;
+  1876		}
+  1877	
+  1878		if(!flag && (lstrcmp(decode, "*����ġ��_�̺�Ʈ") == 0 ||
+  1879			lstrcmpi(decode, "*EVENT_EXPUP") == 0))
+  1880		{
+  1881	
+  1882			p = local_GetWord(strBuff, p);
+  1883			if(strBuff[0])
+  1884				rsServerConfig.Event_ExpUp = atoi(strBuff);
+  1885			else
+  1886				rsServerConfig.Event_ExpUp = 120;
+  1887	
+  1888	
+  1889	
+  1890			//if (rsServerConfig.Event_ExpUp >= 100 && rsServerConfig.Event_ExpUp < 200)
+  1891			//{
+  1892			//	rsServerConfig.Event_ExpUp = 100;
+  1893			//}
+  1894			//else if (rsServerConfig.Event_ExpUp >= 200 && rsServerConfig.Event_ExpUp < 300)
+  1895			//{
+  1896			//	rsServerConfig.Event_ExpUp = 200;
+  1897			//}
+  1898			//else if (rsServerConfig.Event_ExpUp >= 300 && rsServerConfig.Event_ExpUp < 400)
+  1899			//{
+  1900			//	rsServerConfig.Event_ExpUp = 300;
+  1901			//}
+  1902			//else if (rsServerConfig.Event_ExpUp >= 400)
+  1903			//{
+  1904			//	rsServerConfig.Event_ExpUp = 400;
+  1905			//}
+  1906			//else
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1869
+----------------------------------------------------------------------
+  1849			flag++;
+  1850		}
+  1851	
+  1852		if(!flag && (lstrcmp(decode, "*�����_�̺�Ʈ") == 0 ||
+  1853			lstrcmpi(decode, "*EVENT_SUMMER_CHICKEN") == 0))
+  1854		{
+  1855	
+  1856			p = local_GetWord(strBuff, p);
+  1857			if(strBuff[0])
+  1858				rsServerConfig.Event_SummerChicken = atoi(strBuff);
+  1859			else
+  1860				rsServerConfig.Event_SummerChicken = 5;
+  1861	
+  1862			flag++;
+  1863		}
+  1864	
+  1865		if(!flag && (lstrcmp(decode, "*�ǽù���_�̺�Ʈ") == 0 ||
+  1866			lstrcmpi(decode, "*EVENT_PCBANG_PET") == 0))
+  1867		{
+  1868	
+  1869			p = local_GetWord(strBuff, p);
+  1870			if(strBuff[0])
+  1871				rsServerConfig.Event_PCBangPet = atoi(strBuff);
+  1872			else
+  1873				rsServerConfig.Event_PCBangPet = 1;
+  1874	
+  1875			flag++;
+  1876		}
+  1877	
+  1878		if(!flag && (lstrcmp(decode, "*����ġ��_�̺�Ʈ") == 0 ||
+  1879			lstrcmpi(decode, "*EVENT_EXPUP") == 0))
+  1880		{
+  1881	
+  1882			p = local_GetWord(strBuff, p);
+  1883			if(strBuff[0])
+  1884				rsServerConfig.Event_ExpUp = atoi(strBuff);
+  1885			else
+  1886				rsServerConfig.Event_ExpUp = 120;
+  1887	
+  1888	
+  1889	
+  1890			//if (rsServerConfig.Event_ExpUp >= 100 && rsServerConfig.Event_ExpUp < 200)
+  1891			//{
+  1892			//	rsServerConfig.Event_ExpUp = 100;
+  1893			//}
+  1894			//else if (rsServerConfig.Event_ExpUp >= 200 && rsServerConfig.Event_ExpUp < 300)
+  1895			//{
+  1896			//	rsServerConfig.Event_ExpUp = 200;
+  1897			//}
+  1898			//else if (rsServerConfig.Event_ExpUp >= 300 && rsServerConfig.Event_ExpUp < 400)
+  1899			//{
+  1900			//	rsServerConfig.Event_ExpUp = 300;
+  1901			//}
+  1902			//else if (rsServerConfig.Event_ExpUp >= 400)
+  1903			//{
+  1904			//	rsServerConfig.Event_ExpUp = 400;
+  1905			//}
+  1906			//else
+  1907			//{
+  1908			//	rsServerConfig.Event_ExpUp = 100;
+  1909			//}
+  1910	
+  1911			flag++;
+  1912		}
+  1913	
+  1914	#ifdef _LANGUAGE_ARGENTINA
+  1915	
+  1916		if(!flag && (lstrcmp(decode, "*����ġ��_�̺�Ʈ_��ƾ") == 0 || lstrcmpi(decode, "*EVENT_EXPUP_LATIN") == 0))
+  1917		{
+  1918	
+  1919			p = local_GetWord(strBuff, p);
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1882
+----------------------------------------------------------------------
+  1862			flag++;
+  1863		}
+  1864	
+  1865		if(!flag && (lstrcmp(decode, "*�ǽù���_�̺�Ʈ") == 0 ||
+  1866			lstrcmpi(decode, "*EVENT_PCBANG_PET") == 0))
+  1867		{
+  1868	
+  1869			p = local_GetWord(strBuff, p);
+  1870			if(strBuff[0])
+  1871				rsServerConfig.Event_PCBangPet = atoi(strBuff);
+  1872			else
+  1873				rsServerConfig.Event_PCBangPet = 1;
+  1874	
+  1875			flag++;
+  1876		}
+  1877	
+  1878		if(!flag && (lstrcmp(decode, "*����ġ��_�̺�Ʈ") == 0 ||
+  1879			lstrcmpi(decode, "*EVENT_EXPUP") == 0))
+  1880		{
+  1881	
+  1882			p = local_GetWord(strBuff, p);
+  1883			if(strBuff[0])
+  1884				rsServerConfig.Event_ExpUp = atoi(strBuff);
+  1885			else
+  1886				rsServerConfig.Event_ExpUp = 120;
+  1887	
+  1888	
+  1889	
+  1890			//if (rsServerConfig.Event_ExpUp >= 100 && rsServerConfig.Event_ExpUp < 200)
+  1891			//{
+  1892			//	rsServerConfig.Event_ExpUp = 100;
+  1893			//}
+  1894			//else if (rsServerConfig.Event_ExpUp >= 200 && rsServerConfig.Event_ExpUp < 300)
+  1895			//{
+  1896			//	rsServerConfig.Event_ExpUp = 200;
+  1897			//}
+  1898			//else if (rsServerConfig.Event_ExpUp >= 300 && rsServerConfig.Event_ExpUp < 400)
+  1899			//{
+  1900			//	rsServerConfig.Event_ExpUp = 300;
+  1901			//}
+  1902			//else if (rsServerConfig.Event_ExpUp >= 400)
+  1903			//{
+  1904			//	rsServerConfig.Event_ExpUp = 400;
+  1905			//}
+  1906			//else
+  1907			//{
+  1908			//	rsServerConfig.Event_ExpUp = 100;
+  1909			//}
+  1910	
+  1911			flag++;
+  1912		}
+  1913	
+  1914	#ifdef _LANGUAGE_ARGENTINA
+  1915	
+  1916		if(!flag && (lstrcmp(decode, "*����ġ��_�̺�Ʈ_��ƾ") == 0 || lstrcmpi(decode, "*EVENT_EXPUP_LATIN") == 0))
+  1917		{
+  1918	
+  1919			p = local_GetWord(strBuff, p);
+  1920			if(strBuff[0])
+  1921			{
+  1922				rsServerConfig.Event_ExpUp_latin = atoi(strBuff);
+  1923			}
+  1924			else
+  1925			{
+  1926				rsServerConfig.Event_ExpUp_latin = 100;
+  1927			}
+  1928	
+  1929			flag++;
+  1930		}
+  1931	
+  1932	#endif
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1919
+----------------------------------------------------------------------
+  1899			//{
+  1900			//	rsServerConfig.Event_ExpUp = 300;
+  1901			//}
+  1902			//else if (rsServerConfig.Event_ExpUp >= 400)
+  1903			//{
+  1904			//	rsServerConfig.Event_ExpUp = 400;
+  1905			//}
+  1906			//else
+  1907			//{
+  1908			//	rsServerConfig.Event_ExpUp = 100;
+  1909			//}
+  1910	
+  1911			flag++;
+  1912		}
+  1913	
+  1914	#ifdef _LANGUAGE_ARGENTINA
+  1915	
+  1916		if(!flag && (lstrcmp(decode, "*����ġ��_�̺�Ʈ_��ƾ") == 0 || lstrcmpi(decode, "*EVENT_EXPUP_LATIN") == 0))
+  1917		{
+  1918	
+  1919			p = local_GetWord(strBuff, p);
+  1920			if(strBuff[0])
+  1921			{
+  1922				rsServerConfig.Event_ExpUp_latin = atoi(strBuff);
+  1923			}
+  1924			else
+  1925			{
+  1926				rsServerConfig.Event_ExpUp_latin = 100;
+  1927			}
+  1928	
+  1929			flag++;
+  1930		}
+  1931	
+  1932	#endif
+  1933	
+  1934	
+  1935	
+  1936	
+  1937		if(!flag && (lstrcmp(decode, "*��������_�̺�Ʈ") == 0 ||
+  1938			lstrcmpi(decode, "*EVENT_HALLOWEEN") == 0))
+  1939		{
+  1940			p = local_GetWord(strBuff, p);
+  1941			if(strBuff[0])
+  1942			{
+  1943				rsServerConfig.Event_GiftBox = atoi(strBuff);
+  1944			}
+  1945			else
+  1946			{
+  1947				rsServerConfig.Event_GiftBox = 0;
+  1948			}
+  1949	
+  1950			flag++;
+  1951		}
+  1952	
+  1953	
+  1954	
+  1955		if(!flag && (lstrcmp(decode, "*�ð�����ġ") == 0 || lstrcmpi(decode, "*EXP_GAMETIME") == 0))
+  1956		{
+  1957			p = local_GetWord(strBuff, p);
+  1958			if(strBuff[0])
+  1959				rsServerConfig.ExpGameTimeMode = atoi(strBuff);
+  1960			else
+  1961				rsServerConfig.ExpGameTimeMode = 1;
+  1962	
+  1963			flag++;
+  1964		}
+  1965	
+  1966	
+  1967		if(!flag && (lstrcmp(decode, "*�����ĳ��") == 0 ||
+  1968			lstrcmpi(decode, "*EVENT_BLESSCASTLE") == 0))
+  1969		{
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1940
+----------------------------------------------------------------------
+  1920			if(strBuff[0])
+  1921			{
+  1922				rsServerConfig.Event_ExpUp_latin = atoi(strBuff);
+  1923			}
+  1924			else
+  1925			{
+  1926				rsServerConfig.Event_ExpUp_latin = 100;
+  1927			}
+  1928	
+  1929			flag++;
+  1930		}
+  1931	
+  1932	#endif
+  1933	
+  1934	
+  1935	
+  1936	
+  1937		if(!flag && (lstrcmp(decode, "*��������_�̺�Ʈ") == 0 ||
+  1938			lstrcmpi(decode, "*EVENT_HALLOWEEN") == 0))
+  1939		{
+  1940			p = local_GetWord(strBuff, p);
+  1941			if(strBuff[0])
+  1942			{
+  1943				rsServerConfig.Event_GiftBox = atoi(strBuff);
+  1944			}
+  1945			else
+  1946			{
+  1947				rsServerConfig.Event_GiftBox = 0;
+  1948			}
+  1949	
+  1950			flag++;
+  1951		}
+  1952	
+  1953	
+  1954	
+  1955		if(!flag && (lstrcmp(decode, "*�ð�����ġ") == 0 || lstrcmpi(decode, "*EXP_GAMETIME") == 0))
+  1956		{
+  1957			p = local_GetWord(strBuff, p);
+  1958			if(strBuff[0])
+  1959				rsServerConfig.ExpGameTimeMode = atoi(strBuff);
+  1960			else
+  1961				rsServerConfig.ExpGameTimeMode = 1;
+  1962	
+  1963			flag++;
+  1964		}
+  1965	
+  1966	
+  1967		if(!flag && (lstrcmp(decode, "*�����ĳ��") == 0 ||
+  1968			lstrcmpi(decode, "*EVENT_BLESSCASTLE") == 0))
+  1969		{
+  1970	
+  1971			p = local_GetWord(strBuff, p);
+  1972			if(strBuff[0])
+  1973				rsServerConfig.BlessCastleMode = atoi(strBuff);
+  1974			else
+  1975				rsServerConfig.BlessCastleMode = 1;
+  1976	
+  1977			flag++;
+  1978		}
+  1979		if(!flag && (lstrcmp(decode, "*�����ð�") == 0 ||
+  1980			lstrcmpi(decode, "*EVENT_SIEGE_TIME") == 0))
+  1981		{
+  1982	
+  1983			p = local_GetWord(strBuff, p);
+  1984			if(strBuff[0])
+  1985				rsServerConfig.sBlessCastle_StartTime[0] = atoi(strBuff);
+  1986			p = local_GetWord(strBuff, p);
+  1987			if(strBuff[0])
+  1988				rsServerConfig.sBlessCastle_StartTime[1] = atoi(strBuff);
+  1989	
+  1990			flag++;
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1957
+----------------------------------------------------------------------
+  1937		if(!flag && (lstrcmp(decode, "*��������_�̺�Ʈ") == 0 ||
+  1938			lstrcmpi(decode, "*EVENT_HALLOWEEN") == 0))
+  1939		{
+  1940			p = local_GetWord(strBuff, p);
+  1941			if(strBuff[0])
+  1942			{
+  1943				rsServerConfig.Event_GiftBox = atoi(strBuff);
+  1944			}
+  1945			else
+  1946			{
+  1947				rsServerConfig.Event_GiftBox = 0;
+  1948			}
+  1949	
+  1950			flag++;
+  1951		}
+  1952	
+  1953	
+  1954	
+  1955		if(!flag && (lstrcmp(decode, "*�ð�����ġ") == 0 || lstrcmpi(decode, "*EXP_GAMETIME") == 0))
+  1956		{
+  1957			p = local_GetWord(strBuff, p);
+  1958			if(strBuff[0])
+  1959				rsServerConfig.ExpGameTimeMode = atoi(strBuff);
+  1960			else
+  1961				rsServerConfig.ExpGameTimeMode = 1;
+  1962	
+  1963			flag++;
+  1964		}
+  1965	
+  1966	
+  1967		if(!flag && (lstrcmp(decode, "*�����ĳ��") == 0 ||
+  1968			lstrcmpi(decode, "*EVENT_BLESSCASTLE") == 0))
+  1969		{
+  1970	
+  1971			p = local_GetWord(strBuff, p);
+  1972			if(strBuff[0])
+  1973				rsServerConfig.BlessCastleMode = atoi(strBuff);
+  1974			else
+  1975				rsServerConfig.BlessCastleMode = 1;
+  1976	
+  1977			flag++;
+  1978		}
+  1979		if(!flag && (lstrcmp(decode, "*�����ð�") == 0 ||
+  1980			lstrcmpi(decode, "*EVENT_SIEGE_TIME") == 0))
+  1981		{
+  1982	
+  1983			p = local_GetWord(strBuff, p);
+  1984			if(strBuff[0])
+  1985				rsServerConfig.sBlessCastle_StartTime[0] = atoi(strBuff);
+  1986			p = local_GetWord(strBuff, p);
+  1987			if(strBuff[0])
+  1988				rsServerConfig.sBlessCastle_StartTime[1] = atoi(strBuff);
+  1989	
+  1990			flag++;
+  1991		}
+  1992	
+  1993		if(!flag && (lstrcmp(decode, "*�̺�Ʈ��Ʈ����") == 0 ||
+  1994			lstrcmpi(decode, "*EVENT_BITMASK") == 0))
+  1995		{
+  1996	
+  1997			p = local_GetWord(strBuff, p);
+  1998			if(strBuff[0])
+  1999				rsServerConfig.EventPlay_BitMask = atoi(strBuff);
+  2000	
+  2001			flag++;
+  2002		}
+  2003	
+  2004		if(!flag && (lstrcmp(decode, "*�ű���������") == 0 ||
+  2005			lstrcmpi(decode, "*DEFAULT_ITEM_USER") == 0))
+  2006		{
+  2007	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1971
+----------------------------------------------------------------------
+  1951		}
+  1952	
+  1953	
+  1954	
+  1955		if(!flag && (lstrcmp(decode, "*�ð�����ġ") == 0 || lstrcmpi(decode, "*EXP_GAMETIME") == 0))
+  1956		{
+  1957			p = local_GetWord(strBuff, p);
+  1958			if(strBuff[0])
+  1959				rsServerConfig.ExpGameTimeMode = atoi(strBuff);
+  1960			else
+  1961				rsServerConfig.ExpGameTimeMode = 1;
+  1962	
+  1963			flag++;
+  1964		}
+  1965	
+  1966	
+  1967		if(!flag && (lstrcmp(decode, "*�����ĳ��") == 0 ||
+  1968			lstrcmpi(decode, "*EVENT_BLESSCASTLE") == 0))
+  1969		{
+  1970	
+  1971			p = local_GetWord(strBuff, p);
+  1972			if(strBuff[0])
+  1973				rsServerConfig.BlessCastleMode = atoi(strBuff);
+  1974			else
+  1975				rsServerConfig.BlessCastleMode = 1;
+  1976	
+  1977			flag++;
+  1978		}
+  1979		if(!flag && (lstrcmp(decode, "*�����ð�") == 0 ||
+  1980			lstrcmpi(decode, "*EVENT_SIEGE_TIME") == 0))
+  1981		{
+  1982	
+  1983			p = local_GetWord(strBuff, p);
+  1984			if(strBuff[0])
+  1985				rsServerConfig.sBlessCastle_StartTime[0] = atoi(strBuff);
+  1986			p = local_GetWord(strBuff, p);
+  1987			if(strBuff[0])
+  1988				rsServerConfig.sBlessCastle_StartTime[1] = atoi(strBuff);
+  1989	
+  1990			flag++;
+  1991		}
+  1992	
+  1993		if(!flag && (lstrcmp(decode, "*�̺�Ʈ��Ʈ����") == 0 ||
+  1994			lstrcmpi(decode, "*EVENT_BITMASK") == 0))
+  1995		{
+  1996	
+  1997			p = local_GetWord(strBuff, p);
+  1998			if(strBuff[0])
+  1999				rsServerConfig.EventPlay_BitMask = atoi(strBuff);
+  2000	
+  2001			flag++;
+  2002		}
+  2003	
+  2004		if(!flag && (lstrcmp(decode, "*�ű���������") == 0 ||
+  2005			lstrcmpi(decode, "*DEFAULT_ITEM_USER") == 0))
+  2006		{
+  2007	
+  2008			p = local_GetWord(strBuff, p);
+  2009			if(strBuff[0])
+  2010				rsServerConfig.StartUser_PresentItem = atoi(strBuff);
+  2011			else
+  2012				rsServerConfig.StartUser_PresentItem = TRUE;
+  2013	
+  2014			flag++;
+  2015		}
+  2016	
+  2017	
+  2018		if(!flag && (lstrcmp(decode, "*�����ڱ��") == 0 ||
+  2019			lstrcmpi(decode, "*RECORD_JOBCHANGER") == 0))
+  2020		{
+  2021			rsServerConfig.Record_JobChanger = TRUE;;
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1983
+----------------------------------------------------------------------
+  1963			flag++;
+  1964		}
+  1965	
+  1966	
+  1967		if(!flag && (lstrcmp(decode, "*�����ĳ��") == 0 ||
+  1968			lstrcmpi(decode, "*EVENT_BLESSCASTLE") == 0))
+  1969		{
+  1970	
+  1971			p = local_GetWord(strBuff, p);
+  1972			if(strBuff[0])
+  1973				rsServerConfig.BlessCastleMode = atoi(strBuff);
+  1974			else
+  1975				rsServerConfig.BlessCastleMode = 1;
+  1976	
+  1977			flag++;
+  1978		}
+  1979		if(!flag && (lstrcmp(decode, "*�����ð�") == 0 ||
+  1980			lstrcmpi(decode, "*EVENT_SIEGE_TIME") == 0))
+  1981		{
+  1982	
+  1983			p = local_GetWord(strBuff, p);
+  1984			if(strBuff[0])
+  1985				rsServerConfig.sBlessCastle_StartTime[0] = atoi(strBuff);
+  1986			p = local_GetWord(strBuff, p);
+  1987			if(strBuff[0])
+  1988				rsServerConfig.sBlessCastle_StartTime[1] = atoi(strBuff);
+  1989	
+  1990			flag++;
+  1991		}
+  1992	
+  1993		if(!flag && (lstrcmp(decode, "*�̺�Ʈ��Ʈ����") == 0 ||
+  1994			lstrcmpi(decode, "*EVENT_BITMASK") == 0))
+  1995		{
+  1996	
+  1997			p = local_GetWord(strBuff, p);
+  1998			if(strBuff[0])
+  1999				rsServerConfig.EventPlay_BitMask = atoi(strBuff);
+  2000	
+  2001			flag++;
+  2002		}
+  2003	
+  2004		if(!flag && (lstrcmp(decode, "*�ű���������") == 0 ||
+  2005			lstrcmpi(decode, "*DEFAULT_ITEM_USER") == 0))
+  2006		{
+  2007	
+  2008			p = local_GetWord(strBuff, p);
+  2009			if(strBuff[0])
+  2010				rsServerConfig.StartUser_PresentItem = atoi(strBuff);
+  2011			else
+  2012				rsServerConfig.StartUser_PresentItem = TRUE;
+  2013	
+  2014			flag++;
+  2015		}
+  2016	
+  2017	
+  2018		if(!flag && (lstrcmp(decode, "*�����ڱ��") == 0 ||
+  2019			lstrcmpi(decode, "*RECORD_JOBCHANGER") == 0))
+  2020		{
+  2021			rsServerConfig.Record_JobChanger = TRUE;;
+  2022			flag++;
+  2023		}
+  2024	
+  2025		if(!flag && (lstrcmp(decode, "*��������㰡") == 0 ||
+  2026			lstrcmpi(decode, "*ENABLE_BLOCK_FOREVER") == 0))
+  2027		{
+  2028			rsServerConfig.ForeverBlockMode = TRUE;
+  2029			flag++;
+  2030		}
+  2031	
+  2032		if(!flag && (lstrcmp(decode, "*����ġ��������") == 0 ||
+  2033			lstrcmpi(decode, "*PERMIT_EXP") == 0))
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1986
+----------------------------------------------------------------------
+  1966	
+  1967		if(!flag && (lstrcmp(decode, "*�����ĳ��") == 0 ||
+  1968			lstrcmpi(decode, "*EVENT_BLESSCASTLE") == 0))
+  1969		{
+  1970	
+  1971			p = local_GetWord(strBuff, p);
+  1972			if(strBuff[0])
+  1973				rsServerConfig.BlessCastleMode = atoi(strBuff);
+  1974			else
+  1975				rsServerConfig.BlessCastleMode = 1;
+  1976	
+  1977			flag++;
+  1978		}
+  1979		if(!flag && (lstrcmp(decode, "*�����ð�") == 0 ||
+  1980			lstrcmpi(decode, "*EVENT_SIEGE_TIME") == 0))
+  1981		{
+  1982	
+  1983			p = local_GetWord(strBuff, p);
+  1984			if(strBuff[0])
+  1985				rsServerConfig.sBlessCastle_StartTime[0] = atoi(strBuff);
+  1986			p = local_GetWord(strBuff, p);
+  1987			if(strBuff[0])
+  1988				rsServerConfig.sBlessCastle_StartTime[1] = atoi(strBuff);
+  1989	
+  1990			flag++;
+  1991		}
+  1992	
+  1993		if(!flag && (lstrcmp(decode, "*�̺�Ʈ��Ʈ����") == 0 ||
+  1994			lstrcmpi(decode, "*EVENT_BITMASK") == 0))
+  1995		{
+  1996	
+  1997			p = local_GetWord(strBuff, p);
+  1998			if(strBuff[0])
+  1999				rsServerConfig.EventPlay_BitMask = atoi(strBuff);
+  2000	
+  2001			flag++;
+  2002		}
+  2003	
+  2004		if(!flag && (lstrcmp(decode, "*�ű���������") == 0 ||
+  2005			lstrcmpi(decode, "*DEFAULT_ITEM_USER") == 0))
+  2006		{
+  2007	
+  2008			p = local_GetWord(strBuff, p);
+  2009			if(strBuff[0])
+  2010				rsServerConfig.StartUser_PresentItem = atoi(strBuff);
+  2011			else
+  2012				rsServerConfig.StartUser_PresentItem = TRUE;
+  2013	
+  2014			flag++;
+  2015		}
+  2016	
+  2017	
+  2018		if(!flag && (lstrcmp(decode, "*�����ڱ��") == 0 ||
+  2019			lstrcmpi(decode, "*RECORD_JOBCHANGER") == 0))
+  2020		{
+  2021			rsServerConfig.Record_JobChanger = TRUE;;
+  2022			flag++;
+  2023		}
+  2024	
+  2025		if(!flag && (lstrcmp(decode, "*��������㰡") == 0 ||
+  2026			lstrcmpi(decode, "*ENABLE_BLOCK_FOREVER") == 0))
+  2027		{
+  2028			rsServerConfig.ForeverBlockMode = TRUE;
+  2029			flag++;
+  2030		}
+  2031	
+  2032		if(!flag && (lstrcmp(decode, "*����ġ��������") == 0 ||
+  2033			lstrcmpi(decode, "*PERMIT_EXP") == 0))
+  2034		{
+  2035			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2036			rsServerConfig.Permit_Exp = atoi(strBuff);
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:1997
+----------------------------------------------------------------------
+  1977			flag++;
+  1978		}
+  1979		if(!flag && (lstrcmp(decode, "*�����ð�") == 0 ||
+  1980			lstrcmpi(decode, "*EVENT_SIEGE_TIME") == 0))
+  1981		{
+  1982	
+  1983			p = local_GetWord(strBuff, p);
+  1984			if(strBuff[0])
+  1985				rsServerConfig.sBlessCastle_StartTime[0] = atoi(strBuff);
+  1986			p = local_GetWord(strBuff, p);
+  1987			if(strBuff[0])
+  1988				rsServerConfig.sBlessCastle_StartTime[1] = atoi(strBuff);
+  1989	
+  1990			flag++;
+  1991		}
+  1992	
+  1993		if(!flag && (lstrcmp(decode, "*�̺�Ʈ��Ʈ����") == 0 ||
+  1994			lstrcmpi(decode, "*EVENT_BITMASK") == 0))
+  1995		{
+  1996	
+  1997			p = local_GetWord(strBuff, p);
+  1998			if(strBuff[0])
+  1999				rsServerConfig.EventPlay_BitMask = atoi(strBuff);
+  2000	
+  2001			flag++;
+  2002		}
+  2003	
+  2004		if(!flag && (lstrcmp(decode, "*�ű���������") == 0 ||
+  2005			lstrcmpi(decode, "*DEFAULT_ITEM_USER") == 0))
+  2006		{
+  2007	
+  2008			p = local_GetWord(strBuff, p);
+  2009			if(strBuff[0])
+  2010				rsServerConfig.StartUser_PresentItem = atoi(strBuff);
+  2011			else
+  2012				rsServerConfig.StartUser_PresentItem = TRUE;
+  2013	
+  2014			flag++;
+  2015		}
+  2016	
+  2017	
+  2018		if(!flag && (lstrcmp(decode, "*�����ڱ��") == 0 ||
+  2019			lstrcmpi(decode, "*RECORD_JOBCHANGER") == 0))
+  2020		{
+  2021			rsServerConfig.Record_JobChanger = TRUE;;
+  2022			flag++;
+  2023		}
+  2024	
+  2025		if(!flag && (lstrcmp(decode, "*��������㰡") == 0 ||
+  2026			lstrcmpi(decode, "*ENABLE_BLOCK_FOREVER") == 0))
+  2027		{
+  2028			rsServerConfig.ForeverBlockMode = TRUE;
+  2029			flag++;
+  2030		}
+  2031	
+  2032		if(!flag && (lstrcmp(decode, "*����ġ��������") == 0 ||
+  2033			lstrcmpi(decode, "*PERMIT_EXP") == 0))
+  2034		{
+  2035			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2036			rsServerConfig.Permit_Exp = atoi(strBuff);
+  2037			flag++;
+  2038		}
+  2039		if(!flag && (lstrcmp(decode, "*����������") == 0 ||
+  2040			lstrcmpi(decode, "*PERMIT_MONEY") == 0))
+  2041		{
+  2042			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2043			rsServerConfig.Permit_Money = atoi(strBuff);
+  2044			flag++;
+  2045		}
+  2046	
+  2047		if(!flag && (lstrcmp(decode, "*���μ����ð�����") == 0 ||
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2008
+----------------------------------------------------------------------
+  1988				rsServerConfig.sBlessCastle_StartTime[1] = atoi(strBuff);
+  1989	
+  1990			flag++;
+  1991		}
+  1992	
+  1993		if(!flag && (lstrcmp(decode, "*�̺�Ʈ��Ʈ����") == 0 ||
+  1994			lstrcmpi(decode, "*EVENT_BITMASK") == 0))
+  1995		{
+  1996	
+  1997			p = local_GetWord(strBuff, p);
+  1998			if(strBuff[0])
+  1999				rsServerConfig.EventPlay_BitMask = atoi(strBuff);
+  2000	
+  2001			flag++;
+  2002		}
+  2003	
+  2004		if(!flag && (lstrcmp(decode, "*�ű���������") == 0 ||
+  2005			lstrcmpi(decode, "*DEFAULT_ITEM_USER") == 0))
+  2006		{
+  2007	
+  2008			p = local_GetWord(strBuff, p);
+  2009			if(strBuff[0])
+  2010				rsServerConfig.StartUser_PresentItem = atoi(strBuff);
+  2011			else
+  2012				rsServerConfig.StartUser_PresentItem = TRUE;
+  2013	
+  2014			flag++;
+  2015		}
+  2016	
+  2017	
+  2018		if(!flag && (lstrcmp(decode, "*�����ڱ��") == 0 ||
+  2019			lstrcmpi(decode, "*RECORD_JOBCHANGER") == 0))
+  2020		{
+  2021			rsServerConfig.Record_JobChanger = TRUE;;
+  2022			flag++;
+  2023		}
+  2024	
+  2025		if(!flag && (lstrcmp(decode, "*��������㰡") == 0 ||
+  2026			lstrcmpi(decode, "*ENABLE_BLOCK_FOREVER") == 0))
+  2027		{
+  2028			rsServerConfig.ForeverBlockMode = TRUE;
+  2029			flag++;
+  2030		}
+  2031	
+  2032		if(!flag && (lstrcmp(decode, "*����ġ��������") == 0 ||
+  2033			lstrcmpi(decode, "*PERMIT_EXP") == 0))
+  2034		{
+  2035			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2036			rsServerConfig.Permit_Exp = atoi(strBuff);
+  2037			flag++;
+  2038		}
+  2039		if(!flag && (lstrcmp(decode, "*����������") == 0 ||
+  2040			lstrcmpi(decode, "*PERMIT_MONEY") == 0))
+  2041		{
+  2042			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2043			rsServerConfig.Permit_Money = atoi(strBuff);
+  2044			flag++;
+  2045		}
+  2046	
+  2047		if(!flag && (lstrcmp(decode, "*���μ����ð�����") == 0 ||
+  2048			lstrcmpi(decode, "*CLIENT_CHECK_PROCESS_TIME") == 0))
+  2049		{
+  2050			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2051			rsServerConfig.ClientProcessTimeChk = atoi(strBuff);
+  2052			flag++;
+  2053		}
+  2054		if(!flag && (lstrcmp(decode, "*���μ����ð�����") == 0 ||
+  2055			lstrcmpi(decode, "*CLIENT_PROCESS_TIME_OUT") == 0))
+  2056		{
+  2057			rsServerConfig.ClientProcessTimeChkOut = TRUE;
+  2058			flag++;
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2035
+----------------------------------------------------------------------
+  2015		}
+  2016	
+  2017	
+  2018		if(!flag && (lstrcmp(decode, "*�����ڱ��") == 0 ||
+  2019			lstrcmpi(decode, "*RECORD_JOBCHANGER") == 0))
+  2020		{
+  2021			rsServerConfig.Record_JobChanger = TRUE;;
+  2022			flag++;
+  2023		}
+  2024	
+  2025		if(!flag && (lstrcmp(decode, "*��������㰡") == 0 ||
+  2026			lstrcmpi(decode, "*ENABLE_BLOCK_FOREVER") == 0))
+  2027		{
+  2028			rsServerConfig.ForeverBlockMode = TRUE;
+  2029			flag++;
+  2030		}
+  2031	
+  2032		if(!flag && (lstrcmp(decode, "*����ġ��������") == 0 ||
+  2033			lstrcmpi(decode, "*PERMIT_EXP") == 0))
+  2034		{
+  2035			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2036			rsServerConfig.Permit_Exp = atoi(strBuff);
+  2037			flag++;
+  2038		}
+  2039		if(!flag && (lstrcmp(decode, "*����������") == 0 ||
+  2040			lstrcmpi(decode, "*PERMIT_MONEY") == 0))
+  2041		{
+  2042			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2043			rsServerConfig.Permit_Money = atoi(strBuff);
+  2044			flag++;
+  2045		}
+  2046	
+  2047		if(!flag && (lstrcmp(decode, "*���μ����ð�����") == 0 ||
+  2048			lstrcmpi(decode, "*CLIENT_CHECK_PROCESS_TIME") == 0))
+  2049		{
+  2050			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2051			rsServerConfig.ClientProcessTimeChk = atoi(strBuff);
+  2052			flag++;
+  2053		}
+  2054		if(!flag && (lstrcmp(decode, "*���μ����ð�����") == 0 ||
+  2055			lstrcmpi(decode, "*CLIENT_PROCESS_TIME_OUT") == 0))
+  2056		{
+  2057			rsServerConfig.ClientProcessTimeChkOut = TRUE;
+  2058			flag++;
+  2059		}
+  2060		if(!flag && (lstrcmp(decode, "*���హ��Ȯ��") == 0 ||
+  2061			lstrcmpi(decode, "*CHECK_POTION_COUNT") == 0))
+  2062		{
+  2063			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2064			rsServerConfig.Dis_PotionError = atoi(strBuff);
+  2065			flag++;
+  2066		}
+  2067		if(!flag && (lstrcmp(decode, "*��������ġ���") == 0 ||
+  2068			lstrcmpi(decode, "*ENABLE_SERVER_EXP") == 0))
+  2069		{
+  2070			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2071	
+  2072			if(strBuff[0]) rsServerConfig.ExpFixMode = atoi(strBuff);
+  2073			else rsServerConfig.ExpFixMode = 50;
+  2074	
+  2075			flag++;
+  2076		}
+  2077	
+  2078		if(!flag && (lstrcmp(decode, "*����������") == 0 ||
+  2079			lstrcmpi(decode, "*BLOCK_USER_PATH") == 0))
+  2080		{
+  2081			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2082			strcpy_s(rsServerConfig.szBlockUserPath, strBuff);
+  2083			flag++;
+  2084		}
+  2085	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2042
+----------------------------------------------------------------------
+  2022			flag++;
+  2023		}
+  2024	
+  2025		if(!flag && (lstrcmp(decode, "*��������㰡") == 0 ||
+  2026			lstrcmpi(decode, "*ENABLE_BLOCK_FOREVER") == 0))
+  2027		{
+  2028			rsServerConfig.ForeverBlockMode = TRUE;
+  2029			flag++;
+  2030		}
+  2031	
+  2032		if(!flag && (lstrcmp(decode, "*����ġ��������") == 0 ||
+  2033			lstrcmpi(decode, "*PERMIT_EXP") == 0))
+  2034		{
+  2035			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2036			rsServerConfig.Permit_Exp = atoi(strBuff);
+  2037			flag++;
+  2038		}
+  2039		if(!flag && (lstrcmp(decode, "*����������") == 0 ||
+  2040			lstrcmpi(decode, "*PERMIT_MONEY") == 0))
+  2041		{
+  2042			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2043			rsServerConfig.Permit_Money = atoi(strBuff);
+  2044			flag++;
+  2045		}
+  2046	
+  2047		if(!flag && (lstrcmp(decode, "*���μ����ð�����") == 0 ||
+  2048			lstrcmpi(decode, "*CLIENT_CHECK_PROCESS_TIME") == 0))
+  2049		{
+  2050			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2051			rsServerConfig.ClientProcessTimeChk = atoi(strBuff);
+  2052			flag++;
+  2053		}
+  2054		if(!flag && (lstrcmp(decode, "*���μ����ð�����") == 0 ||
+  2055			lstrcmpi(decode, "*CLIENT_PROCESS_TIME_OUT") == 0))
+  2056		{
+  2057			rsServerConfig.ClientProcessTimeChkOut = TRUE;
+  2058			flag++;
+  2059		}
+  2060		if(!flag && (lstrcmp(decode, "*���హ��Ȯ��") == 0 ||
+  2061			lstrcmpi(decode, "*CHECK_POTION_COUNT") == 0))
+  2062		{
+  2063			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2064			rsServerConfig.Dis_PotionError = atoi(strBuff);
+  2065			flag++;
+  2066		}
+  2067		if(!flag && (lstrcmp(decode, "*��������ġ���") == 0 ||
+  2068			lstrcmpi(decode, "*ENABLE_SERVER_EXP") == 0))
+  2069		{
+  2070			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2071	
+  2072			if(strBuff[0]) rsServerConfig.ExpFixMode = atoi(strBuff);
+  2073			else rsServerConfig.ExpFixMode = 50;
+  2074	
+  2075			flag++;
+  2076		}
+  2077	
+  2078		if(!flag && (lstrcmp(decode, "*����������") == 0 ||
+  2079			lstrcmpi(decode, "*BLOCK_USER_PATH") == 0))
+  2080		{
+  2081			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2082			strcpy_s(rsServerConfig.szBlockUserPath, strBuff);
+  2083			flag++;
+  2084		}
+  2085	
+  2086		if(!flag && (lstrcmp(decode, "*���ð�ǥ��") == 0 ||
+  2087			lstrcmpi(decode, "*DISP_BILLING_TIME") == 0))
+  2088		{
+  2089	
+  2090			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2091			if(strBuff[0])
+  2092				rsServerConfig.DispBillingTime = atoi(strBuff);
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2050
+----------------------------------------------------------------------
+  2030		}
+  2031	
+  2032		if(!flag && (lstrcmp(decode, "*����ġ��������") == 0 ||
+  2033			lstrcmpi(decode, "*PERMIT_EXP") == 0))
+  2034		{
+  2035			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2036			rsServerConfig.Permit_Exp = atoi(strBuff);
+  2037			flag++;
+  2038		}
+  2039		if(!flag && (lstrcmp(decode, "*����������") == 0 ||
+  2040			lstrcmpi(decode, "*PERMIT_MONEY") == 0))
+  2041		{
+  2042			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2043			rsServerConfig.Permit_Money = atoi(strBuff);
+  2044			flag++;
+  2045		}
+  2046	
+  2047		if(!flag && (lstrcmp(decode, "*���μ����ð�����") == 0 ||
+  2048			lstrcmpi(decode, "*CLIENT_CHECK_PROCESS_TIME") == 0))
+  2049		{
+  2050			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2051			rsServerConfig.ClientProcessTimeChk = atoi(strBuff);
+  2052			flag++;
+  2053		}
+  2054		if(!flag && (lstrcmp(decode, "*���μ����ð�����") == 0 ||
+  2055			lstrcmpi(decode, "*CLIENT_PROCESS_TIME_OUT") == 0))
+  2056		{
+  2057			rsServerConfig.ClientProcessTimeChkOut = TRUE;
+  2058			flag++;
+  2059		}
+  2060		if(!flag && (lstrcmp(decode, "*���హ��Ȯ��") == 0 ||
+  2061			lstrcmpi(decode, "*CHECK_POTION_COUNT") == 0))
+  2062		{
+  2063			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2064			rsServerConfig.Dis_PotionError = atoi(strBuff);
+  2065			flag++;
+  2066		}
+  2067		if(!flag && (lstrcmp(decode, "*��������ġ���") == 0 ||
+  2068			lstrcmpi(decode, "*ENABLE_SERVER_EXP") == 0))
+  2069		{
+  2070			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2071	
+  2072			if(strBuff[0]) rsServerConfig.ExpFixMode = atoi(strBuff);
+  2073			else rsServerConfig.ExpFixMode = 50;
+  2074	
+  2075			flag++;
+  2076		}
+  2077	
+  2078		if(!flag && (lstrcmp(decode, "*����������") == 0 ||
+  2079			lstrcmpi(decode, "*BLOCK_USER_PATH") == 0))
+  2080		{
+  2081			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2082			strcpy_s(rsServerConfig.szBlockUserPath, strBuff);
+  2083			flag++;
+  2084		}
+  2085	
+  2086		if(!flag && (lstrcmp(decode, "*���ð�ǥ��") == 0 ||
+  2087			lstrcmpi(decode, "*DISP_BILLING_TIME") == 0))
+  2088		{
+  2089	
+  2090			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2091			if(strBuff[0])
+  2092				rsServerConfig.DispBillingTime = atoi(strBuff);
+  2093			else
+  2094				rsServerConfig.DispBillingTime = 1;
+  2095	
+  2096			flag++;
+  2097		}
+  2098	
+  2099		//if(!flag && (lstrcmp(decode, "*�α��α���") == 0 ||
+  2100		//	lstrcmpi(decode, "*DISABLE_LOGIN") == 0))
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2063
+----------------------------------------------------------------------
+  2043			rsServerConfig.Permit_Money = atoi(strBuff);
+  2044			flag++;
+  2045		}
+  2046	
+  2047		if(!flag && (lstrcmp(decode, "*���μ����ð�����") == 0 ||
+  2048			lstrcmpi(decode, "*CLIENT_CHECK_PROCESS_TIME") == 0))
+  2049		{
+  2050			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2051			rsServerConfig.ClientProcessTimeChk = atoi(strBuff);
+  2052			flag++;
+  2053		}
+  2054		if(!flag && (lstrcmp(decode, "*���μ����ð�����") == 0 ||
+  2055			lstrcmpi(decode, "*CLIENT_PROCESS_TIME_OUT") == 0))
+  2056		{
+  2057			rsServerConfig.ClientProcessTimeChkOut = TRUE;
+  2058			flag++;
+  2059		}
+  2060		if(!flag && (lstrcmp(decode, "*���హ��Ȯ��") == 0 ||
+  2061			lstrcmpi(decode, "*CHECK_POTION_COUNT") == 0))
+  2062		{
+  2063			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2064			rsServerConfig.Dis_PotionError = atoi(strBuff);
+  2065			flag++;
+  2066		}
+  2067		if(!flag && (lstrcmp(decode, "*��������ġ���") == 0 ||
+  2068			lstrcmpi(decode, "*ENABLE_SERVER_EXP") == 0))
+  2069		{
+  2070			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2071	
+  2072			if(strBuff[0]) rsServerConfig.ExpFixMode = atoi(strBuff);
+  2073			else rsServerConfig.ExpFixMode = 50;
+  2074	
+  2075			flag++;
+  2076		}
+  2077	
+  2078		if(!flag && (lstrcmp(decode, "*����������") == 0 ||
+  2079			lstrcmpi(decode, "*BLOCK_USER_PATH") == 0))
+  2080		{
+  2081			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2082			strcpy_s(rsServerConfig.szBlockUserPath, strBuff);
+  2083			flag++;
+  2084		}
+  2085	
+  2086		if(!flag && (lstrcmp(decode, "*���ð�ǥ��") == 0 ||
+  2087			lstrcmpi(decode, "*DISP_BILLING_TIME") == 0))
+  2088		{
+  2089	
+  2090			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2091			if(strBuff[0])
+  2092				rsServerConfig.DispBillingTime = atoi(strBuff);
+  2093			else
+  2094				rsServerConfig.DispBillingTime = 1;
+  2095	
+  2096			flag++;
+  2097		}
+  2098	
+  2099		//if(!flag && (lstrcmp(decode, "*�α��α���") == 0 ||
+  2100		//	lstrcmpi(decode, "*DISABLE_LOGIN") == 0))
+  2101		//{
+  2102	
+  2103		//	pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2104		//	if(strBuff[0])
+  2105		//		rsServerConfig.Disable_LogIn = atoi(strBuff);
+  2106		//	else
+  2107		//		rsServerConfig.Disable_LogIn = 1;
+  2108		//	flag++;
+  2109		//}
+  2110	
+  2111		if(!flag &&	lstrcmpi(decode, "*ALLOWED_LOGIN") == 0)
+  2112		{
+  2113			pb = p; 
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2070
+----------------------------------------------------------------------
+  2050			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2051			rsServerConfig.ClientProcessTimeChk = atoi(strBuff);
+  2052			flag++;
+  2053		}
+  2054		if(!flag && (lstrcmp(decode, "*���μ����ð�����") == 0 ||
+  2055			lstrcmpi(decode, "*CLIENT_PROCESS_TIME_OUT") == 0))
+  2056		{
+  2057			rsServerConfig.ClientProcessTimeChkOut = TRUE;
+  2058			flag++;
+  2059		}
+  2060		if(!flag && (lstrcmp(decode, "*���హ��Ȯ��") == 0 ||
+  2061			lstrcmpi(decode, "*CHECK_POTION_COUNT") == 0))
+  2062		{
+  2063			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2064			rsServerConfig.Dis_PotionError = atoi(strBuff);
+  2065			flag++;
+  2066		}
+  2067		if(!flag && (lstrcmp(decode, "*��������ġ���") == 0 ||
+  2068			lstrcmpi(decode, "*ENABLE_SERVER_EXP") == 0))
+  2069		{
+  2070			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2071	
+  2072			if(strBuff[0]) rsServerConfig.ExpFixMode = atoi(strBuff);
+  2073			else rsServerConfig.ExpFixMode = 50;
+  2074	
+  2075			flag++;
+  2076		}
+  2077	
+  2078		if(!flag && (lstrcmp(decode, "*����������") == 0 ||
+  2079			lstrcmpi(decode, "*BLOCK_USER_PATH") == 0))
+  2080		{
+  2081			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2082			strcpy_s(rsServerConfig.szBlockUserPath, strBuff);
+  2083			flag++;
+  2084		}
+  2085	
+  2086		if(!flag && (lstrcmp(decode, "*���ð�ǥ��") == 0 ||
+  2087			lstrcmpi(decode, "*DISP_BILLING_TIME") == 0))
+  2088		{
+  2089	
+  2090			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2091			if(strBuff[0])
+  2092				rsServerConfig.DispBillingTime = atoi(strBuff);
+  2093			else
+  2094				rsServerConfig.DispBillingTime = 1;
+  2095	
+  2096			flag++;
+  2097		}
+  2098	
+  2099		//if(!flag && (lstrcmp(decode, "*�α��α���") == 0 ||
+  2100		//	lstrcmpi(decode, "*DISABLE_LOGIN") == 0))
+  2101		//{
+  2102	
+  2103		//	pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2104		//	if(strBuff[0])
+  2105		//		rsServerConfig.Disable_LogIn = atoi(strBuff);
+  2106		//	else
+  2107		//		rsServerConfig.Disable_LogIn = 1;
+  2108		//	flag++;
+  2109		//}
+  2110	
+  2111		if(!flag &&	lstrcmpi(decode, "*ALLOWED_LOGIN") == 0)
+  2112		{
+  2113			pb = p; 
+  2114			p = local_GetWord(strBuff, p);
+  2115	
+  2116			if(strBuff[0] == 34)
+  2117				p = GetString(strBuff, pb);
+  2118	
+  2119			if(strBuff[0])
+  2120				rsServerConfig.Disable_LogIn = atoi(strBuff) ? 0 : 1;
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2081
+----------------------------------------------------------------------
+  2061			lstrcmpi(decode, "*CHECK_POTION_COUNT") == 0))
+  2062		{
+  2063			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2064			rsServerConfig.Dis_PotionError = atoi(strBuff);
+  2065			flag++;
+  2066		}
+  2067		if(!flag && (lstrcmp(decode, "*��������ġ���") == 0 ||
+  2068			lstrcmpi(decode, "*ENABLE_SERVER_EXP") == 0))
+  2069		{
+  2070			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2071	
+  2072			if(strBuff[0]) rsServerConfig.ExpFixMode = atoi(strBuff);
+  2073			else rsServerConfig.ExpFixMode = 50;
+  2074	
+  2075			flag++;
+  2076		}
+  2077	
+  2078		if(!flag && (lstrcmp(decode, "*����������") == 0 ||
+  2079			lstrcmpi(decode, "*BLOCK_USER_PATH") == 0))
+  2080		{
+  2081			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2082			strcpy_s(rsServerConfig.szBlockUserPath, strBuff);
+  2083			flag++;
+  2084		}
+  2085	
+  2086		if(!flag && (lstrcmp(decode, "*���ð�ǥ��") == 0 ||
+  2087			lstrcmpi(decode, "*DISP_BILLING_TIME") == 0))
+  2088		{
+  2089	
+  2090			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2091			if(strBuff[0])
+  2092				rsServerConfig.DispBillingTime = atoi(strBuff);
+  2093			else
+  2094				rsServerConfig.DispBillingTime = 1;
+  2095	
+  2096			flag++;
+  2097		}
+  2098	
+  2099		//if(!flag && (lstrcmp(decode, "*�α��α���") == 0 ||
+  2100		//	lstrcmpi(decode, "*DISABLE_LOGIN") == 0))
+  2101		//{
+  2102	
+  2103		//	pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2104		//	if(strBuff[0])
+  2105		//		rsServerConfig.Disable_LogIn = atoi(strBuff);
+  2106		//	else
+  2107		//		rsServerConfig.Disable_LogIn = 1;
+  2108		//	flag++;
+  2109		//}
+  2110	
+  2111		if(!flag &&	lstrcmpi(decode, "*ALLOWED_LOGIN") == 0)
+  2112		{
+  2113			pb = p; 
+  2114			p = local_GetWord(strBuff, p);
+  2115	
+  2116			if(strBuff[0] == 34)
+  2117				p = GetString(strBuff, pb);
+  2118	
+  2119			if(strBuff[0])
+  2120				rsServerConfig.Disable_LogIn = atoi(strBuff) ? 0 : 1;
+  2121			else
+  2122				rsServerConfig.Disable_LogIn = 1;
+  2123	
+  2124			flag++;
+  2125		}
+  2126	
+  2127		if(!flag && (lstrcmp(decode, "*�α�ť����") == 0 ||
+  2128			lstrcmpi(decode, "*DISABLE_LOGQUE") == 0))
+  2129		{
+  2130			rsServerConfig.Disable_LogQue = TRUE;
+  2131			flag++;
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2090
+----------------------------------------------------------------------
+  2070			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2071	
+  2072			if(strBuff[0]) rsServerConfig.ExpFixMode = atoi(strBuff);
+  2073			else rsServerConfig.ExpFixMode = 50;
+  2074	
+  2075			flag++;
+  2076		}
+  2077	
+  2078		if(!flag && (lstrcmp(decode, "*����������") == 0 ||
+  2079			lstrcmpi(decode, "*BLOCK_USER_PATH") == 0))
+  2080		{
+  2081			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2082			strcpy_s(rsServerConfig.szBlockUserPath, strBuff);
+  2083			flag++;
+  2084		}
+  2085	
+  2086		if(!flag && (lstrcmp(decode, "*���ð�ǥ��") == 0 ||
+  2087			lstrcmpi(decode, "*DISP_BILLING_TIME") == 0))
+  2088		{
+  2089	
+  2090			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2091			if(strBuff[0])
+  2092				rsServerConfig.DispBillingTime = atoi(strBuff);
+  2093			else
+  2094				rsServerConfig.DispBillingTime = 1;
+  2095	
+  2096			flag++;
+  2097		}
+  2098	
+  2099		//if(!flag && (lstrcmp(decode, "*�α��α���") == 0 ||
+  2100		//	lstrcmpi(decode, "*DISABLE_LOGIN") == 0))
+  2101		//{
+  2102	
+  2103		//	pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2104		//	if(strBuff[0])
+  2105		//		rsServerConfig.Disable_LogIn = atoi(strBuff);
+  2106		//	else
+  2107		//		rsServerConfig.Disable_LogIn = 1;
+  2108		//	flag++;
+  2109		//}
+  2110	
+  2111		if(!flag &&	lstrcmpi(decode, "*ALLOWED_LOGIN") == 0)
+  2112		{
+  2113			pb = p; 
+  2114			p = local_GetWord(strBuff, p);
+  2115	
+  2116			if(strBuff[0] == 34)
+  2117				p = GetString(strBuff, pb);
+  2118	
+  2119			if(strBuff[0])
+  2120				rsServerConfig.Disable_LogIn = atoi(strBuff) ? 0 : 1;
+  2121			else
+  2122				rsServerConfig.Disable_LogIn = 1;
+  2123	
+  2124			flag++;
+  2125		}
+  2126	
+  2127		if(!flag && (lstrcmp(decode, "*�α�ť����") == 0 ||
+  2128			lstrcmpi(decode, "*DISABLE_LOGQUE") == 0))
+  2129		{
+  2130			rsServerConfig.Disable_LogQue = TRUE;
+  2131			flag++;
+  2132		}
+  2133		if(!flag && (lstrcmp(decode, "*�α׾ƿ�Ȯ�α���") == 0 ||
+  2134			lstrcmpi(decode, "*DISABLE_CHECK_LOGOUT") == 0))
+  2135		{
+  2136			rsServerConfig.Disable_CheckLogOut = TRUE;
+  2137			flag++;
+  2138		}
+  2139	
+  2140		//if(!flag && (lstrcmp(decode, "*�α�������") == 0 ||
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2103
+----------------------------------------------------------------------
+  2083			flag++;
+  2084		}
+  2085	
+  2086		if(!flag && (lstrcmp(decode, "*���ð�ǥ��") == 0 ||
+  2087			lstrcmpi(decode, "*DISP_BILLING_TIME") == 0))
+  2088		{
+  2089	
+  2090			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2091			if(strBuff[0])
+  2092				rsServerConfig.DispBillingTime = atoi(strBuff);
+  2093			else
+  2094				rsServerConfig.DispBillingTime = 1;
+  2095	
+  2096			flag++;
+  2097		}
+  2098	
+  2099		//if(!flag && (lstrcmp(decode, "*�α��α���") == 0 ||
+  2100		//	lstrcmpi(decode, "*DISABLE_LOGIN") == 0))
+  2101		//{
+  2102	
+  2103		//	pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2104		//	if(strBuff[0])
+  2105		//		rsServerConfig.Disable_LogIn = atoi(strBuff);
+  2106		//	else
+  2107		//		rsServerConfig.Disable_LogIn = 1;
+  2108		//	flag++;
+  2109		//}
+  2110	
+  2111		if(!flag &&	lstrcmpi(decode, "*ALLOWED_LOGIN") == 0)
+  2112		{
+  2113			pb = p; 
+  2114			p = local_GetWord(strBuff, p);
+  2115	
+  2116			if(strBuff[0] == 34)
+  2117				p = GetString(strBuff, pb);
+  2118	
+  2119			if(strBuff[0])
+  2120				rsServerConfig.Disable_LogIn = atoi(strBuff) ? 0 : 1;
+  2121			else
+  2122				rsServerConfig.Disable_LogIn = 1;
+  2123	
+  2124			flag++;
+  2125		}
+  2126	
+  2127		if(!flag && (lstrcmp(decode, "*�α�ť����") == 0 ||
+  2128			lstrcmpi(decode, "*DISABLE_LOGQUE") == 0))
+  2129		{
+  2130			rsServerConfig.Disable_LogQue = TRUE;
+  2131			flag++;
+  2132		}
+  2133		if(!flag && (lstrcmp(decode, "*�α׾ƿ�Ȯ�α���") == 0 ||
+  2134			lstrcmpi(decode, "*DISABLE_CHECK_LOGOUT") == 0))
+  2135		{
+  2136			rsServerConfig.Disable_CheckLogOut = TRUE;
+  2137			flag++;
+  2138		}
+  2139	
+  2140		//if(!flag && (lstrcmp(decode, "*�α�������") == 0 ||
+  2141		//	lstrcmpi(decode, "*DISABLE_LOGINX") == 0))
+  2142		//{
+  2143		//	rsServerConfig.Disable_LogIn2 = TRUE;
+  2144		//	flag++;
+  2145		//}
+  2146	
+  2147	
+  2148		if(!flag && (lstrcmp(decode, "*���᷹��") == 0 ||
+  2149			lstrcmpi(decode, "*FREE_LEVEL") == 0))
+  2150		{
+  2151			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2152			rsServerConfig.FreeLevel = atoi(strBuff);
+  2153	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2114
+----------------------------------------------------------------------
+  2094				rsServerConfig.DispBillingTime = 1;
+  2095	
+  2096			flag++;
+  2097		}
+  2098	
+  2099		//if(!flag && (lstrcmp(decode, "*�α��α���") == 0 ||
+  2100		//	lstrcmpi(decode, "*DISABLE_LOGIN") == 0))
+  2101		//{
+  2102	
+  2103		//	pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2104		//	if(strBuff[0])
+  2105		//		rsServerConfig.Disable_LogIn = atoi(strBuff);
+  2106		//	else
+  2107		//		rsServerConfig.Disable_LogIn = 1;
+  2108		//	flag++;
+  2109		//}
+  2110	
+  2111		if(!flag &&	lstrcmpi(decode, "*ALLOWED_LOGIN") == 0)
+  2112		{
+  2113			pb = p; 
+  2114			p = local_GetWord(strBuff, p);
+  2115	
+  2116			if(strBuff[0] == 34)
+  2117				p = GetString(strBuff, pb);
+  2118	
+  2119			if(strBuff[0])
+  2120				rsServerConfig.Disable_LogIn = atoi(strBuff) ? 0 : 1;
+  2121			else
+  2122				rsServerConfig.Disable_LogIn = 1;
+  2123	
+  2124			flag++;
+  2125		}
+  2126	
+  2127		if(!flag && (lstrcmp(decode, "*�α�ť����") == 0 ||
+  2128			lstrcmpi(decode, "*DISABLE_LOGQUE") == 0))
+  2129		{
+  2130			rsServerConfig.Disable_LogQue = TRUE;
+  2131			flag++;
+  2132		}
+  2133		if(!flag && (lstrcmp(decode, "*�α׾ƿ�Ȯ�α���") == 0 ||
+  2134			lstrcmpi(decode, "*DISABLE_CHECK_LOGOUT") == 0))
+  2135		{
+  2136			rsServerConfig.Disable_CheckLogOut = TRUE;
+  2137			flag++;
+  2138		}
+  2139	
+  2140		//if(!flag && (lstrcmp(decode, "*�α�������") == 0 ||
+  2141		//	lstrcmpi(decode, "*DISABLE_LOGINX") == 0))
+  2142		//{
+  2143		//	rsServerConfig.Disable_LogIn2 = TRUE;
+  2144		//	flag++;
+  2145		//}
+  2146	
+  2147	
+  2148		if(!flag && (lstrcmp(decode, "*���᷹��") == 0 ||
+  2149			lstrcmpi(decode, "*FREE_LEVEL") == 0))
+  2150		{
+  2151			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2152			rsServerConfig.FreeLevel = atoi(strBuff);
+  2153	
+  2154			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2155			if(strBuff[0])
+  2156				strcpy_s(rsServerConfig.szFreeGpCode, strBuff);
+  2157	
+  2158			flag++;
+  2159		}
+  2160	
+  2161		if(!flag && (lstrcmp(decode, "*��������") == 0 ||
+  2162			lstrcmpi(decode, "*PRESENT_LEVEL") == 0))
+  2163		{
+  2164			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2117
+----------------------------------------------------------------------
+  2097		}
+  2098	
+  2099		//if(!flag && (lstrcmp(decode, "*�α��α���") == 0 ||
+  2100		//	lstrcmpi(decode, "*DISABLE_LOGIN") == 0))
+  2101		//{
+  2102	
+  2103		//	pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2104		//	if(strBuff[0])
+  2105		//		rsServerConfig.Disable_LogIn = atoi(strBuff);
+  2106		//	else
+  2107		//		rsServerConfig.Disable_LogIn = 1;
+  2108		//	flag++;
+  2109		//}
+  2110	
+  2111		if(!flag &&	lstrcmpi(decode, "*ALLOWED_LOGIN") == 0)
+  2112		{
+  2113			pb = p; 
+  2114			p = local_GetWord(strBuff, p);
+  2115	
+  2116			if(strBuff[0] == 34)
+  2117				p = GetString(strBuff, pb);
+  2118	
+  2119			if(strBuff[0])
+  2120				rsServerConfig.Disable_LogIn = atoi(strBuff) ? 0 : 1;
+  2121			else
+  2122				rsServerConfig.Disable_LogIn = 1;
+  2123	
+  2124			flag++;
+  2125		}
+  2126	
+  2127		if(!flag && (lstrcmp(decode, "*�α�ť����") == 0 ||
+  2128			lstrcmpi(decode, "*DISABLE_LOGQUE") == 0))
+  2129		{
+  2130			rsServerConfig.Disable_LogQue = TRUE;
+  2131			flag++;
+  2132		}
+  2133		if(!flag && (lstrcmp(decode, "*�α׾ƿ�Ȯ�α���") == 0 ||
+  2134			lstrcmpi(decode, "*DISABLE_CHECK_LOGOUT") == 0))
+  2135		{
+  2136			rsServerConfig.Disable_CheckLogOut = TRUE;
+  2137			flag++;
+  2138		}
+  2139	
+  2140		//if(!flag && (lstrcmp(decode, "*�α�������") == 0 ||
+  2141		//	lstrcmpi(decode, "*DISABLE_LOGINX") == 0))
+  2142		//{
+  2143		//	rsServerConfig.Disable_LogIn2 = TRUE;
+  2144		//	flag++;
+  2145		//}
+  2146	
+  2147	
+  2148		if(!flag && (lstrcmp(decode, "*���᷹��") == 0 ||
+  2149			lstrcmpi(decode, "*FREE_LEVEL") == 0))
+  2150		{
+  2151			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2152			rsServerConfig.FreeLevel = atoi(strBuff);
+  2153	
+  2154			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2155			if(strBuff[0])
+  2156				strcpy_s(rsServerConfig.szFreeGpCode, strBuff);
+  2157	
+  2158			flag++;
+  2159		}
+  2160	
+  2161		if(!flag && (lstrcmp(decode, "*��������") == 0 ||
+  2162			lstrcmpi(decode, "*PRESENT_LEVEL") == 0))
+  2163		{
+  2164			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2165			rsServerConfig.PresentLevel = atoi(strBuff);
+  2166			flag++;
+  2167		}
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2151
+----------------------------------------------------------------------
+  2131			flag++;
+  2132		}
+  2133		if(!flag && (lstrcmp(decode, "*�α׾ƿ�Ȯ�α���") == 0 ||
+  2134			lstrcmpi(decode, "*DISABLE_CHECK_LOGOUT") == 0))
+  2135		{
+  2136			rsServerConfig.Disable_CheckLogOut = TRUE;
+  2137			flag++;
+  2138		}
+  2139	
+  2140		//if(!flag && (lstrcmp(decode, "*�α�������") == 0 ||
+  2141		//	lstrcmpi(decode, "*DISABLE_LOGINX") == 0))
+  2142		//{
+  2143		//	rsServerConfig.Disable_LogIn2 = TRUE;
+  2144		//	flag++;
+  2145		//}
+  2146	
+  2147	
+  2148		if(!flag && (lstrcmp(decode, "*���᷹��") == 0 ||
+  2149			lstrcmpi(decode, "*FREE_LEVEL") == 0))
+  2150		{
+  2151			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2152			rsServerConfig.FreeLevel = atoi(strBuff);
+  2153	
+  2154			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2155			if(strBuff[0])
+  2156				strcpy_s(rsServerConfig.szFreeGpCode, strBuff);
+  2157	
+  2158			flag++;
+  2159		}
+  2160	
+  2161		if(!flag && (lstrcmp(decode, "*��������") == 0 ||
+  2162			lstrcmpi(decode, "*PRESENT_LEVEL") == 0))
+  2163		{
+  2164			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2165			rsServerConfig.PresentLevel = atoi(strBuff);
+  2166			flag++;
+  2167		}
+  2168	
+  2169		if(!flag && (lstrcmp(decode, "*������������") == 0 ||
+  2170			lstrcmpi(decode, "*ENABLE_PARTYITEM") == 0))
+  2171		{
+  2172	
+  2173			rsServerConfig.Enable_PartyItem = TRUE;
+  2174			flag++;
+  2175		}
+  2176	
+  2177		if(!flag && (lstrcmp(decode, "*�ʵ������˻�") == 0 ||
+  2178			lstrcmpi(decode, "*CHECK_PLAYFIELD") == 0))
+  2179		{
+  2180	
+  2181			rsServerConfig.CheckPlayField = TRUE;
+  2182			flag++;
+  2183		}
+  2184	
+  2185	
+  2186		if(!flag && (lstrcmp(decode, "*�����ϰ˻�") == 0 ||
+  2187			lstrcmpi(decode, "*CHECK_MODELFILE") == 0))
+  2188		{
+  2189	
+  2190			rsServerConfig.CheckModelFile = TRUE;
+  2191			flag++;
+  2192		}
+  2193	
+  2194	
+  2195		if(!flag && (lstrcmp(decode, "*��������IP") == 0 ||
+  2196			lstrcmpi(decode, "*DISABLE_IP") == 0))
+  2197		{
+  2198	
+  2199			if(rsServerConfig.DisableIP_Count < DISABLE_IP_MAX)
+  2200			{
+  2201				p = local_GetWord(strBuff, p);
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2154
+----------------------------------------------------------------------
+  2134			lstrcmpi(decode, "*DISABLE_CHECK_LOGOUT") == 0))
+  2135		{
+  2136			rsServerConfig.Disable_CheckLogOut = TRUE;
+  2137			flag++;
+  2138		}
+  2139	
+  2140		//if(!flag && (lstrcmp(decode, "*�α�������") == 0 ||
+  2141		//	lstrcmpi(decode, "*DISABLE_LOGINX") == 0))
+  2142		//{
+  2143		//	rsServerConfig.Disable_LogIn2 = TRUE;
+  2144		//	flag++;
+  2145		//}
+  2146	
+  2147	
+  2148		if(!flag && (lstrcmp(decode, "*���᷹��") == 0 ||
+  2149			lstrcmpi(decode, "*FREE_LEVEL") == 0))
+  2150		{
+  2151			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2152			rsServerConfig.FreeLevel = atoi(strBuff);
+  2153	
+  2154			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2155			if(strBuff[0])
+  2156				strcpy_s(rsServerConfig.szFreeGpCode, strBuff);
+  2157	
+  2158			flag++;
+  2159		}
+  2160	
+  2161		if(!flag && (lstrcmp(decode, "*��������") == 0 ||
+  2162			lstrcmpi(decode, "*PRESENT_LEVEL") == 0))
+  2163		{
+  2164			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2165			rsServerConfig.PresentLevel = atoi(strBuff);
+  2166			flag++;
+  2167		}
+  2168	
+  2169		if(!flag && (lstrcmp(decode, "*������������") == 0 ||
+  2170			lstrcmpi(decode, "*ENABLE_PARTYITEM") == 0))
+  2171		{
+  2172	
+  2173			rsServerConfig.Enable_PartyItem = TRUE;
+  2174			flag++;
+  2175		}
+  2176	
+  2177		if(!flag && (lstrcmp(decode, "*�ʵ������˻�") == 0 ||
+  2178			lstrcmpi(decode, "*CHECK_PLAYFIELD") == 0))
+  2179		{
+  2180	
+  2181			rsServerConfig.CheckPlayField = TRUE;
+  2182			flag++;
+  2183		}
+  2184	
+  2185	
+  2186		if(!flag && (lstrcmp(decode, "*�����ϰ˻�") == 0 ||
+  2187			lstrcmpi(decode, "*CHECK_MODELFILE") == 0))
+  2188		{
+  2189	
+  2190			rsServerConfig.CheckModelFile = TRUE;
+  2191			flag++;
+  2192		}
+  2193	
+  2194	
+  2195		if(!flag && (lstrcmp(decode, "*��������IP") == 0 ||
+  2196			lstrcmpi(decode, "*DISABLE_IP") == 0))
+  2197		{
+  2198	
+  2199			if(rsServerConfig.DisableIP_Count < DISABLE_IP_MAX)
+  2200			{
+  2201				p = local_GetWord(strBuff, p);
+  2202				rsServerConfig.DisableIP[rsServerConfig.DisableIP_Count][0] = GetSwapIPCode(strBuff);
+  2203				p = local_GetWord(strBuff, p);
+  2204				rsServerConfig.DisableIP[rsServerConfig.DisableIP_Count][1] = GetSwapIPCode(strBuff);
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2164
+----------------------------------------------------------------------
+  2144		//	flag++;
+  2145		//}
+  2146	
+  2147	
+  2148		if(!flag && (lstrcmp(decode, "*���᷹��") == 0 ||
+  2149			lstrcmpi(decode, "*FREE_LEVEL") == 0))
+  2150		{
+  2151			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2152			rsServerConfig.FreeLevel = atoi(strBuff);
+  2153	
+  2154			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2155			if(strBuff[0])
+  2156				strcpy_s(rsServerConfig.szFreeGpCode, strBuff);
+  2157	
+  2158			flag++;
+  2159		}
+  2160	
+  2161		if(!flag && (lstrcmp(decode, "*��������") == 0 ||
+  2162			lstrcmpi(decode, "*PRESENT_LEVEL") == 0))
+  2163		{
+  2164			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2165			rsServerConfig.PresentLevel = atoi(strBuff);
+  2166			flag++;
+  2167		}
+  2168	
+  2169		if(!flag && (lstrcmp(decode, "*������������") == 0 ||
+  2170			lstrcmpi(decode, "*ENABLE_PARTYITEM") == 0))
+  2171		{
+  2172	
+  2173			rsServerConfig.Enable_PartyItem = TRUE;
+  2174			flag++;
+  2175		}
+  2176	
+  2177		if(!flag && (lstrcmp(decode, "*�ʵ������˻�") == 0 ||
+  2178			lstrcmpi(decode, "*CHECK_PLAYFIELD") == 0))
+  2179		{
+  2180	
+  2181			rsServerConfig.CheckPlayField = TRUE;
+  2182			flag++;
+  2183		}
+  2184	
+  2185	
+  2186		if(!flag && (lstrcmp(decode, "*�����ϰ˻�") == 0 ||
+  2187			lstrcmpi(decode, "*CHECK_MODELFILE") == 0))
+  2188		{
+  2189	
+  2190			rsServerConfig.CheckModelFile = TRUE;
+  2191			flag++;
+  2192		}
+  2193	
+  2194	
+  2195		if(!flag && (lstrcmp(decode, "*��������IP") == 0 ||
+  2196			lstrcmpi(decode, "*DISABLE_IP") == 0))
+  2197		{
+  2198	
+  2199			if(rsServerConfig.DisableIP_Count < DISABLE_IP_MAX)
+  2200			{
+  2201				p = local_GetWord(strBuff, p);
+  2202				rsServerConfig.DisableIP[rsServerConfig.DisableIP_Count][0] = GetSwapIPCode(strBuff);
+  2203				p = local_GetWord(strBuff, p);
+  2204				rsServerConfig.DisableIP[rsServerConfig.DisableIP_Count][1] = GetSwapIPCode(strBuff);
+  2205				rsServerConfig.DisableIP_Count++;
+  2206			}
+  2207	
+  2208			flag++;
+  2209		}
+  2210	
+  2211		if(!flag && (lstrcmp(decode, "*�����㰡IP") == 0 ||
+  2212			lstrcmpi(decode, "*ENABLE_IP") == 0))
+  2213		{
+  2214	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2201
+----------------------------------------------------------------------
+  2181			rsServerConfig.CheckPlayField = TRUE;
+  2182			flag++;
+  2183		}
+  2184	
+  2185	
+  2186		if(!flag && (lstrcmp(decode, "*�����ϰ˻�") == 0 ||
+  2187			lstrcmpi(decode, "*CHECK_MODELFILE") == 0))
+  2188		{
+  2189	
+  2190			rsServerConfig.CheckModelFile = TRUE;
+  2191			flag++;
+  2192		}
+  2193	
+  2194	
+  2195		if(!flag && (lstrcmp(decode, "*��������IP") == 0 ||
+  2196			lstrcmpi(decode, "*DISABLE_IP") == 0))
+  2197		{
+  2198	
+  2199			if(rsServerConfig.DisableIP_Count < DISABLE_IP_MAX)
+  2200			{
+  2201				p = local_GetWord(strBuff, p);
+  2202				rsServerConfig.DisableIP[rsServerConfig.DisableIP_Count][0] = GetSwapIPCode(strBuff);
+  2203				p = local_GetWord(strBuff, p);
+  2204				rsServerConfig.DisableIP[rsServerConfig.DisableIP_Count][1] = GetSwapIPCode(strBuff);
+  2205				rsServerConfig.DisableIP_Count++;
+  2206			}
+  2207	
+  2208			flag++;
+  2209		}
+  2210	
+  2211		if(!flag && (lstrcmp(decode, "*�����㰡IP") == 0 ||
+  2212			lstrcmpi(decode, "*ENABLE_IP") == 0))
+  2213		{
+  2214	
+  2215			if(rsServerConfig.EnableIP_Count < ENABLE_IP_MAX)
+  2216			{
+  2217				p = local_GetWord(strBuff, p);
+  2218				rsServerConfig.EnableIP[rsServerConfig.EnableIP_Count][0] = GetSwapIPCode(strBuff);
+  2219				p = local_GetWord(strBuff, p);
+  2220				rsServerConfig.EnableIP[rsServerConfig.EnableIP_Count][1] = GetSwapIPCode(strBuff);
+  2221				rsServerConfig.EnableIP_Count++;
+  2222			}
+  2223	
+  2224			flag++;
+  2225		}
+  2226		 
+  2227		//AQUI TESTE
+  2228		/*if(!flag && (lstrcmp(decode, "*��������IP") == 0 ||
+  2229			lstrcmpi(decode, "*ADMINISTRATOR_IP") == 0))
+  2230		{
+  2231	
+  2232			if(rsServerConfig.AdminIP_Count < ADMIN_IP_MAX)
+  2233			{
+  2234				p = local_GetWord(strBuff, p);
+  2235				rsServerConfig.AdminIP[rsServerConfig.AdminIP_Count][0] = GetSwapIPCode(strBuff);
+  2236				p = local_GetWord(strBuff, p);
+  2237				rsServerConfig.AdminIP[rsServerConfig.AdminIP_Count][1] = GetSwapIPCode(strBuff);
+  2238				rsServerConfig.AdminIP_Count++;
+  2239			}
+  2240	
+  2241			flag++;
+  2242		}*/
+  2243	
+  2244		if(!flag && (lstrcmp(decode, "*�����κ��丮") == 0 ||
+  2245			lstrcmpi(decode, "*SERVER_INVENTORY") == 0))
+  2246		{
+  2247	
+  2248			rsServerConfig.ServerInventoryMode = TRUE;
+  2249			flag++;
+  2250		}
+  2251	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2203
+----------------------------------------------------------------------
+  2183		}
+  2184	
+  2185	
+  2186		if(!flag && (lstrcmp(decode, "*�����ϰ˻�") == 0 ||
+  2187			lstrcmpi(decode, "*CHECK_MODELFILE") == 0))
+  2188		{
+  2189	
+  2190			rsServerConfig.CheckModelFile = TRUE;
+  2191			flag++;
+  2192		}
+  2193	
+  2194	
+  2195		if(!flag && (lstrcmp(decode, "*��������IP") == 0 ||
+  2196			lstrcmpi(decode, "*DISABLE_IP") == 0))
+  2197		{
+  2198	
+  2199			if(rsServerConfig.DisableIP_Count < DISABLE_IP_MAX)
+  2200			{
+  2201				p = local_GetWord(strBuff, p);
+  2202				rsServerConfig.DisableIP[rsServerConfig.DisableIP_Count][0] = GetSwapIPCode(strBuff);
+  2203				p = local_GetWord(strBuff, p);
+  2204				rsServerConfig.DisableIP[rsServerConfig.DisableIP_Count][1] = GetSwapIPCode(strBuff);
+  2205				rsServerConfig.DisableIP_Count++;
+  2206			}
+  2207	
+  2208			flag++;
+  2209		}
+  2210	
+  2211		if(!flag && (lstrcmp(decode, "*�����㰡IP") == 0 ||
+  2212			lstrcmpi(decode, "*ENABLE_IP") == 0))
+  2213		{
+  2214	
+  2215			if(rsServerConfig.EnableIP_Count < ENABLE_IP_MAX)
+  2216			{
+  2217				p = local_GetWord(strBuff, p);
+  2218				rsServerConfig.EnableIP[rsServerConfig.EnableIP_Count][0] = GetSwapIPCode(strBuff);
+  2219				p = local_GetWord(strBuff, p);
+  2220				rsServerConfig.EnableIP[rsServerConfig.EnableIP_Count][1] = GetSwapIPCode(strBuff);
+  2221				rsServerConfig.EnableIP_Count++;
+  2222			}
+  2223	
+  2224			flag++;
+  2225		}
+  2226		 
+  2227		//AQUI TESTE
+  2228		/*if(!flag && (lstrcmp(decode, "*��������IP") == 0 ||
+  2229			lstrcmpi(decode, "*ADMINISTRATOR_IP") == 0))
+  2230		{
+  2231	
+  2232			if(rsServerConfig.AdminIP_Count < ADMIN_IP_MAX)
+  2233			{
+  2234				p = local_GetWord(strBuff, p);
+  2235				rsServerConfig.AdminIP[rsServerConfig.AdminIP_Count][0] = GetSwapIPCode(strBuff);
+  2236				p = local_GetWord(strBuff, p);
+  2237				rsServerConfig.AdminIP[rsServerConfig.AdminIP_Count][1] = GetSwapIPCode(strBuff);
+  2238				rsServerConfig.AdminIP_Count++;
+  2239			}
+  2240	
+  2241			flag++;
+  2242		}*/
+  2243	
+  2244		if(!flag && (lstrcmp(decode, "*�����κ��丮") == 0 ||
+  2245			lstrcmpi(decode, "*SERVER_INVENTORY") == 0))
+  2246		{
+  2247	
+  2248			rsServerConfig.ServerInventoryMode = TRUE;
+  2249			flag++;
+  2250		}
+  2251	
+  2252		if(!flag && (lstrcmp(decode, "*��������̸�") == 0 ||
+  2253			lstrcmpi(decode, "*BACKUP_PATH") == 0))
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2217
+----------------------------------------------------------------------
+  2197		{
+  2198	
+  2199			if(rsServerConfig.DisableIP_Count < DISABLE_IP_MAX)
+  2200			{
+  2201				p = local_GetWord(strBuff, p);
+  2202				rsServerConfig.DisableIP[rsServerConfig.DisableIP_Count][0] = GetSwapIPCode(strBuff);
+  2203				p = local_GetWord(strBuff, p);
+  2204				rsServerConfig.DisableIP[rsServerConfig.DisableIP_Count][1] = GetSwapIPCode(strBuff);
+  2205				rsServerConfig.DisableIP_Count++;
+  2206			}
+  2207	
+  2208			flag++;
+  2209		}
+  2210	
+  2211		if(!flag && (lstrcmp(decode, "*�����㰡IP") == 0 ||
+  2212			lstrcmpi(decode, "*ENABLE_IP") == 0))
+  2213		{
+  2214	
+  2215			if(rsServerConfig.EnableIP_Count < ENABLE_IP_MAX)
+  2216			{
+  2217				p = local_GetWord(strBuff, p);
+  2218				rsServerConfig.EnableIP[rsServerConfig.EnableIP_Count][0] = GetSwapIPCode(strBuff);
+  2219				p = local_GetWord(strBuff, p);
+  2220				rsServerConfig.EnableIP[rsServerConfig.EnableIP_Count][1] = GetSwapIPCode(strBuff);
+  2221				rsServerConfig.EnableIP_Count++;
+  2222			}
+  2223	
+  2224			flag++;
+  2225		}
+  2226		 
+  2227		//AQUI TESTE
+  2228		/*if(!flag && (lstrcmp(decode, "*��������IP") == 0 ||
+  2229			lstrcmpi(decode, "*ADMINISTRATOR_IP") == 0))
+  2230		{
+  2231	
+  2232			if(rsServerConfig.AdminIP_Count < ADMIN_IP_MAX)
+  2233			{
+  2234				p = local_GetWord(strBuff, p);
+  2235				rsServerConfig.AdminIP[rsServerConfig.AdminIP_Count][0] = GetSwapIPCode(strBuff);
+  2236				p = local_GetWord(strBuff, p);
+  2237				rsServerConfig.AdminIP[rsServerConfig.AdminIP_Count][1] = GetSwapIPCode(strBuff);
+  2238				rsServerConfig.AdminIP_Count++;
+  2239			}
+  2240	
+  2241			flag++;
+  2242		}*/
+  2243	
+  2244		if(!flag && (lstrcmp(decode, "*�����κ��丮") == 0 ||
+  2245			lstrcmpi(decode, "*SERVER_INVENTORY") == 0))
+  2246		{
+  2247	
+  2248			rsServerConfig.ServerInventoryMode = TRUE;
+  2249			flag++;
+  2250		}
+  2251	
+  2252		if(!flag && (lstrcmp(decode, "*��������̸�") == 0 ||
+  2253			lstrcmpi(decode, "*BACKUP_PATH") == 0))
+  2254		{
+  2255			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2256			strcpy_s(rsServerConfig.szBackupPath, strBuff);
+  2257			flag++;
+  2258		}
+  2259	
+  2260		if(!flag && (lstrcmp(decode, "*��ų����Ʈ���ҺҰ�") == 0 ||
+  2261			lstrcmpi(decode, "*DISABLE_DEC_SKILLPOINT") == 0))
+  2262		{
+  2263	
+  2264			rsServerConfig.Disable_DecSkillPoint = TRUE;
+  2265			flag++;
+  2266		}
+  2267	
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2219
+----------------------------------------------------------------------
+  2199			if(rsServerConfig.DisableIP_Count < DISABLE_IP_MAX)
+  2200			{
+  2201				p = local_GetWord(strBuff, p);
+  2202				rsServerConfig.DisableIP[rsServerConfig.DisableIP_Count][0] = GetSwapIPCode(strBuff);
+  2203				p = local_GetWord(strBuff, p);
+  2204				rsServerConfig.DisableIP[rsServerConfig.DisableIP_Count][1] = GetSwapIPCode(strBuff);
+  2205				rsServerConfig.DisableIP_Count++;
+  2206			}
+  2207	
+  2208			flag++;
+  2209		}
+  2210	
+  2211		if(!flag && (lstrcmp(decode, "*�����㰡IP") == 0 ||
+  2212			lstrcmpi(decode, "*ENABLE_IP") == 0))
+  2213		{
+  2214	
+  2215			if(rsServerConfig.EnableIP_Count < ENABLE_IP_MAX)
+  2216			{
+  2217				p = local_GetWord(strBuff, p);
+  2218				rsServerConfig.EnableIP[rsServerConfig.EnableIP_Count][0] = GetSwapIPCode(strBuff);
+  2219				p = local_GetWord(strBuff, p);
+  2220				rsServerConfig.EnableIP[rsServerConfig.EnableIP_Count][1] = GetSwapIPCode(strBuff);
+  2221				rsServerConfig.EnableIP_Count++;
+  2222			}
+  2223	
+  2224			flag++;
+  2225		}
+  2226		 
+  2227		//AQUI TESTE
+  2228		/*if(!flag && (lstrcmp(decode, "*��������IP") == 0 ||
+  2229			lstrcmpi(decode, "*ADMINISTRATOR_IP") == 0))
+  2230		{
+  2231	
+  2232			if(rsServerConfig.AdminIP_Count < ADMIN_IP_MAX)
+  2233			{
+  2234				p = local_GetWord(strBuff, p);
+  2235				rsServerConfig.AdminIP[rsServerConfig.AdminIP_Count][0] = GetSwapIPCode(strBuff);
+  2236				p = local_GetWord(strBuff, p);
+  2237				rsServerConfig.AdminIP[rsServerConfig.AdminIP_Count][1] = GetSwapIPCode(strBuff);
+  2238				rsServerConfig.AdminIP_Count++;
+  2239			}
+  2240	
+  2241			flag++;
+  2242		}*/
+  2243	
+  2244		if(!flag && (lstrcmp(decode, "*�����κ��丮") == 0 ||
+  2245			lstrcmpi(decode, "*SERVER_INVENTORY") == 0))
+  2246		{
+  2247	
+  2248			rsServerConfig.ServerInventoryMode = TRUE;
+  2249			flag++;
+  2250		}
+  2251	
+  2252		if(!flag && (lstrcmp(decode, "*��������̸�") == 0 ||
+  2253			lstrcmpi(decode, "*BACKUP_PATH") == 0))
+  2254		{
+  2255			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2256			strcpy_s(rsServerConfig.szBackupPath, strBuff);
+  2257			flag++;
+  2258		}
+  2259	
+  2260		if(!flag && (lstrcmp(decode, "*��ų����Ʈ���ҺҰ�") == 0 ||
+  2261			lstrcmpi(decode, "*DISABLE_DEC_SKILLPOINT") == 0))
+  2262		{
+  2263	
+  2264			rsServerConfig.Disable_DecSkillPoint = TRUE;
+  2265			flag++;
+  2266		}
+  2267	
+  2268		if(!flag && (lstrcmp(decode, "*����Ʈ����") == 0 ||
+  2269			lstrcmpi(decode, "*DISABLE_QUEST") == 0))
+
+----------------------------------------------------------------------
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcServer/src/fileread.cpp:2234
+----------------------------------------------------------------------
+  2214	
+  2215			if(rsServerConfig.EnableIP_Count < ENABLE_IP_MAX)
+  2216			{
+  2217				p = local_GetWord(strBuff, p);
+  2218				rsServerConfig.EnableIP[rsServerConfig.EnableIP_Count][0] = GetSwapIPCode(strBuff);
+  2219				p = local_GetWord(strBuff, p);
+  2220				rsServerConfig.EnableIP[rsServerConfig.EnableIP_Count][1] = GetSwapIPCode(strBuff);
+  2221				rsServerConfig.EnableIP_Count++;
+  2222			}
+  2223	
+  2224			flag++;
+  2225		}
+  2226		 
+  2227		//AQUI TESTE
+  2228		/*if(!flag && (lstrcmp(decode, "*��������IP") == 0 ||
+  2229			lstrcmpi(decode, "*ADMINISTRATOR_IP") == 0))
+  2230		{
+  2231	
+  2232			if(rsServerConfig.AdminIP_Count < ADMIN_IP_MAX)
+  2233			{
+  2234				p = local_GetWord(strBuff, p);
+  2235				rsServerConfig.AdminIP[rsServerConfig.AdminIP_Count][0] = GetSwapIPCode(strBuff);
+  2236				p = local_GetWord(strBuff, p);
+  2237				rsServerConfig.AdminIP[rsServerConfig.AdminIP_Count][1] = GetSwapIPCode(strBuff);
+  2238				rsServerConfig.AdminIP_Count++;
+  2239			}
+  2240	
+  2241			flag++;
+  2242		}*/
+  2243	
+  2244		if(!flag && (lstrcmp(decode, "*�����κ��丮") == 0 ||
+  2245			lstrcmpi(decode, "*SERVER_INVENTORY") == 0))
+  2246		{
+  2247	
+  2248			rsServerConfig.ServerInventoryMode = TRUE;
+  2249			flag++;
+  2250		}
+  2251	
+  2252		if(!flag && (lstrcmp(decode, "*��������̸�") == 0 ||
+  2253			lstrcmpi(decode, "*BACKUP_PATH") == 0))
+  2254		{
+  2255			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2256			strcpy_s(rsServerConfig.szBackupPath, strBuff);
+  2257			flag++;
+  2258		}
+  2259	
+  2260		if(!flag && (lstrcmp(decode, "*��ų����Ʈ���ҺҰ�") == 0 ||
+  2261			lstrcmpi(decode, "*DISABLE_DEC_SKILLPOINT") == 0))
+  2262		{
+  2263	
+  2264			rsServerConfig.Disable_DecSkillPoint = TRUE;
+  2265			flag++;
+  2266		}
+  2267	
+  2268		if(!flag && (lstrcmp(decode, "*����Ʈ����") == 0 ||
+  2269			lstrcmpi(decode, "*DISABLE_QUEST") == 0))
+  2270		{
+  2271	
+  2272			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2273			rsServerConfig.Disable_Quest = atoi(strBuff);
+  2274			flag++;
+  2275		}
+  2276	
+  2277		if(!flag && (lstrcmp(decode, "*�����ʵ����") == 0 ||
+  2278			lstrcmpi(decode, "*START_FIELD") == 0))
+  2279		{
+  2280	
+  2281			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);
+  2282			if(strBuff[0])
+  2283				rsServerConfig.FixedStartField = atoi(strBuff);
+  2284			flag++;

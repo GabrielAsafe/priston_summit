@@ -1,0 +1,42 @@
+diff --git a/SourceCode/SrcServer/src/fileread.cpp b/SourceCode/SrcServer/src/fileread.cpp
+index b90a27e..fb9c891 100644
+--- a/SourceCode/SrcServer/src/fileread.cpp
++++ b/SourceCode/SrcServer/src/fileread.cpp
+@@ -2650,6 +2650,37 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
+ 
+ 
+ 
++		if(
++			strstr(szItemFile, "2_WA108.txt") != NULL ||
++			strstr(szItemFile, "WA101.txt") != NULL ||
++			strstr(szItemFile, "BC102.txt") != NULL)
++		{
++			fprintf(
++				stderr,
++				"[ITEMTOKEN] file=\"%s\" decode=\"%s\" "
++				"len=%d code_cmp=%d bytes=",
++				szItemFile,
++				decode,
++				(int)strlen(decode),
++				lstrcmp(decode, ITEM_TOKEN_CODE));
++
++			for(int ItemTokenByte = 0;
++				ItemTokenByte < (int)strlen(decode);
++				ItemTokenByte++)
++			{
++				fprintf(
++					stderr,
++					"%02X",
++					(unsigned int)(unsigned char)decode[ItemTokenByte]);
++
++				if(ItemTokenByte + 1 < (int)strlen(decode))
++					fprintf(stderr, " ");
++			}
++
++			fprintf(stderr, "\n");
++			fflush(stderr);
++		}
++
+ 		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_CODE) == 0)
+ 		{
+ 			pb = p; p = local_GetWord(strBuff, p); if(strBuff[0] == 34)p = GetString(strBuff, pb);

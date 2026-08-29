@@ -1,0 +1,125 @@
+{
+  "tool": "PT_PIKEMAN_CHARACTER_ASSET_AUTO_WITNESS_G7_V1",
+  "operation": "XY_SCALE_AROUND_LOCAL_CENTROID",
+  "targets": [
+    {
+      "object": "TblC01",
+      "factor_xy": 1.2,
+      "vertices": 73,
+      "faces": 112,
+      "moved_vertices": 73,
+      "max_xy_move": 1.4617190798382267,
+      "used_materials": [
+        1
+      ],
+      "uv_layers": [
+        "SMD_UV"
+      ],
+      "vertex_group_count": 12,
+      "topology_changed": false,
+      "uv_changed": false,
+      "weights_changed": false,
+      "positions_changed": true
+    },
+    {
+      "object": "TbmC01",
+      "factor_xy": 1.2,
+      "vertices": 74,
+      "faces": 128,
+      "moved_vertices": 74,
+      "max_xy_move": 1.0337504725639404,
+      "used_materials": [
+        1
+      ],
+      "uv_layers": [
+        "SMD_UV"
+      ],
+      "vertex_group_count": 10,
+      "topology_changed": false,
+      "uv_changed": false,
+      "weights_changed": false,
+      "positions_changed": true
+    },
+    {
+      "object": "TbhC01",
+      "factor_xy": 1.2,
+      "vertices": 85,
+      "faces": 156,
+      "moved_vertices": 85,
+      "max_xy_move": 1.0329210697994213,
+      "used_materials": [
+        1
+      ],
+      "uv_layers": [
+        "SMD_UV"
+      ],
+      "vertex_group_count": 12,
+      "topology_changed": false,
+      "uv_changed": false,
+      "weights_changed": false,
+      "positions_changed": true
+    },
+    {
+      "object": "TahC01",
+      "factor_xy": 1.12,
+      "vertices": 222,
+      "faces": 406,
+      "moved_vertices": 222,
+      "max_xy_move": 1.108981135542061,
+      "used_materials": [
+        1
+      ],
+      "uv_layers": [
+        "SMD_UV"
+      ],
+      "vertex_group_count": 27,
+      "topology_changed": false,
+      "uv_changed": false,
+      "weights_changed": false,
+      "positions_changed": true
+    },
+    {
+      "object": "TamC01",
+      "factor_xy": 1.12,
+      "vertices": 157,
+      "faces": 282,
+      "moved_vertices": 157,
+      "max_xy_move": 1.1107553557575187,
+      "used_materials": [
+        1
+      ],
+      "uv_layers": [
+        "SMD_UV"
+      ],
+      "vertex_group_count": 28,
+      "topology_changed": false,
+      "uv_changed": false,
+      "weights_changed": false,
+      "positions_changed": true
+    },
+    {
+      "object": "TalC01",
+      "factor_xy": 1.12,
+      "vertices": 115,
+      "faces": 192,
+      "moved_vertices": 115,
+      "max_xy_move": 1.0984473012341134,
+      "used_materials": [
+        1
+      ],
+      "uv_layers": [
+        "SMD_UV"
+      ],
+      "vertex_group_count": 20,
+      "topology_changed": false,
+      "uv_changed": false,
+      "weights_changed": false,
+      "positions_changed": true
+    }
+  ],
+  "target_count": 6,
+  "output_blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_m4/artist/C001_C002_character_asset_g7_auto_witness_v1.blend",
+  "output_sha256": "e239304686870628991689f8ab9b27382d6eb1fe4ab245177e39dd3dcc776ffb",
+  "client_modified": false,
+  "witness_check": "PASS"
+}

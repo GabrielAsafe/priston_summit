@@ -1,0 +1,70 @@
+{
+  "asset_id": "AST-F7A2AC7A8F9B",
+  "asset": "char/tmABCD/Mfh_B01b.smd",
+  "texture_count": 10,
+  "ready": true,
+  "overlay": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client",
+  "entries": [
+    {
+      "logical": "char/tmABCD/MfhB01-a_3.BMP",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfhB01-a_3.BMP",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB01-a_3.BMP",
+      "status": "LINK_READY"
+    },
+    {
+      "logical": "char/tmABCD/MfhB01-f.BMP",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfhB01-f.BMP",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB01-f.BMP",
+      "status": "LINK_READY"
+    },
+    {
+      "logical": "char/tmABCD/MfhB01-h.BMP",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfhB01-h.BMP",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB01-h.BMP",
+      "status": "LINK_READY"
+    },
+    {
+      "logical": "char/tmABCD/MfhB01a.BMP",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfhB01a.BMP",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB01a.BMP",
+      "status": "LINK_READY"
+    },
+    {
+      "logical": "char/tmABCD/MfhB02-f.BMP",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfhB02-f.BMP",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB02-f.BMP",
+      "status": "LINK_READY"
+    },
+    {
+      "logical": "char/tmABCD/MfhB02-h.BMP",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfhB02-h.BMP",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB02-h.BMP",
+      "status": "LINK_READY"
+    },
+    {
+      "logical": "char/tmABCD/MfhB02a.BMP",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfhB02a.BMP",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB02a.BMP",
+      "status": "LINK_READY"
+    },
+    {
+      "logical": "char/tmABCD/MfhB03-f.BMP",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfhB03-f.BMP",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB03-f.BMP",
+      "status": "LINK_READY"
+    },
+    {
+      "logical": "char/tmABCD/MfhB03-h.BMP",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfhB03-h.BMP",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB03-h.BMP",
+      "status": "LINK_READY"
+    },
+    {
+      "logical": "char/tmABCD/MfhB03a.BMP",
+      "physical": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfhB03a.BMP",
+      "prepared": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_animation/head/texture_overlay_client/char/tmABCD/MfhB03a.BMP",
+      "status": "LINK_READY"
+    }
+  ],
+  "client_modified": false
+}

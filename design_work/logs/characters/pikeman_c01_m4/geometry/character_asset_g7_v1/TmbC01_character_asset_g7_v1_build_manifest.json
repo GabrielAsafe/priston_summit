@@ -1,0 +1,160 @@
+{
+  "tool": "PT_PIKEMAN_CHARACTER_ASSET_GATE_G7_V1",
+  "profile_id": "pikeman_c01_m4",
+  "asset_set_id": "CHARSET-PIKEMAN-C01-M4",
+  "roundtrip_target": "char/tmABCD/TmbC01.smd",
+  "source_sha256": "9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c",
+  "artist_master": "/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_m4/artist/C001_C002_pristine_auto_uv_g7_v1_edited.blend",
+  "artist_master_sha256": "cd01c6a820cce114efe770508aa79c2ed3d8a20ca9722f7943fc4d3a02146cc5",
+  "targets": [
+    "TbhC03",
+    "TbmC03",
+    "TblC03",
+    "TblC01",
+    "TbmC01",
+    "TbhC01",
+    "TahC01",
+    "TamC01",
+    "TalC01"
+  ],
+  "target_count": 9,
+  "all_targets_manually_changed": false,
+  "artifact": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m4/geometry/character_asset_g7_v1/TmbC01_character_asset_g7_v1.smd",
+  "artifact_sha256": "c1eda19ffba8798dc769820e3de196babba550719c71f044d9019c75c3360652",
+  "artifact_size": 187504,
+  "output_counts": {
+    "TbhC03": {
+      "vertices": 92,
+      "faces": 152,
+      "texlinks": 152
+    },
+    "TbmC03": {
+      "vertices": 74,
+      "faces": 122,
+      "texlinks": 122
+    },
+    "TblC03": {
+      "vertices": 63,
+      "faces": 100,
+      "texlinks": 100
+    },
+    "TblC01": {
+      "vertices": 73,
+      "faces": 112,
+      "texlinks": 112
+    },
+    "TbmC01": {
+      "vertices": 74,
+      "faces": 128,
+      "texlinks": 128
+    },
+    "TbhC01": {
+      "vertices": 85,
+      "faces": 156,
+      "texlinks": 156
+    },
+    "TahC01": {
+      "vertices": 222,
+      "faces": 406,
+      "texlinks": 406
+    },
+    "TamC01": {
+      "vertices": 157,
+      "faces": 282,
+      "texlinks": 282
+    },
+    "TalC01": {
+      "vertices": 115,
+      "faces": 192,
+      "texlinks": 192
+    }
+  },
+  "all_target_vertices_faces_texlinks_physique_rebuilt": true,
+  "non_target_object_blocks_byte_identical": 0,
+  "armor_config_reimports": {
+    "C001_high": {
+      "config": "C001",
+      "lod": "high",
+      "visible_objects": [
+        "TbhC01",
+        "TahC01"
+      ],
+      "bind_vertices": 955,
+      "check": "PASS",
+      "blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_m4/artist/C001_character_asset_g7_v1_reimport_high.blend"
+    },
+    "C001_default": {
+      "config": "C001",
+      "lod": "default",
+      "visible_objects": [
+        "TbmC01",
+        "TamC01"
+      ],
+      "bind_vertices": 955,
+      "check": "PASS",
+      "blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_m4/artist/C001_character_asset_g7_v1_reimport_default.blend"
+    },
+    "C001_low": {
+      "config": "C001",
+      "lod": "low",
+      "visible_objects": [
+        "TblC01",
+        "TalC01"
+      ],
+      "bind_vertices": 955,
+      "check": "PASS",
+      "blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_m4/artist/C001_character_asset_g7_v1_reimport_low.blend"
+    },
+    "C002_high": {
+      "config": "C002",
+      "lod": "high",
+      "visible_objects": [
+        "TbhC03",
+        "TahC01"
+      ],
+      "bind_vertices": 955,
+      "check": "PASS",
+      "blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_m4/artist/C002_character_asset_g7_v1_reimport_high.blend"
+    },
+    "C002_default": {
+      "config": "C002",
+      "lod": "default",
+      "visible_objects": [
+        "TbmC03",
+        "TamC01"
+      ],
+      "bind_vertices": 955,
+      "check": "PASS",
+      "blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_m4/artist/C002_character_asset_g7_v1_reimport_default.blend"
+    },
+    "C002_low": {
+      "config": "C002",
+      "lod": "low",
+      "visible_objects": [
+        "TblC03",
+        "TalC01"
+      ],
+      "bind_vertices": 955,
+      "check": "PASS",
+      "blend": "/home/gabriel/Área de Trabalho/summit/design_work/blender/pikeman_c01_m4/artist/C002_character_asset_g7_v1_reimport_low.blend"
+    }
+  },
+  "armor_configs_validated": [
+    "C001",
+    "C002"
+  ],
+  "lods_validated": [
+    "high",
+    "default",
+    "low"
+  ],
+  "bind_vertices": 955,
+  "bind_bones_used": 32,
+  "material_audit": "PASS",
+  "runtime_installed": false,
+  "build_check": "PASS",
+  "authoring_provenance": "AUTOMATED_UV_AFFINE_WITNESS_FROM_PRISTINE",
+  "geometry_positions_pristine_before_writer_roundtrip": true,
+  "topology_pristine_before_writer_roundtrip": true,
+  "weights_pristine_before_writer_roundtrip": true
+}

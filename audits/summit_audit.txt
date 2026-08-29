@@ -1,0 +1,370 @@
+AUDITORIA ESTÁTICA HEURÍSTICA - SUMMIT
+====================================================================================================
+Raiz: /home/gabriel/Área de Trabalho/summit/audits
+Ignorado: DirectXSDK
+Arquivos analisados: 3
+Pulados: 0
+Total de ocorrências: 76
+OBS: ocorrência = candidato para revisão, não bug confirmado.
+====================================================================================================
+
+1. CASE SENSITIVE / ASSET COM CASE DIFERENTE
+----------------------------------------------------------------------------------------------------
+Ocorrências: 0
+
+(nenhuma ocorrência)
+
+2. CAMINHOS / BARRAS '/' x '\\'
+----------------------------------------------------------------------------------------------------
+Ocorrências: 49
+
+[1] /home/gabriel/Área de Trabalho/summit/audits/summit_character_audit.py:188
+    NOTA: barras misturadas: 'AUDITORIA DE ENCODING / CARACTERES — SUMMIT\\n'
+    CÓDIGO: f.write('AUDITORIA DE ENCODING / CARACTERES — SUMMIT\n'+'='*100+'\n')
+
+[2] /home/gabriel/Área de Trabalho/summit/audits/summit_character_audit.py:189
+    NOTA: barras misturadas: 'Raiz: {root}\\nDirectXSDK: IGNORADO integralmente\\nHistórico/snapshots: {"INCLUÍDOS" if include_history else "IGNORADOS por padrão"}\\n'
+    CÓDIGO: f.write(f'Raiz: {root}\nDirectXSDK: IGNORADO integralmente\nHistórico/snapshots: {"INCLUÍDOS" if include_history else "IGNORADOS por padrão"}\n')
+
+[3] /home/gabriel/Área de Trabalho/summit/audits/summit_code_audit.py:20
+    NOTA: barras misturadas: '(?<!:)\\/(?:r|n|t|0)\\b|\\/(?:r|n|t)(?=["\\\'])'
+    CÓDIGO: BAD_ESC_RE=re.compile(r'(?<!:)\/(?:r|n|t|0)\b|\/(?:r|n|t)(?=["\'])')
+
+[4] /home/gabriel/Área de Trabalho/summit/audits/summit_code_audit.py:108
+    NOTA: possível // indevido: '//'
+    CÓDIGO: if '//' in lit and '://' not in lit: add(H,'PATH_SEPARATORS',p,n,line,f'possível // indevido: {lit!r}')
+
+[5] /home/gabriel/Área de Trabalho/summit/audits/summit_code_audit.py:108
+    NOTA: possível // indevido: 'possível // indevido: {lit!r}'
+    CÓDIGO: if '//' in lit and '://' not in lit: add(H,'PATH_SEPARATORS',p,n,line,f'possível // indevido: {lit!r}')
+
+[6] /home/gabriel/Área de Trabalho/summit/audits/summit_code_audit.py:123
+    NOTA: barras misturadas: "2. CAMINHOS / BARRAS '/' x '\\\\\\\\'"
+    CÓDIGO: order=[('CASE_ASSET','1. CASE SENSITIVE / ASSET COM CASE DIFERENTE'),('PATH_SEPARATORS',"2. CAMINHOS / BARRAS '/' x '\\\\'"),('BAD_ESCAPES',r'3. ESCAPES SUSPEITOS (/r,/n,/t,/0 x \\r,\\n,\\t,\\0)'),('POINTER_UNINITIALIZED','4. PONTEIROS NÃO INICIALIZADOS'),('POINTER_NULL','5. PONTEIROS/VARIÁVEIS NULL/nullptr/0'),('ALLOC_NO_NULL_CHECK','6. ALOCAÇÕES SEM CHECAGEM DE NULL'),('FILE_OPEN_NO_NULL_CHECK','7. ABERTURA DE ARQUIVO SEM CHECAGEM DE FALHA'),('SIZE_BOUNDS','8. TAMANHO / BOUNDS / APIS POTENCIALMENTE INSEGURAS'),('FIXED_BUFFERS','9. BUFFERS CHAR FIXOS'),('IO_FILE','10. I/O / LEITURA-ESCRITA DE ARQUIVO'),('STRING_HANDLING','11. TRATAMENTO DE STRINGS/MEMÓRIA')]
+
+[7] /home/gabriel/Área de Trabalho/summit/audits/summit_code_audit.py:123
+    NOTA: barras misturadas: '3. ESCAPES SUSPEITOS (/r,/n,/t,/0 x \\\\r,\\\\n,\\\\t,\\\\0)'
+    CÓDIGO: order=[('CASE_ASSET','1. CASE SENSITIVE / ASSET COM CASE DIFERENTE'),('PATH_SEPARATORS',"2. CAMINHOS / BARRAS '/' x '\\\\'"),('BAD_ESCAPES',r'3. ESCAPES SUSPEITOS (/r,/n,/t,/0 x \\r,\\n,\\t,\\0)'),('POINTER_UNINITIALIZED','4. PONTEIROS NÃO INICIALIZADOS'),('POINTER_NULL','5. PONTEIROS/VARIÁVEIS NULL/nullptr/0'),('ALLOC_NO_NULL_CHECK','6. ALOCAÇÕES SEM CHECAGEM DE NULL'),('FILE_OPEN_NO_NULL_CHECK','7. ABERTURA DE ARQUIVO SEM CHECAGEM DE FALHA'),('SIZE_BOUNDS','8. TAMANHO / BOUNDS / APIS POTENCIALMENTE INSEGURAS'),('FIXED_BUFFERS','9. BUFFERS CHAR FIXOS'),('IO_FILE','10. I/O / LEITURA-ESCRITA DE ARQUIVO'),('STRING_HANDLING','11. TRATAMENTO DE STRINGS/MEMÓRIA')]
+
+[8] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:70
+    NOTA: possível // indevido: 'game//roll//background.png'
+    CÓDIGO: - SourceCode/SrcGame/src/BattleEvents/CRollWindow.cpp:9 | pWindow1 = new UIWindow(iRollID, "game//roll//background.png", x, y); | {"referenced": "game//roll//background.png", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/Roll/background.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/roll/background.png"}
+
+[9] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:70
+    NOTA: possível // indevido: 'game//roll//background.png'
+    CÓDIGO: - SourceCode/SrcGame/src/BattleEvents/CRollWindow.cpp:9 | pWindow1 = new UIWindow(iRollID, "game//roll//background.png", x, y); | {"referenced": "game//roll//background.png", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/Roll/background.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/roll/background.png"}
+
+[10] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:71
+    NOTA: possível // indevido: 'game//roll//skip.png'
+    CÓDIGO: - SourceCode/SrcGame/src/BattleEvents/CRollWindow.cpp:38 | pWindow1->AddElement(new UIButton(-2, "game//roll//skip.png", "game//roll//skip_.png", 165, 102, true, false, bind(&CRollWindow::OnClickSkipButton, this))); | {"referenced": "game//roll//skip.png", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/Roll/skip.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/roll/skip.png"}
+
+[11] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:71
+    NOTA: possível // indevido: 'game//roll//skip_.png'
+    CÓDIGO: - SourceCode/SrcGame/src/BattleEvents/CRollWindow.cpp:38 | pWindow1->AddElement(new UIButton(-2, "game//roll//skip.png", "game//roll//skip_.png", 165, 102, true, false, bind(&CRollWindow::OnClickSkipButton, this))); | {"referenced": "game//roll//skip.png", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/Roll/skip.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/roll/skip.png"}
+
+[12] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:71
+    NOTA: possível // indevido: 'game//roll//skip.png'
+    CÓDIGO: - SourceCode/SrcGame/src/BattleEvents/CRollWindow.cpp:38 | pWindow1->AddElement(new UIButton(-2, "game//roll//skip.png", "game//roll//skip_.png", 165, 102, true, false, bind(&CRollWindow::OnClickSkipButton, this))); | {"referenced": "game//roll//skip.png", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/Roll/skip.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/roll/skip.png"}
+
+[13] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:72
+    NOTA: possível // indevido: 'game//roll//skip.png'
+    CÓDIGO: - SourceCode/SrcGame/src/BattleEvents/CRollWindow.cpp:38 | pWindow1->AddElement(new UIButton(-2, "game//roll//skip.png", "game//roll//skip_.png", 165, 102, true, false, bind(&CRollWindow::OnClickSkipButton, this))); | {"referenced": "game//roll//skip_.png", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/Roll/skip_.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/roll/skip_.png"}
+
+[14] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:72
+    NOTA: possível // indevido: 'game//roll//skip_.png'
+    CÓDIGO: - SourceCode/SrcGame/src/BattleEvents/CRollWindow.cpp:38 | pWindow1->AddElement(new UIButton(-2, "game//roll//skip.png", "game//roll//skip_.png", 165, 102, true, false, bind(&CRollWindow::OnClickSkipButton, this))); | {"referenced": "game//roll//skip_.png", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/Roll/skip_.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/roll/skip_.png"}
+
+[15] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:72
+    NOTA: possível // indevido: 'game//roll//skip_.png'
+    CÓDIGO: - SourceCode/SrcGame/src/BattleEvents/CRollWindow.cpp:38 | pWindow1->AddElement(new UIButton(-2, "game//roll//skip.png", "game//roll//skip_.png", 165, 102, true, false, bind(&CRollWindow::OnClickSkipButton, this))); | {"referenced": "game//roll//skip_.png", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/Roll/skip_.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/roll/skip_.png"}
+
+[16] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:73
+    NOTA: possível // indevido: 'game//images//battlepass//Select_Item_Free.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:95 | Image[0] = CreateTextureMaterial("game//images//battlepass//Select_Item_Free.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Select_Item_Free.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Select_Item_Free.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Select_Item_Free.PNG"}
+
+[17] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:73
+    NOTA: possível // indevido: 'game//images//battlepass//Select_Item_Free.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:95 | Image[0] = CreateTextureMaterial("game//images//battlepass//Select_Item_Free.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Select_Item_Free.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Select_Item_Free.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Select_Item_Free.PNG"}
+
+[18] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:74
+    NOTA: possível // indevido: 'game//images//battlepass//Select_Item_Premium.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:98 | Image[3] = CreateTextureMaterial("game//images//battlepass//Select_Item_Premium.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Select_Item_Premium.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Select_Item_Premium.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Select_Item_Premium.PNG"}
+
+[19] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:74
+    NOTA: possível // indevido: 'game//images//battlepass//Select_Item_Premium.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:98 | Image[3] = CreateTextureMaterial("game//images//battlepass//Select_Item_Premium.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Select_Item_Premium.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Select_Item_Premium.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Select_Item_Premium.PNG"}
+
+[20] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:75
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//0.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:109 | Image[14] = CreateTextureMaterial("game//images//battlepass//Resgate//0.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//0.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.PNG"}
+
+[21] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:75
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//0.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:109 | Image[14] = CreateTextureMaterial("game//images//battlepass//Resgate//0.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//0.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.PNG"}
+
+[22] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:76
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//1.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:110 | Image[15] = CreateTextureMaterial("game//images//battlepass//Resgate//1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//1.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/1.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/1.PNG"}
+
+[23] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:76
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//1.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:110 | Image[15] = CreateTextureMaterial("game//images//battlepass//Resgate//1.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//1.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/1.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/1.PNG"}
+
+[24] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:77
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//2.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:111 | Image[16] = CreateTextureMaterial("game//images//battlepass//Resgate//2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//2.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/2.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/2.PNG"}
+
+[25] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:77
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//2.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:111 | Image[16] = CreateTextureMaterial("game//images//battlepass//Resgate//2.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//2.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/2.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/2.PNG"}
+
+[26] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:78
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//3.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:112 | Image[17] = CreateTextureMaterial("game//images//battlepass//Resgate//3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//3.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/3.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/3.PNG"}
+
+[27] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:78
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//3.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:112 | Image[17] = CreateTextureMaterial("game//images//battlepass//Resgate//3.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//3.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/3.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/3.PNG"}
+
+[28] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:79
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//4.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:113 | Image[18] = CreateTextureMaterial("game//images//battlepass//Resgate//4.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//4.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/4.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/4.PNG"}
+
+[29] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:79
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//4.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:113 | Image[18] = CreateTextureMaterial("game//images//battlepass//Resgate//4.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//4.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/4.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/4.PNG"}
+
+[30] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:80
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//5.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:114 | Image[19] = CreateTextureMaterial("game//images//battlepass//Resgate//5.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//5.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/5.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/5.PNG"}
+
+[31] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:80
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//5.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:114 | Image[19] = CreateTextureMaterial("game//images//battlepass//Resgate//5.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//5.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/5.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/5.PNG"}
+
+[32] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:81
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//6.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:115 | Image[20] = CreateTextureMaterial("game//images//battlepass//Resgate//6.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//6.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/6.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/6.PNG"}
+
+[33] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:81
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//6.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:115 | Image[20] = CreateTextureMaterial("game//images//battlepass//Resgate//6.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//6.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/6.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/6.PNG"}
+
+[34] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:82
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//7.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:116 | Image[21] = CreateTextureMaterial("game//images//battlepass//Resgate//7.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//7.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/7.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/7.PNG"}
+
+[35] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:82
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//7.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:116 | Image[21] = CreateTextureMaterial("game//images//battlepass//Resgate//7.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//7.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/7.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/7.PNG"}
+
+[36] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:83
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//8.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:117 | Image[22] = CreateTextureMaterial("game//images//battlepass//Resgate//8.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//8.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/8.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/8.PNG"}
+
+[37] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:83
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//8.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:117 | Image[22] = CreateTextureMaterial("game//images//battlepass//Resgate//8.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//8.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/8.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/8.PNG"}
+
+[38] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:84
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//9.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:118 | Image[23] = CreateTextureMaterial("game//images//battlepass//Resgate//9.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//9.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/9.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/9.PNG"}
+
+[39] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:84
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//9.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:118 | Image[23] = CreateTextureMaterial("game//images//battlepass//Resgate//9.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//9.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/9.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/9.PNG"}
+
+[40] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:85
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//10.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:119 | Image[24] = CreateTextureMaterial("game//images//battlepass//Resgate//10.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//10.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/10.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/10.PNG"}
+
+[41] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:85
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//10.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:119 | Image[24] = CreateTextureMaterial("game//images//battlepass//Resgate//10.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//10.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/10.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/10.PNG"}
+
+[42] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:86
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//11.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:120 | Image[25] = CreateTextureMaterial("game//images//battlepass//Resgate//11.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//11.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/11.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/11.PNG"}
+
+[43] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:86
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//11.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:120 | Image[25] = CreateTextureMaterial("game//images//battlepass//Resgate//11.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//11.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/11.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/11.PNG"}
+
+[44] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:87
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//12.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:121 | Image[26] = CreateTextureMaterial("game//images//battlepass//Resgate//12.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//12.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/12.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/12.PNG"}
+
+[45] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:87
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//12.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:121 | Image[26] = CreateTextureMaterial("game//images//battlepass//Resgate//12.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//12.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/12.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/12.PNG"}
+
+[46] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:88
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//13.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:122 | Image[27] = CreateTextureMaterial("game//images//battlepass//Resgate//13.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//13.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/13.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/13.PNG"}
+
+[47] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:88
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//13.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:122 | Image[27] = CreateTextureMaterial("game//images//battlepass//Resgate//13.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//13.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/13.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/13.PNG"}
+
+[48] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:89
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//14.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:123 | Image[28] = CreateTextureMaterial("game//images//battlepass//Resgate//14.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//14.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/14.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/14.PNG"}
+
+[49] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:89
+    NOTA: possível // indevido: 'game//images//battlepass//Resgate//14.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:123 | Image[28] = CreateTextureMaterial("game//images//battlepass//Resgate//14.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//14.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/14.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/14.PNG"}
+
+3. ESCAPES SUSPEITOS (/r,/n,/t,/0 x \\r,\\n,\\t,\\0)
+----------------------------------------------------------------------------------------------------
+Ocorrências: 8
+
+[1] /home/gabriel/Área de Trabalho/summit/audits/summit_code_audit.py:109
+    NOTA: possível /r,/n,/t,/0 em vez de escape com backslash: 'possível /r,/n,/t,/0 em vez de escape com backslash: {lit!r}'
+    CÓDIGO: if BAD_ESC_RE.search(lit): add(H,'BAD_ESCAPES',p,n,line,f'possível /r,/n,/t,/0 em vez de escape com backslash: {lit!r}')
+
+[2] /home/gabriel/Área de Trabalho/summit/audits/summit_code_audit.py:111
+    NOTA: possível /r,/n,/t,/0 em vez de escape com backslash: '{m.group(1)} inicializado como NULL/nullptr/0'
+    CÓDIGO: for m in PTR_NULL_RE.finditer(line): add(H,'POINTER_NULL',p,n,line,f'{m.group(1)} inicializado como NULL/nullptr/0')
+
+[3] /home/gabriel/Área de Trabalho/summit/audits/summit_code_audit.py:123
+    NOTA: possível /r,/n,/t,/0 em vez de escape com backslash: '3. ESCAPES SUSPEITOS (/r,/n,/t,/0 x \\\\r,\\\\n,\\\\t,\\\\0)'
+    CÓDIGO: order=[('CASE_ASSET','1. CASE SENSITIVE / ASSET COM CASE DIFERENTE'),('PATH_SEPARATORS',"2. CAMINHOS / BARRAS '/' x '\\\\'"),('BAD_ESCAPES',r'3. ESCAPES SUSPEITOS (/r,/n,/t,/0 x \\r,\\n,\\t,\\0)'),('POINTER_UNINITIALIZED','4. PONTEIROS NÃO INICIALIZADOS'),('POINTER_NULL','5. PONTEIROS/VARIÁVEIS NULL/nullptr/0'),('ALLOC_NO_NULL_CHECK','6. ALOCAÇÕES SEM CHECAGEM DE NULL'),('FILE_OPEN_NO_NULL_CHECK','7. ABERTURA DE ARQUIVO SEM CHECAGEM DE FALHA'),('SIZE_BOUNDS','8. TAMANHO / BOUNDS / APIS POTENCIALMENTE INSEGURAS'),('FIXED_BUFFERS','9. BUFFERS CHAR FIXOS'),('IO_FILE','10. I/O / LEITURA-ESCRITA DE ARQUIVO'),('STRING_HANDLING','11. TRATAMENTO DE STRINGS/MEMÓRIA')]
+
+[4] /home/gabriel/Área de Trabalho/summit/audits/summit_code_audit.py:123
+    NOTA: possível /r,/n,/t,/0 em vez de escape com backslash: '5. PONTEIROS/VARIÁVEIS NULL/nullptr/0'
+    CÓDIGO: order=[('CASE_ASSET','1. CASE SENSITIVE / ASSET COM CASE DIFERENTE'),('PATH_SEPARATORS',"2. CAMINHOS / BARRAS '/' x '\\\\'"),('BAD_ESCAPES',r'3. ESCAPES SUSPEITOS (/r,/n,/t,/0 x \\r,\\n,\\t,\\0)'),('POINTER_UNINITIALIZED','4. PONTEIROS NÃO INICIALIZADOS'),('POINTER_NULL','5. PONTEIROS/VARIÁVEIS NULL/nullptr/0'),('ALLOC_NO_NULL_CHECK','6. ALOCAÇÕES SEM CHECAGEM DE NULL'),('FILE_OPEN_NO_NULL_CHECK','7. ABERTURA DE ARQUIVO SEM CHECAGEM DE FALHA'),('SIZE_BOUNDS','8. TAMANHO / BOUNDS / APIS POTENCIALMENTE INSEGURAS'),('FIXED_BUFFERS','9. BUFFERS CHAR FIXOS'),('IO_FILE','10. I/O / LEITURA-ESCRITA DE ARQUIVO'),('STRING_HANDLING','11. TRATAMENTO DE STRINGS/MEMÓRIA')]
+
+[5] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:75
+    NOTA: possível /r,/n,/t,/0 em vez de escape com backslash: 'game//images//battlepass//Resgate//0.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:109 | Image[14] = CreateTextureMaterial("game//images//battlepass//Resgate//0.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//0.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.PNG"}
+
+[6] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:75
+    NOTA: possível /r,/n,/t,/0 em vez de escape com backslash: 'game//images//battlepass//Resgate//0.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:109 | Image[14] = CreateTextureMaterial("game//images//battlepass//Resgate//0.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//0.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.PNG"}
+
+[7] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:75
+    NOTA: possível /r,/n,/t,/0 em vez de escape com backslash: '/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.png'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:109 | Image[14] = CreateTextureMaterial("game//images//battlepass//Resgate//0.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//0.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.PNG"}
+
+[8] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:75
+    NOTA: possível /r,/n,/t,/0 em vez de escape com backslash: '/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.PNG'
+    CÓDIGO: - SourceCode/SrcGame/src/BattlePass.cpp:109 | Image[14] = CreateTextureMaterial("game//images//battlepass//Resgate//0.PNG", 0, 0, 0, 0, SMMAT_BLEND_ALPHA); | {"referenced": "game//images//battlepass//Resgate//0.PNG", "actual": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.png", "expected": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/game/images/battlepass/Resgate/0.PNG"}
+
+4. PONTEIROS NÃO INICIALIZADOS
+----------------------------------------------------------------------------------------------------
+Ocorrências: 0
+
+(nenhuma ocorrência)
+
+5. PONTEIROS/VARIÁVEIS NULL/nullptr/0
+----------------------------------------------------------------------------------------------------
+Ocorrências: 1
+
+[1] /home/gabriel/Área de Trabalho/summit/audits/summit_character_audit.py:76
+    NOTA: i inicializado como NULL/nullptr/0
+    CÓDIGO: out=[]; i=0; simple={'n':'\n','r':'\r','t':'\t','0':'\0','\\':'\\','"':'"',"'":"'"}
+
+6. ALOCAÇÕES SEM CHECAGEM DE NULL
+----------------------------------------------------------------------------------------------------
+Ocorrências: 0
+
+(nenhuma ocorrência)
+
+7. ABERTURA DE ARQUIVO SEM CHECAGEM DE FALHA
+----------------------------------------------------------------------------------------------------
+Ocorrências: 0
+
+(nenhuma ocorrência)
+
+8. TAMANHO / BOUNDS / APIS POTENCIALMENTE INSEGURAS
+----------------------------------------------------------------------------------------------------
+Ocorrências: 16
+
+[1] /home/gabriel/Área de Trabalho/summit/audits/summit_character_audit.py:188
+    NOTA: operação de memória/I/O sem tamanho óbvio
+    CÓDIGO: f.write('AUDITORIA DE ENCODING / CARACTERES — SUMMIT\n'+'='*100+'\n')
+
+[2] /home/gabriel/Área de Trabalho/summit/audits/summit_character_audit.py:189
+    NOTA: operação de memória/I/O sem tamanho óbvio
+    CÓDIGO: f.write(f'Raiz: {root}\nDirectXSDK: IGNORADO integralmente\nHistórico/snapshots: {"INCLUÍDOS" if include_history else "IGNORADOS por padrão"}\n')
+
+[3] /home/gabriel/Área de Trabalho/summit/audits/summit_character_audit.py:191
+    NOTA: operação de memória/I/O sem tamanho óbvio
+    CÓDIGO: f.write('SEVERIDADE\n'); [f.write(f'  {s}: {sc.get(s,0)}\n') for s in ('CRITICAL','HIGH','MEDIUM','LOW','INFO')]
+
+[4] /home/gabriel/Área de Trabalho/summit/audits/summit_character_audit.py:192
+    NOTA: operação de memória/I/O sem tamanho óbvio
+    CÓDIGO: f.write('\nENCODINGS\n'); [f.write(f'  {e}: {n}\n') for e,n in ec.most_common()]
+
+[5] /home/gabriel/Área de Trabalho/summit/audits/summit_character_audit.py:193
+    NOTA: operação de memória/I/O sem tamanho óbvio
+    CÓDIGO: f.write('\nCATEGORIAS\n'); [f.write(f'  {c}: {n}\n') for c,n in cc.most_common()]
+
+[6] /home/gabriel/Área de Trabalho/summit/audits/summit_character_audit.py:194
+    NOTA: operação de memória/I/O sem tamanho óbvio
+    CÓDIGO: f.write('\nACHADOS\n'+'='*100+'\n')
+
+[7] /home/gabriel/Área de Trabalho/summit/audits/summit_character_audit.py:197
+    NOTA: operação de memória/I/O sem tamanho óbvio
+    CÓDIGO: f.write(f"\n[{i}] [{x['severity']}] {x['category']}\nLOCAL: {loc}\nPROBLEMA: {x['message']}\n")
+
+[8] /home/gabriel/Área de Trabalho/summit/audits/summit_character_audit.py:198
+    NOTA: operação de memória/I/O sem tamanho óbvio
+    CÓDIGO: if x['code']: f.write('CÓDIGO: '+x['code']+'\n')
+
+[9] /home/gabriel/Área de Trabalho/summit/audits/summit_character_audit.py:199
+    NOTA: operação de memória/I/O sem tamanho óbvio
+    CÓDIGO: if x['extra']: f.write('DADOS: '+json.dumps(x['extra'],ensure_ascii=False,sort_keys=True)+'\n')
+
+[10] /home/gabriel/Área de Trabalho/summit/audits/summit_character_audit.py:200
+    NOTA: operação de memória/I/O sem tamanho óbvio
+    CÓDIGO: f.write('\nNOMES DE ARQUIVO NÃO-ASCII\n'+'='*100+'\n'); [f.write(str(p)+'\n') for p in sorted(nonascii,key=str)]
+
+[11] /home/gabriel/Área de Trabalho/summit/audits/summit_code_audit.py:125
+    NOTA: operação de memória/I/O sem tamanho óbvio
+    CÓDIGO: f.write('AUDITORIA ESTÁTICA HEURÍSTICA - SUMMIT\n'+'='*100+'\n')
+
+[12] /home/gabriel/Área de Trabalho/summit/audits/summit_code_audit.py:127
+    NOTA: operação de memória/I/O sem tamanho óbvio
+    CÓDIGO: f.write('OBS: ocorrência = candidato para revisão, não bug confirmado.\n'+'='*100+'\n\n')
+
+[13] /home/gabriel/Área de Trabalho/summit/audits/summit_code_audit.py:131
+    NOTA: operação de memória/I/O sem tamanho óbvio
+    CÓDIGO: f.write(f'[{idx}] {path}:{n}\n    NOTA: {note}\n    CÓDIGO: {line.strip()}\n\n')
+
+[14] /home/gabriel/Área de Trabalho/summit/audits/summit_code_audit.py:132
+    NOTA: operação de memória/I/O sem tamanho óbvio
+    CÓDIGO: if not H[k]: f.write('(nenhuma ocorrência)\n\n')
+
+[15] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:23
+    NOTA: API de string sem limite explícito
+    CÓDIGO: strcpy(szConnServerName, "��ϼ���");
+
+[16] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:26
+    NOTA: API de string sem limite explícito
+    CÓDIGO: strcpy(szConnServerName, "��ϼ���");
+
+9. BUFFERS CHAR FIXOS
+----------------------------------------------------------------------------------------------------
+Ocorrências: 0
+
+(nenhuma ocorrência)
+
+10. I/O / LEITURA-ESCRITA DE ARQUIVO
+----------------------------------------------------------------------------------------------------
+Ocorrências: 0
+
+(nenhuma ocorrência)
+
+11. TRATAMENTO DE STRINGS/MEMÓRIA
+----------------------------------------------------------------------------------------------------
+Ocorrências: 2
+
+[1] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:23
+    NOTA: tratamento de string/memória
+    CÓDIGO: strcpy(szConnServerName, "��ϼ���");
+
+[2] /home/gabriel/Área de Trabalho/summit/audits/relatorio_caracteres_compacto.txt:26
+    NOTA: tratamento de string/memória
+    CÓDIGO: strcpy(szConnServerName, "��ϼ���");
+

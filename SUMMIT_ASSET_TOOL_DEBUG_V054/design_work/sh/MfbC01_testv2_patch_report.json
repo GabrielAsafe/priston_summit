@@ -1,0 +1,702 @@
+{
+  "tool": "pt_blender_patch_smd_vertices_v1",
+  "blend": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/MfbC01_direct_smd_v3_static_armature_testv2.blend",
+  "object": "MsmC01",
+  "input_smd": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/MfbC01.smd",
+  "output_smd": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/MfbC01_testv2.smd",
+  "input_size": 290229,
+  "output_size": 290229,
+  "input_sha256": "9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b",
+  "output_sha256": "e9fa4db4afb39849fa9105df5f09aba1c7d4a52cb939bd26a3318608d577955b",
+  "byte_identical": false,
+  "vertex_count": 125,
+  "face_count": 238,
+  "changed_vertices": 22,
+  "changed_bytes": 130,
+  "max_fit_error": 0.003163781521645679,
+  "object_matrix_identity_error": 0.0,
+  "changes": [
+    {
+      "index": 5,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 2.5775241635655033,
+      "original_world": [
+        1.75,
+        -0.5703125,
+        33.625
+      ],
+      "edited_world": [
+        2.346961498260498,
+        -3.0602803230285645,
+        33.32948684692383
+      ],
+      "represented_world": [
+        2.34765625,
+        -3.05859375,
+        33.328125
+      ],
+      "fit_error": 0.0022763645587124634,
+      "original_local_fixed": [
+        750,
+        615,
+        448
+      ],
+      "new_local_fixed": [
+        499,
+        1208,
+        601
+      ]
+    },
+    {
+      "index": 6,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 2.975660159871438,
+      "original_world": [
+        0.85546875,
+        -1.5703125,
+        29.62890625
+      ],
+      "edited_world": [
+        1.3932716846466064,
+        -4.4931793212890625,
+        29.77780532836914
+      ],
+      "represented_world": [
+        1.39453125,
+        -4.4921875,
+        29.77734375
+      ],
+      "fit_error": 0.0016683132019394765,
+      "original_local_fixed": [
+        -307,
+        576,
+        219
+      ],
+      "new_local_fixed": [
+        -480,
+        1308,
+        357
+      ]
+    },
+    {
+      "index": 12,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 2.162604375731989,
+      "original_world": [
+        2.828125,
+        1.0,
+        29.92578125
+      ],
+      "edited_world": [
+        3.5915045738220215,
+        -1.0180330276489258,
+        30.072927474975586
+      ],
+      "represented_world": [
+        3.58984375,
+        -1.01953125,
+        30.07421875
+      ],
+      "fit_error": 0.002582711205250782,
+      "original_local_fixed": [
+        -50,
+        -37,
+        724
+      ],
+      "new_local_fixed": [
+        -158,
+        472,
+        919
+      ]
+    },
+    {
+      "index": 13,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 2.699797294977703,
+      "original_world": [
+        2.39453125,
+        -0.43359375,
+        29.5546875
+      ],
+      "edited_world": [
+        3.1699023246765137,
+        -3.014835834503174,
+        29.712467193603516
+      ],
+      "represented_world": [
+        3.16796875,
+        -3.015625,
+        29.71484375
+      ],
+      "fit_error": 0.003163781521645679,
+      "original_local_fixed": [
+        -244,
+        290,
+        613
+      ],
+      "new_local_fixed": [
+        -390,
+        939,
+        811
+      ]
+    },
+    {
+      "index": 14,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 3.078656002131509,
+      "original_world": [
+        2.84765625,
+        -1.69140625,
+        31.5390625
+      ],
+      "edited_world": [
+        3.6929712295532227,
+        -4.650665760040283,
+        31.45938491821289
+      ],
+      "represented_world": [
+        3.69140625,
+        -4.65234375,
+        31.4609375
+      ],
+      "fit_error": 0.0027704370616527464,
+      "original_local_fixed": [
+        155,
+        742,
+        729
+      ],
+      "new_local_fixed": [
+        -76,
+        1467,
+        945
+      ]
+    },
+    {
+      "index": 15,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 3.1650770225138816,
+      "original_world": [
+        1.109375,
+        -2.19140625,
+        31.91796875
+      ],
+      "edited_world": [
+        1.686370611190796,
+        -5.300933361053467,
+        31.792949676513672
+      ],
+      "represented_world": [
+        1.6875,
+        -5.30078125,
+        31.79296875
+      ],
+      "fit_error": 0.0011397458720359317,
+      "original_local_fixed": [
+        213,
+        893,
+        284
+      ],
+      "new_local_fixed": [
+        -40,
+        1651,
+        432
+      ]
+    },
+    {
+      "index": 16,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 3.1616729105359447,
+      "original_world": [
+        2.20703125,
+        -2.06640625,
+        30.4921875
+      ],
+      "edited_world": [
+        2.9534599781036377,
+        -5.13836669921875,
+        30.53778076171875
+      ],
+      "represented_world": [
+        2.953125,
+        -5.13671875,
+        30.5390625
+      ],
+      "fit_error": 0.0021144266312920733,
+      "original_local_fixed": [
+        -130,
+        760,
+        565
+      ],
+      "new_local_fixed": [
+        -338,
+        1521,
+        756
+      ]
+    },
+    {
+      "index": 17,
+      "bone": "Bip01 L Clavicle",
+      "move_from_original": 2.0133862551243475,
+      "original_world": [
+        3.109375,
+        1.58203125,
+        31.7890625
+      ],
+      "edited_world": [
+        3.916167974472046,
+        -0.26108038425445557,
+        31.713241577148438
+      ],
+      "represented_world": [
+        3.91796875,
+        -0.26171875,
+        31.71484375
+      ],
+      "fit_error": 0.002493443637511541,
+      "original_local_fixed": [
+        744,
+        25,
+        -708
+      ],
+      "new_local_fixed": [
+        965,
+        -431,
+        -816
+      ]
+    },
+    {
+      "index": 18,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 2.9080870932412677,
+      "original_world": [
+        3.05078125,
+        -1.0703125,
+        30.59375
+      ],
+      "edited_world": [
+        3.927450180053711,
+        -3.8429112434387207,
+        30.6271915435791
+      ],
+      "represented_world": [
+        3.92578125,
+        -3.84375,
+        30.62890625
+      ],
+      "fit_error": 0.0025355587556077246,
+      "original_local_fixed": [
+        -34,
+        522,
+        781
+      ],
+      "new_local_fixed": [
+        -223,
+        1209,
+        1005
+      ]
+    },
+    {
+      "index": 19,
+      "bone": "Bip01 L Clavicle",
+      "move_from_original": 2.470056741816129,
+      "original_world": [
+        2.828125,
+        -0.046875,
+        33.4765625
+      ],
+      "edited_world": [
+        3.5915045738220215,
+        -2.3795313835144043,
+        33.19881057739258
+      ],
+      "represented_world": [
+        3.58984375,
+        -2.37890625,
+        33.19921875
+      ],
+      "fit_error": 0.0018209153072219176,
+      "original_local_fixed": [
+        599,
+        -497,
+        -432
+      ],
+      "new_local_fixed": [
+        823,
+        -1058,
+        -626
+      ]
+    },
+    {
+      "index": 34,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 3.215723630174176,
+      "original_world": [
+        0.8359375,
+        -2.39453125,
+        30.46875
+      ],
+      "edited_world": [
+        1.3707256317138672,
+        -5.565104961395264,
+        30.517148971557617
+      ],
+      "represented_world": [
+        1.37109375,
+        -5.56640625,
+        30.51953125
+      ],
+      "fit_error": 0.002739363736790691,
+      "original_local_fixed": [
+        -159,
+        839,
+        214
+      ],
+      "new_local_fixed": [
+        -373,
+        1626,
+        351
+      ]
+    },
+    {
+      "index": 66,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 2.5080700246831222,
+      "original_world": [
+        -1.75390625,
+        -0.5703125,
+        33.625
+      ],
+      "edited_world": [
+        -1.6978039741516113,
+        -3.0602803230285645,
+        33.32948684692383
+      ],
+      "represented_world": [
+        -1.69921875,
+        -3.05859375,
+        33.328125
+      ],
+      "fit_error": 0.00258857998250104,
+      "original_local_fixed": [
+        750,
+        615,
+        -449
+      ],
+      "new_local_fixed": [
+        499,
+        1208,
+        -435
+      ]
+    },
+    {
+      "index": 67,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 3.1208175199325354,
+      "original_world": [
+        -1.11328125,
+        -2.19140625,
+        31.91796875
+      ],
+      "edited_world": [
+        -0.8793723583221436,
+        -5.300933361053467,
+        31.792949676513672
+      ],
+      "represented_world": [
+        -0.87890625,
+        -5.30078125,
+        31.79296875
+      ],
+      "fit_error": 0.0004906715178599301,
+      "original_local_fixed": [
+        213,
+        893,
+        -285
+      ],
+      "new_local_fixed": [
+        -40,
+        1651,
+        -225
+      ]
+    },
+    {
+      "index": 69,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 2.939371677263178,
+      "original_world": [
+        -0.859375,
+        -1.5703125,
+        29.62890625
+      ],
+      "edited_world": [
+        -0.5862734317779541,
+        -4.4931793212890625,
+        29.77780532836914
+      ],
+      "represented_world": [
+        -0.5859375,
+        -4.4921875,
+        29.77734375
+      ],
+      "fit_error": 0.0011443837729256396,
+      "original_local_fixed": [
+        -307,
+        576,
+        -220
+      ],
+      "new_local_fixed": [
+        -480,
+        1308,
+        -150
+      ]
+    },
+    {
+      "index": 70,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 3.1829420934503756,
+      "original_world": [
+        -0.83984375,
+        -2.39453125,
+        30.46875
+      ],
+      "edited_world": [
+        -0.5637273788452148,
+        -5.565104961395264,
+        30.517148971557617
+      ],
+      "represented_world": [
+        -0.5625,
+        -5.56640625,
+        30.51953125
+      ],
+      "fit_error": 0.002979104133718629,
+      "original_local_fixed": [
+        -159,
+        839,
+        -215
+      ],
+      "new_local_fixed": [
+        -373,
+        1626,
+        -144
+      ]
+    },
+    {
+      "index": 75,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 2.1536114992633024,
+      "original_world": [
+        -2.83203125,
+        1.0,
+        29.92578125
+      ],
+      "edited_world": [
+        -2.863426685333252,
+        -1.1503961086273193,
+        30.039154052734375
+      ],
+      "represented_world": [
+        -2.86328125,
+        -1.15234375,
+        30.0390625
+      ],
+      "fit_error": 0.001955208494229469,
+      "original_local_fixed": [
+        -50,
+        -37,
+        -725
+      ],
+      "new_local_fixed": [
+        -176,
+        502,
+        -733
+      ]
+    },
+    {
+      "index": 76,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 2.586303882374751,
+      "original_world": [
+        -2.3984375,
+        -0.43359375,
+        29.5546875
+      ],
+      "edited_world": [
+        -2.3629038333892822,
+        -3.014835834503174,
+        29.712467193603516
+      ],
+      "represented_world": [
+        -2.36328125,
+        -3.015625,
+        29.71484375
+      ],
+      "fit_error": 0.0025324387031273607,
+      "original_local_fixed": [
+        -244,
+        290,
+        -614
+      ],
+      "new_local_fixed": [
+        -390,
+        939,
+        -605
+      ]
+    },
+    {
+      "index": 77,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 2.960531947622386,
+      "original_world": [
+        -2.8515625,
+        -1.69140625,
+        31.5390625
+      ],
+      "edited_world": [
+        -2.885972499847412,
+        -4.650665760040283,
+        31.45938491821289
+      ],
+      "represented_world": [
+        -2.88671875,
+        -4.65234375,
+        31.4609375
+      ],
+      "fit_error": 0.002404797247339486,
+      "original_local_fixed": [
+        155,
+        742,
+        -730
+      ],
+      "new_local_fixed": [
+        -76,
+        1467,
+        -739
+      ]
+    },
+    {
+      "index": 78,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 3.0729752526427005,
+      "original_world": [
+        -2.2109375,
+        -2.06640625,
+        30.4921875
+      ],
+      "edited_world": [
+        -2.1464614868164062,
+        -5.13836669921875,
+        30.53778076171875
+      ],
+      "represented_world": [
+        -2.14453125,
+        -5.13671875,
+        30.5390625
+      ],
+      "fit_error": 0.0028433086038294497,
+      "original_local_fixed": [
+        -130,
+        760,
+        -566
+      ],
+      "new_local_fixed": [
+        -338,
+        1521,
+        -549
+      ]
+    },
+    {
+      "index": 79,
+      "bone": "Bip01 R Clavicle",
+      "move_from_original": 1.8546846970976025,
+      "original_world": [
+        -3.125,
+        1.5703125,
+        31.78125
+      ],
+      "edited_world": [
+        -3.280538320541382,
+        -0.27632105350494385,
+        31.70636558532715
+      ],
+      "represented_world": [
+        -3.28125,
+        -0.27734375,
+        31.70703125
+      ],
+      "fit_error": 0.0014126235271655924,
+      "original_local_fixed": [
+        747,
+        22,
+        710
+      ],
+      "new_local_fixed": [
+        804,
+        -428,
+        851
+      ]
+    },
+    {
+      "index": 80,
+      "bone": "Bip01 Spine1",
+      "move_from_original": 2.773580193330978,
+      "original_world": [
+        -3.0546875,
+        -1.0703125,
+        30.59375
+      ],
+      "edited_world": [
+        -3.1204519271850586,
+        -3.8429112434387207,
+        30.6271915435791
+      ],
+      "represented_world": [
+        -3.12109375,
+        -3.84375,
+        30.62890625
+      ],
+      "fit_error": 0.0020138687158647436,
+      "original_local_fixed": [
+        -34,
+        522,
+        -782
+      ],
+      "new_local_fixed": [
+        -223,
+        1209,
+        -799
+      ]
+    },
+    {
+      "index": 81,
+      "bone": "Bip01 R Clavicle",
+      "move_from_original": 2.3508389135952217,
+      "original_world": [
+        -2.84765625,
+        -0.04296875,
+        33.48828125
+      ],
+      "edited_world": [
+        -2.9603841304779053,
+        -2.374451160430908,
+        33.209129333496094
+      ],
+      "represented_world": [
+        -2.9609375,
+        -2.375,
+        33.2109375
+      ],
+      "fit_error": 0.0019689867461292793,
+      "original_local_fixed": [
+        602,
+        -497,
+        428
+      ],
+      "new_local_fixed": [
+        663,
+        -1051,
+        655
+      ]
+    }
+  ]
+}

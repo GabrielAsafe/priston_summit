@@ -1,0 +1,39 @@
+{
+  "tool": "PT_PIKEMAN_FREE_TOPOLOGY_VISUAL_WITNESS_G3_V1_3",
+  "profile_id": "pikeman_c01_m4",
+  "object": "TbmC03",
+  "source_counts": {
+    "vertices": 74,
+    "faces": 122
+  },
+  "output_counts": {
+    "vertices": 75,
+    "faces": 124
+  },
+  "source_face": 13,
+  "source_face_center": [
+    -0.7044270833333334,
+    4.49609375,
+    34.647135416666664
+  ],
+  "new_vertex": 74,
+  "new_vertex_position": [
+    -0.7044270833333334,
+    8.49609375,
+    34.647135416666664
+  ],
+  "new_vertex_bone": "Bip01 Spine1",
+  "spike_axis": "+Y",
+  "spike_distance": 4.0,
+  "material_id": 0,
+  "source_vertex_group_count": 11,
+  "output_vertex_group_count": 11,
+  "restored_weight_memberships": 74,
+  "old_vertex_weight_max_error": 0.0,
+  "uv_interpolated": true,
+  "vertex_group_schema_recreated": true,
+  "old_vertex_weights_preserved": true,
+  "new_vertex_rigid": true,
+  "client_modified": false,
+  "edit_check": "PASS"
+}

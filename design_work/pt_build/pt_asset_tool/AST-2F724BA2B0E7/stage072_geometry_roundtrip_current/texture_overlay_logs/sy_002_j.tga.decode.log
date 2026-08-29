@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=0085729a2636d52baf9849a407657ff024fd63ce9eb42b8be4be2d40c71c5fde
+output_sha256=0085729a2636d52baf9849a407657ff024fd63ce9eb42b8be4be2d40c71c5fde
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-2F724BA2B0E7/stage072_geometry_roundtrip_current/texture_overlay_client/field/quest/sy_002_j.tga
+format=TGA_STANDARD
+client_modified=False
+tga_decode_check=PASS

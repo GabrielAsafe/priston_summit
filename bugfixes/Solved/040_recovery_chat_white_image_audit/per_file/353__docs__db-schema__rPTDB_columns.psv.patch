@@ -1,0 +1,14 @@
+diff --git a/docs/db-schema/rPTDB_columns.psv b/docs/db-schema/rPTDB_columns.psv
+deleted file mode 100644
+index e221028..0000000
+--- a/docs/db-schema/rPTDB_columns.psv
++++ /dev/null
+@@ -1,8 +0,0 @@
+-DatabaseName|SchemaName|TableName|ColumnName|DataType|MaxLength|IsNullable|DefaultValue|OrdinalPosition
+-------------|----------|---------|----------|--------|---------|----------|------------|---------------
+-rPTDB|dbo|LevelList|CharName|varchar|50|YES||1
+-rPTDB|dbo|LevelList|CharLevel|int||YES||2
+-rPTDB|dbo|LevelList|CharClass|varchar|50|YES||3
+-rPTDB|dbo|LevelList|ID|int||YES||4
+-rPTDB|dbo|LevelList|ClanName|nvarchar|100|YES||5
+-rPTDB|dbo|LevelList|ExpChar|int||YES||6

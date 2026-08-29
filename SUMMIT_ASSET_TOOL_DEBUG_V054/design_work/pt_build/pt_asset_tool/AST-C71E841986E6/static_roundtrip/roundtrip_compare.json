@@ -1,0 +1,145 @@
+{
+  "tool": "PT_STATIC_ROUNDTRIP_COMPARE_V1",
+  "source": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/image/Sinimage/Items/DropItem/itWA104.smd",
+  "output": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-C71E841986E6/static_roundtrip/rebuilt_roundtrip.smd",
+  "source_sha256": "96abe290310b6917f48478077a08a89679fffe3ee2ef4ca503c18464596764a5",
+  "output_sha256": "f78161b28e37cf126e7bcc941dd606428f80d3ca1722a558fd46d06181c5bc60",
+  "target": "wa104",
+  "details": {
+    "source_counts": [
+      86,
+      146,
+      146
+    ],
+    "output_counts": [
+      86,
+      146,
+      146
+    ],
+    "face_uv_material_semantic_exact": true,
+    "source_animation_keys": [
+      0,
+      0,
+      0
+    ],
+    "output_animation_keys": [
+      0,
+      0,
+      0
+    ],
+    "source_physique": false,
+    "output_physique": false,
+    "witness_reported_vertices": [
+      1,
+      2,
+      3
+    ],
+    "expected_changed_vertices": [
+      1,
+      2,
+      3
+    ],
+    "actual_changed_vertices": [
+      1,
+      2,
+      3
+    ],
+    "changed_vertex_deltas": [
+      {
+        "vertex": 1,
+        "source_fixed": [
+          0,
+          94,
+          -1789
+        ],
+        "output_fixed": [
+          17,
+          74,
+          -2563
+        ],
+        "delta_fixed": [
+          17,
+          -20,
+          -774
+        ],
+        "delta_units": [
+          0.0664062,
+          -0.078125,
+          -3.0234375
+        ]
+      },
+      {
+        "vertex": 2,
+        "source_fixed": [
+          156,
+          251,
+          -1789
+        ],
+        "output_fixed": [
+          192,
+          251,
+          -2563
+        ],
+        "delta_fixed": [
+          36,
+          0,
+          -774
+        ],
+        "delta_units": [
+          0.140625,
+          0.0,
+          -3.0234375
+        ]
+      },
+      {
+        "vertex": 3,
+        "source_fixed": [
+          0,
+          408,
+          -1789
+        ],
+        "output_fixed": [
+          17,
+          427,
+          -2563
+        ],
+        "delta_fixed": [
+          17,
+          19,
+          -774
+        ],
+        "delta_units": [
+          0.0664062,
+          0.0742188,
+          -3.0234375
+        ]
+      }
+    ],
+    "witness_source_mismatch": [],
+    "wrong_changed_positions": [],
+    "untouched_wrong_vertices": [],
+    "allowed_xyz_byte_ranges": [
+      [
+        3311,
+        3323
+      ],
+      [
+        3335,
+        3347
+      ],
+      [
+        3359,
+        3371
+      ]
+    ],
+    "diff_byte_count": 11,
+    "diff_bytes_outside_witness_xyz": [],
+    "non_xyz_bytes_byte_identical": true
+  },
+  "non_target_changed": [],
+  "errors": [],
+  "byte_identical": false,
+  "intentional_geometry_edit": true,
+  "client_modified": false,
+  "check": "PASS"
+}

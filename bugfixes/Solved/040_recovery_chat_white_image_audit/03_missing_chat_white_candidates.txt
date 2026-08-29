@@ -1,0 +1,11 @@
+=== STILL MISSING / DIVERGED FROM PRE-RESET RECOVERY ===
+
+[027] score=350 APPLY_CLEAN            hunks=  1 +3433/-3433 SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp
+[016] score=310 APPLY_CLEAN            hunks=  1 +0/-5240 SourceCode/SrcGame/src/Winmain.bak2.cpp
+[026] score=310 APPLY_CLEAN            hunks=  1 +798/-600 SourceCode/SrcGame/src/sinbaram/sinHelpPet.cpp
+[017] score=280 CONFLICT_OR_DIVERGED   hunks= 25 +55/-55 SourceCode/SrcGame/src/Winmain.cpp
+[018] score=270 CONFLICT_OR_DIVERGED   hunks=  8 +133/-23 SourceCode/SrcGame/src/cSettingsWindow.cpp
+[015] score=255 APPLY_CLEAN            hunks=  1 +239/-236 SourceCode/SrcGame/src/UIList.cpp
+[030] score=255 CONFLICT_OR_DIVERGED   hunks=  1 +3451/-3436 SourceCode/SrcGame/src/smLib3d/smRead3d.cpp
+[013] score=235 APPLY_CLEAN            hunks=  1 +11/-0 SourceCode/SrcGame/src/Settings/Settings.cpp
+[011] score=190 APPLY_CLEAN            hunks=  1 +1093/-956 SourceCode/SrcGame/src/HoBaram/LowLevelPetSystem.cpp

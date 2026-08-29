@@ -1,0 +1,92 @@
+===== /home/gabriel/Transferências/summit_pre_reset_restored_20260824/SourceCode/SrcServer/src/character.cpp :: smPATTERN::LoadCharactor :: occurrence 1 :: lines 487-577 =====
+   487: {
+   488: 	int cnt;
+   489: 
+   490: 	for(cnt = 0; cnt < DPAT_MAX; cnt++)
+   491: 	{
+   492: 		if(DinaPat[cnt].Pat == 0)
+   493: 			return cnt;
+   494: 	}
+   495: 
+   496: 	return -1;
+   497: }
+   498: 
+   499: 
+   500: smDPAT *smPATTERN::LoadBipPattern(char *szFileName)
+   501: {
+   502: 	DWORD dwCode = GetSpeedSum(szFileName);
+   503: 	int Num = FindFromCode(dwCode);
+   504: 
+   505: 	if(Num < 0)
+   506: 	{
+   507: 
+   508: 
+   509: 		Num = GetNew();
+   510: 		if(Num >= 0)
+   511: 		{
+   512: 			DinaPat[Num].Pat = smASE_ReadBone(szFileName);
+   513: 			if(DinaPat[Num].Pat)
+   514: 			{
+   515: 				DinaPat[Num].smDinaLink = 0;
+   516: 				strcpy_s(DinaPat[Num].szPatName, szFileName);
+   517: 				DinaPat[Num].dwSpeedFindSum = dwCode;
+   518: 				DinaPat[Num].UseCount = 1;
+   519: 				return &DinaPat[Num];
+   520: 			}
+   521: 		}
+   522: 		else
+   523: 			return NULL;
+   524: 	}
+   525: 
+   526: 	DinaPat[Num].UseCount++;
+   527: 
+   528: 	return &DinaPat[Num];
+   529: }
+   530: 
+   531: 
+   532: smDPAT *smPATTERN::LoadCharactor(char *szFileName)
+   533: {
+   534: 	int Num, sframe;
+   535: 	DWORD cnt;
+   536: 	smDPAT *dMotionPat;
+   537: 	smPAT3D	*AnimPat;
+   538: 	smMODELINFO	modelInfo;
+   539: 
+   540: 
+   541: 	DWORD dwCode = GetSpeedSum(szFileName);
+   542: 	Num = FindFromCode(dwCode);
+   543: 
+   544: 	if(Num < 0)
+   545: 	{
+   546: 		if(smModelDecode(szFileName, &modelInfo) == NULL)
+   547: 			return NULL;
+   548: 
+   549: 
+   550: 
+   551: 		smASE_SetPhysique(0);
+   552: 
+   553: 		Num = GetNew();
+   554: 
+   555: 		if(Num < 0)
+   556: 			return NULL;
+   557: 
+   558: 		if(BipPattern && modelInfo.szMotionFile[0])
+   559: 		{
+   560: 			dMotionPat = BipPattern->LoadBipPattern(modelInfo.szMotionFile);
+   561: 			if(dMotionPat)
+   562: 			{
+   563: 				smASE_SetPhysique(dMotionPat->Pat);
+   564: 				DinaPat[Num].smDinaLink = dMotionPat;
+   565: 			}
+   566: 			else
+   567: 				return NULL;
+   568: 		}
+   569: 		else
+   570: 			DinaPat[Num].smDinaLink = 0;
+   571: 
+   572: 
+   573: 
+   574: 		if(BipPattern && modelInfo.szTalkMotionFile[0])
+   575: 		{
+   576: 			smDPAT *lpTalkLink = BipPattern->LoadBipPattern(modelInfo.szTalkMotionFile);
+   577: 			if(lpTalkLink)

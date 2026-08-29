@@ -1,0 +1,94 @@
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/character.cpp:1000:		smChar->Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/character.cpp:934:	smBipPattern.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/character.cpp:935:	smPattern.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/character.cpp:9378:	smRender.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/FullZoomMap.cpp:960:		MapStage.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/FullZoomMap.cpp:996:				MapStage.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoEffect.cpp:12024:	InterfaceParty.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:1269:		UserCharacter[index].Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:1272:		JobCharacter[index].Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:1911:			UserCharacter[index].Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:2442:				UserCharacter[MouseDownCharacterNum].Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:580:	QuitButton.Init("StartImage//login//CharSelect//Bt_exit.tga", 128, 32);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:780:			UserCharacter[index].Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:862:		JobCharacter[JobCharacterCount].Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:934:			JobCharacter[index].Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoParty.cpp:556:	InterfaceParty_KTJ.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Park/HoMessageBox.cpp:2669:	ChatMessage.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinMain.cpp:36:	cSkill.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinMain.cpp:37:	cInvenTory.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinMain.cpp:39:	cInterFace.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinMain.cpp:40:	cShop.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinMain.cpp:41:	cTrade.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinMain.cpp:49:	cCoinShop_T.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinMain.cpp:50:	cCoinShop.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinMain.cpp:51:	cQuestWindow.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinMain.cpp:57:	cSettings.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinMain.cpp:75:	cMixGuide::GetInstance()->Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinMain.cpp:77:	ClanCustom::GetInstance()->Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chatlist.cpp:1483:		tscr_CL.Init(0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chatlist.cpp:1508:			tscr_CL.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chatlist.cpp:1509:			tscr_CL.Init(ChatList_menuPos[nMenuPos].top,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chatlist.cpp:1810:		tscr_CL.Init(0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chatlist.cpp:1835:			tscr_CL.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chatlist.cpp:1836:			tscr_CL.Init(ChatList_menuPos[nMenuPos].top,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chatlist.cpp:965:						micInit = cmicvol.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chip.cpp:3059:				tscr.Init(0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chip.cpp:3835:			tscr.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chip.cpp:3836:			tscr.Init(menuPos[nIconCount].top,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chip.cpp:4883:			tscr.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chip.cpp:4884:			tscr.Init(menuPos[nIconCount].top,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chip.cpp:5037:			tscr.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chip.cpp:5038:			tscr.Init(menuPos[nIconCount].top,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chip.cpp:5887:		tscr.Init(0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chip.cpp:5910:			tscr.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chip.cpp:5911:			tscr.Init(menuPos[nIconPos].top,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chip.cpp:6029:			tscr.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_chip.cpp:6030:			tscr.Init(menuPos[nIconPos].top,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_user.cpp:1191:				tscr.Init(0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_user.cpp:2525:		tscr.Init(0);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_user.cpp:2547:			tscr.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_user.cpp:2548:			tscr.Init(menuPos[nIconPos].top,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_user.cpp:2656:			tscr.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/cE_user.cpp:2657:			tscr.Init(menuPos[nIconPos].top,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/GuideHelp.cpp:123:	GuideImage->Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/GuideHelp.cpp:818:			tscr_Guide.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/GuideHelp.cpp:819:			tscr_Guide.Init(menuPos[nScrollPos].top,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/GuideHelp.cpp:940:			tscr_Guide.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/GuideHelp.cpp:941:			tscr_Guide.Init(menuPos[nScrollPos].top,
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/Help.cpp:464:	GuideImage->Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1285:	MINGW_ClanTrace("CLAN_MENU::Init CALL 03 BEFORE [cIsClanMember.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1286:	cIsClanMember.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1287:	MINGW_ClanTrace("CLAN_MENU::Init CALL 03 AFTER [cIsClanMember.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1295:	MINGW_ClanTrace("CLAN_MENU::Init CALL 06 BEFORE [cClanChip.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1296:	cClanChip.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1297:	MINGW_ClanTrace("CLAN_MENU::Init CALL 06 AFTER [cClanChip.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1308:	MINGW_ClanTrace("CLAN_MENU::Init CALL 10 BEFORE [cClanUser.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1309:	cClanUser.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1310:	MINGW_ClanTrace("CLAN_MENU::Init CALL 10 AFTER [cClanUser.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1321:	MINGW_ClanTrace("CLAN_MENU::Init CALL 14 BEFORE [cClanMake.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1322:	cClanMake.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1323:	MINGW_ClanTrace("CLAN_MENU::Init CALL 14 AFTER [cClanMake.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1331:	MINGW_ClanTrace("CLAN_MENU::Init CALL 17 BEFORE [cClanReport.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1332:	cClanReport.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1333:	MINGW_ClanTrace("CLAN_MENU::Init CALL 17 AFTER [cClanReport.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1342:	MINGW_ClanTrace("CLAN_MENU::Init CALL 20 BEFORE [cClanChatting.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1343:	cClanChatting.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1344:	MINGW_ClanTrace("CLAN_MENU::Init CALL 20 AFTER [cClanChatting.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1356:	MINGW_ClanTrace("CLAN_MENU::Init CALL 24 BEFORE [cClanDeleteCha.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1357:	cClanDeleteCha.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1358:	MINGW_ClanTrace("CLAN_MENU::Init CALL 24 AFTER [cClanDeleteCha.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1366:	MINGW_ClanTrace("CLAN_MENU::Init CALL 27 BEFORE [cClanJoin.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1367:	cClanJoin.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1368:	MINGW_ClanTrace("CLAN_MENU::Init CALL 27 AFTER [cClanJoin.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1377:	MINGW_ClanTrace("CLAN_MENU::Init CALL 30 BEFORE [cClanNotice.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1378:	cClanNotice.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1379:	MINGW_ClanTrace("CLAN_MENU::Init CALL 30 AFTER [cClanNotice.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1393:	MINGW_ClanTrace("CLAN_MENU::Init CALL 33 BEFORE [g_GuideHelp.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1394:	g_GuideHelp.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1395:	MINGW_ClanTrace("CLAN_MENU::Init CALL 33 AFTER [g_GuideHelp.Init(1);]");
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1420:	cClanNotice.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:1427:	g_GuideHelp.Init(1);
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/TJBOY/clanmenu/tjclan.cpp:517:		g_CtrlProcess.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.bak2.cpp:3613:		cSettings.Init();
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Winmain.cpp:3746:		cSettings.Init();

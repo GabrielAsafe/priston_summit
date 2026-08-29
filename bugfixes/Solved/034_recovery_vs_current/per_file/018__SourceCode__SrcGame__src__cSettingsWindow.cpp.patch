@@ -1,0 +1,286 @@
+diff --git a/SourceCode/SrcGame/src/cSettingsWindow.cpp b/SourceCode/SrcGame/src/cSettingsWindow.cpp
+index 724df9f..a95e5a5 100644
+--- a/SourceCode/SrcGame/src/cSettingsWindow.cpp
++++ b/SourceCode/SrcGame/src/cSettingsWindow.cpp
+@@ -5,6 +5,18 @@
+ 
+ cSettingsWindow cSettings;
+ 
++// MINGW_SETTINGS_OPEN_TRACE_V1
++static void MingwSettingsOpenTrace(const char *msg)
++{
++	FILE *f = fopen("LOGS\\mingw_csettings_open.txt", "a");
++	if(f)
++	{
++		fprintf(f, "%s\n", msg);
++		fclose(f);
++	}
++}
++
++
+ cSettingsWindow::~cSettingsWindow()
+ {
+ 	if (pWindow1)
+@@ -13,39 +25,39 @@ cSettingsWindow::~cSettingsWindow()
+ 
+ void cSettingsWindow::Init()
+ {
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"ENTER cSettingsWindow::Init pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"ENTER cSettingsWindow::Init pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
+ 
+ 	ClearLoadedImages();
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after ClearLoadedImages\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after ClearLoadedImages\n"); fclose(f);} }
+ 
+ 	if (pWindow1)
+ 	{
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before delete pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before delete pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
+ 		delete pWindow1;
+ 		pWindow1 = 0;
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after delete pWindow1\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after delete pWindow1\n"); fclose(f);} }
+ 	}
+ 
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindow1\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindow1\n"); fclose(f);} }
+ 	BuildWindow1();
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindow1 pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindow1 pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
+ 
+ 	if (pWindow1)
+ 	{
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowVideo\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowVideo\n"); fclose(f);} }
+ 		BuildWindowVideo();
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowVideo\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowVideo\n"); fclose(f);} }
+ 
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowAudio\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowAudio\n"); fclose(f);} }
+ 		BuildWindowAudio();
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowAudio\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowAudio\n"); fclose(f);} }
+ 
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowGeneral\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowGeneral\n"); fclose(f);} }
+ 		BuildWindowGeneral();
+-		{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowGeneral\n"); fclose(f);} }
++		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowGeneral\n"); fclose(f);} }
+ 	}
+ 
+-	{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"LEAVE cSettingsWindow::Init\n"); fclose(f);} }
++	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"LEAVE cSettingsWindow::Init\n"); fclose(f);} }
+ }
+ 
+ void cSettingsWindow::Draw()
+@@ -56,7 +68,17 @@ void cSettingsWindow::Draw()
+ 	BaseX = (WinSizeX - 560) / 2;
+ 	BaseY = (WinSizeY - 450) / 2;
+ 
++	static int MingwSettingsDrawTraceCount = 0;
++
++	if(MingwSettingsDrawTraceCount < 8)
++		MingwSettingsOpenTrace("[DRAW_BEFORE_RENDER]");
++
+ 	pWindow1->Render(BaseX, BaseY, WinSizeX, WinSizeY, 0, 0);
++
++	if(MingwSettingsDrawTraceCount < 8)
++		MingwSettingsOpenTrace("[DRAW_AFTER_RENDER]");
++
++	MingwSettingsDrawTraceCount++;
+ }
+ 
+ bool cSettingsWindow::LButtonDown()
+@@ -111,8 +133,20 @@ void cSettingsWindow::OnKeyDown(char Code)
+ 
+ void cSettingsWindow::Open()
+ {
++	MingwSettingsOpenTrace("[OPEN_ENTER]");
++
++	if(!pWindow1)
++	{
++		MingwSettingsOpenTrace("[OPEN_NULL_PWINDOW1]");
++		return;
++	}
++
++	MingwSettingsOpenTrace("[OPEN_BEFORE_LOADSETTINGS]");
+ 	LoadSettings();
++	MingwSettingsOpenTrace("[OPEN_AFTER_LOADSETTINGS]");
++
+ 	pWindow1->show();
++	MingwSettingsOpenTrace("[OPEN_AFTER_SHOW]");
+ }
+ 
+ void cSettingsWindow::Close()
+@@ -479,7 +513,7 @@ void cSettingsWindow::BuildWindowGeneral()
+ 				pKeyBoard->setY(pTitle3->getY() + (pTitle3->getHeight() - pKeyBoard->getHeight()) / 2);
+ 				pWindowGeneral->AddElement(pKeyBoard);
+ 
+-				{ FILE *f=fopen("mingw_csettings_init.txt","a"); if(f){ fprintf(f,"TEMP skip macro UIInput block before CTRL+F1\n"); fclose(f);} }
++				{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"TEMP skip macro UIInput block before CTRL+F1\n"); fclose(f);} }
+ 				return;
+ 
+ 				iY = pWindowGeneral->getMaxY() + 10;
+@@ -561,62 +595,135 @@ void cSettingsWindow::BuildWindowGeneral()
+ 
+ void cSettingsWindow::LoadSettings()
+ {
++	MingwSettingsOpenTrace("[LOAD_ENTER]");
++
+ 	auto pListBox = pWindow1->GetElement<UIListBox>(OBJID_TabList);
+ 
++	MingwSettingsOpenTrace(pListBox ? "[LOAD_TABLIST_OK]" : "[LOAD_TABLIST_NULL]");
++
+ 	if (pListBox)
+ 	{
+ 		pListBox->selectItem(OBJID_TabVideo);
+ 
++		MingwSettingsOpenTrace("[LOAD_BEFORE_VIDEO]");
++
++		// MINGW_SETTINGS_VIDEO_GRANULAR_TRACE_V1
++		MingwSettingsOpenTrace("[VIDEO_01_BEFORE_GET_TAB]");
+ 		auto pTabVideo = pListBox->GetListItem<UIListItem>(OBJID_TabVideo);
++		MingwSettingsOpenTrace(pTabVideo ? "[VIDEO_02_TAB_OK]" : "[VIDEO_02_TAB_NULL]");
+ 		if (pTabVideo)
+ 		{
++			MingwSettingsOpenTrace("[VIDEO_03_BEFORE_GET_WINDOW]");
+ 			auto pWindowVideo = pTabVideo->GetElement<UIWindow>(OBJID_WindowVideo);
++			MingwSettingsOpenTrace(pWindowVideo ? "[VIDEO_04_WINDOW_OK]" : "[VIDEO_04_WINDOW_NULL]");
+ 			if (pWindowVideo)
+ 			{
++				MingwSettingsOpenTrace("[VIDEO_05_BEFORE_GET_SCREENLIST]");
+ 				auto pScreenList = pWindowVideo->GetElement<UIListBox>(OBJID_ScreenList);
++				MingwSettingsOpenTrace(pScreenList ? "[VIDEO_06_SCREENLIST_OK]" : "[VIDEO_06_SCREENLIST_NULL]");
+ 				if (pScreenList)
+-					pScreenList->selectItem(SETTINGSHANDLER->getWindowMode() ? OBJID_OFFBox : OBJID_ONBox);
++				{
++					MingwSettingsOpenTrace("[VIDEO_07_BEFORE_WINDOWMODE]");
++					int v = SETTINGSHANDLER->getWindowMode();
++					MingwSettingsOpenTrace("[VIDEO_08_AFTER_WINDOWMODE]");
++					pScreenList->selectItem(v ? OBJID_OFFBox : OBJID_ONBox);
++					MingwSettingsOpenTrace("[VIDEO_09_AFTER_SCREEN_SELECT]");
++				}
+ 
++				MingwSettingsOpenTrace("[VIDEO_10_BEFORE_STARTMAX]");
+ 				auto pStartMaximized = pWindowVideo->GetElement<UICheckbox>(OBJID_StartMaximized);
+ 				if (pStartMaximized)
+-					pStartMaximized->setSelected(SETTINGSHANDLER->getStartMaximized());
++				{
++					int v = SETTINGSHANDLER->getStartMaximized();
++					MingwSettingsOpenTrace("[VIDEO_11_STARTMAX_VALUE_OK]");
++					pStartMaximized->setSelected(v);
++				}
++				MingwSettingsOpenTrace("[VIDEO_12_AFTER_STARTMAX]");
+ 
++				MingwSettingsOpenTrace("[VIDEO_13_BEFORE_AUTOADJUST]");
+ 				auto pAutoAdjust = pWindowVideo->GetElement<UICheckbox>(OBJID_AutoAdjust);
+ 				if (pAutoAdjust)
+-					pAutoAdjust->setSelected(SETTINGSHANDLER->getAutoAdjust());
++				{
++					int v = SETTINGSHANDLER->getAutoAdjust();
++					MingwSettingsOpenTrace("[VIDEO_14_AUTOADJUST_VALUE_OK]");
++					pAutoAdjust->setSelected(v);
++				}
++				MingwSettingsOpenTrace("[VIDEO_15_AFTER_AUTOADJUST]");
+ 
++				MingwSettingsOpenTrace("[VIDEO_16_BEFORE_RATIOLIST]");
+ 				auto pRatioList = pWindowVideo->GetElement<UIListBox>(OBJID_RatioList);
++				MingwSettingsOpenTrace(pRatioList ? "[VIDEO_17_RATIOLIST_OK]" : "[VIDEO_17_RATIOLIST_NULL]");
+ 				if (pRatioList)
+ 				{
+-					pRatioList->selectItem(SETTINGSHANDLER->getRatio());
++					MingwSettingsOpenTrace("[VIDEO_18_BEFORE_GET_RATIO]");
++					int vRatio = SETTINGSHANDLER->getRatio();
++					MingwSettingsOpenTrace("[VIDEO_19_AFTER_GET_RATIO]");
++
++					pRatioList->selectItem(vRatio);
++					MingwSettingsOpenTrace("[VIDEO_20_AFTER_RATIO_SELECT]");
+ 
+ 					auto pSelectedRatio = pRatioList->getSelectedItem();
++					MingwSettingsOpenTrace(pSelectedRatio ? "[VIDEO_21_RATIO_SELECTED_OK]" : "[VIDEO_21_RATIO_SELECTED_NULL]");
++
+ 					if (pSelectedRatio)
+ 					{
++						MingwSettingsOpenTrace("[VIDEO_22_BEFORE_GET_RESLIST]");
+ 						auto pResolutionList = pSelectedRatio->GetElement<UIListBox>(OBJID_ResolutionList);
++						MingwSettingsOpenTrace(pResolutionList ? "[VIDEO_23_RESLIST_OK]" : "[VIDEO_23_RESLIST_NULL]");
++
+ 						if (pResolutionList)
+-							pResolutionList->selectItem(SETTINGSHANDLER->getResolution());
++						{
++							int vResolution = SETTINGSHANDLER->getResolution();
++							MingwSettingsOpenTrace("[VIDEO_24_RESOLUTION_VALUE_OK]");
++							pResolutionList->selectItem(vResolution);
++							MingwSettingsOpenTrace("[VIDEO_25_AFTER_RES_SELECT]");
++						}
+ 					}
+ 				}
+ 
++				MingwSettingsOpenTrace("[VIDEO_26_BEFORE_TEXTURE]");
+ 				auto pTextureList = pWindowVideo->GetElement<UIListBox>(OBJID_TextureList);
+ 				if (pTextureList)
+-					pTextureList->selectItem(SETTINGSHANDLER->getTextureQuality() == 1 ? OBJID_ONBox : OBJID_OFFBox);
++				{
++					int v = SETTINGSHANDLER->getTextureQuality();
++					MingwSettingsOpenTrace("[VIDEO_27_TEXTURE_VALUE_OK]");
++					pTextureList->selectItem(v == 1 ? OBJID_ONBox : OBJID_OFFBox);
++				}
++				MingwSettingsOpenTrace("[VIDEO_28_AFTER_TEXTURE]");
+ 
++				MingwSettingsOpenTrace("[VIDEO_29_BEFORE_BITDEPTH]");
+ 				auto pBitList = pWindowVideo->GetElement<UIListBox>(OBJID_BitList);
+ 				if (pBitList)
+-					pBitList->selectItem(SETTINGSHANDLER->getBitDepth());
++				{
++					int v = SETTINGSHANDLER->getBitDepth();
++					MingwSettingsOpenTrace("[VIDEO_30_BITDEPTH_VALUE_OK]");
++					pBitList->selectItem(v);
++				}
++				MingwSettingsOpenTrace("[VIDEO_31_AFTER_BITDEPTH]");
+ 
++				MingwSettingsOpenTrace("[VIDEO_32_BEFORE_CAMERA]");
+ 				auto pCameraList = pWindowVideo->GetElement<UIListBox>(OBJID_CameraList);
+ 				if (pCameraList)
+-					pCameraList->selectItem(SETTINGSHANDLER->getSight() ? OBJID_ONBox : OBJID_OFFBox);
++				{
++					int v = SETTINGSHANDLER->getSight();
++					MingwSettingsOpenTrace("[VIDEO_33_CAMERA_VALUE_OK]");
++					pCameraList->selectItem(v ? OBJID_ONBox : OBJID_OFFBox);
++				}
++				MingwSettingsOpenTrace("[VIDEO_34_AFTER_CAMERA]");
+ 
++				MingwSettingsOpenTrace("[VIDEO_35_BEFORE_INVERTED]");
+ 				auto pInvertedList = pWindowVideo->GetElement<UIListBox>(OBJID_InvertedList);
+ 				if (pInvertedList)
+-					pInvertedList->selectItem(SETTINGSHANDLER->getCamInv() ? OBJID_ONBox : OBJID_OFFBox);
++				{
++					int v = SETTINGSHANDLER->getCamInv();
++					MingwSettingsOpenTrace("[VIDEO_36_INVERTED_VALUE_OK]");
++					pInvertedList->selectItem(v ? OBJID_ONBox : OBJID_OFFBox);
++				}
++				MingwSettingsOpenTrace("[VIDEO_37_AFTER_INVERTED]");
+ 			}
+ 		}
+ 
++		MingwSettingsOpenTrace("[LOAD_AFTER_VIDEO_BEFORE_AUDIO]");
+ 		auto pTabAudio = pListBox->GetListItem<UIListItem>(OBJID_TabAudio);
+ 		if (pTabAudio)
+ 		{
+@@ -649,6 +756,7 @@ void cSettingsWindow::LoadSettings()
+ 			}
+ 		}
+ 
++		MingwSettingsOpenTrace("[LOAD_AFTER_AUDIO_BEFORE_GENERAL]");
+ 		auto pTabGeneral = pListBox->GetListItem<UIListItem>(OBJID_TabGeneral);
+ 		if (pTabGeneral)
+ 		{
+@@ -780,6 +888,8 @@ void cSettingsWindow::LoadSettings()
+ 			}
+ 		}
+ 	}
++
++	MingwSettingsOpenTrace("[LOAD_END]");
+ }
+ 
+ void cSettingsWindow::ResetSettings()

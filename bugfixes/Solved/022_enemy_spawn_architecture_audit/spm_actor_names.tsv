@@ -1,0 +1,256 @@
+file	line	token	actor_hex	actor_decoded
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/HeartOfFire.ase.spm	11	ASCII	4974656e7320313635	Itens 165
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/boss.ase.spm	10	CP949	4e657661736361	Nevasca
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/boss.ase.spm	11	CP949	436f6e6a757261646f7261	Conjuradora
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/boss.ase.spm	12	CP949	54617274617275676120426c696e64616461	Tartaruga Blindada
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/boss.ase.spm	13	CP949	47656c6f	Gelo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/boss.ase.spm	14	CP949	476f6c656d2064652047656c6f	Golem de Gelo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/boss.ase.spm	15	CP949	5061737361726f2044656d6f6e6961636f	Passaro Demoniaco
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/boss.ase.spm	16	CP949	4d69737469636f	Mistico
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/boss.ase.spm	17	CP949	47756572726569726f204369636c6f7065	Guerreiro Ciclope
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/boss.ase.spm	19	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dcave.ase.spm	10	CP949	436176616c6569726f204e6567726f	Cavaleiro Negro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dcave.ase.spm	11	CP949	436172616d756a6f20457370696e686f736f	Caramujo Espinhoso
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dcave.ase.spm	12	CP949	5065736164656c6f	Pesadelo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dcave.ase.spm	13	CP949	4272757861	Bruxa
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dcave.ase.spm	14	CP949	4475656e64652047756572726569726f	Duende Guerreiro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dcave.ase.spm	15	CP949	476f6c656d206465205065647261	Golem de Pedra
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dcave.ase.spm	16	CP949	477561726469616f206465204c616d61	Guardiao de Lama
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dcave.ase.spm	17	CP949	477561726469616f204d616c6469746f	Guardiao Maldito
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-1.ase.spm	10	CP949	426172676f6e	Bargon
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-1.ase.spm	11	CP949	42756d61	Buma
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-1.ase.spm	12	CP949	47686f756c	Ghoul
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-1.ase.spm	13	CP949	43726970746f	Cripto
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-1.ase.spm	14	CP949	417271756569726f20646f204d616c	Arqueiro do Mal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-1.ase.spm	15	CP949	4265736f75726f20426c696e6461646f	Besouro Blindado
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-1.ase.spm	16	CP949	433f6c6f7065	C?lope
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-2.ase.spm	10	CP949	426172676f6e	Bargon
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-2.ase.spm	11	CP949	50617472756c686569726f20646f204d616c	Patrulheiro do Mal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-2.ase.spm	12	CP949	4465636170697461646f72	Decapitador
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-2.ase.spm	13	CP949	5469743f	Tit?
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-2.ase.spm	14	CP949	4475656e6465204c3f6572	Duende L?er
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-2.ase.spm	15	CP949	436176616c6569726f20433f6c6f7065	Cavaleiro C?lope
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-3.ase.spm	10	CP949	50617472756c686569726f20646f204d616c	Patrulheiro do Mal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-3.ase.spm	11	CP949	43656e746175726f2d53	Centauro-S
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-3.ase.spm	12	CP949	47726976656e	Griven
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-3.ase.spm	13	CP949	4465636170697461646f72	Decapitador
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-3.ase.spm	14	CP949	436176616c6569726f20433f6c6f7065	Cavaleiro C?lope
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-3.ase.spm	15	CP949	5469743f	Tit?
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-4.ase.spm	11	CP949	476967616e7465206465205065647261	Gigante de Pedra
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-4.ase.spm	12	CP949	476f6c656d206465204172656961	Golem de Areia
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-4.ase.spm	13	CP949	43726970746f	Cripto
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-4.ase.spm	14	CP949	43656e746175726f2d4c	Centauro-L
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-4.ase.spm	15	CP949	4361726e69636569726f	Carniceiro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/de-4.ase.spm	16	CP949	4669676f6e	Figon
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-1.ase.spm	11	CP949	45737175656c65746f20646f204d616c	Esqueleto do Mal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-1.ase.spm	12	CP949	47756572726569726f20646f204d616c	Guerreiro do Mal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-1.ase.spm	14	CP949	47686f756c	Ghoul
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-1.ase.spm	15	CP949	4465636170697461646f72	Decapitador
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-1.ase.spm	16	CP949	42756d61	Buma
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-2.ase.spm	10	CP949	50617472756c686569726f20646f204d616c	Patrulheiro do Mal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-2.ase.spm	11	CP949	436176616c6569726f20646f204d616c	Cavaleiro do Mal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-2.ase.spm	12	CP949	4465636170697461646f72	Decapitador
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-2.ase.spm	13	CP949	4361726e69636569726f	Carniceiro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-2.ase.spm	14	CP949	4d3f6961	M?ia
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-3.ase.spm	10	CP949	4361726e69636569726f	Carniceiro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-3.ase.spm	11	CP949	52656920486f7069	Rei Hopi
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-3.ase.spm	12	CP949	4669676f6e	Figon
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-3.ase.spm	13	CP949	436176616c6569726f2046616e7461736d61	Cavaleiro Fantasma
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-3.ase.spm	14	CP949	436176616c6569726f20646f204d616c	Cavaleiro do Mal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-3.ase.spm	15	CP949	4d3f6961	M?ia
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-3.ase.spm	17	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-4.ase.spm	10	CP949	4e617a	Naz
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-4.ase.spm	11	CP949	4361726e69636569726f	Carniceiro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-4.ase.spm	12	CP949	5374796769616e	Stygian
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-4.ase.spm	13	CP949	4461776c696e	Dawlin
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-4.ase.spm	14	CP949	4c6f7264652043656e746175726f	Lorde Centauro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-4.ase.spm	15	CP949	536f6d627261	Sombra
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-4.ase.spm	16	CP949	5375636375627573	Succubus
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-4.ase.spm	17	CP949	546970686f6f6e	Tiphoon
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-4.ase.spm	18	CP949	48756e6b69	Hunki
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-4.ase.spm	19	CP949	4c3f696e61	L?ina
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-5.ase.spm	10	CP949	4475736b	Dusk
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-5.ase.spm	11	CP949	4461776c696e	Dawlin
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-5.ase.spm	12	CP949	496e6375627573	Incubus
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-5.ase.spm	13	CP949	536f6d627261	Sombra
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-5.ase.spm	14	CP949	5261746f6f	Ratoo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-5.ase.spm	15	CP949	4f6d6963726f6e	Omicron
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-5.ase.spm	16	CP949	457370656374726f204e6567726f	Espectro Negro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-5.ase.spm	17	CP949	4c3f696e61	L?ina
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-6a.ase.spm	10	CP949	4e696b656e	Niken
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-6a.ase.spm	11	CP949	496d697461646f72	Imitador
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-6a.ase.spm	12	CP949	496e6375627573	Incubus
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-6a.ase.spm	13	CP949	4d6f726365676f204d7574616e7465	Morcego Mutante
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-6a.ase.spm	14	CP949	5261746f6f	Ratoo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-6a.ase.spm	15	CP949	48657374	Hest
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-6a.ase.spm	16	CP949	457370656374726f204e6567726f	Espectro Negro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-6a.ase.spm	17	CP949	4c3f696e61	L?ina
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-6a.ase.spm	18	CP949	4475656e64652058616d61	Duende Xama
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-6a.ase.spm	20	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-7.ase.spm	10	CP949	4c757461646f72206461732043696e7a6173	Lutador das Cinzas
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-7.ase.spm	11	CP949	50696b65206461732043696e7a6173	Pike das Cinzas
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-7.ase.spm	12	CP949	4172717565697261206461732043696e7a6173	Arqueira das Cinzas
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-7.ase.spm	13	CP949	45737175656c65746f2064652052656920486f7069	Esqueleto de Rei Hopi
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-7.ase.spm	14	CP949	4d6563616e69636f206461732043696e7a6173	Mecanico das Cinzas
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-7.ase.spm	15	CP949	476f6c656d20526f626f	Golem Robo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-7.ase.spm	17	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-8.ase.spm	10	CP949	436176616c6569726f206461732043696e7a6173	Cavaleiro das Cinzas
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-8.ase.spm	11	CP949	4174616c616e7461206461732043696e7a6173	Atalanta das Cinzas
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-8.ase.spm	12	CP949	4d61676f206461732043696e7a6173	Mago das Cinzas
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-8.ase.spm	13	CP949	476f72676f6e	Gorgon
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-8.ase.spm	14	CP949	5361636572646f74697361206461732043696e7a6173	Sacerdotisa das Cinzas
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-8.ase.spm	16	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-9.ase.spm	10	CP949	52756361	Ruca
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-9.ase.spm	11	CP949	4e617a206461732043696e7a6173	Naz das Cinzas
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-9.ase.spm	12	CP949	4b616b6f61	Kakoa
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-9.ase.spm	13	CP949	49676f6c6174696f6e	Igolation
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-9.ase.spm	14	CP949	537072696e	Sprin
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-9.ase.spm	15	CP949	586574616e	Xetan
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-9.ase.spm	16	CP949	4172766f7265206461732043696e7a6173	Arvore das Cinzas
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/dun-9.ase.spm	18	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fall_game.ase.spm	10	CP949	436f656c686f	Coelho
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fall_game.ase.spm	11	CP949	436f656c6861	Coelha
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fall_game.ase.spm	12	CP949	436f67756d656c6f	Cogumelo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fall_game.ase.spm	13	CP949	5a656c6469	Zeldi
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fall_game.ase.spm	14	CP949	4475656e64652053656c766167656d	Duende Selvagem
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-1.ase.spm	10	CP949	486f7069	Hopi
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-1.ase.spm	11	CP949	4375657069	Cuepi
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-1.ase.spm	12	CP949	54617475	Tatu
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-1.ase.spm	13	CP949	436f67756d656c6f2046616e7461736d61	Cogumelo Fantasma
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-1.ase.spm	14	CP949	4475656e6465204d61636162726f	Duende Macabro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-2.ase.spm	10	CP949	4d696e69677565	Minigue
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-2.ase.spm	11	CP949	496d70	Imp
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-2.ase.spm	12	CP949	46616e7461736d61	Fantasma
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-2.ase.spm	13	CP949	506c616e746120417373617373696e61	Planta Assassina
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-2.ase.spm	14	CP949	446f72616c	Doral
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-2.ase.spm	15	CP949	54617475	Tatu
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-3.ase.spm	10	CP949	436f67756d656c6f2046616e7461736d61	Cogumelo Fantasma
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-3.ase.spm	11	CP949	4475656e6465204d61636162726f	Duende Macabro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-3.ase.spm	12	CP949	496d70	Imp
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-3.ase.spm	13	CP949	506c616e746120417373617373696e61	Planta Assassina
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-3.ase.spm	14	CP949	446f72616c	Doral
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/fore-3.ase.spm	15	CP949	433f6c6f7065	C?lope
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/greedy.ase.spm	10	CP949	4172616e6861205261696e6861	Aranha Rainha
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/greedy.ase.spm	11	CP949	4c61676172746f20646f204c61676f	Lagarto do Lago
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/greedy.ase.spm	12	CP949	526169612056656e656e6f7361	Raia Venenosa
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/greedy.ase.spm	13	CP949	4f6d75	Omu
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/greedy.ase.spm	14	CP949	4772616e64652047726976656e	Grande Griven
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/greedy.ase.spm	15	CP949	5365726569612050726f66616e61	Sereia Profana
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/greedy.ase.spm	16	CP949	4c6f726465204d756d6961	Lorde Mumia
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice1.ase.spm	10	CP949	4475656e64652064652047656c6f	Duende de Gelo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice1.ase.spm	11	CP949	47656c6f	Gelo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice1.ase.spm	12	CP949	436f6e67656c61646f	Congelado
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice1.ase.spm	13	CP949	4f6c686f2064652047656c6f	Olho de Gelo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice1.ase.spm	14	CP949	476f6c656d2064652047656c6f	Golem de Gelo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice1.ase.spm	15	CP949	4d69737469636f	Mistico
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice1.ase.spm	17	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice1.ase.spm	18	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice_2.ase.spm	10	CP949	4e657661736361	Nevasca
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice_2.ase.spm	11	CP949	436f6e6a757261646f7261	Conjuradora
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice_2.ase.spm	12	CP949	54617274617275676120426c696e64616461	Tartaruga Blindada
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice_2.ase.spm	13	CP949	47656c6f	Gelo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice_2.ase.spm	14	CP949	476f6c656d2064652047656c6f	Golem de Gelo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice_2.ase.spm	15	CP949	5061737361726f2044656d6f6e6961636f	Passaro Demoniaco
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice_2.ase.spm	16	CP949	47756572726569726f204369636c6f7065	Guerreiro Ciclope
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ice_2.ase.spm	18	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-1.ase.spm	10	CP949	43656e746175726f204172717565697261	Centauro Arqueira
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-1.ase.spm	11	CP949	47726f746573636f	Grotesco
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-1.ase.spm	12	CP949	44657374727569646f72	Destruidor
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-1.ase.spm	13	CP949	477561726469616f2064652041636f	Guardiao de Aco
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-1.ase.spm	14	CP949	476f6c656d2064652041636f	Golem de Aco
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-1.ase.spm	15	CP949	4869706572204d617175696e61	Hiper Maquina
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-1.ase.spm	16	CP949	4d3f75696e612056616d70697261	M?uina Vampira
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-1.ase.spm	17	CP949	4d6f72746520537562697461	Morte Subita
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-1.ase.spm	19	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-2.ase.spm	10	CP949	4f6d656761	Omega
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-2.ase.spm	11	CP949	4d6f6e74616e6861	Montanha
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-2.ase.spm	12	CP949	4d6f72676f6e	Morgon
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-2.ase.spm	13	CP949	4d6574726f6e	Metron
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-2.ase.spm	14	CP949	477561726469616f20416e7469676f	Guardiao Antigo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-2.ase.spm	15	CP949	4f67726f204d6563616e69636f	Ogro Mecanico
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-2.ase.spm	16	CP949	4d617175696e612d44	Maquina-D
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-2.ase.spm	17	CP949	50756e686f732064652041636f	Punhos de Aco
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/iron-2.ase.spm	19	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lost_temple.ase.spm	10	CP949	5365746f	Seto
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lost_temple.ase.spm	11	CP949	5175696d65726132	Quimera2
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lost_temple.ase.spm	12	CP949	496e7175697369646f72204e6567726f32	Inquisidor Negro2
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lost_temple.ase.spm	13	CP949	41626f6d696e6163616f	Abominacao
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lost_temple.ase.spm	14	CP949	436176616c6569726f2053616e6775696e3f696f32	Cavaleiro Sanguin?io2
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lost_temple.ase.spm	15	CP949	477561726469616f20646f2054656d706c6f	Guardiao do Templo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lost_temple.ase.spm	17	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lostisland.ase.spm	10	CP949	4d61676f204e6567726f	Mago Negro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lostisland.ase.spm	11	CP949	496e7175697369646f72204e6567726f	Inquisidor Negro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lostisland.ase.spm	12	CP949	5665726d6520646520466f676f	Verme de Fogo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lostisland.ase.spm	13	CP949	5175696d657261	Quimera
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lostisland.ase.spm	14	CP949	436176616c6569726f2053616e6775696e3f696f	Cavaleiro Sanguin?io
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lostisland.ase.spm	15	CP949	477561726469616f204e6567726f	Guardiao Negro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lostisland.ase.spm	16	CP949	43616f20496e6665726e616c	Cao Infernal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/lostisland.ase.spm	18	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mcave.ase.spm	10	CP949	50617472756c686569726f20646f204d616c	Patrulheiro do Mal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mcave.ase.spm	11	CP949	4162656c68612053656c766167656d	Abelha Selvagem
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mcave.ase.spm	12	CP949	476f6c656d20646520426172726f	Golem de Barro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mcave.ase.spm	13	CP949	436172616d756a6f2052696a6f	Caramujo Rijo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mcave.ase.spm	14	CP949	506c616e74612064617320547265766173	Planta das Trevas
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mcave.ase.spm	15	CP949	4162656c686120646f204d616c	Abelha do Mal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mcave.ase.spm	16	CP949	436176616c6569726f204e6567726f	Cavaleiro Negro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mcave.ase.spm	17	CP949	477561726469616f206465204c616d61	Guardiao de Lama
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mine-1.ase.spm	10	CP949	4361706174617a206461732043696e7a6173	Capataz das Cinzas
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mine-1.ase.spm	11	CP949	4d696e6569726f206461732043696e7a6173	Mineiro das Cinzas
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mine-1.ase.spm	12	CP949	4578706c6f733f2053656c616461	Explos? Selada
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mine-1.ase.spm	13	CP949	5665726d652064652047656c6f	Verme de Gelo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mine-1.ase.spm	14	CP949	4d6f726365676f206461204d696e61	Morcego da Mina
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mine-1.ase.spm	15	CP949	476f6c656d204d696e657261646f72	Golem Minerador
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mine-1.ase.spm	16	CP949	546172616e74756c696b61	Tarantulika
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mine-1.ase.spm	17	CP949	53657270656e74652064652047656c6f	Serpente de Gelo
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/mine-1.ase.spm	19	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/quest_iv.ase.spm	10	CP949	45737175656c65746f20646f204d616c	Esqueleto do Mal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/quest_iv.ase.spm	11	CP949	506c616e7461	Planta
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/quest_iv.ase.spm	12	CP949	436f656c686f2064652050e173636f61	Coelho de Páscoa
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/quest_iv.ase.spm	13	CP949	3f766f7265204d7574616e7465	?vore Mutante
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/quest_iv.ase.spm	14	CP949	433f204162656c6861	C? Abelha
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/quest_iv.ase.spm	15	CP949	436f656c683f20646520503f636f61	Coelh? de P?coa
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-1.ase.spm	10	CP949	45737175656c65746f20646f204d616c	Esqueleto do Mal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-1.ase.spm	11	CP949	5061726173697461	Parasita
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-1.ase.spm	12	CP949	426172676f6e	Bargon
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-1.ase.spm	13	CP949	4465636f79	Decoy
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-1.ase.spm	14	CP949	4573636f7270693f	Escorpi?
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-1.ase.spm	15	CP949	433f6c6f7065	C?lope
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-2.ase.spm	10	CP949	42617261746120476967616e7465	Barata Gigante
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-2.ase.spm	11	CP949	5a756d6269	Zumbi
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-2.ase.spm	12	CP949	4d6570686974	Mephit
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-2.ase.spm	13	CP949	4465636f79	Decoy
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-2.ase.spm	14	CP949	433f6c6f7065	C?lope
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-2.ase.spm	15	CP949	4172766f7265	Arvore
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-3.ase.spm	10	CP949	5a756d6269	Zumbi
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-3.ase.spm	11	CP949	45737175656c65746f	Esqueleto
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-3.ase.spm	12	CP949	42617261746120476967616e7465	Barata Gigante
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-3.ase.spm	13	CP949	4d6570686974	Mephit
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-3.ase.spm	14	CP949	4172766f7265	Arvore
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-3.ase.spm	15	CP949	3f766f7265204d7574616e7465	?vore Mutante
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-3.ase.spm	16	CP949	4d696e6920446576696c20536879	Mini Devil Shy
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-3.ase.spm	17	CP949	4d696e69204d6f6b6f7661	Mini Mokova
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-3.ase.spm	18	CP949	4d696e692054756c6c61	Mini Tulla
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-3.ase.spm	19	CP949	4d696e69205961676469746861	Mini Yagditha
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-3.ase.spm	20	CP949	4d696e69204d696472616e6461	Mini Midranda
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-3.ase.spm	22	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-3.ase.spm	23	CP949	b5ceb8f1	두목
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-4.ase.spm	10	CP949	45737175656c65746f	Esqueleto
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-4.ase.spm	11	CP949	5a756d6269	Zumbi
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-4.ase.spm	12	CP949	4d696e69677565	Minigue
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-4.ase.spm	13	CP949	42617261746120476967616e7465	Barata Gigante
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-4.ase.spm	14	CP949	4475656e6465204d61636162726f	Duende Macabro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-4.ase.spm	15	CP949	46616e7461736d61	Fantasma
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/ruin-4.ase.spm	16	CP949	4172766f7265	Arvore
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/sod-1.ase.spm	10	CP949	486f7069	Hopi
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/tcave.ase.spm	10	CP949	50617472756c686569726f20646f204d616c	Patrulheiro do Mal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/tcave.ase.spm	11	CP949	436172616d756a6f20646f204d616c	Caramujo do Mal
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/tcave.ase.spm	12	CP949	4d756666696e	Muffin
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/tcave.ase.spm	13	CP949	4d6f726365676f2056616d7069726f	Morcego Vampiro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/tcave.ase.spm	14	CP949	506c616e74612064617320547265766173	Planta das Trevas
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/tcave.ase.spm	15	CP949	436172616d756a6f20457370696e686f736f	Caramujo Espinhoso
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/tcave.ase.spm	16	CP949	436176616c6569726f204e6567726f	Cavaleiro Negro
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/tcave.ase.spm	17	CP949	477561726469616f206465204c616d61	Guardiao de Lama
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/village-1.ase.spm	10	CP949	426172676f6e	Bargon
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/village-1.ase.spm	11	CP949	47686f756c	Ghoul
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/village-1.ase.spm	12	CP949	4d696e6967756520507261746561646f	Minigue Prateado
+/home/gabriel/Área de Trabalho/summit/Servidor/GameServer/Field/village-1.ase.spm	13	CP949	4d6570686974	Mephit

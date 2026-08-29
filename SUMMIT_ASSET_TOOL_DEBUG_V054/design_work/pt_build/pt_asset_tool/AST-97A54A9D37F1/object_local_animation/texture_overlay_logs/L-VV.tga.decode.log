@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=5fbfb7bd48b746e7433b44e5346fd8ca14f420d330d811edb816edd34c24bee8
+output_sha256=5fbfb7bd48b746e7433b44e5346fd8ca14f420d330d811edb816edd34c24bee8
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-97A54A9D37F1/object_local_animation/texture_overlay_client/field/forest/L-VV.tga
+format=TGA_STANDARD
+client_modified=False
+tga_decode_check=PASS

@@ -1,0 +1,7 @@
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/BattleEvents/CRollHandler.cpp:79:void CRollHandler::Resize()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoLogin.cpp:3898:void HoLogin::resize()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoOpening.cpp:670:void HoOpening::resize()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoOpeningOFF.cpp:396:void HoOpening::resize()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/HoBaram/HoParty.cpp:514:void HoParty::resize()
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/Settings/Settings.cpp:221:void Settings::resizeWindow(int iWidth, int iHeight)
+/home/gabriel/Área de Trabalho/summit/SourceCode/SrcGame/src/sinbaram/sinInterFace.cpp:1065:void cINTERFACE::resize()

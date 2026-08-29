@@ -1,0 +1,4 @@
+./cliente/Source Summit Tale/SrcGame/src/Library/Lua.lib
+./cliente/Source Summit Tale/SrcGame/src/Library/Lualib.lib
+./cliente/Source Summit Tale/SrcGame/src/Library/Lua_debug.lib
+./cliente/Source Summit Tale/SrcGame/src/Library/ohZipLib.lib

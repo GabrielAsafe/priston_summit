@@ -1,0 +1,32 @@
+00:00.014  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
+                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
+00:00.014  color_management | Using fallback mode for management
+00:01.476  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/blender/TmbC01_C002_manual_all_lods_g6_v1_game_normalized.blend"
+
+--- BUILD TbhC03 ---
+TbhC03: source=92/152/152 output=92/152/152 materials=[0] bones=11
+
+--- BUILD TbmC03 ---
+TbmC03: source=74/122/122 output=83/140/140 materials=[0] bones=11
+
+--- BUILD TblC03 ---
+TblC03: source=63/100/100 output=63/100/100 materials=[0] bones=11
+
+PT_SMD_MODEL_062_FREE_MESH_WRITER_V4_MULTI
+targets=['TbhC03', 'TbmC03', 'TblC03']
+target_count=3
+OBJECT TbhC03: V=92 F=152 T=152 vertex_delta=+0 face_delta=+0 materials=[0] bones=11 check=PASS
+OBJECT TbmC03: V=83 F=140 T=140 vertex_delta=+9 face_delta=+18 materials=[0] bones=11 check=PASS
+OBJECT TblC03: V=63 F=100 T=100 vertex_delta=+0 face_delta=+0 materials=[0] bones=11 check=PASS
+non_target_object_blocks_byte_identical=6
+input_size=187504
+output_size=189232
+growth_bytes=+1728
+input_sha256=9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c
+output_sha256=f3e679a802484de078537269c11b9e864ab4f0d51db24b98a67be5f266ec984a
+report=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m4/multi_TbhC03_TbmC03_TblC03/TmbC01_C002_manual_all_lods_g6_v1_export_report.json
+semantic_check=PASS
+multi_object_writer_check=PASS
+Blender 5.1.1 (hash unknown built 2026-05-12 00:00:00)
+
+Blender quit

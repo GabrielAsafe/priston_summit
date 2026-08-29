@@ -1,0 +1,23 @@
+{
+  "tool": "PT_PIKEMAN_FREE_TOPOLOGY_VISUAL_WITNESS_G3_V1_3",
+  "profile_id": "pikeman_c01_m4",
+  "asset_set_id": "CHARSET-PIKEMAN-C01-M4",
+  "roundtrip_target": "char/tmABCD/TmbC01.smd",
+  "artifact": "/home/gabriel/\u00c1rea de Trabalho/summit/design_work/pt_build/characters/pikeman_c01_m4/TbmC03/TmbC01_TbmC03_free_topology_visual_g3_v1_3.smd",
+  "artifact_sha256": "728f1dbc0319b9bdb114ee986aca44ff8c4671b09a6c7b4271ba6022177ab4f4",
+  "artifact_size": 187696,
+  "source_sha256": "9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c",
+  "target_object": "TbmC03",
+  "source_counts": {
+    "vertices": 74,
+    "faces": 122,
+    "texlinks": 122
+  },
+  "output_counts": {
+    "vertices": 75,
+    "faces": 124,
+    "texlinks": 124
+  },
+  "runtime_installed": false,
+  "build_check": "PASS"
+}

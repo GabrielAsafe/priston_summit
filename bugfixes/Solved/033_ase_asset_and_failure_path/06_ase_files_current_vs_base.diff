@@ -1,0 +1,277 @@
+================ FILE SrcServer/src/HoBaram/HoEffect.cpp ================
+CURRENT SHA256 87249e83dcb4cd4efe701aab0410c829daf7d571e282fe7810b5646c9cf2f8a5
+BASE    SHA256 87249e83dcb4cd4efe701aab0410c829daf7d571e282fe7810b5646c9cf2f8a5
+IDENTICAL True
+
+================ FILE SrcServer/src/HoBaram/HoSky.cpp ================
+CURRENT SHA256 eebf7b40f1b72a9daba6638c8790b5460b496b065dc83b5eb864f94a6c686462
+BASE    SHA256 eebf7b40f1b72a9daba6638c8790b5460b496b065dc83b5eb864f94a6c686462
+IDENTICAL True
+
+================ FILE SrcServer/src/HoBaram/LowLevelPetSystem.cpp ================
+CURRENT SHA256 89203bfa55bf4bcd1804144995ba03d74ed2ec73e235a6ef4b5c0581bd6fba33
+BASE    SHA256 89203bfa55bf4bcd1804144995ba03d74ed2ec73e235a6ef4b5c0581bd6fba33
+IDENTICAL True
+
+================ FILE SrcServer/src/HoBaram/NewEffect/HoEffectResMgr.cpp ================
+CURRENT SHA256 193795053cc681fcfcf0e4a8388f1a5c469bf462a9bf898449c58dd37619c573
+BASE    SHA256 193795053cc681fcfcf0e4a8388f1a5c469bf462a9bf898449c58dd37619c573
+IDENTICAL True
+
+================ FILE SrcServer/src/HoBaram/PCBangPetSystem.cpp ================
+CURRENT SHA256 f687ba0b7b825f29dec14d2b05c99252d2bff656a0b57f92ae29e898c8d7b490
+BASE    SHA256 f687ba0b7b825f29dec14d2b05c99252d2bff656a0b57f92ae29e898c8d7b490
+IDENTICAL True
+
+================ FILE SrcServer/src/character.cpp ================
+CURRENT SHA256 44a122a1ff5b14934e622a3879e0ccb40ad135184c223d4efd1e34903cdfa365
+BASE    SHA256 fb066ac583c24584a758a13e0e8640204944e62e195a8d2b32337a5b347aad6e
+IDENTICAL False
+
+--- BASE/SrcServer/src/character.cpp
++++ CURRENT/SrcServer/src/character.cpp
+@@ -2267,63 +2267,40 @@
+ 
+ 	int TalkCnt = 0;
+ 	if(lpTalkModelParent->TalkMotionRate[CHRMOTION_EXT])
+ 	{
+ 		TalkCnt = rand() % 100;
+ 		TalkCnt = lpTalkModelParent->TalkMotionRateCnt[TalkModeType][TalkCnt];
+ 	}
+ 	else
+ 		TalkCnt = rand() % lpTalkModelParent->TalkMotionCount;
+ 
+ 	lpTalkMotionInfo = &lpTalkModelParent->TalkMotionInfo[TalkCnt];
+ 	TalkFrame = lpTalkMotionInfo->StartFrame * 160;
+ 
+ 	return 1;
+ }
+ 
+ 
+ 
+ int smCHAR::FindMotionCountFromCode(DWORD MotionCode)
+ {
+-	// MINGW_FINDMOTION_NULL_GUARD_V1
+-	if(!smMotionInfo)
+-	{
+-		FILE *dbgFp = fopen("motion_null_trace.txt", "a");
+-		if(dbgFp)
+-		{
+-			fprintf(dbgFp,
+-				"[MOTION_NULL] tid=%lu ret=%p this=%p "
+-				"name='%s' model='%s' model2='%s'\n",
+-				(unsigned long)GetCurrentThreadId(),
+-				__builtin_return_address(0),
+-				(void *)this,
+-				smCharInfo.szName,
+-				smCharInfo.szModelName,
+-				smCharInfo.szModelName2);
+-
+-			fflush(dbgFp);
+-			fclose(dbgFp);
+-		}
+-
+-		return 0;
+-	}
+-
+ 	int FindCnt = 0;
+ 
+ 	for(DWORD cnt = 0; cnt < smMotionInfo->MotionCount; cnt++)
+ 	{
+ 		if(smMotionInfo->MotionInfo[cnt].State == MotionCode)
+ 			FindCnt++;
+ 	}
+ 
+ 	return FindCnt;
+ }
+ 
+ 
+ int smCHAR::SetMotionFromCode(DWORD MotionCode)
+ {
+ 	int cnt, cnt2, itcnt;
+ 	int FoundNum[64];
+ 	int FindCnt;
+ 
+ 	int FoundNum2[64];
+ 	int FindCnt2;
+
+================ FILE SrcServer/src/playmain.cpp ================
+CURRENT SHA256 26d78bfe2a1e68ae1dfd846832024394901bd9ff3c18933f9d55a1a38ada62e8
+BASE    SHA256 c929530a9753106d95b1f64136f8e7ae97c6afc1206aa0e703fea5301f07be05
+IDENTICAL False
+
+--- BASE/SrcServer/src/playmain.cpp
++++ CURRENT/SrcServer/src/playmain.cpp
+@@ -4352,41 +4352,41 @@
+ 	*nZ = mWorld->_42;
+ 	*nY = mWorld->_43;
+ 
+ 	return TRUE;
+ }
+ 
+ 
+ int Record_ClinetLogFile(char *szMessage)
+ {
+ 	HANDLE	hFile;
+ 	DWORD	dwAcess;
+ 	DWORD	FileLength;
+ 	SYSTEMTIME	st;
+ 	int len;
+ 	char	szFileName[128];
+ 	char	szBuff[256];
+ 
+ 	GetLocalTime(&st);
+ 	wsprintf(szFileName, "game.log", st.wMonth, st.wDay);
+ 
+-	hFile = CreateFile("game.log", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
++	hFile = CreateFile("LOGS\\game.log", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+ 	if(hFile == INVALID_HANDLE_VALUE) return FALSE;
+ 
+ 	wsprintf(szBuff, "%d-%d (%d:%d:%d) - %s", st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond, szMessage);
+ 	len = lstrlen(szBuff);
+ 	if(szBuff[len - 1] != '/n')
+ 	{
+ 		szBuff[len] = '/r';
+ 		szBuff[len + 1] = '/n';
+ 		len += 2;
+ 	}
+ 
+ 	FileLength = GetFileSize(hFile, NULL);
+ 	SetFilePointer(hFile, FileLength, NULL, FILE_BEGIN);
+ 	WriteFile(hFile, szBuff, len, &dwAcess, NULL);
+ 	CloseHandle(hFile);
+ 
+ 	return TRUE;
+ }
+ 
+ 
+
+================ FILE SrcServer/src/sinbaram/AssaUtil.cpp ================
+CURRENT SHA256 503840caac23e99419c7dc145db935dfa9bf42f6c8f2e7fb2a61831012715643
+BASE    SHA256 503840caac23e99419c7dc145db935dfa9bf42f6c8f2e7fb2a61831012715643
+IDENTICAL True
+
+================ FILE SrcServer/src/sinbaram/sin3D.cpp ================
+CURRENT SHA256 5c77d8a792c98de6e934ce578e3efe890df179bb7878495bec33c093f2418098
+BASE    SHA256 5c77d8a792c98de6e934ce578e3efe890df179bb7878495bec33c093f2418098
+IDENTICAL True
+
+================ FILE SrcServer/src/sinbaram/sinEffect2.cpp ================
+CURRENT SHA256 83fa71dd997e59dce8dc060898f29b5cb7fe5f797925e61bed586852f0a303b3
+BASE    SHA256 83fa71dd997e59dce8dc060898f29b5cb7fe5f797925e61bed586852f0a303b3
+IDENTICAL True
+
+================ FILE SrcServer/src/sinbaram/sinSkillEffect.cpp ================
+CURRENT SHA256 591c78cfb5f90ccfd1e8a080970d80ceb5035a6f307e98d09114cae4c0f52e86
+BASE    SHA256 591c78cfb5f90ccfd1e8a080970d80ceb5035a6f307e98d09114cae4c0f52e86
+IDENTICAL True
+
+================ FILE SrcServer/src/smLib3d/smRead3d.cpp ================
+CURRENT SHA256 f514ac56f5f37b074152c3b5145754bc097c40f65c7db5fb7df93f65ba211bd4
+BASE    SHA256 b4de2c1abc1945833914e419f4af490e4883c85c4b0449f3519605994ba7d321
+IDENTICAL False
+
+--- BASE/SrcServer/src/smLib3d/smRead3d.cpp
++++ CURRENT/SrcServer/src/smLib3d/smRead3d.cpp
+@@ -23,66 +23,81 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ static char decode[256];
+ static char line[256];
+ char *GetWord(char *q, char *p)
+ {
+ 
+ 
+ 	while((*p == 32) || (*p == 9) || (*p == 58))
+ 	{
+ 		p++;
+ 	}
+ 
+ 	while((*p != 32) && (*p != 9) && (*p != 58))
+ 	{
+-		if(*p == '/n' || *p == '/r') break;
++		// MINGW_GETWORD_LINE_TERMINATOR_FIX_V1
++		if(*p == 0 || *p == '\n' || *p == '\r') break;
+ 		*q++ = *p++;
+ 	}
+ 	*q++ = 0;
+ 
+ 
+ 
+ 	return p;
+ }
+ 
+ char *GetString(char *q, char *p)
+ {
+-
+-	while(*p != 34) p++;
++	// MINGW_GETSTRING_BOUNDS_FIX_V1
++	while(*p != 34)
++	{
++		if(*p == 0 || *p == '\r' || *p == '\n')
++		{
++			*q = 0;
++			return p;
++		}
++		p++;
++	}
+ 
+ 	p++;
+ 
+-	while((*p != 34))
+-	{
+-		if(*p == 0 || *p == 0x0D || *p == 0x0A) break;
++	while(*p != 34)
++	{
++		if(*p == 0 || *p == '\r' || *p == '\n')
++		{
++			*q = 0;
++			return p;
++		}
++
+ 		*q++ = *p++;
+ 	}
+ 
+-	p++;
+-
+-	*q++ = 0;
++	if(*p == 34)
++		p++;
++
++	*q = 0;
+ 
+ 	return p;
+ }
+ 
+ char *SetDirectoryFromFile(char *filename)
+ {
+ 	int len;
+ 	int cnt;
+ 
+ 	strcpy_s(DataDirectory, filename);
+ 
+ 	len = lstrlen(DataDirectory);
+ 
+ 	for(cnt = len; cnt >= 0; cnt--)
+ 		if(DataDirectory[cnt] == '//') break;
+ 
+ 	DataDirectory[cnt + 1] = NULL;
+ 
+ 	return DataDirectory;
+ }
+
+================ FILE SrcServer/src/smLib3d/smRead3d.h ================
+CURRENT SHA256 d98d27f26d4dfd108c007001e1238e528a90c16d7324102daa2f4553347d4636
+BASE    SHA256 d98d27f26d4dfd108c007001e1238e528a90c16d7324102daa2f4553347d4636
+IDENTICAL True
+
+================ FILE SrcServer/src/smLib3d/smStgObj.cpp ================
+CURRENT SHA256 24392140fc7ca7fb0d7176b7b1654d4d1dcad05a700b8101e4deb7f9d833ba13
+BASE    SHA256 24392140fc7ca7fb0d7176b7b1654d4d1dcad05a700b8101e4deb7f9d833ba13
+IDENTICAL True
+

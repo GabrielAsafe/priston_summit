@@ -1,0 +1,20 @@
+CODE gate runtime conclusion
+
+Observed across OpenItem files:
+- ITEM_TOKEN_CODE comparison returns 0.
+- NextFlag is 0 when the CODE token is encountered.
+
+Therefore this condition is proven true:
+
+    !NextFlag && lstrcmp(decode, ITEM_TOKEN_CODE) == 0
+
+The CODE parser block is entered.
+
+Encoding/token recognition is no longer a candidate for CODE=0.
+
+Next target:
+    parsed strBuff
+      ->
+    sItem[].LastCategory lookup
+      ->
+    sItem[].CODE

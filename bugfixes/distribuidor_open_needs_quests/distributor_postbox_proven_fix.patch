@@ -1,0 +1,24 @@
+--- a/SourceCode/SrcServer/src/record.cpp
++++ b/SourceCode/SrcServer/src/record.cpp
+@@ -500,18 +500,10 @@
+ 		bPostBoxCreated ? 1 : 0, (unsigned long)dwPostBoxError);
+ 	fflush(stderr);
+ 
+-	if(bPostBoxCreated)
++	for(cnt = 0; cnt < 256; cnt++)
+ 	{
+-		for(cnt = 0; cnt < 256; cnt++)
+-		{
+-			wsprintf(szBuff, "%s//%d", szPostBoxDir, cnt);
+-			CreateDirectory(szBuff, NULL);
+-		}
+-	}
+-	else
+-	{
+-		fprintf(stderr, "[DIST][DIRINIT] bucketsSkipped=1\n");
+-		fflush(stderr);
++		wsprintf(szBuff, "%s//%d", szPostBoxDir, cnt);
++		CreateDirectory(szBuff, NULL);
+ 	}
+ 
+ 	return TRUE;

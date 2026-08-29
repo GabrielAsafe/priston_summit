@@ -1,0 +1,230 @@
+{
+  "format": "PT_MULTILAYER_TEXLINK_SEMANTICS_V1",
+  "path": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/monster/Bguardian/Bguardian.smd",
+  "sha256": "48d16514f1e337e878edbe413d3d464158ce2e39003ec64bd54cf31397ed658e",
+  "object_count": 6,
+  "material_count": 8,
+  "total_faces": 7615,
+  "multilayer_faces": 7283,
+  "singlelayer_faces": 332,
+  "uv_distinct_multilayer_faces": 0,
+  "max_layers": 2,
+  "runtime_material_array_base": 1412835824,
+  "htexture_slot_mapping": "SMATERIAL_SM_TEXTURE_SLOT_EXACT",
+  "htexture_mapping_error_count": 0,
+  "stage_index_error_count": 0,
+  "profile_counts": {
+    "REFLEX_ADD": 4,
+    "SAME_TEXTURE_DYNAMIC_FORM": 1
+  },
+  "mixed_chain_depth_material_count": 0,
+  "multilayer_materials": [
+    {
+      "material_id": 3,
+      "face_count": 2673,
+      "chain_depth_histogram": {
+        "2": 2673
+      },
+      "uv_distinct_multilayer_faces": 0,
+      "TextureCounter": 2,
+      "TextureStageState": [
+        0,
+        0
+      ],
+      "TextureFormState": [
+        0,
+        9
+      ],
+      "ReformTexture": 9,
+      "BlendType": 1,
+      "TwoSide": 0,
+      "profile": "SAME_TEXTURE_DYNAMIC_FORM",
+      "textures": [
+        {
+          "stage_index": 0,
+          "name": "char/monster/BGuardian/Rg25.bmp",
+          "name_a": "",
+          "stage_state": 0,
+          "stage_state_name": "DEFAULT",
+          "form_state": 0,
+          "form_state_name": "FS_NONE"
+        },
+        {
+          "stage_index": 1,
+          "name": "char/monster/BGuardian/Rg25.bmp",
+          "name_a": "",
+          "stage_state": 0,
+          "stage_state_name": "DEFAULT",
+          "form_state": 9,
+          "form_state_name": "FS_SCROLL5"
+        }
+      ]
+    },
+    {
+      "material_id": 4,
+      "face_count": 1036,
+      "chain_depth_histogram": {
+        "2": 1036
+      },
+      "uv_distinct_multilayer_faces": 0,
+      "TextureCounter": 2,
+      "TextureStageState": [
+        0,
+        7
+      ],
+      "TextureFormState": [
+        0,
+        5
+      ],
+      "ReformTexture": 5,
+      "BlendType": 1,
+      "TwoSide": 0,
+      "profile": "REFLEX_ADD",
+      "textures": [
+        {
+          "stage_index": 0,
+          "name": "char/monster/BGuardian/Rg21.TGA",
+          "name_a": "char/monster/BGuardian/Rg21.TGA",
+          "stage_state": 0,
+          "stage_state_name": "DEFAULT",
+          "form_state": 0,
+          "form_state_name": "FS_NONE"
+        },
+        {
+          "stage_index": 1,
+          "name": "char/monster/BGuardian/env.bmp",
+          "name_a": "",
+          "stage_state": 7,
+          "stage_state_name": "D3DTOP_ADD",
+          "form_state": 5,
+          "form_state_name": "FS_REFLEX"
+        }
+      ]
+    },
+    {
+      "material_id": 5,
+      "face_count": 1638,
+      "chain_depth_histogram": {
+        "2": 1638
+      },
+      "uv_distinct_multilayer_faces": 0,
+      "TextureCounter": 2,
+      "TextureStageState": [
+        0,
+        7
+      ],
+      "TextureFormState": [
+        0,
+        5
+      ],
+      "ReformTexture": 5,
+      "BlendType": 1,
+      "TwoSide": 0,
+      "profile": "REFLEX_ADD",
+      "textures": [
+        {
+          "stage_index": 0,
+          "name": "char/monster/BGuardian/Rg22.TGA",
+          "name_a": "char/monster/BGuardian/Rg22.TGA",
+          "stage_state": 0,
+          "stage_state_name": "DEFAULT",
+          "form_state": 0,
+          "form_state_name": "FS_NONE"
+        },
+        {
+          "stage_index": 1,
+          "name": "char/monster/BGuardian/env.bmp",
+          "name_a": "",
+          "stage_state": 7,
+          "stage_state_name": "D3DTOP_ADD",
+          "form_state": 5,
+          "form_state_name": "FS_REFLEX"
+        }
+      ]
+    },
+    {
+      "material_id": 6,
+      "face_count": 1496,
+      "chain_depth_histogram": {
+        "2": 1496
+      },
+      "uv_distinct_multilayer_faces": 0,
+      "TextureCounter": 2,
+      "TextureStageState": [
+        0,
+        7
+      ],
+      "TextureFormState": [
+        0,
+        5
+      ],
+      "ReformTexture": 5,
+      "BlendType": 1,
+      "TwoSide": 0,
+      "profile": "REFLEX_ADD",
+      "textures": [
+        {
+          "stage_index": 0,
+          "name": "char/monster/BGuardian/Rg23.TGA",
+          "name_a": "char/monster/BGuardian/Rg23.TGA",
+          "stage_state": 0,
+          "stage_state_name": "DEFAULT",
+          "form_state": 0,
+          "form_state_name": "FS_NONE"
+        },
+        {
+          "stage_index": 1,
+          "name": "char/monster/BGuardian/env.bmp",
+          "name_a": "",
+          "stage_state": 7,
+          "stage_state_name": "D3DTOP_ADD",
+          "form_state": 5,
+          "form_state_name": "FS_REFLEX"
+        }
+      ]
+    },
+    {
+      "material_id": 7,
+      "face_count": 440,
+      "chain_depth_histogram": {
+        "2": 440
+      },
+      "uv_distinct_multilayer_faces": 0,
+      "TextureCounter": 2,
+      "TextureStageState": [
+        0,
+        7
+      ],
+      "TextureFormState": [
+        0,
+        5
+      ],
+      "ReformTexture": 5,
+      "BlendType": 1,
+      "TwoSide": 0,
+      "profile": "REFLEX_ADD",
+      "textures": [
+        {
+          "stage_index": 0,
+          "name": "char/monster/BGuardian/Rg25.TGA",
+          "name_a": "char/monster/BGuardian/Rg25.TGA",
+          "stage_state": 0,
+          "stage_state_name": "DEFAULT",
+          "form_state": 0,
+          "form_state_name": "FS_NONE"
+        },
+        {
+          "stage_index": 1,
+          "name": "char/monster/BGuardian/env.bmp",
+          "name_a": "",
+          "stage_state": 7,
+          "stage_state_name": "D3DTOP_ADD",
+          "form_state": 5,
+          "form_state_name": "FS_REFLEX"
+        }
+      ]
+    }
+  ],
+  "source_semantics": "PASS",
+  "client_modified": false
+}

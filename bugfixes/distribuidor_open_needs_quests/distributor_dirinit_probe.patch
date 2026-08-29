@@ -1,0 +1,35 @@
+--- a/SourceCode/SrcServer/src/record.cpp
++++ b/SourceCode/SrcServer/src/record.cpp
+@@ -488,7 +488,19 @@
+ 	}
+ 
+ 
+-	if(CreateDirectory(szPostBoxDir, NULL))
++	char szDistCwd[512] = { 0 };
++	GetCurrentDirectory(sizeof(szDistCwd), szDistCwd);
++	fprintf(stderr, "[DIST][DIRINIT] enter cwd=%s postbox=%s\n", szDistCwd, szPostBoxDir);
++	fflush(stderr);
++
++	SetLastError(ERROR_SUCCESS);
++	BOOL bPostBoxCreated = CreateDirectory(szPostBoxDir, NULL);
++	DWORD dwPostBoxError = GetLastError();
++	fprintf(stderr, "[DIST][DIRINIT] parentCreate=%d error=%lu\n",
++		bPostBoxCreated ? 1 : 0, (unsigned long)dwPostBoxError);
++	fflush(stderr);
++
++	if(bPostBoxCreated)
+ 	{
+ 		for(cnt = 0; cnt < 256; cnt++)
+ 		{
+@@ -496,6 +508,11 @@
+ 			CreateDirectory(szBuff, NULL);
+ 		}
+ 	}
++	else
++	{
++		fprintf(stderr, "[DIST][DIRINIT] bucketsSkipped=1\n");
++		fflush(stderr);
++	}
+ 
+ 	return TRUE;
+ }

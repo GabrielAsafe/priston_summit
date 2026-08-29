@@ -1,0 +1,8 @@
+PT_PROTECTED_TGA_V1
+action=decode
+input_sha256=0f3b5930d643f1fdbd5f4373566890a6e35491c12d036722c36dd76cb880e6c5
+output_sha256=2835dbdd403c39688f5db36d92de2fd6997537c3128ab7fd5cc5e434d134074b
+output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-CAD96DA0DC5D/stage072_preview/texture_overlay_client/field/Sod/wy_026.tga
+format=TGA_PRISTON_HEADER18_FULL18
+client_modified=False
+tga_decode_check=PASS

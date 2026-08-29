@@ -1,0 +1,34 @@
+{
+  "tool": "PT_CHARACTER_IDENTITY_DISCOVER_V1",
+  "client_root": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente",
+  "motion_stem": "m4",
+  "candidate_count": 1,
+  "complete_count": 1,
+  "candidates": [
+    {
+      "inx": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/M4Bip.inx",
+      "inx_relative": "char/tmABCD/M4Bip.inx",
+      "inx_size": 95268,
+      "inx_sha256": "b8bb4adaaa2175b57fa604ccdacf419ca699d48d47bb04710e6169189de2f192",
+      "szModelFile": "char\\tmABCD\\TmbC01.ASE",
+      "szMotionFile": "char\\tmABCD\\m4.ase",
+      "szSubModelFile": "",
+      "derived_model_smd": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/TmbC01.smd",
+      "derived_model_target": "char/tmABCD/TmbC01.smd",
+      "model_smd_exists": true,
+      "model_smd_size": 187504,
+      "model_smd_sha256": "9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c",
+      "derived_skeleton_smb": "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/m4.smb",
+      "derived_skeleton_target": "char/tmABCD/m4.smb",
+      "skeleton_smb_exists": true,
+      "skeleton_smb_size": 12414984,
+      "skeleton_smb_sha256": "48af614678593eaa0b659c2be514bd60f86b94f72cfb4305ed8352f48f12cc4a",
+      "texture_strings": [
+        "char/tmABCD/TmbC03.bmp",
+        "char/tmABCD/TmbC01.bmp"
+      ],
+      "status": "COMPLETE_PHYSICAL_CHAIN"
+    }
+  ],
+  "identity_discovery_check": "PASS"
+}

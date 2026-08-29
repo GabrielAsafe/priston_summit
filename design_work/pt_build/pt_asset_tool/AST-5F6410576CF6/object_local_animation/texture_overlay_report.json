@@ -1,0 +1,27 @@
+{
+  "asset_id": "AST-5F6410576CF6",
+  "asset": "Effect/ObjAnimationData/Test/Test.smd",
+  "texture_count": 1,
+  "serialized_texture_count": 1,
+  "usage_semantics": "FACE_REFERENCED_MATERIALS",
+  "usage_error": null,
+  "used_material_ids": [
+    0
+  ],
+  "required_texture_count": 1,
+  "historical_unused_texture_count": 0,
+  "required_failures": 1,
+  "historical_unused_failures": 0,
+  "ready": false,
+  "overlay": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-5F6410576CF6/object_local_animation/texture_overlay_client",
+  "entries": [
+    {
+      "logical": "Effect//ObjAnimationData//Test//TEST1.tga",
+      "status": "MISSING",
+      "required_by_faces": true,
+      "affects_ready": true,
+      "error": "FileNotFoundError: client asset not found: Effect//ObjAnimationData//Test//TEST1.tga"
+    }
+  ],
+  "client_modified": false
+}

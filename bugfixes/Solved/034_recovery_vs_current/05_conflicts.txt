@@ -1,0 +1,1021 @@
+=== CONFLICT / DIVERGED ===
+
+[017] SourceCode/SrcGame/src/Winmain.cpp
+error: patch falhou: SourceCode/SrcGame/src/Winmain.cpp:501
+error: SourceCode/SrcGame/src/Winmain.cpp: patch submete-se de maneira nenhuma
+
+[018] SourceCode/SrcGame/src/cSettingsWindow.cpp
+error: patch falhou: SourceCode/SrcGame/src/cSettingsWindow.cpp:13
+error: SourceCode/SrcGame/src/cSettingsWindow.cpp: patch submete-se de maneira nenhuma
+
+[030] SourceCode/SrcGame/src/smLib3d/smRead3d.cpp
+error: patch falhou: SourceCode/SrcGame/src/smLib3d/smRead3d.cpp:1
+error: SourceCode/SrcGame/src/smLib3d/smRead3d.cpp: patch submete-se de maneira nenhuma
+
+[032] SourceCode/SrcServer/src/Server/OnSever.cpp
+error: patch falhou: SourceCode/SrcServer/src/Server/OnSever.cpp:2276
+error: SourceCode/SrcServer/src/Server/OnSever.cpp: patch submete-se de maneira nenhuma
+
+[038] SourceCode/ccache/0/0/stats
+error: patch falhou: SourceCode/ccache/0/0/stats:20
+error: SourceCode/ccache/0/0/stats: patch submete-se de maneira nenhuma
+
+[039] SourceCode/ccache/0/1/stats
+error: patch falhou: SourceCode/ccache/0/1/stats:20
+error: SourceCode/ccache/0/1/stats: patch submete-se de maneira nenhuma
+
+[040] SourceCode/ccache/0/2/stats
+error: patch falhou: SourceCode/ccache/0/2/stats:20
+error: SourceCode/ccache/0/2/stats: patch submete-se de maneira nenhuma
+
+[041] SourceCode/ccache/0/3/stats
+error: patch falhou: SourceCode/ccache/0/3/stats:20
+error: SourceCode/ccache/0/3/stats: patch submete-se de maneira nenhuma
+
+[043] SourceCode/ccache/0/5/stats
+error: patch falhou: SourceCode/ccache/0/5/stats:20
+error: SourceCode/ccache/0/5/stats: patch submete-se de maneira nenhuma
+
+[044] SourceCode/ccache/0/6/stats
+error: patch falhou: SourceCode/ccache/0/6/stats:20
+error: SourceCode/ccache/0/6/stats: patch submete-se de maneira nenhuma
+
+[045] SourceCode/ccache/0/7/stats
+error: patch falhou: SourceCode/ccache/0/7/stats:19
+error: SourceCode/ccache/0/7/stats: patch submete-se de maneira nenhuma
+
+[046] SourceCode/ccache/0/8/stats
+error: patch falhou: SourceCode/ccache/0/8/stats:20
+error: SourceCode/ccache/0/8/stats: patch submete-se de maneira nenhuma
+
+[047] SourceCode/ccache/0/9/stats
+error: patch falhou: SourceCode/ccache/0/9/stats:20
+error: SourceCode/ccache/0/9/stats: patch submete-se de maneira nenhuma
+
+[048] SourceCode/ccache/0/a/stats
+error: patch falhou: SourceCode/ccache/0/a/stats:20
+error: SourceCode/ccache/0/a/stats: patch submete-se de maneira nenhuma
+
+[049] SourceCode/ccache/0/b/stats
+error: patch falhou: SourceCode/ccache/0/b/stats:20
+error: SourceCode/ccache/0/b/stats: patch submete-se de maneira nenhuma
+
+[050] SourceCode/ccache/0/c/stats
+error: patch falhou: SourceCode/ccache/0/c/stats:2
+error: SourceCode/ccache/0/c/stats: patch submete-se de maneira nenhuma
+
+[051] SourceCode/ccache/0/d/stats
+error: patch falhou: SourceCode/ccache/0/d/stats:20
+error: SourceCode/ccache/0/d/stats: patch submete-se de maneira nenhuma
+
+[053] SourceCode/ccache/0/f/stats
+error: patch falhou: SourceCode/ccache/0/f/stats:20
+error: SourceCode/ccache/0/f/stats: patch submete-se de maneira nenhuma
+
+[054] SourceCode/ccache/0/stats
+error: patch falhou: SourceCode/ccache/0/stats:9
+error: SourceCode/ccache/0/stats: patch submete-se de maneira nenhuma
+
+[055] SourceCode/ccache/1/0/stats
+error: patch falhou: SourceCode/ccache/1/0/stats:20
+error: SourceCode/ccache/1/0/stats: patch submete-se de maneira nenhuma
+
+[056] SourceCode/ccache/1/1/stats
+error: patch falhou: SourceCode/ccache/1/1/stats:20
+error: SourceCode/ccache/1/1/stats: patch submete-se de maneira nenhuma
+
+[057] SourceCode/ccache/1/2/stats
+error: patch falhou: SourceCode/ccache/1/2/stats:20
+error: SourceCode/ccache/1/2/stats: patch submete-se de maneira nenhuma
+
+[058] SourceCode/ccache/1/3/stats
+error: patch falhou: SourceCode/ccache/1/3/stats:20
+error: SourceCode/ccache/1/3/stats: patch submete-se de maneira nenhuma
+
+[059] SourceCode/ccache/1/4/stats
+error: patch falhou: SourceCode/ccache/1/4/stats:20
+error: SourceCode/ccache/1/4/stats: patch submete-se de maneira nenhuma
+
+[060] SourceCode/ccache/1/5/stats
+error: patch falhou: SourceCode/ccache/1/5/stats:20
+error: SourceCode/ccache/1/5/stats: patch submete-se de maneira nenhuma
+
+[061] SourceCode/ccache/1/6/stats
+error: patch falhou: SourceCode/ccache/1/6/stats:20
+error: SourceCode/ccache/1/6/stats: patch submete-se de maneira nenhuma
+
+[062] SourceCode/ccache/1/7/stats
+error: patch falhou: SourceCode/ccache/1/7/stats:20
+error: SourceCode/ccache/1/7/stats: patch submete-se de maneira nenhuma
+
+[063] SourceCode/ccache/1/8/stats
+error: patch falhou: SourceCode/ccache/1/8/stats:20
+error: SourceCode/ccache/1/8/stats: patch submete-se de maneira nenhuma
+
+[065] SourceCode/ccache/1/a/stats
+error: patch falhou: SourceCode/ccache/1/a/stats:20
+error: SourceCode/ccache/1/a/stats: patch submete-se de maneira nenhuma
+
+[066] SourceCode/ccache/1/b/stats
+error: patch falhou: SourceCode/ccache/1/b/stats:20
+error: SourceCode/ccache/1/b/stats: patch submete-se de maneira nenhuma
+
+[067] SourceCode/ccache/1/c/stats
+error: patch falhou: SourceCode/ccache/1/c/stats:20
+error: SourceCode/ccache/1/c/stats: patch submete-se de maneira nenhuma
+
+[069] SourceCode/ccache/1/e/stats
+error: patch falhou: SourceCode/ccache/1/e/stats:20
+error: SourceCode/ccache/1/e/stats: patch submete-se de maneira nenhuma
+
+[070] SourceCode/ccache/1/f/stats
+error: patch falhou: SourceCode/ccache/1/f/stats:20
+error: SourceCode/ccache/1/f/stats: patch submete-se de maneira nenhuma
+
+[071] SourceCode/ccache/2/0/stats
+error: patch falhou: SourceCode/ccache/2/0/stats:19
+error: SourceCode/ccache/2/0/stats: patch submete-se de maneira nenhuma
+
+[072] SourceCode/ccache/2/1/stats
+error: patch falhou: SourceCode/ccache/2/1/stats:20
+error: SourceCode/ccache/2/1/stats: patch submete-se de maneira nenhuma
+
+[073] SourceCode/ccache/2/2/stats
+error: patch falhou: SourceCode/ccache/2/2/stats:20
+error: SourceCode/ccache/2/2/stats: patch submete-se de maneira nenhuma
+
+[074] SourceCode/ccache/2/3/stats
+error: patch falhou: SourceCode/ccache/2/3/stats:20
+error: SourceCode/ccache/2/3/stats: patch submete-se de maneira nenhuma
+
+[075] SourceCode/ccache/2/4/stats
+error: patch falhou: SourceCode/ccache/2/4/stats:20
+error: SourceCode/ccache/2/4/stats: patch submete-se de maneira nenhuma
+
+[076] SourceCode/ccache/2/5/stats
+error: patch falhou: SourceCode/ccache/2/5/stats:20
+error: SourceCode/ccache/2/5/stats: patch submete-se de maneira nenhuma
+
+[077] SourceCode/ccache/2/6/stats
+error: patch falhou: SourceCode/ccache/2/6/stats:20
+error: SourceCode/ccache/2/6/stats: patch submete-se de maneira nenhuma
+
+[078] SourceCode/ccache/2/7/stats
+error: patch falhou: SourceCode/ccache/2/7/stats:20
+error: SourceCode/ccache/2/7/stats: patch submete-se de maneira nenhuma
+
+[079] SourceCode/ccache/2/8/stats
+error: patch falhou: SourceCode/ccache/2/8/stats:20
+error: SourceCode/ccache/2/8/stats: patch submete-se de maneira nenhuma
+
+[080] SourceCode/ccache/2/9/stats
+error: patch falhou: SourceCode/ccache/2/9/stats:20
+error: SourceCode/ccache/2/9/stats: patch submete-se de maneira nenhuma
+
+[081] SourceCode/ccache/2/a/stats
+error: patch falhou: SourceCode/ccache/2/a/stats:20
+error: SourceCode/ccache/2/a/stats: patch submete-se de maneira nenhuma
+
+[082] SourceCode/ccache/2/b/stats
+error: patch falhou: SourceCode/ccache/2/b/stats:20
+error: SourceCode/ccache/2/b/stats: patch submete-se de maneira nenhuma
+
+[083] SourceCode/ccache/2/c/stats
+error: patch falhou: SourceCode/ccache/2/c/stats:19
+error: SourceCode/ccache/2/c/stats: patch submete-se de maneira nenhuma
+
+[084] SourceCode/ccache/2/d/stats
+error: patch falhou: SourceCode/ccache/2/d/stats:20
+error: SourceCode/ccache/2/d/stats: patch submete-se de maneira nenhuma
+
+[086] SourceCode/ccache/2/f/stats
+error: patch falhou: SourceCode/ccache/2/f/stats:20
+error: SourceCode/ccache/2/f/stats: patch submete-se de maneira nenhuma
+
+[087] SourceCode/ccache/2/stats
+error: patch falhou: SourceCode/ccache/2/stats:9
+error: SourceCode/ccache/2/stats: patch submete-se de maneira nenhuma
+
+[088] SourceCode/ccache/3/0/stats
+error: patch falhou: SourceCode/ccache/3/0/stats:20
+error: SourceCode/ccache/3/0/stats: patch submete-se de maneira nenhuma
+
+[089] SourceCode/ccache/3/1/stats
+error: patch falhou: SourceCode/ccache/3/1/stats:20
+error: SourceCode/ccache/3/1/stats: patch submete-se de maneira nenhuma
+
+[090] SourceCode/ccache/3/2/stats
+error: patch falhou: SourceCode/ccache/3/2/stats:19
+error: SourceCode/ccache/3/2/stats: patch submete-se de maneira nenhuma
+
+[091] SourceCode/ccache/3/3/stats
+error: patch falhou: SourceCode/ccache/3/3/stats:20
+error: SourceCode/ccache/3/3/stats: patch submete-se de maneira nenhuma
+
+[092] SourceCode/ccache/3/4/stats
+error: patch falhou: SourceCode/ccache/3/4/stats:20
+error: SourceCode/ccache/3/4/stats: patch submete-se de maneira nenhuma
+
+[093] SourceCode/ccache/3/5/stats
+error: patch falhou: SourceCode/ccache/3/5/stats:20
+error: SourceCode/ccache/3/5/stats: patch submete-se de maneira nenhuma
+
+[094] SourceCode/ccache/3/6/stats
+error: patch falhou: SourceCode/ccache/3/6/stats:20
+error: SourceCode/ccache/3/6/stats: patch submete-se de maneira nenhuma
+
+[095] SourceCode/ccache/3/7/stats
+error: patch falhou: SourceCode/ccache/3/7/stats:20
+error: SourceCode/ccache/3/7/stats: patch submete-se de maneira nenhuma
+
+[096] SourceCode/ccache/3/8/stats
+error: patch falhou: SourceCode/ccache/3/8/stats:20
+error: SourceCode/ccache/3/8/stats: patch submete-se de maneira nenhuma
+
+[097] SourceCode/ccache/3/9/stats
+error: patch falhou: SourceCode/ccache/3/9/stats:20
+error: SourceCode/ccache/3/9/stats: patch submete-se de maneira nenhuma
+
+[098] SourceCode/ccache/3/a/stats
+error: patch falhou: SourceCode/ccache/3/a/stats:20
+error: SourceCode/ccache/3/a/stats: patch submete-se de maneira nenhuma
+
+[099] SourceCode/ccache/3/b/stats
+error: patch falhou: SourceCode/ccache/3/b/stats:20
+error: SourceCode/ccache/3/b/stats: patch submete-se de maneira nenhuma
+
+[100] SourceCode/ccache/3/c/stats
+error: patch falhou: SourceCode/ccache/3/c/stats:20
+error: SourceCode/ccache/3/c/stats: patch submete-se de maneira nenhuma
+
+[101] SourceCode/ccache/3/d/stats
+error: patch falhou: SourceCode/ccache/3/d/stats:20
+error: SourceCode/ccache/3/d/stats: patch submete-se de maneira nenhuma
+
+[102] SourceCode/ccache/3/e/stats
+error: patch falhou: SourceCode/ccache/3/e/stats:20
+error: SourceCode/ccache/3/e/stats: patch submete-se de maneira nenhuma
+
+[103] SourceCode/ccache/3/f/stats
+error: patch falhou: SourceCode/ccache/3/f/stats:20
+error: SourceCode/ccache/3/f/stats: patch submete-se de maneira nenhuma
+
+[104] SourceCode/ccache/3/stats
+error: patch falhou: SourceCode/ccache/3/stats:9
+error: SourceCode/ccache/3/stats: patch submete-se de maneira nenhuma
+
+[106] SourceCode/ccache/4/1/stats
+error: patch falhou: SourceCode/ccache/4/1/stats:20
+error: SourceCode/ccache/4/1/stats: patch submete-se de maneira nenhuma
+
+[107] SourceCode/ccache/4/2/stats
+error: patch falhou: SourceCode/ccache/4/2/stats:20
+error: SourceCode/ccache/4/2/stats: patch submete-se de maneira nenhuma
+
+[108] SourceCode/ccache/4/3/stats
+error: patch falhou: SourceCode/ccache/4/3/stats:20
+error: SourceCode/ccache/4/3/stats: patch submete-se de maneira nenhuma
+
+[109] SourceCode/ccache/4/4/stats
+error: patch falhou: SourceCode/ccache/4/4/stats:20
+error: SourceCode/ccache/4/4/stats: patch submete-se de maneira nenhuma
+
+[110] SourceCode/ccache/4/5/stats
+error: patch falhou: SourceCode/ccache/4/5/stats:20
+error: SourceCode/ccache/4/5/stats: patch submete-se de maneira nenhuma
+
+[111] SourceCode/ccache/4/6/stats
+error: patch falhou: SourceCode/ccache/4/6/stats:20
+error: SourceCode/ccache/4/6/stats: patch submete-se de maneira nenhuma
+
+[112] SourceCode/ccache/4/7/stats
+error: patch falhou: SourceCode/ccache/4/7/stats:20
+error: SourceCode/ccache/4/7/stats: patch submete-se de maneira nenhuma
+
+[113] SourceCode/ccache/4/8/stats
+error: patch falhou: SourceCode/ccache/4/8/stats:20
+error: SourceCode/ccache/4/8/stats: patch submete-se de maneira nenhuma
+
+[115] SourceCode/ccache/4/a/stats
+error: patch falhou: SourceCode/ccache/4/a/stats:20
+error: SourceCode/ccache/4/a/stats: patch submete-se de maneira nenhuma
+
+[116] SourceCode/ccache/4/b/stats
+error: patch falhou: SourceCode/ccache/4/b/stats:20
+error: SourceCode/ccache/4/b/stats: patch submete-se de maneira nenhuma
+
+[118] SourceCode/ccache/4/d/stats
+error: patch falhou: SourceCode/ccache/4/d/stats:20
+error: SourceCode/ccache/4/d/stats: patch submete-se de maneira nenhuma
+
+[119] SourceCode/ccache/4/e/stats
+error: patch falhou: SourceCode/ccache/4/e/stats:20
+error: SourceCode/ccache/4/e/stats: patch submete-se de maneira nenhuma
+
+[120] SourceCode/ccache/4/f/stats
+error: patch falhou: SourceCode/ccache/4/f/stats:20
+error: SourceCode/ccache/4/f/stats: patch submete-se de maneira nenhuma
+
+[122] SourceCode/ccache/5/0/stats
+error: patch falhou: SourceCode/ccache/5/0/stats:20
+error: SourceCode/ccache/5/0/stats: patch submete-se de maneira nenhuma
+
+[123] SourceCode/ccache/5/1/stats
+error: patch falhou: SourceCode/ccache/5/1/stats:19
+error: SourceCode/ccache/5/1/stats: patch submete-se de maneira nenhuma
+
+[124] SourceCode/ccache/5/2/stats
+error: patch falhou: SourceCode/ccache/5/2/stats:2
+error: SourceCode/ccache/5/2/stats: patch submete-se de maneira nenhuma
+
+[125] SourceCode/ccache/5/3/stats
+error: patch falhou: SourceCode/ccache/5/3/stats:20
+error: SourceCode/ccache/5/3/stats: patch submete-se de maneira nenhuma
+
+[126] SourceCode/ccache/5/4/stats
+error: patch falhou: SourceCode/ccache/5/4/stats:20
+error: SourceCode/ccache/5/4/stats: patch submete-se de maneira nenhuma
+
+[127] SourceCode/ccache/5/5/stats
+error: patch falhou: SourceCode/ccache/5/5/stats:20
+error: SourceCode/ccache/5/5/stats: patch submete-se de maneira nenhuma
+
+[128] SourceCode/ccache/5/6/stats
+error: patch falhou: SourceCode/ccache/5/6/stats:20
+error: SourceCode/ccache/5/6/stats: patch submete-se de maneira nenhuma
+
+[129] SourceCode/ccache/5/7/stats
+error: patch falhou: SourceCode/ccache/5/7/stats:20
+error: SourceCode/ccache/5/7/stats: patch submete-se de maneira nenhuma
+
+[130] SourceCode/ccache/5/8/stats
+error: patch falhou: SourceCode/ccache/5/8/stats:20
+error: SourceCode/ccache/5/8/stats: patch submete-se de maneira nenhuma
+
+[131] SourceCode/ccache/5/9/stats
+error: patch falhou: SourceCode/ccache/5/9/stats:20
+error: SourceCode/ccache/5/9/stats: patch submete-se de maneira nenhuma
+
+[132] SourceCode/ccache/5/a/stats
+error: patch falhou: SourceCode/ccache/5/a/stats:20
+error: SourceCode/ccache/5/a/stats: patch submete-se de maneira nenhuma
+
+[133] SourceCode/ccache/5/b/stats
+error: patch falhou: SourceCode/ccache/5/b/stats:20
+error: SourceCode/ccache/5/b/stats: patch submete-se de maneira nenhuma
+
+[134] SourceCode/ccache/5/c/stats
+error: patch falhou: SourceCode/ccache/5/c/stats:20
+error: SourceCode/ccache/5/c/stats: patch submete-se de maneira nenhuma
+
+[135] SourceCode/ccache/5/d/stats
+error: patch falhou: SourceCode/ccache/5/d/stats:20
+error: SourceCode/ccache/5/d/stats: patch submete-se de maneira nenhuma
+
+[136] SourceCode/ccache/5/e/stats
+error: patch falhou: SourceCode/ccache/5/e/stats:20
+error: SourceCode/ccache/5/e/stats: patch submete-se de maneira nenhuma
+
+[137] SourceCode/ccache/5/f/stats
+error: patch falhou: SourceCode/ccache/5/f/stats:19
+error: SourceCode/ccache/5/f/stats: patch submete-se de maneira nenhuma
+
+[138] SourceCode/ccache/5/stats
+error: patch falhou: SourceCode/ccache/5/stats:9
+error: SourceCode/ccache/5/stats: patch submete-se de maneira nenhuma
+
+[139] SourceCode/ccache/6/0/stats
+error: patch falhou: SourceCode/ccache/6/0/stats:20
+error: SourceCode/ccache/6/0/stats: patch submete-se de maneira nenhuma
+
+[140] SourceCode/ccache/6/1/stats
+error: patch falhou: SourceCode/ccache/6/1/stats:19
+error: SourceCode/ccache/6/1/stats: patch submete-se de maneira nenhuma
+
+[142] SourceCode/ccache/6/3/stats
+error: patch falhou: SourceCode/ccache/6/3/stats:20
+error: SourceCode/ccache/6/3/stats: patch submete-se de maneira nenhuma
+
+[143] SourceCode/ccache/6/4/stats
+error: patch falhou: SourceCode/ccache/6/4/stats:20
+error: SourceCode/ccache/6/4/stats: patch submete-se de maneira nenhuma
+
+[144] SourceCode/ccache/6/5/stats
+error: patch falhou: SourceCode/ccache/6/5/stats:20
+error: SourceCode/ccache/6/5/stats: patch submete-se de maneira nenhuma
+
+[145] SourceCode/ccache/6/6/stats
+error: patch falhou: SourceCode/ccache/6/6/stats:20
+error: SourceCode/ccache/6/6/stats: patch submete-se de maneira nenhuma
+
+[146] SourceCode/ccache/6/7/stats
+error: patch falhou: SourceCode/ccache/6/7/stats:20
+error: SourceCode/ccache/6/7/stats: patch submete-se de maneira nenhuma
+
+[147] SourceCode/ccache/6/8/stats
+error: patch falhou: SourceCode/ccache/6/8/stats:20
+error: SourceCode/ccache/6/8/stats: patch submete-se de maneira nenhuma
+
+[148] SourceCode/ccache/6/9/stats
+error: patch falhou: SourceCode/ccache/6/9/stats:20
+error: SourceCode/ccache/6/9/stats: patch submete-se de maneira nenhuma
+
+[149] SourceCode/ccache/6/a/stats
+error: patch falhou: SourceCode/ccache/6/a/stats:20
+error: SourceCode/ccache/6/a/stats: patch submete-se de maneira nenhuma
+
+[150] SourceCode/ccache/6/b/stats
+error: patch falhou: SourceCode/ccache/6/b/stats:20
+error: SourceCode/ccache/6/b/stats: patch submete-se de maneira nenhuma
+
+[151] SourceCode/ccache/6/c/stats
+error: patch falhou: SourceCode/ccache/6/c/stats:20
+error: SourceCode/ccache/6/c/stats: patch submete-se de maneira nenhuma
+
+[152] SourceCode/ccache/6/d/stats
+error: patch falhou: SourceCode/ccache/6/d/stats:20
+error: SourceCode/ccache/6/d/stats: patch submete-se de maneira nenhuma
+
+[153] SourceCode/ccache/6/e/stats
+error: patch falhou: SourceCode/ccache/6/e/stats:20
+error: SourceCode/ccache/6/e/stats: patch submete-se de maneira nenhuma
+
+[154] SourceCode/ccache/6/f/stats
+error: patch falhou: SourceCode/ccache/6/f/stats:20
+error: SourceCode/ccache/6/f/stats: patch submete-se de maneira nenhuma
+
+[155] SourceCode/ccache/6/stats
+error: patch falhou: SourceCode/ccache/6/stats:9
+error: SourceCode/ccache/6/stats: patch submete-se de maneira nenhuma
+
+[156] SourceCode/ccache/7/0/stats
+error: patch falhou: SourceCode/ccache/7/0/stats:20
+error: SourceCode/ccache/7/0/stats: patch submete-se de maneira nenhuma
+
+[157] SourceCode/ccache/7/1/stats
+error: patch falhou: SourceCode/ccache/7/1/stats:20
+error: SourceCode/ccache/7/1/stats: patch submete-se de maneira nenhuma
+
+[158] SourceCode/ccache/7/2/stats
+error: patch falhou: SourceCode/ccache/7/2/stats:20
+error: SourceCode/ccache/7/2/stats: patch submete-se de maneira nenhuma
+
+[159] SourceCode/ccache/7/3/stats
+error: patch falhou: SourceCode/ccache/7/3/stats:20
+error: SourceCode/ccache/7/3/stats: patch submete-se de maneira nenhuma
+
+[160] SourceCode/ccache/7/4/stats
+error: patch falhou: SourceCode/ccache/7/4/stats:20
+error: SourceCode/ccache/7/4/stats: patch submete-se de maneira nenhuma
+
+[161] SourceCode/ccache/7/5/stats
+error: patch falhou: SourceCode/ccache/7/5/stats:20
+error: SourceCode/ccache/7/5/stats: patch submete-se de maneira nenhuma
+
+[162] SourceCode/ccache/7/6/stats
+error: patch falhou: SourceCode/ccache/7/6/stats:20
+error: SourceCode/ccache/7/6/stats: patch submete-se de maneira nenhuma
+
+[163] SourceCode/ccache/7/7/stats
+error: patch falhou: SourceCode/ccache/7/7/stats:20
+error: SourceCode/ccache/7/7/stats: patch submete-se de maneira nenhuma
+
+[164] SourceCode/ccache/7/8/stats
+error: patch falhou: SourceCode/ccache/7/8/stats:20
+error: SourceCode/ccache/7/8/stats: patch submete-se de maneira nenhuma
+
+[165] SourceCode/ccache/7/9/stats
+error: patch falhou: SourceCode/ccache/7/9/stats:20
+error: SourceCode/ccache/7/9/stats: patch submete-se de maneira nenhuma
+
+[166] SourceCode/ccache/7/a/stats
+error: patch falhou: SourceCode/ccache/7/a/stats:20
+error: SourceCode/ccache/7/a/stats: patch submete-se de maneira nenhuma
+
+[167] SourceCode/ccache/7/b/stats
+error: patch falhou: SourceCode/ccache/7/b/stats:20
+error: SourceCode/ccache/7/b/stats: patch submete-se de maneira nenhuma
+
+[168] SourceCode/ccache/7/c/stats
+error: patch falhou: SourceCode/ccache/7/c/stats:20
+error: SourceCode/ccache/7/c/stats: patch submete-se de maneira nenhuma
+
+[169] SourceCode/ccache/7/d/stats
+error: patch falhou: SourceCode/ccache/7/d/stats:20
+error: SourceCode/ccache/7/d/stats: patch submete-se de maneira nenhuma
+
+[170] SourceCode/ccache/7/e/stats
+error: patch falhou: SourceCode/ccache/7/e/stats:20
+error: SourceCode/ccache/7/e/stats: patch submete-se de maneira nenhuma
+
+[171] SourceCode/ccache/7/f/stats
+error: patch falhou: SourceCode/ccache/7/f/stats:20
+error: SourceCode/ccache/7/f/stats: patch submete-se de maneira nenhuma
+
+[172] SourceCode/ccache/7/stats
+error: patch falhou: SourceCode/ccache/7/stats:9
+error: SourceCode/ccache/7/stats: patch submete-se de maneira nenhuma
+
+[173] SourceCode/ccache/8/0/stats
+error: patch falhou: SourceCode/ccache/8/0/stats:20
+error: SourceCode/ccache/8/0/stats: patch submete-se de maneira nenhuma
+
+[174] SourceCode/ccache/8/1/stats
+error: patch falhou: SourceCode/ccache/8/1/stats:20
+error: SourceCode/ccache/8/1/stats: patch submete-se de maneira nenhuma
+
+[175] SourceCode/ccache/8/2/stats
+error: patch falhou: SourceCode/ccache/8/2/stats:20
+error: SourceCode/ccache/8/2/stats: patch submete-se de maneira nenhuma
+
+[176] SourceCode/ccache/8/3/stats
+error: patch falhou: SourceCode/ccache/8/3/stats:20
+error: SourceCode/ccache/8/3/stats: patch submete-se de maneira nenhuma
+
+[178] SourceCode/ccache/8/5/stats
+error: patch falhou: SourceCode/ccache/8/5/stats:20
+error: SourceCode/ccache/8/5/stats: patch submete-se de maneira nenhuma
+
+[179] SourceCode/ccache/8/6/stats
+error: patch falhou: SourceCode/ccache/8/6/stats:20
+error: SourceCode/ccache/8/6/stats: patch submete-se de maneira nenhuma
+
+[180] SourceCode/ccache/8/7/stats
+error: patch falhou: SourceCode/ccache/8/7/stats:20
+error: SourceCode/ccache/8/7/stats: patch submete-se de maneira nenhuma
+
+[181] SourceCode/ccache/8/8/stats
+error: patch falhou: SourceCode/ccache/8/8/stats:20
+error: SourceCode/ccache/8/8/stats: patch submete-se de maneira nenhuma
+
+[182] SourceCode/ccache/8/9/stats
+error: patch falhou: SourceCode/ccache/8/9/stats:20
+error: SourceCode/ccache/8/9/stats: patch submete-se de maneira nenhuma
+
+[183] SourceCode/ccache/8/a/stats
+error: patch falhou: SourceCode/ccache/8/a/stats:20
+error: SourceCode/ccache/8/a/stats: patch submete-se de maneira nenhuma
+
+[184] SourceCode/ccache/8/b/stats
+error: patch falhou: SourceCode/ccache/8/b/stats:20
+error: SourceCode/ccache/8/b/stats: patch submete-se de maneira nenhuma
+
+[185] SourceCode/ccache/8/c/stats
+error: patch falhou: SourceCode/ccache/8/c/stats:20
+error: SourceCode/ccache/8/c/stats: patch submete-se de maneira nenhuma
+
+[186] SourceCode/ccache/8/d/stats
+error: patch falhou: SourceCode/ccache/8/d/stats:20
+error: SourceCode/ccache/8/d/stats: patch submete-se de maneira nenhuma
+
+[187] SourceCode/ccache/8/e/stats
+error: patch falhou: SourceCode/ccache/8/e/stats:20
+error: SourceCode/ccache/8/e/stats: patch submete-se de maneira nenhuma
+
+[188] SourceCode/ccache/8/f/stats
+error: patch falhou: SourceCode/ccache/8/f/stats:20
+error: SourceCode/ccache/8/f/stats: patch submete-se de maneira nenhuma
+
+[189] SourceCode/ccache/8/stats
+error: patch falhou: SourceCode/ccache/8/stats:9
+error: SourceCode/ccache/8/stats: patch submete-se de maneira nenhuma
+
+[190] SourceCode/ccache/9/0/stats
+error: patch falhou: SourceCode/ccache/9/0/stats:20
+error: SourceCode/ccache/9/0/stats: patch submete-se de maneira nenhuma
+
+[191] SourceCode/ccache/9/1/stats
+error: patch falhou: SourceCode/ccache/9/1/stats:20
+error: SourceCode/ccache/9/1/stats: patch submete-se de maneira nenhuma
+
+[192] SourceCode/ccache/9/2/stats
+error: patch falhou: SourceCode/ccache/9/2/stats:20
+error: SourceCode/ccache/9/2/stats: patch submete-se de maneira nenhuma
+
+[193] SourceCode/ccache/9/3/stats
+error: patch falhou: SourceCode/ccache/9/3/stats:20
+error: SourceCode/ccache/9/3/stats: patch submete-se de maneira nenhuma
+
+[194] SourceCode/ccache/9/4/stats
+error: patch falhou: SourceCode/ccache/9/4/stats:20
+error: SourceCode/ccache/9/4/stats: patch submete-se de maneira nenhuma
+
+[195] SourceCode/ccache/9/5/stats
+error: patch falhou: SourceCode/ccache/9/5/stats:20
+error: SourceCode/ccache/9/5/stats: patch submete-se de maneira nenhuma
+
+[196] SourceCode/ccache/9/6/stats
+error: patch falhou: SourceCode/ccache/9/6/stats:20
+error: SourceCode/ccache/9/6/stats: patch submete-se de maneira nenhuma
+
+[197] SourceCode/ccache/9/7/stats
+error: patch falhou: SourceCode/ccache/9/7/stats:20
+error: SourceCode/ccache/9/7/stats: patch submete-se de maneira nenhuma
+
+[198] SourceCode/ccache/9/8/stats
+error: patch falhou: SourceCode/ccache/9/8/stats:20
+error: SourceCode/ccache/9/8/stats: patch submete-se de maneira nenhuma
+
+[199] SourceCode/ccache/9/9/stats
+error: patch falhou: SourceCode/ccache/9/9/stats:20
+error: SourceCode/ccache/9/9/stats: patch submete-se de maneira nenhuma
+
+[200] SourceCode/ccache/9/a/stats
+error: patch falhou: SourceCode/ccache/9/a/stats:20
+error: SourceCode/ccache/9/a/stats: patch submete-se de maneira nenhuma
+
+[201] SourceCode/ccache/9/b/stats
+error: patch falhou: SourceCode/ccache/9/b/stats:20
+error: SourceCode/ccache/9/b/stats: patch submete-se de maneira nenhuma
+
+[202] SourceCode/ccache/9/c/stats
+error: patch falhou: SourceCode/ccache/9/c/stats:20
+error: SourceCode/ccache/9/c/stats: patch submete-se de maneira nenhuma
+
+[203] SourceCode/ccache/9/d/stats
+error: patch falhou: SourceCode/ccache/9/d/stats:20
+error: SourceCode/ccache/9/d/stats: patch submete-se de maneira nenhuma
+
+[204] SourceCode/ccache/9/e/stats
+error: patch falhou: SourceCode/ccache/9/e/stats:20
+error: SourceCode/ccache/9/e/stats: patch submete-se de maneira nenhuma
+
+[205] SourceCode/ccache/9/f/stats
+error: patch falhou: SourceCode/ccache/9/f/stats:20
+error: SourceCode/ccache/9/f/stats: patch submete-se de maneira nenhuma
+
+[206] SourceCode/ccache/9/stats
+error: patch falhou: SourceCode/ccache/9/stats:9
+error: SourceCode/ccache/9/stats: patch submete-se de maneira nenhuma
+
+[207] SourceCode/ccache/a/0/stats
+error: patch falhou: SourceCode/ccache/a/0/stats:20
+error: SourceCode/ccache/a/0/stats: patch submete-se de maneira nenhuma
+
+[208] SourceCode/ccache/a/1/stats
+error: patch falhou: SourceCode/ccache/a/1/stats:20
+error: SourceCode/ccache/a/1/stats: patch submete-se de maneira nenhuma
+
+[209] SourceCode/ccache/a/2/stats
+error: patch falhou: SourceCode/ccache/a/2/stats:20
+error: SourceCode/ccache/a/2/stats: patch submete-se de maneira nenhuma
+
+[210] SourceCode/ccache/a/3/stats
+error: patch falhou: SourceCode/ccache/a/3/stats:20
+error: SourceCode/ccache/a/3/stats: patch submete-se de maneira nenhuma
+
+[211] SourceCode/ccache/a/4/stats
+error: patch falhou: SourceCode/ccache/a/4/stats:20
+error: SourceCode/ccache/a/4/stats: patch submete-se de maneira nenhuma
+
+[212] SourceCode/ccache/a/5/stats
+error: patch falhou: SourceCode/ccache/a/5/stats:20
+error: SourceCode/ccache/a/5/stats: patch submete-se de maneira nenhuma
+
+[213] SourceCode/ccache/a/6/stats
+error: patch falhou: SourceCode/ccache/a/6/stats:20
+error: SourceCode/ccache/a/6/stats: patch submete-se de maneira nenhuma
+
+[214] SourceCode/ccache/a/7/stats
+error: patch falhou: SourceCode/ccache/a/7/stats:20
+error: SourceCode/ccache/a/7/stats: patch submete-se de maneira nenhuma
+
+[215] SourceCode/ccache/a/8/stats
+error: patch falhou: SourceCode/ccache/a/8/stats:20
+error: SourceCode/ccache/a/8/stats: patch submete-se de maneira nenhuma
+
+[217] SourceCode/ccache/a/a/stats
+error: patch falhou: SourceCode/ccache/a/a/stats:20
+error: SourceCode/ccache/a/a/stats: patch submete-se de maneira nenhuma
+
+[218] SourceCode/ccache/a/b/stats
+error: patch falhou: SourceCode/ccache/a/b/stats:20
+error: SourceCode/ccache/a/b/stats: patch submete-se de maneira nenhuma
+
+[219] SourceCode/ccache/a/c/stats
+error: patch falhou: SourceCode/ccache/a/c/stats:20
+error: SourceCode/ccache/a/c/stats: patch submete-se de maneira nenhuma
+
+[221] SourceCode/ccache/a/e/stats
+error: patch falhou: SourceCode/ccache/a/e/stats:20
+error: SourceCode/ccache/a/e/stats: patch submete-se de maneira nenhuma
+
+[222] SourceCode/ccache/a/f/stats
+error: patch falhou: SourceCode/ccache/a/f/stats:20
+error: SourceCode/ccache/a/f/stats: patch submete-se de maneira nenhuma
+
+[224] SourceCode/ccache/b/0/stats
+error: patch falhou: SourceCode/ccache/b/0/stats:20
+error: SourceCode/ccache/b/0/stats: patch submete-se de maneira nenhuma
+
+[225] SourceCode/ccache/b/1/stats
+error: patch falhou: SourceCode/ccache/b/1/stats:20
+error: SourceCode/ccache/b/1/stats: patch submete-se de maneira nenhuma
+
+[227] SourceCode/ccache/b/3/stats
+error: patch falhou: SourceCode/ccache/b/3/stats:20
+error: SourceCode/ccache/b/3/stats: patch submete-se de maneira nenhuma
+
+[228] SourceCode/ccache/b/4/stats
+error: patch falhou: SourceCode/ccache/b/4/stats:20
+error: SourceCode/ccache/b/4/stats: patch submete-se de maneira nenhuma
+
+[229] SourceCode/ccache/b/5/stats
+error: patch falhou: SourceCode/ccache/b/5/stats:20
+error: SourceCode/ccache/b/5/stats: patch submete-se de maneira nenhuma
+
+[230] SourceCode/ccache/b/6/stats
+error: patch falhou: SourceCode/ccache/b/6/stats:20
+error: SourceCode/ccache/b/6/stats: patch submete-se de maneira nenhuma
+
+[231] SourceCode/ccache/b/7/stats
+error: patch falhou: SourceCode/ccache/b/7/stats:20
+error: SourceCode/ccache/b/7/stats: patch submete-se de maneira nenhuma
+
+[232] SourceCode/ccache/b/8/stats
+error: patch falhou: SourceCode/ccache/b/8/stats:20
+error: SourceCode/ccache/b/8/stats: patch submete-se de maneira nenhuma
+
+[233] SourceCode/ccache/b/9/stats
+error: patch falhou: SourceCode/ccache/b/9/stats:20
+error: SourceCode/ccache/b/9/stats: patch submete-se de maneira nenhuma
+
+[234] SourceCode/ccache/b/a/stats
+error: patch falhou: SourceCode/ccache/b/a/stats:20
+error: SourceCode/ccache/b/a/stats: patch submete-se de maneira nenhuma
+
+[235] SourceCode/ccache/b/b/stats
+error: patch falhou: SourceCode/ccache/b/b/stats:20
+error: SourceCode/ccache/b/b/stats: patch submete-se de maneira nenhuma
+
+[236] SourceCode/ccache/b/c/stats
+error: patch falhou: SourceCode/ccache/b/c/stats:20
+error: SourceCode/ccache/b/c/stats: patch submete-se de maneira nenhuma
+
+[237] SourceCode/ccache/b/d/stats
+error: patch falhou: SourceCode/ccache/b/d/stats:20
+error: SourceCode/ccache/b/d/stats: patch submete-se de maneira nenhuma
+
+[238] SourceCode/ccache/b/e/stats
+error: patch falhou: SourceCode/ccache/b/e/stats:20
+error: SourceCode/ccache/b/e/stats: patch submete-se de maneira nenhuma
+
+[239] SourceCode/ccache/b/f/stats
+error: patch falhou: SourceCode/ccache/b/f/stats:20
+error: SourceCode/ccache/b/f/stats: patch submete-se de maneira nenhuma
+
+[240] SourceCode/ccache/b/stats
+error: patch falhou: SourceCode/ccache/b/stats:9
+error: SourceCode/ccache/b/stats: patch submete-se de maneira nenhuma
+
+[241] SourceCode/ccache/c/0/stats
+error: patch falhou: SourceCode/ccache/c/0/stats:20
+error: SourceCode/ccache/c/0/stats: patch submete-se de maneira nenhuma
+
+[242] SourceCode/ccache/c/1/stats
+error: patch falhou: SourceCode/ccache/c/1/stats:20
+error: SourceCode/ccache/c/1/stats: patch submete-se de maneira nenhuma
+
+[243] SourceCode/ccache/c/2/stats
+error: patch falhou: SourceCode/ccache/c/2/stats:20
+error: SourceCode/ccache/c/2/stats: patch submete-se de maneira nenhuma
+
+[244] SourceCode/ccache/c/3/stats
+error: patch falhou: SourceCode/ccache/c/3/stats:20
+error: SourceCode/ccache/c/3/stats: patch submete-se de maneira nenhuma
+
+[245] SourceCode/ccache/c/4/stats
+error: patch falhou: SourceCode/ccache/c/4/stats:20
+error: SourceCode/ccache/c/4/stats: patch submete-se de maneira nenhuma
+
+[246] SourceCode/ccache/c/5/stats
+error: patch falhou: SourceCode/ccache/c/5/stats:20
+error: SourceCode/ccache/c/5/stats: patch submete-se de maneira nenhuma
+
+[248] SourceCode/ccache/c/7/stats
+error: patch falhou: SourceCode/ccache/c/7/stats:20
+error: SourceCode/ccache/c/7/stats: patch submete-se de maneira nenhuma
+
+[249] SourceCode/ccache/c/8/stats
+error: patch falhou: SourceCode/ccache/c/8/stats:20
+error: SourceCode/ccache/c/8/stats: patch submete-se de maneira nenhuma
+
+[250] SourceCode/ccache/c/9/stats
+error: patch falhou: SourceCode/ccache/c/9/stats:20
+error: SourceCode/ccache/c/9/stats: patch submete-se de maneira nenhuma
+
+[251] SourceCode/ccache/c/a/stats
+error: patch falhou: SourceCode/ccache/c/a/stats:20
+error: SourceCode/ccache/c/a/stats: patch submete-se de maneira nenhuma
+
+[252] SourceCode/ccache/c/b/stats
+error: patch falhou: SourceCode/ccache/c/b/stats:20
+error: SourceCode/ccache/c/b/stats: patch submete-se de maneira nenhuma
+
+[253] SourceCode/ccache/c/c/stats
+error: patch falhou: SourceCode/ccache/c/c/stats:20
+error: SourceCode/ccache/c/c/stats: patch submete-se de maneira nenhuma
+
+[254] SourceCode/ccache/c/d/stats
+error: patch falhou: SourceCode/ccache/c/d/stats:20
+error: SourceCode/ccache/c/d/stats: patch submete-se de maneira nenhuma
+
+[255] SourceCode/ccache/c/e/stats
+error: patch falhou: SourceCode/ccache/c/e/stats:20
+error: SourceCode/ccache/c/e/stats: patch submete-se de maneira nenhuma
+
+[257] SourceCode/ccache/c/stats
+error: patch falhou: SourceCode/ccache/c/stats:9
+error: SourceCode/ccache/c/stats: patch submete-se de maneira nenhuma
+
+[258] SourceCode/ccache/d/0/stats
+error: patch falhou: SourceCode/ccache/d/0/stats:20
+error: SourceCode/ccache/d/0/stats: patch submete-se de maneira nenhuma
+
+[261] SourceCode/ccache/d/3/stats
+error: patch falhou: SourceCode/ccache/d/3/stats:20
+error: SourceCode/ccache/d/3/stats: patch submete-se de maneira nenhuma
+
+[262] SourceCode/ccache/d/4/stats
+error: patch falhou: SourceCode/ccache/d/4/stats:20
+error: SourceCode/ccache/d/4/stats: patch submete-se de maneira nenhuma
+
+[263] SourceCode/ccache/d/5/stats
+error: patch falhou: SourceCode/ccache/d/5/stats:20
+error: SourceCode/ccache/d/5/stats: patch submete-se de maneira nenhuma
+
+[264] SourceCode/ccache/d/6/stats
+error: patch falhou: SourceCode/ccache/d/6/stats:20
+error: SourceCode/ccache/d/6/stats: patch submete-se de maneira nenhuma
+
+[265] SourceCode/ccache/d/7/stats
+error: patch falhou: SourceCode/ccache/d/7/stats:20
+error: SourceCode/ccache/d/7/stats: patch submete-se de maneira nenhuma
+
+[266] SourceCode/ccache/d/8/stats
+error: patch falhou: SourceCode/ccache/d/8/stats:20
+error: SourceCode/ccache/d/8/stats: patch submete-se de maneira nenhuma
+
+[267] SourceCode/ccache/d/9/stats
+error: patch falhou: SourceCode/ccache/d/9/stats:20
+error: SourceCode/ccache/d/9/stats: patch submete-se de maneira nenhuma
+
+[268] SourceCode/ccache/d/a/stats
+error: patch falhou: SourceCode/ccache/d/a/stats:20
+error: SourceCode/ccache/d/a/stats: patch submete-se de maneira nenhuma
+
+[269] SourceCode/ccache/d/b/stats
+error: patch falhou: SourceCode/ccache/d/b/stats:20
+error: SourceCode/ccache/d/b/stats: patch submete-se de maneira nenhuma
+
+[270] SourceCode/ccache/d/c/stats
+error: patch falhou: SourceCode/ccache/d/c/stats:20
+error: SourceCode/ccache/d/c/stats: patch submete-se de maneira nenhuma
+
+[271] SourceCode/ccache/d/d/stats
+error: patch falhou: SourceCode/ccache/d/d/stats:20
+error: SourceCode/ccache/d/d/stats: patch submete-se de maneira nenhuma
+
+[272] SourceCode/ccache/d/e/stats
+error: patch falhou: SourceCode/ccache/d/e/stats:20
+error: SourceCode/ccache/d/e/stats: patch submete-se de maneira nenhuma
+
+[273] SourceCode/ccache/d/f/stats
+error: patch falhou: SourceCode/ccache/d/f/stats:20
+error: SourceCode/ccache/d/f/stats: patch submete-se de maneira nenhuma
+
+[275] SourceCode/ccache/e/0/stats
+error: patch falhou: SourceCode/ccache/e/0/stats:20
+error: SourceCode/ccache/e/0/stats: patch submete-se de maneira nenhuma
+
+[276] SourceCode/ccache/e/1/stats
+error: patch falhou: SourceCode/ccache/e/1/stats:20
+error: SourceCode/ccache/e/1/stats: patch submete-se de maneira nenhuma
+
+[277] SourceCode/ccache/e/2/stats
+error: patch falhou: SourceCode/ccache/e/2/stats:20
+error: SourceCode/ccache/e/2/stats: patch submete-se de maneira nenhuma
+
+[278] SourceCode/ccache/e/3/stats
+error: patch falhou: SourceCode/ccache/e/3/stats:20
+error: SourceCode/ccache/e/3/stats: patch submete-se de maneira nenhuma
+
+[279] SourceCode/ccache/e/4/stats
+error: patch falhou: SourceCode/ccache/e/4/stats:20
+error: SourceCode/ccache/e/4/stats: patch submete-se de maneira nenhuma
+
+[280] SourceCode/ccache/e/5/stats
+error: patch falhou: SourceCode/ccache/e/5/stats:20
+error: SourceCode/ccache/e/5/stats: patch submete-se de maneira nenhuma
+
+[281] SourceCode/ccache/e/6/stats
+error: patch falhou: SourceCode/ccache/e/6/stats:20
+error: SourceCode/ccache/e/6/stats: patch submete-se de maneira nenhuma
+
+[282] SourceCode/ccache/e/7/stats
+error: patch falhou: SourceCode/ccache/e/7/stats:20
+error: SourceCode/ccache/e/7/stats: patch submete-se de maneira nenhuma
+
+[283] SourceCode/ccache/e/8/stats
+error: patch falhou: SourceCode/ccache/e/8/stats:20
+error: SourceCode/ccache/e/8/stats: patch submete-se de maneira nenhuma
+
+[284] SourceCode/ccache/e/9/stats
+error: patch falhou: SourceCode/ccache/e/9/stats:20
+error: SourceCode/ccache/e/9/stats: patch submete-se de maneira nenhuma
+
+[285] SourceCode/ccache/e/a/stats
+error: patch falhou: SourceCode/ccache/e/a/stats:20
+error: SourceCode/ccache/e/a/stats: patch submete-se de maneira nenhuma
+
+[286] SourceCode/ccache/e/b/stats
+error: patch falhou: SourceCode/ccache/e/b/stats:20
+error: SourceCode/ccache/e/b/stats: patch submete-se de maneira nenhuma
+
+[287] SourceCode/ccache/e/c/stats
+error: patch falhou: SourceCode/ccache/e/c/stats:20
+error: SourceCode/ccache/e/c/stats: patch submete-se de maneira nenhuma
+
+[288] SourceCode/ccache/e/d/stats
+error: patch falhou: SourceCode/ccache/e/d/stats:20
+error: SourceCode/ccache/e/d/stats: patch submete-se de maneira nenhuma
+
+[289] SourceCode/ccache/e/e/stats
+error: patch falhou: SourceCode/ccache/e/e/stats:20
+error: SourceCode/ccache/e/e/stats: patch submete-se de maneira nenhuma
+
+[290] SourceCode/ccache/e/f/stats
+error: patch falhou: SourceCode/ccache/e/f/stats:20
+error: SourceCode/ccache/e/f/stats: patch submete-se de maneira nenhuma
+
+[291] SourceCode/ccache/e/stats
+error: patch falhou: SourceCode/ccache/e/stats:9
+error: SourceCode/ccache/e/stats: patch submete-se de maneira nenhuma
+
+[292] SourceCode/ccache/f/0/stats
+error: patch falhou: SourceCode/ccache/f/0/stats:20
+error: SourceCode/ccache/f/0/stats: patch submete-se de maneira nenhuma
+
+[293] SourceCode/ccache/f/1/stats
+error: patch falhou: SourceCode/ccache/f/1/stats:20
+error: SourceCode/ccache/f/1/stats: patch submete-se de maneira nenhuma
+
+[294] SourceCode/ccache/f/2/stats
+error: patch falhou: SourceCode/ccache/f/2/stats:20
+error: SourceCode/ccache/f/2/stats: patch submete-se de maneira nenhuma
+
+[295] SourceCode/ccache/f/3/stats
+error: patch falhou: SourceCode/ccache/f/3/stats:20
+error: SourceCode/ccache/f/3/stats: patch submete-se de maneira nenhuma
+
+[296] SourceCode/ccache/f/4/stats
+error: patch falhou: SourceCode/ccache/f/4/stats:20
+error: SourceCode/ccache/f/4/stats: patch submete-se de maneira nenhuma
+
+[297] SourceCode/ccache/f/5/stats
+error: patch falhou: SourceCode/ccache/f/5/stats:20
+error: SourceCode/ccache/f/5/stats: patch submete-se de maneira nenhuma
+
+[298] SourceCode/ccache/f/6/stats
+error: patch falhou: SourceCode/ccache/f/6/stats:20
+error: SourceCode/ccache/f/6/stats: patch submete-se de maneira nenhuma
+
+[299] SourceCode/ccache/f/7/stats
+error: patch falhou: SourceCode/ccache/f/7/stats:20
+error: SourceCode/ccache/f/7/stats: patch submete-se de maneira nenhuma
+
+[300] SourceCode/ccache/f/8/stats
+error: patch falhou: SourceCode/ccache/f/8/stats:20
+error: SourceCode/ccache/f/8/stats: patch submete-se de maneira nenhuma
+
+[302] SourceCode/ccache/f/a/stats
+error: patch falhou: SourceCode/ccache/f/a/stats:20
+error: SourceCode/ccache/f/a/stats: patch submete-se de maneira nenhuma
+
+[303] SourceCode/ccache/f/b/stats
+error: patch falhou: SourceCode/ccache/f/b/stats:20
+error: SourceCode/ccache/f/b/stats: patch submete-se de maneira nenhuma
+
+[304] SourceCode/ccache/f/c/stats
+error: patch falhou: SourceCode/ccache/f/c/stats:20
+error: SourceCode/ccache/f/c/stats: patch submete-se de maneira nenhuma
+
+[305] SourceCode/ccache/f/d/stats
+error: patch falhou: SourceCode/ccache/f/d/stats:20
+error: SourceCode/ccache/f/d/stats: patch submete-se de maneira nenhuma
+
+[306] SourceCode/ccache/f/e/stats
+error: patch falhou: SourceCode/ccache/f/e/stats:20
+error: SourceCode/ccache/f/e/stats: patch submete-se de maneira nenhuma
+
+[307] SourceCode/ccache/f/f/stats
+error: patch falhou: SourceCode/ccache/f/f/stats:20
+error: SourceCode/ccache/f/f/stats: patch submete-se de maneira nenhuma
+
+[310] SourceCode/dist_mingw_client_i686/Game.exe
+error: o patch submete-se a 'SourceCode/dist_mingw_client_i686/Game.exe' (68d6c85b1e544394b90d824a2790942c3e376460), que corresponde a conteúdo actual nenhum.
+error: SourceCode/dist_mingw_client_i686/Game.exe: patch submete-se de maneira nenhuma
+
+[311] SourceCode/dist_mingw_server_i686/Server.exe
+error: o patch submete-se a 'SourceCode/dist_mingw_server_i686/Server.exe' (e9a328679825ce5bce1e9d698020178a759bb07e), que corresponde a conteúdo actual nenhum.
+error: SourceCode/dist_mingw_server_i686/Server.exe: patch submete-se de maneira nenhuma

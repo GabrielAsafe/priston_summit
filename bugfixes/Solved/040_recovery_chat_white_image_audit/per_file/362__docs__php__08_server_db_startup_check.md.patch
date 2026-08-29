@@ -1,0 +1,319 @@
+diff --git a/docs/php/08_server_db_startup_check.md b/docs/php/08_server_db_startup_check.md
+deleted file mode 100644
+index fa4b154..0000000
+--- a/docs/php/08_server_db_startup_check.md
++++ /dev/null
+@@ -1,313 +0,0 @@
+-# Checklist DB para arranque do Server.exe
+-
+-O binário menciona as seguintes bases. Este ficheiro cruza isso com o schema importado.
+-
+-
+-## AccountDB — OK no schema
+-- `AccountDB.dbo.AGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.ALLPersonalMember` → PMNo, Userid, Passwd, senharpt, senhapainel, Question, Reply, CUserName1
+-- `AccountDB.dbo.APersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.AddressInfo` → AINo, Address, EditDate, Note
+-- `AccountDB.dbo.AllGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.BGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.BPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.BlockUserList` → BNo, PMNo, userid, AppDate, ReuseDate, Active, SOperator, SReason
+-- `AccountDB.dbo.CGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.CPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.DGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.DPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.DelLog_Personal` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.DelUserQueue` → DNo, PMNo, DeleteDate, DeleteReason, Status, Operator, InDate, Note
+-- `AccountDB.dbo.EGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.EPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.FGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.FPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.GGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.GPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.GameMasters` → id, accountId, password, security, active
+-- `AccountDB.dbo.HGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.HPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.IGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.IPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.JGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.JPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.KGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.KPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.LGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.LPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.LevelList` → CharName, CharLevel, CharClass, ID
+-- `AccountDB.dbo.MGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.MK_User_DATA` → IDX, UserID, UserPWD, NickName, EmailAddr, Sex, Address, Job
+-- `AccountDB.dbo.MPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.NGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.NPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.NTTGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.NTTPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.OGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.OPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.PCBangMember` → PMNo, UserID, Passwd, BusinessName, UserName, PhoneNumber, ZipCode, Address1
+-- `AccountDB.dbo.PCBangMemberChangeLog` → PCBCLNo, PMNo, UserID, Passwd, BusinessName, UserName, PhoneNumber, ZipCode
+-- `AccountDB.dbo.PGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.PPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.QGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.QPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.RGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.RPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.RegionChangeLog` → RCLNo, PMNo, UserID, BeforeRegionCode, AfterRegionCode, ChangeOperator, ChangeIP, EditDate
+-- `AccountDB.dbo.RegionCodeChangeLog` → RCCNo, RCNo, RegionCode, RegionCodeName, Active, EditDate, ChangeStatus, ChangeOperator
+-- `AccountDB.dbo.RegionCodeInfo` → RCNo, RegionCode, RegionCodeName, Active, EditDate
+-- `AccountDB.dbo.RegionCodeInfoLog` → IDX, PMNo, UserID, Passwd, BusinessName, UserName, PhoneNumber, ZipCode
+-- `AccountDB.dbo.SGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.SPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.TGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.TPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.UGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.UPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.VGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.VPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.WGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.WPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.XGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.XPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.YGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.YPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-- `AccountDB.dbo.ZGameUser` → userid, Passwd, GameCode, GPCode, RegistDay, DisuseDay, UsePeriod, inuse
+-- `AccountDB.dbo.ZPersonalMember` → PMNo, Userid, Passwd, Question, Reply, CUserName1, CUserName2, KUserName1
+-
+-## BillingDb — OK no schema
+-- `BillingDb.dbo.0CHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.9CHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.ACHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.BCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.BillingPointCheck20060329` → IDX, UserID, EndDay
+-- `BillingDb.dbo.CCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.DCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.ECHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.Excite` → NUM, EXTERNAL_ID, PRISTONTALE_ID, GOODS_TYPE, CHARGE_TYPE, CHARGE_FORM, AMOUNT, START_DAY
+-- `BillingDb.dbo.Excite_Amount` → NUM, IDX, EXTERNAL_ID, PRISTONTALE_ID, GOODS_TYPE, CHARGE_TYPE, CHARGE_FORM, AMOUNT
+-- `BillingDb.dbo.Excite_Bak` → NUM, IDX, EXTERNAL_ID, PRISTONTALE_ID, GOODS_TYPE, CHARGE_TYPE, CHARGE_FORM, AMOUNT
+-- `BillingDb.dbo.Excite_Error` → NUM, IDX, EXTERNAL_ID, PRISTONTALE_ID, GOODS_TYPE, CHARGE_TYPE, CHARGE_FORM, AMOUNT
+-- `BillingDb.dbo.Excite_Free` → NUM, IDX, EXTERNAL_ID, PRISTONTALE_ID, GOODS_TYPE, CHARGE_TYPE, CHARGE_FORM, AMOUNT
+-- `BillingDb.dbo.Excite_NoUse` → NUM, IDX, EXTERNAL_ID, PRISTONTALE_ID, GOODS_TYPE, CHARGE_TYPE, CHARGE_FORM, AMOUNT
+-- `BillingDb.dbo.FCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.GCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.HCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.ICHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.JCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.KCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.LCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.MCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.NCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.NTTBilling` → NUM, EXTERNAL_ID, PRISTONTALE_ID, GOODS_TYPE, CHARGE_TYPE, CHARGE_FORM, AMOUNT, START_DAY
+-- `BillingDb.dbo.NetMarble` → NUM, EXTERNAL_ID, PRISTONTALE_ID, GOODS_TYPE, CHARGE_TYPE, CHARGE_FORM, AMOUNT, START_DAY
+-- `BillingDb.dbo.NetMarble_Amount` → NUM, IDX, EXTERNAL_ID, PRISTONTALE_ID, GOODS_TYPE, CHARGE_TYPE, CHARGE_FORM, AMOUNT
+-- `BillingDb.dbo.NetMarble_Bak` → NUM, IDX, EXTERNAL_ID, PRISTONTALE_ID, GOODS_TYPE, CHARGE_TYPE, CHARGE_FORM, AMOUNT
+-- `BillingDb.dbo.NetMarble_Error` → NUM, IDX, EXTERNAL_ID, PRISTONTALE_ID, GOODS_TYPE, CHARGE_TYPE, CHARGE_FORM, AMOUNT
+-- `BillingDb.dbo.NetMarble_Free` → NUM, IDX, EXTERNAL_ID, PRISTONTALE_ID, GOODS_TYPE, CHARGE_TYPE, CHARGE_FORM, AMOUNT
+-- `BillingDb.dbo.NetMarble_NoUse` → NUM, IDX, EXTERNAL_ID, PRISTONTALE_ID, GOODS_TYPE, CHARGE_TYPE, CHARGE_FORM, AMOUNT
+-- `BillingDb.dbo.OCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.PCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.QCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.RCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.SCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.TCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.Table1` → day, amount, count
+-- `BillingDb.dbo.UCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.VCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.WCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.XCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.YCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-- `BillingDb.dbo.ZCHANNEL` → PRISTONTALE_ID, TABLE_NAME, INSERT_DATE
+-
+-## BillingLogDb — OK no schema
+-- `BillingLogDb.dbo.Bill_Error_Message` → ENo, Error_Num, Error_Message, Kor_Error_Message
+-- `BillingLogDb.dbo.ChannelLog` → NUM, BNum, ChannelName, UserID, Operater, OperCode, Note, RegistDay
+-- `BillingLogDb.dbo.GameLog` → NUM, BNum, ChannelName, UserID, Operater, OperCode, Note, RegistDay
+-- `BillingLogDb.dbo.PersonalLog` → NUM, BNum, ChannelName, UserID, Operater, OperCode, Note, RegistDay
+-- `BillingLogDb.dbo.Security` → AccountId, IP, Date, Protocol
+-- `BillingLogDb.dbo.UpdateSuccess` → NUM, Job, SuccessCount, RegistDay
+-
+-## ClanDB — OK no schema
+-- `ClanDB.dbo.BBSMain` → IDX, MIDX, Userid, WriteName, Title, Content, SelServer, RegiDate
+-- `ClanDB.dbo.BBSSub` → SIDX, MINDEX, Userid, WriteName, Content, RegiDate, RegiIP, NickName
+-- `ClanDB.dbo.CL` → IDX, ClanName, Note, NoteCnt, UserID, ClanZang, Flag, MemCnt
+-- `ClanDB.dbo.CT` → SNo, ServerName, MIDX, ClanName, ClanJang, ClanImage, UserID, ChName
+-- `ClanDB.dbo.ChipLog` → LgIDX, CIDX, CServer, Userid, Chname, Permi, RegiDate
+-- `ClanDB.dbo.ClanHome` → IDX, MIDX, SelServer, Intro, Image, Skin, PrivHome, PrivMem
+-- `ClanDB.dbo.ClanMainCharChangeLog` → IDX, UserID, BeforeCharName, AfterCharName, CServer, RegiDate
+-- `ClanDB.dbo.ClanMainDeleted` → IDX, MIDX, ClanName, Userid, ClanZang, Flag, MemCnt, MIConCnt
+-- `ClanDB.dbo.ClanMainView` → IDX, ClanName, Note, NoteCnt, UserID, ClanZang, Flag, MemCnt
+-- `ClanDB.dbo.ClanMoneyLog` → IDX, CIDX, UserID, chName, ServerName, Operator, OperCode, ClanMoney
+-- `ClanDB.dbo.ClanSubCharChangeLog` → IDX, UserID, BeforeCharName, AfterCharName, CServer, RegiDate
+-- `ClanDB.dbo.ClanSubDeleted` → IDX, MIDX, userid, ChName, ChType, ChLv, ClanName, Permi
+-- `ClanDB.dbo.ClanSubView` → IDX, MIDX, userid, ChName, ChType, ChLv, ClanName, Permi
+-- `ClanDB.dbo.ClanTicket` → SNo, ServerName, MIDX, ClanName, ClanJang, ClanImage, UserID, ChName
+-- `ClanDB.dbo.GameNotice` → UserID, ChName, Server, PFlag, Txt, Flag
+-- `ClanDB.dbo.GameNoticeGroup` → IDX, GroupCD, MainCD, DetailCD, Title, Content, FromDay, ToDay
+-- `ClanDB.dbo.GameNoticePrivate` → IDX, Userid, Title, Content, FromDay, ToDay, RegistDay, DelActive
+-- `ClanDB.dbo.LI` → IMG, ID
+-- `ClanDB.dbo.Minutos` → ChName, Minutos
+-- `ClanDB.dbo.Notice` → IDX, MIDX, Userid, WriteName, Title, Content, SelServer, RegiDate
+-- `ClanDB.dbo.PRBBSMain` → IDX, PMNo, Userid, Title, Content, UserName, ClanIdx, SelServer
+-- `ClanDB.dbo.PRBBSSub` → SIDX, MINDEX, PMNo, userid, writename, Content, RegiDate, RegiIP
+-- `ClanDB.dbo.PRBbsFile` → IDX, MINDEX, FileName, FileSize, RegiDate
+-- `ClanDB.dbo.SiegeClanList` → IDX, UserID, CharName, ClanName, TaxRate, ServerName, Server, OperFrom
+-- `ClanDB.dbo.SiegeCurrentList` → IDX, CIDX, UserID, chName, ServerName, Operator, OperCode, SiegeMoney
+-- `ClanDB.dbo.SiegeMoneyLog` → IDX, CIDX, UserID, chName, ServerName, Operator, OperCode, SiegeMoney
+-- `ClanDB.dbo.SiegeMoneyTax` → DNo, IDX, Mixing, Aging, Shop, Poison1, Poison2, Poison3
+-- `ClanDB.dbo.UL` → IDX, MIDX, userid, ChName, ChType, ChLv, ClanName, Permi
+-
+-## GameLogDB — OK no schema
+-- `GameLogDB.dbo.CharGameRecordLg` → CharNo, UserID, CharType, GameLogonID, GPCode, ServerName, IP, GameLevel
+-- `GameLogDB.dbo.CharTop` → IDX, userid, chartype, charname, servername, glevel, editday, exp
+-- `GameLogDB.dbo.FlowerUserID` → UserID
+-- `GameLogDB.dbo.GameOnRecord` → SNo, UserID, GPCode, ServerName, LogonTime, IP, RNo
+-- `GameLogDB.dbo.GameOutRecord` → SNo, UserID, GPCode, ServerName, LogoutTime, IP, RNo
+-- `GameLogDB.dbo.GiveYouItem` → GNo, UserID, CharName, Server, Item, ItemCode, JobCode, Reason
+-- `GameLogDB.dbo.HackLog0301` → HNo, UserID, CharType, GameLogonId, GPCode, HCode, ServerName, IP
+-- `GameLogDB.dbo.ID20050304` → UserID
+-- `GameLogDB.dbo.ITEMCode` → ITEMNo, Category, CodeHName, CodeEName, CodeJName, Code, ChangeJob
+-- `GameLogDB.dbo.ItemBillGiveLog` → INo, userid, ServerName, ServerCode, ItemCode, ItemCount, Active, ConfirmDate
+-- `GameLogDB.dbo.ItemGiveList` → IDX, UserID, ServerName, Flag
+-- `GameLogDB.dbo.ItemGiveList3` → IDX, UserID, ServerName, Flag
+-- `GameLogDB.dbo.ItemGiveLog` → INo, UserID, ServerCode, ItemCategory, ItemCount, Flag, Active, ConfirmDate
+-- `GameLogDB.dbo.LongCharge` → IDX, UserID, Email
+-- `GameLogDB.dbo.ServerUP` → SNo, ServerName, UCount, RegistDay
+-- `GameLogDB.dbo.UserListTemp` → IDX, UserID, Server
+-- `GameLogDB.dbo.tempcharrecord` → UserID, ServerName, exp
+-
+-## ItemLogDB — OK no schema
+-- `ItemLogDB.dbo.AItemCode` → ItemCode, KorName, EngName
+-- `ItemLogDB.dbo.IL` → ITEMNo, UserID, CharName, IP, Flag, TUserID, TCharName, TMoney
+-- `ItemLogDB.dbo.ITEMCODE` → ITEMNo, Category, CodeHName, CodeEName, Code
+-
+-## LogDB — OK no schema
+-- `LogDB.dbo.AccountLogin` → ID, Account, Password, IP, MacAddress, Path, PCName, Date
+-- `LogDB.dbo.ChangePassword` → AccountName, Password
+-- `LogDB.dbo.CheatLog` → ID, IP, AccountName, Action, LogID, Description, Date
+-- `LogDB.dbo.ClanLogin` → AccountName, Password
+-- `LogDB.dbo.Register` → AccountName, Password
+-
+-## rPTDB — OK no schema
+-- `rPTDB.dbo.LevelList` → CharName, CharLevel, CharClass, ID, ClanName, ExpChar
+-
+-## SoD2DB — OK no schema
+-- `SoD2DB.dbo.SOD2RecBySandurr` → SNo, UserID, CharName, CharType, Point, KillCount, GLevel, TotalPoint
+-- `SoD2DB.dbo.SoD2BBSMain` → IDX, Userid, WriteName, Title, Job, Content, SelServer, RegiDate
+-- `SoD2DB.dbo.SoD2BBSSub` → SIDX, MINDEX, Userid, WriteName, Content, RegiDate, RegiIP
+-- `SoD2DB.dbo.SoD2Notice` → IDX, MIDX, SelServer, UserID, Notice, RegiDate
+-- `SoD2DB.dbo.Sod2Config` → MIDX, ClanName, UserID, CharName, SelServer, ServerName, TaxRates, OperFrom
+-- `SoD2DB.dbo.Sod2ConfigLog` → IDX, MIDX, ClanName, UserID, CharName, SelServer, ServerName, TaxRates
+-- `SoD2DB.dbo.Sod2TaxLog` → IDX, MIDX, ClanName, MCount, UserID, CharName, SelServer, TaxRates
+-- `SoD2DB.dbo.UserBlackList` → SOD2No, UserID, CharName, ServerCode, Memo, RegistDay
+-- `SoD2DB.dbo.temp` → IDX, CIDX, CServerTime, Server, ClanName, ServerName, CPoint, CRegistDay
+-- `SoD2DB.dbo.test` → IDX, CIDX, CServerTime, Server, ClanName, ServerName, CPoint, CRegistDay
+-
+-## SodDB — OK no schema
+-- `SodDb.dbo.SOD0401` → SODNo, UserID, CharName, CharType, ServerName, Point, Point_Lev, Point_Day
+-- `SodDb.dbo.SOD0402` → SODNo, UserID, CharName, CharType, ServerName, Point, Point_Lev, Point_Day
+-- `SodDb.dbo.SOD0403` → SODNo, UserID, CharName, CharType, ServerName, Point, Point_Lev, Point_Day
+-- `SodDb.dbo.SOD0404` → SODNo, UserID, CharName, CharType, ServerName, Point, Point_Lev, Point_Day
+-- `SodDb.dbo.SOD0405` → SODNo, UserID, CharName, CharType, ServerName, Point, Point_Lev, Point_Day
+-- `SodDb.dbo.SOD0406` → SODNo, UserID, CharName, CharType, ServerName, Point, Point_Lev, Point_Day
+-- `SodDb.dbo.SOD0407` → SODNo, UserID, CharName, CharType, ServerName, Point, Point_Lev, Point_Day
+-- `SodDb.dbo.SOD0408` → SODNo, UserID, CharName, CharType, ServerName, Point, Point_Lev, Point_Day
+-- `SodDb.dbo.SOD0409` → SODNo, UserID, CharName, CharType, ServerName, Point, Point_Lev, Point_Day
+-- `SodDb.dbo.SOD0410` → SODNo, UserID, CharName, CharType, ServerName, Point, Point_Lev, Point_Day
+-- `SodDb.dbo.SOD0412` → SODNo, UserID, CharName, CharType, ServerName, Point, Point_Lev, Point_Day
+-- `SodDb.dbo.SODClan0401` → IDX, CIDX, CServerTime, Server, ClanName, ServerName, CPoint, CRegistDay
+-- `SodDb.dbo.SODClan0402` → IDX, CIDX, CServerTime, Server, ClanName, ServerName, CPoint, CRegistDay
+-- `SodDb.dbo.SODClan0403` → IDX, CIDX, CServerTime, Server, ClanName, ServerName, CPoint, CRegistDay
+-- `SodDb.dbo.SODClan0404` → IDX, CIDX, CServerTime, Server, ClanName, ServerName, CPoint, CRegistDay
+-- `SodDb.dbo.SODClan0405` → IDX, CIDX, CServerTime, Server, ClanName, ServerName, CPoint, CRegistDay
+-- `SodDb.dbo.SODClan0406` → IDX, CIDX, CServerTime, Server, ClanName, ServerName, CPoint, CRegistDay
+-- `SodDb.dbo.SODClan0407` → IDX, CIDX, CServerTime, Server, ClanName, ServerName, CPoint, CRegistDay
+-- `SodDb.dbo.SODClan0408` → IDX, CIDX, CServerTime, Server, ClanName, ServerName, CPoint, CRegistDay
+-- `SodDb.dbo.SODClan0409` → IDX, CIDX, CServerTime, Server, ClanName, ServerName, CPoint, CRegistDay
+-- `SodDb.dbo.SODClan0410` → IDX, CIDX, CServerTime, Server, ClanName, ServerName, CPoint, CRegistDay
+-- `SodDb.dbo.SODClan0411` → IDX, CIDX, CServerTime, Server, ClanName, ServerName, CPoint, CRegistDay
+-- `SodDb.dbo.SODClan0412` → IDX, CIDX, CServerTime, Server, ClanName, ServerName, CPoint, CRegistDay
+-- `SodDb.dbo.SODClanLog0401` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SODClanLog0402` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SODClanLog0403` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SODClanLog0404` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SODClanLog0405` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SODClanLog0406` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SODClanLog0407` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SODClanLog0408` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SODClanLog0409` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SODClanLog0410` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SODClanLog0411` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SODClanLog0412` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SODClanSum0401` → IDX, CIDX, Server, ClanName, ServerName, CPointSum, CRegistDay
+-- `SodDb.dbo.SODClanSum0402` → IDX, CIDX, Server, ClanName, ServerName, CPointSum, CRegistDay
+-- `SodDb.dbo.SODClanSum0403` → IDX, CIDX, Server, ClanName, ServerName, CPointSum, CRegistDay
+-- `SodDb.dbo.SODClanSum0404` → IDX, CIDX, Server, ClanName, ServerName, CPointSum, CRegistDay
+-- `SodDb.dbo.SODClanSum0405` → IDX, CIDX, Server, ClanName, ServerName, CPointSum, CRegistDay
+-- `SodDb.dbo.SODClanSum0406` → IDX, CIDX, Server, ClanName, ServerName, CPointSum, CRegistDay
+-- `SodDb.dbo.SODClanSum0407` → IDX, CIDX, Server, ClanName, ServerName, CPointSum, CRegistDay
+-- `SodDb.dbo.SODClanSum0408` → IDX, CIDX, Server, ClanName, ServerName, CPointSum, CRegistDay
+-- `SodDb.dbo.SODClanSum0409` → IDX, CIDX, Server, ClanName, ServerName, CPointSum, CRegistDay
+-- `SodDb.dbo.SODClanSum0410` → IDX, CIDX, Server, ClanName, ServerName, CPointSum, CRegistDay
+-- `SodDb.dbo.SODClanSum0411` → IDX, CIDX, Server, ClanName, ServerName, CPointSum, CRegistDay
+-- `SodDb.dbo.SODClanSum0412` → IDX, CIDX, Server, ClanName, ServerName, CPointSum, CRegistDay
+-- `SodDb.dbo.SODRecord0401` → SNo, UserID, CharName, CharType, Point, KillCount, GLevel, TotalPoint
+-- `SodDb.dbo.SODRecord0402` → SNo, UserID, CharName, CharType, Point, KillCount, GLevel, TotalPoint
+-- `SodDb.dbo.SODRecord0403` → SNo, UserID, CharName, CharType, Point, KillCount, GLevel, TotalPoint
+-- `SodDb.dbo.SODRecord0404` → SNo, UserID, CharName, CharType, Point, KillCount, GLevel, TotalPoint
+-- `SodDb.dbo.SODRecord0405` → SNo, UserID, CharName, CharType, Point, KillCount, GLevel, TotalPoint
+-- `SodDb.dbo.SODRecord0406` → SNo, UserID, CharName, CharType, Point, KillCount, GLevel, TotalPoint
+-- `SodDb.dbo.SODRecord0407` → SNo, UserID, CharName, CharType, Point, KillCount, GLevel, TotalPoint
+-- `SodDb.dbo.SODRecord0408` → SNo, UserID, CharName, CharType, Point, KillCount, GLevel, TotalPoint
+-- `SodDb.dbo.SODRecord0409` → SNo, UserID, CharName, CharType, Point, KillCount, GLevel, TotalPoint
+-- `SodDb.dbo.SODRecord0410` → SNo, UserID, CharName, CharType, Point, KillCount, GLevel, TotalPoint
+-- `SodDb.dbo.SODRecord0411` → SNo, UserID, CharName, CharType, Point, KillCount, GLevel, TotalPoint
+-- `SodDb.dbo.SODRecord0412` → SNo, UserID, CharName, CharType, Point, KillCount, GLevel, TotalPoint
+-- `SodDb.dbo.SOFClanLog0403` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SOFClanLog0404` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SOFClanLog0405` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SOFClanLog0406` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SOFClanLog0407` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SOFClanLog0408` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SOFClanLog0409` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SOFClanLog0410` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SOFClanLog0411` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-- `SodDb.dbo.SOFClanLog0412` → IDX, LCIDX, LCServerTime, LServer, LCPoint, LCRegistDay
+-
+-## ServerDB — OK no schema
+-- `ServerDB.dbo.BoxRewards` → Kind, ItemCode, Count, Class
+-- `ServerDB.dbo.DropLogAlert` → ItemCode
+-- `ServerDB.dbo.NoticeSystem` → ID, Message, Type, Activated
+-- `ServerDB.dbo.PVP` → ID, Name, Class, Lvl, Kills, Deads
+-- `ServerDB.dbo.PremiumData` → ID, CharacterName, TimeLeft, ItemType
+-- `ServerDB.dbo.Vip` → ID, PlayerName, IdVIp, DateStart, DateEnd
+-
+-## SecurityDB — OK no schema
+-- `SecurityDB.dbo.AgingFailed` → ID, PlayerID, PlayerName, ItemName, ItemAging, Head, ChkSum, Date
+-- `SecurityDB.dbo.AttackLog` → id, accountId, IP, description, date
+-- `SecurityDB.dbo.CheatLog` → ID, IP, AccountName, Action, LogID, Description, Date
+-- `SecurityDB.dbo.FunctionChecksumList` → ID, Size, Address, Checksum
+-- `SecurityDB.dbo.Security` → AccountId, IP, Date, Protocol
+-- `SecurityDB.dbo.WindowCheatList` → ID, WindowName
+-
+-## CoinShopDB — OK no schema
+-- `CoinShopDB.dbo.ItemList` → szItemCode, ItemSection, Price
+-- `CoinShopDB.dbo.ItemList_T` → szItemCode, ItemSection, Price
+-- `CoinShopDB.dbo.PendingPayments` → ID, UserID, Amount, Coins, MPPaymentID, Status, CreatedDate, CompletedDate
+-- `CoinShopDB.dbo.Transactions` → Id, UserID, PaymentID, Amount, Coins, Status, Date
+-- `CoinShopDB.dbo.UserInfo` → UserID, UserCoin, LastChange
+-- `CoinShopDB.dbo.UserInfo_T` → UserID, UserMinutos, LastChange
+-
+-## QuestDB — OK no schema
+-- `QuestDB.dbo.Complete` → QuestID, QuestKind, QuestType, PlayerName, EndDate
+-- `QuestDB.dbo.DailyQuest` → QuestID, QuestName, QuestTitle, LevelMin, LevelMax, PartyFlag, QuestDesc, QuestType
+-- `QuestDB.dbo.ItemRewards` → QuestID, QuestKind, ItemCode, ItemCount, QuestType
+-- `QuestDB.dbo.MonsterKilled` → MonsterName, Killed, Count, QuestID, QuestKind, QuestType, PlayerName, PartyFlag
+-- `QuestDB.dbo.Progress` → QuestID, QuestKind, QuestType, PlayerName, Started
+-- `QuestDB.dbo.QuestMonsters` → QuestID, QuestKind, MonsterName, Quantity, QuestType, QuestMap
+-- `QuestDB.dbo.Rewards` → QuestID, QuestKind, Gold, Exp, QuestType, Coin, TCoin
+-- `QuestDB.dbo.SingleQuest` → QuestID, QuestName, QuestTitle, LevelMin, LevelMax, PartyFlag, QuestDesc, QuestType
+-
+-## StartUserDB — OK no schema
+-- `StartUserDB.dbo.Items` → Classe, Weapon, Aging1, Mix1, Armor, Aging2, Mix2, Boots
+-- `StartUserDB.dbo.Level` → Level
