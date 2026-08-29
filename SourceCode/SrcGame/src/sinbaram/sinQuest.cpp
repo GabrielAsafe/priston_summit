@@ -1,3 +1,13 @@
+// ============================================================================
+// LEGACY QUEST SUBSYSTEM - DEPRECATED FOR NEW QUEST DEVELOPMENT
+//
+// Modern quests use cQuestWindow on the client and cQuestHandler/QuestDB on
+// the server. This legacy subsystem is still referenced by old save/load,
+// help/message-box and monster-kill paths, so it MUST NOT be removed yet.
+//
+// Do not add new quests here. Migrate remaining callers before deleting it.
+// ============================================================================
+
 
 
 #include "sinLinkHeader.h"
