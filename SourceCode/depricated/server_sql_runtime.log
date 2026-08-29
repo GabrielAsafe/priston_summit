@@ -1,7 +1,0 @@
-002c:fixme:winediag:loader_init wine-staging 11.0 is a testing version containing experimental patches.
-002c:fixme:winediag:loader_init Please mention your exact version when filing bug reports on winehq.org.
-0024:fixme:winediag:loader_init wine-staging 11.0 is a testing version containing experimental patches.
-0024:fixme:winediag:loader_init Please mention your exact version when filing bug reports on winehq.org.
-0128:err:module:import_dll Library libgcc_s_dw2-1.dll (which is needed by L"Z:\\home\\gabriel\\\00c1rea de Trabalho\\summit\\SourceCode\\dist_mingw_server_i686\\Server.exe") not found
-0128:err:module:import_dll Library libstdc++-6.dll (which is needed by L"Z:\\home\\gabriel\\\00c1rea de Trabalho\\summit\\SourceCode\\dist_mingw_server_i686\\Server.exe") not found
-0128:err:module:loader_init Importing dlls for L"Z:\\home\\gabriel\\\00c1rea de Trabalho\\summit\\SourceCode\\dist_mingw_server_i686\\Server.exe" failed, status c0000135

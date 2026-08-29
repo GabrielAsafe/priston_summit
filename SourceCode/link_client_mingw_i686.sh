@@ -21,30 +21,59 @@ fi
 
 if [ ! -d "$OBJ_DIR" ]; then
     echo "Erro: diretório de objetos não encontrado: $OBJ_DIR"
+    echo "Execute primeiro o build do cliente."
+    exit 1
+fi
+
+if [ ! -s "$OBJ_LIST" ]; then
+    echo "Erro: lista de objetos não encontrada ou vazia: $OBJ_LIST"
+    echo "Execute primeiro o build do cliente para gerar a lista correta."
     exit 1
 fi
 
 mkdir -p "$OUT_DIR" "$BUILD_DIR"
 
-if [ ! -s "$OBJ_LIST" ]; then
-    find "$OBJ_DIR" -type f -name '*.o' | sort > "$OBJ_LIST"
-fi
+# Gera response file EXCLUSIVAMENTE a partir da lista produzida pelo compilador.
+# Não usa 'find', evitando objetos antigos/duplicados que possam ter ficado no build.
+: > "$RSP"
+TOTAL=0
+MISSING_OBJECTS=0
 
-TOTAL="$(wc -l < "$OBJ_LIST")"
-if [ "$TOTAL" -eq 0 ]; then
-    echo "Erro: nenhum objeto encontrado em $OBJ_DIR"
+declare -A SEEN_OBJECTS=()
+while IFS= read -r obj || [ -n "$obj" ]; do
+    [ -n "$obj" ] || continue
+
+    # Aceita tanto caminhos absolutos quanto relativos.
+    if [[ "$obj" != /* ]]; then
+        obj="$ROOT/$obj"
+    fi
+
+    if [ -n "${SEEN_OBJECTS[$obj]+x}" ]; then
+        echo "Aviso: objeto duplicado ignorado na lista: $obj"
+        continue
+    fi
+    SEEN_OBJECTS["$obj"]=1
+
+    if [ ! -f "$obj" ]; then
+        echo "Erro: objeto listado não existe: $obj"
+        MISSING_OBJECTS=$((MISSING_OBJECTS + 1))
+        continue
+    fi
+
+    printf '"%s"\n' "$obj" >> "$RSP"
+    TOTAL=$((TOTAL + 1))
+done < "$OBJ_LIST"
+
+if [ "$MISSING_OBJECTS" -ne 0 ]; then
+    echo "Erro: $MISSING_OBJECTS objeto(s) da lista estão ausentes."
+    echo "Rode novamente o build do cliente antes de linkar."
     exit 1
 fi
 
-: > "$RSP"
-while IFS= read -r obj; do
-    [ -n "$obj" ] || continue
-    if [ ! -f "$obj" ]; then
-        echo "Erro: objeto listado não existe: $obj"
-        exit 1
-    fi
-    printf '"%s"\n' "$obj" >> "$RSP"
-done < "$OBJ_LIST"
+if [ "$TOTAL" -eq 0 ]; then
+    echo "Erro: nenhum objeto válido encontrado na lista: $OBJ_LIST"
+    exit 1
+fi
 
 LDFLAGS=(
     -m32
@@ -63,9 +92,6 @@ LIB_DIRS=(
     -L"$ROOT/build_mingw_lua"
     -L"$ROOT/Dependency/lib"
     -L"$ROOT/Dependency/Lib"
-#    -L"$ROOT/Dependency/DirectX9/Lib/x86"
-#    -L"$ROOT/Dependency/DirectX9/Lib"
-#    -L"$ROOT/Dependency/DirectXSDK/Microsoft DirectX SDK (June 2010)/Lib/x86"
 )
 
 LIBS=(
@@ -112,6 +138,7 @@ echo "===================================="
 echo "LINK CLIENTE MINGW i686"
 echo "===================================="
 echo "Objetos : $TOTAL"
+echo "Lista   : $OBJ_LIST"
 echo "Saída   : $OUTPUT"
 echo "Release : $RELEASE"
 echo "===================================="

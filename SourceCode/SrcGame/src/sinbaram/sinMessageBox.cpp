@@ -2484,6 +2484,7 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 		StartQuest_Code(chaQuest.sHaQuestElementary[Quest_B].CODE);
 		break;
 
+
 	case MESSAGE_QUEST_ElementaryC:
 		chaQuest.sHaQuestElementary[Quest_C].CODE = HAQUEST_CODE_ELEMENTARY_C;
 		chaQuest.sHaQuestElementary[Quest_C].State = 1;

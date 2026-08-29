@@ -362,15 +362,61 @@ int sinRecvMessage(DWORD dwCode, void *RecvBuff)
 		case OpCode::OPCODE_SHOP_ITEMLIST:
 		lpTransSellItem = (smTRANS_SELL_ITEM *)RecvBuff;
 
+#ifdef __MINGW32__
+		{
+			FILE *fp = fopen("shop_client_pipeline.log", "a");
+			if(fp)
+			{
+				fprintf(fp,
+					"[SHOPRECV] size=%d code=0x%08X kind=%d count=%d header=%u\\n",
+					lpTransSellItem->size,
+					(unsigned int)lpTransSellItem->code,
+					lpTransSellItem->ItemKind,
+					lpTransSellItem->ItemCounter,
+					(unsigned int)sizeof(smTRANS_SELL_ITEM));
+				fclose(fp);
+			}
+		}
+#endif
+
 		lpItemInfo = new sITEMINFO[lpTransSellItem->ItemCounter];
 		lpBuff = (BYTE *)RecvBuff + sizeof(smTRANS_SELL_ITEM);
+
 		for(cnt = 0; cnt < lpTransSellItem->ItemCounter; cnt++)
 		{
-			lpBuff += DecodeCompress(lpBuff, (BYTE *)&lpItemInfo[cnt]);
-		}
-		sinSetShopItem(lpItemInfo, lpTransSellItem->ItemCounter, lpTransSellItem->ItemKind);
+			int DecLen = DecodeCompress(
+				lpBuff,
+				(BYTE *)&lpItemInfo[cnt]
+			);
 
-		delete lpItemInfo;
+#ifdef __MINGW32__
+			{
+				FILE *fp = fopen("shop_client_pipeline.log", "a");
+				if(fp)
+				{
+					fprintf(fp,
+						"[SHOPDECODE] i=%d len=%d code=0x%08X name=\\\"%s\\\" price=%d level=%d\\n",
+						cnt,
+						DecLen,
+						(unsigned int)lpItemInfo[cnt].CODE,
+						lpItemInfo[cnt].ItemName,
+						lpItemInfo[cnt].Price,
+						lpItemInfo[cnt].Level);
+					fclose(fp);
+				}
+			}
+#endif
+
+			lpBuff += DecLen;
+		}
+
+		sinSetShopItem(
+			lpItemInfo,
+			lpTransSellItem->ItemCounter,
+			lpTransSellItem->ItemKind
+		);
+
+		delete [] lpItemInfo;
 		break;
 
 	}
@@ -409,15 +455,51 @@ int sinSetShopItem(sITEMINFO *pItem, int ItemCount, int ItemKind)
 
 	for(i = 0; i < ItemCount; i++)
 	{
-		if(LoadItemImage(&pItem[i], &sinTempItem))
+		int LoadResult =
+			LoadItemImage(&pItem[i], &sinTempItem);
+
+#ifdef __MINGW32__
+		{
+			FILE *fp = fopen("shop_client_pipeline.log", "a");
+			if(fp)
+			{
+				fprintf(fp,
+					"[SHOPLOAD] kind=%d i=%d code=0x%08X name=\\\"%s\\\" result=%d",
+					ItemKind,
+					i,
+					(unsigned int)pItem[i].CODE,
+					pItem[i].ItemName,
+					LoadResult);
+
+				if(LoadResult)
+				{
+					fprintf(fp,
+						" tempCode=0x%08X tempName=\\\"%s\\\"",
+						(unsigned int)sinTempItem.CODE,
+						sinTempItem.sItemInfo.ItemName);
+				}
+
+				fprintf(fp, "\\n");
+				fclose(fp);
+			}
+		}
+#endif
+
+		if(LoadResult)
 		{
 			if(ItemKind == 2)
-				memcpy(&cShop.ShopItem[i + 30], &sinTempItem, sizeof(sITEM));
+				memcpy(
+					&cShop.ShopItem[i + 30],
+					&sinTempItem,
+					sizeof(sITEM)
+				);
 			else
-				memcpy(&cShop.ShopItem[i], &sinTempItem, sizeof(sITEM));
-
+				memcpy(
+					&cShop.ShopItem[i],
+					&sinTempItem,
+					sizeof(sITEM)
+				);
 		}
-
 	}
 	TalkNpcState = 1;
 	cShop.CopyShopItemToShow(0);
@@ -723,10 +805,87 @@ int LoadItemImage(sITEMINFO *sItemInfo, sITEM *TempItem)
 {
 	char szFilePath[256];
 	szTestBuff2[0] = 0;
+
+#ifdef __MINGW32__
+	{
+		FILE *fp = fopen("LoadItemImage_debug.txt", "a");
+
+		if(fp)
+		{
+			int nonzero = 0;
+			int exactMatches = 0;
+
+			fprintf(
+				fp,
+				"\n[LOOKUP] wanted=0x%08X MAX_ITEM=%d\n",
+				(unsigned int)sItemInfo->CODE,
+				MAX_ITEM
+			);
+
+			for(int x = 0; x < MAX_ITEM; x++)
+			{
+				if(sItem[x].CODE)
+				{
+					if(nonzero < 40)
+					{
+						fprintf(
+							fp,
+							"  sItem[%d] CODE=0x%08X "
+							"Path=\"%s\" Cat=\"%s\" "
+							"w=%d h=%d class=%d\n",
+							x,
+							(unsigned int)sItem[x].CODE,
+							sItem[x].ItemFilePath,
+							sItem[x].LastCategory,
+							sItem[x].w,
+							sItem[x].h,
+							sItem[x].Class
+						);
+					}
+
+					nonzero++;
+				}
+
+				if(sItem[x].CODE == sItemInfo->CODE)
+					exactMatches++;
+			}
+
+			fprintf(
+				fp,
+				"  nonzero entries=%d exactMatches=%d\n",
+				nonzero,
+				exactMatches
+			);
+
+			fclose(fp);
+		}
+	}
+#endif
 	for(int j = 0; j < MAX_ITEM; j++)
 	{
 		if(sItemInfo->CODE == sItem[j].CODE)
 		{
+#ifdef __MINGW32__
+			{
+				FILE *fp = fopen("LoadItemImage_debug.txt", "a");
+
+				if(fp)
+				{
+					fprintf(
+						fp,
+						"[MATCH] wanted=0x%08X index=%d "
+						"Path=\"%s\" Cat=\"%s\"\n",
+						(unsigned int)sItemInfo->CODE,
+						j,
+						sItem[j].ItemFilePath,
+						sItem[j].LastCategory
+					);
+
+					fclose(fp);
+				}
+			}
+#endif
+
 			wsprintf(szFilePath, "Image//sinImage//Items//%s//it%s.bmp", sItem[j].ItemFilePath, sItem[j].LastCategory);
 			memcpy(TempItem, &sItem[j], sizeof(sITEM));
 
@@ -758,11 +917,50 @@ int LoadItemImage(sITEMINFO *sItemInfo, sITEM *TempItem)
 
 			if(!TempItem->lpItem)
 			{
+#ifdef __MINGW32__
+				{
+					FILE *fp = fopen("LoadItemImage_debug.txt", "a");
+
+					if(fp)
+					{
+						fprintf(
+							fp,
+							"[IMAGE_FAIL] code=0x%08X "
+							"path=\"%s\"\n",
+							(unsigned int)sItemInfo->CODE,
+							szFilePath
+						);
+
+						fclose(fp);
+					}
+				}
+#endif
+
 				strcpy_s(szTestBuff2, sItem[j].LastCategory);
 				ItemImageNotExitFlag = 1;
 				cMessageBox.ShowMessage(MESSAGE_NOTEXIT_ITEMIMAGE);
 
 			}
+
+#ifdef __MINGW32__
+			{
+				FILE *fp = fopen("LoadItemImage_debug.txt", "a");
+
+				if(fp)
+				{
+					fprintf(
+						fp,
+						"[SUCCESS] code=0x%08X index=%d "
+						"image=%p flag=1\n",
+						(unsigned int)sItemInfo->CODE,
+						j,
+						(void *)TempItem->lpItem
+					);
+
+					fclose(fp);
+				}
+			}
+#endif
 
 			TempItem->Flag = 1;
 			return TRUE;
@@ -770,6 +968,24 @@ int LoadItemImage(sITEMINFO *sItemInfo, sITEM *TempItem)
 		}
 
 	}
+
+#ifdef __MINGW32__
+	{
+		FILE *fp = fopen("LoadItemImage_debug.txt", "a");
+
+		if(fp)
+		{
+			fprintf(
+				fp,
+				"[NOT_FOUND] wanted=0x%08X\n",
+				(unsigned int)sItemInfo->CODE
+			);
+
+			fclose(fp);
+		}
+	}
+#endif
+
 	return FALSE;
 }
 

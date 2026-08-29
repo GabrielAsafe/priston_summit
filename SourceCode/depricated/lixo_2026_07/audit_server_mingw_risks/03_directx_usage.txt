@@ -1,2 +1,0 @@
-SrcServer/src/smLib3d/smDsx.cpp:318:	//Utils_//LOG(LOG_DEBUG, "D3DX SetDisplayModeWin()  Width(%d)  Height(%d)  Color(%d)", Width, Height, BPP);
-SrcServer/src/Sound/SHELL.H:6: *  Content:    DirectSound SHELL.Header

@@ -1,4 +1,4 @@
-#include "opcodes.h"
+﻿#include "opcodes.h"
 #include "sinLinkHeader.h"
 #include "TJBOY/clanmenu/tjclan.h"
 #include "../field.h"
@@ -188,7 +188,7 @@ void cINTERFACE::Init()
 	MatMenu[0] = CreateTextureMaterial("image//Sinimage//Inter//Menu-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	MatMenu[1] = CreateTextureMaterial("image//Sinimage//Inter//Menu-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	MatChatDefault[0] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDefault-1.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	MatChatDefault[0] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDefault-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	MatChatDefault[1] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatDefault-2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
 	MatChatSmall[0] = CreateTextureMaterial("image//Sinimage//Inter//Chat//ChatSmall-1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);

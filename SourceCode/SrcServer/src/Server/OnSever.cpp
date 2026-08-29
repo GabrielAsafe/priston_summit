@@ -2687,6 +2687,18 @@ int srLinkNpcItem(smCHAR *lpChar)
 	int cnt, cnt2;
 	DWORD	dwCode;
 
+	FILE *fpShopProbe = fopen("shop_item_pipeline.log", "at");
+	if(fpShopProbe)
+	{
+		fprintf(fpShopProbe,
+			"\\n[SHOPLINK] NPC=\\\"%s\\\" attack=%d defence=%d etc=%d DefaultItemCount=%d\\n",
+			lpChar->smCharInfo.szName,
+			lpChar->smMonsterInfo.SellAttackItemCount,
+			lpChar->smMonsterInfo.SellDefenceItemCount,
+			lpChar->smMonsterInfo.SellEtcItemCount,
+			DefaultItemCount);
+	}
+
 	for(cnt = 0; cnt < lpChar->smMonsterInfo.SellAttackItemCount; cnt++)
 	{
 		dwCode = (DWORD)lpChar->smMonsterInfo.SellAttackItem[cnt];
@@ -2696,9 +2708,18 @@ int srLinkNpcItem(smCHAR *lpChar)
 			if(!DefaultItems[cnt2].Item.UniqueItem && dwCode == DefaultItems[cnt2].Item.CODE)
 			{
 				lpChar->smMonsterInfo.SellAttackItem[cnt] = &DefaultItems[cnt2];
+				if(fpShopProbe)
+					fprintf(fpShopProbe,
+						"[SHOPLINK] ATTACK[%d] code=0x%08lX MATCH default=%d comp=%d\\n",
+						cnt, (unsigned long)dwCode, cnt2,
+						DefaultItems[cnt2].DefCompressDataLen);
 				break;
 			}
 		}
+		if(fpShopProbe && !lpChar->smMonsterInfo.SellAttackItem[cnt])
+			fprintf(fpShopProbe,
+				"[SHOPLINK] ATTACK[%d] code=0x%08lX NO_MATCH\\n",
+				cnt, (unsigned long)dwCode);
 	}
 
 	for(cnt = 0; cnt < lpChar->smMonsterInfo.SellDefenceItemCount; cnt++)
@@ -2710,9 +2731,18 @@ int srLinkNpcItem(smCHAR *lpChar)
 			if(!DefaultItems[cnt2].Item.UniqueItem && dwCode == DefaultItems[cnt2].Item.CODE)
 			{
 				lpChar->smMonsterInfo.SellDefenceItem[cnt] = &DefaultItems[cnt2];
+				if(fpShopProbe)
+					fprintf(fpShopProbe,
+						"[SHOPLINK] DEFENCE[%d] code=0x%08lX MATCH default=%d comp=%d\\n",
+						cnt, (unsigned long)dwCode, cnt2,
+						DefaultItems[cnt2].DefCompressDataLen);
 				break;
 			}
 		}
+		if(fpShopProbe && !lpChar->smMonsterInfo.SellDefenceItem[cnt])
+			fprintf(fpShopProbe,
+				"[SHOPLINK] DEFENCE[%d] code=0x%08lX NO_MATCH\\n",
+				cnt, (unsigned long)dwCode);
 	}
 
 	for(cnt = 0; cnt < lpChar->smMonsterInfo.SellEtcItemCount; cnt++)
@@ -2724,10 +2754,26 @@ int srLinkNpcItem(smCHAR *lpChar)
 			if(!DefaultItems[cnt2].Item.UniqueItem && dwCode == DefaultItems[cnt2].Item.CODE)
 			{
 				lpChar->smMonsterInfo.SellEtcItem[cnt] = &DefaultItems[cnt2];
+				if(fpShopProbe)
+					fprintf(fpShopProbe,
+						"[SHOPLINK] ETC[%d] code=0x%08lX MATCH default=%d comp=%d\\n",
+						cnt, (unsigned long)dwCode, cnt2,
+						DefaultItems[cnt2].DefCompressDataLen);
 				break;
 			}
 		}
+		if(fpShopProbe && !lpChar->smMonsterInfo.SellEtcItem[cnt])
+			fprintf(fpShopProbe,
+				"[SHOPLINK] ETC[%d] code=0x%08lX NO_MATCH\\n",
+				cnt, (unsigned long)dwCode);
 	}
+
+	if(fpShopProbe)
+	{
+		fflush(fpShopProbe);
+		fclose(fpShopProbe);
+	}
+
 	return TRUE;
 }
 
@@ -14127,6 +14173,19 @@ int SendShopItemList(smWINSOCK *lpsmSock, smCHAR *lpChar)
 
 	lpTransSellItem->code = OpCode::OPCODE_SHOP_ITEMLIST;
 
+	fprintf(
+		stderr,
+		"[SHOPSEND] NPC=\"%s\" attack=%d defence=%d etc=%d "
+		"opcode=0x%08X header=%u sockbuf=%u\n",
+		lpChar->smCharInfo.szName,
+		lpChar->smMonsterInfo.SellAttackItemCount,
+		lpChar->smMonsterInfo.SellDefenceItemCount,
+		lpChar->smMonsterInfo.SellEtcItemCount,
+		(unsigned int)lpTransSellItem->code,
+		(unsigned int)sizeof(smTRANS_SELL_ITEM),
+		(unsigned int)smSOCKBUFF_SIZE);
+	fflush(stderr);
+
 	if(lpChar->smMonsterInfo.SellAttackItemCount)
 	{
 		ItemCount = 0;
@@ -14147,7 +14206,28 @@ int SendShopItemList(smWINSOCK *lpsmSock, smCHAR *lpChar)
 		lpTransSellItem->size = TransLen;
 		lpTransSellItem->ItemKind = 1;
 		lpTransSellItem->ItemCounter = ItemCount;
-		lpsmSock->Send((char *)lpTransSellItem, lpTransSellItem->size, TRUE);
+
+		fprintf(
+			stderr,
+			"[SHOPSEND] ATTACK items=%d size=%d kind=%d "
+			"opcode=0x%08X\n",
+			ItemCount,
+			TransLen,
+			lpTransSellItem->ItemKind,
+			(unsigned int)lpTransSellItem->code);
+		fflush(stderr);
+
+		int ShopAttackSendResult =
+			lpsmSock->Send(
+				(char *)lpTransSellItem,
+				lpTransSellItem->size,
+				TRUE);
+
+		fprintf(
+			stderr,
+			"[SHOPSEND] ATTACK Send() => %d\n",
+			ShopAttackSendResult);
+		fflush(stderr);
 	}
 
 
@@ -14171,7 +14251,28 @@ int SendShopItemList(smWINSOCK *lpsmSock, smCHAR *lpChar)
 		lpTransSellItem->size = TransLen;
 		lpTransSellItem->ItemKind = 2;
 		lpTransSellItem->ItemCounter = ItemCount;
-		lpsmSock->Send((char *)lpTransSellItem, lpTransSellItem->size, TRUE);
+
+		fprintf(
+			stderr,
+			"[SHOPSEND] DEFENCE items=%d size=%d kind=%d "
+			"opcode=0x%08X\n",
+			ItemCount,
+			TransLen,
+			lpTransSellItem->ItemKind,
+			(unsigned int)lpTransSellItem->code);
+		fflush(stderr);
+
+		int ShopDefenceSendResult =
+			lpsmSock->Send(
+				(char *)lpTransSellItem,
+				lpTransSellItem->size,
+				TRUE);
+
+		fprintf(
+			stderr,
+			"[SHOPSEND] DEFENCE Send() => %d\n",
+			ShopDefenceSendResult);
+		fflush(stderr);
 	}
 
 
@@ -14195,7 +14296,28 @@ int SendShopItemList(smWINSOCK *lpsmSock, smCHAR *lpChar)
 		lpTransSellItem->size = TransLen;
 		lpTransSellItem->ItemKind = 3;
 		lpTransSellItem->ItemCounter = ItemCount;
-		lpsmSock->Send((char *)lpTransSellItem, lpTransSellItem->size, TRUE);
+
+		fprintf(
+			stderr,
+			"[SHOPSEND] ETC items=%d size=%d kind=%d "
+			"opcode=0x%08X\n",
+			ItemCount,
+			TransLen,
+			lpTransSellItem->ItemKind,
+			(unsigned int)lpTransSellItem->code);
+		fflush(stderr);
+
+		int ShopEtcSendResult =
+			lpsmSock->Send(
+				(char *)lpTransSellItem,
+				lpTransSellItem->size,
+				TRUE);
+
+		fprintf(
+			stderr,
+			"[SHOPSEND] ETC Send() => %d\n",
+			ShopEtcSendResult);
+		fflush(stderr);
 	}
 
 

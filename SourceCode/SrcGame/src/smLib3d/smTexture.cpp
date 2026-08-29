@@ -1581,7 +1581,7 @@ std::string GetFileExtension(const std::string & strFilePath)
 	std::string::size_type stDotIndex;
 
 	stSlashIndex = strFilePath.rfind('/');
-	stBackslashIndex = strFilePath.rfind('//');
+	stBackslashIndex = strFilePath.rfind('\\');
 	stDotIndex = strFilePath.rfind('.');
 
 	if (stDotIndex != std::string::npos)
