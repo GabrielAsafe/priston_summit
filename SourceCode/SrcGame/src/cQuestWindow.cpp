@@ -191,7 +191,52 @@ void cQUESTWINDOW::handlePacket(smTRANS_QUEST_FULL* pTransQuestInfo)
 	if (!pQuest)
 		return;
 
-	memcpy(&pQuest->QuestInfo, &pTransQuestInfo->QuestName, sizeof(sFULL_INFO));
+	ZeroMemory(&pQuest->QuestInfo, sizeof(sFULL_INFO));
+
+	lstrcpynA(pQuest->QuestInfo.QuestName, pTransQuestInfo->QuestName, sizeof(pQuest->QuestInfo.QuestName));
+	lstrcpynA(pQuest->QuestInfo.QuestTitle, pTransQuestInfo->QuestTitle, sizeof(pQuest->QuestInfo.QuestTitle));
+	lstrcpynA(pQuest->QuestInfo.QuestDesc, pTransQuestInfo->QuestDesc, sizeof(pQuest->QuestInfo.QuestDesc));
+
+	pQuest->QuestInfo.LevelMin = pTransQuestInfo->LevelMin;
+	pQuest->QuestInfo.LevelMax = pTransQuestInfo->LevelMax;
+	pQuest->QuestInfo.PartyFlag = pTransQuestInfo->PartyFlag;
+	pQuest->QuestInfo.QuestType = pTransQuestInfo->QuestType;
+
+	int monsterCount = pTransQuestInfo->MonsterCount;
+	if (monsterCount < 0)
+		monsterCount = 0;
+	if (monsterCount > 4)
+		monsterCount = 4;
+
+	pQuest->QuestInfo.MonsterCount = monsterCount;
+
+	for (int i = 0; i < monsterCount; i++)
+	{
+		lstrcpynA(pQuest->QuestInfo.MonsterNames[i], pTransQuestInfo->MonsterNames[i], sizeof(pQuest->QuestInfo.MonsterNames[i]));
+		pQuest->QuestInfo.MonsterCounts[i] = pTransQuestInfo->MonsterCounts[i];
+		pQuest->QuestInfo.MonsterKilled[i] = pTransQuestInfo->MonsterKilled[i];
+		pQuest->QuestInfo.MonsterMaps[i] = pTransQuestInfo->MonsterMaps[i];
+	}
+
+	int rewardCount = pTransQuestInfo->RewardCount;
+	if (rewardCount < 0)
+		rewardCount = 0;
+	if (rewardCount > 4)
+		rewardCount = 4;
+
+	pQuest->QuestInfo.RewardCount = rewardCount;
+
+	for (int i = 0; i < rewardCount; i++)
+	{
+		lstrcpynA(pQuest->QuestInfo.RewardNames[i], pTransQuestInfo->RewardNames[i], sizeof(pQuest->QuestInfo.RewardNames[i]));
+		pQuest->QuestInfo.RewardCounts[i] = pTransQuestInfo->RewardCounts[i];
+	}
+
+	pQuest->QuestInfo.RewardGold = pTransQuestInfo->RewardGold;
+	pQuest->QuestInfo.RewardExp = pTransQuestInfo->RewardExp;
+	pQuest->QuestInfo.RewardClanExp = pTransQuestInfo->RewardClanExp;
+	pQuest->QuestInfo.RewardCoin = pTransQuestInfo->RewardCoin;
+	pQuest->QuestInfo.RewardTCoin = pTransQuestInfo->RewardTCoin;
 }
 
 void cQUESTWINDOW::SelectTab(int TabID)
