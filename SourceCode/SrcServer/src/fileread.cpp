@@ -2589,6 +2589,8 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 		"\x2A\xC0\xCC\xB8\xA7";                  // NAME
 	static const char *ITEM_TOKEN_CODE =
 		"\x2A\xC4\xDA\xB5\xE5";                  // CODE
+	static const char *ITEM_TOKEN_UNIQUE =
+		"\x2A\xC0\xAF\xB4\xCF\xC5\xA9";      // UNIQUE
 	static const char *ITEM_TOKEN_DURABILITY =
 		"\x2A\xB3\xBB\xB1\xB8\xB7\xC2";          // DURABILITY
 	static const char *ITEM_TOKEN_WEIGHT =
@@ -2669,7 +2671,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 
 
-		if(!NextFlag && lstrcmp(decode, "*����ũ") == 0)
+		if(!NextFlag && lstrcmp(decode, ITEM_TOKEN_UNIQUE) == 0)
 		{
 			p = local_GetWord(strBuff, p);
 			if(strBuff[0])
