@@ -1678,19 +1678,23 @@ bool cQUESTHANDLER::KillMonster(rsPLAYINFO* lpPlayInfo, smCHAR* lpChar, int Part
 	{
 		char playerName[32];
 		wsprintf(playerName, "%s", lpPlayInfo->getName());
+		char anyMonsterName[] = "0";
 
-		char* szBuff = "SELECT * FROM MonsterKilled WHERE PlayerName=? AND ((MonsterName=? AND QuestMap=-1) OR (QuestMap=?)) AND Killed < Count";
+		char* szBuff = "SELECT * FROM MonsterKilled WHERE PlayerName=? AND ((MonsterName=? AND QuestMap=?) OR (MonsterName=? AND (QuestMap=-1 OR QuestMap=?))) AND Killed < Count";
 		if (PartyFlag)
 			if (PartyFlag)
-				szBuff = "SELECT * FROM MonsterKilled WHERE PlayerName=? AND ((MonsterName=? AND QuestMap=-1) OR (QuestMap=?)) AND PartyFlag=1 AND Killed < Count";
+				szBuff = "SELECT * FROM MonsterKilled WHERE PlayerName=? AND ((MonsterName=? AND QuestMap=?) OR (MonsterName=? AND (QuestMap=-1 OR QuestMap=?))) AND PartyFlag=1 AND Killed < Count";
 
 
 
 		if (db->Prepare(szBuff))
 		{
 			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
-			db->BindInputParameter(lpChar->smCharInfo.szName, 2, PARAMTYPE_String);
+			db->BindInputParameter(anyMonsterName, 2, PARAMTYPE_String);
 			db->BindInputParameter(&lpPlayInfo->Position.Area, 3, PARAMTYPE_Integer);
+			db->BindInputParameter(lpChar->smCharInfo.szName, 4, PARAMTYPE_String);
+			db->BindInputParameter(&lpPlayInfo->Position.Area, 5, PARAMTYPE_Integer);
+
 			if (db->Execute(false))
 			{
 				while (db->NextRow())
@@ -1718,17 +1722,19 @@ bool cQUESTHANDLER::KillMonster(rsPLAYINFO* lpPlayInfo, smCHAR* lpChar, int Part
 		}
 
 
-		szBuff = "UPDATE MonsterKilled SET Killed+=1 WHERE PlayerName=? AND ((MonsterName=? AND QuestMap=-1) OR (QuestMap=?)) AND Killed < Count";
+		szBuff = "UPDATE MonsterKilled SET Killed+=1 WHERE PlayerName=? AND ((MonsterName=? AND QuestMap=?) OR (MonsterName=? AND (QuestMap=-1 OR QuestMap=?))) AND Killed < Count";
 
 		if (PartyFlag)
-			szBuff = "UPDATE MonsterKilled SET Killed+=1 WHERE PlayerName=? AND ((MonsterName=? AND QuestMap=-1) OR (QuestMap=?)) AND PartyFlag=1 AND Killed < Count AND QuestKind != 8";
+			szBuff = "UPDATE MonsterKilled SET Killed+=1 WHERE PlayerName=? AND ((MonsterName=? AND QuestMap=?) OR (MonsterName=? AND (QuestMap=-1 OR QuestMap=?))) AND PartyFlag=1 AND Killed < Count AND QuestKind != 8";
 
 
 		if (db->Prepare(szBuff))
 		{
 			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
-			db->BindInputParameter(lpChar->smCharInfo.szName, 2, PARAMTYPE_String);
+			db->BindInputParameter(anyMonsterName, 2, PARAMTYPE_String);
 			db->BindInputParameter(&lpPlayInfo->Position.Area, 3, PARAMTYPE_Integer);
+			db->BindInputParameter(lpChar->smCharInfo.szName, 4, PARAMTYPE_String);
+			db->BindInputParameter(&lpPlayInfo->Position.Area, 5, PARAMTYPE_Integer);
 
 			db->Execute(false);
 		}
