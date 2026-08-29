@@ -811,13 +811,31 @@ void sSPOILER::DrawQuest(int BaseX, int BaseY)
 	{
 		SetFontTextColor(RGB(240, 240, 240));
 
-		for (int i = 0; i < 5; i++)
+		char* text = pQuestInfo->QuestDesc;
+
+		for (int i = 0; i < 5 && *text; i++)
 		{
-			if (pQuestInfo->QuestDesc[0 + (i * 34)])
+			int remaining = lstrlen(text);
+			int lineLength = remaining > 34 ? 34 : remaining;
+
+			if (remaining > 34)
 			{
-				dsTextLineOut(BaseX + 322, BaseY + iY + 20, &pQuestInfo->QuestDesc[0 + (i * 34)], lstrlen(&pQuestInfo->QuestDesc[0 + (i * 34)]) > 34 ? 34 : lstrlen(&pQuestInfo->QuestDesc[0 + (i * 34)]));
-				iY += 14;
+				int breakPos = lineLength;
+
+				while (breakPos > 0 && text[breakPos] != ' ')
+					breakPos--;
+
+				if (breakPos > 0)
+					lineLength = breakPos;
 			}
+
+			dsTextLineOut(BaseX + 322, BaseY + iY + 20, text, lineLength);
+			iY += 14;
+
+			text += lineLength;
+
+			while (*text == ' ')
+				text++;
 		}
 
 		iY += 5;
