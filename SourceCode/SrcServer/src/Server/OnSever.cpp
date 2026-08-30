@@ -41753,7 +41753,6 @@ int rsStartUser_PresentItem(rsPLAYINFO * lpPlayInfo)
 {
 	TRANS_CHATMESSAGE TransChatMessage;
 	sDEF_ITEMINFO* lpDefItem = 0;
-	smTRANS_COMMAND	smTransCommand;
 
 	if (lpPlayInfo->dwStartUser_PresentItem_Count == 1) {
 		initItems(lpPlayInfo);
@@ -41761,43 +41760,55 @@ int rsStartUser_PresentItem(rsPLAYINFO * lpPlayInfo)
 
 	switch (lpPlayInfo->dwStartUser_PresentItem_Count)
 	{
-
-/*	case 1:
-		if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_FIGHTER)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinBI3 | sin16), JOBCODE_FIGHTER);
-
-		else if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_MECHANICIAN) {
+	case 1:
+		if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ARCHER)
+			lpDefItem = rsPutItem3(lpPlayInfo, (sinWS1 | sin01), 0);
+		else if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ATALANTA)
+			lpDefItem = rsPutItem3(lpPlayInfo, (sinWT1 | sin01), 0);
+		else if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN)
+			lpDefItem = rsPutItem3(lpPlayInfo, (sinWM1 | sin01), 0);
+		else if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
+			lpDefItem = rsPutItem3(lpPlayInfo, (sinWM1 | sin01), 0);
+		else
+		{
 			switch (rand() % 3)
 			{
 			case 0:
-				lpDefItem = rsPutItem3(lpPlayInfo, (sinBI3 | sin16), JOBCODE_MECHANICIAN);
+				lpDefItem = rsPutItem3(lpPlayInfo, (sinWS2 | sin01), 0);
 				break;
 			case 1:
-				lpDefItem = rsPutItem3(lpPlayInfo, (sinBI3 | sin16), JOBCODE_MECHANICIAN);
+				lpDefItem = rsPutItem3(lpPlayInfo, (sinWA1 | sin01), 0);
 				break;
 			case 2:
-				lpDefItem = rsPutItem3(lpPlayInfo, (sinBI3 | sin16), JOBCODE_MECHANICIAN);
+				lpDefItem = rsPutItem3(lpPlayInfo, (sinWH1 | sin01), 0);
 				break;
 			}
 		}
-
-		else if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ARCHER)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinBI3 | sin16), JOBCODE_ARCHER);
-		else if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PIKEMAN)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinBI3 | sin16), JOBCODE_PIKEMAN);
-		else if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ATALANTA)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinBI3 | sin16), JOBCODE_ATALANTA);
-		else if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_KNIGHT)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinBI3 | sin16), JOBCODE_KNIGHT);
-		else if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinBI3 | sin16), JOBCODE_MAGICIAN);
-		else if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinBI3 | sin16), JOBCODE_PRIESTESS);*/
-
-
-
 		break;
-	}
+
+	case 2:
+		if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN ||
+			lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
+			lpDefItem = rsPutItem3(lpPlayInfo, (sinDA2 | sin02), 0);
+		else
+			lpDefItem = rsPutItem3(lpPlayInfo, (sinDA1 | sin02), 0);
+		break;
+
+	case 3:
+		lpDefItem = rsPutItem3(lpPlayInfo, (sinGP1 | sin01), 0);
+		break;
+
+	case 4:
+		lpDefItem = rsPutItem3(lpPlayInfo, (sinGP1 | sin01), 0);
+		break;
+
+	case 5:
+		lpDefItem = rsPutItem3(lpPlayInfo, (sinGP1 | sin01), 0);
+		break;
+
+}
+
+
 
 
 	if (lpDefItem)
@@ -41809,15 +41820,6 @@ int rsStartUser_PresentItem(rsPLAYINFO * lpPlayInfo)
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 
 		lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
-
-		smTRANS_COMMAND	smTransCommand;
-		smTransCommand.code = OpCode::OPCODE_NOTICE_BOX;
-		smTransCommand.size = sizeof(smTRANS_COMMAND);
-		smTransCommand.WParam = lpDefItem->Item.CODE;
-		smTransCommand.LParam = 0;
-		smTransCommand.SParam = 0;
-		smTransCommand.EParam = 0;
-		lpPlayInfo->lpsmSock->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
 	}
 
 	lpPlayInfo->dwStartUser_PresentItem_Count++;

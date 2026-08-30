@@ -57,6 +57,8 @@ public:
 	void Draw_Help_Text3(char *str, int x, int y, int sw = 0);
 	void Draw_Help_Text2(char *str, int x, int y, int sw = 0);
 
+// DEPRECATED: Legacy Help/Guide UI system. Do not use it for new messages or UI flows.
+// Kept only for compatibility with existing legacy features.
 	int haGuidHelpLevel_1(DWORD Code);
 
 private:
