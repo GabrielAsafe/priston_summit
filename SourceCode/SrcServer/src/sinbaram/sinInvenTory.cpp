@@ -7860,17 +7860,17 @@ int cINVENTORY::EatSongPyeun(sITEM *pItem)
 
 
 	TempRandPotion = pItem->sItemInfo.Life[1] - pItem->sItemInfo.Life[0];
-	ResultPotion = pItem->sItemInfo.Life[0] + (rand() % TempRandPotion);
+	ResultPotion = pItem->sItemInfo.Life[0] + (TempRandPotion != 0 ? (rand() % TempRandPotion) : 0);
 	sinSetLife((sinGetLife() + ResultPotion));
 	Life = (sinGetLife() + ResultPotion);
 
 	TempRandPotion = pItem->sItemInfo.Mana[1] - pItem->sItemInfo.Mana[0];
-	ResultPotion = pItem->sItemInfo.Mana[0] + (rand() % TempRandPotion);
+	ResultPotion = pItem->sItemInfo.Mana[0] + (TempRandPotion != 0 ? (rand() % TempRandPotion) : 0);
 	sinSetMana((sinGetMana() + ResultPotion));
 	Mana = (sinGetLife() + ResultPotion);
 
 	TempRandPotion = pItem->sItemInfo.Stamina[1] - pItem->sItemInfo.Stamina[0];
-	ResultPotion = pItem->sItemInfo.Stamina[0] + (rand() % TempRandPotion);
+	ResultPotion = pItem->sItemInfo.Stamina[0] + (TempRandPotion != 0 ? (rand() % TempRandPotion) : 0);
 	sinSetStamina((sinGetStamina() + ResultPotion));
 	Stamina = (sinGetLife() + ResultPotion);
 

@@ -945,21 +945,21 @@ int sinUsePotion()
 	if((pUsePotion->CODE & sinITEM_MASK2) == sinPL1)
 	{
 		TempRandPotion = pUsePotion->sItemInfo.Life[1] - pUsePotion->sItemInfo.Life[0];
-		ResultPotion = pUsePotion->sItemInfo.Life[0] + (rand() % TempRandPotion);
+		ResultPotion = pUsePotion->sItemInfo.Life[0] + (TempRandPotion != 0 ? (rand() % TempRandPotion) : 0);
 		sinSetLife((sinGetLife() + ResultPotion));
 		PotionKind = SIN_POTION_LIFE;
 	}
 	if((pUsePotion->CODE & sinITEM_MASK2) == sinPM1)
 	{
 		TempRandPotion = pUsePotion->sItemInfo.Mana[1] - pUsePotion->sItemInfo.Mana[0];
-		ResultPotion = pUsePotion->sItemInfo.Mana[0] + (rand() % TempRandPotion);
+		ResultPotion = pUsePotion->sItemInfo.Mana[0] + (TempRandPotion != 0 ? (rand() % TempRandPotion) : 0);
 		sinSetMana((sinGetMana() + ResultPotion));
 		PotionKind = SIN_POTION_MANA;
 	}
 	if((pUsePotion->CODE & sinITEM_MASK2) == sinPS1)
 	{
 		TempRandPotion = pUsePotion->sItemInfo.Stamina[1] - pUsePotion->sItemInfo.Stamina[0];
-		ResultPotion = pUsePotion->sItemInfo.Stamina[0] + (rand() % TempRandPotion);
+		ResultPotion = pUsePotion->sItemInfo.Stamina[0] + (TempRandPotion != 0 ? (rand() % TempRandPotion) : 0);
 		sinSetStamina((sinGetStamina() + ResultPotion));
 		PotionKind = SIN_POTION_STAMINA;
 	}
