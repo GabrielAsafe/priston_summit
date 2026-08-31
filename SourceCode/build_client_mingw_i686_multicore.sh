@@ -98,7 +98,6 @@ CXXFLAGS=(
     -ISrcGame/src/TJBOY/Ygy/memmap
     -ISrcGame/src/Server
     -ISrcGame/src/WinInt
-    -ISrcGame/src/Security
     -ISrcGame/src/Settings
 
     -Imodules
