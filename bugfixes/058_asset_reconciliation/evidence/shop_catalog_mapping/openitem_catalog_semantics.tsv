@@ -1,0 +1,70 @@
+catalog_cat	catalog_code_hex	catalog_path	target_rel	openitem_file	openitem_internal_code	openitem_name	openitem_name_file	filename_equals_internal	quoted_values
+SK101	0X081A0100	Skins	image/Sinimage/Items/Skins/itSK101.bmp	Servidor/GameServer/OpenItem/SK101.txt	SK101	Skin Machado 1H		YES	Skin Machado 1H;SK101
+SK102	0X081A0200	Skins	image/Sinimage/Items/Skins/itSK102.bmp	Servidor/GameServer/OpenItem/SK102.txt	SK102	Skin Machado 1H		YES	Skin Machado 1H;SK102
+SK103	0X081A0300	Skins	image/Sinimage/Items/Skins/itSK103.bmp	Servidor/GameServer/OpenItem/SK103.txt	SK103	Skin Machado 1H		YES	Skin Machado 1H;SK103
+SK117	0X081A0600	Skins	image/Sinimage/Items/Skins/itSK117.bmp	Servidor/GameServer/OpenItem/SK117.txt	SK117	Skin Machado 1H		YES	Skin Machado 1H;SK117
+SK107	0X081A0700	Skins	image/Sinimage/Items/Skins/itSK107.bmp	Servidor/GameServer/OpenItem/SK107.txt	SK107	Skin Espada 1H		YES	Skin Espada 1H;SK107
+SK108	0X081A0800	Skins	image/Sinimage/Items/Skins/itSK108.bmp	Servidor/GameServer/OpenItem/SK108.txt	SK108	Skin Espada 1H		YES	Skin Espada 1H;SK108
+SK109	0X081A0900	Skins	image/Sinimage/Items/Skins/itSK109.bmp	Servidor/GameServer/OpenItem/SK109.txt	SK109	Skin Espada 1H		YES	Skin Espada 1H;SK109
+SK110	0X081A0A00	Skins	image/Sinimage/Items/Skins/itSK110.bmp	Servidor/GameServer/OpenItem/SK110.txt	SK110	Skin Espada 1H		YES	Skin Espada 1H;SK110
+SK111	0X081A0B00	Skins	image/Sinimage/Items/Skins/itSK111.bmp	Servidor/GameServer/OpenItem/SK111.txt	SK111	Skin Garra		YES	Skin Garra;SK111
+SK112	0X081A0C00	Skins	image/Sinimage/Items/Skins/itSK112.bmp	Servidor/GameServer/OpenItem/SK112.txt	SK112	Skin Garra		YES	Skin Garra;SK112
+SK113	0X081A0D00	Skins	image/Sinimage/Items/Skins/itSK113.bmp	Servidor/GameServer/OpenItem/SK113.txt	SK113	Skin Garra		YES	Skin Garra;SK113
+SK114	0X081A0E00	Skins	image/Sinimage/Items/Skins/itSK114.bmp	Servidor/GameServer/OpenItem/SK114.txt	SK114	Skin Garra		YES	Skin Garra;SK114
+SK115	0X081A0F00	Skins	image/Sinimage/Items/Skins/itSK115.bmp	Servidor/GameServer/OpenItem/SK115.txt	SK115	Skin Garra		YES	Skin Garra;SK115
+SK116	0X081A1000	Skins	image/Sinimage/Items/Skins/itSK116.bmp	Servidor/GameServer/OpenItem/SK116.txt	SK116	Skin Garra		YES	Skin Garra;SK116
+SK242	0X081B3A00	Skins	image/Sinimage/Items/Skins/itSK242.bmp	Servidor/GameServer/OpenItem/SK242.txt	SK242	Skin Foice		YES	Skin Foice;SK242
+SK243	0X081B3B00	Skins	image/Sinimage/Items/Skins/itSK243.bmp	Servidor/GameServer/OpenItem/SK243.txt	SK243	Skin Foice		YES	Skin Foice;SK243
+SK244	0X081B3C00	Skins	image/Sinimage/Items/Skins/itSK244.bmp	Servidor/GameServer/OpenItem/SK244.txt	SK244	Skin Foice		YES	Skin Foice;SK244
+SK245	0X081B3D00	Skins	image/Sinimage/Items/Skins/itSK245.bmp	Servidor/GameServer/OpenItem/SK245.txt	SK245	Skin Foice		YES	Skin Foice;SK245
+SK246	0X081B3E00	Skins	image/Sinimage/Items/Skins/itSK246.bmp	Servidor/GameServer/OpenItem/SK246.txt	SK246	Skin Foice		YES	Skin Foice;SK246
+SK247	0X081B3F00	Skins	image/Sinimage/Items/Skins/itSK247.bmp	Servidor/GameServer/OpenItem/SK247.txt	SK247	Skin Foice		YES	Skin Foice;SK247
+SK248	0X081B4000	Skins	image/Sinimage/Items/Skins/itSK248.bmp	Servidor/GameServer/OpenItem/SK248.txt	SK248	Skin Foice		YES	Skin Foice;SK248
+SK249	0X081B4100	Skins	image/Sinimage/Items/Skins/itSK249.bmp	Servidor/GameServer/OpenItem/SK249.txt	SK249	Skin Foice		YES	Skin Foice;SK249
+SK201	0X081B0100	Skins	image/Sinimage/Items/Skins/itSK201.bmp	Servidor/GameServer/OpenItem/SK201.txt	SK201	Skin Machado 2H		YES	Skin Machado 2H;SK201
+SK202	0X081B0200	Skins	image/Sinimage/Items/Skins/itSK202.bmp	Servidor/GameServer/OpenItem/SK202.txt	SK202	Skin Machado 2H		YES	Skin Machado 2H;SK202
+SK203	0X081B0300	Skins	image/Sinimage/Items/Skins/itSK203.bmp	Servidor/GameServer/OpenItem/SK203.txt	SK203	Skin Machado 2H		YES	Skin Machado 2H;SK203
+SK204	0X081B0400	Skins	image/Sinimage/Items/Skins/itSK204.bmp	Servidor/GameServer/OpenItem/SK204.txt	SK204	Skin Machado 2H		YES	Skin Machado 2H;SK204
+SK205	0X081B0500	Skins	image/Sinimage/Items/Skins/itSK205.bmp	Servidor/GameServer/OpenItem/SK205.txt	SK205	Skin Machado 2H		YES	Skin Machado 2H;SK205
+SK265	0X081B5100	Skins	image/Sinimage/Items/Skins/itSK265.bmp	Servidor/GameServer/OpenItem/SK265.txt	SK265	Skin Espada 2H		YES	Skin Espada 2H;SK265
+SK266	0X081B5200	Skins	image/Sinimage/Items/Skins/itSK266.bmp	Servidor/GameServer/OpenItem/SK266.txt	SK266	Skin Espada 2H		YES	Skin Espada 2H;SK266
+SK267	0X081B5300	Skins	image/Sinimage/Items/Skins/itSK267.bmp	Servidor/GameServer/OpenItem/SK267.txt	SK267	Skin Espada 2H		YES	Skin Espada 2H;SK267
+SK268	0X081B5400	Skins	image/Sinimage/Items/Skins/itSK268.bmp	Servidor/GameServer/OpenItem/SK268.txt	SK268	Skin Espada 2H		YES	Skin Espada 2H;SK268
+SK269	0X081B5500	Skins	image/Sinimage/Items/Skins/itSK269.bmp	Servidor/GameServer/OpenItem/SK269.txt	SK269	Skin Espada 2H		YES	Skin Espada 2H;SK269
+SK221	0X081B1500	Skins	image/Sinimage/Items/Skins/itSK221.bmp	Servidor/GameServer/OpenItem/SK221.txt	SK221	Skin Martelo 2H		YES	Skin Martelo 2H;SK221
+SK222	0X081B1600	Skins	image/Sinimage/Items/Skins/itSK222.bmp	Servidor/GameServer/OpenItem/SK222.txt	SK222	Skin Martelo 2H		YES	Skin Martelo 2H;SK222
+SK223	0X081B1700	Skins	image/Sinimage/Items/Skins/itSK223.bmp	Servidor/GameServer/OpenItem/SK223.txt	SK223	Skin Martelo 2H		YES	Skin Martelo 2H;SK223
+SK224	0X081B1800	Skins	image/Sinimage/Items/Skins/itSK224.bmp	Servidor/GameServer/OpenItem/SK224.txt	SK224	Skin Martelo 2H		YES	Skin Martelo 2H;SK224
+SK172	0X081A5800	Skins	image/Sinimage/Items/Skins/itSK172.bmp	Servidor/GameServer/OpenItem/SK172.txt	SK172	Skin Lança		YES	Skin Lança;SK172
+SK173	0X081A5900	Skins	image/Sinimage/Items/Skins/itSK173.bmp	Servidor/GameServer/OpenItem/SK173.txt	SK173	Skin Lança		YES	Skin Lança;SK173
+SK174	0X081A5A00	Skins	image/Sinimage/Items/Skins/itSK174.bmp	Servidor/GameServer/OpenItem/SK174.txt	SK174	Skin Lança		YES	Skin Lança;SK174
+SK175	0X081A5B00	Skins	image/Sinimage/Items/Skins/itSK175.bmp	Servidor/GameServer/OpenItem/SK175.txt	SK175	Skin Lança		YES	Skin Lança;SK175
+SK176	0X081A5C00	Skins	image/Sinimage/Items/Skins/itSK176.bmp	Servidor/GameServer/OpenItem/SK176.txt	SK176	Skin Lança		YES	Skin Lança;SK176
+SK253	0X081B4500	Skins	image/Sinimage/Items/Skins/itSK253.bmp	Servidor/GameServer/OpenItem/SK253.txt	SK253	Skin Arco		YES	Skin Arco;SK253
+SK254	0X081B4600	Skins	image/Sinimage/Items/Skins/itSK254.bmp	Servidor/GameServer/OpenItem/SK254.txt	SK254	Skin Arco		YES	Skin Arco;SK254
+SK255	0X081B4700	Skins	image/Sinimage/Items/Skins/itSK255.bmp	Servidor/GameServer/OpenItem/SK255.txt	SK255	Skin Arco		YES	Skin Arco;SK255
+SK256	0X081B4800	Skins	image/Sinimage/Items/Skins/itSK256.bmp	Servidor/GameServer/OpenItem/SK256.txt	SK256	Skin Arco		YES	Skin Arco;SK256
+SK259	0X081B4B00	Skins	image/Sinimage/Items/Skins/itSK259.bmp	Servidor/GameServer/OpenItem/SK259.txt	SK259	Skin Arco		YES	Skin Arco;SK259
+SK231	0X081B2F00	Skins	image/Sinimage/Items/Skins/itSK231.bmp	Servidor/GameServer/OpenItem/SK231.txt	SK231	Skin Cajado 2H		YES	Skin Cajado 2H;SK231
+SK232	0X081B3000	Skins	image/Sinimage/Items/Skins/itSK232.bmp	Servidor/GameServer/OpenItem/SK232.txt	SK232	Skin Cajado 2H		YES	Skin Cajado 2H;SK232
+SK233	0X081B3100	Skins	image/Sinimage/Items/Skins/itSK233.bmp	Servidor/GameServer/OpenItem/SK233.txt	SK233	Skin Cajado 2H		YES	Skin Cajado 2H;SK233
+SK234	0X081B3200	Skins	image/Sinimage/Items/Skins/itSK234.bmp	Servidor/GameServer/OpenItem/SK234.txt	SK234	Skin Cajado 2H		YES	Skin Cajado 2H;SK234
+SK181	0X081A6100	Skins	image/Sinimage/Items/Skins/itSK181.bmp	Servidor/GameServer/OpenItem/SK181.txt	SK181	Skin Escudo		YES	Skin Escudo;SK181
+SK182	0X081A6200	Skins	image/Sinimage/Items/Skins/itSK182.bmp	Servidor/GameServer/OpenItem/SK182.txt	SK182	Skin Escudo		YES	Skin Escudo;SK182
+SK183	0X081A6300	Skins	image/Sinimage/Items/Skins/itSK183.bmp	Servidor/GameServer/OpenItem/SK183.txt	SK183	Skin Escudo		YES	Skin Escudo;SK183
+SK184	0X081A6400	Skins	image/Sinimage/Items/Skins/itSK184.bmp	Servidor/GameServer/OpenItem/SK184.txt	SK184	Skin Escudo		YES	Skin Escudo;SK184
+SK185	0X081A6500	Skins	image/Sinimage/Items/Skins/itSK185.bmp	Servidor/GameServer/OpenItem/SK185.txt	SK185	Skin Escudo		YES	Skin Escudo;SK185
+SK186	0X081A6600	Skins	image/Sinimage/Items/Skins/itSK186.bmp	Servidor/GameServer/OpenItem/SK186.txt	SK186	Skin Escudo		YES	Skin Escudo;SK186
+SK187	0X081A6700	Skins	image/Sinimage/Items/Skins/itSK187.bmp	Servidor/GameServer/OpenItem/SK187.txt	SK187	Skin Escudo		YES	Skin Escudo;SK187
+OA150	0X03014200	Accessory	image/Sinimage/Items/Accessory/itOA150.bmp	Servidor/GameServer/OpenItem/OA150.txt	OA150	Colar Eliot 7d	Name\OA150.zhoon	YES	OA150;Colar Eliot 7d;Colar Eliot 7d;Name\OA150.zhoon
+OR250	0X03054200	Accessory	image/Sinimage/Items/Accessory/itOR250.bmp	Servidor/GameServer/OpenItem/OR250.txt	OR250	Anel Eliot 7d	Name\OR250.zhoon	YES	OR250;Anel Eliot 7d;Anel Eliot 7d;Name\OR250.zhoon
+cx113	0X080F1000	Premium	image/Sinimage/Items/Premium/itcx113.bmp	Servidor/GameServer/OpenItem/CX113.txt	CX113	Caixa 70 Aging 8	Name\CX113.zhoon	YES	CX113;Caixa 70 Aging 8;Caixa 70 Aging 8;Name\CX113.zhoon
+RS101	0X03070500	Premium	image/Sinimage/Items/Premium/itRS101.bmp	Servidor/GameServer/OpenItem/RS101.txt	RS101	Pedra de Respec FS	Name\RS101.zhoon	YES	RS101;Pedra de Respec FS;Pedra de Respec FS;Name\RS101.zhoon
+RS102	0X03070600	Premium	image/Sinimage/Items/Premium/itRS102.bmp	Servidor/GameServer/OpenItem/RS102.txt	RS102	Pedra de Respec MS	Name\RS102.zhoon	YES	RS102;Pedra de Respec MS;Pedra de Respec MS;Name\RS102.zhoon
+RS103	0X03070700	Premium	image/Sinimage/Items/Premium/itRS103.bmp	Servidor/GameServer/OpenItem/RS103.txt	RS103	Pedra de Respec PS	Name\RS103.zhoon	YES	RS103;Pedra de Respec PS;Pedra de Respec PS;Name\RS103.zhoon
+RS104	0X03070800	Premium	image/Sinimage/Items/Premium/itRS104.bmp	Servidor/GameServer/OpenItem/RS104.txt	RS104	Pedra de Respec AS	Name\RS104.zhoon	YES	RS104;Pedra de Respec AS;Pedra de Respec AS;Name\RS104.zhoon
+RS105	0X03070900	Premium	image/Sinimage/Items/Premium/itRS105.bmp	Servidor/GameServer/OpenItem/RS105.txt	RS105	Pedra de Respec KS	Name\RS105.zhoon	YES	RS105;Pedra de Respec KS;Pedra de Respec KS;Name\RS105.zhoon
+RS106	0X03070A00	Premium	image/Sinimage/Items/Premium/itRS106.bmp	Servidor/GameServer/OpenItem/RS106.txt	RS106	Pedra de Respec ATS	Name\RS106.zhoon	YES	RS106;Pedra de Respec ATS;Pedra de Respec ATS;Name\RS106.zhoon
+RS107	0X03070B00	Premium	image/Sinimage/Items/Premium/itRS107.bmp	Servidor/GameServer/OpenItem/RS107.txt	RS107	Pedra de Respec MGS	Name\RS107.zhoon	YES	RS107;Pedra de Respec MGS;Pedra de Respec MGS;Name\RS107.zhoon
+RS108	0X03070C00	Premium	image/Sinimage/Items/Premium/itRS108.bmp	Servidor/GameServer/OpenItem/RS108.txt	RS108	Pedra de Respec PRS	Name\RS108.zhoon	YES	RS108;Pedra de Respec PRS;Pedra de Respec PRS;Name\RS108.zhoon
+BI142	0X080B3A00	Premium	image/Sinimage/Items/Premium/itBI142.bmp	Servidor/GameServer/OpenItem/BI142.txt	BI142	Pedra do Acesso - Ferreiro	Name\BI142.zhoon	YES	BI142;Pedra do Acesso - Ferreiro;Pedra do Acesso - Ferreiro;Name\BI142.zhoon

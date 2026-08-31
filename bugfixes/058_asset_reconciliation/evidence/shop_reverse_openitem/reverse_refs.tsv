@@ -1,0 +1,8 @@
+target_cat	target_code_hex	target_rel	ref_owner_cat	ref_file	match_lines
+RS102	0X03070600	image/Sinimage/Items/Premium/itRS102.bmp	SE106	Servidor/GameServer/OpenItem/SE106.txt	"6:*ÄÚµå		""RS102"""
+RS103	0X03070700	image/Sinimage/Items/Premium/itRS103.bmp	SE107	Servidor/GameServer/OpenItem/SE107.txt	"6:*ÄÚµå		""RS103"""
+RS104	0X03070800	image/Sinimage/Items/Premium/itRS104.bmp	SE108	Servidor/GameServer/OpenItem/SE108.txt	"6:*ÄÚµå		""RS104"""
+RS105	0X03070900	image/Sinimage/Items/Premium/itRS105.bmp	SE109	Servidor/GameServer/OpenItem/SE109.txt	"6:*ÄÚµå		""RS105"""
+RS106	0X03070A00	image/Sinimage/Items/Premium/itRS106.bmp	SE110	Servidor/GameServer/OpenItem/SE110.txt	"6:*ÄÚµå		""RS106"""
+RS107	0X03070B00	image/Sinimage/Items/Premium/itRS107.bmp	SE111	Servidor/GameServer/OpenItem/SE111.txt	"6:*ÄÚµå		""RS107"""
+RS108	0X03070C00	image/Sinimage/Items/Premium/itRS108.bmp	SE112	Servidor/GameServer/OpenItem/SE112.txt	"6:*ÄÚµå		""RS108"""

@@ -1,0 +1,11 @@
+missing_input=/home/gabriel/Área de Trabalho/summit/bugfixes/058_asset_reconciliation/evidence/image_audit/missing_static_images.tsv
+trusted_roots:
+  ExMachina=/home/gabriel/armazem/priston/ExMachina
+  pristontale-1-master=/home/gabriel/armazem/priston/pristontale-1-master
+
+UNIQUE_MISSING_TARGETS=691
+INDEXED_IMAGES=41285
+EXACT_COPY_CANDIDATES=367
+CONVERSION_CANDIDATES=15
+AMBIGUOUS_TOP_TARGETS=35
+UNRESOLVED=274

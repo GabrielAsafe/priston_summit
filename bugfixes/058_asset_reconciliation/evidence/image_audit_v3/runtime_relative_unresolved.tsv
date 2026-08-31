@@ -1,0 +1,27 @@
+origin	source_class	source_file	line	literal	normalized	resolved_client_rel	resolution	status	runtime_canonical
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	2	@eye_light02.TGA	@eye_light02.TGA	Field/Ricarten/@eye_light02.TGA	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	3	@eye_slight02.TGA	@eye_slight02.TGA	Field/Ricarten/@eye_slight02.TGA	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	4	@L-q.tga	@L-q.tga	Field/Ricarten/@L-q.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	5	@L-VV.tga	@L-VV.tga	Field/Ricarten/@L-VV.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	6	@na03_01.tga	@na03_01.tga	Field/Ricarten/@na03_01.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	7	@na03_02.tga	@na03_02.tga	Field/Ricarten/@na03_02.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	8	@na03_03.tga	@na03_03.tga	Field/Ricarten/@na03_03.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	9	@na03_04.tga	@na03_04.tga	Field/Ricarten/@na03_04.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	10	@na03_07.tga	@na03_07.tga	Field/Ricarten/@na03_07.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	11	@na03_08.tga	@na03_08.tga	Field/Ricarten/@na03_08.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	12	@na03_13.tga	@na03_13.tga	Field/Ricarten/@na03_13.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	13	@pl_02.TGA	@pl_02.TGA	Field/Ricarten/@pl_02.TGA	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	14	@pl_03.TGA	@pl_03.TGA	Field/Ricarten/@pl_03.TGA	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	15	@riy001.tga	@riy001.tga	Field/Ricarten/@riy001.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	16	@riy002.tga	@riy002.tga	Field/Ricarten/@riy002.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	17	@riy-w008.tga	@riy-w008.tga	Field/Ricarten/@riy-w008.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	18	@riy-w037.tga	@riy-w037.tga	Field/Ricarten/@riy-w037.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	19	@riy-w040.tga	@riy-w040.tga	Field/Ricarten/@riy-w040.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	20	@riy-w041.tga	@riy-w041.tga	Field/Ricarten/@riy-w041.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	21	@riy-w086.tga	@riy-w086.tga	Field/Ricarten/@riy-w086.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Field/Ricarten/desktop.ini	22	@Ttem.tga	@Ttem.tga	Field/Ricarten/@Ttem.tga	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Effect/NewEffect/SkillArchMageMeteo2.lua	41	Res\\TextureHit\\hit5_50.bmp	Res/TextureHit/hit5_50.bmp	Effect/NewEffect/Res/TextureHit/hit5_50.bmp	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Effect/NewEffect/SkillCelestialChainLightAxial.lua	7	Res\\TextureHit\\R_e20.bmp	Res/TextureHit/R_e20.bmp	Effect/NewEffect/Res/TextureHit/R_e20.bmp	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Effect/NewEffect/SkillMetalionImpulsionHit1.lua	7	Res\\TextureHit\\light4_10.bmp	Res/TextureHit/light4_10.bmp	Effect/NewEffect/Res/TextureHit/light4_10.bmp	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Effect/NewEffect/SkillMetalionImpulsionLightAxial.lua	7	Res\\TextureHit\\R_e00.bmp	Res/TextureHit/R_e00.bmp	Effect/NewEffect/Res/TextureHit/R_e00.bmp	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
+client_text	RUNTIME_TEXT	Summit Tale Client Full/cliente/Effect/NewEffect/SkillMetalionImpulsionLightPart.lua	8	Res\\TextureHit\\hit6_601.bmp	Res/TextureHit/hit6_601.bmp	Effect/NewEffect/Res/TextureHit/hit6_601.bmp	CONTAINING_DIR_OR_ROOT_NOT_FOUND	RELATIVE_UNRESOLVED	
