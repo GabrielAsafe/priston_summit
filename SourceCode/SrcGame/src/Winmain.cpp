@@ -77,7 +77,7 @@ extern int micInit;
 #include "WinInt/WinIntThread.h"
 #include "FullZoomMap.h"
 #include "FontImage.h"
-#include "Dump/WinDump.h"
+#include "diagnostics/crash/WinDump.h"
 
 int lowHPWarningImage = -1;
 
@@ -183,9 +183,9 @@ void ReadTexSettings()
 	iSettingsButton[0] = CreateTextureMaterial("game//UI//settings.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	iSettingsButton[1] = CreateTextureMaterial("game//UI//settings_.png", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	iSettingsRelog = CreateTextureMaterial("game//Settings//help_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iSettingsSave = CreateTextureMaterial("game//Settings//save_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iSettingsCheckBox[0] = CreateTextureMaterial("game//Settings//checkbox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	iSettingsCheckBox[1] = CreateTextureMaterial("game//Settings//checkbox_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iSettingsSave = CreateTextureMaterial("game//settings//save_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iSettingsCheckBox[0] = CreateTextureMaterial("game//settings//checkbox.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	iSettingsCheckBox[1] = CreateTextureMaterial("game//settings//checkbox_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	iBellatraBg = CreateTextureMaterial("game//bellatra//window.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	iBellatrOK = CreateTextureMaterial("game//bellatra//ok.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 }
@@ -661,7 +661,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 		}
 	}
 
-	LoadScreen("Image//logo.bmp", hInst, hwnd);
+	LoadScreen("image//logo.bmp", hInst, hwnd);
 	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after LoadScreen\n"); fclose(f);} }
 	Sleep(300);
 	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after Sleep\n"); fclose(f);} }
@@ -5023,7 +5023,7 @@ char *RegPath_ACDSee = "SOFTWARE//Microsoft//Windows//CurrentVersion//Uninstall/
 int SetCreateFont()
 {
 	char dwFontGame[32] = { 0 };
-	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".//game//Font//Config.ini");
+	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".//game//font//Config.ini");
 
 	hFont = CreateFontA(16, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, NULL, NULL, ANTIALIASED_QUALITY, FF_DONTCARE, dwFontGame);
 	return TRUE;
