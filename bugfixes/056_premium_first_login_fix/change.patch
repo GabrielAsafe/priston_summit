@@ -1,0 +1,45 @@
+diff --git a/SourceCode/SrcGame/src/netplay.cpp b/SourceCode/SrcGame/src/netplay.cpp
+index 0e8def97..16e96655 100644
+--- a/SourceCode/SrcGame/src/netplay.cpp
++++ b/SourceCode/SrcGame/src/netplay.cpp
+@@ -2333,8 +2333,38 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
+ 
+ 	case OpCode::OPCODE_EXPLVL1:
+ 	{
+-		chaPremiumitem.UsePremiumItem(155);
+-		AddChatBuff("Voc� recebeu o Kit UP relogue Para ativar");
++		const DWORD StarterPremiumTime = SINITEM_TIME_12HOURS;
++
++		chaPremiumitem.SetThirdEyesTime(StarterPremiumTime);
++		chaPremiumitem.SetUpKeepItem(nsPremiumItem::THIRD_EYES, chaPremiumitem.m_ThirdEyesTime, true, UpKeepItemName[0], 50);
++
++		chaPremiumitem.SetExpUpPotionTime(StarterPremiumTime);
++		chaPremiumitem.SetUpKeepItem(nsPremiumItem::EXPUP_POTION, chaPremiumitem.m_ExpUpPotionTime, true, UpKeepItemName[1], 30);
++
++		chaPremiumitem.SetVampiricCuspidTime(StarterPremiumTime);
++		chaPremiumitem.SetUpKeepItem(nsPremiumItem::VAMPIRIC_CUS, chaPremiumitem.m_VampiricCuspidTime, true, UpKeepItemName[2]);
++
++		chaPremiumitem.SetManaRechargingPTime(StarterPremiumTime);
++		chaPremiumitem.SetUpKeepItem(nsPremiumItem::MANA_RECHAR_P, chaPremiumitem.m_ManaRechargingPTime, true, UpKeepItemName[3]);
++
++		chaPremiumitem.SetManaReducePotionTime(StarterPremiumTime);
++		chaPremiumitem.SetManaReducePotionValue(30);
++		chaPremiumitem.SetUpKeepItem(nsPremiumItem::MANA_REDUCE_P, chaPremiumitem.m_ManaReducePotiontime, true, UpKeepItemName[5], 30);
++
++		chaPremiumitem.SetMightOfAwellTime(StarterPremiumTime);
++		chaPremiumitem.SetMightOfAwellWeight(300);
++		chaPremiumitem.SetUpKeepItem(nsPremiumItem::MIGHT_OF_AWELL, chaPremiumitem.m_MightofAwellTime, true, UpKeepItemName[4], 300);
++
++		chaPremiumitem.SetPhenixPetTime(StarterPremiumTime);
++		chaPremiumitem.SetUpKeepItem(nsPremiumItem::PHENIX_PET, chaPremiumitem.m_PhenixPetTime, true, UpKeepItemName[6], 500);
++		cPCBANGPet.PetKind = TRUE;
++		cPCBANGPet.ShowPet();
++
++		chaPremiumitem.SetStaminaReducePotionTime(StarterPremiumTime);
++		chaPremiumitem.SetStaminaReducePotionValue(30);
++		chaPremiumitem.SetUpKeepItem(nsPremiumItem::STAMINA_REDUCE_P, chaPremiumitem.m_StaminaReducePotiontime, true, UpKeepItemName[12], 30);
++
++		AddChatBuff("Kit UP ativado");
+ 	}
+ 	break;
+ 	case OpCode::SEARCH_GAME_CHEAT:
