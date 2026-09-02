@@ -51,11 +51,6 @@ CXXFLAGS=(
     -D_SERVER
     -I.
     -ISrcServer/src
-    -ISrcServer/src/sinbaram
-    -ISrcServer/src/Skills
-    -ISrcServer/src/HoBaram/NewEffect
-    -ISrcServer/src/HoBaram/NewEffect/Script
-    -ISrcServer/src/HoBaram/NewEffect/Script/lua
 
     -ISrcGame/src
 
@@ -157,16 +152,16 @@ find SrcServer/src modules \
     > "$CPP_LIST"
 
 cat >> "$CPP_LIST" <<'LISTEOF'
-SrcServer/src/Winmain.cpp
-SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp
-SrcServer/src/TJBOY/Ygy/Process/Process.cpp
-SrcServer/src/TJBOY/Ygy/Util.cpp
-SrcServer/src/TJBOY/Ygy/memmap/memmap.cpp
-SrcServer/src/sinbaram/sinInvenTory.cpp
-SrcServer/src/sinbaram/sinSkill.cpp
-SrcServer/src/sinbaram/sinSkill_Info.cpp
-SrcServer/src/sinbaram/SkillFunction/Morayion.cpp
-SrcServer/src/sinbaram/SkillFunction/Tempskron.cpp
+SrcServer/src/platform/windows/application/Winmain.cpp
+SrcServer/src/systems/audio/voice/legacy_ygy/Packet.cpp
+SrcServer/src/systems/audio/voice/legacy_ygy/Process.cpp
+SrcServer/src/systems/audio/voice/legacy_ygy/Util.cpp
+SrcServer/src/systems/audio/voice/legacy_ygy/memmap.cpp
+SrcServer/src/systems/inventory/legacy/sinInvenTory.cpp
+SrcServer/src/systems/combat/skills/legacy/sinSkill.cpp
+SrcServer/src/systems/combat/skills/legacy/sinSkill_Info.cpp
+SrcServer/src/systems/combat/skills/legacy/Morayion.cpp
+SrcServer/src/systems/combat/skills/legacy/Tempskron.cpp
 LISTEOF
 
 sort -u "$CPP_LIST" -o "$CPP_LIST"

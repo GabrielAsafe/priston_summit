@@ -1,7 +1,11 @@
 #pragma once
 
 #include <windows.h>
-#include "../SrcGame/src/sinbaram/sinItem.h"
+#ifdef _SERVER
+#include "systems/inventory/legacy/sinItem.h"
+#else
+#include "systems/inventory/legacy/sinItem.h"
+#endif
 
 #ifndef STRINGCOPY
 #define STRINGCOPY(dst, src) lstrcpynA((dst), (src), sizeof(dst))

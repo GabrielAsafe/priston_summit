@@ -2,7 +2,7 @@
 #include "Login.h"
 #include <string>
 #include <smPacket.h>
-#include <netplay.h>
+#include <systems/network/client/netplay.h>
 #include <systems/security/client_integrity/Security.h>
 #include <algorithm>
 

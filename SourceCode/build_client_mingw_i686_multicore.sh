@@ -78,27 +78,10 @@ CXXFLAGS=(
     -IShared2
 
     -ISrcGame/src
-    -ISrcGame/src/smLib3d
-    -ISrcGame/src/sinbaram
-    -ISrcGame/src/Skills
-    -ISrcGame/src/Language
-    -ISrcGame/src/Resources
-    -ISrcGame/src/Sound
-    -ISrcGame/src/HoBaram
-    -ISrcGame/src/HoBaram/NewEffect
-    -ISrcGame/src/HoBaram/NewEffect/math
-    -ISrcGame/src/HoBaram/NewEffect/Script
-    -ISrcGame/src/HoBaram/NewEffect/Script/lua
-    -ISrcGame/src/Library/LuaSrc
-    -ISrcGame/src/Library/LuaSrc/Lua
-    -ISrcGame/src/TJBOY/clanmenu
-    -ISrcGame/src/TJBOY/isaocheck
-    -ISrcGame/src/TJBOY/park
-    -ISrcGame/src/TJBOY/Ygy
-    -ISrcGame/src/TJBOY/Ygy/memmap
-    -ISrcGame/src/Server
-    -ISrcGame/src/WinInt
-    -ISrcGame/src/Settings
+    -ISrcGame/src/systems/rendering/legacy_3d
+    
+    -ISrcGame/src/third_party/lua/legacy_src
+    -ISrcGame/src/third_party/lua/legacy_src/Lua
 
     -Imodules
     -Imodules/File
@@ -196,7 +179,7 @@ printf '%s\n' "$BUILD_SIGNATURE" > "$SIGNATURE_FILE"
 | grep -Eiv \
     'GameGuard|XTrap|HackShield|Lua\.bak|\.bak|bak_|corrupt|/luac/|ltests\.c|/test/|/tests/' \
 | grep -Eiv \
-    'HoSkyOld\.cpp|HoOpeningOFF\.cpp|FilterEffect\.cpp|CChatBox\.cpp|/Library/LuaSrc/Lua/|/Server/(ClientFuncPos|OnSever|PartySever|Svr_Damge|svrEventSpawn)\.cpp' \
+    'HoSkyOld\.cpp|HoOpeningOFF\.cpp|FilterEffect\.cpp|CChatBox\.cpp|/third_party/lua/legacy_src/Lua/|/compat/client_server/server_legacy/(ClientFuncPos|OnSever|PartySever|Svr_Damge|svrEventSpawn)\.cpp' \
 | sort -u \
 > "$CPP_LIST"
 

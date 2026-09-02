@@ -94,7 +94,7 @@ echo "Ficheiros:"
 printf '  %s\n' "${FILES_TO_SEND[@]}"
 echo
 
-scp -P "$PORT" "${FILES_TO_SEND[@]}" "$DEST"
+#scp -P "$PORT" "${FILES_TO_SEND[@]}" "$DEST"
 
 log_section "CLIENTE CONCLUÍDO"
 echo "Executável: $OUTPUT"

@@ -19,12 +19,20 @@
 #endif
 
 #include "global_def.h"
-#include "smwsock.h"
+#ifdef _SERVER
+#include "systems/network/transport/legacy/smwsock.h"
+#else
+#include "systems/network/transport/legacy/smwsock.h"
+#endif
 #ifndef	_SMPACKET_HEADER
 
 #define _SMPACKET_HEADER
 
-#include	"sinbaram/sinItem.h"
+#ifdef _SERVER
+#include "systems/inventory/legacy/sinItem.h"
+#else
+#include "systems/inventory/legacy/sinItem.h"
+#endif
 // #include <atltime.h> // removed for MinGW
 
 //���Ӱ��� ���� Lib

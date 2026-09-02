@@ -7,8 +7,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "lua.h"
-#include "lauxlib.h"
+#include "third_party/lua/legacy_ho_headers/lua.h"
+#include "third_party/lua/legacy_ho_headers/lauxlib.h"
 
 #include "lfunc.h"
 #include "lmem.h"

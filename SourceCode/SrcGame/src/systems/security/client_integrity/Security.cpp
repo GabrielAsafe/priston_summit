@@ -1,5 +1,5 @@
 #include "Security.h"
-#include <NetType.h>
+#include <systems/network/transport/legacy/NetType.h>
 #include <algorithm>
 
 Security security;

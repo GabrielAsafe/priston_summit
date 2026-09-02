@@ -7,10 +7,10 @@
 
 #define ltablib_c
 
-#include "lua.h"
+#include "third_party/lua/legacy_ho_headers/lua.h"
 
-#include "lauxlib.h"
-#include "lualib.h"
+#include "third_party/lua/legacy_ho_headers/lauxlib.h"
+#include "third_party/lua/legacy_ho_headers/lualib.h"
 
 
 #define aux_getn(L,n)	(luaL_checktype(L, n, LUA_TTABLE), luaL_getn(L, n))
