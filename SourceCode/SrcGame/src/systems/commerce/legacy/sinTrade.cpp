@@ -2017,7 +2017,7 @@ void cTRADE::LButtonDown(int x, int y)
 
 								int LineCount = 0, Temp;
 								ShowItemOverSpace = 1;
-								strcpy_s(szCraftItemBuff, "������ Ȯ���� �ּ���");
+								strcpy_s(szCraftItemBuff, "Verifique o espa\347o no invent\341rio");
 
 								strcat(szCraftItemBuff, "/r");
 								Temp = lstrlen(szCraftItemBuff);
@@ -2107,7 +2107,7 @@ void cTRADE::LButtonDown(int x, int y)
 
 								int LineCount = 0, Temp;
 								ShowItemOverSpace = 1;
-								strcpy_s(szCraftItemBuff, "������ Ȯ���� �ּ���");
+								strcpy_s(szCraftItemBuff, "Verifique o espa\347o no invent\341rio");
 
 								strcat(szCraftItemBuff, "/r");
 								Temp = lstrlen(szCraftItemBuff);

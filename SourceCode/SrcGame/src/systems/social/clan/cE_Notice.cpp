@@ -291,10 +291,10 @@ void CLANEntity_Notice::Draw()
 
 
 
-		Draw_C_Text("��    ��", menuPos[3].left + 50, menuPos[3].top + 10);
-		Draw_C_Text("��    ��", menuPos[3].left + 51, menuPos[3].top + 10);
-		Draw_C_Text("��    ��", menuPos[3].left + 50, menuPos[3].top + 11);
-		Draw_C_Text("��    ��", menuPos[3].left + 51, menuPos[3].top + 11);
+		Draw_C_Text("A V I S O", menuPos[3].left + 50, menuPos[3].top + 10);
+		Draw_C_Text("A V I S O", menuPos[3].left + 51, menuPos[3].top + 10);
+		Draw_C_Text("A V I S O", menuPos[3].left + 50, menuPos[3].top + 11);
+		Draw_C_Text("A V I S O", menuPos[3].left + 51, menuPos[3].top + 11);
 
 
 		nIconPos = 5;
@@ -369,7 +369,7 @@ void CLANEntity_Notice::Draw()
 		by = bit.bmHeight;
 		BitBlt(destdc, menuPos[3].left, menuPos[3].top, menuPos[3].right, menuPos[3].bottom, sorDC, 0, 0, SRCCOPY);
 
-		Text_Out(destdc, menuPos[3].left + 50, menuPos[3].top + 10, "��    ��");
+		Text_Out(destdc, menuPos[3].left + 50, menuPos[3].top + 10, "A V I S O");
 
 
 		SelectObject(sorDC, hLine);

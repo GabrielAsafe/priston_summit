@@ -335,7 +335,7 @@ void CLANEntity_JOIN::Main()
 				#ifdef	_LANGUAGE_JAPANESE
 					wsprintf(TempBufferMsg, "�N�����E��/n4���o�߂�?�F�b�N��Error");
 				#else
-					wsprintf(TempBufferMsg, "Ŭ��Ż��/n4�ϰ��üũ��Error");
+					wsprintf(TempBufferMsg, "Erro ao verificar a elegibilidade para entrar no cl\343.");
 				#endif
 					cClanReport.InitMsg(TempBufferMsg);
 					cClanReport.menuInit(C_menuN, clanszError_Msg.pos.x, clanszError_Msg.pos.y);

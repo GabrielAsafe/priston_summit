@@ -296,7 +296,7 @@ int sinCheckChageJob()
 		}
 	}*/
 
-	/*quest autom�tica*/
+	/*quest automática*/
 	if (sinChar->Level >= 20 && sinChar->ChangeJob <= 0) {
 		sinChar->ChangeJob = 1;
 		ChangeJobFace();

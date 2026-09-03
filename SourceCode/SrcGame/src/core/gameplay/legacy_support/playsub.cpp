@@ -1900,7 +1900,7 @@ int AddExp(INT64 Exp)
 
 		NumLineComa64(Exp, szTemp);
 
-		wsprintf(szBuf, "> Ganhou %s de experi�ncia!", szTemp);
+		wsprintf(szBuf, "> Ganhou %s de experi\352ncia!", szTemp);
 		AddChatBuff(szBuf, 9);
 	}
 

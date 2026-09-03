@@ -1,5 +1,5 @@
 
-char *parkTextVO = "Op��o de Chat por voz";
+char *parkTextVO = "Op\347\343o de Chat por voz";
 char *parkTextMIC = "Microfone";
 char *parkTextMicON = "Ativo";
 char *parkTextMicOFF = "Inativo";

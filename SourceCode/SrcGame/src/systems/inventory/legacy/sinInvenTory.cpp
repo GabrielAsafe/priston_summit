@@ -1707,12 +1707,12 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("J� existe uma pedra especial de aging.");
+						cMessageBox.ShowMessage("J\341 existe uma pedra especial de aging.");
 					}
 				}
 				else
 				{
-					cMessageBox.ShowMessage("Este item n�o pode ser usado no Aging.");
+					cMessageBox.ShowMessage("Este item n\343o pode ser usado no Aging.");
 				}
 			}
 			else if((InvenItem[Index].CODE & sinITEM_MASK2) == sinOS1)
@@ -1749,12 +1749,12 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Este item n�o pode ser usado no aging.");
+						cMessageBox.ShowMessage("Este item n\343o pode ser usado no aging.");
 					}
 				}
 				else
 				{
-					cMessageBox.ShowMessage("Sheltom incompat�vel ou n�o h� espa�o livre.");
+					cMessageBox.ShowMessage("Sheltom incompat\355vel ou n\343o h\341 espa\347o livre.");
 				}
 			}
 			else if (cAging.isAgeableItem(&Item))
@@ -1783,7 +1783,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("J� existe um item na janela de aging.");
+						cMessageBox.ShowMessage("J\341 existe um item na janela de aging.");
 					}
 				}
 				else
@@ -1812,13 +1812,13 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("J� existe um item na janela de aging.");
+						cMessageBox.ShowMessage("J\341 existe um item na janela de aging.");
 					}
 			}
 			}
 			else
 			{
-				cMessageBox.ShowMessage("Este item n�o pode ser usado no Aging.");
+				cMessageBox.ShowMessage("Este item n\343o pode ser usado no Aging.");
 			}
 		}
 	}
@@ -1868,12 +1868,12 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Este item n�o pode ser usado no mix.");
+						cMessageBox.ShowMessage("Este item n\343o pode ser usado no mix.");
 					}
 				}
 				else
 				{
-					cMessageBox.ShowMessage("Sheltom incompat�vel ou n�o h� espa�o livre.");
+					cMessageBox.ShowMessage("Sheltom incompat\355vel ou n\343o h\341 espa\347o livre.");
 				}
 			}
 			else if(cCraftItem.isMixableItem(&Item))
@@ -1901,7 +1901,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("J� existe um item na janela de Mix.");
+						cMessageBox.ShowMessage("J\341 existe um item na janela de Mix.");
 					}
 				}
 				else
@@ -2207,7 +2207,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 				if (smConfig.getSecurity() <= AccountTypes::SEC_MODERATOR) {
 					for (int i = 0; i < 30; i++) {
 						if (InvenItem[SelectInvenItemIndex - 1].CODE == ItemDonate[i]) {
-							cMessageBox.ShowMessageEvent("Este item n�o pode ser vendido! ");
+							cMessageBox.ShowMessageEvent("Este item n\343o pode ser vendido! ");
 							return;
 
 						}
@@ -3985,11 +3985,11 @@ void cINVENTORY::RButtonDown(int x, int y)
 					SendPlayUpdateInfo();
 					SaveGameData();
 					cCharStatus.CheckLevel();
-					cMessageBox.ShowMessage("Voc� upou +1 n�vel!");
+					cMessageBox.ShowMessage("Voc\352 upou +1 n\355vel!");
 					haCastleSkillUseFlag = 1;
 				}
 				else if (sinChar->Level == CHAR_LEVEL_MAX) {
-					cMessageBox.ShowMessage("Voc� j� est� no n�vel m�ximo!");
+					cMessageBox.ShowMessage("Voc\352 j\341 est\341 no n\355vel m\341ximo!");
 				}
 
 				/*chaPremiumitem.UsePremiumItem(154);*/
@@ -6883,7 +6883,7 @@ int cINVENTORY::ThrowInvenItemToField(sITEM *pItem)
 
 				for (int i = 0; i < 30; i++) {
 					if (pItem->sItemInfo.CODE == ItemDonate[i]) {
-						cMessageBox.ShowMessageEvent("Este item n�o pode ser vendido! ");
+						cMessageBox.ShowMessageEvent("Este item n\343o pode ser vendido! ");
 						return 0;
 
 					}

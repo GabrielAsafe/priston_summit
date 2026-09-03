@@ -1586,16 +1586,16 @@ void sinTestDrawText()
 
 	if(sinTestFlag)
 	{
-		wsprintf(strBuff, "���ݼӵ�:%d", sinChar->Attack_Speed);
+		wsprintf(strBuff, "Velocidade de Ataque:%d", sinChar->Attack_Speed);
 		dsTextLineOut(hdc, 100, 300, strBuff, lstrlen(strBuff));
 
-		wsprintf(strBuff, "�����:%d", sinChar->Chance_Block + sinTempBlock);
+		wsprintf(strBuff, "Bloqueio:%d", sinChar->Chance_Block + sinTempBlock);
 		dsTextLineOut(hdc, 200, 300, strBuff, lstrlen(strBuff));
 
-		wsprintf(strBuff, "ũ��Ƽ��:%d", sinChar->Critical_Hit);
+		wsprintf(strBuff, "Cr\355tico:%d", sinChar->Critical_Hit);
 		dsTextLineOut(hdc, 300, 300, strBuff, lstrlen(strBuff));
 
-		wsprintf(strBuff, "���ñ���:%d", sinChar->Shooting_Range);
+		wsprintf(strBuff, "Alcance:%d", sinChar->Shooting_Range);
 		dsTextLineOut(hdc, 400, 300, strBuff, lstrlen(strBuff));
 
 	}

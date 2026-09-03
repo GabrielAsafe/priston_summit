@@ -204,7 +204,7 @@ void cSHOP::Load()
 int cMYSHOP::CanSellItem(sITEM *pItem)
 {
 	if ((pItem->CODE & sinITEM_MASK2) == sinPZ1 || (pItem->CODE & sinITEM_MASK2) == sinPZ2) {
-		cMessageBox.ShowMessageEvent("Este item n�o pode ser vendido.");
+		cMessageBox.ShowMessageEvent("Este item n\343o pode ser vendido.");
 		return FALSE;
 	} else if ((pItem->CODE & sinITEM_MASK2) == sinDA1 || (pItem->CODE & sinITEM_MASK2) == sinDA2) {
 		if ( //��Ƽ�� �ڽ�Ƭ   //��Ű�� ĳ��������

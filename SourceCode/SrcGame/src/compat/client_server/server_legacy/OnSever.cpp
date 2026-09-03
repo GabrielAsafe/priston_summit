@@ -18534,7 +18534,7 @@ void DisplayMessage()
 
 		if(AutoPlayServer || UserPlayServer)
 		{
-			wsprintf(szMessageBuff, "Status do Servidor/r/nUsuarios : %d/r/nMonstros: %d/r/nMensagens Recebidas : %d/r/nProcessos: ( Snd:%d Rcv:%d )/r/nErros de Rota: %d/r/nErros de Conex? : %d (%d)",
+			wsprintf(szMessageBuff, "Status do Servidor/r/nUsuarios : %d/r/nMonstros: %d/r/nMensagens Recebidas : %d/r/nProcessos: ( Snd:%d Rcv:%d )/r/nErros de Rota: %d/r/nErros de Conex\343o : %d (%d)",
 				cnt, ActivePlayCounter, WSA_RecvMsgCount,
 				GetUseingSendThreadCount(), GetUseingRecvThreadCount(),
 				srRouteErrorCount,
@@ -18542,7 +18542,7 @@ void DisplayMessage()
 		}
 		else
 		{
-			wsprintf(szMessageBuff, "[Login Server]/r/nUsu?ios : %d/r/nFalha no Login: %d/r/nProcesso Login: %d/%d Proc(%d) DLL_Code(%d)/r/n?timo Login: %s (%d)/r/nLogin Que: %d/r/nLogQue Using: %d/r/nLogQue Process: %d/ Avg(%d) Max(%d)/r/nLogQue Failed: %d/r/nItem Log: Using(%d) Failed(%d)/r/nEvent Log: Using(%d) Failed(%d)/r/n",
+			wsprintf(szMessageBuff, "[Login Server]/r/nUsu\341rios : %d/r/nFalha no Login: %d/r/nProcesso Login: %d/%d Proc(%d) DLL_Code(%d)/r/n\332ltimo Login: %s (%d)/r/nLogin Que: %d/r/nLogQue Using: %d/r/nLogQue Process: %d/ Avg(%d) Max(%d)/r/nLogQue Failed: %d/r/nItem Log: Using(%d) Failed(%d)/r/nEvent Log: Using(%d) Failed(%d)/r/n",
 				cnt, srLogFailedCount,
 				LogOnThread_Sucess, LogOnThread_Count, LogOnThread_Process, UseDLL_Code,
 				szLastLogInID, LastLogInResult,
@@ -18555,14 +18555,14 @@ void DisplayMessage()
 		break;
 
 	case 1:
-		wsprintf(szMessageBuff, "[Informa��es do Jogo]/r/nContador de Experi?cia: %d/r/nOp. Monstro: %d/r/nItem: %d [Mny %d]/r/nItemBuffOver: %d/r/n",
+		wsprintf(szMessageBuff, "[Informa\347\365es do Jogo]/r/nContador de Experi\352ncia: %d/r/nOp. Monstro: %d/r/nItem: %d [Mny %d]/r/nItemBuffOver: %d/r/n",
 			rsMonHuntCount, rsMonOpenCount, rsItemOpenCount, rsMoneyTotalCount, rsItemBuffOverCount);
 		break;
 
 	case 2:
 
 
-		wsprintf(szMessageBuff, "[Configura��o]/r/nC?igo do Servidor: %d/r/nNome do Servidor: %s/r/nVers?: %d/r/nSafeCode Count: %d/r/nCheckSum Count: %d/r/nMonster: %d/r/nItem: %d",
+		wsprintf(szMessageBuff, "[Configura\347\343o]/r/nC\363digo do Servidor: %d/r/nNome do Servidor: %s/r/nVers\343o: %d/r/nSafeCode Count: %d/r/nCheckSum Count: %d/r/nMonster: %d/r/nItem: %d",
 			rsServerConfig.ServerCode, rsServerConfig.szServerName, rsServerConfig.LimitVersion,
 			rsServerConfig.SafeClientCodeCount, rsServerConfig.ClientCheckSumCount, chrMonsterCnt, DefaultItemCount);
 
@@ -18571,7 +18571,7 @@ void DisplayMessage()
 	case 3:
 
 
-		wsprintf(szMessageBuff, "[Informa��o de ?ea]/r/n[Aser]Line: %d/r/n[Aser]NetState.: %d/r/n[Aser]Conn.: %d (%d)/r/n[Aser]Process: %d",
+		wsprintf(szMessageBuff, "[Informa\347\343o de \301rea]/r/n[Aser]Line: %d/r/n[Aser]NetState.: %d/r/n[Aser]Conn.: %d (%d)/r/n[Aser]Process: %d",
 			rsGetSystemLineCount(), rsSystemNetCount, rsSystemLineConnCount, rsSystemLineFailedCount, rsSystemLinePlayCount);
 
 		break;

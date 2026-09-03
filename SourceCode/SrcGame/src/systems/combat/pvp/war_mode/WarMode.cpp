@@ -43,16 +43,16 @@ void MODOWAR::Draw()
 		GetFontTextExtentPoint(szBuff, strlen(szBuff), &size);
 		dsTextLineOut(BaseX + (140 - size.cx / 2), BaseY + 80, szBuff, strlen(szBuff));
 		FontType = 1;
-		wsprintf(szBuff, "Voc� Matou: %d", lpCurPlayer->sBlessCastle_Damage[1]);
+		wsprintf(szBuff, "Voc\352 Matou: %d", lpCurPlayer->sBlessCastle_Damage[1]);
 		GetFontTextExtentPoint(szBuff, strlen(szBuff), &size);
 		dsTextLineOut(BaseX + 40, BaseY + 120, szBuff, strlen(szBuff));
 
-		wsprintf(szBuff, "Voc� Morreu: %d", lpCurPlayer->MortesPvP);
+		wsprintf(szBuff, "Voc\352 Morreu: %d", lpCurPlayer->MortesPvP);
 		GetFontTextExtentPoint(szBuff, strlen(szBuff), &size);
 		dsTextLineOut(BaseX + 40, BaseY + 140, szBuff, strlen(szBuff));
 		FontType = 0;
 
-		wsprintf(szBuff, "B�nus Modo PvP");
+		wsprintf(szBuff, "B\364nus Modo PvP");
 		GetFontTextExtentPoint(szBuff, strlen(szBuff), &size);
 		dsTextLineOut(BaseX + 40, BaseY + 180, szBuff, strlen(szBuff));
 

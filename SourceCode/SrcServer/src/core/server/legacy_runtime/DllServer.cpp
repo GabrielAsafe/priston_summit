@@ -1145,7 +1145,7 @@ int RecordLogSql(DWORD	dwRecCode, char *szIP, const char *lpUserID, const char *
 		LogSqlData[cnt].Occupation = 2;
 		break;
 	case 2:
-		strcpy_s(LogSqlData[cnt].szOccupation, "Mec�nico");
+		strcpy_s(LogSqlData[cnt].szOccupation, "Mec\342nico");
 		LogSqlData[cnt].Occupation = 1;
 		break;
 	case 3:
@@ -1238,7 +1238,7 @@ int RecordGameLogSql(DWORD dwRecCode, char *szIP, const char *lpUserID, const ch
 		LogSqlData[cnt].Occupation = 2;
 		break;
 	case 2:
-		strcpy_s(LogSqlData[cnt].szOccupation, "Mec�nico");
+		strcpy_s(LogSqlData[cnt].szOccupation, "Mec\342nico");
 		LogSqlData[cnt].Occupation = 1;
 		break;
 	case 3:

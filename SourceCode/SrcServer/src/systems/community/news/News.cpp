@@ -14,7 +14,7 @@ void News::welcome()
 {
 	TRANS_CHATMESSAGE TransChatMessage;
 	//nick na msg de boas vindas
-	/*wsprintf(TransChatMessage.szMessage, "> Ol� %s", player->getName());
+	/*wsprintf(TransChatMessage.szMessage, "> Ol\341 %s", player->getName());
 	TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 	TransChatMessage.dwIP = 16;
@@ -90,7 +90,7 @@ void News::msgCoinShop()
 	{
 		TRANS_CHATMESSAGE TransChatMessage;
 
-		wsprintf(TransChatMessage.szMessage, "> Voc� Possui %d CoinShop", cCoinShop.GetPlayerCoin(player));
+		wsprintf(TransChatMessage.szMessage, "> Voc\352 Possui %d CoinShop", cCoinShop.GetPlayerCoin(player));
 		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 3;
@@ -98,7 +98,7 @@ void News::msgCoinShop()
 		player->lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
 		
 	
-		wsprintf(TransChatMessage.szMessage, "> Voc� Possui %d TimeShop", cCoinShop_T.GetPlayerCoin(player));
+		wsprintf(TransChatMessage.szMessage, "> Voc\352 Possui %d TimeShop", cCoinShop_T.GetPlayerCoin(player));
 		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 3;
@@ -170,7 +170,7 @@ void News::msgPlayerLogado(rsPLAYINFO *jogadores)
 	if (player && player->lpsmSock)
 	{
 
-		wsprintf(TransChatMessage.szMessage, "> Player [%s] Est� Online", player->getName());
+		wsprintf(TransChatMessage.szMessage, "> Player [%s] Est\341 Online", player->getName());
 		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 9;

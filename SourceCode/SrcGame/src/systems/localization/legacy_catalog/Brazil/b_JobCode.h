@@ -1,24 +1,24 @@
 JOB_DATA_CODE	JobDataBase[] = {
 	
-	{	"Mechanician"		,"Mec�nico"		,JOB_CODE_MECHANICIAN	,	2	,BROOD_CODE_TEMPSKRON ,65,2,2,2,2,2,0},
+	{	"Mechanician"		,"Mec\342nico"		,JOB_CODE_MECHANICIAN	,	2	,BROOD_CODE_TEMPSKRON ,65,2,2,2,2,2,0},
 	{	"Fighter"		,"Lutador"		,JOB_CODE_FIGHTER	,	1	,BROOD_CODE_TEMPSKRON ,70,1,3,1,1,2,0},
 	{	"Pikeman"		,"Pike"	        	,JOB_CODE_PIKEMAN	,	4	,BROOD_CODE_TEMPSKRON ,75,1,3,1,1,2,0},
 	{	"Archer"		,"Arqueira"		,JOB_CODE_ARCHER	,	3	,BROOD_CODE_TEMPSKRON ,80,3,3,2,3,1,0},
 												 
-	{	"Mechanic Master"	,"Mestre Mec�nico"	,JOB_CODE_MECHANICMASTER,	2	,BROOD_CODE_TEMPSKRON },
+	{	"Mechanic Master"	,"Mestre Mec\342nico"	,JOB_CODE_MECHANICMASTER,	2	,BROOD_CODE_TEMPSKRON },
 	{	"Warrior"		,"Guerreiro"		,JOB_CODE_WARRIOR	,	1	,BROOD_CODE_TEMPSKRON },
 	{	"Combatant"		,"Combatente"		,JOB_CODE_COMBATANT	,	4	,BROOD_CODE_TEMPSKRON },
-	{	"Hunter Master"		,"Mestra da Ca�a"	,JOB_CODE_HUNTERMASTER	,	3	,BROOD_CODE_TEMPSKRON },
+	{	"Hunter Master"		,"Mestra da Ca\347a"	,JOB_CODE_HUNTERMASTER	,	3	,BROOD_CODE_TEMPSKRON },
 												 
-	{	"Metal Leader"		,"L�der Mec�nico"	,JOB_CODE_METALLEADER	,	2	,BROOD_CODE_TEMPSKRON },
-	{	"Champion"		,"Campe�o"		,JOB_CODE_CHAMPION	,	1	,BROOD_CODE_TEMPSKRON },
+	{	"Metal Leader"		,"L\355der Mec\342nico"	,JOB_CODE_METALLEADER	,	2	,BROOD_CODE_TEMPSKRON },
+	{	"Champion"		,"Campe\343o"		,JOB_CODE_CHAMPION	,	1	,BROOD_CODE_TEMPSKRON },
 	{	"Lancer"		,"Lancer"		,JOB_CODE_LANCER	,	4	,BROOD_CODE_TEMPSKRON },
-	{	"Dion's Disciple"	,"Disc�pula de Dion"	,JOB_CODE_DIONS_DISCIPLE,	3	,BROOD_CODE_TEMPSKRON },
+	{	"Dion's Disciple"	,"Disc\355pula de Dion"	,JOB_CODE_DIONS_DISCIPLE,	3	,BROOD_CODE_TEMPSKRON },
 												 
 	{	"Metallion"		,"Metaleiro"		,JOB_CODE_HEAVYMETAL	,	2	,BROOD_CODE_TEMPSKRON },
 	{	"Immortal Warrior"	,"Guerreiro Imortal"	,JOB_CODE_IMMORTALWARRIOR,	1	,BROOD_CODE_TEMPSKRON },
 	{	"Lancelot"		,"Lancelot"		,JOB_CODE_LANCELOT	,	4	,BROOD_CODE_TEMPSKRON },
-	{	"Sagittarion"		,"Sagit�ria"		,JOB_CODE_SAGITTARION	,	3	,BROOD_CODE_TEMPSKRON },
+	{	"Sagittarion"		,"Sagit\341ria"		,JOB_CODE_SAGITTARION	,	3	,BROOD_CODE_TEMPSKRON },
 
 	
 	{	"Knight"		,"Cavaleiro"		,JOB_CODE_KNIGHT	,	6	,BROOD_CODE_MORAYION  , 190,2,2,2,1,2,0},
@@ -27,7 +27,7 @@ JOB_DATA_CODE	JobDataBase[] = {
 	{	"Magician"		,"Mago"		        ,JOB_CODE_MAGICIAN	,	7	,BROOD_CODE_MORAYION  , 190,5,1,3,3,2,1},
 
 	{	"Paladin"		,"Paladino"		,JOB_CODE_PALADIN	,	6	,BROOD_CODE_MORAYION },
-	{	"Valkyrie"		,"Valqu�ria"		,JOB_CODE_VALKYRIE	,	5	,BROOD_CODE_MORAYION },
+	{	"Valkyrie"		,"Valqu\355ria"		,JOB_CODE_VALKYRIE	,	5	,BROOD_CODE_MORAYION },
 	{	"Saintess"		,"Santa"		,JOB_CODE_SAINTESS	,	8	,BROOD_CODE_MORAYION },
 	{	"Wizard"		,"Feiticeiro"		,JOB_CODE_WIZARD	,	7	,BROOD_CODE_MORAYION },
 	

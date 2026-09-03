@@ -363,12 +363,12 @@ srCRISTAL_MONSTER	srCristalMonster[srCRISTAL_MAX] = {
 	{ "Rei Hopi"			, 0 , 9	},
 	{ "Hulk"				, 0 , 9	},
 	{ " ���� "				, 0 , 0	},
-	{ "Guardi�o Santo"		, 0 , 0	},
+	{ "Guardi\343o Santo"		, 0 , 0	},
 	{ "Aranha"				, 0 , 9	},
 	{ "Espectro Negro"		, 0 , 9	},
-	{ "Guardi�o de A�o"		, 0 , 9	},
-	{ "Pol�cia do Castelo"	, 0 , 0	},
-	{ "Mil�cia do Castelo"	, 0 , 0	},
+	{ "Guardi\343o de A\347o"		, 0 , 9	},
+	{ "Pol\355cia do Castelo"	, 0 , 0	},
+	{ "Mil\355cia do Castelo"	, 0 , 0	},
 	{ "Guarda do Castelo"	, 0 , 0	}, //16
 
 	{ "���̷��� ũ����Ż"	, 0 , 0	},
@@ -393,12 +393,12 @@ srCRISTAL_MONSTER	srCristalMonsterBoss[srCRISTAL_MAX] = {
 	{ "Rei Hopi"			, 0 , 9		},
 	{ "Hulk"				, 0 , 9		},
 	{ " ���� "				, 0 , 0		},
-	{ "Guardi�o Santo"		, 0 , 0		},
+	{ "Guardi\343o Santo"		, 0 , 0		},
 	{ "Aranha"				, 0 , 9		},
 	{ "Espectro Negro"		, 0 ,9		},
-	{ "Guardi�o de A�o"		, 0 , 9		},
-	{ "Pol�cia do Castelo"		, 0 , 0		},
-	{ "Mil�cia do Castelo"		, 0 , 0		},
+	{ "Guardi\343o de A\347o"		, 0 , 9		},
+	{ "Pol\355cia do Castelo"		, 0 , 0		},
+	{ "Mil\355cia do Castelo"		, 0 , 0		},
 	{ "Guarda do Castelo"	, 0 , 0		},
 
 	{ "���̷��� ũ����Ż"	, 0 , 0		},
@@ -415,7 +415,7 @@ srCRISTAL_MONSTER srMarvelCristalMonster[MARVELCRISTAL_MAX] = {
 	{ "Hulk"				, 0 ,12		},
 	{ "Aranha"				, 0 ,12		},
 	{ "Espectro Negro"		, 0 ,12		},
-	{ "Guardi�o de A�o"		, 0 ,12		},
+	{ "Guardi\343o de A\347o"		, 0 ,12		},
 };
 
 
@@ -427,7 +427,7 @@ srCRISTAL_MONSTER srMarvelCristalMonsterBoss[MARVELCRISTAL_MAX] = {
 	{ "Hulk"				, 0 ,12		},
 	{ "Aranha"				, 0 ,12		},
 	{ "Espectro Negro"		, 0 ,12		},
-	{ "Guardi�o de A�o"		, 0 ,12		},
+	{ "Guardi\343o de A\347o"		, 0 ,12		},
 };
 
 #define	srSKILL_MONSTER_MAX		4
@@ -552,11 +552,11 @@ srCRISTAL_MONSTER	srBillingCrystalMonster[srBC_MONSTER_TOTAL] = {
 	{ "Naz"					, 0 , 0	},
 	{ "Duende Guerreiro"	, 0 , 0	},
 	{ "Sereia Profana"		, 0 , 0	},
-	{ "M�quina-D"	        , 0 , 0	}, //cristal caos
+	{ "M\341quina-D"	        , 0 , 0	}, //cristal caos
 
 	{ "Ratoo"				, 0 , 0	},
 	{ "Grotesco"			, 0 , 0	},
-	{ "Punhos de A�o"		, 0 , 0	},
+	{ "Punhos de A\347o"		, 0 , 0	},
 	{ "Gelo"				, 0 , 0	}, //cristal inferna
 
 	{ "Omicron"				, 0 , 25 }, //cristal extremo
@@ -565,32 +565,32 @@ srCRISTAL_MONSTER	srBillingCrystalMonster[srBC_MONSTER_TOTAL] = {
 	{ "Omega"				, 0 , 25 },
 
 	{ "Quimera"					, 0 , 0	},
-	{ "P�ssaro Demon�aco"		, 0 , 0	},
-	{ "Cavaleiro Sanguin�rio"	, 0 , 0	},
+	{ "P\341ssaro Demon\355aco"		, 0 , 0	},
+	{ "Cavaleiro Sanguin\341rio"	, 0 , 0	},
 	{ "Seto"					, 0 , 0	}, //cristal Enigma
 
 	{ "Arqueira das Cinzas"		, 0 , 0	},
 	{ "Naz das Cinzas"			, 0 , 0	},
-	{ "Guardi�o do Templo"		, 0 , 0	},
+	{ "Guardi\343o do Templo"		, 0 , 0	},
 	{ "Gorgon"					, 0 , 0	} //cristal wyvern
 };
 
 #define	srSOLO_MONSTER_TOTAL	16
 srCRISTAL_MONSTER	srBillingSoloCristal[srSOLO_MONSTER_TOTAL] = {
-	{ "F�ria"			, 0 , 0	},
+	{ "F\372ria"			, 0 , 0	},
 	{ "Babel"			, 0 , 0	},
 	{ "Valento"			, 0 , 0	},
 	{ "Kelvezu"			, 0 , 0	},
 	{ "Mokova"			, 0 , 0	},
-	{ "Rob� Mutante"    , 0 , 0	},
+	{ "Rob\364 Mutante"    , 0 , 0	},
 	{ "DevilShy"		, 0 , 0	},
 	{ "Duende de Gelo"	, 0 , 0	},
 	{ "Olho de Gelo"	, 0 , 0	},
 	{ "Golem de Gelo"	, 0 , 0	},
 	{ "Caos Cara"		, 0 , 0	},
-	{ "C�o Infernal"	, 0 , 0	},
-	{ "Guardi�o Negro"	, 0 , 0	},
-	{ "Abomina��o"		, 0 , 0	},
+	{ "C\343o Infernal"	, 0 , 0	},
+	{ "Guardi\343o Negro"	, 0 , 0	},
+	{ "Abomina\347\343o"		, 0 , 0	},
 	{ "Igolation"		, 0 , 0	},
 	{ "Xetan"			, 0 , 0	}
 };
@@ -601,7 +601,7 @@ srCRISTAL_MONSTER srMiroticCristalMonster[MIROTIC_MAX] = {
 	{ "Golem de Gelo"		, 0 ,13	},
 	{ "Tartaruga Blindada"	, 0 ,13	},
 	{ "Verme de Fogo"		, 0 ,13	},
-	{ "Guardi�o do Templo"	, 0 ,13	},
+	{ "Guardi\343o do Templo"	, 0 ,13	},
 	{ "Valento"				, 0 ,13	},
 	{ "Mokova"				, 0 ,13	}
 };
@@ -609,7 +609,7 @@ srCRISTAL_MONSTER srMiroticCristalMonster[MIROTIC_MAX] = {
 #define SINTETICO_MAX 8
 srCRISTAL_MONSTER srSinteticoCristalMonster[SINTETICO_MAX] = {
 	{ "Pike das Cinzas"					, 0 ,13	},
-	{ "Mec�nico das Cinzas"				, 0 ,13	},
+	{ "Mec\342nico das Cinzas"				, 0 ,13	},
 	{ "Arqueira das Cinzas"				, 0 ,13	},
 	{ "Atalanta das Cinzas"				, 0 ,13	},
 	{ "Cavaleiro das Cinzas"			, 0 ,13	},
@@ -15374,7 +15374,7 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 
 				if (AgeNum >= 10)
 				{
-					wsprintf(szMsgAging, "> Moriph: %s conquistou o n�vel (+%d) de aging no item (%s). gzzzz!",
+					wsprintf(szMsgAging, "> Moriph: %s conquistou o n\355vel (+%d) de aging no item (%s). gzzzz!",
 						lpPlayInfo->getName(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
 					rsSendMessageAll(szMsgAging, 3);
 				}
@@ -15385,7 +15385,7 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 
 				if (AgeNum >= 10)
 				{
-					wsprintf(szMsgAging, "> Moriph: %s conquistou +2 no n�vel [+%d] de aging no item (%s). gzzzz!",
+					wsprintf(szMsgAging, "> Moriph: %s conquistou +2 no n\355vel [+%d] de aging no item (%s). gzzzz!",
 						lpPlayInfo->getName(), AgeNum, sAging_Recv.DesCraftItem.sItemInfo.ItemName);
 					rsSendMessageAll(szMsgAging, 3);
 				}
@@ -16478,7 +16478,7 @@ int rsRecvManufactureItem(rsPLAYINFO* lpPlayInfo, SManufactureItem_Server* pManu
 		RecordManufactureItem(lpPlayInfo, &g_sManufactureItem_Recv.DesManufactureItem.sItemInfo);
 
 		TRANS_CHATMESSAGE	TransChatMessage;
-		wsprintf(TransChatMessage.szMessage, "Parab�ns %s Acabouu de Craftar o Item %s", lpPlayInfo->getName(), g_sManufactureItem_Recv.DesManufactureItem.sItemInfo.ItemName);
+		wsprintf(TransChatMessage.szMessage, "Parab\351ns %s Acabouu de Craftar o Item %s", lpPlayInfo->getName(), g_sManufactureItem_Recv.DesManufactureItem.sItemInfo.ItemName);
 		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 		TransChatMessage.dwIP = 6;
@@ -19769,11 +19769,11 @@ char* retornarNomeMapa(int field)
 	else if (field == 25)
 		nomeMapa = "Caverna das Abelhas";
 	else if (field == 26)
-		nomeMapa = "Santu�rio Sombrio";
+		nomeMapa = "Santu\341rio Sombrio";
 	else if (field == 27)
 		nomeMapa = "Entrada de Ferro do Caos";
 	else if (field == 28)
-		nomeMapa = "Cora��o de Perum";
+		nomeMapa = "Cora\347\343o de Perum";
 	else if (field == 29)
 		nomeMapa = "Eura";
 	else if (field == 30)
@@ -19927,7 +19927,7 @@ void FunctionCoins(rsPLAYINFO* lpPlayInfo, int Tipo)
 
 	}
 	TRANS_CHATMESSAGE	TransChatMessage;
-	wsprintf(TransChatMessage.szMessage, "Voc� Ganhou %d SCoin", sort);
+	wsprintf(TransChatMessage.szMessage, "Voc\352 Ganhou %d SCoin", sort);
 	TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 	TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 	TransChatMessage.dwIP = 3;
@@ -20360,7 +20360,7 @@ char* ListMap[62] =
 "Templo Maldito 2",
 "Caverna dos Cogumelos",
 "Caverna das Abelhas",
-"Santu�rio Sombrio",
+"Santu\341rio Sombrio",
 "Estrada do Ferro do Caos",
 "Coracao de perum",
 "Eura",
@@ -22729,7 +22729,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		if (bMaintenanceMode) 
 		{
 			bMaintenanceMode = 0;
-			wsprintf(TransChatMessage.szMessage, ">Modo Manuten��o desativado!");
+			wsprintf(TransChatMessage.szMessage, ">Modo Manuten\347\343o desativado!");
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
@@ -22749,7 +22749,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				}
 
 			}
-			wsprintf(TransChatMessage.szMessage, ">Modo Manuten��o ativado!");
+			wsprintf(TransChatMessage.szMessage, ">Modo Manuten\347\343o ativado!");
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
@@ -23482,7 +23482,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		{
 			WritePrivateProfileStringA("LevelParty", "Diferenca", szCmdBuff, ".//Configs//ExpManager.ini");
 
-			wsprintf(TransChatMessage.szMessage, "> Diferen�a de level da party alterado para %d.", cnt);
+			wsprintf(TransChatMessage.szMessage, "> Diferen\347a de level da party alterado para %d.", cnt);
 
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
@@ -23509,7 +23509,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			rsPutItem(lpPlayInfo, sinPS1 | sin05, cnt);
 			rsPutItem(lpPlayInfo, sinPM1 | sin05, cnt);
 
-			wsprintf(TransChatMessage.szMessage, "> Voc� recebeu %d po��es de HP, MP e RES.", cnt);
+			wsprintf(TransChatMessage.szMessage, "> Voc\352 recebeu %d po\347\365es de HP, MP e RES.", cnt);
 
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
@@ -23537,7 +23537,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		{
 			rsSendMoneyToUser(lpPlayInfo2, len);
 
-			wsprintf(TransChatMessage.szMessage, "> Voc� enviou %d de gold para %s.", len, lpPlayInfo2->getName());
+			wsprintf(TransChatMessage.szMessage, "> Voc\352 enviou %d de gold para %s.", len, lpPlayInfo2->getName());
 
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
@@ -23571,7 +23571,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		packetc.SetBoss2Bonus1 = SetBoss2Bonus1;
 		packetc.SetBoss2Bonus2 = SetBoss2Bonus2;
 
-		wsprintf(TransChatMessage.szMessage, "Configura��es Recarregadas!");
+		wsprintf(TransChatMessage.szMessage, "Configura\347\365es Recarregadas!");
 
 		TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 		TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
@@ -23698,7 +23698,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 					lpStgArea->AddItem(lpsItem, lpPlayInfo->Position.x >> FLOATNS, lpPlayInfo->Position.y >> FLOATNS, lpPlayInfo->Position.z >> FLOATNS, TRUE);
 				}
 
-				wsprintf(TransChatMessage.szMessage, "Aging +%d, C�digo %s, Spec %d, criado com sucesso.", len, szCmdBuff, spJobCode);
+				wsprintf(TransChatMessage.szMessage, "Aging +%d, C\363digo %s, Spec %d, criado com sucesso.", len, szCmdBuff, spJobCode);
 
 				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
@@ -23809,7 +23809,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				wsprintf(TransChatMessage.szMessage, "> Foram removidos [%d] coins do id [%s].", len, lpPlayInfo2->getAccount());
 			}
 			else {
-				wsprintf(TransChatMessage.szMessage, "> O id [%s] n�o tem saldo suficiente.", lpPlayInfo2->getAccount());
+				wsprintf(TransChatMessage.szMessage, "> O id [%s] n\343o tem saldo suficiente.", lpPlayInfo2->getAccount());
 			}
 
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
@@ -23839,7 +23839,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		len = atoi(lpBuff); // pega a qnt de item informado max = 8;
 		// limite de criar item 8
 		if (len > 12) {
-			char* srMsg_ERRO = "N�o pode criar acima de '12' Items!!";
+			char* srMsg_ERRO = "N\343o pode criar acima de '12' Items!!";
 			wsprintf(TransChatMessage.szMessage, srMsg_ERRO);
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
@@ -24856,7 +24856,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			if (IsConnected)
 			{
 				TRANS_CHATMESSAGE	TransChatMessage;
-				wsprintf(TransChatMessage.szMessage, "HG> M�ximo 1 personagem por pessoa!");
+				wsprintf(TransChatMessage.szMessage, "HG> M\341ximo 1 personagem por pessoa!");
 				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 3;
@@ -25165,7 +25165,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 			if (strcmp(lpPlayInfo->getName(), szNick) == 0)
 			{
-				wsprintf(TransChatMessage.szMessage, "PvP> O Rei do PvP %s est� no Castelo Sagrado.", lpPlayInfo->getName());
+				wsprintf(TransChatMessage.szMessage, "PvP> O Rei do PvP %s est\341 no Castelo Sagrado.", lpPlayInfo->getName());
 				TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 				TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 				TransChatMessage.dwIP = 3;
@@ -27397,7 +27397,7 @@ if(cnt >= CONNECTMAX)
 				if (lpPlayInfo->lpPostBoxItem->ItemCounter)
 				{
 					TRANS_CHATMESSAGE	TransChatMessage;
-					wsprintf(TransChatMessage.szMessage, "> Voc� possui %d itens no distribuidor!", lpPlayInfo->lpPostBoxItem->ItemCounter);
+					wsprintf(TransChatMessage.szMessage, "> Voc\352 possui %d itens no distribuidor!", lpPlayInfo->lpPostBoxItem->ItemCounter);
 					TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 					TransChatMessage.dwIP = 3;
@@ -27482,7 +27482,7 @@ if(cnt >= CONNECTMAX)
 
 						if (iCountPlayerGm > 0 && AlertaGm)
 						{
-							wsprintf(TransChatMessage.szMessage, "[Administrador] %s est� online", lpPlayInfo->getName());
+							wsprintf(TransChatMessage.szMessage, "[Administrador] %s est\341 online", lpPlayInfo->getName());
 							TransChatMessage.code = OpCode::SEND_ALERT;
 							TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 							TransChatMessage.dwIP = 0;//12
@@ -27534,7 +27534,7 @@ if(cnt >= CONNECTMAX)
 					if (strcmp(lpPlayInfo->getName(), kingName) == 0)
 					{
 						smTransCommand.SParam = 1;
-						wsprintf(TransChatMessage.szMessage, "%s %s est� online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName());
+						wsprintf(TransChatMessage.szMessage, "%s %s est\341 online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName());
 						TransChatMessage.code = OpCode::SEND_ALERT;
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 0; //15
@@ -27598,7 +27598,7 @@ if(cnt >= CONNECTMAX)
 					if (strcmp(lpPlayInfo->getName(), szNick) == 0)
 					{
 						smTransCommand.SParam = 1;
-						wsprintf(TransChatMessage.szMessage, "%s %s est� online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName());
+						wsprintf(TransChatMessage.szMessage, "%s %s est\341 online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName());
 						TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 3;
@@ -29584,7 +29584,7 @@ if(cnt >= CONNECTMAX)
 						{
 							if (rsPlayInfo[cnt].lpsmSock)
 							{
-								rsSendServerChatMessageToUser1(&rsPlayInfo[cnt], 3, "[%s], Alcancou o n�vel %d!", lpPlayInfo->getName(), lpPlayInfo->smCharInfo.Level);
+								rsSendServerChatMessageToUser1(&rsPlayInfo[cnt], 3, "[%s], Alcancou o n\355vel %d!", lpPlayInfo->getName(), lpPlayInfo->smCharInfo.Level);
 							}
 						}
 					}
@@ -29594,13 +29594,13 @@ if(cnt >= CONNECTMAX)
 					{
 						rsSendMoneyToUser(lpPlayInfo, 5000000);
 
-						rsSendServerChatMessageToUser1(lpPlayInfo, 3, "[%s], Alcancou o n�vel %d, Parab�ns!", lpPlayInfo->getName(), lpPlayInfo->smCharInfo.Level);
+						rsSendServerChatMessageToUser1(lpPlayInfo, 3, "[%s], Alcancou o n\355vel %d, Parab\351ns!", lpPlayInfo->getName(), lpPlayInfo->smCharInfo.Level);
 					}
 					else if (lpTransCommand->LParam == 102)
 					{
 						rsSendMoneyToUser(lpPlayInfo, 5000000);
 
-						rsSendServerChatMessageToUser1(lpPlayInfo, 3, "[%s], Alcancou o n�vel %d, Parab�ns!", lpPlayInfo->getName(), lpPlayInfo->smCharInfo.Level);
+						rsSendServerChatMessageToUser1(lpPlayInfo, 3, "[%s], Alcancou o n\355vel %d, Parab\351ns!", lpPlayInfo->getName(), lpPlayInfo->smCharInfo.Level);
 					}
 
 					if (SQL::GetInstance()->IsConnected()) 
@@ -30151,7 +30151,7 @@ if(cnt >= CONNECTMAX)
 							}
 
 
-							wsprintf(bps.szMessage, "> Voc� Matou [ %s ]", const_cast<char*>(lpPlayInfo->getName()));
+							wsprintf(bps.szMessage, "> Voc\352 Matou [ %s ]", const_cast<char*>(lpPlayInfo->getName()));
 
 							bps.code = OpCode::OPCODE_WHISPERMESSAGE;
 							bps.size = 32 + lstrlen(bps.szMessage);
@@ -30190,7 +30190,7 @@ if(cnt >= CONNECTMAX)
 
 						if (rsBlessCastle.CastleMode != 1)
 						{
-							wsprintf(pvp2.szMessage, "> Voc� foi morto por [ %s ]", killerName);
+							wsprintf(pvp2.szMessage, "> Voc\352 foi morto por [ %s ]", killerName);
 
 							pvp2.code = OpCode::OPCODE_WHISPERMESSAGE;
 							pvp2.size = 32 + lstrlen(pvp2.szMessage);

@@ -2735,7 +2735,7 @@ int StarShopNPC()
 	}
 	if(GiftPrice)
 	{
-		cMessageBox.ShowMessage3(MESSAGE_GIFT_TICKET, "��ǰ������");
+		cMessageBox.ShowMessage3(MESSAGE_GIFT_TICKET, "Cupom de Presente");
 	}
 	return TRUE;
 }

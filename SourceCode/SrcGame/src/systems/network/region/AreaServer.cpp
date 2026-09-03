@@ -235,7 +235,7 @@ DWORD WINAPI AreaServer_ControlThread(void *pInfo)
 						{
 							if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
 							{
-								wsprintf(szBuff, "�������� ���� (%s)", lpsmSock->szIPAddr);
+								wsprintf(szBuff, "Conex\343o de servidor de \341rea duplicada (%s)", lpsmSock->szIPAddr);
 								AddChatBuff(szBuff, 0);
 							}
 
@@ -258,7 +258,7 @@ DWORD WINAPI AreaServer_ControlThread(void *pInfo)
 
 					if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
 					{
-						wsprintf(szBuff, "�������� ������� (%s)", lpBuff);
+						wsprintf(szBuff, "Falha ao conectar ao servidor de \341rea (%s)", lpBuff);
 						AddChatBuff(szBuff, 0);
 					}
 					LeaveCriticalSection(&cSection_Main);

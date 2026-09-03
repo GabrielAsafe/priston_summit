@@ -4802,7 +4802,7 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 
 					int ly = SETTINGSHANDLER->getHeight() / 5 + 15;
 
-					wsprintf(szBuff, "N�vel: %d", chrEachPlayer.smCharInfo.Level);
+					wsprintf(szBuff, "N\355vel: %d", chrEachPlayer.smCharInfo.Level);
 
 
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
@@ -4813,7 +4813,7 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 					wsprintf(szBuff, "Defesa: %d", chrEachPlayer.smCharInfo.Defence);
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
-					wsprintf(szBuff, "Absor��o: %d", chrEachPlayer.smCharInfo.Absorption);
+					wsprintf(szBuff, "Absor\347\343o: %d", chrEachPlayer.smCharInfo.Absorption);
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
 					wsprintf(szBuff, "Dinheiro: %d", chrEachPlayer.smCharInfo.Money);
@@ -4822,16 +4822,16 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 					wsprintf(szBuff, "EXP: %d", chrEachPlayer.smCharInfo.Exp);
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
-					wsprintf(szBuff, "Precis�o: %d", sinGetAccuracy(chrEachPlayer.smCharInfo.Level, chrEachPlayer.smCharInfo.Defence));
+					wsprintf(szBuff, "Precis\343o: %d", sinGetAccuracy(chrEachPlayer.smCharInfo.Level, chrEachPlayer.smCharInfo.Defence));
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
-					wsprintf(szBuff, "Cr�tico: %d", sinGetCritical(chrEachPlayer.smCharInfo.Level));
+					wsprintf(szBuff, "Cr\355tico: %d", sinGetCritical(chrEachPlayer.smCharInfo.Level));
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
-					wsprintf(szBuff, "Atualiza��o: %d", chrEachPlayer.smCharInfo.bUpdateInfo[0]);
+					wsprintf(szBuff, "Atualiza\347\343o: %d", chrEachPlayer.smCharInfo.bUpdateInfo[0]);
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
-					wsprintf(szBuff, "Cl�: %d(%d)", chrEachPlayer.smCharInfo.ClassClan, chrEachMaster->ClanInfoNum);
+					wsprintf(szBuff, "Cl\343: %d(%d)", chrEachPlayer.smCharInfo.ClassClan, chrEachMaster->ClanInfoNum);
 					dsTextLineOut32(MidX - 50, ly, szBuff, lstrlen(szBuff));
 					ly += 16;
 

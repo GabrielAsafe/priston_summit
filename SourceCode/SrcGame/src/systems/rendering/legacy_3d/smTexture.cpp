@@ -436,13 +436,13 @@ int smTEXTURE::ReadTexture()
 			if (Result <= 0) {
 				switch (Result) {
 				case 0:
-					wsprintf(szErrMsg, "TEX_D3D ���� [%s]", Texture[cnt].Name);
+					wsprintf(szErrMsg, "Falha TEX_D3D [%s]", Texture[cnt].Name);
 					break;
 				case -1:
-					wsprintf(szErrMsg, "TEX_FILE ���� [%s]", Texture[cnt].Name);
+					wsprintf(szErrMsg, "Falha TEX_FILE [%s]", Texture[cnt].Name);
 					break;
 				case -2:
-					wsprintf(szErrMsg, "TEX_ALPHA ���� [%s]", Texture[cnt].Name);
+					wsprintf(szErrMsg, "Falha TEX_ALPHA [%s]", Texture[cnt].Name);
 					break;
 				}
 				

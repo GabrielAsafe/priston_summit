@@ -2467,7 +2467,7 @@ int cHaPremiumItem::DrawText()
 					break;
 
 				case nsPremiumItem::CARAVAN:
-					wsprintf(strBuff, "Sua caravana acompanhar� voc�!");
+					wsprintf(strBuff, "Sua caravana acompanhar\341 voc\352!");
 					break;
 
 					break;

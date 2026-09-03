@@ -1012,7 +1012,7 @@ int WndProc_Japanese(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 				lf.lfClipPrecision = CLIP_DEFAULT_PRECIS;
 				lf.lfQuality = DEFAULT_QUALITY;
 				lf.lfPitchAndFamily = VARIABLE_PITCH | FF_ROMAN;
-				strcpy(lf.lfFaceName, _T("�l�r �o�S�V�b�N"));
+				strcpy(lf.lfFaceName, _T("MS Gothic"));
 				ImmSetCompositionFont(imc, &lf);
 				ImmReleaseContext(hWnd, imc);
 				setFont = TRUE;
@@ -1357,7 +1357,7 @@ switch (messg)
 			}
 			else
 			{
-				cMessageBox.ShowMessageEvent("N�o � poss�vel alterar o modo da janela neste mapa");
+				cMessageBox.ShowMessageEvent("N\343o \351 poss\355vel alterar o modo da janela neste mapa");
 			}
 		}
 
@@ -4669,11 +4669,11 @@ int DrawGameState()
 	}
 
 	if (dwGameHour == 4 && dwGameMin == 0 && hrSod == FALSE && StageField[lpCurPlayer->OnStageField]->FieldCode == 9) {
-		AddChatBuff("> A entrada para o S.O.D est� aberta!", 3);
+		AddChatBuff("> A entrada para o S.O.D est\341 aberta!", 3);
 		hrSod = TRUE;
 	}
 	else if (dwGameHour == 6 && dwGameMin == 0 && hrSod == TRUE && StageField[lpCurPlayer->OnStageField]->FieldCode == 9){
-		AddChatBuff("> A entrada para o S.O.D est� fechada!", 3);
+		AddChatBuff("> A entrada para o S.O.D est\341 fechada!", 3);
 		hrSod = FALSE;
 	}
 

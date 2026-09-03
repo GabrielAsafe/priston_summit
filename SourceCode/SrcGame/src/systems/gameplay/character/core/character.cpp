@@ -15807,7 +15807,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 				if (lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 				{
-					wsprintf(szDispDamage, ">%s ���� �߰�ȸ�� ( Evade Scroll[%d] )", smCharInfo.szName, lpPlayInfo->dwSiegeItem_Scroll_Param);
+					wsprintf(szDispDamage, ">%s Evas\343o ( Evade Scroll [%d] )", smCharInfo.szName, lpPlayInfo->dwSiegeItem_Scroll_Param);
 					rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 				}
 #endif
@@ -15831,7 +15831,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 			if (lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 			{
-				wsprintf(szDispDamage, ">%s ���� �߰�ȸ�� ( Evade Scroll[%d] )", smCharInfo.szName, lpPlayInfo->dwSiegeItem_Scroll_Param);
+				wsprintf(szDispDamage, ">%s Evas\343o ( Evade Scroll [%d] )", smCharInfo.szName, lpPlayInfo->dwSiegeItem_Scroll_Param);
 				rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 			}
 #endif
@@ -16005,7 +16005,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 				if (lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 				{
-					wsprintf(szDispDamage, ">%s ���� �߰�ȸ�� ( Vague[%d] )", smCharInfo.szName, Vague_EvasionPercent[lpPlayInfo->dwSkill_Vague_Param]);
+					wsprintf(szDispDamage, ">%s Evas\343o ( Vague [%d] )", smCharInfo.szName, Vague_EvasionPercent[lpPlayInfo->dwSkill_Vague_Param]);
 					rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 				}
 #endif
@@ -16054,7 +16054,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 				if (lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 				{
-					wsprintf(szDispDamage, ">%s ���� �߰�ȸ�� ( Hall of Valhalla [%d] )", smCharInfo.szName, lpPlayInfo->wSkill_HallOfValhalla_Param[0]);
+					wsprintf(szDispDamage, ">%s Evas\343o ( Hall of Valhalla [%d] )", smCharInfo.szName, lpPlayInfo->wSkill_HallOfValhalla_Param[0]);
 					rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 				}
 #endif
@@ -16086,7 +16086,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 				if (lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 				{
-					wsprintf(szDispDamage, ">%s ���� �߰� ȸ�� ( Summon Muspell [%d] )", smCharInfo.szName, Summon_Muspell_BlockPercent[lpPlayInfo->dwSkill_SummonMuspell_Param]);
+					wsprintf(szDispDamage, ">%s Bloqueio ( Summon Muspell [%d] )", smCharInfo.szName, Summon_Muspell_BlockPercent[lpPlayInfo->dwSkill_SummonMuspell_Param]);
 					rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 				}
 #endif
@@ -16142,7 +16142,7 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 #ifdef DISP_DAMAGE
 					if (lpPlayInfo->getSecurity() > AccountTypes::SEC_GAMEMASTER)
 					{
-						wsprintf(szDispDamage, ">%s Evas�o ( Clan Skill [%d] )", smCharInfo.szName, lpPlayInfo->dwBlessSkill_Param);
+						wsprintf(szDispDamage, ">%s Evas\343o ( Clan Skill [%d] )", smCharInfo.szName, lpPlayInfo->dwBlessSkill_Param);
 						rsDisplayDamgeToClient(lpPlayInfo, szDispDamage);
 					}
 #endif

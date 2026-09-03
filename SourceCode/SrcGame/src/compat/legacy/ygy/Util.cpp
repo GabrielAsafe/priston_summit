@@ -55,139 +55,139 @@ VOID SocketError(HWND Wnd, DWORD err)
 	switch(err)
 	{
 		case 10004:
-		MessageBox(Wnd, CAPTION, "���ŷ ������ WSACancelBlockingCall �Լ�����  ��ҵǾ����ϴ�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Opera\347\343o bloqueante interrompida.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10009:
-		MessageBox(Wnd, CAPTION, "�߸��� �����(���� �ڵ�)�̴�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Identificador de socket inv\341lido.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10013:
-		MessageBox(Wnd, CAPTION, "��ε�ĳ��Ʈ ��巹���� ���� �����ͱ׷� ������  ���ӽõ��� setsockopt �Լ��� SO_BROADCAST��  �����Ǿ����� ���� ���¿��� ���� �߽��ϴ�.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Permiss\343o negada.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10014:
-		MessageBox(Wnd, CAPTION, "name �Ǵ� namelen �Ű������� �ùٸ� ���°� �ƴմϴ�.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Endere\347o de mem\363ria inv\341lido.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10022:
-		MessageBox(Wnd, CAPTION, "accept �ϱ� ���� listen �Լ��� �ҷ����� �ʾҽ��ϴ�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Argumento inv\341lido.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10024:
-		MessageBox(Wnd, CAPTION, "���ο� ���Ͽ� �Ҵ��ϱ� ���� ���� ����ڰ� �� �̻� �������� �ʽ��ϴ�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Muitos arquivos ou sockets abertos.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10035:
-		MessageBox(Wnd, CAPTION, "���� �Լ��� ����ŷ ���� �������̴�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Opera\347\343o n\343o pode ser conclu\355da imediatamente.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10036:
-		MessageBox(Wnd, CAPTION, "���ȭ �Լ��� ȣ�� �Ǵ� ���� �������� ���� �Լ���  ȣ��Ǿ��� ", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "J\341 existe uma opera\347\343o bloqueante em andamento.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10037:
-		MessageBox(Wnd, CAPTION, "�̹� �Ϸ�� �񵿱� ��ɿ� ���� ��Ұ� �õ��� ", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "A opera\347\343o solicitada j\341 est\341 em andamento.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10038:
-		MessageBox(Wnd, CAPTION, "������ ����ڰ� ���� ����ڰ� �ƴմϴ�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Opera\347\343o de socket aplicada a um descritor que n\343o \351 socket.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10039:
-		MessageBox(Wnd, CAPTION, "�ش� �Լ��� ������ ��巹���� �ʿ������� �������� �ʾ���", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Endere\347o de destino obrigat\363rio.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10040:
-		MessageBox(Wnd, CAPTION, "���ŵ� �޽����� ������ ���ۿ� �����ϱ⿡ �ʹ� Ŀ�� �ս� �Ǿ����ϴ�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Mensagem de rede grande demais.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10041:
-		MessageBox(Wnd, CAPTION, "������ ���������� �߸��Ǿ��ų� �� ���Ͽ� ���ؼ�  �߸��� �����Դϴ�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Tipo de protocolo incorreto para este socket.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10042:
-		MessageBox(Wnd, CAPTION, "�� �� ���� �ɼ��̰ų�, �������� �ʴ� �ɼ��� ����߽��ϴ�. ", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Op\347\343o de protocolo inv\341lida.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10043:
-		MessageBox(Wnd, CAPTION, "������ ���������� �������� �ʴ� �����Դϴ�. ", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Protocolo n\343o suportado.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10044:
-		MessageBox(Wnd, CAPTION, "������ ���� Ÿ���� ������ ��巹�� ü�迡�� �������� �ʴ� �����Դϴ�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Tipo de socket n\343o suportado.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10045:
-		MessageBox(Wnd, CAPTION, "socket�� ���������� ����(SOCK_STREAM)���°� �ƴմϴ�. ex) listen�� UDP socket���� ȣ�� ", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Opera\347\343o n\343o suportada neste socket.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10046:
-		MessageBox(Wnd, CAPTION, "������ �������� ü�谡(PF_*) �������� �ʽ��ϴ�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Fam\355lia de protocolos n\343o suportada.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10047:
-		MessageBox(Wnd, CAPTION, "������ ��巹�� ü�谡(AF_*) �������� �ʽ��ϴ�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Fam\355lia de endere\347os n\343o suportada.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10048:
-		MessageBox(Wnd, CAPTION, "������ ��巹��(IP)�� �̹� ������̴�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Endere\347o de rede j\341 est\341 em uso.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10049:
-		MessageBox(Wnd, CAPTION, "������ ��巹���� ���� �ӽſ��� ����� ���� ����", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "N\343o foi poss\355vel atribuir o endere\347o solicitado.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10050:
-		MessageBox(Wnd, CAPTION, "��Ʈ�� ���� �ý��ۿ� ������ �߻��߽��ϴ�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "A rede est\341 indispon\355vel.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10051:
-		MessageBox(Wnd, CAPTION, "���� �ý��۱��� ��Ʈ���� ������ �� �����ϴ�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "A rede de destino est\341 inacess\355vel.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10052:
-		MessageBox(Wnd, CAPTION, "������ ����ǰ� �ִ� ���� ������ ���ܹ��Ƚ��ϴ�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "A conex\343o foi interrompida por uma reinicializa\347\343o da rede.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10053:
-		MessageBox(Wnd, CAPTION, "������ out-of-band�� �ٸ� ���� ������ ������ ���Ƚ��ϴ�.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "A conex\343o foi abortada pelo software local.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10054:
-		MessageBox(Wnd, CAPTION, "���� ���������� 'hard'�� 'abortive' ���Ḧ �����ؼ� ���µǾ����ϴ�.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "A conex\343o foi redefinida pelo host remoto.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10055:
-		MessageBox(Wnd, CAPTION, "������ ���� �ý����� ���� ������ ���ڶ�ų�, ���ø����̼ǿ� ���� API���� ������ ������ �ʹ� �۾Ƽ� ��û�� ������ ���� �� ���� ����", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Mem\363ria de buffer insuficiente para a opera\347\343o de rede.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10056:
-		MessageBox(Wnd, CAPTION, "������ ������ �̹� ���� �Ǿ� ����", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "O socket j\341 est\341 conectado.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10057:
-		MessageBox(Wnd, CAPTION, "������ ������ �̹� ���� �Ǿ� ���� ����", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "O socket n\343o est\341 conectado.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10058:
-		MessageBox(Wnd, CAPTION, "������ �˴ٿ�(shutdown()) �Ǿ����ϴ�.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "N\343o \351 poss\355vel enviar dados ap\363s shutdown().", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10059:
-		MessageBox(Wnd, CAPTION, "������ �Լ��� ���� ���ڰ� �ʹ� ����", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Muitas refer\352ncias ao objeto de rede.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10060:
-		MessageBox(Wnd, CAPTION, "���� �õ��� �ð��ʰ� �Ǿ����ϴ�.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Tempo limite da conex\343o esgotado.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10061:
-		MessageBox(Wnd, CAPTION, "���ӽõ��� ������ ����Ǿ����ϴ�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "A conex\343o foi recusada pelo host de destino.", CAPTION, MB_OK | MB_ICONSTOP);
 		case 10062:
-		MessageBox(Wnd, CAPTION, "WSAELOOP ERROR", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Muitas refer\352ncias simb\363licas na resolu\347\343o do nome.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10063:
-		MessageBox(Wnd, CAPTION, "WSAENAMETOOLONG ERROR", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Nome de host grande demais.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10064:
-		MessageBox(Wnd, CAPTION, "����ȣ��Ʈ�� �ٿ� �Ǿ���", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "O host de destino est\341 indispon\355vel.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10065:
-		MessageBox(Wnd, CAPTION, "��Ʈ�� �ý��� ��� � ���ؼ� ����ȣ��Ʈ������ �� �� �� �����ϴ�.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "N\343o h\341 rota para o host de destino.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10091:
-		MessageBox(Wnd, CAPTION, "��Ʈ��ũ ���� �ý����� ���� ����� �غ� �Ǿ� ���� ����(WSAStartup()�� ��ȯ)", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "O subsistema de rede ainda n\343o est\341 pronto.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10092:
-		MessageBox(Wnd, CAPTION, "��û�� �������� ���� ������ ���� �������� ���� �ý��ۿ��� �������� �ʽ��ϴ�.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "A vers\343o solicitada do Winsock n\343o \351 suportada.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 10093:
-		MessageBox(Wnd, CAPTION, "�� �Լ��� ����ϱ� ���� �������� WSAStartup �Լ��� ȣ���� �������ϴ�.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "WSAStartup() ainda n\343o foi chamado com sucesso.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 11001:
-		MessageBox(Wnd, CAPTION, "ȣ��Ʈ�� ã�Ƴ� �� �����ϴ�.", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Host n\343o encontrado.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 11002:
-		MessageBox(Wnd, CAPTION, "��û�� ������ �߰ߵ��� ����", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Falha tempor\341ria na resolu\347\343o do nome. Tente novamente.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 11003:
-		MessageBox(Wnd, CAPTION, "ȸ���� �� ���� ���� �߻�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Erro irrecuper\341vel na resolu\347\343o do nome.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		case 11004:
-		MessageBox(Wnd, CAPTION, "�߸��� �̸�(name)���� �ƹ��� �����Ͱ� ��ϵ��� �ʾҽ��ϴ�", MB_OK | MB_ICONSTOP);
+		MessageBox(Wnd, "Nenhum dado encontrado para o nome solicitado.", CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 		default:
-		wsprintf(szTemp, "�˼����� �����Դϴ�/n������ȣ : %d", err);
-		MessageBox(Wnd, CAPTION, szTemp, MB_OK | MB_ICONSTOP);
+		wsprintf(szTemp, "Erro Winsock desconhecido./nC\363digo: %d", err);
+		MessageBox(Wnd, szTemp, CAPTION, MB_OK | MB_ICONSTOP);
 		break;
 	}
 }

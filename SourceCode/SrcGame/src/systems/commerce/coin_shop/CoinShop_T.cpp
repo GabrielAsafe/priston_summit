@@ -334,13 +334,13 @@ void cCOINSHOP_T::BuySelectedItem()
 
 	if (Coin < SelectedBox->Price)
 	{
-		cMessageBox.ShowMessageEvent("Voc� n�o tem Tempo suficiente.");
+		cMessageBox.ShowMessageEvent("Voc\352 n\343o tem Tempo suficiente.");
 		return;
 	}
 
 	if (!cInvenTory.CheckSetEmptyArea(SelectedBox->psItem))
 	{
-		cMessageBox.ShowMessageEvent("Voc� n�o tem espa�o suficiente no invent�rio.");
+		cMessageBox.ShowMessageEvent("Voc\352 n\343o tem espa\347o suficiente no invent\341rio.");
 		return;
 	}
 

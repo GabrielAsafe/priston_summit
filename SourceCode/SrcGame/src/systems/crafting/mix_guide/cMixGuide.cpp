@@ -136,7 +136,7 @@ void cMixGuide::DescriptionsMix()
 	GetFontTextExtentPoint(szBuff, strlen(szBuff), &size);
 	dsTextLineOut(WinX + 200, WinY + 45, szBuff, strlen(szBuff));
 
-	wsprintf(szBuff, "Descri��o");
+	wsprintf(szBuff, "Descri\347\343o");
 	GetFontTextExtentPoint(szBuff, strlen(szBuff), &size);
 	dsTextLineOut(WinX + 400, WinY + 45, szBuff, strlen(szBuff));
 	//FontType = 0;

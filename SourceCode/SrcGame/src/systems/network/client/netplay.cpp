@@ -4322,7 +4322,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	case OpCode::OPCODE_OPEN_HG:
 		if (sinChar->Level < 90) {
-			AddChatBuff("> O Level m�nimo necess�rio � 90+");
+			AddChatBuff("> O Level m\355nimo necess\341rio \351 90+");
 		}
 		else {
 			cHg.RecvOpenNpc();
@@ -6344,7 +6344,7 @@ int SendChatMessageToServer(char *szChatMessage)
 			{
 				ClearNowQuest();
 				AddChatBuff("> Sua quest atual foi cancelada", 0);
-				AddChatBuff("> Ser� necess�rio relogar...", 0);
+				AddChatBuff("> Ser\341 necess\341rio relogar...", 0);
 				return TRUE;
 			}
 
@@ -6366,7 +6366,7 @@ int SendChatMessageToServer(char *szChatMessage)
 				}
 
 				AddChatBuff("> Force Cancelada", 0);
-				AddChatBuff("> Ser� necess�rio relogar...", 0);
+				AddChatBuff("> Ser\341 necess\341rio relogar...", 0);
 				return TRUE;
 			}
 			

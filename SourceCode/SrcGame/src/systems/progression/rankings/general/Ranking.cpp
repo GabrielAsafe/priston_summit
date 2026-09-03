@@ -103,8 +103,8 @@ void RankGame::DrawRankingPlayer(char Name[10][32], int Level[10], int Classe[10
 
 		
 		DrawFontText(410, 147, "Nick", RGB(185, 206, 255),3);
-		DrawFontText(600, 147, "N�vel", RGB(185, 206, 255), 3);
-		DrawFontText(357, 147, "N�", RGB(185, 206, 255), 3);
+		DrawFontText(600, 147, "N\355vel", RGB(185, 206, 255), 3);
+		DrawFontText(357, 147, "N\272", RGB(185, 206, 255), 3);
 		
 		for (int i = 0; i < contador; i++) {
 			wsprintf(rank1[i], "#%d", i+1);
@@ -130,10 +130,10 @@ int RankGame::DrawRankingPVP(char Name[10][32], int Level[10], int Classe[10], i
 		char DPr[10][10];
 
 		DrawFontText(410, 147, "Nick", RGB(185, 206, 255), 3);
-		DrawFontText(500, 147, "N�vel", RGB(185, 206, 255), 3);
+		DrawFontText(500, 147, "N\355vel", RGB(185, 206, 255), 3);
 		DrawFontText(555, 147, "Abates", RGB(185, 206, 255), 3);
 		DrawFontText(613, 147, "Mortes", RGB(185, 206, 255), 3);
-		DrawFontText(357, 147, "N�", RGB(185, 206, 255), 3);
+		DrawFontText(357, 147, "N\272", RGB(185, 206, 255), 3);
 		for (int i = 0; i < contador; i++) {
 			wsprintf(rank1[i], "#%d", i + 1);
 			wsprintf(rankn[i], "%s", Name[i]);
@@ -161,7 +161,7 @@ int RankGame::DrawRankingClans(char NameClan[10][32], char LiderClan[10][32], in
 		char rank1[10][50];
 		char Levelr[10][50];
 
-		DrawFontText(357, 147, "N�", RGB(185, 206, 255), 3);
+		DrawFontText(357, 147, "N\272", RGB(185, 206, 255), 3);
 		DrawFontText(390, 147, "Clan", RGB(185, 206, 255), 3);
 		DrawFontText(495, 147, "Lider", RGB(185, 206, 255), 3);
 		DrawFontText(600, 147, "Membros", RGB(185, 206, 255), 3);
@@ -189,7 +189,7 @@ int RankGame::DrawRankingSodClans(char NameClan[10][32], char LiderClan[10][32],
 		char rank1[10][50];
 		char Levelr[10][50];
 
-		DrawFontText(357, 147, "N�", RGB(185, 206, 255), 3);
+		DrawFontText(357, 147, "N\272", RGB(185, 206, 255), 3);
 		DrawFontText(390, 147, "Clan", RGB(185, 206, 255), 3);
 		DrawFontText(495, 147, "Lider", RGB(185, 206, 255), 3);
 		DrawFontText(600, 147, "Pontos", RGB(185, 206, 255), 3);
@@ -217,7 +217,7 @@ int RankGame::DrawRankingSodPlayers(char Name[10][32], int Classe[10], char Clan
 		char rank1[10][50];
 		char Levelr[10][50];
 
-		DrawFontText(357, 147, "N�", RGB(185, 206, 255), 3);
+		DrawFontText(357, 147, "N\272", RGB(185, 206, 255), 3);
 		DrawFontText(410, 147, "Nick", RGB(185, 206, 255), 3);
 		DrawFontText(600, 147, "Pontos", RGB(185, 206, 255), 3);
 

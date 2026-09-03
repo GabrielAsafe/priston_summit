@@ -336,13 +336,13 @@ void cCOINSHOP::BuySelectedItem()
 
 	if (Coin < SelectedBox->Price)
 	{
-		cMessageBox.ShowMessageEvent("Voc� n�o tem cr�dito suficiente.");
+		cMessageBox.ShowMessageEvent("Voc\352 n\343o tem cr\351dito suficiente.");
 		return;
 	}
 
 	if (!cInvenTory.CheckSetEmptyArea(SelectedBox->psItem))
 	{
-		cMessageBox.ShowMessageEvent("Voc� n�o tem espa�o suficiente no invent�rio.");
+		cMessageBox.ShowMessageEvent("Voc\352 n\343o tem espa\347o suficiente no invent\341rio.");
 		return;
 	}
 

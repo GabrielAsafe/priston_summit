@@ -1,3 +1,3 @@
-#define j_font   "�l�r �S�V�b�N"
+#define j_font   "MS Gothic"
 
 

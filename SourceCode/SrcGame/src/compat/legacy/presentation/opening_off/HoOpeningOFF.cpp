@@ -603,7 +603,7 @@ int HoOpening::Draw()
 	SetFontTextColor(RGB(255, 255, 255));
 
 	/*memset(buffer, 0, sizeof(buffer));
-	wsprintf(buffer, "Vers?: %d", Client_Version);
+	wsprintf(buffer, "Vers\343o: %d", Client_Version);
 	SetFontTextColor(RGB(251, 225, 150));
 	dsTextLineOut(SETTINGSHANDLER->getWidth() / 2 + 60, SETTINGSHANDLER->getHeight() / 2 - 40, buffer, strlen(buffer));*/
 

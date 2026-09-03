@@ -146,10 +146,10 @@ enum
 	VC_STATE_CONNECT,
 	VC_STATE_DISCONNECT,
 };
-#define VC_STATE_NOSERVER_STR	"���̽������� ����."
-#define VC_STATE_NOTCONNECT_STR	"���̽������� �����Ҽ� ����."
-#define VC_STATE_CONNECT_STR	"���̽������� connect"
-#define VC_STATE_DISCONNECT_STR	"���̽������� disconnect"
+#define VC_STATE_NOSERVER_STR	"Servidor de voz indispon\355vel."
+#define VC_STATE_NOTCONNECT_STR	"N\343o foi poss\355vel conectar ao servidor de voz."
+#define VC_STATE_CONNECT_STR	"Servidor de voz conectado."
+#define VC_STATE_DISCONNECT_STR	"Servidor de voz desconectado."
 
 typedef struct
 {

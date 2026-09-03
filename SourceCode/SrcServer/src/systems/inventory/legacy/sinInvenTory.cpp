@@ -1515,12 +1515,12 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("J� existe uma pedra especial de aging.");
+						cMessageBox.ShowMessage("J\341 existe uma pedra especial de aging.");
 					}
 				}
 				else
 				{
-					cMessageBox.ShowMessage("Este item n�o pode ser usado no Aging.");
+					cMessageBox.ShowMessage("Este item n\343o pode ser usado no Aging.");
 				}
 			}
 			else if((InvenItem[Index].CODE & sinITEM_MASK2) == sinOS1)
@@ -1557,12 +1557,12 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Este item n�o pode ser usado no aging.");
+						cMessageBox.ShowMessage("Este item n\343o pode ser usado no aging.");
 					}
 				}
 				else
 				{
-					cMessageBox.ShowMessage("Sheltom incompat�vel ou n�o h� espa�o livre.");
+					cMessageBox.ShowMessage("Sheltom incompat\355vel ou n\343o h\341 espa\347o livre.");
 				}
 			}
 			else if(cAging.isAgeableItem(&Item))
@@ -1590,7 +1590,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("J� existe um item na janela de aging.");
+						cMessageBox.ShowMessage("J\341 existe um item na janela de aging.");
 					}
 				}
 				else
@@ -1600,7 +1600,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 			}
 			else
 			{
-				cMessageBox.ShowMessage("Este item n�o pode ser usado no Aging.");
+				cMessageBox.ShowMessage("Este item n\343o pode ser usado no Aging.");
 			}
 		}
 	}
@@ -1648,12 +1648,12 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("Este item n�o pode ser usado no mix.");
+						cMessageBox.ShowMessage("Este item n\343o pode ser usado no mix.");
 					}
 				}
 				else
 				{
-					cMessageBox.ShowMessage("Sheltom incompat�vel ou n�o h� espa�o livre.");
+					cMessageBox.ShowMessage("Sheltom incompat\355vel ou n\343o h\341 espa\347o livre.");
 				}
 			}
 			else if(cCraftItem.isMixableItem(&Item))
@@ -1681,7 +1681,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 					}
 					else
 					{
-						cMessageBox.ShowMessage("J� existe um item na janela de Mix.");
+						cMessageBox.ShowMessage("J\341 existe um item na janela de Mix.");
 					}
 				}
 				else

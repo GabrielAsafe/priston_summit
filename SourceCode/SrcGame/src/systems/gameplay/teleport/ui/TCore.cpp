@@ -46,8 +46,8 @@ const char* FieldNum[38][4] = {
 	//N�   Field	Level   Nome
 	{ "0","20",		"0",	"Estrada dos Ventos"},//ok
 	{ "1","19",		"0",	"Vale Tranquilo"},//ok
-	{ "2","17",		"0",	"Floresta dos Esp�ritos"},//ok
-	{ "3","0",		"0",	"Mata das Ac�cias"},//ok	
+	{ "2","17",		"0",	"Floresta dos Esp\355ritos"},//ok
+	{ "3","0",		"0",	"Mata das Ac\341cias"},//ok	
 	{ "4","2",		"0",	"Jardim da Liberdade"},//ok
 	{ "5","4",		"20",	"Refugio dos Ancioes"},//ok
 	{ "6","5",		"70",	"Castelo dos Perdidos"},//ok
@@ -58,26 +58,26 @@ const char* FieldNum[38][4] = {
 	{ "11","12",	"55",	"Terra Proibida"},//ok
 	{ "12","25",	"55",	"Caverna das Abelhas"},//ok
 	{ "13","24",	"55",	"Caverna dos Cogumelos"},//ok
-	{ "14","26",	"65",	"Santu�rio Sombrio"},//ok
-	{ "15","13",	"40",	"Calabou�o Antigo 1� Andar"},//ok
-	{ "16","14",	"50",	"Calabou�o Antigo 2� Andar"},//ok
-	{ "17","15",	"60",	"Calabou�o Antigo 3� Andar"},//ok
-	{ "18","22",	"70",	"Templo Maldito 1� Andar"},//ok
-	{ "19","23",	"75",	"Templo Maldito 2� Andar"},//ok
-	{ "20","42",	"80",	"Templo Maldito 3� Andar"},//ok
-	{ "21","34",	"70",	"Lago da Gan�ncia"},//ok
+	{ "14","26",	"65",	"Santu\341rio Sombrio"},//ok
+	{ "15","13",	"40",	"Calabou\347o Antigo 1\272 Andar"},//ok
+	{ "16","14",	"50",	"Calabou\347o Antigo 2\272 Andar"},//ok
+	{ "17","15",	"60",	"Calabou\347o Antigo 3\272 Andar"},//ok
+	{ "18","22",	"70",	"Templo Maldito 1\272 Andar"},//ok
+	{ "19","23",	"75",	"Templo Maldito 2\272 Andar"},//ok
+	{ "20","42",	"80",	"Templo Maldito 3\272 Andar"},//ok
+	{ "21","34",	"70",	"Lago da Gan\342ncia"},//ok
 	{ "22","27",	"80",	"Estrada de Ferro do Caos"},//ok
-	{ "23","28",	"85",	"Cora��o de Perum"},//ok
+	{ "23","28",	"85",	"Cora\347\343o de Perum"},//ok
 	{ "24","29",	"90",	"Eura"},//ok
 	{ "25","31",	"90",	"Vale Gallubia"},//ok
-	{ "26","35",	"90",	"Santu�rio Congelado"},//ok
+	{ "26","35",	"90",	"Santu\341rio Congelado"},//ok
 	{ "27","36",	"90",	"Covil de Kelvezu"},//ok
 	{ "28","37",	"95",	"Ilha Perdida"},//ok
 	{ "29","38",	"100",	"Templo Perdido"},
 	{ "30","40",	"102",	"Torre Sem Fim 1o Andar"},
-	{ "31","41",	"105",	"Torre Sem Fim 2� Andar"},
-	{ "32","43",	"108",	"Torre Sem Fim 3� Andar"},
-	{ "33","44",	"110",	"Mina de Gelo 1� Andar"},
+	{ "31","41",	"105",	"Torre Sem Fim 2\272 Andar"},
+	{ "32","43",	"108",	"Torre Sem Fim 3\272 Andar"},
+	{ "33","44",	"110",	"Mina de Gelo 1\272 Andar"},
 	{ "34","46",	"200",	"EM BREVE"},
 	{ "35","47",	"200",	"EM BREVE"},
 	{ "36","48",	"200",	"EM BREVE"},

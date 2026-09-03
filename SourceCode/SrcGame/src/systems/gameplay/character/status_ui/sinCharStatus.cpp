@@ -1188,16 +1188,16 @@ void cCHARSTATUS::OtherStateShow()
 	memset(strBuff, 0, sizeof(strBuff));
 
 	SetFontTextColor(RGB(255, 255, 255));
-	wsprintf(strBuff, "���ݼӵ�:%d", sinCharDisplay.Attack_Speed);
+	wsprintf(strBuff, "Velocidade de Ataque:%d", sinCharDisplay.Attack_Speed);
 	dsTextLineOut(100, 300, strBuff, lstrlen(strBuff));
 
-	wsprintf(strBuff, "�����:%d", sinCharDisplay.Chance_Block);
+	wsprintf(strBuff, "Bloqueio:%d", sinCharDisplay.Chance_Block);
 	dsTextLineOut(200, 300, strBuff, lstrlen(strBuff));
 
-	wsprintf(strBuff, "ũ��Ƽ��:%d", sinCharDisplay.Critical_Hit);
+	wsprintf(strBuff, "Cr\355tico:%d", sinCharDisplay.Critical_Hit);
 	dsTextLineOut(300, 300, strBuff, lstrlen(strBuff));
 
-	wsprintf(strBuff, "���ñ���:%d", sinCharDisplay.Shooting_Range);
+	wsprintf(strBuff, "Alcance:%d", sinCharDisplay.Shooting_Range);
 	dsTextLineOut(400, 300, strBuff, lstrlen(strBuff));
 
 }

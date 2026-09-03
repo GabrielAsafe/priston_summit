@@ -1271,7 +1271,7 @@ void CLANEntity_chip::Main()
 		}
 		break;
 		case CLAN_WAREHOUSE:
-		wsprintf(szErrorMsg, "â��޴��� �غ����Դϴ�.");
+		wsprintf(szErrorMsg, "Menu do armaz\351m do cl\343 ainda n\343o est\341 dispon\355vel.");
 		C_menuN = CLAN_ERROR;
 		menuInit(C_menuN);
 		CLAN_ERROR_ret = CLAN_CHIP;
@@ -7115,13 +7115,13 @@ void CLANEntity_chip::Draw()
 
 		if(cldata.bIsOneDay)
 		{
-			wsprintf(szTemp, "�ð� : %d : %d ���ҽ��ϴ�", cldata.nMinute, cldata.nHour);
+			wsprintf(szTemp, "Tempo restante: %d:%d", cldata.nMinute, cldata.nHour);
 			wsprintf(szDrawMenuMsg, szClanWon6Down, szTemp);
 			Draw_C_Text(szDrawMenuMsg, menuPos[1].left, menuPos[1].top);
 		}
 		else
 		{
-			wsprintf(szTemp, "��¥ : %d�� ���ҽ��ϴ�", cldata.nLastDay);
+			wsprintf(szTemp, "Dias restantes: %d", cldata.nLastDay);
 			wsprintf(szDrawMenuMsg, szClanWon6Down, szTemp);
 			Draw_C_Text(szDrawMenuMsg, menuPos[1].left, menuPos[1].top);
 
@@ -9611,13 +9611,13 @@ void CLANEntity_chip::Draw()
 
 		if(cldata.bIsOneDay)
 		{
-			wsprintf(szTemp, "�ð� : %d : %d ���ҽ��ϴ�", cldata.nMinute, cldata.nHour);
+			wsprintf(szTemp, "Tempo restante: %d:%d", cldata.nMinute, cldata.nHour);
 			wsprintf(szDrawMenuMsg, szClanWon6Down, szTemp);
 			Text_Out(destdc, menuPos[1].left, menuPos[1].top, szDrawMenuMsg);
 		}
 		else
 		{
-			wsprintf(szTemp, "��¥ : %d�� ���ҽ��ϴ�", cldata.nLastDay);
+			wsprintf(szTemp, "Dias restantes: %d", cldata.nLastDay);
 			wsprintf(szDrawMenuMsg, szClanWon6Down, szTemp);
 			Text_Out(destdc, menuPos[1].left, menuPos[1].top, szDrawMenuMsg);
 		}

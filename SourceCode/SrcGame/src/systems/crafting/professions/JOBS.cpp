@@ -204,7 +204,7 @@ void JOBS::Draw()
 			switch (Job)
 			{
 			case 0:
-				wsprintf(nomejob, "SEM PROFISS�O");
+				wsprintf(nomejob, "SEM PROFISS\303O");
 				DrawFontText(WinX - 636 + 930, WinY - 305 + 400, nomejob, RGB(214, 158, 17), false);
 				DrawImage(Image[20], WinX + 189 , WinY + 71, 100, 116);
 				DrawFontText(WinX - 636 + 1180, WinY - 305 + 383, "?", RGB(214, 158, 17), false);
@@ -234,7 +234,7 @@ void JOBS::Draw()
 				DrawImage(Image[33], WinX - 636 + 1180, WinY - 305 + 383, 26, 25);
 				break;
 			case 5:
-				wsprintf(nomejob, "ARTES�O");
+				wsprintf(nomejob, "ARTES\303O");
 				DrawFontText(WinX - 636 + 930, WinY - 305 + 400, nomejob, RGB(214, 158, 17), false);
 				DrawImage(Image[16 + contjob], WinX + 189, WinY + 71, 100, 116);
 				DrawImage(Image[34], WinX - 636 + 1180, WinY - 305 + 383, 26, 25);

@@ -26,8 +26,8 @@ char *mgQuestName[][4] = {
 	{	"A Caverna"	,	"A Caverna (completo)" ,					"LevelQuest//Quest55.Msg" , "LevelQuest//Quest55a.Msg" },	
 	{	"A Caverna"	,	"A Caverna (completo)" ,					"LevelQuest//Quest55_2.Msg" , "LevelQuest//Quest55_2a.Msg" }, 
 	{	"Amizade de Michelle"	,	"Amizade de Michelle (completo)" ,	"LevelQuest//Quest70.Msg" , "LevelQuest//Quest70a.Msg" },	
-	{	"O F�ria aprisionado",	"O F�ria aprisionado (completo)" ,				"LevelQuest//Quest80.Msg" , "LevelQuest//Quest80a.Msg" },	
-	{	"L�grimas de Kh�lia","L�grimas de Kh�lia (completo)" ,				"LevelQuest//Quest85.Msg" , "LevelQuest//Quest85a.Msg" },	
+	{	"O F\372ria aprisionado",	"O F\372ria aprisionado (completo)" ,				"LevelQuest//Quest80.Msg" , "LevelQuest//Quest80a.Msg" },	
+	{	"L\341grimas de Kh\341lia","L\341grimas de Kh\341lia (completo)" ,				"LevelQuest//Quest85.Msg" , "LevelQuest//Quest85a.Msg" },	
 	{	"A Vila de Eura","A Vila de Eura (completo)" ,					"LevelQuest//Quest90.Msg" , "LevelQuest//Quest90a.Msg" },	
 
 	
@@ -64,16 +64,16 @@ char *mgHaQuestName[][4] = {
 	{	"Colina dos Duendes"	    ,"Colina dos Duendes(completo)"       , "HaQuest//Quest_goblin_1start_T.msg"    , "HaQuest//Quest_goblin_1end.msg"  },
 	{	"Colina dos Duendes"	    ,"Colina dos Duendes(completo)"       , "HaQuest//Quest_goblin_1start_M.msg"    , "HaQuest//Quest_goblin_1end.msg"  },
  
-	{	"Amea�a Imortal"	    ,"Amea�a Imortal(completo)"     , "HaQuest//Quest_undead_1start_T.msg"    , "HaQuest//Quest_undead_1end.msg"  },
-	{	"Amea�a Imortal"	    ,"Amea�a Imortal(completo)"     , "HaQuest//Quest_undead_1start_M.msg"    , "HaQuest//Quest_undead_1end.msg"  },
+	{	"Amea\347a Imortal"	    ,"Amea\347a Imortal(completo)"     , "HaQuest//Quest_undead_1start_T.msg"    , "HaQuest//Quest_undead_1end.msg"  },
+	{	"Amea\347a Imortal"	    ,"Amea\347a Imortal(completo)"     , "HaQuest//Quest_undead_1start_M.msg"    , "HaQuest//Quest_undead_1end.msg"  },
 
-	{	"Desafio C�clope"	,"Desafio C�clope(completo)"   , "HaQuest//Quest_cyclops_1start.msg"     , "HaQuest//Quest_cyclops_1end.msg" },
+	{	"Desafio C\355clope"	,"Desafio C\355clope(completo)"   , "HaQuest//Quest_cyclops_1start.msg"     , "HaQuest//Quest_cyclops_1end.msg" },
 
 	{	"O Martelo Perdido"	    ,"O Martelo Perdido(completo)"     , "HaQuest//Quest_hammer_1start.msg"      , "HaQuest//Quest_hammer_1end.msg"  },
 
-	{	"O Fantasma do F�ria[1]"	,"O Fantasma do F�ria[2]"           , "HaQuest//Quest_100State_1.msg"         , "HaQuest//Quest_100State_2.msg"  },
-	{	"O Fantasma do F�ria[3]"	,"O Fantasma do F�ria[4]"           , "HaQuest//Quest_100State_3.msg"         , "HaQuest//Quest_100State_4.msg"  },
-	{	"O Fantasma do F�ria[5]"	,"O Fantasma do F�ria(completo)"        , "HaQuest//Quest_100State_5.msg"         , "HaQuest//Quest_100State_6.msg"  },
+	{	"O Fantasma do F\372ria[1]"	,"O Fantasma do F\372ria[2]"           , "HaQuest//Quest_100State_1.msg"         , "HaQuest//Quest_100State_2.msg"  },
+	{	"O Fantasma do F\372ria[3]"	,"O Fantasma do F\372ria[4]"           , "HaQuest//Quest_100State_3.msg"         , "HaQuest//Quest_100State_4.msg"  },
+	{	"O Fantasma do F\372ria[5]"	,"O Fantasma do F\372ria(completo)"        , "HaQuest//Quest_100State_5.msg"         , "HaQuest//Quest_100State_6.msg"  },
 
 
 

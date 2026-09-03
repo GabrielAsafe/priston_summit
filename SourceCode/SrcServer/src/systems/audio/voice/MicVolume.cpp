@@ -45,7 +45,7 @@ HMIXER CMicVolume::MixDevice(HMIXER current_mix, unsigned int mix_id)
 		if(mixerClose(current_mix) != MMSYSERR_NOERROR)
 		{
 		#ifdef _DEBUG
-			MessageBox(NULL, "Mixer ��ġ�� ������Դϴ�.", "Mixer �������", MB_ICONSTOP);
+			MessageBox(NULL, "Falha ao fechar o dispositivo de mixer.", "Erro de \341udio", MB_ICONSTOP);
 		#endif
 			current_mix = NULL;
 		}
@@ -91,7 +91,7 @@ BOOL CMicVolume::GetDevice()
 	if(mixerGetDevCaps((unsigned int)h_mix, &mixer_caps, sizeof(mixer_caps)) != MMSYSERR_NOERROR)
 	{
 	#ifdef _DEBUG
-		MessageBox(NULL, "��ϵ� ��ġ�� ������ ���� �� �����ϴ�.", "�ý��� ���� ����", MB_ICONSTOP);
+		MessageBox(NULL, "N\343o foi poss\355vel obter informa\347\365es do dispositivo de \341udio.", "Erro de \341udio", MB_ICONSTOP);
 	#endif
 		mixer_caps.cDestinations = 0;
 		return FALSE;
@@ -149,7 +149,7 @@ float CMicVolume::VolDevice(MCS *pData)
 	if(mixerGetControlDetails((HMIXEROBJ)h_mix, &mixer_control_details, MIXER_GETCONTROLDETAILSF_VALUE) != MMSYSERR_NOERROR)
 	{
 	#ifdef _DEBUG
-		MessageBox(NULL, "�����Լ� ����(mixerGetControlDetails)", "���� �Լ� ����", MB_ICONSTOP);
+		MessageBox(NULL, "Falha ao ler os detalhes do controle de volume (mixerGetControlDetails).", "Erro de \341udio", MB_ICONSTOP);
 	#endif
 		return -1;
 	}
@@ -178,14 +178,14 @@ void CMicVolume::GetDeviceCtrl(MCS *pData)
 	if(mixerGetLineInfo((HMIXEROBJ)h_mix, &mixer_line, MIXER_GETLINEINFOF_LINEID) != MMSYSERR_NOERROR)
 	{
 	#ifdef _DEBUG
-		MessageBox(NULL, "�����Լ� ������ ����(MixerGetLineInfo)", "��ġ ���� ����", MB_ICONSTOP);
+		MessageBox(NULL, "Falha ao obter informa\347\365es da linha de \341udio (mixerGetLineInfo).", "Erro de \341udio", MB_ICONSTOP);
 	#endif
 		return;
 	}
 	else if(!mixer_line.cControls)
 	{
 	#ifdef _DEBUG
-		MessageBox(NULL, "��� ������ ��� ����", "��ġ ����", MB_ICONSTOP);
+		MessageBox(NULL, "A linha de \341udio n\343o possui controles dispon\355veis.", "Erro de \341udio", MB_ICONSTOP);
 	#endif
 		return;
 	}
@@ -201,7 +201,7 @@ void CMicVolume::GetDeviceCtrl(MCS *pData)
 	if(mixerGetLineControls((HMIXEROBJ)h_mix, &mixer_line_controls, MIXER_GETLINECONTROLSF_ALL) != MMSYSERR_NOERROR)
 	{
 	#ifdef _DEBUG
-		MessageBox(NULL, "�����Լ� ������ ����(mixerGetLineControls)", "��ġ ���� ����", MB_ICONSTOP);
+		MessageBox(NULL, "Falha ao obter os controles da linha de \341udio (mixerGetLineControls).", "Erro de \341udio", MB_ICONSTOP);
 	#endif
 	}
 	else
@@ -252,7 +252,7 @@ void CMicVolume::SetDeviceCtrl(MCS *pData, float vol)
 	if(mixerSetControlDetails((HMIXEROBJ)h_mix, &mixer_control_details, 0))
 	{
 	#ifdef _DEBUG
-		MessageBox(NULL, "���� �Լ� ����(mixerSetControlDetails)", "���� �Լ� ����", MB_ICONSTOP);
+		MessageBox(NULL, "Falha ao alterar o controle de volume (mixerSetControlDetails).", "Erro de \341udio", MB_ICONSTOP);
 	#endif
 	}
 	return;

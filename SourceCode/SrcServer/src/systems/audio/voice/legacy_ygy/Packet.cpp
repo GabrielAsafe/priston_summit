@@ -99,7 +99,7 @@ BOOL talk_check(VOICTALKUSERDATA *vUser)
 
 
 		char szchatbuf[64];
-		wsprintf(szchatbuf, "%s ���� ���Ͽ����ϴ�.", vUser->uID[i]);
+		wsprintf(szchatbuf, "Voz ativa: %s.", vUser->uID[i]);
 		AddChatBuff(szchatbuf, 5);
 
 

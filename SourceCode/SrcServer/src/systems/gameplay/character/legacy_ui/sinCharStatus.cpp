@@ -1090,16 +1090,16 @@ void cCHARSTATUS::OtherStateShow()
 	//renderDevice.lpDDSBack->GetDC(&hdc);
 	SetBkMode(hdc, TRANSPARENT);
 	SetTextColor(hdc, RGB(255, 255, 255));
-	wsprintf(strBuff, "���ݼӵ�:%d", sinCharDisplay.Attack_Speed);
+	wsprintf(strBuff, "Velocidade de Ataque:%d", sinCharDisplay.Attack_Speed);
 	dsTextLineOut(hdc, 100, 300, strBuff, lstrlen(strBuff));
 
-	wsprintf(strBuff, "�����:%d", sinCharDisplay.Chance_Block);
+	wsprintf(strBuff, "Bloqueio:%d", sinCharDisplay.Chance_Block);
 	dsTextLineOut(hdc, 200, 300, strBuff, lstrlen(strBuff));
 
-	wsprintf(strBuff, "ũ��Ƽ��:%d", sinCharDisplay.Critical_Hit);
+	wsprintf(strBuff, "Cr\355tico:%d", sinCharDisplay.Critical_Hit);
 	dsTextLineOut(hdc, 300, 300, strBuff, lstrlen(strBuff));
 
-	wsprintf(strBuff, "���ñ���:%d", sinCharDisplay.Shooting_Range);
+	wsprintf(strBuff, "Alcance:%d", sinCharDisplay.Shooting_Range);
 	dsTextLineOut(hdc, 400, 300, strBuff, lstrlen(strBuff));
 
 	//renderDevice.lpDDSBack->ReleaseDC(hdc);

@@ -39,7 +39,7 @@ void cHELLSGATE::Main()
 		if (dwTickWaiting && dwTickWaiting + HG_WAIT_TIME < GetCurrentTime())
 		{
 			SpawnBoss();
-			SendMessageToPlayers("> O Hell's Gate come�ou, derrote o boss e obtenha a sua recompensa.");
+			SendMessageToPlayers("> O Hell's Gate come\347ou, derrote o boss e obtenha a sua recompensa.");
 			return;
 		}
 
@@ -61,17 +61,17 @@ void cHELLSGATE::SendOpenNpc(rsPLAYINFO * lpPlayInfo)
 {
 	if (vPlayers.size() >= MAX_HG_PLAYER)
 	{
-		SendQuickMessage2(lpPlayInfo, "> O evento est� cheio.");
+		SendQuickMessage2(lpPlayInfo, "> O evento est\341 cheio.");
 		return;
 	}
 
 	if (iState != 1)
 	{
 		if (iState == 0)
-			SendQuickMessage2(lpPlayInfo, "> O evento ainda n�o abriu.");
+			SendQuickMessage2(lpPlayInfo, "> O evento ainda n\343o abriu.");
 
 		if (iState == 2)
-			SendQuickMessage2(lpPlayInfo, "> O evento j� est� em andamento.");
+			SendQuickMessage2(lpPlayInfo, "> O evento j\341 est\341 em andamento.");
 
 		return;
 	}
@@ -86,17 +86,17 @@ void cHELLSGATE::RecvJoinHg(rsPLAYINFO * lpPlayInfo)
 {
 	if (vPlayers.size() >= MAX_HG_PLAYER)
 	{
-		SendQuickMessage2(lpPlayInfo, "> O evento est� cheio.");
+		SendQuickMessage2(lpPlayInfo, "> O evento est\341 cheio.");
 		return;
 	}
 
 	if (iState != 1)
 	{
 		if (iState == 0)
-			SendQuickMessage2(lpPlayInfo, "> O evento ainda n�o abriu.");
+			SendQuickMessage2(lpPlayInfo, "> O evento ainda n\343o abriu.");
 
 		if (iState == 2)
-			SendQuickMessage2(lpPlayInfo, "> O evento j� est� em andamento.");
+			SendQuickMessage2(lpPlayInfo, "> O evento j\341 est\341 em andamento.");
 
 		return;
 	}
@@ -131,7 +131,7 @@ void cHELLSGATE::StartEvent()
 
 void cHELLSGATE::SpawnBoss()
 {
-	lpBoss = OpenMonsterFromName("Esp�rito do Mal", -3624 * fONE, 484 * fONE, -43172 * fONE);
+	lpBoss = OpenMonsterFromName("Esp\355rito do Mal", -3624 * fONE, 484 * fONE, -43172 * fONE);
 
 	dwTick = GetCurrentTime();
 	iState = 2;
