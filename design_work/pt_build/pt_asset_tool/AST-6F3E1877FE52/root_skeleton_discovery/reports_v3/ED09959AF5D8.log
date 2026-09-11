@@ -1,9 +1,0 @@
-PT_CHARACTER_STRUCTURAL_GATE_V2
-objects=1
-bind_vertices=880
-bind_bones_used=29
-skeleton_bones=47
-smb_trailing_bytes=47376
-missing_bind_bones=['Bip01 Head', 'Bip01 L Calf', 'Bip01 L Clavicle', 'Bip01 L Finger0', 'Bip01 L Finger01', 'Bip01 L Finger1', 'Bip01 L Finger11', 'Bip01 L Finger2', 'Bip01 L Finger21', 'Bip01 L Foot', 'Bip01 L Forearm', 'Bip01 L Hand', 'Bip01 L Thigh', 'Bip01 L UpperArm', 'Bip01 Pelvis', 'Bip01 R Calf', 'Bip01 R Finger0', 'Bip01 R Finger01', 'Bip01 R Finger1', 'Bip01 R Finger11', 'Bip01 R Finger2', 'Bip01 R Finger21', 'Bip01 R Foot', 'Bip01 R Forearm', 'Bip01 R Hand', 'Bip01 R Thigh', 'Bip01 R UpperArm', 'Bip01 Spine', 'Bip01 Spine1']
-client_modified=False
-character_structural_gate_check=FAIL

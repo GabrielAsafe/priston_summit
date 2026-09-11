@@ -18,22 +18,22 @@ ________________________________________________________________________________
 char* GetWords(char* q, char* p)
 {
 
-	//	while ( *p != '/n' ) {
+	//	while ( *p != '\n' ) {
 	if (*p == 0) { *q = 0; return p; }
 
-	while ((*p == 32) || (*p == 9) || (*p == 58)) // SPACE or TAB or ':'О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫е╢
+	while ((*p == 32) || (*p == 9) || (*p == 58)) // SPACE or TAB or ':'╢б а╕©э ╫це╢
 	{
 		p++;
 	}
 
 	while ((*p != 32) && (*p != 9) && (*p != 58) && (*p != 0)) // SPACE or TAB
 	{
-		if (*p == '/n' || *p == '/r') break;
+		if (*p == '\n' || *p == '\r') break;
 		*q++ = *p++;
 	}
 	*q++ = 0;	// end of one string, put Null character
 	//	}
-	//	*q = '/n';
+	//	*q = '\n';
 
 	return p;
 }
@@ -260,6 +260,19 @@ int LoadSkillInfo()
 	ReadSkillInt(&Metal_Golem_Life[0], "Mech.ini", "Metal_Golem_Life");
 	ReadSkillInt(&Metal_Golem_UseMana[0], "Mech.ini", "Metal_Golem_UseMana");
 
+	ReadSkillInt(&Rupture_DamageBoost[0], "Mech.ini", "Rupture_DamageBoost");
+	ReadSkillInt(&Rupture_UseMana[0], "Mech.ini", "Rupture_UseMana");
+	ReadSkillInt(&Parasit_Shot_DamageBoost[0], "Mech.ini", "Parasit_Shot_DamageBoost");
+	ReadSkillInt(&Parasit_Shot_PoisonDuration[0], "Mech.ini", "Parasit_Shot_PoisonDuration");
+	ReadSkillInt(&Parasit_Shot_PoisonDamagePercent[0], "Mech.ini", "Parasit_Shot_PoisonDamagePercent");
+	ReadSkillInt(&Parasit_Shot_UseMana[0], "Mech.ini", "Parasit_Shot_UseMana");
+	ReadSkillInt(&Hardening_Shield_DamageReduction[0], "Mech.ini", "Hardening_Shield_DamageReduction");
+	ReadSkillInt(&Hardening_Shield_AttackRateReduction[0], "Mech.ini", "Hardening_Shield_AttackRateReduction");
+	ReadSkillInt(&Hardening_Shield_Time[0], "Mech.ini", "Hardening_Shield_time");
+	ReadSkillInt(&Hardening_Shield_UseMana[0], "Mech.ini", "Hardening_Shield_UseMana");
+	ReadSkillInt(&Magnetic_Discharge_DamageBoost[0], "Mech.ini", "Magnetic_Discharge_DamageBoost");
+	ReadSkillInt(&Magnetic_Discharge_UseMana[0], "Mech.ini", "Magnetic_Discharge_UseMana");
+
 	ReadSkillInt(&Melee_Mastery_DamagePercent[0], "Fighter.ini", "Melee_Mastery_DamagePercent");
 
 	ReadSkillInt(&PlusFire[0], "Fighter.ini", "PlusFire");
@@ -320,6 +333,19 @@ int LoadSkillInfo()
 	ReadSkillInt(&Cyclone_Strike_UseMana[0], "Fighter.ini", "Cyclone_Strike_UseMana");
 
 	ReadSkillInt(&Boost_Health_Life[0], "Fighter.ini", "Boost_Health_Life");
+	ReadSkillInt(&Fighter_T5_Survival_Life[0], "Fighter.ini", "Fighter_T5_Survival_Life");
+	ReadSkillInt(&Fighter_T5_Survival_Regen[0], "Fighter.ini", "Fighter_T5_Survival_Regen");
+	ReadSkillInt(&Fighter_T5_Seismic_Damage[0], "Fighter.ini", "Fighter_T5_Seismic_Damage");
+	ReadSkillInt(&Fighter_T5_Seismic_Area[0], "Fighter.ini", "Fighter_T5_Seismic_Area");
+	ReadSkillInt(&Fighter_T5_Seismic_UseMana[0], "Fighter.ini", "Fighter_T5_Seismic_UseMana");
+	ReadSkillFloat(&Fighter_T5_Ruthless_HPDecrease[0], "Fighter.ini", "Fighter_T5_Ruthless_HPDecrease");
+	ReadSkillInt(&Fighter_T5_Ruthless_HitsBoost[0], "Fighter.ini", "Fighter_T5_Ruthless_HitsBoost");
+	ReadSkillInt(&Fighter_T5_Ruthless_DamageBoost[0], "Fighter.ini", "Fighter_T5_Ruthless_DamageBoost");
+	ReadSkillInt(&Fighter_T5_Ruthless_UseMana[0], "Fighter.ini", "Fighter_T5_Ruthless_UseMana");
+	ReadSkillInt(&Fighter_T5_Whirlwind_DamageBoost[0], "Fighter.ini", "Fighter_T5_Whirlwind_DamageBoost");
+	ReadSkillInt(&Fighter_T5_Whirlwind_Duration[0], "Fighter.ini", "Fighter_T5_Whirlwind_Duration");
+	ReadSkillInt(&Fighter_T5_Whirlwind_MPDrain[0], "Fighter.ini", "Fighter_T5_Whirlwind_MPDrain");
+	ReadSkillInt(&Fighter_T5_Whirlwind_SPDrain[0], "Fighter.ini", "Fighter_T5_Whirlwind_SPDrain");
 
 	ReadSkillInt(&Pike_Wind_Throw_Height[0], "Pike.ini", "Pike_Wind_Throw_Height");
 	ReadSkillInt(&Pike_Wind_DamagePercent[0], "Pike.ini", "Pike_Wind_DamagePercent");
@@ -385,6 +411,17 @@ int LoadSkillInfo()
 	ReadSkillInt(&Shadow_Master_DamagePercent[0], "Pike.ini", "Shadow_Master_DamagePercent");
 	ReadSkillInt(&Shadow_Master_ShadowNum[0], "Pike.ini", "Shadow_Master_ShadowNum");
 	ReadSkillInt(&Shadow_Master_UseMana[0], "Pike.ini", "Shadow_Master_UseMana");
+
+	ReadSkillInt(&Pike_T5_Ring_Duration[0], "Pike.ini", "Pike_T5_Ring_Duration");
+	ReadSkillInt(&Pike_T5_Ring_UseMana[0], "Pike.ini", "Pike_T5_Ring_UseMana");
+	ReadSkillInt(&Pike_T5_Focus_MinAttackReduction[0], "Pike.ini", "Pike_T5_Focus_MinAttackReduction");
+	ReadSkillInt(&Pike_T5_Focus_MaxAttackIncrease[0], "Pike.ini", "Pike_T5_Focus_MaxAttackIncrease");
+	ReadSkillInt(&Pike_T5_Focus_UseMana[0], "Pike.ini", "Pike_T5_Focus_UseMana");
+	ReadSkillInt(&Pike_T5_Death_DamageBoost[0], "Pike.ini", "Pike_T5_Death_DamageBoost");
+	ReadSkillInt(&Pike_T5_Death_AttackRateBoost[0], "Pike.ini", "Pike_T5_Death_AttackRateBoost");
+	ReadSkillInt(&Pike_T5_Death_UseMana[0], "Pike.ini", "Pike_T5_Death_UseMana");
+	ReadSkillInt(&Pike_T5_Twister_DamageBoost[0], "Pike.ini", "Pike_T5_Twister_DamageBoost");
+	ReadSkillInt(&Pike_T5_Twister_UseMana[0], "Pike.ini", "Pike_T5_Twister_UseMana");
 
 	ReadSkillInt(&Scout_Hawk_Attack_Rate[0], "Archer.ini", "Scout_Hawk_Attack_Rate");
 	ReadSkillInt(&Scout_Hawk_UseTime[0], "Archer.ini", "Scout_Hawk_UseTime");
@@ -516,6 +553,20 @@ int LoadSkillInfo()
 	ReadSkillInt(&Sword_Of_Justice_Area[0], "Knight.ini", "Sword_Of_Justice_Area");
 	ReadSkillInt(&Sword_Of_Justice_UseMana[0], "Knight.ini", "Sword_Of_Justice_UseMana");
 
+	ReadSkillInt(&Knight_T5_HolyConviction_UndeadBoost[0], "Knight.ini", "Knight_T5_HolyConviction_UndeadBoost");
+	ReadSkillInt(&Knight_T5_HolyConviction_Duration[0], "Knight.ini", "Knight_T5_HolyConviction_Duration");
+	ReadSkillInt(&Knight_T5_HolyConviction_UseMana[0], "Knight.ini", "Knight_T5_HolyConviction_UseMana");
+	ReadSkillInt(&Knight_T5_DivineInquisition_DamageBoost[0], "Knight.ini", "Knight_T5_DivineInquisition_DamageBoost");
+	ReadSkillInt(&Knight_T5_DivineInquisition_Area[0], "Knight.ini", "Knight_T5_DivineInquisition_Area");
+	ReadSkillInt(&Knight_T5_DivineInquisition_UndeadDamage[0], "Knight.ini", "Knight_T5_DivineInquisition_UndeadDamage");
+	ReadSkillInt(&Knight_T5_DivineInquisition_UseMana[0], "Knight.ini", "Knight_T5_DivineInquisition_UseMana");
+	ReadSkillInt(&Knight_T5_GloriousShield_DefenseBoost[0], "Knight.ini", "Knight_T5_GloriousShield_DefenseBoost");
+	ReadSkillInt(&Knight_T5_GloriousShield_Duration[0], "Knight.ini", "Knight_T5_GloriousShield_Duration");
+	ReadSkillInt(&Knight_T5_GloriousShield_UseMana[0], "Knight.ini", "Knight_T5_GloriousShield_UseMana");
+	ReadSkillInt(&Knight_T5_DivineCross_DamageBoost[0], "Knight.ini", "Knight_T5_DivineCross_DamageBoost");
+	ReadSkillInt(&Knight_T5_DivineCross_UseMana[0], "Knight.ini", "Knight_T5_DivineCross_UseMana");
+
+
 	ReadSkillInt(&Divine_Piercing_DamagePercent[0], "Knight.ini", "Divine_Piercing_DamagePercent");
 	ReadSkillInt(&Divine_Piercing_AddHit[0], "Knight.ini", "Divine_Piercing_AddHit");
 	ReadSkillInt(&Divine_Piercing_AttackNum[0], "Knight.ini", "Divine_Piercing_AttackNum");
@@ -583,6 +634,21 @@ ReadSkillInt(&S_Strike_Stun[0], "Atalanta.ini", "S_Strike_Stun");
 	ReadSkillInt(&Vengeance_UseMana[0], "Atalanta.ini", "Vengeance_UseMana");
 	ReadSkillInt(&Vengeance_AddCritical[0], "Atalanta.ini", "Vengeance_AddCritical");
 
+	ReadSkillInt(&Atalanta_T5_SummonTiger_AttackPower[0], "Atalanta.ini", "Atalanta_T5_SummonTiger_AttackPower");
+	ReadSkillInt(&Atalanta_T5_SummonTiger_AttackRating[0], "Atalanta.ini", "Atalanta_T5_SummonTiger_AttackRating");
+	ReadSkillInt(&Atalanta_T5_SummonTiger_Life[0], "Atalanta.ini", "Atalanta_T5_SummonTiger_Life");
+	ReadSkillInt(&Atalanta_T5_SummonTiger_Duration[0], "Atalanta.ini", "Atalanta_T5_SummonTiger_Duration");
+	ReadSkillInt(&Atalanta_T5_SummonTiger_UseMana[0], "Atalanta.ini", "Atalanta_T5_SummonTiger_UseMana");
+	ReadSkillInt(&Atalanta_T5_GoldenApple_Speed[0], "Atalanta.ini", "Atalanta_T5_GoldenApple_Speed");
+	ReadSkillInt(&Atalanta_T5_GoldenApple_Evade[0], "Atalanta.ini", "Atalanta_T5_GoldenApple_Evade");
+	ReadSkillInt(&Atalanta_T5_Plague_DamageBoost[0], "Atalanta.ini", "Atalanta_T5_Plague_DamageBoost");
+	ReadSkillInt(&Atalanta_T5_Plague_Targets[0], "Atalanta.ini", "Atalanta_T5_Plague_Targets");
+	ReadSkillInt(&Atalanta_T5_Plague_PoisonDuration[0], "Atalanta.ini", "Atalanta_T5_Plague_PoisonDuration");
+	ReadSkillInt(&Atalanta_T5_Plague_PoisonDamagePercent[0], "Atalanta.ini", "Atalanta_T5_Plague_PoisonDamagePercent");
+	ReadSkillInt(&Atalanta_T5_Plague_UseMana[0], "Atalanta.ini", "Atalanta_T5_Plague_UseMana");
+	ReadSkillInt(&Atalanta_T5_Combo_DamageBoost[0], "Atalanta.ini", "Atalanta_T5_Combo_DamageBoost");
+	ReadSkillInt(&Atalanta_T5_Combo_UseMana[0], "Atalanta.ini", "Atalanta_T5_Combo_UseMana");
+
 	//sacer
 	ReadSkillInt(&Healing_UseMana[0], "Sacer.ini", "Healing_UseMana");
 	ReadSkillInt2(Healing_Heal, "Sacer.ini", "Healing_Heal");
@@ -648,6 +714,23 @@ ReadSkillInt(&S_Strike_Stun[0], "Atalanta.ini", "S_Strike_Stun");
 	ReadSkillInt(&Summon_Muspell_BlockPercent[0], "Sacer.ini", "Summon_Muspell_BlockPercent");
 	ReadSkillInt(&Summon_Muspell_Time[0], "Sacer.ini", "Summon_Muspell_Time");
 	ReadSkillInt(&Summon_Muspell_UseMana[0], "Sacer.ini", "Summon_Muspell_UseMana");
+
+	ReadSkillInt(&Priestess_T5_IceElemental_AttackPower[0], "Sacer.ini", "Priestess_T5_IceElemental_AttackPower");
+	ReadSkillInt(&Priestess_T5_IceElemental_AttackRating[0], "Sacer.ini", "Priestess_T5_IceElemental_AttackRating");
+	ReadSkillInt(&Priestess_T5_IceElemental_Life[0], "Sacer.ini", "Priestess_T5_IceElemental_Life");
+	ReadSkillInt(&Priestess_T5_IceElemental_Duration[0], "Sacer.ini", "Priestess_T5_IceElemental_Duration");
+	ReadSkillInt(&Priestess_T5_IceElemental_UseMana[0], "Sacer.ini", "Priestess_T5_IceElemental_UseMana");
+	ReadSkillInt(&Priestess_T5_LightningSurge_DamageBoost[0], "Sacer.ini", "Priestess_T5_LightningSurge_DamageBoost");
+	ReadSkillInt(&Priestess_T5_LightningSurge_Area[0], "Sacer.ini", "Priestess_T5_LightningSurge_Area");
+	ReadSkillInt(&Priestess_T5_LightningSurge_ChargedArea[0], "Sacer.ini", "Priestess_T5_LightningSurge_ChargedArea");
+	ReadSkillInt(&Priestess_T5_LightningSurge_UseMana[0], "Sacer.ini", "Priestess_T5_LightningSurge_UseMana");
+	ReadSkillInt(&Priestess_T5_HeavenlyLight_AttackRateReduction[0], "Sacer.ini", "Priestess_T5_HeavenlyLight_AttackRateReduction");
+	ReadSkillInt(&Priestess_T5_HeavenlyLight_Duration[0], "Sacer.ini", "Priestess_T5_HeavenlyLight_Duration");
+	ReadSkillInt(&Priestess_T5_HeavenlyLight_Area[0], "Sacer.ini", "Priestess_T5_HeavenlyLight_Area");
+	ReadSkillInt(&Priestess_T5_HeavenlyLight_UseMana[0], "Sacer.ini", "Priestess_T5_HeavenlyLight_UseMana");
+	ReadSkillInt(&Priestess_T5_Consecration_DefenseBoost[0], "Sacer.ini", "Priestess_T5_Consecration_DefenseBoost");
+	ReadSkillInt(&Priestess_T5_Consecration_Absorption[0], "Sacer.ini", "Priestess_T5_Consecration_Absorption");
+	ReadSkillInt(&Priestess_T5_Consecration_UseMana[0], "Sacer.ini", "Priestess_T5_Consecration_UseMana");
 
 	ReadSkillInt(&Agony_UseMana[0], "Mage.ini", "Agony_UseMana");
 	ReadSkillInt(&Agony_ConvLife[0], "Mage.ini", "Agony_ConvLife");
@@ -722,6 +805,23 @@ ReadSkillInt(&S_Strike_Stun[0], "Atalanta.ini", "S_Strike_Stun");
 	ReadSkillInt(&Meteo_Area[0], "Mage.ini", "Meteo_Area");
 	ReadSkillInt(&Meteo_UseMana[0], "Mage.ini", "Meteo_UseMana");
 
+	ReadSkillInt(&Magician_T5_WizardTrance_BlockBoost[0], "Mage.ini", "Magician_T5_WizardTrance_BlockBoost");
+	ReadSkillInt(&Magician_T5_WizardTrance_AttackRateReduction[0], "Mage.ini", "Magician_T5_WizardTrance_AttackRateReduction");
+	ReadSkillInt(&Magician_T5_WizardTrance_Duration[0], "Mage.ini", "Magician_T5_WizardTrance_Duration");
+	ReadSkillInt(&Magician_T5_WizardTrance_UseMana[0], "Mage.ini", "Magician_T5_WizardTrance_UseMana");
+	ReadSkillInt(&Magician_T5_StoneSkin_ImmortalWindow[0], "Mage.ini", "Magician_T5_StoneSkin_ImmortalWindow");
+	ReadSkillInt(&Magician_T5_StoneSkin_Duration[0], "Mage.ini", "Magician_T5_StoneSkin_Duration");
+	ReadSkillInt(&Magician_T5_StoneSkin_RunSpeedReduction[0], "Mage.ini", "Magician_T5_StoneSkin_RunSpeedReduction");
+	ReadSkillInt(&Magician_T5_StoneSkin_UseMana[0], "Mage.ini", "Magician_T5_StoneSkin_UseMana");
+	ReadSkillInt(&Magician_T5_RedRay_DamageBoost[0], "Mage.ini", "Magician_T5_RedRay_DamageBoost");
+	ReadSkillInt(&Magician_T5_RedRay_AddRange[0], "Mage.ini", "Magician_T5_RedRay_AddRange");
+	ReadSkillInt(&Magician_T5_RedRay_UseMana[0], "Mage.ini", "Magician_T5_RedRay_UseMana");
+	ReadSkillInt(&Magician_T5_Cataclysm_DamageBoost[0], "Mage.ini", "Magician_T5_Cataclysm_DamageBoost");
+	ReadSkillInt(&Magician_T5_Cataclysm_Duration[0], "Mage.ini", "Magician_T5_Cataclysm_Duration");
+	ReadSkillInt(&Magician_T5_Cataclysm_MPDrain[0], "Mage.ini", "Magician_T5_Cataclysm_MPDrain");
+	ReadSkillInt(&Magician_T5_Cataclysm_SPDrain[0], "Mage.ini", "Magician_T5_Cataclysm_SPDrain");
+	ReadSkillInt(&Magician_T5_Cataclysm_UseMana[0], "Mage.ini", "Magician_T5_Cataclysm_UseMana");
+
 
 #endif
 
@@ -737,12 +837,17 @@ int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo)
 	MECH_INFO MechSkills;
 	FIGHTER_INFO FighterSkills;
 	PIKE_INFO PikeSkills;
+	ZeroMemory(&PikeSkills, sizeof(PikeSkills));
 	ARCHER_INFO ArcherSkills;
 
 	KINA_INFO KinaSkills;
 	ATA_INFO AtaSkills;
 	SACER_INFO SacerSkills;
 	MAGE_INFO MageSkills;
+	ZeroMemory(&KinaSkills, sizeof(KinaSkills));
+	ZeroMemory(&AtaSkills, sizeof(AtaSkills));
+	ZeroMemory(&SacerSkills, sizeof(SacerSkills));
+	ZeroMemory(&MageSkills, sizeof(MageSkills));
 
 
 	ReadSkillInt(&MechSkills.E_Shield_BlockRate[0], "Mech.ini", "E_Shield_BlockRate");
@@ -813,6 +918,31 @@ int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo)
 	ReadSkillInt(&MechSkills.Metal_Golem_Life[0], "Mech.ini", "Metal_Golem_Life");
 	ReadSkillInt(&MechSkills.Metal_Golem_UseMana[0], "Mech.ini", "Metal_Golem_UseMana");
 
+	memcpy(MechSkills.Rupture_DamageBoost, Rupture_DamageBoost, sizeof(Rupture_DamageBoost));
+	memcpy(MechSkills.Rupture_UseMana, Rupture_UseMana, sizeof(Rupture_UseMana));
+	memcpy(MechSkills.Parasit_Shot_DamageBoost, Parasit_Shot_DamageBoost, sizeof(Parasit_Shot_DamageBoost));
+	memcpy(MechSkills.Parasit_Shot_PoisonDuration, Parasit_Shot_PoisonDuration, sizeof(Parasit_Shot_PoisonDuration));
+	memcpy(MechSkills.Parasit_Shot_PoisonDamagePercent, Parasit_Shot_PoisonDamagePercent, sizeof(Parasit_Shot_PoisonDamagePercent));
+	memcpy(MechSkills.Parasit_Shot_UseMana, Parasit_Shot_UseMana, sizeof(Parasit_Shot_UseMana));
+	memcpy(MechSkills.Hardening_Shield_DamageReduction, Hardening_Shield_DamageReduction, sizeof(Hardening_Shield_DamageReduction));
+	memcpy(MechSkills.Hardening_Shield_AttackRateReduction, Hardening_Shield_AttackRateReduction, sizeof(Hardening_Shield_AttackRateReduction));
+	memcpy(MechSkills.Hardening_Shield_Time, Hardening_Shield_Time, sizeof(Hardening_Shield_Time));
+	memcpy(MechSkills.Hardening_Shield_UseMana, Hardening_Shield_UseMana, sizeof(Hardening_Shield_UseMana));
+	memcpy(MechSkills.Magnetic_Discharge_DamageBoost, Magnetic_Discharge_DamageBoost, sizeof(Magnetic_Discharge_DamageBoost));
+	memcpy(MechSkills.Magnetic_Discharge_UseMana, Magnetic_Discharge_UseMana, sizeof(Magnetic_Discharge_UseMana));
+	ReadSkillInt(&MechSkills.Rupture_DamageBoost[0], "Mech.ini", "Rupture_DamageBoost");
+	ReadSkillInt(&MechSkills.Rupture_UseMana[0], "Mech.ini", "Rupture_UseMana");
+	ReadSkillInt(&MechSkills.Parasit_Shot_DamageBoost[0], "Mech.ini", "Parasit_Shot_DamageBoost");
+	ReadSkillInt(&MechSkills.Parasit_Shot_PoisonDuration[0], "Mech.ini", "Parasit_Shot_PoisonDuration");
+	ReadSkillInt(&MechSkills.Parasit_Shot_PoisonDamagePercent[0], "Mech.ini", "Parasit_Shot_PoisonDamagePercent");
+	ReadSkillInt(&MechSkills.Parasit_Shot_UseMana[0], "Mech.ini", "Parasit_Shot_UseMana");
+	ReadSkillInt(&MechSkills.Hardening_Shield_DamageReduction[0], "Mech.ini", "Hardening_Shield_DamageReduction");
+	ReadSkillInt(&MechSkills.Hardening_Shield_AttackRateReduction[0], "Mech.ini", "Hardening_Shield_AttackRateReduction");
+	ReadSkillInt(&MechSkills.Hardening_Shield_Time[0], "Mech.ini", "Hardening_Shield_time");
+	ReadSkillInt(&MechSkills.Hardening_Shield_UseMana[0], "Mech.ini", "Hardening_Shield_UseMana");
+	ReadSkillInt(&MechSkills.Magnetic_Discharge_DamageBoost[0], "Mech.ini", "Magnetic_Discharge_DamageBoost");
+	ReadSkillInt(&MechSkills.Magnetic_Discharge_UseMana[0], "Mech.ini", "Magnetic_Discharge_UseMana");
+
 	ReadSkillInt(&FighterSkills.Melee_Mastery_DamagePercent[0], "Fighter.ini", "Melee_Mastery_DamagePercent");
 
 	ReadSkillInt(&FighterSkills.PlusFire[0], "Fighter.ini", "PlusFire");
@@ -875,6 +1005,19 @@ int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo)
 	ReadSkillInt(&FighterSkills.Cyclone_Strike_UseMana[0], "Fighter.ini", "Cyclone_Strike_UseMana");
 
 	ReadSkillInt(&FighterSkills.Boost_Health_Life[0], "Fighter.ini", "Boost_Health_Life");
+	ReadSkillInt(&FighterSkills.Fighter_T5_Survival_Life[0], "Fighter.ini", "Fighter_T5_Survival_Life");
+	ReadSkillInt(&FighterSkills.Fighter_T5_Survival_Regen[0], "Fighter.ini", "Fighter_T5_Survival_Regen");
+	ReadSkillInt(&FighterSkills.Fighter_T5_Seismic_Damage[0], "Fighter.ini", "Fighter_T5_Seismic_Damage");
+	ReadSkillInt(&FighterSkills.Fighter_T5_Seismic_Area[0], "Fighter.ini", "Fighter_T5_Seismic_Area");
+	ReadSkillInt(&FighterSkills.Fighter_T5_Seismic_UseMana[0], "Fighter.ini", "Fighter_T5_Seismic_UseMana");
+	ReadSkillFloat(&FighterSkills.Fighter_T5_Ruthless_HPDecrease[0], "Fighter.ini", "Fighter_T5_Ruthless_HPDecrease");
+	ReadSkillInt(&FighterSkills.Fighter_T5_Ruthless_HitsBoost[0], "Fighter.ini", "Fighter_T5_Ruthless_HitsBoost");
+	ReadSkillInt(&FighterSkills.Fighter_T5_Ruthless_DamageBoost[0], "Fighter.ini", "Fighter_T5_Ruthless_DamageBoost");
+	ReadSkillInt(&FighterSkills.Fighter_T5_Ruthless_UseMana[0], "Fighter.ini", "Fighter_T5_Ruthless_UseMana");
+	ReadSkillInt(&FighterSkills.Fighter_T5_Whirlwind_DamageBoost[0], "Fighter.ini", "Fighter_T5_Whirlwind_DamageBoost");
+	ReadSkillInt(&FighterSkills.Fighter_T5_Whirlwind_Duration[0], "Fighter.ini", "Fighter_T5_Whirlwind_Duration");
+	ReadSkillInt(&FighterSkills.Fighter_T5_Whirlwind_MPDrain[0], "Fighter.ini", "Fighter_T5_Whirlwind_MPDrain");
+	ReadSkillInt(&FighterSkills.Fighter_T5_Whirlwind_SPDrain[0], "Fighter.ini", "Fighter_T5_Whirlwind_SPDrain");
 
 	ReadSkillInt(&PikeSkills.Pike_Wind_Throw_Height[0], "Pike.ini", "Pike_Wind_Throw_Height");
 	ReadSkillInt(&PikeSkills.Pike_Wind_DamagePercent[0], "Pike.ini", "Pike_Wind_DamagePercent");
@@ -938,9 +1081,29 @@ int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo)
 	ReadSkillInt(&PikeSkills.Vague_UseMana[0], "Pike.ini", "Vague_UseMana");
 
 	ReadSkillInt(&PikeSkills.Shadow_Master_DamagePercent[0], "Pike.ini", "Shadow_Master_DamagePercent");
-	ReadSkillInt(&PikeSkills.Shadow_Master_AddHit[0], "Pike.ini", "Shadow_Master_AddHit");
 	ReadSkillInt(&PikeSkills.Shadow_Master_ShadowNum[0], "Pike.ini", "Shadow_Master_ShadowNum");
 	ReadSkillInt(&PikeSkills.Shadow_Master_UseMana[0], "Pike.ini", "Shadow_Master_UseMana");
+
+	memcpy(PikeSkills.Pike_T5_Ring_Duration, Pike_T5_Ring_Duration, sizeof(Pike_T5_Ring_Duration));
+	memcpy(PikeSkills.Pike_T5_Ring_UseMana, Pike_T5_Ring_UseMana, sizeof(Pike_T5_Ring_UseMana));
+	memcpy(PikeSkills.Pike_T5_Focus_MinAttackReduction, Pike_T5_Focus_MinAttackReduction, sizeof(Pike_T5_Focus_MinAttackReduction));
+	memcpy(PikeSkills.Pike_T5_Focus_MaxAttackIncrease, Pike_T5_Focus_MaxAttackIncrease, sizeof(Pike_T5_Focus_MaxAttackIncrease));
+	memcpy(PikeSkills.Pike_T5_Focus_UseMana, Pike_T5_Focus_UseMana, sizeof(Pike_T5_Focus_UseMana));
+	memcpy(PikeSkills.Pike_T5_Death_DamageBoost, Pike_T5_Death_DamageBoost, sizeof(Pike_T5_Death_DamageBoost));
+	memcpy(PikeSkills.Pike_T5_Death_AttackRateBoost, Pike_T5_Death_AttackRateBoost, sizeof(Pike_T5_Death_AttackRateBoost));
+	memcpy(PikeSkills.Pike_T5_Death_UseMana, Pike_T5_Death_UseMana, sizeof(Pike_T5_Death_UseMana));
+	memcpy(PikeSkills.Pike_T5_Twister_DamageBoost, Pike_T5_Twister_DamageBoost, sizeof(Pike_T5_Twister_DamageBoost));
+	memcpy(PikeSkills.Pike_T5_Twister_UseMana, Pike_T5_Twister_UseMana, sizeof(Pike_T5_Twister_UseMana));
+	ReadSkillInt(&PikeSkills.Pike_T5_Ring_Duration[0], "Pike.ini", "Pike_T5_Ring_Duration");
+	ReadSkillInt(&PikeSkills.Pike_T5_Ring_UseMana[0], "Pike.ini", "Pike_T5_Ring_UseMana");
+	ReadSkillInt(&PikeSkills.Pike_T5_Focus_MinAttackReduction[0], "Pike.ini", "Pike_T5_Focus_MinAttackReduction");
+	ReadSkillInt(&PikeSkills.Pike_T5_Focus_MaxAttackIncrease[0], "Pike.ini", "Pike_T5_Focus_MaxAttackIncrease");
+	ReadSkillInt(&PikeSkills.Pike_T5_Focus_UseMana[0], "Pike.ini", "Pike_T5_Focus_UseMana");
+	ReadSkillInt(&PikeSkills.Pike_T5_Death_DamageBoost[0], "Pike.ini", "Pike_T5_Death_DamageBoost");
+	ReadSkillInt(&PikeSkills.Pike_T5_Death_AttackRateBoost[0], "Pike.ini", "Pike_T5_Death_AttackRateBoost");
+	ReadSkillInt(&PikeSkills.Pike_T5_Death_UseMana[0], "Pike.ini", "Pike_T5_Death_UseMana");
+	ReadSkillInt(&PikeSkills.Pike_T5_Twister_DamageBoost[0], "Pike.ini", "Pike_T5_Twister_DamageBoost");
+	ReadSkillInt(&PikeSkills.Pike_T5_Twister_UseMana[0], "Pike.ini", "Pike_T5_Twister_UseMana");
 
 	ReadSkillInt(&ArcherSkills.Scout_Hawk_Attack_Rate[0], "Archer.ini", "Scout_Hawk_Attack_Rate");
 	ReadSkillInt(&ArcherSkills.Scout_Hawk_UseTime[0], "Archer.ini", "Scout_Hawk_UseTime");
@@ -954,6 +1117,8 @@ int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo)
 
 	ReadSkillInt(&ArcherSkills.Perfect_Aim_Attack_Rate[0], "Archer.ini", "Perfect_Aim_Attack_Rate");
 	ReadSkillInt(&ArcherSkills.Perfect_Aim_DamagePercent[0], "Archer.ini", "Perfect_Aim_DamagePercent");
+	memcpy(ArcherSkills.Perfect_Aim_Damage, Perfect_Aim_Damage, sizeof(Perfect_Aim_Damage));
+	ReadSkillInt(&ArcherSkills.Perfect_Aim_Damage[0], "Archer.ini", "Perfect_Aim_Damage");
 	ReadSkillInt(&ArcherSkills.Perfect_Aim_Damage_LV[0], "Archer.ini", "Perfect_Aim_Damage_LV");
 	ReadSkillInt(&ArcherSkills.Perfect_Aim_UseMana[0], "Archer.ini", "Perfect_Aim_UseMana");
 
@@ -1013,6 +1178,36 @@ int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo)
 	ReadSkillInt(&ArcherSkills.Force_Of_Nature_Time[0], "Archer.ini", "Force_Of_Nature_Time");
 	ReadSkillInt(&ArcherSkills.Force_Of_Nature_UseMana[0], "Archer.ini", "Force_Of_Nature_UseMana");
 
+	memcpy(ArcherSkills.Archer_T5_Lethal_RangeAdd, Archer_T5_Lethal_RangeAdd, sizeof(Archer_T5_Lethal_RangeAdd));
+	memcpy(ArcherSkills.Archer_T5_Lethal_CriticalRate, Archer_T5_Lethal_CriticalRate, sizeof(Archer_T5_Lethal_CriticalRate));
+	memcpy(ArcherSkills.Archer_T5_Lethal_DamageBoost, Archer_T5_Lethal_DamageBoost, sizeof(Archer_T5_Lethal_DamageBoost));
+	memcpy(ArcherSkills.Archer_T5_Lethal_UseMana, Archer_T5_Lethal_UseMana, sizeof(Archer_T5_Lethal_UseMana));
+	memcpy(ArcherSkills.Archer_T5_Fierce_DamageBoost, Archer_T5_Fierce_DamageBoost, sizeof(Archer_T5_Fierce_DamageBoost));
+	memcpy(ArcherSkills.Archer_T5_Fierce_CriticalDamageBoost, Archer_T5_Fierce_CriticalDamageBoost, sizeof(Archer_T5_Fierce_CriticalDamageBoost));
+	memcpy(ArcherSkills.Archer_T5_Fierce_UseMana, Archer_T5_Fierce_UseMana, sizeof(Archer_T5_Fierce_UseMana));
+	memcpy(ArcherSkills.Archer_T5_Roots_Duration, Archer_T5_Roots_Duration, sizeof(Archer_T5_Roots_Duration));
+	memcpy(ArcherSkills.Archer_T5_Roots_UseMana, Archer_T5_Roots_UseMana, sizeof(Archer_T5_Roots_UseMana));
+	memcpy(ArcherSkills.Archer_T5_Bombard_DamageBoost, Archer_T5_Bombard_DamageBoost, sizeof(Archer_T5_Bombard_DamageBoost));
+	memcpy(ArcherSkills.Archer_T5_Bombard_Duration, Archer_T5_Bombard_Duration, sizeof(Archer_T5_Bombard_Duration));
+	memcpy(ArcherSkills.Archer_T5_Bombard_MPDrain, Archer_T5_Bombard_MPDrain, sizeof(Archer_T5_Bombard_MPDrain));
+	memcpy(ArcherSkills.Archer_T5_Bombard_SPDrain, Archer_T5_Bombard_SPDrain, sizeof(Archer_T5_Bombard_SPDrain));
+	memcpy(ArcherSkills.Archer_T5_Bombard_UseMana, Archer_T5_Bombard_UseMana, sizeof(Archer_T5_Bombard_UseMana));
+
+	ReadSkillInt(&ArcherSkills.Archer_T5_Lethal_RangeAdd[0], "Archer.ini", "Archer_T5_Lethal_RangeAdd");
+	ReadSkillInt(&ArcherSkills.Archer_T5_Lethal_CriticalRate[0], "Archer.ini", "Archer_T5_Lethal_CriticalRate");
+	ReadSkillInt(&ArcherSkills.Archer_T5_Lethal_DamageBoost[0], "Archer.ini", "Archer_T5_Lethal_DamageBoost");
+	ReadSkillInt(&ArcherSkills.Archer_T5_Lethal_UseMana[0], "Archer.ini", "Archer_T5_Lethal_UseMana");
+	ReadSkillInt(&ArcherSkills.Archer_T5_Fierce_DamageBoost[0], "Archer.ini", "Archer_T5_Fierce_DamageBoost");
+	ReadSkillInt(&ArcherSkills.Archer_T5_Fierce_CriticalDamageBoost[0], "Archer.ini", "Archer_T5_Fierce_CriticalDamageBoost");
+	ReadSkillInt(&ArcherSkills.Archer_T5_Fierce_UseMana[0], "Archer.ini", "Archer_T5_Fierce_UseMana");
+	ReadSkillInt(&ArcherSkills.Archer_T5_Roots_Duration[0], "Archer.ini", "Archer_T5_Roots_Duration");
+	ReadSkillInt(&ArcherSkills.Archer_T5_Roots_UseMana[0], "Archer.ini", "Archer_T5_Roots_UseMana");
+	ReadSkillInt(&ArcherSkills.Archer_T5_Bombard_DamageBoost[0], "Archer.ini", "Archer_T5_Bombard_DamageBoost");
+	ReadSkillInt(&ArcherSkills.Archer_T5_Bombard_Duration[0], "Archer.ini", "Archer_T5_Bombard_Duration");
+	ReadSkillInt(&ArcherSkills.Archer_T5_Bombard_MPDrain[0], "Archer.ini", "Archer_T5_Bombard_MPDrain");
+	ReadSkillInt(&ArcherSkills.Archer_T5_Bombard_SPDrain[0], "Archer.ini", "Archer_T5_Bombard_SPDrain");
+	ReadSkillInt(&ArcherSkills.Archer_T5_Bombard_UseMana[0], "Archer.ini", "Archer_T5_Bombard_UseMana");
+
 	ReadSkillInt(&KinaSkills.Sword_Blast_UseMana[0], "Knight.ini", "Sword_Blast_UseMana");
 	ReadSkillInt(&KinaSkills.Sword_Blast_DamagePercent[0], "Knight.ini", "Sword_Blast_DamagePercent");
 	ReadSkillInt(&KinaSkills.Sword_Blast_ShootingRange[0], "Knight.ini", "Sword_Blast_ShootingRange");
@@ -1071,6 +1266,33 @@ int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo)
 	ReadSkillInt(&KinaSkills.Sword_Of_Justice_DamagePercent[0], "Knight.ini", "Sword_Of_Justice_DamagePercent");
 	ReadSkillInt(&KinaSkills.Sword_Of_Justice_Area[0], "Knight.ini", "Sword_Of_Justice_Area");
 	ReadSkillInt(&KinaSkills.Sword_Of_Justice_UseMana[0], "Knight.ini", "Sword_Of_Justice_UseMana");
+
+	memcpy(KinaSkills.Knight_T5_HolyConviction_UndeadBoost, Knight_T5_HolyConviction_UndeadBoost, sizeof(Knight_T5_HolyConviction_UndeadBoost));
+	memcpy(KinaSkills.Knight_T5_HolyConviction_Duration, Knight_T5_HolyConviction_Duration, sizeof(Knight_T5_HolyConviction_Duration));
+	memcpy(KinaSkills.Knight_T5_HolyConviction_UseMana, Knight_T5_HolyConviction_UseMana, sizeof(Knight_T5_HolyConviction_UseMana));
+	memcpy(KinaSkills.Knight_T5_DivineInquisition_DamageBoost, Knight_T5_DivineInquisition_DamageBoost, sizeof(Knight_T5_DivineInquisition_DamageBoost));
+	memcpy(KinaSkills.Knight_T5_DivineInquisition_Area, Knight_T5_DivineInquisition_Area, sizeof(Knight_T5_DivineInquisition_Area));
+	memcpy(KinaSkills.Knight_T5_DivineInquisition_UndeadDamage, Knight_T5_DivineInquisition_UndeadDamage, sizeof(Knight_T5_DivineInquisition_UndeadDamage));
+	memcpy(KinaSkills.Knight_T5_DivineInquisition_UseMana, Knight_T5_DivineInquisition_UseMana, sizeof(Knight_T5_DivineInquisition_UseMana));
+	memcpy(KinaSkills.Knight_T5_GloriousShield_DefenseBoost, Knight_T5_GloriousShield_DefenseBoost, sizeof(Knight_T5_GloriousShield_DefenseBoost));
+	memcpy(KinaSkills.Knight_T5_GloriousShield_Duration, Knight_T5_GloriousShield_Duration, sizeof(Knight_T5_GloriousShield_Duration));
+	memcpy(KinaSkills.Knight_T5_GloriousShield_UseMana, Knight_T5_GloriousShield_UseMana, sizeof(Knight_T5_GloriousShield_UseMana));
+	memcpy(KinaSkills.Knight_T5_DivineCross_DamageBoost, Knight_T5_DivineCross_DamageBoost, sizeof(Knight_T5_DivineCross_DamageBoost));
+	memcpy(KinaSkills.Knight_T5_DivineCross_UseMana, Knight_T5_DivineCross_UseMana, sizeof(Knight_T5_DivineCross_UseMana));
+
+	ReadSkillInt(&KinaSkills.Knight_T5_HolyConviction_UndeadBoost[0], "Knight.ini", "Knight_T5_HolyConviction_UndeadBoost");
+	ReadSkillInt(&KinaSkills.Knight_T5_HolyConviction_Duration[0], "Knight.ini", "Knight_T5_HolyConviction_Duration");
+	ReadSkillInt(&KinaSkills.Knight_T5_HolyConviction_UseMana[0], "Knight.ini", "Knight_T5_HolyConviction_UseMana");
+	ReadSkillInt(&KinaSkills.Knight_T5_DivineInquisition_DamageBoost[0], "Knight.ini", "Knight_T5_DivineInquisition_DamageBoost");
+	ReadSkillInt(&KinaSkills.Knight_T5_DivineInquisition_Area[0], "Knight.ini", "Knight_T5_DivineInquisition_Area");
+	ReadSkillInt(&KinaSkills.Knight_T5_DivineInquisition_UndeadDamage[0], "Knight.ini", "Knight_T5_DivineInquisition_UndeadDamage");
+	ReadSkillInt(&KinaSkills.Knight_T5_DivineInquisition_UseMana[0], "Knight.ini", "Knight_T5_DivineInquisition_UseMana");
+	ReadSkillInt(&KinaSkills.Knight_T5_GloriousShield_DefenseBoost[0], "Knight.ini", "Knight_T5_GloriousShield_DefenseBoost");
+	ReadSkillInt(&KinaSkills.Knight_T5_GloriousShield_Duration[0], "Knight.ini", "Knight_T5_GloriousShield_Duration");
+	ReadSkillInt(&KinaSkills.Knight_T5_GloriousShield_UseMana[0], "Knight.ini", "Knight_T5_GloriousShield_UseMana");
+	ReadSkillInt(&KinaSkills.Knight_T5_DivineCross_DamageBoost[0], "Knight.ini", "Knight_T5_DivineCross_DamageBoost");
+	ReadSkillInt(&KinaSkills.Knight_T5_DivineCross_UseMana[0], "Knight.ini", "Knight_T5_DivineCross_UseMana");
+
 
 	ReadSkillInt(&KinaSkills.Divine_Piercing_DamagePercent[0], "Knight.ini", "Divine_Piercing_DamagePercent");
 	ReadSkillInt(&KinaSkills.Divine_Piercing_AddHit[0], "Knight.ini", "Divine_Piercing_AddHit");
@@ -1137,6 +1359,35 @@ int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo)
 	ReadSkillInt(&AtaSkills.Vengeance_UseMana[0], "Atalanta.ini", "Vengeance_UseMana");
 	ReadSkillInt(&AtaSkills.Vengeance_AddCritical[0], "Atalanta.ini", "Vengeance_AddCritical");
 
+	memcpy(AtaSkills.Atalanta_T5_SummonTiger_AttackPower, Atalanta_T5_SummonTiger_AttackPower, sizeof(Atalanta_T5_SummonTiger_AttackPower));
+	memcpy(AtaSkills.Atalanta_T5_SummonTiger_AttackRating, Atalanta_T5_SummonTiger_AttackRating, sizeof(Atalanta_T5_SummonTiger_AttackRating));
+	memcpy(AtaSkills.Atalanta_T5_SummonTiger_Life, Atalanta_T5_SummonTiger_Life, sizeof(Atalanta_T5_SummonTiger_Life));
+	memcpy(AtaSkills.Atalanta_T5_SummonTiger_Duration, Atalanta_T5_SummonTiger_Duration, sizeof(Atalanta_T5_SummonTiger_Duration));
+	memcpy(AtaSkills.Atalanta_T5_SummonTiger_UseMana, Atalanta_T5_SummonTiger_UseMana, sizeof(Atalanta_T5_SummonTiger_UseMana));
+	memcpy(AtaSkills.Atalanta_T5_GoldenApple_Speed, Atalanta_T5_GoldenApple_Speed, sizeof(Atalanta_T5_GoldenApple_Speed));
+	memcpy(AtaSkills.Atalanta_T5_GoldenApple_Evade, Atalanta_T5_GoldenApple_Evade, sizeof(Atalanta_T5_GoldenApple_Evade));
+	memcpy(AtaSkills.Atalanta_T5_Plague_DamageBoost, Atalanta_T5_Plague_DamageBoost, sizeof(Atalanta_T5_Plague_DamageBoost));
+	memcpy(AtaSkills.Atalanta_T5_Plague_Targets, Atalanta_T5_Plague_Targets, sizeof(Atalanta_T5_Plague_Targets));
+	memcpy(AtaSkills.Atalanta_T5_Plague_PoisonDuration, Atalanta_T5_Plague_PoisonDuration, sizeof(Atalanta_T5_Plague_PoisonDuration));
+	memcpy(AtaSkills.Atalanta_T5_Plague_PoisonDamagePercent, Atalanta_T5_Plague_PoisonDamagePercent, sizeof(Atalanta_T5_Plague_PoisonDamagePercent));
+	memcpy(AtaSkills.Atalanta_T5_Plague_UseMana, Atalanta_T5_Plague_UseMana, sizeof(Atalanta_T5_Plague_UseMana));
+	memcpy(AtaSkills.Atalanta_T5_Combo_DamageBoost, Atalanta_T5_Combo_DamageBoost, sizeof(Atalanta_T5_Combo_DamageBoost));
+	memcpy(AtaSkills.Atalanta_T5_Combo_UseMana, Atalanta_T5_Combo_UseMana, sizeof(Atalanta_T5_Combo_UseMana));
+	ReadSkillInt(&AtaSkills.Atalanta_T5_SummonTiger_AttackPower[0], "Atalanta.ini", "Atalanta_T5_SummonTiger_AttackPower");
+	ReadSkillInt(&AtaSkills.Atalanta_T5_SummonTiger_AttackRating[0], "Atalanta.ini", "Atalanta_T5_SummonTiger_AttackRating");
+	ReadSkillInt(&AtaSkills.Atalanta_T5_SummonTiger_Life[0], "Atalanta.ini", "Atalanta_T5_SummonTiger_Life");
+	ReadSkillInt(&AtaSkills.Atalanta_T5_SummonTiger_Duration[0], "Atalanta.ini", "Atalanta_T5_SummonTiger_Duration");
+	ReadSkillInt(&AtaSkills.Atalanta_T5_SummonTiger_UseMana[0], "Atalanta.ini", "Atalanta_T5_SummonTiger_UseMana");
+	ReadSkillInt(&AtaSkills.Atalanta_T5_GoldenApple_Speed[0], "Atalanta.ini", "Atalanta_T5_GoldenApple_Speed");
+	ReadSkillInt(&AtaSkills.Atalanta_T5_GoldenApple_Evade[0], "Atalanta.ini", "Atalanta_T5_GoldenApple_Evade");
+	ReadSkillInt(&AtaSkills.Atalanta_T5_Plague_DamageBoost[0], "Atalanta.ini", "Atalanta_T5_Plague_DamageBoost");
+	ReadSkillInt(&AtaSkills.Atalanta_T5_Plague_Targets[0], "Atalanta.ini", "Atalanta_T5_Plague_Targets");
+	ReadSkillInt(&AtaSkills.Atalanta_T5_Plague_PoisonDuration[0], "Atalanta.ini", "Atalanta_T5_Plague_PoisonDuration");
+	ReadSkillInt(&AtaSkills.Atalanta_T5_Plague_PoisonDamagePercent[0], "Atalanta.ini", "Atalanta_T5_Plague_PoisonDamagePercent");
+	ReadSkillInt(&AtaSkills.Atalanta_T5_Plague_UseMana[0], "Atalanta.ini", "Atalanta_T5_Plague_UseMana");
+	ReadSkillInt(&AtaSkills.Atalanta_T5_Combo_DamageBoost[0], "Atalanta.ini", "Atalanta_T5_Combo_DamageBoost");
+	ReadSkillInt(&AtaSkills.Atalanta_T5_Combo_UseMana[0], "Atalanta.ini", "Atalanta_T5_Combo_UseMana");
+
 	//sacer
 	ReadSkillInt(&SacerSkills.Healing_UseMana[0], "Sacer.ini", "Healing_UseMana");
 	ReadSkillInt2(SacerSkills.Healing_Heal, "Sacer.ini", "Healing_Heal");
@@ -1202,6 +1453,39 @@ int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo)
 	ReadSkillInt(&SacerSkills.Summon_Muspell_BlockPercent[0], "Sacer.ini", "Summon_Muspell_BlockPercent");
 	ReadSkillInt(&SacerSkills.Summon_Muspell_Time[0], "Sacer.ini", "Summon_Muspell_Time");
 	ReadSkillInt(&SacerSkills.Summon_Muspell_UseMana[0], "Sacer.ini", "Summon_Muspell_UseMana");
+
+	memcpy(SacerSkills.Priestess_T5_IceElemental_AttackPower, Priestess_T5_IceElemental_AttackPower, sizeof(Priestess_T5_IceElemental_AttackPower));
+	memcpy(SacerSkills.Priestess_T5_IceElemental_AttackRating, Priestess_T5_IceElemental_AttackRating, sizeof(Priestess_T5_IceElemental_AttackRating));
+	memcpy(SacerSkills.Priestess_T5_IceElemental_Life, Priestess_T5_IceElemental_Life, sizeof(Priestess_T5_IceElemental_Life));
+	memcpy(SacerSkills.Priestess_T5_IceElemental_Duration, Priestess_T5_IceElemental_Duration, sizeof(Priestess_T5_IceElemental_Duration));
+	memcpy(SacerSkills.Priestess_T5_IceElemental_UseMana, Priestess_T5_IceElemental_UseMana, sizeof(Priestess_T5_IceElemental_UseMana));
+	memcpy(SacerSkills.Priestess_T5_LightningSurge_DamageBoost, Priestess_T5_LightningSurge_DamageBoost, sizeof(Priestess_T5_LightningSurge_DamageBoost));
+	memcpy(SacerSkills.Priestess_T5_LightningSurge_Area, Priestess_T5_LightningSurge_Area, sizeof(Priestess_T5_LightningSurge_Area));
+	memcpy(SacerSkills.Priestess_T5_LightningSurge_ChargedArea, Priestess_T5_LightningSurge_ChargedArea, sizeof(Priestess_T5_LightningSurge_ChargedArea));
+	memcpy(SacerSkills.Priestess_T5_LightningSurge_UseMana, Priestess_T5_LightningSurge_UseMana, sizeof(Priestess_T5_LightningSurge_UseMana));
+	memcpy(SacerSkills.Priestess_T5_HeavenlyLight_AttackRateReduction, Priestess_T5_HeavenlyLight_AttackRateReduction, sizeof(Priestess_T5_HeavenlyLight_AttackRateReduction));
+	memcpy(SacerSkills.Priestess_T5_HeavenlyLight_Duration, Priestess_T5_HeavenlyLight_Duration, sizeof(Priestess_T5_HeavenlyLight_Duration));
+	memcpy(SacerSkills.Priestess_T5_HeavenlyLight_Area, Priestess_T5_HeavenlyLight_Area, sizeof(Priestess_T5_HeavenlyLight_Area));
+	memcpy(SacerSkills.Priestess_T5_HeavenlyLight_UseMana, Priestess_T5_HeavenlyLight_UseMana, sizeof(Priestess_T5_HeavenlyLight_UseMana));
+	memcpy(SacerSkills.Priestess_T5_Consecration_DefenseBoost, Priestess_T5_Consecration_DefenseBoost, sizeof(Priestess_T5_Consecration_DefenseBoost));
+	memcpy(SacerSkills.Priestess_T5_Consecration_Absorption, Priestess_T5_Consecration_Absorption, sizeof(Priestess_T5_Consecration_Absorption));
+	memcpy(SacerSkills.Priestess_T5_Consecration_UseMana, Priestess_T5_Consecration_UseMana, sizeof(Priestess_T5_Consecration_UseMana));
+	ReadSkillInt(&SacerSkills.Priestess_T5_IceElemental_AttackPower[0], "Sacer.ini", "Priestess_T5_IceElemental_AttackPower");
+	ReadSkillInt(&SacerSkills.Priestess_T5_IceElemental_AttackRating[0], "Sacer.ini", "Priestess_T5_IceElemental_AttackRating");
+	ReadSkillInt(&SacerSkills.Priestess_T5_IceElemental_Life[0], "Sacer.ini", "Priestess_T5_IceElemental_Life");
+	ReadSkillInt(&SacerSkills.Priestess_T5_IceElemental_Duration[0], "Sacer.ini", "Priestess_T5_IceElemental_Duration");
+	ReadSkillInt(&SacerSkills.Priestess_T5_IceElemental_UseMana[0], "Sacer.ini", "Priestess_T5_IceElemental_UseMana");
+	ReadSkillInt(&SacerSkills.Priestess_T5_LightningSurge_DamageBoost[0], "Sacer.ini", "Priestess_T5_LightningSurge_DamageBoost");
+	ReadSkillInt(&SacerSkills.Priestess_T5_LightningSurge_Area[0], "Sacer.ini", "Priestess_T5_LightningSurge_Area");
+	ReadSkillInt(&SacerSkills.Priestess_T5_LightningSurge_ChargedArea[0], "Sacer.ini", "Priestess_T5_LightningSurge_ChargedArea");
+	ReadSkillInt(&SacerSkills.Priestess_T5_LightningSurge_UseMana[0], "Sacer.ini", "Priestess_T5_LightningSurge_UseMana");
+	ReadSkillInt(&SacerSkills.Priestess_T5_HeavenlyLight_AttackRateReduction[0], "Sacer.ini", "Priestess_T5_HeavenlyLight_AttackRateReduction");
+	ReadSkillInt(&SacerSkills.Priestess_T5_HeavenlyLight_Duration[0], "Sacer.ini", "Priestess_T5_HeavenlyLight_Duration");
+	ReadSkillInt(&SacerSkills.Priestess_T5_HeavenlyLight_Area[0], "Sacer.ini", "Priestess_T5_HeavenlyLight_Area");
+	ReadSkillInt(&SacerSkills.Priestess_T5_HeavenlyLight_UseMana[0], "Sacer.ini", "Priestess_T5_HeavenlyLight_UseMana");
+	ReadSkillInt(&SacerSkills.Priestess_T5_Consecration_DefenseBoost[0], "Sacer.ini", "Priestess_T5_Consecration_DefenseBoost");
+	ReadSkillInt(&SacerSkills.Priestess_T5_Consecration_Absorption[0], "Sacer.ini", "Priestess_T5_Consecration_Absorption");
+	ReadSkillInt(&SacerSkills.Priestess_T5_Consecration_UseMana[0], "Sacer.ini", "Priestess_T5_Consecration_UseMana");
 
 	ReadSkillInt(&MageSkills.Agony_UseMana[0], "Mage.ini", "Agony_UseMana");
 	ReadSkillInt(&MageSkills.Agony_ConvLife[0], "Mage.ini", "Agony_ConvLife");
@@ -1276,6 +1560,39 @@ int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo)
 	ReadSkillInt(&MageSkills.Meteo_Damage_Percent[0], "Mage.ini", "Meteo_Damage_Percent");
 	ReadSkillInt(&MageSkills.Meteo_Area[0], "Mage.ini", "Meteo_Area");
 	ReadSkillInt(&MageSkills.Meteo_UseMana[0], "Mage.ini", "Meteo_UseMana");
+
+	memcpy(MageSkills.Magician_T5_WizardTrance_BlockBoost, Magician_T5_WizardTrance_BlockBoost, sizeof(Magician_T5_WizardTrance_BlockBoost));
+	memcpy(MageSkills.Magician_T5_WizardTrance_AttackRateReduction, Magician_T5_WizardTrance_AttackRateReduction, sizeof(Magician_T5_WizardTrance_AttackRateReduction));
+	memcpy(MageSkills.Magician_T5_WizardTrance_Duration, Magician_T5_WizardTrance_Duration, sizeof(Magician_T5_WizardTrance_Duration));
+	memcpy(MageSkills.Magician_T5_WizardTrance_UseMana, Magician_T5_WizardTrance_UseMana, sizeof(Magician_T5_WizardTrance_UseMana));
+	memcpy(MageSkills.Magician_T5_StoneSkin_ImmortalWindow, Magician_T5_StoneSkin_ImmortalWindow, sizeof(Magician_T5_StoneSkin_ImmortalWindow));
+	memcpy(MageSkills.Magician_T5_StoneSkin_Duration, Magician_T5_StoneSkin_Duration, sizeof(Magician_T5_StoneSkin_Duration));
+	memcpy(MageSkills.Magician_T5_StoneSkin_RunSpeedReduction, Magician_T5_StoneSkin_RunSpeedReduction, sizeof(Magician_T5_StoneSkin_RunSpeedReduction));
+	memcpy(MageSkills.Magician_T5_StoneSkin_UseMana, Magician_T5_StoneSkin_UseMana, sizeof(Magician_T5_StoneSkin_UseMana));
+	memcpy(MageSkills.Magician_T5_RedRay_DamageBoost, Magician_T5_RedRay_DamageBoost, sizeof(Magician_T5_RedRay_DamageBoost));
+	memcpy(MageSkills.Magician_T5_RedRay_AddRange, Magician_T5_RedRay_AddRange, sizeof(Magician_T5_RedRay_AddRange));
+	memcpy(MageSkills.Magician_T5_RedRay_UseMana, Magician_T5_RedRay_UseMana, sizeof(Magician_T5_RedRay_UseMana));
+	memcpy(MageSkills.Magician_T5_Cataclysm_DamageBoost, Magician_T5_Cataclysm_DamageBoost, sizeof(Magician_T5_Cataclysm_DamageBoost));
+	memcpy(MageSkills.Magician_T5_Cataclysm_Duration, Magician_T5_Cataclysm_Duration, sizeof(Magician_T5_Cataclysm_Duration));
+	memcpy(MageSkills.Magician_T5_Cataclysm_MPDrain, Magician_T5_Cataclysm_MPDrain, sizeof(Magician_T5_Cataclysm_MPDrain));
+	memcpy(MageSkills.Magician_T5_Cataclysm_SPDrain, Magician_T5_Cataclysm_SPDrain, sizeof(Magician_T5_Cataclysm_SPDrain));
+	memcpy(MageSkills.Magician_T5_Cataclysm_UseMana, Magician_T5_Cataclysm_UseMana, sizeof(Magician_T5_Cataclysm_UseMana));
+	ReadSkillInt(&MageSkills.Magician_T5_WizardTrance_BlockBoost[0], "Mage.ini", "Magician_T5_WizardTrance_BlockBoost");
+	ReadSkillInt(&MageSkills.Magician_T5_WizardTrance_AttackRateReduction[0], "Mage.ini", "Magician_T5_WizardTrance_AttackRateReduction");
+	ReadSkillInt(&MageSkills.Magician_T5_WizardTrance_Duration[0], "Mage.ini", "Magician_T5_WizardTrance_Duration");
+	ReadSkillInt(&MageSkills.Magician_T5_WizardTrance_UseMana[0], "Mage.ini", "Magician_T5_WizardTrance_UseMana");
+	ReadSkillInt(&MageSkills.Magician_T5_StoneSkin_ImmortalWindow[0], "Mage.ini", "Magician_T5_StoneSkin_ImmortalWindow");
+	ReadSkillInt(&MageSkills.Magician_T5_StoneSkin_Duration[0], "Mage.ini", "Magician_T5_StoneSkin_Duration");
+	ReadSkillInt(&MageSkills.Magician_T5_StoneSkin_RunSpeedReduction[0], "Mage.ini", "Magician_T5_StoneSkin_RunSpeedReduction");
+	ReadSkillInt(&MageSkills.Magician_T5_StoneSkin_UseMana[0], "Mage.ini", "Magician_T5_StoneSkin_UseMana");
+	ReadSkillInt(&MageSkills.Magician_T5_RedRay_DamageBoost[0], "Mage.ini", "Magician_T5_RedRay_DamageBoost");
+	ReadSkillInt(&MageSkills.Magician_T5_RedRay_AddRange[0], "Mage.ini", "Magician_T5_RedRay_AddRange");
+	ReadSkillInt(&MageSkills.Magician_T5_RedRay_UseMana[0], "Mage.ini", "Magician_T5_RedRay_UseMana");
+	ReadSkillInt(&MageSkills.Magician_T5_Cataclysm_DamageBoost[0], "Mage.ini", "Magician_T5_Cataclysm_DamageBoost");
+	ReadSkillInt(&MageSkills.Magician_T5_Cataclysm_Duration[0], "Mage.ini", "Magician_T5_Cataclysm_Duration");
+	ReadSkillInt(&MageSkills.Magician_T5_Cataclysm_MPDrain[0], "Mage.ini", "Magician_T5_Cataclysm_MPDrain");
+	ReadSkillInt(&MageSkills.Magician_T5_Cataclysm_SPDrain[0], "Mage.ini", "Magician_T5_Cataclysm_SPDrain");
+	ReadSkillInt(&MageSkills.Magician_T5_Cataclysm_UseMana[0], "Mage.ini", "Magician_T5_Cataclysm_UseMana");
 
 
 	MechSkills.size = sizeof(MECH_INFO);

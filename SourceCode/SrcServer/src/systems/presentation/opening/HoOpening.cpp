@@ -163,7 +163,7 @@ int HoOpening::KeyFilter(char *message)
 	if(message == NULL || hFocusWnd == NULL)
 		return FALSE;
 
-	if(lstrlen(message) >= 31 && message[30] != '/t')
+	if(lstrlen(message) >= 31 && message[30] != '\t')
 	{
 		message[30] = 0;
 		SetWindowText(hFocusWnd, 0);
@@ -173,7 +173,7 @@ int HoOpening::KeyFilter(char *message)
 
 	for(int index = 0; index < (int)strlen(message); index++)
 	{
-		if(message[index] == '/t')
+		if(message[index] == '\t')
 		{
 			message[index] = 0;
 			SetWindowText(hFocusWnd, 0);

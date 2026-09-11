@@ -207,7 +207,7 @@ int cMYSHOP::CanSellItem(sITEM *pItem)
 		cMessageBox.ShowMessageEvent("Este item n\343o pode ser vendido.");
 		return FALSE;
 	} else if ((pItem->CODE & sinITEM_MASK2) == sinDA1 || (pItem->CODE & sinITEM_MASK2) == sinDA2) {
-		if ( //ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½Ú½ï¿½Æ¬   //ï¿½ï¿½Å°ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		if ( //ÆÄÆ¼º¹ ÄÚ½ºÆ¬   //ÆÐÅ°Áö Ä³½¬¾ÆÀÌÅÛ
 			(pItem->CODE & sinITEM_MASK3) == sin31 || (pItem->CODE & sinITEM_MASK3) == sin32 || (pItem->CODE & sinITEM_MASK3) == sin33 ||
 			(pItem->CODE & sinITEM_MASK3) == sin34 ||
 			(pItem->CODE & sinITEM_MASK3) == sin35 || (pItem->CODE & sinITEM_MASK3) == sin36 || (pItem->CODE & sinITEM_MASK3) == sin37 ||
@@ -216,50 +216,50 @@ int cMYSHOP::CanSellItem(sITEM *pItem)
 			(pItem->CODE & sinITEM_MASK3) == sin42 ||
 			(pItem->CODE & sinITEM_MASK3) == sin43 || (pItem->CODE & sinITEM_MASK3) == sin44 || (pItem->CODE & sinITEM_MASK3) == sin45 ||
 			(pItem->CODE & sinITEM_MASK3) == sin46 ||
-			(pItem->CODE & sinITEM_MASK3) == sin54 || (pItem->CODE & sinITEM_MASK3) == sin55) // ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ - ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			(pItem->CODE & sinITEM_MASK3) == sin54 || (pItem->CODE & sinITEM_MASK3) == sin55) // ¹ÚÀç¿ø - ¼ö¿µº¹ º¹Àå Ãß°¡ - °³ÀÎ»óÁ¡ ±ÝÁö
 		{
 			return FALSE;
 		}
-	} else if ((pItem->CODE & sinITEM_MASK2) == sinOA2) // ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½(7ï¿½ï¿½, 30ï¿½ï¿½) ï¿½ß°ï¿½
+	} else if ((pItem->CODE & sinITEM_MASK2) == sinOA2) // ¹ÚÀç¿ø - ½´ÆÛ ¾Ï¸´(7ÀÏ, 30ÀÏ) Ãß°¡
 	{
 		if ((pItem->CODE & sinITEM_MASK3) == sin31 || (pItem->CODE & sinITEM_MASK3) == sin32 ||
-			(pItem->CODE & sinITEM_MASK3) == sin33 ||	// ï¿½åº° - ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½(1ï¿½ï¿½))
-			(pItem->CODE & sinITEM_MASK3) == sin34)	// ï¿½åº° - ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½(1ï¿½Ã°ï¿½)
+			(pItem->CODE & sinITEM_MASK3) == sin33 ||	// Àåº° - ½´ÆÛ ¾Ï¸´(1ÀÏ))
+			(pItem->CODE & sinITEM_MASK3) == sin34)	// Àåº° - ½´ÆÛ ¾Ï¸´(1½Ã°£)
 		{
 			return FALSE;
 		}
-	} else if ((pItem->CODE & sinITEM_MASK2) == sinDB1)  // ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½(7ï¿½ï¿½, 30ï¿½ï¿½) ï¿½ß°ï¿½
+	} else if ((pItem->CODE & sinITEM_MASK2) == sinDB1)  // ¹ÚÀç¿ø - ½ºÇÇµå ºÎÃ÷(7ÀÏ, 30ÀÏ) Ãß°¡
 	{
 		if ((pItem->CODE & sinITEM_MASK3) == sin31 || (pItem->CODE & sinITEM_MASK3) == sin32 ||
-			(pItem->CODE & sinITEM_MASK3) == sin33 || // ï¿½åº° - ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½(1ï¿½ï¿½) ï¿½ß°ï¿½
-			(pItem->CODE & sinITEM_MASK3) == sin34) // ï¿½åº° - ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½(1ï¿½Ã°ï¿½) ï¿½ß°ï¿½
+			(pItem->CODE & sinITEM_MASK3) == sin33 || // Àåº° - ½ºÇÇµå ºÎÃ÷(1ÀÏ) Ãß°¡
+			(pItem->CODE & sinITEM_MASK3) == sin34) // Àåº° - ½ºÇÇµå ºÎÃ÷(1½Ã°£) Ãß°¡
 		{
 			return FALSE;
 		}
 	}
 
-	else if ((pItem->CODE & sinITEM_MASK2) == sinOR2)  // ï¿½åº° - ï¿½ï¿½Æ®ï¿½ï¿½(7ï¿½ï¿½) ï¿½ß°ï¿½
+	else if ((pItem->CODE & sinITEM_MASK2) == sinOR2)  // Àåº° - ÇÏÆ®¸µ(7ÀÏ) Ãß°¡
 	{
 		if ((pItem->CODE & sinITEM_MASK3) == sin33) {
 			return FALSE;
 		}
 	}
 
-	else if ((pItem->CODE & sinITEM_MASK2) == sinOA1)  // ï¿½åº° - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½(7ï¿½ï¿½) ï¿½ß°ï¿½
+	else if ((pItem->CODE & sinITEM_MASK2) == sinOA1)  // Àåº° - ´«°áÁ¤ ¸ñ°ÉÀÌ(7ÀÏ) Ãß°¡
 	{
 		if ((pItem->CODE & sinITEM_MASK3) == sin36) {
 			return FALSE;
 		}
 	}
 
-	else if ((pItem->CODE & sinITEM_MASK2) == sinOA1)  // ï¿½åº° - Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Æ¹Ä·ï¿½(7ï¿½ï¿½) ï¿½ß°ï¿½
+	else if ((pItem->CODE & sinITEM_MASK2) == sinOA1)  // Àåº° - Äµµðµ¥ÀÌÁî ÇÏÆ®¾Æ¹Ä·¿(7ÀÏ) Ãß°¡
 	{
 		if ((pItem->CODE & sinITEM_MASK3) == sin37) {
 			return FALSE;
 		}
 	}
 
-	else if ((pItem->CODE & sinITEM_MASK2) == sinGF1)  // ï¿½åº° - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Æ¶ï¿½ ï¿½Æ¹Ä·ï¿½
+	else if ((pItem->CODE & sinITEM_MASK2) == sinGF1)  // Àåº° - Á¶»ç¿øÀ» Ã£¾Æ¶ó ¾Æ¹Ä·¿
 	{
 		if ((pItem->CODE & sinITEM_MASK3) == sin07 || (pItem->CODE & sinITEM_MASK3) == sin08) {
 			return FALSE;

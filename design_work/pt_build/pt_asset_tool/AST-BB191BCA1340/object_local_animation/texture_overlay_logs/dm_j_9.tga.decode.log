@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=d4b18656dec4959ab70051914016ef00264e940858a4b80d1a7fa6e33bf23ea4
-output_sha256=d4b18656dec4959ab70051914016ef00264e940858a4b80d1a7fa6e33bf23ea4
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/texture_overlay_client/field/castle/dm_j_9.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

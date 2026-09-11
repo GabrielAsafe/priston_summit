@@ -6,84 +6,78 @@
 
 sinSTRING::sinSTRING(void)
 {
-	m_aString = new char;
-
+	m_aString = new char[1];
+	m_aString[0] = '\0';
 }
+
 sinSTRING::sinSTRING(sinSTRING &rString)
 {
-	if(rString.GetLength() > 0)
-	{
-		m_aString = new char[rString.GetLength() + 1];
-		strcpy(m_aString, rString.GetString());
-	}
-	else m_aString[0] = '/0';
-
+	const int length = rString.GetLength();
+	m_aString = new char[length + 1];
+	if(length > 0) memcpy(m_aString, rString.GetString(), length);
+	m_aString[length] = '\0';
 }
+
 sinSTRING::sinSTRING(char *pString)
 {
-	if(pString)
-	{
-		m_aString = new char[lstrlen(pString) + 1];
-		strcpy(m_aString, pString);
-
-	}
-	else m_aString[0] = '/0';
-
+	const size_t length = pString ? strlen(pString) : 0;
+	m_aString = new char[length + 1];
+	if(length > 0) memcpy(m_aString, pString, length);
+	m_aString[length] = '\0';
 }
 
 sinSTRING::~sinSTRING(void)
 {
-	m_aString[0] = '/0';
+	delete[] m_aString;
+	m_aString = NULL;
 }
 
-
-sinSTRING & sinSTRING::operator = (sinSTRING & rString)
+sinSTRING & sinSTRING::operator = (sinSTRING &rString)
 {
-	if(rString.GetLength() > 0)
-		strcpy(m_aString, rString.GetString());
-	else m_aString[0] = '/0';
-	return *this;
+	if(this == &rString) return *this;
+	return operator = (rString.GetString());
 }
+
 sinSTRING & sinSTRING::operator = (char *pString)
 {
-	if(pString)
-		strcpy(m_aString, pString);
-	else m_aString[0] = '/0';
+	const size_t length = pString ? strlen(pString) : 0;
+	char *newString = new char[length + 1];
+	if(length > 0) memcpy(newString, pString, length);
+	newString[length] = '\0';
+	delete[] m_aString;
+	m_aString = newString;
 	return *this;
 }
 
 bool sinSTRING::operator == (sinSTRING &rString)
 {
-	if(strcmp(rString.GetString(), m_aString) == 0)return TRUE;
-	else return FALSE;
-
+	return strcmp(rString.GetString(), m_aString) == 0;
 }
+
 bool sinSTRING::operator == (char *pString)
 {
-	if(strcmp(pString, m_aString) == 0)return TRUE;
-	else return FALSE;
+	if(!pString) return m_aString[0] == '\0';
+	return strcmp(pString, m_aString) == 0;
 }
+
 bool sinSTRING::operator != (sinSTRING &rString)
 {
-	if(strcmp(rString.GetString(), m_aString) != 0)return TRUE;
-	else return FALSE;
-
+	return !(*this == rString);
 }
 
 bool sinSTRING::operator != (char *pString)
 {
-	if(strcmp(pString, m_aString) != 0)return TRUE;
-	else return FALSE;
+	return !(*this == pString);
 }
-
 
 char *sinSTRING::GetString(void)
 {
 	return m_aString;
 }
+
 int sinSTRING::GetLength(void)
 {
-	return strlen(m_aString);
+	return (int)strlen(m_aString);
 }
 
 

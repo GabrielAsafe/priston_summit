@@ -62,7 +62,7 @@ POINT GetProcessModule()
 					sumdata[filecount].filechecksum = checksum;
 
 					CloseHandle(hSaveFile);
-					delete mbuf;
+					delete[] mbuf;
 
 					checksum = 0;
 					strcpy(sumdata[filecount].name, strupr(me32.szModule));

@@ -1525,7 +1525,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 			}
 			else if((InvenItem[Index].CODE & sinITEM_MASK2) == sinOS1)
 			{
-				//Verifica as posi��es dos sheltons e pega a mais pr�xima.
+				//Verifica as posições dos sheltons e pega a mais próxima.
 				bool isEmpty = false;
 				int i = 0;
 				for(i = 0; i < 12; i++)
@@ -1615,7 +1615,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 
 			if((InvenItem[Index].CODE & sinITEM_MASK2) == sinOS1 || (InvenItem[Index].CODE & sinITEM_MASK2) == sinSE1)
 			{
-				//Verifica as posi��es dos sheltons e pega a mais pr�xima.
+				//Verifica as posições dos sheltons e pega a mais próxima.
 				bool isEmpty = false;
 				
 				int i = 0;
@@ -6051,6 +6051,11 @@ int cINVENTORY::SetItemToChar(int CheckHackFlag)
 					}
 				}
 				break;
+			case SKILL_T5_GLORIOUS_SHIELD:
+				TempSkillData = ((float)Knight_T5_GloriousShield_DefenseBoost[ContinueSkill[i].Point - 1] / 100.0f);
+				sinChar->Defence += (int)((float)sinChar->Defence * TempSkillData);
+				SkillTextColor[SIN2_DEFENSE] = SIN_TEXT_COLOR_BLUE;
+				break;
 			case SKILL_SPARK_SHIELD:
 				if(sInven[1].ItemIndex)
 				{
@@ -6919,6 +6924,16 @@ int cINVENTORY::SetItemToChar(int CheckHackFlag)
 				sinChar->Life[1] += (short)Boost_Health_Life[sinSkill.UseSkill[i].Point - 1];
 
 				break;
+			case SKILL_T5_SURVIVAL_INSTINCT:
+			{
+				int point = sinSkill.UseSkill[i].Point - 1;
+				if(point >= 0 && point < 10)
+				{
+					sinChar->Life[1] += (short)Fighter_T5_Survival_Life[point];
+					sinChar->Life_Regen += (float)Fighter_T5_Survival_Regen[point];
+				}
+				break;
+			}
 
 			}
 		}
@@ -8021,6 +8036,7 @@ int cINVENTORY::CheckMoneyLimit(int Money)
 			break;
 
 		case 3:
+		case 4:
 			if((sinChar->Money + Money) <= MAX_MONEY)return TRUE;
 			break;
 

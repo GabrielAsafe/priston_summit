@@ -868,7 +868,7 @@ int HoOpening::KeyFilter(char *message)
 	if (message == NULL || hFocusWnd == NULL)
 		return FALSE;
 
-	if (strlen(message) >= (ACCOUNT_SIZE - 1) && message[ACCOUNT_SIZE - 2] != '/t')
+	if (strlen(message) >= (ACCOUNT_SIZE - 1) && message[ACCOUNT_SIZE - 2] != '\t')
 	{
 		message[ACCOUNT_SIZE - 2] = 0;
 		SetWindowText(hFocusWnd, 0);
@@ -878,7 +878,7 @@ int HoOpening::KeyFilter(char *message)
 
 	for (int index = 0; index < (int)strlen(message); index++)
 	{
-		if (message[index] == '/t')
+		if (message[index] == '\t')
 		{
 			message[index] = 0;
 			SetWindowText(hFocusWnd, 0);

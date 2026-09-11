@@ -1,4 +1,5 @@
 #include <cstring>
+#include <cstdio>
 #include "systems/network/protocol/server/opcodes.h"
 //#include "StdAfx.h"
 #include "systems/security/network/packet_filter/PacketFilter.h"
@@ -38,11 +39,33 @@ bool PacketFilter::IsSafeToProcess() const
 	{
 		TRANS_RECORD_DATAS* TransRecord = (TRANS_RECORD_DATAS*)m_Packet;
 
+		// R25_RECORD_DIAG_PACKET
+		{
+			FILE *r25fp = fopen("LOGS\\r25_record_persistence_diag.log", "a");
+			if(r25fp)
+			{
+				fprintf(
+					r25fp,
+					"[R25_RECORD][FILTER] len=%u count=%d total=%d "
+					"transSize=%d end=%d struct=%u dataCapacity=%u\n",
+					(unsigned)m_Length,
+					TransRecord->Count,
+					TransRecord->Total,
+					TransRecord->TransSize,
+					TransRecord->Count * TRANS_RECORD_LEN +
+						TransRecord->TransSize,
+					(unsigned)sizeof(TRANS_RECORD_DATA),
+					(unsigned)sizeof(TransRecord->szData)
+				);
+				fclose(r25fp);
+			}
+		}
+
 		if (TransRecord->Count < 0 || TransRecord->Count > 100 ||
 			TransRecord->TransSize < 0 || TransRecord->TransSize > sizeof(TransRecord->szData))
 			return false;
 
-		if (TransRecord->TransSize + (TransRecord->Count * TRANS_RECORD_LEN) >= sizeof(TRANS_RECORD_DATA))
+		if (TransRecord->TransSize + (TransRecord->Count * TRANS_RECORD_LEN) > sizeof(TRANS_RECORD_DATA))
 			return false;
 
 	}

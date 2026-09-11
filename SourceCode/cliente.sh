@@ -95,6 +95,8 @@ printf '  %s\n' "${FILES_TO_SEND[@]}"
 echo
 
 #scp -P "$PORT" "${FILES_TO_SEND[@]}" "$DEST"
+sh send_to_client.sh
+echo "mandei pro cliente bb"
 
 log_section "CLIENTE CONCLUÍDO"
 echo "Executável: $OUTPUT"

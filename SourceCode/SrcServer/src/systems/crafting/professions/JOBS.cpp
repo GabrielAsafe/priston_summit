@@ -16,7 +16,7 @@ DWORD GetServerTime();
 
 
 
-//ENVIA AS INFORMA��ES DE EXPERI�NCIA E NIVEL 
+//ENVIA AS INFORMAÇÕES DE EXPERIÊNCIA E NIVEL 
 void JOBS::SendJOBInfoToGame(rsPLAYINFO* Player)
 {
 	if (SQL::GetInstance()->IsConnected())
@@ -357,7 +357,7 @@ void JOBS::RecvJOBbuyToClient(rsPLAYINFO* Player, JOBS_PACK* Buy)
 }
 
 
-//RECEBE AS INFORMA��ES DO CLIENTE REFERENTE AO ITEM
+//RECEBE AS INFORMAÇÕES DO CLIENTE REFERENTE AO ITEM
 void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 {
 
@@ -1183,7 +1183,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 }
 
 
-//ADICIONA EXPERI�NCIA NA JOB
+//ADICIONA EXPERIÊNCIA NA JOB
 void JOBS::AddExpJOBS(rsPLAYINFO* Player, int valor)
 {
 	if (SQL::GetInstance()->IsConnected())
@@ -1201,7 +1201,7 @@ void JOBS::AddExpJOBS(rsPLAYINFO* Player, int valor)
 				SQL::GetInstance()->GetDataValue(5, &JOBUser_Exp);
 			}
 
-			// Calculo feito para saber se o usu�rio j� atingiu � experi�ncia necess�ria para evoluir o n�vel do passe de batalha
+			// Calculo feito para saber se o usuário já atingiu à experiência necessária para evoluir o nível do passe de batalha
 			JOBUser_Exp = JOBUser_Exp + valor;
 
 			if ((JOBUser_Exp >= 999) && (JOB_LVL < 20))

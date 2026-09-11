@@ -3,48 +3,48 @@
 char *szAppName="Priston Tale";
 
 
-char *mgRequestTrade = "Gï¿½ï¿½i yï¿½u cï¿½ï¿½u trao ï¿½ï¿½ï¿½i tï¿½ï¿½i %s";
-char *mgRequestTrade2 = "%s ï¿½aï¿½ ï¿½i quaï¿½ xa ï¿½ï¿½ï¿½ coï¿½ thï¿½ï¿½ trao ï¿½ï¿½ï¿½i";
+char *mgRequestTrade = "GýÒi yêu câÌu trao ðôÒi tõìi %s";
+char *mgRequestTrade2 = "%s ðaÞ ði quaì xa ðêÒ coì thêÒ trao ðôÒi";
 
-char *mgDiconnect = "Kï¿½ï¿½t nï¿½ï¿½i vï¿½ï¿½i Server biï¿½ ngï¿½ï¿½t";
-char *mgDiconnect1 = "Kï¿½ï¿½t nï¿½ï¿½i vï¿½ï¿½i Server biï¿½ ngï¿½ï¿½t (1)";
-char *mgDiconnect2 = "Kï¿½ï¿½t nï¿½ï¿½i vï¿½ï¿½i Server biï¿½ ngï¿½ï¿½t (2)";
-char *mgDiconnect3 = "Kï¿½ï¿½t nï¿½ï¿½i vï¿½ï¿½i Server biï¿½ ngï¿½ï¿½t (3)";
-char *mgDiconnect4 = "Kï¿½ï¿½t nï¿½ï¿½i vï¿½ï¿½i Server biï¿½ ngï¿½ï¿½t (4)";
+char *mgDiconnect = "Kêìt nôìi võìi Server biò ngãìt";
+char *mgDiconnect1 = "Kêìt nôìi võìi Server biò ngãìt (1)";
+char *mgDiconnect2 = "Kêìt nôìi võìi Server biò ngãìt (2)";
+char *mgDiconnect3 = "Kêìt nôìi võìi Server biò ngãìt (3)";
+char *mgDiconnect4 = "Kêìt nôìi võìi Server biò ngãìt (4)";
 
-char *mgCloseGame = "ï¿½ang thoaï¿½t khoï¿½i troï¿½ chï¿½i";
-char *mgCloseWindow = "Vui loï¿½ng ï¿½oï¿½ng cï¿½ï¿½a sï¿½ï¿½ naï¿½y laï¿½i  trï¿½ï¿½ï¿½c khi thoaï¿½t.";
-char *mgCloseBattle = "Khï¿½ng thï¿½ï¿½ thoaï¿½t khoï¿½i troï¿½ chï¿½i   khi ï¿½ang chiï¿½ï¿½n ï¿½ï¿½ï¿½u";
+char *mgCloseGame = "Ðang thoaìt khoÒi troÌ chõi";
+char *mgCloseWindow = "Vui loÌng ðoìng cýÒa sôÒ naÌy laòi  trýõìc khi thoaìt.";
+char *mgCloseBattle = "Không thêÒ thoaìt khoÒi troÌ chõi   khi ðang chiêìn ðâìu";
 
-char *mgRefuseWhisper = "Tin nhï¿½ï¿½n riï¿½ng ï¿½aï¿½ biï¿½ tï¿½ï¿½ chï¿½ï¿½i";
-char *mgWeightOver = "Khï¿½ng thï¿½ï¿½ mang thï¿½m ï¿½ï¿½ï¿½ï¿½c nï¿½ï¿½a ";
+char *mgRefuseWhisper = "Tin nhãìn riêng ðaÞ biò týÌ chôìi";
+char *mgWeightOver = "Không thêÒ mang thêm ðýõòc nýÞa ";
 
 char *mgYahoo = "Yes!";
-char *mgContinueChat = "%s : Tï¿½i noï¿½i nhiï¿½ï¿½u ï¿½ï¿½ï¿½n mï¿½ï¿½c cï¿½ï¿½ng caï¿½ lï¿½ï¿½ï¿½i laï¿½i rï¿½ï¿½i! WOW q^_^p";
-char *mgRecvItem = "  Baï¿½n ï¿½aï¿½ nhï¿½ï¿½n ï¿½ï¿½ï¿½ï¿½c moï¿½n ï¿½ï¿½ï¿½ ( %s )  ";
+char *mgContinueChat = "%s : Tôi noìi nhiêÌu ðêìn mýìc cýìng caÒ lýõÞi laòi rôÌi! WOW q^_^p";
+char *mgRecvItem = "  Baòn ðaÞ nhâòn ðýõòc moìn ðôÌ ( %s )  ";
 
-char *mgItemTimeOut = "Moï¿½n ï¿½ï¿½ï¿½ ï¿½aï¿½ biï¿½ xoaï¿½ ( %s ) vï¿½ï¿½ï¿½t quaï¿½ thï¿½ï¿½i haï¿½n sï¿½ï¿½ duï¿½ng cho pheï¿½p ";
-char *mgSOD_Clear = " Chuï¿½c mï¿½ï¿½ng! Baï¿½n ï¿½aï¿½ nhï¿½ï¿½n ï¿½ï¿½ï¿½ï¿½c giaï¿½i thï¿½ï¿½ï¿½ng( %d Vaï¿½ng) ";
+char *mgItemTimeOut = "Moìn ðôÌ ðaÞ biò xoaì ( %s ) výõòt quaì thõÌi haòn sýÒ duòng cho pheìp ";
+char *mgSOD_Clear = " Chuìc mýÌng! Baòn ðaÞ nhâòn ðýõòc giaÒi thýõÒng( %d VaÌng) ";
 
-char *mgBlessCrystal_01 = "  Giï¿½ï¿½i haï¿½n cho viï¿½ï¿½c triï¿½ï¿½u tï¿½ï¿½p cuï¿½a baï¿½n ï¿½aï¿½ hï¿½ï¿½t  ";
-char *mgBlessCrystal_02 = "   Baï¿½n chiï¿½ coï¿½ thï¿½ï¿½ triï¿½ï¿½u tï¿½ï¿½p mï¿½ï¿½i lï¿½ï¿½n mï¿½ï¿½t quaï¿½i vï¿½ï¿½t   ";
-char *mgBlessCrystal_03 = "   Baï¿½n khï¿½ng thï¿½ï¿½ sï¿½ï¿½ duï¿½ng viï¿½n ngoï¿½c naï¿½y  ";
+char *mgBlessCrystal_01 = "  Giõìi haòn cho viêòc triêòu tâòp cuÒa baòn ðaÞ hêìt  ";
+char *mgBlessCrystal_02 = "   Baòn chiÒ coì thêÒ triêòu tâòp môÞi lâÌn môòt quaìi vâòt   ";
+char *mgBlessCrystal_03 = "   Baòn không thêÒ sýÒ duòng viên ngoòc naÌy  ";
 
 
 
 char *g_lpBellatraTeamNameText[] = 
 {
-	"Thï¿½ï¿½ thaï¿½ch cuï¿½a Nï¿½ï¿½ï¿½c",
-	"Thï¿½ï¿½ thaï¿½ch cuï¿½a ï¿½ï¿½ï¿½t",
-	"Thï¿½ï¿½ thaï¿½ch cuï¿½a Gioï¿½ ",
-	"Thï¿½ï¿½ thaï¿½ch cuï¿½a Lï¿½ï¿½a",
-	"Tï¿½ï¿½ng Nhï¿½ï¿½t Quan",
-	"Tï¿½ï¿½ng Nguyï¿½ï¿½t Quang",
+	"ThýÒ thaìch cuÒa Nýõìc",
+	"ThýÒ thaìch cuÒa Ðâìt",
+	"ThýÒ thaìch cuÒa Gioì ",
+	"ThýÒ thaìch cuÒa LýÒa",
+	"TâÌng Nhâòt Quan",
+	"TâÌng Nguyêòt Quang",
 };
 
 char *g_lpBellatraResult_Text1 = "%s of";
 char *g_lpBellatraResult_Text2 = "%s and %s of";
 char *g_lpBellatraResult_Text3 = "Join team";
-char *g_lpBellatraResult_Text4 = "Chuyï¿½ï¿½n lï¿½n tï¿½ï¿½ng cao hï¿½n.";
+char *g_lpBellatraResult_Text4 = "ChuyêÒn lên tâÌng cao hõn.";
 
 

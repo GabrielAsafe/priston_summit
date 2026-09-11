@@ -14,8 +14,11 @@ docker/db/data/
 /SourceCode Summit Tale/Dependency/DirectXSDK
 
 *.o
-/todos os outros coisos da pasta
+
 /Summit Tale Client Full
+/bugfixes
+/design_work
+
 
 SourceCode/ccache
 SourceCode_rebase_20260824/

@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=94e82b15a3339028e7e37cb377c4d4c5837090b88e446372ab4a6ce82ef2e088
-output_sha256=94e82b15a3339028e7e37cb377c4d4c5837090b88e446372ab4a6ce82ef2e088
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BF645D5D1F94/stage072_uv_roundtrip/texture_overlay_client/field/lost/lost_j_judunjitab12.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

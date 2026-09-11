@@ -83,6 +83,20 @@ struct MECH_INFO{
 	int Metal_Golem_Defense[10];
 	int Metal_Golem_Life[10];
 	int Metal_Golem_UseMana[10];
+
+	// Summit Tier 5 - Mechanician
+	int Rupture_DamageBoost[10];
+	int Rupture_UseMana[10];
+	int Parasit_Shot_DamageBoost[10];
+	int Parasit_Shot_PoisonDuration[10];
+	int Parasit_Shot_PoisonDamagePercent[10];
+	int Parasit_Shot_UseMana[10];
+	int Hardening_Shield_DamageReduction[10];
+	int Hardening_Shield_AttackRateReduction[10];
+	int Hardening_Shield_Time[10];
+	int Hardening_Shield_UseMana[10];
+	int Magnetic_Discharge_DamageBoost[10];
+	int Magnetic_Discharge_UseMana[10];
 };
 
 struct FIGHTER_INFO{
@@ -153,17 +167,31 @@ struct FIGHTER_INFO{
 	int Cyclone_Strike_UseMana[10];
 
 	int Boost_Health_Life[10];
+
+	// Summit Tier 5 - Fighter
+	int Fighter_T5_Survival_Life[10];
+	int Fighter_T5_Survival_Regen[10];
+	int Fighter_T5_Seismic_Damage[10];
+	int Fighter_T5_Seismic_Area[10];
+	int Fighter_T5_Seismic_UseMana[10];
+	float Fighter_T5_Ruthless_HPDecrease[10];
+	int Fighter_T5_Ruthless_HitsBoost[10];
+	int Fighter_T5_Ruthless_DamageBoost[10];
+	int Fighter_T5_Ruthless_UseMana[10];
+	int Fighter_T5_Whirlwind_DamageBoost[10];
+	int Fighter_T5_Whirlwind_Duration[10];
+	int Fighter_T5_Whirlwind_MPDrain[10];
+	int Fighter_T5_Whirlwind_SPDrain[10];
 };
 
 struct PIKE_INFO{
 
 	int size, code;
 
-	
-	//int Pike_Wind_Damage[10][2];
+	int Pike_Wind_Throw_Height[10];
+	int Pike_Wind_Damage[10][2];
 	int Pike_Wind_DamagePercent[10];
 	int Pike_Wind_Push_Lenght[10];
-	int Pike_Wind_Throw_Height[10];
 	int Pike_Wind_UseMana[10];
 
 	int PlusIce[10];
@@ -175,8 +203,7 @@ struct PIKE_INFO{
 	int Jumping_Crash_Attack_Rating[10];
 	int Jumping_Crash_Damage[10];
 
-	
-	//int G_Pike_Damage[10][2];
+	int G_Pike_Damage[10][2];
 	int G_Pike_DamagePercent[10];
 	int G_Pike_Range[10];
 	int G_Pike_UseMana[10];
@@ -193,8 +220,7 @@ struct PIKE_INFO{
 	int Expansion_UseMana[10];
 	int Expansion_Damage[10];
 
-	
-	//int VenomSpear_Damage[10][2];
+	int VenomSpear_Damage[10][2];
 	int VenomSpear_DamagePercent[10];
 	int VenomSpear_Num[10];
 	int VenomSpear_Time[10];
@@ -208,11 +234,11 @@ struct PIKE_INFO{
 	int Vanish_UseMana[10];
 
 	int Critical_Mastery_Critical[10];
+    int Critical_Mastery_Power[10];
 
 	int Chain_Lance_Damage[10];
 	int Chain_Lance_UseMana[10];
 
-	
 	int Assassin_Eye_AddCritical[10];
 	int Assassin_Eye_M_SubCritical[10];
 	int Assassin_Eye_Time[10];
@@ -228,9 +254,20 @@ struct PIKE_INFO{
 	int Vague_UseMana[10];
 
 	int Shadow_Master_DamagePercent[10];
-	int Shadow_Master_AddHit[10];
 	int Shadow_Master_ShadowNum[10];
 	int Shadow_Master_UseMana[10];
+
+	// Summit Tier 5 - Pikeman
+	int Pike_T5_Ring_Duration[10];
+	int Pike_T5_Ring_UseMana[10];
+	int Pike_T5_Focus_MinAttackReduction[10];
+	int Pike_T5_Focus_MaxAttackIncrease[10];
+	int Pike_T5_Focus_UseMana[10];
+	int Pike_T5_Death_DamageBoost[10];
+	int Pike_T5_Death_AttackRateBoost[10];
+	int Pike_T5_Death_UseMana[10];
+	int Pike_T5_Twister_DamageBoost[10];
+	int Pike_T5_Twister_UseMana[10];
 };
 
 struct ARCHER_INFO{
@@ -249,8 +286,8 @@ struct ARCHER_INFO{
 	int Wind_Arrow_UseMana[10];
 
 	int Perfect_Aim_Attack_Rate[10];
-	//int Perfect_Aim_Damage[10];
 	int Perfect_Aim_DamagePercent[10];
+	int Perfect_Aim_Damage[10];
 	int Perfect_Aim_Damage_LV[10];
 	int Perfect_Aim_UseMana[10];
 
@@ -312,15 +349,30 @@ struct ARCHER_INFO{
 	int Force_Of_Nature_FalconAddDamage[10];
 	int Force_Of_Nature_Time[10];
 	int Force_Of_Nature_UseMana[10];
+
+	// Summit Tier 5 - Archer
+	int Archer_T5_Lethal_RangeAdd[10];
+	int Archer_T5_Lethal_CriticalRate[10];
+	int Archer_T5_Lethal_DamageBoost[10];
+	int Archer_T5_Lethal_UseMana[10];
+	int Archer_T5_Fierce_DamageBoost[10];
+	int Archer_T5_Fierce_CriticalDamageBoost[10];
+	int Archer_T5_Fierce_UseMana[10];
+	int Archer_T5_Roots_Duration[10];
+	int Archer_T5_Roots_UseMana[10];
+	int Archer_T5_Bombard_DamageBoost[10];
+	int Archer_T5_Bombard_Duration[10];
+	int Archer_T5_Bombard_MPDrain[10];
+	int Archer_T5_Bombard_SPDrain[10];
+	int Archer_T5_Bombard_UseMana[10];
 };
 
 struct KINA_INFO{
 
 	int size, code;
 
-	
 	int Sword_Blast_UseMana[10];
-	//int Sword_Blast_Damage[10][2];
+	int Sword_Blast_Damage[10][2];
 	int Sword_Blast_DamagePercent[10];
 	int Sword_Blast_ShootingRange[10];
 
@@ -334,7 +386,6 @@ struct KINA_INFO{
 	int D_Crash_Damage[10];
 	int D_Crash_Critical[10];
 
-	
 	int Holy_Valor_Damage[10];
 	int Holy_Valor_Time[10];
 	int Holy_Valor_Mana[10];
@@ -351,7 +402,6 @@ struct KINA_INFO{
 	int Drastic_Spirit_Time[10];
 	int Drastic_Spirit_Mana[10];
 
-	
 	int Sword_Mastery_DamagePercent[10];
 
 	int D_Inhalation_Life[10];
@@ -369,7 +419,6 @@ struct KINA_INFO{
 	int Grand_Cross_UndeadDamage[10];
 	int Grand_Cross_UseMana[10];
 
-	
 	int Divine_Piercing_DamagePercent[10];
 	int Divine_Piercing_AddHit[10];
 	int Divine_Piercing_AttackNum[10];
@@ -386,16 +435,29 @@ struct KINA_INFO{
 	int Sword_Of_Justice_DamagePercent[10];
 	int Sword_Of_Justice_Area[10];
 	int Sword_Of_Justice_UseMana[10];
+	// Summit Tier 5 - Knight
+	int Knight_T5_HolyConviction_UndeadBoost[10];
+	int Knight_T5_HolyConviction_Duration[10];
+	int Knight_T5_HolyConviction_UseMana[10];
+	int Knight_T5_DivineInquisition_DamageBoost[10];
+	int Knight_T5_DivineInquisition_Area[10];
+	int Knight_T5_DivineInquisition_UndeadDamage[10];
+	int Knight_T5_DivineInquisition_UseMana[10];
+	int Knight_T5_GloriousShield_DefenseBoost[10];
+	int Knight_T5_GloriousShield_Duration[10];
+	int Knight_T5_GloriousShield_UseMana[10];
+	int Knight_T5_DivineCross_DamageBoost[10];
+	int Knight_T5_DivineCross_UseMana[10];
 };
 
 struct ATA_INFO{
 
 	int size, code;
 
-	
 	int S_Strike_UseMana[10];
-	//int S_Strike_Damage[10][2];
+	int S_Strike_Damage[10][2];
 	int S_Strike_DamagePercent[10];
+  //  int S_Strike_Stun[10];
 
 	int Farina_UseMana[10];
 	int Farina_Speed[10];
@@ -404,10 +466,9 @@ struct ATA_INFO{
 	int T_Mastery_Damage[10];
 
 	int V_Spear_UseMana[10];
-	//int V_Spear_Damage[10][2];
-	int V_Spear_DamagePercent[10];
+	int V_Spear_Damage[10][2];
+    int V_Spear_DamagePercent[10];
 
-	
 	int Windy_Attack_Rating[10];
 	int Windy_Time[10];
 	int Windy_Mana[10];
@@ -419,11 +480,10 @@ struct ATA_INFO{
 	int Soul_Sucker_Absorb[10];
 	int Soul_Sucker_Mana[10];
 
-	//int Fire_Javelin_Damage[10][2];
+	int Fire_Javelin_Damage[10][2];
 	int Fire_Javelin_DamagePercent[10];
 	int Fire_Javelin_Mana[10];
 
-	
 	int Split_Javelin_AttackNum[10];
 	int Split_Javelin_Damage[10];
 	int Split_Javelin_AttackRate[10];
@@ -433,14 +493,13 @@ struct ATA_INFO{
 	int T_Of_Valhalla_Time[10];
 	int T_Of_Valhalla_UseMana[10];
 
-	//int Lightning_Javelin_Damage[10][2];
+	int Lightning_Javelin_Damage[10][2];
 	int Lightning_Javelin_DamagePercent[10];
 	int Lightning_Javelin_UseMana[10];
 
 	int Storm_Javelin_Damage[10];
 	int Storm_Javelin_UseMana[10];
 
-	
 	int Hall_Of_Valhalla_AddEvation[10];
 	int Hall_Of_Valhalla_Time[10];
 	int Hall_Of_Valhalla_UseMana[10];
@@ -459,22 +518,34 @@ struct ATA_INFO{
 	int Vengeance_AddCritical[10];
 	int Vengeance_Range[10];
 	int Vengeance_UseMana[10];
+	// Summit Tier 5 - Atalanta
+	int Atalanta_T5_SummonTiger_AttackPower[10];
+	int Atalanta_T5_SummonTiger_AttackRating[10];
+	int Atalanta_T5_SummonTiger_Life[10];
+	int Atalanta_T5_SummonTiger_Duration[10];
+	int Atalanta_T5_SummonTiger_UseMana[10];
+	int Atalanta_T5_GoldenApple_Speed[10];
+	int Atalanta_T5_GoldenApple_Evade[10];
+	int Atalanta_T5_Plague_DamageBoost[10];
+	int Atalanta_T5_Plague_Targets[10];
+	int Atalanta_T5_Plague_PoisonDuration[10];
+	int Atalanta_T5_Plague_PoisonDamagePercent[10];
+	int Atalanta_T5_Plague_UseMana[10];
+	int Atalanta_T5_Combo_DamageBoost[10];
+	int Atalanta_T5_Combo_UseMana[10];
 };
 
 struct SACER_INFO{
 
 	int size, code;
 
-	
 	int Healing_UseMana[10];
 	int Healing_Heal[10][2];
 
 	int HolyBolt_UseMana[10];
-	//int HolyBolt_Damage[10];
-	int HolyBolt_DamagePercent[10];
+    int HolyBolt_DamagePercent[10];
 
 	int M_Spark_UseMana[10];
-	//int M_Spark_Damage[10];
 	int M_Spark_Damage_Percent[10];
 	int M_Spark_Num[10];
 
@@ -482,16 +553,12 @@ struct SACER_INFO{
 	int HolyMind_DecDamage[10];
 	int HolyMind_Time[10];
 
-	
 	float Meditation_Regen[10];
 
-
-//	int Divine_Lightning_Damage[10];
 	int Divine_Lightning_Damage_Percent[10];
 	int Divine_Lightning_Num[10];
 	int Divine_Lightning_Mana[10];
 
-    //int Holy_Reflection_Life[10];
 	int Holy_Reflection_Return_Damage[10];
 	int Holy_Reflection_Time[10];
 	int Holy_Reflection_Mana[10];
@@ -500,8 +567,6 @@ struct SACER_INFO{
 	int Grand_Healing_Range[10];
 	int Grand_Healing_Mana[10];
 
-	
-	//int Vigor_Ball_Damage[10];
 	int Vigor_Ball_Damage_Percent[10];
 	int Vigor_Ball_UseMana[10];
 
@@ -517,8 +582,6 @@ struct SACER_INFO{
 	int Virtual_Life_Time[10];
 	int Virtual_Life_UseMana[10];
 
-	
-	//int Glacial_Spike_Damage[10];
 	int Glacial_Spike_Damage_Percent[10];
 	int Glacial_Spike_Area[10];
 	int Glacial_Spike_UseMana[10];
@@ -529,7 +592,6 @@ struct SACER_INFO{
 	int Regeneration_Field_Area[10];
 	int Regeneration_Field_UseMana[10];
 
-//	int Chain_Lightning_Damage[10];
 	int Chain_Lightning_Damage_Percent[10];
 	int Chain_Lightning_Num[10];
 	int Chain_Lightning_Range[10];
@@ -541,35 +603,51 @@ struct SACER_INFO{
 	int Summon_Muspell_BlockPercent[10];
 	int Summon_Muspell_Time[10];
 	int Summon_Muspell_UseMana[10];
+
+	// Summit Tier 5 - Priestess
+	int Priestess_T5_IceElemental_AttackPower[10];
+	int Priestess_T5_IceElemental_AttackRating[10];
+	int Priestess_T5_IceElemental_Life[10];
+	int Priestess_T5_IceElemental_Duration[10];
+	int Priestess_T5_IceElemental_UseMana[10];
+	int Priestess_T5_LightningSurge_DamageBoost[10];
+	int Priestess_T5_LightningSurge_Area[10];
+	int Priestess_T5_LightningSurge_ChargedArea[10];
+	int Priestess_T5_LightningSurge_UseMana[10];
+	int Priestess_T5_HeavenlyLight_AttackRateReduction[10];
+	int Priestess_T5_HeavenlyLight_Duration[10];
+	int Priestess_T5_HeavenlyLight_Area[10];
+	int Priestess_T5_HeavenlyLight_UseMana[10];
+	int Priestess_T5_Consecration_DefenseBoost[10];
+	int Priestess_T5_Consecration_Absorption[10];
+	int Priestess_T5_Consecration_UseMana[10];
 };
 
 struct MAGE_INFO{
 
 	int size, code;
 
-	
 	int Agony_UseMana[10];
 	int Agony_ConvLife[10];
-	int Agony_RecoveryMana[10];
+    int Agony_RecoveryMana[10];
 
 	int FireBolt_UseMana[10];
-	//int FireBolt_Damage[10];
-	int FireBolt_DamagePercent[10];
+	int FireBolt_Damage[10][2];
+    int FireBolt_DamagePercent[10];
 
 	int Zenith_UseMana[10];
 	int Zenith_Element[10];
 	int Zenith_Time[10];
 
 	int FireBall_UseMana[10];
-	//int FireBall_Damage[10];
+	int FireBall_Damage[10][2];
 	int FireBall_DamagePercent[10];
 	int FireBall_Range[10];
 	int FireBall_Area[10];
 
-	
 	int Mental_Mastery_Mana[10];
 
-	//int Watornado_Damage[10];
+	int Watornado_Damage[10][2];
 	int Watornado_DamagePercent[10];
 	int Watornado_Range[10];
 	int Watornado_Mana[10];
@@ -582,17 +660,16 @@ struct MAGE_INFO{
 	int Enchant_Weapon_Time[10];
 	int Enchant_Weapon_Mana[10];
 
-	//int Dead_Ray_Damage[10];
+	int Dead_Ray_Damage[10][2];
 	int Dead_Ray_Damage_Percent[10];
 	int Dead_Ray_Range[10];
 	int Dead_Ray_Mana[10];
 
-	
 	int Energy_Shield_DecDamage[10];
 	int Energy_Shield_Time[10];
 	int Energy_Shield_UseMana[10];
 
-	//int Diastrophism_Damage[10];
+	int Diastrophism_Damage[10][2];
 	int Diastrophism_Damage_Percent[10];
 	int Diastrophism_Area[10];
 	int Diastrophism_UseMana[10];
@@ -609,13 +686,12 @@ struct MAGE_INFO{
 	int Dancing_Sword_Time[10];
 	int Dancing_Sword_UseMana[10];
 
-	
 	int Fire_Elemental_Damage[10][2];
 	int Fire_Elemental_Hit[10];
 	int Fire_Elemental_Life[10];
 	int Fire_Elemental_UseMana[10];
 
-	//int Flame_Wave_FireDamage[10];
+	int Flame_Wave_FireDamage[10][2];
 	int Flame_Wave_FireDamage_Percent[10];
 	int Flame_Wave_Area[10];
 	int Flame_Wave_UseMana[10];
@@ -626,10 +702,28 @@ struct MAGE_INFO{
 	int Distortion_Time[10];
 	int Distortion_UseMana[10];
 
-//	int Meteo_Damage[10];
+	int Meteo_Damage[10][2];
 	int Meteo_Damage_Percent[10];
 	int Meteo_Area[10];
 	int Meteo_UseMana[10];
+
+	// Summit Tier 5 - Magician
+	int Magician_T5_WizardTrance_BlockBoost[10];
+	int Magician_T5_WizardTrance_AttackRateReduction[10];
+	int Magician_T5_WizardTrance_Duration[10];
+	int Magician_T5_WizardTrance_UseMana[10];
+	int Magician_T5_StoneSkin_ImmortalWindow[10];
+	int Magician_T5_StoneSkin_Duration[10];
+	int Magician_T5_StoneSkin_RunSpeedReduction[10];
+	int Magician_T5_StoneSkin_UseMana[10];
+	int Magician_T5_RedRay_DamageBoost[10];
+	int Magician_T5_RedRay_AddRange[10];
+	int Magician_T5_RedRay_UseMana[10];
+	int Magician_T5_Cataclysm_DamageBoost[10];
+	int Magician_T5_Cataclysm_Duration[10];
+	int Magician_T5_Cataclysm_MPDrain[10];
+	int Magician_T5_Cataclysm_SPDrain[10];
+	int Magician_T5_Cataclysm_UseMana[10];
 };
 
 

@@ -1,5 +1,5 @@
-char *szEventGirl_Captor = " Chuï¿½c mï¿½ï¿½ng! Baï¿½n ï¿½aï¿½ tiï¿½m     ï¿½ï¿½ï¿½ï¿½c Event Girl ";
-char *szBadEventGirl_Captor = " ï¿½ï¿½y laï¿½ Event Girl giaï¿½. Chuï¿½c baï¿½n may mï¿½ï¿½n lï¿½ï¿½n sau ";
+char *szEventGirl_Captor = " Chuìc mıÌng! Baòn ğaŞ tiÌm     ğıõòc Event Girl ";
+char *szBadEventGirl_Captor = " Ğây laÌ Event Girl giaÒ. Chuìc baòn may mãìn lâÌn sau ";
 
 
 

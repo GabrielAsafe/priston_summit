@@ -6,6 +6,7 @@
 #include "systems/ui/map/full_zoom/FullZoomMap.h" 
 #include "systems/combat/pvp/war_mode/WarMode.h"
 #include "systems/gameplay/npc/ui/NPCinfo.h"
+#include "systems/combat/skills/client/SkillSub.h"
 
 #ifdef _XTRAP_GUARD_4_CLIENT 
 #include "XTrapSrcD5/ClientExt/XTrap4ClientExt1.h"	
@@ -125,6 +126,9 @@ void MainSub()
 
 	cSkill.CheckSkillMastery();
 	CheckContinueSkill();
+	SummitWhirlwindTick();
+	SummitArcherBombardmentTick();
+	SummitMagicianCataclysmTick();
 
 
 }
@@ -1948,25 +1952,25 @@ void sinTestDrawText()
 		{
 			if(CheatHelpOpenFlag)
 			{
-				wsprintf(strBuff, "(P) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ 10% ");
+				wsprintf(strBuff, "(P) ´ÙÀ½°æÇèÄ¡±îÁö 10% ");
 				dsTextLineOut( 100, 200, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(L) ï¿½ï¿½ 200000 ");
+				wsprintf(strBuff, "(L) µ· 200000 ");
 				dsTextLineOut( 100, 230, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(B) LV 65 ï¿½ï¿½ 300000");
+				wsprintf(strBuff, "(B) LV 65 µ· 300000");
 				dsTextLineOut( 100, 260, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(Y) ï¿½Í½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ");
+				wsprintf(strBuff, "(Y) ¹Í½ºÃÄ ¾ÆÀÌÅÛ ½ÇÇà ");
 				dsTextLineOut( 100, 290, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(U) ï¿½ï¿½ï¿½ï¿½  ");
+				wsprintf(strBuff, "(U) Àü¾÷  ");
 				dsTextLineOut( 100, 320, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(F) ï¿½ï¿½ï¿½Ãµï¿½ Up  ");
+				wsprintf(strBuff, "(F) ¼÷·Ãµµ Up  ");
 				dsTextLineOut( 100, 350, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(N) ï¿½ï¿½ï¿½Ãµï¿½ Down  ");
+				wsprintf(strBuff, "(N) ¼÷·Ãµµ Down  ");
 				dsTextLineOut( 100, 380, strBuff, lstrlen(strBuff));
 			}
 		}
@@ -2153,6 +2157,9 @@ int sinSkillMaster(int ChangeJob)
 		break;
 		case 3:
 		ChangeJobSkillPlus = 17;
+		break;
+		case CHARACTER_RANK5:
+		ChangeJobSkillPlus = 21;
 		break;
 	}
 

@@ -483,7 +483,7 @@ void clanMENU_INIT(int setN)
 
 	#ifdef USE_YAHEL
 
-		Interface_clanmenu.SetUserData(UserAccount, sinChar->szName, "ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½",
+		Interface_clanmenu.SetUserData(UserAccount, sinChar->szName, "¿©¿Õ¹ú¼­¹ö",
 								   #else
 		Interface_clanmenu.SetUserData(UserAccount, sinChar->szName, szConnServerName,
 								   #endif
@@ -518,7 +518,7 @@ int isDELETE_character(char *charName)
 
 #ifdef USE_YAHEL
 
-	Interface_clanmenu.SetUserData(UserAccount, charName, "ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½",
+	Interface_clanmenu.SetUserData(UserAccount, charName, "¿©¿Õ¹ú¼­¹ö",
 							   #else
 	Interface_clanmenu.SetUserData(UserAccount, charName, szConnServerName,
 							   #endif
@@ -667,7 +667,7 @@ void CLAN_MENU::CLANmenu_INIT()
 
 #ifdef USE_YAHEL
 
-	SetUserData(UserAccount, sinChar->szName, "ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½",
+	SetUserData(UserAccount, sinChar->szName, "¿©¿Õ¹ú¼­¹ö",
 			#else
 	SetUserData(UserAccount, sinChar->szName, szConnServerName,
 			#endif
@@ -682,9 +682,9 @@ void CLAN_MENU::CLANmenu_INIT()
 
 
 
-	strcpy(szConnServerName, "ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½");
-	SetUserData("Red", "ï¿½ï¿½ï¿½ï¿½", szConnServerName, 500000, 100000);
-	SetUserData("ccc", "ï¿½ï¿½ï¿½ï¿½4", szConnServerName, 500000, 100000);
+	strcpy(szConnServerName, "Æë±Ï¼­¹ö");
+	SetUserData("Red", "»¡°­", szConnServerName, 500000, 100000);
+	SetUserData("ccc", "»¡°­4", szConnServerName, 500000, 100000);
 
 
 
@@ -1576,7 +1576,7 @@ int CLAN_MENU::Draw()
 
 		char buf[256];
 
-		wsprintf(buf, "bug :  %d ================ : (myPos:%d ) (Å¬ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½È£%s,%d)  cldata.money %d, cldata.nCurrentClanWon_Num %d ", C_menuN, cldata.myPosition, cldata.ClanMark, cldata.intClanMark, cldata.money, cldata.nCurrentClanWon_Num);
+		wsprintf(buf, "bug :  %d ================ : (myPos:%d ) (Å¬·£¸¶Å©¹øÈ£%s,%d)  cldata.money %d, cldata.nCurrentClanWon_Num %d ", C_menuN, cldata.myPosition, cldata.ClanMark, cldata.intClanMark, cldata.money, cldata.nCurrentClanWon_Num);
 		Draw_C_Text(buf, 0, 0, 0);
 
 
@@ -1609,7 +1609,7 @@ int CLAN_MENU::Draw()
 		for(i2 = 0; i2 < 10; i2++)
 		{
 			char buf[256];
-			wsprintf(buf, "up ï¿½ï¿½Å©ï¿½ï¿½È£ [%d]:%d (ï¿½ï¿½ï¿½ï¿½ %d)", i2, ClanMark[i2], g_ClanCount);
+			wsprintf(buf, "up ¸¶Å©¹øÈ£ [%d]:%d (ÃÖÁ¾ %d)", i2, ClanMark[i2], g_ClanCount);
 			Draw_C_Text(buf, cinfoX2, cinfoY2, 0);
 			cinfoY2 += 16;
 		}
@@ -1684,7 +1684,7 @@ int CLAN_MENU::Draw()
 	extern POINT	pCursorPos;
 
 
-	wsprintf(szBuf, "C_menuN : %d  ,x = %d, y = %d , ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : %d Å¬ï¿½ï¿½ ï¿½Ì¸ï¿½ : %s,myposition=%d",
+	wsprintf(szBuf, "C_menuN : %d  ,x = %d, y = %d , ÁøÇà °úÁ¤ : %d Å¬·£ ÀÌ¸§ : %s,myposition=%d",
 			 C_menuN, pCursorPos.x, pCursorPos.y, nCheckDownLoad, cldata.name, cldata.myPosition);
 	dsTextLineOut(destdc, 100, 0, szBuf, lstrlen(szBuf));
 
@@ -2027,7 +2027,7 @@ void CLAN_MENU::Draw_C_Text(char *str, int x, int y, int sw = 0)
 
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '/n')
+		if(strbuf[i] == '\n')
 		{
 			strbuf[i] = 0;
 			i = 0;
@@ -2433,7 +2433,7 @@ void Draw_Text(int x, int y, char *str)
 					   CLIP_DEFAULT_PRECIS,
 					   DEFAULT_QUALITY,
 					   VARIABLE_PITCH,
-					   "ï¿½ï¿½ï¿½ï¿½Ã¼");
+					   "±¼¸²Ã¼");
 
 	hOldFont = SelectObject(hdc, hFont);
 	char strbuf[1024];
@@ -2449,7 +2449,7 @@ void Draw_Text(int x, int y, char *str)
 	{
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '/n')
+		if(strbuf[i] == '\n')
 		{
 			strbuf[i] = 0;
 			i = 0;
@@ -2513,7 +2513,7 @@ void Text_Out(HDC hdc, int x, int y, char *str)
 					   CLIP_DEFAULT_PRECIS,
 					   DEFAULT_QUALITY,
 					   VARIABLE_PITCH,
-					   "ï¿½ï¿½ï¿½ï¿½Ã¼");
+					   "±¼¸²Ã¼");
 
 	hOldFont = SelectObject(hdc, hFont);
 	char strbuf[1024];
@@ -2529,7 +2529,7 @@ void Text_Out(HDC hdc, int x, int y, char *str)
 	{
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '/n')
+		if(strbuf[i] == '\n')
 		{
 			strbuf[i] = 0;
 			i = 0;
@@ -3087,7 +3087,7 @@ int LoadClanMessage()
 	DWORD dwFileSize;
 	DWORD dwRead = 0;
 	char c;
-	c = '/n';
+	c = '\n';
 	hFile = CreateFile(CLANMESSAGE_DIR, GENERIC_READ, FILE_SHARE_READ,
 					   NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
@@ -3365,7 +3365,7 @@ int ReadMessage(char *save, char *savename, char *readbuf)
 	{
 		if((readbuf[nCount] == 0x5c))
 		{
-			szReadData[nCount1] = '/n';
+			szReadData[nCount1] = '\n';
 			nCount1++;
 			nCount += 3;
 			if(readbuf[nCount] == 0x0a)
@@ -3402,7 +3402,7 @@ void MsgXsu_Ysu(CLANMSG* clanmsg, int *xsu, int *ysu)
 	{
 		strbuf[cntX] = clanmsg->szMsg[nCount];
 
-		if(clanmsg->szMsg[nCount] == '/n')
+		if(clanmsg->szMsg[nCount] == '\n')
 		{
 			strbuf[cntX] = 0;
 			if(cntX > maxXsu)
@@ -3488,7 +3488,7 @@ void DebugMessage(char* msg, ...)
 	hFile = CreateFile("LOGS\\ClanDebug.txt", GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
 					   NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-	wsprintf(szDebugMsg, "%d.%dï¿½ï¿½%dï¿½ï¿½%dï¿½ï¿½ : %s/r/n", g_nCount++,
+	wsprintf(szDebugMsg, "%d.%d³â%d¿ù%dÀÏ : %s\r\n", g_nCount++,
 			 SystemTime.wYear, SystemTime.wMonth, SystemTime.wDay, buff);
 
 
@@ -3500,7 +3500,7 @@ void DebugMessage(char* msg, ...)
 		if(lstrlen(buff) > DEBUG_MSG_MAX - 2)
 		{
 			SetFilePointer(hFile, 0, NULL, FILE_END);
-			char szMsg[256] = "../nï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ï¿½ï¿½î¼­ ï¿½ß¶ï¿½ï¿½ï¿½";
+			char szMsg[256] = "..\n¸Þ½ÃÁö°¡ ³Ê¹«±æ¾î¼­ Àß¶úÀ½";
 			WriteFile(hFile, szMsg, lstrlen(szMsg), &dwWrite, NULL);
 		}
 

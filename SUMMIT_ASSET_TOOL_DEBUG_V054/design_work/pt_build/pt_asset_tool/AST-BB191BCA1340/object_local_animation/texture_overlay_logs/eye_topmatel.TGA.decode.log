@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=3176895cb7337c0e84cd049ba6bc50196f7fb8d0753effd0749273547d68b2f9
-output_sha256=b86b7c8f70b610507362bdf02e0b600174091ce2466f9a87637f8f131089731f
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/texture_overlay_client/field/castle/eye_topmatel.TGA
-format=TGA_PRISTON_HEADER18_KEEP_00_16
-client_modified=False
-tga_decode_check=PASS

@@ -91,6 +91,7 @@ struct PACKET_BUFFS
     int NovatoLevel;
     int NovatoADD;
     int NovatoRegen;
+    int AutoJobPromotion;
     int SetBoss1Bonus1;
     int SetBoss1Bonus2;
     int SetBoss2Bonus1;

@@ -126,7 +126,7 @@ void cHELLSGATE::StartEvent()
 	dwTick = 0;
 	dwTickWaiting = GetCurrentTime();
 
-	//SendMessageToPlayers("> O Hell's Gate est� aberto.", true);
+	//SendMessageToPlayers("> O Hell's Gate está aberto.", true);
 }
 
 void cHELLSGATE::SpawnBoss()

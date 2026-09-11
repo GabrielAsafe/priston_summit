@@ -4534,7 +4534,7 @@ int DrawEachPlayer(float fx, float fy, int SizeMode)
 			if (MatEachBox >= 0)
 			{
 
-				dsDrawTexImage(MatEachBox, MidX - (w >> 1), MidY - (h >> 1), w, h, 255, 0);//Background da anima��o do npc
+				dsDrawTexImage(MatEachBox, MidX - (w >> 1), MidY - (h >> 1), w, h, 255, 0);//Background da animação do npc
 
 				if (!SizeMode)
 				{
@@ -4945,10 +4945,10 @@ int Record_ClinetLogFile(char *szMessage)
 
 	wsprintf(szBuff, "%d-%d (%d:%d:%d) - %s", st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond, szMessage);
 	len = lstrlen(szBuff);
-	if(szBuff[len - 1] != '/n')
+	if(szBuff[len - 1] != '\n')
 	{
-		szBuff[len] = '/r';
-		szBuff[len + 1] = '/n';
+		szBuff[len] = '\r';
+		szBuff[len + 1] = '\n';
 		len += 2;
 	}
 

@@ -22,6 +22,7 @@ extern int PLayerPvP;
 extern BOOL bPlayerPvP;
 
 extern int NovatoLevel;
+extern int AutoJobPromotion;
 extern int SetBoss1Bonus1;
 extern int SetBoss1Bonus2;
 extern int SetBoss2Bonus1;

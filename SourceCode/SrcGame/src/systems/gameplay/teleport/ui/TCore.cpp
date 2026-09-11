@@ -43,7 +43,7 @@ const char* InfoMapa[38] = {
 	"EM BREVE",
 };
 const char* FieldNum[38][4] = {
-	//N�   Field	Level   Nome
+	//Nº   Field	Level   Nome
 	{ "0","20",		"0",	"Estrada dos Ventos"},//ok
 	{ "1","19",		"0",	"Vale Tranquilo"},//ok
 	{ "2","17",		"0",	"Floresta dos Esp\355ritos"},//ok

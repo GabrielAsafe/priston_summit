@@ -1,0 +1,1518 @@
+--- a/SrcServer/src/core/server/legacy_runtime/DllServer.cpp	2026-09-11 04:42:24.000000000 +0000
++++ b/SrcServer/src/core/server/legacy_runtime/DllServer.cpp	2026-09-11 05:15:43.430394259 +0000
+@@ -850,6 +850,192 @@
+ 	return TRUE;
+ }
+ 
++static BOOL GetSQLiteLocalAccountInitial(const char *userID, char *outInitial)
++{
++	if(!userID || !userID[0] || !outInitial)
++		return FALSE;
++
++	char initial = userID[0];
++	if(initial >= 'a' && initial <= 'z')
++		initial = (char)(initial - 'a' + 'A');
++	if(initial < 'A' || initial > 'Z')
++		return FALSE;
++
++	*outInitial = initial;
++	return TRUE;
++}
++
++static BOOL RollbackAndCloseSQLiteLocalSession(const std::shared_ptr<SQLConnection> &db)
++{
++	if(!db)
++		return FALSE;
++
++	db->RollbackTransaction();
++	db->Close();
++	return FALSE;
++}
++
++/*
++ * Claim the AccountDB row only after the local/free eligibility checks have
++ * succeeded.  The supplied Database.dll proves the historical session write:
++ * StartDay/EditDay, ServerName, inuse='1', SNo=<session guid>, RNo=NULL.
++ * BEGIN IMMEDIATE keeps the eligibility read and claim atomic across server
++ * threads/processes sharing summit.sqlite3.
++ */
++static BOOL ClaimSQLiteLocalSession(
++	const std::shared_ptr<SQLConnection> &db,
++	char accountInitial,
++	char *userID,
++	char *sessionGuid)
++{
++	if(!db || !userID || !sessionGuid || !sessionGuid[0])
++		return FALSE;
++
++	char query[512];
++	wsprintfA(
++		query,
++		"UPDATE %cGameUser "
++		"SET StartDay=datetime('now','localtime'), EditDay=datetime('now','localtime'), "
++		"RNo=NULL, ServerName=?, inuse='1', SNo=? "
++		"WHERE userid=?",
++		accountInitial);
++
++	char *serverName = rsServerConfig.szServerName;
++	BOOL prepared = db->Prepare(query);
++	if(prepared)
++		prepared = db->BindInputParameter(serverName, 1, PARAMTYPE_String);
++	if(prepared)
++		prepared = db->BindInputParameter(sessionGuid, 2, PARAMTYPE_String);
++	if(prepared)
++		prepared = db->BindInputParameter(userID, 3, PARAMTYPE_String);
++	return prepared && db->Execute(FALSE);
++}
++
++/*
++ * Local/free logout counterpart to ClaimSQLiteLocalSession.
++ * It handles only rows that carry the exact local session GUID/server pair;
++ * anything else remains owned by Database.dll so paid/PC-room semantics are
++ * not guessed here.
++ */
++static BOOL TrySQLiteLocalLogout(char *userID, char *sessionGuid)
++{
++	char initial = 0;
++	if(!GetSQLiteLocalAccountInitial(userID, &initial) || !sessionGuid || !sessionGuid[0])
++		return FALSE;
++
++	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_AccountDB);
++	if(!db || !db->Open())
++		return FALSE;
++	if(!db->BeginTransaction())
++	{
++		db->Close();
++		return FALSE;
++	}
++
++	char query[512];
++	wsprintfA(
++		query,
++		"SELECT GPCode,UsePeriod,inuse,RNo,BNum,Channel,SNo,ServerName "
++		"FROM %cGameUser WHERE userid=? LIMIT 1",
++		initial);
++
++	BOOL prepared = db->Prepare(query);
++	if(prepared)
++		prepared = db->BindInputParameter(userID, 1, PARAMTYPE_String);
++	if(!prepared || !db->Execute())
++		return RollbackAndCloseSQLiteLocalSession(db);
++
++	char gpCode[64] = { 0 };
++	char inUse[16] = { 0 };
++	char channel[64] = { 0 };
++	char storedGuid[128] = { 0 };
++	char storedServer[128] = { 0 };
++	int usePeriod = 0;
++	int pcRNo = 0;
++	int billingNumber = 0;
++
++	BOOL rowOK =
++		db->GetData(gpCode, sizeof(gpCode), 1, PARAMTYPE_String) &&
++		db->GetData(&usePeriod, 0, 2, PARAMTYPE_Integer) &&
++		db->GetData(inUse, sizeof(inUse), 3, PARAMTYPE_String) &&
++		db->GetData(&pcRNo, 0, 4, PARAMTYPE_Integer) &&
++		db->GetData(&billingNumber, 0, 5, PARAMTYPE_Integer) &&
++		db->GetData(channel, sizeof(channel), 6, PARAMTYPE_String) &&
++		db->GetData(storedGuid, sizeof(storedGuid), 7, PARAMTYPE_String) &&
++		db->GetData(storedServer, sizeof(storedServer), 8, PARAMTYPE_String);
++
++	if(!rowOK || !IsSQLiteLocalZeroValue(gpCode) || usePeriod != 0 ||
++		strcmp(inUse, "1") != 0 || pcRNo != 0 || billingNumber != 0 ||
++		!IsSQLiteLocalZeroValue(channel) || strcmp(storedGuid, sessionGuid) != 0 ||
++		strcmp(storedServer, rsServerConfig.szServerName) != 0)
++	{
++		return RollbackAndCloseSQLiteLocalSession(db);
++	}
++
++	wsprintfA(
++		query,
++		"UPDATE %cGameUser "
++		"SET LastDay=datetime('now','localtime'), inuse='0', RNo=NULL, SNo=NULL "
++		"WHERE userid=? AND ServerName=?",
++		initial);
++
++	prepared = db->Prepare(query);
++	if(prepared)
++		prepared = db->BindInputParameter(userID, 1, PARAMTYPE_String);
++	if(prepared)
++		prepared = db->BindInputParameter(rsServerConfig.szServerName, 2, PARAMTYPE_String);
++	if(!prepared || !db->Execute(FALSE))
++		return RollbackAndCloseSQLiteLocalSession(db);
++
++	if(!db->CommitTransaction())
++		return RollbackAndCloseSQLiteLocalSession(db);
++	db->Close();
++	return TRUE;
++}
++
++/*
++ * Clear only stale sessions that match the local/free signature introduced
++ * above.  This replaces the intent of the optional SetAllGameUser startup
++ * cleanup without touching paid/PC-room rows.
++ */
++static BOOL ResetSQLiteLocalSessionsForServer()
++{
++	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_AccountDB);
++	if(!db || !db->Open())
++		return FALSE;
++	if(!db->BeginTransaction())
++	{
++		db->Close();
++		return FALSE;
++	}
++
++	for(char initial = 'A'; initial <= 'Z'; ++initial)
++	{
++		char query[768];
++		wsprintfA(
++			query,
++			"UPDATE %cGameUser "
++			"SET LastDay=datetime('now','localtime'), inuse='0', RNo=NULL, SNo=NULL "
++			"WHERE ServerName=? AND inuse='1' AND SNo IS NOT NULL AND SNo<>'' "
++			"AND (GPCode IS NULL OR GPCode='' OR GPCode='0') "
++			"AND COALESCE(UsePeriod,0)=0 AND COALESCE(BNum,0)=0 "
++			"AND (Channel IS NULL OR Channel='' OR Channel='0') "
++			"AND (RNo IS NULL OR RNo=0)",
++			initial);
++
++		BOOL prepared = db->Prepare(query);
++		if(prepared)
++			prepared = db->BindInputParameter(rsServerConfig.szServerName, 1, PARAMTYPE_String);
++		if(!prepared || !db->Execute(FALSE))
++			return RollbackAndCloseSQLiteLocalSession(db);
++	}
++
++	if(!db->CommitTransaction())
++		return RollbackAndCloseSQLiteLocalSession(db);
++	db->Close();
++	return TRUE;
++}
++
+ /*
+  * SQLite local-login compatibility path.
+  *
+@@ -873,10 +1059,8 @@
+ 	if(!lpszPID || !lpszPID[0] || !lpszPWD || !outResult)
+ 		return FALSE;
+ 
+-	char initial = lpszPID[0];
+-	if(initial >= 'a' && initial <= 'z')
+-		initial = (char)(initial - 'a' + 'A');
+-	if(initial < 'A' || initial > 'Z')
++	char initial = 0;
++	if(!GetSQLiteLocalAccountInitial(lpszPID, &initial))
+ 		return FALSE;
+ 
+ 	char query[384];
+@@ -889,15 +1073,17 @@
+ 	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_AccountDB);
+ 	if(!db || !db->Open())
+ 		return FALSE;
++	if(!db->BeginTransaction())
++	{
++		db->Close();
++		return FALSE;
++	}
+ 
+ 	BOOL prepared = db->Prepare(query);
+ 	if(prepared)
+ 		prepared = db->BindInputParameter(lpszPID, 1, PARAMTYPE_String);
+ 	if(!prepared || !db->Execute())
+-	{
+-		db->Close();
+-		return FALSE;
+-	}
++		return RollbackAndCloseSQLiteLocalSession(db);
+ 
+ 	char storedPassword[128] = { 0 };
+ 	char gpCode[64] = { 0 };
+@@ -921,35 +1107,38 @@
+ 		db->GetData(&pcRNo, 0, 8, PARAMTYPE_Integer) &&
+ 		db->GetData(&billingNumber, 0, 9, PARAMTYPE_Integer) &&
+ 		db->GetData(channel, sizeof(channel), 10, PARAMTYPE_String);
+-	db->Close();
+-
+ 	if(!rowOK)
+-		return FALSE;
++		return RollbackAndCloseSQLiteLocalSession(db);
+ 
+ 	/* Password/collation behavior of the historical SQL DLL is not proven.
+ 	 * A mismatch therefore falls through to the DLL rather than inventing a
+ 	 * new failure code or case-sensitivity rule. */
+ 	if(strcmp(storedPassword, lpszPWD) != 0)
+-		return FALSE;
++		return RollbackAndCloseSQLiteLocalSession(db);
+ 
+ 	if(!IsSQLiteLocalZeroValue(gpCode) || usePeriod != 0 ||
+ 		!IsSQLiteLocalZeroValue(inUse) || !IsSQLiteLocalZeroValue(blockChk) ||
+ 		!IsSQLiteLocalZeroValue(delChk) || pcRNo != 0 || billingNumber != 0 ||
+ 		!IsSQLiteLocalZeroValue(channel))
+ 	{
+-		return FALSE;
++		return RollbackAndCloseSQLiteLocalSession(db);
+ 	}
+ 
+ 	time_t disuseDay = 0;
+ 	if(!ParseSQLiteLocalAccountTime(disuseDayText, &disuseDay))
+-		return FALSE;
++		return RollbackAndCloseSQLiteLocalSession(db);
+ 	/* Do not bypass any historical expiration policy locally.  Expired rows
+ 	 * remain fallback-only until the Database.dll return-code contract is
+ 	 * reconstructed completely. */
+ 	if(disuseDay != 0 && disuseDay < time(NULL))
+-		return FALSE;
++		return RollbackAndCloseSQLiteLocalSession(db);
+ 	if(!MakeSQLiteLocalSessionGuid(szGuid))
+-		return FALSE;
++		return RollbackAndCloseSQLiteLocalSession(db);
++	if(!ClaimSQLiteLocalSession(db, initial, lpszPID, szGuid))
++		return RollbackAndCloseSQLiteLocalSession(db);
++	if(!db->CommitTransaction())
++		return RollbackAndCloseSQLiteLocalSession(db);
++	db->Close();
+ 
+ 	if(lpszGPCode)
+ 		lpszGPCode[0] = 0;
+@@ -1039,13 +1228,16 @@
+ 
+ int	bSql_ServerExit()
+ {
++	BOOL localResult = ResetSQLiteLocalSessionsForServer();
++	BOOL dllResult = FALSE;
++
+ 	if(BillSql.ServerExit)
+ 	{
+ 		BillSql.ServerExit();
+-		return TRUE;
++		dllResult = TRUE;
+ 	}
+ 
+-	return FALSE;
++	return localResult || dllResult;
+ }
+ 
+ 
+@@ -1062,6 +1254,9 @@
+ 			BillSql.SetAllGameUser();
+ 	}
+ 
++	/* Recover stale local/free sessions left by an unclean previous exit. */
++	ResetSQLiteLocalSessionsForServer();
++
+ 	/* SQLite now provides the local/free SQLLogon path.  Keep the historical
+ 	 * LOAD_DLL_SQL dispatch active even when Database.dll is absent; every
+ 	 * remaining DLL operation is already pointer-guarded and bSql_LogOn itself
+@@ -1318,18 +1513,17 @@
+ 				break;
+ 
+ 			case BILLING_SQL_LOGOUT:
++				EnterCriticalSection(&cSqlSection);
++				if(hDebugWnd) PostMessage(hDebugWnd, SWM_DISPDEBUG, 1000 + logSqlData.dwRecCode, dwPlayServTime);
+ 
+-				if(BillSql.SQLLogout)
++				if(!TrySQLiteLocalLogout(logSqlData.szUserID, logSqlData.szGuid) && BillSql.SQLLogout)
+ 				{
+-					EnterCriticalSection(&cSqlSection);
+-					if(hDebugWnd) PostMessage(hDebugWnd, SWM_DISPDEBUG, 1000 + logSqlData.dwRecCode, dwPlayServTime);
+-
+ 					BillSql.SQLLogout(logSqlData.szUserID, logSqlData.szCharName, logSqlData.szIP, logSqlData.szGPCode,
+ 						logSqlData.DisuseDay, logSqlData.UsePeriod, logSqlData.szGuid, logSqlData.PC_RNo);
+-
+-					if(hDebugWnd) PostMessage(hDebugWnd, SWM_DISPDEBUG, 0, dwPlayServTime);
+-					LeaveCriticalSection(&cSqlSection);
+ 				}
++
++				if(hDebugWnd) PostMessage(hDebugWnd, SWM_DISPDEBUG, 0, dwPlayServTime);
++				LeaveCriticalSection(&cSqlSection);
+ 				break;
+ 
+ 			case BILLING_SQL_EVENT_LOGOUT:
+--- /dev/null	2026-09-11 05:09:56.203835715 +0000
++++ b/validate_sqlite_local_session.py	2026-09-11 05:16:30.168636063 +0000
+@@ -0,0 +1,208 @@
++#!/usr/bin/env python3
++"""Validate the R19 SQLite local/free session lifecycle.
++
++The target is deliberately narrow: preserve the session state proved by the
++supplied Database.dll for accounts already eligible for the local/free login
++path, while leaving billing/PC-room accounts untouched.
++"""
++
++from __future__ import annotations
++
++import sqlite3
++import tempfile
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parent
++MIGRATIONS = ROOT / "Database" / "migrations"
++DLLSERVER = ROOT / "SrcServer" / "src" / "core" / "server" / "legacy_runtime" / "DllServer.cpp"
++
++
++def migrate(conn: sqlite3.Connection) -> None:
++    for path in sorted(MIGRATIONS.glob("[0-9][0-9][0-9]_*.sql")):
++        conn.executescript(path.read_text(encoding="utf-8"))
++
++
++def required_defaults(conn: sqlite3.Connection, table: str) -> dict[str, object]:
++    values: dict[str, object] = {}
++    for _, name, coltype, notnull, default, pk in conn.execute(f'PRAGMA table_info("{table}")'):
++        if notnull and default is None and not pk:
++            values[name] = 0 if "INT" in (coltype or "").upper() else "0"
++    return values
++
++
++def insert_account(conn: sqlite3.Connection, userid: str, password: str, **overrides: object) -> None:
++    table = f"AccountDB__{userid[0].upper()}GameUser"
++    values = required_defaults(conn, table)
++    values.update(
++        userid=userid,
++        Passwd=password,
++        GPCode="",
++        DisuseDay="2030-01-02 03:04:05",
++        UsePeriod=0,
++        inuse="0",
++        BlockChk="0",
++        DelChk="0",
++        RNo=0,
++        BNum=0,
++        Channel="",
++        ServerName=None,
++        SNo=None,
++    )
++    values.update(overrides)
++    cols = list(values)
++    conn.execute(
++        f'INSERT INTO "{table}" ({",".join(f"[{c}]" for c in cols)}) '
++        f'VALUES ({",".join("?" for _ in cols)})',
++        [values[c] for c in cols],
++    )
++
++
++def claim(conn: sqlite3.Connection, userid: str, guid: str, server: str) -> bool:
++    table = f"AccountDB__{userid[0].upper()}GameUser"
++    conn.execute("BEGIN IMMEDIATE")
++    row = conn.execute(
++        f'SELECT GPCode,UsePeriod,inuse,BlockChk,DelChk,RNo,BNum,Channel '
++        f'FROM "{table}" WHERE userid=? LIMIT 1',
++        (userid,),
++    ).fetchone()
++    if row is None:
++        conn.rollback()
++        return False
++    gp, period, inuse, block, delete, rno, bnum, channel = row
++    zero = lambda value: value is None or str(value) in {"", "0"}
++    if not (
++        zero(gp)
++        and int(period or 0) == 0
++        and zero(inuse)
++        and zero(block)
++        and zero(delete)
++        and int(rno or 0) == 0
++        and int(bnum or 0) == 0
++        and zero(channel)
++    ):
++        conn.rollback()
++        return False
++    conn.execute(
++        f'UPDATE "{table}" SET StartDay=datetime("now","localtime"), '
++        f'EditDay=datetime("now","localtime"), RNo=NULL, ServerName=?, inuse="1", SNo=? '
++        f'WHERE userid=?',
++        (server, guid, userid),
++    )
++    conn.commit()
++    return True
++
++
++def logout(conn: sqlite3.Connection, userid: str, guid: str, server: str) -> bool:
++    table = f"AccountDB__{userid[0].upper()}GameUser"
++    conn.execute("BEGIN IMMEDIATE")
++    row = conn.execute(
++        f'SELECT GPCode,UsePeriod,inuse,RNo,BNum,Channel,SNo,ServerName '
++        f'FROM "{table}" WHERE userid=? LIMIT 1',
++        (userid,),
++    ).fetchone()
++    if row is None:
++        conn.rollback()
++        return False
++    gp, period, inuse, rno, bnum, channel, stored_guid, stored_server = row
++    zero = lambda value: value is None or str(value) in {"", "0"}
++    if not (
++        zero(gp)
++        and int(period or 0) == 0
++        and str(inuse) == "1"
++        and int(rno or 0) == 0
++        and int(bnum or 0) == 0
++        and zero(channel)
++        and stored_guid == guid
++        and stored_server == server
++    ):
++        conn.rollback()
++        return False
++    conn.execute(
++        f'UPDATE "{table}" SET LastDay=datetime("now","localtime"), '
++        f'inuse="0", RNo=NULL, SNo=NULL WHERE userid=? AND ServerName=?',
++        (userid, server),
++    )
++    conn.commit()
++    return True
++
++
++def reset_server(conn: sqlite3.Connection, server: str) -> None:
++    conn.execute("BEGIN IMMEDIATE")
++    for initial in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
++        conn.execute(
++            f'UPDATE "AccountDB__{initial}GameUser" '
++            f'SET LastDay=datetime("now","localtime"), inuse="0", RNo=NULL, SNo=NULL '
++            f'WHERE ServerName=? AND inuse="1" AND SNo IS NOT NULL AND SNo<>"" '
++            f'AND (GPCode IS NULL OR GPCode="" OR GPCode="0") '
++            f'AND COALESCE(UsePeriod,0)=0 AND COALESCE(BNum,0)=0 '
++            f'AND (Channel IS NULL OR Channel="" OR Channel="0") '
++            f'AND (RNo IS NULL OR RNo=0)',
++            (server,),
++        )
++    conn.commit()
++
++
++def row(conn: sqlite3.Connection, userid: str):
++    table = f"AccountDB__{userid[0].upper()}GameUser"
++    return conn.execute(
++        f'SELECT inuse,ServerName,SNo,RNo,StartDay,EditDay,LastDay,GPCode,UsePeriod,BNum,Channel '
++        f'FROM "{table}" WHERE userid=? LIMIT 1',
++        (userid,),
++    ).fetchone()
++
++
++def main() -> int:
++    with tempfile.TemporaryDirectory() as tmp:
++        conn = sqlite3.connect(Path(tmp) / "summit.sqlite3", isolation_level=None)
++        migrate(conn)
++
++        insert_account(conn, "SimpleUser", "Secret")
++        insert_account(conn, "PaidUser", "Secret", GPCode="PAID", inuse="1", ServerName="GameServer", SNo="paid-guid")
++        insert_account(conn, "OtherServer", "Secret", inuse="1", ServerName="Other", SNo="other-guid", RNo=None)
++        conn.commit()
++
++        assert claim(conn, "SimpleUser", "local-guid-1", "GameServer")
++        claimed = row(conn, "SimpleUser")
++        assert claimed[0] == "1" and claimed[1] == "GameServer" and claimed[2] == "local-guid-1"
++        assert claimed[3] is None and claimed[4] and claimed[5]
++        assert not claim(conn, "SimpleUser", "local-guid-2", "GameServer"), "duplicate local claim must be rejected"
++        assert not logout(conn, "SimpleUser", "wrong-guid", "GameServer"), "wrong session GUID must not clear local session"
++        assert logout(conn, "SimpleUser", "local-guid-1", "GameServer")
++        released = row(conn, "SimpleUser")
++        assert released[0] == "0" and released[2] is None and released[3] is None and released[6]
++
++        assert claim(conn, "SimpleUser", "local-guid-3", "GameServer")
++        reset_server(conn, "GameServer")
++        reset_local = row(conn, "SimpleUser")
++        paid = row(conn, "PaidUser")
++        other = row(conn, "OtherServer")
++        assert reset_local[0] == "0" and reset_local[2] is None, "stale local/free session must be reset"
++        assert paid[0] == "1" and paid[2] == "paid-guid", "paid/billing row must not be reset"
++        assert other[0] == "1" and other[2] == "other-guid", "other server session must not be reset"
++        conn.close()
++
++    source = DLLSERVER.read_text(encoding="latin1")
++    required = (
++        "ClaimSQLiteLocalSession",
++        "TrySQLiteLocalLogout",
++        "ResetSQLiteLocalSessionsForServer",
++        "BeginTransaction()",
++        "StartDay=datetime('now','localtime')",
++        "inuse='1', SNo=?",
++        "LastDay=datetime('now','localtime'), inuse='0', RNo=NULL, SNo=NULL",
++        "strcmp(storedGuid, sessionGuid) != 0",
++        "if(!TrySQLiteLocalLogout(logSqlData.szUserID, logSqlData.szGuid) && BillSql.SQLLogout)",
++    )
++    missing = [token for token in required if token not in source]
++    if missing:
++        raise AssertionError(f"missing R19 local-session source tokens: {missing}")
++
++    print(
++        "SQLite local session PASS: atomic free-session claim/release, duplicate claim rejection, "
++        "GUID/server ownership check, stale local reset, paid/other-server rows preserved"
++    )
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+--- /dev/null	2026-09-11 05:09:56.203835715 +0000
++++ b/RETOMADA_SQLITE_R19.md	2026-09-11 05:17:39.125507477 +0000
+@@ -0,0 +1,46 @@
++# RETOMADA — Summit SQLite WIP R19
++
++Date: 2026-09-11
++
++Read `RETOMADA_COMPLETA_R19.md` first. R6.1 remains the only compile/link/runtime-confirmed baseline.
++
++## R19 objective
++
++Continue dismantling `Database.dll` by responsibility, without changing gameplay: move the proven **free/local session lifecycle** behind the existing SQLite compatibility path while retaining billing/PC-room fallback.
++
++## What changed
++
++`SrcServer/src/core/server/legacy_runtime/DllServer.cpp` now implements:
++
++- atomic free/local session claim during `TrySQLiteLocalLogOn`;
++- `TrySQLiteLocalLogout` local-first for matching free/local sessions;
++- narrow stale-session cleanup for the current server at startup and final exit.
++
++The writes match SQL recovered from the supplied DLL:
++
++- login: `StartDay/EditDay`, `ServerName`, `inuse='1'`, `SNo`, `RNo=NULL`;
++- logout: `LastDay`, `inuse='0'`, `RNo=NULL`, `SNo=NULL`.
++
++The login read + claim is wrapped in `BEGIN IMMEDIATE`, closing the R18 duplicate-local-session race.
++
++## Important boundary
++
++R19 still does **not** treat paid/PC-room accounts as local. `SQLLogon`, `SQLLogout`, `PCUse`, `PCSearchReserv`, `PCRNoReservProduct` and the gameplay meaning of `Bl_RNo` remain legacy/fallback responsibilities where applicable.
++
++`ServerDown` is not used to clear accounts: binary evidence shows it is a server-down record path and the source calls it at the beginning of the shutdown countdown. Local session reset is performed at startup and final `ServerExit` instead.
++
++## Validation
++
++New validator:
++
++`validate_sqlite_local_session.py`
++
++It proves claim/release ownership, duplicate-claim rejection, stale cleanup, and preservation of paid/other-server rows. All R18 validators continue to pass in this environment.
++
++## Next priority
++
++1. Windows compile/link and runtime proof for R19 local login/logout/reconnect.
++2. Decide the simplified replacement for the gameplay entitlement currently represented by `Bl_RNo` before removing PC-room functions.
++3. Classify/migrate or intentionally disable optional audit sinks (`CharLog`, item/trade/post logs, `WithSOD2RecordRanks`).
++4. Resolve `clanChipChange.asp` only after its exact contract is recovered.
++5. Remove Database.dll/ODBC/WinInet only after zero required callers and target link/runtime tests.
+--- /dev/null	2026-09-11 05:09:56.203835715 +0000
++++ b/RETOMADA_COMPLETA_R19.md	2026-09-11 05:18:29.643750018 +0000
+@@ -0,0 +1,331 @@
++# RETOMADA COMPLETA — Summit / SQLite WIP R19
++
++Data: 2026-09-11
++
++Este é o ficheiro principal para retomar o projeto a partir do R19. Ele substitui o R18 como resumo operacional, mas **R6.1 continua sendo a baseline funcional**.
++
++## 1. Regra zero
++
++- `port_rebuild_r6_1.zip` é a última versão comprovada pelo utilizador em compile/link/runtime.
++- R6.1 = oracle de regressão.
++- R19 = WIP experimental de persistência/web/session/billing cleanup.
++- Não promover R19 por causa de testes estáticos.
++- Não corrigir loaders, collision, rendering, ownership, UB ou gameplay não relacionado durante esta migração.
++
++Hash histórico R6.1:
++
++`8d793bb604cfa910cc0677332e22615692cd77eac69c4e87f2c2c27b39eb1c1d`
++
++Fontes históricas:
++
++- `pre_refactor.zip` = verdade funcional antiga;
++- `final_07.zip` = verdade estrutural desejada;
++- R6.1 = reconstrução confirmada funcional.
++
++## 2. Objetivo arquitetural
++
++```text
++cliente -- protocolo jogo --> servidor
++                              |
++                              v
++                     Database/summit.sqlite3
++
++backend futuro -------------> mesmo SQLite
++```
++
++- cliente nunca abre SQLite;
++- sem PHP/ASP/ASPX como camada obrigatória;
++- servidor acessa SQLite diretamente;
++- backend futuro pode partilhar a DB respeitando WAL/transações/migrations.
++
++## 3. Decisões de escopo
++
++- não importar dados históricos SQL Server; DB limpa é aceitável;
++- depois de runtime estável, entregar queries comprovadas para criar `user`, `GM`, `admin`;
++- depois entregar mapa/guia prático da DB;
++- alvo futuro pode ser multiplayer simples, não MMO comercial completo;
++- exportação de personagens é futura;
++- billing/MMO só pode ser removido depois de identificar e preservar/decidir efeitos reais de gameplay.
++
++## 4. Estado SQLite
++
++- ficheiro: `Database/summit.sqlite3`;
++- WAL;
++- foreign keys ON;
++- synchronous NORMAL;
++- busy timeout 5000 ms;
++- FULLMUTEX;
++- API legacy `SQLConnection` + singleton `SQL` preservada sobre backend SQLite;
++- transações `BEGIN IMMEDIATE`, commit/rollback e rollback defensivo em Close;
++- bootstrap via `PRAGMA user_version`.
++
++Schema atual:
++
++- migrations `001..029`;
++- `user_version=29`;
++- 332 user tables;
++- 326/326 tabelas recuperadas dos 21 `.bak` representadas;
++- 5.568 colunas catalogadas dos backups;
++- seis tabelas adicionais são source-derived, não backup-proven.
++
++R19 **não altera schema**.
++
++## 5. Web/HTTP
++
++Continua como R18/R17:
++
++- único HTTP funcional conhecido no servidor: `clanChipChange.asp`;
++- é transferência de liderança de clan;
++- permanece bloqueado por falta do contrato completo de códigos/writes/logs;
++- não aproximar;
++- WinInet não pode ser removido enquanto esse caminho continuar ativo.
++
++## 6. Login antes do R19
++
++R18 aceitava localmente apenas o subconjunto free comprovado em `AccountDB__<Inicial>GameUser`:
++
++- password exata;
++- GPCode zero/empty;
++- `UsePeriod=0`;
++- `inuse=0`;
++- sem block/delete;
++- `RNo=0`;
++- `BNum=0`;
++- Channel zero/empty;
++- `DisuseDay` não expirado.
++
++Casos paid/PC-room/ambíguos continuavam fallback para `Database.dll`. Sem DLL, falhavam fechados.
++
++Lacuna R18: o login local lia `inuse=0`, mas não gravava o ownership da sessão na DB.
++
++## 7. Database.dll — evidência acumulada
++
++DLL fornecida pelo utilizador:
++
++SHA-256 `c9fd54668cba6e00fa760bda541587635f51c962ab6ef2b19179d0651e7220a7`
++
++- 101 exports;
++- 37 símbolos pedidos pelo bridge servidor;
++- 21/37 presentes;
++- mistura auth/session, PC-room/accounting, gameplay persistence e logging.
++
++R18 já migrou local-first:
++
++- `ClanMoney`;
++- `SiegeMoney`;
++- `SiegeMoneyTax`.
++
++Consultar:
++
++- `docs/DATABASE_DLL_GAMEPLAY_AUDIT_R18.md`;
++- `migration/DATABASE_DLL_DEPENDENCIES_R19.tsv`.
++
++## 8. Billing/PC-room que ainda afeta gameplay
++
++`Bl_RNo > 0` está provado como gameplay state:
++
++- +20 EXP solo;
++- +20 EXP party;
++- +50 no acumulador de drop;
++- ativa PCBang Pet.
++
++Também continuam relevantes:
++
++- `DisuseDay`, `dwPeriodTime`, `dwPeriodTime2` podem expirar/desligar a sessão;
++- `PCUse` e `PCSearchReserv` atualizam/consultam estado em runtime;
++- `/time` usa `PCRNoReservProduct` quando `Bl_RNo>0`.
++
++Logo, R19 **não** apaga nem zera estes campos.
++
++## 9. R19 — contrato de sessão recuperado
++
++A DLL contém os writes históricos essenciais.
++
++Claim/login free:
++
++```sql
++update %s set StartDay = '%s', EditDay ='%s', RNo=NULL,
++ServerName ='%s', inuse='1', SNo='%s' where userid = '%s'
++```
++
++Release/logout:
++
++```sql
++UPDATE %s SET LastDay = '%s', inuse='0', RNo=NULL, SNo=NULL
++WHERE userid = '%s' and ServerName='%s'
++```
++
++Isto prova que `inuse`, `ServerName`, `SNo` e os timestamps pertencem ao lifecycle da sessão e podem ser migrados sem reconstruir charging.
++
++## 10. R19 — login local passa a reclamar a sessão atomicamente
++
++`TrySQLiteLocalLogOn` agora:
++
++1. abre `AccountDB`;
++2. inicia `BEGIN IMMEDIATE`;
++3. lê/valida o mesmo subset free do R18;
++4. cria GUID;
++5. grava `StartDay`, `EditDay`, `ServerName`, `inuse='1'`, `SNo`, `RNo=NULL`;
++6. commit;
++7. só então devolve sucesso.
++
++Consequência: um segundo processo/servidor partilhando o mesmo SQLite não consegue observar e reclamar simultaneamente o mesmo `inuse=0` enquanto o primeiro commit está pendente.
++
++## 11. R19 — logout local-first
++
++Novo helper `TrySQLiteLocalLogout`.
++
++Ele só considera a sessão local se a linha provar:
++
++- assinatura free/local;
++- `inuse='1'`;
++- `SNo` igual ao GUID enfileirado no logout;
++- `ServerName` igual ao servidor atual.
++
++Nesse caso grava transacionalmente:
++
++- `LastDay=datetime('now','localtime')`;
++- `inuse='0'`;
++- `RNo=NULL`;
++- `SNo=NULL`.
++
++Se a linha não for claramente local/free, o `Database.dll!SQLLogout` continua fallback.
++
++## 12. R19 — stale-session cleanup
++
++Novo `ResetSQLiteLocalSessionsForServer`.
++
++Limpa apenas linhas que correspondam simultaneamente a:
++
++- server atual;
++- `inuse='1'`;
++- `SNo` não vazio;
++- GPCode zero/empty;
++- `UsePeriod=0`;
++- `BNum=0`;
++- Channel zero/empty;
++- `RNo` zero/null.
++
++Executa:
++
++- no arranque, após `BillSql.Init()` / optional `SetAllGameUser`;
++- no `bSql_ServerExit()` final.
++
++Não executa em `bSql_ServerDown()`: o source chama ServerDown no início do countdown, e a DLL observada só mostra bookkeeping/insert de server-down, não o release por conta.
++
++## 13. Validação R19
++
++Novo:
++
++- `validate_sqlite_local_session.py`.
++
++Ele prova:
++
++- claim da conta free;
++- `inuse=1` + server + GUID + timestamps;
++- segundo claim recusado;
++- GUID errado não liberta sessão;
++- logout correto limpa a sessão;
++- stale reset limpa local/free;
++- paid row preservada;
++- sessão de outro servidor preservada.
++
++Todos os validators R18 continuam PASS neste ambiente. Raw: `docs/R19_VALIDATION_RAW.txt`.
++
++## 14. O que ainda não foi provado
++
++Nenhum validator substitui:
++
++- compile target Windows;
++- link target Windows;
++- startup real;
++- login free end-to-end;
++- segundo login simultâneo real;
++- disconnect/reconnect;
++- crash/restart stale-session recovery;
++- character create/load/save;
++- inventory/warehouse;
++- quests;
++- coin shop;
++- clan runtime;
++- ClanMoney/SiegeMoney;
++- Bless Castle tax;
++- SoD2;
++- restart persistence;
++- WAL concurrent backend;
++- billing/PC-room replacement;
++- final removal ODBC/Database.dll/WinInet.
++
++R6.1 continua oracle.
++
++## 15. Próximos blockers por prioridade
++
++### A. Windows parity para R19 session lifecycle
++
++Testar especificamente:
++
++- login free;
++- segundo login da mesma conta;
++- disconnect/reconnect;
++- logout queue;
++- normal shutdown;
++- kill/crash + restart;
++- account row antes/depois (`inuse`, `SNo`, `ServerName`, timestamps).
++
++### B. Entitlement substituto para `Bl_RNo`
++
++Não reconstruir billing comercial inteiro. Decidir explicitamente se o servidor simplificado:
++
++- mantém um entitlement/perk local equivalente;
++- ativa o bônus globalmente;
++- remove os bônus como mudança de design aprovada.
++
++Só depois retirar `PCUse`, `PCSearchReserv`, `PCRNoReservProduct` e provider/accounting relacionado.
++
++### C. Logs opcionais
++
++`CharLog`, `CharRecordLog`, item/trade/post logs e `WithSOD2RecordRanks` continuam sem prova de serem gates de gameplay. Decidir SQLite vs disable após runtime.
++
++### D. `clanChipChange.asp`
++
++Ainda precisa de códigos 1..6/100 e writes/logs exatos antes de migração.
++
++### E. Dependencies finais
++
++Quando zero responsabilidades necessárias dependerem delas:
++
++1. retirar WinInet quando `clanChipChange` for resolvido;
++2. retirar Database.dll;
++3. retirar ODBC;
++4. target link/runtime após cada remoção.
++
++## 16. Artefactos R19
++
++- source completa R19;
++- `migration/sqlite_wip_r18_to_r19.patch`;
++- `migration/SQLITE_WIP_R19_CHANGED_FILES.tsv`;
++- `migration/DATABASE_DLL_DEPENDENCIES_R19.tsv`;
++- `docs/SQLITE_LOCAL_SESSION_AUDIT_R19.md`;
++- `docs/SQLITE_WIP_R19_VALIDATION.md`;
++- `docs/R19_VALIDATION_RAW.txt`;
++- `validate_sqlite_local_session.py`;
++- `CONHECIMENTO_CONSOLIDADO_CHAT_R19.md`;
++- `RETOMADA_SQLITE_R19.md`;
++- este `RETOMADA_COMPLETA_R19.md`.
++
++## 17. Regras para próxima sessão
++
++1. Ler este ficheiro antes de editar.
++2. R6.1 continua baseline funcional.
++3. R19 deve ser congelado depois de empacotado; próximo trabalho = R20.
++4. Não importar dados históricos.
++5. Não apagar billing/PC-room antes de decidir/preservar os efeitos de `Bl_RNo`.
++6. Não mudar os bônus de `Bl_RNo` sem decisão explícita/parity test.
++7. Não aproximar `clanChipChange`.
++8. Não adicionar nova TU servidor além da `SQLiteConnection.cpp` já autorizada.
++9. Repetir todos os validators depois de cada delta.
++10. Só depois de Windows runtime estável criar o guia final da DB e queries user/GM/admin.
++
++## 18. Estado em uma linha
++
++**R19 mantém schema v29/332 e todo o R18, acrescentando ownership de sessão free/local transacional no login, logout SQLite local-first e cleanup stale seletivo, enquanto deixa paid/PC-room e todos os efeitos de `Bl_RNo` deliberadamente no domínio legacy até uma decisão explícita de produto/runtime.**
+--- /dev/null	2026-09-11 05:09:56.203835715 +0000
++++ b/CONHECIMENTO_CONSOLIDADO_CHAT_R19.md	2026-09-11 05:19:50.048198415 +0000
+@@ -0,0 +1,298 @@
++# CONHECIMENTO CONSOLIDADO DA CONVERSA — Summit SQLite R19
++
++Data: 2026-09-11
++
++Este documento funciona como ledger das conclusões técnicas acumuladas durante toda a conversa. Ele complementa `RETOMADA_COMPLETA_R19.md` e preserva o ledger histórico dos checkpoints anteriores. O objetivo é impedir que uma nova sessão repita diagnósticos já resolvidos ou reintroduza regressões conhecidas.
++
++## A. Fontes de verdade e estratégia
++
++- `pre_refactor` foi declarado funcional pelo utilizador e é a verdade de comportamento antiga.
++- `final_07` é a verdade estrutural do porte/refactor desejado.
++- R6.1 foi reconstruído para preservar a estrutura do porte com comportamento do `pre_refactor` e foi confirmado pelo utilizador como compilando, linkando e funcionando para cliente e servidor.
++- R6.1 deve permanecer congelado como regression oracle enquanto SQLite estiver WIP.
++- A migração deve trocar uma grande coisa de cada vez; não misturar correções de bugs legacy.
++
++## B. Regressões que ensinaram a não reescrever gameplay/loaders
++
++O primeiro porte introduziu problemas reais de linkage, loader, motion-cache, collision, rendering, preprocessador e ownership. Exemplos já diagnosticados:
++
++- extern dentro de anonymous namespace gerando símbolos errados;
++- provider `rsPutItemChecked` perdido;
++- `GUIDEHELP_CPP` em ordem incorreta;
++- loader dereferenciando pattern após falha;
++- canonicalização/checksum `.inx` perdida;
++- motion cache limitado a 30 apesar de storage 512;
++- validações novas em SMD/material/OBJ incompatíveis com metadata legacy stale;
++- mudanças em collision e rendering;
++- `#pragma once` mudando reinclusão legacy.
++
++Conclusão: na migração DB, preservar comportamento e interfaces, não aproveitar para “melhorar” esses subsistemas.
++
++## C. SQLite como compatibilidade atrás das APIs existentes
++
++A escolha que evitou reescrever o servidor inteiro foi manter:
++
++- `SQLConnection`;
++- singleton `SQL`;
++
++mas trocar o backend para SQLite e usar rewriter para SQL Server compatível.
++
++Isso reduz área de regressão e permite migrar callers especiais apenas onde T-SQL/control-flow ou contratos posicionais exigem.
++
++## D. Uma DB física, muitos bancos lógicos
++
++Um só `Database/summit.sqlite3`, com nomes físicos `<LogicalDB>__<Table>`.
++
++Isso é necessário porque existem colisões reais como `GameMasters` em domínios diferentes.
++
++O singleton sem `EDatabaseID` precisa de mapa explícito. O fallback para ServerDB foi removido porque era perigoso.
++
++## E. SQL Server não pode ser traduzido mecanicamente em tudo
++
++Descobertas importantes:
++
++- `GETDATE()` vs UTC do SQLite;
++- `IDENTITY` e `INSERT VALUES` positional;
++- defaults/constraints podem não ser recuperados pelo catálogo simples;
++- `SELECT *` transforma ordem de colunas em contrato;
++- `INSERT OR IGNORE/REPLACE` só equivale com constraints adequadas;
++- control-flow T-SQL genérico deve ser rejeitado, não interpretado superficialmente.
++
++## F. Backups `.bak` foram a melhor fonte de schema
++
++Os SQL scripts recebidos inicialmente eram incompletos e muitas migrations eram apenas `CREATE DATABASE`/ALTER.
++
++Ler o catálogo real dos backups foi decisivo:
++
++- 21 backups;
++- 326 tabelas;
++- 5.568 colunas;
++- ordem/tipo/nullability/IDENTITY recuperados.
++
++Isso corrigiu várias inferências anteriores e confirmou outras.
++
++## G. AccountDB
++
++A migration AccountDB foi comparada com o backup e bateu 69/69 tabelas e ordem de colunas.
++
++O login local usa tabelas por inicial (`AGameUser`, etc.) e colunas nomeadas. Só o caso free comprovado é autorizado localmente.
++
++## H. Billing
++
++O schema existe, mas a máquina histórica não está provada.
++
++BillingDB tem 43 tabelas, incluindo routing `<inicial>CHANNEL` e providers Excite/NetMarble/NTTBilling, mas os dados fornecidos não oferecem exemplos suficientes para reproduzir charging/expiry/PC-room.
++
++Não confundir “schema completo” com “billing funcionalmente migrado”.
++
++## I. Quest/Coin/PVP
++
++- Quest `Complete` recebeu chave composta compatível com o upsert necessário.
++- `PVP` recebeu unicidade por nome para `INSERT OR IGNORE` reproduzir not-exists.
++- QuestMonsters seed foi convertido para SQLite idempotente.
++- CoinShop usa seu schema real e o caminho JOBS foi movido de tabelas `Usuario` ausentes para `CoinShopDB.UserInfo` comprovada.
++
++## J. Security/source-only
++
++Algumas tabelas citadas pelo source não existem nos backups. A solução foi criar contratos mínimos source-derived **somente após remover dependências posicionais**. Elas são sempre marcadas como source-derived e não podem ser apresentadas como schema recuperado.
++
++## K. Clan
++
++A reconstrução do clan avançou por parser + schema + scripts Sandurr históricos.
++
++Contratos provados:
++
++- roles 0/1/2/5;
++- sub-chief = `UL.Permi=2`;
++- leader = `CL.ClanZang`;
++- member list CR-delimited;
++- join/kick/leave transacionais;
++- banish antigo só usa `clwon1`;
++- sub-chief appoint/release;
++- dissolution com archive;
++- create clan com LI allocator e mark default best-effort;
++- K/P routes eram gates de sucesso, não prova de update de flag;
++- marks e tag assets podem ser storage local.
++
++Único contrato clan importante não reconstruído: liderança via `clanChipChange.asp`.
++
++## L. Web legacy
++
++No início havia dezenas de URLs em `isaocheck`. A maior parte era persistência/clan/assets/serviços externos.
++
++Ao longo da conversa:
++
++- leituras e mutações clan migradas;
++- SoD2 migrado;
++- marks/tag assets migrados;
++- notice ativo já era SQLite;
++- login web antigo foi classificado como dead, enquanto login real usa `SQLLogon`;
++- NPCSound queue existe mas sem produtor de produção encontrado;
++- warehouse/updateFlag wrappers/queues existem, mas sem caller produtor encontrado e sem semântica persistente provada.
++
++R17 neutraliza esses caminhos no bridge servidor e deixa apenas `clanChipChange.asp` como URL HTTP literal ativa.
++
++## M. Cliente vs servidor
++
++Não confundir strings existentes no cliente com dependência ativa do servidor. A migração web desta fase é server-side. O cliente continua contendo código legacy e deve ser tratado separadamente, sempre sem acesso direto ao SQLite.
++
++## N. Assets
++
++Clan mark:
++
++- local `Database/clan_marks`;
++- tag source `Database/clan_tag_assets`;
++- BMP com `BM` e limite 64 KiB;
++- não sintetizar default mark ausente.
++
++NPCSound:
++
++- endpoint externo antigo identificado;
++- nenhum caller produtor de produção confirmado no servidor;
++- R17 desabilita downloader no bridge servidor.
++
++## O. SoD2
++
++O script histórico provou que o UI SoD usa ClanDB CL/UL para index 1/3. Não criar representação paralela desnecessária em SoD2 table para esse contrato.
++
++## P. Notice
++
++O caminho efetivo é `News::msgNotice`, agora com projeção `Message,Type`. O HTTP `ReadNotice` não é o mecanismo ativo encontrado.
++
++## Q. Concurrency
++
++WAL foi escolhido para permitir readers concorrentes e um writer. Ainda precisam de política operacional:
++
++- retry/busy além do timeout;
++- backup consistente;
++- VACUUM/compactação;
++- migrations exclusivas;
++- coordenação se backend futuro escrever em paralelo.
++
++## R. Build/estrutura
++
++Nunca quebrar o contrato de translation units. Uma tentativa inicial colocou `SqliteQueryCompat.cpp` como segunda TU nova e foi revertida para `.inl` porque o source graph autoriza somente `SQLiteConnection.cpp` como nova TU servidor.
++
++Build/link scripts continuam byte-frozen nos validadores.
++
++## S. O que os validadores NÃO substituem
++
++Eles provam estrutura, schema, SQL coverage e contratos unitários, não o executável real no Windows.
++
++Sem compile/link/runtime target, não promover o WIP.
++
++## T. Passos que mais provavelmente encerram o projeto
++
++1. resolver ou formalmente substituir `clanChipChange`;
++2. decidir billing histórico vs novo modelo;
++3. decidir/importar dados históricos;
++4. remover WinInet/Database.dll/ODBC quando zero callers;
++5. Windows compile/link;
++6. runtime regression completa;
++7. promover nova baseline somente após comparação com R6.1.
++
++---
++
++## U. Decisões de produto/escopo após R17
++
++- Migração/import dos dados históricos SQL Server foi explicitamente retirada do escopo. Uma DB limpa é aceitável.
++- Depois que o servidor SQLite estiver funcional, devem ser fornecidas queries simples e comprovadas para criar contas `user`, `GM` e `admin`.
++- Depois da estabilização, deve existir um mapa/guia prático de como usar a base SQLite.
++- Objetivo futuro não é reconstruir um MMO comercial completo: multiplayer é suficiente e exportação de personagens pode ser adicionada depois.
++- Apesar disso, subsistemas chamados “billing/MMO” não podem ser apagados por nome: primeiro é obrigatório provar se algum estado deles muda gameplay.
++
++## V. Database.dll fornecida e fronteira gameplay/billing — R18
++
++O utilizador forneceu uma `Database.dll` concreta. SHA-256:
++
++`c9fd54668cba6e00fa760bda541587635f51c962ab6ef2b19179d0651e7220a7`
++
++Ela mistura quatro responsabilidades diferentes:
++
++1. autenticação/sessão;
++2. PC-room/billing/accounting;
++3. persistência de gameplay (`ClanMoney`, `SiegeMoney`, `SiegeMoneyTax`);
++4. logs/auditoria.
++
++O DLL possui 101 exports. O bridge servidor pede 37 símbolos; só 21 desses existem nesta DLL fornecida. Portanto vários caminhos legacy já eram provider-opcionais.
++
++### Estado PC-room que realmente altera gameplay
++
++`Bl_RNo > 0` foi provado como sinal de gameplay:
++
++- +20 EXP solo;
++- +20 EXP party;
++- +50 no acumulador de chance/quantidade de drop;
++- habilita PCBang Pet;
++- também entra em fluxos `/time`, reserva e billing-time.
++
++`DisuseDay`, `dwPeriodTime`, `dwPeriodTime2`, `PCUse` e `PCSearchReserv` controlam avisos/expiração/desconexão e podem atualizar estado durante a sessão.
++
++Conclusão: não apagar PC-room simplesmente zerando os campos. A simplificação correta é separar o **efeito de jogo/entitlement** da antiga infraestrutura comercial de charging.
++
++`GpType/GpCode`, no source ativo observado, alimentam sobretudo monitorização/registro PC-room por IP. O bônus direto de gameplay encontrado usa `Bl_RNo`.
++
++## W. Gameplay persistence retirada da Database.dll no R18
++
++### ClanMoney / SiegeMoney
++
++O SQL embutido e o fluxo x86 da DLL foram inspecionados. R18 implementa caminho SQLite local-first preservando peculiaridades:
++
++- nenhum check de saldo suficiente nessa camada;
++- saldo pode ficar negativo;
++- SELECT inicial por `UserID + ClanZang`;
++- mutação historicamente por `UserID`;
++- `ClanMoney` withdraw sem `DelActive`;
++- deposits e SiegeMoney com `DelActive=0`;
++- log `01` negativo / `02` positivo.
++
++### SiegeMoneyTax
++
++A DLL prova:
++
++- total zero falha;
++- clan mark precisa ter >=9 chars;
++- `CL.IDX` = últimos 6 dígitos decimais do clan mark;
++- crédito de imposto = `Total - round(Total/(1 + Tax*0.01f))` para tax não-zero;
++- `CL.SiegeMoney += crédito` por IDX;
++- insert em `SiegeMoneyTax`;
++- insert em `SiegeMoneyLog` com `Server/Server/GS/02`.
++
++R18 implementa isso local-first e mantém fallback DLL apenas se o backend SQLite falhar estruturalmente.
++
++## X. Nova ordem de simplificação
++
++1. manter R6.1 como oracle;
++2. congelar R18;
++3. separar sessão/local auth de charging histórico;
++4. decidir representação simples do antigo bônus PC-room (`Bl_RNo`) sem alterar gameplay inadvertidamente;
++5. migrar/neutralizar logs opcionais conforme utilidade no servidor simplificado;
++6. resolver `clanChipChange.asp`;
++7. retirar WinInet quando zero HTTP ativo;
++8. retirar Database.dll quando zero responsabilidade necessária depender dela;
++9. retirar ODBC após zero callers e build/link target;
++10. validar Windows runtime completo;
++11. só depois documentar administração final da DB e entregar queries user/GM/admin.
++
++
++## W. Sessão local/free — R19
++
++R19 fecha uma lacuna concreta do login SQLite R18: o caminho local validava `inuse=0`, mas não reclamava a sessão na DB. Duas tentativas podiam, em princípio, ler a conta como livre sem um write atómico de ownership.
++
++A `Database.dll` fornecida prova os writes históricos essenciais de sessão:
++
++- no claim/login: `StartDay`, `EditDay`, `ServerName`, `inuse='1'`, `SNo`, `RNo=NULL` para o caso free;
++- no release/logout: `LastDay`, `inuse='0'`, `RNo=NULL`, `SNo=NULL`, filtrado por `userid + ServerName`.
++
++R19 implementa isso atrás da mesma API legacy:
++
++- `TrySQLiteLocalLogOn` passa a usar `BEGIN IMMEDIATE` e só devolve sucesso após gravar o claim da sessão;
++- `TrySQLiteLocalLogout` trata localmente apenas a conta free cuja `SNo` e `ServerName` confirmam ownership; caso contrário mantém fallback `Database.dll!SQLLogout`;
++- `ResetSQLiteLocalSessionsForServer` limpa sessões stale apenas da assinatura local/free no arranque e no `ServerExit` final;
++- `ServerDown` não foi transformado em cleanup, porque o DLL observado só regista o server-down e o source chama essa função ainda no início do countdown de shutdown.
++
++A limpeza stale exige simultaneamente: server atual, `inuse='1'`, `SNo` não vazio, GPCode zero/empty, `UsePeriod=0`, `BNum=0`, Channel zero/empty e `RNo` zero/null. Isto evita apagar estado paid/PC-room por aproximação.
++
++Novo validator: `validate_sqlite_local_session.py`. Ele prova claim/release, rejeição de segundo claim, proteção por GUID/server e reset seletivo.
++
++R19 não muda `Bl_RNo`, EXP/drop/pet, expiry timers, schema v29, `clanChipChange.asp` ou logging opcional. R6.1 continua oracle até compile/link/runtime Windows.
+--- /dev/null	2026-09-11 05:09:56.203835715 +0000
++++ b/docs/SQLITE_LOCAL_SESSION_AUDIT_R19.md	2026-09-11 05:17:39.124647549 +0000
+@@ -0,0 +1,125 @@
++# SQLite local/free session audit — R19
++
++Date: 2026-09-11
++
++## Purpose
++
++R19 continues the R18 Database.dll dismantling by separating **free/local account session ownership** from billing/PC-room behavior. It does not change the schema, does not change `Bl_RNo` gameplay bonuses, and does not remove the legacy DLL fallback for paid/PC-room/ambiguous accounts.
++
++R6.1 remains the compile/link/runtime-confirmed regression oracle.
++
++## Binary evidence from the supplied Database.dll
++
++Supplied DLL SHA-256:
++
++`c9fd54668cba6e00fa760bda541587635f51c962ab6ef2b19179d0651e7220a7`
++
++The DLL contains the proven account-session writes used by its `SetGameUser` / logout helpers.
++
++### Login/session claim
++
++Recovered SQL string:
++
++```sql
++update %s set StartDay = '%s', EditDay ='%s', RNo=NULL,
++ServerName ='%s', inuse='1', SNo='%s' where userid = '%s'
++```
++
++A second variant is identical except that it writes a non-null `RNo` for PC-room/billing cases. R19 uses only the `RNo=NULL` form because its local path accepts only the already-proven free subset.
++
++### Logout/session release
++
++Recovered SQL string:
++
++```sql
++UPDATE %s SET LastDay = '%s', inuse='0', RNo=NULL, SNo=NULL
++WHERE userid = '%s' and ServerName='%s'
++```
++
++This proves that `inuse`, `ServerName`, `SNo`, `StartDay/EditDay` and `LastDay` are session state, not merely commercial accounting metadata.
++
++### ServerDown / ServerExit
++
++The supplied DLL's `ServerDown` path inserts a row into `ServerDown(ServerName)`. Its inspected code does not perform the per-account `inuse` reset above.
++
++The supplied DLL's `ServerExit` export closes/releases the DLL's database connection. Therefore R19 does **not** reinterpret `ServerDown` as an account-session cleanup event. Local stale-session cleanup is done at startup and final `bSql_ServerExit()` only.
++
++### SetAllGameUser
++
++The server bridge requests `SetAllGameUser`, but the supplied DLL does not export it. R18 had already classified this as an optional startup-maintenance function. R19 replaces only its needed local/free intent with a narrowly filtered SQLite reset.
++
++## R19 implementation
++
++File changed:
++
++`SrcServer/src/core/server/legacy_runtime/DllServer.cpp`
++
++### Atomic local/free login claim
++
++`TrySQLiteLocalLogOn` now:
++
++1. opens `AccountDB` and starts `BEGIN IMMEDIATE`;
++2. reads and validates the same conservative free/local subset as R18;
++3. creates the session GUID;
++4. writes `StartDay`, `EditDay`, `ServerName`, `inuse='1'`, `SNo`, `RNo=NULL` in the same transaction;
++5. commits only after the session claim succeeds.
++
++This closes the R18 race where two local/free logins could both read `inuse=0` without either claiming the row.
++
++### Local/free logout
++
++`TrySQLiteLocalLogout` handles only a row that proves all of the following:
++
++- free/local billing signature remains present;
++- `inuse='1'`;
++- stored `SNo` equals the queued logout GUID;
++- stored `ServerName` equals the current server.
++
++It then writes `LastDay`, `inuse='0'`, `RNo=NULL`, `SNo=NULL` transactionally. If the row does not match the local signature, the existing `Database.dll!SQLLogout` path remains the fallback.
++
++### Startup/final-exit stale reset
++
++`ResetSQLiteLocalSessionsForServer` scans the 26 `<initial>GameUser` tables and clears only rows that match the R19 local/free session signature:
++
++- current `ServerName`;
++- `inuse='1'`;
++- non-empty `SNo`;
++- zero/empty `GPCode`;
++- `UsePeriod=0`;
++- `BNum=0`;
++- zero/empty `Channel`;
++- null/zero `RNo`.
++
++Paid/PC-room rows and rows belonging to another server are not changed.
++
++The reset runs:
++
++- after provider initialization during `LoadLogSqlDLL()` to recover from an unclean previous server exit;
++- at final `bSql_ServerExit()` to release local/free sessions on normal shutdown.
++
++It is intentionally **not** run from `bSql_ServerDown()`, because that function is called when the shutdown countdown starts and the supplied DLL evidence does not show account cleanup there.
++
++## What R19 does not change
++
++- no schema migration / `user_version` bump;
++- no billing provider reconstruction;
++- no changes to `Bl_RNo`, `GpType`, `GpCode`, EXP/drop/pet behavior or expiry timers;
++- no removal of `SQLLogon`/`SQLLogout` DLL fallbacks for non-local accounts;
++- no change to `clanChipChange.asp`;
++- no optional log-sink cleanup yet;
++- no ODBC/WinInet/Database.dll removal yet.
++
++## New validator
++
++`validate_sqlite_local_session.py` proves against the real migration set that:
++
++- a free/local row is claimed with `inuse=1`, server, GUID and timestamps;
++- a second claim is rejected while the first session is active;
++- a wrong GUID cannot release the local session;
++- the matching logout clears `inuse`, `SNo` and `RNo` and records `LastDay`;
++- startup/final-exit reset clears stale local/free sessions only;
++- paid rows and another server's rows remain unchanged.
++
++## Runtime status
++
++This remains static/contract evidence. Windows target compile/link and end-to-end login/disconnect/reconnect tests are still mandatory before R19 can replace R6.1 as a baseline.
+--- /dev/null	2026-09-11 05:09:56.203835715 +0000
++++ b/docs/SQLITE_WIP_R19_VALIDATION.md	2026-09-11 05:18:56.528085759 +0000
+@@ -0,0 +1,70 @@
++# SQLite WIP R19 — validation report
++
++Date: 2026-09-11
++
++## Scope
++
++R19 does not change schema version. It extends the conservative local/free AccountDB path with the session lifecycle recovered from the supplied `Database.dll`:
++
++- atomic session claim during local/free login;
++- local-first session release during logout;
++- narrow stale local/free session cleanup at startup and final server exit;
++- paid/PC-room/ambiguous rows remain provider-owned;
++- no `Bl_RNo` gameplay changes.
++
++Database.dll evidence SHA-256:
++
++`c9fd54668cba6e00fa760bda541587635f51c962ab6ef2b19179d0651e7220a7`
++
++## R19-specific result
++
++New validator `validate_sqlite_local_session.py` PASS:
++
++- local/free account claim writes `inuse=1`, `ServerName`, `SNo`, `StartDay`, `EditDay`, `RNo=NULL`;
++- second local claim is rejected while the session is active;
++- wrong GUID cannot release the session;
++- matching logout records `LastDay` and clears `inuse`, `SNo`, `RNo`;
++- stale reset clears only local/free rows for the current server;
++- paid/billing row is preserved;
++- another server's row is preserved.
++
++## Full regression-validator results
++
++All validators available in this environment PASS after the R19 changes:
++
++- backup catalog completion: 326/326 backup tables;
++- BillingDB schema contract: 43 tables;
++- SoD2 contract;
++- migrations: `user_version=29`, 332 user tables;
++- SQL query coverage: missing=0;
++- clan contract;
++- transaction API;
++- clan mark/tag local storage;
++- SQLite local/free login;
++- SQLite local/free session lifecycle;
++- notice contract;
++- server HTTP surface: only `clanChipChange.asp` remains;
++- Database.dll gameplay contract: ClanMoney/SiegeMoney/SiegeMoneyTax;
++- source graph: only authorized new server TU is `SQLiteConnection.cpp`;
++- build/link scripts frozen;
++- port structure 1517/1517;
++- compiler adaptation ledger PASS.
++
++Raw output: `docs/R19_VALIDATION_RAW.txt`.
++
++## Not proven by these tests
++
++R19 still has no target Windows compile/link/runtime proof. In particular, not yet proven end-to-end:
++
++- actual server startup with the R19 code;
++- local free login against a clean DB;
++- simultaneous second login behavior;
++- queued logout timing;
++- disconnect/reconnect;
++- clean shutdown session release;
++- crash/kill then startup stale-session recovery;
++- character create/load/save and all broader R6.1 gameplay regressions;
++- paid/PC-room fallback semantics;
++- final Database.dll/ODBC/WinInet removal.
++
++R6.1 remains the regression oracle until the full Windows target suite passes.
+--- /dev/null	2026-09-11 05:09:56.203835715 +0000
++++ b/docs/R19_VALIDATION_RAW.txt	2026-09-11 05:18:46.560635890 +0000
+@@ -0,0 +1,47 @@
++===== validate_backup_catalog_completion.py =====
++Backup catalog completion PASS: new_tables=176, backup_tables_present=326, exact new column order/affinity/nullability/identity=PASS, user_tables=332
++===== validate_billingdb_sqlite_contract.py =====
++BillingDB SQLite contract PASS: tables=43, exact column order=PASS, identity translation=PASS
++===== validate_sod2_sqlite_contract.py =====
++SoD2 SQLite contract PASS: index1 codes=0..6, index3 protocol/ranking=PASS, HTTP removed
++===== validate_sqlite_migrations.py =====
++SQLite migrations PASS: version=29, user_tables=332, contracts/idempotence=PASS
++===== validate_sqlite_query_coverage.py =====
++SQLite query coverage PASS: qualified_tables=14, missing=0, forbidden_external_or_positional=0
++===== validate_clan_sqlite_contract.py =====
++Clan SQLite contract PASS: create/mark-allocation=PASS, roles=0/1/2/5, member-list CR/CMem=PASS, sub-chief appoint/release=PASS, join/kick/leave transactions=PASS, dissolution/archive=PASS, first-clwon legacy behavior=PASS
++===== validate_sqlite_transactions.py =====
++SQLite transaction API PASS: begin/commit/rollback=present, close rollback guard=present
++===== validate_clan_mark_storage.py =====
++Clan mark local storage PASS: Database/clan_marks, bounded BMP reads, HTTP-free active mark reads
++===== validate_clan_tag_storage.py =====
++Clan tag local storage PASS: Database/clan_tag_assets -> Database/clan_marks, IIS/webroot-free
++===== validate_sqlite_local_login.py =====
++SQLite local login PASS: simple/free account handled locally; password mismatch, missing account and billing/blocked/PC-room/expired rows remain fallback-only
++===== validate_sqlite_local_session.py =====
++SQLite local session PASS: atomic free-session claim/release, duplicate claim rejection, GUID/server ownership check, stale local reset, paid/other-server rows preserved
++===== validate_notice_sqlite_contract.py =====
++SQLite notice contract PASS: named Message/Type projection over proven NoticeSystem schema
++===== validate_server_http_surface.py =====
++Server HTTP surface PASS:
++remaining_http_literals=1 (clanChipChange.asp only)
++disabled_dead_legacy_endpoints=login/session-web, notice-web, clan-read-name, warehouse/updateFlag, NPCSound, clan-image-upload, WEBdb_Exam
++remaining_wininet_implementation=connect_WEBdb only (for clanChipChange)
++===== validate_database_dll_gameplay_contract.py =====
++Database.dll gameplay contract PASS: ClanMoney/SiegeMoney/SiegeMoneyTax local SQLite semantics + logs match recovered DLL SQL/x86
++===== validate_build_source_graph.py =====
++Client baseline/current (repo-local, excl. modules): 201 / 201
++Server baseline/current (repo-local, excl. modules): 179 / 180
++Authorized server additions: 1
++  + SrcServer/src/systems/persistence/database/sqlite/SQLiteConnection.cpp (authorized)
++RESULT: PASS
++===== validate_build_scripts.py =====
++Build/link scripts frozen: 4
++RESULT: PASS
++===== validate_port_structure_presence.py =====
++Port structural files expected: 1517
++Missing: 0
++RESULT: PASS
++===== validate_compiler_adaptations.py =====
++Compiler adaptations: 1
++RESULT              : PASS
+--- /dev/null	2026-09-11 05:09:56.203835715 +0000
++++ b/migration/DATABASE_DLL_DEPENDENCIES_R19.tsv	2026-09-11 05:17:49.459405281 +0000
+@@ -0,0 +1,38 @@
++symbol	present_in_supplied_dll	category	active_server_path	gameplay_dependency	r19_status	next_action
++SQLLogon	yes	auth_session	yes	login/session state; outputs GPCode, expiry/period and PC-room RNo	free/local subset now claims SQLite session atomically; billing/PC-room fallback remains	Windows runtime verify local login/reconnect; then define retained paid/entitlement policy
++SQLLogout	yes	auth_session	yes	session/inuse/usage cleanup, not combat logic	R19 SQLite local-first for matching free/local GUID/server session; DLL fallback remains for non-local rows	Windows runtime verify disconnect/reconnect and queued logout behavior before removing fallback
++GetGPCode	yes	auth_session_flag	yes	sets GpCode/GpType; GpType used by PC-room IP accounting	legacy for non-free paths	replace with explicit local entitlement/session metadata if PC-room charging is retired
++PCUse	yes	pcroom_session	yes	refreshes PC-room/session state used by expiry logic	legacy DLL path remains	extract timer/entitlement semantics before removal
++PCSearchReserv	yes	pcroom_session	yes	can update RNo, GPCode and expiry timers during play	legacy DLL path remains	extract only gameplay/session effects needed by simplified server
++PCRNoReservProduct	yes	pcroom_session	yes	used by /time and reservation/product paths when Bl_RNo>0	legacy DLL path remains	decide whether product/reservation flow is retained or removed after preserving gameplay bonus semantics
++PCUseTime	yes	pcroom_accounting	no direct BillSql call found	no proven direct gameplay effect in current bridge	loaded but apparently inactive	remove only after Windows call-graph/runtime verification
++UserUseTime	yes	billing_accounting	no direct BillSql call found	no proven direct gameplay effect in current bridge	loaded but apparently inactive	candidate for removal after runtime verification
++SetGameUser	yes	session_maintenance	no direct BillSql call found	no proven direct gameplay effect in current bridge	loaded but apparently inactive	candidate for removal after runtime verification
++ServerDown	yes	session_maintenance	yes	server-down bookkeeping; no per-account inuse reset proven in supplied DLL	legacy DLL path remains; R19 intentionally does not use it for local session cleanup	optional bookkeeping decision after Windows runtime verification
++ServerExit	yes	session_maintenance	yes	server/session shutdown cleanup	R19 clears only local/free SQLite sessions for current server, then calls DLL ServerExit when present	Windows shutdown/runtime verify; DLL close remains until provider removal
++ClanMoney	yes	gameplay_persistence	yes	clan fund and player money transfer flow	R18 SQLite local-first; DLL fallback only on infrastructure failure	Windows runtime verify then remove DLL fallback
++SiegeMoney	yes	gameplay_persistence	yes	Bless Castle/clan siege fund	R18 SQLite local-first; DLL fallback only on infrastructure failure	Windows runtime verify then remove DLL fallback
++SiegeMoneyTax	yes	gameplay_persistence	yes	Bless Castle tax revenue -> CL.SiegeMoney + tax/log records	R18 SQLite local-first using recovered x86/SQL semantics; DLL fallback only on infrastructure failure	Windows runtime verify then remove DLL fallback
++WithSOD2RecordRanks	yes	stats_logging	yes	persists individual SoD result; return value ignored by game event path	legacy DLL path remains	optional local logging if records are wanted; not a gameplay gate
++CharLog	yes	logging	yes	character session audit only; no return-driven gameplay	legacy DLL path remains	can move to SQLite or disable for simplified deployment
++CharRecordLog	yes	logging	yes	character session audit only; no return-driven gameplay	legacy DLL path remains	can move to SQLite or disable for simplified deployment
++GameLog	yes	logging	no direct BillSql call found	no proven gameplay gate	loaded; apparently inactive	candidate for removal/runtime verification
++LogITEMRecord	yes	logging_audit	yes	item audit/log; no proven authoritative item state	legacy DLL path remains	decide whether audit history is useful; not required for core multiplayer if confirmed
++LogITEMTradeRecord	yes	logging_audit	yes	trade audit/log; no proven authoritative trade state	legacy DLL path remains	decide whether audit history is useful
++LogITEMPostRecord	yes	logging_audit	yes	post/gift item audit/log	legacy DLL path remains	decide whether audit history is useful
++EventSQLLogon	no	optional_event_auth	pointer-guarded	provided DLL cannot execute this path	unavailable in supplied DLL	candidate for deletion after build/runtime proof
++EventSQLLogout	no	optional_event_auth	pointer-guarded	provided DLL cannot execute this path	unavailable in supplied DLL	candidate for deletion after build/runtime proof
++ChangeUseridGPCodeGame	no	pcroom_optional	pointer-guarded	would mutate PC-room/GPCode state if provider existed	unavailable in supplied DLL	do not reconstruct unless feature is explicitly retained
++SetAllGameUser	no	session_maintenance	pointer-guarded startup	provided DLL cannot execute this cleanup	still absent in supplied DLL; R19 adds narrow SQLite stale-session reset for local/free signature at startup	runtime verify crash recovery and ensure paid/PC-room rows remain provider-owned
++Contribution	no	legacy_gameplay_optional	pointer-gated by bSql_GiveMoney	feature unavailable with supplied DLL	unavailable in supplied DLL	inspect caller before deciding remove vs local implementation
++UserStar	no	legacy_gameplay_optional	pointer-gated	feature unavailable with supplied DLL	unavailable in supplied DLL	candidate for removal if not part of simplified target
++UserStarRecord	no	legacy_stats_optional	pointer-gated	feature unavailable with supplied DLL	unavailable in supplied DLL	candidate for removal
++PollRecord	no	legacy_feature_optional	pointer-gated	feature unavailable with supplied DLL	unavailable in supplied DLL	candidate for removal
++EventJoin	no	legacy_event_optional	pointer-gated	feature unavailable with supplied DLL	unavailable in supplied DLL	candidate for removal
++GetTicket	no	legacy_clan_optional	pointer-gated	feature unavailable with supplied DLL	unavailable in supplied DLL	candidate for removal
++ClanUserTicKet	no	legacy_clan_optional	pointer-gated	feature unavailable with supplied DLL	unavailable in supplied DLL	candidate for removal
++ClanUserTicKets	no	legacy_clan_optional	pointer-gated	feature unavailable with supplied DLL	unavailable in supplied DLL	candidate for removal
++ClanPointInsert	no	legacy_clan_optional	pointer-gated	feature unavailable with supplied DLL	unavailable in supplied DLL	candidate for removal
++ClanUserMarkNum	no	legacy_clan_optional	pointer-gated	feature unavailable with supplied DLL	unavailable in supplied DLL	candidate for removal
++IPRecord	no	pcroom_accounting	pointer-gated	PC-room IP monitoring only in observed source	unavailable in supplied DLL	candidate for removal with PC-room accounting
++IPRecordTime	no	pcroom_accounting	pointer-gated	PC-room IP monitoring only in observed source	unavailable in supplied DLL	candidate for removal with PC-room accounting

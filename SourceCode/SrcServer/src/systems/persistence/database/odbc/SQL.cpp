@@ -1,122 +1,94 @@
-#include "core/server/legacy_sin_runtime/sinLinkHeader.h"
-
+#include "systems/persistence/database/odbc/SQL.h"
+#include "systems/persistence/database/sqlite/SQLiteConnection.h"
 
 SQL::SQL()
+	: m_bConnect(FALSE), m_sectionInitialized(false), sqlite_(new summit::db::SQLiteConnection())
 {
-	m_bConnect	= FALSE;
 }
 
 SQL::~SQL()
 {
+	Disconnect();
 }
 
-BOOL SQL::Connect(LPCSTR szServer, LPCSTR szUser, LPCSTR szPw)
+BOOL SQL::Connect(LPCSTR, LPCSTR, LPCSTR)
 {
-	if (SQL_SUCCEEDED(SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &m_hENV)))
-		if (SQL_SUCCEEDED(SQLSetEnvAttr(m_hENV, SQL_ATTR_ODBC_VERSION, (SQLPOINTER)SQL_OV_ODBC3, 0)))
-			if (SQL_SUCCEEDED(SQLAllocHandle(SQL_HANDLE_DBC, m_hENV, &m_hDBC)))
-			{
-				char OutConnectionString[1024] = {};
-				char InConnectionString[1024] = {};
-				wsprintf(InConnectionString, "DRIVER={SQL Server};SERVER=%s;UID=%s;PWD=%s;", szServer, szUser, szPw);
+	if(m_bConnect)
+		return TRUE;
 
-				if (SQL_SUCCEEDED(SQLDriverConnect(m_hDBC, NULL, (SQLCHAR*)InConnectionString, SQL_NTS,
-					(SQLCHAR*)OutConnectionString, sizeof(OutConnectionString), NULL, SQL_DRIVER_NOPROMPT)))
-						m_bConnect = TRUE;
-				InitializeCriticalSection(&m_SqlSection);
-			}
+	if(!m_sectionInitialized)
+	{
+		InitializeCriticalSection(&m_SqlSection);
+		m_sectionInitialized = true;
+	}
 
-	return m_bConnect;
+	// DATABASEID_NULL means queries may select logical DBs explicitly. Bare
+	// legacy table names are resolved by SqliteQueryCompat's historic mapping.
+	if(!sqlite_->Init(DATABASEID_NULL, "Database"))
+		return FALSE;
+
+	m_bConnect = TRUE;
+	return TRUE;
 }
 
 void SQL::Disconnect()
 {
-	if (m_bConnect)
-	{
-		m_bConnect = FALSE;
-		SQLDisconnect(m_hDBC);
-		SQLFreeHandle(SQL_HANDLE_STMT, m_hSTMT);
-		SQLFreeHandle(SQL_HANDLE_DBC, m_hDBC);
-		SQLFreeHandle(SQL_HANDLE_ENV, m_hENV);
+	if(!m_bConnect && !m_sectionInitialized)
+		return;
 
+	m_bConnect = FALSE;
+	sqlite_.reset(new summit::db::SQLiteConnection());
+	if(m_sectionInitialized)
+	{
 		DeleteCriticalSection(&m_SqlSection);
+		m_sectionInitialized = false;
 	}
 }
 
 void SQL::Init()
 {
-	InitializeCriticalSection(&m_SqlSection);
+	if(!m_sectionInitialized)
+	{
+		InitializeCriticalSection(&m_SqlSection);
+		m_sectionInitialized = true;
+	}
 }
 
 void SQL::EnterSqlSection()
 {
-	EnterCriticalSection(&m_SqlSection);
+	if(m_sectionInitialized)
+		EnterCriticalSection(&m_SqlSection);
 }
 
 void SQL::LeaveSqlSection()
 {
-	LeaveCriticalSection(&m_SqlSection);
+	if(m_sectionInitialized)
+		LeaveCriticalSection(&m_SqlSection);
 }
 
-BOOL SQL::Execute(LPCSTR szQuery)
+BOOL SQL::Execute(LPCSTR query)
 {
-	if (m_hSTMT)
-		SQLFreeHandle(SQL_HANDLE_STMT, m_hSTMT);
-
-	SQLAllocHandle(SQL_HANDLE_STMT, m_hDBC, &m_hSTMT);
-
-	SQLRETURN Result = SQLExecDirect(m_hSTMT, (SQLCHAR*)szQuery, SQL_NTS);
-
-	if (SQL_SUCCEEDED(Result))
-		return TRUE;
-
-	SQLFreeHandle(SQL_HANDLE_STMT, m_hSTMT);
-	m_hSTMT = 0;
-
-	return FALSE;
+	if(!m_bConnect || !sqlite_ || !sqlite_->Prepare(query))
+		return FALSE;
+	return sqlite_->Execute(FALSE);
 }
 
 BOOL SQL::Fetch()
 {
-	SQLRETURN Result = SQLFetch(m_hSTMT);
-
-	return SQL_SUCCEEDED(Result);
+	return (m_bConnect && sqlite_) ? sqlite_->NextRow() : FALSE;
 }
 
-SQLINTEGER SQL::GetColLength(int nCol)
+long SQL::GetColLength(int nCol)
 {
-	SQLSMALLINT sDataType, sDig, sNullable;
-	SQLUINTEGER nColSize;
-
-	SQLDescribeCol(m_hSTMT, nCol, NULL, 0, NULL, &sDataType, &nColSize, &sDig, &sNullable);
-
-	return nColSize;
+	return (m_bConnect && sqlite_) ? sqlite_->GetColumnLength(nCol) : 0;
 }
 
-BOOL SQL::GetDataValue(int nCol, char* szData)
+BOOL SQL::GetDataValue(int nCol, char *szData)
 {
-	SQLRETURN Result;
-	SQLINTEGER nLenOrInd;
-	SQLINTEGER nLength = GetColLength(nCol);
-
-	Result = SQLGetData(m_hSTMT, (SQLUSMALLINT)nCol, SQL_C_CHAR, szData, nLength, &nLenOrInd);
-
-	return SQL_SUCCEEDED(Result);
+	return (m_bConnect && sqlite_) ? sqlite_->GetData(szData, 0, nCol, PARAMTYPE_String) : FALSE;
 }
 
-BOOL SQL::GetDataValue(int nCol, int* nData)
+BOOL SQL::GetDataValue(int nCol, int *nData)
 {
-	SQLRETURN Result;
-	SQLINTEGER nLenOrInd;
-	SQLINTEGER nLength = GetColLength(nCol);
-
-	Result = SQLGetData(m_hSTMT, (SQLUSMALLINT)nCol, SQL_C_LONG, nData, nLength, &nLenOrInd);
-
-	return SQL_SUCCEEDED(Result);
+	return (m_bConnect && sqlite_) ? sqlite_->GetData(nData, 0, nCol, PARAMTYPE_Integer) : FALSE;
 }
-
-
-
-
-
-

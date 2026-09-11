@@ -1,9 +1,0 @@
-{
-  "asset_id": "AST-2FB30279C7EA",
-  "asset": "char/monster/Acero/Acero.smd",
-  "source_sha256": "6376a8e7add18a6385f9dd1abccdaef9e3cf8dc79c8013f48c8926138d3f1176",
-  "mode": "RIGID",
-  "structural_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-2FB30279C7EA/structural/character_structural.json",
-  "inx_checks": 1,
-  "check": "PASS"
-}

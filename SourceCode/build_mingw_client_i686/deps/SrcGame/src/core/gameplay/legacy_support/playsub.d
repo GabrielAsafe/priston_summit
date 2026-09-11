@@ -1,4 +1,4 @@
-/home/gabriel/Área\ de\ Trabalho/SourceCode/build_mingw_client_i686/objects/SrcGame/src/core/gameplay/legacy_support/playsub.o: \
+/home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/core/gameplay/legacy_support/playsub.o: \
  SrcGame/src/core/gameplay/legacy_support/playsub.cpp Shared/opcodes.h \
  SrcGame/src/systems/rendering/legacy_3d/smd3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
@@ -22,19 +22,27 @@
  SrcGame/src/systems/rendering/legacy_3d/smType.h Shared/smPacket.h \
  Shared/global_def.h \
  SrcGame/src/systems/network/transport/legacy/smwsock.h \
+ Shared/network/transport/legacy/smwsock_legacy_client.h \
  SrcGame/src/systems/network/transport/legacy/NetType.h \
  SrcGame/src/systems/localization/legacy_catalog/language.h \
  SrcGame/src/systems/inventory/legacy/sinItem.h \
+ Shared/inventory/legacy/sinItem_legacy_client.h \
  SrcGame/src/systems/rendering/legacy_3d/smTexture.h \
  SrcGame/src/systems/rendering/legacy_3d/smObj3d.h \
+ Shared/rendering/legacy_3d/object/smObj3d_legacy_client.h \
  SrcGame/src/systems/rendering/legacy_3d/smStgObj.h \
  SrcGame/src/systems/rendering/legacy_3d/smStage3d.h \
+ Shared/rendering/legacy_3d/stage/smStage3d_legacy_client.h \
  SrcGame/src/systems/rendering/legacy_3d/smrend3d.h \
+ Shared/rendering/legacy_3d/SmRend3dLegacyCommon.h \
  SrcGame/src/systems/rendering/legacy_3d/smMap3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smRead3d.h \
+ Shared/rendering/legacy_3d/smRead3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smmatrix.h \
+ Shared/rendering/legacy_3d/smmatrix.h \
  SrcGame/src/systems/rendering/legacy_3d/smGeosub.h \
  SrcGame/src/systems/rendering/legacy_3d/smJpeg.h \
+ Shared/rendering/legacy_3d/smJpeg.h \
  SrcGame/src/systems/gameplay/character/core/character.h \
  SrcGame/src/systems/combat/pvp/Score.h \
  SrcGame/src/systems/media/video/legacy_avi/avictrl.h \
@@ -51,19 +59,29 @@
  SrcGame/src/systems/rendering/effects/legacy_ho/core/HoAnimData.h \
  SrcGame/src/systems/rendering/effects/legacy_ho/core/HoPhysics.h \
  SrcGame/src/systems/rendering/effects/legacy_ho/core/HoEffect.h \
+ Shared/rendering/effects/legacy_ho/HoEffectLegacyBody.h \
  SrcGame/src/systems/rendering/effects/legacy_ho/core/HoLogic.h \
+ Shared/rendering/effects/legacy_ho/HoLogicLegacyCommon.h \
  SrcGame/src/systems/rendering/effects/particles/ho/HoParticle.h \
+ Shared/rendering/effects/particles/HoParticleLegacyShared.h \
  SrcGame/src/systems/ui/messages/HoMessageBox.h \
  SrcGame/src/systems/presentation/opening/HoOpening.h \
  SrcGame/src/systems/authentication/character_selection/HoLogin.h \
+ Shared/authentication/character_selection/HoLoginLegacyShared.h \
  SrcGame/src/systems/social/party/legacy_ho/HoParty.h \
  SrcGame/src/systems/rendering/effects/assa/hoAssaParticleEffect.h \
+ Shared/rendering/effects/assa/hoAssaParticleEffect_legacy_client.h \
  SrcGame/src/systems/rendering/sky/legacy/HoSky.h \
+ Shared/rendering/sky/HoSky_legacy_client.h \
  SrcGame/src/systems/gameplay/pets/LowLevelPetSystem.h \
+ Shared/gameplay/pets/LowLevelPetSystem.h \
  SrcGame/src/systems/rendering/effects/legacy_new/core/HoNewEffectFunction.h \
  SrcGame/src/systems/gameplay/pets/PCBangPetSystem.h \
+ Shared/gameplay/pets/PCBangPetSystem.h \
  SrcGame/src/systems/audio/effects/legacy/effectsnd.h \
+ Shared/audio/effects/EffectSoundLegacyCatalog.h \
  SrcGame/src/core/gameplay/legacy_support/playsub.h \
+ Shared/gameplay/legacy_support/playsub_legacy_client.h \
  SrcGame/src/compat/legacy/sin/util/sinUtil.h \
  SrcGame/src/systems/gameplay/events/bellatra/legacy_sin/sinMonster.h \
  SrcGame/src/core/client/legacy_sin_runtime/sinMain.h \
@@ -83,6 +101,7 @@
  SrcGame/src/systems/ui/messages/legacy_sin/sinMsg.h \
  SrcGame/src/systems/ui/help/legacy_sin/sinHelp.h \
  SrcGame/src/systems/gameplay/quests/legacy/sinQuest.h \
+ Shared/gameplay/quests/legacy/SinQuestLegacyShared.h \
  SrcGame/src/systems/combat/skills/legacy_sin/sinSkillEffect.h \
  SrcGame/src/systems/gameplay/world_events/legacy_sin/sinEvent.h \
  SrcGame/src/systems/rendering/effects/legacy_sin/sinPublicEffect.h \
@@ -92,14 +111,19 @@
  SrcGame/src/systems/rendering/effects/legacy_sin/AssaTestParticle.h \
  SrcGame/src/systems/combat/skills/legacy_sin/sinAssaSkillEffect.h \
  SrcGame/src/systems/rendering/effects/legacy_sin/YameEffect.h \
+ Shared/rendering/effects/legacy_sin/YameEffect_legacy_client.h \
  SrcGame/src/systems/gameplay/world_events/legacy_sin/sinWarpGate.h \
  SrcGame/src/systems/ui/help/legacy_sin/sinHelpPet.h \
+ Shared/ui/help/legacy_sin/sinHelpPet.h \
  SrcGame/src/systems/gameplay/events/bellatra/legacy_sin/sinSOD2.h \
  SrcGame/src/systems/gameplay/quests/legacy/HaQuest.h \
  SrcGame/src/systems/commerce/premium/HaPremiumItem.h \
  SrcGame/src/systems/gameplay/pets/legacy_sin/sinParkPcBangPet.h \
+ Shared/gameplay/pets/sinParkPcBangPet.h \
  SrcGame/src/systems/combat/skills/legacy_sin/Tempskron.h \
+ Shared/gameplay/skills/Tempskron_legacy_client.h \
  SrcGame/src/systems/combat/skills/legacy_sin/Morayion.h \
+ Shared/gameplay/skills/Morayion_legacy_client.h \
  SrcGame/src/systems/social/clan/customization/ClanCustom.h \
  SrcGame/src/systems/progression/battle_pass/BattlePass.h \
  SrcGame/src/systems/rendering/font/newFont.h \
@@ -118,7 +142,9 @@
  SrcGame/src/systems/social/clan/cE_CViewClanInfo.h \
  SrcGame/src/systems/social/clan/tjclanDEF.h \
  SrcGame/src/compat/client_server/server_legacy/onserver.h \
+ Shared/server/legacy_runtime/onserver_legacy_client.h \
  SrcGame/src/systems/gameplay/events/bellatra/ui/BellatraFontEffect.h \
+ Shared/gameplay/events/BellatraFontEffect_legacy_client.h \
  SrcGame/src/systems/localization/messages/TextMessage.h \
  SrcGame/src/systems/audio/download/legacy_http/WinIntThread.h \
  SrcGame/src/systems/ui/map/full_zoom/FullZoomMap.h \
@@ -126,8 +152,42 @@
  SrcGame/src/systems/combat/damage_display/DrawDamage.h \
  SrcGame/src/systems/configuration/client/Settings.h \
  SrcGame/src/systems/social/party/ui/cPartyWindow.h \
- SrcGame/src/core/gameplay/legacy_support/playmodel.h Shared/LevelTable.h \
- SrcGame/src/systems/security/anticheat/AntiCheat.h
+ SrcGame/src/core/gameplay/legacy_support/playmodel.h \
+ Shared/gameplay/legacy_support/PlayModelLegacyShared.h \
+ Shared/gameplay/legacy_support/PlaySubStartupModelLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubMeshTextureSwapLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubHairSkinLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubHairModelLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubItemBlinkLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubActionItemLegacyCommon.inl \
+ Shared/LevelTable.h \
+ Shared/gameplay/legacy_support/PlaySubExpXorLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubExpTableCheckLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubExpValueLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubExpPenaltyLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubDynamicPatternLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubFieldMapLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubMapDrawLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubCompressionLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubLegacyItemReformV10Common.inl \
+ Shared/gameplay/legacy_support/PlaySubItemReformCoreLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubItemReformLifecycleLegacyCommon.inl \
+ SrcGame/src/systems/security/anticheat/AntiCheat.h \
+ Shared/gameplay/legacy_support/PlaySubTradeMixLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubQuitCacheLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubPartyChatLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubAttackCopyLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubSetJobFaceLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubChangeJobFaceLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubTimeEffectInitLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubRotPlayerLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubPotionIntegrityLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubPotionCountLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubInventoryIntegrityLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubInventoryTimingLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubFolderLoadLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubSodHelpersLegacyCommon.inl \
+ Shared/gameplay/legacy_support/PlaySubSodMainLegacyCommon.inl
 Shared/opcodes.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
@@ -153,19 +213,27 @@ SrcGame/src/systems/rendering/legacy_3d/smType.h:
 Shared/smPacket.h:
 Shared/global_def.h:
 SrcGame/src/systems/network/transport/legacy/smwsock.h:
+Shared/network/transport/legacy/smwsock_legacy_client.h:
 SrcGame/src/systems/network/transport/legacy/NetType.h:
 SrcGame/src/systems/localization/legacy_catalog/language.h:
 SrcGame/src/systems/inventory/legacy/sinItem.h:
+Shared/inventory/legacy/sinItem_legacy_client.h:
 SrcGame/src/systems/rendering/legacy_3d/smTexture.h:
 SrcGame/src/systems/rendering/legacy_3d/smObj3d.h:
+Shared/rendering/legacy_3d/object/smObj3d_legacy_client.h:
 SrcGame/src/systems/rendering/legacy_3d/smStgObj.h:
 SrcGame/src/systems/rendering/legacy_3d/smStage3d.h:
+Shared/rendering/legacy_3d/stage/smStage3d_legacy_client.h:
 SrcGame/src/systems/rendering/legacy_3d/smrend3d.h:
+Shared/rendering/legacy_3d/SmRend3dLegacyCommon.h:
 SrcGame/src/systems/rendering/legacy_3d/smMap3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smRead3d.h:
+Shared/rendering/legacy_3d/smRead3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smmatrix.h:
+Shared/rendering/legacy_3d/smmatrix.h:
 SrcGame/src/systems/rendering/legacy_3d/smGeosub.h:
 SrcGame/src/systems/rendering/legacy_3d/smJpeg.h:
+Shared/rendering/legacy_3d/smJpeg.h:
 SrcGame/src/systems/gameplay/character/core/character.h:
 SrcGame/src/systems/combat/pvp/Score.h:
 SrcGame/src/systems/media/video/legacy_avi/avictrl.h:
@@ -182,19 +250,29 @@ SrcGame/src/systems/persistence/character_record/record.h:
 SrcGame/src/systems/rendering/effects/legacy_ho/core/HoAnimData.h:
 SrcGame/src/systems/rendering/effects/legacy_ho/core/HoPhysics.h:
 SrcGame/src/systems/rendering/effects/legacy_ho/core/HoEffect.h:
+Shared/rendering/effects/legacy_ho/HoEffectLegacyBody.h:
 SrcGame/src/systems/rendering/effects/legacy_ho/core/HoLogic.h:
+Shared/rendering/effects/legacy_ho/HoLogicLegacyCommon.h:
 SrcGame/src/systems/rendering/effects/particles/ho/HoParticle.h:
+Shared/rendering/effects/particles/HoParticleLegacyShared.h:
 SrcGame/src/systems/ui/messages/HoMessageBox.h:
 SrcGame/src/systems/presentation/opening/HoOpening.h:
 SrcGame/src/systems/authentication/character_selection/HoLogin.h:
+Shared/authentication/character_selection/HoLoginLegacyShared.h:
 SrcGame/src/systems/social/party/legacy_ho/HoParty.h:
 SrcGame/src/systems/rendering/effects/assa/hoAssaParticleEffect.h:
+Shared/rendering/effects/assa/hoAssaParticleEffect_legacy_client.h:
 SrcGame/src/systems/rendering/sky/legacy/HoSky.h:
+Shared/rendering/sky/HoSky_legacy_client.h:
 SrcGame/src/systems/gameplay/pets/LowLevelPetSystem.h:
+Shared/gameplay/pets/LowLevelPetSystem.h:
 SrcGame/src/systems/rendering/effects/legacy_new/core/HoNewEffectFunction.h:
 SrcGame/src/systems/gameplay/pets/PCBangPetSystem.h:
+Shared/gameplay/pets/PCBangPetSystem.h:
 SrcGame/src/systems/audio/effects/legacy/effectsnd.h:
+Shared/audio/effects/EffectSoundLegacyCatalog.h:
 SrcGame/src/core/gameplay/legacy_support/playsub.h:
+Shared/gameplay/legacy_support/playsub_legacy_client.h:
 SrcGame/src/compat/legacy/sin/util/sinUtil.h:
 SrcGame/src/systems/gameplay/events/bellatra/legacy_sin/sinMonster.h:
 SrcGame/src/core/client/legacy_sin_runtime/sinMain.h:
@@ -214,6 +292,7 @@ SrcGame/src/systems/rendering/effects/legacy_sin/sinParticle.h:
 SrcGame/src/systems/ui/messages/legacy_sin/sinMsg.h:
 SrcGame/src/systems/ui/help/legacy_sin/sinHelp.h:
 SrcGame/src/systems/gameplay/quests/legacy/sinQuest.h:
+Shared/gameplay/quests/legacy/SinQuestLegacyShared.h:
 SrcGame/src/systems/combat/skills/legacy_sin/sinSkillEffect.h:
 SrcGame/src/systems/gameplay/world_events/legacy_sin/sinEvent.h:
 SrcGame/src/systems/rendering/effects/legacy_sin/sinPublicEffect.h:
@@ -223,14 +302,19 @@ SrcGame/src/systems/rendering/effects/legacy_sin/sinAssaParticle.h:
 SrcGame/src/systems/rendering/effects/legacy_sin/AssaTestParticle.h:
 SrcGame/src/systems/combat/skills/legacy_sin/sinAssaSkillEffect.h:
 SrcGame/src/systems/rendering/effects/legacy_sin/YameEffect.h:
+Shared/rendering/effects/legacy_sin/YameEffect_legacy_client.h:
 SrcGame/src/systems/gameplay/world_events/legacy_sin/sinWarpGate.h:
 SrcGame/src/systems/ui/help/legacy_sin/sinHelpPet.h:
+Shared/ui/help/legacy_sin/sinHelpPet.h:
 SrcGame/src/systems/gameplay/events/bellatra/legacy_sin/sinSOD2.h:
 SrcGame/src/systems/gameplay/quests/legacy/HaQuest.h:
 SrcGame/src/systems/commerce/premium/HaPremiumItem.h:
 SrcGame/src/systems/gameplay/pets/legacy_sin/sinParkPcBangPet.h:
+Shared/gameplay/pets/sinParkPcBangPet.h:
 SrcGame/src/systems/combat/skills/legacy_sin/Tempskron.h:
+Shared/gameplay/skills/Tempskron_legacy_client.h:
 SrcGame/src/systems/combat/skills/legacy_sin/Morayion.h:
+Shared/gameplay/skills/Morayion_legacy_client.h:
 SrcGame/src/systems/social/clan/customization/ClanCustom.h:
 SrcGame/src/systems/progression/battle_pass/BattlePass.h:
 SrcGame/src/systems/rendering/font/newFont.h:
@@ -249,7 +333,9 @@ SrcGame/src/systems/social/clan/tjclan.h:
 SrcGame/src/systems/social/clan/cE_CViewClanInfo.h:
 SrcGame/src/systems/social/clan/tjclanDEF.h:
 SrcGame/src/compat/client_server/server_legacy/onserver.h:
+Shared/server/legacy_runtime/onserver_legacy_client.h:
 SrcGame/src/systems/gameplay/events/bellatra/ui/BellatraFontEffect.h:
+Shared/gameplay/events/BellatraFontEffect_legacy_client.h:
 SrcGame/src/systems/localization/messages/TextMessage.h:
 SrcGame/src/systems/audio/download/legacy_http/WinIntThread.h:
 SrcGame/src/systems/ui/map/full_zoom/FullZoomMap.h:
@@ -258,5 +344,38 @@ SrcGame/src/systems/combat/damage_display/DrawDamage.h:
 SrcGame/src/systems/configuration/client/Settings.h:
 SrcGame/src/systems/social/party/ui/cPartyWindow.h:
 SrcGame/src/core/gameplay/legacy_support/playmodel.h:
+Shared/gameplay/legacy_support/PlayModelLegacyShared.h:
+Shared/gameplay/legacy_support/PlaySubStartupModelLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubMeshTextureSwapLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubHairSkinLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubHairModelLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubItemBlinkLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubActionItemLegacyCommon.inl:
 Shared/LevelTable.h:
+Shared/gameplay/legacy_support/PlaySubExpXorLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubExpTableCheckLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubExpValueLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubExpPenaltyLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubDynamicPatternLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubFieldMapLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubMapDrawLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubCompressionLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubLegacyItemReformV10Common.inl:
+Shared/gameplay/legacy_support/PlaySubItemReformCoreLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubItemReformLifecycleLegacyCommon.inl:
 SrcGame/src/systems/security/anticheat/AntiCheat.h:
+Shared/gameplay/legacy_support/PlaySubTradeMixLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubQuitCacheLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubPartyChatLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubAttackCopyLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubSetJobFaceLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubChangeJobFaceLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubTimeEffectInitLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubRotPlayerLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubPotionIntegrityLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubPotionCountLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubInventoryIntegrityLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubInventoryTimingLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubFolderLoadLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubSodHelpersLegacyCommon.inl:
+Shared/gameplay/legacy_support/PlaySubSodMainLegacyCommon.inl:

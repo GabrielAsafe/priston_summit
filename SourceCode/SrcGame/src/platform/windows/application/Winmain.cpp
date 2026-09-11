@@ -496,7 +496,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 	//	HANDLE mutex2 = CreateMutex(NULL, FALSE, "GameSoul2");
 
 	//	if (GetLastError() == ERROR_ALREADY_EXISTS || mutex2 == NULL) {
-	//		/*MessageBox(0, "J� existe um jogo aberto", szAppName, MB_OK);*/
+	//		/*MessageBox(0, "Já existe um jogo aberto", szAppName, MB_OK);*/
 	//		return FALSE;
 	//	}
 	//}
@@ -1379,8 +1379,8 @@ switch (messg)
 
 
 
-		// keydownEnt pertence ao sistema de jogo/cl�.
-		// N�o deve ser ativado durante o ecr� de login (GameMode != 2).
+		// keydownEnt pertence ao sistema de jogo/clã.
+		// Não deve ser ativado durante o ecrã de login (GameMode != 2).
 		if (wParam == VK_RETURN && GameMode == 2)
 		{
 			keydownEnt = 1;
@@ -1413,8 +1413,8 @@ switch (messg)
 			}
 		}
 
-		// Mant�m o fluxo original do controlo EDIT tamb�m no login.
-		// Apenas o envio/processamento de chat ser� limitado ao GameMode == 2.
+		// Mantém o fluxo original do controlo EDIT também no login.
+		// Apenas o envio/processamento de chat será limitado ao GameMode == 2.
 		if (hFocusWnd)
 		{
 			lpString = 0;
@@ -2709,6 +2709,8 @@ DWORD	dwLastRenderTime = 0;
 
 void showFPS()
 {
+	if(!SETTINGSHANDLER->getFps())
+		return;
 
 	d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 	d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
@@ -3962,7 +3964,7 @@ int DrawGameState()
 	else
 		lpItem = lpSelItem;
 
-	if(VRKeyBuff['A']) // Drop no ch�o
+	if(VRKeyBuff['A']) // Drop no chão
 	{
 		for(cnt = 0; cnt < DISP_ITEM_MAX; cnt++)
 		{	

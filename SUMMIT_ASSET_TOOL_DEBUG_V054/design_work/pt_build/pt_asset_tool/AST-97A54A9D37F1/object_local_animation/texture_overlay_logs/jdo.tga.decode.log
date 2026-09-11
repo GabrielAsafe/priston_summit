@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=27c3c43f4960c6f8c0856e0c43618281d6f11b1e8cdd578d62dc35389ec6d6eb
-output_sha256=27c3c43f4960c6f8c0856e0c43618281d6f11b1e8cdd578d62dc35389ec6d6eb
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-97A54A9D37F1/object_local_animation/texture_overlay_client/field/forest/jdo.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

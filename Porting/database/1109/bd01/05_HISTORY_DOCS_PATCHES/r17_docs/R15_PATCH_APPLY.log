@@ -1,0 +1,15 @@
+patching file Database/migrations/019_billinglogdb_catalog.sql
+patching file Database/migrations/020_gamelogdb_catalog.sql
+patching file Database/migrations/021_itemlogdb_catalog.sql
+patching file Database/migrations/022_logdb_catalog.sql
+patching file Database/migrations/023_pcroom_catalog.sql
+patching file Database/migrations/024_pcroomlog_catalog.sql
+patching file Database/migrations/025_rptdb_catalog.sql
+patching file Database/migrations/026_sod2db_catalog.sql
+patching file Database/migrations/027_soddb_catalog.sql
+patching file Database/migrations/028_clandb_catalog.sql
+patching file Database/migrations/029_remaining_backup_catalogs.sql
+patching file Database/migrations/README.md
+patching file SrcServer/src/systems/persistence/database/sqlite/SQLiteConnection.cpp
+patching file validate_backup_catalog_completion.py
+patching file validate_sqlite_migrations.py

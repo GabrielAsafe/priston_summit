@@ -36,6 +36,32 @@ int	dmSelected_CharCnt;
 int	dmUseAccuracy;
 DWORD	dmAttackCount = 0;
 
+static void SummitRuthlessLocalHitCost()
+{
+	if(!lpCurPlayer || lpCurPlayer->smCharInfo.JOB_CODE != JOBCODE_FIGHTER) return;
+
+	int point = -1;
+	for(int i = 0; i < MAX_CONTINUE_SKILL; i++)
+	{
+		if(ContinueSkill[i].Flag && ContinueSkill[i].CODE == SKILL_T5_RUTHLESS_OF_ZECRAM &&
+		   ContinueSkill[i].Point >= 1 && ContinueSkill[i].Point <= 10)
+		{
+			point = ContinueSkill[i].Point - 1;
+			break;
+		}
+	}
+
+	if(point < 0) return;
+	int maxLife = lpCurPlayer->smCharInfo.Life[1];
+	int curLife = lpCurPlayer->smCharInfo.Life[0];
+	if(maxLife <= 0 || curLife <= 1) return;
+
+	int drain = (int)((maxLife * Fighter_T5_Ruthless_HPDecrease[point]) / 100.0f);
+	if(drain < 1) drain = 1;
+	if(drain >= curLife) drain = curLife - 1;
+	if(drain > 0) PlaySkillSubLife(drain);
+}
+
 
 DWORD	dm_GetRangeDamgeChkSum(TRANS_SKIL_ATTACKDATA2 *lpTransSkilAttackData2)
 {
@@ -330,6 +356,7 @@ int dm_SendTransDamage(smCHAR *lpChar, int PowParam1, int PowParam2, int AttackS
 		result = lpsmSendSock->Send((char *)&TransAttackData, TransAttackData.size, TRUE);
 		if (result)
 		{
+			SummitRuthlessLocalHitCost();
 			dm_OpenFireAttack(lpChar, dwSkillCode);
 			return dmg;
 		}
@@ -345,6 +372,7 @@ int dm_SendTransDamage(smCHAR *lpChar, int PowParam1, int PowParam2, int AttackS
 		result = lpsmSendSock->Send((char *)&TransAttackData, TransAttackData.size, TRUE);
 		if (result)
 		{
+			SummitRuthlessLocalHitCost();
 			dm_OpenFireAttack(lpChar, dwSkillCode);
 			return dmg;
 		}

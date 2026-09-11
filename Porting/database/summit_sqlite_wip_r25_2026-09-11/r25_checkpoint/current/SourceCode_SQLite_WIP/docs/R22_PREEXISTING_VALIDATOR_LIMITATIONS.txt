@@ -1,0 +1,22 @@
+R21 vs R22 broad-validator reproduction (2026-09-11)
+
+validate_active_nonbaseline_graph.py
+  R21: exit=1, Active non-baseline files=252, FAIL=2
+  R22: exit=1, Active non-baseline files=252, FAIL=2
+  Cause: stale allowlist for existing SqliteQueryCompat.h/.inl.
+
+validate_active_shared_graph.py
+  R21: exit=1, KeyError for Shared/persistence/database/Database_sqlite_server.h
+  R22: exit=1, same KeyError.
+
+validate_full_source_parity.py
+  R21: exit=1, FAIL=18
+  R22: exit=1, FAIL=18
+  This validator intentionally rejects WIP modifications against frozen baseline hashes and also invokes the two stale graph validators above.
+
+validate_oracle_parity.py
+  R21: exit=1, FAIL=6
+  R22: exit=1, FAIL=6
+  Existing structural-exact/frozen oracle mismatches are unchanged by R22.
+
+No additional broad-validator failure count was introduced by R22.

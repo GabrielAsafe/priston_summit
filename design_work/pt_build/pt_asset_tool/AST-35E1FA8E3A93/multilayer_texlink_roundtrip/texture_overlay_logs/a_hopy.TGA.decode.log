@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=8984487467dd3b6e2e0da6e79e3e27b25eaea00a962b5ea1c33df24aa33b9c9f
-output_sha256=8984487467dd3b6e2e0da6e79e3e27b25eaea00a962b5ea1c33df24aa33b9c9f
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-35E1FA8E3A93/multilayer_texlink_roundtrip/texture_overlay_client/field/dungeon/a_hopy.TGA
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

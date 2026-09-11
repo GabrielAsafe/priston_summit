@@ -1,28 +1,28 @@
 #include "systems/localization/messages/TextMessage.h"
 
-char *szAppName="ï¿½ï¿½ï¿½F";
+char *szAppName="ºëÆF";
 
 
-char *mgRequestTrade = "ï¿½V%sï¿½Ð¨Dï¿½ï¿½ï¿½";
-char *mgRequestTrade2 = "%sï¿½Ñ©ï¿½Zï¿½ï¿½ï¿½Ó»ï¿½ï¿½Aï¿½Lï¿½kï¿½iï¿½ï¿½ï¿½ï¿½";
+char *mgRequestTrade = "¦V%s½Ð¨D¥æ©ö";
+char *mgRequestTrade2 = "%s¥Ñ©ó¶ZÂ÷¤Ó»·¡AµLªk¶i¦æ¥æ©ö";
 
-char *mgDiconnect = "ï¿½Pï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½_";
-char *mgDiconnect1 = "ï¿½Pï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½_ (1)";
-char *mgDiconnect2 = "ï¿½Pï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½_ (2)";
-char *mgDiconnect3 = "ï¿½Pï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½_ (3)";
-char *mgDiconnect4 = "ï¿½Pï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½_ (4)";
+char *mgDiconnect = "»P¦øªA¾¹ªº³s±µ¤¤Â_";
+char *mgDiconnect1 = "»P¦øªA¾¹ªº³s±µ¤¤Â_ (1)";
+char *mgDiconnect2 = "»P¦øªA¾¹ªº³s±µ¤¤Â_ (2)";
+char *mgDiconnect3 = "»P¦øªA¾¹ªº³s±µ¤¤Â_ (3)";
+char *mgDiconnect4 = "»P¦øªA¾¹ªº³s±µ¤¤Â_ (4)";
 
-char *mgCloseGame = "ï¿½ï¿½ï¿½}ï¿½Cï¿½ï¿½";
-char *mgCloseWindow = "ï¿½Ð±zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½}ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Aï¿½ï¿½ï¿½}ï¿½Cï¿½ï¿½";
-char *mgCloseBattle = "ï¿½Ô°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½}ï¿½Cï¿½ï¿½";
+char *mgCloseGame = "Â÷¶}¹CÀ¸";
+char *mgCloseWindow = "½Ð±z¥ýÃö³¬¶}±Òªºµøµ¡¡A¦AÂ÷¶}¹CÀ¸";
+char *mgCloseBattle = "¾Ô°«¤¤¤£¯àÂ÷¶}¹CÀ¸";
 
 char *mgQuestName[][4] = {
-	{	"ï¿½ï¿½Â¾ï¿½ï¿½ï¿½ï¿½"	,	"ï¿½ï¿½Â¾ï¿½ï¿½ï¿½ï¿½]ï¿½wï¿½ï¿½ï¿½ï¿½ï¿½^" , "ChangeJob1a.Msg" , "ChangeJob1b.Msg" },
-	{	"ï¿½ï¿½Â¾ï¿½ï¿½ï¿½ï¿½[ï¿½Ó®aï¿½Gï¿½á½¦]"	,	"ï¿½ï¿½ï¿½ï¿½Ò¸ï¿½ (ï¿½ï¿½ï¿½ï¿½)" , "ChangeJob2a.Msg" , "ChangeJob1b.Msg" },
-	{	"ï¿½ï¿½Â¾ï¿½ï¿½ï¿½ï¿½[ï¿½Í¾vï¿½ï¿½]"	,	"ï¿½ï¿½Â¾ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½)" , "ChangeJob3a.Msg" , "ChangeJob1b.Msg" }
+	{	"ÂàÂ¾¦ÒÅç"	,	"ÂàÂ¾¦ÒÅç¡]¤w§¹¦¨¡^" , "ChangeJob1a.Msg" , "ChangeJob1b.Msg" },
+	{	"ÂàÂ¾¦ÒÅç[¬Ó®aªG­á½¦]"	,	"ÂàÅç¦Ò¸Õ (§¹¦¨)" , "ChangeJob2a.Msg" , "ChangeJob1b.Msg" },
+	{	"ÂàÂ¾¦ÒÅç[¥Í¾v¾¯]"	,	"ÂàÂ¾¦ÒÅç (§¹¦¨)" , "ChangeJob3a.Msg" , "ChangeJob1b.Msg" }
 };
 
-char *mgRefuseWhisper = "ï¿½ï¿½ï¿½ï¿½ï¿½Ü³Qï¿½Úµï¿½ï¿½Fï¿½I";
-char *mgWeightOver = "ï¿½Aï¿½Wï¿½ï¿½ï¿½F !!!!!";
+char *mgRefuseWhisper = "®¨®¨¸Ü³Q©Úµ´¤F¡I";
+char *mgWeightOver = "§A¶W­«¤F !!!!!";
 
 

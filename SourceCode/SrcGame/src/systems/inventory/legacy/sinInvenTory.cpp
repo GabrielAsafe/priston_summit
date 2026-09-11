@@ -1561,7 +1561,7 @@ void cINVENTORY::LButtonUp(int x, int y)
 
 DWORD dwBoosterItemCode[] = { sin21,sin22,sin23,sin24,sin25,sin26,sin27,sin28,sin29,0 };
 DWORD dwCastlItemCODE[] = { sin01,sin02,sin03,sin04,sin05,sin06,sin07,sin08,sin09,sin10,sin11,sin12,sin13,sin14,sin15,sin16,0 };
-//#N�O USAR ITEM NA CIDADE
+//#NÃO USAR ITEM NA CIDADE
 DWORD dwNotUseVillageItemCODE[3] = { (sinBI1 | sin05),(sinBI1 | sin06),(sinBI1 | sin07) };
 DWORD dwNotUseItemCODE[6][3] = { {SCROLL_INVULNERABILITY,(sinBC1 | sin01),1},{SCROLL_CRITICAL,(sinBC1 | sin02),2},{SCROLL_EVASION,(sinBC1 | sin03),3},
 							  {SCROLL_P_INVULNERABILITY,(sinBI1 | sin05),1},{SCROLL_P_CRITICAL,(sinBI1 | sin06),2},{SCROLL_P_EVASION,(sinBI1 | sin07),3} };
@@ -1636,16 +1636,16 @@ int cINVENTORY::GetMaxGold(bool Warehouse)
 
 	/*switch (sinChar->ChangeJob) {
 	case 0:
-		// Totaliza 1,000,000 no n�vel 20 com tier 1.
+		// Totaliza 1,000,000 no nível 20 com tier 1.
 		return 1000000 + ((sinChar->Level > 120 ? 120 : sinChar->Level) * 20000);
 	case 1:
-		// Totaliza 20,000,000 no n�vel 40 com tier 2.
+		// Totaliza 20,000,000 no nível 40 com tier 2.
 		return 1000000 + ((sinChar->Level > 120 ? 120 : sinChar->Level) * 500000);
 	case 2:
-		// Totaliza +-300,000,000 no n�vel 60 com tier 3.
+		// Totaliza +-300,000,000 no nível 60 com tier 3.
 		return 60000000 + ((sinChar->Level > 120 ? 120 : sinChar->Level) * 4000000);
 	case 3:
-		// Totaliza 1,000,000,000 no n�vel 120 com tier 4.
+		// Totaliza 1,000,000,000 no nível 120 com tier 4.
 		return 400000000 + ((sinChar->Level > 120 ? 120 : sinChar->Level) * 5000000);
 	}
 	return 0;*/
@@ -1681,7 +1681,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 
 	int Index = SelectInvenItemIndex - 1;
 
-	//Clique direito para enviar itens do invent�rio para o aging
+	//Clique direito para enviar itens do inventário para o aging
 	if(cAging.OpenFlag) // Aging window
 	{
 		if(SelectInvenItemIndex)
@@ -1717,7 +1717,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 			}
 			else if((InvenItem[Index].CODE & sinITEM_MASK2) == sinOS1)
 			{
-				//Verifica as posi��es dos sheltons e pega a mais pr�xima.
+				//Verifica as posições dos sheltons e pega a mais próxima.
 				bool isEmpty = false;
 				int i = 0;
 				for(i = 0; i < 12; i++)
@@ -1823,7 +1823,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		}
 	}
 
-	//Clique direito para enviar itens do invent�rio para o mix/force
+	//Clique direito para enviar itens do inventário para o mix/force
 	else if(cCraftItem.OpenFlag) // Mix window
 	{
 		if(SelectInvenItemIndex)
@@ -1835,7 +1835,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 
 			if((InvenItem[Index].CODE & sinITEM_MASK2) == sinOS1 || (InvenItem[Index].CODE & sinITEM_MASK2) == sinSE1)
 			{
-				//Verifica as posi��es dos sheltons e pega a mais pr�xima.
+				//Verifica as posições dos sheltons e pega a mais próxima.
 				bool isEmpty = false;
 
 				int i = 0;
@@ -1916,7 +1916,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		}
 	}
 
-	//Clique direito para enviar itens do invent�rio para a limpeza
+	//Clique direito para enviar itens do inventário para a limpeza
 	/*else if (cMixtureReset.OpenFlag) {
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
@@ -1977,7 +1977,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		return;
 	} */
 
-	//Clique direito para enviar itens do invent�rio para a fundi��o
+	//Clique direito para enviar itens do inventário para a fundição
 	else if (SmeltingItem.OpenFlag) {
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
@@ -2026,7 +2026,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		}
 	} 
 
-	//Clique direito para enviar itens do invent�rio para a cria��o
+	//Clique direito para enviar itens do inventário para a criação
 	else if (ManufactureItem.m_OpenFlag) {
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
@@ -2090,7 +2090,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		}
 	} 
 
-	//Clique direito para enviar itens do invent�rio para a troca
+	//Clique direito para enviar itens do inventário para a troca
 	else if (cTrade.OpenFlag) {
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
@@ -2122,7 +2122,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		return;
 	} 
 
-	//Clique direito para enviar itens do invent�rio para o armaz�m
+	//Clique direito para enviar itens do inventário para o armazém
 	else if (cWareHouse.OpenFlag) {
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
@@ -2161,7 +2161,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		return;
 	} 
 
-	//Clique direito para enviar itens do invent�rio para a loja pessoal
+	//Clique direito para enviar itens do inventário para a loja pessoal
 	else if (cMyShop.OpenFlag) {
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
@@ -2193,7 +2193,7 @@ void cINVENTORY::RButtonDown(int x, int y)
 		}
 	} 
 
-	//Clique direito para enviar itens do invent�rio para o ferreiro
+	//Clique direito para enviar itens do inventário para o ferreiro
 	else if (cShop.OpenFlag) {
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
@@ -7985,6 +7985,24 @@ int cINVENTORY::SetItemToChar(int CheckHackFlag)
 					}
 				}
 				break;
+			case SKILL_T5_CONSECRATION:
+			{
+				int point = ContinueSkill[i].Point - 1;
+				if(point >= 0 && point < 10)
+				{
+					TempSkillData = ((float)Priestess_T5_Consecration_DefenseBoost[point] / 100.0f);
+					sinChar->Defence += (int)((float)sinChar->Defence * TempSkillData);
+					sinChar->Absorption += Priestess_T5_Consecration_Absorption[point];
+					SkillTextColor[SIN2_DEFENSE] = SIN_TEXT_COLOR_BLUE;
+					SkillTextColor[SIN2_ABSORB] = SIN_TEXT_COLOR_BLUE;
+				}
+				break;
+			}
+			case SKILL_T5_GLORIOUS_SHIELD:
+				TempSkillData = ((float)Knight_T5_GloriousShield_DefenseBoost[ContinueSkill[i].Point - 1] / 100.0f);
+				sinChar->Defence += (int)((float)sinChar->Defence * TempSkillData);
+				SkillTextColor[SIN2_DEFENSE] = SIN_TEXT_COLOR_BLUE;
+				break;
 			case SKILL_SPARK_SHIELD:
 				if(sInven[1].ItemIndex)
 				{
@@ -8038,6 +8056,45 @@ int cINVENTORY::SetItemToChar(int CheckHackFlag)
 			case SKILL_MAGNETIC_SPHERE:
 
 				break;
+			case SKILL_T5_LETHAL_SIGHT:
+			{
+				int point = ContinueSkill[i].Point - 1;
+				if(point >= 0 && point < 10 && sInven[0].ItemIndex &&
+				   ((cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE & sinITEM_MASK2) == sinWS1))
+				{
+					sinAdd_Shooting_Range += Archer_T5_Lethal_RangeAdd[point];
+				}
+				break;
+			}
+			case SKILL_T5_DEATH_MASTER:
+			{
+				int point = ContinueSkill[i].Point - 1;
+				if(point >= 0 && point < 10 && sInven[0].ItemIndex)
+				{
+					DWORD weapon = cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE & sinITEM_MASK2;
+					if(weapon == sinWP1 || weapon == sinWS2)
+					{
+						sinTempDamage2[0] += (TempDamage[0] * Pike_T5_Death_DamageBoost[point]) / 100;
+						sinTempDamage2[1] += (TempDamage[1] * Pike_T5_Death_DamageBoost[point]) / 100;
+						sinAttack_Rating += (TempAttack_Rating * Pike_T5_Death_AttackRateBoost[point]) / 100;
+						SkillTextColor[SIN2_DAMAGE] = SIN_TEXT_COLOR_GOLD;
+						SkillTextColor[SIN2_ATTACK_RATE] = SIN_TEXT_COLOR_ORANGE;
+					}
+				}
+				break;
+			}
+			case SKILL_T5_FOCUS:
+			{
+				int point = ContinueSkill[i].Point - 1;
+				if(point >= 0 && point < 10 && sInven[0].ItemIndex &&
+				   ((cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE & sinITEM_MASK2) == sinWP1))
+				{
+					sinTempDamage2[0] -= Pike_T5_Focus_MinAttackReduction[point];
+					sinTempDamage2[1] += Pike_T5_Focus_MaxAttackIncrease[point];
+					SkillTextColor[SIN2_DAMAGE] = SIN_TEXT_COLOR_GOLD;
+				}
+				break;
+			}
 			case SKILL_BERSERKER:
 				sinTempDamage2[0] += Berserker_AddAttack[ContinueSkill[i].Point - 1];
 				sinTempDamage2[1] += Berserker_AddAttack[ContinueSkill[i].Point - 1];
@@ -8719,6 +8776,13 @@ int cINVENTORY::SetItemToChar(int CheckHackFlag)
 	sinChar->Move_Speed = (int)((((((ftalent + fhealth + fLevel + 60) / 150) - (fNowWeight / fMaxWeight))) + sinMoveSpeed) + sinAdd_fSpeed);
 	sinChar->Move_Speed += 1;
 
+	if(lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_ATALANTA)
+	{
+		int goldenPoint = cSkill.GetSkillPoint(SKILL_T5_GOLDEN_APPLE);
+		if(goldenPoint >= 1 && goldenPoint <= 10)
+			sinChar->Move_Speed += (sinChar->Move_Speed * Atalanta_T5_GoldenApple_Speed[goldenPoint - 1]) / 100;
+	}
+
 
 #ifdef _XTRAP_GUARD_4_CLIENT 
 	XTrap_CE1_Func11_Protect(&(sinChar->Life), sizeof(sinChar->Life));
@@ -8898,6 +8962,17 @@ int cINVENTORY::SetItemToChar(int CheckHackFlag)
 				sinChar->Life[1] += (short)Boost_Health_Life[sinSkill.UseSkill[i].Point - 1];
 
 				break;
+			case SKILL_T5_SURVIVAL_INSTINCT:
+			{
+				int point = sinSkill.UseSkill[i].Point - 1;
+				if(point >= 0 && point < 10)
+				{
+					sinChar->Life[1] += (short)Fighter_T5_Survival_Life[point];
+					sinChar->Life_Regen += (float)Fighter_T5_Survival_Regen[point];
+					life_regen_true += (float)Fighter_T5_Survival_Regen[point];
+				}
+				break;
+			}
 
 			}
 		}
@@ -8970,6 +9045,32 @@ int cINVENTORY::SetItemToChar(int CheckHackFlag)
 					SkillTextColor[SIN2_ATTACK_RATE] = SIN_TEXT_COLOR_WHITE;
 				}
 				break;
+			case SKILL_T5_WIZARD_TRANCE:
+			{
+				int point = ContinueSkill[i].Point - 1;
+				if(point >= 0 && point < 10 && sInven[0].ItemIndex && sInven[1].ItemIndex)
+				{
+					DWORD rightWeapon = cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE & sinITEM_MASK2;
+					DWORD leftWeapon = cInvenTory.InvenItem[sInven[1].ItemIndex - 1].CODE & sinITEM_MASK2;
+					if(rightWeapon == sinWM1 && leftWeapon == sinOM1)
+					{
+						sinChar->Chance_Block += (sinChar->Chance_Block * Magician_T5_WizardTrance_BlockBoost[point]) / 100;
+						sinChar->Attack_Rating -= (sinChar->Attack_Rating * Magician_T5_WizardTrance_AttackRateReduction[point]) / 100;
+						SkillTextColor[SIN2_ATTACK_RATE] = SIN_TEXT_COLOR_RED;
+					}
+				}
+				break;
+			}
+			case SKILL_T5_HARDENING_SHIELD:
+			{
+				int point = ContinueSkill[i].Point - 1;
+				if(point >= 0 && point < 10)
+				{
+					sinChar->Attack_Rating -= (sinChar->Attack_Rating * Hardening_Shield_AttackRateReduction[point]) / 100;
+					SkillTextColor[SIN2_ATTACK_RATE] = SIN_TEXT_COLOR_RED;
+				}
+				break;
+			}
 			case SKILL_FORCE_ORB:
 
 				if(ContinueSkill[i].ElementIndex == 1000)
@@ -10088,6 +10189,7 @@ int cINVENTORY::CheckMoneyLimit(int Money)
 			break;
 
 		case 3:
+		case 4:
 			if((sinChar->Money + Money) <= MAX_MONEY)return TRUE;
 			break;
 
@@ -10616,7 +10718,7 @@ int cINVENTORY::ResetInvenItemToServer(DWORD CODE, DWORD Head, DWORD CheckSum, D
 	return FALSE;
 }
 
-//Deletando item do invent�rio
+//Deletando item do inventário
 int cINVENTORY::DeleteInvenItemToServer(DWORD CODE, DWORD Head, DWORD CheckSum)
 {
 

@@ -1748,7 +1748,7 @@ void cTRADE::LButtonDown(int x, int y)
 								Temp = lstrlen(szCraftItemBuff);
 								for(i = 0; i < Temp; i++)
 								{
-									if(szCraftItemBuff[i] == '/r')
+									if(szCraftItemBuff[i] == '/' && szCraftItemBuff[i + 1] == 'r')
 									{
 										LineCount++;
 									}
@@ -1871,7 +1871,7 @@ void cTRADE::LButtonDown(int x, int y)
 								Temp = lstrlen(szCraftItemBuff);
 								for(int j = 0; j < Temp; j++)
 								{
-									if(szCraftItemBuff[j] == '/r')
+									if(szCraftItemBuff[j] == '/' && szCraftItemBuff[j + 1] == 'r')
 									{
 										LineCount++;
 									}
@@ -1986,7 +1986,7 @@ void cTRADE::LButtonDown(int x, int y)
 						Temp = lstrlen(szCraftItemBuff);
 						for(i = 0; i < Temp; i++)
 						{
-							if(szCraftItemBuff[i] == '/r')
+							if(szCraftItemBuff[i] == '/' && szCraftItemBuff[i + 1] == 'r')
 							{
 								LineCount++;
 							}
@@ -2100,7 +2100,7 @@ void cTRADE::LButtonDown(int x, int y)
 						Temp = lstrlen(szCraftItemBuff);
 						for(i = 0; i < Temp; i++)
 						{
-							if(szCraftItemBuff[i] == '/r')
+							if(szCraftItemBuff[i] == '/' && szCraftItemBuff[i + 1] == 'r')
 							{
 								LineCount++;
 							}
@@ -2425,11 +2425,11 @@ void cTRADE::DrawTradeText()
 			len = lstrlen(TempszCraftItemBuff);
 			for (i = 0; i < len; i++)
 			{
-				if (TempszCraftItemBuff[i] == '/r')
+				if (TempszCraftItemBuff[i] == '/' && szCraftItemBuff[i + 1] == 'r')
 				{
 					pCraftItemInfo[Count] = &TempszCraftItemBuff[Templen];
 					TempszCraftItemBuff[i] = 0;
-					Templen = i + 1;
+					Templen = i + 2;
 					Textlen = lstrlen(pCraftItemInfo[Count]);
 
 					SetTextXposi = ((CraftItemMessageBoxPosi.x + ((CraftItemMessageSize.x * 16) / 2)) - ((Textlen / 2) * 11));
@@ -3363,19 +3363,19 @@ int cWAREHOUSE::CloseWareHouse()
 		{
 			if(BackUpInvenItem2)
 			{
-				delete BackUpInvenItem2;
+				delete[] BackUpInvenItem2;
 				BackUpInvenItem2 = 0;
 
 			}
 			if(BackUpInvenTempItem2)
 			{
-				delete BackUpInvenTempItem2;
+				delete[] BackUpInvenTempItem2;
 				BackUpInvenTempItem2 = 0;
 
 			}
 			if(BackUpsInven)
 			{
-				delete BackUpsInven;
+				delete[] BackUpsInven;
 				BackUpsInven = 0;
 
 			}
@@ -3635,19 +3635,19 @@ int cWAREHOUSE::RestoreInvenItem()
 
 	if(BackUpInvenItem2)
 	{
-		delete BackUpInvenItem2;
+		delete[] BackUpInvenItem2;
 		BackUpInvenItem2 = 0;
 
 	}
 	if(BackUpInvenTempItem2)
 	{
-		delete BackUpInvenTempItem2;
+		delete[] BackUpInvenTempItem2;
 		BackUpInvenTempItem2 = 0;
 
 	}
 	if(BackUpsInven)
 	{
-		delete BackUpsInven;
+		delete[] BackUpsInven;
 		BackUpsInven = 0;
 
 	}
@@ -6450,7 +6450,7 @@ int cCRAFTITEM::sinRecvCraftItemResult(sCRAFTITEM_SERVER *pCraftItem_Server)
 			Temp = lstrlen(szCraftItemBuff);
 			for(i = 0; i < Temp; i++)
 			{
-				if(szCraftItemBuff[i] == '/r')
+				if(szCraftItemBuff[i] == '/' && szCraftItemBuff[i + 1] == 'r')
 				{
 					LineCount++;
 				}
@@ -7232,7 +7232,7 @@ int cSKINSYSTEM::sinRecvSkinChangeResult(sSKIN_CHANGE_SERVER* pSkinChangeItem_Se
 			Temp = lstrlen(szCraftItemBuff);
 			for(i = 0; i < Temp; i++)
 			{
-				if(szCraftItemBuff[i] == '/r')
+				if(szCraftItemBuff[i] == '/' && szCraftItemBuff[i + 1] == 'r')
 				{
 					LineCount++;
 				}
@@ -7652,7 +7652,7 @@ int cMIXTURERESET::sinRecvMixtureItemResetResult(sMIXTURE_RESET_ITEM_SERVER *pMi
 			Temp = lstrlen(szCraftItemBuff);
 			for(i = 0; i < Temp; i++)
 			{
-				if(szCraftItemBuff[i] == '/r')
+				if(szCraftItemBuff[i] == '/' && szCraftItemBuff[i + 1] == 'r')
 				{
 					LineCount++;
 				}
@@ -8167,7 +8167,7 @@ int CSmeltingItem::sinRecvSmeltingItemResult(sSMELTINGITEM_SERVER *pSmeltingItem
 			Temp = lstrlen(szCraftItemBuff);
 			for(i = 0; i < Temp; i++)
 			{
-				if(szCraftItemBuff[i] == '/r')
+				if(szCraftItemBuff[i] == '/' && szCraftItemBuff[i + 1] == 'r')
 				{
 					LineCount++;
 				}
@@ -8914,7 +8914,7 @@ int CManufacture::RecvManufactureItemResult(SManufactureItem_Server *pManufactur
 			Temp = lstrlen(szCraftItemBuff);
 			for(i = 0; i < Temp; i++)
 			{
-				if(szCraftItemBuff[i] == '/r')
+				if(szCraftItemBuff[i] == '/' && szCraftItemBuff[i + 1] == 'r')
 				{
 					LineCount++;
 				}

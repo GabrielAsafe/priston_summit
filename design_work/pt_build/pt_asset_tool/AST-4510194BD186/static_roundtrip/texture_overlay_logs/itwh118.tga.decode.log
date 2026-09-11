@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=bf911cc8f4960638de611c5c926d1378a40c9b046643bed7a251297ea0f4edf4
-output_sha256=024f7a07b5297b5141d33638c35cc7aee64917ac4a9f4c50b9f7a3f7d267d13e
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4510194BD186/static_roundtrip/texture_overlay_client/Image/sinImage/Items/DropItem/itwh118.tga
-format=TGA_PRISTON_HEADER18_FULL18
-client_modified=False
-tga_decode_check=PASS

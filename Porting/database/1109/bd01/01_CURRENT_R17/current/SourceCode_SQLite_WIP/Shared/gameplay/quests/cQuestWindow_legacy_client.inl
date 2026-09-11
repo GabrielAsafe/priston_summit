@@ -1,0 +1,951 @@
+#include "opcodes.h"
+#include "compat/legacy/sin/sinLinkHeader.h"
+#include "systems/network/client/netplay.h"
+#include "systems/gameplay/quests/ui/cQuestWindow.h"
+#include "systems/rendering/legacy_3d/smTexture.h"
+#include "systems/rendering/2d/legacy/drawsub.h"
+
+
+extern int sinGetKeyClick(int num);
+extern bool isMousePos(int x, int y, int w, int h);
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+cQUESTWINDOW cQuestWindow;
+
+void cQUESTWINDOW::Init()
+{
+	pCurrentTab = 0;
+
+	Mat[BG] = CreateTextureMaterial("game//gui//Quest//images//background.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[CLOSE] = CreateTextureMaterial("game//gui//Quest//images//close.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[PROGRESS_TAB] = CreateTextureMaterial("game//gui//Quest//images//progress_tab.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[PROGRESS_TAB_] = CreateTextureMaterial("game//gui//Quest//images//progress_tab_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[LIST_TAB] = CreateTextureMaterial("game//gui//Quest//images//list_tab.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[LIST_TAB_] = CreateTextureMaterial("game//gui//Quest//images//list_tab_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[SPOILER_DAILY] = CreateTextureMaterial("game//gui//Quest//images//spoiler_daily.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[SPOILER_Repeated] = CreateTextureMaterial("game//gui//Quest//images//spoiler_repeat.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[SPOILER_QUESTS] = CreateTextureMaterial("game//gui//Quest//images//spoiler_quests.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[SPOILER_PROGRESS] = CreateTextureMaterial("game//gui//Quest//images//spoiler_progress.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[SPOILER_FINALIZED] = CreateTextureMaterial("game//gui//Quest//images//spoiler_finalized.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[SPOILER_OPEN] = CreateTextureMaterial("game//gui//Quest//images//spoiler_open.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[SPOILER_CLOSE] = CreateTextureMaterial("game//gui//Quest//images//spoiler_close.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[ACCEPT_QUEST] = CreateTextureMaterial("game//gui//Quest//images//accept.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[ACCEPT_QUEST_] = CreateTextureMaterial("game//gui//Quest//images//accept_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[CANCEL_QUEST] = CreateTextureMaterial("game//gui//Quest//images//cancel.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[CANCEL_QUEST_] = CreateTextureMaterial("game//gui//Quest//images//cancel_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[GET_REWARD] = CreateTextureMaterial("game//gui//Quest//images//get_reward.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	Mat[GET_REWARD_] = CreateTextureMaterial("game//gui//Quest//images//get_reward_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+}
+
+void cQUESTWINDOW::AddObject(int ID, int Mat, int Mat_, int x, int y, int w, int h, int Opacity)
+{
+	sOBJECT* object = new sOBJECT;
+
+	if (object)
+	{
+		object->ID = ID;
+		object->Mat = Mat;
+		object->Mat_ = Mat_;
+		object->x = x;
+		object->y = y;
+		object->w = w;
+		object->h = h;
+		object->Opacity = Opacity;
+
+		vObjects.push_back(object);
+	}
+}
+
+sTAB* cQUESTWINDOW::AddTab(int ID, int Mat, int Mat_, int x, int y, int w, int h, bool Selected)
+{
+	sTAB* tab = new sTAB;
+
+	if (tab)
+	{
+		tab->ID = ID;
+		tab->Mat[0] = Mat;
+		tab->Mat[1] = Mat_;
+		tab->x = x;
+		tab->y = y;
+		tab->w = w;
+		tab->h = h;
+		tab->Selected = Selected;
+
+		vTabs.push_back(tab);
+		return tab;
+	}
+
+	return nullptr;
+}
+
+void cQUESTWINDOW::AddSpoiler(sTAB* pTab, int ID, int Mat)
+{
+	if (!pTab)
+		return;
+
+	sSPOILER* spoiler = new sSPOILER;
+
+	if (spoiler)
+	{
+		spoiler->ID = ID;
+		spoiler->Mat = Mat;
+		spoiler->State = false;
+		spoiler->pQuestWindow = this;
+
+		pTab->vSpoilers.push_back(spoiler);
+
+		smTRANS_COMMAND smTransCommand = {};
+
+		smTransCommand.code = OpCode::OPCODE_SPOILER_INFO;
+		smTransCommand.size = sizeof(smTRANS_COMMAND);
+		smTransCommand.WParam = ID;
+
+		if (smWsockServer)
+			smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+	}
+}
+
+void cQUESTWINDOW::SwitchSpoiler(sSPOILER* pSpoiler)
+{
+	if (!pCurrentTab)
+		return;
+
+	if (!pSpoiler || !pSpoiler->State)
+	{
+		for (auto Spoiler : pCurrentTab->vSpoilers)
+		{
+			if (Spoiler)
+			{
+				Spoiler->State = false;
+				Spoiler->SetQuest(0);
+			}
+		}
+	}
+
+	if (!pSpoiler)
+	{
+		pSelectedSpoiler = 0;
+		ScrollList = 0;
+		return;
+	}
+
+	pSpoiler->State = !pSpoiler->State;
+
+	if (pSpoiler->State)
+		pSelectedSpoiler = pSpoiler;
+	else
+		pSelectedSpoiler = 0;
+
+	ScrollList = 0;
+}
+
+sSPOILER* cQUESTWINDOW::GetSpoiler(int ID)
+{
+	for (auto& Tab : vTabs)
+	{
+		if (Tab)
+		{
+			for (auto pSpoiler : Tab->vSpoilers)
+			{
+				if (pSpoiler && pSpoiler->ID == ID)
+					return pSpoiler;
+			}
+		}
+	}
+	return nullptr;
+}
+
+void cQUESTWINDOW::handlePacket(smTRANS_QUEST_INFO* pTransQuestInfo)
+{
+	sSPOILER* pSpoiler = GetSpoiler(pTransQuestInfo->SpoilerNum);
+
+	if (!pSpoiler)
+		return;
+
+	if (pSpoiler->ResetQuests || pTransQuestInfo->QuestCount < 0)
+	{
+		pSpoiler->SetQuest(0);
+
+		for (auto quest : pSpoiler->vQuests)
+			if (quest)
+				delete quest;
+
+		pSpoiler->vQuests.clear();
+		pSpoiler->ResetQuests = false;
+
+		if (pTransQuestInfo->QuestCount < 0)
+			return;
+	}
+
+	for (int i = 0; i < pTransQuestInfo->QuestCount; i++)
+	{
+		pSpoiler->AddQuest(pTransQuestInfo->QuestInfo[i].QuestID, pTransQuestInfo->QuestInfo[i].QuestKind, pTransQuestInfo->QuestInfo[i].QuestName, pTransQuestInfo->QuestInfo[i].QuestActive);
+	}
+}
+
+void cQUESTWINDOW::handlePacket(smTRANS_QUEST_FULL* pTransQuestInfo)
+{
+	sQUEST* pQuest = pSelectedSpoiler->pSelectedQuest;
+
+	if (!pQuest)
+		return;
+
+	ZeroMemory(&pQuest->QuestInfo, sizeof(sFULL_INFO));
+
+	lstrcpynA(pQuest->QuestInfo.QuestName, pTransQuestInfo->QuestName, sizeof(pQuest->QuestInfo.QuestName));
+	lstrcpynA(pQuest->QuestInfo.QuestTitle, pTransQuestInfo->QuestTitle, sizeof(pQuest->QuestInfo.QuestTitle));
+	lstrcpynA(pQuest->QuestInfo.QuestDesc, pTransQuestInfo->QuestDesc, sizeof(pQuest->QuestInfo.QuestDesc));
+
+	pQuest->QuestInfo.LevelMin = pTransQuestInfo->LevelMin;
+	pQuest->QuestInfo.LevelMax = pTransQuestInfo->LevelMax;
+	pQuest->QuestInfo.PartyFlag = pTransQuestInfo->PartyFlag;
+	pQuest->QuestInfo.QuestType = pTransQuestInfo->QuestType;
+
+	int monsterCount = pTransQuestInfo->MonsterCount;
+	if (monsterCount < 0)
+		monsterCount = 0;
+	if (monsterCount > 4)
+		monsterCount = 4;
+
+	pQuest->QuestInfo.MonsterCount = monsterCount;
+
+	for (int i = 0; i < monsterCount; i++)
+	{
+		lstrcpynA(pQuest->QuestInfo.MonsterNames[i], pTransQuestInfo->MonsterNames[i], sizeof(pQuest->QuestInfo.MonsterNames[i]));
+		pQuest->QuestInfo.MonsterCounts[i] = pTransQuestInfo->MonsterCounts[i];
+		pQuest->QuestInfo.MonsterKilled[i] = pTransQuestInfo->MonsterKilled[i];
+		pQuest->QuestInfo.MonsterMaps[i] = pTransQuestInfo->MonsterMaps[i];
+	}
+
+	int rewardCount = pTransQuestInfo->RewardCount;
+	if (rewardCount < 0)
+		rewardCount = 0;
+	if (rewardCount > 4)
+		rewardCount = 4;
+
+	pQuest->QuestInfo.RewardCount = rewardCount;
+
+	for (int i = 0; i < rewardCount; i++)
+	{
+		lstrcpynA(pQuest->QuestInfo.RewardNames[i], pTransQuestInfo->RewardNames[i], sizeof(pQuest->QuestInfo.RewardNames[i]));
+		pQuest->QuestInfo.RewardCounts[i] = pTransQuestInfo->RewardCounts[i];
+	}
+
+	pQuest->QuestInfo.RewardGold = pTransQuestInfo->RewardGold;
+	pQuest->QuestInfo.RewardExp = pTransQuestInfo->RewardExp;
+	pQuest->QuestInfo.RewardClanExp = pTransQuestInfo->RewardClanExp;
+	pQuest->QuestInfo.RewardCoin = pTransQuestInfo->RewardCoin;
+	pQuest->QuestInfo.RewardTCoin = pTransQuestInfo->RewardTCoin;
+}
+
+void cQUESTWINDOW::SelectTab(int TabID)
+{
+	if (pCurrentTab && pCurrentTab->ID == TabID)
+		return;
+
+	SwitchSpoiler(0);
+
+	for (auto tab : vTabs)
+	{
+		if (tab)
+		{
+			if (tab->ID != TabID)
+				tab->Selected = false;
+			else
+			{
+				tab->Selected = true;
+				pCurrentTab = tab;
+			}
+		}
+	}
+
+	ScrollList = 0;
+}
+
+void cQUESTWINDOW::Open()
+{
+	OpenFlag = true;
+
+	// Objects
+	AddObject(CLOSE, Mat[CLOSE], Mat[CLOSE], 559, 13, 20, 19, 200);
+	AddObject(ACCEPT_QUEST, Mat[ACCEPT_QUEST], Mat[ACCEPT_QUEST], 455, 367, 101, 43, 200);
+	AddObject(CANCEL_QUEST, Mat[CANCEL_QUEST], Mat[CANCEL_QUEST], 455, 367, 101, 43, 200);
+	AddObject(GET_REWARD, Mat[GET_REWARD], Mat[GET_REWARD], 455, 367, 101, 43, 200);
+
+	// Tabs
+	sTAB* pProgress = AddTab(PROGRESS_TAB, Mat[PROGRESS_TAB], Mat[PROGRESS_TAB_], 35, 100, 120, 30, false);
+	sTAB* pList = AddTab(LIST_TAB, Mat[LIST_TAB], Mat[LIST_TAB_], 156, 100, 121, 30, false);
+	SelectTab(LIST_TAB);
+
+	// Spoilers
+	if (pList)
+	{
+		AddSpoiler(pList, SPOILER_Repeated, Mat[SPOILER_Repeated]);
+		AddSpoiler(pList, SPOILER_DAILY, Mat[SPOILER_DAILY]);
+		AddSpoiler(pList, SPOILER_QUESTS, Mat[SPOILER_QUESTS]);
+	}
+
+	if (pProgress)
+	{
+		AddSpoiler(pProgress, SPOILER_PROGRESS, Mat[SPOILER_PROGRESS]);
+		AddSpoiler(pProgress, SPOILER_FINALIZED, Mat[SPOILER_FINALIZED]);
+	}
+
+	pSelectedSpoiler = 0;
+}
+
+void cQUESTWINDOW::Close()
+{
+	OpenFlag = false;
+
+	for (auto object : vObjects)
+		if (object)
+			delete object;
+
+	vObjects.clear();
+
+	for (auto tab : vTabs)
+		if (tab)
+		{
+			for (auto spoiler : tab->vSpoilers)
+			{
+				if (spoiler)
+				{
+					for (auto quest : spoiler->vQuests)
+						if (quest)
+							delete quest;
+
+					delete spoiler;
+				}
+			}
+
+			delete tab;
+		}
+
+	vTabs.clear();
+
+	pCurrentTab = 0;
+}
+
+int totalY = 0;
+
+void cQUESTWINDOW::Draw()
+{
+	if (!OpenFlag)
+		return;
+
+	BaseX = (WinSizeX - 586) / 2;
+	BaseY = (WinSizeY - 445) / 2;
+
+	dsDrawTexImage(Mat[BG], BaseX, BaseY, 586, 445, 255);
+
+	if (vObjects.size())
+	{
+		for (auto object : vObjects)
+		{
+			if (object)
+			{
+				if (object->ID == ACCEPT_QUEST)
+				{
+					if (!pSelectedSpoiler || pSelectedSpoiler->ID == SPOILER_PROGRESS || pSelectedSpoiler->ID == SPOILER_FINALIZED || !pSelectedSpoiler->pSelectedQuest || !pSelectedSpoiler->pSelectedQuest->Active)
+						continue;
+				}
+				else if (object->ID == CANCEL_QUEST)
+				{
+					if (!pSelectedSpoiler || pSelectedSpoiler->ID != SPOILER_PROGRESS || !pSelectedSpoiler->pSelectedQuest || pSelectedSpoiler->pSelectedQuest->Complete)
+						continue;
+				}
+				else if (object->ID == GET_REWARD)
+				{
+					if (!pSelectedSpoiler || pSelectedSpoiler->ID != SPOILER_PROGRESS || !pSelectedSpoiler->pSelectedQuest || !pSelectedSpoiler->pSelectedQuest->Complete)
+						continue;
+				}
+
+				if (isMousePos(BaseX + object->x, BaseY + object->y, object->w, object->h))
+					dsDrawTexImage(object->Mat_ ? object->Mat_ : object->Mat, BaseX + object->x, BaseY + object->y, object->w, object->h, 255);
+				else
+					dsDrawTexImage(object->Mat, BaseX + object->x, BaseY + object->y, object->w, object->h, object->Opacity);
+			}
+		}
+	}
+
+	if (vTabs.size())
+	{
+		for (auto tab : vTabs)
+		{
+			if (tab)
+			{
+				if (tab->Selected)
+					dsDrawTexImage(tab->Mat[1], BaseX + tab->x, BaseY + tab->y, tab->w, tab->h, 255);
+				else
+					dsDrawTexImage(tab->Mat[0], BaseX + tab->x, BaseY + tab->y, tab->w, tab->h, 255);
+			}
+		}
+
+		if (pCurrentTab)
+		{
+			int iX = BaseX + 33;
+			int iY = BaseY + 130 + ScrollList;
+			int iTopLimit = BaseY + 120;
+			int iBotLimit = BaseY + 423;
+
+			for (auto pSpoiler : pCurrentTab->vSpoilers)
+			{
+				if (pSpoiler)
+				{
+					if (iY < iTopLimit && (iTopLimit - iY) < 21)
+					{
+						dsDrawTexImage(pSpoiler->Mat, iX, iTopLimit > iY ? iTopLimit : iY, 217, 22 - (iTopLimit > iY ? iTopLimit - iY : 0), 217, 22, 0, iTopLimit > iY ? iTopLimit - iY : 0, 217, 22, 255);
+						iY += 4;
+
+						if (iY > iTopLimit || (iTopLimit - iY) < 11)
+							dsDrawTexImage(Mat[pSpoiler->State ? SPOILER_OPEN : SPOILER_CLOSE], iX + 13, (iTopLimit > iY ? iTopLimit : iY), 14, 12 - (iTopLimit > iY ? iTopLimit - iY : 0), 14, 12, 0, iTopLimit > iY ? iTopLimit - iY : 0, 14, 12, 255);
+					}
+					else if (iY >= iTopLimit && iY < iBotLimit - 21)
+					{
+						dsDrawTexImage(pSpoiler->Mat, iX, iY, 217, 22, 255);
+						iY += 4;
+
+						dsDrawTexImage(Mat[pSpoiler->State ? SPOILER_OPEN : SPOILER_CLOSE], iX + 13, iY, 14, 12, 255);
+					}
+					else if (iY > iTopLimit && iY > iBotLimit - 21 && iY < iBotLimit)
+					{
+						dsDrawTexImage(pSpoiler->Mat, iX, iY, 217, 22 - (iY - (iBotLimit - 21)), 217, 22, 0, 0, 217, 22 - (iY - (iBotLimit - 21)), 255);
+						iY += 4;
+
+						if (iY > iBotLimit - 11 && iY < iBotLimit)
+							dsDrawTexImage(Mat[pSpoiler->State ? SPOILER_OPEN : SPOILER_CLOSE], iX + 14, iY, 14, 12 - (iY - (iBotLimit - 11)), 14, 12, 0, 0, 14, 12 - (iY - (iBotLimit - 11)), 255);
+						else if (iY < iBotLimit)
+							dsDrawTexImage(Mat[pSpoiler->State ? SPOILER_OPEN : SPOILER_CLOSE], iX + 13, iY, 14, 12, 255);
+					}
+					else
+						iY += 4;
+
+					iY += 19;
+
+					if (pSpoiler->State && pSpoiler->vQuests.size())
+					{
+						for (auto pQuest : pSpoiler->vQuests)
+						{
+							if (pQuest)
+							{
+								if (isMousePos(iX + 10, iY, 205, 20) || pQuest->Selected)
+									SetFontTextColor(RGB(255, 100, 45));
+								else if (pQuest->Active)
+									SetFontTextColor(RGB(240, 240, 240));
+								else
+									SetFontTextColor(RGB(150, 150, 150));
+
+								if (iY > iTopLimit - 5 && iY < iBotLimit - 19)
+									dsTextLineOut(iX + 10, iY + 1, pQuest->szTitle, lstrlen(pQuest->szTitle));
+
+								iY += 20;
+							}
+						}
+
+						pSpoiler->DrawQuest(BaseX, BaseY);
+					}
+				}
+			}
+			totalY = iY;
+		}
+	}
+}
+
+void cQUESTWINDOW::KeyDown()
+{
+	if (sinGetKeyClick('U'))
+	{
+		if (OpenFlag)
+			Close();
+		else
+			Open();
+	}
+}
+
+void cQUESTWINDOW::LButtonDown()
+{
+	if (!OpenFlag)
+		return;
+
+	for (auto object : vObjects)
+	{
+		if (object)
+		{
+			if (object->ID == ACCEPT_QUEST)
+			{
+				if (!pSelectedSpoiler || pSelectedSpoiler->ID == SPOILER_PROGRESS || pSelectedSpoiler->ID == SPOILER_FINALIZED || !pSelectedSpoiler->pSelectedQuest || !pSelectedSpoiler->pSelectedQuest->Active)
+					continue;
+			}
+			else if (object->ID == CANCEL_QUEST)
+			{
+				if (!pSelectedSpoiler || pSelectedSpoiler->ID != SPOILER_PROGRESS || !pSelectedSpoiler->pSelectedQuest || pSelectedSpoiler->pSelectedQuest->Complete)
+					continue;
+			}
+			else if (object->ID == GET_REWARD)
+			{
+				if (!pSelectedSpoiler || pSelectedSpoiler->ID != SPOILER_PROGRESS || !pSelectedSpoiler->pSelectedQuest || !pSelectedSpoiler->pSelectedQuest->Complete)
+					continue;
+			}
+
+			if (isMousePos(BaseX + object->x, BaseY + object->y, object->w, object->h))
+			{
+				switch (object->ID)
+				{
+				case CLOSE:
+					Close();
+					break;
+				case ACCEPT_QUEST:
+					pSelectedSpoiler->StartQuest(true);
+					break;
+				case CANCEL_QUEST:
+					pSelectedSpoiler->CancelQuest(true);
+					break;
+				case GET_REWARD:
+					pSelectedSpoiler->GetReward();
+					break;
+				}
+				break;
+			}
+		}
+	}
+
+	for (auto tab : vTabs)
+	{
+		if (tab)
+		{
+			if (isMousePos(BaseX + tab->x, BaseY + tab->y, tab->w, tab->h))
+			{
+				switch (tab->ID)
+				{
+				case PROGRESS_TAB:
+				case LIST_TAB:
+					SelectTab(tab->ID);
+					break;
+				}
+				break;
+			}
+		}
+	}
+
+	if (pCurrentTab)
+	{
+		int iX = BaseX + 33;
+		int iY = BaseY + 130 + ScrollList;
+
+		for (auto pSpoiler : pCurrentTab->vSpoilers)
+		{
+			if (pSpoiler)
+			{
+				if (isMousePos(iX, iY, 215, 20))
+				{
+					SwitchSpoiler(pSpoiler);
+					break;
+				}
+				iY += 24;
+
+				if (pSpoiler->State)
+				{
+					for (auto& quest : pSpoiler->vQuests)
+					{
+						if (quest && !quest->Selected && isMousePos(iX + 10, iY, 205, 20))
+						{
+							pSpoiler->SetQuest(quest);
+						}
+						iY += 20;
+					}
+				}
+
+				int iBotLimit = BaseY + 410;
+
+				if (iY > iBotLimit)
+					break;
+			}
+		}
+	}
+}
+
+void cQUESTWINDOW::MouseWheel(short zDelta)
+{
+	if (!OpenFlag)
+		return;
+
+	if (zDelta >= 0)
+	{
+		if (ScrollList < 0)
+			ScrollList += 5;
+	}
+	else
+	{
+		int iBotLimit = BaseY + 410;
+
+		if (totalY > iBotLimit)
+			ScrollList -= 5;
+	}
+}
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+extern int AddChatBuff(char* szMsg);
+
+void sSPOILER::AddQuest(int ID, int Kind, char* szTitle, bool Active)
+{
+	sQUEST* quest = new sQUEST;
+
+	if (quest)
+	{
+		ZeroMemory(quest, sizeof(sQUEST));
+
+		quest->ID = ID;
+		quest->Kind = Kind;
+		lstrcpy(quest->szTitle, szTitle);
+		quest->Selected = false;
+		quest->Active = Active;
+
+
+		vQuests.push_back(quest);
+	}
+}
+
+bool sSPOILER::SetQuest(sQUEST* pQuest)
+{
+	for (auto& quest : vQuests)
+	{
+		if (quest && quest->Selected)
+			quest->Selected = false;
+	}
+
+	pSelectedQuest = pQuest;
+
+	if (!pQuest)
+		return false;
+
+	pQuest->Selected = true;
+
+	smTRANS_COMMAND QuestCommand = {};
+
+	QuestCommand.code = OpCode::OPCODE_QUEST_INFO;
+	QuestCommand.size = sizeof(smTRANS_COMMAND);
+	QuestCommand.WParam = pQuest->ID;
+	QuestCommand.LParam = pQuest->Kind;
+	QuestCommand.SParam = ID;
+
+
+	if (smWsockServer)
+		smWsockServer->Send((char*)&QuestCommand, QuestCommand.size, TRUE);
+
+	return true;
+}
+
+void sSPOILER::StartQuest(bool ok)
+{
+	if (!pSelectedQuest)
+		return;
+
+	if (!ok)
+	{
+		cMessageBox.ShowMessage3(MESSAGE_QUEST_START, "");
+		return;
+	}
+
+	smTRANS_COMMAND smTransCommand = {};
+
+	smTransCommand.code = OpCode::OPCODE_START_QUEST;
+	smTransCommand.size = sizeof(smTRANS_COMMAND);
+	smTransCommand.WParam = pSelectedQuest->ID;
+	smTransCommand.LParam = ID;
+	smTransCommand.SParam = pSelectedQuest->QuestInfo.QuestType;
+	smTransCommand.EParam = pSelectedQuest->QuestInfo.PartyFlag;
+
+	if (smWsockServer)
+		smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+
+	ResetQuests = true;
+	pQuestWindow->GetSpoiler(10)->ResetQuests = true;
+}
+
+void sSPOILER::CancelQuest(bool ok)
+{
+	if (!ok)
+	{
+		cMessageBox.ShowMessage3(MESSAGE_QUEST_CANCEL, "");
+		return;
+	}
+
+	smTRANS_COMMAND smTransCommand = {};
+
+	smTransCommand.code = OpCode::OPCODE_CANCEL_QUEST;
+	smTransCommand.size = sizeof(smTRANS_COMMAND);
+	smTransCommand.WParam = pSelectedQuest->ID;
+	smTransCommand.LParam = pSelectedQuest->Kind;
+	smTransCommand.SParam = pSelectedQuest->QuestInfo.QuestType;
+
+	if (smWsockServer)
+		smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+
+	ResetQuests = true;
+	pQuestWindow->GetSpoiler(pSelectedQuest->Kind)->ResetQuests = true;
+}
+
+void sSPOILER::GetReward()
+{
+	smTRANS_COMMAND smTransCommand = {};
+
+	smTransCommand.code = OpCode::OPCODE_GET_REWARD;
+	smTransCommand.size = sizeof(smTRANS_COMMAND);
+	smTransCommand.WParam = pSelectedQuest->ID;
+	smTransCommand.LParam = pSelectedQuest->Kind;
+	smTransCommand.SParam = pSelectedQuest->QuestInfo.QuestType;
+
+	if (smWsockServer)
+		smWsockServer->Send((char*)&smTransCommand, smTransCommand.size, TRUE);
+
+	ResetQuests = true;
+	pQuestWindow->GetSpoiler(pSelectedQuest->Kind)->ResetQuests = true;
+	pQuestWindow->GetSpoiler(11)->ResetQuests = true;
+}
+
+char* szFields[] = {
+	"Mata das Ac\341cias",
+"Floresta Bamboo",
+"Jardim da Liberdade",
+"Ricartem",
+"Ref\372gio dos Anci\365es",
+"Castelo dos Perdidos",
+"Vila Ruinen",
+"Terra Maldita",
+"Terra Esquecida",
+"Navisko",
+"O\341sis",
+"Campo de Batalha dos Anci\365es",
+"Terra Proibida",
+"Calabou\347o Antigo 1\272 Andar",
+"Calabou\347o Antigo 2\272 Andar",
+"Calabou\347o Antigo 3\272 Andar",
+"Sala do GM",
+"Floresta dos Esp\355ritos",
+"Floresta das Ilus\365es",
+"Vale Tranquilo",
+"Estrada dos Ventos",
+"Pillai",
+"Templo Maldito 1\272 Andar",
+"Templo Maldito 2\272 Andar",
+"Caverna dos Cogumelos",
+"Caverna das Abelhas",
+"Santuario Sombrio",
+"Estrada de Ferro do Caos",
+"Cora\347\343o de Perum",
+"Eura",
+"SoD",
+"Vale Galubia",
+"Sala de Quest",
+"Castelo Antigo (BC)",
+"Lago da Gan\342ncia",
+"Santuario Congelado",
+"Caverna do Kelvezu",
+"Ilha Perdida",
+"Templo Perdido",
+"Mapa 2d",
+"Torre sem Fim 1\272 Andar",
+"Torre sem Fim 2\272 Andar",
+"Templo Maldito 3\272 Andar",
+"Torre sem Fim 3\272 Andar",
+"Mina de Gelo 1\272 Andar",
+"T.D.P Ardor",
+"Laboratorio Secreto",
+"Arma Secreta",
+"Abismo do Mar 1\272 Andar",
+"Abismo do Mar 2\272 Andar",
+};
+
+extern int NumLineComa64(INT64 Num, char* pBuff);
+
+void sSPOILER::DrawQuest(int BaseX, int BaseY)
+{
+
+	if (!pSelectedQuest)
+		return;
+
+	COLORREF Orange = RGB(255, 100, 45);
+	COLORREF White = RGB(240, 240, 240);
+
+	sFULL_INFO* pQuestInfo = &pSelectedQuest->QuestInfo;
+	SIZE size = {};
+	SIZE size2 = {};
+	char buff[500];
+	int iY = 140;
+
+	if (pQuestInfo->QuestTitle[0])
+	{
+		SetFontTextColor(Orange);
+		GetTextExtentPoint(0, pSelectedQuest->QuestInfo.QuestTitle, lstrlen(pSelectedQuest->QuestInfo.QuestTitle), &size);
+		dsTextLineOut(BaseX + 428 - (size.cx / 2), BaseY + 94, pSelectedQuest->QuestInfo.QuestTitle, lstrlen(pSelectedQuest->QuestInfo.QuestTitle));
+
+		SetFontTextColor(White);
+		char* type = "Solo";
+		if (pQuestInfo->PartyFlag)
+			type = "Party";
+
+		SetFontTextColor(RGB(240, 240, 240));
+		GetTextExtentPoint(0, type, lstrlen(type), &size2);
+		dsTextLineOut(BaseX + 495, BaseY + 135, type, lstrlen(type));
+
+		DrawFontText(BaseX + 460, BaseY + 135, "Type: ", Orange, 0);
+	}
+
+
+	SetFontTextColor(RGB(240, 240, 240));
+
+	if (pQuestInfo->LevelMin > 0)
+	{
+
+		wsprintf(buff, "%d-%d", pQuestInfo->LevelMin, pQuestInfo->LevelMax);
+		dsTextLineOut(BaseX + 411, BaseY + 135, buff, lstrlen(buff));
+
+		DrawFontText(BaseX + 322, BaseY + 135, "Level:", Orange, 0);
+	}
+
+	if (pQuestInfo->QuestDesc[0])
+	{
+		SetFontTextColor(RGB(240, 240, 240));
+
+		char* text = pQuestInfo->QuestDesc;
+
+		for (int i = 0; i < 5 && *text; i++)
+		{
+			int remaining = lstrlen(text);
+			int lineLength = remaining > 34 ? 34 : remaining;
+
+			if (remaining > 34)
+			{
+				int breakPos = lineLength;
+
+				while (breakPos > 0 && text[breakPos] != ' ')
+					breakPos--;
+
+				if (breakPos > 0)
+					lineLength = breakPos;
+			}
+
+			dsTextLineOut(BaseX + 322, BaseY + iY + 20, text, lineLength);
+			iY += 14;
+
+			text += lineLength;
+
+			while (*text == ' ')
+				text++;
+		}
+
+		iY += 5;
+	}
+
+	if (pQuestInfo->MonsterCount)
+	{
+
+		iY = 0;
+
+		bool isComplete = true;
+
+		DrawFontText(BaseX + 320, BaseY + 225 + iY, "Objetivo: ", Orange, 0);
+
+		SetFontTextColor(RGB(240, 240, 240));
+		for (int i = 0; i < pQuestInfo->MonsterCount; i++)
+		{
+			wsprintf(buff, "%d/%d %s", pQuestInfo->MonsterKilled[i], pQuestInfo->MonsterCounts[i], pQuestInfo->MonsterMaps[i] < 0 ? pQuestInfo->MonsterNames[i] : szFields[pQuestInfo->MonsterMaps[i]]);
+
+			dsTextLineOut(BaseX + 320, BaseY + 240 + iY, buff, lstrlen(buff));
+			if (pQuestInfo->MonsterKilled[i] < pQuestInfo->MonsterCounts[i])
+				isComplete = false;
+			iY += 14;
+		}
+
+		pSelectedQuest->Complete = isComplete;
+	}
+
+	if (pQuestInfo->RewardCount || pQuestInfo->RewardGold || pQuestInfo->RewardExp || pQuestInfo->RewardClanExp || pQuestInfo->RewardCoin || pQuestInfo->RewardTCoin)
+	{
+		iY = 320;
+
+		DrawFontText(BaseX + 320, BaseY + iY - 15, "Recompensa: ", Orange, 0);
+
+		SetFontTextColor(RGB(240, 240, 240));
+
+		if (pQuestInfo->RewardCount)
+		{
+			for (int i = 0; i < pQuestInfo->RewardCount; i++)
+			{
+				wsprintf(buff, "%dx %s", pQuestInfo->RewardCounts[i], pQuestInfo->RewardNames[i]);
+				dsTextLineOut(BaseX + 320, BaseY + iY, buff, lstrlen(buff));
+				iY += 14;
+			}
+		}
+
+		if (pQuestInfo->RewardGold)
+		{
+			ZeroMemory(buff, sizeof(buff));
+			NumLineComa(pQuestInfo->RewardGold, buff);
+			wsprintf(buff, "%s Gold", buff);
+			dsTextLineOut(BaseX + 320, BaseY + iY, buff, lstrlen(buff));
+			iY += 14;
+		}
+
+		if (pQuestInfo->RewardExp)
+		{
+			ZeroMemory(buff, sizeof(buff));
+			NumLineComa64(pQuestInfo->RewardExp, buff);
+			wsprintf(buff, "%s Exp", buff);
+			dsTextLineOut(BaseX + 320, BaseY + iY, buff, lstrlen(buff));
+			iY += 14;
+		}
+
+		if (pQuestInfo->RewardClanExp)
+		{
+			ZeroMemory(buff, sizeof(buff));
+			NumLineComa64(pQuestInfo->RewardClanExp, buff);
+			wsprintf(buff, "%s ClanExp", buff);
+			dsTextLineOut(BaseX + 320, BaseY + iY, buff, lstrlen(buff));
+			iY += 14;
+		}
+
+		if (pQuestInfo->RewardCoin)
+		{
+			ZeroMemory(buff, sizeof(buff));
+			NumLineComa(pQuestInfo->RewardCoin, buff);
+			wsprintf(buff, "%s Coin", buff);
+			dsTextLineOut(BaseX + 320, BaseY + iY, buff, lstrlen(buff));
+			iY += 14;
+		}
+
+		if (pQuestInfo->RewardTCoin)
+		{
+			ZeroMemory(buff, sizeof(buff));
+			NumLineComa(pQuestInfo->RewardTCoin, buff);
+			wsprintf(buff, "%s TCoin", buff);
+			dsTextLineOut(BaseX + 320, BaseY + iY, buff, lstrlen(buff));
+			iY += 14;
+		}
+	}
+
+	if (pQuestInfo->EndTime.wDay)
+	{
+		iY = 406;
+		DrawFontText(BaseX + 320, BaseY + iY - 15, "Concluido em: ", Orange, 0);
+
+		SetFontTextColor(RGB(240, 240, 240));
+
+
+
+		SetFontTextColor(RGB(240, 240, 240));
+
+		wsprintf(buff, "%02d/%02d/%02d - %02d:%02d:%02d", pQuestInfo->EndTime.wDay, pQuestInfo->EndTime.wMonth, pQuestInfo->EndTime.wYear, pQuestInfo->EndTime.wHour, pQuestInfo->EndTime.wMinute, pQuestInfo->EndTime.wSecond);
+		dsTextLineOut(BaseX + 400, BaseY + iY - 15, buff, lstrlen(buff));
+
+	}
+}
+
+
+
+
+

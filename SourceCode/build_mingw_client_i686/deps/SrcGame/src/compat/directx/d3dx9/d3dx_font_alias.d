@@ -1,4 +1,4 @@
-/home/gabriel/Área\ de\ Trabalho/SourceCode/build_mingw_client_i686/objects/SrcGame/src/compat/directx/d3dx9/d3dx_font_alias.o: \
+/home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/compat/directx/d3dx9/d3dx_font_alias.o: \
  SrcGame/src/compat/directx/d3dx9/d3dx_font_alias.cpp \
  Dependency/DirectX9/Include/d3dx9.h Dependency/DirectX9/Include/d3d9.h \
  Dependency/DirectX9/Include/d3d9types.h \

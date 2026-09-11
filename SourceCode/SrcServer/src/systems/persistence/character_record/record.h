@@ -31,6 +31,20 @@ struct	sRECORD_ITEM
 
 const int _SIN_MAX_USE_SKILL = 16;
 
+// RC 1.50 compatibility extension for the four Rank5/Tier5 skills.
+// The physical RECORD_SKILL layout stays at 16 slots; slots 17..20 are stored
+// in the reserved dwTemp2 tail of sGAME_SAVE_INFO so every legacy field offset
+// remains byte-identical.
+#define T5_RECORD_SKILL_COUNT          4
+#define T5_RECORD_MAGIC                0x35544B53u /* "SKT5" */
+#define T5_RECORD_VERSION              1u
+#define T5_RECORD_TEMP_MAGIC           20
+#define T5_RECORD_TEMP_VERSION_FLAGS   21
+#define T5_RECORD_TEMP_FSP             22
+#define T5_RECORD_TEMP_SKILL_BASE      23
+#define T5_RECORD_TEMP_RESERVED        27
+#define T5_RECORD_TEMP_CHECKSUM        28
+
 
 struct	RECORD_SKILL
 {
@@ -341,6 +355,7 @@ int FindLastQuestCode(WORD wQuestCode);
 
 
 int	CheckSkillPoint(int Level, RECORD_SKILL *lpRecordSkill, int *spTotal, DWORD dwLevelQuestLog);
+int	GetTier5RecordSkillPoint(const sGAME_SAVE_INFO *lpGameSaveInfo, int index);
 
 int GetPostBoxFile(const char *szID, char *szFileName);
 

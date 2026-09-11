@@ -732,7 +732,7 @@ void CHelp::Draw_Help_Text(char *str, int x, int y, int sw)
 	{
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '/n')
+		if(strbuf[i] == '\n')
 		{
 			strbuf[i] = 0;
 			i = 0;
@@ -895,7 +895,7 @@ void CHelp::Draw_Help_Text3(char *str, int x, int y, int sw)
 
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '/n')
+		if(strbuf[i] == '\n')
 		{
 			strbuf[i] = 0;
 			i = 0;
@@ -968,7 +968,7 @@ void CHelp::Draw_Help_Text2(char *str, int x, int y, int sw)
 
 		strbuf[i] = str[cnt];
 		cnt++;
-		if(strbuf[i] == '/n')
+		if(strbuf[i] == '\n')
 		{
 			strbuf[i] = 0;
 			i = 0;

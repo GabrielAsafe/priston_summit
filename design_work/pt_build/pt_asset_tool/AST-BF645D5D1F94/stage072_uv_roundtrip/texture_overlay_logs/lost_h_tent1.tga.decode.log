@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=15c95077d6303c2f6da2fc4f8fa21016f9b0183117a07d4b40a9e1d919a4d2ad
-output_sha256=15c95077d6303c2f6da2fc4f8fa21016f9b0183117a07d4b40a9e1d919a4d2ad
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BF645D5D1F94/stage072_uv_roundtrip/texture_overlay_client/field/lost/lost_h_tent1.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

@@ -1111,15 +1111,15 @@ void JOBS::Button()
 		int WinX = (WinSizeX - 586) / 2, WinY = (WinSizeY - 445) / 2, cnt2 = 0;
 
 
-		//A��O DE CLIQUE DO BOT�O
+		//AÇÃO DE CLIQUE DO BOTÃO
 		if (MouseAction(WinX - 636 + 655, WinY - 305 + 390, 155, 30) && page != 99)
 			page = 1;
 
-		//A��O DE CLIQUE DO BOT�O 
+		//AÇÃO DE CLIQUE DO BOTÃO 
 		if (MouseAction(WinX - 636 + 655, WinY - 305 + 425, 155, 30) && page != 99)
 			page = 2;
 
-		//A��O DE CLIQUE DO BOT�O
+		//AÇÃO DE CLIQUE DO BOTÃO
 		if (Job > 0)
 		{
 			if (MouseAction(WinX - 636 + 655, WinY - 305 + 675, 155, 30) && page != 99)
@@ -1267,7 +1267,7 @@ void JOBS::Button()
 
 		if (page > 3 && Job < 1)
 		{
-			//A��O DE CLIQUE DO BOT�O JOB
+			//AÇÃO DE CLIQUE DO BOTÃO JOB
 			if (MouseAction(WinX - 636 + 1060, WinY - 305 + 717, 104, 32))
 			{
 				switch (page)
@@ -1294,7 +1294,7 @@ void JOBS::Button()
 
 		if (page == 3 && VSFlvl >= 0)
 		{
-			//A��O DE CLIQUE DO BOT�O FORJA
+			//AÇÃO DE CLIQUE DO BOTÃO FORJA
 			if (MouseAction(WinX - 636 + 985, WinY - 305 + 440, 60, 30))
 			{
 				SendJOBItemToServer("Forja Iniciante", 0, 1);
@@ -1303,7 +1303,7 @@ void JOBS::Button()
 
 		if (page == 3 && VSFlvl >= 10)
 		{
-			//A��O DE CLIQUE DO BOT�O FORJA
+			//AÇÃO DE CLIQUE DO BOTÃO FORJA
 			if (MouseAction(WinX - 636 + 985, WinY - 305 + 540, 60, 30))
 			{
 				SendJOBItemToServer("Forja Veterano", 0, 2);
@@ -1312,7 +1312,7 @@ void JOBS::Button()
 
 		if (page == 3 && VSFlvl >= 15)
 		{
-			//A��O DE CLIQUE DO BOT�O FORJA
+			//AÇÃO DE CLIQUE DO BOTÃO FORJA
 			if (MouseAction(WinX - 636 + 985, WinY - 305 + 645, 60, 30))
 			{
 				SendJOBItemToServer("Forja Experiente", 0, 3);

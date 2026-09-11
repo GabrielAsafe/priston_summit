@@ -35,7 +35,7 @@
 #endif
 // #include <atltime.h> // removed for MinGW
 
-//ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Lib
+//°ÔÀÓ°¡µå º¸¾È Lib
 #ifdef	_npGAME_GUARD_AUTH
 #include "nProtect/CSAuth.h"
 #pragma comment(lib,"nprotect//CSAuth.lib")
@@ -51,22 +51,22 @@
 #define smTRANSCODE_FAILRECORDDATA	0x48470083
 #define smTRANSCODE_RECORDRESULT	0x48470084
 
-//IDï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+//ID·Î ÀúÀåµÈ Ä³¸¯ÅÍ Á¤º¸ ÀÔ¼ö
 #define smTRANSCODE_ID_GETUSERINFO	0x48470085
 #define smTRANSCODE_ID_SETUSERINFO	0x48470086
 #define smTRANSCODE_DELRECORDDATA	0x48470087
 #define smTRANSCODE_INSRECORDDATA	0x48470088
 #define smTRANSCODE_ISRECORDDATA	0x48470089
 
-//ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+//¹öÀü È®ÀÎ ¸Þ¼¼Áö
 #define smTRANSCODE_VERSION			0x4847008A
-//ï¿½ï¿½Æ®ï¿½ï¿½Å© Ã½Å© ï¿½Þ¼ï¿½ï¿½ï¿½
+//³×Æ®¿öÅ© Ã½Å© ¸Þ¼¼Áö
 #define smTRANSCODE_CHECK_NETSTATE	0x4847008B
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//°ü¸®ÀÚ ¸ðµå ¼³Á¤
 #define smTRANSCODE_ADMINMODE		0x4847008C
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ 
+//¿ÀºêÁ§Æ® ¼­¹ö¿¡ ¹øÈ£ ¼³Á¤ 
 #define smTRANSCODE_SET_OBJSERIAL	0x4847008D
-//ï¿½ï¿½Æ®ï¿½ï¿½Å© Ã½Å© ï¿½Þ¼ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+//³×Æ®¿öÅ© Ã½Å© ¸Þ¼¼Áö(º¸Á¶ ¼­¹ö¿ë)
 #define smTRANSCODE_CHECK_NETSTATE2	0x4847008E
 #define smTRANSCODE_CHECK_NETSTATE3	0x4847008F
 #define smTRANSCODE_CHECK_NETSTATE4	0x48470090
@@ -78,7 +78,7 @@
 #define smTRANSCODE_PLAYLIST		0x48471003
 #define smTRANSCODE_CONTINUEDATA	0x48471004
 #define smTRANSCODE_WHISPERMESSAGE	0x48471005
-#define smTRANSCODE_COUPLERING		0x48471006			// pluto Ä¿ï¿½Ã¸ï¿½
+#define smTRANSCODE_COUPLERING		0x48471006			// pluto Ä¿ÇÃ¸µ
 
 #define smTRANSCODE_PLAYDATA1		0x48470010
 #define smTRANSCODE_PLAYDATA2		0x48470011
@@ -154,11 +154,11 @@
 #define	smTRANSCODE_PARTY_PLAYUPDATE	0x484700A3
 #define	smTRANSCODE_PARTY_RELEASE		0x484700A4
 #define	smTRANSCODE_PARTY_COMMAND		0x484700A5
-#define smTRANSCODE_OPEN_MIXTURE_RESET	0x484700A6	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½Í½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+#define smTRANSCODE_OPEN_MIXTURE_RESET	0x484700A6	// ¼®Áö¿ë - ¹Í½ºÃÄ ¸®¼Â ¸Þ½ÃÁö Á¤ÀÇ
 
 #define smTRANSCODE_PCBANG_PET			0x484700B0
-#define smTRANSCODE_PHENIX_PET			0x484700B1	// pluto ï¿½ï¿½(ï¿½Ø¿ï¿½) ï¿½ï¿½ï¿½ï¿½
-#define smTRANSCODE_HELP_PET			0x484700B2	// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½
+#define smTRANSCODE_PHENIX_PET			0x484700B1	// pluto Æê(ÇØ¿Ü) ¼öÁ¤
+#define smTRANSCODE_HELP_PET			0x484700B2	// ¹ÚÀç¿ø - ºô¸µ µµ¿ì¹Ì Æê Ãß°¡
 
 #define	smTRANSCODE_SERVER_INFO			0x484700C0
 
@@ -175,26 +175,26 @@
 
 
 #define	smTRANSCODE_PARTY_POTION		0x484700D0
-//ï¿½ï¿½ï¿½ï¿½
+//Èú¸µ
 #define	smTRANSCODE_HEALING				0x484700D2
 #define	smTRANSCODE_HOLYMIND			0x484700D3
 #define	smTRANSCODE_GRAND_HEALING		0x484700D4
 
 #define	smTRANSCODE_VAMPRIC_CUSPID		0x484700D6
-#define	smTRANSCODE_VAMPRIC_CUSPID_EX		0x484700D7		// ï¿½åº° - ï¿½ï¿½ï¿½Ç¸ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ EX
+#define	smTRANSCODE_VAMPRIC_CUSPID_EX		0x484700D7		// Àåº° - ¹ìÇÇ¸¯ Ä¿½ºÇÍ EX
 #define	smTRANSCODE_MANA_RECHARGING		0x484700D8
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½ï¿½ï¿½
+//¾ÆÀÌÅÛ °Å·¡ º¸°í
 #define	smTRANSCODE_RECORD_TRADE		0x48480010
 
 
-//ï¿½ï¿½Æ®ï¿½ï¿½Å© Ç°ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//³×Æ®¿öÅ© Ç°Áú ¸ðµå ¼³Á¤
 #define smTRANSCODE_NETWORK_QUALITY	0x484700E0
 #define smTRANSCODE_PROCESSINFO		0x484700E4
 #define	smTRANSCODE_CLOSECLIENT		0x484700E6
 #define smTRANSCODE_CHECKIP			0x484700E7
 
-//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ ï¿½ä±¸
+//Å¬¶óÀÌ¾ðÆ®¿¡ µ¥ÀÌÅ¸ ÀúÀå ¿ä±¸
 #define	smTRANSCODE_SAVECLIENT		0x484700E8
 
 
@@ -214,250 +214,250 @@
 #define smTRANSCODE_EFFECT_KEEPSKILL	0x48479020
 
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ 
+//¿ÀºêÁ§Æ® ¼­¹ö¿¡ ¹øÈ£ ¼³Á¤ 
 #define smTRANSCODE_CONT_OBJSERIAL	0x48478010
 
-//ï¿½Þ¼ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½
+//¸Þ¼¼Áö¹Ú½º Ãâ·Â
 #define smTRANSCODE_MESSAGEBOX		0x48478100
 
-//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//Æã¼Ç ¿¡·¯³­°ÍÀ» °¨Áö
 #define	smTRANSCODE_FUNCERROR		0x48478200
 
-//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½Ç¸Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+//Å¬¶óÀÌ¾ðÆ® Æã¼Ç¸Þ¸ð¸® Àü¼Û
 #define smTRANSCODE_FUNCTION_MEM2	0x48478300
 
-//ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 2
+//ÇØÅ·À¯Àú µî·Ï 2
 #define	smTRANSCODE_SET_BLACKLIST2	0x48478400
-//ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 3
+//ÇØÅ·À¯Àú µî·Ï 3
 #define smTRANSCODE_SET_BLACKLIST3	0x48478500
 
-//ï¿½Ò·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//ºÒ·® À¯Àú ¼³Á¤
 #define	smTRANSCODE_BAD_PLAYER		0x48478600
 
-//ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+//Àß¸øµÈ °ø¼ö ¼öÄ¡ º¸Á¤ °ª
 #define	smTRANSCODE_FIX_ATTACK		0x48478700
-//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½
+//Ä³¸¯ÅÍ °­Á¦·Î Á×ÀÌ±â
 #define	smTRANSCODE_DEAD_PLAYER		0x48478800
 
-//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+//Å¬¶óÀÌ¾ðÆ® ¼öÄ¡ ¿À·ù
 #define smTRANSCODE_CLIENT_ERROR	0x48478900
 
-//ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//ÀÎº¥Åä¸® ¾ÆÀÌÅÛ ¿À·ù
 #define	smTRANSCODE_INVEN_ERR_ITEM	0x48478910
-//ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//ÀÎº¥Åä¸® µ· ¿À·ù
 #define	smTRANSCODE_INVEN_ERR_MONEY	0x48478920
 
-//ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+//ÀÎº¥Åä¸® ¾ÆÀÌÅÛ À§Ä¡ Á¤º¸
 #define	smTRANSCODE_INVEN_POSITION	0x48478930
 #define	smTRANSCODE_INVEN_POSITION2	0x48478931
 
 
-//ï¿½ï¿½È£È­ï¿½ï¿½ ï¿½ï¿½Å¶
+//¾ÏÈ£È­µÈ ÆÐÅ¶
 #define smTRANSCODE_ENCODE_PACKET	0x80010000
 #define smTRANSCODE_ENCODE_PACKET2	0x90010000
 
-//Å¬ï¿½ï¿½ ï¿½Þ´ï¿½
+//Å¬·£ ¸Þ´º
 #define smTRANSCODE_OPEN_CLANMENU	0x48478A00
-//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+//º° Æ÷ÀÎÆ® °ü·Ã
 #define smTRANSCODE_OPEN_STARPOINT	0x48478A10
 #define smTRANSCODE_STARPOINT		0x48478A12
-//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶
+//µ·±âºÎ ÆÐÅ¶
 #define smTRANSCODE_OPEN_GIVEMONEY	0x48478A14
 #define smTRANSCODE_GIVEMONEY		0x48478A16
-//Å¬ï¿½ï¿½ï¿½Ó´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶
+//Å¬·£¸Ó´Ï °ü·ÃÆÐÅ¶
 #define smTRANSCODE_CLANMONEY		0x48478A18
 
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+//¾ÆÀÌÅÛ ¹è´Þ
 #define smTRANSCODE_ITEM_EXPRESS	0x48478A80
 
-//ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//°³ÀÎ»óÁ¡ ¿ÀÇÂ
 #define smTRANSCODE_OPEN_MYSHOP		0x48478A90
-//ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ï¿½ï¿½
+//°³ÀÎ»óÁ¡ ºÎ¸£±â
 #define smTRANSCODE_CALL_MYSHOP		0x48478AA0
-//ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//°³ÀÎ»óÁ¡ ¾ÆÀÌÅÛ
 #define	smTRANSCODE_MYSHOP_ITEM		0x48478AB0
-//ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+//°³ÀÎ»óÁ¡ ¸Þ¼¼Áö ¾ò±â
 #define	smTRANSCODE_MYSHOP_MESSAGE	0x48478AC0
-//ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//°³ÀÎ»óÁ¡ ¹°°Ç ±¸ÀÔ
 #define	smTRANSCODE_MYSHOP_TRADE	0x48478AD0
 
-//ï¿½ï¿½Ã¶È£ : 2005-11-17 ï¿½ï¿½ï¿½ï¿½ 8:41:39
-//PCï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+//¹ÚÃ¶È£ : 2005-11-17 ¿ÀÈÄ 8:41:39
+//PC¹æ Æê °ø°ÝÀÌÆåÆ®
 #define smTRANSCODE_EFFECT_PCBANGPET	0x48478AE0
 
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//°ü¸®ÀÚ ¸ðµå ¼³Á¤
 #define smTRANSCODE_ADMINMODE2			0x5047108C
-//ï¿½ï¿½Æ®ï¿½ï¿½ Ã½Å©
+//³×Æ®¿÷ Ã½Å©
 #define smTRANSCODE_CHECK_NETSTATE20	0x5047008E
 
-//ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ È®ï¿½ï¿½
+//°æÇèÄ¡ µ· ¹ÞÀºµ¥ÀÌÅ¸ È®ÀÎ
 #define smTRANSCODE_CHECK_EXPMONEY		0x50320010
-//ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½Å¸ È®ï¿½ï¿½
+//°æÇèÄ¡ µ¥ÀÌÅ¸ È®ÀÎ
 #define smTRANSCODE_CHECK_EXPDATA		0x50320020
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//Æ÷½º¿Àºê ¼³Á¤ µ¥ÀÌÅ¸ ¼³Á¤±³½Å
 #define smTRANSCODE_FORCEORB_DATA		0x50320030
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//ºô¸µ¾ÆÀÌÅÛ ¼³Á¤ µ¥ÀÌÅ¸ ¼³Á¤±³½Å
 #define smTRANSCODE_PRIMEITEM_DATA		0x50320031
 
-// pluto ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½à½º
-// pluto ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// pluto ¸¶³ª ¸®µà½º
+// pluto ºô¸µ¾ÆÀÌÅÛ ¼³Á¤ µ¥ÀÌÅ¸ ¼³Á¤±³½Å
 #define smTRANSCODE_PRIMEITEM_DATA2	0x50320032
 
-// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½Ç¸ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ EX, ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½à½º ï¿½ï¿½ï¿½ï¿½
+// ¹ÚÀç¿ø - ºô¸µ µµ¿ì¹Ì Æê, ¹ìÇÇ¸¯ Ä¿½ºÇÍ EX, ±Ù·Â ¸®µà½º Æ÷¼Ç
 #define smTRANSCODE_PRIMEITEM_DATA3	0x50320033
 
-// ï¿½åº° - ï¿½ï¿½ï¿½Ç¸ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ EX
+// Àåº° - ¹ìÇÇ¸¯ Ä¿½ºÇÍ EX
 #define smTRANSCODE_PRIMEITEM_DATA4	0x50320036
 
-// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½, Ã¼ï¿½ï¿½)
+// ¹ÚÀç¿ø - ºÎ½ºÅÍ ¾ÆÀÌÅÛ(»ý¸í·Â, ±â·Â, Ã¼·Â)
 #define smTRANSCODE_BOOSTER_DATA		0x50320034
 
-// ï¿½åº° - ï¿½ï¿½ï¿½ï¿½Â¡ Ä¡Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// Àåº° - ¿¡ÀÌÂ¡ Ä¡Æ® ¼­¹ö·Î Àü¼Û
 #define smTRANSCODE_AGING_DATA			0x50320035
 
-// ï¿½åº° - ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ï¿½
+// Àåº° - ½ºÅ³ µô·¹ÀÌ
 #define smTRANSCODE_SKILLDELAY_DATA			0x50320036
 
-//ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//µ¥ÀÌÅ¸ ¼­¹ö·Î Å¬¶óÀÌ¾ðÆ® °æÀ¯ Àü¼Û
 #define smTRANSCODE_SEND_DATASERVER		0x50320100
-//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//°ÔÀÓ ¼­¹ö·Î Å¬¶óÀÌ¾ðÆ® °æÀ¯ Àü¼Û
 #define smTRANSCODE_SEND_GAMESERVER		0x50320110
-//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//Áö¿ª ¼­¹ö·Î Å¬¶óÀÌ¾ðÆ® °æÀ¯ Àü¼Û
 #define smTRANSCODE_SEND_AREASERVER		0x50320120
-//ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//Áö¿ª/°ÔÀÓ ¼­¹ö·Î Å¬¶óÀÌ¾ðÆ® °æÀ¯ Àü¼Û
 #define smTRANSCODE_SEND_AGAME_SERVER	0x50320130
 
-//pluto ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½à½º
-//ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//pluto ¸¶³ª ¸®µà½º
+//Áö¿ª/°ÔÀÓ ¼­¹ö·Î Å¬¶óÀÌ¾ðÆ® °æÀ¯ Àü¼Û
 #define smTRANSCODE_SEND_AGAME_PRIMEITEM_DATA2	0x50320140
 
-// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½Ç¸ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ EX, ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½à½º ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
-// ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// ¹ÚÀç¿ø - ºô¸µ µµ¿ì¹Ì Æê, ¹ìÇÇ¸¯ Ä¿½ºÇÍ EX, ±Ù·Â ¸®µà½º Æ÷¼Ç ¾ÆÀÌÅÛ Ãß°¡½Ã »ç¿ëÇÔ.
+// Áö¿ª/°ÔÀÓ ¼­¹ö·Î Å¬¶óÀÌ¾ðÆ® °æÀ¯ Àü¼Û
 #define smTRANSCODE_SEND_AGAME_PRIMEITEM_DATA3	0x50320150
 
-// ï¿½åº° - ï¿½ï¿½ï¿½Ç¸ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ EX
+// Àåº° - ¹ìÇÇ¸¯ Ä¿½ºÇÍ EX
 #define smTRANSCODE_SEND_AGAME_PRIMEITEM_DATA4	0x50320160
 
 
-//ï¿½Í½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½
+//¹Í½ºÃÄ µ¥ÀÌÅ¸ º¸³¿
 #define smTRANSCODE_CRAFTITEM			0x50320200
-//ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½
+//¿¡ÀÌÂ¡ µ¥ÀÌÅ¸ º¸³¿
 #define smTRANSCODE_AGINGITEM			0x50320202
-//ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½
+//¿¡ÀÌÂ¡ ¾÷±×·¹ÀÌµå
 #define	smTRANSCODE_AGING_UPGRADE		0x50320204
-//ï¿½ï¿½Å©ï¿½Ú¾ï¿½ ï¿½ï¿½ï¿½
+//¸µÅ©ÄÚ¾î µî·Ï
 #define	smTRANSCODE_MAKE_LINKCORE		0x50320205
-//ï¿½ï¿½Å©ï¿½Ú¾ï¿½ ï¿½ï¿½ï¿½
+//¸µÅ©ÄÚ¾î »ç¿ë
 #define	smTRANSCODE_USE_LINKCORE		0x50320206
-//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½
+//À® ¾ÆÀÌÅÛ µ¥ÀÌÅ¸ º¸³¿
 #define smTRANSCODE_WINGITEM			0x50320208
 
-//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½
+//»óÁ¡ µ¥ÀÌÅ¸ ±¸ÀÔ
 #define smTRANSCODE_SHOPTITEM			0x50320210
-//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½Ç¸ï¿½
+//»óÁ¡ µ¥ÀÌÅ¸ ÆÇ¸Å
 #define smTRANSCODE_SHOP_SELLITEM		0x50320212
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//Æ÷½º¿Àºê ¾ÆÀÌÅÛ »ý¼º
 #define	smTRANSCODE_ITEM_FORCEORB		0x50320214
 
-//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
+//Äù½ºÆ® ¸í·É
 #define	smTRANSCODE_QUEST_COMMAND		0x50320220
-//ï¿½ï¿½ï¿½ï¿½ï¿½ Web URL ï¿½ï¿½ï¿½ï¿½
+//Á¾·á½Ã Web URL ¿ÀÇÂ
 #define	smTRANSCODE_EXITINFO_URL		0x50320230
 
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+//¾ÆÀÌÅÛ È®ÀÎ
 #define smTRANSCODE_CHECKITEM			0x50320300
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+//¾ÆÀÌÅÛ ¿À·ù È®ÀÎ
 #define smTRANSCODE_ERRORITEM			0x50320310
-//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½Ê±ï¿½È­ 
+//¹°¾à °¹¼ö ¿À·ù È®ÀÎ - ¹°¾à °ãÄ£¼ö¸¦ 1·Î ÃÊ±âÈ­ 
 #define smTRANSCODE_CLEARPOTION			0x50320320
 
 #ifdef _CHECK_MESH
-//ï¿½ï¿½ï¿½ï¿½ï¿½Û¸Þ½ï¿½ ï¿½ï¿½ï¿½Û°Ë»ï¿½ Ã½Å©ï¿½ï¿½ï¿½ï¿½
+//¾ÆÀÌÅÛ¸Þ½¬ Á¶ÀÛ°Ë»ç Ã½Å©¼¶°ª
 #define smTRANSCODE_CHECK_ITEMMESH		0x50320330
 #endif
 
-//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//Å¬¶óÀÌ¾ðÆ® Æã¼ÇÆ÷Áö¼Ç º¸°í
 #define smTRANSCODE_CLIENT_FUNCPOS		0x50320400
-//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ä±¸ ( ï¿½Ê±â¼³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ )
+//Å¬¶óÀÌ¾ðÆ® Æã¼ÇÆ÷Áö¼Ç °ªÀ» ¿ä±¸ ( ÃÊ±â¼³Á¤À» À§ÇÔ )
 #define smTRANSCODE_GETCLIENT_FUNCPOS	0x50320410
 
-//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½Ç¸Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+//Å¬¶óÀÌ¾ðÆ® Æã¼Ç¸Þ¸ð¸® Àü¼Û
 #define smTRANSCODE_FUNCTION_MEM		0x50320420
-//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½
+//Å¬¶óÀÌ¾ðÆ® Æã¼ÇÆ÷Áö¼Ç °á°ú °ª
 #define smTRANSCODE_FUNCTON_RESULT		0x50320430
 
-//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½Ö´ï¿½Ä¡
+//Å¬¶óÀÌ¾ðÆ® ÇÁ·Î¼¼½º Å¸ÀÓ ÃÖ´ëÄ¡
 #define smTRANSCODE_PROCESS_TIMEMAX		0x50320500
 
-//nSprite ï¿½ß±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î±×·ï¿½
+//nSprite Áß±¹ÆÇ º¸¾ÈÇÁ·Î±×·¥
 #define smTRANSCODE_NSPRITE				0x50320600
 //nProtect
 #define smTRANSCODE_NPROTECT			0x50320700
 #define smTRANSCODE_GAMEGUARD_AUTH		0x50320710
 
 
-//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ä±¸
+//°ø°Ý ±â·Ï ºñ±³ ¿ä±¸
 #define	smTRANSCODE_REC_DAMAGEDATA		0x50320800
 
-//SoD ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//SoD °á°ú º¸°í
 #define	smTRANSCODE_SOD_RESULT			0x50320900
 #define	smTRANSCODE_SOD_RESULT2			0x50320901
 
-//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//½ºÅ³ ½ÇÇà µ¿·á
 #define	smTRANSCODE_PARTY_SKILL			0x50320A00
 
 
-//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+//½ºÅ³ ½ÇÇà Ãë¼Ò
 #define	smTRANSCODE_CANCEL_SKILL		0x50320A10
-//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¹ï¿½
+//½ºÅ³ ½ÇÇà ÀÏ¹Ý
 #define	smTRANSCODE_PROCESS_SKILL		0x50320A20
 #define smTRANSCODE_PROCESS_SKILL2		0x50320A30
 #define smTRANSCODE_PROCESS_CLAN_SKILL	0x50320A35
-//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+//½ºÅ³ º¯°æ ¾÷µ¥ÀÌÆ®
 #define	smTRANSCODE_UPDATEL_SKILL		0x50320A40
-//ï¿½ß°ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//Ãß°¡È¸ÇÇ ¼º°øÁ¤º¸
 #define	smTRANSCODE_SUCCESS_EVATION		0x50320A50
-//ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
+//¼Ó¼ºÁ¤º¸
 #define	smTRANSCODE_RESISTANCE			0x50320A60
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//¼³¹®Á¶»ç
 #define	smTRANSCODE_PUBLIC_POLLING		0x50320A70
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½
+//¼³¸í°øÁö ¹Ú½º
 #define	smTRANSCODE_NOTICE_BOX			0x50320A80
-//ï¿½ï¿½Å·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//ÇÙÅ·¿ë ÇÔÁ¤
 #define	smTRANSCODE_HACKTRAP			0x50320A90
 
 
-//ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½,ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½
+//»ý¸í,±â·Â,±Ù·Â Áõ°¡
 #define	smTRANSCODE_VIRTURAL_POTION		0x50320B00
 
-//Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+//Å¬·£ °¡ÀÔ ¸Þ¼¼Áö
 #define	smTRANSCODE_CLAN_SERVICE		0x50320C00
-//Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ä±¸ ï¿½Þ¼ï¿½ï¿½ï¿½
+//Å¬·£ ¾÷µ¥ÀÌÆ® ¿ä±¸ ¸Þ¼¼Áö
 #define	smTRANSCODE_CLAN_UPDATE			0x50320C10
 
-//ï¿½ï¿½ï¿½ï¿½Æ® Ã³ï¿½ï¿½ ï¿½ä±¸ ï¿½Þ¼ï¿½ï¿½ï¿½
+//Äù½ºÆ® Ã³¸® ¿ä±¸ ¸Þ¼¼Áö
 #define	smTRANSCODE_QUEST_MESSAGE		0x50320D00
 
-//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½×´ï¿½
+//Ä³¸¯ÅÍ Á×´Ù
 #define	smTRANSCODE_DEAD_USER			0x50320E00
-//ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//¾ßÈ£ µ¿ÀÛ ½ÇÇà
 #define	smTRANSCODE_YAHOO_MOTION		0x50320E10
-//ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//ÀÌº¥Æ® Á¤º¸ º¯°æ
 #define	smTRANSCODE_CHANGE_EVENT		0x50320F00
 
-//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+//Å¬¶óÀÌ¾ðÆ® Á¤º¸
 #define	smTRANSCODE_CLIENTINFO			0x50321000
 
-//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+//¹«Àû ¸ðµå °æ°í
 #define	smTRANSCODE_WARNING_BLINK_ATT	0x50321010
 
 
-//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶
+//»õ °ø°Ý ÆÐÅ¶
 #define smTRANSCODE_ATTACK_DAMAGE		0x50322000
 #define smTRANSCODE_RANGE_DAMAGE		0x50322010
 #define smTRANSCODE_ATTACK_RESULT		0x50322020
@@ -466,74 +466,74 @@
 
 #define smTRANSCODE_LIMIT_DAMAGE		0x50322050
 
-//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+//Å¬¶óÀÌ¾ðÆ® ¹®Á¦ °æ°í
 #define smTRANSCODE_WARNING_CLIENT		0x50322060
 #define smTRANSCODE_WARNING_SKILL		0x50322080
-//ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶
+//¾ó±¼ Ä¿Áö´Â ÆÐÅ¶
 #define smTRANSCODE_COMIC_SKIN			0x50322070
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+//°ü¸®ÀÚ ¸í·É ±â·Ï
 #define	smTRANSCODE_REC_ADMIN_COMMAND	0x50322090
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+//°ü¸®ÀÚ ¸ðµå ¼³Á¤ È®ÀÎ
 #define smTRANSCODE_CHECK_ADMINMODE		0x503220A0
 
-//SoDï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//SoDÁ¤º¸ º¸³»±â
 #define smTRANSCODE_SOD_INFOMATION		0x503220B0
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//ºí·¹½ºÄ³½½ ¼³Á¤Á¤º¸
 #define smTRANSCODE_BLESSCASTLE_INFO	0x503220C0
 #define smTRANSCODE_BLESSCASTLE_TAX		0x503220D0
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ ï¿½Öºï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//¸ó½ºÅÍÀÇ ¹üÀ§½ºÅ³ ÁÖº¯ Ä³¸¯ÅÍ Á¤º¸
 #define smTRANSCODE_ATTACK_SLASH_LIST	0x503220E0
 
-//ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//´Ù¸¥¼­¹ö¿¡ ÀÇÇØ º¯°æµÈ °ª º¸³¿
 #define smTRANSCODE_UPDATE_SERVER_PARAM	0x503220F0
 #define smUPDATE_PARAM_LOWUSER_PRESENT	0x100
 
-//ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½Æ®ï¿½ï¿½)
+//¸ÞÀÎ¼­¹ö¿¡ °èÁ¤Á¤º¸ º¸³¿ (º£Æ®³²)
 #define smTRANSCODE_USER_ID				0x50322100
 
 
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ ï¿½ï¿½È£È­ ï¿½ï¿½ï¿½
+//µ¥¹ÌÁö ÆÐÅ¶ ¾ÏÈ£È­ ¸ðµâ
 #define smTRANSCODE_DAMAGE_ENCODE_MEM	0x50322F00
 #define smTRANSCODE_DAMAGE_ENCODE_MEM2	0x50322EC0
 
-//ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£È­ ï¿½ï¿½ï¿½
+//ÆÐÅ¶ µ¿Àû ¾ÏÈ£È­ Æã¼Ç
 #define	smTRANSCODE_PACKET_DYNFUNC		0x50323000
 
 
-//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//¼­¹ö ¸ÅÇÎ Á¤º¸
 #define	smTRANSCODE_AREA_SERVER_MAP		0x50324000
-// pluto ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// pluto ¾ÆÀÌÅÛ Á¦·Ã
 #define smTRANSCODE_OPEN_SMELTING		0x50325000
 #define smTRANSCODE_SMELTINGITEM		0x50325001
-// pluto ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// pluto ¾ÆÀÌÅÛ Á¦ÀÛ
 #define smTRANSCODE_OPEN_MANUFACTURE	0x50326000
 #define smTRANSCODE_MANUFACTURE			0x50326001
-// pluto ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½
+// pluto Á¦ÀÛ ¾ÆÀÌÅÛ °¡°Ý, ¹«°Ô Á¤º¸ °¡Á® ¿Ã·Á°í
 #define smTRANSCODE_MANUFACTURE_WEIGHT_PRICE 0x50326002
 
-// pluto ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// pluto ¼±¹°»óÀÚ
 #define smTRANSCODE_GIFTBOX_MONEY		0x50326003
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ Ä¡Æ®
+//¹ÚÀç¿ø - ºô¸µ ¾ÆÀÌÅÛ ÃÊ±âÈ­ Ä¡Æ®
 #define smTRANSCODE_PREMIUMITEM_INIT	0x50326004
 
-// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½Í½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+// ¼®Áö¿ë - ¹Í½ºÃÄ ¸®¼Â Ã³¸®
 #define smTRANSCODE_MIXTURE_RESET_ITEM	0x50326006
 
-//ï¿½Ìºï¿½Æ® ï¿½Ã·ï¿½ï¿½ï¿½ï¿½
+//ÀÌº¥Æ® ÇÃ·¢¸ðµå
 #define	rsHARDCORE_EVENT_FLAG		0x100
 
-#define smCODE_SOD_EFFECT		100			//ï¿½Ö¹ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ - SOD ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+#define smCODE_SOD_EFFECT		100			//ÁÖ¹® ½Ã½ºÅÛ Ãß°¡ - SOD ÀÌÆåÆ® Àç»ç¿ë
 
-// ï¿½åº° - ï¿½ï¿½Ð¹ï¿½ ï¿½Ìºï¿½Æ®
+// Àåº° - ÀçºÐ¹è ÀÌº¥Æ®
 #define smTRANSCODE_EVENT_GAME		0x50326007
 #define smCODE_EVENT_STATE_INIT		100
 
-// ï¿½åº° - ï¿½Ô·ï¿½Ã¢
+// Àåº° - ÀÔ·ÂÃ¢
 #define smTRANSCODE_ITEMDOC			0x50326008
 
 
@@ -584,98 +584,98 @@ struct _FALLITEM{
 #define	NPC_MESSAGE_MAX		20
 
 /*----------------------------------------------------------------------------*
-*				(ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼
+*				(¸ó½ºÅÍ) Á¤º¸ ±¸Á¶Ã¼
 *-----------------------------------------------------------------------------*/
 struct smCHAR_MONSTER_INFO {
-	char	szName[32];			//ï¿½Ì¸ï¿½
+	char	szName[32];			//ÀÌ¸§
 
-	short	SkillDamage[2];		//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½Ý·ï¿½
-	int		SkillRange;			//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int		SkillRating;		//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½Ý·ï¿½
-	int		SkillDistance;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½Å¸ï¿½ 
-	RECT	SkillRangeRect;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
-	int		SkillCurse;			//ï¿½ï¿½ï¿½ï¿½ ï¿½É±ï¿½
+	short	SkillDamage[2];		//½ºÅ³ °ø°Ý·Â
+	int		SkillRange;			//½ºÅ³ Àû¿ë ¹üÀ§
+	int		SkillRating;		//½ºÅ³ °ø°Ý·ü
+	int		SkillDistance;		//Àû¿ë ½ºÅ³ÀÇ °Å¸® 
+	RECT	SkillRangeRect;		//¹üÀ§ ½ºÅ³Àû¿ë½Ã À§Ä¡
+	int		SkillCurse;			//ÀúÁÖ °É±â
 
-	int		AttackPattern;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int		ActiveHour;			//È°ï¿½ï¿½ï¿½Ã°ï¿½
-	int		IQ;					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	int		Nature;				//Ç°ï¿½ï¿½
-	int		Undead;				//ï¿½ðµ¥µï¿½ ï¿½ï¿½ï¿½ï¿½
-	int		GenerateGroup[2];	//ï¿½ï¿½ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ( ï¿½Ö¼ï¿½ / ï¿½Ö´ï¿½ )
-	int		GetExp;				//ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½Î¿ï¿½ï¿½ï¿½
-	int		SpAttackPercetage;	//Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ È®ï¿½ï¿½
-	int		MoveRange;			//ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½
+	int		AttackPattern;		//°ø°Ý ÆÐÅÏ
+	int		ActiveHour;			//È°µ¿½Ã°£
+	int		IQ;					//Áö´ÉÁö¼ö
+	int		Nature;				//Ç°¼º
+	int		Undead;				//¾ðµ¥µå À¯¹«
+	int		GenerateGroup[2];	//µ¿½Ã¿¡ ÃâÇö¼ö ( ÃÖ¼Ò / ÃÖ´ë )
+	int		GetExp;				//Á×¾úÀ»¶§ °æÇèÄ¡ ºÎ¿©·®
+	int		SpAttackPercetage;	//Æ¯¼ö °ø°Ý »ç¿ë È®·ü
+	int		MoveRange;			//ÀÌµ¿¹üÀ§
 
-	int		DamageStunPers;		//ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È®ï¿½ï¿½
+	int		DamageStunPers;		//°ø°Ý¹ÞÀ»½Ã ½ºÅÏÈ®·ü
 
-	int		PotionCount;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	int		PotionPercent;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int		PotionCount;		//¹°¾à º¸À¯¼ö
+	int		PotionPercent;		//¹°¾à º¸À¯·ü
 
-	int		AllSeeItem;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ùºï¿½ï¿½Î´ï¿½
-	int		FallItemCount;		//ï¿½ï¿½ï¿½ï¿½ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	int		FallItemPerMax;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½Ö´ï¿½Ä¡
-	int		FallItemMax;		//ï¿½ï¿½ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½Ä¡
-	int		FallItemPlusCount;	//ï¿½ï¿½ï¿½ï¿½ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½ (ï¿½ß°ï¿½)
+	int		AllSeeItem;			//¶³¾îÁú‹š ´Ùº¸ÀÎ´Ù
+	int		FallItemCount;		//¶³¾î¶ß¸± ¾ÆÀÌÅÛµéÀÇ Ä«¿îÅÍ
+	int		FallItemPerMax;		//¾ÆÀÌÅÛ »ý¼º È®·ü ÃÖ´ëÄ¡
+	int		FallItemMax;		//µ¿½Ã¿¡ ¶³¾î¶ß¸± ¾ÆÀÌÅÛ ÃÖ´ëÄ¡
+	int		FallItemPlusCount;	//¶³¾î¶ß¸± ¾ÆÀÌÅÛµéÀÇ Ä«¿îÅÍ (Ãß°¡)
 
-	int		ClassCode;			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	int		ClassCode;			//¸ó½ºÅÍ ±¸º° ÄÚµå
 
-	int		UseEventModel;		//ï¿½Ìºï¿½Æ® ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int		UseEventModel;		//ÀÌº¥Æ® ¸ðµ¨ ÀúÀåÀ¯¹«
 
-	int		Real_Sight;			//ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ï¿½ ï¿½Å¸ï¿½ ( ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ )
+	int		Real_Sight;			//½ÇÁ¦ ½Ã¾ß °Å¸® ( Á¦°ö±Ù ¾Æ´Ô )
 
 	_FALLITEM	FallItems[FALLITEM_MAX];
-	_FALLITEM	FallItems_Plus[FALLITEM2_MAX];		//ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	_FALLITEM	FallItems_Plus[FALLITEM2_MAX];		//Ãß°¡¾ÆÀÌÅÛ
 
 
-	//NPC ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+	//NPC »óÁ¡ ÆÇ¸Å Á¤º¸
 	int		SellAttackItemCount;
-	void	*SellAttackItem[32];	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void	*SellAttackItem[32];	//°ø°Ý ¾ÆÀÌÅÛ
 	int		SellDefenceItemCount;
-	void	*SellDefenceItem[32];	//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void	*SellDefenceItem[32];	//¹æ¾î ¾ÆÀÌÅÛ
 	int		SellEtcItemCount;
-	void	*SellEtcItem[32];		//ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void	*SellEtcItem[32];		//±âÅ¸ ¾ÆÀÌÅÛ
 
-	int		SkillMaster;			//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ NPC
-	int		SkillChangeJob;			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ NPC
-	int		WareHouseMaster;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ NPC
-	int		ItemMix;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ NPC
-	int		ItemAging;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡
-	int		CollectMoney;			//ï¿½ï¿½ï¿½ï¿½ï¿½ NPC
-	int		EventGift;				//ï¿½ï¿½Ç° ï¿½Ìºï¿½Æ® NPC
-	int		Smelting;				// pluto	ï¿½ï¿½ï¿½ï¿½ NPC
-	int		Manufacture;			// pluto	ï¿½ï¿½ï¿½ï¿½ NPC
-	int		MixtureReset;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½Í½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ NPC
+	int		SkillMaster;			//½ºÅ³ ¼ö·Ã NPC
+	int		SkillChangeJob;			//ÀüÁ÷ °¡´É NPC
+	int		WareHouseMaster;		//¾ÆÀÌÅÛ º¸°ü NPC
+	int		ItemMix;				//¾ÆÀÌÅÛ Á¶ÇÕ NPC
+	int		ItemAging;				//¾ÆÀÌÅÛ ¿¡ÀÌÂ¡
+	int		CollectMoney;			//µ·¸ð±Ý NPC
+	int		EventGift;				//°æÇ° ÀÌº¥Æ® NPC
+	int		Smelting;				// pluto	Á¦·Ã NPC
+	int		Manufacture;			// pluto	Á¦ÀÛ NPC
+	int		MixtureReset;			// ¼®Áö¿ë - ¹Í½ºÃÄ ¸®¼Â NPC
 
 
 #ifdef _LANGUAGE_VEITNAM
 	int		WowEvent;
 #endif
 
-	int		EventCode;				//ï¿½Ìºï¿½Æ® ï¿½Úµï¿½
-	int		EventInfo;				//ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwEvnetItem;			//ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	int		EventNPC;				//ï¿½Ìºï¿½Æ® NPC ï¿½ï¿½ï¿½ï¿½
-	int		ClanNPC;				//Å¬ï¿½ï¿½ NPC
-	int		GiftExpress;			//ï¿½ï¿½Ç° ï¿½ï¿½ï¿½
-	int		WingQuestNpc;			//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® NPC
-	int		StarPointNpc;			//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® NPC
-	int		GiveMoneyNpc;			//ï¿½ï¿½ ï¿½ï¿½ï¿½ NPC
-	int		TelePortNpc;			//ï¿½Ú·ï¿½ï¿½ï¿½Æ® NPC
-	int		BlessCastleNPC;			//ï¿½ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ NPC
-	int		PollingNpc;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ NPC
+	int		EventCode;				//ÀÌº¥Æ® ÄÚµå
+	int		EventInfo;				//ÀÌº¥Æ® Á¤º¸
+	DWORD	dwEvnetItem;			//ÀÌº¥Æ® ¾ÆÀÌÅÛ
+	int		EventNPC;				//ÀÌº¥Æ® NPC Á¤º¸
+	int		ClanNPC;				//Å¬·» NPC
+	int		GiftExpress;			//°æÇ° ¹è´Þ
+	int		WingQuestNpc;			//À® Äù½ºÆ® NPC
+	int		StarPointNpc;			//º° Æ÷ÀÎÆ® NPC
+	int		GiveMoneyNpc;			//µ· ¸ð±Ý NPC
+	int		TelePortNpc;			//ÅÚ·¹Æ÷Æ® NPC
+	int		BlessCastleNPC;			//ºí·¹½º Ä³½½ NPC
+	int		PollingNpc;				//¼³¹®Á¶»ç NPC
 
-	char	*szMediaPlayNPC_Title;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ NPC
-	char	*szMediaPlayNPC_Path;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ NPC
+	char	*szMediaPlayNPC_Title;		//µ¿¿µ»ó NPC
+	char	*szMediaPlayNPC_Path;		//µ¿¿µ»ó NPC
 
-	int		QuestCode;				//ï¿½ï¿½ï¿½ï¿½Æ® Ã³ï¿½ï¿½ï¿½Úµï¿½
-	int		QuestParam;				//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½
+	int		QuestCode;				//Äù½ºÆ® Ã³¸®ÄÚµå
+	int		QuestParam;				//Äù½ºÆ® ÆÄ¶ó¸ÞÅÍ
 
-	short	OpenCount[2];			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	short	OpenCount[2];			//ÃâÇö °£°Ý ¹øÈ£
 
-	DWORD	dwAutoCharCode;			//ï¿½Úµï¿½Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ (SpeedSum ï¿½ï¿½)
+	DWORD	dwAutoCharCode;			//ÀÚµ¿Ä³¸¯ÅÍ ±¸ºÐ ÄÚµå (SpeedSum °ª)
 
-	char	*lpNpcMessage[NPC_MESSAGE_MAX];	//NPC ï¿½ï¿½È­ ï¿½Þ¼ï¿½ï¿½ï¿½
-	int		NpcMsgCount;					//NPC ï¿½ï¿½È­ Ä«ï¿½ï¿½ï¿½ï¿½
+	char	*lpNpcMessage[NPC_MESSAGE_MAX];	//NPC ´ëÈ­ ¸Þ¼¼Áö
+	int		NpcMsgCount;					//NPC ´ëÈ­ Ä«¿îÅÍ
 
 	int SkinChange;
 	int Ranking;
@@ -689,117 +689,117 @@ struct smCHAR_MONSTER_INFO {
 };
 
 /*----------------------------------------------------------------------------*
-*				(Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í½ï¿½)Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼
+*				(Ä³¸¯ÅÍ ½ºÅ×ÀÌÅÍ½º)Ä³¸¯ÅÍ Á¤º¸ ±¸Á¶Ã¼
 *-----------------------------------------------------------------------------*/
 
 struct smCHAR_INFO {
-	char	szName[32];				//ï¿½Ì¸ï¿½
-	char	szModelName[64];		//ï¿½ï¿½ ï¿½Ì¸ï¿½
-	char	szModelName2[60];		//ï¿½ï¿½ ï¿½Ì¸ï¿½2  // szModelName2[64] -> szModelName2[60] ï¿½ï¿½Å«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	DWORD	ModelNameCode2;			//ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ß°ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½) // ï¿½ï¿½Å«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	char	szName[32];				//ÀÌ¸§
+	char	szModelName[64];		//¸ðµ¨ ÀÌ¸§
+	char	szModelName2[60];		//¸ðµ¨ ÀÌ¸§2  // szModelName2[64] -> szModelName2[60] ¾óÅ«ÀÌ ¿À·ù ¼öÁ¤
+	DWORD	ModelNameCode2;			//¸ðµ¨ ÄÚµå Ãß°¡ (Àå¼ø¸ñ) // ¾óÅ«ÀÌ ¿À·ù ¼öÁ¤
 
-	DWORD	dwObjectSerial;			//ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DWORD	dwObjectSerial;			//°´Ã¼ÀÇ °íÀ¯°ª
 
-	//int		AutoPlayer;				//ï¿½Úµï¿½ ï¿½Ó¼ï¿½
-	int		ClassClan;				//ï¿½Ò¼ï¿½Å¬ï¿½ï¿½
-	int		State;					//ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ó¼ï¿½ ( smCHAR_STATE_  NPC / ENEMY / USER )
-	int		SizeLevel;				//Å©ï¿½ï¿½ ï¿½Ü°ï¿½ ( 0-ï¿½ï¿½ï¿½ï¿½ ~ 3-ï¿½ï¿½ï¿½ï¿½ )
-	DWORD	dwCharSoundCode;		//ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
-
-	/*-------------------------*
-	*			ï¿½É·ï¿½Ä¡ 
-	*--------------------------*/
-	DWORD JOB_CODE;			//ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ 
-	int   Level;			//ï¿½ï¿½ï¿½ï¿½ 
-	int   Strength;			//ï¿½ï¿½ 
-	int   Spirit;			//ï¿½ï¿½ï¿½Å·ï¿½ 
-	int   Talent;			//ï¿½ï¿½ï¿½ 
-	int   Dexterity;		//ï¿½ï¿½Ã¸ï¿½ï¿½ 
-	int   Health;			//ï¿½Ç°ï¿½ 
+	//int		AutoPlayer;				//ÀÚµ¿ ¼Ó¼º
+	int		ClassClan;				//¼Ò¼ÓÅ¬·£
+	int		State;					//°´Ã¼ÀÇ ¼Ó¼º ( smCHAR_STATE_  NPC / ENEMY / USER )
+	int		SizeLevel;				//Å©±â ´Ü°è ( 0-¼ÒÇü ~ 3-´ëÇü )
+	DWORD	dwCharSoundCode;		//»ç¿îµå Ä³¸¯ÅÍ ÄÚµå
 
 	/*-------------------------*
-	*			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	*			´É·ÂÄ¡ 
 	*--------------------------*/
-	int	  Accuracy;			//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß·ï¿½
-	int   Attack_Rating;	//ï¿½ï¿½ï¿½ß·ï¿½
-	int   Attack_Damage[2];	//Å¸ï¿½Ý¼ï¿½Ä¡ ( ï¿½Ö¼ï¿½ / ï¿½Ö´ï¿½ )
-	int	  Attack_Speed;		//ï¿½ï¿½ï¿½Ý¼Óµï¿½
-	int	  Shooting_Range;	//ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ ( ï¿½ß»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ )
-	int	  Critical_Hit;		//Å©ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ( 1.5ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ )
-
-	int   Defence;			//ï¿½ï¿½ï¿½ï¿½ï¿½ 			
-	int   Chance_Block;		//ï¿½ï¿½ï¿½ï¿½ï¿½ 
-	int   Absorption;		//ï¿½ï¿½ï¿½ï¿½ï¿½ 
-
-	int   Move_Speed;		//ï¿½Ìµï¿½ ï¿½Óµï¿½ 
-	int   Sight;			//ï¿½Ã¾ï¿½
-	short Weight[2];			//ï¿½ï¿½ï¿½ ï¿½É·ï¿½ 
+	DWORD JOB_CODE;			//Á÷¾÷ ÄÚµå 
+	int   Level;			//·¹º§ 
+	int   Strength;			//Èû 
+	int   Spirit;			//Á¤½Å·Â 
+	int   Talent;			//Àç´É 
+	int   Dexterity;		//¹ÎÃ¸¼º 
+	int   Health;			//°Ç°­ 
 
 	/*-------------------------*
-	*			ï¿½ï¿½ï¿½×·ï¿½ 
+	*			ÀüÅõ°ü·Ã
 	*--------------------------*/
-	short	Resistance[8];			//ï¿½ï¿½ï¿½Ò¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×·ï¿½ 
-	short	Attack_Resistance[8];	//ï¿½ï¿½ï¿½Ò¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý·ï¿½ 
+	int	  Accuracy;			//»ó´ëÀû ¸íÁß·ü
+	int   Attack_Rating;	//¸íÁß·ü
+	int   Attack_Damage[2];	//Å¸°Ý¼öÄ¡ ( ÃÖ¼Ò / ÃÖ´ë )
+	int	  Attack_Speed;		//°ø°Ý¼Óµµ
+	int	  Shooting_Range;	//»çÁ¤°Å¸® ( ¹ß»çÇü¹«±â )
+	int	  Critical_Hit;		//Å©¸®Æ¼ÄÃÈý ( 1.5¹è µ¥¹ÌÁö È®·ü )
+
+	int   Defence;			//¹æ¾îÀ² 			
+	int   Chance_Block;		//ºí·°À² 
+	int   Absorption;		//Èí¼öÀ² 
+
+	int   Move_Speed;		//ÀÌµ¿ ¼Óµµ 
+	int   Sight;			//½Ã¾ß
+	short Weight[2];			//¿î¹Ý ´É·Â 
+
+	/*-------------------------*
+	*			ÀúÇ×·Â 
+	*--------------------------*/
+	short	Resistance[8];			//¿ø¼Ò¿¡´ëÇÑ ÀúÇ×·Â 
+	short	Attack_Resistance[8];	//¿ø¼Ò¿¡´ëÇÑ °ø°Ý·Â 
 
 	/*-------------------------*
 	*			...
 	*--------------------------*/
-	short   Life[2];			//0 ï¿½ï¿½ï¿½ï¿½ 1 ï¿½Ö´ï¿½Ä¡ 
-	short   Mana[2];			//0 ï¿½ï¿½ï¿½ï¿½ 1 ï¿½Ö´ï¿½Ä¡ 
-	short   Stamina[2];			//0 ï¿½ï¿½ï¿½ï¿½ 1 ï¿½Ö´ï¿½Ä¡
+	short   Life[2];			//0 ÇöÀç 1 ÃÖ´ëÄ¡ 
+	short   Mana[2];			//0 ÇöÀç 1 ÃÖ´ëÄ¡ 
+	short   Stamina[2];			//0 ÇöÀç 1 ÃÖ´ëÄ¡
 
-	float	Life_Regen;			//ï¿½ï¿½ï¿½ï¿½É·ï¿½ 
-	float	Mana_Regen;			//ï¿½ï¿½ï¿½ï¿½É·ï¿½ 
-	float	Stamina_Regen;		//ï¿½ï¿½ï¿½ï¿½É·ï¿½ 
+	float	Life_Regen;			//Àç»ý´É·Â 
+	float	Mana_Regen;			//Àç»ý´É·Â 
+	float	Stamina_Regen;		//Àç»ý´É·Â 
 
 	int		Exp;
 	int		Next_Exp;
 
-	int		Money;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	int		Money;				//º¸À¯ÇÑ µ·
 
-	smCHAR_MONSTER_INFO	*lpMonInfo;	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	smCHAR_MONSTER_INFO	*lpMonInfo;	//¸ó½ºÅÍ ±¸Á¶Ã¼ Æ÷ÀÎÅÍ
 
-	DWORD	Brood;				//ï¿½ï¿½ï¿½ï¿½
+	DWORD	Brood;				//Á¾Á·
 
-	int		StatePoint;			//ï¿½É·ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½Æ®
-	BYTE	bUpdateInfo[4];		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	short	ArrowPosi[2];		//ï¿½Îºï¿½ï¿½ä¸® È­ï¿½ï¿½Ç¥ ï¿½ï¿½Ä¡
-	int		Potion_Space;		//ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¸Ó´ï¿½ Å©ï¿½ï¿½
+	int		StatePoint;			//´É·ÂÄ¡ Æ÷ÀÎÆ®
+	BYTE	bUpdateInfo[4];		//³»¿ë º¯°æ Ä«¿îÅÍ
+	short	ArrowPosi[2];		//ÀÎº¥Åä¸® È­»ìÇ¥ À§Ä¡
+	int		Potion_Space;		//Æ÷¼Ç ÁÖ¸Ó´Ï Å©±â
 
-	int     LifeFunction;		//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ 
-	int     ManaFunction;		//ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ 
-	int     StaminaFunction;	//ï¿½Ù·ï¿½ ï¿½Ô¼ï¿½ 
-	short   DamageFunction[2];  //0 ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ï¿½Å¸ï¿½   
+	int     LifeFunction;		//»ý¸í·Â ÇÔ¼ö 
+	int     ManaFunction;		//±â·Â ÇÔ¼ö 
+	int     StaminaFunction;	//±Ù·Â ÇÔ¼ö 
+	short   DamageFunction[2];  //0 ±ÙÁ¢ 1 ¿ø°Å¸®   
 
-	DWORD	RefomCode;			//ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	DWORD	RefomCode;			//¸®Æû ÄÚµå
 
 	DWORD	ChangeJob;
 	DWORD	JobBitMask;
 
-	WORD	wPlayerKilling[2];	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	WORD	wPlayClass[2];		//ï¿½ï¿½ï¿½ ( ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ )
+	WORD	wPlayerKilling[2];	//°¨¿Á°¤Çô ÀÖÀ½
+	WORD	wPlayClass[2];		//°è±Þ ( ¸ó½ºÅÍÀÇ º¸½º¼³Á¤ )
 
-	int		Exp_High;			//ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½4ï¿½ï¿½Æ®
-	DWORD	dwEventTime_T;		//ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ - ( ï¿½ï¿½Å«ï¿½ï¿½ ï¿½Ã°ï¿½ )
-	short	sEventParam[2];		//ï¿½Ìºï¿½Æ® ï¿½Ä¶ï¿½ï¿½ï¿½Í¿ï¿½ [0] ï¿½Ìºï¿½Æ®ï¿½Úµï¿½ [1] ï¿½Ìºï¿½Æ® ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½
+	int		Exp_High;			//°æÇèÄ¡ »óÀ§4ºñÆ®
+	DWORD	dwEventTime_T;		//ÀÌº¥Æ® Á¦ÇÑ ½Ã°£ - ( ¾óÅ«ÀÌ ½Ã°£ )
+	short	sEventParam[2];		//ÀÌº¥Æ® ÆÄ¶ó¸ÞÅÍ¿ë [0] ÀÌº¥Æ®ÄÚµå [1] ÀÌº¥Æ® ÆÄ¶ó¸ÞÅÍ
 
-	short	sPresentItem[2];	//ï¿½ì¿¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	short	sPresentItem[2];	//¿ì¿¬À» °¡ÀåÇÑ ÇÊ¿¬ÀûÀÎ ¾ÆÀÌÅÛ Áö±Þ
 
-	// ï¿½åº° - ï¿½×¶ï¿½ï¿½Æ¼ ï¿½ï¿½Å©ï¿½ï¿½
+	// Àåº° - ±×¶óºñÆ¼ ½ºÅ©·Ñ
 	short GravityScroolCheck[2];
 
-	DWORD	dwTemp[11];			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ // ï¿½åº° - ï¿½×¶ï¿½ï¿½Æ¼ ï¿½ï¿½Å©ï¿½ï¿½(12->11)
+	DWORD	dwTemp[11];			//¿¹ºñ ¹öÆÛ // Àåº° - ±×¶óºñÆ¼ ½ºÅ©·Ñ(12->11)
 
-	DWORD	dwLoginServerIP;		//ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IP
-	DWORD	dwLoginServerSafeKey;	//ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°
+	DWORD	dwLoginServerIP;		//·Î±×ÀÎÇÑ ¼­¹öÀÇ IP
+	DWORD	dwLoginServerSafeKey;	//·Î±×ÀÎÇÑ ¼­¹ö¿¡¼­ º¸³½ º¸¾ÈÅ°
 
-	WORD	wVersion[2];		//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	WORD	wVersion[2];		//ÀÌ ±¸Á¶Ã¼ÀÇ ¹öÀü
 
-	// ï¿½åº° - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// Àåº° - ¿¹ºñ¹öÆÛ
 //	DWORD	dwTemp2[2000];
 };
 
-//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
+//Ä³¸¯ÅÍ Á¤º¸ ´ÜÃà Å©±â
 #define	smCHAR_INFO_QUICK_SIZE		192
 #define	smCHAR_INFO_QUICK_SIZE2		352
 
@@ -807,7 +807,7 @@ struct smCHAR_INFO {
 #define	THROW_ITEM_INFO_MASK	63
 #define	INVEN_ITEM_INFO_MAX		300
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ( ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ )
+//¹ö·ÁÁø ¾ÆÀÌÅÛ Á¤º¸ ÀúÀå ( ¾ÆÀÌÅÛ º¹»ç ¹æÁö )
 struct	sTHROW_ITEM_INFO {
 
 	DWORD	dwCode;
@@ -816,16 +816,16 @@ struct	sTHROW_ITEM_INFO {
 };
 
 
-//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½
+//Ä³¸¯ÅÍ ÁÂÇ¥ ±¸Á¶
 struct rsPLAYPOS {
-	DWORD	Area;		// Low->Wolrd High->Area	: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½Úµï¿½
-	int		x,y,z;		// ï¿½ï¿½Ç¥
+	DWORD	Area;		// Low->Wolrd High->Area	: ÇöÀç Á¸ÀçÇÏ°í ÀÖ´Â Áö¿ªÀÇ À§Ä¡ ÄÚµå
+	int		x,y,z;		// ÁÂÇ¥
 };
 
-//ï¿½ï¿½ï¿½ï¿½ : ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-//ï¿½ï¿½ï¿½ : Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® -> ï¿½ï¿½ï¿½ï¿½
-//ï¿½Úµï¿½ : smTRANSCODE_POSITION
-//10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+//³»¿ë : ÀÚ½ÅÀÇ À§Ä¡¹× Á¤º¸¸¦ ¼­¹ö¿¡ Àü¼Û
+//´ë»ó : Å¬¶óÀÌ¾ðÆ® -> ¼­¹ö
+//ÄÚµå : smTRANSCODE_POSITION
+//10ÃÊ °£°ÝÀ¸·Î ¼­¹ö¿¡ º¸³»Áö´Â ÇÃ·¹ÀÌ¾î À§Ä¡ Á¤º¸
 struct TRANS_PLAYPOS {
 	int size,code;
 	
@@ -835,23 +835,23 @@ struct TRANS_PLAYPOS {
 
 
 
-//ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-//ï¿½ï¿½ï¿½ : Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® -> ï¿½ï¿½ï¿½ï¿½  Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® -> Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®
-//ï¿½Úµï¿½ : smTRANSCODE_ATTACKDATA
+//³»¿ë : »ó´ëÇÑÅ× °ø°Ý Á¤º¸¸¦ º¸³½´Ù
+//´ë»ó : Å¬¶óÀÌ¾ðÆ® -> ¼­¹ö  Å¬¶óÀÌ¾ðÆ® -> Å¬¶óÀÌ¾ðÆ®
+//ÄÚµå : smTRANSCODE_ATTACKDATA
 struct TRANS_ATTACKDATA {
 	int size,code;
 
-	DWORD	dwDestObjectSerial;	//ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
-	DWORD	dwTarObjectSerial;	//ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	DWORD	dwDestObjectSerial;	//°ø°ÝÇÏ´Â Ä³¸¯ÅÍ °íÀ¯¹øÈ£
+	DWORD	dwTarObjectSerial;	//°ø°Ý´ë»ó Ä³¸¯ÅÍ °íÀ¯¹øÈ£
 
-	int x,y,z;			// ï¿½ï¿½Ç¥
-	int AttackState;	// ï¿½Ó¼ï¿½
-	int AttackSize;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int Power;			// ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½
+	int x,y,z;			// ÁÂÇ¥
+	int AttackState;	// ¼Ó¼º
+	int AttackSize;		// °ø°Ý ¹üÀ§
+	int Power;			// °ø°Ý ÆÄ¿ö
 	DWORD	dwChkSum;
 
 		short	Critical[2];
-short	sRating[2];	//[0]-ï¿½ï¿½ï¿½ï¿½ [1]-ï¿½ï¿½ï¿½ß·ï¿½
+short	sRating[2];	//[0]-·¹º§ [1]-¸íÁß·Â
 	DWORD	dwDamageChkSum;
 };
 
@@ -860,82 +860,82 @@ struct TRANS_ATTACKDATA2 {
 
 	DWORD	dwChkSum;
 
-	DWORD	dwDestObjectSerial;	//ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
-	DWORD	dwTarObjectSerial;	//ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	DWORD	dwDestObjectSerial;	//°ø°ÝÇÏ´Â Ä³¸¯ÅÍ °íÀ¯¹øÈ£
+	DWORD	dwTarObjectSerial;	//°ø°Ý´ë»ó Ä³¸¯ÅÍ °íÀ¯¹øÈ£
 
-	int		x,y,z;			// ï¿½ï¿½Ç¥
-	int		AttackState;	// ï¿½Ó¼ï¿½
-	int		AttackSize;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	short	Power[2];		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½
-	short	Power2[2];		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½ ( ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ )
-	short	Critical[2];	// Å©ï¿½ï¿½Æ¼ï¿½ï¿½
-	int		SkillCode;		// ï¿½ï¿½Å³ï¿½Úµï¿½
-	DWORD	dwTime;			// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½Ã°ï¿½
-	int		AttackCount;	// ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	short	MotionCount[2];	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwWeaponCode;	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	short	Area[2];		// ï¿½ï¿½ï¿½ï¿½
-	int		Temp[4];		// ï¿½ï¿½ï¿½ï¿½
+	int		x,y,z;			// ÁÂÇ¥
+	int		AttackState;	// ¼Ó¼º
+	int		AttackSize;		// °ø°Ý ¹üÀ§
+	short	Power[2];		// °ø°Ý ÆÄ¿ö
+	short	Power2[2];		// °ø°Ý ÆÄ¿ö ( Ãß°¡ °ø°Ý )
+	short	Critical[2];	// Å©¸®Æ¼ÄÃ
+	int		SkillCode;		// ½ºÅ³ÄÚµå
+	DWORD	dwTime;			// Å¬¶óÀÌ¾ðÆ® ½Ã°£
+	int		AttackCount;	// °ø°Ý Ä«¿îÅÍ
+	short	MotionCount[2];	// °ø°Ý ¸ð¼Ç Ä«¿îÅÍ
+	DWORD	dwWeaponCode;	// ÁÖ °ø°Ý ¹«±â
+	short	Area[2];		// Áö¿ª
+	int		Temp[4];		// ¿¹ºñ
 };
 
 
-// ï¿½åº° - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³( 32 -> 42 )
+// Àåº° - ¹üÀ§Çü ½ºÅ³( 32 -> 42 )
 #define SKIL_ATTACK_CHAR_MAX		42
 
 struct TRANS_SKIL_ATTACKDATA {
 	int size,code;
 
-	DWORD	dwDestObjectSerial;	//ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	DWORD	dwDestObjectSerial;	//°ø°ÝÇÏ´Â Ä³¸¯ÅÍ °íÀ¯¹øÈ£
 
-	int x,y,z;			// ï¿½ï¿½Ç¥
-	int AttackState;	// ï¿½Ó¼ï¿½
-	int AttackSize;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int Power;			// ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½
+	int x,y,z;			// ÁÂÇ¥
+	int AttackState;	// ¼Ó¼º
+	int AttackSize;		// °ø°Ý ¹üÀ§
+	int Power;			// °ø°Ý ÆÄ¿ö
 
-	DWORD	dwChkSum;	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	DWORD	dwChkSum;	//Á¶ÀÛ ¹æÁö ÄÚµå
 
 	int	TargetCount;
-	DWORD	dwTarObjectSerial[SKIL_ATTACK_CHAR_MAX];	//ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	DWORD	dwTarObjectSerial[SKIL_ATTACK_CHAR_MAX];	//°ø°Ý´ë»ó Ä³¸¯ÅÍ °íÀ¯¹øÈ£
 };
 
 struct TRANS_SKIL_ATTACKDATA2 {
 	int size,code;
 
-	DWORD	dwDestObjectSerial;	//ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	DWORD	dwDestObjectSerial;	//°ø°ÝÇÏ´Â Ä³¸¯ÅÍ °íÀ¯¹øÈ£
 
 	DWORD	dwChkSum;
 
-	int		x,y,z;			// ï¿½ï¿½Ç¥
-	int		AttackState;	// ï¿½Ó¼ï¿½
-	int		AttackSize;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	short	Power[2];		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½
-	short	Power2[2];		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½ ( ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ )
-	short	Critical[2];	// Å©ï¿½ï¿½Æ¼ï¿½ï¿½
-	int		SkillCode;		// ï¿½ï¿½Å³ï¿½Úµï¿½
-	DWORD	dwTime;			// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½Ã°ï¿½
-	int		AttackCount;	// ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	short	MotionCount[2];	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwWeaponCode;	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	short	Area[2];		// ï¿½ï¿½ï¿½ï¿½
-	int		Temp[4];		// ï¿½ï¿½ï¿½ï¿½
+	int		x,y,z;			// ÁÂÇ¥
+	int		AttackState;	// ¼Ó¼º
+	int		AttackSize;		// °ø°Ý ¹üÀ§
+	short	Power[2];		// °ø°Ý ÆÄ¿ö
+	short	Power2[2];		// °ø°Ý ÆÄ¿ö ( Ãß°¡ °ø°Ý )
+	short	Critical[2];	// Å©¸®Æ¼ÄÃ
+	int		SkillCode;		// ½ºÅ³ÄÚµå
+	DWORD	dwTime;			// Å¬¶óÀÌ¾ðÆ® ½Ã°£
+	int		AttackCount;	// °ø°Ý Ä«¿îÅÍ
+	short	MotionCount[2];	// °ø°Ý ¸ð¼Ç Ä«¿îÅÍ
+	DWORD	dwWeaponCode;	// ÁÖ °ø°Ý ¹«±â
+	short	Area[2];		// Áö¿ª
+	int		Temp[4];		// ¿¹ºñ
 
-	DWORD	dwMainTargetObject;		//ï¿½ï¿½ Å¸ï¿½ï¿½
+	DWORD	dwMainTargetObject;		//ÁÖ Å¸°Ù
 
 	int	TargetCount;
-	DWORD	dwTarObjectSerial[SKIL_ATTACK_CHAR_MAX];	//ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	DWORD	dwTarObjectSerial[SKIL_ATTACK_CHAR_MAX];	//°ø°Ý´ë»ó Ä³¸¯ÅÍ °íÀ¯¹øÈ£
 };
 
 
 
-//ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ù¸ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-//ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ -> Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®
-//ï¿½Úµï¿½ : smTRANSCODE_IPLIST
+//³»¿ë : Áö¿ª¿¡ Á¸ÀçÇÏ´Â ´Ù¸¥ ÇÃ·¹ÀÌ¾î Á¤º¸ ¸ñ·Ï Àü¼Û
+//´ë»ó : ¼­¹ö -> Å¬¶óÀÌ¾ðÆ®
+//ÄÚµå : smTRANSCODE_IPLIST
 struct TRANS_AREAINFO_HEADER {
 	int		size;
 	int		code;
 	DWORD	dwIP;
-	int		Stats;					//ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ TRUE ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ FALSE
-	int		TransListCnt;			//ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ TRANS_IPLIST ï¿½ï¿½ï¿½ï¿½
+	int		Stats;					//Àü¼Û ¿Ï·á¸é TRUE ¾ÆÁ÷ ´õ º¸³¾ µ¥ÀÌÅ¸°¡ ÀÖÀ¸¸é FALSE
+	int		TransListCnt;			//Àü¼ÛÇÏ´Â TRANS_IPLIST °¹¼ö
 };
 
 struct TRANS_IPLIST {
@@ -943,7 +943,7 @@ struct TRANS_IPLIST {
 	rsPLAYPOS	Pos;
 };
 
-/////////////// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½ /////////////////
+/////////////// ¾ÆÀÌÅÛ ÅÃ¹è ¼­ºñ½º /////////////////
 #define	POST_ITEM_MAX				500
 
 struct _POST_BOX_ITEM {
@@ -979,7 +979,7 @@ struct	TRANS_POST_ITEM {
 	DWORD	dwParam[4];
 
 	DWORD	dwItemFlag;
-	int		Weight;			// pluto ï¿½Ø¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int		Weight;			// pluto ÇØ¿Ü ºô¸µ ¾ÆÀÌÅÛ ¹«°Ô
 };
 //	sITEM_INFO	sItemInfo;
 
@@ -992,24 +992,24 @@ struct	TRANS_POST_ITEM {
 
 #define	PARTY_PLAYER_MAX		6
 
-// ï¿½åº° - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// Àåº° - ¿¹ºñ¹öÆÛ
 #define	srRECORD_DEFAULT_SIZE	16384
 //#define	srRECORD_DEFAULT_SIZE	32768
 #define	srRECORD_MEMORY_SIZE	24576
 //#define	srRECORD_MEMORY_SIZE	49152
 
-#define SKILL_POINT_COLUM_MAX	16
+#define SKILL_POINT_COLUM_MAX	20
 
 struct	TRANS_PARTY_PLAYINFO;
 
 struct	npGAME_GUARD_AUTH_INFO {
-	 DWORD	Auth_Value;		//ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Úµï¿½ ( ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ )
-	 DWORD	Auth_Time;		//ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ È®ï¿½Î½Ã°ï¿½ ( ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½Ã°ï¿½ )
-	 DWORD	Auth_Count;		//ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ È®ï¿½ï¿½Ä«ï¿½ï¿½ï¿½ï¿½ ( ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ )
-	 DWORD	Auth_Retry;		//ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½Ãµï¿½ ( ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 60ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½È¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ãµï¿½ )
+	 DWORD	Auth_Value;		//°ÔÀÓ°¡µå È®ÀÎÄÚµå ( °ªÀ» ¸®ÅÏ ¹ÞÀ½ )
+	 DWORD	Auth_Time;		//°ÔÀÓ°¡µå È®ÀÎ½Ã°£ ( ´ÙÀ½Ã³¸® ½Ã°£ )
+	 DWORD	Auth_Count;		//°ÔÀÓ°¡µå È®ÀÎÄ«¿îÅÍ ( ÃÑ º¸³½ È½¼ö )
+	 DWORD	Auth_Retry;		//°ÔÀÓ°¡µå È®ÀÎ Àç½Ãµµ ( ÀÀ´äÀÌ 60ÃÊ ¾È¿¡ ¾È¿À¸é ¸î¹ø±îÁö Àç½Ãµµ )
 };
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
+//¾ÆÀÌÅÛ ±¸¸Å Ä«¿îÅÍ
 struct	sMYSHOP_SELL_INFO {
 	DWORD	dwCode;
 	DWORD	dwHead;
@@ -1027,11 +1027,11 @@ struct	sCASTLE_MASTER {
 	int		SelectSkill;
 };
 
-//ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½Ã·ï¿½
+//µ¥ÀÌÅ¸ ¿¡·¯ ºñÆ® ÇÃ·¢
 #define	rsDATA_ERROR_WAREHOUSE			1
 
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¸ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½
+//°£´ÜÇÑ ÄÚ¸àµå Àü¼Û¿ë ±¸Á¶
 struct smTRANS_COMMAND
 {
 	int	size;
@@ -1043,15 +1043,15 @@ struct smTRANS_COMMAND
 	int EParam;
 };
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ - XignCode
+//¹ÚÀç¿ø - XignCode
 #define PACKET_SIZE 512
 
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ - XignCode
+//¹ÚÀç¿ø - XignCode
 typedef struct _XIGNCODE_PACKET {
 	int size;
 	int code;
-	BYTE data[PACKET_SIZE]; //ï¿½ï¿½ï¿½ï¿½ï¿½ - XignCode
+	BYTE data[PACKET_SIZE]; //¹ÚÀç¿ø - XignCode
 } XIGNCODE_PACKET;
 
 typedef struct _XIGNCODE_TempData{
@@ -1064,12 +1064,12 @@ typedef struct _XIGNCODE_TempData{
 	int m_pcount;
 } XIGNCODE_TempData;
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ - XignCode
+//¹ÚÀç¿ø - XignCode
 #define smTRANSCODE_XIGNCODE_PACKET		0x48470400
 #define smTRANSCODE_XIGNCODE_START		0x48470500
 
 
-//////////////////// ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ////////////////////
+//////////////////// ¿¢½ºÆ®·¦ ////////////////////
 #ifdef _xTrap_GUARD
 
 #include "XTrapSvrSrc/XTrapCC.h"
@@ -1104,7 +1104,7 @@ struct	smXTRAP_PLAYINFO {
 #endif
 ////////////////////////////////////////////////////
 
-//////////////////// ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ////////////////////
+//////////////////// ¿¢½ºÆ®·¦ ////////////////////
 #ifdef _XTRAP_GUARD_4_
 
 #ifdef _W_SERVER
@@ -1135,97 +1135,97 @@ struct	smTRANS_XTRAP_ADDR {
 ////////////////////////////////////////////////////
 
 
-/////////////////////// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ ////////////////////////////////
+/////////////////////// ¼­¹ö¿¡¼­ÀÇ ÇÃ·¹ÀÌ¾î Á¤º¸ ±¸Á¶Ã¼ ////////////////////////////////
 class rsPLAYINFO {
 public:
 
-	char			szServerID[32];			//ï¿½ï¿½ï¿½ï¿½ID
+	char			szServerID[32];			//¼­¹öID
 
-	char			szID[32];				//ï¿½ï¿½ï¿½ï¿½ ID
-	char			szName[32];				//ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
-	DWORD			dwCode_ID;				//IDï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
-	DWORD			dwCode_Name;			//Nameï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	char			szID[32];				//À¯Àú ID
+	char			szName[32];				//À¯Àú Ä³¸¯ÅÍ ÀÌ¸§
+	DWORD			dwCode_ID;				//ID¸¦ »¡¸® Ã£±âÀ§ÇÑ ÄÚµå
+	DWORD			dwCode_Name;			//NameÀ» »¡¸® Ã£±â À§ÇÑ ÄÚµå
 
-	int				AdminOperMode;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
+	int				AdminOperMode;			//°ü¸®ÀÚ º¹±¸ ·ÎµùÁß
 
-	DWORD			dwDataError;			//ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½Ã·ï¿½
+	DWORD			dwDataError;			//µ¥ÀÌÅ¸ ¿¡·¯ ºñÆ® ÇÃ·¢
 
-	int				TransInfoFlag;			//ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ ( 0-ï¿½Øºï¿½ï¿½ï¿½ 1-ï¿½ï¿½ë°¡ï¿½ï¿½ )
+	int				TransInfoFlag;			//Åë½Å ÇÃ·¢ ( 0-ÁØºñÁß 1-»ç¿ë°¡´É )
 	int				ChatBuffCnt;
 
-	int				SystemLine;				//ï¿½Ã½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ - ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+	int				SystemLine;				//½Ã½ºÅÛ ¸ðµå - ´Ù¸¥ ¼­¹ö¿¡¼­ ¿¬°áµÊ
 
-	int				CharLoadingCount;		//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½Ãµï¿½ Ä«ï¿½ï¿½ï¿½ï¿½ (ï¿½Ñ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+	int				CharLoadingCount;		//Ä³¸¯ÅÍ ·Îµù ½Ãµµ Ä«¿îÅÍ (ÇÑ°ÔÀÓ µ·º¹»ç Á¶»çÁß)
 
 	rsPLAYPOS		Position;
-	rsPLAYINFO		**lpAreaPlayInfo;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	rsPLAYINFO		**lpAreaPlayInfo;		//Áö¿ªº° ÇÃ·¹ÀÌ¾î Á¤º¸ ¸µÅ©Æ÷ÀÎÅÍ 
 
 	int				SendListCnt;
 
-	DWORD			dwDecPacketCode;		//ï¿½ï¿½Å¶ ï¿½ï¿½È£ ï¿½Úµï¿½
-	BYTE			bPacketXor[2];			//ï¿½ï¿½Å¶ ï¿½ï¿½È£ ï¿½Øµï¿½ï¿½ï¿½ ï¿½ï¿½
-	DWORD			dwDecPacketTime;		//ï¿½ï¿½Å¶ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
-	DWORD			dwDecPacketTime2;		//ï¿½ï¿½Å¶ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+	DWORD			dwDecPacketCode;		//ÆÐÅ¶ ¾ÏÈ£ ÄÚµå
+	BYTE			bPacketXor[2];			//ÆÐÅ¶ ¾ÏÈ£ ÇØµ¶¿ë °ª
+	DWORD			dwDecPacketTime;		//ÆÐÅ¶ ¾ÏÈ£ Àû¿ë ½Ã°£
+	DWORD			dwDecPacketTime2;		//ÆÐÅ¶ ¾ÏÈ£ Àû¿ë º¸·ù ½Ã°£
 
-	smCHAR_INFO		smCharInfo;				//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	smCHAR_INFO		smCharInfo;				//Ä³¸¯ÅÍ Á¤º¸
 
-	int				CharLevelMax;			//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ ( ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ )
-	DWORD			dwNoticeCount;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
+	int				CharLevelMax;			//Ä³¸¯ÅÍ ÃÖ°í ·¹º§ ( ÇöÀç º¸À¯ÇÑ °èÁ¤¿¡ ÀÖ´Â Ä³¸¯ÅÍÁß ÃÖ°í·¹º§ )
+	DWORD			dwNoticeCount;			//°øÁö»çÇ× ¸Þ¼¼Áö Ä«¿îÅÍ
 
-	char			srPlayBuff[srPLAYBUFF_MAX+1][TRANS_BUFF_SIZE];		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int				srPlayBuffSize[srPLAYBUFF_MAX+1];					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
+	char			srPlayBuff[srPLAYBUFF_MAX+1][TRANS_BUFF_SIZE];		//Àü¼ÛÇÒ µ¥ÀÌÅ¸ ´ë±â¿ë ¹öÆÛ
+	int				srPlayBuffSize[srPLAYBUFF_MAX+1];					//Àü¼ÛÇÒ µ¥ÀÌÅ¸ ´ë±â¿ë ¹öÆÛ Å©±â
 
-	int				PlayBuffSleep;									//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½
+	int				PlayBuffSleep;									//Àü¼Û µ¥ÀÌÅ¸ ½½¸³
 
-	sTHROW_ITEM_INFO	ThrowItemInfo[THROW_ITEM_INFO_MAX];			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	sTHROW_ITEM_INFO	ThrowItemInfo[THROW_ITEM_INFO_MAX];			//¹ö·ÁÁø ¾ÆÀÌÅÛ Á¤º¸
 
-	sTHROW_ITEM_INFO	InvenItemInfo[INVEN_ITEM_INFO_MAX+16];			//ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	sTHROW_ITEM_INFO	WareHouseItemInfo[120];						//Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int				OpenWarehouseInfoFlag;								//Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	//sTHROW_ITEM_INFO	*lpWareHouseItemInfo;						//Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	sTHROW_ITEM_INFO	InvenItemInfo[INVEN_ITEM_INFO_MAX+16];			//ÀÎº¥Åä¸® ¾ÆÀÌÅÛ Á¤º¸
+	sTHROW_ITEM_INFO	WareHouseItemInfo[120];						//Ã¢°í ¾ÆÀÌÅÛ Á¤º¸
+	int				OpenWarehouseInfoFlag;								//Ã¢°í ¾ÆÀÌÅÛ Á¤º¸ À¯¹«
+	//sTHROW_ITEM_INFO	*lpWareHouseItemInfo;						//Ã¢°í ¾ÆÀÌÅÛ ³»¿ë Á¤º¸
 
-	DWORD			dwTradePotionInfo[16];							//ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½
-	int				TradePotionInfoCount;							//ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
+	DWORD			dwTradePotionInfo[16];							//¹°¾à °Å·¡ Á¤º¸ ÀÓ½ÃÀúÀå
+	int				TradePotionInfoCount;							//¹°¾à °Å·¡ Á¤º¸ ÀúÀå Ä«¿îÅä
 
-	sMYSHOP_SELL_INFO	sMyShopList[ MYSHOP_LIST_MAX ];					//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int				MyShopListCount;								//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	DWORD			dwMyShopTradeTime;								//ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+	sMYSHOP_SELL_INFO	sMyShopList[ MYSHOP_LIST_MAX ];					//°³ÀÎ »óÁ¡ °Å·¡ ¸ñ·Ï ¹öÆÛ
+	int				MyShopListCount;								//°³ÀÎ »óÁ¡ °Å·¡ ½Ãµµ ¸ñ·Ï Ä«¿îÅÍ
+	DWORD			dwMyShopTradeTime;								//°³ÀÎ»óÁ¡ °Å·¡ ´ë±â ½Ã°£
 
-	int				ThrowItemCount;											//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
+	int				ThrowItemCount;											//¹ö·ÁÁø ¾ÆÀÌÅÛ Ä«¿îÅÍ
 
-	int				UnsaveMoney;									//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	int				UnsaveMoney;									//ÀúÀåµÇÁö ¾ÊÀº µ·
 
-	int				ServerMoney;									//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
-	int				WareHouseMoney;									//Ã¢ï¿½ï¿½ ï¿½Ý¾ï¿½
+	int				ServerMoney;									//¼­¹ö¿¡¼¼ ½ÇÁ¦ °è»êÇÑ µ·
+	int				WareHouseMoney;									//Ã¢°í ±Ý¾×
 
-	DWORD			dwRecvTimePlayBuff;								//ï¿½ï¿½ï¿½Û¹ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
-	DWORD			srSendPlayBuffCnt;								//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	DWORD			srRecvPlayBuffCnt;								//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
+	DWORD			dwRecvTimePlayBuff;								//Àü¼Û¹ÞÀº ½Ã°£
+	DWORD			srSendPlayBuffCnt;								//º¸³½ ¹öÆÛ Ä«¿îÅÍ
+	DWORD			srRecvPlayBuffCnt;								//¹ÞÀº ¹öÆÛ Ä«¿îÅÍ
 
-	DWORD			dwObjectSerial;	//ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DWORD			dwObjectSerial;	//°´Ã¼ÀÇ °íÀ¯°ª
 
-	int				ChatMsgMode;			//Ã¤ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
-	char			szChatMessage[256];		//Ã¤ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+	int				ChatMsgMode;			//Ã¤ÆÃ ¸Þ¼¼Áö ¸ðµå
+	char			szChatMessage[256];		//Ã¤ÆÃ ¸Þ¼¼Áö
 
-	//ï¿½ï¿½ï¿½ï¿½
-	char			szTradeMessage[128];	//ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½
-	DWORD			dwTradeMsgCode;			//ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	//»óÁ¡
+	char			szTradeMessage[128];	//»óÁ¡ ¸Þ¼¼Áö ¹®ÀÚ¿­
+	DWORD			dwTradeMsgCode;			//»óÁ¡ ¸Þ¼¼Áö ÄÚµå
 
 	smWINSOCK		*lpsmSock;
 
 	DWORD			dwLastRecvTime;
 	DWORD			dwLastMotionRecvTime;
 
-	int				UpdateInfo_WaitCounter;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	int				UpdateInfo_WarnigCounter;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ )
+	int				UpdateInfo_WaitCounter;	//¾÷µ¥ÀÌÆ® Á¤º¸ ´ë±â Ä«¿îÅÍ
+	int				UpdateInfo_WarnigCounter;	//¾÷µ¥ÀÌÆ® Á¤º¸ °æ°í (´©ÀûµÇ¸é ¿¬°á Á¾·á )
 
-	rsRECORD_DBASE	*lpRecordBase;			//ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	rsPOST_BOX_ITEM	*lpPostBoxItem;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼
-	int				PostPassFailCount;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½
+	rsRECORD_DBASE	*lpRecordBase;			//ÀúÀå Å¬·¡½º Æ÷ÀÎÅÍ
+	rsPOST_BOX_ITEM	*lpPostBoxItem;			//¾ÆÀÌÅÛ ¹è´Þ ±¸Á¶Ã¼
+	int				PostPassFailCount;		//¾ÆÀÌÅÛ ¹è´Þ ºñ¹Ð¹øÈ£ ½ÇÆÐ È½¼ö
 
-	int				AdminMode;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
-	int				HideMode;				//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ( ï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Èºï¿½ï¿½Ì°ï¿½ ï¿½Ù´Ò¶ï¿½ )
-	int				AdminIP;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼Ò·ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int				AdminMode;				//°ü¸®ÀÚ ¸ðµå
+	int				HideMode;				//Åõ¸í ¸ðµå ( °ü¸®ÀÚ°¡ ³²¿¡°Ô ¾Èº¸ÀÌ°Ô ´Ù´Ò¶§ )
+	int				AdminIP;				//°ü¸®ÀÚ ¾ÆÀÌÇÇ ÁÖ¼Ò·Î Á¢¼Ó
 
         const char* getAccount() const { return szID; }
         const char* getName() const { return smCharInfo.szName; }
@@ -1240,53 +1240,53 @@ public:
         void setName(const char* v) { if(v) strcpy_s(smCharInfo.szName, v); }
 
 
-	DWORD			dwConnectTime;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+	DWORD			dwConnectTime;			//Á¢¼ÓÇÑ ½Ã°£
 
-	int				LastTransPlayUserCount;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ ï¿½Ù¸ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½È£
-	int				LastTransAutoPlayCount;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ ï¿½Ù¸ï¿½ ï¿½Úµï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	int				LastTransPlayUserCount;	//¸¶Áö¸·À¸·Î Àü¼ÛµÈ ´Ù¸¥ ÇÃ·¹ÀÌ¾î ¹øÈ£
+	int				LastTransAutoPlayCount;	//¸¶Áö¸·À¸·Î Àü¼ÛµÈ ´Ù¸¥ ÀÚµ¿ Ä³¸¯ÅÍ ¹øÈ£
 
-	DWORD			dwConnectCount;			//ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
+	DWORD			dwConnectCount;			//ÀüÃ¼ ¿¬°á Ä«¿îÅÍ
 
 	int				frame;
-	DWORD			SendPlayGroupCount;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½×·ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
+	DWORD			SendPlayGroupCount;		//º¸³½ µ¥ÀÌÅ¸ ±×·ì Ä«¿îÅÍ
 
-	DWORD			MonTranCount;			//ï¿½ï¿½ï¿½ï¿½/NPC ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½
-	DWORD			CharTransCount;			//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½
+	DWORD			MonTranCount;			//¸ó½ºÅÍ/NPC Àü¼Û ÁØºñ
+	DWORD			CharTransCount;			//Ä³¸®ÅÍ Àü¼Û ÁØºñ
 
-	int				HitMonsterCount;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	smCHAR			*lpChrTarget;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½(ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
-	DWORD			dwTarObjSerial;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	int				HitMonsterCount;		//°ø°ÝÇÑ ¸ó½ºÅÍ Ä«¿îÅÍ
+	smCHAR			*lpChrTarget;			//À¯Àú°¡ ÃÖ±Ù °ø°ÝÇÑ ¸ó½ºÅÍ ±â·Ï(¿ì¼±¼øÀ§ Àü¼Û)
+	DWORD			dwTarObjSerial;			//À¯Àú°¡ ÃÖ±Ù °ø°ÝÇÑ ¸ó½ºÅÍ °íÀ¯¹øÈ£
 
-	int				UserPacketLoop;			//ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½Î½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ï¿½Å¶ ï¿½ï¿½Ä¡ ( ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ )
-	int				BefUserPacketLoop;		//ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½Î½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ï¿½Å¶ ï¿½ï¿½Ä¡ ( ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ )
+	int				UserPacketLoop;			//À¯Àú 1·çÇÎ½Ã Àü¼ÛµÈ ÆÐÅ¶ ¼öÄ¡ ( Àü¼ÛÅë°è ¼öÄ¡ )
+	int				BefUserPacketLoop;		//ÀÌÀü 1·çÇÎ½Ã Àü¼ÛµÈ ÆÐÅ¶ ¼öÄ¡ ( Àü¼ÛÅë°è ¼öÄ¡ )
 
-	int				AttackCount;			//ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½			
-	DWORD			dwAttackTime;			//ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
-	DWORD			dwLastAttackTime;		//ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½Ý½Ã°ï¿½
-	int				DamagePacketCount;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ Ä«ï¿½ï¿½ï¿½ï¿½
-	DWORD			dwDamagePacketTime;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ ï¿½Ã°ï¿½
+	int				AttackCount;			//°ø°Ý Ä«¿îÅÍ			
+	DWORD			dwAttackTime;			//°ø°Ý ½Ã°£
+	DWORD			dwLastAttackTime;		//ÃÖ±Ù °ø°Ý½Ã°£
+	int				DamagePacketCount;		//°ø°Ý ÆÐÅ¶ Ä«¿îÅÍ
+	DWORD			dwDamagePacketTime;		//µ¥¹ÌÁö ÆÐÅ¶À» º¸³½ Å¬¶óÀÌ¾ðÆ® Ãø ½Ã°£
 
-	int				MonsterKillCounter;		//ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	DWORD			dwLastTradeChksum;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ï¿½ï¿½ Ã½Å©ï¿½ï¿½
-	DWORD			dwLastTradeTime;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+	int				MonsterKillCounter;		//¸ó½ºÆ® Á×ÀÎ Ä«¿îÅÍ
+	DWORD			dwLastTradeChksum;		//¸¶Áö¸· °Å·¡½Ã Ã½Å©¼¶
+	DWORD			dwLastTradeTime;		//¸¶Áö¸· °Å·¡½Ã ½Ã°£
 
-	//////////// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ///////////////
-	short			sLowLevel_PresentItem[2];	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	//////////// Àú·¹º§ ¼±¹° ///////////////
+	short			sLowLevel_PresentItem[2];	//Àú·¹º§ ¾ÆÀÌÅÛ ¼±¹°
 
-	DWORD			dwStartUser_PresentItem_Time;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	DWORD			dwStartUser_PresentItem_Count;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	DWORD			dwStartUser_PresentItem_Time;	//½ÃÀÛÀ¯Àú ¾ÆÀÌÅÛ ¼±¹°
+	DWORD			dwStartUser_PresentItem_Count;	//½ÃÀÛÀ¯Àú ¾ÆÀÌÅÛ ¼±¹°
 
 
 
 	////////////////////////////////////////////////
-	// ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸
+	// °ø°Ý ¼Û¼ö½Å µ¥ÀÌÅ¸
 
 	int				Send_AttackCount;
 	int				Send_AttackDamage;
 	int				Recv_AttackCount;
 	int				Recv_AttackDamage;
 
-	/////////////// ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ////////////////////
+	/////////////// ¸ÅÅ©·Î °¨Áö ////////////////////
 
 	DWORD			dwMacroTime;
 	int				Macro_PosX;
@@ -1296,330 +1296,381 @@ public:
 	DWORD			dwMacroChkTime;
 
 
-	/////////////// ï¿½ï¿½Å¸ ///////////////////////////
-	DWORD			dwSendFrames[CONNECTMAX];	//ï¿½Ù¸ï¿½ Ä³ï¿½ï¿½ï¿½Íµï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	/////////////// ±âÅ¸ ///////////////////////////
+	DWORD			dwSendFrames[CONNECTMAX];	//´Ù¸¥ Ä³¸¯ÅÍµé µ¥ÀÌÅ¸ Àü¼Û ÇÁ·¹ÀÓ
 
-	int				CrackWarning;				//Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	DWORD			dwTime_Disconnect;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int				BadPlayer;					//ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ( ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¿ )
+	int				CrackWarning;				//Å©·¢ »ç¿ë À¯Àú
+	DWORD			dwTime_Disconnect;			//¿¬°á²ö±â ¿¹¾à
+	int				BadPlayer;					//³ª»Û ÇÃ·¹ÀÌ¾î ( ¸ðµç °ø°Ý ¹«È¿ )
 	DWORD   lastMessageTick;
 	bool    topLevelFlag;
 	int     ModoPvP_Drop;
-	DWORD			dwPacketAttackCount;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
-	DWORD			dwPacketAttackTime;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
-	int				WarningCount;				//ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
+	DWORD			dwPacketAttackCount;		//°úµµÇÑ ÆÐÅ¶À¸·Î ÀÎÇÑ °ø°Ý °¨Áö 
+	DWORD			dwPacketAttackTime;			//°úµµÇÑ ÆÐÅ°°ø°Ý °¨Áö½ÃÀÛ ½Ã°£
+	int				WarningCount;				//°æ°í Ä«¿îÆ®
 
-	char			*lpRecordDataBuff;			//ï¿½ï¿½ï¿½Úµåµ¥ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ ( ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ð¸®¹ï¿½ï¿½ï¿½ )
-	DWORD			dwRecordDataTime;			//ï¿½Ö±ï¿½ ï¿½ï¿½Ï½Ã°ï¿½
+	char			*lpRecordDataBuff;			//·¹ÄÚµåµ¥ÀÌÅ¸ ¹öÆÛ ( °ÔÀÓÀúÀå ¸Þ¸ð¸®¹öÆÛ )
+	DWORD			dwRecordDataTime;			//ÃÖ±Ù ±â·Ï½Ã°£
 
-	int				EventMode;					//ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½
-	int				EventScore;					//ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½
-	int				EventCount;					//ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
-	DWORD			dwEventTime;				//ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
-	short			sEventParam[2];				//ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½
+	int				EventMode;					//ÀÌº¥Æ® ÁøÇà
+	int				EventScore;					//ÀÌº¥Æ® Á¡¼ö
+	int				EventCount;					//µæÁ¡ Ä«¿îÆ®
+	DWORD			dwEventTime;				//ÀÌº¥Æ® °ü·Ã ½Ã°£
+	short			sEventParam[2];				//ÀÌº¥Æ® ÁøÇà ÆÄ¶ó¸ÞÅÍ
 
-	int				AreaOutCount;				//ï¿½ï¿½ï¿½ï¿½Ä§ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
+	int				AreaOutCount;				//¿µ¿ªÄ§¹ü Ä«¿îÅÍ
 
-	int				BlockTime;					//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å³ ï¿½Ã°ï¿½
+	int				BlockTime;					//°èÁ¤ ºí·°½ÃÅ³ ½Ã°£
 
-	int				WhisperMode;				//ï¿½Ó¸ï¿½ ï¿½ï¿½ï¿½
+	int				WhisperMode;				//±Ó¸» ¸ðµå
 
-	int				Event_StarTicketLevel;		//ï¿½ï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int				Event_StarTicketLevel;		//º° »óÇ°±Ç ¹ß»ý ·¹º§
 
 
-	////////////// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ //////////////////////
+	////////////// º¸¿Ï °ü·Ã ¼öÄ¡ Åë°è //////////////////////
 
-	INT64			spExp_Start;				//ï¿½ï¿½ï¿½Û½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡
+	INT64			spExp_Start;				//½ÃÀÛ½Ã °æÇèÄ¡
 	INT64   m_Experience;
-	int				spMoney_Start;				//ï¿½ï¿½ï¿½Û½ï¿½ ï¿½ï¿½
-	int				spLevel_Start;				//ï¿½ï¿½ï¿½Û½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int				spMoney_Start;				//½ÃÀÛ½Ã µ·
+	int				spLevel_Start;				//½ÃÀÛ½Ã ·¹º§
 
-	int				spExp_InOut_Total;			//ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ ï¿½ï¿½Å»
-	int				spMoney_In_Total;			//ï¿½ï¿½ ï¿½Ô±ï¿½ ï¿½ï¿½Å»
-	int				spMoney_InOut_Total;		//ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Å»
+	int				spExp_InOut_Total;			//°æÇèÄ¡ Ãâ·Â ÅäÅ»
+	int				spMoney_In_Total;			//µ· ÀÔ±Ý ÅäÅ»
+	int				spMoney_InOut_Total;		//µ· Ãâ±Ý ÅäÅ»
 
-	int				spEXP_Out;					//ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½
-	int				spMoney_In;					//ï¿½ï¿½ ï¿½Ô±ï¿½
-	int				spMoney_Out;				//ï¿½ï¿½ ï¿½ï¿½ï¿½
+	int				spEXP_Out;					//°æÇèÄ¡ Ãâ·Â
+	int				spMoney_In;					//µ· ÀÔ±Ý
+	int				spMoney_Out;				//µ· Ãâ±Ý
 
-	DWORD			dwLastExpMoneyCheckTime;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½Ý¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
-	DWORD			dwLastExpMoneyTransServer;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½Ý¾ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+	DWORD			dwLastExpMoneyCheckTime;	//¸¶Áö¸·À¸·Î °æÇèÄ¡ ±Ý¾× ºñ±³ÇÑ ½Ã°£
+	DWORD			dwLastExpMoneyTransServer;	//±º¼­¹ö·Î °æÇèÄ¡ ±Ý¾× ¼öÄ¡ Àü¼ÛÇÑ ½Ã°£
 
-	DWORD			dwHopeDisconnectTime;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	DWORD			dwHopeDisconnectTime;		//°­Á¦ÀûÀ¸·Î ¼³Á¤µÈ ½Ã°£ÀÌ µÇ¸é ¿¬°á Á¾·á
 
-	int				Client_Version;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int				Client_Version;				//»ç¿ëÁßÀÎ Å¬¶óÀÌ¾ðÆ®ÀÇ ¹öÀü Á¤º¸
 
-	DWORD			dwLastSaveTime;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+	DWORD			dwLastSaveTime;				//¸¶Áö¸·À¸·Î ÀúÀåÇÑ ½Ã°£
 
-	DWORD			dwGameServerExp[8];			//ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+	DWORD			dwGameServerExp[8];			//°ÔÀÓ¼­¹ö °æÇèÄ¡ ÀúÀå
 
-	DWORD			dwNSpriteTime;				//nSprite ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+	DWORD			dwNSpriteTime;				//nSprite °Ë»çÇÑ ½Ã°£
 
-	//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ Ã½Å©
-	DWORD			dwClientFuncChk_1;			//Ã½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½1
-	DWORD			dwClientFuncChk_2;			//ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½2
-	int				FuncChkFailCount1;			//ï¿½ï¿½ï¿½ï¿½
-	int				FuncChkFailCount2;			//ï¿½ï¿½ï¿½ï¿½
-	int				FuncChkSucessCount1;		//ï¿½ï¿½ï¿½ï¿½
-	int				FuncChkSucessCount2;		//ï¿½ï¿½ï¿½ï¿½
-	DWORD			dwFuncChkErrorFlag;			//ï¿½ï¿½ï¿½ï¿½
+	//Å¬¶óÀÌ¾ðÆ® Æã¼Ç Ã½Å©
+	DWORD			dwClientFuncChk_1;			//Ã½Å©ÇÑ Æã¼Ç1
+	DWORD			dwClientFuncChk_2;			//ÄÊÅ©ÇÑ Æã¼Ç2
+	int				FuncChkFailCount1;			//½ÇÆÐ
+	int				FuncChkFailCount2;			//½ÇÆÐ
+	int				FuncChkSucessCount1;		//¼º°ø
+	int				FuncChkSucessCount2;		//¼º°ø
+	DWORD			dwFuncChkErrorFlag;			//¿¡·¯
 	int				ClientFunChk1_Count;
 	int				ClientFunChk2_Count;
 
-	DWORD			dwClientFunChk_NextTime;	//ï¿½ï¿½ï¿½ï¿½ Ã½Å©ï¿½ï¿½ ï¿½Ã°ï¿½
+	DWORD			dwClientFunChk_NextTime;	//´ÙÀ½ Ã½Å©ÇÒ ½Ã°£
 
-	int				RecordWarningCount;			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	int				RecordWarningExp;			//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡
+	int				RecordWarningCount;			//°ÔÀÓ ÀúÀå±â·Ï °æ°í Ä«¿îÅÍ
+	int				RecordWarningExp;			//°æ°í ¹ÞÀº °æÇèÄ¡
 
-	DWORD			dwClentOS;					//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® OS
-	WORD			wClentOSVersion[2];			//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ [0]-ï¿½ï¿½ï¿½ï¿½ [1]-ï¿½ï¿½ï¿½ï¿½È£
-	DWORD			dwClentModulChkSum;			//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ Ã½Å©ï¿½ï¿½
-	int				ClentModuleCount;			//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½Æ« ï¿½ï¿½ï¿½ï¿½
+	DWORD			dwClentOS;					//Å¬¶óÀÌ¾ðÆ® OS
+	WORD			wClentOSVersion[2];			//Å¬¶óÀÌ¾ðÆ® ¹öÀü [0]-¹öÀü [1]-ºôµå¹øÈ£
+	DWORD			dwClentModulChkSum;			//Å¬¶óÀÌ¾ðÆ® ¸ðµâ Ã½Å©¼¶
+	int				ClentModuleCount;			//Å¬¶óÀÌ¾ðÆ® ¸ðÆ« °¹¼ö
 
-	DWORD			dwDamagePacketKey[2];		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ ï¿½ï¿½È£ï¿½ï¿½ Å° ( ï¿½ï¿½ï¿½Å¿ï¿½ )
-	DWORD			dwDamagePacketKey2[2];		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ ï¿½ï¿½È£ï¿½ï¿½ Å° ( ï¿½Û½Å¿ï¿½ )
-
-
-	////////////// ï¿½ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ///////////////////
-	DWORD			PartyUpdateFlag;					//ï¿½ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ä±¸
-	DWORD			dwPartyInfo;						//ï¿½ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½
-	rsPLAYINFO		*lpPartyMaster;						//ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
-	DWORD			PartyMasterObjectCode;				//ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Úµï¿½
-	rsPLAYINFO		*lpPartyPlayers[PARTY_PLAYER_MAX];	//ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
-	DWORD			dwPartyObjectCode[PARTY_PLAYER_MAX];//ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Úµï¿½
-	DWORD			PartyLevelAverage;					//ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
-	int				PartyUserCount;						//ï¿½ï¿½Æ¼ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
-
-	///////////// Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ////////////////////
-	DWORD			dwClanCode;							//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ ï¿½Úµï¿½
-	int				ClanTicketCode;						//Å¬ï¿½ï¿½ Æ¼ï¿½ï¿½ ï¿½Úµï¿½ ( Clan.DLL ï¿½ï¿½ï¿½ï¿½ ï¿½ß±ï¿½ )
-	int				SucessCheck_ClanCode;				//Å¬ï¿½ï¿½ ï¿½Úµï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	DWORD			dwDamagePacketKey[2];		//µ¥¹ÌÁö ÆÐÅ¶ ¾ÏÈ£¿ë Å° ( ¼ö½Å¿ë )
+	DWORD			dwDamagePacketKey2[2];		//µ¥¹ÌÁö ÆÐÅ¶ ¾ÏÈ£¿ë Å° ( ¼Û½Å¿ë )
 
 
-	//////////////////// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ /////////////////////////
+	////////////// ÆÄÆ¼ °ü·Ã Á¤º¸ ///////////////////
+	DWORD			PartyUpdateFlag;					//ÆÄÆ¼ Á¤º¸ ¾÷µ¥ÀÌÆ® ¿ä±¸
+	DWORD			dwPartyInfo;						//ÆÄÆ¼ Á¤º¸
+	rsPLAYINFO		*lpPartyMaster;						//ÆÄÆ¼Àå Æ÷ÀÎÆ®
+	DWORD			PartyMasterObjectCode;				//ÆÄÆ¼Àå ¿ÀºêÁ§Æ® ÄÚµå
+	rsPLAYINFO		*lpPartyPlayers[PARTY_PLAYER_MAX];	//ÆÄÆ¼¿ø Æ÷ÀÎÆ®
+	DWORD			dwPartyObjectCode[PARTY_PLAYER_MAX];//ÆÄÆ¼¿øÀÇ ¿ÀºêÁ§Æ® ÄÚµå
+	DWORD			PartyLevelAverage;					//ÆÄÆ¼¿ø ·¹º§ Æò±Õ
+	int				PartyUserCount;						//ÆÄÆ¼¿ø Ä«¿îÆ®
 
-	char	szGuid[128];			//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Äºï¿½ï¿½ï¿½
-	char	szPwd[32];			//ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½
-	char	szGPCode[16];		//ï¿½ï¿½Ç°ï¿½Úµï¿½
-	time_t	DisuseDay;			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥
-	int		UsePeriod;			//ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ ï¿½ï¿½
-	int		GpCode;				//ï¿½ï¿½Ç°ï¿½Úµï¿½
-	int		GpType;				//ï¿½ï¿½Ç°Å¸ï¿½ï¿½ ( ï¿½ï¿½ï¿½ï¿½ / PCï¿½ï¿½ )
-	DWORD	dwPeriodTime;		//ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
-	int		Bl_RNo;				//PCï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int		Bl_Meter;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwPeriodTime2;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ ( ï¿½Â±ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ )
+	///////////// Å¬·£ °ü·Ã Á¤º¸ ////////////////////
+	DWORD			dwClanCode;							//°¡ÀÔÇÑ Å¬·£ ÄÚµå
+	int				ClanTicketCode;						//Å¬·£ Æ¼ÄÏ ÄÚµå ( Clan.DLL ¿¡¼­ ¹ß±Þ )
+	int				SucessCheck_ClanCode;				//Å¬·£ ÄÚµå È®ÀÎ ¼º°ø
 
 
-	////////////////// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ /////////////////////
+	//////////////////// ºô¸µ °ü·Ã º¯¼ö /////////////////////////
 
-	int		SndItemSecCodeCount;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	int		RcvItemSecCodeBuff[8][16];		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	char	szGuid[128];			//·Î±×ÀÎ ½Äº°ÀÚ
+	char	szPwd[32];			//ÆÐ½º¿öµå
+	char	szGPCode[16];		//»óÇ°ÄÚµå
+	time_t	DisuseDay;			//Á¾·á ³¯Â¥
+	int		UsePeriod;			//³²Àº½Ã°£ ÃÊ
+	int		GpCode;				//»óÇ°ÄÚµå
+	int		GpType;				//»óÇ°Å¸ÀÔ ( °³ÀÎ / PC¹æ )
+	DWORD	dwPeriodTime;		//Á¾·á ½Ã°£
+	int		Bl_RNo;				//PC¹æ »ç¿ë À¯¹«
+	int		Bl_Meter;			//Á¾·®Á¦
+	DWORD	dwPeriodTime2;		//¼û°ÜÁø Á¾·á½Ã°£ ( ÅÂ±¹¹Ì¼º³âÀÚ µîµî )
 
-	/////////////////////////////////////////////////////////////////
 
-	short	sLimitDamage[2];				//ï¿½ï¿½ï¿½Ý·ï¿½ ï¿½ï¿½ï¿½ï¿½
-	short	sLimitCritical[2];				//Å©ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	////////////////// ¾ÆÀÌÅÛ ¼Û¼ö½Å º¸¾È ÄÚµå /////////////////////
+
+	int		SndItemSecCodeCount;			//¾ÆÀÌÅÛ º¸¾È »ý¼º ÄÚµå Ä«¿îÅÍ
+	int		RcvItemSecCodeBuff[8][16];		//¹ÞÀº ¾ÆÀÌÅÛ º¸¾È Ä«¿îÅÍ ÀÓÁö ÀúÀå ¹öÆÛ
 
 	/////////////////////////////////////////////////////////////////
 
-	int		ServerPotion[3][4];				//ï¿½ï¿½ï¿½à°¹ï¿½ï¿½ È®ï¿½Î¹ï¿½ï¿½ï¿½
+	short	sLimitDamage[2];				//°ø°Ý·Â Á¦ÇÑ
+	short	sLimitCritical[2];				//Å©¸®Æ¼ÄÃ Á¦ÇÑ
 
-	//////////////////////////// ï¿½ï¿½Å³ Ã³ï¿½ï¿½ //////////////////////////////
+	/////////////////////////////////////////////////////////////////
 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½
+	int		ServerPotion[3][4];				//¹°¾à°¹¼ö È®ÀÎ¹öÆÛ
+
+	//////////////////////////// ½ºÅ³ Ã³¸® //////////////////////////////
+
+	//¿ÀÅä¸ÞÀÌ¼Ç
 	DWORD	dwSkill_AutoMation_Time;
 	int		dwSkill_AutoMation_Param;
-	//ï¿½Æ½Ã¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	//¸Æ½Ã¸¶ÀÌÁî
 	DWORD	dwSkill_Maximize_Time;
 	int		dwSkill_Maximize_Param;
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//ÇÇÁöÄÃ
 	DWORD	dwSkill_PhysicalAbsorb_Time;
 	int		dwSkill_PhysicalAbsorb_Param;
-	//ï¿½Í½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	//ÀÍ½ºÆ®¸² ½¯µå
 	DWORD	dwSkill_ExtreamShield_Time;
 	int		dwSkill_ExtreamShield_Param;
 
-	//È¦ï¿½ï¿½ ï¿½Ùµï¿½
+	//È¦¸® ¹Ùµð
 	DWORD	dwSkill_HolyBody_Time;
 	int		dwSkill_HolyBody_Param;
-	//È¦ï¿½ï¿½ ï¿½ë·¯
+	//È¦¸® ¹ë·¯
 	DWORD	dwSkill_HolyValor_Time;
 	int		dwSkill_HolyValor_Param;
-	//È¦ï¿½ï¿½ ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½
+	// Summit Tier 5 Knight - Holy Conviction party buff
+	DWORD	dwSkill_HolyConviction_Time;
+	int		dwSkill_HolyConviction_Param;
+	//È¦¸® ¸®ÇÃ·º¼Ç
 	DWORD	dwSkill_HolyReflection_Time;
 	int		dwSkill_HolyReflection_Param;
-	//ï¿½ï¿½Ã¾Æ® ï¿½ï¿½ï¿½ï¿½
+	//ÀÎÃ¾Æ® ¿öÆù
 	DWORD	dwSkill_EnchantWeapon_Time;
 	int		dwSkill_EnchantWeapon_Param;
 
 
-	//ï¿½ï¿½Å»ï¿½Æ¸ï¿½
+	//¸ÞÅ»¾Æ¸Ó
 	DWORD	dwSkill_MetalArmor_Time;
 	int		dwSkill_MetalArmor_Param;
 
-	//ï¿½ï¿½ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½
+	//½ºÆÄÅ© ½¯µå
 	DWORD	dwSkill_SparkShield_Time;
 	int		dwSkill_SparkShield_Param;
 
-	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½
+	//ÆÓÄÁ ½Ã¸®Áî
 	DWORD	dwSKill_Falcon_Time;
 	short	dwSKill_Falcon_Damage[2];
 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¦ï¿½ï¿½ï¿½Ì¼ï¿½
+	//µð¹ÙÀÎ ÀÎÈ¦·¹ÀÌ¼Ç
 	DWORD	dwSkill_DivineInhalation_Time;
 	DWORD	dwSkill_DivineInhalation_Param;
 
-	//Æ®ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò¶ï¿½
+	//Æ®¶óÀÌ¾öÇÁ ¹ßÇÒ¶ó
 	DWORD	dwSkill_TriumphOfValhalla_Time;
 	DWORD	dwSkill_TriumphOfValhalla_Param;
 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//¹öÃò¾ó ¶óÀÌÇÁ
 	DWORD	dwSkill_VirtualLife_Time;
 	DWORD	dwSkill_VirtualLife_Param;
 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//¿¡³ÊÁö½¯µå
 	DWORD	dwSkill_EnergyShield_Time;
 	DWORD	dwSkill_EnergyShield_Param;
 
-	//ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å»
+	//½ºÇÇ¸´¿¤¸®¸àÅ»
 	DWORD	dwSkill_SpiritElemental_Time;
 	DWORD	dwSkill_SpiritElemental_Param;
 
-	//ï¿½ï¿½Ì¼Òµï¿½
+	//´í½Ì¼Òµå
 	DWORD	dwSkill_DancingSword_Time;
 	DWORD	dwSkill_DancingSword_Param;
 	DWORD	dwSkill_DancingSword_DelayTime;
 
-	//ï¿½ï¿½Ï½ï¿½
+	//¹è´Ï½¬
 	DWORD	dwSkill_Vanish_Time;
 	DWORD	dwSkill_Vanish_Param;
 
-	//ï¿½ï¿½Ï½ï¿½
+	//¹è´Ï½¬
 	DWORD	dwSkill_Compulsion_Time;
 	DWORD	dwSkill_Compulsion_Param;
 
-	//ï¿½ï¿½ï¿½×³ï¿½Æ½ï¿½ï¿½ï¿½Ç¾ï¿½
+	//¸¶±×³×Æ½½ºÇÇ¾î
 	DWORD	dwSkill_MagneticSphere_Time;
 	DWORD	dwSkill_MagneticSphere_Param;
 
-	//ï¿½ï¿½ï¿½ï¿½Ä¿
+	//¹ö¼­Ä¿
 	DWORD	dwSkill_Berserker_Time;
 	DWORD	dwSkill_Berserker_Param;
 
-	//ï¿½î¼¼ï¿½Å¾ï¿½ï¿½ï¿½
+	// Summit Tier 5 Mechanician - Hardened Ward
+	DWORD	dwSkill_HardeningShield_Time;
+	DWORD	dwSkill_HardeningShield_Point;
+
+	// Summit Tier 5 Knight - Glorious Shield
+	DWORD	dwSkill_KnightGloriousShield_Time;
+	DWORD	dwSkill_KnightGloriousShield_Point;
+
+	// Summit Tier 5 Pikeman - Death Mantra / Focus
+	DWORD	dwSkill_PikeFocus_Time;
+	DWORD	dwSkill_PikeFocus_Point;
+
+	// Summit Tier 5 Pikeman - Ex-Death / Death Master
+	DWORD	dwSkill_PikeDeathMaster_Time;
+	DWORD	dwSkill_PikeDeathMaster_Point;
+
+	// Summit Tier 5 Archer - Lethal Sight armed-shot state
+	DWORD	dwSkill_ArcherLethal_Time;
+	DWORD	dwSkill_ArcherLethal_Point;
+
+	// Summit Tier 5 Archer - Bombardment channel
+	DWORD	dwSkill_ArcherBombard_EndTime;
+	DWORD	dwSkill_ArcherBombard_NextTick;
+	DWORD	dwSkill_ArcherBombard_Point;
+
+	// Summit Tier 5 Fighter - Might/Ruthless of Zecram stance
+	DWORD	dwSkill_Ruthless_Active;
+	DWORD	dwSkill_Ruthless_Point;
+	DWORD	dwSkill_Ruthless_HitCount;
+
+	// Summit Tier 5 Fighter - Raging Strikes / Whirlwind channel
+	DWORD	dwSkill_Whirlwind_EndTime;
+	DWORD	dwSkill_Whirlwind_NextTick;
+	DWORD	dwSkill_Whirlwind_Point;
+
+	// Summit Tier 5 Magician - Stone Skin server-authoritative immunity window
+	DWORD	dwSkill_MagicianStoneSkin_Time;
+	DWORD	dwSkill_MagicianStoneSkin_Point;
+
+	// Summit Tier 5 Priestess - Consecration party buff
+	DWORD	dwSkill_PriestessConsecration_Time;
+	DWORD	dwSkill_PriestessConsecration_Point;
+
+	// Summit Tier 5 Magician - Cataclysm channel
+	DWORD	dwSkill_MagicianCataclysm_EndTime;
+	DWORD	dwSkill_MagicianCataclysm_NextTick;
+	DWORD	dwSkill_MagicianCataclysm_Point;
+
+	//¾î¼¼½Å¾ÆÀÌ
 	DWORD	dwSkill_AssassinEye_Time;
 	DWORD	dwSkill_AssassinEye_Param;
 
-	//ï¿½ï¿½ï¿½ï¿½
+	//º¸±×
 	DWORD	dwSkill_Vague_Time;
 	DWORD	dwSkill_Vague_Param;
 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//Æ÷½º¿Àºê³×ÀÌÃÄ
 	DWORD	dwSkill_ForceOfNature_Time;
 	WORD	wSkill_ForceOfNature_Param[2];
 
-	//ï¿½ï¿½ï¿½é¸® ï¿½ï¿½ï¿½ï¿½
+	//°¡µé¸® ½¯µå
 	DWORD	dwSkill_GodlyShied_Time;
 	DWORD	dwSkill_GodlyShied_Param;
 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//°«½ººí·¹½º
 	DWORD	dwSkill_GodsBless_Time;
 	DWORD	dwSkill_GodsBless_Param;
 
-	//È¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½
+	//È¦¿Àºê¹ßÇÒ¶ó
 	DWORD	dwSkill_HallOfValhalla_Time;
 	WORD	wSkill_HallOfValhalla_Param[2];
 
-	//ï¿½ï¿½ï¿½Î½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½
+	//ÇÁ·Î½ºÆ®Àçºí¸°
 	DWORD	dwSkill_FrostJavelin_Time;
 	DWORD	dwSkill_FrostJavelin_Param;
 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½Ê·ï¿½ï¿½Êµï¿½
+	//¸®Á¦³Ê·²ÇÊµå
 	DWORD	dwSkill_RegenerationField_Time;
 
-	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//¼­¸ó ¹«½ºÆç
 	DWORD	dwSkill_SummonMuspell_Time;
 	DWORD	dwSkill_SummonMuspell_Param;
 
 
-	//////////////////////////// ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ //////////////////////////////
-	//ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwCurse_Attack_Time;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwCurse_Attack_Param;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	//////////////////////////// ÀúÁÖ Ã³¸® //////////////////////////////
+	//¼­Å¥¹ö½º ½Ã¸®Áî ÀúÁÖ
+	DWORD	dwCurse_Attack_Time;		//°ø°Ý ÀúÁÖ
+	DWORD	dwCurse_Attack_Param;		//°ø°Ý ÀúÁÖ
 
-	DWORD	dwCurse_Defence_Time;		//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwCurse_Defence_Param;		//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	DWORD	dwCurse_Defence_Time;		//¹æ¾î ÀúÁÖ
+	DWORD	dwCurse_Defence_Param;		//¹æ¾î ÀúÁÖ
 
-	////////////////////////// ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ //////////////////////
+	////////////////////////// ½ºÅ³ Æ÷ÀÎÆ® °¨½Ã //////////////////////
 
 	BYTE	bSkillPoint[SKILL_POINT_COLUM_MAX];
 
 	////////////////////////////////////////////////////////////////
 
 
-	//////////////////////////// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ////////////////////////////
+	//////////////////////////// Æ÷½º¿Àºê ////////////////////////////
 
-	DWORD	dwForceOrb_Code;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
-	DWORD	dwForceOrb_Time;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
-	DWORD	dwForceOrb_Damage;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DWORD	dwForceOrb_Code;			//Æ÷½º¿Àºê ¾ÆÀÌÅÛ ½ÇÇàÄÚµå
+	DWORD	dwForceOrb_Time;			//Æ÷½º¿Àºê À¯Áö½Ã°£
+	DWORD	dwForceOrb_Damage;			//Æ÷½º¿Àºê µ¥¹ÌÁö
 
-	DWORD	dwForceOrb_SaveCode;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwForceOrb_SaveTime;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwForceOrb_SaveDamage;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwForceOrb_NextSetTime;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
+	DWORD	dwForceOrb_SaveCode;		//Æ÷½º¿Àºê ±º¼­¹ö ÀúÀå¿ë
+	DWORD	dwForceOrb_SaveTime;		//Æ÷½º¿Àºê ±º¼­¹ö ÀúÀå¿ë
+	DWORD	dwForceOrb_SaveDamage;		//Æ÷½º¿Àºê ±º¼­¹ö ÀúÀå¿ë
+	DWORD	dwForceOrb_NextSetTime;		//Æ÷½º¿Àºê »ç¿ëÁ¤º¸ º¸³»±â ¿¹¾à½Ã°£
 
-	// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½)
-	DWORD	dwLifeBooster_Code;			//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
-	DWORD	dwLifeBooster_Time;			//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
-	DWORD	dwLifeBooster_Data;			//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½Æ®
+	// ¹ÚÀç¿ø - ºÎ½ºÅÍ ¾ÆÀÌÅÛ(»ý¸í·Â)
+	DWORD	dwLifeBooster_Code;			//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(»ý¸í·Â) ½ÇÇàÄÚµå
+	DWORD	dwLifeBooster_Time;			//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(»ý¸í·Â) À¯Áö½Ã°£
+	DWORD	dwLifeBooster_Data;			//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(»ý¸í·Â) °¡Áß ÆÛ¼¾Æ®
 
-	DWORD	dwLifeBooster_SaveCode;		//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwLifeBooster_SaveTime;		//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwLifeBooster_SaveData;		//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½Æ®
-	DWORD	dwLifeBooster_NextSetTime;	//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
+	DWORD	dwLifeBooster_SaveCode;		//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(»ý¸í·Â) ±º¼­¹ö ÀúÀå¿ë
+	DWORD	dwLifeBooster_SaveTime;		//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(»ý¸í·Â) ±º¼­¹ö ÀúÀå¿ë
+	DWORD	dwLifeBooster_SaveData;		//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(»ý¸í·Â) ±º¼­¹ö ÀúÀå¿ë °¡Áß ÆÛ¼¾Æ®
+	DWORD	dwLifeBooster_NextSetTime;	//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(»ý¸í·Â) »ç¿ëÁ¤º¸ º¸³»±â ¿¹¾à½Ã°£
 
-	// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½)
-	DWORD	dwManaBooster_Code;			//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
-	DWORD	dwManaBooster_Time;			//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
-	DWORD	dwManaBooster_Data;			//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½Æ®
+	// ¹ÚÀç¿ø - ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±â·Â)
+	DWORD	dwManaBooster_Code;			//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±â·Â) ½ÇÇàÄÚµå
+	DWORD	dwManaBooster_Time;			//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±â·Â) À¯Áö½Ã°£
+	DWORD	dwManaBooster_Data;			//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±â·Â) °¡Áß ÆÛ¼¾Æ®
 
-	DWORD	dwManaBooster_SaveCode;		//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwManaBooster_SaveTime;		//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwManaBooster_SaveData;		//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½Æ®
-	DWORD	dwManaBooster_NextSetTime;	//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
+	DWORD	dwManaBooster_SaveCode;		//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±â·Â) ±º¼­¹ö ÀúÀå¿ë
+	DWORD	dwManaBooster_SaveTime;		//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±â·Â) ±º¼­¹ö ÀúÀå¿ë
+	DWORD	dwManaBooster_SaveData;		//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±â·Â) ±º¼­¹ö ÀúÀå¿ë °¡Áß ÆÛ¼¾Æ®
+	DWORD	dwManaBooster_NextSetTime;	//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±â·Â) »ç¿ëÁ¤º¸ º¸³»±â ¿¹¾à½Ã°£
 
-	// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(Ã¼ï¿½ï¿½)
-	DWORD	dwStaminaBooster_Code;			//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Ù·ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
-	DWORD	dwStaminaBooster_Time;			//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Ù·ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
-	DWORD	dwStaminaBooster_Data;			//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Ù·ï¿½) ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½Æ®
+	// ¹ÚÀç¿ø - ºÎ½ºÅÍ ¾ÆÀÌÅÛ(Ã¼·Â)
+	DWORD	dwStaminaBooster_Code;			//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±Ù·Â) ½ÇÇàÄÚµå
+	DWORD	dwStaminaBooster_Time;			//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±Ù·Â) À¯Áö½Ã°£
+	DWORD	dwStaminaBooster_Data;			//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±Ù·Â) °¡Áß ÆÛ¼¾Æ®
 
-	DWORD	dwStaminaBooster_SaveCode;		//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Ù·ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwStaminaBooster_SaveTime;		//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Ù·ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwStaminaBooster_SaveData;		//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Ù·ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½Æ®
-	DWORD	dwStaminaBooster_NextSetTime;	//ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Ù·ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
+	DWORD	dwStaminaBooster_SaveCode;		//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±Ù·Â) ±º¼­¹ö ÀúÀå¿ë
+	DWORD	dwStaminaBooster_SaveTime;		//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±Ù·Â) ±º¼­¹ö ÀúÀå¿ë
+	DWORD	dwStaminaBooster_SaveData;		//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±Ù·Â) ±º¼­¹ö ÀúÀå¿ë °¡Áß ÆÛ¼¾Æ®
+	DWORD	dwStaminaBooster_NextSetTime;	//ºÎ½ºÅÍ ¾ÆÀÌÅÛ(±Ù·Â) »ç¿ëÁ¤º¸ º¸³»±â ¿¹¾à½Ã°£
 
 
-	//ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwPrimeItem_NextSetTime;	//ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ï¿½ëº¸ ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
+	//½Ã°£Á¦ ºô¸µ ¾ÆÀÌÅÛ ¼³Á¤
+	DWORD	dwPrimeItem_NextSetTime;	//½Ã°£Á¦ ºô¸µ¾ÆÀÌÅÛ ¸ÞÀÎ¼­¹öÅëº¸ ¿¹¾à½Ã°£
 	DWORD   dwPrimeItem_NextSetTime_T;
 	DWORD   dwTime_BigHead1;
 	DWORD   dwTime_BigHead2;
 	DWORD   dwTime_BigHead3;
 	DWORD   dwTime_BigHead4;
-	DWORD	dwTime_PrimeItem_X2;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ ï¿½ï¿½ï¿½
-	DWORD	dwTime_PrimeItem_ExpUp;		//ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwPrimeItem_PackageCode;	//ï¿½ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	DWORD	dwTime_PrimeItem_X2;		//¾ÆÀÌÅÛ 2¹è µå·Ó
+	DWORD	dwTime_PrimeItem_ExpUp;		//°æÇèÄ¡¾÷ Æ÷¼Ç
+	DWORD	dwPrimeItem_PackageCode;	//ÆÐÅ°Áö¾ÆÀÌÅÛ ÄÚµå
 
-	DWORD	dwTime_PrimeItem_VampCuspid;	//ï¿½ï¿½ï¿½Ç¸ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwTime_PrimeItem_ManaRecharg;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¡
-	DWORD	dwTime_PrimeItem_MightofAwell;	// pluto ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwTime_PrimeItem_MightofAwell2;	// pluto ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwTime_PrimeItem_ManaReduce;	// pluto ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½à½º
-	DWORD	dwTime_PrimeItem_PhenixPet;		// pluto ï¿½ï¿½(ï¿½Ø¿ï¿½)
-	DWORD	dwTime_PrimeItem_HelpPet;	// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½
-	DWORD	dwTime_PrimeItem_VampCuspid_EX;	// ï¿½åº° - ï¿½ï¿½ï¿½Ç¸ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ EX
-	DWORD	dwTime_PrimeItem_StaminaReduce;	// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½à½º ï¿½ï¿½ï¿½ï¿½
+	DWORD	dwTime_PrimeItem_VampCuspid;	//¹ìÇÇ¸¯Ä¿½ºÇÍ
+	DWORD	dwTime_PrimeItem_ManaRecharg;	//¸¶³ª¸®Â÷Â¡
+	DWORD	dwTime_PrimeItem_MightofAwell;	// pluto ¸¶ÀÌÆ® ¿Àºê ¾ÆÀ£
+	DWORD	dwTime_PrimeItem_MightofAwell2;	// pluto ¸¶ÀÌÆ® ¿Àºê ¾ÆÀ£
+	DWORD	dwTime_PrimeItem_ManaReduce;	// pluto ¸¶³ª ¸®µà½º
+	DWORD	dwTime_PrimeItem_PhenixPet;		// pluto Æê(ÇØ¿Ü)
+	DWORD	dwTime_PrimeItem_HelpPet;	// ¹ÚÀç¿ø - ºô¸µ µµ¿ì¹Ì Æê Ãß°¡
+	DWORD	dwTime_PrimeItem_VampCuspid_EX;	// Àåº° - ¹ìÇÇ¸¯ Ä¿½ºÇÍ EX
+	DWORD	dwTime_PrimeItem_StaminaReduce;	// ¹ÚÀç¿ø - ±Ù·Â ¸®µà½º Æ÷¼Ç
 
 	DWORD   dwTime_PrimeItem_StaminaRecharg;
 	DWORD   dwTime_PrimeItem_Caravan;
@@ -1628,15 +1679,15 @@ public:
 	DWORD   dwTime_PrimeItem_MPBooster;
 	DWORD   dwTime_PrimeItem_RESBooster;
 
-	//pCï¿½ï¿½ ï¿½ï¿½
-	DWORD	dwPCBang_Pet_AttackTime;	//PCï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½
-	DWORD	dwPCBang_Pet_NextSetTime;	//PCï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ëº¸ ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
+	//pC¹æ Æê
+	DWORD	dwPCBang_Pet_AttackTime;	//PC¹æ Æê °ø°ÝÅ¸ÀÓ
+	DWORD	dwPCBang_Pet_NextSetTime;	//PC¹æ Æê Áö¿ª ¼­¹öÅëº¸ ¿¹¾à½Ã°£
 
-	// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½
-	DWORD	dwHelp_Pet_AttackTime;	//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½
-	DWORD	dwHelp_Pet_NextSetTime;	//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ëº¸ ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
+	// ¹ÚÀç¿ø - ºô¸µ µµ¿ì¹Ì Æê Ãß°¡
+	DWORD	dwHelp_Pet_AttackTime;	//ºô¸µ µµ¿ì¹Ì Æê °ø°ÝÅ¸ÀÓ
+	DWORD	dwHelp_Pet_NextSetTime;	//ºô¸µ µµ¿ì¹Ì Æê Áö¿ª ¼­¹öÅëº¸ ¿¹¾à½Ã°£
 
-	// ï¿½åº° - ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ï¿½
+	// Àåº° - ½ºÅ³ µô·¹ÀÌ
 	DWORD	dwSkillDelay_Code;			
 	DWORD	dwSkillDelay_Time;			
 	DWORD	dwSkillDelay_Data;			
@@ -1648,52 +1699,52 @@ public:
 
 
 
-	//////////////////////////// ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ///////////////////////
+	//////////////////////////// ¼ÒÈ¯¸÷ °ü¸® ///////////////////////
 	smCHAR	*lpLinkChar;
 	DWORD	dwLinkCharCode;
 
 	smCHAR  *lpCharCaravan;
 	DWORD   dwCaravanCode;
 
-	/////////////////////////// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ //////////////////////////
+	/////////////////////////// °ø¼º °ü·Ã //////////////////////////
 	short	sBlessCastle_Damage[2];		//0-Damage 1-Killing Count
-	DWORD	dwCheck_MasterClanTime;		//ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ È®ï¿½ï¿½ ï¿½Ã°ï¿½
+	DWORD	dwCheck_MasterClanTime;		//¼ºÁÖ Å¬·£ È®ÀÎ ½Ã°£
 
 
-	sCASTLE_MASTER	CastleMaster;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwBlessSkill_Code;			//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
-	DWORD	dwBlessSkill_Time;			//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
-	DWORD	dwBlessSkill_Param;			//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½
+	sCASTLE_MASTER	CastleMaster;		//¼ºÁÖ ¼³Á¤ Á¤º¸
+	DWORD	dwBlessSkill_Code;			//½ºÅ³ ¼³Á¤ ÄÚµå
+	DWORD	dwBlessSkill_Time;			//½ºÅ³ À¯Áö ½Ã°£
+	DWORD	dwBlessSkill_Param;			//½ºÅ³ ¼³Á¤ ÆÄ¶ó¸ÞÅÍ
 
-	DWORD	dwSiegeItem_Scroll_Time;	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½
+	DWORD	dwSiegeItem_Scroll_Time;	//°ø¼º ¾ÆÀÌÅÛ ½ºÅ©·Ñ
 	DWORD	dwSiegeItem_Scroll_Code;
 	DWORD	dwSiegeItem_Scroll_Param;
 
-	DWORD	dwSiegeItem_Stone1_Time;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×¼ï¿½
+	DWORD	dwSiegeItem_Stone1_Time;		//°ø¼º ¾ÆÀÌÅÛ ÀúÇ×¼®
 	DWORD	dwSiegeItem_Stone1_Code;
 	DWORD	dwSiegeItem_Stone1_Param;
 
-	DWORD	dwSiegeItem_Stone2_Time;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½
+	DWORD	dwSiegeItem_Stone2_Time;		//°ø¼º ¾ÆÀÌÅÛ °­È­¼®
 	DWORD	dwSiegeItem_Stone2_Code;
 	DWORD	dwSiegeItem_Stone2_Param;
 
-	short	sCheckPlayField_Count[2];		//ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ ï¿½ï¿½Ä¡ È®ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
+	short	sCheckPlayField_Count[2];		//À¯Àú ÇÊµå À§Ä¡ È®ÀÎ Ä«¿îÅÍ
 
 
-	//////////// Quest ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½È¿ï¿½ //////////////
+	//////////// Quest ÁøÇà ÄÚµå º¸¾È¿ë //////////////
 
-	DWORD	dwHaQuestItemCount;					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
-
-
-	///////////// ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½Ð¹ï¿½ ï¿½ï¿½ï¿½ï¿½ /////////////////////
-	char	szUserExpTimeID[32];		//ï¿½ï¿½ï¿½ï¿½ ID(ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½)
-	char	szUserExpTimeName[32];		//ï¿½ï¿½ï¿½ï¿½ Name(ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½)
-	DWORD	dwExpGameTime;				//ï¿½Ã·ï¿½ï¿½Ì½Ã°ï¿½
-	DWORD	dwExpGameTimeCheck;			//ï¿½Ã·ï¿½ï¿½Ì½Ã°ï¿½Ã½Å©ï¿½ï¿½
+	DWORD	dwHaQuestItemCount;					//ÇÏÄù½ºÆ® ¾ÆÀÌÅÛ Áö±Þ Ä«¿îÆ®
 
 
+	///////////// º£Æ®³² °æÇèÄ¡ ºÐ¹è °ü·Ã /////////////////////
+	char	szUserExpTimeID[32];		//À¯Àú ID(º£Æ®³² ¸ÞÀÎ¼­¹ö)
+	char	szUserExpTimeName[32];		//À¯Àú Name(º£Æ®³² ¸ÞÀÎ¼­¹ö)
+	DWORD	dwExpGameTime;				//ÇÃ·¹ÀÌ½Ã°£
+	DWORD	dwExpGameTimeCheck;			//ÇÃ·¹ÀÌ½Ã°£Ã½Å©¿ë
 
-//ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Lib
+
+
+//°ÔÀÓ°¡µå º¸¾È Lib
 #ifdef	_npGAME_GUARD_AUTH
 	 CCSAuth csa;
 	npGAME_GUARD_AUTH_INFO	npGameGuard;
@@ -1708,7 +1759,7 @@ public:
 	XTRAPCS_SESSION_BUF		XTrapCS_Session_Buf;
 #endif
 
-// ï¿½ï¿½ï¿½ï¿½ï¿½ - XignCode
+// ¹ÚÀç¿ø - XignCode
 #ifdef _XIGNCODE_SERVER
 	XIGNCODE_TempData	Xigncode_tempdata;
 	int CE_code_count;
@@ -1718,53 +1769,53 @@ public:
 	////////////////////////////////////////////////////////////////
 
 
-	//ï¿½ï¿½Æ¼ï¿½ï¿½
-	int	CreateParty( rsPLAYINFO *lpPlayInfo );			//ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ - ( ï¿½Ê±ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ )
-	int	JoinPartyPlayer( rsPLAYINFO *lpPlayInfo );		//ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int	DeletePartyPlayer( rsPLAYINFO *lpPlayInfo );	//ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ Å»ï¿½ï¿½
-	int ChangePartyPlayer( rsPLAYINFO *lpOldPlayInfo , rsPLAYINFO *lpNewPlayInfo );	//ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int	UpdatePartyPlayer();							//ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
-	int	UpdatePartyPlayInfo();							//ï¿½ï¿½Æ¼ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
-	int GetPartyMoney( sITEMINFO *lpDefItemInfo , rsPLAYINFO *lpPlayInfo );	//ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ È¹ï¿½ï¿½
-	int GetPartyExp( smCHAR *lpChar , rsPLAYINFO *lpPlayInfo );				//ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ È¹ï¿½ï¿½
-	int PartyChatting( rsPLAYINFO *lpPlayInfo );			//ï¿½ï¿½Æ¼ï¿½ï¿½ Ã¤ï¿½Ã¸Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	//ÆÄÆ¼Àå
+	int	CreateParty( rsPLAYINFO *lpPlayInfo );			//ÆÄÆ¼»ý¼º - ( ÃÊ±â ÆÄÆ¼¿ø Á¤º¸ )
+	int	JoinPartyPlayer( rsPLAYINFO *lpPlayInfo );		//ÆÄÆ¼¿¡ °¡ÀÔ
+	int	DeletePartyPlayer( rsPLAYINFO *lpPlayInfo );	//ÆÄÆ¼¿¡¼­ Å»Åð
+	int ChangePartyPlayer( rsPLAYINFO *lpOldPlayInfo , rsPLAYINFO *lpNewPlayInfo );	//ÆÄÆ¼¿ø º¯°æ
+	int	UpdatePartyPlayer();							//ÆÄÆ¼¿ø ¾÷µ¥ÀÌÆ®
+	int	UpdatePartyPlayInfo();							//ÆÄÆ¼ÇÃ·¹ÀÌ ¾÷µ¥ÀÌÆ®
+	int GetPartyMoney( sITEMINFO *lpDefItemInfo , rsPLAYINFO *lpPlayInfo );	//ÆÄÆ¼¿ø µ· È¹µæ
+	int GetPartyExp( smCHAR *lpChar , rsPLAYINFO *lpPlayInfo );				//ÆÄÆ¼¿ø °æÇèÄ¡ È¹µæ
+	int PartyChatting( rsPLAYINFO *lpPlayInfo );			//ÆÄÆ¼¿ø Ã¤ÆÃ¸Þ¼¼Áö º¸³¿
 	void AddExp(INT64 Exp, DWORD dwObjectSerial, bool bParty);
 
-	int	UpdateServerPartyPlayer( TRANS_PARTY_PLAYINFO *lpTransPartyPlayInfo );	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® /smTRANSCODE_PARTY_PLAYUPDATE
+	int	UpdateServerPartyPlayer( TRANS_PARTY_PLAYINFO *lpTransPartyPlayInfo );	//¸ÞÀÎ ¼­¹ö¿¡ ÆÄÆ¼¿ø Á¤º¸ ¾÷µ¥ÀÌÆ® /smTRANSCODE_PARTY_PLAYUPDATE
 
 
-	int	LeavePartyMaster( rsPLAYINFO *lpPlayInfo );		//ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int	ReleaseParty();									//ï¿½ï¿½Æ¼ ï¿½Ø»ï¿½
+	int	LeavePartyMaster( rsPLAYINFO *lpPlayInfo );		//ÆÄÆ¼Àå ÀÌÀÓ
+	int	ReleaseParty();									//ÆÄÆ¼ ÇØ»ê
 
-	//ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int SendPartyMessage( char *szMessage , DWORD dwCode );		//ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
-	//ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½
+	//ÆÄÆ¼¿ø¿¡°Ô ¸Þ¼¼Áö º¸³¿
+	int SendPartyMessage( char *szMessage , DWORD dwCode );		//ÆÄÆ¼Àü¿ø¿¡°Ô º¸³»´Â ¸Þ¼¼Áö
+	//ÆÄÆ¼¿ø¿¡°Ô µ¥ÀÌÅ¸ º¸³¿
 	int SendPartyData( rsPLAYINFO *lpPlayInfo_From , char *szData  );
 
-	//ï¿½ï¿½Æ¼ï¿½ï¿½
-	int	JoinParty( rsPLAYINFO *lpPlayMaster );			//ï¿½ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
-	int	SecedeParty ();									//ï¿½ï¿½Æ¼ Å»ï¿½ï¿½
-	int	DisconnectPartyUser();							//ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//ÆÄÆ¼¿ø
+	int	JoinParty( rsPLAYINFO *lpPlayMaster );			//ÆÄÆ¼ °¡ÀÔ ½ÅÃ»
+	int	SecedeParty ();									//ÆÄÆ¼ Å»Åð
+	int	DisconnectPartyUser();							//ÆÄÆ¼¿ø ¿¬°á ²ö¾îÁü
 
 
-	int	AddServerMoney( int Money , int WhereParam=0 );		//ï¿½ï¿½ï¿½ï¿½ ï¿½Ó´ï¿½ ï¿½ß°ï¿½
-	int	SubServerMoney( int Money , int WhereParam=0 );		//ï¿½ï¿½ï¿½ï¿½ ï¿½Ó´ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int	SetServerMoney( int Money , int WhereParam=0 );		//ï¿½ï¿½ï¿½ï¿½ ï¿½Ó´ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int	AddServerMoney( int Money , int WhereParam=0 );		//¼­¹ö ¸Ó´Ï Ãß°¡
+	int	SubServerMoney( int Money , int WhereParam=0 );		//¼­¹ö ¸Ó´Ï °¨¼Ò
+	int	SetServerMoney( int Money , int WhereParam=0 );		//¼­¹ö ¸Ó´Ï ¼³Á¤
 
-	int	CallBack_ClanMarkNum( int ClanMarkNum );			//Å¬ï¿½ï¿½ï¿½ï¿½Å© ï¿½ï¿½È£ ï¿½Ë·ï¿½ï¿½ï¿½
+	int	CallBack_ClanMarkNum( int ClanMarkNum );			//Å¬·£¸¶Å© ¹øÈ£ ¾Ë·ÁÁÜ
 
 
 };
-/////////////////////////////// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ///////////////////////////////
+/////////////////////////////// ºô¸µ ¼±¾ð ///////////////////////////////
 
 
-// ï¿½ï¿½ï¿½Ï°ï¿½: 	-1 : ï¿½ï¿½ï¿½Ó»ï¿½Ç° ï¿½ï¿½ï¿½ï¿½
-//		 0 : ï¿½ï¿½ï¿½ï¿½		- ï¿½ï¿½Â¥
-//		 1 : ï¿½ï¿½ï¿½ï¿½(ï¿½Ã°ï¿½)       	- ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
-//		 2 : ï¿½ï¿½ï¿½ï¿½
-//		 3 : ï¿½ï¿½ï¿½ï¿½		- ï¿½Ð´ï¿½ ï¿½ï¿½ ( ï¿½ï¿½Å» - ï¿½ï¿½ï¿½ï¿½ )
-//	PG :   "0" : ï¿½ï¿½ï¿½ï¿½
-// 	       "1" : PCï¿½ï¿½
+// ¸®ÅÏ°ª: 	-1 : °ÔÀÓ»óÇ° ¿¡·¯
+//		 0 : Á¤¾×		- ³¯Â¥
+//		 1 : Á¤·®(½Ã°£)       	- ³²Àº½Ã°£
+//		 2 : ¹«·á
+//		 3 : Á¾·®		- ºÐ´ç ¾ó¸¶ ( Æ÷Å» - ¿¹ºñ )
+//	PG :   "0" : °³ÀÎ
+// 	       "1" : PC¹æ
 
 #define BILLING_GPTYPE_DAY		0
 #define BILLING_GPTYPE_TIME		1
@@ -1779,9 +1830,9 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-//ï¿½ï¿½ï¿½ï¿½ : Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
-//ï¿½ï¿½ï¿½ : Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® <-> ï¿½ï¿½ï¿½ï¿½
-//ï¿½Úµï¿½ : smTRANSCODE_CHATMESSAGE
+//³»¿ë : Ã¤ÆÃ ¹®ÀÚ¿­ Àü¼Û ÄÚµå
+//´ë»ó : Å¬¶óÀÌ¾ðÆ® <-> ¼­¹ö
+//ÄÚµå : smTRANSCODE_CHATMESSAGE
 struct TRANS_CHATBUFF {
 	int		size;
 	int		code;
@@ -1797,7 +1848,7 @@ struct TRANS_CHATMESSAGE {
 	int		size;
 	int		code;
 	DWORD	dwIP;
-	DWORD	dwObjectSerial;	//ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DWORD	dwObjectSerial;	//°´Ã¼ÀÇ °íÀ¯°ª
 
 	char szMessage[256];
 };
@@ -1821,24 +1872,24 @@ struct smPLAYBUFF {
 	DWORD	frame;
 	short	angle[4];
 
-	short	wStickItems[4];				//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
-	DWORD	dwTargetSerial;				//ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Úµï¿½
+	short	wStickItems[4];				//ÀåÂø ¾ÆÀÌÅÛ ¹øÈ£
+	DWORD	dwTargetSerial;				//¸ñÇ¥ ¿ÀºêÁ§Æ® ÄÚµå
 };
 
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+//¿À¸¥ÂÊ ¹«±â / ¿ÞÂÊ ¹«±â / ¸ñÇ¥¿ÀºêÁ§Æ®
 
 struct smPLAYDATA {
 	int	size;
 	int code;
 
-	DWORD	dwObjectSerial;	//ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DWORD	dwObjectSerial;	//°´Ã¼ÀÇ °íÀ¯°ª
 
 	int x,y,z;
 	short angle[4];		//012->xyz 3->action code
 
 	DWORD	frame;
-	DWORD	dwAutoCharCode;		//ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	DWORD	dwAutoCharCode;		//¿ÀÅä Ä³¸¯ÅÍ ÄÚµå
 
 };
 
@@ -1846,11 +1897,11 @@ struct smPLAYDATA2 {
 	int	size;
 	int code;
 
-	DWORD	dwObjectSerial;	//ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DWORD	dwObjectSerial;	//°´Ã¼ÀÇ °íÀ¯°ª
 
 	short	BuffCount[2];			//PlayBuff Time Posi
 	smPLAYBUFF	PlayBuff[2];		//0-Begin 1-last
-	DWORD	dwTarget;				//ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	DWORD	dwTarget;				//¸ñÇ¥ Á¡¿¡ ´ëÇÑ Á¤º¸
 
 };
 
@@ -1858,15 +1909,15 @@ struct smPLAYDATA3 {
 	int	size;
 	int code;
 
-	DWORD	dwObjectSerial;	//ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	DWORD	dwObjectSerial;	//°´Ã¼ÀÇ °íÀ¯°ª
 
 	short	BuffCount[3];			//PlayBuff Time Posi
 	smPLAYBUFF	PlayBuff[3];		//0-Begin 1-last 2-change
-	DWORD	dwTarget;				//ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	DWORD	dwTarget;				//¸ñÇ¥ Á¡¿¡ ´ëÇÑ Á¤º¸
 };
 
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼
+//¿òÁ÷ÀÓ Á¤º¸ °ª Àü¼ÛÀÇ ½ÇÃ¼
 struct smTRANS_PLAYBUFF {
 	int		BuffCount;
 	smPLAYBUFF	PlayBuff;
@@ -1877,26 +1928,26 @@ struct smTRANS_PLAYBUFF {
 #define TRANS_PLAYDATA_EVENT_SKIL		2
 #define TRANS_PLAYDATA_EVENT_EXT		3
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//¿òÁ÷ÀÓ Á¤º¸ °ª Àü¼Û
 struct smTRANS_PLAYDATA
 {
 	int	size;
 	int code;
 
-	DWORD	dwObjectSerial;		//ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwTarget;			//ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	DWORD	dwObjectSerial;		//°´Ã¼ÀÇ °íÀ¯°ª
+	DWORD	dwTarget;			//¸ñÇ¥ Á¡¿¡ ´ëÇÑ Á¤º¸
 
-	int		PlayBuffCnt;		//ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ smTRANS_PLAYBUFF ï¿½ï¿½ï¿½ï¿½
-	int		StartPosi;			//PlayBuff  ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
+	int		PlayBuffCnt;		//µÚ¿¡ ¿¬°áµÈ smTRANS_PLAYBUFF °¹¼ö
+	int		StartPosi;			//PlayBuff  ½ÃÀÛ À§Ä¡
 
-	short	Hp[2];				//Ã¼ï¿½Â°ï¿½ 
-	DWORD	dwAutoCharCode;		//ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
-	short	wArea[2];			//ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ //int		Etc2;
-	BYTE	bUpdateInfo[4];		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	BYTE	bEventInfo[4];		//ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ( 0-Level 1-Potionï¿½ï¿½ï¿½ 2-ï¿½ï¿½Å³ï¿½ï¿½ï¿½ 3-ï¿½ï¿½ï¿½ï¿½ )
+	short	Hp[2];				//Ã¼·Â°ª 
+	DWORD	dwAutoCharCode;		//¿ÀÅä Ä³¸¯ÅÍ ÄÚµå
+	short	wArea[2];			//Áö¿ª ÄÚµå //int		Etc2;
+	BYTE	bUpdateInfo[4];		//³»¿ë º¯°æ Ä«¿îÅÍ
+	BYTE	bEventInfo[4];		//¸ð¼Ç ÀÌº¥Æ® Á¤º¸ ( 0-Level 1-Potion»ç¿ë 2-½ºÅ³»ç¿ë 3-¿¹ºñ )
 };
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+//¾ÆÀÌÅÛÀÇ ÀÌÆåÆ® Á¤º¸
 struct smEFFECT_ITEM {
 	int size,code;
 
@@ -1908,7 +1959,7 @@ struct smEFFECT_ITEM {
 	DWORD	BlinkScale;
 };
 
-//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ä±¸
+//Ä³¸¯ÅÍ Àü¼Û¿ä±¸
 struct smTRANS_CHAR_COMMAND
 {
 	int	size;
@@ -1921,7 +1972,7 @@ struct smTRANS_CHAR_COMMAND
 	char	szName[32];
 };
 
-//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ä±¸
+//Ä³¸¯ÅÍ Àü¼Û¿ä±¸
 struct smTRANS_CHAR_COMMAND2
 {
 	int	size;
@@ -1935,9 +1986,9 @@ struct smTRANS_CHAR_COMMAND2
 	char	szName[32];
 };
 
-//ï¿½ï¿½ï¿½ï¿½ : ï¿½Ù¸ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½
-//ï¿½ï¿½ï¿½ : Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® <-> Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®
-//ï¿½Úµï¿½ : smTRANSCODE_PLAYERINFO
+//³»¿ë : ´Ù¸¥ ÇÃ·¹ÀÌ¾î¿ÍÀÇ Á¢¼ÓÈÄ »ó´ë¹æ Á¤º¸¸¦ ÁÖ°í ¹ÞÀ½
+//´ë»ó : Å¬¶óÀÌ¾ðÆ® <-> Å¬¶óÀÌ¾ðÆ®
+//ÄÚµå : smTRANSCODE_PLAYERINFO
 struct smTRNAS_PLAYERINFO
 {
 	int	size;
@@ -1947,9 +1998,9 @@ struct smTRNAS_PLAYERINFO
 
 	DWORD	dwObjectSerial;
 
-	int	x,y,z;				//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥
-	int ax,ay,az;			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int state;				//ï¿½Ó¼ï¿½
+	int	x,y,z;				//ÃÖÃÊ ÁÂÇ¥
+	int ax,ay,az;			//ÃÖÃÊ °¢µµ
+	int state;				//¼Ó¼º
 };
 
 struct smTRNAS_PLAYERINFO_QUICK
@@ -1959,14 +2010,14 @@ struct smTRNAS_PLAYERINFO_QUICK
 
 	DWORD	dwObjectSerial;
 
-	int	x,y,z;				//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥
-	int ax,ay,az;			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int state;				//ï¿½Ó¼ï¿½
+	int	x,y,z;				//ÃÖÃÊ ÁÂÇ¥
+	int ax,ay,az;			//ÃÖÃÊ °¢µµ
+	int state;				//¼Ó¼º
 
 	smCHAR_INFO	smCharInfo;
 };
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¸ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½
+//°£´ÜÇÑ ÄÚ¸àµå Àü¼Û¿ë ±¸Á¶
 struct smTRANS_COMMAND_DWORD
 {
 	int	size;
@@ -2013,7 +2064,7 @@ struct smTRANS_COMMAND_POLLING {
 	BYTE	bPolling[10];
 };
 
-//ï¿½Ó¼ï¿½ È£ï¿½ï¿½
+//¼Ó¼º È£Ãâ
 struct smTRANS_RESISTANCE {
 	int	size;
 	int code;
@@ -2022,19 +2073,19 @@ struct smTRANS_RESISTANCE {
 	int	Absorb;
 };
 
-//ï¿½ï¿½ï¿½ï¿½
+//°ø¼º
 struct smTRANS_BLESSCASTLE {
 	smTRANS_COMMAND		smTransCommand;
 	int				TaxRate;
-	short			Tower[12];		//Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
-	unsigned char	MercenaryNum[4];	//int		MercenaryType;	//ï¿½ëº´ï¿½ï¿½ï¿½ï¿½
-	int				ClanSkill;		//Å¬ï¿½ï¿½ï¿½ï¿½Å³
+	short			Tower[12];		//Å¸¿ö¼³Á¤	
+	unsigned char	MercenaryNum[4];	//int		MercenaryType;	//¿ëº´¼³Á¤
+	int				ClanSkill;		//Å¬·£½ºÅ³
 	int				Price;
-	DWORD			dwMasterClan;	//ï¿½ï¿½ï¿½ï¿½Å¬ï¿½ï¿½
+	DWORD			dwMasterClan;	//¼ºÁÖÅ¬·£
 	int				Temp[4];
 };
 
-//ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½ ï¿½ï¿½10
+//°ø°Ý¼øÀ§ Åé10
 struct	rsUSER_LIST_TOP10 {
 	//SYSTEM HEADER
 	int		size,code;
@@ -2057,10 +2108,10 @@ struct	rsUSER_LIST_TOP10 {
 	int		Counter[10];
 };
 
-/////////////// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½ /////////////////////
+/////////////// ¾ÆÀÌÅÛÀ» ±×·ìÀ¸·Î ¹­¾î¼­ Àü¼Û /////////////////////
 
 /*
-/////ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ 
+/////¼­¹ö·Î º¸³»Áú ¾ÆÀÌÅÛ ±¸Á¶Ã¼ 
 struct sCRAFTITEM_SERVER{
 	int size, code;
 	int DocIndex;
@@ -2075,11 +2126,11 @@ struct sCRAFTITEM_SERVER{
 */
 
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//¾ÆÀÌÅÛ ±×·ìÀ¸·Î Àü¼Û
 #define	TRANS_GROUPITEM_MAX		16
 #define	TRANS_GROUPITEM_HEADER_SIZE		(14*4)
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¬ï¿½ï¿½ï¿½
+//¾ÐÃàÀ» Ç¬°æ¿ì
 struct	TRANS_ITEMINFO_GROUP {
 	int	size,code;
 
@@ -2093,7 +2144,7 @@ struct	TRANS_ITEMINFO_GROUP {
 	sITEMINFO	sItemInfo[TRANS_GROUPITEM_MAX];
 };
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//¾ÐÃàÆ÷¸Ë
 struct	TRANS_ITEMINFO_GROUP2 {
 	int	size,code;
 
@@ -2107,11 +2158,11 @@ struct	TRANS_ITEMINFO_GROUP2 {
 	char	szBuff[ sizeof(sITEMINFO) * TRANS_GROUPITEM_MAX ];
 };
 
-//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//´ÜÀÏ ¾ÆÀÌÅÛ Àü¼Û
 struct TRANS_ITEMINFO {
-	//------------------------------------------------------------------< _ignore_bug_fix_0x00000000_ //ï¿½Ø¿ï¿½
+	//------------------------------------------------------------------< _ignore_bug_fix_0x00000000_ //ÇØ¿Ü
 	/*
-	TRANS_ITEMINFO()  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	TRANS_ITEMINFO()  // »ý¼ºÀÚ
 	{
 		size = 0,code = 0;x=0,y=0,z=0,
 		ZeroMemory(&Item,sizeof(Item));
@@ -2132,7 +2183,7 @@ struct TRANS_ITEMINFO {
 
 	int x,y,z;
 
-	DWORD	dwSeCode[4];		//ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	DWORD	dwSeCode[4];		//º¸¾È ÄÚµå
 };
 
 struct	TRANS_ITEM_CODE {
@@ -2165,7 +2216,7 @@ struct _TRANS_THROW_ITEM {
 };
 
 #define	THROW_ITEMS_MAX				32
-//ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//±¸Á¶Ã¼ Çì´õ »çÀÌÁî
 #define	TRANS_THROW_ITEMS_DEFSIZE	(sizeof(int)*4)
 
 struct TRANS_THROW_ITEMS {
@@ -2176,7 +2227,7 @@ struct TRANS_THROW_ITEMS {
 	_TRANS_THROW_ITEM	ThrowItems[THROW_ITEMS_MAX];
 };
 
-//ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//°Å·¡ÈÄ ¾ÆÀÌÅÛ º¸°í
 struct _TRANS_RECORD_TRADE_ITEM {
 	DWORD	dwCode;
 	DWORD	dwHead;
@@ -2184,7 +2235,7 @@ struct _TRANS_RECORD_TRADE_ITEM {
 	int		State;
 };
 
-//sinTrade.h ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//sinTrade.h ¿¡¼­ ÀçÁ¤ÀÇ
 #define _MAX_TRADE_ITEM			20
 
 struct TRANS_TRADE_ITEMKEY	{
@@ -2203,7 +2254,7 @@ struct TRANS_TRADE_ITEMKEY	{
 
 #define	TRADE_RECV_ITEMS_MAX				32
 
-//ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//±¸Á¶Ã¼ Çì´õ »çÀÌÁî
 #define	TRANS_RECORD_TRADE_DEFSIZE		(sizeof(int)*16)
 
 struct TRANS_RECORD_TRADE_ITEMS {
@@ -2211,7 +2262,7 @@ struct TRANS_RECORD_TRADE_ITEMS {
 	int		Money;
 	int		Coin;
 	int		ThrowItemCount;
-	char	szTradeUserName[32];			//ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½
+	char	szTradeUserName[32];			//»ó´ë¹æ Ä³¸¯¸í
 	int		Temp[4];
 
 	_TRANS_RECORD_TRADE_ITEM	Items[TRADE_RECV_ITEMS_MAX];
@@ -2219,7 +2270,7 @@ struct TRANS_RECORD_TRADE_ITEMS {
 
 #define TRANS_ITEM_MAX			16
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//¾ÆÀÌÅÛ Á¤º¸
 struct smTRANS_ITEMS
 {
 	int size,code;
@@ -2230,7 +2281,7 @@ struct smTRANS_ITEMS
 	TRANS_ITEM	Items[ TRANS_ITEM_MAX ];
 };
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//¾ÆÀÌÅÛ Á¤º¸
 struct smTRANS_ACITON_ITEM
 {
 	int size,code;
@@ -2241,15 +2292,15 @@ struct smTRANS_ACITON_ITEM
 	void		*lpStgArea;
 };
 
-//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//»óÁ¡ ¾ÆÀÌÅÛ Á¤º¸
 struct smTRANS_SELL_ITEM {
 	int size,code;
-	int	ItemKind;					//ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½ï¿½ /ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int	ItemCounter;				//ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
-	int	Ext[4];						//ï¿½ï¿½ï¿½ï¿½
+	int	ItemKind;					//°ø°Ý / ¹æ¾î /±âÅ¸ µîµîÀÇ ±¸ºÐ
+	int	ItemCounter;				//ÆÇ¸Å ¾ÆÀÌÅÛÀÇ ¼ö
+	int	Ext[4];						//¿¹ºñ
 };
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ Ã¢
+//¾ÆÀÌÅÛ ±³È¯ Ã¢
 #define TRANS_TRADE_BUFF_SIZE		4000
 struct TRANS_TRADEITEMS {
 	int size,code;
@@ -2273,7 +2324,7 @@ struct	_SOD_RESULT {
 	DWORD		dwTemp[4];
 };
 
-//SoD ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//SoD ¼øÀ§ Á¤º¸
 struct	TRANS_SOD_RESULT {
 	int	size,code;
 
@@ -2289,7 +2340,7 @@ struct	TRANS_SOD_RESULT {
 	_SOD_RESULT	Result[SOD_RESULT_MAX];
 };
 
-//////// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½Ä¡ ï¿½ï¿½È¸ //////////
+//////// ¼­¹ö¿Í Å¬¶óÀÌ¾ðÆ®ÀÇ µ·,°æÇèÄ¡ ¼öÄ¡ Á¶È¸ //////////
 struct	sSERVER_MONEY {
 	int	InputMoney;
 	int	Counter;
@@ -2312,21 +2363,21 @@ struct TRANS_TOTAL_EXPMONEY {
 	sSERVER_EXP		sServerExp;
 };
 
-//ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//µ¥ÀÌÅ¸ ¼­¹ö·Î Å¬¶óÀÌ¾ðÆ® °æÀ¯ Àü¼Û
 struct	TRANS_SEND_DATASERVER {
 	int size,code;
 	char	szBuff[1024];
 };
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼
+//¾ÆÀÌÅÛ ±¸ÀÔ¿ë ±¸Á¶Ã¼
 struct	TRANS_BUY_SHOPITEM {
 	int	size,code;
 
-	sITEM	sItem;			//ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	int		ItemCount;		//ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	sITEM	sItem;			//±¸ÀÔÇÏ´Â ¾ÆÀÌÅÛ
+	int		ItemCount;		//±¸ÀÔÇÏ´Â ¾ÆÀÌÅÛ °¹¼ö
 };
 
-//ï¿½Å·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+//°Å·¡½Ã ¾ÆÀÌÅÛ º¸³½ÈÄ º¸³½ ¾ÆÀÌÅÛÀÌ ÀÎº¥¿¡ Á¸Àç ÇÏ´ÂÁö È®ÀÎ
 struct	_TRANS_USINGITEM {
 	DWORD	dwCode;
 	short	Performance[8];
@@ -2338,9 +2389,9 @@ struct	TRANS_USINGITEM {
 	_TRANS_USINGITEM	ItemList[16];
 };
 
-//Æ®ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å° ï¿½ï¿½ï¿½ï¿½Ã¼
+//Æ®·¹ÀÌµå ¾ÆÀÌÅÛ Å° ±¸Á¶Ã¼
 
-//Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½Ã¼
+//Å©·¢À©µµ¿ì ¼­Ä¡ ±¸Á¶Ã¼
 #define	FIND_CRACK_LIST_MAX		64
 
 struct	_CRACK_NAME {
@@ -2365,14 +2416,14 @@ struct	TRANS_FIND_CRACKER {
 
 
 struct _PARTY_USER {
-	char	szName[32];				//ï¿½Ì¸ï¿½
-	char	szModelName[64];		//ï¿½ï¿½ ï¿½Ì¸ï¿½
-	char	szModelName2[64];		//ï¿½ï¿½ ï¿½Ì¸ï¿½2
+	char	szName[32];				//ÀÌ¸§
+	char	szModelName[64];		//¸ðµ¨ ÀÌ¸§
+	char	szModelName2[64];		//¸ðµ¨ ÀÌ¸§2
 
-	DWORD	dwObjectSerial;			//ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	DWORD	dwObjectSerial;			//°´Ã¼ °íÀ¯¹øÈ£
 	DWORD	Level;
 	DWORD	JobCode;
-	short	Life[2];				//ï¿½ï¿½ï¿½ï¿½ï¿½
+	short	Life[2];				//»ý¸í·Â
 	short	Mana[2];
 	int		x,z;
 };
@@ -2389,9 +2440,9 @@ struct TRANS_PARTY_USERS {
 };
 
 struct _PARTY_PLAYINFO {
-	DWORD	dwObjectSerial;			//ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
-	DWORD	Level;					//ï¿½ï¿½ï¿½ï¿½
-	short	Life[2];				//ï¿½ï¿½ï¿½ï¿½ï¿½
+	DWORD	dwObjectSerial;			//°´Ã¼ °íÀ¯¹øÈ£
+	DWORD	Level;					//·¹º§
+	short	Life[2];				//»ý¸í·Â
 	short	Mana[2];
 	int		x,z;
 };
@@ -2443,7 +2494,7 @@ struct	rsCLAN_INFOMATION {
 	_CLAN_USER_INFO	ClanUserInfo[CLAN_USER_MAX];
 };
 
-//Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+//Ã¢°í ÀúÀå ±¸Á¶ 
 struct	TRANS_WAREHOUSE {
 	int size,code;
 
@@ -2459,7 +2510,7 @@ struct	TRANS_WAREHOUSE {
 
 #define	TRANS_SERVER_MAX		8
 
-//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//¼­¹ö Á¤º¸
 struct _TRANS_SERVER_INFO {
 	char	szServerName[32];
 	char	szServerIp1[20];
@@ -2473,7 +2524,7 @@ struct _TRANS_SERVER_INFO {
 	DWORD	ConnState;
 };
 
-//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 
+//¼­¹ö ¼±ÅÃ ¸ñ·Ï 
 struct TRANS_SERVER_LIST {
 	int size,code;
 
@@ -2513,214 +2564,214 @@ struct	TT_DATA_SERVER_INFO {
 #define ENABLE_MODULE_CHECK_MAX	64	
 #define	TT_DATA_SERVER_MAX		16
 
-//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//¼­¹ö ¼³Á¤ ±¸Á¶
 struct rsSERVER_CONFIG	{
 
 	DWORD	ServerCode;
 	DWORD	AutoPlayer;
-	DWORD	DisableParty;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	DWORD	EnablePlayerKill;	//PKï¿½ã°¡
-	DWORD	ConnectUserMax;		//ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ã°¡ ï¿½Î¿ï¿½
+	DWORD	DisableParty;		//µ¿·á±ÝÁö
+	DWORD	EnablePlayerKill;	//PKÇã°¡
+	DWORD	ConnectUserMax;		//ÃÖ´ë Á¢¼Ó Çã°¡ ÀÎ¿ø
 
-	int		TestSeverMode;		//ï¿½×½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int		TestSeverMode;		//Å×½ºÆ® ¼­¹ö¿ë
 
-	int		UseRecorMemory;		//ï¿½ï¿½ï¿½åµ¥ï¿½ï¿½Å¸ ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½Û»ï¿½ï¿½
-	int		PotionMonitor;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int		UseRecorMemory;		//ÀúÀåµ¥ÀÌÅ¸ ¸Þ¸ð¸® ¹öÆÛ»ç¿ë
+	int		PotionMonitor;		//¹°¾à °¨½Ã
 
-	int		ClientCheckSumCount;	//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® Ã¼Å©ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	int		ClientCheckOut;			//ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwClientCheckSum[32];	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½
+	int		ClientCheckSumCount;	//Å¬¶óÀÌ¾ðÆ® Ã¼Å©¼¶ Ä«¿îÅÍ
+	int		ClientCheckOut;			//¹®Á¦ Å¬¶óÀÌ¾ðÆ® Á¢¼Ó Á¾·á
+	DWORD	dwClientCheckSum[32];	//Á¢¼Ó °¡´ÉÇÑ Ã¼Å©¼¶ ¸ñ·Ï
 
-	int		SafeClientCodeCount;	//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ã½Å© ï¿½Úµï¿½Ä«ï¿½ï¿½Æ®
-	int		ClientCodeCheckOut;		//ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	DWORD	dwSafeClientCode[32];	//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ã½Å© ï¿½Úµï¿½
+	int		SafeClientCodeCount;	//Å¬¶óÀÌ¾ðÆ®ÀÇ Æã¼ÇÃ½Å© ÄÚµåÄ«¿îÆ®
+	int		ClientCodeCheckOut;		//Æã¼Ç¹®Á¦ Å¬¶óÀÌ¾ðÆ® Á¢¼Ó Á¾·á
+	DWORD	dwSafeClientCode[32];	//Å¬¶óÀÌ¾ðÆ®ÀÇ Æã¼ÇÃ½Å© ÄÚµå
 
-	int		LimitVersion;			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int		LimitVersionMax;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö»ï¿½ ï¿½ï¿½ï¿½ï¿½
-	char	szAdminPassword[3][32];	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î¿ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½
-	char	szAdminName[32];		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+	int		LimitVersion;			//Á¢¼Ó °¡´ÉÇÑ ÃÖÇÏ ¹öÀü
+	int		LimitVersionMax;		//Á¢¼Ó °¡´ÉÇÑ ÃÖ»ó ¹öÀü
+	char	szAdminPassword[3][32];	//°ü¸®ÀÚ ±ÇÇÑ ºÎ¿© ÆÐ½º¿öµå
+	char	szAdminName[32];		//°ü¸®ÀÚ ÀÌ¸§
 
-	char	szAdminIP[16];			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IP
-	char	szAdminLogPassword[32];	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Password
+	char	szAdminIP[16];			//°ü¸®ÀÚ IP
+	char	szAdminLogPassword[32];	//°ü¸®ÀÚ Password
 
-	char	szServerName[64];		//ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
-	int		Enable_PK;				//PKï¿½ã°¡
-	int		CheckProtect;			//nProtect ï¿½ï¿½ï¿½Ã·ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½
-	DWORD	RemoveNProtectTime;		//ï¿½ï¿½ï¿½ï¿½ï¿½ß¿ï¿½ nProtectï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+	char	szServerName[64];		//¼­¹ö ÀÌ¸§
+	int		Enable_PK;				//PKÇã°¡
+	int		CheckProtect;			//nProtect ¼ö½Ã·Î °Ë»çÀ¯¹«
+	DWORD	RemoveNProtectTime;		//°ÔÀÓÁß¿¡ nProtectÁ¦°Å ½Ã°£
 
-	char	szDebugIP[10][32];		//ï¿½ï¿½ï¿½ï¿½ï¿½ IP
-	int		DebugIP_Count;			//ï¿½ï¿½ï¿½ï¿½ï¿½ IP Ä«ï¿½ï¿½ï¿½ï¿½
+	char	szDebugIP[10][32];		//µðºñ±ë¿ë IP
+	int		DebugIP_Count;			//µð¹ö±ë IP Ä«¿îÅÍ
 
-	char	szDebugID[32][32];		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID
-	int		DebugID_Count;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID Ä«ï¿½ï¿½ï¿½ï¿½
+	char	szDebugID[32][32];		//µð¹ö±ë¿ë ID
+	int		DebugID_Count;			//µð¹ö±ë¿ë ID Ä«¿îÅÍ
 
-	int		BlockLevel;				//ID ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int		BlockLevel_LogOut;		//ï¿½Î±ï¿½ ï¿½Æ¿ï¿½Ã¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½( ï¿½ß±ï¿½ï¿½ï¿½ ï¿½ä±¸ )
-	int		ItemCodeOut;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int		BlockLevel;				//ID ÀÓ½Ã ºí·°ÀÇ ·¹º§
+	int		BlockLevel_LogOut;		//·Î±× ¾Æ¿ô½Ã¿¡¸¸ Àû¿ë( Áß±¹Ãø ¿ä±¸ )
+	int		ItemCodeOut;			//¾ÆÀÌÅÛ ÄÚµå ¿À·ù½Ã Á¾·á
 
-	int		ClientFuncCheckMode;	//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½
-	int		Enable_PartyItem;		//ï¿½ï¿½ï¿½á°¡ È¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	int		ClientFuncCheckMode;	//Å¬¶óÀÌ¾ðÆ® Æã¼Ç °Ë»ç ¸ðµå
+	int		Enable_PartyItem;		//µ¿·á°¡ È¹µæÇÑ ¾ÆÀÌÅÛ Ãâ·Â
 
 	
-	int		Event_Mandoo;			//ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½) ï¿½Ìºï¿½Æ®
-	int		Event_HardCore;			//ï¿½Ïµï¿½ï¿½Ú¾ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_DamageOff;		//ï¿½ï¿½ï¿½Ý·ï¿½ È°ï¿½ï¿½ ï¿½Ìºï¿½Æ®
-//ï¿½Ø¿Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½/////////////////////////////////////////////////////////////////////////////
-	//ï¿½Ø¿ï¿½
+	int		Event_Mandoo;			//¸¸µÎ(¼ÛÆí) ÀÌº¥Æ®
+	int		Event_HardCore;			//ÇÏµåÄÚ¾î ÀÌº¥Æ®
+	int		Event_DamageOff;		//°ø°Ý·Â È°ÀÎ ÀÌº¥Æ®
+//ÇØ¿Ü¹öÀü¿ë/////////////////////////////////////////////////////////////////////////////
+	//ÇØ¿Ü
 //#ifdef _LANGUAGE_PHILIPIN
-	int		Event_DamageOff1;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®1 (ï¿½Ê¸ï¿½ï¿½É¿ï¿½)
-	int		Event_DamageOff2;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®2 (ï¿½Ê¸ï¿½ï¿½É¿ï¿½)
+	int		Event_DamageOff1;		//¸ó½ºÅÍ °ø°Ý·Â ÇÒÀÎ ÀÌº¥Æ®1 (ÇÊ¸®ÇÉ¿ë)
+	int		Event_DamageOff2;		//¸ó½ºÅÍ °ø°Ý·Â ÇÒÀÎ ÀÌº¥Æ®2 (ÇÊ¸®ÇÉ¿ë)
 //#endif
 
-	int		Event_DefenseOff;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ ï¿½Ìºï¿½Æ®
+	int		Event_DefenseOff;		//¸ó½ºÅÍ ¹æ¾î·Â ¾àÈ­ ÀÌº¥Æ®
 /////////////////////////////////////////////////////////////////////////////////////////
-	int		Event_Child;			//ï¿½î¸°ï¿½ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_Cristal;			//Å©ï¿½ï¿½ï¿½ï¿½Å» ï¿½Ìºï¿½Æ® ( Æ¯ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ë¿¡ Å©ï¿½ï¿½ï¿½ï¿½Å» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ )
-	int		Event_Potion;			//ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ( ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ )
-	int		Event_StarPointTicket;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ìºï¿½Æ® ( ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½ß»ï¿½ )
-	int		Event_ValentineDay;		//ï¿½ß·ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_WhiteDay;			//È­ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_MorifSheltom;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å»ï¿½ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_MollyWolf;		//ï¿½ï¿½ï¿½ï¿½Í´ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_Ghost;			//ï¿½ï¿½ï¿½Æ® ï¿½Ìºï¿½Æ®
-	int		Event_SantaGoblin;		//ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_WorldCup;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_ExpUp;			//ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìºï¿½Æ®
+	int		Event_Child;			//¾î¸°ÀÌ ÀÌº¥Æ®
+	int		Event_Cristal;			//Å©¸®½ºÅ» ÀÌº¥Æ® ( Æ¯Á¤ ½Ã°£´ë¿¡ Å©¸®½ºÅ» ¸ó½ºÅÍ °­È­ )
+	int		Event_Potion;			//¹°¾à ÀÌº¥Æ® ( ¹°¾à µ¿½Ã¿¡ ¶³¾îÁö´Â °¹¼ö Áõ°¡ )
+	int		Event_StarPointTicket;	//º°Æ÷ÀÎÆ® ÀÌº¥Æ® ( º°»óÇ°±Ç ¹ß»ý )
+	int		Event_ValentineDay;		//¹ß·»Å¸ÀÎ µ¥ÀÌ ÀÌº¥Æ®
+	int		Event_WhiteDay;			//È­ÀÌÆ® µ¥ÀÌ ÀÌº¥Æ®
+	int		Event_MorifSheltom;		//¸ð¸®ÇÁÀÇ ½©ÅÒ Å»Ãë ÀÌº¥Æ®
+	int		Event_MollyWolf;		//¸ô¸®¿Í´Á´ë ÀÌº¥Æ®
+	int		Event_Ghost;			//°í½ºÆ® ÀÌº¥Æ®
+	int		Event_SantaGoblin;		//»êÅ¸°íºí¸° ÀÌº¥Æ®
+	int		Event_WorldCup;			//¿ùµåÄÅ ÀÌº¥Æ®
+	int		Event_ExpUp;			//°æÇèÄ¡¾÷ ÀÌº¥Æ®
 	int     Event_FastExpUp1To2;    // Panzer - speed up the exp for player while his level is >= 1 and <= 20 
-	int		Event_CoupleRing;		// pluto Ä¿ï¿½Ã¸ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_Watermelon;		// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_Star;				// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½Ò¿ï¿½ï¿½Ìºï¿½Æ®
-	int		Event_Valentine;		// ï¿½åº° - ï¿½ß·ï¿½Å¸ï¿½ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_PristonAlphabet;	// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½Äºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_WhiteContrast;	// ï¿½åº° - È­ï¿½ï¿½Æ®ï¿½ï¿½Æ®ï¿½ï¿½Æ® ï¿½Ìºï¿½Æ®
-	int		Event_Candydays;		// ï¿½åº° - Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	int		Event_BlackSmith;		// ï¿½åº° - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¥
-	int		Event_MagicalGreen;	// ï¿½åº° - ï¿½ï¿½ï¿½ï¿½ï¿½Ã±×¸ï¿½
-	int		Event_TearOfKara;		// ï¿½åº° - Ä«ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int		Event_WarerMelonMonster;		// ï¿½åº° - ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_Chichen_Day;		// ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®(ï¿½Æ±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½)
-	int		Event_MovieBloodyBattle; // ï¿½åº° - ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
+	int		Event_CoupleRing;		// pluto Ä¿ÇÃ¸µ ÀÌº¥Æ®
+	int		Event_Watermelon;		// ¹ÚÀç¿ø - ¼ö¹Ú ÀÌº¥Æ®
+	int		Event_Star;				// ¹ÚÀç¿ø - ¹ãÇÏ´ÃÀÇ ¼Ò¿øÀÌº¥Æ®
+	int		Event_Valentine;		// Àåº° - ¹ß·»Å¸ÀÎ ÀÌº¥Æ®
+	int		Event_PristonAlphabet;	// ¹ÚÀç¿ø - ¾ËÆÄºª Á¶ÇÕ ÀÌº¥Æ®
+	int		Event_WhiteContrast;	// Àåº° - È­ÀÌÆ®ÄÜÆ®¶ó½ºÆ® ÀÌº¥Æ®
+	int		Event_Candydays;		// Àåº° - Äµµðµ¥ÀÌÁî
+	int		Event_BlackSmith;		// Àåº° - ´ëÀåÀåÀÌÀÇ È¥
+	int		Event_MagicalGreen;	// Àåº° - ¸ÅÁöÄÃ±×¸°
+	int		Event_TearOfKara;		// Àåº° - Ä«¶óÀÇ ´«¹°
+	int		Event_WarerMelonMonster;		// Àåº° - ¼ö¹Ú¸ó½ºÅÍ ÀÌº¥Æ®
+	int		Event_Chichen_Day;		// ¹ÚÀç¿ø - º¹³¯ ÀÌº¥Æ®(¾Æ±â ²¿°í ¸ó½ºÅÍ°¡ ³ªÅ¸³­´Ù)
+	int		Event_MovieBloodyBattle; // Àåº° - ¿µÈ­ Ç÷Åõ
 
 
 #ifdef _LANGUAGE_ARGENTINA
-	int		Event_ExpUp_latin;		//ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìºï¿½Æ®(ï¿½Æ¸ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½) //ï¿½Ø¿ï¿½ Kyle
+	int		Event_ExpUp_latin;		//°æÇèÄ¡¾÷ ÀÌº¥Æ®(¾Æ¸£ÇîÆ¼³ª) //ÇØ¿Ü Kyle
 #endif
 
-	int		Event_SummerChicken;	//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_GiftBox;			// pluto ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®
+	int		Event_SummerChicken;	//»ï°èÅÁ ÀÌº¥Æ®
+	int		Event_GiftBox;			// pluto ¼±¹°»óÀÚ ÀÌº¥Æ®
 
-	int		BlessCastleMode;			//ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	short	sBlessCastle_StartTime[2];	//ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ [0]ï¿½ï¿½ï¿½ï¿½ [1]ï¿½Ã°ï¿½
+	int		BlessCastleMode;			//ºí·¹½ºÄ³½½ ¼³Á¤
+	short	sBlessCastle_StartTime[2];	//ºí·¹½ºÄ³½½ ½ÃÀÛ ½Ã°£ ¿¹¾à [0]¿äÀÏ [1]½Ã°£
 
-	int		Record_JobChanger;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
-	int		ForeverBlockMode;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	int		Record_JobChanger;		//Àü¾÷ÇÑÀÚ ±â·Ï
+	int		ForeverBlockMode;		//¿µ¿øÇÑ ºí·°
 
-	int		Permit_Exp;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡
-	int		Permit_Money;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	int		Permit_Exp;				//Çã¿ë¿ÀÂ÷ °æÇèÄ¡
+	int		Permit_Money;			//Çã¿ë¿ÀÂ÷ µ·
 
-	int		ClientProcessTimeChk;	//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½Ä¡
-	int		ClientProcessTimeChkOut;//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½Ê°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	int		Dis_PotionError;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int		ClientProcessTimeChk;	//Å¬¶óÀÌ¾ðÆ® ÇÁ·Î¼¼½º ½Ã°£°¨½Ã ÃÖ´ëÄ¡
+	int		ClientProcessTimeChkOut;//Å¬¶óÀÌ¾ðÆ® ÇÁ·Î¼¼½º ½Ã°£ ÃÊ°ú½Ã ¿¬°áÁ¾·á
+	int		Dis_PotionError;		//Æ÷¼Ç ¿¡·¯³ª¸é ¿¬°á ²öÀ½
 
-	int		ExpFixMode;				//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+	int		ExpFixMode;				//¿À·ù °æÇèÄ¡ º¸Á¤
 
-	char	szBlockUserPath[64];	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½
+	char	szBlockUserPath[64];	//À¯Àú ºí·° µ¥ÀÌÅ¸ °æ·Î
 
-	int		DispBillingTime;		//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ Ç¥ï¿½ï¿½
+	int		DispBillingTime;		//ºô¸µ ³²Àº½Ã°£ Ç¥½Ã
 
-	int		Disable_LogIn;			//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int		Disable_LogQue;			//ï¿½Î±ï¿½Å¥ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int		Disable_CheckLogOut;	//ï¿½Î±×¾Æ¿ï¿½ Å¥ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int		Disable_LogIn;			//·Î±×ÀÎ ±ÝÁö
+	int		Disable_LogQue;			//·Î±×Å¥ Ã³¸® ±ÝÁö
+	int		Disable_CheckLogOut;	//·Î±×¾Æ¿ô Å¥°Ë»ç ±ÝÁö
 
-	int		Disable_LogIn2;			//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½Â° ï¿½Å±ï¿½ ï¿½Î±ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int		Disable_PCBang;			//PCï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	int		Disable_LogIn2;			//·Î±×ÀÎ ±ÝÁö2¹øÂ° ½Å±Ô ·Î±×ÀÎ¸¸ ±ÝÁö
+	int		Disable_PCBang;			//PC¹æ ±ÝÁö ¸ðµå
 
-	int		ExpGameTimeMode;		//ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Ð¹ï¿½(ï¿½ï¿½Æ®ï¿½ï¿½)
+	int		ExpGameTimeMode;		//°æÇèÄ¡ ½Ã°£º° ºÐ¹è(º£Æ®³²)
 
-	int		ServerInventoryMode;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int		ServerInventoryMode;	//¼­¹öÀÇ °¡»óÀÎº¥Åä¸®·Î ¾ÆÀÌÅÛ °ü¸®
 
-	DWORD	DisableIP[DISABLE_IP_MAX][2];		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ IP
-	int		DisableIP_Count;					//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ IP ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	DWORD	DisableIP[DISABLE_IP_MAX][2];		//Á¢±Ù Á¦ÇÑ IP
+	int		DisableIP_Count;					//Á¢±Ù Á¦ÇÑ IP ¼³Á¤ ¼ö
 
-	DWORD	EnableIP[ENABLE_IP_MAX][2];			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ IPï¿½ï¿½ ï¿½ã°¡ï¿½Ç´ï¿½ IP
-	int		EnableIP_Count;						//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ IP ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	DWORD	EnableIP[ENABLE_IP_MAX][2];			//Á¢±Ù Á¦ÇÑ IPÁß Çã°¡µÇ´Â IP
+	int		EnableIP_Count;						//Á¢±Ù Á¦ÇÑ IP ¼³Á¤ ¼ö
 
-	DWORD	AdminIP[ADMIN_IP_MAX][2];			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IP ï¿½ï¿½ï¿½
-	int		AdminIP_Count;						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IP ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	DWORD	AdminIP[ADMIN_IP_MAX][2];			//°ü¸®ÀÚ IP ¸ñ·Ï
+	int		AdminIP_Count;						//°ü¸®ÀÚ IP ¼³Á¤ ¼ö
 
-	DWORD	SystemIP[SYSTEM_IP_MAX][2];			//ï¿½Ã½ï¿½ï¿½ï¿½ IP ï¿½ï¿½ï¿½
-	int		SystemIP_Count;						//ï¿½Ã½ï¿½ï¿½ï¿½ IP ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	DWORD	SystemIP[SYSTEM_IP_MAX][2];			//½Ã½ºÅÛ IP ¸ñ·Ï
+	int		SystemIP_Count;						//½Ã½ºÅÛ IP ¼³Á¤ ¼ö
 
-	DWORD	LoginServerIP[LOGIN_IP_MAX][2];		//ï¿½Î±ä¼­ï¿½ï¿½ IP ï¿½ï¿½ï¿½
-	int		LoginServerIP_Count;				//ï¿½Î±ä¼­ï¿½ï¿½ IP ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	DWORD	LoginServerIP[LOGIN_IP_MAX][2];		//·Î±ä¼­¹ö IP ¸ñ·Ï
+	int		LoginServerIP_Count;				//·Î±ä¼­¹ö IP ¼³Á¤ ¼ö
 
-	char	szBackupPath[80];					//*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½
+	char	szBackupPath[80];					//*¹é¾÷Æú´õÀÌ¸§
 
-	char	szClanServerIP[CLAN_SERVER_MAX][20];	//Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½	ï¿½Ö¼ï¿½
-	int		ClanServerPort[CLAN_SERVER_MAX];		//Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®
+	char	szClanServerIP[CLAN_SERVER_MAX][20];	//Å¬·£ ¼­¹ö	ÁÖ¼Ò
+	int		ClanServerPort[CLAN_SERVER_MAX];		//Å¬·£ ¼­¹ö Æ÷Æ®
 	int		ClanServerCount;
 
 
-	DWORD	Enable_ClientModule[ENABLE_MODULE_CHECK_MAX];	//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½Æ«Ã½Å©ï¿½ï¿½
-	int		Enable_ClientModuleCount;						//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ Ã½Å©ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
+	DWORD	Enable_ClientModule[ENABLE_MODULE_CHECK_MAX];	//Å¬¶óÀÌ¾ðÆ® ¸ðÆ«Ã½Å©¼¶
+	int		Enable_ClientModuleCount;						//Å¬¶óÀÌ¾ðÆ® ¸ðµâ Ã½Å©¼¶ Ä«¿îÅÍ
 
-	int		Disable_DecSkillPoint;							//ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ Ã½Å© Ã³ï¿½ï¿½
+	int		Disable_DecSkillPoint;							//½ºÅ³ Æ÷ÀÎÆ® °¨¼Ò Ã½Å© Ã³¸®
 
-	int		Disable_Quest;									//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+	int		Disable_Quest;									//±ÝÁö Äù½ºÆ® ¼³Á¤
 
-	int		CrazyPacketMode;							//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½
+	int		CrazyPacketMode;							//º¸¾È ÆÐÅ¶ ¸ðµå
 
-	char	szNoticeURL[256];							//Notice URL ï¿½ï¿½ï¿½ï¿½
+	char	szNoticeURL[256];							//Notice URL ¼³Á¤
 
 
-	TRANS_SEVER_MAP	AreaServer;							//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	TRANS_SEVER_MAP	AreaServer;							//Áö¿ªº° ¼­¹ö ¸ÅÇÎ
 
-	char	szLinkServerIP[32];							//ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ IP
+	char	szLinkServerIP[32];							//¸µÅ©µÈ ¼­¹ö IP
 
-	int		RecordAdminCommand;							//ï¿½î¿µï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	int		RecordAdminCommand;							//¿î¿µÀÚ ¸í·É ±â·Ï
 
-	int		FreeLevel;									//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	char	szFreeGpCode[32];							//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ GPCODE
-	int		PresentLevel;								//ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int		Event_ComicBirthDay;						//ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½ ï¿½ï¿½Å«ï¿½ï¿½
-	int		Event_Puzzle;								//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß±ï¿½ ï¿½Ìºï¿½Æ®
-	int		Event_BabelHorn;							//ï¿½Ùºï¿½ï¿½ï¿½ï¿½Ìºï¿½Æ®
-	int		Event_NineFox;								//ï¿½ï¿½ï¿½ï¿½È£ï¿½Ìºï¿½Æ®
-	int		EVENT_Christmas;							//Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®
-	int		EventPlay_BitMask;							//ï¿½Ìºï¿½Æ® ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½Å©
-	int		Event_PCBangPet;							//PCï¿½ï¿½ ï¿½ï¿½ ï¿½Ìºï¿½Æ®
+	int		FreeLevel;									//¹«·á ·¹º§
+	char	szFreeGpCode[32];							//¹«·á»ç¿ë GPCODE
+	int		PresentLevel;								//¼±¹°ÁÖ´Â ·¹º§
+	int		Event_ComicBirthDay;						//»ýÀÏ¼±¹° ¾óÅ«ÀÌ
+	int		Event_Puzzle;								//ÆÛÁñ ¸ÂÃß±â ÀÌº¥Æ®
+	int		Event_BabelHorn;							//¹Ùº§»ÔÀÌº¥Æ®
+	int		Event_NineFox;								//±¸¹ÌÈ£ÀÌº¥Æ®
+	int		EVENT_Christmas;							//Å©¸®½º¸¶½º ÀÌº¥Æ®
+	int		EventPlay_BitMask;							//ÀÌº¥Æ® ÇÃ·¹ÀÌ ºñÆ®¸¶½ºÅ©
+	int		Event_PCBangPet;							//PC¹æ Æê ÀÌº¥Æ®
 
-	int		StartUser_PresentItem;						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
+	int		StartUser_PresentItem;						//½ÃÀÛÀ¯Àú¿¡°Ô ¼±¹° ÁÖ±â
 
-	int		GameGuard_Auth;								//ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int		GameGuard_Auth;								//°ÔÀÓ°¡µå º¸¾È ¼³Á¤
 
 #ifdef _XTRAP_GUARD_4_
-	int		XTRAP_Timer;								//XTRAP ï¿½Ë»ï¿½ï¿½Ö±ï¿½		XTRAP_GUARD
-	int		XTRAP_MaxDealy;								//XTRAP ï¿½Ë»ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½Ä¡  XTRAP_GUARD
+	int		XTRAP_Timer;								//XTRAP °Ë»çÁÖ±â		XTRAP_GUARD
+	int		XTRAP_MaxDealy;								//XTRAP °Ë»çÁöÃ¼ Á¦ÇÑÄ¡  XTRAP_GUARD
 #endif
 
-	//ï¿½ï¿½Ê¸ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int		TT_DataServer_Count;									//ï¿½ï¿½Ê¸ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	TT_DATA_SERVER_INFO		TT_DataServer[TT_DATA_SERVER_MAX];		//ï¿½ï¿½Ê¸ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ ï¿½ï¿½ï¿½ï¿½
+	//Åä³Ê¸ÕÆ®¼­¹ö °èÁ¤ °ü¸®
+	int		TT_DataServer_Count;									//Åä³Ê¸ÕÆ®¼­¹ö µ¥ÀÌÅ¸ °æ·Î °¹¼ö
+	TT_DATA_SERVER_INFO		TT_DataServer[TT_DATA_SERVER_MAX];		//Åä³Ê¸ÕÆ®¼­¹ö µ¥ÀÌÅ¸ Á¤º¸
 
-	int		FixedStartField;							//ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½
-	int		DisableThrowItem;							//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int		FixedStartField;							//½ÃÀÛ ÇÊµå °­Á¦ °íÁ¤½ÃÅ°±â
+	int		DisableThrowItem;							//¾ÆÀÌÅÛ ¶¥¿¡ ¸ø¹ö¸²
 
-	int		CheckPlayField;								//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½Êµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ë»ï¿½
+	int		CheckPlayField;								//Å¬¶óÀÌ¾ðÆ® ¿Í ¼­¹öÀÇ  ÇÊµå ÁöÇü ºñ±³ °Ë»ç
 
-	int		Enable_PKField;								// PKï¿½ï¿½ï¿½ ï¿½Êµï¿½ ï¿½ï¿½È£
+	int		Enable_PKField;								// PKÇã¿ë ÇÊµå ¹øÈ£
 	int		Enable_PKField1;
 	int		Enable_PKField2;
 	int		Enable_PKField3;
 
-	int		Enable_PKField_All;							// pluto PKï¿½ï¿½ï¿½ ï¿½Êµï¿½ ï¿½ï¿½ï¿½ï¿½
+	int		Enable_PKField_All;							// pluto PKÇã¿ë ÇÊµå ÀüºÎ
 
-	//ï¿½ï¿½Å²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	int		CheckModelFile;								//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½É¼ï¿½
+	//½ºÅ²ÇÙ ¹æÁö
+	int		CheckModelFile;								//¸ðµ¨ÆÄÀÏ È®ÀÎ ¿É¼Ç
 
 
 	#ifdef LOG_THE_PK
-		//PK_LOGï¿½ï¿½ï¿½ï¿½ //ï¿½Ø¿ï¿½
+		//PK_LOG°ü·Ã //ÇØ¿Ü
 		bool	bPK_LOG;
 		rsSERVER_CONFIG()
 		{
@@ -2730,25 +2781,25 @@ struct rsSERVER_CONFIG	{
 
 };
 
-//ï¿½ï¿½ï¿½ï¿½ ï¿½âµ¿ 
+//¼­¹ö ±âµ¿ 
 extern int	ServerMode;
 
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
-//ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+//¼­¹öÃø ¿¬°á/²ö±è ÇÔ¼ö
+//»õ Å¬¶óÀÌ¾ðÆ® Á¢¼Ó
 int Serv_ConnectPlayer( smWINSOCK *lpsmSock );
-//Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+//Å¬¶óÀÌ¾ðÆ® ²ö±è
 int Serv_DisconnectPlayer( smWINSOCK *lpsmSock );
-//ï¿½Ù¸ï¿½ Ä³ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+//´Ù¸¥ Ä³¸¯ÅÍ¿ÍÀÇ À§Ä¡ °ãÄ¡´ÂÁö È®ÀÎ
 smCHAR *Serv_CheckOtherPlayPosi( int x, int y, int z );
 
-//ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½Ä¡ ( ï¿½ï¿½ï¿½Ñ°è¸¦ ï¿½Ñ¾î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÈµÈ´ï¿½ )
+//°æÇèÄ¡¿Í µ·ÀÇ °á°ú ÇÑ°èÄ¡ ( ÀÌÇÑ°è¸¦ ³Ñ¾î°¡¸é ÀúÀåÀÌ ¾ÈµÈ´Ù )
 #define	TOTAL_CHECK_MONEY_MAX		52000
 #define	TOTAL_CHECK_EXP_MAX			100000
 
 
 
 
-/////////////////// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ® ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½Ã¼ ////////////////////////
+/////////////////// Å¬¶óÀÌ¾ðÆ® Æã¼Ç À§Ä¡ ±¸Á¶Ã¼ ////////////////////////
 #define	dwFUNC_VALUE_MAX	64
 
 struct	sFUNC_VALUE {
@@ -2794,7 +2845,7 @@ struct	sCHK_POTION_COUNT  {
 	int     Pl105;
 };
 
-//SOD ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+//SOD Á¡¼ö Ãâ·Â
 struct	sSOD_SCORE {
 	int		Flag;
 	DWORD	dwDispTime;
@@ -2804,23 +2855,24 @@ struct	sSOD_SCORE {
 	int		Round;
 	DWORD	dwPlayTime;
 
-	/////// SOD ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® /////////
+	/////// SOD ¿¬Ãâ ÀÌº¥Æ® /////////
 
-	DWORD	dwSoD_NextStageTime;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½ ï¿½Ã°ï¿½
-	int		SodNextStageNum;			//ï¿½Ñ¾î°¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	DWORD	dwSoD_NextStageTime;		//´ÙÀ½ ½ºÅ×ÀÌÁö ³Ñ¾î°¡´Â ½Ã°£
+	int		SodNextStageNum;			//³Ñ¾î°¥ ½ºÅ×ÀÌÁö ¹øÈ£
 	int		NextRound;
-	DWORD	dwSoD_CloseStageTime;		//È­ï¿½ï¿½ï¿½ï¿½ ï¿½Ý´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
+	DWORD	dwSoD_CloseStageTime;		//È­¸éÀº ´Ý´Â ÀÌÆåÆ® Àû¿ë½Ã°£
 
-	///////// SOD ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ //////////////
-	int		EffectStartCount;			//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Û±ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ï¿½
-	int		EffectCode;					//ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Úµï¿½
+	///////// SOD ¿¹¾à ¿¬Ãâ //////////////
+	int		EffectStartCount;			//ÀÌÆåÆ® ½ÃÀÛ±îÁöÀÇ Ä«¿îÅÍ
+	int		EffectCode;					//ÀÌÆåÆ® ÄÚµå
 
-	//////// SOD ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ /////////////
-	int		ScoreEffectCount;				//ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½
+	//////// SOD µæÁ¡ È¿°ú /////////////
+	int		ScoreEffectCount;				//µæÁ¡ È¿°ú
 
 };
 
-#define MAX_JOBNUM					8 //Num of Jobs
+#define MAX_JOBNUM					8 // Enabled jobs in the current client/runtime
+#define MAX_JOB_CAPACITY			10 // Core capacity; Assassin/Shaman remain disabled until their assets/handlers are restored
 
 #define	JOBCODE_FIGHTER				1
 #define	JOBCODE_MECHANICIAN			2
@@ -2830,6 +2882,27 @@ struct	sSOD_SCORE {
 #define	JOBCODE_KNIGHT				6
 #define	JOBCODE_MAGICIAN			7
 #define	JOBCODE_PRIESTESS			8
+#define	JOBCODE_ASSASSIN			9
+#define	JOBCODE_ASSASSINE			JOBCODE_ASSASSIN // Legacy Summit spelling
+#define	JOBCODE_SHAMAN				10
+
+#define	CHARACTER_RANK1				0
+#define	CHARACTER_RANK2				1
+#define	CHARACTER_RANK3				2
+#define	CHARACTER_RANK4				3
+#define	CHARACTER_RANK5				4
+
+// Canonical quest IDs from the EU reference source used by Rank5/FSP.
+#define	QUESTID_T5_AN_ANCIENT_THREAT		10004
+#define	QUESTID_T5_AN_ENDLESS_BATTLE		10005
+#define	QUESTID_T5_AN_ENDLESS_SUFFERING	10006
+#define	QUESTID_T5_A_TEST_OF_BRAVERY		10007
+#define	QUESTID_T5_GREEN_LIQUID_STEP1		10008
+#define	QUESTID_T5_GREEN_LIQUID_STEP2		10009
+#define	QUESTID_T5_A_MATTER_OF_STRENGTH	10010
+#define	QUESTID_T5_CRY_ME_A_RIVER		10011
+#define	QUESTID_T5_THE_LAST_STAGE		10012
+#define	QUESTID_T5_QUEST_ARENA			10013
 
 #define	CHAR_EVENT_STARPOINT		300
 

@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=9f39c80583e5959f720a88326e2eec2835b23f9bf5b53e4372734a6d81b235e7
-output_sha256=305317c61cae7e1fe22b48226c821bc74daee0a23b90007e34698c6f2390b20a
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/texture_overlay_client/field/castle/eye_roofline.TGA
-format=TGA_PRISTON_HEADER18_KEEP_00_16
-client_modified=False
-tga_decode_check=PASS

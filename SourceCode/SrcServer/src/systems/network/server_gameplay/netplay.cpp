@@ -138,7 +138,7 @@ int	ChatBuffCnt2[6] = { 0,0,0,0,0,0 };
 int ChatDispCnt = 0;
 int	ChatBuffCompCnt = 0;
 
-char *szDefaultServIP = "211.50.44.170";
+char *szDefaultServIP = "192.168.1.111";
 
 char *szNetLogFile = "debugnet.log";
 FILE *fpNetLog = 0;
@@ -250,6 +250,38 @@ int		TradeItemCancelCount = 0;
 TRANS_TRADEITEMS	TransLastRecvTrade;
 
 TRANS_TRADEITEMS	TransTradeItems_MyShop;
+
+static BOOL ValidateTradeCompressedPacket(const TRANS_TRADEITEMS *packet, int decodedLimit)
+{
+	if(!packet || decodedLimit <= 0) return FALSE;
+	if(packet->size < 48 || packet->size > (int)sizeof(TRANS_TRADEITEMS)) return FALSE;
+
+	const int available = packet->size - 48;
+	if(available < (int)sizeof(int) || available > TRANS_TRADE_BUFF_SIZE) return FALSE;
+
+	int compressedSize = 0;
+	memcpy(&compressedSize, packet->TradeBuff, sizeof(compressedSize));
+	if(compressedSize < (int)sizeof(int) || compressedSize > available) return FALSE;
+
+	int offset = (int)sizeof(int);
+	int decoded = 0;
+	while(offset < compressedSize)
+	{
+		const BYTE control = packet->TradeBuff[offset++];
+		const int runLength = control & 0x7F;
+		if(runLength <= 0 || runLength > decodedLimit - decoded) return FALSE;
+		decoded += runLength;
+
+		if((control & 0x80) == 0)
+		{
+			if(runLength > compressedSize - offset) return FALSE;
+			offset += runLength;
+		}
+	}
+
+	return offset == compressedSize;
+}
+
 
 
 DWORD	dwLastWareHouseChkSum = 0;
@@ -645,21 +677,10 @@ int	CheckStartCharInfo()
 
 int	RecvMemFuncData2(TRANS_FUNC_MEMORY *TransFuncMem)
 {
-	smTRANS_COMMAND	smTransCommand;
-
-	smTransCommand.size = -1;
-	fnChkMem2 = (LPFN_CheckMem)((void *)TransFuncMem->szData);
-	fnChkMem2(TransFuncMem, &smTransCommand);
-
-	ZeroMemory(TransFuncMem, 1500);
-
-	if(smTransCommand.size > 0 && smWsockDataServer)
-	{
-		smTransCommand.code = OpCode::OPCODE_FUNCTION_MEM2;
-		smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
-	}
-
-	return TRUE;
+	// Legacy protocol executed machine code received from the network.
+	// Remote code execution is intentionally disabled; use data-only checks instead.
+	(void)TransFuncMem;
+	return FALSE;
 }
 
 
@@ -1903,7 +1924,7 @@ int SendChatMessageToServer(char *szChatMessage)
 			}
 
 
-			len = rsCompString("/ï¿½Êµåº¯ï¿½ï¿½", szMessage);
+			len = rsCompString("/ÇÊµåº¯°æ", szMessage);
 			if(!len)
 				len = rsCompString("/$city", szMessage);
 
@@ -2180,7 +2201,7 @@ int SetIpColor(HDC hdc, DWORD dwIP)
 
 	switch (dwIP)
 	{
-	case 0:		SetTextColor(hdc,RGB(255, 128, 96));		break; // vermelho padrï¿½o
+	case 0:		SetTextColor(hdc,RGB(255, 128, 96));		break; // vermelho padrÃ£o
 	case 1:		SetTextColor(hdc,RGB(125, 180, 175));		break; // azul pm
 	case 2:		SetTextColor(hdc,RGB(125, 180, 175));		break; // azul pm
 	case 3:		SetTextColor(hdc,RGB(230, 160, 255));		break; // roxo gm
@@ -3607,11 +3628,11 @@ int SendGetRecordData(char *szName)
 }
 
 char *szCmdOpenMonster[10] = {
-	"È©ï¿½ï¿½ï¿½ï¿½",
-	"È©ï¿½ï¿½ï¿½ï¿½",
-	"È©ï¿½ï¿½ï¿½ï¿½",
-	"Å·È£ï¿½ï¿½",
-	"Å¸ï¿½ï¿½Åº",
+	"È©°íºí¸°",
+	"È©°íºí¸°",
+	"È©°íºí¸°",
+	"Å·È£ÇÇ",
+	"Å¸ÀÌÅº",
 	0,0,0,0,0
 };
 
@@ -4537,7 +4558,7 @@ int Skil_RangeAttack(int x, int y, int z, int range, int power, int TargetState)
 
 
 
-	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - Skil_RangeAttack ");
+	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - Skil_RangeAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -4702,7 +4723,7 @@ int Skil_RangeBoxAttack(smCHAR *lpCurChar, RECT *lpRect, int power, int TargetSt
 
 
 
-	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - Skil_RangeBoxAttack ");
+	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - Skil_RangeBoxAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -4935,7 +4956,7 @@ int QuickSendTransAttack(smCHAR *lpChar, int power, int AttackState, int Resista
 	int pow;
 
 
-	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - QuickSendTransAttack ");
+	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - QuickSendTransAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -5066,8 +5087,8 @@ int SendTradeItem(sTRADE *lpTrade, DWORD dwSender)
 	}
 
 
-	len = EecodeCompress((BYTE *)&sTradeBuff, TransTradeItems.TradeBuff, sizeof(sTRADE));
-	if(len > TRANS_TRADE_BUFF_SIZE) return FALSE;
+	len = EecodeCompress((BYTE *)&sTradeBuff, TransTradeItems.TradeBuff, sizeof(sTRADE), sizeof(TransTradeItems.TradeBuff));
+	if(len <= 0 || len > TRANS_TRADE_BUFF_SIZE || len > (int)sizeof(TRANS_TRADEITEMS) - 48) return FALSE;
 
 	TransTradeItems.code = OpCode::OPCODE_TRADEITEMS;
 	TransTradeItems.size = len + 48;
@@ -5088,8 +5109,10 @@ int SendTradeItem(sTRADE *lpTrade, DWORD dwSender)
 
 int RecvTradeItems(TRANS_TRADEITEMS *lpTransTradeItems, sTRADE *lpTrade)
 {
-
-	DecodeCompress(lpTransTradeItems->TradeBuff, (BYTE *)lpTrade);
+	if(!lpTrade || !ValidateTradeCompressedPacket(lpTransTradeItems, sizeof(sTRADE))) return FALSE;
+	ZeroMemory(lpTrade, sizeof(sTRADE));
+	DecodeCompress(lpTransTradeItems->TradeBuff, (BYTE *)lpTrade, sizeof(sTRADE));
+	ZeroMemory(&TransLastRecvTrade, sizeof(TransLastRecvTrade));
 	memcpy(&TransLastRecvTrade, lpTransTradeItems, lpTransTradeItems->size);
 	return TRUE;
 }
@@ -6342,18 +6365,10 @@ int	SendClientFuncPos()
 
 int	RecvMemFuncData(TRANS_FUNC_MEMORY *TransFuncMem)
 {
-	smTRANS_COMMAND	smTransCommand;
-
-	fnChkMem = (LPFN_CheckMem)((void *)TransFuncMem->szData);
-
-	smTransCommand.size = 0;
-
-	fnChkMem(TransFuncMem, &smTransCommand);
-
-	if(smWsockDataServer && smTransCommand.size > 0)
-		smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
-
-	return TRUE;
+	// Legacy protocol executed machine code received from the network.
+	// Remote code execution is intentionally disabled; use data-only checks instead.
+	(void)TransFuncMem;
+	return FALSE;
 }
 
 
@@ -7042,7 +7057,7 @@ int	SkillPlay_DivineLightning_Select(smCHAR *lpChar, int SkillPoint)
 	smWINSOCK *lpsmSendSock = 0;
 
 
-	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - SkillPlay_DivineLightning_Select ");
+	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - SkillPlay_DivineLightning_Select ");
 	quit = 1;
 	return TRUE;
 
@@ -8264,8 +8279,9 @@ int	Recv_MyShopItemList(TRANS_TRADEITEMS *lpTransTradeItems)
 	sMYSHOP MyShopItem;
 	smCHAR	*lpChar;
 
-
-	DecodeCompress(lpTransTradeItems->TradeBuff, (BYTE *)&MyShopItem);
+	if(!ValidateTradeCompressedPacket(lpTransTradeItems, sizeof(sMYSHOP))) return FALSE;
+	ZeroMemory(&MyShopItem, sizeof(MyShopItem));
+	DecodeCompress(lpTransTradeItems->TradeBuff, (BYTE *)&MyShopItem, sizeof(sMYSHOP));
 
 
 	cCharShop.RecvShopItem(&MyShopItem);
@@ -8314,8 +8330,8 @@ int	UpdateMyShopList(void *lpMyShop)
 	ZeroMemory(&TransTradeItems_MyShop, sizeof(TRANS_TRADEITEMS));
 
 
-	len = EecodeCompress((BYTE *)lpMyShopItem, TransTradeItems_MyShop.TradeBuff, sizeof(sMYSHOP));
-	if(len > TRANS_TRADE_BUFF_SIZE) return FALSE;
+	len = EecodeCompress((BYTE *)lpMyShopItem, TransTradeItems_MyShop.TradeBuff, sizeof(sMYSHOP), sizeof(TransTradeItems_MyShop.TradeBuff));
+	if(len <= 0 || len > TRANS_TRADE_BUFF_SIZE || len > (int)sizeof(TRANS_TRADEITEMS) - 48) return FALSE;
 
 	TransTradeItems_MyShop.code = OpCode::OPCODE_MYSHOP_ITEM;
 	TransTradeItems_MyShop.size = len + 48;
@@ -8349,8 +8365,8 @@ int SendOpenPersonalTrade(char *szTradeMsg, void *lpPersTrade)
 	ZeroMemory(&TransChatMessage, sizeof(TRANS_CHATMESSAGE));
 
 
-	len = EecodeCompress((BYTE *)lpMyShopItem, TransTradeItems_MyShop.TradeBuff, sizeof(sMYSHOP));
-	if(len > TRANS_TRADE_BUFF_SIZE) return FALSE;
+	len = EecodeCompress((BYTE *)lpMyShopItem, TransTradeItems_MyShop.TradeBuff, sizeof(sMYSHOP), sizeof(TransTradeItems_MyShop.TradeBuff));
+	if(len <= 0 || len > TRANS_TRADE_BUFF_SIZE || len > (int)sizeof(TRANS_TRADEITEMS) - 48) return FALSE;
 
 	TransTradeItems_MyShop.code = OpCode::OPCODE_MYSHOP_ITEM;
 	TransTradeItems_MyShop.size = len + 48;

@@ -1,4 +1,4 @@
-/home/gabriel/Área\ de\ Trabalho/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/ui/settings/UI.o: \
+/home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/ui/settings/UI.o: \
  SrcGame/src/systems/ui/settings/UI.cpp \
  SrcGame/src/systems/ui/settings/UI.h \
  SrcGame/src/systems/configuration/client/Settings.h \
@@ -22,9 +22,11 @@
  SrcGame/src/systems/rendering/legacy_3d/smType.h Shared/smPacket.h \
  Shared/global_def.h \
  SrcGame/src/systems/network/transport/legacy/smwsock.h \
+ Shared/network/transport/legacy/smwsock_legacy_client.h \
  SrcGame/src/systems/network/transport/legacy/NetType.h \
  SrcGame/src/systems/localization/legacy_catalog/language.h \
  SrcGame/src/systems/inventory/legacy/sinItem.h \
+ Shared/inventory/legacy/sinItem_legacy_client.h \
  SrcGame/src/systems/rendering/legacy_3d/smTexture.h \
  SrcGame/src/systems/rendering/2d/legacy/drawsub.h \
  SrcGame/src/systems/rendering/font/Font.h
@@ -52,9 +54,11 @@ SrcGame/src/systems/rendering/legacy_3d/smType.h:
 Shared/smPacket.h:
 Shared/global_def.h:
 SrcGame/src/systems/network/transport/legacy/smwsock.h:
+Shared/network/transport/legacy/smwsock_legacy_client.h:
 SrcGame/src/systems/network/transport/legacy/NetType.h:
 SrcGame/src/systems/localization/legacy_catalog/language.h:
 SrcGame/src/systems/inventory/legacy/sinItem.h:
+Shared/inventory/legacy/sinItem_legacy_client.h:
 SrcGame/src/systems/rendering/legacy_3d/smTexture.h:
 SrcGame/src/systems/rendering/2d/legacy/drawsub.h:
 SrcGame/src/systems/rendering/font/Font.h:

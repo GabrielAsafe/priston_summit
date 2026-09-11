@@ -1,4 +1,4 @@
-/home/gabriel/Área\ de\ Trabalho/SourceCode/build_mingw_server_i686/objects/SrcServer/src/systems/localization/messages/TextMessage.o: \
+/home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_server_i686/objects/SrcServer/src/systems/localization/messages/TextMessage.o: \
  SrcServer/src/systems/localization/messages/TextMessage.cpp \
  SrcServer/src/systems/localization/messages/TextMessage.h \
  SrcServer/src/systems/localization/config/language.h \

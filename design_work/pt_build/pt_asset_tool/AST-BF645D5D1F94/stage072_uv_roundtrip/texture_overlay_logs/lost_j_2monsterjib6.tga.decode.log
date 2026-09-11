@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=4f157df384799a8191486c8e7b362244de3bdd455bb1cd83c070e53ef124d5b9
-output_sha256=4f157df384799a8191486c8e7b362244de3bdd455bb1cd83c070e53ef124d5b9
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BF645D5D1F94/stage072_uv_roundtrip/texture_overlay_client/field/lost/lost_j_2monsterjib6.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

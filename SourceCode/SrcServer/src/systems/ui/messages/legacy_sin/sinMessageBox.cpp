@@ -1713,12 +1713,15 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 				cSkill.ReformSkillPointForm(pMasterSkill);
 
 
-				if(Skill4ButtonIndex > 13)
+				if(Skill4ButtonIndex > SIN_TIER5_SKILL_START)
+				{
+					sinSkill.SkillPoint5--;
+				}
+				else if(Skill4ButtonIndex > 13)
 				{
 					sinSkill.SkillPoint4--;
 				}
-
-				if(Skill4ButtonIndex <= 13)
+				else
 				{
 					sinSkill.SkillPoint--;
 				}

@@ -183,6 +183,16 @@ int	Open_SODConfig(char *szFileName, void *lphCoreMonster, int *SodTax, char *sz
 #define		JOB_CODE_ROYALKNIGHT		0x08000000		
 #define		JOB_CODE_ARCHMAGE			0x80000000		
 
+// Tier 5 specialization bit codes (canonical EU layout).
+#define		JOB_CODE_METALRAGE			0x00010000
+#define		JOB_CODE_WARLORD			0x00020000
+#define		JOB_CODE_BAYLOLUNT			0x00040000
+#define		JOB_CODE_ISKAR				0x00080000
+#define		JOB_CODE_VALIANT			0x10010000
+#define		JOB_CODE_QUEEN_VALHALLA		0x20020000
+#define		JOB_CODE_ARC_ANGEL			0x40040000
+#define		JOB_CODE_ELEMENTAL_MASTER		0x80080000
+
 
 
 #define		BROOD_CODE_TEMPSKRON			1
@@ -213,6 +223,7 @@ struct	SKILL_DATA_CODE
 };
 
 extern	JOB_DATA_CODE	JobDataBase[];
+extern	JOB_DATA_CODE	JobDataRank5[];
 extern	SKILL_DATA_CODE	SkillDataCode[];
 
 

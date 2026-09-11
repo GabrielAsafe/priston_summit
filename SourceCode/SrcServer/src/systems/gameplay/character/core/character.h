@@ -315,6 +315,12 @@ struct smCHARTOOL
 
 #define SKILL_PLAY_SOD_ITEM			0xD0
 
+// Reserved generic play IDs for Tier 5. Disabled until Rank5 authorization/handlers exist.
+#define SKILL_PLAY_T51              0xE1
+#define SKILL_PLAY_T52              0xE2
+#define SKILL_PLAY_T53              0xE3
+#define SKILL_PLAY_T54              0xE4
+
 #define SKILL_PLAY_SPEACIAL			0xF0
 #define	SKILL_PLAY_LOVELY_LIFE		0xF1
 
@@ -622,6 +628,7 @@ public:
 	int				PlayStunCount;
 	int				PlayStopCount;
 	short			PlayHolyMind[2];
+	short			PlayHeavenlyLight[2];
 	short			PlayHolyPower[2];
 	short			PlayPoison[2];
 	short			PlayHolyIncantation[2];

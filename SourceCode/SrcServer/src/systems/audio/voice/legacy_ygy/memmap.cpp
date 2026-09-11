@@ -51,7 +51,7 @@ VOID CMemMap::SetMemMapSize(int size)
 
 BOOL CMemMap::InitMemoryMap()
 {
-	fd2("ï¿½Þ¸ï¿½ ï¿½ï¿½ InitMemoryMap() 00");
+	fd2("¸Þ¸ð¸® ¸Ê InitMemoryMap() 00");
 
 	if((m_nMemMapSize > 0) && (m_szMemMapName[0] != 0))
 	{
@@ -66,7 +66,7 @@ BOOL CMemMap::InitMemoryMap()
 
 		if(m_hMemMap == NULL)
 		{
-			fd2("ï¿½Þ¸ï¿½ ï¿½ï¿½ InitMemoryMap() 11 ï¿½ï¿½ï¿½ï¿½");
+			fd2("¸Þ¸ð¸® ¸Ê InitMemoryMap() 11 ½ÇÆÐ");
 			return FALSE;
 		}
 
@@ -76,7 +76,7 @@ BOOL CMemMap::InitMemoryMap()
 		if(m_cMemMapPtr == NULL)
 		{
 
-			fd2("ï¿½Þ¸ï¿½ ï¿½ï¿½ InitMemoryMap() 44 FALSE");
+			fd2("¸Þ¸ð¸® ¸Ê InitMemoryMap() 44 FALSE");
 
 			return FALSE;
 		}
@@ -85,7 +85,7 @@ BOOL CMemMap::InitMemoryMap()
 		return FALSE;
 
 
-	fd2("ï¿½Þ¸ï¿½ ï¿½ï¿½ InitMemoryMap() 55 TRUE");
+	fd2("¸Þ¸ð¸® ¸Ê InitMemoryMap() 55 TRUE");
 	m_bIsMemMap = TRUE;
 
 	return TRUE;

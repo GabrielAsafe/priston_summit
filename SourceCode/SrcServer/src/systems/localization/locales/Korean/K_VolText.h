@@ -3,17 +3,17 @@
 
 #ifdef	_LANGUAGE_KOREAN
 
-char *parkTextVO = "ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ ï¿½É¼ï¿½";
-char *parkTextMIC = "ï¿½ï¿½ï¿½ï¿½Å©";
+char *parkTextVO = "À½¼º Ã¤ÆÃ ¿É¼Ç";
+char *parkTextMIC = "¸¶ÀÌÅ©";
 char *parkTextMicON = "On";
 char *parkTextMicOFF = "Off";
 
-char *parkTextVol = "ï¿½ï¿½ï¿½ï¿½ : ";
-char *parkTextVolLow = "ï¿½ï¿½";
-char *parkTextVolHigh = "ï¿½ï¿½";
+char *parkTextVol = "º¼·ý : ";
+char *parkTextVolLow = "Àú";
+char *parkTextVolHigh = "°í";
 
-char *parkTextVolErr1 = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©";
-char *parkTextVolErr2 = "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.";
+char *parkTextVolErr1 = "À©µµ¿ì ³»¿¡¼­ ¸¶ÀÌÅ©";
+char *parkTextVolErr2 = "º¼·ý Á¶Àý ÇØÁÖ¼¼¿ä.";
 
 
 #endif

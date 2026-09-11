@@ -1,7 +1,0 @@
-00:00.015  color_management | ERROR OpenColorIO Error: Error: Loading the OCIO profile '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' failed. This .ocio config  '/app/share/blender/5.1/datafiles/colormanagement/config.ocio' is version 2.5. This version of the OpenColorIO library (2.4.2) is not able to load that config version.
-                            | The minor version 5 is not supported for major version 2. Maximum minor version is 4.
-00:00.015  color_management | Using fallback mode for management
-00:02.654  blend            | Read blend: "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6F3E1877FE52/visual_geometry/visual_geometry_witness.blend"
-01:48.180  blend            | Saved session recovery to "/tmp/quit.blend"
-
-Blender quit

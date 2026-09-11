@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=7184f4094b9f626816d139aaa86953f166256c42a68d9f83ea7156a66b22347f
-output_sha256=d6221eea497c6860d9c1acdd7e87954deafb04422a82126b56275b598c508ecf
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4525F8E0DA9B/multilayer_texlink_roundtrip/texture_overlay_client/char/tmABCD/Ava_M_01.tga
-format=TGA_PRISTON_HEADER18_FULL18
-client_modified=False
-tga_decode_check=PASS

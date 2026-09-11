@@ -26,9 +26,10 @@ bool GameMasters::readFromDatabase()
 
 	if (db->Open())
 	{
-		if (db->Prepare("SELECT * FROM GameMasters WHERE active =?"))
+		if (db->Prepare("SELECT id,accountId,password,security,active FROM GameMasters WHERE active =?"))
 		{
-			db->BindInputParameter("True", 1, PARAMTYPE_String);
+			int active = 1;
+			db->BindInputParameter(&active, 1, PARAMTYPE_Integer);
 
 			if (db->Execute())
 			{

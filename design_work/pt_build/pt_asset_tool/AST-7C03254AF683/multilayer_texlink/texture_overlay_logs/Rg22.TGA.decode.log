@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=ea552d0055864e07ec15ddeb3db1e622074eb10c73589815299727be9d11cd1a
-output_sha256=c35fca4002c2a6a620ae3ff72d1b19001c1848907b59a7c5c3c7fb7709e3e95f
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-7C03254AF683/multilayer_texlink/texture_overlay_client/char/monster/BGuardian/Rg22.TGA
-format=TGA_PRISTON_HEADER18_FULL18
-client_modified=False
-tga_decode_check=PASS

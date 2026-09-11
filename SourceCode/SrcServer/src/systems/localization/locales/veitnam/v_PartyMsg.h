@@ -1,8 +1,8 @@
 
-char *srPartyMsg1 = "Chuï¿½ Party hiï¿½ï¿½n laï¿½ %s";
-char *srPartyMsg2 = "Party ï¿½aï¿½ ï¿½ï¿½ï¿½ï¿½c giaï¿½i taï¿½n";
-char *srPartyMsg3 = "%s vï¿½ï¿½a gia nhï¿½ï¿½p Party";
-char *srPartyMsg4 = "Khï¿½ng thï¿½ï¿½ gia nhï¿½ï¿½p Party";
-char *srPartyMsg5 = "%s ï¿½aï¿½ rï¿½ï¿½i khoï¿½i Party";
+char *srPartyMsg1 = "ChuÒ Party hiêòn laÌ %s";
+char *srPartyMsg2 = "Party ğaŞ ğıõòc giaÒi taìn";
+char *srPartyMsg3 = "%s vıÌa gia nhâòp Party";
+char *srPartyMsg4 = "Không thêÒ gia nhâòp Party";
+char *srPartyMsg5 = "%s ğaŞ rõÌi khoÒi Party";
 
 

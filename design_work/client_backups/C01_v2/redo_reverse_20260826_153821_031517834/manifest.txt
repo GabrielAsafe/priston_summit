@@ -1,3 +1,0 @@
-created_at=2026-08-26T15:38:21+01:00
-client_target=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC01.smd
-sha256=9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b

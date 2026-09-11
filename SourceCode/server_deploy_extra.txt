@@ -1,0 +1,7 @@
+Configs/hotuk.ini
+GameServer/Monster/T5_IceElemental.inf
+GameServer/Monster/T5_SummonTiger.inf
+char/monster/IceElemental
+char/monster/LLTiger
+char/monster/IceElemental/
+char/monster/LLTiger/

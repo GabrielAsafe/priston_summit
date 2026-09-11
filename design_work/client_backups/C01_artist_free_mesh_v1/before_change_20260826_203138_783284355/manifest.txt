@@ -1,5 +1,0 @@
-created_at=2026-08-26T20:31:38+01:00
-client_target=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC01.smd
-backup=/home/gabriel/Área de Trabalho/summit/design_work/client_backups/C01_artist_free_mesh_v1/before_change_20260826_203138_783284355/MfbC01.smd
-size=382625
-sha256=1695df612bf3b13f5a9a0a27b14c41dfbbb55a39704d9fa3739c6be2013ea030

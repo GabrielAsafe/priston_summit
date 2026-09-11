@@ -1,0 +1,9 @@
+=== ITEM LOAD BEGIN ===
+ItemPath=GameServer//OpenItem//
+SearchPattern=GameServer//OpenItem//*.txt
+
+FIND_FIRST_FILE_FAILED error=3
+
+=== ITEM LOAD SUMMARY ===
+DEFAULT_ITEM_COUNT=0
+=== ITEM LOAD END ===

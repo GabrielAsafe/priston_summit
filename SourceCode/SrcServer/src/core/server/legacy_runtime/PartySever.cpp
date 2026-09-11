@@ -564,7 +564,7 @@ int rsPLAYINFO::GetPartyExp(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo)
 							break;
 						}
 					}
-					if (lpPartyPlayers[cnt]->Bl_RNo > 0)
+					if (rsHasPCBangGameplayEntitlement(lpPartyPlayers[cnt]))
 						ExpUp += 20;
 
 					if (lpPartyPlayers[cnt]->dwTime_PrimeItem_PhenixPet > 0)

@@ -13,11 +13,11 @@ cHaPremiumItem  chaPremiumitem;
 
 
 int TelePort_FieldNum[TELEPORT_FIELDMAX][3] = {
-	// EXPLICANDO A PRIMEIRA LINHA, { 0, 20, 0 }, 0 = Posi��o na lista do Core M�gico, 20 = Field 20, 0 = Level para entrar.
+	// EXPLICANDO A PRIMEIRA LINHA, { 0, 20, 0 }, 0 = Posição na lista do Core Mágico, 20 = Field 20, 0 = Level para entrar.
 	{ 0, 20, 0 }, // Estrada dos Ventos
 	{ 1, 19, 0 }, // Vale Tranquilo
-	{ 2, 17, 0 }, // Floresta dos Esp�ritos
-	{ 3, 0, 0 }, // Mata das Ac�cias
+	{ 2, 17, 0 }, // Floresta dos Espíritos
+	{ 3, 0, 0 }, // Mata das Acácias
 	{ 4, 2, 0 }, // Jardim da Liberdade
 	{ 5, 4, 0 }, // Refugio dos Ancioes
 	{ 6, 5, 0 }, // Castelo dos Perdidos
@@ -28,44 +28,44 @@ int TelePort_FieldNum[TELEPORT_FIELDMAX][3] = {
 	{ 11, 12, 55 }, // Terra Proibida
 	{ 12, 25, 55 }, // Caverna das Abelhas
 	{ 13, 24, 55 }, // Caverna dos Cogumelos
-	{ 14, 26, 65 }, // Santu�rio Sombrio 
-	{ 15, 13, 40 }, // Calabou�o Antigo 1� Andar 
-	{ 16, 14, 50 }, // Calabou�o Antigo 2� Andar
-	{ 17, 15, 60 }, // Calabou�o Antigo 3� Andar
-	{ 18, 22, 70 }, // Templo Maldito 1� Andar 
-	{ 19, 23, 75 }, // Templo Maldito 2� Andar 
-	{ 20, 42, 80 }, // Templo Maldito 3� Andar
-	{ 21, 34, 70 }, // Lago da Gan�ncia
+	{ 14, 26, 65 }, // Santuário Sombrio 
+	{ 15, 13, 40 }, // Calabouço Antigo 1º Andar 
+	{ 16, 14, 50 }, // Calabouço Antigo 2º Andar
+	{ 17, 15, 60 }, // Calabouço Antigo 3º Andar
+	{ 18, 22, 70 }, // Templo Maldito 1º Andar 
+	{ 19, 23, 75 }, // Templo Maldito 2º Andar 
+	{ 20, 42, 80 }, // Templo Maldito 3º Andar
+	{ 21, 34, 70 }, // Lago da Ganância
 	{ 22, 27, 80 }, // Estrada de Ferro do Caos
-	{ 23, 28, 90 }, // Cora��o de Perum
+	{ 23, 28, 90 }, // Coração de Perum
 	{ 24, 29, 70 }, // Eura
 	{ 25, 31, 70 }, // Vale Gallubia
-	{ 26, 35, 90 }, // Santu�rio Congelado
+	{ 26, 35, 90 }, // Santuário Congelado
 	{ 27, 36,90},   // Covil de Kelvezu 
 	{ 28, 37, 95 }, // Ilha Perdida
 	{ 29, 38, 100 }, // Templo Perdido
 	{ 30, 40, 105 }, // Torre Sem Fim 1o Andar
-	{ 31, 41, 110 }, // Torre Sem Fim 2� Andar 
-	{ 32, 43, 121 }, // Torre Sem Fim 3� Andar
-	{ 33, 44, 125 }, // Mina de Gelo 1� Andar 
-	{ 34, 46, 132 }, // Laborat�rio Secreto
+	{ 31, 41, 110 }, // Torre Sem Fim 2º Andar 
+	{ 32, 43, 121 }, // Torre Sem Fim 3º Andar
+	{ 33, 44, 125 }, // Mina de Gelo 1º Andar 
+	{ 34, 46, 132 }, // Laboratório Secreto
 	{ 35, 47, 132 }, // Arma Secreta 
-	{ 36, 48, 132 }, // Abismo do Mar 1� Andar
-	{ 37, 49, 132 }, // Abismo do Mar 2� andar
+	{ 36, 48, 132 }, // Abismo do Mar 1º Andar
+	{ 37, 49, 132 }, // Abismo do Mar 2º andar
 	/*{ 38, 51, 132 }, // Ilha da Morte 3
 	{ 39, 52, 132 }, // Lar do Eragon
-	{ 42, 53, 132 }, // Floresta Misteriosa 3�
-	{ 41, 54, 132 }, // Floresta Misteriosa 2�
-	{ 40, 55, 132 }, // Floresta Misteriosa 1�
+	{ 42, 53, 132 }, // Floresta Misteriosa 3º
+	{ 41, 54, 132 }, // Floresta Misteriosa 2º
+	{ 40, 55, 132 }, // Floresta Misteriosa 1º
 	{ 43, 56, 132 }, // Atlantis
-	{ 44, 57, 132 }, // Calabou�o Perdido 1�
-	{ 45, 58, 132 }, // Calabou�o Perdido 2�
-	{ 46, 59, 132 }, // Calabou�o Perdido 3�
-	{ 47, 60, 132 }, // Templo Esquecido da Morte 1�
-	{ 48, 61, 132 }, // Templo Esquecido da Morte 2�
+	{ 44, 57, 132 }, // Calabouço Perdido 1º
+	{ 45, 58, 132 }, // Calabouço Perdido 2º
+	{ 46, 59, 132 }, // Calabouço Perdido 3º
+	{ 47, 60, 132 }, // Templo Esquecido da Morte 1º
+	{ 48, 61, 132 }, // Templo Esquecido da Morte 2º
 	{ 49, 62, 132 }, // Arena de Batalha
 	{ 50, 63, 132 }, // Nucleo de Ferro
-	{ 51, 64, 132 }  // Cora��o de Fogo*/
+	{ 51, 64, 132 }  // Coração de Fogo*/
 };
 
 char *haTeleport_Field[4] = {
@@ -207,7 +207,7 @@ void cHaPremiumItem::init()
 	haItemUseDelayFlag = false;
 }
 
-//Posi�ao Premiuns
+//Posição Premiuns
 int ItemUseLeftPosi[SINUPKEEPITEM_MAX][2] = {
 	{ 8,80 },{ 8,116 },{ 8,152 },{ 8,188 },{ 8,224 },
     { 48,80 },{ 48, 116 }, {48, 152}, {48, 188}, {48, 224},
@@ -2392,7 +2392,7 @@ int cHaPremiumItem::DrawText()
 	HDC	hdc = 0;
 
     int Line = 0;
-	SetFontTextColor( RGB(255, 255, 000)); // T�TULO DO ITEM PREMIUM, NOME...
+	SetFontTextColor( RGB(255, 255, 000)); // TÍTULO DO ITEM PREMIUM, NOME...
 	char strBuff[64], strBuff2[64] = { 0 };
 	memset(strBuff, 0, sizeof(strBuff));
 	int i, cnt = 0;

@@ -62,7 +62,7 @@ void ImeClass::GetCompositionString()
 	DWORD dwCompStrLen = ImmGetCompositionString(m_hIMC, GCS_COMPSTR, szCompStr, sizeof(szCompStr));
 
 	dwCompStrLen /= sizeof(CHAR);
-	szCompStr[dwCompStrLen] = TEXT('/0');
+	szCompStr[dwCompStrLen] = TEXT('\0');
 
 	this->m_szCOMPOSTR = szCompStr;
 }
@@ -75,7 +75,7 @@ void ImeClass::GetCompositionStringInfo()
 	memset(szCompStr, 0x00, 512);
 	DWORD dwCompStrLen = ImmGetCompositionString(m_hIMC, GCS_COMPATTR, szCompStr, sizeof(szCompStr));
 	dwCompStrLen /= sizeof(CHAR);
-	szCompStr[dwCompStrLen] = TEXT('/0');
+	szCompStr[dwCompStrLen] = TEXT('\0');
 	sz.Format("GCS_COMPATTR[%s]", szCompStr);
 
 
@@ -83,7 +83,7 @@ void ImeClass::GetCompositionStringInfo()
 	memset(szCompStr, 0x00, 512);
 	dwCompStrLen = ImmGetCompositionString(m_hIMC, GCS_COMPCLAUSE, szCompStr, sizeof(szCompStr));
 	dwCompStrLen /= sizeof(CHAR);
-	szCompStr[dwCompStrLen] = TEXT('/0');
+	szCompStr[dwCompStrLen] = TEXT('\0');
 	sz.Format("GCS_COMPCLAUSE[%s]", szCompStr);
 
 
@@ -91,7 +91,7 @@ void ImeClass::GetCompositionStringInfo()
 	memset(szCompStr, 0x00, 512);
 	dwCompStrLen = ImmGetCompositionString(m_hIMC, GCS_COMPREADATTR, szCompStr, sizeof(szCompStr));
 	dwCompStrLen /= sizeof(CHAR);
-	szCompStr[dwCompStrLen] = TEXT('/0');
+	szCompStr[dwCompStrLen] = TEXT('\0');
 	sz.Format("GCS_COMPREADATTR[%s]", szCompStr);
 
 
@@ -99,7 +99,7 @@ void ImeClass::GetCompositionStringInfo()
 	memset(szCompStr, 0x00, 512);
 	dwCompStrLen = ImmGetCompositionString(m_hIMC, GCS_COMPREADCLAUSE, szCompStr, sizeof(szCompStr));
 	dwCompStrLen /= sizeof(CHAR);
-	szCompStr[dwCompStrLen] = TEXT('/0');
+	szCompStr[dwCompStrLen] = TEXT('\0');
 	sz.Format("GCS_COMPREADCLAUSE[%s]", szCompStr);
 
 
@@ -107,7 +107,7 @@ void ImeClass::GetCompositionStringInfo()
 	memset(szCompStr, 0x00, 512);
 	dwCompStrLen = ImmGetCompositionString(m_hIMC, GCS_COMPREADSTR, szCompStr, sizeof(szCompStr));
 	dwCompStrLen /= sizeof(CHAR);
-	szCompStr[dwCompStrLen] = TEXT('/0');
+	szCompStr[dwCompStrLen] = TEXT('\0');
 	sz.Format("GCS_COMPREADSTR[%s]", szCompStr);
 	m_szCompReadStr = szCompStr;
 
@@ -116,7 +116,7 @@ void ImeClass::GetCompositionStringInfo()
 	memset(szCompStr, 0x00, 512);
 	dwCompStrLen = ImmGetCompositionString(m_hIMC, GCS_RESULTCLAUSE, szCompStr, sizeof(szCompStr));
 	dwCompStrLen /= sizeof(CHAR);
-	szCompStr[dwCompStrLen] = TEXT('/0');
+	szCompStr[dwCompStrLen] = TEXT('\0');
 	sz.Format("GCS_RESULTCLAUSE[%s]", szCompStr);
 
 
@@ -124,7 +124,7 @@ void ImeClass::GetCompositionStringInfo()
 	memset(szCompStr, 0x00, 512);
 	dwCompStrLen = ImmGetCompositionString(m_hIMC, GCS_RESULTREADCLAUSE, szCompStr, sizeof(szCompStr));
 	dwCompStrLen /= sizeof(CHAR);
-	szCompStr[dwCompStrLen] = TEXT('/0');
+	szCompStr[dwCompStrLen] = TEXT('\0');
 	sz.Format("GCS_RESULTREADCLAUSE[%s]", szCompStr);
 
 
@@ -132,7 +132,7 @@ void ImeClass::GetCompositionStringInfo()
 	memset(szCompStr, 0x00, 512);
 	dwCompStrLen = ImmGetCompositionString(m_hIMC, GCS_RESULTREADSTR, szCompStr, sizeof(szCompStr));
 	dwCompStrLen /= sizeof(CHAR);
-	szCompStr[dwCompStrLen] = TEXT('/0');
+	szCompStr[dwCompStrLen] = TEXT('\0');
 	sz.Format("GCS_RESULTREADSTR[%s]", szCompStr);
 	m_szResultReadStr = szCompStr;
 
@@ -141,7 +141,7 @@ void ImeClass::GetCompositionStringInfo()
 	memset(szCompStr, 0x00, 512);
 	dwCompStrLen = ImmGetCompositionString(m_hIMC, GCS_RESULTSTR, szCompStr, sizeof(szCompStr));
 	dwCompStrLen /= sizeof(CHAR);
-	szCompStr[dwCompStrLen] = TEXT('/0');
+	szCompStr[dwCompStrLen] = TEXT('\0');
 	sz.Format("GCS_RESULTSTR[%s]", szCompStr);
 
 
@@ -268,7 +268,7 @@ void ImeClass::GetImeInfo()
 		this->m_szConvMode = "A";
 		break;
 		case IME_CMODE_NATIVE:
-		this->m_szConvMode = "пїЅпїЅ";
+		this->m_szConvMode = "ПР";
 		break;
 		case (IME_CMODE_NATIVE | IME_CMODE_KATAKANA):
 		default:
@@ -276,9 +276,9 @@ void ImeClass::GetImeInfo()
 	}
 
 	if(dwConv & IME_CMODE_FULLSHAPE)
-		this->m_szHalfMode = "пїЅпїЅ";
+		this->m_szHalfMode = "оп";
 	else
-		this->m_szHalfMode = "пїЅпїЅ";
+		this->m_szHalfMode = "Ъв";
 
 }
 

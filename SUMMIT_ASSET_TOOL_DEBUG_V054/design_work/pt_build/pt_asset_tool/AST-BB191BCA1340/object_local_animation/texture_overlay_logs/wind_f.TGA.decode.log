@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=d49d455b72fc81489169e37f5bd0b2d065882af1ae2eb9f4fd27262c7b6b8a9e
-output_sha256=30d476b17e98622b9f635042440d6f8efbab7c66885bc0a508a06f0d4400b1bf
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/texture_overlay_client/field/castle/wind_f.TGA
-format=TGA_PRISTON_HEADER18_KEEP_00_16
-client_modified=False
-tga_decode_check=PASS

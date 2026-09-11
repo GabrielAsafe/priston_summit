@@ -1,4 +1,4 @@
-/home/gabriel/Área\ de\ Trabalho/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/audio/voice/legacy_client/Process.o: \
+/home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/audio/voice/legacy_client/Process.o: \
  SrcGame/src/systems/audio/voice/legacy_client/Process.cpp \
  SrcGame/src/systems/audio/voice/legacy_client/PacketStruct.h \
  SrcGame/src/systems/audio/voice/legacy_client/Packet.h \
@@ -6,9 +6,11 @@
  SrcGame/src/systems/audio/voice/legacy_client/Process.h \
  Shared/smPacket.h Shared/global_def.h \
  SrcGame/src/systems/network/transport/legacy/smwsock.h \
+ Shared/network/transport/legacy/smwsock_legacy_client.h \
  SrcGame/src/systems/network/transport/legacy/NetType.h \
  SrcGame/src/systems/localization/legacy_catalog/language.h \
  SrcGame/src/systems/inventory/legacy/sinItem.h \
+ Shared/inventory/legacy/sinItem_legacy_client.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
  Dependency/DirectX9/Include/d3d9.h \
  Dependency/DirectX9/Include/d3d9types.h \
@@ -33,9 +35,11 @@ SrcGame/src/systems/audio/voice/legacy_client/Process.h:
 Shared/smPacket.h:
 Shared/global_def.h:
 SrcGame/src/systems/network/transport/legacy/smwsock.h:
+Shared/network/transport/legacy/smwsock_legacy_client.h:
 SrcGame/src/systems/network/transport/legacy/NetType.h:
 SrcGame/src/systems/localization/legacy_catalog/language.h:
 SrcGame/src/systems/inventory/legacy/sinItem.h:
+Shared/inventory/legacy/sinItem_legacy_client.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
 Dependency/DirectX9/Include/d3d9.h:
 Dependency/DirectX9/Include/d3d9types.h:

@@ -487,7 +487,7 @@ int rsPLAYINFO::GetPartyExp(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo)
 	smTransCommand.WParam = 0;
 	smTransCommand.LParam = lpChar->dwObjectSerial;
 
-    //Mob zerado, acrescenta 1xp para n�o bugar a party
+    //Mob zerado, acrescenta 1xp para não bugar a party
 	int Exp = srGetTotalExp(lpChar->smMonsterInfo.GetExp, lpChar->smCharInfo.Level - PartyLevelAverage);
 	
 	if(Exp)

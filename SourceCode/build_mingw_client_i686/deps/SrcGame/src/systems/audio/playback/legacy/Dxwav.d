@@ -1,4 +1,4 @@
-/home/gabriel/Área\ de\ Trabalho/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/audio/playback/legacy/Dxwav.o: \
+/home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/audio/playback/legacy/Dxwav.o: \
  SrcGame/src/systems/audio/playback/legacy/Dxwav.cpp \
  SrcGame/src/systems/audio/playback/legacy/Dxwav.h \
  Dependency/DirectX9/Include/dsound.h \
@@ -21,7 +21,9 @@
  Dependency/DirectX9/Include/d3dx9anim.h \
  SrcGame/src/systems/configuration/client/Settings.h \
  modules/Helper/common.h SrcGame/src/systems/audio/playback/legacy/Wave.h \
+ Shared/audio/playback/Wave.h \
  SrcGame/src/systems/audio/playback/legacy/SHELL.H \
+ Shared/audio/playback/SHELL.H \
  SrcGame/src/systems/audio/playback/legacy/STREAM.H
 SrcGame/src/systems/audio/playback/legacy/Dxwav.h:
 Dependency/DirectX9/Include/dsound.h:
@@ -46,5 +48,7 @@ Dependency/DirectX9/Include/d3dx9anim.h:
 SrcGame/src/systems/configuration/client/Settings.h:
 modules/Helper/common.h:
 SrcGame/src/systems/audio/playback/legacy/Wave.h:
+Shared/audio/playback/Wave.h:
 SrcGame/src/systems/audio/playback/legacy/SHELL.H:
+Shared/audio/playback/SHELL.H:
 SrcGame/src/systems/audio/playback/legacy/STREAM.H:

@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=c0414c4ffa9c3da36937b534e73dddce1bdffc39378384caa231dea56ebb62f9
-output_sha256=c0414c4ffa9c3da36937b534e73dddce1bdffc39378384caa231dea56ebb62f9
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-C463BF4D047D/object_local_animation/texture_overlay_client/Effect/ObjAnimationData/PikeWind/sang.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

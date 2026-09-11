@@ -1,0 +1,2 @@
+path	compiler	kind	pre_adaptation_structured_sha256	adapted_structured_sha256	oracle_sha256	status
+SrcGame/src/systems/social/clan/cE_chip.cpp	MinGW (__MINGW32__/__MINGW64__)	overload SetFontTextColor(HDC,COLORREF) -> SetTextColor(HDC,COLORREF)	40891a55dae809ba59833a713e5687d5fe7c3ae3067e91bb2cbf7a7628696d8c	9737f1c8803fde0a473f6562d4718fd09168854f1439b0df76e1c8c5b8761896	94e42b374ae1746df3827019205bb7c9f7630e07368761c4a8b36bf0804e1f40	PASS

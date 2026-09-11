@@ -1,14 +1,14 @@
 
-char *parkTextVO = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½";
-char *parkTextMIC = "ï¿½ï¿½Ë·ï¿½";
-char *parkTextMicON = "ï¿½ï¿½";
-char *parkTextMicOFF = "ï¿½Ø±ï¿½";
+char *parkTextVO = "ÓïÒôÁÄÌìÑ¡Ïî";
+char *parkTextMIC = "Âó¿Ë·ç";
+char *parkTextMicON = "´ò¿ª";
+char *parkTextMicOFF = "¹Ø±Õ";
 
-char *parkTextVol = "ï¿½ï¿½ï¿½ï¿½ : ";
-char *parkTextVolLow = "ï¿½ï¿½";
-char *parkTextVolHigh = "ï¿½ï¿½";
+char *parkTextVol = "ÒôÁ¿ : ";
+char *parkTextVolLow = "µÍ";
+char *parkTextVolHigh = "¸ß";
 
-char *parkTextVolErr1 = "ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½Ğµï¿½ï¿½ï¿½Ë·ï¿½";
-char *parkTextVolErr2 = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.";
+char *parkTextVolErr1 = "²Ù×÷ÏµÍ³ÖĞµÄÂó¿Ë·ç";
+char *parkTextVolErr2 = "Çë¼ì²éÄãµÄÒôÁ¿.";
 
 

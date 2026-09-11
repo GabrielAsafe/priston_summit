@@ -1,8 +1,8 @@
 
-char *srPartyMsg1 =  "๏ฟฝ๏ฟฝะน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ Party ๏ฟฝ๏ฟฝ๏ฟฝ %s ";
-char *srPartyMsg2 =  "Party ๏ฟฝ๏ฟฝูกยก๏ฟฝ๏ฟฝิก ";
-char *srPartyMsg3 =  "%s ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ Party ";
-char *srPartyMsg4 =  "๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝรถ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ Party ๏ฟฝ๏ฟฝ ";
-char *srPartyMsg5 =  "%s ๏ฟฝ๏ฟฝ๏ฟฝอก๏ฟฝาก Party ";
+char *srPartyMsg1 =  "ขณะนี้ผู้นำ Party คือ %s ";
+char *srPartyMsg2 =  "Party ได้ถูกยกเลิก ";
+char *srPartyMsg3 =  "%s ได้เข้าร่วม Party ";
+char *srPartyMsg4 =  "ไม่สามารถเข้าร่วม Party ได้ ";
+char *srPartyMsg5 =  "%s ได้ออกจาก Party ";
 
 

@@ -13,7 +13,7 @@ int	rsAddInvenItem(rsPLAYINFO* lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwC
 int	rsSendMoneyToUser(rsPLAYINFO* lpPlayInfo, int Money);
 DWORD GetServerTime();
 
-//ENVIA AS INFORMA��ES DAS RECOMPENSAS DO PASSE AO CLIENTE
+//ENVIA AS INFORMAÇÕES DAS RECOMPENSAS DO PASSE AO CLIENTE
 void BattlePass::SendItemToClient(rsPLAYINFO* Player)
 {
 	if (SQL::GetInstance()->IsConnected())
@@ -56,7 +56,7 @@ void BattlePass::SendItemToClient(rsPLAYINFO* Player)
 	}
 }
 
-//ENVIA AS INFORMA��ES DE EXPERI�NCIA E NIVEL DO PASSE AO CLIENTE
+//ENVIA AS INFORMAÇÕES DE EXPERIÊNCIA E NIVEL DO PASSE AO CLIENTE
 void BattlePass::SendBPInfoToGame(rsPLAYINFO* Player)
 {
 	if (SQL::GetInstance()->IsConnected())
@@ -99,7 +99,7 @@ void BattlePass::SendBPInfoToGame(rsPLAYINFO* Player)
 }
 
 
-//RECEBE AS INFORMA��ES DO CLIENTE REFERENTE AO ITEM SELECIONADO PARA RESGATAR 
+//RECEBE AS INFORMAÇÕES DO CLIENTE REFERENTE AO ITEM SELECIONADO PARA RESGATAR 
 void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 {
 
@@ -1060,7 +1060,7 @@ void BattlePass::RecvItemToClient(rsPLAYINFO* Player, BP_RESGATE* Shop)
 	}
 }
 
-//ADICIONA EXPERI�NCIA NO PASSE DE BATALHA (USADO AO MATAR MONSTROS E OUTROS JOGADORES)
+//ADICIONA EXPERIÊNCIA NO PASSE DE BATALHA (USADO AO MATAR MONSTROS E OUTROS JOGADORES)
 void BattlePass::AddExpBattlePass(rsPLAYINFO* Player, int valor)
 {
 	if (SQL::GetInstance()->IsConnected())
@@ -1083,7 +1083,7 @@ void BattlePass::AddExpBattlePass(rsPLAYINFO* Player, int valor)
 			if (Userativo > 0)
 			{
 
-				// Calculo feito para saber se o usu�rio j� atingiu � experi�ncia necess�ria para evoluir o n�vel do passe de batalha
+				// Calculo feito para saber se o usuário já atingiu à experiência necessária para evoluir o nível do passe de batalha
 				UserBP_Exp = UserBP_Exp + valor;
 
 				if ((UserBP_Exp >= 999) && (UserBP_Level < 20))

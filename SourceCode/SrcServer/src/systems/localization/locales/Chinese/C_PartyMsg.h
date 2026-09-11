@@ -1,9 +1,9 @@
 
-char *srPartyMsg1 = "О©╫сЁО©╫О©╫О©╫О©╫О©╫О©╫нёО©╫О©╫б╤сЁО©╫н╙%s.";
-char *srPartyMsg2 = "О©╫О©╫О©╫О©╫О©╫и╒О©╫О©╫";
-char *srPartyMsg3 = "%sО©╫О©╫О©╫О©╫О©╫к╤О©╫О©╫О©╫";
-char *srPartyMsg4 = "О©╫ч╥О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫";
-char *srPartyMsg5 = "%sО©╫К©╙О©╫к╤О©╫О©╫О©╫";
+char *srPartyMsg1 = "╤сЁ╓ряюКхнё╛пб╤сЁ╓н╙%s.";
+char *srPartyMsg2 = "╤снИ╫Би╒ак";
+char *srPartyMsg3 = "%s╪схКак╤снИ";
+char *srPartyMsg4 = "нч╥╗╪схК╤снИ";
+char *srPartyMsg5 = "%sюК©╙ак╤снИ";
 
 
 

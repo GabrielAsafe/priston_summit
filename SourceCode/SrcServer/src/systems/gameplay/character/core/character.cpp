@@ -1226,6 +1226,8 @@ void smCHAR::Init()
 	ServerCode = 0;
 
 	PlayHolyMind[1] = 0;
+	PlayHeavenlyLight[0] = 0;
+	PlayHeavenlyLight[1] = 0;
 	PlayHolyPower[1] = 0;
 	PlayPoison[1] = 0;
 	DispPoison = 0;
@@ -6270,11 +6272,11 @@ int smCHAR::Main()
 
 
 						if (lpTargetChar->smCharInfo.Life[0] <= 0) {
-							//Verifica se o monstro usa a HP em blocos e se h� blocos existentes
+							//Verifica se o monstro usa a HP em blocos e se há blocos existentes
 							if (lpTargetChar->UseObject_VirtualLife && sObject_VirtualLife[0] > 0)
 							{
 								//Caso seja verdadeiro, atualizar a vida do monstro para 1% da total, assim criamos a folga
-								//necess�ria para o servidor atualizar para o pr�ximo bloco
+								//necessária para o servidor atualizar para o próximo bloco
 								lpTargetChar->smCharInfo.Life[0] = (lpTargetChar->smCharInfo.Life[1] * 1) / 100;
 							}
 							else
@@ -6746,6 +6748,9 @@ int smCHAR::Main()
 
 		if(PlayHolyMind[1] > 0)
 			PlayHolyMind[1]--;
+
+		if(PlayHeavenlyLight[1] > 0)
+			PlayHeavenlyLight[1]--;
 
 		if(PlayHolyPower[1] > 0)
 			PlayHolyPower[1]--;
@@ -15233,6 +15238,9 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 	if(PlayHolyMind[1] > 0)
 		TransAttackData.Power -= ((TransAttackData.Power*PlayHolyMind[0]) / 100);
 
+	if(PlayHeavenlyLight[1] > 0 && PlayHeavenlyLight[0] > 0)
+		TransAttackData.sRating[1] -= (short)((TransAttackData.sRating[1] * PlayHeavenlyLight[0]) / 100);
+
 	if(!lpPlayInfo) return FALSE;
 
 
@@ -15450,6 +15458,22 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 		}
 	}
 
+	if(lpPlayInfo->dwSkill_HardeningShield_Time)
+	{
+		int hardeningPoint = (int)lpPlayInfo->dwSkill_HardeningShield_Point;
+		if(lpPlayInfo->dwSkill_HardeningShield_Time > dwPlayServTime && hardeningPoint >= 0 && hardeningPoint < 10 &&
+		   lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_MECHANICIAN)
+		{
+			TransAttackData.Power -= (TransAttackData.Power * Hardening_Shield_DamageReduction[hardeningPoint]) / 100;
+			if(TransAttackData.Power < 0) return FALSE;
+		}
+		else
+		{
+			lpPlayInfo->dwSkill_HardeningShield_Time = 0;
+			lpPlayInfo->dwSkill_HardeningShield_Point = 0;
+		}
+	}
+
 	if(lpPlayInfo->dwSkill_Compulsion_Time)
 	{
 		if(lpPlayInfo->dwSkill_Compulsion_Time > dwPlayServTime)
@@ -15528,6 +15552,23 @@ int smCHAR::SendTransAttack(smCHAR *lpChar, smWINSOCK *lpsmsock, int AttackCode,
 		}
 	}
 
+
+
+	if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ATALANTA)
+	{
+		int goldenPoint = (int)lpPlayInfo->bSkillPoint[17];
+		if(goldenPoint >= 1 && goldenPoint <= 10 && (rand() % 100) < Atalanta_T5_GoldenApple_Evade[goldenPoint - 1])
+		{
+			smTransCommand.code = OpCode::OPCODE_SUCCESS_EVATION;
+			smTransCommand.size = sizeof(smTRANS_COMMAND);
+			smTransCommand.WParam = 0;
+			smTransCommand.LParam = SKILL_PLAY_T52;
+			smTransCommand.SParam = dwObjectSerial;
+			smTransCommand.EParam = 0;
+			lpPlayInfo->lpsmSock->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
+			return FALSE;
+		}
+	}
 
 
 	if(lpPlayInfo->dwSkill_HallOfValhalla_Time)

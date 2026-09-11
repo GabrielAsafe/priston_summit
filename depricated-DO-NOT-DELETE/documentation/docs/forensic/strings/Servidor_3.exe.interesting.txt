@@ -1,7 +1,0 @@
-[NETWORK STRINGS]
-295:<?xml version="1.0" encoding="UTF-8" standalone="yes"?><assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0"><assemblyIdentity version="1.0.0.0" processorArchitecture="X86" name="Microsoft.Windows.XpStyles" type="win32" /><description>XP Styles by Le Van Thuong</description><dependency><dependentAssembly><assemblyIdentity type="win32" name="Microsoft.Windows.Common-Controls" version="6.0.0.0" processorArchitecture="X86" publicKeyToken="6595b64144ccf1df" language="*" /></dependentAssembly></dependency></assembly>
-
-[UTF16 NETWORK STRINGS]
-1:VS_VERSION_INFO
-18:FileVersion
-20:ProductVersion

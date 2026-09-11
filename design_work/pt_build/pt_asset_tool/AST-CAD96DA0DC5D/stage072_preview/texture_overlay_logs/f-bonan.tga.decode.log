@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=1e7ee0999268525a1d438dff342925f0bf24787e915e18bf5a22154574554e8e
-output_sha256=819eff57316093f0846ad9b4566915d63bfd7828da803425bfaee3d70a6e9296
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-CAD96DA0DC5D/stage072_preview/texture_overlay_client/field/Sod/f-bonan.tga
-format=TGA_PRISTON_HEADER18_FULL18
-client_modified=False
-tga_decode_check=PASS

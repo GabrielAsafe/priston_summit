@@ -1,64 +1,64 @@
 #include "systems/localization/legacy/ho_text/HoTextFile.h"
 
-char *HoTextLoginMessage[18] =  {"Kï¿½ï¿½t nï¿½ï¿½i ï¿½ang ï¿½ï¿½ï¿½ï¿½c thiï¿½ï¿½t lï¿½ï¿½p....",
-				"Khï¿½ng thï¿½ï¿½ kï¿½ï¿½t nï¿½ï¿½i vï¿½ï¿½i maï¿½y chuï¿½ ",
-				"     Vui loï¿½ng nhï¿½ï¿½p laï¿½i ID    ",
-				" Vui loï¿½ng nhï¿½ï¿½p laï¿½i mï¿½ï¿½t khï¿½ï¿½u  ",
-				"ID naï¿½y ï¿½aï¿½ biï¿½ khoï¿½a, kiï¿½ï¿½m tra ï¿½ï¿½ Website",
-				"  ID naï¿½y hiï¿½ï¿½n ï¿½ang biï¿½ sï¿½ï¿½ duï¿½ng  ",
-				"  Phiï¿½n baï¿½n khï¿½ng phuï¿½ hï¿½ï¿½p   ",
-				"      Maï¿½y chuï¿½ biï¿½ ï¿½ï¿½ï¿½y        ",
-				"    Mï¿½ï¿½t kï¿½ï¿½t nï¿½ï¿½i vï¿½ï¿½i maï¿½y chuï¿½     ",
-				"   Thï¿½ï¿½i gian cho pheï¿½p ï¿½aï¿½ hï¿½ï¿½t  ",
-				"   Thï¿½ï¿½i gian cho pheï¿½p ï¿½aï¿½ hï¿½ï¿½t  ",
-				" ï¿½ang xoï¿½a taï¿½i khoaï¿½n trï¿½n maï¿½y chuï¿½ ",
-				 "Maï¿½y chuï¿½ quaï¿½ taï¿½i!!!, vui loï¿½ng thï¿½ï¿½ laï¿½i sau.",
-				" vui loï¿½ng thï¿½ï¿½ laï¿½i sau... ",
+char *HoTextLoginMessage[18] =  {"Kêìt nôìi ğang ğıõòc thiêìt lâòp....",
+				"Không thêÒ kêìt nôìi võìi maìy chuÒ ",
+				"     Vui loÌng nhâòp laòi ID    ",
+				" Vui loÌng nhâòp laòi mâòt khâÒu  ",
+				"ID naÌy ğaŞ biò khoìa, kiêÒm tra õÒ Website",
+				"  ID naÌy hiêòn ğang biò sıÒ duòng  ",
+				"  Phiên baÒn không phuÌ hõòp   ",
+				"      Maìy chuÒ biò ğâÌy        ",
+				"    Mâìt kêìt nôìi võìi maìy chuÒ     ",
+				"   ThõÌi gian cho pheìp ğaŞ hêìt  ",
+				"   ThõÌi gian cho pheìp ğaŞ hêìt  ",
+				" Ğang xoìa taÌi khoaÒn trên maìy chuÒ ",
+				 "Maìy chuÒ quaì taÒi!!!, vui loÌng thıÒ laòi sau.",
+				" vui loÌng thıÒ laòi sau... ",
 				"Incorrect password over 3 times, regarding PT webpage.",
 				"You can't use the characters in password.",
 				};
 
-char *HoTextSelectMessage[12] = {"Baï¿½n coï¿½ muï¿½ï¿½n xoï¿½a?",
-				  "Tiï¿½ï¿½p tuï¿½c vï¿½ï¿½i nhï¿½n vï¿½ï¿½t naï¿½y?",
-				  "Vï¿½ï¿½ï¿½t quaï¿½ giï¿½ï¿½i haï¿½n sï¿½ï¿½ nhï¿½n vï¿½ï¿½t cho pheï¿½p.",
-				  "ï¿½ï¿½ï¿½ng yï¿½ taï¿½o nhï¿½n vï¿½ï¿½t naï¿½y?", 
-				  "Haï¿½y ï¿½iï¿½ï¿½n tï¿½n nhï¿½n vï¿½ï¿½t", 
-				  "Tï¿½n nhï¿½n vï¿½ï¿½t ï¿½aï¿½ tï¿½ï¿½n taï¿½i", 
-				  "  Choï¿½n mï¿½ï¿½t nhï¿½n vï¿½ï¿½t   ", 
-				  "    Choï¿½n mï¿½ï¿½t bï¿½ï¿½ laï¿½c     ", 
-				  "    Choï¿½n mï¿½ï¿½t class     ", 
-				  "    Choï¿½n khuï¿½n mï¿½ï¿½t     ", 
-				  "Khï¿½ng thï¿½ï¿½ xoï¿½a nhï¿½n vï¿½ï¿½t laï¿½ chuï¿½ mï¿½ï¿½t clan", 
-				  "Khï¿½ng thï¿½ï¿½ xaï¿½c ï¿½iï¿½nh thï¿½ng tin clan" 
+char *HoTextSelectMessage[12] = {"Baòn coì muôìn xoìa?",
+				  "Tiêìp tuòc võìi nhân vâòt naÌy?",
+				  "Vıõòt quaì giõìi haòn sôì nhân vâòt cho pheìp.",
+				  "ĞôÌng yì taòo nhân vâòt naÌy?", //3
+				  "HaŞy ğiêÌn tên nhân vâòt", //4
+				  "Tên nhân vâòt ğaŞ tôÌn taòi", //5
+				  "  Choòn môòt nhân vâòt   ", //6
+				  "    Choòn môòt bôò laòc     ", //7
+				  "    Choòn môòt class     ", //8
+				  "    Choòn khuôn mãòt     ", //9
+				  "Không thêÒ xoìa nhân vâòt laÌ chuÒ môòt clan", //10
+				  "Không thêÒ xaìc ğiònh thông tin clan" //11
 				};
 
-char *HoTextTempscronInfo[5] = {" Tempskron laï¿½ mï¿½ï¿½t bï¿½ï¿½ laï¿½c maï¿½ taï¿½o hoï¿½a ï¿½aï¿½ ban cho hoï¿½ nhï¿½ï¿½ng khaï¿½ nï¿½ng kyï¿½ thuï¿½ï¿½t tinh xaï¿½o ï¿½ï¿½ï¿½ï¿½c cho laï¿½ bï¿½ï¿½c nhï¿½ï¿½t ï¿½aï¿½i luï¿½c Priston, vaï¿½ cuï¿½ng chiï¿½nh bï¿½ï¿½ laï¿½c naï¿½y ï¿½aï¿½ vï¿½ï¿½n duï¿½ng nhï¿½ï¿½ng tinh hoa cuï¿½a miï¿½nh cho viï¿½ï¿½c chï¿½ï¿½ taï¿½o nhï¿½ï¿½ng saï¿½n phï¿½ï¿½m kyï¿½ thuï¿½ï¿½t cao nï¿½ï¿½i tiï¿½ï¿½ng thiï¿½n haï¿½.",
+char *HoTextTempscronInfo[5] = {" Tempskron laÌ môòt bôò laòc maÌ taòo hoìa ğaŞ ban cho hoò nhıŞng khaÒ nãng kyŞ thuâòt tinh xaÒo ğıõòc cho laÌ bâòc nhâìt ğaòi luòc Priston, vaÌ cuŞng chiình bôò laòc naÌy ğaŞ vâòn duòng nhıŞng tinh hoa cuÒa miÌnh cho viêòc chêì taòo nhıŞng saÒn phâÒm kyŞ thuâòt cao nôÒi tiêìng thiên haò.",
 								
-                                " Rï¿½ï¿½t nï¿½ï¿½i tiï¿½ï¿½ng vï¿½ï¿½i ngaï¿½nh cï¿½ng nghiï¿½ï¿½p chï¿½ï¿½ taï¿½o maï¿½y, hoï¿½ coï¿½ nhï¿½ï¿½ng tï¿½ï¿½c ngï¿½ï¿½ï¿½i vï¿½ï¿½i nhï¿½ï¿½ng khaï¿½ nï¿½ng khaï¿½c nhau.",
-								" Fighter ï¿½ï¿½ï¿½ï¿½c sinh ra ï¿½ï¿½ï¿½ quyï¿½ï¿½t chiï¿½ï¿½n quyï¿½ï¿½t thï¿½ï¿½ng, vaï¿½ trï¿½ng hoï¿½ thï¿½ï¿½t duï¿½ng maï¿½nh vï¿½ï¿½i cï¿½y riï¿½u trï¿½n tay.",
-								" Pikeman, hoï¿½ sï¿½ï¿½ duï¿½ng tï¿½ï¿½m nhiï¿½n rï¿½ï¿½ng lï¿½ï¿½n vaï¿½ nhï¿½ï¿½ng vuï¿½ khiï¿½ coï¿½ ï¿½ï¿½ï¿½ sï¿½ï¿½c xaï¿½o ï¿½ï¿½ï¿½n chï¿½ï¿½t ngï¿½ï¿½ï¿½i.",
-								" Bï¿½ï¿½n xa vaï¿½ xeï¿½ gioï¿½, hoï¿½ laï¿½ nhï¿½ï¿½ng xaï¿½ thuï¿½ chuyï¿½n nghiï¿½ï¿½p trong caï¿½c loaï¿½i cung noï¿½."};
+                                " Râìt nôÒi tiêìng võìi ngaÌnh công nghiêòp chêì taòo maìy, hoò coì nhıŞng tôòc ngıõÌi võìi nhıŞng khaÒ nãng khaìc nhau.",
+								" Fighter ğıõòc sinh ra ğêÒ quyêìt chiêìn quyêìt thãìng, vaÌ trông hoò thâòt duŞng maŞnh võìi cây riÌu trên tay.",
+								" Pikeman, hoò sıÒ duòng tâÌm nhiÌn rôòng lõìn vaÌ nhıŞng vuŞ khiì coì ğôò sãìc xaÒo ğêìn chêìt ngıõÌi.",
+								" Bãìn xa vaÌ xeì gioì, hoò laÌ nhıŞng xaò thuÒ chuyên nghiêòp trong caìc loaòi cung noÒ."};
 
 
 
 char *HoTextMoryon = "Morion";
 char *HoTextMoryonInfo[5] = {
-	"Morions laï¿½ giï¿½ï¿½ng ngï¿½ï¿½ï¿½i sï¿½ï¿½ng ï¿½ï¿½ phiï¿½a Bï¿½ï¿½c luï¿½c ï¿½iï¿½a Priston. Ngï¿½ï¿½ï¿½i Morions tï¿½i luyï¿½ï¿½n caï¿½ kiï¿½ï¿½m thuï¿½ï¿½t vaï¿½ pheï¿½p thuï¿½ï¿½t nhï¿½ng sï¿½ï¿½ trï¿½ï¿½ï¿½ng chiï¿½nh vï¿½ï¿½n laï¿½ nhï¿½ï¿½ng cuï¿½ luyï¿½ï¿½n chï¿½ï¿½ï¿½ng xuï¿½ï¿½t quyï¿½ nhï¿½ï¿½p thï¿½ï¿½n maï¿½ chuï¿½ng ta goï¿½i ï¿½oï¿½ laï¿½ ma thuï¿½ï¿½t. Vï¿½ï¿½i sï¿½ï¿½ kï¿½ï¿½t hï¿½ï¿½p haï¿½i hoï¿½a cuï¿½a tï¿½n giaï¿½o vaï¿½ quyï¿½ï¿½n nï¿½ng hoï¿½ ï¿½aï¿½ xï¿½y dï¿½ï¿½ng sï¿½ï¿½ phï¿½ï¿½n thiï¿½nh vaï¿½ sï¿½ï¿½c maï¿½nh tï¿½m linh ï¿½aï¿½ng sï¿½ï¿½.",
+	"Morions laÌ giôìng ngıõÌi sôìng õÒ phiìa Bãìc luòc ğiòa Priston. NgıõÌi Morions tôi luyêòn caÒ kiêìm thuâòt vaÌ pheìp thuâòt nhıng sõÒ trıõÌng chiình vâŞn laÌ nhıŞng cuì luyêòn chıõÒng xuâìt quyÒ nhâòp thâÌn maÌ chuìng ta goòi ğoì laÌ ma thuâòt. Võìi sıò kêìt hõòp haÌi hoÌa cuÒa tôn giaìo vaÌ quyêÌn nãng hoò ğaŞ xây dıòng sıò phôÌn thiònh vaÌ sıìc maònh tâm linh ğaìng sõò.",
 
-    "Sï¿½ï¿½ hï¿½ï¿½u bï¿½ï¿½ giaï¿½p oai phong vaï¿½ thanh gï¿½ï¿½m ï¿½ï¿½ï¿½ sï¿½ï¿½, Knight laï¿½ tï¿½ï¿½c ngï¿½ï¿½ï¿½i haï¿½ng ï¿½ï¿½ï¿½u trong caï¿½c chiï¿½ï¿½n binh ï¿½ï¿½ Morion. Hoï¿½ sï¿½ï¿½ duï¿½ng sï¿½ï¿½c maï¿½nh tï¿½m linh ï¿½ï¿½ï¿½ chiï¿½ï¿½n thï¿½ï¿½ng keï¿½ thuï¿½.",
-	"Atlantas laï¿½ mï¿½ï¿½t kiï¿½ï¿½u chiï¿½ï¿½n binh khaï¿½c, hoï¿½ thï¿½ï¿½ï¿½ng duï¿½ng giaï¿½o maï¿½c laï¿½m vuï¿½ khiï¿½. Sï¿½ï¿½c maï¿½nh cuï¿½a hoï¿½ chiï¿½ thï¿½ï¿½c sï¿½ï¿½ nï¿½ï¿½ trï¿½ï¿½i khi hoï¿½ duï¿½ng nhï¿½ï¿½ng thï¿½ï¿½ vuï¿½ khiï¿½ naï¿½y. Vï¿½ï¿½i khaï¿½ nï¿½ng tï¿½ï¿½n cï¿½ng tï¿½ï¿½ xa, sï¿½ï¿½ kï¿½ï¿½t hï¿½ï¿½p giï¿½ï¿½a phaï¿½p thuï¿½ï¿½t vaï¿½ sï¿½ï¿½c maï¿½nh trong tï¿½ï¿½n cï¿½ng laï¿½ nï¿½ï¿½i bï¿½ï¿½t cuï¿½a hoï¿½.",
-	"Priestesses laï¿½ nhï¿½ï¿½ng ngï¿½ï¿½ï¿½i tu haï¿½nh vaï¿½ hoï¿½ duï¿½ng nï¿½ng lï¿½ï¿½c cuï¿½a thï¿½ï¿½n linh ï¿½ï¿½ï¿½ chï¿½ï¿½ng laï¿½i keï¿½ thuï¿½ vaï¿½ chï¿½ï¿½a thï¿½ï¿½ng cho ï¿½ï¿½ï¿½ng ï¿½ï¿½ï¿½i. Khaï¿½ nï¿½ng chï¿½ï¿½a bï¿½ï¿½nh cï¿½ï¿½u ngï¿½ï¿½ï¿½i cuï¿½a hoï¿½ thï¿½ï¿½t hï¿½ï¿½u iï¿½ch buï¿½ laï¿½i cho sï¿½ï¿½c khoï¿½e vaï¿½ sï¿½ï¿½c tï¿½ï¿½n cï¿½ng haï¿½n chï¿½ï¿½. ",
-	"Magicians hï¿½ï¿½i tuï¿½ tï¿½ï¿½t caï¿½ sï¿½ï¿½c maï¿½nh cuï¿½a ma lï¿½ï¿½c ï¿½ï¿½ï¿½ laï¿½m tï¿½ï¿½ng tï¿½ï¿½i ï¿½a khaï¿½ nï¿½ng chiï¿½ï¿½n ï¿½ï¿½ï¿½u. Vï¿½ï¿½i sï¿½ï¿½ thï¿½ng minh cuï¿½a thiï¿½n phuï¿½, Magician laï¿½ tï¿½ï¿½c ngï¿½ï¿½ï¿½i coï¿½ khaï¿½ nï¿½ng hoï¿½c rï¿½ï¿½t nhiï¿½ï¿½u pheï¿½p thuï¿½ï¿½t.",
+    "SõÒ hıŞu bôò giaìp oai phong vaÌ thanh gıõm ğôÌ sôò, Knight laÌ tôòc ngıõÌi haÌng ğâÌu trong caìc chiêìn binh õÒ Morion. Hoò sıÒ duòng sıìc maònh tâm linh ğêÒ chiêìn thãìng keÒ thuÌ.",
+	"Atlantas laÌ môòt kiêÒu chiêìn binh khaìc, hoò thıõÌng duÌng giaìo maìc laÌm vuŞ khiì. Sıìc maònh cuÒa hoò chiÒ thıòc sıò nôÒ trôòi khi hoò duÌng nhıŞng thıì vuŞ khiì naÌy. Võìi khaÒ nãng tâìn công tıÌ xa, sıò kêìt hõòp giıŞa phaìp thuâòt vaÌ sıìc maònh trong tâìn công laÌ nôÒi bâòt cuÒa hoò.",
+	"Priestesses laÌ nhıŞng ngıõÌi tu haÌnh vaÌ hoò duÌng nãng lıòc cuÒa thâÌn linh ğêÒ chôìng laòi keÒ thuÌ vaÌ chıŞa thıõng cho ğôÌng ğôòi. KhaÒ nãng chıŞa bêònh cıìu ngıõÌi cuÒa hoò thâòt hıŞu iìch buÌ laòi cho sıìc khoÒe vaÌ sıìc tâìn công haòn chêì. ",
+	"Magicians hôòi tuò tâìt caÒ sıìc maònh cuÒa ma lıòc ğêÒ laÌm tãòng tôìi ğa khaÒ nãng chiêìn ğâìu. Võìi sıò thông minh cuÒa thiên phuì, Magician laÌ tôòc ngıõÌi coì khaÒ nãng hoòc râìt nhiêÌu pheìp thuâòt.",
 };
 
 
-char *HoText_PartyMessage = "yï¿½u cï¿½ï¿½u Party ï¿½aï¿½ ï¿½ï¿½ï¿½ï¿½c gï¿½ï¿½i";
+char *HoText_PartyMessage = "yêu câÌu Party ğaŞ ğıõòc gıÒi";
 
 char *HoTextTempskron = "Tempskron";
 
-char *HoTextFriendNear = "[Mï¿½ï¿½i ï¿½ï¿½y]";
-char *HoTextFriendList = "[Baï¿½n beï¿½] %d/%d";
-char *HoTextFriendRefuse = "[Boï¿½ qua] %d/%d";
+char *HoTextFriendNear = "[Mõìi ğây]";
+char *HoTextFriendList = "[Baòn beÌ] %d/%d";
+char *HoTextFriendRefuse = "[BoÒ qua] %d/%d";
 
 
 

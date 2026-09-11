@@ -1,1 +1,0 @@
-<notice> Seja Bem Vindo ao Summit Tale

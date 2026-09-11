@@ -21,17 +21,17 @@ char *HoTextLoginMessage[18] = {
 };
 
 //char *HoTextLoginMessage[12] = {
-//	"Estabelecendo conex�o...",
-//	"N�o foi poss�vel conectar-se ao servidor.",
-//	"     Usu�rio e/ou senha incorretos.    ",
-//	"ID bloqueada, visite nosso site para mais informa��es.",
-//	"IP bloqueado, visite nosso site para mais informa��es.",
-//	"PC bloqueado, visite nosso site para mais informa��es.",
-//	"  Esta ID j� est� conectada.  ",
-//	"  Vers�o incompat�vel.   ",
-//	"     O servidor est� cheio.      ",
-//	"Conex�o perdida com o servidor.",
-//	"Servidor em manuten��o, por favor, tente mais tarde.",
+//	"Estabelecendo conexão...",
+//	"Não foi possível conectar-se ao servidor.",
+//	"     Usuário e/ou senha incorretos.    ",
+//	"ID bloqueada, visite nosso site para mais informações.",
+//	"IP bloqueado, visite nosso site para mais informações.",
+//	"PC bloqueado, visite nosso site para mais informações.",
+//	"  Esta ID já está conectada.  ",
+//	"  Versão incompatível.   ",
+//	"     O servidor está cheio.      ",
+//	"Conexão perdida com o servidor.",
+//	"Servidor em manutenção, por favor, tente mais tarde.",
 //};
 
 char *HoTextSelectMessage[12] = { "Voc\352 deseja deletar?",

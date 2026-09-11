@@ -210,7 +210,7 @@ void cITEM::Draw()
 	memset(&TempBuff, 0, sizeof(TempBuff));
 	for (i = 0; i < len; i++)
 	{
-		if (szInfoBuff[i] == '/r')
+		if (szInfoBuff[i] == '/' && i + 1 < len && szInfoBuff[i + 1] == 'r')
 		{
 			memcpy(TempBuff, szInfoBuff, i);
 			break;
@@ -866,7 +866,7 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 		ItemInfoCol++;
 	}
 	trajeM = 0;
-	//descri��o dos itens
+	//descrição dos itens
 	if (pItem->CODE == (sinCA1 | sin31) || pItem->CODE == (sinCA1 | sin35) || pItem->CODE == (sinCA1 | sin43) ||
 		pItem->CODE == (sinCA1 | sin54) || pItem->CODE == (sinCA1 | sin66) || pItem->CODE == (sinCA1 | sin67) ||
 		pItem->CODE == (sinCA1 | sin85) || pItem->CODE == (sinCA1 | sin86) || pItem->CODE == (sinCA1 | sin89) ||

@@ -1,2 +1,0 @@
-database_name|foreign_key_name|child_schema|child_table|child_column|parent_schema|parent_table|parent_column
--------------|----------------|------------|-----------|------------|-------------|------------|-------------

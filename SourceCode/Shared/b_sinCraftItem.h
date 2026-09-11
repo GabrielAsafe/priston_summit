@@ -10,7 +10,7 @@
 #define   SIN_ADD_DAMAGE_MIN		0x00000080	//Poder de Ataque Min.
 #define   SIN_ADD_DAMAGE_MAX		0x00000100	//Poder de Ataque M?.
 #define   SIN_ADD_ATTACK_SPEED		0x00000200	//Vel. de Ataque
-#define   SIN_ADD_ABSORB			0x00000400	//Absorï¿½ï¿½o
+#define   SIN_ADD_ABSORB			0x00000400	//Absorção
 #define   SIN_ADD_DEFENCE			0x00000800	//Taxa de Defesa
 #define   SIN_ADD_BLOCK_RATE		0x00001000	//Bloqueio
 #define   SIN_ADD_MOVE_SPEED		0x00002000	//Velocidade
@@ -241,7 +241,7 @@
 "Taxa de Ataque +60/rPoder de Ataque Min. +6/rPoder de Ataque Max. +6/rHP +20/r"},
 
 
-// ?c)ï¿½ï¿½ ----------------------------------------------------------------------------------------------------
+// ?c)¿Ê ----------------------------------------------------------------------------------------------------
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -426,7 +426,7 @@
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0},
 "Resist\352ncia Org\342nica +5/rResist\352ncia a Veneno +5/rResist\352ncia a Gelo +5/rResist\352ncia a Fogo +5/rResist\352ncia a Raio +5/r"},
 
-// ï¿½ï¿½ï¿½ï¿½ ----------------------------------------------------------------------------------------------------
+// ¹æÆÐ ----------------------------------------------------------------------------------------------------
 
 {{sinDS1,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0,0},
@@ -597,7 +597,7 @@
 "Resist\352ncia Org\342nica +5/rResist\352ncia a Veneno +5/rResist\352ncia a Gelo +5/rResist\352ncia a Fogo +5/rResist\352ncia a Raio +5/r"},
 
 
-// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -----------------------------------------------------------------------------------------------
+// ¿Àºê ºñÁî -----------------------------------------------------------------------------------------------
 
 {{sinOM1,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0,0},

@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=a57762d6fb68f9bac0f7574b10b593d24dbc8d38148af1ab0c246b07d62781e5
-output_sha256=f6e1627aaed14a57803fbac1e4098ff2fb49836ad79b27f819df4b5cbbd15411
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-CAD96DA0DC5D/stage072_preview/texture_overlay_client/field/Sod/m-nan.tga
-format=TGA_PRISTON_HEADER18_FULL18
-client_modified=False
-tga_decode_check=PASS

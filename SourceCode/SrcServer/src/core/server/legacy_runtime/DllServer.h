@@ -52,6 +52,7 @@ extern		int UseDLL_Code;
 
 
 int	bSql_LogOn(char *lpszPID, char *lpszPWD, char *lpszIP, char *lpszGPCode, char *lpszDisuseDay, char *lpszUsePeriod, char *szGuid, char *lpszPCRNo, char *lpszGubunCode);
+int	bSql_GetLocalPCBangGameplayEntitlement(const char *userID);
 int	bSql_Logout(const char *lpszPID, const char *lpszCID, char *lpszIP, char *lpszGPCode, time_t DisuseDay, int UsePeriod, char *szGuid, int PCRNo);
 int	bSql_EventLogon(rsPLAYINFO *lpPlayInfo);
 int	bSql_EventLogOut(rsPLAYINFO *lpPlayInfo);

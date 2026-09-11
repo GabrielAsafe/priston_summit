@@ -1,0 +1,418 @@
+diff -ruN a/Database/clan_marks/README.txt b/Database/clan_marks/README.txt
+--- a/Database/clan_marks/README.txt	1970-01-01 00:00:00.000000000 +0000
++++ b/Database/clan_marks/README.txt	2026-09-06 14:10:29.961523179 +0000
+@@ -0,0 +1,16 @@
++Summit local clan-mark storage
++==============================
++
++The server-side legacy clan bridge reads clan marks from this directory instead
++of downloading them from /ClanContent over HTTP.
++
++Filename contract:
++    <legacy ClanMark identifier>.bmp
++
++Examples are intentionally not invented here: the exact identifier is the value
++already carried by CL.MIconCnt / clan protocol formatting and previously used as
++the basename in the legacy HTTP URL.
++
++A missing file is reported to the legacy caller as mark-read result 2, matching
++the old non-BMP/not-available path. The default mark required by clan creation is
++still unresolved and is not synthesized by this checkpoint.
+diff -ruN a/Database/clan_tag_assets/README.txt b/Database/clan_tag_assets/README.txt
+--- a/Database/clan_tag_assets/README.txt	1970-01-01 00:00:00.000000000 +0000
++++ b/Database/clan_tag_assets/README.txt	2026-09-06 14:15:03.996109430 +0000
+@@ -0,0 +1,20 @@
++# Clan tag source assets (local server storage)
++
++Place the selectable clan-tag BMP assets here using the legacy item-code basename:
++
++    Database/clan_tag_assets/<CodeIT>.bmp
++
++When a clan leader selects a tag, the server copies that BMP to:
++
++    Database/clan_marks/<ClanMark>.bmp
++
++This replaces the legacy IIS paths:
++
++    C:\inetpub\wwwroot\brnxcontenttags\<CodeIT>.bmp
++    C:\inetpub\wwwroot\ClanContent\<ClanMark>.bmp
++
++The legacy code ignored the result of the shell `copy` command and continued the
++purchase/update flow. The SQLite/local-storage port preserves that observable
++behavior: a missing source asset does not change the existing return/message flow.
++
++No default clan-mark bitmap is synthesized by the migration.
+diff -ruN a/Shared/security/integrity/isaocheck_legacy_server.inl b/Shared/security/integrity/isaocheck_legacy_server.inl
+--- a/Shared/security/integrity/isaocheck_legacy_server.inl	2026-09-06 13:56:59.007578187 +0000
++++ b/Shared/security/integrity/isaocheck_legacy_server.inl	2026-09-06 14:10:29.595242646 +0000
+@@ -2466,187 +2466,113 @@
+ 	return ret_chk;
+ }
+ 
+-int ISAOCHECK::read_ClanImage(char *clanname, char *filename)
++static BOOL ReadLocalClanMarkBmp(const char *filename, char *buffer, DWORD maxBuffer, int *dataSize)
+ {
+-	int dataSize = 0;
+-	int ret_chk;
+-	int iRejectCode = 111111;
+-	char szWriteBuffer[BUF_LEN];
+-	char szReadBuffer[65536];
+-	char szBMPName[255];
+-
+-	ZeroMemory(szBMPName, sizeof(char) * 255);
+-
+-	sprintf_s(szWriteBuffer, sizeof(szWriteBuffer), "http://%s//ClanContent//%s.bmp", hostName1, filename);
+-
+-	int cnt = 0;
+-	BOOL bret_chk = FALSE;
++	if(!filename || !filename[0] || !buffer || !dataSize || maxBuffer < 2)
++		return FALSE;
+ 
+-	while (true)
++	// Clan mark identifiers are used as the basename by the legacy protocol.
++	// Reject path syntax now that the asset is read from local server storage.
++	for(const char *p = filename; *p; ++p)
+ 	{
+-		bret_chk = GetHttpRequest(szWriteBuffer, szReadBuffer, 65536, &dataSize);
+-
+-		if (bret_chk)
+-			break;
+-		else
+-			cnt++;
+-
+-		if (cnt > 5)
+-			break;
+-
++		if(*p == '\\' || *p == '/' || *p == ':' || *p == '.')
++			return FALSE;
+ 	}
+ 
+-	debug_fd2("read_ClanImage() ������ ���� : %d ���� : %s ", strlen(szWriteBuffer), szWriteBuffer);
+-	debug_fd2("read_ClanImage() ������ ���� : %d ���� : bmp���Ͼ���2�������� %c%c. ", strlen(szReadBuffer), szReadBuffer[0], szReadBuffer[1]);
++	char path[MAX_PATH];
++	if(sprintf_s(path, sizeof(path), "Database\\clan_marks\\%s.bmp", filename) < 0)
++		return FALSE;
+ 
++	HANDLE hFile = CreateFileA(path, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE,
++		NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
++	if(hFile == INVALID_HANDLE_VALUE)
++		return FALSE;
+ 
+-	if ((szReadBuffer[0] == 'B') && (szReadBuffer[1] == 'M'))
++	DWORD highSize = 0;
++	DWORD fileSize = GetFileSize(hFile, &highSize);
++	if(fileSize == INVALID_FILE_SIZE || highSize != 0 || fileSize < 2 || fileSize > maxBuffer)
+ 	{
+-		char server[4];
+-		char uniqueclannum[64];
+-
+-
+-
+-
+-		int nClanMarklen = 0;
+-
+-		ZeroMemory(server, sizeof(server));
+-		nClanMarklen = lstrlen(filename);
++		CloseHandle(hFile);
++		return FALSE;
++	}
+ 
+-		if (nClanMarklen == 9)
+-		{
+-			server[0] = filename[0];
+-			strcpy_s(uniqueclannum, sizeof(uniqueclannum), &filename[3]);
+-		}
+-		else
+-		{
+-			server[0] = filename[0];
+-			server[1] = filename[1];
+-			strcpy_s(uniqueclannum, sizeof(uniqueclannum), &filename[4]);
+-		}
++	DWORD bytesRead = 0;
++	BOOL ok = ReadFile(hFile, buffer, fileSize, &bytesRead, NULL);
++	CloseHandle(hFile);
++	if(!ok || bytesRead != fileSize)
++		return FALSE;
+ 
++	*dataSize = static_cast<int>(bytesRead);
++	return buffer[0] == 'B' && buffer[1] == 'M';
++}
+ 
+-		wsprintf(szBMPName, "%s_%s.%s", server, uniqueclannum, SAVE_EXE);
+-		clanDATA_save(szBMPName, szReadBuffer, dataSize);
++int ISAOCHECK::read_ClanImage(char *clanname, char *filename)
++{
++	(void)clanname;
++	int dataSize = 0;
++	char szReadBuffer[65536] = { 0 };
++	char szBMPName[255];
++	ZeroMemory(szBMPName, sizeof(szBMPName));
+ 
+-		char path[128];
+-		char path2[128];
+-		int bmpSAVE(char *loadfname, char *savefname);
+-		wsprintf(path, "%s//%s//%s", SAVE_DIR, szConnServerName, szBMPName);
+-		wsprintf(path2, "%s//%s//%s_%s_16.%s", SAVE_DIR, szConnServerName, server, uniqueclannum, SAVE_EXE);
++	if(!ReadLocalClanMarkBmp(filename, szReadBuffer, sizeof(szReadBuffer), &dataSize))
++		return 2;
+ 
+-		bmpSAVE(path, path2);
++	char server[4];
++	char uniqueclannum[64];
++	ZeroMemory(server, sizeof(server));
++	ZeroMemory(uniqueclannum, sizeof(uniqueclannum));
+ 
+-		ret_chk = 1;
++	int nClanMarklen = lstrlen(filename);
++	if(nClanMarklen == 9)
++	{
++		server[0] = filename[0];
++		strcpy_s(uniqueclannum, sizeof(uniqueclannum), &filename[3]);
+ 	}
+ 	else
+ 	{
+-		ret_chk = 2;
++		server[0] = filename[0];
++		server[1] = filename[1];
++		strcpy_s(uniqueclannum, sizeof(uniqueclannum), &filename[4]);
+ 	}
+ 
+-	switch (ret_chk)
+-	{
+-	case ISAO_ERR_WINSOCK_NOERR:
+-		fd2("������ ���� ���� dataSize : %d ", dataSize);
+-		break;
+-	case ISAO_ERR_WINSOCK_START:
+-		fd2("WSAStartup()����");
+-		goto IsaoCheck_winsockERR;
+-	case ISAO_ERR_WINSOCK_VERSION:
+-		fd2("������ ���� ����");
+-		goto IsaoCheck_winsockERR;
+-	case ISAO_ERR_TCP_CONNECT:
+-		fd2("connect() ���� ����");
+-		goto IsaoCheck_winsockERR;
+-	case ISAO_ERR_SSL_READ:
+-		fd2(" recv() �б� ����");
+-		goto IsaoCheck_winsockERR;
+-	case ISAO_ERR_SSL_TIMEOUT:
+-		fd2("---------------- select() Ÿ�Ӿƿ� ����");
+-		goto IsaoCheck_winsockERR;
+-	};
++	wsprintf(szBMPName, "%s_%s.%s", server, uniqueclannum, SAVE_EXE);
++	clanDATA_save(szBMPName, szReadBuffer, dataSize);
+ 
++	char path[128];
++	char path2[128];
++	int bmpSAVE(char *loadfname, char *savefname);
++	wsprintf(path, "%s//%s//%s", SAVE_DIR, szConnServerName, szBMPName);
++	wsprintf(path2, "%s//%s//%s_%s_16.%s", SAVE_DIR, szConnServerName, server, uniqueclannum, SAVE_EXE);
++	bmpSAVE(path, path2);
+ 
+-IsaoCheck_winsockERR:
+-	return ret_chk;
++	return 1;
+ }
+ 
+ int ISAOCHECK::read_ClanImage2(char *clanname, char *filename, CLANINFO *ci)
+ {
++	(void)clanname;
++	if(!ci)
++		return 2;
++
+ 	int dataSize = 0;
+-	int ret_chk;
+-	int iRejectCode = 111111;
+-	char szWriteBuffer[BUF_LEN];
+-	char szReadBuffer[65536];
++	char szReadBuffer[65536] = { 0 };
+ 	char szBMPName[255];
++	ZeroMemory(szBMPName, sizeof(szBMPName));
+ 
+-	ZeroMemory(szBMPName, sizeof(char) * 255);
+-
+-	sprintf(szWriteBuffer, "http://%s//ClanContent//%s.bmp", hostName1, filename);
+-
+-
+-	int cnt = 0;
+-	BOOL bret_chk = FALSE;
+-	while (true)
+-	{
+-		bret_chk = GetHttpRequest(szWriteBuffer, szReadBuffer, 65536, &dataSize);
+-
+-		if (bret_chk)
+-			break;
+-		else
+-			cnt++;
+-
+-		if (cnt > 5)
+-			break;
+-	}
+-
+-	debug_fd2("read_ClanImage2() ������ ���� : %d ���� : %s ", strlen(szWriteBuffer), szWriteBuffer);
+-	debug_fd2("read_ClanImage2() ������ ���� : %d ���� : bmp���Ͼ���2�������� %c%c. ", strlen(szReadBuffer), szReadBuffer[0], szReadBuffer[1]);
++	if(!ReadLocalClanMarkBmp(filename, szReadBuffer, sizeof(szReadBuffer), &dataSize))
++		return 2;
+ 
++	wsprintf(szBMPName, "%s_%s.%s", ci->ClanInfoHeader.Gserver, ci->ClanInfoHeader.UniqueClaClanInfo_nNum, SAVE_EXE);
++	clanDATA_save(szBMPName, szReadBuffer, dataSize);
+ 
+ 	char path[128];
+ 	char path1[128];
++	int bmpSAVE(char *loadfname, char *savefname);
++	wsprintf(path, "%s//%s//%s", SAVE_DIR, szConnServerName, szBMPName);
++	wsprintf(path1, "%s//%s//%s_%s_16.%s", SAVE_DIR, szConnServerName, ci->ClanInfoHeader.Gserver, ci->ClanInfoHeader.UniqueClaClanInfo_nNum, SAVE_EXE);
++	bmpSAVE(path, path1);
+ 
+-	if ((szReadBuffer[0] == 'B') && (szReadBuffer[1] == 'M'))
+-	{
+-		wsprintf(szBMPName, "%s_%s.%s", ci->ClanInfoHeader.Gserver, ci->ClanInfoHeader.UniqueClaClanInfo_nNum, SAVE_EXE);
+-		clanDATA_save(szBMPName, szReadBuffer, dataSize);
+-
+-		int bmpSAVE(char *loadfname, char *savefname);
+-		wsprintf(path, "%s//%s//%s", SAVE_DIR, szConnServerName, szBMPName);
+-		wsprintf(path1, "%s//%s//%s_%s_16.%s", SAVE_DIR, szConnServerName, ci->ClanInfoHeader.Gserver, ci->ClanInfoHeader.UniqueClaClanInfo_nNum, SAVE_EXE);
+-
+-		bmpSAVE(path, path1);
+-
+-		ret_chk = 1;
+-	}
+-	else
+-		ret_chk = 2;
+-
+-	switch (ret_chk)
+-	{
+-	case ISAO_ERR_WINSOCK_NOERR:
+-		fd2("������ ���� ���� dataSize : %d ", dataSize);
+-		break;
+-	case ISAO_ERR_WINSOCK_START:
+-		fd2("WSAStartup()����");
+-		goto IsaoCheck_winsockERR;
+-	case ISAO_ERR_WINSOCK_VERSION:
+-		fd2("������ ���� ����");
+-		goto IsaoCheck_winsockERR;
+-	case ISAO_ERR_TCP_CONNECT:
+-		fd2("connect() ���� ����");
+-		goto IsaoCheck_winsockERR;
+-	case ISAO_ERR_SSL_READ:
+-		fd2(" recv() �б� ����");
+-		goto IsaoCheck_winsockERR;
+-	case ISAO_ERR_SSL_TIMEOUT:
+-		fd2("---------------- select() Ÿ�Ӿƿ� ����");
+-		goto IsaoCheck_winsockERR;
+-	}
+-
+-IsaoCheck_winsockERR:
+-	return ret_chk;
++	return 1;
+ }
+ 
+ void ISAOCHECK::Convert_bin2HS(char *sorce, int len)
+diff -ruN a/SrcServer/src/systems/social/clan/customization/ClanCustom.cpp b/SrcServer/src/systems/social/clan/customization/ClanCustom.cpp
+--- a/SrcServer/src/systems/social/clan/customization/ClanCustom.cpp	2026-09-05 15:37:29.000000000 +0000
++++ b/SrcServer/src/systems/social/clan/customization/ClanCustom.cpp	2026-09-06 14:15:03.661450130 +0000
+@@ -256,7 +256,8 @@
+ 			char szQuery[512];
+ 			char codeant[512];
+ 			char codeatt[512];
+-			char comando[512];
++			char sourceMarkPath[MAX_PATH];
++			char destinationMarkPath[MAX_PATH];
+ 			SQL::GetInstance()->EnterSqlSection();
+ 			wsprintf(szQuery, "SELECT * FROM [ClanDB].[dbo].[CL] WHERE [MiconCnt]='%d'", Player->smCharInfo.ClassClan);
+ 			if (SQL::GetInstance()->Execute(szQuery))
+@@ -300,14 +301,12 @@
+ 							//}
+ 						}
+ 					}
+-					wsprintfA(
+-						comando,
+-			   "copy \"C:\\inetpub\\wwwroot\\brnxcontenttags\\%s.bmp\" "
+-			   "\"C:\\inetpub\\wwwroot\\ClanContent\\%s.bmp\"",
+-			   Clanaux,
+-			   codeant
+-					);
+-					system(comando);
++					wsprintfA(sourceMarkPath, "Database\\clan_tag_assets\\%s.bmp", Clanaux);
++					wsprintfA(destinationMarkPath, "Database\\clan_marks\\%s.bmp", codeant);
++
++					// Preserve the legacy flow: the old shell copy result was ignored and
++					// the tag change continued even when the webroot asset was missing.
++					CopyFileA(sourceMarkPath, destinationMarkPath, FALSE);
+ 
+ 					wsprintf(szQuery, "UPDATE [PristonDB].[dbo].[Tags] SET Slot='%d' WHERE [CodeIT]='%s'", 0, codeatt);
+ 					if (SQL::GetInstance()->Execute(szQuery))
+diff -ruN a/validate_clan_mark_storage.py b/validate_clan_mark_storage.py
+--- a/validate_clan_mark_storage.py	1970-01-01 00:00:00.000000000 +0000
++++ b/validate_clan_mark_storage.py	2026-09-06 14:10:29.969523254 +0000
+@@ -0,0 +1,39 @@
++#!/usr/bin/env python3
++from pathlib import Path
++import re
++
++ROOT=Path(__file__).resolve().parent
++SRC=ROOT/'Shared/security/integrity/isaocheck_legacy_server.inl'
++text=SRC.read_text(errors='replace')
++
++def body(signature):
++    start=text.index(signature)
++    b=text.index('{',start)
++    depth=0
++    for i in range(b,len(text)):
++        if text[i]=='{': depth+=1
++        elif text[i]=='}':
++            depth-=1
++            if depth==0: return text[start:i+1]
++    raise RuntimeError(signature)
++
++helper=body('static BOOL ReadLocalClanMarkBmp')
++read1=body('int ISAOCHECK::read_ClanImage(char *clanname, char *filename)')
++read2=body('int ISAOCHECK::read_ClanImage2(char *clanname, char *filename, CLANINFO *ci)')
++
++checks={
++    'local path': 'Database\\\\clan_marks\\\\%s.bmp' in helper,
++    'missing does not create': 'OPEN_EXISTING' in helper and 'OPEN_ALWAYS' not in helper,
++    'bounded to legacy buffer': 'fileSize > maxBuffer' in helper,
++    'bmp signature': "buffer[0] == 'B' && buffer[1] == 'M'" in helper,
++    'path traversal guard': "*p == '\\\\'" in helper and "*p == '/'" in helper and "*p == ':'" in helper,
++    'read_ClanImage local': 'ReadLocalClanMarkBmp' in read1 and 'http://' not in read1 and 'GetHttpRequest' not in read1,
++    'read_ClanImage2 local': 'ReadLocalClanMarkBmp' in read2 and 'http://' not in read2 and 'GetHttpRequest' not in read2,
++    'legacy result 2 on missing': re.search(r'if\(!ReadLocalClanMarkBmp[^\n]*\n\s*return 2;',read1) is not None and re.search(r'if\(!ReadLocalClanMarkBmp[^\n]*\n\s*return 2;',read2) is not None,
++    'storage README': (ROOT/'Database/clan_marks/README.txt').exists(),
++}
++failed=[k for k,v in checks.items() if not v]
++if failed:
++    print('Clan mark local storage FAIL: '+', '.join(failed))
++    raise SystemExit(1)
++print('Clan mark local storage PASS: Database/clan_marks, bounded BMP reads, HTTP-free active mark reads')
+diff -ruN a/validate_clan_tag_storage.py b/validate_clan_tag_storage.py
+--- a/validate_clan_tag_storage.py	1970-01-01 00:00:00.000000000 +0000
++++ b/validate_clan_tag_storage.py	2026-09-06 14:15:04.004109506 +0000
+@@ -0,0 +1,28 @@
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parent
++CPP = ROOT / 'SrcServer/src/systems/social/clan/customization/ClanCustom.cpp'
++README = ROOT / 'Database/clan_tag_assets/README.txt'
++s = CPP.read_text(encoding='utf-8', errors='replace')
++
++required = [
++    'Database\\\\clan_tag_assets\\\\%s.bmp',
++    'Database\\\\clan_marks\\\\%s.bmp',
++    'CopyFileA(sourceMarkPath, destinationMarkPath, FALSE);',
++]
++missing = [x for x in required if x not in s]
++if missing:
++    raise SystemExit('Clan tag local storage FAIL: missing ' + repr(missing))
++
++for forbidden in [
++    'C:\\\\inetpub\\\\wwwroot\\\\brnxcontenttags',
++    'C:\\\\inetpub\\\\wwwroot\\\\ClanContent',
++    'system(comando)',
++]:
++    if forbidden in s:
++        raise SystemExit('Clan tag local storage FAIL: legacy webroot dependency remains: ' + forbidden)
++
++if not README.exists():
++    raise SystemExit('Clan tag local storage FAIL: README missing')
++
++print('Clan tag local storage PASS: Database/clan_tag_assets -> Database/clan_marks, IIS/webroot-free')

@@ -1,0 +1,19 @@
+R20 pre-existing validator limitations
+======================================
+
+These two validators are not used as R20 regression gates because they already
+fail/crash on the untouched R19 checkpoint for state introduced before R20:
+
+1) validate_active_nonbaseline_graph.py
+   - untouched R19 reports SqliteQueryCompat.h/.inl as UNAPPROVED.
+   - R20 does not add or modify those files.
+
+2) validate_active_shared_graph.py
+   - untouched R19 raises KeyError for
+     Shared/persistence/database/Database_sqlite_server.h.
+   - R20 does not add or modify that file/manifest relationship.
+
+This was reproduced directly against summit_sqlite_wip_r19_2026-09-11.zip
+before packaging R20. These are inherited validation-harness defects, not R20
+code regressions. The source/build graph validator used in the R19 release
+continues to PASS in R20.

@@ -1,0 +1,2 @@
+patching file Shared/security/integrity/isaocheck_legacy_server.inl
+patching file validate_clan_sqlite_contract.py

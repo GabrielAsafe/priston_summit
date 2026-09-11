@@ -84,6 +84,7 @@ struct PACKET_BUFFS
     int NovatoLevel;
     int NovatoADD;
     int NovatoRegen;
+    int AutoJobPromotion;
     int SetBoss1Bonus1;
     int SetBoss1Bonus2;
     int SetBoss2Bonus1;
@@ -229,6 +230,7 @@ int PLayerPvP = 0;
 int NovatoLevel;
 int NovatoADD;
 int NovatoRegen;
+int AutoJobPromotion = 0;
 int SetBoss1Bonus1;
 int SetBoss1Bonus2;
 int SetBoss2Bonus1;
@@ -267,7 +269,7 @@ int	ChatBuffCnt2[6] = { 0,0,0,0,0,0 };
 int ChatDispCnt = 0;
 int	ChatBuffCompCnt = 0;
 
-char *szDefaultServIP = "211.50.44.170";
+char *szDefaultServIP = "192.168.1.111";
 
 char *szNetLogFile = "debugnet.log";
 FILE *fpNetLog = 0;
@@ -384,6 +386,38 @@ extern int AgingPrice;
 TRANS_TRADEITEMS	TransLastRecvTrade;
 
 TRANS_TRADEITEMS	TransTradeItems_MyShop;
+
+static BOOL ValidateTradeCompressedPacket(const TRANS_TRADEITEMS *packet, int decodedLimit)
+{
+	if(!packet || decodedLimit <= 0) return FALSE;
+	if(packet->size < 48 || packet->size > (int)sizeof(TRANS_TRADEITEMS)) return FALSE;
+
+	const int available = packet->size - 48;
+	if(available < (int)sizeof(int) || available > TRANS_TRADE_BUFF_SIZE) return FALSE;
+
+	int compressedSize = 0;
+	memcpy(&compressedSize, packet->TradeBuff, sizeof(compressedSize));
+	if(compressedSize < (int)sizeof(int) || compressedSize > available) return FALSE;
+
+	int offset = (int)sizeof(int);
+	int decoded = 0;
+	while(offset < compressedSize)
+	{
+		const BYTE control = packet->TradeBuff[offset++];
+		const int runLength = control & 0x7F;
+		if(runLength <= 0 || runLength > decodedLimit - decoded) return FALSE;
+		decoded += runLength;
+
+		if((control & 0x80) == 0)
+		{
+			if(runLength > compressedSize - offset) return FALSE;
+			offset += runLength;
+		}
+	}
+
+	return offset == compressedSize;
+}
+
 
 
 DWORD	dwLastWareHouseChkSum = 0;
@@ -1003,35 +1037,6 @@ int GetTradeDistanceFromCode(DWORD dwObjectSerial)
 
 extern AntiCheat* pcAntiCheat;
 
-std::vector<DWORD> QuestCodes =
-{
-	SIN_QUEST_CODE_CHANGEJOB,
-	SIN_QUEST_CODE_CHANGEJOB2_NPC_M,
-	SIN_QUEST_CODE_CHANGEJOB2_NPC_D,
-	SIN_QUEST_CODE_CHANGEJOB3,
-	SIN_QUEST_CODE_CHANGEJOB4,
-	SIN_QUEST_CODE_LEVEL30,
-	SIN_QUEST_CODE_LEVEL55,
-	SIN_QUEST_CODE_LEVEL55_2,
-	SIN_QUEST_CODE_LEVEL70,
-	SIN_QUEST_CODE_LEVEL80,
-	//SIN_QUEST_CODE_LEVEL85,
-	//SIN_QUEST_CODE_LEVEL90,
-	SIN_QUEST_CODE_LEVEL80_2,
-	//SIN_QUEST_CODE_LEVEL90_2,
-};
-std::vector<BYTE> QuestBits =
-{
-	QUESTBIT_LEVEL_30,
-	QUESTBIT_LEVEL_55,
-	QUESTBIT_LEVEL_70,
-	QUESTBIT_LEVEL_80,
-	//QUESTBIT_LEVEL_85,
-	//QUESTBIT_LEVEL_90,
-	QUESTBIT_LEVEL_80_2,
-	//QUESTBIT_LEVEL_90_2,
-};
-
 
 DWORD WINAPI InitCharStatus()
 {
@@ -1062,8 +1067,10 @@ int	CheckStartCharInfo(int lvl)
 		lpCurPlayer->smCharInfo.Next_Exp = (int)ExpLevelTable[lvl + 1];
 	}
 
-	lpCurPlayer->smCharInfo.ChangeJob = 3;
-	ChangeModelSkin(lpCurPlayer, 0, lpCurPlayer->smCharInfo.ChangeJob, 0, GetFaceHairSkin(lpCurPlayer));
+	// New characters always start at rank 0. Optional automatic promotion
+	// is handled by sinCheckChageJob() after server configuration arrives.
+	lpCurPlayer->smCharInfo.ChangeJob = 0;
+	ChangeModelSkin(lpCurPlayer, 0, (lpCurPlayer->smCharInfo.ChangeJob > CHARACTER_RANK4) ? CHARACTER_RANK4 : lpCurPlayer->smCharInfo.ChangeJob, 0, GetFaceHairSkin(lpCurPlayer));
 
 	lpCurPlayer->smCharInfo.bUpdateInfo[0]++;
 
@@ -1071,11 +1078,6 @@ int	CheckStartCharInfo(int lvl)
 	CodeXorExp_High = dwPlayTime | (dwPlayTime * dwPlayTime);
 	CodeXorLife = (dwPlayTime * smCharInfo.Life[0]) & 0xFFFF;
 
-	for (BYTE pQuest : QuestBits)
-		sinQuest_levelLog |= pQuest;
-
-	for (DWORD pQuestCode : QuestCodes)
-		EndQuest_Code(pQuestCode);
 
 	lpCurPlayer->smCharInfo.Exp ^= CodeXorExp;
 	lpCurPlayer->smCharInfo.Exp_High ^= CodeXorExp_High;
@@ -1093,21 +1095,10 @@ int	CheckStartCharInfo(int lvl)
 
 int	RecvMemFuncData2(TRANS_FUNC_MEMORY *TransFuncMem)
 {
-	smTRANS_COMMAND	smTransCommand;
-
-	smTransCommand.size = -1;
-	fnChkMem2 = (LPFN_CheckMem)((void *)TransFuncMem->szData);
-	fnChkMem2(TransFuncMem, &smTransCommand);
-
-	ZeroMemory(TransFuncMem, 1500);
-
-	if(smTransCommand.size > 0 && smWsockDataServer)
-	{
-		smTransCommand.code = OpCode::OPCODE_FUNCTION_MEM2;
-		smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
-	}
-
-	return TRUE;
+	// Legacy protocol executed machine code received from the network.
+	// Remote code execution is intentionally disabled; use data-only checks instead.
+	(void)TransFuncMem;
+	return FALSE;
 }
 
 
@@ -1812,6 +1803,19 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		memcpy(Metal_Golem_Life, lpMechInfo->Metal_Golem_Life, sizeof(Metal_Golem_Life));
 		memcpy(Metal_Golem_UseMana, lpMechInfo->Metal_Golem_UseMana, sizeof(Metal_Golem_UseMana));
 
+		memcpy(Rupture_DamageBoost, lpMechInfo->Rupture_DamageBoost, sizeof(Rupture_DamageBoost));
+		memcpy(Rupture_UseMana, lpMechInfo->Rupture_UseMana, sizeof(Rupture_UseMana));
+		memcpy(Parasit_Shot_DamageBoost, lpMechInfo->Parasit_Shot_DamageBoost, sizeof(Parasit_Shot_DamageBoost));
+		memcpy(Parasit_Shot_PoisonDuration, lpMechInfo->Parasit_Shot_PoisonDuration, sizeof(Parasit_Shot_PoisonDuration));
+		memcpy(Parasit_Shot_PoisonDamagePercent, lpMechInfo->Parasit_Shot_PoisonDamagePercent, sizeof(Parasit_Shot_PoisonDamagePercent));
+		memcpy(Parasit_Shot_UseMana, lpMechInfo->Parasit_Shot_UseMana, sizeof(Parasit_Shot_UseMana));
+		memcpy(Hardening_Shield_DamageReduction, lpMechInfo->Hardening_Shield_DamageReduction, sizeof(Hardening_Shield_DamageReduction));
+		memcpy(Hardening_Shield_AttackRateReduction, lpMechInfo->Hardening_Shield_AttackRateReduction, sizeof(Hardening_Shield_AttackRateReduction));
+		memcpy(Hardening_Shield_Time, lpMechInfo->Hardening_Shield_Time, sizeof(Hardening_Shield_Time));
+		memcpy(Hardening_Shield_UseMana, lpMechInfo->Hardening_Shield_UseMana, sizeof(Hardening_Shield_UseMana));
+		memcpy(Magnetic_Discharge_DamageBoost, lpMechInfo->Magnetic_Discharge_DamageBoost, sizeof(Magnetic_Discharge_DamageBoost));
+		memcpy(Magnetic_Discharge_UseMana, lpMechInfo->Magnetic_Discharge_UseMana, sizeof(Magnetic_Discharge_UseMana));
+
 		cInvenTory.SetItemToChar();
 
 
@@ -1880,6 +1884,19 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		memcpy(Cyclone_Strike_UseMana, lpFighterInfo->Cyclone_Strike_UseMana, sizeof(Cyclone_Strike_UseMana));
 
 		memcpy(Boost_Health_Life, lpFighterInfo->Boost_Health_Life, sizeof(Boost_Health_Life));
+		memcpy(Fighter_T5_Survival_Life, lpFighterInfo->Fighter_T5_Survival_Life, sizeof(Fighter_T5_Survival_Life));
+		memcpy(Fighter_T5_Survival_Regen, lpFighterInfo->Fighter_T5_Survival_Regen, sizeof(Fighter_T5_Survival_Regen));
+		memcpy(Fighter_T5_Seismic_Damage, lpFighterInfo->Fighter_T5_Seismic_Damage, sizeof(Fighter_T5_Seismic_Damage));
+		memcpy(Fighter_T5_Seismic_Area, lpFighterInfo->Fighter_T5_Seismic_Area, sizeof(Fighter_T5_Seismic_Area));
+		memcpy(Fighter_T5_Seismic_UseMana, lpFighterInfo->Fighter_T5_Seismic_UseMana, sizeof(Fighter_T5_Seismic_UseMana));
+		memcpy(Fighter_T5_Ruthless_HPDecrease, lpFighterInfo->Fighter_T5_Ruthless_HPDecrease, sizeof(Fighter_T5_Ruthless_HPDecrease));
+		memcpy(Fighter_T5_Ruthless_HitsBoost, lpFighterInfo->Fighter_T5_Ruthless_HitsBoost, sizeof(Fighter_T5_Ruthless_HitsBoost));
+		memcpy(Fighter_T5_Ruthless_DamageBoost, lpFighterInfo->Fighter_T5_Ruthless_DamageBoost, sizeof(Fighter_T5_Ruthless_DamageBoost));
+		memcpy(Fighter_T5_Ruthless_UseMana, lpFighterInfo->Fighter_T5_Ruthless_UseMana, sizeof(Fighter_T5_Ruthless_UseMana));
+		memcpy(Fighter_T5_Whirlwind_DamageBoost, lpFighterInfo->Fighter_T5_Whirlwind_DamageBoost, sizeof(Fighter_T5_Whirlwind_DamageBoost));
+		memcpy(Fighter_T5_Whirlwind_Duration, lpFighterInfo->Fighter_T5_Whirlwind_Duration, sizeof(Fighter_T5_Whirlwind_Duration));
+		memcpy(Fighter_T5_Whirlwind_MPDrain, lpFighterInfo->Fighter_T5_Whirlwind_MPDrain, sizeof(Fighter_T5_Whirlwind_MPDrain));
+		memcpy(Fighter_T5_Whirlwind_SPDrain, lpFighterInfo->Fighter_T5_Whirlwind_SPDrain, sizeof(Fighter_T5_Whirlwind_SPDrain));
 
 		cInvenTory.SetItemToChar();
 		
@@ -1888,6 +1905,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	case smTRANSCODE_PIKE_INFO:
 		lpPikeInfo = (PIKE_INFO*)pData->Buff;
+		if(lpPikeInfo->size != sizeof(PIKE_INFO)) break;
 
 		memcpy(Pike_Wind_Throw_Height, lpPikeInfo->Pike_Wind_Throw_Height, sizeof(Pike_Wind_Throw_Height));
 		memcpy(Pike_Wind_DamagePercent, lpPikeInfo->Pike_Wind_DamagePercent, sizeof(Pike_Wind_DamagePercent));
@@ -1955,6 +1973,17 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		memcpy(Shadow_Master_ShadowNum, lpPikeInfo->Shadow_Master_ShadowNum, sizeof(Shadow_Master_ShadowNum));
 		memcpy(Shadow_Master_UseMana, lpPikeInfo->Shadow_Master_UseMana, sizeof(Shadow_Master_UseMana));
 
+		memcpy(Pike_T5_Ring_Duration, lpPikeInfo->Pike_T5_Ring_Duration, sizeof(Pike_T5_Ring_Duration));
+		memcpy(Pike_T5_Ring_UseMana, lpPikeInfo->Pike_T5_Ring_UseMana, sizeof(Pike_T5_Ring_UseMana));
+		memcpy(Pike_T5_Focus_MinAttackReduction, lpPikeInfo->Pike_T5_Focus_MinAttackReduction, sizeof(Pike_T5_Focus_MinAttackReduction));
+		memcpy(Pike_T5_Focus_MaxAttackIncrease, lpPikeInfo->Pike_T5_Focus_MaxAttackIncrease, sizeof(Pike_T5_Focus_MaxAttackIncrease));
+		memcpy(Pike_T5_Focus_UseMana, lpPikeInfo->Pike_T5_Focus_UseMana, sizeof(Pike_T5_Focus_UseMana));
+		memcpy(Pike_T5_Death_DamageBoost, lpPikeInfo->Pike_T5_Death_DamageBoost, sizeof(Pike_T5_Death_DamageBoost));
+		memcpy(Pike_T5_Death_AttackRateBoost, lpPikeInfo->Pike_T5_Death_AttackRateBoost, sizeof(Pike_T5_Death_AttackRateBoost));
+		memcpy(Pike_T5_Death_UseMana, lpPikeInfo->Pike_T5_Death_UseMana, sizeof(Pike_T5_Death_UseMana));
+		memcpy(Pike_T5_Twister_DamageBoost, lpPikeInfo->Pike_T5_Twister_DamageBoost, sizeof(Pike_T5_Twister_DamageBoost));
+		memcpy(Pike_T5_Twister_UseMana, lpPikeInfo->Pike_T5_Twister_UseMana, sizeof(Pike_T5_Twister_UseMana));
+
 		cInvenTory.SetItemToChar();
 		
 		break;
@@ -1975,6 +2004,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 		memcpy(Perfect_Aim_Attack_Rate, lpArcherInfo->Perfect_Aim_Attack_Rate, sizeof(Perfect_Aim_Attack_Rate));
 		memcpy(Perfect_Aim_DamagePercent, lpArcherInfo->Perfect_Aim_DamagePercent, sizeof(Perfect_Aim_DamagePercent));
+		memcpy(Perfect_Aim_Damage, lpArcherInfo->Perfect_Aim_Damage, sizeof(Perfect_Aim_Damage));
 		memcpy(Perfect_Aim_Damage_LV, lpArcherInfo->Perfect_Aim_Damage_LV, sizeof(Perfect_Aim_Damage_LV));
 		memcpy(Perfect_Aim_UseMana, lpArcherInfo->Perfect_Aim_UseMana, sizeof(Perfect_Aim_UseMana));
 
@@ -2033,6 +2063,21 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		memcpy(Force_Of_Nature_FalconAddDamage, lpArcherInfo->Force_Of_Nature_FalconAddDamage, sizeof(Force_Of_Nature_FalconAddDamage));
 		memcpy(Force_Of_Nature_Time, lpArcherInfo->Force_Of_Nature_Time, sizeof(Force_Of_Nature_Time));
 		memcpy(Force_Of_Nature_UseMana, lpArcherInfo->Force_Of_Nature_UseMana, sizeof(Force_Of_Nature_UseMana));
+
+		memcpy(Archer_T5_Lethal_RangeAdd, lpArcherInfo->Archer_T5_Lethal_RangeAdd, sizeof(Archer_T5_Lethal_RangeAdd));
+		memcpy(Archer_T5_Lethal_CriticalRate, lpArcherInfo->Archer_T5_Lethal_CriticalRate, sizeof(Archer_T5_Lethal_CriticalRate));
+		memcpy(Archer_T5_Lethal_DamageBoost, lpArcherInfo->Archer_T5_Lethal_DamageBoost, sizeof(Archer_T5_Lethal_DamageBoost));
+		memcpy(Archer_T5_Lethal_UseMana, lpArcherInfo->Archer_T5_Lethal_UseMana, sizeof(Archer_T5_Lethal_UseMana));
+		memcpy(Archer_T5_Fierce_DamageBoost, lpArcherInfo->Archer_T5_Fierce_DamageBoost, sizeof(Archer_T5_Fierce_DamageBoost));
+		memcpy(Archer_T5_Fierce_CriticalDamageBoost, lpArcherInfo->Archer_T5_Fierce_CriticalDamageBoost, sizeof(Archer_T5_Fierce_CriticalDamageBoost));
+		memcpy(Archer_T5_Fierce_UseMana, lpArcherInfo->Archer_T5_Fierce_UseMana, sizeof(Archer_T5_Fierce_UseMana));
+		memcpy(Archer_T5_Roots_Duration, lpArcherInfo->Archer_T5_Roots_Duration, sizeof(Archer_T5_Roots_Duration));
+		memcpy(Archer_T5_Roots_UseMana, lpArcherInfo->Archer_T5_Roots_UseMana, sizeof(Archer_T5_Roots_UseMana));
+		memcpy(Archer_T5_Bombard_DamageBoost, lpArcherInfo->Archer_T5_Bombard_DamageBoost, sizeof(Archer_T5_Bombard_DamageBoost));
+		memcpy(Archer_T5_Bombard_Duration, lpArcherInfo->Archer_T5_Bombard_Duration, sizeof(Archer_T5_Bombard_Duration));
+		memcpy(Archer_T5_Bombard_MPDrain, lpArcherInfo->Archer_T5_Bombard_MPDrain, sizeof(Archer_T5_Bombard_MPDrain));
+		memcpy(Archer_T5_Bombard_SPDrain, lpArcherInfo->Archer_T5_Bombard_SPDrain, sizeof(Archer_T5_Bombard_SPDrain));
+		memcpy(Archer_T5_Bombard_UseMana, lpArcherInfo->Archer_T5_Bombard_UseMana, sizeof(Archer_T5_Bombard_UseMana));
 
 		cInvenTory.SetItemToChar();
 		
@@ -2106,6 +2151,20 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		memcpy(Divine_Piercing_AttackNum, lpKinaInfo->Divine_Piercing_AttackNum, sizeof(Divine_Piercing_AttackNum));
 		memcpy(Divine_Piercing_UseMana, lpKinaInfo->Divine_Piercing_UseMana, sizeof(Divine_Piercing_UseMana));
 
+		memcpy(Knight_T5_HolyConviction_UndeadBoost, lpKinaInfo->Knight_T5_HolyConviction_UndeadBoost, sizeof(Knight_T5_HolyConviction_UndeadBoost));
+		memcpy(Knight_T5_HolyConviction_Duration, lpKinaInfo->Knight_T5_HolyConviction_Duration, sizeof(Knight_T5_HolyConviction_Duration));
+		memcpy(Knight_T5_HolyConviction_UseMana, lpKinaInfo->Knight_T5_HolyConviction_UseMana, sizeof(Knight_T5_HolyConviction_UseMana));
+		memcpy(Knight_T5_DivineInquisition_DamageBoost, lpKinaInfo->Knight_T5_DivineInquisition_DamageBoost, sizeof(Knight_T5_DivineInquisition_DamageBoost));
+		memcpy(Knight_T5_DivineInquisition_Area, lpKinaInfo->Knight_T5_DivineInquisition_Area, sizeof(Knight_T5_DivineInquisition_Area));
+		memcpy(Knight_T5_DivineInquisition_UndeadDamage, lpKinaInfo->Knight_T5_DivineInquisition_UndeadDamage, sizeof(Knight_T5_DivineInquisition_UndeadDamage));
+		memcpy(Knight_T5_DivineInquisition_UseMana, lpKinaInfo->Knight_T5_DivineInquisition_UseMana, sizeof(Knight_T5_DivineInquisition_UseMana));
+		memcpy(Knight_T5_GloriousShield_DefenseBoost, lpKinaInfo->Knight_T5_GloriousShield_DefenseBoost, sizeof(Knight_T5_GloriousShield_DefenseBoost));
+		memcpy(Knight_T5_GloriousShield_Duration, lpKinaInfo->Knight_T5_GloriousShield_Duration, sizeof(Knight_T5_GloriousShield_Duration));
+		memcpy(Knight_T5_GloriousShield_UseMana, lpKinaInfo->Knight_T5_GloriousShield_UseMana, sizeof(Knight_T5_GloriousShield_UseMana));
+		memcpy(Knight_T5_DivineCross_DamageBoost, lpKinaInfo->Knight_T5_DivineCross_DamageBoost, sizeof(Knight_T5_DivineCross_DamageBoost));
+		memcpy(Knight_T5_DivineCross_UseMana, lpKinaInfo->Knight_T5_DivineCross_UseMana, sizeof(Knight_T5_DivineCross_UseMana));
+
+
 		cInvenTory.SetItemToChar();
 		
 		break;
@@ -2173,6 +2232,21 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		memcpy(Vengeance_Range, lpAtaInfo->Vengeance_Range, sizeof(Vengeance_Range));
 		memcpy(Vengeance_UseMana, lpAtaInfo->Vengeance_UseMana, sizeof(Vengeance_UseMana));
 		memcpy(Vengeance_AddCritical, lpAtaInfo->Vengeance_AddCritical, sizeof(Vengeance_AddCritical));
+
+		memcpy(Atalanta_T5_SummonTiger_AttackPower, lpAtaInfo->Atalanta_T5_SummonTiger_AttackPower, sizeof(Atalanta_T5_SummonTiger_AttackPower));
+		memcpy(Atalanta_T5_SummonTiger_AttackRating, lpAtaInfo->Atalanta_T5_SummonTiger_AttackRating, sizeof(Atalanta_T5_SummonTiger_AttackRating));
+		memcpy(Atalanta_T5_SummonTiger_Life, lpAtaInfo->Atalanta_T5_SummonTiger_Life, sizeof(Atalanta_T5_SummonTiger_Life));
+		memcpy(Atalanta_T5_SummonTiger_Duration, lpAtaInfo->Atalanta_T5_SummonTiger_Duration, sizeof(Atalanta_T5_SummonTiger_Duration));
+		memcpy(Atalanta_T5_SummonTiger_UseMana, lpAtaInfo->Atalanta_T5_SummonTiger_UseMana, sizeof(Atalanta_T5_SummonTiger_UseMana));
+		memcpy(Atalanta_T5_GoldenApple_Speed, lpAtaInfo->Atalanta_T5_GoldenApple_Speed, sizeof(Atalanta_T5_GoldenApple_Speed));
+		memcpy(Atalanta_T5_GoldenApple_Evade, lpAtaInfo->Atalanta_T5_GoldenApple_Evade, sizeof(Atalanta_T5_GoldenApple_Evade));
+		memcpy(Atalanta_T5_Plague_DamageBoost, lpAtaInfo->Atalanta_T5_Plague_DamageBoost, sizeof(Atalanta_T5_Plague_DamageBoost));
+		memcpy(Atalanta_T5_Plague_Targets, lpAtaInfo->Atalanta_T5_Plague_Targets, sizeof(Atalanta_T5_Plague_Targets));
+		memcpy(Atalanta_T5_Plague_PoisonDuration, lpAtaInfo->Atalanta_T5_Plague_PoisonDuration, sizeof(Atalanta_T5_Plague_PoisonDuration));
+		memcpy(Atalanta_T5_Plague_PoisonDamagePercent, lpAtaInfo->Atalanta_T5_Plague_PoisonDamagePercent, sizeof(Atalanta_T5_Plague_PoisonDamagePercent));
+		memcpy(Atalanta_T5_Plague_UseMana, lpAtaInfo->Atalanta_T5_Plague_UseMana, sizeof(Atalanta_T5_Plague_UseMana));
+		memcpy(Atalanta_T5_Combo_DamageBoost, lpAtaInfo->Atalanta_T5_Combo_DamageBoost, sizeof(Atalanta_T5_Combo_DamageBoost));
+		memcpy(Atalanta_T5_Combo_UseMana, lpAtaInfo->Atalanta_T5_Combo_UseMana, sizeof(Atalanta_T5_Combo_UseMana));
 
 		cInvenTory.SetItemToChar();
 		
@@ -2246,6 +2320,23 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		memcpy(Summon_Muspell_BlockPercent, lpSacerInfo->Summon_Muspell_BlockPercent, sizeof(Summon_Muspell_BlockPercent));
 		memcpy(Summon_Muspell_Time, lpSacerInfo->Summon_Muspell_Time, sizeof(Summon_Muspell_Time));
 		memcpy(Summon_Muspell_UseMana, lpSacerInfo->Summon_Muspell_UseMana, sizeof(Summon_Muspell_UseMana));
+
+		memcpy(Priestess_T5_IceElemental_AttackPower, lpSacerInfo->Priestess_T5_IceElemental_AttackPower, sizeof(Priestess_T5_IceElemental_AttackPower));
+		memcpy(Priestess_T5_IceElemental_AttackRating, lpSacerInfo->Priestess_T5_IceElemental_AttackRating, sizeof(Priestess_T5_IceElemental_AttackRating));
+		memcpy(Priestess_T5_IceElemental_Life, lpSacerInfo->Priestess_T5_IceElemental_Life, sizeof(Priestess_T5_IceElemental_Life));
+		memcpy(Priestess_T5_IceElemental_Duration, lpSacerInfo->Priestess_T5_IceElemental_Duration, sizeof(Priestess_T5_IceElemental_Duration));
+		memcpy(Priestess_T5_IceElemental_UseMana, lpSacerInfo->Priestess_T5_IceElemental_UseMana, sizeof(Priestess_T5_IceElemental_UseMana));
+		memcpy(Priestess_T5_LightningSurge_DamageBoost, lpSacerInfo->Priestess_T5_LightningSurge_DamageBoost, sizeof(Priestess_T5_LightningSurge_DamageBoost));
+		memcpy(Priestess_T5_LightningSurge_Area, lpSacerInfo->Priestess_T5_LightningSurge_Area, sizeof(Priestess_T5_LightningSurge_Area));
+		memcpy(Priestess_T5_LightningSurge_ChargedArea, lpSacerInfo->Priestess_T5_LightningSurge_ChargedArea, sizeof(Priestess_T5_LightningSurge_ChargedArea));
+		memcpy(Priestess_T5_LightningSurge_UseMana, lpSacerInfo->Priestess_T5_LightningSurge_UseMana, sizeof(Priestess_T5_LightningSurge_UseMana));
+		memcpy(Priestess_T5_HeavenlyLight_AttackRateReduction, lpSacerInfo->Priestess_T5_HeavenlyLight_AttackRateReduction, sizeof(Priestess_T5_HeavenlyLight_AttackRateReduction));
+		memcpy(Priestess_T5_HeavenlyLight_Duration, lpSacerInfo->Priestess_T5_HeavenlyLight_Duration, sizeof(Priestess_T5_HeavenlyLight_Duration));
+		memcpy(Priestess_T5_HeavenlyLight_Area, lpSacerInfo->Priestess_T5_HeavenlyLight_Area, sizeof(Priestess_T5_HeavenlyLight_Area));
+		memcpy(Priestess_T5_HeavenlyLight_UseMana, lpSacerInfo->Priestess_T5_HeavenlyLight_UseMana, sizeof(Priestess_T5_HeavenlyLight_UseMana));
+		memcpy(Priestess_T5_Consecration_DefenseBoost, lpSacerInfo->Priestess_T5_Consecration_DefenseBoost, sizeof(Priestess_T5_Consecration_DefenseBoost));
+		memcpy(Priestess_T5_Consecration_Absorption, lpSacerInfo->Priestess_T5_Consecration_Absorption, sizeof(Priestess_T5_Consecration_Absorption));
+		memcpy(Priestess_T5_Consecration_UseMana, lpSacerInfo->Priestess_T5_Consecration_UseMana, sizeof(Priestess_T5_Consecration_UseMana));
 
 		cInvenTory.SetItemToChar();
 		
@@ -2327,6 +2418,23 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		memcpy(Meteo_Damage_Percent, lpMageInfo->Meteo_Damage_Percent, sizeof(Meteo_Damage_Percent));
 		memcpy(Meteo_Area, lpMageInfo->Meteo_Area, sizeof(Meteo_Area));
 		memcpy(Meteo_UseMana, lpMageInfo->Meteo_UseMana, sizeof(Meteo_UseMana));
+
+		memcpy(Magician_T5_WizardTrance_BlockBoost, lpMageInfo->Magician_T5_WizardTrance_BlockBoost, sizeof(Magician_T5_WizardTrance_BlockBoost));
+		memcpy(Magician_T5_WizardTrance_AttackRateReduction, lpMageInfo->Magician_T5_WizardTrance_AttackRateReduction, sizeof(Magician_T5_WizardTrance_AttackRateReduction));
+		memcpy(Magician_T5_WizardTrance_Duration, lpMageInfo->Magician_T5_WizardTrance_Duration, sizeof(Magician_T5_WizardTrance_Duration));
+		memcpy(Magician_T5_WizardTrance_UseMana, lpMageInfo->Magician_T5_WizardTrance_UseMana, sizeof(Magician_T5_WizardTrance_UseMana));
+		memcpy(Magician_T5_StoneSkin_ImmortalWindow, lpMageInfo->Magician_T5_StoneSkin_ImmortalWindow, sizeof(Magician_T5_StoneSkin_ImmortalWindow));
+		memcpy(Magician_T5_StoneSkin_Duration, lpMageInfo->Magician_T5_StoneSkin_Duration, sizeof(Magician_T5_StoneSkin_Duration));
+		memcpy(Magician_T5_StoneSkin_RunSpeedReduction, lpMageInfo->Magician_T5_StoneSkin_RunSpeedReduction, sizeof(Magician_T5_StoneSkin_RunSpeedReduction));
+		memcpy(Magician_T5_StoneSkin_UseMana, lpMageInfo->Magician_T5_StoneSkin_UseMana, sizeof(Magician_T5_StoneSkin_UseMana));
+		memcpy(Magician_T5_RedRay_DamageBoost, lpMageInfo->Magician_T5_RedRay_DamageBoost, sizeof(Magician_T5_RedRay_DamageBoost));
+		memcpy(Magician_T5_RedRay_AddRange, lpMageInfo->Magician_T5_RedRay_AddRange, sizeof(Magician_T5_RedRay_AddRange));
+		memcpy(Magician_T5_RedRay_UseMana, lpMageInfo->Magician_T5_RedRay_UseMana, sizeof(Magician_T5_RedRay_UseMana));
+		memcpy(Magician_T5_Cataclysm_DamageBoost, lpMageInfo->Magician_T5_Cataclysm_DamageBoost, sizeof(Magician_T5_Cataclysm_DamageBoost));
+		memcpy(Magician_T5_Cataclysm_Duration, lpMageInfo->Magician_T5_Cataclysm_Duration, sizeof(Magician_T5_Cataclysm_Duration));
+		memcpy(Magician_T5_Cataclysm_MPDrain, lpMageInfo->Magician_T5_Cataclysm_MPDrain, sizeof(Magician_T5_Cataclysm_MPDrain));
+		memcpy(Magician_T5_Cataclysm_SPDrain, lpMageInfo->Magician_T5_Cataclysm_SPDrain, sizeof(Magician_T5_Cataclysm_SPDrain));
+		memcpy(Magician_T5_Cataclysm_UseMana, lpMageInfo->Magician_T5_Cataclysm_UseMana, sizeof(Magician_T5_Cataclysm_UseMana));
 
 		cInvenTory.SetItemToChar();
 		break;
@@ -3395,9 +3503,9 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 			}
 			else
 			{
-				if(lpCurPlayer->smCharInfo.ChangeJob >= 0 && lpCurPlayer->smCharInfo.ChangeJob < 4)
+				if(lpCurPlayer->smCharInfo.ChangeJob >= CHARACTER_RANK1 && lpCurPlayer->smCharInfo.ChangeJob <= CHARACTER_RANK5)
 				{
-					ChangeModelSkin(lpCurPlayer, 0, lpCurPlayer->smCharInfo.ChangeJob, 0, GetFaceHairSkin(lpCurPlayer));
+					ChangeModelSkin(lpCurPlayer, 0, (lpCurPlayer->smCharInfo.ChangeJob > CHARACTER_RANK4) ? CHARACTER_RANK4 : lpCurPlayer->smCharInfo.ChangeJob, 0, GetFaceHairSkin(lpCurPlayer));
 					ReformCharForm();
 				}
 			}
@@ -3989,8 +4097,16 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		lpTransCommand = (smTRANS_COMMAND *)pData->Buff;
 		lpChar = FindAutoPlayer(lpTransCommand->SParam);
 
-		if(lpChar && lpChar->DisplayFlag && lpChar->smCharInfo.szName[0] &&
-			!cWareHouse.OpenFlag && !cCraftItem.OpenFlag && !cAging.OpenFlag && !cMyShop.OpenFlag || cMixtureReset.OpenFlag || cSkinChange.OpenFlag)
+		// Reject stale/invalid trade targets before any dereference.
+		if(!lpCurPlayer || !lpChar || !lpChar->DisplayFlag || !lpChar->smCharInfo.szName[0])
+			break;
+
+		// The old mixed &&/|| condition could become true when reset/skin windows
+		// were open, even with lpChar == NULL. Treat every conflicting UI as a blocker.
+		if(cWareHouse.OpenFlag || cCraftItem.OpenFlag || cAging.OpenFlag ||
+			cMyShop.OpenFlag || cMixtureReset.OpenFlag || cSkinChange.OpenFlag)
+			break;
+
 		{
 
 			switch(lpTransCommand->LParam)
@@ -4226,6 +4342,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		NovatoLevel = packet->NovatoLevel;
 		NovatoADD = packet->NovatoADD;
 		NovatoRegen = packet->NovatoRegen;
+		AutoJobPromotion = packet->AutoJobPromotion ? 1 : 0;
 		
 		SetBoss1Bonus1 = packet->SetBoss1Bonus1;
 		SetBoss1Bonus2 = packet->SetBoss1Bonus2;
@@ -4889,6 +5006,9 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		lpTransCommand = (smTRANS_COMMAND *)pData->Buff;
 		switch(lpTransCommand->WParam)
 		{
+		case SKILL_PLAY_T51:
+			if(sinChar && sinChar->JOB_CODE == JOBCODE_ARCHER) cnt = SKILL_T5_LETHAL_SIGHT;
+			break;
 		case SKILL_PLAY_METAL_GOLEM:
 			cnt = SKILL_METAL_GOLEM;
 			break;
@@ -6384,7 +6504,7 @@ int SendChatMessageToServer(char *szChatMessage)
 					AddChatBuff("Exp up + 15% , 5% Drop", 0);
 					//AddChatBuff("Aging Free", 0);
 					AddChatBuff("Time shop x2 por minuto", 0);
-				//	AddChatBuff("Ressurreiï¿½ï¿½o por 30D >PVE<", 0);
+				//	AddChatBuff("RessurreiÃ§Ã£o por 30D >PVE<", 0);
 				}
 
 			}
@@ -6997,7 +7117,7 @@ int SetIpColor(DWORD dwIP)
 
 	switch(dwIP)
 	{
-	case 0:		SetFontTextColor(RGB(255, 128, 96));		break; // vermelho padrï¿½o
+	case 0:		SetFontTextColor(RGB(255, 128, 96));		break; // vermelho padrÃ£o
 	case 1:		SetFontTextColor(RGB(125, 180, 175));		break; // azul pm
 	case 2:		SetFontTextColor(RGB(125, 180, 175));		break; // azul pm
 	case 3:		SetFontTextColor(RGB(230, 160, 255));		break; // roxo gm 
@@ -8934,11 +9054,11 @@ int SendGetRecordData(char *szName)
 }
 
 char *szCmdOpenMonster[10] = {
-	"È©ï¿½ï¿½ï¿½ï¿½",
-	"È©ï¿½ï¿½ï¿½ï¿½",
-	"È©ï¿½ï¿½ï¿½ï¿½",
-	"Å·È£ï¿½ï¿½",
-	"Å¸ï¿½ï¿½Åº",
+	"È©°íºí¸°",
+	"È©°íºí¸°",
+	"È©°íºí¸°",
+	"Å·È£ÇÇ",
+	"Å¸ÀÌÅº",
 	0,0,0,0,0
 };
 
@@ -10038,7 +10158,7 @@ int Skil_RangeAttack(int x, int y, int z, int range, int power, int TargetState)
 
 
 
-	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - Skil_RangeAttack ");
+	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - Skil_RangeAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -10203,7 +10323,7 @@ int Skil_RangeBoxAttack(smCHAR *lpCurChar, RECT *lpRect, int power, int TargetSt
 
 
 
-	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - Skil_RangeBoxAttack ");
+	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - Skil_RangeBoxAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -10436,7 +10556,7 @@ int QuickSendTransAttack(smCHAR *lpChar, int power, int AttackState, int Resista
 	int pow;
 
 
-	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - QuickSendTransAttack ");
+	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - QuickSendTransAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -10567,8 +10687,8 @@ int SendTradeItem(sTRADE *lpTrade, DWORD dwSender)
 	}
 
 
-	len = EecodeCompress((BYTE *)&sTradeBuff, TransTradeItems.TradeBuff, sizeof(sTRADE));
-	if(len > TRANS_TRADE_BUFF_SIZE) return FALSE;
+	len = EecodeCompress((BYTE *)&sTradeBuff, TransTradeItems.TradeBuff, sizeof(sTRADE), sizeof(TransTradeItems.TradeBuff));
+	if(len <= 0 || len > TRANS_TRADE_BUFF_SIZE || len > (int)sizeof(TRANS_TRADEITEMS) - 48) return FALSE;
 
 	TransTradeItems.code = OpCode::OPCODE_TRADEITEMS;
 	TransTradeItems.size = len + 48;
@@ -10589,8 +10709,10 @@ int SendTradeItem(sTRADE *lpTrade, DWORD dwSender)
 
 int RecvTradeItems(TRANS_TRADEITEMS *lpTransTradeItems, sTRADE *lpTrade)
 {
-
-	DecodeCompress(lpTransTradeItems->TradeBuff, (BYTE *)lpTrade);
+	if(!lpTrade || !ValidateTradeCompressedPacket(lpTransTradeItems, sizeof(sTRADE))) return FALSE;
+	ZeroMemory(lpTrade, sizeof(sTRADE));
+	DecodeCompress(lpTransTradeItems->TradeBuff, (BYTE *)lpTrade, sizeof(sTRADE));
+	ZeroMemory(&TransLastRecvTrade, sizeof(TransLastRecvTrade));
 	memcpy(&TransLastRecvTrade, lpTransTradeItems, lpTransTradeItems->size);
 	return TRUE;
 }
@@ -11875,18 +11997,10 @@ int	SendClientFuncPos()
 
 int	RecvMemFuncData(TRANS_FUNC_MEMORY *TransFuncMem)
 {
-	smTRANS_COMMAND	smTransCommand;
-
-	fnChkMem = (LPFN_CheckMem)((void *)TransFuncMem->szData);
-
-	smTransCommand.size = 0;
-
-	fnChkMem(TransFuncMem, &smTransCommand);
-
-	if(smWsockDataServer && smTransCommand.size > 0)
-		smWsockDataServer->Send((char *)&smTransCommand, smTransCommand.size, TRUE);
-
-	return TRUE;
+	// Legacy protocol executed machine code received from the network.
+	// Remote code execution is intentionally disabled; use data-only checks instead.
+	(void)TransFuncMem;
+	return FALSE;
 }
 
 
@@ -12535,6 +12649,43 @@ int RecvPartySkillFromServer(TRANS_PARTY_SKILL *lpTransPartySkill)
 		break;
 
 
+
+	case SKILL_PLAY_T51:
+		if(lpTransPartySkill->Point < 1 || lpTransPartySkill->Point > 10) break;
+		time = Knight_T5_HolyConviction_Duration[lpTransPartySkill->Point - 1];
+		for(cnt = 1; cnt < lpTransPartySkill->PartyCount; cnt++)
+		{
+			if(lpCurPlayer->dwObjectSerial == lpTransPartySkill->dwPartyUser[cnt])
+			{
+				sSKILL sSkill;
+				ZeroMemory(&sSkill, sizeof(sSKILL));
+				sSkill.CODE = SKILL_T5_HOLY_CONVICTION;
+				sSkill.UseTime = time;
+				sSkill.Flag = TRUE;
+				sSkill.Point = lpTransPartySkill->Point;
+				sinContinueSkillSet(&sSkill);
+			}
+		}
+		break;
+
+	case SKILL_PLAY_T54:
+		if(lpTransPartySkill->Point < 1 || lpTransPartySkill->Point > 10) break;
+		for(cnt = 1; cnt < lpTransPartySkill->PartyCount; cnt++)
+		{
+			if(lpCurPlayer->dwObjectSerial == lpTransPartySkill->dwPartyUser[cnt])
+			{
+				sSKILL sSkill;
+				ZeroMemory(&sSkill, sizeof(sSKILL));
+				sSkill.CODE = SKILL_T5_CONSECRATION;
+				sSkill.UseTime = 300;
+				sSkill.Flag = TRUE;
+				sSkill.Point = lpTransPartySkill->Point;
+				sinContinueSkillSet(&sSkill);
+				cInvenTory.SetItemToChar();
+			}
+		}
+		break;
+
 	case SKILL_PLAY_EXTINCTION:
 
 		for(cnt = 0; cnt < lpTransPartySkill->PartyCount; cnt++)
@@ -12665,7 +12816,7 @@ int	SkillPlay_DivineLightning_Select(smCHAR *lpChar, int SkillPoint)
 	smWINSOCK *lpsmSendSock = 0;
 
 
-	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - SkillPlay_DivineLightning_Select ");
+	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - SkillPlay_DivineLightning_Select ");
 	quit = 1;
 	return TRUE;
 
@@ -13887,8 +14038,9 @@ int	Recv_MyShopItemList(TRANS_TRADEITEMS *lpTransTradeItems)
 	sMYSHOP MyShopItem;
 	smCHAR	*lpChar;
 
-
-	DecodeCompress(lpTransTradeItems->TradeBuff, (BYTE *)&MyShopItem);
+	if(!ValidateTradeCompressedPacket(lpTransTradeItems, sizeof(sMYSHOP))) return FALSE;
+	ZeroMemory(&MyShopItem, sizeof(MyShopItem));
+	DecodeCompress(lpTransTradeItems->TradeBuff, (BYTE *)&MyShopItem, sizeof(sMYSHOP));
 
 
 	cCharShop.RecvShopItem(&MyShopItem);
@@ -13937,8 +14089,8 @@ int	UpdateMyShopList(void *lpMyShop)
 	ZeroMemory(&TransTradeItems_MyShop, sizeof(TRANS_TRADEITEMS));
 
 
-	len = EecodeCompress((BYTE *)lpMyShopItem, TransTradeItems_MyShop.TradeBuff, sizeof(sMYSHOP));
-	if(len > TRANS_TRADE_BUFF_SIZE) return FALSE;
+	len = EecodeCompress((BYTE *)lpMyShopItem, TransTradeItems_MyShop.TradeBuff, sizeof(sMYSHOP), sizeof(TransTradeItems_MyShop.TradeBuff));
+	if(len <= 0 || len > TRANS_TRADE_BUFF_SIZE || len > (int)sizeof(TRANS_TRADEITEMS) - 48) return FALSE;
 
 	TransTradeItems_MyShop.code = OpCode::OPCODE_MYSHOP_ITEM;
 	TransTradeItems_MyShop.size = len + 48;
@@ -13972,8 +14124,8 @@ int SendOpenPersonalTrade(char *szTradeMsg, void *lpPersTrade)
 	ZeroMemory(&TransChatMessage, sizeof(TRANS_CHATMESSAGE));
 
 
-	len = EecodeCompress((BYTE *)lpMyShopItem, TransTradeItems_MyShop.TradeBuff, sizeof(sMYSHOP));
-	if(len > TRANS_TRADE_BUFF_SIZE) return FALSE;
+	len = EecodeCompress((BYTE *)lpMyShopItem, TransTradeItems_MyShop.TradeBuff, sizeof(sMYSHOP), sizeof(TransTradeItems_MyShop.TradeBuff));
+	if(len <= 0 || len > TRANS_TRADE_BUFF_SIZE || len > (int)sizeof(TRANS_TRADEITEMS) - 48) return FALSE;
 
 	TransTradeItems_MyShop.code = OpCode::OPCODE_MYSHOP_ITEM;
 	TransTradeItems_MyShop.size = len + 48;

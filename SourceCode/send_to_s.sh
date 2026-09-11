@@ -12,8 +12,8 @@ cp /usr/i686-w64-mingw32/sys-root/mingw/bin/libwinpthread-1.dll \
    dist_mingw_server_i686/
 
 
-DEST='server@127.0.0.1:C:/SummitTale/Servidor'
-
+#DEST='server@127.0.0.1:C:/SummitTale/Servidor'
+DEST='server@127.0.0.1:C:/Servidor'
 scp -P 2223 \
   dist_mingw_server_i686/Server.exe \
   dist_mingw_server_i686/libgcc_s_dw2-1.dll \
@@ -28,3 +28,4 @@ HOTUK_DEST='server@127.0.0.1:C:/SummitTale/Servidor/Configs/hotuk.ini'
 scp -P 2223 \
   "$HOTUK" \
   "$HOTUK_DEST"
+

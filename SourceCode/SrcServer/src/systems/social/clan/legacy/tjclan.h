@@ -1270,10 +1270,10 @@ int GetNoticeUrl(char *url);
 
 extern HWND    g_hwnd;
 /*
-	: ï¿½Ô¼ï¿½  ï¿½ï¿½ : HBITMAP MakeDIBSection(char *Path)
-	: ï¿½Ï´ï¿½  ï¿½ï¿½ :
-: ï¿½ï¿½    ï¿½ï¿½ : bmpï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¾  DIB ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
-	: ï¿½ï¿½È¯  ï¿½ï¿½ :
+: ÇÔ¼ö  ¸í :  HBITMAP MakeDIBSection(char *Path)
+: ÇÏ´Â  ÀÏ :  
+: ÀÎ    ÀÚ : bmpÆÄÀÏÀ»ÀÐ¾î¼­  DIB ¼½¼ÇÀ» ¸¸µé¾î ÇÚµéÀ» ¸®ÅÏÇÑ´Ù.
+: ¹ÝÈ¯  °ª :  
 
 HBITMAP MakeDIBSection(DIBSectionBUF *Dibbuf)
 {

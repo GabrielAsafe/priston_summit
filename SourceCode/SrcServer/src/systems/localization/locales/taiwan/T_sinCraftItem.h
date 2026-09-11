@@ -44,7 +44,7 @@
 {SIN_ADD_BIO,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½Ý©ï¿½ +5/r"},
+"ÅéÄÝ©Ê +5\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -52,7 +52,7 @@
 {SIN_ADD_POISON,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½rï¿½Ý©ï¿½ +5/r"},
+"¬rÄÝ©Ê +5\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -60,7 +60,7 @@
 {SIN_ADD_ICE,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Bï¿½Ý©ï¿½ +5/r"},
+"¦BÄÝ©Ê +5\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -68,7 +68,7 @@
 {SIN_ADD_FIRE,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½Ý©ï¿½ +5/r"},
+"¤õÄÝ©Ê +5\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -76,7 +76,7 @@
 {SIN_ADD_LIGHTNING,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½pï¿½Ý©ï¿½ +5/r"},
+"¹pÄÝ©Ê +5\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -84,7 +84,7 @@
 {SIN_ADD_CRITICAL,0,0,0,0,0,0,0},
 {1,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½@ï¿½[ï¿½ï¿½ +1%/r"},
+"­@¤[«× +1%\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -92,7 +92,7 @@
 {SIN_ADD_ATTACK_RATE,0,0,0,0,0,0,0},
 {50,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v +40/r"},
+"©R¤¤²v +40\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -100,7 +100,7 @@
 {SIN_ADD_STAMINA,0,0,0,0,0,0,0},
 {20,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½Oï¿½ï¿½ +20/r"},
+"ºë¤O­È +20\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -108,7 +108,7 @@
 {SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,0,0,0,0,0,0},
 {2,2,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +2/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +2/r"},
+"³Ì¤p§ðÀ»¤O +2\r³Ì¤j§ðÀ»¤O +2\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -116,7 +116,7 @@
 {SIN_ADD_ATTACK_RATE,0,0,0,0,0,0,0},
 {20,0,0,0,0,0,0,0},
 {SIN_ADD_PERCENT,0,0,0,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v +20%/r"},
+"©R¤¤²v +20%\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -124,7 +124,7 @@
 {SIN_ADD_ATTACK_RATE,0,0,0,0,0,0,0},
 {40,0,0,0,0,0,0,0},
 {SIN_ADD_PERCENT,0,0,0,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v +40%/r"},
+"©R¤¤²v +40%\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -132,7 +132,7 @@
 {SIN_ADD_ATTACK_RATE,SIN_ADD_DAMAGE_MIN,0,0,0,0,0,0},
 {10,1,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v +10/rï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +1/r"},
+"©R¤¤²v +10\r³Ì¤p§ðÀ»¤O +1\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -140,7 +140,7 @@
 {SIN_ADD_ATTACK_RATE,SIN_ADD_DAMAGE_MAX,0,0,0,0,0,0},
 {10,1,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v +10/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +1/r"},
+"©R¤¤²v +10\r³Ì¤j§ðÀ»¤O +1\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -148,7 +148,7 @@
 {SIN_ADD_ATTACK_RATE,SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,0,0,0,0,0},
 {20,1,1,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v +20/rï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +1/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +1/r"},
+"©R¤¤²v +20\r³Ì¤p§ðÀ»¤O +1\r³Ì¤j§ðÀ»¤O +1\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -156,7 +156,7 @@
 {SIN_ADD_ATTACK_RATE,0,0,0,0,0,0,0},
 {100,0,0,0,0,0,0,0},
 {SIN_ADD_PERCENT,0,0,0,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v +100%/r"},
+"©R¤¤²v +100%\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -164,7 +164,7 @@
 {SIN_ADD_DAMAGE_MIN,0,0,0,0,0,0,0},
 {1,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +1/r"},
+"³Ì¤p§ðÀ»¤O +1\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -172,7 +172,7 @@
 {SIN_ADD_DAMAGE_MAX,0,0,0,0,0,0,0},
 {2,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +2/r"},
+"³Ì¤j§ðÀ»¤O +2\r"},
 
 
 
@@ -181,7 +181,7 @@
 {SIN_ADD_CRITICAL,SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,0,0,0,0,0},
 {2,1,1,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½@ï¿½[ï¿½ï¿½ +2%/rï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +1/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +1/r"},
+"­@¤[«× +2%\r³Ì¤p§ðÀ»¤O +1\r³Ì¤j§ðÀ»¤O +1\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -189,7 +189,7 @@
 {SIN_ADD_DAMAGE_MAX,0,0,0,0,0,0,0},
 {4,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +4/r"},
+"³Ì¤j§ðÀ»¤O +4\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -197,7 +197,7 @@
 {SIN_ADD_ATTACK_RATE,SIN_ADD_DAMAGE_MAX,0,0,0,0,0,0},
 {10,4,0,0,0,0,0,0},
 {SIN_ADD_PERCENT,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v +10%/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +4/r"},
+"©R¤¤²v +10%\r³Ì¤j§ðÀ»¤O +4\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -205,7 +205,7 @@
 {SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,0,0,0,0,0,0},
 {1,3,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +1/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +3/r"},
+"³Ì¤p§ðÀ»¤O +1\r³Ì¤j§ðÀ»¤O +3\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -213,7 +213,7 @@
 {SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,0,0,0,0,0,0},
 {2,2,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +2/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +2/r"},
+"³Ì¤p§ðÀ»¤O +2\r³Ì¤j§ðÀ»¤O +2\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -221,7 +221,7 @@
 {SIN_ADD_CRITICAL,SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,0,0,0,0,0},
 {4,2,2,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½@ï¿½[ï¿½ï¿½ +4%/rï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +2/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +2/r"},
+"­@¤[«× +4%\r³Ì¤p§ðÀ»¤O +2\r³Ì¤j§ðÀ»¤O +2\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -229,7 +229,7 @@
 {SIN_ADD_ATTACK_RATE,SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,0,0,0,0,0},
 {10,1,4,0,0,0,0,0},
 {SIN_ADD_PERCENT,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v +10%/rï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +1/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +4/r"},
+"©R¤¤²v +10%\r³Ì¤p§ðÀ»¤O +1\r³Ì¤j§ðÀ»¤O +4\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -237,7 +237,7 @@
 {SIN_ADD_ATTACK_RATE,SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,0,0,0,0,0},
 {40,3,3,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v+40/rï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +3/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +3/r"},
+"©R¤¤²v+40\r³Ì¤p§ðÀ»¤O +3\r³Ì¤j§ðÀ»¤O +3\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -245,7 +245,7 @@
 {SIN_ADD_CRITICAL,SIN_ADD_ATTACK_RATE,SIN_ADD_DAMAGE_MAX,0,0,0,0,0},
 {4,60,5,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_PERCENT,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½@ï¿½[ï¿½ï¿½ +4%/rï¿½Rï¿½ï¿½ï¿½v +60%/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +5/r"},
+"­@¤[«× +4%\r©R¤¤²v +60%\r³Ì¤j§ðÀ»¤O +5\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -253,7 +253,7 @@
 {SIN_ADD_ATTACK_RATE,SIN_ADD_CRITICAL,SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,0,0,0,0},
 {80,2,3,3,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v +80/rï¿½@ï¿½[ï¿½ï¿½ +2%/rï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +3/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +3/r"},
+"©R¤¤²v +80\r­@¤[«× +2%\r³Ì¤p§ðÀ»¤O +3\r³Ì¤j§ðÀ»¤O +3\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -261,7 +261,7 @@
 {SIN_ADD_CRITICAL,SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,SIN_ADD_MANA,0,0,0,0},
 {4,4,4,20,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0},
-"ï¿½@ï¿½[ï¿½ï¿½ +4%/rï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +4/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +4/rï¿½]ï¿½kï¿½ï¿½ +20/r"},
+"­@¤[«× +4%\r³Ì¤p§ðÀ»¤O +4\r³Ì¤j§ðÀ»¤O +4\rÅ]ªk­È +20\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -269,7 +269,7 @@
 {SIN_ADD_ATTACK_RATE,SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,SIN_ADD_LIFE,0,0,0,0},
 {60,4,4,20,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v +60/rï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +4/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +4/rï¿½Í©R +20/r"},
+"©R¤¤²v +60\r³Ì¤p§ðÀ»¤O +4\r³Ì¤j§ðÀ»¤O +4\r¥Í©R +20\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -277,7 +277,7 @@
 {SIN_ADD_CRITICAL,SIN_ADD_DAMAGE_MAX,0,0,0,0,0,0},
 {4,15,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_PERCENT,SIN_ADD_PERCENT,0,0,0,0,0},
-"ï¿½@ï¿½[ï¿½ï¿½ +4%/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +15%/r"},
+"­@¤[«× +4%\r³Ì¤j§ðÀ»¤O +15%\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -285,7 +285,7 @@
 {SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,0,0,0,0,0,0},
 {6,6,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +6/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +6/r"},
+"³Ì¤p§ðÀ»¤O +6\r³Ì¤j§ðÀ»¤O +6\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -293,7 +293,7 @@
 {SIN_ADD_ATTACK_RATE,SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,0,0,0,0,0},
 {160,4,4,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v +160/rï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +4/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +4/r"},
+"©R¤¤²v +160\r³Ì¤p§ðÀ»¤O +4\r³Ì¤j§ðÀ»¤O +4\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -301,7 +301,7 @@
 {SIN_ADD_CRITICAL,SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,SIN_ADD_LIFE,0,0,0,0},
 {3,9,9,25,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_PERCENT,SIN_ADD_PERCENT,SIN_ADD_NUM,0,0,0,0},
-"ï¿½@ï¿½[ï¿½ï¿½ +3%/rï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +9%/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +9%/rï¿½Í©R +25/r"},
+"­@¤[«× +3%\r³Ì¤p§ðÀ»¤O +9%\r³Ì¤j§ðÀ»¤O +9%\r¥Í©R +25\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -309,7 +309,7 @@
 {SIN_ADD_ATTACK_RATE,SIN_ADD_DAMAGE_MAX,SIN_ADD_STAMINA,0,0,0,0,0},
 {80,12,40,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v +80/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +12/rï¿½@ï¿½O +40/r"},
+"©R¤¤²v +80\r³Ì¤j§ðÀ»¤O +12\r­@¤O +40\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -317,7 +317,7 @@
 {SIN_ADD_DAMAGE_MIN,SIN_ADD_DAMAGE_MAX,SIN_ADD_MANA,0,0,0,0,0},
 {7,7,10,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½Ì¤pï¿½ï¿½ï¿½ï¿½ï¿½O +7/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +7/rï¿½]ï¿½kï¿½ï¿½+10/r"},
+"³Ì¤p§ðÀ»¤O +7\r³Ì¤j§ðÀ»¤O +7\rÅ]ªk­È+10\r"},
 
 
 {{sinWA1,sinWC1,sinWH1,sinWM1,sinWP1,sinWS1,sinWS2,sinWT1},
@@ -325,7 +325,7 @@
 {SIN_ADD_ATTACK_RATE,SIN_ADD_DAMAGE_MAX,SIN_ADD_MANA,0,0,0,0,0},
 {50,5,10,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0},
-"ï¿½Rï¿½ï¿½ï¿½v +50/rï¿½Ì¤jï¿½ï¿½ï¿½ï¿½ï¿½O +5/rï¿½]ï¿½kï¿½ï¿½ +10/r"},
+"©R¤¤²v +50\r³Ì¤j§ðÀ»¤O +5\rÅ]ªk­È +10\r"},
 
 
 
@@ -335,7 +335,7 @@
 {SIN_ADD_BIO,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½]ï¿½ï¿½ï¿½m +5/r"},
+"Å]¨¾¿m +5\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -343,7 +343,7 @@
 {SIN_ADD_POISON,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½rï¿½ï¿½ï¿½m +5/r"},
+"¬r¨¾¿m +5\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -351,7 +351,7 @@
 {SIN_ADD_ICE,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Bï¿½ï¿½ï¿½m +5/r"},
+"¦B¨¾¿m +5\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -359,7 +359,7 @@
 {SIN_ADD_FIRE,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½ï¿½ï¿½m +5/r"},
+"¤õ¨¾¿m +5\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -367,7 +367,7 @@
 {SIN_ADD_LIGHTNING,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½pï¿½ï¿½ï¿½m +5/r"},
+"¹p¨¾¿m +5\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -375,7 +375,7 @@
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {20,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +20/r"},
+"¨¾¿m +20\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -383,7 +383,7 @@
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {0.6f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Bï¿½ï¿½ +0.6/r"},
+"ÃB¨¾ +0.6\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -391,7 +391,7 @@
 {SIN_ADD_STAMINA,0,0,0,0,0,0,0},
 {10,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½@ï¿½O +10/r"},
+"­@¤O +10\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -399,7 +399,7 @@
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {40,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +40/r"},
+"¨¾¿m +40\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -407,7 +407,7 @@
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {10,0,0,0,0,0,0,0},
 {SIN_ADD_PERCENT,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +10%/r"},
+"¨¾¿m +10%\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -415,7 +415,7 @@
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {20,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +20/r"},
+"¨¾¿m +20\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -423,7 +423,7 @@
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {15,0,0,0,0,0,0,0},
 {SIN_ADD_PERCENT,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +15%/r"},
+"¨¾¿m +15%\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -431,7 +431,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {30,0.2f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +30/rï¿½Bï¿½ï¿½ +0.2/r"},
+"¨¾¿m +30\rÃB¨¾ +0.2\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -439,7 +439,7 @@
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {40,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +40/r"},
+"¨¾¿m +40\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -447,7 +447,7 @@
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {45,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +45/r"},
+"¨¾¿m +45\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -455,7 +455,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {10,0.6f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +10/rï¿½Bï¿½ï¿½ +0.6/r"},
+"¨¾¿m +10\rÃB¨¾ +0.6\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -463,7 +463,7 @@
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {1.2f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Bï¿½ï¿½ +1.2/r"},
+"ÃB¨¾ +1.2\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -471,7 +471,7 @@
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {1.8f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Bï¿½ï¿½ +1.8/r"},
+"ÃB¨¾ +1.8\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -479,7 +479,7 @@
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {2.4f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Bï¿½ï¿½ +2.4/r"},
+"ÃB¨¾ +2.4\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -487,7 +487,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {30,1.8f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +30/rï¿½Bï¿½ï¿½ +1.8/r"},
+"¨¾¿m +30\rÃB¨¾ +1.8\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -495,7 +495,7 @@
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {30,0,0,0,0,0,0,0},
 {SIN_ADD_PERCENT,0,0,0,0,0,0,0},
-"ï¿½Bï¿½ï¿½ +30%/r"},
+"ÃB¨¾ +30%\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -503,7 +503,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {40,1.2f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +40/rï¿½Bï¿½ï¿½ +1.2/r"},
+"¨¾¿m +40\rÃB¨¾ +1.2\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -511,7 +511,7 @@
 {SIN_ADD_LIFE,0,0,0,0,0,0,0},
 {40,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Í©R +40/r"},
+"¥Í©R +40\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -519,7 +519,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_MANA,0,0,0,0,0,0},
 {40,30,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +40/rï¿½]ï¿½k +30/r"},
+"¨¾¿m +40\rÅ]ªk +30\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -527,7 +527,7 @@
 {SIN_ADD_ABSORB,SIN_ADD_LIFE,0,0,0,0,0,0},
 {2.4f,20,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½Bï¿½ï¿½ +2.4/rï¿½Í©R +20/r"},
+"ÃB¨¾ +2.4\r¥Í©R +20\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -535,7 +535,7 @@
 {SIN_ADD_STAMINA,SIN_ADD_MANA,SIN_ADD_LIFE,0,0,0,0,0},
 {40,20,10,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½ï¿½O +40/rï¿½]ï¿½k +20/rï¿½Í©R +10/r"},
+"ºë¤O +40\rÅ]ªk +20\r¥Í©R +10\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -543,7 +543,7 @@
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {80,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +80/r"},
+"¨¾¿m +80\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -551,7 +551,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,SIN_ADD_STAMINA,0,0,0,0,0},
 {40,1.2f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +40/rï¿½Bï¿½ï¿½ +1.2/rï¿½ï¿½O +20/r"},
+"¨¾¿m +40\rÃB¨¾ +1.2\rºë¤O +20\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -559,7 +559,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_MANA,0,0,0,0,0,0},
 {60,20,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +60/rï¿½]ï¿½k +20/r"},
+"¨¾¿m +60\rÅ]ªk +20\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -567,7 +567,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {50,3.0f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +50/rï¿½Bï¿½ï¿½ +3.0/r"},
+"¨¾¿m +50\rÃB¨¾ +3.0\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -575,7 +575,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_LIFE,0,0,0,0,0,0},
 {100,20,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +100/rï¿½Í©R +20/r"},
+"¨¾¿m +100\r¥Í©R +20\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -583,7 +583,7 @@
 {SIN_ADD_BIO,SIN_ADD_FIRE,SIN_ADD_ICE,SIN_ADD_LIGHTNING,SIN_ADD_POISON,0,0,0},
 {5,5,5,5,5,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0},
-"ï¿½]ï¿½ï¿½ï¿½m +5/rï¿½rï¿½ï¿½ï¿½m +5/rï¿½Bï¿½ï¿½ï¿½m +5/rï¿½ï¿½ï¿½ï¿½ï¿½m +5/rï¿½pï¿½ï¿½ï¿½m +5/r"},
+"Å]¨¾¿m +5\r¬r¨¾¿m +5\r¦B¨¾¿m +5\r¤õ¨¾¿m +5\r¹p¨¾¿m +5\r"},
 
 
 {{sinDA1,sinDA2,0,0,0,0,0,0},
@@ -591,7 +591,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {10,1.0f,0,0,0,0,0,0},
 {SIN_ADD_PERCENT,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +10%/rï¿½Bï¿½ï¿½ 1.0/r"},
+"¨¾¿m +10%\rÃB¨¾ 1.0\r"},
 
 
 
@@ -602,7 +602,7 @@
 {SIN_ADD_BIO,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½]ï¿½ï¿½ï¿½m +5/r"},
+"Å]¨¾¿m +5\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -610,7 +610,7 @@
 {SIN_ADD_POISON,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½rï¿½ï¿½ï¿½m +5/r"},
+"¬r¨¾¿m +5\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -618,7 +618,7 @@
 {SIN_ADD_ICE,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Bï¿½ï¿½ï¿½m +5/r"},
+"¦B¨¾¿m +5\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -626,7 +626,7 @@
 {SIN_ADD_FIRE,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½ï¿½ï¿½m +5/r"},
+"¤õ¨¾¿m +5\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -634,7 +634,7 @@
 {SIN_ADD_LIGHTNING,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½pï¿½ï¿½ï¿½m +5/r"},
+"¹p¨¾¿m +5\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -642,7 +642,7 @@
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {10,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +10/r"},
+"¨¾¿m +10\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -650,7 +650,7 @@
 {SIN_ADD_BLOCK_RATE,0,0,0,0,0,0,0},
 {1,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½×²v +1/r"},
+"®æ¾×²v +1\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -658,7 +658,7 @@
 {SIN_ADD_LIFE,0,0,0,0,0,0,0},
 {10,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Í©R +10/r"},
+"¥Í©R +10\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -666,7 +666,7 @@
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {20,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +20/r"},
+"¨¾¿m +20\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -674,7 +674,7 @@
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {10,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +10/r"},
+"¨¾¿m +10\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -682,7 +682,7 @@
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {10,0,0,0,0,0,0,0},
 {SIN_ADD_PERCENT,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +10%/r"},
+"¨¾¿m +10%\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -690,7 +690,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {15,0.3f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +15/rï¿½Bï¿½ï¿½ +0.3/r"},
+"¨¾¿m +15\rÃB¨¾ +0.3\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -698,7 +698,7 @@
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {0.3f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Bï¿½ï¿½ +0.3/r"},
+"ÃB¨¾ +0.3\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -706,7 +706,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {10,0.6f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +10/rï¿½Bï¿½ï¿½ +0.6/r"},
+"¨¾¿m +10\rÃB¨¾ +0.6\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -714,7 +714,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {20,0.3f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +20/rï¿½Bï¿½ï¿½ +0.3/r"},
+"¨¾¿m +20\rÃB¨¾ +0.3\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -722,7 +722,7 @@
 {SIN_ADD_ABSORB,SIN_ADD_BLOCK_RATE,0,0,0,0,0,0},
 {0.6f,2,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½Bï¿½ï¿½ +0.6/rï¿½ï¿½×²v 2%/r"},
+"ÃB¨¾ +0.6\r®æ¾×²v 2%\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -730,7 +730,7 @@
 {SIN_ADD_BLOCK_RATE,0,0,0,0,0,0,0},
 {3,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½×²v +3%/r"},
+"®æ¾×²v +3%\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -738,7 +738,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_BLOCK_RATE,0,0,0,0,0,0},
 {40,1,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +40/rï¿½ï¿½×²v +1%/r"},
+"¨¾¿m +40\r®æ¾×²v +1%\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -746,7 +746,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_BLOCK_RATE,0,0,0,0,0,0},
 {20,2,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +20/rï¿½ï¿½×²v +2%/r"},
+"¨¾¿m +20\r®æ¾×²v +2%\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -754,7 +754,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_MANA,0,0,0,0,0,0},
 {40,10,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +40/rï¿½]ï¿½k +10/r"},
+"¨¾¿m +40\rÅ]ªk +10\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -762,7 +762,7 @@
 {SIN_ADD_BLOCK_RATE,SIN_ADD_LIFE,0,0,0,0,0,0},
 {2,20,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½×²v +2%/rï¿½Í©R +20/r"},
+"®æ¾×²v +2%\r¥Í©R +20\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -770,7 +770,7 @@
 {SIN_ADD_ABSORB,SIN_ADD_STAMINA,0,0,0,0,0,0},
 {1.0f,50,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½Bï¿½ï¿½ +1.0/rï¿½ï¿½O +50/r"},
+"ÃB¨¾ +1.0\rºë¤O +50\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -778,7 +778,7 @@
 {SIN_ADD_ABSORB,SIN_ADD_LIFE,0,0,0,0,0,0},
 {0.6f,40,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½Bï¿½ï¿½ +0.6/rï¿½Í©R +40/r"},
+"ÃB¨¾ +0.6\r¥Í©R +40\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -786,7 +786,7 @@
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {50,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +50/r"},
+"¨¾¿m +50\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -794,7 +794,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_BLOCK_RATE,SIN_ADD_LIFE,0,0,0,0,0},
 {40,2,20,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +40/rï¿½ï¿½×²v +2%/rï¿½Í©R +20/r"},
+"¨¾¿m +40\r®æ¾×²v +2%\r¥Í©R +20\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -802,7 +802,7 @@
 {SIN_ADD_BIO,SIN_ADD_POISON,SIN_ADD_LIGHTNING,SIN_ADD_FIRE,SIN_ADD_ICE,0,0,0},
 {5,5,5,5,5,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0},
-"ï¿½]ï¿½ï¿½ï¿½m +5/rï¿½rï¿½ï¿½ï¿½m +5/rï¿½Bï¿½ï¿½ï¿½m +5/rï¿½ï¿½ï¿½ï¿½ï¿½m +5/rï¿½pï¿½ï¿½ï¿½m +5/r"},
+"Å]¨¾¿m +5\r¬r¨¾¿m +5\r¦B¨¾¿m +5\r¤õ¨¾¿m +5\r¹p¨¾¿m +5\r"},
 
 
 {{sinDS1,0,0,0,0,0,0,0},
@@ -810,7 +810,7 @@
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {20,0.5f,0,0,0,0,0,0},
 {SIN_ADD_PERCENT,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½m +20%/rï¿½Bï¿½ï¿½ +0.5/r"},
+"¨¾¿m +20%\rÃB¨¾ +0.5\r"},
 
 
 
@@ -819,188 +819,188 @@
 {SIN_ADD_BIO,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½Ý©ï¿½ +5/r"},
+"ÅéÄÝ©Ê +5\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,5,0,0,0,0,0,0,0},
 {SIN_ADD_POISON,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½rï¿½Ý©ï¿½ +5/r"},
+"¬rÄÝ©Ê +5\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,5,0,0,0,0,0,0},
 {SIN_ADD_ICE,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Bï¿½Ý©ï¿½ +5/r"},
+"¦BÄÝ©Ê +5\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,0,5,0,0,0,0,0},
 {SIN_ADD_FIRE,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½Ý©ï¿½ +5/r"},
+"¤õÄÝ©Ê +5\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,0,0,5,0,0,0,0},
 {SIN_ADD_LIGHTNING,0,0,0,0,0,0,0},
 {5,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½pï¿½Ý©ï¿½ +5/r"},
+"¹pÄÝ©Ê +5\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,0,0,0,1,0,0,0},
 {SIN_ADD_MANAREGEN,0,0,0,0,0,0,0},
 {0.3f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½]ï¿½kï¿½È¦Aï¿½ï¿½ +0.3/r"},
+"Å]ªk­È¦A¥Í +0.3\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,0,0,0,0,1,0,0},
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {10,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½mï¿½O +10/r"},
+"¨¾¿m¤O +10\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,0,0,0,0,0,1,0},
 {SIN_ADD_MANA,0,0,0,0,0,0,0},
 {20,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½]ï¿½kï¿½ï¿½ +20/r"},
+"Å]ªk­È +20\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,0,0,0,0,0,0,1},
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {1.0f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Bï¿½~ï¿½ï¿½ï¿½mï¿½O +1.0/r"},
+"ÃB¥~¨¾¿m¤O +1.0\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {2,0,1,0,0,0,0,0,0},
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {10,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½mï¿½O +10/r"},
+"¨¾¿m¤O +10\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,2,2,1,0,0,0,0,0},
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {10,0,0,0,0,0,0,0},
 {SIN_ADD_PERCENT,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½mï¿½O +10%/r"},
+"¨¾¿m¤O +10%\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,3,1,0,2,0,0,0,0},
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,0,0,0,0,0,0},
 {15,0.4f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½mï¿½O +15/rï¿½Bï¿½~ï¿½ï¿½ï¿½mï¿½O +0.4/r"},
+"¨¾¿m¤O +15\rÃB¥~¨¾¿m¤O +0.4\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,3,0,3,0,0,0,0},
 {SIN_ADD_ABSORB,0,0,0,0,0,0,0},
 {0.6f,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½Bï¿½~ï¿½ï¿½ï¿½mï¿½O +0.6/r"},
+"ÃB¥~¨¾¿m¤O +0.6\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,1,0,0,2,2,0,0,0},
 {SIN_ADD_DEFENCE,SIN_ADD_MANAREGEN,0,0,0,0,0,0},
 {10,0.4f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½mï¿½O +10/rï¿½]ï¿½kï¿½È¦Aï¿½ï¿½ +0.4/r"},
+"¨¾¿m¤O +10\rÅ]ªk­È¦A¥Í +0.4\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,2,2,2,2,1,0,0,0},
 {SIN_ADD_DEFENCE,SIN_ADD_MANAREGEN,0,0,0,0,0,0},
 {20,0.2f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½mï¿½O +20/rï¿½]ï¿½kï¿½È¦Aï¿½ï¿½ +0.2/r"},
+"¨¾¿m¤O +20\rÅ]ªk­È¦A¥Í +0.2\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,1,0,4,0,1,0,0},
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {40,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½mï¿½O +40/r"},
+"¨¾¿m¤O +40\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,3,0,0,3,1,0,0},
 {SIN_ADD_DEFENCE,SIN_ADD_MANAREGEN,0,0,0,0,0,0},
 {10,0.6f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½mï¿½O +10/rï¿½]ï¿½kï¿½È¦Aï¿½ï¿½ +0.6/r"},
+"¨¾¿m¤O +10\rÅ]ªk­È¦A¥Í +0.6\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,4,4,0,0,0,1,0,0},
 {SIN_ADD_DEFENCE,0,0,0,0,0,0,0},
 {50,0,0,0,0,0,0,0},
 {SIN_ADD_NUM,0,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½mï¿½O +50/r"},
+"¨¾¿m¤O +50\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,2,1,1,0,1,2,0,0},
 {SIN_ADD_DEFENCE,SIN_ADD_MANAREGEN,0,0,0,0,0,0},
 {40,0.4f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½ï¿½ï¿½mï¿½O +40/rï¿½]ï¿½kï¿½È¦Aï¿½ï¿½ +0.4/r"},
+"¨¾¿m¤O +40\rÅ]ªk­È¦A¥Í +0.4\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {4,1,0,0,0,2,0,2,0},
 {SIN_ADD_MANAREGEN,SIN_ADD_MANA,0,0,0,0,0,0},
 {0.4f,40,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½]ï¿½kï¿½È¦Aï¿½ï¿½ +0.4/rï¿½]ï¿½kï¿½ï¿½ +40/r"},
+"Å]ªk­È¦A¥Í +0.4\rÅ]ªk­È +40\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,0,0,0,2,1,2,0},
 {SIN_ADD_DEFENCE,SIN_ADD_MANAREGEN,SIN_ADD_STAMINA,0,0,0,0,0},
 {10,0.4f,20,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½ï¿½ï¿½mï¿½O +10/rï¿½]ï¿½kï¿½È¦Aï¿½ï¿½ +0.4/rï¿½ï¿½Oï¿½ï¿½ +20/r"},
+"¨¾¿m¤O +10\rÅ]ªk­È¦A¥Í +0.4\rºë¤O­È +20\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,0,2,5,0,0,2,0},
 {SIN_ADD_MANA,SIN_ADD_STAMINA,0,0,0,0,0,0},
 {50,50,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½]ï¿½kï¿½ï¿½ +50/rï¿½ï¿½Oï¿½ï¿½ +50/r"},
+"Å]ªk­È +50\rºë¤O­È +50\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,0,0,3,2,0,2,0},
 {SIN_ADD_ABSORB,SIN_ADD_MANAREGEN,SIN_ADD_LIFE,0,0,0,0,0},
 {0.6f,0.6f,20,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½Bï¿½~ï¿½ï¿½ï¿½mï¿½O +0.6/rï¿½]ï¿½kï¿½È¦Aï¿½ï¿½ +0.6/rï¿½Í©Rï¿½ï¿½ +20/r"},
+"ÃB¥~¨¾¿m¤O +0.6\rÅ]ªk­È¦A¥Í +0.6\r¥Í©R­È +20\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,0,0,0,5,0,0,1},
 {SIN_ADD_ABSORB,SIN_ADD_MANAREGEN,0,0,0,0,0,0},
 {1.0f,1.0f,0,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0,0},
-"ï¿½Bï¿½~ï¿½ï¿½ï¿½mï¿½O +1.0/rï¿½]ï¿½kï¿½È¦Aï¿½ï¿½ +1.0/r"},
+"ÃB¥~¨¾¿m¤O +1.0\rÅ]ªk­È¦A¥Í +1.0\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {0,0,0,0,0,0,2,2,2},
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,SIN_ADD_MANA,0,0,0,0,0},
 {20,1.0f,40,0,0,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½ï¿½ï¿½mï¿½O +20/rï¿½Bï¿½~ï¿½ï¿½ï¿½mï¿½O +1.0/rï¿½]ï¿½kï¿½ï¿½ +40/r"},
+"¨¾¿m¤O +20\rÃB¥~¨¾¿m¤O +1.0\rÅ]ªk­È +40\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {2,2,2,2,2,2,0,0,0},
 {SIN_ADD_BIO,SIN_ADD_POISON,SIN_ADD_ICE,SIN_ADD_FIRE,SIN_ADD_LIGHTNING,0,0,0},
 {5,5,5,5,5,0,0,0},
 {SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0},
-"ï¿½ï¿½ï¿½Ý©ï¿½ +5/rï¿½rï¿½Ý©ï¿½ +5/rï¿½Bï¿½Ý©ï¿½ +5/rï¿½ï¿½ï¿½Ý©ï¿½ +5/rï¿½pï¿½Ý©ï¿½ +5/r"},
+"ÅéÄÝ©Ê +5\r¬rÄÝ©Ê +5\r¦BÄÝ©Ê +5\r¤õÄÝ©Ê +5\r¹pÄÝ©Ê +5\r"},
 
 {{sinOM1,0,0,0,0,0,0,0},
 {1,1,1,1,1,1,1,1,1},
 {SIN_ADD_DEFENCE,SIN_ADD_ABSORB,SIN_ADD_MANAREGEN,0,0,0,0,0},
 {20,1.0f,0.5f,0,0,0,0,0},
 {SIN_ADD_PERCENT,SIN_ADD_NUM,SIN_ADD_NUM,0,0,0,0,0},
-"ï¿½ï¿½ï¿½mï¿½O +20%/rï¿½Bï¿½~ï¿½ï¿½ï¿½mï¿½O +1.0/rï¿½]ï¿½kï¿½È¦Aï¿½ï¿½ +0.5/r"},
+"¨¾¿m¤O +20%\rÃB¥~¨¾¿m¤O +1.0\rÅ]ªk­È¦A¥Í +0.5\r"},
 
 

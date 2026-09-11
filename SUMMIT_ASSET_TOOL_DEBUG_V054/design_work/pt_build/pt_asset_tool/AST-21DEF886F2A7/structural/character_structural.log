@@ -1,9 +1,0 @@
-PT_CHARACTER_STRUCTURAL_GATE_V2
-objects=2
-bind_vertices=662
-bind_bones_used=20
-skeleton_bones=25
-smb_trailing_bytes=0
-missing_bind_bones=[]
-client_modified=False
-character_structural_gate_check=PASS

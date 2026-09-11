@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=fe4afb13b0b5e3192e7f708e55f854073d0ea67812d45adc8f34b79788a22779
-output_sha256=fe4afb13b0b5e3192e7f708e55f854073d0ea67812d45adc8f34b79788a22779
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-35E1FA8E3A93/multilayer_texlink_roundtrip/texture_overlay_client/field/dungeon/flame_0.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

@@ -1,9 +1,0 @@
-{
-  "asset_id": "AST-99CAC5204F4A",
-  "asset": "char/npc/Ahin/Ahin.smd",
-  "source_sha256": "c53c9a435279128625e4fe359c28b8abf5a9558b3ceb7cb00330e8c21a7f7503",
-  "mode": "RIGID",
-  "structural_report": "/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-99CAC5204F4A/structural/character_structural.json",
-  "inx_checks": 2,
-  "check": "PASS"
-}

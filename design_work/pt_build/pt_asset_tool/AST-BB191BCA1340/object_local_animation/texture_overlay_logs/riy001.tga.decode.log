@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=3f9ed86b383cdce76d37dc8009acba40f057a001f769a83d755b9fb282a89cfa
-output_sha256=2100f3f961b5adc738e729ba5afcea893cc77589869e8977ab38241d32915a2c
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/texture_overlay_client/field/castle/riy001.tga
-format=TGA_PRISTON_HEADER18_KEEP_00_16
-client_modified=False
-tga_decode_check=PASS

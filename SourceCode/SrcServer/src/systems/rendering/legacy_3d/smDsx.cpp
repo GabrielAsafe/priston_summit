@@ -530,11 +530,11 @@ bool RenderDevice::autoAdjust(int width, int height)
 //			D3DRect.x2 = Settings::getInstance()->getWidth();
 //			D3DRect.y2 = Settings::getInstance()->getHeight();
 //			
-//			//Obt�m o endere�o das vari�veis.
+//			//Obtém o endereço das variáveis.
 //			extern float g_fWinSizeRatio_X;
 //			extern float g_fWinSizeRatio_Y;
 //
-//			//Atualiza as vari�veis.
+//			//Atualiza as variáveis.
 //			MidX = Settings::getInstance()->getWidth() / 2;
 //			MidY = Settings::getInstance()->getHeight() / 2;
 //			g_fWinSizeRatio_X = float(Settings::getInstance()->getWidth()) / 800.f;

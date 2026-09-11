@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=ba0014a7b7c6d837727fa77483c07c4487231f75183e054d177821dac27f6f69
-output_sha256=489f89529fa7f488d9a4c2b747bbf86c1cc98c4d9b6eabde3605864326908a2c
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-F00D90040ABA/multilayer_texlink/texture_overlay_client/char/monster/Morgon/morgon01.TGA
-format=TGA_PRISTON_HEADER18_FULL18
-client_modified=False
-tga_decode_check=PASS

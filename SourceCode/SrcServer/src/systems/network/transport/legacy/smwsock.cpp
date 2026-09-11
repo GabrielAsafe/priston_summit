@@ -135,125 +135,7 @@ extern int AddChatBuff(char *szMsg);
 #endif
 
 
-struct PACKET_SEND_QUE
-{
-	smWINSOCK *lpsmSock;
-	char PacketQue[smSOCKBUFF_SIZE];
-	int	Len;
-
-	PACKET_SEND_QUE()
-	{
-		lpsmSock = nullptr;
-		ZeroMemory(PacketQue, sizeof(PacketQue));
-		Len = 0;
-	}
-};
-
-PACKET_SEND_QUE	PacketSendQue[PACKET_SEND_QUE_MAX];
-
-int	PacketSendQuePush = 0;
-
-
-int	InitPacketSendQue()
-{
-	InitializeCriticalSection(&cPacketQueSection);
-
-	return TRUE;
-}
-
-
-int	ClosePacketSendQue()
-{
-	DeleteCriticalSection(&cPacketQueSection);
-	return TRUE;
-}
-
-
-int PushPacketSendQue(smWINSOCK *lpsmSock, char *lpData, int len)
-{
-	EnterCriticalSection(&cPacketQueSection);
-
-	int QuePos = PacketSendQuePush & PACKET_SEND_QUE_MASK;
-
-	if(PacketSendQue[QuePos].lpsmSock)
-	{
-		PacketSendQue[QuePos].lpsmSock->PacketSendQueCnt--;
-	}
-
-
-	memcpy(PacketSendQue[QuePos].PacketQue, lpData, len);
-	PacketSendQue[QuePos].lpsmSock = lpsmSock;
-	PacketSendQue[QuePos].Len = len;
-
-	PacketSendQuePush++;
-	lpsmSock->PacketSendQueCnt++;
-
-	LeaveCriticalSection(&cPacketQueSection);
-
-	return TRUE;
-}
-
-
-int ClearPacketSendQue(smWINSOCK *lpsmSock)
-{
-	int cnt;
-	int StartQuePos;
-	int QuePos;
-
-	EnterCriticalSection(&cPacketQueSection);
-
-	StartQuePos = PacketSendQuePush - PACKET_SEND_QUE_MAX;
-	if(StartQuePos < 0) StartQuePos = 0;
-
-	for(cnt = StartQuePos; cnt < PacketSendQuePush; cnt++)
-	{
-		QuePos = cnt & PACKET_SEND_QUE_MASK;
-		if(PacketSendQue[QuePos].lpsmSock == lpsmSock)
-		{
-			PacketSendQue[QuePos].lpsmSock = 0;
-			lpsmSock->PacketSendQueCnt--;
-		}
-	}
-
-	LeaveCriticalSection(&cPacketQueSection);
-
-	return TRUE;
-}
-
-
-int PopSendPacketQue(smWINSOCK *lpsmSock)
-{
-	int cnt;
-	int StartQuePos;
-	int QuePos;
-
-	EnterCriticalSection(&cPacketQueSection);
-
-	StartQuePos = PacketSendQuePush - PACKET_SEND_QUE_MAX;
-	if(StartQuePos < 0) StartQuePos = 0;
-
-	for(cnt = StartQuePos; cnt < PacketSendQuePush; cnt++)
-	{
-		QuePos = cnt & PACKET_SEND_QUE_MASK;
-		if(PacketSendQue[QuePos].lpsmSock == lpsmSock)
-		{
-			if(lpsmSock->Send(PacketSendQue[QuePos].PacketQue, PacketSendQue[QuePos].Len) == TRUE)
-			{
-
-				PacketSendQue[QuePos].lpsmSock = 0;
-				lpsmSock->PacketSendQueCnt--;
-				LeaveCriticalSection(&cPacketQueSection);
-				return TRUE;
-			}
-			break;
-		}
-	}
-
-	LeaveCriticalSection(&cPacketQueSection);
-
-	return FALSE;
-}
-
+#include "network/transport/legacy/SmWSockPacketSendQueueLegacyCommon.inl"
 
 int SucessPacketSending(smTHREADSOCK *SockInfo)
 {
@@ -517,7 +399,7 @@ DWORD WINAPI smTransRecvThreadProc(void *pInfo)
 		}
 
 
-		if(BuffCnt > smSOCKBUFF_SIZE || RecvLen<0 || RecvLen>smSOCKBUFF_SIZE)
+		if(BuffCnt > smSOCKBUFF_SIZE || RecvLen<8 || RecvLen>smSOCKBUFF_SIZE)
 		{
 
 			RecvLen = 0;
@@ -789,369 +671,7 @@ DWORD WINAPI smTransSendThreadProc(void *pInfo)
 }
 
 
-void InitTransThread()
-{
-	DWORD dwRecvMsgId;
-	DWORD dwSendMsgId;
-
-
-	InitializeCriticalSection(&cTransSection);
-
-	smWaitSendQuePop = 0;
-	smWaitSendQuePush = 0;
-	smWaitRecvQuePop = 0;
-	smWaitRecvQuePush = 0;
-
-
-	for(int cnt = 0; cnt < TRANS_THREAD_SEND_MAX; cnt++)
-	{
-		smTransSendThreads[cnt].smThreadSock = 0;
-		smTransSendThreads[cnt].MyPoint = &smTransSendThreads[cnt];
-
-		smTransSendThreads[cnt].hThread = CreateThread(NULL, 0, smTransSendThreadProc, &smTransSendThreads[cnt], 0, &dwRecvMsgId);
-
-	}
-
-	for(int cnt = 0; cnt < TRANS_THREAD_RECV_MAX; cnt++)
-	{
-		smTransRecvThreads[cnt].smThreadSock = 0;
-		smTransRecvThreads[cnt].MyPoint = &smTransRecvThreads[cnt];
-
-		smTransRecvThreads[cnt].hThread = CreateThread(NULL, 0, smTransRecvThreadProc, &smTransRecvThreads[cnt], 0, &dwSendMsgId);
-
-	}
-}
-
-
-int PushTransSendSocket(smWINSOCK *lpsmsock)
-{
-
-
-
-	smWaitSendSocketQue[smWaitSendQuePush&TRANS_WAIT_QUE_MASK] = lpsmsock;
-	smWaitSendQuePush++;
-
-
-
-
-	return smWaitSendQuePush;
-}
-
-
-smWINSOCK *PopTransSendSocket()
-{
-	smWINSOCK *lpsmsock = nullptr;
-
-	while(true)
-	{
-		if(smWaitSendQuePop >= smWaitSendQuePush)
-		{
-			break;
-		}
-
-		lpsmsock = smWaitSendSocketQue[smWaitSendQuePop & TRANS_WAIT_QUE_MASK];
-		smWaitSendQuePop++;
-
-		if(lpsmsock)
-		{
-			break;
-		}
-	}
-
-
-
-
-	return lpsmsock;
-}
-
-
-int PushTransRecvSocket(smWINSOCK *lpsmsock)
-{
-
-
-
-	smWaitRecvSocketQue[smWaitRecvQuePush&TRANS_WAIT_QUE_MASK] = lpsmsock;
-	smWaitRecvQuePush++;
-
-
-
-
-	return smWaitRecvQuePush;
-}
-
-
-smWINSOCK *PopTransRecvSocket()
-{
-	smWINSOCK *lpsmsock;
-
-
-
-
-	lpsmsock = NULL;
-
-	while(1)
-	{
-		if(smWaitRecvQuePop >= smWaitRecvQuePush)
-			break;
-
-		lpsmsock = smWaitRecvSocketQue[smWaitRecvQuePop&TRANS_WAIT_QUE_MASK];
-		smWaitRecvQuePop++;
-
-		if(lpsmsock)
-			break;
-	}
-
-
-
-
-	return lpsmsock;
-}
-
-
-int GetUseingSendThreadCount()
-{
-	int Count = 0;
-
-	for(int cnt = 0; cnt < TRANS_THREAD_SEND_MAX; cnt++)
-	{
-		if(smTransSendThreads[cnt].smThreadSock)
-		{
-			Count++;
-		}
-	}
-
-	return Count;
-}
-
-
-int GetUseingRecvThreadCount()
-{
-	int Count = 0;
-
-	for(int cnt = 0; cnt < TRANS_THREAD_RECV_MAX; cnt++)
-	{
-		if(smTransRecvThreads[cnt].smThreadSock)
-		{
-			Count++;
-		}
-	}
-
-	return Count;
-}
-
-
-int ClearTransQueSocket(smWINSOCK *lpsmsock)
-{
-	int cnt;
-	int mCnt;
-
-
-	EnterCriticalSection(&cTransSection);
-
-	for(cnt = smWaitRecvQuePop; cnt < smWaitRecvQuePush; cnt++)
-	{
-		mCnt = cnt & TRANS_WAIT_QUE_MASK;
-
-		if(smWaitRecvSocketQue[mCnt] == lpsmsock)
-		{
-			smWaitRecvSocketQue[mCnt] = 0;
-		}
-	}
-
-	for(cnt = smWaitSendQuePop; cnt < smWaitSendQuePush; cnt++)
-	{
-		mCnt = cnt & TRANS_WAIT_QUE_MASK;
-
-		if(smWaitSendSocketQue[mCnt] == lpsmsock)
-		{
-			smWaitSendSocketQue[mCnt] = 0;
-		}
-	}
-
-
-	if(lpsmsock->lpsmRecvRoute)
-	{
-
-
-		if(lpsmsock->lpsmRecvRoute->smThreadSock &&
-			lpsmsock->lpsmRecvRoute->smThreadSock->smMySock == lpsmsock)
-		{
-
-			lpsmsock->lpsmRecvRoute->TimeOut = TRUE;
-			ResumeThread(lpsmsock->lpsmRecvRoute->hThread);
-		}
-		else
-		{
-			lpsmsock->lpsmRecvRoute = 0;
-			smTransClearErrorCnt++;
-		}
-	}
-
-
-	if(lpsmsock->lpsmSendRoute)
-	{
-
-
-		if(lpsmsock->lpsmSendRoute->smThreadSock &&
-			lpsmsock->lpsmSendRoute->smThreadSock->smMySock == lpsmsock)
-		{
-
-			lpsmsock->lpsmSendRoute->TimeOut = TRUE;
-			ResumeThread(lpsmsock->lpsmSendRoute->hThread);
-		}
-		else
-		{
-			lpsmsock->lpsmSendRoute = 0;
-			smTransClearErrorCnt++;
-		}
-	}
-
-
-
-	LeaveCriticalSection(&cTransSection);
-
-	return TRUE;
-}
-
-
-int CheckLostTransThread()
-{
-	int cnt;
-	DWORD dwTime;
-	DWORD dwAcessTime;
-	smWINSOCK *lpLostSock[TRANS_THREAD_SEND_MAX + TRANS_THREAD_RECV_MAX];
-	int LostCount = 0;
-
-
-	EnterCriticalSection(&cTransSection);
-
-	dwTime = GetCurrentTime();
-
-	for(cnt = 0; cnt < TRANS_THREAD_RECV_MAX; cnt++)
-	{
-		if(smTransRecvThreads[cnt].smThreadSock)
-		{
-
-			if(smTransRecvThreads[cnt].TimeOut && smTransRecvThreads[cnt].Sleep)
-			{
-				ResumeThread(smTransRecvThreads[cnt].hThread);
-			}
-
-			dwAcessTime = smTransRecvThreads[cnt].smThreadSock->dwAcessTime;
-			if(dwAcessTime && (dwAcessTime + TRANS_LOST_TIME) < dwTime)
-			{
-
-
-
-
-				if(smTransRecvThreads[cnt].smThreadSock->smMySock)
-				{
-
-					lpLostSock[LostCount++] = smTransRecvThreads[cnt].smThreadSock->smMySock;
-
-				}
-			}
-			else
-			{
-
-				if(smTransRecvThreads[cnt].Sleep &&
-					smTransRecvThreads[cnt].smThreadSock->smMySock &&
-					(&smTransRecvThreads[cnt]) != smTransRecvThreads[cnt].smThreadSock->smMySock->lpsmRecvRoute)
-				{
-					if(dwTime > (smTransRecvThreads[cnt].dwSleepTime + (TRANS_LOST_TIME * 2)))
-					{
-
-						smTransRecvThreads[cnt].TimeOut = TRUE;
-						ResumeThread(smTransRecvThreads[cnt].hThread);
-
-					}
-				}
-			}
-		}
-	}
-
-	for(cnt = 0; cnt < TRANS_THREAD_SEND_MAX; cnt++)
-	{
-		if(smTransSendThreads[cnt].smThreadSock)
-		{
-
-			if(smTransSendThreads[cnt].TimeOut && smTransSendThreads[cnt].Sleep)
-			{
-				ResumeThread(smTransSendThreads[cnt].hThread);
-			}
-
-			dwAcessTime = smTransSendThreads[cnt].smThreadSock->dwAcessTime;
-			if(dwAcessTime && (dwAcessTime + TRANS_LOST_TIME) < dwTime)
-			{
-
-
-
-
-				if(smTransSendThreads[cnt].smThreadSock->smMySock)
-				{
-					lpLostSock[LostCount++] = smTransSendThreads[cnt].smThreadSock->smMySock;
-
-				}
-
-			}
-			else
-			{
-
-				if(smTransSendThreads[cnt].Sleep &&
-					smTransSendThreads[cnt].smThreadSock->smMySock &&
-					(&smTransSendThreads[cnt]) != smTransSendThreads[cnt].smThreadSock->smMySock->lpsmSendRoute)
-				{
-					if(dwTime > (smTransSendThreads[cnt].dwSleepTime + (TRANS_LOST_TIME * 2)))
-					{
-
-						smTransSendThreads[cnt].TimeOut = TRUE;
-						ResumeThread(smTransSendThreads[cnt].hThread);
-
-					}
-				}
-			}
-		}
-	}
-
-	LeaveCriticalSection(&cTransSection);
-
-	for(cnt = 0; cnt < LostCount; cnt++)
-	{
-		if(lpLostSock[cnt]->sock)
-			lpLostSock[cnt]->CloseSocket();
-	}
-
-	return LostCount;
-}
-
-
-smTHREAD_ROUTE *FindTransThread(int SRMode)
-{
-	int cnt;
-
-	if(SRMode)
-	{
-		for(cnt = 0; cnt < TRANS_THREAD_SEND_MAX; cnt++)
-		{
-			if(!smTransSendThreads[cnt].smThreadSock && smTransSendThreads[cnt].Sleep)
-			{
-				return &smTransSendThreads[cnt];
-			}
-		}
-	}
-	else
-	{
-		for(cnt = 0; cnt < TRANS_THREAD_RECV_MAX; cnt++)
-		{
-			if(!smTransRecvThreads[cnt].smThreadSock && smTransRecvThreads[cnt].Sleep)
-			{
-				return &smTransRecvThreads[cnt];
-			}
-		}
-	}
-
-	return FALSE;
-}
+#include "network/transport/legacy/SmWSockThreadQueueLegacyCommon.inl"
 
 smTHREAD_ROUTE *RecvThreadRoute(smWINSOCK *lpsmsock)
 {
@@ -1205,90 +725,7 @@ smTHREAD_ROUTE *RecvThreadRoute(smWINSOCK *lpsmsock)
 	return lpRoute;
 }
 
-smTHREAD_ROUTE *SendThreadRoute(smWINSOCK *lpsmsock)
-{
-	smTHREAD_ROUTE *lpRoute = 0;
-
-
-	EnterCriticalSection(&cTransSection);
-
-	lpRoute = FindTransThread(TRUE);
-	if(lpRoute)
-	{
-		lpRoute->smThreadSock = &lpsmsock->smSendState;
-		lpRoute->TimeOut = FALSE;
-		lpsmsock->lpsmSendRoute = lpRoute;
-
-		ResumeThread(lpRoute->hThread);
-	}
-	else
-	{
-		PushTransSendSocket(lpsmsock);
-	}
-
-
-	LeaveCriticalSection(&cTransSection);
-
-	return lpRoute;
-}
-
-
-char *ConvStrIP(DWORD dwIP)
-{
-	in_addr  ia;
-
-	ia.S_un.S_addr = dwIP;
-	strcpy_s(szIP, inet_ntoa(ia));
-
-	return szIP;
-}
-
-
-char *smGetMyIp()
-{
-
-	PHOSTENT phe;
-	in_addr  ia;
-
-
-	phe = gethostbyname("");
-	if(phe == NULL)
-	{
-
-		return FALSE;
-	}
-	ia.S_un.S_addr = ((unsigned long *)phe->h_addr)[0];
-	strcpy_s(szIP, inet_ntoa(ia));
-
-	return szIP;
-}
-
-
-DWORD smGetMyIp2()
-{
-
-	PHOSTENT phe = gethostbyname("");
-	if(phe == NULL)
-	{
-
-		return FALSE;
-	}
-
-	return ((DWORD *)phe->h_addr)[0];
-}
-
-
-
-
-smWINSOCK::smWINSOCK()
-{
-
-}
-smWINSOCK::~smWINSOCK()
-{
-
-}
-
+#include "network/transport/legacy/SmWSockAddressLegacyCommon.inl"
 
 extern int ConnectPlayer(smWINSOCK* lpsmSock);
 
@@ -1671,7 +1108,8 @@ extern char *szNetLogFile;
 extern FILE *fpNetLog;
 
 int smWINSOCK::Send(char *SendData, int len, int ImpMode)
-{	
+{
+	if(!SendData || len <= 0 || len > smSOCKBUFF_SIZE) return FALSE;
 	if (this == nullptr) return FALSE;
 	if (!this) return FALSE;
 	if (len > 8192) return FALSE;
@@ -1985,6 +1423,15 @@ DWORD WINAPI smWinsockRecvThreadProc(void *pInfo)
 			continue;
 	}
 
+		if(BuffCnt >= 8 && (RecvLen < 8 || RecvLen > smSOCKBUFF_SIZE))
+		{
+			RecvLen = 0;
+			BuffCnt = 0;
+			if(SockInfo && SockInfo->smMySock)
+				SockInfo->smMySock->CloseSocket();
+			continue;
+		}
+
 		while(1)
 		{
 			if(BuffCnt >= RecvLen)
@@ -2169,51 +1616,7 @@ int smWINSOCK::CreateTransThread(int Mode)
 
 
 
-void InitGameSocket(int ThreadMode)
-{
-	WSADATA WSAData;
-
-	hMsgWnd = hwnd;
-
-	int status = 0;
-
-	if((status = WSAStartup(MAKEWORD(1, 1), &WSAData)) != 0)
-	{
-		char szTemp[80];
-		sprintf(szTemp, "%d is the err", status);
-		MessageBox(hMsgWnd, szTemp, "Error", MB_OK);
-	}
-
-	for(int cnt = 0; cnt < CONNECTMAX; cnt++)
-	{
-		smWSock[cnt].sock = 0;
-		smWSock[cnt].MyPoint = &smWSock[cnt];
-		smWSock[cnt].MyNum = cnt;
-		smWSock[cnt].smRecvState.smMySock = &smWSock[cnt];
-		smWSock[cnt].smSendState.smMySock = &smWSock[cnt];
-		smWSock[cnt].lpsmRecvRoute = 0;
-		smWSock[cnt].lpsmSendRoute = 0;
-	}
-
-	if(ThreadMode)
-	{
-		smTransThreadMode = ThreadMode;
-		InitTransThread();
-	}
-	else
-	{
-		smTransThreadMode = 0;
-	}
-
-
-	InitializeCriticalSection(&cSocketSection);
-
-	InitializeCriticalSection(&cSendingSection);
-
-
-	InitPacketSendQue();
-
-}
+#include "network/transport/legacy/SmWSockGameSocketInitLegacyCommon.inl"
 
 
 
@@ -2418,20 +1821,7 @@ int smCheckWaitMessage()
 
 
 
-int smReconnectSock(smWINSOCK *lpsmSock)
-{
-	int res;
-
-
-	EnterCriticalSection(&cSocketSection);
-
-	res = lpsmSock->ReconnectSock();
-
-
-	LeaveCriticalSection(&cSocketSection);
-
-	return res;
-}
+#include "network/transport/legacy/SmWSockReconnectLegacyCommon.inl"
 
 
 
@@ -2573,18 +1963,7 @@ int WSAMessage_Accept(DWORD wParam, DWORD lParam)
 }
 
 
-void smEnterCSectionSocket()
-{
-
-	EnterCriticalSection(&cSocketSection);
-}
-
-
-void smLeaveCSectionSocket()
-{
-
-	LeaveCriticalSection(&cSocketSection);
-}
+#include "network/transport/legacy/SmWSockCriticalSectionLegacyCommon.inl"
 
 int WSAMessage_Read(DWORD wParam, DWORD lParam)
 {
@@ -2676,6 +2055,23 @@ void InitBindSock(int port)
 		return;
 	}
 
+	cout << "[NETWORK] Escutando em 0.0.0.0:" << BindPort << " (todas as interfaces)" << endl;
+	char localHost[256] = {};
+	if(gethostname(localHost, sizeof(localHost) - 1) == 0)
+	{
+		PHOSTENT localEntry = gethostbyname(localHost);
+		if(localEntry && localEntry->h_addr_list)
+		{
+			for(char **addr = localEntry->h_addr_list; *addr; ++addr)
+			{
+				IN_ADDR localAddr = {};
+				memcpy(&localAddr, *addr, sizeof(localAddr));
+				cout << "[NETWORK] IP local: " << inet_ntoa(localAddr) << ":" << BindPort << endl;
+			}
+		}
+	}
+
+
 
 	if((status = WSAAsyncSelect(sock, hWnd, WSA_ACCEPT, FD_ACCEPT)) > 0)
 	{
@@ -2691,238 +2087,11 @@ void InitBindSock(int port)
 	BindSock = sock;
 }
 
-void CloseBindSock()
-{
-	closesocket(BindSock);
-}
+#include "network/transport/legacy/SmWSockBindHelpersLegacyCommon.inl"
 
 
 
-
-BOOL FillAddr(
-	HWND hWnd,
-	PSOCKADDR_IN psin,
-	BOOL bClient)
-{
-	DWORD dwSize;
-	PHOSTENT phe;
-	char szTemp[200];
-
-
-	psin->sin_family = AF_INET;
-	psin->sin_port = htons(BindPort);
-
-
-	if(bClient)
-	{
-		phe = gethostbyname(szBuff);
-		if(phe == NULL)
-		{
-			sprintf(szTemp, "%d is the error. Make sure '%s' is listed in the hosts file.", WSAGetLastError(), szBuff);
-
-			MessageBox(hWnd, szTemp, "gethostbyname() failed.", MB_OK);
-			return FALSE;
-		}
-		memcpy((char FAR *)&(psin->sin_addr), phe->h_addr,
-			phe->h_length);
-
-	}
-	else
-	{
-
-
-
-		dwSize = sizeof(szBuff);
-		gethostname(szBuff, dwSize);
-
-		psin->sin_addr.s_addr = INADDR_ANY;
-	}
-
-	return TRUE;
-}
-
-
-
-int	EncodePacket(DWORD dwKey, DWORD PacketCnt, BYTE *lpPacket, BYTE *lpEncBuff)
-{
-	int cnt;
-	BYTE ch;
-	BYTE bNear;
-	DWORD rKey, sKey;
-	int	len;
-	WORD wTotal;
-
-	sKey = (dwKey << 16) | (PacketCnt & 0xFFFF);
-
-	len = ((int *)lpPacket)[0];
-	((int *)lpEncBuff)[0] = len + 8;
-	((int *)lpEncBuff)[2] = sKey;
-
-	rKey = sKey >> 4;
-	rKey += len;
-
-	bNear = (BYTE)(PacketCnt + dwKey);
-	wTotal = 0;
-
-	for(cnt = 4; cnt < len; cnt++)
-	{
-		wTotal += lpPacket[cnt];
-		ch = lpPacket[cnt] ^ ((BYTE)rKey) ^ bNear;
-		lpEncBuff[cnt + 8] = ch;
-		rKey += cnt*(cnt >> 1);
-#ifdef	_PACKET_PASS_XOR
-		bNear = ch^_PACKET_PASS_XOR;
-#else
-		bNear = ch;
-#endif
-	}
-
-	((int *)lpEncBuff)[1] = (dwKey & 0xFFFF0000) | wTotal;
-
-
-
-	return TRUE;
-}
-
-
-DWORD DecodePacket(BYTE *lpPacket, BYTE *lpDecBuff)
-{
-	int cnt;
-	BYTE ch;
-	BYTE ch2;
-	BYTE bNear;
-	DWORD rKey, sKey;
-	int	len;
-	DWORD dwKey;
-	DWORD PacketCnt;
-	WORD wTotal;
-
-
-	len = ((int *)lpPacket)[0] - 8;
-	sKey = ((int *)lpPacket)[2];
-
-	dwKey = sKey >> 16;
-	PacketCnt = sKey & 0xFFFF;
-
-	rKey = sKey >> 4;
-	rKey += len;
-
-	bNear = (BYTE)(PacketCnt + dwKey);
-	wTotal = 0;
-
-	((int *)lpDecBuff)[0] = len;
-
-	for(cnt = 4; cnt < len; cnt++)
-	{
-		ch = lpPacket[cnt + 8];
-		ch2 = ch;
-		ch ^= ((BYTE)rKey) ^ bNear;
-		lpDecBuff[cnt] = ch;
-		rKey += cnt*(cnt >> 1);
-#ifdef	_PACKET_PASS_XOR
-		bNear = ch2^_PACKET_PASS_XOR;
-#else
-		bNear = ch2;
-#endif
-		wTotal += ch;
-	}
-
-	if((((int *)lpPacket)[1] & 0xFFFF) != wTotal)
-		return NULL;
-
-	return sKey;
-}
-
-
-
-
-
-int	EncodePacket2(DWORD dwKey, DWORD PacketCnt, BYTE *lpPacket, BYTE *lpEncBuff, BYTE bEncXor)
-{
-	int cnt;
-	BYTE ch;
-	BYTE bNear;
-	DWORD rKey, sKey;
-	int	len;
-	WORD wTotal;
-
-	dwKey |= OPCODE_ENCODE_PACKET;
-	sKey = (dwKey << 16) | (PacketCnt & 0xFFFF);
-
-	len = ((int *)lpPacket)[0];
-	((int *)lpEncBuff)[0] = len + 8;
-	((int *)lpEncBuff)[2] = sKey;
-
-	rKey = sKey >> 4;
-	rKey += len;
-
-	bNear = (BYTE)(PacketCnt + dwKey);
-	wTotal = 0;
-
-	for(cnt = 4; cnt < len; cnt++)
-	{
-		wTotal += lpPacket[cnt];
-		ch = lpPacket[cnt] ^ ((BYTE)rKey) ^ bNear;
-		lpEncBuff[cnt + 8] = ch;
-		rKey += cnt*(cnt >> 1);
-		bNear = ch^bEncXor;
-	}
-
-	((int *)lpEncBuff)[1] = (dwKey & 0xFFFF0000) | wTotal;
-
-
-
-	return TRUE;
-}
-
-
-DWORD DecodePacket2(BYTE *lpPacket, BYTE *lpDecBuff, BYTE bDecXor)
-{
-	int cnt;
-	BYTE ch;
-	BYTE ch2;
-	BYTE bNear;
-	DWORD rKey, sKey;
-	int	len;
-	DWORD dwKey;
-	DWORD PacketCnt;
-	WORD wTotal;
-
-
-	len = ((int *)lpPacket)[0] - 8;
-	sKey = ((int *)lpPacket)[2];
-
-	dwKey = sKey >> 16;
-	PacketCnt = sKey & 0xFFFF;
-
-	rKey = sKey >> 4;
-	rKey += len;
-
-	bNear = (BYTE)(PacketCnt + dwKey);
-	wTotal = 0;
-
-	((int *)lpDecBuff)[0] = len;
-
-	for(cnt = 4; cnt < len; cnt++)
-	{
-		ch = lpPacket[cnt + 8];
-		ch2 = ch;
-		ch ^= ((BYTE)rKey) ^ bNear;
-		lpDecBuff[cnt] = ch;
-		rKey += cnt*(cnt >> 1);
-		bNear = ch2^bDecXor;
-		wTotal += ch;
-	}
-
-	if((((int *)lpPacket)[1] & 0xFFFF) != wTotal)
-		return NULL;
-
-	return sKey;
-}
-
-
-
-
+#include "network/transport/legacy/SmWSockCodecLegacyCommon.inl"
 
 LPFN_EncodePacket	fnEncodePacket = 0;
 LPFN_DecodePacket	fnDecodePacket = 0;

@@ -731,11 +731,11 @@ void HoParty::DrawPartyMessage(int x, int y)
 
 
 		FontType = 2;
-		strcpy_s(strBuff, "Grupo");//a��o
+		strcpy_s(strBuff, "Grupo");//ação
 		GetFontTextExtentPoint(strBuff, strlen(strBuff), &size);
 		dsTextLineOut(BaseX + (115 - size.cx / 2), BaseY + 17, strBuff, strlen(strBuff));
 		FontType = 0;
-		strcpy_s(strBuff, "Pedido de grupo de");//a��o
+		strcpy_s(strBuff, "Pedido de grupo de");//ação
 		GetFontTextExtentPoint(strBuff, strlen(strBuff), &size);
 		dsTextLineOut(BaseX + (115 - size.cx / 2), BaseY + 50, strBuff, strlen(strBuff));
 

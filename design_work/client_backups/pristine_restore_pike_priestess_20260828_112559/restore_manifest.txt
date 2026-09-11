@@ -1,6 +1,0 @@
-timestamp=20260828_112559
-pikeman_target=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/TmbC01.smd
-pikeman_pristine_sha256=9c5b137bc637f485419cafae6864c4a37f77835d32210810295c1b58c746443c
-priestess_target=/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente/char/tmABCD/MfbC01.smd
-priestess_pristine_sha256=9ec6be4cc148125e56156b5a35da0f2939c2e0b52f17103c9253bfe8bb87120b
-restore_check=PASS

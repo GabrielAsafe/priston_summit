@@ -1,4 +1,4 @@
-/home/gabriel/Área\ de\ Trabalho/SourceCode/build_mingw_client_i686/objects/SrcGame/src/platform/windows/runtime/legacy/stdafx.o: \
+/home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/platform/windows/runtime/legacy/stdafx.o: \
  SrcGame/src/platform/windows/runtime/legacy/stdafx.cpp \
  SrcGame/src/platform/windows/runtime/legacy/stdafx.h \
  SrcGame/src/platform/windows/runtime/legacy/targetver.h \

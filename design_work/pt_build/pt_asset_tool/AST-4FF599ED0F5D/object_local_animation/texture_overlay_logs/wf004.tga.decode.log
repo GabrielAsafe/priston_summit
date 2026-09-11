@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=30ee8a07c46657d525586535c3c9ca47d4c0c4e54ec66b19a317e7987d33d56e
-output_sha256=30ee8a07c46657d525586535c3c9ca47d4c0c4e54ec66b19a317e7987d33d56e
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4FF599ED0F5D/object_local_animation/texture_overlay_client/field/SeaA/wf004.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

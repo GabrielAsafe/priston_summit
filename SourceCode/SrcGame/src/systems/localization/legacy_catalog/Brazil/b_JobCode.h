@@ -20,7 +20,6 @@ JOB_DATA_CODE	JobDataBase[] = {
 	{	"Lancelot"		,"Lancelot"		,JOB_CODE_LANCELOT	,	4	,BROOD_CODE_TEMPSKRON },
 	{	"Sagittarion"		,"Sagit\341ria"		,JOB_CODE_SAGITTARION	,	3	,BROOD_CODE_TEMPSKRON },
 
-	
 	{	"Knight"		,"Cavaleiro"		,JOB_CODE_KNIGHT	,	6	,BROOD_CODE_MORAYION  , 190,2,2,2,1,2,0},
 	{	"Atalanta"		,"Atalanta"		,JOB_CODE_ATALANTA	,	5	,BROOD_CODE_MORAYION  , 200,2,2,2,2,1,0},
 	{	"Priestess"		,"Sacerdotisa"		,JOB_CODE_PRIEST	,	8	,BROOD_CODE_MORAYION  , 200,4,1,3,3,2,2},
@@ -40,6 +39,21 @@ JOB_DATA_CODE	JobDataBase[] = {
 	{	"Valhalla"		,"Valhalla"		,JOB_CODE_VALHALLA	,	5	,BROOD_CODE_MORAYION },
 	{	"Celestial"		,"Celestial"		,JOB_CODE_CELESTIAL	,	8	,BROOD_CODE_MORAYION },
 	{	"ArchMage"		,"Mago Arcano"		,JOB_CODE_ARCHMAGE	,	7	,BROOD_CODE_MORAYION },
+
+	{	"","",0,0,0 }
+};
+
+// Rank5 titles are intentionally separate from JobDataBase. Their EU bitcodes overlap
+// legacy specialization masks from other classes and must not participate in item-mask scans.
+JOB_DATA_CODE	JobDataRank5[] = {
+	{	"Metalrage"		,"The Engineer"	,JOB_CODE_METALRAGE	,	2	,BROOD_CODE_TEMPSKRON },
+	{	"Warlord"		,"Zecram"		,JOB_CODE_WARLORD	,	1	,BROOD_CODE_TEMPSKRON },
+	{	"Baylolunt"		,"Reaper"		,JOB_CODE_BAYLOLUNT	,	4	,BROOD_CODE_TEMPSKRON },
+	{	"Iskar"			,"Wind Ranger"		,JOB_CODE_ISKAR		,	3	,BROOD_CODE_TEMPSKRON },
+	{	"Valiant"		,"Guardian"		,JOB_CODE_VALIANT	,	6	,BROOD_CODE_MORAYION },
+	{	"Queen of Valhalla"	,"Titanesses"		,JOB_CODE_QUEEN_VALHALLA,	5	,BROOD_CODE_MORAYION },
+	{	"Arc Angel"		,"Lightbringer"	,JOB_CODE_ARC_ANGEL	,	8	,BROOD_CODE_MORAYION },
+	{	"Elemental Master"	,"Elementalist"		,JOB_CODE_ELEMENTAL_MASTER,	7	,BROOD_CODE_MORAYION },
 	{	"","",0,0,0 }
 };
 

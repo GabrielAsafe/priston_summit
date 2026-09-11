@@ -1,0 +1,524 @@
+diff -ruN '--exclude=__pycache__' a/Database/migrations/018_billingdb_catalog.sql b/Database/migrations/018_billingdb_catalog.sql
+--- a/Database/migrations/018_billingdb_catalog.sql	1970-01-01 00:00:00.000000000 +0000
++++ b/Database/migrations/018_billingdb_catalog.sql	2026-09-06 15:06:59.628039020 +0000
+@@ -0,0 +1,402 @@
++-- Migration 018: BillingDB schema recovered directly from BillingDb202405120913.bak.
++-- R14 scope is schema only: this does NOT expand paid/PC-room SQLLogon semantics.
++-- Physical SQLite names preserve the logical BillingDB namespace as BillingDB__*.
++-- Column order and SQLite affinities follow the recovered SQL Server catalog.
++
++CREATE TABLE IF NOT EXISTS "BillingDB__0CHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__9CHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__ACHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__BCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__BillingPointCheck20060329" (
++    "IDX" INTEGER PRIMARY KEY AUTOINCREMENT,
++    "UserID" TEXT,
++    "EndDay" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__CCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__DCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__ECHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__Excite" (
++    "NUM" INTEGER PRIMARY KEY AUTOINCREMENT,
++    "EXTERNAL_ID" TEXT NOT NULL,
++    "PRISTONTALE_ID" TEXT,
++    "GOODS_TYPE" TEXT NOT NULL,
++    "CHARGE_TYPE" TEXT NOT NULL,
++    "CHARGE_FORM" TEXT NOT NULL,
++    "AMOUNT" INTEGER,
++    "START_DAY" TEXT,
++    "END_DAY" TEXT,
++    "LEFT_TIME" INTEGER NOT NULL,
++    "CHARGE_DAY" TEXT,
++    "UPDATE_CHECK" TEXT,
++    "NOTE" TEXT NOT NULL
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__Excite_Amount" (
++    "NUM" INTEGER PRIMARY KEY AUTOINCREMENT,
++    "IDX" INTEGER,
++    "EXTERNAL_ID" TEXT NOT NULL,
++    "PRISTONTALE_ID" TEXT,
++    "GOODS_TYPE" TEXT NOT NULL,
++    "CHARGE_TYPE" TEXT NOT NULL,
++    "CHARGE_FORM" TEXT NOT NULL,
++    "AMOUNT" INTEGER,
++    "START_DAY" TEXT,
++    "END_DAY" TEXT,
++    "LEFT_TIME" INTEGER NOT NULL,
++    "CHARGE_DAY" TEXT,
++    "UPDATE_CHECK" TEXT,
++    "NOTE" TEXT NOT NULL
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__Excite_Bak" (
++    "NUM" INTEGER PRIMARY KEY AUTOINCREMENT,
++    "IDX" INTEGER,
++    "EXTERNAL_ID" TEXT NOT NULL,
++    "PRISTONTALE_ID" TEXT,
++    "GOODS_TYPE" TEXT NOT NULL,
++    "CHARGE_TYPE" TEXT NOT NULL,
++    "CHARGE_FORM" TEXT NOT NULL,
++    "AMOUNT" INTEGER,
++    "START_DAY" TEXT,
++    "END_DAY" TEXT,
++    "LEFT_TIME" INTEGER NOT NULL,
++    "CHARGE_DAY" TEXT,
++    "UPDATE_CHECK" TEXT,
++    "NOTE" TEXT NOT NULL
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__Excite_Error" (
++    "NUM" INTEGER PRIMARY KEY AUTOINCREMENT,
++    "IDX" INTEGER,
++    "EXTERNAL_ID" TEXT NOT NULL,
++    "PRISTONTALE_ID" TEXT,
++    "GOODS_TYPE" TEXT NOT NULL,
++    "CHARGE_TYPE" TEXT NOT NULL,
++    "CHARGE_FORM" TEXT NOT NULL,
++    "AMOUNT" INTEGER,
++    "START_DAY" TEXT,
++    "END_DAY" TEXT,
++    "LEFT_TIME" INTEGER NOT NULL,
++    "CHARGE_DAY" TEXT,
++    "UPDATE_CHECK" TEXT,
++    "NOTE" TEXT NOT NULL
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__Excite_Free" (
++    "NUM" INTEGER PRIMARY KEY AUTOINCREMENT,
++    "IDX" INTEGER,
++    "EXTERNAL_ID" TEXT NOT NULL,
++    "PRISTONTALE_ID" TEXT,
++    "GOODS_TYPE" TEXT NOT NULL,
++    "CHARGE_TYPE" TEXT NOT NULL,
++    "CHARGE_FORM" TEXT NOT NULL,
++    "AMOUNT" INTEGER,
++    "START_DAY" TEXT,
++    "END_DAY" TEXT,
++    "LEFT_TIME" INTEGER NOT NULL,
++    "CHARGE_DAY" TEXT,
++    "UPDATE_CHECK" TEXT,
++    "NOTE" TEXT NOT NULL
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__Excite_NoUse" (
++    "NUM" INTEGER PRIMARY KEY AUTOINCREMENT,
++    "IDX" INTEGER,
++    "EXTERNAL_ID" TEXT NOT NULL,
++    "PRISTONTALE_ID" TEXT,
++    "GOODS_TYPE" TEXT NOT NULL,
++    "CHARGE_TYPE" TEXT NOT NULL,
++    "CHARGE_FORM" TEXT NOT NULL,
++    "AMOUNT" INTEGER,
++    "START_DAY" TEXT,
++    "END_DAY" TEXT,
++    "LEFT_TIME" INTEGER NOT NULL,
++    "CHARGE_DAY" TEXT,
++    "UPDATE_CHECK" TEXT,
++    "NOTE" TEXT NOT NULL
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__FCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__GCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__HCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__ICHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__JCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__KCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__LCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__MCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__NCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__NetMarble" (
++    "NUM" INTEGER PRIMARY KEY AUTOINCREMENT,
++    "EXTERNAL_ID" TEXT NOT NULL,
++    "PRISTONTALE_ID" TEXT,
++    "GOODS_TYPE" TEXT NOT NULL,
++    "CHARGE_TYPE" TEXT NOT NULL,
++    "CHARGE_FORM" TEXT NOT NULL,
++    "AMOUNT" INTEGER,
++    "START_DAY" TEXT,
++    "END_DAY" TEXT,
++    "LEFT_TIME" INTEGER NOT NULL,
++    "CHARGE_DAY" TEXT,
++    "UPDATE_CHECK" TEXT,
++    "NOTE" TEXT NOT NULL
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__NetMarble_Amount" (
++    "NUM" INTEGER PRIMARY KEY AUTOINCREMENT,
++    "IDX" INTEGER,
++    "EXTERNAL_ID" TEXT NOT NULL,
++    "PRISTONTALE_ID" TEXT,
++    "GOODS_TYPE" TEXT NOT NULL,
++    "CHARGE_TYPE" TEXT NOT NULL,
++    "CHARGE_FORM" TEXT NOT NULL,
++    "AMOUNT" INTEGER,
++    "START_DAY" TEXT,
++    "END_DAY" TEXT,
++    "LEFT_TIME" INTEGER NOT NULL,
++    "CHARGE_DAY" TEXT,
++    "UPDATE_CHECK" TEXT,
++    "NOTE" TEXT NOT NULL
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__NetMarble_Bak" (
++    "NUM" INTEGER PRIMARY KEY AUTOINCREMENT,
++    "IDX" INTEGER,
++    "EXTERNAL_ID" TEXT NOT NULL,
++    "PRISTONTALE_ID" TEXT,
++    "GOODS_TYPE" TEXT NOT NULL,
++    "CHARGE_TYPE" TEXT NOT NULL,
++    "CHARGE_FORM" TEXT NOT NULL,
++    "AMOUNT" INTEGER,
++    "START_DAY" TEXT,
++    "END_DAY" TEXT,
++    "LEFT_TIME" INTEGER NOT NULL,
++    "CHARGE_DAY" TEXT,
++    "UPDATE_CHECK" TEXT,
++    "NOTE" TEXT NOT NULL
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__NetMarble_Error" (
++    "NUM" INTEGER PRIMARY KEY AUTOINCREMENT,
++    "IDX" INTEGER,
++    "EXTERNAL_ID" TEXT NOT NULL,
++    "PRISTONTALE_ID" TEXT,
++    "GOODS_TYPE" TEXT NOT NULL,
++    "CHARGE_TYPE" TEXT NOT NULL,
++    "CHARGE_FORM" TEXT NOT NULL,
++    "AMOUNT" INTEGER,
++    "START_DAY" TEXT,
++    "END_DAY" TEXT,
++    "LEFT_TIME" INTEGER NOT NULL,
++    "CHARGE_DAY" TEXT,
++    "UPDATE_CHECK" TEXT,
++    "NOTE" TEXT NOT NULL
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__NetMarble_Free" (
++    "NUM" INTEGER PRIMARY KEY AUTOINCREMENT,
++    "IDX" INTEGER,
++    "EXTERNAL_ID" TEXT NOT NULL,
++    "PRISTONTALE_ID" TEXT,
++    "GOODS_TYPE" TEXT NOT NULL,
++    "CHARGE_TYPE" TEXT NOT NULL,
++    "CHARGE_FORM" TEXT NOT NULL,
++    "AMOUNT" INTEGER,
++    "START_DAY" TEXT,
++    "END_DAY" TEXT,
++    "LEFT_TIME" INTEGER NOT NULL,
++    "CHARGE_DAY" TEXT,
++    "UPDATE_CHECK" TEXT,
++    "NOTE" TEXT NOT NULL
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__NetMarble_NoUse" (
++    "NUM" INTEGER PRIMARY KEY AUTOINCREMENT,
++    "IDX" INTEGER,
++    "EXTERNAL_ID" TEXT NOT NULL,
++    "PRISTONTALE_ID" TEXT,
++    "GOODS_TYPE" TEXT NOT NULL,
++    "CHARGE_TYPE" TEXT NOT NULL,
++    "CHARGE_FORM" TEXT NOT NULL,
++    "AMOUNT" INTEGER,
++    "START_DAY" TEXT,
++    "END_DAY" TEXT,
++    "LEFT_TIME" INTEGER NOT NULL,
++    "CHARGE_DAY" TEXT,
++    "UPDATE_CHECK" TEXT,
++    "NOTE" TEXT NOT NULL
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__NTTBilling" (
++    "NUM" INTEGER,
++    "EXTERNAL_ID" TEXT NOT NULL,
++    "PRISTONTALE_ID" TEXT,
++    "GOODS_TYPE" TEXT NOT NULL,
++    "CHARGE_TYPE" TEXT NOT NULL,
++    "CHARGE_FORM" TEXT NOT NULL,
++    "AMOUNT" INTEGER,
++    "START_DAY" TEXT,
++    "END_DAY" TEXT,
++    "LEFT_TIME" INTEGER NOT NULL,
++    "CHARGE_DAY" TEXT,
++    "UPDATE_CHECK" TEXT,
++    "NOTE" TEXT NOT NULL
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__OCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__PCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__QCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__RCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__SCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__Table1" (
++    "day" INTEGER NOT NULL,
++    "amount" INTEGER NOT NULL,
++    "count" INTEGER NOT NULL
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__TCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__UCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__VCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__WCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__XCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__YCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
++
++CREATE TABLE IF NOT EXISTS "BillingDB__ZCHANNEL" (
++    "PRISTONTALE_ID" TEXT,
++    "TABLE_NAME" TEXT,
++    "INSERT_DATE" TEXT
++);
+diff -ruN '--exclude=__pycache__' a/SrcServer/src/systems/persistence/database/sqlite/SQLiteConnection.cpp b/SrcServer/src/systems/persistence/database/sqlite/SQLiteConnection.cpp
+--- a/SrcServer/src/systems/persistence/database/sqlite/SQLiteConnection.cpp	2026-09-06 13:46:12.000000000 +0000
++++ b/SrcServer/src/systems/persistence/database/sqlite/SQLiteConnection.cpp	2026-09-06 15:07:01.287916820 +0000
+@@ -229,7 +229,8 @@
+ 			{ 14, "014_coinshop_identity.sql" },
+ 			{ 15, "015_source_only_legacy_contracts.sql" },
+ 			{ 16, "016_clandb_members.sql" },
+-			{ 17, "017_clandb_deleted_archives.sql" }
++			{ 17, "017_clandb_deleted_archives.sql" },
++			{ 18, "018_billingdb_catalog.sql" }
+ 		};
+ 
+ 		int currentVersion = 0;
+diff -ruN '--exclude=__pycache__' a/validate_billingdb_sqlite_contract.py b/validate_billingdb_sqlite_contract.py
+--- a/validate_billingdb_sqlite_contract.py	1970-01-01 00:00:00.000000000 +0000
++++ b/validate_billingdb_sqlite_contract.py	2026-09-06 15:07:26.574493653 +0000
+@@ -0,0 +1,50 @@
++#!/usr/bin/env python3
++"""Validate BillingDB migration 018 against the catalog recovered from BillingDb202405120913.bak."""
++
++from __future__ import annotations
++
++import sqlite3
++import tempfile
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parent
++MIGRATION_DIR = ROOT / "Database" / "migrations"
++EXPECTED_COLUMNS = {'0CHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], '9CHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'ACHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'BCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'BillingPointCheck20060329': ['IDX', 'UserID', 'EndDay'], 'CCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'DCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'ECHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'Excite': ['NUM', 'EXTERNAL_ID', 'PRISTONTALE_ID', 'GOODS_TYPE', 'CHARGE_TYPE', 'CHARGE_FORM', 'AMOUNT', 'START_DAY', 'END_DAY', 'LEFT_TIME', 'CHARGE_DAY', 'UPDATE_CHECK', 'NOTE'], 'Excite_Amount': ['NUM', 'IDX', 'EXTERNAL_ID', 'PRISTONTALE_ID', 'GOODS_TYPE', 'CHARGE_TYPE', 'CHARGE_FORM', 'AMOUNT', 'START_DAY', 'END_DAY', 'LEFT_TIME', 'CHARGE_DAY', 'UPDATE_CHECK', 'NOTE'], 'Excite_Bak': ['NUM', 'IDX', 'EXTERNAL_ID', 'PRISTONTALE_ID', 'GOODS_TYPE', 'CHARGE_TYPE', 'CHARGE_FORM', 'AMOUNT', 'START_DAY', 'END_DAY', 'LEFT_TIME', 'CHARGE_DAY', 'UPDATE_CHECK', 'NOTE'], 'Excite_Error': ['NUM', 'IDX', 'EXTERNAL_ID', 'PRISTONTALE_ID', 'GOODS_TYPE', 'CHARGE_TYPE', 'CHARGE_FORM', 'AMOUNT', 'START_DAY', 'END_DAY', 'LEFT_TIME', 'CHARGE_DAY', 'UPDATE_CHECK', 'NOTE'], 'Excite_Free': ['NUM', 'IDX', 'EXTERNAL_ID', 'PRISTONTALE_ID', 'GOODS_TYPE', 'CHARGE_TYPE', 'CHARGE_FORM', 'AMOUNT', 'START_DAY', 'END_DAY', 'LEFT_TIME', 'CHARGE_DAY', 'UPDATE_CHECK', 'NOTE'], 'Excite_NoUse': ['NUM', 'IDX', 'EXTERNAL_ID', 'PRISTONTALE_ID', 'GOODS_TYPE', 'CHARGE_TYPE', 'CHARGE_FORM', 'AMOUNT', 'START_DAY', 'END_DAY', 'LEFT_TIME', 'CHARGE_DAY', 'UPDATE_CHECK', 'NOTE'], 'FCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'GCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'HCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'ICHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'JCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'KCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'LCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'MCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'NCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'NetMarble': ['NUM', 'EXTERNAL_ID', 'PRISTONTALE_ID', 'GOODS_TYPE', 'CHARGE_TYPE', 'CHARGE_FORM', 'AMOUNT', 'START_DAY', 'END_DAY', 'LEFT_TIME', 'CHARGE_DAY', 'UPDATE_CHECK', 'NOTE'], 'NetMarble_Amount': ['NUM', 'IDX', 'EXTERNAL_ID', 'PRISTONTALE_ID', 'GOODS_TYPE', 'CHARGE_TYPE', 'CHARGE_FORM', 'AMOUNT', 'START_DAY', 'END_DAY', 'LEFT_TIME', 'CHARGE_DAY', 'UPDATE_CHECK', 'NOTE'], 'NetMarble_Bak': ['NUM', 'IDX', 'EXTERNAL_ID', 'PRISTONTALE_ID', 'GOODS_TYPE', 'CHARGE_TYPE', 'CHARGE_FORM', 'AMOUNT', 'START_DAY', 'END_DAY', 'LEFT_TIME', 'CHARGE_DAY', 'UPDATE_CHECK', 'NOTE'], 'NetMarble_Error': ['NUM', 'IDX', 'EXTERNAL_ID', 'PRISTONTALE_ID', 'GOODS_TYPE', 'CHARGE_TYPE', 'CHARGE_FORM', 'AMOUNT', 'START_DAY', 'END_DAY', 'LEFT_TIME', 'CHARGE_DAY', 'UPDATE_CHECK', 'NOTE'], 'NetMarble_Free': ['NUM', 'IDX', 'EXTERNAL_ID', 'PRISTONTALE_ID', 'GOODS_TYPE', 'CHARGE_TYPE', 'CHARGE_FORM', 'AMOUNT', 'START_DAY', 'END_DAY', 'LEFT_TIME', 'CHARGE_DAY', 'UPDATE_CHECK', 'NOTE'], 'NetMarble_NoUse': ['NUM', 'IDX', 'EXTERNAL_ID', 'PRISTONTALE_ID', 'GOODS_TYPE', 'CHARGE_TYPE', 'CHARGE_FORM', 'AMOUNT', 'START_DAY', 'END_DAY', 'LEFT_TIME', 'CHARGE_DAY', 'UPDATE_CHECK', 'NOTE'], 'NTTBilling': ['NUM', 'EXTERNAL_ID', 'PRISTONTALE_ID', 'GOODS_TYPE', 'CHARGE_TYPE', 'CHARGE_FORM', 'AMOUNT', 'START_DAY', 'END_DAY', 'LEFT_TIME', 'CHARGE_DAY', 'UPDATE_CHECK', 'NOTE'], 'OCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'PCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'QCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'RCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'SCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'Table1': ['day', 'amount', 'count'], 'TCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'UCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'VCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'WCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'XCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'YCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE'], 'ZCHANNEL': ['PRISTONTALE_ID', 'TABLE_NAME', 'INSERT_DATE']}
++EXPECTED_IDENTITY = {'0CHANNEL': [], '9CHANNEL': [], 'ACHANNEL': [], 'BCHANNEL': [], 'BillingPointCheck20060329': ['IDX'], 'CCHANNEL': [], 'DCHANNEL': [], 'ECHANNEL': [], 'Excite': ['NUM'], 'Excite_Amount': ['NUM'], 'Excite_Bak': ['NUM'], 'Excite_Error': ['NUM'], 'Excite_Free': ['NUM'], 'Excite_NoUse': ['NUM'], 'FCHANNEL': [], 'GCHANNEL': [], 'HCHANNEL': [], 'ICHANNEL': [], 'JCHANNEL': [], 'KCHANNEL': [], 'LCHANNEL': [], 'MCHANNEL': [], 'NCHANNEL': [], 'NetMarble': ['NUM'], 'NetMarble_Amount': ['NUM'], 'NetMarble_Bak': ['NUM'], 'NetMarble_Error': ['NUM'], 'NetMarble_Free': ['NUM'], 'NetMarble_NoUse': ['NUM'], 'NTTBilling': [], 'OCHANNEL': [], 'PCHANNEL': [], 'QCHANNEL': [], 'RCHANNEL': [], 'SCHANNEL': [], 'Table1': [], 'TCHANNEL': [], 'UCHANNEL': [], 'VCHANNEL': [], 'WCHANNEL': [], 'XCHANNEL': [], 'YCHANNEL': [], 'ZCHANNEL': []}
++
++
++def apply_all(db: sqlite3.Connection) -> None:
++    for path in sorted(MIGRATION_DIR.glob("[0-9][0-9][0-9]_*.sql")):
++        db.executescript(path.read_text(encoding="utf-8"))
++
++
++def columns(db: sqlite3.Connection, table: str) -> list[str]:
++    return [row[1] for row in db.execute(f'PRAGMA table_info("{table}")')]
++
++
++def main() -> None:
++    with tempfile.TemporaryDirectory() as td:
++        db = sqlite3.connect(Path(td) / "billing.sqlite3")
++        apply_all(db)
++        physical = {
++            row[0] for row in db.execute(
++                "SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'BillingDB__%'"
++            )
++        }
++        expected_physical = {f"BillingDB__{name}" for name in EXPECTED_COLUMNS}
++        assert physical == expected_physical, (sorted(expected_physical - physical), sorted(physical - expected_physical))
++        for logical, expected in EXPECTED_COLUMNS.items():
++            table = f"BillingDB__{logical}"
++            actual = columns(db, table)
++            assert actual == expected, f"{table}: {actual!r} != {expected!r}"
++            info = db.execute(f'PRAGMA table_info("{table}")').fetchall()
++            pk_cols = [row[1] for row in info if row[5]]
++            expected_identity = EXPECTED_IDENTITY[logical]
++            if expected_identity:
++                assert pk_cols == expected_identity, f"{table}: identity/PK {pk_cols!r} != {expected_identity!r}"
++        db.close()
++    print(f"BillingDB SQLite contract PASS: tables={len(EXPECTED_COLUMNS)}, exact column order=PASS, identity translation=PASS")
++
++
++if __name__ == "__main__":
++    main()
+diff -ruN '--exclude=__pycache__' a/validate_sqlite_migrations.py b/validate_sqlite_migrations.py
+--- a/validate_sqlite_migrations.py	2026-09-06 13:46:12.000000000 +0000
++++ b/validate_sqlite_migrations.py	2026-09-06 15:07:01.288167703 +0000
+@@ -9,8 +9,8 @@
+ 
+ ROOT = Path(__file__).resolve().parent
+ MIGRATION_DIR = ROOT / "Database" / "migrations"
+-EXPECTED_LATEST = 17
+-EXPECTED_USER_TABLES = 113
++EXPECTED_LATEST = 18
++EXPECTED_USER_TABLES = 156
+ 
+ 
+ def execute_script_in_current_transaction(db: sqlite3.Connection, sql: str) -> None:
+@@ -62,7 +62,36 @@
+     return [row[1] for row in db.execute(f'PRAGMA table_info("{table}")')]
+ 
+ 
++def validate_billingdb_catalog(db: sqlite3.Connection) -> None:
++    channel_tables = ["0CHANNEL", "9CHANNEL"] + [f"{ch}CHANNEL" for ch in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
++    assert len(channel_tables) == 28
++    expected_channel = ["PRISTONTALE_ID", "TABLE_NAME", "INSERT_DATE"]
++    for name in channel_tables:
++        assert columns(db, f"BillingDB__{name}") == expected_channel
++
++    base_billing = [
++        "NUM", "EXTERNAL_ID", "PRISTONTALE_ID", "GOODS_TYPE", "CHARGE_TYPE",
++        "CHARGE_FORM", "AMOUNT", "START_DAY", "END_DAY", "LEFT_TIME",
++        "CHARGE_DAY", "UPDATE_CHECK", "NOTE",
++    ]
++    history_billing = ["NUM", "IDX"] + base_billing[1:]
++    assert columns(db, "BillingDB__BillingPointCheck20060329") == ["IDX", "UserID", "EndDay"]
++    assert columns(db, "BillingDB__Excite") == base_billing
++    assert columns(db, "BillingDB__NetMarble") == base_billing
++    assert columns(db, "BillingDB__NTTBilling") == base_billing
++    for provider in ("Excite", "NetMarble"):
++        for suffix in ("Amount", "Bak", "Error", "Free", "NoUse"):
++            assert columns(db, f"BillingDB__{provider}_{suffix}") == history_billing
++    assert columns(db, "BillingDB__Table1") == ["day", "amount", "count"]
++
++    billing_tables = db.execute(
++        "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name LIKE 'BillingDB__%'"
++    ).fetchone()[0]
++    assert billing_tables == 43, billing_tables
++
++
+ def validate_contracts(db: sqlite3.Connection) -> None:
++    validate_billingdb_catalog(db)
+     assert columns(db, "QuestDB__Progress") == [
+         "QuestID", "QuestKind", "QuestType", "PlayerName", "StartDate"
+     ]

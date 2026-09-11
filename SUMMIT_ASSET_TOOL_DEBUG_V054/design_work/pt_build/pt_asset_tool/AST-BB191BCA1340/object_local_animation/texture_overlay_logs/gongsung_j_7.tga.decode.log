@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=467515788b7e7faa15c1c735bd100acd51c4cdbc191053995df07a19265b54f2
-output_sha256=467515788b7e7faa15c1c735bd100acd51c4cdbc191053995df07a19265b54f2
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/texture_overlay_client/field/castle/gongsung_j_7.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

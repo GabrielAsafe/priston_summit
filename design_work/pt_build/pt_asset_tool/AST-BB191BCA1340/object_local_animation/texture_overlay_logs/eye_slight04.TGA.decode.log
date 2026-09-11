@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=cf8018a984b325f96631edbd30e46494986086a80d02b07a24dc57090b107abc
-output_sha256=5381fd17f8b487a58a15440603a240691375ebfcc180f29312f25fc2ff14544f
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/texture_overlay_client/field/castle/eye_slight04.TGA
-format=TGA_PRISTON_HEADER18_KEEP_00_16
-client_modified=False
-tga_decode_check=PASS

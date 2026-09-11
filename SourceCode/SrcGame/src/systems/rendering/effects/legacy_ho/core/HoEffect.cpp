@@ -12028,6 +12028,20 @@ int InitEffect()
 	g_NewParticleResMgr.init();
 	g_NewParticleMgr.Clear();
 
+	// Summit Tier 5 - canonical EU particle scripts recovered by the asset audit.
+	// LoadScript() already fails safely if a particular optional asset is missing.
+	g_NewParticleResMgr.LoadScript("game//scripts//particles//MC5RuptureHit.part");
+	g_NewParticleResMgr.LoadScript("game//scripts//particles//MC5RuptureFinalHit.part");
+	g_NewParticleResMgr.LoadScript("game//scripts//particles//PS5RingOfSpears.part");
+	g_NewParticleResMgr.LoadScript("game//scripts//particles//Ac5LethalSight.part");
+	g_NewParticleResMgr.LoadScript("game//scripts//particles//Ac5LethalSightKeep.part");
+	g_NewParticleResMgr.LoadScript("game//scripts//particles//Ac5FierceWind.part");
+	g_NewParticleResMgr.LoadScript("game//scripts//particles//Ac5FierceWindKeep.part");
+	g_NewParticleResMgr.LoadScript("game//scripts//particles//Ac5FierceWindProjectile.part");
+	g_NewParticleResMgr.LoadScript("game//scripts//particles//R5SesmicImpact.part");
+	g_NewParticleResMgr.LoadScript("game//scripts//particles//KS5HolyConviction.part");
+	g_NewParticleResMgr.LoadScript("game//scripts//particles//MG5OrbMastery.part");
+	g_NewParticleResMgr.LoadScript("game//scripts//particles//R5StoneSkin.part");
 
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//water.part");
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//NewCharacter.part");

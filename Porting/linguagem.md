@@ -289,61 +289,812 @@ O primeiro normalmente não.
 ---
 
 # 7. Ponteiros
+Claro. Vou focar no que você precisa para entender código como `sqlite3* DB`, `&DB`, `*DB` e `sqlite3**`, em vez de entrar em todos os detalhes de ponteiros de uma vez.
 
-Um ponteiro guarda um endereço de memória.
+## 1. Variável normal
 
-```cpp
-int x = 10;
-
-int* ptr = &x;
-```
-
-Temos:
+Começando sem ponteiros:
 
 ```cpp
-&x
+int numero = 10;
 ```
 
-endereço de `x`.
+Mentalmente:
 
-E:
+```text
+memória
+
+endereço      conteúdo
+0x1000        10
+              ↑
+            numero
+```
+
+A variável `numero` contém `10`.
+
+Você pode perguntar ao C++ qual é o endereço dela usando `&`:
+
+```cpp
+std::cout << &numero;
+```
+
+Algo como:
+
+```text
+0x1000
+```
+
+Então:
+
+```cpp
+numero   // valor
+&numero  // endereço de numero
+```
+
+---
+
+## 2. Um ponteiro guarda um endereço
+
+Agora:
+
+```cpp
+int numero = 10;
+
+int* ptr = &numero;
+```
+
+`ptr` é uma variável que guarda o endereço de um `int`.
+
+```text
+numero
+┌──────────┐
+│    10    │
+└──────────┘
+  0x1000
+     ↑
+     │
+     │
+ptr ─┘
+```
+
+Se:
+
+```cpp
+&numero == 0x1000
+```
+
+então conceitualmente:
+
+```cpp
+ptr == 0x1000
+```
+
+Portanto:
+
+```cpp
+int* ptr;
+```
+
+significa:
+
+> `ptr` é um ponteiro para `int`.
+
+---
+
+## 3. O `&`
+
+Nesse contexto:
+
+```cpp
+int numero = 10;
+
+int* ptr = &numero;
+```
+
+`&numero` significa:
+
+> me dê o endereço de memória de `numero`.
+
+Então:
+
+```cpp
+numero
+```
+
+é:
+
+```text
+10
+```
+
+enquanto:
+
+```cpp
+&numero
+```
+
+é algo como:
+
+```text
+0x1000
+```
+
+---
+
+## 4. O `*`
+
+Aqui começa a parte que confunde bastante porque `*` aparece com dois significados relacionados.
+
+Na declaração:
+
+```cpp
+int* ptr;
+```
+
+significa:
+
+> `ptr` é um ponteiro para `int`.
+
+Mas depois:
 
 ```cpp
 *ptr
 ```
 
-valor apontado por `ptr`.
+significa:
+
+> vá até o endereço guardado em `ptr` e pegue o valor que existe lá.
 
 Exemplo:
 
 ```cpp
-int x = 10;
-int* ptr = &x;
+int numero = 10;
 
-std::cout << *ptr; // 10
+int* ptr = &numero;
 
-*ptr = 20;
-
-std::cout << x; // 20
+std::cout << ptr << '\n';
+std::cout << *ptr << '\n';
 ```
 
-Um ponteiro pode não apontar para nada:
+Conceitualmente:
+
+```text
+ptr  → 0x1000
+*ptr → 10
+```
+
+Porque:
+
+```text
+ptr
+ ↓
+0x1000
+ ↓
+┌────┐
+│ 10 │
+└────┘
+```
+
+`*ptr` é chamado de **desreferenciar o ponteiro**.
+
+---
+
+## 5. Você pode modificar através do ponteiro
+
+Isso aqui é importante:
 
 ```cpp
-int* ptr = nullptr;
+int numero = 10;
+
+int* ptr = &numero;
+
+*ptr = 50;
 ```
 
-C++ moderno usa `nullptr`, e não:
+Agora:
 
 ```cpp
-NULL
+std::cout << numero;
 ```
 
-ou:
+imprime:
+
+```text
+50
+```
+
+Por quê?
+
+Porque você não mudou o endereço armazenado em `ptr`.
+
+Você falou:
 
 ```cpp
-0
+*ptr = 50;
 ```
+
+ou seja:
+
+> vá para onde `ptr` aponta e coloque `50` lá.
+
+E `ptr` aponta para `numero`.
+
+```text
+ANTES
+
+ptr ──────┐
+          ↓
+       numero
+       ┌────┐
+       │ 10 │
+       └────┘
+
+
+*ptr = 50;
+
+
+DEPOIS
+
+ptr ──────┐
+          ↓
+       numero
+       ┌────┐
+       │ 50 │
+       └────┘
+```
+
+---
+
+# 6. Ponteiros e funções
+
+Aqui está uma das principais razões para você estar vendo ponteiros na API do SQLite.
+
+Considere:
+
+```cpp
+void mudar(int x)
+{
+    x = 50;
+}
+```
+
+E:
+
+```cpp
+int numero = 10;
+
+mudar(numero);
+
+std::cout << numero;
+```
+
+Continua:
+
+```text
+10
+```
+
+Porque `x` recebeu uma cópia.
+
+Conceitualmente:
+
+```text
+numero = 10
+
+       cópia
+         ↓
+         x = 10
+
+x = 50
+
+numero continua 10
+```
+
+Mas podemos passar o endereço:
+
+```cpp
+void mudar(int* x)
+{
+    *x = 50;
+}
+```
+
+E chamar:
+
+```cpp
+int numero = 10;
+
+mudar(&numero);
+```
+
+Agora acontece:
+
+```text
+numero
+┌────┐
+│ 10 │
+└────┘
+  ↑
+  │
+  x
+```
+
+Dentro da função:
+
+```cpp
+*x = 50;
+```
+
+muda o objeto original.
+
+Depois:
+
+```cpp
+numero == 50
+```
+
+---
+
+# 7. Agora vamos chegar no SQLite
+
+Você viu:
+
+```cpp
+sqlite3* DB = nullptr;
+```
+
+Não precisa saber como `sqlite3` funciona internamente.
+
+Pense:
+
+```cpp
+sqlite3
+```
+
+é um tipo definido pela biblioteca.
+
+Então:
+
+```cpp
+sqlite3* DB;
+```
+
+significa:
+
+> `DB` é um ponteiro para um objeto `sqlite3`.
+
+Ou, de maneira mais útil:
+
+> `DB` vai apontar para minha conexão com o banco.
+
+Inicialmente:
+
+```cpp
+sqlite3* DB = nullptr;
+```
+
+temos:
+
+```text
+DB
+┌─────────┐
+│ nullptr │
+└─────────┘
+```
+
+`nullptr` significa:
+
+> esse ponteiro atualmente não aponta para nenhum objeto.
+
+---
+
+# 8. O SQLite precisa modificar `DB`
+
+Você chama:
+
+```cpp
+sqlite3_open("example.db", &DB);
+```
+
+Olha com atenção:
+
+```cpp
+DB
+```
+
+é:
+
+```cpp
+sqlite3*
+```
+
+Portanto:
+
+```cpp
+&DB
+```
+
+é o endereço de uma variável que é `sqlite3*`.
+
+Logo o tipo de:
+
+```cpp
+&DB
+```
+
+é:
+
+```cpp
+sqlite3**
+```
+
+Esse `**` assusta no começo, mas significa literalmente:
+
+> ponteiro para ponteiro de `sqlite3`.
+
+---
+
+# 9. Por que `sqlite3_open` quer `sqlite3**`?
+
+Porque ela precisa modificar seu ponteiro.
+
+Antes:
+
+```text
+DB
+┌─────────┐
+│ nullptr │
+└─────────┘
+```
+
+Você passa:
+
+```cpp
+&DB
+```
+
+para o SQLite:
+
+```cpp
+sqlite3_open("example.db", &DB);
+```
+
+O SQLite cria/abre a conexão e altera `DB`.
+
+Depois:
+
+```text
+DB
+┌──────────┐
+│ 0xABCD   │──────────┐
+└──────────┘          │
+                      ↓
+                 ┌─────────┐
+                 │ sqlite3 │
+                 │ conexão │
+                 └─────────┘
+```
+
+Essa é a razão do `**`.
+
+---
+
+# 10. Relacionando com sua `openDB`
+
+Você tinha algo parecido com:
+
+```cpp
+int openDB(sqlite3** DB)
+{
+    int rc = sqlite3_open("example.db", DB);
+
+    // ...
+}
+```
+
+E chama:
+
+```cpp
+sqlite3* DB = nullptr;
+
+openDB(&DB);
+```
+
+Vamos seguir os tipos.
+
+No `main`:
+
+```cpp
+sqlite3* DB;
+```
+
+Portanto:
+
+```cpp
+DB
+```
+
+é:
+
+```text
+sqlite3*
+```
+
+e:
+
+```cpp
+&DB
+```
+
+é:
+
+```text
+sqlite3**
+```
+
+Sua função espera:
+
+```cpp
+int openDB(sqlite3** DB)
+```
+
+Perfeito.
+
+Dentro dela:
+
+```cpp
+sqlite3_open("example.db", DB);
+```
+
+O `DB` da função **já é `sqlite3**`**, então não precisa colocar outro `&`.
+
+---
+
+# 11. E por que `createTable` recebe apenas `sqlite3*`?
+
+Compare:
+
+```cpp
+int openDB(sqlite3** DB)
+```
+
+com:
+
+```cpp
+int createTable(sqlite3* DB)
+```
+
+Existe uma diferença conceitual importante.
+
+`openDB` precisa fazer:
+
+> "Quero modificar o ponteiro do chamador para fazê-lo apontar para uma conexão."
+
+Por isso:
+
+```cpp
+sqlite3**
+```
+
+Já `createTable` só precisa:
+
+> "Me dê a conexão existente para eu usá-la."
+
+Então:
+
+```cpp
+sqlite3*
+```
+
+é suficiente.
+
+No `main`:
+
+```cpp
+sqlite3* DB = nullptr;
+
+openDB(&DB);
+
+createTable(DB);
+```
+
+Repare:
+
+```text
+                 tipo
+
+DB               sqlite3*
+
+&DB              sqlite3**
+```
+
+Por isso:
+
+```cpp
+openDB(&DB);
+```
+
+mas:
+
+```cpp
+createTable(DB);
+```
+
+---
+
+# 12. O erro que você tinha antes
+
+Você tinha:
+
+```cpp
+createTable(*DB);
+```
+
+Mas se:
+
+```cpp
+DB
+```
+
+é um:
+
+```cpp
+sqlite3*
+```
+
+então:
+
+```cpp
+*DB
+```
+
+é o objeto `sqlite3` para o qual ele aponta.
+
+Só que `createTable` quer:
+
+```cpp
+sqlite3*
+```
+
+Portanto você passa:
+
+```cpp
+createTable(DB);
+```
+
+e não:
+
+```cpp
+createTable(*DB);
+```
+
+---
+
+# 13. Uma regra mental útil
+
+Quando vir:
+
+```cpp
+Tipo* x;
+```
+
+leia:
+
+> `x` aponta para um `Tipo`.
+
+Quando vir:
+
+```cpp
+&x
+```
+
+leia:
+
+> endereço de `x`.
+
+Quando vir:
+
+```cpp
+*x
+```
+
+leia:
+
+> objeto/valor para o qual `x` aponta.
+
+Então:
+
+```cpp
+int numero = 42;
+int* ptr = &numero;
+```
+
+temos:
+
+```text
+numero      42
+
+&numero     endereço de numero
+
+ptr         endereço de numero
+
+*ptr        42
+```
+
+---
+
+## E `**`?
+
+Só aplique a mesma lógica duas vezes.
+
+```cpp
+int numero = 42;
+
+int* ptr = &numero;
+
+int** ptr2 = &ptr;
+```
+
+Visualmente:
+
+```text
+ptr2
+ │
+ ↓
+ptr
+ │
+ ↓
+numero
+ │
+ ↓
+42
+```
+
+Então:
+
+```cpp
+ptr2
+```
+
+é ponteiro para ponteiro.
+
+```cpp
+*ptr2
+```
+
+é `ptr`.
+
+E:
+
+```cpp
+**ptr2
+```
+
+é `numero`, portanto:
+
+```text
+42
+```
+
+Isso é exatamente o conceito que aparece em:
+
+```cpp
+sqlite3** DB
+```
+
+Não existe nenhuma "mágica especial do SQLite" aí. É ponteiro para ponteiro porque uma função precisa conseguir alterar um `sqlite3*` que pertence ao chamador.
+
+Se você fixar bem a relação:
+
+```text
+x      valor
+&x     endereço de x
+
+ptr    endereço
+*ptr   valor apontado
+```
+
+o `sqlite3*`/`sqlite3**` começa a ficar bem menos misterioso.
 
 ---
 

@@ -1,5 +1,5 @@
 
-char *parkTextTalk = "%s noï¿½i.";
+char *parkTextTalk = "%s noìi.";
 
 
 

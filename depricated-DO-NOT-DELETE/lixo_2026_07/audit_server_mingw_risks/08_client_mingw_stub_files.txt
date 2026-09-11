@@ -1,4 +1,0 @@
-SrcGame/src/client_server_stubs.cpp
-SrcGame/src/d3dx_font_alias.cpp
-SrcGame/src/mingw_debug_entry.cpp
-SrcGame/src/sinbaram/skill_missing_globals_mingw.cpp

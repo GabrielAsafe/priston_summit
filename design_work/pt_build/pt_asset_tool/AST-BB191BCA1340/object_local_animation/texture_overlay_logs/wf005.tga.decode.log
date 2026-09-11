@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=c2e986d9472f3bd9429db6a8cc28206413c152597d60295c988caa03a15cd6a2
-output_sha256=c2e986d9472f3bd9429db6a8cc28206413c152597d60295c988caa03a15cd6a2
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/texture_overlay_client/field/castle/wf005.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

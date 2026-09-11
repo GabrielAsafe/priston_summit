@@ -1,4 +1,4 @@
-#define j_font   "ï¿½lï¿½r ï¿½Sï¿½Vï¿½bï¿½N"
+#define j_font   "‚l‚r ƒSƒVƒbƒN"
 
 
 

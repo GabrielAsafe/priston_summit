@@ -1,4 +1,4 @@
-/home/gabriel/Área\ de\ Trabalho/SourceCode/build_mingw_client_i686/objects/SrcGame/src/core/data/legacy_loader/fileread.o: \
+/home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/core/data/legacy_loader/fileread.o: \
  SrcGame/src/core/data/legacy_loader/fileread.cpp Shared/opcodes.h \
  SrcGame/src/systems/rendering/legacy_3d/smd3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
@@ -22,30 +22,51 @@
  SrcGame/src/systems/rendering/legacy_3d/smType.h Shared/smPacket.h \
  Shared/global_def.h \
  SrcGame/src/systems/network/transport/legacy/smwsock.h \
+ Shared/network/transport/legacy/smwsock_legacy_client.h \
  SrcGame/src/systems/network/transport/legacy/NetType.h \
  SrcGame/src/systems/localization/legacy_catalog/language.h \
  SrcGame/src/systems/inventory/legacy/sinItem.h \
+ Shared/inventory/legacy/sinItem_legacy_client.h \
  SrcGame/src/systems/rendering/legacy_3d/smTexture.h \
  SrcGame/src/systems/rendering/legacy_3d/smObj3d.h \
+ Shared/rendering/legacy_3d/object/smObj3d_legacy_client.h \
  SrcGame/src/systems/rendering/legacy_3d/smStgObj.h \
  SrcGame/src/systems/rendering/legacy_3d/smStage3d.h \
+ Shared/rendering/legacy_3d/stage/smStage3d_legacy_client.h \
  SrcGame/src/systems/rendering/legacy_3d/smrend3d.h \
+ Shared/rendering/legacy_3d/SmRend3dLegacyCommon.h \
  SrcGame/src/systems/rendering/legacy_3d/smMap3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smRead3d.h \
+ Shared/rendering/legacy_3d/smRead3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smmatrix.h \
+ Shared/rendering/legacy_3d/smmatrix.h \
  SrcGame/src/systems/rendering/legacy_3d/smGeosub.h \
  SrcGame/src/systems/rendering/legacy_3d/smJpeg.h \
+ Shared/rendering/legacy_3d/smJpeg.h \
  SrcGame/src/systems/gameplay/character/core/character.h \
  SrcGame/src/systems/combat/pvp/Score.h \
  SrcGame/src/core/data/legacy_loader/fileread.h \
  SrcGame/src/systems/world/field/field.h \
  SrcGame/src/systems/audio/effects/legacy/effectsnd.h \
+ Shared/audio/effects/EffectSoundLegacyCatalog.h \
  SrcGame/src/platform/windows/registry/smreg.h \
  SrcGame/src/core/gameplay/runtime/playmain.h \
  SrcGame/src/core/gameplay/legacy_support/playsub.h \
+ Shared/gameplay/legacy_support/playsub_legacy_client.h \
  SrcGame/src/compat/client_server/server_legacy/onserver.h \
+ Shared/server/legacy_runtime/onserver_legacy_client.h \
  SrcGame/src/systems/configuration/client/Settings.h \
- SrcGame/src/systems/localization/legacy_catalog/Brazil/b_JobCode.h
+ Shared/formats/model_config/LegacyModelConfigExact_client.inl \
+ Shared/formats/server_config/LegacyServerConfigExact_client.inl \
+ Shared/formats/legacy_config/LegacyMainConfigExact_client.inl \
+ Shared/formats/item_config/LegacyItemDefinitionExact_client.inl \
+ Shared/formats/character_config/LegacyCharacterConfigExact_client.inl \
+ Shared/formats/stage_spawn/LegacyStageSpawnExact_client.inl \
+ Shared/formats/item_config/LegacyItemRuntimeExact_client.inl \
+ SrcGame/src/systems/localization/legacy_catalog/Brazil/b_JobCode.h \
+ Shared/formats/model_config/LegacyModelKeywordExact_client.inl \
+ Shared/formats/belatra/LegacyBelatraExact_client.inl \
+ Shared/formats/security/LegacyCrackerConfigExact_client.inl
 Shared/opcodes.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
@@ -71,27 +92,48 @@ SrcGame/src/systems/rendering/legacy_3d/smType.h:
 Shared/smPacket.h:
 Shared/global_def.h:
 SrcGame/src/systems/network/transport/legacy/smwsock.h:
+Shared/network/transport/legacy/smwsock_legacy_client.h:
 SrcGame/src/systems/network/transport/legacy/NetType.h:
 SrcGame/src/systems/localization/legacy_catalog/language.h:
 SrcGame/src/systems/inventory/legacy/sinItem.h:
+Shared/inventory/legacy/sinItem_legacy_client.h:
 SrcGame/src/systems/rendering/legacy_3d/smTexture.h:
 SrcGame/src/systems/rendering/legacy_3d/smObj3d.h:
+Shared/rendering/legacy_3d/object/smObj3d_legacy_client.h:
 SrcGame/src/systems/rendering/legacy_3d/smStgObj.h:
 SrcGame/src/systems/rendering/legacy_3d/smStage3d.h:
+Shared/rendering/legacy_3d/stage/smStage3d_legacy_client.h:
 SrcGame/src/systems/rendering/legacy_3d/smrend3d.h:
+Shared/rendering/legacy_3d/SmRend3dLegacyCommon.h:
 SrcGame/src/systems/rendering/legacy_3d/smMap3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smRead3d.h:
+Shared/rendering/legacy_3d/smRead3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smmatrix.h:
+Shared/rendering/legacy_3d/smmatrix.h:
 SrcGame/src/systems/rendering/legacy_3d/smGeosub.h:
 SrcGame/src/systems/rendering/legacy_3d/smJpeg.h:
+Shared/rendering/legacy_3d/smJpeg.h:
 SrcGame/src/systems/gameplay/character/core/character.h:
 SrcGame/src/systems/combat/pvp/Score.h:
 SrcGame/src/core/data/legacy_loader/fileread.h:
 SrcGame/src/systems/world/field/field.h:
 SrcGame/src/systems/audio/effects/legacy/effectsnd.h:
+Shared/audio/effects/EffectSoundLegacyCatalog.h:
 SrcGame/src/platform/windows/registry/smreg.h:
 SrcGame/src/core/gameplay/runtime/playmain.h:
 SrcGame/src/core/gameplay/legacy_support/playsub.h:
+Shared/gameplay/legacy_support/playsub_legacy_client.h:
 SrcGame/src/compat/client_server/server_legacy/onserver.h:
+Shared/server/legacy_runtime/onserver_legacy_client.h:
 SrcGame/src/systems/configuration/client/Settings.h:
+Shared/formats/model_config/LegacyModelConfigExact_client.inl:
+Shared/formats/server_config/LegacyServerConfigExact_client.inl:
+Shared/formats/legacy_config/LegacyMainConfigExact_client.inl:
+Shared/formats/item_config/LegacyItemDefinitionExact_client.inl:
+Shared/formats/character_config/LegacyCharacterConfigExact_client.inl:
+Shared/formats/stage_spawn/LegacyStageSpawnExact_client.inl:
+Shared/formats/item_config/LegacyItemRuntimeExact_client.inl:
 SrcGame/src/systems/localization/legacy_catalog/Brazil/b_JobCode.h:
+Shared/formats/model_config/LegacyModelKeywordExact_client.inl:
+Shared/formats/belatra/LegacyBelatraExact_client.inl:
+Shared/formats/security/LegacyCrackerConfigExact_client.inl:

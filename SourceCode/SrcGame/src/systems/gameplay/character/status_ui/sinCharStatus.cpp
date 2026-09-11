@@ -288,7 +288,7 @@ void cCHARSTATUS::Draw()
 				TempLen = lstrlen(cldata.name);
 				TempCount2 = 6 - (TempLen / 2);
 				DrawSprite(CheckEditSize(sCharRectPosi[1].Rect.left, sCharRectPosi[1].Rect.right, cldata.name) - ((12 - TempLen / 2)) - TempCount2,
-					sCharRectPosi[1].Rect.top + 15 + (256 - sinMoveKindInter[SIN_CHARSTATUS]), cldata.hClanMark16, 0, 0, 16, 16);//N�O
+					sCharRectPosi[1].Rect.top + 15 + (256 - sinMoveKindInter[SIN_CHARSTATUS]), cldata.hClanMark16, 0, 0, 16, 16);//NÃO
 			}
 		}
 
@@ -1144,7 +1144,7 @@ void cCHARSTATUS::DrawCharText()
 		}
 	}
 
-	// Skill de Evas�o da Arqueira
+	// Skill de Evasão da Arqueira
 	if (lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_ARCHER) {
 		// skill ativa no momento
 		int cnt = cSkill.GetSkillPoint(SKILL_EVASION_MASTERY);
@@ -1154,7 +1154,7 @@ void cCHARSTATUS::DrawCharText()
 		}
 	}
 
-	// Skill de Evas�o da Sacer.
+	// Skill de Evasão da Sacer.
 	if (lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS) {
 		// skill ativa no momento
 		int cnt = cSkill.SearchContiueSkill(SKILL_SUMMON_MUSPELL);
@@ -1162,6 +1162,14 @@ void cCHARSTATUS::DrawCharText()
 			cnt = Summon_Muspell_BlockPercent[cnt - 1];
 			TotalEvade += cnt;
 		}
+	}
+
+	// Golden Apple (Tier 5 Atalanta) is a passive evasion bonus.
+	if(lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_ATALANTA)
+	{
+		int goldenPoint = cSkill.GetSkillPoint(SKILL_T5_GOLDEN_APPLE);
+		if(goldenPoint >= 1 && goldenPoint <= 10)
+			TotalEvade += Atalanta_T5_GoldenApple_Evade[goldenPoint - 1];
 	}
 
 	// Skill Da atalanta

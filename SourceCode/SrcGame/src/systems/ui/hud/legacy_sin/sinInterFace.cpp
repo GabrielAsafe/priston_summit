@@ -623,17 +623,11 @@ void cINTERFACE::Draw()
 
 	}
 
-	//posiï¿½ï¿½o da barra de exp
+	//posiÃ§Ã£o da barra de exp
 
-	//posiï¿½ï¿½o da barra de exp
-	if (sinPKWarningExpFlag) {
-		if (sinPKWarnigExpTime <= 15)
-			DrawSprite(575, 592, lpBar_Exp, 0, 0, sinBmpLength[3], 5);
-
-
-	}
-	else
-		DrawSprite(575, 592, lpBar_Exp, 0, 0, sinBmpLength[3], 5);
+	//posiÃ§Ã£o da barra de exp
+	// Legacy horizontal EXP bar disabled: the current HUD uses the lateral EXP display.
+	// EXP values remain available; only this duplicate texture draw is suppressed.
 
 	//DrawSprite(505,588,lpBar_Time,0,0,sinBmpLength[4],5); 
 
@@ -1092,9 +1086,9 @@ int   CheckExpTime = 0;
 
 DWORD dwTestKeyTime = 0;
 int   TeskKeyMessageCnt = 0;
-char *szTestKeyMsg[6] = { "ï¿½ï¿½!  &(^_^)&    ",
-						 "ï¿½ï¿½!  /(^_^)/   ",
-						 "ï¿½ï¿½!  *(^_^)*  ",
+char *szTestKeyMsg[6] = { "³ª!  &(^_^)&    ",
+						 "³ë!  /(^_^)/   ",
+						 "³ª!  *(^_^)*  ",
 						 "",
 						 "",
 						 "", };
@@ -2196,29 +2190,31 @@ void cINTERFACE::KeyDown()
 				}
 
 				extern cCHARSTATUS cCharStatus;
-				if(lstrcmp(sinTestBuff5, "/Levelup") == 0)
+				if(lstrcmpi(sinTestBuff5, "/level") == 0 || lstrcmpi(sinTestBuff5, "/Levelup") == 0)
 				{
-					if(sinTestBuff6[0])
+					if(sinTestBuff6[0] && smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
 					{
-					#ifdef	GAME_GM
-						CheckCharForm();
-						sinChar->Level = atoi(sinTestBuff6);
+						int iDevLevel = atoi(sinTestBuff6);
 
-						SetExp64(sinChar, ExpLevelTable[sinChar->Level - 1]);
-						CodeXorCharInfo_Exp();
+						if(iDevLevel >= 1 && iDevLevel <= CHAR_LEVEL_MAX)
+						{
+							CheckCharForm();
+							sinChar->Level = iDevLevel;
+							SetExp64(sinChar, ExpLevelTable[iDevLevel - 1]);
+							CodeXorCharInfo_Exp();
 
-						ReformCharForm();
-						SendPlayUpdateInfo();
-						SaveGameData();
-						cCharStatus.CheckLevel();
-						
-						SendChatMessageToServer("MrLee: OK! Level up finalizado /(-_-)/ ");
+							ReformCharForm();
+							SendPlayUpdateInfo();
+							SaveGameData();
+							cCharStatus.CheckLevel();
 
-						memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
-						memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
-						memset(sinBuff, 0, sizeof(sinBuff));
-					#endif
+							SendChatMessageToServer("SUMMIT_DEV: level atualizado por comando GM.");
+						}
 					}
+
+					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
+					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
+					memset(sinBuff, 0, sizeof(sinBuff));
 				}
 
 				if (lstrcmp(sinTestBuff5, "/cquests") == 0)
@@ -2422,7 +2418,7 @@ void cINTERFACE::KeyDown()
 				#ifdef	GAME_GM
 					SendChatMessageToServer("MeLee: it's good /(-_-)/ ");
 					sinChar->ChangeJob++;
-					if(sinChar->ChangeJob > 3)sinChar->ChangeJob = 3;
+					if(sinChar->ChangeJob > CHARACTER_RANK5)sinChar->ChangeJob = CHARACTER_RANK5;
 					cSkill.SearchUseSkill();
 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));

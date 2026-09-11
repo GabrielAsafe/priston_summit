@@ -1,31 +1,31 @@
 
 
-char *szMsg1 = "ï¿½lï¿½Dï¿½Pï¿½Ë¹Ú·Qï¿½ï¿½ï¿½Ô¤h/n/
-ï¿½ï¿½ï¿½Xï¿½ï¿½?ï¿½ï¿½Ó¹Îµï¿½?ï¿½ï¿½,ï¿½ï¿½?ï¿½ï¿½a/n/
-ï¿½ï¿½oï¿½Ëªï¿½ï¿½ï¿½Â´ï¿½Ù¬ï¿½/"ï¿½ï¿½?/"ï¿½A/n/
-ï¿½ï¿½a?ï¿½O?ï¿½ï¿½?ï¿½A??ï¿½Wï¿½dï¿½ï¿½?ï¿½C/n/
-ï¿½ï¿½?ï¿½zï¿½LÃº?ï¿½A/n/
-ï¿½Ò©ï¿½ï¿½L?ï¿½Oï¿½Xï¿½kï¿½ï¿½ï¿½ï¿½Â´/n/
-Ä±ï¿½oï¿½ï¿½ï¿½Ë¡Cï¿½Aï¿½nï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½? ";
+char *szMsg1 = "°l¨D¦P¼Ë¹Ú·Qªº¾Ô¤h\n\
+µ²¦X¦¨?Åé¦Ó¹Îµ²?¨Ó,§Ú?°ê®a\n\
+§â³o¼Ëªº²ÕÂ´ºÙ¬°\"¤½?\"¡A\n\
+°ê®a?«O?¤½?¡A??³W½d¤½?¡C\n\
+¤½?³z¹LÃº?¡A\n\
+ÃÒ©ú¥L?¬O¦Xªkªº²ÕÂ´\n\
+Ä±±o«ç»ò¼Ë¡C§A­n¦¨?¤½?¶Ü? ";
 
 
-char *szMsg2 = "ï¿½ï¿½Â´ï¿½ï¿½?ï¿½nï¿½I500,000ï¿½ï¿½/nï¿½Cï¿½nï¿½Iï¿½ï¿½?/n";
+char *szMsg2 = "²ÕÂ´¤½?­n¥I500,000¤¸\n¡C­n¥I¶Ü?\n";
 
 
 
-char *szMsg21 = "ï¿½nï¿½ï¿½Â´ï¿½ï¿½?ï¿½Aï¿½Nï¿½nÃº?/n/
-??ï¿½O400,000ï¿½ï¿½ï¿½Aï¿½Aï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/n/
-ï¿½Uï¿½ï¿½ï¿½Aï¿½Ó§a..";
+char *szMsg21 = "­n²ÕÂ´¤½?¡A´N­nÃº?\n\
+??¬O400,000¤¸¡A§Aªº?¿ú¤£¨¬\n\
+¤U¦¸¦A¨Ó§a..";
 
 
-char *szMsg3 = "ï¿½Ð§Aï¿½Mï¿½wï¿½ï¿½?ï¿½Wï¿½Ù¡C/n";
+char *szMsg3 = "½Ð§A¨M©w¤½?¦WºÙ¡C\n";
 
 
-char *szMsg4 = "ï¿½ï¿½?ï¿½iï¿½Hï¿½Ï¥Î¶Hï¿½xï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/n/
-ï¿½ï¿½ï¿½ï¿½ï¿½Pï¿½ï¿½?ï¿½ï¿½?/n/
-ï¿½ï¿½ï¿½ï¿½ï¿½Pï¿½ï¿½?ï¿½ï¿½?ï¿½bï¿½xï¿½ï¿½ï¿½?/n/
-ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½?ï¿½Ì¥iï¿½Hï¿½ï¿½ï¿½U/n/
-ï¿½Î½sï¿½ï¿½Cï¿½Ð¥Hï¿½ï¿½???ï¿½ï¿½ï¿½bï¿½ï¿½ï¿½nï¿½Jï¿½Ï¥ï¿½/n/
+char *szMsg4 = "¤½?¥i¥H¨Ï¥Î¶H¼x¤½?ªºÀ²³¹\n\
+À²³¹»P¤½?«Å?\n\
+À²³¹»P¤½?«Å?¦b©x¤èºô?\n\
+ªº¤½?ºô?¸Ì¥i¥Hµù¥U\n\
+¤Î½s¿è¡C½Ð¥H¤½???ªº±b¸¹µn¤J¨Ï¥Î\n\
 /n/
 /n";
 
@@ -33,149 +33,149 @@ char *szMsg4 = "ï¿½ï¿½?ï¿½iï¿½Hï¿½Ï¥Î¶Hï¿½xï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/n/
 
 
 
-char *szMsg5 = "ï¿½i?ï¿½ï¿½?ï¿½ï¿½ï¿½Uï¿½Ó½ï¿½/n/
-ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½Hï¿½Uï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½C/n/
-*ï¿½Ý­nï¿½ï¿½?(?ï¿½Aï¿½ï¿½???)ï¿½Hï¿½Wï¿½ï¿½ï¿½ï¿½???/n/
+char *szMsg5 = "¶i?¤½?µù¥U¥Ó½Ð\n\
+­nº¡¨¬¥H¤U´X¶µ±ø¥ó¡C\n\
+*»Ý­n¤»?(?¬A¤½???)¥H¤Wªº¤½???\n\
 
-*ï¿½qï¿½ï¿½ï¿½ï¿½?10ï¿½Ñ¤ï¿½?ï¿½wï¿½nï¿½Û¶Ò¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½?/n/
-ï¿½pï¿½G10ï¿½Ñ«á¤½???ï¿½ï¿½ï¿½Ù¤Ö©ï¿½?ï¿½ï¿½ï¿½ï¿½/n/
-[%s]ï¿½ï¿½?ï¿½Ó½ï¿½?ï¿½Û°ï¿½/nï¿½Qï¿½ï¿½?ï¿½C/n";
+*±q¤µ¤Ñ?10¤Ñ¤º?©w­n©Û¶Ò¨¬°÷ªº¤½?¦¨?\n\
+¦pªG10¤Ñ«á¤½???¼ÆÁÙ¤Ö©ó¤»?ªº¸Ü\n\
+[%s]¤½?¥Ó½Ð?¦Û°Ê\n³Q¨ú?¡C\n";
 
-char *szClanMakeFinishMsg = "ï¿½wï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½Ó½Ð¡C/n/
-?ï¿½Aï¿½ï¿½ï¿½Öºï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½Â´ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½?/nï¿½C/n";
-
-
-char *szMsg254 ="ï¿½Aï¿½ï¿½?ï¿½O?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¤ï¿½?/n/
-ï¿½ï¿½ï¿½ï¿½?ï¿½hï¿½Aï¿½Mï¿½ï¿½nï¿½n?ï¿½j/n/
-ï¿½Û¤vï¿½ï¿½?ï¿½O";
+char *szClanMakeFinishMsg = "¤w¸g§¹¦¨¤½?¥Ó½Ð¡C\n\
+?§A¾¨§Öº¡¨¬¤½?²ÕÂ´±ø¥ó¡A¦¨¬°?¦¡¤½?\n¡C\n";
 
 
-char *szMsg15 = "ï¿½nï¿½Ñ´ï¿½ï¿½ï¿½?ï¿½ï¿½?";
-char *szMark1 = "ï¿½Sï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Ð§Aï¿½Ñ¦Ò¤ï¿½?ï¿½ï¿½ï¿½ï¿½";
-char *szMark2 = "ï¿½nï¿½nï¿½Oï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?";
-char *szMark3 = "ï¿½nï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?"; 
+char *szMsg254 ="§Aªº?¤O?¨­¤£°÷»â¾É¤½?\n\
+»°§Ö?¥h¡AµM«á¦n¦n?±j\n\
+¦Û¤vªº?¤O";
 
 
-
-char *szJoin = "ï¿½ï¿½?ï¿½Wï¿½ï¿½ : %s/nï¿½ï¿½??? : %s/n/nï¿½Ü½Ð§A?ï¿½Jï¿½ï¿½?ï¿½C/n/ï¿½n?ï¿½Jï¿½ï¿½?/n";
-char *szSecession = "ï¿½ï¿½?ï¿½Wï¿½ï¿½: ï¿½nï¿½hï¿½X%s/nï¿½ï¿½?ï¿½ï¿½?";
-
-
-char *szMsg6 = "ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½Uï¿½Aï¿½Ü¤Ö»Ý­nï¿½ï¿½???/nï¿½C/nï¿½Ò¶ï¿½ï¿½ï¿½???ï¿½ï¿½ï¿½ï¿½uï¿½Ñ¤U%dï¿½ï¿½";
+char *szMsg15 = "­n¸Ñ´²¤½?¶Ü?";
+char *szMark1 = "¨S¦³¤½?À²³¹¡A½Ð§A°Ñ¦Ò¤½?»¡©ú";
+char *szMark2 = "­nµn°O¤½?À²³¹¶Ü?";
+char *szMark3 = "­nÅÜ?¤½?À²³¹¶Ü?"; 
 
 
 
-char *szServerConnectErrorMsg = "ï¿½Lï¿½kï¿½sï¿½ï¿½?ï¿½Aï¿½ï¿½ï¿½C/n/
-ï¿½Ð¤Uï¿½ï¿½ï¿½Aï¿½Õ¬Ý¬ï¿½/n";
+char *szJoin = "¤½?¦WºÙ : %s\n¤½??? : %s\n\nÁÜ½Ð§A?¤J¤½?¡C\n\­n?¤J¶Ü?\n";
+char *szSecession = "¤½?¦WºÙ: ­n°h¥X%s\n¤½?¶Ü?";
 
-char *szReadClanMarkErrorMsg = "ï¿½q?ï¿½Aï¿½ï¿½Åªï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/n/
-ï¿½C/n";
 
-char *szCancelMakeClan = "ï¿½Ó¤ï¿½?ï¿½wï¿½gï¿½Qï¿½ï¿½?ï¿½Fï¿½C/n";
-
-char *szTranzationError = "ï¿½ï¿½?ï¿½wï¿½ï¿½?ï¿½Cï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½C/n";
-
-char *szInsertClanWonError1 = "ï¿½Ó¨ï¿½ï¿½ï¿½wï¿½gï¿½Ý©ï¿½Oï¿½ï¿½/n/
-ï¿½ï¿½?ï¿½C/n";
-
-char *szClanNameError = "ï¿½o?ï¿½Wï¿½rï¿½wï¿½gï¿½sï¿½bï¿½C/n";
-
-char *sz100Error = "?ï¿½Aï¿½ï¿½ï¿½oï¿½Í°ï¿½ï¿½Dï¿½C/n/
-ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½/n";
-
-char *szDefaultError = "ï¿½b?ï¿½Aï¿½ï¿½ï¿½Ì¤ï¿½?ï¿½Ñ¨Mï¿½ï¿½ï¿½ï¿½ï¿½D/n.ï¿½oï¿½Í¤Fï¿½C/n/
-ï¿½ï¿½?ï¿½ï¿½??ï¿½ï¿½ï¿½C/n";
-
-char *szReleseError = "ï¿½Ø«eï¿½ï¿½ï¿½ï¿½ï¿½â¤£ï¿½Oï¿½ï¿½???/n/
-ï¿½ÎªÌ¸Ó¤ï¿½?ï¿½ï¿½ï¿½sï¿½b/n";
-
-char *szSecessionSuccess = "ï¿½hï¿½Xï¿½ï¿½?ï¿½Fï¿½C/n";
-
-char *szSecession6DownMsg = "ï¿½hï¿½Xï¿½ï¿½?ï¿½ï¿½?ï¿½Fï¿½C/n/
-ï¿½Ø«e???ï¿½Æ¤Ö©ï¿½?ï¿½C/n";
-
-char *szSecessionChipMsg = "ï¿½nï¿½hï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½O?ï¿½ï¿½?ï¿½ï¿½??ï¿½C/n";
-
-char *szSecession2ErrorMsg = "ï¿½ï¿½?ï¿½ï¿½ï¿½sï¿½b/n/ï¿½ÎªÌ§Aï¿½ï¿½ï¿½O??ï¿½ï¿½??ï¿½C/n";
+char *szMsg6 = "­n§¹¦¨¤½?µù¥U¡A¦Ü¤Ö»Ý­n¤»???\n¡C\n¶Ò¶°¤½???¤é´Á¥u³Ñ¤U%d¤Ñ";
 
 
 
+char *szServerConnectErrorMsg = "µLªk³s±µ?ªA¾¹¡C\n\
+½Ð¤U¦¸¦A¸Õ¬Ý¬Ý\n";
 
+char *szReadClanMarkErrorMsg = "±q?ªA¾¹Åª¨ú¤½?À²³¹¥¢±Ñ\n\
+¡C\n";
 
-char *szClanJoinMsg = "ï¿½ï¿½?ï¿½Wï¿½r: %s/nï¿½ï¿½???: %s/nï¿½n?ï¿½Jï¿½ï¿½??: %s/n/nï¿½Qï¿½n?ï¿½Jï¿½ï¿½?ï¿½C/n";
+char *szCancelMakeClan = "¸Ó¤½?¤w¸g³Q¨ú?¤F¡C\n";
 
-char *szClanJoinError2Msg = "ï¿½Aï¿½n?ï¿½Jï¿½ï¿½??/n/ï¿½wï¿½gï¿½Ý©ï¿½Oï¿½ï¿½ï¿½ï¿½?ï¿½C/n";
+char *szTranzationError = "¸ê?®w¿ù?¡Cµ²?°õ?¿ï³æ¡C\n";
 
-char *szClanJoinError3Msg = "ï¿½ï¿½?ï¿½ï¿½ï¿½sï¿½bï¿½ÎªÌ§Aï¿½ï¿½ï¿½O??ï¿½C/n";
+char *szInsertClanWonError1 = "¸Ó¨¤¦â¤w¸gÄÝ©ó§Oªº\n\
+¤½?¡C\n";
 
-char *szClanJoinError4Msg = "ï¿½ï¿½???ï¿½Æ¤wï¿½gï¿½Wï¿½L32ï¿½Wï¿½Fï¿½C/n";
+char *szClanNameError = "³o?¦W¦r¤w¸g¦s¦b¡C\n";
 
-char *szClanJoinCancelMsg = "%sï¿½Úµï¿½?ï¿½Jï¿½ï¿½?ï¿½C/n";
+char *sz100Error = "?ªA¾¹µo¥Í°ÝÃD¡C\n\
+µ²?°õ?¿ï³æ\n";
 
-char *szClanJoinsucesssMsg = "ï¿½ï¿½%s?ï¿½Jï¿½ï¿½/nï¿½ï¿½?ï¿½C/n"; 
+char *szDefaultError = "¦b?ªA¾¹¸Ì¤£?¸Ñ¨Mªº°ÝÃD\n.µo¥Í¤F¡C\n\
+µ²?°õ??¿ï³æ¡C\n";
+
+char *szReleseError = "¥Ø«eªº¨¤¦â¤£¬O¤½???\n\
+©ÎªÌ¸Ó¤½?¤£¦s¦b\n";
+
+char *szSecessionSuccess = "°h¥X¤½?¤F¡C\n";
+
+char *szSecession6DownMsg = "°h¥X¤½?¦¨?¤F¡C\n\
+¥Ø«e???¼Æ¤Ö©ó¤»?¡C\n";
+
+char *szSecessionChipMsg = "­n°h¥Xªº¨¤¦â¬O?¤½?ªº??¡C\n";
+
+char *szSecession2ErrorMsg = "¤½?¤£¦s¦b\n\©ÎªÌ§A¤£¬O??©Î??¡C\n";
 
 
 
 
 
-char *szReMoveClanWonMsg = "ï¿½wï¿½gï¿½vï¿½Xï¿½Fï¿½C/n";
+char *szClanJoinMsg = "¤½?¦W¦r: %s\n¤½???: %s\n­n?¤Jªº??: %s\n\n·Q­n?¤J¤½?¡C\n";
 
-char *szReMoveHeaderMsg = "ï¿½vï¿½X??ï¿½Wï¿½ï¿½C/n";
+char *szClanJoinError2Msg = "§A­n?¤Jªº??\n\¤w¸gÄÝ©ó§Oªº¤½?¡C\n";
 
+char *szClanJoinError3Msg = "¤½?¤£¦s¦b©ÎªÌ§A¤£¬O??¡C\n";
 
-char *szReConfReleaseMsg = "ï¿½Ñ´ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½Ü¡Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½T/n/ï¿½Hï¿½Î¦ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½Ò¦ï¿½?ï¿½ï¿½??ï¿½ï¿½/nï¿½C/n/
-ï¿½Ù¬Oï¿½nï¿½Ñ´ï¿½ï¿½ï¿½?/n";
-char *szNoRecordReleaseMsg = "ï¿½ï¿½???ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½Aï¿½Mï¿½wï¿½Ñ´ï¿½/nï¿½ï¿½?ï¿½C/n/
-ï¿½nï¿½Ñ´ï¿½ï¿½ï¿½?ï¿½ï¿½?/n";
-char *szFinishReleaseMsg = "ï¿½wï¿½gï¿½Ñ´ï¿½ï¿½ï¿½?ï¿½Fï¿½C/n";
+char *szClanJoinError4Msg = "¤½???¼Æ¤w¸g¶W¹L32¦W¤F¡C\n";
 
-char *szSecessionMsg = "ï¿½hï¿½Xï¿½ï¿½?ï¿½ï¿½Aï¿½ï¿½???ï¿½ï¿½??ï¿½ï¿½/nï¿½C/nï¿½Ù¬Oï¿½nï¿½hï¿½Xï¿½ï¿½?/n";
-char *szFinishSecessionMsg = "ï¿½hï¿½Xï¿½ï¿½?: %s/n??: ï¿½q%s/nï¿½ï¿½?ï¿½hï¿½Xï¿½Fï¿½C/n";
+char *szClanJoinCancelMsg = "%s©Úµ´?¤J¤½?¡C\n";
 
-char *szisCheckClanJangErrorMsg = "ï¿½P??ï¿½bï¿½ï¿½ï¿½Ì§Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wï¿½gï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½???/n/ï¿½Ò¥Hï¿½Ø«eï¿½Lï¿½kï¿½ï¿½?ï¿½Oï¿½ï¿½ï¿½ï¿½?ï¿½C/nï¿½C/n";
-
-char *szMoneyErrorMsg = "ï¿½Ó½Ð¦ï¿½?ï¿½ï¿½?ï¿½Ý­nï¿½ï¿½ï¿½Oï¿½Î¤ï¿½ï¿½ï¿½ï¿½Aï¿½Ø«eï¿½Lï¿½kï¿½Ó½ï¿½/nï¿½ï¿½?ï¿½C/n"
-"ï¿½ï¿½?ï¿½ï¿½?ï¿½Ó½Ð¡C";
-char *szAbilityErrorMsg = "ï¿½Aï¿½ï¿½?ï¿½O?ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Ø«eï¿½Lï¿½kï¿½Ó½Ð¦ï¿½?/nï¿½ï¿½?/n";
-
-char *szRemoveShortClanWonMsg = "ï¿½pï¿½Gï¿½nï¿½vï¿½Xï¿½ï¿½??ï¿½Aï¿½ï¿½???ï¿½Æ±N?ï¿½Fï¿½Ì¤ï¿½??ï¿½ï¿½ /nï¿½C/n/
-ï¿½Ù­nï¿½vï¿½Xï¿½ï¿½?";
-char *szRemoveShowrtClanWonResultMsg = "ï¿½ï¿½???ï¿½Ö©ï¿½?ï¿½C/nï¿½Ð¦hï¿½ï¿½sï¿½ï¿½???ï¿½J/nï¿½ï¿½?/n";
-
-
-char *szNoName = "ï¿½Ð¿ï¿½Jï¿½ï¿½?ï¿½Wï¿½rï¿½C/n";
-
-char *szLoading = "?ï¿½bï¿½s?ï¿½Aï¿½ï¿½ï¿½C/n";
+char *szClanJoinsucesssMsg = "§â%s?¤J¨ì\n¤½?¡C\n"; 
 
 
 
-char *szDeleteChaReleaseBefore = "ï¿½nï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½?ï¿½ï¿½??ï¿½C/n/
-ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½âªºï¿½Ü¡Aï¿½ï¿½?????ï¿½Qï¿½Rï¿½ï¿½ï¿½C/n/
-ï¿½nï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?/n";
 
-char *szDeleteChaRelease = "ï¿½ï¿½?ï¿½Qï¿½Rï¿½ï¿½ï¿½Fï¿½C/n";
 
-char *szDeleteChaSecessionBefore = "ï¿½nï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wï¿½g?ï¿½Jï¿½Fï¿½ï¿½?ï¿½C/n/
-ï¿½pï¿½Gï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½âªºï¿½Ü¡A?ï¿½Qï¿½hï¿½Xï¿½ï¿½?ï¿½C/n/
-ï¿½nï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?/n";
-char *szDeleteChaSecession = "ï¿½wï¿½gï¿½hï¿½Xï¿½ï¿½?ï¿½Fï¿½C/n";
+char *szReMoveClanWonMsg = "¤w¸g³v¥X¤F¡C\n";
 
-char *szDeleteChaError = "ï¿½Rï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½Ñ¡C/nï¿½Lï¿½kï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½C/n";
-char *szMakeFinishClan = "?ï¿½ï¿½?ï¿½ß¡C/n[%s]/nï¿½wï¿½gï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½?ï¿½C/n";
-char *szClanWon6Down = "ï¿½ï¿½???ï¿½Ö©ï¿½?ï¿½C/nï¿½Ð¦hï¿½ï¿½sï¿½ï¿½???ï¿½J/nï¿½ï¿½?ï¿½C/n/
+char *szReMoveHeaderMsg = "³v¥X??¦W³æ¡C\n";
+
+
+char *szReConfReleaseMsg = "¸Ñ´²¤½?ªº¸Ü¡A¦³Ãö¤½?¦¨?¸ê°T\n\¥H¤Î¦³Ãö¤½?ªº©Ò¦³?¿ý??¥¢\n¡C\n\
+ÁÙ¬O­n¸Ñ´²¶Ü?\n";
+char *szNoRecordReleaseMsg = "¤½???§¹¦¨µù¥U¡A¨M©w¸Ñ´²\n¤½?¡C\n\
+­n¸Ñ´²¤½?¶Ü?\n";
+char *szFinishReleaseMsg = "¤w¸g¸Ñ´²¤½?¤F¡C\n";
+
+char *szSecessionMsg = "°h¥X¤½?«á¡A¤½???³£??¥¢\n¡C\nÁÙ¬O­n°h¥X¶Ü?\n";
+char *szFinishSecessionMsg = "°h¥X¤½?: %s\n??: ±q%s\n¤½?°h¥X¤F¡C\n";
+
+char *szisCheckClanJangErrorMsg = "¦P??±b¸¹¸Ì§Oªº¨¤¦â¤w¸gµù¥U¬°¤½???\n\©Ò¥H¥Ø«eµLªk¦¨?§Oªº¤½?¡C\n¡C\n";
+
+char *szMoneyErrorMsg = "¥Ó½Ð¦¨?¤½?»Ý­nªº¶O¥Î¤£¨¬¡A¥Ø«eµLªk¥Ó½Ð\n¤½?¡C\n"
+"¨ú?¤½?¥Ó½Ð¡C";
+char *szAbilityErrorMsg = "§Aªº?¤O?¤£¨¬¡A¥Ø«eµLªk¥Ó½Ð¦¨?\n¤½?\n";
+
+char *szRemoveShortClanWonMsg = "¦pªG­n³v¥X¸Ó??¡A¤½???¼Æ±N?¹F³Ì¤Ö??¼Æ \n¡C\n\
+ÁÙ­n³v¥X¶Ü?";
+char *szRemoveShowrtClanWonResultMsg = "¤½???¤Ö©ó¤»?¡C\n½Ð¦h§ä·sªº???¤J\n¤½?\n";
+
+
+char *szNoName = "½Ð¿é¤J¤½?¦W¦r¡C\n";
+
+char *szLoading = "?¦b³s?ªA¾¹¡C\n";
+
+
+
+char *szDeleteChaReleaseBefore = "­n§R°£ªº¨¤¦â¬O¤½?ªº??¡C\n\
+§R°£¨¤¦âªº¸Ü¡A¤½?????³Q§R°£¡C\n\
+­n§R°£¨¤¦â¶Ü?\n";
+
+char *szDeleteChaRelease = "¤½?³Q§R°£¤F¡C\n";
+
+char *szDeleteChaSecessionBefore = "­n§R°£ªº¨¤¦â¤w¸g?¤J¤F¤½?¡C\n\
+¦pªG§R°£¨¤¦âªº¸Ü¡A?³Q°h¥X¤½?¡C\n\
+­n§R°£¨¤¦â¶Ü?\n";
+char *szDeleteChaSecession = "¤w¸g°h¥X¤½?¤F¡C\n";
+
+char *szDeleteChaError = "§R°£¤½?¥¢±Ñ¡C\nµLªk§R°£¨¤¦â¡C\n";
+char *szMakeFinishClan = "?³ß?³ß¡C\n[%s]\n¤w¸gµù¥U¦¨¬°?¦¡¤½?¡C\n";
+char *szClanWon6Down = "¤½???¤Ö©ó¤»?¡C\n½Ð¦h§ä·sªº???¤J\n¤½?¡C\n\
 %s/n";
 
 
-char *szClanUserNoMakeMsg = "ï¿½ï¿½?ï¿½Wï¿½r: ?ï¿½bï¿½Ó½ï¿½%s/nï¿½ï¿½?ï¿½C";
-char *szMakeFinishClanWon = "ï¿½ï¿½?ï¿½Wï¿½r: ?ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½%s/nï¿½ï¿½?ï¿½C/n";
-char *ClanServerInspect = "?ï¿½bï¿½Ë¬d?ï¿½Aï¿½ï¿½ï¿½C/n";
-char *szClanUserRelease = "ï¿½Aï¿½ï¿½ï¿½ï¿½?ï¿½Qï¿½Ñ´ï¿½ï¿½Fï¿½C";
-char *Replay = "ï¿½Ð¦A?ï¿½Õ¦ï¿½ï¿½Ý¬Ý¡C";
-char *szClanMakedowninfo = "?ï¿½bï¿½ï¿½ï¿½Uï¿½ï¿½?ï¿½C";
+char *szClanUserNoMakeMsg = "¤½?¦W¦r: ?¦b¥Ó½Ð%s\n¤½?¡C";
+char *szMakeFinishClanWon = "¤½?¦W¦r: ?¦¡µù¥U¦¨¬°%s\n¤½?¡C\n";
+char *ClanServerInspect = "?¦bÀË¬d?ªA¾¹¡C\n";
+char *szClanUserRelease = "§Aªº¤½?³Q¸Ñ´²¤F¡C";
+char *Replay = "½Ð¦A?¸Õ¦¸¬Ý¬Ý¡C";
+char *szClanMakedowninfo = "?¦bµù¥U¤½?¡C";
 
 
-char *szClanUserReleaseMsg = "ï¿½ï¿½?ï¿½Wï¿½r: %s/nï¿½ï¿½?ï¿½ï¿½ï¿½Uï¿½Ó½Ð³Qï¿½ï¿½?ï¿½Fï¿½C/n";
-char *szClanUserRemove = "ï¿½ï¿½?ï¿½Wï¿½r: %s/nï¿½nï¿½Qï¿½vï¿½Xï¿½ï¿½ï¿½ï¿½H: %s/nï¿½Qï¿½vï¿½Xï¿½F./n";
+char *szClanUserReleaseMsg = "¤½?¦W¦r: %s\n¤½?µù¥U¥Ó½Ð³Q¨ú?¤F¡C\n";
+char *szClanUserRemove = "¤½?¦W¦r: %s\n­n³Q³v¥Xªº¹ï¶H: %s\n³Q³v¥X¤F.\n";
 
 
 

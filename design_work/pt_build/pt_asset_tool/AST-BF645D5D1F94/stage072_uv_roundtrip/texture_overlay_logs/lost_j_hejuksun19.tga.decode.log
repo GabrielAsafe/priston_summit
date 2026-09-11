@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=5bd967c174d65d4c7635cbbb1bbdfe2720dc180e67a20ca6b8681644dddb6608
-output_sha256=5bd967c174d65d4c7635cbbb1bbdfe2720dc180e67a20ca6b8681644dddb6608
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BF645D5D1F94/stage072_uv_roundtrip/texture_overlay_client/field/lost/lost_j_hejuksun19.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=6f2a284e5222c20a5de3b3cd4073e7d63c6337588a2bcee30758c8d896b23688
-output_sha256=6f2a284e5222c20a5de3b3cd4073e7d63c6337588a2bcee30758c8d896b23688
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-4FF599ED0F5D/object_local_animation/texture_overlay_client/field/SeaA/ocean_plant02.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

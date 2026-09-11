@@ -13,6 +13,20 @@ public:
 	void StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind, int QuestType, int PartyFlag);
 	void CancelQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind, int QuestType);
 	void GetReward(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind, int QuestType);
+	bool HasCompletedQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind, int QuestType);
+	bool HasCompletedQuest(rsPLAYINFO* lpPlayInfo, int QuestID);
+	bool HasCompletedQuest(const char* pszPlayerName, int QuestID);
+	bool QueryCompletedQuest(const char* pszPlayerName, int QuestID, bool* pbCompleted);
+	bool HasCompletedRank5Quest(rsPLAYINFO* lpPlayInfo);
+	bool HasCompletedRank5Quest(const char* pszPlayerName);
+	bool IsQuestInProgress(rsPLAYINFO* lpPlayInfo, int QuestID);
+	bool HasPendingQuestObjectives(rsPLAYINFO* lpPlayInfo, int QuestID);
+	bool IsQuestObjectivePending(rsPLAYINFO* lpPlayInfo, int QuestID, const char* pszMonsterName);
+	bool CompleteQuestObjective(rsPLAYINFO* lpPlayInfo, int QuestID, const char* pszMonsterName);
+	bool CompleteQuestObjectives(rsPLAYINFO* lpPlayInfo, int QuestID);
+	bool CancelQuestProgressSilent(rsPLAYINFO* lpPlayInfo, int QuestID);
+	bool MarkSingleQuestCompletedForTesting(rsPLAYINFO* lpPlayInfo, int QuestID);
+	bool HandleTier5MonsterKill(rsPLAYINFO* lpKiller, smCHAR* lpChar, rsPLAYINFO** lpDamageUsers, int DamageUserCount);
 
 	void VerifyLevel(rsPLAYINFO* lpPlayInfo);
 

@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=1a6afe70a4a1da6e42c920ee6ae0cbfba48a684e516a807f227529b6ec61df7b
-output_sha256=1a6afe70a4a1da6e42c920ee6ae0cbfba48a684e516a807f227529b6ec61df7b
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-97A54A9D37F1/object_local_animation/texture_overlay_client/field/forest/na03_04.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

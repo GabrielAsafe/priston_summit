@@ -525,6 +525,21 @@ int Metal_Golem_Defense[10]   = {355,400,445,490,535,580,625,670,715,760};		    
 int Metal_Golem_Life[10]      = {4100,4300,4500,4700,4900,5100,5300,5500,5700,5900};  //
 int Metal_Golem_UseMana[10]   = {60,64,68,72,76,80,84,88,92,96};
 
+// Summit Tier 5 - Mechanician. Damage/duration values follow the EU reference.
+int Rupture_DamageBoost[10] = {60,70,80,90,100,110,120,130,140,150};
+int Rupture_UseMana[10] = {45,50,55,60,65,70,75,80,85,90};
+int Parasit_Shot_DamageBoost[10] = {12,16,20,24,28,32,36,40,44,50};
+int Parasit_Shot_PoisonDuration[10] = {3,3,3,4,4,4,5,5,5,6};
+int Parasit_Shot_PoisonDamagePercent[10] = {5,10,15,20,25,30,35,40,45,50};
+int Parasit_Shot_UseMana[10] = {50,55,60,65,70,75,80,85,90,95};
+// EU reference contains nine entries for both Hardening tables; level 10 continues the observed curve.
+int Hardening_Shield_DamageReduction[10] = {7,8,9,10,12,14,16,18,20,22};
+int Hardening_Shield_AttackRateReduction[10] = {20,22,24,26,27,28,29,30,31,32};
+int Hardening_Shield_Time[10] = {300,300,300,300,300,300,300,300,300,300};
+int Hardening_Shield_UseMana[10] = {55,60,65,70,75,80,85,90,95,100};
+int Magnetic_Discharge_DamageBoost[10] = {20,30,40,50,60,70,80,90,100,120};
+int Magnetic_Discharge_UseMana[10] = {55,60,65,70,75,80,85,90,95,105};
+
 //[]
 //Ʈ̾
 int Destoryer_DamagePercent[10]= {15,30,45,60,75,90,105,120,135,150};      //ݷ 
@@ -547,6 +562,23 @@ int Cyclone_Strike_UseMana[10]       = {50,53,56,59,62,65,68,71,74,77};
 
 //νƮ ｺ // 庰 - ų뷱 (10.08.10)
 int Boost_Health_Life[10]       = {10,20,30,40,50,70,90,110,130,150};   //  ߰
+int Fighter_T5_Survival_Life[10]  = {5,10,15,20,25,30,35,40,45,50};
+int Fighter_T5_Survival_Regen[10] = {2,4,6,8,10,12,14,16,18,20};
+int Fighter_T5_Seismic_Damage[10] = {50,60,70,80,90,100,120,140,160,180};
+int Fighter_T5_Seismic_Area[10] = {50,55,60,65,70,75,80,85,90,95};
+// Summit provisional mana curve. Reference EU stores this table outside the provided source.
+int Fighter_T5_Seismic_UseMana[10] = {60,64,68,72,76,80,84,88,92,96};
+// EU reference values for Might/Ruthless of Zecram. Mana is provisional Summit balance.
+float Fighter_T5_Ruthless_HPDecrease[10] = {5.6f,5.2f,4.8f,4.4f,4.0f,3.6f,3.2f,2.8f,2.4f,2.0f};
+int Fighter_T5_Ruthless_HitsBoost[10] = {6,6,6,5,5,5,4,4,4,3};
+int Fighter_T5_Ruthless_DamageBoost[10] = {12,14,16,18,20,22,24,26,28,30};
+int Fighter_T5_Ruthless_UseMana[10] = {70,74,78,82,86,90,94,98,102,106};
+// EU reference values for Raging Strikes / Whirlwind. Area/target cap reuse Cyclone Strike as Summit fallback.
+int Fighter_T5_Whirlwind_DamageBoost[10] = {17,24,31,38,45,52,59,66,73,80};
+int Fighter_T5_Whirlwind_Duration[10] = {12,14,16,18,20,22,24,26,28,30};
+int Fighter_T5_Whirlwind_MPDrain[10] = {17,19,21,23,25,27,29,31,33,35};
+int Fighter_T5_Whirlwind_SPDrain[10] = {29,31,35,37,39,41,43,45,47,50};
+int Fighter_T5_Whirlwind_ActivationMana[10] = {0,0,0,0,0,0,0,0,0,0};
 
 
 //[ũ]
@@ -573,6 +605,18 @@ int Shadow_Master_AddHit[10]        = {110,120,130,140,150,160,170,180,190,200};
 int Shadow_Master_ShadowNum[10]     = {3,3,4,4,5,5,6,6,7,7};					 //ܻ ޺ 
 int Shadow_Master_UseMana[10]       = {52,55,58,61,64,67,70,73,76,79};
 
+// Summit Tier 5 - Pikeman. Core effect values follow the EU reference.
+int Pike_T5_Ring_Duration[10] = {8,9,10,11,12,13,14,15,16,17};
+int Pike_T5_Ring_UseMana[10] = {55,60,65,70,75,80,85,90,95,100};
+int Pike_T5_Focus_MinAttackReduction[10] = {20,40,60,80,100,120,140,160,180,200};
+int Pike_T5_Focus_MaxAttackIncrease[10] = {30,60,90,120,150,180,210,240,270,300};
+int Pike_T5_Focus_UseMana[10] = {50,55,60,65,70,75,80,85,90,95};
+int Pike_T5_Death_DamageBoost[10] = {4,8,12,16,20,24,28,32,36,40};
+int Pike_T5_Death_AttackRateBoost[10] = {24,28,32,36,40,44,48,52,56,60};
+int Pike_T5_Death_UseMana[10] = {60,65,70,75,80,85,90,95,100,105};
+int Pike_T5_Twister_DamageBoost[10] = {18,26,34,42,50,58,66,74,82,90};
+int Pike_T5_Twister_UseMana[10] = {65,70,75,80,85,90,95,100,105,110};
+
 //[]
 // 
 int Recall_Wolverin_Damage[10][2] = {{50,75},{55,80},{60,85},{65,90},{70,95},
@@ -596,6 +640,26 @@ int Force_Of_Nature_AddHit[10]         = {20,30,40,50,60,70,80,90,100,110};	  //
 int Force_Of_Nature_FalconAddDamage[10]= {22,26,30,34,38,42,46,50,54,58};	  // ߰ ݷ
 int Force_Of_Nature_Time[10]           = {300,300,300,300,300,300,300,300,300,300};     //ð
 int Force_Of_Nature_UseMana[10]        = {51,54,57,60,63,66,69,72,75,78};
+
+// Summit Tier 5 - Archer. Core effect values follow the EU reference.
+// EU's T52 tables expose only nine initializers; level 10 conservatively keeps level 9.
+int Archer_T5_Lethal_RangeAdd[10] = {10,15,20,25,30,35,40,45,50,55};
+int Archer_T5_Lethal_CriticalRate[10] = {3,6,9,12,15,18,21,24,27,30};
+int Archer_T5_Lethal_DamageBoost[10] = {5,10,15,20,25,30,35,40,45,50};
+int Archer_T5_Lethal_UseMana[10] = {50,55,60,65,70,75,80,85,90,95};
+
+int Archer_T5_Fierce_DamageBoost[10] = {60,70,80,90,100,110,120,130,140,140};
+int Archer_T5_Fierce_CriticalDamageBoost[10] = {2,3,4,5,6,8,10,12,15,15};
+int Archer_T5_Fierce_UseMana[10] = {55,60,65,70,75,80,85,90,95,100};
+
+int Archer_T5_Roots_Duration[10] = {2,3,4,5,6,7,8,9,10,11};
+int Archer_T5_Roots_UseMana[10] = {60,65,70,75,80,85,90,95,100,105};
+
+int Archer_T5_Bombard_DamageBoost[10] = {86,92,98,104,110,116,122,128,134,140};
+int Archer_T5_Bombard_Duration[10] = {12,14,16,18,20,22,24,26,28,30};
+int Archer_T5_Bombard_MPDrain[10] = {17,19,21,23,25,27,29,31,33,35};
+int Archer_T5_Bombard_SPDrain[10] = {22,24,26,28,30,32,34,36,38,40};
+int Archer_T5_Bombard_UseMana[10] = {17,19,21,23,25,27,29,31,33,35};
 
 //[Ʈ]
 // Ǿ
@@ -640,6 +704,22 @@ int Frost_Javelin_Time[10]            = {300,300,300,300,300,300,300,300,300,300
 int Frost_Javelin_UseMana[10]         = {33,36,39,42,44,48,52,56,60,65};
 
 //  // 庰 - ų뷱 (10.08.10)
+// Summit Tier 5 - Atalanta (EU values where available)
+int Atalanta_T5_SummonTiger_AttackPower[10] = {140,160,180,200,220,240,260,280,300,320};
+int Atalanta_T5_SummonTiger_AttackRating[10] = {1000,1000,1000,1000,1000,1000,1000,1000,1000,1000};
+int Atalanta_T5_SummonTiger_Life[10] = {10000,12000,14000,16000,18000,20000,22000,24000,26000,28000};
+int Atalanta_T5_SummonTiger_Duration[10] = {300,300,300,300,300,300,300,300,300,300};
+int Atalanta_T5_SummonTiger_UseMana[10] = {60,65,70,75,80,85,90,95,100,105};
+int Atalanta_T5_GoldenApple_Speed[10] = {8,10,12,14,16,18,20,22,24,26};
+int Atalanta_T5_GoldenApple_Evade[10] = {1,1,1,2,2,2,3,3,3,4};
+int Atalanta_T5_Plague_DamageBoost[10] = {39,41,44,47,50,53,56,59,62,75};
+int Atalanta_T5_Plague_Targets[10] = {3,3,4,4,5,6,7,8,9,10};
+int Atalanta_T5_Plague_PoisonDuration[10] = {2,2,3,3,4,4,5,5,6,7};
+int Atalanta_T5_Plague_PoisonDamagePercent[10] = {5,6,7,8,9,10,11,12,13,14}; // Summit fallback: EU source exposes duration, not poison tick damage
+int Atalanta_T5_Plague_UseMana[10] = {65,70,75,80,85,90,95,100,105,110};
+int Atalanta_T5_Combo_DamageBoost[10] = {10,20,30,40,50,60,70,80,90,100}; // Summit fallback: EU visible source has no Combo Javelin damage table
+int Atalanta_T5_Combo_UseMana[10] = {75,80,85,90,95,100,105,110,115,120};
+
 int Vengeance_DamagePercent[10]  = {10,20,30,40,50,60,70,80,90,100};				//ݷ 
 int Vengeance_Range[10]          = {10,15,20,25,30,35,40,45,50,55};       //Ÿ
 int Vengeance_UseMana[10]        = {33,35,37,39,41,43,45,47,49,51};
@@ -705,8 +785,58 @@ int Meteo_Damage[10][2] = {{116,146},{128,158},{140,170},{152,182},{164,194},
 int Meteo_Area[10]      = {100,105,110,115,120,125,130,135,140,145};               //
 int Meteo_UseMana[10]   = {100,104,108,112,116,120,124,128,132,136};     
 
+// Summit Tier 5 - Priestess (EU curves; mana fallback follows Summit T5 progression)
+int Priestess_T5_IceElemental_AttackPower[10] = {140,160,180,200,220,240,260,280,300,320};
+int Priestess_T5_IceElemental_AttackRating[10] = {1000,1000,1000,1000,1000,1000,1000,1000,1000,1000};
+int Priestess_T5_IceElemental_Life[10] = {10000,12000,14000,16000,18000,20000,22000,24000,26000,28000};
+int Priestess_T5_IceElemental_Duration[10] = {300,300,300,300,300,300,300,300,300,300};
+int Priestess_T5_IceElemental_UseMana[10] = {60,65,70,75,80,85,90,95,100,105};
+int Priestess_T5_LightningSurge_DamageBoost[10] = {100,115,130,145,160,175,190,205,220,235};
+int Priestess_T5_LightningSurge_Area[10] = {50,53,56,59,61,64,67,70,73,76};
+int Priestess_T5_LightningSurge_ChargedArea[10] = {150,160,180,190,200,210,220,230,240,250};
+int Priestess_T5_LightningSurge_UseMana[10] = {65,70,75,80,85,90,95,100,105,110};
+int Priestess_T5_HeavenlyLight_AttackRateReduction[10] = {6,7,8,9,10,11,12,13,14,15};
+int Priestess_T5_HeavenlyLight_Duration[10] = {5,6,7,8,9,10,11,12,13,14};
+int Priestess_T5_HeavenlyLight_Area[10] = {80,85,90,95,100,105,110,115,120,125};
+int Priestess_T5_HeavenlyLight_UseMana[10] = {70,75,80,85,90,95,100,105,110,115};
+int Priestess_T5_Consecration_DefenseBoost[10] = {70,80,90,100,110,120,130,140,150,160};
+int Priestess_T5_Consecration_Absorption[10] = {6,8,10,12,14,16,18,20,22,24};
+int Priestess_T5_Consecration_UseMana[10] = {75,80,85,90,95,100,105,110,115,120};
+
+// Summit Tier 5 - Magician (EU curves; mana fallback follows Summit T5 progression)
+int Magician_T5_WizardTrance_BlockBoost[10] = {4,8,12,16,20,24,28,32,36,40};
+int Magician_T5_WizardTrance_AttackRateReduction[10] = {2,4,6,8,10,12,14,16,18,20};
+int Magician_T5_WizardTrance_Duration[10] = {300,300,300,300,300,300,300,300,300,300};
+int Magician_T5_WizardTrance_UseMana[10] = {60,65,70,75,80,85,90,95,100,105};
+int Magician_T5_StoneSkin_ImmortalWindow[10] = {2,2,2,3,3,3,4,4,4,5};
+int Magician_T5_StoneSkin_Duration[10] = {4,5,6,7,8,9,10,11,12,13};
+int Magician_T5_StoneSkin_RunSpeedReduction[10] = {80,76,72,68,64,56,52,48,44,0}; // exact EU initializer: level 10 is zero
+int Magician_T5_StoneSkin_UseMana[10] = {65,70,75,80,85,90,95,100,105,110};
+int Magician_T5_RedRay_DamageBoost[10] = {26,32,38,44,50,56,62,68,74,80};
+int Magician_T5_RedRay_AddRange[10] = {5,10,15,20,25,30,35,40,45,50};
+int Magician_T5_RedRay_UseMana[10] = {70,75,80,85,90,95,100,105,110,115};
+int Magician_T5_Cataclysm_DamageBoost[10] = {65,80,95,110,125,140,155,170,185,200};
+int Magician_T5_Cataclysm_Duration[10] = {12,14,16,18,20,22,24,26,28,30};
+int Magician_T5_Cataclysm_MPDrain[10] = {75,80,85,90,95,100,105,110,115,120};
+int Magician_T5_Cataclysm_SPDrain[10] = {22,24,26,28,30,32,34,36,38,40};
+int Magician_T5_Cataclysm_UseMana[10] = {75,80,85,90,95,100,105,110,115,120};
+
 
 // Ŭų
 int C_Skill_HpPoint[10]   ={100,110,120,130,140,150,160,170,180,190};//hp
 int C_Skill_AttPercent[10]={10,11,12,13,14,15,16,17,18,19};          //ݷ 
 int C_Skill_EvaPercent[10]   ={10,11,12,13,14,15,16,17,18,19};       //ȸ 
+
+// Summit Tier 5 - Knight (EU curves; mana/duration fallback documented in Fix 138)
+int Knight_T5_HolyConviction_UndeadBoost[10] = {14,16,18,20,22,24,26,28,30,32};
+int Knight_T5_HolyConviction_Duration[10] = {300,300,300,300,300,300,300,300,300,300};
+int Knight_T5_HolyConviction_UseMana[10] = {60,65,70,75,80,85,90,95,100,105};
+int Knight_T5_DivineInquisition_DamageBoost[10] = {20,25,30,35,40,45,50,55,60,65};
+int Knight_T5_DivineInquisition_Area[10] = {80,85,90,95,100,105,110,115,120,125};
+int Knight_T5_DivineInquisition_UndeadDamage[10] = {20,30,40,50,60,70,80,90,100,110};
+int Knight_T5_DivineInquisition_UseMana[10] = {65,70,75,80,85,90,95,100,105,110};
+int Knight_T5_GloriousShield_DefenseBoost[10] = {40,46,52,58,64,70,76,82,96,100};
+int Knight_T5_GloriousShield_Duration[10] = {300,300,300,300,300,300,300,300,300,300};
+int Knight_T5_GloriousShield_UseMana[10] = {70,75,80,85,90,95,100,105,110,115};
+int Knight_T5_DivineCross_DamageBoost[10] = {4,8,12,16,20,24,28,32,36,40};
+int Knight_T5_DivineCross_UseMana[10] = {75,80,85,90,95,100,105,110,115,120};

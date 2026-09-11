@@ -88,6 +88,7 @@ SrcServer/src/systems/network/transport/legacy/smwsock.cpp
 SrcServer/src/systems/persistence/character_record/record.cpp
 SrcServer/src/systems/persistence/database/core/Database.cpp
 SrcServer/src/systems/persistence/database/odbc/SQL.cpp
+SrcServer/src/systems/persistence/database/sqlite/SQLiteConnection.cpp
 SrcServer/src/systems/presentation/opening/HoOpening.cpp
 SrcServer/src/systems/presentation/opening/legacy_runtime/HoLinkHeader.cpp
 SrcServer/src/systems/progression/battle_pass/BattlePass.cpp

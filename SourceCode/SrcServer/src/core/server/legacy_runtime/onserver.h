@@ -118,6 +118,7 @@ struct	STG_ITEMS
 	DWORD	dwLoseTime;
 	DWORD	Level;
 	int		BeginMode;
+	DWORD	dwExclusiveOwnerCode;
 };
 
 
@@ -457,6 +458,23 @@ int	rsPlayHealing(smTRANS_COMMAND *lpTransCommand);
 
 int srDisplayBillingTime(rsPLAYINFO *lpPlayInfo, int Add_BillingTime);
 
+/*
+ * Gameplay entitlement facade for the historical PC-room benefit.
+ *
+ * R21 keeps the legacy provider compatible (Bl_RNo > 0) while allowing an
+ * independent server-local entitlement loaded from SQLite.  Billing, PC-room
+ * reservation and accounting code must continue to inspect Bl_RNo directly;
+ * only gameplay consumes this semantic facade.
+ */
+bool rsHasLocalPCBangGameplayEntitlement(const rsPLAYINFO *lpPlayInfo);
+void rsSetLocalPCBangGameplayEntitlement(rsPLAYINFO *lpPlayInfo, bool enabled);
+
+inline bool rsHasPCBangGameplayEntitlement(const rsPLAYINFO *lpPlayInfo)
+{
+	return lpPlayInfo &&
+		(lpPlayInfo->Bl_RNo > 0 || rsHasLocalPCBangGameplayEntitlement(lpPlayInfo));
+}
+
 
 int	rsSendCommandUser(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND_EX	*lpTransCommandEx);
 
@@ -486,6 +504,9 @@ int	rsClanMoneyLog(rsPLAYINFO *lpPlayInfo, int Money, int RestMoney);
 
 
 int rsAddServerPotion(rsPLAYINFO *lpPlayInfo, DWORD dwPotionCode, int PotionCount);
+
+// Returns FALSE when the requested item is not present in the runtime catalog.
+int rsPutItemChecked(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode);
 
 int rsGetServerPotion(rsPLAYINFO *lpPlayInfo, DWORD dwPotionCode);
 

@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=6b91bc5b59fe86cb7eaa8102e8bcb5bee748fa83daa4ba8588859b3fa6fda4ff
-output_sha256=6b91bc5b59fe86cb7eaa8102e8bcb5bee748fa83daa4ba8588859b3fa6fda4ff
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-97A54A9D37F1/object_local_animation/texture_overlay_client/field/forest/b-chul-3.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

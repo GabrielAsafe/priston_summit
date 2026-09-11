@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=4074c027ecc1cb80af139dd45c2e698e2653d9fcd74e67689356ad97de494e09
-output_sha256=4074c027ecc1cb80af139dd45c2e698e2653d9fcd74e67689356ad97de494e09
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-6170851B31AF/object_local_animation/texture_overlay_client/Effect/ObjAnimationData/MonsterWeb/dd.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

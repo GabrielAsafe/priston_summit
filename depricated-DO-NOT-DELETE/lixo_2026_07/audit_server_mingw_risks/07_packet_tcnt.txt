@@ -1,9 +1,0 @@
-SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp:6:CPacket::CPacket()
-SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp:9:CPacket::~CPacket()
-SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp:14:VOID CPacket::Init()
-SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp:18:VOID CPacket::Clear()
-SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp:24:VOID CPacket::SetSelectCha(char *id, char *chaname, char *clanname, DWORD clannum)
-SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp:63:	static tCnt = 0;
-SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp:126:VOID CPacket::Parsing()
-SrcServer/src/TJBOY/Ygy/Packet/Packet.cpp:191:VOID CPacket::SetClanChat(char *msg)
-SrcServer/src/TJBOY/Ygy/Packet/Packet.h:11:class CPacket

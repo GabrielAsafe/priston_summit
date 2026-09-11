@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=8343691763709a1ed9cf1814648c89f9cce93c4b3748d887a521790b0ab27592
-output_sha256=8343691763709a1ed9cf1814648c89f9cce93c4b3748d887a521790b0ab27592
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-BB191BCA1340/object_local_animation/texture_overlay_client/field/castle/riy-w014.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

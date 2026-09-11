@@ -289,7 +289,7 @@ int sinRecvMessage(DWORD dwCode, void *RecvBuff)
 		}
 		sinSetShopItem(lpItemInfo, lpTransSellItem->ItemCounter, lpTransSellItem->ItemKind);
 
-		delete lpItemInfo;
+		delete[] lpItemInfo;
 		break;
 
 	}
@@ -1606,25 +1606,25 @@ void sinTestDrawText()
 		{
 			if(CheatHelpOpenFlag)
 			{
-				wsprintf(strBuff, "(P) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ 10% ");
+				wsprintf(strBuff, "(P) ´ÙÀ½°æÇèÄ¡±îÁö 10% ");
 				dsTextLineOut(hdc, 100, 200, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(L) ï¿½ï¿½ 200000 ");
+				wsprintf(strBuff, "(L) µ· 200000 ");
 				dsTextLineOut(hdc, 100, 230, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(B) LV 65 ï¿½ï¿½ 300000");
+				wsprintf(strBuff, "(B) LV 65 µ· 300000");
 				dsTextLineOut(hdc, 100, 260, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(Y) ï¿½Í½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ");
+				wsprintf(strBuff, "(Y) ¹Í½ºÃÄ ¾ÆÀÌÅÛ ½ÇÇà ");
 				dsTextLineOut(hdc, 100, 290, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(U) ï¿½ï¿½ï¿½ï¿½  ");
+				wsprintf(strBuff, "(U) Àü¾÷  ");
 				dsTextLineOut(hdc, 100, 320, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(F) ï¿½ï¿½ï¿½Ãµï¿½ Up  ");
+				wsprintf(strBuff, "(F) ¼÷·Ãµµ Up  ");
 				dsTextLineOut(hdc, 100, 350, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(N) ï¿½ï¿½ï¿½Ãµï¿½ Down  ");
+				wsprintf(strBuff, "(N) ¼÷·Ãµµ Down  ");
 				dsTextLineOut(hdc, 100, 380, strBuff, lstrlen(strBuff));
 			}
 		}
@@ -1865,6 +1865,9 @@ int sinSkillMaster(int ChangeJob)
 		break;
 		case 3:
 		ChangeJobSkillPlus = 17;
+		break;
+		case CHARACTER_RANK5:
+		ChangeJobSkillPlus = 21;
 		break;
 	}
 

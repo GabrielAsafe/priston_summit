@@ -3,9 +3,9 @@
 #define SIN_SKILL_USE_ALL 0x03000000 // Both available 
 #define SIN_SKILL_USE_NOT 0x04000000 // Passive Skill
 
-//PARA EDITAR DELAY DA SKILL DO CHAR � S� ALTERAR O QUARTO N�MERO EXEMPLO: 
+//PARA EDITAR DELAY DA SKILL DO CHAR É SÓ ALTERAR O QUARTO NºMERO EXEMPLO: 
 //{"Escudo Extremo", "Aumenta o Bloqueio de Escudos, temporariamente",
-//10, 34, 2, >>>>>>110<<<<<<<, 4, (110 ser� editado)
+//10, 34, 2, >>>>>>110<<<<<<<, 4, (110 será editado)
 //{ 0,0,0 }, { sinDS1,0,0,0,0,0,0,0 },
 //F_Extreme_Shield, SKILL_EXTREME_SHIELD, SIN_SKILL_USE_RIGHT, E_Shield_UseMana},
 

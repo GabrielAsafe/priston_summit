@@ -1,9 +1,0 @@
-PT_SMD_STATIC_CAPABILITY_PROBE_V1
-objects=1
-ready_count=0
-blocked_count=1
-ready_objects=[]
-blocked_objects=['Cylinder01']
-report=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-5F6410576CF6/structural/static_capability.json
-client_modified=False
-static_capability_probe_check=PASS

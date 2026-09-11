@@ -1,8 +1,0 @@
-PT_PROTECTED_TGA_V1
-action=decode
-input_sha256=a5b10a7bca84fa2cbca90474c3dc79bde174939512f9a886a1cc529d3e625de4
-output_sha256=a5b10a7bca84fa2cbca90474c3dc79bde174939512f9a886a1cc529d3e625de4
-output=/home/gabriel/Área de Trabalho/summit/design_work/pt_build/pt_asset_tool/AST-8D9BDEB9F1D4/stage072_geometry_roundtrip_current/texture_overlay_client/field/endless/ca_hema_fin.tga
-format=TGA_STANDARD
-client_modified=False
-tga_decode_check=PASS

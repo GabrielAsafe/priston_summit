@@ -1,0 +1,312 @@
+--- a/tools/sqlite_local_admin.py
++++ b/tools/sqlite_local_admin.py
+@@ -26,13 +26,21 @@
+     pass
+ 
+ 
+-def account_table(user: str) -> str:
++def account_initial(user: str) -> str:
+     if not user or len(user) > MAX_ACCOUNT:
+         raise AdminError(f"account must contain 1..{MAX_ACCOUNT} characters")
+     initial = user[0].upper()
+     if initial < "A" or initial > "Z":
+         raise AdminError("account must start with A-Z")
+-    return f"AccountDB__{initial}GameUser"
++    return initial
++
++
++def account_table(user: str) -> str:
++    return f"AccountDB__{account_initial(user)}GameUser"
++
++
++def personal_table(user: str) -> str:
++    return f"AccountDB__{account_initial(user)}PersonalMember"
+ 
+ 
+ def connect(path: Path) -> sqlite3.Connection:
+@@ -106,18 +114,43 @@
+     )
+ 
+ 
++def insert_row(db: sqlite3.Connection, table: str, values: dict[str, object]) -> None:
++    existing_columns = {row[1] for row in db.execute(f'PRAGMA table_info("{table}")')}
++    if not existing_columns:
++        raise AdminError(f"required table missing: {table}")
++    filtered = {key: value for key, value in values.items() if key in existing_columns}
++    cols = list(filtered)
++    db.execute(
++        f'INSERT INTO "{table}" ({",".join(f"[{c}]" for c in cols)}) '
++        f'VALUES ({",".join("?" for _ in cols)})',
++        [filtered[c] for c in cols],
++    )
++
++
+ def create_account(db: sqlite3.Connection, user: str, password: str, mode: str) -> None:
+     table = account_table(user)
++    all_game = "AccountDB__AllGameUser"
++    all_personal = "AccountDB__ALLPersonalMember"
++    letter_personal = personal_table(user)
++
+     if find_accounts(db, user):
+         raise AdminError(f"account already exists (case-insensitive): {user}")
+-    values = required_insert_values(db, table)
+-    values.update(
++    if db.execute(
++        f'SELECT 1 FROM "{all_game}" WHERE lower(userid)=lower(?) LIMIT 1', (user,)
++    ).fetchone():
++        raise AdminError(f"account already exists in AllGameUser: {user}")
++
++    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
++    game_values = required_insert_values(db, table)
++    game_values.update(
+         userid=user,
+         Passwd=password,
+         GPCode="",
+         UsePeriod=0,
+         inuse="0",
+-        Grade="0",
++        # Historical web registration used Grade='U'. Keep that account
++        # contract while AuthMode=local remains authoritative for billing.
++        Grade="U",
+         EventChk="0",
+         SelectChk="0",
+         BlockChk="0",
+@@ -128,22 +161,51 @@
+         SNo=None,
+         Channel="",
+         BNum=0,
+-        RegistDay="",
+-        EditDay="",
++        RegistDay=now,
++        EditDay=now,
+         ServerName="",
+     )
+-    cols = list(values)
+-    db.execute(
+-        f'INSERT INTO "{table}" ({",".join(f"[{c}]" for c in cols)}) '
+-        f'VALUES ({",".join("?" for _ in cols)})',
+-        [values[c] for c in cols],
+-    )
++
++    all_game_values = required_insert_values(db, all_game)
++    all_game_values.update(game_values)
++    all_game_values.update(BlockMOTIVO=None, BlockDATA=None)
++
++    personal_values = {
++        "PMNo": 0,
++        "Userid": user,
++        "Passwd": password,
++        "RegistDay": now,
++    }
++    all_personal_values = required_insert_values(db, all_personal)
++    all_personal_values.update(personal_values)
++    letter_personal_values = required_insert_values(db, letter_personal)
++    letter_personal_values.update(personal_values)
++
++    # sqlite3.Connection context in main makes these four legacy mirrors plus
++    # LocalAuth__AccountPolicy one atomic registration operation.
++    insert_row(db, table, game_values)
++    insert_row(db, all_game, all_game_values)
++    insert_row(db, all_personal, all_personal_values)
++    insert_row(db, letter_personal, letter_personal_values)
+     set_auth(db, user, mode)
+ 
+ 
+ def set_account_password(db: sqlite3.Connection, user: str, password: str) -> None:
+     table, row = require_one(db, user)
+     db.execute(f'UPDATE "{table}" SET Passwd=?, EditDay=datetime(\'now\',\'localtime\') WHERE rowid=?', (password, row["rowid"]))
++    db.execute(
++        'UPDATE AccountDB__AllGameUser SET Passwd=?, EditDay=datetime(\'now\',\'localtime\') '
++        'WHERE lower(userid)=lower(?)',
++        (password, user),
++    )
++    db.execute(
++        'UPDATE AccountDB__ALLPersonalMember SET Passwd=? WHERE lower(Userid)=lower(?)',
++        (password, user),
++    )
++    db.execute(
++        f'UPDATE "{personal_table(user)}" SET Passwd=? WHERE lower(Userid)=lower(?)',
++        (password, user),
++    )
+ 
+ 
+ def set_entitlement(db: sqlite3.Connection, user: str, enabled: bool, expires: str | None = None) -> None:
+--- a/SrcServer/src/core/server/legacy_runtime/DllServer.cpp
++++ b/SrcServer/src/core/server/legacy_runtime/DllServer.cpp
+@@ -1021,6 +1021,22 @@
+ 	return !value || !value[0] || (value[0] == '0' && value[1] == 0);
+ }
+ 
++static void LogSQLiteLocalAuthStage(const char *userID, const char *stage, const char *detail)
++{
++	FILE *fp = fopen("LOGS\\mingw_sqlite_local_auth.txt", "a");
++	if(!fp)
++		return;
++	fprintf(
++		fp,
++		"[SQLITE_LOCAL_AUTH] user=%s stage=%s%s%s\n",
++		userID ? userID : "",
++		stage ? stage : "",
++		(detail && detail[0]) ? " detail=" : "",
++		(detail && detail[0]) ? detail : "");
++	fflush(fp);
++	fclose(fp);
++}
++
+ static BOOL ParseSQLiteLocalAccountTime(const char *value, time_t *outValue)
+ {
+ 	if(!outValue)
+@@ -1406,27 +1422,49 @@
+ 	char *lpszGubunCode,
+ 	int *outResult)
+ {
++	LogSQLiteLocalAuthStage(lpszPID, "enter", "");
+ 	if(!lpszPID || !lpszPID[0] || !lpszPWD || !outResult)
++	{
++		LogSQLiteLocalAuthStage(lpszPID, "reject_bad_input", "");
+ 		return FALSE;
++	}
+ 
+ 	char initial = 0;
+ 	if(!GetSQLiteLocalAccountInitial(lpszPID, &initial))
++	{
++		LogSQLiteLocalAuthStage(lpszPID, "reject_bad_initial", "");
+ 		return FALSE;
++	}
+ 
+ 	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_AccountDB);
+ 	if(!db || !db->Open())
++	{
++		LogSQLiteLocalAuthStage(lpszPID, "sqlite_open_failed", db ? db->GetLastError() : "no connection");
+ 		return FALSE;
++	}
+ 	if(!db->BeginTransaction())
+ 	{
++		LogSQLiteLocalAuthStage(lpszPID, "begin_failed", db->GetLastError());
+ 		db->Close();
+ 		return FALSE;
+ 	}
+ 
+ 	int authMode = SQLITE_LOCAL_AUTH_IMPLICIT;
+ 	if(!ReadSQLiteLocalAuthMode(db, lpszPID, &authMode))
++	{
++		LogSQLiteLocalAuthStage(lpszPID, "auth_mode_read_failed", db->GetLastError());
+ 		return RollbackAndCloseSQLiteLocalSession(db);
++	}
++	{
++		char detail[64] = { 0 };
++		wsprintfA(detail, "mode=%d", authMode);
++		LogSQLiteLocalAuthStage(lpszPID, "auth_mode", detail);
++	}
+ 	if(authMode == SQLITE_LOCAL_AUTH_LEGACY)
++	{
++		LogSQLiteLocalAuthStage(lpszPID, "fallback_legacy_policy", "");
+ 		return RollbackAndCloseSQLiteLocalSession(db);
++	}
+ 	const BOOL explicitlyLocal = authMode == SQLITE_LOCAL_AUTH_LOCAL;
+ 
+ 	char query[384];
+@@ -1441,6 +1479,7 @@
+ 		prepared = db->BindInputParameter(lpszPID, 1, PARAMTYPE_String);
+ 	if(!prepared || !db->Execute())
+ 	{
++		LogSQLiteLocalAuthStage(lpszPID, "account_query_failed_or_missing", db->GetLastError());
+ 		db->RollbackTransaction();
+ 		db->Close();
+ 		if(explicitlyLocal)
+@@ -1474,8 +1513,28 @@
+ 		db->GetData(&billingNumber, 0, 9, PARAMTYPE_Integer) &&
+ 		db->GetData(channel, sizeof(channel), 10, PARAMTYPE_String);
+ 
++	{
++		char detail[512] = { 0 };
++		wsprintfA(
++			detail,
++			"rowOK=%d storedPwdLen=%d suppliedPwdLen=%d inuse=[%s] block=[%s] del=[%s] gp=[%s] usePeriod=%d RNo=%d BNum=%d channel=[%s]",
++			rowOK,
++			(int)strlen(storedPassword),
++			(int)strlen(lpszPWD),
++			inUse,
++			blockChk,
++			delChk,
++			gpCode,
++			usePeriod,
++			pcRNo,
++			billingNumber,
++			channel);
++		LogSQLiteLocalAuthStage(lpszPID, "account_row", detail);
++	}
++
+ 	if(!rowOK || strcmp(storedPassword, lpszPWD) != 0)
+ 	{
++		LogSQLiteLocalAuthStage(lpszPID, rowOK ? "reject_password_mismatch" : "reject_row_decode", db->GetLastError());
+ 		db->RollbackTransaction();
+ 		db->Close();
+ 		if(explicitlyLocal)
+@@ -1490,6 +1549,7 @@
+ 	if(!IsSQLiteLocalZeroValue(inUse) || !IsSQLiteLocalZeroValue(blockChk) ||
+ 		!IsSQLiteLocalZeroValue(delChk))
+ 	{
++		LogSQLiteLocalAuthStage(lpszPID, "reject_account_state", "inuse/block/del is non-zero");
+ 		db->RollbackTransaction();
+ 		db->Close();
+ 		if(explicitlyLocal)
+@@ -1508,13 +1568,20 @@
+ 		if(!IsSQLiteLocalZeroValue(gpCode) || usePeriod != 0 || pcRNo != 0 ||
+ 			billingNumber != 0 || !IsSQLiteLocalZeroValue(channel))
+ 		{
++			LogSQLiteLocalAuthStage(lpszPID, "fallback_provider_signature", "");
+ 			return RollbackAndCloseSQLiteLocalSession(db);
+ 		}
+ 
+ 		if(!ParseSQLiteLocalAccountTime(disuseDayText, &disuseDay))
++		{
++			LogSQLiteLocalAuthStage(lpszPID, "fallback_bad_disuse_day", disuseDayText);
+ 			return RollbackAndCloseSQLiteLocalSession(db);
++		}
+ 		if(disuseDay != 0 && disuseDay < time(NULL))
++		{
++			LogSQLiteLocalAuthStage(lpszPID, "fallback_expired_disuse_day", disuseDayText);
+ 			return RollbackAndCloseSQLiteLocalSession(db);
++		}
+ 	}
+ 	else
+ 	{
+@@ -1525,6 +1592,7 @@
+ 
+ 	if(!MakeSQLiteLocalSessionGuid(szGuid))
+ 	{
++		LogSQLiteLocalAuthStage(lpszPID, "session_guid_failed", "CoCreateGuid");
+ 		db->RollbackTransaction();
+ 		db->Close();
+ 		if(explicitlyLocal)
+@@ -1534,8 +1602,10 @@
+ 		}
+ 		return FALSE;
+ 	}
++	LogSQLiteLocalAuthStage(lpszPID, "session_guid_ok", "");
+ 	if(!ClaimSQLiteLocalSession(db, initial, lpszPID, szGuid))
+ 	{
++		LogSQLiteLocalAuthStage(lpszPID, "session_claim_failed", db->GetLastError());
+ 		db->RollbackTransaction();
+ 		db->Close();
+ 		if(explicitlyLocal)
+@@ -1545,8 +1615,10 @@
+ 		}
+ 		return FALSE;
+ 	}
++	LogSQLiteLocalAuthStage(lpszPID, "session_claim_ok", "");
+ 	if(!db->CommitTransaction())
+ 	{
++		LogSQLiteLocalAuthStage(lpszPID, "commit_failed", db->GetLastError());
+ 		db->RollbackTransaction();
+ 		db->Close();
+ 		if(explicitlyLocal)
+@@ -1570,6 +1642,7 @@
+ 		*((int *)lpszGubunCode) = 0;
+ 
+ 	*outResult = TRUE;
++	LogSQLiteLocalAuthStage(lpszPID, "success", "");
+ 	return TRUE;
+ }
+ 

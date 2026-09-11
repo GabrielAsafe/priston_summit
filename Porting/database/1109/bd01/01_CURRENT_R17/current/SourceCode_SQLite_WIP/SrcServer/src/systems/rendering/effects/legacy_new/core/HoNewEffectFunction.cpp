@@ -1,0 +1,13 @@
+#include "systems/rendering/effects/legacy_new/core/HoNewEffectHeader.h"
+#include "systems/rendering/effects/legacy_new/core/HoNewEffectFunction.h"
+#include "systems/rendering/effects/legacy_new/core/HoEffectManager.h"
+#include "systems/rendering/effects/legacy_new/core/HoEffectMain.h"
+#include "systems/rendering/effects/legacy_new/core/HoEffectController.h"
+#include "core/server/legacy_sin_runtime/sinLinkHeader.h"
+#include "systems/world/field/field.h"
+#include "systems/rendering/effects/legacy_ho/HoMinMax.h"
+#include "systems/rendering/effects/particles/ho/HoNewParticle.h"
+#include "systems/rendering/effects/particles/ho/HoNewParticleMgr.h"
+#include "systems/rendering/effects/assa/AssaParticle.h"
+
+#include "rendering/effects/legacy_new/HoNewEffectFunctionLegacyCommon.inl"
