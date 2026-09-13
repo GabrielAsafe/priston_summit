@@ -1,6 +1,0 @@
-<?php require_once dirname(__FILE__).'/../_clan_port/lib.php';
-require_params(array('userid','gserver','chname','clName')); $c=db_connect_clan();if(!$c)code_exit(100);$ch=req('chname');$cn=req('clName');
-$s=q($c,'SELECT TOP 1 ClanName,Permi FROM dbo.UL WHERE ChName=?',array($ch));if(!$s)fail_db($c);$r=fetch_row($s);if($r===false){@odbc_close($c);code_exit(0);} $actual=field($r,'ClanName');
-if($actual===''){q($c,'DELETE FROM dbo.UL WHERE ChName=?',array($ch));@odbc_close($c);code_exit(0);}if($actual!==$cn){@odbc_close($c);code_exit(0);}
-$s=q($c,'SELECT TOP 1 ClanZang,MemCnt FROM dbo.CL WHERE ClanName=?',array($cn));if(!$s)fail_db($c);$cl=fetch_row($s);if($cl===false){@odbc_close($c);code_exit(0);}if(field($cl,'ClanZang')===$ch){@odbc_close($c);code_exit(4);} $n=max(0,intval(field($cl,'MemCnt'))-1);
-if(!begin_tx($c))fail_db($c);$a=q($c,'UPDATE dbo.CL SET MemCnt=? WHERE ClanName=?',array($n,$cn));$b=$a?q($c,'DELETE FROM dbo.UL WHERE ChName=?',array($ch)):false;if(!$a||!$b){rollback_tx($c);@odbc_close($c);code_exit(100);}commit_tx($c);@odbc_close($c);code_exit(1); ?>

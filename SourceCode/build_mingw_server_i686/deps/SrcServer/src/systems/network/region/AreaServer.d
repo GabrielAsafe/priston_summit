@@ -117,7 +117,8 @@
  SrcServer/src/systems/persistence/database/core/Database.h \
  Shared/persistence/database/Database_sqlite_server.h \
  SrcServer/src/systems/combat/skills/server_support/SkillSub.h \
- SrcServer/src/systems/network/region/AreaServer.h
+ SrcServer/src/systems/network/region/AreaServer.h \
+ Shared/network/region/AreaServerMapValidation.h
 Shared/network/region/AreaServer_legacy_server.inl:
 SrcServer/src/compat/server_build/server_build_compat.h:
 SrcServer/src/systems/network/protocol/server/opcodes.h:
@@ -238,3 +239,4 @@ SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
 SrcServer/src/systems/combat/skills/server_support/SkillSub.h:
 SrcServer/src/systems/network/region/AreaServer.h:
+Shared/network/region/AreaServerMapValidation.h:

@@ -364,6 +364,29 @@ void NormalizeCollations(std::string &query)
 		ReplaceAllNoCase(query, known[i], "COLLATE NOCASE");
 }
 
+void NormalizeIsNullFunction(std::string &query)
+{
+	std::size_t pos = 0;
+	while((pos = FindNoCase(query, "ISNULL", pos)) != std::string::npos)
+	{
+		const bool leftOk = (pos == 0 || !IsIdentChar(query[pos - 1]));
+		std::size_t p = pos + 6;
+		while(p < query.size() && std::isspace(static_cast<unsigned char>(query[p])))
+			++p;
+		const bool rightOk = (p < query.size() && query[p] == '(');
+
+		if(leftOk && rightOk)
+		{
+			query.replace(pos, 6, "COALESCE");
+			pos += 8;
+		}
+		else
+		{
+			pos += 6;
+		}
+	}
+}
+
 void NormalizeDateParts(std::string &query)
 {
 	ReplaceAllNoCase(query, "DAY(GETDATE())", "CAST(strftime('%d','now','localtime') AS INTEGER)");
@@ -487,6 +510,9 @@ bool RewriteLegacyQuery(
 
 	output = input;
 
+	// SQL Server scalar functions accepted by the compatibility boundary.
+	NormalizeIsNullFunction(output);
+
 	// SQL Server date/time functions used by the current source.
 	// DATEADD must be converted before the generic GETDATE replacement or
 	// its pattern would disappear.
@@ -505,15 +531,35 @@ bool RewriteLegacyQuery(
 	if(!NormalizeTopClause(output, error))
 		return false;
 
-	// Control-flow statements are migrated explicitly at their call sites so
-	// parameter numbering and row-count semantics remain obvious.
-	if(FindNoCase(output, "IF NOT EXISTS(") != std::string::npos ||
-	   FindNoCase(output, "IF EXISTS(") != std::string::npos ||
-	   FindNoCase(output, " BEGIN ") != std::string::npos ||
-	   FindNoCase(output, " ELSE ") != std::string::npos)
+	// Control-flow and server-only constructs are never guessed. They must be
+	// rewritten at the call site so bind numbering, affected rows and
+	// transaction semantics remain explicit.
+	const char *unsupported[] = {
+		"IF NOT EXISTS(",
+		"IF EXISTS(",
+		" BEGIN ",
+		" ELSE ",
+		"DATEDIFF(",
+		"DATEPART(",
+		"CONVERT(",
+		"SCOPE_IDENTITY(",
+		"@@IDENTITY",
+		"@@ROWCOUNT",
+		"MERGE ",
+		"WITH (NOLOCK)",
+		"NEWID(",
+		"EXEC ",
+		"EXECUTE "
+	};
+
+	for(std::size_t i = 0; i < sizeof(unsupported) / sizeof(unsupported[0]); ++i)
 	{
-		error = "SQLite: query T-SQL com IF/BEGIN/ELSE ainda precisa migracao explicita.";
-		return false;
+		if(FindNoCase(output, unsupported[i]) != std::string::npos)
+		{
+			error = "SQLite: construcao SQL Server nao suportada no runtime: ";
+			error += unsupported[i];
+			return false;
+		}
 	}
 
 	return true;

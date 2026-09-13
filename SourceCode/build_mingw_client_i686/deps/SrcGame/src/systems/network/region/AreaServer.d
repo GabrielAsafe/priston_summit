@@ -137,7 +137,8 @@
  SrcGame/src/platform/database/odbc/SQL.h \
  Dependency/DirectX9/Include/d3dx9math.h \
  SrcGame/src/systems/combat/skills/client/SkillSub.h \
- SrcGame/src/systems/network/region/AreaServer.h
+ SrcGame/src/systems/network/region/AreaServer.h \
+ Shared/network/region/AreaServerMapValidation.h
 Shared/network/region/AreaServer_legacy_client.inl:
 Shared/opcodes.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
@@ -279,3 +280,4 @@ SrcGame/src/platform/database/odbc/SQL.h:
 Dependency/DirectX9/Include/d3dx9math.h:
 SrcGame/src/systems/combat/skills/client/SkillSub.h:
 SrcGame/src/systems/network/region/AreaServer.h:
+Shared/network/region/AreaServerMapValidation.h:

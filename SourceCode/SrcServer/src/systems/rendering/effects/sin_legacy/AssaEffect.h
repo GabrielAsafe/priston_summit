@@ -164,9 +164,10 @@ public:
 public:
 	cASSAEFFECT()
 	{
-		memset(this, 0, sizeof(cASSAEFFECT));
-		cASSATrace *pAssaTrace = new cASSATrace;
-		cAssaTrace = pAssaTrace;
+		unsigned char *dataBegin = reinterpret_cast<unsigned char *>(&MOVECODE);
+		unsigned char *objectEnd = reinterpret_cast<unsigned char *>(this) + sizeof(cASSAEFFECT);
+		memset(dataBegin, 0, static_cast<size_t>(objectEnd - dataBegin));
+		cAssaTrace = new cASSATrace;
 
 	}
 	virtual ~cASSAEFFECT()

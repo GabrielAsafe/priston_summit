@@ -575,6 +575,7 @@ public:
 
 
 	int CheckContinueIcon();
+	int EnsureContinueSkillIcon(DWORD CODE);
 
 
 	int SkillBarDraw(sSKILL *pSkill, int x, int y, int Alpha);

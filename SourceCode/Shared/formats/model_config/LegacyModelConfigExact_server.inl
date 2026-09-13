@@ -257,14 +257,14 @@ int AddModelDecode(char *iniFile, smMODELINFO *Info)
 
 			if(szIniCommand[CmdNum][0] == NULL)
 			{
-				if(decode[0] == '*' && strstr(decode, szMotionWord))
+				if(decode[0] == '*' && strstr(decode, szMotionWord) && Info->MotionCount < MOTION_INFO_MAX)
 				{
 
 
 
 					if(Info->MotionCount < MOTION_INFO_MAX)
 					{
-						SetIniMotionInfo(&Info->MotionInfo[Info->MotionCount], p, &Info->NpcMotionRate[Info->MotionCount]);
+						SetIniMotionInfo(&Info->MotionInfo[Info->MotionCount], p, Info->MotionCount < NPC_MOTION_INFO_MAX ? &Info->NpcMotionRate[Info->MotionCount] : NULL);
 					}
 
 
@@ -386,7 +386,7 @@ int AddModelDecode(char *iniFile, smMODELINFO *Info)
 				}
 
 
-				else if(decode[0] == '*' && strstr(decode, szMotionTalkWord) && MotionFileListCnt)
+				else if(decode[0] == '*' && strstr(decode, szMotionTalkWord) && MotionFileListCnt && Info->TalkMotionCount < TALK_MOTION_INFO_MAX)
 				{
 					if(Info->TalkMotionCount < TALK_MOTION_INFO_MAX)
 					{

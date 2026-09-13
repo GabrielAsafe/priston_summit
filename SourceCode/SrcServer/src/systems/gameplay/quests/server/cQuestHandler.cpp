@@ -1,11 +1,30 @@
 #include "compat/server_build/server_compat_packets.h"
 #include <cstring>
+#include <cstdio>
 #include "systems/network/protocol/server/opcodes.h"
 #include "systems/gameplay/quests/server/cQuestHandler.h"
 #include "systems/commerce/coin_shop/CoinShop.h"
 #include "systems/inventory/legacy/sinItem.h"
 
 cQUESTHANDLER cQuestHandler;
+
+// R25_SKIPTIER_DIAG_V1
+static void R25SkipTierDiag(const char* stage, int questId, const char* player, const char* detail)
+{
+	FILE* f = std::fopen("LOGS\\r25_skiptier_diag.log", "a");
+	if(!f)
+		return;
+
+	std::fprintf(
+		f,
+		"[R25_SKIPTIER] stage=%s quest=%d player=%s detail=%s\n",
+		stage ? stage : "<null>",
+		questId,
+		player ? player : "<null>",
+		detail ? detail : "<null>"
+	);
+	std::fclose(f);
+}
 
 extern bool StartTier5ArenaQuest(rsPLAYINFO* lpPlayInfo);
 extern void StopTier5ArenaQuest(rsPLAYINFO* lpPlayInfo, bool bWarpOut);
@@ -1116,7 +1135,7 @@ static bool EnsureTier5ArenaObjective(rsPLAYINFO* lpPlayInfo, int QuestType)
 	lstrcpyn(playerName, lpPlayInfo->getName(), sizeof(playerName));
 
 	bool ok = true;
-	if (db->Prepare("IF NOT EXISTS(SELECT * FROM MonsterKilled WHERE QuestID=? AND QuestKind=9 AND QuestType=? AND PlayerName=? AND MonsterName='Crystal Tower') BEGIN INSERT INTO MonsterKilled VALUES ('Crystal Tower',0,1,?,9,?,?,0,32) END"))
+	if (db->Prepare("INSERT INTO MonsterKilled SELECT 'Crystal Tower',0,1,?4,9,?5,?6,0,32 WHERE NOT EXISTS(SELECT 1 FROM MonsterKilled WHERE QuestID=?1 AND QuestKind=9 AND QuestType=?2 AND PlayerName=?3 AND MonsterName='Crystal Tower')"))
 	{
 		int questID = QUESTID_T5_QUEST_ARENA;
 		db->BindInputParameter(&questID, 1, PARAMTYPE_Integer);
@@ -1165,7 +1184,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 	case 21:
 		if (db->Open())
 		{
-			if (db->Prepare("IF EXISTS(SELECT * FROM RepeatedQuest WHERE QuestID=?) BEGIN INSERT INTO Progress VALUES (?, ?, ?, ?, GETDATE()) END"))
+			if (db->Prepare("INSERT INTO Progress SELECT ?2, ?3, ?4, ?5, datetime('now','localtime') WHERE EXISTS(SELECT 1 FROM RepeatedQuest WHERE QuestID=?1)"))
 			{
 				char playerName[32];
 				wsprintf(playerName, "%s", lpPlayInfo->getName());
@@ -1231,7 +1250,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 	case 7:
 		if (db->Open())
 		{
-			if (db->Prepare("IF EXISTS(SELECT * FROM DailyQuest WHERE QuestID=?) BEGIN INSERT INTO Progress VALUES (?, ?, ?, ?, GETDATE()) END"))
+			if (db->Prepare("INSERT INTO Progress SELECT ?2, ?3, ?4, ?5, datetime('now','localtime') WHERE EXISTS(SELECT 1 FROM DailyQuest WHERE QuestID=?1)"))
 			{
 				char playerName[32];
 				wsprintf(playerName, "%s", lpPlayInfo->getName());
@@ -1300,7 +1319,7 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 
 		if (db->Open())
 		{
-			if (db->Prepare("IF EXISTS(SELECT * FROM SingleQuest WHERE QuestID=?) AND NOT EXISTS(SELECT * FROM Progress WHERE QuestID=? AND QuestKind=? AND PlayerName=?) BEGIN INSERT INTO Progress VALUES (?, ?, ?, ?, GETDATE()) END"))
+			if (db->Prepare("INSERT INTO Progress SELECT ?5, ?6, ?7, ?8, datetime('now','localtime') WHERE EXISTS(SELECT 1 FROM SingleQuest WHERE QuestID=?1) AND NOT EXISTS(SELECT 1 FROM Progress WHERE QuestID=?2 AND QuestKind=?3 AND PlayerName=?4)"))
 			{
 				char playerName[32];
 				wsprintf(playerName, "%s", lpPlayInfo->getName());
@@ -1463,80 +1482,132 @@ bool cQUESTHANDLER::CancelQuestProgressSilent(rsPLAYINFO* lpPlayInfo, int QuestI
 bool cQUESTHANDLER::MarkSingleQuestCompletedForTesting(rsPLAYINFO* lpPlayInfo, int QuestID)
 {
 	if (!lpPlayInfo || QuestID <= 0)
+	{
+		R25SkipTierDiag("invalid_args", QuestID, lpPlayInfo ? lpPlayInfo->getName() : "<null>", "");
 		return false;
+	}
+
+	char playerName[32] = {};
+	wsprintf(playerName, "%s", lpPlayInfo->getName());
+	R25SkipTierDiag("enter", QuestID, playerName, "");
 
 	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_QuestDB);
-	if (!db->Open())
+	if (!db)
+	{
+		R25SkipTierDiag("get_connection_fail", QuestID, playerName, "DATABASEID_QuestDB returned null");
 		return false;
+	}
+
+	if (!db->Open())
+	{
+		R25SkipTierDiag("open_fail", QuestID, playerName, db->GetLastError());
+		return false;
+	}
 
 	bool ok = false;
 	int questType = 0;
 	int questKind = 9;
 	int questDefinitionCount = 0;
-	char playerName[32] = {};
-	wsprintf(playerName, "%s", lpPlayInfo->getName());
+	char diag[256] = {};
 
-	// This is an administrative test bypass.  Runtime Rank 5 authority only
-	// requires Complete(QuestID, PlayerName); do not make the bypass depend on
-	// optional/data-driven SingleQuest metadata being present for every T5 ID.
-	if (db->Prepare("SELECT ISNULL(MAX(QuestType),0), COUNT(*) FROM SingleQuest WHERE QuestID=?"))
+	if (!db->Prepare("SELECT COALESCE(MAX(QuestType),0), COUNT(*) FROM SingleQuest WHERE QuestID=?"))
 	{
-		db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
-		if (!db->Execute())
-			goto done;
-
-		db->GetData(&questType, 4, 1, PARAMTYPE_Integer);
-		db->GetData(&questDefinitionCount, 4, 2, PARAMTYPE_Integer);
-		if (questDefinitionCount <= 0)
-			questType = 0;
+		R25SkipTierDiag("select_prepare_fail", QuestID, playerName, db->GetLastError());
+		goto done;
 	}
-	else
+	if (!db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer))
 	{
+		R25SkipTierDiag("select_bind_fail", QuestID, playerName, db->GetLastError());
+		goto done;
+	}
+	if (!db->Execute())
+	{
+		R25SkipTierDiag("select_execute_fail", QuestID, playerName, db->GetLastError());
+		goto done;
+	}
+	if (!db->GetData(&questType, 4, 1, PARAMTYPE_Integer))
+	{
+		R25SkipTierDiag("select_get_questtype_fail", QuestID, playerName, db->GetLastError());
+		goto done;
+	}
+	if (!db->GetData(&questDefinitionCount, 4, 2, PARAMTYPE_Integer))
+	{
+		R25SkipTierDiag("select_get_count_fail", QuestID, playerName, db->GetLastError());
 		goto done;
 	}
 
-	if (db->Prepare("DELETE FROM MonsterKilled WHERE QuestID=? AND PlayerName=?"))
+	if (questDefinitionCount <= 0)
+		questType = 0;
+
+	std::snprintf(
+		diag,
+		sizeof(diag),
+		"definitionCount=%d questType=%d",
+		questDefinitionCount,
+		questType
+	);
+	R25SkipTierDiag("select_ok", QuestID, playerName, diag);
+
+	if (!db->Prepare("DELETE FROM MonsterKilled WHERE QuestID=? AND PlayerName=?"))
 	{
-		db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
-		db->BindInputParameter(playerName, 2, PARAMTYPE_String);
-		if (!db->Execute(false))
-			goto done;
+		R25SkipTierDiag("monster_delete_prepare_fail", QuestID, playerName, db->GetLastError());
+		goto done;
 	}
-	else
+	if (!db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer) ||
+		!db->BindInputParameter(playerName, 2, PARAMTYPE_String))
 	{
+		R25SkipTierDiag("monster_delete_bind_fail", QuestID, playerName, db->GetLastError());
+		goto done;
+	}
+	if (!db->Execute(false))
+	{
+		R25SkipTierDiag("monster_delete_execute_fail", QuestID, playerName, db->GetLastError());
+		goto done;
+	}
+	R25SkipTierDiag("monster_delete_ok", QuestID, playerName, "");
+
+	if (!db->Prepare("DELETE FROM Progress WHERE QuestID=? AND PlayerName=?"))
+	{
+		R25SkipTierDiag("progress_delete_prepare_fail", QuestID, playerName, db->GetLastError());
+		goto done;
+	}
+	if (!db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer) ||
+		!db->BindInputParameter(playerName, 2, PARAMTYPE_String))
+	{
+		R25SkipTierDiag("progress_delete_bind_fail", QuestID, playerName, db->GetLastError());
+		goto done;
+	}
+	if (!db->Execute(false))
+	{
+		R25SkipTierDiag("progress_delete_execute_fail", QuestID, playerName, db->GetLastError());
+		goto done;
+	}
+	R25SkipTierDiag("progress_delete_ok", QuestID, playerName, "");
+
+	if (!db->Prepare("INSERT OR REPLACE INTO Complete (QuestID, QuestKind, QuestType, PlayerName, EndDate) VALUES (?1, ?2, ?3, ?4, datetime('now','localtime'))"))
+	{
+		R25SkipTierDiag("complete_prepare_fail", QuestID, playerName, db->GetLastError());
+		goto done;
+	}
+	if (!db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer) ||
+		!db->BindInputParameter(&questKind, 2, PARAMTYPE_Integer) ||
+		!db->BindInputParameter(&questType, 3, PARAMTYPE_Integer) ||
+		!db->BindInputParameter(playerName, 4, PARAMTYPE_String))
+	{
+		R25SkipTierDiag("complete_bind_fail", QuestID, playerName, db->GetLastError());
 		goto done;
 	}
 
-	if (db->Prepare("DELETE FROM Progress WHERE QuestID=? AND PlayerName=?"))
-	{
-		db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
-		db->BindInputParameter(playerName, 2, PARAMTYPE_String);
-		if (!db->Execute(false))
-			goto done;
-	}
-	else
-	{
-		goto done;
-	}
-
-	if (db->Prepare("IF NOT EXISTS(SELECT * FROM Complete WHERE QuestID=? AND QuestKind=? AND QuestType=? AND PlayerName=?) BEGIN INSERT INTO Complete VALUES (?,?,?,?,GETDATE()) END ELSE BEGIN UPDATE Complete SET EndDate=GETDATE() WHERE QuestID=? AND QuestKind=? AND QuestType=? AND PlayerName=? END"))
-	{
-		db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
-		db->BindInputParameter(&questKind, 2, PARAMTYPE_Integer);
-		db->BindInputParameter(&questType, 3, PARAMTYPE_Integer);
-		db->BindInputParameter(playerName, 4, PARAMTYPE_String);
-		db->BindInputParameter(&QuestID, 5, PARAMTYPE_Integer);
-		db->BindInputParameter(&questKind, 6, PARAMTYPE_Integer);
-		db->BindInputParameter(&questType, 7, PARAMTYPE_Integer);
-		db->BindInputParameter(playerName, 8, PARAMTYPE_String);
-		db->BindInputParameter(&QuestID, 9, PARAMTYPE_Integer);
-		db->BindInputParameter(&questKind, 10, PARAMTYPE_Integer);
-		db->BindInputParameter(&questType, 11, PARAMTYPE_Integer);
-		db->BindInputParameter(playerName, 12, PARAMTYPE_String);
-		ok = db->Execute(false) ? true : false;
-	}
+	ok = db->Execute(false) ? true : false;
+	R25SkipTierDiag(
+		ok ? "complete_execute_ok" : "complete_execute_fail",
+		QuestID,
+		playerName,
+		ok ? "" : db->GetLastError()
+	);
 
 done:
+	R25SkipTierDiag(ok ? "return_true" : "return_false", QuestID, playerName, db->GetLastError());
 	db->Close();
 	return ok;
 }
@@ -1946,20 +2017,12 @@ void cQUESTHANDLER::GetReward(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind
 							db->Execute();
 						}
 
-						if (db->Prepare("IF NOT EXISTS(SELECT * FROM Complete WHERE QuestID=? AND QuestKind=? AND QuestType=? AND PlayerName=?) BEGIN INSERT INTO Complete VALUES (?,?,?,?,GETDATE()) END ELSE BEGIN UPDATE Complete SET EndDate=GETDATE() WHERE QuestID=? AND QuestKind=? AND QuestType=? AND PlayerName=? END"))
+						if (db->Prepare("INSERT OR REPLACE INTO Complete (QuestID, QuestKind, QuestType, PlayerName, EndDate) VALUES (?1, ?2, ?3, ?4, datetime('now','localtime'))"))
 						{
 							db->BindInputParameter(&QuestID, 1, PARAMTYPE_Integer);
 							db->BindInputParameter(&QuestKind, 2, PARAMTYPE_Integer);
 							db->BindInputParameter(&QuestType, 3, PARAMTYPE_Integer);
 							db->BindInputParameter(playerName, 4, PARAMTYPE_String);
-							db->BindInputParameter(&QuestID, 5, PARAMTYPE_Integer);
-							db->BindInputParameter(&QuestKind, 6, PARAMTYPE_Integer);
-							db->BindInputParameter(&QuestType, 7, PARAMTYPE_Integer);
-							db->BindInputParameter(playerName, 8, PARAMTYPE_String);
-							db->BindInputParameter(&QuestID, 9, PARAMTYPE_Integer);
-							db->BindInputParameter(&QuestKind, 10, PARAMTYPE_Integer);
-							db->BindInputParameter(&QuestType, 11, PARAMTYPE_Integer);
-							db->BindInputParameter(playerName, 12, PARAMTYPE_String);
 							db->Execute();
 						}
 
@@ -2068,25 +2131,33 @@ void cQUESTHANDLER::GetReward(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind
 
 bool cQUESTHANDLER::inQuest(rsPLAYINFO* lpPlayInfo, smCHAR* lpChar)
 {
-	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_QuestDB);
-	bool result = false;
-	if (db->Open())
-	{
-		if (db->Prepare("SELECT * FROM MonsterKilled WHERE PlayerName=? AND (MonsterName=? OR QuestMap=?) AND PartyFlag=1"))
-		{
-			char playerName[32];
-			wsprintf(playerName, "%s", lpPlayInfo->getName());
+	if (!lpPlayInfo || !lpChar)
+		return false;
 
-			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
-			db->BindInputParameter(lpChar->smCharInfo.szName, 2, PARAMTYPE_String);
-			db->BindInputParameter(&lpPlayInfo->Position.Area, 3, PARAMTYPE_Integer);
-			if (db->Execute())
-			{
-				result = true;
-			}
-		}
-		db->Close();
+	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_QuestDB);
+	if (!db || !db->Open())
+		return false;
+
+	bool result = false;
+	char playerName[32] = {};
+	wsprintf(playerName, "%s", lpPlayInfo->getName());
+	int area = lpPlayInfo->Position.Area;
+
+	if (db->Prepare(
+		"SELECT 1 FROM MonsterKilled "
+		"WHERE PlayerName=? COLLATE NOCASE "
+		"AND (((MonsterName='0') AND (QuestMap=-1 OR QuestMap=?)) "
+		"OR (MonsterName=? COLLATE NOCASE AND (QuestMap=-1 OR QuestMap=?))) "
+		"AND PartyFlag=1 AND Killed < \"Count\" LIMIT 1"))
+	{
+		db->BindInputParameter(playerName, 1, PARAMTYPE_String);
+		db->BindInputParameter(&area, 2, PARAMTYPE_Integer);
+		db->BindInputParameter(lpChar->smCharInfo.szName, 3, PARAMTYPE_String);
+		db->BindInputParameter(&area, 4, PARAMTYPE_Integer);
+		result = db->Execute() ? true : false;
 	}
+
+	db->Close();
 	return result;
 }
 
@@ -2173,77 +2244,163 @@ void cQUESTHANDLER::VerifyLevel(rsPLAYINFO* lpPlayInfo)
 
 bool cQUESTHANDLER::KillMonster(rsPLAYINFO* lpPlayInfo, smCHAR* lpChar, int PartyFlag)
 {
+	if (!lpPlayInfo || !lpChar)
+		return false;
+
 	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_QuestDB);
+	if (!db || !db->Open())
+		return false;
 
-	if (db->Open())
+	struct sUpdatedQuestProgress
 	{
-		char playerName[32];
-		wsprintf(playerName, "%s", lpPlayInfo->getName());
-		char anyMonsterName[] = "0";
+		int QuestID;
+		int QuestKind;
+		int QuestType;
+		int Killed;
+		int Count;
+	};
 
-		char* szBuff = "SELECT * FROM MonsterKilled WHERE PlayerName=? AND ((MonsterName=? AND QuestMap=?) OR (MonsterName=? AND (QuestMap=-1 OR QuestMap=?))) AND QuestID NOT IN (10010,10011) AND Killed < Count";
-		if (PartyFlag)
-			if (PartyFlag)
-				szBuff = "SELECT * FROM MonsterKilled WHERE PlayerName=? AND ((MonsterName=? AND QuestMap=?) OR (MonsterName=? AND (QuestMap=-1 OR QuestMap=?))) AND PartyFlag=1 AND QuestID NOT IN (10010,10011) AND Killed < Count";
+	std::vector<sUpdatedQuestProgress> updatedQuests;
+	bool success = true;
 
+	char playerName[32] = {};
+	wsprintf(playerName, "%s", lpPlayInfo->getName());
+	int area = lpPlayInfo->Position.Area;
 
+	const char* updateSql =
+		"UPDATE MonsterKilled SET Killed=Killed+1 "
+		"WHERE PlayerName=? COLLATE NOCASE "
+		"AND (((MonsterName='0') AND (QuestMap=-1 OR QuestMap=?)) "
+		"OR (MonsterName=? COLLATE NOCASE AND (QuestMap=-1 OR QuestMap=?))) "
+		"AND QuestID NOT IN (10010,10011) "
+		"AND Killed < \"Count\"";
 
-		if (db->Prepare(szBuff))
+	if (PartyFlag)
+	{
+		updateSql =
+			"UPDATE MonsterKilled SET Killed=Killed+1 "
+			"WHERE PlayerName=? COLLATE NOCASE "
+			"AND (((MonsterName='0') AND (QuestMap=-1 OR QuestMap=?)) "
+			"OR (MonsterName=? COLLATE NOCASE AND (QuestMap=-1 OR QuestMap=?))) "
+			"AND PartyFlag=1 "
+			"AND QuestKind != 8 "
+			"AND QuestID NOT IN (10010,10011) "
+			"AND Killed < \"Count\"";
+	}
+
+	if (!db->Prepare(updateSql) ||
+		!db->BindInputParameter(playerName, 1, PARAMTYPE_String) ||
+		!db->BindInputParameter(&area, 2, PARAMTYPE_Integer) ||
+		!db->BindInputParameter(lpChar->smCharInfo.szName, 3, PARAMTYPE_String) ||
+		!db->BindInputParameter(&area, 4, PARAMTYPE_Integer) ||
+		!db->Execute(false))
+	{
+		success = false;
+	}
+	else
+	{
+		int changed = 0;
+		if (!db->Prepare("SELECT changes()") ||
+			!db->Execute() ||
+			!db->GetData(&changed, 4, 1, PARAMTYPE_Integer))
 		{
-			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
-			db->BindInputParameter(anyMonsterName, 2, PARAMTYPE_String);
-			db->BindInputParameter(&lpPlayInfo->Position.Area, 3, PARAMTYPE_Integer);
-			db->BindInputParameter(lpChar->smCharInfo.szName, 4, PARAMTYPE_String);
-			db->BindInputParameter(&lpPlayInfo->Position.Area, 5, PARAMTYPE_Integer);
+			success = false;
+		}
+		else if (changed > 0)
+		{
+			const char* selectSql =
+				"SELECT QuestID,QuestKind,QuestType,Killed,\"Count\" "
+				"FROM MonsterKilled "
+				"WHERE PlayerName=? COLLATE NOCASE "
+				"AND (((MonsterName='0') AND (QuestMap=-1 OR QuestMap=?)) "
+				"OR (MonsterName=? COLLATE NOCASE AND (QuestMap=-1 OR QuestMap=?))) "
+				"AND QuestID NOT IN (10010,10011)";
 
-			if (db->Execute(false))
+			if (PartyFlag)
+			{
+				selectSql =
+					"SELECT QuestID,QuestKind,QuestType,Killed,\"Count\" "
+					"FROM MonsterKilled "
+					"WHERE PlayerName=? COLLATE NOCASE "
+					"AND (((MonsterName='0') AND (QuestMap=-1 OR QuestMap=?)) "
+					"OR (MonsterName=? COLLATE NOCASE AND (QuestMap=-1 OR QuestMap=?))) "
+					"AND PartyFlag=1 "
+					"AND QuestKind != 8 "
+					"AND QuestID NOT IN (10010,10011)";
+			}
+
+			if (!db->Prepare(selectSql) ||
+				!db->BindInputParameter(playerName, 1, PARAMTYPE_String) ||
+				!db->BindInputParameter(&area, 2, PARAMTYPE_Integer) ||
+				!db->BindInputParameter(lpChar->smCharInfo.szName, 3, PARAMTYPE_String) ||
+				!db->BindInputParameter(&area, 4, PARAMTYPE_Integer) ||
+				!db->Execute(false))
+			{
+				success = false;
+			}
+			else
 			{
 				while (db->NextRow())
 				{
-					TRANS_CHATMESSAGE TransChatMessage;
+					sUpdatedQuestProgress item = {};
+					if (!db->GetData(&item.QuestID, 4, 1, PARAMTYPE_Integer) ||
+						!db->GetData(&item.QuestKind, 4, 2, PARAMTYPE_Integer) ||
+						!db->GetData(&item.QuestType, 4, 3, PARAMTYPE_Integer) ||
+						!db->GetData(&item.Killed, 4, 4, PARAMTYPE_Integer) ||
+						!db->GetData(&item.Count, 4, 5, PARAMTYPE_Integer))
+					{
+						success = false;
+						break;
+					}
 
-					int killed = 0, count = 0;
-					int QuestID = 0, QuestKind = 0, QuestType = 0;
-					db->GetData(&killed, 4, 2, PARAMTYPE_Integer);
-					db->GetData(&count, 4, 3, PARAMTYPE_Integer);
-
-					db->GetData(&QuestID, 0, 4, PARAMTYPE_Integer);
-					db->GetData(&QuestKind, 0, 5, PARAMTYPE_Integer);
-					db->GetData(&QuestType, 0, 6, PARAMTYPE_Integer);
-
-					TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
-					wsprintf(TransChatMessage.szMessage, "> %s killed %d/%d", lpChar->smCharInfo.szName, killed + 1, count);
-					TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
-					TransChatMessage.dwIP = 9;
-					TransChatMessage.dwObjectSerial = 0;
-
-					lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
+					bool duplicate = false;
+					for (const auto& existing : updatedQuests)
+					{
+						if (existing.QuestID == item.QuestID &&
+							existing.QuestKind == item.QuestKind &&
+							existing.QuestType == item.QuestType)
+						{
+							duplicate = true;
+							break;
+						}
+					}
+					if (!duplicate)
+						updatedQuests.push_back(item);
 				}
 			}
 		}
+	}
 
+	db->Close();
 
-		szBuff = "UPDATE MonsterKilled SET Killed+=1 WHERE PlayerName=? AND ((MonsterName=? AND QuestMap=?) OR (MonsterName=? AND (QuestMap=-1 OR QuestMap=?))) AND QuestID NOT IN (10010,10011) AND Killed < Count";
-
-		if (PartyFlag)
-			szBuff = "UPDATE MonsterKilled SET Killed+=1 WHERE PlayerName=? AND ((MonsterName=? AND QuestMap=?) OR (MonsterName=? AND (QuestMap=-1 OR QuestMap=?))) AND PartyFlag=1 AND QuestID NOT IN (10010,10011) AND Killed < Count AND QuestKind != 8";
-
-
-		if (db->Prepare(szBuff))
+	for (const auto& item : updatedQuests)
+	{
+		if (lpPlayInfo->lpsmSock)
 		{
-			db->BindInputParameter(playerName, 1, PARAMTYPE_String);
-			db->BindInputParameter(anyMonsterName, 2, PARAMTYPE_String);
-			db->BindInputParameter(&lpPlayInfo->Position.Area, 3, PARAMTYPE_Integer);
-			db->BindInputParameter(lpChar->smCharInfo.szName, 4, PARAMTYPE_String);
-			db->BindInputParameter(&lpPlayInfo->Position.Area, 5, PARAMTYPE_Integer);
-
-			db->Execute(false);
+			TRANS_CHATMESSAGE msg = {};
+			msg.code = OpCode::OPCODE_WHISPERMESSAGE;
+			wsprintf(
+				msg.szMessage,
+				"> %s killed %d/%d",
+				lpChar->smCharInfo.szName,
+				item.Killed,
+				item.Count
+			);
+			msg.size = 32 + lstrlen(msg.szMessage);
+			msg.dwIP = 9;
+			msg.dwObjectSerial = 0;
+			lpPlayInfo->lpsmSock->Send((char*)&msg, msg.size, TRUE);
 		}
 
-
-		db->Close();
+		GetQuestInfo(
+			lpPlayInfo,
+			item.QuestID,
+			item.QuestKind,
+			item.QuestKind
+		);
 	}
-	return true;
+
+	return success;
 }
 
 

@@ -1070,7 +1070,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		lstrcmpi(decode, "*SYSTEM_IP") == 0))
 	{
 
-		if(rsServerConfig.SystemIP_Count < ADMIN_IP_MAX)
+		if(rsServerConfig.SystemIP_Count < SYSTEM_IP_MAX)
 		{
 			p = fileread_GetWord(strBuff, p);
 			rsServerConfig.SystemIP[rsServerConfig.SystemIP_Count][0] = GetSwapIPCode(strBuff);
@@ -1086,7 +1086,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		lstrcmpi(decode, "*LOGIN_SERVER_IP") == 0))
 	{
 
-		if(rsServerConfig.SystemIP_Count < LOGIN_IP_MAX)
+		if(rsServerConfig.LoginServerIP_Count < LOGIN_IP_MAX)
 		{
 			p = fileread_GetWord(strBuff, p);
 			rsServerConfig.LoginServerIP[rsServerConfig.LoginServerIP_Count][0] = GetSwapIPCode(strBuff);

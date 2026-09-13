@@ -44,6 +44,41 @@ namespace summit
 namespace db
 {
 
+// R26_SQLITE_RUNTIME_ERROR_LOG
+static void R26LogSQLiteRuntimeError(
+	const char *stage,
+	EDatabaseID databaseId,
+	const char *query,
+	const char *error)
+{
+	CreateDirectoryA("LOGS", NULL);
+
+	FILE *f = std::fopen("LOGS\\sqlite_runtime_errors.log", "a");
+	if(!f)
+		return;
+
+	SYSTEMTIME now = {};
+	GetLocalTime(&now);
+
+	std::fprintf(
+		f,
+		"%04u-%02u-%02u %02u:%02u:%02u stage=%s dbid=%d error=%s query=%s\n",
+		static_cast<unsigned>(now.wYear),
+		static_cast<unsigned>(now.wMonth),
+		static_cast<unsigned>(now.wDay),
+		static_cast<unsigned>(now.wHour),
+		static_cast<unsigned>(now.wMinute),
+		static_cast<unsigned>(now.wSecond),
+		stage ? stage : "<null>",
+		static_cast<int>(databaseId),
+		error ? error : "<none>",
+		query ? query : "<none>"
+	);
+
+	std::fclose(f);
+}
+
+
 struct SQLiteConnection::Impl
 {
 	typedef int (*OpenV2Fn)(const char *, sqlite3 **, int, const char *);
@@ -446,7 +481,15 @@ BOOL SQLiteConnection::Prepare(const char *query)
 
 	std::string normalized;
 	if(!RewriteLegacyQuery(query, impl_->databaseId, normalized, impl_->lastError))
+	{
+		R26LogSQLiteRuntimeError(
+			"rewrite",
+			impl_->databaseId,
+			query,
+			impl_->lastError.c_str()
+		);
 		return FALSE;
+	}
 
 	impl_->FinalizeStatement();
 	const int result = impl_->prepareV2(impl_->database, normalized.c_str(), -1, &impl_->statement, nullptr);
@@ -454,6 +497,12 @@ BOOL SQLiteConnection::Prepare(const char *query)
 	{
 		impl_->query = normalized;
 		impl_->SetDatabaseError("SQLite: falha ao preparar query.");
+		R26LogSQLiteRuntimeError(
+			"prepare",
+			impl_->databaseId,
+			impl_->query.c_str(),
+			impl_->lastError.c_str()
+		);
 		return FALSE;
 	}
 	impl_->query = normalized;
@@ -489,6 +538,12 @@ BOOL SQLiteConnection::Execute(BOOL fetchFirstRow)
 	}
 
 	impl_->SetDatabaseError("SQLite: falha ao executar query.");
+	R26LogSQLiteRuntimeError(
+		"execute",
+		impl_->databaseId,
+		impl_->query.c_str(),
+		impl_->lastError.c_str()
+	);
 	return FALSE;
 }
 
@@ -537,6 +592,12 @@ BOOL SQLiteConnection::BindInputParameter(void *parameter, int position, EDataba
 	if(result != SQLITE_OK)
 	{
 		impl_->SetDatabaseError("SQLite: falha ao fazer bind.");
+		R26LogSQLiteRuntimeError(
+			"bind",
+			impl_->databaseId,
+			impl_->query.c_str(),
+			impl_->lastError.c_str()
+		);
 		return FALSE;
 	}
 	return TRUE;

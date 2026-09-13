@@ -1858,7 +1858,6 @@ char *smFindFile(char *szfile, char *FileExt, DWORD *lpFileLen)
 
 	if(hFindHandle == INVALID_HANDLE_VALUE)
 	{
-		FindClose(hFindHandle);
 		return FALSE;
 	}
 
@@ -1880,10 +1879,10 @@ char *smFindFile(char *szfile, char *FileExt, DWORD *lpFileLen)
 
 	if(hFindHandle == INVALID_HANDLE_VALUE)
 	{
-		FindClose(hFindHandle);
 		return	szFileName;
 	}
 
+	FindClose(hFindHandle);
 
 	if(CompareFileTime(&fd.ftLastWriteTime, &fd2.ftLastWriteTime) < 0)
 	{

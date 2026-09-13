@@ -153,15 +153,15 @@ smOBJ3D::smOBJ3D()
 smOBJ3D::~smOBJ3D()
 {
 
-	if(TmScale) delete TmScale;
-	if(TmPos) delete TmPos;
-	if(TmRot) delete TmRot;
-	if(TmPrevRot) delete TmPrevRot;
+	if(TmScale) delete[] TmScale;
+	if(TmPos) delete[] TmPos;
+	if(TmRot) delete[] TmRot;
+	if(TmPrevRot) delete[] TmPrevRot;
 
-	if(TexLink) delete TexLink;
-	if(Physique) delete Physique;
-	if(Face) delete Face;
-	if(Vertex) delete Vertex;
+	if(TexLink) delete[] TexLink;
+	if(Physique) delete[] Physique;
+	if(Face) delete[] Face;
+	if(Vertex) delete[] Vertex;
 
 }
 
@@ -532,7 +532,7 @@ void smOBJ3D::SetGNormals()
 		}
 	}
 
-	delete VNormalCnt;
+	delete[] VNormalCnt;
 
 }
 
@@ -652,7 +652,7 @@ void smOBJ3D::SortVertex()
 		}
 	}
 
-	delete pUseVertex;
+	delete[] pUseVertex;
 
 }
 
@@ -1887,6 +1887,11 @@ int smOBJ3D::LoadFile(HANDLE hFile, smPAT3D *PatPhysique)
 
 	len = ReadFile(hFile, &Head, sizeof(smOBJ3D), &dwAcess, NULL);
 
+	if(!len || dwAcess != sizeof(smOBJ3D)) return 0;
+	if(MaxVertex < 0 || MaxFace < 0 || MaxVertex > RENDER_VERTEX_MAX || MaxFace > RENDER_FACE_MAX ||
+		nVertex < 0 || nVertex > MaxVertex || nFace < 0 || nFace > MaxFace ||
+		nTexLink < 0 || MaxFace > 0x7fffffff / 8 || nTexLink > MaxFace * 8) return 0;
+
 	lpOldTexLink = TexLink;
 
 
@@ -1949,7 +1954,7 @@ int smOBJ3D::LoadFile(HANDLE hFile, smPAT3D *PatPhysique)
 			Physique[cnt] = PatPhysique->GetObjectFromName(szBuff + cnt * 32);
 		}
 
-		delete szBuff;
+		delete[] szBuff;
 	}
 
 	return len;
@@ -2693,14 +2698,14 @@ int	smPAT3D::SaveFile(char *szFile)
 		if(!size)
 		{
 			CloseHandle(hFile);
-			delete FileObjInfo;
+			delete[] FileObjInfo;
 			return FALSE;
 		}
 	}
 
 
 	CloseHandle(hFile);
-	delete FileObjInfo;
+	delete[] FileObjInfo;
 
 	return TRUE;
 }
@@ -2785,7 +2790,7 @@ int	smPAT3D::LoadFile(char *szFile, char *szNodeName)
 
 
 	CloseHandle(hFile);
-	delete FileObjInfo;
+	delete[] FileObjInfo;
 
 	return TRUE;
 }

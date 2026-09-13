@@ -206,7 +206,7 @@ void cITEM::Init()
 
 	}
 
-	memset(g_Manufacture_ItemInfo, 0, sizeof(SManufacture_ResultItemInfo));
+	memset(g_Manufacture_ItemInfo, 0, sizeof(g_Manufacture_ItemInfo));
 }
 
 void cITEM::Load()

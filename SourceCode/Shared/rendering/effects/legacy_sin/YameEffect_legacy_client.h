@@ -157,11 +157,13 @@ public:
 
 public:
 	cYAMEEFFECT()
+		: CODE(0), MOVECODE(0), Time(0), Max_Time(0), Bone(0),
+		  Face(), PatMesh(NULL), Index(0), ZDepth(0),
+		  Posi(), DesPosi(), Angle(), AddHeight(0), MoveSpeed(),
+		  pChar(NULL), desChar(NULL), FACE_TYPE(0), FACE_POSI(0), w(0), h(0),
+		  Ani(), Fade(), Rotate(), Angle_Rotate(), Color(), Scale(), BillBoard(),
+		  cAssaTrace(new cASSATrace)
 	{
-		memset(this, 0, sizeof(cASSAEFFECT));
-		cASSATrace *pAssaTrace = new cASSATrace;
-		cAssaTrace = pAssaTrace;
-
 	}
 	virtual ~cYAMEEFFECT()
 	{

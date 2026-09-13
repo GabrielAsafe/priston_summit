@@ -559,7 +559,7 @@ int smMATERIAL_GROUP::Close()
 		}
 	}
 
-	delete smMaterial;
+	delete[] smMaterial;
 
 	return TRUE;
 }

@@ -1,5 +1,6 @@
 #pragma once
 namespace OpCode {
+    static const int OPCODE_TIER5_LIVE_SYNC = 0x48479F50;
     static const int PLAYER_TOP_LEVEL = 0x4847900C;
 
     // TEMP_MINGW_COMPAT: valor provisório. Validar contra servidor/protocolo real.

@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+
+# R27_CLIENT_NETWORK_VALIDATION_GATE
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+python3 "$SCRIPT_DIR/validate_client_network_config.py" || exit $?
+
 set -euo pipefail
 
 ################################################################################

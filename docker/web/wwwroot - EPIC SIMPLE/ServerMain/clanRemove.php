@@ -1,5 +1,0 @@
-<?php require_once dirname(__FILE__).'/../_clan_port/lib.php';
-require_params(array('userid','gserver','chname','clName'));$c=db_connect_clan();if(!$c)code_exit(100);$uid=req('userid');$ch=req('chname');$cn=req('clName');
-$s=q($c,'SELECT COUNT(*) AS Cnt FROM dbo.CT WHERE userid=?',array($uid));if(!$s)fail_db($c);$r=fetch_row($s);if($r===false||intval(field($r,'Cnt'))!==1){@odbc_close($c);proto_exit('voc&ecirc; est&aacute; tentando deletar o clan pelo navegador.');}
-$s=q($c,'SELECT TOP 1 ClanZang FROM dbo.CL WHERE ClanName=?',array($cn));if(!$s)fail_db($c);$cl=fetch_row($s);if($cl===false||field($cl,'ClanZang')!==$ch){@odbc_close($c);code_exit(0);} if(!begin_tx($c))fail_db($c);
-$a=q($c,'DELETE FROM dbo.CL WHERE ClanName=?',array($cn));$b=$a?q($c,'DELETE FROM dbo.UL WHERE ClanName=?',array($cn)):false;if(!$a||!$b){rollback_tx($c);@odbc_close($c);code_exit(100);}commit_tx($c);@odbc_close($c);code_exit(1); ?>

@@ -79,7 +79,7 @@ public:
     float   m_fEventTimer;
     float   m_fTimer;
     int     m_iClassID;
-	std::vector < HoEffectEventInterface *>::iterator m_CurrentEvent;
+	int     m_CurrentEventIndex;
 
 public:
     void    Init();
@@ -101,7 +101,9 @@ public:
     void    SetEventTimer(float time)             { m_fEventTimer = time; }
     void    SetTimer(float time)                  { m_fTimer = time; }
 
-    void    SetCurrentTime(std::vector < HoEffectEventInterface *>::iterator currentEvent) { m_CurrentEvent = currentEvent; }
+    void    SetCurrentEventIndex(int currentEvent) { m_CurrentEventIndex = currentEvent; }
+    void    ResetCurrentEvent() { m_CurrentEventIndex = -1; }
+    bool    HasCurrentEvent() const { return m_CurrentEventIndex != -1; }
     void    SetClassID(int classID)               { m_iClassID = classID; }
     const   color4 &GetColor()                      { return m_Color; }
     const   color4 &GetColorStep()                  { return m_ColorStep;}
@@ -119,7 +121,8 @@ public:
     float   GetEventTimer(float time)               { return m_fEventTimer;}
     float   GetTimer(float time)                    { return m_fTimer;}
 
-    std::vector < HoEffectEventInterface *>::iterator &GetCurrentTime() { return m_CurrentEvent;}
+    int &GetCurrentEventIndex() { return m_CurrentEventIndex; }
+    int GetCurrentEventIndex() const { return m_CurrentEventIndex; }
 
 };
 

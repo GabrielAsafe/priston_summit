@@ -9,6 +9,7 @@
 #include "systems/gameplay/character/core/character.h"
 #include "core/server/gameplay_runtime/playmain.h"
 #include "core/data/legacy_loader/fileread.h"
+#include "persistence/character_record/WarehouseRecordValidation.h"
 
 #include "systems/rendering/effects/particle_legacy/particle.h"
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
@@ -138,7 +139,7 @@ int	ChatBuffCnt2[6] = { 0,0,0,0,0,0 };
 int ChatDispCnt = 0;
 int	ChatBuffCompCnt = 0;
 
-char *szDefaultServIP = "192.168.1.111";
+char *szDefaultServIP = "127.0.0.1";
 
 char *szNetLogFile = "debugnet.log";
 FILE *fpNetLog = 0;
@@ -5672,6 +5673,18 @@ int	SaveWareHouse(sWAREHOUSE *lpWareHouse)
 
 int	LoadWareHouse(TRANS_WAREHOUSE *lpTransWareHouse, sWAREHOUSE *lpWareHouse, int flag)
 {
+	if(!lpTransWareHouse || !lpWareHouse)
+		return FALSE;
+
+	const size_t warehouseHeaderSize = offsetof(TRANS_WAREHOUSE, Data);
+	if(!summit::persistence::character_record::ValidateWarehouseTransferLayout(
+		lpTransWareHouse->size,
+		lpTransWareHouse->DataSize,
+		lpTransWareHouse->Data,
+		sizeof(lpTransWareHouse->Data),
+		lpTransWareHouse->size,
+		warehouseHeaderSize))
+		return FALSE;
 	sWAREHOUSE	WareHouseCheck;
 	int cnt;
 	DWORD	dwChkSum;
@@ -5688,7 +5701,7 @@ int	LoadWareHouse(TRANS_WAREHOUSE *lpTransWareHouse, sWAREHOUSE *lpWareHouse, in
 		return TRUE;
 	}
 
-	DecodeCompress((BYTE *)lpTransWareHouse->Data, (BYTE *)&WareHouseCheck);
+	DecodeCompress((BYTE *)lpTransWareHouse->Data, (BYTE *)&WareHouseCheck, sizeof(sWAREHOUSE));
 
 	dwChkSum = 0;
 

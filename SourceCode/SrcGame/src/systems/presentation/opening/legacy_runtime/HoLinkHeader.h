@@ -58,6 +58,7 @@ extern int GameStartField;
 #define		MODE_NONE		0
 #define		OPENING_MODE	1
 #define		LOGIN_MODE		2
+extern int	 WorkMode;
 extern int	 MouseDblClick;
 
 extern int InitOpening();

@@ -1,5 +1,6 @@
 #pragma once
 namespace OpCode {
+    static const int OPCODE_TIER5_LIVE_SYNC = 0x48479F50;
     static const int OPCODE_ADD_NPC = 0x70000000 + 0;
     static const int OPCODE_ADD_STARTPOSI = 0x70000000 + 1;
     static const int OPCODE_ADDEXP = 0x70000000 + 2;

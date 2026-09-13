@@ -40,164 +40,92 @@ HoEffectEventController::~HoEffectEventController()
 
 void HoEffectEventController::Clear()
 {
-	for(int i = 0; i < cursor; i++)
+	for(std::vector<HoEffectEventInterface *>::iterator i = m_EffectEvents.begin(); i != m_EffectEvents.end(); ++i)
 	{
-		if(m_EffectEvents[i])
-		{
-			delete m_EffectEvents[i];
-			m_EffectEvents[i] = nullptr;
-		}
+		delete *i;
+		*i = nullptr;
 	}
-
-	m_EffectEvents.fill(nullptr);
-	cursor = 0;
+	m_EffectEvents.clear();
 }
 
 bool HoEffectEventController::AddEvent(HoEffectEventInterface *event)
 {
-	if(cursor >= static_cast<int>(m_EffectEvents.size()))
-	{
-		cursor = 0;
-	}
-
-	m_EffectEvents[cursor++] = event;
-
+	if(event)
+		m_EffectEvents.push_back(event);
 	return true;
 }
 
 void HoEffectEventController::Init(HoEffectModelInterface *model)
 {
+	if(!model)
+		return;
 
-	if(m_EffectEvents[0])
+	int i = 0;
+	while(i < static_cast<int>(m_EffectEvents.size()))
 	{
-	//	for(; iter != m_EffectEvents.end() &&  !(*iter)->GetStartTime(); iter++)
-	//	{
-	//		(*iter)->VisitEffectModel(*model);
-	//	}
-
-		int i = 0;
-
-		while(i < cursor)
-		{
-			if(m_EffectEvents[i] && !m_EffectEvents[i]->GetStartTime())
-			{
-				m_EffectEvents[i]->VisitEffectModel(*model);
-			}
-			else
-			{
-				break;
-			}
-
-			i++;
-		}
-
-
-		model->currentEvent = i;
+		if(m_EffectEvents[i] && !m_EffectEvents[i]->GetStartTime())
+			m_EffectEvents[i]->VisitEffectModel(*model);
+		else
+			break;
+		++i;
 	}
-	else
-	{
-		model->currentEvent = -1;
-	}
+
+	model->currentEvent = m_EffectEvents.empty() ? -1 : i;
 }
 
 bool HoEffectEventController::RunEvent(HoEffectModelInterface *model)
 {
-	if(model)
+	if(!model)
+		return false;
+
+	int i = model->currentEvent;
+	while(i >= 0 && i < static_cast<int>(m_EffectEvents.size()))
 	{
-		int i = model->currentEvent;
-		
-		/*
+		if(!m_EffectEvents[i] || m_EffectEvents[i]->GetStartTime() > model->m_fEventTimer)
+			break;
 
-		//for(; i != m_EffectEvents.end() && (*i) && (*i)->GetStartTime() <= model->m_fEventTimer; i++)
-		//{
-		//	if(*i)
-		//	{
-		//		if((*i)->GetClassID() != CLASS_EVENT_NONE)
-		//		{
-		//			float oldeventtimer = model->m_fEventTimer;
-		//			(*i)->VisitEffectModel(*model);
-
-		//			if(model->m_fEventTimer != oldeventtimer)
-		//			{
-		//				//std::vector<HoEffectEventInterface *>::iterator RecalcIter;
-
-		//				auto RecalcIter = m_EffectEvents.begin();
-
-		//				for(; RecalcIter != m_EffectEvents.end() && ((*RecalcIter)->GetStartTime()) < model->m_fEventTimer; RecalcIter++);
-
-		//				i = RecalcIter - 1;
-		//			}
-		//		}
-		//	}
-		//}*/
-
-		while(i < cursor)
+		if(m_EffectEvents[i]->GetClassID() != CLASS_EVENT_NONE)
 		{
-			if(m_EffectEvents[i] && m_EffectEvents[i]->GetStartTime() <= model->m_fEventTimer)
+			float oldEventTimer = model->m_fEventTimer;
+			m_EffectEvents[i]->VisitEffectModel(*model);
+
+			if(model->m_fEventTimer != oldEventTimer)
 			{
-				if(m_EffectEvents[i]->GetClassID() != CLASS_EVENT_NONE)
+				int recalcIter = 0;
+				while(recalcIter < static_cast<int>(m_EffectEvents.size()) &&
+					m_EffectEvents[recalcIter] &&
+					m_EffectEvents[recalcIter]->GetStartTime() < model->m_fEventTimer)
 				{
-					float oldeventtimer = model->m_fEventTimer;
-
-					m_EffectEvents[i]->VisitEffectModel(*model);
-
-					if(model->m_fEventTimer != oldeventtimer)
-					{
-						int recalcIter = 0;
-
-
-						while(recalcIter < cursor)
-						{
-							if(m_EffectEvents[recalcIter]->GetStartTime() < model->m_fEventTimer)
-							{
-								recalcIter++;
-							}
-							else
-							{
-								break;
-							}
-						}
-
-						i = recalcIter - 1;
-
-					}
+					++recalcIter;
 				}
-
+				i = recalcIter - 1;
 			}
-			else
-			{
-				break;
-			}
-
-			i++;
 		}
-
-		model->currentEvent = i;
-
-		return true;
+		++i;
 	}
 
-	return false;
+	model->currentEvent = i;
+	return true;
 }
+
 void HoEffectEventController::CreateFadeList()
 {
-	HoEffectEvent_CompareFunc cf;
-	//std::sort(m_EffectEvents.begin(), m_EffectEvents.end(), cf);
-	std::sort(m_EffectEvents.begin(), m_EffectEvents.begin() + cursor, cf);
+	HoEffectEvent_CompareFunc compareStartTime;
+	std::sort(m_EffectEvents.begin(), m_EffectEvents.end(), compareStartTime);
 
-	//std::vector<HoEffectEventInterface *>::iterator iterStart;
-	//std::vector<HoEffectEventInterface *>::iterator iterEnd;
-	for(int iterStart = 0; iterStart < cursor; iterStart++)
+	for(int iterStart = 0; iterStart < static_cast<int>(m_EffectEvents.size()); ++iterStart)
 	{
-		for(int iterEnd = iterStart; iterEnd < cursor; iterEnd++)
+		if(!m_EffectEvents[iterStart])
+			continue;
+		for(int iterEnd = iterStart + 1; iterEnd < static_cast<int>(m_EffectEvents.size()); ++iterEnd)
 		{
-			if(iterEnd != iterStart && m_EffectEvents[iterEnd]->IsFade())
+			if(!m_EffectEvents[iterEnd])
+				continue;
+			if(m_EffectEvents[iterEnd]->IsFade() &&
+				m_EffectEvents[iterEnd]->GetClassID() == m_EffectEvents[iterStart]->GetClassID())
 			{
-				if(m_EffectEvents[iterEnd]->GetClassID() == m_EffectEvents[iterStart]->GetClassID())
-				{
-					m_EffectEvents[iterStart]->SetFadeNextEvent(m_EffectEvents[iterEnd]);
-					break;
-				}
+				m_EffectEvents[iterStart]->SetFadeNextEvent(m_EffectEvents[iterEnd]);
+				break;
 			}
 		}
 	}

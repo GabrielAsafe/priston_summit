@@ -1926,13 +1926,13 @@ int rsLogOut(rsPLAYINFO *lpPlayInfo)
 
 
 
-		if(lpPlayInfo->szGPCode[0])
-		{
-
-			bSql_Logout(lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->szGPCode,
-				lpPlayInfo->DisuseDay, lpPlayInfo->UsePeriod, lpPlayInfo->szGuid, lpPlayInfo->Bl_RNo);
-
-		}
+		// R25_LOCAL_LOGOUT_QUEUE_FIX:
+		// SQLite local-session ownership must not depend on legacy billing GPCode.
+		// bSql_Logout() queues BILLING_SQL_LOGOUT; its worker calls
+		// TrySQLiteLocalLogout() first and only falls back to the legacy provider
+		// when SQLite does not own the account.
+		bSql_Logout(lpPlayInfo->getAccount(), lpPlayInfo->getName(), lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo->szGPCode,
+			lpPlayInfo->DisuseDay, lpPlayInfo->UsePeriod, lpPlayInfo->szGuid, lpPlayInfo->Bl_RNo);
 
 		if(lpPlayInfo->ClanTicketCode && strlen(lpPlayInfo->getName()))
 			bClan_UserTicket(lpPlayInfo, 1);
@@ -22922,7 +22922,28 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			{
 				lpPlayInfo->smCharInfo.ChangeJob = CHARACTER_RANK5;
 				cQuestHandler.GetSpoilerInfo(lpPlayInfo, 9);
-				wsprintf(TransChatMessage.szMessage, "T5 DEV> Tier 5 liberada. Relogue para sincronizar rank, skills e FSP.");
+
+				int freeTier5Points = 0;
+				if (GetTier5FreeSkillPointsForPlayer(lpPlayInfo, &freeTier5Points))
+				{
+					smTRANS_COMMAND tier5Sync;
+					ZeroMemory(&tier5Sync, sizeof(tier5Sync));
+					tier5Sync.code = OpCode::OPCODE_TIER5_LIVE_SYNC;
+					tier5Sync.size = sizeof(tier5Sync);
+					tier5Sync.WParam = CHARACTER_RANK5;
+					tier5Sync.LParam = freeTier5Points;
+					tier5Sync.SParam =
+						((DWORD)lpPlayInfo->bSkillPoint[16]) |
+						((DWORD)lpPlayInfo->bSkillPoint[17] << 8) |
+						((DWORD)lpPlayInfo->bSkillPoint[18] << 16) |
+						((DWORD)lpPlayInfo->bSkillPoint[19] << 24);
+					lpPlayInfo->lpsmSock->Send((char*)&tier5Sync, tier5Sync.size, TRUE);
+					wsprintf(TransChatMessage.szMessage, "T5 DEV> Tier 5 liberada e sincronizada sem relog.");
+				}
+				else
+				{
+					wsprintf(TransChatMessage.szMessage, "T5 DEV> Tier 5 liberada, mas a sincronizacao de FSP falhou.");
+				}
 			}
 			else
 			{
@@ -28318,18 +28339,9 @@ if(cnt >= CONNECTMAX)
 				db->Close();
 			}
 		
-			if(lpPlayInfo->smCharInfo.Level < NovatoLevel)
-			{
-				smTransCommand.code = OpCode::OPCODE_PLAYERNOVATO;
-				smTransCommand.size = sizeof(smTRANS_COMMAND_QWORD);
-				smTransCommand.WParam = 1;
-				smTransCommand.EParam = 0;
-				smTransCommand.LParam = 0;
-
-				lpPlayInfo->lpsmSock->Send((char*)& smTransCommand, smTransCommand.size, TRUE);
-			}
-			
-			//Valor envia buff do set boss
+			// Synchronize new-player configuration before enabling PLAYERNOVATO.
+			// On the first session NovatoLevel is still zero on the client; if the
+			// skill arrives first, a status recalculation can immediately remove it.
 			{
 				PACKET_BUFFS packetc;
 				packetc.size = sizeof(PACKET_BUFFS);
@@ -28346,6 +28358,17 @@ if(cnt >= CONNECTMAX)
 				
 				if (lpPlayInfo->lpsmSock)
 					lpPlayInfo->lpsmSock->Send((char*)&packetc, packetc.size, true);
+			}
+
+			if(lpPlayInfo->smCharInfo.Level < NovatoLevel)
+			{
+				smTransCommand.code = OpCode::OPCODE_PLAYERNOVATO;
+				smTransCommand.size = sizeof(smTRANS_COMMAND_QWORD);
+				smTransCommand.WParam = 1;
+				smTransCommand.EParam = 0;
+				smTransCommand.LParam = 0;
+
+				lpPlayInfo->lpsmSock->Send((char*)& smTransCommand, smTransCommand.size, TRUE);
 			}
 
 			if (rsLoadPostBox(lpPlayInfo) == TRUE)
@@ -28709,6 +28732,14 @@ if(cnt >= CONNECTMAX)
 
 			lpPlayInfo2 =
 				FindUserFromName2(lpTransCharCommand2->szName);
+
+			// Character selection keeps the last character name in the login
+			// session.  After deleting that character, FindUserFromName2() can
+			// therefore find this same connection and reserve the deleted name
+			// against itself.  Persistent IsData() still performs the canonical
+			// file/name check below, so only ignore this stale self-match.
+			if(lpPlayInfo2 == lpPlayInfo)
+				lpPlayInfo2 = NULL;
 
 			if(fpIns)
 			{
@@ -36874,7 +36905,6 @@ int ResetBlackUserFiles()
 	hFindHandle = FindFirstFile(szBuff, &fd);
 	if(hFindHandle == INVALID_HANDLE_VALUE)
 	{
-		FindClose(hFindHandle);
 		return 0;
 	}
 	while(1)
@@ -38245,6 +38275,33 @@ int	rsRecvSkillPartyUser(rsPLAYINFO *playInfo, TRANS_PARTY_SKILL *lpTransPartySk
 }
 
 
+static smCHAR *OpenTier5SummonFromCanonicalName(const char *szCanonicalName, int x, int y, int z, rsPLAYINFO *lpPlayInfo)
+{
+	if(!szCanonicalName || !szCanonicalName[0])
+		return NULL;
+
+	// First keep the legacy behaviour for servers whose runtime monster name was not localized.
+	smCHAR *lpChar = OpenMonsterFromName((char *)szCanonicalName, x, y, z, lpPlayInfo);
+	if(lpChar)
+		return lpChar;
+
+	// Under _LANGUAGE_BRAZIL, ConvertMonsterNames() replaces chrMonsterList[].szName
+	// with *J_NAME. InitMonster() computes dwAutoCharCode from the canonical name
+	// before that conversion, so use it only as an alias to the same loaded template.
+	const DWORD dwCanonicalCode = GetSpeedSum(szCanonicalName);
+	for(int cnt = 0; cnt < chrMonsterCnt; cnt++)
+	{
+		if(chrMonInfoList[cnt].dwAutoCharCode != dwCanonicalCode)
+			continue;
+		if(!chrMonsterList[cnt].szName[0])
+			continue;
+
+		return OpenMonsterFromName(chrMonsterList[cnt].szName, x, y, z, lpPlayInfo);
+	}
+
+	return NULL;
+}
+
 int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 {
 	DWORD dwSkillCode;
@@ -38300,7 +38357,7 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 					fclose(probe);
 				}
 			}
-			lpChar = OpenMonsterFromName((char *)"Summon Tiger", lpPlayInfo->Position.x, lpPlayInfo->Position.y, lpPlayInfo->Position.z, lpPlayInfo);
+			lpChar = OpenTier5SummonFromCanonicalName("Summon Tiger", lpPlayInfo->Position.x, lpPlayInfo->Position.y, lpPlayInfo->Position.z, lpPlayInfo);
 			{
 				FILE *probe = fopen("LOGS\\summit_t5_visual_probe_server.log", "a");
 				if(probe)
@@ -38329,7 +38386,7 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 		}
 		if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
 		{
-			lpChar = OpenMonsterFromName((char *)"Ice Elemental", lpPlayInfo->Position.x, lpPlayInfo->Position.y, lpPlayInfo->Position.z, lpPlayInfo);
+			lpChar = OpenTier5SummonFromCanonicalName("Ice Elemental", lpPlayInfo->Position.x, lpPlayInfo->Position.y, lpPlayInfo->Position.z, lpPlayInfo);
 			if(!lpChar) return FALSE;
 
 			lpChar->dwUpdateCharInfoTime = dwPlayServTime + (DWORD)Priestess_T5_IceElemental_Duration[point] * 1000;

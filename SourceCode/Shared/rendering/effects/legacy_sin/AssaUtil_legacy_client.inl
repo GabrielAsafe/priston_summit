@@ -21,6 +21,8 @@ BOOL FindFileRecursive(char *path, char *fileName)
 	char newpath[MAX_RES_PATH] = { 0 };
 
 	hSrch = FindFirstFile(path, &wfd);
+	if(hSrch == INVALID_HANDLE_VALUE)
+		return FALSE;
 	while(bResult)
 	{
 		_splitpath(path, drive, dir, NULL, NULL);
@@ -30,7 +32,10 @@ BOOL FindFileRecursive(char *path, char *fileName)
 			{
 				wsprintf(newpath, "%s%s%s//*.*", drive, dir, wfd.cFileName);
 				if(FindFileRecursive(newpath, fileName))
+				{
+					FindClose(hSrch);
 					return TRUE;
+				}
 			}
 		}
 		else
@@ -38,6 +43,7 @@ BOOL FindFileRecursive(char *path, char *fileName)
 			if(stricmp(wfd.cFileName, fileName) == 0)
 			{
 				wsprintf(FindFileName, "%s%s%s", drive, dir, wfd.cFileName);
+				FindClose(hSrch);
 				return TRUE;
 			}
 		}
@@ -106,27 +112,20 @@ bool ExistAseFile(char *directory)
 	WIN32_FIND_DATA wfd;
 	BOOL bResult = TRUE;
 
-	char tempFileName[512] = { 0 };
-	char tempExtName[32] = { 0 };
-
 	hSrch = FindFirstFile(directory, &wfd);
+	if(hSrch == INVALID_HANDLE_VALUE)
+		return false;
 	while(bResult)
 	{
-		strcpy(tempFileName, wfd.cFileName);
-
-		for(int index = strlen(tempFileName) - 1; index > 0; index--)
-		{
-			if(tempFileName[index] == '.')
-			{
-				tempFileName[index] = '\0';
-				strcpy(tempExtName, &tempFileName[index + 1]);
-				break;
-			}
-		}
-
+		const char *tempExtName = strrchr(wfd.cFileName, '.');
+		if(tempExtName) tempExtName++;
+		else tempExtName = "";
 
 		if(stricmp(tempExtName, "ase") == 0 || stricmp(tempExtName, "smd") == 0)
+		{
+			FindClose(hSrch);
 			return true;
+		}
 
 		bResult = FindNextFile(hSrch, &wfd);
 	}
@@ -177,19 +176,9 @@ void LoadResFile(char *path, bool aseExistFlag)
 				memset(fileDirectoryName, 0, sizeof(fileDirectoryName));
 				wsprintf(fileDirectoryName, "%s%s%s", drive, dir, wfd.cFileName);
 
-				char tempFileName[256];
-				char tempExtName[10];
-				strcpy(tempFileName, wfd.cFileName);
-
-				for(int index = strlen(tempFileName) - 1; index > 0; index--)
-				{
-					if(tempFileName[index] == '.')
-					{
-						tempFileName[index] = '\0';
-						strcpy(tempExtName, &tempFileName[index + 1]);
-						break;
-					}
-				}
+				const char *tempExtName = strrchr(wfd.cFileName, '.');
+				if(tempExtName) tempExtName++;
+				else tempExtName = "";
 
 				if(aseExistFlag == false)
 				{

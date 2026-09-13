@@ -1199,7 +1199,6 @@ int SetCharFileList(char *szCharFile)
 	hFindHandle = FindFirstFile(szFindPath, &fd);
 	if(hFindHandle == INVALID_HANDLE_VALUE)
 	{
-		FindClose(hFindHandle);
 		return 0;
 	}
 	while(1)
@@ -1307,7 +1306,6 @@ int SetNpcFileList(char *szNpcDirectory)
 	hFindHandle = FindFirstFile(szFindPath, &fd);
 	if(hFindHandle == INVALID_HANDLE_VALUE)
 	{
-		FindClose(hFindHandle);
 		return 0;
 
 	}
@@ -1319,7 +1317,7 @@ int SetNpcFileList(char *szNpcDirectory)
 
 		if(FindNextFile(hFindHandle, &fd) == FALSE)
 			break;
-		if(NpcFileCnt > 64)
+		if(NpcFileCnt >= 64)
 			break;
 
 	}

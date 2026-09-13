@@ -48,6 +48,7 @@
  SrcGame/src/systems/combat/pvp/Score.h \
  SrcGame/src/core/gameplay/runtime/playmain.h \
  SrcGame/src/core/data/legacy_loader/fileread.h \
+ Shared/persistence/character_record/WarehouseRecordValidation.h \
  SrcGame/src/systems/rendering/effects/particle/legacy/particle.h \
  SrcGame/src/compat/legacy/sin/sinLinkHeader.h \
  SrcGame/src/systems/rendering/2d/legacy/drawsub.h \
@@ -220,6 +221,7 @@ SrcGame/src/systems/gameplay/character/core/character.h:
 SrcGame/src/systems/combat/pvp/Score.h:
 SrcGame/src/core/gameplay/runtime/playmain.h:
 SrcGame/src/core/data/legacy_loader/fileread.h:
+Shared/persistence/character_record/WarehouseRecordValidation.h:
 SrcGame/src/systems/rendering/effects/particle/legacy/particle.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/2d/legacy/drawsub.h:

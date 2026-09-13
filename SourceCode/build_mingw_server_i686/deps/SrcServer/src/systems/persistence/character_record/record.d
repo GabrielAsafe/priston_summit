@@ -124,6 +124,7 @@
  Shared/security/integrity/IsaoCheckLegacyShared.h \
  SrcServer/src/systems/social/clan/legacy/cE_CViewClanInfo.h \
  SrcServer/src/systems/social/clan/legacy/tjclanDEF.h \
+ Shared/persistence/character_record/WarehouseRecordValidation.h \
  SrcServer/src/platform/windows/resources/legacy_runtime/resource.h \
  SrcServer/src/systems/persistence/character_record/checkname.h
 Shared/persistence/character_record/record_legacy_server.inl:
@@ -252,5 +253,6 @@ SrcServer/src/systems/security/integrity/isaocheck.h:
 Shared/security/integrity/IsaoCheckLegacyShared.h:
 SrcServer/src/systems/social/clan/legacy/cE_CViewClanInfo.h:
 SrcServer/src/systems/social/clan/legacy/tjclanDEF.h:
+Shared/persistence/character_record/WarehouseRecordValidation.h:
 SrcServer/src/platform/windows/resources/legacy_runtime/resource.h:
 SrcServer/src/systems/persistence/character_record/checkname.h:

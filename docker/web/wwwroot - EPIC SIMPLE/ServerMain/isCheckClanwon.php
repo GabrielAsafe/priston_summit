@@ -1,1 +1,0 @@
-<?php require_once dirname(__FILE__).'/../_clan_port/lib.php'; require_params(array('clwon','gserver')); code_exit(1); ?>

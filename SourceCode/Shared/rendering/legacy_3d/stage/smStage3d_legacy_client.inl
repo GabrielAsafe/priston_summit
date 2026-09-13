@@ -1017,13 +1017,13 @@ int smSTAGE3D::Close()
 
 
 
-	if(nLight) delete smLight;
+	if(nLight) delete[] smLight;
 
-	if(lpwAreaBuff) delete lpwAreaBuff;
+	if(lpwAreaBuff) delete[] lpwAreaBuff;
 
-	if(nTexLink) delete	TexLink;
-	if(nFace)	delete	Face;
-	if(nVertex)	delete	Vertex;
+	if(nTexLink) delete[]	TexLink;
+	if(nFace)	delete[]	Face;
+	if(nVertex)	delete[]	Vertex;
 
 	if(StageObject) delete StageObject;
 	if(smMaterialGroup) delete smMaterialGroup;
@@ -1263,8 +1263,8 @@ int smSTAGE3D::SetVertexShade(int isSetLight)
 	}
 
 
-	delete NormalCnt;
-	delete normal;
+	delete[] NormalCnt;
+	delete[] normal;
 
 	return TRUE;
 }
@@ -1878,7 +1878,7 @@ int smSTAGE3D::SetupPolyAreas()
 			}
 		}
 	}
-	delete AreaList;
+	delete[] AreaList;
 
 
 	int wbCnt;
@@ -1947,7 +1947,7 @@ int smSTAGE3D::SetupPolyAreas()
 			}
 		}
 	}
-	delete AreaList;
+	delete[] AreaList;
 
 	return TRUE;
 

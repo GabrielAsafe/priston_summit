@@ -214,6 +214,9 @@ smSTAGE3D *LoadStage(char *szStageFile);
 extern POINT3D TraceCameraPosi;
 extern POINT3D TraceTargetPosi;
 extern HFONT	hFont;
+#define QUIT_MODE_APPLICATION 1
+#define QUIT_MODE_LOGIN       2
+
 extern int QuitSave;
 extern int	CameraInvRot;					
 extern int	CameraSight;
@@ -273,6 +276,7 @@ extern	POINT	ImePositon;
 
 
 int QuitGame();
+int QuitToLogin();
 int SetIME_Mode(BOOL mode);
 
 

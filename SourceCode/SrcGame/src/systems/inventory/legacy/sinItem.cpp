@@ -169,7 +169,7 @@ void cITEM::Init()
 
 	}
 
-	memset(g_Manufacture_ItemInfo, 0, sizeof(SManufacture_ResultItemInfo));
+	memset(g_Manufacture_ItemInfo, 0, sizeof(g_Manufacture_ItemInfo));
 }
 
 void cITEM::Load()
@@ -533,6 +533,18 @@ int cITEM::ShowItemInfo(sITEM* pItem, int Flag, int Index)
 			memcpy(&sInfo, &cInvenTory.InvenItem[sInven[0].ItemIndex - 1].sItemInfo, sizeof(sITEMINFO));
 		else
 			memcpy(&sInfo, &pItem->sItemInfo, sizeof(sITEMINFO));
+	}
+	else
+	{
+		// The PERF entry describes the template/perfect variant. Equipment gating,
+		// however, uses the requirements stored in this concrete item instance.
+		// Keep PERF combat values, but display/check the real requirements.
+		sInfo.Level = pItem->sItemInfo.Level;
+		sInfo.Strength = pItem->sItemInfo.Strength;
+		sInfo.Spirit = pItem->sItemInfo.Spirit;
+		sInfo.Talent = pItem->sItemInfo.Talent;
+		sInfo.Dexterity = pItem->sItemInfo.Dexterity;
+		sInfo.Health = pItem->sItemInfo.Health;
 	}
 
 

@@ -5248,7 +5248,7 @@ int smCHAR::Main()
 						sinSetLife(0);
 						ResetEnergyGraph(0);
 
-						quit = TRUE;
+						quit = QUIT_MODE_LOGIN;
 						SaveGameData();
 						QuitSave = TRUE;
 						PlayUsed_Resurrection = 0;

@@ -1,5 +1,6 @@
 ﻿#include "opcodes.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
+#include "core/gameplay/runtime/playmain.h"
 #include "systems/social/clan/tjclan.h"
 #include "systems/world/field/field.h"
 #include "systems/configuration/client/Settings.h"
@@ -575,14 +576,16 @@ void cINTERFACE::Draw()
 	{
 		dsDrawTexImage( MatExitMenu , 698, 504 - 30, 128, 94 , 255 );
 
+		// The menu background is 128 pixels wide with three 31-pixel rows.
+		// Stretch the legacy 96x19 hover overlays to the full button row.
 		if(sinMenuBottonPosi == 1)
-			DrawSprite(698,504,lpMenuButton[0],0,0,96,19);
+			DrawSprite(698,504,lpMenuButton[0],0,0,96,19,1,128,31);
 
 		if(sinMenuBottonPosi == 2)
-			DrawSprite(698,504-31,lpMenuButton[1],0,0,96,19);
+			DrawSprite(698,504-31,lpMenuButton[1],0,0,96,19,1,128,31);
 
 		if(sinMenuBottonPosi == 3)
-			DrawSprite(698,535,lpMenuButton[2],0,0,96,19); 
+			DrawSprite(698,535,lpMenuButton[2],0,0,96,19,1,128,31); 
 
 
 	}
@@ -1280,12 +1283,16 @@ void cINTERFACE::Main()
 
 	if(ExitButtonClick)
 	{
-		if(699 < pCursorPos.x && 795 > pCursorPos.x &&
-		   535 < pCursorPos.y && 555 > pCursorPos.y)
+		// Hit testing follows the same full 128x31 rows used for drawing.
+		sinMenuBottonPosi = 0;
+		if(698 <= pCursorPos.x && pCursorPos.x < 826 &&
+		   535 <= pCursorPos.y && pCursorPos.y < 566)
 			sinMenuBottonPosi = 3;
-
-		if(698 < pCursorPos.x && 795 > pCursorPos.x &&
-		   504 < pCursorPos.y && 524 > pCursorPos.y)
+		else if(698 <= pCursorPos.x && pCursorPos.x < 826 &&
+		        473 <= pCursorPos.y && pCursorPos.y < 504)
+			sinMenuBottonPosi = 2;
+		else if(698 <= pCursorPos.x && pCursorPos.x < 826 &&
+		        504 <= pCursorPos.y && pCursorPos.y < 535)
 			sinMenuBottonPosi = 1;
 
 
@@ -1618,7 +1625,8 @@ void cINTERFACE::LButtonDown(int x, int y)
 		
 	if(sinMenuBottonPosi == 3)
 	{
-		QuitGame();
+		if(QuitToLogin())
+			ExitButtonClick = 0;
 	}
 
 	if (sinMenuBottonPosi == 2)

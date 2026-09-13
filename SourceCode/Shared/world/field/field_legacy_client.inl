@@ -2002,6 +2002,8 @@ int StartField()
 
 	JobCode = lpCurPlayer->smCharInfo.JOB_CODE;
 	if (JobCode == 0)
+		JobCode = CharacterJob;
+	if (JobCode == 0)
 		JobCode = NewCharInfo.JobCode;
 
 	if (JobCode > 4 && JobCode != 9)
@@ -2102,8 +2104,17 @@ int WarpStartField(int *mx, int *mz)
 {
 	int cnt;
 	int	StartNum = START_FIELD_NUM;
+	int JobCode = lpCurPlayer ? lpCurPlayer->smCharInfo.JOB_CODE : 0;
 
-	if (lpCurPlayer->smCharInfo.JOB_CODE > 4 && lpCurPlayer->smCharInfo.JOB_CODE != 9)
+	// During restart/death transitions the live character can momentarily have
+	// JOB_CODE == 0. CharacterJob is captured from the character selected at
+	// login; NewCharInfo is only authoritative while creating a new character.
+	if (JobCode == 0)
+		JobCode = CharacterJob;
+	if (JobCode == 0)
+		JobCode = NewCharInfo.JobCode;
+
+	if (JobCode > 4 && JobCode != 9)
 	{
 		StartNum = START_FIELD_MORYON;
 	}

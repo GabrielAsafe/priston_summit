@@ -1,4 +1,5 @@
 #include "systems/configuration/client/Settings.h"
+#include <windows.h>
 #include "File/File.h"
 #include "Helper/common.h"
 #include "systems/gameplay/loot/filter/CLootHandler.h"
@@ -80,16 +81,69 @@ void Settings::readConfig()
 		setSoundVolume(file.readInt("Audio", "MusicVolume"));
 		setEffects(file.readInt("Audio", "Effects") != 0);
 		setEffectsVolume(file.readInt("Audio", "EffectsVolume"));
-		//IP
-		setServer1("192.168.1.111");
-		setServer2("192.168.1.111");
-		setServer3("192.168.1.111");  
+		// R27_CLIENT_NETWORK_FROM_GAME_INI
+		// Single-server mode:
+		//   [Network]
+		//   Server=host-or-ip
+		//   Port=1997
+		//
+		// Multi-endpoint mode is also supported through Server1/2/3.
+		// If Server is present it has priority and feeds all three roles.
+		char networkServer[32] = {};
+		char networkServer1[32] = {};
+		char networkServer2[32] = {};
+		char networkServer3[32] = {};
 
-#ifdef YWEENZY_PC 
-		setPort(10012);
-#else
-		setPort(1997); //Porta
-#endif
+		GetPrivateProfileStringA(
+			"Network", "Server", "",
+			networkServer, sizeof(networkServer),
+			".\game.ini"
+		);
+
+		if(networkServer[0])
+		{
+			strcpy_s(networkServer1, sizeof(networkServer1), networkServer);
+			strcpy_s(networkServer2, sizeof(networkServer2), networkServer);
+			strcpy_s(networkServer3, sizeof(networkServer3), networkServer);
+		}
+		else
+		{
+			GetPrivateProfileStringA(
+				"Network", "Server1", "127.0.0.1",
+				networkServer1, sizeof(networkServer1),
+				".\game.ini"
+			);
+
+			GetPrivateProfileStringA(
+				"Network", "Server2", "",
+				networkServer2, sizeof(networkServer2),
+				".\game.ini"
+			);
+
+			GetPrivateProfileStringA(
+				"Network", "Server3", "",
+				networkServer3, sizeof(networkServer3),
+				".\game.ini"
+			);
+
+			if(!networkServer2[0])
+				strcpy_s(networkServer2, sizeof(networkServer2), networkServer1);
+
+			if(!networkServer3[0])
+				strcpy_s(networkServer3, sizeof(networkServer3), networkServer1);
+		}
+
+		int networkPort = static_cast<int>(
+			GetPrivateProfileIntA("Network", "Port", 1997, ".\game.ini")
+		);
+
+		if(networkPort <= 0 || networkPort > 65535)
+			networkPort = 1997;
+
+		setServer1(networkServer1);
+		setServer2(networkServer2);
+		setServer3(networkServer3);
+		setPort(networkPort);
 		setWheater(file.readInt("Game", "Weather") != 0);
 		setRememberID(file.readInt("Game", "RememberID") != 0);
 

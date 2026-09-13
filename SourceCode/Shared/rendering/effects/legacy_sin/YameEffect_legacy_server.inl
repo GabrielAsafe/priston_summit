@@ -37,7 +37,7 @@ void InitYameEffect()
 
 
 
-	memset(cYameEffect, 0, sizeof(cYAMEEFFECT));
+	memset(cYameEffect, 0, sizeof(cYameEffect));
 
 }
 

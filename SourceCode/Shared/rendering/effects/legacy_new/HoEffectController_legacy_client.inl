@@ -68,50 +68,55 @@ bool HoEffectEventController::AddEvent(HoEffectEventInterface *event)
 
 void HoEffectEventController::Init(HoEffectModelInterface *model)
 {
-	if(model)
-	{
-		std::vector<HoEffectEventInterface *>::iterator iter;
-		for(iter = m_EffectEvents.begin();
-			iter != m_EffectEvents.end() && !(*iter)->GetStartTime();
-			iter++)
-		{
-			(*iter)->VisitEffectModel(*model);
-		}
+	if(!model)
+		return;
 
-		model->m_CurrentEvent = iter;
+	int i = 0;
+	while(i < static_cast<int>(m_EffectEvents.size()))
+	{
+		if(m_EffectEvents[i] && !m_EffectEvents[i]->GetStartTime())
+			m_EffectEvents[i]->VisitEffectModel(*model);
+		else
+			break;
+		++i;
 	}
+
+	model->SetCurrentEventIndex(m_EffectEvents.empty() ? -1 : i);
 }
 
 bool HoEffectEventController::RunEvent(HoEffectModelInterface *model)
 {
+	if(!model)
+		return false;
 
-	if(model)
+	int i = model->GetCurrentEventIndex();
+	while(i >= 0 && i < static_cast<int>(m_EffectEvents.size()))
 	{
-		std::vector<HoEffectEventInterface *>::iterator i;
-		for(i = model->m_CurrentEvent; i != m_EffectEvents.end() && (*i)->GetStartTime() <= model->m_fEventTimer; i++)
-		{
-			if((*i)->GetClassID() != CLASS_EVENT_NONE)
-			{
-				float oldeventtimer = model->m_fEventTimer;
-				(*i)->VisitEffectModel(*model);
-				if(model->m_fEventTimer != oldeventtimer)
-				{
-					std::vector<HoEffectEventInterface *>::iterator RecalcIter;
-					for(RecalcIter = m_EffectEvents.begin();
-						RecalcIter != m_EffectEvents.end() && ((*RecalcIter)->GetStartTime()) < model->m_fEventTimer;
-						RecalcIter++);
+		if(!m_EffectEvents[i] || m_EffectEvents[i]->GetStartTime() > model->m_fEventTimer)
+			break;
 
-					i = RecalcIter - 1;
+		if(m_EffectEvents[i]->GetClassID() != CLASS_EVENT_NONE)
+		{
+			float oldEventTimer = model->m_fEventTimer;
+			m_EffectEvents[i]->VisitEffectModel(*model);
+
+			if(model->m_fEventTimer != oldEventTimer)
+			{
+				int recalcIter = 0;
+				while(recalcIter < static_cast<int>(m_EffectEvents.size()) &&
+					m_EffectEvents[recalcIter] &&
+					m_EffectEvents[recalcIter]->GetStartTime() < model->m_fEventTimer)
+				{
+					++recalcIter;
 				}
+				i = recalcIter - 1;
 			}
 		}
-		model->m_CurrentEvent = i;
-		return true;
+		++i;
 	}
-	else
-	{
-		return false;
-	}
+
+	model->SetCurrentEventIndex(i);
+	return true;
 }
 void HoEffectEventController::CreateFadeList()
 {
@@ -119,7 +124,8 @@ void HoEffectEventController::CreateFadeList()
 	{
 		bool operator() (const HoEffectEventInterface* lhs, const HoEffectEventInterface* rhs) const
 		{
-			if (lhs && rhs) return lhs->GetStartTime() < rhs->GetStartTime();
+			if(!lhs || !rhs) return lhs != nullptr;
+			return lhs->GetStartTime() < rhs->GetStartTime();
 		}
 	} compareMinorTime;
 
@@ -229,7 +235,7 @@ bool HoEffectMeshController::Main(float elapsedTime)
 		{
 			m_MeshModel.m_fCurrentFrame = 0.f;
 			m_MeshModel.m_fEventTimer = 0.f;
-			*(int*)&m_MeshModel.m_CurrentEvent = NULL;
+			m_MeshModel.ResetCurrentEvent();
 
 			m_iLoopCount++;
 			if(m_iLoop > 0 && m_iLoopCount >= m_iLoop)
@@ -239,7 +245,7 @@ bool HoEffectMeshController::Main(float elapsedTime)
 			}
 		}
 
-		if(*(int*)&m_MeshModel.m_CurrentEvent == NULL)
+		if(!m_MeshModel.HasCurrentEvent())
 			InitEvent(&m_MeshModel);
 		else
 			RunEvent(&m_MeshModel);
@@ -333,7 +339,7 @@ bool HoEffectTextureController::Main(float elapsedTime)
 		if(m_TextureModel.m_fEventTimer >= m_TextureModel.m_fEndTime)
 		{
 			m_TextureModel.m_fEventTimer = 0.f;
-			*(int*)&m_TextureModel.m_CurrentEvent = NULL;
+			m_TextureModel.ResetCurrentEvent();
 			m_iLoopCount++;
 			if(m_iLoop > 0 && m_iLoopCount >= m_iLoop)
 			{
@@ -342,7 +348,7 @@ bool HoEffectTextureController::Main(float elapsedTime)
 			}
 		}
 
-		if(*(int*)&m_TextureModel.m_CurrentEvent == NULL)
+		if(!m_TextureModel.HasCurrentEvent())
 			m_EffectEventController.Init(&m_TextureModel);
 		else
 			m_EffectEventController.RunEvent(&m_TextureModel);
@@ -430,7 +436,7 @@ bool HoEffectBillboardAxialController::Main(float elapsedTime)
 		if(m_BillboardAxialModel.m_fEventTimer >= m_BillboardAxialModel.m_fEndTime)
 		{
 			m_BillboardAxialModel.m_fEventTimer = 0.f;
-			*(int*)&m_BillboardAxialModel.m_CurrentEvent = NULL;
+			m_BillboardAxialModel.ResetCurrentEvent();
 			m_iLoopCount++;
 			if(m_iLoop > 0 && m_iLoopCount >= m_iLoop)
 			{
@@ -439,7 +445,7 @@ bool HoEffectBillboardAxialController::Main(float elapsedTime)
 			}
 		}
 
-		if(*(int*)&m_BillboardAxialModel.m_CurrentEvent == NULL)
+		if(!m_BillboardAxialModel.HasCurrentEvent())
 			m_EffectEventController.Init(&m_BillboardAxialModel);
 		else
 			m_EffectEventController.RunEvent(&m_BillboardAxialModel);
@@ -689,7 +695,7 @@ bool HoEffectParticleController::Main(float elapsedTime)
 				m_ParticleList[i].m_fEventTimer += elapsedTime;
 				m_ParticleList[i].m_fTimer += elapsedTime;
 
-				if(*(int*)&m_ParticleList[i].m_CurrentEvent == NULL)
+				if(!m_ParticleList[i].HasCurrentEvent())
 					InitEvent(&m_ParticleList[i]);
 				else
 					RunEvent(&m_ParticleList[i]);

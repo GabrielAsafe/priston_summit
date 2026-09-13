@@ -7,6 +7,7 @@
 #include "systems/gameplay/character/core/character.h"
 #include "core/gameplay/runtime/playmain.h"
 #include "core/data/legacy_loader/fileread.h"
+#include "persistence/character_record/WarehouseRecordValidation.h"
 
 #include "systems/rendering/effects/particle/legacy/particle.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
@@ -269,7 +270,7 @@ int	ChatBuffCnt2[6] = { 0,0,0,0,0,0 };
 int ChatDispCnt = 0;
 int	ChatBuffCompCnt = 0;
 
-char *szDefaultServIP = "192.168.1.111";
+char szDefaultServIP[] = "127.0.0.1";
 
 char *szNetLogFile = "debugnet.log";
 FILE *fpNetLog = 0;
@@ -712,7 +713,7 @@ smWINSOCK *ConnectServer_InfoMain()
 
 		if(server1[0])
 		{
-			dwDataServPort = TCP_SERVPORT;
+			dwDataServPort = SETTINGSHANDLER->getPort() ? SETTINGSHANDLER->getPort() : TCP_SERVPORT;
 			smWsockDataServer = smConnectSock(server1, (WORD)dwDataServPort);
 			ZeroMemory(&TransServerConnectInfo, sizeof(smTRANS_COMMAND));
 			return smWsockDataServer;
@@ -727,6 +728,27 @@ int szBossTime = 0 ;
 
 smWINSOCK *ConnectServer_GameMain(char *szIP1, DWORD dwPort1, char *szIP2, DWORD dwPort2)
 {
+	// R27_CLIENT_NETWORK_CONFIG_AUTHORITY_2
+	// Server list addresses are legacy hints. game.ini is authoritative.
+	char configuredGameIP[32] = {};
+	char configuredUserIP[32] = {};
+	strcpy_s(configuredGameIP, sizeof(configuredGameIP), SETTINGSHANDLER->getServer2().c_str());
+	strcpy_s(configuredUserIP, sizeof(configuredUserIP), SETTINGSHANDLER->getServer3().c_str());
+
+	const DWORD configuredPort = SETTINGSHANDLER->getPort() ? SETTINGSHANDLER->getPort() : 1997;
+
+	if(configuredGameIP[0])
+	{
+		szIP1 = configuredGameIP;
+		dwPort1 = configuredPort;
+	}
+
+	if(configuredUserIP[0])
+	{
+		szIP2 = configuredUserIP;
+		dwPort2 = configuredPort;
+	}
+
 	int ServerInfoFlag = 0;
 
 	SETTINGSHANDLER->setServer2(szIP1);
@@ -792,6 +814,35 @@ smWINSOCK *ConnectServer_GameMain(char *szIP1, DWORD dwPort1, char *szIP2, DWORD
 
 smWINSOCK *ConnectServer_GameMain(char *szIP1, DWORD dwPort1, char *szIP2, DWORD dwPort2, char *szIP3, DWORD dwPort3)
 {
+	// R27_CLIENT_NETWORK_CONFIG_AUTHORITY_3
+	// Keep gameplay roles on the endpoint(s) loaded from game.ini.
+	char configuredGameIP[32] = {};
+	char configuredUserIP[32] = {};
+	char configuredExtendIP[32] = {};
+	strcpy_s(configuredGameIP, sizeof(configuredGameIP), SETTINGSHANDLER->getServer2().c_str());
+	strcpy_s(configuredUserIP, sizeof(configuredUserIP), SETTINGSHANDLER->getServer3().c_str());
+	strcpy_s(configuredExtendIP, sizeof(configuredExtendIP), SETTINGSHANDLER->getServer2().c_str());
+
+	const DWORD configuredPort = SETTINGSHANDLER->getPort() ? SETTINGSHANDLER->getPort() : 1997;
+
+	if(configuredGameIP[0])
+	{
+		szIP1 = configuredGameIP;
+		dwPort1 = configuredPort;
+	}
+
+	if(configuredUserIP[0])
+	{
+		szIP2 = configuredUserIP;
+		dwPort2 = configuredPort;
+	}
+
+	if(configuredExtendIP[0])
+	{
+		szIP3 = configuredExtendIP;
+		dwPort3 = configuredPort;
+	}
+
 	int ServerInfoFlag = 0;
 
 
@@ -1822,6 +1873,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		break;
 	case smTRANSCODE_FIGHTER_INFO:
 		lpFighterInfo = (FIGHTER_INFO*)pData->Buff;
+		if(lpFighterInfo->size != sizeof(FIGHTER_INFO)) break;
 
 
 		memcpy(Melee_Mastery_DamagePercent, lpFighterInfo->Melee_Mastery_DamagePercent, sizeof(Melee_Mastery_DamagePercent));
@@ -2485,6 +2537,40 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		pcAntiCheat->HandlePacket((PacketWindowList*)pData->Buff);
 	}
 	break;	
+
+	case OpCode::OPCODE_TIER5_LIVE_SYNC:
+	{
+		smTRANS_COMMAND *tier5Sync = (smTRANS_COMMAND*)pData->Buff;
+		if (tier5Sync->size != sizeof(smTRANS_COMMAND))
+			break;
+
+		lpCurPlayer->smCharInfo.ChangeJob = tier5Sync->WParam;
+		if (sinChar)
+			sinChar->ChangeJob = tier5Sync->WParam;
+
+		// /skiptier completes the Rank 5 quest server-side.  Keep the
+		// legacy client quest cache in sync as well; otherwise the class
+		// master still routes through sinCheckChangeJobQuest4() until relog.
+		if (tier5Sync->WParam >= CHARACTER_RANK5 && sinQuest_ChangeJob4.CODE)
+		{
+			const int completedJobQuest = sinQuest_ChangeJob4.CODE;
+			ZeroMemory(&sinQuest_ChangeJob4, sizeof(sinQuest_ChangeJob4));
+			EndQuest_Code(completedJobQuest);
+			sinChangeJobButtonShow4 = 0;
+		}
+
+		sinSkill.SkillPoint5 = (int)tier5Sync->LParam;
+		DWORD packedTier5Points = tier5Sync->SParam;
+		for (int i = 0; i < 4; i++)
+			sinSkill.UseSkill[17 + i].Point = (packedTier5Points >> (i * 8)) & 0xFF;
+
+		cSkill.CheckingNowSkillState();
+		SkillMasterFlag = 1;
+		cInterFace.CheckAllBox(SIN_SKILL);
+		cInvenTory.SetItemToChar();
+		ChangeJobFace();
+	}
+	break;
 
 	case OpCode::OPCODE_SPOILER_INFO:
 		cQuestWindow.handlePacket((smTRANS_QUEST_INFO*)pData->Buff);
@@ -11272,6 +11358,18 @@ int	SaveWareHouse(sWAREHOUSE *lpWareHouse)
 
 int	LoadWareHouse(TRANS_WAREHOUSE *lpTransWareHouse, sWAREHOUSE *lpWareHouse, int flag)
 {
+	if(!lpTransWareHouse || !lpWareHouse)
+		return FALSE;
+
+	const size_t warehouseHeaderSize = offsetof(TRANS_WAREHOUSE, Data);
+	if(!summit::persistence::character_record::ValidateWarehouseTransferLayout(
+		lpTransWareHouse->size,
+		lpTransWareHouse->DataSize,
+		lpTransWareHouse->Data,
+		sizeof(lpTransWareHouse->Data),
+		lpTransWareHouse->size,
+		warehouseHeaderSize))
+		return FALSE;
 	sWAREHOUSE	WareHouseCheck;
 	int cnt;
 	DWORD	dwChkSum;
@@ -11288,7 +11386,7 @@ int	LoadWareHouse(TRANS_WAREHOUSE *lpTransWareHouse, sWAREHOUSE *lpWareHouse, in
 		return TRUE;
 	}
 
-	DecodeCompress((BYTE *)lpTransWareHouse->Data, (BYTE *)&WareHouseCheck);
+	DecodeCompress((BYTE *)lpTransWareHouse->Data, (BYTE *)&WareHouseCheck, sizeof(sWAREHOUSE));
 
 	dwChkSum = 0;
 

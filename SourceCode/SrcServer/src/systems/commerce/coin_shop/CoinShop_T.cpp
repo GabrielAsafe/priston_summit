@@ -165,7 +165,7 @@ void cCOINSHOP_T::RecvGetItemCoin(rsPLAYINFO * lpPlayInfo)
 	{
 		char playerID[32];
 		wsprintf(playerID, "%s", lpPlayInfo->getAccount());
-		if (db->Prepare("IF NOT EXISTS(SELECT * FROM UserInfo_T WHERE UserID=?) BEGIN INSERT INTO UserInfo_T VALUES (?, 0, GETDATE()) END"))
+		if (db->Prepare("INSERT INTO UserInfo_T (UserID, UserMinutos, LastChange) SELECT ?2, 0, datetime('now','localtime') WHERE NOT EXISTS(SELECT 1 FROM UserInfo_T WHERE UserID=?1)"))
 		{
 			db->BindInputParameter(playerID, 1, PARAMTYPE_String);
 			db->BindInputParameter(playerID, 2, PARAMTYPE_String);
@@ -293,7 +293,7 @@ int cCOINSHOP_T::GetPlayerCoin(rsPLAYINFO * lpPlayInfo)
 
 	if (db->Open())
 	{
-		if (db->Prepare("IF NOT EXISTS(SELECT * FROM UserInfo_T WHERE UserID=?) BEGIN INSERT INTO UserInfo_T VALUES (?, 0, GETDATE()) END"))
+		if (db->Prepare("INSERT INTO UserInfo_T (UserID, UserMinutos, LastChange) SELECT ?2, 0, datetime('now','localtime') WHERE NOT EXISTS(SELECT 1 FROM UserInfo_T WHERE UserID=?1)"))
 		{
 			db->BindInputParameter(playerID, 1, PARAMTYPE_String);
 			db->BindInputParameter(playerID, 2, PARAMTYPE_String);
@@ -325,7 +325,7 @@ void cCOINSHOP_T::AddPlayerCoin(rsPLAYINFO * lpPlayInfo, int coin)
 	if (db->Open())
 	{
 
-		if (db->Prepare("IF NOT EXISTS(SELECT * FROM UserInfo_T WHERE UserID=?) BEGIN INSERT INTO UserInfo_T VALUES (?, 0, GETDATE()) END"))
+		if (db->Prepare("INSERT INTO UserInfo_T (UserID, UserMinutos, LastChange) SELECT ?2, 0, datetime('now','localtime') WHERE NOT EXISTS(SELECT 1 FROM UserInfo_T WHERE UserID=?1)"))
 		{
 			db->BindInputParameter(playerID, 1, PARAMTYPE_String);
 			db->BindInputParameter(playerID, 2, PARAMTYPE_String);

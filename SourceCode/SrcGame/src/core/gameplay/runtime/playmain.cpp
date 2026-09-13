@@ -1176,7 +1176,6 @@ int SetCharFileList(char *szCharFile)
 	hFindHandle = FindFirstFile(szFindPath, &fd);
 	if(hFindHandle == INVALID_HANDLE_VALUE)
 	{
-		FindClose(hFindHandle);
 		return 0;
 	}
 	while(1)
@@ -1284,7 +1283,6 @@ int SetNpcFileList(char *szNpcDirectory)
 	hFindHandle = FindFirstFile(szFindPath, &fd);
 	if(hFindHandle == INVALID_HANDLE_VALUE)
 	{
-		FindClose(hFindHandle);
 		return 0;
 
 	}
@@ -1296,7 +1294,7 @@ int SetNpcFileList(char *szNpcDirectory)
 
 		if(FindNextFile(hFindHandle, &fd) == FALSE)
 			break;
-		if(NpcFileCnt > 64)
+		if(NpcFileCnt >= 64)
 			break;
 
 	}
@@ -1579,8 +1577,11 @@ void ClanCustom::RecvCrownToServer(CROWN* Shop)
 
 		mat = PatCrown->smMaterialGroup->FindMaterialFromTextureName(szClowImage);
 
-		mat->BlendType = SMMAT_BLEND_ADDCOLOR;
-		mat->SelfIllum = 1;
+		if (mat)
+		{
+			mat->BlendType = SMMAT_BLEND_ADDCOLOR;
+			mat->SelfIllum = 1;
+		}
 		smASE_SetPhysique(0);
 		//LoadOftenItem();
 
@@ -1595,8 +1596,11 @@ void ClanCustom::RecvCrownToServer(CROWN* Shop)
 
 		mat = PatCrown->smMaterialGroup->FindMaterialFromTextureName(szClowImage);
 
-		mat->BlendType = SMMAT_BLEND_ADDCOLOR;
-		mat->SelfIllum = 1;
+		if (mat)
+		{
+			mat->BlendType = SMMAT_BLEND_ADDCOLOR;
+			mat->SelfIllum = 1;
+		}
 		smASE_SetPhysique(0);
 		//LoadOftenItem();
 
@@ -1610,8 +1614,11 @@ void ClanCustom::RecvCrownToServer(CROWN* Shop)
 
 		mat = PatCrown->smMaterialGroup->FindMaterialFromTextureName(szClowImage);
 
-		mat->BlendType = SMMAT_BLEND_ADDCOLOR;
-		mat->SelfIllum = 1;
+		if (mat)
+		{
+			mat->BlendType = SMMAT_BLEND_ADDCOLOR;
+			mat->SelfIllum = 1;
+		}
 		smASE_SetPhysique(0);
 		//LoadOftenItem();
 
@@ -1625,8 +1632,11 @@ void ClanCustom::RecvCrownToServer(CROWN* Shop)
 
 		mat = PatCrown->smMaterialGroup->FindMaterialFromTextureName(szClowImage);
 
-		mat->BlendType = SMMAT_BLEND_ADDCOLOR;
-		mat->SelfIllum = 1;
+		if (mat)
+		{
+			mat->BlendType = SMMAT_BLEND_ADDCOLOR;
+			mat->SelfIllum = 1;
+		}
 		smASE_SetPhysique(0);
 		//LoadOftenItem();
 	}

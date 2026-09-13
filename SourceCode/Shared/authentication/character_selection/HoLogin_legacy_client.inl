@@ -578,7 +578,7 @@ int HoLogin::Load()
 	NewCharButton.InitCrashRect(10, 0, 110, 32);
 
 	QuitButton.Init("StartImage//login//CharSelect//Bt_exit.tga", 128, 32);
-	QuitButton.InitCrashRect(15, 0, 108, 32);
+	QuitButton.InitCrashRect(0, 0, 128, 32);
 
 	DeleteButton.Init("StartImage//login//CharSelect//Bt_delet.tga", 128, 32);
 	DeleteButton.InitCrashRect(10, 0, 108, 32);

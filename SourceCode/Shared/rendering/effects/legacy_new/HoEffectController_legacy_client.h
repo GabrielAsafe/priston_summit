@@ -268,10 +268,10 @@ public:
     {
         m_AxisX.Min = -10.f;
         m_AxisX.Max =  10.f;
-        m_AxisX.Min = -10.f;
-        m_AxisX.Max =  10.f;
-        m_AxisX.Min = -10.f;
-        m_AxisX.Max =  10.f;
+        m_AxisY.Min = -10.f;
+        m_AxisY.Max =  10.f;
+        m_AxisZ.Min = -10.f;
+        m_AxisZ.Max =  10.f;
     }
 
     void Init(float x1, float x2, float y1, float y2, float z1, float z2)

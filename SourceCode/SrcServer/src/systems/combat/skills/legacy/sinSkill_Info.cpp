@@ -45,6 +45,7 @@ char* GetWords(char* q, char* p)
 
 int ReadSkillFloat(float* Skill, char* szFileName, char* szSkillName)
 {
+	int found = FALSE;
 #ifdef _W_SERVER
 	int i;
 	char Path[255], decode[255], line[255];
@@ -67,6 +68,7 @@ int ReadSkillFloat(float* Skill, char* szFileName, char* szSkillName)
 
 		skill = GetWords(decode, line);
 		if (lstrcmpi(decode, szSkillName) == 0) {
+			found = TRUE;
 			for (i = 0; i < 10; i++)
 			{
 
@@ -92,15 +94,17 @@ int ReadSkillFloat(float* Skill, char* szFileName, char* szSkillName)
 					if (*skill == ';') break;
 				}
 			}
+			break;
 		}
 	}
 	fclose(file);
 #endif
-	return TRUE;
+	return found;
 }
 
 int ReadSkillInt(int* Skill, char* szFileName, char* szSkillName)
 {
+	int found = FALSE;
 	int i;
 	char Path[255], decode[255], line[255];
 	FILE* file;
@@ -121,6 +125,7 @@ int ReadSkillInt(int* Skill, char* szFileName, char* szSkillName)
 
 		skill = GetWords(decode, line);
 		if (lstrcmpi(decode, szSkillName) == 0) {
+			found = TRUE;
 			for (i = 0; i < 10; i++) {
 				while (*skill == ',' || *skill == ' ' || *skill == '=')
 					skill++;
@@ -139,7 +144,7 @@ int ReadSkillInt(int* Skill, char* szFileName, char* szSkillName)
 		}
 	}
 	fclose(file);
-	return TRUE;
+	return found;
 }
 
 int ReadSkillInt2(int Skill[][2], char* szFileName, char* szSkillName)
@@ -837,13 +842,17 @@ int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo)
 	MECH_INFO MechSkills;
 	FIGHTER_INFO FighterSkills;
 	PIKE_INFO PikeSkills;
-	ZeroMemory(&PikeSkills, sizeof(PikeSkills));
 	ARCHER_INFO ArcherSkills;
-
 	KINA_INFO KinaSkills;
 	ATA_INFO AtaSkills;
 	SACER_INFO SacerSkills;
 	MAGE_INFO MageSkills;
+
+	// Never send uninitialized skill tables to the client when an INI key is absent.
+	ZeroMemory(&MechSkills, sizeof(MechSkills));
+	ZeroMemory(&FighterSkills, sizeof(FighterSkills));
+	ZeroMemory(&PikeSkills, sizeof(PikeSkills));
+	ZeroMemory(&ArcherSkills, sizeof(ArcherSkills));
 	ZeroMemory(&KinaSkills, sizeof(KinaSkills));
 	ZeroMemory(&AtaSkills, sizeof(AtaSkills));
 	ZeroMemory(&SacerSkills, sizeof(SacerSkills));
@@ -1005,6 +1014,23 @@ int ReLoadSkillInfo(rsPLAYINFO* lpPlayInfo)
 	ReadSkillInt(&FighterSkills.Cyclone_Strike_UseMana[0], "Fighter.ini", "Cyclone_Strike_UseMana");
 
 	ReadSkillInt(&FighterSkills.Boost_Health_Life[0], "Fighter.ini", "Boost_Health_Life");
+
+	// Rank 5 keys are optional in legacy Fighter.ini files. Start from the
+	// compiled tables and let ReadSkill* override only keys that actually exist.
+	memcpy(FighterSkills.Fighter_T5_Survival_Life, Fighter_T5_Survival_Life, sizeof(Fighter_T5_Survival_Life));
+	memcpy(FighterSkills.Fighter_T5_Survival_Regen, Fighter_T5_Survival_Regen, sizeof(Fighter_T5_Survival_Regen));
+	memcpy(FighterSkills.Fighter_T5_Seismic_Damage, Fighter_T5_Seismic_Damage, sizeof(Fighter_T5_Seismic_Damage));
+	memcpy(FighterSkills.Fighter_T5_Seismic_Area, Fighter_T5_Seismic_Area, sizeof(Fighter_T5_Seismic_Area));
+	memcpy(FighterSkills.Fighter_T5_Seismic_UseMana, Fighter_T5_Seismic_UseMana, sizeof(Fighter_T5_Seismic_UseMana));
+	memcpy(FighterSkills.Fighter_T5_Ruthless_HPDecrease, Fighter_T5_Ruthless_HPDecrease, sizeof(Fighter_T5_Ruthless_HPDecrease));
+	memcpy(FighterSkills.Fighter_T5_Ruthless_HitsBoost, Fighter_T5_Ruthless_HitsBoost, sizeof(Fighter_T5_Ruthless_HitsBoost));
+	memcpy(FighterSkills.Fighter_T5_Ruthless_DamageBoost, Fighter_T5_Ruthless_DamageBoost, sizeof(Fighter_T5_Ruthless_DamageBoost));
+	memcpy(FighterSkills.Fighter_T5_Ruthless_UseMana, Fighter_T5_Ruthless_UseMana, sizeof(Fighter_T5_Ruthless_UseMana));
+	memcpy(FighterSkills.Fighter_T5_Whirlwind_DamageBoost, Fighter_T5_Whirlwind_DamageBoost, sizeof(Fighter_T5_Whirlwind_DamageBoost));
+	memcpy(FighterSkills.Fighter_T5_Whirlwind_Duration, Fighter_T5_Whirlwind_Duration, sizeof(Fighter_T5_Whirlwind_Duration));
+	memcpy(FighterSkills.Fighter_T5_Whirlwind_MPDrain, Fighter_T5_Whirlwind_MPDrain, sizeof(Fighter_T5_Whirlwind_MPDrain));
+	memcpy(FighterSkills.Fighter_T5_Whirlwind_SPDrain, Fighter_T5_Whirlwind_SPDrain, sizeof(Fighter_T5_Whirlwind_SPDrain));
+
 	ReadSkillInt(&FighterSkills.Fighter_T5_Survival_Life[0], "Fighter.ini", "Fighter_T5_Survival_Life");
 	ReadSkillInt(&FighterSkills.Fighter_T5_Survival_Regen[0], "Fighter.ini", "Fighter_T5_Survival_Regen");
 	ReadSkillInt(&FighterSkills.Fighter_T5_Seismic_Damage[0], "Fighter.ini", "Fighter_T5_Seismic_Damage");

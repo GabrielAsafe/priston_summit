@@ -51,6 +51,14 @@ TRANS_CLIENT_FUNPOS *rsGetClientPos(int Version);
 
 int	rsResetClientFuncPos();
 
+static int rsValidClientFuncPos(const TRANS_CLIENT_FUNPOS *lpClientFuncPos)
+{
+	if(!lpClientFuncPos) return FALSE;
+	if(lpClientFuncPos->size != sizeof(TRANS_CLIENT_FUNPOS)) return FALSE;
+	if(lpClientFuncPos->FuncCount < 0 || lpClientFuncPos->FuncCount > dwFUNC_VALUE_MAX) return FALSE;
+	return TRUE;
+}
+
 
 int rsSendDataServer(smWINSOCK *lpsmSock, void *szData);
 
@@ -60,6 +68,8 @@ int rsSendGameServer(smWINSOCK *lpsmSock, void *szData);
 
 int	rsRecvClientFuncPos(TRANS_CLIENT_FUNPOS	*lpClentFuncPos)
 {
+	if(!rsValidClientFuncPos(lpClentFuncPos)) return FALSE;
+
 	FILE *fp = nullptr;
 	char szBuff[256] = { 0 };
 
@@ -70,7 +80,7 @@ int	rsRecvClientFuncPos(TRANS_CLIENT_FUNPOS	*lpClentFuncPos)
 
 	if(fp)
 	{
-		fwrite(lpClentFuncPos, lpClentFuncPos->size, 1, fp);
+		fwrite(lpClentFuncPos, sizeof(TRANS_CLIENT_FUNPOS), 1, fp);
 		fclose(fp);
 	}
 
@@ -82,6 +92,8 @@ int	rsRecvClientFuncPos(TRANS_CLIENT_FUNPOS	*lpClentFuncPos)
 
 int	rsAddClientFuncPos(TRANS_CLIENT_FUNPOS	*lpClentFuncPos)
 {
+	if(!rsValidClientFuncPos(lpClentFuncPos)) return FALSE;
+
 	int cnt;
 
 	if(!InitClientFuncPos)
@@ -154,11 +166,12 @@ int	rsResetClientFuncPos()
 		fp = fopen(szBuff, "rb");
 		if(fp)
 		{
-			fread(&TransClientFuncPos, sizeof(TRANS_CLIENT_FUNPOS), 1, fp);
+			ZeroMemory(&TransClientFuncPos, sizeof(TransClientFuncPos));
+			const size_t readCount = fread(&TransClientFuncPos, sizeof(TRANS_CLIENT_FUNPOS), 1, fp);
 			fclose(fp);
 
-
-			if(TransClientFuncPos.ClientVersion >= rsServerConfig.LimitVersion)
+			if(readCount == 1 && rsValidClientFuncPos(&TransClientFuncPos) &&
+				TransClientFuncPos.ClientVersion >= rsServerConfig.LimitVersion)
 				rsAddClientFuncPos(&TransClientFuncPos);
 		}
 

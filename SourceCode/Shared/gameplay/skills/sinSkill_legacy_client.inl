@@ -51,6 +51,7 @@ static const char *SummitT5CanonicalTimerPath(DWORD code)
 	switch(code)
 	{
 	case SKILL_T5_LETHAL_SIGHT: return "game\\images\\skills\\timers\\Ac5_LethalSight.tga";
+	case SKILL_T5_MAGNETIC_DISCHARGE: return "game\\images\\skills\\timers\\Ms5_MagneticDischarge.tga";
 	case SKILL_T5_HOLY_CONVICTION: return "game\\images\\skills\\timers\\Kn5_HolyConviction.tga";
 	case SKILL_T5_SUMMON_TIGER: return "game\\images\\skills\\timers\\Ata5_SummonTiger.tga";
 	case SKILL_T5_ICE_ELEMENTAL: return "game\\images\\skills\\timers\\Pr5_IceElemental.tga";
@@ -641,7 +642,7 @@ void cSKILL::LoadUseSkillImage()
 	switch(UseSkillBox)
 	{
 		case GROUP_MECHANICIAN:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Mecha//");
+		strcpy_s(TempDirPath, "Image//SinImage//Skill//Mechanician//");
 
 		break;
 		case GROUP_FIGHTER:
@@ -7678,6 +7679,39 @@ int cSKILL::SkillBarDraw(sSKILL *pSkill, int x, int y, int Alpha)
 
 
 
+
+int cSKILL::EnsureContinueSkillIcon(DWORD CODE)
+{
+	for(int i = 0; i < MAX_CONTINUE_SKILL; i++)
+	{
+		if(!ContinueSkill[i].Flag || ContinueSkill[i].CODE != CODE)
+			continue;
+
+		if(ContinueSkill[i].MatIcon)
+			return TRUE;
+
+		for(int j = 0; j < SIN_MAX_SKILL; j++)
+		{
+			if(ContinueSkill[i].CODE == sSkill[j].CODE && sSkill[j].MatIcon)
+			{
+				ContinueSkill[i].MatIcon = sSkill[j].MatIcon;
+				SummitT5TimerProbeSkill("icon-material-assigned-specific", i, &ContinueSkill[i]);
+				return TRUE;
+			}
+		}
+
+		ContinueSkill[i].MatIcon = SummitT5ResolveTimerMaterial(ContinueSkill[i].CODE);
+		if(ContinueSkill[i].MatIcon)
+		{
+			SummitT5TimerProbeSkill("icon-material-assigned-specific-t5", i, &ContinueSkill[i]);
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+
+	return FALSE;
+}
 
 int cSKILL::CheckContinueIcon()
 {

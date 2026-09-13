@@ -87,7 +87,7 @@ HoEffectModelInterface::HoEffectModelInterface() : m_Color(255.f, 255.f, 255.f, 
                                                    m_fTimer(0.f),
                                                    m_iBlendType(SMMAT_BLEND_LAMP),
                                                    m_fEventTimer(0.f),
-                                                   m_CurrentEvent(),
+                                                   m_CurrentEventIndex(-1),
                                                    m_bLiveFlag(true),
                                                    m_fEndTime(0.f),
                                                    m_fStartDelayTime(0.f)
@@ -105,7 +105,7 @@ void HoEffectModelInterface::Init()
     m_fTimer = 0.f;
     m_iBlendType = SMMAT_BLEND_LAMP;
     m_fEventTimer = 0.f;
-	*( int* )&m_CurrentEvent = NULL;
+	ResetCurrentEvent();
     m_bLiveFlag = true;
     m_fEndTime = 0.f;
     m_fStartDelayTime = 0.f;

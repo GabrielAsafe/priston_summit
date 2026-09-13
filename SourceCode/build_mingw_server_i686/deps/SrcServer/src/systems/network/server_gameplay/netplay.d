@@ -33,6 +33,7 @@
  SrcServer/src/systems/gameplay/character/core/character.h \
  SrcServer/src/core/server/gameplay_runtime/playmain.h \
  SrcServer/src/core/data/legacy_loader/fileread.h \
+ Shared/persistence/character_record/WarehouseRecordValidation.h \
  SrcServer/src/systems/rendering/effects/particle_legacy/particle.h \
  SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h \
  SrcServer/src/systems/rendering/legacy_2d/drawsub.h \
@@ -168,6 +169,7 @@ SrcServer/src/systems/rendering/legacy_3d/FilterEffect.h:
 SrcServer/src/systems/gameplay/character/core/character.h:
 SrcServer/src/core/server/gameplay_runtime/playmain.h:
 SrcServer/src/core/data/legacy_loader/fileread.h:
+Shared/persistence/character_record/WarehouseRecordValidation.h:
 SrcServer/src/systems/rendering/effects/particle_legacy/particle.h:
 SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h:
 SrcServer/src/systems/rendering/legacy_2d/drawsub.h:

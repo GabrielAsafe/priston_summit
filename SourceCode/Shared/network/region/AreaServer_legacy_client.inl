@@ -19,6 +19,7 @@
 #include "systems/localization/legacy_catalog/language.h"
 
 #include "systems/network/region/AreaServer.h"
+#include "network/region/AreaServerMapValidation.h"
 
 TRANS_SEVER_MAP	TransAreaServer;
 int	AreaServerMode = 0;
@@ -318,12 +319,7 @@ DWORD WINAPI AreaServer_ControlThread(void *pInfo)
 
 int RecvAreaServerMap(TRANS_SEVER_MAP *lpTransServerMap)
 {
-	if(!lpTransServerMap) return FALSE;
-	const int minPacketSize = (int)(sizeof(int) * 2 + sizeof(DWORD) * 30 + sizeof(int));
-	if(lpTransServerMap->size < minPacketSize || lpTransServerMap->size > (int)sizeof(TRANS_SEVER_MAP)) return FALSE;
-	if(lpTransServerMap->IP_Count < 0 || lpTransServerMap->IP_Count > SERVER_MAP_MAX) return FALSE;
-	const int expectedSize = (int)sizeof(TRANS_SEVER_MAP) - (int)(sizeof(DWORD) * (SERVER_MAP_MAX - lpTransServerMap->IP_Count));
-	if(lpTransServerMap->size != expectedSize) return FALSE;
+	if(!legacy_area_server::IsValidMapPacket(lpTransServerMap)) return FALSE;
 
 	ZeroMemory(&TransAreaServer, sizeof(TRANS_SEVER_MAP));
 	memcpy(&TransAreaServer, lpTransServerMap, lpTransServerMap->size);

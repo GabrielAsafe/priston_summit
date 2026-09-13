@@ -21905,7 +21905,6 @@ int ResetBlackUserFiles()
 	hFindHandle = FindFirstFile(szBuff, &fd);
 	if(hFindHandle == INVALID_HANDLE_VALUE)
 	{
-		FindClose(hFindHandle);
 		return 0;
 	}
 	while(1)

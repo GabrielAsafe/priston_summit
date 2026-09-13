@@ -1,14 +1,15 @@
+#ifndef QUIT_MODE_APPLICATION
+#define QUIT_MODE_APPLICATION 1
+#endif
+#ifndef QUIT_MODE_LOGIN
+#define QUIT_MODE_LOGIN 2
+#endif
+
 #define WAIT_BATTLE_QUIT_TIME		10000
 
 
-int QuitGame()
+static int BeginQuitMode(int quitMode)
 {
-#ifdef _XIGNCODE_CLIENT
-
-	ZCWAVE_Cleanup();
-	ZCWAVE_SysExit();
-#endif
-
 	if (quit)
 		return TRUE;
 
@@ -21,16 +22,33 @@ int QuitGame()
 		}
 	}
 
-
 	if (cWareHouse.OpenFlag || cCraftItem.OpenFlag || cTrade.OpenFlag || cAging.OpenFlag || SmeltingItem.OpenFlag || ManufactureItem.m_OpenFlag || cMixtureReset.OpenFlag)
 	{
 		dwCloseBoxTime = dwPlayTime + 2000;
 		return FALSE;
 	}
 
-	quit = 1;
-
+	quit = quitMode;
 	return TRUE;
+}
+
+int QuitGame()
+{
+#ifdef _XIGNCODE_CLIENT
+
+	ZCWAVE_Cleanup();
+	ZCWAVE_SysExit();
+#endif
+
+	return BeginQuitMode(QUIT_MODE_APPLICATION);
+}
+
+int QuitToLogin()
+{
+	// Returning to character/login selection is not an application shutdown:
+	// keep anti-cheat/runtime services alive and let the main loop save and
+	// disconnect only the gameplay sockets.
+	return BeginQuitMode(QUIT_MODE_LOGIN);
 }
 
 #define CHARINFO_CACHE_MAX		200

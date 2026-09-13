@@ -351,6 +351,13 @@ int sinContinueSkillSet(sSKILL* lpSkill)
 			if ((lpSkill->CODE != SKILL_FORCE_ORB && lpSkill->CODE != CHANGE_JOB3_QUEST && lpSkill->CODE != CHANGE_ELEMENTARY_QUEST &&
 				lpSkill->CODE != BOOSTER_ITEM_LIFE && lpSkill->CODE != BOOSTER_ITEM_MANA && lpSkill->CODE != BOOSTER_ITEM_STAMINA))
 				ContinueSkill[i].MatIcon = 0;
+
+			// Tier 5 skills are initialized dynamically and are not present in the
+			// legacy sSkill[] icon registry. Resolve their timer icon immediately so
+			// the first frame already has the icon/background/progress material.
+			if ((lpSkill->CODE & 0x00FF0000) == CHANGE_JOB5)
+				cSkill.EnsureContinueSkillIcon(lpSkill->CODE);
+
 			SummitT5TimerProbeMorayion("continue-created", i, &ContinueSkill[i]);
 			break;
 

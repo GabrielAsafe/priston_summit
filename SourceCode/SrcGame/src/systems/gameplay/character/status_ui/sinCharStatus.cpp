@@ -48,9 +48,9 @@ sCHARRECTPOSI	sCharRectPosi[MAX_CHAR_RECT_POSI] = {
 	{"ManaRegen"      ,{ 427 , 455 + ReHeight3 , 515  , 466 }},
 	{"StaminaRegen"   ,{ 427 , 479 + ReHeight3 , 515  , 490 }},
 
-	//{"Critical"      ,{ 278 , 510, 278  , 543 }},
-	//{"Block"         ,{ 278 , 526, 278  , 543 }},
-	//{"Esquiva" ,{ 278 , 541, 278  , 543 }},
+	{"Critical"      ,{ 278 , 510, 278  , 543 }},
+	{"Block"         ,{ 278 , 526, 278  , 543 }},
+	{"Esquiva"       ,{ 278 , 541, 278  , 543 }},
 }; 
 
 int RegiBox[5][4] = {

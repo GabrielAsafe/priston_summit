@@ -25,6 +25,7 @@ static char *record_GetWord(char *q, char *p);
 #include "compat/client_server/server_legacy/onserver.h"
 
 #include "systems/security/integrity/isaocheck.h"
+#include "persistence/character_record/WarehouseRecordValidation.h"
 
 
 char	*szRecordHeader = "RC 1.50";
@@ -38,6 +39,63 @@ char	*szRecordDeleteDir = "deleted";
 char	*szPostBoxDir = "PostBox";
 
 sLAST_QUEST_INFO	RecordLastQuestInfo;
+
+
+static int IsValidWarehouseTransferRecord(const TRANS_WAREHOUSE *record, size_t bytesRead)
+{
+	if(!record)
+		return FALSE;
+	if(record->size > smSOCKBUFF_SIZE)
+		return FALSE;
+
+	const size_t headerSize = offsetof(TRANS_WAREHOUSE, Data);
+	return summit::persistence::character_record::ValidateWarehouseTransferLayout(
+		record->size,
+		record->DataSize,
+		record->Data,
+		sizeof(record->Data),
+		bytesRead,
+		headerSize) ? TRUE : FALSE;
+}
+
+static int ReadWarehouseTransferRecord(FILE *fp, TRANS_WAREHOUSE *record)
+{
+	if(!fp || !record)
+		return FALSE;
+
+	ZeroMemory(record, sizeof(*record));
+	const size_t bytesRead = fread(record, 1, sizeof(*record), fp);
+	return IsValidWarehouseTransferRecord(record, bytesRead);
+}
+
+// 1 = valid file, 0 = file does not exist, -1 = present but unreadable/invalid.
+static int LoadWarehouseTransferRecord(const char *fileName, TRANS_WAREHOUSE *record)
+{
+	if(!fileName || !record)
+		return -1;
+
+	WIN32_FIND_DATA findData;
+	HANDLE findHandle = FindFirstFile(fileName, &findData);
+	if(findHandle == INVALID_HANDLE_VALUE)
+		return 0;
+	FindClose(findHandle);
+
+	FILE *fp = fopen(fileName, "rb");
+	if(!fp)
+		return -1;
+
+	const int valid = ReadWarehouseTransferRecord(fp, record);
+	fclose(fp);
+	return valid ? 1 : -1;
+}
+
+static void InitEmptyWarehouseTransferRecord(TRANS_WAREHOUSE *record)
+{
+	ZeroMemory(record, sizeof(*record));
+	record->code = OpCode::OPCODE_WAREHOUSE;
+	record->size = sizeof(TRANS_WAREHOUSE) - sizeof(sWAREHOUSE);
+	record->wVersion[0] = Version_WareHouse;
+}
 
 
 static DWORD BuildTier5RecordChecksum(const sGAME_SAVE_INFO *lpGameSaveInfo)
@@ -2138,7 +2196,7 @@ int rsRECORD_DBASE::SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName,
 		HANDLE				hFind;
 		hFind = FindFirstFile(szFile, &ffd);
 		if (hFind == INVALID_HANDLE_VALUE) return FALSE;
-		FindClose(hFind);
+		if(hFind != INVALID_HANDLE_VALUE) FindClose(hFind);
 	}
 
 
@@ -3162,9 +3220,10 @@ int rsRecordMemoryBuff_CheckInvenItem(rsPLAYINFO *lpPlayInfo, int Mode)
 		GetWareHouseFile(lpPlayInfo->getAccount(), szFileName);
 
 		fp = fopen(szFileName, "rb");
-		if (fp)
+		if(fp)
 		{
-			fread(&TransWareHouse, sizeof(TRANS_WAREHOUSE), 1, fp);
+			if(!ReadWarehouseTransferRecord(fp, &TransWareHouse))
+				lpPlayInfo->OpenWarehouseInfoFlag = 0;
 			fclose(fp);
 		}
 		else
@@ -3398,7 +3457,7 @@ int rsRECORD_DBASE::SendUserDataToClient(const char *szID, smWINSOCK *lpsmSock, 
 	strcpy_s(LastAcessID, szID);
 
 	hFind = FindFirstFile(szFileInfo, &ffd);
-	FindClose(hFind);
+	if(hFind != INVALID_HANDLE_VALUE) FindClose(hFind);
 
 	if (hFind == INVALID_HANDLE_VALUE)
 	{
@@ -3698,7 +3757,7 @@ int rsRECORD_DBASE::IsData(char *szName)
 	GetUserDataFile(szName, szFile);
 
 	hFind = FindFirstFile(szFile, &ffd);
-	FindClose(hFind);
+	if(hFind != INVALID_HANDLE_VALUE) FindClose(hFind);
 	if (hFind != INVALID_HANDLE_VALUE)
 	{
 		return TRUE;
@@ -3752,21 +3811,20 @@ int rsRECORD_DBASE::SaveThrowData(char *szName, sTHROW_ITEM_INFO *lpThrowItemLis
 
 int rsSaveWareHouseData(const char *szID, TRANS_WAREHOUSE *lpTransWareHouse)
 {
-	char szFileName[128];
-	FILE	*fp;
+	if(!lpTransWareHouse || !IsValidWarehouseTransferRecord(lpTransWareHouse, sizeof(TRANS_WAREHOUSE)))
+		return FALSE;
 
+	char szFileName[128];
 	GetWareHouseFile(szID, szFileName);
 
+	FILE *fp = fopen(szFileName, "wb");
+	if(!fp)
+		return FALSE;
 
-
-	fp = fopen(szFileName, "wb");
-	if (!fp) return FALSE;
-	fwrite(lpTransWareHouse, lpTransWareHouse->size, 1, fp);
-	fclose(fp);
-
-	return TRUE;
+	const size_t written = fwrite(lpTransWareHouse, 1, lpTransWareHouse->size, fp);
+	const int closeResult = fclose(fp);
+	return written == (size_t)lpTransWareHouse->size && closeResult == 0;
 }
-
 
 
 int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo)
@@ -3774,50 +3832,26 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo)
 	char szFileName[128];
 	TRANS_WAREHOUSE TransWareHouse;
 	sWAREHOUSE	WareHouseCheck;
-	FILE	*fp;
 	smTRANS_COMMAND_EX	smTransCommand;
 	int	CopiedItemFlag;
 
 
-
-	WIN32_FIND_DATA		ffd;
-	HANDLE				hFind;
 	int	Money;
 	int cnt, cnt2;
 
 
 	GetWareHouseFile(lpPlayInfo->getAccount(), szFileName);
 
-	hFind = FindFirstFile(szFileName, &ffd);
-	FindClose(hFind);
-	if (hFind != INVALID_HANDLE_VALUE)
+	const int warehouseLoadStatus = LoadWarehouseTransferRecord(szFileName, &TransWareHouse);
+	if(warehouseLoadStatus < 0)
 	{
-		fp = fopen(szFileName, "rb");
-		if (fp)
-		{
-			fread(&TransWareHouse, sizeof(TRANS_WAREHOUSE), 1, fp);
-			fclose(fp);
-		}
+		lpPlayInfo->dwDataError |= rsDATA_ERROR_WAREHOUSE;
+		return 0;
 	}
-	else
-	{
-		TransWareHouse.code = OpCode::OPCODE_WAREHOUSE;
-		TransWareHouse.size = sizeof(TRANS_WAREHOUSE) - sizeof(sWAREHOUSE);
-		TransWareHouse.DataSize = 0;
-		TransWareHouse.dwChkSum = 0;
-		TransWareHouse.wVersion[0] = Version_WareHouse;
-		TransWareHouse.wVersion[1] = 0;
-		TransWareHouse.WareHouseMoney = 0;
-		TransWareHouse.UserMoney = 0;
-		TransWareHouse.dwTemp[0] = 0;
-		TransWareHouse.dwTemp[1] = 0;
-		TransWareHouse.dwTemp[2] = 0;
-		TransWareHouse.dwTemp[3] = 0;
-		TransWareHouse.dwTemp[4] = 0;
+	if(warehouseLoadStatus == 0)
+		InitEmptyWarehouseTransferRecord(&TransWareHouse);
 
-	}
-
-	if (TransWareHouse.size >= smSOCKBUFF_SIZE) TransWareHouse.size = smSOCKBUFF_SIZE;
+	if(TransWareHouse.size >= smSOCKBUFF_SIZE) TransWareHouse.size = smSOCKBUFF_SIZE;
 
 	Money = TransWareHouse.WareHouseMoney;
 
@@ -3858,7 +3892,7 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo)
 			}
 
 
-			for (cnt = 0; cnt < 300; cnt++)
+			for (cnt = 0; cnt < 100; cnt++)
 			{
 				if (WareHouseCheck.WareHouseItem[cnt].Flag)
 				{
@@ -3933,10 +3967,7 @@ int rsLoadWareHouseData_Admin(rsPLAYINFO *lpPlayInfo, char *szID, int Day)
 {
 	char szFileName[128];
 	TRANS_WAREHOUSE TransWareHouse;
-	FILE	*fp;
 
-	WIN32_FIND_DATA		ffd;
-	HANDLE				hFind;
 
 
 	if (Day == 0)
@@ -3944,23 +3975,8 @@ int rsLoadWareHouseData_Admin(rsPLAYINFO *lpPlayInfo, char *szID, int Day)
 	else
 		GetWareHouseFile_Backup(szID, szFileName, Day);
 
-	hFind = FindFirstFile(szFileName, &ffd);
-	FindClose(hFind);
-	if (hFind != INVALID_HANDLE_VALUE)
-	{
-		fp = fopen(szFileName, "rb");
-		if (fp)
-		{
-			fread(&TransWareHouse, sizeof(TRANS_WAREHOUSE), 1, fp);
-			fclose(fp);
-		}
-	}
-	else
-	{
+	if(LoadWarehouseTransferRecord(szFileName, &TransWareHouse) != 1)
 		return FALSE;
-	}
-
-	if (TransWareHouse.size >= smSOCKBUFF_SIZE) TransWareHouse.size = smSOCKBUFF_SIZE;
 
 	lpPlayInfo->OpenWarehouseInfoFlag = 0;
 
@@ -5220,20 +5236,13 @@ int CheckWareHouseData(char *szFile)
 {
 	TRANS_WAREHOUSE	TransWareHouse;
 	sWAREHOUSE	WareHouse;
-	FILE *fp;
 	int cnt, len;
 	char szName[256];
 
-	fp = fopen(szFile, "rb");
-	if (fp)
-	{
-		fread(&TransWareHouse, sizeof(TRANS_WAREHOUSE), 1, fp);
-		fclose(fp);
-	}
-	else
+	if(LoadWarehouseTransferRecord(szFile, &TransWareHouse) != 1)
 		return FALSE;
 
-	DecodeCompress((BYTE *)&TransWareHouse.Data, (BYTE *)&WareHouse);
+	DecodeCompress((BYTE *)&TransWareHouse.Data, (BYTE *)&WareHouse, sizeof(sWAREHOUSE));
 
 	if (WareHouse.Weight[0] > WareHouse.Weight[1] || WareHouse.Money >= RECORD_MONEY_LIMIT)
 	{
@@ -5310,7 +5319,7 @@ int CheckUserDataFull()
 				if (MonQuit) break;
 			}
 		}
-		FindClose(hFindHandle);
+		if(hFindHandle != INVALID_HANDLE_VALUE) FindClose(hFindHandle);
 	}
 
 	return TRUE;
@@ -5365,7 +5374,7 @@ int CheckWareHouseDataFull()
 				if (MonQuit) break;
 			}
 		}
-		FindClose(hFindHandle);
+		if(hFindHandle != INVALID_HANDLE_VALUE) FindClose(hFindHandle);
 	}
 
 	return TRUE;
@@ -5591,7 +5600,7 @@ int RestoreBackupData(char *szListFile, char *BackupPath)
 				flag = TRUE;
 
 				hFind = FindFirstFile(szSrcDataFile, &ffd);
-				FindClose(hFind);
+				if(hFind != INVALID_HANDLE_VALUE) FindClose(hFind);
 				if (hFind != INVALID_HANDLE_VALUE)
 				{
 
@@ -5616,7 +5625,7 @@ int RestoreBackupData(char *szListFile, char *BackupPath)
 						{
 
 							hFind = FindFirstFile(szDestDataFile, &ffd);
-							FindClose(hFind);
+							if(hFind != INVALID_HANDLE_VALUE) FindClose(hFind);
 							if (hFind == INVALID_HANDLE_VALUE)
 							{
 

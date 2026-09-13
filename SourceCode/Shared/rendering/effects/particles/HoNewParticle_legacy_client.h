@@ -1489,7 +1489,8 @@ public:
 		{
 			bool operator()(const HoNewParticleEvent* lhs, const HoNewParticleEvent* rhs) const
 			{
-				if (lhs && rhs) return lhs->GetActualTime() < rhs->GetActualTime();
+				if(!lhs || !rhs) return lhs != nullptr;
+				return lhs->GetActualTime() < rhs->GetActualTime();
 			}
 		} compareMinorTime;
 

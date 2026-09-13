@@ -38,7 +38,7 @@ void InitAssaEffect()
 	LoadAssaRes();
 
 
-	memset(cAssaEffect, 0, sizeof(cASSAEFFECT));
+	memset(cAssaEffect, 0, sizeof(cAssaEffect));
 
 }
 

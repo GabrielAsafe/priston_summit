@@ -116,7 +116,7 @@ int CreateDefItem(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode, in
 
 
 
-	DWORD	dwSpecialJob;
+	DWORD	dwSpecialJob = lpItem->JobCodeMask;
 	int		RndPos;
 	int		Revision;
 	int		tempJobCode = 0;
@@ -453,7 +453,7 @@ int CreateDefItemPerf(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode
 		lpItem->fIncrease_Stamina = (float)lpDefItem->Increase_Stamina[0];
 
 
-	DWORD	dwSpecialJob;
+	DWORD	dwSpecialJob = lpItem->JobCodeMask;
 	int		RndPos;
 	int		Revision;
 
@@ -632,7 +632,7 @@ int SetLowerItem(sDEF_ITEMINFO *lpDefItem)
 
 
 
-	DWORD	dwSpecialJob;
+	DWORD	dwSpecialJob = lpItem->JobCodeMask;
 	int		RndPos;
 	int		Revision;
 

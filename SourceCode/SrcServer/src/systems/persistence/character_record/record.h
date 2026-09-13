@@ -356,6 +356,7 @@ int FindLastQuestCode(WORD wQuestCode);
 
 int	CheckSkillPoint(int Level, RECORD_SKILL *lpRecordSkill, int *spTotal, DWORD dwLevelQuestLog);
 int	GetTier5RecordSkillPoint(const sGAME_SAVE_INFO *lpGameSaveInfo, int index);
+int	GetTier5FreeSkillPointsForPlayer(rsPLAYINFO *lpPlayInfo, int *lpFreeSkillPoints);
 
 int GetPostBoxFile(const char *szID, char *szFileName);
 

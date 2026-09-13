@@ -2946,8 +2946,8 @@ int ISAOCHECK::read_sod2(char *usid, char *charname, char *gserver, int index, c
 	int iRejectCode = 111111;
 	char szWriteBuffer[BUF_LEN];
 	char szReadBuffer[65536];
-	memset(szSod2Buff, 0, sizeof(szSod2Buff));
-	memset(szWriteBuffer, 0, sizeof(szWriteBuffer[BUF_LEN]));
+	memset(szSod2Buff, 0, 65536);
+	memset(szWriteBuffer, 0, sizeof(szWriteBuffer));
 	memset(szReadBuffer, 0, sizeof(szReadBuffer));
 
 

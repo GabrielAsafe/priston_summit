@@ -791,10 +791,26 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 			}
 			else
 			{
-				if (!smWsockServer || GetSaveResult() == TRUE)
+				const int saveFinished = (!smWsockServer || GetSaveResult() == TRUE);
+				const int saveTimedOut = ((dwPlayTime - rsRecorder.dwRecordTime) > 15000);
+
+				if (saveFinished || saveTimedOut)
+				{
+					if (quit == QUIT_MODE_LOGIN)
+					{
+						// The user-facing Quit button returns to the account login
+						// screen, not merely to HoLogin (character selection).
+						DisconnectServerFull();
+						quit = 0;
+						QuitSave = FALSE;
+						DisconnectFlag = 0;
+						WorkMode = OPENING_MODE;
+						SetGameMode(1);
+						continue;
+					}
+
 					break;
-				if ((dwPlayTime - rsRecorder.dwRecordTime) > 15000)
-					break;
+				}
 			}
 		}
 	}

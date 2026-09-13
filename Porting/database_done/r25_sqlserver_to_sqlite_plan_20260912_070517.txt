@@ -1,0 +1,387 @@
+==============================================================================
+R25 - SQL SERVER -> SQLITE COMPATIBILITY PLAN (READ ONLY)
+==============================================================================
+export=/home/gabriel/Transferências/summit_sqlserver_full_export_20260912_064457
+sqlite=/home/gabriel/Área de Trabalho/summit/Servidor_R25_Wine/Database/summit.sqlite3
+sqlite_user_version=32
+sqlite_quick_check=ok
+source_tables=329
+source_rows=1391
+sqlite_tables=338
+source_nonempty_tables=39
+source_empty_tables=290
+
+== CLASSIFICATION ==
+BLOCK_SCHEMA_MISMATCH=4
+BLOCK_TARGET_MISSING=123
+NOOP_SOURCE_EMPTY=166
+REVIEW_COLLISIONS=1
+REVIEW_NONEMPTY_NO_KEY=5
+SAFE_APPEND_NO_COLLISION=1
+SAFE_EMPTY_TARGET=29
+
+== BLOCKERS / REVIEW ==
+REVIEW_NONEMPTY_NO_KEY: AccountDB.dbo.AllGameUser -> AccountDB__AllGameUser src=3 dst=1 key=[] collisions=0 missing=[] extra=[]
+REVIEW_NONEMPTY_NO_KEY: AccountDB.dbo.ALLPersonalMember -> AccountDB__ALLPersonalMember src=3 dst=1 key=[] collisions=0 missing=[] extra=[]
+REVIEW_COLLISIONS: AccountDB.dbo.GameMasters -> AccountDB__GameMasters src=2 dst=1 key=[id] collisions=1 missing=[] extra=[]
+REVIEW_NONEMPTY_NO_KEY: AccountDB.dbo.TGameUser -> AccountDB__TGameUser src=1 dst=1 key=[] collisions=0 missing=[] extra=[]
+REVIEW_NONEMPTY_NO_KEY: AccountDB.dbo.TPersonalMember -> AccountDB__TPersonalMember src=1 dst=1 key=[] collisions=0 missing=[] extra=[]
+BLOCK_TARGET_MISSING: ADM.dbo.loginGM -> ADM__loginGM src=1 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: ADM.dbo.LogsBan -> ADM__LogsBan src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: ADM.dbo.LogsDistribuidor -> ADM__LogsDistribuidor src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.0CHANNEL -> BillingDb__0CHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.9CHANNEL -> BillingDb__9CHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.ACHANNEL -> BillingDb__ACHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.BCHANNEL -> BillingDb__BCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.BillingPointCheck20060329 -> BillingDb__BillingPointCheck20060329 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.CCHANNEL -> BillingDb__CCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.DCHANNEL -> BillingDb__DCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.ECHANNEL -> BillingDb__ECHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.Excite -> BillingDb__Excite src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.Excite_Amount -> BillingDb__Excite_Amount src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.Excite_Bak -> BillingDb__Excite_Bak src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.Excite_Error -> BillingDb__Excite_Error src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.Excite_Free -> BillingDb__Excite_Free src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.Excite_NoUse -> BillingDb__Excite_NoUse src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.FCHANNEL -> BillingDb__FCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.GCHANNEL -> BillingDb__GCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.HCHANNEL -> BillingDb__HCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.ICHANNEL -> BillingDb__ICHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.JCHANNEL -> BillingDb__JCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.KCHANNEL -> BillingDb__KCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.LCHANNEL -> BillingDb__LCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.MCHANNEL -> BillingDb__MCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.NCHANNEL -> BillingDb__NCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.NetMarble -> BillingDb__NetMarble src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.NetMarble_Amount -> BillingDb__NetMarble_Amount src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.NetMarble_Bak -> BillingDb__NetMarble_Bak src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.NetMarble_Error -> BillingDb__NetMarble_Error src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.NetMarble_Free -> BillingDb__NetMarble_Free src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.NetMarble_NoUse -> BillingDb__NetMarble_NoUse src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.NTTBilling -> BillingDb__NTTBilling src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.OCHANNEL -> BillingDb__OCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.PCHANNEL -> BillingDb__PCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.QCHANNEL -> BillingDb__QCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.RCHANNEL -> BillingDb__RCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.SCHANNEL -> BillingDb__SCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.Table1 -> BillingDb__Table1 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.TCHANNEL -> BillingDb__TCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.UCHANNEL -> BillingDb__UCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.VCHANNEL -> BillingDb__VCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.WCHANNEL -> BillingDb__WCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.XCHANNEL -> BillingDb__XCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.YCHANNEL -> BillingDb__YCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingDb.dbo.ZCHANNEL -> BillingDb__ZCHANNEL src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingLogDb.dbo.Bill_Error_Message -> BillingLogDb__Bill_Error_Message src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingLogDb.dbo.ChannelLog -> BillingLogDb__ChannelLog src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingLogDb.dbo.GameLog -> BillingLogDb__GameLog src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingLogDb.dbo.PersonalLog -> BillingLogDb__PersonalLog src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingLogDb.dbo.Security -> BillingLogDb__Security src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: BillingLogDb.dbo.UpdateSuccess -> BillingLogDb__UpdateSuccess src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: Jobs.dbo.Jobs_Info -> Jobs__Jobs_Info src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: Jobs.dbo.Jobs_shop -> Jobs__Jobs_shop src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_SCHEMA_MISMATCH: QuestDB.dbo.Progress -> QuestDB__Progress src=20 dst=0 key=[] collisions= missing=[Started] extra=[StartDate]
+REVIEW_NONEMPTY_NO_KEY: QuestDB.dbo.QuestMonsters -> QuestDB__QuestMonsters src=21 dst=1 key=[] collisions=0 missing=[] extra=[]
+BLOCK_SCHEMA_MISMATCH: SecurityDB.dbo.AgingFailed -> SecurityDB__AgingFailed src=0 dst=0 key=[] collisions= missing=[ID] extra=[]
+BLOCK_SCHEMA_MISMATCH: ServerDB.dbo.PremiumData -> ServerDB__PremiumData src=0 dst=0 key=[] collisions= missing=[ID] extra=[]
+BLOCK_SCHEMA_MISMATCH: ServerDB.dbo.Vip -> ServerDB__Vip src=16 dst=0 key=[] collisions= missing=[ID] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOD0401 -> SodDb__SOD0401 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOD0402 -> SodDb__SOD0402 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOD0403 -> SodDb__SOD0403 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOD0404 -> SodDb__SOD0404 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOD0405 -> SodDb__SOD0405 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOD0406 -> SodDb__SOD0406 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOD0407 -> SodDb__SOD0407 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOD0408 -> SodDb__SOD0408 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOD0409 -> SodDb__SOD0409 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOD0410 -> SodDb__SOD0410 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOD0412 -> SodDb__SOD0412 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClan0401 -> SodDb__SODClan0401 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClan0402 -> SodDb__SODClan0402 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClan0403 -> SodDb__SODClan0403 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClan0404 -> SodDb__SODClan0404 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClan0405 -> SodDb__SODClan0405 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClan0406 -> SodDb__SODClan0406 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClan0407 -> SodDb__SODClan0407 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClan0408 -> SodDb__SODClan0408 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClan0409 -> SodDb__SODClan0409 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClan0410 -> SodDb__SODClan0410 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClan0411 -> SodDb__SODClan0411 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClan0412 -> SodDb__SODClan0412 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanLog0401 -> SodDb__SODClanLog0401 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanLog0402 -> SodDb__SODClanLog0402 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanLog0403 -> SodDb__SODClanLog0403 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanLog0404 -> SodDb__SODClanLog0404 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanLog0405 -> SodDb__SODClanLog0405 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanLog0406 -> SodDb__SODClanLog0406 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanLog0407 -> SodDb__SODClanLog0407 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanLog0408 -> SodDb__SODClanLog0408 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanLog0409 -> SodDb__SODClanLog0409 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanLog0410 -> SodDb__SODClanLog0410 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanLog0411 -> SodDb__SODClanLog0411 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanLog0412 -> SodDb__SODClanLog0412 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanSum0401 -> SodDb__SODClanSum0401 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanSum0402 -> SodDb__SODClanSum0402 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanSum0403 -> SodDb__SODClanSum0403 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanSum0404 -> SodDb__SODClanSum0404 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanSum0405 -> SodDb__SODClanSum0405 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanSum0406 -> SodDb__SODClanSum0406 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanSum0407 -> SodDb__SODClanSum0407 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanSum0408 -> SodDb__SODClanSum0408 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanSum0409 -> SodDb__SODClanSum0409 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanSum0410 -> SodDb__SODClanSum0410 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanSum0411 -> SodDb__SODClanSum0411 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODClanSum0412 -> SodDb__SODClanSum0412 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODRecord0401 -> SodDb__SODRecord0401 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODRecord0402 -> SodDb__SODRecord0402 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODRecord0403 -> SodDb__SODRecord0403 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODRecord0404 -> SodDb__SODRecord0404 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODRecord0405 -> SodDb__SODRecord0405 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODRecord0406 -> SodDb__SODRecord0406 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODRecord0407 -> SodDb__SODRecord0407 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODRecord0408 -> SodDb__SODRecord0408 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODRecord0409 -> SodDb__SODRecord0409 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODRecord0410 -> SodDb__SODRecord0410 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODRecord0411 -> SodDb__SODRecord0411 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SODRecord0412 -> SodDb__SODRecord0412 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOFClanLog0403 -> SodDb__SOFClanLog0403 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOFClanLog0404 -> SodDb__SOFClanLog0404 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOFClanLog0405 -> SodDb__SOFClanLog0405 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOFClanLog0406 -> SodDb__SOFClanLog0406 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOFClanLog0407 -> SodDb__SOFClanLog0407 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOFClanLog0408 -> SodDb__SOFClanLog0408 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOFClanLog0409 -> SodDb__SOFClanLog0409 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOFClanLog0410 -> SodDb__SOFClanLog0410 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOFClanLog0411 -> SodDb__SOFClanLog0411 src=0 dst= key=[] collisions= missing=[] extra=[]
+BLOCK_TARGET_MISSING: SodDb.dbo.SOFClanLog0412 -> SodDb__SOFClanLog0412 src=0 dst= key=[] collisions= missing=[] extra=[]
+
+== NONEMPTY SOURCE TABLES ==
+AccountDB.dbo.AGameUser -> AccountDB__AGameUser src=2 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+AccountDB.dbo.AllGameUser -> AccountDB__AllGameUser src=3 dst=1 class=REVIEW_NONEMPTY_NO_KEY key=[] collisions=0
+AccountDB.dbo.ALLPersonalMember -> AccountDB__ALLPersonalMember src=3 dst=1 class=REVIEW_NONEMPTY_NO_KEY key=[] collisions=0
+AccountDB.dbo.APersonalMember -> AccountDB__APersonalMember src=2 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+AccountDB.dbo.CGameUser -> AccountDB__CGameUser src=1 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+AccountDB.dbo.CPersonalMember -> AccountDB__CPersonalMember src=1 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+AccountDB.dbo.GameMasters -> AccountDB__GameMasters src=2 dst=1 class=REVIEW_COLLISIONS key=[id] collisions=1
+AccountDB.dbo.TGameUser -> AccountDB__TGameUser src=1 dst=1 class=REVIEW_NONEMPTY_NO_KEY key=[] collisions=0
+AccountDB.dbo.TPersonalMember -> AccountDB__TPersonalMember src=1 dst=1 class=REVIEW_NONEMPTY_NO_KEY key=[] collisions=0
+ADM.dbo.loginGM -> ADM__loginGM src=1 dst= class=BLOCK_TARGET_MISSING key=[] collisions=
+BattlePass.dbo.BP_Info -> BattlePass__BP_Info src=21 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+BattlePass.dbo.BP_Item -> BattlePass__BP_Item src=40 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+ClanDB.dbo.LI -> ClanDB__LI src=1 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+ClanDB.dbo.SiegeMoneyLog -> ClanDB__SiegeMoneyLog src=17 dst=0 class=SAFE_EMPTY_TARGET key=[IDX] collisions=0
+ClanDB.dbo.SiegeMoneyTax -> ClanDB__SiegeMoneyTax src=17 dst=0 class=SAFE_EMPTY_TARGET key=[DNo] collisions=0
+CoinShopDB.dbo.ItemList -> CoinShopDB__ItemList src=110 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+CoinShopDB.dbo.ItemList_T -> CoinShopDB__ItemList_T src=34 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+CoinShopDB.dbo.PendingPayments -> CoinShopDB__PendingPayments src=1 dst=0 class=SAFE_EMPTY_TARGET key=[ID] collisions=0
+CoinShopDB.dbo.UserInfo -> CoinShopDB__UserInfo src=34 dst=0 class=SAFE_EMPTY_TARGET key=[UserID] collisions=0
+CoinShopDB.dbo.UserInfo_T -> CoinShopDB__UserInfo_T src=34 dst=0 class=SAFE_EMPTY_TARGET key=[UserID] collisions=0
+GameLogDB.dbo.CharGameRecordLg -> GameLogDB__CharGameRecordLg src=481 dst=0 class=SAFE_EMPTY_TARGET key=[CharNo] collisions=0
+LogadoPremiado.dbo.ItemList -> LogadoPremiado__ItemList src=28 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+PristonDB.dbo.Coroa -> PristonDB__Coroa src=1 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+PristonDB.dbo.Coroas -> PristonDB__Coroas src=4 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+PristonDB.dbo.LiberarPais -> PristonDB__LiberarPais src=6 dst=0 class=SAFE_EMPTY_TARGET key=[IdLiberarPais] collisions=0
+PristonDB.dbo.LoginAutenticado -> PristonDB__LoginAutenticado src=1 dst=0 class=SAFE_EMPTY_TARGET key=[IdLoginAutenticado] collisions=0
+QuestDB.dbo.Complete -> QuestDB__Complete src=195 dst=0 class=SAFE_EMPTY_TARGET key=[QuestID,QuestKind,QuestType,PlayerName] collisions=0
+QuestDB.dbo.DailyQuest -> QuestDB__DailyQuest src=1 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+QuestDB.dbo.ItemRewards -> QuestDB__ItemRewards src=20 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+QuestDB.dbo.MonsterKilled -> QuestDB__MonsterKilled src=14 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+QuestDB.dbo.Progress -> QuestDB__Progress src=20 dst=0 class=BLOCK_SCHEMA_MISMATCH key=[] collisions=
+QuestDB.dbo.QuestMonsters -> QuestDB__QuestMonsters src=21 dst=1 class=REVIEW_NONEMPTY_NO_KEY key=[] collisions=0
+QuestDB.dbo.Rewards -> QuestDB__Rewards src=21 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+QuestDB.dbo.SingleQuest -> QuestDB__SingleQuest src=5 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+SecurityDB.dbo.WindowCheatList -> SecurityDB__WindowCheatList src=108 dst=0 class=SAFE_EMPTY_TARGET key=[ID] collisions=0
+ServerDB.dbo.DropLogAlert -> ServerDB__DropLogAlert src=33 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+ServerDB.dbo.PVP -> ServerDB__PVP src=89 dst=1 class=SAFE_APPEND_NO_COLLISION key=[Name] collisions=0
+ServerDB.dbo.Vip -> ServerDB__Vip src=16 dst=0 class=BLOCK_SCHEMA_MISMATCH key=[] collisions=
+StartUserDB.dbo.Level -> StartUserDB__Level src=1 dst=0 class=SAFE_EMPTY_TARGET key=[] collisions=0
+
+== SQLITE-ONLY / R25 EXTRA TABLES ==
+BillingDB__0CHANNEL rows=0
+BillingDB__9CHANNEL rows=0
+BillingDB__ACHANNEL rows=0
+BillingDB__BCHANNEL rows=0
+BillingDB__BillingPointCheck20060329 rows=0
+BillingDB__CCHANNEL rows=0
+BillingDB__DCHANNEL rows=0
+BillingDB__ECHANNEL rows=0
+BillingDB__Excite rows=0
+BillingDB__Excite_Amount rows=0
+BillingDB__Excite_Bak rows=0
+BillingDB__Excite_Error rows=0
+BillingDB__Excite_Free rows=0
+BillingDB__Excite_NoUse rows=0
+BillingDB__FCHANNEL rows=0
+BillingDB__GCHANNEL rows=0
+BillingDB__HCHANNEL rows=0
+BillingDB__ICHANNEL rows=0
+BillingDB__JCHANNEL rows=0
+BillingDB__KCHANNEL rows=0
+BillingDB__LCHANNEL rows=0
+BillingDB__MCHANNEL rows=0
+BillingDB__NCHANNEL rows=0
+BillingDB__NTTBilling rows=0
+BillingDB__NetMarble rows=0
+BillingDB__NetMarble_Amount rows=0
+BillingDB__NetMarble_Bak rows=0
+BillingDB__NetMarble_Error rows=0
+BillingDB__NetMarble_Free rows=0
+BillingDB__NetMarble_NoUse rows=0
+BillingDB__OCHANNEL rows=0
+BillingDB__PCHANNEL rows=0
+BillingDB__QCHANNEL rows=0
+BillingDB__RCHANNEL rows=0
+BillingDB__SCHANNEL rows=0
+BillingDB__TCHANNEL rows=0
+BillingDB__Table1 rows=0
+BillingDB__UCHANNEL rows=0
+BillingDB__VCHANNEL rows=0
+BillingDB__WCHANNEL rows=0
+BillingDB__XCHANNEL rows=0
+BillingDB__YCHANNEL rows=0
+BillingDB__ZCHANNEL rows=0
+BillingLogDB__Bill_Error_Message rows=0
+BillingLogDB__ChannelLog rows=0
+BillingLogDB__GameLog rows=0
+BillingLogDB__PersonalLog rows=0
+BillingLogDB__Security rows=0
+BillingLogDB__UpdateSuccess rows=0
+GameLogDB__LocalCharacterEvent rows=6
+ItemLogDB__LocalItemEvent rows=15
+ItemLogDB__LocalItemEventEntry rows=15
+JOBS__Jobs_Info rows=0
+JOBS__Jobs_shop rows=0
+LocalAuth__AccountPolicy rows=1
+LocalAuth__GameplayEntitlement rows=0
+LocalAuth__RuntimePolicy rows=1
+QuestDB__RepeatedQuest rows=0
+SecurityDB__AgingRecord rows=0
+SecurityDB__BannedIP rows=0
+SecurityDB__BannedMac rows=0
+SecurityDB__ClassCheatList rows=0
+SodDB__SOD0401 rows=0
+SodDB__SOD0402 rows=0
+SodDB__SOD0403 rows=0
+SodDB__SOD0404 rows=0
+SodDB__SOD0405 rows=0
+SodDB__SOD0406 rows=0
+SodDB__SOD0407 rows=0
+SodDB__SOD0408 rows=0
+SodDB__SOD0409 rows=0
+SodDB__SOD0410 rows=0
+SodDB__SOD0412 rows=0
+SodDB__SODClan0401 rows=0
+SodDB__SODClan0402 rows=0
+SodDB__SODClan0403 rows=0
+SodDB__SODClan0404 rows=0
+SodDB__SODClan0405 rows=0
+SodDB__SODClan0406 rows=0
+SodDB__SODClan0407 rows=0
+SodDB__SODClan0408 rows=0
+SodDB__SODClan0409 rows=0
+SodDB__SODClan0410 rows=0
+SodDB__SODClan0411 rows=0
+SodDB__SODClan0412 rows=0
+SodDB__SODClanLog0401 rows=0
+SodDB__SODClanLog0402 rows=0
+SodDB__SODClanLog0403 rows=0
+SodDB__SODClanLog0404 rows=0
+SodDB__SODClanLog0405 rows=0
+SodDB__SODClanLog0406 rows=0
+SodDB__SODClanLog0407 rows=0
+SodDB__SODClanLog0408 rows=0
+SodDB__SODClanLog0409 rows=0
+SodDB__SODClanLog0410 rows=0
+SodDB__SODClanLog0411 rows=0
+SodDB__SODClanLog0412 rows=0
+SodDB__SODClanSum0401 rows=0
+SodDB__SODClanSum0402 rows=0
+SodDB__SODClanSum0403 rows=0
+SodDB__SODClanSum0404 rows=0
+SodDB__SODClanSum0405 rows=0
+SodDB__SODClanSum0406 rows=0
+SodDB__SODClanSum0407 rows=0
+SodDB__SODClanSum0408 rows=0
+SodDB__SODClanSum0409 rows=0
+SodDB__SODClanSum0410 rows=0
+SodDB__SODClanSum0411 rows=0
+SodDB__SODClanSum0412 rows=0
+SodDB__SODRecord0401 rows=0
+SodDB__SODRecord0402 rows=0
+SodDB__SODRecord0403 rows=0
+SodDB__SODRecord0404 rows=0
+SodDB__SODRecord0405 rows=0
+SodDB__SODRecord0406 rows=0
+SodDB__SODRecord0407 rows=0
+SodDB__SODRecord0408 rows=0
+SodDB__SODRecord0409 rows=0
+SodDB__SODRecord0410 rows=0
+SodDB__SODRecord0411 rows=0
+SodDB__SODRecord0412 rows=0
+SodDB__SOFClanLog0403 rows=0
+SodDB__SOFClanLog0404 rows=0
+SodDB__SOFClanLog0405 rows=0
+SodDB__SOFClanLog0406 rows=0
+SodDB__SOFClanLog0407 rows=0
+SodDB__SOFClanLog0408 rows=0
+SodDB__SOFClanLog0409 rows=0
+SodDB__SOFClanLog0410 rows=0
+SodDB__SOFClanLog0411 rows=0
+SodDB__SOFClanLog0412 rows=0
+StartUserDB__ExtraItems rows=0
+
+== IMPORTANT AREAS ==
+AccountDB__GameMasters src=2 dst=1 class=REVIEW_COLLISIONS collisions=1
+BattlePass__BP_Info src=21 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+BattlePass__BP_Item src=40 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+BattlePass__BP_XP src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__BBSMain src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__BBSSub src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__ChipLog src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__CL src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__ClanHome src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__ClanMainCharChangeLog src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__ClanMainDeleted src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__ClanMainView src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__ClanMoneyLog src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__ClanSubCharChangeLog src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__ClanSubDeleted src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__ClanSubView src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__ClanTicket src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__CT src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__GameNotice src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__GameNoticeGroup src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__GameNoticePrivate src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__LI src=1 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+ClanDB__Minutos src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__Notice src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__PRBbsFile src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__PRBBSMain src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__PRBBSSub src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__SiegeClanList src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__SiegeCurrentList src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ClanDB__SiegeMoneyLog src=17 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+ClanDB__SiegeMoneyTax src=17 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+ClanDB__UL src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+CoinShopDB__ItemList src=110 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+CoinShopDB__ItemList_T src=34 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+CoinShopDB__PendingPayments src=1 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+CoinShopDB__Transactions src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+CoinShopDB__UserInfo src=34 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+CoinShopDB__UserInfo_T src=34 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+QuestDB__Complete src=195 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+QuestDB__DailyQuest src=1 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+QuestDB__ItemRewards src=20 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+QuestDB__MonsterKilled src=14 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+QuestDB__Progress src=20 dst=0 class=BLOCK_SCHEMA_MISMATCH collisions=
+QuestDB__QuestMonsters src=21 dst=1 class=REVIEW_NONEMPTY_NO_KEY collisions=0
+QuestDB__Rewards src=21 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+QuestDB__SingleQuest src=5 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+ServerDB__BoxRewards src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ServerDB__DropLogAlert src=33 dst=0 class=SAFE_EMPTY_TARGET collisions=0
+ServerDB__NoticeSystem src=0 dst=0 class=NOOP_SOURCE_EMPTY collisions=
+ServerDB__PremiumData src=0 dst=0 class=BLOCK_SCHEMA_MISMATCH collisions=
+ServerDB__PVP src=89 dst=1 class=SAFE_APPEND_NO_COLLISION collisions=0
+ServerDB__Vip src=16 dst=0 class=BLOCK_SCHEMA_MISMATCH collisions=
+
+READ_ONLY=YES
