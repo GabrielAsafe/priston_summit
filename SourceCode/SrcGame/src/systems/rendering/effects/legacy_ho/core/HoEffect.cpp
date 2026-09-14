@@ -12261,7 +12261,6 @@ int InitEffect()
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3AtalantaSplitJavelin1.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//toppvp.part");//ReiPvP
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//WarMode.part");//WarMode
 
 
@@ -12312,7 +12311,6 @@ int InitEffect()
 
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//snow.part");
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//TerrainFire.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Bam.part");
 
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//MusPell.part");
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//MuspellHit1.part");
