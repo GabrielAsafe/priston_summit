@@ -19,6 +19,26 @@ int CreateItem(pssITEM *lpsItem, char  *dwCode, int JobCode);
 int	rsAddInvenItem(rsPLAYINFO *lpPlayInfo, DWORD dwCode, DWORD dwHead, DWORD dwChkSum);
 DWORD GetServerTime();
 
+static bool IsSafeClanAssetCode(const char *value)
+{
+	if(!value)
+		return false;
+
+	for(int i = 0; i < 32; ++i)
+	{
+		const unsigned char c = (unsigned char)value[i];
+		if(c == 0)
+			return i > 0;
+		if(!((c >= '0' && c <= '9') ||
+			 (c >= 'A' && c <= 'Z') ||
+			 (c >= 'a' && c <= 'z') ||
+			 c == '_' || c == '-'))
+			return false;
+	}
+
+	return false;
+}
+
 
 void ClanCustom::SendCrownToClient(rsPLAYINFO * Player)
 {
@@ -118,12 +138,9 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 	{
 		if (SQL::GetInstance()->IsConnected())
 		{
-			pssITEM	*lpsItem;
-			lpsItem = new pssITEM;
-			int UserCoin = 0;
 			int Price = 0;
-			char Cname[32];
-			char Cid[32];
+			char Cname[32] = { 0 };
+			char Cid[32] = { 0 };
 			char szQuery[512];
 			SQL::GetInstance()->EnterSqlSection();
 			wsprintf(szQuery, "SELECT * FROM [ClanDB].[dbo].[CL] WHERE [MiconCnt]='%d'", (rsBlessCastle.dwMasterClan + 1000000));
@@ -131,7 +148,12 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 			{
 				if (SQL::GetInstance()->Fetch())
 					SQL::GetInstance()->GetDataValue(6, Cname);
-				wsprintf(szQuery, "SELECT * FROM [PristonDB].[dbo].[Coroas] WHERE [Name]='%s'", Shop->item.Name);
+				if(!IsSafeClanAssetCode(Shop->item.itCode))
+				{
+					SQL::GetInstance()->LeaveSqlSection();
+					return;
+				}
+				wsprintf(szQuery, "SELECT * FROM [PristonDB].[dbo].[Coroas] WHERE [CodeIT]='%s'", Shop->item.itCode);
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
 					if (SQL::GetInstance()->Fetch())
@@ -244,21 +266,21 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 					Player->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 			}
 			SQL::GetInstance()->LeaveSqlSection();
-			delete lpsItem;
 		}
 	}
 	else if (Shop->item.SubTag == 2)
 	{
 		if (SQL::GetInstance()->IsConnected())
 		{
-			char Cname[32];
-			char Clanname[32];
-			char Cid[32];
-			char Clanaux[32];
+			char Cname[32] = { 0 };
+			char Clanname[32] = { 0 };
+			char Cid[32] = { 0 };
+			char Clanaux[32] = { 0 };
 			char szQuery[512];
-			char codeant[512];
-			char codeatt[512];
-			char comando[512];
+			char codeant[512] = { 0 };
+			char codeatt[512] = { 0 };
+			char sourcePath[512] = { 0 };
+			char destinationPath[512] = { 0 };
 			SQL::GetInstance()->EnterSqlSection();
 			wsprintf(szQuery, "SELECT * FROM [ClanDB].[dbo].[CL] WHERE [MiconCnt]='%d'", Player->smCharInfo.ClassClan);
 			if (SQL::GetInstance()->Execute(szQuery))
@@ -288,6 +310,12 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 
 
 
+					if(!IsSafeClanAssetCode(Shop->item.itCode))
+					{
+						SQL::GetInstance()->LeaveSqlSection();
+						return;
+					}
+
 					wsprintfA(Clanaux, "%s", Shop->item.itCode);
 
 					wsprintf(szQuery, "UPDATE [PristonDB].[dbo].[Tags] SET Slot='%d' WHERE [CodeIT]='%s'", 1, Clanaux);
@@ -302,14 +330,9 @@ void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 							//}
 						}
 					}
-					wsprintfA(
-						comando,
-			   "copy \"C:\\inetpub\\wwwroot\\brnxcontenttags\\%s.bmp\" "
-			   "\"C:\\inetpub\\wwwroot\\ClanContent\\%s.bmp\"",
-			   Clanaux,
-			   codeant
-					);
-					system(comando);
+					wsprintfA(sourcePath, "C:\\inetpub\\wwwroot\\brnxcontenttags\\%s.bmp", Clanaux);
+					wsprintfA(destinationPath, "C:\\inetpub\\wwwroot\\ClanContent\\%s.bmp", codeant);
+					CopyFileA(sourcePath, destinationPath, FALSE);
 
 					wsprintf(szQuery, "UPDATE [PristonDB].[dbo].[Tags] SET Slot='%d' WHERE [CodeIT]='%s'", 0, codeatt);
 					if (SQL::GetInstance()->Execute(szQuery))
