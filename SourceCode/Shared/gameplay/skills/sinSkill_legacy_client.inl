@@ -94,7 +94,7 @@ static int SummitT5ResolveTimerMaterial(DWORD code)
 		{
 			const char *folder = SummitT5SkillFolder(code);
 			if(!folder) return 0;
-			wsprintf(path, "Image//SinImage//Skill//%s//Button//%s.bmp", folder, skill->FileName);
+			wsprintf(path, "image//Sinimage//skill//%s//Button//%s.bmp", folder, skill->FileName);
 		}
 
 		skill->MatIcon = CreateTextureMaterial(path, 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
@@ -551,7 +551,7 @@ cSKILL::~cSKILL()
 void cSKILL::Init()
 {
 
-	char *FilePath = "Image//SinImage//skill//keep//";
+	char *FilePath = "image//Sinimage//skill//keep//";
 	char szFilePath[128];
 	for(int j = 0; j < SIN_MAX_SKILL; j++)
 	{
@@ -642,34 +642,34 @@ void cSKILL::LoadUseSkillImage()
 	switch(UseSkillBox)
 	{
 		case GROUP_MECHANICIAN:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Mechanician//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Mechanician//");
 
 		break;
 		case GROUP_FIGHTER:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Fighter//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Fighter//");
 
 		break;
 		case GROUP_PIKEMAN:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Pikeman//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Pikeman//");
 
 		break;
 		case GROUP_ARCHER:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Archer//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Archer//");
 
 		break;
 		case GROUP_ATALANTA:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Atalanta//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Atalanta//");
 		break;
 		case GROUP_KNIGHT:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Knight//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Knight//");
 
 		break;
 		case GROUP_MAGICIAN:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Magician//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Magician//");
 
 		break;
 		case GROUP_PRIESTESS:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Priestess//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Priestess//");
 
 		break;
 

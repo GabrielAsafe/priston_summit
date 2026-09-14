@@ -4,6 +4,7 @@ set -o pipefail
 
 ROOT="$(pwd)"
 CXX="${CXX:-i686-w64-mingw32-g++}"
+WINDRES="${WINDRES:-i686-w64-mingw32-windres}"
 BUILD_DIR="$ROOT/build_mingw_client_i686"
 OBJ_DIR="$BUILD_DIR/objects"
 OBJ_LIST="$ROOT/object_files_client_mingw.txt"
@@ -13,9 +14,17 @@ LOG="$ROOT/client_link_i686.log"
 RSP="$BUILD_DIR/client_objects.rsp"
 MISSING="$ROOT/client_link_missing_i686.txt"
 RELEASE="${RELEASE:-0}"
+CLIENT_RESOURCE_DIR="$ROOT/SrcGame/src/platform/windows/resources"
+CLIENT_RESOURCE_RC="${CLIENT_RESOURCE_DIR}/Script1.rc"
+CLIENT_RESOURCE_OBJ="$BUILD_DIR/client_resources.o"
 
 if ! command -v "$CXX" >/dev/null 2>&1; then
     echo "Erro: compilador não encontrado: $CXX"
+    exit 1
+fi
+
+if ! command -v "$WINDRES" >/dev/null 2>&1; then
+    echo "Erro: windres não encontrado: $WINDRES"
     exit 1
 fi
 
@@ -131,6 +140,33 @@ LIBS=(
     -Wl,--end-group
 )
 
+if [ ! -f "${CLIENT_RESOURCE_RC}" ]; then
+    echo "Erro: resource script não encontrado: ${CLIENT_RESOURCE_RC}"
+    exit 1
+fi
+if [ ! -f "${CLIENT_RESOURCE_DIR}/resource.h" ]; then
+    echo "Erro: resource.h não encontrado: ${CLIENT_RESOURCE_DIR}/resource.h"
+    exit 1
+fi
+rm -f "${CLIENT_RESOURCE_OBJ}"
+(
+    cd "${CLIENT_RESOURCE_DIR}" || exit 1
+    "$WINDRES" \
+        -I "${CLIENT_RESOURCE_DIR}" \
+        -I "$ROOT/SrcGame/src" \
+        --input-format=rc \
+        --output-format=coff \
+        -i "Script1.rc" \
+        -o "${CLIENT_RESOURCE_OBJ}"
+) || {
+    echo "Erro: falha ao compilar resources client"
+    exit 1
+}
+if [ ! -s "${CLIENT_RESOURCE_OBJ}" ]; then
+    echo "Erro: resource object vazio/ausente: ${CLIENT_RESOURCE_OBJ}"
+    exit 1
+fi
+
 rm -f "$OUTPUT" "$LOG" "$MISSING"
 
 echo
@@ -148,6 +184,7 @@ echo
     "${LDFLAGS[@]}" \
     -o "$OUTPUT" \
     "@$RSP" \
+    "${CLIENT_RESOURCE_OBJ}" \
     "${LIB_DIRS[@]}" \
     "${LIBS[@]}" \
     >"$LOG" 2>&1
@@ -159,6 +196,15 @@ if [ "$STATUS" -eq 0 ] && [ -f "$OUTPUT" ]; then
     echo
     file "$OUTPUT"
     ls -lh "$OUTPUT"
+
+    if command -v i686-w64-mingw32-objdump >/dev/null 2>&1; then
+        if i686-w64-mingw32-objdump -h "$OUTPUT" 2>/dev/null | grep -q "\.rsrc"; then
+            echo "CLIENT_PE_RESOURCE_SECTION=PASS"
+        else
+            echo "CLIENT_PE_RESOURCE_SECTION=FAIL"
+            exit 1
+        fi
+    fi
 
     echo
     echo "Dependências DLL declaradas:"

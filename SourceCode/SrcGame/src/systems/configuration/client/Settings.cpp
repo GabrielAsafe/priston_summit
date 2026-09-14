@@ -179,8 +179,8 @@ void Settings::readConfig()
 		cLootFilter.setMagician(file.readInt("LootFilter", "Magician") != 0);
 		cLootFilter.setPriestess(file.readInt("LootFilter", "Priestess") != 0);
 
-		for (unsigned short i = 1; i < 10; i++)
-			setMacro(i, file.readString("Macro", "Macro" + std::to_string(i)));
+		for (unsigned short i = 0; i < 10; i++)
+			setMacro(i, file.readString("Macro", "Macro" + std::to_string(i + 1)));
 
 		bLoaded = true;
 	}
@@ -258,7 +258,7 @@ bool Settings::save()
 		file.write("LootFilter", "Priestess", cLootFilter.getPriestess() ? 1 : 0);
 
 		//Macro
-		for (int i = 0; i < 9; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			file.write("Macro", "Macro" + std::to_string(i + 1), getMacro(i));
 		}
@@ -326,7 +326,7 @@ bool Settings::isWideScreen() const
 
 std::string Settings::getMacro(unsigned short index) const
 {
-	if(index >= 0 || index < 10)
+	if(index < 10)
 		return szShotCutMessage[index];
 	else
 		return std::string();
@@ -334,7 +334,8 @@ std::string Settings::getMacro(unsigned short index) const
 
 void Settings::setMacro(unsigned short index, std::string macro)
 {
-	lstrcpy(szShotCutMessage[index%10], macro.c_str());
+	if(index < 10)
+		lstrcpy(szShotCutMessage[index], macro.c_str());
 }
 
 

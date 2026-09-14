@@ -430,7 +430,7 @@ cSKILL::~cSKILL()
 void cSKILL::Init()
 {
 
-	char *FilePath = "Image//SinImage//skill//keep//";
+	char *FilePath = "image//Sinimage//skill//keep//";
 	char szFilePath[128];
 	for(int j = 0; j < SIN_MAX_SKILL; j++)
 	{
@@ -448,8 +448,8 @@ void cSKILL::Init()
 
 
 
-	MatCircleIcon = CreateTextureMaterial("Image//SinImage//Skill//keep//GA_Mon.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);;
-	MatSkillIconBackGround = CreateTextureMaterial("Image//SinImage//Skill//keep//GA_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);;
+	MatCircleIcon = CreateTextureMaterial("image//Sinimage//skill//keep//GA_Mon.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);;
+	MatSkillIconBackGround = CreateTextureMaterial("image//Sinimage//skill//keep//GA_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);;
 
 	SearchUseSkill();
 	Load();
@@ -468,41 +468,41 @@ void cSKILL::Load()
 	char ShortKeyDirPath[128];
 	char WeaponIconPath[128];
 
-	lpSkillDown = LoadDibSurfaceOffscreen("Image//SinImage//skill//skilldown.bmp");
+	lpSkillDown = LoadDibSurfaceOffscreen("image//Sinimage//skill//skilldown.bmp");
 
 
-	lpSkillMain = LoadDibSurfaceOffscreen("Image//SinImage//skill//Skil24.bmp");
-
-
-
-	lpSkillMainLeftB = LoadDibSurfaceOffscreen("Image//SinImage//skill//LeftArrow.bmp");
-	lpSkillMainRightB = LoadDibSurfaceOffscreen("Image//SinImage//skill//RightArrow.bmp");
+	lpSkillMain = LoadDibSurfaceOffscreen("image//Sinimage//skill//Skil24.bmp");
 
 
 
+	lpSkillMainLeftB = LoadDibSurfaceOffscreen("image//Sinimage//skill//LeftArrow.bmp");
+	lpSkillMainRightB = LoadDibSurfaceOffscreen("image//Sinimage//skill//RightArrow.bmp");
 
-	lpSkillGage[0] = LoadDibSurfaceOffscreen("Image//SinImage//skill//Gage.bmp");
-	lpSkillGage[1] = LoadDibSurfaceOffscreen("Image//SinImage//skill//Gage2.bmp");
-	lpSkillGage2[0] = LoadDibSurfaceOffscreen("Image//SinImage//skill//Gage-2.bmp");
-	lpSkillGage2[1] = LoadDibSurfaceOffscreen("Image//SinImage//skill//Gage-22.bmp");
-	lpSkillGage3 = LoadDibSurfaceOffscreen("Image//SinImage//skill//Gage-3.bmp");
-	lpSkillGage4 = LoadDibSurfaceOffscreen("Image//SinImage//skill//Gage-4.bmp");
-	lpSkillGage5 = LoadDibSurfaceOffscreen("Image//SinImage//skill//Gage-5.bmp");
 
-	lpMasteryInfo = LoadDibSurfaceOffscreen("Image//SinImage//skill//MasteryInfo.bmp");
 
-	lpSelectSkill = LoadDibSurfaceOffscreen("Image//SinImage//skill//SelectSkill.bmp");
-	lpSkillBoxBack = LoadDibSurfaceOffscreen("Image//SinImage//skill//BOX4040.bmp");
+
+	lpSkillGage[0] = LoadDibSurfaceOffscreen("image//Sinimage//skill//Gage.bmp");
+	lpSkillGage[1] = LoadDibSurfaceOffscreen("image//Sinimage//skill//Gage2.bmp");
+	lpSkillGage2[0] = LoadDibSurfaceOffscreen("image//Sinimage//skill//Gage-2.bmp");
+	lpSkillGage2[1] = LoadDibSurfaceOffscreen("image//Sinimage//skill//Gage-22.bmp");
+	lpSkillGage3 = LoadDibSurfaceOffscreen("image//Sinimage//skill//Gage-3.bmp");
+	lpSkillGage4 = LoadDibSurfaceOffscreen("image//Sinimage//skill//Gage-4.bmp");
+	lpSkillGage5 = LoadDibSurfaceOffscreen("image//Sinimage//skill//Gage-5.bmp");
+
+	lpMasteryInfo = LoadDibSurfaceOffscreen("image//Sinimage//skill//MasteryInfo.bmp");
+
+	lpSelectSkill = LoadDibSurfaceOffscreen("image//Sinimage//skill//SelectSkill.bmp");
+	lpSkillBoxBack = LoadDibSurfaceOffscreen("image//Sinimage//skill//BOX4040.bmp");
 
 	for(int i = 0; i < 8; i++)
 	{
-		wsprintf(ShortKeyDirPath, "Image//SinImage//skill//ShortKey//f%d.bmp", i + 1);
+		wsprintf(ShortKeyDirPath, "image//Sinimage//skill//ShortKey//f%d.bmp", i + 1);
 		lpShortKey[i] = LoadDibSurfaceOffscreen(ShortKeyDirPath);
 
 	}
 	for(int i = 0; i < 10; i++)
 	{
-		wsprintf(WeaponIconPath, "Image//SinImage//skill//WeaponIcon//%d.bmp", i + 1);
+		wsprintf(WeaponIconPath, "image//Sinimage//skill//WeaponIcon//%d.bmp", i + 1);
 		lpWeaponIcon[i] = LoadDibSurfaceOffscreen(WeaponIconPath);
 
 	}
@@ -521,34 +521,34 @@ void cSKILL::LoadUseSkillImage()
 	switch(UseSkillBox)
 	{
 		case GROUP_MECHANICIAN:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Mecha//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Mechanician//");
 
 		break;
 		case GROUP_FIGHTER:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Fighter//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Fighter//");
 
 		break;
 		case GROUP_PIKEMAN:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Pikeman//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Pikeman//");
 
 		break;
 		case GROUP_ARCHER:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Archer//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Archer//");
 
 		break;
 		case GROUP_ATALANTA:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Atalanta//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Atalanta//");
 		break;
 		case GROUP_KNIGHT:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Knight//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Knight//");
 
 		break;
 		case GROUP_MAGICIAN:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Magician//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Magician//");
 
 		break;
 		case GROUP_PRIESTESS:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Priestess//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Priestess//");
 
 		break;
 
@@ -558,8 +558,8 @@ void cSKILL::LoadUseSkillImage()
 		return;
 
 
-	lpSkillButton[0] = LoadDibSurfaceOffscreen("Image//SinImage//Skill//Skill_Normal.bmp");
-	lpSkillButton_Gray[0] = LoadDibSurfaceOffscreen("Image//SinImage//Skill//Skill_Normal.bmp");
+	lpSkillButton[0] = LoadDibSurfaceOffscreen("image//Sinimage//skill//Skill_Normal.bmp");
+	lpSkillButton_Gray[0] = LoadDibSurfaceOffscreen("image//Sinimage//skill//Skill_Normal.bmp");
 	for(i = 0; i < 4; i++)
 	{
 		wsprintf(TempTitleDirPath, "%s%s%d%s", TempDirPath, "JobTitle//", i + 1, ".bmp");
@@ -1312,7 +1312,7 @@ void cSKILL::LButtonDown(int x, int y)
 		SkillMain2ButtonFlag[1] = 0;
 		SkillMain2OpenFlag = 1;
 		if(!lpSkillMain2)
-			lpSkillMain2 = LoadDibSurfaceOffscreen("Image//SinImage//skill//Skil25.bmp");
+			lpSkillMain2 = LoadDibSurfaceOffscreen("image//Sinimage//skill//Skil25.bmp");
 	}
 
 	if(SkillMain2ButtonFlag[0])

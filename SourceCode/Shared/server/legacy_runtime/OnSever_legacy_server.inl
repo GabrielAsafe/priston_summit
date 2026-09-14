@@ -28389,7 +28389,6 @@ if(cnt >= CONNECTMAX)
 
 			{
 				char SENHA[256] = { 0 };
-				int Testao;
 				char szTempBuff[256] = { 0 };
 				std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_AccountDB);
 
@@ -28403,13 +28402,12 @@ if(cnt >= CONNECTMAX)
 						db->BindInputParameter(accountId, 1, PARAMTYPE_String);
 						if (db->Execute())
 						{
-							db->GetData(&Testao, 0, 1, PARAMTYPE_Integer);
+							db->GetData(SENHA, 30, 1, PARAMTYPE_String);
 						}
 					}
 					db->Close();
 				}
 
-				wsprintf(SENHA, "%d", Testao);
 				AccountTypes security = handleSecurityCommand(lpPlayInfo, SENHA);
 
 				if (security != AccountTypes::SEC_PLAYER)

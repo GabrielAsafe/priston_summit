@@ -1974,6 +1974,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			SummitT5VisualProbe("Mechanician/Rupture", "cast-motion-control", lpCurPlayer, lpChar, summitRuptureBegin, summitRuptureMotion);
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, 4);
 			lpCurPlayer->MotionLoop = 1;
+			// EU reference event 1: Rupture 1.wav (0x4855).
+			SkillPlaySound(0x4855, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 
 			// EU Rupture has two damaging events: first with 70% of Grand Smash's
 			// attack-rating bonus, then the full bonus on the final impact.
@@ -1983,6 +1985,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			{
 				lpCurPlayer->smCharInfo.Attack_Rating = ruptureBaseAttackRating +
 					(ruptureHit == 0 ? (ruptureAttackBonus * 70) / 100 : ruptureAttackBonus);
+				if(ruptureHit == 1)
+					SkillPlaySound(0x4856, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 				SummitT5StartParticle(ruptureHit == 0 ? "MC5RuptureHit" : "MC5RuptureFinalHit", lpChar);
 				cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
 				if(!cnt)
@@ -2051,6 +2055,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->MotionLoop = 1;
 			lpCurPlayer->AttackSkil = summitRingNetworkSkill;
 			SummitT5StartParticle("PS5RingOfSpears", lpChar);
+			// EU Ring of Spears event 1: Ring Of Spears.wav (0x4857).
+			SkillPlaySound(0x4857, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 
 			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
 			if(!cnt) lpCurPlayer->AttackCritcal = -1;
@@ -2519,6 +2525,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				lpCurPlayer->MotionLoopSpeed = 70;
 				lpCurPlayer->MotionLoop = 1;
 				SummitT5StartParticle("MG5OrbMastery", lpCurPlayer);
+				// EU Wizard Trance event sound reuses the legacy Energy Shield sound (0x3710).
+				SkillPlaySound(SKILL_SOUND_SKILL_ENERGY_SHIELD, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 				lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
 				SendProcessSKillToServer(SKILL_PLAY_T51, lpSkill->Point, 0, 0);
 			}
@@ -2537,6 +2545,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				SummitT5VisualProbe("Priestess/IceElemental", "cast-motion-eu-t44", lpCurPlayer, 0, summitIceBegin, summitIceMotion);
 				lpCurPlayer->MotionLoopSpeed = 70;
 				lpCurPlayer->MotionLoop = 1;
+				// EU Ice Elemental reuses the legacy Fire Elemental sound (0x4710).
+				SkillPlaySound(SKILL_SOUND_SKILL_FIRE_ELEMENTAL, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 				lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
 				SendProcessSKillToServer(SKILL_PLAY_T51, lpSkill->Point, 0, 0);
 			}
@@ -2577,6 +2587,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				lpCurPlayer->MotionLoop = 1;
 				lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
 				SummitT5StartParticle("KS5HolyConviction", lpCurPlayer);
+				// EU Holy Conviction reuses the legacy Holy Valor sound (0x2510).
+				SkillPlaySound(SKILL_SOUND_SKILL_HOLY_VALOR1, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 				SendPartySkillToServer(SKILL_PLAY_T51, lpSkill->Point, 450, 0, 0, 0, 0);
 			}
 		}
@@ -2595,6 +2607,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				lpCurPlayer->MotionLoop = 1;
 				SummitT5StartParticle("Ac5LethalSight", lpCurPlayer);
 				SummitT5StartParticle("Ac5LethalSightKeep", lpCurPlayer);
+				// EU Lethal Sight reuses the legacy Force of Nature sound (0x4340).
+				SkillPlaySound(SKILL_SOUND_SKILL_FORCE_OF_NATURE, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 				SendProcessSKillToServer(SKILL_PLAY_T51, lpSkill->Point, 0, 0);
 			}
 		}
@@ -2708,6 +2722,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackCriticalCount = 0;
 			SummitT5StartParticle("Ac5FierceWind", lpCurPlayer);
 			SummitT5StartParticle("Ac5FierceWindProjectile", lpChar);
+			// EU Fierce Wind hit event reuses Extreme Rage 1 (0x4521).
+			SkillPlaySound(SKILL_SOUND_SKILL_EXTREM_RAGE1, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 
 			rect.left = -40;
 			rect.right = 40;

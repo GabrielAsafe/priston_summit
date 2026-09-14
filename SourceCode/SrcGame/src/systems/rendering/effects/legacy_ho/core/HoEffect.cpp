@@ -12104,19 +12104,19 @@ int InitEffect()
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//HolyValor.part");
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//DrasticSpirit.part");
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//TwistJavelin1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//twistJavelin1.part");
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//TwistJavelin2.part");
 
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireJavelinFire.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//LightHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//LightHIt1.part");
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//LightStart1.part");
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceHIt1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireHIt1.part");
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireHIt2.part");
 
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireBigHIt1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Windy1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//windy1.part");
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Windy2.part");
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Piercing1.part");
 	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IceShot1.part");
@@ -12182,159 +12182,159 @@ int InitEffect()
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3FighterConcentration1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3FighterSwiftAxe1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3FighterBoneSmash1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3FighterConcentration1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3FighterSwiftAxe1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3FighterBoneSmash1.part");
 
 
 
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PikeManVenomSpear.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PikeManVenomSpear1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PikeManBladeOfBlaze.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PikeManBladeOfBlazeHit.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PikeVanish1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3PikeManVenomSpear.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3PikeManVenomSpear1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3PikeManBladeOfBlaze.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3PikeManBladeOfBlazeHit.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3PikeVanish1.part");
 
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3ArcherBombShotHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3ArcherBombShotHit2.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3ArcherBombShot1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3ArcherBombShotHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3ArcherBombShotHit2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3ArcherBombShot1.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3ArcherGoldenFalcon1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3ArcherGoldenFalcon2.part");
-
-
-
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MechanicianMetalArmor.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MechanicianSparkShield.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MechanicianSparkShield1.part");
-
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MagicianEngrgyShield.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MagicianEngrgyShield1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MagicianSpiritElemental.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MagicianDiastrophism1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MagicianDancingSwordFire1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3ArcherGoldenFalcon1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3ArcherGoldenFalcon2.part");
 
 
 
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3MechanicianMetalArmor.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3MechanicianSparkShield.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3MechanicianSparkShield1.part");
 
-
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MagicianDancingSwordIce1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3MagicianSpiritElementalExt1.part");
-
-
-
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightHolyIncantation1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightHolyIncantation2.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightHolyIncantationHand1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightHolyIncantationHand2.part");
-
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightFlameBrandish.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightFlameBrandish1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightDivineInhalation1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3KnightDivineInhalation2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3MagicianEngrgyShield.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3MagicianEngrgyShield1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3MagicianSpiritElemental.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3MagicianDiastrophism1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3MagicianDancingSwordFire1.part");
 
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessResurrection1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessResurrection2.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessResurrection3.part");
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessVigorBall1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessVigorBall2.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessVigorBallHit1.part");
-
-
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessExtinction1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessExtinction2.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3PriestessVirtualLifeMember.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3MagicianDancingSwordIce1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3MagicianSpiritElementalExt1.part");
 
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3AtalantaTriumphOfValhalla.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill3AtalantaSplitJavelin1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3KnightHolyIncantation1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3KnightHolyIncantation2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3KnightHolyIncantationHand1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3KnightHolyIncantationHand2.part");
+
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3KnightFlameBrandish.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3KnightFlameBrandish1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3KnightDivineInhalation1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3KnightDivineInhalation2.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//toppvp.part");//ReiPvP
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//warmode.part");//WarMode
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MonsterPigonFire1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MonsterIron1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterChainGolem1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterChainGolem2.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardian.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianLight1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianLight2.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianSkillHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3PriestessResurrection1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3PriestessResurrection2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3PriestessResurrection3.part");
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterMountainHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterOmuHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3PriestessVigorBall1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3PriestessVigorBall2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3PriestessVigorBallHit1.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterBombHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterBombHit2.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterBombHit3.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3PriestessExtinction1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3PriestessExtinction2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3PriestessVirtualLifeMember.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterHyperDead.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterDeadZoneDead.part");
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianHand.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianShot1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianBossWeapon1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianBossWeapon2.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianBossHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianBossSkill1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianBossJin1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianBossJin2.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterRunicGuardianLight3.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3AtalantaTriumphOfValhalla.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill3AtalantaSplitJavelin1.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Shelltom.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//ShelltomHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//ShelltomUp1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//ShelltomUp2.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//ShellTomWeaponHit.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterSadnessShot.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//IronMonsterMorgon.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//toppvp.part");//ReiPvP
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//WarMode.part");//WarMode
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//ClassUpWeapon1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//ClassUpWeapon2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//MonsterPigonFire1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//MonsterIron1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterChainGolem1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterChainGolem2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterRunicGuardian.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterRunicGuardianLight1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterRunicGuardianLight2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterRunicGuardianSkillHit1.part");
+
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterMountainHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterOmuHit1.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//snow.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//TerrainFire.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Bam.part");
-
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MusPell.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MusPellHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MusPellHand.part");
-
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//GodlyShield.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//magneticlight.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//magneticShot.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterBombHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterBombHit2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterBombHit3.part");
 
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill4Betserker.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill4FrostJavelin.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill4ImpulsionLight.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill4ImpulsionHit1.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill4CelestialChainLightingLight.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill4PhoenixShot.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//FireElementalHit.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MonsterPigonFireTail.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//Skill4RegenerationField.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterHyperDead.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterDeadZoneDead.part");
 
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MuspellStart.part");
-	g_NewParticleResMgr.LoadScript("Effect//Particle//script//MuspellEnd.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterRunicGuardianHand.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterRunicGuardianShot1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterRunicGuardianBossWeapon1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterRunicGuardianBossWeapon2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterRunicGuardianBossHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterRunicGuardianBossSkill1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterRunicGuardianBossJin1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterRunicGuardianBossJin2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterRunicGuardianLight3.part");
+
+
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ShellTom.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ShellTomHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ShellTomUp1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ShellTomUp2.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ShellTomWeaponHit.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterSadnessShot.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//IronMonsterMorgon.part");
+
+
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ClassUpWeapon1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//ClassUpWeapon2.part");
+
+
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//snow.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//TerrainFire.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Bam.part");
+
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//MusPell.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//MuspellHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//MuspellHand.part");
+
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//GodlyShield.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//magneticlight.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//magneticShot.part");
+
+
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill4Betserker.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill4FrostJavelin.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill4ImpulsionLight.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill4ImpulsionHit1.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill4CelestialChainLightingLight.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill4PhoenixShot.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//FireElementalHit.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//MonsterPigonFireTail.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//Skill4RegenerationField.part");
+
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//MuspellStart.part");
+	g_NewParticleResMgr.LoadScript("Effect//Particle//Script//MuspellEnd.part");
 
 
 

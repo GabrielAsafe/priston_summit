@@ -1758,6 +1758,16 @@ int new_smCreateTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap)
 			delete[] pBuffer;
 		}
 	}
+	else
+	{
+		FILE *f = NULL;
+		fopen_s(&f, "LOGS\\mingw_missing_texture_paths.txt", "a");
+		if(f)
+		{
+			fprintf(f, "%s\n", lpTexHandle->Name);
+			fclose(f);
+		}
+	}
 	return TRUE;
 }
 

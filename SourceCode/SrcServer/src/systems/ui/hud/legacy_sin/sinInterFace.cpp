@@ -250,8 +250,8 @@ void cINTERFACE::Load()
 	lpSun = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Flash//Sun.bmp");
 	lpMoon = LoadDibSurfaceOffscreen("Assets//GUI//Interface//Flash//Moon.bmp");
 
-	lpGage[0] = LoadDibSurfaceOffscreen("Image//SinImage//Skill//P-skill.bmp");
-	lpGage[1] = LoadDibSurfaceOffscreen("Image//SinImage//Skill//P-skill2.bmp");
+	lpGage[0] = LoadDibSurfaceOffscreen("image//Sinimage//skill//P-skill.bmp");
+	lpGage[1] = LoadDibSurfaceOffscreen("image//Sinimage//skill//P-skill2.bmp");
 
 	lpBar_Anger = LoadDibSurfaceOffscreen("Assets//GUI//Interface//sinGage//Bar_Anger.bmp");
 	lpBar_Time = LoadDibSurfaceOffscreen("Assets//GUI//Interface//sinGage//Bar_Time.bmp");

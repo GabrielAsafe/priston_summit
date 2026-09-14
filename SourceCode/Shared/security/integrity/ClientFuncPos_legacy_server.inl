@@ -235,7 +235,7 @@ int rsSendFuncMemToClient(rsPLAYINFO *lpPlayInfo, DWORD dwFuncMem, DWORD	dwLen)
 {
 
 	TRANS_FUNC_MEMORY	TransFuncMemory;
-	int val;
+	int val = 0;
 
 
 	ZeroMemory(&TransFuncMemory, sizeof(TRANS_FUNC_MEMORY));
@@ -277,7 +277,7 @@ int rsSendFuncMemToClient2(rsPLAYINFO *lpPlayInfo)
 	TRANS_FUNC_MEMORY	TransFuncMemory;
 	TRANS_CLIENT_FUNPOS *lpTransClientFuncPos;
 	int	cnt;
-	int val;
+	int val = 0;
 
 
 	lpTransClientFuncPos = rsGetClientPos(lpPlayInfo->Client_Version);

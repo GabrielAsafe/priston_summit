@@ -641,7 +641,7 @@ void cSKILL::LoadUseSkillImage()
 	switch(UseSkillBox)
 	{
 		case GROUP_MECHANICIAN:
-		strcpy_s(TempDirPath, "Image//SinImage//Skill//Mecha//");
+		strcpy_s(TempDirPath, "image//Sinimage//skill//Mechanician//");
 
 		break;
 		case GROUP_FIGHTER:

@@ -47,7 +47,7 @@ static int SummitT5ResolveTimerMaterial(DWORD code)
 		{
 			const char *folder = SummitT5SkillFolder(code);
 			if(!folder) return 0;
-			wsprintf(path, "Image//SinImage//Skill//%s//Button//%s.bmp", folder, skill->FileName);
+			wsprintf(path, "image//Sinimage//skill//%s//Button//%s.bmp", folder, skill->FileName);
 		}
 
 		skill->MatIcon = CreateTextureMaterial(path, 0, 0, 0, 0, SMMAT_BLEND_ALPHA);

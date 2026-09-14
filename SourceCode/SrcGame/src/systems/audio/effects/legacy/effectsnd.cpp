@@ -723,6 +723,11 @@ sSKILL_SOUND_FILE	SkillSoundWav[] = {
 	{	"wav//Effects//Skill//Morion//Vengeance 01.wav",				SKILL_SOUND_SKILL_VENGEANCE1		},
 	{	"wav//Effects//Skill//Morion//Vengeance 02.wav",				SKILL_SOUND_SKILL_VENGEANCE2		},
 
+	// Summit T5 audiovisual parity: exact PT-EU SkillManager IDs with files already present in the client.
+	{	"game//sounds//skills//Rupture 1.wav",					0x4855	},
+	{	"game//sounds//skills//Rupture 2.wav",					0x4856	},
+	{	"game//sounds//skills//Ring Of Spears.wav",				0x4857	},
+
 	{	0,0 }
 };
 

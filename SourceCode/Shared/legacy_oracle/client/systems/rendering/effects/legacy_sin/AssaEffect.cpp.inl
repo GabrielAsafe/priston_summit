@@ -529,7 +529,7 @@ int AssaGetAniFileMat(cASSAEFFECT *pEffect)
 	char FirstFileName[64];
 	char FileFormat[32];
 	char TotalFileName[128];
-	char szIndex[2];
+	char szIndex[3] = { 0 };
 	int  FileIndex = 0;
 	int  *MatNum = 0;
 

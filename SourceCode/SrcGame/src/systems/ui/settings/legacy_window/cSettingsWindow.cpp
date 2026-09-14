@@ -773,7 +773,7 @@ void cSettingsWindow::LoadSettings()
 				{
 					auto pMacro = pWindowGeneral->GetElement<UIInput>(OBJID_Macro1+i);
 					if (pMacro)
-						pMacro->setText(SETTINGSHANDLER->getMacro(i+1));
+						pMacro->setText(SETTINGSHANDLER->getMacro(i));
 				}
 			}
 		}
@@ -994,7 +994,7 @@ void cSettingsWindow::ResetSettings()
 				{
 					auto pMacro = pWindowGeneral->GetElement<UIInput>(OBJID_Macro1 + i);
 					if (pMacro)
-						pMacro->setText(SETTINGSHANDLER->getMacro(i+1));
+						pMacro->setText(SETTINGSHANDLER->getMacro(i));
 				}
 			}
 		}

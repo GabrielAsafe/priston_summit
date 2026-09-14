@@ -48,7 +48,24 @@ bool HoNewParticleResMgr::LoadScript(char *scr)
 	FILE *fp;
 	fp = fopen(scr, "r+t");
 	if(fp == NULL)
+	{
+#ifndef _W_SERVER
+		DWORD attributes = GetFileAttributesA(scr);
+		FILE *diagFp = fopen("LOGS\\mingw_missing_particle_scripts.txt", "a");
+		if(diagFp)
+		{
+			fprintf(diagFp,
+				"OPEN_FAIL path=%s exists=%d readonly=%d attributes=0x%08lX\\n",
+				scr,
+				attributes != INVALID_FILE_ATTRIBUTES ? 1 : 0,
+				(attributes != INVALID_FILE_ATTRIBUTES &&
+				 (attributes & FILE_ATTRIBUTE_READONLY)) ? 1 : 0,
+				(unsigned long)attributes);
+			fclose(diagFp);
+		}
+#endif
 		return false;
+	}
 	fread(particleBuffer, sizeof(particleBuffer), 1, fp);
 	fclose(fp);
 

@@ -12561,14 +12561,20 @@ int smCHAR::BeginSkill(int SkilCode, int Level, smCHAR *lpTarChar, int x, int y,
 		break;
 
 	case SKILL_PLAY_T52:
-		// Seismic Impact visual fallback: reuse existing Fighter feedback until T5 assets are supplied.
-		SkillWarriorCycloneStrikeBlade(this, 1);
-		SkillPlaySound(SKILL_SOUND_SKILL_AVANGING_CRASH, pX, pY, pZ);
+		// Play IDs E1..E4 are shared across jobs; only Fighter E2 is Seismic Impact.
+		if(smCharInfo.JOB_CODE == JOBCODE_FIGHTER)
+		{
+			SkillWarriorCycloneStrikeBlade(this, 1);
+			SkillPlaySound(SKILL_SOUND_SKILL_AVANGING_CRASH, pX, pY, pZ);
+		}
 		break;
 
 	case SKILL_PLAY_T53:
-		// Might of Zecram visual fallback: reuse the existing Fighter fire feedback.
-		SkillPlaySound(SKILL_SOUND_SKILL_BERSERKER, pX, pY, pZ);
+		// Play IDs E1..E4 are shared across jobs; only Fighter E3 is Might of Zecram.
+		if(smCharInfo.JOB_CODE == JOBCODE_FIGHTER)
+		{
+			SkillPlaySound(SKILL_SOUND_SKILL_BERSERKER, pX, pY, pZ);
+		}
 		break;
 
 	case SKILL_PLAY_T54:
