@@ -1377,7 +1377,7 @@ switch (messg)
 			}
 		}
 
-		if (wParam == VK_F9)
+		if (wParam == VK_F9 && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_CONTROL])
 		{
 			if (!cCoinShop.isOpen())
 				cCoinShop.Open();
@@ -5150,7 +5150,7 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 			if (smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
 			{
 
-				if (wParam == VK_F9 && VRKeyBuff[VK_F9] == 0)
+				if (VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_CONTROL] && wParam == VK_F9 && VRKeyBuff[VK_F9] == 0)
 				{
 					if (DisplayDebug) DisplayDebug = FALSE;
 					else DisplayDebug = TRUE;
