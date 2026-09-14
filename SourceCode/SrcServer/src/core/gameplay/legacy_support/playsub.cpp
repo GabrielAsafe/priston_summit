@@ -681,7 +681,7 @@ INT64 ExpLevelTable[] = {
 
 
 
-INT64 LevelTableSum = 23766931515015039;
+INT64 LevelTableSum = 292288043662928391;
 
 #include "gameplay/legacy_support/PlaySubExpXorLegacyCommon.inl"
 
