@@ -53,6 +53,12 @@ void ClanCustom::SendCrownToClient(rsPLAYINFO * Player)
 
 void ClanCustom::SendItemToClient(rsPLAYINFO * Player)
 {
+	if(!Player || !Player->lpsmSock)
+		return;
+
+	if(!Player || !Player->lpsmSock)
+		return;
+
 	if (SQL::GetInstance()->IsConnected())
 	{
 		int i = 0;
@@ -65,15 +71,13 @@ void ClanCustom::SendItemToClient(rsPLAYINFO * Player)
 		wsprintf(szQuery, "SELECT * FROM [PristonDB].[dbo].[Coroas]");
 		if (SQL::GetInstance()->Execute(szQuery))
 		{
-			while (SQL::GetInstance()->Fetch())
+			while (i < (int)(sizeof(packet.item) / sizeof(packet.item[0])) && SQL::GetInstance()->Fetch())
 			{
 				SQL::GetInstance()->GetDataValue(1, &packet.item[i].SubTag);
 				SQL::GetInstance()->GetDataValue(2, packet.item[i].Name);
 				SQL::GetInstance()->GetDataValue(3, packet.item[i].itCode);
 
 				i++;
-
-				if (i > 69) break;
 			}
 
 			Player->lpsmSock->Send((char*)&packet, packet.size, true);
@@ -83,7 +87,7 @@ void ClanCustom::SendItemToClient(rsPLAYINFO * Player)
 		wsprintf(szQuery, "SELECT * FROM [PristonDB].[dbo].[Tags]");
 		if (SQL::GetInstance()->Execute(szQuery))
 		{
-			while (SQL::GetInstance()->Fetch())
+			while (i2 < (int)(sizeof(packet.item2) / sizeof(packet.item2[0])) && SQL::GetInstance()->Fetch())
 			{
 				SQL::GetInstance()->GetDataValue(1, &packet.item2[i2].SubTag);
 				SQL::GetInstance()->GetDataValue(2, packet.item2[i2].Name);
@@ -91,17 +95,9 @@ void ClanCustom::SendItemToClient(rsPLAYINFO * Player)
 				SQL::GetInstance()->GetDataValue(4, &packet.item2[i2].spec);
 
 				i2++;
-
-				if (i2 > 69) break;
 			}
 
-			for (int cnt = 0; cnt < CONNECTMAX; cnt++)
-			{
-				if (Player[cnt].lpsmSock)
-				{
-					Player[cnt].lpsmSock->Send((char*)&packet, packet.size, TRUE);
-				}
-			}
+			Player->lpsmSock->Send((char*)&packet, packet.size, TRUE);
 		}
 
 		SQL::GetInstance()->LeaveSqlSection();
@@ -112,6 +108,12 @@ void ClanCustom::SendItemToClient(rsPLAYINFO * Player)
 
 void ClanCustom::RecvItemToClient(rsPLAYINFO * Player, CCSHOP_BUY * Shop)
 {
+	if(!Player || !Shop)
+		return;
+
+	if(!Player || !Shop)
+		return;
+
 	if (Shop->item.SubTag == 1)
 	{
 		if (SQL::GetInstance()->IsConnected())
