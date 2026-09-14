@@ -8649,12 +8649,12 @@ int ThrowItemToServer(smTRANS_COMMAND_EX *lpTransCommand)
 					else if(TransThrowItem.Item.CODE == (sinBI1 | sin30))
 					{
 						chaPremiumitem.SetMightOfAwellTime(PRIME_ITEM_TIME_24H);
-						chaPremiumitem.SetMightOfAwellWeight(1000);
+						chaPremiumitem.SetMightOfAwellWeight(500);
 					}
 					else if(TransThrowItem.Item.CODE == (sinBI1 | sin31))
 					{
 						chaPremiumitem.SetMightOfAwellTime(PRIME_ITEM_TIME_24H);
-						chaPremiumitem.SetMightOfAwellWeight(1500);
+						chaPremiumitem.SetMightOfAwellWeight(500);
 					}
 					else if(TransThrowItem.Item.CODE == (sinBI1 | sin32))
 					{
