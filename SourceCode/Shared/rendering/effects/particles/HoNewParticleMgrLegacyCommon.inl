@@ -46,7 +46,7 @@ bool HoNewParticleResMgr::LoadScript(char *scr)
 	char particleBuffer[6000];
 	memset(particleBuffer, 0, sizeof(particleBuffer));
 	FILE *fp;
-	fp = fopen(scr, "r+t");
+	fp = fopen(scr, "rt");
 	if(fp == NULL)
 	{
 #ifndef _W_SERVER
