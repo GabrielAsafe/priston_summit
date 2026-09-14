@@ -855,7 +855,7 @@ INT64 ExpLevelTable[] = {
 	- 1 };
 
 
-INT64 LevelTableSum = 23766931515015039;
+INT64 LevelTableSum = 292288043662928391;
 
 #include "gameplay/legacy_support/PlaySubExpXorLegacyCommon.inl"
 
@@ -906,7 +906,7 @@ int AddExp(INT64 Exp)
 
 	bool flag = false;
 	// DEFINE O LEVEL MÁXIMO PARA GANHAR EXP NO CASO, 110.
-	int mlevel = 118 - 1; //sergio
+	int mlevel = CHAR_LEVEL_MAX;
 
 	if (exp64 < ExpLevelTable[mlevel])
 	{
