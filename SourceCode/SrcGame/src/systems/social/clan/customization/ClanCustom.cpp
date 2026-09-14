@@ -26,7 +26,7 @@ void ClanCustom::RecvItemToServer(CCSHOP * Shop)
 		}
 	}
 
-	for (int cnt2 = 0; cnt2 < 40; cnt2++)
+	for (int cnt2 = 0; cnt2 < (int)(sizeof(CList.item2) / sizeof(CList.item2[0])); cnt2++)
 	{
 		switch (CList.item2[cnt2].SubTag)
 		{
