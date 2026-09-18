@@ -2920,21 +2920,9 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			int summitSeismicMotion = lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			SummitT5VisualProbe("Fighter/SeismicImpact", "cast-motion-control", lpCurPlayer, lpChar, summitSeismicBegin, summitSeismicMotion);
 			lpCurPlayer->AttackSkil = summitSeismicNetworkSkill;
-			SummitT5StartParticle("R5SesmicImpact", lpChar);
-
-			// EU behavior has two direct damaging events and a final area impact.
-			for(int seismicHit = 0; seismicHit < 2; seismicHit++)
-			{
-				cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
-				if(!cnt)
-					lpCurPlayer->AttackCritcal = -1;
-				else
-					DamageExp(lpChar, cnt);
-			}
-
-			dm_SelectRange(lpChar->pX, lpChar->pY, lpChar->pZ, Fighter_T5_Seismic_Area[lpSkill->Point - 1], TRUE);
-			dm_AddRangeDamage(lpChar);
-			dm_SendRangeDamage(lpChar->pX, lpChar->pY, lpChar->pZ, lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil);
+			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
+			lpCurPlayer->MotionLoop = 1;
+			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_SEISMIC_IMPACT, SKILL_PLAY_T52, lpSkill->Point, lpChar, 4);
 			return TRUE;
 		}
 
