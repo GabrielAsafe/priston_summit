@@ -303,6 +303,11 @@ int SummitT5MotionEventDispatch(smCHAR *actor)
 		}
 		break;
 
+	case SKILL_T5_RING_OF_SPEARS:
+		if(eventIndex == 1)
+			SkillPlaySound(0x4857, actor->pX, actor->pY, actor->pZ);
+		break;
+
 	case SKILL_T5_WIZARD_TRANCE:
 		if(eventIndex == 1)
 		{
@@ -2311,8 +2316,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->MotionLoop = 1;
 			lpCurPlayer->AttackSkil = summitRingNetworkSkill;
 			SummitT5StartParticle("PS5RingOfSpears", lpChar);
-			// EU Ring of Spears event 1: Ring Of Spears.wav (0x4857).
-			SkillPlaySound(0x4857, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
+			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_RING_OF_SPEARS, SKILL_PLAY_T51, lpSkill->Point, lpChar, 1);
 
 			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
 			if(!cnt) lpCurPlayer->AttackCritcal = -1;
