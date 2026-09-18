@@ -211,6 +211,9 @@ void SummitT5MotionEventClear(smCHAR *actor)
 
 void SummitT5MotionEventEnd(smCHAR *actor)
 {
+	SummitT5MotionEventState *state = SummitT5FindMotionEventState(actor, FALSE);
+	if(state && state->Active && state->LogicalSkillCode == SKILL_T5_FIERCE_WIND)
+		SkillPlaySound(0x482D, actor->pX, actor->pY, actor->pZ);
 	SummitT5MotionEventClear(actor);
 }
 
