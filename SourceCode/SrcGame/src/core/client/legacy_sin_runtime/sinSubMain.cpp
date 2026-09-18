@@ -129,6 +129,7 @@ void MainSub()
 	SummitWhirlwindTick();
 	SummitArcherBombardmentTick();
 	SummitMagicianCataclysmTick();
+	SummitT5PersistentParticleTick();
 
 
 }
