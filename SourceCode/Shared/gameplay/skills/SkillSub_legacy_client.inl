@@ -133,6 +133,22 @@ static int SummitT5AttachParticleToChar(smCHAR *actor, int logicalSkillCode, con
 	return particleID;
 }
 
+void SummitT5PersistentVisualApply(smCHAR *actor, int logicalSkillCode, int level)
+{
+	if(!actor || level < 1 || level > 10) return;
+
+	switch(logicalSkillCode)
+	{
+	case SKILL_T5_HOLY_CONVICTION:
+		SummitT5AttachParticleToChar(actor, logicalSkillCode, "KS5HolyConviction",
+			(DWORD)Knight_T5_HolyConviction_Duration[level - 1] * 1000);
+		break;
+	case SKILL_T5_LETHAL_SIGHT:
+		SummitT5AttachParticleToChar(actor, logicalSkillCode, "Ac5LethalSightKeep", 300000);
+		break;
+	}
+}
+
 void SummitT5PersistentParticleTick()
 {
 	DWORD now = GetTickCount();
@@ -2887,8 +2903,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				lpCurPlayer->MotionLoopSpeed = 80;
 				lpCurPlayer->MotionLoop = 1;
 				lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
-				SummitT5AttachParticleToChar(lpCurPlayer, SKILL_T5_HOLY_CONVICTION, "KS5HolyConviction",
-					(DWORD)Knight_T5_HolyConviction_Duration[lpSkill->Point - 1] * 1000);
+				SummitT5PersistentVisualApply(lpCurPlayer, SKILL_T5_HOLY_CONVICTION, lpSkill->Point);
 				// EU Holy Conviction reuses the legacy Holy Valor sound (0x2510).
 				SkillPlaySound(SKILL_SOUND_SKILL_HOLY_VALOR1, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 				SendPartySkillToServer(SKILL_PLAY_T51, lpSkill->Point, 450, 0, 0, 0, 0);
@@ -2908,7 +2923,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				lpCurPlayer->MotionLoopSpeed = 80;
 				lpCurPlayer->MotionLoop = 1;
 				SummitT5StartParticle("Ac5LethalSight", lpCurPlayer);
-				SummitT5AttachParticleToChar(lpCurPlayer, SKILL_T5_LETHAL_SIGHT, "Ac5LethalSightKeep", 300000);
+				SummitT5PersistentVisualApply(lpCurPlayer, SKILL_T5_LETHAL_SIGHT, lpSkill->Point);
 				// EU Lethal Sight reuses the legacy Force of Nature sound (0x4340).
 				SkillPlaySound(SKILL_SOUND_SKILL_FORCE_OF_NATURE, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 				SendProcessSKillToServer(SKILL_PLAY_T51, lpSkill->Point, 0, 0);
