@@ -3018,6 +3018,9 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			int summitFierceBegin = lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			int summitFierceMotion = lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			SummitT5VisualProbe("Archer/FierceWind", "cast-motion-control", lpCurPlayer, lpChar, summitFierceBegin, summitFierceMotion);
+			// EU OnCastMember keeps this one-shot cast visual separate from the projectile MotionEvent.
+			SummitT5StartParticle("Ac5FierceWind", lpCurPlayer);
+			SkillPlaySound(0x4849, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 			lpCurPlayer->AttackCriticalCount = 0;
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
 			lpCurPlayer->MotionLoop = 1;
