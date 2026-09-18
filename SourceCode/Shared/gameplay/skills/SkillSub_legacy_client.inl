@@ -2891,19 +2891,9 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			SummitT5VisualProbe("Archer/FierceWind", "cast-motion-control", lpCurPlayer, lpChar, summitFierceBegin, summitFierceMotion);
 			lpCurPlayer->AttackSkil = summitFierceWindNetworkSkill;
 			lpCurPlayer->AttackCriticalCount = 0;
-			SummitT5StartParticle("Ac5FierceWind", lpCurPlayer);
-			SummitT5StartParticle("Ac5FierceWindProjectile", lpChar);
-			// EU Fierce Wind hit event reuses Extreme Rage 1 (0x4521).
-			SkillPlaySound(SKILL_SOUND_SKILL_EXTREM_RAGE1, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
-
-			rect.left = -40;
-			rect.right = 40;
-			rect.top = 0;
-			rect.bottom = lpCurPlayer->smCharInfo.Shooting_Range + 120;
-			dm_SelectRangeBox(lpCurPlayer, &rect, FALSE);
-			dm_SendRangeDamage(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, 0, 0, 0, 0, 0, lpCurPlayer->AttackSkil);
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
 			lpCurPlayer->MotionLoop = 1;
+			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_FIERCE_WIND, SKILL_PLAY_T52, lpSkill->Point, lpChar, 2);
 			return TRUE;
 		}
 		if(lpSkill == sinSkill.pLeftSkill && RetryPlayAttack(lpChar)) break;
