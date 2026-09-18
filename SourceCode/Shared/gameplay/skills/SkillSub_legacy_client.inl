@@ -2862,7 +2862,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				lpCurPlayer->MotionLoopSpeed = 80;
 				lpCurPlayer->MotionLoop = 1;
 				SummitT5StartParticle("Ac5LethalSight", lpCurPlayer);
-				SummitT5StartParticle("Ac5LethalSightKeep", lpCurPlayer);
+				SummitT5AttachParticleToChar(lpCurPlayer, SKILL_T5_LETHAL_SIGHT, "Ac5LethalSightKeep", 300000);
 				// EU Lethal Sight reuses the legacy Force of Nature sound (0x4340).
 				SkillPlaySound(SKILL_SOUND_SKILL_FORCE_OF_NATURE, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 				SendProcessSKillToServer(SKILL_PLAY_T51, lpSkill->Point, 0, 0);
