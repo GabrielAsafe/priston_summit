@@ -381,7 +381,8 @@ int SummitT5MotionEventDispatch(smCHAR *actor)
 		break;
 	}
 
-	if(state->FinalEvent > 0 && eventIndex >= state->FinalEvent)
+	if(state->FinalEvent > 0 && eventIndex >= state->FinalEvent &&
+		state->LogicalSkillCode != SKILL_T5_FIERCE_WIND)
 		SummitT5MotionEventClear(actor);
 	return TRUE;
 }
