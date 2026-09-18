@@ -189,7 +189,7 @@ int SummitT5MotionEventDispatch(smCHAR *actor)
 			if(actor == lpCurPlayer && target && actor->AttackCritcal >= 0)
 			{
 				int baseAttackRating = actor->smCharInfo.Attack_Rating;
-				int attackRatingBonus = Grand_Smash_AttackRate[state->Level - 1];
+				int attackRatingBonus = (baseAttackRating * Grand_Smash_AttackRate[state->Level - 1]) / 100;
 				if(eventIndex == 2) attackRatingBonus = (attackRatingBonus * 70) / 100;
 				actor->smCharInfo.Attack_Rating = baseAttackRating + attackRatingBonus;
 				int result = dm_SendTransDamage(target, 0, 0, 0, 0, networkSkill, TRUE);
