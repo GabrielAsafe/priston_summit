@@ -74,6 +74,81 @@ static int SummitT5StartParticleAt(const char *name, int x, int y, int z)
 	return g_NewParticleMgr.Start((char *)name, pos);
 }
 
+struct SummitT5PersistentParticleState
+{
+	smCHAR *Actor;
+	int LogicalSkillCode;
+	int ParticleID;
+	DWORD EndTick;
+};
+
+static SummitT5PersistentParticleState gSummitT5PersistentParticles[16] = {};
+
+static void SummitT5PersistentParticleStop(SummitT5PersistentParticleState *state)
+{
+	if(!state) return;
+	if(state->ParticleID >= 0 && g_NewParticleMgr.GetRunning(state->ParticleID))
+		g_NewParticleMgr.SetFastStop(state->ParticleID);
+	ZeroMemory(state, sizeof(*state));
+	state->ParticleID = -1;
+}
+
+static int SummitT5AttachParticleToChar(smCHAR *actor, int logicalSkillCode, const char *name, DWORD durationMs)
+{
+	if(!actor || !name || !durationMs) return -1;
+
+	SummitT5PersistentParticleState *slot = 0;
+	for(int i = 0; i < 16; i++)
+	{
+		if(gSummitT5PersistentParticles[i].Actor == actor &&
+			gSummitT5PersistentParticles[i].LogicalSkillCode == logicalSkillCode)
+		{
+			SummitT5PersistentParticleStop(&gSummitT5PersistentParticles[i]);
+			slot = &gSummitT5PersistentParticles[i];
+			break;
+		}
+		if(!slot && !gSummitT5PersistentParticles[i].Actor)
+			slot = &gSummitT5PersistentParticles[i];
+	}
+	if(!slot) return -1;
+
+	POINT3D pos = { actor->pX, actor->pY, actor->pZ };
+	int particleID = g_NewParticleMgr.Start((char *)name, pos);
+	if(particleID < 0) return particleID;
+
+	slot->Actor = actor;
+	slot->LogicalSkillCode = logicalSkillCode;
+	slot->ParticleID = particleID;
+	slot->EndTick = GetTickCount() + durationMs;
+	return particleID;
+}
+
+void SummitT5PersistentParticleTick()
+{
+	DWORD now = GetTickCount();
+	for(int i = 0; i < 16; i++)
+	{
+		SummitT5PersistentParticleState *state = &gSummitT5PersistentParticles[i];
+		if(!state->Actor) continue;
+
+		smCHAR *actor = state->Actor;
+		if(actor->Flag == 0 || !actor->MotionInfo ||
+			actor->MotionInfo->State == CHRMOTION_STATE_DEAD ||
+			(int)(now - state->EndTick) >= 0 ||
+			state->ParticleID < 0 || !g_NewParticleMgr.GetRunning(state->ParticleID))
+		{
+			SummitT5PersistentParticleStop(state);
+			continue;
+		}
+
+		D3DXVECTOR3 attachPos;
+		attachPos.x = (float)actor->pX;
+		attachPos.y = (float)actor->pY;
+		attachPos.z = (float)actor->pZ;
+		g_NewParticleMgr.SetAttachPos(state->ParticleID, attachPos);
+	}
+}
+
 struct SummitT5MotionEventState
 {
 	smCHAR *Actor;
