@@ -67,6 +67,194 @@ static void SummitT5StartParticle(const char *name, smCHAR *pcChar)
 	}
 }
 
+static int SummitT5StartParticleAt(const char *name, int x, int y, int z)
+{
+	if(!name) return -1;
+	POINT3D pos = { x, y, z };
+	return g_NewParticleMgr.Start((char *)name, pos);
+}
+
+struct SummitT5MotionEventState
+{
+	smCHAR *Actor;
+	smCHAR *Target;
+	int LogicalSkillCode;
+	int NetworkSkillCode;
+	int Level;
+	int FinalEvent;
+	int LastEvent;
+	int Active;
+};
+
+static SummitT5MotionEventState gSummitT5MotionEventStates[16] = {};
+
+static SummitT5MotionEventState *SummitT5FindMotionEventState(smCHAR *actor, int create)
+{
+	if(!actor) return 0;
+	SummitT5MotionEventState *freeState = 0;
+	for(int i = 0; i < 16; i++)
+	{
+		if(gSummitT5MotionEventStates[i].Active && gSummitT5MotionEventStates[i].Actor == actor)
+			return &gSummitT5MotionEventStates[i];
+		if(!gSummitT5MotionEventStates[i].Active && !freeState)
+			freeState = &gSummitT5MotionEventStates[i];
+	}
+	return create ? freeState : 0;
+}
+
+void SummitT5MotionEventArm(smCHAR *actor, int logicalSkillCode, int networkSkillCode, int level, smCHAR *target, int finalEvent)
+{
+	SummitT5MotionEventState *state = SummitT5FindMotionEventState(actor, TRUE);
+	if(!state) return;
+	state->Actor = actor;
+	state->Target = target;
+	state->LogicalSkillCode = logicalSkillCode;
+	state->NetworkSkillCode = networkSkillCode & 0xFF;
+	state->Level = level;
+	state->FinalEvent = finalEvent;
+	state->LastEvent = 0;
+	state->Active = TRUE;
+}
+
+void SummitT5MotionEventClear(smCHAR *actor)
+{
+	SummitT5MotionEventState *state = SummitT5FindMotionEventState(actor, FALSE);
+	if(!state) return;
+	ZeroMemory(state, sizeof(*state));
+}
+
+void SummitT5MotionEventEnd(smCHAR *actor)
+{
+	SummitT5MotionEventClear(actor);
+}
+
+static POINT3D SummitT5MotionImpactPosition(smCHAR *actor, smCHAR *target)
+{
+	POINT3D pos = { 0, 0, 0 };
+	if(actor && actor->GetAttackPoint(&pos.x, &pos.y, &pos.z) == TRUE)
+		return pos;
+	if(target)
+	{
+		pos.x = target->pX;
+		pos.y = target->pY + 24 * fONE;
+		pos.z = target->pZ;
+		return pos;
+	}
+	if(actor)
+	{
+		pos.x = actor->pX;
+		pos.y = actor->pY;
+		pos.z = actor->pZ;
+	}
+	return pos;
+}
+
+int SummitT5MotionEventDispatch(smCHAR *actor)
+{
+	SummitT5MotionEventState *state = SummitT5FindMotionEventState(actor, FALSE);
+	if(!state || !state->Active) return FALSE;
+
+	int eventIndex = actor->MotionEvent;
+	if(eventIndex <= state->LastEvent) return TRUE;
+	state->LastEvent = eventIndex;
+
+	if(state->Level < 1 || state->Level > 10)
+	{
+		SummitT5MotionEventClear(actor);
+		return TRUE;
+	}
+
+	int networkSkill = state->NetworkSkillCode | (state->Level << 8);
+	smCHAR *target = state->Target ? state->Target : actor->chrAttackTarget;
+	POINT3D impact = SummitT5MotionImpactPosition(actor, target);
+
+	switch(state->LogicalSkillCode)
+	{
+	case SKILL_T5_RUPTURE:
+		if(eventIndex == 1)
+		{
+			SkillPlaySound(0x4855, actor->pX, actor->pY, actor->pZ);
+		}
+		else if(eventIndex == 2 || eventIndex == 3)
+		{
+			if(eventIndex == 2)
+				SummitT5StartParticleAt("MC5RuptureHit", impact.x, impact.y, impact.z);
+			else
+			{
+				SetDynLight(impact.x, impact.y, impact.z, 0, 140, 0, 0, 200);
+				SkillPlaySound(0x4856, actor->pX, actor->pY, actor->pZ);
+				SummitT5StartParticleAt("MC5RuptureFinalHit", impact.x, impact.y, impact.z);
+			}
+
+			if(actor == lpCurPlayer && target && actor->AttackCritcal >= 0)
+			{
+				int baseAttackRating = actor->smCharInfo.Attack_Rating;
+				int attackRatingBonus = Grand_Smash_AttackRate[state->Level - 1];
+				if(eventIndex == 2) attackRatingBonus = (attackRatingBonus * 70) / 100;
+				actor->smCharInfo.Attack_Rating = baseAttackRating + attackRatingBonus;
+				int result = dm_SendTransDamage(target, 0, 0, 0, 0, networkSkill, TRUE);
+				actor->smCharInfo.Attack_Rating = baseAttackRating;
+				if(!result) actor->AttackCritcal = -1;
+				else DamageExp(target, result);
+			}
+		}
+		break;
+
+	case SKILL_T5_SEISMIC_IMPACT:
+		SetDynLight(impact.x, impact.y, impact.z, 200, 0, 0, 0, 400);
+		if(eventIndex == 3)
+		{
+			PlayWaponSoundDirect(actor->pX, actor->pY, actor->pZ, 13);
+		}
+		else if(eventIndex == 1 || eventIndex == 2 || eventIndex == 4)
+		{
+			SkillPlaySound(SKILL_SOUND_SKILL_AVANGING_CRASH, actor->pX, actor->pY, actor->pZ);
+			SummitT5StartParticleAt("R5SesmicImpact", impact.x, impact.y, impact.z);
+			if(actor == lpCurPlayer && target)
+			{
+				if(eventIndex == 4)
+				{
+					dm_SelectRange(target->pX, target->pY, target->pZ, Fighter_T5_Seismic_Area[state->Level - 1], TRUE);
+					dm_AddRangeDamage(target);
+					dm_SendRangeDamage(target->pX, target->pY, target->pZ, target, 0, 0, 0, 0, networkSkill);
+				}
+				else
+				{
+					int result = dm_SendTransDamage(target, 0, 0, 0, 0, networkSkill, TRUE);
+					if(!result) actor->AttackCritcal = -1;
+					else DamageExp(target, result);
+				}
+			}
+		}
+		break;
+
+	case SKILL_T5_FIERCE_WIND:
+		if(eventIndex == 1)
+		{
+			SummitT5StartParticleAt("Ac5FierceWindProjectile", impact.x, impact.y, impact.z);
+		}
+		else if(eventIndex == 2 && target)
+		{
+			SkillPlaySound(SKILL_SOUND_SKILL_EXTREM_RAGE1, actor->pX, actor->pY, actor->pZ);
+			if(actor == lpCurPlayer)
+			{
+				RECT rect;
+				rect.left = -40;
+				rect.right = 40;
+				rect.top = 0;
+				rect.bottom = actor->smCharInfo.Shooting_Range + 120;
+				dm_SelectRangeBox(actor, &rect, FALSE);
+				dm_SendRangeDamage(target->pX, target->pY, target->pZ, target, 0, 0, 0, 0, networkSkill);
+			}
+		}
+		break;
+	}
+
+	if(state->FinalEvent > 0 && eventIndex >= state->FinalEvent)
+		SummitT5MotionEventClear(actor);
+	return TRUE;
+}
+
 // Summit Archer T5-4 / Bombardment channel state.
 static int gSummitBombardmentPoint = 0;
 static DWORD gSummitBombardmentEndTime = 0;
