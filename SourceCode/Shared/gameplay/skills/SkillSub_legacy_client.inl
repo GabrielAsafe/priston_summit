@@ -84,6 +84,16 @@ struct SummitT5PersistentParticleState
 
 static SummitT5PersistentParticleState gSummitT5PersistentParticles[16] = {};
 
+static int SummitT5ContinueSkillActive(int skillCode)
+{
+	for(int i = 0; i < MAX_CONTINUE_SKILL; i++)
+	{
+		if(ContinueSkill[i].Flag && ContinueSkill[i].CODE == skillCode)
+			return TRUE;
+	}
+	return FALSE;
+}
+
 static void SummitT5PersistentParticleStop(SummitT5PersistentParticleState *state)
 {
 	if(!state) return;
@@ -134,6 +144,7 @@ void SummitT5PersistentParticleTick()
 		smCHAR *actor = state->Actor;
 		if(actor->Flag == 0 || !actor->MotionInfo ||
 			actor->MotionInfo->State == CHRMOTION_STATE_DEAD ||
+			(actor == lpCurPlayer && !SummitT5ContinueSkillActive(state->LogicalSkillCode)) ||
 			(int)(now - state->EndTick) >= 0 ||
 			state->ParticleID < 0 || !g_NewParticleMgr.GetRunning(state->ParticleID))
 		{
