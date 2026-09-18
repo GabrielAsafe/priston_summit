@@ -2841,7 +2841,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				lpCurPlayer->MotionLoopSpeed = 80;
 				lpCurPlayer->MotionLoop = 1;
 				lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
-				SummitT5StartParticle("KS5HolyConviction", lpCurPlayer);
+				SummitT5AttachParticleToChar(lpCurPlayer, SKILL_T5_HOLY_CONVICTION, "KS5HolyConviction",
+					(DWORD)Knight_T5_HolyConviction_Duration[lpSkill->Point - 1] * 1000);
 				// EU Holy Conviction reuses the legacy Holy Valor sound (0x2510).
 				SkillPlaySound(SKILL_SOUND_SKILL_HOLY_VALOR1, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 				SendPartySkillToServer(SKILL_PLAY_T51, lpSkill->Point, 450, 0, 0, 0, 0);
