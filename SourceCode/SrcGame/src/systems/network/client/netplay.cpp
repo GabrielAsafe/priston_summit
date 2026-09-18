@@ -12762,6 +12762,19 @@ int RecvPartySkillFromServer(TRANS_PARTY_SKILL *lpTransPartySkill)
 				sSkill.Flag = TRUE;
 				sSkill.Point = lpTransPartySkill->Point;
 				sinContinueSkillSet(&sSkill);
+				SummitT5PersistentVisualApply(lpCurPlayer, SKILL_T5_HOLY_CONVICTION, lpTransPartySkill->Point);
+			}
+			else
+			{
+				for(cnt2 = 0; cnt2 < OTHER_PLAYER_MAX; cnt2++)
+				{
+					if(chrOtherPlayer[cnt2].Flag &&
+						chrOtherPlayer[cnt2].dwObjectSerial == lpTransPartySkill->dwPartyUser[cnt])
+					{
+						SummitT5PersistentVisualApply(&chrOtherPlayer[cnt2], SKILL_T5_HOLY_CONVICTION, lpTransPartySkill->Point);
+						break;
+					}
+				}
 			}
 		}
 		break;
