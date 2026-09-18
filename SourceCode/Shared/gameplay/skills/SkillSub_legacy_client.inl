@@ -228,6 +228,16 @@ int SummitT5MotionEventDispatch(smCHAR *actor)
 		}
 		break;
 
+	case SKILL_T5_WIZARD_TRANCE:
+		if(eventIndex == 1)
+		{
+			// EU also starts MG5WizardTrance.luac here. Summit does not yet have
+			// the matching owner-aware .luac particle engine path, so only preserve
+			// the verified MotionEvent sound instead of inventing a fallback visual.
+			SkillPlaySound(SKILL_SOUND_SKILL_ENERGY_SHIELD, actor->pX, actor->pY, actor->pZ);
+		}
+		break;
+
 	case SKILL_T5_FIERCE_WIND:
 		if(eventIndex == 1)
 		{
@@ -2696,9 +2706,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				lpCurPlayer->MotionLoopSpeed = 70;
 				lpCurPlayer->MotionLoop = 1;
 				SummitT5StartParticle("MG5OrbMastery", lpCurPlayer);
-				// EU Wizard Trance event sound reuses the legacy Energy Shield sound (0x3710).
-				SkillPlaySound(SKILL_SOUND_SKILL_ENERGY_SHIELD, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 				lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
+				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_WIZARD_TRANCE, SKILL_PLAY_T51, lpSkill->Point, 0, 1);
 				SendProcessSKillToServer(SKILL_PLAY_T51, lpSkill->Point, 0, 0);
 			}
 		}
