@@ -239,10 +239,10 @@ int SummitT5MotionEventDispatch(smCHAR *actor)
 			if(actor == lpCurPlayer)
 			{
 				RECT rect;
-				rect.left = -40;
-				rect.right = 40;
+				rect.left = -50;
+				rect.right = 50;
 				rect.top = 0;
-				rect.bottom = actor->smCharInfo.Shooting_Range + 120;
+				rect.bottom = 340;
 				dm_SelectRangeBox(actor, &rect, FALSE);
 				dm_SendRangeDamage(target->pX, target->pY, target->pZ, target, 0, 0, 0, 0, networkSkill);
 			}
