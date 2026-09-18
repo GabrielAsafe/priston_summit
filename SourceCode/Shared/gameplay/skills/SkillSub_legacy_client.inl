@@ -2325,11 +2325,11 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			SummitT5VisualProbe("Pikeman/RingOfSpears", "cast-motion-control", lpCurPlayer, lpChar, summitRingBegin, summitRingMotion);
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
 			lpCurPlayer->MotionLoop = 1;
-			lpCurPlayer->AttackSkil = summitRingNetworkSkill;
+			// Keep AttackSkil on the T41 animation alias; damage uses the explicit T51 network code.
 			SummitT5StartParticle("PS5RingOfSpears", lpChar);
 			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_RING_OF_SPEARS, SKILL_PLAY_T51, lpSkill->Point, lpChar, 1);
 
-			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
+			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, summitRingNetworkSkill, TRUE);
 			if(!cnt) lpCurPlayer->AttackCritcal = -1;
 			return TRUE;
 		}
@@ -2796,7 +2796,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				lpCurPlayer->MotionLoopSpeed = 70;
 				lpCurPlayer->MotionLoop = 1;
 				SummitT5StartParticle("MG5OrbMastery", lpCurPlayer);
-				lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
+				// Keep AttackSkil on the legacy T33 animation alias; logical/network T51 lives in the T5 event state.
 				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_WIZARD_TRANCE, SKILL_PLAY_T51, lpSkill->Point, 0, 1);
 				SendProcessSKillToServer(SKILL_PLAY_T51, lpSkill->Point, 0, 0);
 			}
@@ -2983,13 +2983,11 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		{
 			RetryPlayAttack(lpChar);
 			// EU Fierce Wind animates through Tier-5 slot T51.
-			// Preserve T52 only for Summit server-side skill discrimination.
-			int summitFierceWindNetworkSkill = SKILL_PLAY_T52 | (lpSkill->Point << 8);
+			// Logical/network T52 is stored in the isolated MotionEvent state.
 			lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
 			int summitFierceBegin = lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			int summitFierceMotion = lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			SummitT5VisualProbe("Archer/FierceWind", "cast-motion-control", lpCurPlayer, lpChar, summitFierceBegin, summitFierceMotion);
-			lpCurPlayer->AttackSkil = summitFierceWindNetworkSkill;
 			lpCurPlayer->AttackCriticalCount = 0;
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
 			lpCurPlayer->MotionLoop = 1;
@@ -3003,13 +3001,11 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		if(lpSkill->Point && lpChar && lpSkill->Skill_Info.FuncPointer() == TRUE)
 		{
 			RetryPlayAttack(lpChar);
-			// EU Seismic Impact animates through T51; T52 remains Summit network routing.
-			int summitSeismicNetworkSkill = SKILL_PLAY_T52 | (lpSkill->Point << 8);
+			// EU Seismic Impact animates through T51; logical/network T52 stays in the isolated event state.
 			lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
 			int summitSeismicBegin = lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			int summitSeismicMotion = lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			SummitT5VisualProbe("Fighter/SeismicImpact", "cast-motion-control", lpCurPlayer, lpChar, summitSeismicBegin, summitSeismicMotion);
-			lpCurPlayer->AttackSkil = summitSeismicNetworkSkill;
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
 			lpCurPlayer->MotionLoop = 1;
 			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_SEISMIC_IMPACT, SKILL_PLAY_T52, lpSkill->Point, lpChar, 4);
