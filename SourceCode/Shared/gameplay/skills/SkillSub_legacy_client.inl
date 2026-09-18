@@ -2157,33 +2157,15 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		if(lpSkill->Point && lpChar && lpSkill->Skill_Info.FuncPointer() == TRUE)
 		{
 			RetryPlayAttack(lpChar);
-			lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
+			int summitRuptureNetworkSkill = SKILL_PLAY_T51 | (lpSkill->Point << 8);
+			lpCurPlayer->AttackSkil = summitRuptureNetworkSkill;
 			int summitRuptureBegin = lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			int summitRuptureMotion = lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			SummitT5VisualProbe("Mechanician/Rupture", "cast-motion-control", lpCurPlayer, lpChar, summitRuptureBegin, summitRuptureMotion);
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, 4);
 			lpCurPlayer->MotionLoop = 1;
-			// EU reference event 1: Rupture 1.wav (0x4855).
-			SkillPlaySound(0x4855, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
-
-			// EU Rupture has two damaging events: first with 70% of Grand Smash's
-			// attack-rating bonus, then the full bonus on the final impact.
-			int ruptureBaseAttackRating = lpCurPlayer->smCharInfo.Attack_Rating;
-			int ruptureAttackBonus = Grand_Smash_AttackRate[lpSkill->Point - 1];
-			for(int ruptureHit = 0; ruptureHit < 2; ruptureHit++)
-			{
-				lpCurPlayer->smCharInfo.Attack_Rating = ruptureBaseAttackRating +
-					(ruptureHit == 0 ? (ruptureAttackBonus * 70) / 100 : ruptureAttackBonus);
-				if(ruptureHit == 1)
-					SkillPlaySound(0x4856, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
-				SummitT5StartParticle(ruptureHit == 0 ? "MC5RuptureHit" : "MC5RuptureFinalHit", lpChar);
-				cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
-				if(!cnt)
-					lpCurPlayer->AttackCritcal = -1;
-				else
-					DamageExp(lpChar, cnt);
-			}
-			lpCurPlayer->smCharInfo.Attack_Rating = ruptureBaseAttackRating;
+			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_RUPTURE, SKILL_PLAY_T51, lpSkill->Point, lpChar, 3);
+			lpCurPlayer->AttackSkil = summitRuptureNetworkSkill;
 			return TRUE;
 		}
 
