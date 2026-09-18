@@ -235,6 +235,32 @@ static POINT3D SummitT5MotionImpactPosition(smCHAR *actor, smCHAR *target)
 	return pos;
 }
 
+static POINT3D SummitT5MotionBowPosition(smCHAR *actor)
+{
+	POINT3D pos = { 0, 0, 0 };
+	if(!actor) return pos;
+
+	pos.x = actor->pX;
+	pos.y = actor->pY;
+	pos.z = actor->pZ;
+
+	// EU GetWeaponPositionNew(..., 0.3f) uses the bow's left-hand world matrix.
+	if(!actor->HvLeftHand.dwItemCode ||
+		(actor->HvLeftHand.dwItemCode & sinITEM_MASK2) != sinWS1)
+		return pos;
+
+	smMATRIX *world = &actor->HvLeftHand_Matrix;
+	int weaponX = (int)((float)actor->HvLeftHand.SizeMax * 0.3f);
+	int rx = weaponX * world->_11;
+	int ry = weaponX * world->_12;
+	int rz = weaponX * world->_13;
+
+	pos.x = actor->pX + (rx >> 8) + world->_41;
+	pos.z = actor->pZ + (ry >> 8) + world->_42;
+	pos.y = actor->pY + (rz >> 8) + world->_43;
+	return pos;
+}
+
 int SummitT5MotionEventDispatch(smCHAR *actor)
 {
 	SummitT5MotionEventState *state = SummitT5FindMotionEventState(actor, FALSE);
@@ -332,7 +358,8 @@ int SummitT5MotionEventDispatch(smCHAR *actor)
 	case SKILL_T5_FIERCE_WIND:
 		if(eventIndex == 1)
 		{
-			SummitT5StartParticleAt("Ac5FierceWindProjectile", impact.x, impact.y, impact.z);
+			POINT3D weapon = SummitT5MotionBowPosition(actor);
+			SummitT5StartParticleAt("Ac5FierceWindProjectile", weapon.x, weapon.y - (100 * fONE), weapon.z);
 		}
 		else if(eventIndex == 2 && target)
 		{
