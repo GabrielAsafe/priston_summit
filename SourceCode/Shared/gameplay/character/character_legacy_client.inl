@@ -13841,6 +13841,7 @@ int smCHAR::EndSkill()
 		break;
 	}
 
+	SummitT5MotionEventEnd(this);
 	MotionEvent++;
 
 	return TRUE;
@@ -13863,6 +13864,9 @@ int smCHAR::EventSkill()
 	{
 		return EventSkill_Monster();
 	}
+
+	if (SummitT5MotionEventDispatch(this) == TRUE)
+		return TRUE;
 
 	point = (AttackSkil >> 8) & 0xF;
 	param = (AttackSkil >> 12) & 0xF;
