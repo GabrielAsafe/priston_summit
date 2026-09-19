@@ -131,6 +131,166 @@ char *szStartledTalkWord = "놀란표정";
 char *szNatureTalkWord = "고유표정";
 char *szSpecialTalkWord = "특별표정";
 
+// A pre-T5 .INX can still be structurally valid and decode correctly while
+// lacking motions that were added later to its source .INI.  Registry ABI
+// translation cannot recover an entry that is not present in MotionInfo at all.
+// Keep this check local to model configs that actually declare T5 skill motions;
+// head/submodel configs do not declare *APPLICABLE_SKILL T5 entries and are not
+// invalidated by this path.
+static int SummitLegacyIsCurrentT5SkillIndex(int skillIndex)
+{
+	return (skillIndex >= 16 && skillIndex <= 23) ||
+		(skillIndex >= 39 && skillIndex <= 46) ||
+		(skillIndex >= 62 && skillIndex <= 73) ||
+		(skillIndex >= 89 && skillIndex <= 97) ||
+		(skillIndex >= 116 && skillIndex <= 123) ||
+		(skillIndex >= 140 && skillIndex <= 148) ||
+		(skillIndex >= 165 && skillIndex <= 172) ||
+		(skillIndex >= 189 && skillIndex <= 195);
+}
+
+static int SummitLegacyCurrentT5IndexToTemporaryAppended(int currentIndex)
+{
+	// MOTION_REGISTRY_ABI_v1 temporarily wrote legacy 1..126 followed by the
+	// T5 aliases.  Accept those caches as containing the same source motion.
+	if(currentIndex >= 16 && currentIndex <= 23) return currentIndex + 111;
+	if(currentIndex >= 39 && currentIndex <= 46) return currentIndex + 96;
+	if(currentIndex >= 62 && currentIndex <= 73) return currentIndex + 81;
+	if(currentIndex >= 89 && currentIndex <= 97) return currentIndex + 66;
+	if(currentIndex >= 116 && currentIndex <= 123) return currentIndex + 48;
+	if(currentIndex >= 140 && currentIndex <= 148) return currentIndex + 32;
+	if(currentIndex >= 165 && currentIndex <= 172) return currentIndex + 16;
+	if(currentIndex >= 189 && currentIndex <= 195) return currentIndex;
+	return 0;
+}
+
+static int SummitLegacyFindSkillRegistryIndex(const char *skillName)
+{
+	if(!skillName || !skillName[0]) return 0;
+
+	for(int index = 1; SkillDataCode[index].szSkillName[0]; index++)
+	{
+		if(lstrcmpi(SkillDataCode[index].szSkillName, skillName) == 0 ||
+			SummitLegacySkillTokenEquals(SkillDataCode[index].szSkillName, skillName))
+			return index;
+	}
+
+	return 0;
+}
+
+static int SummitLegacyCachedModelHasT5SkillIndex(
+	const smMODELINFO *cachedInfo,
+	int currentIndex)
+{
+	if(!cachedInfo || !SummitLegacyIsCurrentT5SkillIndex(currentIndex))
+		return FALSE;
+
+	const int temporaryIndex = SummitLegacyCurrentT5IndexToTemporaryAppended(currentIndex);
+	int motionCount = (int)cachedInfo->MotionCount;
+	if(motionCount > MOTION_INFO_MAX) motionCount = MOTION_INFO_MAX;
+
+	for(int motionIndex = 0; motionIndex < motionCount; motionIndex++)
+	{
+		const smMOTIONINFO *motion = &cachedInfo->MotionInfo[motionIndex];
+		if(motion->State != CHRMOTION_STATE_SKILL)
+			continue;
+
+		for(int skillPos = 0; skillPos < MOTION_SKIL_MAX; skillPos++)
+		{
+			const int storedIndex = motion->SkillCodeList[skillPos];
+			if(storedIndex == 0) break;
+			if(storedIndex == currentIndex ||
+				(temporaryIndex && storedIndex == temporaryIndex))
+				return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
+static int SummitLegacySourceDeclaresMissingT5Motion(
+	const char *sourceFile,
+	const smMODELINFO *cachedInfo,
+	char *missingSkill,
+	size_t missingSkillSize)
+{
+	if(missingSkill && missingSkillSize) missingSkill[0] = 0;
+	if(!sourceFile || !sourceFile[0] || !cachedInfo)
+		return FALSE;
+
+	FILE *source = nullptr;
+	fopen_s(&source, sourceFile, "rb");
+	if(!source)
+		return FALSE;
+
+	char sourceLine[512] = { 0 };
+	char command[64] = { 0 };
+	char skillToken[64] = { 0 };
+	int lastMotionWasSkill = FALSE;
+	int missing = FALSE;
+
+	while(!missing && fgets(sourceLine, sizeof(sourceLine), source))
+	{
+		char *cursor = fileread_GetWord(command, sourceLine);
+
+		// Mirror the legacy parser's motion-state gate so an orphaned
+		// *APPLICABLE_SKILL line cannot force a permanent rebuild loop.
+		if(command[0] == '*' && strstr(command, szMotionWord))
+		{
+			lastMotionWasSkill = strstr(command, szSkillWord) ? TRUE : FALSE;
+			continue;
+		}
+
+		if(!lastMotionWasSkill || lstrcmp(command, "*APPLICABLE_SKILL") != 0)
+			continue;
+
+		int recognizedCount = 0;
+		while(recognizedCount < (MOTION_SKIL_MAX - 1))
+		{
+			cursor = fileread_GetWord(skillToken, cursor);
+			if(!skillToken[0]) break;
+
+			const int currentIndex = SummitLegacyFindSkillRegistryIndex(skillToken);
+			if(!currentIndex)
+				continue;
+
+			recognizedCount++;
+			if(!SummitLegacyIsCurrentT5SkillIndex(currentIndex))
+				continue;
+
+			if(!SummitLegacyCachedModelHasT5SkillIndex(cachedInfo, currentIndex))
+			{
+				missing = TRUE;
+				if(missingSkill && missingSkillSize)
+				{
+					size_t copyLen = strlen(skillToken);
+					if(copyLen >= missingSkillSize) copyLen = missingSkillSize - 1;
+					memcpy(missingSkill, skillToken, copyLen);
+					missingSkill[copyLen] = 0;
+				}
+				break;
+			}
+		}
+	}
+
+	fclose(source);
+	return missing;
+}
+
+static void SummitLegacyTraceT5CacheRefresh(
+	const char *sourceFile,
+	const char *cacheFile,
+	const char *missingSkill)
+{
+	FILE *trace = fopen("LOGS\\summit_t5_body_cache_refresh.txt", "a");
+	if(!trace) return;
+	fprintf(trace, "source=[%s] cache=[%s] missing=[%s] -> rebuild\n",
+		sourceFile ? sourceFile : "",
+		cacheFile ? cacheFile : "",
+		missingSkill ? missingSkill : "");
+	fclose(trace);
+}
+
 
 
 JOBNAME_BIT BitMaskJobNames[] = {
@@ -1137,6 +1297,16 @@ int smModelDecode(char *iniFile, smMODELINFO *Info)
 								continue;
 							}
 
+							char summitMissingT5Skill[64] = { 0 };
+							if(SummitLegacySourceDeclaresMissingT5Motion(
+								szFile, &smModelInfo, summitMissingT5Skill, sizeof(summitMissingT5Skill)))
+							{
+								SummitLegacyTraceT5CacheRefresh(szFile, lpFile, summitMissingT5Skill);
+								if(AddModelDecode(szFile, Info) == FALSE)
+									return FALSE;
+								continue;
+							}
+
 
 							strcpy_s(Info->szMotionFile, smModelInfo.szMotionFile);
 							CopyMemory(Info->MotionInfo, smModelInfo.MotionInfo, sizeof(smModelInfo.MotionInfo));
@@ -1165,6 +1335,16 @@ int smModelDecode(char *iniFile, smMODELINFO *Info)
 						{
 							if(MotionKeyWordDecode(dwCode, &smModelInfo) == FALSE)
 							{
+								if(AddModelDecode(szFile, Info) == FALSE)
+									return FALSE;
+								continue;
+							}
+
+							char summitMissingT5Skill[64] = { 0 };
+							if(SummitLegacySourceDeclaresMissingT5Motion(
+								szFile, &smModelInfo, summitMissingT5Skill, sizeof(summitMissingT5Skill)))
+							{
+								SummitLegacyTraceT5CacheRefresh(szFile, lpFile, summitMissingT5Skill);
 								if(AddModelDecode(szFile, Info) == FALSE)
 									return FALSE;
 								continue;
