@@ -61,6 +61,14 @@ void HoEffectMain::LuaBegin(const char *typeName, const char *parentMeshName)
         m_WorkTypeName = CLASS_EFFECT_PARENT;
         m_EffectGroup = new HoEffectGroup();
     }
+    else if(!m_EffectGroup)
+    {
+        // Child effect nodes are invalid until a Parent group exists. Keep the
+        // parser alive, but make subsequent LuaInit* calls no-ops.
+        m_WorkTypeName = CLASS_EFFECT_NONE;
+        m_ModelController = NULL;
+        return;
+    }
     else if(stricmp(typeName, "Mesh") == 0)
     {
         m_WorkTypeName = CLASS_EFFECT_MESH;
@@ -103,7 +111,7 @@ void HoEffectMain::LuaEnd()
 
 	if(m_SpecificWorkTypeName == CLASS_EFFECT_NONE)
 	{
-		if(m_ModelController != NULL)
+		if(m_ModelController != NULL && m_EffectGroup != NULL)
 			m_EffectGroup->AddModelController(m_ModelController);
 		m_ModelController = NULL;
 	}
