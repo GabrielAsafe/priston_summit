@@ -12697,6 +12697,8 @@ int RecvPartySkillFromServer(TRANS_PARTY_SKILL *lpTransPartySkill)
 			if(lpCurPlayer->dwObjectSerial == lpTransPartySkill->dwPartyUser[cnt])
 			{
 
+				// EU replaces Holy Conviction when Holy Valor is received.
+				cSkill.CancelContinueSkill(SKILL_T5_HOLY_CONVICTION);
 				flag = 0;
 
 				for(cnt3 = 0; cnt3 < MAX_CONTINUE_SKILL; cnt3++)
@@ -12755,6 +12757,9 @@ int RecvPartySkillFromServer(TRANS_PARTY_SKILL *lpTransPartySkill)
 		{
 			if(lpCurPlayer->dwObjectSerial == lpTransPartySkill->dwPartyUser[cnt])
 			{
+				// EU Holy Body / Holy Valor / Holy Conviction share one replacement group.
+				cSkill.CancelContinueSkill(SKILL_HOLY_BODY);
+				cSkill.CancelContinueSkill(SKILL_HOLY_VALOR);
 				sSKILL sSkill;
 				ZeroMemory(&sSkill, sizeof(sSKILL));
 				sSkill.CODE = SKILL_T5_HOLY_CONVICTION;
