@@ -1,29 +1,8 @@
 
 
 #include "compat/legacy/sin/sinLinkHeader.h"
-#include <stdio.h>
 
 
-
-static int SummitT5TimerProbeCodeMorayion(DWORD code)
-{
-	return code == SKILL_T5_FOCUS || code == SKILL_T5_DEATH_MASTER ||
-		code == SKILL_T5_HARDENING_SHIELD || code == SKILL_T5_RUTHLESS_OF_ZECRAM ||
-		code == SKILL_T5_LETHAL_SIGHT || code == SKILL_T5_HOLY_CONVICTION ||
-		code == SKILL_T5_GLORIOUS_SHIELD || code == SKILL_T5_SUMMON_TIGER;
-}
-
-static void SummitT5TimerProbeMorayion(const char *stage, int index, const sSKILL *skill)
-{
-	if(!skill || !SummitT5TimerProbeCodeMorayion(skill->CODE)) return;
-	FILE *f = fopen("LOGS\\summit_t5_visual_probe.log", "a");
-	if(!f) return;
-	fprintf(f, "tick=%lu skill=timer stage=%s index=%d code=0x%08lX point=%d flag=%d use=%d check=%d mat=%d iconflag=%d iconx=%d alpha=%d\n",
-		(unsigned long)GetTickCount(), stage ? stage : "?", index, (unsigned long)skill->CODE,
-		skill->Point, skill->Flag, skill->UseTime, skill->CheckTime, skill->MatIcon,
-		skill->IconFlag, skill->IconPosiX, skill->IconAlpha);
-	fclose(f);
-}
 
 DWORD sinNotToggleSkill_CODE[][5] = {
 	//{SKILL_HOLY_BODY,0},
@@ -357,8 +336,6 @@ int sinContinueSkillSet(sSKILL* lpSkill)
 			// the first frame already has the icon/background/progress material.
 			if ((lpSkill->CODE & 0x00FF0000) == CHANGE_JOB5)
 				cSkill.EnsureContinueSkillIcon(lpSkill->CODE);
-
-			SummitT5TimerProbeMorayion("continue-created", i, &ContinueSkill[i]);
 			break;
 
 		}
