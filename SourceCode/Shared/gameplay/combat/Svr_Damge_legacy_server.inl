@@ -6051,6 +6051,8 @@ int rsSetSkillRangeAttack(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar, TRANS_ATTACKDA
 		case SKILL_PLAY_FLAME_WAVE:
 		if(lpPlayInfo->smCharInfo.JOB_CODE != JOBCODE_MAGICIAN) return FALSE;
 
+		lpTransSkillAttackData->AttackSize = Flame_Wave_Area[Point];
+
 		pow = GetRandomPos(lpTransRangeAttack->Power[0], lpTransRangeAttack->Power[1]);
 		pow += (pow*Flame_Wave_FireDamage_Percent[Point]) / 100;
 
