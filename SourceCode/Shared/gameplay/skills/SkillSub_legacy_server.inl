@@ -1269,6 +1269,20 @@ int GetSkillDistRange(sSKILL *lpSkill, int AttackRange, int AttackMode)
 		}
 		break;
 
+		case SKILL_DIASTROPHISM:
+		if(lpSkill->Point)
+		{
+			return Diastrophism_Area[lpSkill->Point - 1] * fONE;
+		}
+		break;
+
+		case SKILL_FLAME_WAVE:
+		if(lpSkill->Point)
+		{
+			return 150 * fONE;
+		}
+		break;
+
 		case SKILL_ENCHANT_WEAPON:
 		return	140 * fONE;
 
