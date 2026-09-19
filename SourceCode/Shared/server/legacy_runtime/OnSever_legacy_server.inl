@@ -38196,6 +38196,11 @@ int rsProcessSkillPartyUser(rsPLAYINFO *lpPlayInfo, TRANS_PARTY_SKILL *lpTransPa
 	switch(lpTransPartySkill->dwSkillCode)
 	{
 	case SKILL_PLAY_T51:
+		// EU treats Holy Body, Holy Valor and Holy Conviction as one replacement group.
+		lpPlayInfo->dwSkill_HolyBody_Time = 0;
+		lpPlayInfo->dwSkill_HolyBody_Param = 0;
+		lpPlayInfo->dwSkill_HolyValor_Time = 0;
+		lpPlayInfo->dwSkill_HolyValor_Param = 0;
 		lpPlayInfo->dwSkill_HolyConviction_Time = dwPlayServTime + (Knight_T5_HolyConviction_Duration[point] * 1000);
 		lpPlayInfo->dwSkill_HolyConviction_Param = Knight_T5_HolyConviction_UndeadBoost[point];
 		return TRUE;
@@ -38207,6 +38212,10 @@ int rsProcessSkillPartyUser(rsPLAYINFO *lpPlayInfo, TRANS_PARTY_SKILL *lpTransPa
 
 	case SKILL_PLAY_HOLY_VALOR:
 
+		lpPlayInfo->dwSkill_HolyBody_Time = 0;
+		lpPlayInfo->dwSkill_HolyBody_Param = 0;
+		lpPlayInfo->dwSkill_HolyConviction_Time = 0;
+		lpPlayInfo->dwSkill_HolyConviction_Param = 0;
 		lpPlayInfo->dwSkill_HolyValor_Time = dwPlayServTime + (Holy_Valor_Time[point] * 1000);
 		lpPlayInfo->dwSkill_HolyValor_Param = Holy_Valor_Damage[point];
 		return TRUE;
@@ -38545,6 +38554,11 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 		if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_KNIGHT)
 		{
 
+			// Holy Body replaces Holy Valor / Holy Conviction in the EU replacement group.
+			lpPlayInfo->dwSkill_HolyValor_Time = 0;
+			lpPlayInfo->dwSkill_HolyValor_Param = 0;
+			lpPlayInfo->dwSkill_HolyConviction_Time = 0;
+			lpPlayInfo->dwSkill_HolyConviction_Param = 0;
 			lpPlayInfo->dwSkill_HolyBody_Time = dwPlayServTime + HolyBody_Time[point] * 1000;
 			lpPlayInfo->dwSkill_HolyBody_Param = HolyBody_Absorb[point];
 		}
