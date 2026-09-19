@@ -2796,7 +2796,6 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				SummitT5StartParticle("R5StoneSkin", lpCurPlayer);
 				// EU applies the client no-death window in CStoneSkinHandler::OnAnimationEnd.
 				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_STONE_SKIN, SKILL_PLAY_T52, lpSkill->Point, 0, 0);
-				lpCurPlayer->AttackSkil = SKILL_PLAY_T52 | (lpSkill->Point << 8);
 				SendProcessSKillToServer(SKILL_PLAY_T52, lpSkill->Point, 0, 0);
 			}
 		}
