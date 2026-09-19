@@ -2411,6 +2411,149 @@ struct ItemPivot
 std::vector<ItemPivot> vItemPivot;
 BOOL bPivotItems = FALSE;
 
+enum SummitMotionSkillRegistryABI
+{
+	SUMMIT_MOTION_SKILL_ABI_UNKNOWN = 0,
+	SUMMIT_MOTION_SKILL_ABI_LEGACY = 1,
+	SUMMIT_MOTION_SKILL_ABI_T5_INTERLEAVED = 2
+};
+
+static int SummitMotionSkillIndexRange(DWORD jobMask, int legacyABI, int *firstIndex, int *lastIndex)
+{
+	if(!firstIndex || !lastIndex)
+		return FALSE;
+
+	if(legacyABI)
+	{
+		switch(jobMask)
+		{
+		case 0x0002: *firstIndex = 1;   *lastIndex = 15;  return TRUE; // Mechanician
+		case 0x0001: *firstIndex = 16;  *lastIndex = 30;  return TRUE; // Fighter
+		case 0x0008: *firstIndex = 31;  *lastIndex = 45;  return TRUE; // Pikeman
+		case 0x0004: *firstIndex = 46;  *lastIndex = 60;  return TRUE; // Archer
+		case 0x0020: *firstIndex = 61;  *lastIndex = 78;  return TRUE; // Knight
+		case 0x0010: *firstIndex = 79;  *lastIndex = 94;  return TRUE; // Atalanta
+		case 0x0080: *firstIndex = 95;  *lastIndex = 110; return TRUE; // Priestess
+		case 0x0040: *firstIndex = 111; *lastIndex = 126; return TRUE; // Magician
+		default: break;
+		}
+	}
+	else
+	{
+		switch(jobMask)
+		{
+		case 0x0002: *firstIndex = 1;   *lastIndex = 23;  return TRUE; // Mechanician + T5 aliases
+		case 0x0001: *firstIndex = 24;  *lastIndex = 46;  return TRUE; // Fighter + T5 aliases
+		case 0x0008: *firstIndex = 47;  *lastIndex = 73;  return TRUE; // Pikeman + T5 aliases
+		case 0x0004: *firstIndex = 74;  *lastIndex = 97;  return TRUE; // Archer + T5 aliases
+		case 0x0020: *firstIndex = 98;  *lastIndex = 123; return TRUE; // Knight + T5 aliases
+		case 0x0010: *firstIndex = 124; *lastIndex = 148; return TRUE; // Atalanta + T5 aliases
+		case 0x0080: *firstIndex = 149; *lastIndex = 172; return TRUE; // Priestess + T5 aliases
+		case 0x0040: *firstIndex = 173; *lastIndex = 195; return TRUE; // Magician + T5 aliases
+		default: break;
+		}
+	}
+
+	return FALSE;
+}
+
+static int SummitMotionSkillIndexInJobRange(BYTE skillIndex, DWORD jobMask, int legacyABI)
+{
+	int firstIndex = 0;
+	int lastIndex = 0;
+	if(!SummitMotionSkillIndexRange(jobMask, legacyABI, &firstIndex, &lastIndex))
+		return FALSE;
+	return skillIndex >= firstIndex && skillIndex <= lastIndex;
+}
+
+static BYTE SummitLegacyMotionSkillIndexToCurrent(BYTE legacyIndex)
+{
+	// The pre-T5 INX ABI had the eight legacy classes packed contiguously.
+	// The T5 client registry inserted aliases after each class. Translate the
+	// cached legacy byte to the original interleaved client registry index.
+	if(legacyIndex >= 1 && legacyIndex <= 15)   return legacyIndex;
+	if(legacyIndex >= 16 && legacyIndex <= 30) return (BYTE)(legacyIndex + 8);
+	if(legacyIndex >= 31 && legacyIndex <= 45) return (BYTE)(legacyIndex + 16);
+	if(legacyIndex >= 46 && legacyIndex <= 60) return (BYTE)(legacyIndex + 28);
+	if(legacyIndex >= 61 && legacyIndex <= 78) return (BYTE)(legacyIndex + 37);
+	if(legacyIndex >= 79 && legacyIndex <= 94) return (BYTE)(legacyIndex + 45);
+	if(legacyIndex >= 95 && legacyIndex <= 110) return (BYTE)(legacyIndex + 54);
+	if(legacyIndex >= 111 && legacyIndex <= 126) return (BYTE)(legacyIndex + 62);
+	return 0;
+}
+
+static int SummitDetectMotionSkillRegistryABI(const smMODELINFO *motionInfo, DWORD jobMask)
+{
+	if(!motionInfo || !jobMask)
+		return SUMMIT_MOTION_SKILL_ABI_UNKNOWN;
+
+	int legacyEvidence = 0;
+	int currentEvidence = 0;
+	const int motionCount = (int)motionInfo->MotionCount;
+
+	for(int motionIndex = 0; motionIndex < motionCount; motionIndex++)
+	{
+		const smMOTIONINFO *motion = &motionInfo->MotionInfo[motionIndex];
+		if(motion->State != CHRMOTION_STATE_SKILL)
+			continue;
+		if(motion->dwJobCodeBit && !(motion->dwJobCodeBit & jobMask))
+			continue;
+
+		for(int skillPos = 0; skillPos < MOTION_SKIL_MAX; skillPos++)
+		{
+			BYTE storedIndex = motion->SkillCodeList[skillPos];
+			if(storedIndex == 0)
+				break;
+
+			const int legacyRange = SummitMotionSkillIndexInJobRange(storedIndex, jobMask, TRUE);
+			const int currentRange = SummitMotionSkillIndexInJobRange(storedIndex, jobMask, FALSE);
+			if(legacyRange && !currentRange)
+				legacyEvidence++;
+			else if(currentRange && !legacyRange)
+				currentEvidence++;
+		}
+	}
+
+	if(currentEvidence > legacyEvidence)
+		return SUMMIT_MOTION_SKILL_ABI_T5_INTERLEAVED;
+	if(legacyEvidence > currentEvidence)
+		return SUMMIT_MOTION_SKILL_ABI_LEGACY;
+	return SUMMIT_MOTION_SKILL_ABI_UNKNOWN;
+}
+
+static int SummitMotionSkillIndexMatches(
+	BYTE storedIndex,
+	int skillCode,
+	DWORD jobMask,
+	int registryABI)
+{
+	if(storedIndex == 0)
+		return FALSE;
+
+	// Current/interleaved registry is the canonical runtime table and contains
+	// indices 1..195 (196 is the terminating empty entry).
+	if(registryABI != SUMMIT_MOTION_SKILL_ABI_LEGACY)
+	{
+		if(storedIndex <= 195 &&
+			(!jobMask || SummitMotionSkillIndexInJobRange(storedIndex, jobMask, FALSE)) &&
+			SkillDataCode[storedIndex].dwPlaySkillCode == skillCode)
+			return TRUE;
+	}
+
+	if(registryABI != SUMMIT_MOTION_SKILL_ABI_T5_INTERLEAVED)
+	{
+		if(!jobMask || SummitMotionSkillIndexInJobRange(storedIndex, jobMask, TRUE))
+		{
+			BYTE currentIndex = SummitLegacyMotionSkillIndexToCurrent(storedIndex);
+			if(currentIndex && currentIndex <= 195 &&
+				SkillDataCode[currentIndex].dwPlaySkillCode == skillCode)
+				return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
 int smCHAR::SetMotionFromCode(DWORD MotionCode)
 {
 	int cnt, cnt2, itcnt;
@@ -2424,6 +2567,7 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 	int	atSkill = 0;
 	int	skillCode;
 	BYTE	bSkill;
+	int	motionSkillRegistryABI = SUMMIT_MOTION_SKILL_ABI_UNKNOWN;
 
 	DWORD	dwJobCodeMask;
 
@@ -2469,6 +2613,7 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 	if (MotionCode == CHRMOTION_STATE_SKILL && AttackSkil)
 	{
 		atSkill = AttackSkil;
+		motionSkillRegistryABI = SummitDetectMotionSkillRegistryABI(smMotionInfo, dwJobCodeMask);
 	}
 
 	for (cnt = 0; cnt < (int)smMotionInfo->MotionCount; cnt++)
@@ -2483,14 +2628,20 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 			{
 				cnt2 = 0;
 				skillCode = atSkill & 0xFF;
-				while (1)
+				bSkill = 0;
+				while (cnt2 < MOTION_SKIL_MAX)
 				{
 					bSkill = smMotionInfo->MotionInfo[cnt].SkillCodeList[cnt2];
 					if (bSkill == 0) break;
-					if (SkillDataCode[bSkill].dwPlaySkillCode == skillCode)
+					if (SummitMotionSkillIndexMatches(
+						bSkill,
+						skillCode,
+						dwJobCodeMask,
+						motionSkillRegistryABI))
 					{
 						break;
 					}
+					bSkill = 0;
 					cnt2++;
 				}
 				if (bSkill)
