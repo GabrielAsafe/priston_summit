@@ -2651,6 +2651,275 @@ static int SummitMotionSkillIndexMatches(
 	return FALSE;
 }
 
+
+static const char *SummitMotionSkillABIName(int registryABI)
+{
+    switch(registryABI)
+    {
+    case SUMMIT_MOTION_SKILL_ABI_LEGACY: return "legacy";
+    case SUMMIT_MOTION_SKILL_ABI_T5_INTERLEAVED: return "summit-interleaved";
+    case SUMMIT_MOTION_SKILL_ABI_TEMP_APPENDED: return "temp-appended";
+    default: return "unknown";
+    }
+}
+
+static int SummitMotionCurrentPlayCode(BYTE storedIndex, DWORD jobMask)
+{
+    if(storedIndex == 0 || storedIndex > 195)
+        return -1;
+    if(jobMask && !SummitMotionSkillIndexInJobRange(storedIndex, jobMask, FALSE))
+        return -1;
+    return SkillDataCode[storedIndex].dwPlaySkillCode & 0xFF;
+}
+
+static int SummitMotionLegacyPlayCode(BYTE storedIndex, DWORD jobMask)
+{
+    if(storedIndex == 0)
+        return -1;
+    if(jobMask && !SummitMotionSkillIndexInJobRange(storedIndex, jobMask, TRUE))
+        return -1;
+    BYTE currentIndex = SummitLegacyMotionSkillIndexToCurrent(storedIndex);
+    if(currentIndex == 0 || currentIndex > 195)
+        return -1;
+    return SkillDataCode[currentIndex].dwPlaySkillCode & 0xFF;
+}
+
+static int SummitMotionTemporaryPlayCode(BYTE storedIndex, DWORD jobMask)
+{
+    if(storedIndex == 0)
+        return -1;
+    BYTE currentIndex = SummitTemporaryAppendedSkillIndexToCurrent(storedIndex);
+    if(currentIndex == 0 || currentIndex > 195)
+        return -1;
+    if(jobMask && !SummitMotionSkillIndexInJobRange(currentIndex, jobMask, FALSE))
+        return -1;
+    return SkillDataCode[currentIndex].dwPlaySkillCode & 0xFF;
+}
+
+// EU's canonical SkillManager table stores only four T5 entries per class.
+// Diagnostic only: do not use this mapping for runtime matching until a trace
+// proves that an INX was produced with the EU canonical table ordering.
+static int SummitMotionEUCanonicalT5PlayCode(BYTE storedIndex, DWORD jobMask)
+{
+    int firstIndex = 0;
+    switch(jobMask)
+    {
+    case 0x0002: firstIndex = 17;  break; // Mechanician
+    case 0x0001: firstIndex = 37;  break; // Fighter
+    case 0x0008: firstIndex = 57;  break; // Pikeman
+    case 0x0004: firstIndex = 77;  break; // Archer
+    case 0x0020: firstIndex = 99;  break; // Knight
+    case 0x0010: firstIndex = 119; break; // Atalanta
+    case 0x0080: firstIndex = 139; break; // Priestess
+    case 0x0040: firstIndex = 159; break; // Magician
+    default: return -1;
+    }
+
+    if(storedIndex < firstIndex || storedIndex > firstIndex + 3)
+        return -1;
+
+    switch(storedIndex - firstIndex)
+    {
+    case 0: return SKILL_PLAY_T51 & 0xFF;
+    case 1: return SKILL_PLAY_T52 & 0xFF;
+    case 2: return SKILL_PLAY_T53 & 0xFF;
+    case 3: return SKILL_PLAY_T54 & 0xFF;
+    default: return -1;
+    }
+}
+
+static FILE *SummitOpenT5MotionLookupTrace()
+{
+    FILE *trace = fopen("LOGS\\summit_t5_motion_lookup.txt", "a");
+    if(!trace)
+        trace = fopen("summit_t5_motion_lookup.txt", "a");
+    return trace;
+}
+
+static int SummitT5PlainFileReadable(const char *path)
+{
+    if(!path || !path[0])
+        return -1;
+    FILE *file = fopen(path, "rb");
+    if(!file)
+        return 0;
+    fclose(file);
+    return 1;
+}
+
+static void SummitTraceT5MotionLookup(
+    const smMODELINFO *motionInfo,
+    DWORD jobMask,
+    int jobCode,
+    int atSkill,
+    int registryABI,
+    int findCnt,
+    const int *foundNum)
+{
+    if(!motionInfo || !atSkill)
+        return;
+
+    const int requested = atSkill & 0xFF;
+    const int directT5 = requested >= (SKILL_PLAY_T51 & 0xFF) && requested <= (SKILL_PLAY_T54 & 0xFF);
+    if(!directT5 && findCnt > 0)
+        return;
+
+    static int traceCount = 0;
+    if(traceCount >= 96)
+        return;
+    traceCount++;
+
+    FILE *trace = SummitOpenT5MotionLookupTrace();
+    if(!trace)
+        return;
+
+    fprintf(trace,
+        "CALL #%d job=%d jobMask=0x%08X attackSkill=0x%08X requested=0x%02X abi=%s motionCount=%u found=%d sizeofMotion=%u sizeofModel=%u linkSourceReadable=%d model=\"%.63s\" motion=\"%.63s\" link=\"%.63s\"\n",
+        traceCount,
+        jobCode,
+        (unsigned int)jobMask,
+        (unsigned int)atSkill,
+        (unsigned int)requested,
+        SummitMotionSkillABIName(registryABI),
+        (unsigned int)motionInfo->MotionCount,
+        findCnt,
+        (unsigned int)sizeof(smMOTIONINFO),
+        (unsigned int)sizeof(smMODELINFO),
+        SummitT5PlainFileReadable(motionInfo->szLinkFile),
+        motionInfo->szModelFile,
+        motionInfo->szMotionFile,
+        motionInfo->szLinkFile);
+
+    if(foundNum && findCnt > 0)
+    {
+        fprintf(trace, "FOUND");
+        for(int i = 0; i < findCnt && i < 32; i++)
+            fprintf(trace, " %d", foundNum[i]);
+        fprintf(trace, "\n");
+    }
+
+    int candidateCount = 0;
+    int currentMatches = 0;
+    int legacyMatches = 0;
+    int temporaryMatches = 0;
+    int euMatches = 0;
+
+    for(int motionIndex = 0; motionIndex < (int)motionInfo->MotionCount; motionIndex++)
+    {
+        const smMOTIONINFO *motion = &motionInfo->MotionInfo[motionIndex];
+        if(motion->State != CHRMOTION_STATE_SKILL)
+            continue;
+        if(motion->dwJobCodeBit && jobMask && !(motion->dwJobCodeBit & jobMask))
+            continue;
+
+        candidateCount++;
+        fprintf(trace,
+            "MOTION idx=%d frames=%u..%u events=%u,%u,%u,%u itemCount=%d jobBits=0x%08X map=0x%08X skills=",
+            motionIndex,
+            (unsigned int)motion->StartFrame,
+            (unsigned int)motion->EndFrame,
+            (unsigned int)motion->EventFrame[0],
+            (unsigned int)motion->EventFrame[1],
+            (unsigned int)motion->EventFrame[2],
+            (unsigned int)motion->EventFrame[3],
+            motion->ItemCodeCount,
+            (unsigned int)motion->dwJobCodeBit,
+            (unsigned int)motion->MapPosition);
+
+        int emittedSkill = 0;
+        for(int skillPos = 0; skillPos < MOTION_SKIL_MAX; skillPos++)
+        {
+            BYTE raw = motion->SkillCodeList[skillPos];
+            if(raw == 0)
+                break;
+
+            const int currentCode = SummitMotionCurrentPlayCode(raw, jobMask);
+            const int legacyCode = SummitMotionLegacyPlayCode(raw, jobMask);
+            const int temporaryCode = SummitMotionTemporaryPlayCode(raw, jobMask);
+            const int euCode = SummitMotionEUCanonicalT5PlayCode(raw, jobMask);
+
+            if(currentCode == requested) currentMatches++;
+            if(legacyCode == requested) legacyMatches++;
+            if(temporaryCode == requested) temporaryMatches++;
+            if(euCode == requested) euMatches++;
+
+            const char *currentName = "-";
+            if(raw <= 195 && SkillDataCode[raw].szSkillName && SkillDataCode[raw].szSkillName[0])
+                currentName = SkillDataCode[raw].szSkillName;
+
+            fprintf(trace,
+                "%s{raw=%u name=\"%s\" cur=%d legacy=%d temp=%d euT5=%d}",
+                emittedSkill ? "," : "",
+                (unsigned int)raw,
+                currentName,
+                currentCode,
+                legacyCode,
+                temporaryCode,
+                euCode);
+            emittedSkill = 1;
+        }
+        fprintf(trace, "\n");
+    }
+
+    fprintf(trace,
+        "SUMMARY candidates=%d requested=0x%02X matches[current=%d legacy=%d temp=%d euT5=%d]\n---\n",
+        candidateCount,
+        (unsigned int)requested,
+        currentMatches,
+        legacyMatches,
+        temporaryMatches,
+        euMatches);
+    fflush(trace);
+    fclose(trace);
+}
+
+static void SummitTraceT5MotionResult(
+    int atSkill,
+    int primaryFindCnt,
+    int actionIndex,
+    const smMOTIONINFO *selectedMotion,
+    int motionSelectFrame,
+    int patDispMode)
+{
+    if(!atSkill)
+        return;
+    const int requested = atSkill & 0xFF;
+    const int directT5 = requested >= (SKILL_PLAY_T51 & 0xFF) && requested <= (SKILL_PLAY_T54 & 0xFF);
+    if(!directT5 && primaryFindCnt > 0)
+        return;
+
+    FILE *trace = SummitOpenT5MotionLookupTrace();
+    if(!trace)
+        return;
+
+    if(selectedMotion)
+    {
+        fprintf(trace,
+            "RESULT requested=0x%02X primaryFound=%d action=%d state=0x%08X frames=%u..%u motionFrame=%d selectFrame=%d patDisp=0x%X\n===\n",
+            (unsigned int)requested,
+            primaryFindCnt,
+            actionIndex,
+            (unsigned int)selectedMotion->State,
+            (unsigned int)selectedMotion->StartFrame,
+            (unsigned int)selectedMotion->EndFrame,
+            selectedMotion->MotionFrame,
+            motionSelectFrame,
+            patDispMode);
+    }
+    else
+    {
+        fprintf(trace,
+            "RESULT requested=0x%02X primaryFound=%d action=%d selectedMotion=NULL selectFrame=%d patDisp=0x%X\n===\n",
+            (unsigned int)requested,
+            primaryFindCnt,
+            actionIndex,
+            motionSelectFrame,
+            patDispMode);
+    }
+    fflush(trace);
+    fclose(trace);
+}
+
 int smCHAR::SetMotionFromCode(DWORD MotionCode)
 {
 	int cnt, cnt2, itcnt;
@@ -2755,6 +3024,9 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 		}
 	}
 
+
+	if(atSkill)
+		SummitTraceT5MotionLookup(smMotionInfo, dwJobCodeMask, smCharInfo.JOB_CODE, atSkill, motionSkillRegistryABI, FindCnt, FoundNum);
 
 	if (FindCnt == 0 && AnimDispMode && lpDinaPattern2)
 	{
@@ -2946,6 +3218,7 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 			if (FindCnt) ChangeMotion(FoundNum[(rand() % FindCnt)], AnimDispMode);
 
 		if (atSkill) AttackSkil = atSkill;
+		if(atSkill) SummitTraceT5MotionResult(atSkill, FindCnt, action, MotionInfo, MotionSelectFrame, PatDispMode);
 
 		return NULL;
 	}
@@ -2957,6 +3230,7 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 
 
 	if (atSkill) AttackSkil = atSkill;
+	if(atSkill) SummitTraceT5MotionResult(atSkill, FindCnt, action, MotionInfo, MotionSelectFrame, PatDispMode);
 
 	return FindCnt;
 }
