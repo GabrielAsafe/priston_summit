@@ -653,6 +653,34 @@ char *szDefaultCharName = "char//woman.ini";
 int InitLoader();
 
 int CreateLoaderThread();
+static smDPAT *SummitLoadSecondaryCharacterPattern(smCHAR *lpChar, const char *embeddedName, const char *requestedName)
+{
+	if (!lpChar) return NULL;
+	const char *candidates[4] = { embeddedName, requestedName, GetFaceHairSkin(lpChar), GetDefaultFaceHairSkin(lpChar) };
+	for (int index = 0; index < 4; ++index)
+	{
+		const char *candidate = candidates[index];
+		if (!candidate || !candidate[0]) continue;
+		int duplicate = FALSE;
+		for (int previous = 0; previous < index; ++previous)
+		{
+			if (candidates[previous] && lstrcmpi(candidates[previous], candidate) == 0)
+			{
+				duplicate = TRUE;
+				break;
+			}
+		}
+		if (duplicate) continue;
+		smDPAT *pattern = smPattern.LoadCharactor(const_cast<char *>(candidate));
+		if (pattern)
+		{
+			strcpy_s(lpChar->smCharInfo.szModelName2, sizeof(lpChar->smCharInfo.szModelName2), pattern->szPatName);
+			return pattern;
+		}
+	}
+	return NULL;
+}
+
 DWORD WINAPI smLoaderThreadProc(void *pInfo);
 
 struct smDATALOADER
@@ -843,19 +871,10 @@ DWORD WINAPI smLoaderThreadProc(void *pInfo)
 
 			smLoader[cnt].lpChar->smCharInfo.szModelName2[0] = 0;
 
-			if (smDPat->lpModelInfo->szSubModelFile[0])
-			{
-				smDPat2 = smPattern.LoadCharactor(smDPat->lpModelInfo->szSubModelFile);
-			}
-			else
-			{
-				if (smLoader[cnt].szLoadName2[0])
-				{
-					smDPat2 = smPattern.LoadCharactor(smLoader[cnt].szLoadName2);
-					if(smDPat2)
-						strcpy_s(smLoader[cnt].lpChar->smCharInfo.szModelName2, smDPat2->szPatName);
-				}
-			}
+			smDPat2 = SummitLoadSecondaryCharacterPattern(
+				smLoader[cnt].lpChar,
+				smDPat->lpModelInfo->szSubModelFile,
+				smLoader[cnt].szLoadName2);
 
 			smLoader[cnt].lpChar->SetDinaPattern2(smDPat2);
 
@@ -1009,21 +1028,10 @@ int SetLoadPattern(smCHAR *smChar, char *szName, char *szName2, POINT3D *Posi, P
 
 		smChar->smCharInfo.szModelName2[0] = 0;
 
-		if (smDPat->lpModelInfo->szSubModelFile[0])
-		{
-
-			smDPat2 = smPattern.LoadCharactor(smDPat->lpModelInfo->szSubModelFile);
-		}
-		else
-		{
-
-			if (szName2 && szName2[0])
-			{
-				smDPat2 = smPattern.LoadCharactor(szName2);
-				if(smDPat2)
-					strcpy_s(smChar->smCharInfo.szModelName2, smDPat2->szPatName);
-			}
-		}
+		smDPat2 = SummitLoadSecondaryCharacterPattern(
+			smChar,
+			smDPat->lpModelInfo->szSubModelFile,
+			szName2);
 
 
 		smChar->SetDinaPattern2(smDPat2);
