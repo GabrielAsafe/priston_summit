@@ -12701,9 +12701,9 @@ int RecvPartySkillFromServer(TRANS_PARTY_SKILL *lpTransPartySkill)
 
 				for(cnt3 = 0; cnt3 < MAX_CONTINUE_SKILL; cnt3++)
 				{
-					if(ContinueSkill[cnt].Flag)
+					if(ContinueSkill[cnt3].Flag)
 					{
-						if(ContinueSkill[cnt].CODE == SKILL_DRASTIC_SPIRIT || ContinueSkill[cnt].CODE == SKILL_HOLY_BODY)
+						if(ContinueSkill[cnt3].CODE == SKILL_DRASTIC_SPIRIT || ContinueSkill[cnt3].CODE == SKILL_HOLY_BODY)
 						{
 							flag++;
 						}
