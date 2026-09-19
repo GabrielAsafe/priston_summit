@@ -239,6 +239,97 @@ int SetIniMotionInfo(smMOTIONINFO *motion, char *p, int *lpRate = NULL)
 static char *szFileExt = "inx";
 
 
+static DWORD SummitSkillDataRegistrySignature()
+{
+	DWORD hash = 2166136261u;
+	for(int index = 0; SkillDataCode[index].szSkillName[0]; index++)
+	{
+		const unsigned char *name =
+			reinterpret_cast<const unsigned char *>(SkillDataCode[index].szSkillName);
+		while(*name)
+		{
+			hash ^= *name++;
+			hash *= 16777619u;
+		}
+
+		hash ^= 0xFFu;
+		hash *= 16777619u;
+
+		DWORD playCode = SkillDataCode[index].dwPlaySkillCode;
+		for(int shift = 0; shift < 32; shift += 8)
+		{
+			hash ^= (playCode >> shift) & 0xFFu;
+			hash *= 16777619u;
+		}
+	}
+	return hash;
+}
+
+static int SummitBuildSkillRegistryStampPath(
+	const char *cachePath,
+	char *stampPath,
+	size_t stampPathSize)
+{
+	if(!cachePath || !cachePath[0] || !stampPath || stampPathSize == 0)
+		return FALSE;
+
+	return sprintf_s(stampPath, stampPathSize, "%s.sidx", cachePath) >= 0;
+}
+
+static int SummitSourceConfigExists(const char *sourcePath)
+{
+	FILE *sourceFile = nullptr;
+	fopen_s(&sourceFile, sourcePath, "rb");
+	if(!sourceFile)
+		return FALSE;
+	fclose(sourceFile);
+	return TRUE;
+}
+
+static int SummitModelSkillRegistryCacheValid(
+	const char *sourcePath,
+	const char *cachePath)
+{
+	// Preserve cache-only production assets. If the source INI exists, however,
+	// an old cache must carry the current registry signature before it is trusted.
+	if(!SummitSourceConfigExists(sourcePath))
+		return TRUE;
+
+	char stampPath[512] = { 0 };
+	if(!SummitBuildSkillRegistryStampPath(cachePath, stampPath, sizeof(stampPath)))
+		return FALSE;
+
+	FILE *stampFile = nullptr;
+	fopen_s(&stampFile, stampPath, "rb");
+	if(!stampFile)
+		return FALSE;
+
+	DWORD cachedSignature = 0;
+	const size_t readCount = fread(&cachedSignature, sizeof(cachedSignature), 1, stampFile);
+	fclose(stampFile);
+	if(readCount != 1)
+		return FALSE;
+
+	return cachedSignature == SummitSkillDataRegistrySignature();
+}
+
+static void SummitWriteModelSkillRegistryStamp(const char *cachePath)
+{
+	char stampPath[512] = { 0 };
+	if(!SummitBuildSkillRegistryStampPath(cachePath, stampPath, sizeof(stampPath)))
+		return;
+
+	FILE *stampFile = nullptr;
+	fopen_s(&stampFile, stampPath, "wb");
+	if(!stampFile)
+		return;
+
+	const DWORD signature = SummitSkillDataRegistrySignature();
+	fwrite(&signature, sizeof(signature), 1, stampFile);
+	fclose(stampFile);
+}
+
+
 
 
 
@@ -952,6 +1043,7 @@ int AddModelDecode(char *iniFile, smMODELINFO *Info)
 	{
 		fwrite(Info, sizeof(smMODELINFO), 1, fp);
 		fclose(fp);
+		SummitWriteModelSkillRegistryStamp(szFile);
 	}
 
 
@@ -1020,7 +1112,11 @@ int smModelDecode(char *iniFile, smMODELINFO *Info)
 		{
 			lpFile = smFindFile(szFile, szFileExt, &dwFileLen);
 
-			if(lpFile && dwFileLen == sizeof(smMODELINFO))
+			if(
+				lpFile &&
+				dwFileLen == sizeof(smMODELINFO) &&
+				SummitModelSkillRegistryCacheValid(szFile, lpFile)
+			)
 			{
 				fopen_s(&fp, lpFile, "rb");
 				if(fp)
