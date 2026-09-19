@@ -54,10 +54,10 @@ bool HoEffectResMesh::LoadingRes(const std::string &meshName)
         return false;
 
     m_Mesh->ZeroNormals();
-    m_Mesh->smMaterialGroup->ReadTextures();
 
     if(m_Mesh->smMaterialGroup)
     {
+        m_Mesh->smMaterialGroup->ReadTextures();
         int matCount = m_Mesh->smMaterialGroup->MaterialCount;
         for(int i = 0; i < matCount; i++)
         {
