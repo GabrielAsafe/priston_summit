@@ -15680,12 +15680,10 @@ int smCHAR::EventSkill()
 			if (this == lpCurPlayer && MotionEvent == 1)
 			{
 
-				rect.left = -60;
-				rect.right = 60;
+				rect.left = -70;
+				rect.right = 70;
 				rect.top = 0;
-				rect.bottom = 300;
-				rect.bottom += 20;
-				rect.bottom += 20;
+				rect.bottom = 340;
 
 
 				dm_SelectRangeBox(lpCurPlayer, &rect, FALSE);
