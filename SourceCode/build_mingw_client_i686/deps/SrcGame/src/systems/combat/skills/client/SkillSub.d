@@ -57,6 +57,35 @@
  SrcGame/src/systems/rendering/effects/particles/ho/HoNewParticle.h \
  Shared/rendering/effects/particles/HoNewParticle_legacy_client.h \
  SrcGame/src/systems/rendering/effects/particles/ho/HoNewParticleMgr.h \
+ SrcGame/src/systems/rendering/effects/legacy_new/core/HoEffectMain.h \
+ SrcGame/src/systems/rendering/effects/legacy_new/core/HoNewEffectHeader.h \
+ SrcGame/src/systems/rendering/effects/legacy_new/core/HoEffectResMgr.h \
+ Shared/rendering/effects/legacy_new/core/HoEffectResMgr.h \
+ SrcGame/src/systems/rendering/effects/legacy_new/script/PiScript.h \
+ SrcGame/src/third_party/lua/legacy_win32/lua.h \
+ SrcGame/src/third_party/lua/legacy_win32/lauxlib.h \
+ SrcGame/src/third_party/lua/legacy_win32/lualib.h \
+ SrcGame/src/systems/rendering/effects/legacy_new/core/HoEffectModel.h \
+ Shared/rendering/effects/legacy_new/HoEffectModel_legacy_client.h \
+ SrcGame/src/systems/rendering/effects/legacy_new/math/mathGlobal.h \
+ Shared/rendering/effects/legacy_new/math/mathGlobal.h \
+ SrcGame/src/systems/rendering/effects/legacy_new/math/point3.h \
+ Shared/rendering/effects/legacy_new/math/point3.h \
+ SrcGame/src/systems/rendering/effects/legacy_new/math/color4.h \
+ Shared/rendering/effects/legacy_new/math/color4.h \
+ SrcGame/src/systems/rendering/effects/legacy_new/math/COLOR3.H \
+ Shared/rendering/effects/legacy_new/math/COLOR3.H \
+ SrcGame/src/systems/rendering/effects/legacy_new/math/MATRIX4.H \
+ Shared/rendering/effects/legacy_new/math/Matrix4LegacyShared.h \
+ SrcGame/src/systems/rendering/effects/legacy_new/math/POINT4.H \
+ Shared/rendering/effects/legacy_new/math/POINT4.H \
+ SrcGame/src/systems/rendering/effects/legacy_new/math/lineSeg3.h \
+ SrcGame/src/systems/rendering/effects/legacy_new/core/HoEffectController.h \
+ Shared/rendering/effects/legacy_new/HoEffectController_legacy_client.h \
+ SrcGame/src/systems/rendering/effects/legacy_new/core/HoEffectUtil.h \
+ Shared/rendering/effects/legacy_new/core/HoEffectUtil.h \
+ SrcGame/src/systems/rendering/effects/legacy_new/core/HoEffectManager.h \
+ Shared/rendering/effects/legacy_new/HoEffectManagerLegacyCommon.h \
  SrcGame/src/systems/world/field/field.h \
  SrcGame/src/systems/presentation/opening/legacy_runtime/HoLinkHeader.h \
  SrcGame/src/systems/rendering/2d/legacy/drawsub.h \
@@ -205,6 +234,35 @@ SrcGame/src/systems/rendering/effects/legacy_ho/core/HoMinMax.h:
 SrcGame/src/systems/rendering/effects/particles/ho/HoNewParticle.h:
 Shared/rendering/effects/particles/HoNewParticle_legacy_client.h:
 SrcGame/src/systems/rendering/effects/particles/ho/HoNewParticleMgr.h:
+SrcGame/src/systems/rendering/effects/legacy_new/core/HoEffectMain.h:
+SrcGame/src/systems/rendering/effects/legacy_new/core/HoNewEffectHeader.h:
+SrcGame/src/systems/rendering/effects/legacy_new/core/HoEffectResMgr.h:
+Shared/rendering/effects/legacy_new/core/HoEffectResMgr.h:
+SrcGame/src/systems/rendering/effects/legacy_new/script/PiScript.h:
+SrcGame/src/third_party/lua/legacy_win32/lua.h:
+SrcGame/src/third_party/lua/legacy_win32/lauxlib.h:
+SrcGame/src/third_party/lua/legacy_win32/lualib.h:
+SrcGame/src/systems/rendering/effects/legacy_new/core/HoEffectModel.h:
+Shared/rendering/effects/legacy_new/HoEffectModel_legacy_client.h:
+SrcGame/src/systems/rendering/effects/legacy_new/math/mathGlobal.h:
+Shared/rendering/effects/legacy_new/math/mathGlobal.h:
+SrcGame/src/systems/rendering/effects/legacy_new/math/point3.h:
+Shared/rendering/effects/legacy_new/math/point3.h:
+SrcGame/src/systems/rendering/effects/legacy_new/math/color4.h:
+Shared/rendering/effects/legacy_new/math/color4.h:
+SrcGame/src/systems/rendering/effects/legacy_new/math/COLOR3.H:
+Shared/rendering/effects/legacy_new/math/COLOR3.H:
+SrcGame/src/systems/rendering/effects/legacy_new/math/MATRIX4.H:
+Shared/rendering/effects/legacy_new/math/Matrix4LegacyShared.h:
+SrcGame/src/systems/rendering/effects/legacy_new/math/POINT4.H:
+Shared/rendering/effects/legacy_new/math/POINT4.H:
+SrcGame/src/systems/rendering/effects/legacy_new/math/lineSeg3.h:
+SrcGame/src/systems/rendering/effects/legacy_new/core/HoEffectController.h:
+Shared/rendering/effects/legacy_new/HoEffectController_legacy_client.h:
+SrcGame/src/systems/rendering/effects/legacy_new/core/HoEffectUtil.h:
+Shared/rendering/effects/legacy_new/core/HoEffectUtil.h:
+SrcGame/src/systems/rendering/effects/legacy_new/core/HoEffectManager.h:
+Shared/rendering/effects/legacy_new/HoEffectManagerLegacyCommon.h:
 SrcGame/src/systems/world/field/field.h:
 SrcGame/src/systems/presentation/opening/legacy_runtime/HoLinkHeader.h:
 SrcGame/src/systems/rendering/2d/legacy/drawsub.h:
