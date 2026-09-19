@@ -25,6 +25,7 @@ char *GetFaceHairSkin(smCHAR *lpChar)
 	int HairCode = dwModelCode & 0xFF;
 
 	if (CheckHairSkinCode(dwModelCode) == FALSE) return NULL;
+	if (FaceCode < 0 || FaceCode >= FACE_MODEL_MAX || HairCode < 0 || HairCode >= HEAREPOTION_MAX) return NULL;
 
 	char *szHeadName = 0;
 
