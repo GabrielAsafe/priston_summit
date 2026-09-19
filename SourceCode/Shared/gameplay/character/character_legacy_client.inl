@@ -653,6 +653,16 @@ char *szDefaultCharName = "char//woman.ini";
 int InitLoader();
 
 int CreateLoaderThread();
+extern int AddModelDecode(char *iniFile, smMODELINFO *Info);
+
+static int SummitIsModelConfigSource(const char *fileName)
+{
+	if(!fileName) return FALSE;
+	const size_t length = strlen(fileName);
+	if(length < 4) return FALSE;
+	return lstrcmpi(fileName + length - 4, ".ini") == 0;
+}
+
 static smDPAT *SummitLoadSecondaryCharacterPattern(smCHAR *lpChar, const char *embeddedName, const char *requestedName)
 {
 	if (!lpChar) return NULL;
@@ -672,6 +682,13 @@ static smDPAT *SummitLoadSecondaryCharacterPattern(smCHAR *lpChar, const char *e
 		}
 		if (duplicate) continue;
 		smDPAT *pattern = smPattern.LoadCharactor(const_cast<char *>(candidate));
+		if (!pattern && SummitIsModelConfigSource(candidate))
+		{
+			smMODELINFO repairedModelInfo;
+			ZeroMemory(&repairedModelInfo, sizeof(repairedModelInfo));
+			if (AddModelDecode(const_cast<char *>(candidate), &repairedModelInfo))
+				pattern = smPattern.LoadCharactor(const_cast<char *>(candidate));
+		}
 		if (pattern)
 		{
 			strcpy_s(lpChar->smCharInfo.szModelName2, sizeof(lpChar->smCharInfo.szModelName2), pattern->szPatName);
