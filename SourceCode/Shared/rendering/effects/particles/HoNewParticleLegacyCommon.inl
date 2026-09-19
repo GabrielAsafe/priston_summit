@@ -1410,7 +1410,7 @@ HoNewParticleEvent *HoNewParticleEmitter::EventFactory(std::string EventName)
 	else if(EventName.find("PARTANGLEY") != std::string::npos) event = new HoNewParticleEvent_PartAngleY();
 	else if(EventName.find("PARTANGLEZ") != std::string::npos) event = new HoNewParticleEvent_PartAngleZ();
 	else if(EventName.find("PARTANGLE") != std::string::npos) event = new HoNewParticleEvent_PartAngle();
-	else if(EventName.find("LOCALANGLEX") != std::string::npos) event = new HoNewParticleEvent_LocalAngleY();
+	else if(EventName.find("LOCALANGLEX") != std::string::npos) event = new HoNewParticleEvent_LocalAngleX();
 	else if(EventName.find("LOCALANGLEY") != std::string::npos) event = new HoNewParticleEvent_LocalAngleY();
 	else if(EventName.find("LOCALANGLEZ") != std::string::npos) event = new HoNewParticleEvent_LocalAngleZ();
 	else if(EventName.find("LOCALANGLE") != std::string::npos) event = new HoNewParticleEvent_LocalAngle();
