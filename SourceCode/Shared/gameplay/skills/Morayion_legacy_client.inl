@@ -393,6 +393,8 @@ int F_Sword_Blast()
 }
 int F_HolyBody()
 {
+	// EU replaces Holy Conviction when Holy Body is activated.
+	cSkill.CancelContinueSkill(SKILL_T5_HOLY_CONVICTION);
 	pUseSkill->UseTime = HolyBody_Time[pUseSkill->Point - 1];
 	sinContinueSkillSet(pUseSkill);
 	sinUseManaStamina(pUseSkill);
@@ -528,6 +530,8 @@ int F_FireBall()
 int F_Holy_Valor()
 {
 
+	// EU replaces Holy Conviction when Holy Valor is activated.
+	cSkill.CancelContinueSkill(SKILL_T5_HOLY_CONVICTION);
 	pUseSkill->UseTime = Holy_Valor_Time[pUseSkill->Point - 1];
 	sinContinueSkillSet(pUseSkill);
 	sinUseManaStamina(pUseSkill);
@@ -935,6 +939,9 @@ int F_Magician_T5_Cataclysm()
 int F_Knight_T5_Holy_Conviction()
 {
 	if(!pUseSkill || pUseSkill->Point < 1 || pUseSkill->Point > 10 || !pUseSkill->Skill_Info.UseMana) return FALSE;
+	// EU places Holy Body, Holy Valor and Holy Conviction in the same replacement group.
+	cSkill.CancelContinueSkill(SKILL_HOLY_BODY);
+	cSkill.CancelContinueSkill(SKILL_HOLY_VALOR);
 	pUseSkill->UseTime = Knight_T5_HolyConviction_Duration[pUseSkill->Point - 1];
 	sinContinueSkillSet(pUseSkill);
 	sinUseManaStamina(pUseSkill);
