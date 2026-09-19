@@ -2747,8 +2747,77 @@ static int SummitT5PlainFileReadable(const char *path)
     return 1;
 }
 
+static int SummitT5AnimationFileReadable(const char *path)
+{
+    if(!path || !path[0])
+        return -1;
+    if(SummitT5PlainFileReadable(path) == 1)
+        return 1;
+
+    char cachePath[MAX_PATH];
+    strncpy(cachePath, path, sizeof(cachePath) - 1);
+    cachePath[sizeof(cachePath) - 1] = 0;
+    char *dot = strrchr(cachePath, '.');
+    if(dot)
+    {
+        if((dot - cachePath) + 4 >= MAX_PATH)
+            return 0;
+        dot[1] = 's';
+        dot[2] = 'm';
+        dot[3] = 'b';
+        dot[4] = 0;
+    }
+    else if(strlen(cachePath) + 4 < MAX_PATH)
+        strcat(cachePath, ".smb");
+    else
+        return 0;
+
+    return SummitT5PlainFileReadable(cachePath) == 1 ? 1 : 0;
+}
+
+static void SummitTraceT5DynamicAnimationConfig(FILE *trace)
+{
+    static int traced = 0;
+    if(traced || !trace)
+        return;
+    traced = 1;
+
+    const char *configPath = "game\\objects\\animskills.ini";
+    const int readable = SummitT5PlainFileReadable(configPath);
+    const int count = readable == 1 ? GetPrivateProfileInt("Skills", "Count", -1, configPath) : -1;
+    fprintf(trace, "DYNAMIC_CONFIG path=\"%s\" readable=%d count=%d\n", configPath, readable, count);
+
+    if(readable != 1 || count <= 0)
+        return;
+
+    const int limit = count < 128 ? count : 128;
+    for(int index = 1; index <= limit; ++index)
+    {
+        char section[64];
+        char animationFile[MAX_PATH] = {0};
+        char className[64] = {0};
+        sprintf_s(section, "SkillAnimation%d", index);
+        GetPrivateProfileString(section, "AnimationFile", "", animationFile, MAX_PATH, configPath);
+        GetPrivateProfileString(section, "Class", "", className, 64, configPath);
+        const int id = GetPrivateProfileInt(section, "ID", -1, configPath);
+        const int loop = GetPrivateProfileInt(section, "Loop", -1, configPath);
+        const int area = GetPrivateProfileInt(section, "AreaType", -1, configPath);
+        const int event1 = GetPrivateProfileInt(section, "Event1", -1, configPath);
+        const int event2 = GetPrivateProfileInt(section, "Event2", -1, configPath);
+        const int event3 = GetPrivateProfileInt(section, "Event3", -1, configPath);
+        const int event4 = GetPrivateProfileInt(section, "Event4", -1, configPath);
+        const int itemType = GetPrivateProfileInt(section, "ItemType", -1, configPath);
+        const int animType = GetPrivateProfileInt(section, "AnimType", -1, configPath);
+        fprintf(trace,
+            "DYNAMIC_ENTRY n=%d class=\"%.31s\" id=%d assetReadable=%d loop=%d area=%d events=%d,%d,%d,%d itemType=%d animType=%d file=\"%.127s\"\n",
+            index, className, id, SummitT5AnimationFileReadable(animationFile), loop, area,
+            event1, event2, event3, event4, itemType, animType, animationFile);
+    }
+}
+
 static void SummitTraceT5MotionLookup(
     const smMODELINFO *motionInfo,
+    const smDPAT *dinaPattern,
     DWORD jobMask,
     int jobCode,
     int atSkill,
@@ -2773,8 +2842,14 @@ static void SummitTraceT5MotionLookup(
     if(!trace)
         return;
 
+    SummitTraceT5DynamicAnimationConfig(trace);
+
+    const smPAT3D *bodyPattern = dinaPattern ? dinaPattern->Pat : NULL;
+    const smPAT3D *motionPattern = (dinaPattern && dinaPattern->smDinaLink) ? dinaPattern->smDinaLink->Pat : NULL;
+    const smPAT3D *bodyParent = bodyPattern ? bodyPattern->TmParent : NULL;
+
     fprintf(trace,
-        "CALL #%d job=%d jobMask=0x%08X attackSkill=0x%08X requested=0x%02X abi=%s motionCount=%u found=%d sizeofMotion=%u sizeofModel=%u linkSourceReadable=%d model=\"%.63s\" motion=\"%.63s\" link=\"%.63s\"\n",
+        "CALL #%d job=%d jobMask=0x%08X attackSkill=0x%08X requested=0x%02X abi=%s motionCount=%u found=%d sizeofMotion=%u sizeofModel=%u linkSourceReadable=%d bodyMax=%d bodyParentMax=%d motionMax=%d motionTmFrames=%d model=\"%.63s\" motion=\"%.63s\" link=\"%.63s\"\n",
         traceCount,
         jobCode,
         (unsigned int)jobMask,
@@ -2786,9 +2861,29 @@ static void SummitTraceT5MotionLookup(
         (unsigned int)sizeof(smMOTIONINFO),
         (unsigned int)sizeof(smMODELINFO),
         SummitT5PlainFileReadable(motionInfo->szLinkFile),
+        bodyPattern ? bodyPattern->MaxFrame : -1,
+        bodyParent ? bodyParent->MaxFrame : -1,
+        motionPattern ? motionPattern->MaxFrame : -1,
+        motionPattern ? motionPattern->TmFrameCnt : -1,
         motionInfo->szModelFile,
         motionInfo->szMotionFile,
         motionInfo->szLinkFile);
+
+    if(motionPattern)
+    {
+        fprintf(trace, "PATTERN_FRAMES max=%d maxScene=%.2f tmCount=%d",
+            motionPattern->MaxFrame,
+            motionPattern->MaxFrame / 160.0,
+            motionPattern->TmFrameCnt);
+        const int tmCount = motionPattern->TmFrameCnt < OBJ_FRAME_SEARCH_MAX ? motionPattern->TmFrameCnt : OBJ_FRAME_SEARCH_MAX;
+        for(int tm = 0; tm < tmCount; ++tm)
+        {
+            fprintf(trace, " [%d]=%d..%d", tm,
+                motionPattern->TmFrame[tm].StartFrame,
+                motionPattern->TmFrame[tm].EndFrame);
+        }
+        fprintf(trace, "\n");
+    }
 
     if(foundNum && findCnt > 0)
     {
@@ -3026,7 +3121,7 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 
 
 	if(atSkill)
-		SummitTraceT5MotionLookup(smMotionInfo, dwJobCodeMask, smCharInfo.JOB_CODE, atSkill, motionSkillRegistryABI, FindCnt, FoundNum);
+		SummitTraceT5MotionLookup(smMotionInfo, lpDinaPattern, dwJobCodeMask, smCharInfo.JOB_CODE, atSkill, motionSkillRegistryABI, FindCnt, FoundNum);
 
 	if (FindCnt == 0 && AnimDispMode && lpDinaPattern2)
 	{
