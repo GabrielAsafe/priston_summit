@@ -28,8 +28,9 @@ HoEffectGroup *HoEffectMain::LoadScript(const char *str)
 {
 	if(m_EffectGroup)
 		m_EffectGroup = NULL;
-	
-	if(m_PiScript.RunScriptFile(str))
+	m_ModelController = NULL;
+
+	if(m_PiScript.RunScriptFile(str) && m_EffectGroup)
 	{
 		m_EffectGroup->CreateFadeList();
 		m_EffectGroup->Main(0.f);
@@ -41,7 +42,8 @@ HoEffectGroup *HoEffectMain::LoadScript(const char *str)
 HoEffectBillboardAxialController *HoEffectMain::LoadScriptAxial(const char *str)
 {
 	m_SpecificWorkTypeName = CLASS_EFFECT_BILLBOARD_AXIAL;
-	if(m_PiScript.RunScriptFile(str))
+	m_ModelController = NULL;
+	if(m_PiScript.RunScriptFile(str) && m_ModelController)
 	{
 		m_ModelController->CreateFadeList();
 		m_ModelController->Main(0.f);
