@@ -300,7 +300,7 @@ int HoNewParticleMgr::Start(HoNewParticleScriptRes *tokenRes, POINT3D pos, float
 
 void HoNewParticleMgr::SetPos(int partID, LegacyHoNewParticleMgrPolicy::Vector3 pos)
 {
-	if(partID < 0 || partID >= MAX_EMITTER)
+	if(partID < 0 || (size_t)partID >= Emitters.size())
 		return;
 
 	if(Emitters[partID].IsRunning())
@@ -309,7 +309,7 @@ void HoNewParticleMgr::SetPos(int partID, LegacyHoNewParticleMgrPolicy::Vector3 
 
 void HoNewParticleMgr::SetAngle(int partID, POINT3D angle)
 {
-	if(partID < 0 || partID >= MAX_EMITTER)
+	if(partID < 0 || (size_t)partID >= Emitters.size())
 		return;
 
 	if(Emitters[partID].IsRunning())
@@ -325,7 +325,7 @@ void HoNewParticleMgr::SetAngle(int partID, POINT3D angle)
 
 bool HoNewParticleMgr::GetRunning(int partID)
 {
-	if(partID < 0 || partID >= MAX_EMITTER)
+	if(partID < 0 || (size_t)partID >= Emitters.size())
 		return false;
 	if(Emitters[partID].IsRunning())
 		return true;
@@ -336,7 +336,7 @@ bool HoNewParticleMgr::GetRunning(int partID)
 
 void HoNewParticleMgr::SetAttachPos(int partID, LegacyHoNewParticleMgrPolicy::Vector3 pos)
 {
-	if(partID < 0 || partID >= MAX_EMITTER)
+	if(partID < 0 || (size_t)partID >= Emitters.size())
 		return;
 
 	if(Emitters[partID].IsRunning())
@@ -345,7 +345,7 @@ void HoNewParticleMgr::SetAttachPos(int partID, LegacyHoNewParticleMgrPolicy::Ve
 
 void HoNewParticleMgr::SetStop(int partID)
 {
-	if(partID < 0 || partID >= MAX_EMITTER)
+	if(partID < 0 || (size_t)partID >= Emitters.size())
 		return;
 	if(Emitters[partID].IsRunning())
 		Emitters[partID].FadeStop();
@@ -353,7 +353,7 @@ void HoNewParticleMgr::SetStop(int partID)
 
 void HoNewParticleMgr::SetFastStop(int partID)
 {
-	if(partID < 0 || partID >= MAX_EMITTER)
+	if(partID < 0 || (size_t)partID >= Emitters.size())
 		return;
 	if(Emitters[partID].IsRunning())
 		Emitters[partID].FastStop();
@@ -361,7 +361,7 @@ void HoNewParticleMgr::SetFastStop(int partID)
 
 void HoNewParticleMgr::SetRendering(int partID, BOOL flag)
 {
-	if(partID < 0 || partID >= MAX_EMITTER)
+	if(partID < 0 || (size_t)partID >= Emitters.size())
 		return;
 	if(Emitters[partID].IsRunning())
 	{
