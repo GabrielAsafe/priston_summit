@@ -2417,7 +2417,8 @@ enum SummitMotionSkillRegistryABI
 {
 	SUMMIT_MOTION_SKILL_ABI_UNKNOWN = 0,
 	SUMMIT_MOTION_SKILL_ABI_LEGACY = 1,
-	SUMMIT_MOTION_SKILL_ABI_T5_INTERLEAVED = 2
+	SUMMIT_MOTION_SKILL_ABI_T5_INTERLEAVED = 2,
+	SUMMIT_MOTION_SKILL_ABI_TEMP_APPENDED = 3
 };
 
 static int SummitMotionSkillIndexRange(DWORD jobMask, int legacyABI, int *firstIndex, int *lastIndex)
@@ -2484,6 +2485,52 @@ static BYTE SummitLegacyMotionSkillIndexToCurrent(BYTE legacyIndex)
 	return 0;
 }
 
+static int SummitTemporaryT5SkillIndexRange(DWORD jobMask, int *firstIndex, int *lastIndex)
+{
+	if(!firstIndex || !lastIndex)
+		return FALSE;
+	switch(jobMask)
+	{
+	case 0x0002: *firstIndex = 127; *lastIndex = 134; return TRUE; // Mechanician
+	case 0x0001: *firstIndex = 135; *lastIndex = 142; return TRUE; // Fighter
+	case 0x0008: *firstIndex = 143; *lastIndex = 154; return TRUE; // Pikeman
+	case 0x0004: *firstIndex = 155; *lastIndex = 163; return TRUE; // Archer
+	case 0x0020: *firstIndex = 164; *lastIndex = 171; return TRUE; // Knight
+	case 0x0010: *firstIndex = 172; *lastIndex = 180; return TRUE; // Atalanta
+	case 0x0080: *firstIndex = 181; *lastIndex = 188; return TRUE; // Priestess
+	case 0x0040: *firstIndex = 189; *lastIndex = 195; return TRUE; // Magician
+	default: break;
+	}
+	return FALSE;
+}
+
+static int SummitTemporaryT5SkillIndexInJobRange(BYTE skillIndex, DWORD jobMask)
+{
+	int firstIndex = 0;
+	int lastIndex = 0;
+	if(!SummitTemporaryT5SkillIndexRange(jobMask, &firstIndex, &lastIndex))
+		return FALSE;
+	return skillIndex >= firstIndex && skillIndex <= lastIndex;
+}
+
+static BYTE SummitTemporaryAppendedSkillIndexToCurrent(BYTE storedIndex)
+{
+	// Temporary ABI written by MOTION_REGISTRY_ABI_v1: legacy 1..126 followed
+	// by all T5 aliases. Keep support so caches produced during that build do
+	// not need destructive deletion/regeneration.
+	if(storedIndex >= 1 && storedIndex <= 126)
+		return SummitLegacyMotionSkillIndexToCurrent(storedIndex);
+	if(storedIndex >= 127 && storedIndex <= 134) return (BYTE)(storedIndex - 111);
+	if(storedIndex >= 135 && storedIndex <= 142) return (BYTE)(storedIndex - 96);
+	if(storedIndex >= 143 && storedIndex <= 154) return (BYTE)(storedIndex - 81);
+	if(storedIndex >= 155 && storedIndex <= 163) return (BYTE)(storedIndex - 66);
+	if(storedIndex >= 164 && storedIndex <= 171) return (BYTE)(storedIndex - 48);
+	if(storedIndex >= 172 && storedIndex <= 180) return (BYTE)(storedIndex - 32);
+	if(storedIndex >= 181 && storedIndex <= 188) return (BYTE)(storedIndex - 16);
+	if(storedIndex >= 189 && storedIndex <= 195) return storedIndex;
+	return 0;
+}
+
 static int SummitDetectMotionSkillRegistryABI(const smMODELINFO *motionInfo, DWORD jobMask)
 {
 	if(!motionInfo || !jobMask)
@@ -2491,6 +2538,7 @@ static int SummitDetectMotionSkillRegistryABI(const smMODELINFO *motionInfo, DWO
 
 	int legacyEvidence = 0;
 	int currentEvidence = 0;
+	int appendedEvidence = 0;
 	const int motionCount = (int)motionInfo->MotionCount;
 
 	for(int motionIndex = 0; motionIndex < motionCount; motionIndex++)
@@ -2509,6 +2557,9 @@ static int SummitDetectMotionSkillRegistryABI(const smMODELINFO *motionInfo, DWO
 
 			const int legacyRange = SummitMotionSkillIndexInJobRange(storedIndex, jobMask, TRUE);
 			const int currentRange = SummitMotionSkillIndexInJobRange(storedIndex, jobMask, FALSE);
+			const int appendedRange = SummitTemporaryT5SkillIndexInJobRange(storedIndex, jobMask);
+			if(appendedRange)
+				appendedEvidence++;
 			if(legacyRange && !currentRange)
 				legacyEvidence++;
 			else if(currentRange && !legacyRange)
@@ -2516,10 +2567,14 @@ static int SummitDetectMotionSkillRegistryABI(const smMODELINFO *motionInfo, DWO
 		}
 	}
 
+	if(appendedEvidence > 0 && legacyEvidence >= currentEvidence)
+		return SUMMIT_MOTION_SKILL_ABI_TEMP_APPENDED;
 	if(currentEvidence > legacyEvidence)
 		return SUMMIT_MOTION_SKILL_ABI_T5_INTERLEAVED;
 	if(legacyEvidence > currentEvidence)
 		return SUMMIT_MOTION_SKILL_ABI_LEGACY;
+	if(appendedEvidence > 0)
+		return SUMMIT_MOTION_SKILL_ABI_TEMP_APPENDED;
 	return SUMMIT_MOTION_SKILL_ABI_UNKNOWN;
 }
 
@@ -2534,7 +2589,8 @@ static int SummitMotionSkillIndexMatches(
 
 	// Current/interleaved registry is the canonical runtime table and contains
 	// indices 1..195 (196 is the terminating empty entry).
-	if(registryABI != SUMMIT_MOTION_SKILL_ABI_LEGACY)
+	if(registryABI == SUMMIT_MOTION_SKILL_ABI_T5_INTERLEAVED ||
+		registryABI == SUMMIT_MOTION_SKILL_ABI_UNKNOWN)
 	{
 		if(storedIndex <= 195 &&
 			(!jobMask || SummitMotionSkillIndexInJobRange(storedIndex, jobMask, FALSE)) &&
@@ -2542,7 +2598,8 @@ static int SummitMotionSkillIndexMatches(
 			return TRUE;
 	}
 
-	if(registryABI != SUMMIT_MOTION_SKILL_ABI_T5_INTERLEAVED)
+	if(registryABI == SUMMIT_MOTION_SKILL_ABI_LEGACY ||
+		registryABI == SUMMIT_MOTION_SKILL_ABI_UNKNOWN)
 	{
 		if(!jobMask || SummitMotionSkillIndexInJobRange(storedIndex, jobMask, TRUE))
 		{
@@ -2551,6 +2608,17 @@ static int SummitMotionSkillIndexMatches(
 				SkillDataCode[currentIndex].dwPlaySkillCode == skillCode)
 				return TRUE;
 		}
+	}
+
+	if(registryABI == SUMMIT_MOTION_SKILL_ABI_TEMP_APPENDED ||
+		registryABI == SUMMIT_MOTION_SKILL_ABI_UNKNOWN)
+	{
+		BYTE currentIndex = SummitTemporaryAppendedSkillIndexToCurrent(storedIndex);
+		if(currentIndex && currentIndex <= 195 &&
+			(!jobMask ||
+				SummitMotionSkillIndexInJobRange(currentIndex, jobMask, FALSE)) &&
+			SkillDataCode[currentIndex].dwPlaySkillCode == skillCode)
+			return TRUE;
 	}
 
 	return FALSE;
