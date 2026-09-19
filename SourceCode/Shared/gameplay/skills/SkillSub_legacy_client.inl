@@ -3053,8 +3053,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
 			lpCurPlayer->MotionLoop = 1;
-			lpCurPlayer->AttackSkil = summitRedRayNetworkSkill;
-			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
+			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_RED_RAY, SKILL_PLAY_T53, lpSkill->Point, lpChar, 0);
+			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, summitRedRayNetworkSkill, TRUE);
 			if(!cnt) lpCurPlayer->AttackCritcal = -1; else DamageExp(lpChar, cnt);
 			return TRUE;
 		}
