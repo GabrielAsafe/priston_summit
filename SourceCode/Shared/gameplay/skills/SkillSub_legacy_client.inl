@@ -27,6 +27,7 @@
 
 static sSKILL Skill_ScoutHawk;
 
+
 // Summit Tier 5 runtime visual probe. Diagnostic only: it does not alter skill routing.
 static void SummitT5VisualProbe(const char *skill, const char *stage, smCHAR *pcActor, smCHAR *pcTarget,
 	int beginResult, int motionResult)

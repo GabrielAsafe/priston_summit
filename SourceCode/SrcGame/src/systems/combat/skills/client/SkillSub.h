@@ -25,6 +25,12 @@ void SummitWhirlwindTick();
 void SummitArcherBombardmentTick();
 void SummitMagicianCataclysmTick();
 
+// Tier 5 MotionEvent bridge: animation/event identity is separate from AttackSkil/network routing.
+void SummitT5MotionEventArm(smCHAR *actor, int logicalSkillCode, int networkSkillCode, int level, smCHAR *target, int finalEvent);
+void SummitT5MotionEventClear(smCHAR *actor);
+void SummitT5MotionEventEnd(smCHAR *actor);
+int SummitT5MotionEventDispatch(smCHAR *actor);
+
 
 
 

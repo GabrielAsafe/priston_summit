@@ -4,7 +4,7 @@
 
 int Agony_RecoveryMana[10] = {0};
 int Chain_Lightning_Damage_Percent[10] = {0};
-int Dancing_Sword_Damage[10] = {0};
+int Dancing_Sword_Damage[10][2] = {0};
 int Dead_Ray_Damage_Percent[10] = {0};
 int Diastrophism_Damage_Percent[10] = {0};
 int Divine_Lightning_Damage_Percent[10] = {0};

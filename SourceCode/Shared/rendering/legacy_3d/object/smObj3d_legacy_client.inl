@@ -1968,11 +1968,6 @@ int smOBJ3D::LoadFile(HANDLE hFile, smPAT3D *PatPhysique)
 
 	len = ReadFile(hFile, &Head, sizeof(smOBJ3D), &dwAcess, NULL);
 
-	if(!len || dwAcess != sizeof(smOBJ3D)) return 0;
-	if(MaxVertex < 0 || MaxFace < 0 || MaxVertex > RENDER_VERTEX_MAX || MaxFace > RENDER_FACE_MAX ||
-		nVertex < 0 || nVertex > MaxVertex || nFace < 0 || nFace > MaxFace ||
-		nTexLink < 0 || MaxFace > 0x7fffffff / 8 || nTexLink > MaxFace * 8) return 0;
-
 	lpOldTexLink = TexLink;
 
 

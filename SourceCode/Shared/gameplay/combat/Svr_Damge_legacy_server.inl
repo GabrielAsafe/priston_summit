@@ -2069,6 +2069,8 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 	int	StnPers;
 	int	Dmg1, Dmg2, Dmg3, Dmg4;
 	int SlowSpeed;
+	FILE *summitRangeApplyTrace;
+	int summitTraceRange;
 
 	TRANS_PARTY_SKILL		TransPartySkill;
 
@@ -2080,25 +2082,108 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 		if(SkillPoint < 0 || SkillPoint >= 10) SkillPoint = 0;
 	}
 
+	summitTraceRange = (lpPlayInfo != NULL);
+	if(summitTraceRange)
+	{
+		summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+		if(summitRangeApplyTrace)
+		{
+			fprintf(summitRangeApplyTrace, "tick=%lu stage=enter job=%d skill=0x%08X skillCode=0x%02X point=%d area=%d targets=%d power=%d attackState=%d attackSize=%d xyz=%d,%d,%d\n",
+				(unsigned long)GetTickCount(), lpPlayInfo->smCharInfo.JOB_CODE, PlaySkillCode, SkillCode, SkillPoint, AreaNum, lpTransSkilAttackData->TargetCount,
+				lpTransSkilAttackData->Power, lpTransSkilAttackData->AttackState, lpTransSkilAttackData->AttackSize,
+				lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z);
+			fclose(summitRangeApplyTrace);
+		}
+	}
 
 	STG_AREA *lpStgArea;
 
 	if(AreaNum < STAGE_AREA_MAX && StageArea[AreaNum].lpStage) lpStgArea = &StageArea[AreaNum];
 	else
 	{
+		if(summitTraceRange)
+		{
+			summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+			if(summitRangeApplyTrace)
+			{
+				fprintf(summitRangeApplyTrace, "tick=%lu stage=abort-area skill=0x%08X area=%d stageMax=%d\n",
+					(unsigned long)GetTickCount(), PlaySkillCode, AreaNum, STAGE_AREA_MAX);
+				fclose(summitRangeApplyTrace);
+			}
+		}
 		return FALSE;
 	}
 
-	if(lpPlayInfo->HideMode && lpPlayInfo->getSecurity() < AccountTypes::SEC_ADMINISTRATOR) return FALSE;
+	if(lpPlayInfo->HideMode && lpPlayInfo->getSecurity() < AccountTypes::SEC_ADMINISTRATOR)
+	{
+		if(summitTraceRange)
+		{
+			summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+			if(summitRangeApplyTrace)
+			{
+				fprintf(summitRangeApplyTrace, "tick=%lu stage=abort-hide skill=0x%08X hide=%d security=%d\n",
+					(unsigned long)GetTickCount(), PlaySkillCode, lpPlayInfo->HideMode, (int)lpPlayInfo->getSecurity());
+				fclose(summitRangeApplyTrace);
+			}
+		}
+		return FALSE;
+	}
 
-
-	if(rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpPlayInfo) == FALSE)
+	int summitOriginRangeResult = rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpPlayInfo);
+	if(summitTraceRange)
+	{
+		summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+		if(summitRangeApplyTrace)
+		{
+			fprintf(summitRangeApplyTrace, "tick=%lu stage=origin-range skill=0x%08X result=%d playerArea=%d playerXYZ=%d,%d,%d\n",
+				(unsigned long)GetTickCount(), PlaySkillCode, summitOriginRangeResult, lpPlayInfo->Position.Area,
+				lpPlayInfo->Position.x, lpPlayInfo->Position.y, lpPlayInfo->Position.z);
+			fclose(summitRangeApplyTrace);
+		}
+	}
+	if(summitOriginRangeResult == FALSE)
 		return FALSE;
 
 	dDist = lpTransSkilAttackData->AttackSize + 60;
 	dDist *= dDist;
 
-
+	if(summitTraceRange)
+	{
+		for(int summitTargetIndex = 0; summitTargetIndex < lpTransSkilAttackData->TargetCount; summitTargetIndex++)
+		{
+			DWORD summitSerial = lpTransSkilAttackData->dwTarObjectSerial[summitTargetIndex];
+			int summitFound = 0;
+			for(int summitSlot = 0; summitSlot < STG_MONSTER_MAX; summitSlot++)
+			{
+				smCHAR *summitChar = lpStgArea->lpCharMonster[summitSlot];
+				if(summitChar && summitChar->dwObjectSerial == summitSerial)
+				{
+					summitFound = 1;
+					summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+					if(summitRangeApplyTrace)
+					{
+						fprintf(summitRangeApplyTrace, "tick=%lu stage=target-resolve skill=0x%08X idx=%d serial=%lu found=1 slot=%d flag=%d state=%d motion=%d life=%d maxLife=%d absorb=%d charXYZ=%d,%d,%d\n",
+							(unsigned long)GetTickCount(), PlaySkillCode, summitTargetIndex, (unsigned long)summitSerial, summitSlot,
+							summitChar->Flag, summitChar->smCharInfo.State, summitChar->MotionInfo ? summitChar->MotionInfo->State : -1,
+							summitChar->smCharInfo.Life[0], summitChar->smCharInfo.Life[1], summitChar->smCharInfo.Absorption,
+							summitChar->pX, summitChar->pY, summitChar->pZ);
+						fclose(summitRangeApplyTrace);
+					}
+					break;
+				}
+			}
+			if(!summitFound)
+			{
+				summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+				if(summitRangeApplyTrace)
+				{
+					fprintf(summitRangeApplyTrace, "tick=%lu stage=target-resolve skill=0x%08X idx=%d serial=%lu found=0\n",
+						(unsigned long)GetTickCount(), PlaySkillCode, summitTargetIndex, (unsigned long)summitSerial);
+					fclose(summitRangeApplyTrace);
+				}
+			}
+		}
+	}
 
 	switch(lpTransSkilAttackData->AttackState)
 	{
@@ -2131,7 +2216,19 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 						}
 
 
-						if(rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpChar, dDist) == FALSE) break;
+						int summitTargetRangeResult = rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpChar, dDist);
+						if(summitTraceRange)
+						{
+							summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+							if(summitRangeApplyTrace)
+							{
+								fprintf(summitRangeApplyTrace, "tick=%lu stage=target-range skill=0x%08X attackState=%d idx=%d slot=%d serial=%lu result=%d dDist=%d life=%d absorb=%d\n",
+									(unsigned long)GetTickCount(), PlaySkillCode, lpTransSkilAttackData->AttackState, cnt, cnt2,
+									(unsigned long)lpChar->dwObjectSerial, summitTargetRangeResult, dDist, lpChar->smCharInfo.Life[0], lpChar->smCharInfo.Absorption);
+								fclose(summitRangeApplyTrace);
+							}
+						}
+						if(summitTargetRangeResult == FALSE) break;
 
 						pow = lpTransSkilAttackData->Power;
 						StunFlag = TRUE;
@@ -2392,7 +2489,19 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 						if (pow > 0)
 						{
 
+							int summitLifeBefore = lpChar->smCharInfo.Life[0];
 							lpChar->smCharInfo.Life[0] -= pow;
+							if(summitTraceRange)
+							{
+								summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+								if(summitRangeApplyTrace)
+								{
+									fprintf(summitRangeApplyTrace, "tick=%lu stage=damage-applied skill=0x%08X attackState=%d serial=%lu pow=%d lifeBefore=%d lifeAfter=%d\n",
+										(unsigned long)GetTickCount(), PlaySkillCode, lpTransSkilAttackData->AttackState, (unsigned long)lpChar->dwObjectSerial,
+										pow, summitLifeBefore, lpChar->smCharInfo.Life[0]);
+									fclose(summitRangeApplyTrace);
+								}
+							}
 
 							SendShowDmg(lpChar, pow, lpPlayInfo);
 
@@ -2459,12 +2568,35 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 					{
 
 
-						if(rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpChar, dDist) == FALSE) break;
+						int summitTargetRangeResult = rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpChar, dDist);
+						if(summitTraceRange)
+						{
+							summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+							if(summitRangeApplyTrace)
+							{
+								fprintf(summitRangeApplyTrace, "tick=%lu stage=target-range skill=0x%08X attackState=%d idx=%d slot=%d serial=%lu result=%d dDist=%d life=%d absorb=%d\n",
+									(unsigned long)GetTickCount(), PlaySkillCode, lpTransSkilAttackData->AttackState, cnt, cnt2,
+									(unsigned long)lpChar->dwObjectSerial, summitTargetRangeResult, dDist, lpChar->smCharInfo.Life[0], lpChar->smCharInfo.Absorption);
+								fclose(summitRangeApplyTrace);
+							}
+						}
+						if(summitTargetRangeResult == FALSE) break;
 
 						x = (lpPlayInfo->Position.x - lpChar->pX) >> FLOATNS;
 						y = (lpPlayInfo->Position.y - lpChar->pY) >> FLOATNS;
 						z = (lpPlayInfo->Position.z - lpChar->pZ) >> FLOATNS;
-						if(abs(y) > 100 || (x*x + z*z) > (800 * 800)) break;
+						int summitState1GeomFail = (abs(y) > 100 || (x*x + z*z) > (800 * 800));
+						if(summitTraceRange)
+						{
+							summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+							if(summitRangeApplyTrace)
+							{
+								fprintf(summitRangeApplyTrace, "tick=%lu stage=state1-geometry skill=0x%08X serial=%lu x=%d y=%d z=%d fail=%d\n",
+									(unsigned long)GetTickCount(), PlaySkillCode, (unsigned long)lpChar->dwObjectSerial, x, y, z, summitState1GeomFail);
+								fclose(summitRangeApplyTrace);
+							}
+						}
+						if(summitState1GeomFail) break;
 
 						dist = (int)sqrt(x*x + z*z);
 						dist = lpTransSkilAttackData->AttackSize - dist;
@@ -2505,7 +2637,19 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 						if(pow > 0)
 						{
 
+							int summitLifeBefore = lpChar->smCharInfo.Life[0];
 							lpChar->smCharInfo.Life[0] -= pow;
+							if(summitTraceRange)
+							{
+								summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+								if(summitRangeApplyTrace)
+								{
+									fprintf(summitRangeApplyTrace, "tick=%lu stage=damage-applied skill=0x%08X attackState=%d serial=%lu pow=%d lifeBefore=%d lifeAfter=%d\n",
+										(unsigned long)GetTickCount(), PlaySkillCode, lpTransSkilAttackData->AttackState, (unsigned long)lpChar->dwObjectSerial,
+										pow, summitLifeBefore, lpChar->smCharInfo.Life[0]);
+									fclose(summitRangeApplyTrace);
+								}
+							}
 							SendShowDmg(lpChar, pow, lpPlayInfo);
 						}
 
@@ -2537,7 +2681,19 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 					{
 
 
-						if(rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpChar, dDist) == FALSE) break;
+						int summitTargetRangeResult = rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpChar, dDist);
+						if(summitTraceRange)
+						{
+							summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+							if(summitRangeApplyTrace)
+							{
+								fprintf(summitRangeApplyTrace, "tick=%lu stage=target-range skill=0x%08X attackState=%d idx=%d slot=%d serial=%lu result=%d dDist=%d life=%d absorb=%d\n",
+									(unsigned long)GetTickCount(), PlaySkillCode, lpTransSkilAttackData->AttackState, cnt, cnt2,
+									(unsigned long)lpChar->dwObjectSerial, summitTargetRangeResult, dDist, lpChar->smCharInfo.Life[0], lpChar->smCharInfo.Absorption);
+								fclose(summitRangeApplyTrace);
+							}
+						}
+						if(summitTargetRangeResult == FALSE) break;
 
 
 						rs = lpChar->smCharInfo.Resistance[sITEMINFO_BIONIC];
@@ -2561,7 +2717,19 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 							if(pow > 0)
 							{
 
+								int summitLifeBefore = lpChar->smCharInfo.Life[0];
 								lpChar->smCharInfo.Life[0] -= pow;
+								if(summitTraceRange)
+								{
+									summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+									if(summitRangeApplyTrace)
+									{
+										fprintf(summitRangeApplyTrace, "tick=%lu stage=damage-applied skill=0x%08X attackState=%d serial=%lu pow=%d lifeBefore=%d lifeAfter=%d\n",
+											(unsigned long)GetTickCount(), PlaySkillCode, lpTransSkilAttackData->AttackState, (unsigned long)lpChar->dwObjectSerial,
+											pow, summitLifeBefore, lpChar->smCharInfo.Life[0]);
+										fclose(summitRangeApplyTrace);
+									}
+								}
 								SendShowDmg(lpChar, pow, lpPlayInfo);
 								if(lpChar->lpAttackDamageList || lpChar->lpAttackDamageList_BlessCastle) rsRecordCharDamage(lpPlayInfo, lpChar, pow);
 
@@ -2674,7 +2842,19 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 					{
 
 
-						if(rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpChar, dDist) == FALSE) break;
+						int summitTargetRangeResult = rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpChar, dDist);
+						if(summitTraceRange)
+						{
+							summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+							if(summitRangeApplyTrace)
+							{
+								fprintf(summitRangeApplyTrace, "tick=%lu stage=target-range skill=0x%08X attackState=%d idx=%d slot=%d serial=%lu result=%d dDist=%d life=%d absorb=%d\n",
+									(unsigned long)GetTickCount(), PlaySkillCode, lpTransSkilAttackData->AttackState, cnt, cnt2,
+									(unsigned long)lpChar->dwObjectSerial, summitTargetRangeResult, dDist, lpChar->smCharInfo.Life[0], lpChar->smCharInfo.Absorption);
+								fclose(summitRangeApplyTrace);
+							}
+						}
+						if(summitTargetRangeResult == FALSE) break;
 
 						pow = lpTransSkilAttackData->Power;
 						Dmg1 = pow;
@@ -2712,7 +2892,19 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 						if(pow > 0)
 						{
 
+							int summitLifeBefore = lpChar->smCharInfo.Life[0];
 							lpChar->smCharInfo.Life[0] -= pow;
+							if(summitTraceRange)
+							{
+								summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+								if(summitRangeApplyTrace)
+								{
+									fprintf(summitRangeApplyTrace, "tick=%lu stage=damage-applied skill=0x%08X attackState=%d serial=%lu pow=%d lifeBefore=%d lifeAfter=%d\n",
+										(unsigned long)GetTickCount(), PlaySkillCode, lpTransSkilAttackData->AttackState, (unsigned long)lpChar->dwObjectSerial,
+										pow, summitLifeBefore, lpChar->smCharInfo.Life[0]);
+									fclose(summitRangeApplyTrace);
+								}
+							}
 							SendShowDmg(lpChar, pow, lpPlayInfo);
 							if(lpChar->lpAttackDamageList || lpChar->lpAttackDamageList_BlessCastle) rsRecordCharDamage(lpPlayInfo, lpChar, pow);
 
@@ -2776,7 +2968,19 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 					{
 
 
-						if(rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpChar, dDist) == FALSE) break;
+						int summitTargetRangeResult = rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpChar, dDist);
+						if(summitTraceRange)
+						{
+							summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+							if(summitRangeApplyTrace)
+							{
+								fprintf(summitRangeApplyTrace, "tick=%lu stage=target-range skill=0x%08X attackState=%d idx=%d slot=%d serial=%lu result=%d dDist=%d life=%d absorb=%d\n",
+									(unsigned long)GetTickCount(), PlaySkillCode, lpTransSkilAttackData->AttackState, cnt, cnt2,
+									(unsigned long)lpChar->dwObjectSerial, summitTargetRangeResult, dDist, lpChar->smCharInfo.Life[0], lpChar->smCharInfo.Absorption);
+								fclose(summitRangeApplyTrace);
+							}
+						}
+						if(summitTargetRangeResult == FALSE) break;
 
 						pow = Soul_Sucker_Absorb[lpTransSkilAttackData->Power - 1];
 
@@ -2863,7 +3067,19 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 					{
 
 
-						if(rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpChar, dDist) == FALSE) break;
+						int summitTargetRangeResult = rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpChar, dDist);
+						if(summitTraceRange)
+						{
+							summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+							if(summitRangeApplyTrace)
+							{
+								fprintf(summitRangeApplyTrace, "tick=%lu stage=target-range skill=0x%08X attackState=%d idx=%d slot=%d serial=%lu result=%d dDist=%d life=%d absorb=%d\n",
+									(unsigned long)GetTickCount(), PlaySkillCode, lpTransSkilAttackData->AttackState, cnt, cnt2,
+									(unsigned long)lpChar->dwObjectSerial, summitTargetRangeResult, dDist, lpChar->smCharInfo.Life[0], lpChar->smCharInfo.Absorption);
+								fclose(summitRangeApplyTrace);
+							}
+						}
+						if(summitTargetRangeResult == FALSE) break;
 
 						pow = Extinction_Percent[lpTransSkilAttackData->Power - 1];
 						//pow += lpPlayInfo->smCharInfo.Level / 5;
@@ -2952,7 +3168,19 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 					{
 
 
-						if(rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpChar, dDist) == FALSE) break;
+						int summitTargetRangeResult = rsCheckAttackRange(lpTransSkilAttackData->x, lpTransSkilAttackData->y, lpTransSkilAttackData->z, lpChar, dDist);
+						if(summitTraceRange)
+						{
+							summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+							if(summitRangeApplyTrace)
+							{
+								fprintf(summitRangeApplyTrace, "tick=%lu stage=target-range skill=0x%08X attackState=%d idx=%d slot=%d serial=%lu result=%d dDist=%d life=%d absorb=%d\n",
+									(unsigned long)GetTickCount(), PlaySkillCode, lpTransSkilAttackData->AttackState, cnt, cnt2,
+									(unsigned long)lpChar->dwObjectSerial, summitTargetRangeResult, dDist, lpChar->smCharInfo.Life[0], lpChar->smCharInfo.Absorption);
+								fclose(summitRangeApplyTrace);
+							}
+						}
+						if(summitTargetRangeResult == FALSE) break;
 
 
 						lpChar->PlaySlowCount = time;
@@ -2998,6 +3226,16 @@ int RecvRangeAttack(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSkilAt
 
 	}
 
+	if(summitTraceRange)
+	{
+		summitRangeApplyTrace = fopen("summit_server_range_apply_all_trace.log", "at");
+		if(summitRangeApplyTrace)
+		{
+			fprintf(summitRangeApplyTrace, "tick=%lu stage=return-true skill=0x%08X attackState=%d targets=%d\n",
+				(unsigned long)GetTickCount(), PlaySkillCode, lpTransSkilAttackData->AttackState, lpTransSkilAttackData->TargetCount);
+			fclose(summitRangeApplyTrace);
+		}
+	}
 	return TRUE;
 }
 
@@ -5881,6 +6119,7 @@ int rsRecvRangeAttackData(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA2 *lpTran
 	TRANS_SKIL_ATTACKDATA	TransSkillAttackData;
 	smCHAR					*lpChar;
 	smTRANS_COMMAND_EX	smTransCommand;
+	FILE					*summitRangeTrace;
 
 #ifdef _USE_DYNAMIC_ENCODE
 	rsDecodeDamagePacket(lpPlayInfo, lpTransAttackData);
@@ -5888,9 +6127,28 @@ int rsRecvRangeAttackData(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA2 *lpTran
 	dm_DecodePacket(lpPlayInfo->dwObjectSerial, lpTransRangeAttackData);
 #endif
 
+	summitRangeTrace = fopen("summit_server_range_trace.log", "at");
+	if(summitRangeTrace)
+	{
+		fprintf(summitRangeTrace, "tick=%lu stage=decoded skill=0x%08lX targets=%d attackCount=%lu prevCount=%lu time=%lu prevTime=%lu checksum=0x%08lX calc=0x%08lX area=%d main=%lu\n",
+			(unsigned long)GetTickCount(), (unsigned long)lpTransRangeAttackData->SkillCode,
+			lpTransRangeAttackData->TargetCount, (unsigned long)lpTransRangeAttackData->AttackCount,
+			(unsigned long)lpPlayInfo->DamagePacketCount, (unsigned long)lpTransRangeAttackData->dwTime,
+			(unsigned long)lpPlayInfo->dwDamagePacketTime, (unsigned long)lpTransRangeAttackData->dwChkSum,
+			(unsigned long)dm_GetRangeDamgeChkSum(lpTransRangeAttackData), lpTransRangeAttackData->Area[0],
+			(unsigned long)lpTransRangeAttackData->dwMainTargetObject);
+		fclose(summitRangeTrace);
+	}
+
 	if(lpTransRangeAttackData->dwChkSum != dm_GetRangeDamgeChkSum(lpTransRangeAttackData))
 	{
-
+		summitRangeTrace = fopen("summit_server_range_trace.log", "at");
+		if(summitRangeTrace)
+		{
+			fprintf(summitRangeTrace, "tick=%lu stage=abort-checksum skill=0x%08lX targets=%d\n",
+				(unsigned long)GetTickCount(), (unsigned long)lpTransRangeAttackData->SkillCode, lpTransRangeAttackData->TargetCount);
+			fclose(summitRangeTrace);
+		}
 
 		smTransCommand.code = OpCode::OPCODE_SET_BLACKLIST;
 		smTransCommand.size = sizeof(smTRANS_COMMAND);
@@ -5909,7 +6167,15 @@ int rsRecvRangeAttackData(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA2 *lpTran
 		if(lpTransRangeAttackData->AttackCount <= lpPlayInfo->DamagePacketCount ||
 		   lpTransRangeAttackData->dwTime <= lpPlayInfo->dwDamagePacketTime)
 		{
-
+			summitRangeTrace = fopen("summit_server_range_trace.log", "at");
+			if(summitRangeTrace)
+			{
+				fprintf(summitRangeTrace, "tick=%lu stage=abort-replay skill=0x%08lX attackCount=%lu prevCount=%lu time=%lu prevTime=%lu\n",
+					(unsigned long)GetTickCount(), (unsigned long)lpTransRangeAttackData->SkillCode,
+					(unsigned long)lpTransRangeAttackData->AttackCount, (unsigned long)lpPlayInfo->DamagePacketCount,
+					(unsigned long)lpTransRangeAttackData->dwTime, (unsigned long)lpPlayInfo->dwDamagePacketTime);
+				fclose(summitRangeTrace);
+			}
 			return FALSE;
 		}
 
@@ -6026,10 +6292,27 @@ int rsRecvRangeAttackData(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA2 *lpTran
 	else
 		TransSkillAttackData.TargetCount = 0;
 
+	summitRangeTrace = fopen("summit_server_range_trace.log", "at");
+	if(summitRangeTrace)
+	{
+		fprintf(summitRangeTrace, "tick=%lu stage=pre-skillset skill=0x%08lX targetsIn=%d targetsCopied=%d job=%d mainFound=%d\n",
+			(unsigned long)GetTickCount(), (unsigned long)lpTransRangeAttackData->SkillCode, lpTransRangeAttackData->TargetCount,
+			TransSkillAttackData.TargetCount, lpPlayInfo->smCharInfo.JOB_CODE, lpChar ? 1 : 0);
+		fclose(summitRangeTrace);
+	}
 
-	if(rsSetSkillRangeAttack(lpPlayInfo, lpChar, &TransAttackData, &TransSkillAttackData, lpTransRangeAttackData) == FALSE)
+	int summitSkillResult = rsSetSkillRangeAttack(lpPlayInfo, lpChar, &TransAttackData, &TransSkillAttackData, lpTransRangeAttackData);
+	summitRangeTrace = fopen("summit_server_range_trace.log", "at");
+	if(summitRangeTrace)
+	{
+		fprintf(summitRangeTrace, "tick=%lu stage=skillset-result skill=0x%08lX result=%d targets=%d rangePower=%d mainPower=%d attackState=%d attackSize=%d\n",
+			(unsigned long)GetTickCount(), (unsigned long)lpTransRangeAttackData->SkillCode, summitSkillResult,
+			TransSkillAttackData.TargetCount, TransSkillAttackData.Power, TransAttackData.Power,
+			TransSkillAttackData.AttackState, TransSkillAttackData.AttackSize);
+		fclose(summitRangeTrace);
+	}
+	if(summitSkillResult == FALSE)
 		return FALSE;
-
 
 	AddRangeForceOrbPower(lpPlayInfo, lpChar, &TransSkillAttackData, lpTransRangeAttackData->SkillCode, lpTransRangeAttackData->Power[0], lpTransRangeAttackData->Power[1]);
 
@@ -6051,9 +6334,22 @@ int rsRecvRangeAttackData(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA2 *lpTran
 
 	if(TransSkillAttackData.TargetCount > 0)
 	{
+		summitRangeTrace = fopen("summit_server_range_trace.log", "at");
+		if(summitRangeTrace)
+		{
+			fprintf(summitRangeTrace, "tick=%lu stage=before-recv-range skill=0x%08lX targets=%d power=%d attackState=%d attackSize=%d area=%d\n",
+				(unsigned long)GetTickCount(), (unsigned long)lpTransRangeAttackData->SkillCode, TransSkillAttackData.TargetCount,
+				TransSkillAttackData.Power, TransSkillAttackData.AttackState, TransSkillAttackData.AttackSize, lpTransRangeAttackData->Area[0]);
+			fclose(summitRangeTrace);
+		}
 		RecvRangeAttack(lpPlayInfo, &TransSkillAttackData, lpTransRangeAttackData->Area[0], lpTransRangeAttackData->SkillCode);
-
-
+		summitRangeTrace = fopen("summit_server_range_trace.log", "at");
+		if(summitRangeTrace)
+		{
+			fprintf(summitRangeTrace, "tick=%lu stage=after-recv-range skill=0x%08lX targets=%d\n",
+				(unsigned long)GetTickCount(), (unsigned long)lpTransRangeAttackData->SkillCode, TransSkillAttackData.TargetCount);
+			fclose(summitRangeTrace);
+		}
 
 		if(rsServerConfig.Enable_PKField_All)
 		{
@@ -6088,6 +6384,13 @@ int rsRecvRangeAttackData(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA2 *lpTran
 	}
 
 
+	summitRangeTrace = fopen("summit_server_range_trace.log", "at");
+	if(summitRangeTrace)
+	{
+		fprintf(summitRangeTrace, "tick=%lu stage=return-true skill=0x%08lX targets=%d\n",
+			(unsigned long)GetTickCount(), (unsigned long)lpTransRangeAttackData->SkillCode, TransSkillAttackData.TargetCount);
+		fclose(summitRangeTrace);
+	}
 	return TRUE;
 }
 

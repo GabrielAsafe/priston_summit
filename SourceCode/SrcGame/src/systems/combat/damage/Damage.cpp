@@ -900,52 +900,29 @@ WORD	wLimitDamage[8] = { 0,0,0,0, 0,0,0,0 };
 
 int RecvDamagePacketModule(TRANS_FUNC_MEMORY *lpTransFuncModule)
 {
-	BYTE *lpBuff;
-
-	lpBuff = new BYTE[lpTransFuncModule->size];
-	memcpy(lpBuff, lpTransFuncModule->szData, lpTransFuncModule->Param[0]);
-
-	fnEncodeDamagePacket = (LPFN_EncodeDamagePacket)lpBuff;
-
-
-
-
+	// Legacy dynamic code reception disabled: the packet carried machine code.
+	// _USE_DYNAMIC_ENCODE is not enabled; active gameplay uses static codecs.
+	(void)lpTransFuncModule;
 	ZeroMemory(wLimitDamage, sizeof(WORD) * 8);
-
-	return TRUE;
+	return FALSE;
 }
 
 
 int RecvDamagePacketModule2(TRANS_FUNC_MEMORY *lpTransFuncModule)
 {
-	BYTE *lpBuff;
-
-	if (!fnDecodeDamagePacket)
-		lpBuff = new BYTE[lpTransFuncModule->size];
-	else
-		lpBuff = (BYTE *)fnDecodeDamagePacket;
-
-	memcpy(lpBuff, lpTransFuncModule->szData, lpTransFuncModule->Param[0]);
-	fnDecodeDamagePacket = (LPFN_DecodeDamagePacket)lpBuff;
-
-	return TRUE;
+	// Legacy dynamic code reception disabled: the packet carried machine code.
+	// _USE_DYNAMIC_ENCODE is not enabled; active gameplay uses static codecs.
+	(void)lpTransFuncModule;
+	return FALSE;
 }
 
 
 int RecvDynPacketModule(TRANS_FUNC_MEMORY *lpTransFuncModule)
 {
-	char *lpBuff;
-
-	if (!fnEncodePacket)
-		lpBuff = new char[lpTransFuncModule->size];
-	else
-		lpBuff = (char *)fnEncodePacket;
-
-	memcpy(lpBuff, lpTransFuncModule->szData, lpTransFuncModule->Param[0]);
-	fnEncodePacket = (LPFN_EncodePacket)(lpBuff + lpTransFuncModule->Param[1]);
-	fnDecodePacket = (LPFN_DecodePacket)(lpBuff + lpTransFuncModule->Param[2]);
-
-	return TRUE;
+	// Legacy dynamic code reception disabled: the packet carried machine code.
+	// _USE_DYNAMIC_ENCODE is not enabled; active gameplay uses static codecs.
+	(void)lpTransFuncModule;
+	return FALSE;
 }
 
 
