@@ -2888,7 +2888,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				// EU CHolyConvictionHandler uses a fixed 70 motion speed.
 				lpCurPlayer->MotionLoopSpeed = 70;
 				lpCurPlayer->MotionLoop = 1;
-				lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
+				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_HOLY_CONVICTION, SKILL_PLAY_T51, lpSkill->Point, 0, 0);
 				SummitT5PersistentVisualApply(lpCurPlayer, SKILL_T5_HOLY_CONVICTION, lpSkill->Point);
 				// EU Holy Conviction reuses the legacy Holy Valor sound (0x2510).
 				SkillPlaySound(SKILL_SOUND_SKILL_HOLY_VALOR1, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
