@@ -2927,7 +2927,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				SummitT5PersistentVisualApply(lpCurPlayer, SKILL_T5_HOLY_CONVICTION, lpSkill->Point);
 				// EU Holy Conviction reuses the legacy Holy Valor sound (0x2510).
 				SkillPlaySound(SKILL_SOUND_SKILL_HOLY_VALOR1, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
-				SendPartySkillToServer(SKILL_PLAY_T51, lpSkill->Point, 450, 0, 0, 0, 0);
+				SendPartySkillToServer(SKILL_PLAY_T51, lpSkill->Point, 300, 0, 0, 0, 0);
 			}
 		}
 		return TRUE;
