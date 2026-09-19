@@ -15,6 +15,8 @@
 #include "systems/rendering/effects/legacy_ho/core/HoMinMax.h"
 #include "systems/rendering/effects/particles/ho/HoNewParticle.h"
 #include "systems/rendering/effects/particles/ho/HoNewParticleMgr.h"
+#include "systems/rendering/effects/legacy_new/core/HoEffectMain.h"
+#include "systems/rendering/effects/legacy_new/core/HoEffectManager.h"
 #include "systems/world/field/field.h"
 #include "systems/presentation/opening/legacy_runtime/HoLinkHeader.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
@@ -72,6 +74,21 @@ static int SummitT5StartParticleAt(const char *name, int x, int y, int z)
 	if(!name) return -1;
 	POINT3D pos = { x, y, z };
 	return g_NewParticleMgr.Start((char *)name, pos);
+}
+
+// Tier 5 EU also layers a few old Lua effects over the .part particles.
+// Summit already ships the legacy Lua effect engine, so keep this optional:
+// missing assets simply return without changing gameplay.
+static int SummitT5StartLegacyLuaEffectAt(const char *script, int x, int y, int z)
+{
+	if(!script) return FALSE;
+	HoEffectGroup *effectGroup = MainWindow.LoadScript(script);
+	if(!effectGroup) return FALSE;
+	HoEffectType_Default *effectType = new HoEffectType_Default();
+	if(!effectType) return FALSE;
+	effectType->Init(effectGroup, x, y, z, 0, 0, 0);
+	HoEffectManager::GetInstance()->AddEffect(effectType);
+	return TRUE;
 }
 
 struct SummitT5PersistentParticleState
