@@ -2920,7 +2920,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				int summitHolyBegin = lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				int summitHolyMotion = lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				SummitT5VisualProbe("Knight/HolyConviction", "cast-motion-control", lpCurPlayer, 0, summitHolyBegin, summitHolyMotion);
-				lpCurPlayer->MotionLoopSpeed = 80;
+				// EU CHolyConvictionHandler uses a fixed 70 motion speed.
+				lpCurPlayer->MotionLoopSpeed = 70;
 				lpCurPlayer->MotionLoop = 1;
 				lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
 				SummitT5PersistentVisualApply(lpCurPlayer, SKILL_T5_HOLY_CONVICTION, lpSkill->Point);
