@@ -2862,13 +2862,14 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			if(lpSkill->Skill_Info.FuncPointer() == TRUE)
 			{
 				// EU Summon Tiger starts with Atalanta T41 animation, then routes as T51.
+				// Keep the animation alias in AttackSkil; logical/network T51 stays isolated.
 				lpCurPlayer->AttackSkil = SKILL_PLAY_HALL_OF_VALHALLA | (lpSkill->Point << 8);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				lpCurPlayer->MotionLoopSpeed = 70;
 				lpCurPlayer->MotionLoop = 1;
 				lpCurPlayer->HideWeapon = TRUE;
-				lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
+				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_SUMMON_TIGER, SKILL_PLAY_T51, lpSkill->Point, 0, 0);
 				SendProcessSKillToServer(SKILL_PLAY_T51, lpSkill->Point, 0, 0);
 			}
 		}
