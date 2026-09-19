@@ -352,7 +352,7 @@ void HoEffectMain::LuaInitSpawnBoundingDoughnut(float x1, float x2, float y1, fl
 
 void HoEffectMain::LuaInitBlendType(const char *type)
 {
-    int blendType;
+    int blendType = -1;
 
     if( stricmp(type, "Lamp") == 0)
         blendType = SMMAT_BLEND_LAMP;
@@ -366,6 +366,9 @@ void HoEffectMain::LuaInitBlendType(const char *type)
         blendType = SMMAT_BLEND_ALPHA;
     else if( stricmp(type, "InvShadow") == 0)
         blendType = SMMAT_BLEND_INVSHADOW;
+
+    if(blendType < 0 || !m_ModelController)
+        return;
 
     if(m_WorkTypeName == CLASS_EFFECT_TEXTURE)
         static_cast<HoEffectTextureController *>(m_ModelController)->InitBlendType(blendType);
