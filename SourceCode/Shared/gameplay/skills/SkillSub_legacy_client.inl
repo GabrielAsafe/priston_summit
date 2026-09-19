@@ -245,6 +245,9 @@ void SummitT5MotionEventClear(smCHAR *actor)
 void SummitT5MotionEventEnd(smCHAR *actor)
 {
 	SummitT5MotionEventState *state = SummitT5FindMotionEventState(actor, FALSE);
+	if(state && state->Active && state->LogicalSkillCode == SKILL_T5_STONE_SKIN &&
+		state->Level >= 1 && state->Level <= 10)
+		actor->PlayInvincible = Magician_T5_StoneSkin_ImmortalWindow[state->Level - 1] * 70;
 	if(state && state->Active && state->LogicalSkillCode == SKILL_T5_FIERCE_WIND)
 		SkillPlaySound(0x482D, actor->pX, actor->pY, actor->pZ);
 	SummitT5MotionEventClear(actor);
@@ -2827,7 +2830,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				lpCurPlayer->MotionLoopSpeed = 80;
 				lpCurPlayer->MotionLoop = 1;
 				SummitT5StartParticle("R5StoneSkin", lpCurPlayer);
-				lpCurPlayer->PlayInvincible = Magician_T5_StoneSkin_ImmortalWindow[lpSkill->Point - 1] * 70;
+				// EU applies the client no-death window in CStoneSkinHandler::OnAnimationEnd.
+				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_STONE_SKIN, SKILL_PLAY_T52, lpSkill->Point, 0, 0);
 				lpCurPlayer->AttackSkil = SKILL_PLAY_T52 | (lpSkill->Point << 8);
 				SendProcessSKillToServer(SKILL_PLAY_T52, lpSkill->Point, 0, 0);
 			}
