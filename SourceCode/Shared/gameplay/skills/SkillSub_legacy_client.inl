@@ -2842,6 +2842,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			if(lpSkill->Skill_Info.FuncPointer() == TRUE)
 			{
 				// EU CIceElementalHandler casts through Priestess T44 (Summon Muspell), then processes T51.
+				// Keep the animation alias in AttackSkil; the logical/network ID lives in the isolated T5 state.
 				lpCurPlayer->AttackSkil = SKILL_PLAY_SUMMON_MUSPELL | (lpSkill->Point << 8);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
@@ -2849,7 +2850,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				lpCurPlayer->MotionLoop = 1;
 				// EU Ice Elemental reuses the legacy Fire Elemental sound (0x4710).
 				SkillPlaySound(SKILL_SOUND_SKILL_FIRE_ELEMENTAL, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
-				lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
+				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_ICE_ELEMENTAL, SKILL_PLAY_T51, lpSkill->Point, 0, 0);
 				SendProcessSKillToServer(SKILL_PLAY_T51, lpSkill->Point, 0, 0);
 			}
 		}
