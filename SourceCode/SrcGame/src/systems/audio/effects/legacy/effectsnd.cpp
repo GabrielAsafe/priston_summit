@@ -1355,7 +1355,8 @@ int	CharPlaySound(smCHAR *lpChar)
 		   snEffect[cnt].MotionState == dwMotionCode)
 		{
 
-			CodeBuff[CodeBuffCnt++] = cnt;
+			if(CodeBuffCnt < (int)(sizeof(CodeBuff) / sizeof(CodeBuff[0])))
+				CodeBuff[CodeBuffCnt++] = cnt;
 
 		}
 	}
@@ -1527,7 +1528,8 @@ int	WeaponPlaySound(smCHAR *lpChar)
 	{
 		if(snEffectWeapon[cnt].WeaponState == dwCode)
 		{
-			CodeBuff[CodeBuffCnt++] = cnt;
+			if(CodeBuffCnt < (int)(sizeof(CodeBuff) / sizeof(CodeBuff[0])))
+				CodeBuff[CodeBuffCnt++] = cnt;
 		}
 	}
 
@@ -1545,7 +1547,8 @@ int	WeaponPlaySound(smCHAR *lpChar)
 			{
 				if(snEffectWeapon[cnt].WeaponState == dwCode)
 				{
-					CodeBuff[CodeBuffCnt++] = cnt;
+					if(CodeBuffCnt < (int)(sizeof(CodeBuff) / sizeof(CodeBuff[0])))
+						CodeBuff[CodeBuffCnt++] = cnt;
 				}
 			}
 			if(CodeBuffCnt)
@@ -1573,7 +1576,8 @@ int PlayWaponSoundDirect(int x, int y, int z, DWORD dwCode)
 	{
 		if(snEffectWeapon[cnt].WeaponState == dwCode)
 		{
-			CodeBuff[CodeBuffCnt++] = cnt;
+			if(CodeBuffCnt < (int)(sizeof(CodeBuff) / sizeof(CodeBuff[0])))
+				CodeBuff[CodeBuffCnt++] = cnt;
 		}
 	}
 
