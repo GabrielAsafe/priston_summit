@@ -13830,12 +13830,22 @@ int smCHAR::EndSkill()
 	case SKILL_PLAY_METEO:
 		if (chrAttackTarget && point)
 		{
-			if (this == lpCurPlayer && MotionEvent < 4)
+			if (this == lpCurPlayer)
 			{
+				// EU Meteorite is a three-hit contract: motion events 1 and 2,
+				// then the final hit at animation end. If the exact Meteor motion
+				// is unavailable and the safe fallback exposes fewer events, finish
+				// the missing hits here so animation asset availability cannot lower
+				// gameplay damage. A correct Meteor motion still sends exactly one.
+				int completedEventHits = MotionEvent;
+				if (completedEventHits > 2) completedEventHits = 2;
 
-				dm_SelectRange(chrAttackTarget->pX, chrAttackTarget->pY, chrAttackTarget->pZ, Meteo_Area[point - 1], FALSE);
+				for (int hit = completedEventHits; hit < 3; hit++)
+				{
+					dm_SelectRange(chrAttackTarget->pX, chrAttackTarget->pY, chrAttackTarget->pZ, Meteo_Area[point - 1], FALSE);
 
-				dm_SendRangeDamage(chrAttackTarget->pX, chrAttackTarget->pY, chrAttackTarget->pZ, 0, 0, 0, 0, 0, lpCurPlayer->AttackSkil);
+					dm_SendRangeDamage(chrAttackTarget->pX, chrAttackTarget->pY, chrAttackTarget->pZ, 0, 0, 0, 0, 0, lpCurPlayer->AttackSkil);
+				}
 			}
 		}
 		break;
