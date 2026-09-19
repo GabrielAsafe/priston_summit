@@ -61,6 +61,20 @@ static int SummitT5StartLegacyLuaEffectAt(const char *script, int x, int y, int 
 	return TRUE;
 }
 
+// Some legacy Magician model sets do not expose every skill-specific motion token.
+// If the requested motion did not resolve, reuse the known Fire Bolt cast motion only
+// for animation selection and immediately restore the real skill/network code.
+static void SummitMagicianEnsureSkillMotion(smCHAR *actor)
+{
+	if(!actor) return;
+	if(actor->MotionInfo && actor->MotionInfo->State == CHRMOTION_STATE_SKILL) return;
+
+	int originalSkill = actor->AttackSkil;
+	actor->AttackSkil = (originalSkill & ~0xFF) | SKILL_PLAY_FIRE_BOLT;
+	actor->SetMotionFromCode(CHRMOTION_STATE_SKILL);
+	actor->AttackSkil = originalSkill;
+}
+
 struct SummitT5PersistentParticleState
 {
 	smCHAR *Actor;
