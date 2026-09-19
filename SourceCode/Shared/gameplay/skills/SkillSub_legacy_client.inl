@@ -4467,19 +4467,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			SummitMagicianEnsureSkillMotion(lpCurPlayer);
 
-
-			rect.left = -60;
-			rect.right = 60;
-			rect.top = 0;
-			rect.bottom = 300;
-			rect.bottom += 20;
-			rect.bottom += 20;
-
-
-			dm_SelectRangeBox(lpCurPlayer, &rect, FALSE);
-
-			dm_SendRangeDamage(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, 0, wpDamage[0], wpDamage[1], 0, 0, lpCurPlayer->AttackSkil);
-
+			// EU applies Flame Wave damage from MotionEvent 1. Do not send an
+			// extra range packet here at cast start.
 		}
 		return TRUE;
 		case SKILL_M_METEO:
