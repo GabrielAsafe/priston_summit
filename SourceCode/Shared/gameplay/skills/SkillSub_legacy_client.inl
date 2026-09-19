@@ -1369,6 +1369,21 @@ int OpenPlaySkill(sSKILL *lpSkill)
 		}
 		break;
 
+		case SKILL_FLAME_WAVE:
+		if(lpCurPlayer->MotionInfo->State < 0x100)
+		{
+			if(lpSkill->Skill_Info.FuncPointer() == TRUE)
+			{
+				lpCurPlayer->chrAttackTarget = 0;
+				lpCurPlayer->AttackSkil = SKILL_PLAY_FLAME_WAVE | (lpSkill->Point << 8);
+				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
+				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
+				SummitMagicianEnsureSkillMotion(lpCurPlayer);
+				flag++;
+			}
+		}
+		break;
+
 		case SKILL_SPIRIT_ELEMENTAL:
 		if(lpCurPlayer->MotionInfo->State < 0x100)
 		{
