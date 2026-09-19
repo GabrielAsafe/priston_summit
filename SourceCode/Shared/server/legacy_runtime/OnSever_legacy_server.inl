@@ -38355,25 +38355,7 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 	case SKILL_PLAY_T51:
 		if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ATALANTA)
 		{
-			{
-				FILE *probe = fopen("LOGS\\summit_t5_visual_probe_server.log", "a");
-				if(probe)
-				{
-					fprintf(probe, "tick=%lu skill=Atalanta/NaturesCall stage=summon-request player=%p point=%d pos=%d,%d,%d\n",
-						(unsigned long)GetTickCount(), (void *)lpPlayInfo, point + 1, lpPlayInfo->Position.x, lpPlayInfo->Position.y, lpPlayInfo->Position.z);
-					fclose(probe);
-				}
-			}
 			lpChar = OpenTier5SummonFromCanonicalName("Summon Tiger", lpPlayInfo->Position.x, lpPlayInfo->Position.y, lpPlayInfo->Position.z, lpPlayInfo);
-			{
-				FILE *probe = fopen("LOGS\\summit_t5_visual_probe_server.log", "a");
-				if(probe)
-				{
-					fprintf(probe, "tick=%lu skill=Atalanta/NaturesCall stage=summon-result player=%p point=%d result=%p serial=%lu\n",
-						(unsigned long)GetTickCount(), (void *)lpPlayInfo, point + 1, (void *)lpChar, (unsigned long)(lpChar ? lpChar->dwObjectSerial : 0));
-					fclose(probe);
-				}
-			}
 			if(!lpChar) return FALSE;
 
 			lpChar->dwUpdateCharInfoTime = dwPlayServTime + (DWORD)Atalanta_T5_SummonTiger_Duration[point] * 1000;
