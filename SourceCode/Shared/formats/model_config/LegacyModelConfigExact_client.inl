@@ -1102,7 +1102,13 @@ int smModelDecode(char *iniFile, smMODELINFO *Info)
 					}
 
 					if(!mingwKeywordResult)
-						return FALSE;
+					{
+						// A cache can be structurally the right size but stale/corrupt.
+						// Rebuild from the source config instead of making the model unloadable.
+						if(AddModelDecode(szFile, Info) == FALSE)
+							return FALSE;
+						continue;
+					}
 #else
 					DWORD dwCode =
 						GetSpeedSum(lpFile);
@@ -1113,7 +1119,11 @@ int smModelDecode(char *iniFile, smMODELINFO *Info)
 							&smModelInfo
 						) == FALSE
 					)
-						return FALSE;
+					{
+						if(AddModelDecode(szFile, Info) == FALSE)
+							return FALSE;
+						continue;
+					}
 #endif
 
 					if(Info->szModelFile[0] && i > 0)
@@ -1121,7 +1131,11 @@ int smModelDecode(char *iniFile, smMODELINFO *Info)
 						if(smModelInfo.MotionCount > CHRMOTION_EXT && i == 1)
 						{
 							if(MotionKeyWordDecode(dwCode, &smModelInfo) == FALSE)
-								return FALSE;
+							{
+								if(AddModelDecode(szFile, Info) == FALSE)
+									return FALSE;
+								continue;
+							}
 
 
 							strcpy_s(Info->szMotionFile, smModelInfo.szMotionFile);
@@ -1150,7 +1164,11 @@ int smModelDecode(char *iniFile, smMODELINFO *Info)
 						if(smModelInfo.MotionCount > CHRMOTION_EXT)
 						{
 							if(MotionKeyWordDecode(dwCode, &smModelInfo) == FALSE)
-								return FALSE;
+							{
+								if(AddModelDecode(szFile, Info) == FALSE)
+									return FALSE;
+								continue;
+							}
 						}
 
 						memcpy(Info, &smModelInfo, sizeof(smMODELINFO));
