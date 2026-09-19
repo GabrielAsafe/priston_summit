@@ -36,6 +36,7 @@ extern int	PlayUsed_Resurrection;
 int SetPlayerArmor(int nItem_LowCode, int nItem_HiCode);
 
 char *GetFaceHairSkin(smCHAR *lpChar);
+char *GetDefaultFaceHairSkin(smCHAR *lpChar);
 
 
 

@@ -46,6 +46,7 @@ extern int	PlayUsed_Resurrection;
 LEGACY_PLAYSUB_SET_PLAYER_ARMOR_DECL
 
 char *GetFaceHairSkin(smCHAR *lpChar);
+char *GetDefaultFaceHairSkin(smCHAR *lpChar);
 
 
 

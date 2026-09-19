@@ -61,6 +61,22 @@ char *GetFaceHairSkin(smCHAR *lpChar)
 }
 
 
+char *GetDefaultFaceHairSkin(smCHAR *lpChar)
+{
+	if (!lpChar) return NULL;
+	switch (lpChar->smCharInfo.JOB_CODE)
+	{
+	case 1: return szModel_FighterFaceName[0][0];
+	case 2: return szModel_MechFaceName[0][0];
+	case 3: return szModel_ArcherFaceName[0][0];
+	case 4: return szModel_PikeFaceName[0][0];
+	case 5: return szModel_AtalantaFaceName[0][0];
+	case 6: return szModel_KnightFaceName[0][0];
+	case 7: return szModel_MagicanFaceName[0][0];
+	case 8: return szModel_PristessFaceName[0][0];
+	default: return NULL;
+	}
+}
 int FindFaceSkin(smCHAR *lpChar, char *lpHeadName, char ***lpSelFace, char **lpSelFaceName)
 {
 	int cnt, cnt2;
