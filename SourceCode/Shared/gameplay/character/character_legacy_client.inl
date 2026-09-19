@@ -869,12 +869,16 @@ DWORD WINAPI smLoaderThreadProc(void *pInfo)
 			smLoader[cnt].lpChar->Flag = 1;
 			strcpy_s(smLoader[cnt].lpChar->smCharInfo.szModelName, sizeof(smLoader[cnt].lpChar->smCharInfo.szModelName), smDPat->szPatName);
 
-			smLoader[cnt].lpChar->smCharInfo.szModelName2[0] = 0;
-
 			smDPat2 = SummitLoadSecondaryCharacterPattern(
 				smLoader[cnt].lpChar,
 				smDPat->lpModelInfo->szSubModelFile,
 				smLoader[cnt].szLoadName2);
+
+			if (!smDPat2 && lpPatOld2)
+			{
+				smDPat2 = lpPatOld2;
+				lpPatOld2 = 0;
+			}
 
 			smLoader[cnt].lpChar->SetDinaPattern2(smDPat2);
 
@@ -1025,8 +1029,6 @@ int SetLoadPattern(smCHAR *smChar, char *szName, char *szName2, POINT3D *Posi, P
 		smChar->ChangeMotion(0);
 		smChar->DisplayFlag = TRUE;
 		strcpy_s(smChar->smCharInfo.szModelName, smDPat->szPatName);
-
-		smChar->smCharInfo.szModelName2[0] = 0;
 
 		smDPat2 = SummitLoadSecondaryCharacterPattern(
 			smChar,
