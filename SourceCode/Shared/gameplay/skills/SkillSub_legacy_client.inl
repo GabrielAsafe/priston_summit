@@ -2941,7 +2941,8 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				int summitLethalBegin = lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				int summitLethalMotion = lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				SummitT5VisualProbe("Archer/LethalSight", "cast-motion-control", lpCurPlayer, 0, summitLethalBegin, summitLethalMotion);
-				lpCurPlayer->MotionLoopSpeed = 80;
+				// EU CLethalSightHandler uses a fixed 70 motion speed.
+				lpCurPlayer->MotionLoopSpeed = 70;
 				lpCurPlayer->MotionLoop = 1;
 				SummitT5StartParticle("Ac5LethalSight", lpCurPlayer);
 				SummitT5PersistentVisualApply(lpCurPlayer, SKILL_T5_LETHAL_SIGHT, lpSkill->Point);
