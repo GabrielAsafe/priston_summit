@@ -535,6 +535,7 @@ void SummitMagicianCataclysmTick()
 	lpCurPlayer->AttackSkil = SKILL_PLAY_T54 | (gSummitCataclysmPoint << 8);
 	lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, gSummitCataclysmTarget, 0, 0, 0);
 	lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
+	SummitMagicianEnsureSkillMotion(lpCurPlayer);
 	lpCurPlayer->MotionLoopSpeed = 80;
 	lpCurPlayer->MotionLoop = 1;
 	int result = dm_SendTransDamage(gSummitCataclysmTarget, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
@@ -1358,6 +1359,7 @@ int OpenPlaySkill(sSKILL *lpSkill)
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
+				SummitMagicianEnsureSkillMotion(lpCurPlayer);
 				lpCurPlayer->MotionLoopSpeed = 120;
 				lpCurPlayer->MotionLoop = 1;
 				flag++;
@@ -4073,6 +4075,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackSkil |= (lpSkill->Point << 8);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
+			SummitMagicianEnsureSkillMotion(lpCurPlayer);
 
 			lpCurPlayer->MotionLoopSpeed = 100;
 			lpCurPlayer->MotionLoop = 1;
@@ -4096,6 +4099,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackSkil |= (lpSkill->Point << 8);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
+			SummitMagicianEnsureSkillMotion(lpCurPlayer);
 
 			lpCurPlayer->MotionLoopSpeed = 90;
 			lpCurPlayer->MotionLoop = 1;
@@ -4432,6 +4436,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackSkil |= (lpSkill->Point << 8);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
+			SummitMagicianEnsureSkillMotion(lpCurPlayer);
 
 
 			rect.left = -60;
@@ -4455,6 +4460,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackSkil |= (lpSkill->Point << 8);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
+			SummitMagicianEnsureSkillMotion(lpCurPlayer);
 
 		}
 		return TRUE;
