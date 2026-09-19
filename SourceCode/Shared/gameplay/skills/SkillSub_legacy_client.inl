@@ -3208,11 +3208,11 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(6);
 			lpCurPlayer->MotionLoop = 1;
-			lpCurPlayer->AttackSkil = summitComboNetworkSkill;
+			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_COMBO_JAVELIN, SKILL_PLAY_T54, lpSkill->Point, lpChar, 0);
 
 			for(int comboHit = 0; comboHit < 3; comboHit++)
 			{
-				cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
+				cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, summitComboNetworkSkill, TRUE);
 				if(!cnt) lpCurPlayer->AttackCritcal = -1; else DamageExp(lpChar, cnt);
 			}
 			return TRUE;
