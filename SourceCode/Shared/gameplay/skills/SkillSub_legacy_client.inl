@@ -2391,6 +2391,9 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->MotionLoop = 1;
 			// Keep AttackSkil on the T41 animation alias; damage uses the explicit T51 network code.
 			SummitT5StartParticle("PS5RingOfSpears", lpChar);
+			// EU layers PS5RingOfSpears.lua over the .part effect at the target.
+			SummitT5StartLegacyLuaEffectAt("game//scripts//particles//PS5RingOfSpears.lua",
+				lpChar->pX, lpChar->pY, lpChar->pZ);
 			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_RING_OF_SPEARS, SKILL_PLAY_T51, lpSkill->Point, lpChar, 1);
 
 			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, summitRingNetworkSkill, TRUE);
