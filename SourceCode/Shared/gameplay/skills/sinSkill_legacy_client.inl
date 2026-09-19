@@ -3,45 +3,12 @@
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/combat/skills/client/SkillSub.h"
 #include "systems/world/field/field.h" 
-#include <stdio.h>
 
 cSKILL	cSkill;
 sUSESKILL sinSkill;
 sSKILL  *pUseSkill;
 sSKILL  ContinueSkill[MAX_CONTINUE_SKILL];
 sSKILL  TempContinueSkill[MAX_CONTINUE_SKILL];
-
-static int SummitT5TimerProbeCodeSkill(DWORD code)
-{
-	return code == SKILL_T5_FOCUS || code == SKILL_T5_DEATH_MASTER ||
-		code == SKILL_T5_HARDENING_SHIELD || code == SKILL_T5_RUTHLESS_OF_ZECRAM ||
-		code == SKILL_T5_LETHAL_SIGHT || code == SKILL_T5_HOLY_CONVICTION ||
-		code == SKILL_T5_GLORIOUS_SHIELD || code == SKILL_T5_SUMMON_TIGER ||
-		code == SKILL_T5_WIZARD_TRANCE || code == SKILL_T5_ICE_ELEMENTAL;
-}
-
-static void SummitT5TimerProbeSkill(const char *stage, int index, const sSKILL *skill)
-{
-	if(!skill || !SummitT5TimerProbeCodeSkill(skill->CODE)) return;
-	FILE *f = fopen("LOGS\\summit_t5_visual_probe.log", "a");
-	if(!f) return;
-	fprintf(f, "tick=%lu skill=timer stage=%s index=%d code=0x%08lX point=%d flag=%d use=%d check=%d mat=%d iconflag=%d iconx=%d alpha=%d\n",
-		(unsigned long)GetTickCount(), stage ? stage : "?", index, (unsigned long)skill->CODE,
-		skill->Point, skill->Flag, skill->UseTime, skill->CheckTime, skill->MatIcon,
-		skill->IconFlag, skill->IconPosiX, skill->IconAlpha);
-	fclose(f);
-}
-
-static void SummitT5TimerProbeDrawOnce(int index, const sSKILL *skill)
-{
-	static DWORD seen[16] = { 0 };
-	static int seenCount = 0;
-	if(!skill || !SummitT5TimerProbeCodeSkill(skill->CODE)) return;
-	for(int i = 0; i < seenCount; i++)
-		if(seen[i] == skill->CODE) return;
-	if(seenCount < 16) seen[seenCount++] = skill->CODE;
-	SummitT5TimerProbeSkill("draw-up", index, skill);
-}
 
 // Tier 5 skills are initialized dynamically in UseSkill[] and are absent from
 // the legacy static sSkill[] timer-icon registry. Resolve their timer art from
@@ -798,7 +765,6 @@ void cSKILL::DrawUp()
 			{
 				if (!TempContinueSkill[i].IconFlag)
 				{
-					SummitT5TimerProbeDrawOnce(i, &TempContinueSkill[i]);
 					dsDrawTexImage(MatSkillIconBackGround, 10 + TempContinueSkill[i].IconPosiX, 10, 32, 32, TempContinueSkill[i].IconAlpha);
 					SkillBarDraw(&TempContinueSkill[i], 10 + 16 + TempContinueSkill[i].IconPosiX, 10 + 16, TempContinueSkill[i].IconAlpha);
 					dsDrawTexImage(TempContinueSkill[i].MatIcon, 10 + TempContinueSkill[i].IconPosiX, 10, 32, 32, TempContinueSkill[i].IconAlpha);
@@ -7695,7 +7661,6 @@ int cSKILL::EnsureContinueSkillIcon(DWORD CODE)
 			if(ContinueSkill[i].CODE == sSkill[j].CODE && sSkill[j].MatIcon)
 			{
 				ContinueSkill[i].MatIcon = sSkill[j].MatIcon;
-				SummitT5TimerProbeSkill("icon-material-assigned-specific", i, &ContinueSkill[i]);
 				return TRUE;
 			}
 		}
@@ -7703,7 +7668,6 @@ int cSKILL::EnsureContinueSkillIcon(DWORD CODE)
 		ContinueSkill[i].MatIcon = SummitT5ResolveTimerMaterial(ContinueSkill[i].CODE);
 		if(ContinueSkill[i].MatIcon)
 		{
-			SummitT5TimerProbeSkill("icon-material-assigned-specific-t5", i, &ContinueSkill[i]);
 			return TRUE;
 		}
 
@@ -7728,7 +7692,6 @@ int cSKILL::CheckContinueIcon()
 						if(sSkill[j].MatIcon)
 						{
 							ContinueSkill[i].MatIcon = sSkill[j].MatIcon;
-							SummitT5TimerProbeSkill("icon-material-assigned", i, &ContinueSkill[i]);
 							return TRUE;
 						}
 					}
@@ -7737,7 +7700,6 @@ int cSKILL::CheckContinueIcon()
 				ContinueSkill[i].MatIcon = SummitT5ResolveTimerMaterial(ContinueSkill[i].CODE);
 				if(ContinueSkill[i].MatIcon)
 				{
-					SummitT5TimerProbeSkill("icon-material-assigned-t5", i, &ContinueSkill[i]);
 					return TRUE;
 				}
 			}
