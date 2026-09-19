@@ -182,6 +182,9 @@ SKILL_DATA_CODE	SkillDataCode[] = {
 	{	"",0 }
 };
 
+static_assert((sizeof(SkillDataCode) / sizeof(SkillDataCode[0])) <= 256,
+	"SkillDataCode exceeds BYTE-backed MotionInfo::SkillCodeList capacity");
+
 
 
 
