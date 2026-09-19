@@ -61,17 +61,27 @@ static int SummitT5StartLegacyLuaEffectAt(const char *script, int x, int y, int 
 	return TRUE;
 }
 
-// Some legacy Magician model sets do not expose every skill-specific motion token.
-// If the requested motion did not resolve, reuse the known Fire Bolt cast motion only
-// for animation selection and immediately restore the real skill/network code.
+// Magician AoE damage/effects are MotionEvent-driven. Prefer the exact skill motion,
+// but if an old/missing model config cannot resolve it, fall back to a normal attack
+// motion that is guaranteed to exist for the equipped weapon. AttackSkil is restored
+// immediately so EventAttack() still dispatches EventSkill() for the real skill code.
 static void SummitMagicianEnsureSkillMotion(smCHAR *actor)
 {
 	if(!actor) return;
-	if(actor->MotionInfo && actor->MotionInfo->State == CHRMOTION_STATE_SKILL) return;
 
-	int originalSkill = actor->AttackSkil;
-	actor->AttackSkil = (originalSkill & ~0xFF) | SKILL_PLAY_FIRE_BOLT;
-	actor->SetMotionFromCode(CHRMOTION_STATE_SKILL);
+	const int originalSkill = actor->AttackSkil;
+	smMOTIONINFO *previousMotion = actor->MotionInfo;
+	const int exactResult = actor->SetMotionFromCode(CHRMOTION_STATE_SKILL);
+	if(exactResult || actor->MotionInfo != previousMotion)
+	{
+		actor->AttackSkil = originalSkill;
+		return;
+	}
+
+	// A generic attack motion still passes through EventAttack()->EventSkill() when
+	// AttackSkil is non-zero. This is safer than depending on another skill alias.
+	actor->AttackSkil = originalSkill;
+	actor->SetMotionFromCode(CHRMOTION_STATE_ATTACK);
 	actor->AttackSkil = originalSkill;
 }
 
@@ -534,7 +544,6 @@ void SummitMagicianCataclysmTick()
 
 	lpCurPlayer->AttackSkil = SKILL_PLAY_T54 | (gSummitCataclysmPoint << 8);
 	lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, gSummitCataclysmTarget, 0, 0, 0);
-	lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 	SummitMagicianEnsureSkillMotion(lpCurPlayer);
 	lpCurPlayer->MotionLoopSpeed = 80;
 	lpCurPlayer->MotionLoop = 1;
@@ -1358,7 +1367,6 @@ int OpenPlaySkill(sSKILL *lpSkill)
 				lpCurPlayer->AttackSkil |= (lpSkill->Point << 8);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 
-				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				SummitMagicianEnsureSkillMotion(lpCurPlayer);
 				lpCurPlayer->MotionLoopSpeed = 120;
 				lpCurPlayer->MotionLoop = 1;
@@ -1377,7 +1385,6 @@ int OpenPlaySkill(sSKILL *lpSkill)
 				lpCurPlayer->chrAttackTarget = 0;
 				lpCurPlayer->AttackSkil = SKILL_PLAY_FLAME_WAVE | (lpSkill->Point << 8);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
-				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				SummitMagicianEnsureSkillMotion(lpCurPlayer);
 				flag++;
 			}
@@ -4103,7 +4110,6 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackSkil = SKILL_PLAY_FIRE_BALL;
 			lpCurPlayer->AttackSkil |= (lpSkill->Point << 8);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
-			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			SummitMagicianEnsureSkillMotion(lpCurPlayer);
 
 			lpCurPlayer->MotionLoopSpeed = 100;
@@ -4127,7 +4133,6 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackSkil = SKILL_PLAY_COLUMN_OF_WATER;
 			lpCurPlayer->AttackSkil |= (lpSkill->Point << 8);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
-			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			SummitMagicianEnsureSkillMotion(lpCurPlayer);
 
 			lpCurPlayer->MotionLoopSpeed = 90;
@@ -4464,7 +4469,6 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackSkil = SKILL_PLAY_FLAME_WAVE;
 			lpCurPlayer->AttackSkil |= (lpSkill->Point << 8);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
-			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			SummitMagicianEnsureSkillMotion(lpCurPlayer);
 
 			// EU applies Flame Wave damage from MotionEvent 1. Do not send an
@@ -4477,7 +4481,6 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackSkil = SKILL_PLAY_METEO;
 			lpCurPlayer->AttackSkil |= (lpSkill->Point << 8);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
-			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			SummitMagicianEnsureSkillMotion(lpCurPlayer);
 
 		}
