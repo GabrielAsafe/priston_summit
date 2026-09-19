@@ -1,3 +1,38 @@
+static int SummitLegacySkillTokenIsSeparator(char ch)
+{
+	return ch == ' ' || ch == '\t' || ch == '_' || ch == '-';
+}
+
+static unsigned char SummitLegacySkillTokenFold(unsigned char ch)
+{
+	if(ch >= 'A' && ch <= 'Z')
+		return (unsigned char)(ch + ('a' - 'A'));
+	return ch;
+}
+
+static int SummitLegacySkillTokenEquals(const char *left, const char *right)
+{
+	if(!left || !right) return FALSE;
+
+	while(true)
+	{
+		while(*left && SummitLegacySkillTokenIsSeparator(*left)) left++;
+		while(*right && SummitLegacySkillTokenIsSeparator(*right)) right++;
+
+		if(!*left || !*right) break;
+		if(SummitLegacySkillTokenFold((unsigned char)*left) != SummitLegacySkillTokenFold((unsigned char)*right))
+			return FALSE;
+
+		left++;
+		right++;
+	}
+
+	while(*left && SummitLegacySkillTokenIsSeparator(*left)) left++;
+	while(*right && SummitLegacySkillTokenIsSeparator(*right)) right++;
+
+	return *left == 0 && *right == 0;
+}
+
 static char *fileread_GetWord(char *q, char *p)
 {
 
@@ -664,7 +699,8 @@ int AddModelDecode(char *iniFile, smMODELINFO *Info)
 						if(!SkillDataCode[cnt].szSkillName[0])
 							break;
 						if(JobCount >= (MOTION_SKIL_MAX - 1)) break;
-						if(lstrcmpi(SkillDataCode[cnt].szSkillName, strBuff) == 0)
+						if(lstrcmpi(SkillDataCode[cnt].szSkillName, strBuff) == 0 ||
+							SummitLegacySkillTokenEquals(SkillDataCode[cnt].szSkillName, strBuff))
 						{
 							Info->MotionInfo[MotionLastPos].SkillCodeList[JobCount++] = cnt;
 							break;
