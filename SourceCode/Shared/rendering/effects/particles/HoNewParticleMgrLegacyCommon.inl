@@ -43,10 +43,8 @@ bool HoNewParticleResMgr::LoadScript(char *scr)
 		return false;
 
 
-	char particleBuffer[6000];
-	memset(particleBuffer, 0, sizeof(particleBuffer));
 	FILE *fp;
-	fp = fopen(scr, "rt");
+	fp = fopen(scr, "rb");
 	if(fp == NULL)
 	{
 #ifndef _W_SERVER
@@ -66,7 +64,28 @@ bool HoNewParticleResMgr::LoadScript(char *scr)
 #endif
 		return false;
 	}
-	fread(particleBuffer, sizeof(particleBuffer), 1, fp);
+
+	if(fseek(fp, 0, SEEK_END) != 0)
+	{
+		fclose(fp);
+		return false;
+	}
+	long scriptSize = ftell(fp);
+	if(scriptSize < 0 || fseek(fp, 0, SEEK_SET) != 0)
+	{
+		fclose(fp);
+		return false;
+	}
+
+	// The old fixed 6000-byte buffer could truncate scripts and lose the NUL
+	// terminator. Read the complete local asset and always append a terminator.
+	std::vector<char> particleBuffer((size_t)scriptSize + 1, 0);
+	if(scriptSize > 0 &&
+		fread(&particleBuffer[0], 1, (size_t)scriptSize, fp) != (size_t)scriptSize)
+	{
+		fclose(fp);
+		return false;
+	}
 	fclose(fp);
 
 	char directoryBuffer[1024];
@@ -94,7 +113,7 @@ bool HoNewParticleResMgr::LoadScript(char *scr)
 		}
 	}
 
-	AddScript(particleBuffer, fileBuffer);
+	AddScript(&particleBuffer[0], fileBuffer);
 	return true;
 }
 
