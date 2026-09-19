@@ -852,7 +852,8 @@ DWORD WINAPI smLoaderThreadProc(void *pInfo)
 				if (smLoader[cnt].szLoadName2[0])
 				{
 					smDPat2 = smPattern.LoadCharactor(smLoader[cnt].szLoadName2);
-					strcpy_s(smLoader[cnt].lpChar->smCharInfo.szModelName2, smDPat2->szPatName);
+					if(smDPat2)
+						strcpy_s(smLoader[cnt].lpChar->smCharInfo.szModelName2, smDPat2->szPatName);
 				}
 			}
 
@@ -1019,7 +1020,8 @@ int SetLoadPattern(smCHAR *smChar, char *szName, char *szName2, POINT3D *Posi, P
 			if (szName2 && szName2[0])
 			{
 				smDPat2 = smPattern.LoadCharactor(szName2);
-				strcpy_s(smChar->smCharInfo.szModelName2, smDPat2->szPatName);
+				if(smDPat2)
+					strcpy_s(smChar->smCharInfo.szModelName2, smDPat2->szPatName);
 			}
 		}
 
