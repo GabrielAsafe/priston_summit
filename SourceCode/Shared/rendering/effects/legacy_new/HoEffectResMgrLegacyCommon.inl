@@ -89,15 +89,21 @@ bool HoEffectResMesh::LoadingRes(const std::string &meshName, const std::string 
     char tempBuffer2[128];
     strcpy(tempBuffer1, meshName.c_str());
     strcpy(tempBuffer2, boneName.c_str());
-    m_Bone = smASE_ReadBone(tempBuffer1);
-	smASE_SetPhysique(m_Bone);
+
+    // The old overload accidentally loaded the mesh path as the bone resource.
+    m_Bone = smASE_ReadBone(tempBuffer2);
+    if(m_Bone == NULL)
+        return false;
+    smASE_SetPhysique(m_Bone);
 
     m_Mesh = smASE_Read(tempBuffer1);
+    if(m_Mesh == NULL)
+        return false;
     m_Mesh->ZeroNormals();
-    m_Mesh->smMaterialGroup->ReadTextures();
 
     if(m_Mesh->smMaterialGroup)
     {
+        m_Mesh->smMaterialGroup->ReadTextures();
         int matCount = m_Mesh->smMaterialGroup->MaterialCount;
         for(int i = 0; i < matCount; i++)
         {
