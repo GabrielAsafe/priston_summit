@@ -118,6 +118,9 @@
  SrcServer/src/systems/combat/server_legacy/svr_Damage.h \
  Shared/gameplay/combat/svr_Damage_legacy_server.h \
  SrcServer/src/systems/combat/damage/damage.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcServer/src/systems/gameplay/events/server_legacy/SvrCaravan.h \
  SrcServer/src/systems/gameplay/events/hells_gate/cHellsGate.h \
  SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h
@@ -242,6 +245,9 @@ SrcServer/src/systems/progression/battle_pass/BattlePass.h:
 SrcServer/src/systems/combat/server_legacy/svr_Damage.h:
 Shared/gameplay/combat/svr_Damage_legacy_server.h:
 SrcServer/src/systems/combat/damage/damage.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcServer/src/systems/gameplay/events/server_legacy/SvrCaravan.h:
 SrcServer/src/systems/gameplay/events/hells_gate/cHellsGate.h:
 SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h:

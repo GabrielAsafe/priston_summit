@@ -5,6 +5,10 @@
  SrcServer/src/systems/rendering/legacy_3d/smDsx.h \
  SrcServer/src/compat/server_build/server_build_compat.h \
  SrcServer/src/systems/network/protocol/server/opcodes.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ Shared/gameplay/classes/v2/legacy/LegacyJobDataView.h \
  SrcServer/src/systems/rendering/legacy_3d/smd3d.h \
  SrcServer/src/systems/rendering/legacy_3d/smSin.h \
  SrcServer/src/systems/rendering/legacy_3d/smType.h Shared/smPacket.h \
@@ -57,6 +61,10 @@ Shared/inventory/legacy/sinItem_legacy_server.h:
 SrcServer/src/systems/rendering/legacy_3d/smDsx.h:
 SrcServer/src/compat/server_build/server_build_compat.h:
 SrcServer/src/systems/network/protocol/server/opcodes.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+Shared/gameplay/classes/v2/legacy/LegacyJobDataView.h:
 SrcServer/src/systems/rendering/legacy_3d/smd3d.h:
 SrcServer/src/systems/rendering/legacy_3d/smSin.h:
 SrcServer/src/systems/rendering/legacy_3d/smType.h:

@@ -54,6 +54,9 @@
  SrcGame/src/systems/network/client/netplay.h \
  SrcGame/src/systems/audio/effects/legacy/effectsnd.h \
  Shared/audio/effects/EffectSoundLegacyCatalog.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcGame/src/systems/world/field/field.h \
  SrcGame/src/systems/configuration/client/Settings.h
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
@@ -112,5 +115,8 @@ SrcGame/src/systems/rendering/2d/legacy/drawsub.h:
 SrcGame/src/systems/network/client/netplay.h:
 SrcGame/src/systems/audio/effects/legacy/effectsnd.h:
 Shared/audio/effects/EffectSoundLegacyCatalog.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/systems/world/field/field.h:
 SrcGame/src/systems/configuration/client/Settings.h:

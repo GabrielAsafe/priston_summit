@@ -22,6 +22,7 @@
 #include "systems/localization/config/language.h"
 #include "core/server/legacy_runtime/PartyMsg.h"
 #include "core/server/legacy_runtime/onserver.h"
+#include "systems/gameplay/companions/CompanionSystem.h"
 
 extern DWORD	dwPlayServTime;
 
@@ -474,6 +475,7 @@ void LoadPartyExpTable()
 
 
 #include "systems/gameplay/quests/server/cQuestHandler.h"
+#include "systems/gameplay/events/v2/GameplayEventRuntime.h"
 
 int rsPLAYINFO::GetPartyExp(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo)
 {
@@ -486,9 +488,17 @@ int rsPLAYINFO::GetPartyExp(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo)
 
 	bool quest = cQuestHandler.inQuest(lpPlayInfo, lpChar);
 
-	cQuestHandler.KillMonster(lpPlayInfo, lpChar, false);
+	gameplay::events::PublishMonsterKilled(lpPlayInfo, lpChar, false);
 
 	if (lpChar->smMonsterInfo.GetExp) {
+
+		LoadPartyExpTable();
+		int effectivePartyCount = PartyUserCount +
+			gameplay::companions::GetPartyActiveCount(this, lpPlayInfo->Position.Area);
+		if(effectivePartyCount < 1) effectivePartyCount = 1;
+		if(effectivePartyCount > 8) effectivePartyCount = 8;
+		const float killerRate = PartyExpTable[effectivePartyCount - 1][0];
+		const float memberRate = PartyExpTable[effectivePartyCount - 1][1];
 
 		for (int cnt = 0; cnt < PARTY_PLAYER_MAX; cnt++)
 		{
@@ -498,9 +508,8 @@ int rsPLAYINFO::GetPartyExp(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo)
 				INT64 PlayerEXP = 0;
 				INT64 Exp = srGetTotalExp(lpChar->smMonsterInfo.GetExp, lpChar->smCharInfo.Level - lpPartyPlayers[cnt]->smCharInfo.Level, lpPartyPlayers[cnt]);
 				INT64 PartyExp[2] = { 0,0 };
-				LoadPartyExpTable();
-				PartyExp[0] = static_cast<INT64>(Exp * PartyExpTable[PartyUserCount - 1][0]);
-				PartyExp[1] = static_cast<INT64>(Exp * PartyExpTable[PartyUserCount - 1][1]);
+				PartyExp[0] = static_cast<INT64>(Exp * killerRate);
+				PartyExp[1] = static_cast<INT64>(Exp * memberRate);
 				bool player = false;
 
 				if (lpPartyPlayers[cnt] == lpPlayInfo)
@@ -514,7 +523,7 @@ int rsPLAYINFO::GetPartyExp(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo)
 				{
 
 					
-					cQuestHandler.KillMonster(lpPartyPlayers[cnt], lpChar, true);
+					gameplay::events::PublishMonsterKilled(lpPartyPlayers[cnt], lpChar, true);
 
 
 
@@ -533,6 +542,14 @@ int rsPLAYINFO::GetPartyExp(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo)
 				}
 
 			
+
+				// Reaching this point with a positive party share means this owner
+				// is eligible by the same area/distance rule as a human member.
+				// Companions are always party members (never the killer slot), and
+				// each one calculates EXP from its own saved level.
+				if(PlayerEXP > 0)
+					gameplay::companions::AwardExperience(
+						lpPartyPlayers[cnt], lpChar, memberRate);
 
 				if (PlayerEXP) {
 

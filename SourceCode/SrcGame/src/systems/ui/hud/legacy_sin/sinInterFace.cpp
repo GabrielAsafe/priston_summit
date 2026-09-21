@@ -1,10 +1,11 @@
 ï»¿#include "opcodes.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
-#include "core/gameplay/runtime/playmain.h"
 #include "systems/social/clan/tjclan.h"
 #include "systems/world/field/field.h"
 #include "systems/configuration/client/Settings.h"
 #include "systems/ui/settings/legacy_window/cSettingsWindow.h"
+#include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
 
 cINTERFACE	cInterFace;
 sSHADOWSTATE sShadowState[3];
@@ -534,6 +535,10 @@ void cINTERFACE::Draw()
 	SkillMasterTextXY.x = SkillMasterMainXY.x + 23;
 	SkillMasterTextXY.y = SkillMasterMainXY.y + 65;
 
+	const bool suppressMainHud = ui::v2::legacy::SuppressLegacyMainHud();
+
+	if(!suppressMainHud)
+	{
 	dsDrawTexImage(cInterFace.MatMenu[0], 800 - 256 - 256, 600 - 128, 256, 128, 255);
 	dsDrawTexImage(cInterFace.MatMenu[1], 800 - 256, 600 - 64, 256, 64, 255);
 
@@ -576,16 +581,14 @@ void cINTERFACE::Draw()
 	{
 		dsDrawTexImage( MatExitMenu , 698, 504 - 30, 128, 94 , 255 );
 
-		// The menu background is 128 pixels wide with three 31-pixel rows.
-		// Stretch the legacy 96x19 hover overlays to the full button row.
 		if(sinMenuBottonPosi == 1)
-			DrawSprite(698,504,lpMenuButton[0],0,0,96,19,1,128,31);
+			DrawSprite(698,504,lpMenuButton[0],0,0,96,19);
 
 		if(sinMenuBottonPosi == 2)
-			DrawSprite(698,504-31,lpMenuButton[1],0,0,96,19,1,128,31);
+			DrawSprite(698,504-31,lpMenuButton[1],0,0,96,19);
 
 		if(sinMenuBottonPosi == 3)
-			DrawSprite(698,535,lpMenuButton[2],0,0,96,19,1,128,31); 
+			DrawSprite(698,535,lpMenuButton[2],0,0,96,19); 
 
 
 	}
@@ -646,7 +649,7 @@ void cINTERFACE::Draw()
 
 	if(sInterFlags.MapOnFlag)
 	{
-		DrawSprite(575 + 24 + 24, 565, lpMapOnImage, 0, 0, 24, 25);
+		DrawSpriteFullTexture(575 + 24 + 24, 565, lpMapOnImage, 24, 25);
 	}
 
 	switch(sinRunCameraMapPosi)
@@ -684,12 +687,12 @@ void cINTERFACE::Draw()
 		case 3:
 		if(sInterFlags.MapOnFlag)
 		{
-			DrawSprite(575 + 24 + 24 + 12 - (76 / 2), 565 - 29, lpMapOffInfo, 0, 0, 77, 27);
+			DrawSpriteFullTexture(575 + 24 + 24 + 12 - (76 / 2), 565 - 29, lpMapOffInfo, 77, 27);
 
 		}
 		else
 		{
-			DrawSprite(575 + 24 + 24 + 12 - (76 / 2), 565 - 29, lpMapOnInfo, 0, 0, 77, 27);
+			DrawSpriteFullTexture(575 + 24 + 24 + 12 - (76 / 2), 565 - 29, lpMapOnInfo, 77, 27);
 
 		}
 		break;
@@ -716,27 +719,29 @@ void cINTERFACE::Draw()
 
 
 
+	}
 
 
-	if(SkillNpcFlag)
+
+	if(SkillNpcFlag && !ui::v2::legacy::OwnsLegacySkillNpcUI())
 	{
-		DrawSprite(SkillMasterMainXY.x, SkillMasterMainXY.y, lpReStartMain, 0, 0, 188, 128);
-		DrawSprite(SkillMasterMainXY.x + ReStartButtonRect[0][0], SkillMasterMainXY.y + ReStartButtonRect[0][1], lpSelectSkill_Main[0], 0, 0, 44, 44);
-		DrawSprite(SkillMasterMainXY.x + ReStartButtonRect[1][0], SkillMasterMainXY.y + ReStartButtonRect[1][1], lpSelectChangeJob[0], 0, 0, 44, 44);
+		DrawSpriteFullTexture(SkillMasterMainXY.x, SkillMasterMainXY.y, lpReStartMain, 188, 128);
+		DrawSpriteFullTexture(SkillMasterMainXY.x + ReStartButtonRect[0][0], SkillMasterMainXY.y + ReStartButtonRect[0][1], lpSelectSkill_Main[0], 44, 44);
+		DrawSpriteFullTexture(SkillMasterMainXY.x + ReStartButtonRect[1][0], SkillMasterMainXY.y + ReStartButtonRect[1][1], lpSelectChangeJob[0], 44, 44);
 		if(SkillMasterIndex)
 		{
 			if(SkillMasterIndex == 1 && SkillMasterOkFlag[0])
-				DrawSprite(SkillMasterMainXY.x + ReStartButtonRect[SkillMasterIndex - 1][0], SkillMasterMainXY.y + ReStartButtonRect[SkillMasterIndex - 1][1], lpSelectSkill_Main[1], 0, 0, 44, 44);
+				DrawSpriteFullTexture(SkillMasterMainXY.x + ReStartButtonRect[SkillMasterIndex - 1][0], SkillMasterMainXY.y + ReStartButtonRect[SkillMasterIndex - 1][1], lpSelectSkill_Main[1], 44, 44);
 			if(SkillMasterIndex == 2 && SkillMasterOkFlag[1])
-				DrawSprite(SkillMasterMainXY.x + ReStartButtonRect[SkillMasterIndex - 1][0], SkillMasterMainXY.y + ReStartButtonRect[SkillMasterIndex - 1][1], lpSelectChangeJob[1], 0, 0, 44, 44);
+				DrawSpriteFullTexture(SkillMasterMainXY.x + ReStartButtonRect[SkillMasterIndex - 1][0], SkillMasterMainXY.y + ReStartButtonRect[SkillMasterIndex - 1][1], lpSelectChangeJob[1], 44, 44);
 			if(SkillMasterIndex == 3)
-				DrawSprite(SkillMasterMainXY.x + ReStartButtonRect[SkillMasterIndex - 1][0], SkillMasterMainXY.y + ReStartButtonRect[SkillMasterIndex - 1][1], lpReStartButton[2], 0, 0, 44, 44);
+				DrawSpriteFullTexture(SkillMasterMainXY.x + ReStartButtonRect[SkillMasterIndex - 1][0], SkillMasterMainXY.y + ReStartButtonRect[SkillMasterIndex - 1][1], lpReStartButton[2], 44, 44);
 
 		}
 	}
 
 
-	if(ShowSkillClose)
+	if(!suppressMainHud && ShowSkillClose)
 	{
 		DrawSprite(269, 571 + (256 - sinMoveKindInter[SIN_SKILL]), cShop.lpExit, 0, 0, 20, 20);
 		DrawSprite(269, 571 - 27 + (256 - sinMoveKindInter[SIN_SKILL]), cInvenTory.lpExitInfo, 0, 0, 47, 27);
@@ -764,6 +769,11 @@ void cINTERFACE::Draw()
 	char *lpInput;
 
 
+	// Keep the old input/edit rendering available on demand. The permanent
+	// menu/chrome above stays suppressed by UI V2; this block is only chat text
+	// and chat history, and becomes visible while Enter has activated editing.
+	if(!suppressMainHud || sinChatEnter)
+	{
 	if(hFocusWnd && sinChatInputMode && !usehFocus)
 	{
 
@@ -804,6 +814,17 @@ void cINTERFACE::Draw()
 		SetFontTextColor( RGB(255, 255, 255));
 		dsTextLineOut( x, y, lpInput, len);
 	#endif
+
+		// hTextWnd remains a hidden logical EDIT in the legacy client, so its
+		// native Win32 caret is never visible. Draw a small blinking caret at
+		// the end of the V2-visible input instead. The legacy font is close to
+		// fixed-width here; keeping the same 44-character window avoids drift.
+		if((GetTickCount() / 450) & 1)
+		{
+			const int caretX = x + (len * 7);
+			SetFontTextColor(RGB(255, 255, 255));
+			dsTextLineOut(caretX, y, "|", 1);
+		}
 
 	}
 
@@ -882,12 +903,14 @@ void cINTERFACE::Draw()
 
 	}
 
+	}
+
 	int dsDrawOffsetArrayBackup = dsDrawOffsetArray;
 
 	dsDrawOffsetArray = dsARRAY_TOP;
 
 
-	if(SkillMasterFlag == 1)
+	if(SkillMasterFlag == 1 && !ui::v2::legacy::OwnsLegacySkillNpcUI())
 	{
 		for(i = 0; i < SkillUpInfo.x; i++)
 		{
@@ -978,7 +1001,7 @@ void cINTERFACE::Draw()
 	}
 
 
-	if(SkillMasterFlag && !ShowSkillUpInfo && (CheckQuestButtonShow1 || CheckQuestButtonShow2 || CheckQuestButtonShow3))
+	if(SkillMasterFlag && !ui::v2::legacy::OwnsLegacySkillNpcUI() && !ShowSkillUpInfo && (CheckQuestButtonShow1 || CheckQuestButtonShow2 || CheckQuestButtonShow3))
 	{
 		if(sinChangeJobButtonShow || sinChangeJobButtonShow2 || sinChangeJobButtonShow3 || sinChangeJobButtonShow4)
 		{
@@ -992,12 +1015,12 @@ void cINTERFACE::Draw()
 		}
 	}
 
-	if(SkillMasterFlag && !ShowSkillUpInfo && (nCheckSkillDraw == 1))
+	if(SkillMasterFlag && !ui::v2::legacy::OwnsLegacySkillNpcUI() && !ShowSkillUpInfo && (nCheckSkillDraw == 1))
 	{
 		DrawSprite(240, 380, lpSelectChangeJob[1], 0, 0, 44, 44);
 	}
 
-	if(SkillMasterFlag && !ShowSkillUpInfo && (nCheckSkillDraw == 2))
+	if(SkillMasterFlag && !ui::v2::legacy::OwnsLegacySkillNpcUI() && !ShowSkillUpInfo && (nCheckSkillDraw == 2))
 	{
 		DrawSprite(240, 380, lpSelectChangeJob[0], 0, 0, 44, 44);
 	}
@@ -1005,7 +1028,7 @@ void cINTERFACE::Draw()
 	dsDrawOffsetArray = dsDrawOffsetArrayBackup;
 
 
-	if(SkillInfoShowFlag && !ShowSkillUpInfo)
+	if(!suppressMainHud && SkillInfoShowFlag && !ShowSkillUpInfo)
 	{
 		if(SkillInfoShowFlag == 2)
 			dsDrawOffsetArray = dsARRAY_TOP;
@@ -1048,7 +1071,7 @@ void cINTERFACE::Draw()
 		}
 	}
 
-	if(InfoMessageBoxPos.x != 0 || InfoMessageBoxPos.y != 0)
+	if(!suppressMainHud && (InfoMessageBoxPos.x != 0 || InfoMessageBoxPos.y != 0))
 	{
 		dsDrawTexImage(cItem.MatItemInfoBox_Center, InfoMessageBoxPos.x - 5, InfoMessageBoxPos.y - 1, lstrlen(szInfoMsgBuff5) * 6, 13, 255);
 	}
@@ -1089,9 +1112,9 @@ int   CheckExpTime = 0;
 
 DWORD dwTestKeyTime = 0;
 int   TeskKeyMessageCnt = 0;
-char *szTestKeyMsg[6] = { "³ª!  &(^_^)&    ",
-						 "³ë!  /(^_^)/   ",
-						 "³ª!  *(^_^)*  ",
+char *szTestKeyMsg[6] = { "!  &(^_^)&    ",
+						 "!  /(^_^)/   ",
+						 "!  *(^_^)*  ",
 						 "",
 						 "",
 						 "", };
@@ -1283,16 +1306,12 @@ void cINTERFACE::Main()
 
 	if(ExitButtonClick)
 	{
-		// Hit testing follows the same full 128x31 rows used for drawing.
-		sinMenuBottonPosi = 0;
-		if(698 <= pCursorPos.x && pCursorPos.x < 826 &&
-		   535 <= pCursorPos.y && pCursorPos.y < 566)
+		if(699 < pCursorPos.x && 795 > pCursorPos.x &&
+		   535 < pCursorPos.y && 555 > pCursorPos.y)
 			sinMenuBottonPosi = 3;
-		else if(698 <= pCursorPos.x && pCursorPos.x < 826 &&
-		        473 <= pCursorPos.y && pCursorPos.y < 504)
-			sinMenuBottonPosi = 2;
-		else if(698 <= pCursorPos.x && pCursorPos.x < 826 &&
-		        504 <= pCursorPos.y && pCursorPos.y < 535)
+
+		if(698 < pCursorPos.x && 795 > pCursorPos.x &&
+		   504 < pCursorPos.y && 524 > pCursorPos.y)
 			sinMenuBottonPosi = 1;
 
 
@@ -1412,7 +1431,7 @@ void cINTERFACE::Main()
 	memset(szSkillMasterMsg2, 0, lstrlen(szSkillMasterMsg2));
 
 
-	if(SkillNpcFlag)
+	if(SkillNpcFlag && !ui::v2::legacy::OwnsLegacySkillNpcUI())
 	{
 
 		sinMenuBottonPosi = 0;
@@ -1625,8 +1644,7 @@ void cINTERFACE::LButtonDown(int x, int y)
 		
 	if(sinMenuBottonPosi == 3)
 	{
-		if(QuitToLogin())
-			ExitButtonClick = 0;
+		QuitGame();
 	}
 
 	if (sinMenuBottonPosi == 2)
@@ -2243,7 +2261,7 @@ void cINTERFACE::KeyDown()
 						ReformCharForm();
 					}
 					
-					if (sinQuest_Level55.State < 2 && sinChar->Level >= 55 && sinChar->JOB_CODE < 5) {
+					if (sinQuest_Level55.State < 2 && sinChar->Level >= 55 && gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron)) {
 						CheckCharForm();
 						sinSkill.SkillPoint += 1;
 						cMessageBox.ShowMessage(MESSAGE_PLUS_SKILL_POINT);
@@ -2257,7 +2275,7 @@ void cINTERFACE::KeyDown()
 						ReformCharForm();
 					}
 					
-					if (sinQuest_Level55_2.State < 2 && sinChar->Level >= 55 && sinChar->JOB_CODE > 4) {
+					if (sinQuest_Level55_2.State < 2 && sinChar->Level >= 55 && gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Morayion)) {
 						CheckCharForm();
 						sinSkill.SkillPoint += 1;
 						cMessageBox.ShowMessage(MESSAGE_PLUS_SKILL_POINT);
@@ -2425,13 +2443,17 @@ void cINTERFACE::KeyDown()
 				{
 				#ifdef	GAME_GM
 					SendChatMessageToServer("MeLee: it's good /(-_-)/ ");
-					sinChar->ChangeJob++;
-					if(sinChar->ChangeJob > CHARACTER_RANK5)sinChar->ChangeJob = CHARACTER_RANK5;
-					cSkill.SearchUseSkill();
+					int nextChangeJob = 0;
+					if(gameplay::classes::DefaultClassService().TryNextLegacyChangeJob(
+						sinChar->JOB_CODE, static_cast<int>(sinChar->ChangeJob), nextChangeJob))
+					{
+						sinChar->ChangeJob = static_cast<DWORD>(nextChangeJob);
+						cSkill.SearchUseSkill();
+						ChangeJobFace();
+					}
 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
 					memset(sinBuff, 0, sizeof(sinBuff));
-					ChangeJobFace();
 				#endif
 				}
 
@@ -2533,7 +2555,7 @@ void cINTERFACE::KeyDown()
 	if(!hFocusWnd)
 		sinChatEnter = 0;
 	else sinChatEnter = 1;
-	if(ChatFlag)sinChatEnter = 1;
+	if(!ui::v2::legacy::SuppressLegacyMainHud() && ChatFlag)sinChatEnter = 1;
 }
 
 int DefaultLength[4] = { 94,94,76,221 }; //tamanho da barra de exp
@@ -2694,12 +2716,13 @@ void cINTERFACE::ShowParaState()
 void cINTERFACE::DrawInterText()
 {
 	HDC	hdc = NULL;
+	const bool suppressMainHud = ui::v2::legacy::SuppressLegacyMainHud();
 
 	SetFontTextColor( RGB(255, 255, 255));
 
-	if(InfoMessageBoxPos.x != 0 || InfoMessageBoxPos.y != 0)
+	if(!suppressMainHud && (InfoMessageBoxPos.x != 0 || InfoMessageBoxPos.y != 0))
 		dsTextLineOut( InfoMessageBoxPos.x, InfoMessageBoxPos.y, szInfoMsgBuff5, lstrlen(szInfoMsgBuff5));
-	if(ShowExpPercentFlag)
+	if(!suppressMainHud && ShowExpPercentFlag)
 	{
 		SetFontTextColor( RGB(202, 254, 251));
 		dsDrawOffsetArray = dsARRAY_BOTTOM;
@@ -2712,7 +2735,7 @@ void cINTERFACE::DrawInterText()
 
 
 	SetFontTextColor( RGB(255, 255, 255));
-	if(SkillNpcFlag)
+	if(SkillNpcFlag && !ui::v2::legacy::OwnsLegacySkillNpcUI())
 	{
 		if(szSkillMasterMsg[0])
 		{

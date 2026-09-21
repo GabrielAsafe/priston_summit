@@ -112,7 +112,8 @@
  SrcServer/src/systems/progression/class_rank/Rank.h \
  SrcServer/src/systems/persistence/database/core/Database.h \
  Shared/persistence/database/Database_sqlite_server.h modules/File/File.h \
- SrcServer/src/core/server/legacy_runtime/onserver.h
+ SrcServer/src/core/server/legacy_runtime/onserver.h \
+ SrcServer/src/systems/gameplay/progression/v2/ProgressionTriggerRuntime.h
 SrcServer/src/systems/network/protocol/server/opcodes.h:
 SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h:
 SrcServer/src/systems/rendering/legacy_3d/smd3d.h:
@@ -229,3 +230,4 @@ SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
 modules/File/File.h:
 SrcServer/src/core/server/legacy_runtime/onserver.h:
+SrcServer/src/systems/gameplay/progression/v2/ProgressionTriggerRuntime.h:

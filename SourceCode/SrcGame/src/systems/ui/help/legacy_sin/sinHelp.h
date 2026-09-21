@@ -1,5 +1,7 @@
 
 
+#include <map>
+
 #define SIN_MAX_HELP_NUMBER		10		
 
 #define SIN_HELP_KIND_NORMAL		1		
@@ -142,7 +144,7 @@ public:
 	LPDIRECT3DTEXTURE9	lpHelpOk;
 	LPDIRECT3DTEXTURE9	lpSodMenu;
 	LPDIRECT3DTEXTURE9	lpSodLine;
-	LPDIRECT3DTEXTURE9	lpSodJobFace[8];
+	std::map<int, LPDIRECT3DTEXTURE9> lpSodJobFace;
 
 	DWORD dwCheckBox[2];
 

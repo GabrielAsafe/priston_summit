@@ -213,7 +213,7 @@ void LoadResFile(char *path, bool aseExistFlag)
 								(*matNum) = CreateTextureMaterial(AssaRes[AssaResCount].resFullName, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 								AssaRes[AssaResCount].res = matNum;
 								AssaRes[AssaResCount].LoadFlag = TRUE;
-								smMaterialGroup->ReadTextures();
+								AssetLoadV2ReadMaterialGroup(smMaterialGroup, SMASSET_OWNER_EFFECT);
 							}
 						}
 #endif
@@ -307,7 +307,7 @@ void LoadResFile(char *path, bool aseExistFlag)
 								smASE_SetPhysique(NULL);
 
 								AssaRes[AssaResCount].LoadFlag = TRUE;
-								((smPAT3D *)AssaRes[AssaResCount].res)->smMaterialGroup->ReadTextures();
+								AssetLoadV2ReadMaterialGroup(((smPAT3D *)AssaRes[AssaResCount].res)->smMaterialGroup, SMASSET_OWNER_EFFECT);
 							}
 						}
 
@@ -330,7 +330,7 @@ void LoadResFile(char *path, bool aseExistFlag)
 
 								((smPAT3D *)AssaRes[AssaResCount].res)->ZeroNormals();
 								AssaRes[AssaResCount].LoadFlag = TRUE;
-								((smPAT3D *)AssaRes[AssaResCount].res)->smMaterialGroup->ReadTextures();
+								AssetLoadV2ReadMaterialGroup(((smPAT3D *)AssaRes[AssaResCount].res)->smMaterialGroup, SMASSET_OWNER_EFFECT);
 							}
 						}
 #endif
@@ -355,25 +355,36 @@ void InitAssaRes()
 
 void CloseAssaRes()
 {
-	for(int index = 0; index < AssaResCount; index++)
-	{
-		if(AssaRes[index].res != NULL)
-		{
-			if(AssaRes[index].type == TYPE_MAT)
-			{
-				delete ((int *)AssaRes[index].res);
-				AssaRes[index].res = NULL;
-			}
-			if(AssaRes[index].type == TYPE_ASE)
-			{
-				delete ((smPAT3D *)AssaRes[index].res);
-				AssaRes[index].res = NULL;
-				memset(AssaRes[index].resName, 0, sizeof(AssaRes[index].resName));
-				AssaRes[index].type = 0;
-			}
-		}
-	}
+    for(int index = 0; index < AssaResCount; index++)
+    {
+        if(AssaRes[index].res == NULL)
+            continue;
+
+        if(AssaRes[index].type == TYPE_MAT)
+        {
+            int *matNum = (int *)AssaRes[index].res;
+            if(matNum && smMaterialGroup)
+                AssetLoadV2ReleaseMaterial(smMaterialGroup, *matNum);
+            delete matNum;
+        }
+        else if(AssaRes[index].type == TYPE_ASE ||
+                AssaRes[index].type == TYPE_BONE ||
+                AssaRes[index].type == TYPE_BONE_ANI)
+        {
+            delete ((smPAT3D *)AssaRes[index].res);
+        }
+
+        AssaRes[index].res = NULL;
+        AssaRes[index].LoadFlag = FALSE;
+    }
+
+    // LoadAssaRes rescans the directories. Keeping the old count here caused
+    // duplicate catalog entries and unbounded growth on every reload.
+    AssaResCount = 0;
+    memset(AssaRes, 0, sizeof(AssaRes));
+    AssetLoadV2DumpTelemetry("ASSARES_CLEAR");
 }
+
 
 
 void LoadAssaRes()
@@ -419,7 +430,7 @@ void *AssaSearchRes(char *resName, int blendType)
 
 					((smPAT3D *)AssaRes[index].res)->ZeroNormals();
 					AssaRes[index].LoadFlag = TRUE;
-					((smPAT3D *)AssaRes[index].res)->smMaterialGroup->ReadTextures();
+					AssetLoadV2ReadMaterialGroup(((smPAT3D *)AssaRes[index].res)->smMaterialGroup, SMASSET_OWNER_EFFECT);
 
 				}
 
@@ -454,7 +465,7 @@ void *AssaSearchRes(char *resName, int blendType)
 						smASE_SetPhysique(NULL);
 
 						AssaRes[index].LoadFlag = TRUE;
-						((smPAT3D *)AssaRes[index].res)->smMaterialGroup->ReadTextures();
+						AssetLoadV2ReadMaterialGroup(((smPAT3D *)AssaRes[index].res)->smMaterialGroup, SMASSET_OWNER_EFFECT);
 
 					}
 				}
@@ -487,7 +498,7 @@ void *AssaSearchRes(char *resName, int blendType)
 					(*matNum) = CreateTextureMaterial(AssaRes[index].resFullName, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 					AssaRes[index].res = matNum;
 					AssaRes[index].LoadFlag = TRUE;
-					smMaterialGroup->ReadTextures();
+					AssetLoadV2ReadMaterialGroup(smMaterialGroup, SMASSET_OWNER_EFFECT);
 
 				}
 

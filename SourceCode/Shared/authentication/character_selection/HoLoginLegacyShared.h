@@ -1,6 +1,9 @@
 
 #define CHARACTER_USER_MAX			9
-#define CHARACTER_JOB_MAX			4
+#define CHARACTER_SELECTION_SLOT_CAPACITY 16 // Legacy HoLogin preview/UI capacity, not class registry size
+#define CHARACTER_FACE_SLOT_CAPACITY      8  // Legacy face-card capacity per class
+#define CHARACTER_JOB_MAX			CHARACTER_SELECTION_SLOT_CAPACITY // Deprecated compatibility alias
+#define CHARACTER_FACE_MAX			CHARACTER_FACE_SLOT_CAPACITY // Deprecated compatibility alias
 
 
 #define CHARACTER_SELECT_STATE		0
@@ -64,7 +67,7 @@ public:
 
 
 
-	int						MorFaceImage[CHARACTER_JOB_MAX][4][2];
+	int						MorFaceImage[CHARACTER_SELECTION_SLOT_CAPACITY][CHARACTER_FACE_SLOT_CAPACITY][2];
 
 	void Init_UseMor();
 
@@ -93,10 +96,10 @@ public:
 	int						RaceTextBoxImage[2];
 	int						JobTextBoxImage[2];
 
-	int						TempscronJobImage[CHARACTER_JOB_MAX][2];
-	int						MoryonJobImage[CHARACTER_JOB_MAX][2];
-	int						TempscronJobTextImage[CHARACTER_JOB_MAX];
-	int						MoryonJobTextImage[CHARACTER_JOB_MAX];
+	int						TempscronJobImage[CHARACTER_SELECTION_SLOT_CAPACITY][2];
+	int						MoryonJobImage[CHARACTER_SELECTION_SLOT_CAPACITY][2];
+	int						TempscronJobTextImage[CHARACTER_SELECTION_SLOT_CAPACITY];
+	int						MoryonJobTextImage[CHARACTER_SELECTION_SLOT_CAPACITY];
 
 
 	int						FaceBoxBigImage[2];
@@ -142,7 +145,7 @@ private:
 	smCHAR					UserCharacter[CHARACTER_USER_MAX];
 	int						UserCharacterCount;
 
-	smCHAR					JobCharacter[CHARACTER_JOB_MAX];
+	smCHAR					JobCharacter[CHARACTER_SELECTION_SLOT_CAPACITY];
 	int						JobCharacterCount;
 
 
@@ -167,7 +170,7 @@ private:
 
 
 	LEGACY_HO_LOGIN_SURFACE_TYPE	FaceSelectImage;
-	int						TempFaceImage[CHARACTER_JOB_MAX][4][2];
+	int						TempFaceImage[CHARACTER_SELECTION_SLOT_CAPACITY][CHARACTER_FACE_SLOT_CAPACITY][2];
 
 
 
@@ -248,6 +251,11 @@ private:
 	int		CameraUpDown();
 	int		AddUserCharacter(char *chrFile1, char *chrFile2, int jobCode = 0);
 	int		AddJobCharacter(char *chrFile1, char *chrFile2, int index = -1);
+	int		LoadSelectableJobCharacters();
+	int		ApplySelectedClassFace(int faceIndex);
+	int		GetCurrentFaceCount() const;
+	int		GetCurrentFacePositionX(int faceIndex) const;
+	void	GetJobCharacterWorldPosition(int index, int &x, int &z) const;
 	int		GetSelectCharacter(smCHAR *lpChar);
 	void	LoadLoadingImage(int level);
 
@@ -255,10 +263,6 @@ private:
 
 
 
-extern char *szTempPikeFaceName[2][3];
-extern char *szTempArcherFaceName[2][3];
-extern char *szTempMechFaceName[2][3];
-extern char *szTempFighterFaceName[2][3];
 
 
 

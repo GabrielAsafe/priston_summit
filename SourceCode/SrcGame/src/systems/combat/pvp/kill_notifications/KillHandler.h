@@ -1,5 +1,7 @@
 #pragma once
 
+#include <map>
+
 class cKILL
 {
 public:
@@ -9,8 +11,9 @@ public:
 	void handleDeath();
 
 private:
-	LPDIRECT3DTEXTURE9 lpClass[10];
+	std::map<int, LPDIRECT3DTEXTURE9> lpClass;
 	LPDIRECT3DTEXTURE9 lpKills[9];
+	LPDIRECT3DTEXTURE9 GetClassIcon(int legacyJobCode) const;
 
 	enum KILLS
 	{

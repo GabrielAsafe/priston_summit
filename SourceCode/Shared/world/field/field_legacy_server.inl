@@ -1,3 +1,4 @@
+#include "gameplay/classes/v2/services/ClassService.h"
 
 
 #include "systems/rendering/legacy_3d/smd3d.h"
@@ -2004,7 +2005,8 @@ int StartField()
 	if (JobCode == 0)
 		JobCode = NewCharInfo.JobCode;
 
-	if (JobCode > 4 && JobCode != 9)
+	if (gameplay::classes::DefaultClassService().IsInBrood(
+		JobCode, gameplay::classes::brood::Morayion))
 		StartNum = START_FIELD_MORYON;
 	else
 		StartNum = START_FIELD_NUM;
@@ -2103,7 +2105,8 @@ int WarpStartField(int *mx, int *mz)
 	int cnt;
 	int	StartNum = START_FIELD_NUM;
 
-	if (lpCurPlayer->smCharInfo.JOB_CODE > 4 && lpCurPlayer->smCharInfo.JOB_CODE != 9)
+	if (gameplay::classes::DefaultClassService().IsInBrood(
+		lpCurPlayer->smCharInfo.JOB_CODE, gameplay::classes::brood::Morayion))
 	{
 		StartNum = START_FIELD_MORYON;
 	}

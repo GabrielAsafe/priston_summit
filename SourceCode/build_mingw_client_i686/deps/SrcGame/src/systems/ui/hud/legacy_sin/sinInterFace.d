@@ -1,5 +1,8 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/ui/hud/legacy_sin/sinInterFace.o: \
  SrcGame/src/systems/ui/hud/legacy_sin/sinInterFace.cpp Shared/opcodes.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcGame/src/compat/legacy/sin/sinLinkHeader.h \
  SrcGame/src/systems/rendering/legacy_3d/smd3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
@@ -152,8 +155,12 @@
  SrcGame/src/systems/ui/core/UIList.h \
  SrcGame/src/systems/ui/core/UICombobox.h \
  SrcGame/src/systems/ui/core/UIItemFrame.h \
- SrcGame/src/systems/ui/core/UIPlaceholder.h
+ SrcGame/src/systems/ui/core/UIPlaceholder.h \
+ SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h
 Shared/opcodes.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
@@ -309,3 +316,4 @@ SrcGame/src/systems/ui/core/UIList.h:
 SrcGame/src/systems/ui/core/UICombobox.h:
 SrcGame/src/systems/ui/core/UIItemFrame.h:
 SrcGame/src/systems/ui/core/UIPlaceholder.h:
+SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h:

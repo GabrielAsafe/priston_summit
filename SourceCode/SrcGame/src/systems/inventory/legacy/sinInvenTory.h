@@ -161,7 +161,9 @@ public:
 	void Release();
 	void Draw();
 	void Close();
-	void Main();
+	// processPointerHitTest=false keeps passive inventory maintenance running
+	// while suppressing the old screen-coordinate hover/selection path.
+	void Main(bool processPointerHitTest = true);
 	void LButtonDown(int x, int y);
 	void LButtonUp(int x, int y);
 	void RButtonDown(int x, int y);

@@ -64,6 +64,7 @@ void DrawCursor();
 int sinRecvMessage(DWORD dwCode, void *RecvBuff);
 
 void DrawSprite(int winX, int winY, LPDIRECT3DTEXTURE9 pdds, int x, int y, int width, int height, int Bltflag = 1, int destWidth = -1, int destHeight = -1);
+void DrawSpriteFullTexture(int winX, int winY, LPDIRECT3DTEXTURE9 pdds, int destWidth, int destHeight, int Bltflag = 1);
 
 int sinGetItemInfo(DWORD CODE, char *szImagePath);
 
@@ -111,6 +112,7 @@ int sinGetKeyClick(int num);
 void sinKeyClickMain();
 
 void ShowInterFace();
+void ResetLegacyCharacterInterfaceMotion();
 
 int sinCreatFont();
 

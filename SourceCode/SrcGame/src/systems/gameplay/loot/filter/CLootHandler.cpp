@@ -1,5 +1,7 @@
+#include <cstdint>
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/gameplay/loot/filter/CLootHandler.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 
 CLootFilter cLootFilter;
 
@@ -76,45 +78,10 @@ bool CLootFilter::Filter(TRANS_ITEM * pItem)
 			else if (!spec)
 				return true;
 
-			if (spec == JOB_CODE_MECHANICIAN && !getMech())
-				return false;
-			else if (spec == JOB_CODE_MECHANICIAN)
-				return true;
-
-			if (spec == JOB_CODE_FIGHTER && !getFighter())
-				return false;
-			else if (spec == JOB_CODE_FIGHTER)
-				return true;
-
-			if (spec == JOB_CODE_PIKEMAN && !getPikeman())
-				return false;
-			else if (spec == JOB_CODE_PIKEMAN)
-				return true;
-
-			if (spec == JOB_CODE_ARCHER && !getArcher())
-				return false;
-			else if (spec == JOB_CODE_ARCHER)
-				return true;
-
-			if (spec == JOB_CODE_KNIGHT && !getKnight())
-				return false;
-			else if (spec == JOB_CODE_KNIGHT)
-				return true;
-
-			if (spec == JOB_CODE_ATALANTA && !getAtalanta())
-				return false;
-			else if (spec == JOB_CODE_ATALANTA)
-				return true;
-
-			if (spec == JOB_CODE_PRIEST && !getPriestess())
-				return false;
-			else if (spec == JOB_CODE_PRIEST)
-				return true;
-
-			if (spec == JOB_CODE_MAGICIAN && !getMagician())
-				return false;
-			else if (spec == JOB_CODE_MAGICIAN)
-				return true;
+			int specializationJobCode = 0;
+			if (gameplay::classes::DefaultClassService().TryLegacyJobCodeByJobBitCode(
+				static_cast<std::uint32_t>(spec), specializationJobCode))
+				return getClassSpec(specializationJobCode);
 		}
 
 		if (!getEverything())

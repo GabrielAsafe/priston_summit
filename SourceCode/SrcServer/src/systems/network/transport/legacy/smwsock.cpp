@@ -21,6 +21,7 @@
 /* MINGW_TRANSPORT_TRACE_V2 */
 static void MingwTransportTraceV2(const char *fmt, ...)
 {
+#if defined(PT_ENABLE_MINGW_TRANSPORT_TRACE)
     FILE *fp = fopen("LOGS\\mingw_server_transport.txt", "a");
     if(!fp)
         return;
@@ -44,6 +45,9 @@ static void MingwTransportTraceV2(const char *fmt, ...)
     fprintf(fp, "\n");
     fflush(fp);
     fclose(fp);
+#else
+    (void)fmt;
+#endif
 }
 
 #include "smPacket.h"
@@ -304,10 +308,17 @@ DWORD WINAPI smTransRecvThreadProc(void *pInfo)
 			 */
 			const int GameOpcodeFamily =
 				(OpCode::OPCODE_OPENLIVE & 0xFFFF0000);
+			const int LegacyCustomOpcodeFamily =
+				(OpCode::OPCODE_ID_GETUSERINFO & 0xFFFF0000);
 
-            if (RecvCode != OpCode::OPCODE_ID_GETUSERINFO &&
-                PktMask != GameOpcodeFamily)
+            if (PktMask != GameOpcodeFamily &&
+                PktMask != LegacyCustomOpcodeFamily)
 			{
+				cout << "[NETWORK] opcode rejeitado: 0x" << hex << (unsigned int)RecvCode
+					 << dec << " ip="
+					 << ((SockInfo && SockInfo->smMySock && SockInfo->smMySock->szIPAddr)
+						 ? SockInfo->smMySock->szIPAddr : "?") << endl;
+
 				RecvLen = 0;
 				BuffCnt = 0;
 

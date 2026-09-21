@@ -1,5 +1,9 @@
 #include "opcodes.h"
 #include <fstream>
+#include "gameplay/classes/v2/services/ClassService.h"
+#include "gameplay/classes/v2/legacy/LegacyJobDataView.h"
+#include <map>
+#include <cstdio>
 
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "systems/network/transport/legacy/smwsock.h"
@@ -23,6 +27,28 @@ extern	int	quit;
 
 static char decode[512];
 static char line[512];
+
+static bool ResolveClassSpecializationBit(const char *token, DWORD &out)
+{
+	if(!token || !token[0]) return false;
+	std::uint32_t classBit = 0u;
+	if(!gameplay::classes::DefaultClassService().TryJobBitCodeByContentToken(token, classBit))
+		return false;
+
+	out = static_cast<DWORD>(classBit);
+	return true;
+}
+
+static bool ResolveClassMotionJobMask(const char *token, DWORD &out)
+{
+	if(!token || !token[0]) return false;
+	std::uint32_t motionMask = 0u;
+	if(!gameplay::classes::DefaultClassService().TryMotionJobMaskByContentToken(token, motionMask))
+		return false;
+
+	out = static_cast<DWORD>(motionMask);
+	return true;
+}
 
 
 

@@ -112,6 +112,9 @@
  SrcServer/src/systems/progression/class_rank/Rank.h \
  SrcServer/src/systems/persistence/database/core/Database.h \
  Shared/persistence/database/Database_sqlite_server.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcServer/src/systems/combat/skills/server_support/SkillSub.h \
  SrcServer/src/systems/world/field/field.h \
  SrcServer/src/systems/combat/skills/legacy/sinSkill_Info.h \
@@ -230,6 +233,9 @@ SrcServer/src/systems/crafting/professions/JOBS.h:
 SrcServer/src/systems/progression/class_rank/Rank.h:
 SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcServer/src/systems/combat/skills/server_support/SkillSub.h:
 SrcServer/src/systems/world/field/field.h:
 SrcServer/src/systems/combat/skills/legacy/sinSkill_Info.h:

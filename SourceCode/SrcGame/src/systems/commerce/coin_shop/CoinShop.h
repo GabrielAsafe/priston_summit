@@ -22,6 +22,19 @@ public:
 
 	bool LButtonDown();
 
+	// Neutral read/command surface used by modern UI adapters. These methods
+	// deliberately expose no UI V2 types, so the commerce domain stays
+	// independent from the presentation layer.
+	int GetSectionForUI() const;
+	int GetPageForUI() const;
+	int GetPageCountForUI() const;
+	int GetItemCountForUI() const;
+	const sITEM* GetItemForUI(int absoluteIndex, int* price = nullptr, bool* selected = nullptr) const;
+	bool SelectItemForUI(int absoluteIndex);
+	bool SelectSectionForUI(int section);
+	bool ChangePageForUI(int delta);
+	bool BuySelectedForUI();
+
 	int Coin;
 
 private:

@@ -112,6 +112,10 @@
  SrcServer/src/systems/progression/class_rank/Rank.h \
  SrcServer/src/systems/persistence/database/core/Database.h \
  Shared/persistence/database/Database_sqlite_server.h \
+ Shared/gameplay/quests/legacy/LegacyClassQuestAdapter.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcServer/src/systems/social/clan/legacy/tjclanDEF.h \
  SrcServer/src/systems/social/clan/legacy/tjclan.h \
  SrcServer/src/systems/social/clan/legacy/Help.h \
@@ -232,6 +236,10 @@ SrcServer/src/systems/crafting/professions/JOBS.h:
 SrcServer/src/systems/progression/class_rank/Rank.h:
 SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
+Shared/gameplay/quests/legacy/LegacyClassQuestAdapter.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcServer/src/systems/social/clan/legacy/tjclanDEF.h:
 SrcServer/src/systems/social/clan/legacy/tjclan.h:
 SrcServer/src/systems/social/clan/legacy/Help.h:

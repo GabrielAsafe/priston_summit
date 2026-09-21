@@ -1,4 +1,6 @@
 #include <cstring>
+#include "gameplay/classes/v2/services/ClassService.h"
+#include "gameplay/quests/legacy/LegacyClassQuestAdapter.h"
 
 
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
@@ -216,7 +218,9 @@ void cSINHELP::Draw()
 					DrawSprite(sSinHelp[i].PosiX + 18, sSinHelp[i].PosiY + 59 + (h * 24), lpSodLine, 0, 0, 318, 21);
 					if(sSod_Rank[h].Flag)
 					{
-						DrawSprite(sSinHelp[i].PosiX + 18 + 34, sSinHelp[i].PosiY + 59 + (h * 24) - 1, lpSodJobFace[sSod_Rank[h].Job - 1], 0, 0, 23, 19);
+						std::map<int, DIRECTDRAWSURFACE>::const_iterator jobFace = lpSodJobFace.find(sSod_Rank[h].Job);
+						if(jobFace != lpSodJobFace.end() && jobFace->second)
+							DrawSprite(sSinHelp[i].PosiX + 18 + 34, sSinHelp[i].PosiY + 59 + (h * 24) - 1, jobFace->second, 0, 0, 23, 19);
 					}
 
 				}
@@ -1050,7 +1054,7 @@ void cSINHELP::LButtonDown(int x, int y)
 
 					if(sinChar->ChangeJob == 0)
 					{
-						if(sinChar->JOB_CODE <= 4 || sinChar->JOB_CODE == 9)
+						if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 						{
 							switch(sinQuest_ChangeJob.State)
 							{
@@ -1072,7 +1076,7 @@ void cSINHELP::LButtonDown(int x, int y)
 							}
 						}
 
-						if(sinChar->JOB_CODE > 4 && sinChar->JOB_CODE <= 8 || sinChar->JOB_CODE == 10)
+						if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Morayion))
 						{
 							switch(sinQuest_ChangeJob2.State)
 							{
@@ -1117,36 +1121,14 @@ void cSINHELP::LButtonDown(int x, int y)
 
 							break;
 							case 2:
-
-
-							switch(sinChar->JOB_CODE)
 							{
-								case 1:
-								TempItem.CODE = (sinWA1 | sin08);
+
+
+							const DWORD changeJobWeapon = static_cast<DWORD>(
+								gameplay::quests::legacy::ChangeJob3WeaponRewardCode(sinChar->JOB_CODE));
+							if(changeJobWeapon == 0)
 								break;
-								case 2:
-								TempItem.CODE = (sinWC1 | sin08);
-								break;
-								case 3:
-								TempItem.CODE = (sinWS1 | sin10);
-								break;
-								case 4:
-								TempItem.CODE = (sinWP1 | sin09);
-								break;
-								case 5:
-								TempItem.CODE = (sinWT1 | sin09);
-								break;
-								case 6:
-								TempItem.CODE = (sinWS2 | sin10);
-								break;
-								case 7:
-								TempItem.CODE = (sinWM1 | sin09);
-								break;
-								case 8:
-								TempItem.CODE = (sinWM1 | sin09);
-								break;
-		
-							}
+							TempItem.CODE = changeJobWeapon;
 
 							cInvenTory.ChangeSpecialItem(2);
 
@@ -1172,6 +1154,7 @@ void cSINHELP::LButtonDown(int x, int y)
 								cMessageBox.ShowMessage(MESSAGE_OVER_SPACE);
 							}
 							break;
+							}
 							case 3:
 
 							break;
@@ -2832,14 +2815,14 @@ int cSINHELP::ShowSodRanking(TRANS_SOD_RESULT *SodResult, int MyGame)
 	if(!lpSodLine)
 		lpSodLine = LoadDibSurfaceOffscreen("Image//SinImage//Help//sod_list-line.bmp");
 
-	char szBuff[128];
-	for(i = 0; i < 8; i++)
+	lpSodJobFace.clear();
+	const gameplay::classes::ClassService& classService = gameplay::classes::DefaultClassService();
+	const std::vector<int> sodClasses = classService.EnabledJobCodes();
+	for(std::vector<int>::const_iterator jobCode = sodClasses.begin(); jobCode != sodClasses.end(); ++jobCode)
 	{
-		if(!lpSodJobFace[i])
-		{
-			wsprintf(szBuff, "Image//SinImage//Help//sod_cr-%d.bmp", i + 1);
-			lpSodJobFace[i] = LoadDibSurfaceOffscreen(szBuff);
-		}
+		const std::string* iconPath = classService.SodRankIcon(*jobCode);
+		if(iconPath && !iconPath->empty())
+			lpSodJobFace[*jobCode] = LoadDibSurfaceOffscreen(const_cast<char*>(iconPath->c_str()));
 	}
 
 

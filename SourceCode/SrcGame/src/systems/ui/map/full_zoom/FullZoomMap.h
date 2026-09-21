@@ -25,6 +25,7 @@ extern void DrawFullZoomMapCharPos(void);
 extern void DrawFullZoomMap(void);
 extern void MainFullZoomMap(void);
 extern int  KeyFullZoomMap(WPARAM wParam);
+extern int  g_BlockFullZoomCloseOnEnter;
 
 
 

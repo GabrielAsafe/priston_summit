@@ -47,6 +47,10 @@
  SrcGame/src/platform/windows/registry/smreg.h \
  SrcGame/src/systems/gameplay/character/core/character.h \
  SrcGame/src/systems/combat/pvp/Score.h \
+ SrcGame/src/systems/gameplay/character/core/CharacterModelStreamingV3.h \
+ SrcGame/src/systems/rendering/sky/SkyStreamingV3.h \
+ SrcGame/src/core/concurrency/JobSystem.h \
+ SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h \
  SrcGame/src/core/gameplay/runtime/playmain.h \
  SrcGame/src/systems/audio/playback/legacy/Dxwav.h \
  Dependency/DirectX9/Include/dsound.h \
@@ -175,6 +179,7 @@
  SrcGame/src/systems/ui/core/UICombobox.h \
  SrcGame/src/systems/ui/core/UIItemFrame.h \
  SrcGame/src/systems/ui/core/UIPlaceholder.h \
+ SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h \
  SrcGame/src/systems/commerce/coin_shop/CoinShop.h \
  SrcGame/src/systems/commerce/coin_shop/CoinShop_T.h \
  SrcGame/src/systems/audio/voice/MicVolume.h \
@@ -187,7 +192,11 @@
  SrcGame/src/platform/windows/input/ime/legacy/STRCLASS.H \
  SrcGame/src/systems/security/anticheat/AntiCheat.h \
  SrcGame/src/systems/gameplay/quests/legacy/HaQuestBoard.h \
- Shared/gameplay/quests/HaQuestBoardLegacyCommon.inl
+ Shared/gameplay/quests/HaQuestBoardLegacyCommon.inl \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ Shared/gameplay/quests/legacy/LegacyClassQuestAdapter.h
 SrcGame/src/systems/security/legacy/process_integrity/cracker.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
@@ -237,6 +246,10 @@ Shared/rendering/legacy_3d/smJpeg.h:
 SrcGame/src/platform/windows/registry/smreg.h:
 SrcGame/src/systems/gameplay/character/core/character.h:
 SrcGame/src/systems/combat/pvp/Score.h:
+SrcGame/src/systems/gameplay/character/core/CharacterModelStreamingV3.h:
+SrcGame/src/systems/rendering/sky/SkyStreamingV3.h:
+SrcGame/src/core/concurrency/JobSystem.h:
+SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h:
 SrcGame/src/core/gameplay/runtime/playmain.h:
 SrcGame/src/systems/audio/playback/legacy/Dxwav.h:
 Dependency/DirectX9/Include/dsound.h:
@@ -366,6 +379,7 @@ SrcGame/src/systems/ui/core/UIList.h:
 SrcGame/src/systems/ui/core/UICombobox.h:
 SrcGame/src/systems/ui/core/UIItemFrame.h:
 SrcGame/src/systems/ui/core/UIPlaceholder.h:
+SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h:
 SrcGame/src/systems/commerce/coin_shop/CoinShop.h:
 SrcGame/src/systems/commerce/coin_shop/CoinShop_T.h:
 SrcGame/src/systems/audio/voice/MicVolume.h:
@@ -379,3 +393,7 @@ SrcGame/src/platform/windows/input/ime/legacy/STRCLASS.H:
 SrcGame/src/systems/security/anticheat/AntiCheat.h:
 SrcGame/src/systems/gameplay/quests/legacy/HaQuestBoard.h:
 Shared/gameplay/quests/HaQuestBoardLegacyCommon.inl:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+Shared/gameplay/quests/legacy/LegacyClassQuestAdapter.h:

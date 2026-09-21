@@ -4,6 +4,7 @@
 #include "systems/commerce/coin_shop/CoinShop.h"
 #include "systems/commerce/coin_shop/CoinShop_T.h"
 #include "systems/gameplay/quests/ui/cQuestWindow.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 
 cPARTY cParty;
 
@@ -15,23 +16,19 @@ void cPARTY::LoadImages()
 	bExpand = true;
 	MenuFlag = 0;
 
-	mClass[0][0] = CreateTextureMaterial("game//Party//Class//Fighter.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[0][1] = CreateTextureMaterial("game//Party//Class//Mechanician.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[0][2] = CreateTextureMaterial("game//Party//Class//Archer.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[0][3] = CreateTextureMaterial("game//Party//Class//Pikeman.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[0][4] = CreateTextureMaterial("game//Party//Class//Atalanta.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[0][5] = CreateTextureMaterial("game//Party//Class//Knight.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[0][6] = CreateTextureMaterial("game//Party//Class//Magician.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[0][7] = CreateTextureMaterial("game//Party//Class//Priestess.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	mClass[1][0] = CreateTextureMaterial("game//Party//Class//Fighter_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[1][1] = CreateTextureMaterial("game//Party//Class//Mechanician_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[1][2] = CreateTextureMaterial("game//Party//Class//Archer_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[1][3] = CreateTextureMaterial("game//Party//Class//Pikeman_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[1][4] = CreateTextureMaterial("game//Party//Class//Atalanta_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[1][5] = CreateTextureMaterial("game//Party//Class//Knight_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[1][6] = CreateTextureMaterial("game//Party//Class//Magician_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	mClass[1][7] = CreateTextureMaterial("game//Party//Class//Priestess_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	mClass[0].clear();
+	mClass[1].clear();
+	const gameplay::classes::ClassService& classService = gameplay::classes::DefaultClassService();
+	const std::vector<int> classes = classService.EnabledJobCodes();
+	for (std::vector<int>::const_iterator jobCode = classes.begin(); jobCode != classes.end(); ++jobCode)
+	{
+		const std::string* aliveIcon = classService.PartyIcon(*jobCode, true);
+		const std::string* deadIcon = classService.PartyIcon(*jobCode, false);
+		if (aliveIcon)
+			mClass[0][*jobCode] = CreateTextureMaterial(const_cast<char*>(aliveIcon->c_str()), 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+		if (deadIcon)
+			mClass[1][*jobCode] = CreateTextureMaterial(const_cast<char*>(deadIcon->c_str()), 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	}
 
 	mMembers[0] = CreateTextureMaterial("game//Party//Members//member1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	mMembers[1] = CreateTextureMaterial("game//Party//Members//member2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
@@ -78,7 +75,10 @@ void cPARTY::Draw()
 
 		dsDrawTexImage(mMembers[i], 39, iY + 40, 10, 10, 255);
 
-		dsDrawTexImage(mClass[Members[i].Life[0] > 0 ? 0 : 1][Members[i].JobCode - 1], 11, iY + 8, 35, 35, 255);
+		const int classState = Members[i].Life[0] > 0 ? 0 : 1;
+		std::map<int, int>::const_iterator classIcon = mClass[classState].find(Members[i].JobCode);
+		if (classIcon != mClass[classState].end() && classIcon->second)
+			dsDrawTexImage(classIcon->second, 11, iY + 8, 35, 35, 255);
 
 		dsDrawTexImage(LifeBar, 51, iY + 26, (Members[i].Life[0] * 120) / Members[i].Life[1], 7, 255);
 

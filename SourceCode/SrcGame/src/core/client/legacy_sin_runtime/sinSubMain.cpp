@@ -1,5 +1,6 @@
 #include "opcodes.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
+#include "gameplay/quests/legacy/LegacyClassQuestAdapter.h"
 #include "systems/social/clan/tjclanDEF.h"
 #include "systems/social/clan/tjclan.h"
 #include "systems/social/clan/Help.h"
@@ -7,6 +8,7 @@
 #include "systems/combat/pvp/war_mode/WarMode.h"
 #include "systems/gameplay/npc/ui/NPCinfo.h"
 #include "systems/combat/skills/client/SkillSub.h"
+#include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
 
 #ifdef _XTRAP_GUARD_4_CLIENT 
 #include "XTrapSrcD5/ClientExt/XTrap4ClientExt1.h"	
@@ -335,6 +337,24 @@ void DrawSprite(int winX, int winY, LPDIRECT3DTEXTURE9 pdds, int x, int y, int w
 
 	DrawTexture2D(pdds, destRect, srcRect, Bltflag ? true : false);
 }
+
+void DrawSpriteFullTexture(int winX, int winY, LPDIRECT3DTEXTURE9 pdds, int destWidth, int destHeight, int Bltflag)
+{
+	if (!pdds || destWidth <= 0 || destHeight <= 0)
+		return;
+
+	if (Bltflag != 777)
+		dsGetDrawOffset(&winX, &winY);
+
+	D3DSURFACE_DESC imageDesc;
+	if (FAILED(pdds->GetLevelDesc(0, &imageDesc)))
+		return;
+
+	RECT srcRect = { 0, 0, static_cast<LONG>(imageDesc.Width), static_cast<LONG>(imageDesc.Height) };
+	RECT destRect = { winX, winY, winX + destWidth, winY + destHeight };
+	DrawTexture2D(pdds, destRect, srcRect, Bltflag ? true : false);
+}
+
 
 
 int sinGetItemInfo(DWORD CODE, char *szImagePath)
@@ -1082,6 +1102,18 @@ public:
 
 int FirstMove[MAX_SIN_KIND_INTER] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
 
+void ResetLegacyCharacterInterfaceMotion()
+{
+	sinMoveKindInter[SIN_CHARSTATUS] = 0;
+	sinMoveKindInter[SIN_INVENTORY] = 0;
+	sinMoveKindInter[SIN_SKILL] = 0;
+	FirstMove[SIN_CHARSTATUS] = 0;
+	FirstMove[SIN_INVENTORY] = 0;
+	FirstMove[SIN_SKILL] = 0;
+	SelectInvenItemIndex = 0;
+	SelectPotionIndex = 0;
+}
+
 void ShowInterFace()
 {
 	int cnt = 0;
@@ -1743,7 +1775,11 @@ void sinReload()
 int StopCharMotion(int x, int y)
 {
 
-
+	// StopCharMotion is also called directly by double-click/legacy paths.
+	// Those callers may already have converted x/y to the old 800x600 space,
+	// so use the preserved real cursor position for the V2 hit test.
+	if(ui::v2::legacy::BlocksWorldInputAt((int)pRealCursorPos.x, (int)pRealCursorPos.y))
+		return TRUE;
 
 	if(SkillMasterFlag && sinChangeJobButtonShow)
 	{
@@ -1840,7 +1876,12 @@ int StopCharMotion(int x, int y)
 	   cCharShop.OpenFlag || SmeltingItem.OpenFlag || ManufactureItem.m_OpenFlag || cMixtureReset.OpenFlag || cSkinChange.OpenFlag || ClanCustom::GetInstance()->IsOpen())
 		return TRUE;
 
-	if(cCharStatus.OpenFlag || cInvenTory.OpenFlag || cSkill.OpenFlag)
+	// The old character panels reserve the entire lower screen (y > 425).
+	// UI V2 has real window bounds, so keeping this legacy rectangle active
+	// would block walking below the modern window even when the click is not
+	// over UI. SetMousePlay handles the actual V2 bounds separately.
+	if(!ui::v2::legacy::SuppressLegacyCharacterPanels() &&
+	   (cCharStatus.OpenFlag || cInvenTory.OpenFlag || cSkill.OpenFlag))
 		if(y > 425)return TRUE;
 	if(cShop.OpenFlag)
 		if(x > 0 && x < 384 && y > 40 && y < 370 - 40)
@@ -1849,7 +1890,7 @@ int StopCharMotion(int x, int y)
 		if(x > 0 && x < 384 && y > 40 && y < 370 - 40)
 			return TRUE;
 		
-	if (Rank::GetInstance()->IsOpen() || cMixGuide::GetInstance()->IsOpen() || NPCinfo::GetInstance()->IsOpen() || JOBS::GetInstance()->IsOpen() || BattlePass::GetInstance()->IsOpen() || RankGame::GetInstance()->IsOpen())
+	if (Rank::GetInstance()->IsOpen() || (!ui::v2::legacy::SuppressLegacyMixGuide() && cMixGuide::GetInstance()->IsOpen()) || NPCinfo::GetInstance()->IsOpen() || JOBS::GetInstance()->IsOpen() || BattlePass::GetInstance()->IsOpen() || RankGame::GetInstance()->IsOpen())
 		return TRUE;
 	
 	if(y > 540 && x > 270)
@@ -1953,25 +1994,25 @@ void sinTestDrawText()
 		{
 			if(CheatHelpOpenFlag)
 			{
-				wsprintf(strBuff, "(P) ´ÙÀ½°æÇèÄ¡±îÁö 10% ");
+				wsprintf(strBuff, "(P) Ä¡ 10% ");
 				dsTextLineOut( 100, 200, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(L) µ· 200000 ");
+				wsprintf(strBuff, "(L)  200000 ");
 				dsTextLineOut( 100, 230, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(B) LV 65 µ· 300000");
+				wsprintf(strBuff, "(B) LV 65  300000");
 				dsTextLineOut( 100, 260, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(Y) ¹Í½ºÃÄ ¾ÆÀÌÅÛ ½ÇÇà ");
+				wsprintf(strBuff, "(Y) Í½   ");
 				dsTextLineOut( 100, 290, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(U) Àü¾÷  ");
+				wsprintf(strBuff, "(U)   ");
 				dsTextLineOut( 100, 320, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(F) ¼÷·Ãµµ Up  ");
+				wsprintf(strBuff, "(F) Ãµ Up  ");
 				dsTextLineOut( 100, 350, strBuff, lstrlen(strBuff));
 
-				wsprintf(strBuff, "(N) ¼÷·Ãµµ Down  ");
+				wsprintf(strBuff, "(N) Ãµ Down  ");
 				dsTextLineOut( 100, 380, strBuff, lstrlen(strBuff));
 			}
 		}
@@ -4277,33 +4318,14 @@ DWORD sinWingItemQuestServer(sCRAFTITEM_SERVER *pWingItem, smCHAR_INFO *pChar_In
 	if(ItemCount == 3 && pChar_Info)
 	{
 		pWingItem->Result = TRUE;
-		switch(pChar_Info->JOB_CODE)
+		const DWORD changeJobWeapon = static_cast<DWORD>(
+			gameplay::quests::legacy::ChangeJob3WeaponRewardCode(pChar_Info->JOB_CODE));
+		if(changeJobWeapon == 0)
 		{
-			case 1:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWA1 | sin08);
-			break;
-			case 2:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWC1 | sin08);
-			break;
-			case 3:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWS1 | sin10);
-			break;
-			case 4:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWP1 | sin09);
-			break;
-			case 5:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWT1 | sin09);
-			break;
-			case 6:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWS2 | sin10);
-			break;
-			case 7:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWM1 | sin09);
-			break;
-			case 8:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWM1 | sin09);
-			break;
+			pWingItem->Result = FALSE;
+			return FALSE;
 		}
+		pWingItem->DesCraftItem.sItemInfo.CODE = changeJobWeapon;
 
 		pWingItem->DesCraftItem.sItemInfo.ItemKindCode = ITEM_KIND_QUEST_WEAPON;
 

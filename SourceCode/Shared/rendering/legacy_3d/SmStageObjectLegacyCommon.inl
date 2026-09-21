@@ -15,6 +15,7 @@ smSTAGE_OBJECT::smSTAGE_OBJECT()
 		}
 	}
 
+	ZeroMemory(mObj, sizeof(mObj));
 	SumCnt = 0;
 }
 
@@ -25,6 +26,10 @@ smSTAGE_OBJECT::~smSTAGE_OBJECT()
 	for(cnt = nObj - 1; cnt >= 0; cnt--)
 	{
 		if(mObj[cnt].Pattern) delete mObj[cnt].Pattern;
+		if(mObj[cnt].BipPattern && mObj[cnt].BipPattern != mObj[cnt].Pattern)
+			delete mObj[cnt].BipPattern;
+		mObj[cnt].Pattern = 0;
+		mObj[cnt].BipPattern = 0;
 	}
 
 }
@@ -37,6 +42,7 @@ int smSTAGE_OBJECT::AddObject(smPAT3D *Pat, int x, int y, int z, int angX, int a
 	if(nObj >= MAX_STAGEOBJ) return FALSE;
 
 	mObj[nObj].Pattern = Pat;
+	mObj[nObj].BipPattern = 0;
 
 	mObj[nObj].Posi.x = x;
 	mObj[nObj].Posi.y = y;
@@ -83,6 +89,7 @@ int smSTAGE_OBJECT::AddObject(smPAT3D *Pat)
 	if(nObj >= MAX_STAGEOBJ) return FALSE;
 
 	mObj[nObj].Pattern = Pat;
+	mObj[nObj].BipPattern = 0;
 
 	x = Pat->obj3d[0]->Tm._41;
 	y = Pat->obj3d[0]->Tm._43;
@@ -120,6 +127,48 @@ int smSTAGE_OBJECT::AddObject(smPAT3D *Pat)
 
 	nObj++;
 
+	return TRUE;
+}
+
+
+int smSTAGE_OBJECT::AddObjectPrepared(smPAT3D *Pat, smPAT3D *BipPat)
+{
+	if (!Pat || !Pat->obj3d[0] || nObj >= MAX_STAGEOBJ)
+		return FALSE;
+
+	smSTAGE_OBJ3D *entry = &mObj[nObj];
+	entry->Pattern = Pat;
+	entry->BipPattern = BipPat;
+
+	const int x = Pat->obj3d[0]->Tm._41;
+	const int y = Pat->obj3d[0]->Tm._43;
+	const int z = Pat->obj3d[0]->Tm._42;
+
+	entry->Posi.x = x;
+	entry->Posi.y = y;
+	entry->Posi.z = z;
+	entry->Angle.x = 0;
+	entry->Angle.y = 0;
+	entry->Angle.z = 0;
+	entry->sum = 0;
+	entry->LinkObj = 0;
+	entry->LastDrawTime = GetCurrentTime();
+
+	const int w = (x >> (6 + FLOATNS)) & 0xFF;
+	const int h = (z >> (6 + FLOATNS)) & 0xFF;
+	if (!ObjectMap[w][h])
+	{
+		ObjectMap[w][h] = entry;
+	}
+	else
+	{
+		smSTAGE_OBJ3D *object = ObjectMap[w][h];
+		while (object->LinkObj)
+			object = object->LinkObj;
+		object->LinkObj = entry;
+	}
+
+	++nObj;
 	return TRUE;
 }
 

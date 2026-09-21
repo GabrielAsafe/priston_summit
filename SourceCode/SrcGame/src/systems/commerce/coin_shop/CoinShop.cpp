@@ -431,7 +431,84 @@ bool cCOINSHOP::LButtonDown()
 
 	return bClicked;
 }
+int cCOINSHOP::GetSectionForUI() const
+{
+	return CurrentSection;
+}
 
+int cCOINSHOP::GetPageForUI() const
+{
+	return CurrentPage;
+}
 
+int cCOINSHOP::GetPageCountForUI() const
+{
+	if (CurrentSection <= 0 || CurrentSection > 7)
+		return 0;
+	const int count = static_cast<int>(vItemBox[CurrentSection - 1].size());
+	return count > 0 ? (count + 11) / 12 : 1;
+}
 
+int cCOINSHOP::GetItemCountForUI() const
+{
+	if (CurrentSection <= 0 || CurrentSection > 7)
+		return 0;
+	return static_cast<int>(vItemBox[CurrentSection - 1].size());
+}
+
+const sITEM* cCOINSHOP::GetItemForUI(int absoluteIndex, int* price, bool* selected) const
+{
+	if (CurrentSection <= 0 || CurrentSection > 7)
+		return nullptr;
+	const auto& items = vItemBox[CurrentSection - 1];
+	if (absoluteIndex < 0 || absoluteIndex >= static_cast<int>(items.size()))
+		return nullptr;
+	const sITEMBOX* box = items[absoluteIndex];
+	if (!box || !box->psItem)
+		return nullptr;
+	if (price) *price = box->Price;
+	if (selected) *selected = box->Selected;
+	return box->psItem;
+}
+
+bool cCOINSHOP::SelectItemForUI(int absoluteIndex)
+{
+	if (CurrentSection <= 0 || CurrentSection > 7)
+		return false;
+	auto& items = vItemBox[CurrentSection - 1];
+	if (absoluteIndex < 0 || absoluteIndex >= static_cast<int>(items.size()) || !items[absoluteIndex])
+		return false;
+	SelectBox(items[absoluteIndex]);
+	return SelectedBox == items[absoluteIndex];
+}
+
+bool cCOINSHOP::SelectSectionForUI(int section)
+{
+	if (section < 1 || section > 7)
+		return false;
+	SetSection(section);
+	CurrentPage = 0;
+	return CurrentSection == section;
+}
+
+bool cCOINSHOP::ChangePageForUI(int delta)
+{
+	if (CurrentSection <= 0 || CurrentSection > 7 || delta == 0)
+		return false;
+	const int pages = GetPageCountForUI();
+	const int target = std::max(0, std::min(pages - 1, CurrentPage + (delta < 0 ? -1 : 1)));
+	if (target == CurrentPage)
+		return false;
+	CurrentPage = target;
+	SelectBox(nullptr);
+	return true;
+}
+
+bool cCOINSHOP::BuySelectedForUI()
+{
+	if (!SelectedBox)
+		return false;
+	BuySelectedItem();
+	return true;
+}
 

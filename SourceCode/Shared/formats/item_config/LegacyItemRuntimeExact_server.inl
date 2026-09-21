@@ -1,3 +1,58 @@
+#include "gameplay/classes/v2/legacy/LegacyJobDataView.h"
+
+enum LegacyClassItemRequirementRevisionMode
+{
+    LEGACY_CLASS_REVISION_RANDOM = 0,
+    LEGACY_CLASS_REVISION_MINIMUM,
+    LEGACY_CLASS_REVISION_MIDDLE
+};
+
+static int SelectLegacyClassItemRequirementRevision(
+    const gameplay::classes::ClassPercentRange& range,
+    LegacyClassItemRequirementRevisionMode mode)
+{
+    if(mode == LEGACY_CLASS_REVISION_MINIMUM)
+        return range.minimum;
+    if(mode == LEGACY_CLASS_REVISION_MIDDLE)
+        return GetMiddlePos(range.minimum, range.maximum);
+    return GetRandomPos_Normal(range.minimum, range.maximum);
+}
+
+static void ApplyLegacyClassItemRequirementRevision(
+    sITEMINFO *lpItem,
+    DWORD jobBitCode,
+    LegacyClassItemRequirementRevisionMode mode)
+{
+    if(!lpItem || jobBitCode == 0)
+        return;
+
+    gameplay::classes::ClassItemRequirementRevisionProfile profile;
+    if(!gameplay::classes::DefaultClassService().TryItemRequirementRevisionByJobBitCode(
+           static_cast<std::uint32_t>(jobBitCode), profile))
+        return;
+
+    int selected = 0;
+    int revision = 0;
+
+#define APPLY_CLASS_REQUIREMENT_REVISION(field, rangeField) \
+    do { \
+        if(lpItem->field && profile.rangeField.IsActive()) { \
+            selected = SelectLegacyClassItemRequirementRevision(profile.rangeField, mode); \
+            revision = (lpItem->field * selected) / 100; \
+            lpItem->field += revision; \
+        } \
+    } while(0)
+
+    APPLY_CLASS_REQUIREMENT_REVISION(Level, level);
+    APPLY_CLASS_REQUIREMENT_REVISION(Strength, strength);
+    APPLY_CLASS_REQUIREMENT_REVISION(Spirit, spirit);
+    APPLY_CLASS_REQUIREMENT_REVISION(Talent, talent);
+    APPLY_CLASS_REQUIREMENT_REVISION(Dexterity, dexterity);
+    APPLY_CLASS_REQUIREMENT_REVISION(Health, health);
+
+#undef APPLY_CLASS_REQUIREMENT_REVISION
+}
+
 int CreateDefItem(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode, int ItemNormam)
 {
 	int is, ie;
@@ -116,9 +171,7 @@ int CreateDefItem(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode, in
 
 
 
-	DWORD	dwSpecialJob = lpItem->JobCodeMask;
-	int		RndPos;
-	int		Revision;
+	DWORD	dwSpecialJob;
 	int		tempJobCode = 0;
 
 
@@ -220,54 +273,7 @@ int CreateDefItem(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode, in
 
 
 
-			for(cnt = 0; cnt < sSPECIAL_REVISION_MAX; cnt++)
-			{
-				if(sSpecialRevision[cnt].dwJobCode == dwSpecialJob)
-				{
-
-					if(lpItem->Level && sSpecialRevision[cnt].sLevel[0])
-					{
-						RndPos = GetRandomPos_Normal(sSpecialRevision[cnt].sLevel[0], sSpecialRevision[cnt].sLevel[1]);
-						Revision = (lpItem->Level*RndPos) / 100;
-						lpItem->Level += Revision;
-					}
-
-					if(lpItem->Strength && sSpecialRevision[cnt].sStrength[0])
-					{
-						RndPos = GetRandomPos_Normal(sSpecialRevision[cnt].sStrength[0], sSpecialRevision[cnt].sStrength[1]);
-						Revision = (lpItem->Strength*RndPos) / 100;
-						lpItem->Strength += Revision;
-					}
-
-					if(lpItem->Spirit && sSpecialRevision[cnt].sSpirit[0])
-					{
-						RndPos = GetRandomPos_Normal(sSpecialRevision[cnt].sSpirit[0], sSpecialRevision[cnt].sSpirit[1]);
-						Revision = (lpItem->Spirit*RndPos) / 100;
-						lpItem->Spirit += Revision;
-					}
-
-					if(lpItem->Talent && sSpecialRevision[cnt].sTalent[0])
-					{
-						RndPos = GetRandomPos_Normal(sSpecialRevision[cnt].sTalent[0], sSpecialRevision[cnt].sTalent[1]);
-						Revision = (lpItem->Talent*RndPos) / 100;
-						lpItem->Talent += Revision;
-					}
-
-					if(lpItem->Dexterity && sSpecialRevision[cnt].sDexterity[0])
-					{
-						RndPos = GetRandomPos_Normal(sSpecialRevision[cnt].sDexterity[0], sSpecialRevision[cnt].sDexterity[1]);
-						Revision = (lpItem->Dexterity*RndPos) / 100;
-						lpItem->Dexterity += Revision;
-					}
-
-					if(lpItem->Health && sSpecialRevision[cnt].sHealth[0])
-					{
-						RndPos = GetRandomPos_Normal(sSpecialRevision[cnt].sHealth[0], sSpecialRevision[cnt].sHealth[1]);
-						Revision = (lpItem->Health*RndPos) / 100;
-						lpItem->Health += Revision;
-					}
-				}
-			}
+			ApplyLegacyClassItemRequirementRevision(lpItem, dwSpecialJob, LEGACY_CLASS_REVISION_RANDOM);
 
 
 			if(lpDefItem->fSpecial_Absorb[1] != 0)
@@ -452,9 +458,7 @@ int CreateDefItemPerf(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode
 		lpItem->fIncrease_Stamina = (float)lpDefItem->Increase_Stamina[0];
 
 
-	DWORD	dwSpecialJob = lpItem->JobCodeMask;
-	int		RndPos;
-	int		Revision;
+	DWORD	dwSpecialJob;
 
 	if (SpJobCode > 0)
 	{
@@ -486,53 +490,7 @@ int CreateDefItemPerf(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode
 
 		if (lpItem->JobCodeMask) lpItem->Price += (lpItem->Price * 2) / 10;
 
-		for (cnt = 0; cnt < sSPECIAL_REVISION_MAX; cnt++)
-		{
-			if (sSpecialRevision[cnt].dwJobCode == dwSpecialJob)
-			{
-				if (lpItem->Level && sSpecialRevision[cnt].sLevel[0])
-				{
-					RndPos = sSpecialRevision[cnt].sLevel[0];
-					Revision = (lpItem->Level*RndPos) / 100;
-					lpItem->Level += Revision;
-				}
-
-				if (lpItem->Strength && sSpecialRevision[cnt].sStrength[0])
-				{
-					RndPos = sSpecialRevision[cnt].sStrength[0];
-					Revision = (lpItem->Strength*RndPos) / 100;
-					lpItem->Strength += Revision;
-				}
-
-				if (lpItem->Spirit && sSpecialRevision[cnt].sSpirit[0])
-				{
-					RndPos = sSpecialRevision[cnt].sSpirit[0];
-					Revision = (lpItem->Spirit*RndPos) / 100;
-					lpItem->Spirit += Revision;
-				}
-
-				if (lpItem->Talent && sSpecialRevision[cnt].sTalent[0])
-				{
-					RndPos = sSpecialRevision[cnt].sTalent[0];
-					Revision = (lpItem->Talent*RndPos) / 100;
-					lpItem->Talent += Revision;
-				}
-
-				if (lpItem->Dexterity && sSpecialRevision[cnt].sDexterity[0])
-				{
-					RndPos = sSpecialRevision[cnt].sDexterity[0];
-					Revision = (lpItem->Dexterity*RndPos) / 100;
-					lpItem->Dexterity += Revision;
-				}
-
-				if (lpItem->Health && sSpecialRevision[cnt].sHealth[0])
-				{
-					RndPos = sSpecialRevision[cnt].sHealth[0];
-					Revision = (lpItem->Health*RndPos) / 100;
-					lpItem->Health += Revision;
-				}
-			}
-		}
+		ApplyLegacyClassItemRequirementRevision(lpItem, dwSpecialJob, LEGACY_CLASS_REVISION_MINIMUM);
 
 		if (lpDefItem->fSpecial_Absorb[1] != 0)
 			lpItem->JobItem.Add_fAbsorb = lpDefItem->fSpecial_Absorb[1];
@@ -631,9 +589,7 @@ int SetLowerItem(sDEF_ITEMINFO *lpDefItem)
 
 
 
-	DWORD	dwSpecialJob = lpItem->JobCodeMask;
-	int		RndPos;
-	int		Revision;
+	DWORD	dwSpecialJob;
 
 
 	if(lpItem->JobCodeMask)
@@ -643,54 +599,7 @@ int SetLowerItem(sDEF_ITEMINFO *lpDefItem)
 		dwSpecialJob = lpItem->JobCodeMask;
 
 
-		for(cnt = 0; cnt < sSPECIAL_REVISION_MAX; cnt++)
-		{
-			if(sSpecialRevision[cnt].dwJobCode == dwSpecialJob)
-			{
-
-				if(lpItem->Level && sSpecialRevision[cnt].sLevel[0])
-				{
-					RndPos = GetMiddlePos(sSpecialRevision[cnt].sLevel[0], sSpecialRevision[cnt].sLevel[1]);
-					Revision = (lpItem->Level*RndPos) / 100;
-					lpItem->Level += Revision;
-				}
-
-				if(lpItem->Strength && sSpecialRevision[cnt].sStrength[0])
-				{
-					RndPos = GetMiddlePos(sSpecialRevision[cnt].sStrength[0], sSpecialRevision[cnt].sStrength[1]);
-					Revision = (lpItem->Strength*RndPos) / 100;
-					lpItem->Strength += Revision;
-				}
-
-				if(lpItem->Spirit && sSpecialRevision[cnt].sSpirit[0])
-				{
-					RndPos = GetMiddlePos(sSpecialRevision[cnt].sSpirit[0], sSpecialRevision[cnt].sSpirit[1]);
-					Revision = (lpItem->Spirit*RndPos) / 100;
-					lpItem->Spirit += Revision;
-				}
-
-				if(lpItem->Talent && sSpecialRevision[cnt].sTalent[0])
-				{
-					RndPos = GetMiddlePos(sSpecialRevision[cnt].sTalent[0], sSpecialRevision[cnt].sTalent[1]);
-					Revision = (lpItem->Talent*RndPos) / 100;
-					lpItem->Talent += Revision;
-				}
-
-				if(lpItem->Dexterity && sSpecialRevision[cnt].sDexterity[0])
-				{
-					RndPos = GetMiddlePos(sSpecialRevision[cnt].sDexterity[0], sSpecialRevision[cnt].sDexterity[1]);
-					Revision = (lpItem->Dexterity*RndPos) / 100;
-					lpItem->Dexterity += Revision;
-				}
-
-				if(lpItem->Health && sSpecialRevision[cnt].sHealth[0])
-				{
-					RndPos = GetMiddlePos(sSpecialRevision[cnt].sHealth[0], sSpecialRevision[cnt].sHealth[1]);
-					Revision = (lpItem->Health*RndPos) / 100;
-					lpItem->Health += Revision;
-				}
-			}
-		}
+		ApplyLegacyClassItemRequirementRevision(lpItem, dwSpecialJob, LEGACY_CLASS_REVISION_MIDDLE);
 
 
 		lpItem->JobItem.Add_fAbsorb = lpDefItem->fSpecial_Absorb[0];
@@ -726,6 +635,58 @@ int SetLowerItem(sDEF_ITEMINFO *lpDefItem)
 }
 
 
+
+namespace
+{
+struct V2SyntheticJobDataCode
+{
+    char name[128];
+    char displayName[128];
+    JOB_DATA_CODE value;
+
+    V2SyntheticJobDataCode()
+    {
+        name[0] = 0;
+        displayName[0] = 0;
+        ZeroMemory(&value, sizeof(value));
+    }
+};
+
+JOB_DATA_CODE *GetV2JobDataCodeFallback(int legacyJobCode, int legacyRankIndex)
+{
+    typedef std::map<unsigned int, V2SyntheticJobDataCode> Cache;
+    static Cache cache;
+
+    const unsigned int cacheKey =
+        (static_cast<unsigned int>(legacyJobCode) << 8) | static_cast<unsigned int>(legacyRankIndex & 0xFF);
+    Cache::iterator existing = cache.find(cacheKey);
+    if(existing != cache.end())
+        return &existing->second.value;
+
+    gameplay::classes::legacy::LegacyJobDataView view;
+    if(!gameplay::classes::legacy::BuildLegacyJobDataView(
+           gameplay::classes::DefaultClassService(), legacyJobCode, legacyRankIndex, view))
+        return NULL;
+
+    V2SyntheticJobDataCode &entry = cache[cacheKey];
+    std::snprintf(entry.name, sizeof(entry.name), "%s", view.name.c_str());
+    std::snprintf(entry.displayName, sizeof(entry.displayName), "%s", view.displayName.c_str());
+    entry.value.szName = entry.name;
+    entry.value.szName2 = entry.displayName;
+    entry.value.JobBitCode = static_cast<DWORD>(view.jobBitCode);
+    entry.value.JobCode = static_cast<DWORD>(view.jobCode);
+    entry.value.Brood = static_cast<DWORD>(view.brood);
+    entry.value.Sight = view.formula.sight;
+    entry.value.LifeFunction = view.formula.lifeFunction;
+    entry.value.ManaFunction = view.formula.manaFunction;
+    entry.value.StaminaFunction = view.formula.staminaFunction;
+    entry.value.DamageFunction[0] = static_cast<short>(view.formula.damageFunction[0]);
+    entry.value.DamageFunction[1] = static_cast<short>(view.formula.damageFunction[1]);
+    entry.value.DamageFunction[2] = static_cast<short>(view.formula.damageFunction[2]);
+    return &entry.value;
+}
+}
+
 JOB_DATA_CODE *GetJobDataCode(DWORD BaseJob, int JobCnt)
 {
 	int	JobCount = 0;
@@ -737,8 +698,11 @@ JOB_DATA_CODE *GetJobDataCode(DWORD BaseJob, int JobCnt)
 		JobCount2 = BaseJob >> 24;
 	}
 
-	// Rank5 is a real logical rank. The old '& 3' wrapped rank 4 back to rank 0.
-	if(JobCount2 < CHARACTER_RANK1 || JobCount2 > CHARACTER_RANK5)
+	// ChangeJob validity belongs to the class rank chain. Legacy tables below
+	// only provide localized rows for their historical ranks; registry-only
+	// ranks/classes are synthesized by the V2 compatibility fallback.
+	if(JobCount2 < 0 ||
+		!gameplay::classes::DefaultClassService().IsValidLegacyChangeJob(bJob, JobCount2))
 		return NULL;
 
 	if(JobCount2 == CHARACTER_RANK5)
@@ -748,7 +712,7 @@ JOB_DATA_CODE *GetJobDataCode(DWORD BaseJob, int JobCnt)
 			if(bJob == JobDataRank5[rank5Index].JobCode)
 				return &JobDataRank5[rank5Index];
 		}
-		return NULL;
+		return GetV2JobDataCodeFallback(bJob, JobCount2);
 	}
 
 	int cnt = 0;
@@ -766,7 +730,7 @@ JOB_DATA_CODE *GetJobDataCode(DWORD BaseJob, int JobCnt)
 	}
 
 	//LOG(LOG_DEBUG, "error.....");
-	return NULL;
+	return GetV2JobDataCodeFallback(bJob, JobCount2);
 }
 
 

@@ -35,6 +35,9 @@
  SrcServer/src/core/server/gameplay_runtime/playmain.h \
  SrcServer/src/systems/audio/playback/legacy/Dxwav.h Shared/compat_sal.h \
  SrcServer/src/core/data/legacy_loader/fileread.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcServer/src/systems/rendering/effects/particle_legacy/particle.h \
  SrcServer/src/systems/network/server_gameplay/netplay.h \
  SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h \
@@ -163,6 +166,9 @@ SrcServer/src/core/server/gameplay_runtime/playmain.h:
 SrcServer/src/systems/audio/playback/legacy/Dxwav.h:
 Shared/compat_sal.h:
 SrcServer/src/core/data/legacy_loader/fileread.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcServer/src/systems/rendering/effects/particle_legacy/particle.h:
 SrcServer/src/systems/network/server_gameplay/netplay.h:
 SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h:

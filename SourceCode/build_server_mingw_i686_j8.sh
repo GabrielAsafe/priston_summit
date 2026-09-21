@@ -16,6 +16,7 @@ OBJ_LIST="$ROOT/object_files_server_mingw.txt"
 CPP_LIST="$ROOT/cpp_files_server_i686.txt"
 LOG="$ROOT/build_server_i686_compile_errors.log"
 SIGNATURE_FILE="$BUILD_DIR/compile_signature.sha256"
+COMPILE_OK_MARKER="$BUILD_DIR/compile_success.ok"
 
 CXX="${CXX:-i686-w64-mingw32-g++}"
 JOBS="${JOBS:-8}"
@@ -102,6 +103,7 @@ if [ "$CLEAN" = "1" ]; then
 fi
 
 mkdir -p "$OBJ_DIR" "$ERR_DIR" "$DEP_DIR"
+rm -f "$COMPILE_OK_MARKER"
 
 # O cache incremental por .d só conhece timestamps de source/headers.
 # Esta assinatura também invalida objetos quando mudam o script, o compilador
@@ -151,7 +153,21 @@ find SrcServer/src modules \
     | sort \
     > "$CPP_LIST"
 
+# Shared gameplay V2 possui implementacoes .cpp usadas pelo runtime do servidor.
+# O find principal cobre apenas SrcServer/src e modules, entao estas unidades
+# precisam entrar explicitamente para evitar undefined references no link.
 cat >> "$CPP_LIST" <<'LISTEOF'
+Shared/gameplay/classes/v2/PlayableClassRegistry.cpp
+Shared/gameplay/classes/v2/content/DefaultClassContent.cpp
+Shared/gameplay/classes/v2/content/LegacyClassCatalog.cpp
+Shared/gameplay/classes/v2/content/ReservedClassCatalog.cpp
+Shared/gameplay/classes/v2/services/ClassService.cpp
+Shared/gameplay/covenants/v2/CovenantService.cpp
+Shared/gameplay/covenants/v2/CovenantRewardProcessor.cpp
+Shared/gameplay/progression/v2/ProgressionGateways.cpp
+Shared/gameplay/progression/v2/ProgressionContent.cpp
+Shared/gameplay/reputation/v2/ReputationService.cpp
+Shared/gameplay/story/v2/StoryService.cpp
 SrcServer/src/platform/windows/application/Winmain.cpp
 SrcServer/src/systems/audio/voice/legacy_ygy/Packet.cpp
 SrcServer/src/systems/audio/voice/legacy_ygy/Process.cpp
@@ -337,4 +353,5 @@ fi
 
 echo
 echo "COMPILAÇÃO DO SERVIDOR CONCLUÍDA"
+printf 'PASS\n' > "$COMPILE_OK_MARKER"
 exit 0

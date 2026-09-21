@@ -7,6 +7,7 @@
 #include "formats/legacy_config/LegacyLineCursor.h"
 #include "io/LegacyFile.h"
 #include "io/LegacyPath.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 
 namespace summit
 {
@@ -232,12 +233,28 @@ inline bool HandleResourcesAndRequirements(const char *command, legacy_config::L
 	return false;
 }
 
+inline bool ResolveJobBitCode(const char *value, DWORD &out)
+{
+	if(!value || !*value)
+		return false;
+
+	std::uint32_t resolved = 0u;
+	if(!gameplay::classes::DefaultClassService().TryJobBitCodeByContentToken(value, resolved))
+		return false;
+
+	out = static_cast<DWORD>(resolved);
+	return true;
+}
+
 inline bool ApplyJobList(legacy_config::LineCursor &cursor, sITEMINFO &item)
 {
 	char value[64];
 	while(cursor.NextToken(value, sizeof(value)))
-		for(int index=0; JobDataBase[index].szName[0]; ++index)
-			if(lstrcmpi(JobDataBase[index].szName,value)==0) { item.JobCodeMask=JobDataBase[index].JobBitCode; break; }
+	{
+		DWORD jobBitCode = 0;
+		if(ResolveJobBitCode(value, jobBitCode))
+			item.JobCodeMask = jobBitCode;
+	}
 	return true;
 }
 
@@ -246,14 +263,11 @@ inline bool ApplyRandomJobList(legacy_config::LineCursor &cursor, sDEF_ITEMINFO 
 	char value[64];
 	while(cursor.NextToken(value, sizeof(value)))
 	{
-		for(int index=0; JobDataBase[index].szName[0]; ++index)
+		DWORD jobBitCode = 0;
+		if(ResolveJobBitCode(value, jobBitCode) &&
+		   definition.JobBitCodeRandomCount < SPECIAL_JOB_RANDOM_MAX)
 		{
-			if(lstrcmpi(JobDataBase[index].szName,value)==0)
-			{
-				if(definition.JobBitCodeRandomCount < SPECIAL_JOB_RANDOM_MAX)
-					definition.dwJobBitCode_Random[definition.JobBitCodeRandomCount++] = JobDataBase[index].JobBitCode;
-				break;
-			}
+			definition.dwJobBitCode_Random[definition.JobBitCodeRandomCount++] = jobBitCode;
 		}
 	}
 	return true;

@@ -3,6 +3,8 @@
 #include "systems/social/clan/tjclanDEF.h"
 #include "systems/social/clan/tjclan.h"
 #include "systems/social/clan/cE_CViewClanInfo.h"
+#include "gameplay/classes/v2/services/ClassService.h"
+#include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
 
 cCHARSTATUS cCharStatus;
 sDISPLAYSTATE sDisplayState[10];
@@ -48,9 +50,9 @@ sCHARRECTPOSI	sCharRectPosi[MAX_CHAR_RECT_POSI] = {
 	{"ManaRegen"      ,{ 427 , 455 + ReHeight3 , 515  , 466 }},
 	{"StaminaRegen"   ,{ 427 , 479 + ReHeight3 , 515  , 490 }},
 
-	{"Critical"      ,{ 278 , 510, 278  , 543 }},
-	{"Block"         ,{ 278 , 526, 278  , 543 }},
-	{"Esquiva"       ,{ 278 , 541, 278  , 543 }},
+	//{"Critical"      ,{ 278 , 510, 278  , 543 }},
+	//{"Block"         ,{ 278 , 526, 278  , 543 }},
+	//{"Esquiva" ,{ 278 , 541, 278  , 543 }},
 }; 
 
 int RegiBox[5][4] = {
@@ -188,7 +190,11 @@ void cCHARSTATUS::Draw()
 {
 	int TempLen = 0;
 	int TempCount2 = 0;
+	const bool suppressMainHud = ui::v2::legacy::SuppressLegacyMainHud();
 
+	// UI V2 owns the permanent HUD, but the classic chat remains the input
+	// surface for commands/admin console. Render it only while chat editing is
+	// active; otherwise keep the legacy HUD completely hidden.
 	if (sinChatEnter)
 	{
 		if (SubChatHeight)
@@ -200,7 +206,7 @@ void cCHARSTATUS::Draw()
 			dsDrawTexImage(cInterFace.MatChatDoc[0], 4, 576 - SubChatHeight, 296, 32, 255);
 	}
 
-	if (cInterFace.ChatFlag)
+	if (cInterFace.ChatFlag && (!suppressMainHud || sinChatEnter))
 	{
 		int scrolly = 0;
 		if (SubChatHeight)
@@ -348,7 +354,8 @@ void cCHARSTATUS::Main()
 
 
 	ChatKindIndexNum = 0;
-	if (cInterFace.ChatFlag)
+	const bool suppressMainHud = ui::v2::legacy::SuppressLegacyMainHud();
+	if (cInterFace.ChatFlag && (!suppressMainHud || sinChatEnter))
 	{
 		if (!SubChatHeight)
 		{
@@ -386,7 +393,7 @@ void cCHARSTATUS::Main()
 
 
 	NoticeChatIndexNum = 0;
-	if (cInterFace.ChatFlag)
+	if (!suppressMainHud && cInterFace.ChatFlag)
 	{
 		if (!SubChatHeight)
 		{
@@ -1350,13 +1357,9 @@ int cCHARSTATUS::sinGetNextExp()
 
 int cCHARSTATUS::InitCharStatus(int kind)
 {
-	int Total = 0;
-	int Total2 = 0;
-
-	switch (kind)
+	if(kind == 0)
 	{
-	case 0:
-		if (sinChar->wVersion[1] == 1)
+		if(sinChar->wVersion[1] == 1)
 		{
 			sinSkillPontInitButtonFlag = 0;
 			cMessageBox.ShowMessage(MESSAGE_ALREADY_INITSTATE);
@@ -1364,46 +1367,30 @@ int cCHARSTATUS::InitCharStatus(int kind)
 		}
 		sinSkillPontInitButtonFlag = 1;
 		sinInitPointPassFlag = 1;
-		break;
 	}
+
+	gameplay::classes::CharacterAttributes base;
+	if(!gameplay::classes::DefaultClassService().TryBaseAttributes(sinChar->JOB_CODE, base))
+		return FALSE;
+
 	cMessageBox.ShowMessage(MESSAGE_GYUNGFUM_OK);
-	Total = sinChar->Strength + sinChar->Spirit + sinChar->Talent + sinChar->Dexterity + sinChar->Health + sinChar->StatePoint;
+	const int total = sinChar->Strength + sinChar->Spirit + sinChar->Talent +
+		sinChar->Dexterity + sinChar->Health + sinChar->StatePoint;
 
-	for (int i = 0; i < 4; i++)
-	{
-		if (sinChar->JOB_CODE == TempNewCharacterInit[i][0])
-		{
-			sinChar->Strength = TempNewCharacterInit[i][1];
-			sinChar->Spirit = TempNewCharacterInit[i][2];
-			sinChar->Talent = TempNewCharacterInit[i][3];
-			sinChar->Dexterity = TempNewCharacterInit[i][4];
-			sinChar->Health = TempNewCharacterInit[i][5];
-			Total2 = sinChar->Strength + sinChar->Spirit + sinChar->Talent + sinChar->Dexterity + sinChar->Health;
-			sinChar->StatePoint = Total - Total2;
-			sinChar->wVersion[1] = 1;
-			ReformCharForm();
-			cInvenTory.SetItemToChar();
-			return TRUE;
-		}
-		if (sinChar->JOB_CODE == MorNewCharacterInit[i][0])
-		{
-			sinChar->Strength = MorNewCharacterInit[i][1];
-			sinChar->Spirit = MorNewCharacterInit[i][2];
-			sinChar->Talent = MorNewCharacterInit[i][3];
-			sinChar->Dexterity = MorNewCharacterInit[i][4];
-			sinChar->Health = MorNewCharacterInit[i][5];
-			Total2 = sinChar->Strength + sinChar->Spirit + sinChar->Talent + sinChar->Dexterity + sinChar->Health;
-			sinChar->StatePoint = Total - Total2;
-			sinChar->wVersion[1] = 1;
-			ReformCharForm();
-			cInvenTory.SetItemToChar();
-			return TRUE;
-		}
+	sinChar->Strength = base.strength;
+	sinChar->Spirit = base.spirit;
+	sinChar->Talent = base.talent;
+	sinChar->Dexterity = base.dexterity;
+	sinChar->Health = base.health;
 
-	}
-
+	const int baseTotal = base.strength + base.spirit + base.talent + base.dexterity + base.health;
+	sinChar->StatePoint = total - baseTotal;
+	sinChar->wVersion[1] = 1;
+	ReformCharForm();
+	cInvenTory.SetItemToChar();
 	return TRUE;
 }
+
 
 int cCHARSTATUS::CheckChageStateDisplay()
 {
@@ -1485,82 +1472,36 @@ int cCHARSTATUS::UseGravityScrool()
 
 int cCHARSTATUS::InitCharStatus_Attribute(int kind)
 {
-	int Total, Total2;
-	int Brood_code = 0;
-	int Job_Num = 0;
+	gameplay::classes::CharacterAttributes base;
+	if(!gameplay::classes::DefaultClassService().TryBaseAttributes(sinChar->JOB_CODE, base))
+		return FALSE;
 
 	cMessageBox.ShowMessage(MESSAGE_GYUNGFUM_OK);
-	Total = sinChar->Strength + sinChar->Spirit + sinChar->Talent + sinChar->Dexterity + sinChar->Health + sinChar->StatePoint;
+	const int total = sinChar->Strength + sinChar->Spirit + sinChar->Talent +
+		sinChar->Dexterity + sinChar->Health + sinChar->StatePoint;
 
-	for (int i = 0; i < 4; i++)
+	switch(kind)
 	{
-		if (sinChar->JOB_CODE == TempNewCharacterInit[i][0])
-		{
-			Brood_code = BROOD_CODE_TEMPSKRON;
-			Job_Num = i;
-		}
-		if (sinChar->JOB_CODE == MorNewCharacterInit[i][0])
-		{
-			Brood_code = BROOD_CODE_MORAYION;
-			Job_Num = i;
-		}
-	}
-
-	if (Brood_code == BROOD_CODE_TEMPSKRON)
-	{
-		switch (kind)
-		{
-		case 1:
-			sinChar->Strength = TempNewCharacterInit[Job_Num][1];
-			break;
-		case 2:
-			sinChar->Spirit = TempNewCharacterInit[Job_Num][2];
-			break;
-		case 3:
-			sinChar->Talent = TempNewCharacterInit[Job_Num][3];
-			break;
-		case 4:
-			sinChar->Dexterity = TempNewCharacterInit[Job_Num][4];
-			break;
-		case 5:
-			sinChar->Health = TempNewCharacterInit[Job_Num][5];
-			break;
-		}
-	}
-	else
-	{
-		switch (kind)
-		{
-		case 1:
-			sinChar->Strength = MorNewCharacterInit[Job_Num][1];
-			break;
-		case 2:
-			sinChar->Spirit = MorNewCharacterInit[Job_Num][2];
-			break;
-		case 3:
-			sinChar->Talent = MorNewCharacterInit[Job_Num][3];
-			break;
-		case 4:
-			sinChar->Dexterity = MorNewCharacterInit[Job_Num][4];
-			break;
-		case 5:
-			sinChar->Health = MorNewCharacterInit[Job_Num][5];
-			break;
-		}
+	case 1: sinChar->Strength = base.strength; break;
+	case 2: sinChar->Spirit = base.spirit; break;
+	case 3: sinChar->Talent = base.talent; break;
+	case 4: sinChar->Dexterity = base.dexterity; break;
+	case 5: sinChar->Health = base.health; break;
+	default: return FALSE;
 	}
 
 	sinPlaySound(SIN_SOUND_EAT_POTION2);
 	StartEffect(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, EFFECT_AGING);
 
-	Total2 = sinChar->Strength + sinChar->Spirit + sinChar->Talent + sinChar->Dexterity + sinChar->Health;
-	sinChar->StatePoint = Total - Total2;
+	const int baseTotal = sinChar->Strength + sinChar->Spirit + sinChar->Talent +
+		sinChar->Dexterity + sinChar->Health;
+	sinChar->StatePoint = total - baseTotal;
 	sinChar->wVersion[1] = 1;
 	ReformCharForm();
 	cInvenTory.SetItemToChar();
-
 	return TRUE;
-
 }
+
 
 
 

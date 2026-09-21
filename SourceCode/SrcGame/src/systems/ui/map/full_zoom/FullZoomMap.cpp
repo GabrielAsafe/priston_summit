@@ -15,6 +15,9 @@
 
 
 
+int g_BlockFullZoomCloseOnEnter = 0;
+
+
 #define DMAX_fzmcp_DRAW_TYPE			2
 #define DMAX_fzm_CHAR_POS				6
 
@@ -1285,6 +1288,34 @@ void DrawFzmBackToSurface(int dest_x, int dest_y, LPDIRECT3DTEXTURE9 lpDDS, int 
 	DrawTexture2D(lpDDS, destRect, srcRect, true);
 }
 
+// HiDPI UI assets keep their high-resolution resident texture but are drawn
+// into the original logical map rectangle. Unlike DrawFzmBackToSurface, this
+// helper intentionally samples the complete level-0 texture.
+static void DrawFzmFullTextureToSurface(int dest_x, int dest_y, LPDIRECT3DTEXTURE9 lpDDS, int width, int height)
+{
+	if(!lpDDS)
+		return;
+
+	D3DSURFACE_DESC desc;
+	ZeroMemory(&desc, sizeof(desc));
+	if(FAILED(lpDDS->GetLevelDesc(0, &desc)))
+		return;
+
+	RECT destRect;
+	destRect.left = int(dest_x * g_fWinSizeRatio_X);
+	destRect.top = int(dest_y * g_fWinSizeRatio_Y);
+	destRect.right = int((dest_x + width) * g_fWinSizeRatio_X);
+	destRect.bottom = int((dest_y + height) * g_fWinSizeRatio_Y);
+
+	RECT srcRect;
+	srcRect.left = 0;
+	srcRect.top = 0;
+	srcRect.right = static_cast<LONG>(desc.Width);
+	srcRect.bottom = static_cast<LONG>(desc.Height);
+
+	DrawTexture2D(lpDDS, destRect, srcRect, true);
+}
+
 
 
 
@@ -1393,6 +1424,11 @@ int SetFullZoomMap(int IsSet)
 	}
 	else
 	{
+		// Enter is also the chat open/send key. While that key is held,
+		// no indirect UI handler is allowed to close the full map.
+		if(g_BlockFullZoomCloseOnEnter)
+			return 1;
+
 		DestroyFullZoomMap();
 
 		g_IsDxProjectZoomIn = 0;
@@ -1480,16 +1516,16 @@ void DrawFullZoomMap(void)
 
 
 	if(s_lpDDS_FzmActiveMap)
-		DrawFzmBackToSurface(30, 15, s_lpDDS_FzmActiveMap, 0, 0, 320, 320, true);
+		DrawFzmFullTextureToSurface(30, 15, s_lpDDS_FzmActiveMap, 320, 320);
 
 
 	DrawFullZoomMapCharPos();
 
 
-	DrawFzmBackToSurface(0, 0, s_lpDDS_FullMapImage, 0, 0, 800, 600, true);
+	DrawFzmFullTextureToSurface(0, 0, s_lpDDS_FullMapImage, 800, 600);
 
 
-	DrawFzmBackToSurface(s_ExitButtonPos.x, s_ExitButtonPos.y, s_lpDDS_Exit, 0, 0, 64, 34, true);
+	DrawFzmFullTextureToSurface(s_ExitButtonPos.x, s_ExitButtonPos.y, s_lpDDS_Exit, 64, 34);
 
 
 	if(s_iFzmFocusName >= 0 && s_iFzmFocusName != s_iFzmActiveName)
@@ -1497,8 +1533,8 @@ void DrawFullZoomMap(void)
 		lpZoomMapInfo = &s_FzmInfo[s_iFzmFocusName];
 		lpZoomMapImage = &s_FzmImage[lpZoomMapInfo->eNameType - 1];
 
-		DrawFzmBackToSurface(lpZoomMapInfo->iNamePosX - 1, lpZoomMapInfo->iNamePosY, lpZoomMapImage->lpDDS_Name,
-							 0, 0, lpZoomMapImage->iCheckWideh, lpZoomMapImage->iCheckHeight, true);
+		DrawFzmFullTextureToSurface(lpZoomMapInfo->iNamePosX - 1, lpZoomMapInfo->iNamePosY, lpZoomMapImage->lpDDS_Name,
+								 lpZoomMapImage->iCheckWideh, lpZoomMapImage->iCheckHeight);
 	}
 
 
@@ -1507,8 +1543,8 @@ void DrawFullZoomMap(void)
 		lpZoomMapInfo = &s_FzmInfo[s_iFzmActiveName];
 		lpZoomMapImage = &s_FzmImage[lpZoomMapInfo->eNameType - 1];
 
-		DrawFzmBackToSurface(lpZoomMapInfo->iNamePosX, lpZoomMapInfo->iNamePosY, lpZoomMapImage->lpDDS_Name,
-							 0, 0, lpZoomMapImage->iCheckWideh, lpZoomMapImage->iCheckHeight, true);
+		DrawFzmFullTextureToSurface(lpZoomMapInfo->iNamePosX, lpZoomMapInfo->iNamePosY, lpZoomMapImage->lpDDS_Name,
+								 lpZoomMapImage->iCheckWideh, lpZoomMapImage->iCheckHeight);
 	}
 
 

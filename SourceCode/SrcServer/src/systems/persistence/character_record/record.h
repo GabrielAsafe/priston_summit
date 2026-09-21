@@ -333,6 +333,12 @@ int rsLoadWareHouseData(rsPLAYINFO *lpPlayInfo, int Caravan);
 
 int rsCheckAccountChar(const char *szID, char *szName);
 
+// Companion/offline-character support. These helpers deliberately operate on
+// complete legacy records and keep account ownership checks server-side.
+int rsGetAccountCharacterNames(const char *szID, char szNames[][32], int maxNames);
+int rsLoadAccountCharacterRecord(const char *szID, const char *szName, TRANS_RECORD_DATA *lpRecordData);
+int rsAddOfflineCharacterExp(const char *szID, const char *szName, INT64 Exp, int *lpNewLevel, INT64 *lpNewExperience);
+
 int rsLoadWareHouseData_Admin(rsPLAYINFO *lpPlayInfo, char *szID, int Day);
 
 

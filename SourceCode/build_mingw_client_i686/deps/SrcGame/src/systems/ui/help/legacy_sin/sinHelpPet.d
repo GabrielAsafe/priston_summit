@@ -133,6 +133,9 @@
  SrcGame/src/systems/progression/rankings/general/Ranking.h \
  SrcGame/src/platform/database/odbc/SQL.h \
  Dependency/DirectX9/Include/d3dx9math.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcGame/src/systems/social/clan/tjclan.h \
  SrcGame/src/systems/social/clan/Help.h \
  SrcGame/src/systems/social/clan/clan_Enti.h \
@@ -272,6 +275,9 @@ SrcGame/src/systems/progression/rankings/class_rank/Rank.h:
 SrcGame/src/systems/progression/rankings/general/Ranking.h:
 SrcGame/src/platform/database/odbc/SQL.h:
 Dependency/DirectX9/Include/d3dx9math.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/systems/social/clan/tjclan.h:
 SrcGame/src/systems/social/clan/Help.h:
 SrcGame/src/systems/social/clan/clan_Enti.h:

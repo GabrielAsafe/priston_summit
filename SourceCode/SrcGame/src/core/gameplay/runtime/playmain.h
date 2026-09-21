@@ -162,6 +162,7 @@ int SetChrArmor(smCHAR *lpChar, int ItemNum);
 
 
 void InitStageLoader();
+void PumpStageTexturePrewarm();
 
 void InitStage();
 void CloseStage();

@@ -1,0 +1,17 @@
+#pragma once
+
+#include "systems/ui/v2/domain/CharacterUIModels.h"
+
+namespace ui::v2
+{
+class ISkillGateway
+{
+public:
+    virtual ~ISkillGateway() = default;
+    [[nodiscard]] virtual SkillBookSnapshot GetSnapshot() const = 0;
+    [[nodiscard]] virtual std::vector<DetailLineSnapshot> GetDetails(int skillIndex) const { (void)skillIndex; return {}; }
+    virtual bool RequestUpgrade(int skillIndex) = 0;
+    virtual bool BindLeft(int skillIndex) = 0;
+    virtual bool BindRight(int skillIndex) = 0;
+};
+}

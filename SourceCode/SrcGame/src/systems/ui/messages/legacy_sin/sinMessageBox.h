@@ -343,6 +343,7 @@ public:
 
 	int CheckOkMessageBox(int Kind);
 	int CheckOkMessageBox2(int Kind);
+	int ResolveMessage3ForUIV2(int Kind, bool accept);
 
 	int CloseMessage();
 

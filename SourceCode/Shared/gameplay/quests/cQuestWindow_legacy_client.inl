@@ -186,7 +186,42 @@ void cQUESTWINDOW::handlePacket(smTRANS_QUEST_INFO* pTransQuestInfo)
 
 void cQUESTWINDOW::handlePacket(smTRANS_QUEST_FULL* pTransQuestInfo)
 {
-	sQUEST* pQuest = pSelectedSpoiler->pSelectedQuest;
+	if (!pTransQuestInfo)
+		return;
+
+	// The original implementation trusted the currently selected spoiler. A
+	// V2 journal can change selection while the server response is in flight,
+	// so resolve the response by its own quest identity first. This also avoids
+	// a null dereference when details arrive after the journal was hidden.
+	sQUEST* pQuest = 0;
+	if (pSelectedSpoiler && pSelectedSpoiler->pSelectedQuest &&
+		pSelectedSpoiler->pSelectedQuest->ID == pTransQuestInfo->QuestID)
+	{
+		pQuest = pSelectedSpoiler->pSelectedQuest;
+	}
+
+	if (!pQuest)
+	{
+		for (auto* tab : vTabs)
+		{
+			if (!tab) continue;
+			for (auto* spoiler : tab->vSpoilers)
+			{
+				if (!spoiler) continue;
+				for (auto* quest : spoiler->vQuests)
+				{
+					if (quest && quest->ID == pTransQuestInfo->QuestID &&
+						(quest->Kind == pTransQuestInfo->QuestKind || pTransQuestInfo->QuestKind == 0))
+					{
+						pQuest = quest;
+						break;
+					}
+				}
+				if (pQuest) break;
+			}
+			if (pQuest) break;
+		}
+	}
 
 	if (!pQuest)
 		return;

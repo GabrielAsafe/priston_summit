@@ -9,6 +9,7 @@
 #include "systems/rendering/2d/legacy/drawsub.h"
 #include "systems/network/client/netplay.h"
 #include "systems/audio/effects/legacy/effectsnd.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 #include "systems/world/field/field.h"
 #include "systems/localization/legacy_catalog/language.h"
 #include "systems/configuration/client/Settings.h"
@@ -1490,7 +1491,7 @@ int	WeaponPlaySound(smCHAR *lpChar)
 
 			case sinWM1:
 
-			if(lpChar->smCharInfo.JOB_CODE == 8 || lpChar->smCharInfo.JOB_CODE == 7)
+			if(gameplay::classes::DefaultClassService().HasCapability(lpChar->smCharInfo.JOB_CODE, gameplay::classes::ClassCapability::Caster))
 			{
 				if(lpChar->WeaponEffect) return TRUE;
 

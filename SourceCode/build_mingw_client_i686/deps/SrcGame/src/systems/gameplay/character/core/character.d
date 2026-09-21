@@ -51,6 +51,10 @@
  SrcGame/src/systems/rendering/effects/particle/legacy/particle.h \
  SrcGame/src/core/data/legacy_loader/fileread.h \
  SrcGame/src/core/gameplay/runtime/playmain.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ Shared/gameplay/companions/CompanionProtocol.h \
  SrcGame/src/systems/rendering/2d/legacy/drawsub.h \
  SrcGame/src/systems/network/client/netplay.h \
  SrcGame/src/systems/world/field/field.h \
@@ -148,7 +152,9 @@
  Shared/server/legacy_runtime/onserver_legacy_client.h \
  SrcGame/src/systems/ui/map/full_zoom/FullZoomMap.h \
  SrcGame/src/systems/combat/damage_display/DrawDamage.h \
- SrcGame/src/systems/configuration/client/Settings.h
+ SrcGame/src/systems/configuration/client/Settings.h \
+ SrcGame/src/systems/gameplay/character/core/CharacterModelStreamingV3.h \
+ SrcGame/src/core/concurrency/SourceAssetLock.h
 Shared/gameplay/character/character_legacy_client.inl:
 Shared/opcodes.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
@@ -203,6 +209,10 @@ Dependency/DirectX9/Include/dsound.h:
 SrcGame/src/systems/rendering/effects/particle/legacy/particle.h:
 SrcGame/src/core/data/legacy_loader/fileread.h:
 SrcGame/src/core/gameplay/runtime/playmain.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+Shared/gameplay/companions/CompanionProtocol.h:
 SrcGame/src/systems/rendering/2d/legacy/drawsub.h:
 SrcGame/src/systems/network/client/netplay.h:
 SrcGame/src/systems/world/field/field.h:
@@ -301,3 +311,5 @@ Shared/server/legacy_runtime/onserver_legacy_client.h:
 SrcGame/src/systems/ui/map/full_zoom/FullZoomMap.h:
 SrcGame/src/systems/combat/damage_display/DrawDamage.h:
 SrcGame/src/systems/configuration/client/Settings.h:
+SrcGame/src/systems/gameplay/character/core/CharacterModelStreamingV3.h:
+SrcGame/src/core/concurrency/SourceAssetLock.h:

@@ -3,6 +3,9 @@
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/combat/skills/client/SkillSub.h"
 #include "systems/world/field/field.h" 
+#include <stdio.h>
+#include <map>
+#include "gameplay/classes/v2/services/ClassService.h"
 
 cSKILL	cSkill;
 sUSESKILL sinSkill;
@@ -2120,41 +2123,14 @@ static void InitSummitTier5FighterSkillMetadata()
 
 int cSKILL::SearchUseSkill()
 {
-
-	switch(sinChar->JOB_CODE)
+	std::uint32_t legacySkillGroup = 0u;
+	if(!gameplay::classes::DefaultClassService().TryLegacySkillGroupCode(sinChar->JOB_CODE, legacySkillGroup))
 	{
-		case 1:
-		UseSkillBox = GROUP_FIGHTER;
-
-		break;
-		case 2:
-		UseSkillBox = GROUP_MECHANICIAN;
-
-		break;
-		case 3:
-		UseSkillBox = GROUP_ARCHER;
-
-		break;
-		case 4:
-		UseSkillBox = GROUP_PIKEMAN;
-
-		break;
-		case 5:
-		UseSkillBox = GROUP_ATALANTA;
-		break;
-		case 6:
-		UseSkillBox = GROUP_KNIGHT;
-		break;
-		case 7:
-		UseSkillBox = GROUP_MAGICIAN;
-		break;
-		case 8:
-		UseSkillBox = GROUP_PRIESTESS;
-		break;
-
-	}
-	if(!UseSkillBox)
+		UseSkillBox = 0;
 		return FALSE;
+	}
+
+	UseSkillBox = static_cast<DWORD>(legacySkillGroup);
 
 	int Index = 0;
 	memcpy(&sinSkill.UseSkill[0], &sSkill[0], sizeof(sSKILL));
@@ -2741,18 +2717,11 @@ void cSKILL::CheckSkillMastery()
 
 DWORD UseSkillItemInfo[10] = { 0,sinWA1,sinWM1,sinWH1,sinDS1,sinWP1,sinWS2,sinWC1,sinWS1,sinWT1 };
 
-const char* szClasseList[9]
-{ "",
-	"[Mestre dos Lutadores]",
-	"[Mestre dos Mecanicos]",
-	"[Mestre dos Arqueiros]",
-	"[Mestre dos Pikemans]",
-	"[Mestre das Atalantas]",
-	"[Mestre dos Cavaleiros]",
-	"[Mestre dos Magos]",
-	"[Mestre das Sacerdotisas]"
-};
-
+static const char* sinLegacyClassMasterTitle(int legacyJobCode)
+{
+	const std::string* title = gameplay::classes::DefaultClassService().LegacyMasterTitle(legacyJobCode);
+	return title ? title->c_str() : "";
+}
 
 int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 {
@@ -2998,7 +2967,7 @@ int cSKILL::ShowSkillInfo(sSKILL *pSkill, sSKILLBOX *pSkillBox, int Icon)
 
 	else if (pSkill->CODE == PLAYER_TOP)
 	{
-		wsprintf(szSkillInfoBuff, "Top Level Classe %s /r", szClasseList[lpCurPlayer->smCharInfo.JOB_CODE]);
+		wsprintf(szSkillInfoBuff, "Top Level Classe %s /r", sinLegacyClassMasterTitle(lpCurPlayer->smCharInfo.JOB_CODE));
 		lstrcat(szSkillInfoBuff2, "/r");
 		lstrcat(szSkillInfoBuff, "O Esp\355rito de Awell./r/r");
 		lstrcat(szSkillInfoBuff2, "/r");
@@ -6711,37 +6680,28 @@ int cSKILL::ClearSkillPointSection()
 }
 
 
-unsigned int CharSkillInfoData[8] = { 0, };
-int   ChangeJob = -1;
+static std::map<int, unsigned int> CharSkillInfoData;
+static std::map<int, int> CharSkillInfoChangeJob;
 
 int cSKILL::ReFormCharSkillInfo()
 {
-	int   i = 0, j = 0, k = 0;
-	int   CharNum = 0;
+	int j = 0, k = 0;
 
-	int   CharCode[MAX_JOBNUM] = { JOBCODE_MECHANICIAN, JOBCODE_FIGHTER, JOBCODE_ARCHER, JOBCODE_PIKEMAN, JOBCODE_KNIGHT, JOBCODE_ATALANTA, JOBCODE_PRIESTESS, JOBCODE_MAGICIAN };
-
-	for(i = 0; i < MAX_JOBNUM; i++)
+	const int classCode = sinChar->JOB_CODE;
+	const std::map<int, int>::const_iterator lastChangeJob = CharSkillInfoChangeJob.find(classCode);
+	if(lastChangeJob == CharSkillInfoChangeJob.end() || lastChangeJob->second != sinChar->ChangeJob)
 	{
-		if(sinChar->JOB_CODE == CharCode[i])
-		{
-			CharNum = i;
-			break;
-		}
-	}
-
-	if(ChangeJob != sinChar->ChangeJob)
-	{
-		ChangeJob = sinChar->ChangeJob;
-		CharSkillInfoData[CharNum] = 0;
+		CharSkillInfoChangeJob[classCode] = sinChar->ChangeJob;
+		unsigned int& classSkillInfo = CharSkillInfoData[classCode];
+		classSkillInfo = 0;
 		for(j = 1; j < SIN_MAX_USE_SKILL; j++)
 		{
 			if(sinSkill.UseSkill[j].Flag)
 			{
 				k = j + 1;
-				CharSkillInfoData[CharNum] += k*sinSkill.UseSkill[j].Skill_Info.RequireLevel;
-				CharSkillInfoData[CharNum] += k*sinSkill.UseSkill[j].Skill_Info.UseStamina[0];
-				CharSkillInfoData[CharNum] += k*sinSkill.UseSkill[j].Skill_Info.UseStamina[1];
+				classSkillInfo += k*sinSkill.UseSkill[j].Skill_Info.RequireLevel;
+				classSkillInfo += k*sinSkill.UseSkill[j].Skill_Info.UseStamina[0];
+				classSkillInfo += k*sinSkill.UseSkill[j].Skill_Info.UseStamina[1];
 			}
 		}
 	}
@@ -6752,31 +6712,17 @@ int cSKILL::ReFormCharSkillInfo()
 int cSKILL::CheckCharSkillInfo()
 {
 
-	int   i = 0, j = 0, k = 0;
-	int   CharNum = 0;
-	int   CharCode[MAX_JOBNUM] = { JOBCODE_MECHANICIAN, JOBCODE_FIGHTER, JOBCODE_ARCHER, JOBCODE_PIKEMAN, JOBCODE_KNIGHT, JOBCODE_ATALANTA, JOBCODE_PRIESTESS, JOBCODE_MAGICIAN };
-
-	unsigned int CharSkillInfoDataCheckSum[8] = { 0, };
-
-
-	for(i = 0; i < MAX_JOBNUM; i++)
-	{
-		if(sinChar->JOB_CODE == CharCode[i])
-		{
-			CharNum = i;
-			break;
-		}
-	}
-
+	int j = 0, k = 0;
+	unsigned int classSkillInfoCheckSum = 0;
 
 	for(j = 1; j < SIN_MAX_USE_SKILL; j++)
 	{
 		if(sinSkill.UseSkill[j].Flag)
 		{
 			k = j + 1;
-			CharSkillInfoDataCheckSum[CharNum] += k*sinSkill.UseSkill[j].Skill_Info.RequireLevel;
-			CharSkillInfoDataCheckSum[CharNum] += k*sinSkill.UseSkill[j].Skill_Info.UseStamina[0];
-			CharSkillInfoDataCheckSum[CharNum] += k*sinSkill.UseSkill[j].Skill_Info.UseStamina[1];
+			classSkillInfoCheckSum += k*sinSkill.UseSkill[j].Skill_Info.RequireLevel;
+			classSkillInfoCheckSum += k*sinSkill.UseSkill[j].Skill_Info.UseStamina[0];
+			classSkillInfoCheckSum += k*sinSkill.UseSkill[j].Skill_Info.UseStamina[1];
 
 			if(!sinSkill.UseSkill[j].UseSkillCount)continue;
 			if(!CheckSkillMasteyData[j])
@@ -6794,10 +6740,12 @@ int cSKILL::CheckCharSkillInfo()
 			}
 		}
 	}
-	if(CharSkillInfoDataCheckSum[CharNum] != CharSkillInfoData[CharNum])
+	const std::map<int, unsigned int>::const_iterator expected = CharSkillInfoData.find(sinChar->JOB_CODE);
+	const unsigned int expectedSkillInfo = expected != CharSkillInfoData.end() ? expected->second : 0u;
+	if(classSkillInfoCheckSum != expectedSkillInfo)
 	{
 
-		SendSetHackUser3(51, CharSkillInfoDataCheckSum[CharNum], CharSkillInfoData[CharNum]);
+		SendSetHackUser3(51, classSkillInfoCheckSum, expectedSkillInfo);
 		return FALSE;
 	}
 

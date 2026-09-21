@@ -1,11 +1,16 @@
+#include "gameplay/classes/v2/services/ClassService.h"
+#include "gameplay/quests/legacy/LegacyClassQuestAdapter.h"
 int sinCheckChageJob()
 {
+	if(!gameplay::quests::legacy::SupportsLegacyChangeJobQuestContent(sinChar->JOB_CODE))
+		return TRUE;
+
 	if(LegacySinQuestPolicy::HandleAutoJobPromotion())
 		return TRUE;
 
 	if(CheckQuestButtonShow1 && sinChar->Level >= 20 && sinChar->ChangeJob == 0)
 	{
-		if((!sinQuest_ChangeJob.CODE && sinChar->JOB_CODE <= 4) || sinChar->JOB_CODE == 9)
+		if(!sinQuest_ChangeJob.CODE && gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 			sinChangeJobButtonShow = 1;
 		else if(!FindLastQuestCode(SIN_QUEST_CODE_CHANGEJOB2_NPC_M) &&
 				!FindLastQuestCode(SIN_QUEST_CODE_CHANGEJOB2_NPC_D) &&
@@ -140,7 +145,7 @@ int sinLoadQuest(int CODE, void *Buff)
 		if(chaQuest.sHaQuestElementary[Quest_B].State == 2 || chaQuest.sHaQuestElementary[Quest_B].State == 3)
 		{
 			chaQuest.haSetQuestTimer(&chaQuest.sHaQuestElementary[Quest_B]);
-			if(sinChar->JOB_CODE < 5)
+			if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 				strcpy_s(chaQuest.szQuestMonsterName, haQuestMonsterName[0]);
 			else
 				strcpy_s(chaQuest.szQuestMonsterName, haQuestMonsterName[1]);
@@ -161,7 +166,7 @@ int sinLoadQuest(int CODE, void *Buff)
 		if(chaQuest.sHaQuestElementary[Quest_D].State == 2 || chaQuest.sHaQuestElementary[Quest_D].State == 3)
 		{
 			chaQuest.haSetQuestTimer(&chaQuest.sHaQuestElementary[Quest_D]);
-			if(sinChar->JOB_CODE < 5)
+			if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 				strcpy_s(chaQuest.szQuestMonsterName, haQuestMonsterName[2]);
 			else
 				strcpy_s(chaQuest.szQuestMonsterName, haQuestMonsterName[3]);
@@ -179,7 +184,7 @@ int sinLoadQuest(int CODE, void *Buff)
 		if(chaQuest.sHaQuestElementary[Quest_E].State == 2 || chaQuest.sHaQuestElementary[Quest_E].State == 3)
 		{
 			chaQuest.haSetQuestTimer(&chaQuest.sHaQuestElementary[Quest_E]);
-			if(sinChar->JOB_CODE < 5)
+			if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 				strcpy_s(chaQuest.szQuestMonsterName, haQuestMonsterName[4]);
 			else
 				strcpy_s(chaQuest.szQuestMonsterName, haQuestMonsterName[5]);
@@ -631,7 +636,7 @@ int CheckChangeJob3QuestItem(DWORD Monster_CODE)
 		if(chaQuest.sHaQuestElementary[Quest_B].Kind &&chaQuest.sHaQuestElementary[Quest_B].Kind == Monster_CODE)
 		{
 			chaQuest.sHaQuestElementary[Quest_B].Monster[0]++;
-			if(sinChar->JOB_CODE < 5)
+			if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 #ifdef _LANGUAGE_CHINESE
 				wsprintf(szTemp, sinLevelQusetDoc, chaQuest.sHaQuestElementary[Quest_B].Monster[0], haQuestMonsterName[0]);
 #else
@@ -677,7 +682,7 @@ int CheckChangeJob3QuestItem(DWORD Monster_CODE)
 		if(chaQuest.sHaQuestElementary[Quest_D].Kind &&chaQuest.sHaQuestElementary[Quest_D].Kind == Monster_CODE)
 		{
 			chaQuest.sHaQuestElementary[Quest_D].Monster[0]++;
-			if(sinChar->JOB_CODE < 5)
+			if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 #ifdef _LANGUAGE_CHINESE
 				wsprintf(szTemp, sinLevelQusetDoc, chaQuest.sHaQuestElementary[Quest_D].Monster[0], haQuestMonsterName[2]);
 #else
@@ -723,7 +728,7 @@ int CheckChangeJob3QuestItem(DWORD Monster_CODE)
 		if(chaQuest.sHaQuestElementary[Quest_E].Kind &&chaQuest.sHaQuestElementary[Quest_E].Kind == Monster_CODE)
 		{
 			chaQuest.sHaQuestElementary[Quest_E].Monster[0]++;
-			if(sinChar->JOB_CODE < 5)
+			if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 #ifdef _LANGUAGE_CHINESE
 				wsprintf(szTemp, sinLevelQusetDoc, chaQuest.sHaQuestElementary[Quest_E].Monster[0], haQuestMonsterName[4]);
 #else

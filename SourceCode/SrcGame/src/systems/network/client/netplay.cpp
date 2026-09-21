@@ -6,8 +6,22 @@
 #include "systems/network/transport/legacy/smwsock.h"
 #include "systems/gameplay/character/core/character.h"
 #include "core/gameplay/runtime/playmain.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 #include "core/data/legacy_loader/fileread.h"
 #include "persistence/character_record/WarehouseRecordValidation.h"
+#include "gameplay/companions/CompanionProtocol.h"
+#include "systems/ui/v2/legacy/LegacyCompanionGateway.h"
+
+namespace gameplay
+{
+namespace companions
+{
+namespace client_visual
+{
+void ApplyPacket(const protocol::CompanionVisualStatePacket &packet);
+}
+}
+}
 
 #include "systems/rendering/effects/particle/legacy/particle.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
@@ -1121,7 +1135,8 @@ int	CheckStartCharInfo(int lvl)
 	// New characters always start at rank 0. Optional automatic promotion
 	// is handled by sinCheckChageJob() after server configuration arrives.
 	lpCurPlayer->smCharInfo.ChangeJob = 0;
-	ChangeModelSkin(lpCurPlayer, 0, (lpCurPlayer->smCharInfo.ChangeJob > CHARACTER_RANK4) ? CHARACTER_RANK4 : lpCurPlayer->smCharInfo.ChangeJob, 0, GetFaceHairSkin(lpCurPlayer));
+	ChangeModelSkin(lpCurPlayer, 0, gameplay::classes::DefaultClassService().PromotionVisualChangeJobIndex(
+		lpCurPlayer->smCharInfo.JOB_CODE, lpCurPlayer->smCharInfo.ChangeJob), 0, GetFaceHairSkin(lpCurPlayer));
 
 	lpCurPlayer->smCharInfo.bUpdateInfo[0]++;
 
@@ -1708,7 +1723,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	IPData = (DWORD *)(pData->Buff);
 
-#ifdef __MINGW32__
+#if defined(__MINGW32__) && defined(PT_ENABLE_MINGW_PACKET_TRACE)
 {
     FILE *fp = fopen("LOGS\\mingw_dispatch.txt", "a");
     if(fp)
@@ -1765,7 +1780,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 //#endif
 
 
-	#ifdef __MINGW32__
+	#if defined(__MINGW32__) && defined(PT_ENABLE_MINGW_PACKET_TRACE)
 	{
 		FILE *fp = fopen("LOGS\\mingw_dispatch.txt", "a");
 		if(fp)
@@ -2652,6 +2667,48 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 	case OpCode::OPCODE_PLAYLIST:
 		break;
 
+
+	case gameplay::companions::protocol::OPCODE_COMPANION_UI_STATE:
+	{
+		const gameplay::companions::protocol::CompanionUIStatePacket *packet =
+			reinterpret_cast<const gameplay::companions::protocol::CompanionUIStatePacket *>(pData->Buff);
+		if(packet &&
+			packet->size == sizeof(gameplay::companions::protocol::CompanionUIStatePacket) &&
+			packet->version == gameplay::companions::protocol::COMPANION_UI_PROTOCOL_VERSION)
+		{
+			ui::v2::ApplyLegacyCompanionStatePacket(*packet);
+		}
+	}
+	break;
+
+	case gameplay::companions::protocol::OPCODE_COMPANION_RUNTIME_STATE:
+	{
+		const gameplay::companions::protocol::CompanionRuntimeStatePacket *packet =
+			reinterpret_cast<const gameplay::companions::protocol::CompanionRuntimeStatePacket *>(pData->Buff);
+		if(packet &&
+			packet->size == sizeof(gameplay::companions::protocol::CompanionRuntimeStatePacket) &&
+			packet->version == gameplay::companions::protocol::COMPANION_RUNTIME_PROTOCOL_VERSION)
+		{
+			ui::v2::ApplyLegacyCompanionRuntimePacket(*packet);
+		}
+	}
+	break;
+
+	case gameplay::companions::protocol::OPCODE_COMPANION_VISUAL_STATE:
+	{
+		const gameplay::companions::protocol::CompanionVisualStatePacket *packet =
+			reinterpret_cast<const gameplay::companions::protocol::CompanionVisualStatePacket *>(pData->Buff);
+		if(packet &&
+			packet->size == sizeof(gameplay::companions::protocol::CompanionVisualStatePacket) &&
+			packet->version == gameplay::companions::protocol::COMPANION_VISUAL_PROTOCOL_VERSION &&
+			packet->entryCount >= 0 &&
+			packet->entryCount <= gameplay::companions::protocol::COMPANION_VISUAL_MAX_ACTIVE)
+		{
+			gameplay::companions::client_visual::ApplyPacket(*packet);
+		}
+	}
+	break;
+
 	case OpCode::OPCODE_PLAYERINFO:
 
 		lpTransPlayerInfo = (smTRNAS_PLAYERINFO *)pData->Buff;
@@ -3537,7 +3594,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 			dwLoadingTime = 0;
 
 
-			if((lpCurPlayer->smCharInfo.JOB_CODE == 3 || lpCurPlayer->smCharInfo.JOB_CODE == 5 || lpCurPlayer->smCharInfo.JOB_CODE == 7)
+			if(gameplay::classes::DefaultClassService().ShouldRefreshPatternAfterRecordRestore(lpCurPlayer->smCharInfo.JOB_CODE)
 				&& lpCurPlayer->Pattern)
 			{
 
@@ -3591,7 +3648,8 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 			{
 				if(lpCurPlayer->smCharInfo.ChangeJob >= CHARACTER_RANK1 && lpCurPlayer->smCharInfo.ChangeJob <= CHARACTER_RANK5)
 				{
-					ChangeModelSkin(lpCurPlayer, 0, (lpCurPlayer->smCharInfo.ChangeJob > CHARACTER_RANK4) ? CHARACTER_RANK4 : lpCurPlayer->smCharInfo.ChangeJob, 0, GetFaceHairSkin(lpCurPlayer));
+					ChangeModelSkin(lpCurPlayer, 0, gameplay::classes::DefaultClassService().PromotionVisualChangeJobIndex(
+		lpCurPlayer->smCharInfo.JOB_CODE, lpCurPlayer->smCharInfo.ChangeJob), 0, GetFaceHairSkin(lpCurPlayer));
 					ReformCharForm();
 				}
 			}
@@ -3810,7 +3868,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 		break;
 
-	#ifdef __MINGW32__
+	#if defined(__MINGW32__) && defined(PT_ENABLE_MINGW_PACKET_TRACE)
 	{
 		FILE *fp=fopen("LOGS\\mingw_dispatch.txt","a");
 		if(fp){ fprintf(fp,"SERVER_INFO case\n"); fclose(fp); }
@@ -3845,7 +3903,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 
 
-	#ifdef __MINGW32__
+	#if defined(__MINGW32__) && defined(PT_ENABLE_MINGW_PACKET_TRACE)
 	{
 		FILE *fp=fopen("LOGS\\mingw_dispatch.txt","a");
 		if(fp){ fprintf(fp,"SETUSERINFO case\n"); fclose(fp); }
@@ -3881,7 +3939,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 			}
 		}
 
-	#ifdef __MINGW32__
+	#if defined(__MINGW32__) && defined(PT_ENABLE_MINGW_PACKET_TRACE)
 	{
 		FILE *fp=fopen("LOGS\\mingw_dispatch.txt","a");
 		if(fp){ fprintf(fp,"FAILCONNECT case\n"); fclose(fp); }
@@ -3919,7 +3977,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 			if(StageField[lpCurPlayer->OnStageField]->FieldCode == 3)
 			{
 
-				if(lpCurPlayer->smCharInfo.JOB_CODE < 5)
+				if(gameplay::classes::DefaultClassService().IsInBrood(lpCurPlayer->smCharInfo.JOB_CODE, gameplay::classes::brood::Tempskron))
 				{
 					sinSkillMaster(lpTransCommand->WParam);
 				}
@@ -3927,7 +3985,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 			if(StageField[lpCurPlayer->OnStageField]->FieldCode == 21)
 			{
 
-				if(lpCurPlayer->smCharInfo.JOB_CODE >= 5)
+				if(gameplay::classes::DefaultClassService().IsInBrood(lpCurPlayer->smCharInfo.JOB_CODE, gameplay::classes::brood::Morayion))
 				{
 					sinSkillMaster(lpTransCommand->WParam);
 				}
@@ -6376,7 +6434,7 @@ int SendChatMessageToServer(char *szChatMessage)
 						ReformCharForm();
 					}
 
-					if (sinQuest_Level55.State < 2 && sinChar->Level >= 55 && sinChar->JOB_CODE < 5) {
+					if (sinQuest_Level55.State < 2 && sinChar->Level >= 55 && gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron)) {
 						CheckCharForm();
 						sinSkill.SkillPoint += 1;
 						cMessageBox.ShowMessage(MESSAGE_PLUS_SKILL_POINT);
@@ -6391,7 +6449,7 @@ int SendChatMessageToServer(char *szChatMessage)
 						ReformCharForm();
 
 					}
-					if (sinQuest_Level55_2.State < 2 && sinChar->Level >= 55 && sinChar->JOB_CODE > 4) {
+					if (sinQuest_Level55_2.State < 2 && sinChar->Level >= 55 && gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Morayion)) {
 						CheckCharForm();
 						sinSkill.SkillPoint += 1;
 						cMessageBox.ShowMessage(MESSAGE_PLUS_SKILL_POINT);
@@ -7817,7 +7875,7 @@ int RecvPlayData(smTHREADSOCK *pData)
 
 	IPData = (DWORD *)(pData->Buff);
 
-#ifdef __MINGW32__
+#if defined(__MINGW32__) && defined(PT_ENABLE_MINGW_PACKET_TRACE)
 {
     FILE *fp = fopen("LOGS\\mingw_dispatch.txt", "a");
     if(fp)
@@ -9140,11 +9198,11 @@ int SendGetRecordData(char *szName)
 }
 
 char *szCmdOpenMonster[10] = {
-	"È©°íºí¸°",
-	"È©°íºí¸°",
-	"È©°íºí¸°",
-	"Å·È£ÇÇ",
-	"Å¸ÀÌÅº",
+	"È©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+	"È©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+	"È©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+	"Å·È£ï¿½ï¿½",
+	"Å¸ï¿½ï¿½Åº",
 	0,0,0,0,0
 };
 
@@ -10244,7 +10302,7 @@ int Skil_RangeAttack(int x, int y, int z, int range, int power, int TargetState)
 
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - Skil_RangeAttack ");
+	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - Skil_RangeAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -10409,7 +10467,7 @@ int Skil_RangeBoxAttack(smCHAR *lpCurChar, RECT *lpRect, int power, int TargetSt
 
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - Skil_RangeBoxAttack ");
+	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - Skil_RangeBoxAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -10642,7 +10700,7 @@ int QuickSendTransAttack(smCHAR *lpChar, int power, int AttackState, int Resista
 	int pow;
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - QuickSendTransAttack ");
+	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - QuickSendTransAttack ");
 	quit = 1;
 	return TRUE;
 
@@ -12932,7 +12990,7 @@ int	SkillPlay_DivineLightning_Select(smCHAR *lpChar, int SkillPoint)
 	smWINSOCK *lpsmSendSock = 0;
 
 
-	Record_ClinetLogFile("±¸¹öÀü °ø°ÝÆÐÅ¶ - SkillPlay_DivineLightning_Select ");
+	Record_ClinetLogFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ - SkillPlay_DivineLightning_Select ");
 	quit = 1;
 	return TRUE;
 

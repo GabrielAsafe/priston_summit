@@ -17,6 +17,11 @@
 
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "systems/gameplay/character/core/character.h"
+#include "gameplay/classes/v2/services/ClassService.h"
+#include "gameplay/classes/v2/legacy/LegacyClassOnboardingAdapter.h"
+#include "gameplay/classes/v2/legacy/LegacyClassCastleAdapter.h"
+#include "gameplay/commerce/legacy/LegacyClassCommerceAdapter.h"
+#include "gameplay/quests/legacy/LegacyClassQuestAdapter.h"
 #include "core/data/legacy_loader/fileread.h"
 #include "core/gameplay/runtime/playmain.h"
 #include "systems/world/field/field.h"
@@ -3611,7 +3616,8 @@ smCHAR *OpenMonster_QuestArena(rsPLAYINFO *lpPlayInfo, DWORD dwQuestCode, int Pa
 	switch(dwQuestCode)
 	{
 	case SIN_QUEST_CODE_CHANGEJOB4:
-		if(lpPlayInfo->smCharInfo.JOB_CODE <= 4 || lpPlayInfo->smCharInfo.JOB_CODE == 9)
+		if(gameplay::classes::DefaultClassService().IsInBrood(
+			lpPlayInfo->smCharInfo.JOB_CODE, gameplay::classes::brood::Tempskron))
 			dwSndCode = snCHAR_SOUND_NPC_SKILLMASTER;
 		else
 			dwSndCode = snCHAR_SOUND_NPC_MAGICMASTER;
@@ -14148,16 +14154,8 @@ int ManufactureItemInfo(rsPLAYINFO *lpPlayInfo)
 	DWORD	dwItem = 0;
 
 
-	if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
-		dwItem = (sinDA2 | sin52);
-
-	else if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN)
-		dwItem = (sinDA2 | sin51);
-
-	else if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ARCHER || lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ATALANTA)
-		dwItem = (sinDA1 | sin52);
-
-	else dwItem = (sinDA1 | sin51);
+	dwItem = static_cast<DWORD>(
+		gameplay::commerce::legacy::ManufacturePreviewArmorCode(lpPlayInfo->smCharInfo.JOB_CODE));
 
 	DWORD CreateItemCode[176] = { (sinWA1 | sin14), (sinWC1 | sin14), (sinWH1 | sin15), (sinWP1 | sin15), (sinWS1 | sin16), (sinWS2 | sin17), (sinWT1 | sin15), (sinWM1 | sin15),
 									(sinWA1 | sin15), (sinWC1 | sin15), (sinWH1 | sin16), (sinWP1 | sin16), (sinWS1 | sin17), (sinWS2 | sin18), (sinWT1 | sin16), (sinWM1 | sin16),
@@ -18100,13 +18098,10 @@ int rsCheck_ChageJob(rsPLAYINFO *lpPlayInfo, int NewCnageJob)
 	if(lpPlayInfo->smCharInfo.ChangeJob == 1 && NewCnageJob == 2)
 	{
 
-		dwItemCode = sinOR2 | sin03;
-
-		if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN || lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
-			dwItemCode = sinOR2 | sin02;
-
-		if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ATALANTA || lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ARCHER)
-			dwItemCode = sinOR2 | sin04;
+		dwItemCode = static_cast<DWORD>(
+			gameplay::quests::legacy::ChangeJobPromotionTokenCode(lpPlayInfo->smCharInfo.JOB_CODE));
+		if(dwItemCode == 0)
+			return FALSE;
 
 		for(cnt = 0; cnt < INVEN_ITEM_INFO_MAX; cnt++)
 		{
@@ -24975,17 +24970,19 @@ int	rsUseLovelyItem(rsPLAYINFO *lpPlayInfo, DWORD	dwItemCode)
 	smTRANS_COMMAND	smTransCommand;
 
 	JobCode = lpPlayInfo->smCharInfo.JOB_CODE;
+	const bool isFemaleClass = gameplay::classes::DefaultClassService().IsGender(
+		JobCode, gameplay::classes::CharacterGender::Female);
 
 	switch(dwItemCode)
 	{
 	case (sinCH1 | sin01):
 
 #ifdef _LANGUAGE_ENGLISH
-		if(JobCode != JOBCODE_ATALANTA && JobCode != JOBCODE_ARCHER && JobCode != JOBCODE_PRIESTESS)
+		if(!isFemaleClass)
 			return FALSE;
 		Level = 10;
 #else
-		if(JobCode == JOBCODE_ATALANTA || JobCode == JOBCODE_ARCHER || JobCode == JOBCODE_PRIESTESS)
+		if(isFemaleClass)
 			return FALSE;
 		Level = 4;
 #endif
@@ -24994,11 +24991,11 @@ int	rsUseLovelyItem(rsPLAYINFO *lpPlayInfo, DWORD	dwItemCode)
 	case (sinCH1 | sin02):
 
 #ifdef _LANGUAGE_ENGLISH
-		if(JobCode == JOBCODE_ATALANTA || JobCode == JOBCODE_ARCHER || JobCode == JOBCODE_PRIESTESS)
+		if(isFemaleClass)
 			return FALSE;
 		Level = 10;
 #else
-		if(JobCode == JOBCODE_ATALANTA || JobCode == JOBCODE_ARCHER || JobCode == JOBCODE_PRIESTESS)
+		if(isFemaleClass)
 			return FALSE;
 		Level = 7;
 #endif
@@ -25006,13 +25003,13 @@ int	rsUseLovelyItem(rsPLAYINFO *lpPlayInfo, DWORD	dwItemCode)
 		break;
 
 	case (sinCH1 | sin03):
-		if(JobCode != JOBCODE_ATALANTA && JobCode != JOBCODE_ARCHER && JobCode != JOBCODE_PRIESTESS)
+		if(!isFemaleClass)
 			return FALSE;
 		Level = 4;
 		break;
 
 	case (sinCH1 | sin04):
-		if(JobCode != JOBCODE_ATALANTA && JobCode != JOBCODE_ARCHER && JobCode != JOBCODE_PRIESTESS)
+		if(!isFemaleClass)
 			return FALSE;
 		Level = 10;
 		break;
@@ -26647,6 +26644,17 @@ int	rsOpenSiegeCastleItem(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO *lpP
 	if(lpPlayInfo->Position.Area != rsCASTLE_FIELD)
 		return FALSE;
 
+	int castleClassTarget = 0;
+	if(gameplay::classes::legacy::TryBlessCastleClassStoneTarget(
+		static_cast<std::uint32_t>(dwItemCode), castleClassTarget))
+	{
+		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
+		lpPlayInfo->dwSiegeItem_Stone2_Code = castleClassTarget;
+		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
+		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
+		return TRUE;
+	}
+
 	switch(dwItemCode)
 	{
 	case (sinBC1 | sin01):
@@ -26694,62 +26702,6 @@ int	rsOpenSiegeCastleItem(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO *lpP
 		lpPlayInfo->dwSiegeItem_Stone1_Time = dwPlayServTime + 60 * 1000;
 		lpPlayInfo->dwSiegeItem_Stone1_Code = snCHAR_SOUND_CASTLE_CRYSTAL_G;
 		lpPlayInfo->dwSiegeItem_Stone1_Param = 50;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin09):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_FIGHTER;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin10):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_MECHANICIAN;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin11):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_PIKEMAN;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin12):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_ARCHER;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin13):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_KNIGHT;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin14):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_ATALANTA;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin15):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_MAGICIAN;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin16):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_PRIESTESS;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
 		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
 		return TRUE;
 
@@ -26978,8 +26930,10 @@ DWORD rsLowLevelItem(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
 
 	if(abs(lpPlayInfo->smCharInfo.Level - lpChar->smCharInfo.Level) > 8)
 		return NULL;
-	job = lpPlayInfo->smCharInfo.JOB_CODE - 1;
-	if(job < 0 || job >= 8) return NULL;
+	if(!gameplay::classes::legacy::TryLowLevelPresentItemRow(
+		lpPlayInfo->smCharInfo.JOB_CODE, job) ||
+		job < 0 || job >= LEGACY_LOW_LEVEL_PRESENT_ITEM_ROW_COUNT)
+		return NULL;
 
 	if(lpPlayInfo->dwCode_Name & 1)
 		lev = rsPresentItem_LevelType_1[job][lpPlayInfo->sLowLevel_PresentItem[0]][0];
@@ -27077,37 +27031,31 @@ int rsStartUser_PresentItem(rsPLAYINFO *lpPlayInfo)
 	{
 
 	case 1:
-		if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ARCHER)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinWS1 | sin01));
-		else if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ATALANTA)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinWT1 | sin01));
-		else if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinWM1 | sin01));
-		else if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinWM1 | sin01));
-		else
+	{
+		const DWORD starterWeaponCode = (DWORD)gameplay::classes::legacy::StarterPresentWeaponCode(
+			lpPlayInfo->smCharInfo.JOB_CODE, sin01);
+		if(starterWeaponCode != 0)
+			lpDefItem = rsPutItem3(lpPlayInfo, starterWeaponCode);
+		else if(gameplay::classes::DefaultClassService().FindEnabled(lpPlayInfo->smCharInfo.JOB_CODE))
 		{
-
+			// Preserve the historical random melee starter gift.
 			switch(rand() % 3)
 			{
-			case 0:
-				lpDefItem = rsPutItem3(lpPlayInfo, (sinWS2 | sin01));
-				break;
-			case 1:
-				lpDefItem = rsPutItem3(lpPlayInfo, (sinWA1 | sin01));
-				break;
-			case 2:
-				lpDefItem = rsPutItem3(lpPlayInfo, (sinWH1 | sin01));
-				break;
+			case 0: lpDefItem = rsPutItem3(lpPlayInfo, (sinWS2 | sin01)); break;
+			case 1: lpDefItem = rsPutItem3(lpPlayInfo, (sinWA1 | sin01)); break;
+			case 2: lpDefItem = rsPutItem3(lpPlayInfo, (sinWH1 | sin01)); break;
 			}
 		}
 		break;
+	}
 	case 2:
-		if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN || lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinDA2 | sin02));
-		else
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinDA1 | sin02));
+	{
+		const DWORD starterArmorCode = (DWORD)gameplay::classes::legacy::StarterPresentArmorCode(
+			lpPlayInfo->smCharInfo.JOB_CODE, sin02);
+		if(starterArmorCode != 0)
+			lpDefItem = rsPutItem3(lpPlayInfo, starterArmorCode);
 		break;
+	}
 
 	case 3:
 		lpDefItem = rsPutItem3(lpPlayInfo, (sinGP1 | sin01));
@@ -27537,20 +27485,8 @@ DWORD ManufactureCheckRune(rsPLAYINFO *lpPlayInfo, DWORD RecipeCode, DWORD *pRun
 	};
 
 
-	DWORD	dwItem = 0;
-
-
-	if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
-		dwItem = (sinDA2 | sin52);
-
-	else if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN)
-		dwItem = (sinDA2 | sin51);
-
-	else if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ARCHER || lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ATALANTA)
-		dwItem = (sinDA1 | sin52);
-
-	else
-		dwItem = (sinDA1 | sin51);
+	DWORD	dwItem = (DWORD)gameplay::commerce::legacy::ManufacturePreviewArmorCode(
+		lpPlayInfo->smCharInfo.JOB_CODE);
 
 
 

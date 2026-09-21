@@ -1,3 +1,5 @@
+#include <map>
+
 #pragma once
 
 
@@ -13,6 +15,7 @@ public:
 	void Draw();
 	bool MouseAction(int x, int y, int w, int h);
 	void DrawImage(int Mat, int x, int y, int w, int h);
+	int ClassIcon(int jobCode) const;
 	void Button();
 private:
 	void DrawRankingPlayer(char Name[10][32], int Level[10], int Classe[10]);
@@ -22,9 +25,8 @@ private:
 	int DrawRankingSodPlayers(char Name[10][32], int Classe[10], char Clan[10][32], int Points[10]);
 	int rFopen;
 	int img[9];
-	int imgClasse[9];
+	std::map<int, int> classIcons;
 	enum image { BACKGROUND, BTRANKPLAYER, BTRANKPVP, BTRANKSODCLAN, BTRANKSODPLAYER, BTRANKLISTCLAN, BTCLOSE };
-	enum classe { FS = 1, MS, AS, PIKE, ATS, KS, MGS, PRS};
 };
 
 

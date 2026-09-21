@@ -1,3 +1,4 @@
+#include <cstdio>
 #include "opcodes.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/presentation/opening/legacy_runtime/HoLinkHeader.h"
@@ -14,6 +15,7 @@
 #include "compat/legacy/text/jts.h"
 
 #include "systems/configuration/client/Settings.h"
+#include "authentication/character_selection/ClassSelectionAdapter.h"
 
 int  CharacterPosX = 0;
 int  CharacterPosZ = 0;
@@ -23,8 +25,8 @@ int  MouseDblClick;
 char SelectCharacterName1[3][500];
 char SelectCharacterName2[3][500];
 
-char JobSelectCharacterName1[4][500];
-char JobSelectCharacterName2[4][500];
+char JobSelectCharacterName1[CHARACTER_SELECTION_SLOT_CAPACITY][500];
+char JobSelectCharacterName2[CHARACTER_SELECTION_SLOT_CAPACITY][500];
 
 
 static int UserCharacterPos[CHARACTER_USER_MAX][2] =
@@ -36,231 +38,52 @@ static int UserCharacterPos[CHARACTER_USER_MAX][2] =
 	{ 70 ,-60 }
 };
 
-static int JobCharacterPos[5][2] = {
-	{ -75, -320 },
-	{ -25, -330 },
-	{ 25, -330 },
-	{ 75, -320 }
-};
 
 static int CharacterInfoPosi[5] = { 362, 243, 488, 154, 588 };
 
-
-static char *szTempFighterBodyName[] = {
-	"char//tmABCD//b001.ini",
-	"char//tmABCD//b002.ini",
-	"char//tmABCD//b003.ini",
-	"char//tmABCD//b004.ini",
-	"char//tmABCD//b005.ini",
-	"char//tmABCD//b006.ini",
-	"char//tmABCD//b007.ini"
-};
-static char *szTempMechBodyName[] = {
-	"char//tmABCD//a001.ini",
-	"char//tmABCD//a002.ini",
-	"char//tmABCD//a003.ini",
-	"char//tmABCD//a004.ini",
-	"char//tmABCD//a005.ini",
-	"char//tmABCD//a006.ini",
-	"char//tmABCD//a007.ini"
-};
-static char *szTempArcherBodyName[] = {
-	"char//tmABCD//d001.ini",
-	"char//tmABCD//d002.ini",
-	"char//tmABCD//d003.ini",
-	"char//tmABCD//d004.ini",
-	"char//tmABCD//d005.ini",
-	"char//tmABCD//d006.ini",
-	"char//tmABCD//d007.ini"
-};
-static char *szTempPikeBodyName[] = {
-	"char//tmABCD//c001.ini",
-	"char//tmABCD//c002.ini",
-	"char//tmABCD//c003.ini",
-	"char//tmABCD//c004.ini",
-	"char//tmABCD//c005.ini",
-	"char//tmABCD//c006.ini",
-	"char//tmABCD//c007.ini"
-};
-
-
-char *szTempFighterFaceName[2][3] = {
-	{
-		"char//tmABCD//tmh-b01.inf",
-		"char//tmABCD//tmh-b02.inf",
-		"char//tmABCD//tmh-b03.inf"
-	},
-	{
-		"char//tmABCD//tmh-b01a.inf",
-		"char//tmABCD//tmh-b02a.inf",
-		"char//tmABCD//tmh-b03a.inf"
-	}
-};
-
-char *szTempMechFaceName[2][3] = {
-	{
-		"char//tmABCD//tmh-a01.inf",
-		"char//tmABCD//tmh-a02.inf",
-		"char//tmABCD//tmh-a03.inf"
-	},
-	{
-		"char//tmABCD//tmh-a01a.inf",
-		"char//tmABCD//tmh-a02a.inf",
-		"char//tmABCD//tmh-a03a.inf"
-	}
-};
-
-char *szTempArcherFaceName[2][3] = {
-	{ "char//tmABCD//tfh-D01.inf",
-	"char//tmABCD//tfh-d02.inf",
-	"char//tmABCD//tfh-d03.inf"
-	},
-	{
-		"char//tmABCD//tfh-D01a.inf",
-		"char//tmABCD//tfh-d02a.inf",
-		"char//tmABCD//tfh-d03a.inf"
-	}
-};
-
-char *szTempPikeFaceName[2][3] = {
-	{
-		"char//tmABCD//tmh-c01.inf",
-		"char//tmABCD//tmh-c02.inf",
-		"char//tmABCD//tmh-c03.inf"
-	},
-	{
-		"char//tmABCD//tmh-c01a.inf",
-		"char//tmABCD//tmh-c02a.inf",
-		"char//tmABCD//tmh-c03a.inf"
-	}
-};
-
-
-static char *szMorKnightBodyName[] = {
-	"char//tmABCD//ma001.ini",
-	"char//tmABCD//ma002.ini",
-	"char//tmABCD//ma003.ini",
-	"char//tmABCD//ma004.ini",
-	"char//tmABCD//ma005.ini",
-	"char//tmABCD//ma006.ini",
-	"char//tmABCD//ma007.ini"
-};
-
-static char *szMorAtalantaBodyName[] = {
-	"char//tmABCD//mb001.ini",
-	"char//tmABCD//mb002.ini",
-	"char//tmABCD//mb003.ini",
-	"char//tmABCD//mb004.ini",
-	"char//tmABCD//mb005.ini",
-	"char//tmABCD//mb006.ini",
-	"char//tmABCD//mb007.ini"
-};
-
-static char *szMorPriestessBodyName[] = {
-	"char//tmABCD//mc001.ini",
-	"char//tmABCD//mc002.ini",
-	"char//tmABCD//mc003.ini",
-	"char//tmABCD//mc004.ini",
-	"char//tmABCD//mc005.ini",
-	"char//tmABCD//mc006.ini",
-	"char//tmABCD//mc007.ini"
-};
-
-static char *szMorMagicianBodyName[] = {
-	"char//tmABCD//md001.ini",
-	"char//tmABCD//md002.ini",
-	"char//tmABCD//md003.ini",
-	"char//tmABCD//md004.ini",
-	"char//tmABCD//md005.ini",
-	"char//tmABCD//md006.ini",
-	"char//tmABCD//md007.ini"
-};
-
-
-char *szMorKnightFaceName[2][3] = {
-	{
-		"char//tmABCD//Mmh-A01.inf",
-		"char//tmABCD//Mmh-A02.inf",
-		"char//tmABCD//Mmh-A03.inf"
-	},
-	{
-
-		"char//tmABCD//Mmh-A01.inf",
-		"char//tmABCD//Mmh-A02.inf",
-		"char//tmABCD//Mmh-A03.inf"
-	}
-};
-
-char *szMorAtalantaFaceName[2][3] = {
-	{
-		"char//tmABCD//Mfh-B01.inf",
-		"char//tmABCD//Mfh-B02.inf",
-		"char//tmABCD//Mfh-B03.inf"
-	},
-	{
-		"char//tmABCD//Mfh-B01.inf",
-		"char//tmABCD//Mfh-B02.inf",
-		"char//tmABCD//Mfh-B03.inf"
-	}
-};
-
-
-char *szMorPriestessFaceName[2][3] = {
-	{
-		"char//tmABCD//Mfh-C01.inf",
-		"char//tmABCD//Mfh-C02.inf",
-		"char//tmABCD//Mfh-C03.inf"
-	},
-	{
-		"char//tmABCD//Mfh-C01.inf",
-		"char//tmABCD//Mfh-C02.inf",
-		"char//tmABCD//Mfh-C03.inf"
-	}
-};
-
-char *szMorMagicianFaceName[2][3] = {
-	{
-		"char//tmABCD//Mmh-D01.inf",
-		"char//tmABCD//Mmh-D02.inf",
-		"char//tmABCD//Mmh-D03.inf"
-	},
-	{
-		"char//tmABCD//Mmh-D01.inf",
-		"char//tmABCD//Mmh-D02.inf",
-		"char//tmABCD//Mmh-D03.inf"
-	}
-};
-
-
-
-int TempNewCharacterInit[4][6] =
+static int LoadClassSelectionTexture(const char *root, const std::string& relativePath)
 {
+	if(!root || relativePath.empty()) return -1;
+	char path[512];
+	std::snprintf(path, sizeof(path), "%s%s", root, relativePath.c_str());
+	return CreateTextureMaterial(path, 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+}
 
-	{ 2,  24,  8,  25,  18,  24 },
-	{ 1,  28,  6,  21,  17,  27 },
-	{ 4,  26,  9,  20,  19,  25 },
-	{ 3,  17,  11,  21,  27,  23 }
-};
-
-int MorNewCharacterInit[4][6] =
+static void LoadClassSelectionAssets(const char *faceRoot,
+                                     const char *classRoot,
+                                     int legacyTribe,
+                                     int jobImages[CHARACTER_SELECTION_SLOT_CAPACITY][2],
+                                     int jobTextImages[CHARACTER_SELECTION_SLOT_CAPACITY],
+                                     int faceImages[CHARACTER_SELECTION_SLOT_CAPACITY][CHARACTER_FACE_SLOT_CAPACITY][2])
 {
+	for(int classIndex = 0; classIndex < CHARACTER_SELECTION_SLOT_CAPACITY; ++classIndex)
+	{
+		jobImages[classIndex][0] = -1;
+		jobImages[classIndex][1] = -1;
+		jobTextImages[classIndex] = -1;
+		for(int faceIndex = 0; faceIndex < CHARACTER_FACE_SLOT_CAPACITY; ++faceIndex)
+		{
+			faceImages[classIndex][faceIndex][0] = -1;
+			faceImages[classIndex][faceIndex][1] = -1;
+		}
+	}
 
-	{ 6,  26,  13,  17,  19,  24 },
-	{ 5,  23,  15,  19,  19,  23 },
-	{ 8,  15,  28,  21,  15,  20 },
-	{ 7,  16,  29,  19,  14,  21 }
-};
+	const std::vector<const gameplay::classes::PlayableClassDefinition*> classes =
+		authentication::character_selection::DefaultClassSelectionAdapter().Classes(legacyTribe);
+	for(std::size_t classIndex = 0; classIndex < classes.size() && classIndex < static_cast<std::size_t>(CHARACTER_SELECTION_SLOT_CAPACITY); ++classIndex)
+	{
+		const gameplay::classes::PlayableClassDefinition& definition = *classes[classIndex];
+		jobImages[classIndex][0] = LoadClassSelectionTexture(classRoot, definition.creation.presentation.labelNormal);
+		jobImages[classIndex][1] = LoadClassSelectionTexture(classRoot, definition.creation.presentation.labelSelected);
+		jobTextImages[classIndex] = LoadClassSelectionTexture(classRoot, definition.creation.presentation.description);
+		for(std::size_t faceIndex = 0; faceIndex < definition.creation.faces.size() && faceIndex < static_cast<std::size_t>(CHARACTER_FACE_SLOT_CAPACITY); ++faceIndex)
+		{
+			faceImages[classIndex][faceIndex][0] = LoadClassSelectionTexture(faceRoot, definition.creation.faces[faceIndex].previewNormal);
+			faceImages[classIndex][faceIndex][1] = LoadClassSelectionTexture(faceRoot, definition.creation.faces[faceIndex].previewSelected);
+		}
+	}
+}
 
-static int TempFaceCount[CHARACTER_JOB_MAX] =
-{ 3, 3, 3, 3 };
-
-static int TempFacePos[4][4] =
-{
-	{ 400 - 64 - 128, 400 - 64, 400 - 64 + 128,   -1 },
-	{ 400 - 64 - 128, 400 - 64, 400 - 64 + 128,   -1 },
-	{ 400 - 64 - 128, 400 - 64, 400 - 64 + 128, -1 },
-	{ 400 - 64 - 128, 400 - 64, 400 - 64 + 128, -1 }
-};
 
 HoNewCharInfo	NewCharInfo;
 
@@ -596,76 +419,6 @@ int HoLogin::Load()
 
 	FaceSelectImage = LoadDibSurfaceOffscreen("StartImage//login//CharSelect//SelectFace.bmp"); //aqui
 
-	TempFaceImage[0][0][0] = CreateTextureMaterial("StartImage//login//TmA01-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[0][0][1] = CreateTextureMaterial("StartImage//login//TmA01-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[0][1][0] = CreateTextureMaterial("StartImage//login//TmA02-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[0][1][1] = CreateTextureMaterial("StartImage//login//TmA02-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[0][2][0] = CreateTextureMaterial("StartImage//login//TmA03-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[0][2][1] = CreateTextureMaterial("StartImage//login//TmA03-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	TempFaceImage[1][0][0] = CreateTextureMaterial("StartImage//login//TmB01-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[1][0][1] = CreateTextureMaterial("StartImage//login//TmB01-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[1][1][0] = CreateTextureMaterial("StartImage//login//TmB02-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[1][1][1] = CreateTextureMaterial("StartImage//login//TmB02-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[1][2][0] = CreateTextureMaterial("StartImage//login//TmB03-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[1][2][1] = CreateTextureMaterial("StartImage//login//TmB03-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	TempFaceImage[2][0][0] = CreateTextureMaterial("StartImage//login//TmC01-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[2][0][1] = CreateTextureMaterial("StartImage//login//TmC01-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[2][1][0] = CreateTextureMaterial("StartImage//login//TmC02-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[2][1][1] = CreateTextureMaterial("StartImage//login//TmC02-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[2][2][0] = CreateTextureMaterial("StartImage//login//TmC03-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[2][2][1] = CreateTextureMaterial("StartImage//login//TmC03-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	TempFaceImage[3][0][0] = CreateTextureMaterial("StartImage//login//TfD01-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[3][0][1] = CreateTextureMaterial("StartImage//login//TfD01-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[3][1][0] = CreateTextureMaterial("StartImage//login//TfD02-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[3][1][1] = CreateTextureMaterial("StartImage//login//TfD02-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[3][2][0] = CreateTextureMaterial("StartImage//login//TfD03-01.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[3][2][1] = CreateTextureMaterial("StartImage//login//TfD03-02.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	TempFaceImage[4][0][0] = CreateTextureMaterial("StartImage//login//TfE01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[4][0][1] = CreateTextureMaterial("StartImage//login//TfE01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[4][1][0] = CreateTextureMaterial("StartImage//login//TfE02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[4][1][1] = CreateTextureMaterial("StartImage//login//TfE02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[4][2][0] = CreateTextureMaterial("StartImage//login//TfE03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempFaceImage[4][2][1] = CreateTextureMaterial("StartImage//login//TfE03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	MorFaceImage[0][0][0] = CreateTextureMaterial("StartImage//login//Moryon//MmA01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[0][0][1] = CreateTextureMaterial("StartImage//login//Moryon//MmA01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[0][1][0] = CreateTextureMaterial("StartImage//login//Moryon//MmA02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[0][1][1] = CreateTextureMaterial("StartImage//login//Moryon//MmA02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[0][2][0] = CreateTextureMaterial("StartImage//login//Moryon//MmA03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[0][2][1] = CreateTextureMaterial("StartImage//login//Moryon//MmA03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	MorFaceImage[1][0][0] = CreateTextureMaterial("StartImage//login//Moryon//MfB02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[1][0][1] = CreateTextureMaterial("StartImage//login//Moryon//MfB02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[1][1][0] = CreateTextureMaterial("StartImage//login//Moryon//MfB01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[1][1][1] = CreateTextureMaterial("StartImage//login//Moryon//MfB01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[1][2][0] = CreateTextureMaterial("StartImage//login//Moryon//MfB03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[1][2][1] = CreateTextureMaterial("StartImage//login//Moryon//MfB03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	MorFaceImage[2][0][0] = CreateTextureMaterial("StartImage//login//Moryon//MfC01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[2][0][1] = CreateTextureMaterial("StartImage//login//Moryon//MfC01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[2][1][0] = CreateTextureMaterial("StartImage//login//Moryon//MfC02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[2][1][1] = CreateTextureMaterial("StartImage//login//Moryon//MfC02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[2][2][0] = CreateTextureMaterial("StartImage//login//Moryon//MfC03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[2][2][1] = CreateTextureMaterial("StartImage//login//Moryon//MfC03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	MorFaceImage[3][0][0] = CreateTextureMaterial("StartImage//login//Moryon//MmD01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[3][0][1] = CreateTextureMaterial("StartImage//login//Moryon//MmD01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[3][1][0] = CreateTextureMaterial("StartImage//login//Moryon//MmD02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[3][1][1] = CreateTextureMaterial("StartImage//login//Moryon//MmD02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[3][2][0] = CreateTextureMaterial("StartImage//login//Moryon//MmD03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[3][2][1] = CreateTextureMaterial("StartImage//login//Moryon//MmD03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	MorFaceImage[4][0][0] = CreateTextureMaterial("StartImage//login//Moryon//MmE01-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[4][0][1] = CreateTextureMaterial("StartImage//login//Moryon//MmE01-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[4][1][0] = CreateTextureMaterial("StartImage//login//Moryon//MmE02-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[4][1][1] = CreateTextureMaterial("StartImage//login//Moryon//MmE02-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[4][2][0] = CreateTextureMaterial("StartImage//login//Moryon//MmE03-a.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MorFaceImage[4][2][1] = CreateTextureMaterial("StartImage//login//Moryon//MmE03-b.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
 	MatEachBox = -1;
 
 	BlackBoxImage = CreateTextureMaterial("StartImage//login//BlackBox.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
@@ -699,42 +452,10 @@ int HoLogin::Load()
 	JobTextBoxImage[0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-box1.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 	JobTextBoxImage[1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-box2.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
-	TempscronJobImage[0][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-meca_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[1][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-ft_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[2][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-pkm_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[3][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-ac_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[4][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-assa_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	TempscronJobImage[0][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-meca.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[1][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-ft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[2][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-pkm.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[3][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-ac.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobImage[4][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-assa.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	MoryonJobImage[0][0] = CreateTextureMaterial("StartImage//login//CharSelect//T-cls-knt_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[1][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-atlt_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[2][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-prts_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[3][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-mgc_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[4][0] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-sha_.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	MoryonJobImage[0][1] = CreateTextureMaterial("StartImage//login//CharSelect//T-cls-knt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[1][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-atlt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[2][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-prts.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[3][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-mgc.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobImage[4][1] = CreateTextureMaterial("StartImage//login//CharSelect//T_cls-sha.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	TempscronJobTextImage[0] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-meca.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobTextImage[1] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-ft.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobTextImage[2] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-pkm.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobTextImage[3] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-ac.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	TempscronJobTextImage[4] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-assa.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
-	MoryonJobTextImage[0] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-knt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobTextImage[1] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-atlt.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobTextImage[2] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-prts.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobTextImage[3] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-mgc.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	MoryonJobTextImage[4] = CreateTextureMaterial("StartImage//login//CharSelect//T_chr-sha.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-
+	LoadClassSelectionAssets("StartImage//login//", "StartImage//login//CharSelect//",
+	                         TRIBE_Tempscron, TempscronJobImage, TempscronJobTextImage, TempFaceImage);
+	LoadClassSelectionAssets("StartImage//login//", "StartImage//login//CharSelect//",
+	                         TRIBE_Moryon, MoryonJobImage, MoryonJobTextImage, MorFaceImage);
 	FaceBoxBigImage[0] = CreateTextureMaterial("StartImage//login//CharSelect//face_bigbox1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	FaceBoxBigImage[1] = CreateTextureMaterial("StartImage//login//CharSelect//face_bigbox2.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
@@ -855,6 +576,53 @@ static void MINGW_JobLoadTraceV1(
 }
 #endif
 
+int HoLogin::LoadSelectableJobCharacters()
+{
+	for(int index = 0; index < JobCharacterCount && index < CHARACTER_SELECTION_SLOT_CAPACITY; ++index)
+		JobCharacter[index].Close();
+
+	JobCharacterCount = 0;
+	const std::vector<const gameplay::classes::PlayableClassDefinition*> classes =
+		authentication::character_selection::DefaultClassSelectionAdapter().Classes(tribeNum);
+	for(std::size_t index = 0; index < classes.size() && index < static_cast<std::size_t>(CHARACTER_SELECTION_SLOT_CAPACITY); ++index)
+	{
+		const gameplay::classes::PlayableClassDefinition* definition = classes[index];
+		if(!definition || definition->creation.bodyModels.empty() || definition->creation.faces.empty())
+			continue;
+		JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = definition->legacyJobCode;
+		AddJobCharacter(const_cast<char*>(definition->creation.bodyModels[0].c_str()),
+		                const_cast<char*>(definition->creation.faces[0].model.c_str()));
+	}
+	return JobCharacterCount;
+}
+
+int HoLogin::ApplySelectedClassFace(int faceIndex)
+{
+	gameplay::classes::CharacterCreationTemplate creation;
+	if(!authentication::character_selection::DefaultClassSelectionAdapter().BuildCreation(
+		tribeNum, JobBodySelectNum, 0u, static_cast<std::size_t>(faceIndex), false, creation))
+		return FALSE;
+	return SetChangeJobFace(const_cast<char*>(creation.bodyModel.c_str()),
+	                        const_cast<char*>(creation.faceModel.c_str()),
+	                        JobBodySelectNum);
+}
+
+int HoLogin::GetCurrentFaceCount() const
+{
+	return authentication::character_selection::DefaultClassSelectionAdapter().FaceCount(tribeNum, JobBodySelectNum);
+}
+
+int HoLogin::GetCurrentFacePositionX(int faceIndex) const
+{
+	return authentication::character_selection::ClassSelectionAdapter::FacePositionX(faceIndex, GetCurrentFaceCount());
+}
+
+void HoLogin::GetJobCharacterWorldPosition(int index, int &x, int &z) const
+{
+	const int count = static_cast<int>(authentication::character_selection::DefaultClassSelectionAdapter().Classes(tribeNum).size());
+	authentication::character_selection::ClassSelectionAdapter::ClassWorldPosition(index, count, x, z);
+}
+
 int HoLogin::AddJobCharacter(char *chrFile1, char *chrFile2, int index)
 {
 	if (index == -1)
@@ -895,9 +663,12 @@ int HoLogin::AddJobCharacter(char *chrFile1, char *chrFile2, int index)
 		);
 #endif
 
-		JobCharacter[JobCharacterCount].SetPosi(JobCharacterPos[JobCharacterCount][0] * fONE,
-			Stage->GetHeight(JobCharacterPos[JobCharacterCount][0] * fONE, JobCharacterPos[JobCharacterCount][1] * fONE),
-			JobCharacterPos[JobCharacterCount][1] * fONE, 0, ANGLE_180, 0);
+		int classPosX = 0;
+		int classPosZ = 0;
+		GetJobCharacterWorldPosition(JobCharacterCount, classPosX, classPosZ);
+		JobCharacter[JobCharacterCount].SetPosi(classPosX * fONE,
+			Stage->GetHeight(classPosX * fONE, classPosZ * fONE),
+			classPosZ * fONE, 0, ANGLE_180, 0);
 		JobCharacter[JobCharacterCount].ActionPattern = 0;
 		memset(JobCharacter[JobCharacterCount].szChatMessage, 0, sizeof(JobCharacter[JobCharacterCount].szChatMessage));
 		memset(JobCharacter[JobCharacterCount].smCharInfo.szName, 0, sizeof(JobCharacter[JobCharacterCount].smCharInfo.szName));
@@ -929,7 +700,7 @@ int HoLogin::AddJobCharacter(char *chrFile1, char *chrFile2, int index)
 	}
 	else
 	{
-		if (index >= 0 && index < CHARACTER_JOB_MAX)
+		if (index >= 0 && index < CHARACTER_SELECTION_SLOT_CAPACITY)
 		{
 			JobCharacter[index].Init();
 			JobCharacter[index].lpStage = Stage;
@@ -965,9 +736,12 @@ int HoLogin::AddJobCharacter(char *chrFile1, char *chrFile2, int index)
 				0
 			);
 #endif
-			JobCharacter[index].SetPosi(JobCharacterPos[index][0] * fONE,
-				Stage->GetHeight(JobCharacterPos[index][0] * fONE, JobCharacterPos[index][1] * fONE)
-				, JobCharacterPos[index][1] * fONE, 0, ANGLE_180, 0);
+			int classPosX = 0;
+			int classPosZ = 0;
+			GetJobCharacterWorldPosition(index, classPosX, classPosZ);
+			JobCharacter[index].SetPosi(classPosX * fONE,
+				Stage->GetHeight(classPosX * fONE, classPosZ * fONE),
+				classPosZ * fONE, 0, ANGLE_180, 0);
 			JobCharacter[index].ActionPattern = 0;
 			memset(JobCharacter[index].szChatMessage, 0, sizeof(JobCharacter[JobCharacterCount].szChatMessage));
 			memset(JobCharacter[index].smCharInfo.szName, 0, sizeof(JobCharacter[JobCharacterCount].smCharInfo.szName));
@@ -1430,77 +1204,23 @@ int HoLogin::Main()
 			memset(CharacterName2, 0, sizeof(CharacterName2));
 
 
-			switch (tribeNum)
-			{
-			case TRIBE_Tempscron:
-
-				if (JobBodySelectNum == 0)
+			gameplay::classes::CharacterCreationTemplate creation;
+				if(JobFaceSelectNum < 0 ||
+				   !authentication::character_selection::DefaultClassSelectionAdapter().BuildCreation(
+				       tribeNum, JobBodySelectNum, 0u, static_cast<std::size_t>(JobFaceSelectNum), false, creation))
 				{
-					memcpy(CharacterName1, szTempMechBodyName[0], sizeof(CharacterName1));
-					memcpy(CharacterName2, szTempMechFaceName[0][JobFaceSelectNum], sizeof(CharacterName2));
-				}
-				else if (JobBodySelectNum == 1)
-				{
-					memcpy(CharacterName1, szTempFighterBodyName[0], sizeof(CharacterName1));
-					memcpy(CharacterName2, szTempFighterFaceName[0][JobFaceSelectNum], sizeof(CharacterName2));
-				}
-				else if (JobBodySelectNum == 2)
-				{
-					memcpy(CharacterName1, szTempPikeBodyName[0], sizeof(CharacterName1));
-					memcpy(CharacterName2, szTempPikeFaceName[0][JobFaceSelectNum], sizeof(CharacterName2));
-				}
-				else if (JobBodySelectNum == 3)
-				{
-					memcpy(CharacterName1, szTempArcherBodyName[0], sizeof(CharacterName1));
-					memcpy(CharacterName2, szTempArcherFaceName[0][JobFaceSelectNum], sizeof(CharacterName2));
-				}
-				/*else if(JobBodySelectNum == 4)
-				{
-				memcpy(CharacterName1, szTempAssassineBodyName[0], sizeof(CharacterName1));
-				memcpy(CharacterName2, szTempAssassineFaceName[0][JobFaceSelectNum], sizeof(CharacterName2));
-				}*/
-				NewCharInfo.JobCode = TempNewCharacterInit[JobBodySelectNum][0];
-				NewCharInfo.Strength = TempNewCharacterInit[JobBodySelectNum][1];
-				NewCharInfo.Spirit = TempNewCharacterInit[JobBodySelectNum][2];
-				NewCharInfo.Talent = TempNewCharacterInit[JobBodySelectNum][3];
-				NewCharInfo.Dexterity = TempNewCharacterInit[JobBodySelectNum][4];
-				NewCharInfo.Health = TempNewCharacterInit[JobBodySelectNum][5];
-
-				break;
-
-			case TRIBE_Moryon:
-
-
-				if (JobBodySelectNum == 0)
-				{
-					memcpy(CharacterName1, szMorKnightBodyName[0], sizeof(CharacterName1));
-					memcpy(CharacterName2, szMorKnightFaceName[0][JobFaceSelectNum], sizeof(CharacterName2));
-				}
-				else if (JobBodySelectNum == 1)
-				{
-					memcpy(CharacterName1, szMorAtalantaBodyName[0], sizeof(CharacterName1));
-					memcpy(CharacterName2, szMorAtalantaFaceName[0][JobFaceSelectNum], sizeof(CharacterName2));
-				}
-				else if (JobBodySelectNum == 2)
-				{
-					memcpy(CharacterName1, szMorPriestessBodyName[0], sizeof(CharacterName1));
-					memcpy(CharacterName2, szMorPriestessFaceName[0][JobFaceSelectNum], sizeof(CharacterName2));
-				}
-				else if (JobBodySelectNum == 3)
-				{
-					memcpy(CharacterName1, szMorMagicianBodyName[0], sizeof(CharacterName1));
-					memcpy(CharacterName2, szMorMagicianFaceName[0][JobFaceSelectNum], sizeof(CharacterName2));
+					ErrorSelect = ERROR_SELECT_JOB;
+					return FALSE;
 				}
 
-				NewCharInfo.JobCode = MorNewCharacterInit[JobBodySelectNum][0];
-				NewCharInfo.Strength = MorNewCharacterInit[JobBodySelectNum][1];
-				NewCharInfo.Spirit = MorNewCharacterInit[JobBodySelectNum][2];
-				NewCharInfo.Talent = MorNewCharacterInit[JobBodySelectNum][3];
-				NewCharInfo.Dexterity = MorNewCharacterInit[JobBodySelectNum][4];
-				NewCharInfo.Health = MorNewCharacterInit[JobBodySelectNum][5];
-
-				break;
-			}
+				strcpy_s(CharacterName1, creation.bodyModel.c_str());
+				strcpy_s(CharacterName2, creation.faceModel.c_str());
+				NewCharInfo.JobCode = creation.legacyJobCode;
+				NewCharInfo.Strength = creation.attributes.strength;
+				NewCharInfo.Spirit = creation.attributes.spirit;
+				NewCharInfo.Talent = creation.attributes.talent;
+				NewCharInfo.Dexterity = creation.attributes.dexterity;
+				NewCharInfo.Health = creation.attributes.health;
 			return 3;
 			break;
 		}
@@ -1540,9 +1260,12 @@ int HoLogin::Main()
 				CharacterReturnFlag = FALSE;
 				for (int index = 0; index < JobCharacterCount; index++)
 				{
-					JobCharacter[index].SetPosi(JobCharacterPos[index][0] * fONE,
-						Stage->GetHeight(JobCharacterPos[index][0] * fONE, JobCharacterPos[index][1] * fONE)
-						, JobCharacterPos[index][1] * fONE, 0, ANGLE_180, 0);
+					int classPosX = 0;
+			int classPosZ = 0;
+			GetJobCharacterWorldPosition(index, classPosX, classPosZ);
+			JobCharacter[index].SetPosi(classPosX * fONE,
+				Stage->GetHeight(classPosX * fONE, classPosZ * fONE),
+				classPosZ * fONE, 0, ANGLE_180, 0);
 					JobCharacter[index].ChangeMotion(10);
 				}
 			}
@@ -2390,21 +2113,31 @@ int HoLogin::DrawCharacterInfo()
 	SetFontTextColor(RGB(255, 250, 235));
 	dsTextLineOut(textX + 2, textY + 16, DownUserCharacterInfo[MouseMoveCharacterNum].Name, strlen(DownUserCharacterInfo[MouseMoveCharacterNum].Name));
 
-	int jobCode = DownUserCharacterInfo[MouseMoveCharacterNum].Job;
-
-	jobCode = jobCode & 0xFFFF;
+	const int jobCode = DownUserCharacterInfo[MouseMoveCharacterNum].Job & 0xFFFF;
 	memset(buffer, 0, sizeof(buffer));
-	if (jobCode <= 4 || jobCode == 9)
+	const gameplay::classes::ClassService &classService = gameplay::classes::DefaultClassService();
+	if (classService.IsInBrood(jobCode, gameplay::classes::brood::Tempskron))
 		wsprintf(buffer, "%s", HoTextTempskron);
-	else if (jobCode <= 8 || jobCode == 10)
+	else if (classService.IsInBrood(jobCode, gameplay::classes::brood::Morayion))
 		wsprintf(buffer, "%s", HoTextMoryon);
 
 	dsTextLineOut(textX + 2, textY + 56, buffer, strlen(buffer));
 
-	szJobName = ((JOB_DATA_CODE *)GetJobDataCode(DownUserCharacterInfo[MouseMoveCharacterNum].Job, 0))->szName2;
+	JOB_DATA_CODE *jobData = GetJobDataCode(DownUserCharacterInfo[MouseMoveCharacterNum].Job, 0);
+	if(jobData)
+		szJobName = jobData->szName2;
+	else
+	{
+		const gameplay::classes::PlayableClassDefinition *definition = classService.FindEnabled(jobCode);
+		if(definition)
+			szJobName = const_cast<char *>(definition->displayKey.c_str());
+	}
 	memset(buffer, 0, sizeof(buffer));
-	wsprintf(buffer, "%s", szJobName);
-	dsTextLineOut(textX + 2, textY + 76, buffer, strlen(buffer));
+	if(szJobName)
+	{
+		wsprintf(buffer, "%s", szJobName);
+		dsTextLineOut(textX + 2, textY + 76, buffer, strlen(buffer));
+	}
 
 
 	if (DownUserCharacterInfo[MouseMoveCharacterNum].ClanFlag)
@@ -3192,32 +2925,8 @@ int HoLogin::Draw()
 					tribeNum = TRIBE_Tempscron;
 
 
-					JobCharacter[0].Close();
-					JobCharacter[1].Close();
-					JobCharacter[2].Close();
-					JobCharacter[3].Close();
+					LoadSelectableJobCharacters();
 
-					PlayWav2(9 - 1);
-					SelectNextState = JOB_SELECT_STATE;
-					RaceMarkScaleSize = 128;
-
-
-					JobCharacterCount = 0;
-
-					JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_MECHANICIAN;
-					AddJobCharacter(szTempMechBodyName[0], szTempMechFaceName[0][0]);
-
-					JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_FIGHTER;
-					AddJobCharacter(szTempFighterBodyName[0], szTempFighterFaceName[0][0]);
-
-					JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_PIKEMAN;
-					AddJobCharacter(szTempPikeBodyName[0], szTempPikeFaceName[0][0]);
-
-					JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_ARCHER;
-					AddJobCharacter(szTempArcherBodyName[0], szTempArcherFaceName[0][0]);
-					/*
-					JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_ASSASSINE;
-					AddJobCharacter(szTempAssassineBodyName[0], szTempAssassineFaceName[0][0]);*/
 					ReadTextures();
 
 				}
@@ -3247,30 +2956,7 @@ int HoLogin::Draw()
 					tribeNum = TRIBE_Moryon;
 
 
-					JobCharacter[0].Close();
-					JobCharacter[1].Close();
-					JobCharacter[2].Close();
-					JobCharacter[3].Close();
-
-					PlayWav2(9 - 1);
-					SelectNextState = JOB_SELECT_STATE;
-					RaceMarkScaleSize = 128;
-
-
-					JobCharacterCount = 0;
-
-
-					JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_KNIGHT;
-					AddJobCharacter(szMorKnightBodyName[0], szMorKnightFaceName[0][0]);
-
-					JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_ATALANTA;
-					AddJobCharacter(szMorAtalantaBodyName[0], szMorAtalantaFaceName[0][0]);
-
-					JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_PRIESTESS;
-					AddJobCharacter(szMorPriestessBodyName[0], szMorPriestessFaceName[0][0]);
-
-					JobCharacter[JobCharacterCount].smCharInfo.JOB_CODE = JOBCODE_MAGICIAN;
-					AddJobCharacter(szMorMagicianBodyName[0], szMorMagicianFaceName[0][0]);
+					LoadSelectableJobCharacters();
 
 					ReadTextures();
 				}
@@ -3388,30 +3074,7 @@ int HoLogin::Draw()
 			if (FaceSelectFirstFlag == FALSE && JobFaceSelectNum != -1)
 			{
 				FaceSelectFirstFlag = TRUE;
-				switch (tribeNum)
-				{
-				case TRIBE_Tempscron:
-					if (JobBodySelectNum == 0)
-						SetChangeJobFace(szTempMechBodyName[0], szTempMechFaceName[0][JobFaceSelectNum], JobBodySelectNum);
-					else if (JobBodySelectNum == 1)
-						SetChangeJobFace(szTempFighterBodyName[0], szTempFighterFaceName[0][JobFaceSelectNum], JobBodySelectNum);
-					else if (JobBodySelectNum == 2)
-						SetChangeJobFace(szTempPikeBodyName[0], szTempPikeFaceName[0][JobFaceSelectNum], JobBodySelectNum);
-					else if (JobBodySelectNum == 3)
-						SetChangeJobFace(szTempArcherBodyName[0], szTempArcherFaceName[0][JobFaceSelectNum], JobBodySelectNum);
-					break;
-
-				case TRIBE_Moryon:
-					if (JobBodySelectNum == 0)
-						SetChangeJobFace(szMorKnightBodyName[0], szMorKnightFaceName[0][JobFaceSelectNum], JobBodySelectNum);
-					else if (JobBodySelectNum == 1)
-						SetChangeJobFace(szMorAtalantaBodyName[0], szMorAtalantaFaceName[0][JobFaceSelectNum], JobBodySelectNum);
-					else if (JobBodySelectNum == 2)
-						SetChangeJobFace(szMorPriestessBodyName[0], szMorPriestessFaceName[0][JobFaceSelectNum], JobBodySelectNum);
-					else if (JobBodySelectNum == 3)
-						SetChangeJobFace(szMorMagicianBodyName[0], szMorMagicianFaceName[0][JobFaceSelectNum], JobBodySelectNum);
-					break;
-				}
+				ApplySelectedClassFace(JobFaceSelectNum);
 				JobCharacter[JobBodySelectNum].Flag = 1;
 				#ifdef __MINGW32__
 				MINGW_CharCreateTraceV4(
@@ -3466,10 +3129,10 @@ int HoLogin::Draw()
 			if (JobBodySelectNum >= 0)
 			{
 				
-				for (int index = 0; index < TempFaceCount[JobBodySelectNum]; index++)
+				for (int index = 0; index < GetCurrentFaceCount(); index++)
 				{
-					if (pCursorPos.x >(TempFacePos[JobBodySelectNum][index] + addX) &&
-						pCursorPos.x < (TempFacePos[JobBodySelectNum][index] + 128 + addX) &&
+					if (pCursorPos.x >(GetCurrentFacePositionX(index) + addX) &&
+						pCursorPos.x < (GetCurrentFacePositionX(index) + 128 + addX) &&
 						pCursorPos.y >(SETTINGSHANDLER->getHeight() - (70 + 128)) &&
 						pCursorPos.y < (SETTINGSHANDLER->getHeight() - (70 + 128) + 128) && ErrorSelect == ERROR_NONE && SelectSubState == SUB_SELECT_NONE)
 					{
@@ -3480,34 +3143,7 @@ int HoLogin::Draw()
 							if (JobFaceSelectNum != index)
 							{
 
-								switch (tribeNum)
-								{
-								case TRIBE_Tempscron:
-									if (JobBodySelectNum == 0)
-										SetChangeJobFace(szTempMechBodyName[0], szTempMechFaceName[0][index], JobBodySelectNum);
-									else if (JobBodySelectNum == 1)
-										SetChangeJobFace(szTempFighterBodyName[0], szTempFighterFaceName[0][index], JobBodySelectNum);
-									else if (JobBodySelectNum == 2)
-										SetChangeJobFace(szTempPikeBodyName[0], szTempPikeFaceName[0][index], JobBodySelectNum);
-									else if (JobBodySelectNum == 3)
-										SetChangeJobFace(szTempArcherBodyName[0], szTempArcherFaceName[0][index], JobBodySelectNum);
-									/*else if(JobBodySelectNum == 4)
-									SetChangeJobFace(szTempAssassineBodyName[0], szTempAssassineFaceName[0][index], JobBodySelectNum);
-									*/
-									break;
-
-								case TRIBE_Moryon:
-
-									if (JobBodySelectNum == 0)
-										SetChangeJobFace(szMorKnightBodyName[0], szMorKnightFaceName[0][index], JobBodySelectNum);
-									else if (JobBodySelectNum == 1)
-										SetChangeJobFace(szMorAtalantaBodyName[0], szMorAtalantaFaceName[0][index], JobBodySelectNum);
-									else if (JobBodySelectNum == 2)
-										SetChangeJobFace(szMorPriestessBodyName[0], szMorPriestessFaceName[0][index], JobBodySelectNum);
-									else if (JobBodySelectNum == 3)
-										SetChangeJobFace(szMorMagicianBodyName[0], szMorMagicianFaceName[0][index], JobBodySelectNum);
-									break;
-								}
+								ApplySelectedClassFace(index);
 
 								JobFaceSelectNum = index;
 
@@ -3553,16 +3189,16 @@ int HoLogin::Draw()
 
 					if (JobFaceSelectNum == index)
 					{
-						dsDrawTexImage(FaceBoxSmallImage[1], TempFacePos[JobBodySelectNum][JobFaceSelectNum] + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 255);
+						dsDrawTexImage(FaceBoxSmallImage[1], GetCurrentFacePositionX(JobFaceSelectNum) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 255);
 
 
 						switch (tribeNum)
 						{
 						case TRIBE_Tempscron:
-							dsDrawTexImage(TempFaceImage[JobBodySelectNum][JobFaceSelectNum][1], TempFacePos[JobBodySelectNum][JobFaceSelectNum] + addX, SETTINGSHANDLER->getHeight() - (50 + 128) + 4, 128, 128, 255);
+							dsDrawTexImage(TempFaceImage[JobBodySelectNum][JobFaceSelectNum][1], GetCurrentFacePositionX(JobFaceSelectNum) + addX, SETTINGSHANDLER->getHeight() - (50 + 128) + 4, 128, 128, 255);
 							break;
 						case TRIBE_Moryon:
-							dsDrawTexImage(MorFaceImage[JobBodySelectNum][JobFaceSelectNum][1], TempFacePos[JobBodySelectNum][JobFaceSelectNum] + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 255);
+							dsDrawTexImage(MorFaceImage[JobBodySelectNum][JobFaceSelectNum][1], GetCurrentFacePositionX(JobFaceSelectNum) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 255);
 							break;
 						}
 					}
@@ -3570,16 +3206,16 @@ int HoLogin::Draw()
 					{
 						if (mouseMoveFace != -1 && mouseMoveFace == index)
 						{
-							dsDrawTexImage(FaceBoxSmallImage[1], TempFacePos[JobBodySelectNum][index] + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 180);
+							dsDrawTexImage(FaceBoxSmallImage[1], GetCurrentFacePositionX(index) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 180);
 
 
 							switch (tribeNum)
 							{
 							case TRIBE_Tempscron:
-								dsDrawTexImage(TempFaceImage[JobBodySelectNum][JobFaceSelectNum][1], TempFacePos[JobBodySelectNum][JobFaceSelectNum] + addX, SETTINGSHANDLER->getHeight() - (50 + 128) + 4, 128, 128, 255);
+								dsDrawTexImage(TempFaceImage[JobBodySelectNum][JobFaceSelectNum][1], GetCurrentFacePositionX(JobFaceSelectNum) + addX, SETTINGSHANDLER->getHeight() - (50 + 128) + 4, 128, 128, 255);
 								break;
 							case TRIBE_Moryon:
-								dsDrawTexImage(MorFaceImage[JobBodySelectNum][JobFaceSelectNum][1], TempFacePos[JobBodySelectNum][JobFaceSelectNum] + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 255);
+								dsDrawTexImage(MorFaceImage[JobBodySelectNum][JobFaceSelectNum][1], GetCurrentFacePositionX(JobFaceSelectNum) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 255);
 								break;
 							}
 						}
@@ -3587,31 +3223,31 @@ int HoLogin::Draw()
 						{
 							if (mouseMoveFace != -1 && mouseMoveFace == index)
 							{
-								dsDrawTexImage(FaceBoxSmallImage[1], TempFacePos[JobBodySelectNum][index] + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 180);
+								dsDrawTexImage(FaceBoxSmallImage[1], GetCurrentFacePositionX(index) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 180);
 
 
 								switch (tribeNum)
 								{
 								case TRIBE_Tempscron:
-									dsDrawTexImage(TempFaceImage[JobBodySelectNum][index][0], TempFacePos[JobBodySelectNum][index] + addX, SETTINGSHANDLER->getHeight() - (50 + 128) + 4, 128, 128, 200);
+									dsDrawTexImage(TempFaceImage[JobBodySelectNum][index][0], GetCurrentFacePositionX(index) + addX, SETTINGSHANDLER->getHeight() - (50 + 128) + 4, 128, 128, 200);
 									break;
 								case TRIBE_Moryon:
-									dsDrawTexImage(MorFaceImage[JobBodySelectNum][index][0], TempFacePos[JobBodySelectNum][index] + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 200);
+									dsDrawTexImage(MorFaceImage[JobBodySelectNum][index][0], GetCurrentFacePositionX(index) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 200);
 									break;
 								}
 							}
 							else
 							{
-								dsDrawTexImage(FaceBoxSmallImage[0], TempFacePos[JobBodySelectNum][index] + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 255);
+								dsDrawTexImage(FaceBoxSmallImage[0], GetCurrentFacePositionX(index) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 255);
 
 
 								switch (tribeNum)
 								{
 								case TRIBE_Tempscron:
-									dsDrawTexImage(TempFaceImage[JobBodySelectNum][index][0], TempFacePos[JobBodySelectNum][index] + addX, SETTINGSHANDLER->getHeight() - (50 + 128) + 4, 128, 128, 150);
+									dsDrawTexImage(TempFaceImage[JobBodySelectNum][index][0], GetCurrentFacePositionX(index) + addX, SETTINGSHANDLER->getHeight() - (50 + 128) + 4, 128, 128, 150);
 									break;
 								case TRIBE_Moryon:
-									dsDrawTexImage(MorFaceImage[JobBodySelectNum][index][0], TempFacePos[JobBodySelectNum][index] + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 150);
+									dsDrawTexImage(MorFaceImage[JobBodySelectNum][index][0], GetCurrentFacePositionX(index) + addX, SETTINGSHANDLER->getHeight() - (50 + 128), 128, 128, 150);
 									break;
 								}
 							}

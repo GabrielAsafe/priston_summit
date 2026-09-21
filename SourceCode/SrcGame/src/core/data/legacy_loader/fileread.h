@@ -112,7 +112,6 @@ struct JOBNAME_BIT
 	DWORD dwBitMask;
 };
 
-extern JOBNAME_BIT BitMaskJobNames[];
 
 
 

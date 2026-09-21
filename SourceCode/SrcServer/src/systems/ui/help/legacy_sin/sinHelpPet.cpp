@@ -1,4 +1,5 @@
 #include <cstring>
+#include "gameplay/classes/v2/services/ClassService.h"
 
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
 
@@ -408,7 +409,7 @@ int cHELPPET::CheckPetData()
 		PetMessageHelp("*Welcom_ALL");
 
 
-		if(sinChar->JOB_CODE < 5)
+		if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 		{
 			PetMessageHelp("*Welcom_Tems");
 
@@ -511,33 +512,10 @@ int cHELPPET::PetRandomBattleMessage()
 			if(sinChar->Level == 8 && cHelpPet.PetExp >= 90 && !ExpMessageFlag)
 			{
 				ExpMessageFlag = 1;
-				switch(sinChar->JOB_CODE)
-				{
-					case 1:
-					PetMessageHelp("*Special_Message8_Fighter");
-					break;
-					case 2:
-					PetMessageHelp("*Special_Message8_Mecha");
-					break;
-					case 3:
-					PetMessageHelp("*Special_Message8_Archer");
-					break;
-					case 4:
-					PetMessageHelp("*Special_Message8_Pikeman");
-					break;
-					case 5:
-					PetMessageHelp("*Special_Message8_Atalanta");
-					break;
-					case 6:
-					PetMessageHelp("*Special_Message8_Knight");
-					break;
-					case 7:
-					PetMessageHelp("*Special_Message8_Magician");
-					break;
-					case 8:
-					PetMessageHelp("*Special_Message8_Priestess");
-					break;
-				}
+				const std::string *helpMessage =
+					gameplay::classes::DefaultClassService().LegacyLevel8HelpMessageKey(sinChar->JOB_CODE);
+				if(helpMessage && !helpMessage->empty())
+					PetMessageHelp(const_cast<char *>(helpMessage->c_str()));
 
 			}
 			if(sinChar->Level == 9 && cHelpPet.PetExp >= 90 && ExpMessageFlag != 2)

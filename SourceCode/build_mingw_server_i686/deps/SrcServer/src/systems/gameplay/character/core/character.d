@@ -30,10 +30,15 @@
  Shared/rendering/legacy_3d/smJpeg.h \
  SrcServer/src/systems/rendering/legacy_3d/FilterEffect.h \
  SrcServer/src/systems/gameplay/character/core/character.h \
+ SrcServer/src/systems/gameplay/companions/CompanionSystem.h \
+ Shared/gameplay/companions/CompanionProtocol.h \
  SrcServer/src/systems/audio/playback/legacy/Dxwav.h Shared/compat_sal.h \
  SrcServer/src/systems/rendering/effects/particle_legacy/particle.h \
  SrcServer/src/core/data/legacy_loader/fileread.h \
  SrcServer/src/core/server/gameplay_runtime/playmain.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcServer/src/systems/rendering/legacy_2d/drawsub.h \
  SrcServer/src/systems/network/server_gameplay/netplay.h \
  SrcServer/src/systems/world/field/field.h \
@@ -154,11 +159,16 @@ SrcServer/src/systems/rendering/legacy_3d/smJpeg.h:
 Shared/rendering/legacy_3d/smJpeg.h:
 SrcServer/src/systems/rendering/legacy_3d/FilterEffect.h:
 SrcServer/src/systems/gameplay/character/core/character.h:
+SrcServer/src/systems/gameplay/companions/CompanionSystem.h:
+Shared/gameplay/companions/CompanionProtocol.h:
 SrcServer/src/systems/audio/playback/legacy/Dxwav.h:
 Shared/compat_sal.h:
 SrcServer/src/systems/rendering/effects/particle_legacy/particle.h:
 SrcServer/src/core/data/legacy_loader/fileread.h:
 SrcServer/src/core/server/gameplay_runtime/playmain.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcServer/src/systems/rendering/legacy_2d/drawsub.h:
 SrcServer/src/systems/network/server_gameplay/netplay.h:
 SrcServer/src/systems/world/field/field.h:

@@ -1,5 +1,8 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_server_i686/objects/SrcServer/src/systems/social/clan/legacy/GuideHelp.o: \
  SrcServer/src/systems/social/clan/legacy/GuideHelp.cpp \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  Shared/social/clan/GuideHelp_legacy_server.inl \
  SrcServer/src/systems/social/clan/legacy/tjclanDEF.h \
  SrcServer/src/systems/localization/config/language.h \
@@ -121,6 +124,9 @@
  SrcServer/src/systems/social/clan/legacy/cE_Notice.h \
  SrcServer/src/systems/social/clan/legacy/clan_Enti.h \
  SrcServer/src/systems/social/clan/legacy/GuideHelp.h
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 Shared/social/clan/GuideHelp_legacy_server.inl:
 SrcServer/src/systems/social/clan/legacy/tjclanDEF.h:
 SrcServer/src/systems/localization/config/language.h:

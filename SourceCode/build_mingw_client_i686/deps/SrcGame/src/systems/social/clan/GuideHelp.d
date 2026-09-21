@@ -1,5 +1,8 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/social/clan/GuideHelp.o: \
  SrcGame/src/systems/social/clan/GuideHelp.cpp \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcGame/src/systems/social/clan/tjclanDEF.h \
  SrcGame/src/systems/localization/legacy_catalog/language.h \
  SrcGame/src/compat/legacy/sin/sinLinkHeader.h \
@@ -143,6 +146,9 @@
  SrcGame/src/systems/social/clan/clan_Enti.h \
  SrcGame/src/systems/social/clan/GuideHelp.h \
  Shared/social/clan/GuideHelp_legacy_client_body.inl
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/systems/social/clan/tjclanDEF.h:
 SrcGame/src/systems/localization/legacy_catalog/language.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:

@@ -6,6 +6,7 @@
 
 #include "systems/network/transport/legacy/smwsock.h"
 #include "systems/gameplay/character/core/character.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 #include "systems/media/video/legacy_avi/avictrl.h"
 #include "core/server/gameplay_runtime/playmain.h"
 #include "systems/audio/playback/legacy/Dxwav.h"
@@ -2469,6 +2470,12 @@ int rsRECORD_DBASE::SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName,
 			lpTransRecord->smCharInfo.ChangeJob = CHARACTER_RANK4;
 	}
 
+	if(!gameplay::classes::DefaultClassService().IsValidLegacyChangeJob(
+		lpTransRecord->smCharInfo.JOB_CODE, lpTransRecord->smCharInfo.ChangeJob))
+	{
+		lpTransRecord->smCharInfo.ChangeJob = 0;
+	}
+
 	// Normalize the four T5 record slots and derive free FSP from server-side quest state.
 	NormalizeTier5RecordForServer(&lpTransRecord->GameSaveInfo, szName, lpTransRecord->smCharInfo.Level,
 		rank5QuestComplete && lpTransRecord->smCharInfo.ChangeJob >= CHARACTER_RANK5);
@@ -2507,7 +2514,7 @@ int rsRECORD_DBASE::SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName,
 	if(lpTransRecord->GameSaveInfo.PlayStageNum == rsSOD_FIELD) lpTransRecord->GameSaveInfo.PlayStageNum = rsSOD_VILLAGE;
 	if(lpTransRecord->GameSaveInfo.PlayStageNum == QUEST_ARENA_FIELD)
 	{
-		if(lpTransRecord->smCharInfo.JOB_CODE <= 4 || lpTransRecord->smCharInfo.JOB_CODE == 9)
+		if(gameplay::classes::DefaultClassService().IsInBrood(lpTransRecord->smCharInfo.JOB_CODE, gameplay::classes::brood::Tempskron))
 			lpTransRecord->GameSaveInfo.PlayStageNum = START_FIELD_NUM;
 		else
 			lpTransRecord->GameSaveInfo.PlayStageNum = START_FIELD_MORYON;
@@ -3097,7 +3104,7 @@ int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, 
 
 			TransRecordData.smCharInfo.Life[0] = TransRecordData.smCharInfo.Life[1] / 2;
 
-			if(TransRecordData.smCharInfo.JOB_CODE <= 4 || TransRecordData.smCharInfo.JOB_CODE == 9)
+			if(gameplay::classes::DefaultClassService().IsInBrood(TransRecordData.smCharInfo.JOB_CODE, gameplay::classes::brood::Tempskron))
 			{
 
 				TransRecordData.GameSaveInfo.PlayStageNum = START_FIELD_NUM;
@@ -3768,7 +3775,7 @@ int rsRECORD_DBASE::SendUserDataToClient(const char *szID, smWINSOCK *lpsmSock, 
 					if(lpCharInfo->StartField == rsSOD_FIELD) lpCharInfo->StartField = rsSOD_VILLAGE;
 					if(lpCharInfo->StartField == QUEST_ARENA_FIELD)
 					{
-						if(lpCharInfo->JOB_CODE <= 4 || lpCharInfo->JOB_CODE == 9)
+						if(gameplay::classes::DefaultClassService().IsInBrood(lpCharInfo->JOB_CODE, gameplay::classes::brood::Tempskron))
 							lpCharInfo->StartField = START_FIELD_NUM;
 						else
 							lpCharInfo->StartField = START_FIELD_MORYON;
@@ -4377,6 +4384,220 @@ int rsCheckAccountChar(const char *szID, char *szName)
 	}
 
 	return FALSE;
+}
+
+
+
+int rsGetAccountCharacterNames(const char *szID, char szNames[][32], int maxNames)
+{
+    if(!szID || !szID[0] || !szNames || maxNames <= 0)
+        return 0;
+
+    char szFileInfo[128];
+    sPLAY_USER_DATA sPlayUserData;
+    FILE *fp = NULL;
+
+    ZeroMemory(&sPlayUserData, sizeof(sPlayUserData));
+    GetUserInfoFile(szID, szFileInfo);
+
+    fp = fopen(szFileInfo, "rb");
+    if(!fp)
+        return 0;
+
+    const size_t readCount = fread(&sPlayUserData, sizeof(sPLAY_USER_DATA), 1, fp);
+    fclose(fp);
+
+    if(readCount != 1 || lstrcmpi(sPlayUserData.szID, szID) != 0)
+        return 0;
+
+    int result = 0;
+    for(int cnt = 0; cnt < sPLAY_CHAR_MAX && result < maxNames; ++cnt)
+    {
+        if(!sPlayUserData.szCharName[cnt][0])
+            continue;
+
+        strcpy_s(szNames[result], 32, sPlayUserData.szCharName[cnt]);
+        ++result;
+    }
+
+    return result;
+}
+
+
+int rsLoadAccountCharacterRecord(const char *szID, const char *szName, TRANS_RECORD_DATA *lpRecordData)
+{
+    if(!szID || !szID[0] || !szName || !szName[0] || !lpRecordData)
+        return FALSE;
+
+    if(!rsCheckAccountChar(szID, (char *)szName))
+        return FALSE;
+
+    char szFile[256];
+    GetUserDataFile(szName, szFile);
+
+    ZeroMemory(lpRecordData, sizeof(TRANS_RECORD_DATA));
+
+    if(sRecDataBuff)
+        EnterCriticalSection(&cSaveDataSection);
+
+    FILE *fp = fopen(szFile, "rb");
+    size_t readBytes = 0;
+    if(fp)
+    {
+        // Character records are variable-sized. Legacy save code writes
+        // max(recordData.size, srRECORD_DEFAULT_SIZE), not necessarily the
+        // complete TRANS_RECORD_DATA buffer. Reading as one sizeof(struct)
+        // element therefore returns 0 for perfectly valid shorter records.
+        readBytes = fread(lpRecordData, 1, sizeof(TRANS_RECORD_DATA), fp);
+        fclose(fp);
+    }
+
+    if(sRecDataBuff)
+        LeaveCriticalSection(&cSaveDataSection);
+
+    if(readBytes < sizeof(int) * 2)
+        return FALSE;
+
+    if(lpRecordData->size <= 0 ||
+        lpRecordData->size > (int)sizeof(TRANS_RECORD_DATA) ||
+        (size_t)lpRecordData->size > readBytes ||
+        lstrcmpi(lpRecordData->smCharInfo.szName, szName) != 0)
+    {
+        ZeroMemory(lpRecordData, sizeof(TRANS_RECORD_DATA));
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+
+int rsAddOfflineCharacterExp(const char *szID, const char *szName, INT64 Exp, int *lpNewLevel, INT64 *lpNewExperience)
+{
+    if(lpNewLevel)
+        *lpNewLevel = 0;
+    if(lpNewExperience)
+        *lpNewExperience = 0;
+
+    if(!szID || !szID[0] || !szName || !szName[0] || Exp <= 0)
+        return FALSE;
+
+    if(!rsCheckAccountChar(szID, (char *)szName))
+        return FALSE;
+
+    char szFile[256];
+    char szBackupFile[256];
+    GetUserDataFile(szName, szFile);
+    GetUserDataBackupFile(szName, szBackupFile);
+
+    TRANS_RECORD_DATA recordData;
+    ZeroMemory(&recordData, sizeof(recordData));
+
+    if(sRecDataBuff)
+        EnterCriticalSection(&cSaveDataSection);
+
+    FILE *fp = fopen(szFile, "rb");
+    size_t readBytes = 0;
+    if(fp)
+    {
+        // Same variable-sized record rule as rsLoadAccountCharacterRecord().
+        readBytes = fread(&recordData, 1, sizeof(TRANS_RECORD_DATA), fp);
+        fclose(fp);
+    }
+
+    if(readBytes < sizeof(int) * 2 ||
+        recordData.size <= 0 ||
+        recordData.size > (int)sizeof(TRANS_RECORD_DATA) ||
+        (size_t)recordData.size > readBytes ||
+        lstrcmpi(recordData.smCharInfo.szName, szName) != 0)
+    {
+        if(sRecDataBuff)
+            LeaveCriticalSection(&cSaveDataSection);
+        return FALSE;
+    }
+
+    const INT64 oldExp = GetExp64(&recordData.smCharInfo);
+    if(lpNewExperience)
+        *lpNewExperience = oldExp;
+    INT64 newExp = oldExp;
+
+    if(oldExp < ExpLevelTable[CHAR_LEVEL_MAX])
+    {
+        if(Exp > ExpLevelTable[CHAR_LEVEL_MAX] - oldExp)
+            newExp = ExpLevelTable[CHAR_LEVEL_MAX];
+        else
+            newExp = oldExp + Exp;
+    }
+
+    // Preserve the legacy third-job progression gate used by AddExp().
+    if(newExp > ExpLevelTable[121] && recordData.smCharInfo.ChangeJob < 3)
+    {
+        if(lpNewLevel)
+            *lpNewLevel = recordData.smCharInfo.Level;
+        if(sRecDataBuff)
+            LeaveCriticalSection(&cSaveDataSection);
+        return TRUE;
+    }
+
+    SetExp64(&recordData.smCharInfo, newExp);
+
+    int newLevel = recordData.smCharInfo.Level;
+    while(newLevel < CHAR_LEVEL_MAX && newExp >= ExpLevelTable[newLevel])
+        ++newLevel;
+
+    if(newLevel < 1)
+        newLevel = 1;
+    if(newLevel > CHAR_LEVEL_MAX)
+        newLevel = CHAR_LEVEL_MAX;
+
+    if(newLevel != recordData.smCharInfo.Level)
+    {
+        recordData.smCharInfo.Level = newLevel;
+        ReformCharStatePoint(
+            &recordData.smCharInfo,
+            recordData.GameSaveInfo.dwLevelQuestLog);
+    }
+
+    recordData.smCharInfo.Next_Exp = (int)GetNextExp(recordData.smCharInfo.Level);
+
+    // Keep the same character-integrity fields coherent as the normal record
+    // save/load path. EXP and level are part of smCHAR_INFO, so persisting them
+    // without reforming the character would make CheckCharForm reject the alt.
+    ReformCharForm(&recordData.smCharInfo);
+    if(recordData.GameSaveInfo.Head < 140 &&
+        lstrcmp(recordData.szHeader, szRecordHeader) != 0)
+    {
+        recordData.GameSaveInfo.dwChkSum_CharInfo =
+            GetCharInfoCode(&recordData.smCharInfo);
+    }
+    recordData.smCharInfo.wVersion[1] = 0;
+    rsSet_LoginServerSafeKey(&recordData.smCharInfo);
+    recordData.GameSaveInfo.SaveTime = (int)tServerTime;
+
+    int writeSize = recordData.size;
+    if(writeSize < srRECORD_DEFAULT_SIZE)
+        writeSize = srRECORD_DEFAULT_SIZE;
+    if(writeSize > (int)sizeof(TRANS_RECORD_DATA))
+        writeSize = sizeof(TRANS_RECORD_DATA);
+
+    CopyFile(szFile, szBackupFile, FALSE);
+
+    fp = fopen(szFile, "wb");
+    const size_t writeCount = fp ? fwrite(&recordData, writeSize, 1, fp) : 0;
+    if(fp)
+        fclose(fp);
+
+    if(sRecDataBuff)
+        LeaveCriticalSection(&cSaveDataSection);
+
+    if(writeCount != 1)
+        return FALSE;
+
+    if(lpNewLevel)
+        *lpNewLevel = recordData.smCharInfo.Level;
+    if(lpNewExperience)
+        *lpNewExperience = GetExp64(&recordData.smCharInfo);
+
+    return TRUE;
 }
 
 

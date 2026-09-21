@@ -9,6 +9,8 @@
 #include "systems/rendering/effects/particle/legacy/particle.h"
 #include "core/data/legacy_loader/fileread.h"
 #include "core/gameplay/runtime/playmain.h"
+#include "gameplay/classes/v2/services/ClassService.h"
+#include "gameplay/companions/CompanionProtocol.h"
 #include "systems/rendering/2d/legacy/drawsub.h"
 #include "systems/network/client/netplay.h"
 #include "systems/world/field/field.h"
@@ -30,6 +32,8 @@
 #include "systems/ui/map/full_zoom/FullZoomMap.h"	
 #include "systems/combat/damage_display/DrawDamage.h"
 #include "systems/configuration/client/Settings.h"
+#include "systems/gameplay/character/core/CharacterModelStreamingV3.h"
+#include "core/concurrency/SourceAssetLock.h"
 
 #define DISP_DAMAGE
 
@@ -440,6 +444,7 @@ void smPATTERN::Init()
 
 int smPATTERN::Close()
 {
+	std::lock_guard<std::recursive_mutex> summitPatternLock(SummitPatternCacheMutexV3());
 	int cnt;
 
 
@@ -511,6 +516,7 @@ int smPATTERN::GetNew()
 
 smDPAT *smPATTERN::LoadBipPattern(char *szFileName)
 {
+	std::lock_guard<std::recursive_mutex> summitPatternLock(SummitPatternCacheMutexV3());
 	DWORD dwCode = GetSpeedSum(szFileName);
 	int Num = FindFromCode(dwCode);
 
@@ -521,7 +527,10 @@ smDPAT *smPATTERN::LoadBipPattern(char *szFileName)
 		Num = GetNew();
 		if (Num >= 0)
 		{
-			DinaPat[Num].Pat = smASE_ReadBone(szFileName);
+			{
+				summit::core::concurrency::SourceAssetLock sourceLock(szFileName);
+				DinaPat[Num].Pat = smASE_ReadBone(szFileName);
+			}
 			if (DinaPat[Num].Pat)
 			{
 				DinaPat[Num].smDinaLink = 0;
@@ -543,6 +552,7 @@ smDPAT *smPATTERN::LoadBipPattern(char *szFileName)
 
 smDPAT *smPATTERN::LoadCharactor(char *szFileName)
 {
+	std::lock_guard<std::recursive_mutex> summitPatternLock(SummitPatternCacheMutexV3());
 
 	smMODELINFO	modelInfo;
 
@@ -552,8 +562,11 @@ smDPAT *smPATTERN::LoadCharactor(char *szFileName)
 
 	if (Num < 0)
 	{
-		if (smModelDecode(szFileName, &modelInfo) == NULL)
-			return NULL;
+		{
+			summit::core::concurrency::SourceAssetLock sourceLock(szFileName);
+			if (smModelDecode(szFileName, &modelInfo) == NULL)
+				return NULL;
+		}
 
 		smASE_SetPhysique(0);
 
@@ -594,7 +607,10 @@ smDPAT *smPATTERN::LoadCharactor(char *szFileName)
 		else
 			DinaPat[Num].lpTalkLink = NULL;
 
-		DinaPat[Num].Pat = smASE_Read(modelInfo.szModelFile);
+		{
+			summit::core::concurrency::SourceAssetLock sourceLock(modelInfo.szModelFile);
+			DinaPat[Num].Pat = smASE_Read(modelInfo.szModelFile);
+		}
 
 		if (!DinaPat[Num].Pat)
 		{
@@ -666,7 +682,28 @@ static int SummitIsModelConfigSource(const char *fileName)
 static smDPAT *SummitLoadSecondaryCharacterPattern(smCHAR *lpChar, const char *embeddedName, const char *requestedName)
 {
 	if (!lpChar) return NULL;
-	const char *candidates[4] = { embeddedName, requestedName, GetFaceHairSkin(lpChar), GetDefaultFaceHairSkin(lpChar) };
+
+	// Account companions carry the exact body/head snapshot that was persisted
+	// in DataServer. Costume bodies may advertise a generic/embedded secondary
+	// pattern, but that must not override the character's saved face/hair.
+	const bool dataServerCompanion =
+		lpChar->smCharInfo.State == smCHAR_STATE_USER &&
+		lpChar->smCharInfo.Brood == smCHAR_MONSTER_USER &&
+		lpChar->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_MAGIC] == smCOMPANION_NET_MAGIC;
+
+	const char *candidates[4];
+	if (dataServerCompanion)
+	{
+		candidates[0] = requestedName;
+		candidates[1] = embeddedName;
+	}
+	else
+	{
+		candidates[0] = embeddedName;
+		candidates[1] = requestedName;
+	}
+	candidates[2] = GetFaceHairSkin(lpChar);
+	candidates[3] = GetDefaultFaceHairSkin(lpChar);
 	for (int index = 0; index < 4; ++index)
 	{
 		const char *candidate = candidates[index];
@@ -748,55 +785,17 @@ int AddLoaderStage(smSTAGE3D *lpStage, char *szName)
 
 int	AddLoaderPattern(smCHAR *lpChar, char *szName, char *szName2)
 {
-	int cnt = smLoaderEnd & DATALOADER_MASK;
-
-	smLoaderEnd++;
-
-	smLoader[cnt].lpStage = 0;
-	smLoader[cnt].lpChar = lpChar;
-	smLoader[cnt].lpItem = 0;
-	smLoader[cnt].Cancel = 0;
-	smLoader[cnt].Result = 0;
-	strcpy_s(smLoader[cnt].szLoadName, sizeof(smLoader[cnt].szLoadName), szName);
-
-	if (szName2)
-	{
-		strcpy_s(smLoader[cnt].szLoadName2, sizeof(smLoader[cnt].szLoadName2), szName2);
-	}
-	else
-	{
-		smLoader[cnt].szLoadName2[0] = 0;
-	}
-
-	smLoader[cnt].lpChar->PatLoading = TRUE;
-
-
-	CreateLoaderThread();
-
-	return TRUE;
+	// V3: the legacy API remains, but parsing/I/O is always dispatched to the
+	// worker pool. Publication to smCHAR happens later on the game thread.
+	return SummitRequestCharacterModelV3(lpChar, szName, szName2);
 }
 
 
 int	AddLoaderItem(scITEM *lpItem, char *szName)
 {
-	int cnt = smLoaderEnd & DATALOADER_MASK;
-
-	smLoaderEnd++;
-
-	smLoader[cnt].lpStage = 0;
-	smLoader[cnt].lpChar = 0;
-	smLoader[cnt].lpItem = lpItem;
-	smLoader[cnt].Cancel = 0;
-	smLoader[cnt].Result = 0;
-	strcpy_s(smLoader[cnt].szLoadName, sizeof(smLoader[cnt].szLoadName), szName);
-
-	smLoader[cnt].lpItem->PatLoading = TRUE;
-
-
-	CreateLoaderThread();
-
-	return TRUE;
+	return SummitRequestItemModelV3(lpItem, szName);
 }
+
 
 DWORD WINAPI smLoaderThreadProc(void *pInfo)
 {
@@ -815,13 +814,9 @@ DWORD WINAPI smLoaderThreadProc(void *pInfo)
 
 		if (smSTAGE3D_ReadASE(smLoader[cnt].szLoadName, smLoader[cnt].lpStage))
 		{
-			if (d3ddev)
-			{
-				smLoader[cnt].lpStage->smMaterialGroup->ReadTextures(1);
-
-				smLoader[cnt].lpStage->smMaterialGroup->CheckMatreialTextureSwap();
-			}
-
+			// Stage texture residency is managed by the stage streaming path in
+			// playmain.cpp.  Loading textures here made every stage parse perform a
+			// second synchronous prewarm before LoadStageFromField() could return.
 			smLoader[cnt].Result = TRUE;
 			smLoader[cnt].lpStage->Head = TRUE;
 		}
@@ -998,6 +993,7 @@ int ClosePatterns()
 
 int smDPAT_Delete(smDPAT *dPat)
 {
+	std::lock_guard<std::recursive_mutex> summitPatternLock(SummitPatternCacheMutexV3());
 	if (dPat->UseCount > 0)
 	{
 		dPat->UseCount--;
@@ -1096,6 +1092,7 @@ bool smCHAR::isOnField(int Field)
 
 void smCHAR::Init()
 {
+	SummitCancelCharacterModelV3(this);
 
 
 	TalkPattern = NULL;
@@ -1364,6 +1361,7 @@ void smCHAR::Init()
 
 int smCHAR::Close()
 {
+	SummitCancelCharacterModelV3(this);
 	Flag = 0;
 
 	if (lpDinaPattern2)
@@ -1557,13 +1555,14 @@ int smCHAR::SetPattern(smPAT3D *pat)
 
 
 	AttackObjBip = 0;
-
-
-	if (smCharInfo.JOB_CODE == 3 || smCharInfo.JOB_CODE == 5)
-		AttackObjBip = AnimPat->GetObjectFromName(szBipName_LFoot);
-
-	if (smCharInfo.JOB_CODE == 7)
-		AttackObjBip = AnimPat->GetObjectFromName(szBipName_Head);
+	gameplay::classes::ClassAttackAnchor attackAnchor = gameplay::classes::ClassAttackAnchor::Default;
+	if(gameplay::classes::DefaultClassService().TryAttackAnchor(smCharInfo.JOB_CODE, attackAnchor))
+	{
+		if(attackAnchor == gameplay::classes::ClassAttackAnchor::LeftFoot)
+			AttackObjBip = AnimPat->GetObjectFromName(szBipName_LFoot);
+		else if(attackAnchor == gameplay::classes::ClassAttackAnchor::Head)
+			AttackObjBip = AnimPat->GetObjectFromName(szBipName_Head);
+	}
 
 	AnimPattern = AnimPat;
 
@@ -1632,6 +1631,12 @@ int smCHAR::SetTool(DWORD dwItemCode, int hvPosi)
 	if (smCharInfo.State != smCHAR_STATE_USER && PkMode_CharState != smCHAR_STATE_USER)
 		return FALSE;
 
+	// Every equipment change invalidates an older in-flight request for this
+	// hand. A completion that already won its generation check can safely call
+	// SetTool() again; this simply closes the old generation before the cache
+	// fast-path below installs the prepared model.
+	SummitCancelToolModelV3(this, hvPosi);
+
 	if (dwItemCode)
 		sinGetItemInfo(dwItemCode, szToolMeshName);
 
@@ -1648,7 +1653,9 @@ int smCHAR::SetTool(DWORD dwItemCode, int hvPosi)
 			}
 			if (dwItemCode)
 			{
-				lpDinaRightPattern = smPattern.LoadCharactor(szToolMeshName);
+				lpDinaRightPattern = SummitAcquireCachedModelV3(szToolMeshName);
+				if (!lpDinaRightPattern)
+					SummitRequestToolModelV3(this, dwItemCode, hvPOSI_RHAND, szToolMeshName);
 				if (lpDinaRightPattern)
 				{
 					HvRightHand.PatTool = lpDinaRightPattern->Pat;
@@ -1699,7 +1706,9 @@ int smCHAR::SetTool(DWORD dwItemCode, int hvPosi)
 			if (dwItemCode)
 			{
 
-				lpDinaLeftPattern = smPattern.LoadCharactor(szToolMeshName);
+				lpDinaLeftPattern = SummitAcquireCachedModelV3(szToolMeshName);
+				if (!lpDinaLeftPattern)
+					SummitRequestToolModelV3(this, dwItemCode, hvPOSI_LHAND, szToolMeshName);
 				if (lpDinaLeftPattern)
 				{
 					HvLeftHand.PatTool = lpDinaLeftPattern->Pat;
@@ -1825,7 +1834,8 @@ int smCHAR::SetTool(DWORD dwItemCode, int hvPosi)
 
 
 	if ((dwActionItemCode&sinITEM_MASK2) == sinWS1 || (dwActionItemCode&sinITEM_MASK2) == sinWT1 ||
-		((dwActionItemCode&sinITEM_MASK2) == sinWM1 && (smCharInfo.JOB_CODE == 7 || smCharInfo.JOB_CODE == 8)))
+		((dwActionItemCode&sinITEM_MASK2) == sinWM1 &&
+		 gameplay::classes::DefaultClassService().HasCapability(smCharInfo.JOB_CODE, gameplay::classes::ClassCapability::Caster)))
 	{
 
 		ShootingMode = TRUE;
@@ -1864,8 +1874,415 @@ int smCHAR::SetTool(DWORD dwItemCode, int hvPosi)
 	return TRUE;
 }
 
+static bool CompanionClientDebugEnabled()
+{
+	char value[8] = { 0 };
+	return GetEnvironmentVariableA("SUMMIT_COMPANION_DEBUG", value, sizeof(value)) > 0 && value[0] != '0';
+}
+
+static void CompanionClientDebugLog(const smCHAR *character, const char *eventName, DWORD remoteMotion, DWORD remoteFrame)
+{
+	if(!CompanionClientDebugEnabled() || !character)
+		return;
+
+	FILE *file = fopen("LOGS\\companion_debug_client.log", "a");
+	if(!file)
+		file = fopen("companion_debug_client.log", "a");
+	if(!file)
+		return;
+
+	fprintf(file, "[%lu] %s name='%s' serial=%lu life=%d/%d motion=%d remoteMotion=%lu frame=%d remoteFrame=%lu model2='%s' Pattern=%p Pattern2=%p Dina1=%p Dina2=%p patDisp=0x%X RH=0x%08lX LH=0x%08lX attachedR=0x%08lX attachedL=0x%08lX\n",
+		(unsigned long)GetTickCount(), eventName ? eventName : "?", character->smCharInfo.szName,
+		(unsigned long)character->dwObjectSerial, character->smCharInfo.Life[0], character->smCharInfo.Life[1],
+		character->MotionInfo ? (int)character->MotionInfo->State : -1, (unsigned long)remoteMotion,
+		character->frame, (unsigned long)remoteFrame, character->smCharInfo.szModelName2,
+		(void *)character->Pattern, (void *)character->Pattern2, (void *)character->lpDinaPattern, (void *)character->lpDinaPattern2,
+		(unsigned int)character->PatDispMode,
+		(unsigned long)character->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_RIGHT_ITEM_CODE],
+		(unsigned long)character->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_LEFT_ITEM_CODE],
+		(unsigned long)character->HvRightHand.dwItemCode, (unsigned long)character->HvLeftHand.dwItemCode);
+	fflush(file);
+	fclose(file);
+}
+
+static bool IsCompanionTwoHandCodeClient(DWORD code)
+{
+	if(!code)
+		return false;
+
+	const int itemIndex = GetSinItemNumFromCode(code);
+	if(itemIndex >= 0 && itemIndex < MAX_ITEM &&
+		sItem[itemIndex].Class == ITEM_CLASS_WEAPON_TWO)
+		return true;
+
+	// Real companion DAT samples mirror bows and pikes into both hand slots.
+	// Some custom catalogues do not expose ITEM_CLASS_WEAPON_TWO consistently,
+	// so keep the canonical family fallback as a network/render safeguard.
+	const DWORD family = code & sinITEM_MASK2;
+	return family == sinWS1 || family == sinWP1;
+}
+
+static bool IsNetworkAccountCompanion(const smCHAR *character)
+{
+	return character &&
+		character->smCharInfo.State == smCHAR_STATE_USER &&
+		character->smCharInfo.Brood == smCHAR_MONSTER_USER &&
+		character->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_MAGIC] == smCOMPANION_NET_MAGIC;
+}
+
+namespace gameplay
+{
+namespace companions
+{
+namespace client_visual
+{
+
+struct Runtime
+{
+    Runtime()
+        : active(false), objectSerial(0), targetX(0), targetY(0), targetZ(0), angleY(0),
+          motionState(CHRMOTION_STATE_STAND), motionSequence(0), appliedMotionSequence(0),
+          life(0), maxLife(0), rightItemCode(0), leftItemCode(0), equipmentRevision(0),
+          appliedEquipmentRevision(0), flags(0), lastPacketTick(0)
+    {
+        characterName[0] = 0;
+    }
+
+    bool active;
+    DWORD objectSerial;
+    char characterName[32];
+    int targetX;
+    int targetY;
+    int targetZ;
+    int angleY;
+    DWORD motionState;
+    DWORD motionSequence;
+    DWORD appliedMotionSequence;
+    int life;
+    int maxLife;
+    DWORD rightItemCode;
+    DWORD leftItemCode;
+    DWORD equipmentRevision;
+    DWORD appliedEquipmentRevision;
+    DWORD flags;
+    DWORD lastPacketTick;
+};
+
+static Runtime g_runtime[protocol::COMPANION_VISUAL_MAX_ACTIVE];
+
+static Runtime *Find(DWORD objectSerial)
+{
+    if(!objectSerial)
+        return NULL;
+    for(int i = 0; i < protocol::COMPANION_VISUAL_MAX_ACTIVE; ++i)
+    {
+        if(g_runtime[i].objectSerial == objectSerial)
+            return &g_runtime[i];
+    }
+    return NULL;
+}
+
+static Runtime *FindOrAllocate(DWORD objectSerial)
+{
+    Runtime *runtime = Find(objectSerial);
+    if(runtime)
+        return runtime;
+
+    for(int i = 0; i < protocol::COMPANION_VISUAL_MAX_ACTIVE; ++i)
+    {
+        if(!g_runtime[i].active)
+        {
+            g_runtime[i] = Runtime();
+            g_runtime[i].objectSerial = objectSerial;
+            return &g_runtime[i];
+        }
+    }
+    return NULL;
+}
+
+bool Has(DWORD objectSerial)
+{
+    Runtime *runtime = Find(objectSerial);
+    return runtime && runtime->active;
+}
+
+void ApplyPacket(const protocol::CompanionVisualStatePacket &packet)
+{
+    bool seen[protocol::COMPANION_VISUAL_MAX_ACTIVE] = { false, false, false, false };
+
+    int count = packet.entryCount;
+    if(count < 0) count = 0;
+    if(count > protocol::COMPANION_VISUAL_MAX_ACTIVE)
+        count = protocol::COMPANION_VISUAL_MAX_ACTIVE;
+
+    for(int i = 0; i < count; ++i)
+    {
+        const protocol::CompanionVisualEntry &entry = packet.entries[i];
+        if(!entry.objectSerial)
+            continue;
+
+        Runtime *runtime = FindOrAllocate(entry.objectSerial);
+        if(!runtime)
+            continue;
+
+        const DWORD oldSerial = runtime->objectSerial;
+        const DWORD oldAppliedMotion = runtime->appliedMotionSequence;
+        const DWORD oldAppliedEquipment = runtime->appliedEquipmentRevision;
+        runtime->active = true;
+        runtime->objectSerial = entry.objectSerial;
+        strcpy_s(runtime->characterName, sizeof(runtime->characterName), entry.characterName);
+        runtime->targetX = entry.x;
+        runtime->targetY = entry.y;
+        runtime->targetZ = entry.z;
+        runtime->angleY = entry.angleY;
+        runtime->motionState = entry.motionState ? entry.motionState : (DWORD)CHRMOTION_STATE_STAND;
+        runtime->motionSequence = entry.motionSequence ? entry.motionSequence : 1U;
+        runtime->life = entry.life;
+        runtime->maxLife = entry.maxLife;
+        runtime->rightItemCode = entry.rightItemCode;
+        runtime->leftItemCode = entry.leftItemCode;
+        runtime->equipmentRevision = entry.equipmentRevision ? entry.equipmentRevision : 1U;
+        runtime->flags = entry.flags;
+        runtime->lastPacketTick = GetTickCount();
+        const int runtimeIndex = (int)(runtime - g_runtime);
+        if(runtimeIndex >= 0 && runtimeIndex < protocol::COMPANION_VISUAL_MAX_ACTIVE)
+            seen[runtimeIndex] = true;
+
+        if(oldSerial == entry.objectSerial)
+        {
+            runtime->appliedMotionSequence = oldAppliedMotion;
+            runtime->appliedEquipmentRevision = oldAppliedEquipment;
+        }
+    }
+
+    const DWORD now = GetTickCount();
+    for(int i = 0; i < protocol::COMPANION_VISUAL_MAX_ACTIVE; ++i)
+    {
+        if(seen[i])
+            continue;
+        // A natural death is intentionally retained for a short local grace
+        // window after the server removes the slot. This prevents the renderer
+        // from falling back to stale PLAYBUFF and replaying DEAD again.
+        const bool deadGrace =
+            (g_runtime[i].flags & protocol::COMPANION_VISUAL_FLAG_DEAD) != 0 &&
+            (DWORD)(now - g_runtime[i].lastPacketTick) < 5000U;
+        g_runtime[i].active = deadGrace;
+    }
+}
+
+static void AdvanceLocalMotion(smCHAR *character)
+{
+    if(!character || !character->MotionInfo)
+        return;
+
+    const int startFrame = character->MotionInfo->StartFrame * 160;
+    const int endFrame = character->MotionInfo->EndFrame * 160;
+    const int motionLength = endFrame - startFrame;
+    if(character->frame < startFrame || character->frame > endFrame)
+        character->frame = startFrame;
+
+    if(character->frame < endFrame)
+        character->frame += 80;
+
+    if(character->frame >= endFrame)
+    {
+        if(character->MotionInfo->Repeat && motionLength > 0 &&
+            character->MotionInfo->State != CHRMOTION_STATE_DEAD)
+        {
+            character->frame = startFrame + ((character->frame - startFrame) % motionLength);
+        }
+        else
+        {
+            character->frame = endFrame;
+        }
+    }
+
+    character->FrameInfo.StartFrame = startFrame;
+    character->FrameInfo.EndFrame = endFrame;
+}
+
+static void ApplyEquipment(smCHAR *character, Runtime &runtime)
+{
+    if(!character || runtime.appliedEquipmentRevision == runtime.equipmentRevision)
+        return;
+
+    DWORD rightCode = runtime.rightItemCode;
+    DWORD leftCode = runtime.leftItemCode;
+    if(IsCompanionTwoHandCodeClient(rightCode))
+        leftCode = 0;
+    else if(IsCompanionTwoHandCodeClient(leftCode))
+    {
+        if(!rightCode)
+            rightCode = leftCode;
+        leftCode = 0;
+    }
+
+    CompanionClientDebugLog(character, "VISUAL_EQUIP_BEFORE", runtime.motionState, runtime.motionSequence);
+    if(character->HvRightHand.dwItemCode != rightCode)
+        character->SetTool(rightCode, hvPOSI_RHAND);
+    if(character->HvLeftHand.dwItemCode != leftCode)
+        character->SetTool(leftCode, hvPOSI_LHAND);
+
+    character->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_RIGHT_ITEM_CODE] = rightCode;
+    character->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_LEFT_ITEM_CODE] = leftCode;
+    character->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_EQUIP_REVISION] = runtime.equipmentRevision;
+    character->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_MAGIC] = smCOMPANION_NET_MAGIC;
+    runtime.appliedEquipmentRevision = runtime.equipmentRevision;
+    // SetTool can recalculate action/motion metadata. Re-apply the authoritative
+    // logical motion after equipment changes on the same client frame.
+    runtime.appliedMotionSequence = 0;
+    CompanionClientDebugLog(character, "VISUAL_EQUIP_AFTER", runtime.motionState, runtime.motionSequence);
+}
+
+static void ApplyMotion(smCHAR *character, Runtime &runtime)
+{
+    if(!character)
+        return;
+
+    const DWORD desired = runtime.motionState ? runtime.motionState : (DWORD)CHRMOTION_STATE_STAND;
+    const bool looping = desired == CHRMOTION_STATE_STAND ||
+        desired == CHRMOTION_STATE_WALK || desired == CHRMOTION_STATE_RUN;
+    const bool stateMismatch = !character->MotionInfo || (DWORD)character->MotionInfo->State != desired;
+    if(runtime.appliedMotionSequence == runtime.motionSequence && !(looping && stateMismatch))
+        return;
+
+    character->AttackSkil = 0;
+    character->MotionSelectFrame = 0;
+    character->SetMotionFromCode(desired);
+
+    // RUN is optional in some player motion sets. WALK is the only semantic
+    // fallback; never substitute DAMAGE/FALL/DEAD for a missing combat clip.
+    if((!character->MotionInfo || (DWORD)character->MotionInfo->State != desired) &&
+        desired == CHRMOTION_STATE_RUN)
+    {
+        character->SetMotionFromCode(CHRMOTION_STATE_WALK);
+    }
+    if(!character->MotionInfo)
+        character->SetMotionFromCode(CHRMOTION_STATE_STAND);
+
+    if(character->MotionInfo)
+    {
+        character->frame = character->MotionInfo->StartFrame * 160;
+        character->FrameInfo.StartFrame = character->MotionInfo->StartFrame * 160;
+        character->FrameInfo.EndFrame = character->MotionInfo->EndFrame * 160;
+    }
+    runtime.appliedMotionSequence = runtime.motionSequence;
+    CompanionClientDebugLog(character, "VISUAL_MOTION", desired, runtime.motionSequence);
+}
+
+bool Update(smCHAR *character)
+{
+    if(!character)
+        return false;
+
+    Runtime *runtime = Find(character->dwObjectSerial);
+    if(!runtime || !runtime->active)
+        return false;
+    if((runtime->flags & protocol::COMPANION_VISUAL_FLAG_DEAD) != 0 &&
+        (DWORD)(GetTickCount() - runtime->lastPacketTick) >= 5000U)
+    {
+        runtime->active = false;
+        return false;
+    }
+
+    // Once a serial is managed by CompanionVisualState, legacy PLAYBUFF is no
+    // longer a visual authority. Keep its buffers drained so stale monster-model
+    // frames/items/actions can never overwrite the player-model renderer.
+    character->PlayBuffCnt = character->PlayBuffPosi_End;
+    character->smCharInfo.State = smCHAR_STATE_USER;
+    character->smCharInfo.Brood = smCHAR_MONSTER_USER;
+    character->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_MAGIC] = smCOMPANION_NET_MAGIC;
+    character->smCharInfo.Life[0] = runtime->life;
+    character->smCharInfo.Life[1] = runtime->maxLife;
+
+    const int dx = runtime->targetX - character->pX;
+    const int dy = runtime->targetY - character->pY;
+    const int dz = runtime->targetZ - character->pZ;
+    const int snap = 512 * fONE;
+    if(dx > snap || dx < -snap || dz > snap || dz < -snap)
+    {
+        character->pX = runtime->targetX;
+        character->pY = runtime->targetY;
+        character->pZ = runtime->targetZ;
+    }
+    else
+    {
+        character->pX += dx / 3;
+        character->pY += dy / 3;
+        character->pZ += dz / 3;
+        if(dx < fONE && dx > -fONE) character->pX = runtime->targetX;
+        if(dy < fONE && dy > -fONE) character->pY = runtime->targetY;
+        if(dz < fONE && dz > -fONE) character->pZ = runtime->targetZ;
+    }
+    character->PHeight = character->pY;
+    character->Angle.y = runtime->angleY;
+
+    ApplyEquipment(character, *runtime);
+    ApplyMotion(character, *runtime);
+
+    character->MotionSelectFrame = 0;
+    character->PatDispMode = (character->Pattern2 && character->lpDinaPattern2)
+        ? (DISP_MODE_PATMAIN | DISP_MODE_PATSUB)
+        : DISP_MODE_PATMAIN;
+    AdvanceLocalMotion(character);
+    character->DisplayFlag = TRUE;
+    character->MoveCnt = 0;
+    if(character->MotionInfo)
+        character->OldMotionState = character->MotionInfo->State;
+    return true;
+}
+
+} // namespace client_visual
+} // namespace companions
+} // namespace gameplay
+
+static void SyncNetworkAccountCompanionTools(smCHAR *character)
+{
+	if(!IsNetworkAccountCompanion(character) || !character->MotionInfo)
+		return;
+	if(gameplay::companions::client_visual::Has(character->dwObjectSerial))
+		return;
+
+	// The server sends canonical item CODEs in smCHAR_INFO. Never interpret the
+	// server's wStickItems values as local sItem[] indices: Asset Load System V2
+	// may load the same catalogue in a different order in each process.
+	DWORD rightCode =
+		character->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_RIGHT_ITEM_CODE];
+	DWORD leftCode =
+		character->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_LEFT_ITEM_CODE];
+
+	// Never attach a mirrored two-handed weapon twice. Server-side code also
+	// normalizes this, but the client must be safe against stale PLAYERINFO/DAT
+	// snapshots already in flight.
+	if(IsCompanionTwoHandCodeClient(rightCode))
+		leftCode = 0;
+	else if(IsCompanionTwoHandCodeClient(leftCode))
+	{
+		if(!rightCode)
+			rightCode = leftCode;
+		leftCode = 0;
+	}
+
+	const bool rightChanged = character->HvRightHand.dwItemCode != rightCode;
+	const bool leftChanged = character->HvLeftHand.dwItemCode != leftCode;
+	if(rightChanged || leftChanged)
+		CompanionClientDebugLog(character, "EQUIP_BEFORE", 0, 0);
+	if(rightChanged)
+		character->SetTool(rightCode, hvPOSI_RHAND);
+	if(leftChanged)
+		character->SetTool(leftCode, hvPOSI_LHAND);
+	if(rightChanged || leftChanged)
+		CompanionClientDebugLog(character, "EQUIP_AFTER", 0, 0);
+}
+
+extern bool SummitCapturePendingFieldTransitionSetPosi(smCHAR *character,
+	int x, int y, int z, int ax, int ay, int az);
+
 int smCHAR::SetPosi(int x, int y, int z, int angX, int angY, int angZ)
 {
+	if (SummitCapturePendingFieldTransitionSetPosi(this, x, y, z, angX, angY, angZ))
+		return TRUE;
+
 	int sy;
 
 	pX = x;
@@ -2007,6 +2424,19 @@ int smCHAR::MoveAngle2(int step)
 
 	OldStageField = OnStageField;
 	OnStageField = -1;
+
+	// During async bootstrap the logical sFIELD metadata is already available
+	// while collision geometry is still being prepared by a worker. The old
+	// synchronous code could never observe this state. Do not erase the logical
+	// field or simulate a fall to the -80 fallback plane while no stage exists.
+	if (!lpStage && !smGameStage[0] && !smGameStage[1])
+	{
+		if (OldStageField >= 0 && OldStageField < 2 && StageField[OldStageField])
+			OnStageField = OldStageField;
+		else if (this == lpCurPlayer && StageField[0])
+			OnStageField = 0;
+		return TRUE;
+	}
 
 	if (step == 0 || PHeight < y)
 	{
@@ -3036,10 +3466,9 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 
 	smMODELINFO	*lpMotionInfo;
 
-	if (smCharInfo.JOB_CODE && smCharInfo.JOB_CODE < 16)
-		dwJobCodeMask = BitMaskJobNames[smCharInfo.JOB_CODE - 1].dwBitMask;
-	else
-		dwJobCodeMask = 0;
+	std::uint32_t motionJobMask = 0u;
+	gameplay::classes::DefaultClassService().TryMotionJobMask(smCharInfo.JOB_CODE, motionJobMask);
+	dwJobCodeMask = static_cast<DWORD>(motionJobMask);
 
 
 	FindCnt = 0;
@@ -3305,12 +3734,18 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 		}
 	}
 
+	const bool deterministicCompanionMotion = IsNetworkAccountCompanion(this);
+
 	if (FindCnt2 == 0)
 	{
-		if (FindCnt == 1)
+		if (FindCnt == 1 || (deterministicCompanionMotion && FindCnt > 0))
 			ChangeMotion(FoundNum[0], AnimDispMode);
 		else
 			if (FindCnt) ChangeMotion(FoundNum[(rand() % FindCnt)], AnimDispMode);
+
+		if(deterministicCompanionMotion && CompanionClientDebugEnabled())
+			CompanionClientDebugLog(this, "MOTION_LEGACY_SELECTED", MotionCode,
+				(DWORD)(FindCnt > 0 ? FoundNum[0] : 0));
 
 		if (atSkill) AttackSkil = atSkill;
 		if(atSkill) SummitTraceT5MotionResult(atSkill, FindCnt, action, MotionInfo, MotionSelectFrame, PatDispMode);
@@ -3319,9 +3754,14 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 	}
 
 
-	if (FindCnt2 == 1) ChangeMotion(FoundNum2[0], AnimDispMode);
+	if (FindCnt2 == 1 || (deterministicCompanionMotion && FindCnt2 > 0))
+		ChangeMotion(FoundNum2[0], AnimDispMode);
 	else
 		if (FindCnt2) ChangeMotion(FoundNum2[(rand() % FindCnt2)], AnimDispMode);
+
+	if(deterministicCompanionMotion && CompanionClientDebugEnabled())
+		CompanionClientDebugLog(this, "MOTION_LEGACY_SELECTED", MotionCode,
+			(DWORD)(FindCnt2 > 0 ? FoundNum2[0] : 0));
 
 
 	if (atSkill) AttackSkil = atSkill;
@@ -5525,10 +5965,11 @@ int smCHAR::Main()
 				FrameStep = (80 * AttackSpeed) >> FLOATNS;
 
 
-				if (smCharInfo.JOB_CODE == 8 &&
-					MotionInfo->ItemCodeCount && sItem[MotionInfo->ItemCodeList[0]].CODE == (sinWM1 | sin04))
+				if (MotionInfo->ItemCodeCount)
 				{
-					FrameStep -= 16;
+					const DWORD animationItemCode = sItem[MotionInfo->ItemCodeList[0]].CODE;
+					FrameStep += gameplay::classes::DefaultClassService().AttackFrameStepAdjustment(
+						smCharInfo.JOB_CODE, static_cast<std::uint32_t>(animationItemCode));
 				}
 			}
 			else
@@ -7767,6 +8208,12 @@ int smCHAR::Main()
 
 	case 99:
 
+		if (gameplay::companions::client_visual::Update(this))
+		{
+			FrameCounter += 3;
+			break;
+		}
+
 		if (PlayBuffCnt == PlayBuffPosi_End)
 		{
 
@@ -7801,41 +8248,47 @@ int smCHAR::Main()
 			Angle.x = playBuff->angle[0];
 			Angle.y = playBuff->angle[1];
 			Angle.z = playBuff->angle[2];
-			action = playBuff->angle[3];
 
-			if (!action)
+			SyncNetworkAccountCompanionTools(this);
+
+			if (!IsNetworkAccountCompanion(this))
 			{
-				action = OldAction;
+				action = playBuff->angle[3];
 
-				x = abs(pX - playBuff->x);
-				y = abs(pY - playBuff->y);
-				z = abs(pZ - playBuff->z);
-
-				cnt = x + y + z;
-
-				if (cnt > 32)
+				if (!action)
 				{
-					if (MotionInfo->State != CHRMOTION_STATE_WALK && MotionInfo->State != CHRMOTION_STATE_RUN)
+					action = OldAction;
+
+					x = abs(pX - playBuff->x);
+					y = abs(pY - playBuff->y);
+					z = abs(pZ - playBuff->z);
+
+					cnt = x + y + z;
+
+					if (cnt > 32)
 					{
-
-						if (cnt < 512)
+						if (MotionInfo->State != CHRMOTION_STATE_WALK && MotionInfo->State != CHRMOTION_STATE_RUN)
 						{
 
-							SetMotionFromCode(CHRMOTION_STATE_WALK);
-						}
-						else
-						{
+							if (cnt < 512)
+							{
 
-							if (!SetMotionFromCode(CHRMOTION_STATE_RUN))
 								SetMotionFromCode(CHRMOTION_STATE_WALK);
+							}
+							else
+							{
+
+								if (!SetMotionFromCode(CHRMOTION_STATE_RUN))
+									SetMotionFromCode(CHRMOTION_STATE_WALK);
+							}
 						}
 					}
-				}
-				else
-				{
-					if (MotionInfo->State != CHRMOTION_STATE_STAND)
+					else
 					{
-						SetMotionFromCode(CHRMOTION_STATE_STAND);
+						if (MotionInfo->State != CHRMOTION_STATE_STAND)
+						{
+							SetMotionFromCode(CHRMOTION_STATE_STAND);
+						}
 					}
 				}
 			}
@@ -7860,36 +8313,107 @@ int smCHAR::Main()
 
 			if (playBuff->frame < smPLAYBUFF_FRAME_NONE)
 			{
-
-
-
-				frame = playBuff->frame & CHAR_FRAME_MASK;
-
-
-				MotionSelectFrame = playBuff->frame >> CHAR_FRAME_SELSHIFT;
-				if (AnimDispMode)
+				if (IsNetworkAccountCompanion(this))
 				{
-					if (MotionSelectFrame)
-						PatDispMode = DISP_MODE_PATSUB;
-					else
+					// For companions, angle[3] is deliberately ignored. It is an
+					// index into the server's model-local motion table and can point
+					// at a different clip in the client after independent asset load.
+					// The server carries CHRMOTION_STATE_* in the skill slot instead.
+					const DWORD companionMotionState =
+						(DWORD)(WORD)playBuff->wStickItems[smPLAYBUFF_ITEM_SKIL];
+
+					if (companionMotionState &&
+						(!MotionInfo || MotionInfo->State != companionMotionState ||
+						 MotionSelectFrame != 0))
 					{
-						PatDispMode = DISP_MODE_PATMAIN;
+						// angle[3]/action is deliberately ignored for account companions.
+						// action therefore remains zero and must not be used as a reason to
+						// reapply the same motion every network sample: doing so restarts
+						// clips continuously, especially the death animation.
+						SetMotionFromCode(companionMotionState);
+					}
+
+					MotionSelectFrame = 0;
+					// Account companions use Pattern for the body and Pattern2 for the
+					// persisted face/hair. The old forced PATMAIN hid Pattern2 on every
+					// network sample even though the head had loaded successfully.
+					PatDispMode = (Pattern2 && lpDinaPattern2)
+						? (DISP_MODE_PATMAIN | DISP_MODE_PATSUB)
+						: DISP_MODE_PATMAIN;
+
+					static DWORD companionDebugLast = 0;
+					if(CompanionClientDebugEnabled() && (DWORD)(GetTickCount() - companionDebugLast) >= 1000U)
+					{
+						companionDebugLast = GetTickCount();
+						CompanionClientDebugLog(this, "NET_STATE", companionMotionState, playBuff->frame);
+					}
+					if(CompanionClientDebugEnabled() && companionMotionState == CHRMOTION_STATE_DEAD)
+						CompanionClientDebugLog(this, "DEAD_SAMPLE", companionMotionState, playBuff->frame);
+
+					if (MotionInfo)
+					{
+						// The server-side companion intentionally runs on a borrowed crystal
+						// model. Its absolute/relative animation frames therefore do not have
+						// the same timing or ranges as the saved player's model loaded here.
+						// Synchronize only CHRMOTION_STATE_* and let the client advance the
+						// actual player clip locally. Driving the client with template frames
+						// made companions slide/freeze even though the motion state was valid.
+						const int startFrame = MotionInfo->StartFrame * 160;
+						const int endFrame = MotionInfo->EndFrame * 160;
+						const int motionLength = endFrame - startFrame;
+
+						if (frame < startFrame || frame > endFrame)
+							frame = startFrame;
+
+						if (companionMotionState == CHRMOTION_STATE_DEAD && frame >= endFrame)
+						{
+							frame = endFrame;
+						}
+						else
+						{
+							frame += 80;
+							if (frame >= endFrame)
+							{
+								if (MotionInfo->Repeat &&
+									companionMotionState != CHRMOTION_STATE_DEAD &&
+									motionLength > 0)
+								{
+									frame = startFrame + ((frame - startFrame) % motionLength);
+								}
+								else
+								{
+									frame = endFrame;
+								}
+							}
+						}
+
+						FrameInfo.StartFrame = startFrame;
+						FrameInfo.EndFrame = endFrame;
 					}
 				}
-
-				if (action)
+				else
 				{
+					frame = playBuff->frame & CHAR_FRAME_MASK;
 
-					if (PatDispMode == DISP_MODE_PATSUB)
-						MotionInfo = &smMotionInfo2->MotionInfo[action];
-					else
-						MotionInfo = &smMotionInfo->MotionInfo[action];
+					MotionSelectFrame = playBuff->frame >> CHAR_FRAME_SELSHIFT;
+					if (AnimDispMode)
+					{
+						if (MotionSelectFrame)
+							PatDispMode = DISP_MODE_PATSUB;
+						else
+							PatDispMode = DISP_MODE_PATMAIN;
+					}
 
+					if (action)
+					{
+						if (PatDispMode == DISP_MODE_PATSUB)
+							MotionInfo = &smMotionInfo2->MotionInfo[action];
+						else
+							MotionInfo = &smMotionInfo->MotionInfo[action];
 
-
-					FrameInfo.StartFrame = MotionInfo->StartFrame * 160;
-					FrameInfo.EndFrame = MotionInfo->EndFrame * 160;
-
+						FrameInfo.StartFrame = MotionInfo->StartFrame * 160;
+						FrameInfo.EndFrame = MotionInfo->EndFrame * 160;
+					}
 				}
 
 				if (OldMotionState != MotionInfo->State)
@@ -7924,11 +8448,10 @@ int smCHAR::Main()
 					}
 					MotionEvent = 0;
 
-					if (playBuff->wStickItems[smPLAYBUFF_ITEM_SKIL] >= 0)
+					if (!IsNetworkAccountCompanion(this) &&
+						playBuff->wStickItems[smPLAYBUFF_ITEM_SKIL] >= 0)
 					{
-
 						BeginSkill(playBuff->wStickItems[smPLAYBUFF_ITEM_SKIL], 0, chrAttackTarget, 0, 0, 0);
-
 					}
 
 					if (smCharInfo.State == smCHAR_STATE_ENEMY)
@@ -7993,7 +8516,10 @@ int smCHAR::Main()
 
 
 
-			AttackSkil = playBuff->wStickItems[smPLAYBUFF_ITEM_SKIL];
+			if (IsNetworkAccountCompanion(this))
+				AttackSkil = 0;
+			else
+				AttackSkil = playBuff->wStickItems[smPLAYBUFF_ITEM_SKIL];
 			EventAttack();
 
 			if (smCharInfo.State != smCHAR_STATE_USER &&
@@ -8087,7 +8613,12 @@ int smCHAR::Main()
 
 			if ((smCharInfo.State == smCHAR_STATE_USER || PkMode_CharState == smCHAR_STATE_USER) && DisplayFlag)
 			{
-
+				if (IsNetworkAccountCompanion(this))
+				{
+					SyncNetworkAccountCompanionTools(this);
+				}
+				else
+				{
 
 				if (playBuff->wStickItems[smPLAYBUFF_ITEM_LEFT] != wStickItems[smPLAYBUFF_ITEM_LEFT])
 				{
@@ -8117,6 +8648,7 @@ int smCHAR::Main()
 				{
 					SetChrArmor(this, playBuff->wStickItems[smPLAYBUFF_ITEM_BODY]);
 					wStickItems[smPLAYBUFF_ITEM_BODY] = playBuff->wStickItems[smPLAYBUFF_ITEM_BODY];
+				}
 				}
 			}
 
@@ -8165,6 +8697,8 @@ int smCHAR::Main()
 
 			if ((PlayBuffCnt & 0x3F) == 0 && smCharInfo.State != TRUE)
 			{
+				const int logicalStageField = OnStageField;
+				cnt = CLIP_OUT;
 				OnStageField = -1;
 				if (smGameStage[0])
 				{
@@ -8174,6 +8708,12 @@ int smCHAR::Main()
 				if (cnt == CLIP_OUT && smGameStage[1])
 				{
 					OnStageField = 1;
+				}
+				if (OnStageField < 0 &&
+					logicalStageField >= 0 && logicalStageField < 2 &&
+					StageField[logicalStageField])
+				{
+					OnStageField = logicalStageField;
 				}
 			}
 
@@ -11024,6 +11564,8 @@ int smCHAR::FormSetPlayerInfo()
 
 	if (smCharInfo.State != smCHAR_STATE_ENEMY)
 	{
+		const int logicalStageField = OnStageField;
+		cnt = CLIP_OUT;
 		OnStageField = -1;
 		if (smGameStage[0] && Pattern)
 		{
@@ -11033,6 +11575,13 @@ int smCHAR::FormSetPlayerInfo()
 		if (cnt == CLIP_OUT && smGameStage[1])
 		{
 			OnStageField = 1;
+		}
+		if (OnStageField < 0)
+		{
+			if (logicalStageField >= 0 && logicalStageField < 2 && StageField[logicalStageField])
+				OnStageField = logicalStageField;
+			else if (this == lpCurPlayer && StageField[0])
+				OnStageField = 0;
 		}
 	}
 
@@ -11248,17 +11797,75 @@ int smCHAR::FormSetPlayerInfo()
 
 int smCHAR::SetTransPlayerInfo(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
 {
+	char previousBody[sizeof(smCharInfo.szModelName)] = { 0 };
+	char previousHead[sizeof(smCharInfo.szModelName2)] = { 0 };
+	strcpy_s(previousBody, sizeof(previousBody), smCharInfo.szModelName);
+	strcpy_s(previousHead, sizeof(previousHead), smCharInfo.szModelName2);
+	const bool hadPattern = Pattern != NULL;
+
+	DWORD previousCompanionMeta[4] = { 0, 0, 0, 0 };
+	const bool wasCompanion = IsNetworkAccountCompanion(this);
+	if(wasCompanion)
+	{
+		previousCompanionMeta[0] = smCharInfo.dwTemp[smCOMPANION_NET_TEMP_EQUIP_REVISION];
+		previousCompanionMeta[1] = smCharInfo.dwTemp[smCOMPANION_NET_TEMP_MAGIC];
+		previousCompanionMeta[2] = smCharInfo.dwTemp[smCOMPANION_NET_TEMP_RIGHT_ITEM_CODE];
+		previousCompanionMeta[3] = smCharInfo.dwTemp[smCOMPANION_NET_TEMP_LEFT_ITEM_CODE];
+	}
+
 	memcpy(&smCharInfo, &lpTransPlayerInfo->smCharInfo, sizeof(smCHAR_INFO));
+
+	if(wasCompanion)
+	{
+		const DWORD incomingRevision = smCharInfo.dwTemp[smCOMPANION_NET_TEMP_EQUIP_REVISION];
+		const bool incomingCompanion =
+			smCharInfo.dwTemp[smCOMPANION_NET_TEMP_MAGIC] == smCOMPANION_NET_MAGIC;
+		// A zero/older revision is a stale generic PLAYERINFO refresh. Preserve the
+		// last authoritative loadout. Explicit equip/unequip actions bump revision
+		// server-side, so a real all-zero loadout is still accepted.
+		if(!incomingCompanion || !incomingRevision || incomingRevision < previousCompanionMeta[0])
+		{
+			smCharInfo.dwTemp[smCOMPANION_NET_TEMP_EQUIP_REVISION] = previousCompanionMeta[0];
+			smCharInfo.dwTemp[smCOMPANION_NET_TEMP_MAGIC] = previousCompanionMeta[1];
+			smCharInfo.dwTemp[smCOMPANION_NET_TEMP_RIGHT_ITEM_CODE] = previousCompanionMeta[2];
+			smCharInfo.dwTemp[smCOMPANION_NET_TEMP_LEFT_ITEM_CODE] = previousCompanionMeta[3];
+		}
+	}
+
 	ResetAttackTrans();
 
-	if (!PatLoading)
+	bool reloadPattern = TRUE;
+	if (IsNetworkAccountCompanion(this) && hadPattern)
+	{
+		const bool missingCompanionHead =
+			smCharInfo.szModelName2[0] && (!Pattern2 || !lpDinaPattern2);
+		reloadPattern =
+			lstrcmpi(previousBody, smCharInfo.szModelName) != 0 ||
+			lstrcmpi(previousHead, smCharInfo.szModelName2) != 0 ||
+			missingCompanionHead;
+	}
+
+	if (!PatLoading && reloadPattern)
+	{
 		AddLoaderPattern((smCHAR *)&Head, smCharInfo.szModelName, smCharInfo.szModelName2);
+
+		// The body can succeed while the secondary/head pattern fails once.
+		// Give a freshly received full companion snapshot one bounded retry
+		// instead of considering the unchanged model names fully loaded.
+		if (IsNetworkAccountCompanion(this) && smCharInfo.szModelName2[0] &&
+			!Pattern2 && !PatLoading)
+		{
+			AddLoaderPattern((smCHAR *)&Head, smCharInfo.szModelName, smCharInfo.szModelName2);
+		}
+	}
 
 	pX = lpTransPlayerInfo->x;
 	pY = lpTransPlayerInfo->y;
 	pZ = lpTransPlayerInfo->z;
 
 	FormSetPlayerInfo();
+	if(IsNetworkAccountCompanion(this))
+		SyncNetworkAccountCompanionTools(this);
 
 	if (smCharInfo.ClassClan)
 	{
@@ -11279,15 +11886,60 @@ int smCHAR::SetTransPlayerInfo(smTRNAS_PLAYERINFO *lpTransPlayerInfo)
 int smCHAR::SetTransPlayerInfoQuick(smTRNAS_PLAYERINFO_QUICK *lpTransPlayerInfo)
 {
 	int len = sizeof(smTRNAS_PLAYERINFO_QUICK) - lpTransPlayerInfo->size;
+	char previousBody[sizeof(smCharInfo.szModelName)] = { 0 };
+	char previousHead[sizeof(smCharInfo.szModelName2)] = { 0 };
+	strcpy_s(previousBody, sizeof(previousBody), smCharInfo.szModelName);
+	strcpy_s(previousHead, sizeof(previousHead), smCharInfo.szModelName2);
+	const bool hadPattern = Pattern != NULL;
+
+	// Quick player-info packets do not carry the tail of smCHAR_INFO. Preserve
+	// companion network metadata learned from the initial full PLAYERINFO so a
+	// later quick refresh cannot make the client fall back to server-local item
+	// indices or motion actions.
+	DWORD companionNetMeta[4] = { 0, 0, 0, 0 };
+	DWORD companionModelNameCode2 = 0;
+	const bool preserveCompanionMeta = IsNetworkAccountCompanion(this);
+	if(preserveCompanionMeta)
+	{
+		companionNetMeta[0] = smCharInfo.dwTemp[smCOMPANION_NET_TEMP_EQUIP_REVISION];
+		companionNetMeta[1] = smCharInfo.dwTemp[smCOMPANION_NET_TEMP_MAGIC];
+		companionNetMeta[2] = smCharInfo.dwTemp[smCOMPANION_NET_TEMP_RIGHT_ITEM_CODE];
+		companionNetMeta[3] = smCharInfo.dwTemp[smCOMPANION_NET_TEMP_LEFT_ITEM_CODE];
+		companionModelNameCode2 = smCharInfo.ModelNameCode2;
+	}
 
 	ZeroMemory(&smCharInfo, sizeof(smCHAR_INFO));
 	smCharInfo.Life[0] = 10;
 	smCharInfo.Life[1] = 50;
 
 	memcpy(&smCharInfo, &lpTransPlayerInfo->smCharInfo, sizeof(smCHAR_INFO) - len);
+	if(preserveCompanionMeta)
+	{
+		// smTRNAS_PLAYERINFO_QUICK intentionally omits the tail of smCHAR_INFO.
+		// For account companions the full PLAYERINFO/DAT snapshot is the visual
+		// authority, so never let an incremental refresh erase body/head identity.
+		strcpy_s(smCharInfo.szModelName, sizeof(smCharInfo.szModelName), previousBody);
+		strcpy_s(smCharInfo.szModelName2, sizeof(smCharInfo.szModelName2), previousHead);
+		smCharInfo.ModelNameCode2 = companionModelNameCode2;
+		smCharInfo.dwTemp[smCOMPANION_NET_TEMP_EQUIP_REVISION] = companionNetMeta[0];
+		smCharInfo.dwTemp[smCOMPANION_NET_TEMP_MAGIC] = companionNetMeta[1];
+		smCharInfo.dwTemp[smCOMPANION_NET_TEMP_RIGHT_ITEM_CODE] = companionNetMeta[2];
+		smCharInfo.dwTemp[smCOMPANION_NET_TEMP_LEFT_ITEM_CODE] = companionNetMeta[3];
+	}
 	ResetAttackTrans();
 
-	if (!PatLoading)
+	bool reloadPattern = TRUE;
+	if (IsNetworkAccountCompanion(this) && hadPattern)
+	{
+		const bool missingCompanionHead =
+			smCharInfo.szModelName2[0] && (!Pattern2 || !lpDinaPattern2);
+		reloadPattern =
+			lstrcmpi(previousBody, smCharInfo.szModelName) != 0 ||
+			lstrcmpi(previousHead, smCharInfo.szModelName2) != 0 ||
+			missingCompanionHead;
+	}
+
+	if (!PatLoading && reloadPattern)
 		AddLoaderPattern((smCHAR *)&Head, smCharInfo.szModelName, smCharInfo.szModelName2);
 
 	pX = lpTransPlayerInfo->x;
@@ -11295,6 +11947,8 @@ int smCHAR::SetTransPlayerInfoQuick(smTRNAS_PLAYERINFO_QUICK *lpTransPlayerInfo)
 	pZ = lpTransPlayerInfo->z;
 
 	FormSetPlayerInfo();
+	if(IsNetworkAccountCompanion(this))
+		SyncNetworkAccountCompanionTools(this);
 
 	if (smCharInfo.ClassClan)
 	{
@@ -11353,6 +12007,21 @@ int smCHAR::RecvPlayData2(char *lpData)
 
 		lpTransPlayData = (smTRANS_PLAYDATA *)lpData;
 		lpTransPlayBuff = (smTRANS_PLAYBUFF *)(lpData + sizeof(smTRANS_PLAYDATA));
+
+		if (IsNetworkAccountCompanion(this) && CompanionClientDebugEnabled() &&
+			lpTransPlayData->PlayBuffCnt > 0)
+		{
+			static DWORD companionRxDebugLast = 0;
+			if ((DWORD)(GetTickCount() - companionRxDebugLast) >= 1000U)
+			{
+				companionRxDebugLast = GetTickCount();
+				const smTRANS_PLAYBUFF *lastCompanionBuff =
+					lpTransPlayBuff + (lpTransPlayData->PlayBuffCnt - 1);
+				CompanionClientDebugLog(this, "RX_TRANS",
+					(DWORD)(WORD)lastCompanionBuff->PlayBuff.wStickItems[smPLAYBUFF_ITEM_SKIL],
+					lastCompanionBuff->PlayBuff.frame);
+			}
+		}
 
 		LastBuffPosi_End = PlayBuffPosi_End;
 
@@ -11427,6 +12096,12 @@ int smCHAR::RecvPlayData2(char *lpData)
 					pY = lpTransPlayBuff->PlayBuff.y;
 					pZ = lpTransPlayBuff->PlayBuff.z;
 
+					if (IsNetworkAccountCompanion(this))
+					{
+						SyncNetworkAccountCompanionTools(this);
+					}
+					else
+					{
 
 					if (lpTransPlayBuff->PlayBuff.wStickItems[smPLAYBUFF_ITEM_LEFT] != wStickItems[smPLAYBUFF_ITEM_LEFT])
 					{
@@ -11458,6 +12133,7 @@ int smCHAR::RecvPlayData2(char *lpData)
 					{
 						SetChrArmor(this, lpTransPlayBuff->PlayBuff.wStickItems[smPLAYBUFF_ITEM_BODY]);
 						wStickItems[smPLAYBUFF_ITEM_BODY] = lpTransPlayBuff->PlayBuff.wStickItems[smPLAYBUFF_ITEM_BODY];
+					}
 					}
 				}
 			}
@@ -17266,11 +17942,13 @@ scITEM::~scITEM()
 
 void scITEM::Init()
 {
+	SummitCancelItemModelV3(this);
 	ZeroMemory(&Head, sizeof(scITEM));
 }
 
 int scITEM::Close()
 {
+	SummitCancelItemModelV3(this);
 
 	Flag = 0;
 

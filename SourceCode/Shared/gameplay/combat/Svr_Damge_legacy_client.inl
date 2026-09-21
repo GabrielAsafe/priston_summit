@@ -24,6 +24,7 @@
 #include "compat/client_server/server_legacy/onserver.h"
 #include "compat/client_server/server_legacy/svr_Damage.h"
 #include "systems/combat/damage/damage.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 #ifdef _LANGUAGE_VEITNAM
 #include "../veitnam/v_event.h"
 #endif
@@ -2752,7 +2753,7 @@ int rsCheckTier5SkillAuthority(rsPLAYINFO *lpPlayInfo, DWORD dwSkillCode, int po
 
 	if(dwCode < SKILL_PLAY_T51 || dwCode > SKILL_PLAY_T54) return TRUE;
 	if(!lpPlayInfo || point < 0 || point >= 10) return FALSE;
-	if(lpPlayInfo->smCharInfo.JOB_CODE < JOBCODE_FIGHTER || lpPlayInfo->smCharInfo.JOB_CODE > JOBCODE_PRIESTESS) return FALSE;
+	if(!gameplay::classes::DefaultClassService().UsesLegacyTier5Slots(lpPlayInfo->smCharInfo.JOB_CODE)) return FALSE;
 
 	int slot = (int)(dwCode - SKILL_PLAY_T51);
 	BYTE learnedPoint = lpPlayInfo->bSkillPoint[16 + slot];

@@ -6,6 +6,9 @@
 #include "systems/world/field/field.h"
 #include "compat/client_server/server_legacy/onserver.h"
 #include "systems/commerce/coin_shop/CoinShop.h"
+#include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
+
+#include "gameplay/classes/v2/services/ClassService.h"
 
 #ifdef _XTRAP_GUARD_4_CLIENT 
 #include "XTrapSrcD5/ClientExt/XTrap4ClientExt1.h"	
@@ -39,6 +42,10 @@ POINT UnionCorePosi = { 0,0 };
 int   sinOverWeightCnt = 0;
 int sinMyShopItemPass = 0;
 
+// UI V2 confirmed merchant sales must reuse the legacy validation/sale path
+// without creating the legacy MESSAGE_SELL_HIGHRANK_ITEM dialog.
+int uiV2ConfirmedMerchantSale = 0;
+int uiV2ConfirmedMerchantSaleResult = 0;
 
 
 int nName = 0;
@@ -581,11 +588,9 @@ int CoreEffectFlag = 0;
 
 ECostumeClass GetCharacterKind()
 {
-	if( ( lpCurPlayer->smCharInfo.JOB_CODE == 1 ) || ( lpCurPlayer->smCharInfo.JOB_CODE == 2 ) || ( lpCurPlayer->smCharInfo.JOB_CODE == 4 ) || ( lpCurPlayer->smCharInfo.JOB_CODE == 6 ) || ( lpCurPlayer->smCharInfo.JOB_CODE == 7 ) )
-		return CLASS_Male;
-	else
+	if(lpCurPlayer && gameplay::classes::DefaultClassService().IsGender(
+		lpCurPlayer->smCharInfo.JOB_CODE, gameplay::classes::CharacterGender::Female))
 		return CLASS_Female;
-
 	return CLASS_Male;
 }
 
@@ -1073,7 +1078,7 @@ int ReversEffectFlag = 0;
 DWORD dwForceOrbTime = 0;
 int   ForceOrbEffectIndex = 0;
 
-void cINVENTORY::Main()
+void cINVENTORY::Main(bool processPointerHitTest)
 {
 	dwForceOrbTime++;
 	if(dwForceOrbTime > 8)
@@ -1241,25 +1246,38 @@ void cINVENTORY::Main()
 	}
 	InvenArrowPosi = 0;
 	int i = 0;
-	if(OpenFlag)
-		for(i = 0; i < 10; i++)
-			if(ArrowPosi[i][0] < pCursorPos.x  && ArrowPosi[i][2] > pCursorPos.x  &&
-				ArrowPosi[i][1] < pCursorPos.y  && ArrowPosi[i][3] > pCursorPos.y)
-				InvenArrowPosi = i + 1;
-
-
-	for(i = 0; i < 3; i++)
+	if(processPointerHitTest)
 	{
-		if(sInven[i + 10].Rect.left < pCursorPos.x  && sInven[i + 10].Rect.right > pCursorPos.x  &&
-			sInven[i + 10].Rect.top < pCursorPos.y  && sInven[i + 10].Rect.bottom > pCursorPos.y)
+		if(OpenFlag)
+			for(i = 0; i < 10; i++)
+				if(ArrowPosi[i][0] < pCursorPos.x  && ArrowPosi[i][2] > pCursorPos.x  &&
+					ArrowPosi[i][1] < pCursorPos.y  && ArrowPosi[i][3] > pCursorPos.y)
+					InvenArrowPosi = i + 1;
+
+
+		for(i = 0; i < 3; i++)
 		{
-			cHelpPet.PetMessage("*Potion_ShortKey", 0);
+			if(sInven[i + 10].Rect.left < pCursorPos.x  && sInven[i + 10].Rect.right > pCursorPos.x  &&
+				sInven[i + 10].Rect.top < pCursorPos.y  && sInven[i + 10].Rect.bottom > pCursorPos.y)
+			{
+				cHelpPet.PetMessage("*Potion_ShortKey", 0);
 
+			}
 		}
+
+
+		PickUpInvenItem(pCursorPos.x, pCursorPos.y);
 	}
-
-
-	PickUpInvenItem(pCursorPos.x, pCursorPos.y);
+	else
+	{
+		// UI V2 owns pointer hit-testing while the standalone inventory tab is
+		// active. The legacy inventory still runs passive maintenance, but must
+		// not select items using the old fixed screen coordinates.
+		SelectInvenItemIndex = 0;
+		SelectPotionIndex = 0;
+		if(ColorIndex == SELECT_ITEM_COLOR)
+			ColorIndex = 0;
+	}
 
 	int BackdsDrawOffsetArray = 0;
 
@@ -1461,7 +1479,11 @@ void cINVENTORY::LButtonDown(int x, int y)
 		if(SetDelayFlag)return;
 
 
-		if(!sSinWarpGate.ShowFlag)
+		// ContextPanel V2 owns commerce interactions. If a legacy inventory
+		// LButtonDown leaks during the same frame a shop opens/closes, never
+		// route MouseItem through ThrowInvenItemToField(): that function has a
+		// second independent MESSAGE_SELL_HIGHRANK_ITEM path.
+		if(!sSinWarpGate.ShowFlag && !ui::v2::legacy::OwnsLegacyShopUI())
 			ThrowInvenItemToField(&MouseItem);
 
 
@@ -2195,6 +2217,11 @@ void cINVENTORY::RButtonDown(int x, int y)
 
 	//Clique direito para enviar itens do inventário para o ferreiro
 	else if (cShop.OpenFlag) {
+		// When V2 owns the merchant, only its one-shot resolved sale may enter
+		// this legacy validator. Stray legacy input must never create Message3.
+		if (ui::v2::legacy::OwnsLegacyShopUI() && !uiV2ConfirmedMerchantSale)
+			return;
+
 		if (SelectInvenItemIndex) {
 			sITEM & Item = InvenItem[Index];
 			POINT MousePosition = { Item.x + 11, Item.y + 11 };
@@ -2216,9 +2243,22 @@ void cINVENTORY::RButtonDown(int x, int y)
 				cInvenTory.PickUpInvenItem(MousePosition.x, MousePosition.y, TRUE);
 
 				CursorClass = 1;
-				MouseItem.Flag = 0;
-				ResetInvenItemCode();
-				cMessageBox.ShowMessage3(MESSAGE_SELL_HIGHRANK_ITEM, MouseItem.sItemInfo.ItemName);
+				if(uiV2ConfirmedMerchantSale)
+				{
+					// Confirmation was already collected by ConfirmationOverlay V2.
+					// Do not create MESSAGE_SELL_HIGHRANK_ITEM at all; finish through
+					// the exact legacy sale function used by the old OK button.
+					uiV2ConfirmedMerchantSale = 0;
+					MouseItem.Flag = 1;
+					ResetInvenItemCode();
+					uiV2ConfirmedMerchantSaleResult = cShop.SellItemToShop(&MouseItem);
+				}
+				else
+				{
+					MouseItem.Flag = 0;
+					ResetInvenItemCode();
+					cMessageBox.ShowMessage3(MESSAGE_SELL_HIGHRANK_ITEM, MouseItem.sItemInfo.ItemName);
+				}
 			} else {
 				cMessageBox.ShowMessage(MESSAGE_OVER_MONEY);
 			}
@@ -4619,90 +4659,34 @@ void cINVENTORY::RButtonDown(int x, int y)
 			}
 	
 
+const gameplay::classes::ClassService &classService = gameplay::classes::DefaultClassService();
+			const bool isFemale = classService.IsGender(sinChar->JOB_CODE, gameplay::classes::CharacterGender::Female);
+			const bool isMale = classService.IsGender(sinChar->JOB_CODE, gameplay::classes::CharacterGender::Male);
+			const DWORD chocolateCode = InvenItem[SelectInvenItemIndex - 1].CODE & sinITEM_MASK3;
+
 #ifdef _LANGUAGE_ENGLISH
-			if((InvenItem[SelectInvenItemIndex - 1].CODE &sinITEM_MASK3) == sin01)
+			if(chocolateCode == sin01)
 			{
-				switch(sinChar->JOB_CODE)
-				{
-				case JOBCODE_MECHANICIAN:
-				case JOBCODE_FIGHTER:
-				case JOBCODE_PIKEMAN:
-				case JOBCODE_KNIGHT:
-				case JOBCODE_MAGICIAN:
-					cMessageBox.ShowMessage(MESSAGE_NOT_USE_MALE);
-
-					break;
-				case JOBCODE_ARCHER:
-				case JOBCODE_ATALANTA:
-				case JOBCODE_PRIESTESS:
-					UseFlag2 = 1;
-					break;
-				}
+				if(isFemale) UseFlag2 = 1;
+				else if(isMale) cMessageBox.ShowMessage(MESSAGE_NOT_USE_MALE);
 			}
-			else if((InvenItem[SelectInvenItemIndex - 1].CODE &sinITEM_MASK3) == sin02)
+			else if(chocolateCode == sin02)
 			{
-				switch(sinChar->JOB_CODE)
-				{
-				case JOBCODE_ARCHER:
-				case JOBCODE_ATALANTA:
-				case JOBCODE_PRIESTESS:
-					cMessageBox.ShowMessage(MESSAGE_NOT_USE_FEMALE);
-
-					break;
-				case JOBCODE_MECHANICIAN:
-				case JOBCODE_FIGHTER:
-				case JOBCODE_PIKEMAN:
-				case JOBCODE_KNIGHT:
-				case JOBCODE_MAGICIAN:
-					UseFlag2 = 1;
-					break;
-				}
+				if(isMale) UseFlag2 = 1;
+				else if(isFemale) cMessageBox.ShowMessage(MESSAGE_NOT_USE_FEMALE);
 			}
 #else
-			if((InvenItem[SelectInvenItemIndex - 1].CODE &sinITEM_MASK3) == sin01 ||
-				(InvenItem[SelectInvenItemIndex - 1].CODE &sinITEM_MASK3) == sin02)
+			if(chocolateCode == sin01 || chocolateCode == sin02)
 			{
-				switch(sinChar->JOB_CODE)
-				{
-				case JOBCODE_ARCHER:
-				case JOBCODE_ATALANTA:
-				case JOBCODE_PRIESTESS:
-					cMessageBox.ShowMessage(MESSAGE_NOT_USE_FEMALE);
-
-					break;
-				case JOBCODE_MECHANICIAN:
-				case JOBCODE_FIGHTER:
-				case JOBCODE_PIKEMAN:
-				case JOBCODE_KNIGHT:
-				case JOBCODE_MAGICIAN:
-					UseFlag2 = 1;
-
-					break;
-				}
+				if(isMale) UseFlag2 = 1;
+				else if(isFemale) cMessageBox.ShowMessage(MESSAGE_NOT_USE_FEMALE);
 			}
 #endif
-            //#Chocolate - Feminino/Masculino
-			if((InvenItem[SelectInvenItemIndex - 1].CODE &sinITEM_MASK3) == sin03 ||
-				(InvenItem[SelectInvenItemIndex - 1].CODE &sinITEM_MASK3) == sin04)
+			// Chocolate variants restricted by the class gender profile.
+			if(chocolateCode == sin03 || chocolateCode == sin04)
 			{
-				switch(sinChar->JOB_CODE)
-				{
-				case JOBCODE_ARCHER:
-				case JOBCODE_ATALANTA:
-				case JOBCODE_PRIESTESS:
-					UseFlag2 = 1;
-
-					break;
-				case JOBCODE_MECHANICIAN:
-				case JOBCODE_FIGHTER:
-				case JOBCODE_PIKEMAN:
-				case JOBCODE_KNIGHT:
-				case JOBCODE_MAGICIAN:
-					cMessageBox.ShowMessage(MESSAGE_NOT_USE_MALE);
-					break;
-
-				}
-
+				if(isFemale) UseFlag2 = 1;
+				else if(isMale) cMessageBox.ShowMessage(MESSAGE_NOT_USE_MALE);
 			}
 
 
@@ -5567,15 +5551,10 @@ int cINVENTORY::LastSetInvenItem(sITEM *pItem, int AutoSet)
 			{
 				SetTwoHandItem(&InvenItem[j]);
 				sInven[InvenItem[j].ItemPosition - 1].ItemIndex = j + 1;
-				if(lpCurPlayer->smCharInfo.JOB_CODE == 9 && (InvenItem[j].CODE&sinITEM_MASK2))
-				{
-					sinSetCharItem(InvenItem[j].CODE, 2, TRUE);
-					sinSetCharItem(InvenItem[j].CODE, 4, TRUE);
-				}
-				else
-				{
-					sinSetCharItem(InvenItem[j].CODE, pItem->SetModelPosi, TRUE);
-				}
+				const std::vector<int> modelSlots = gameplay::classes::DefaultClassService().EquipmentModelSlots(
+					lpCurPlayer->smCharInfo.JOB_CODE, pItem->SetModelPosi);
+				for(std::vector<int>::const_iterator slot = modelSlots.begin(); slot != modelSlots.end(); ++slot)
+					sinSetCharItem(InvenItem[j].CODE, *slot, TRUE);
 			}
 			pItem->Flag = 0;
 			ReFormInvenItem();
@@ -6367,13 +6346,10 @@ int cINVENTORY::PickUpInvenItem(int x, int y, int PickUpFlag)
 					InvenItem[i].Flag = 0;
 					if(InvenItem[i].ItemPosition)
 					{
-						if(lpCurPlayer->smCharInfo.JOB_CODE == 9 && (InvenItem[i].CODE&sinITEM_MASK2))
-						{
-							sinSetCharItem(InvenItem[i].CODE, 2, FALSE);
-							sinSetCharItem(InvenItem[i].CODE, 4, FALSE);
-						}
-						else
-						    sinSetCharItem(InvenItem[i].CODE, InvenItem[i].SetModelPosi, FALSE);
+						const std::vector<int> modelSlots = gameplay::classes::DefaultClassService().EquipmentModelSlots(
+							lpCurPlayer->smCharInfo.JOB_CODE, InvenItem[i].SetModelPosi);
+						for(std::vector<int>::const_iterator slot = modelSlots.begin(); slot != modelSlots.end(); ++slot)
+							sinSetCharItem(InvenItem[i].CODE, *slot, FALSE);
 						sInven[InvenItem[i].ItemPosition - 1].ItemIndex = 0;
 
 					}
@@ -6843,10 +6819,12 @@ int cINVENTORY::ThrowInvenItemToField(sITEM *pItem)
 
 	if(cShop.OpenFlag)
 	{
-
-
-
-
+		// The migrated merchant surface owns confirmation and selling. This
+		// function is a legacy drag/drop path with its own high-rank popup; keep
+		// it inert while UI V2 owns the shop so that popup cannot be armed from
+		// a stale/late legacy mouse dispatch.
+		if(ui::v2::legacy::OwnsLegacyShopUI())
+			return TRUE;
 
 		int kk = 0;
 		if(18 < pCursorPos.x && 18 + (22 * 10) > pCursorPos.x &&
@@ -7092,7 +7070,7 @@ int cINVENTORY::CharOnlySetItem(sITEM *pItem)
 		}
 	}*/
 
-	if(sinChar->JOB_CODE == JOBCODE_PRIESTESS || sinChar->JOB_CODE == JOBCODE_ATALANTA || sinChar->JOB_CODE == JOBCODE_ARCHER)
+	if(gameplay::classes::DefaultClassService().IsGender(sinChar->JOB_CODE, gameplay::classes::CharacterGender::Female))
 	{
 		if((pItem->sItemInfo.CODE & sinITEM_MASK2) == sinDA1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinDA2 ||
 		   (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinCA1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinCA2)
@@ -7236,7 +7214,8 @@ int cINVENTORY::CharOnlySetItem(sITEM *pItem)
 	}
 
 
-	if(sinChar->JOB_CODE == 7 || sinChar->JOB_CODE == 8)
+	if(gameplay::classes::DefaultClassService().HasCapability(
+		sinChar->JOB_CODE, gameplay::classes::ClassCapability::Caster))
 	{
 		if((pItem->sItemInfo.CODE & sinITEM_MASK2) == sinDA1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinDA3 ||
 		   (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinCA1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinCA5)
@@ -7498,34 +7477,33 @@ int cINVENTORY::DrawInvenText()
 
 int cINVENTORY::SearchJobAndSetting()
 {
-	int cnt;
-
 	JobName[0] = 0;
 
-	cnt = 0;
-
-
-	while(1)
+	const gameplay::classes::ClassService& classService = gameplay::classes::DefaultClassService();
+	gameplay::classes::CharacterFormulaProfile formula;
+	std::uint32_t jobBitCode = 0u;
+	if(!classService.TryFormula(sinChar->JOB_CODE, formula) ||
+	   !classService.TryJobBitCode(sinChar->JOB_CODE, jobBitCode))
 	{
-		if(JobDataBase[cnt].JobCode == 0) break;
-		if(JobDataBase[cnt].JobCode == sinChar->JOB_CODE)
-		{
-			sinJobList = GetJobDataCode(sinChar->JOB_CODE, sinChar->ChangeJob);
-			strcpy_s(JobName, sinJobList->szName2);
-			sinChar->JobBitMask = JobDataBase[cnt].JobBitCode;
-			sinChar->LifeFunction = JobDataBase[cnt].LifeFunction;
-			sinChar->ManaFunction = JobDataBase[cnt].ManaFunction;
-			sinChar->StaminaFunction = JobDataBase[cnt].StaminaFunction;
-			sinDamageFunction[0] = JobDataBase[cnt].DamageFunction[0];
-			sinDamageFunction[1] = JobDataBase[cnt].DamageFunction[1];
-			sinDamageFunction[2] = JobDataBase[cnt].DamageFunction[2];
-
-			break;
-		}
-		cnt++;
+		// Unknown/disabled classes must not silently inherit a legacy formula.
+		return FALSE;
 	}
-	return TRUE;
 
+	// GetJobDataCode remains a localization bridge while names are still served
+	// by the legacy language tables. Gameplay values come from Class V2.
+	sinJobList = GetJobDataCode(sinChar->JOB_CODE, sinChar->ChangeJob);
+	if(sinJobList)
+		strcpy_s(JobName, sinJobList->szName2);
+
+	sinChar->JobBitMask = static_cast<DWORD>(jobBitCode);
+	sinChar->LifeFunction = formula.lifeFunction;
+	sinChar->ManaFunction = formula.manaFunction;
+	sinChar->StaminaFunction = formula.staminaFunction;
+	sinDamageFunction[0] = formula.damageFunction[0];
+	sinDamageFunction[1] = formula.damageFunction[1];
+	sinDamageFunction[2] = formula.damageFunction[2];
+
+	return TRUE;
 }
 
 extern BOOL bTopLevel;
@@ -8456,54 +8434,16 @@ int cINVENTORY::SetItemToChar(int CheckHackFlag)
 	}
 
 	
-	switch(sinChar->JOB_CODE)
+	if(sInven[0].ItemIndex)
 	{
-	case JOBCODE_FIGHTER:
-		if(sinWA1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
+		const sITEMINFO &equippedWeapon = InvenItem[sInven[0].ItemIndex - 1].sItemInfo;
+		if(gameplay::classes::DefaultClassService().HasWeaponAffinity(
+			sinChar->JOB_CODE,
+			equippedWeapon.CODE & sinITEM_MASK2,
+			equippedWeapon.JobCodeMask,
+			equippedWeapon.UniqueItem,
+			sinChar->JobBitMask))
 			sinCharItemDamage = sinChar->Level / 6;
-		break;
-
-	case JOBCODE_MECHANICIAN:
-		if(sInven[0].ItemIndex)
-		{
-			if(sinChar->JobBitMask & InvenItem[sInven[0].ItemIndex - 1].sItemInfo.JobCodeMask)
-				sinCharItemDamage = sinChar->Level / 6;
-
-			if(InvenItem[sInven[0].ItemIndex - 1].sItemInfo.UniqueItem == 2)
-				sinCharItemDamage = sinChar->Level / 6;
-		}
-		break;
-
-	case JOBCODE_ARCHER:
-		if(sinWS1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
-			sinCharItemDamage = sinChar->Level / 6;
-		break;
-
-	case JOBCODE_PIKEMAN:
-		if(sinWP1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
-			sinCharItemDamage = sinChar->Level / 6;
-		break;
-
-	case JOBCODE_KNIGHT:
-		if(sinWS2 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
-			sinCharItemDamage = sinChar->Level / 6;
-		break;
-
-	case JOBCODE_ATALANTA:
-		if(sinWT1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
-			sinCharItemDamage = sinChar->Level / 6;
-		break;
-
-	case JOBCODE_PRIESTESS:
-		if(sinWM1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
-			sinCharItemDamage = sinChar->Level / 6;
-		break;
-
-	case JOBCODE_MAGICIAN:
-		if(sinWM1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
-			sinCharItemDamage = sinChar->Level / 6;
-		break;
-
 	}
 	int TempChangeDamageFlag = 0;
 	int TempChangeAbsorbFlag = 0;
@@ -9391,13 +9331,10 @@ int cINVENTORY::ChangeABItem(int Posi)
 						memcpy(&InvenItem[j], &BackUpInvenItemTemp[i], sizeof(sITEM));
 						BackUpInvenItemTemp[i].Flag = 0;
 						sInven[InvenItem[j].ItemPosition - 1].ItemIndex = j + 1;
-						if(lpCurPlayer->smCharInfo.JOB_CODE == 9 && (InvenItem[j].CODE&sinITEM_MASK2))
-						{
-							sinSetCharItem(InvenItem[j].CODE, 2, TRUE);
-							sinSetCharItem(InvenItem[j].CODE, 4, TRUE);
-						}
-						else
-							sinSetCharItem(InvenItem[j].CODE, InvenItem[j].SetModelPosi, TRUE);
+						const std::vector<int> modelSlots = gameplay::classes::DefaultClassService().EquipmentModelSlots(
+							lpCurPlayer->smCharInfo.JOB_CODE, InvenItem[j].SetModelPosi);
+						for(std::vector<int>::const_iterator slot = modelSlots.begin(); slot != modelSlots.end(); ++slot)
+							sinSetCharItem(InvenItem[j].CODE, *slot, TRUE);
 						if (InvenItem[j].SoundIndex)
 						if(InvenItem[j].SoundIndex)
 							sinPlaySound(InvenItem[j].SoundIndex);
@@ -10634,7 +10571,7 @@ int cINVENTORY::sinDrawInvenTexImage(smFACE2D *Face)
 	tlVertex[3].sy = ((float)y + (float)Face->height);
 	tlVertex[3].tu = 1;
 	tlVertex[3].tv = 1;
-	DrawTexture(smMaterial[Face->MatNum].smTexture[0]->lpD3DTexture, tlVertex, true);
+	DrawTexture(AssetLoadV2GetResidentTexture(smMaterial[Face->MatNum].smTexture[0]), tlVertex, true);
 	return TRUE;
 }
 
@@ -10998,8 +10935,6 @@ int cINVENTORY::CheckDamage()
 
 	int i = 0, j = 0, k = 0, t = 0;
 
-	DWORD WeaponCode[7] = { sinWA1,sinWS1,sinWP1,sinWS2,sinWT1,sinWM1,sinWM1 };
-	int   CharCode[7] = { JOBCODE_FIGHTER, JOBCODE_ARCHER, JOBCODE_PIKEMAN, JOBCODE_KNIGHT, JOBCODE_ATALANTA, JOBCODE_PRIESTESS, JOBCODE_MAGICIAN };
 
 	sITEM *pItem = 0;
 	pItem = new sITEM;
@@ -11097,25 +11032,15 @@ int cINVENTORY::CheckDamage()
 			}
 
 
-			for(j = 0; j < 7; j++)
+			if(gameplay::classes::DefaultClassService().HasWeaponAffinity(
+				sinChar->JOB_CODE,
+				pItem->sItemInfo.CODE & sinITEM_MASK2,
+				pItem->sItemInfo.JobCodeMask,
+				0, // CheckDamage historically did not apply Mechanician UniqueItem affinity here.
+				sinChar->JobBitMask))
 			{
-				if(CharCode[j] == sinChar->JOB_CODE)
-				{
-					if(WeaponCode[j] == (pItem->sItemInfo.CODE & sinITEM_MASK2))
-					{
-						SendDamage[0] += sinChar->Level / 6;
-						SendDamage[1] += sinChar->Level / 6;
-					}
-				}
-			}
-
-			if(sinChar->JOB_CODE == JOBCODE_MECHANICIAN)
-			{
-				if(sinChar->JobBitMask & pItem->sItemInfo.JobCodeMask)
-				{
-					SendDamage[0] += sinChar->Level / 6;
-					SendDamage[1] += sinChar->Level / 6;
-				}
+				SendDamage[0] += sinChar->Level / 6;
+				SendDamage[1] += sinChar->Level / 6;
 			}
 
 

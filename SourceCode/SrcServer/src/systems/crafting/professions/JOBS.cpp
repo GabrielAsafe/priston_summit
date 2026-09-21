@@ -4,6 +4,7 @@
 #include "modules/File/File.h"
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/crafting/professions/JOBS.h"
+#include "systems/gameplay/progression/v2/ProgressionTriggerRuntime.h"
 
 #include <time.h>
 
@@ -397,6 +398,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 		char name[32];
 		int job_code = 0;
 		int forgejob_code = 0;
+		bool professionStateChanged = false;
 
 		wsprintf(name, "'%s'", item->item.Name);
 		job_code = item->item.job_code;
@@ -410,6 +412,7 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 				SQL::GetInstance()->EnterSqlSection();
 				wsprintf(szQuery, "INSERT INTO  [JOBS].[dbo].[Jobs_Info] (ID, NICK, JOB, job_Level, Job_xp, M_A, M_F, M_L, M_M, M_R) VALUES ('%s', 0, %d, 1, 0, 0, 0, 0, 0, 0)", Player->getAccount(), job_code);
 				if (SQL::GetInstance()->Execute(szQuery)) {
+					professionStateChanged = true;
 				}
 				SQL::GetInstance()->LeaveSqlSection();
 			}
@@ -1179,6 +1182,9 @@ void JOBS::RecvJOBItemToClient(rsPLAYINFO* Player, JOBS_RESGATE* item)
 		SQL::GetInstance()->LeaveSqlSection();
 		JOBS::GetInstance()->SendJOBInfoToGame(Player);
 		delete lpsItem;
+
+		if (professionStateChanged)
+			gameplay::progression::NotifyServerProgressionPlayerStateChanged(Player);
 	}
 }
 
@@ -1188,6 +1194,7 @@ void JOBS::AddExpJOBS(rsPLAYINFO* Player, int valor)
 {
 	if (SQL::GetInstance()->IsConnected())
 	{
+		bool professionStateChanged = false;
 		int JOBUser_Exp = 0;
 		int JOB_LVL = 0;
 		char szQuery[512];
@@ -1240,14 +1247,19 @@ void JOBS::AddExpJOBS(rsPLAYINFO* Player, int valor)
 				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET Job_xp=%d WHERE[ID] = '%s'", JOBUser_Exp, Player->getAccount());
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
+					professionStateChanged = true;
 				}
 				wsprintf(szQuery, "UPDATE [JOBS].[dbo].[Jobs_Info] SET Job_Level=%d WHERE[ID] = '%s'", JOB_LVL, Player->getAccount());
 				if (SQL::GetInstance()->Execute(szQuery))
 				{
+					professionStateChanged = true;
 				}
 			}
 		}
 		SQL::GetInstance()->LeaveSqlSection();
+
+		if (professionStateChanged)
+			gameplay::progression::NotifyServerProgressionPlayerStateChanged(Player);
 	}
 }
 

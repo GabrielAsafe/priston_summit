@@ -81,7 +81,8 @@
  SrcGame/src/systems/rendering/effects/particles/ho/HoNewParticle.h \
  Shared/rendering/effects/particles/HoNewParticle_legacy_client.h \
  SrcGame/src/systems/rendering/effects/particles/ho/HoNewParticleMgr.h \
- SrcGame/src/systems/configuration/client/Settings.h
+ SrcGame/src/systems/configuration/client/Settings.h \
+ SrcGame/src/systems/rendering/sky/SkyStreamingV3.h
 SrcGame/src/systems/presentation/opening/legacy_runtime/HoLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
@@ -166,3 +167,4 @@ SrcGame/src/systems/rendering/effects/particles/ho/HoNewParticle.h:
 Shared/rendering/effects/particles/HoNewParticle_legacy_client.h:
 SrcGame/src/systems/rendering/effects/particles/ho/HoNewParticleMgr.h:
 SrcGame/src/systems/configuration/client/Settings.h:
+SrcGame/src/systems/rendering/sky/SkyStreamingV3.h:

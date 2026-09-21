@@ -135,6 +135,9 @@
  SrcGame/src/platform/database/odbc/SQL.h \
  Dependency/DirectX9/Include/d3dx9math.h \
  SrcGame/src/systems/commerce/coin_shop/CoinShop_T.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcGame/src/systems/inventory/legacy/item_catalog_recovered.inc
 SrcGame/src/systems/commerce/coin_shop/CoinShop.h:
 Shared/skillsPacket.h:
@@ -275,4 +278,7 @@ SrcGame/src/systems/progression/rankings/general/Ranking.h:
 SrcGame/src/platform/database/odbc/SQL.h:
 Dependency/DirectX9/Include/d3dx9math.h:
 SrcGame/src/systems/commerce/coin_shop/CoinShop_T.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/systems/inventory/legacy/item_catalog_recovered.inc:

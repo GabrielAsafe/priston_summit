@@ -1,0 +1,56 @@
+#pragma once
+
+#include "systems/ui/v2/domain/ISkillGateway.h"
+
+namespace ui::v2
+{
+class SkillsViewModel
+{
+public:
+    explicit SkillsViewModel(ISkillGateway& gateway) : gateway_(gateway) {}
+
+    void Refresh() { snapshot_ = gateway_.GetSnapshot(); }
+    [[nodiscard]] const SkillBookSnapshot& Snapshot() const noexcept { return snapshot_; }
+    [[nodiscard]] std::vector<DetailLineSnapshot> DetailsFor(int index) const { return gateway_.GetDetails(index); }
+
+    void Select(int index) noexcept { selectedIndex_ = index; }
+    [[nodiscard]] int SelectedIndex() const noexcept { return selectedIndex_; }
+
+    [[nodiscard]] const SkillEntrySnapshot* Selected() const noexcept
+    {
+        for (const auto& skill : snapshot_.skills)
+            if (skill.index == selectedIndex_)
+                return &skill;
+        return nullptr;
+    }
+
+    bool UpgradeSelected()
+    {
+        if (selectedIndex_ < 0 || !gateway_.RequestUpgrade(selectedIndex_))
+            return false;
+        Refresh();
+        return true;
+    }
+
+    bool BindSelectedLeft()
+    {
+        if (selectedIndex_ < 0 || !gateway_.BindLeft(selectedIndex_))
+            return false;
+        Refresh();
+        return true;
+    }
+
+    bool BindSelectedRight()
+    {
+        if (selectedIndex_ < 0 || !gateway_.BindRight(selectedIndex_))
+            return false;
+        Refresh();
+        return true;
+    }
+
+private:
+    ISkillGateway& gateway_;
+    SkillBookSnapshot snapshot_{};
+    int selectedIndex_ = -1;
+};
+}

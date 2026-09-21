@@ -139,7 +139,11 @@
  SrcGame/src/compat/client_server/server_legacy/onserver.h \
  Shared/server/legacy_runtime/onserver_legacy_client.h \
  SrcGame/src/systems/commerce/coin_shop/CoinShop.h Shared/skillsPacket.h \
- Shared/items.h SrcGame/src/systems/inventory/legacy/sinWingItem.h \
+ Shared/items.h SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ SrcGame/src/systems/inventory/legacy/sinWingItem.h \
  Shared/inventory/legacy/SinWingItemLegacyShared.inl
 Shared/opcodes.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
@@ -285,5 +289,9 @@ Shared/server/legacy_runtime/onserver_legacy_client.h:
 SrcGame/src/systems/commerce/coin_shop/CoinShop.h:
 Shared/skillsPacket.h:
 Shared/items.h:
+SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/systems/inventory/legacy/sinWingItem.h:
 Shared/inventory/legacy/SinWingItemLegacyShared.inl:

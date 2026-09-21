@@ -29,6 +29,8 @@
 
 #define GUIDEHELP_CPP
 
+#include "gameplay/classes/v2/services/ClassService.h"
+
 
 #include <windows.h>
 #include <tchar.h>
@@ -39,7 +41,7 @@
 
 #include "tjclanDEF.h"
 
-#ifdef USE_PROSTONTALE		
+#ifdef USE_PROSTONTALE
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/presentation/opening/legacy_runtime/HoLinkHeader.h"
 #include "systems/localization/legacy_catalog/language.h"

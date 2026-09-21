@@ -144,7 +144,11 @@
  SrcGame/src/systems/social/clan/tjclan.h \
  SrcGame/src/systems/social/chat/filter/CurseFilter.h \
  SrcGame/src/compat/legacy/text/jts.h \
- SrcGame/src/systems/configuration/client/Settings.h
+ SrcGame/src/systems/configuration/client/Settings.h \
+ Shared/authentication/character_selection/ClassSelectionAdapter.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h
 Shared/authentication/character_selection/HoLogin_legacy_client.inl:
 Shared/opcodes.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
@@ -293,3 +297,7 @@ SrcGame/src/systems/social/clan/tjclan.h:
 SrcGame/src/systems/social/chat/filter/CurseFilter.h:
 SrcGame/src/compat/legacy/text/jts.h:
 SrcGame/src/systems/configuration/client/Settings.h:
+Shared/authentication/character_selection/ClassSelectionAdapter.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:

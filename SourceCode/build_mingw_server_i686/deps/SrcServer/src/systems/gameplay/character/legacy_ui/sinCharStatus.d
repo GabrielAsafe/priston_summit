@@ -113,7 +113,10 @@
  Shared/persistence/database/Database_sqlite_server.h \
  SrcServer/src/systems/social/clan/legacy/tjclanDEF.h \
  SrcServer/src/systems/social/clan/legacy/tjclan.h \
- SrcServer/src/systems/social/clan/legacy/cE_CViewClanInfo.h
+ SrcServer/src/systems/social/clan/legacy/cE_CViewClanInfo.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h
 SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h:
 SrcServer/src/systems/rendering/legacy_3d/smd3d.h:
 SrcServer/src/systems/rendering/legacy_3d/smDsx.h:
@@ -230,3 +233,6 @@ Shared/persistence/database/Database_sqlite_server.h:
 SrcServer/src/systems/social/clan/legacy/tjclanDEF.h:
 SrcServer/src/systems/social/clan/legacy/tjclan.h:
 SrcServer/src/systems/social/clan/legacy/cE_CViewClanInfo.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:

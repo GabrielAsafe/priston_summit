@@ -233,6 +233,27 @@ int ReadTextures();
 
 int RestoreTextures();
 
+// Asset Load System V2 legacy adapter. These APIs intentionally keep
+// smTEXTUREHANDLE unchanged and make residency a sidecar concern.
+enum smASSET_OWNER_V2
+{
+	SMASSET_OWNER_GLOBAL    = 1u << 0,
+	SMASSET_OWNER_STAGE     = 1u << 1,
+	SMASSET_OWNER_EFFECT    = 1u << 2,
+	SMASSET_OWNER_UI        = 1u << 3,
+	SMASSET_OWNER_CHARACTER = 1u << 4,
+	SMASSET_OWNER_SKY       = 1u << 5
+};
+
+int  AssetLoadV2EnsureTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap = 0);
+LPDIRECT3DTEXTURE9 AssetLoadV2GetResidentTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap = 0);
+void AssetLoadV2TouchTexture(smTEXTUREHANDLE *lpTexHandle);
+void AssetLoadV2AddOwner(smTEXTUREHANDLE *lpTexHandle, DWORD ownerMask);
+int  AssetLoadV2ReadMaterialGroup(smMATERIAL_GROUP *group, DWORD ownerMask, int MipMap = 0);
+int  AssetLoadV2ReleaseMaterial(smMATERIAL_GROUP *group, int materialIndex);
+void AssetLoadV2TrimToBudget(const char *reason);
+void AssetLoadV2DumpTelemetry(const char *reason);
+
 
 void smLeaveTextureCriticalSection();
 
@@ -243,6 +264,7 @@ LPDIRECT3DTEXTURE9 *GetLastTextureSurface();
 LPDIRECT3DTEXTURE9 *GetLastTexture();
 
 LPDIRECT3DTEXTURE9 LoadDibSurfaceOffscreen( char *Filename );
+LPDIRECT3DTEXTURE9 LoadDibSurfaceOffscreenWithInfo( char *Filename, UINT *pSourceWidth, UINT *pSourceHeight );
 
 
 LPDIRECT3DTEXTURE9 GetTextureHandle( int num );

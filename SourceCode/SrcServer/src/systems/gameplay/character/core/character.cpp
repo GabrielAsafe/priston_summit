@@ -6,10 +6,12 @@
 #include "systems/network/transport/legacy/smwsock.h"
 
 #include "systems/gameplay/character/core/character.h"
+#include "systems/gameplay/companions/CompanionSystem.h"
 #include "systems/audio/playback/legacy/Dxwav.h"
 #include "systems/rendering/effects/particle_legacy/particle.h"
 #include "core/data/legacy_loader/fileread.h"
 #include "core/server/gameplay_runtime/playmain.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 #include "systems/rendering/legacy_2d/drawsub.h"
 #include "systems/network/server_gameplay/netplay.h"
 #include "systems/world/field/field.h"
@@ -1522,13 +1524,14 @@ int smCHAR::SetPattern(smPAT3D *pat)
 
 
 	AttackObjBip = 0;
-
-
-	if(smCharInfo.JOB_CODE == 3 || smCharInfo.JOB_CODE == 5)
-		AttackObjBip = AnimPat->GetObjectFromName(szBipName_LFoot);
-
-	if(smCharInfo.JOB_CODE == 7)
-		AttackObjBip = AnimPat->GetObjectFromName(szBipName_Head);
+	gameplay::classes::ClassAttackAnchor attackAnchor = gameplay::classes::ClassAttackAnchor::Default;
+	if(gameplay::classes::DefaultClassService().TryAttackAnchor(smCharInfo.JOB_CODE, attackAnchor))
+	{
+		if(attackAnchor == gameplay::classes::ClassAttackAnchor::LeftFoot)
+			AttackObjBip = AnimPat->GetObjectFromName(szBipName_LFoot);
+		else if(attackAnchor == gameplay::classes::ClassAttackAnchor::Head)
+			AttackObjBip = AnimPat->GetObjectFromName(szBipName_Head);
+	}
 
 	AnimPattern = AnimPat;
 
@@ -1774,7 +1777,8 @@ int smCHAR::SetTool(DWORD dwItemCode, int hvPosi)
 
 
 	if((dwActionItemCode&sinITEM_MASK2) == sinWS1 || (dwActionItemCode&sinITEM_MASK2) == sinWT1 ||
-		((dwActionItemCode&sinITEM_MASK2) == sinWM1 && (smCharInfo.JOB_CODE == 7 || smCharInfo.JOB_CODE == 8)))
+		((dwActionItemCode&sinITEM_MASK2) == sinWM1 &&
+		 gameplay::classes::DefaultClassService().HasCapability(smCharInfo.JOB_CODE, gameplay::classes::ClassCapability::Caster)))
 	{
 
 		ShootingMode = TRUE;
@@ -2341,10 +2345,9 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 
 	smMODELINFO	*lpMotionInfo;
 
-	if(smCharInfo.JOB_CODE && smCharInfo.JOB_CODE < 16)
-		dwJobCodeMask = BitMaskJobNames[smCharInfo.JOB_CODE - 1].dwBitMask;
-	else
-		dwJobCodeMask = 0;
+	std::uint32_t motionJobMask = 0u;
+	gameplay::classes::DefaultClassService().TryMotionJobMask(smCharInfo.JOB_CODE, motionJobMask);
+	dwJobCodeMask = static_cast<DWORD>(motionJobMask);
 
 
 	FindCnt = 0;
@@ -2353,6 +2356,45 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 
 	dwActItemCode = dwActionItemCode;
 
+#ifdef _W_SERVER
+	const bool isServerPlayerCompanion =
+		smCharInfo.State == smCHAR_STATE_USER &&
+		smCharInfo.Brood == smCHAR_MONSTER_USER &&
+		lpMasterPlayInfo != NULL;
+
+	// Server-side player companions live in the monster pool and therefore do
+	// not maintain the client-style OnStageField index. Treating them as
+	// StageVillage=3 makes player motion selection eligible for both village and
+	// field-only clips, which can randomly select the character-select/idle
+	// variant. Resolve the real field from the STG_AREA instead.
+	if(isServerPlayerCompanion && lpExt4)
+	{
+		STG_AREA *companionArea = static_cast<STG_AREA *>(lpExt4);
+		if(companionArea->lpField && companionArea->lpField->State == FIELD_STATE_VILLAGE)
+		{
+			StageVillage = 1;
+			dwActItemCode = 0;
+		}
+		else
+		{
+			StageVillage = 2;
+		}
+	}
+	else if(OnStageField >= 0)
+	{
+		if(StageField[OnStageField]->State == FIELD_STATE_VILLAGE)
+		{
+			StageVillage = 1;
+			dwActItemCode = 0;
+		}
+		else
+			StageVillage = 2;
+	}
+	else
+	{
+		StageVillage = 3;
+	}
+#else
 	if(OnStageField >= 0)
 	{
 		if(StageField[OnStageField]->State == FIELD_STATE_VILLAGE)
@@ -2365,13 +2407,10 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 	}
 	else
 	{
-#ifdef _W_SERVER
-		StageVillage = 3;
-#else
 		if(GameMode == 1) StageVillage = 1;
 		else StageVillage = 3;
-#endif
 	}
+#endif
 
 
 	lpMotionInfo = smMotionInfo;
@@ -2420,7 +2459,44 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 	}
 
 
-	if(FindCnt == 0 && AnimDispMode && lpDinaPattern2)
+#ifdef _W_SERVER
+	// A player companion must never switch its network motion base to Pattern2.
+	// For normal player models Pattern2 is commonly the head/sub-model; sending
+	// MotionSelectFrame=1 makes the client alternate PATMAIN/PATSUB and looks like
+	// the character is blinking. If the strict map filter found no main-pattern
+	// motion, retry the same state on the main motion table only.
+	if(FindCnt == 0 && isServerPlayerCompanion)
+	{
+		for(cnt = 0; cnt < (int)smMotionInfo->MotionCount; cnt++)
+		{
+			if(smMotionInfo->MotionInfo[cnt].State == MotionCode &&
+				(!smMotionInfo->MotionInfo[cnt].dwJobCodeBit || !dwJobCodeMask ||
+				 (smMotionInfo->MotionInfo[cnt].dwJobCodeBit & dwJobCodeMask)))
+			{
+				FoundNum[FindCnt++] = cnt;
+				if(FindCnt >= 32) break;
+			}
+		}
+
+		if(FindCnt == 0)
+		{
+			for(cnt = 0; cnt < (int)smMotionInfo->MotionCount; cnt++)
+			{
+				if(smMotionInfo->MotionInfo[cnt].State == MotionCode)
+				{
+					FoundNum[FindCnt++] = cnt;
+					if(FindCnt >= 32) break;
+				}
+			}
+		}
+	}
+#endif
+
+	if(FindCnt == 0 && AnimDispMode && lpDinaPattern2
+#ifdef _W_SERVER
+		&& !isServerPlayerCompanion
+#endif
+	)
 	{
 		for(cnt = 0; cnt < (int)smMotionInfo2->MotionCount; cnt++)
 		{
@@ -2601,6 +2677,16 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 
 	if(FindCnt2 == 0)
 	{
+#ifdef _W_SERVER
+		if(isServerPlayerCompanion && FindCnt)
+		{
+			MotionSelectFrame = 0;
+			ChangeMotion(FoundNum[0], FALSE);
+			if(atSkill) AttackSkil = atSkill;
+			return FindCnt;
+		}
+		else
+#endif
 		if(FindCnt == 1)
 			ChangeMotion(FoundNum[0], AnimDispMode);
 		else
@@ -2611,7 +2697,14 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 		return NULL;
 	}
 
-
+#ifdef _W_SERVER
+	if(isServerPlayerCompanion && FindCnt2)
+	{
+		MotionSelectFrame = 0;
+		ChangeMotion(FoundNum2[0], FALSE);
+	}
+	else
+#endif
 	if(FindCnt2 == 1) ChangeMotion(FoundNum2[0], AnimDispMode);
 	else
 		if(FindCnt2) ChangeMotion(FoundNum2[(rand() % FindCnt2)], AnimDispMode);
@@ -2681,7 +2774,26 @@ int smCHAR::SavePlayBuff2()
 	PlayBuff[PlayBuffCnt].y = pY;
 	PlayBuff[PlayBuffCnt].z = pZ;
 
-	PlayBuff[PlayBuffCnt].frame = (MotionSelectFrame << CHAR_FRAME_SELSHIFT) | frame;
+	const bool isAccountCompanion =
+		smCharInfo.State == smCHAR_STATE_USER &&
+		smCharInfo.Brood == smCHAR_MONSTER_USER &&
+		lpMasterPlayInfo != NULL;
+
+	if(isAccountCompanion && MotionInfo)
+	{
+		// action is an index into a model-local motion table. It is not a stable
+		// network identifier when client/server asset catalogues differ. Encode
+		// the canonical motion STATE in the otherwise-unused skill slot and send
+		// a frame relative to that motion's StartFrame. The client resolves the
+		// state against the motion table it actually loaded.
+		int relativeFrame = frame - (MotionInfo->StartFrame * 160);
+		if(relativeFrame < 0) relativeFrame = 0;
+		PlayBuff[PlayBuffCnt].frame = (DWORD)relativeFrame & CHAR_FRAME_MASK;
+	}
+	else
+	{
+		PlayBuff[PlayBuffCnt].frame = (MotionSelectFrame << CHAR_FRAME_SELSHIFT) | frame;
+	}
 
 	PlayBuff[PlayBuffCnt].dwTargetSerial = NULL;
 
@@ -2692,6 +2804,13 @@ int smCHAR::SavePlayBuff2()
 		PlayBuff[PlayBuffCnt].dwTargetSerial = lpTargetPlayInfo->dwObjectSerial;
 
 	memcpy(PlayBuff[PlayBuffCnt].wStickItems, wStickItems, sizeof(short) * 4);
+	if(isAccountCompanion)
+	{
+		// Player skills are not executed by Companion V1 yet, so this slot is
+		// available as a backwards-compatible per-buffer motion-state channel.
+		PlayBuff[PlayBuffCnt].wStickItems[smPLAYBUFF_ITEM_SKIL] =
+			(short)(MotionInfo ? MotionInfo->State : CHRMOTION_STATE_STAND);
+	}
 
 	return PlayBuffCnt;
 }
@@ -4670,10 +4789,11 @@ int smCHAR::Main()
 				FrameStep = (80 * AttackSpeed) >> FLOATNS;
 
 
-				if(smCharInfo.JOB_CODE == 8 &&
-					MotionInfo->ItemCodeCount && sItem[MotionInfo->ItemCodeList[0]].CODE == (sinWM1 | sin04))
+				if (MotionInfo->ItemCodeCount)
 				{
-					FrameStep -= 16;
+					const DWORD animationItemCode = sItem[MotionInfo->ItemCodeList[0]].CODE;
+					FrameStep += gameplay::classes::DefaultClassService().AttackFrameStepAdjustment(
+						smCharInfo.JOB_CODE, static_cast<std::uint32_t>(animationItemCode));
 				}
 			}
 			else
@@ -5772,6 +5892,8 @@ int smCHAR::Main()
 		if(lpMasterPlayInfo && lpMasterPlayInfo->lpsmSock && smCharInfo.Life[0] > 0)
 		{
 
+			gameplay::companions::ApplyAI(this);
+
 			if(HoSkillCode && lpMasterPlayInfo->lpLinkChar != this)
 			{
 				smCharInfo.Life[0] = 0;
@@ -5780,14 +5902,18 @@ int smCHAR::Main()
 			else
 			{
 
-				x = (lpMasterPlayInfo->Position.x - pX) >> FLOATNS;
-				z = (lpMasterPlayInfo->Position.z - pZ) >> FLOATNS;
+				int followX = lpMasterPlayInfo->Position.x;
+				int followZ = lpMasterPlayInfo->Position.z;
+				gameplay::companions::GetFollowPosition(this, &followX, &followZ);
+
+				x = (followX - pX) >> FLOATNS;
+				z = (followZ - pZ) >> FLOATNS;
 				dist = x*x + z*z;
 				if(dist >= (500 * 500))
 				{
 					if(lpStage)
 					{
-						y = lpStage->GetHeight(lpMasterPlayInfo->Position.x, lpMasterPlayInfo->Position.z);
+						y = lpStage->GetHeight(followX, followZ);
 						if(y < 0)
 						{
 							smCharInfo.Life[0] = 0;
@@ -5796,9 +5922,9 @@ int smCHAR::Main()
 					}
 					if(smCharInfo.Life[0] > 0)
 					{
-						pX = lpMasterPlayInfo->Position.x;
+						pX = followX;
 						pY = lpMasterPlayInfo->Position.y;
-						pZ = lpMasterPlayInfo->Position.z;
+						pZ = followZ;
 
 						ptNextTarget.x = ptNextTarget.z = 0;
 						TargetMoveCount = 0;
@@ -5810,7 +5936,7 @@ int smCHAR::Main()
 				}
 				else if(dist >= (300 * 300) || (!lpTargetChar && dist >= (150 * 150)))
 				{
-					SetTargetPosi(lpMasterPlayInfo->Position.x >> FLOATNS, lpMasterPlayInfo->Position.z >> FLOATNS);
+					SetTargetPosi(followX >> FLOATNS, followZ >> FLOATNS);
 					TargetMoveCount = 2;
 					TragetTraceMode = 0;
 					lpTargetChar = 0;
@@ -5822,6 +5948,9 @@ int smCHAR::Main()
 				}
 			}
 		}
+
+		if(lpMasterPlayInfo && lpMasterPlayInfo->lpsmSock)
+			gameplay::companions::PublishVisualState(this);
 
 		if(dwLinkObjectCode)
 		{
@@ -6147,8 +6276,13 @@ int smCHAR::Main()
 	}
 	else if (lpTargetChar->Flag && !PlayStunCount && !PlayStopCount) {
 
-		dist = smCharInfo.Shooting_Range + 32;			
-		if (dist < 80) dist = 80;						
+		dist = smCharInfo.Shooting_Range + 32;
+		if (dist < 80) dist = 80;
+
+		const bool isPlayerCompanionCombat =
+			smCharInfo.State == smCHAR_STATE_USER &&
+			smCharInfo.Brood == smCHAR_MONSTER_USER &&
+			lpMasterPlayInfo != NULL;
 
 		if (MotionInfo->State != CHRMOTION_STATE_DAMAGE &&
 			MotionInfo->State != CHRMOTION_STATE_DEAD &&
@@ -6159,7 +6293,12 @@ int smCHAR::Main()
 
 				cnt = GetDistanceDbl(pX, pZ, lpTargetChar->pX, lpTargetChar->pZ);
 
-				dist = dist >> FLOATNS;
+				// Monster records store Shooting_Range in fixed-point units, but player
+				// records store the displayed/raw range (the normal player attack path
+				// multiplies it by fONE). Do not shift the companion's player value or
+				// an 80-range melee weapon becomes zero and can never enter ATTACK.
+				if (!isPlayerCompanionCombat)
+					dist = dist >> FLOATNS;
 				dist *= dist;
 
 				if (cnt < dist && abs(pY - lpTargetChar->pY) < 64 * fONE) {

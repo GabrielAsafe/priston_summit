@@ -286,7 +286,7 @@ int HoDrawLinearTexImage(int Mat, float x, float y, float w, float h, float texX
 	tlVertex[3].sy = y2;
 	tlVertex[3].tu = u2;
 	tlVertex[3].tv = v2;
-	DrawTexture(smMaterial[Mat].smTexture[0]->lpD3DTexture, tlVertex, true);
+	DrawTexture(AssetLoadV2GetResidentTexture(smMaterial[Mat].smTexture[0]), tlVertex, true);
 	return TRUE;
 }
 
@@ -353,7 +353,7 @@ int HoDrawTexImage(int Mat, float x, float y, float w, float h, float texX, floa
 	tlVertex[3].sy = y2;
 	tlVertex[3].tu = u2;
 	tlVertex[3].tv = v2;
-	DrawTexture(smMaterial[Mat].smTexture[0]->lpD3DTexture, tlVertex, true);
+	DrawTexture(AssetLoadV2GetResidentTexture(smMaterial[Mat].smTexture[0]), tlVertex, true);
 	return TRUE;
 }
 
@@ -420,7 +420,7 @@ int HoDrawTexImage(int Mat, int x, int y, int w, int h, int texX, int texY, int 
 	tlVertex[3].sy = y2;
 	tlVertex[3].tu = u2;
 	tlVertex[3].tv = v2;
-	DrawTexture(smMaterial[Mat].smTexture[0]->lpD3DTexture, tlVertex, true);
+	DrawTexture(AssetLoadV2GetResidentTexture(smMaterial[Mat].smTexture[0]), tlVertex, true);
 	return TRUE;
 }
 
@@ -487,7 +487,7 @@ int HoDrawTexImage(int Mat, int x, int y, int texX, int texY, int texW, int texH
 	tlVertex[3].sy = y2;
 	tlVertex[3].tu = u2;
 	tlVertex[3].tv = v2;
-	DrawTexture(smMaterial[Mat].smTexture[0]->lpD3DTexture, tlVertex, true);
+	DrawTexture(AssetLoadV2GetResidentTexture(smMaterial[Mat].smTexture[0]), tlVertex, true);
 	return TRUE;
 }
 

@@ -46,6 +46,9 @@
  Shared/rendering/legacy_3d/smJpeg.h \
  SrcGame/src/systems/gameplay/character/core/character.h \
  SrcGame/src/systems/combat/pvp/Score.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcGame/src/systems/media/video/legacy_avi/avictrl.h \
  SrcGame/src/core/gameplay/runtime/playmain.h \
  SrcGame/src/systems/audio/playback/legacy/Dxwav.h \
@@ -196,6 +199,9 @@ SrcGame/src/systems/rendering/legacy_3d/smJpeg.h:
 Shared/rendering/legacy_3d/smJpeg.h:
 SrcGame/src/systems/gameplay/character/core/character.h:
 SrcGame/src/systems/combat/pvp/Score.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/systems/media/video/legacy_avi/avictrl.h:
 SrcGame/src/core/gameplay/runtime/playmain.h:
 SrcGame/src/systems/audio/playback/legacy/Dxwav.h:

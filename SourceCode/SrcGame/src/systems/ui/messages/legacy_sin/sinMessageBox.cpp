@@ -1,4 +1,5 @@
 #include "opcodes.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/combat/skills/client/SkillSub.h"
 #include "systems/social/clan/tjclan.h"
@@ -9,6 +10,7 @@
 #include "systems/commerce/coin_shop/CoinShop.h"
 #include "systems/gameplay/quests/ui/cQuestWindow.h"
 #include "systems/gameplay/events/hells_gate/cHellsGate.h"
+#include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
 
 #define MAX_MONEY 1000000000
 #define rsCASTLE_FIELD 33
@@ -212,6 +214,7 @@ void cMESSAGEBOX::Draw()
 {
 	int i = 0;
 	int x = 0, y = 0;
+	const bool suppressV2Notifications = ui::v2::legacy::OwnsLegacyNotificationUI();
 
 
 	if(sLost_Item.Flag)
@@ -371,26 +374,29 @@ void cMESSAGEBOX::Draw()
 		}
 	}
 
-	for(i = 0; i < 100; i++)
+	if (!suppressV2Notifications)
 	{
-		if(sMessageBox[i].Flag)
+		for(i = 0; i < 100; i++)
 		{
-			dsDrawTexImage(MatBoxLeft, sMessageBox[i].x, sMessageBox[i].y, 32, 64, 255);
-			int j = 0;
-			for(j = 0; j < sMessageBox[i].Line; j++)
+			if(sMessageBox[i].Flag)
 			{
-				dsDrawTexImage(MatBoxCenter, sMessageBox[i].x + 32 + (j * 16), sMessageBox[i].y, 16, 64, 255);
+				dsDrawTexImage(MatBoxLeft, sMessageBox[i].x, sMessageBox[i].y, 32, 64, 255);
+				int j = 0;
+				for(j = 0; j < sMessageBox[i].Line; j++)
+				{
+					dsDrawTexImage(MatBoxCenter, sMessageBox[i].x + 32 + (j * 16), sMessageBox[i].y, 16, 64, 255);
+				}
+				dsDrawTexImage(MatBoxRight, sMessageBox[i].x + 32 + (j * 16), sMessageBox[i].y, 32, 64, 255);
+
 			}
-			dsDrawTexImage(MatBoxRight, sMessageBox[i].x + 32 + (j * 16), sMessageBox[i].y, 32, 64, 255);
-
 		}
-	}
 
-	for (i = 0; i < 100; i++)
-	{
-		if (sMessageBox1[i].Flag)
+		for (i = 0; i < 100; i++)
 		{
-			dsDrawTexImage(TopChat, sMessageBox1[i].x, sMessageBox1[i].y, 390, 90, 255);
+			if (sMessageBox1[i].Flag)
+			{
+				dsDrawTexImage(TopChat, sMessageBox1[i].x, sMessageBox1[i].y, 390, 90, 255);
+			}
 		}
 	}
 }
@@ -668,7 +674,7 @@ void cMESSAGEBOX::LButtonDown(int x, int y)
 				}
 				if(i == MESSAGE_CHANGE_JOB4_2)
 				{
-					if(sinChar->JOB_CODE <= 4 || sinChar->JOB_CODE == 9)
+					if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 						WarpField2(START_FIELD_NUM);
 					else
 						WarpField2(START_FIELD_MORYON);
@@ -1600,20 +1606,24 @@ void cMESSAGEBOX::DrawMessageText()
 
 	HDC	hdc = NULL;
 	int TempFlag = 0;
+	const bool suppressV2Notifications = ui::v2::legacy::OwnsLegacyNotificationUI();
 	char szTemp2[256];
-	for(int i = 0; i < 100; i++)
+	if (!suppressV2Notifications)
 	{
-		if(sMessageBox[i].Flag)
+		for(int i = 0; i < 100; i++)
 		{
-			TempFlag = 1;
+			if(sMessageBox[i].Flag)
+			{
+				TempFlag = 1;
+			}
 		}
-	}
 
-	for (int i = 0; i < 100; i++)
-	{
-		if (sMessageBox1[i].Flag)
+		for (int i = 0; i < 100; i++)
 		{
-			TempFlag = 1;
+			if (sMessageBox1[i].Flag)
+			{
+				TempFlag = 1;
+			}
 		}
 	}
 
@@ -1760,25 +1770,28 @@ void cMESSAGEBOX::DrawMessageText()
 		memset(szBuff5, 0, sizeof(szBuff5));
 
 
-		for(i = 0; i < 100; i++)
+		if (!suppressV2Notifications)
 		{
-			if(sMessageBox[i].Flag)
+			for(i = 0; i < 100; i++)
 			{
-				if(i == MESSAGE_100LVITEM_OK)
+				if(sMessageBox[i].Flag)
 				{
+					if(i == MESSAGE_100LVITEM_OK)
+					{
 
-					dsTextLineOut( sMessageBox[i].x + 43, sMessageBox[i].y + 17, sMessageBox[i].MessageDoc2, sMessageBox[i].len);
+						dsTextLineOut( sMessageBox[i].x + 43, sMessageBox[i].y + 17, sMessageBox[i].MessageDoc2, sMessageBox[i].len);
+					}
+					else
+						dsTextLineOut( sMessageBox[i].x + 43, sMessageBox[i].y + 17, sMessageBox[i].MessageDoc, sMessageBox[i].len);
 				}
-				else
-					dsTextLineOut( sMessageBox[i].x + 43, sMessageBox[i].y + 17, sMessageBox[i].MessageDoc, sMessageBox[i].len);
 			}
-		}
 
-		for (i = 0; i < 100; i++)
-		{
-			if (sMessageBox1[i].Flag)
+			for (i = 0; i < 100; i++)
 			{
-				dsTextLineOut(sMessageBox1[i].x + 90, sMessageBox1[i].y + 40, sMessageBox1[i].MessageDoc, sMessageBox1[i].len);
+				if (sMessageBox1[i].Flag)
+				{
+					dsTextLineOut(sMessageBox1[i].x + 90, sMessageBox1[i].y + 40, sMessageBox1[i].MessageDoc, sMessageBox1[i].len);
+				}
 			}
 		}
 
@@ -1874,6 +1887,61 @@ void cMESSAGEBOX::DrawMessageText()
 
 
 int sinTeleportIndexArray[4] = { 0,18,7,12 };
+
+
+int cMESSAGEBOX::ResolveMessage3ForUIV2(int Kind, bool accept)
+{
+    if(Kind < 0 || Kind >= MESSAGE3_MAX || !sMessageBox3[Kind].Flag)
+        return FALSE;
+
+    if(accept)
+        return CheckOkMessageBox2(Kind);
+
+    if(Kind == MESSAGE_QUEST_100LVITEMOK)
+    {
+        chaQuest.sHaQuest100LV.State--;
+        chaQuest.showFuryQuestItem(1);
+        chaQuest.iFuryQuestIndex[1] = 0;
+    }
+    if(Kind == MESSAGE_CHANGE_JOB4_2)
+    {
+        if(gameplay::classes::DefaultClassService().IsInBrood(
+            sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
+            WarpField2(START_FIELD_NUM);
+        else
+            WarpField2(START_FIELD_MORYON);
+    }
+    if(Kind == MESSAGE_SELL_HIGHRANK_ITEM)
+    {
+        MouseItem.Flag = 1;
+        ResetInvenItemCode();
+        cInvenTory.AutoSetInvenItem(&MouseItem);
+    }
+    if(Kind == MESSAGE_EVENT_GYUNGFUM)
+    {
+        if(sinChar->wVersion[1] == 1)
+            sinSkillPontInitButtonFlag = 0;
+        else
+            sinSkillPontInitButtonFlag = 1;
+    }
+    if(Kind == MESSAGE_WARP)
+        WingWarpGate_Field(-1);
+    if(Kind == MESSAGE_SECRET_NUM)
+    {
+        hFocusWnd = 0;
+        cInterFace.ChatFlag = 0;
+        SetWindowText(hFocusWnd, "");
+        sinChatEnter = 0;
+    }
+    if(Kind == MESSAGE_CONFIRMATION_BOX)
+        _ConfirmationBox.CheckFlag(false);
+
+    sinMessageBoxShowFlag = 0;
+    sMessageBox3[Kind].Flag = 0;
+    ShowSkillUpInfo = 0;
+    sinInitPointFlag7 = 0;
+    return TRUE;
+}
 
 int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 {
@@ -2012,6 +2080,7 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 
 		break;
 	case MESSAGE_CHANGE_JOB:
+	{
 		if(sinQuest_ChangeJob3.CODE)
 		{
 			TempItem.CODE = (sinOR2 | sin02);
@@ -2023,7 +2092,11 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 
 		}
 
-		sinChar->ChangeJob++;
+		int nextChangeJob = 0;
+		if(!gameplay::classes::DefaultClassService().TryNextLegacyChangeJob(
+			sinChar->JOB_CODE, static_cast<int>(sinChar->ChangeJob), nextChangeJob))
+			break;
+		sinChar->ChangeJob = static_cast<DWORD>(nextChangeJob);
 		cSkill.OpenFlag = 1;
 		cInterFace.CheckAllBox(SIN_SKILL);
 		SkillMasterFlag = 1;
@@ -2073,6 +2146,7 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 		SaveGameData();
 		ChangeJobFace();
 		break;
+	}
 	case MESSAGE_QUEST:
 		sinQuest_ChangeJob.CODE = SIN_QUEST_CODE_CHANGEJOB;
 		sinQuest_ChangeJob.State = SIN_QUEST_PROGRESS;
@@ -2333,8 +2407,13 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 		SaveGameData();
 		break;
 	case MESSAGE_CHANGE_JOB4_2:
+	{
 
-		sinChar->ChangeJob++;
+		int nextChangeJob = 0;
+		if(!gameplay::classes::DefaultClassService().TryNextLegacyChangeJob(
+			sinChar->JOB_CODE, static_cast<int>(sinChar->ChangeJob), nextChangeJob))
+			break;
+		sinChar->ChangeJob = static_cast<DWORD>(nextChangeJob);
 		cSkill.OpenFlag = 1;
 		cInterFace.CheckAllBox(SIN_SKILL);
 		SkillMasterFlag = 1;
@@ -2352,12 +2431,13 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 		SaveGameData();
 
 		ChangeJobFace();
-		if(sinChar->JOB_CODE <= 4 || sinChar->JOB_CODE == 9)
+		if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 			WarpField2(START_FIELD_NUM);
 		else
 			WarpField2(START_FIELD_MORYON);
 
 		break;
+	}
 	case MESSAGE_CRISTALEVENTITEM_SEND:
 		if(cInvenTory.SendCristalEventItem())
 		{

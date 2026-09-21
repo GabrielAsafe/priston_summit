@@ -3,23 +3,25 @@ int ChangeHairModel(int HairCode)
 
 	smCHAR *lpChar = lpCurPlayer;
 	char *lpHeadName = lpChar->smCharInfo.szModelName2;
-	char **lpSelFace = 0;
 	char *lpSelFaceName = 0;
 
-	if (HairCode < 0 || HairCode >= HEAREPOTION_MAX)
+	if (HairCode < 0 || HairCode > 0xFF)
 		return FALSE;
 
-	int FindFaceValue = FindFaceSkin(lpChar, lpHeadName, &lpSelFace, &lpSelFaceName);
+	int FindFaceValue = FindFaceSkin(lpChar, lpHeadName, 0, &lpSelFaceName);
 
-	if (FindFaceValue < 0 || lpSelFace == 0)
+	if (FindFaceValue < 0)
 		return FALSE;
 
 	int FaceCode = FindFaceValue >> 8;
-
-	if (lstrcmpi(lpChar->smCharInfo.szModelName2, lpSelFace[HairCode]) == 0)
+	char *nextHeadModel = ResolveClassHeadModel(lpChar->smCharInfo.JOB_CODE, FaceCode, HairCode);
+	if(!nextHeadModel)
 		return FALSE;
 
-	strcpy_s(lpChar->smCharInfo.szModelName2, lpSelFace[HairCode]);
+	if (lstrcmpi(lpChar->smCharInfo.szModelName2, nextHeadModel) == 0)
+		return FALSE;
+
+	strcpy_s(lpChar->smCharInfo.szModelName2, nextHeadModel);
 	lpChar->smCharInfo.ModelNameCode2 = GetHairSkinCode(FaceCode, HairCode);
 
 	lpChar->PatLoading = TRUE;

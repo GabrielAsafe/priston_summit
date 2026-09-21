@@ -478,18 +478,9 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			{
 				p = fileread_GetWord(strBuff, p);
 				if(strBuff[0] == 0) break;
-				cnt = 0;
-				while(1)
-				{
-					if(!JobDataBase[cnt].szName[0]) break;
-					if(lstrcmpi(JobDataBase[cnt].szName, strBuff) == 0)
-					{
-
-						lpItem->JobCodeMask = JobDataBase[cnt].JobBitCode;
-						break;
-					}
-					cnt++;
-				}
+				DWORD resolvedJobBit = 0;
+				if(ResolveClassSpecializationBit(strBuff, resolvedJobBit))
+					lpItem->JobCodeMask = resolvedJobBit;
 			}
 
 			NextFlag = TRUE;
@@ -502,18 +493,11 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			{
 				p = fileread_GetWord(strBuff, p);
 				if(strBuff[0] == 0) break;
-				cnt = 0;
-				while(1)
+				DWORD resolvedJobBit = 0;
+				if(ResolveClassSpecializationBit(strBuff, resolvedJobBit) &&
+					lpDefItem->JobBitCodeRandomCount < SPECIAL_JOB_RANDOM_MAX)
 				{
-					if(!JobDataBase[cnt].szName[0]) break;
-					if(lstrcmpi(JobDataBase[cnt].szName, strBuff) == 0)
-					{
-						if(lpDefItem->JobBitCodeRandomCount >= SPECIAL_JOB_RANDOM_MAX) break;
-						lpDefItem->dwJobBitCode_Random[lpDefItem->JobBitCodeRandomCount++] = JobDataBase[cnt].JobBitCode;
-
-						break;
-					}
-					cnt++;
+					lpDefItem->dwJobBitCode_Random[lpDefItem->JobBitCodeRandomCount++] = resolvedJobBit;
 				}
 			}
 

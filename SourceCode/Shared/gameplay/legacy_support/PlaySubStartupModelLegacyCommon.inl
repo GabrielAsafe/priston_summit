@@ -235,6 +235,84 @@ int Send_OftPatSumToDataServer()
 }
 #endif
 
+static int LoadDataDrivenClassArmorModels()
+{
+	int errorCount = 0;
+	const std::vector<const gameplay::classes::PlayableClassDefinition*> enabled =
+		gameplay::classes::DefaultClassService().EnabledClasses();
+
+	for(std::vector<const gameplay::classes::PlayableClassDefinition*>::const_iterator definition = enabled.begin();
+		definition != enabled.end(); ++definition)
+	{
+		if(!(*definition)->armor.HasDataDrivenModels())
+			continue;
+
+		const std::vector<std::string> *groups[] = {
+			&(*definition)->armor.normalModels,
+			&(*definition)->armor.comicModels,
+			&(*definition)->armor.newSetModels,
+			&(*definition)->armor.newSet2Models
+		};
+		for(std::size_t group = 0; group < sizeof(groups) / sizeof(groups[0]); ++group)
+		{
+			for(std::vector<std::string>::const_iterator model = groups[group]->begin();
+				model != groups[group]->end(); ++model)
+			{
+				if(model->empty())
+					continue;
+				std::string path = (*definition)->armor.modelRoot;
+				path += *model;
+				if(LoadOftenMeshPattern(const_cast<char *>(path.c_str())) == FALSE)
+					errorCount++;
+			}
+		}
+	}
+	return errorCount;
+}
+
+static int LoadDataDrivenClassModels(int includeBodies, int includeHeads)
+{
+	int errorCount = 0;
+	const std::vector<const gameplay::classes::PlayableClassDefinition*> enabled =
+		gameplay::classes::DefaultClassService().EnabledClasses();
+
+	for(std::vector<const gameplay::classes::PlayableClassDefinition*>::const_iterator definition = enabled.begin();
+		definition != enabled.end(); ++definition)
+	{
+		// The eight historical classes are still preloaded from their canonical
+		// legacy matrices. New classes can provide bodies/heads declaratively.
+		if((*definition)->appearance.HasDataDrivenModels())
+		{
+			if(includeBodies)
+			{
+				for(std::vector<std::string>::const_iterator model = (*definition)->creation.bodyModels.begin();
+					model != (*definition)->creation.bodyModels.end(); ++model)
+				{
+					if(!model->empty() && LoadOftenMeshPattern(const_cast<char *>(model->c_str())) == FALSE)
+						errorCount++;
+				}
+			}
+
+			if(includeHeads)
+			{
+				for(std::vector<std::vector<std::string> >::const_iterator row = (*definition)->appearance.headModels.begin();
+					row != (*definition)->appearance.headModels.end(); ++row)
+				{
+					for(std::vector<std::string>::const_iterator model = row->begin(); model != row->end(); ++model)
+					{
+						if(!model->empty() && LoadOftenMeshPattern(const_cast<char *>(model->c_str())) == FALSE)
+							errorCount++;
+					}
+				}
+			}
+		}
+	}
+
+	if(includeBodies)
+		errorCount += LoadDataDrivenClassArmorModels();
+	return errorCount;
+}
+
 int	LoadOftenFullPattern()
 {
 	int cnt, cnt2;
@@ -243,29 +321,13 @@ int	LoadOftenFullPattern()
 
 	ErrorCount = 0;
 
-	for (cnt = 0; cnt < MAX_JOBNUM; cnt++)
-	{
-		for (cnt2 = 0; cnt2 < ARMOR_FILE_MAX; cnt2++)
-		{
-			strcpy_s(szBuff, szArmorDirectory);
-			lstrcat(szBuff, szArmorNumFile[cnt][cnt2]);
-
-			if (LoadOftenMeshPattern(szBuff) == FALSE)
-				ErrorCount++;
-		}
-	}
-
-	for (cnt = 0; cnt < MAX_JOBNUM; cnt++)
-	{
-		for (cnt2 = 0; cnt2 < ARMOR_FILE_MAX; cnt2++)
-		{
-			strcpy_s(szBuff, szArmorDirectory);
-			lstrcat(szBuff, szArmorNumFile_Comic[cnt][cnt2]);
-
-			if (LoadOftenMeshPattern(szBuff) == FALSE)
-				ErrorCount++;
-		}
-	}
+	// Legacy armor matrices are a compatibility backend, not the source of
+	// truth for how many classes exist. Only rows referenced by enabled class
+	// definitions are preloaded. New classes can use data-driven armor models.
+	ErrorCount += LoadLegacyClassArmorModelSet(
+		gameplay::classes::ArmorVisualVariant::Normal, 0, ARMOR_FILE_MAX, FALSE);
+	ErrorCount += LoadLegacyClassArmorModelSet(
+		gameplay::classes::ArmorVisualVariant::Comic, 0, ARMOR_FILE_MAX, FALSE);
 
 
 	for (cnt = 0; cnt < FACE_MODEL_MAX; cnt++)
@@ -291,6 +353,8 @@ int	LoadOftenFullPattern()
 
 		}
 	}
+
+	ErrorCount += LoadDataDrivenClassModels(TRUE, TRUE);
 
 
 
@@ -400,6 +464,8 @@ int LoadOftenFace()
 		}
 	}
 
+	ErrorCount += LoadDataDrivenClassModels(FALSE, TRUE);
+
 	if (ErrorCount)
 		return FALSE;
 
@@ -410,21 +476,8 @@ int LoadOftenFace()
 
 int LoadOftenArmor()
 {
-	int cntW, cntH;
-	char szName[128];
-
-	for (cntH = 0; cntH < MAX_JOBNUM; cntH++)
-	{
-		for (cntW = 0; cntW < 29; cntW++) // Char Armor
-		{
-			if (cntW == 0 || cntW >= 10)
-			{
-				strcpy_s(szName, szArmorDirectory);
-				lstrcat(szName, szArmorNumFile[cntH][cntW]);
-				LoadOftenMeshPattern(szName);
-			}
-		}
-	}
-
-	return TRUE;
+	const int legacyErrors = LoadLegacyClassArmorModelSet(
+		gameplay::classes::ArmorVisualVariant::Normal, 0, 29, TRUE);
+	const int dataDrivenErrors = LoadDataDrivenClassArmorModels();
+	return legacyErrors == 0 && dataDrivenErrors == 0 ? TRUE : FALSE;
 }

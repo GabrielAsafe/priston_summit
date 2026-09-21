@@ -1,6 +1,9 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/world/field/field.o: \
  SrcGame/src/systems/world/field/field.cpp \
  Shared/world/field/field_legacy_client.inl \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcGame/src/systems/rendering/legacy_3d/smd3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
  Dependency/DirectX9/Include/d3d9.h \
@@ -138,6 +141,9 @@
  Dependency/DirectX9/Include/d3dx9math.h \
  SrcGame/src/systems/world/field/field.h
 Shared/world/field/field_legacy_client.inl:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
 Dependency/DirectX9/Include/d3d9.h:

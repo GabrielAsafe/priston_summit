@@ -136,7 +136,10 @@
  SrcGame/src/systems/social/party/ui/cPartyWindow.h \
  SrcGame/src/systems/commerce/coin_shop/CoinShop.h Shared/skillsPacket.h \
  Shared/items.h SrcGame/src/systems/commerce/coin_shop/CoinShop_T.h \
- SrcGame/src/systems/gameplay/quests/ui/cQuestWindow.h
+ SrcGame/src/systems/gameplay/quests/ui/cQuestWindow.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h
 Shared/opcodes.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
@@ -279,3 +282,6 @@ Shared/skillsPacket.h:
 Shared/items.h:
 SrcGame/src/systems/commerce/coin_shop/CoinShop_T.h:
 SrcGame/src/systems/gameplay/quests/ui/cQuestWindow.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:

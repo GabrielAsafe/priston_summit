@@ -1,4 +1,4 @@
-#define _SINBARAM
+﻿#define _SINBARAM
 
 // STL INCLUDES
 #include <memory>
@@ -18,6 +18,10 @@
 #include "platform/windows/registry/smreg.h"
 
 #include "systems/gameplay/character/core/character.h"
+#include "systems/gameplay/character/core/CharacterModelStreamingV3.h"
+#include "systems/rendering/sky/SkyStreamingV3.h"
+#include "core/concurrency/JobSystem.h"
+#include "systems/rendering/assets/v3/AssetStreamingV3.h"
 #include "core/gameplay/runtime/playmain.h"
 #include "systems/audio/playback/legacy/Dxwav.h"
 #include "systems/audio/effects/legacy/effectsnd.h"
@@ -58,6 +62,7 @@
 #include "systems/combat/damage_display/DrawDamage.h"
 #include "systems/gameplay/quests/ui/cQuestWindow.h"
 #include "systems/ui/settings/legacy_window/cSettingsWindow.h"
+#include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
 #include "systems/commerce/coin_shop/CoinShop.h"
 #include "systems/commerce/coin_shop/CoinShop_T.h"
 
@@ -78,6 +83,22 @@ extern int micInit;
 #include "systems/ui/map/full_zoom/FullZoomMap.h"
 #include "systems/rendering/font/FontImage.h"
 #include "diagnostics/crash/WinDump.h"
+
+// Legacy MinGW diagnostics are opt-in.  These traces used to open/append/close
+// files from input and window-message hot paths.
+static FILE *SummitClientRuntimeTraceFile(const char *path)
+{
+#if defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
+	return fopen(path, "a");
+#else
+	(void)path;
+	return NULL;
+#endif
+}
+
+// Stage bootstrap exposes FIELD metadata before geometry is ready.  The frame
+// loop uses this query to keep simulation/rendering behind a real spawn barrier.
+extern bool IsStageBootstrapBlockingGameplayAsync();
 
 int lowHPWarningImage = -1;
 
@@ -113,6 +134,9 @@ extern int keydownEnt;
 
 int isChatBox(int x, int y)
 {
+	if (ui::v2::legacy::SuppressLegacyMainHud())
+		return FALSE;
+
 	if (SubChatHeight) {
 		if (x > 0 && x < 305 && y >(WinSizeY - 306) && y < WinSizeY)
 			return TRUE;
@@ -622,7 +646,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 	}
 
 	{
-		FILE *f = fopen("LOGS\\mingw_hwnd_check.txt", "a");
+		FILE *f = SummitClientRuntimeTraceFile("LOGS\\mingw_hwnd_check.txt");
 		if (f)
 		{
 			fprintf(f, "after CreateWindow: hwnd=%p lastError=%lu windowMode=%d startMax=%d nCmdShow=%d sx=%d sy=%d width=%d height=%d\\n",
@@ -649,7 +673,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 	UpdateWindow(hwnd);
 
 	{
-		FILE *f = fopen("LOGS\\mingw_hwnd_check.txt", "a");
+		FILE *f = SummitClientRuntimeTraceFile("LOGS\\mingw_hwnd_check.txt");
 		if (f)
 		{
 			fprintf(f, "after ShowWindow/UpdateWindow: hwnd=%p visible=%d iconic=%d lastError=%lu\\n",
@@ -662,9 +686,9 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 	}
 
 	LoadScreen("image//logo.bmp", hInst, hwnd);
-	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after LoadScreen\n"); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_after_show_steps.txt"); if(f){ fprintf(f,"after LoadScreen\n"); fclose(f);} }
 	Sleep(300);
-	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after Sleep\n"); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_after_show_steps.txt"); if(f){ fprintf(f,"after Sleep\n"); fclose(f);} }
 
 	// MINGW_SYSTEM_CURSOR_VISIBLE_V1
 #ifdef __MINGW32__
@@ -689,14 +713,14 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 #else
 	ShowCursor(FALSE);
 #endif
-	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after ShowCursor\n"); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_after_show_steps.txt"); if(f){ fprintf(f,"after ShowCursor\n"); fclose(f);} }
 
 	if (InitD3D(hwnd) == NULL)
 	{
 		//Utils_Log(LOG_ERROR, "Failed InitD3D()");
 		return FALSE;
 	}
-	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after InitD3D OK\n"); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_after_show_steps.txt"); if(f){ fprintf(f,"after InitD3D OK\n"); fclose(f);} }
 
 	hTextWnd = CreateWindow("EDIT", "", WS_CHILD | WS_BORDER | ES_LEFT | ES_MULTILINE | ES_WANTRETURN, 10, 400, 500, 40, hwnd, (HMENU)IDC_TEXT, hInst, NULL);
 
@@ -713,24 +737,24 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 	TextMode = 0;
 
 	InitGameSocket();
-	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after InitGameSocket\n"); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_after_show_steps.txt"); if(f){ fprintf(f,"after InitGameSocket\n"); fclose(f);} }
 
 	initipgame();
-	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after initipgame\n"); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_after_show_steps.txt"); if(f){ fprintf(f,"after initipgame\n"); fclose(f);} }
 
-	{ FILE *f=fopen("LOGS\\mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"before DeleteFile ddd.txt\n"); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_probe.txt"); if(f){ fprintf(f,"before DeleteFile ddd.txt\n"); fclose(f);} }
 	DeleteFile("ddd.txt");
-	{ FILE *f=fopen("LOGS\\mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"after DeleteFile ddd.txt lastError=%lu\n", GetLastError()); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_probe.txt"); if(f){ fprintf(f,"after DeleteFile ddd.txt lastError=%lu\n", GetLastError()); fclose(f);} }
 
-	{ FILE *f=fopen("LOGS\\mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"before SetGameMode(1)\n"); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_probe.txt"); if(f){ fprintf(f,"before SetGameMode(1)\n"); fclose(f);} }
 	SetGameMode(1);
-	{ FILE *f=fopen("LOGS\\mingw_setgamemode_probe.txt","a"); if(f){ fprintf(f,"after SetGameMode(1) GameMode=%d\n", GameMode); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_probe.txt"); if(f){ fprintf(f,"after SetGameMode(1) GameMode=%d\n", GameMode); fclose(f);} }
 
 	CharacterName1[0] = 0;
 	CharacterName2[0] = 0;
 
 	SetTimer(hwnd, 0, GAME_WORLDTIME_MIN / 4, NULL);
-	{ FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"after SetTimer\n"); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_after_show_steps.txt"); if(f){ fprintf(f,"after SetTimer\n"); fclose(f);} }
 
 #ifdef _LANGUAGE_WINDOW
 	SetForegroundWindow(hwnd);
@@ -738,7 +762,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 
 	while (1)
 	{
-		{ static int logged_loop_entry=0; if(!logged_loop_entry){ logged_loop_entry=1; FILE *f=fopen("LOGS\\mingw_after_show_steps.txt","a"); if(f){ fprintf(f,"entered main loop\n"); fclose(f);} } }
+		{ static int logged_loop_entry=0; if(!logged_loop_entry){ logged_loop_entry=1; FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_after_show_steps.txt"); if(f){ fprintf(f,"entered main loop\n"); fclose(f);} } }
 		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
@@ -791,26 +815,10 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 			}
 			else
 			{
-				const int saveFinished = (!smWsockServer || GetSaveResult() == TRUE);
-				const int saveTimedOut = ((dwPlayTime - rsRecorder.dwRecordTime) > 15000);
-
-				if (saveFinished || saveTimedOut)
-				{
-					if (quit == QUIT_MODE_LOGIN)
-					{
-						// The user-facing Quit button returns to the account login
-						// screen, not merely to HoLogin (character selection).
-						DisconnectServerFull();
-						quit = 0;
-						QuitSave = FALSE;
-						DisconnectFlag = 0;
-						WorkMode = OPENING_MODE;
-						SetGameMode(1);
-						continue;
-					}
-
+				if (!smWsockServer || GetSaveResult() == TRUE)
 					break;
-				}
+				if ((dwPlayTime - rsRecorder.dwRecordTime) > 15000)
+					break;
 			}
 		}
 	}
@@ -845,7 +853,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, INT nCm
 		ShellExecute(NULL, NULL, szExitInfo_URL, NULL, NULL, NULL);
 
 	{
-		FILE *f=fopen("LOGS\\mingw_winmain_final_return.txt","a");
+		FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_winmain_final_return.txt");
 		if(f)
 		{
 			fprintf(f,"WinMain returning msg.wParam=%ld quit=%d GameMode=%d\n", (long)msg.wParam, quit, GameMode);
@@ -1077,13 +1085,13 @@ LONG APIENTRY WndProc(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 	char *lpString;
 	int	len, CrCode;
 
-	#ifdef __MINGW32__
+	#if defined(__MINGW32__) && defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
 if(messg == WSA_READ ||
    messg == WSA_ACCEPT ||
    messg == SWM_RECVSUCCESS ||
    messg == (WM_APP + 77))
 {
-    FILE *fp = fopen("LOGS\\mingw_wndproc_socket.txt", "a");
+    FILE *fp = SummitClientRuntimeTraceFile("LOGS\\mingw_wndproc_socket.txt");
     if(fp)
     {
         fprintf(
@@ -1103,7 +1111,7 @@ if(messg == WSA_READ ||
 #endif
 	
 	
-#ifdef __MINGW32__
+#if defined(__MINGW32__) && defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
 	{
 		static FILE *fp = NULL;
 
@@ -1225,7 +1233,7 @@ switch (messg)
 
 	case WM_CLOSE:
 	{
-		FILE *f = fopen("LOGS\\mingw_window_lifecycle.txt", "a");
+		FILE *f = SummitClientRuntimeTraceFile("LOGS\\mingw_window_lifecycle.txt");
 		if (f)
 		{
 			fprintf(f, "WM_CLOSE hWnd=%p hwnd_global=%p GameMode=%d quit=%d dwTradeMaskTime=%lu\n",
@@ -1271,21 +1279,25 @@ switch (messg)
 
 
 
+		if (g_IsDxProjectZoomIn > 0 && wParam == VK_RETURN)
+			g_BlockFullZoomCloseOnEnter = 1;
+
 		if (g_IsDxProjectZoomIn > 0)
 		{
-			if (KeyFullZoomMap(wParam))
-			{
-				VRKeyBuff[wParam] = 1;
-				break;
-			}
-			else
+			// Full map remains open while typing/chatting. Only Escape closes it.
+			if (wParam == VK_ESCAPE)
 			{
 				SetFullZoomMap(0);
 				pCursorPos.x = g_iFzmCursorPosX;
 				pCursorPos.y = g_iFzmCursorPosY;
+				VRKeyBuff[wParam] = 1;
+				break;
+			}
 
-				if (wParam == VK_ESCAPE)
-					break;
+			if (KeyFullZoomMap(wParam))
+			{
+				VRKeyBuff[wParam] = 1;
+				break;
 			}
 		}
 
@@ -1377,7 +1389,7 @@ switch (messg)
 			}
 		}
 
-		if (wParam == VK_F9 && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_CONTROL])
+		if (wParam == VK_F9)
 		{
 			if (!cCoinShop.isOpen())
 				cCoinShop.Open();
@@ -1561,6 +1573,20 @@ switch (messg)
 				}
 			}
 
+			// The old HUD kept the logical EDIT active after sending. With the
+			// permanent chat chrome suppressed by UI V2 that leaves an invisible
+			// input session behind. Close it explicitly after Enter so the same key
+			// cleanly toggles chat open -> send/close.
+			if (wParam == VK_RETURN && VRKeyBuff[wParam] == 0 && !VRKeyBuff[VK_CONTROL] &&
+				ui::v2::legacy::SuppressLegacyMainHud())
+			{
+				hFocusWnd = 0;
+				cInterFace.ChatFlag = 0;
+				sinChatEnter = 0;
+				SetIME_Mode(0);
+				ChatScrollPoint = 0;
+			}
+
 			if (GameMode == 2)
 			{
 				if (wParam == VK_TAB && VRKeyBuff[wParam] == 0)
@@ -1682,6 +1708,9 @@ switch (messg)
 
 	case WM_KEYUP:
 
+
+		if (wParam == VK_RETURN)
+			g_BlockFullZoomCloseOnEnter = 0;
 
 		if (g_IsDxProjectZoomIn > 0)
 		{
@@ -1812,7 +1841,7 @@ switch (messg)
 						int clientW = rcClient.right - rcClient.left;
 						int clientH = rcClient.bottom - rcClient.top;
 
-						FILE *fpMouseTrace = fopen("LOGS\\mouse_coord_trace.txt", "a");
+						FILE *fpMouseTrace = SummitClientRuntimeTraceFile("LOGS\\mouse_coord_trace.txt");
 						if (fpMouseTrace)
 						{
 							fprintf(fpMouseTrace,
@@ -1900,33 +1929,33 @@ switch (messg)
 
 	case WM_LBUTTONDOWN:
 	{
-		{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"CLICK enter GameMode=%d x=%ld y=%ld wParam=%lu\n", GameMode, pCursorPos.x, pCursorPos.y, (unsigned long)wParam); fclose(f);} }
+		{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_click_trace.txt"); if(f){ fprintf(f,"CLICK enter GameMode=%d x=%ld y=%ld wParam=%lu\n", GameMode, pCursorPos.x, pCursorPos.y, (unsigned long)wParam); fclose(f);} }
 
 		if (g_IsDxProjectZoomIn <= 0 || g_iFzmCursorFocusGame)
 		{
-			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"before SetMousePlay\n"); fclose(f);} }
+			{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_click_trace.txt"); if(f){ fprintf(f,"before SetMousePlay\n"); fclose(f);} }
 			SetMousePlay(1);
-			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"after SetMousePlay\n"); fclose(f);} }
+			{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_click_trace.txt"); if(f){ fprintf(f,"after SetMousePlay\n"); fclose(f);} }
 
-			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"before sinLButtonDown\n"); fclose(f);} }
+			{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_click_trace.txt"); if(f){ fprintf(f,"before sinLButtonDown\n"); fclose(f);} }
 			sinLButtonDown();
-			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"after sinLButtonDown\n"); fclose(f);} }
+			{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_click_trace.txt"); if(f){ fprintf(f,"after sinLButtonDown\n"); fclose(f);} }
 
 			MouseButton[0] = TRUE;
-			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"after MouseButton TRUE\n"); fclose(f);} }
+			{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_click_trace.txt"); if(f){ fprintf(f,"after MouseButton TRUE\n"); fclose(f);} }
 
-			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"before cSettings.LButtonDown\n"); fclose(f);} }
+			{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_click_trace.txt"); if(f){ fprintf(f,"before cSettings.LButtonDown\n"); fclose(f);} }
 			cSettings.LButtonDown();
-			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"after cSettings.LButtonDown\n"); fclose(f);} }
+			{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_click_trace.txt"); if(f){ fprintf(f,"after cSettings.LButtonDown\n"); fclose(f);} }
 			
-			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"before clan_Mouse\n"); fclose(f);} }
+			{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_click_trace.txt"); if(f){ fprintf(f,"before clan_Mouse\n"); fclose(f);} }
 			clan_Mouse(WM_LBUTTONDOWN, wParam);
-			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"after clan_Mouse\n"); fclose(f);} }
+			{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_click_trace.txt"); if(f){ fprintf(f,"after clan_Mouse\n"); fclose(f);} }
 		}
 		else
 		{
 			g_FzmMouseButton[0] = TRUE;
-			{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"zoom branch g_FzmMouseButton TRUE\n"); fclose(f);} }
+			{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_click_trace.txt"); if(f){ fprintf(f,"zoom branch g_FzmMouseButton TRUE\n"); fclose(f);} }
 		}
 
 		if (GameMode == 2 && DisconnectFlag)
@@ -1935,7 +1964,7 @@ switch (messg)
 		extern bool clickable;
 		clickable = true;
 
-		{ FILE *f=fopen("LOGS\\mingw_click_trace.txt","a"); if(f){ fprintf(f,"CLICK leave quit=%d GameMode=%d\n", quit, GameMode); fclose(f);} }
+		{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_click_trace.txt"); if(f){ fprintf(f,"CLICK leave quit=%d GameMode=%d\n", quit, GameMode); fclose(f);} }
 	}
 	break;
 
@@ -2027,16 +2056,27 @@ switch (messg)
 		break;
 
 	case WM_MOUSEWHEEL:
+	{
 
 		zDelta = (short)HIWORD(wParam);
 
-		if (cSettings.isOpen()) {
+		// Existing settings/quest handlers keep priority. Avoid letting UI V2
+		// swallow their wheel input, while preserving the legacy fall-through
+		// behavior of the settings panel itself.
+		const bool settingsOpen = cSettings.isOpen();
+		if (settingsOpen) {
 			cSettings.OnMouseScroll(zDelta);
 		}
 		if (cQuestWindow.OpenFlag)
 		{
-			//cQuestWindow.MouseWheel(zDelta);
-			cQuestWindow.MouseWheel(zDelta);
+			if (ui::v2::legacy::OwnsQuestJournalUI())
+				ui::v2::legacy::HandleMouseWheel(zDelta);
+			else
+				cQuestWindow.MouseWheel(zDelta);
+		}
+		else if (!settingsOpen && ui::v2::legacy::HandleMouseWheel(zDelta))
+		{
+			break;
 		}
 		else if (isChatBox(pRealCursorPos.x, pRealCursorPos.y))
 		{
@@ -2059,6 +2099,7 @@ switch (messg)
 		}
 
 		break;
+	}
 			
 	case WM_CHAR:
 		if (wParam == 0x0D || wParam == 0x0A || (GameMode == 2 && wParam == VK_TAB)) return TRUE;
@@ -2086,7 +2127,7 @@ switch (messg)
 
 	case WM_DESTROY:
 	{
-		FILE *f = fopen("LOGS\\mingw_window_lifecycle.txt", "a");
+		FILE *f = SummitClientRuntimeTraceFile("LOGS\\mingw_window_lifecycle.txt");
 		if (f)
 		{
 			fprintf(f, "WM_DESTROY hWnd=%p hwnd_global=%p GameMode=%d quit=%d dwTradeMaskTime=%lu\n",
@@ -2779,6 +2820,18 @@ void PlayD3D()
 {
 	DWORD dwTime = GetCurrentTime();
 
+	// Streaming V3: worker completions are owned by the frame loop, not by
+	// character/field simulation.  This is important during bootstrap because
+	// gameplay is intentionally gated until collision geometry is resident.
+	SummitPumpModelStreamingV3();
+	SummitPumpSkyStreamingV3();
+	if (IsStageBootstrapBlockingGameplayAsync())
+	{
+		PumpStageStreamingV3();
+		PumpStageTexturePrewarm();
+	}
+	AssetLoadV3PumpTextureUploads();
+
 	if (dwLastPlayTime)
 	{
 		if (dwTime < dwLastPlayTime && dwLastOverSpeedCount>1000)
@@ -2824,6 +2877,19 @@ void PlayD3D()
 				SetGameMode(2);
 			break;
 		case 2:
+			// Do not simulate the local character in a world that has only FIELD
+			// metadata.  The workers keep progressing through the frame-level pumps
+			// above; gameplay starts on the first tick after geometry publication.
+			if (IsStageBootstrapBlockingGameplayAsync())
+			{
+				if (lpCurPlayer)
+				{
+					lpCurPlayer->MoveFlag = 0;
+					lpCurPlayer->MoveMode = FALSE;
+				}
+				break;
+			}
+
 			PlayMain();
 
 #ifdef _SINBARAM
@@ -2886,6 +2952,22 @@ void PlayD3D()
 	{
 		DrawOpening();
 		showFPS();
+		return;
+	}
+
+	// Never draw the player (or any world-space effect) before the primary
+	// collision stage exists.  Previously the async bootstrap exposed the
+	// character at Y=0 while the floor was still being parsed on a worker.
+	if (GameMode == 2 && IsStageBootstrapBlockingGameplayAsync())
+	{
+		EnterCriticalSection(&cDrawSection);
+		smEnterTextureCriticalSection();
+		BeginRender();
+		d3ddev->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, smBackColor, 1.0f, 0);
+		EndRender();
+		IncTextureFrame();
+		smLeaveTextureCriticalSection();
+		LeaveCriticalSection(&cDrawSection);
 		return;
 	}
 
@@ -3114,6 +3196,15 @@ int SetMousePlay(int flag)
 
 
 	if (GameMode != 2) return TRUE;
+
+	// WndProc reaches movement handling before sinProc dispatches the same
+	// click to UI V2. Block world movement against the actual V2 window
+	// bounds here, using real client coordinates rather than the legacy
+	// 800x600 StopCharMotion regions. SetMousePlay is entered from WndProc,
+	// where pCursorPos is still in raw client coordinates.
+	if ((flag == 1 || flag == 2 || flag == 3 || flag == 4 || flag == 11) &&
+		ui::v2::legacy::BlocksWorldInputAt((int)pCursorPos.x, (int)pCursorPos.y))
+		return TRUE;
 
 	if (!lpCurPlayer->MotionInfo || dwNextWarpDelay || lpCurPlayer->PlayStunCount) return FALSE;
 
@@ -3652,8 +3743,13 @@ int GameInit()
 
 int GameClose()
 {
-
-
+	// Drain the current gameplay session before legacy render/model resources
+	// are destroyed. Keep the worker pool alive: the process can return to the
+	// login/opening screen and enter the game again without restarting Game.exe.
+	summit::core::concurrency::JobSystem::Instance().WaitIdle();
+	SummitResetModelStreamingV3();
+	SummitResetSkyStreamingV3();
+	AssetLoadV3ResetAsyncState();
 
 	if (lpDDSMenu) lpDDSMenu->Release();
 
@@ -3684,23 +3780,23 @@ extern void InitFont();
 
 int SetGameMode(int mode)
 {
-	{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"ENTER SetGameMode mode=%d GameMode_before=%d lpCurPlayer=%p\n", mode, GameMode, (void*)lpCurPlayer); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt"); if(f){ fprintf(f,"ENTER SetGameMode mode=%d GameMode_before=%d lpCurPlayer=%p\n", mode, GameMode, (void*)lpCurPlayer); fclose(f);} }
 
 	int OldMode = GameMode;
 	GameMode = mode;
 
-	{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"before sinChar assignment lpCurPlayer=%p\n", (void*)lpCurPlayer); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt"); if(f){ fprintf(f,"before sinChar assignment lpCurPlayer=%p\n", (void*)lpCurPlayer); fclose(f);} }
 
 	if (!lpCurPlayer)
 	{
-		FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a");
+		FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt");
 		if(f){ fprintf(f,"ERROR lpCurPlayer is NULL before sinChar assignment\n"); fclose(f); }
 		return FALSE;
 	}
 
 	sinChar = &lpCurPlayer->smCharInfo;
 
-	{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after sinChar assignment sinChar=%p OldMode=%d GameMode=%d\n", (void*)sinChar, OldMode, GameMode); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt"); if(f){ fprintf(f,"after sinChar assignment sinChar=%p OldMode=%d GameMode=%d\n", (void*)sinChar, OldMode, GameMode); fclose(f);} }
 
 
 	switch (OldMode)
@@ -3722,26 +3818,26 @@ int SetGameMode(int mode)
 	{
 	case 1:
 		SetDxProjection((PI / 4.4f), SETTINGSHANDLER->getWidth(), SETTINGSHANDLER->getHeight(), 20.f, 4000.f);
-		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after SetDxProjection\n"); fclose(f);} }
+		{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt"); if(f){ fprintf(f,"after SetDxProjection\n"); fclose(f);} }
 
 
 		smRender.CreateRenderBuff(SETTINGSHANDLER->getSight() ? 1 : 0);
-		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after CreateRenderBuff\n"); fclose(f);} }
+		{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt"); if(f){ fprintf(f,"after CreateRenderBuff\n"); fclose(f);} }
 
 
 		InitMaterial();
-		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitMaterial\n"); fclose(f);} }
+		{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt"); if(f){ fprintf(f,"after InitMaterial\n"); fclose(f);} }
 		smRender.SetMaterialGroup(smMaterialGroup);
-		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after SetMaterialGroup\n"); fclose(f);} }
+		{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt"); if(f){ fprintf(f,"after SetMaterialGroup\n"); fclose(f);} }
 		InitEffect();
-		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitEffect\n"); fclose(f);} }
+		{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt"); if(f){ fprintf(f,"after InitEffect\n"); fclose(f);} }
 		InitFont();
-		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitFont\n"); fclose(f);} }
+		{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt"); if(f){ fprintf(f,"after InitFont\n"); fclose(f);} }
 		cSettings.Init();
-		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after cSettings.Init\n"); fclose(f);} }
+		{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt"); if(f){ fprintf(f,"after cSettings.Init\n"); fclose(f);} }
 
 		InitOpening();
-		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after InitOpening\n"); fclose(f);} }
+		{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt"); if(f){ fprintf(f,"after InitOpening\n"); fclose(f);} }
 
 		if(SETTINGSHANDLER->isWideScreen())
 		{
@@ -3760,10 +3856,10 @@ int SetGameMode(int mode)
 
 		if(CheckCrackProcess(TRUE))
 			quit = 1;
-		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"before CheckCrackProcess TRUE\n"); fclose(f);} }
+		{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt"); if(f){ fprintf(f,"before CheckCrackProcess TRUE\n"); fclose(f);} }
 		if(CheckCrackProcess(TRUE))
 			quit = 1;
-		{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"after CheckCrackProcess TRUE quit=%d\n", quit); fclose(f);} }
+		{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt"); if(f){ fprintf(f,"after CheckCrackProcess TRUE quit=%d\n", quit); fclose(f);} }
 
 		dwM_BlurTime = 0;
 
@@ -3786,7 +3882,7 @@ int SetGameMode(int mode)
 
 	WaveCameraFlag = FALSE;
 
-	{ FILE *f=fopen("LOGS\\mingw_setgamemode_inside.txt","a"); if(f){ fprintf(f,"LEAVE SetGameMode mode=%d GameMode=%d quit=%d\n", mode, GameMode, quit); fclose(f);} }
+	{ FILE *f=SummitClientRuntimeTraceFile("LOGS\\mingw_setgamemode_inside.txt"); if(f){ fprintf(f,"LEAVE SetGameMode mode=%d GameMode=%d quit=%d\n", mode, GameMode, quit); fclose(f);} }
 
 	return TRUE;
 }
@@ -5051,6 +5147,7 @@ int	SetChatingLine(char *szMessage)
 {
 
 	cInterFace.ChatFlag = TRUE;
+	sinChatEnter = 1;
 	hFocusWnd = hTextWnd;
 	SetWindowText(hFocusWnd, szMessage);
 	SetIME_Mode(1);
@@ -5076,9 +5173,12 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 		{
 
 			if (wParam == VK_RETURN && VRKeyBuff[wParam] == 0 && !sinMessageBoxShowFlag &&
-				!VRKeyBuff[VK_CONTROL])
+				!VRKeyBuff[VK_CONTROL] && !hFocusWnd)
 			{
 
+				// UI V2: Enter opens chat only when no edit session is active.
+				// A second Enter must be allowed to reach the existing send path
+				// below instead of reopening/clearing the edit control first.
 				SetChatingLine("");
 			}
 
@@ -5150,7 +5250,7 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 			if (smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
 			{
 
-				if (VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_CONTROL] && wParam == VK_F9 && VRKeyBuff[VK_F9] == 0)
+				if (wParam == VK_F9 && VRKeyBuff[VK_F9] == 0)
 				{
 					if (DisplayDebug) DisplayDebug = FALSE;
 					else DisplayDebug = TRUE;

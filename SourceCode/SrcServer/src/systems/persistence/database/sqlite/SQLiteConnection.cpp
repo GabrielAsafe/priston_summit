@@ -279,7 +279,13 @@ struct SQLiteConnection::Impl
 			{ 29, "029_remaining_backup_catalogs.sql" },
 			{ 30, "030_local_gameplay_entitlement.sql" },
 			{ 31, "031_local_audit_events.sql" },
-			{ 32, "032_local_auth_policy.sql" }
+			{ 32, "032_local_auth_policy.sql" },
+			{ 33, "033_progression_v2.sql" },
+			{ 34, "034_story_node_state.sql" },
+			{ 35, "035_progression_content.sql" },
+			{ 36, "036_covenant_rewards.sql" },
+			{ 37, "037_story_dialogue_choices.sql" },
+			{ 38, "038_generic_reputation.sql" }
 		};
 
 		int currentVersion = 0;

@@ -236,6 +236,11 @@ smSTAGE3D *LoadStageFromField(sFIELD *lpField, sFIELD *lpSecondField);
 
 smSTAGE3D *LoadStageFromField2(sFIELD *lpField, sFIELD *lpSecondField);
 
+// Stage Streaming V3: non-blocking neighbour requests and game-thread publish.
+int RequestStageFromFieldAsync(sFIELD *lpField, sFIELD *lpSecondField);
+void PumpStageStreamingV3();
+bool IsStageFromFieldPendingAsync(sFIELD *lpField);
+
 extern	sFIELD	*StageField[2];
 
 extern  int FieldLimitLevel_Table[];

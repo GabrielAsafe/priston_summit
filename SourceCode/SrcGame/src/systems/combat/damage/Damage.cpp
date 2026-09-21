@@ -18,6 +18,7 @@
 #include "systems/combat/skills/client/SkillSub.h"
 #include "systems/localization/legacy_catalog/language.h"
 #include "systems/combat/damage/damage.h"
+#include "gameplay/classes/v2/legacy/LegacyClassCombatAdapter.h"
 #include "systems/network/region/AreaServer.h"
 #include "systems/combat/damage_display/DrawDamage.h"
 
@@ -293,26 +294,17 @@ int dm_SendTransDamage(smCHAR *lpChar, int PowParam1, int PowParam2, int AttackS
 	if (((lpCurPlayer->dwActionItemCode^sinWM1)&sinITEM_MASK2) != 0)
 		TransAttackData.Critical[0] = lpCurPlayer->smCharInfo.Critical_Hit;
 
-	switch (lpCurPlayer->smCharInfo.JOB_CODE)
-	{
-	case JOBCODE_PRIESTESS:
-	case JOBCODE_MAGICIAN:
-		TransAttackData.Critical[1] = lpCurPlayer->smCharInfo.Spirit;
-		break;
-
-	case JOBCODE_MECHANICIAN:
-	case JOBCODE_FIGHTER:
-	case JOBCODE_PIKEMAN:
-	case JOBCODE_KNIGHT:
-		TransAttackData.Critical[1] = lpCurPlayer->smCharInfo.Strength;
-		break;
-
-	case JOBCODE_ARCHER:
-	case JOBCODE_ATALANTA:
-		TransAttackData.Critical[1] = lpCurPlayer->smCharInfo.Dexterity;
-		break;
-
-	}
+	int criticalScalingValue = 0;
+	if (gameplay::classes::legacy::ResolveCriticalScalingValue(
+			gameplay::classes::DefaultClassService(),
+			lpCurPlayer->smCharInfo.JOB_CODE,
+			lpCurPlayer->smCharInfo.Strength,
+			lpCurPlayer->smCharInfo.Spirit,
+			lpCurPlayer->smCharInfo.Talent,
+			lpCurPlayer->smCharInfo.Dexterity,
+			lpCurPlayer->smCharInfo.Health,
+			criticalScalingValue))
+		TransAttackData.Critical[1] = criticalScalingValue;
 
 	TransAttackData.AttackState = AttackState;
 	TransAttackData.AttackSize = 48 * fONE;
@@ -858,26 +850,17 @@ int dm_SendRangeDamage(int x, int y, int z, smCHAR *lpMainTraget, int PowParam1,
 	lpTransSkill_AttackData->Power2[0] = PowParam1;
 	lpTransSkill_AttackData->Power2[1] = PowParam2;
 
-	switch (lpCurPlayer->smCharInfo.JOB_CODE)
-	{
-	case JOBCODE_PRIESTESS:
-	case JOBCODE_MAGICIAN:
-		lpTransSkill_AttackData->Critical[1] = lpCurPlayer->smCharInfo.Spirit;
-		break;
-
-	case JOBCODE_MECHANICIAN:
-	case JOBCODE_FIGHTER:
-	case JOBCODE_PIKEMAN:
-	case JOBCODE_KNIGHT:
-		lpTransSkill_AttackData->Critical[1] = lpCurPlayer->smCharInfo.Strength;
-		break;
-
-	case JOBCODE_ARCHER:
-	case JOBCODE_ATALANTA:
-		lpTransSkill_AttackData->Critical[1] = lpCurPlayer->smCharInfo.Dexterity;
-		break;
-
-	}
+	int criticalScalingValue = 0;
+	if (gameplay::classes::legacy::ResolveCriticalScalingValue(
+			gameplay::classes::DefaultClassService(),
+			lpCurPlayer->smCharInfo.JOB_CODE,
+			lpCurPlayer->smCharInfo.Strength,
+			lpCurPlayer->smCharInfo.Spirit,
+			lpCurPlayer->smCharInfo.Talent,
+			lpCurPlayer->smCharInfo.Dexterity,
+			lpCurPlayer->smCharInfo.Health,
+			criticalScalingValue))
+		lpTransSkill_AttackData->Critical[1] = criticalScalingValue;
 
 	lpTransSkill_AttackData->AttackSize = 240;
 

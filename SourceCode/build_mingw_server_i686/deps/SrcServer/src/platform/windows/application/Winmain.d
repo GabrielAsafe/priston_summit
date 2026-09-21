@@ -138,8 +138,32 @@
  SrcServer/src/systems/admin/game_masters/GameMasters.h \
  SrcServer/src/diagnostics/crash/WinDump.h \
  SrcServer/src/platform/windows/input/ime_legacy/Ime.h \
+ SrcServer/src/systems/gameplay/progression/v2/ProgressionRuntime.h \
+ Shared/gameplay/covenants/v2/CovenantService.h \
+ Shared/gameplay/conditions/v2/Condition.h \
+ Shared/gameplay/covenants/v2/CovenantEvents.h \
+ Shared/gameplay/covenants/v2/CovenantTypes.h \
+ Shared/gameplay/modifiers/v2/GameplayModifier.h \
+ Shared/gameplay/rewards/v2/Reward.h \
+ Shared/gameplay/covenants/v2/ICovenantRepository.h \
+ Shared/gameplay/events/v2/GameplayEventHub.h \
+ Shared/gameplay/reputation/v2/ReputationService.h \
+ Shared/gameplay/reputation/v2/IReputationRepository.h \
+ Shared/gameplay/reputation/v2/ReputationTypes.h \
+ Shared/gameplay/story/v2/StoryService.h \
+ Shared/gameplay/story/v2/IStoryRepository.h \
+ Shared/gameplay/story/v2/StoryTypes.h \
+ Shared/gameplay/story/v2/StoryEvents.h \
+ Shared/gameplay/progression/v2/ProgressionCustomHandlers.h \
+ Shared/gameplay/progression/v2/ProgressionPlayerRuntime.h \
+ Shared/gameplay/progression/v2/ProgressionSnapshot.h \
+ SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h \
  SrcServer/src/systems/gameplay/quests/legacy/HaQuestBoard.h \
- Shared/gameplay/quests/HaQuestBoardLegacyCommon.inl
+ Shared/gameplay/quests/HaQuestBoardLegacyCommon.inl \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ Shared/gameplay/quests/legacy/LegacyClassQuestAdapter.h
 SrcServer/src/platform/windows/input/ime_legacy/STRCLASS.H:
 SrcServer/src/systems/security/legacy/process_integrity/cracker.h:
 SrcServer/src/systems/rendering/legacy_3d/smd3d.h:
@@ -280,5 +304,29 @@ SrcServer/src/systems/rendering/font/FontImage.h:
 SrcServer/src/systems/admin/game_masters/GameMasters.h:
 SrcServer/src/diagnostics/crash/WinDump.h:
 SrcServer/src/platform/windows/input/ime_legacy/Ime.h:
+SrcServer/src/systems/gameplay/progression/v2/ProgressionRuntime.h:
+Shared/gameplay/covenants/v2/CovenantService.h:
+Shared/gameplay/conditions/v2/Condition.h:
+Shared/gameplay/covenants/v2/CovenantEvents.h:
+Shared/gameplay/covenants/v2/CovenantTypes.h:
+Shared/gameplay/modifiers/v2/GameplayModifier.h:
+Shared/gameplay/rewards/v2/Reward.h:
+Shared/gameplay/covenants/v2/ICovenantRepository.h:
+Shared/gameplay/events/v2/GameplayEventHub.h:
+Shared/gameplay/reputation/v2/ReputationService.h:
+Shared/gameplay/reputation/v2/IReputationRepository.h:
+Shared/gameplay/reputation/v2/ReputationTypes.h:
+Shared/gameplay/story/v2/StoryService.h:
+Shared/gameplay/story/v2/IStoryRepository.h:
+Shared/gameplay/story/v2/StoryTypes.h:
+Shared/gameplay/story/v2/StoryEvents.h:
+Shared/gameplay/progression/v2/ProgressionCustomHandlers.h:
+Shared/gameplay/progression/v2/ProgressionPlayerRuntime.h:
+Shared/gameplay/progression/v2/ProgressionSnapshot.h:
+SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h:
 SrcServer/src/systems/gameplay/quests/legacy/HaQuestBoard.h:
 Shared/gameplay/quests/HaQuestBoardLegacyCommon.inl:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+Shared/gameplay/quests/legacy/LegacyClassQuestAdapter.h:

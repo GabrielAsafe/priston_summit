@@ -116,6 +116,9 @@
  SrcServer/src/systems/social/clan/legacy/tjclan.h \
  SrcServer/src/systems/world/field/field.h \
  SrcServer/src/core/server/legacy_runtime/onserver.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcServer/src/systems/inventory/legacy/sinWingItem.h \
  Shared/inventory/legacy/SinWingItemLegacyShared.inl
 SrcServer/src/systems/network/protocol/server/opcodes.h:
@@ -236,5 +239,8 @@ SrcServer/src/systems/social/clan/legacy/tjclanDEF.h:
 SrcServer/src/systems/social/clan/legacy/tjclan.h:
 SrcServer/src/systems/world/field/field.h:
 SrcServer/src/core/server/legacy_runtime/onserver.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcServer/src/systems/inventory/legacy/sinWingItem.h:
 Shared/inventory/legacy/SinWingItemLegacyShared.inl:

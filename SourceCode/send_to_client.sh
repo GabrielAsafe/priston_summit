@@ -8,7 +8,7 @@
 #  "$DEST"
 
 
-cp dist_mingw_client_i686/Game.exe "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente"
-cp dist_mingw_client_i686/libgcc_s_dw2-1.dll "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente"
-cp dist_mingw_client_i686/libstdc++-6.dll "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente"
-cp dist_mingw_client_i686/libwinpthread-1.dll "/home/gabriel/Área de Trabalho/summit/Summit Tale Client Full/cliente"
+cp dist_mingw_client_i686/Game.exe "/home/gabriel/Área de Trabalho/summit/cliente"
+cp dist_mingw_client_i686/libgcc_s_dw2-1.dll "/home/gabriel/Área de Trabalho/summit/cliente"
+cp dist_mingw_client_i686/libstdc++-6.dll "/home/gabriel/Área de Trabalho/summit/cliente"
+cp dist_mingw_client_i686/libwinpthread-1.dll "/home/gabriel/Área de Trabalho/summit/cliente"

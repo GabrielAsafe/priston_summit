@@ -1,0 +1,71 @@
+#pragma once
+
+#include <array>
+#include "systems/ui/v2/core/Container.h"
+#include "systems/ui/v2/viewmodels/InventoryViewModel.h"
+
+namespace ui::v2
+{
+class Button;
+class ContextPanel;
+class IContextGateway;
+
+class InventoryPage final : public Container
+{
+public:
+    InventoryPage(IInventoryGateway& gateway, IContextGateway& contextGateway, UIId id = InvalidUIId);
+
+    void Update(float deltaSeconds) override;
+    UIEventResult OnEvent(const UIEvent& event) override;
+    void CancelOutstandingDrag();
+    [[nodiscard]] bool HasModalInput() const noexcept;
+    bool HandleModalKey(std::uint32_t key);
+
+protected:
+    void OnRender(UIRenderContext& context) override;
+
+private:
+    struct HitResult
+    {
+        int itemIndex = -1;
+        int equipmentSlot = 0;
+        int bagColumn = -1;
+        int bagRow = -1;
+    };
+
+    [[nodiscard]] Rect BagRectLocal() const noexcept;
+    [[nodiscard]] Rect EquipmentSlotRectLocal(int slot) const noexcept;
+    [[nodiscard]] Rect ItemRectLocal(const InventoryItemSnapshot& item) const noexcept;
+    [[nodiscard]] HitResult Hit(Point pointer) const noexcept;
+    [[nodiscard]] const InventoryItemSnapshot* ItemAt(Point pointer) const noexcept;
+    [[nodiscard]] bool ItemVisibleInCurrentView(const InventoryItemSnapshot& item) const noexcept;
+    void SelectBagPage(int page);
+    void SelectQuestItems();
+    void DrawBag(UIRenderContext& context);
+    void DrawEquipment(UIRenderContext& context);
+    void DrawDetails(UIRenderContext& context);
+    void RefreshDetails(int itemIndex);
+    [[nodiscard]] Rect DetailsRectLocal() const noexcept;
+    [[nodiscard]] int MaxDetailScroll() const noexcept;
+    void DrawDrag(UIRenderContext& context);
+
+    InventoryViewModel viewModel_;
+    Button* bagAButton_ = nullptr;
+    Button* bagBButton_ = nullptr;
+    Button* questButton_ = nullptr;
+    Button* weaponSet1Button_ = nullptr;
+    Button* weaponSet2Button_ = nullptr;
+    Button* personalShopButton_ = nullptr;
+    Button* lockButton_ = nullptr;
+    Button* costumeButton_ = nullptr;
+    Button* cancelDragButton_ = nullptr;
+    float refreshAccumulator_ = 0.0f;
+    Point lastPointer_{};
+    int hoveredIndex_ = -1;
+    int detailItemIndex_ = -1;
+    int detailScroll_ = 0;
+    std::vector<DetailLineSnapshot> detailLines_;
+    bool questMode_ = false;
+    ContextPanel* contextPanel_ = nullptr;
+};
+}

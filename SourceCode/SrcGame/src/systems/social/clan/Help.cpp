@@ -868,7 +868,7 @@ int CHelp::dsDrawTexImageFloat(int Mat, float x, float y, float w, float h, int 
 	tlVertex[3].sy = y2;
 	tlVertex[3].tu = 1.0f;
 	tlVertex[3].tv = 1.0f;
-	DrawTexture(GuideImage->smMaterial[Mat].smTexture[0]->lpD3DTexture, tlVertex, true);
+	DrawTexture(AssetLoadV2GetResidentTexture(GuideImage->smMaterial[Mat].smTexture[0]), tlVertex, true);
 	return TRUE;
 }
 

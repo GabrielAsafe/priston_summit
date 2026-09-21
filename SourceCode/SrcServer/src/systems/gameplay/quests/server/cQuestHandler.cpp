@@ -5,8 +5,54 @@
 #include "systems/gameplay/quests/server/cQuestHandler.h"
 #include "systems/commerce/coin_shop/CoinShop.h"
 #include "systems/inventory/legacy/sinItem.h"
+#include "systems/gameplay/progression/v2/ProgressionTriggerRuntime.h"
 
 cQUESTHANDLER cQuestHandler;
+
+namespace
+{
+struct ProgressionQuestStateSnapshot
+{
+    bool readable;
+    bool completed;
+    bool inProgress;
+
+    ProgressionQuestStateSnapshot() : readable(false), completed(false), inProgress(false) {}
+};
+
+ProgressionQuestStateSnapshot CaptureProgressionQuestState(rsPLAYINFO* player, int questId)
+{
+    ProgressionQuestStateSnapshot snapshot;
+    if (!player || questId <= 0 || !player->getName() || !player->getName()[0])
+        return snapshot;
+
+    bool completed = false;
+    bool inProgress = false;
+    const bool completedRead = cQuestHandler.QueryCompletedQuest(player->getName(), questId, &completed);
+    const bool progressRead = cQuestHandler.QueryQuestInProgress(player->getName(), questId, &inProgress);
+    if (!completedRead || !progressRead)
+        return snapshot;
+
+    snapshot.readable = true;
+    snapshot.completed = completed;
+    snapshot.inProgress = inProgress;
+    return snapshot;
+}
+
+void NotifyProgressionIfQuestStateChanged(
+    rsPLAYINFO* player, int questId, const ProgressionQuestStateSnapshot& before)
+{
+    if (!before.readable)
+        return;
+
+    const ProgressionQuestStateSnapshot after = CaptureProgressionQuestState(player, questId);
+    if (!after.readable)
+        return;
+
+    if (before.completed != after.completed || before.inProgress != after.inProgress)
+        gameplay::progression::NotifyServerProgressionPlayerStateChanged(player);
+}
+}
 
 // R25_SKIPTIER_DIAG_V1
 static void R25SkipTierDiag(const char* stage, int questId, const char* player, const char* detail)
@@ -1161,6 +1207,9 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 	if (!lpPlayInfo)
 		return;
 
+	const ProgressionQuestStateSnapshot progressionStateBefore =
+		CaptureProgressionQuestState(lpPlayInfo, QuestID);
+
 	// Final Rank 5 arena gate from the EU sequence. Quest 10012 itself has no
 	// special C++ handler there; its requirements stay data-driven in QuestDB.
 	if (QuestID == QUESTID_T5_QUEST_ARENA)
@@ -1398,10 +1447,18 @@ void cQUESTHANDLER::StartQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKin
 	GetSpoilerInfo(lpPlayInfo, QuestKind);
 	if (QuestKind != 10)
 		GetSpoilerInfo(lpPlayInfo, 10);
+
+	NotifyProgressionIfQuestStateChanged(lpPlayInfo, QuestID, progressionStateBefore);
 }
 
 void cQUESTHANDLER::CancelQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind, int QuestType)
 {
+	if (!lpPlayInfo)
+		return;
+
+	const ProgressionQuestStateSnapshot progressionStateBefore =
+		CaptureProgressionQuestState(lpPlayInfo, QuestID);
+
 	if (QuestID == QUESTID_T5_QUEST_ARENA)
 		StopTier5ArenaQuest(lpPlayInfo, true);
 
@@ -1434,6 +1491,8 @@ void cQUESTHANDLER::CancelQuest(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKi
 	GetSpoilerInfo(lpPlayInfo, QuestKind);
 	if (QuestKind != 10)
 		GetSpoilerInfo(lpPlayInfo, 10);
+
+	NotifyProgressionIfQuestStateChanged(lpPlayInfo, QuestID, progressionStateBefore);
 }
 
 
@@ -1740,6 +1799,46 @@ bool cQUESTHANDLER::HasCompletedRank5Quest(const char* pszPlayerName)
 }
 
 
+
+bool cQUESTHANDLER::QueryQuestInProgress(const char* pszPlayerName, int QuestID, bool* pbInProgress)
+{
+	if (!pbInProgress)
+		return false;
+
+	*pbInProgress = false;
+	if (!pszPlayerName || !pszPlayerName[0] || QuestID <= 0)
+		return false;
+
+	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_QuestDB);
+	if (!db->Open())
+		return false;
+
+	if (!db->Prepare("SELECT COUNT(*) FROM Progress WHERE QuestID=? AND PlayerName=?"))
+	{
+		db->Close();
+		return false;
+	}
+
+	int questID = QuestID;
+	char playerName[32] = {};
+	strcpy_s(playerName, sizeof(playerName), pszPlayerName);
+	db->BindInputParameter(&questID, 1, PARAMTYPE_Integer);
+	db->BindInputParameter(playerName, 2, PARAMTYPE_String);
+
+	if (!db->Execute())
+	{
+		db->Close();
+		return false;
+	}
+
+	int count = 0;
+	db->GetData(&count, 4, 1, PARAMTYPE_Integer);
+	*pbInProgress = count > 0;
+	db->Close();
+	return true;
+}
+
+
 bool cQUESTHANDLER::IsQuestInProgress(rsPLAYINFO* lpPlayInfo, int QuestID)
 {
 	if (!lpPlayInfo || QuestID <= 0)
@@ -1947,6 +2046,12 @@ bool cQUESTHANDLER::HandleTier5MonsterKill(rsPLAYINFO* lpKiller, smCHAR* lpChar,
 
 void cQUESTHANDLER::GetReward(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind, int QuestType)
 {
+	if (!lpPlayInfo)
+		return;
+
+	const ProgressionQuestStateSnapshot progressionStateBefore =
+		CaptureProgressionQuestState(lpPlayInfo, QuestID);
+
 	std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_QuestDB);
 
 	if (db->Open())
@@ -2127,6 +2232,8 @@ void cQUESTHANDLER::GetReward(rsPLAYINFO* lpPlayInfo, int QuestID, int QuestKind
 		GetSpoilerInfo(lpPlayInfo, 10);
 	if (QuestKind != 11)
 		GetSpoilerInfo(lpPlayInfo, 11);
+
+	NotifyProgressionIfQuestStateChanged(lpPlayInfo, QuestID, progressionStateBefore);
 }
 
 bool cQUESTHANDLER::inQuest(rsPLAYINFO* lpPlayInfo, smCHAR* lpChar)

@@ -3,6 +3,8 @@
 
 // Shared skill/force-orb/user-attack helpers. Target differences are isolated in LegacyDamagePolicy.
 
+#include "gameplay/classes/v2/services/ClassService.h"
+
 int rsRecvAttackData_Old(rsPLAYINFO *lpPlayInfo, TRANS_ATTACKDATA *lpTransAttackData, smCHAR *lpTargetChar, int Type)
 {
 #ifdef	_W_SERVER
@@ -4036,7 +4038,7 @@ int rsCheckTier5SkillAuthority(rsPLAYINFO *lpPlayInfo, DWORD dwSkillCode, int po
 
 	if(dwCode < SKILL_PLAY_T51 || dwCode > SKILL_PLAY_T54) return TRUE;
 	if(!lpPlayInfo || point < 0 || point >= 10) return FALSE;
-	if(lpPlayInfo->smCharInfo.JOB_CODE < JOBCODE_FIGHTER || lpPlayInfo->smCharInfo.JOB_CODE > JOBCODE_PRIESTESS) return FALSE;
+	if(!gameplay::classes::DefaultClassService().UsesLegacyTier5Slots(lpPlayInfo->smCharInfo.JOB_CODE)) return FALSE;
 
 	int slot = (int)(dwCode - SKILL_PLAY_T51);
 	BYTE learnedPoint = lpPlayInfo->bSkillPoint[16 + slot];

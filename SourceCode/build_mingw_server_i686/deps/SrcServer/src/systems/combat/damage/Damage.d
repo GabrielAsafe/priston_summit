@@ -116,6 +116,10 @@
  Shared/persistence/database/Database_sqlite_server.h \
  SrcServer/src/systems/combat/skills/server_support/SkillSub.h \
  SrcServer/src/systems/combat/damage/damage.h \
+ Shared/gameplay/classes/v2/legacy/LegacyClassCombatAdapter.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcServer/src/systems/network/region/AreaServer.h
 SrcServer/src/systems/network/protocol/server/opcodes.h:
 SrcServer/src/systems/rendering/legacy_3d/smd3d.h:
@@ -235,4 +239,8 @@ SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
 SrcServer/src/systems/combat/skills/server_support/SkillSub.h:
 SrcServer/src/systems/combat/damage/damage.h:
+Shared/gameplay/classes/v2/legacy/LegacyClassCombatAdapter.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcServer/src/systems/network/region/AreaServer.h:

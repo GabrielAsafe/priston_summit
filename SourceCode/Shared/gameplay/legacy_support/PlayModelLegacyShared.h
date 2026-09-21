@@ -1,4 +1,4 @@
-#define	FACE_MODEL_MAX		18	
+#define	FACE_MODEL_MAX		18
 #define	HEAREPOTION_MAX		31
 
 
@@ -2141,9 +2141,13 @@ char *szModel_MagicanFaceName[FACE_MODEL_MAX][HEAREPOTION_MAX] = {
 
 
 
-char *szArmorNumFile[MAX_JOBNUM][ARMOR_FILE_MAX] = 
+// These are the eight historical visual rows, not the number of playable classes.
+// New classes can use ClassArmorProfile::data-driven models without extending this table.
+#define LEGACY_ARMOR_MODEL_ROW_COUNT 8
+
+char *szArmorNumFile[LEGACY_ARMOR_MODEL_ROW_COUNT][ARMOR_FILE_MAX] =
 {
-	{	//MECHANICIAN 
+	{	//MECHANICIAN
 		"A001.ini",  "A001.ini",  "A002.ini",  "A003.ini",  "A004.ini",  "A005.ini",  "A006.ini",  "A007.ini",  "A008.ini",  "A009.ini",
 		"A010.ini",  "A011.ini",  "A012.ini",  "A013.ini",  "A014.ini",  "A015.ini",  "A016.ini",  "A017.ini",  "A018.ini",  "A019.ini",
 		"A020.ini",  "A021.ini",  "A122.ini",  "A022.ini",  "A023.ini",  "A024.ini",  "A025.ini",  "A026.ini",  "A027.ini",  "A028.ini",
@@ -2153,13 +2157,13 @@ char *szArmorNumFile[MAX_JOBNUM][ARMOR_FILE_MAX] =
 		"Ca009.ini", "Ca010.ini", "Ca011.ini", "Ca012.ini", "Ca013.ini", "Ca013.ini", "Ca014.ini", "Ca014.ini", "Ca015.ini", "Ca015.ini",
 		"Ca015.ini", "Ca016.ini", "Ca017.ini", "Ca017.ini", "Ca027.ini", "Ca027.ini", "Ca027.ini", "Ca027.ini", "Ca001.ini", "Ca008.ini",
 		"Ca008.ini", "Ca008.ini", "Ca008.ini", "Ca008.ini", "Ca008.ini", "Ca023.ini", "Ca023.ini", "Ca003.ini", "Ca003.ini", "Ca003.ini",
-		"Ca003.ini", "A021.ini",  "A022.ini",  "A023.ini",  
+		"Ca003.ini", "A021.ini",  "A022.ini",  "A023.ini",
 
 		"Ca024.ini", "Ca024.ini", "Ca024.ini", "Ca024.ini", "Ca025.ini", "Ca025.ini", "Ca025.ini", "Ca025.ini","Ca026.ini", "Ca026.ini",
 
-				
+
 	},
-	{	//FIGHTER 
+	{	//FIGHTER
 		"B001.ini",  "B001.ini",  "B002.ini",  "B003.ini",  "B004.ini",  "B005.ini",  "B006.ini",  "B007.ini",  "B008.ini",  "B009.ini",
 		"B010.ini",  "B011.ini",  "B012.ini",  "B013.ini",  "B014.ini",  "B015.ini",  "B016.ini",  "B017.ini",  "B018.ini",  "B019.ini",
 		"B020.ini",  "B021.ini",  "B122.ini",  "B022.ini",  "B023.ini",  "B024.ini",  "B025.ini",  "B026.ini",  "B027.ini",  "B028.ini",
@@ -2173,7 +2177,7 @@ char *szArmorNumFile[MAX_JOBNUM][ARMOR_FILE_MAX] =
 
 		"Cb024.ini", "Cb024.ini", "Cb024.ini", "Cb024.ini", "Cb025.ini", "Cb025.ini", "Cb025.ini", "Cb025.ini","Cb026.ini", "Cb026.ini",
 	},
-	{	//PIKEMAN 
+	{	//PIKEMAN
 		"C001.ini",  "C001.ini",  "C002.ini",  "C003.ini",  "C004.ini",  "C005.ini",  "C006.ini",  "C007.ini",  "C008.ini",  "C009.ini",
 		"C010.ini",  "C011.ini",  "C012.ini",  "C013.ini",  "C014.ini",  "C015.ini",  "C016.ini",  "C017.ini",  "C018.ini",  "C019.ini",
 		"C020.ini",  "C021.ini",  "C122.ini",  "C022.ini",  "C023.ini",  "C024.ini",  "C025.ini",  "C026.ini",  "C027.ini",  "C028.ini",
@@ -2202,8 +2206,8 @@ char *szArmorNumFile[MAX_JOBNUM][ARMOR_FILE_MAX] =
 	    "Cd024.ini", "Cd024.ini", "Cd024.ini", "Cd024.ini", "Cd025.ini", "Cd025.ini", "Cd025.ini", "Cd025.ini","Cd026.ini", "Cd026.ini",
 		"Cd026.ini","Cd026.ini",
 	},
-		
-	{	//KNIGHT 
+
+	{	//KNIGHT
 		"mA001.ini",  "mA001.ini",  "mA002.ini",  "mA003.ini",  "mA004.ini",  "mA005.ini",  "mA006.ini",  "mA007.ini",  "mA008.ini",  "mA009.ini",
 		"mA010.ini",  "mA011.ini",  "mA012.ini",  "mA013.ini",  "mA014.ini",  "mA015.ini",  "mA016.ini",  "mA017.ini",  "mA018.ini",  "mA019.ini",
 		"mA020.ini",  "mA021.ini",  "mA122.ini",  "mA022.ini",  "mA023.ini",  "mA024.ini",  "mA025.ini",  "mA026.ini",  "mA027.ini",  "mA028.ini",
@@ -2217,7 +2221,7 @@ char *szArmorNumFile[MAX_JOBNUM][ARMOR_FILE_MAX] =
 
 		"Cma024.ini", "Cma024.ini", "Cma024.ini", "Cma024.ini", "Cma025.ini", "Cma025.ini", "Cma025.ini", "Cma025.ini","Cma026.ini", "Cma026.ini",
 	},
-	{	//ATALANTA 
+	{	//ATALANTA
 		"mB001.ini",  "mB001.ini",  "mB002.ini",  "mB003.ini",  "mB004.ini",  "mB005.ini",  "mB006.ini",  "mB007.ini",  "mB008.ini",  "mB009.ini",
 		"mB010.ini",  "mB011.ini",  "mB012.ini",  "mB013.ini",  "mB014.ini",  "mB015.ini",  "mB016.ini",  "mB017.ini",  "mB018.ini",  "mB019.ini",
 		"mB020.ini",  "mB021.ini",  "mB122.ini",  "mB022.ini",  "mB023.ini",  "mB024.ini",  "mB025.ini",  "mB026.ini",  "mB027.ini",  "mB028.ini",
@@ -2247,7 +2251,7 @@ char *szArmorNumFile[MAX_JOBNUM][ARMOR_FILE_MAX] =
 		"Cmc024.ini", "Cmc024.ini", "Cmc024.ini", "Cmc024.ini", "Cmc025.ini", "Cmc025.ini", "Cmc025.ini", "Cmc025.ini","Cmc026.ini", "Cmc026.ini",
 		"Cmc026.ini", "Cmc026.ini",
 	},
-	{	//MAGICIAN 
+	{	//MAGICIAN
 		"mD001.ini",  "mD001.ini",  "mD002.ini",  "mD003.ini",  "mD004.ini",  "mD005.ini",  "mD006.ini",  "mD007.ini",  "mD008.ini",  "mD009.ini",
 		"mD010.ini",  "mD011.ini",  "mD012.ini",  "mD013.ini",  "mD014.ini",  "mD015.ini",  "mD016.ini",  "mD017.ini",  "mD018.ini",  "mD019.ini",
 		"mD020.ini",  "mD021.ini",  "mD122.ini",  "mD022.ini",  "mD023.ini",  "mD024.ini",  "mD025.ini",  "mD026.ini",  "mD027.ini",  "mD028.ini",
@@ -2264,12 +2268,12 @@ char *szArmorNumFile[MAX_JOBNUM][ARMOR_FILE_MAX] =
 
 };
 
-char *szArmorNumFile_Comic[MAX_JOBNUM][ARMOR_FILE_MAX] = 
+char *szArmorNumFile_Comic[LEGACY_ARMOR_MODEL_ROW_COUNT][ARMOR_FILE_MAX] =
 {
-	{	//MECHANICIAN 
+	{	//MECHANICIAN
 		"A001t.ini", "A001t.ini", "A002.ini",  "A003.ini",  "A004t.ini", "A005t.ini", "A006.ini",  "A007.ini",  "A008t.ini", "A009.ini",
 		"A010t.ini", "A011t.ini", "A012.ini",  "A013t.ini", "A014.ini",  "A015.ini",  "A016.ini",  "A017.ini",  "A018.ini",  "A019.ini",
-		"A020.ini",  "A021.ini",  "A001t.ini", "A022.ini",  "A023.ini",  "A024.ini",  "A025.ini",  "A026.ini",  "A027.ini",  "A028.ini", 
+		"A020.ini",  "A021.ini",  "A001t.ini", "A022.ini",  "A023.ini",  "A024.ini",  "A025.ini",  "A026.ini",  "A027.ini",  "A028.ini",
 
 		"Ca001.ini", "Ca001.ini", "Ca002.ini", "Ca002.ini", "Ca002.ini", "Ca002.ini", "Ca003.ini", "Ca003.ini", "Ca003.ini", "Ca003.ini",
 		"Ca004.ini", "Ca004.ini", "Ca004.ini", "Ca004.ini", "Ca005.ini", "Ca005.ini", "Ca005.ini", "Ca006.ini", "Ca007.ini", "Ca008.ini",
@@ -2281,7 +2285,7 @@ char *szArmorNumFile_Comic[MAX_JOBNUM][ARMOR_FILE_MAX] =
 		"Ca024.ini", "Ca024.ini", "Ca024.ini", "Ca024.ini", "Ca025.ini", "Ca025.ini", "Ca025.ini", "Ca025.ini","Ca026.ini", "Ca026.ini",
 
 	},
-	{	//FIGHTER  
+	{	//FIGHTER
 		"B001t.ini", "B001t.ini", "B002.ini",  "B003t.ini", "B004.ini",  "B005.ini",  "B006t.ini", "B007.ini",  "B008t.ini", "B009.ini",
 		"B010t.ini", "B011t.ini", "B012.ini",  "B013t.ini", "B014.ini",  "B015.ini",  "B016.ini",  "B017.ini",  "B018.ini",  "B019.ini",
 		"B020.ini",  "B021.ini",  "B001t.ini", "B022.ini",  "B023.ini",  "B024.ini",  "B025.ini",  "B026.ini",  "B027.ini",  "B028.ini",
@@ -2295,7 +2299,7 @@ char *szArmorNumFile_Comic[MAX_JOBNUM][ARMOR_FILE_MAX] =
 
 		"Cb024.ini", "Cb024.ini", "Cb024.ini", "Cb024.ini", "Cb025.ini", "Cb025.ini", "Cb025.ini", "Cb025.ini","Cb026.ini", "Cb026.ini",
 	},
-	{	//PIKEMAN 
+	{	//PIKEMAN
 		"C001t.ini", "C001t.ini", "C002.ini",  "C003t.ini", "C004.ini",  "C005.ini",  "C006t.ini", "C007.ini",  "C008t.ini", "C009.ini",
 		"C010t.ini", "C011t.ini", "C012.ini",  "C013t.ini", "C014.ini",  "C015.ini",  "C016.ini",  "C017.ini",  "C018.ini",  "C019.ini",
 		"C020.ini",  "C021.ini",  "C001t.ini", "C022.ini",  "C023.ini",  "C024.ini",  "C025.ini",  "C026.ini",  "C027.ini",  "C028.ini",
@@ -2314,18 +2318,18 @@ char *szArmorNumFile_Comic[MAX_JOBNUM][ARMOR_FILE_MAX] =
 		"D010t.ini", "D011.ini",  "D012t.ini", "D013t.ini", "D014.ini",  "D015.ini",  "D016.ini",  "D017.ini",  "D018.ini",  "D019.ini",
 		"D020.ini",  "D021.ini",  "D001t.ini", "D022.ini",  "D023.ini",  "D024.ini",  "D025.ini",  "D026.ini",  "D027.ini",  "D028.ini",
 
-		"Cd001.ini", "Cd001.ini", "Cd001.ini", "Cd001.ini", "Cd002.ini", "Cd002.ini", "Cd002.ini", "Cd002.ini", "Cd003.ini", "Cd003.ini", 
+		"Cd001.ini", "Cd001.ini", "Cd001.ini", "Cd001.ini", "Cd002.ini", "Cd002.ini", "Cd002.ini", "Cd002.ini", "Cd003.ini", "Cd003.ini",
 		"Cd003.ini", "Cd003.ini", "Cd004.ini", "Cd004.ini", "Cd004.ini", "Cd004.ini", "Cd005.ini", "Cd006.ini", "Cd007.ini", "Cd007.ini",
 		"Cd009.ini", "Cd010.ini", "Cd011.ini", "Cd011.ini", "Cd012.ini", "Cd013.ini", "Cd013.ini", "Cd014.ini", "Cd014.ini", "Cd015.ini",
-		"Cd015.ini", "Cd015.ini", "Cd016.ini", "Cd017.ini", "Cd017.ini", "Cd027.ini", "Cd027.ini", "Cd027.ini", "Cd027.ini", "Cd001.ini", 
-		"Cd008.ini", "Cd008.ini", "Cd008.ini", "Cd008.ini", "Cd008.ini", "Cd008.ini", "Cd023.ini", "Cd023.ini", "Cd003.ini", "Cd003.ini", 
+		"Cd015.ini", "Cd015.ini", "Cd016.ini", "Cd017.ini", "Cd017.ini", "Cd027.ini", "Cd027.ini", "Cd027.ini", "Cd027.ini", "Cd001.ini",
+		"Cd008.ini", "Cd008.ini", "Cd008.ini", "Cd008.ini", "Cd008.ini", "Cd008.ini", "Cd023.ini", "Cd023.ini", "Cd003.ini", "Cd003.ini",
 		"Cd003.ini", "D021.ini",  "D022.ini",  "D023.ini",
 
 		"Cd024.ini", "Cd024.ini", "Cd024.ini", "Cd024.ini", "Cd025.ini", "Cd025.ini", "Cd025.ini", "Cd025.ini","Cd026.ini", "Cd026.ini",
 		"Cd026.ini", "Cd026.ini",
 	},
-		
-	{	//KNIGHT 
+
+	{	//KNIGHT
 		"mA001t.ini", "mA001t.ini", "mA002.ini",  "mA003.ini",  "mA004t.ini", "mA005.ini",  "mA006t.ini", "mA007t.ini", "mA008.ini",  "mA009.ini",
 		"mA010.ini",  "mA011t.ini", "mA012.ini",  "mA013.ini",  "mA014.ini",  "mA015t.ini", "mA016.ini",  "mA017t.ini", "mA018.ini",  "mA019.ini",
 		"mA020.ini",  "mA021.ini",  "mA001t.ini", "mA022.ini",  "mA023.ini",  "mA024.ini",  "mA025.ini",  "mA026.ini",  "mA027.ini",  "mA028.ini",
@@ -2339,7 +2343,7 @@ char *szArmorNumFile_Comic[MAX_JOBNUM][ARMOR_FILE_MAX] =
 
 		"Cma024.ini", "Cma024.ini", "Cma024.ini", "Cma024.ini", "Cma025.ini", "Cma025.ini", "Cma025.ini", "Cma025.ini","Cma026.ini", "Cma026.ini",
 	},
-	{	//ATALANTA 
+	{	//ATALANTA
 		"mB001t.ini", "mB001t.ini", "mB002.ini",  "mB003t.ini", "mB004.ini",  "mB005t.ini", "mB006.ini",  "mB007.ini",  "mB008.ini",  "mB009t.ini",
 		"mB010.ini",  "mB011t.ini", "mB012.ini",  "mB013.ini",  "mB014.ini",  "mB015t.ini", "mB016.ini",  "mB017t.ini", "mB018.ini",  "mB019.ini",
 		"mB020.ini",  "mB021.ini",  "mB001t.ini", "mB022.ini",  "mB023.ini",  "mB024.ini",  "mB025.ini",  "mB026.ini",  "mB027.ini",  "mB028.ini",
@@ -2369,7 +2373,7 @@ char *szArmorNumFile_Comic[MAX_JOBNUM][ARMOR_FILE_MAX] =
 		"Cmc024.ini", "Cmc024.ini", "Cmc024.ini", "Cmc024.ini", "Cmc025.ini", "Cmc025.ini", "Cmc025.ini", "Cmc025.ini","Cmc026.ini", "Cmc026.ini",
 		"Cmc026.ini", "Cmc026.ini",
 	},
-	{	//MAGICIAN 
+	{	//MAGICIAN
 		"mD001t.ini", "mD001t.ini", "mD002.ini",  "mD003t.ini", "mD004.ini",  "mD005t.ini", "mD006.ini",  "mD007t.ini", "mD008t.ini", "mD009t.ini",
 		"mD010t.ini", "mD011.ini",  "mD012.ini",  "mD013.ini",  "mD014.ini",  "mD015.ini",  "mD016.ini",  "mD017.ini",  "mD018.ini",  "mD019.ini",
 		"mD020.ini",  "mD021.ini",  "mD001t.ini", "mD022.ini",  "mD023.ini",  "mD024.ini",  "mD025.ini",  "mD026.ini",  "mD027.ini",  "mD028.ini",
@@ -2383,11 +2387,11 @@ char *szArmorNumFile_Comic[MAX_JOBNUM][ARMOR_FILE_MAX] =
 
 		"Cmd024.ini", "Cmd024.ini", "Cmd024.ini", "Cmd024.ini", "Cmd025.ini", "Cmd025.ini", "Cmd025.ini", "Cmd025.ini","Cmd026.ini", "Cmd026.ini",
 	},
-	
+
 };
 
-char* szArmorNumFile_New[MAX_JOBNUM][ARMOR_FILE_MAX] = //Nova tabela de trajes
-{			
+char* szArmorNumFile_New[LEGACY_ARMOR_MODEL_ROW_COUNT][ARMOR_FILE_MAX] = //Nova tabela de trajes
+{
 	{ //MECHANICIAN
 	    "",
 		"Ca028.ini", "",
@@ -2397,7 +2401,7 @@ char* szArmorNumFile_New[MAX_JOBNUM][ARMOR_FILE_MAX] = //Nova tabela de trajes
 		"Ca032.ini", "",
 		"Ca035.ini", "Ca035.ini", "", "",
 		"Ca034.ini", "ca034b.ini", "", "",
-		"Ca011.ini", "Ca011.ini", "", "", "", 	
+		"Ca011.ini", "Ca011.ini", "", "", "",
 		"Ca036.ini", "Ca036.ini", "", "",
 		"Ca037.ini", "Ca037.ini", "", "",
 		"Ca038.ini", "Ca038.ini", "", "",
@@ -2486,13 +2490,13 @@ char* szArmorNumFile_New[MAX_JOBNUM][ARMOR_FILE_MAX] = //Nova tabela de trajes
 		"Cd031.ini", "Cd031.ini", "", "", "",
 		"Cd032.ini", "", "",
 		"Cd035.ini", "Cd035.ini", "", "",
-		"Cd034.ini", "Cd034b.ini", "", 
+		"Cd034.ini", "Cd034b.ini", "",
 		"Cd011.ini", "Cd011.ini", "", "", "", "",
 		"Cd036.ini", "Cd036.ini", "", "",
 		"Cd037.ini", "Cd037.ini", "", "",
-		"Cd038.ini", "Cd038.ini", "", "", 
+		"Cd038.ini", "Cd038.ini", "", "",
 		"Cd039.ini", "Cd039.ini", "",
-		"Cd040.ini", 
+		"Cd040.ini",
 		"Cd071.ini", "Cd070.ini", "Cd072.ini", "Cd080.ini",
 		"Cd084.ini", "Cd073.ini", "Cd074.ini", "Cd076.ini",
 		"Cd077.ini", "Cd083.ini", "Cd082.ini", "Cd075.ini",
@@ -2507,7 +2511,7 @@ char* szArmorNumFile_New[MAX_JOBNUM][ARMOR_FILE_MAX] = //Nova tabela de trajes
 		"Cd038b.ini", "Cd038b.ini", "Cd039b.ini","Cd039b.ini",
 		"Cd040b.ini", "Cd040b.ini", "Cd034b.ini","Cd034b.ini",
 	},
-	
+
 	{ //KNIGHT
 		"",
 		"Cma028.ini", "",
@@ -2546,13 +2550,13 @@ char* szArmorNumFile_New[MAX_JOBNUM][ARMOR_FILE_MAX] = //Nova tabela de trajes
 		"Cmb031.ini", "Cmb031.ini",  "", "", "",
 		"Cmb032.ini", "", "",
 		"Cmb035.ini", "Cmb035.ini", "", "",
-		"Cmb034.ini", "Cmb034b.ini", "", 
+		"Cmb034.ini", "Cmb034b.ini", "",
 		"Cmb011.ini", "Cmb011.ini", "", "", "", "",
 		"Cmb036.ini", "Cmb036.ini", "", "",
 		"Cmb037.ini", "Cmb037.ini", "", "",
 		"Cmb038.ini", "Cmb038.ini", "", "",
 		"Cmb039.ini", "Cmb039.ini", "",
-		"Cmb040.ini", 
+		"Cmb040.ini",
 		"Cmb071.ini", "Cmb070.ini", "Cmb072.ini", "Cmb080.ini",
 		"Cmb084.ini", "Cmb073.ini", "Cmb074.ini", "Cmb076.ini",
 		"Cmb077.ini", "Cmb083.ini", "Cmb082.ini", "Cmb075.ini",
@@ -2577,13 +2581,13 @@ char* szArmorNumFile_New[MAX_JOBNUM][ARMOR_FILE_MAX] = //Nova tabela de trajes
 		"Cmc031.ini", "Cmc031.ini", "", "", "",
 		"Cmc032.ini", "", "",
 		"Cmc035.ini", "Cmc035.ini", "", "",
-		"Cmc034.ini", "Cmc034b.ini", "", 
+		"Cmc034.ini", "Cmc034b.ini", "",
 		"Cmc011.ini", "Cmc011.ini", "", "", "", "",
 		"Cmc036.ini", "Cmc036.ini", "", "",
 		"Cmc037.ini", "Cmc037.ini", "", "",
 		"Cmc038.ini", "Cmc038.ini", "", "",
 		"Cmc039.ini", "Cmc039.ini", "",
-		"Cmc040.ini", 
+		"Cmc040.ini",
 		"Cmc071.ini", "Cmc070.ini", "Cmc072.ini", "Cmc080.ini",
 		"Cmc084.ini", "Cmc073.ini", "Cmc074.ini", "Cmc076.ini",
 		"Cmc077.ini", "Cmc083.ini", "Cmc082.ini", "Cmc075.ini",
@@ -2631,31 +2635,31 @@ char* szArmorNumFile_New[MAX_JOBNUM][ARMOR_FILE_MAX] = //Nova tabela de trajes
 
 };
 
-char* szArmorNumFile_New_2[MAX_JOBNUM][ARMOR_FILE_MAX] = //Nova tabela de armaduras 
+char* szArmorNumFile_New_2[LEGACY_ARMOR_MODEL_ROW_COUNT][ARMOR_FILE_MAX] = //Nova tabela de armaduras
 {
-	
-		
-	{ //MECHANICIAN 
+
+
+	{ //MECHANICIAN
 		"", "A029.ini", "A030.ini", "A031.ini", "A032.ini", "A" LEGACY_PLAYMODEL_ARMOR_SLOT_033 ".ini", "A034.ini", "A113.ini", "A114.ini", "A115.ini", "A116.ini", "A301.ini",
 	},
 
-	{ //FIGHTER 
+	{ //FIGHTER
 		"", "B029.ini", "B030.ini", "B031.ini", "B032.ini", "B" LEGACY_PLAYMODEL_ARMOR_SLOT_033 ".ini", "B034.ini", "B113.ini", "B114.ini", "B115.ini", "B116.ini", "B301.ini",
 	},
 
-	{ //PIKEMAN 
+	{ //PIKEMAN
 		"", "C029.ini", "C030.ini", "C031.ini", "C032.ini", "C" LEGACY_PLAYMODEL_ARMOR_SLOT_033 ".ini", "C034.ini", "C113.ini", "C114.ini", "C115.ini", "C116.ini", "C301.ini",
 	},
 
 	{ //ARCHER
 	    "", "D029.ini", "D030.ini", "D031.ini", "D032.ini", "D" LEGACY_PLAYMODEL_ARMOR_SLOT_033 ".ini", "D034.ini", "D113.ini", "D114.ini", "D115.ini", "D116.ini", "D301.ini",
 	},
-	
-	{ //KNIGHT 
+
+	{ //KNIGHT
         "", "mA029.ini", "mA030.ini", "mA031.ini", "mA032.ini", "mA" LEGACY_PLAYMODEL_ARMOR_SLOT_033 ".ini", "mA034.ini", "mA113.ini", "mA114.ini", "mA115.ini", "mA116.ini", "mA301.ini",
 	},
 
-	{ //ATALANTA 
+	{ //ATALANTA
 		"", "mB029.ini", "mB030.ini", "mB031.ini", "mB032.ini", "mB" LEGACY_PLAYMODEL_ARMOR_SLOT_033 ".ini", "mB034.ini", "mB113.ini", "mB114.ini", "mB115.ini", "mB116.ini", "mB301.ini",
 	},
 
@@ -2663,8 +2667,8 @@ char* szArmorNumFile_New_2[MAX_JOBNUM][ARMOR_FILE_MAX] = //Nova tabela de armadu
 		"", "mC029.ini", "mC030.ini", "mC031.ini", "mC032.ini", "mC" LEGACY_PLAYMODEL_ARMOR_SLOT_033 ".ini", "mC034.ini", "mC113.ini", "mC114.ini", "mC115.ini", "mC116.ini", "mC301.ini",
 	},
 
-	{ //MAGICIAN 
+	{ //MAGICIAN
 		"", "mD029.ini", "mD030.ini", "mD031.ini", "mD032.ini", "mD" LEGACY_PLAYMODEL_ARMOR_SLOT_033 ".ini", "mD034.ini", "mD113.ini", "mD114.ini", "mD115.ini", "mD116.ini", "mD301.ini",
 	},
-	
+
 };

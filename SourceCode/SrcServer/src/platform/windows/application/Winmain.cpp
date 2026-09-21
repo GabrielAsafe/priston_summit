@@ -119,6 +119,7 @@ void smPlayD3D(int x, int y, int z, int ax, int ay, int az);
 
 
 #include "platform/windows/input/ime_legacy/Ime.h"
+#include "systems/gameplay/progression/v2/ProgressionRuntime.h"
 
 ImeClass IMETest;
 CStrClass sz;
@@ -285,6 +286,13 @@ int main(int argv, char* argc[])
 
 	//Connections SQL Server
 	openDatabase();
+
+	std::string progressionError;
+	if(!gameplay::progression::InitializeServerProgressionRuntime(&progressionError))
+	{
+		fprintf(stderr, "Progression V2 startup failed: %s\n", progressionError.c_str());
+		return 1;
+	}
 
 	//Read Game Masters
 	GameMasters::getInstance()->readFromDatabase();

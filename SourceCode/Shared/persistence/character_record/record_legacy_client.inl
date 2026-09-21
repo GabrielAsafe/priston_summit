@@ -4,6 +4,7 @@
 static char *record_GetWord(char *q, char *p);
 #include "systems/network/transport/legacy/smwsock.h"
 #include "systems/gameplay/character/core/character.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 #include "systems/media/video/legacy_avi/avictrl.h"
 #include "core/gameplay/runtime/playmain.h"
 #include "systems/audio/playback/legacy/Dxwav.h"
@@ -2276,6 +2277,12 @@ int rsRECORD_DBASE::SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName,
 	lpTransRecord->smCharInfo.ClassClan = 0;
 
 
+	if(!gameplay::classes::DefaultClassService().IsValidLegacyChangeJob(
+		lpTransRecord->smCharInfo.JOB_CODE, lpTransRecord->smCharInfo.ChangeJob))
+	{
+		lpTransRecord->smCharInfo.ChangeJob = 0;
+	}
+
 	if (lpTransRecord->smCharInfo.Level < 20 && lpTransRecord->smCharInfo.ChangeJob != 0)
 	{
 		lpTransRecord->smCharInfo.ChangeJob = 0;
@@ -2310,7 +2317,7 @@ int rsRECORD_DBASE::SendRecordDataToClient(rsPLAYINFO *lpPlayInfo, char *szName,
 	if (lpTransRecord->GameSaveInfo.PlayStageNum == rsSOD_FIELD) lpTransRecord->GameSaveInfo.PlayStageNum = rsSOD_VILLAGE;
 	if (lpTransRecord->GameSaveInfo.PlayStageNum == QUEST_ARENA_FIELD)
 	{
-		if (lpTransRecord->smCharInfo.JOB_CODE <= 4 || lpTransRecord->smCharInfo.JOB_CODE == 9)
+		if (gameplay::classes::DefaultClassService().IsInBrood(lpTransRecord->smCharInfo.JOB_CODE, gameplay::classes::brood::Tempskron))
 			lpTransRecord->GameSaveInfo.PlayStageNum = START_FIELD_NUM;
 		else
 			lpTransRecord->GameSaveInfo.PlayStageNum = START_FIELD_MORYON;
@@ -2876,7 +2883,7 @@ int rsRECORD_DBASE::RecvRecordDataFromClient(TRANS_RECORD_DATAS *lpTransRecord, 
 
 			TransRecordData.smCharInfo.Life[0] = TransRecordData.smCharInfo.Life[1] / 2;
 
-			if (TransRecordData.smCharInfo.JOB_CODE <= 4 || TransRecordData.smCharInfo.JOB_CODE == 9)
+			if (gameplay::classes::DefaultClassService().IsInBrood(TransRecordData.smCharInfo.JOB_CODE, gameplay::classes::brood::Tempskron))
 			{
 
 				TransRecordData.GameSaveInfo.PlayStageNum = START_FIELD_NUM;
@@ -3545,7 +3552,7 @@ int rsRECORD_DBASE::SendUserDataToClient(const char *szID, smWINSOCK *lpsmSock, 
 					if (lpCharInfo->StartField == rsSOD_FIELD) lpCharInfo->StartField = rsSOD_VILLAGE;
 					if (lpCharInfo->StartField == QUEST_ARENA_FIELD)
 					{
-						if (lpCharInfo->JOB_CODE <= 4 || lpCharInfo->JOB_CODE == 9)
+						if (gameplay::classes::DefaultClassService().IsInBrood(lpCharInfo->JOB_CODE, gameplay::classes::brood::Tempskron))
 							lpCharInfo->StartField = START_FIELD_NUM;
 						else
 							lpCharInfo->StartField = START_FIELD_MORYON;

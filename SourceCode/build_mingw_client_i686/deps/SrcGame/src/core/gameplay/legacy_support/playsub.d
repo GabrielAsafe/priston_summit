@@ -154,6 +154,10 @@
  SrcGame/src/systems/social/party/ui/cPartyWindow.h \
  SrcGame/src/core/gameplay/legacy_support/playmodel.h \
  Shared/gameplay/legacy_support/PlayModelLegacyShared.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ Shared/gameplay/legacy_support/PlaySubClassModelLegacyCommon.inl \
  Shared/gameplay/legacy_support/PlaySubStartupModelLegacyCommon.inl \
  Shared/gameplay/legacy_support/PlaySubMeshTextureSwapLegacyCommon.inl \
  Shared/gameplay/legacy_support/PlaySubHairSkinLegacyCommon.inl \
@@ -345,6 +349,10 @@ SrcGame/src/systems/configuration/client/Settings.h:
 SrcGame/src/systems/social/party/ui/cPartyWindow.h:
 SrcGame/src/core/gameplay/legacy_support/playmodel.h:
 Shared/gameplay/legacy_support/PlayModelLegacyShared.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+Shared/gameplay/legacy_support/PlaySubClassModelLegacyCommon.inl:
 Shared/gameplay/legacy_support/PlaySubStartupModelLegacyCommon.inl:
 Shared/gameplay/legacy_support/PlaySubMeshTextureSwapLegacyCommon.inl:
 Shared/gameplay/legacy_support/PlaySubHairSkinLegacyCommon.inl:

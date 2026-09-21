@@ -332,7 +332,7 @@ int dsDrawTexImageFloat(int Mat, float x, float y, float w, float h, float surW,
 	tlVertex[3].sy = (y + h);
 	tlVertex[3].tu = 1 * ((tRight + 1) / surW);
 	tlVertex[3].tv = 1 * ((tBottom + 1) / surH);
-	DrawTexture(smMaterial[Mat].smTexture[0]->lpD3DTexture, tlVertex, 1);
+	DrawTexture(AssetLoadV2GetResidentTexture(smMaterial[Mat].smTexture[0]), tlVertex, 1);
 	return TRUE;
 }
 
@@ -382,7 +382,7 @@ int dsDrawTexImageFloat(int Mat, float x, float y, float w, float h, DWORD dwCol
 	tlVertex[3].sy = y2;
 	tlVertex[3].tu = 1.0f;
 	tlVertex[3].tv = 1.0f;
-	DrawTexture(smMaterial[Mat].smTexture[0]->lpD3DTexture, tlVertex, 1);
+	DrawTexture(AssetLoadV2GetResidentTexture(smMaterial[Mat].smTexture[0]), tlVertex, 1);
 	return TRUE;
 }
 
@@ -413,7 +413,7 @@ int dsDrawTexImageFloatColor(int Mat, float x, float y, float w, float h, float 
 	tlVertex[3].sy = (y + h);
 	tlVertex[3].tu = 1 * ((tRight + 1) / surW);
 	tlVertex[3].tv = 1 * ((tBottom + 1) / surH);
-	DrawTexture(smMaterial[Mat].smTexture[0]->lpD3DTexture, tlVertex, 1);
+	DrawTexture(AssetLoadV2GetResidentTexture(smMaterial[Mat].smTexture[0]), tlVertex, 1);
 	return TRUE;
 }
 

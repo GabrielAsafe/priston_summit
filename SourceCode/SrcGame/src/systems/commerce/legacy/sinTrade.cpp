@@ -1,4 +1,5 @@
 
+#include "gameplay/commerce/legacy/LegacyClassCommerceAdapter.h"
 
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/commerce/coin_shop/CoinShop.h"
@@ -10262,13 +10263,8 @@ SManufacture_ResultItemInfo CManufacture::ManufactureCheckItem(sITEM *pItemCode,
 	DWORD	dwItem = 0;
 
 
-	if (charInfo->JOB_CODE == JOBCODE_PRIESTESS) dwItem = (sinDA2 | sin52);
-
-	else if (charInfo->JOB_CODE == JOBCODE_MAGICIAN) dwItem = (sinDA2 | sin51);
-
-	else if (charInfo->JOB_CODE == JOBCODE_ARCHER || charInfo->JOB_CODE == JOBCODE_ATALANTA) dwItem = (sinDA1 | sin52);
-
-	else dwItem = (sinDA1 | sin51);
+	dwItem = static_cast<DWORD>(
+		gameplay::commerce::legacy::ManufacturePreviewArmorCode(charInfo->JOB_CODE));
 
 
 

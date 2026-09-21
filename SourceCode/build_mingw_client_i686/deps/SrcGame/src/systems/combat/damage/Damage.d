@@ -137,6 +137,10 @@
  Dependency/DirectX9/Include/d3dx9math.h \
  SrcGame/src/systems/combat/skills/client/SkillSub.h \
  SrcGame/src/systems/combat/damage/damage.h \
+ Shared/gameplay/classes/v2/legacy/LegacyClassCombatAdapter.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcGame/src/systems/network/region/AreaServer.h \
  SrcGame/src/systems/combat/damage_display/DrawDamage.h
 Shared/opcodes.h:
@@ -279,5 +283,9 @@ SrcGame/src/platform/database/odbc/SQL.h:
 Dependency/DirectX9/Include/d3dx9math.h:
 SrcGame/src/systems/combat/skills/client/SkillSub.h:
 SrcGame/src/systems/combat/damage/damage.h:
+Shared/gameplay/classes/v2/legacy/LegacyClassCombatAdapter.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/systems/network/region/AreaServer.h:
 SrcGame/src/systems/combat/damage_display/DrawDamage.h:

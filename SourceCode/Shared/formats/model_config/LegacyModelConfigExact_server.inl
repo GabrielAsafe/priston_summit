@@ -148,32 +148,6 @@ char *szSpecialTalkWord = "특별표정";
 
 
 
-JOBNAME_BIT BitMaskJobNames[] = {
-	{	"Fighter"		,	0x0001	},
-	{	"Mechanician"	,	0x0002	},
-	{	"Archer"		,	0x0004	},
-	{	"Pikeman"		,	0x0008	},
-
-	{	"Atalanta"		,	0x0010	},
-	{	"Knight"		,	0x0020	},
-	{	"Magician"		,	0x0040	},
-	{	"Priest"		,	0x0080	},
-
-	{	"" , 0 },
-
-	{	"PureBody"		,	0x0040	},
-	{	"PureBody"		,	0x0080	},
-	{	"PureBody"		,	0x0100	},
-	{	"PureBody"		,	0x0200	},
-	{	"PureBody"		,	0x0400	},
-	{	"PureBody"		,	0x0800	},
-	{	"PureBody"		,	0x1000	}
-};
-
-
-
-
-
 int SetIniMotionInfo(smMOTIONINFO *motion, char *p, int *lpRate = NULL)
 
 {
@@ -652,17 +626,9 @@ int AddModelDecode(char *iniFile, smMODELINFO *Info)
 			{
 				p = local_GetWord(strBuff, p);
 				if(strBuff[0] == 0) break;
-				JobCount = 0;
-				while(true)
-				{
-					if(!BitMaskJobNames[JobCount].dwBitMask) break;
-					if(lstrcmpi(strBuff, BitMaskJobNames[JobCount].szName) == 0)
-					{
-						Info->MotionInfo[MotionLastPos].dwJobCodeBit |= BitMaskJobNames[JobCount].dwBitMask;
-						break;
-					}
-					JobCount++;
-				}
+				DWORD motionJobMask = 0;
+				if(ResolveClassMotionJobMask(strBuff, motionJobMask))
+					Info->MotionInfo[MotionLastPos].dwJobCodeBit |= motionJobMask;
 			}
 
 			break;

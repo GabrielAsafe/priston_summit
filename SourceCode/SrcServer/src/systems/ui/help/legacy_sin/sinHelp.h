@@ -1,5 +1,7 @@
 
 
+#include <map>
+
 #define SIN_MAX_HELP_NUMBER		10		
 
 #define SIN_HELP_KIND_NORMAL		1		
@@ -145,7 +147,7 @@ public:
 	DIRECTDRAWSURFACE	lpHelpOk;
 	DIRECTDRAWSURFACE	lpSodMenu;
 	DIRECTDRAWSURFACE	lpSodLine;
-	DIRECTDRAWSURFACE	lpSodJobFace[8];
+	std::map<int, DIRECTDRAWSURFACE> lpSodJobFace;
 
 
 

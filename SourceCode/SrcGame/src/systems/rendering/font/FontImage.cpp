@@ -73,7 +73,7 @@ static int DrawFontBackToTexture2D(SFontImageChInfo *lpFontInfo, float fPos_x, f
 	tlVertex[3].tu = lpFontInfo->fTexEnd_x;
 	tlVertex[3].tv = lpFontInfo->fTexEnd_y;
 	MagFilter = true;
-	DrawTexture(smMaterial[s_iFontImageMatNum].smTexture[0]->lpD3DTexture, tlVertex, true);
+	DrawTexture(AssetLoadV2GetResidentTexture(smMaterial[s_iFontImageMatNum].smTexture[0]), tlVertex, true);
 	MagFilter = false;
 	return int(fPos_x + (lpFontInfo->iWidehPixel*fRatio));
 }

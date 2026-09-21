@@ -1,6 +1,6 @@
 
 // MINGW_CLAN_TRACE_V6
-#ifdef __MINGW32__
+#if defined(__MINGW32__) && defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
 #include <stdio.h>
 #include <stdarg.h>
 

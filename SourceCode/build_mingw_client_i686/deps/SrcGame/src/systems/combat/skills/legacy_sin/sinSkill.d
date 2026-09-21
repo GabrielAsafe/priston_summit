@@ -136,6 +136,9 @@
  Dependency/DirectX9/Include/d3dx9math.h \
  SrcGame/src/systems/combat/skills/client/SkillSub.h \
  SrcGame/src/systems/world/field/field.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcGame/src/systems/combat/skills/legacy_sin/sinSkill_Info.h \
  SrcGame/src/systems/localization/legacy_catalog/Brazil/b_sinSkill_Info.h
 Shared/gameplay/skills/sinSkill_legacy_client.inl:
@@ -276,5 +279,8 @@ SrcGame/src/platform/database/odbc/SQL.h:
 Dependency/DirectX9/Include/d3dx9math.h:
 SrcGame/src/systems/combat/skills/client/SkillSub.h:
 SrcGame/src/systems/world/field/field.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/systems/combat/skills/legacy_sin/sinSkill_Info.h:
 SrcGame/src/systems/localization/legacy_catalog/Brazil/b_sinSkill_Info.h:

@@ -1,5 +1,9 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/commerce/legacy/sinTrade.o: \
  SrcGame/src/systems/commerce/legacy/sinTrade.cpp \
+ Shared/gameplay/commerce/legacy/LegacyClassCommerceAdapter.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcGame/src/compat/legacy/sin/sinLinkHeader.h \
  SrcGame/src/systems/rendering/legacy_3d/smd3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
@@ -137,6 +141,10 @@
  Shared/items.h SrcGame/src/systems/commerce/legacy/sinCraftItem_Client.h \
  Shared/b_sinCraftItem.h \
  SrcGame/src/systems/commerce/legacy/sinMakeItem.h
+Shared/gameplay/commerce/legacy/LegacyClassCommerceAdapter.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:

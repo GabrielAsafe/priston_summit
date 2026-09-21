@@ -1,5 +1,9 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/core/data/legacy_loader/fileread.o: \
  SrcGame/src/core/data/legacy_loader/fileread.cpp Shared/opcodes.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ Shared/gameplay/classes/v2/legacy/LegacyJobDataView.h \
  SrcGame/src/systems/rendering/legacy_3d/smd3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
  Dependency/DirectX9/Include/d3d9.h \
@@ -68,6 +72,10 @@
  Shared/formats/belatra/LegacyBelatraExact_client.inl \
  Shared/formats/security/LegacyCrackerConfigExact_client.inl
 Shared/opcodes.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+Shared/gameplay/classes/v2/legacy/LegacyJobDataView.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
 Dependency/DirectX9/Include/d3d9.h:

@@ -1,6 +1,10 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/gameplay/quests/legacy/sinQuest.o: \
  SrcGame/src/systems/gameplay/quests/legacy/sinQuest.cpp \
  Shared/gameplay/quests/sinQuest_legacy_client.inl \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ Shared/gameplay/quests/legacy/LegacyClassQuestAdapter.h \
  SrcGame/src/compat/legacy/sin/sinLinkHeader.h \
  SrcGame/src/systems/rendering/legacy_3d/smd3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
@@ -136,6 +140,10 @@
  Dependency/DirectX9/Include/d3dx9math.h \
  SrcGame/src/systems/world/field/field.h
 Shared/gameplay/quests/sinQuest_legacy_client.inl:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+Shared/gameplay/quests/legacy/LegacyClassQuestAdapter.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:

@@ -13,6 +13,7 @@
 
 
 #include "compat/legacy/sin/sinLinkHeader.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 #include "systems/world/field/field.h"
 
 char *haQuestFilePathA[] = {
@@ -135,7 +136,7 @@ int cHaQuest::HaCheckQuestElementary(int npcNum, int QuestKey, int KindClan)
 	int cnt = 0;
 
 
-	if(sinChar->JOB_CODE < 5)
+	if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 		iJob_Index = 1;
 	else
 		iJob_Index = 2;

@@ -133,7 +133,10 @@
  SrcGame/src/systems/progression/rankings/general/Ranking.h \
  SrcGame/src/platform/database/odbc/SQL.h \
  Dependency/DirectX9/Include/d3dx9math.h \
- SrcGame/src/systems/gameplay/loot/filter/CLootHandler.h
+ SrcGame/src/systems/gameplay/loot/filter/CLootHandler.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
@@ -270,3 +273,6 @@ SrcGame/src/systems/progression/rankings/general/Ranking.h:
 SrcGame/src/platform/database/odbc/SQL.h:
 Dependency/DirectX9/Include/d3dx9math.h:
 SrcGame/src/systems/gameplay/loot/filter/CLootHandler.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:

@@ -1,0 +1,568 @@
+#include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
+
+#include <cstdio>
+#include <cstring>
+#include <memory>
+#include <windows.h>
+
+#include "compat/legacy/sin/sinLinkHeader.h"
+#include "core/client/legacy_sin_runtime/sinSubMain.h"
+#include "systems/ui/v2/UIV2Config.h"
+#include "systems/commerce/coin_shop/CoinShop.h"
+#include "systems/commerce/coin_shop/CoinShop_T.h"
+#include "systems/commerce/restoration/cRestaureWindow.h"
+#include "systems/ui/v2/core/UIRuntime.h"
+#include "systems/ui/v2/core/Window.h"
+#include "systems/ui/v2/legacy/LegacyCharacterStatsGateway.h"
+#include "systems/ui/v2/legacy/LegacyInventoryGateway.h"
+#include "systems/ui/v2/legacy/LegacyContextGateway.h"
+#include "systems/ui/v2/legacy/LegacySkillGateway.h"
+#include "systems/ui/v2/hud/PlayerHud.h"
+#include "systems/ui/v2/rendering/Dx9UIRenderer.h"
+#include "systems/ui/v2/widgets/Label.h"
+#include "systems/ui/v2/widgets/Panel.h"
+#include "systems/ui/v2/windows/CharacterWindow.h"
+
+namespace ui::v2::legacy
+{
+namespace
+{
+constexpr WindowId BootstrapWindowId = 0x55495632424F4F54ULL; // "UIV2BOOT"
+constexpr WindowId CharacterWindowId = 0x5549563243484152ULL; // "UIV2CHAR"
+constexpr WindowId PlayerHudWindowId = 0x5549563248554431ULL; // "UIV2HUD1"
+UIRuntime runtime;
+DWORD lastTick = 0;
+CharacterWindow* characterWindow = nullptr;
+PlayerHud* playerHud = nullptr;
+LegacyCharacterStatsGateway statsGateway;
+LegacySkillGateway skillGateway;
+LegacyInventoryGateway inventoryGateway;
+LegacyContextGateway contextGateway;
+
+bool RequiresLegacyInventoryUI()
+{
+    // These flows still read absolute legacy inventory coordinates directly.
+    // The NPC blacksmith/shop is deliberately excluded: its repair/sell mode
+    // is expressed through CursorClass and the V2 gateway can safely feed the
+    // selected logical item into the original repair/sell routines.
+    // v1.2 migrates the common contextual commerce/crafting surfaces into
+    // the Inventory V2 left panel. Keep fallback only for flows not yet
+    // represented by the context gateway.
+    // The personal-shop description editor still uses the legacy IME/text
+    // widget. Everything else in the personal-shop editor is V2.
+    return MyShopExpBox;
+}
+
+bool MigratedContextActive()
+{
+    return cShop.OpenFlag || cCharShop.OpenFlag || cMyShop.OpenFlag || cRestaure.OpenFlag ||
+           cTrade.OpenFlag || cWareHouse.OpenFlag || cCraftItem.OpenFlag ||
+           cAging.OpenFlag || SmeltingItem.OpenFlag || ManufactureItem.m_OpenFlag ||
+           cMixtureReset.OpenFlag || cSkinChange.OpenFlag ||
+           cCoinShop.isOpen() || cCoinShop_T.isOpen();
+}
+
+bool AnyInventoryContextActive()
+{
+    return MigratedContextActive() || RequiresLegacyInventoryUI();
+}
+
+void BuildBootstrapWindow()
+{
+    auto window = std::make_unique<Window>(1, "UI V2 - Bootstrap");
+    window->SetBounds({32, 32, 430, 190});
+    window->SetMovable(true);
+
+    auto& body = window->AddChild<Panel>(2, Color{24, 29, 38, 235});
+    body.SetBounds({8, 36, 414, 146});
+    body.SetHitTestVisible(false);
+
+    auto& title = window->AddChild<Label>(3, "UI V2 runtime ativo");
+    title.SetBounds({20, 48, 390, 24});
+    title.SetStyle(TextStyle{Color{235, 238, 244, 255}, true, TextAlign::Left});
+
+    auto& line1 = window->AddChild<Label>(4, "Core desacoplado + ownership RAII");
+    line1.SetBounds({20, 80, 390, 22});
+    line1.SetStyle(TextStyle{Color{190, 201, 218, 255}, false, TextAlign::Left});
+
+    auto& line2 = window->AddChild<Label>(5, "WindowManager, input e renderer DX9");
+    line2.SetBounds({20, 106, 390, 22});
+    line2.SetStyle(TextStyle{Color{190, 201, 218, 255}, false, TextAlign::Left});
+
+    auto& line3 = window->AddChild<Label>(6, "Character/Commerce UI v1.2 integrada");
+    line3.SetBounds({20, 132, 390, 22});
+    line3.SetStyle(TextStyle{Color{190, 201, 218, 255}, false, TextAlign::Left});
+
+    runtime.Windows().Register(BootstrapWindowId, std::move(window), UIWindowLayer::Debug);
+#if UI_V2_SHOW_BOOTSTRAP_WINDOW
+    runtime.Windows().Open(BootstrapWindowId);
+#endif
+}
+
+void ClearLegacyCharacterFlags()
+{
+    cCharStatus.OpenFlag = SIN_CLOSE;
+    cSkill.OpenFlag = SIN_CLOSE;
+    if (!AnyInventoryContextActive())
+        cInvenTory.OpenFlag = SIN_CLOSE;
+}
+
+void ApplyLegacyTab(CharacterTab tab)
+{
+    const int button = tab == CharacterTab::Attributes ? SIN_CHARSTATUS :
+                       tab == CharacterTab::Skills ? SIN_SKILL : SIN_INVENTORY;
+    cInterFace.CheckAllBox(button);
+
+    cCharStatus.OpenFlag = tab == CharacterTab::Attributes ? SIN_OPEN : SIN_CLOSE;
+    cSkill.OpenFlag = tab == CharacterTab::Skills ? SIN_OPEN : SIN_CLOSE;
+    cInvenTory.OpenFlag = tab == CharacterTab::Inventory ? SIN_OPEN : SIN_CLOSE;
+}
+
+void BuildCharacterWindow()
+{
+#if UI_V2_CHARACTER_WINDOW
+    auto window = std::make_unique<CharacterWindow>(statsGateway, skillGateway, inventoryGateway, contextGateway, 100);
+    characterWindow = window.get();
+    characterWindow->SetViewport(WinSizeX, WinSizeY);
+    characterWindow->SetOnTabChanged([](CharacterTab tab)
+    {
+        if (MigratedContextActive() && tab != CharacterTab::Inventory)
+        {
+            cInvenTory.OpenFlag = SIN_OPEN;
+            if (characterWindow)
+                characterWindow->SetActiveTab(CharacterTab::Inventory, false);
+            return;
+        }
+        ApplyLegacyTab(tab);
+    });
+    characterWindow->SetOnClose([]()
+    {
+        if (characterWindow)
+            characterWindow->PrepareClose();
+        if (MigratedContextActive())
+            contextGateway.CloseContext();
+        ClearLegacyCharacterFlags();
+        ResetLegacyCharacterInterfaceMotion();
+        runtime.Windows().Close(CharacterWindowId);
+    });
+    runtime.Windows().Register(CharacterWindowId, std::move(window), UIWindowLayer::NormalWindow);
+#endif
+}
+
+void BuildPlayerHud()
+{
+#if UI_V2_PLAYER_HUD
+    auto hud = std::make_unique<PlayerHud>(statsGateway, skillGateway, inventoryGateway, 140);
+    playerHud = hud.get();
+    playerHud->SetViewport(WinSizeX, WinSizeY);
+    runtime.Windows().Register(PlayerHudWindowId, std::move(hud), UIWindowLayer::Hud);
+    runtime.Windows().Open(PlayerHudWindowId);
+#endif
+}
+
+bool InventoryRequestedForV2()
+{
+    return (cInvenTory.OpenFlag || MigratedContextActive()) && !RequiresLegacyInventoryUI();
+}
+
+void SyncCharacterWindow()
+{
+#if UI_V2_CHARACTER_WINDOW
+    if (!characterWindow)
+        return;
+
+    // Contextual systems below still depend on original inventory coordinates.
+    // The NPC blacksmith is no longer in this set: v1.1 keeps its shop window
+    // legacy while the character inventory itself remains V2.
+    if (RequiresLegacyInventoryUI())
+    {
+        if (runtime.Windows().IsOpen(CharacterWindowId))
+        {
+            characterWindow->PrepareClose();
+            runtime.Windows().Close(CharacterWindowId);
+            ResetLegacyCharacterInterfaceMotion();
+        }
+        return;
+    }
+
+    const bool wantsAttributes = cCharStatus.OpenFlag != 0;
+    const bool wantsSkills = cSkill.OpenFlag != 0;
+    const bool wantsInventory = InventoryRequestedForV2();
+    const bool wantsWindow = wantsAttributes || wantsSkills || wantsInventory;
+
+    if (!wantsWindow)
+    {
+        if (runtime.Windows().IsOpen(CharacterWindowId))
+        {
+            characterWindow->PrepareClose();
+            runtime.Windows().Close(CharacterWindowId);
+            ResetLegacyCharacterInterfaceMotion();
+        }
+        return;
+    }
+
+    CharacterTab desired = CharacterTab::Attributes;
+    // Inventory/skill take precedence if transient legacy code has more than
+    // one flag set during the same frame.
+    if (wantsInventory)
+        desired = CharacterTab::Inventory;
+    else if (wantsSkills)
+        desired = CharacterTab::Skills;
+
+    if (characterWindow->ActiveTab() != desired)
+        characterWindow->SetActiveTab(desired, false);
+    if (!runtime.Windows().IsOpen(CharacterWindowId))
+        runtime.Windows().Open(CharacterWindowId);
+#endif
+}
+
+Point CurrentUIPointer()
+{
+    // Winmain snapshots pRealCursorPos immediately before dsMenuCursorPos()
+    // remaps pCursorPos for the 800x600 legacy interface. UI V2 renders in the
+    // real client/backbuffer coordinate space, therefore this is the canonical
+    // pointer for the modern UI. Do not feed pCursorPos into V2 here.
+    return {static_cast<int>(pRealCursorPos.x), static_cast<int>(pRealCursorPos.y)};
+}
+
+UIEvent PointerEvent(UIEventType type, MouseButton button = MouseButton::None)
+{
+    UIEvent event;
+    event.type = type;
+    event.pointer = CurrentUIPointer();
+    event.button = button;
+    return event;
+}
+
+void LogPointerDown(const UIEvent& event)
+{
+    if (!characterWindow || !runtime.Windows().IsOpen(CharacterWindowId))
+        return;
+
+    static int logCount = 0;
+    if (logCount >= 64)
+        return;
+    ++logCount;
+
+    RECT client{};
+    GetClientRect(hwnd, &client);
+    if (FILE* file = std::fopen("ui_v2_pointer.log", "a"))
+    {
+        std::fprintf(file,
+                     "v2=%d,%d real=%ld,%ld legacy=%ld,%ld client=%ldx%ld WinSize=%dx%d tab=%d\n",
+                     event.pointer.x, event.pointer.y, pRealCursorPos.x, pRealCursorPos.y,
+                     pCursorPos.x, pCursorPos.y, client.right - client.left, client.bottom - client.top,
+                     WinSizeX, WinSizeY, static_cast<int>(characterWindow->ActiveTab()));
+        std::fclose(file);
+    }
+}
+}
+
+void Initialize()
+{
+    if (runtime.IsInitialized())
+        return;
+    if (!runtime.Initialize(std::make_unique<Dx9UIRenderer>()))
+        return;
+    runtime.OnResolutionChanged(WinSizeX, WinSizeY);
+    BuildBootstrapWindow();
+    BuildCharacterWindow();
+    BuildPlayerHud();
+    lastTick = GetTickCount();
+}
+
+void Shutdown()
+{
+    if (characterWindow)
+        characterWindow->PrepareClose();
+    characterWindow = nullptr;
+    playerHud = nullptr;
+    runtime.Shutdown();
+    lastTick = 0;
+}
+
+void Update()
+{
+    if (!runtime.IsInitialized())
+        return;
+    if (runtime.ViewportWidth() != WinSizeX || runtime.ViewportHeight() != WinSizeY)
+        OnResolutionChanged(WinSizeX, WinSizeY);
+
+    SyncCharacterWindow();
+
+    const DWORD now = GetTickCount();
+    const DWORD elapsed = lastTick ? (now - lastTick) : 0;
+    lastTick = now;
+    const float deltaSeconds = static_cast<float>(elapsed) / 1000.0f;
+    runtime.Update(deltaSeconds);
+}
+
+void Render()
+{
+    runtime.Render();
+}
+
+bool HandleLegacyMessage(int message)
+{
+    switch (message)
+    {
+        case SINLBUTTONDOWN:
+        {
+            UIEvent event = PointerEvent(UIEventType::PointerDown, MouseButton::Left);
+            LogPointerDown(event);
+            return runtime.HandleEvent(event);
+        }
+        case SINLBUTTONUP:
+            return runtime.HandleEvent(PointerEvent(UIEventType::PointerUp, MouseButton::Left));
+        case SINRBUTTONDOWN:
+        {
+            UIEvent event = PointerEvent(UIEventType::PointerDown, MouseButton::Right);
+            LogPointerDown(event);
+            return runtime.HandleEvent(event);
+        }
+        case SINRBUTTONUP:
+            return runtime.HandleEvent(PointerEvent(UIEventType::PointerUp, MouseButton::Right));
+        case SINMOUSEMOVE:
+            return runtime.HandleEvent(PointerEvent(UIEventType::PointerMove));
+        default:
+            return false;
+    }
+}
+
+bool HandleMouseWheel(int delta)
+{
+    UIEvent event = PointerEvent(UIEventType::Wheel);
+    event.wheelDelta = delta;
+    return runtime.HandleEvent(event);
+}
+
+bool HandleCharacterHotkeys()
+{
+#if UI_V2_CHARACTER_WINDOW
+    if (!runtime.IsInitialized() || !characterWindow || RequiresLegacyInventoryUI())
+        return false;
+
+    CharacterTab requestedTab = CharacterTab::Attributes;
+    bool pressed = false;
+
+    // Consume the same keys before the old handlers see them. Besides keeping
+    // one shell for C/S/V, this prevents the legacy HelpPet calls from drawing
+    // *CarStatus / *Skill / *InvenTory text over the modern window.
+    if (sinGetKeyClick('C'))
+    {
+        requestedTab = CharacterTab::Attributes;
+        pressed = true;
+    }
+    else if (sinGetKeyClick('S'))
+    {
+        requestedTab = CharacterTab::Skills;
+        pressed = true;
+    }
+    else if (sinGetKeyClick('V'))
+    {
+        requestedTab = CharacterTab::Inventory;
+        pressed = true;
+    }
+
+    if (!pressed)
+        return false;
+
+    // A blacksmith/shop requires the inventory to stay visible. Consume the
+    // character hotkeys while that context is active and keep the shell on
+    // Inventory rather than briefly closing the shop's working inventory.
+    if (MigratedContextActive())
+    {
+        cInvenTory.OpenFlag = SIN_OPEN;
+        characterWindow->SetActiveTab(CharacterTab::Inventory, false);
+        ResetLegacyCharacterInterfaceMotion();
+        runtime.Windows().Open(CharacterWindowId);
+        return true;
+    }
+
+    const bool isOpen = runtime.Windows().IsOpen(CharacterWindowId);
+    if (isOpen && characterWindow->ActiveTab() == requestedTab)
+    {
+        characterWindow->PrepareClose();
+        ClearLegacyCharacterFlags();
+        ResetLegacyCharacterInterfaceMotion();
+        runtime.Windows().Close(CharacterWindowId);
+    }
+    else
+    {
+        ApplyLegacyTab(requestedTab);
+        characterWindow->SetActiveTab(requestedTab, false);
+        ResetLegacyCharacterInterfaceMotion();
+        runtime.Windows().Open(CharacterWindowId);
+    }
+    return true;
+#else
+    return false;
+#endif
+}
+
+void OnResolutionChanged(int width, int height)
+{
+    runtime.OnResolutionChanged(width, height);
+    if (characterWindow)
+        characterWindow->SetViewport(width, height);
+    if (playerHud)
+        playerHud->SetViewport(width, height);
+}
+
+bool OwnsCharacterStatus()
+{
+#if UI_V2_CHARACTER_WINDOW && UI_V2_SUPPRESS_LEGACY_CHARACTER_UI
+    return runtime.IsInitialized() && characterWindow != nullptr &&
+           runtime.Windows().IsOpen(CharacterWindowId) &&
+           characterWindow->ActiveTab() == CharacterTab::Attributes;
+#else
+    return false;
+#endif
+}
+
+bool OwnsSkills()
+{
+#if UI_V2_CHARACTER_WINDOW && UI_V2_SUPPRESS_LEGACY_CHARACTER_UI
+    return runtime.IsInitialized() && characterWindow != nullptr &&
+           runtime.Windows().IsOpen(CharacterWindowId) &&
+           characterWindow->ActiveTab() == CharacterTab::Skills;
+#else
+    return false;
+#endif
+}
+
+bool OwnsInventory()
+{
+#if UI_V2_CHARACTER_WINDOW && UI_V2_SUPPRESS_LEGACY_CHARACTER_UI
+    return runtime.IsInitialized() && characterWindow != nullptr &&
+           runtime.Windows().IsOpen(CharacterWindowId) &&
+           characterWindow->ActiveTab() == CharacterTab::Inventory &&
+           !RequiresLegacyInventoryUI();
+#else
+    return false;
+#endif
+}
+
+bool SuppressLegacyCharacterPanels()
+{
+#if UI_V2_CHARACTER_WINDOW && UI_V2_SUPPRESS_LEGACY_CHARACTER_UI
+    return runtime.IsInitialized() && characterWindow != nullptr &&
+           runtime.Windows().IsOpen(CharacterWindowId);
+#else
+    return false;
+#endif
+}
+
+bool SuppressLegacyMainHud()
+{
+#if UI_V2_PLAYER_HUD && UI_V2_SUPPRESS_LEGACY_MAIN_HUD
+    return runtime.IsInitialized() && playerHud != nullptr &&
+           runtime.Windows().IsOpen(PlayerHudWindowId);
+#else
+    return false;
+#endif
+}
+
+bool BlocksWorldInputAt(int x, int y)
+{
+#if UI_V2_CHARACTER_WINDOW && UI_V2_SUPPRESS_LEGACY_CHARACTER_UI
+    if (!runtime.IsInitialized() || !characterWindow || !runtime.Windows().IsOpen(CharacterWindowId))
+        return false;
+    if (runtime.PointerCapture().Captured() != nullptr)
+        return true;
+    if (characterWindow->ActiveTab() == CharacterTab::Inventory && MouseItem.Flag)
+        return true;
+    return characterWindow->GlobalBounds().Contains(Point{x, y});
+#else
+    (void)x; (void)y;
+    return false;
+#endif
+}
+
+void ClearLegacyCharacterHelpOverlay()
+{
+#if UI_V2_CHARACTER_WINDOW && UI_V2_SUPPRESS_LEGACY_CHARACTER_UI
+    if ((!SuppressLegacyCharacterPanels() && !SuppressLegacyMainHud()) || !cHelpPet.HelpMsgFlag)
+        return;
+
+    if (std::strcmp(cHelpPet.HelpMsgId, "*CarStatus") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*InvenTory") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*Skill") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*Party") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*Quest") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*System") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*RunAndWalk") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*Camera_Hand") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*Camera_Fix") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*Camera_Auto") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*Mini_Map") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*ChatBox") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*Bar_Life") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*Bar_Mana") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*Bar_Stamina") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*Bar_Exp") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*Exp_Num") == 0 ||
+        std::strcmp(cHelpPet.HelpMsgId, "*DayandNight") == 0)
+    {
+        cHelpPet.HelpMsgFlag = 0;
+        cHelpPet.HelpMsgTime = 0;
+    }
+#endif
+}
+
+bool IsCharacterWindowOpen()
+{
+    return runtime.IsInitialized() && runtime.Windows().IsOpen(CharacterWindowId);
+}
+
+bool HasMigratedContext()
+{
+    return runtime.IsInitialized() && MigratedContextActive() && !RequiresLegacyInventoryUI();
+}
+
+bool OwnsLegacyShopUI()
+{
+#if UI_V2_CHARACTER_WINDOW && UI_V2_SUPPRESS_LEGACY_CHARACTER_UI
+    return HasMigratedContext() && (cShop.OpenFlag || cCharShop.OpenFlag || cMyShop.OpenFlag) && IsCharacterWindowOpen();
+#else
+    return false;
+#endif
+}
+
+bool OwnsLegacyTradeUI()
+{
+#if UI_V2_CHARACTER_WINDOW && UI_V2_SUPPRESS_LEGACY_CHARACTER_UI
+    return HasMigratedContext() && !cShop.OpenFlag && !cCharShop.OpenFlag && !cMyShop.OpenFlag && !cRestaure.OpenFlag &&
+           !cCoinShop.isOpen() && !cCoinShop_T.isOpen() && IsCharacterWindowOpen();
+#else
+    return false;
+#endif
+}
+
+bool OwnsLegacyCoinShopUI()
+{
+#if UI_V2_CHARACTER_WINDOW && UI_V2_SUPPRESS_LEGACY_CHARACTER_UI
+    return HasMigratedContext() && (cCoinShop.isOpen() || cCoinShop_T.isOpen()) && IsCharacterWindowOpen();
+#else
+    return false;
+#endif
+}
+
+bool OwnsLegacyRestorationUI()
+{
+#if UI_V2_CHARACTER_WINDOW && UI_V2_SUPPRESS_LEGACY_CHARACTER_UI
+    return HasMigratedContext() && cRestaure.OpenFlag && IsCharacterWindowOpen();
+#else
+    return false;
+#endif
+}
+
+bool SuppressLegacyContextEffects()
+{
+#if UI_V2_CHARACTER_WINDOW && UI_V2_SUPPRESS_LEGACY_CHARACTER_UI
+    return HasMigratedContext() && IsCharacterWindowOpen();
+#else
+    return false;
+#endif
+}
+}

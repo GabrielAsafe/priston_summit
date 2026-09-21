@@ -221,7 +221,7 @@ int						DownUserCharacterCount;
 
 int HoRecvMessage(DWORD dwCode, void *RecvBuff)
 {
-#ifdef __MINGW32__
+#if defined(__MINGW32__) && defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
 	/* MINGW_HORECV_TRACE_V1 */
 	{
 		FILE *fp = fopen("LOGS\\mingw_ho_recv.txt", "a");
@@ -246,7 +246,7 @@ int HoRecvMessage(DWORD dwCode, void *RecvBuff)
 	{
 		ServerUserCharacterInfo = (TRANS_USERCHAR_INFO *)RecvBuff;
 
-#ifdef __MINGW32__
+#if defined(__MINGW32__) && defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
 		{
 			FILE *fp = fopen("LOGS\\mingw_ho_recv.txt", "a");
 			if(fp)
@@ -265,7 +265,7 @@ int HoRecvMessage(DWORD dwCode, void *RecvBuff)
 
 		if(strcmp(UserAccount, ServerUserCharacterInfo->szID) != 0)
 		{
-#ifdef __MINGW32__
+#if defined(__MINGW32__) && defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
 			FILE *fp = fopen("LOGS\\mingw_ho_recv.txt", "a");
 			if(fp)
 			{
@@ -311,7 +311,7 @@ int HoRecvMessage(DWORD dwCode, void *RecvBuff)
 	{
 		DownServerListInfo = (TRANS_SERVER_LIST *)RecvBuff;
 
-#ifdef __MINGW32__
+#if defined(__MINGW32__) && defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
 		{
 			FILE *fp = fopen("LOGS\\mingw_ho_recv.txt", "a");
 			if(fp)
@@ -351,7 +351,7 @@ int HoRecvMessage(DWORD dwCode, void *RecvBuff)
 	{
 		ServerLoginError = (smTRANS_COMMAND *)RecvBuff;
 
-#ifdef __MINGW32__
+#if defined(__MINGW32__) && defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
 		FILE *fp = fopen("LOGS\\mingw_ho_recv.txt", "a");
 		if(fp)
 		{
@@ -748,7 +748,7 @@ int hoDrawTexImageFloat(int Mat, float putX, float putY, float putSizeX, float p
 	tlVertex[3].sy = putY + putSizeY;
 	tlVertex[3].tu = (1.f / surWidth)*(getTexX + getTexSizeX);
 	tlVertex[3].tv = (1.f / surHeight)*(getTexY + getTexSizeY);
-	DrawTexture(smMaterial[Mat].smTexture[0]->lpD3DTexture, tlVertex, true);
+	DrawTexture(AssetLoadV2GetResidentTexture(smMaterial[Mat].smTexture[0]), tlVertex, true);
 	return TRUE;
 }
 

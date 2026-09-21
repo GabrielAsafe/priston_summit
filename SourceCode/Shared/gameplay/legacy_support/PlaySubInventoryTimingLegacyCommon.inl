@@ -264,7 +264,8 @@ int	ChangeBigHeadMode(int Mode, int Time)
 	{
 		lpCurPlayer->smCharInfo.SizeLevel = 1;
 		lpCurPlayer->smCharInfo.dwEventTime_T = 0;
-		ChangeModelSkin(lpCurPlayer, 0, (lpCurPlayer->smCharInfo.ChangeJob > CHARACTER_RANK4) ? CHARACTER_RANK4 : lpCurPlayer->smCharInfo.ChangeJob, 0, GetFaceHairSkin(lpCurPlayer));
+		ChangeModelSkin(lpCurPlayer, 0, gameplay::classes::DefaultClassService().PromotionVisualChangeJobIndex(
+		lpCurPlayer->smCharInfo.JOB_CODE, lpCurPlayer->smCharInfo.ChangeJob), 0, GetFaceHairSkin(lpCurPlayer));
 	}
 
 	lpCurPlayer->smCharInfo.bUpdateInfo[0]++;

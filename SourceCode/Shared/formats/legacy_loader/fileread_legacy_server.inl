@@ -3,6 +3,7 @@
 #include <cstring>
 #include "systems/network/protocol/server/opcodes.h"
 #include <fstream>
+#include "gameplay/classes/v2/services/ClassService.h"
 
 
 
@@ -127,19 +128,19 @@ static char *local_GetWord(char *q, char *p)
 
 
 char *szIniCommand[] = {
-	"*동작파일",
-	"*동작모음",
-	"*모양파일",
-	"*모양이름",
-	"*파일연결",
-	"*보조동작파일",
+	"*",
+	"*肪",
+	"*",
+	"*見",
+	"*臼",
+	"*",
 
-	"*정밀모양",
-	"*보통모양",
-	"*저질모양",
+	"*龜",
+	"*",
+	"*",
 
-	"*XX걷는동작",
-	"*XX서있기동작",
+	"*XX홱쨉",
+	"*XX殮竪�",
 
 	"*EQUIPPED_WEAPON",
 	"*APPLICABLE_JOB",
@@ -148,59 +149,59 @@ char *szIniCommand[] = {
 
 
 
-	"*표정파일연결",
-	"*표정파일",
-	"*표정모음",
+	"*표臼",
+	"*표",
+	"*표",
 
 
 	""
 };
 
-char *szIniRepeat = "반복";
-char *szMotionWord = "동작";
+char *szIniRepeat = "趺";
+char *szMotionWord = "";
 
-char *szRunWord = "뛰는";
-char *szStandWord = "*서있기";
-char *szStandWord2 = "*정지";
-char *szWalkWord = "*걷는";
+char *szRunWord = "募";
+char *szStandWord = "*殮";
+char *szStandWord2 = "*";
+char *szWalkWord = "*홱";
 
-char *szAttackWord = "공격";
-char *szDeadWord = "죽기";
-char *szDeadWord2 = "죽는";
-char *szDamageWord = "타격";
-char *szDamageWord2 = "데미지";
-char *szDamageWord3 = "막기";
+char *szAttackWord = "";
+char *szDeadWord = "劉";
+char *szDeadWord2 = "榴";
+char *szDamageWord = "타";
+char *szDamageWord2 = "";
+char *szDamageWord3 = "";
 
-char *szWarpWord = "울기";
-char *szWarpWord2 = "워프";
+char *szWarpWord = "";
+char *szWarpWord2 = "";
 
-char *szSometimeWord = "가끔";
+char *szSometimeWord = "";
 
-char *szFallDownWord = "떨어";
-char *szFallStandLargeWord = "큰착지";
-char *szFallStandSmallWord = "작은착지";
+char *szFallDownWord = "";
+char *szFallStandLargeWord = "큰";
+char *szFallStandSmallWord = "";
 
-char *szRestartWord = "다시시작";
-char *szEatWord = "먹기";
-char *szSkillWord = "기술";
-char *szYahooWord = "만세";
+char *szRestartWord = "母첵";
+char *szEatWord = "逃";
+char *szSkillWord = "";
+char *szYahooWord = "";
 
 
 
-char *szMotionTalkWord = "표정";
+char *szMotionTalkWord = "표";
 
-char *szArTalkWord = "아표정";
-char *szETalkWord = "이표정";
-char *szOhTalkWord = "오표정";
-char *szEyeTalkWord = "눈깜빡표정";
+char *szArTalkWord = "표";
+char *szETalkWord = "표";
+char *szOhTalkWord = "표";
+char *szEyeTalkWord = "표";
 
-char *szBlankTalkWord = "무표정(작동않함)";
-char *szSmileTalkWord = "웃는표정";
-char *szGrumbleTalkWord = "화난표정";
-char *szSorrowTalkWord = "슬픈표정";
-char *szStartledTalkWord = "놀란표정";
-char *szNatureTalkWord = "고유표정";
-char *szSpecialTalkWord = "특별표정";
+char *szBlankTalkWord = "표(滂)";
+char *szSmileTalkWord = "표";
+char *szGrumbleTalkWord = "화표";
+char *szSorrowTalkWord = "표";
+char *szStartledTalkWord = "표";
+char *szNatureTalkWord = "표";
+char *szSpecialTalkWord = "특표";
 
 
 
@@ -1148,7 +1149,7 @@ int smModelDecode(char *iniFile, smMODELINFO *Info)
 smCONFIG smConfig;
 
 
-char *szWordTexQualty[4] = { "좋음" , "보통" , "나쁨" , "아주나쁨" };
+char *szWordTexQualty[4] = { "" , "" , "" , "簾" };
 char *InfoRegPath = "SOFTWARE//Triglow Pictures//PristonTale";
 
 TRANS_SERVER_LIST	TransServerList;
@@ -2096,7 +2097,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	//if(!flag && (lstrcmp(decode, "*로그인금지") == 0 ||
+	//if(!flag && (lstrcmp(decode, "*慣慣") == 0 ||
 	//	lstrcmpi(decode, "*DISABLE_LOGIN") == 0))
 	//{
 
@@ -2137,7 +2138,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	//if(!flag && (lstrcmp(decode, "*로그인차단") == 0 ||
+	//if(!flag && (lstrcmp(decode, "*慣") == 0 ||
 	//	lstrcmpi(decode, "*DISABLE_LOGINX") == 0))
 	//{
 	//	rsServerConfig.Disable_LogIn2 = TRUE;
@@ -2225,7 +2226,7 @@ int SetServerConfig(char *decode, char *lpPoint)
 	}
 	 
 	//AQUI TESTE
-	/*if(!flag && (lstrcmp(decode, "*관리접속IP") == 0 ||
+	/*if(!flag && (lstrcmp(decode, "*IP") == 0 ||
 		lstrcmpi(decode, "*ADMINISTRATOR_IP") == 0))
 	{
 
@@ -2388,7 +2389,7 @@ int SetServerSelectList(char *decode, char *lpPoint)
 
 	if(TransServerList.ServerCount >= TRANS_SERVER_MAX) return FALSE;
 
-	if(lstrcmp(decode, "*접속서버정보") == 0 ||
+	if(lstrcmp(decode, "*憺") == 0 ||
 		lstrcmpi(decode, "*GAME_SERVER") == 0)
 	{
 		cnt = TransServerList.ServerCount;
@@ -2424,7 +2425,7 @@ int SetServerSelectList(char *decode, char *lpPoint)
 		flag++;
 	}
 
-	if(!flag && (lstrcmp(decode, "*클랜서버정보") == 0 ||
+	if(!flag && (lstrcmp(decode, "*클") == 0 ||
 		lstrcmpi(decode, "*CLAN_SERVER") == 0))
 	{
 
@@ -3063,18 +3064,9 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			{
 				p = local_GetWord(strBuff, p);
 				if(strBuff[0] == 0) break;
-				cnt = 0;
-				while(1)
-				{
-					if(!JobDataBase[cnt].szName[0]) break;
-					if(lstrcmpi(JobDataBase[cnt].szName, strBuff) == 0)
-					{
-
-						lpItem->JobCodeMask = JobDataBase[cnt].JobBitCode;
-						break;
-					}
-					cnt++;
-				}
+				DWORD resolvedJobBit = 0;
+				if(ResolveClassSpecializationBit(strBuff, resolvedJobBit))
+					lpItem->JobCodeMask = resolvedJobBit;
 			}
 
 			NextFlag = TRUE;
@@ -3087,18 +3079,11 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			{
 				p = local_GetWord(strBuff, p);
 				if(strBuff[0] == 0) break;
-				cnt = 0;
-				while(1)
+				DWORD resolvedJobBit = 0;
+				if(ResolveClassSpecializationBit(strBuff, resolvedJobBit) &&
+					lpDefItem->JobBitCodeRandomCount < SPECIAL_JOB_RANDOM_MAX)
 				{
-					if(!JobDataBase[cnt].szName[0]) break;
-					if(lstrcmpi(JobDataBase[cnt].szName, strBuff) == 0)
-					{
-						if(lpDefItem->JobBitCodeRandomCount >= SPECIAL_JOB_RANDOM_MAX) break;
-						lpDefItem->dwJobBitCode_Random[lpDefItem->JobBitCodeRandomCount++] = JobDataBase[cnt].JobBitCode;
-
-						break;
-					}
-					cnt++;
+					lpDefItem->dwJobBitCode_Random[lpDefItem->JobBitCodeRandomCount++] = resolvedJobBit;
 				}
 			}
 
@@ -5754,8 +5739,11 @@ JOB_DATA_CODE *GetJobDataCode(DWORD BaseJob, int JobCnt)
 		JobCount2 = BaseJob >> 24;
 	}
 
-	// Rank5 is a real logical rank. The old '& 3' wrapped rank 4 back to rank 0.
-	if(JobCount2 < CHARACTER_RANK1 || JobCount2 > CHARACTER_RANK5)
+	// ChangeJob validity belongs to the class rank chain. Legacy tables below
+	// only provide localized rows for their historical ranks; registry-only
+	// ranks/classes are synthesized by the V2 compatibility fallback.
+	if(JobCount2 < 0 ||
+		!gameplay::classes::DefaultClassService().IsValidLegacyChangeJob(bJob, JobCount2))
 		return NULL;
 
 	if(JobCount2 == CHARACTER_RANK5)

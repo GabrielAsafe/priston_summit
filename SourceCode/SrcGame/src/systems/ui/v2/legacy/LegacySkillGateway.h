@@ -1,0 +1,17 @@
+#pragma once
+
+#include "systems/ui/v2/domain/ISkillGateway.h"
+
+namespace ui::v2::legacy
+{
+class LegacySkillGateway final : public ISkillGateway
+{
+public:
+    [[nodiscard]] SkillBookSnapshot GetSnapshot() const override;
+    [[nodiscard]] std::vector<DetailLineSnapshot> GetDetails(int skillIndex) const override;
+    bool RequestUpgrade(int skillIndex) override;
+    bool BindLeft(int skillIndex) override;
+    bool BindRight(int skillIndex) override;
+    bool AssignShortcut(int skillIndex, int shortcut, bool rightMouse) override;
+};
+}

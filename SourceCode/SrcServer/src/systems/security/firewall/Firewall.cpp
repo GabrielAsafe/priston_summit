@@ -7,6 +7,11 @@
 #include <windows.h>
 #include <string>
 
+static bool IsLoopbackAddress(const std::string& ip)
+{
+    return ip == "::1" || ip == "localhost" || ip.compare(0, 4, "127.") == 0;
+}
+
 static std::wstring ToWide(const std::string& text)
 {
     if (text.empty())
@@ -54,6 +59,9 @@ Firewall * Firewall::GetInstance()
 
 bool Firewall::AddRule(Firewall::Rule Rule, std::string IP, unsigned short Port)
 {
+	if(IsLoopbackAddress(IP))
+		return true;
+
 	long CurrentProfilesBitMask = 0;
 	INetFwRules * Rules = nullptr;
 	INetFwRule * FirewallRule = nullptr;
@@ -113,6 +121,9 @@ bool Firewall::AddRule(Firewall::Rule Rule, std::string IP, unsigned short Port)
 
 bool Firewall::AddRuleHacker(Firewall::Rule Rule, std::string IP, unsigned short Port, std::string msg)
 {
+	if(IsLoopbackAddress(IP))
+		return true;
+
 	long CurrentProfilesBitMask = 0;
 	INetFwRules * Rules = nullptr;
 	INetFwRule * FirewallRule = nullptr;

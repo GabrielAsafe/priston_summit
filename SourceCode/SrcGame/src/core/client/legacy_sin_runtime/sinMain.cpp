@@ -3,6 +3,7 @@
 
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/ui/settings/UI.h"
+#include "systems/ui/v2/legacy/LegacyUIV2Bridge.h"
 #include "systems/security/anticheat/AntiCheat.h"
 #include "systems/combat/damage_display/DrawDamage.h"
 
@@ -12,6 +13,32 @@ int sinbaram_Stop = 0;
 
 
 AntiCheat * pcAntiCheat = NULL;
+
+static bool LegacyInterfaceInputEnabled()
+{
+    const bool skillNpcFallback = (SkillNpcFlag || SkillMasterFlag) && !ui::v2::legacy::OwnsLegacySkillNpcUI();
+    return !ui::v2::legacy::SuppressLegacyMainHud() || skillNpcFallback || ReStartFlag;
+}
+
+static bool LegacySkillInterfaceEnabled()
+{
+    if (!ui::v2::legacy::SuppressLegacyMainHud() || SkillMasterFlag)
+        return true;
+
+    // Keep the old skill panel available as a rollback path when CharacterWindow
+    // V2 is not owning it, while hiding the always-on L/R HUD slots otherwise.
+    return !ui::v2::legacy::SuppressLegacyCharacterPanels() && cSkill.OpenFlag;
+}
+
+static bool LegacyInventoryPointerEnabled()
+{
+    // Mirror the legacy inventory draw condition. The potion belt is part of
+    // cINVENTORY and keeps absolute hit boxes even when its old HUD chrome is
+    // suppressed. Never let invisible inventory/belt coordinates receive real
+    // mouse input. MyShopExpBox remains the one explicit legacy fallback.
+    return !ui::v2::legacy::SuppressLegacyCharacterPanels() &&
+           (!ui::v2::legacy::SuppressLegacyMainHud() || MyShopExpBox);
+}
 
 #include "systems/commerce/coin_shop/CoinShop.h"
 #include "systems/commerce/coin_shop/CoinShop_T.h"
@@ -55,6 +82,7 @@ void sinInit()
 	g_PCBang_CreatePetSystem();
 	cPCBANGPet.Init();
 	cSettings.Init();
+	ui::v2::legacy::Initialize();
 
 	cTarget.Init();
 	InitBmpFont();
@@ -89,6 +117,7 @@ void sinMain()
 
 	sinMouseMain();
 	sinKeyClickMain();
+	ui::v2::legacy::Update();
 
 
 
@@ -117,11 +146,39 @@ void sinMain()
 	MainSub();
 	cItem.Main();
 	cInterFace.Main();
-	cSkill.Main();
-	cInvenTory.Main();
+	// Keep legacy skill timers/state alive, but do not let the hidden legacy HUD
+	// create hover/tooltip state from its old absolute-coordinate hit boxes.
+	if (ui::v2::legacy::SuppressLegacyCharacterPanels() || !LegacySkillInterfaceEnabled())
+	{
+		const POINT savedCursor = pCursorPos;
+		pCursorPos.x = -10000; pCursorPos.y = -10000;
+		cSkill.Main();
+		pCursorPos = savedCursor;
+	}
+	else cSkill.Main();
+	cInvenTory.Main(LegacyInventoryPointerEnabled());
 	cCharStatus.Main();
-	cShop.Main();
-	cTrade.Main();
+	// Migrated contextual UIs still need the legacy Main() bookkeeping/timers,
+	// but their old absolute-coordinate hover logic must not see the real mouse.
+	// Feed an off-screen cursor only for those Main() calls and restore it
+	// immediately so no old tooltip/selection state leaks under UI V2.
+	if (ui::v2::legacy::OwnsLegacyShopUI())
+	{
+		const POINT savedCursor = pCursorPos;
+		pCursorPos.x = -10000; pCursorPos.y = -10000;
+		cShop.Main();
+		pCursorPos = savedCursor;
+	}
+	else cShop.Main();
+
+	if (ui::v2::legacy::OwnsLegacyTradeUI())
+	{
+		const POINT savedCursor = pCursorPos;
+		pCursorPos.x = -10000; pCursorPos.y = -10000;
+		cTrade.Main();
+		pCursorPos = savedCursor;
+	}
+	else cTrade.Main();
 	cMessageBox.Main();
 
 	cSinHelp.Main();
@@ -162,9 +219,11 @@ void sinDraw()
 
 	dsDrawOffsetArray = dsARRAY_BOTTOM;
 
-	cCharStatus.Draw();
-	
-	cCharStatus.DrawCharText();
+	if (!ui::v2::legacy::SuppressLegacyCharacterPanels())
+	{
+		cCharStatus.Draw();
+		cCharStatus.DrawCharText();
+	}
 
 
 	dsDrawOffsetArray = dsARRAY_TOP;
@@ -173,40 +232,50 @@ void sinDraw()
 
 	chaPremiumitem.DrawUp();
 	
-	cQuestWindow.Draw();
+	if (!ui::v2::legacy::OwnsQuestJournalUI())
+		cQuestWindow.Draw();
 
 	dsDrawOffsetArray = dsARRAY_BOTTOM;
 
 
 	
-	cSkill.Draw();
+	if (!ui::v2::legacy::SuppressLegacyCharacterPanels() && LegacySkillInterfaceEnabled())
+		cSkill.Draw();
 	
 
 	dsDrawOffsetArray = dsARRAY_TOP;
 	
-	cSkill.DrawUp();
+	if (!ui::v2::legacy::SuppressLegacyMainHud())
+		cSkill.DrawUp();
 	
 
 
 	dsDrawOffsetArray = dsARRAY_BOTTOM;
 
 	
-	cInvenTory.Draw();
-	
-	cInvenTory.DrawInvenText();
+	if (!ui::v2::legacy::SuppressLegacyCharacterPanels() &&
+	    (!ui::v2::legacy::SuppressLegacyMainHud() || MyShopExpBox))
+	{
+		cInvenTory.Draw();
+		cInvenTory.DrawInvenText();
+	}
 
 	dsDrawOffsetArray = dsARRAY_TOP;
 
 
 
 	
-	cShop.Draw();
-	
-	cShop.DrawShopText();
+	if (!ui::v2::legacy::OwnsLegacyShopUI())
+	{
+		cShop.Draw();
+		cShop.DrawShopText();
+	}
 
-	cTrade.Draw();
-	
-	cTrade.DrawTradeText();
+	if (!ui::v2::legacy::OwnsLegacyTradeUI())
+	{
+		cTrade.Draw();
+		cTrade.DrawTradeText();
+	}
 
 
 	dsDrawOffsetArray = dsARRAY_BOTTOM;
@@ -215,9 +284,12 @@ void sinDraw()
 	cInterFace.Draw();
 	
 	cInterFace.DrawInterText();
-	cCoinShop_T.Draw();
-	cCoinShop.Draw();
-	cRestaure.Draw();
+	if (!ui::v2::legacy::OwnsLegacyCoinShopUI())
+	{
+		cCoinShop_T.Draw();
+		cCoinShop.Draw();
+	}
+	if (!ui::v2::legacy::OwnsLegacyRestorationUI()) cRestaure.Draw();
 	cItem.Draw();
 	
 	cItem.DrawItemText();
@@ -226,9 +298,11 @@ void sinDraw()
 	dsDrawOffsetArray = dsARRAY_TOP;
 
 	
-	cSinHelp.Draw();
-	
-	cSinHelp.DrawText();
+	if (!ui::v2::legacy::OwnsLegacyHelpUI())
+	{
+		cSinHelp.Draw();
+		cSinHelp.DrawText();
+	}
 
 
 	
@@ -237,7 +311,7 @@ void sinDraw()
 	cSinWarpGate.DrawText();
 
 
-	sinDrawInterEffect();
+	if (!ui::v2::legacy::SuppressLegacyContextEffects()) sinDrawInterEffect();
 
 
 	dsDrawOffsetArray = dsARRAY_TOP;
@@ -258,6 +332,10 @@ void sinDraw()
 	dsDrawOffsetArray = dsARRAY_TOP;
 
 	
+	// CharacterWindow V2 owns the C/S/V help surface. Legacy HUD hover/key
+	// handlers may still enqueue those messages, so discard only the three
+	// character-panel overlays immediately before HelpPet rendering.
+	ui::v2::legacy::ClearLegacyCharacterHelpOverlay();
 	cHelpPet.Draw();
 	
 	cHelpPet.DrawText();
@@ -300,11 +378,13 @@ void sinDraw()
 	
 	cHg.Draw();
 
-	cMixGuide::GetInstance()->Draw();
+	if (!ui::v2::legacy::SuppressLegacyMixGuide()) cMixGuide::GetInstance()->Draw();
 
-	cMessageBox.Draw();
-
-	cMessageBox.DrawMessageText();
+	if (!ui::v2::legacy::OwnsLegacyMessage3UI())
+	{
+		cMessageBox.Draw();
+		cMessageBox.DrawMessageText();
+	}
 
 	dsDrawOffsetArray = dsARRAY_TOP;
 	if (RankGame::GetInstance()->IsOpen()) {
@@ -331,6 +411,8 @@ void sinDraw()
     dsDrawOffset_X = 0;
     dsDrawOffset_Y = 0;
 	
+	ui::v2::legacy::Render();
+
 	if(d3ddev)
 	{
 		
@@ -344,7 +426,8 @@ void sinDraw()
 void sinDrawText()
 {
 
-	cSkill.DrawSkillText();
+	if (!ui::v2::legacy::SuppressLegacyCharacterPanels() && LegacySkillInterfaceEnabled())
+		cSkill.DrawSkillText();
 	sinTestDrawText();
 	EffectTestDrawText();
 	EffectTestDrawText2();
@@ -363,47 +446,62 @@ void sinProc(int Message)
 		if (ROLLHANDLER->OnMouseClick(true))
 			break;
 		
-		if (cCoinShop.isOpen())
+		if (cCoinShop.isOpen() && !ui::v2::legacy::OwnsLegacyCoinShopUI())
 		{
 			if (!cCoinShop.LButtonDown())
 			{
-				cInvenTory.CheckMousePotionNumForm();
-				cInvenTory.LButtonDown(pCursorPos.x, pCursorPos.y);
-				cInvenTory.ReFormMousePotionNum();
+				if (LegacyInventoryPointerEnabled())
+				{
+					cInvenTory.CheckMousePotionNumForm();
+					cInvenTory.LButtonDown(pCursorPos.x, pCursorPos.y);
+					cInvenTory.ReFormMousePotionNum();
+				}
 			}
 			break;
 		}
 
-		if (cCoinShop_T.isOpen())
+		if (cCoinShop_T.isOpen() && !ui::v2::legacy::OwnsLegacyCoinShopUI())
 		{
 			if (!cCoinShop_T.LButtonDown())
 			{
-				cInvenTory.CheckMousePotionNumForm();
-				cInvenTory.LButtonDown(pCursorPos.x, pCursorPos.y);
-				cInvenTory.ReFormMousePotionNum();
+				if (LegacyInventoryPointerEnabled())
+				{
+					cInvenTory.CheckMousePotionNumForm();
+					cInvenTory.LButtonDown(pCursorPos.x, pCursorPos.y);
+					cInvenTory.ReFormMousePotionNum();
+				}
 			}
 			break;
 		}
 		if (cParty.LButtonDown())
 			break;
 
-		if (cRestaure.LButtonDown())
+		if (!ui::v2::legacy::OwnsLegacyRestorationUI() && cRestaure.LButtonDown())
 			break;
 		cTarget.LButtonDown();
-		cQuestWindow.LButtonDown();
+		if (!ui::v2::legacy::OwnsQuestJournalUI())
+			cQuestWindow.LButtonDown();
 		cInvenTory.CheckMousePotionNumForm();
-		cMessageBox.LButtonDown(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyMessage3UI()) cMessageBox.LButtonDown(pCursorPos.x, pCursorPos.y);
 		cSinSod2.LButtonDown(pCursorPos.x, pCursorPos.y);
-		if(sinMessageBoxShowFlag && !MyShopExpBox && !nName)return;
-		cInterFace.LButtonDown(pCursorPos.x, pCursorPos.y);
-		cCharStatus.LButtonDown(pCursorPos.x, pCursorPos.y);
-		cInvenTory.LButtonDown(pCursorPos.x, pCursorPos.y);
-		cSkill.LButtonDown(pCursorPos.x, pCursorPos.y);
-		cTrade.LButtonDown(pCursorPos.x, pCursorPos.y);
+		if(sinMessageBoxShowFlag && !ui::v2::legacy::OwnsLegacyMessage3UI() && !MyShopExpBox && !nName)return;
+		// Legacy modals/commerce controls above keep priority over UI V2.
+		// Once they decline the click, the new character window gets first
+		// chance before the remaining legacy character panels.
+		if (ui::v2::legacy::HandleLegacyMessage(Message))
+		{
+			cInvenTory.ReFormMousePotionNum();
+			return;
+		}
+		if (LegacyInterfaceInputEnabled()) cInterFace.LButtonDown(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::SuppressLegacyCharacterPanels()) cCharStatus.LButtonDown(pCursorPos.x, pCursorPos.y);
+		if (LegacyInventoryPointerEnabled()) cInvenTory.LButtonDown(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::SuppressLegacyCharacterPanels() && LegacySkillInterfaceEnabled()) cSkill.LButtonDown(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyTradeUI()) cTrade.LButtonDown(pCursorPos.x, pCursorPos.y);
 		cItem.LButtonDown(pCursorPos.x, pCursorPos.y);
-		cShop.LButtonDown(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyShopUI()) cShop.LButtonDown(pCursorPos.x, pCursorPos.y);
 		cSin3D.LButtonDown(pCursorPos.x, pCursorPos.y);
-		cSinHelp.LButtonDown(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.LButtonDown(pCursorPos.x, pCursorPos.y);
 		cSinWarpGate.LButtonDown(pCursorPos.x, pCursorPos.y);
 		cHelpPet.LButtonDown(pCursorPos.x, pCursorPos.y);
 		cInvenTory.ReFormMousePotionNum();
@@ -419,23 +517,25 @@ void sinProc(int Message)
 		BattlePass::GetInstance()->Button();
 		JOBS::GetInstance()->Button();
 		TCORE::GetInstance()->MouseIn();
-		cMixGuide::GetInstance()->Button();
+		if (!ui::v2::legacy::SuppressLegacyMixGuide()) cMixGuide::GetInstance()->Button();
 		RankGame::GetInstance()->Button();
 		break;
 		case SINLBUTTONUP:
 		if(sinbaram_Stop)return;
 		ROLLHANDLER->OnMouseClick(false);
-		cMessageBox.LButtonUp(pCursorPos.x, pCursorPos.y);
-		if(sinMessageBoxShowFlag)return;
+		if (!ui::v2::legacy::OwnsLegacyMessage3UI()) cMessageBox.LButtonUp(pCursorPos.x, pCursorPos.y);
+		if(sinMessageBoxShowFlag && !ui::v2::legacy::OwnsLegacyMessage3UI())return;
 		if(cParty.RButtonDown())return;
-		cInterFace.LButtonUp(pCursorPos.x, pCursorPos.y);
-		cCharStatus.LButtonUp(pCursorPos.x, pCursorPos.y);
-		cInvenTory.LButtonUp(pCursorPos.x, pCursorPos.y);
-		cShop.LButtonUp(pCursorPos.x, pCursorPos.y);
-		cSkill.LButtonUp(pCursorPos.x, pCursorPos.y);
-		cTrade.LButtonUp(pCursorPos.x, pCursorPos.y);
+		if (ui::v2::legacy::HandleLegacyMessage(Message))
+			return;
+		if (LegacyInterfaceInputEnabled()) cInterFace.LButtonUp(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::SuppressLegacyCharacterPanels()) cCharStatus.LButtonUp(pCursorPos.x, pCursorPos.y);
+		if (LegacyInventoryPointerEnabled()) cInvenTory.LButtonUp(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyShopUI()) cShop.LButtonUp(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::SuppressLegacyCharacterPanels() && LegacySkillInterfaceEnabled()) cSkill.LButtonUp(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyTradeUI()) cTrade.LButtonUp(pCursorPos.x, pCursorPos.y);
 		cSin3D.LButtonUp(pCursorPos.x, pCursorPos.y);
-		cSinHelp.LButtonUp(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.LButtonUp(pCursorPos.x, pCursorPos.y);
 		cSinWarpGate.LButtonUp(pCursorPos.x, pCursorPos.y);
 		cHelpPet.LButtonUp(pCursorPos.x, pCursorPos.y);
 		cSinSod2.LButtonUp(pCursorPos.x, pCursorPos.y);
@@ -446,17 +546,19 @@ void sinProc(int Message)
 		case SINRBUTTONDOWN:
 		if(MyShopSendButton)return;
 		if(sinbaram_Stop)return;
-		cMessageBox.RButtonDown(pCursorPos.x, pCursorPos.y);
-		if(sinMessageBoxShowFlag)return;
-		cInterFace.RButtonDown(pCursorPos.x, pCursorPos.y);
-		cCharStatus.RButtonDown(pCursorPos.x, pCursorPos.y);
-		cShop.RButtonDown(pCursorPos.x, pCursorPos.y);
-		cInvenTory.RButtonDown(pCursorPos.x, pCursorPos.y);
-		cSkill.RButtonDown(pCursorPos.x, pCursorPos.y);
-		cTrade.RButtonDown(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyMessage3UI()) cMessageBox.RButtonDown(pCursorPos.x, pCursorPos.y);
+		if(sinMessageBoxShowFlag && !ui::v2::legacy::OwnsLegacyMessage3UI())return;
+		if (ui::v2::legacy::HandleLegacyMessage(Message))
+			return;
+		if (LegacyInterfaceInputEnabled()) cInterFace.RButtonDown(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::SuppressLegacyCharacterPanels()) cCharStatus.RButtonDown(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyShopUI()) cShop.RButtonDown(pCursorPos.x, pCursorPos.y);
+		if (LegacyInventoryPointerEnabled()) cInvenTory.RButtonDown(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::SuppressLegacyCharacterPanels() && LegacySkillInterfaceEnabled()) cSkill.RButtonDown(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyTradeUI()) cTrade.RButtonDown(pCursorPos.x, pCursorPos.y);
 		cItem.RButtonDown(pCursorPos.x, pCursorPos.y);
 		cSin3D.RButtonDown(pCursorPos.x, pCursorPos.y);
-		cSinHelp.RButtonDown(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.RButtonDown(pCursorPos.x, pCursorPos.y);
 		cSinWarpGate.RButtonDown(pCursorPos.x, pCursorPos.y);
 		cHelpPet.RButtonDown(pCursorPos.x, pCursorPos.y);
 		cSinSod2.RButtonDown(pCursorPos.x, pCursorPos.y);
@@ -465,17 +567,19 @@ void sinProc(int Message)
 
 		case SINRBUTTONUP:
 		if(sinbaram_Stop)return;
-		cMessageBox.RButtonUp(pCursorPos.x, pCursorPos.y);
-		if(sinMessageBoxShowFlag)return;
-		cInterFace.RButtonUp(pCursorPos.x, pCursorPos.y);
-		cCharStatus.RButtonUp(pCursorPos.x, pCursorPos.y);
-		cInvenTory.RButtonUp(pCursorPos.x, pCursorPos.y);
-		cShop.RButtonUp(pCursorPos.x, pCursorPos.y);
-		cSkill.RButtonUp(pCursorPos.x, pCursorPos.y);
-		cTrade.RButtonUp(pCursorPos.x, pCursorPos.y);
-		cMessageBox.RButtonUp(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyMessage3UI()) cMessageBox.RButtonUp(pCursorPos.x, pCursorPos.y);
+		if(sinMessageBoxShowFlag && !ui::v2::legacy::OwnsLegacyMessage3UI())return;
+		if (ui::v2::legacy::HandleLegacyMessage(Message))
+			return;
+		if (LegacyInterfaceInputEnabled()) cInterFace.RButtonUp(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::SuppressLegacyCharacterPanels()) cCharStatus.RButtonUp(pCursorPos.x, pCursorPos.y);
+		if (LegacyInventoryPointerEnabled()) cInvenTory.RButtonUp(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyShopUI()) cShop.RButtonUp(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::SuppressLegacyCharacterPanels() && LegacySkillInterfaceEnabled()) cSkill.RButtonUp(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyTradeUI()) cTrade.RButtonUp(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyMessage3UI()) cMessageBox.RButtonUp(pCursorPos.x, pCursorPos.y);
 		cSin3D.RButtonUp(pCursorPos.x, pCursorPos.y);
-		cSinHelp.RButtonUp(pCursorPos.x, pCursorPos.y);
+		if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.RButtonUp(pCursorPos.x, pCursorPos.y);
 		cSinWarpGate.RButtonUp(pCursorPos.x, pCursorPos.y);
 		cHelpPet.RButtonUp(pCursorPos.x, pCursorPos.y);
 		cSinSod2.RButtonUp(pCursorPos.x, pCursorPos.y);
@@ -483,27 +587,33 @@ void sinProc(int Message)
 
 		case SINMOUSEMOVE:
 		ROLLHANDLER->OnMouseMove();
+		ui::v2::legacy::HandleLegacyMessage(Message);
 		break;
 
 		case SINKEYDOWN:
 		if (cSettings.isOpen())return;
 		if(sinbaram_Stop)return;
-		cMessageBox.KeyDown();
-		if(sinMessageBoxShowFlag)return;
+		if (ui::v2::legacy::HandleModalHotkeys()) return;
+		if (!ui::v2::legacy::OwnsLegacyMessage3UI()) cMessageBox.KeyDown();
+		if(sinMessageBoxShowFlag && !ui::v2::legacy::OwnsLegacyMessage3UI())return;
 
-		cInterFace.KeyDown();
-		cCharStatus.KeyDown();
+		if (LegacyInterfaceInputEnabled()) cInterFace.KeyDown();
+		if (!ui::v2::legacy::HandleCharacterHotkeys())
+			cCharStatus.KeyDown();
 		cInvenTory.KeyDown();
-		cShop.KeyDown();
+		if (!ui::v2::legacy::OwnsLegacyShopUI()) cShop.KeyDown();
+		ui::v2::legacy::HandleSkillShortcutHotkeys();
 		cSkill.KeyDown();
-		cTrade.KeyDown();
+		if (!ui::v2::legacy::OwnsLegacyTradeUI()) cTrade.KeyDown();
 		cSin3D.KeyDown();
-		cSinHelp.KeyDown();
+		if (!ui::v2::legacy::OwnsLegacyHelpUI()) cSinHelp.KeyDown();
 		cSinWarpGate.KeyDown();
 		cHelpPet.KeyDown();
 		cSinSod2.KeyDown();
 		chaSiege.KeyDown();
-		cQuestWindow.KeyDown();
+		if (!ui::v2::legacy::HandleQuestHotkey())
+			cQuestWindow.KeyDown();
+		ui::v2::legacy::HandleMainHudHotkeys();
 		
 		if(sinGetKeyClick('X'))
 		{
@@ -616,6 +726,7 @@ void sinClose()
 	clanMENU_close();
 
 
+	ui::v2::legacy::Shutdown();
 	CloseSub();
 	cInvenTory.Close();
 	cCharStatus.Close();

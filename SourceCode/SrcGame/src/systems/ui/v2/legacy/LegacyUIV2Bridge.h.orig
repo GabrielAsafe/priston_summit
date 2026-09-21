@@ -1,0 +1,31 @@
+#pragma once
+
+namespace ui::v2::legacy
+{
+void Initialize();
+void Shutdown();
+void Update();
+void Render();
+bool HandleLegacyMessage(int message);
+bool HandleMouseWheel(int delta);
+bool HandleCharacterHotkeys();
+void OnResolutionChanged(int width, int height);
+
+// Used by the legacy loop to avoid rendering/dispatching the old window below
+// a V2 replacement. Inventory can intentionally return false in contextual
+// shop/trade/crafting flows until those windows are migrated as well.
+[[nodiscard]] bool OwnsCharacterStatus();
+[[nodiscard]] bool OwnsSkills();
+[[nodiscard]] bool OwnsInventory();
+[[nodiscard]] bool IsCharacterWindowOpen();
+[[nodiscard]] bool SuppressLegacyCharacterPanels();
+[[nodiscard]] bool SuppressLegacyMainHud();
+[[nodiscard]] bool OwnsLegacyShopUI();
+[[nodiscard]] bool OwnsLegacyTradeUI();
+[[nodiscard]] bool OwnsLegacyCoinShopUI();
+bool OwnsLegacyRestorationUI();
+bool SuppressLegacyContextEffects();
+[[nodiscard]] bool HasMigratedContext();
+[[nodiscard]] bool BlocksWorldInputAt(int x, int y);
+void ClearLegacyCharacterHelpOverlay();
+}

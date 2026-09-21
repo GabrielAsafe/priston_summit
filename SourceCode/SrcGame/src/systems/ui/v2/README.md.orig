@@ -1,0 +1,120 @@
+# UI V2 — v1.3
+
+UI V2 is the incremental replacement for the legacy client interface. v1.3 keeps the unified **Attributes / Skills / Inventory** `CharacterWindow`, the contextual commerce/crafting panel from v1.2, and introduces the first permanent replacement for the classic bottom HUD.
+
+## Layering
+
+```text
+Legacy flags / network state
+          |
+          v
+ LegacyUIV2Bridge
+       /       \
+      v         v
+Character UI  PlayerHud
+      |         |
+      v         v
+ ViewModels / semantic gateways
+      |
+      v
+ validated legacy gameplay systems
+```
+
+Portable layers (`core`, `input`, `widgets`, `windows`, `pages`, `panels`, `hud`, `domain`, `viewmodels`) do not include `sinLinkHeader.h`, Win32 or DirectX. Legacy state translation stays under `legacy/`; DX9 stays under `rendering/`.
+
+## Character UI
+
+- one movable character shell;
+- Attributes / Skills / Inventory tabs;
+- real-coordinate pointer input (`pRealCursorPos`);
+- actual-window world-input blocking instead of the old `y > 425` rectangle;
+- Attributes include the eight resistance channels and per-point stat-impact hints;
+- Skills include all legacy skill slots, direct left/right mouse binding and skill-master upgrade;
+- Inventory includes Mochila A/B, Armas 1/2, Quest Items, 16 equipment slots, personal-sale markers, lock/costume state and semantic drag/drop adapters.
+
+## Full skill/item details + scrolling
+
+v1.3 restores the large information surfaces that existed in the original client instead of replacing them with short summaries:
+
+- Skills are populated from the legacy `ShowSkillInfo()` document, including description, costs, duration, bonuses and next-level information.
+- Items are populated from the legacy `ShowItemInfo()` document, including requirements, stats, aging/mix information and other item-specific properties.
+- Long description rows wrap vertically.
+- Key/value rows also wrap instead of losing the key to `...`; the value stays right-aligned on the first row.
+- Both detail panels support mouse-wheel scrolling and a clickable visual scrollbar.
+
+## Direct skill binding
+
+The extra `Usar esquerda` / `Usar direita` buttons are no longer part of the normal flow:
+
+- left-clicking a learned skill selects it and attempts to bind it to the left mouse side;
+- right-clicking selects it and attempts to bind it to the right mouse side;
+- the legacy `USECODE` restrictions remain authoritative, so an invalid side is not assigned;
+- the normal attack display uses the canonical legacy `NormalAttckName` string to avoid the corrupted slot-name variant.
+
+## Player HUD V2
+
+`PlayerHud` is always available independently of the CharacterWindow and replaces the old bottom chrome with only the requested gameplay essentials:
+
+- HP;
+- MP;
+- RES/Stamina;
+- current left skill;
+- current right skill;
+- consumables P1 / P2 / P3.
+
+The classic bottom chrome is suppressed while this HUD is active, including the old chat area, X/Q/D/S/V/C buttons, map/camera/run controls, vertical resource bars and old active-skill indicator. Gameplay keyboard shortcuts are not removed by this visual migration.
+
+The V2 potion/consumable slots are interactive through the inventory gateway. The active-skill slots are currently presentation-only; skill selection is done from the Skills tab.
+
+## Font rasterization
+
+The client-wide legacy D3DX font still uses the configured face and the original 16px metrics, but v1.3 requests `ANTIALIASED_QUALITY` instead of `DEFAULT_QUALITY`. This targets the rebuilt/Wine symptom where glyph rows appeared sparse or partially missing. No V2 font family or size override is introduced.
+
+## Contextual commerce/crafting
+
+When a supported context is active, equipment controls on the left side of Inventory are replaced by `ContextPanel`; the bag remains on the right. The panel supports:
+
+- NPC Shop / blacksmith;
+- player shop (buyer);
+- own Personal Shop (seller/editor);
+- Trade;
+- Warehouse;
+- Mixing / Force;
+- Aging;
+- Smelting;
+- Manufacture;
+- Mixture Reset;
+- Skin Change;
+- Restoration;
+- Coin Shop (SCoin);
+- Time Coin Shop (TCoin).
+
+Right-clicking a V2 bag item calls `IContextGateway::AcceptInventoryItem(inventoryIndex)`. No modern page passes V2 mouse coordinates into gameplay logic.
+
+The one remaining commerce fallback is the Personal Shop description-entry modal (`MyShopExpBox`), because it is tied directly to the old Win32 IME/edit control.
+
+## Pointer contract
+
+The legacy client remaps `pCursorPos` through `dsMenuCursorPos()` before running the old UI. UI V2 uses `pRealCursorPos`; only compatibility gateways synthesize legacy coordinates inside tightly scoped legacy calls.
+
+## Validation
+
+Run:
+
+```bash
+SrcGame/src/systems/ui/v2/tests/run_portable_tests.sh
+```
+
+The suite covers runtime lifetime, z-order/input, tabs, attributes, direct skill binding/upgrade, long detail documents, inventory A/B and weapon sets, Quest Items, drag/drop safety, contextual item handoff, Warehouse paging, Coin Shop context, HUD rendering/consumables and dependency boundaries.
+
+The v1.3 portable layer was additionally compiled with `-Wall -Wextra -Werror -pedantic` and run under AddressSanitizer + UndefinedBehaviorSanitizer.
+
+## Remaining work
+
+- V2 text input / IME and Personal Shop description modal;
+- potion quantity split dialog;
+- keyboard/gamepad focus navigation;
+- Quest journal/tracker;
+- party/target/minimap redesign;
+- optional modern chat replacement (the legacy chat chrome is hidden in v1.3);
+- richer HUD interactions/cooldowns and configurable layout.

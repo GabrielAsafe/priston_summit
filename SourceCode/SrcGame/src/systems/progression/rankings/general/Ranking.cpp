@@ -1,6 +1,7 @@
 #include "opcodes.h"
 #include "systems/rendering/font/FontImage.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 char NameRank[10][32];
 char NameClanRank[10][32];
 int LevelRank[10];
@@ -26,14 +27,15 @@ void RankGame::init() {
 	img[BTRANKSODPLAYER] = CreateTextureMaterial("game//ranking//btn_ranksodplayer.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	img[BTRANKLISTCLAN] = CreateTextureMaterial("game//ranking//btn_clanlist.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 	img[BTCLOSE] = CreateTextureMaterial("game//ranking//close.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[PIKE] = CreateTextureMaterial("game//ranking//Class//ps.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[MS] = CreateTextureMaterial("game//ranking//Class//ms.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[FS] = CreateTextureMaterial("game//ranking//Class//fs.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[AS] = CreateTextureMaterial("game//ranking//Class//as.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[ATS] = CreateTextureMaterial("game//ranking//Class//ata.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[MGS] = CreateTextureMaterial("game//ranking//Class//mg.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[KS] = CreateTextureMaterial("game//ranking//Class//ks.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
-	imgClasse[PRS] = CreateTextureMaterial("game//ranking//Class//prs.bmp", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	classIcons.clear();
+	const gameplay::classes::ClassService& classService = gameplay::classes::DefaultClassService();
+	const std::vector<int> classes = classService.EnabledJobCodes();
+	for(std::vector<int>::const_iterator jobCode = classes.begin(); jobCode != classes.end(); ++jobCode)
+	{
+		const std::string* icon = classService.RankingIcon(*jobCode);
+		if(icon && !icon->empty())
+			classIcons[*jobCode] = CreateTextureMaterial(const_cast<char*>(icon->c_str()), 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
+	}
 	img[8] = CreateTextureMaterial("game//ranking//line.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 }
 
@@ -82,6 +84,12 @@ void RankGame::DrawImage(int Mat, int x, int y, int w, int h)
 	HoDrawTexImage(Mat, x, y, w, h, w, h, 255);
 }
 
+int RankGame::ClassIcon(int jobCode) const
+{
+	std::map<int, int>::const_iterator it = classIcons.find(jobCode);
+	return it != classIcons.end() ? it->second : 0;
+}
+
 
 bool RankGame::MouseAction(int x, int y, int w, int h)
 {
@@ -110,7 +118,8 @@ void RankGame::DrawRankingPlayer(char Name[10][32], int Level[10], int Classe[10
 			wsprintf(rank1[i], "#%d", i+1);
 			wsprintf(rankn[i], "%s", Name[i]);
 			wsprintf(Levelr[i], "%d", Level[i]);
-			DrawImage(imgClasse[Classe[i]], 380, 155 + y, 22, 22);
+			const int classIcon = ClassIcon(Classe[i]);
+			if(classIcon) DrawImage(classIcon, 380, 155 + y, 22, 22);
 			DrawImage(img[8], 355, 155 + y + 20, 300, 4);
 			DrawFontText(357, 157 + y, rank1[i], RGB(255, 235, 0), 3);
 			DrawFontText(410, 157 + y, rankn[i], RGB(255, 255, 255), 3);
@@ -141,7 +150,8 @@ int RankGame::DrawRankingPVP(char Name[10][32], int Level[10], int Classe[10], i
 			wsprintf(BPr[i], "%d", Kills[i]);
 			wsprintf(DPr[i], "%d", Deads[i]);
 			if (lstrlen(rankn[i]) > 0) {
-				DrawImage(imgClasse[Classe[i]], 380, 155 + y, 22, 22);
+				const int classIcon = ClassIcon(Classe[i]);
+			if(classIcon) DrawImage(classIcon, 380, 155 + y, 22, 22);
 				DrawImage(img[8], 355, 155 + y + 20, 300, 4);
 				DrawFontText(357, 157 + y, rank1[i], RGB(255, 235, 0), 3);
 				DrawFontText(410, 157 + y, Name[i], RGB(255, 255, 255), 3);
@@ -227,7 +237,8 @@ int RankGame::DrawRankingSodPlayers(char Name[10][32], int Classe[10], char Clan
 			wsprintf(Levelr[i], "%d", Points[i]);
 			DrawImage(img[8], 355, 155 + y + 20, 300, 4);
 			DrawFontText(357, 157 + y, rank1[i], RGB(255, 235, 0), 3);
-			DrawImage(imgClasse[Classe[i]], 380, 155 + y, 22, 22);
+			const int classIcon = ClassIcon(Classe[i]);
+			if(classIcon) DrawImage(classIcon, 380, 155 + y, 22, 22);
 			DrawFontText(410, 157 + y, Name[i], RGB(255, 255, 255), 3);
 			DrawFontText(600, 157 + y, Levelr[i], RGB(255, 255, 255), 3);
 			y += 30;

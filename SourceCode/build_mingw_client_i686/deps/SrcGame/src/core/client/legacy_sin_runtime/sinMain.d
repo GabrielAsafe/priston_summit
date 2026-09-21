@@ -135,6 +135,7 @@
  Dependency/DirectX9/Include/d3dx9math.h \
  SrcGame/src/systems/ui/settings/UI.h \
  SrcGame/src/systems/configuration/client/Settings.h \
+ SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h \
  SrcGame/src/systems/security/anticheat/AntiCheat.h \
  SrcGame/src/systems/combat/damage_display/DrawDamage.h \
  SrcGame/src/systems/commerce/coin_shop/CoinShop.h Shared/skillsPacket.h \
@@ -304,6 +305,7 @@ SrcGame/src/platform/database/odbc/SQL.h:
 Dependency/DirectX9/Include/d3dx9math.h:
 SrcGame/src/systems/ui/settings/UI.h:
 SrcGame/src/systems/configuration/client/Settings.h:
+SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h:
 SrcGame/src/systems/security/anticheat/AntiCheat.h:
 SrcGame/src/systems/combat/damage_display/DrawDamage.h:
 SrcGame/src/systems/commerce/coin_shop/CoinShop.h:

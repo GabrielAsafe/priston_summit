@@ -6,6 +6,7 @@
 #include "systems/social/clan/legacy/tjclanDEF.h"
 #include "systems/social/clan/legacy/tjclan.h"
 #include "systems/social/clan/legacy/cE_CViewClanInfo.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 
 
 cCHARSTATUS cCharStatus;
@@ -1250,12 +1251,8 @@ int cCHARSTATUS::sinGetNextExp()
 
 int cCHARSTATUS::InitCharStatus(int kind)
 {
-	int Total = 0;
-	int Total2 = 0;
-
-	switch(kind)
+	if(kind == 0)
 	{
-		case 0:
 		if(sinChar->wVersion[1] == 1)
 		{
 			sinSkillPontInitButtonFlag = 0;
@@ -1264,46 +1261,30 @@ int cCHARSTATUS::InitCharStatus(int kind)
 		}
 		sinSkillPontInitButtonFlag = 1;
 		sinInitPointPassFlag = 1;
-		break;
 	}
+
+	gameplay::classes::CharacterAttributes base;
+	if(!gameplay::classes::DefaultClassService().TryBaseAttributes(sinChar->JOB_CODE, base))
+		return FALSE;
+
 	cMessageBox.ShowMessage(MESSAGE_GYUNGFUM_OK);
-	Total = sinChar->Strength + sinChar->Spirit + sinChar->Talent + sinChar->Dexterity + sinChar->Health + sinChar->StatePoint;
+	const int total = sinChar->Strength + sinChar->Spirit + sinChar->Talent +
+		sinChar->Dexterity + sinChar->Health + sinChar->StatePoint;
 
-	for(int i = 0; i < 4; i++)
-	{
-		if(sinChar->JOB_CODE == TempNewCharacterInit[i][0])
-		{
-			sinChar->Strength = TempNewCharacterInit[i][1];
-			sinChar->Spirit = TempNewCharacterInit[i][2];
-			sinChar->Talent = TempNewCharacterInit[i][3];
-			sinChar->Dexterity = TempNewCharacterInit[i][4];
-			sinChar->Health = TempNewCharacterInit[i][5];
-			Total2 = sinChar->Strength + sinChar->Spirit + sinChar->Talent + sinChar->Dexterity + sinChar->Health;
-			sinChar->StatePoint = Total - Total2;
-			sinChar->wVersion[1] = 1;
-			ReformCharForm();
-			cInvenTory.SetItemToChar();
-			return TRUE;
-		}
-		if(sinChar->JOB_CODE == MorNewCharacterInit[i][0])
-		{
-			sinChar->Strength = MorNewCharacterInit[i][1];
-			sinChar->Spirit = MorNewCharacterInit[i][2];
-			sinChar->Talent = MorNewCharacterInit[i][3];
-			sinChar->Dexterity = MorNewCharacterInit[i][4];
-			sinChar->Health = MorNewCharacterInit[i][5];
-			Total2 = sinChar->Strength + sinChar->Spirit + sinChar->Talent + sinChar->Dexterity + sinChar->Health;
-			sinChar->StatePoint = Total - Total2;
-			sinChar->wVersion[1] = 1;
-			ReformCharForm();
-			cInvenTory.SetItemToChar();
-			return TRUE;
-		}
+	sinChar->Strength = base.strength;
+	sinChar->Spirit = base.spirit;
+	sinChar->Talent = base.talent;
+	sinChar->Dexterity = base.dexterity;
+	sinChar->Health = base.health;
 
-	}
-
+	const int baseTotal = base.strength + base.spirit + base.talent + base.dexterity + base.health;
+	sinChar->StatePoint = total - baseTotal;
+	sinChar->wVersion[1] = 1;
+	ReformCharForm();
+	cInvenTory.SetItemToChar();
 	return TRUE;
 }
+
 
 
 int cCHARSTATUS::CheckChageStateDisplay()
@@ -1388,81 +1369,35 @@ int cCHARSTATUS::UseGravityScrool()
 
 int cCHARSTATUS::InitCharStatus_Attribute(int kind)
 {
-	int Total, Total2;
-	int Brood_code = 0;
-	int Job_Num = 0;
+	gameplay::classes::CharacterAttributes base;
+	if(!gameplay::classes::DefaultClassService().TryBaseAttributes(sinChar->JOB_CODE, base))
+		return FALSE;
 
 	cMessageBox.ShowMessage(MESSAGE_GYUNGFUM_OK);
-	Total = sinChar->Strength + sinChar->Spirit + sinChar->Talent + sinChar->Dexterity + sinChar->Health + sinChar->StatePoint;
+	const int total = sinChar->Strength + sinChar->Spirit + sinChar->Talent +
+		sinChar->Dexterity + sinChar->Health + sinChar->StatePoint;
 
-	for(int i = 0; i < 4; i++)
+	switch(kind)
 	{
-		if(sinChar->JOB_CODE == TempNewCharacterInit[i][0])
-		{
-			Brood_code = BROOD_CODE_TEMPSKRON;
-			Job_Num = i;
-		}
-		if(sinChar->JOB_CODE == MorNewCharacterInit[i][0])
-		{
-			Brood_code = BROOD_CODE_MORAYION;
-			Job_Num = i;
-		}
-	}
-
-	if(Brood_code == BROOD_CODE_TEMPSKRON)
-	{
-		switch(kind)
-		{
-			case 1:
-			sinChar->Strength = TempNewCharacterInit[Job_Num][1];
-			break;
-			case 2:
-			sinChar->Spirit = TempNewCharacterInit[Job_Num][2];
-			break;
-			case 3:
-			sinChar->Talent = TempNewCharacterInit[Job_Num][3];
-			break;
-			case 4:
-			sinChar->Dexterity = TempNewCharacterInit[Job_Num][4];
-			break;
-			case 5:
-			sinChar->Health = TempNewCharacterInit[Job_Num][5];
-			break;
-		}
-	}
-	else
-	{
-		switch(kind)
-		{
-			case 1:
-			sinChar->Strength = MorNewCharacterInit[Job_Num][1];
-			break;
-			case 2:
-			sinChar->Spirit = MorNewCharacterInit[Job_Num][2];
-			break;
-			case 3:
-			sinChar->Talent = MorNewCharacterInit[Job_Num][3];
-			break;
-			case 4:
-			sinChar->Dexterity = MorNewCharacterInit[Job_Num][4];
-			break;
-			case 5:
-			sinChar->Health = MorNewCharacterInit[Job_Num][5];
-			break;
-		}
+	case 1: sinChar->Strength = base.strength; break;
+	case 2: sinChar->Spirit = base.spirit; break;
+	case 3: sinChar->Talent = base.talent; break;
+	case 4: sinChar->Dexterity = base.dexterity; break;
+	case 5: sinChar->Health = base.health; break;
+	default: return FALSE;
 	}
 
 	sinPlaySound(SIN_SOUND_EAT_POTION2);
 	StartEffect(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, EFFECT_AGING);
 
-	Total2 = sinChar->Strength + sinChar->Spirit + sinChar->Talent + sinChar->Dexterity + sinChar->Health;
-	sinChar->StatePoint = Total - Total2;
+	const int baseTotal = sinChar->Strength + sinChar->Spirit + sinChar->Talent +
+		sinChar->Dexterity + sinChar->Health;
+	sinChar->StatePoint = total - baseTotal;
 	sinChar->wVersion[1] = 1;
 	ReformCharForm();
 	cInvenTory.SetItemToChar();
-
 	return TRUE;
-
 }
+
 
 

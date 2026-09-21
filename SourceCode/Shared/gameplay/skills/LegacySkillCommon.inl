@@ -1,6 +1,8 @@
 // Shared byte-equivalent cSKILL methods extracted from client/server legacy implementations.
 // Target-specific skill behavior remains in each sinSkill.cpp.
 
+#include <map>
+
 void cSKILL::Release()
 {
 	int i = 0;
@@ -1470,34 +1472,28 @@ int cSKILL::ClearSkillPointSection()
 	return TRUE;
 }
 
+static std::map<int, unsigned int> SharedCharSkillInfoData;
+static std::map<int, int> SharedCharSkillInfoChangeJob;
+
 int cSKILL::ReFormCharSkillInfo()
 {
-	int   i = 0, j = 0, k = 0;
-	int   CharNum = 0;
+	int j = 0, k = 0;
 
-	int   CharCode[MAX_JOBNUM] = { JOBCODE_MECHANICIAN, JOBCODE_FIGHTER, JOBCODE_ARCHER, JOBCODE_PIKEMAN, JOBCODE_KNIGHT, JOBCODE_ATALANTA, JOBCODE_PRIESTESS, JOBCODE_MAGICIAN };
-
-	for(i = 0; i < MAX_JOBNUM; i++)
+	const int classCode = sinChar->JOB_CODE;
+	const std::map<int, int>::const_iterator lastChangeJob = SharedCharSkillInfoChangeJob.find(classCode);
+	if(lastChangeJob == SharedCharSkillInfoChangeJob.end() || lastChangeJob->second != sinChar->ChangeJob)
 	{
-		if(sinChar->JOB_CODE == CharCode[i])
-		{
-			CharNum = i;
-			break;
-		}
-	}
-
-	if(ChangeJob != sinChar->ChangeJob)
-	{
-		ChangeJob = sinChar->ChangeJob;
-		CharSkillInfoData[CharNum] = 0;
+		SharedCharSkillInfoChangeJob[classCode] = sinChar->ChangeJob;
+		unsigned int& classSkillInfo = SharedCharSkillInfoData[classCode];
+		classSkillInfo = 0;
 		for(j = 1; j < SIN_MAX_USE_SKILL; j++)
 		{
 			if(sinSkill.UseSkill[j].Flag)
 			{
 				k = j + 1;
-				CharSkillInfoData[CharNum] += k*sinSkill.UseSkill[j].Skill_Info.RequireLevel;
-				CharSkillInfoData[CharNum] += k*sinSkill.UseSkill[j].Skill_Info.UseStamina[0];
-				CharSkillInfoData[CharNum] += k*sinSkill.UseSkill[j].Skill_Info.UseStamina[1];
+				classSkillInfo += k*sinSkill.UseSkill[j].Skill_Info.RequireLevel;
+				classSkillInfo += k*sinSkill.UseSkill[j].Skill_Info.UseStamina[0];
+				classSkillInfo += k*sinSkill.UseSkill[j].Skill_Info.UseStamina[1];
 			}
 		}
 	}

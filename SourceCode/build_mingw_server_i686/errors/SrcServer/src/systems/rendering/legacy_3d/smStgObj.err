@@ -1,0 +1,10 @@
+In file included from SrcServer/src/systems/rendering/legacy_3d/smStgObj.cpp:1:
+Shared/rendering/legacy_3d/SmStageObjectLegacyCommon.inl:134:5: error: no declaration matches 'int smSTAGE_OBJECT::AddObjectPrepared(smPAT3D*, smPAT3D*)'
+  134 | int smSTAGE_OBJECT::AddObjectPrepared(smPAT3D *Pat, smPAT3D *BipPat)
+      |     ^~~~~~~~~~~~~~
+Shared/rendering/legacy_3d/SmStageObjectLegacyCommon.inl:134:5: note: no functions named 'int smSTAGE_OBJECT::AddObjectPrepared(smPAT3D*, smPAT3D*)'
+In file included from SrcServer/src/systems/rendering/legacy_3d/smd3d.h:18,
+                 from Shared/rendering/legacy_3d/SmStageObjectLegacyCommon.inl:2:
+SrcServer/src/systems/rendering/legacy_3d/smStgObj.h:21:7: note: 'class smSTAGE_OBJECT' defined here
+   21 | class smSTAGE_OBJECT
+      |       ^~~~~~~~~~~~~~

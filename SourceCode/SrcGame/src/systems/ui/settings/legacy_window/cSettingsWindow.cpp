@@ -13,39 +13,25 @@ cSettingsWindow::~cSettingsWindow()
 
 void cSettingsWindow::Init()
 {
-	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"ENTER cSettingsWindow::Init pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
 
-	ClearLoadedImages();
-	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after ClearLoadedImages\n"); fclose(f);} }
 
 	if (pWindow1)
 	{
-		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before delete pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
 		delete pWindow1;
 		pWindow1 = 0;
-		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after delete pWindow1\n"); fclose(f);} }
 	}
 
-	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindow1\n"); fclose(f);} }
 	BuildWindow1();
-	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindow1 pWindow1=%p\n", (void*)pWindow1); fclose(f);} }
 
 	if (pWindow1)
 	{
-		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowVideo\n"); fclose(f);} }
 		BuildWindowVideo();
-		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowVideo\n"); fclose(f);} }
 
-		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowAudio\n"); fclose(f);} }
 		BuildWindowAudio();
-		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowAudio\n"); fclose(f);} }
 
-		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"before BuildWindowGeneral\n"); fclose(f);} }
 		BuildWindowGeneral();
-		{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"after BuildWindowGeneral\n"); fclose(f);} }
 	}
 
-	{ FILE *f=fopen("LOGS\\mingw_csettings_init.txt","a"); if(f){ fprintf(f,"LEAVE cSettingsWindow::Init\n"); fclose(f);} }
 }
 
 void cSettingsWindow::Draw()
@@ -119,7 +105,6 @@ void cSettingsWindow::Close()
 {
 	pWindow1->hide();
 }
-
 void cSettingsWindow::BuildWindow1()
 {
 	pWindow1 = new UIWindow(OBJID_Main, "game//settings//window.png", 0, 0);

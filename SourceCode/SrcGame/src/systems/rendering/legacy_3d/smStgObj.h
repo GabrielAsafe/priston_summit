@@ -36,6 +36,7 @@ public:
 	int AddObject(smPAT3D *Pat, int x, int y, int z, int angX, int angY, int angZ);
 
 	int AddObject(smPAT3D *Pat);
+	int AddObjectPrepared(smPAT3D *Pat, smPAT3D *BipPat);
 
 	int AddObjectFile(char *szFile, char *szBipFile = 0);
 

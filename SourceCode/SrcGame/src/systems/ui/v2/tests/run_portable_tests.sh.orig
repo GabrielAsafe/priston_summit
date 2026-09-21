@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/../../../../../.." && pwd)"
+SRC="$ROOT/SrcGame/src"
+CXX="${CXX:-g++}"
+OUT="${TMPDIR:-/tmp}/priston_ui_v2_tests"
+mkdir -p "$OUT"
+
+COMMON=(
+  "$SRC/systems/ui/v2/core/Widget.cpp"
+  "$SRC/systems/ui/v2/core/Container.cpp"
+  "$SRC/systems/ui/v2/core/Window.cpp"
+  "$SRC/systems/ui/v2/core/UIRuntime.cpp"
+  "$SRC/systems/ui/v2/input/UIFocusManager.cpp"
+  "$SRC/systems/ui/v2/input/UIInputRouter.cpp"
+  "$SRC/systems/ui/v2/input/UIPointerCapture.cpp"
+  "$SRC/systems/ui/v2/windows/UIWindowManager.cpp"
+  "$SRC/systems/ui/v2/windows/CharacterWindow.cpp"
+  "$SRC/systems/ui/v2/widgets/Button.cpp"
+  "$SRC/systems/ui/v2/widgets/Label.cpp"
+  "$SRC/systems/ui/v2/widgets/Panel.cpp"
+  "$SRC/systems/ui/v2/widgets/ProgressBar.cpp"
+  "$SRC/systems/ui/v2/widgets/Separator.cpp"
+  "$SRC/systems/ui/v2/panels/ContextPanel.cpp"
+  "$SRC/systems/ui/v2/pages/AttributesPage.cpp"
+  "$SRC/systems/ui/v2/pages/SkillsPage.cpp"
+  "$SRC/systems/ui/v2/pages/InventoryPage.cpp"
+  "$SRC/systems/ui/v2/hud/PlayerHud.cpp"
+)
+
+FLAGS=(-std=c++17 -Wall -Wextra -pedantic -I "$SRC")
+
+"$CXX" "${FLAGS[@]}" "${COMMON[@]}" \
+  "$SRC/systems/ui/v2/tests/ui_v2_core_smoke.cpp" \
+  -o "$OUT/ui_v2_core_smoke"
+"$OUT/ui_v2_core_smoke"
+echo "UI V2 core smoke: PASS"
+
+"$CXX" "${FLAGS[@]}" "${COMMON[@]}" \
+  "$SRC/systems/ui/v2/tests/ui_v2_v1_smoke.cpp" \
+  -o "$OUT/ui_v2_v1_smoke"
+"$OUT/ui_v2_v1_smoke"
+echo "UI V2 v1 integration smoke: PASS"
+
+# Core/UI-domain code must stay independent from the legacy monolith and DX9.
+if grep -R -n -E 'sinLinkHeader|<windows.h>|<d3d9.h>' \
+    "$SRC/systems/ui/v2/core" \
+    "$SRC/systems/ui/v2/input" \
+    "$SRC/systems/ui/v2/widgets" \
+    "$SRC/systems/ui/v2/windows" \
+    "$SRC/systems/ui/v2/pages" \
+    "$SRC/systems/ui/v2/panels" \
+    "$SRC/systems/ui/v2/hud" \
+    "$SRC/systems/ui/v2/domain" \
+    "$SRC/systems/ui/v2/viewmodels"; then
+  echo "UI V2 dependency boundary: FAIL" >&2
+  exit 1
+fi
+
+echo "UI V2 dependency boundary: PASS"

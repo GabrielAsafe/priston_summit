@@ -1,4 +1,5 @@
 #include <cstring>
+#include "gameplay/classes/v2/services/ClassService.h"
 
 
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
@@ -567,7 +568,7 @@ void cMESSAGEBOX::LButtonDown(int x, int y)
 				}
 				if(i == MESSAGE_CHANGE_JOB4_2)
 				{
-					if(sinChar->JOB_CODE <= 4 || sinChar->JOB_CODE == 9)
+					if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 						WarpField2(START_FIELD_NUM);
 					else
 						WarpField2(START_FIELD_MORYON);
@@ -1815,6 +1816,7 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 
 		break;
 		case MESSAGE_CHANGE_JOB:
+		{
 		if(sinQuest_ChangeJob3.CODE)
 		{
 			TempItem.CODE = (sinOR2 | sin02);
@@ -1826,7 +1828,11 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 
 		}
 
-		sinChar->ChangeJob++;
+		int nextChangeJob = 0;
+		if(!gameplay::classes::DefaultClassService().TryNextLegacyChangeJob(
+			sinChar->JOB_CODE, static_cast<int>(sinChar->ChangeJob), nextChangeJob))
+			break;
+		sinChar->ChangeJob = static_cast<DWORD>(nextChangeJob);
 		cSkill.OpenFlag = 1;
 		cInterFace.CheckAllBox(SIN_SKILL);
 		SkillMasterFlag = 1;
@@ -1876,6 +1882,7 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 		SaveGameData();
 		ChangeJobFace();
 		break;
+		}
 		case MESSAGE_QUEST:
 		sinQuest_ChangeJob.CODE = SIN_QUEST_CODE_CHANGEJOB;
 		sinQuest_ChangeJob.State = SIN_QUEST_PROGRESS;
@@ -2135,8 +2142,13 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 		SaveGameData();
 		break;
 		case MESSAGE_CHANGE_JOB4_2:
+		{
 
-		sinChar->ChangeJob++;
+		int nextChangeJob = 0;
+		if(!gameplay::classes::DefaultClassService().TryNextLegacyChangeJob(
+			sinChar->JOB_CODE, static_cast<int>(sinChar->ChangeJob), nextChangeJob))
+			break;
+		sinChar->ChangeJob = static_cast<DWORD>(nextChangeJob);
 		cSkill.OpenFlag = 1;
 		cInterFace.CheckAllBox(SIN_SKILL);
 		SkillMasterFlag = 1;
@@ -2154,12 +2166,13 @@ int cMESSAGEBOX::CheckOkMessageBox2(int Kind)
 		SaveGameData();
 
 		ChangeJobFace();
-		if(sinChar->JOB_CODE <= 4 || sinChar->JOB_CODE == 9)
+		if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 			WarpField2(START_FIELD_NUM);
 		else
 			WarpField2(START_FIELD_MORYON);
 
 		break;
+		}
 		case MESSAGE_CRISTALEVENTITEM_SEND:
 		if(cInvenTory.SendCristalEventItem())
 		{

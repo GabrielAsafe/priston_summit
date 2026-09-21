@@ -1,5 +1,7 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/core/gameplay/runtime/playmain.o: \
  SrcGame/src/core/gameplay/runtime/playmain.cpp Shared/opcodes.h \
+ SrcGame/src/core/concurrency/JobSystem.h \
+ SrcGame/src/core/concurrency/SourceAssetLock.h \
  SrcGame/src/systems/rendering/legacy_3d/smd3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
  Dependency/DirectX9/Include/d3d9.h \
@@ -43,6 +45,7 @@
  SrcGame/src/systems/rendering/legacy_3d/smGeosub.h \
  SrcGame/src/systems/rendering/legacy_3d/smJpeg.h \
  Shared/rendering/legacy_3d/smJpeg.h \
+ SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h \
  SrcGame/src/systems/security/legacy/process_integrity/cracker.h \
  SrcGame/src/systems/gameplay/character/core/character.h \
  SrcGame/src/systems/combat/pvp/Score.h \
@@ -51,6 +54,9 @@
  SrcGame/src/systems/audio/playback/legacy/Dxwav.h \
  Dependency/DirectX9/Include/dsound.h \
  SrcGame/src/core/data/legacy_loader/fileread.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcGame/src/systems/rendering/effects/particle/legacy/particle.h \
  SrcGame/src/systems/network/client/netplay.h \
  SrcGame/src/compat/legacy/sin/sinLinkHeader.h \
@@ -152,6 +158,8 @@
  SrcGame/src/systems/media/video/ParkDXPlayer.h \
  Shared/media/video/ParkDXPlayerLegacyShared.h
 Shared/opcodes.h:
+SrcGame/src/core/concurrency/JobSystem.h:
+SrcGame/src/core/concurrency/SourceAssetLock.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
 Dependency/DirectX9/Include/d3d9.h:
@@ -197,6 +205,7 @@ Shared/rendering/legacy_3d/smmatrix.h:
 SrcGame/src/systems/rendering/legacy_3d/smGeosub.h:
 SrcGame/src/systems/rendering/legacy_3d/smJpeg.h:
 Shared/rendering/legacy_3d/smJpeg.h:
+SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h:
 SrcGame/src/systems/security/legacy/process_integrity/cracker.h:
 SrcGame/src/systems/gameplay/character/core/character.h:
 SrcGame/src/systems/combat/pvp/Score.h:
@@ -205,6 +214,9 @@ SrcGame/src/core/gameplay/runtime/playmain.h:
 SrcGame/src/systems/audio/playback/legacy/Dxwav.h:
 Dependency/DirectX9/Include/dsound.h:
 SrcGame/src/core/data/legacy_loader/fileread.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/systems/rendering/effects/particle/legacy/particle.h:
 SrcGame/src/systems/network/client/netplay.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:

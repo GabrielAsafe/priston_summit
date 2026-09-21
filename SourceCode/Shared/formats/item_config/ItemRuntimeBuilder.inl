@@ -2,6 +2,8 @@
 
 #include <cstring>
 
+#include "gameplay/classes/v2/services/ClassService.h"
+
 namespace summit
 {
 namespace formats
@@ -23,29 +25,57 @@ struct ItemRuntimeServices
 	int perfectSpecialItemFlag;
 };
 
-struct SpecialRevision
+enum class ItemRequirementRevisionMode
 {
-	DWORD dwJobCode;
-	short level[2];
-	short strength[2];
-	short spirit[2];
-	short talent[2];
-	short dexterity[2];
-	short health[2];
+    Random = 0,
+    Minimum,
+    Middle
 };
 
-static const SpecialRevision kSpecialRevision[] = {
-	{ JOB_CODE_MECHANICIAN, 0, 0, 5, 15, -20, -10, 0, 0, -25, -15, 0, 0 },
-	{ JOB_CODE_FIGHTER, 0, 0, 10, 15, -20, -15, 0, 0, -20, -15, 0, 0 },
-	{ JOB_CODE_PIKEMAN, 0, 0, 10, 15, -20, -15, 0, 0, -25, -15, 0, 0 },
-	{ JOB_CODE_ARCHER, 0, 0, -25, -15, -20, -10, 0, 0, 15, 25, 0, 0 },
-	{ JOB_CODE_KNIGHT, 0, 0, 5, 15, -15, -10, 5, 10, -25, -15, 0, 0 },
-	{ JOB_CODE_ATALANTA, 0, 0, -20, -15, -20, -10, 0, 0, 15, 25, 0, 0 },
-	{ JOB_CODE_PRIEST, 0, 0, -25, -20, 15, 20, -15, -10, -20, -15, 0, 0 },
-	{ JOB_CODE_MAGICIAN, 0, 0, -25, -20, 15, 25, -15, -10, -20, -15, 0, 0 },
-};
+inline int SelectItemRequirementRevision(const gameplay::classes::ClassPercentRange& range,
+                                         ItemRequirementRevisionMode mode,
+                                         const ItemRuntimeServices& services)
+{
+    if(mode == ItemRequirementRevisionMode::Minimum)
+        return range.minimum;
+    if(mode == ItemRequirementRevisionMode::Middle)
+        return services.middlePos(range.minimum, range.maximum);
+    return services.randomPosNormal(range.minimum, range.maximum);
+}
 
-static const int kSpecialRevisionCount = sizeof(kSpecialRevision) / sizeof(kSpecialRevision[0]);
+inline void ApplyItemRequirementRevision(sITEMINFO* item,
+                                         DWORD jobBitCode,
+                                         ItemRequirementRevisionMode mode,
+                                         const ItemRuntimeServices& services)
+{
+    if(!item || jobBitCode == 0)
+        return;
+
+    gameplay::classes::ClassItemRequirementRevisionProfile profile;
+    if(!gameplay::classes::DefaultClassService().TryItemRequirementRevisionByJobBitCode(
+           static_cast<std::uint32_t>(jobBitCode), profile))
+        return;
+
+    int selected = 0;
+    int revision = 0;
+#define APPLY_ITEM_REQUIREMENT_REVISION(field, rangeField) \
+    do { \
+        if(item->field && profile.rangeField.IsActive()) { \
+            selected = SelectItemRequirementRevision(profile.rangeField, mode, services); \
+            revision = (item->field * selected) / 100; \
+            item->field += revision; \
+        } \
+    } while(0)
+
+    APPLY_ITEM_REQUIREMENT_REVISION(Level, level);
+    APPLY_ITEM_REQUIREMENT_REVISION(Strength, strength);
+    APPLY_ITEM_REQUIREMENT_REVISION(Spirit, spirit);
+    APPLY_ITEM_REQUIREMENT_REVISION(Talent, talent);
+    APPLY_ITEM_REQUIREMENT_REVISION(Dexterity, dexterity);
+    APPLY_ITEM_REQUIREMENT_REVISION(Health, health);
+#undef APPLY_ITEM_REQUIREMENT_REVISION
+}
+
 
 inline int CreateDefItem(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobCode, int ItemNormam, const ItemRuntimeServices &services)
 {
@@ -166,8 +196,6 @@ inline int CreateDefItem(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobC
 
 
 	DWORD	dwSpecialJob;
-	int		RndPos;
-	int		Revision;
 	int		tempJobCode = 0;
 
 
@@ -269,54 +297,7 @@ inline int CreateDefItem(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int SpJobC
 
 
 
-			for(cnt = 0; cnt < kSpecialRevisionCount; cnt++)
-			{
-				if(kSpecialRevision[cnt].dwJobCode == dwSpecialJob)
-				{
-
-					if(lpItem->Level && kSpecialRevision[cnt].level[0])
-					{
-						RndPos = services.randomPosNormal(kSpecialRevision[cnt].level[0], kSpecialRevision[cnt].level[1]);
-						Revision = (lpItem->Level*RndPos) / 100;
-						lpItem->Level += Revision;
-					}
-
-					if(lpItem->Strength && kSpecialRevision[cnt].strength[0])
-					{
-						RndPos = services.randomPosNormal(kSpecialRevision[cnt].strength[0], kSpecialRevision[cnt].strength[1]);
-						Revision = (lpItem->Strength*RndPos) / 100;
-						lpItem->Strength += Revision;
-					}
-
-					if(lpItem->Spirit && kSpecialRevision[cnt].spirit[0])
-					{
-						RndPos = services.randomPosNormal(kSpecialRevision[cnt].spirit[0], kSpecialRevision[cnt].spirit[1]);
-						Revision = (lpItem->Spirit*RndPos) / 100;
-						lpItem->Spirit += Revision;
-					}
-
-					if(lpItem->Talent && kSpecialRevision[cnt].talent[0])
-					{
-						RndPos = services.randomPosNormal(kSpecialRevision[cnt].talent[0], kSpecialRevision[cnt].talent[1]);
-						Revision = (lpItem->Talent*RndPos) / 100;
-						lpItem->Talent += Revision;
-					}
-
-					if(lpItem->Dexterity && kSpecialRevision[cnt].dexterity[0])
-					{
-						RndPos = services.randomPosNormal(kSpecialRevision[cnt].dexterity[0], kSpecialRevision[cnt].dexterity[1]);
-						Revision = (lpItem->Dexterity*RndPos) / 100;
-						lpItem->Dexterity += Revision;
-					}
-
-					if(lpItem->Health && kSpecialRevision[cnt].health[0])
-					{
-						RndPos = services.randomPosNormal(kSpecialRevision[cnt].health[0], kSpecialRevision[cnt].health[1]);
-						Revision = (lpItem->Health*RndPos) / 100;
-						lpItem->Health += Revision;
-					}
-				}
-			}
+			ApplyItemRequirementRevision(lpItem, dwSpecialJob, ItemRequirementRevisionMode::Random, services);
 
 
 			if(lpDefItem->fSpecial_Absorb[1] != 0)
@@ -498,8 +479,6 @@ inline int CreateDefItemPerf(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int Sp
 
 
 	DWORD	dwSpecialJob = lpItem->JobCodeMask;
-	int		RndPos;
-	int		Revision;
 
 	if (SpJobCode > 0)
 	{
@@ -531,53 +510,7 @@ inline int CreateDefItemPerf(sITEMINFO *lpItem, sDEF_ITEMINFO *lpDefItem, int Sp
 
 		if (lpItem->JobCodeMask) lpItem->Price += (lpItem->Price * 2) / 10;
 
-		for (cnt = 0; cnt < kSpecialRevisionCount; cnt++)
-		{
-			if (kSpecialRevision[cnt].dwJobCode == dwSpecialJob)
-			{
-				if (lpItem->Level && kSpecialRevision[cnt].level[0])
-				{
-					RndPos = kSpecialRevision[cnt].level[0];
-					Revision = (lpItem->Level*RndPos) / 100;
-					lpItem->Level += Revision;
-				}
-
-				if (lpItem->Strength && kSpecialRevision[cnt].strength[0])
-				{
-					RndPos = kSpecialRevision[cnt].strength[0];
-					Revision = (lpItem->Strength*RndPos) / 100;
-					lpItem->Strength += Revision;
-				}
-
-				if (lpItem->Spirit && kSpecialRevision[cnt].spirit[0])
-				{
-					RndPos = kSpecialRevision[cnt].spirit[0];
-					Revision = (lpItem->Spirit*RndPos) / 100;
-					lpItem->Spirit += Revision;
-				}
-
-				if (lpItem->Talent && kSpecialRevision[cnt].talent[0])
-				{
-					RndPos = kSpecialRevision[cnt].talent[0];
-					Revision = (lpItem->Talent*RndPos) / 100;
-					lpItem->Talent += Revision;
-				}
-
-				if (lpItem->Dexterity && kSpecialRevision[cnt].dexterity[0])
-				{
-					RndPos = kSpecialRevision[cnt].dexterity[0];
-					Revision = (lpItem->Dexterity*RndPos) / 100;
-					lpItem->Dexterity += Revision;
-				}
-
-				if (lpItem->Health && kSpecialRevision[cnt].health[0])
-				{
-					RndPos = kSpecialRevision[cnt].health[0];
-					Revision = (lpItem->Health*RndPos) / 100;
-					lpItem->Health += Revision;
-				}
-			}
-		}
+		ApplyItemRequirementRevision(lpItem, dwSpecialJob, ItemRequirementRevisionMode::Minimum, services);
 
 		if (lpDefItem->fSpecial_Absorb[1] != 0)
 			lpItem->JobItem.Add_fAbsorb = lpDefItem->fSpecial_Absorb[1];
@@ -677,8 +610,6 @@ inline int SetLowerItem(sDEF_ITEMINFO *lpDefItem, const ItemRuntimeServices &ser
 
 
 	DWORD	dwSpecialJob;
-	int		RndPos;
-	int		Revision;
 
 
 	if(lpItem->JobCodeMask)
@@ -688,54 +619,7 @@ inline int SetLowerItem(sDEF_ITEMINFO *lpDefItem, const ItemRuntimeServices &ser
 		dwSpecialJob = lpItem->JobCodeMask;
 
 
-		for(cnt = 0; cnt < kSpecialRevisionCount; cnt++)
-		{
-			if(kSpecialRevision[cnt].dwJobCode == dwSpecialJob)
-			{
-
-				if(lpItem->Level && kSpecialRevision[cnt].level[0])
-				{
-					RndPos = services.middlePos(kSpecialRevision[cnt].level[0], kSpecialRevision[cnt].level[1]);
-					Revision = (lpItem->Level*RndPos) / 100;
-					lpItem->Level += Revision;
-				}
-
-				if(lpItem->Strength && kSpecialRevision[cnt].strength[0])
-				{
-					RndPos = services.middlePos(kSpecialRevision[cnt].strength[0], kSpecialRevision[cnt].strength[1]);
-					Revision = (lpItem->Strength*RndPos) / 100;
-					lpItem->Strength += Revision;
-				}
-
-				if(lpItem->Spirit && kSpecialRevision[cnt].spirit[0])
-				{
-					RndPos = services.middlePos(kSpecialRevision[cnt].spirit[0], kSpecialRevision[cnt].spirit[1]);
-					Revision = (lpItem->Spirit*RndPos) / 100;
-					lpItem->Spirit += Revision;
-				}
-
-				if(lpItem->Talent && kSpecialRevision[cnt].talent[0])
-				{
-					RndPos = services.middlePos(kSpecialRevision[cnt].talent[0], kSpecialRevision[cnt].talent[1]);
-					Revision = (lpItem->Talent*RndPos) / 100;
-					lpItem->Talent += Revision;
-				}
-
-				if(lpItem->Dexterity && kSpecialRevision[cnt].dexterity[0])
-				{
-					RndPos = services.middlePos(kSpecialRevision[cnt].dexterity[0], kSpecialRevision[cnt].dexterity[1]);
-					Revision = (lpItem->Dexterity*RndPos) / 100;
-					lpItem->Dexterity += Revision;
-				}
-
-				if(lpItem->Health && kSpecialRevision[cnt].health[0])
-				{
-					RndPos = services.middlePos(kSpecialRevision[cnt].health[0], kSpecialRevision[cnt].health[1]);
-					Revision = (lpItem->Health*RndPos) / 100;
-					lpItem->Health += Revision;
-				}
-			}
-		}
+		ApplyItemRequirementRevision(lpItem, dwSpecialJob, ItemRequirementRevisionMode::Middle, services);
 
 
 		lpItem->JobItem.Add_fAbsorb = lpDefItem->fSpecial_Absorb[0];

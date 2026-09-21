@@ -1,5 +1,8 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_server_i686/objects/SrcServer/src/systems/ui/messages/legacy_sin/sinMessageBox.o: \
  SrcServer/src/systems/ui/messages/legacy_sin/sinMessageBox.cpp \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h \
  SrcServer/src/systems/rendering/legacy_3d/smd3d.h \
  SrcServer/src/systems/rendering/legacy_3d/smDsx.h \
@@ -115,6 +118,9 @@
  SrcServer/src/systems/social/clan/legacy/tjclan.h \
  SrcServer/src/systems/social/clan/legacy/clan_Enti.h \
  SrcServer/src/systems/world/field/field.h
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h:
 SrcServer/src/systems/rendering/legacy_3d/smd3d.h:
 SrcServer/src/systems/rendering/legacy_3d/smDsx.h:

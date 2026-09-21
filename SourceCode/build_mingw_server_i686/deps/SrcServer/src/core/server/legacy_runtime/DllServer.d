@@ -115,7 +115,10 @@
  SrcServer/src/core/server/legacy_runtime/DllServer.h \
  SrcServer/src/systems/network/protocol/server/opcodes.h \
  SrcServer/src/core/server/legacy_runtime/onserver.h \
- SrcServer/src/systems/authentication/protocol/Login.h
+ SrcServer/src/systems/authentication/protocol/Login.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h
 SrcServer/src/platform/windows/resources/legacy_runtime/resource.h:
 SrcServer/src/systems/network/transport/legacy/smwsock.h:
 Shared/network/transport/legacy/smwsock_legacy_server.h:
@@ -235,3 +238,6 @@ SrcServer/src/core/server/legacy_runtime/DllServer.h:
 SrcServer/src/systems/network/protocol/server/opcodes.h:
 SrcServer/src/core/server/legacy_runtime/onserver.h:
 SrcServer/src/systems/authentication/protocol/Login.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:

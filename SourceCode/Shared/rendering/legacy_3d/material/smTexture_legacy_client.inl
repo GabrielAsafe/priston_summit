@@ -1,4 +1,18 @@
 #include <string>
+#include <set>
+#include <cstdlib>
+#include <cstdint>
+#include <new>
+#include <atomic>
+#include <chrono>
+#include <deque>
+#include <memory>
+#include <mutex>
+#include <vector>
+
+#include "core/concurrency/JobSystem.h"
+
+#include "rendering/assets/v2/AssetLoadRegistry.h"
 
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include <io.h>
@@ -15,6 +29,10 @@ int		g_TgaLastBitCnt;
 int		g_TgaLastSwapHeight;
 
 int		new_smCreateTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap = 0);
+int     AssetLoadV3RequestTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap, int priority);
+void    AssetLoadV3PumpTextureUploads();
+void    AssetLoadV3ResetAsyncState();
+bool    AssetLoadV3IsTexturePending(smTEXTUREHANDLE *lpTexHandle);
 
 #define ERROR_LIST_MAX		32
 #define ERROR_LIST_MASK		(ERROR_LIST_MAX-1)
@@ -97,6 +115,185 @@ static char FileTypeBuff[16] = { 0, };
 
 
 
+// High-resolution texture memory policy.
+// The client is a 32-bit process. Large uncompressed managed textures can
+// exhaust its virtual address space even when the GPU has enough VRAM.
+// For large, block-compatible assets we keep D3DPOOL_MANAGED semantics but
+// request DXT compression, reducing the persistent managed copy by 4x (DXT5)
+// or 8x (DXT1). If conversion is unsupported/fails, loading falls back to the
+// legacy D3DFMT_FROM_FILE path.
+// Asset Load System V2 keeps all state outside smTEXTUREHANDLE so the legacy
+// ABI/disk assumptions remain untouched.  The registry is the authority for
+// retry policy, resident-byte accounting, demand loading and LRU eviction.
+typedef summit::rendering::assets::v2::AssetLoadRegistry<MAX_TEXTURE> SummitAssetRegistryType;
+static SummitAssetRegistryType SummitAssetRegistry;
+static std::set<std::string> SummitMissingTexturePaths;
+
+enum SummitTextureAsyncState
+{
+    SUMMIT_TEX_ASYNC_IDLE = 0,
+    SUMMIT_TEX_ASYNC_PREPARING = 1,
+    SUMMIT_TEX_ASYNC_READY = 2
+};
+
+static std::atomic<unsigned char> SummitTextureAsyncStates[MAX_TEXTURE];
+static std::atomic<std::uint32_t> SummitTextureAsyncGenerations[MAX_TEXTURE];
+static std::atomic<std::uint32_t> SummitTextureAsyncInFlight(0);
+static std::atomic<std::uint64_t> SummitTextureStagingBytes(0);
+static std::atomic<bool> SummitTextureLoadingBoost(false);
+
+struct SummitTextureCriticalSectionGuard
+{
+    explicit SummitTextureCriticalSectionGuard(CRITICAL_SECTION *section) : section_(section)
+    {
+        EnterCriticalSection(section_);
+    }
+    ~SummitTextureCriticalSectionGuard()
+    {
+        LeaveCriticalSection(section_);
+    }
+    CRITICAL_SECTION *section_;
+};
+
+static bool SummitAssetTraceEnabled()
+{
+    const char *value = getenv("SUMMIT_ASSET_TRACE");
+    return value && *value && *value != '0';
+}
+
+static bool SummitPrewarmHasHeadroom()
+{
+    const ULONGLONG budget = SummitAssetRegistry.Policy().residentBudgetBytes;
+    if (!budget)
+        return true;
+
+    // External/UI textures are not part of the registry accounting, so leave
+    // a generous reserve for demand loads instead of filling the full budget.
+    const ULONGLONG prewarmCeiling = (budget * 3ULL) / 4ULL;
+    return SummitAssetRegistry.ResidentBytes() < prewarmCeiling;
+}
+
+
+static void SummitConfigureAssetLoadPolicy()
+{
+    using summit::rendering::assets::v2::AssetLoadPolicy;
+    AssetLoadPolicy policy = AssetLoadPolicy::Defaults();
+
+    const char *budgetMb = getenv("SUMMIT_TEXTURE_BUDGET_MB");
+    if (budgetMb && *budgetMb)
+    {
+        const unsigned long parsed = strtoul(budgetMb, NULL, 10);
+        if (parsed >= 128ul && parsed <= 2048ul)
+            policy.residentBudgetBytes = static_cast<std::uint64_t>(parsed) * 1024ull * 1024ull;
+    }
+
+    const char *maxDim = getenv("SUMMIT_TEXTURE_MAX_DIM");
+    if (maxDim && *maxDim)
+    {
+        const unsigned long parsed = strtoul(maxDim, NULL, 10);
+        if (parsed >= 512ul && parsed <= policy.maxSourceDimension)
+        {
+            policy.maxRuntimeDimension = static_cast<std::uint32_t>(parsed);
+            policy.maxRuntimePixels = static_cast<std::uint64_t>(parsed) * static_cast<std::uint64_t>(parsed);
+        }
+    }
+
+    const char *externalMaxDim = getenv("SUMMIT_EXTERNAL_TEXTURE_MAX_DIM");
+    if (externalMaxDim && *externalMaxDim)
+    {
+        const unsigned long parsed = strtoul(externalMaxDim, NULL, 10);
+        if (parsed >= 256ul && parsed <= policy.maxSourceDimension)
+        {
+            policy.maxExternalRuntimeDimension = static_cast<std::uint32_t>(parsed);
+            policy.maxExternalRuntimePixels = static_cast<std::uint64_t>(parsed) * static_cast<std::uint64_t>(parsed);
+        }
+    }
+
+    const char *prewarmLimit = getenv("SUMMIT_TEXTURE_PREWARM_LIMIT");
+    if (prewarmLimit && *prewarmLimit)
+    {
+        const unsigned long parsed = strtoul(prewarmLimit, NULL, 10);
+        if (parsed <= 512ul)
+            policy.globalPrewarmLimit = static_cast<std::uint32_t>(parsed);
+    }
+
+    const char *scopedPrewarmLimit = getenv("SUMMIT_TEXTURE_SCOPED_PREWARM_LIMIT");
+    if (scopedPrewarmLimit && *scopedPrewarmLimit)
+    {
+        const unsigned long parsed = strtoul(scopedPrewarmLimit, NULL, 10);
+        if (parsed <= 1024ul)
+            policy.scopedPrewarmLimit = static_cast<std::uint32_t>(parsed);
+    }
+
+    SummitAssetRegistry.SetPolicy(policy);
+}
+
+static D3DFORMAT SummitChooseLargeTextureFormat(const smTEXTUREHANDLE *lpTexHandle, const D3DXIMAGE_INFO &imageInfo)
+{
+    if (!lpTexHandle)
+        return D3DFMT_FROM_FILE;
+
+    if (imageInfo.Width < 4 || imageInfo.Height < 4)
+        return D3DFMT_FROM_FILE;
+
+    // DXT block compression requires complete 4x4 blocks at the top level.
+    if ((imageInfo.Width & 3U) != 0 || (imageInfo.Height & 3U) != 0)
+        return D3DFMT_FROM_FILE;
+
+    const ULONGLONG rgbaBytes =
+        static_cast<ULONGLONG>(imageInfo.Width) *
+        static_cast<ULONGLONG>(imageInfo.Height) * 4ULL;
+
+    if (rgbaBytes < SummitAssetRegistry.Policy().largeTextureRgbaBytes)
+        return D3DFMT_FROM_FILE;
+
+    // Existing loader marks TGA/PNG as opacity-capable and BMP/JPG as opaque.
+    // Preserve alpha-capable content with DXT5; opaque content uses DXT1.
+    return lpTexHandle->MapOpacity ? D3DFMT_DXT5 : D3DFMT_DXT1;
+}
+
+static void SummitLogLargeTexturePolicy(const char *name, const D3DXIMAGE_INFO &imageInfo, D3DFORMAT format, HRESULT hr)
+{
+    if (!SummitAssetTraceEnabled())
+        return;
+    if (format == D3DFMT_FROM_FILE)
+        return;
+
+    FILE *f = NULL;
+    fopen_s(&f, "LOGS\\large_texture_memory_policy.txt", "a");
+    if (!f)
+        return;
+
+    const char *formatName = format == D3DFMT_DXT1 ? "DXT1" : (format == D3DFMT_DXT5 ? "DXT5" : "OTHER");
+    fprintf(
+        f,
+        "%s | %ux%u | %s | hr=0x%08lX\n",
+        name ? name : "(null)",
+        static_cast<unsigned>(imageInfo.Width),
+        static_cast<unsigned>(imageInfo.Height),
+        formatName,
+        static_cast<unsigned long>(hr));
+    fclose(f);
+}
+
+static void SummitLogTextureReject(const char *name, const char *reason, UINT width, UINT height)
+{
+    if (!SummitAssetTraceEnabled())
+        return;
+    FILE *f = NULL;
+    fopen_s(&f, "LOGS\\texture_pipeline_rejects.txt", "a");
+    if (!f)
+        return;
+    fprintf(
+        f,
+        "%s | %s | %ux%u\n",
+        name ? name : "(null)",
+        reason ? reason : "UNKNOWN",
+        static_cast<unsigned>(width),
+        static_cast<unsigned>(height));
+    fclose(f);
+}
+
 int		   MaterialFrame;
 
 
@@ -164,6 +361,19 @@ void smTEXTURE::Init()
 
 	ZeroMemory(Texture, sizeof(smTEXTUREHANDLE) * MAX_TEXTURE);
 	ZeroMemory(SwapTexture, sizeof(smSWAPTEXTURE) * SWAPTEXTURE_MAX);
+	SummitConfigureAssetLoadPolicy();
+	SummitAssetRegistry.Reset();
+	SummitMissingTexturePaths.clear();
+	// Invalidate every async handle generation across material-system sessions.
+	// Never reset generations back to a fixed value: a late completion from an
+	// older GameMode session must not be able to match a newly reused slot.
+	for (int asyncIndex = 0; asyncIndex < MAX_TEXTURE; ++asyncIndex)
+	{
+		SummitTextureAsyncGenerations[asyncIndex].fetch_add(1u, std::memory_order_acq_rel);
+		SummitTextureAsyncStates[asyncIndex].store(SUMMIT_TEX_ASYNC_IDLE, std::memory_order_release);
+	}
+	SummitTextureAsyncInFlight.store(0u, std::memory_order_release);
+	SummitTextureStagingBytes.store(0u, std::memory_order_release);
 	TextureCnt = 0;
 	SwapCount = 0;
 
@@ -187,13 +397,16 @@ int smTEXTURE::Remove()
 
 	for (cnt = 0; cnt < MAX_TEXTURE; cnt++) {
 		if (Texture[cnt].UseCounter > 0) {
-			
 			if (Texture[cnt].lpD3DTexture) Texture[cnt].lpD3DTexture->Release();
 			if (Texture[cnt].lpDDSurface) Texture[cnt].lpDDSurface->Release();
 			if (Texture[cnt].lpDDSSysMemory) Texture[cnt].lpDDSSysMemory->Release();
+			Texture[cnt].lpD3DTexture = NULL;
+			Texture[cnt].lpDDSurface = NULL;
+			Texture[cnt].lpDDSSysMemory = NULL;
 			Texture[cnt].UseCounter = 0;
 		}
 	}
+	SummitAssetRegistry.Reset();
 	
 	LeaveCriticalSection(&cTextureSection);
 
@@ -227,152 +440,126 @@ int smTEXTURE::Find(DWORD dwCode, char *Name)
 
 smTEXTUREHANDLE *smTEXTURE::Add(char *name, char *nameA)
 {
-	int cnt = 0;
+    if (!name || !name[0])
+        return NULL;
 
-	extern DWORD GetSpeedSum(const char *szName);
+    SummitTextureCriticalSectionGuard guard(&cTextureSection);
 
-	DWORD dwCode = GetSpeedSum(name);
-	int TexNum = Find(dwCode, name);
+    extern DWORD GetSpeedSum(const char *szName);
+    const DWORD dwCode = GetSpeedSum(name);
+    const int existing = Find(dwCode, name);
 
-	if (TexNum >= 0)
-	{
-		LastTextureCnt = TexNum;
-		Texture[TexNum].UseCounter++;
-		return &Texture[TexNum];
-	}
+    if (existing >= 0)
+    {
+        LastTextureCnt = existing;
+        Texture[existing].UseCounter++;
+        if (!summit::core::concurrency::JobSystem::Instance().IsWorkerThread())
+            SummitAssetRegistry.Register(static_cast<std::size_t>(existing), summit::rendering::assets::v2::ASSET_OWNER_GLOBAL);
+        return &Texture[existing];
+    }
 
-	for (cnt = 0; cnt < MAX_TEXTURE; cnt++)
-	{
-		if (Texture[cnt].UseCounter == 0)
-			break;
-	}
+    int cnt = 0;
+    for (; cnt < MAX_TEXTURE; ++cnt)
+        if (Texture[cnt].UseCounter == 0)
+            break;
 
-	if (cnt == MAX_TEXTURE)
-		return NULL;
+    if (cnt == MAX_TEXTURE)
+        return NULL;
 
-	TextureCnt = cnt;
+    TextureCnt = cnt;
+    lpLastTextureSurface = &Texture[TextureCnt].lpDDSurface;
+    lpLastTexture = &Texture[TextureCnt].lpD3DTexture;
 
-	lpLastTextureSurface = &Texture[TextureCnt].lpDDSurface;
-	lpLastTexture = &Texture[TextureCnt].lpD3DTexture;
+    Texture[TextureCnt].lpDDSurface = NULL;
+    Texture[TextureCnt].lpD3DTexture = NULL;
+    Texture[TextureCnt].lpDDSSysMemory = NULL;
+    Texture[TextureCnt].lpD3DTextureLarge = NULL;
 
+    strcpy_s(Texture[TextureCnt].Name, sizeof(Texture[TextureCnt].Name), name);
+    if (nameA)
+        strcpy_s(Texture[TextureCnt].NameA, sizeof(Texture[TextureCnt].NameA), nameA);
+    else
+        Texture[TextureCnt].NameA[0] = 0;
 
-	Texture[TextureCnt].lpDDSurface = NULL;
-	Texture[TextureCnt].lpD3DTexture = NULL;
+    Texture[TextureCnt].TexSwapMode = TextureSwapMode;
+    Texture[TextureCnt].UseCounter = 1;
+    Texture[TextureCnt].loadingFailed = 0;
+    TexSpeedSum[TextureCnt] = dwCode;
 
-	if (strlen(name) > sizeof(Texture[TextureCnt].Name))
-	{
-// 		Utils_Log(LOG_ERROR, "[smTEXTURE::Add] - [Buffer Overflow][Capacity: %d] - [required: %d] Buffer: (%s)", sizeof(Texture[TextureCnt].Name), strlen(name), name);
-		//return NULL;
-	}
+    SummitTextureAsyncGenerations[TextureCnt].fetch_add(1u, std::memory_order_acq_rel);
+    SummitTextureAsyncStates[TextureCnt].store(SUMMIT_TEX_ASYNC_IDLE, std::memory_order_release);
 
+    // Background stage/model parsers are allowed to register texture handles,
+    // but the V2 residency registry remains game-thread owned.
+    if (!summit::core::concurrency::JobSystem::Instance().IsWorkerThread())
+        SummitAssetRegistry.Register(static_cast<std::size_t>(TextureCnt), summit::rendering::assets::v2::ASSET_OWNER_GLOBAL);
 
-	strcpy_s(Texture[TextureCnt].Name, sizeof(Texture[TextureCnt].Name), name);
-
-	if (nameA)
-	{
-		strcpy_s(Texture[TextureCnt].NameA, sizeof(Texture[TextureCnt].NameA), nameA);
-	}
-	else
-	{
-		Texture[TextureCnt].NameA[0] = 0;
-	}
-
-	Texture[TextureCnt].TexSwapMode = TextureSwapMode;
-	Texture[TextureCnt].UseCounter++;
-	Texture[TextureCnt].lpD3DTextureLarge = NULL;
-
-
-
-	TexSpeedSum[TextureCnt] = dwCode;
-
-
-	return &Texture[TextureCnt];
+    return &Texture[TextureCnt];
 }
 
 
 int smTEXTURE::Delete(smTEXTUREHANDLE *lpTex)
 {
-	int cnt;
+    if (!lpTex)
+        return FALSE;
 
-	if (lpTex->UseCounter <= 0) return FALSE;
+    SummitTextureCriticalSectionGuard guard(&cTextureSection);
+    if (lpTex->UseCounter <= 0)
+        return FALSE;
 
-	lpTex->UseCounter--;
+    lpTex->UseCounter--;
+    if (lpTex->UseCounter > 0)
+        return lpTex->UseCounter;
 
-	if (lpTex->UseCounter <= 0) {
-		
-		if (lpTex->lpD3DTextureLarge) {
-			for (cnt = 0; cnt < SWAPTEXTURE_MAX; cnt++) {
-				if (SwapTexture[cnt].SwapState && SwapTexture[cnt].smTextureMaster == lpTex) {
-					DeleteSwapTexture(cnt);
-					break;
-				}
-			}
-		}
-		
-		if (lpTex->lpDDSurface) lpTex->lpDDSurface->Release();
-		if (lpTex->lpD3DTexture) lpTex->lpD3DTexture->Release();
-		if (lpTex->lpDDSSysMemory) lpTex->lpDDSSysMemory->Release();
+    // DeleteSwapTexture() also acquires cTextureSection, so perform the same
+    // cleanup inline while this lock is held instead of recursively locking it.
+    if (lpTex->lpD3DTextureLarge)
+    {
+        for (int cnt = 0; cnt < SWAPTEXTURE_MAX; ++cnt)
+        {
+            if (!SwapTexture[cnt].SwapState || SwapTexture[cnt].smTextureMaster != lpTex)
+                continue;
+            if (SwapTexture[cnt].lpDDSurface)
+            {
+                SwapTexture[cnt].lpDDSurface->Release();
+                SwapTexture[cnt].lpDDSurface = 0;
+            }
+            if (SwapTexture[cnt].lpD3DTexture)
+            {
+                SwapTexture[cnt].lpD3DTexture->Release();
+                SwapTexture[cnt].lpD3DTexture = 0;
+            }
+            SwapTexture[cnt].SwapState = FALSE;
+            SwapTexture[cnt].smTextureMaster = 0;
+            lpTex->lpD3DTextureLarge = NULL;
+            break;
+        }
+    }
 
-		lpTex->lpD3DTexture = 0;
-		lpTex->lpDDSurface = 0;
-		lpTex->lpDDSSysMemory = 0;
+    if (lpTex->lpDDSurface) lpTex->lpDDSurface->Release();
+    if (lpTex->lpD3DTexture) lpTex->lpD3DTexture->Release();
+    if (lpTex->lpDDSSysMemory) lpTex->lpDDSSysMemory->Release();
 
-		VramTotal -= lpTex->Width * lpTex->Height * 2;
+    lpTex->lpD3DTexture = 0;
+    lpTex->lpDDSurface = 0;
+    lpTex->lpDDSSysMemory = 0;
 
-	}
+    for (int cnt = 0; cnt < MAX_TEXTURE; ++cnt)
+    {
+        if (&Texture[cnt] != lpTex)
+            continue;
 
-	return lpTex->UseCounter;
+        SummitTextureAsyncGenerations[cnt].fetch_add(1u, std::memory_order_acq_rel);
+        SummitTextureAsyncStates[cnt].store(SUMMIT_TEX_ASYNC_IDLE, std::memory_order_release);
+        if (!summit::core::concurrency::JobSystem::Instance().IsWorkerThread())
+            SummitAssetRegistry.MarkReleased(static_cast<std::size_t>(cnt));
+        break;
+    }
+
+    const DWORD releasedBytes = static_cast<DWORD>(lpTex->Width * lpTex->Height * 2);
+    VramTotal = VramTotal > releasedBytes ? VramTotal - releasedBytes : 0;
+    return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 int smTEXTURE::DeleteSwapTexture(int TexNum)
 {
@@ -402,7 +589,6 @@ int smTEXTURE::DeleteSwapTexture(int TexNum)
 	return TRUE;
 }
 
-
 int smTEXTURE::SetLargeTexture(smTEXTUREHANDLE *TexHandle)
 {
 	return TRUE;
@@ -411,92 +597,73 @@ int smTEXTURE::SetLargeTexture(smTEXTUREHANDLE *TexHandle)
 
 int smTEXTURE::ReadTexture()
 {
-	
-	
-	if (g_IsReadTextures == 0)
-		return 0;
-	
+    if (g_IsReadTextures == 0)
+        return 0;
 
-	int cnt;
-	char szErrMsg[128];
-	int	Result;
-	int ReadCount = 0;
+    int ReadCount = 0;
+    char szErrMsg[128];
 
-	for (cnt = 0; cnt < MAX_TEXTURE; cnt++) {
-		if (Texture[cnt].UseCounter && !Texture[cnt].lpD3DTexture) {
+    // Asset Load V2 changes the old global sweep into a bounded prewarm: only
+    // registrations marked pending are attempted here. Explicit material-group
+    // loads and renderer demand-loads can still materialize evicted resources.
+    const std::uint32_t prewarmLimit = SummitAssetRegistry.Policy().globalPrewarmLimit;
+    if (prewarmLimit == 0)
+        return 0;
 
-			EnterCriticalSection(&cTextureSection);			
+    for (int cnt = 0; cnt < MAX_TEXTURE && static_cast<std::uint32_t>(ReadCount) < prewarmLimit; ++cnt)
+    {
+        if (!SummitPrewarmHasHeadroom())
+            break;
+        if (!Texture[cnt].UseCounter || Texture[cnt].lpD3DTexture)
+            continue;
+        if (!SummitAssetRegistry.IsPendingGlobal(static_cast<std::size_t>(cnt)))
+            continue;
+        if (!SummitAssetRegistry.CanAttempt(static_cast<std::size_t>(cnt)))
+            continue;
 
-			
-			
-			
-			Result = new_smCreateTexture(&Texture[cnt]);
-			
+        const int Result = AssetLoadV3RequestTexture(&Texture[cnt], 0, 2);
+        if (Result <= 0 && !AssetLoadV3IsTexturePending(&Texture[cnt]))
+        {
+            wsprintf(szErrMsg, "Falha TEX_V3 [%s]", Texture[cnt].Name);
+            AddErrorList(szErrMsg);
+        }
+        ++ReadCount;
+        if ((ReadCount & 0x7) == 0)
+            smPlayWindowMessage();
+    }
 
-			if (Result <= 0) {
-				switch (Result) {
-				case 0:
-					wsprintf(szErrMsg, "Falha TEX_D3D [%s]", Texture[cnt].Name);
-					break;
-				case -1:
-					wsprintf(szErrMsg, "Falha TEX_FILE [%s]", Texture[cnt].Name);
-					break;
-				case -2:
-					wsprintf(szErrMsg, "Falha TEX_ALPHA [%s]", Texture[cnt].Name);
-					break;
-				}
-				
-				AddErrorList(szErrMsg);
-			}
-			ReadCount++;
-
-			LeaveCriticalSection(&cTextureSection);		
-
-			if ((ReadCount & 0x7) == 0)	smPlayWindowMessage();	
-		}
-	}
-
-	return TRUE;
+    return ReadCount;
 }
 
 
 int smTEXTURE::Restore()
 {
-	int cnt;
-	
+    for (int cnt = 0; cnt < SWAPTEXTURE_MAX; ++cnt)
+    {
+        if (SwapTexture[cnt].SwapState == TRUE)
+            DeleteSwapTexture(cnt);
+    }
 
-	for (cnt = 0; cnt < SWAPTEXTURE_MAX; cnt++) {
-		if (SwapTexture[cnt].SwapState == TRUE) {
-			DeleteSwapTexture(cnt);
-		}
-	}
+    EnterCriticalSection(&cTextureSection);
+    for (int cnt = 0; cnt < MAX_TEXTURE; ++cnt)
+    {
+        if (!Texture[cnt].UseCounter)
+            continue;
 
+        if (Texture[cnt].lpD3DTexture) Texture[cnt].lpD3DTexture->Release();
+        if (Texture[cnt].lpDDSurface) Texture[cnt].lpDDSurface->Release();
+        if (Texture[cnt].lpDDSSysMemory) Texture[cnt].lpDDSSysMemory->Release();
+        Texture[cnt].lpD3DTexture = 0;
+        Texture[cnt].lpDDSurface = 0;
+        Texture[cnt].lpDDSSysMemory = 0;
+        SummitAssetRegistry.MarkDeviceRestoreNeeded(static_cast<std::size_t>(cnt));
+    }
+    LeaveCriticalSection(&cTextureSection);
 
-	EnterCriticalSection(&cTextureSection);			
-
-	for (cnt = 0; cnt < MAX_TEXTURE; cnt++) {
-		if (Texture[cnt].UseCounter && Texture[cnt].lpD3DTexture) {
-
-			
-			
-
-			if (Texture[cnt].lpD3DTexture) Texture[cnt].lpD3DTexture->Release();
-			if (Texture[cnt].lpDDSurface) Texture[cnt].lpDDSurface->Release();
-			if (Texture[cnt].lpDDSSysMemory) Texture[cnt].lpDDSSysMemory->Release();
-
-			Texture[cnt].lpD3DTexture = 0;
-			Texture[cnt].lpDDSurface = 0;
-			Texture[cnt].lpDDSSysMemory = 0;
-			
-		}
-	}
-	LeaveCriticalSection(&cTextureSection);		
-
-	ReadTexture();
-
-	return TRUE;
+    ReadTexture();
+    AssetLoadV2DumpTelemetry("DEVICE_RESTORE");
+    return TRUE;
 }
-
 
 
 
@@ -508,6 +675,347 @@ int smTEXTURE::Restore()
 
 
 smTEXTURE smTexture;
+
+static int SummitTextureHandleIndex(const smTEXTUREHANDLE *lpTexHandle)
+{
+    if (!lpTexHandle)
+        return -1;
+
+    const std::uintptr_t base = reinterpret_cast<std::uintptr_t>(&smTexture.Texture[0]);
+    const std::uintptr_t end = reinterpret_cast<std::uintptr_t>(&smTexture.Texture[MAX_TEXTURE]);
+    const std::uintptr_t value = reinterpret_cast<std::uintptr_t>(lpTexHandle);
+    if (value < base || value >= end)
+        return -1;
+
+    const std::uintptr_t offset = value - base;
+    if ((offset % sizeof(smTEXTUREHANDLE)) != 0)
+        return -1;
+
+    const std::size_t index = static_cast<std::size_t>(offset / sizeof(smTEXTUREHANDLE));
+    return index < MAX_TEXTURE ? static_cast<int>(index) : -1;
+}
+
+
+static ULONGLONG SummitEstimateSurfaceBytes(UINT width, UINT height, D3DFORMAT format)
+{
+    if (!width || !height)
+        return 0;
+
+    switch (format)
+    {
+    case D3DFMT_DXT1:
+        return static_cast<ULONGLONG>((width + 3U) / 4U) *
+               static_cast<ULONGLONG>((height + 3U) / 4U) * 8ULL;
+    case D3DFMT_DXT2:
+    case D3DFMT_DXT3:
+    case D3DFMT_DXT4:
+    case D3DFMT_DXT5:
+        return static_cast<ULONGLONG>((width + 3U) / 4U) *
+               static_cast<ULONGLONG>((height + 3U) / 4U) * 16ULL;
+    case D3DFMT_R5G6B5:
+    case D3DFMT_X1R5G5B5:
+    case D3DFMT_A1R5G5B5:
+    case D3DFMT_A4R4G4B4:
+        return static_cast<ULONGLONG>(width) * height * 2ULL;
+    case D3DFMT_A8:
+    case D3DFMT_L8:
+        return static_cast<ULONGLONG>(width) * height;
+    default:
+        return static_cast<ULONGLONG>(width) * height * 4ULL;
+    }
+}
+
+static ULONGLONG SummitEstimateTextureBytes(LPDIRECT3DTEXTURE9 texture, UINT *residentWidth = NULL, UINT *residentHeight = NULL)
+{
+    if (!texture)
+        return 0;
+
+    ULONGLONG bytes = 0;
+    const UINT levels = texture->GetLevelCount();
+    for (UINT level = 0; level < levels; ++level)
+    {
+        D3DSURFACE_DESC desc;
+        ZeroMemory(&desc, sizeof(desc));
+        if (FAILED(texture->GetLevelDesc(level, &desc)))
+            continue;
+        if (level == 0)
+        {
+            if (residentWidth) *residentWidth = desc.Width;
+            if (residentHeight) *residentHeight = desc.Height;
+        }
+        bytes += SummitEstimateSurfaceBytes(desc.Width, desc.Height, desc.Format);
+    }
+    return bytes;
+}
+
+static void SummitLogAssetEvent(const char *eventName, const smTEXTUREHANDLE *texture, ULONGLONG bytes = 0, const char *detail = NULL)
+{
+    if (!SummitAssetTraceEnabled())
+        return;
+    FILE *f = NULL;
+    fopen_s(&f, "LOGS\\asset_load_v2_events.txt", "a");
+    if (!f)
+        return;
+    fprintf(
+        f,
+        "%s | %s | bytes=%llu | %s\n",
+        eventName ? eventName : "EVENT",
+        texture ? texture->Name : "(null)",
+        static_cast<unsigned long long>(bytes),
+        detail ? detail : "-");
+    fclose(f);
+}
+
+static void SummitTextureMarkPermanentFailure(smTEXTUREHANDLE *lpTexHandle, const char *reason, UINT width = 0, UINT height = 0)
+{
+    const int index = SummitTextureHandleIndex(lpTexHandle);
+    if (index >= 0)
+        SummitAssetRegistry.MarkPermanentFailure(static_cast<std::size_t>(index), width, height);
+    SummitLogTextureReject(lpTexHandle ? lpTexHandle->Name : NULL, reason, width, height);
+}
+
+static bool SummitIsDeviceUnavailableHRESULT(HRESULT hr)
+{
+    return hr == D3DERR_DEVICELOST || hr == D3DERR_DEVICENOTRESET;
+}
+
+static void SummitTextureMarkWaitingForDevice(smTEXTUREHANDLE *lpTexHandle, UINT width = 0, UINT height = 0)
+{
+    const int index = SummitTextureHandleIndex(lpTexHandle);
+    if (index < 0)
+        return;
+    SummitAssetRegistry.MarkWaitingForDevice(static_cast<std::size_t>(index), width, height);
+    SummitLogAssetEvent("WAIT_DEVICE", lpTexHandle, 0, "retry_after_restore");
+}
+
+static void SummitTextureRecordCreateFailure(smTEXTUREHANDLE *lpTexHandle, HRESULT hr, UINT width, UINT height)
+{
+    const int index = SummitTextureHandleIndex(lpTexHandle);
+    if (index < 0)
+        return;
+
+    if (SummitIsDeviceUnavailableHRESULT(hr))
+    {
+        SummitTextureMarkWaitingForDevice(lpTexHandle, width, height);
+        return;
+    }
+
+    const bool permanent = SummitAssetRegistry.MarkTransientFailure(static_cast<std::size_t>(index), width, height);
+    if (permanent)
+    {
+        char reason[64] = { 0 };
+        wsprintf(reason, "CREATE_FAILED_0x%08lX", static_cast<unsigned long>(hr));
+        SummitLogTextureReject(lpTexHandle->Name, reason, width, height);
+    }
+}
+
+static void SummitTextureRecordCreateSuccess(smTEXTUREHANDLE *lpTexHandle, UINT sourceWidth, UINT sourceHeight)
+{
+    const int index = SummitTextureHandleIndex(lpTexHandle);
+    if (index < 0 || !lpTexHandle || !lpTexHandle->lpD3DTexture)
+        return;
+
+    UINT residentWidth = 0;
+    UINT residentHeight = 0;
+    const ULONGLONG bytes = SummitEstimateTextureBytes(lpTexHandle->lpD3DTexture, &residentWidth, &residentHeight);
+    SummitAssetRegistry.MarkLoaded(
+        static_cast<std::size_t>(index),
+        sourceWidth,
+        sourceHeight,
+        residentWidth,
+        residentHeight,
+        bytes);
+}
+
+static void SummitAssetEvictIndex(std::size_t index, const char *reason)
+{
+    if (index >= MAX_TEXTURE)
+        return;
+
+    smTEXTUREHANDLE &texture = smTexture.Texture[index];
+    const ULONGLONG bytes = SummitAssetRegistry.Record(index).residentBytes;
+
+    if (texture.lpD3DTexture)
+    {
+        texture.lpD3DTexture->Release();
+        texture.lpD3DTexture = NULL;
+    }
+    if (texture.lpDDSurface)
+    {
+        texture.lpDDSurface->Release();
+        texture.lpDDSurface = NULL;
+    }
+    if (texture.lpDDSSysMemory)
+    {
+        texture.lpDDSSysMemory->Release();
+        texture.lpDDSSysMemory = NULL;
+    }
+
+    SummitAssetRegistry.MarkEvicted(index);
+    SummitLogAssetEvent("EVICT", &texture, bytes, reason);
+}
+
+static bool SummitAssetEnsureBudget(ULONGLONG incomingBytes, std::size_t excludeIndex)
+{
+    const ULONGLONG budget = SummitAssetRegistry.Policy().residentBudgetBytes;
+    if (!budget || incomingBytes > budget)
+        return incomingBytes <= budget;
+
+    while (SummitAssetRegistry.ResidentBytes() + incomingBytes > budget)
+    {
+        std::size_t victim = SummitAssetRegistry.SelectEvictionCandidate(excludeIndex, false);
+        if (victim >= MAX_TEXTURE)
+            victim = SummitAssetRegistry.SelectEvictionCandidate(excludeIndex, true);
+        if (victim >= MAX_TEXTURE)
+            return false;
+        SummitAssetEvictIndex(victim, "BUDGET");
+    }
+    return true;
+}
+
+void AssetLoadV2TouchTexture(smTEXTUREHANDLE *lpTexHandle)
+{
+    const int index = SummitTextureHandleIndex(lpTexHandle);
+    if (index >= 0)
+        SummitAssetRegistry.Touch(static_cast<std::size_t>(index));
+}
+
+void AssetLoadV2AddOwner(smTEXTUREHANDLE *lpTexHandle, DWORD ownerMask)
+{
+    const int index = SummitTextureHandleIndex(lpTexHandle);
+    if (index >= 0)
+        SummitAssetRegistry.Register(static_cast<std::size_t>(index), ownerMask);
+}
+
+int AssetLoadV2EnsureTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap)
+{
+    if (!lpTexHandle || lpTexHandle->UseCounter <= 0)
+        return FALSE;
+
+    const int index = SummitTextureHandleIndex(lpTexHandle);
+    if (index < 0)
+        return FALSE;
+
+    if (lpTexHandle->lpD3DTexture)
+    {
+        SummitAssetRegistry.Touch(static_cast<std::size_t>(index));
+        return TRUE;
+    }
+
+    // V3 is request-based: a cache miss never performs file I/O or D3DX image
+    // creation on the caller. CPU preparation goes to the worker pool and the
+    // render thread later commits a bounded number of ready uploads.
+    AssetLoadV3RequestTexture(lpTexHandle, MipMap, 0);
+    return lpTexHandle->lpD3DTexture ? TRUE : FALSE;
+}
+
+LPDIRECT3DTEXTURE9 AssetLoadV2GetResidentTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap)
+{
+    if (!lpTexHandle)
+        return NULL;
+    AssetLoadV2EnsureTexture(lpTexHandle, MipMap);
+    AssetLoadV2TouchTexture(lpTexHandle);
+    return lpTexHandle->lpD3DTexture;
+}
+
+void AssetLoadV2DumpTelemetry(const char *reason)
+{
+    const summit::rendering::assets::v2::AssetLoadStats stats = SummitAssetRegistry.Stats();
+    std::size_t referenced = 0;
+    std::size_t residentHandles = 0;
+    for (std::size_t i = 0; i < MAX_TEXTURE; ++i)
+    {
+        if (smTexture.Texture[i].UseCounter > 0)
+            ++referenced;
+        if (smTexture.Texture[i].lpD3DTexture)
+            ++residentHandles;
+    }
+
+    FILE *f = NULL;
+    fopen_s(&f, "LOGS\\asset_load_v2_telemetry.txt", "a");
+    if (!f)
+        return;
+    fprintf(
+        f,
+        "%s | registered=%u referenced=%u loaded=%u resident_handles=%u transient=%u permanent=%u waiting_device=%u evicted=%u bytes=%llu budget=%llu runtime_max=%u external_max=%u prewarm_limit=%u scoped_prewarm_limit=%u serial=%llu\n",
+        reason ? reason : "SNAPSHOT",
+        static_cast<unsigned>(stats.registeredCount),
+        static_cast<unsigned>(referenced),
+        static_cast<unsigned>(stats.loadedCount),
+        static_cast<unsigned>(residentHandles),
+        static_cast<unsigned>(stats.transientFailureCount),
+        static_cast<unsigned>(stats.permanentFailureCount),
+        static_cast<unsigned>(stats.waitingDeviceCount),
+        static_cast<unsigned>(stats.evictedCount),
+        static_cast<unsigned long long>(stats.residentBytes),
+        static_cast<unsigned long long>(SummitAssetRegistry.Policy().residentBudgetBytes),
+        static_cast<unsigned>(SummitAssetRegistry.Policy().maxRuntimeDimension),
+        static_cast<unsigned>(SummitAssetRegistry.Policy().maxExternalRuntimeDimension),
+        static_cast<unsigned>(SummitAssetRegistry.Policy().globalPrewarmLimit),
+        static_cast<unsigned>(SummitAssetRegistry.Policy().scopedPrewarmLimit),
+        static_cast<unsigned long long>(stats.serial));
+    fclose(f);
+}
+
+void AssetLoadV2TrimToBudget(const char *reason)
+{
+    const ULONGLONG budget = SummitAssetRegistry.Policy().residentBudgetBytes;
+    const ULONGLONG target = budget * 3ULL / 4ULL;
+    while (SummitAssetRegistry.ResidentBytes() > target)
+    {
+        std::size_t victim = SummitAssetRegistry.SelectEvictionCandidate(MAX_TEXTURE, false);
+        if (victim >= MAX_TEXTURE)
+            victim = SummitAssetRegistry.SelectEvictionCandidate(MAX_TEXTURE, true);
+        if (victim >= MAX_TEXTURE)
+            break;
+        SummitAssetEvictIndex(victim, reason ? reason : "TRIM");
+    }
+    AssetLoadV2DumpTelemetry(reason ? reason : "TRIM");
+}
+
+int AssetLoadV2ReadMaterialGroup(smMATERIAL_GROUP *group, DWORD ownerMask, int MipMap)
+{
+    if (!group)
+        return 0;
+
+    for (DWORD materialIndex = 0; materialIndex < group->MaterialCount; ++materialIndex)
+    {
+        smMATERIAL &material = group->smMaterial[materialIndex];
+        if (!material.InUse)
+            continue;
+        for (DWORD textureIndex = 0; textureIndex < material.TextureCounter; ++textureIndex)
+            if (material.smTexture[textureIndex])
+                AssetLoadV2AddOwner(material.smTexture[textureIndex], ownerMask);
+        for (DWORD textureIndex = 0; textureIndex < material.AnimTexCounter; ++textureIndex)
+            if (material.smAnimTexture[textureIndex])
+                AssetLoadV2AddOwner(material.smAnimTexture[textureIndex], ownerMask);
+    }
+
+    return group->ReadTextures(MipMap);
+}
+
+int AssetLoadV2ReleaseMaterial(smMATERIAL_GROUP *group, int materialIndex)
+{
+    if (!group || materialIndex < 0 || static_cast<DWORD>(materialIndex) >= group->MaterialCount)
+        return FALSE;
+
+    smMATERIAL &material = group->smMaterial[materialIndex];
+    if (!material.InUse)
+        return FALSE;
+
+    for (DWORD textureIndex = 0; textureIndex < material.TextureCounter; ++textureIndex)
+    {
+        if (material.smTexture[textureIndex])
+            smTexture.Delete(material.smTexture[textureIndex]);
+    }
+    for (DWORD textureIndex = 0; textureIndex < material.AnimTexCounter; ++textureIndex)
+    {
+        if (material.smAnimTexture[textureIndex])
+            smTexture.Delete(material.smAnimTexture[textureIndex]);
+    }
+    ZeroMemory(&material, sizeof(material));
+    return TRUE;
+}
 
 
 
@@ -954,12 +1462,27 @@ int smMATERIAL_GROUP::AddMaterial(ASE_MATERIAL *aseMaterial, char *szScript)
 
 int smMATERIAL_GROUP::CreateTextureMaterial(char *szBitmap, char *szOpacity, int TwoSide, int Shade, DWORD TexSwap, DWORD BlendType)
 {
-	int MatNum;
+	int MatNum = -1;
 
+	// Asset Load V2 allows effect/UI material wrappers to release their slot.
+	// Reuse holes so repeated cache clear/reload cycles do not exhaust the
+	// fixed 5000-entry legacy material table.
+	for (DWORD index = 0; index < MaterialCount; ++index)
+	{
+		if (!smMaterial[index].InUse)
+		{
+			MatNum = static_cast<int>(index);
+			break;
+		}
+	}
+	if (MatNum < 0)
+	{
+		if (MaterialCount >= static_cast<DWORD>(MaxMaterial))
+			return -1;
+		MatNum = static_cast<int>(MaterialCount++);
+	}
 
-	MatNum = MaterialCount;
-	MaterialCount++;
-
+	ZeroMemory(&smMaterial[MatNum], sizeof(smMATERIAL));
 	smMaterial[MatNum].InUse = TRUE;
 	smMaterial[MatNum].Shade = Shade;
 	smMaterial[MatNum].TwoSide = TwoSide;
@@ -969,6 +1492,11 @@ int smMATERIAL_GROUP::CreateTextureMaterial(char *szBitmap, char *szOpacity, int
 	else
 		smMaterial[MatNum].smTexture[0] = smTexture.Add(szBitmap);
 
+	if (!smMaterial[MatNum].smTexture[0])
+	{
+		ZeroMemory(&smMaterial[MatNum], sizeof(smMATERIAL));
+		return -1;
+	}
 
 	smMaterial[MatNum].ReformTexture = 0;
 
@@ -1202,84 +1730,158 @@ int smMATERIAL_GROUP::ReSwapMaterial(smMATERIAL *lpMaterial)
 
 
 int smMATERIAL_GROUP::ReadTextures(int MipMap)
-
 {
-	
-	
-	if (g_IsReadTextures == 0)
-		return 0;
-	
+    if (g_IsReadTextures == 0)
+        return 0;
 
-	DWORD cnt;
-	DWORD tcnt;
-	int	Result;
-	int	ReadCount;
-	smTEXTUREHANDLE	*lpTexture;
+    const std::uint32_t prewarmLimit = SummitAssetRegistry.Policy().scopedPrewarmLimit;
+    if (prewarmLimit == 0)
+        return 0;
 
-	
-	smEnterTextureCriticalSection();
+    int ReadCount = 0;
+    std::uint32_t AttemptCount = 0;
+    for (DWORD cnt = 0; cnt < MaterialCount && AttemptCount < prewarmLimit; ++cnt)
+    {
+        if (!SummitPrewarmHasHeadroom())
+            break;
+        if (!smMaterial[cnt].InUse)
+            continue;
 
-	ReadCount = 0;
+        for (DWORD tcnt = 0;
+             tcnt < smMaterial[cnt].TextureCounter && AttemptCount < prewarmLimit;
+             ++tcnt)
+        {
+            smTEXTUREHANDLE *lpTexture = smMaterial[cnt].smTexture[tcnt];
+            if (lpTexture && lpTexture->UseCounter && !lpTexture->lpD3DTexture)
+            {
+                if (!SummitPrewarmHasHeadroom())
+                    break;
+                const int index = SummitTextureHandleIndex(lpTexture);
+                if (index >= 0 && SummitAssetRegistry.CanAttempt(static_cast<std::size_t>(index)) &&
+                    !AssetLoadV3IsTexturePending(lpTexture))
+                {
+                    AssetLoadV3RequestTexture(lpTexture, MipMap, 2);
+                    if (AssetLoadV3IsTexturePending(lpTexture))
+                    {
+                        ++AttemptCount;
+                        ++ReadCount;
+                    }
+                }
+            }
+        }
 
-	for (cnt = 0; cnt < MaterialCount; cnt++) {
-		if (smMaterial[cnt].InUse) {
-			for (tcnt = 0; tcnt < smMaterial[cnt].TextureCounter; tcnt++) {
-				if (smMaterial[cnt].smTexture[tcnt]) {
-					lpTexture = smMaterial[cnt].smTexture[tcnt];
-
-					if (lpTexture->UseCounter && !lpTexture->lpD3DTexture)
-					{
-						
-						
-						
-						Result = new_smCreateTexture(lpTexture, MipMap);
-						
-
-						ReadCount++;
-					}
-				}
-			}
-
-			for (tcnt = 0; tcnt < smMaterial[cnt].AnimTexCounter; tcnt++) {
-				if (smMaterial[cnt].smAnimTexture[tcnt]) {
-					lpTexture = smMaterial[cnt].smAnimTexture[tcnt];
-					if (lpTexture->UseCounter && !lpTexture->lpD3DTexture)
-					{
-						
-						
-						
-						Result = new_smCreateTexture(lpTexture, MipMap);
-						
-
-						ReadCount++;
-					}
-				}
-			}
-		}
-	}
-
-	
-	smLeaveTextureCriticalSection();
-
-	return ReadCount;
+        for (DWORD tcnt = 0;
+             tcnt < smMaterial[cnt].AnimTexCounter && AttemptCount < prewarmLimit;
+             ++tcnt)
+        {
+            smTEXTUREHANDLE *lpTexture = smMaterial[cnt].smAnimTexture[tcnt];
+            if (lpTexture && lpTexture->UseCounter && !lpTexture->lpD3DTexture)
+            {
+                if (!SummitPrewarmHasHeadroom())
+                    break;
+                const int index = SummitTextureHandleIndex(lpTexture);
+                if (index >= 0 && SummitAssetRegistry.CanAttempt(static_cast<std::size_t>(index)) &&
+                    !AssetLoadV3IsTexturePending(lpTexture))
+                {
+                    AssetLoadV3RequestTexture(lpTexture, MipMap, 2);
+                    if (AssetLoadV3IsTexturePending(lpTexture))
+                    {
+                        ++AttemptCount;
+                        ++ReadCount;
+                    }
+                }
+            }
+        }
+    }
+    return ReadCount;
 }
 
+// Incremental stage prewarm used by the two-stage field cache. This keeps
+// high-resolution map textures, but limits GPU decode/upload work to a tiny
+// number of textures per game tick instead of a full material-group burst.
+int AssetLoadV2PrewarmMaterialGroupStep(smMATERIAL_GROUP *group, DWORD ownerMask,
+    int MipMap, std::uint32_t maxAttempts, int requestPriority)
+{
+    if (!group || g_IsReadTextures == 0)
+        return 0;
 
+    for (DWORD materialIndex = 0; materialIndex < group->MaterialCount; ++materialIndex)
+    {
+        smMATERIAL &material = group->smMaterial[materialIndex];
+        if (!material.InUse)
+            continue;
+        for (DWORD textureIndex = 0; textureIndex < material.TextureCounter; ++textureIndex)
+            if (material.smTexture[textureIndex])
+                AssetLoadV2AddOwner(material.smTexture[textureIndex], ownerMask);
+        for (DWORD textureIndex = 0; textureIndex < material.AnimTexCounter; ++textureIndex)
+            if (material.smAnimTexture[textureIndex])
+                AssetLoadV2AddOwner(material.smAnimTexture[textureIndex], ownerMask);
+    }
 
+    std::uint32_t attempts = 0;
+    int remaining = 0;
+    for (DWORD materialIndex = 0; materialIndex < group->MaterialCount; ++materialIndex)
+    {
+        smMATERIAL &material = group->smMaterial[materialIndex];
+        if (!material.InUse)
+            continue;
 
+        for (DWORD textureIndex = 0; textureIndex < material.TextureCounter; ++textureIndex)
+        {
+            smTEXTUREHANDLE *texture = material.smTexture[textureIndex];
+            if (!texture || !texture->UseCounter || texture->lpD3DTexture)
+                continue;
+            const int index = SummitTextureHandleIndex(texture);
+            if (index < 0)
+                continue;
+            if (AssetLoadV3IsTexturePending(texture))
+            {
+                ++remaining;
+                continue;
+            }
+            if (!SummitAssetRegistry.CanAttempt(static_cast<std::size_t>(index)))
+                continue;
+            if (attempts < maxAttempts && SummitPrewarmHasHeadroom())
+            {
+                AssetLoadV3RequestTexture(texture, MipMap, requestPriority);
+                if (AssetLoadV3IsTexturePending(texture))
+                    ++attempts;
+            }
+            if (!texture->lpD3DTexture &&
+                (AssetLoadV3IsTexturePending(texture) ||
+                 SummitAssetRegistry.CanAttempt(static_cast<std::size_t>(index))))
+                ++remaining;
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
+        for (DWORD textureIndex = 0; textureIndex < material.AnimTexCounter; ++textureIndex)
+        {
+            smTEXTUREHANDLE *texture = material.smAnimTexture[textureIndex];
+            if (!texture || !texture->UseCounter || texture->lpD3DTexture)
+                continue;
+            const int index = SummitTextureHandleIndex(texture);
+            if (index < 0)
+                continue;
+            if (AssetLoadV3IsTexturePending(texture))
+            {
+                ++remaining;
+                continue;
+            }
+            if (!SummitAssetRegistry.CanAttempt(static_cast<std::size_t>(index)))
+                continue;
+            if (attempts < maxAttempts && SummitPrewarmHasHeadroom())
+            {
+                AssetLoadV3RequestTexture(texture, MipMap, requestPriority);
+                if (AssetLoadV3IsTexturePending(texture))
+                    ++attempts;
+            }
+            if (!texture->lpD3DTexture &&
+                (AssetLoadV3IsTexturePending(texture) ||
+                 SummitAssetRegistry.CanAttempt(static_cast<std::size_t>(index))))
+                ++remaining;
+        }
+    }
+    return remaining;
+}
 
 
 
@@ -1451,15 +2053,18 @@ int RestoreTextures()
 
 LPDIRECT3DTEXTURE9 GetTextureHandle(int num)
 {
-	return smTexture.Texture[num].lpD3DTexture;
+	if (num < 0 || num >= MAX_TEXTURE)
+		return NULL;
+	return AssetLoadV2GetResidentTexture(&smTexture.Texture[num]);
 }
 
 LPDIRECT3DTEXTURE9 GetTextureChildHandle(int num)
 {
-	if (smTexture.Texture[num].TexChild)
-		return smTexture.Texture[num].TexChild->lpD3DTexture;
-	else
+	if (num < 0 || num >= MAX_TEXTURE)
 		return NULL;
+	if (smTexture.Texture[num].TexChild)
+		return AssetLoadV2GetResidentTexture(smTexture.Texture[num].TexChild);
+	return NULL;
 }
 
 
@@ -1523,7 +2128,7 @@ int GetTextureFileType(char *Filename)
 	if ((szFileExt[0] == 'p' || szFileExt[0] == 'P') &&
 		(szFileExt[1] == 'n' || szFileExt[1] == 'N') &&
 		(szFileExt[2] == 'g' || szFileExt[2] == 'G'))
-		return smTEXFILETYPE_TGA;
+		return smTEXFILETYPE_PNG;
 	if ((szFileExt[0] == 's' || szFileExt[0] == 'S') &&
 		(szFileExt[1] == 't' || szFileExt[1] == 'T') &&
 		(szFileExt[2] == 'g' || szFileExt[2] == 'G'))
@@ -1610,165 +2215,1058 @@ std::string GetFileExtension(const std::string & strFilePath)
 	return "";
 }
 
-LPDIRECT3DTEXTURE9 LoadDibSurfaceOffscreen(char *Filename)
+
+namespace
 {
 
-	if (PathFileExists(Filename))
+enum SummitTexturePrepareResult
+{
+    SUMMIT_PREPARE_OK = 0,
+    SUMMIT_PREPARE_FILE_NOT_FOUND,
+    SUMMIT_PREPARE_OPEN_FAILED,
+    SUMMIT_PREPARE_EMPTY_FILE,
+    SUMMIT_PREPARE_READ_FAILED,
+    SUMMIT_PREPARE_INVALID_HEADER,
+    SUMMIT_PREPARE_INVALID_IMAGE_INFO,
+    SUMMIT_PREPARE_INVALID_DIMENSIONS,
+    SUMMIT_PREPARE_STAGING_BUDGET
+};
 
-	{
-		FILE * pFile = NULL;
-		char * pBuffer = NULL;
-		LPDIRECT3DTEXTURE9 Image = NULL;
-		fopen_s(&pFile, Filename, "rb");
-		if (pFile)
+struct SummitPreparedTexture
+{
+    SummitPreparedTexture()
+        : index(-1), generation(0), mipMap(0), result(SUMMIT_PREPARE_OPEN_FAILED),
+          mapOpacity(FALSE), stagingBytes(0)
+    {
+        ZeroMemory(&imageInfo, sizeof(imageInfo));
+        target.width = 0;
+        target.height = 0;
+        target.downscaled = false;
+    }
 
-		{
-			fseek(pFile, 0, SEEK_END);
-			int iSize = ftell(pFile);
-			fseek(pFile, 0, SEEK_SET);
-			if (iSize <= 0)
+    ~SummitPreparedTexture()
+    {
+        if (stagingBytes)
+            SummitTextureStagingBytes.fetch_sub(stagingBytes, std::memory_order_acq_rel);
+    }
 
-			{
-				fclose(pFile);
-				return 0;
-			}
-			pBuffer = new char[iSize];
-			fread(pBuffer, iSize, 1, pFile);
-			fclose(pFile);
-			if (GetFileExtension(Filename).compare("bmp") == 0)
-			{
-				if (DecryptBMP(pBuffer, iSize) == false)
-				{
-					delete[] pBuffer;
-					return NULL;
-				}
-			}
-			D3DXIMAGE_INFO ImageInfo;
-			D3DXGetImageInfoFromFileInMemory(pBuffer, iSize, &ImageInfo);
-			if (FAILED(D3DXCreateTextureFromFileInMemoryEx(d3ddev, pBuffer, iSize, ImageInfo.Width, ImageInfo.Height, 1, 0, D3DFMT_FROM_FILE, D3DPOOL_MANAGED, D3DX_DEFAULT, D3DX_DEFAULT, ImageInfo.ImageFileFormat == D3DXIFF_BMP ? D3DCOLOR_ARGB(255, 0, 0, 0) : 0, &ImageInfo, NULL, &Image)))
-			{
-				delete[] pBuffer;
-				return NULL;
-			}
-		}
+    int index;
+    std::uint32_t generation;
+    int mipMap;
+    SummitTexturePrepareResult result;
+    std::string path;
+    std::vector<char> bytes;
+    D3DXIMAGE_INFO imageInfo;
+    summit::rendering::assets::v2::AssetTargetDimensions target;
+    BOOL mapOpacity;
+    std::uint64_t stagingBytes;
+};
 
-		delete[] pBuffer;
+static std::mutex SummitPreparedTextureMutex;
+static std::deque<std::shared_ptr<SummitPreparedTexture> > SummitPreparedTextureQueue;
 
-		return Image;
-	}
-	else return NULL;
+static std::uint32_t SummitParseBoundedEnv(const char *name, std::uint32_t fallback,
+    std::uint32_t minimum, std::uint32_t maximum)
+{
+    const char *value = getenv(name);
+    if (!value || !*value)
+        return fallback;
+    char *end = NULL;
+    const unsigned long parsed = strtoul(value, &end, 10);
+    if (!end || end == value || *end != 0)
+        return fallback;
+    std::uint32_t result = static_cast<std::uint32_t>(parsed);
+    if (result < minimum) result = minimum;
+    if (result > maximum) result = maximum;
+    return result;
+}
+
+static std::uint32_t SummitTextureMaxInFlight()
+{
+    static const std::uint32_t configured = []() -> std::uint32_t
+    {
+        const std::size_t workers = summit::core::concurrency::JobSystem::Instance().WorkerCount();
+        const std::uint32_t automatic = static_cast<std::uint32_t>(workers > 0 ? workers : 2u);
+        return SummitParseBoundedEnv("SUMMIT_TEXTURE_IO_INFLIGHT",
+            automatic > 6u ? 6u : automatic, 1u, 16u);
+    }();
+    return configured;
+}
+
+static std::uint64_t SummitTextureStagingBudgetBytes()
+{
+    static const std::uint64_t configured = []() -> std::uint64_t
+    {
+        const char *value = getenv("SUMMIT_TEXTURE_STAGING_BUDGET_MB");
+        unsigned long mb = 128ul;
+        if (value && *value)
+        {
+            const unsigned long parsed = strtoul(value, 0, 10);
+            if (parsed >= 32ul && parsed <= 512ul)
+                mb = parsed;
+        }
+        return static_cast<std::uint64_t>(mb) * 1024ull * 1024ull;
+    }();
+    return configured;
+}
+
+static bool SummitReserveTextureStaging(std::uint64_t bytes)
+{
+    const std::uint64_t budget = SummitTextureStagingBudgetBytes();
+    std::uint64_t current = SummitTextureStagingBytes.load(std::memory_order_acquire);
+    while (current + bytes <= budget)
+    {
+        if (SummitTextureStagingBytes.compare_exchange_weak(
+            current, current + bytes, std::memory_order_acq_rel, std::memory_order_acquire))
+            return true;
+    }
+    return false;
+}
+
+static std::uint32_t SummitTextureUploadsPerFrame()
+{
+    // Explicit user tuning always wins.  Otherwise bootstrap gets a wider
+    // completion burst so the first world does not visibly fill in at two
+    // textures per frame.  Gameplay remains deliberately conservative.
+    const char *value = getenv("SUMMIT_TEXTURE_UPLOADS_PER_FRAME");
+    if (value && *value)
+        return SummitParseBoundedEnv("SUMMIT_TEXTURE_UPLOADS_PER_FRAME", 2u, 1u, 8u);
+    return SummitTextureLoadingBoost.load(std::memory_order_acquire) ? 8u : 2u;
+}
+
+static std::uint32_t SummitTextureUploadBudgetMicros()
+{
+    const char *value = getenv("SUMMIT_TEXTURE_UPLOAD_BUDGET_US");
+    if (value && *value)
+    {
+        const unsigned long parsed = strtoul(value, 0, 10);
+        if (parsed < 250ul) return 250u;
+        if (parsed > 12000ul) return 12000u;
+        return static_cast<std::uint32_t>(parsed);
+    }
+    return SummitTextureLoadingBoost.load(std::memory_order_acquire) ? 10000u : 1800u;
+}
+
+static void SummitQueuePreparedTexture(const std::shared_ptr<SummitPreparedTexture> &prepared)
+{
+    if (!prepared)
+        return;
+    if (prepared->index < 0 || prepared->index >= MAX_TEXTURE)
+        return;
+
+    const std::uint32_t currentGeneration = SummitTextureAsyncGenerations[prepared->index].load(std::memory_order_acquire);
+    if (currentGeneration != prepared->generation)
+    {
+        SummitTextureAsyncInFlight.fetch_sub(1u, std::memory_order_acq_rel);
+        return;
+    }
+
+    {
+        std::lock_guard<std::mutex> lock(SummitPreparedTextureMutex);
+        SummitPreparedTextureQueue.push_back(prepared);
+    }
+    SummitTextureAsyncStates[prepared->index].store(SUMMIT_TEX_ASYNC_READY, std::memory_order_release);
+}
+
+static void SummitPrepareTextureOnWorker(const std::shared_ptr<SummitPreparedTexture> &prepared,
+    summit::rendering::assets::v2::AssetLoadPolicy policy, unsigned qualityShift)
+{
+    if (!prepared)
+        return;
+
+    FILE *file = NULL;
+    fopen_s(&file, prepared->path.c_str(), "rb");
+    if (!file)
+    {
+        prepared->result = SUMMIT_PREPARE_FILE_NOT_FOUND;
+        SummitQueuePreparedTexture(prepared);
+        return;
+    }
+
+    fseek(file, 0, SEEK_END);
+    const long fileSize = ftell(file);
+    fseek(file, 0, SEEK_SET);
+    if (fileSize <= 0)
+    {
+        fclose(file);
+        prepared->result = SUMMIT_PREPARE_EMPTY_FILE;
+        SummitQueuePreparedTexture(prepared);
+        return;
+    }
+
+    if (!SummitReserveTextureStaging(static_cast<std::uint64_t>(fileSize)))
+    {
+        fclose(file);
+        prepared->result = SUMMIT_PREPARE_STAGING_BUDGET;
+        SummitQueuePreparedTexture(prepared);
+        return;
+    }
+    prepared->stagingBytes = static_cast<std::uint64_t>(fileSize);
+
+    try
+    {
+        prepared->bytes.resize(static_cast<std::size_t>(fileSize));
+    }
+    catch (...)
+    {
+        fclose(file);
+        prepared->result = SUMMIT_PREPARE_OPEN_FAILED;
+        SummitQueuePreparedTexture(prepared);
+        return;
+    }
+
+    const size_t readCount = fread(prepared->bytes.data(), static_cast<std::size_t>(fileSize), 1, file);
+    fclose(file);
+    if (readCount != 1)
+    {
+        prepared->bytes.clear();
+        prepared->result = SUMMIT_PREPARE_READ_FAILED;
+        SummitQueuePreparedTexture(prepared);
+        return;
+    }
+
+    const int fileType = GetTextureFileType(const_cast<char *>(prepared->path.c_str()));
+    if (fileType == smTEXFILETYPE_TGA)
+    {
+        if (!DecryptTGA(prepared->bytes.data(), static_cast<unsigned int>(prepared->bytes.size())))
+        {
+            prepared->result = SUMMIT_PREPARE_INVALID_HEADER;
+            SummitQueuePreparedTexture(prepared);
+            return;
+        }
+        prepared->mapOpacity = TRUE;
+    }
+    else if (fileType == smTEXFILETYPE_BMP)
+    {
+        if (!DecryptBMP(prepared->bytes.data(), static_cast<unsigned int>(prepared->bytes.size())))
+        {
+            prepared->result = SUMMIT_PREPARE_INVALID_HEADER;
+            SummitQueuePreparedTexture(prepared);
+            return;
+        }
+        prepared->mapOpacity = FALSE;
+    }
+    else if (fileType == smTEXFILETYPE_PNG)
+    {
+        prepared->mapOpacity = TRUE;
+    }
+    else
+    {
+        prepared->mapOpacity = FALSE;
+    }
+
+    if (FAILED(D3DXGetImageInfoFromFileInMemory(
+        prepared->bytes.data(), static_cast<UINT>(prepared->bytes.size()), &prepared->imageInfo)))
+    {
+        prepared->result = SUMMIT_PREPARE_INVALID_IMAGE_INFO;
+        SummitQueuePreparedTexture(prepared);
+        return;
+    }
+
+    if (!summit::rendering::assets::v2::IsStructurallyValidSource(
+        prepared->imageInfo.Width, prepared->imageInfo.Height, policy))
+    {
+        prepared->result = SUMMIT_PREPARE_INVALID_DIMENSIONS;
+        SummitQueuePreparedTexture(prepared);
+        return;
+    }
+
+    prepared->target = summit::rendering::assets::v2::ComputeTargetDimensions(
+        prepared->imageInfo.Width, prepared->imageInfo.Height, policy, qualityShift, true);
+    prepared->result = SUMMIT_PREPARE_OK;
+    SummitQueuePreparedTexture(prepared);
+}
+
+static void SummitCompletePreparedFailure(smTEXTUREHANDLE *handle,
+    const std::shared_ptr<SummitPreparedTexture> &prepared)
+{
+    if (!handle || !prepared)
+        return;
+
+    switch (prepared->result)
+    {
+    case SUMMIT_PREPARE_FILE_NOT_FOUND:
+    {
+        const bool firstMissing = SummitMissingTexturePaths.insert(prepared->path).second;
+        if (firstMissing && SummitAssetTraceEnabled())
+        {
+            FILE *f = NULL;
+            fopen_s(&f, "LOGS\\mingw_missing_texture_paths.txt", "a");
+            if (f)
+            {
+                fprintf(f, "%s\n", prepared->path.c_str());
+                fclose(f);
+            }
+        }
+        SummitTextureMarkPermanentFailure(handle, "FILE_NOT_FOUND");
+        break;
+    }
+    case SUMMIT_PREPARE_EMPTY_FILE:
+        SummitTextureMarkPermanentFailure(handle, "EMPTY_FILE");
+        break;
+    case SUMMIT_PREPARE_INVALID_HEADER:
+        SummitTextureMarkPermanentFailure(handle, "INVALID_IMAGE_HEADER");
+        break;
+    case SUMMIT_PREPARE_INVALID_IMAGE_INFO:
+        SummitTextureMarkPermanentFailure(handle, "INVALID_IMAGE_INFO");
+        break;
+    case SUMMIT_PREPARE_INVALID_DIMENSIONS:
+        SummitTextureMarkPermanentFailure(handle, "IMPLAUSIBLE_DIMENSIONS",
+            prepared->imageInfo.Width, prepared->imageInfo.Height);
+        break;
+    case SUMMIT_PREPARE_STAGING_BUDGET:
+    case SUMMIT_PREPARE_READ_FAILED:
+    case SUMMIT_PREPARE_OPEN_FAILED:
+    default:
+    {
+        const int index = SummitTextureHandleIndex(handle);
+        if (index >= 0)
+            SummitAssetRegistry.MarkTransientFailure(static_cast<std::size_t>(index));
+        break;
+    }
+    }
+}
+
+static void SummitCommitPreparedTexture(const std::shared_ptr<SummitPreparedTexture> &prepared)
+{
+    if (!prepared || prepared->index < 0 || prepared->index >= MAX_TEXTURE)
+        return;
+
+    const int index = prepared->index;
+    if (SummitTextureAsyncGenerations[index].load(std::memory_order_acquire) != prepared->generation)
+        return;
+
+    smTEXTUREHANDLE *handle = &smTexture.Texture[index];
+    if (handle->UseCounter <= 0 || _stricmp(handle->Name, prepared->path.c_str()) != 0)
+        return;
+
+    if (prepared->result != SUMMIT_PREPARE_OK)
+    {
+        SummitCompletePreparedFailure(handle, prepared);
+        return;
+    }
+
+    if (!d3ddev)
+    {
+        // Keep the prepared bytes queued until the device is available. The
+        // caller only pumps uploads when D3D is alive, so this is defensive.
+        SummitTextureMarkWaitingForDevice(handle, prepared->imageInfo.Width, prepared->imageInfo.Height);
+        return;
+    }
+
+    handle->Width = prepared->imageInfo.Width;
+    handle->Height = prepared->imageInfo.Height;
+    handle->MapOpacity = prepared->mapOpacity;
+
+    summit::rendering::assets::v2::AssetTargetDimensions target = prepared->target;
+    summit::rendering::assets::v2::AssetLoadPolicy runtimePolicy = SummitAssetRegistry.Policy();
+
+    D3DCAPS9 caps;
+    ZeroMemory(&caps, sizeof(caps));
+    if (SUCCEEDED(d3ddev->GetDeviceCaps(&caps)))
+    {
+        const UINT deviceMax = caps.MaxTextureWidth < caps.MaxTextureHeight ? caps.MaxTextureWidth : caps.MaxTextureHeight;
+        if (deviceMax && (target.width > deviceMax || target.height > deviceMax))
+        {
+            const double sx = static_cast<double>(deviceMax) / static_cast<double>(target.width);
+            const double sy = static_cast<double>(deviceMax) / static_cast<double>(target.height);
+            const double scale = sx < sy ? sx : sy;
+            target.width = summit::rendering::assets::v2::AlignDown4(static_cast<std::uint32_t>(target.width * scale));
+            target.height = summit::rendering::assets::v2::AlignDown4(static_cast<std::uint32_t>(target.height * scale));
+            target.downscaled = true;
+        }
+    }
+
+    D3DXIMAGE_INFO residentInfo = prepared->imageInfo;
+    residentInfo.Width = target.width;
+    residentInfo.Height = target.height;
+    D3DFORMAT preferredFormat = SummitChooseLargeTextureFormat(handle, residentInfo);
+    ULONGLONG estimatedBytes = SummitEstimateSurfaceBytes(
+        target.width, target.height,
+        preferredFormat == D3DFMT_FROM_FILE ? D3DFMT_A8R8G8B8 : preferredFormat);
+
+    while (!SummitAssetEnsureBudget(estimatedBytes, static_cast<std::size_t>(index)) &&
+           (target.width > 512u || target.height > 512u))
+    {
+        target.width = target.width > 512u ? summit::rendering::assets::v2::AlignDown4(target.width / 2u) : target.width;
+        target.height = target.height > 512u ? summit::rendering::assets::v2::AlignDown4(target.height / 2u) : target.height;
+        residentInfo.Width = target.width;
+        residentInfo.Height = target.height;
+        preferredFormat = SummitChooseLargeTextureFormat(handle, residentInfo);
+        estimatedBytes = SummitEstimateSurfaceBytes(
+            target.width, target.height,
+            preferredFormat == D3DFMT_FROM_FILE ? D3DFMT_A8R8G8B8 : preferredFormat);
+        target.downscaled = true;
+    }
+
+    if (!SummitAssetEnsureBudget(estimatedBytes, static_cast<std::size_t>(index)))
+    {
+        SummitTextureRecordCreateFailure(handle, E_OUTOFMEMORY,
+            prepared->imageInfo.Width, prepared->imageInfo.Height);
+        return;
+    }
+
+    HRESULT textureHr = E_FAIL;
+    if (preferredFormat != D3DFMT_FROM_FILE)
+    {
+        textureHr = D3DXCreateTextureFromFileInMemoryEx(
+            d3ddev,
+            prepared->bytes.data(),
+            static_cast<UINT>(prepared->bytes.size()),
+            target.width,
+            target.height,
+            1,
+            0,
+            preferredFormat,
+            D3DPOOL_MANAGED,
+            D3DX_FILTER_POINT,
+            D3DX_DEFAULT,
+            0xFFF0FFFF,
+            &prepared->imageInfo,
+            NULL,
+            &handle->lpD3DTexture);
+        SummitLogLargeTexturePolicy(handle->Name, residentInfo, preferredFormat, textureHr);
+    }
+
+    if (preferredFormat == D3DFMT_FROM_FILE || FAILED(textureHr))
+    {
+        if (handle->lpD3DTexture)
+        {
+            handle->lpD3DTexture->Release();
+            handle->lpD3DTexture = NULL;
+        }
+
+        ULONGLONG fallbackBytes = SummitEstimateSurfaceBytes(target.width, target.height, D3DFMT_A8R8G8B8);
+        while (!SummitAssetEnsureBudget(fallbackBytes, static_cast<std::size_t>(index)) &&
+               (target.width > 512u || target.height > 512u))
+        {
+            target.width = target.width > 512u ? summit::rendering::assets::v2::AlignDown4(target.width / 2u) : target.width;
+            target.height = target.height > 512u ? summit::rendering::assets::v2::AlignDown4(target.height / 2u) : target.height;
+            fallbackBytes = SummitEstimateSurfaceBytes(target.width, target.height, D3DFMT_A8R8G8B8);
+        }
+
+        if (SummitAssetEnsureBudget(fallbackBytes, static_cast<std::size_t>(index)))
+        {
+            textureHr = D3DXCreateTextureFromFileInMemoryEx(
+                d3ddev,
+                prepared->bytes.data(),
+                static_cast<UINT>(prepared->bytes.size()),
+                target.width,
+                target.height,
+                D3DX_FROM_FILE,
+                0,
+                D3DFMT_FROM_FILE,
+                D3DPOOL_MANAGED,
+                D3DX_FILTER_POINT,
+                D3DX_DEFAULT,
+                0xFFF0FFFF,
+                &prepared->imageInfo,
+                NULL,
+                &handle->lpD3DTexture);
+        }
+        else
+        {
+            textureHr = E_OUTOFMEMORY;
+        }
+    }
+
+    if (FAILED(textureHr) || !handle->lpD3DTexture)
+    {
+        handle->lpD3DTexture = NULL;
+        SummitTextureRecordCreateFailure(handle, textureHr,
+            prepared->imageInfo.Width, prepared->imageInfo.Height);
+        return;
+    }
+
+    SummitTextureRecordCreateSuccess(handle, prepared->imageInfo.Width, prepared->imageInfo.Height);
+}
+
+} // anonymous namespace
+
+void AssetLoadV3ResetAsyncState()
+{
+    SummitTextureLoadingBoost.store(false, std::memory_order_release);
+    // Must be called after JobSystem::WaitIdle() during a session teardown.
+    // No worker can append after this point, so dropping the completion queue
+    // releases all staging buffers without racing CPU preparation.
+    std::deque<std::shared_ptr<SummitPreparedTexture> > abandoned;
+    {
+        std::lock_guard<std::mutex> lock(SummitPreparedTextureMutex);
+        abandoned.swap(SummitPreparedTextureQueue);
+    }
+
+    for (int index = 0; index < MAX_TEXTURE; ++index)
+    {
+        SummitTextureAsyncGenerations[index].fetch_add(1u, std::memory_order_acq_rel);
+        SummitTextureAsyncStates[index].store(SUMMIT_TEX_ASYNC_IDLE, std::memory_order_release);
+    }
+    SummitTextureAsyncInFlight.store(0u, std::memory_order_release);
+
+    // Destruction of abandoned prepared objects releases their accounted bytes.
+    abandoned.clear();
+    SummitTextureStagingBytes.store(0u, std::memory_order_release);
+}
+
+void AssetLoadV3SetLoadingBoost(bool enabled)
+{
+    SummitTextureLoadingBoost.store(enabled, std::memory_order_release);
+}
+
+bool AssetLoadV3IsTexturePending(smTEXTUREHANDLE *lpTexHandle)
+{
+    const int index = SummitTextureHandleIndex(lpTexHandle);
+    if (index < 0)
+        return false;
+    return SummitTextureAsyncStates[index].load(std::memory_order_acquire) != SUMMIT_TEX_ASYNC_IDLE;
+}
+
+int AssetLoadV3RequestTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap, int priority)
+{
+    if (!lpTexHandle || lpTexHandle->UseCounter <= 0)
+        return FALSE;
+
+    const int index = SummitTextureHandleIndex(lpTexHandle);
+    if (index < 0)
+        return FALSE;
+    if (lpTexHandle->lpD3DTexture)
+        return TRUE;
+
+    SummitAssetRegistry.Register(static_cast<std::size_t>(index), summit::rendering::assets::v2::ASSET_OWNER_GLOBAL);
+    if (!SummitAssetRegistry.CanAttempt(static_cast<std::size_t>(index)))
+        return FALSE;
+
+    if (SummitTextureAsyncInFlight.load(std::memory_order_acquire) >= SummitTextureMaxInFlight())
+        return FALSE;
+
+    unsigned char expected = SUMMIT_TEX_ASYNC_IDLE;
+    if (!SummitTextureAsyncStates[index].compare_exchange_strong(
+        expected, SUMMIT_TEX_ASYNC_PREPARING, std::memory_order_acq_rel))
+        return FALSE;
+
+    SummitTextureAsyncInFlight.fetch_add(1u, std::memory_order_acq_rel);
+    SummitAssetRegistry.BeginLoad(static_cast<std::size_t>(index));
+
+    std::shared_ptr<SummitPreparedTexture> prepared(new SummitPreparedTexture());
+    prepared->index = index;
+    prepared->generation = SummitTextureAsyncGenerations[index].load(std::memory_order_acquire);
+    prepared->mipMap = MipMap;
+    prepared->path = lpTexHandle->Name;
+
+    const summit::rendering::assets::v2::AssetLoadPolicy policy = SummitAssetRegistry.Policy();
+    unsigned qualityShift = TexturHalfSize > 0 ? static_cast<unsigned>(TexturHalfSize) : 0u;
+    if (qualityShift > 2u) qualityShift = 2u;
+
+    summit::core::concurrency::JobPriority jobPriority = summit::core::concurrency::JobPriority::Normal;
+    if (priority <= 0) jobPriority = summit::core::concurrency::JobPriority::High;
+    else if (priority >= 2) jobPriority = summit::core::concurrency::JobPriority::Low;
+
+    if (!summit::core::concurrency::JobSystem::Instance().Submit(
+        [prepared, policy, qualityShift]() {
+            SummitPrepareTextureOnWorker(prepared, policy, qualityShift);
+        },
+        jobPriority))
+    {
+        SummitTextureAsyncStates[index].store(SUMMIT_TEX_ASYNC_IDLE, std::memory_order_release);
+        SummitTextureAsyncInFlight.fetch_sub(1u, std::memory_order_acq_rel);
+        SummitAssetRegistry.MarkTransientFailure(static_cast<std::size_t>(index));
+        return FALSE;
+    }
+
+    return FALSE;
+}
+
+void AssetLoadV3PumpTextureUploads()
+{
+    if (!d3ddev)
+        return;
+
+    const std::uint32_t uploadLimit = SummitTextureUploadsPerFrame();
+    const std::uint32_t budgetMicros = SummitTextureUploadBudgetMicros();
+    const std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+
+    for (std::uint32_t uploaded = 0; uploaded < uploadLimit; ++uploaded)
+    {
+        if (uploaded > 0)
+        {
+            const std::uint64_t elapsed = static_cast<std::uint64_t>(
+                std::chrono::duration_cast<std::chrono::microseconds>(
+                    std::chrono::steady_clock::now() - begin).count());
+            if (elapsed >= budgetMicros)
+                break;
+        }
+
+        std::shared_ptr<SummitPreparedTexture> prepared;
+        {
+            std::lock_guard<std::mutex> lock(SummitPreparedTextureMutex);
+            if (SummitPreparedTextureQueue.empty())
+                break;
+            prepared = SummitPreparedTextureQueue.front();
+            SummitPreparedTextureQueue.pop_front();
+        }
+
+        if (!prepared)
+            continue;
+
+        const int index = prepared->index;
+        const bool generationMatches = index >= 0 && index < MAX_TEXTURE &&
+            SummitTextureAsyncGenerations[index].load(std::memory_order_acquire) == prepared->generation;
+
+        if (generationMatches)
+            SummitCommitPreparedTexture(prepared);
+
+        if (generationMatches)
+            SummitTextureAsyncStates[index].store(SUMMIT_TEX_ASYNC_IDLE, std::memory_order_release);
+        SummitTextureAsyncInFlight.fetch_sub(1u, std::memory_order_acq_rel);
+    }
+}
+
+
+LPDIRECT3DTEXTURE9 LoadDibSurfaceOffscreenWithInfo(char *Filename, UINT *pSourceWidth, UINT *pSourceHeight)
+{
+    if (pSourceWidth) *pSourceWidth = 0;
+    if (pSourceHeight) *pSourceHeight = 0;
+    if (!Filename || !PathFileExists(Filename))
+        return NULL;
+
+    FILE *pFile = NULL;
+    fopen_s(&pFile, Filename, "rb");
+    if (!pFile)
+        return NULL;
+
+    fseek(pFile, 0, SEEK_END);
+    const int iSize = ftell(pFile);
+    fseek(pFile, 0, SEEK_SET);
+    if (iSize <= 0)
+    {
+        fclose(pFile);
+        SummitLogTextureReject(Filename, "OFFSCREEN_EMPTY_FILE", 0, 0);
+        return NULL;
+    }
+
+    char *pBuffer = new (std::nothrow) char[iSize];
+    if (!pBuffer)
+    {
+        fclose(pFile);
+        SummitLogTextureReject(Filename, "OFFSCREEN_DECODE_BUFFER_OOM", 0, 0);
+        return NULL;
+    }
+    const size_t readCount = fread(pBuffer, iSize, 1, pFile);
+    fclose(pFile);
+    if (readCount != 1)
+    {
+        delete[] pBuffer;
+        SummitLogTextureReject(Filename, "OFFSCREEN_READ_FAILED", 0, 0);
+        return NULL;
+    }
+
+    if (GetFileExtension(Filename).compare("bmp") == 0 && !DecryptBMP(pBuffer, iSize))
+    {
+        delete[] pBuffer;
+        SummitLogTextureReject(Filename, "OFFSCREEN_INVALID_BMP", 0, 0);
+        return NULL;
+    }
+
+    D3DXIMAGE_INFO imageInfo;
+    ZeroMemory(&imageInfo, sizeof(imageInfo));
+    if (FAILED(D3DXGetImageInfoFromFileInMemory(pBuffer, iSize, &imageInfo)))
+    {
+        delete[] pBuffer;
+        SummitLogTextureReject(Filename, "OFFSCREEN_INVALID_IMAGE_INFO", 0, 0);
+        return NULL;
+    }
+
+    // Keep the file dimensions separate from the resident GPU dimensions.
+    // UI assets are authored/upscaled at higher resolution and can still be
+    // runtime-downscaled by the asset policy (for example 2240 -> 2048).
+    if (pSourceWidth) *pSourceWidth = imageInfo.Width;
+    if (pSourceHeight) *pSourceHeight = imageInfo.Height;
+
+    using namespace summit::rendering::assets::v2;
+    AssetLoadPolicy runtimePolicy = SummitAssetRegistry.Policy();
+    if (!IsStructurallyValidSource(imageInfo.Width, imageInfo.Height, runtimePolicy))
+    {
+        SummitLogTextureReject(Filename, "OFFSCREEN_IMPLAUSIBLE_DIMENSIONS", imageInfo.Width, imageInfo.Height);
+        delete[] pBuffer;
+        return NULL;
+    }
+
+    runtimePolicy.maxRuntimeDimension = runtimePolicy.maxExternalRuntimeDimension;
+    runtimePolicy.maxRuntimePixels = runtimePolicy.maxExternalRuntimePixels;
+
+    D3DCAPS9 caps;
+    ZeroMemory(&caps, sizeof(caps));
+    if (d3ddev && SUCCEEDED(d3ddev->GetDeviceCaps(&caps)))
+    {
+        const UINT deviceMax = caps.MaxTextureWidth < caps.MaxTextureHeight ? caps.MaxTextureWidth : caps.MaxTextureHeight;
+        if (deviceMax && runtimePolicy.maxRuntimeDimension > deviceMax)
+        {
+            runtimePolicy.maxRuntimeDimension = deviceMax;
+            runtimePolicy.maxRuntimePixels = static_cast<ULONGLONG>(deviceMax) * deviceMax;
+        }
+    }
+
+    unsigned qualityShift = TexturHalfSize > 0 ? static_cast<unsigned>(TexturHalfSize) : 0u;
+    if (qualityShift > 2u) qualityShift = 2u;
+    const AssetTargetDimensions target = ComputeTargetDimensions(
+        imageInfo.Width, imageInfo.Height, runtimePolicy, qualityShift, false);
+
+    if (target.downscaled)
+    {
+        char detail[96] = { 0 };
+        wsprintf(detail, "OFFSCREEN_DOWNSCALE_%ux%u_TO_%ux%u", imageInfo.Width, imageInfo.Height, target.width, target.height);
+        SummitLogAssetEvent("ADAPT", NULL, 0, detail);
+    }
+
+    LPDIRECT3DTEXTURE9 image = NULL;
+    const int externalFileType = GetTextureFileType(Filename);
+    D3DFORMAT externalFormat = D3DFMT_FROM_FILE;
+    const ULONGLONG targetRgbaBytes =
+        static_cast<ULONGLONG>(target.width) * static_cast<ULONGLONG>(target.height) * 4ULL;
+    if (target.width >= 4u && target.height >= 4u &&
+        (target.width & 3u) == 0 && (target.height & 3u) == 0 &&
+        targetRgbaBytes >= runtimePolicy.largeTextureRgbaBytes)
+    {
+        externalFormat = (externalFileType == smTEXFILETYPE_JPG) ? D3DFMT_DXT1 : D3DFMT_DXT5;
+    }
+
+    const D3DCOLOR colorKey = imageInfo.ImageFileFormat == D3DXIFF_BMP ? D3DCOLOR_ARGB(255, 0, 0, 0) : 0;
+    HRESULT hr = E_FAIL;
+    if (externalFormat != D3DFMT_FROM_FILE)
+    {
+        hr = D3DXCreateTextureFromFileInMemoryEx(
+            d3ddev, pBuffer, iSize, target.width, target.height, 1, 0,
+            externalFormat, D3DPOOL_MANAGED, D3DX_FILTER_POINT, D3DX_DEFAULT,
+            colorKey, &imageInfo, NULL, &image);
+        SummitLogLargeTexturePolicy(Filename, imageInfo, externalFormat, hr);
+    }
+
+    if (externalFormat == D3DFMT_FROM_FILE || FAILED(hr))
+    {
+        if (image)
+        {
+            image->Release();
+            image = NULL;
+        }
+        hr = D3DXCreateTextureFromFileInMemoryEx(
+            d3ddev, pBuffer, iSize, target.width, target.height, 1, 0,
+            D3DFMT_FROM_FILE, D3DPOOL_MANAGED, D3DX_DEFAULT, D3DX_DEFAULT,
+            colorKey, &imageInfo, NULL, &image);
+    }
+
+    if (SUCCEEDED(hr) && image)
+    {
+        UINT residentWidth = 0;
+        UINT residentHeight = 0;
+        const ULONGLONG residentBytes = SummitEstimateTextureBytes(image, &residentWidth, &residentHeight);
+        char detail[128] = { 0 };
+        wsprintf(detail, "EXTERNAL_%ux%u", residentWidth, residentHeight);
+        SummitLogAssetEvent("EXTERNAL_LOAD", NULL, residentBytes, detail);
+    }
+
+    delete[] pBuffer;
+    return SUCCEEDED(hr) ? image : NULL;
+}
+
+LPDIRECT3DTEXTURE9 LoadDibSurfaceOffscreen(char *Filename)
+{
+    return LoadDibSurfaceOffscreenWithInfo(Filename, NULL, NULL);
 }
 
 
 int new_smCreateTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap)
 {
-	if (PathFileExists(lpTexHandle->Name))
-	{
-		FILE * pFile = NULL;
-		char * pBuffer = NULL;
-		fopen_s(&pFile, lpTexHandle->Name, "rb");
-		if (pFile)
-		{
-			fseek(pFile, 0, SEEK_END);
-			int iSize = ftell(pFile);
-			fseek(pFile, 0, SEEK_SET);
-			if (iSize <= 0)
-			{
-				fclose(pFile);
-				return 0;
-			}
+    if (!lpTexHandle)
+        return -3;
 
-			pBuffer = new char[iSize];
-			fread(pBuffer, iSize, 1, pFile);
-			fclose(pFile);
-			UINT uMipLevels = 0;
+    const int assetIndex = SummitTextureHandleIndex(lpTexHandle);
+    if (assetIndex < 0)
+        return -3;
 
-			if (MipMap = true)
+    if (!d3ddev)
+    {
+        SummitTextureMarkWaitingForDevice(lpTexHandle);
+        return 0;
+    }
 
-			{
-				char szFilePath[MAX_PATH] =
-				{
-					0 }
-				;
-				lstrcpy(szFilePath, lpTexHandle->Name);
-				const char * iDot = strrchr(szFilePath, '.');
-				if (iDot != NULL)
+    const std::string texturePath = lpTexHandle->Name;
+    if (SummitMissingTexturePaths.find(texturePath) != SummitMissingTexturePaths.end())
+    {
+        SummitTextureMarkPermanentFailure(lpTexHandle, "FILE_NOT_FOUND_CACHED");
+        return -1;
+    }
 
-				{
-					char szBaseFile[MAX_PATH], szFileExtension[MAX_PATH];
-					int iLenToDot = iDot - szFilePath;
+    if (!PathFileExists(lpTexHandle->Name))
+    {
+        const bool firstMissing = SummitMissingTexturePaths.insert(texturePath).second;
+        if (firstMissing)
+        {
+            FILE *f = NULL;
+            fopen_s(&f, "LOGS\\mingw_missing_texture_paths.txt", "a");
+            if (f)
+            {
+                fprintf(f, "%s\n", lpTexHandle->Name);
+                fclose(f);
+            }
+        }
+        SummitTextureMarkPermanentFailure(lpTexHandle, "FILE_NOT_FOUND");
+        return -1;
+    }
 
-					lstrcpy(szBaseFile, szFilePath);
-					szBaseFile[iLenToDot] = 0;
+    FILE *pFile = NULL;
+    fopen_s(&pFile, lpTexHandle->Name, "rb");
+    if (!pFile)
+    {
+        const bool permanent = SummitAssetRegistry.MarkTransientFailure(static_cast<std::size_t>(assetIndex));
+        if (permanent)
+            SummitLogTextureReject(lpTexHandle->Name, "OPEN_FAILED_RETRY_LIMIT", 0, 0);
+        return 0;
+    }
 
-					lstrcpy(szFileExtension, szBaseFile + iLenToDot + 1);
+    fseek(pFile, 0, SEEK_END);
+    const int iSize = ftell(pFile);
+    fseek(pFile, 0, SEEK_SET);
+    if (iSize <= 0)
+    {
+        fclose(pFile);
+        SummitTextureMarkPermanentFailure(lpTexHandle, "EMPTY_FILE");
+        return -3;
+    }
 
-					for (int i = 1; i <= 4; i++)
+    char *pBuffer = new (std::nothrow) char[iSize];
+    if (!pBuffer)
+    {
+        fclose(pFile);
+        const bool permanent = SummitAssetRegistry.MarkTransientFailure(static_cast<std::size_t>(assetIndex));
+        if (permanent)
+            SummitLogTextureReject(lpTexHandle->Name, "DECODE_BUFFER_OOM_RETRY_LIMIT", 0, 0);
+        return 0;
+    }
+    const size_t readCount = fread(pBuffer, iSize, 1, pFile);
+    fclose(pFile);
+    if (readCount != 1)
+    {
+        delete[] pBuffer;
+        const bool permanent = SummitAssetRegistry.MarkTransientFailure(static_cast<std::size_t>(assetIndex));
+        if (permanent)
+            SummitLogTextureReject(lpTexHandle->Name, "READ_FAILED_RETRY_LIMIT", 0, 0);
+        return 0;
+    }
 
-					{
-						char szBuffer[MAX_PATH];
-						wsprintf(szBuffer, "%s_mm%d.%s", szBaseFile, i, szFileExtension);
-						uMipLevels += PathFileExistsA(szBuffer) ? 1 : 0;
-					}
-				}
-			}
-			if (GetTextureFileType(lpTexHandle->Name) == smTEXFILETYPE_TGA)
+    // Preserve the authored mip lookup behavior; D3DX is still responsible for
+    // actual mip generation/import. The assignment bug in the legacy gate is fixed.
+    UINT uMipLevels = 0;
+    if (MipMap == true)
+    {
+        char szFilePath[MAX_PATH] = { 0 };
+        lstrcpy(szFilePath, lpTexHandle->Name);
+        const char *iDot = strrchr(szFilePath, '.');
+        if (iDot != NULL)
+        {
+            char szBaseFile[MAX_PATH] = { 0 };
+            char szFileExtension[MAX_PATH] = { 0 };
+            const int iLenToDot = static_cast<int>(iDot - szFilePath);
+            lstrcpy(szBaseFile, szFilePath);
+            szBaseFile[iLenToDot] = 0;
+            lstrcpy(szFileExtension, iDot + 1);
+            for (int i = 1; i <= 4; ++i)
+            {
+                char szBuffer[MAX_PATH] = { 0 };
+                wsprintf(szBuffer, "%s_mm%d.%s", szBaseFile, i, szFileExtension);
+                uMipLevels += PathFileExistsA(szBuffer) ? 1 : 0;
+            }
+        }
+    }
+    (void)uMipLevels;
 
-			{
-				if (DecryptTGA(pBuffer, iSize) == false)
+    const int fileType = GetTextureFileType(lpTexHandle->Name);
+    if (fileType == smTEXFILETYPE_TGA)
+    {
+        if (!DecryptTGA(pBuffer, iSize))
+        {
+            delete[] pBuffer;
+            SummitTextureMarkPermanentFailure(lpTexHandle, "INVALID_TGA_HEADER");
+            return -3;
+        }
+        lpTexHandle->MapOpacity = TRUE;
+    }
+    else if (fileType == smTEXFILETYPE_BMP)
+    {
+        if (!DecryptBMP(pBuffer, iSize))
+        {
+            delete[] pBuffer;
+            SummitTextureMarkPermanentFailure(lpTexHandle, "INVALID_BMP_HEADER");
+            return -3;
+        }
+        lpTexHandle->MapOpacity = FALSE;
+    }
+    else if (fileType == smTEXFILETYPE_JPG)
+    {
+        lpTexHandle->MapOpacity = FALSE;
+    }
+    else if (fileType == smTEXFILETYPE_PNG)
+    {
+        lpTexHandle->MapOpacity = TRUE;
+    }
 
-				{
-					delete[] pBuffer;
+    D3DXIMAGE_INFO imageInfo;
+    ZeroMemory(&imageInfo, sizeof(imageInfo));
+    if (FAILED(D3DXGetImageInfoFromFileInMemory(pBuffer, iSize, &imageInfo)))
+    {
+        delete[] pBuffer;
+        SummitTextureMarkPermanentFailure(lpTexHandle, "INVALID_IMAGE_INFO");
+        return -3;
+    }
 
-				}
-				lpTexHandle->MapOpacity = TRUE;
-			}
-			if (GetTextureFileType(lpTexHandle->Name) == smTEXFILETYPE_BMP)
+    lpTexHandle->Width = imageInfo.Width;
+    lpTexHandle->Height = imageInfo.Height;
 
-			{
-				if (DecryptBMP(pBuffer, iSize) == false)
+    using namespace summit::rendering::assets::v2;
+    AssetLoadPolicy runtimePolicy = SummitAssetRegistry.Policy();
+    if (!IsStructurallyValidSource(imageInfo.Width, imageInfo.Height, runtimePolicy))
+    {
+        delete[] pBuffer;
+        SummitTextureMarkPermanentFailure(lpTexHandle, "IMPLAUSIBLE_DIMENSIONS", imageInfo.Width, imageInfo.Height);
+        return -3;
+    }
 
-				{
-					delete[] pBuffer;
+    D3DCAPS9 caps;
+    ZeroMemory(&caps, sizeof(caps));
+    if (d3ddev && SUCCEEDED(d3ddev->GetDeviceCaps(&caps)))
+    {
+        const UINT deviceMax = caps.MaxTextureWidth < caps.MaxTextureHeight ? caps.MaxTextureWidth : caps.MaxTextureHeight;
+        if (deviceMax && runtimePolicy.maxRuntimeDimension > deviceMax)
+        {
+            runtimePolicy.maxRuntimeDimension = deviceMax;
+            runtimePolicy.maxRuntimePixels = static_cast<ULONGLONG>(deviceMax) * deviceMax;
+        }
+    }
 
-				}
-				lpTexHandle->MapOpacity = FALSE;
-			}
-			if (GetTextureFileType(lpTexHandle->Name) == smTEXFILETYPE_JPG)
+    unsigned qualityShift = TexturHalfSize > 0 ? static_cast<unsigned>(TexturHalfSize) : 0u;
+    if (qualityShift > 2u) qualityShift = 2u;
+    AssetTargetDimensions target = ComputeTargetDimensions(
+        imageInfo.Width, imageInfo.Height, runtimePolicy, qualityShift, true);
 
-			{
-				lpTexHandle->MapOpacity = FALSE;
-			}
-			if (GetTextureFileType(lpTexHandle->Name) == smTEXFILETYPE_PNG)
+    D3DXIMAGE_INFO residentInfo = imageInfo;
+    residentInfo.Width = target.width;
+    residentInfo.Height = target.height;
+    D3DFORMAT preferredFormat = SummitChooseLargeTextureFormat(lpTexHandle, residentInfo);
 
-			{
-				lpTexHandle->MapOpacity = TRUE;
-			}
-			D3DXIMAGE_INFO ImageInfo;
-			D3DXGetImageInfoFromFileInMemory(pBuffer, iSize, &ImageInfo);
-			lpTexHandle->Width = ImageInfo.Width;
-			lpTexHandle->Height = ImageInfo.Height;
+    ULONGLONG estimatedBytes = SummitEstimateSurfaceBytes(
+        target.width,
+        target.height,
+        preferredFormat == D3DFMT_FROM_FILE ? D3DFMT_A8R8G8B8 : preferredFormat);
 
-			if (FAILED(D3DXCreateTextureFromFileInMemoryEx(d3ddev, pBuffer, iSize, ImageInfo.Width, ImageInfo.Height, D3DX_FROM_FILE, 0, D3DFMT_FROM_FILE, D3DPOOL_MANAGED, D3DX_FILTER_POINT, D3DX_DEFAULT, 0xFFF0FFFF, &ImageInfo, NULL, &lpTexHandle->lpD3DTexture)))
+    // If the current working set leaves no room, evict LRU entries. If the
+    // single texture itself still cannot fit, progressively reduce its runtime
+    // size while preserving the enhanced source file on disk.
+    while (!SummitAssetEnsureBudget(estimatedBytes, static_cast<std::size_t>(assetIndex)) &&
+           (target.width > 512u || target.height > 512u))
+    {
+        target.width = target.width > 512u ? summit::rendering::assets::v2::AlignDown4(target.width / 2u) : target.width;
+        target.height = target.height > 512u ? summit::rendering::assets::v2::AlignDown4(target.height / 2u) : target.height;
+        residentInfo.Width = target.width;
+        residentInfo.Height = target.height;
+        preferredFormat = SummitChooseLargeTextureFormat(lpTexHandle, residentInfo);
+        estimatedBytes = SummitEstimateSurfaceBytes(
+            target.width,
+            target.height,
+            preferredFormat == D3DFMT_FROM_FILE ? D3DFMT_A8R8G8B8 : preferredFormat);
+        target.downscaled = true;
+    }
 
-			{
-				lpTexHandle->lpD3DTexture = NULL;
-			}
+    if (!SummitAssetEnsureBudget(estimatedBytes, static_cast<std::size_t>(assetIndex)))
+    {
+        delete[] pBuffer;
+        SummitTextureRecordCreateFailure(lpTexHandle, E_OUTOFMEMORY, imageInfo.Width, imageInfo.Height);
+        SummitLogTextureReject(lpTexHandle->Name, "RESIDENT_BUDGET_EXHAUSTED", target.width, target.height);
+        return 0;
+    }
 
-			delete[] pBuffer;
-		}
-	}
-	else
-	{
-		FILE *f = NULL;
-		fopen_s(&f, "LOGS\\mingw_missing_texture_paths.txt", "a");
-		if(f)
-		{
-			fprintf(f, "%s\n", lpTexHandle->Name);
-			fclose(f);
-		}
-	}
-	return TRUE;
+    if (target.downscaled)
+    {
+        char detail[128] = { 0 };
+        wsprintf(detail, "DOWNSCALE_%ux%u_TO_%ux%u", imageInfo.Width, imageInfo.Height, target.width, target.height);
+        SummitLogAssetEvent("ADAPT", lpTexHandle, estimatedBytes, detail);
+    }
+
+    HRESULT textureHr = E_FAIL;
+    if (preferredFormat != D3DFMT_FROM_FILE)
+    {
+        textureHr = D3DXCreateTextureFromFileInMemoryEx(
+            d3ddev,
+            pBuffer,
+            iSize,
+            target.width,
+            target.height,
+            1,
+            0,
+            preferredFormat,
+            D3DPOOL_MANAGED,
+            D3DX_FILTER_POINT,
+            D3DX_DEFAULT,
+            0xFFF0FFFF,
+            &imageInfo,
+            NULL,
+            &lpTexHandle->lpD3DTexture);
+        SummitLogLargeTexturePolicy(lpTexHandle->Name, residentInfo, preferredFormat, textureHr);
+    }
+
+    if (preferredFormat == D3DFMT_FROM_FILE || FAILED(textureHr))
+    {
+        if (lpTexHandle->lpD3DTexture)
+        {
+            lpTexHandle->lpD3DTexture->Release();
+            lpTexHandle->lpD3DTexture = NULL;
+        }
+
+        ULONGLONG fallbackBytes = SummitEstimateSurfaceBytes(target.width, target.height, D3DFMT_A8R8G8B8);
+        while (!SummitAssetEnsureBudget(fallbackBytes, static_cast<std::size_t>(assetIndex)) &&
+               (target.width > 512u || target.height > 512u))
+        {
+            target.width = target.width > 512u ? summit::rendering::assets::v2::AlignDown4(target.width / 2u) : target.width;
+            target.height = target.height > 512u ? summit::rendering::assets::v2::AlignDown4(target.height / 2u) : target.height;
+            fallbackBytes = SummitEstimateSurfaceBytes(target.width, target.height, D3DFMT_A8R8G8B8);
+            target.downscaled = true;
+        }
+
+        if (SummitAssetEnsureBudget(fallbackBytes, static_cast<std::size_t>(assetIndex)))
+        {
+            textureHr = D3DXCreateTextureFromFileInMemoryEx(
+                d3ddev,
+                pBuffer,
+                iSize,
+                target.width,
+                target.height,
+                D3DX_FROM_FILE,
+                0,
+                D3DFMT_FROM_FILE,
+                D3DPOOL_MANAGED,
+                D3DX_FILTER_POINT,
+                D3DX_DEFAULT,
+                0xFFF0FFFF,
+                &imageInfo,
+                NULL,
+                &lpTexHandle->lpD3DTexture);
+        }
+        else
+        {
+            textureHr = E_OUTOFMEMORY;
+        }
+    }
+
+    delete[] pBuffer;
+
+    if (FAILED(textureHr) || !lpTexHandle->lpD3DTexture)
+    {
+        lpTexHandle->lpD3DTexture = NULL;
+        SummitTextureRecordCreateFailure(lpTexHandle, textureHr, imageInfo.Width, imageInfo.Height);
+        return 0;
+    }
+
+    SummitTextureRecordCreateSuccess(lpTexHandle, imageInfo.Width, imageInfo.Height);
+    if (!SummitAssetEnsureBudget(0, static_cast<std::size_t>(assetIndex)))
+        SummitLogAssetEvent("BUDGET_OVERSHOOT", lpTexHandle, SummitAssetRegistry.Record(static_cast<std::size_t>(assetIndex)).residentBytes, "no_evictable_victim");
+    return TRUE;
 }
 
 

@@ -4,6 +4,7 @@
 #include <cstring>
 
 #include "formats/model_config/ModelConfigContext.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 
 namespace summit
 {
@@ -22,10 +23,9 @@ inline int ResolveLegacyItemCategory(const char *name)
 
 inline std::uint32_t ResolveLegacyJobMask(const char *name)
 {
-	for(int index = 0; BitMaskJobNames[index].dwBitMask; ++index)
-		if(lstrcmpi(name, BitMaskJobNames[index].szName) == 0)
-			return static_cast<std::uint32_t>(BitMaskJobNames[index].dwBitMask);
-	return 0;
+	std::uint32_t mask = 0u;
+	return name && gameplay::classes::DefaultClassService().TryMotionJobMaskByContentToken(name, mask)
+		? mask : 0u;
 }
 
 inline int ResolveLegacySkillIndex(const char *name)

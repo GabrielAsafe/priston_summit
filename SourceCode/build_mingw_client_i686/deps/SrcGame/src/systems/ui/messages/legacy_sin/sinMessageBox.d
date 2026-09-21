@@ -1,6 +1,9 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/ui/messages/legacy_sin/sinMessageBox.o: \
  SrcGame/src/systems/ui/messages/legacy_sin/sinMessageBox.cpp \
- Shared/opcodes.h SrcGame/src/compat/legacy/sin/sinLinkHeader.h \
+ Shared/opcodes.h Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ SrcGame/src/compat/legacy/sin/sinLinkHeader.h \
  SrcGame/src/systems/rendering/legacy_3d/smd3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
  Dependency/DirectX9/Include/d3d9.h \
@@ -141,8 +144,12 @@
  SrcGame/src/systems/ui/confirmation/ConfirmationBox.h \
  SrcGame/src/systems/commerce/coin_shop/CoinShop.h Shared/skillsPacket.h \
  Shared/items.h SrcGame/src/systems/gameplay/quests/ui/cQuestWindow.h \
- SrcGame/src/systems/gameplay/events/hells_gate/cHellsGate.h
+ SrcGame/src/systems/gameplay/events/hells_gate/cHellsGate.h \
+ SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h
 Shared/opcodes.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
@@ -289,3 +296,4 @@ Shared/skillsPacket.h:
 Shared/items.h:
 SrcGame/src/systems/gameplay/quests/ui/cQuestWindow.h:
 SrcGame/src/systems/gameplay/events/hells_gate/cHellsGate.h:
+SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h:

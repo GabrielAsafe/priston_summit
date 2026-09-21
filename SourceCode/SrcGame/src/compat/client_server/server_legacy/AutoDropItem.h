@@ -1,5 +1,7 @@
+static const int LEGACY_LOW_LEVEL_PRESENT_ITEM_ROW_COUNT = 8;
 
-DWORD rsPresentItem_LevelType_1[8][PRESENTITEM_LEVEL_MAX][2] = {
+
+DWORD rsPresentItem_LevelType_1[LEGACY_LOW_LEVEL_PRESENT_ITEM_ROW_COUNT][PRESENTITEM_LEVEL_MAX][2] = {
 	{
 		{	0,	0				},
 		{	12,	sinWA1 | sin05	},
@@ -50,7 +52,7 @@ DWORD rsPresentItem_LevelType_1[8][PRESENTITEM_LEVEL_MAX][2] = {
 	}
 };
 
-DWORD rsPresentItem_LevelType_2[8][PRESENTITEM_LEVEL_MAX][2] = {
+DWORD rsPresentItem_LevelType_2[LEGACY_LOW_LEVEL_PRESENT_ITEM_ROW_COUNT][PRESENTITEM_LEVEL_MAX][2] = {
 	{
 		{	0,	0				},
 		{	8,	sinWA1 | sin04	},

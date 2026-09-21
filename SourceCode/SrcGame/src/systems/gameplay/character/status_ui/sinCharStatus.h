@@ -97,8 +97,6 @@ extern int OldLevel;
 extern int sinLevelPoint;
 extern int OldLevelTemp;
 
-extern  int TempNewCharacterInit[4][6];
-extern  int MorNewCharacterInit[4][6];
 extern  sDISPLAYSTATE sDisplayState[10];
 
 extern  int ChatKindIndexNum;

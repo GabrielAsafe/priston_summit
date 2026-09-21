@@ -1,6 +1,9 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_server_i686/objects/SrcServer/src/systems/world/field/field.o: \
  SrcServer/src/systems/world/field/field.cpp \
  Shared/world/field/field_legacy_server.inl \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcServer/src/systems/rendering/legacy_3d/smd3d.h \
  SrcServer/src/systems/rendering/legacy_3d/smDsx.h \
  SrcServer/src/systems/rendering/legacy_3d/smSin.h \
@@ -116,6 +119,9 @@
  Shared/persistence/database/Database_sqlite_server.h \
  SrcServer/src/systems/world/field/field.h
 Shared/world/field/field_legacy_server.inl:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcServer/src/systems/rendering/legacy_3d/smd3d.h:
 SrcServer/src/systems/rendering/legacy_3d/smDsx.h:
 SrcServer/src/systems/rendering/legacy_3d/smSin.h:

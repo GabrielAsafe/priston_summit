@@ -20,7 +20,7 @@
 #include <process.h>
 #include "systems/network/transport/legacy/smwsock.h"
 
-#ifdef __MINGW32__
+#if defined(__MINGW32__) && defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
 static void MingwSocketTrace(const char *format, ...)
 {
     FILE *fp = fopen("LOGS\\mingw_socket_recv.txt", "a");
@@ -35,6 +35,8 @@ static void MingwSocketTrace(const char *format, ...)
     fprintf(fp, "\n");
     fclose(fp);
 }
+#else
+#define MingwSocketTrace(...) do { } while(0)
 #endif
 
 #pragma comment( lib, "wsock32.lib" )
@@ -326,7 +328,7 @@ DWORD WINAPI smTransRecvThreadProc(void *pInfo)
 
 				SockInfo->smMySock->dwLastRecvTime = GetCurrentTime();
 				//SendMessage(hMsgWnd, SWM_RECVSUCCESS, (WPARAM)SockInfo, 0);
-				#ifdef __MINGW32__
+				#if defined(__MINGW32__) && defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
 				MingwSocketTrace(
 					"BEFORE SendMessage hwnd=%p msg=0x%X SockInfo=%p RecvLen=%d code=0x%08X",
 					(void *)hMsgWnd,
@@ -339,7 +341,7 @@ DWORD WINAPI smTransRecvThreadProc(void *pInfo)
 				LRESULT mingwSendResult =
 					SendMessage(hMsgWnd, SWM_RECVSUCCESS, (WPARAM)SockInfo, 0);
 
-				#ifdef __MINGW32__
+				#if defined(__MINGW32__) && defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
 				MingwSocketTrace(
 					"AFTER SendMessage result=%lld",
 					(long long)mingwSendResult);
@@ -1374,7 +1376,7 @@ MingwSocketTrace(
 				SockInfo->smMySock->dwLastRecvTime = GetCurrentTime();
 				
 				//SendMessage(hMsgWnd, SWM_RECVSUCCESS, (WPARAM)SockInfo, 0);
-				#ifdef __MINGW32__
+				#if defined(__MINGW32__) && defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
 				MingwSocketTrace(
 					"BEFORE SendMessage hwnd=%p msg=0x%X SockInfo=%p RecvLen=%d code=0x%08X",
 					(void *)hMsgWnd,
@@ -1387,7 +1389,7 @@ MingwSocketTrace(
 				LRESULT mingwSendResult =
 					SendMessage(hMsgWnd, SWM_RECVSUCCESS, (WPARAM)SockInfo, 0);
 
-				#ifdef __MINGW32__
+				#if defined(__MINGW32__) && defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
 				MingwSocketTrace(
 					"AFTER SendMessage result=%lld",
 					(long long)mingwSendResult);

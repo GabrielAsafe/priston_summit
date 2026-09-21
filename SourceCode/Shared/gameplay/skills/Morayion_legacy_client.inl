@@ -1,6 +1,8 @@
 
 
 #include "compat/legacy/sin/sinLinkHeader.h"
+#include "gameplay/classes/v2/services/ClassService.h"
+#include <stdio.h>
 
 
 
@@ -68,19 +70,13 @@ int sinCheckSkillUseOk(sSKILL *lpSkill)
 #define  CHAR_SKILL_MASK 0xFF000000
 
 
-	int   CharCode[8] = { JOBCODE_MECHANICIAN, JOBCODE_FIGHTER, JOBCODE_ARCHER, JOBCODE_PIKEMAN, JOBCODE_KNIGHT, JOBCODE_ATALANTA, JOBCODE_PRIESTESS, JOBCODE_MAGICIAN };
-	DWORD CharSkillCode[8] = { GROUP_MECHANICIAN,GROUP_FIGHTER ,  GROUP_ARCHER,GROUP_PIKEMAN,GROUP_KNIGHT,GROUP_ATALANTA,GROUP_PRIESTESS,GROUP_MAGICIAN };
+	std::uint32_t classSkillGroup = 0u;
+	if(!gameplay::classes::DefaultClassService().TryLegacySkillGroupCode(
+			sinChar->JOB_CODE, classSkillGroup))
+		return FALSE;
 
-	for(int j = 0; j < 8; j++)
-	{
-		if(CharCode[j] == sinChar->JOB_CODE)
-		{
-			if((lpSkill->CODE & CHAR_SKILL_MASK) != CharSkillCode[j])
-			{
-				return FALSE;
-			}
-		}
-	}
+	if((lpSkill->CODE & CHAR_SKILL_MASK) != static_cast<DWORD>(classSkillGroup))
+		return FALSE;
 
 
 

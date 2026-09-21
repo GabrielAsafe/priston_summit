@@ -12,6 +12,8 @@
 
 
 
+#include "gameplay/classes/v2/services/ClassService.h"
+
 #ifdef _XTRAP_GUARD_4_CLIENT 
 #include "../XTrapSrcD5/ClientExt/XTrap4ClientExt1.h"	
 #endif
@@ -2989,90 +2991,34 @@ void cINVENTORY::RButtonDown(int x, int y)
 				}
 			}
 
+const gameplay::classes::ClassService &classService = gameplay::classes::DefaultClassService();
+			const bool isFemale = classService.IsGender(sinChar->JOB_CODE, gameplay::classes::CharacterGender::Female);
+			const bool isMale = classService.IsGender(sinChar->JOB_CODE, gameplay::classes::CharacterGender::Male);
+			const DWORD chocolateCode = InvenItem[SelectInvenItemIndex - 1].CODE & sinITEM_MASK3;
+
 #ifdef _LANGUAGE_ENGLISH
-			if((InvenItem[SelectInvenItemIndex - 1].CODE &sinITEM_MASK3) == sin01)
+			if(chocolateCode == sin01)
 			{
-				switch(sinChar->JOB_CODE)
-				{
-				case JOBCODE_MECHANICIAN:
-				case JOBCODE_FIGHTER:
-				case JOBCODE_PIKEMAN:
-				case JOBCODE_KNIGHT:
-				case JOBCODE_MAGICIAN:
-					cMessageBox.ShowMessage(MESSAGE_NOT_USE_MALE);
-
-					break;
-				case JOBCODE_ARCHER:
-				case JOBCODE_ATALANTA:
-				case JOBCODE_PRIESTESS:
-					UseFlag2 = 1;
-					break;
-				}
+				if(isFemale) UseFlag2 = 1;
+				else if(isMale) cMessageBox.ShowMessage(MESSAGE_NOT_USE_MALE);
 			}
-			else if((InvenItem[SelectInvenItemIndex - 1].CODE &sinITEM_MASK3) == sin02)
+			else if(chocolateCode == sin02)
 			{
-				switch(sinChar->JOB_CODE)
-				{
-				case JOBCODE_ARCHER:
-				case JOBCODE_ATALANTA:
-				case JOBCODE_PRIESTESS:
-					cMessageBox.ShowMessage(MESSAGE_NOT_USE_FEMALE);
-
-					break;
-				case JOBCODE_MECHANICIAN:
-				case JOBCODE_FIGHTER:
-				case JOBCODE_PIKEMAN:
-				case JOBCODE_KNIGHT:
-				case JOBCODE_MAGICIAN:
-					UseFlag2 = 1;
-					break;
-				}
+				if(isMale) UseFlag2 = 1;
+				else if(isFemale) cMessageBox.ShowMessage(MESSAGE_NOT_USE_FEMALE);
 			}
 #else
-			if((InvenItem[SelectInvenItemIndex - 1].CODE &sinITEM_MASK3) == sin01 ||
-				(InvenItem[SelectInvenItemIndex - 1].CODE &sinITEM_MASK3) == sin02)
+			if(chocolateCode == sin01 || chocolateCode == sin02)
 			{
-				switch(sinChar->JOB_CODE)
-				{
-				case JOBCODE_ARCHER:
-				case JOBCODE_ATALANTA:
-				case JOBCODE_PRIESTESS:
-					cMessageBox.ShowMessage(MESSAGE_NOT_USE_FEMALE);
-
-					break;
-				case JOBCODE_MECHANICIAN:
-				case JOBCODE_FIGHTER:
-				case JOBCODE_PIKEMAN:
-				case JOBCODE_KNIGHT:
-				case JOBCODE_MAGICIAN:
-					UseFlag2 = 1;
-
-					break;
-				}
+				if(isMale) UseFlag2 = 1;
+				else if(isFemale) cMessageBox.ShowMessage(MESSAGE_NOT_USE_FEMALE);
 			}
 #endif
-
-			if((InvenItem[SelectInvenItemIndex - 1].CODE &sinITEM_MASK3) == sin03 ||
-				(InvenItem[SelectInvenItemIndex - 1].CODE &sinITEM_MASK3) == sin04)
+			// Chocolate variants restricted by the class gender profile.
+			if(chocolateCode == sin03 || chocolateCode == sin04)
 			{
-				switch(sinChar->JOB_CODE)
-				{
-				case JOBCODE_ARCHER:
-				case JOBCODE_ATALANTA:
-				case JOBCODE_PRIESTESS:
-					UseFlag2 = 1;
-
-					break;
-				case JOBCODE_MECHANICIAN:
-				case JOBCODE_FIGHTER:
-				case JOBCODE_PIKEMAN:
-				case JOBCODE_KNIGHT:
-				case JOBCODE_MAGICIAN:
-					cMessageBox.ShowMessage(MESSAGE_NOT_USE_MALE);
-					break;
-
-				}
-
+				if(isFemale) UseFlag2 = 1;
+				else if(isMale) cMessageBox.ShowMessage(MESSAGE_NOT_USE_MALE);
 			}
 
 
@@ -5344,7 +5290,7 @@ int cINVENTORY::CharOnlySetItem(sITEM *pItem)
 {
 
 
-	if(sinChar->JOB_CODE == JOBCODE_PRIESTESS || sinChar->JOB_CODE == JOBCODE_ATALANTA || sinChar->JOB_CODE == JOBCODE_ARCHER)
+	if(gameplay::classes::DefaultClassService().IsGender(sinChar->JOB_CODE, gameplay::classes::CharacterGender::Female))
 	{
 		if((pItem->sItemInfo.CODE & sinITEM_MASK2) == sinDA1 || (pItem->sItemInfo.CODE & sinITEM_MASK2) == sinDA2)
 		{
@@ -5378,7 +5324,8 @@ int cINVENTORY::CharOnlySetItem(sITEM *pItem)
 	}
 
 
-	if(sinChar->JOB_CODE == JOBCODE_MAGICIAN || sinChar->JOB_CODE == JOBCODE_PRIESTESS)
+	if(gameplay::classes::DefaultClassService().HasCapability(
+		sinChar->JOB_CODE, gameplay::classes::ClassCapability::Caster))
 	{
 		if((pItem->sItemInfo.CODE & sinITEM_MASK2) == sinDA1)
 			pItem->sItemInfo.NotUseFlag = 1;
@@ -5648,34 +5595,33 @@ int cINVENTORY::DrawInvenText()
 
 int cINVENTORY::SearchJobAndSetting()
 {
-	int cnt;
-
 	JobName[0] = 0;
 
-	cnt = 0;
-
-
-	while(1)
+	const gameplay::classes::ClassService& classService = gameplay::classes::DefaultClassService();
+	gameplay::classes::CharacterFormulaProfile formula;
+	std::uint32_t jobBitCode = 0u;
+	if(!classService.TryFormula(sinChar->JOB_CODE, formula) ||
+	   !classService.TryJobBitCode(sinChar->JOB_CODE, jobBitCode))
 	{
-		if(JobDataBase[cnt].JobCode == 0) break;
-		if(JobDataBase[cnt].JobCode == sinChar->JOB_CODE)
-		{
-			sinJobList = GetJobDataCode(sinChar->JOB_CODE, sinChar->ChangeJob);
-			strcpy_s(JobName, sinJobList->szName2);
-			sinChar->JobBitMask = JobDataBase[cnt].JobBitCode;
-			sinChar->LifeFunction = JobDataBase[cnt].LifeFunction;
-			sinChar->ManaFunction = JobDataBase[cnt].ManaFunction;
-			sinChar->StaminaFunction = JobDataBase[cnt].StaminaFunction;
-			sinDamageFunction[0] = JobDataBase[cnt].DamageFunction[0];
-			sinDamageFunction[1] = JobDataBase[cnt].DamageFunction[1];
-			sinDamageFunction[2] = JobDataBase[cnt].DamageFunction[2];
-
-			break;
-		}
-		cnt++;
+		// Unknown/disabled classes must not silently inherit a legacy formula.
+		return FALSE;
 	}
-	return TRUE;
 
+	// GetJobDataCode remains a localization bridge while names are still served
+	// by the legacy language tables. Gameplay values come from Class V2.
+	sinJobList = GetJobDataCode(sinChar->JOB_CODE, sinChar->ChangeJob);
+	if(sinJobList)
+		strcpy_s(JobName, sinJobList->szName2);
+
+	sinChar->JobBitMask = static_cast<DWORD>(jobBitCode);
+	sinChar->LifeFunction = formula.lifeFunction;
+	sinChar->ManaFunction = formula.manaFunction;
+	sinChar->StaminaFunction = formula.staminaFunction;
+	sinDamageFunction[0] = formula.damageFunction[0];
+	sinDamageFunction[1] = formula.damageFunction[1];
+	sinDamageFunction[2] = formula.damageFunction[2];
+
+	return TRUE;
 }
 
 
@@ -6454,54 +6400,16 @@ int cINVENTORY::SetItemToChar(int CheckHackFlag)
 	}
 
 
-	switch(sinChar->JOB_CODE)
+	if(sInven[0].ItemIndex)
 	{
-	case JOBCODE_FIGHTER:
-		if(sinWA1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
+		const sITEMINFO &equippedWeapon = InvenItem[sInven[0].ItemIndex - 1].sItemInfo;
+		if(gameplay::classes::DefaultClassService().HasWeaponAffinity(
+			sinChar->JOB_CODE,
+			equippedWeapon.CODE & sinITEM_MASK2,
+			equippedWeapon.JobCodeMask,
+			equippedWeapon.UniqueItem,
+			sinChar->JobBitMask))
 			sinCharItemDamage = sinChar->Level / 6;
-		break;
-
-	case JOBCODE_MECHANICIAN:
-		if(sInven[0].ItemIndex)
-		{
-			if(sinChar->JobBitMask & InvenItem[sInven[0].ItemIndex - 1].sItemInfo.JobCodeMask)
-				sinCharItemDamage = sinChar->Level / 6;
-
-			if(InvenItem[sInven[0].ItemIndex - 1].sItemInfo.UniqueItem == 2)
-				sinCharItemDamage = sinChar->Level / 6;
-		}
-		break;
-
-	case JOBCODE_ARCHER:
-		if(sinWS1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
-			sinCharItemDamage = sinChar->Level / 6;
-		break;
-
-	case JOBCODE_PIKEMAN:
-		if(sinWP1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
-			sinCharItemDamage = sinChar->Level / 6;
-		break;
-
-	case JOBCODE_KNIGHT:
-		if(sinWS2 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
-			sinCharItemDamage = sinChar->Level / 6;
-		break;
-
-	case JOBCODE_ATALANTA:
-		if(sinWT1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
-			sinCharItemDamage = sinChar->Level / 6;
-		break;
-
-	case JOBCODE_PRIESTESS:
-		if(sinWM1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
-			sinCharItemDamage = sinChar->Level / 6;
-		break;
-
-	case JOBCODE_MAGICIAN:
-		if(sinWM1 == (cInvenTory.InvenItem[sInven[0].ItemIndex - 1].CODE&sinITEM_MASK2))
-			sinCharItemDamage = sinChar->Level / 6;
-		break;
-
 	}
 	int TempChangeDamageFlag = 0;
 	int TempChangeAbsorbFlag = 0;
@@ -8919,8 +8827,6 @@ int cINVENTORY::CheckDamage()
 
 	int i = 0, j = 0, k = 0, t = 0;
 
-	DWORD WeaponCode[7] = { sinWA1,sinWS1,sinWP1,sinWS2,sinWT1,sinWM1,sinWM1 };
-	int   CharCode[7] = { JOBCODE_FIGHTER, JOBCODE_ARCHER, JOBCODE_PIKEMAN, JOBCODE_KNIGHT, JOBCODE_ATALANTA, JOBCODE_PRIESTESS, JOBCODE_MAGICIAN };
 
 	sITEM *pItem = 0;
 	pItem = new sITEM;
@@ -9018,25 +8924,15 @@ int cINVENTORY::CheckDamage()
 			}
 
 
-			for(j = 0; j < 7; j++)
+			if(gameplay::classes::DefaultClassService().HasWeaponAffinity(
+				sinChar->JOB_CODE,
+				pItem->sItemInfo.CODE & sinITEM_MASK2,
+				pItem->sItemInfo.JobCodeMask,
+				0, // CheckDamage historically did not apply Mechanician UniqueItem affinity here.
+				sinChar->JobBitMask))
 			{
-				if(CharCode[j] == sinChar->JOB_CODE)
-				{
-					if(WeaponCode[j] == (pItem->sItemInfo.CODE & sinITEM_MASK2))
-					{
-						SendDamage[0] += sinChar->Level / 6;
-						SendDamage[1] += sinChar->Level / 6;
-					}
-				}
-			}
-
-			if(sinChar->JOB_CODE == JOBCODE_MECHANICIAN)
-			{
-				if(sinChar->JobBitMask & pItem->sItemInfo.JobCodeMask)
-				{
-					SendDamage[0] += sinChar->Level / 6;
-					SendDamage[1] += sinChar->Level / 6;
-				}
+				SendDamage[0] += sinChar->Level / 6;
+				SendDamage[1] += sinChar->Level / 6;
 			}
 
 

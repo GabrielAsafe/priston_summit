@@ -116,8 +116,12 @@
  Shared/persistence/database/Database_sqlite_server.h \
  SrcServer/src/core/server/legacy_runtime/PartyMsg.h \
  SrcServer/src/systems/localization/locales/Brazil/b_PartyMsg.h \
- SrcServer/src/core/server/legacy_runtime/onserver.h modules/File/File.h \
- SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h
+ SrcServer/src/core/server/legacy_runtime/onserver.h \
+ SrcServer/src/systems/gameplay/companions/CompanionSystem.h \
+ Shared/gameplay/companions/CompanionProtocol.h modules/File/File.h \
+ SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h \
+ SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.h \
+ Shared/gameplay/events/v2/GameplayEventHub.h
 SrcServer/src/compat/server_build/server_compat_packets.h:
 SrcServer/src/systems/network/protocol/server/opcodes.h:
 SrcServer/src/platform/windows/resources/legacy_runtime/resource.h:
@@ -238,5 +242,9 @@ Shared/persistence/database/Database_sqlite_server.h:
 SrcServer/src/core/server/legacy_runtime/PartyMsg.h:
 SrcServer/src/systems/localization/locales/Brazil/b_PartyMsg.h:
 SrcServer/src/core/server/legacy_runtime/onserver.h:
+SrcServer/src/systems/gameplay/companions/CompanionSystem.h:
+Shared/gameplay/companions/CompanionProtocol.h:
 modules/File/File.h:
 SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h:
+SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.h:
+Shared/gameplay/events/v2/GameplayEventHub.h:

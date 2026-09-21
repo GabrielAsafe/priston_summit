@@ -1,7 +1,7 @@
 
 #include "systems/rendering/legacy_3d/smd3d.h"
 
-char DataDirectory[128];
+thread_local char DataDirectory[128];
 
 
 static int smMeshReload = TRUE;
@@ -26,8 +26,8 @@ struct smFCPOINT
 
 
 
-static char decode[256];
-static char line[256];
+static thread_local char decode[256];
+static thread_local char line[256];
 
 char *GetWord(char *q, char *p)
 {
@@ -104,7 +104,7 @@ char *SetDirectoryFromFile(char *filename)
 }
 
 
-char szChangeFileExt[64];
+thread_local char szChangeFileExt[64];
 
 
 char *ChangeFileExt(char *filename, char *FileExt)
@@ -136,9 +136,9 @@ char *ChangeFileExt(char *filename, char *FileExt)
 
 
 
-ASE_MATERIAL	aseMaterial[MATRIAL_MAX * 2];
+thread_local ASE_MATERIAL	aseMaterial[MATRIAL_MAX * 2];
 
-int	aseMaterialCnt;
+thread_local int	aseMaterialCnt;
 
 
 #define BS_SCRIPT_MAX		7
@@ -624,9 +624,9 @@ struct SLightMapRefInfo
 };
 
 #define					dMAX_LIGHT_MAP_REF					4000
-static int				s_bLightMapStage;
-static int				s_LightMapRefMax;
-static SLightMapRefInfo	s_LightMapRefBuff[dMAX_LIGHT_MAP_REF];
+static thread_local int				s_bLightMapStage;
+static thread_local int				s_LightMapRefMax;
+static thread_local SLightMapRefInfo	s_LightMapRefBuff[dMAX_LIGHT_MAP_REF];
 
 
 FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
@@ -1103,12 +1103,12 @@ FILE* ReadASE_LIGHTMAP_MATERIAL(FILE *fp, smMATERIAL_GROUP **MatGroup = 0)
 
 
 
-smPAT3D *smPhysique = 0;
+thread_local smPAT3D *smPhysique = 0;
 
-static smMATERIAL	*smMatPattern;
+static thread_local smMATERIAL	*smMatPattern;
 
 #define SCENE_TICKSPERFRAME		160
-int AseSceneLastFrame;
+thread_local int AseSceneLastFrame;
 
 FILE *ReadASE_GEOMOBJECT(FILE *fp, smOBJ3D *obj, char *szNodeName = 0)
 {

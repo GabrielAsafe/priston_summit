@@ -136,7 +136,11 @@
  SrcGame/src/systems/social/clan/tjclanDEF.h \
  SrcGame/src/systems/social/clan/tjclan.h \
  SrcGame/src/systems/social/clan/cE_CViewClanInfo.h \
- SrcGame/src/systems/social/clan/tjclanDEF.h
+ SrcGame/src/systems/social/clan/tjclanDEF.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
@@ -276,3 +280,7 @@ SrcGame/src/systems/social/clan/tjclanDEF.h:
 SrcGame/src/systems/social/clan/tjclan.h:
 SrcGame/src/systems/social/clan/cE_CViewClanInfo.h:
 SrcGame/src/systems/social/clan/tjclanDEF.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h:

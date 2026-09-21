@@ -1,5 +1,7 @@
 #pragma once
 
+#include <map>
+
 struct TRANS_ITEM;
 
 class CLootFilter
@@ -50,29 +52,31 @@ public:
 	bool getNonSpec() const { return bNonSpec; }
 	void setNonSpec(bool value) { bNonSpec = value; }
 
-	bool getFighter() const { return bFighter; }
-	void setFighter(bool value) { bFighter = value; }
+	// Generic class-specialization preference API.  Legacy named accessors remain
+	// as a compatibility facade for the current settings window/config file.
+	bool getClassSpec(int legacyJobCode) const
+	{
+		std::map<int, bool>::const_iterator it = classSpecs.find(legacyJobCode);
+		return it != classSpecs.end() && it->second;
+	}
+	void setClassSpec(int legacyJobCode, bool value) { classSpecs[legacyJobCode] = value; }
 
-	bool getMech() const { return bMech; }
-	void setMech(bool value) { bMech = value; }
-
-	bool getArcher() const { return bArcher; }
-	void setArcher(bool value) { bArcher = value; }
-
-	bool getPikeman() const { return bPikeman; }
-	void setPikeman(bool value) { bPikeman = value; }
-
-	bool getAtalanta() const { return bAtalanta; }
-	void setAtalanta(bool value) { bAtalanta = value; }
-
-	bool getKnight() const { return bKnight; }
-	void setKnight(bool value) { bKnight = value; }
-
-	bool getMagician() const { return bMagician; }
-	void setMagician(bool value) { bMagician = value; }
-
-	bool getPriestess() const { return bPriestess; }
-	void setPriestess(bool value) { bPriestess = value; }
+	bool getFighter() const { return getClassSpec(1); }
+	void setFighter(bool value) { setClassSpec(1, value); }
+	bool getMech() const { return getClassSpec(2); }
+	void setMech(bool value) { setClassSpec(2, value); }
+	bool getArcher() const { return getClassSpec(3); }
+	void setArcher(bool value) { setClassSpec(3, value); }
+	bool getPikeman() const { return getClassSpec(4); }
+	void setPikeman(bool value) { setClassSpec(4, value); }
+	bool getAtalanta() const { return getClassSpec(5); }
+	void setAtalanta(bool value) { setClassSpec(5, value); }
+	bool getKnight() const { return getClassSpec(6); }
+	void setKnight(bool value) { setClassSpec(6, value); }
+	bool getMagician() const { return getClassSpec(7); }
+	void setMagician(bool value) { setClassSpec(7, value); }
+	bool getPriestess() const { return getClassSpec(8); }
+	void setPriestess(bool value) { setClassSpec(8, value); }
 
 	bool Filter(TRANS_ITEM* pItem);
 
@@ -92,14 +96,7 @@ private:
 	bool bOffense;
 	bool bEverything;
 	bool bNonSpec;
-	bool bFighter;
-	bool bMech;
-	bool bArcher;
-	bool bPikeman;
-	bool bAtalanta;
-	bool bKnight;
-	bool bMagician;
-	bool bPriestess;
+	std::map<int, bool> classSpecs;
 };
 
 extern CLootFilter cLootFilter;

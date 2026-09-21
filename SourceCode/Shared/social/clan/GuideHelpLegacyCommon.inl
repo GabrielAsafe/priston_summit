@@ -300,7 +300,7 @@ void CGuideHelp::Main()
 				if(!bLButtonDown)
 				{
 					nPos = (i + nScl_Bar - 12);
-					if(sinChar->JOB_CODE < 5)
+					if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 					{
 						CheckLevel(g_LevelLabel[nLevelHelpCount - nPos - 1], sinChar->JOB_CODE);
 					}
@@ -958,7 +958,7 @@ void CGuideHelp::InitLevelHelpLabel()
 
 #define LEVELLABEL "./image/clanImage/Help/AutoHelp/LevelSubj.ini"
 
-	if(sinChar->JOB_CODE < 5)
+	if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 	{
 		GetPrivateProfileString("Level_1", "Subj", "Error", LevelHelp[0], 1024, LEVELLABEL);
 		GetPrivateProfileString("Level_2", "Subj", "Error", LevelHelp[1], 1024, LEVELLABEL);
@@ -1080,7 +1080,7 @@ void CGuideHelp::CheckLevel(int level)
 
 	if((level >= 25) && (level < 30))
 	{
-		if(sinChar->JOB_CODE < 5)
+		if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 		{
 			nLevelHelpCount = 17;
 		}
@@ -1091,7 +1091,7 @@ void CGuideHelp::CheckLevel(int level)
 	}
 	if((level >= 30) && (level < 40))
 	{
-		if(sinChar->JOB_CODE < 5)
+		if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 		{
 			nLevelHelpCount = 18;
 		}
@@ -1106,7 +1106,7 @@ void CGuideHelp::CheckLevel(int level)
 
 	if((level >= 40) && (level < 50))
 	{
-		if(sinChar->JOB_CODE < 5)
+		if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 		{
 			nLevelHelpCount = 20;
 		}
@@ -1117,7 +1117,7 @@ void CGuideHelp::CheckLevel(int level)
 	}
 	if((level >= 50) && (level < 55))
 	{
-		if(sinChar->JOB_CODE < 5)
+		if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 		{
 			nLevelHelpCount = 21;
 		}
@@ -1128,7 +1128,7 @@ void CGuideHelp::CheckLevel(int level)
 	}
 	if((level >= 55) && (level < 60))
 	{
-		if(sinChar->JOB_CODE < 5)
+		if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 		{
 			nLevelHelpCount = 22;
 		}
@@ -1139,7 +1139,7 @@ void CGuideHelp::CheckLevel(int level)
 	}
 	if((level >= 60) && (level < 65))
 	{
-		if(sinChar->JOB_CODE < 5)
+		if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 		{
 			nLevelHelpCount = 23;
 		}
@@ -1150,7 +1150,7 @@ void CGuideHelp::CheckLevel(int level)
 	}
 	if((level >= 65) && (level < 70))
 	{
-		if(sinChar->JOB_CODE < 5)
+		if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 		{
 			nLevelHelpCount = 24;
 		}
@@ -1163,7 +1163,7 @@ void CGuideHelp::CheckLevel(int level)
 
 	if((level >= 70) && (level < 75))
 	{
-		if(sinChar->JOB_CODE < 5)
+		if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 		{
 			nLevelHelpCount = 25;
 		}
@@ -1175,7 +1175,7 @@ void CGuideHelp::CheckLevel(int level)
 
 	if((level >= 75) && (level < 79))
 	{
-		if(sinChar->JOB_CODE < 5)
+		if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 		{
 			nLevelHelpCount = 26;
 		}
@@ -1190,7 +1190,7 @@ void CGuideHelp::CheckLevel(int level)
 
 	if(level >= 80)
 	{
-		if(sinChar->JOB_CODE < 5)
+		if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 		{
 			nLevelHelpCount = 28;
 		}

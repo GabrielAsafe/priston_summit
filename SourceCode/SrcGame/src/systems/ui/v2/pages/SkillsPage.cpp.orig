@@ -1,0 +1,362 @@
+#include "systems/ui/v2/pages/SkillsPage.h"
+
+#include <algorithm>
+#include <string>
+#include "systems/ui/v2/rendering/IUIRenderer.h"
+#include "systems/ui/v2/theme/UITheme.h"
+#include "systems/ui/v2/widgets/Button.h"
+#include "systems/ui/v2/widgets/TextLayout.h"
+#include "systems/ui/v2/widgets/DetailTextLayout.h"
+
+namespace ui::v2
+{
+namespace
+{
+constexpr int CardHeight = 50;
+constexpr int CardGapX = 6;
+constexpr int CardGapY = 7;
+constexpr int CardColumns = 3;
+constexpr int CardStartX = 14;
+constexpr int CardStartY = 70;
+constexpr int DetailLineHeight = 18;
+
+Color ToneColor(DetailLineTone tone)
+{
+    switch (tone)
+    {
+        case DetailLineTone::Muted: return UITheme::TextMuted;
+        case DetailLineTone::Accent: return UITheme::Accent;
+        case DetailLineTone::Positive: return UITheme::Positive;
+        case DetailLineTone::Danger: return UITheme::Danger;
+        case DetailLineTone::Header: return UITheme::Text;
+        case DetailLineTone::Normal:
+        default: return UITheme::Text;
+    }
+}
+
+void DrawBorder(IUIRenderer& r, const Rect& rect, Color color)
+{
+    r.DrawRect({rect.x, rect.y, rect.width, 1}, color);
+    r.DrawRect({rect.x, rect.y + rect.height - 1, rect.width, 1}, color);
+    r.DrawRect({rect.x, rect.y, 1, rect.height}, color);
+    r.DrawRect({rect.x + rect.width - 1, rect.y, 1, rect.height}, color);
+}
+}
+
+SkillsPage::SkillsPage(ISkillGateway& gateway, UIId id)
+    : Container(id), viewModel_(gateway)
+{
+    auto& upgrade = AddChild<Button>(220, "Aprimorar");
+    upgrade.SetOnClick([this](const UIEvent&) { viewModel_.UpgradeSelected(); RefreshDetails(); });
+    upgradeButton_ = &upgrade;
+
+    // Kept as compatibility widgets for old tests/layout IDs, but normal skill
+    // binding is now direct: left-click binds left, right-click binds right.
+    auto& left = AddChild<Button>(221, "Usar esquerda");
+    left.SetOnClick([this](const UIEvent&) { viewModel_.BindSelectedLeft(); });
+    left.SetVisible(false);
+    bindLeftButton_ = &left;
+
+    auto& right = AddChild<Button>(222, "Usar direita");
+    right.SetOnClick([this](const UIEvent&) { viewModel_.BindSelectedRight(); });
+    right.SetVisible(false);
+    bindRightButton_ = &right;
+
+    LayoutControls();
+    viewModel_.Refresh();
+}
+
+void SkillsPage::Update(float deltaSeconds)
+{
+    refreshAccumulator_ += deltaSeconds;
+    if (refreshAccumulator_ >= 0.15f)
+    {
+        refreshAccumulator_ = 0.0f;
+        viewModel_.Refresh();
+        if (viewModel_.SelectedIndex() >= 0)
+            RefreshDetails();
+    }
+
+    const SkillEntrySnapshot* selected = viewModel_.Selected();
+    upgradeButton_->SetEnabled(selected && selected->canUpgrade);
+    bindLeftButton_->SetEnabled(selected && selected->learned);
+    bindRightButton_->SetEnabled(selected && selected->learned);
+    bindLeftButton_->SetVisible(false);
+    bindRightButton_->SetVisible(false);
+    LayoutControls();
+    Container::Update(deltaSeconds);
+}
+
+Rect SkillsPage::DetailsRectLocal() const noexcept
+{
+    const int pageWidth = std::max(1, Bounds().width);
+    const int pageHeight = std::max(1, Bounds().height);
+    const int detailsWidth = std::clamp(pageWidth / 3, 230, 280);
+    const int x = std::max(450, pageWidth - detailsWidth - 14);
+    return {x, 70, std::max(210, pageWidth - x - 14), std::max(260, pageHeight - 84)};
+}
+
+void SkillsPage::LayoutControls()
+{
+    if (!upgradeButton_ || !bindLeftButton_ || !bindRightButton_)
+        return;
+    const Rect details = DetailsRectLocal();
+    const int buttonX = details.x + 8;
+    const int buttonWidth = std::max(120, details.width - 16);
+    upgradeButton_->SetBounds({buttonX, details.y + details.height - 38, buttonWidth, 30});
+    bindLeftButton_->SetBounds({buttonX, details.y + details.height + 100, buttonWidth, 30});
+    bindRightButton_->SetBounds({buttonX, details.y + details.height + 136, buttonWidth, 30});
+}
+
+Rect SkillsPage::SkillCardRect(std::size_t ordinal) const noexcept
+{
+    const Rect details = DetailsRectLocal();
+    const int availableWidth = std::max(3 * 120, details.x - CardStartX - 10);
+    const int cardWidth = std::max(120, (availableWidth - CardGapX * (CardColumns - 1)) / CardColumns);
+    const int column = static_cast<int>(ordinal) % CardColumns;
+    const int row = static_cast<int>(ordinal) / CardColumns;
+    return {CardStartX + column * (cardWidth + CardGapX), CardStartY + row * (CardHeight + CardGapY), cardWidth, CardHeight};
+}
+
+int SkillsPage::SkillAt(Point pointer) const noexcept
+{
+    const Rect global = GlobalBounds();
+    const Point local{pointer.x - global.x, pointer.y - global.y};
+    const auto& skills = viewModel_.Snapshot().skills;
+    for (std::size_t i = 0; i < skills.size(); ++i)
+    {
+        if (SkillCardRect(i).Contains(local))
+            return skills[i].index;
+    }
+    return -1;
+}
+
+void SkillsPage::RefreshDetails()
+{
+    const int selected = viewModel_.SelectedIndex();
+    if (selected < 0)
+    {
+        detailSkillIndex_ = -1;
+        detailLines_.clear();
+        detailScroll_ = 0;
+        return;
+    }
+
+    if (detailSkillIndex_ != selected)
+        detailScroll_ = 0;
+    detailSkillIndex_ = selected;
+    detailLines_ = viewModel_.DetailsFor(selected);
+    detailScroll_ = std::clamp(detailScroll_, 0, MaxDetailScroll());
+}
+
+int SkillsPage::MaxDetailScroll() const noexcept
+{
+    const Rect panel = DetailsRectLocal();
+    const int contentHeight = std::max(0, panel.height - 82);
+    const int contentWidth = std::max(24, panel.width - 20);
+    const auto rows = LayoutDetailRows(detailLines_, contentWidth);
+    const int totalHeight = static_cast<int>(rows.size()) * DetailLineHeight;
+    return std::max(0, totalHeight - contentHeight);
+}
+
+UIEventResult SkillsPage::OnEvent(const UIEvent& event)
+{
+    // CharacterWindow can resize/reposition this page without a dedicated
+    // layout notification. Recompute child control bounds before hit-testing
+    // so the upgrade button always matches the geometry being rendered.
+    LayoutControls();
+    const UIEventResult childResult = Container::OnEvent(event);
+    if (childResult != UIEventResult::Ignored)
+        return childResult;
+
+    const Rect root = GlobalBounds();
+    const Rect detailsLocal = DetailsRectLocal();
+    const Rect detailsGlobal{root.x + detailsLocal.x, root.y + detailsLocal.y,
+                             detailsLocal.width, detailsLocal.height};
+
+    if (event.type == UIEventType::Wheel && detailsGlobal.Contains(event.pointer))
+    {
+        const int direction = event.wheelDelta > 0 ? -1 : (event.wheelDelta < 0 ? 1 : 0);
+        detailScroll_ = std::clamp(detailScroll_ + direction * DetailLineHeight * 2, 0, MaxDetailScroll());
+        return UIEventResult::Handled;
+    }
+
+    // The scrollbar is not decorative: clicking its track jumps the legacy
+    // detail document to the corresponding position. Wheel input still works
+    // everywhere inside the detail pane.
+    if (event.type == UIEventType::PointerDown && event.button == MouseButton::Left)
+    {
+        const int maxScroll = MaxDetailScroll();
+        const Rect scrollTrack{detailsGlobal.x + detailsGlobal.width - 10,
+                               detailsGlobal.y + 34, 8, std::max(1, detailsGlobal.height - 82)};
+        if (maxScroll > 0 && scrollTrack.Contains(event.pointer))
+        {
+            const int relative = std::clamp(event.pointer.y - scrollTrack.y, 0, scrollTrack.height);
+            detailScroll_ = relative * maxScroll / std::max(1, scrollTrack.height);
+            return UIEventResult::Handled;
+        }
+    }
+
+    if (event.type == UIEventType::PointerMove)
+    {
+        hoveredIndex_ = SkillAt(event.pointer);
+        return HitTest(event.pointer) ? UIEventResult::Handled : UIEventResult::Ignored;
+    }
+
+    if (event.type == UIEventType::PointerDown && HitTest(event.pointer))
+    {
+        const int skillIndex = SkillAt(event.pointer);
+        if (skillIndex >= 0)
+        {
+            viewModel_.Select(skillIndex);
+            RefreshDetails();
+            // Mirror the classic interaction without an extra confirmation
+            // button: use the mouse side the player actually clicked, if the
+            // skill's USECODE allows that side.
+            if (event.button == MouseButton::Left)
+                viewModel_.BindSelectedLeft();
+            else if (event.button == MouseButton::Right)
+                viewModel_.BindSelectedRight();
+            return UIEventResult::Handled;
+        }
+    }
+
+    return HitTest(event.pointer) && event.IsPointerEvent() ? UIEventResult::Handled : UIEventResult::Ignored;
+}
+
+void SkillsPage::DrawSkillCard(UIRenderContext& context, const SkillEntrySnapshot& skill, std::size_t ordinal)
+{
+    Rect rect = SkillCardRect(ordinal);
+    const Rect root = GlobalBounds();
+    rect.x += root.x;
+    rect.y += root.y;
+
+    const bool selected = skill.index == viewModel_.SelectedIndex();
+    const bool hovered = skill.index == hoveredIndex_;
+    auto& r = context.Renderer();
+    r.DrawRect(rect, selected ? UITheme::SurfacePressed : (hovered ? UITheme::SurfaceHover : UITheme::Surface));
+
+    const Color edge = selected ? UITheme::Accent : UITheme::BorderSoft;
+    r.DrawRect({rect.x, rect.y, rect.width, 1}, edge);
+    r.DrawRect({rect.x, rect.y + rect.height - 1, rect.width, 1}, edge);
+
+    const Rect iconRect{rect.x + 6, rect.y + 7, 36, 36};
+    r.DrawRect(iconRect, UITheme::Slot);
+    if (skill.icon.IsValid())
+        r.DrawImage(skill.icon, iconRect, nullptr);
+
+    const Color nameColor = skill.unlocked ? UITheme::Text : UITheme::Disabled;
+    const std::string displayName = EllipsizeText(skill.name.empty() ? "Skill" : skill.name, rect.width - 58, 7);
+    r.DrawTextUtf8(FontHandle{}, displayName,
+               {rect.x + 50, rect.y + 5, rect.width - 58, 21}, TextStyle{nameColor, true, TextAlign::Left});
+    r.DrawTextUtf8(FontHandle{}, "Rank " + std::to_string(skill.rank) + "/10",
+               {rect.x + 50, rect.y + 27, 74, 18}, TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+
+    std::string state;
+    if (skill.leftSelected) state += "L";
+    if (skill.rightSelected) state += state.empty() ? "R" : "/R";
+    if (skill.shortcut > 0)
+        state += (state.empty() ? "F" : "  F") + std::to_string(skill.shortcut);
+    r.DrawTextUtf8(FontHandle{}, state, {rect.x + 124, rect.y + 27, rect.width - 132, 18},
+               TextStyle{UITheme::Accent, true, TextAlign::Right});
+}
+
+void SkillsPage::DrawDetails(UIRenderContext& context)
+{
+    const Rect root = GlobalBounds();
+    const Rect local = DetailsRectLocal();
+    const Rect panel{root.x + local.x, root.y + local.y, local.width, local.height};
+    auto& r = context.Renderer();
+
+    r.DrawRect(panel, UITheme::Surface);
+    DrawBorder(r, panel, UITheme::BorderSoft);
+    r.DrawTextUtf8(FontHandle{}, "DETALHES", {panel.x + 12, panel.y + 8, panel.width - 24, 20},
+               TextStyle{UITheme::TextMuted, true, TextAlign::Left});
+
+    const SkillEntrySnapshot* selected = viewModel_.Selected();
+    if (!selected)
+    {
+        r.DrawTextUtf8(FontHandle{}, "Selecione uma habilidade.", {panel.x + 12, panel.y + 44, panel.width - 24, 22},
+                   TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+        return;
+    }
+
+    const Rect content{panel.x + 10, panel.y + 34, panel.width - 20, panel.height - 82};
+    const auto rows = LayoutDetailRows(detailLines_, content.width);
+    r.PushClip(content);
+    int y = content.y - detailScroll_;
+    for (const auto& line : rows)
+    {
+        if (y + DetailLineHeight >= content.y && y <= content.y + content.height)
+        {
+            const Color color = ToneColor(line.tone);
+            const bool bold = line.tone == DetailLineTone::Header || line.tone == DetailLineTone::Positive;
+            const int rightWidth = line.right.empty() ? 0 : std::min(92, content.width / 3);
+            const int leftWidth = content.width - rightWidth - (rightWidth ? 6 : 0);
+            r.DrawTextUtf8(FontHandle{}, line.left,
+                           {content.x, y, leftWidth, DetailLineHeight},
+                           TextStyle{color, bold, TextAlign::Left});
+            if (!line.right.empty())
+                r.DrawTextUtf8(FontHandle{}, line.right,
+                               {content.x + leftWidth + 6, y, rightWidth, DetailLineHeight},
+                               TextStyle{UITheme::Accent, bold, TextAlign::Right});
+        }
+        y += DetailLineHeight;
+    }
+    r.PopClip();
+
+    const int maxScroll = MaxDetailScroll();
+    if (maxScroll > 0)
+    {
+        const Rect track{panel.x + panel.width - 6, content.y, 3, content.height};
+        r.DrawRect(track, UITheme::BorderSoft);
+        const int totalHeight = static_cast<int>(rows.size()) * DetailLineHeight;
+        const int thumbHeight = std::max(20, content.height * content.height / std::max(content.height, totalHeight));
+        const int thumbTravel = std::max(0, content.height - thumbHeight);
+        const int thumbY = content.y + (maxScroll ? detailScroll_ * thumbTravel / maxScroll : 0);
+        r.DrawRect({track.x, thumbY, track.width, thumbHeight}, UITheme::AccentMuted);
+    }
+
+    std::string binding = "Clique esquerdo = L   |   direito = R";
+    if (selected->leftSelected || selected->rightSelected)
+    {
+        binding += "   [";
+        if (selected->leftSelected) binding += "L";
+        if (selected->leftSelected && selected->rightSelected) binding += "/";
+        if (selected->rightSelected) binding += "R";
+        binding += "]";
+    }
+    r.DrawTextUtf8(FontHandle{}, binding,
+                   {panel.x + 10, panel.y + panel.height - 58, panel.width - 20, 18},
+                   TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+}
+
+void SkillsPage::OnRender(UIRenderContext& context)
+{
+    LayoutControls();
+    const Rect root = GlobalBounds();
+    auto& r = context.Renderer();
+    r.DrawRect(root, UITheme::WindowBg);
+
+    const auto& book = viewModel_.Snapshot();
+    if (!book.valid)
+    {
+        r.DrawTextUtf8(FontHandle{}, "Dados de habilidades indisponiveis.", {root.x + 20, root.y + 20, root.width - 40, 24},
+                   TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+        return;
+    }
+
+    r.DrawTextUtf8(FontHandle{}, "HABILIDADES", {root.x + 18, root.y + 18, 180, 24},
+               TextStyle{UITheme::Text, true, TextAlign::Left});
+    r.DrawTextUtf8(FontHandle{}, "Pontos: " + std::to_string(book.tier1Points) + "   T4: " + std::to_string(book.tier4Points) +
+                                     "   T5: " + std::to_string(book.tier5Points),
+               {root.x + 220, root.y + 18, 350, 24}, TextStyle{UITheme::Accent, true, TextAlign::Left});
+    r.DrawTextUtf8(FontHandle{}, "Clique esquerdo/direito seleciona e equipa automaticamente quando permitido.",
+               {root.x + 18, root.y + 44, std::max(240, DetailsRectLocal().x - 28), 20}, TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+
+    for (std::size_t i = 0; i < book.skills.size(); ++i)
+        DrawSkillCard(context, book.skills[i], i);
+
+    DrawDetails(context);
+}
+}

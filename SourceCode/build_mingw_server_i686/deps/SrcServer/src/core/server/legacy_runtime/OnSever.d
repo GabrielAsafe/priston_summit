@@ -122,12 +122,39 @@
  Shared/persistence/database/Database_sqlite_server.h \
  SrcServer/src/systems/commerce/coin_shop/CoinShop_T.h \
  SrcServer/src/systems/combat/skills/legacy/sinSkill_InfoIni.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ Shared/gameplay/classes/v2/legacy/LegacyClassOnboardingAdapter.h \
+ Shared/gameplay/classes/v2/legacy/LegacyClassCastleAdapter.h \
+ Shared/gameplay/commerce/legacy/LegacyClassCommerceAdapter.h \
+ Shared/gameplay/quests/legacy/LegacyClassQuestAdapter.h \
  SrcServer/src/systems/world/field/field.h \
  SrcServer/src/core/server/legacy_runtime/DllServer.h \
  SrcServer/src/systems/gameplay/events/server_legacy/SvrCaravan.h \
  SrcServer/src/systems/inventory/legacy/server_item_code_map.h \
  SrcServer/src/core/server/legacy_runtime/ClientFuncPos.h \
  SrcServer/src/core/server/legacy_runtime/onserver.h \
+ SrcServer/src/systems/gameplay/progression/v2/ProgressionRuntime.h \
+ Shared/gameplay/covenants/v2/CovenantService.h \
+ Shared/gameplay/conditions/v2/Condition.h \
+ Shared/gameplay/covenants/v2/CovenantEvents.h \
+ Shared/gameplay/covenants/v2/CovenantTypes.h \
+ Shared/gameplay/modifiers/v2/GameplayModifier.h \
+ Shared/gameplay/rewards/v2/Reward.h \
+ Shared/gameplay/covenants/v2/ICovenantRepository.h \
+ Shared/gameplay/events/v2/GameplayEventHub.h \
+ Shared/gameplay/reputation/v2/ReputationService.h \
+ Shared/gameplay/reputation/v2/IReputationRepository.h \
+ Shared/gameplay/reputation/v2/ReputationTypes.h \
+ Shared/gameplay/story/v2/StoryService.h \
+ Shared/gameplay/story/v2/IStoryRepository.h \
+ Shared/gameplay/story/v2/StoryTypes.h \
+ Shared/gameplay/story/v2/StoryEvents.h \
+ Shared/gameplay/progression/v2/ProgressionCustomHandlers.h \
+ Shared/gameplay/progression/v2/ProgressionPlayerRuntime.h \
+ Shared/gameplay/progression/v2/ProgressionSnapshot.h \
+ SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h \
  SrcServer/src/systems/combat/server_legacy/svr_Damage.h \
  Shared/gameplay/combat/svr_Damage_legacy_server.h \
  SrcServer/src/systems/combat/server_legacy/CRollHandler.h Shared/roll.h \
@@ -141,6 +168,9 @@
  SrcServer/src/systems/admin/game_masters/GameMasters.h \
  SrcServer/src/systems/combat/skills/server_support/SkillSub.h \
  SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h \
+ SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.h \
+ SrcServer/src/systems/gameplay/companions/CompanionSystem.h \
+ Shared/gameplay/companions/CompanionProtocol.h \
  SrcServer/src/systems/commerce/restoration/cRestaureHandler.h \
  SrcServer/src/systems/authentication/protocol/Login.h \
  SrcServer/src/systems/gameplay/loot/alerts/Alerta.h \
@@ -155,7 +185,8 @@
  Shared/gameplay/quests/SvrHaQuestLegacyCommon.inl \
  SrcServer/src/core/server/legacy_runtime/E_serverlog.h \
  SrcServer/src/systems/gameplay/events/server_legacy/BlessCastle.h \
- SrcServer/src/systems/gameplay/events/server_legacy/AutoDropItem.h
+ SrcServer/src/systems/gameplay/events/server_legacy/AutoDropItem.h \
+ Shared/gameplay/events/legacy/LegacyClassEquipmentKitAdapter.h
 Shared/server/legacy_runtime/OnSever_legacy_server.inl:
 modules/Helper/Utils/utils_logging.h:
 SrcServer/src/compat/server_build/server_compat_packets.h:
@@ -281,12 +312,39 @@ SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
 SrcServer/src/systems/commerce/coin_shop/CoinShop_T.h:
 SrcServer/src/systems/combat/skills/legacy/sinSkill_InfoIni.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+Shared/gameplay/classes/v2/legacy/LegacyClassOnboardingAdapter.h:
+Shared/gameplay/classes/v2/legacy/LegacyClassCastleAdapter.h:
+Shared/gameplay/commerce/legacy/LegacyClassCommerceAdapter.h:
+Shared/gameplay/quests/legacy/LegacyClassQuestAdapter.h:
 SrcServer/src/systems/world/field/field.h:
 SrcServer/src/core/server/legacy_runtime/DllServer.h:
 SrcServer/src/systems/gameplay/events/server_legacy/SvrCaravan.h:
 SrcServer/src/systems/inventory/legacy/server_item_code_map.h:
 SrcServer/src/core/server/legacy_runtime/ClientFuncPos.h:
 SrcServer/src/core/server/legacy_runtime/onserver.h:
+SrcServer/src/systems/gameplay/progression/v2/ProgressionRuntime.h:
+Shared/gameplay/covenants/v2/CovenantService.h:
+Shared/gameplay/conditions/v2/Condition.h:
+Shared/gameplay/covenants/v2/CovenantEvents.h:
+Shared/gameplay/covenants/v2/CovenantTypes.h:
+Shared/gameplay/modifiers/v2/GameplayModifier.h:
+Shared/gameplay/rewards/v2/Reward.h:
+Shared/gameplay/covenants/v2/ICovenantRepository.h:
+Shared/gameplay/events/v2/GameplayEventHub.h:
+Shared/gameplay/reputation/v2/ReputationService.h:
+Shared/gameplay/reputation/v2/IReputationRepository.h:
+Shared/gameplay/reputation/v2/ReputationTypes.h:
+Shared/gameplay/story/v2/StoryService.h:
+Shared/gameplay/story/v2/IStoryRepository.h:
+Shared/gameplay/story/v2/StoryTypes.h:
+Shared/gameplay/story/v2/StoryEvents.h:
+Shared/gameplay/progression/v2/ProgressionCustomHandlers.h:
+Shared/gameplay/progression/v2/ProgressionPlayerRuntime.h:
+Shared/gameplay/progression/v2/ProgressionSnapshot.h:
+SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h:
 SrcServer/src/systems/combat/server_legacy/svr_Damage.h:
 Shared/gameplay/combat/svr_Damage_legacy_server.h:
 SrcServer/src/systems/combat/server_legacy/CRollHandler.h:
@@ -301,6 +359,9 @@ SrcServer/src/systems/security/firewall/Firewall.h:
 SrcServer/src/systems/admin/game_masters/GameMasters.h:
 SrcServer/src/systems/combat/skills/server_support/SkillSub.h:
 SrcServer/src/systems/gameplay/quests/server/cQuestHandler.h:
+SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.h:
+SrcServer/src/systems/gameplay/companions/CompanionSystem.h:
+Shared/gameplay/companions/CompanionProtocol.h:
 SrcServer/src/systems/commerce/restoration/cRestaureHandler.h:
 SrcServer/src/systems/authentication/protocol/Login.h:
 SrcServer/src/systems/gameplay/loot/alerts/Alerta.h:
@@ -316,3 +377,4 @@ Shared/gameplay/quests/SvrHaQuestLegacyCommon.inl:
 SrcServer/src/core/server/legacy_runtime/E_serverlog.h:
 SrcServer/src/systems/gameplay/events/server_legacy/BlessCastle.h:
 SrcServer/src/systems/gameplay/events/server_legacy/AutoDropItem.h:
+Shared/gameplay/events/legacy/LegacyClassEquipmentKitAdapter.h:

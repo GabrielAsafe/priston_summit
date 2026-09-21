@@ -6,8 +6,10 @@ ROOT="$(pwd)"
 CXX="${CXX:-i686-w64-mingw32-g++}"
 WINDRES="${WINDRES:-i686-w64-mingw32-windres}"
 BUILD_DIR="$ROOT/build_mingw_client_i686"
+COMPILE_OK_MARKER="$BUILD_DIR/compile_success.ok"
 OBJ_DIR="$BUILD_DIR/objects"
 OBJ_LIST="$ROOT/object_files_client_mingw.txt"
+CPP_LIST="$ROOT/cpp_files_client_i686.txt"
 OUT_DIR="$ROOT/dist_mingw_client_i686"
 OUTPUT="$OUT_DIR/Game.exe"
 LOG="$ROOT/client_link_i686.log"
@@ -25,6 +27,14 @@ fi
 
 if ! command -v "$WINDRES" >/dev/null 2>&1; then
     echo "Erro: windres não encontrado: $WINDRES"
+    exit 1
+fi
+
+
+if [ ! -f "$COMPILE_OK_MARKER" ]; then
+    echo "Erro: a compilação completa não foi confirmada para esta árvore."
+    echo "Marcador ausente: $COMPILE_OK_MARKER"
+    echo "Corrija todos os erros de compile e execute o build novamente antes do link."
     exit 1
 fi
 
@@ -84,12 +94,28 @@ if [ "$TOTAL" -eq 0 ]; then
     exit 1
 fi
 
+# A lista de objetos contém apenas compilações bem-sucedidas. Não tente linkar
+# uma build parcial: isso transforma erros de compile em centenas de símbolos
+# indefinidos e mascara a causa real.
+if [ -s "$CPP_LIST" ]; then
+    EXPECTED_OBJECTS=$(grep -cve '^[[:space:]]*$' "$CPP_LIST" || true)
+    if [ "$TOTAL" -ne "$EXPECTED_OBJECTS" ]; then
+        echo "Erro: build parcial detectado antes do link."
+        echo "Fontes esperadas : $EXPECTED_OBJECTS"
+        echo "Objetos presentes: $TOTAL"
+        echo "Corrija a compilação e rode o clean build novamente."
+        exit 1
+    fi
+fi
+
 LDFLAGS=(
     -m32
     -mwindows
+    -pthread
     -Wl,--no-keep-memory
     -Wl,--gc-sections
     -Wl,--subsystem,windows
+    -Wl,--large-address-aware
 )
 
 if [ "$RELEASE" = "1" ]; then

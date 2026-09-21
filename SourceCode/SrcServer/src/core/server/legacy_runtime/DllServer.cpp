@@ -25,6 +25,7 @@
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/authentication/protocol/Login.h"
 #include "systems/persistence/database/core/Database.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 
 #define		BILLING_METER_RATE
 
@@ -2538,10 +2539,15 @@ int RecordLogSql(DWORD	dwRecCode, char *szIP, const char *lpUserID, const char *
 
 	LogSqlData[cnt].szRace[0] = 0;
 
-	if(JobCode <= 4 || JobCode == 9)
+	const gameplay::classes::ClassService &classService = gameplay::classes::DefaultClassService();
+	if(classService.IsInBrood(JobCode, gameplay::classes::brood::Tempskron))
 		strcpy_s(LogSqlData[cnt].szRace, "Tempskron");
-	else
+	else if(classService.IsInBrood(JobCode, gameplay::classes::brood::Morayion))
 		strcpy_s(LogSqlData[cnt].szRace, "Moryon");
+	else if(classService.IsInBrood(JobCode, gameplay::classes::brood::Sopphetio))
+		strcpy_s(LogSqlData[cnt].szRace, "Sopphetio");
+	else
+		strcpy_s(LogSqlData[cnt].szRace, "Unknown");
 
 	strcpy_s(LogSqlData[cnt].szIP, szIP);
 
@@ -2631,10 +2637,15 @@ int RecordGameLogSql(DWORD dwRecCode, char *szIP, const char *lpUserID, const ch
 
 	LogSqlData[cnt].szRace[0] = 0;
 
-	if(JobCode <= 4 || JobCode == 9)
+	const gameplay::classes::ClassService &classService = gameplay::classes::DefaultClassService();
+	if(classService.IsInBrood(JobCode, gameplay::classes::brood::Tempskron))
 		strcpy_s(LogSqlData[cnt].szRace, "Tempskron");
-	else
+	else if(classService.IsInBrood(JobCode, gameplay::classes::brood::Morayion))
 		strcpy_s(LogSqlData[cnt].szRace, "Moryon");
+	else if(classService.IsInBrood(JobCode, gameplay::classes::brood::Sopphetio))
+		strcpy_s(LogSqlData[cnt].szRace, "Sopphetio");
+	else
+		strcpy_s(LogSqlData[cnt].szRace, "Unknown");
 
 
 	if(szGuid)  strcpy_s(LogSqlData[cnt].szGuid, szGuid);

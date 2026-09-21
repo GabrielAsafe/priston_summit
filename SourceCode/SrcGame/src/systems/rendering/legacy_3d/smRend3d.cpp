@@ -3736,9 +3736,9 @@ int smRENDER3D::SetItem2PassD3DRendState(smMATERIAL *lpMaterial)
 
 
 			if(cnt == 0)
-				d3ddev->SetTexture(cnt, lpMaterial->smTexture[cnt]->lpD3DTexture);
+				d3ddev->SetTexture(cnt, AssetLoadV2GetResidentTexture(lpMaterial->smTexture[cnt]));
 			else
-				d3ddev->SetTexture(cnt, s_lpItem2PassTexHandle->lpD3DTexture);
+				d3ddev->SetTexture(cnt, AssetLoadV2GetResidentTexture(s_lpItem2PassTexHandle));
 
 
 			if(cnt == 0)
@@ -3886,7 +3886,7 @@ int smRENDER3D::SetD3DRendState(smMATERIAL *lpMaterial, int TexClip)
 			//if (TexClip == TRUE && lpMaterial->smTexture[cnt]->lpD3DTextureLarge)
 				//d3ddev->SetTexture(cnt, lpMaterial->smTexture[cnt]->lpD3DTextureLarge);
 			//else
-				d3ddev->SetTexture(cnt, lpMaterial->smTexture[cnt]->lpD3DTexture);
+				d3ddev->SetTexture(cnt, AssetLoadV2GetResidentTexture(lpMaterial->smTexture[cnt]));
 
 			if (lpMaterial->smTexture[cnt]->MapOpacity) {
 				MapOpacity += lpMaterial->smTexture[cnt]->MapOpacity;
@@ -3934,7 +3934,7 @@ int smRENDER3D::SetD3DRendState(smMATERIAL *lpMaterial, int TexClip)
 		else
 			cnt = lpMaterial->AnimationFrame;
 
-		d3ddev->SetTexture(0, lpMaterial->smAnimTexture[cnt]->lpD3DTexture);
+		d3ddev->SetTexture(0, AssetLoadV2GetResidentTexture(lpMaterial->smAnimTexture[cnt]));
 		MapOpacity += lpMaterial->smAnimTexture[cnt]->MapOpacity;
 
 		for (cnt = 1; cnt < 8; cnt++) {
@@ -4104,7 +4104,7 @@ int smRENDER3D::SetD3DRendStateOnlyAlpha(smMATERIAL *lpMaterial, int TexClip)
 			//if (TexClip == TRUE && lpMaterial->smTexture[cnt]->lpD3DTextureLarge)
 				//d3ddev->SetTexture(MapCnt, lpMaterial->smTexture[cnt]->lpD3DTextureLarge);
 			//else
-				d3ddev->SetTexture(MapCnt, lpMaterial->smTexture[cnt]->lpD3DTexture);
+				d3ddev->SetTexture(MapCnt, AssetLoadV2GetResidentTexture(lpMaterial->smTexture[cnt]));
 
 			MapCnt++;
 
@@ -4384,7 +4384,7 @@ int smRENDER3D::RenderD3D_OutLine(void)
 
 		if(lpMaterial->smTexture[0])
 		{
-			d3ddev->SetTexture(0, lpMaterial->smTexture[0]->lpD3DTexture);
+			d3ddev->SetTexture(0, AssetLoadV2GetResidentTexture(lpMaterial->smTexture[0]));
 
 			if(lpMaterial->smTexture[0]->MapOpacity)
 			{
@@ -4453,7 +4453,7 @@ int smRENDER3D::RenderD3D_OutLine(void)
 
 		if(lpMaterial->smTexture[0])
 		{
-			d3ddev->SetTexture(0, lpMaterial->smTexture[0]->lpD3DTexture);
+			d3ddev->SetTexture(0, AssetLoadV2GetResidentTexture(lpMaterial->smTexture[0]));
 
 			if(lpMaterial->smTexture[0]->MapOpacity)
 			{

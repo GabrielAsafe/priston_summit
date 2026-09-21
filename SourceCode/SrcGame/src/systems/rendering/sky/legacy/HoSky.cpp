@@ -3,6 +3,7 @@
 #include "systems/world/field/field.h"
 #include "systems/rendering/effects/particles/ho/HoNewParticleLinkHeader.h"
 #include "systems/configuration/client/Settings.h"
+#include "systems/rendering/sky/SkyStreamingV3.h"
 
 HoSky SkyBackGround;
 
@@ -13,28 +14,8 @@ void HoSkyDrawInfo::LoadRes()
 	for(unsigned index = 0; index < SkyResInfoList.size(); index++)
 	{
 		if(SkyResInfoList[index].stageSky == NULL)
-		{
-			char buffer[256];
-			strcpy(buffer, SkyResInfoList[index].resName.c_str());
-			smPAT3D *stageSky = smASE_Read(buffer);
-			if(stageSky)
-			{
-				stageSky->ZeroNormals();
-				for(int i = 0; i < stageSky->nObj3d; i++)
-				{
-					if(ClippingFlag)
-						stageSky->obj3d[i]->ClipStates = (SMCLIP_NEARZ | SMCLIP_LEFT | SMCLIP_RIGHT | SMCLIP_TOP | SMCLIP_BOTTOM);
-					else
-						stageSky->obj3d[i]->ClipStates = SMCLIP_NEARZ | SMCLIP_TOP;
-
-
-					stageSky->obj3d[i]->ColorEffect = FALSE;
-				}
-				stageSky->smMaterialGroup->ReadTextures();
-				SkyResInfoList[index].stageSky = stageSky;
-
-			}
-		}
+			SummitRequestSkyModelV3(&SkyResInfoList[index],
+				SkyResInfoList[index].resName.c_str(), ClippingFlag != FALSE);
 	}
 }
 
@@ -42,6 +23,7 @@ void HoSkyDrawInfo::DestroyRes()
 {
 	for(unsigned index = 0; index < SkyResInfoList.size(); index++)
 	{
+		SummitCancelSkyModelV3(&SkyResInfoList[index]);
 		if(SkyResInfoList[index].stageSky != NULL)
 		{
 			delete SkyResInfoList[index].stageSky;

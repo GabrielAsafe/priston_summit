@@ -1,10 +1,18 @@
 #include "systems/rendering/effects/legacy_new/core/HoEffectResMgr.h"
 HoEffectResTexture::HoEffectResTexture()
+    : m_iMatNum(-1)
 {
 }
 
 HoEffectResTexture::~HoEffectResTexture()
 {
+#ifndef _SERVER
+    if(m_iMatNum >= 0 && smMaterialGroup)
+    {
+        AssetLoadV2ReleaseMaterial(smMaterialGroup, m_iMatNum);
+        m_iMatNum = -1;
+    }
+#endif
 }
 
 bool HoEffectResTexture::LoadingRes(const std::string &fileName)
@@ -13,7 +21,13 @@ bool HoEffectResTexture::LoadingRes(const std::string &fileName)
     strcpy(tempBuffer, fileName.c_str());
 
     m_iMatNum = CreateTextureMaterial(tempBuffer, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+    if(m_iMatNum < 0 || !smMaterialGroup)
+        return false;
+#ifndef _SERVER
+    AssetLoadV2ReadMaterialGroup(smMaterialGroup, SMASSET_OWNER_EFFECT);
+#else
     smMaterialGroup->ReadTextures();
+#endif
 
     return true;
 }
@@ -57,7 +71,11 @@ bool HoEffectResMesh::LoadingRes(const std::string &meshName)
 
     if(m_Mesh->smMaterialGroup)
     {
+#ifndef _SERVER
+        AssetLoadV2ReadMaterialGroup(m_Mesh->smMaterialGroup, SMASSET_OWNER_EFFECT);
+#else
         m_Mesh->smMaterialGroup->ReadTextures();
+#endif
         int matCount = m_Mesh->smMaterialGroup->MaterialCount;
         for(int i = 0; i < matCount; i++)
         {
@@ -103,7 +121,11 @@ bool HoEffectResMesh::LoadingRes(const std::string &meshName, const std::string 
 
     if(m_Mesh->smMaterialGroup)
     {
+#ifndef _SERVER
+        AssetLoadV2ReadMaterialGroup(m_Mesh->smMaterialGroup, SMASSET_OWNER_EFFECT);
+#else
         m_Mesh->smMaterialGroup->ReadTextures();
+#endif
         int matCount = m_Mesh->smMaterialGroup->MaterialCount;
         for(int i = 0; i < matCount; i++)
         {
@@ -155,10 +177,14 @@ smPAT3D *HoEffectResManager::GetResMesh(const std::string &meshName, const std::
     if(m_ResMeshMap.find(meshName) == m_ResMeshMap.end())
     {
         HoEffectResMesh *resMesh = new HoEffectResMesh;
-        if(boneName.size() == 0)
-            resMesh->LoadingRes(meshName);
-        else
-            resMesh->LoadingRes(meshName, boneName);
+        const bool loaded = boneName.size() == 0
+            ? resMesh->LoadingRes(meshName)
+            : resMesh->LoadingRes(meshName, boneName);
+        if(!loaded || !resMesh->GetRes())
+        {
+            delete resMesh;
+            return NULL;
+        }
         m_ResMeshMap[meshName]	= resMesh;
         return resMesh->GetRes();
     }
@@ -181,7 +207,11 @@ int HoEffectResManager::GetResTexture(const std::string &fileName)
     if(m_ResTextureMap.find(fileName) == m_ResTextureMap.end())
     {
         HoEffectResTexture *resTexture = new HoEffectResTexture;
-        resTexture->LoadingRes(fileName);
+        if(!resTexture->LoadingRes(fileName) || resTexture->GetRes() < 0)
+        {
+            delete resTexture;
+            return -1;
+        }
         m_ResTextureMap[fileName] = resTexture;
         return resTexture->GetRes();
     }

@@ -1,3 +1,88 @@
+static char *ResolveLegacyHeadModelForClass(int legacyJobCode, int faceCode, int hairCode)
+{
+	if(faceCode < 0 || faceCode >= FACE_MODEL_MAX || hairCode < 0 || hairCode >= HEAREPOTION_MAX)
+		return NULL;
+
+	const gameplay::classes::PlayableClassDefinition *definition =
+		gameplay::classes::DefaultClassService().FindEnabled(legacyJobCode);
+	if(!definition)
+		return NULL;
+
+	const std::string &catalog = definition->appearance.legacyCatalogKey;
+	if(catalog == "fighter") return szModel_FighterFaceName[faceCode][hairCode];
+	if(catalog == "mechanician") return szModel_MechFaceName[faceCode][hairCode];
+	if(catalog == "archer") return szModel_ArcherFaceName[faceCode][hairCode];
+	if(catalog == "pikeman") return szModel_PikeFaceName[faceCode][hairCode];
+	if(catalog == "atalanta") return szModel_AtalantaFaceName[faceCode][hairCode];
+	if(catalog == "knight") return szModel_KnightFaceName[faceCode][hairCode];
+	if(catalog == "magician") return szModel_MagicanFaceName[faceCode][hairCode];
+	if(catalog == "priestess") return szModel_PristessFaceName[faceCode][hairCode];
+	return NULL;
+}
+
+static char *ResolveClassHeadModel(int legacyJobCode, int faceCode, int hairCode)
+{
+	if(faceCode < 0 || hairCode < 0)
+		return NULL;
+
+	const std::string *dataDriven = gameplay::classes::DefaultClassService().HeadModel(
+		legacyJobCode, static_cast<std::size_t>(faceCode), static_cast<std::size_t>(hairCode));
+	if(dataDriven && !dataDriven->empty())
+		return const_cast<char *>(dataDriven->c_str());
+
+	return ResolveLegacyHeadModelForClass(legacyJobCode, faceCode, hairCode);
+}
+
+static char *ResolveDefaultClassHeadModel(int legacyJobCode, int rankIndex)
+{
+	if(rankIndex < 0)
+		return NULL;
+
+	const std::string *dataDriven = gameplay::classes::DefaultClassService().DefaultHeadModel(
+		legacyJobCode, static_cast<std::size_t>(rankIndex));
+	if(dataDriven && !dataDriven->empty())
+		return const_cast<char *>(dataDriven->c_str());
+
+	// Historical classes encode the default head for each change-job rank in
+	// the first column of the legacy matrix. Keep that convention isolated here.
+	return ResolveLegacyHeadModelForClass(legacyJobCode, rankIndex, 0);
+}
+
+static int FindClassHeadModel(int legacyJobCode, const char *headName, int &faceCode, int &hairCode)
+{
+	if(!headName || !headName[0])
+		return FALSE;
+
+	std::size_t dataFace = 0u;
+	std::size_t dataHair = 0u;
+	if(gameplay::classes::DefaultClassService().FindHeadModel(
+		legacyJobCode, headName, dataFace, dataHair))
+	{
+		if(dataFace > 0xFFu || dataHair > 0xFFu)
+			return FALSE;
+		faceCode = static_cast<int>(dataFace);
+		hairCode = static_cast<int>(dataHair);
+		return TRUE;
+	}
+
+	for(int face = 0; face < FACE_MODEL_MAX; ++face)
+	{
+		for(int hair = 0; hair < HEAREPOTION_MAX; ++hair)
+		{
+			char *candidate = ResolveLegacyHeadModelForClass(legacyJobCode, face, hair);
+			if(candidate && candidate[0] && lstrcmpi(candidate, headName) == 0)
+			{
+				faceCode = face;
+				hairCode = hair;
+				return TRUE;
+			}
+		}
+	}
+
+	return FALSE;
+}
+
+
 DWORD GetHairSkinCode(int FaceCode, int HairCode)
 {
 	return ((FaceCode & 0xFF) << 8) | (HairCode & 0xFF) | ((((FaceCode + 1) + (HairCode + 1) * 3) & 0xFF) << 16);
@@ -19,6 +104,8 @@ int CheckHairSkinCode(DWORD dwModelCode)
 
 char *GetFaceHairSkin(smCHAR *lpChar)
 {
+	if(!lpChar)
+		return NULL;
 
 	DWORD dwModelCode = lpChar->smCharInfo.ModelNameCode2;
 	int FaceCode = (dwModelCode >> 8) & 0xFF;
@@ -26,39 +113,7 @@ char *GetFaceHairSkin(smCHAR *lpChar)
 
 	if (CheckHairSkinCode(dwModelCode) == FALSE) return NULL;
 	if (FaceCode < 0 || FaceCode >= FACE_MODEL_MAX || HairCode < 0 || HairCode >= HEAREPOTION_MAX) return NULL;
-
-	char *szHeadName = 0;
-
-	switch (lpChar->smCharInfo.JOB_CODE)
-	{
-	case 1:
-		szHeadName = szModel_FighterFaceName[FaceCode][HairCode];
-		break;
-	case 2:
-		szHeadName = szModel_MechFaceName[FaceCode][HairCode];
-		break;
-	case 3:
-		szHeadName = szModel_ArcherFaceName[FaceCode][HairCode];
-		break;
-	case 4:
-		szHeadName = szModel_PikeFaceName[FaceCode][HairCode];
-		break;
-	case 5:
-		szHeadName = szModel_AtalantaFaceName[FaceCode][HairCode];
-		break;
-	case 6:
-		szHeadName = szModel_KnightFaceName[FaceCode][HairCode];
-		break;
-	case 7:
-		szHeadName = szModel_MagicanFaceName[FaceCode][HairCode];
-		break;
-	case 8:
-		szHeadName = szModel_PristessFaceName[FaceCode][HairCode];
-		break;
-
-	}
-
-	return szHeadName;
+	return ResolveClassHeadModel(lpChar->smCharInfo.JOB_CODE, FaceCode, HairCode);
 }
 
 
@@ -80,147 +135,17 @@ char *GetDefaultFaceHairSkin(smCHAR *lpChar)
 }
 int FindFaceSkin(smCHAR *lpChar, char *lpHeadName, char ***lpSelFace, char **lpSelFaceName)
 {
-	int cnt, cnt2;
-	int FindCount = 0;
-	int FaceCode;
-	int HairCode;
-
-	switch (lpChar->smCharInfo.JOB_CODE)
-	{
-	case JOBCODE_FIGHTER:
-		for (cnt = 0; cnt < FACE_MODEL_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < HEAREPOTION_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_FighterFaceName[cnt][cnt2], lpHeadName) == 0)
-				{
-					*lpSelFace = szModel_FighterFaceName[cnt];
-					*lpSelFaceName = szModel_FighterFaceName[cnt][cnt2];
-					FaceCode = cnt; HairCode = cnt2; FindCount++;
-					break;
-				}
-			}
-			if (cnt2 < HEAREPOTION_MAX) break;
-		}
-		break;
-	case JOBCODE_MECHANICIAN:
-		for (cnt = 0; cnt < FACE_MODEL_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < HEAREPOTION_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_MechFaceName[cnt][cnt2], lpHeadName) == 0)
-				{
-					*lpSelFace = szModel_MechFaceName[cnt];
-					*lpSelFaceName = szModel_MechFaceName[cnt][cnt2];
-					FaceCode = cnt; HairCode = cnt2; FindCount++;
-					break;
-				}
-			}
-			if (cnt2 < HEAREPOTION_MAX) break;
-		}
-		break;
-	case JOBCODE_ARCHER:
-		for (cnt = 0; cnt < FACE_MODEL_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < HEAREPOTION_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_ArcherFaceName[cnt][cnt2], lpHeadName) == 0)
-				{
-					*lpSelFace = szModel_ArcherFaceName[cnt];
-					*lpSelFaceName = szModel_ArcherFaceName[cnt][cnt2];
-					FaceCode = cnt; HairCode = cnt2; FindCount++;
-					break;
-				}
-			}
-			if (cnt2 < HEAREPOTION_MAX) break;
-		}
-		break;
-	case JOBCODE_PIKEMAN:
-		for (cnt = 0; cnt < FACE_MODEL_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < HEAREPOTION_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_PikeFaceName[cnt][cnt2], lpHeadName) == 0)
-				{
-					*lpSelFace = szModel_PikeFaceName[cnt];
-					*lpSelFaceName = szModel_PikeFaceName[cnt][cnt2];
-					FaceCode = cnt; HairCode = cnt2; FindCount++;
-					break;
-				}
-			}
-			if (cnt2 < HEAREPOTION_MAX) break;
-
-		}
-		break;
-	case JOBCODE_ATALANTA:
-		for (cnt = 0; cnt < FACE_MODEL_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < HEAREPOTION_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_AtalantaFaceName[cnt][cnt2], lpHeadName) == 0)
-				{
-					*lpSelFace = szModel_AtalantaFaceName[cnt];
-					*lpSelFaceName = szModel_AtalantaFaceName[cnt][cnt2];
-					FaceCode = cnt; HairCode = cnt2; FindCount++;
-					break;
-				}
-			}
-			if (cnt2 < HEAREPOTION_MAX) break;
-		}
-		break;
-	case JOBCODE_KNIGHT:
-		for (cnt = 0; cnt < FACE_MODEL_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < HEAREPOTION_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_KnightFaceName[cnt][cnt2], lpHeadName) == 0)
-				{
-					*lpSelFace = szModel_KnightFaceName[cnt];
-					*lpSelFaceName = szModel_KnightFaceName[cnt][cnt2];
-					FaceCode = cnt; HairCode = cnt2; FindCount++;
-					break;
-				}
-			}
-			if (cnt2 < HEAREPOTION_MAX) break;
-		}
-		break;
-	case JOBCODE_MAGICIAN:
-		for (cnt = 0; cnt < FACE_MODEL_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < HEAREPOTION_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_MagicanFaceName[cnt][cnt2], lpHeadName) == 0)
-				{
-					*lpSelFace = szModel_MagicanFaceName[cnt];
-					*lpSelFaceName = szModel_MagicanFaceName[cnt][cnt2];
-					FaceCode = cnt; HairCode = cnt2; FindCount++;
-					break;
-				}
-			}
-			if (cnt2 < HEAREPOTION_MAX) break;
-		}
-		break;
-	case JOBCODE_PRIESTESS:
-		for (cnt = 0; cnt < FACE_MODEL_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < HEAREPOTION_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_PristessFaceName[cnt][cnt2], lpHeadName) == 0)
-				{
-					*lpSelFace = szModel_PristessFaceName[cnt];
-					*lpSelFaceName = szModel_PristessFaceName[cnt][cnt2];
-					FaceCode = cnt; HairCode = cnt2; FindCount++;
-					break;
-				}
-			}
-			if (cnt2 < HEAREPOTION_MAX) break;
-		}
-		break;
-
-	}
-
-	if (!FindCount)
+	if(lpSelFace) *lpSelFace = 0;
+	if(lpSelFaceName) *lpSelFaceName = 0;
+	if(!lpChar || !lpHeadName || !lpHeadName[0])
 		return -1;
 
-	return (FaceCode << 8) | HairCode;
+	int faceCode = 0;
+	int hairCode = 0;
+	if(!FindClassHeadModel(lpChar->smCharInfo.JOB_CODE, lpHeadName, faceCode, hairCode))
+		return -1;
+
+	char *resolved = ResolveClassHeadModel(lpChar->smCharInfo.JOB_CODE, faceCode, hairCode);
+	if(lpSelFaceName) *lpSelFaceName = resolved;
+	return (faceCode << 8) | hairCode;
 }

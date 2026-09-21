@@ -1,0 +1,45 @@
+#pragma once
+
+#include "systems/ui/v2/core/Container.h"
+#include "systems/ui/v2/viewmodels/SkillsViewModel.h"
+
+namespace ui::v2
+{
+class Button;
+
+class SkillsPage final : public Container
+{
+public:
+    explicit SkillsPage(ISkillGateway& gateway, UIId id = InvalidUIId);
+
+    void Update(float deltaSeconds) override;
+    UIEventResult OnEvent(const UIEvent& event) override;
+    bool HandleShortcut(int shortcut);
+    [[nodiscard]] bool HasArmedShortcutTarget() const noexcept { return shortcutSkillIndex_ >= 0; }
+
+protected:
+    void OnRender(UIRenderContext& context) override;
+
+private:
+    [[nodiscard]] int SkillAt(Point pointer) const noexcept;
+    [[nodiscard]] Rect SkillCardRect(std::size_t ordinal) const noexcept;
+    [[nodiscard]] Rect DetailsRectLocal() const noexcept;
+    void LayoutControls();
+    void DrawSkillCard(UIRenderContext& context, const SkillEntrySnapshot& skill, std::size_t ordinal);
+    void DrawDetails(UIRenderContext& context);
+    void RefreshDetails();
+    [[nodiscard]] int MaxDetailScroll() const noexcept;
+
+    SkillsViewModel viewModel_;
+    Button* upgradeButton_ = nullptr;
+    Button* bindLeftButton_ = nullptr;
+    Button* bindRightButton_ = nullptr;
+    float refreshAccumulator_ = 0.0f;
+    int hoveredIndex_ = -1;
+    int detailSkillIndex_ = -1;
+    int detailScroll_ = 0;
+    int shortcutSkillIndex_ = -1;
+    MouseButton shortcutMouseButton_ = MouseButton::None;
+    std::vector<DetailLineSnapshot> detailLines_;
+};
+}

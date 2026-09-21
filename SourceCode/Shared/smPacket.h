@@ -692,6 +692,16 @@ struct smCHAR_MONSTER_INFO {
 *				(캐릭터 스테이터스)캐릭터 정보 구조체
 *-----------------------------------------------------------------------------*/
 
+// Network-only metadata carried in smCHAR_INFO::dwTemp for server-owned
+// account companions. These fields do not change the wire layout; they only
+// identify the companion and carry canonical item CODEs so the client can
+// resolve equipment against its own sItem[] catalogue.
+#define smCOMPANION_NET_MAGIC                 0x434F4D50u /* "COMP" */
+#define smCOMPANION_NET_TEMP_EQUIP_REVISION   7
+#define smCOMPANION_NET_TEMP_MAGIC            8
+#define smCOMPANION_NET_TEMP_RIGHT_ITEM_CODE  9
+#define smCOMPANION_NET_TEMP_LEFT_ITEM_CODE   10
+
 struct smCHAR_INFO {
 	char	szName[32];				//이름
 	char	szModelName[64];		//모델 이름
@@ -2871,8 +2881,9 @@ struct	sSOD_SCORE {
 
 };
 
-#define MAX_JOBNUM					8 // Enabled jobs in the current client/runtime
-#define MAX_JOB_CAPACITY			10 // Core capacity; Assassin/Shaman remain disabled until their assets/handlers are restored
+#define LEGACY_PLAYABLE_JOB_SLOT_COUNT	8 // Historical 8-class table width; not the class registry size
+#define MAX_JOBNUM					LEGACY_PLAYABLE_JOB_SLOT_COUNT // Deprecated compatibility alias
+#define MAX_JOB_CAPACITY			10 // Protocol/core capacity; enabled classes come from PlayableClassRegistry
 
 #define	JOBCODE_FIGHTER				1
 #define	JOBCODE_MECHANICIAN			2

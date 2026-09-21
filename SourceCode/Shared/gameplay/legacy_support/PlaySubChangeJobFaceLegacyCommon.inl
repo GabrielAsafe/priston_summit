@@ -11,7 +11,8 @@ int ChangeJobFace()
 	CheckCharForm();
 
 
-	ChangeModelSkin(lpCurPlayer, 0, (lpCurPlayer->smCharInfo.ChangeJob > CHARACTER_RANK4) ? CHARACTER_RANK4 : lpCurPlayer->smCharInfo.ChangeJob, 0, 0);
+	ChangeModelSkin(lpCurPlayer, 0, gameplay::classes::DefaultClassService().PromotionVisualChangeJobIndex(
+		lpCurPlayer->smCharInfo.JOB_CODE, lpCurPlayer->smCharInfo.ChangeJob), 0, 0);
 	lpCurPlayer->smCharInfo.bUpdateInfo[0]++;
 	ReformCharForm();
 	SendSetObjectSerial(lpCurPlayer->dwObjectSerial);

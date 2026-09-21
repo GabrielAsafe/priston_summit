@@ -116,6 +116,7 @@
  SrcServer/src/systems/progression/class_rank/Rank.h \
  SrcServer/src/systems/persistence/database/core/Database.h \
  Shared/persistence/database/Database_sqlite_server.h \
+ SrcServer/src/systems/gameplay/progression/v2/ProgressionTriggerRuntime.h \
  SrcServer/src/core/server/legacy_runtime/onserver.h
 SrcServer/src/compat/server_build/server_compat_packets.h:
 SrcServer/src/systems/network/protocol/server/opcodes.h:
@@ -236,4 +237,5 @@ SrcServer/src/systems/crafting/professions/JOBS.h:
 SrcServer/src/systems/progression/class_rank/Rank.h:
 SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
+SrcServer/src/systems/gameplay/progression/v2/ProgressionTriggerRuntime.h:
 SrcServer/src/core/server/legacy_runtime/onserver.h:

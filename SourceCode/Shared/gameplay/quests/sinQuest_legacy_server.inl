@@ -2,6 +2,8 @@
 
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
 #include "systems/world/field/field.h"
+#include "gameplay/classes/v2/services/ClassService.h"
+#include "gameplay/quests/legacy/LegacyClassQuestAdapter.h"
 
 
 sQUEST_CHANGEJOB	sinQuest_ChangeJob;
@@ -219,9 +221,12 @@ char *QuestFilePath4[] = {
 
 int sinCheckChageJob()
 {
+	if(!gameplay::quests::legacy::SupportsLegacyChangeJobQuestContent(sinChar->JOB_CODE))
+		return TRUE;
+
 	if(CheckQuestButtonShow1 && sinChar->Level >= 20 && sinChar->ChangeJob == 0)
 	{
-		if(!sinQuest_ChangeJob.CODE && sinChar->JOB_CODE <= 4 || sinChar->JOB_CODE == 9)
+		if(!sinQuest_ChangeJob.CODE && gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 			sinChangeJobButtonShow = 1;
 		else
 		{
@@ -353,7 +358,7 @@ int sinLoadQuest(int CODE, void *Buff)
 		if(chaQuest.sHaQuestElementary[Quest_B].State == 2 || chaQuest.sHaQuestElementary[Quest_B].State == 3)
 		{
 			chaQuest.haSetQuestTimer(&chaQuest.sHaQuestElementary[Quest_B]);
-			if(sinChar->JOB_CODE < 5)
+			if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 				strcpy_s(chaQuest.szQuestMonsterName, haQuestMonsterName[0]);
 			else
 				strcpy_s(chaQuest.szQuestMonsterName, haQuestMonsterName[1]);
@@ -374,7 +379,7 @@ int sinLoadQuest(int CODE, void *Buff)
 		if(chaQuest.sHaQuestElementary[Quest_D].State == 2 || chaQuest.sHaQuestElementary[Quest_D].State == 3)
 		{
 			chaQuest.haSetQuestTimer(&chaQuest.sHaQuestElementary[Quest_D]);
-			if(sinChar->JOB_CODE < 5)
+			if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 				strcpy_s(chaQuest.szQuestMonsterName, haQuestMonsterName[2]);
 			else
 				strcpy_s(chaQuest.szQuestMonsterName, haQuestMonsterName[3]);
@@ -392,7 +397,7 @@ int sinLoadQuest(int CODE, void *Buff)
 		if(chaQuest.sHaQuestElementary[Quest_E].State == 2 || chaQuest.sHaQuestElementary[Quest_E].State == 3)
 		{
 			chaQuest.haSetQuestTimer(&chaQuest.sHaQuestElementary[Quest_E]);
-			if(sinChar->JOB_CODE < 5)
+			if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 				strcpy_s(chaQuest.szQuestMonsterName, haQuestMonsterName[4]);
 			else
 				strcpy_s(chaQuest.szQuestMonsterName, haQuestMonsterName[5]);
@@ -884,7 +889,7 @@ int CheckChangeJob3QuestItem(DWORD Monster_CODE)
 		if(chaQuest.sHaQuestElementary[Quest_B].Kind &&chaQuest.sHaQuestElementary[Quest_B].Kind == Monster_CODE)
 		{
 			chaQuest.sHaQuestElementary[Quest_B].Monster[0]++;
-			if(sinChar->JOB_CODE < 5)
+			if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 			#ifdef _LANGUAGE_CHINESE
 				wsprintf(szTemp, sinLevelQusetDoc, chaQuest.sHaQuestElementary[Quest_B].Monster[0], haQuestMonsterName[0]);
 		#else
@@ -930,7 +935,7 @@ int CheckChangeJob3QuestItem(DWORD Monster_CODE)
 		if(chaQuest.sHaQuestElementary[Quest_D].Kind &&chaQuest.sHaQuestElementary[Quest_D].Kind == Monster_CODE)
 		{
 			chaQuest.sHaQuestElementary[Quest_D].Monster[0]++;
-			if(sinChar->JOB_CODE < 5)
+			if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 			#ifdef _LANGUAGE_CHINESE
 				wsprintf(szTemp, sinLevelQusetDoc, chaQuest.sHaQuestElementary[Quest_D].Monster[0], haQuestMonsterName[2]);
 		#else
@@ -976,7 +981,7 @@ int CheckChangeJob3QuestItem(DWORD Monster_CODE)
 		if(chaQuest.sHaQuestElementary[Quest_E].Kind &&chaQuest.sHaQuestElementary[Quest_E].Kind == Monster_CODE)
 		{
 			chaQuest.sHaQuestElementary[Quest_E].Monster[0]++;
-			if(sinChar->JOB_CODE < 5)
+			if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 			#ifdef _LANGUAGE_CHINESE
 				wsprintf(szTemp, sinLevelQusetDoc, chaQuest.sHaQuestElementary[Quest_E].Monster[0], haQuestMonsterName[4]);
 		#else
@@ -1325,22 +1330,8 @@ int CheckChangeJob3QuestItem(DWORD Monster_CODE)
 
 	if(pItem->sItemInfo.ItemKindCode == ITEM_KIND_QUEST_WEAPON)
 	{
-		switch(sinChar->JOB_CODE)
+		if(gameplay::quests::legacy::UsesFieldBasedChangeJob3Progress(sinChar->JOB_CODE))
 		{
-			case 1:
-			case 2:
-			case 4:
-			case 6:
-			case 3:
-			case 5:
-			if((pItem->sItemInfo.ItemAgingNum[1] + 1) == Monster_CODE)
-			{
-				pItem->sItemInfo.ItemAgingCount[0]--;
-
-			}
-			break;
-			case 7:
-			case 8:
 			if(pItem->sItemInfo.ItemAgingNum[0] == 1)
 			{
 				if(StageField[lpCurPlayer->OnStageField]->FieldCode == 8)
@@ -1356,7 +1347,11 @@ int CheckChangeJob3QuestItem(DWORD Monster_CODE)
 				if(StageField[lpCurPlayer->OnStageField]->FieldCode == 13)
 					pItem->sItemInfo.ItemAgingCount[0]--;
 			}
-			break;
+		}
+		else if(gameplay::quests::legacy::ChangeJob3WeaponRewardCode(sinChar->JOB_CODE) != 0u &&
+				(pItem->sItemInfo.ItemAgingNum[1] + 1) == Monster_CODE)
+		{
+			pItem->sItemInfo.ItemAgingCount[0]--;
 		}
 	}
 
@@ -1525,46 +1520,16 @@ int CheckChangeJob_QuestItem()
 		if(!cInvenTory.SearchItemCode(0, ITEM_KIND_QUEST_WEAPON))
 		{
 
-			switch(sinChar->JOB_CODE)
-			{
-				case 1:
-				strcpy_s(sLost_Item.szDoc, Quest3ItemName[0]);
-				sLost_Item.LostItem[0].CODE = (sinWA1 | sin08);
-				sLost_Item.LostItem[1].CODE = (sinOR2 | sin02);
-
-				break;
-				case 2:
-				strcpy_s(sLost_Item.szDoc, Quest3ItemName[1]);
-				sLost_Item.LostItem[0].CODE = (sinWC1 | sin08);
-				sLost_Item.LostItem[1].CODE = (sinOR2 | sin02);
-				break;
-				case 3:
-				strcpy_s(sLost_Item.szDoc, Quest3ItemName[2]);
-				sLost_Item.LostItem[0].CODE = (sinWS1 | sin10);
-				sLost_Item.LostItem[1].CODE = (sinOR2 | sin03);
-				break;
-				case 4:
-				strcpy_s(sLost_Item.szDoc, Quest3ItemName[3]);
-				sLost_Item.LostItem[0].CODE = (sinWP1 | sin09);
-				sLost_Item.LostItem[1].CODE = (sinOR2 | sin02);
-				break;
-				case 5:
-				strcpy_s(sLost_Item.szDoc, Quest3ItemName[4]);
-				sLost_Item.LostItem[0].CODE = (sinWT1 | sin09);
-				sLost_Item.LostItem[1].CODE = (sinOR2 | sin03);
-				break;
-				case 6:
-				strcpy_s(sLost_Item.szDoc, Quest3ItemName[5]);
-				sLost_Item.LostItem[0].CODE = (sinWS2 | sin10);
-				sLost_Item.LostItem[1].CODE = (sinOR2 | sin02);
-				break;
-				case 7:
-				case 8:
-				strcpy_s(sLost_Item.szDoc, Quest3ItemName[6]);
-				sLost_Item.LostItem[0].CODE = (sinWM1 | sin09);
-				sLost_Item.LostItem[1].CODE = (sinOR2 | sin04);
-				break;
-			}
+			const int questItemNameIndex = gameplay::quests::legacy::ChangeJob3ItemNameIndex(sinChar->JOB_CODE);
+			const DWORD questWeaponCode = static_cast<DWORD>(
+				gameplay::quests::legacy::ChangeJob3WeaponRewardCode(sinChar->JOB_CODE));
+			const DWORD questOrbCode = static_cast<DWORD>(
+				gameplay::quests::legacy::ChangeJob3OrbRewardCode(sinChar->JOB_CODE));
+			if(questItemNameIndex < 0 || questWeaponCode == 0 || questOrbCode == 0)
+				return FALSE;
+			strcpy_s(sLost_Item.szDoc, Quest3ItemName[questItemNameIndex]);
+			sLost_Item.LostItem[0].CODE = questWeaponCode;
+			sLost_Item.LostItem[1].CODE = questOrbCode;
 			sinQuest_ChangeJob3.State = 6;
 			sLost_Item.Flag = 1;
 			cInvenTory.CheckInvenEmpty(&sLost_Item.LostItem[0]);

@@ -111,7 +111,10 @@
  SrcServer/src/systems/crafting/professions/JOBS.h \
  SrcServer/src/systems/progression/class_rank/Rank.h \
  SrcServer/src/systems/persistence/database/core/Database.h \
- Shared/persistence/database/Database_sqlite_server.h Shared/items.h \
+ Shared/persistence/database/Database_sqlite_server.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h Shared/items.h \
  SrcServer/src/systems/inventory/legacy/item_code_map_mingw.inc \
  Shared/inventory/item_code_map_mingw_legacy_server.inc
 Shared/inventory/legacy/sinItem_legacy_server.inl:
@@ -228,6 +231,9 @@ SrcServer/src/systems/crafting/professions/JOBS.h:
 SrcServer/src/systems/progression/class_rank/Rank.h:
 SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 Shared/items.h:
 SrcServer/src/systems/inventory/legacy/item_code_map_mingw.inc:
 Shared/inventory/item_code_map_mingw_legacy_server.inc:

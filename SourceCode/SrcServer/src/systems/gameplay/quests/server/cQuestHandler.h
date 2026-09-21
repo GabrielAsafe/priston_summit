@@ -17,6 +17,7 @@ public:
 	bool HasCompletedQuest(rsPLAYINFO* lpPlayInfo, int QuestID);
 	bool HasCompletedQuest(const char* pszPlayerName, int QuestID);
 	bool QueryCompletedQuest(const char* pszPlayerName, int QuestID, bool* pbCompleted);
+	bool QueryQuestInProgress(const char* pszPlayerName, int QuestID, bool* pbInProgress);
 	bool HasCompletedRank5Quest(rsPLAYINFO* lpPlayInfo);
 	bool HasCompletedRank5Quest(const char* pszPlayerName);
 	bool IsQuestInProgress(rsPLAYINFO* lpPlayInfo, int QuestID);
@@ -49,5 +50,3 @@ public:
 extern cQUESTHANDLER cQuestHandler;
 
 #endif // QUEST_HANDLER_H
-
-

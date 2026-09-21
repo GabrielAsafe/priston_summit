@@ -4,6 +4,8 @@ struct LOADEDIMAGE
 {
 	LPDIRECT3DTEXTURE9 Image;
 	char ImagePath[255];
+	UINT SourceWidth;
+	UINT SourceHeight;
 };
 
 enum EDrawStyle

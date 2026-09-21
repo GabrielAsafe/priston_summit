@@ -4,6 +4,7 @@
 #include "systems/commerce/coin_shop/CoinShop_T.h"
 #include "systems/localization/legacy_catalog/language.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 
 
 cITEM cItem;
@@ -8384,43 +8385,36 @@ int cITEM::DrawItemText()
 
 int cITEM::SearchSpecialItemJob(DWORD SpecialJob_CODE)
 {
-
-
-	int cnt;
-
-	char	szTemp[64];
-	char    szTemp2[64];
+	char szTemp[64];
+	char szTemp2[64];
 	CountSpecialName = 0;
-
-	cnt = 0;
 
 	lstrcpy(szTemp2, "  /r");
 	lstrcat(szInfoBuff, szTemp2);
 	lstrcat(szInfoBuff2, szTemp2);
 	ItemInfoCol++;
 
+	const std::vector<gameplay::classes::ClassSpecializationMatch> matches =
+		gameplay::classes::DefaultClassService().LegacySpecializationMatches(
+			static_cast<std::uint32_t>(SpecialJob_CODE));
 
-	while (1)
+	for(std::vector<gameplay::classes::ClassSpecializationMatch>::const_iterator it = matches.begin();
+		it != matches.end(); ++it)
 	{
-		if (JobDataBase[cnt].JobBitCode == 0)
-			break;
+		JOB_DATA_CODE *jobData = GetJobDataCode(static_cast<DWORD>(it->legacyJobCode), it->rank - 1);
+		const char *displayName = (jobData && jobData->szName2 && jobData->szName2[0])
+			? jobData->szName2
+			: it->displayKey.c_str();
 
+		wsprintf(szTemp, SpecialName3, displayName);
+		lstrcpy(szTemp2, "  /r");
+		lstrcat(szInfoBuff, szTemp);
+		lstrcat(szInfoBuff2, szTemp2);
+		ItemInfoCol++;
+		SpecialItemLine = ItemInfoCol + 1;
 
-
-		if (JobDataBase[cnt].JobBitCode & SpecialJob_CODE)
-		{
-			wsprintf(szTemp, SpecialName3, JobDataBase[cnt].szName2);
-			lstrcpy(szTemp2, "  /r");
-			lstrcat(szInfoBuff, szTemp);
-			lstrcat(szInfoBuff2, szTemp2);
-			ItemInfoCol++;
-			SpecialItemLine = ItemInfoCol + 1;
-
-			CountSpecialName++;
-			SpecialItemLine -= (CountSpecialName - 1);
-
-		}
-		cnt++;
+		CountSpecialName++;
+		SpecialItemLine -= (CountSpecialName - 1);
 	}
 	return FALSE;
 }

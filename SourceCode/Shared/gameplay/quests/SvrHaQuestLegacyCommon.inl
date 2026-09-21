@@ -1,3 +1,4 @@
+#include "gameplay/quests/legacy/LegacyClassQuestAdapter.h"
 
 switch(lpTransCommand->WParam)
 {
@@ -12,41 +13,10 @@ switch(lpTransCommand->WParam)
 	{
 		dwItemCode = 0;
 
-		switch(lpPlayInfo->smCharInfo.JOB_CODE)
-		{
-			case JOBCODE_MECHANICIAN:
-			dwItemCode = sinWC1 | sin02;
-			break;
-
-			case JOBCODE_FIGHTER:
-			dwItemCode = sinWA1 | sin02;
-			break;
-
-			case JOBCODE_PIKEMAN:
-			dwItemCode = sinWP1 | sin02;
-			break;
-
-			case JOBCODE_ARCHER:
-			dwItemCode = sinWS1 | sin02;
-			break;
-
-			case JOBCODE_KNIGHT:
-			dwItemCode = sinWS2 | sin02;
-			break;
-
-			case JOBCODE_ATALANTA:
-			dwItemCode = sinWT1 | sin02;
-			break;
-
-			case JOBCODE_PRIESTESS:
-			dwItemCode = sinWM1 | sin01;
-			break;
-
-			case JOBCODE_MAGICIAN:
-			dwItemCode = sinWM1 | sin01;
-			break;
-	
-		}
+		const std::uint32_t starterLowCode =
+			gameplay::quests::legacy::UsesCasterStarterDefense(lpPlayInfo->smCharInfo.JOB_CODE) ? sin01 : sin02;
+		dwItemCode = gameplay::quests::legacy::DefaultWeaponRewardCode(
+			lpPlayInfo->smCharInfo.JOB_CODE, starterLowCode);
 		if(dwItemCode)
 		{
 			rsPutItem(lpPlayInfo, dwItemCode, lpPlayInfo->smCharInfo.JOB_CODE);
@@ -55,40 +25,8 @@ switch(lpTransCommand->WParam)
 
 		dwItemCode = 0;
 
-		switch(lpPlayInfo->smCharInfo.JOB_CODE)
-		{
-			case JOBCODE_MECHANICIAN:
-			dwItemCode = sinDA1 | sin02;
-
-			break;
-			case JOBCODE_FIGHTER:
-			dwItemCode = sinDA1 | sin02;
-
-			break;
-			case JOBCODE_PIKEMAN:
-			dwItemCode = sinDA1 | sin02;
-
-			break;
-			case JOBCODE_ARCHER:
-			dwItemCode = sinDA1 | sin02;
-
-			break;
-			case JOBCODE_KNIGHT:
-			dwItemCode = sinDA1 | sin02;
-
-			break;
-			case JOBCODE_ATALANTA:
-			dwItemCode = sinDA1 | sin02;
-
-			break;
-			case JOBCODE_PRIESTESS:
-			dwItemCode = sinDA2 | sin02;
-
-			break;
-			case JOBCODE_MAGICIAN:
-			dwItemCode = sinDA2 | sin02;
-			break;
-		}
+		dwItemCode = (gameplay::quests::legacy::UsesCasterStarterDefense(lpPlayInfo->smCharInfo.JOB_CODE)
+			? sinDA2 : sinDA1) | sin02;
 		if(dwItemCode)
 		{
 			rsPutItem(lpPlayInfo, dwItemCode, lpPlayInfo->smCharInfo.JOB_CODE);
@@ -142,41 +80,8 @@ switch(lpTransCommand->WParam)
 	{
 		dwItemCode = 0;
 
-		switch(lpPlayInfo->smCharInfo.JOB_CODE)
-		{
-			case JOBCODE_MECHANICIAN:
-			dwItemCode = sinWC1 | sin06;
-
-			break;
-			case JOBCODE_FIGHTER:
-			dwItemCode = sinWA1 | sin06;
-
-			break;
-			case JOBCODE_PIKEMAN:
-			dwItemCode = sinWP1 | sin06;
-
-			break;
-			case JOBCODE_ARCHER:
-			dwItemCode = sinWS1 | sin06;
-
-			break;
-			case JOBCODE_KNIGHT:
-			dwItemCode = sinWS2 | sin06;
-
-			break;
-			case JOBCODE_ATALANTA:
-			dwItemCode = sinWT1 | sin06;
-
-			break;
-			case JOBCODE_PRIESTESS:
-			dwItemCode = sinWM1 | sin06;
-
-			break;
-			case JOBCODE_MAGICIAN:
-			dwItemCode = sinWM1 | sin06;
-			break;
-
-		}
+		dwItemCode = gameplay::quests::legacy::DefaultWeaponRewardCode(
+			lpPlayInfo->smCharInfo.JOB_CODE, sin06);
 		if(dwItemCode)
 		{
 			rsPutItem(lpPlayInfo, dwItemCode, lpPlayInfo->smCharInfo.JOB_CODE);
@@ -228,41 +133,8 @@ switch(lpTransCommand->WParam)
 	{
 		dwItemCode = 0;
 
-		switch(lpPlayInfo->smCharInfo.JOB_CODE)
-		{
-			case JOBCODE_MECHANICIAN:
-			dwItemCode = sinWC1 | sin11;
-
-			break;
-			case JOBCODE_FIGHTER:
-			dwItemCode = sinWA1 | sin11;
-
-			break;
-			case JOBCODE_PIKEMAN:
-			dwItemCode = sinWP1 | sin11;
-
-			break;
-			case JOBCODE_ARCHER:
-			dwItemCode = sinWS1 | sin11;
-
-			break;
-			case JOBCODE_KNIGHT:
-			dwItemCode = sinWS2 | sin11;
-
-			break;
-			case JOBCODE_ATALANTA:
-			dwItemCode = sinWT1 | sin11;
-
-			break;
-			case JOBCODE_PRIESTESS:
-			dwItemCode = sinWM1 | sin11;
-
-			break;
-			case JOBCODE_MAGICIAN:
-			dwItemCode = sinWM1 | sin11;
-			break;
-
-		}
+		dwItemCode = gameplay::quests::legacy::DefaultWeaponRewardCode(
+			lpPlayInfo->smCharInfo.JOB_CODE, sin11);
 		if(dwItemCode)
 		{
 			rsPutItem(lpPlayInfo, dwItemCode, lpPlayInfo->smCharInfo.JOB_CODE);

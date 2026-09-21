@@ -1,5 +1,7 @@
 #pragma once
 
+#include <map>
+
 class cPARTY
 {
 public:
@@ -16,7 +18,7 @@ public:
 	bool DrawMapPartyPlayers(int px, int py);
 	bool isMember(DWORD dwObjectSerial);
 
-	int mClass[2][8];
+	std::map<int, int> mClass[2];
 	int mMembers[6];
 
 	enum DEFAULT

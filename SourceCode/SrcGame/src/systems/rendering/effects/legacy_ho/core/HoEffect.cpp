@@ -216,7 +216,7 @@ int HoEtc2dPrimitive::Draw()
 			}
 		}
 		int mat = AnimationData.ImageDataBuffer[AnimationData.SequenceDataBuffer[AniDataIndex].DataFileIndex].GetMaterialNum();
-		DrawTexture(smMaterial[mat].smAnimTexture[AnimationData.SequenceDataBuffer[AniDataIndex].AnimFrame[CurrentFrame].ImageNum]->lpD3DTexture, tlVertex, true);
+		DrawTexture(AssetLoadV2GetResidentTexture(smMaterial[mat].smAnimTexture[AnimationData.SequenceDataBuffer[AniDataIndex].AnimFrame[CurrentFrame].ImageNum]), tlVertex, true);
 	}
 	return TRUE;
 }

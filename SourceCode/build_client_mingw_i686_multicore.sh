@@ -16,6 +16,7 @@ CPP_LIST="$ROOT/cpp_files_client_i686.txt"
 OBJ_LIST="$ROOT/object_files_client_mingw.txt"
 LOG="$ROOT/build_client_i686_compile_errors.log"
 SIGNATURE_FILE="$BUILD_DIR/compile_signature.sha256"
+COMPILE_OK_MARKER="$BUILD_DIR/compile_success.ok"
 
 CXX="${CXX:-i686-w64-mingw32-g++}"
 
@@ -58,6 +59,7 @@ CXXFLAGS=(
     -m32
     -std=gnu++17
     -fpermissive
+    -pthread
 
     -Wno-write-strings
     -Wno-narrowing
@@ -129,6 +131,7 @@ if [ "$CLEAN" = "1" ]; then
 fi
 
 mkdir -p "$OBJ_DIR" "$ERR_DIR" "$DEP_DIR"
+rm -f "$COMPILE_OK_MARKER"
 
 # O cache incremental por .d só conhece timestamps de source/headers.
 # Esta assinatura também invalida objetos quando mudam o script, o compilador
@@ -182,6 +185,17 @@ printf '%s\n' "$BUILD_SIGNATURE" > "$SIGNATURE_FILE"
     'HoSkyOld\.cpp|HoOpeningOFF\.cpp|FilterEffect\.cpp|CChatBox\.cpp|/third_party/lua/legacy_src/Lua/|/compat/client_server/server_legacy/(ClientFuncPos|OnSever|PartySever|Svr_Damge|svrEventSpawn)\.cpp' \
 | sort -u \
 > "$CPP_LIST"
+
+# Shared Character/Class V2 is intentionally outside SrcGame/src. Keep the
+# portable domain in the client build explicitly, like the other V2 roots.
+cat >> "$CPP_LIST" <<'LISTEOF'
+Shared/gameplay/classes/v2/PlayableClassRegistry.cpp
+Shared/gameplay/classes/v2/content/DefaultClassContent.cpp
+Shared/gameplay/classes/v2/content/LegacyClassCatalog.cpp
+Shared/gameplay/classes/v2/content/ReservedClassCatalog.cpp
+Shared/gameplay/classes/v2/services/ClassService.cpp
+LISTEOF
+sort -u -o "$CPP_LIST" "$CPP_LIST"
 
 TOTAL="$(wc -l < "$CPP_LIST")"
 
@@ -372,4 +386,5 @@ fi
 
 echo
 echo "COMPILAÇÃO DO CLIENTE CONCLUÍDA"
+printf 'PASS\n' > "$COMPILE_OK_MARKER"
 exit 0

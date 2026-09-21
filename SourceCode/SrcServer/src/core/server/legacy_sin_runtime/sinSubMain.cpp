@@ -4,6 +4,7 @@
 
 
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
+#include "gameplay/quests/legacy/LegacyClassQuestAdapter.h"
 #include "systems/social/clan/legacy/tjclanDEF.h"
 #include "systems/social/clan/legacy/tjclan.h"
 #include "systems/social/clan/legacy/Help.h"
@@ -4002,33 +4003,14 @@ DWORD sinWingItemQuestServer(sCRAFTITEM_SERVER *pWingItem, smCHAR_INFO *pChar_In
 	if(ItemCount == 3 && pChar_Info)
 	{
 		pWingItem->Result = TRUE;
-		switch(pChar_Info->JOB_CODE)
+		const DWORD changeJobWeapon = static_cast<DWORD>(
+			gameplay::quests::legacy::ChangeJob3WeaponRewardCode(pChar_Info->JOB_CODE));
+		if(changeJobWeapon == 0)
 		{
-			case 1:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWA1 | sin08);
-			break;
-			case 2:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWC1 | sin08);
-			break;
-			case 3:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWS1 | sin10);
-			break;
-			case 4:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWP1 | sin09);
-			break;
-			case 5:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWT1 | sin09);
-			break;
-			case 6:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWS2 | sin10);
-			break;
-			case 7:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWM1 | sin09);
-			break;
-			case 8:
-			pWingItem->DesCraftItem.sItemInfo.CODE = (sinWM1 | sin09);
-			break;
+			pWingItem->Result = FALSE;
+			return FALSE;
 		}
+		pWingItem->DesCraftItem.sItemInfo.CODE = changeJobWeapon;
 
 		pWingItem->DesCraftItem.sItemInfo.ItemKindCode = ITEM_KIND_QUEST_WEAPON;
 

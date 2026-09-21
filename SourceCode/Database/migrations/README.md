@@ -6,8 +6,8 @@ Legacy logical databases are represented by physical table prefixes such as
 
 ## Current schema
 
-- latest schema version: **32**
-- SQLite user tables after a clean bootstrap: **338**
+- latest schema version: **38**
+- SQLite user tables after a clean bootstrap: **371**
 - tables recovered from the 21 supplied SQL Server `.bak` catalogs: **326 / 326 present**
 - additional source-derived compatibility tables: 6 (`QuestDB__RepeatedQuest`,
   `SecurityDB__AgingRecord`, `SecurityDB__BannedIP`, `SecurityDB__BannedMac`,
@@ -35,12 +35,18 @@ is directly proven by the supplied SQL Server backups**:
   PristonDB (16), SecurityDB (1)
 
 
-Migrations `030` through `032` are server-local additions rather than reconstructed
+Migrations `030` through `038` are server-local additions rather than reconstructed
 SQL Server catalog tables:
 
 - `030_local_gameplay_entitlement.sql` — independent local gameplay entitlement (1 table)
 - `031_local_audit_events.sql` — append-only character/item audit payloads used to retire non-authoritative `Database.dll` sinks (3 tables)
 - `032_local_auth_policy.sql` — explicit account auth ownership + runtime legacy billing fallback policy (2 tables)
+- `033_progression_v2.sql` — Covenant/StoryState V2 authoritative persistence in the `ServerDB__` namespace (6 tables)
+- `034_story_node_state.sql` — durable per-node StoryState history used by `StoryNodeState` conditions (1 table)
+- `035_progression_content.sql` — data-empty server-authoritative Covenant/Story content catalog (19 tables)
+- `036_covenant_rewards.sql` — durable Covenant reward receipts plus join/rank reward catalog (2 tables)
+- `037_story_dialogue_choices.sql` — explicit server-authoritative Story dialogue branches and choice conditions (2 tables)
+- `038_generic_reputation.sql` — explicit generic Reputation definitions/state/source ledger plus content CHECK upgrades (3 tables)
 
 For the backup-proven tables, names, column order, SQLite affinity, NULLability
 and SQL Server `IDENTITY` status are recovered from `sysschobjs` / `syscolpars`

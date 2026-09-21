@@ -128,6 +128,10 @@
  SrcServer/src/systems/rendering/font/FontImage.h \
  SrcServer/src/core/gameplay/legacy_support/playmodel.h \
  Shared/gameplay/legacy_support/PlayModelLegacyShared.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ Shared/gameplay/legacy_support/PlaySubClassModelLegacyCommon.inl \
  Shared/gameplay/legacy_support/PlaySubStartupModelLegacyCommon.inl \
  Shared/gameplay/legacy_support/PlaySubMeshTextureSwapLegacyCommon.inl \
  Shared/gameplay/legacy_support/PlaySubHairSkinLegacyCommon.inl \
@@ -294,6 +298,10 @@ SrcServer/src/systems/ui/map/full_zoom/FullZoomMap.h:
 SrcServer/src/systems/rendering/font/FontImage.h:
 SrcServer/src/core/gameplay/legacy_support/playmodel.h:
 Shared/gameplay/legacy_support/PlayModelLegacyShared.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+Shared/gameplay/legacy_support/PlaySubClassModelLegacyCommon.inl:
 Shared/gameplay/legacy_support/PlaySubStartupModelLegacyCommon.inl:
 Shared/gameplay/legacy_support/PlaySubMeshTextureSwapLegacyCommon.inl:
 Shared/gameplay/legacy_support/PlaySubHairSkinLegacyCommon.inl:

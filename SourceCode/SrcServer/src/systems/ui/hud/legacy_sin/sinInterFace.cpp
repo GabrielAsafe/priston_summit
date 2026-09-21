@@ -1,4 +1,5 @@
 #include <cstring>
+#include "gameplay/classes/v2/services/ClassService.h"
 #include "systems/network/protocol/server/opcodes.h"
 
 
@@ -2267,7 +2268,7 @@ void cINTERFACE::KeyDown()
 							ReformCharForm();
 						}
 
-						if (sinQuest_Level55.State < 2 && sinChar->Level >= 55 && sinChar->JOB_CODE < 5) {
+						if (sinQuest_Level55.State < 2 && sinChar->Level >= 55 && gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron)) {
 							CheckCharForm();
 							sinSkill.SkillPoint += 1;
 							cMessageBox.ShowMessage(MESSAGE_PLUS_SKILL_POINT);
@@ -2282,7 +2283,7 @@ void cINTERFACE::KeyDown()
 							ReformCharForm();
 
 						}
-						if (sinQuest_Level55_2.State < 2 && sinChar->Level >= 55 && sinChar->JOB_CODE > 4) {
+						if (sinQuest_Level55_2.State < 2 && sinChar->Level >= 55 && gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Morayion)) {
 							CheckCharForm();
 							sinSkill.SkillPoint += 1;
 							cMessageBox.ShowMessage(MESSAGE_PLUS_SKILL_POINT);
@@ -2452,9 +2453,14 @@ void cINTERFACE::KeyDown()
 				{
 				#ifdef	_WINMODE_DEBUG
 					SendChatMessageToServer("MeLee: it's good /(-_-)/ ");
-					sinChar->ChangeJob++;
-					if(sinChar->ChangeJob > CHARACTER_RANK5)sinChar->ChangeJob = CHARACTER_RANK5;
-					cSkill.SearchUseSkill();
+					int nextChangeJob = 0;
+					if(gameplay::classes::DefaultClassService().TryNextLegacyChangeJob(
+						sinChar->JOB_CODE, static_cast<int>(sinChar->ChangeJob), nextChangeJob))
+					{
+						sinChar->ChangeJob = static_cast<DWORD>(nextChangeJob);
+						cSkill.SearchUseSkill();
+						ChangeJobFace();
+					}
 					memset(sinTestBuff5, 0, sizeof(sinTestBuff5));
 					memset(sinTestBuff6, 0, sizeof(sinTestBuff6));
 					memset(sinBuff, 0, sizeof(sinBuff));

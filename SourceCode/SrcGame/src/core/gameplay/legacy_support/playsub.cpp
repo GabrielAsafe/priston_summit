@@ -72,8 +72,9 @@ static char *szArmorDirectory = "char//tmABCD//";
 static char *szNpcDirectory = "char//npc//";
 
 #include "core/gameplay/legacy_support/playmodel.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 
-int ArmorJobNum[9] = { 0, 1, 0, 3, 2, 5, 4, 7, 6 };
+#include "gameplay/legacy_support/PlaySubClassModelLegacyCommon.inl"
 
 int	PlayerArmor = 0;
 
@@ -151,341 +152,153 @@ int LoadOftenItem()
 
 int SetPlayerArmor(int nItem_LowCode, int nItem_HiCode)
 {
-	char szbuff[256];
-
-	if (PlayerArmor == (nItem_HiCode | nItem_LowCode))
+	if(PlayerArmor == (nItem_HiCode | nItem_LowCode))
+		return FALSE;
+	if(!lpCurPlayer || lpCurPlayer->PatLoading || !lpCurPlayer->smCharInfo.szModelName2[0])
 		return FALSE;
 
-	if (lpCurPlayer->PatLoading)
-		return FALSE;
-
-	if (!lpCurPlayer->smCharInfo.szModelName2[0])
-		return FALSE;
-
-	if (nItem_LowCode == -1)
+	if(nItem_LowCode == -1)
 		nItem_LowCode = 0;
 
-	int jobNum = lpCurPlayer->smCharInfo.JOB_CODE;
-	if (nItem_LowCode > ARMOR_FILE_MAX - 1)
-		nItem_LowCode = ARMOR_FILE_MAX - 1;
-	if (jobNum > MAX_JOBNUM)
-		jobNum = 0;
+	gameplay::classes::ArmorVisualVariant variant = gameplay::classes::ArmorVisualVariant::Normal;
+	if(nItem_HiCode == sinCA5 || nItem_HiCode == sinCA6)
+		variant = gameplay::classes::ArmorVisualVariant::NewSet;
+	else if(nItem_HiCode == sinDA3 || nItem_HiCode == sinDA4)
+		variant = gameplay::classes::ArmorVisualVariant::NewSet2;
+	else if(lpCurPlayer->smCharInfo.SizeLevel > 0x1000 && lpCurPlayer->smCharInfo.SizeLevel <= 0x1002)
+		variant = gameplay::classes::ArmorVisualVariant::Comic;
 
-	strcpy_s(szbuff, szArmorDirectory);
-	if (nItem_HiCode == sinCA5 || nItem_HiCode == sinCA6)
-	{
-		lstrcat(szbuff, szArmorNumFile_New[ArmorJobNum[jobNum]][nItem_LowCode]);
-	}
-	else if (nItem_HiCode == sinDA3 || nItem_HiCode == sinDA4)
-	{
-		lstrcat(szbuff, szArmorNumFile_New_2[ArmorJobNum[jobNum]][nItem_LowCode]);
-	}
-	else
-	{
-		if (lpCurPlayer->smCharInfo.SizeLevel > 0x1000 && lpCurPlayer->smCharInfo.SizeLevel <= 0x1002)
-			lstrcat(szbuff, szArmorNumFile_Comic[ArmorJobNum[jobNum]][nItem_LowCode]);
-		else
-			lstrcat(szbuff, szArmorNumFile[ArmorJobNum[jobNum]][nItem_LowCode]);
-	}
+	std::string armorPath;
+	if(!TryResolveClassArmorPath(lpCurPlayer->smCharInfo.JOB_CODE, variant, nItem_LowCode, armorPath))
+		return FALSE;
 
 	lpCurPlayer->PatLoading = TRUE;
-	AddLoaderPattern(lpCurPlayer, szbuff, lpCurPlayer->smCharInfo.szModelName2);
-
+	AddLoaderPattern(lpCurPlayer, const_cast<char *>(armorPath.c_str()), lpCurPlayer->smCharInfo.szModelName2);
 	PlayerArmor = (nItem_HiCode | nItem_LowCode);
-
 	return TRUE;
 }
 
 
 int SetChrArmor(smCHAR *lpChar, int ItemNum)
 {
-	char szbuff[256];
-	int armor;
-	int jobNum;
+	if(!lpChar || !lpChar->DisplayFlag || lpChar->wStickItems[smPLAYBUFF_ITEM_BODY] == ItemNum)
+		return FALSE;
+	if(lpChar->PatLoading || !lpChar->smCharInfo.szModelName2[0])
+		return FALSE;
 
-	if (!lpChar->DisplayFlag || lpChar->wStickItems[smPLAYBUFF_ITEM_BODY] == ItemNum) return FALSE;
-	if (lpChar->PatLoading) return FALSE;
-	if (!lpChar->smCharInfo.szModelName2[0]) return FALSE;
-
-	jobNum = lpChar->smCharInfo.JOB_CODE;
-	if (jobNum > MAX_JOBNUM) jobNum = 0;
-
-	if (ItemNum >= 0)
+	int armor = 0;
+	gameplay::classes::ArmorVisualVariant variant = gameplay::classes::ArmorVisualVariant::Normal;
+	if(ItemNum >= 0)
 	{
-		if (((sItem[ItemNum].CODE&sinITEM_MASK3) >> 8) > 25)
-			armor = (((sItem[ItemNum].CODE&sinITEM_MASK3) >> 8) - 16);
-		else
-			armor = (sItem[ItemNum].CODE&sinITEM_MASK3) >> 8;
+		const DWORD itemCode = sItem[ItemNum].CODE;
+		const int rawArmor = static_cast<int>((itemCode & sinITEM_MASK3) >> 8);
+		armor = rawArmor > 25 ? rawArmor - 16 : rawArmor;
+		const DWORD itemFamily = itemCode & sinITEM_MASK2;
+		if(itemFamily == sinCA5 || itemFamily == sinCA6)
+			variant = gameplay::classes::ArmorVisualVariant::NewSet;
+		else if(itemFamily == sinDA3 || itemFamily == sinDA4)
+			variant = gameplay::classes::ArmorVisualVariant::NewSet2;
 	}
-	else
-		armor = 0;
 
-	lstrcpy(szbuff, szArmorDirectory);
+	if(variant == gameplay::classes::ArmorVisualVariant::Normal &&
+		lpChar->smCharInfo.SizeLevel > 0x1000 && lpChar->smCharInfo.SizeLevel <= 0x1002)
+		variant = gameplay::classes::ArmorVisualVariant::Comic;
 
-	if ((sItem[ItemNum].CODE&sinITEM_MASK2) == sinCA5 || (sItem[ItemNum].CODE&sinITEM_MASK2) == sinCA6)
-	{
-		lstrcat(szbuff, szArmorNumFile_New[ArmorJobNum[jobNum]][armor]);
-	}
-	else if ((sItem[ItemNum].CODE&sinITEM_MASK2) == sinDA3 || (sItem[ItemNum].CODE&sinITEM_MASK2) == sinDA4)
-	{
-		lstrcat(szbuff, szArmorNumFile_New_2[ArmorJobNum[jobNum]][armor]);
-	}
-	else
-	{
-		if (lpCurPlayer->smCharInfo.SizeLevel > 0x1000 && lpCurPlayer->smCharInfo.SizeLevel <= 0x1002)
-			lstrcat(szbuff, szArmorNumFile_Comic[ArmorJobNum[jobNum]][armor]);
-		else
-			lstrcat(szbuff, szArmorNumFile[ArmorJobNum[jobNum]][armor]);
-	}
+	std::string armorPath;
+	if(!TryResolveClassArmorPath(lpChar->smCharInfo.JOB_CODE, variant, armor, armorPath))
+		return FALSE;
 
 	lpChar->PatLoading = TRUE;
-	AddLoaderPattern(lpChar, szbuff, lpChar->smCharInfo.szModelName2);
-
+	AddLoaderPattern(lpChar, const_cast<char *>(armorPath.c_str()), lpChar->smCharInfo.szModelName2);
 	return TRUE;
 }
 
 
 #include "gameplay/legacy_support/PlaySubHairSkinLegacyCommon.inl"
 
-int	ChangeModelSkin(smCHAR *lpChar, int ComicArmor, int ComicHeadNum, char *szArmor, char *szHead)
+int ChangeModelSkin(smCHAR *lpChar, int ComicArmor, int ComicHeadNum, char *szArmor, char *szHead)
 {
-	char szArmorName[32];
-	char szHeadName[32];
-	char szbuff1[256];
-	char szbuff2[256];
+	if(!lpChar)
+		return FALSE;
 
-	int len, cnt;
-	int jobNum;
-	int SelCount;
-	int FindArmor, FindHead;
-	char *lpArmorFile;
-	char *lpHeadFile;
+	const char *armorFile = szArmor ? szArmor : lpChar->smCharInfo.szModelName;
+	const char *headFile = szHead ? szHead : lpChar->smCharInfo.szModelName2;
+	if(!armorFile || !armorFile[0] || !headFile || !headFile[0])
+		return FALSE;
 
+	const char *armorBaseName = armorFile;
+	for(const char *cursor = armorFile; *cursor; ++cursor)
+	{
+		if(*cursor == '/' || *cursor == '\\')
+			armorBaseName = cursor + 1;
+	}
+	if(!armorBaseName[0])
+		return FALSE;
+
+	gameplay::classes::ArmorVisualVariant currentVariant = gameplay::classes::ArmorVisualVariant::Normal;
+	int armorIndex = -1;
+	if(!TryFindClassArmorModel(lpChar->smCharInfo.JOB_CODE, armorBaseName, currentVariant, armorIndex))
+		return FALSE;
+
+	gameplay::classes::ArmorVisualVariant targetVariant = currentVariant;
+	if(ComicArmor)
+		targetVariant = gameplay::classes::ArmorVisualVariant::Comic;
+	else if(currentVariant == gameplay::classes::ArmorVisualVariant::Comic)
+		targetVariant = gameplay::classes::ArmorVisualVariant::Normal;
+
+	std::string armorPath;
+	if(!TryResolveClassArmorPath(lpChar->smCharInfo.JOB_CODE, targetVariant, armorIndex, armorPath))
+		return FALSE;
 
 	char **lpSelFace = 0;
 	char *lpSelFaceName = 0;
+	const int findFaceValue = FindFaceSkin(lpChar, const_cast<char *>(headFile), &lpSelFace, &lpSelFaceName);
+	if(findFaceValue < 0)
+		return FALSE;
+	const int hairCode = findFaceValue & 0xFF;
+	const int faceCode = findFaceValue >> 8;
 
-	jobNum = lpChar->smCharInfo.JOB_CODE;
-	if (jobNum > MAX_JOBNUM) jobNum = 0;
+	if(CheckHairSkinCode(lpChar->smCharInfo.ModelNameCode2) == FALSE)
+		lpChar->smCharInfo.ModelNameCode2 = GetHairSkinCode(faceCode, hairCode);
 
-	if (szArmor) lpArmorFile = szArmor;
-	else lpArmorFile = lpChar->smCharInfo.szModelName;
-
-	if (szHead) lpHeadFile = szHead;
-	else lpHeadFile = lpChar->smCharInfo.szModelName2;
-
-	szArmorName[0] = 0;
-	szHeadName[0] = 0;
-
-
-	len = lstrlen(lpArmorFile);
-	for (cnt = len - 1; cnt >= 0; cnt--)
-	{
-		if (lpArmorFile[cnt] == '/' || lpArmorFile[cnt] == '\\')
-		{
-			strcpy_s(szArmorName, &lpArmorFile[cnt + 1]);
-			break;
-		}
-	}
-
-	strcpy_s(szHeadName, lpHeadFile);
-
-
-	if (!szArmorName[0] || !szHeadName[0])
+	char *resolvedHeadModel = ResolveClassHeadModel(lpChar->smCharInfo.JOB_CODE, ComicHeadNum, hairCode);
+	if(!resolvedHeadModel || !resolvedHeadModel[0])
 		return FALSE;
 
-	SelCount = ComicHeadNum;
-
-	FindArmor = 0;
-	FindHead = 0;
-
-	for (cnt = 0; cnt < ARMOR_FILE_MAX; cnt++)
-	{
-		if (lstrcmpi(szArmorName, szArmorNumFile[ArmorJobNum[jobNum]][cnt]) == 0)
-		{
-			if (ComicArmor)
-				strcpy_s(szArmorName, szArmorNumFile_Comic[ArmorJobNum[jobNum]][cnt]);
-			else
-				strcpy_s(szArmorName, szArmorNumFile[ArmorJobNum[jobNum]][cnt]);
-
-			FindArmor++;
-			break;
-		}
-	}
-
-	if (!FindArmor)
-	{
-		for (cnt = 0; cnt < ARMOR_FILE_MAX; cnt++)
-		{
-			if (lstrcmpi(szArmorName, szArmorNumFile_Comic[ArmorJobNum[jobNum]][cnt]) == 0)
-			{
-				if (ComicArmor)
-					strcpy_s(szArmorName, szArmorNumFile_Comic[ArmorJobNum[jobNum]][cnt]);
-				else
-					strcpy_s(szArmorName, szArmorNumFile[ArmorJobNum[jobNum]][cnt]);
-
-				FindArmor++;
-				break;
-			}
-		}
-	}
-
-	if (!FindArmor)
-	{
-		for (cnt = 0; cnt < ARMOR_FILE_MAX; cnt++)
-		{
-			if (lstrcmpi(szArmorName, szArmorNumFile_New[ArmorJobNum[jobNum]][cnt]) == 0)
-			{
-				if (ComicArmor)
-					lstrcpy(szArmorName, szArmorNumFile_Comic[ArmorJobNum[jobNum]][cnt]);
-				else
-					lstrcpy(szArmorName, szArmorNumFile_New[ArmorJobNum[jobNum]][cnt]);
-
-				FindArmor++;
-				break;
-			}
-		}
-	}
-
-	if (!FindArmor)
-	{
-		for (cnt = 0; cnt < ARMOR_FILE_MAX; cnt++)
-		{
-			if (lstrcmpi(szArmorName, szArmorNumFile_New_2[ArmorJobNum[jobNum]][cnt]) == 0)
-			{
-				if (ComicArmor)
-					lstrcpy(szArmorName, szArmorNumFile_Comic[ArmorJobNum[jobNum]][cnt]);
-				else
-					lstrcpy(szArmorName, szArmorNumFile_New_2[ArmorJobNum[jobNum]][cnt]);
-
-				FindArmor++;
-				break;
-			}
-		}
-	}
-
-
-	int FindFaceValue = FindFaceSkin(lpChar, szHeadName, &lpSelFace, &lpSelFaceName);
-	if (FindFaceValue < 0) return FALSE;
-	int HairCode = FindFaceValue & 0xFF;
-	int FaceCode = FindFaceValue >> 8;
-
-
-	if (CheckHairSkinCode(lpChar->smCharInfo.ModelNameCode2) == FALSE)
-	{
-		lpChar->smCharInfo.ModelNameCode2 = GetHairSkinCode(FaceCode, HairCode);
-	}
-
-	switch (jobNum)
-	{
-	case JOBCODE_FIGHTER:
-		strcpy_s(szHeadName, szModel_FighterFaceName[SelCount][HairCode]);
-		break;
-	case JOBCODE_MECHANICIAN:
-		strcpy_s(szHeadName, szModel_MechFaceName[SelCount][HairCode]);
-		break;
-	case JOBCODE_ARCHER:
-		strcpy_s(szHeadName, szModel_ArcherFaceName[SelCount][HairCode]);
-		break;
-	case JOBCODE_PIKEMAN:
-		strcpy_s(szHeadName, szModel_PikeFaceName[SelCount][HairCode]);
-		break;
-	case JOBCODE_ATALANTA:
-		strcpy_s(szHeadName, szModel_AtalantaFaceName[SelCount][HairCode]);
-		break;
-	case JOBCODE_KNIGHT:
-		strcpy_s(szHeadName, szModel_KnightFaceName[SelCount][HairCode]);
-		break;
-	case JOBCODE_MAGICIAN:
-		strcpy_s(szHeadName, szModel_MagicanFaceName[SelCount][HairCode]);
-		break;
-	case JOBCODE_PRIESTESS:
-		strcpy_s(szHeadName, szModel_PristessFaceName[SelCount][HairCode]);
-		break;
-	}
-
-	strcpy_s(szbuff1, szArmorDirectory);
-	lstrcat(szbuff1, szArmorName);
-	strcpy_s(szbuff2, szHeadName);
-
 	lpChar->PatLoading = TRUE;
-	AddLoaderPattern(lpChar, szbuff1, szbuff2);
-
+	AddLoaderPattern(lpChar, const_cast<char *>(armorPath.c_str()), resolvedHeadModel);
 	return TRUE;
 }
 
 void ResetHairModel()
 {
-	char szDefaultHeadModel[260] = { 0 };
+	if(!lpCurPlayer)
+		return;
 
-	char c[2] = { 0 };
-	int r = (int)lpCurPlayer->smCharInfo.ChangeJob;
-	if (r > 0)
-		c[0] = ('a' + (r - 1));
-
-	char cl[2] = { 0 };
-	if (r == 2)
-		cl[0] = '_';
-	else
-		cl[0] = '-';
-
-	switch (lpCurPlayer->smCharInfo.JOB_CODE)
-	{
-	case 1:
-		wsprintf(szDefaultHeadModel, "char//tmABCD//tmh%sB01%s.inf", cl, c);
-		break;
-	case 2:
-		wsprintf(szDefaultHeadModel, "char//tmABCD//tmh%sA01%s.inf", cl, c);
-		break;
-	case 3:
-		wsprintf(szDefaultHeadModel, "char//tmABCD//tfh%sD01%s.inf", cl, c);
-		break;
-	case 4:
-		wsprintf(szDefaultHeadModel, "char//tmABCD//tmh%sC01%s.inf", cl, c);
-		break;
-	case 5:
-		wsprintf(szDefaultHeadModel, "char//tmABCD//Mfh%sB01%s.inf", cl, c);
-		break;
-	case 6:
-		wsprintf(szDefaultHeadModel, "char//tmABCD//Mmh%sA01%s.inf", cl, c);
-		break;
-	case 7:
-		wsprintf(szDefaultHeadModel, "char//tmABCD//Mmh%sD01%s.inf", cl, c);
-		break;
-	case 8:
-		wsprintf(szDefaultHeadModel, "char//tmABCD//Mfh%sC01%s.inf", cl, c);
-		break;
-	}
+	int rankIndex = static_cast<int>(lpCurPlayer->smCharInfo.ChangeJob);
+	char *defaultHeadModel = ResolveDefaultClassHeadModel(lpCurPlayer->smCharInfo.JOB_CODE, rankIndex);
+	if(!defaultHeadModel || !defaultHeadModel[0])
+		return;
 
 	char **lpSelFace = 0;
 	char *lpSelFaceName = 0;
-
-	int FindFaceValue = FindFaceSkin(lpCurPlayer, szDefaultHeadModel, &lpSelFace, &lpSelFaceName);
-
-	if (FindFaceValue < 0)
+	int findFaceValue = FindFaceSkin(lpCurPlayer, defaultHeadModel, &lpSelFace, &lpSelFaceName);
+	if(findFaceValue < 0)
 		return;
 
-	int HairCode = FindFaceValue & 0xFF;
-	int FaceCode = FindFaceValue >> 8;
+	const int hairCode = findFaceValue & 0xFF;
+	const int faceCode = findFaceValue >> 8;
+	lpCurPlayer->smCharInfo.ModelNameCode2 = GetHairSkinCode(faceCode, hairCode);
 
-	lpCurPlayer->smCharInfo.ModelNameCode2 = GetHairSkinCode(FaceCode, HairCode);
-
-	lstrcpy(lpCurPlayer->smCharInfo.szModelName2, szDefaultHeadModel);
-
+	strcpy_s(lpCurPlayer->smCharInfo.szModelName2, defaultHeadModel);
 	lpCurPlayer->PatLoading = TRUE;
-	AddLoaderPattern(lpCurPlayer, lpCurPlayer->smCharInfo.szModelName, szDefaultHeadModel);
+	AddLoaderPattern(lpCurPlayer, lpCurPlayer->smCharInfo.szModelName, defaultHeadModel);
 	lpCurPlayer->DisplayTools = TRUE;
 
 	ReformCharForm();
-
-	lpCurPlayer->smCharInfo.bUpdateInfo[0]++;
-	SendSetObjectSerial(lpCurPlayer->dwObjectSerial);
-
-	StartSkill(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, 0, 0, 0, SKILL_UP1);
-	SkillPlaySound(SKILL_SOUND_LEARN, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
-
 	SaveGameData();
 }
+
 
 
 #include "gameplay/legacy_support/PlaySubHairModelLegacyCommon.inl"
@@ -1518,7 +1331,7 @@ int psDrawTexImage(smTEXTUREHANDLE *hTexHandle, float x, float y, float w, float
 	tlVertex[3].tu = fw;
 	tlVertex[3].tv = fh;
 	MagFilter = true;
-	DrawTexture(hTexHandle->lpD3DTexture, tlVertex, true);
+	DrawTexture(AssetLoadV2GetResidentTexture(hTexHandle), tlVertex, true);
 	MagFilter = false;
 	return TRUE;
 }
@@ -1552,7 +1365,7 @@ int psDrawTexImage_Point(smTEXTUREHANDLE *hTexHandle, float x, float y, float w,
 	tlVertex[3].sy = y + h;
 	tlVertex[3].tu = fw;
 	tlVertex[3].tv = fh;
-	DrawTexture(hTexHandle->lpD3DTexture, tlVertex, true);
+	DrawTexture(AssetLoadV2GetResidentTexture(hTexHandle), tlVertex, true);
 	return TRUE;
 }
 
@@ -1585,7 +1398,7 @@ int psDrawTexImage2(smTEXTUREHANDLE *hTexHandle, float *x, float *y, float fx, f
 	tlVertex[3].sy = y[3];
 	tlVertex[3].tu = fw;
 	tlVertex[3].tv = fh;
-	DrawTexture(hTexHandle->lpD3DTexture, tlVertex, true);
+	DrawTexture(AssetLoadV2GetResidentTexture(hTexHandle), tlVertex, true);
 	return TRUE;
 }
 
@@ -2094,183 +1907,51 @@ int	RequestPartyPlayers(smCHAR	*lpChar)
 
 int	CheckUserModel(smCHAR_INFO *lpCharInfo)
 {
-	int cnt, cnt2, len;
-	char	szBuff[64];
-	char	*lpBuff;
-
+	if(!lpCharInfo)
+		return FALSE;
 
 	lpCharInfo->szModelName[31] = 0;
 	lpCharInfo->szModelName2[31] = 0;
 
-	len = lstrlen(lpCharInfo->szModelName);
-	strcpy_s(szBuff, lpCharInfo->szModelName);
-	for (cnt = len - 1; cnt >= 0; cnt--)
+	const int len = lstrlen(lpCharInfo->szModelName);
+	if(len < 4 || len >= 64)
+		return FALSE;
+
+	// JOB_CODE 0 is the historical pre-class/loading state. Keep its old
+	// namespace rule. Real classes are validated by their class-owned model
+	// roots, which allows a new class to live outside char/tmABCD.
+	if(lpCharInfo->JOB_CODE == 0)
 	{
-		if (szBuff[cnt] == '/' || szBuff[cnt] == '\\')
+		char directory[64];
+		strcpy_s(directory, lpCharInfo->szModelName);
+		for(int cnt = len - 1; cnt >= 0; --cnt)
 		{
-			szBuff[cnt + 1] = 0;
-			break;
+			if(directory[cnt] == '/' || directory[cnt] == '\\')
+			{
+				directory[cnt + 1] = 0;
+				break;
+			}
 		}
+		return lstrcmpi(directory, "char//tmABCD//") == 0 &&
+			lstrcmpi(&lpCharInfo->szModelName[len - 3], "ini") == 0;
 	}
 
-	if (lstrcmpi(szBuff, "char//tmABCD//") != 0) return FALSE;
-	lpBuff = &lpCharInfo->szModelName[len - 3];
-	if (lstrcmpi(lpBuff, "ini") != 0) return FALSE;
+	const gameplay::classes::ClassService &classService = gameplay::classes::DefaultClassService();
+	if(!classService.IsBodyModelPathAllowed(lpCharInfo->JOB_CODE, lpCharInfo->szModelName))
+		return FALSE;
 
-
-	switch (lpCharInfo->JOB_CODE)
+	if(lpCharInfo->szModelName2[0])
 	{
-	case 0:
-		return TRUE;
-
-	case JOBCODE_FIGHTER:
-		for (cnt = 0; cnt < _CHANGE_JOB_COUNT_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < _FACE_COUNT_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_FighterFaceName[cnt][cnt2], lpCharInfo->szModelName2) == 0)
-				{
-					return TRUE;
-				}
-			}
-		}
-		if (!lpCharInfo->szModelName2[0])
-		{
-
-			strcpy_s(lpCharInfo->szModelName2, szModel_FighterFaceName[0][0]);
-			return TRUE;
-		}
-		break;
-	case JOBCODE_MECHANICIAN:
-		for (cnt = 0; cnt < _CHANGE_JOB_COUNT_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < _FACE_COUNT_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_MechFaceName[cnt][cnt2], lpCharInfo->szModelName2) == 0)
-				{
-					return TRUE;
-				}
-			}
-		}
-		if (!lpCharInfo->szModelName2[0])
-		{
-
-			strcpy_s(lpCharInfo->szModelName2, szModel_MechFaceName[0][0]);
-			return TRUE;
-		}
-		break;
-	case JOBCODE_ARCHER:
-		for (cnt = 0; cnt < _CHANGE_JOB_COUNT_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < _FACE_COUNT_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_ArcherFaceName[cnt][cnt2], lpCharInfo->szModelName2) == 0)
-				{
-					return TRUE;
-				}
-			}
-		}
-		if (!lpCharInfo->szModelName2[0])
-		{
-
-			strcpy_s(lpCharInfo->szModelName2, szModel_ArcherFaceName[0][0]);
-			return TRUE;
-		}
-
-		break;
-	case JOBCODE_PIKEMAN:
-		for (cnt = 0; cnt < _CHANGE_JOB_COUNT_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < _FACE_COUNT_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_PikeFaceName[cnt][cnt2], lpCharInfo->szModelName2) == 0)
-				{
-					return TRUE;
-				}
-			}
-		}
-		if (!lpCharInfo->szModelName2[0])
-		{
-
-			strcpy_s(lpCharInfo->szModelName2, szModel_PikeFaceName[0][0]);
-			return TRUE;
-		}
-		break;
-	case JOBCODE_ATALANTA:
-		for (cnt = 0; cnt < _CHANGE_JOB_COUNT_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < _FACE_COUNT_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_AtalantaFaceName[cnt][cnt2], lpCharInfo->szModelName2) == 0)
-				{
-					return TRUE;
-				}
-			}
-		}
-		if (!lpCharInfo->szModelName2[0])
-		{
-
-			strcpy_s(lpCharInfo->szModelName2, szModel_AtalantaFaceName[0][0]);
-			return TRUE;
-		}
-		break;
-	case JOBCODE_KNIGHT:
-		for (cnt = 0; cnt < _CHANGE_JOB_COUNT_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < _FACE_COUNT_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_KnightFaceName[cnt][cnt2], lpCharInfo->szModelName2) == 0)
-				{
-					return TRUE;
-				}
-			}
-		}
-		if (!lpCharInfo->szModelName2[0])
-		{
-
-			strcpy_s(lpCharInfo->szModelName2, szModel_KnightFaceName[0][0]);
-			return TRUE;
-		}
-		break;
-	case JOBCODE_MAGICIAN:
-		for (cnt = 0; cnt < _CHANGE_JOB_COUNT_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < _FACE_COUNT_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_MagicanFaceName[cnt][cnt2], lpCharInfo->szModelName2) == 0)
-				{
-					return TRUE;
-				}
-			}
-		}
-		if (!lpCharInfo->szModelName2[0])
-		{
-
-			strcpy_s(lpCharInfo->szModelName2, szModel_MagicanFaceName[0][0]);
-			return TRUE;
-		}
-		break;
-	case JOBCODE_PRIESTESS:
-		for (cnt = 0; cnt < _CHANGE_JOB_COUNT_MAX; cnt++)
-		{
-			for (cnt2 = 0; cnt2 < _FACE_COUNT_MAX; cnt2++)
-			{
-				if (lstrcmpi(szModel_PristessFaceName[cnt][cnt2], lpCharInfo->szModelName2) == 0)
-				{
-					return TRUE;
-				}
-			}
-		}
-		if (!lpCharInfo->szModelName2[0])
-		{
-
-			strcpy_s(lpCharInfo->szModelName2, szModel_PristessFaceName[0][0]);
-			return TRUE;
-		}
-		break;
+		int faceCode = 0;
+		int hairCode = 0;
+		return FindClassHeadModel(lpCharInfo->JOB_CODE, lpCharInfo->szModelName2, faceCode, hairCode);
 	}
 
-	return FALSE;
+	char *defaultHead = ResolveDefaultClassHeadModel(lpCharInfo->JOB_CODE, 0);
+	if(!defaultHead || !defaultHead[0])
+		return FALSE;
+	strcpy_s(lpCharInfo->szModelName2, defaultHead);
+	return TRUE;
 }
 
 

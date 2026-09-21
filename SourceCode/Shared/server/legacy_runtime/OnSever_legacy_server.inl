@@ -21,15 +21,26 @@ static const int DELETE_ITEM_PREMIUM = OpCode::DELETE_ITEM_PREMIUM;
 #define SUMMIT_COMPAT_SIN_ADD_NUM
 #include <iostream>
 #include <io.h>
-#include <stdio.h>         
-#include <string.h>        
+#include <stdio.h>
+#include <string.h>
 #include <memory.h>
-#include <process.h>       
+#include <process.h>
 #include <queue>
 #include <memory>
 #include <mutex>
 #include <thread>
 #include <functional>
+
+// Packet/login diagnostics are intentionally opt-in: RecvMessage is a hot path.
+static FILE *SummitServerRuntimeTraceFile(const char *path)
+{
+#if defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
+	return fopen(path, "a");
+#else
+	(void)path;
+	return NULL;
+#endif
+}
 #include "systems/admin/cli/CLI.h"
 
 #include "platform/windows/resources/legacy_runtime/resource.h"
@@ -41,6 +52,11 @@ static const int DELETE_ITEM_PREMIUM = OpCode::DELETE_ITEM_PREMIUM;
 #include "systems/combat/skills/legacy/sinSkill_InfoIni.h"
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "systems/gameplay/character/core/character.h"
+#include "gameplay/classes/v2/services/ClassService.h"
+#include "gameplay/classes/v2/legacy/LegacyClassOnboardingAdapter.h"
+#include "gameplay/classes/v2/legacy/LegacyClassCastleAdapter.h"
+#include "gameplay/commerce/legacy/LegacyClassCommerceAdapter.h"
+#include "gameplay/quests/legacy/LegacyClassQuestAdapter.h"
 #include "core/data/legacy_loader/fileread.h"
 #include "core/server/gameplay_runtime/playmain.h"
 #include "systems/world/field/field.h"
@@ -60,12 +76,13 @@ static const int DELETE_ITEM_PREMIUM = OpCode::DELETE_ITEM_PREMIUM;
 #include "core/server/legacy_runtime/ClientFuncPos.h"
 
 #include "core/server/legacy_runtime/onserver.h"
+#include "systems/gameplay/progression/v2/ProgressionRuntime.h"
 #include "systems/combat/server_legacy/svr_Damage.h"
 #include "systems/combat/server_legacy/CRollHandler.h"
 
-#include "systems/gameplay/events/server_legacy/svrEventSpawn.h"			
+#include "systems/gameplay/events/server_legacy/svrEventSpawn.h"
 
-#include "systems/gameplay/events/server_legacy/svrEventGame.h"				
+#include "systems/gameplay/events/server_legacy/svrEventGame.h"
 #include "systems/progression/battle_pass/BattlePass.h"
 #include "systems/combat/damage/damage.h"
 #include "systems/community/news/News.h"
@@ -83,6 +100,8 @@ static const int DELETE_ITEM_PREMIUM = OpCode::DELETE_ITEM_PREMIUM;
 #endif
 
 #include "systems/gameplay/quests/server/cQuestHandler.h"
+#include "systems/gameplay/events/v2/GameplayEventRuntime.h"
+#include "systems/gameplay/companions/CompanionSystem.h"
 #include "systems/commerce/restoration/cRestaureHandler.h"
 #include "systems/authentication/protocol/Login.h"
 #include "systems/gameplay/loot/alerts/Alerta.h"
@@ -149,7 +168,7 @@ char *szEvent_HopeMsg_StateInit;
 
 #endif
 
-#include "systems/localization/locales/Chinese/C_TimeLimit.h" 
+#include "systems/localization/locales/Chinese/C_TimeLimit.h"
 
 #ifdef _LANGUAGE_BRAZIL
 char *finehack_message = "http://info.pristontale.com/blackWarning/warning.asp?id=%s&name=%s";
@@ -232,10 +251,10 @@ int		Svr_DisplayMode = 0;
 
 char *srEventMonName1 = "Minigue Prateado";
 
-#define	srCRISTAL_MAX		20		
+#define	srCRISTAL_MAX		20
 #define MARVELCRISTAL_MAX	8
-#define srKIDMONSTER_MAX	1	
-#define srSOD_GUARD_MONSTER_MAX	5	
+#define srKIDMONSTER_MAX	1
+#define srSOD_GUARD_MONSTER_MAX	5
 
 int NumLineComa64(INT64 Num, char *pBuff)
 {
@@ -275,18 +294,11 @@ const char* szItemDrops[5]{
 "Amuleto Tulla",
 };
 
-//lista de Classes
-const char* szClasseList[9]
-{ "",
-	"[Mestre dos Lutadores]",
-	"[Mestre dos Mecanicos]",
-	"[Mestre dos Arqueiros]",
-	"[Mestre dos Pikemans]",
-	"[Mestre das Atalantas]",
-	"[Mestre dos Cavaleiros]",
-	"[Mestre dos Magos]",
-	"[Mestre das Sacerdotisas]"
-};
+static const char* rsLegacyClassMasterTitle(int legacyJobCode)
+{
+	const std::string* title = gameplay::classes::DefaultClassService().LegacyMasterTitle(legacyJobCode);
+	return title ? title->c_str() : "";
+}
 
 struct srCRISTAL_MONSTER
 {
@@ -339,19 +351,19 @@ srOPENKID_MONSTER srOpenSODCrystalGuardMonster[srSOD_GUARD_MONSTER_MAX] = {
 #define	srCRISTAL_CASTLE_START	13
 #define	srCRISTAL_CASTLE_END	16
 
-#define	srCRISTAL_SKELETON		16	
-#define	srCRISTAL_KAOS			17	
-#define	srCRISTAL_IMPERNA		18	
-#define srCRISTAL_EXTREME		19		
-#define	srCRISTAL_MARVEL_RANDOM	20		
-#define	srCRISTAL_G_DIVINE_CLAN	21	
+#define	srCRISTAL_SKELETON		16
+#define	srCRISTAL_KAOS			17
+#define	srCRISTAL_IMPERNA		18
+#define srCRISTAL_EXTREME		19
+#define	srCRISTAL_MARVEL_RANDOM	20
+#define	srCRISTAL_G_DIVINE_CLAN	21
 #define srCRISTAL_ENIGMA		22
 #define srCRISTAL_MIROTIC		23
-#define	srCRISTAL_WYVERN		24	
-#define	srCRISTAL_SINTETICO		25	
-#define	srCRISTAL_GUARDIAO		26	
+#define	srCRISTAL_WYVERN		24
+#define	srCRISTAL_SINTETICO		25
+#define	srCRISTAL_GUARDIAO		26
 
-#define AGING_MONEY_FREE 
+#define AGING_MONEY_FREE
 
 srCRISTAL_MONSTER	srCristalMonster[srCRISTAL_MAX] = {
 	{ "Hopi"				, 0 , 10},
@@ -362,7 +374,7 @@ srCRISTAL_MONSTER	srCristalMonster[srCRISTAL_MAX] = {
 	{ "Figon"				, 0 , 9	},
 	{ "Rei Hopi"			, 0 , 9	},
 	{ "Hulk"				, 0 , 9	},
-	{ " ·£´ý "				, 0 , 0	},
+	{ "  "				, 0 , 0	},
 	{ "Guardi\343o Santo"		, 0 , 0	},
 	{ "Aranha"				, 0 , 9	},
 	{ "Espectro Negro"		, 0 , 9	},
@@ -371,10 +383,10 @@ srCRISTAL_MONSTER	srCristalMonster[srCRISTAL_MAX] = {
 	{ "Mil\355cia do Castelo"	, 0 , 0	},
 	{ "Guarda do Castelo"	, 0 , 0	}, //16
 
-	{ "½ºÄÌ·¹Åæ Å©¸®½ºÅ»"	, 0 , 0	},
-	{ "Ä«¿À½º   Å©¸®½ºÅ»"	, 0 , 0	},
-	{ "ÀÎÆä¸£³ª Å©¸®½ºÅ»"	, 0 , 0	},
-	{ "°¡µð¾È µð¹ÙÀÎ"		, 0 , 0	} //20
+	{ "Ì· Å©Å»"	, 0 , 0	},
+	{ "Ä«   Å©Å»"	, 0 , 0	},
+	{ "ä¸£ Å©Å»"	, 0 , 0	},
+	{ " "		, 0 , 0	} //20
 
 };
 
@@ -392,7 +404,7 @@ srCRISTAL_MONSTER	srCristalMonsterBoss[srCRISTAL_MAX] = {
 	{ "Figon"			, 0 , 9	},
 	{ "Rei Hopi"			, 0 , 9		},
 	{ "Hulk"				, 0 , 9		},
-	{ " ·£´ý "				, 0 , 0		},
+	{ "  "				, 0 , 0		},
 	{ "Guardi\343o Santo"		, 0 , 0		},
 	{ "Aranha"				, 0 , 9		},
 	{ "Espectro Negro"		, 0 ,9		},
@@ -401,10 +413,10 @@ srCRISTAL_MONSTER	srCristalMonsterBoss[srCRISTAL_MAX] = {
 	{ "Mil\355cia do Castelo"		, 0 , 0		},
 	{ "Guarda do Castelo"	, 0 , 0		},
 
-	{ "½ºÄÌ·¹Åæ Å©¸®½ºÅ»"	, 0 , 0		},
-	{ "Ä«¿À½º   Å©¸®½ºÅ»"	, 0 , 0		},
-	{ "ÀÎÆä¸£³ª Å©¸®½ºÅ»"	, 0 , 0		},
-	{ "°¡µð¾È µð¹ÙÀÎ"		, 0 , 0		}
+	{ "Ì· Å©Å»"	, 0 , 0		},
+	{ "Ä«   Å©Å»"	, 0 , 0		},
+	{ "ä¸£ Å©Å»"	, 0 , 0		},
+	{ " "		, 0 , 0		}
 };
 
 srCRISTAL_MONSTER srMarvelCristalMonster[MARVELCRISTAL_MAX] = {
@@ -442,100 +454,100 @@ srCRISTAL_MONSTER	srSkillMonster[srSKILL_MONSTER_MAX] = {
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy[7] = {
-	{ " ÄÚÅ©¸®½ºÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " ¸®Ä¡ÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ½ÎÀÌÅ¬·Ó½ºÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ¸ÞÇÍÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ºñµ¶ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " Á»ºñÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " µðÄÚÀÌÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " Å© È¥ "				, 0 , 20	},
+	{ " Ä¡ È¥ "		, 0 , 20	},
+	{ " Å¬Ó½ È¥ "		, 0 , 15	},
+	{ "  È¥ "			, 0 , 15	},
+	{ "  È¥ "		, 0 , 15	},
+	{ "  È¥ "				, 0 , 10	},
+	{ "  È¥ "			, 0 , 5		}
 };
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy2[7] = {
-	{ " ¹ìÇÇ¸¯ ¹îÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " ±×¸®ºìÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ÀÌºí ½º³×ÀÏÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " Å©¸³Æ®ÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ºÎ¸¶ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ¹Ù°ïÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " Å¸ÀÌÅºÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " Ç¸  È¥ "				, 0 , 20	},
+	{ " ×¸ È¥ "		, 0 , 20	},
+	{ " Ìº  È¥ "		, 0 , 15	},
+	{ " Å©Æ® È¥ "			, 0 , 15	},
+	{ " Î¸ È¥ "		, 0 , 15	},
+	{ " Ù° È¥ "				, 0 , 10	},
+	{ " Å¸Åº È¥ "			, 0 , 5		}
 };
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy3[7] = {
-	{ " ºñºíÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " ½½·¹ÀÌ¿ÂÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ½½·¯ÅÍÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " Å¸¿ö °í·½ÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ¸Ó¹ÌÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ³ªÁîÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " À§Ä¡ÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ "  È¥ "				, 0 , 20	},
+	{ " Ì¿ È¥ "		, 0 , 20	},
+	{ "  È¥ "		, 0 , 15	},
+	{ " Å¸  È¥ "			, 0 , 15	},
+	{ " Ó¹ È¥ "		, 0 , 15	},
+	{ "  È¥ "				, 0 , 10	},
+	{ " Ä¡ È¥ "			, 0 , 5		}
 };
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy4[7] = {
-	{ " ¹ö¼­Ä¿ÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " Å¸ÀÌÇ¬ÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ¸®ÀÚµåÆ÷Å©ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ·¥ÆäÀÌÁöÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ¾Æº§¸°ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ÀÎÅ¥¹ö½ºÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " »õµå´Ï½ºÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " Ä¿ È¥ "				, 0 , 20	},
+	{ " Å¸Ç¬ È¥ "		, 0 , 20	},
+	{ " ÚµÅ© È¥ "		, 0 , 15	},
+	{ "  È¥ "			, 0 , 15	},
+	{ " Æº È¥ "		, 0 , 15	},
+	{ " Å¥ È¥ "				, 0 , 10	},
+	{ " Ï½ È¥ "			, 0 , 5		}
 };
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy5[7] = {
-	{ " µð-¸Ó½ÅÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " Å·È£ÇÇÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ¿À¸Þ°¡ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " µ¥µåÁ¸ÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ¾ÆÀÌ½º °í·½ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ÄÝµå¾ÆÀÌÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " ±¼°¡¸£ÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " -Ó½ È¥ "				, 0 , 20	},
+	{ " Å·È£ È¥ "		, 0 , 20	},
+	{ " Þ° È¥ "		, 0 , 15	},
+	{ "  È¥ "			, 0 , 15	},
+	{ " Ì½  È¥ "		, 0 , 15	},
+	{ " Ýµ È¥ "				, 0 , 10	},
+	{ "  È¥ "			, 0 , 5		}
 };
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy6[7] = {
-	{ " ¹ìÇÇ¸¯ ¹îÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " ±×¸®ºìÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ÀÌºí ½º³×ÀÏÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " Å©¸³Æ®ÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ºÎ¸¶ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ¹Ù°ïÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " ¸ÓÇÉÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " Ç¸  È¥ "				, 0 , 20	},
+	{ " ×¸ È¥ "		, 0 , 20	},
+	{ " Ìº  È¥ "		, 0 , 15	},
+	{ " Å©Æ® È¥ "			, 0 , 15	},
+	{ " Î¸ È¥ "		, 0 , 15	},
+	{ " Ù° È¥ "				, 0 , 10	},
+	{ "  È¥ "			, 0 , 5		}
 };
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy7[7] = {
-	{ " ºñºíÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " ½½·¹ÀÌ¿ÂÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ½½·¯ÅÍÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " Å¸¿ö °í·½ÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ¸Ó¹ÌÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ³ªÁîÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " ½½¸®¹öÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ "  È¥ "				, 0 , 20	},
+	{ " Ì¿ È¥ "		, 0 , 20	},
+	{ "  È¥ "		, 0 , 15	},
+	{ " Å¸  È¥ "			, 0 , 15	},
+	{ " Ó¹ È¥ "		, 0 , 15	},
+	{ "  È¥ "				, 0 , 10	},
+	{ "  È¥ "			, 0 , 5		}
 };
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy8[7] = {
-	{ " ¹ö¼­Ä¿ÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " Å¸ÀÌÇ¬ÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ¸®ÀÚµåÆ÷Å©ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ·¥ÆäÀÌÁöÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ¾Æº§¸°ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ÀÎÅ¥¹ö½ºÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " ¸ÞÆ®·ÐÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " Ä¿ È¥ "				, 0 , 20	},
+	{ " Å¸Ç¬ È¥ "		, 0 , 20	},
+	{ " ÚµÅ© È¥ "		, 0 , 15	},
+	{ "  È¥ "			, 0 , 15	},
+	{ " Æº È¥ "		, 0 , 15	},
+	{ " Å¥ È¥ "				, 0 , 10	},
+	{ " Æ® È¥ "			, 0 , 5		}
 };
 
 
 srCRISTAL_MONSTER	srCristalMonsterEnemy9[7] = {
-	{ " µð-¸Ó½ÅÀÇ ¿µÈ¥ "				, 0 , 20	},
-	{ " Å·È£ÇÇÀÇ ¿µÈ¥ "		, 0 , 20	},
-	{ " ¿À¸Þ°¡ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " µ¥µåÁ¸ÀÇ ¿µÈ¥ "			, 0 , 15	},
-	{ " ¾ÆÀÌ½º °í·½ÀÇ ¿µÈ¥ "		, 0 , 15	},
-	{ " ÄÝµå¾ÆÀÌÀÇ ¿µÈ¥ "				, 0 , 10	},
-	{ " ±×·ÎÅ×½ºÅ©ÀÇ ¿µÈ¥ "			, 0 , 5		}
+	{ " -Ó½ È¥ "				, 0 , 20	},
+	{ " Å·È£ È¥ "		, 0 , 20	},
+	{ " Þ° È¥ "		, 0 , 15	},
+	{ "  È¥ "			, 0 , 15	},
+	{ " Ì½  È¥ "		, 0 , 15	},
+	{ " Ýµ È¥ "				, 0 , 10	},
+	{ " ×·×½Å© È¥ "			, 0 , 5		}
 };
 
 
@@ -856,6 +868,12 @@ INT SetupDefWindow()
 	fprintf(stderr, "[MAIN] DEPOIS InitAll ret=%d\n", ret);
 	fflush(stderr);
 
+	if(!ret)
+	{
+		fprintf(stderr, "[MAIN] InitAll failed; socket will not be opened\n");
+		return FALSE;
+	}
+
 	InitBindSock(SERVER_TCP_PORT);
 	cout << "Servidor pronto para receber conexoes" << endl;
 
@@ -908,7 +926,7 @@ extern	smWINSOCK	smWSock[CONNECTMAX];
 int rsConnectUserLimit = 800;
 
 
-#ifdef	_LANGUAGE_THAILOW		
+#ifdef	_LANGUAGE_THAILOW
 
 
 #define	TRANS_MAX_CHAR_LIMIT	24
@@ -930,7 +948,7 @@ DWORD		dwOffsetTime = 0;
 
 #define	CHR_MONSTER_MAX		400
 
-#define	DEF_ITEM_MAX		MAX_ITEM 
+#define	DEF_ITEM_MAX		MAX_ITEM
 
 #define	REOPEN_COUNT_NUM	256
 
@@ -968,7 +986,7 @@ int chrMonsterCnt;
 int	EventMonster = 0;
 
 
-#define	LIMIT_PK_LEVEL	20				
+#define	LIMIT_PK_LEVEL	20
 
 
 int	rsHardCoreEvent = 0;
@@ -1465,14 +1483,14 @@ int Event_UserInfo_Init(rsPLAYINFO *lpPlayInfo, WORD sTime);
 
 #define	ITEMLOG_GET_RECON		27
 #define	ITEMLOG_LOST_RECON		28
-#define ITEMLOG_SMELTING_LOST	29		
-#define ITEMLOG_SMELTING_GET	30		
-#define ITEMLOG_MANUFACTURE_LOST 31		
-#define ITEMLOG_MANUFACTURE_GET 32		
-#define ITEMLOG_MANUFACTURE_FAIL 33		
-#define ITEMLOG_MIXTURE_RESET_LOST	34		
-#define ITEMLOG_MIXTURE_RESET_FAIL	35		
-#define ITEMLOG_MIXTURE_RESET_GET	36		
+#define ITEMLOG_SMELTING_LOST	29
+#define ITEMLOG_SMELTING_GET	30
+#define ITEMLOG_MANUFACTURE_LOST 31
+#define ITEMLOG_MANUFACTURE_GET 32
+#define ITEMLOG_MANUFACTURE_FAIL 33
+#define ITEMLOG_MIXTURE_RESET_LOST	34
+#define ITEMLOG_MIXTURE_RESET_FAIL	35
+#define ITEMLOG_MIXTURE_RESET_GET	36
 
 
 int	rsRecord_ItemLog(rsPLAYINFO *lpPlayInfo, DWORD dwItemCode, DWORD	dwHead, DWORD dwChkSum, int Flag);
@@ -1737,7 +1755,7 @@ int rsRefreshConfig()
 
 	bool readWarline();
 	readWarline();
-	
+
 	if (!smConfigDecode("Configs//hotuk.ini"))
 	{
 		Sleep(5000);
@@ -1748,15 +1766,15 @@ int rsRefreshConfig()
 
 	StartUser_PresentItem_Init();
 
-	if (AgingEvento) 
+	if (AgingEvento)
 	{
 		cout << "Aging Free ON" << endl;
 	}
-	else 
+	else
 	{
 		cout << "Aging Free OFF" << endl;
 	}
-	if (bMaintenanceMode) 
+	if (bMaintenanceMode)
 	{
 		cout << "Modo Manutencao Ativo!" << endl;
 	}
@@ -1798,14 +1816,14 @@ int rsRefreshConfig()
 	rsResetClientFuncPos();
 
 	InitCrackFinding();
-	
+
     cCoinShop.LoadItems();
 	cCoinShop_T.LoadItems();
 
 	LeaveCriticalSection(&cSerSection);
 
 	rsInit_SerToServer();
-	
+
 #endif
 
 	return TRUE;
@@ -1998,12 +2016,12 @@ int InitMonster()
 			chrMonsterCnt++;
 
 			if(FindNextFile(hFindHandle, &fd) == FALSE) break;
-			if(chrMonsterCnt >= CHR_MONSTER_MAX) break; 
+			if(chrMonsterCnt >= CHR_MONSTER_MAX) break;
 		}
 	}
 	FindClose(hFindHandle);
 
-	
+
 
 
 
@@ -4112,8 +4130,11 @@ static void WarpT5ArenaExit(rsPLAYINFO* lpPlayInfo)
 		return;
 
 	int field = START_FIELD_NUM;
-	if(lpPlayInfo->smCharInfo.JOB_CODE > 4 && lpPlayInfo->smCharInfo.JOB_CODE != 9)
+	if(gameplay::classes::DefaultClassService().IsInBrood(
+		lpPlayInfo->smCharInfo.JOB_CODE, gameplay::classes::brood::Morayion))
+	{
 		field = START_FIELD_MORYON;
+	}
 
 	if(field < 0 || field >= FIELD_MAX || sField[field].StartPointCnt <= 0)
 		return;
@@ -5033,6 +5054,365 @@ int	OpenMonsterFromCristal(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO* lp
 
 
 
+// Restore the visible hand equipment directly from the serialized character
+// record. ItemPosition 1/2 are the two equipped hand slots in the legacy
+// inventory. The remote client reconstructs the actual meshes from wStickItems;
+// dwActionItemCode is kept server-side so SetMotionFromCode can select the same
+// weapon-specific attack motions a connected player would use.
+static bool rsIsCompanionTwoHandCode(DWORD code, int itemIndex)
+{
+    if(!code)
+        return false;
+    if(itemIndex >= 0 && itemIndex < MAX_ITEM &&
+        sItem[itemIndex].Class == ITEM_CLASS_WEAPON_TWO)
+        return true;
+
+    const DWORD family = code & sinITEM_MASK2;
+    return family == sinWS1 || family == sinWP1;
+}
+
+static void rsRestoreCompanionEquippedHands(smCHAR *companion, const TRANS_RECORD_DATA *recordData)
+{
+    if(!companion || !recordData || recordData->DataSize <= 0)
+        return;
+
+    companion->wStickItems[smPLAYBUFF_ITEM_LEFT] = -1;
+    companion->wStickItems[smPLAYBUFF_ITEM_RIGHT] = -1;
+    companion->dwActionItemCode = 0;
+
+    DWORD handCode[2] = { 0, 0 };
+    const BYTE *cursor = recordData->Data;
+    const BYTE *end = recordData->Data + recordData->DataSize;
+
+    // Equipped slots live in the primary inventory. ItemSubStart marks where
+    // the secondary inventory begins; scanning through both can pick a stale or
+    // temporary slot 1/2 entry and make a completely unrelated item appear in
+    // the companion's hand.
+    int primaryItemCount = recordData->ItemSubStart;
+    if(primaryItemCount <= 0 || primaryItemCount > recordData->ItemCount)
+        primaryItemCount = recordData->ItemCount;
+
+    for(int item = 0; item < primaryItemCount && cursor + sizeof(int) <= end; ++item)
+    {
+        const int packedSize = *(const int *)cursor;
+        if(packedSize <= (int)sizeof(int) || cursor + packedSize > end)
+            break;
+
+        sRECORD_ITEM recordItem;
+        ZeroMemory(&recordItem, sizeof(recordItem));
+        DecodeCompress((BYTE *)cursor, (BYTE *)&recordItem, sizeof(recordItem));
+
+        if(recordItem.ItemPosition == 1 || recordItem.ItemPosition == 2)
+        {
+            const int hand = recordItem.ItemPosition - 1;
+            if(!handCode[hand] && recordItem.sItemInfo.CODE)
+                handCode[hand] = recordItem.sItemInfo.CODE;
+        }
+        cursor += packedSize;
+    }
+
+    int handIndex[2] = { -1, -1 };
+    for(int hand = 0; hand < 2; ++hand)
+    {
+        if(handCode[hand])
+            handIndex[hand] = GetSinItemNumFromCode(handCode[hand]);
+    }
+
+    if(handIndex[0] >= 0)
+        companion->wStickItems[smPLAYBUFF_ITEM_RIGHT] = (short)handIndex[0];
+    if(handIndex[1] >= 0)
+        companion->wStickItems[smPLAYBUFF_ITEM_LEFT] = (short)handIndex[1];
+
+    // A two-handed weapon is serialized twice (positions 1 and 2). Only the
+    // canonical position-1 item should be attached visually; otherwise the
+    // remote character can end up with a duplicate mesh in the left hand.
+    if(handCode[1] == handCode[0] &&
+        ((handIndex[0] >= 0 && handIndex[0] < MAX_ITEM &&
+          sItem[handIndex[0]].Class == ITEM_CLASS_WEAPON_TWO) ||
+         rsIsCompanionTwoHandCode(handCode[0], handIndex[0])))
+    {
+        handCode[1] = 0;
+        companion->wStickItems[smPLAYBUFF_ITEM_LEFT] = -1;
+        handIndex[1] = -1;
+    }
+    else if(rsIsCompanionTwoHandCode(handCode[1], handIndex[1]) && !handCode[0])
+    {
+        handCode[0] = handCode[1];
+        handIndex[0] = handIndex[1];
+        handCode[1] = 0;
+        handIndex[1] = -1;
+        companion->wStickItems[smPLAYBUFF_ITEM_RIGHT] = (short)handIndex[0];
+        companion->wStickItems[smPLAYBUFF_ITEM_LEFT] = -1;
+    }
+
+    // wStickItems contains an index into sItem[]. That index is process-local
+    // and is not safe across independently loaded client/server catalogues
+    // (Asset Load System V2 can legally produce different table ordering).
+    // Keep the indices for server-internal legacy motion selection, but send the
+    // canonical item CODEs in reserved network-only smCHAR_INFO fields.
+    companion->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_EQUIP_REVISION] = 1U;
+    companion->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_MAGIC] = smCOMPANION_NET_MAGIC;
+    companion->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_RIGHT_ITEM_CODE] = handCode[0];
+    companion->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_LEFT_ITEM_CODE] = handCode[1];
+
+    // Do not override smPLAYBUFF_ITEM_BODY here. The saved smCharInfo.szModelName
+    // already describes the exact body/armor/costume model that was active when
+    // the character record was written. Reconstructing BODY from ItemPosition 3
+    // loses costume slot 14 and can make the client hot-swap to a different model
+    // after PLAYERINFO, which also desynchronizes the motion-table action indices.
+
+    // Only real weapons should drive the player motion selector. Shields/orbs
+    // commonly occupy position 2 and must not become the action item when the
+    // main hand is empty.
+    for(int hand = 0; hand < 2; ++hand)
+    {
+        const int itemIndex = handIndex[hand];
+        if(itemIndex >= 0 && itemIndex < MAX_ITEM &&
+            (sItem[itemIndex].Class == ITEM_CLASS_WEAPON_ONE ||
+             sItem[itemIndex].Class == ITEM_CLASS_WEAPON_TWO))
+        {
+            companion->dwActionItemCode = handCode[hand];
+            break;
+        }
+    }
+}
+
+// Player-character companion bridge. The legacy monster container requires a
+// valid smCHAR_MONSTER_INFO template, so we borrow only that AI metadata from
+// an initialized crystal monster while preserving the saved player's actual
+// character stats/model/name in smCHAR_INFO.
+smCHAR *OpenCharacterCompanionFromRecord(rsPLAYINFO *owner, const TRANS_RECORD_DATA *recordData)
+{
+#ifdef _W_SERVER
+    if(!owner || !owner->lpsmSock || !recordData || recordData->size <= 0)
+        return NULL;
+
+    STG_AREA *area = FindStageField(owner->Position.x, owner->Position.z);
+    if(!area || !area->lpField || !area->lpStage)
+        return NULL;
+
+    // Companions are party members, not consumable monster crystals. They may
+    // exist in villages/castle maps and must spawn beside their owner instead
+    // of depending on the field's monster start-point table.
+    smCHAR_INFO *templateInfo = NULL;
+    for(int i = 0; i < srCRISTAL_MAX; ++i)
+    {
+        if(srCristalMonster[i].lpCharInfo && srCristalMonster[i].lpCharInfo->lpMonInfo)
+        {
+            templateInfo = srCristalMonster[i].lpCharInfo;
+            break;
+        }
+    }
+
+    if(!templateInfo || !templateInfo->lpMonInfo)
+        return NULL;
+
+    STG_CHAR_INFO stageInfo;
+    ZeroMemory(&stageInfo, sizeof(stageInfo));
+    stageInfo.PosiState = smCHAR_STATE_ENEMY;
+    memcpy(&stageInfo.smCharInfo, &recordData->smCharInfo, sizeof(smCHAR_INFO));
+
+    // Serialized player records must never supply a runtime monster-info pointer.
+    stageInfo.smCharInfo.lpMonInfo = templateInfo->lpMonInfo;
+    // Keep the network-facing state as USER. Weapon attachment and player
+    // motion selection explicitly reject ENEMY state; combat ownership is
+    // carried separately by Brood/lpMasterPlayInfo/ActionPattern.
+    stageInfo.smCharInfo.State = smCHAR_STATE_USER;
+    stageInfo.smCharInfo.Brood = smCHAR_MONSTER_USER;
+
+    if(stageInfo.smCharInfo.Life[1] <= 0)
+        stageInfo.smCharInfo.Life[1] = 100;
+    stageInfo.smCharInfo.Life[0] = stageInfo.smCharInfo.Life[1];
+
+    if(stageInfo.smCharInfo.Mana[1] <= 0)
+        stageInfo.smCharInfo.Mana[1] = 100;
+    stageInfo.smCharInfo.Mana[0] = stageInfo.smCharInfo.Mana[1];
+
+    smCHAR *companion = srFindEmptyChar();
+    if(!companion)
+        return NULL;
+
+    int x = owner->Position.x;
+    int y = owner->Position.y;
+    int z = owner->Position.z;
+
+    // Unlike OpenMonster(), this does not require an active monster spawn point.
+    // Try a valid floor position around the owner; if the field has no usable
+    // nearby point (common in some village maps), initialize directly on owner.
+    if(area->SetStartPosNearChar(companion, x, y, z) != TRUE)
+    {
+        companion->Init();
+        companion->lpStage = area->lpStage;
+        companion->SetPosi(x, 0, z, 0, 0, 0);
+        companion->PosiAround.x = x;
+        companion->PosiAround.y = companion->pY;
+        companion->PosiAround.z = z;
+        companion->DistAroundDbl = DIST_AROUND_MIDDLE;
+    }
+
+    area->MonsterCount++;
+    companion->lpExt1 = (void *)&area->Head;
+    companion->dwObjectSerial = GetNewObjectSerial();
+    companion->ActionPattern = 5;
+    memcpy(&companion->smCharInfo, &stageInfo.smCharInfo, sizeof(smCHAR_INFO));
+    memcpy(&companion->smMonsterInfo, stageInfo.smCharInfo.lpMonInfo, sizeof(smCHAR_MONSTER_INFO));
+
+    // The DataServer record is the authority for the companion's *network*
+    // appearance. Never load its armor/costume/head into the server-side smCHAR:
+    // those assets can differ from the server corpus and a failed/repeated model
+    // load used to stall AI, change the secondary pattern or make the companion
+    // blink. The server only needs a stable internal pattern to advance motion
+    // state; the client renders the exact saved body/head from smCHAR_INFO.
+    smCHAR_INFO savedPlayerInfo;
+    memcpy(&savedPlayerInfo, &companion->smCharInfo, sizeof(savedPlayerInfo));
+    companion->Pattern = 0;
+    companion->Flag = TRUE;
+    companion->SetLoadPattern(templateInfo->szModelName);
+    memcpy(&companion->smCharInfo, &savedPlayerInfo, sizeof(savedPlayerInfo));
+    companion->smCharInfo.lpMonInfo = templateInfo->lpMonInfo;
+    companion->Flag = TRUE;
+
+    // StatePoint is real player progression data in an account record. Do not
+    // repurpose it as the monster ClassCode like OpenMonster() does.
+    companion->AttackUserFlag = 0;
+    companion->lpExt2 = 0;
+    companion->lpExpAttackPlayInfo = 0;
+    companion->ExpAttackLife = 0;
+    area->AddMonTable(companion);
+    companion->ReopenCount = REOPEN_COUNT_NUM;
+    companion->dwLastTransTime = dwPlayServTime;
+    rsMonOpenCount++;
+
+    companion->lpAttackDamageList = new ATTACK_DAMAGE_LIST[ATTACK_DAMAGE_LIST_MAX];
+    if(companion->lpAttackDamageList)
+        ZeroMemory(companion->lpAttackDamageList, sizeof(ATTACK_DAMAGE_LIST) * ATTACK_DAMAGE_LIST_MAX);
+
+    // Keep the authoritative companion exactly at the resolved near-owner point.
+    x = companion->pX;
+    y = companion->pY;
+    z = companion->pZ;
+    companion->DistAroundDbl = 0;
+    companion->TargetMoveCount = 0;
+    companion->lpMasterPlayInfo = owner;
+    companion->smMonsterInfo.dwAutoCharCode = 0;
+    companion->smMonsterInfo.SkillRating = 0; // player skills are executed by the companion layer, not monster RNG
+    companion->smMonsterInfo.SkillCurse = 0;
+    companion->smMonsterInfo.PotionCount = 0;
+    // Movement cadence must not depend on whichever crystal template happened
+    // to be borrowed for the legacy monster container. IQ >= 6 enables the
+    // normal run path when tracing a nearby target.
+    companion->smMonsterInfo.IQ = 10;
+    companion->smCharInfo.State = smCHAR_STATE_USER;
+    companion->smCharInfo.Brood = smCHAR_MONSTER_USER;
+    companion->smCharInfo.Next_Exp = owner->dwObjectSerial;
+    rsRestoreCompanionEquippedHands(companion, recordData);
+
+    // One line per summon, never per tick: this lets runtime tests prove that
+    // the exact DataServer snapshot (body/head + equipped hand CODEs) reached
+    // the bridge without creating another packet/logging hot path.
+    {
+        FILE *fpCompanion = SummitServerRuntimeTraceFile("LOGS\\companion_spawn_snapshot.txt");
+        if(fpCompanion)
+        {
+            fprintf(fpCompanion,
+                "name='%s' body='%s' head='%s' headCode=%u right=%u left=%u items=%d subStart=%d\n",
+                recordData->smCharInfo.szName,
+                recordData->smCharInfo.szModelName,
+                recordData->smCharInfo.szModelName2,
+                (unsigned int)recordData->smCharInfo.ModelNameCode2,
+                (unsigned int)companion->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_RIGHT_ITEM_CODE],
+                (unsigned int)companion->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_LEFT_ITEM_CODE],
+                recordData->ItemCount,
+                recordData->ItemSubStart);
+            fclose(fpCompanion);
+        }
+    }
+
+    companion->SetMotionFromCode(CHRMOTION_STATE_STAND);
+    // Seed a play-buffer sample after state/equipment are final so the first
+    // normal autoplay transfer already contains the correct weapon slots.
+    companion->SavePlayBuff2();
+
+    int lifetimeMinutes = GetPrivateProfileIntA(
+        "Companion",
+        "LifetimeMinutes",
+        720,
+        ".//Configs//Companion.ini");
+    if(lifetimeMinutes < 10)
+        lifetimeMinutes = 10;
+    if(lifetimeMinutes > 1440)
+        lifetimeMinutes = 1440;
+    companion->dwUpdateCharInfoTime =
+        dwPlayServTime + (DWORD)lifetimeMinutes * 60U * 1000U;
+
+    // Bootstrap visibility immediately. The client only allocates an unknown
+    // remote smCHAR when it first sees that serial inside PLAYDATAGROUP. Waiting
+    // for the periodic autoplay transfer can leave a freshly summoned companion
+    // invisible when its first server-side animation buffer is not ready yet.
+    char presenceBuffer[sizeof(smPLAYDATA_GROUP) + sizeof(smPLAYDATA)];
+    ZeroMemory(presenceBuffer, sizeof(presenceBuffer));
+    smPLAYDATA_GROUP *presenceGroup = (smPLAYDATA_GROUP *)presenceBuffer;
+    smPLAYDATA *presence = (smPLAYDATA *)(presenceBuffer + sizeof(smPLAYDATA_GROUP));
+    presenceGroup->size = sizeof(presenceBuffer);
+    presenceGroup->code = OpCode::OPCODE_PLAYDATAGROUP;
+    presenceGroup->PlayDataCnt = 1;
+    presenceGroup->dwSendCode = 0x80000000 | (owner->SendPlayGroupCount & 0x00FFFFFF);
+    presence->size = sizeof(smPLAYDATA);
+    presence->code = OpCode::OPCODE_PLAYDATA1;
+    presence->dwObjectSerial = companion->dwObjectSerial;
+    presence->x = companion->pX;
+    presence->y = companion->pY;
+    presence->z = companion->pZ;
+    presence->angle[0] = companion->Angle.x;
+    presence->angle[1] = companion->Angle.y;
+    presence->angle[2] = companion->Angle.z;
+    // PLAYDATA1 arrives before PLAYERINFO. Do not expose the server's motion
+    // table index here: with independently loaded assets that index is not a
+    // stable cross-process identifier. The companion-aware TRANSPLAYDATA path
+    // below will drive motion by CHRMOTION_STATE_* once PLAYERINFO marks it.
+    presence->angle[3] = 0;
+    presence->frame = 0;
+    presence->dwAutoCharCode = 0;
+    owner->lpsmSock->Send(presenceBuffer, presenceGroup->size, TRUE);
+
+    // Send the full character record immediately after the bootstrap packet.
+    // TCP ordering guarantees the client has created the remote slot first.
+    smTRNAS_PLAYERINFO companionInfo;
+    ZeroMemory(&companionInfo, sizeof(companionInfo));
+    memcpy(&companionInfo.smCharInfo, &companion->smCharInfo, sizeof(smCHAR_INFO));
+    companionInfo.size = sizeof(smTRNAS_PLAYERINFO);
+    companionInfo.code = OpCode::OPCODE_PLAYERINFO;
+    companionInfo.dwObjectSerial = companion->dwObjectSerial;
+    companionInfo.x = companion->pX;
+    companionInfo.y = companion->pY;
+    companionInfo.z = companion->pZ;
+    owner->lpsmSock->Send((char *)&companionInfo, companionInfo.size, TRUE);
+    companion->NearPlayCount = 256;
+
+    smTRANS_COMMAND_EX warp;
+    ZeroMemory(&warp, sizeof(warp));
+    warp.WParam = smCOMMNAD_USER_WARP;
+    warp.LParam = x;
+    warp.SParam = y;
+    warp.EParam = z;
+    rsSendCommandUser(owner, &warp);
+
+    // Do not register this as one of the legacy 20 crystal buffs on the client.
+    // The companion lifetime is server-authoritative and may use any configured item code.
+    warp.LxParam = FALSE;
+    warp.WxParam = gameplay::companions::GetConfiguredCrystalItemCode();
+    warp.ExParam = companion->dwObjectSerial;
+    warp.SxParam = owner->dwObjectSerial;
+    rsSendCommandUser(owner, &warp);
+
+    return companion;
+#else
+    return NULL;
+#endif
+}
+
+
+
 
 smCHAR *rsGetLinkChar(smCHAR *lpMasterChar)
 {
@@ -5091,7 +5471,7 @@ smCHAR *OpenMonsterFromSkill(DWORD SkillCode, int x, int y, int z, rsPLAYINFO *l
 		SkillMonsterAttackFlag = TRUE;
 		break;
 	}
-	
+
 	if(!lpCristalMonster->lpCharInfo) return NULL;
 
 	if(lpPlayInfo)
@@ -5221,7 +5601,8 @@ smCHAR *OpenMonster_QuestArena(rsPLAYINFO *lpPlayInfo, DWORD dwQuestCode, int Pa
 	switch(dwQuestCode)
 	{
 	case SIN_QUEST_CODE_CHANGEJOB4:
-		if(lpPlayInfo->smCharInfo.JOB_CODE <= 4 || lpPlayInfo->smCharInfo.JOB_CODE == 9)
+		if(gameplay::classes::DefaultClassService().IsInBrood(
+			lpPlayInfo->smCharInfo.JOB_CODE, gameplay::classes::brood::Tempskron))
 			dwSndCode = snCHAR_SOUND_NPC_SKILLMASTER;
 		else
 			dwSndCode = snCHAR_SOUND_NPC_MAGICMASTER;
@@ -5357,10 +5738,10 @@ smCHAR *OpenMonsterFromName(char *szName, int x, int y, int z, rsPLAYINFO *lpPla
 				if (lpPlayInfo) {
 					lpChar->lpMasterPlayInfo = lpPlayInfo;
 					lpChar->smMonsterInfo.dwAutoCharCode = 0;
-					lpChar->smCharInfo.Brood = smCHAR_MONSTER_USER;	
+					lpChar->smCharInfo.Brood = smCHAR_MONSTER_USER;
 					lstrcpy(lpChar->smCharInfo.szModelName2 + 1, lpPlayInfo->smCharInfo.szName);
-					lpChar->smCharInfo.Next_Exp = lpPlayInfo->dwObjectSerial;			
-					lpChar->dwUpdateCharInfoTime = dwPlayServTime + 4 * 60 * 1000;		
+					lpChar->smCharInfo.Next_Exp = lpPlayInfo->dwObjectSerial;
+					lpChar->dwUpdateCharInfoTime = dwPlayServTime + 4 * 60 * 1000;
 				}
 
 				return lpChar;
@@ -5481,7 +5862,7 @@ smCHAR *rsOpenSubMonster(smCHAR *lpMainChar, DWORD dwCharSoundCode, int x, int y
 				}
 			}
 
-#ifdef	_LANGUAGE_JAPANESE 
+#ifdef	_LANGUAGE_JAPANESE
 			if(rsDamgeOffEvent)
 			{
 
@@ -5518,14 +5899,14 @@ smCHAR *rsOpenSubMonster(smCHAR *lpMainChar, DWORD dwCharSoundCode, int x, int y
 					lpChar->smMonsterInfo.SkillDamage[1] = (lpChar->smMonsterInfo.SkillDamage[1] * 50) / 100;
 				}
 			}
-#endif		
+#endif
 			if(rsDefenseOffEvent)
 			{
 
 				lpChar->smCharInfo.Defence = (lpChar->smCharInfo.Defence*DEFENSE_RATE) / 100;
 			}
 			rsMonOpenCount++;
-			
+
 			lpChar->SetMotionFromCode(CHRMOTION_STATE_STAND);
 			lpChar->TargetMoveCount = 0;
 
@@ -5683,24 +6064,24 @@ DWORD rsRegist_EnterKey(DWORD _dwCode, DWORD _dwAdd)
 sHCORE_MONSTER	sHCoreEvent1[] = {
 	{ { "11" , 0, 40 } , { "12", 0, 40 } , { "13", 0, 20 } , { "14", 0, 25 } , { "", 0, 0 } , 100 , 6 , 0 , 40 , SOD_DEFAULT_DELAY },
 	{ { "21" , 0, 35 } , { "22", 0, 20 } , { "23", 0, 10 } , { "24", 0, 25 } , { "", 0, 0 } , 100 , 8 , 0 , 40 , SOD_DEFAULT_DELAY },
-	{ { "31" , 0, 35 } , { "32", 0, 30 } , { "34", 0, 35 } , { "35", 0, 25 } , { "¾ðÈ¦¸® ³ªÀÌÆ®", 0, 0 }	, 100 , 10 , 0 , 40 , SOD_DEFAULT_DELAY },
+	{ { "31" , 0, 35 } , { "32", 0, 30 } , { "34", 0, 35 } , { "35", 0, 25 } , { "È¦ Æ®", 0, 0 }	, 100 , 10 , 0 , 40 , SOD_DEFAULT_DELAY },
 	{ { "41" , 0, 45 } , { "42", 0, 25 } , { "43", 0, 20 } , { "44", 0, 35 } , { "", 0, 0 } , 100 , 12 , 0 , 35 , SOD_DEFAULT_DELAY * 2 },
 	{ { "51" , 0, 30 } , { "52", 0, 20 } , { "53", 0, 40 } , { "54", 0, 25 } , { "", 0, 0 }	, 100 , 15 , 0 , 30 , SOD_DEFAULT_DELAY},
-	{ { "61" , 0, 20 } , { "62", 0, 20 } , { "63", 0, 40 } , { "64", 0, 30 } , { "º£¸£¹® ¾ÇÅ¸·é", 0, 0 } , 100 , 18 , 0 , 25, SOD_DEFAULT_DELAY },
+	{ { "61" , 0, 20 } , { "62", 0, 20 } , { "63", 0, 40 } , { "64", 0, 30 } , { " Å¸", 0, 0 } , 100 , 18 , 0 , 25, SOD_DEFAULT_DELAY },
 	{ { "71" , 0, 30 } , { "72", 0, 40 } , { "73", 0, 20 } , { "74", 0, 20 } , { "", 0, 0 }	, 100 , 21 , 0 , 20, SOD_DEFAULT_DELAY * 3 },
-	{ { "81" , 0, 20 } , { "82", 0, 30 } , { "83", 0, 30 } , { "84", 0, 25 } , { "µÒ ·Îµå", 0, 0 } , 100 , 0 , 50000 , 15 , SOD_DEFAULT_DELAY },
+	{ { "81" , 0, 20 } , { "82", 0, 30 } , { "83", 0, 30 } , { "84", 0, 25 } , { " Îµ", 0, 0 } , 100 , 0 , 50000 , 15 , SOD_DEFAULT_DELAY },
 	{ { "" , 0, 0 } , { "", 0, 0 } , { "", 0, 0 } , { "", 0, 0 } , { "", 0, 0 } , 0 , 3 , 0 , 0}
 };
 
 sHCORE_MONSTER	sHCoreEvent2[] = {
 	{ { "11" , 0, 40 } ,{ "12", 0, 40 } ,{ "13", 0, 20 } ,{ "14", 0, 25 } ,{ "", 0, 0 } , 100 , 6 , 0 , 40 , SOD_DEFAULT_DELAY },
 	{ { "21" , 0, 35 } ,{ "22", 0, 20 } ,{ "23", 0, 10 } ,{ "24", 0, 25 } ,{ "", 0, 0 } , 100 , 8 , 0 , 40 , SOD_DEFAULT_DELAY },
-	{ { "31" , 0, 35 } ,{ "32", 0, 30 } ,{ "34", 0, 35 } ,{ "35", 0, 25 } ,{ "¾ðÈ¦¸® ³ªÀÌÆ®", 0, 0 }	, 100 , 10 , 0 , 40 , SOD_DEFAULT_DELAY },
+	{ { "31" , 0, 35 } ,{ "32", 0, 30 } ,{ "34", 0, 35 } ,{ "35", 0, 25 } ,{ "È¦ Æ®", 0, 0 }	, 100 , 10 , 0 , 40 , SOD_DEFAULT_DELAY },
 	{ { "41" , 0, 45 } ,{ "42", 0, 25 } ,{ "43", 0, 20 } ,{ "44", 0, 35 } ,{ "", 0, 0 } , 100 , 12 , 0 , 35 , SOD_DEFAULT_DELAY * 2 },
 	{ { "51" , 0, 30 } ,{ "52", 0, 20 } ,{ "53", 0, 40 } ,{ "54", 0, 25 } ,{ "", 0, 0 }	, 100 , 15 , 0 , 30 , SOD_DEFAULT_DELAY },
-	{ { "61" , 0, 20 } ,{ "62", 0, 20 } ,{ "63", 0, 40 } ,{ "64", 0, 30 } ,{ "º£¸£¹® ¾ÇÅ¸·é", 0, 0 } , 100 , 18 , 0 , 25, SOD_DEFAULT_DELAY },
+	{ { "61" , 0, 20 } ,{ "62", 0, 20 } ,{ "63", 0, 40 } ,{ "64", 0, 30 } ,{ " Å¸", 0, 0 } , 100 , 18 , 0 , 25, SOD_DEFAULT_DELAY },
 	{ { "71" , 0, 30 } ,{ "72", 0, 40 } ,{ "73", 0, 20 } ,{ "74", 0, 20 } ,{ "", 0, 0 }	, 100 , 21 , 0 , 20, SOD_DEFAULT_DELAY * 3 },
-	{ { "81" , 0, 20 } ,{ "82", 0, 30 } ,{ "83", 0, 30 } ,{ "84", 0, 25 } ,{ "µÒ ·Îµå", 0, 0 } , 100 , 0 , 50000 , 15 , SOD_DEFAULT_DELAY },
+	{ { "81" , 0, 20 } ,{ "82", 0, 30 } ,{ "83", 0, 30 } ,{ "84", 0, 25 } ,{ " Îµ", 0, 0 } , 100 , 0 , 50000 , 15 , SOD_DEFAULT_DELAY },
 	{ { "" , 0, 0 } ,{ "", 0, 0 } ,{ "", 0, 0 } ,{ "", 0, 0 } ,{ "", 0, 0 } , 0 , 3 , 0 , 0 }
 };
 
@@ -5708,12 +6089,12 @@ sHCORE_MONSTER	sHCoreEvent2[] = {
 sHCORE_MONSTER	sHCoreEvent3[] = {
 	{ { "11" , 0, 40 } ,{ "12", 0, 40 } ,{ "13", 0, 20 } ,{ "14", 0, 25 } ,{ "", 0, 0 } , 100 , 6 , 0 , 40 , SOD_DEFAULT_DELAY },
 	{ { "21" , 0, 35 } ,{ "22", 0, 20 } ,{ "23", 0, 10 } ,{ "24", 0, 25 } ,{ "", 0, 0 } , 100 , 8 , 0 , 40 , SOD_DEFAULT_DELAY },
-	{ { "31" , 0, 35 } ,{ "32", 0, 30 } ,{ "34", 0, 35 } ,{ "35", 0, 25 } ,{ "¾ðÈ¦¸® ³ªÀÌÆ®", 0, 0 }	, 100 , 10 , 0 , 40 , SOD_DEFAULT_DELAY },
+	{ { "31" , 0, 35 } ,{ "32", 0, 30 } ,{ "34", 0, 35 } ,{ "35", 0, 25 } ,{ "È¦ Æ®", 0, 0 }	, 100 , 10 , 0 , 40 , SOD_DEFAULT_DELAY },
 	{ { "41" , 0, 45 } ,{ "42", 0, 25 } ,{ "43", 0, 20 } ,{ "44", 0, 35 } ,{ "", 0, 0 } , 100 , 12 , 0 , 35 , SOD_DEFAULT_DELAY * 2 },
 	{ { "51" , 0, 30 } ,{ "52", 0, 20 } ,{ "53", 0, 40 } ,{ "54", 0, 25 } ,{ "", 0, 0 }	, 100 , 15 , 0 , 30 , SOD_DEFAULT_DELAY },
-	{ { "61" , 0, 20 } ,{ "62", 0, 20 } ,{ "63", 0, 40 } ,{ "64", 0, 30 } ,{ "º£¸£¹® ¾ÇÅ¸·é", 0, 0 } , 100 , 18 , 0 , 25, SOD_DEFAULT_DELAY },
+	{ { "61" , 0, 20 } ,{ "62", 0, 20 } ,{ "63", 0, 40 } ,{ "64", 0, 30 } ,{ " Å¸", 0, 0 } , 100 , 18 , 0 , 25, SOD_DEFAULT_DELAY },
 	{ { "71" , 0, 30 } ,{ "72", 0, 40 } ,{ "73", 0, 20 } ,{ "74", 0, 20 } ,{ "", 0, 0 }	, 100 , 21 , 0 , 20, SOD_DEFAULT_DELAY * 3 },
-	{ { "81" , 0, 20 } ,{ "82", 0, 30 } ,{ "83", 0, 30 } ,{ "84", 0, 25 } ,{ "µÒ ·Îµå", 0, 0 } , 100 , 0 , 50000 , 15 , SOD_DEFAULT_DELAY },
+	{ { "81" , 0, 20 } ,{ "82", 0, 30 } ,{ "83", 0, 30 } ,{ "84", 0, 25 } ,{ " Îµ", 0, 0 } , 100 , 0 , 50000 , 15 , SOD_DEFAULT_DELAY },
 	{ { "" , 0, 0 } ,{ "", 0, 0 } ,{ "", 0, 0 } ,{ "", 0, 0 } ,{ "", 0, 0 } , 0 , 3 , 0 , 0 }
 };
 
@@ -5752,7 +6133,7 @@ int	rsSOD_ScoreDiv = 35;
 int	rsSOD_ScoreDiv = 30;
 #endif
 
-#else 
+#else
 
 #ifdef _BELLATRA_OLD_VERSION
 int	rsSOD_ScoreDiv = 18;
@@ -6265,7 +6646,7 @@ int rsHardCoreEvent_OpenMonster(STG_AREA *lpStgArea, STG_CHAR_INFO *lpStgCharInf
 
 						rsSend_ResultSOD(&rsPlayInfo[cnt], rsPlayInfo[cnt].EventScore, rsPlayInfo[cnt].EventCount, totalScore, total2, rsHardCoreEvent_TotalUser, rsSoD_StartCode);
 						//Limite Pontos SoD
-						if(rsPlayInfo[cnt].EventScore >= 30000000) 
+						if(rsPlayInfo[cnt].EventScore >= 30000000)
 						{
 
 
@@ -7053,7 +7434,7 @@ int rsSoD_CatchItem_SD207(rsPLAYINFO *lpPlayInfo, int StagePos, STG_AREA	*lpStgA
 	if(lpPlayInfo->EventMode == rsHARDCORE_EVENT_FLAG && rsCheckHardCoreEventArea(lpPlayInfo->Position.x, lpPlayInfo->Position.y, lpPlayInfo->Position.z) == TRUE)
 	{
         //Saco de Pontos
-		lpPlayInfo->EventScore += 5000; 
+		lpPlayInfo->EventScore += 5000;
 		rsSodTeamScore[team] += 5000;
 
 
@@ -7533,7 +7914,7 @@ int EventMonsterTime()
 		}
 	}
 
-	
+
 	if(rsServerConfig.Event_HardCore == 2)
 	{
 		rsHardCoreEventMode = TRUE;
@@ -7584,7 +7965,7 @@ int EventMonsterTime()
 
 
 		if(rsServerConfig.Event_DefenseOff)
-	{		
+	{
 		if(rsServerConfig.Event_DefenseOff == 2) rsDefenseOffEvent = TRUE;
 	}
 	else
@@ -7724,7 +8105,7 @@ int EventMonsterTime()
 			EventBossMonsterFlag = 0;
 		}
 	}
-	
+
 	wLastCheckHour = st.wHour;
 	wLastCheckMin = st.wMinute;
 
@@ -8423,7 +8804,7 @@ int STG_AREA::SendStgItemToPartyUsers(rsPLAYINFO *lpPlayInfo, STG_ITEMS *lpStgIt
 		TransItems.Items[0].ItemCode = dwCode;
 		TransItems.Items[0].lpStgArea = (void *)this;
 		TransItems.Items[0].type = lpStgItem->Item.ItemInfo.JobCodeMask;
-		
+
 		dwCode = dwCode&sinITEM_MASK2;
 
 		if(lpStgItem->Item.ItemInfo.PotionCount > 1 && (dwCode&sinITEM_MASK1) == (sinPM1&sinITEM_MASK1))
@@ -8734,7 +9115,7 @@ smCHAR *STG_AREA::OpenMonster(STG_CHAR_INFO *lpStgCharInfo, int gGroup)
 			}
 		}
 
-#ifdef	_LANGUAGE_JAPANESE 
+#ifdef	_LANGUAGE_JAPANESE
 		if(rsDamgeOffEvent)
 		{
 
@@ -8773,7 +9154,7 @@ smCHAR *STG_AREA::OpenMonster(STG_CHAR_INFO *lpStgCharInfo, int gGroup)
 		}
 #endif
 
-		
+
 
 		if(rsDefenseOffEvent)
 		{
@@ -8859,7 +9240,7 @@ smCHAR *STG_AREA::OpenMonster(STG_CHAR_INFO *lpStgCharInfo, int gGroup)
 				}
 			}
 
-#ifdef	_LANGUAGE_JAPANESE 
+#ifdef	_LANGUAGE_JAPANESE
 			if(rsDamgeOffEvent)
 			{
 
@@ -8897,7 +9278,7 @@ smCHAR *STG_AREA::OpenMonster(STG_CHAR_INFO *lpStgCharInfo, int gGroup)
 				}
 			}
 #endif
-		
+
 			if(rsDefenseOffEvent)
 			{
 
@@ -8906,7 +9287,7 @@ smCHAR *STG_AREA::OpenMonster(STG_CHAR_INFO *lpStgCharInfo, int gGroup)
 
 			rsMonOpenCount++;
 
-			
+
 			if(lpChar->smCharInfo.dwCharSoundCode == snCHAR_SOUND_VAMPRICMACHINE ||
 				lpChar->smCharInfo.dwCharSoundCode == snCHAR_SOUND_CASTLE_DOOR)
 			{
@@ -10129,6 +10510,9 @@ int rsSendPlayerInfoQuick(rsPLAYINFO *lpSndPlayInfo, smTRANS_COMMAND *lpTransCom
 	return TRUE;
 }
 
+extern float PartyExpTable[8][2];
+void LoadPartyExpTable();
+
 INT64 srGetTotalExp(INT64 exp, int level, rsPLAYINFO* lpPlayInfo)
 {
 	if (level < 0)
@@ -10769,7 +11153,7 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 
 							ROLLHANDLER->CreateRoll(lpsItem, vSerials, lpChar->pX >> FLOATNS, lpChar->pY >> FLOATNS, lpChar->pZ >> FLOATNS, (STG_AREA*)lpChar->lpExt1);
 						}
-						else 
+						else
 							if ((lprsPlayInfo->dwTime_PrimeItem_GoldLooter && lpsItem->ItemInfo.CODE == (sinGG1 | sin01)) || (VIPHANDLER->returnVip(lprsPlayInfo) && lpsItem->ItemInfo.CODE == (sinGG1 | sin01)))
 							{
 								if (lpsItem->ItemInfo.CODE == (sinGG1 | sin01))
@@ -10781,7 +11165,7 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 							}
 
 						else
-						{ 
+						{
 							lpsItem->state = TRUE;
 							lpStgItem = ((STG_AREA *)lpChar->lpExt1)->AddItem(lpsItem, lpChar->pX >> FLOATNS, lpChar->pY >> FLOATNS, lpChar->pZ >> FLOATNS, TRUE);
 
@@ -10835,7 +11219,7 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 	}
 
 	int FallItemMax = lpChar->smMonsterInfo.FallItemMax;
-	
+
 	if(FallItemMax > 0)
 	{
 		int	FallRandom = 0;
@@ -10876,11 +11260,11 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 		{
 			FallRandom += 10;
 		}
-		
+
 	    //drop da Fenix
 		if (rsHasPCBangGameplayEntitlement(lprsPlayInfo))
 			FallRandom += 50;
-				
+
 		if (VIPHANDLER->returnVip(lprsPlayInfo))
 			FallRandom += 5;
 
@@ -11121,11 +11505,28 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 	}
 	else
 	{
-		cQuestHandler.KillMonster(lprsPlayInfo, lpChar, false);
+		gameplay::events::PublishMonsterKilled(lprsPlayInfo, lpChar, false);
 
 		INT64 PlayerEXP = srGetTotalExp(lpChar->smMonsterInfo.GetExp, lpChar->smCharInfo.Level - lprsPlayInfo->smCharInfo.Level, lprsPlayInfo);
 
-			
+		int companionCount = gameplay::companions::GetActiveCount(lprsPlayInfo);
+		float companionPartyRate = 0.0f;
+		if(companionCount > 0)
+		{
+			LoadPartyExpTable();
+			int effectivePartyCount = 1 + companionCount;
+			if(effectivePartyCount > 8) effectivePartyCount = 8;
+			PlayerEXP = static_cast<INT64>(
+				PlayerEXP * PartyExpTable[effectivePartyCount - 1][0]);
+			companionPartyRate = PartyExpTable[effectivePartyCount - 1][1];
+		}
+
+		if(companionPartyRate > 0.0f)
+		{
+			gameplay::companions::AwardExperience(
+				lprsPlayInfo, lpChar, companionPartyRate);
+		}
+
 		if (PlayerEXP)
 		{
 
@@ -11146,10 +11547,10 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 
 
 			}
-			int	FallRandom = 0; 
+			int	FallRandom = 0;
 
 			if (lprsPlayInfo->ModoPvP_Drop > 0)
-			    ExpUp += 10; 
+			    ExpUp += 10;
 
 			if (rsHasPCBangGameplayEntitlement(lprsPlayInfo))
 			{
@@ -12211,7 +12612,7 @@ int srTransPlayData(rsPLAYINFO *lpPlayInfo)
 		lpTransCommand->EParam = 0;
 		lpTransBuff += sizeof(smTRANS_COMMAND);
 	}
-	
+
 	if(lpPlayInfo->Position.Area == rsCASTLE_FIELD && StageArea[rsCASTLE_FIELD].dwActiveMode)
 	{
 
@@ -12934,7 +13335,7 @@ int srDisplayBillingTime(rsPLAYINFO *lpPlayInfo, int Add_BillingTime)
 
 	if(lpPlayInfo->DisuseDay)
 	{
-		
+
 		today = localtime(&lpPlayInfo->DisuseDay);
 
 		if(Add_BillingTime)
@@ -12952,7 +13353,7 @@ int srDisplayBillingTime(rsPLAYINFO *lpPlayInfo, int Add_BillingTime)
 			hm = today->tm_min;
 			hs = today->tm_sec;
 
-#ifdef	_LANGUAGE_TAIWAN		
+#ifdef	_LANGUAGE_TAIWAN
 			wsprintf(TransChatMessage.szMessage, srMsg_Bl_100, lpBuff, y, m, d, h, hm, szBuff);
 #endif
 
@@ -12971,7 +13372,7 @@ int srDisplayBillingTime(rsPLAYINFO *lpPlayInfo, int Add_BillingTime)
 #endif
 
 
-#ifdef _LANGUAGE_CHINESE													   
+#ifdef _LANGUAGE_CHINESE
 			if(hm != 0)	wsprintf(TransChatMessage.szMessage, srMsg_Bl_100, lpBuff, y, m, d, h, hm, szBuff);
 			else		wsprintf(TransChatMessage.szMessage, srMsg_Bl_1001, lpBuff, y, m, d, h, hm, szBuff);
 #endif
@@ -12984,7 +13385,7 @@ int srDisplayBillingTime(rsPLAYINFO *lpPlayInfo, int Add_BillingTime)
 			if(hm != 0)	wsprintf(TransChatMessage.szMessage, srMsg_Bl_100, lpBuff, h, hm, m, d, y, szBuff);
 			else		wsprintf(TransChatMessage.szMessage, srMsg_Bl_1001, lpBuff, h, hm, m, d, y, szBuff);
 #endif
-#ifdef	_LANGUAGE_JAPANESE 
+#ifdef	_LANGUAGE_JAPANESE
 			wsprintf(TransChatMessage.szMessage, srMsg_Bl_100, lpBuff, y, m, d, szBuff);
 #endif
 
@@ -12995,7 +13396,7 @@ int srDisplayBillingTime(rsPLAYINFO *lpPlayInfo, int Add_BillingTime)
 
 			if(lpPlayInfo->lpsmSock)
 				lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
-					   			
+
 		}
 	}
 
@@ -13142,7 +13543,7 @@ int srBillingMain()
 	int HiddenPeriod;
 	LogadoCoin();
 	LogadoPremiado();
-	
+
 	for (cnt = 0; cnt < CONNECTMAX; cnt++)
 	{
 		if (rsPlayInfo[cnt].lpsmSock && (rsPlayInfo[cnt].getAccount() && rsPlayInfo[cnt].getAccount()[0]) && (rsPlayInfo[cnt].getName() && rsPlayInfo[cnt].getName()[0]) && rsPlayInfo[cnt].dwObjectSerial)
@@ -13390,6 +13791,13 @@ int InitAll()
 	fflush(stderr);
 	InitItems();
 
+	std::string progressionFinalizeError;
+	if(!gameplay::progression::FinalizeServerProgressionRuntimeAfterItems(&progressionFinalizeError))
+	{
+		fprintf(stderr, "Progression V2 item-catalog validation failed: %s\n", progressionFinalizeError.c_str());
+		return FALSE;
+	}
+
 	fprintf(stderr, "[STARTUP][NPC] BEGIN\n");
 	fflush(stderr);
 	LoadOftenNpc();
@@ -13404,7 +13812,7 @@ int InitAll()
 
 	Stage_StepHeight = fONE * 20;
 
-	//verificando crash do servidor 
+	//verificando crash do servidor
 	// cout << "Carregando Mapas..." << endl;
 	// StageArea = new STG_AREA[STAGE_AREA_MAX];
 	// srReadStage();
@@ -13609,12 +14017,14 @@ int AddNewPlayInfo(smWINSOCK *lpsmSock)
 	if(cnt == CONNECTMAX) return FALSE;
 
 
-	if (SameIPCount > 10) {
+	const bool isLoopbackClient =
+		(lpsmSock->szIPAddr && strncmp(lpsmSock->szIPAddr, "127.", 4) == 0);
 
-		Firewall* FWall = Firewall::GetInstance();
-		FWall->AddRule(Firewall::Rule::BlockAccess, lpsmSock->szIPAddr, SERVER_TCP_PORT);
+	if (SameIPCount > 10 && !isLoopbackClient) {
 
 		if (rsCheckSystemIP(dwMyIP) == FALSE) {
+			Firewall* FWall = Firewall::GetInstance();
+			FWall->AddRule(Firewall::Rule::BlockAccess, lpsmSock->szIPAddr, SERVER_TCP_PORT);
 
 			DisconnectUser(lpsmSock);
 
@@ -14543,7 +14953,7 @@ int rsGetServerPotion(rsPLAYINFO *lpPlayInfo, DWORD dwPotionCode)
 	case (sinPL1 | sin05):
 		x = 0; y = 4;
 		break;
-		
+
 	case (sinPM1 | sin01):
 		x = 1; y = 0;
 		break;
@@ -14559,7 +14969,7 @@ int rsGetServerPotion(rsPLAYINFO *lpPlayInfo, DWORD dwPotionCode)
 	case (sinPM1 | sin05):
 		x = 1; y = 4;
 		break;
-		
+
 	case (sinPS1 | sin01):
 		x = 2; y = 0;
 		break;
@@ -14613,7 +15023,7 @@ int rsAddServerPotion(rsPLAYINFO *lpPlayInfo, DWORD dwPotionCode, int PotionCoun
 	case (sinPL1 | sin05):
 		x = 0; y = 4;
 		break;
-		
+
 	case (sinPM1 | sin01):
 		x = 1; y = 0;
 		break;
@@ -14629,7 +15039,7 @@ int rsAddServerPotion(rsPLAYINFO *lpPlayInfo, DWORD dwPotionCode, int PotionCoun
 	case (sinPM1 | sin05):
 		x = 1; y = 4;
 		break;
-		
+
 	case (sinPS1 | sin01):
 		x = 2; y = 0;
 		break;
@@ -15248,7 +15658,7 @@ int SendOpenGiftExpress(rsPLAYINFO* lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 	DWORD	dwPassCode;
 	DWORD	dwFormCode;
 	char* szPassCode;
-	int		TempWeight = 0;		
+	int		TempWeight = 0;
 
 	ZeroMemory(lpTransPostItem, sizeof(TRANS_POST_ITEM));
 
@@ -15297,10 +15707,10 @@ int SendOpenGiftExpress(rsPLAYINFO* lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 			if (dwItemCode == (sinGG1 | sin01)) {
 				lpTransPostItem->dwItemFlag = TRUE;
 				ZeroMemory(lpItem, sizeof(sITEMINFO));
-				lpItem->CODE = sinGG1 | sin01;			
-				lpItem->Money = spJobCode;				
-				ReformItem(lpItem);					
-				lpPlayInfo->AddServerMoney(spJobCode, WHERE_GIFT_EXPRESS);	
+				lpItem->CODE = sinGG1 | sin01;
+				lpItem->Money = spJobCode;
+				ReformItem(lpItem);
+				lpPlayInfo->AddServerMoney(spJobCode, WHERE_GIFT_EXPRESS);
 
 				rsRecord_ItemLog_Post(lpPlayInfo, lpItem->CODE, 0, spJobCode, dwFormCode, szPassCode, ITEMLOG_EXPRESS);
 
@@ -15308,10 +15718,10 @@ int SendOpenGiftExpress(rsPLAYINFO* lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 			else if (dwItemCode == (sinGG1 | sin02)) {
 				lpTransPostItem->dwItemFlag = TRUE;
 				ZeroMemory(lpItem, sizeof(sITEMINFO));
-				lpItem->CODE = sinGG1 | sin02;			
-				lpItem->Money = spJobCode;				
-				ReformItem(lpItem);					
-				lpPlayInfo->dwGameServerExp[rsServerConfig.ServerCode] += spJobCode;	
+				lpItem->CODE = sinGG1 | sin02;
+				lpItem->Money = spJobCode;
+				ReformItem(lpItem);
+				lpPlayInfo->dwGameServerExp[rsServerConfig.ServerCode] += spJobCode;
 
 
 				rsRecord_ItemLog_Post(lpPlayInfo, lpItem->CODE, 0, spJobCode, dwFormCode, szPassCode, ITEMLOG_EXPRESS);
@@ -15327,9 +15737,9 @@ int SendOpenGiftExpress(rsPLAYINFO* lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 
 						if ((dwItemCode & sinITEM_MASK1) == (sinPM1 & sinITEM_MASK1)) {
 
-							lpItem->PotionCount = spJobCode;			
+							lpItem->PotionCount = spJobCode;
 
-							rsAddServerPotion(lpPlayInfo, dwItemCode, lpItem->PotionCount);	
+							rsAddServerPotion(lpPlayInfo, dwItemCode, lpItem->PotionCount);
 
 							rsRecord_ItemLog_Post(lpPlayInfo, lpItem->CODE, 0, spJobCode, dwFormCode, szPassCode, ITEMLOG_EXPRESS);
 						}
@@ -15357,8 +15767,8 @@ int SendOpenGiftExpress(rsPLAYINFO* lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 			if (lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwItemCode == (sinGG1 | sin01) ||
 				lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwItemCode == (sinGG1 | sin02)) {
 
-				lstrcpy(lpTransPostItem->szItemName, lpPlayInfo->lpPostBoxItem->PostItem[cnt].szItemCode);	
-				lstrcpy(lpTransPostItem->szDoc, lpPlayInfo->lpPostBoxItem->PostItem[cnt].szDoc);			
+				lstrcpy(lpTransPostItem->szItemName, lpPlayInfo->lpPostBoxItem->PostItem[cnt].szItemCode);
+				lstrcpy(lpTransPostItem->szDoc, lpPlayInfo->lpPostBoxItem->PostItem[cnt].szDoc);
 
 				lpTransPostItem->dwItemCode = lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwItemCode;
 				lpTransPostItem->dwItemJobCode = lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwJobCode;
@@ -15375,8 +15785,8 @@ int SendOpenGiftExpress(rsPLAYINFO* lpPlayInfo, DWORD	dwItemCode, DWORD dwPassCo
 				for (cnt2 = 0; cnt2 < DefaultItemCount; cnt2++) {
 					if (DefaultItems[cnt2].Item.CODE == lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwItemCode &&
 						!DefaultItems[cnt2].Item.UniqueItem) {
-						lstrcpy(lpTransPostItem->szItemName, DefaultItems[cnt2].Item.ItemName);				
-						lstrcpy(lpTransPostItem->szDoc, lpPlayInfo->lpPostBoxItem->PostItem[cnt].szDoc);	
+						lstrcpy(lpTransPostItem->szItemName, DefaultItems[cnt2].Item.ItemName);
+						lstrcpy(lpTransPostItem->szDoc, lpPlayInfo->lpPostBoxItem->PostItem[cnt].szDoc);
 
 						lpTransPostItem->dwItemCode = lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwItemCode;
 						lpTransPostItem->dwItemJobCode = lpPlayInfo->lpPostBoxItem->PostItem[cnt].dwJobCode;
@@ -15703,7 +16113,7 @@ int rsGetQuestCommand(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 
 	}
 
-#include "systems/gameplay/events/server_legacy/svrHaQuest.h"			
+#include "systems/gameplay/events/server_legacy/svrHaQuest.h"
 
 	return TRUE;
 }
@@ -15931,7 +16341,7 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 	{
 		pedraDireto = 5;
 	}
-	
+
 	if(pCraftItem_Server->A_StoneItemCode)
 	{
 		if((pCraftItem_Server->A_StoneItemCode == (sinBI1 | sin10) || pCraftItem_Server->A_StoneItemCode == (sinBI1 | sin11) ||
@@ -15971,7 +16381,7 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 	ccItem.sinRecvAgingItem(pCraftItem_Server);
 	cnt = ccItem.AgingItem(QuestMode);
 
-	//POSSIVEL CORREÃ‡ÃƒO DA FALHA 
+	//POSSIVEL CORREÃ‡ÃƒO DA FALHA
 	if(ErrorFlag) sAging_Recv.Result = TRUE;
 
 
@@ -16221,7 +16631,7 @@ int rsRecvCraftItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 		   iCountDevine += 1;
 		}
 	}
-	
+
 	for(cnt = 0; cnt < 12; cnt++)
 	{
 		switch(pCraftItem_Server->SheltomCode[cnt])
@@ -16330,9 +16740,9 @@ int rsRecvCraftItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 			rsDeleteInvenItem(lpPlayInfo, pCraftItem_Server->A_StoneItemCode, pCraftItem_Server->A_StoneHead, pCraftItem_Server->A_StoneCheckSum) >= 0)
 		{
 			rsRecord_ItemLog2(lpPlayInfo, pCraftItem_Server->A_StoneItemCode, pCraftItem_Server->A_StoneHead, pCraftItem_Server->A_StoneCheckSum, ITEMLOG_LOST_RECON);
-			
+
 			SaveThrowItem(lpPlayInfo, pCraftItem_Server->A_StoneItemCode, pCraftItem_Server->A_StoneHead, pCraftItem_Server->A_StoneCheckSum);
-			
+
 			spJobCode = lpPlayInfo->smCharInfo.JOB_CODE;
 			PerfStone = TRUE;
 		}
@@ -16377,10 +16787,10 @@ int rsRecvCraftItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 	spJobCode = 0;
 	sCraftItem_Recv.code = OpCode::OPCODE_CRAFTITEM;
 
-	if(sCraftItem_Recv.Result==TRUE) 
+	if(sCraftItem_Recv.Result==TRUE)
 	{
-	
-		ReformItem( &sCraftItem_Recv.DesCraftItem.sItemInfo); 
+
+		ReformItem( &sCraftItem_Recv.DesCraftItem.sItemInfo);
 		sCraftItem_Recv.size = sizeof(sITEM)+32;
 
 
@@ -16896,16 +17306,8 @@ int ManufactureItemInfo(rsPLAYINFO *lpPlayInfo)
 	DWORD	dwItem = 0;
 
 
-	if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
-		dwItem = (sinDA2 | sin52);
-
-	else if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN)
-		dwItem = (sinDA2 | sin51);
-
-	else if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ARCHER || lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ATALANTA)
-		dwItem = (sinDA1 | sin52);
-
-	else dwItem = (sinDA1 | sin51);
+	dwItem = static_cast<DWORD>(
+		gameplay::commerce::legacy::ManufacturePreviewArmorCode(lpPlayInfo->smCharInfo.JOB_CODE));
 
 	DWORD CreateItemCode[176] = { (sinWA1 | sin14), (sinWC1 | sin14), (sinWH1 | sin15), (sinWP1 | sin15), (sinWS1 | sin16), (sinWS2 | sin17), (sinWT1 | sin15), (sinWM1 | sin15),
 									(sinWA1 | sin15), (sinWC1 | sin15), (sinWH1 | sin16), (sinWP1 | sin16), (sinWS1 | sin17), (sinWS2 | sin18), (sinWT1 | sin16), (sinWM1 | sin16),
@@ -17028,7 +17430,7 @@ int rsRecvManufactureItem(rsPLAYINFO* lpPlayInfo, SManufactureItem_Server* pManu
 			srand((UINT)time(NULL));
 #ifdef _LANGUAGE_VEITNAM
 			if ((rand() % 10) < 4)
-#else		
+#else
 			//armadura
 			if (ResultItemCode == (sinRESULT | sin01))
 			{
@@ -17310,7 +17712,7 @@ int rsRecvSkinChangeItem(rsPLAYINFO* lpPlayInfo, sSKIN_CHANGE_SERVER* pSkinChang
 	if(pSkinChangeItem_Server->dwSkinChangeStoneItemCode)
 	{
 		SkinClass = pSkinChangeItem_Server->dwSkinChangeStoneItemCode;
-		
+
 		if (rsDeleteInvenItem(lpPlayInfo, pSkinChangeItem_Server->dwSkinChangeStoneItemCode,
 			pSkinChangeItem_Server->dwSkinChangeStoneHead, pSkinChangeItem_Server->dwSkinChangeStoneCheckSum) < 0)
 		{
@@ -17794,7 +18196,7 @@ int rsRecvWingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server)
 						if(lpPlayInfo->getSecurity() > AccountTypes::SEC_VIP)
 						{
 							TRANS_CHATMESSAGE	TransChatMessage;
-							wsprintf(TransChatMessage.szMessage, "¿À´Ã ¹ß»ýÇÒ¼ö ÀÖ´Â ¾ÆÀÌÅÛ¼ö¸¦ ÃÊ°úÇß½À´Ï´Ù(%d/%d)",
+							wsprintf(TransChatMessage.szMessage, " ß»Ò¼ Ö´ Û¼ Ê°ß½Ï´(%d/%d)",
 								DefaultItems[cnt].sGenDay[1], DefaultItems[cnt].sGenDay[0]);
 
 							TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
@@ -20932,11 +21334,11 @@ int LogadoPremiado()
 //			rsPlayInfo[cnt].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
 //		}
 //	}
-//	return 0; 
+//	return 0;
 //}
 //
 //int rsOpenBossMonster(STG_AREA* lpStgArea, sBOSS_MONSTER* lpBossMonster)
-//{ 
+//{
 //	SYSTEMTIME st;
 //	GetLocalTime(&st);
 //	STG_CHAR_INFO StgCharInfo;
@@ -21175,7 +21577,7 @@ char* ListMap[62] =
 //			rsPlayInfo[cnt].lpsmSock->Send((char*)& TransChatMessage, TransChatMessage.size, TRUE);
 //		}
 //	}
-//	return 0; 
+//	return 0;
 //}
 int rsOpenBossMonster(STG_AREA* lpStgArea, sBOSS_MONSTER* lpBossMonster)
 {
@@ -21806,13 +22208,10 @@ int rsCheck_ChageJob(rsPLAYINFO *lpPlayInfo, int NewCnageJob)
 	if(lpPlayInfo->smCharInfo.ChangeJob == 1 && NewCnageJob == 2)
 	{
 
-		dwItemCode = sinOR2 | sin03;
-
-		if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN || lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
-			dwItemCode = sinOR2 | sin02;
-
-		if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ATALANTA || lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ARCHER)
-			dwItemCode = sinOR2 | sin04;
+		dwItemCode = static_cast<DWORD>(
+			gameplay::quests::legacy::ChangeJobPromotionTokenCode(lpPlayInfo->smCharInfo.JOB_CODE));
+		if(dwItemCode == 0)
+			return FALSE;
 
 		for(cnt = 0; cnt < INVEN_ITEM_INFO_MAX; cnt++)
 		{
@@ -22103,7 +22502,7 @@ char *szFindCrackNames[][3] = {
 
 	{	"        " , "" , "#2770" },
 	{	"xxx" , "" , "#2770" },
-	{	"xxx" , "ÇÙ" , "#2770" },
+	{	"xxx" , "" , "#2770" },
 
 	{	"Speeder" , "" , "#3277" },
 	{	"Speeder" , "" , "#3227" },
@@ -22288,7 +22687,112 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 #pragma region Player Commands
 
-	int len = rsCompString("/ativar", szChatCommand);
+	int len = rsCompString("/companion", szChatCommand);
+	if(len)
+	{
+		lpBuff = szChatCommand + len;
+		lpBuff = rsGetWord(szCmdBuff, lpBuff);
+
+		if(!szCmdBuff[0] || lstrcmpi(szCmdBuff, "status") == 0)
+		{
+			const char *selected = gameplay::companions::GetSelectedName(lpPlayInfo);
+			sprintf_s(szTempBuff, sizeof(szTempBuff),
+				"Companions: %d/%d | selected: %s | mode: %d | crystal: %u",
+				gameplay::companions::GetActiveCount(lpPlayInfo),
+				gameplay::companions::COMPANION_MAX_ACTIVE,
+				selected && selected[0] ? selected : "none",
+				(int)gameplay::companions::GetMode(lpPlayInfo),
+				(unsigned int)gameplay::companions::GetConfiguredCrystalItemCode());
+			SendQuickMessage(lpPlayInfo, szTempBuff);
+			return TRUE;
+		}
+
+		if(lstrcmpi(szCmdBuff, "list") == 0)
+		{
+			char companionNames[sPLAY_CHAR_MAX][32];
+			ZeroMemory(companionNames, sizeof(companionNames));
+			const int companionNameCount = rsGetAccountCharacterNames(
+				lpPlayInfo->getAccount(), companionNames, sPLAY_CHAR_MAX);
+			if(companionNameCount <= 0)
+			{
+				SendQuickMessage(lpPlayInfo, "No characters found on this account.");
+				return TRUE;
+			}
+			for(int companionIndex = 0; companionIndex < companionNameCount; ++companionIndex)
+			{
+				if(!companionNames[companionIndex][0]) continue;
+				sprintf_s(szTempBuff, sizeof(szTempBuff), "[%d] %s%s",
+					companionIndex + 1, companionNames[companionIndex],
+					(lpPlayInfo->getName() && lstrcmpi(lpPlayInfo->getName(), companionNames[companionIndex]) == 0)
+						? " (current)" : "");
+				SendQuickMessage(lpPlayInfo, szTempBuff);
+			}
+			return TRUE;
+		}
+
+		if(lstrcmpi(szCmdBuff, "select") == 0)
+		{
+			lpBuff = rsGetWord(szTempBuff, lpBuff);
+			if(!szTempBuff[0])
+			{
+				SendQuickMessage(lpPlayInfo, "Usage: /companion select <character>");
+				return TRUE;
+			}
+			const int result = gameplay::companions::Select(lpPlayInfo, szTempBuff);
+			sprintf_s(szCmdBuff, sizeof(szCmdBuff), result == TRUE ?
+				"Selected companion: %s" : "Could not select companion: %s", szTempBuff);
+			SendQuickMessage(lpPlayInfo, szCmdBuff);
+			return TRUE;
+		}
+
+		if(lstrcmpi(szCmdBuff, "summon") == 0)
+		{
+			lpBuff = rsGetWord(szTempBuff, lpBuff);
+			const int result = szTempBuff[0] ?
+				gameplay::companions::Summon(lpPlayInfo, szTempBuff) :
+				gameplay::companions::SummonSelected(lpPlayInfo);
+			sprintf_s(szCmdBuff, sizeof(szCmdBuff), "Companion summon result: %d", result);
+			SendQuickMessage(lpPlayInfo, szCmdBuff);
+			return TRUE;
+		}
+
+		if(lstrcmpi(szCmdBuff, "dismiss") == 0)
+		{
+			lpBuff = rsGetWord(szTempBuff, lpBuff);
+			int result = TRUE;
+			if(!szTempBuff[0] || lstrcmpi(szTempBuff, "all") == 0)
+				result = gameplay::companions::DismissAll(lpPlayInfo);
+			else
+				result = gameplay::companions::Dismiss(lpPlayInfo, szTempBuff);
+			sprintf_s(szCmdBuff, sizeof(szCmdBuff), "Companion dismiss result: %d", result);
+			SendQuickMessage(lpPlayInfo, szCmdBuff);
+			return TRUE;
+		}
+
+		if(lstrcmpi(szCmdBuff, "mode") == 0)
+		{
+			lpBuff = rsGetWord(szTempBuff, lpBuff);
+			gameplay::companions::CompanionMode mode = gameplay::companions::COMPANION_MODE_AGGRESSIVE;
+			if(lstrcmpi(szTempBuff, "follow") == 0)
+				mode = gameplay::companions::COMPANION_MODE_FOLLOW;
+			else if(lstrcmpi(szTempBuff, "passive") == 0)
+				mode = gameplay::companions::COMPANION_MODE_PASSIVE;
+			else if(lstrcmpi(szTempBuff, "aggressive") != 0)
+			{
+				SendQuickMessage(lpPlayInfo, "Usage: /companion mode aggressive|follow|passive");
+				return TRUE;
+			}
+			gameplay::companions::SetMode(lpPlayInfo, mode);
+			SendQuickMessage(lpPlayInfo, "Companion mode updated.");
+			return TRUE;
+		}
+
+		SendQuickMessage(lpPlayInfo,
+			"/companion list|select <name>|summon [name]|dismiss [name|all]|mode <...>|status");
+		return TRUE;
+	}
+
+	len = rsCompString("/ativar", szChatCommand);
 
 	if(len)
 	{
@@ -22332,7 +22836,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 		lpBuff = szChatCommand + len;
 
-		lpBuff = rsGetWord(szCmdBuff, lpBuff);	//ID ÀÐ¾î¿È
+		lpBuff = rsGetWord(szCmdBuff, lpBuff);	//ID Ð¾
 		if (!szCmdBuff[0])
 			return FALSE;
 
@@ -22572,39 +23076,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 				return TRUE;
 			}
 
-			switch(lpPlayInfo->smCharInfo.JOB_CODE)
-			{
-			case JOBCODE_ARCHER:
-			case JOBCODE_ATALANTA:
-			case JOBCODE_PRIESTESS:
-				Flag1 = 1;
-				break;
-
-			case JOBCODE_MECHANICIAN:
-			case JOBCODE_FIGHTER:
-			case JOBCODE_PIKEMAN:
-			case JOBCODE_KNIGHT:
-			case JOBCODE_MAGICIAN:
-				Flag1 = 2;
-				break;
-			}
-
-			switch(lpPlayInfo2->smCharInfo.JOB_CODE)
-			{
-			case JOBCODE_ARCHER:
-			case JOBCODE_ATALANTA:
-			case JOBCODE_PRIESTESS:
-				Flag2 = 1;
-				break;
-
-			case JOBCODE_MECHANICIAN:
-			case JOBCODE_FIGHTER:
-			case JOBCODE_PIKEMAN:
-			case JOBCODE_KNIGHT:
-			case JOBCODE_MAGICIAN:
-				Flag2 = 2;
-				break;
-			}
+			gameplay::classes::CharacterGender gender1 = gameplay::classes::CharacterGender::Unspecified;
+			gameplay::classes::CharacterGender gender2 = gameplay::classes::CharacterGender::Unspecified;
+			const gameplay::classes::ClassService &classService = gameplay::classes::DefaultClassService();
+			if(!classService.TryGender(lpPlayInfo->smCharInfo.JOB_CODE, gender1) ||
+				!classService.TryGender(lpPlayInfo2->smCharInfo.JOB_CODE, gender2))
+				return TRUE;
+			Flag1 = gender1 == gameplay::classes::CharacterGender::Female ? 1 : 2;
+			Flag2 = gender2 == gameplay::classes::CharacterGender::Female ? 1 : 2;
 
 			if(Flag1 == Flag2)
 			{
@@ -22719,7 +23198,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 		lpBuff = szChatCommand + len;
 
-		lpBuff = rsGetWord(szCmdBuff, lpBuff);	//ID ÀÐ¾î¿È
+		lpBuff = rsGetWord(szCmdBuff, lpBuff);	//ID Ð¾
 		if (!szCmdBuff[0])
 			return FALSE;
 
@@ -22778,7 +23257,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
     len = rsCompString("/cancelar_force", szChatCommand);
     if(len)
     {
-	    if (lpPlayInfo->dwForceOrb_Time && lpPlayInfo->dwForceOrb_Time > dwPlayServTime) 
+	    if (lpPlayInfo->dwForceOrb_Time && lpPlayInfo->dwForceOrb_Time > dwPlayServTime)
 		{
 		   wsprintf(TransChatMessage.szMessage, "Force Orb Cancelada.");
 		   TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
@@ -22875,7 +23354,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 #pragma region VIP Commands
 
-	
+
 #pragma endregion
 
 	if(lpPlayInfo->getName() != "shutdown66") {
@@ -23578,7 +24057,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	if (len)
 	{
 
-		if (bMaintenanceMode) 
+		if (bMaintenanceMode)
 		{
 			bMaintenanceMode = 0;
 			wsprintf(TransChatMessage.szMessage, ">Modo Manuten\347\343o desativado!");
@@ -23591,9 +24070,9 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		else
 		{
 			bMaintenanceMode = 1;
-			for (int i = 0; i < CONNECTMAX; i++) 
+			for (int i = 0; i < CONNECTMAX; i++)
 			{
-				if (rsPlayInfo[i].getSecurity() == AccountTypes::SEC_PLAYER || rsPlayInfo[i].getSecurity() == AccountTypes::SEC_VIP) 
+				if (rsPlayInfo[i].getSecurity() == AccountTypes::SEC_PLAYER || rsPlayInfo[i].getSecurity() == AccountTypes::SEC_VIP)
 				{
 					lpPlayInfo2 = &rsPlayInfo[i];
 					DisconnectUser(lpPlayInfo2->lpsmSock);
@@ -24028,7 +24507,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	if(StageArea[rsCASTLE_FIELD].dwActiveMode)
 	{
 
-		len = rsCompString("/start_castle", szChatCommand); 
+		len = rsCompString("/start_castle", szChatCommand);
 		if(len && AutoPlayServer)
 		{
 			rsStart_CombatCastle();
@@ -24272,14 +24751,14 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 		lpBuff = szChatCommand + len;
 
-		lpBuff = rsGetWord(szCmdBuff, lpBuff);	
+		lpBuff = rsGetWord(szCmdBuff, lpBuff);
 		if (!szCmdBuff[0]) return FALSE;
 
 		cnt = atoi(szCmdBuff);
 
 		if (cnt >= 0 && cnt <= 3600) {
             WritePrivateProfileStringA("ChatGame", "Delay_Chat", szCmdBuff,".//Configs//Sistemas.ini");
-			
+
 			wsprintf(TransChatMessage.szMessage, "> Delay do chat global alterado para %d segundos.", cnt);
 
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
@@ -24325,12 +24804,12 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 		lpBuff = szChatCommand + len;
 
-		lpBuff = rsGetWord(szCmdBuff, lpBuff);	//·¹º§
+		lpBuff = rsGetWord(szCmdBuff, lpBuff);	//
 		if (!szCmdBuff[0]) return FALSE;
 
 		cnt = atoi(szCmdBuff);
 
-		if (cnt >= 1 && cnt <= CHAR_LEVEL_MAX) 
+		if (cnt >= 1 && cnt <= CHAR_LEVEL_MAX)
 		{
 			WritePrivateProfileStringA("LevelParty", "Diferenca", szCmdBuff, ".//Configs//ExpManager.ini");
 
@@ -24352,7 +24831,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 		lpBuff = szChatCommand + len;
 
-		lpBuff = rsGetWord(szCmdBuff, lpBuff);	
+		lpBuff = rsGetWord(szCmdBuff, lpBuff);
 		if (!szCmdBuff[0]) return FALSE;
 
 		cnt = atoi(szCmdBuff);
@@ -24470,7 +24949,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		PACKET_BUFFS packetc;
 		packetc.size = sizeof(PACKET_BUFFS);
 		packetc.code = OpCode::OPCODE_BUFFS;
-		packetc.NovatoLevel = NovatoLevel;	
+		packetc.NovatoLevel = NovatoLevel;
 		packetc.NovatoADD = NovatoADD;
 		packetc.NovatoRegen = NovatoRegen;
 		packetc.AutoJobPromotion = AutoJobPromotion;
@@ -24762,7 +25241,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
 		}
 		else {
-			// criando item max = 8		
+			// criando item max = 8
 			for (cnt = 0; cnt < len; cnt++) {
 				//Criando item
 				if (CreateCommandItem(lpPlayInfo, 0, szCmdBuff) == TRUE) {
@@ -24788,7 +25267,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 	{
 		lpBuff = szChatCommand + len;
 
-		lpBuff = rsGetWord(szCmdBuff, lpBuff);	
+		lpBuff = rsGetWord(szCmdBuff, lpBuff);
 		if (!szCmdBuff[0]) return FALSE;
 
 		cnt = atoi(szCmdBuff) - 1;
@@ -24805,7 +25284,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			lpPlayInfo->lpsmSock->Send((char*)&TransChatMessage, TransChatMessage.size, TRUE);
 		}
 
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);		//¿î¿µÀÚ ¸í·É »ç¿ë±â·Ï
+		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);		//î¿µ
 		return TRUE;
 	}
 
@@ -24815,7 +25294,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 		char szTemp[32] = { 0 };
 		lpBuff = szChatCommand + len;
 
-		lpBuff = rsGetWord(szCmdBuff, lpBuff);	
+		lpBuff = rsGetWord(szCmdBuff, lpBuff);
 		if (!szCmdBuff[0]) return FALSE;
 
 		cnt = atoi(szCmdBuff);
@@ -24829,8 +25308,8 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 			//wsprintf(lpsItem->ItemInfo.ItemName, sinGold, cnt);
 			lpsItem->ItemInfo.Money = cnt;
-			lpsItem->ItemInfo.CODE = sinGG1 | sin01;			
-			ReformItem(&lpsItem->ItemInfo);						
+			lpsItem->ItemInfo.CODE = sinGG1 | sin01;
+			ReformItem(&lpsItem->ItemInfo);
 
 			lpStgArea = FindStageField(lpPlayInfo->Position.x, lpPlayInfo->Position.z);
 			if (lpStgArea) {
@@ -24848,7 +25327,7 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 			TransChatMessage.dwObjectSerial = 0;
 			lpPlayInfo->lpsmSock->Send((char *)&TransChatMessage, TransChatMessage.size, TRUE);
 		}
-		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);		
+		rsRecordAdminCommand(lpPlayInfo, szChatCommand, 1);
 		return TRUE;
 	}
 
@@ -25034,7 +25513,7 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 
                     {
                         FILE *fpProbe =
-                            fopen("LOGS\\mingw_real_server_login.txt", "a");
+                            SummitServerRuntimeTraceFile("LOGS\\mingw_real_server_login.txt");
 
                         if(fpProbe)
                         {
@@ -25101,7 +25580,7 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
                         /* MINGW_LOGIN_VALIDATION_ERROR_PROBE_V1 */
                         {
                             FILE *fpProbe =
-                                fopen("LOGS\\mingw_real_server_login.txt", "a");
+                                SummitServerRuntimeTraceFile("LOGS\\mingw_real_server_login.txt");
 
                             if(fpProbe)
                             {
@@ -25148,7 +25627,7 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 
 					/* MINGW_AUTH_DIRECT_TRACE_V1 */
                         {
-                            FILE *fpAuth = fopen("LOGS\\mingw_auth_direct.txt", "a");
+                            FILE *fpAuth = SummitServerRuntimeTraceFile("LOGS\\mingw_auth_direct.txt");
                             if(fpAuth)
                             {
                                 fprintf(
@@ -25165,7 +25644,7 @@ bool handlePlayerLoginOpcode(smTHREADSOCK* SockInfo)
 						bool request_login = rsLogAccount(playInfo, command->account, command->password, command->mac, command->szPath, command->szPCName);
 
                         {
-                            FILE *fpAuth = fopen("LOGS\\mingw_auth_direct.txt", "a");
+                            FILE *fpAuth = SummitServerRuntimeTraceFile("LOGS\\mingw_auth_direct.txt");
                             if(fpAuth)
                             {
                                 fprintf(
@@ -25341,9 +25820,9 @@ bool readWarline()
 
 		NovatoLevel = file.readInt("NewPlayer", "Level");
 		NovatoADD = file.readInt("NewPlayer", "ADD");
-		NovatoRegen = file.readInt("NewPlayer", "Regen");	
+		NovatoRegen = file.readInt("NewPlayer", "Regen");
 		AutoJobPromotion = file.readInt("NewPlayer", "AutoPromotion") ? 1 : 0;
-		
+
 		SetBoss1Bonus1 = file.readInt("Buffs", "SetBoss1Bonus1");
 		SetBoss1Bonus2 = file.readInt("Buffs", "SetBoss1Bonus2");
 		SetBoss2Bonus1 = file.readInt("Buffs", "SetBoss2Bonus1");
@@ -25546,7 +26025,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 {
     /* MINGW_REAL_SERVER_LOGIN_PROBE_V1 */
     {
-        FILE *fpProbe = fopen("LOGS\\mingw_real_server_login.txt", "a");
+        FILE *fpProbe = SummitServerRuntimeTraceFile("LOGS\\mingw_real_server_login.txt");
 
         if(fpProbe)
         {
@@ -25687,7 +26166,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 		//Filter.DumpPacket(lpPlayInfo);
 	}
 
-	// FIX foi aqui ou no de cima tem q descobrir vou 
+	// FIX foi aqui ou no de cima tem q descobrir vou
 	/*if(dwTransCode < OPCODE_NULL || dwTransCode > OPCODE_END)
 	{
 		recordAttack(lpPlayInfo, "Opcode Overflow/Underflow - Opcode: [" + std::to_string(dwTransCode) + "]");
@@ -25745,14 +26224,26 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 			char									szParam[256];
 		};
-			
+
 		switch(dwTransCode)
 		{
-			
+
 		case OpCode::OPCODE_ROLL:
 			ROLLHANDLER->HandlePacket(lpPlayInfo, (smTRANS_COMMAND*)SockInfo->Buff);
 			break;
-			
+
+
+		case gameplay::companions::protocol::OPCODE_COMPANION_UI_ACTION:
+		{
+			if(dwTransSize == sizeof(gameplay::companions::protocol::CompanionUIActionPacket))
+			{
+				const gameplay::companions::protocol::CompanionUIActionPacket *packet =
+					reinterpret_cast<const gameplay::companions::protocol::CompanionUIActionPacket *>(SockInfo->Buff);
+				gameplay::companions::HandleUIAction(lpPlayInfo, packet);
+			}
+		}
+		break;
+
 		case OpCode::OPCODE_OPEN_HG:
 
 			for (int i = 0; i < CONNECTMAX; i++)
@@ -25804,10 +26295,10 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			JOBS::GetInstance()->SendJOBmarketToGame(lpPlayInfo);
 			SendOpenJOBS(lpPlayInfo->lpsmSock);
 			break;
-			
+
 		case RANK_PACKET_SEND_RANKCLASS:
 		    Rank::GetInstance()->RecvRankclassToServer(lpPlayInfo, (Rank_Job*)SockInfo->Buff);
-		    break;	
+		    break;
 
 		case BP_PACKET_SEND_ITEM_SERVER:
 			BattlePass::GetInstance()->RecvItemToClient(lpPlayInfo, (BP_RESGATE*)SockInfo->Buff);
@@ -25845,7 +26336,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				lpPlayInfo->ModoPvP_Drop = 0;
 			break;
 		#endif /* SUMMIT_DISABLED_MISSING_OPCODE */
-			
+
 		case OpCode::OPCODE_SPOILER_INFO:
 			lpTransCommand = (smTRANS_COMMAND*)SockInfo->Buff;
 
@@ -25880,7 +26371,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			break;
 		case OpCode::OPCODE_GET_OPENCOINSHOP_T:
 			SendCoinShop_T(lpPlayInfo->lpsmSock);
-			break;			
+			break;
 
 		case OpCode::FIND_CHEAT:
 		{
@@ -26063,7 +26554,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 		}
 		break;
 
-		
+
 
 		case OpCode::SEND_ALERT_PVP:
 		{
@@ -26189,7 +26680,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			// MINGW_PROCESSINFO_PATH_TRACE_V1
 			{
 				FILE *fpProcess =
-					fopen("LOGS\\mingw_processinfo.txt", "a");
+					SummitServerRuntimeTraceFile("LOGS\\mingw_processinfo.txt");
 
 				if(fpProcess)
 				{
@@ -26520,7 +27011,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				}
 			}
 			break;
-			
+
 		case OpCode::OPCODE_GET_SHOPITEM:
 			cCoinShop.RecvGetItemShop(lpPlayInfo, (smTRANS_COMMAND*)SockInfo->Buff);
 			break;
@@ -26543,7 +27034,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			spJobCodeTime = 0;
 			spJobCode = 0;
 			break;
-		
+
 		case OpCode::OPCODE_BUY_SHOPITEM_T:
 			spJobCode = lpPlayInfo->smCharInfo.JOB_CODE;
 			spJobCodeTime = dwPlayServTime + 1000;
@@ -26551,7 +27042,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			spJobCodeTime = 0;
 			spJobCode = 0;
 			break;
-		
+
 		case OpCode::OPCODE_PUTITEM:
 
 			lpTransActionItem = (smTRANS_ACITON_ITEM*)SockInfo->Buff;
@@ -26613,7 +27104,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 						TransItemInfo.y = TransItemInfo.Item.ItemHeader.dwChkSum;
 						TransItemInfo.z = lpPlayInfo->spMoney_Out ^ (TransItemInfo.x + TransItemInfo.y);
 					}
-					
+
 					if (lpStgItem->Item.ItemInfo.CODE == (sinGG1 | sin05))
 					{
 						cCoinShop.AddPlayerCoin(lpPlayInfo, lpStgItem->Item.ItemInfo.Money);
@@ -26646,7 +27137,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 
 							wsprintf(TransChatMessage.szMessage, srMsg_037, lpPlayInfo->smCharInfo.szName, lpStgItem->Item.ItemInfo.ItemName);
 						}
-						
+
 						if (lpPlayInfo->lpPartyMaster)
 							lpPlayInfo->lpPartyMaster->SendPartyMessage(TransChatMessage.szMessage, 9);
 						for (int i = 0; i <= 5; i++) {
@@ -26681,11 +27172,11 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 							}
 						}
 					}
-					else if (lpStgItem->BeginMode) 
+					else if (lpStgItem->BeginMode)
 					{
 						wsprintf(TransChatMessage.szMessage, srMsg_037, lpPlayInfo->smCharInfo.szName, lpStgItem->Item.ItemInfo.ItemName);
 						lpPlayInfo->SendPartyMessage(TransChatMessage.szMessage, 9);
-						for (int i = 0; i <= 5; i++) 
+						for (int i = 0; i <= 5; i++)
 						{
 
 							if (lstrcmpi(lpStgItem->Item.ItemInfo.ItemName, szItemDrops[i]) == 0) {
@@ -27026,7 +27517,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			lpPlayInfo->smCharInfo.Life[0] = lpTransPlayData->Hp[0];
 			lpPlayInfo->smCharInfo.Life[1] = lpTransPlayData->Hp[1];
 			lpPlayInfo->smCharInfo.Level = lpTransPlayData->bEventInfo[TRANS_PLAYDATA_EVENT_LEVEL];
-			
+
 
 			if (lpTransPlayData->PlayBuffCnt > 0)
 			{
@@ -27334,7 +27825,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				lpPlayInfo->smCharInfo.Exp = lpPlayInfo->lpRecordBase->TransRecordData.smCharInfo.Exp;
 				lpPlayInfo->smCharInfo.Exp_High = lpPlayInfo->lpRecordBase->TransRecordData.smCharInfo.Exp_High;
 				lpPlayInfo->smCharInfo.Money = lpPlayInfo->lpRecordBase->TransRecordData.smCharInfo.Money;
-				
+
 				//Limite Dano
 				//Hacking Alert ( 100 ) - Absorption( 500 ) Attack Damage( 4000 ) Defence( 18000 )
 				if (lpPlayInfo->lpRecordBase->TransRecordData.smCharInfo.Defence >= defense_max ||
@@ -27384,6 +27875,15 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 				{
 					// On DB failure preserve the server-known rank instead of accepting an escalation.
 					incomingRank = lpPlayInfo->smCharInfo.ChangeJob;
+				}
+
+				const gameplay::classes::ClassService &classService =
+					gameplay::classes::DefaultClassService();
+				if(!classService.IsValidLegacyChangeJob(lpPlayInfo->smCharInfo.JOB_CODE, incomingRank))
+				{
+					incomingRank = classService.IsValidLegacyChangeJob(
+						lpPlayInfo->smCharInfo.JOB_CODE, lpPlayInfo->smCharInfo.ChangeJob)
+						? lpPlayInfo->smCharInfo.ChangeJob : 0;
 				}
 
 				if(lpPlayInfo->smCharInfo.ChangeJob != lpPlayInfo->lpRecordBase->TransRecordData.smCharInfo.ChangeJob)
@@ -27505,7 +28005,7 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 #ifdef __MINGW32__
 			// MINGW_GETRECORD_DISCONNECT_TRACE_V1
 			{
-				FILE *fpGet = fopen("LOGS\\mingw_getrecord_trace.txt", "a");
+				FILE *fpGet = SummitServerRuntimeTraceFile("LOGS\\mingw_getrecord_trace.txt");
 				if(fpGet)
 				{
 					fprintf(
@@ -27607,10 +28107,10 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 						if(lpPlayInfo->dwCode_ID == rsPlayInfo[cnt].dwCode_ID &&
 							lstrcmpi(lpPlayInfo->getAccount(), rsPlayInfo[cnt].getAccount()) == 0)
 						{
-							
+
 #ifdef __MINGW32__
 							{
-								FILE *fpGet = fopen("LOGS\\mingw_getrecord_trace.txt", "a");
+								FILE *fpGet = SummitServerRuntimeTraceFile("LOGS\\mingw_getrecord_trace.txt");
 								if(fpGet)
 								{
 									fprintf(
@@ -27640,10 +28140,10 @@ DisconnectUser(lpsmSock);
 
 						if(lstrcmpi(lpTransCharCommand->szName, rsPlayInfo[cnt].getName()) == 0)
 						{
-							
+
 #ifdef __MINGW32__
 							{
-								FILE *fpGet = fopen("LOGS\\mingw_getrecord_trace.txt", "a");
+								FILE *fpGet = SummitServerRuntimeTraceFile("LOGS\\mingw_getrecord_trace.txt");
 								if(fpGet)
 								{
 									fprintf(
@@ -27715,10 +28215,10 @@ DisconnectUser(lpsmSock);
 					delete lpRecordBase;
 					lpRecordBase = 0;
 				}
-				
+
 #ifdef __MINGW32__
 				{
-					FILE *fpGet = fopen("LOGS\\mingw_getrecord_trace.txt", "a");
+					FILE *fpGet = SummitServerRuntimeTraceFile("LOGS\\mingw_getrecord_trace.txt");
 					if(fpGet)
 					{
 						fprintf(
@@ -27747,10 +28247,10 @@ DisconnectUser(lpsmSock);
 					lpPlayInfo->dwNSpriteTime = dwTime + 1 * 60000;
 			}
 
-			
+
 #ifdef __MINGW32__
 			{
-				FILE *fpGet = fopen("LOGS\\mingw_getrecord_trace.txt", "a");
+				FILE *fpGet = SummitServerRuntimeTraceFile("LOGS\\mingw_getrecord_trace.txt");
 				if(fpGet)
 				{
 					fprintf(
@@ -27987,7 +28487,7 @@ if(cnt >= CONNECTMAX)
 						int modelResult = CheckUserModel(ci);
 
 						FILE *fpModel =
-							fopen("LOGS\\mingw_checkusermodel.txt", "a");
+							SummitServerRuntimeTraceFile("LOGS\\mingw_checkusermodel.txt");
 
 						if(fpModel)
 						{
@@ -28350,12 +28850,12 @@ if(cnt >= CONNECTMAX)
 				packetc.NovatoADD = NovatoADD;
 				packetc.NovatoRegen = NovatoRegen;
 				packetc.AutoJobPromotion = AutoJobPromotion;
-				
+
 				packetc.SetBoss1Bonus1 = SetBoss1Bonus1;
 				packetc.SetBoss1Bonus2 = SetBoss1Bonus2;
 				packetc.SetBoss2Bonus1 = SetBoss2Bonus1;
 				packetc.SetBoss2Bonus2 = SetBoss2Bonus2;
-				
+
 				if (lpPlayInfo->lpsmSock)
 					lpPlayInfo->lpsmSock->Send((char*)&packetc, packetc.size, true);
 			}
@@ -28511,7 +29011,7 @@ if(cnt >= CONNECTMAX)
 					if (strcmp(lpPlayInfo->getName(), kingName) == 0)
 					{
 						smTransCommand.SParam = 1;
-						wsprintf(TransChatMessage.szMessage, "%s %s est\341 online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName());
+						wsprintf(TransChatMessage.szMessage, "%s %s est\341 online", rsLegacyClassMasterTitle(lpPlayInfo->smCharInfo.JOB_CODE), lpPlayInfo->getName());
 						TransChatMessage.code = OpCode::SEND_ALERT;
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 0; //15
@@ -28575,7 +29075,7 @@ if(cnt >= CONNECTMAX)
 					if (strcmp(lpPlayInfo->getName(), szNick) == 0)
 					{
 						smTransCommand.SParam = 1;
-						wsprintf(TransChatMessage.szMessage, "%s %s est\341 online", szClasseList[lpPlayInfo->smCharInfo.JOB_CODE], lpPlayInfo->getName());
+						wsprintf(TransChatMessage.szMessage, "%s %s est\341 online", rsLegacyClassMasterTitle(lpPlayInfo->smCharInfo.JOB_CODE), lpPlayInfo->getName());
 						TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 						TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 						TransChatMessage.dwIP = 3;
@@ -28628,7 +29128,7 @@ if(cnt >= CONNECTMAX)
 
 		case OpCode::OPCODE_ID_GETUSERINFO:
 			{
-                FILE *fpProbe = fopen("LOGS\\mingw_real_server_login.txt", "a");
+                FILE *fpProbe = SummitServerRuntimeTraceFile("LOGS\\mingw_real_server_login.txt");
 
                 if(fpProbe)
                 {
@@ -28646,7 +29146,7 @@ if(cnt >= CONNECTMAX)
                     handlePlayerLoginOpcode(SockInfo);
 
                 FILE *fpProbe =
-                    fopen("LOGS\\mingw_real_server_login.txt", "a");
+                    SummitServerRuntimeTraceFile("LOGS\\mingw_real_server_login.txt");
 
                 if(fpProbe)
                 {
@@ -28702,7 +29202,7 @@ if(cnt >= CONNECTMAX)
 		// 	break;
 		case OpCode::OPCODE_INSRECORDDATA:
 		{
-			FILE *fpIns = fopen("LOGS\\mingw_insrecord_probe.txt", "a");
+			FILE *fpIns = SummitServerRuntimeTraceFile("LOGS\\mingw_insrecord_probe.txt");
 
 			lpRecordBase = new rsRECORD_DBASE;
 
@@ -28832,7 +29332,7 @@ if(cnt >= CONNECTMAX)
 
 			break;
 		}
-		
+
 		case OpCode::OPCODE_DELRECORDDATA:
 
 
@@ -28917,6 +29417,30 @@ if(cnt >= CONNECTMAX)
 
 
 				break;
+			}
+
+			// Keep the crystal-code temporary in its own scope. OPCODE_THROWITEM is
+			// a legacy unbraced switch case; a declaration in the case scope makes
+			// every following case label an illegal jump over initialization.
+			{
+				const DWORD companionCrystalCode = gameplay::companions::GetConfiguredCrystalItemCode();
+				if(companionCrystalCode &&
+					lpTransItemInfo->Item.CODE == companionCrystalCode &&
+					lpTransItemInfo->Item.PotionCount == 100)
+				{
+					if(CheckItemForm(&lpTransItemInfo->Item) == TRUE)
+					{
+						cnt = gameplay::companions::HandleCrystalUse(
+							lpPlayInfo, lpTransItemInfo->Item.CODE);
+						if(cnt == TRUE) break;
+						if(cnt == -1)
+						{
+							lpTransItemInfo->Item.PotionCount = 0;
+							rsPutItem2(lpPlayInfo, &lpTransItemInfo->Item);
+							break;
+						}
+					}
+				}
 			}
 
 			if((lpTransItemInfo->Item.CODE&sinITEM_MASK2) == sinGP1 && lpTransItemInfo->Item.PotionCount == 100)
@@ -29128,7 +29652,7 @@ if(cnt >= CONNECTMAX)
 				}
 			}
 			break;
-			
+
 
 		case OpCode::OPCODE_SHOW_DAMAGE:
 			lpTransCommand = (smTRANS_COMMAND*)SockInfo->Buff;
@@ -29157,7 +29681,7 @@ if(cnt >= CONNECTMAX)
 
 			lpPlayInfo->lpsmSock->Send((char*)lpTransCommand, lpTransCommand->size, TRUE);
 			break;
-			
+
 		case OpCode::OPCODE_SAVETHROWITEM:
 
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
@@ -30112,7 +30636,7 @@ if(cnt >= CONNECTMAX)
 				rsSendServerNoticeToUser(lpPlayInfo);
 
 
-#ifndef _SERVER_MODE_OLD			
+#ifndef _SERVER_MODE_OLD
 
 			if((dwPlayServTime - lpPlayInfo->dwLastExpMoneyCheckTime) > 60 * 1000 * 2)
 			{
@@ -30341,7 +30865,7 @@ if(cnt >= CONNECTMAX)
 			if(lpPlayInfo->dwNoticeCount < rsNoticeMessage.Counter)
 				rsSendServerNoticeToUser(lpPlayInfo);
 
-#ifndef _SERVER_MODE_OLD			
+#ifndef _SERVER_MODE_OLD
 
 			if((dwPlayServTime - lpPlayInfo->dwLastExpMoneyCheckTime) > 60 * 1000 * 3)
 			{
@@ -30573,8 +31097,8 @@ if(cnt >= CONNECTMAX)
 							}
 						}
 					}
-				
-		
+
+
 					 if (lpTransCommand->LParam == 90)
 					{
 						rsSendMoneyToUser(lpPlayInfo, 5000000);
@@ -30588,14 +31112,14 @@ if(cnt >= CONNECTMAX)
 						rsSendServerChatMessageToUser1(lpPlayInfo, 3, "[%s], Alcancou o n\355vel %d, Parab\351ns!", lpPlayInfo->getName(), lpPlayInfo->smCharInfo.Level);
 					}
 
-					if (SQL::GetInstance()->IsConnected()) 
+					if (SQL::GetInstance()->IsConnected())
 					{
 						char szQuery[512];
 						SQL::GetInstance()->EnterSqlSection();
 
 						wsprintf(szQuery, "UPDATE [ServerDB].[dbo].[PVP] SET Lvl=%d,Class=%d WHERE Name='%s'", lpPlayInfo->smCharInfo.Level,lpPlayInfo->smCharInfo.JOB_CODE, lpPlayInfo->smCharInfo.szName);
 
-						if (SQL::GetInstance()->Execute(szQuery)) 
+						if (SQL::GetInstance()->Execute(szQuery))
 						{
 							AtualizaTopPVP(lpPlayInfo);
 						}
@@ -30604,7 +31128,7 @@ if(cnt >= CONNECTMAX)
 				}
                 cQuestHandler.VerifyLevel(lpPlayInfo);
 				break;
-				
+
 			case 1:
 				lpPlayInfo->smCharInfo.Level = lpTransCommand->LParam;
 				lpPlayInfo->smCharInfo.ClassClan = lpTransCommand->SParam;
@@ -30899,8 +31423,8 @@ if(cnt >= CONNECTMAX)
 
 					wsprintf(TransChatMessage.szMessage, srMsg_022);
 				}
-				break;	
-				
+				break;
+
 			}
 #endif
 
@@ -31082,7 +31606,7 @@ if(cnt >= CONNECTMAX)
 					if (db->Open())
 					{
 						//BP somente com IP diferente ( BANCO )
-					
+
 						if (strcmp(lpPlayInfo->lpsmSock->szIPAddr, lpPlayInfo2->lpsmSock->szIPAddr) != 0)
 						{
 						    if (db->Prepare("SELECT * FROM PVP WHERE Name=?"))
@@ -31090,7 +31614,7 @@ if(cnt >= CONNECTMAX)
 							    db->BindInputParameter(killerName, 1, PARAMTYPE_String);
 
 							    if (db->Execute())
-								   db->GetData(&bps, 0, 5, PARAMTYPE_Integer);						
+								   db->GetData(&bps, 0, 5, PARAMTYPE_Integer);
 						    }
 
 					    	bps++;
@@ -31597,7 +32121,7 @@ if(cnt >= CONNECTMAX)
 
 			rsRecvRecordTradeItem(lpPlayInfo, (TRANS_RECORD_TRADE_ITEMS *)SockInfo->Buff);
 			break;
-			
+
 		case OpCode::OPCODE_INVEN_ERR_ITEM:
 
 			lpTransCommand = (smTRANS_COMMAND *)SockInfo->Buff;
@@ -31818,7 +32342,7 @@ if(cnt >= CONNECTMAX)
 				{
 					rsPutItem_TreasureBox(lpPlayInfo, lpTransCommandEx->WParam);
 				}
-	
+
 				if((lpTransCommandEx->WParam & sinITEM_MASK3) == sin34)
 				{
 					rsPutItem_CapsuleItem(lpPlayInfo, lpTransCommandEx->WParam);
@@ -32395,12 +32919,12 @@ if(cnt >= CONNECTMAX)
 
 			rsRecvMixtureResetItem(lpPlayInfo, (sMIXTURE_RESET_ITEM_SERVER *)SockInfo->Buff);
 			break;
-			
+
 		case OpCode::OPCODE_SKIN_CHANGE_ITEM:
 
 			rsRecvSkinChangeItem(lpPlayInfo, (sSKIN_CHANGE_SERVER*)SockInfo->Buff);
 			break;
-			
+
 		case OpCode::OPCODE_SMELTINGITEM:
 
 			rsRecvSmeltingItem(lpPlayInfo, (sSMELTINGITEM_SERVER *)SockInfo->Buff);
@@ -32462,7 +32986,7 @@ if(cnt >= CONNECTMAX)
 			case 13:
 				lpPlayInfo->dwTime_PrimeItem_StaminaReduce = 0;
 				rsSendGameServer_PrimeItem3(lpPlayInfo);
-				break;			
+				break;
 			case 14:
 				lpPlayInfo->dwTime_PrimeItem_StaminaRecharg = 0;
 				rsSendGameServer_PrimeItem(lpPlayInfo);
@@ -32711,6 +33235,8 @@ int Serv_DisconnectPlayer(smWINSOCK *lpsmSock)
 
 	tpInfo = (rsPLAYINFO *)lpsmSock->ExtData1;
 
+	if(tpInfo)
+		gameplay::companions::OnOwnerDisconnect(tpInfo);
 
 	if(LoginServer && tpInfo)
 	{
@@ -32858,7 +33384,7 @@ int DisconnectUser(smWINSOCK *lpsmSock)
 				(rsPLAYINFO *)lpsmSock->ExtData1;
 
 		FILE *fpDc =
-			fopen("LOGS\\mingw_disconnect_caller.txt", "a");
+			SummitServerRuntimeTraceFile("LOGS\\mingw_disconnect_caller.txt");
 
 		if(fpDc)
 		{
@@ -33600,14 +34126,7 @@ int ServerWinMain()
     }
 
     std::atomic_bool done{false};
-
-    fprintf(stderr, "[SERVER] criando CLI\n");
-    fflush(stderr);
-
     std::thread cmd(&CLI::run, CLI::getInstance(), &done);
-
-    fprintf(stderr, "[SERVER] entrando no loop principal\n");
-    fflush(stderr);
 
     while (!done.load(std::memory_order_acquire))
     {
@@ -33886,7 +34405,7 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
     HRESULT mingwLoginComHr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
 
     {
-        FILE *fpCom = fopen("LOGS\\mingw_auth_direct.txt", "a");
+        FILE *fpCom = SummitServerRuntimeTraceFile("LOGS\\mingw_auth_direct.txt");
         if(fpCom)
         {
             fprintf(
@@ -34068,7 +34587,7 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 				lstrcpy(szTempID, LogAccount->szID);
 
 				{
-                        FILE *fpAuth = fopen("LOGS\\mingw_auth_direct.txt", "a");
+                        FILE *fpAuth = SummitServerRuntimeTraceFile("LOGS\\mingw_auth_direct.txt");
                         if(fpAuth)
                         {
                             fprintf(
@@ -34085,7 +34604,7 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 					val = bSql_LogOn(szTempID, LogAccount->szPassword, szIP, szGPCode, (char *)&DisuseDay, (char *)&UsePeriod, szGuid, (char *)&Bl_RNo, (char *)&MeterCode);
 
                     {
-                        FILE *fpAuth = fopen("LOGS\\mingw_auth_direct.txt", "a");
+                        FILE *fpAuth = SummitServerRuntimeTraceFile("LOGS\\mingw_auth_direct.txt");
                         if(fpAuth)
                         {
                             fprintf(
@@ -34360,7 +34879,7 @@ DWORD WINAPI LogAccountThreadProc(void *pInfo)
 int rsLogAccount(rsPLAYINFO* lpPlayInfo, char* szID, char* szPassword, char* szMac, char* szPath, char* szPCName)
 {
     {
-        FILE *fpAuth = fopen("LOGS\\mingw_auth_direct.txt", "a");
+        FILE *fpAuth = SummitServerRuntimeTraceFile("LOGS\\mingw_auth_direct.txt");
         if(fpAuth)
         {
             fprintf(
@@ -34494,7 +35013,7 @@ int rsLogAccount(rsPLAYINFO* lpPlayInfo, char* szID, char* szPassword, char* szM
 	if(lpPlayInfo->lpsmSock)
 	{
 		{
-            FILE *fpAuth = fopen("LOGS\\mingw_auth_direct.txt", "a");
+            FILE *fpAuth = SummitServerRuntimeTraceFile("LOGS\\mingw_auth_direct.txt");
             if(fpAuth)
             {
                 fprintf(
@@ -34518,7 +35037,7 @@ int rsLogAccount(rsPLAYINFO* lpPlayInfo, char* szID, char* szPassword, char* szM
                 szMac);
 
         {
-            FILE *fpAuth = fopen("LOGS\\mingw_auth_direct.txt", "a");
+            FILE *fpAuth = SummitServerRuntimeTraceFile("LOGS\\mingw_auth_direct.txt");
             if(fpAuth)
             {
                 fprintf(
@@ -36279,7 +36798,7 @@ int Record_DeadUser(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 
 	GetLocalTime(&st);
 #ifdef _LANGUAGE_KOREAN
-	wsprintf(szFileName, "LogFile\\(Death)%d¿ù%dÀÏ.log", st.wMonth, st.wDay);
+	wsprintf(szFileName, "LogFile\\(Death)%d%d.log", st.wMonth, st.wDay);
 #else
 	wsprintf(szFileName, "LogFile//(Death)%d-%d.log", st.wMonth, st.wDay);
 #endif
@@ -36350,12 +36869,12 @@ int RecordAgingItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSrcItem, sITEMINFO *lpM
 
 	GetLocalTime(&st);
 	wsprintf(szFileName, filenameAgingItem, HackLogDirectory, st.wMonth, st.wDay);
-	
+
 	if(lpMixItem)
 	{
 		if(!Mode) lpMsg = msgAgingItem;
 		else lpMsg = msgAgingUpItem;
-		
+
 		wsprintf(szBuff, lpMsg,
 			st.wHour, st.wMinute, st.wSecond, lpPlayInfo->getAccount(), lpPlayInfo->getName(),
 			lpPlayInfo->lpsmSock->szIPAddr, lpSrcItem->ItemName, lpMixItem->ItemAgingNum[0],
@@ -36364,7 +36883,7 @@ int RecordAgingItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSrcItem, sITEMINFO *lpM
 
 		if(lpMixItem->ItemAgingNum[0] > 21)
 		{
-			
+
 			if(lpPlayInfo && lpPlayInfo->lpsmSock)
 			{
 				//BanFirewall
@@ -36378,10 +36897,10 @@ int RecordAgingItem(rsPLAYINFO *lpPlayInfo, sITEMINFO *lpSrcItem, sITEMINFO *lpM
 
 				//Registrar o log
 				recordCheatLog(lpPlayInfo, "Banimento por age Hacker");
-			
+
 			}
 		}
-			
+
 		if (!Mode)
 		{
 			std::shared_ptr<SQLConnection> db = SQLConnection::GetConnection(DATABASEID_SecurityDB);
@@ -37929,7 +38448,7 @@ int rsUpdateSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 	case SKILL_PLAY_METAL_GOLEM:
 	case SKILL_PLAY_RECALL_WOLVERIN:
 	case SKILL_PLAY_FIRE_ELEMENTAL:
-		
+
 	case SKILL_METAL_GOLEM:
 	case SKILL_RECALL_WOLVERIN:
 	case SKILL_FIRE_ELEMENTAL:
@@ -38233,7 +38752,7 @@ int	rsRecvSkillPartyUser(rsPLAYINFO *playInfo, TRANS_PARTY_SKILL *lpTransPartySk
 	   || lpTransPartySkill->size > 60
 	   || (lpTransPartySkill->dwSkillCode != SKILL_PLAY_HOLY_VALOR && lpTransPartySkill->dwSkillCode != SKILL_PLAY_T51 && lpTransPartySkill->dwSkillCode != SKILL_PLAY_T54)
 	   || lpTransPartySkill->PartyCount < 0  // Min player party
-	   || lpTransPartySkill->PartyCount > 6  // Max player party	  
+	   || lpTransPartySkill->PartyCount > 6  // Max player party
 	   || lpTransPartySkill->Point < 0 // Skill level
 	   || lpTransPartySkill->Point > 10) // Skill level
 
@@ -39877,7 +40396,7 @@ int	rsSaveAdminCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand, int Level)
 
 	len = lstrlen(szBuff);
 
-#ifdef _LANGUAGE_KOREAN				
+#ifdef _LANGUAGE_KOREAN
 	wsprintf(szFileName, "%s//(Admin)%d-%d.xog", AdminLogDirectory, st.wMonth, st.wDay);
 	for(int cnt = 0; cnt < len; cnt++)
 	{
@@ -40448,17 +40967,19 @@ int	rsUseLovelyItem(rsPLAYINFO *lpPlayInfo, DWORD	dwItemCode)
 	smTRANS_COMMAND	smTransCommand;
 
 	JobCode = lpPlayInfo->smCharInfo.JOB_CODE;
+	const bool isFemaleClass = gameplay::classes::DefaultClassService().IsGender(
+		JobCode, gameplay::classes::CharacterGender::Female);
 
 	switch(dwItemCode)
 	{
 	case (sinCH1 | sin01):
 
 #ifdef _LANGUAGE_ENGLISH
-		if(JobCode != JOBCODE_ATALANTA && JobCode != JOBCODE_ARCHER && JobCode != JOBCODE_PRIESTESS)
+		if(!isFemaleClass)
 			return FALSE;
 		Level = 10;
 #else
-		if(JobCode == JOBCODE_ATALANTA || JobCode == JOBCODE_ARCHER || JobCode == JOBCODE_PRIESTESS)
+		if(isFemaleClass)
 			return FALSE;
 		Level = 4;
 #endif
@@ -40467,11 +40988,11 @@ int	rsUseLovelyItem(rsPLAYINFO *lpPlayInfo, DWORD	dwItemCode)
 	case (sinCH1 | sin02):
 
 #ifdef _LANGUAGE_ENGLISH
-		if(JobCode == JOBCODE_ATALANTA || JobCode == JOBCODE_ARCHER || JobCode == JOBCODE_PRIESTESS)
+		if(isFemaleClass)
 			return FALSE;
 		Level = 10;
 #else
-		if(JobCode == JOBCODE_ATALANTA || JobCode == JOBCODE_ARCHER || JobCode == JOBCODE_PRIESTESS)
+		if(isFemaleClass)
 			return FALSE;
 		Level = 8;
 #endif
@@ -40479,13 +41000,13 @@ int	rsUseLovelyItem(rsPLAYINFO *lpPlayInfo, DWORD	dwItemCode)
 		break;
 
 	case (sinCH1 | sin03):
-		if(JobCode != JOBCODE_ATALANTA && JobCode != JOBCODE_ARCHER && JobCode != JOBCODE_PRIESTESS)
+		if(!isFemaleClass)
 			return FALSE;
 		Level = 4;
 		break;
 
 	case (sinCH1 | sin04):
-		if(JobCode != JOBCODE_ATALANTA && JobCode != JOBCODE_ARCHER && JobCode != JOBCODE_PRIESTESS)
+		if(!isFemaleClass)
 			return FALSE;
 		Level = 8;
 		break;
@@ -40583,7 +41104,7 @@ int rsGetMonsterLifeRegen(smCHAR *lpChar)
 		{
 			TRANS_CHATMESSAGE	TransChatMessage;
 
-			wsprintf(TransChatMessage.szMessage, "¹Ùº§ »ý¸í Àç»ý ( ÁÖº¯:%d¸í ) ( Àç»ý·Â:%d )", NearUserCnt, RegenLife);
+			wsprintf(TransChatMessage.szMessage, "Ùº   ( Öº:%d ) ( :%d )", NearUserCnt, RegenLife);
 			TransChatMessage.code = OpCode::OPCODE_WHISPERMESSAGE;
 			TransChatMessage.size = 32 + lstrlen(TransChatMessage.szMessage);
 			TransChatMessage.dwIP = 0;
@@ -41170,7 +41691,7 @@ int rsMain_CombatCastle()
 				}
 			}
 		}
-		
+
 		else if(rsBlessCastle.dwBattleOverTime < dwPlayServTime)
 		{
 
@@ -42061,13 +42582,13 @@ int	rsOpenSiegeCastleItem(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO *lpP
 		return TRUE;
 	case (sinBI1 | sin22):
 		return TRUE;
-		
+
 	case (sinBI1 | sin56):
 	case (sinBI1 | sin57):
 	case (sinBI1 | sin58):
 
 		return TRUE;
-		
+
 	case (sinBI1 | sin82):
 
 		return TRUE;
@@ -42133,6 +42654,17 @@ int	rsOpenSiegeCastleItem(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO *lpP
 	if(lpPlayInfo->Position.Area != rsCASTLE_FIELD)
 		return FALSE;
 
+	int castleClassTarget = 0;
+	if(gameplay::classes::legacy::TryBlessCastleClassStoneTarget(
+		static_cast<std::uint32_t>(dwItemCode), castleClassTarget))
+	{
+		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
+		lpPlayInfo->dwSiegeItem_Stone2_Code = castleClassTarget;
+		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
+		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
+		return TRUE;
+	}
+
 	switch(dwItemCode)
 	{
 	case (sinBC1 | sin01):
@@ -42180,62 +42712,6 @@ int	rsOpenSiegeCastleItem(DWORD dwItemCode, int x, int y, int z, rsPLAYINFO *lpP
 		lpPlayInfo->dwSiegeItem_Stone1_Time = dwPlayServTime + 60 * 1000;
 		lpPlayInfo->dwSiegeItem_Stone1_Code = snCHAR_SOUND_CASTLE_CRYSTAL_G;
 		lpPlayInfo->dwSiegeItem_Stone1_Param = 50;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin09):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_FIGHTER;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin10):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_MECHANICIAN;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin11):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_PIKEMAN;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin12):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_ARCHER;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin13):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_KNIGHT;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin14):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_ATALANTA;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin15):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_MAGICIAN;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
-		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
-		return TRUE;
-
-	case (sinBC1 | sin16):
-		lpPlayInfo->dwSiegeItem_Stone2_Time = dwPlayServTime + 60 * 1000;
-		lpPlayInfo->dwSiegeItem_Stone2_Code = JOBCODE_PRIESTESS;
-		lpPlayInfo->dwSiegeItem_Stone2_Param = 20;
 		rsSiegeItemSucess(lpPlayInfo, dwItemCode);
 		return TRUE;
 
@@ -42451,12 +42927,28 @@ int rsCheckPlayField(rsPLAYINFO *lpPlayInfo)
 #define PRESENTITEM_LEVEL_MAX		4
 
 #include "systems/gameplay/events/server_legacy/AutoDropItem.h"
+#include "gameplay/events/legacy/LegacyClassEquipmentKitAdapter.h"
+
+static void rsGrantLegacyClassEquipmentKit(rsPLAYINFO* lpPlayInfo, int kitType)
+{
+	gameplay::events::legacy::LegacyEquipmentKit kit;
+	if(!gameplay::events::legacy::TryBuildRandomBoxClassKit(
+		kitType, lpPlayInfo->smCharInfo.JOB_CODE, kit))
+		return;
+
+	for(std::size_t i = 0; i < kit.count; ++i)
+	{
+		const gameplay::events::legacy::LegacyEquipmentGrant& grant = kit.grants[i];
+		if(grant.kind == gameplay::events::legacy::LegacyEquipmentGrantKind::AgedSpecializedItem)
+			rsPutItem_aging(lpPlayInfo, grant.itemCode, grant.specializationJobCode, grant.agingLevel);
+		else
+			rsPutItem4(lpPlayInfo, grant.itemCode, grant.specializationJobCode);
+	}
+}
 //Caixas aging
 int CaixaItensRandom(rsPLAYINFO * lpPlayInfo, int tipo)
 {
 	sDEF_ITEMINFO* lpDefItem = 0;
-	int JobCode = 0;
-	JobCode = spJobCode;
 
 	switch (tipo) {
 	case 0:
@@ -42643,129 +43135,7 @@ int CaixaItensRandom(rsPLAYINFO * lpPlayInfo, int tipo)
 		//lpDefItem = rsPutItem3(lpPlayInfo, (sinBI1 | sin11), 0);//Pedra aging
 		break;
 	case 11:
-
-		switch (lpPlayInfo->smCharInfo.JOB_CODE)
-		{
-
-		case JOBCODE_FIGHTER:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA1 | sin26), JOBCODE_FIGHTER, 20);//Armadura
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin27), JOBCODE_FIGHTER);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin27), JOBCODE_FIGHTER);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin27), JOBCODE_FIGHTER);//Bracelete
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_FIGHTER);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_FIGHTER);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA1 | sin29), JOBCODE_FIGHTER);//Amuleto
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_FIGHTER);//brinco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_FIGHTER);//brimco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOS1 | sin17), JOBCODE_FIGHTER);//shelton
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin24), JOBCODE_FIGHTER, 20);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWA1 | sin49), JOBCODE_FIGHTER, 20);//Arma
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWA1 | sin25), JOBCODE_FIGHTER, 20);//Arma
-			break;
-		case JOBCODE_MECHANICIAN:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA1 | sin26), JOBCODE_MECHANICIAN, 20);//Armadura
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin27), JOBCODE_MECHANICIAN);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin27), JOBCODE_MECHANICIAN);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin27), JOBCODE_MECHANICIAN);//Bracelete
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_MECHANICIAN);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_MECHANICIAN);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA1 | sin29), JOBCODE_MECHANICIAN);//Amuleto
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_MECHANICIAN);//brinco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_MECHANICIAN);//brimco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOS1 | sin17), JOBCODE_MECHANICIAN);//shelton
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin24), JOBCODE_MECHANICIAN, 20);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWC1 | sin49), JOBCODE_MECHANICIAN, 20);//Arma
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinWP1 | sin15), JOBCODE_MECHANICIAN);//Arma 
-			break;
-		case JOBCODE_ARCHER:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA1 | sin26), JOBCODE_ARCHER, 20);//Armadura
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin27), JOBCODE_ARCHER);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin27), JOBCODE_ARCHER);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin27), JOBCODE_ARCHER);//Bracelete
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_ARCHER);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_ARCHER);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA1 | sin29), JOBCODE_ARCHER);//Amuleto
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_ARCHER);//brinco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_ARCHER);//brimco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOS1 | sin17), JOBCODE_ARCHER);//shelton
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin24), JOBCODE_ARCHER, 20);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWS1 | sin49), JOBCODE_ARCHER, 20);//Arma
-			break;
-		case JOBCODE_PIKEMAN:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA1 | sin26), JOBCODE_PIKEMAN, 20);//Armadura
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin27), JOBCODE_PIKEMAN);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin27), JOBCODE_PIKEMAN);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin27), JOBCODE_PIKEMAN);//Bracelete
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_PIKEMAN);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_PIKEMAN);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA1 | sin29), JOBCODE_PIKEMAN);//Amuleto
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_PIKEMAN);//brinco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_PIKEMAN);//brimco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOS1 | sin17), JOBCODE_PIKEMAN);//sheltono
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin24), JOBCODE_PIKEMAN, 20);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWP1 | sin15), JOBCODE_PIKEMAN, 20);//Arma
-			break;
-		case JOBCODE_ATALANTA:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA1 | sin26), JOBCODE_ATALANTA, 20);//Armadura
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin27), JOBCODE_ATALANTA);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin27), JOBCODE_ATALANTA);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin27), JOBCODE_ATALANTA);//Bracelete
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_ATALANTA);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_ATALANTA);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA1 | sin29), JOBCODE_ATALANTA);//Amuleto
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_ATALANTA);//brinco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_ATALANTA);//brimco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOS1 | sin17), JOBCODE_ATALANTA);//shelton
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin24), JOBCODE_ATALANTA, 20);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWT1 | sin49), JOBCODE_ATALANTA, 20);//Arma
-			break;
-		case JOBCODE_KNIGHT:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA1 | sin26), JOBCODE_KNIGHT, 20);//Armadura
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin27), JOBCODE_KNIGHT);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin27), JOBCODE_KNIGHT);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin27), JOBCODE_KNIGHT);//Bracelete
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_KNIGHT);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_KNIGHT);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA1 | sin29), JOBCODE_KNIGHT);//Amuleto
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_KNIGHT);//brinco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_KNIGHT);//brimco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOS1 | sin17), JOBCODE_KNIGHT);//shelton
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin24), JOBCODE_KNIGHT, 20);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWS2 | sin28), JOBCODE_KNIGHT, 20);//Arma
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWS2 | sin50), JOBCODE_KNIGHT, 20);//Arma
-			break;
-		case JOBCODE_MAGICIAN:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA2 | sin26), JOBCODE_MAGICIAN, 20);//Roupao
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin27), JOBCODE_MAGICIAN);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin27), JOBCODE_MAGICIAN);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin27), JOBCODE_MAGICIAN);//Bracelete
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_MAGICIAN);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_MAGICIAN);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA1 | sin29), JOBCODE_MAGICIAN);//Amuleto
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_MAGICIAN);//brinco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_MAGICIAN);//brimco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOS1 | sin17), JOBCODE_MAGICIAN);//shelton
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin24), JOBCODE_MAGICIAN, 20);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWM1 | sin26), JOBCODE_MAGICIAN, 20);//Arma
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWM1 | sin50), JOBCODE_MAGICIAN, 20);//Arma
-			break;
-		case JOBCODE_PRIESTESS:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA2 | sin26), JOBCODE_PRIESTESS, 20);//Roupao
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin27), JOBCODE_PRIESTESS);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin27), JOBCODE_PRIESTESS);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin27), JOBCODE_PRIESTESS);//Bracelete
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_PRIESTESS);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOR1 | sin29), JOBCODE_PRIESTESS);//Anel
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA1 | sin29), JOBCODE_PRIESTESS);//Amuleto
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_PRIESTESS);//brinco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOE1 | sin07), JOBCODE_PRIESTESS);//brimco
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOS1 | sin17), JOBCODE_PRIESTESS);//shelton
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin24), JOBCODE_PRIESTESS, 20);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWM1 | sin26), JOBCODE_PRIESTESS, 20);//Arma
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWM1 | sin50), JOBCODE_PRIESTESS, 20);//Arma
-			break;
-
-		}
+		rsGrantLegacyClassEquipmentKit(lpPlayInfo, 11);
 		break;
 	case 12:
 
@@ -42788,119 +43158,9 @@ int CaixaItensRandom(rsPLAYINFO * lpPlayInfo, int tipo)
 		lpDefItem = rsPutItem3(lpPlayInfo, (sinBI1 | sin33), 0);
 		break;
 	case 14:
-
-
-		//Amuleto divino Armor 103
-		switch (lpPlayInfo->smCharInfo.JOB_CODE)
-		{
-
-		case JOBCODE_FIGHTER:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA1 | sin16), JOBCODE_FIGHTER, 8);//Armadura
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin14), JOBCODE_FIGHTER);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin14), JOBCODE_FIGHTER);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin14), JOBCODE_FIGHTER);//Bracelete
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin14), JOBCODE_FIGHTER, 8);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWA1 | sin14), JOBCODE_FIGHTER, 8);//Arma
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			break;
-		case JOBCODE_MECHANICIAN:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA1 | sin16), JOBCODE_MECHANICIAN, 8);//Armadura
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin14), JOBCODE_MECHANICIAN);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin14), JOBCODE_MECHANICIAN);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin14), JOBCODE_MECHANICIAN);//Bracelete
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin14), JOBCODE_MECHANICIAN, 8);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWH1 | sin15), JOBCODE_MECHANICIAN, 8);//Arma
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			break;
-		case JOBCODE_ARCHER:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA1 | sin16), JOBCODE_ARCHER, 8);//Armadura
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin14), JOBCODE_ARCHER);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin14), JOBCODE_ARCHER);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin14), JOBCODE_ARCHER);//Braceletete
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin14), JOBCODE_ARCHER, 8);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWS1 | sin16), JOBCODE_ARCHER, 8);//Arma
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			break;
-		case JOBCODE_PIKEMAN:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA1 | sin16), JOBCODE_PIKEMAN, 8);//Armadura
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin14), JOBCODE_PIKEMAN);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin14), JOBCODE_PIKEMAN);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin14), JOBCODE_PIKEMAN);//Bracelete
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin14), JOBCODE_PIKEMAN, 8);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWP1 | sin15), JOBCODE_PIKEMAN, 8);//Arma
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			break;
-		case JOBCODE_ATALANTA:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA1 | sin16), JOBCODE_ATALANTA, 8);//Armadura
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin14), JOBCODE_ATALANTA);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin14), JOBCODE_ATALANTA);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin14), JOBCODE_ATALANTA);//Bracelete
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin14), JOBCODE_ATALANTA, 8);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWT1 | sin15), JOBCODE_ATALANTA, 8);//Arma
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			break;
-		case JOBCODE_KNIGHT:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA1 | sin16), JOBCODE_KNIGHT, 8);//Armadura
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin14), JOBCODE_KNIGHT);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin14), JOBCODE_KNIGHT);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin14), JOBCODE_KNIGHT);//Bracelete
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin14), JOBCODE_KNIGHT, 8);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWS2 | sin17), JOBCODE_KNIGHT, 8);//Arma
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			break;
-		case JOBCODE_MAGICIAN:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA2 | sin16), JOBCODE_MAGICIAN, 8);//Roupao
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin14), JOBCODE_MAGICIAN);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin14), JOBCODE_MAGICIAN);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin14), JOBCODE_MAGICIAN);//Bracelete
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin08), JOBCODE_MAGICIAN, 8);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWM1 | sin15), JOBCODE_MAGICIAN, 8);//Arma
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			break;
-		case JOBCODE_PRIESTESS:
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDA2 | sin16), JOBCODE_PRIESTESS, 8);//Roupao
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDB1 | sin14), JOBCODE_PRIESTESS);//Bota
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinDG1 | sin14), JOBCODE_PRIESTESS);//Luva
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinOA2 | sin14), JOBCODE_PRIESTESS);//Bracelete
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinDS1 | sin08), JOBCODE_PRIESTESS, 8);//Escudo
-			lpDefItem = rsPutItem_aging(lpPlayInfo, (sinWM1 | sin15), JOBCODE_PRIESTESS, 8);//Arma
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			lpDefItem = rsPutItem4(lpPlayInfo, (sinBI1 | sin08), 0);
-			break;
-
-		}
+		rsGrantLegacyClassEquipmentKit(lpPlayInfo, 14);
 		break;
+
 	}
 
 	return TRUE;
@@ -42916,8 +43176,10 @@ DWORD rsLowLevelItem(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
 
 	if(abs(lpPlayInfo->smCharInfo.Level - lpChar->smCharInfo.Level) > 8)
 		return NULL;
-	job = lpPlayInfo->smCharInfo.JOB_CODE - 1;
-	if(job < 0 || job >= 8) return NULL;
+	if(!gameplay::classes::legacy::TryLowLevelPresentItemRow(
+		lpPlayInfo->smCharInfo.JOB_CODE, job) ||
+		job < 0 || job >= LEGACY_LOW_LEVEL_PRESENT_ITEM_ROW_COUNT)
+		return NULL;
 
 	if(lpPlayInfo->dwCode_Name & 1)
 		lev = rsPresentItem_LevelType_1[job][lpPlayInfo->sLowLevel_PresentItem[0]][0];
@@ -42946,7 +43208,7 @@ DWORD rsLowLevelItem(rsPLAYINFO *lpPlayInfo, smCHAR *lpChar)
 
 			if(lpPlayInfo->getSecurity() > AccountTypes::SEC_VIP)
 			{
-				wsprintf(TransChatMessage.szMessage, "ÇÊ¿¬Àû ¾ÆÀÌÅÛ °úÀÇ ¸¸³²( %d )", SelCnt);
+				wsprintf(TransChatMessage.szMessage, "Ê¿   ( %d )", SelCnt);
 				TransChatMessage.code = OpCode::OPCODE_CHATMESSAGE;
 				TransChatMessage.dwIP = 0;
 				TransChatMessage.dwObjectSerial = 0;
@@ -43072,38 +43334,32 @@ int rsStartUser_PresentItem(rsPLAYINFO * lpPlayInfo)
 	switch (lpPlayInfo->dwStartUser_PresentItem_Count)
 	{
 	case 1:
-		if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ARCHER)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinWS1 | sin01), 0);
-		else if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ATALANTA)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinWT1 | sin01), 0);
-		else if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinWM1 | sin01), 0);
-		else if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinWM1 | sin01), 0);
-		else
+	{
+		const DWORD starterWeaponCode = (DWORD)gameplay::classes::legacy::StarterPresentWeaponCode(
+			lpPlayInfo->smCharInfo.JOB_CODE, sin01);
+		if(starterWeaponCode != 0)
+			lpDefItem = rsPutItem3(lpPlayInfo, starterWeaponCode, 0);
+		else if(gameplay::classes::DefaultClassService().FindEnabled(lpPlayInfo->smCharInfo.JOB_CODE))
 		{
+			// Preserve the historical random melee starter gift.
 			switch (rand() % 3)
 			{
-			case 0:
-				lpDefItem = rsPutItem3(lpPlayInfo, (sinWS2 | sin01), 0);
-				break;
-			case 1:
-				lpDefItem = rsPutItem3(lpPlayInfo, (sinWA1 | sin01), 0);
-				break;
-			case 2:
-				lpDefItem = rsPutItem3(lpPlayInfo, (sinWH1 | sin01), 0);
-				break;
+			case 0: lpDefItem = rsPutItem3(lpPlayInfo, (sinWS2 | sin01), 0); break;
+			case 1: lpDefItem = rsPutItem3(lpPlayInfo, (sinWA1 | sin01), 0); break;
+			case 2: lpDefItem = rsPutItem3(lpPlayInfo, (sinWH1 | sin01), 0); break;
 			}
 		}
 		break;
+	}
 
 	case 2:
-		if (lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN ||
-			lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinDA2 | sin02), 0);
-		else
-			lpDefItem = rsPutItem3(lpPlayInfo, (sinDA1 | sin02), 0);
+	{
+		const DWORD starterArmorCode = (DWORD)gameplay::classes::legacy::StarterPresentArmorCode(
+			lpPlayInfo->smCharInfo.JOB_CODE, sin02);
+		if(starterArmorCode != 0)
+			lpDefItem = rsPutItem3(lpPlayInfo, starterArmorCode, 0);
 		break;
+	}
 
 	case 3:
 		lpDefItem = rsPutItem3(lpPlayInfo, (sinGP1 | sin01), 0);
@@ -43136,7 +43392,7 @@ int rsStartUser_PresentItem(rsPLAYINFO * lpPlayInfo)
 	lpPlayInfo->dwStartUser_PresentItem_Count++;
 #ifndef _LANGUAGE_PHILIPIN
 	lpPlayInfo->dwStartUser_PresentItem_Time = dwPlayServTime + 1000 * 60 * 1;
-#else 
+#else
 	lpPlayInfo->dwStartUser_PresentItem_Time = dwPlayServTime + 1000 * 3 * 1;
 #endif
 
@@ -44457,4 +44713,4 @@ int rsXignCode_selected_code_SendPacket(rsPLAYINFO *lpPlayInfo)
 	return TRUE;
 }
 
-#endif 
+#endif

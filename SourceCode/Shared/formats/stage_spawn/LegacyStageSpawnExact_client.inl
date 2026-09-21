@@ -216,30 +216,5 @@ int GetRandomPos_Normal(int inMin, int inMax)
 	return Min + rnd;
 }
 
-struct sSPECIAL_REVISION
-{
-	DWORD	dwJobCode;
-	short	sLevel[2];
-	short	sStrength[2];
-	short	sSpirit[2];
-	short	sTalent[2];
-	short	sDexterity[2];
-	short	sHealth[2];
-};
-
-#define	sSPECIAL_REVISION_MAX		8
-
-
-sSPECIAL_REVISION	sSpecialRevision[sSPECIAL_REVISION_MAX] = {
-
-	{ JOB_CODE_MECHANICIAN,		0,0,	5,15,		-20,-10,	0,0,		-25,-15,	0,0		},
-	{ JOB_CODE_FIGHTER,			0,0,	10,15,		-20,-15,	0,0,		-20,-15,	0,0		},
-	{ JOB_CODE_PIKEMAN,			0,0,	10,15,		-20,-15,	0,0,		-25,-15,	0,0		},
-	{ JOB_CODE_ARCHER,			0,0,	-25,-15,	-20,-10,	0,0,		15,25,		0,0		},
-	{ JOB_CODE_KNIGHT,			0,0,	5,15,		-15,-10,	5,10,		-25,-15,	0,0		},
-	{ JOB_CODE_ATALANTA,		0,0,	-20,-15,	-20,-10,	0,0,		15,25,		0,0		},
-	{ JOB_CODE_PRIEST,			0,0,	-25,-20,	15,20,		-15,-10,	-20,-15,	0,0		},
-	{ JOB_CODE_MAGICIAN,		0,0,	-25,-20,	15,25,		-15,-10,	-20,-15,	0,0		},
-};
-
+// Class-specific item requirement revisions are owned by PlayableClassDefinition.
 

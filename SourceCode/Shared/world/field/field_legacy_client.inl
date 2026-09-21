@@ -1,3 +1,4 @@
+#include "gameplay/classes/v2/services/ClassService.h"
 
 
 #include "systems/rendering/legacy_3d/smd3d.h"
@@ -268,7 +269,7 @@ int	sFIELD::CheckWarpGate(int x, int y, int z)
 			{
 				rnd = rand() % lpWarpGate->OutGateCount;
 
-				LoadStageFromField(lpWarpGate->OutGate[rnd].lpsField, this);
+				LoadStageFromField(lpWarpGate->OutGate[rnd].lpsField, 0);
 				lpCurPlayer->SetPosi(lpWarpGate->OutGate[rnd].x,
 					lpWarpGate->OutGate[rnd].y, lpWarpGate->OutGate[rnd].z,
 					lpCurPlayer->Angle.x, lpCurPlayer->Angle.y, lpCurPlayer->Angle.z);
@@ -1904,6 +1905,8 @@ static int SelCount = 0;
 }
 
 
+extern void PumpStageTexturePrewarm();
+
 sFIELD	*PlayNearGateField(sFIELD *lpsField, sFIELD *lpsField2, int x, int y, int z)
 {
 	int dist = 0;
@@ -1982,11 +1985,11 @@ sFIELD	*PlayNearGateField(sFIELD *lpsField, sFIELD *lpsField2, int x, int y, int
 
 	if (NearFields[0])
 	{
-		LoadStageFromField(NearFields[0], lpsField);
+		RequestStageFromFieldAsync(NearFields[0], lpsField);
 	}
 	else
 	{
-		LoadStageFromField(NearFields[1], lpsField2);
+		RequestStageFromFieldAsync(NearFields[1], lpsField2);
 	}
 
 	return NearField;
@@ -2006,7 +2009,8 @@ int StartField()
 	if (JobCode == 0)
 		JobCode = NewCharInfo.JobCode;
 
-	if (JobCode > 4 && JobCode != 9)
+	if (gameplay::classes::DefaultClassService().IsInBrood(
+		JobCode, gameplay::classes::brood::Morayion))
 		StartNum = START_FIELD_MORYON;
 	else
 		StartNum = START_FIELD_NUM;
@@ -2032,13 +2036,6 @@ int WarpNextField(int *mx, int *mz)
 
 int WarpCustomField(int *mx, int *mz)
 {
-	if (smGameStage[0]) delete smGameStage[0];
-	if (smGameStage[1]) delete smGameStage[1];
-	StageField[0] = 0;
-	StageField[1] = 0;
-	smGameStage[0] = 0;
-	smGameStage[1] = 0;
-
 	LoadStageFromField(&sField[CustomField], 0);
 
 	*mx = sField[CustomField].cX * fONE;
@@ -2061,8 +2058,6 @@ int WarpField(int FieldNum, int *mx, int *mz)
 
 	LoadStageFromField(&sField[FieldNum], 0);
 
-	if (sField[FieldNum].FieldGate[0].lpsField)
-		LoadStageFromField(sField[FieldNum].FieldGate[0].lpsField, &sField[FieldNum]);
 
 	*mx = sField[FieldNum].cX * fONE;
 	*mz = sField[FieldNum].cZ * fONE;
@@ -2076,8 +2071,6 @@ int WarpFieldNearPos(int FieldNum, int x, int z, int *mx, int *mz)
 {
 	LoadStageFromField(&sField[FieldNum], 0);
 
-	if (sField[FieldNum].FieldGate[0].lpsField)
-		LoadStageFromField(sField[FieldNum].FieldGate[0].lpsField, &sField[FieldNum]);
 
 	sField[FieldNum].GetStartPoint(x, z, mx, mz);
 
@@ -2114,7 +2107,8 @@ int WarpStartField(int *mx, int *mz)
 	if (JobCode == 0)
 		JobCode = NewCharInfo.JobCode;
 
-	if (JobCode > 4 && JobCode != 9)
+	if (gameplay::classes::DefaultClassService().IsInBrood(
+		JobCode, gameplay::classes::brood::Morayion))
 	{
 		StartNum = START_FIELD_MORYON;
 	}
@@ -2147,8 +2141,6 @@ int WarpPrisonField(int *mx, int *mz)
 
 	LoadStageFromField(&sField[START_FIELD_NUM], 0);
 
-	if (sField[START_FIELD_NUM].FieldGate[0].lpsField)
-		LoadStageFromField(sField[START_FIELD_NUM].FieldGate[0].lpsField, &sField[START_FIELD_NUM]);
 
 	*mx = PrisonX;
 	*mz = PrisonZ;
@@ -2175,6 +2167,10 @@ int FieldMain(int x, int y, int z)
 {
 	FieldCheckCount++;
 
+	// First publish any CPU-ready stage, then continue scheduling its textures.
+	// Neither operation performs disk I/O on the game thread.
+	PumpStageStreamingV3();
+	PumpStageTexturePrewarm();
 
 	if ((FieldCheckCount & 0x3F) == 0)
 		PlayNearGateField(StageField[0], StageField[1], x, y, z);

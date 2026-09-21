@@ -1,5 +1,18 @@
 #include "opcodes.h"
+#include <cstdint>
+#include <cstdlib>
+#include <atomic>
+#include <deque>
+#include <memory>
+#include <mutex>
+#include <new>
+#include <string>
+#include <vector>
+
+#include "core/concurrency/JobSystem.h"
+#include "core/concurrency/SourceAssetLock.h"
 #include "systems/rendering/legacy_3d/smd3d.h"
+#include "systems/rendering/assets/v3/AssetStreamingV3.h"
 #include "systems/security/legacy/process_integrity/cracker.h"
 #include "systems/network/transport/legacy/smwsock.h"
 #include "systems/gameplay/character/core/character.h"
@@ -7,6 +20,7 @@
 #include "core/gameplay/runtime/playmain.h"
 #include "systems/audio/playback/legacy/Dxwav.h"
 #include "core/data/legacy_loader/fileread.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 
 #include "systems/rendering/effects/particle/legacy/particle.h"
 #include "systems/network/client/netplay.h"
@@ -41,12 +55,772 @@ extern HWND hwnd;
 extern int MouseButton[3];
 
 int LoadFieldMap(int PosNum, sFIELD *lpField, smSTAGE3D *lpStage);
-
+extern char szGameStageName[2][64];
 
 
 smSTAGE3D		*smStage = 0;
 smSTAGE3D		*smGameStage[2] = { 0,0 };
 sFIELD			*StageField[2] = { 0,0 };
+
+// Asset/Stage V3 bridges. Texture CPU preparation is background work; the
+// render thread only commits ready D3D resources.
+extern int AssetLoadV2PrewarmMaterialGroupStep(smMATERIAL_GROUP *group, DWORD ownerMask,
+	int MipMap, std::uint32_t maxAttempts, int requestPriority);
+
+namespace
+{
+
+struct SummitStageObjectSpec
+{
+    std::string file;
+    bool hasBip;
+};
+
+struct SummitPreparedStageObject
+{
+    SummitPreparedStageObject() : pattern(0), bipPattern(0) {}
+    smPAT3D *pattern;
+    smPAT3D *bipPattern;
+};
+
+struct SummitStageLoadRequest
+{
+    SummitStageLoadRequest()
+        : id(0), field(0), anchorField(0), targetSlot(0), stage(0), success(false),
+          cancelled(false), lightX(0), lightY(0), lightZ(0), bright(0), contrast(0)
+    {
+    }
+
+    std::uint64_t id;
+    sFIELD *field;
+    sFIELD *anchorField;
+    int targetSlot;
+    std::string stageFile;
+    std::vector<SummitStageObjectSpec> objectSpecs;
+    std::vector<SummitPreparedStageObject> objects;
+    smSTAGE3D *stage;
+    bool success;
+    std::atomic<bool> cancelled;
+    int lightX;
+    int lightY;
+    int lightZ;
+    int bright;
+    int contrast;
+};
+
+struct SummitFieldTransition
+{
+    SummitFieldTransition()
+        : armed(false), active(false), committing(false), field(0), armedAt(0), startedAt(0),
+          x(0), y(0), z(0), ax(0), ay(0), az(0)
+    {
+    }
+
+    bool armed;
+    bool active;
+    bool committing;
+    sFIELD *field;
+    DWORD armedAt;
+    DWORD startedAt;
+    int x;
+    int y;
+    int z;
+    int ax;
+    int ay;
+    int az;
+};
+
+static std::mutex gStageStreamingMutex;
+static std::shared_ptr<SummitStageLoadRequest> gStageStreamingPending[2];
+static std::deque<std::shared_ptr<SummitStageLoadRequest> > gStageStreamingCompleted;
+static std::atomic<std::uint64_t> gStageStreamingSerial(1u);
+static smSTAGE3D *gStageTexturePrewarm[2] = { 0, 0 };
+static SummitFieldTransition gFieldTransition;
+// Legacy gameplay assumes that OnStageField >= 0 always implies a valid
+// StageField[OnStageField]. During the very first asynchronous stage load there
+// is no old world to keep resident, so publish the FIELD METADATA early while
+// geometry remains private to the worker. This preserves the legacy invariant
+// without making stage loading synchronous.
+static bool gStageBootstrapPending = false;
+
+static DWORD SummitStageTransitionMaxWarmWait()
+{
+    static const DWORD configured = []() -> DWORD
+    {
+        const char *value = getenv("SUMMIT_STAGE_TRANSITION_MAX_WARM_MS");
+        if (!value || !*value)
+            return 3000u;
+        const unsigned long parsed = strtoul(value, 0, 10);
+        if (parsed < 250ul) return 250u;
+        if (parsed > 10000ul) return 10000u;
+        return static_cast<DWORD>(parsed);
+    }();
+    return configured;
+}
+
+static int SummitFindStageSlot(sFIELD *field)
+{
+    if (!field)
+        return -1;
+    if (StageField[0] == field && smGameStage[0])
+        return 0;
+    if (StageField[1] == field && smGameStage[1])
+        return 1;
+    return -1;
+}
+
+static void SummitDeletePreparedStageRequest(const std::shared_ptr<SummitStageLoadRequest> &request)
+{
+    if (!request)
+        return;
+
+    if (request->stage)
+    {
+        delete request->stage;
+        request->stage = 0;
+    }
+
+    for (std::size_t i = 0; i < request->objects.size(); ++i)
+    {
+        if (request->objects[i].pattern)
+            delete request->objects[i].pattern;
+        if (request->objects[i].bipPattern && request->objects[i].bipPattern != request->objects[i].pattern)
+            delete request->objects[i].bipPattern;
+        request->objects[i].pattern = 0;
+        request->objects[i].bipPattern = 0;
+    }
+}
+
+static void SummitParseStageObject(const SummitStageObjectSpec &spec, SummitPreparedStageObject &out)
+{
+    if (spec.file.empty())
+        return;
+
+    smASE_SetPhysique(0);
+    if (spec.hasBip)
+    {
+        {
+            summit::core::concurrency::SourceAssetLock sourceLock(spec.file.c_str());
+            out.bipPattern = smASE_ReadBone(const_cast<char *>(spec.file.c_str()));
+        }
+        if (!out.bipPattern)
+            return;
+        smASE_SetPhysique(out.bipPattern);
+    }
+
+    {
+        summit::core::concurrency::SourceAssetLock sourceLock(spec.file.c_str());
+        out.pattern = smASE_Read(const_cast<char *>(spec.file.c_str()));
+    }
+    smASE_SetPhysique(0);
+    // Do not destroy partially prepared patterns on a worker. Their material
+    // destructors can touch shared texture handles; ownership stays in the
+    // request and cleanup is performed by the main-thread completion path.
+}
+
+static void SummitCompleteStageRequest(const std::shared_ptr<SummitStageLoadRequest> &request)
+{
+    std::lock_guard<std::mutex> lock(gStageStreamingMutex);
+    gStageStreamingCompleted.push_back(request);
+}
+
+static void SummitBuildStageOnWorker(const std::shared_ptr<SummitStageLoadRequest> &request)
+{
+    if (!request)
+        return;
+
+    if (request->cancelled.load(std::memory_order_acquire))
+    {
+        SummitCompleteStageRequest(request);
+        return;
+    }
+
+    smSTAGE3D *stage = new(std::nothrow) smSTAGE3D;
+    if (!stage)
+    {
+        SummitCompleteStageRequest(request);
+        return;
+    }
+    // From this point the request owns the stage even on failure/cancellation.
+    // The main thread is the only place that destroys it.
+    request->stage = stage;
+
+    stage->VectLight.x = request->lightX;
+    stage->VectLight.y = request->lightY;
+    stage->VectLight.z = request->lightZ;
+    stage->Bright = request->bright;
+    stage->Contrast = request->contrast;
+
+    {
+        summit::core::concurrency::SourceAssetLock stageSourceLock(request->stageFile.c_str());
+        if (!smSTAGE3D_ReadASE(const_cast<char *>(request->stageFile.c_str()), stage))
+        {
+            SummitCompleteStageRequest(request);
+            return;
+        }
+    }
+
+    if (request->cancelled.load(std::memory_order_acquire))
+    {
+        SummitCompleteStageRequest(request);
+        return;
+    }
+
+    request->objects.resize(request->objectSpecs.size());
+    summit::core::concurrency::JobSystem &jobs = summit::core::concurrency::JobSystem::Instance();
+
+    // Each static stage object has independent ASE/model data. Fan it out over
+    // the pool; JobGroup::Wait cooperatively executes work when this worker is
+    // waiting, so nested jobs also work with a forced one-worker pool.
+    if (request->objectSpecs.size() > 1)
+    {
+        summit::core::concurrency::JobGroup objectGroup;
+        for (std::size_t i = 0; i < request->objectSpecs.size(); ++i)
+        {
+            const summit::core::concurrency::JobPriority objectPriority =
+                request->targetSlot == 0 ? summit::core::concurrency::JobPriority::Normal
+                                         : summit::core::concurrency::JobPriority::Low;
+            jobs.Submit(objectGroup, [request, i]() {
+                if (!request->cancelled.load(std::memory_order_acquire))
+                    SummitParseStageObject(request->objectSpecs[i], request->objects[i]);
+            }, objectPriority);
+        }
+        objectGroup.Wait();
+    }
+    else if (!request->objectSpecs.empty())
+    {
+        SummitParseStageObject(request->objectSpecs[0], request->objects[0]);
+    }
+
+    if (request->cancelled.load(std::memory_order_acquire))
+    {
+        SummitCompleteStageRequest(request);
+        return;
+    }
+
+    if (stage->StageObject)
+    {
+        for (std::size_t i = 0; i < request->objects.size(); ++i)
+        {
+            SummitPreparedStageObject &prepared = request->objects[i];
+            if (!prepared.pattern)
+                continue;
+
+            if (stage->StageObject->AddObjectPrepared(prepared.pattern, prepared.bipPattern))
+            {
+                prepared.pattern = 0;
+                prepared.bipPattern = 0;
+            }
+        }
+    }
+
+    request->success = request->stage && request->stage->StageObject;
+    SummitCompleteStageRequest(request);
+}
+
+static bool SummitRequestIsCurrent(const std::shared_ptr<SummitStageLoadRequest> &request)
+{
+    if (!request || request->targetSlot < 0 || request->targetSlot > 1)
+        return false;
+    std::lock_guard<std::mutex> lock(gStageStreamingMutex);
+    const std::shared_ptr<SummitStageLoadRequest> &pending = gStageStreamingPending[request->targetSlot];
+    return pending && pending->id == request->id;
+}
+
+static void SummitClearCurrentRequest(const std::shared_ptr<SummitStageLoadRequest> &request)
+{
+    if (!request || request->targetSlot < 0 || request->targetSlot > 1)
+        return;
+    std::lock_guard<std::mutex> lock(gStageStreamingMutex);
+    std::shared_ptr<SummitStageLoadRequest> &pending = gStageStreamingPending[request->targetSlot];
+    if (pending && pending->id == request->id)
+        pending.reset();
+}
+
+static void SummitAbortBootstrapField(sFIELD *field)
+{
+    if (!gStageBootstrapPending || !field)
+        return;
+
+    // Keep StageField[0] metadata published even when geometry preparation
+    // fails. A large amount of legacy gameplay dereferences FieldCode/State
+    // whenever OnStageField >= 0, so clearing the metadata would turn a load
+    // failure into a null/negative-index crash. A later request can retry the
+    // same slot without treating the field as resident (SummitFindStageSlot
+    // also requires smGameStage[0]).
+    gStageBootstrapPending = false;
+    AssetLoadV3SetLoadingBoost(false);
+}
+
+static void SummitAbortTransitionForField(sFIELD *field)
+{
+    if (!field || gFieldTransition.field != field)
+        return;
+    gFieldTransition.armed = false;
+    gFieldTransition.active = false;
+    gFieldTransition.field = 0;
+}
+
+static void SummitFinalizeBootstrapPlayerPlacement(int slot)
+{
+    if (!gStageBootstrapPending || slot < 0 || slot > 1 || !lpCurPlayer || !smGameStage[slot])
+        return;
+
+    int floorHeight = CLIP_OUT;
+    const int playerHeight = lpCurPlayer->Pattern ? lpCurPlayer->Pattern->SizeHeight : 0;
+    floorHeight = smGameStage[slot]->GetFloorHeight(
+        lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, playerHeight);
+    if (floorHeight == CLIP_OUT)
+        floorHeight = smGameStage[slot]->GetHeight(lpCurPlayer->pX, lpCurPlayer->pZ);
+
+    if (floorHeight != CLIP_OUT)
+    {
+        lpCurPlayer->pY = floorHeight;
+        lpCurPlayer->PHeight = floorHeight;
+        lpCurPlayer->FallHeight = 0;
+    }
+
+    lpCurPlayer->OnStageField = slot;
+    lpCurPlayer->MoveFlag = 0;
+    TraceCameraPosi.x = lpCurPlayer->pX;
+    TraceCameraPosi.y = lpCurPlayer->pY;
+    TraceCameraPosi.z = lpCurPlayer->pZ;
+    TraceTargetPosi = TraceCameraPosi;
+}
+
+static void SummitPublishStageOnMainThread(const std::shared_ptr<SummitStageLoadRequest> &request)
+{
+    if (!request)
+        return;
+
+    if (!SummitRequestIsCurrent(request))
+    {
+        SummitDeletePreparedStageRequest(request);
+        return;
+    }
+    SummitClearCurrentRequest(request);
+
+    if (request->cancelled.load(std::memory_order_acquire) || !request->success || !request->stage)
+    {
+        SummitAbortTransitionForField(request->field);
+        SummitAbortBootstrapField(request->field);
+        SummitDeletePreparedStageRequest(request);
+        return;
+    }
+
+    const int targetSlot = request->targetSlot;
+    if (targetSlot < 0 || targetSlot > 1)
+    {
+        SummitDeletePreparedStageRequest(request);
+        return;
+    }
+
+    if (request->field && SummitFindStageSlot(request->field) >= 0)
+    {
+        SummitDeletePreparedStageRequest(request);
+        return;
+    }
+
+    // A primary transition owns slot 1 as its rollback/previous-world slot.
+    // Cancel any unrelated speculative neighbour still targeting that slot.
+    if (targetSlot == 0)
+    {
+        std::lock_guard<std::mutex> lock(gStageStreamingMutex);
+        if (gStageStreamingPending[1])
+            gStageStreamingPending[1]->cancelled.store(true, std::memory_order_release);
+    }
+
+    // A primary transition keeps the previous primary stage as slot 1. This
+    // lets the player remain safely in the old world while target textures are
+    // warming and also makes walking back through the gate instant.
+    if (targetSlot == 0 && smGameStage[0] && StageField[0] != request->field)
+    {
+        if (smGameStage[1] && smGameStage[1] != smGameStage[0])
+            delete smGameStage[1];
+        smGameStage[1] = smGameStage[0];
+        StageField[1] = StageField[0];
+        gStageTexturePrewarm[1] = 0;
+        if (StageField[1])
+            LoadFieldMap(1, StageField[1], smGameStage[1]);
+        if (lpCurPlayer && lpCurPlayer->OnStageField == 0)
+            lpCurPlayer->OnStageField = 1;
+        smGameStage[0] = 0;
+        StageField[0] = 0;
+    }
+    else if (smGameStage[targetSlot])
+    {
+        delete smGameStage[targetSlot];
+        smGameStage[targetSlot] = 0;
+        StageField[targetSlot] = 0;
+    }
+
+    smGameStage[targetSlot] = request->stage;
+    StageField[targetSlot] = request->field;
+    request->stage = 0;
+
+    if (request->field)
+        LoadFieldMap(targetSlot, request->field, smGameStage[targetSlot]);
+
+    // Bootstrap is allowed to publish FIELD metadata early for legacy callers,
+    // but the player must not become visible/playable until collision geometry
+    // exists.  Snap to the real floor on the owner thread before the renderer
+    // is allowed to leave the loading barrier.
+    if (targetSlot == 0 && gStageBootstrapPending)
+        SummitFinalizeBootstrapPlayerPlacement(targetSlot);
+
+    if (request->field)
+        strcpy_s(szGameStageName[targetSlot], request->field->szName);
+    else
+        strcpy_s(szGameStageName[targetSlot], sizeof(szGameStageName[targetSlot]), request->stageFile.c_str());
+
+    // Register stage texture ownership immediately; actual disk/decode work is
+    // queued to workers by PumpStageTexturePrewarm().
+    if (smGameStage[targetSlot]->smMaterialGroup)
+    {
+        AssetLoadV2PrewarmMaterialGroupStep(
+            smGameStage[targetSlot]->smMaterialGroup, SMASSET_OWNER_STAGE, 1, 0,
+            targetSlot == 0 ? 0 : 2);
+        gStageTexturePrewarm[targetSlot] = smGameStage[targetSlot];
+    }
+    else
+    {
+        gStageTexturePrewarm[targetSlot] = 0;
+        if (targetSlot == 0 && gStageBootstrapPending)
+        {
+            gStageBootstrapPending = false;
+            AssetLoadV3SetLoadingBoost(false);
+        }
+    }
+}
+
+static int SummitResolveRequestSlot(sFIELD *field, sFIELD *anchorField)
+{
+    if (!anchorField)
+        return 0;
+    if (anchorField == StageField[0])
+        return 1;
+    if (anchorField == StageField[1])
+        return 0;
+    return -1;
+}
+
+static bool SummitStageRequestAlreadyPending(sFIELD *field)
+{
+    if (!field)
+        return false;
+    std::lock_guard<std::mutex> lock(gStageStreamingMutex);
+    for (int slot = 0; slot < 2; ++slot)
+    {
+        if (gStageStreamingPending[slot] && gStageStreamingPending[slot]->field == field &&
+            !gStageStreamingPending[slot]->cancelled.load(std::memory_order_acquire))
+            return true;
+    }
+    return false;
+}
+
+static int SummitQueueStageRequest(const std::shared_ptr<SummitStageLoadRequest> &request)
+{
+    if (!request || request->targetSlot < 0 || request->targetSlot > 1)
+        return FALSE;
+
+    {
+        std::lock_guard<std::mutex> lock(gStageStreamingMutex);
+        std::shared_ptr<SummitStageLoadRequest> &previous = gStageStreamingPending[request->targetSlot];
+        if (previous)
+            previous->cancelled.store(true, std::memory_order_release);
+        previous = request;
+    }
+
+    if (!summit::core::concurrency::JobSystem::Instance().Submit(
+        [request]() { SummitBuildStageOnWorker(request); },
+        request->targetSlot == 0 ? summit::core::concurrency::JobPriority::High
+                                 : summit::core::concurrency::JobPriority::Low))
+    {
+        std::lock_guard<std::mutex> lock(gStageStreamingMutex);
+        std::shared_ptr<SummitStageLoadRequest> &pending = gStageStreamingPending[request->targetSlot];
+        if (pending && pending->id == request->id)
+            pending.reset();
+        return FALSE;
+    }
+    return TRUE;
+}
+
+static std::shared_ptr<SummitStageLoadRequest> SummitMakeFieldStageRequest(
+    sFIELD *field, sFIELD *anchorField, int targetSlot)
+{
+    if (!field || !field->szName[0])
+        return std::shared_ptr<SummitStageLoadRequest>();
+
+    std::shared_ptr<SummitStageLoadRequest> request(new SummitStageLoadRequest());
+    request->id = gStageStreamingSerial.fetch_add(1u, std::memory_order_acq_rel);
+    request->field = field;
+    request->anchorField = anchorField;
+    request->targetSlot = targetSlot;
+    request->stageFile = field->szName;
+    request->lightX = smConfig.MapLightVector.x;
+    request->lightY = smConfig.MapLightVector.y;
+    request->lightZ = smConfig.MapLightVector.z;
+    request->bright = smConfig.MapBright;
+    request->contrast = smConfig.MapContrast;
+
+    request->objectSpecs.reserve(field->StgObjCount);
+    for (int cnt = 0; cnt < field->StgObjCount; ++cnt)
+    {
+        char objectName[128] = { 0 };
+        const int bip = field->GetStageObjectName(cnt, objectName, sizeof(objectName));
+        if (!objectName[0])
+            continue;
+        SummitStageObjectSpec spec;
+        spec.file = objectName;
+        spec.hasBip = bip != 0;
+        request->objectSpecs.push_back(spec);
+    }
+    return request;
+}
+
+static std::shared_ptr<SummitStageLoadRequest> SummitMakeRawStageRequest(
+    const char *stageFile, int targetSlot)
+{
+    if (!stageFile || !stageFile[0] || targetSlot < 0 || targetSlot > 1)
+        return std::shared_ptr<SummitStageLoadRequest>();
+
+    std::shared_ptr<SummitStageLoadRequest> request(new SummitStageLoadRequest());
+    request->id = gStageStreamingSerial.fetch_add(1u, std::memory_order_acq_rel);
+    request->targetSlot = targetSlot;
+    request->stageFile = stageFile;
+    request->lightX = smConfig.MapLightVector.x;
+    request->lightY = smConfig.MapLightVector.y;
+    request->lightZ = smConfig.MapLightVector.z;
+    request->bright = smConfig.MapBright;
+    request->contrast = smConfig.MapContrast;
+    return request;
+}
+
+static void SummitArmFieldTransition(sFIELD *field)
+{
+    if (!field || !lpCurPlayer)
+        return;
+    if (!smGameStage[0] && !smGameStage[1])
+        return; // bootstrap: there is no old world to preserve.
+    if (SummitFindStageSlot(field) >= 0)
+        return;
+
+    gFieldTransition.armed = true;
+    gFieldTransition.active = false;
+    gFieldTransition.field = field;
+    gFieldTransition.armedAt = GetCurrentTime();
+}
+
+static bool SummitTargetTexturesWarming(int slot)
+{
+    return slot >= 0 && slot < 2 && gStageTexturePrewarm[slot] != 0;
+}
+
+static void SummitTryCommitFieldTransition()
+{
+    if (!gFieldTransition.active || !gFieldTransition.field || !lpCurPlayer)
+        return;
+
+    const int slot = SummitFindStageSlot(gFieldTransition.field);
+    if (slot < 0)
+    {
+        lpCurPlayer->MoveFlag = 0;
+        return;
+    }
+
+    const DWORD now = GetCurrentTime();
+    if (SummitTargetTexturesWarming(slot) &&
+        now - gFieldTransition.startedAt < SummitStageTransitionMaxWarmWait())
+    {
+        lpCurPlayer->MoveFlag = 0;
+        return;
+    }
+
+    gFieldTransition.committing = true;
+    lpCurPlayer->SetPosi(
+        gFieldTransition.x, gFieldTransition.y, gFieldTransition.z,
+        gFieldTransition.ax, gFieldTransition.ay, gFieldTransition.az);
+    gFieldTransition.committing = false;
+
+    lpCurPlayer->OnStageField = slot;
+    lpCurPlayer->MoveFlag = 0;
+    TraceCameraPosi.x = lpCurPlayer->pX;
+    TraceCameraPosi.y = lpCurPlayer->pY;
+    TraceCameraPosi.z = lpCurPlayer->pZ;
+    TraceTargetPosi = TraceCameraPosi;
+
+    sFIELD *committedField = gFieldTransition.field;
+    gFieldTransition.armed = false;
+    gFieldTransition.active = false;
+    gFieldTransition.field = 0;
+
+    // Keep the normal two-stage cache hot after a teleport as well. This is a
+    // speculative request and never blocks the frame.
+    if (committedField && committedField->GateCount > 0 && committedField->FieldGate[0].lpsField)
+        RequestStageFromFieldAsync(committedField->FieldGate[0].lpsField, committedField);
+}
+
+} // anonymous namespace
+
+// Two-stage streaming: CPU work scales with the worker pool while GPU uploads
+// are fed incrementally on the render thread.
+static std::uint32_t StageTexturePrewarmPerTick()
+{
+    const char *value = getenv("SUMMIT_STAGE_STREAM_TEXTURES_PER_TICK");
+    if (value && *value)
+    {
+        const long parsed = strtol(value, 0, 10);
+        if (parsed <= 0) return 0u;
+        return static_cast<std::uint32_t>(parsed > 16 ? 16 : parsed);
+    }
+
+    const std::size_t workers = summit::core::concurrency::JobSystem::Instance().WorkerCount();
+    const std::size_t automatic = workers < 2 ? 2 : workers;
+    return static_cast<std::uint32_t>(automatic > 8 ? 8 : automatic);
+}
+
+void PumpStageTexturePrewarm()
+{
+    if (!d3ddev)
+        return;
+
+    const std::uint32_t totalPerTick = StageTexturePrewarmPerTick();
+    if (!totalPerTick)
+        return;
+
+    std::uint32_t remainingBudget = totalPerTick;
+    for (int slot = 0; slot < 2 && remainingBudget; ++slot)
+    {
+        smSTAGE3D *stage = gStageTexturePrewarm[slot];
+        if (!stage)
+            continue;
+        if (stage != smGameStage[slot] || !stage->smMaterialGroup)
+        {
+            gStageTexturePrewarm[slot] = 0;
+            continue;
+        }
+
+        // Give the current/primary map most of the scheduling budget. The
+        // actual I/O still fans out over the worker pool.
+        const std::uint32_t stageBudget = slot == 0 ? remainingBudget : 1u;
+        const int remaining = AssetLoadV2PrewarmMaterialGroupStep(
+            stage->smMaterialGroup, SMASSET_OWNER_STAGE, 1, stageBudget,
+            slot == 0 ? 0 : 2);
+        if (remaining == 0)
+        {
+            stage->smMaterialGroup->CheckMatreialTextureSwap();
+            gStageTexturePrewarm[slot] = 0;
+            if (slot == 0 && gStageBootstrapPending)
+            {
+                gStageBootstrapPending = false;
+                AssetLoadV3SetLoadingBoost(false);
+            }
+        }
+        remainingBudget = remainingBudget > stageBudget ? remainingBudget - stageBudget : 0u;
+    }
+}
+
+int RequestStageFromFieldAsync(sFIELD *lpField, sFIELD *lpSecondField)
+{
+    if (!lpField || !lpField->szName[0])
+        return FALSE;
+    if (SummitFindStageSlot(lpField) >= 0)
+        return TRUE;
+
+    // Speculative neighbour requests must not race the primary bootstrap.
+    // StageField metadata is published early so legacy code can inspect
+    // FieldCode/State, but no adjacent-map work is useful until the anchor
+    // stage has actual collision/geometry resident.
+    if (lpSecondField && SummitFindStageSlot(lpSecondField) < 0)
+        return FALSE;
+
+    if (SummitStageRequestAlreadyPending(lpField))
+        return FALSE;
+
+    const int targetSlot = SummitResolveRequestSlot(lpField, lpSecondField);
+    if (targetSlot < 0)
+        return FALSE;
+
+    return SummitQueueStageRequest(SummitMakeFieldStageRequest(lpField, lpSecondField, targetSlot));
+}
+
+void PumpStageStreamingV3()
+{
+    // Publish at most two CPU-ready stages per frame. Publication does no disk
+    // I/O and no texture decode; those are already worker-side / queued.
+    for (int published = 0; published < 2; ++published)
+    {
+        std::shared_ptr<SummitStageLoadRequest> request;
+        {
+            std::lock_guard<std::mutex> lock(gStageStreamingMutex);
+            if (gStageStreamingCompleted.empty())
+                break;
+            request = gStageStreamingCompleted.front();
+            gStageStreamingCompleted.pop_front();
+        }
+        SummitPublishStageOnMainThread(request);
+    }
+
+    // An armed transition should be consumed by SetPosi in the same legacy
+    // call chain. Expire it defensively instead of intercepting an unrelated
+    // SetPosi much later.
+    if (gFieldTransition.armed && GetCurrentTime() - gFieldTransition.armedAt > 500u)
+    {
+        gFieldTransition.armed = false;
+        if (!gFieldTransition.active)
+            gFieldTransition.field = 0;
+    }
+
+    SummitTryCommitFieldTransition();
+}
+
+bool IsStageFromFieldPendingAsync(sFIELD *lpField)
+{
+    if (!lpField)
+        return false;
+    if (SummitFindStageSlot(lpField) >= 0)
+        return false;
+    return SummitStageRequestAlreadyPending(lpField);
+}
+
+bool IsStageBootstrapBlockingGameplayAsync()
+{
+    // Metadata is deliberately published before geometry so legacy FieldCode /
+    // State reads stay valid.  Gameplay, physics and world rendering are a
+    // stricter contract: they may start only after the primary stage exists.
+    return gStageBootstrapPending && (!smGameStage[0] || !StageField[0]);
+}
+
+// Called from smCHAR::SetPosi. Runtime warps still use the legacy call graph,
+// but their SetPosi is captured instead of moving the player into an unloaded
+// world. Stage publication later replays the exact position on the main thread.
+bool SummitCapturePendingFieldTransitionSetPosi(smCHAR *character,
+    int x, int y, int z, int ax, int ay, int az)
+{
+    if (!character || character != lpCurPlayer || gFieldTransition.committing)
+        return false;
+    if (!gFieldTransition.armed || !gFieldTransition.field)
+        return false;
+    if (GetCurrentTime() - gFieldTransition.armedAt > 500u)
+    {
+        gFieldTransition.armed = false;
+        gFieldTransition.field = 0;
+        return false;
+    }
+
+    gFieldTransition.armed = false;
+    gFieldTransition.active = true;
+    gFieldTransition.startedAt = GetCurrentTime();
+    gFieldTransition.x = x;
+    gFieldTransition.y = y;
+    gFieldTransition.z = z;
+    gFieldTransition.ax = ax;
+    gFieldTransition.ay = ay;
+    gFieldTransition.az = az;
+
+    character->MoveFlag = 0;
+    return true;
+}
 
 
 rsRECORD_DBASE	rsRecorder;
@@ -247,280 +1021,94 @@ char *g_IceFootImageFileBuff[ICE_FOOT_PAT_MAX] =
 
 void InitStageLoader()
 {
-	szGameStageName[0][0] = 0;
-	szGameStageName[1][0] = 0;
-	smGameStage[0] = 0;
-	smGameStage[1] = 0;
-}
+    std::deque<std::shared_ptr<SummitStageLoadRequest> > abandoned;
+    {
+        std::lock_guard<std::mutex> lock(gStageStreamingMutex);
+        for (int slot = 0; slot < 2; ++slot)
+        {
+            if (gStageStreamingPending[slot])
+                gStageStreamingPending[slot]->cancelled.store(true, std::memory_order_release);
+            gStageStreamingPending[slot].reset();
+        }
+        abandoned.swap(gStageStreamingCompleted);
+    }
+    while (!abandoned.empty())
+    {
+        SummitDeletePreparedStageRequest(abandoned.front());
+        abandoned.pop_front();
+    }
 
+    gStageTexturePrewarm[0] = 0;
+    gStageTexturePrewarm[1] = 0;
+    gFieldTransition = SummitFieldTransition();
+    gStageBootstrapPending = false;
+    AssetLoadV3SetLoadingBoost(false);
+
+    if (smGameStage[1]) delete smGameStage[1];
+    if (smGameStage[0]) delete smGameStage[0];
+
+    szGameStageName[0][0] = 0;
+    szGameStageName[1][0] = 0;
+    StageField[0] = 0;
+    StageField[1] = 0;
+    smGameStage[0] = 0;
+    smGameStage[1] = 0;
+}
 
 smSTAGE3D *LoadStageFromField(sFIELD *lpField, sFIELD *lpSecondField)
 {
-	smSTAGE3D *lpstg;
-	char *szStageFile;
-	int cnt;
-	int	Bip;
-	char	szBuff[128];
+    if (!lpField || !lpField->szName[0])
+        return NULL;
 
-	szStageFile = lpField->szName;
+    const int residentSlot = SummitFindStageSlot(lpField);
+    if (residentSlot >= 0)
+        return smGameStage[residentSlot];
 
-	if(lpField == StageField[0])
-		return smGameStage[0];
-	if(lpField == StageField[1])
-		return smGameStage[1];
+    const bool bootstrap = !lpSecondField && !smGameStage[0] && !smGameStage[1];
+    if (bootstrap)
+    {
+        // Legacy gameplay uses StageField metadata before geometry is needed.
+        // Preserve that contract while the heavy stage stays private to the
+        // worker until publication.
+        StageField[0] = lpField;
+        if (lpCurPlayer)
+            lpCurPlayer->OnStageField = 0;
+        gStageBootstrapPending = true;
+        AssetLoadV3SetLoadingBoost(true);
+    }
 
-	lpstg = new smSTAGE3D;
+    // A primary request during gameplay is a real field transition. The
+    // legacy caller will call SetPosi immediately afterwards; capture that
+    // SetPosi and replay it only when this stage is ready.
+    if (!lpSecondField)
+        SummitArmFieldTransition(lpField);
 
-
-	lpstg->VectLight.x = smConfig.MapLightVector.x;
-	lpstg->VectLight.y = smConfig.MapLightVector.y;
-	lpstg->VectLight.z = smConfig.MapLightVector.z;
-
-	lpstg->Bright = smConfig.MapBright;
-	lpstg->Contrast = smConfig.MapContrast;
-
-
-	AddLoaderStage(lpstg, szStageFile);
-
-	if(!lpstg->StageObject)
-	{
-
-
-		wsprintf(szBuff, "Stage Loading Error ( %s )", szStageFile);
-		Record_ClinetLogFile(szBuff);
-		delete lpstg;
-		return NULL;
-	}
-
-
-	for(cnt = 0; cnt < lpField->StgObjCount; cnt++)
-	{
-		Bip = lpField->GetStageObjectName(cnt, szBuff, sizeof(szBuff));
-		if(szBuff[0])
-		{
-			if(Bip)
-				lpstg->StageObject->AddObjectFile(szBuff, szBuff);
-			else
-				lpstg->StageObject->AddObjectFile(szBuff);
-		}
-	}
-
-	if(lpField->StgObjCount && d3ddev)
-	{
-		ReadTextures();
-		lpstg->smMaterialGroup->CheckMatreialTextureSwap();
-	}
-
-	if(lpSecondField && lpSecondField == StageField[0])
-	{
-		if(smGameStage[1])
-			delete smGameStage[1];
-		smGameStage[1] = lpstg;
-		StageField[1] = lpField;
-		LoadFieldMap(1, lpField, lpstg);
-	}
-	else
-	{
-		if(!lpSecondField || lpSecondField == StageField[1])
-		{
-			if(smGameStage[0])
-				delete smGameStage[0];
-			smGameStage[0] = lpstg;
-			StageField[0] = lpField;
-			LoadFieldMap(0, lpField, lpstg);
-		}
-	}
-
-
-	if(StageField[0])
-		strcpy_s(szGameStageName[0], StageField[0]->szName);
-
-	if(StageField[1])
-		strcpy_s(szGameStageName[1], StageField[1]->szName);
-
-
-	DWORD	dwTime = GetCurrentTime();
-
-	if(dwLastRecvGameServerTime && dwLastRecvGameServerTime < dwTime)
-		dwLastRecvGameServerTime = dwTime;
-	if(dwLastRecvGameServerTime2 && dwLastRecvGameServerTime2 < dwTime)
-		dwLastRecvGameServerTime2 = dwTime;
-	if(dwLastRecvGameServerTime3 && dwLastRecvGameServerTime3 < dwTime)
-		dwLastRecvGameServerTime3 = dwTime;
-	if(dwLastRecvGameServerTime4 && dwLastRecvGameServerTime4 < dwTime)
-		dwLastRecvGameServerTime4 = dwTime;
-
-	if(AreaServerMode)
-	{
-
-		if(lpWSockServer_Area[0]) lpWSockServer_Area[0]->dwDeadLockTime = dwTime;
-		if(lpWSockServer_Area[1]) lpWSockServer_Area[1]->dwDeadLockTime = dwTime;
-	}
-
-	return lpstg;
+    const int queued = RequestStageFromFieldAsync(lpField, lpSecondField);
+    if (!queued && bootstrap && !IsStageFromFieldPendingAsync(lpField) && SummitFindStageSlot(lpField) < 0)
+        SummitAbortBootstrapField(lpField);
+    return NULL;
 }
-
 
 smSTAGE3D *LoadStageFromField2(sFIELD *lpField, sFIELD *lpSecondField)
 {
-	smSTAGE3D *lpstg;
-	char *szStageFile;
-	int cnt;
-	int Bip;
-	char szBuff[128];
-
-
-	szStageFile = lpField->szName;
-
-	if(lpField == StageField[0]) return smGameStage[0];
-	if(lpField == StageField[1]) return smGameStage[1];
-
-	lpstg = new smSTAGE3D;
-
-
-	lpstg->VectLight.x = smConfig.MapLightVector.x;
-	lpstg->VectLight.y = smConfig.MapLightVector.y;
-	lpstg->VectLight.z = smConfig.MapLightVector.z;
-
-	lpstg->Bright = smConfig.MapBright;
-	lpstg->Contrast = smConfig.MapContrast;
-
-
-
-
-
-
-	AddLoaderStage(lpstg, szStageFile);
-
-	if(!lpstg->StageObject)
-	{
-
-
-		wsprintf(szBuff, "Stage Loading Error ( %s )", szStageFile);
-		Record_ClinetLogFile(szBuff);
-		delete lpstg;
-		return NULL;
-	}
-
-
-	for(cnt = 0; cnt < lpField->StgObjCount; cnt++)
-	{
-		Bip = lpField->GetStageObjectName(cnt, szBuff, sizeof(szBuff));
-		if(szBuff[0])
-		{
-			if(Bip)
-				lpstg->StageObject->AddObjectFile(szBuff, szBuff);
-			else
-				lpstg->StageObject->AddObjectFile(szBuff);
-		}
-	}
-
-	if(lpField->StgObjCount && d3ddev)
-	{
-		ReadTextures();
-		lpstg->smMaterialGroup->CheckMatreialTextureSwap();
-	}
-
-
-
-	if(lpSecondField && lpSecondField == StageField[0])
-	{
-		if(smGameStage[1]) delete smGameStage[1];
-		smGameStage[1] = lpstg;
-		StageField[1] = lpField;
-
-		LoadFieldMap(1, lpField, lpstg);
-	}
-	else
-	{
-		if(!lpSecondField || lpSecondField == StageField[1])
-		{
-			if(smGameStage[0]) delete smGameStage[0];
-			smGameStage[0] = lpstg;
-			StageField[0] = lpField;
-
-			LoadFieldMap(0, lpField, lpstg);
-		}
-	}
-
-	if(StageField[0]) strcpy_s(szGameStageName[0], StageField[0]->szName);
-	if(StageField[1]) strcpy_s(szGameStageName[1], StageField[1]->szName);
-
-	DWORD	dwTime = GetCurrentTime();
-	if(dwLastRecvGameServerTime && dwLastRecvGameServerTime < dwTime) dwLastRecvGameServerTime = dwTime;
-	if(dwLastRecvGameServerTime2 && dwLastRecvGameServerTime2 < dwTime) dwLastRecvGameServerTime2 = dwTime;
-	if(dwLastRecvGameServerTime3 && dwLastRecvGameServerTime3 < dwTime) dwLastRecvGameServerTime3 = dwTime;
-	if(dwLastRecvGameServerTime4 && dwLastRecvGameServerTime4 < dwTime) dwLastRecvGameServerTime4 = dwTime;
-
-	if(AreaServerMode)
-	{
-
-		if(lpWSockServer_Area[0]) lpWSockServer_Area[0]->dwDeadLockTime = dwTime;
-		if(lpWSockServer_Area[1]) lpWSockServer_Area[1]->dwDeadLockTime = dwTime;
-	}
-
-	return lpstg;
+    return LoadStageFromField(lpField, lpSecondField);
 }
-
 
 smSTAGE3D *LoadStage(char *szStageFile)
 {
-	smSTAGE3D *lpstg;
+    if (!szStageFile || !szStageFile[0])
+        return NULL;
+    if (lstrcmpi(szGameStageName[0], szStageFile) == 0) return smGameStage[0];
+    if (lstrcmpi(szGameStageName[1], szStageFile) == 0) return smGameStage[1];
 
-	if(lstrcmpi(szGameStageName[0], szStageFile) == 0) return smGameStage[0];
-	if(lstrcmpi(szGameStageName[1], szStageFile) == 0) return smGameStage[1];
-
-	lpstg = new smSTAGE3D;
-
-
-	lpstg->VectLight.x = smConfig.MapLightVector.x;
-	lpstg->VectLight.y = smConfig.MapLightVector.y;
-	lpstg->VectLight.z = smConfig.MapLightVector.z;
-
-	lpstg->Bright = smConfig.MapBright;
-	lpstg->Contrast = smConfig.MapContrast;
-
-
-	AddLoaderStage(lpstg, szStageFile);
-
-	smStageCount = (smStageCount + 1) & 1;
-
-	if(smGameStage[smStageCount]) delete smGameStage[smStageCount];
-
-	smGameStage[smStageCount] = lpstg;
-
-	return lpstg;
+    smStageCount = (smStageCount + 1) & 1;
+    SummitQueueStageRequest(SummitMakeRawStageRequest(szStageFile, smStageCount));
+    return NULL;
 }
-
 
 smSTAGE3D *LoadStage2(char *szStageFile)
 {
-	smSTAGE3D *lpstg;
-
-	if(lstrcmpi(szGameStageName[0], szStageFile) == 0) return smGameStage[0];
-	if(lstrcmpi(szGameStageName[1], szStageFile) == 0) return smGameStage[1];
-
-	lpstg = new smSTAGE3D;
-
-
-	lpstg->VectLight.x = smConfig.MapLightVector.x;
-	lpstg->VectLight.y = smConfig.MapLightVector.y;
-	lpstg->VectLight.z = smConfig.MapLightVector.z;
-
-	lpstg->Bright = smConfig.MapBright;
-	lpstg->Contrast = smConfig.MapContrast;
-
-
-	smSTAGE3D_ReadASE(szStageFile, lpstg);
-	lpstg->Head = TRUE;
-
-	smStageCount = (smStageCount + 1) & 1;
-
-	if(smGameStage[smStageCount]) delete smGameStage[smStageCount];
-
-	smGameStage[smStageCount] = lpstg;
-
-	return lpstg;
+    return LoadStage(szStageFile);
 }
 
 
@@ -532,9 +1120,7 @@ char PlayerName[64] = { 0,0,0,0 };
 void InitStage()
 {
 
-
-	szGameStageName[0][0] = 0;
-	szGameStageName[1][0] = 0;
+	InitStageLoader();
 
 
 
@@ -584,19 +1170,12 @@ void InitStage()
 
 
 
-	LoadFieldMap(0, StageField[0], smGameStage[0]);
-
-
+	// Stage publication calls LoadFieldMap once the worker has completed.
 }
 
 void CloseStage()
 {
-
-
-
-	if(smGameStage[1]) delete smGameStage[1];
-	if(smGameStage[0]) delete smGameStage[0];
-
+	InitStageLoader();
 }
 
 
@@ -1738,21 +2317,22 @@ int InitPat3D()
 
 	if(CharacterName1[0])
 	{
-		cnt = NewCharInfo.Dexterity + NewCharInfo.Health + NewCharInfo.Spirit + NewCharInfo.Strength + NewCharInfo.Talent;
-
-		lpCurPlayer->smCharInfo.JOB_CODE = NewCharInfo.JobCode;
-
-		if(cnt < 103)
+		gameplay::classes::CharacterAttributes canonicalAttributes;
+		if(gameplay::classes::DefaultClassService().TryBaseAttributes(NewCharInfo.JobCode, canonicalAttributes))
 		{
-
-			lpCurPlayer->smCharInfo.Dexterity = NewCharInfo.Dexterity;
-			lpCurPlayer->smCharInfo.Health = NewCharInfo.Health;
-			lpCurPlayer->smCharInfo.Spirit = NewCharInfo.Spirit;
-			lpCurPlayer->smCharInfo.Strength = NewCharInfo.Strength;
-			lpCurPlayer->smCharInfo.Talent = NewCharInfo.Talent;
+			// NewCharInfo is a legacy transport object. Class V2 is the source of truth
+			// for creation stats, so packet/UI values cannot create an invalid build.
+			lpCurPlayer->smCharInfo.JOB_CODE = NewCharInfo.JobCode;
+			lpCurPlayer->smCharInfo.Dexterity = canonicalAttributes.dexterity;
+			lpCurPlayer->smCharInfo.Health = canonicalAttributes.health;
+			lpCurPlayer->smCharInfo.Spirit = canonicalAttributes.spirit;
+			lpCurPlayer->smCharInfo.Strength = canonicalAttributes.strength;
+			lpCurPlayer->smCharInfo.Talent = canonicalAttributes.talent;
 		}
 		else
 		{
+			// Unknown or disabled classes fail closed at the legacy boundary.
+			lpCurPlayer->smCharInfo.JOB_CODE = 0;
 			lpCurPlayer->smCharInfo.Dexterity = 1;
 			lpCurPlayer->smCharInfo.Health = 8;
 			lpCurPlayer->smCharInfo.Spirit = 1;
@@ -1855,10 +2435,18 @@ int InitPat3D()
 
 
 
+	// The legacy synchronous loader guaranteed a valid logical field by this
+	// point. With async bootstrap the metadata can be ready before collision.
+	// Keep OnStageField bound to that metadata until geometry is published.
+	cnt = CLIP_OUT;
 	lpCurPlayer->OnStageField = -1;
 	if(smGameStage[0])
 	{
 		cnt = smGameStage[0]->GetFloorHeight(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, lpCurPlayer->Pattern->SizeHeight);
+		lpCurPlayer->OnStageField = 0;
+	}
+	else if(StageField[0])
+	{
 		lpCurPlayer->OnStageField = 0;
 	}
 	if(cnt == CLIP_OUT && smGameStage[1])
@@ -2519,19 +3107,19 @@ int PlayPat3D()
 												{
 
 												case 1001:
-													if(lpCurPlayer->smCharInfo.JOB_CODE <= 4 || lpCurPlayer->smCharInfo.JOB_CODE == 9)
+													if(gameplay::classes::DefaultClassService().IsInBrood(lpCurPlayer->smCharInfo.JOB_CODE, gameplay::classes::brood::Tempskron))
 														sinCheckLevelQuest30();
 													break;
 												case 1002:
-													if(lpCurPlayer->smCharInfo.JOB_CODE > 4 && lpCurPlayer->smCharInfo.JOB_CODE != 9)
+													if(gameplay::classes::DefaultClassService().IsInBrood(lpCurPlayer->smCharInfo.JOB_CODE, gameplay::classes::brood::Morayion))
 														sinCheckLevelQuest30();
 													break;
 												case 1003:
-													if(lpCurPlayer->smCharInfo.JOB_CODE <= 4 || lpCurPlayer->smCharInfo.JOB_CODE == 9)
+													if(gameplay::classes::DefaultClassService().IsInBrood(lpCurPlayer->smCharInfo.JOB_CODE, gameplay::classes::brood::Tempskron))
 														sinCheckLevelQuest55();
 													break;
 												case 1004:
-													if(lpCurPlayer->smCharInfo.JOB_CODE > 4 && lpCurPlayer->smCharInfo.JOB_CODE != 9)
+													if(gameplay::classes::DefaultClassService().IsInBrood(lpCurPlayer->smCharInfo.JOB_CODE, gameplay::classes::brood::Morayion))
 														sinCheckLevelQuest55_2();
 													break;
 												case 1005:
@@ -2671,62 +3259,46 @@ int PlayPat3D()
 
 					if((lpMsTraceItem->ItemCode&sinITEM_MASK2) == sinCH1)
 					{
+						const gameplay::classes::ClassService& classService = gameplay::classes::DefaultClassService();
+						const int playerJobCode = lpCurPlayer->smCharInfo.JOB_CODE;
+						const bool isMale = classService.IsGender(playerJobCode, gameplay::classes::CharacterGender::Male);
+						const bool isFemale = classService.IsGender(playerJobCode, gameplay::classes::CharacterGender::Female);
+
 						switch(lpMsTraceItem->ItemCode)
 						{
 #ifdef _LANGUAGE_ENGLISH
 						case (sinCH1 | sin01):
-							if(lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_ATALANTA ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_ARCHER ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
+							if(isFemale)
 							{
 								cMessageBox.ShowMessage(MESSAGE_NOT_PICKUP_MALE);
 								cnt = 1;
 							}
 							break;
 						case (sinCH1 | sin02):
-							if(lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_MECHANICIAN ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_FIGHTER ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_PIKEMAN ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_KNIGHT ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN)
+							if(isMale)
 							{
-
 								cMessageBox.ShowMessage(MESSAGE_NOT_PICKUP_FEMALE);
 								cnt = 1;
 							}
 							break;
-
 #else
 						case (sinCH1 | sin01):
 						case (sinCH1 | sin02):
-
-							if(lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_ATALANTA &&
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_ARCHER &&
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
+							if(isMale)
 							{
-
-								cMessageBox.ShowMessage(MESSAGE_NOT_PICKUP_MALE);
+								cMessageBox.ShowMessage(MESSAGE_NOT_PICKUP_FEMALE);
 								cnt = 1;
 							}
 							break;
 #endif
 						case (sinCH1 | sin03):
 						case (sinCH1 | sin04):
-
-							if(lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_PIKEMAN ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_KNIGHT ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_MECHANICIAN ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_FIGHTER)
+							if(isFemale)
 							{
-
-								cMessageBox.ShowMessage(MESSAGE_NOT_PICKUP_FEMALE);
+								cMessageBox.ShowMessage(MESSAGE_NOT_PICKUP_MALE);
 								cnt = 1;
-
 							}
 							break;
-
-
 						}
 					}
 

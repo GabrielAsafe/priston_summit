@@ -133,6 +133,10 @@
  SrcGame/src/systems/progression/rankings/general/Ranking.h \
  SrcGame/src/platform/database/odbc/SQL.h \
  Dependency/DirectX9/Include/d3dx9math.h \
+ Shared/gameplay/quests/legacy/LegacyClassQuestAdapter.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcGame/src/systems/social/clan/tjclanDEF.h \
  SrcGame/src/systems/social/clan/tjclan.h \
  SrcGame/src/systems/social/clan/Help.h \
@@ -141,6 +145,7 @@
  SrcGame/src/systems/combat/pvp/war_mode/WarMode.h \
  SrcGame/src/systems/gameplay/npc/ui/NPCinfo.h \
  SrcGame/src/systems/combat/skills/client/SkillSub.h \
+ SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h \
  SrcGame/src/core/client/legacy_sin_runtime/sinTable.h
 Shared/opcodes.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
@@ -278,6 +283,10 @@ SrcGame/src/systems/progression/rankings/class_rank/Rank.h:
 SrcGame/src/systems/progression/rankings/general/Ranking.h:
 SrcGame/src/platform/database/odbc/SQL.h:
 Dependency/DirectX9/Include/d3dx9math.h:
+Shared/gameplay/quests/legacy/LegacyClassQuestAdapter.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/systems/social/clan/tjclanDEF.h:
 SrcGame/src/systems/social/clan/tjclan.h:
 SrcGame/src/systems/social/clan/Help.h:
@@ -286,4 +295,5 @@ SrcGame/src/systems/ui/map/full_zoom/FullZoomMap.h:
 SrcGame/src/systems/combat/pvp/war_mode/WarMode.h:
 SrcGame/src/systems/gameplay/npc/ui/NPCinfo.h:
 SrcGame/src/systems/combat/skills/client/SkillSub.h:
+SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.h:
 SrcGame/src/core/client/legacy_sin_runtime/sinTable.h:

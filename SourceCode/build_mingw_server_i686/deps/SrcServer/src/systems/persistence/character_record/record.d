@@ -32,6 +32,9 @@
  Shared/rendering/legacy_3d/smJpeg.h \
  SrcServer/src/systems/rendering/legacy_3d/FilterEffect.h \
  SrcServer/src/systems/gameplay/character/core/character.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
  SrcServer/src/systems/media/video/legacy_avi/avictrl.h \
  SrcServer/src/core/server/gameplay_runtime/playmain.h \
  SrcServer/src/systems/audio/playback/legacy/Dxwav.h Shared/compat_sal.h \
@@ -160,6 +163,9 @@ SrcServer/src/systems/rendering/legacy_3d/smJpeg.h:
 Shared/rendering/legacy_3d/smJpeg.h:
 SrcServer/src/systems/rendering/legacy_3d/FilterEffect.h:
 SrcServer/src/systems/gameplay/character/core/character.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcServer/src/systems/media/video/legacy_avi/avictrl.h:
 SrcServer/src/core/server/gameplay_runtime/playmain.h:
 SrcServer/src/systems/audio/playback/legacy/Dxwav.h:

@@ -8,6 +8,7 @@
 #include "core/server/gameplay_runtime/playmain.h"
 #include "systems/audio/playback/legacy/Dxwav.h"
 #include "core/data/legacy_loader/fileread.h"
+#include "gameplay/classes/v2/services/ClassService.h"
 
 #include "systems/rendering/effects/particle_legacy/particle.h"
 #include "systems/network/server_gameplay/netplay.h"
@@ -1669,21 +1670,22 @@ int InitPat3D()
 
 	if(CharacterName1[0])
 	{
-		cnt = NewCharInfo.Dexterity + NewCharInfo.Health + NewCharInfo.Spirit + NewCharInfo.Strength + NewCharInfo.Talent;
-
-		lpCurPlayer->smCharInfo.JOB_CODE = NewCharInfo.JobCode;
-
-		if(cnt < 103)
+		gameplay::classes::CharacterAttributes canonicalAttributes;
+		if(gameplay::classes::DefaultClassService().TryBaseAttributes(NewCharInfo.JobCode, canonicalAttributes))
 		{
-
-			lpCurPlayer->smCharInfo.Dexterity = NewCharInfo.Dexterity;
-			lpCurPlayer->smCharInfo.Health = NewCharInfo.Health;
-			lpCurPlayer->smCharInfo.Spirit = NewCharInfo.Spirit;
-			lpCurPlayer->smCharInfo.Strength = NewCharInfo.Strength;
-			lpCurPlayer->smCharInfo.Talent = NewCharInfo.Talent;
+			// NewCharInfo is a legacy transport object. Class V2 is the source of truth
+			// for creation stats, so packet/UI values cannot create an invalid build.
+			lpCurPlayer->smCharInfo.JOB_CODE = NewCharInfo.JobCode;
+			lpCurPlayer->smCharInfo.Dexterity = canonicalAttributes.dexterity;
+			lpCurPlayer->smCharInfo.Health = canonicalAttributes.health;
+			lpCurPlayer->smCharInfo.Spirit = canonicalAttributes.spirit;
+			lpCurPlayer->smCharInfo.Strength = canonicalAttributes.strength;
+			lpCurPlayer->smCharInfo.Talent = canonicalAttributes.talent;
 		}
 		else
 		{
+			// Unknown or disabled classes fail closed at the legacy boundary.
+			lpCurPlayer->smCharInfo.JOB_CODE = 0;
 			lpCurPlayer->smCharInfo.Dexterity = 1;
 			lpCurPlayer->smCharInfo.Health = 8;
 			lpCurPlayer->smCharInfo.Spirit = 1;
@@ -2399,19 +2401,19 @@ int PlayPat3D()
 												{
 
 												case 1001:
-													if(lpCurPlayer->smCharInfo.JOB_CODE <= 4 || lpCurPlayer->smCharInfo.JOB_CODE == 9)
+													if(gameplay::classes::DefaultClassService().IsInBrood(lpCurPlayer->smCharInfo.JOB_CODE, gameplay::classes::brood::Tempskron))
 														sinCheckLevelQuest30();
 													break;
 												case 1002:
-													if(lpCurPlayer->smCharInfo.JOB_CODE > 4 && lpCurPlayer->smCharInfo.JOB_CODE != 9)
+													if(gameplay::classes::DefaultClassService().IsInBrood(lpCurPlayer->smCharInfo.JOB_CODE, gameplay::classes::brood::Morayion))
 														sinCheckLevelQuest30();
 													break;
 												case 1003:
-													if(lpCurPlayer->smCharInfo.JOB_CODE <= 4 || lpCurPlayer->smCharInfo.JOB_CODE == 9)
+													if(gameplay::classes::DefaultClassService().IsInBrood(lpCurPlayer->smCharInfo.JOB_CODE, gameplay::classes::brood::Tempskron))
 														sinCheckLevelQuest55();
 													break;
 												case 1004:
-													if(lpCurPlayer->smCharInfo.JOB_CODE > 4 && lpCurPlayer->smCharInfo.JOB_CODE != 9)
+													if(gameplay::classes::DefaultClassService().IsInBrood(lpCurPlayer->smCharInfo.JOB_CODE, gameplay::classes::brood::Morayion))
 														sinCheckLevelQuest55_2();
 													break;
 												case 1005:
@@ -2550,40 +2552,33 @@ int PlayPat3D()
 
 					if((lpMsTraceItem->ItemCode&sinITEM_MASK2) == sinCH1)
 					{
+						const gameplay::classes::ClassService& classService = gameplay::classes::DefaultClassService();
+						const int playerJobCode = lpCurPlayer->smCharInfo.JOB_CODE;
+						const bool isMale = classService.IsGender(playerJobCode, gameplay::classes::CharacterGender::Male);
+						const bool isFemale = classService.IsGender(playerJobCode, gameplay::classes::CharacterGender::Female);
+
 						switch(lpMsTraceItem->ItemCode)
 						{
 #ifdef _LANGUAGE_ENGLISH
 						case (sinCH1 | sin01):
-							if(lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_ATALANTA ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_ARCHER ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
+							if(isFemale)
 							{
 								cMessageBox.ShowMessage(MESSAGE_NOT_PICKUP_MALE);
 								cnt = 1;
 							}
 							break;
 						case (sinCH1 | sin02):
-							if(lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_MECHANICIAN ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_FIGHTER ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_PIKEMAN ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_KNIGHT ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_MAGICIAN)
+							if(isMale)
 							{
-
 								cMessageBox.ShowMessage(MESSAGE_NOT_PICKUP_FEMALE);
 								cnt = 1;
 							}
 							break;
-
 #else
 						case (sinCH1 | sin01):
 						case (sinCH1 | sin02):
-
-							if(lpCurPlayer->smCharInfo.JOB_CODE != JOBCODE_ATALANTA &&
-								lpCurPlayer->smCharInfo.JOB_CODE != JOBCODE_ARCHER &&
-								lpCurPlayer->smCharInfo.JOB_CODE != JOBCODE_PRIESTESS)
+							if(isMale)
 							{
-
 								cMessageBox.ShowMessage(MESSAGE_NOT_PICKUP_FEMALE);
 								cnt = 1;
 							}
@@ -2591,19 +2586,12 @@ int PlayPat3D()
 #endif
 						case (sinCH1 | sin03):
 						case (sinCH1 | sin04):
-
-							if(lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_ATALANTA ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_ARCHER ||
-								lpCurPlayer->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
+							if(isFemale)
 							{
-
 								cMessageBox.ShowMessage(MESSAGE_NOT_PICKUP_MALE);
 								cnt = 1;
-
 							}
 							break;
-
-
 						}
 					}
 

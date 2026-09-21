@@ -121,7 +121,11 @@
  SrcServer/src/systems/social/clan/legacy/tjclanDEF.h \
  SrcServer/src/systems/social/clan/legacy/tjclan.h \
  SrcServer/src/systems/social/chat/filter/CurseFilter.h \
- SrcServer/src/compat/legacy/text/jts.h
+ SrcServer/src/compat/legacy/text/jts.h \
+ Shared/authentication/character_selection/ClassSelectionAdapter.h \
+ Shared/gameplay/classes/v2/services/ClassService.h \
+ Shared/gameplay/classes/v2/PlayableClassRegistry.h \
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h
 SrcServer/src/systems/network/protocol/server/opcodes.h:
 SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h:
 SrcServer/src/systems/rendering/legacy_3d/smd3d.h:
@@ -246,3 +250,7 @@ SrcServer/src/systems/social/clan/legacy/tjclanDEF.h:
 SrcServer/src/systems/social/clan/legacy/tjclan.h:
 SrcServer/src/systems/social/chat/filter/CurseFilter.h:
 SrcServer/src/compat/legacy/text/jts.h:
+Shared/authentication/character_selection/ClassSelectionAdapter.h:
+Shared/gameplay/classes/v2/services/ClassService.h:
+Shared/gameplay/classes/v2/PlayableClassRegistry.h:
+Shared/gameplay/classes/v2/domain/ClassDefinition.h:
