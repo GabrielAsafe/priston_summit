@@ -11,7 +11,7 @@ namespace ui::v2
 namespace
 {
 constexpr int HudWidth = 286;
-constexpr int RowHeight = 58;
+constexpr int RowHeight = 72;
 constexpr int RowGap = 4;
 constexpr int HudHeight = 4 * RowHeight + 3 * RowGap;
 
@@ -99,6 +99,19 @@ UIEventResult CompanionPartyHud::OnEvent(const UIEvent& event)
         if (entry.name.empty())
             return UIEventResult::Ignored;
 
+        // Modifier shortcuts keep combat controls on the party row without
+        // replacing the normal management clicks: Shift+left cycles the first
+        // active skill slot, Shift+middle cycles the first support slot.
+        if (event.modifiers.shift && event.button == MouseButton::Left)
+        {
+            gateway_.Execute(CompanionUiAction::CycleActiveSkill, entry.name, 1);
+            return UIEventResult::Handled;
+        }
+        if (event.modifiers.shift && event.button == MouseButton::Middle)
+        {
+            gateway_.Execute(CompanionUiAction::CycleBuffSkill, entry.name, 1);
+            return UIEventResult::Handled;
+        }
         if (event.button == MouseButton::Left)
         {
             const int nextMode = (static_cast<int>(entry.mode) + 1) % 3;
@@ -153,13 +166,44 @@ void CompanionPartyHud::OnRender(UIRenderContext& context)
         if (entry.dead)
             state = "Morto";
         else if (entry.casting)
-            state = "Casting";
+        {
+            const std::string skill = entry.castingSkillName.empty() ? "Skill" : entry.castingSkillName;
+            state = "Cast: " + skill + " " + std::to_string(entry.castProgressPermille / 10) + "%";
+        }
         else if (!entry.targetName.empty())
             state = "Alvo: " + entry.targetName;
         else
             state = "Sem alvo";
         renderer.DrawTextUtf8(FontHandle{}, state,
-            {row.x + 7, row.y + 45, row.width - 14, 11},
+            {row.x + 7, row.y + 46, row.width - 14, 11},
+            TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+
+        std::string effects;
+        if (entry.effectCount > 0)
+        {
+            const auto& firstEffect = entry.effects[0];
+            if (!firstEffect.name.empty())
+            {
+                effects = "Buff: " + firstEffect.name;
+                if (firstEffect.remainingMs > 0)
+                    effects += " " + std::to_string((firstEffect.remainingMs + 999) / 1000) + "s";
+                if (entry.effectCount > 1)
+                    effects += " +" + std::to_string(entry.effectCount - 1);
+            }
+            else
+                effects = "Buffs " + std::to_string(entry.effectCount);
+        }
+        else
+            effects = "Buffs 0";
+        if (entry.cooldownMs > 0)
+            effects += "  CD " + std::to_string((entry.cooldownMs + 999) / 1000) + "s";
+        if (entry.statusFlags & 1u) effects += "  Slow";
+        if (entry.statusFlags & 2u) effects += "  Stun";
+        if (entry.statusFlags & 4u) effects += "  Poison";
+        if (entry.statusFlags & 8u) effects += "  Dist";
+        if (entry.statusFlags & 16u) effects += "  AGGRO";
+        renderer.DrawTextUtf8(FontHandle{}, effects,
+            {row.x + 7, row.y + 58, row.width - 14, 11},
             TextStyle{UITheme::TextMuted, false, TextAlign::Left});
     }
 }

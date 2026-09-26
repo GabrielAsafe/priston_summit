@@ -1,7 +1,9 @@
+#include "content/v1/definition/content/DefinitionRuntime.h"
 #include "opcodes.h"
 #include <cstdint>
 #include <cstdlib>
 #include <atomic>
+#include <climits>
 #include <deque>
 #include <memory>
 #include <mutex>
@@ -12,6 +14,9 @@
 #include "core/concurrency/JobSystem.h"
 #include "core/concurrency/SourceAssetLock.h"
 #include "systems/rendering/legacy_3d/smd3d.h"
+#include "rendering/legacy_3d/stage/StageAreaQuery.h"
+#include "rendering/legacy_3d/stage/StageHeightQuery.h"
+#include "rendering/legacy_3d/stage/StageSurfaceQuery.h"
 #include "systems/rendering/assets/v3/AssetStreamingV3.h"
 #include "systems/security/legacy/process_integrity/cracker.h"
 #include "systems/network/transport/legacy/smwsock.h"
@@ -142,6 +147,38 @@ static SummitFieldTransition gFieldTransition;
 // geometry remains private to the worker. This preserves the legacy invariant
 // without making stage loading synchronous.
 static bool gStageBootstrapPending = false;
+// Bootstrap readiness is explicit: FIELD metadata can exist before geometry,
+// but gameplay is not released until a real solid spawn surface is resolved.
+static bool gStageBootstrapSpawnResolved = false;
+static bool gStageBootstrapSpawnCoordinatesReady = false;
+static int gStageBootstrapSpawnX = 0;
+static int gStageBootstrapSpawnZ = 0;
+static int gStageBootstrapResolvedFloorY = CLIP_OUT;
+static DWORD gStageBootstrapVisualStartedAt = 0;
+static std::vector<smTEXTUREHANDLE *> gStageBootstrapFloorTextures;
+static std::vector<smTEXTUREHANDLE *> gStageBootstrapPriorityTextures;
+
+// Temporary bootstrap diagnostics. The log is intentionally bootstrap-only and
+// rate-limited so it can stay enabled during this investigation without
+// reintroducing the old hot-path logging problem.
+static std::mutex gStageBootstrapDiagnosticMutex;
+static DWORD gStageBootstrapDiagnosticLastStateAt = 0;
+
+static void SummitBootstrapDiagnosticEvent(const char *eventName, const char *detail = 0)
+{
+    CreateDirectory("LOGS", NULL);
+    std::lock_guard<std::mutex> lock(gStageBootstrapDiagnosticMutex);
+    FILE *file = 0;
+    fopen_s(&file, "LOGS\\streaming_v3_bootstrap_diag.txt", "a");
+    if (!file)
+        return;
+    fprintf(file, "[%lu] EVENT %s%s%s\n",
+        static_cast<unsigned long>(GetCurrentTime()),
+        eventName ? eventName : "unknown",
+        detail && *detail ? " " : "",
+        detail && *detail ? detail : "");
+    fclose(file);
+}
 
 static DWORD SummitStageTransitionMaxWarmWait()
 {
@@ -220,6 +257,20 @@ static void SummitParseStageObject(const SummitStageObjectSpec &spec, SummitPrep
 
 static void SummitCompleteStageRequest(const std::shared_ptr<SummitStageLoadRequest> &request)
 {
+    if (request)
+    {
+        char detail[256] = { 0 };
+        sprintf_s(detail, sizeof(detail),
+            "id=%llu slot=%d success=%d cancelled=%d stage=%p head=%d file=%s",
+            static_cast<unsigned long long>(request->id), request->targetSlot,
+            request->success ? 1 : 0,
+            request->cancelled.load(std::memory_order_acquire) ? 1 : 0,
+            static_cast<void *>(request->stage),
+            request->stage && request->stage->Head ? 1 : 0,
+            request->stageFile.c_str());
+        SummitBootstrapDiagnosticEvent("stage-worker-complete", detail);
+    }
+
     std::lock_guard<std::mutex> lock(gStageStreamingMutex);
     gStageStreamingCompleted.push_back(request);
 }
@@ -228,6 +279,14 @@ static void SummitBuildStageOnWorker(const std::shared_ptr<SummitStageLoadReques
 {
     if (!request)
         return;
+
+    {
+        char detail[256] = { 0 };
+        sprintf_s(detail, sizeof(detail), "id=%llu slot=%d file=%s",
+            static_cast<unsigned long long>(request->id), request->targetSlot,
+            request->stageFile.c_str());
+        SummitBootstrapDiagnosticEvent("stage-worker-start", detail);
+    }
 
     if (request->cancelled.load(std::memory_order_acquire))
     {
@@ -314,7 +373,14 @@ static void SummitBuildStageOnWorker(const std::shared_ptr<SummitStageLoadReques
         }
     }
 
-    request->success = request->stage && request->stage->StageObject;
+    // The legacy stage loader explicitly raised Head only after a successful
+    // smSTAGE3D_ReadASE.  The V3 worker bypasses smLoaderThreadProc, so carry
+    // that lifecycle transition forward before publishing the prepared stage.
+    // GetHeight/other collision queries deliberately treat Head == FALSE as
+    // "geometry not resident" even when Vertex/Face/StageArea are populated.
+    stage->Head = TRUE;
+
+    request->success = request->stage && request->stage->StageObject && request->stage->Head;
     SummitCompleteStageRequest(request);
 }
 
@@ -348,7 +414,16 @@ static void SummitAbortBootstrapField(sFIELD *field)
     // failure into a null/negative-index crash. A later request can retry the
     // same slot without treating the field as resident (SummitFindStageSlot
     // also requires smGameStage[0]).
-    gStageBootstrapPending = false;
+    // Do not release gameplay into a world whose primary stage failed.  The
+    // old synchronous loader could never expose that state; fail closed behind
+    // the bootstrap barrier instead of spawning at an invalid Y.
+    gStageBootstrapPending = true;
+    gStageBootstrapSpawnResolved = false;
+    gStageBootstrapSpawnCoordinatesReady = false;
+    gStageBootstrapResolvedFloorY = CLIP_OUT;
+    gStageBootstrapVisualStartedAt = 0;
+    gStageBootstrapFloorTextures.clear();
+    gStageBootstrapPriorityTextures.clear();
     AssetLoadV3SetLoadingBoost(false);
 }
 
@@ -361,31 +436,398 @@ static void SummitAbortTransitionForField(sFIELD *field)
     gFieldTransition.field = 0;
 }
 
-static void SummitFinalizeBootstrapPlayerPlacement(int slot)
+static DWORD SummitBootstrapVisualMaxWait()
 {
-    if (!gStageBootstrapPending || slot < 0 || slot > 1 || !lpCurPlayer || !smGameStage[slot])
+    static const DWORD configured = []() -> DWORD
+    {
+        const char *value = getenv("SUMMIT_STAGE_BOOTSTRAP_VISUAL_WAIT_MS");
+        if (!value || !*value)
+            return 8000u;
+        const unsigned long parsed = strtoul(value, 0, 10);
+        if (parsed < 1000ul) return 1000u;
+        if (parsed > 20000ul) return 20000u;
+        return static_cast<DWORD>(parsed);
+    }();
+    return configured;
+}
+
+static std::size_t SummitBootstrapPriorityTextureLimit()
+{
+    static const std::size_t configured = []() -> std::size_t
+    {
+        const char *value = getenv("SUMMIT_STAGE_BOOTSTRAP_LOCAL_TEXTURES");
+        if (!value || !*value)
+            return 24u;
+        const unsigned long parsed = strtoul(value, 0, 10);
+        if (parsed < 4ul) return 4u;
+        if (parsed > 64ul) return 64u;
+        return static_cast<std::size_t>(parsed);
+    }();
+    return configured;
+}
+
+static void SummitAppendUniqueTexture(std::vector<smTEXTUREHANDLE *> &textures,
+    smTEXTUREHANDLE *texture, std::size_t limit)
+{
+    if (!texture || texture->UseCounter <= 0 || textures.size() >= limit)
+        return;
+    for (std::size_t i = 0; i < textures.size(); ++i)
+        if (textures[i] == texture)
+            return;
+    textures.push_back(texture);
+}
+
+static void SummitAppendMaterialTextures(const smMATERIAL *material,
+    std::vector<smTEXTUREHANDLE *> &textures, std::size_t limit, bool firstAnimationFrameOnly)
+{
+    if (!material)
+        return;
+    for (DWORD index = 0; index < material->TextureCounter && textures.size() < limit; ++index)
+        SummitAppendUniqueTexture(textures, material->smTexture[index], limit);
+
+    const DWORD animationCount = firstAnimationFrameOnly && material->AnimTexCounter > 0
+        ? 1u : material->AnimTexCounter;
+    for (DWORD index = 0; index < animationCount && textures.size() < limit; ++index)
+        SummitAppendUniqueTexture(textures, material->smAnimTexture[index], limit);
+}
+
+static void SummitRequestBootstrapTextureSet(const std::vector<smTEXTUREHANDLE *> &textures)
+{
+    for (std::size_t index = 0; index < textures.size(); ++index)
+    {
+        smTEXTUREHANDLE *texture = textures[index];
+        if (!texture || texture->lpD3DTexture || AssetLoadV3IsTexturePending(texture))
+            continue;
+        AssetLoadV3RequestTexture(texture, 1, 0);
+    }
+}
+
+struct SummitBootstrapTextureDiagnosticCounts
+{
+    SummitBootstrapTextureDiagnosticCounts()
+        : resident(0), pending(0), retryable(0), failedPermanent(0), ignored(0) {}
+    int resident;
+    int pending;
+    int retryable;
+    int failedPermanent;
+    int ignored;
+};
+
+static SummitBootstrapTextureDiagnosticCounts SummitCountBootstrapTextureStates(
+    const std::vector<smTEXTUREHANDLE *> &textures)
+{
+    SummitBootstrapTextureDiagnosticCounts counts;
+    for (std::size_t index = 0; index < textures.size(); ++index)
+    {
+        smTEXTUREHANDLE *texture = textures[index];
+        if (!texture || texture->UseCounter <= 0)
+        {
+            ++counts.ignored;
+            continue;
+        }
+
+        switch (AssetLoadV3GetTextureReadiness(texture))
+        {
+        case ASSET_LOAD_V3_TEXTURE_RESIDENT: ++counts.resident; break;
+        case ASSET_LOAD_V3_TEXTURE_PENDING: ++counts.pending; break;
+        case ASSET_LOAD_V3_TEXTURE_RETRYABLE: ++counts.retryable; break;
+        case ASSET_LOAD_V3_TEXTURE_FAILED_PERMANENT: ++counts.failedPermanent; break;
+        default: ++counts.ignored; break;
+        }
+    }
+    return counts;
+}
+
+static void SummitLogBootstrapStateRateLimited()
+{
+    if (!gStageBootstrapPending)
         return;
 
-    int floorHeight = CLIP_OUT;
-    const int playerHeight = lpCurPlayer->Pattern ? lpCurPlayer->Pattern->SizeHeight : 0;
-    floorHeight = smGameStage[slot]->GetFloorHeight(
-        lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ, playerHeight);
-    if (floorHeight == CLIP_OUT)
-        floorHeight = smGameStage[slot]->GetHeight(lpCurPlayer->pX, lpCurPlayer->pZ);
+    const DWORD now = GetCurrentTime();
+    if (gStageBootstrapDiagnosticLastStateAt &&
+        now - gStageBootstrapDiagnosticLastStateAt < 1000u)
+        return;
+    gStageBootstrapDiagnosticLastStateAt = now;
 
-    if (floorHeight != CLIP_OUT)
+    std::uint64_t pendingId0 = 0;
+    std::uint64_t pendingId1 = 0;
+    std::size_t completedCount = 0;
     {
-        lpCurPlayer->pY = floorHeight;
-        lpCurPlayer->PHeight = floorHeight;
-        lpCurPlayer->FallHeight = 0;
+        std::lock_guard<std::mutex> lock(gStageStreamingMutex);
+        if (gStageStreamingPending[0]) pendingId0 = gStageStreamingPending[0]->id;
+        if (gStageStreamingPending[1]) pendingId1 = gStageStreamingPending[1]->id;
+        completedCount = gStageStreamingCompleted.size();
     }
 
+    const SummitBootstrapTextureDiagnosticCounts floorCounts =
+        SummitCountBootstrapTextureStates(gStageBootstrapFloorTextures);
+    const SummitBootstrapTextureDiagnosticCounts priorityCounts =
+        SummitCountBootstrapTextureStates(gStageBootstrapPriorityTextures);
+
+    int heightProbe = CLIP_OUT;
+    if (gStageBootstrapSpawnCoordinatesReady && smGameStage[0] && smGameStage[0]->Head)
+        heightProbe = smGameStage[0]->GetHeight(gStageBootstrapSpawnX, gStageBootstrapSpawnZ);
+
+    const DWORD visualElapsed = gStageBootstrapVisualStartedAt
+        ? now - gStageBootstrapVisualStartedAt : 0u;
+
+    char detail[1024] = { 0 };
+    sprintf_s(detail, sizeof(detail),
+        "pending=%d coords=%d x=%d z=%d stage0=%p field0=%p spawnResolved=%d floorY=%d getHeight=%d "
+        "player=%p playerXYZ=%d,%d,%d floorTex=%u[r=%d p=%d t=%d f=%d i=%d] "
+        "priorityTex=%u[r=%d p=%d t=%d f=%d i=%d] visualMs=%lu "
+        "stageReq0=%llu stageReq1=%llu completed=%u",
+        gStageBootstrapPending ? 1 : 0,
+        gStageBootstrapSpawnCoordinatesReady ? 1 : 0,
+        gStageBootstrapSpawnX, gStageBootstrapSpawnZ,
+        static_cast<void *>(smGameStage[0]), static_cast<void *>(StageField[0]),
+        gStageBootstrapSpawnResolved ? 1 : 0, gStageBootstrapResolvedFloorY, heightProbe,
+        static_cast<void *>(lpCurPlayer),
+        lpCurPlayer ? lpCurPlayer->pX : 0,
+        lpCurPlayer ? lpCurPlayer->pY : 0,
+        lpCurPlayer ? lpCurPlayer->pZ : 0,
+        static_cast<unsigned>(gStageBootstrapFloorTextures.size()),
+        floorCounts.resident, floorCounts.pending, floorCounts.retryable,
+        floorCounts.failedPermanent, floorCounts.ignored,
+        static_cast<unsigned>(gStageBootstrapPriorityTextures.size()),
+        priorityCounts.resident, priorityCounts.pending, priorityCounts.retryable,
+        priorityCounts.failedPermanent, priorityCounts.ignored,
+        static_cast<unsigned long>(visualElapsed),
+        static_cast<unsigned long long>(pendingId0),
+        static_cast<unsigned long long>(pendingId1),
+        static_cast<unsigned>(completedCount));
+    SummitBootstrapDiagnosticEvent("state", detail);
+}
+
+static bool SummitResolveBootstrapSpawnSurface(int slot, int x, int z,
+    int &outHeight, smSTAGE_FACE *&outFace)
+{
+    outHeight = CLIP_OUT;
+    outFace = 0;
+    if (slot < 0 || slot > 1 || !smGameStage[slot] || !smGameStage[slot]->Head)
+        return false;
+
+    smSTAGE3D &stage = *smGameStage[slot];
+
+    // Preserve the exact synchronous bootstrap contract. SetPosi(y == 0) used
+    // smSTAGE3D::GetHeight(x,z) after the stage was already resident, so the
+    // authoritative spawn Y must come from that same query. Do not derive Y
+    // from lpCurPlayer->pY or from a parallel face-selection heuristic.
+    const int legacyHeight = stage.GetHeight(x, z);
+    const int legacyNoFloor = -200 * fONE;
+    if (legacyHeight <= legacyNoFloor)
+        return false;
+
+    outHeight = legacyHeight;
+
+    // The face is needed only to identify the floor material for visual
+    // prioritisation. Failure to recover the face must not invalidate a Y that
+    // the legacy GetHeight query has already proven valid.
+    smSTAGE_FACE *faces[summit::rendering::legacy3d::stage_area_query::LegacyFaceBufferCapacity] = { 0 };
+    const int faceCount = summit::rendering::legacy3d::stage_area_query::CollectFacesAroundPoint(
+        stage, x, z, INT_MAX, INT_MIN, faces,
+        summit::rendering::legacy3d::stage_area_query::LegacyFaceBufferCapacity);
+
+    int bestDelta = INT_MAX;
+    for (int index = 0; index < faceCount; ++index)
+    {
+        smSTAGE_FACE *face = faces[index];
+        if (!face || !summit::rendering::legacy3d::stage_surface::IsSolidSurface(stage, *face))
+            continue;
+
+        const int candidate = summit::rendering::legacy3d::stage_height::FaceHeightAtXZ(
+            stage, *face, x, z);
+        if (candidate == CLIP_OUT)
+            continue;
+
+        const int delta = candidate >= legacyHeight
+            ? candidate - legacyHeight : legacyHeight - candidate;
+        if (delta < bestDelta)
+        {
+            bestDelta = delta;
+            outFace = face;
+            if (delta == 0)
+                break;
+        }
+    }
+
+    return true;
+}
+
+static void SummitPrepareBootstrapVisualSet(int slot)
+{
+    gStageBootstrapFloorTextures.clear();
+    gStageBootstrapPriorityTextures.clear();
+    gStageBootstrapVisualStartedAt = 0;
+
+    if (slot < 0 || slot > 1 || !smGameStage[slot] ||
+        !smGameStage[slot]->smMaterialGroup || !gStageBootstrapSpawnResolved ||
+        !gStageBootstrapSpawnCoordinatesReady)
+        return;
+
+    smSTAGE3D &stage = *smGameStage[slot];
+    smSTAGE_FACE *floorFace = 0;
+    int floorHeight = CLIP_OUT;
+    if (!SummitResolveBootstrapSpawnSurface(
+        slot, gStageBootstrapSpawnX, gStageBootstrapSpawnZ, floorHeight, floorFace))
+    {
+        gStageBootstrapSpawnResolved = false;
+        gStageBootstrapResolvedFloorY = CLIP_OUT;
+        return;
+    }
+
+    // The visual gate and the physical spawn now use the exact same surface.
+    // This prevents a provisional player Y from selecting a different lower
+    // face/material and declaring the wrong ground texture ready.
+    gStageBootstrapResolvedFloorY = floorHeight;
+    gStageBootstrapVisualStartedAt = GetCurrentTime();
+
+    smSTAGE_FACE *nearFaces[256] = { 0 };
+    const int verticalRange = 256 * fONE;
+    const int faceCount = summit::rendering::legacy3d::stage_area_query::CollectFacesAroundPoint(
+        stage, gStageBootstrapSpawnX, gStageBootstrapSpawnZ,
+        floorHeight + verticalRange, floorHeight - verticalRange,
+        nearFaces, sizeof(nearFaces) / sizeof(nearFaces[0]));
+
+    if (floorFace)
+    {
+        const smMATERIAL *floorMaterial =
+            summit::rendering::legacy3d::stage_surface::MaterialForFace(stage, *floorFace);
+        SummitAppendMaterialTextures(floorMaterial, gStageBootstrapFloorTextures, 8u, true);
+        SummitAppendMaterialTextures(floorMaterial, gStageBootstrapPriorityTextures,
+            SummitBootstrapPriorityTextureLimit(), false);
+    }
+
+    // Warm the materials immediately surrounding the spawn before generic map
+    // prewarm starts.  This avoids spending the first seconds on distant map
+    // textures while the floor under the character is still unresolved.
+    const std::size_t priorityLimit = SummitBootstrapPriorityTextureLimit();
+    for (int index = 0; index < faceCount && gStageBootstrapPriorityTextures.size() < priorityLimit; ++index)
+    {
+        smSTAGE_FACE *face = nearFaces[index];
+        if (!face)
+            continue;
+        const smMATERIAL *material =
+            summit::rendering::legacy3d::stage_surface::MaterialForFace(stage, *face);
+        SummitAppendMaterialTextures(material, gStageBootstrapPriorityTextures, priorityLimit, true);
+    }
+
+    SummitRequestBootstrapTextureSet(gStageBootstrapFloorTextures);
+    SummitRequestBootstrapTextureSet(gStageBootstrapPriorityTextures);
+
+    char detail[160] = { 0 };
+    sprintf_s(detail, sizeof(detail), "floorY=%d floorTextures=%u priorityTextures=%u",
+        gStageBootstrapResolvedFloorY,
+        static_cast<unsigned>(gStageBootstrapFloorTextures.size()),
+        static_cast<unsigned>(gStageBootstrapPriorityTextures.size()));
+    SummitBootstrapDiagnosticEvent("bootstrap-visual-set", detail);
+}
+
+static bool SummitBootstrapFloorVisualReady()
+{
+    if (!gStageBootstrapPending)
+        return true;
+    if (!smGameStage[0] || !StageField[0] || !gStageBootstrapSpawnResolved)
+        return false;
+
+    auto textureSetReady = [](const std::vector<smTEXTUREHANDLE *> &textures) -> bool
+    {
+        bool ready = true;
+        for (std::size_t index = 0; index < textures.size(); ++index)
+        {
+            smTEXTUREHANDLE *texture = textures[index];
+            if (!texture || texture->UseCounter <= 0)
+                continue;
+
+            const int state = AssetLoadV3GetTextureReadiness(texture);
+            if (state == ASSET_LOAD_V3_TEXTURE_RESIDENT ||
+                state == ASSET_LOAD_V3_TEXTURE_FAILED_PERMANENT)
+                continue;
+
+            ready = false;
+            if (state == ASSET_LOAD_V3_TEXTURE_RETRYABLE)
+                AssetLoadV3RequestTexture(texture, 1, 0);
+        }
+        return ready;
+    };
+
+    // The actual floor material is non-negotiable: never show the character
+    // while its resolved ground is still waiting on an upload.  An empty set is
+    // valid only after a solid floor face was resolved (for example an
+    // intentionally untextured material).
+    const bool floorResident = textureSetReady(gStageBootstrapFloorTextures);
+    if (!floorResident)
+        return false;
+
+    // Nearby materials make the first visible frame coherent instead of
+    // letting walls/props pop in around an already visible character.  This
+    // secondary set is bounded and may time out; the physical floor may not.
+    if (textureSetReady(gStageBootstrapPriorityTextures))
+        return true;
+
+    return gStageBootstrapVisualStartedAt != 0 &&
+        GetCurrentTime() - gStageBootstrapVisualStartedAt >= SummitBootstrapVisualMaxWait();
+}
+
+static void SummitTryReleaseBootstrapVisualBarrier()
+{
+    if (!gStageBootstrapPending || !gStageBootstrapSpawnResolved ||
+        !SummitBootstrapFloorVisualReady())
+        return;
+    SummitBootstrapDiagnosticEvent("bootstrap-release");
+    gStageBootstrapPending = false;
+    gStageBootstrapSpawnResolved = false;
+    gStageBootstrapSpawnCoordinatesReady = false;
+    gStageBootstrapResolvedFloorY = CLIP_OUT;
+    gStageBootstrapVisualStartedAt = 0;
+    gStageBootstrapFloorTextures.clear();
+    gStageBootstrapPriorityTextures.clear();
+    AssetLoadV3SetLoadingBoost(false);
+}
+
+static bool SummitFinalizeBootstrapPlayerPlacement(int slot)
+{
+    if (!gStageBootstrapPending || slot < 0 || slot > 1 || !lpCurPlayer ||
+        !smGameStage[slot] || !gStageBootstrapSpawnCoordinatesReady)
+        return false;
+
+    int floorHeight = CLIP_OUT;
+    smSTAGE_FACE *floorFace = 0;
+    if (!SummitResolveBootstrapSpawnSurface(
+        slot, gStageBootstrapSpawnX, gStageBootstrapSpawnZ, floorHeight, floorFace))
+    {
+        gStageBootstrapSpawnResolved = false;
+        gStageBootstrapResolvedFloorY = CLIP_OUT;
+        lpCurPlayer->MoveFlag = 0;
+        lpCurPlayer->MoveMode = FALSE;
+        return false;
+    }
+
+    // Reproduce the semantic guarantee of the old synchronous bootstrap: the
+    // first playable frame starts on a real collision surface.  Never use the
+    // temporary pY produced while the stage was absent as an input here.
+    lpCurPlayer->pX = gStageBootstrapSpawnX;
+    lpCurPlayer->pZ = gStageBootstrapSpawnZ;
+    lpCurPlayer->pY = floorHeight;
+    lpCurPlayer->PHeight = floorHeight;
+    lpCurPlayer->FallHeight = 0;
     lpCurPlayer->OnStageField = slot;
     lpCurPlayer->MoveFlag = 0;
-    TraceCameraPosi.x = lpCurPlayer->pX;
-    TraceCameraPosi.y = lpCurPlayer->pY;
-    TraceCameraPosi.z = lpCurPlayer->pZ;
+    lpCurPlayer->MoveMode = FALSE;
+    gStageBootstrapSpawnResolved = true;
+    gStageBootstrapResolvedFloorY = floorHeight;
+
+    TraceCameraPosi.x = gStageBootstrapSpawnX;
+    TraceCameraPosi.y = floorHeight;
+    TraceCameraPosi.z = gStageBootstrapSpawnZ;
     TraceTargetPosi = TraceCameraPosi;
+
+    char detail[160] = { 0 };
+    sprintf_s(detail, sizeof(detail), "slot=%d x=%d z=%d floorY=%d floorFace=%p",
+        slot, gStageBootstrapSpawnX, gStageBootstrapSpawnZ, floorHeight,
+        static_cast<void *>(floorFace));
+    SummitBootstrapDiagnosticEvent("bootstrap-spawn-resolved", detail);
+    return true;
 }
 
 static void SummitPublishStageOnMainThread(const std::shared_ptr<SummitStageLoadRequest> &request)
@@ -402,6 +844,14 @@ static void SummitPublishStageOnMainThread(const std::shared_ptr<SummitStageLoad
 
     if (request->cancelled.load(std::memory_order_acquire) || !request->success || !request->stage)
     {
+        char detail[256] = { 0 };
+        sprintf_s(detail, sizeof(detail),
+            "id=%llu slot=%d success=%d cancelled=%d stage=%p",
+            static_cast<unsigned long long>(request->id), request->targetSlot,
+            request->success ? 1 : 0,
+            request->cancelled.load(std::memory_order_acquire) ? 1 : 0,
+            static_cast<void *>(request->stage));
+        SummitBootstrapDiagnosticEvent("stage-publish-failed", detail);
         SummitAbortTransitionForField(request->field);
         SummitAbortBootstrapField(request->field);
         SummitDeletePreparedStageRequest(request);
@@ -458,7 +908,25 @@ static void SummitPublishStageOnMainThread(const std::shared_ptr<SummitStageLoad
     StageField[targetSlot] = request->field;
     request->stage = 0;
 
-    if (request->field)
+    {
+        char detail[256] = { 0 };
+        sprintf_s(detail, sizeof(detail),
+            "id=%llu slot=%d stage=%p head=%d field=%p bootstrapPending=%d",
+            static_cast<unsigned long long>(request->id), targetSlot,
+            static_cast<void *>(smGameStage[targetSlot]),
+            smGameStage[targetSlot] && smGameStage[targetSlot]->Head ? 1 : 0,
+            static_cast<void *>(StageField[targetSlot]),
+            gStageBootstrapPending ? 1 : 0);
+        SummitBootstrapDiagnosticEvent("stage-published", detail);
+    }
+
+    const bool bootstrapPrimary = targetSlot == 0 && gStageBootstrapPending;
+
+    // LoadFieldMap ends in a global LOW-priority ReadTextures sweep. During the
+    // first-world bootstrap, queue the resolved floor/local textures first so
+    // generic minimap/UI/global work cannot occupy every I/O slot ahead of the
+    // ground that gates spawn. Runtime transitions keep their legacy ordering.
+    if (request->field && !bootstrapPrimary)
         LoadFieldMap(targetSlot, request->field, smGameStage[targetSlot]);
 
     // Bootstrap is allowed to publish FIELD metadata early for legacy callers,
@@ -477,20 +945,26 @@ static void SummitPublishStageOnMainThread(const std::shared_ptr<SummitStageLoad
     // queued to workers by PumpStageTexturePrewarm().
     if (smGameStage[targetSlot]->smMaterialGroup)
     {
+        // Register stage ownership first. During the initial world bootstrap do
+        // not start the generic material-order prewarm yet: first queue the
+        // floor/local visual set so the character never appears above an
+        // untextured ground while distant textures consume all I/O slots.
         AssetLoadV2PrewarmMaterialGroupStep(
-            smGameStage[targetSlot]->smMaterialGroup, SMASSET_OWNER_STAGE, 1, 0,
-            targetSlot == 0 ? 0 : 2);
+            smGameStage[targetSlot]->smMaterialGroup, SMASSET_OWNER_STAGE, 1,
+            bootstrapPrimary ? 0u : 1u, targetSlot == 0 ? 0 : 2);
         gStageTexturePrewarm[targetSlot] = smGameStage[targetSlot];
+        if (bootstrapPrimary && gStageBootstrapSpawnResolved)
+            SummitPrepareBootstrapVisualSet(targetSlot);
     }
     else
     {
         gStageTexturePrewarm[targetSlot] = 0;
         if (targetSlot == 0 && gStageBootstrapPending)
-        {
-            gStageBootstrapPending = false;
-            AssetLoadV3SetLoadingBoost(false);
-        }
+            SummitTryReleaseBootstrapVisualBarrier();
     }
+
+    if (request->field && bootstrapPrimary)
+        LoadFieldMap(targetSlot, request->field, smGameStage[targetSlot]);
 }
 
 static int SummitResolveRequestSlot(sFIELD *field, sFIELD *anchorField)
@@ -531,6 +1005,14 @@ static int SummitQueueStageRequest(const std::shared_ptr<SummitStageLoadRequest>
         previous = request;
     }
 
+    {
+        char detail[256] = { 0 };
+        sprintf_s(detail, sizeof(detail), "id=%llu slot=%d file=%s",
+            static_cast<unsigned long long>(request->id), request->targetSlot,
+            request->stageFile.c_str());
+        SummitBootstrapDiagnosticEvent("stage-queued", detail);
+    }
+
     if (!summit::core::concurrency::JobSystem::Instance().Submit(
         [request]() { SummitBuildStageOnWorker(request); },
         request->targetSlot == 0 ? summit::core::concurrency::JobPriority::High
@@ -540,6 +1022,7 @@ static int SummitQueueStageRequest(const std::shared_ptr<SummitStageLoadRequest>
         std::shared_ptr<SummitStageLoadRequest> &pending = gStageStreamingPending[request->targetSlot];
         if (pending && pending->id == request->id)
             pending.reset();
+        SummitBootstrapDiagnosticEvent("stage-submit-failed");
         return FALSE;
     }
     return TRUE;
@@ -681,16 +1164,86 @@ static std::uint32_t StageTexturePrewarmPerTick()
 
 void PumpStageTexturePrewarm()
 {
+    SummitLogBootstrapStateRateLimited();
     if (!d3ddev)
         return;
+
+    // Bootstrap has a two-level readiness contract: geometry/collision first,
+    // then the local floor material. Keep generic whole-map prewarm from
+    // competing until that local visual set has either become resident or hit
+    // the bounded missing-asset timeout.
+    if (gStageBootstrapPending && smGameStage[0] && StageField[0])
+    {
+        // Spawn resolution is fail-closed.  Geometry can be published while the
+        // legacy character still carries a placeholder Y from pre-stage SetPosi;
+        // retry the pure geometry query here until a real solid surface exists.
+        if (!gStageBootstrapSpawnResolved && SummitFinalizeBootstrapPlayerPlacement(0))
+            SummitPrepareBootstrapVisualSet(0);
+
+        if (!gStageBootstrapSpawnResolved)
+            return;
+
+        SummitRequestBootstrapTextureSet(gStageBootstrapFloorTextures);
+        SummitRequestBootstrapTextureSet(gStageBootstrapPriorityTextures);
+        SummitTryReleaseBootstrapVisualBarrier();
+        if (gStageBootstrapPending)
+            return;
+    }
 
     const std::uint32_t totalPerTick = StageTexturePrewarmPerTick();
     if (!totalPerTick)
         return;
 
-    std::uint32_t remainingBudget = totalPerTick;
-    for (int slot = 0; slot < 2 && remainingBudget; ++slot)
+    // Slot 0 is not permanently the active map. During a normal walking
+    // boundary crossing, legacy collision code can switch OnStageField to 1
+    // while both stages remain resident. The old scheduler still gave slot 0
+    // all/most of the texture budget, so the map the player had just entered
+    // could continue streaming at only one low-priority texture per tick.
+    int activeSlot = 0;
+    if (lpCurPlayer && lpCurPlayer->OnStageField >= 0 && lpCurPlayer->OnStageField < 2 &&
+        smGameStage[lpCurPlayer->OnStageField])
     {
+        activeSlot = lpCurPlayer->OnStageField;
+    }
+    const int neighbourSlot = activeSlot == 0 ? 1 : 0;
+
+    const bool activeWarming = gStageTexturePrewarm[activeSlot] != 0;
+    const bool neighbourWarming = gStageTexturePrewarm[neighbourSlot] != 0;
+
+    // Reserve part of the budget for the speculative neighbour so its
+    // materials can actually become resident before the player crosses the
+    // boundary. With the default 8-attempt budget this is 6 active + 2
+    // neighbour; small budgets still guarantee one attempt to each side.
+    std::uint32_t neighbourBudget = 0u;
+    if (neighbourWarming)
+    {
+        if (!activeWarming)
+            neighbourBudget = totalPerTick;
+        else if (totalPerTick > 1u)
+        {
+            neighbourBudget = totalPerTick / 4u;
+            if (!neighbourBudget)
+                neighbourBudget = 1u;
+        }
+    }
+
+    std::uint32_t activeBudget = activeWarming ? totalPerTick - neighbourBudget : 0u;
+    if (activeWarming && !activeBudget)
+    {
+        activeBudget = 1u;
+        if (neighbourBudget)
+            --neighbourBudget;
+    }
+
+    const int slots[2] = { activeSlot, neighbourSlot };
+    const std::uint32_t budgets[2] = { activeBudget, neighbourBudget };
+    for (int pass = 0; pass < 2; ++pass)
+    {
+        const int slot = slots[pass];
+        const std::uint32_t stageBudget = budgets[pass];
+        if (!stageBudget)
+            continue;
+
         smSTAGE3D *stage = gStageTexturePrewarm[slot];
         if (!stage)
             continue;
@@ -700,23 +1253,15 @@ void PumpStageTexturePrewarm()
             continue;
         }
 
-        // Give the current/primary map most of the scheduling budget. The
-        // actual I/O still fans out over the worker pool.
-        const std::uint32_t stageBudget = slot == 0 ? remainingBudget : 1u;
+        const bool isActive = slot == activeSlot;
         const int remaining = AssetLoadV2PrewarmMaterialGroupStep(
             stage->smMaterialGroup, SMASSET_OWNER_STAGE, 1, stageBudget,
-            slot == 0 ? 0 : 2);
+            isActive ? 0 : 1);
         if (remaining == 0)
         {
             stage->smMaterialGroup->CheckMatreialTextureSwap();
             gStageTexturePrewarm[slot] = 0;
-            if (slot == 0 && gStageBootstrapPending)
-            {
-                gStageBootstrapPending = false;
-                AssetLoadV3SetLoadingBoost(false);
-            }
         }
-        remainingBudget = remainingBudget > stageBudget ? remainingBudget - stageBudget : 0u;
     }
 }
 
@@ -785,10 +1330,11 @@ bool IsStageFromFieldPendingAsync(sFIELD *lpField)
 
 bool IsStageBootstrapBlockingGameplayAsync()
 {
-    // Metadata is deliberately published before geometry so legacy FieldCode /
-    // State reads stay valid.  Gameplay, physics and world rendering are a
-    // stricter contract: they may start only after the primary stage exists.
-    return gStageBootstrapPending && (!smGameStage[0] || !StageField[0]);
+    // Keep gameplay and world rendering behind the barrier for the whole
+    // bootstrap contract, not merely until the stage pointer is published.
+    // gStageBootstrapPending now covers geometry/collision plus the floor/local
+    // visual set around the spawn point.
+    return gStageBootstrapPending;
 }
 
 // Called from smCHAR::SetPosi. Runtime warps still use the legacy call graph,
@@ -1042,6 +1588,13 @@ void InitStageLoader()
     gStageTexturePrewarm[1] = 0;
     gFieldTransition = SummitFieldTransition();
     gStageBootstrapPending = false;
+    gStageBootstrapSpawnResolved = false;
+    gStageBootstrapSpawnCoordinatesReady = false;
+    gStageBootstrapResolvedFloorY = CLIP_OUT;
+    gStageBootstrapVisualStartedAt = 0;
+    gStageBootstrapFloorTextures.clear();
+    gStageBootstrapPriorityTextures.clear();
+    gStageBootstrapDiagnosticLastStateAt = 0;
     AssetLoadV3SetLoadingBoost(false);
 
     if (smGameStage[1]) delete smGameStage[1];
@@ -1074,7 +1627,18 @@ smSTAGE3D *LoadStageFromField(sFIELD *lpField, sFIELD *lpSecondField)
         if (lpCurPlayer)
             lpCurPlayer->OnStageField = 0;
         gStageBootstrapPending = true;
+        gStageBootstrapSpawnResolved = false;
+        gStageBootstrapSpawnCoordinatesReady = false;
+        gStageBootstrapResolvedFloorY = CLIP_OUT;
+        gStageBootstrapVisualStartedAt = 0;
+        gStageBootstrapFloorTextures.clear();
+        gStageBootstrapPriorityTextures.clear();
         AssetLoadV3SetLoadingBoost(true);
+
+        char detail[256] = { 0 };
+        sprintf_s(detail, sizeof(detail), "field=%p file=%s",
+            static_cast<void *>(lpField), lpField->szName);
+        SummitBootstrapDiagnosticEvent("bootstrap-begin", detail);
     }
 
     // A primary request during gameplay is a real field transition. The
@@ -1159,6 +1723,22 @@ void InitStage()
 		{
 			WarpFieldNearPos(GameStartField, CharacterPosX, CharacterPosZ, (int *)&smConfig.Posi_Player.x, (int *)&smConfig.Posi_Player.y);
 		}
+	}
+
+	// WarpField/WarpFieldNearPos has now selected the definitive bootstrap X/Z.
+	// Capture it independently of lpCurPlayer: stage workers may complete before
+	// or after InitPat3D constructs/positions the character, but the requested
+	// spawn coordinates themselves are stable from this point onward.
+	if (gStageBootstrapPending)
+	{
+		gStageBootstrapSpawnX = smConfig.Posi_Player.x;
+		gStageBootstrapSpawnZ = smConfig.Posi_Player.y;
+		gStageBootstrapSpawnCoordinatesReady = true;
+
+		char detail[128] = { 0 };
+		sprintf_s(detail, sizeof(detail), "x=%d z=%d",
+			gStageBootstrapSpawnX, gStageBootstrapSpawnZ);
+		SummitBootstrapDiagnosticEvent("bootstrap-coordinates-captured", detail);
 	}
 
 
@@ -1848,37 +2428,36 @@ char *NpcSelectedName = 0;
 int SetNpcFileList(char *szNpcDirectory)
 {
 	NpcFileCnt = 0;
+	if(summit::content::definition::CompiledDefinitionsEnabled())
+	{
+		std::vector<summit::content::definition::DefinitionEntry> entries;
+		if(summit::content::definition::ListCompiledDefinitions(szNpcDirectory, ".npc", true, entries, summit::content::definition::DefinitionKindNpc))
+		{
+			for(std::size_t index=0; index<entries.size() && NpcFileCnt<64; ++index)
+			{
+				strcpy_s(szNpcFileList[NpcFileCnt], entries[index].logicalPath.c_str());
+				NpcFileCnt++;
+			}
+			return NpcFileCnt ? TRUE : 0;
+		}
+		if(summit::content::definition::DefinitionStrictMode()) return 0;
+	}
+
 	char szFindPath[256];
-
-
-
 	HANDLE hFindHandle;
-	WIN32_FIND_DATA	fd;
-
+	WIN32_FIND_DATA fd;
 	strcpy_s(szFindPath, szNpcDirectory);
 	lstrcat(szFindPath, "*.npc");
-
-
 	hFindHandle = FindFirstFile(szFindPath, &fd);
-	if(hFindHandle == INVALID_HANDLE_VALUE)
-	{
-		return 0;
-
-	}
+	if(hFindHandle == INVALID_HANDLE_VALUE) return 0;
 	while(1)
 	{
 		strcpy_s(szNpcFileList[NpcFileCnt], szNpcDirectory);
 		lstrcat(szNpcFileList[NpcFileCnt], fd.cFileName);
 		NpcFileCnt++;
-
-		if(FindNextFile(hFindHandle, &fd) == FALSE)
-			break;
-		if(NpcFileCnt >= 64)
-			break;
-
+		if(FindNextFile(hFindHandle, &fd) == FALSE || NpcFileCnt >= 64) break;
 	}
 	FindClose(hFindHandle);
-
 	return TRUE;
 }
 

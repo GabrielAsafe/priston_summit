@@ -67,15 +67,13 @@ int ServerProgressionConditionContext::QuestState(int questId) const
 bool ServerProgressionConditionContext::HasCovenantMembership(int covenantId) const
 {
     covenants::CovenantMembershipState membership;
-    return covenantId > 0 && covenantService_.GetMembership(playerKey_, covenantId, membership) &&
-           membership.active;
+    return covenantId > 0 && covenantService_.GetMembership(playerKey_, covenantId, membership);
 }
 
 int ServerProgressionConditionContext::CovenantRank(int covenantId) const
 {
     covenants::CovenantMembershipState membership;
-    return covenantId > 0 && covenantService_.GetMembership(playerKey_, covenantId, membership) &&
-                   membership.active
+    return covenantId > 0 && covenantService_.GetMembership(playerKey_, covenantId, membership)
                ? membership.rankId
                : kProgressionUnavailableValue;
 }
@@ -83,8 +81,7 @@ int ServerProgressionConditionContext::CovenantRank(int covenantId) const
 int ServerProgressionConditionContext::CovenantReputation(int covenantId) const
 {
     covenants::CovenantMembershipState membership;
-    return covenantId > 0 && covenantService_.GetMembership(playerKey_, covenantId, membership) &&
-                   membership.active
+    return covenantId > 0 && covenantService_.GetMembership(playerKey_, covenantId, membership)
                ? membership.reputation
                : kProgressionUnavailableValue;
 }

@@ -112,7 +112,11 @@
  SrcServer/src/systems/crafting/professions/JOBS.h \
  SrcServer/src/systems/progression/class_rank/Rank.h \
  SrcServer/src/systems/persistence/database/core/Database.h \
- Shared/persistence/database/Database_sqlite_server.h modules/File/File.h
+ Shared/persistence/database/Database_sqlite_server.h modules/File/File.h \
+ Shared/content/v1/gameplay_config/content/GameplayConfigRuntime.h \
+ Shared/content/v1/gameplay_config/content/CompiledGameplayConfigSource.h \
+ Shared/content/v1/common/Sha256.h \
+ Shared/content/v1/text_resource/content/CompiledTextResourceSource.h
 SrcServer/src/systems/combat/skills/server_support/SkillSub.h:
 SrcServer/src/systems/combat/skills/legacy/sinSkill_InfoIni.h:
 SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h:
@@ -229,3 +233,7 @@ SrcServer/src/systems/progression/class_rank/Rank.h:
 SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
 modules/File/File.h:
+Shared/content/v1/gameplay_config/content/GameplayConfigRuntime.h:
+Shared/content/v1/gameplay_config/content/CompiledGameplayConfigSource.h:
+Shared/content/v1/common/Sha256.h:
+Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:

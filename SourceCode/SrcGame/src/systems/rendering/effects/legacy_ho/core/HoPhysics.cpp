@@ -92,6 +92,11 @@ int HoPhysicsDest::Start(POINT3D &currentPos, POINT3D &destPos, int speed)
 	vz = float(DestPos.z - CurrentPos.z);
 
 	length = (float)sqrt(vx*vx + vy*vy + vz*vz);
+	if(length <= 0.0001f)
+	{
+		Init();
+		return FALSE;
+	}
 
 	Velocity.x = vx / length*Speed;
 	Velocity.y = vy / length*Speed;
@@ -154,6 +159,13 @@ int HoPhysicsParticle::Start(POINT3D &velocity)
 
 int HoPhysicsParticle::SetDestAngle(POINT3D destAngle)
 {
+	if(Live <= 0)
+	{
+		LocalAngleStep.x = 0.f;
+		LocalAngleStep.y = 0.f;
+		LocalAngleStep.z = 0.f;
+		return FALSE;
+	}
 	LocalAngleStep.x = float(destAngle.x / Live);
 	LocalAngleStep.y = float(destAngle.y / Live);
 	LocalAngleStep.z = float(destAngle.z / Live);
@@ -188,6 +200,11 @@ void HoPhysicsMgr::Init()
 
 int HoPhysicsMgr::Main()
 {
+	if(PhysicsObjectBufferCount < 0)
+		PhysicsObjectBufferCount = 0;
+	if(PhysicsObjectBufferCount > MAX_PHYSICS_OBJECT_MAX)
+		PhysicsObjectBufferCount = MAX_PHYSICS_OBJECT_MAX;
+
 	for(int index = 0; index < PhysicsObjectBufferCount; index++)
 	{
 		if(PhysicsObject[index] != NULL)
@@ -203,18 +220,26 @@ int HoPhysicsMgr::Main()
 			}
 		}
 	}
+
+	while(PhysicsObjectBufferCount > 0 &&
+		PhysicsObject[PhysicsObjectBufferCount - 1] == NULL)
+		PhysicsObjectBufferCount--;
 	return TRUE;
 }
 
 int HoPhysicsMgr::AddObject(HoPhysicsObject *object)
 {
+	if(!object)
+		return -1;
+
 	for(int index = 0; index < MAX_PHYSICS_OBJECT_MAX; index++)
 	{
 		if(PhysicsObject[index] == NULL)
 		{
 			PhysicsObject[index] = object;
-			PhysicsObjectBufferCount++;
-			return PhysicsObjectBufferCount - 1;
+			if(index >= PhysicsObjectBufferCount)
+				PhysicsObjectBufferCount = index + 1;
+			return index;
 		}
 	}
 	return -1;

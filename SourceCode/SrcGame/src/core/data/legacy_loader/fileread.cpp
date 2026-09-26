@@ -1,3 +1,4 @@
+#include "content/v1/text_resource/content/TextResourceRuntime.h"
 #include "opcodes.h"
 #include <fstream>
 #include "gameplay/classes/v2/services/ClassService.h"
@@ -25,8 +26,8 @@ int	NotItemSpecial = 0;
 
 extern	int	quit;
 
-static char decode[512];
-static char line[512];
+static thread_local char decode[512];
+static thread_local char line[512];
 
 static bool ResolveClassSpecializationBit(const char *token, DWORD &out)
 {
@@ -110,6 +111,8 @@ char	*SetNPCMsg(char *szMsg)
 #include "formats/model_config/LegacyModelConfigExact_client.inl"
 #include "formats/server_config/LegacyServerConfigExact_client.inl"
 #include "formats/legacy_config/LegacyMainConfigExact_client.inl"
+extern char *szCharSizeCodeName[];
+#include "content/v1/definition/legacy/CompiledDefinitionAdapter.inl"
 #include "formats/item_config/LegacyItemDefinitionExact_client.inl"
 #include "formats/character_config/LegacyCharacterConfigExact_client.inl"
 #include "formats/stage_spawn/LegacyStageSpawnExact_client.inl"

@@ -6,7 +6,7 @@ Legacy logical databases are represented by physical table prefixes such as
 
 ## Current schema
 
-- latest schema version: **38**
+- latest schema version: **43**
 - SQLite user tables after a clean bootstrap: **371**
 - tables recovered from the 21 supplied SQL Server `.bak` catalogs: **326 / 326 present**
 - additional source-derived compatibility tables: 6 (`QuestDB__RepeatedQuest`,
@@ -35,7 +35,7 @@ is directly proven by the supplied SQL Server backups**:
   PristonDB (16), SecurityDB (1)
 
 
-Migrations `030` through `038` are server-local additions rather than reconstructed
+Migrations `030` through `043` are server-local additions rather than reconstructed
 SQL Server catalog tables:
 
 - `030_local_gameplay_entitlement.sql` — independent local gameplay entitlement (1 table)
@@ -47,6 +47,8 @@ SQL Server catalog tables:
 - `036_covenant_rewards.sql` — durable Covenant reward receipts plus join/rank reward catalog (2 tables)
 - `037_story_dialogue_choices.sql` — explicit server-authoritative Story dialogue branches and choice conditions (2 tables)
 - `038_generic_reputation.sql` — explicit generic Reputation definitions/state/source ledger plus content CHECK upgrades (3 tables)
+- `039_covenant_single_active.sql` — enforces one active Covenant membership per player
+- `040_covenant_default_content.sql` — seeds the five V0.1 Covenants with cumulative Tier I–III modifier content
 
 For the backup-proven tables, names, column order, SQLite affinity, NULLability
 and SQL Server `IDENTITY` status are recovered from `sysschobjs` / `syscolpars`
@@ -72,3 +74,12 @@ Validation helpers:
 
 R6.1 remains the compile/link/runtime regression baseline until the SQLite WIP
 is validated on the Windows server build and runtime.
+
+- `041_covenant_runtime_complete.sql` — Covenant runtime state, challenges, mastery, collection/Sigils and Tier III powers
+
+- `042_covenant_inventory.sql` — Covenant-only persistent inventory and Sigil backfill
+- `043_covenant_artisan_mode.sql` — persisted chat-first Artisan crafting mode (`off/reforge/forgemaster/master`)
+
+- `044_gathering_mining_runtime.sql` — data-driven Mining/Gathering resources/nodes and persistent resource inventory
+
+- `045_gathering_serverdb_namespace_fix.sql` — moves Gathering/Mining runtime tables into the `ServerDB__*` namespace required by the SQLite compatibility layer

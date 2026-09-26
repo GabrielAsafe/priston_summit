@@ -132,7 +132,7 @@ public:
 
 	hoPOINT3D	*GetVector(int index)
 	{
-		if(index < 0 && index >= MAX_PHYSICS_OBJECT_MAX)
+		if(index < 0 || index >= MAX_PHYSICS_OBJECT_MAX)
 			return NULL;
 
 		if(PhysicsObject[index] == NULL)

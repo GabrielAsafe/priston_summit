@@ -338,6 +338,7 @@ int rsCheckAccountChar(const char *szID, char *szName);
 int rsGetAccountCharacterNames(const char *szID, char szNames[][32], int maxNames);
 int rsLoadAccountCharacterRecord(const char *szID, const char *szName, TRANS_RECORD_DATA *lpRecordData);
 int rsAddOfflineCharacterExp(const char *szID, const char *szName, INT64 Exp, int *lpNewLevel, INT64 *lpNewExperience);
+int rsConsumeOfflineCharacterPotion(const char *szID, const char *szName, int PotionType, int *lpTier, int *lpRemainingCount, int *lpRestoreAmount, DWORD *lpItemCode, int *lpStatus);
 
 int rsLoadWareHouseData_Admin(rsPLAYINFO *lpPlayInfo, char *szID, int Day);
 

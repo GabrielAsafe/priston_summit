@@ -613,9 +613,9 @@ void sinProc(int Message)
 		chaSiege.KeyDown();
 		if (!ui::v2::legacy::HandleQuestHotkey())
 			cQuestWindow.KeyDown();
-		ui::v2::legacy::HandleMainHudHotkeys();
+		const bool mainHudHotkeyHandled = ui::v2::legacy::HandleMainHudHotkeys();
 		
-		if(sinGetKeyClick('X'))
+		if(!mainHudHotkeyHandled && sinGetKeyClick('X'))
 		{
 			cHelpPet.PetMessage("*System", 3);
 			if(!ExitButtonClick)ExitButtonClick = 1;
@@ -631,30 +631,30 @@ void sinProc(int Message)
 		}
 
 			
-		if(sinGetKeyClick('R'))
+		if(!mainHudHotkeyHandled && sinGetKeyClick('R'))
 		{
 			cHelpPet.PetMessage("*RunAndWalk", 3);
 			if(cInterFace.sInterFlags.RunFlag)cInterFace.sInterFlags.RunFlag = 0;
 			else cInterFace.sInterFlags.RunFlag = 1;
 		}
-		if(sinGetKeyClick(VK_TAB))
+		if(!mainHudHotkeyHandled && sinGetKeyClick(VK_TAB))
 		{
 			cHelpPet.PetMessage("*Mini_Map", 3);
 			if(cInterFace.sInterFlags.MapOnFlag)cInterFace.sInterFlags.MapOnFlag = 0;
 			else cInterFace.sInterFlags.MapOnFlag = 1;
 		}
-		if(sinGetKeyClick('Z'))
+		if(!mainHudHotkeyHandled && sinGetKeyClick('Z'))
 		{
 			cInterFace.sInterFlags.CameraAutoFlag++;
 			if(cInterFace.sInterFlags.CameraAutoFlag > 2) cInterFace.sInterFlags.CameraAutoFlag = 0;
 		}
-		if(sinGetKeyClick('D'))
+		if(!mainHudHotkeyHandled && sinGetKeyClick('D'))
 		{
 			cHelpPet.PetMessage("*Party", 3);
 			ShowParty();
 		}
 		
-		if(sinGetKeyClick('Q'))
+		if(!mainHudHotkeyHandled && sinGetKeyClick('Q'))
 		{
 			cHelpPet.PetMessage("*Quest", 3);
 			ShowQuest();

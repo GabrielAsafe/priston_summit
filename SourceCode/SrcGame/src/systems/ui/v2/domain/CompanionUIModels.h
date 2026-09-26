@@ -39,7 +39,21 @@ enum class CompanionUiAction
     ResyncData,
     SetTactic,
     SetRetreatHp,
-    SetPreferredRange
+    SetPreferredRange,
+    CycleActiveSkill,
+    ResetActiveSkills,
+    CycleBuffSkill,
+    AdjustBuffInterval,
+    ResetBuffs,
+    CycleActiveMinResource,
+    CycleActiveMinTargets,
+    CycleActiveTargetMode,
+    ToggleCustomTactics,
+    ToggleTacticRule,
+    CycleTacticCondition,
+    CycleTacticAction,
+    CycleTacticThreshold,
+    MoveTacticRule
 };
 
 struct CompanionUiEntry
@@ -66,6 +80,26 @@ struct CompanionUiEntry
     int preferredRange = 0;
 };
 
+struct CompanionUiTacticRule
+{
+    bool enabled = false;
+    int condition = 0;
+    int action = 0;
+    int threshold = 0;
+};
+
+struct CompanionUiSkillSlot
+{
+    int useSlot = 0;
+    std::uint32_t skillCode = 0;
+    int point = 0;
+    int intervalSeconds = 0;
+    int minResourcePercent = 0;
+    int minimumTargets = 1;
+    int targetMode = 0;
+    std::string name;
+};
+
 struct CompanionUiSnapshot
 {
     bool valid = false;
@@ -74,7 +108,21 @@ struct CompanionUiSnapshot
     int maxActive = 4;
     int entryCount = 0;
     int lastResult = 0;
+    bool skillLoadoutActive = false;
+    bool buffLoadoutActive = false;
+    bool customTacticsEnabled = false;
+    std::array<CompanionUiTacticRule, 4> tacticRules{};
+    std::array<CompanionUiSkillSlot, 4> activeSkills{};
+    std::array<CompanionUiSkillSlot, 4> buffSkills{};
     std::array<CompanionUiEntry, CompanionUiMaxCharacters> entries{};
+};
+
+struct CompanionRuntimeEffectSnapshot
+{
+    std::uint32_t effectCode = 0;
+    std::string name;
+    int remainingMs = 0;
+    bool positive = true;
 };
 
 struct CompanionRuntimeEntrySnapshot
@@ -91,6 +139,13 @@ struct CompanionRuntimeEntrySnapshot
     CompanionUiMode mode = CompanionUiMode::Aggressive;
     CompanionUiTactic tactic = CompanionUiTactic::Balanced;
     bool casting = false;
+    std::uint32_t castingSkillCode = 0;
+    std::string castingSkillName;
+    int castProgressPermille = 0;
+    int cooldownMs = 0;
+    std::uint32_t statusFlags = 0;
+    int effectCount = 0;
+    std::array<CompanionRuntimeEffectSnapshot, 6> effects{};
     std::string targetName;
 };
 

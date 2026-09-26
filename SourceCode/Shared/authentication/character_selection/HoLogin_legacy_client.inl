@@ -1,4 +1,7 @@
 #include <cstdio>
+#include <atomic>
+#include <mutex>
+#include <new>
 #include "opcodes.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "systems/presentation/opening/legacy_runtime/HoLinkHeader.h"
@@ -16,6 +19,11 @@
 
 #include "systems/configuration/client/Settings.h"
 #include "authentication/character_selection/ClassSelectionAdapter.h"
+#include "core/concurrency/JobSystem.h"
+#include "core/concurrency/SourceAssetLock.h"
+#include "systems/rendering/legacy_3d/smRead3d.h"
+#include "systems/rendering/assets/v3/AssetStreamingV3.h"
+#include "systems/gameplay/character/core/CharacterModelStreamingV3.h"
 
 int  CharacterPosX = 0;
 int  CharacterPosZ = 0;
@@ -40,6 +48,88 @@ static int UserCharacterPos[CHARACTER_USER_MAX][2] =
 
 
 static int CharacterInfoPosi[5] = { 362, 243, 488, 154, 588 };
+
+// Character-selection stage preload. The old HoLogin constructor parsed
+// cSelect/login.ASE synchronously before the actual login screen could appear.
+// V3 starts that CPU/IO work after the opening screen is initialized and only
+// publishes the prepared stage from the main thread.
+enum SummitHoLoginStagePreloadState
+{
+    SUMMIT_HOLOGIN_STAGE_IDLE = 0,
+    SUMMIT_HOLOGIN_STAGE_LOADING,
+    SUMMIT_HOLOGIN_STAGE_READY,
+    SUMMIT_HOLOGIN_STAGE_FAILED
+};
+
+static std::atomic<int> gSummitHoLoginStageState(SUMMIT_HOLOGIN_STAGE_IDLE);
+static std::mutex gSummitHoLoginStageMutex;
+static smSTAGE3D *gSummitHoLoginPreparedStage = NULL;
+
+static void SummitQueueHoLoginStagePreload()
+{
+    int state = gSummitHoLoginStageState.load(std::memory_order_acquire);
+    if (state == SUMMIT_HOLOGIN_STAGE_FAILED)
+        gSummitHoLoginStageState.compare_exchange_strong(
+            state, SUMMIT_HOLOGIN_STAGE_IDLE, std::memory_order_acq_rel);
+
+    int expected = SUMMIT_HOLOGIN_STAGE_IDLE;
+    if(!gSummitHoLoginStageState.compare_exchange_strong(
+        expected, SUMMIT_HOLOGIN_STAGE_LOADING, std::memory_order_acq_rel))
+        return;
+
+    const bool submitted = summit::core::concurrency::JobSystem::Instance().Submit([]() {
+        smSTAGE3D *stage = new(std::nothrow) smSTAGE3D;
+        if(!stage)
+        {
+            gSummitHoLoginStageState.store(SUMMIT_HOLOGIN_STAGE_FAILED, std::memory_order_release);
+            return;
+        }
+
+        stage->VectLight.x = smConfig.MapLightVector.x;
+        stage->VectLight.y = smConfig.MapLightVector.y;
+        stage->VectLight.z = smConfig.MapLightVector.z;
+        stage->Bright = smConfig.MapBright;
+        stage->Contrast = smConfig.MapContrast;
+
+        {
+            // Serialize the two login/selection scene builders because legacy
+            // material registration is still global even though parser scratch
+            // has been made thread-local.
+            summit::core::concurrency::SourceAssetLock sceneBuildLock("__summit_login_scene_build__");
+            if(!smSTAGE3D_ReadASE(const_cast<char *>("cSelect//login.ASE"), stage))
+            {
+                delete stage;
+                gSummitHoLoginStageState.store(SUMMIT_HOLOGIN_STAGE_FAILED, std::memory_order_release);
+                return;
+            }
+        }
+
+        stage->Head = TRUE;
+        {
+            std::lock_guard<std::mutex> lock(gSummitHoLoginStageMutex);
+            gSummitHoLoginPreparedStage = stage;
+        }
+        gSummitHoLoginStageState.store(SUMMIT_HOLOGIN_STAGE_READY, std::memory_order_release);
+    }, summit::core::concurrency::JobPriority::Normal);
+
+    if(!submitted)
+        gSummitHoLoginStageState.store(SUMMIT_HOLOGIN_STAGE_IDLE, std::memory_order_release);
+}
+
+static smSTAGE3D *SummitTakeHoLoginPreparedStage()
+{
+    if(gSummitHoLoginStageState.load(std::memory_order_acquire) != SUMMIT_HOLOGIN_STAGE_READY)
+        return NULL;
+
+    smSTAGE3D *stage = NULL;
+    {
+        std::lock_guard<std::mutex> lock(gSummitHoLoginStageMutex);
+        stage = gSummitHoLoginPreparedStage;
+        gSummitHoLoginPreparedStage = NULL;
+    }
+    gSummitHoLoginStageState.store(SUMMIT_HOLOGIN_STAGE_IDLE, std::memory_order_release);
+    return stage;
+}
 
 static int LoadClassSelectionTexture(const char *root, const std::string& relativePath)
 {
@@ -122,11 +212,11 @@ HoLogin::HoLogin()
 
 	MoryonMarkImage = -1;
 	MoryonLogoImage = -1;
+	Font = NULL;
+	Stage = NULL;
+	ResourcesLoaded = FALSE;
+	OpeningStageTexturesReady = false;
 	Init_UseMor();
-
-
-
-	Load();
 
 }
 
@@ -150,9 +240,20 @@ void HoLogin::Init_UseMor()
 
 
 /* MINGW_HOLOGIN_INIT_STEPS_V2 */
+static inline FILE *SummitHoLoginRuntimeTraceFile(const char *path, const char *mode = "a")
+{
+#if defined(__MINGW32__) && defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
+    return fopen(path, mode ? mode : "a");
+#else
+    (void)path;
+    (void)mode;
+    return NULL;
+#endif
+}
+
 static void MingwHoLoginInitStepV2(const char *step)
 {
-    FILE *f = fopen("LOGS\\mingw_hologin_init_steps.txt", "a");
+    FILE *f = SummitHoLoginRuntimeTraceFile("LOGS\\mingw_hologin_init_steps.txt", "a");
     if(f)
     {
         fprintf(f, "%s\n", step);
@@ -161,8 +262,85 @@ static void MingwHoLoginInitStepV2(const char *step)
     }
 }
 
+void HoLogin::BeginUserCharacterPreload()
+{
+	if (UserCharacterCount > 0 || DownUserCharacterCount <= 0)
+		return;
+
+	const int count = DownUserCharacterCount < CHARACTER_USER_MAX ?
+		DownUserCharacterCount : CHARACTER_USER_MAX;
+	for (int index = 0; index < count; ++index)
+	{
+		AddUserCharacter(DownUserCharacterInfo[index].BodyName,
+			DownUserCharacterInfo[index].FaceName,
+			DownUserCharacterInfo[index].Job);
+	}
+}
+
+void HoLogin::PumpOpeningPreload()
+{
+	// Register the character-selection UI while the account login is visible.
+	// CreateTextureMaterial() is non-blocking under V3: it registers handles and
+	// queues CPU decode/upload work instead of doing source I/O on this thread.
+	// Previously this first happened in Init(), so reaching character selection
+	// created a second visible loading burst even though the 3D stage was preloaded.
+	if (!ResourcesLoaded)
+		Load();
+
+	PumpPreloadStage();
+	if (Stage && Stage->smMaterialGroup)
+	{
+		// The future character-selection scene is already known while the user
+		// is still on login. Warm a bounded slice every opening frame so the
+		// environment does not begin texture residency only after transition.
+		const int remainingStageTextures = AssetLoadV2PrewarmMaterialGroupStep(
+			Stage->smMaterialGroup, SMASSET_OWNER_UI, 1, 2u, 2);
+		OpeningStageTexturesReady = remainingStageTextures == 0;
+		if (OpeningStageTexturesReady)
+			Stage->smMaterialGroup->CheckMatreialTextureSwap();
+	}
+	else if (Stage)
+	{
+		OpeningStageTexturesReady = true;
+	}
+}
+
+bool HoLogin::IsOpeningPreloadReady() const
+{
+	if (!ResourcesLoaded || !Stage || !OpeningStageTexturesReady)
+		return false;
+
+	// StartImage/login textures remain on the interactive retry queue until
+	// resident (or conclusively failed), which is stronger than an FPS heuristic.
+	if (AssetLoadV3HasPendingInteractiveLoginTextures())
+		return false;
+
+	const int expectedCharacters = DownUserCharacterCount < CHARACTER_USER_MAX ?
+		DownUserCharacterCount : CHARACTER_USER_MAX;
+	if (expectedCharacters > 0)
+	{
+		if (UserCharacterCount < expectedCharacters)
+			return false;
+		for (int index = 0; index < expectedCharacters; ++index)
+		{
+			if (UserCharacter[index].PatLoading)
+				return false;
+		}
+	}
+
+	return true;
+}
+
 int HoLogin::Init()
 {
+	AssetLoadV3SetLoadingBoost(true);
+	Load();
+	BeginPreload();
+	PumpOpeningPreload();
+	// The server character list is available before this transition completes.
+	// Start visible previews immediately so model parsing overlaps the remaining
+	// legacy selection initialization instead of beginning at the very end.
+	BeginUserCharacterPreload();
 	MingwHoLoginInitStepV2("STEP 00 ENTER HoLogin::Init");
 	StartErrorDelayFlag = FALSE;
 	ClanMarkUpdateSuccessFlag = FALSE;
@@ -326,13 +504,12 @@ int HoLogin::Init()
 	int HONG_GetChaClanName(char* id, char* chaname);
 	if (DownUserCharacterCount > 0)
 	{
-
+		// Model requests were started at the top of Init() (or directly when the
+		// list arrived from the server). Keep this point for legacy clan metadata.
+		if (UserCharacterCount == 0)
+			BeginUserCharacterPreload();
 		for (int index = 0; index < DownUserCharacterCount; index++)
-		{
-			AddUserCharacter(DownUserCharacterInfo[index].BodyName, DownUserCharacterInfo[index].FaceName, DownUserCharacterInfo[index].Job);
 			HONG_GetChaClanName(UserAccount, DownUserCharacterInfo[index].Name);
-		}
-		ReadTextures();
 	}
 
 	m_ScreenHalf = SETTINGSHANDLER->getWidth() / 2;
@@ -343,6 +520,9 @@ int HoLogin::Init()
 
 int HoLogin::Load()
 {
+	if (ResourcesLoaded)
+		return TRUE;
+
 	char dwFontGame[32] = { 0 };
 	//int SizeFontGame = 0;
 	GetPrivateProfileString("FontG", "Type", "", dwFontGame, 32, ".//game//font//Config.ini");
@@ -365,32 +545,6 @@ int HoLogin::Load()
 		dwFontGame);
 #endif
 
-
-
-	Stage = new smSTAGE3D();
-
-
-	Stage->VectLight.x = smConfig.MapLightVector.x;
-	Stage->VectLight.y = smConfig.MapLightVector.y;
-	Stage->VectLight.z = smConfig.MapLightVector.z;
-
-	Stage->Bright = smConfig.MapBright;
-	Stage->Contrast = smConfig.MapContrast;
-
-	Stage = smSTAGE3D_ReadASE("cSelect//login.ASE", smStage);
-
-	if (Stage)
-	{
-		Stage->Head = TRUE;
-	}
-
-	ReadTextures();
-
-	if (Stage)
-	{
-		Stage->smMaterialGroup->CheckMatreialTextureSwap();
-	}
-	
 	OkButton.Init("StartImage//login//CharSelect//Bt_select.tga", 128, 32);
 	OkButton.InitCrashRect(10, 0, 110, 32);
 
@@ -465,9 +619,66 @@ int HoLogin::Load()
 
 	NewCharacterImage = CreateTextureMaterial("StartImage//login//CharSelect//New_char.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
 
-	ReadTextures();
-
+	// Login/selection materials self-admit through the V3 HIGH UI lane. Avoid
+	// a global prewarm sweep here: it can enqueue unrelated effects/world assets
+	// exactly while the interactive screen is trying to become responsive.
+	ResourcesLoaded = TRUE;
 	return TRUE;
+}
+
+void HoLogin::BeginPreload()
+{
+	if (Stage)
+		return;
+	OpeningStageTexturesReady = false;
+	SummitQueueHoLoginStagePreload();
+}
+
+void HoLogin::FinalizeStageReady()
+{
+	if (!Stage)
+		return;
+
+	if (Stage->smMaterialGroup)
+	{
+        // Prime only a small interactive slice. Remaining selection-scene
+        // textures continue incrementally from Main() instead of one burst.
+        AssetLoadV2PrewarmMaterialGroupStep(Stage->smMaterialGroup,
+            SMASSET_OWNER_UI, 1, 4u, 1);
+		Stage->smMaterialGroup->CheckMatreialTextureSwap();
+	}
+
+	for (int index = 0; index < UserCharacterCount; ++index)
+	{
+		UserCharacter[index].lpStage = Stage;
+		UserCharacter[index].SetPosi(UserCharacterPos[index][0] * fONE,
+			Stage->GetHeight(UserCharacterPos[index][0] * fONE, UserCharacterPos[index][1] * fONE),
+			UserCharacterPos[index][1] * fONE, 0, ANGLE_180, 0);
+	}
+
+	for (int index = 0; index < JobCharacterCount; ++index)
+	{
+		int classPosX = 0;
+		int classPosZ = 0;
+		GetJobCharacterWorldPosition(index, classPosX, classPosZ);
+		JobCharacter[index].lpStage = Stage;
+		JobCharacter[index].SetPosi(classPosX * fONE,
+			Stage->GetHeight(classPosX * fONE, classPosZ * fONE),
+			classPosZ * fONE, 0, ANGLE_180, 0);
+	}
+}
+
+void HoLogin::PumpPreloadStage()
+{
+	if (Stage)
+		return;
+
+	smSTAGE3D *prepared = SummitTakeHoLoginPreparedStage();
+	if (!prepared)
+		return;
+
+	Stage = prepared;
+	FinalizeStageReady();
 }
 
 static char *LoadingImageName[MAX_LOADING_IMAGE] =
@@ -494,37 +705,27 @@ void HoLogin::LoadLoadingImage(int level)
 
 int	HoLogin::AddUserCharacter(char *chrFile1, char *chrFile2, int jobCode)
 {
-	for (int index = 0; index < CHARACTER_USER_MAX; index++)
-	{
-		if (UserCharacter[index].DisplayFlag == FALSE)
-		{
-			UserCharacter[index].Init();
-			UserCharacter[index].lpStage = Stage;
+	if (UserCharacterCount < 0 || UserCharacterCount >= CHARACTER_USER_MAX)
+		return FALSE;
 
-			SetLoadPattern(&UserCharacter[index], chrFile1, chrFile2, 0, 0);
-			UserCharacter[index].SetPosi(UserCharacterPos[index][0] * fONE,
-				Stage->GetHeight(UserCharacterPos[index][0] * fONE, UserCharacterPos[index][1] * fONE)
-				, UserCharacterPos[index][1] * fONE, 0, ANGLE_180, 0);
-			UserCharacter[index].ActionPattern = 0;
+	const int index = UserCharacterCount;
+	UserCharacter[index].Init();
+	UserCharacter[index].lpStage = Stage;
+	if (jobCode)
+		UserCharacter[index].smCharInfo.JOB_CODE = jobCode;
 
+	// Character selection used to synchronously parse the body, motion and face
+	// here. Use the same V3 model pipeline as gameplay so all user previews can
+	// prepare concurrently and publish from the frame loop.
+	if (!SummitRequestCharacterModelV3Interactive(&UserCharacter[index], chrFile1, chrFile2))
+		return FALSE;
 
-			UserCharacter[index].ChangeMotion(10);
-
-			UserCharacterCount++;
-			ReadTextures();
-
-			UserCharacter[index].lpDinaPattern->Pat->smMaterialGroup->CheckMatreialTextureSwap();
-
-			if (UserCharacter[index].lpDinaPattern2)
-			{
-				UserCharacter[index].lpDinaPattern2->Pat->smMaterialGroup->CheckMatreialTextureSwap();
-			}
-
-			break;
-		}
-	}
-
-
+	const int y = Stage ?
+		Stage->GetHeight(UserCharacterPos[index][0] * fONE, UserCharacterPos[index][1] * fONE) : 0;
+	UserCharacter[index].SetPosi(UserCharacterPos[index][0] * fONE,
+		y, UserCharacterPos[index][1] * fONE, 0, ANGLE_180, 0);
+	UserCharacter[index].ActionPattern = 0;
+	++UserCharacterCount;
 	return TRUE;
 }
 
@@ -540,7 +741,7 @@ static void MINGW_JobLoadTraceV1(
 	smCHAR *ch
 )
 {
-	FILE *f = fopen(
+	FILE *f = SummitHoLoginRuntimeTraceFile(
 		"LOGS\\mingw_job_load_trace.txt",
 		"a"
 	);
@@ -627,138 +828,66 @@ int HoLogin::AddJobCharacter(char *chrFile1, char *chrFile2, int index)
 {
 	if (index == -1)
 	{
-		JobCharacter[JobCharacterCount].Init();
-		JobCharacter[JobCharacterCount].lpStage = Stage;
-		JobCharacter[JobCharacterCount].smCharInfo.wPlayerKilling[0] = 0;
-
-
-		#ifdef __MINGW32__
-		int mingwLoadResultV1 = SetLoadPattern(
-			&JobCharacter[JobCharacterCount],
-			chrFile1,
-			chrFile2,
-			0,
-			0
-		);
-
-		MINGW_JobLoadTraceV1(
-			"ADD NEW AFTER SetLoadPattern",
-			JobCharacterCount,
-			chrFile1,
-			chrFile2,
-			mingwLoadResultV1,
-			&JobCharacter[JobCharacterCount]
-		);
-
-		// MINGW_ADDJOB_LOAD_FAIL_GUARD_V2
-		if(!mingwLoadResultV1)
+		if (JobCharacterCount < 0 || JobCharacterCount >= CHARACTER_SELECTION_SLOT_CAPACITY)
 			return FALSE;
-#else
-		SetLoadPattern(
-			&JobCharacter[JobCharacterCount],
-			chrFile1,
-			chrFile2,
-			0,
-			0
-		);
+
+		const int targetIndex = JobCharacterCount;
+		JobCharacter[targetIndex].Init();
+		JobCharacter[targetIndex].lpStage = Stage;
+		JobCharacter[targetIndex].smCharInfo.wPlayerKilling[0] = 0;
+
+		const int queued = SummitRequestCharacterModelV3Interactive(
+			&JobCharacter[targetIndex], chrFile1, chrFile2);
+#ifdef __MINGW32__
+		MINGW_JobLoadTraceV1(
+			"ADD NEW AFTER AddLoaderPattern V3",
+			targetIndex, chrFile1, chrFile2, queued, &JobCharacter[targetIndex]);
 #endif
+		if (!queued)
+			return FALSE;
 
 		int classPosX = 0;
 		int classPosZ = 0;
-		GetJobCharacterWorldPosition(JobCharacterCount, classPosX, classPosZ);
-		JobCharacter[JobCharacterCount].SetPosi(classPosX * fONE,
-			Stage->GetHeight(classPosX * fONE, classPosZ * fONE),
+		GetJobCharacterWorldPosition(targetIndex, classPosX, classPosZ);
+		const int y = Stage ? Stage->GetHeight(classPosX * fONE, classPosZ * fONE) : 0;
+		JobCharacter[targetIndex].SetPosi(classPosX * fONE, y,
 			classPosZ * fONE, 0, ANGLE_180, 0);
-		JobCharacter[JobCharacterCount].ActionPattern = 0;
-		memset(JobCharacter[JobCharacterCount].szChatMessage, 0, sizeof(JobCharacter[JobCharacterCount].szChatMessage));
-		memset(JobCharacter[JobCharacterCount].smCharInfo.szName, 0, sizeof(JobCharacter[JobCharacterCount].smCharInfo.szName));
-
-		#ifdef __MINGW32__
-		int mingwMotionResultV1 =
-			JobCharacter[JobCharacterCount].ChangeMotion(10);
-
-		MINGW_JobLoadTraceV1(
-			"ADD NEW AFTER ChangeMotion",
-			JobCharacterCount,
-			chrFile1,
-			chrFile2,
-			mingwMotionResultV1,
-			&JobCharacter[JobCharacterCount]
-		);
-#else
-		JobCharacter[JobCharacterCount].ChangeMotion(10);
-#endif
-
-		JobCharacterCount++;
-		ReadTextures();
-		JobCharacter[JobCharacterCount - 1].lpDinaPattern->Pat->smMaterialGroup->CheckMatreialTextureSwap();
-		JobCharacter[JobCharacterCount - 1].lpDinaPattern2->Pat->smMaterialGroup->CheckMatreialTextureSwap();
-
-		JobCharacter[JobCharacterCount - 1].smCharInfo.Stamina[0] = 100;
-		JobCharacter[JobCharacterCount - 1].smCharInfo.Stamina[1] = 100;
-
-	}
-	else
-	{
-		if (index >= 0 && index < CHARACTER_SELECTION_SLOT_CAPACITY)
-		{
-			JobCharacter[index].Init();
-			JobCharacter[index].lpStage = Stage;
-			JobCharacter[index].smCharInfo.wPlayerKilling[0] = 0;
-
-
-			#ifdef __MINGW32__
-			int mingwLoadResultIndexedV1 = SetLoadPattern(
-				&JobCharacter[index],
-				chrFile1,
-				chrFile2,
-				0,
-				0
-			);
-
-			MINGW_JobLoadTraceV1(
-				"ADD INDEX AFTER SetLoadPattern",
-				index,
-				chrFile1,
-				chrFile2,
-				mingwLoadResultIndexedV1,
-				&JobCharacter[index]
-			);
-
-			if(!mingwLoadResultIndexedV1)
-				return FALSE;
-#else
-			SetLoadPattern(
-				&JobCharacter[index],
-				chrFile1,
-				chrFile2,
-				0,
-				0
-			);
-#endif
-			int classPosX = 0;
-			int classPosZ = 0;
-			GetJobCharacterWorldPosition(index, classPosX, classPosZ);
-			JobCharacter[index].SetPosi(classPosX * fONE,
-				Stage->GetHeight(classPosX * fONE, classPosZ * fONE),
-				classPosZ * fONE, 0, ANGLE_180, 0);
-			JobCharacter[index].ActionPattern = 0;
-			memset(JobCharacter[index].szChatMessage, 0, sizeof(JobCharacter[JobCharacterCount].szChatMessage));
-			memset(JobCharacter[index].smCharInfo.szName, 0, sizeof(JobCharacter[JobCharacterCount].smCharInfo.szName));
-
-			ReadTextures();
-			JobCharacter[index].lpDinaPattern->Pat->smMaterialGroup->CheckMatreialTextureSwap();
-			JobCharacter[index].lpDinaPattern2->Pat->smMaterialGroup->CheckMatreialTextureSwap();
-
-			JobCharacter[index].smCharInfo.Stamina[0] = 100;
-			JobCharacter[index].smCharInfo.Stamina[1] = 100;
-
-		}
-		else
-			return FALSE;
+		JobCharacter[targetIndex].ActionPattern = 0;
+		memset(JobCharacter[targetIndex].szChatMessage, 0, sizeof(JobCharacter[targetIndex].szChatMessage));
+		memset(JobCharacter[targetIndex].smCharInfo.szName, 0, sizeof(JobCharacter[targetIndex].smCharInfo.szName));
+		JobCharacter[targetIndex].smCharInfo.Stamina[0] = 100;
+		JobCharacter[targetIndex].smCharInfo.Stamina[1] = 100;
+		++JobCharacterCount;
+		return TRUE;
 	}
 
+	if (index < 0 || index >= JobCharacterCount || index >= CHARACTER_SELECTION_SLOT_CAPACITY)
+		return FALSE;
 
+	// Face/body changes are also request based. Keep the old preview visible
+	// until the replacement bundle is committed instead of clearing the model
+	// and freezing the UI in SetLoadPattern(). Generation IDs already ensure a
+	// stale face request cannot overwrite a newer click.
+	JobCharacter[index].lpStage = Stage;
+	JobCharacter[index].smCharInfo.wPlayerKilling[0] = 0;
+	const int queued = SummitRequestCharacterModelV3Interactive(&JobCharacter[index], chrFile1, chrFile2);
+#ifdef __MINGW32__
+	MINGW_JobLoadTraceV1(
+		"ADD INDEX AFTER AddLoaderPattern V3",
+		index, chrFile1, chrFile2, queued, &JobCharacter[index]);
+#endif
+	if (!queued)
+		return FALSE;
+
+	int classPosX = 0;
+	int classPosZ = 0;
+	GetJobCharacterWorldPosition(index, classPosX, classPosZ);
+	const int y = Stage ? Stage->GetHeight(classPosX * fONE, classPosZ * fONE) : JobCharacter[index].pY;
+	JobCharacter[index].SetPosi(classPosX * fONE, y,
+		classPosZ * fONE, 0, ANGLE_180, 0);
+	JobCharacter[index].ActionPattern = 0;
+	JobCharacter[index].smCharInfo.Stamina[0] = 100;
+	JobCharacter[index].smCharInfo.Stamina[1] = 100;
 	return TRUE;
 }
 
@@ -825,7 +954,7 @@ static void MINGW_CharCreateTraceV4(
 	const void *p3
 )
 {
-	FILE *f = fopen(
+	FILE *f = SummitHoLoginRuntimeTraceFile(
 		"LOGS\\mingw_char_create_trace.txt",
 		"a"
 	);
@@ -853,175 +982,23 @@ int HoLogin::SetChangeJobFace(char *charFile1, char *chrFile2, int jobIndex)
 {
 #ifdef __MINGW32__
 	MINGW_CharCreateTraceV4(
-		"SetChangeJobFace ENTER",
-		jobIndex,
-		JobCharacterCount,
-		charFile1,
-		chrFile2,
-		NULL
-	);
+		"SetChangeJobFace ENTER V3", jobIndex, JobCharacterCount,
+		charFile1, chrFile2, NULL);
 #endif
 
-	if(
-		jobIndex < 0 ||
-		jobIndex >= JobCharacterCount
-	)
-	{
-#ifdef __MINGW32__
-		MINGW_CharCreateTraceV4(
-			"SetChangeJobFace INVALID INDEX",
-			jobIndex,
-			JobCharacterCount,
-			NULL,
-			NULL,
-			NULL
-		);
-#endif
+	if (jobIndex < 0 || jobIndex >= JobCharacterCount)
 		return FALSE;
-	}
 
-	int PosX = JobCharacter[jobIndex].pX;
-	int PosZ = JobCharacter[jobIndex].pZ;
-
-#ifdef __MINGW32__
-	MINGW_CharCreateTraceV4(
-		"SetChangeJobFace BEFORE AddJobCharacter",
-		jobIndex,
-		0,
-		&JobCharacter[jobIndex],
-		JobCharacter[jobIndex].lpDinaPattern2,
-		NULL
-	);
-#endif
-
-	AddJobCharacter(
-		charFile1,
-		chrFile2,
-		jobIndex
-	);
-
-#ifdef __MINGW32__
-	MINGW_CharCreateTraceV4(
-		"SetChangeJobFace AFTER AddJobCharacter",
-		jobIndex,
-		0,
-		&JobCharacter[jobIndex],
-		JobCharacter[jobIndex].lpDinaPattern2,
-		NULL
-	);
-#endif
-
-	JobCharacter[jobIndex].SetPosi(
-		PosX,
-		10,
-		PosZ,
-		0,
-		ANGLE_180,
-		0
-	);
-
-#ifdef __MINGW32__
-	MINGW_CharCreateTraceV4(
-		"SetChangeJobFace BEFORE ReadTextures",
-		jobIndex,
-		0,
-		&JobCharacter[jobIndex],
-		JobCharacter[jobIndex].lpDinaPattern2,
-		NULL
-	);
-#endif
-
-	ReadTextures();
-
-#ifdef __MINGW32__
-	MINGW_CharCreateTraceV4(
-		"SetChangeJobFace AFTER ReadTextures",
-		jobIndex,
-		0,
-		&JobCharacter[jobIndex],
-		JobCharacter[jobIndex].lpDinaPattern2,
-		NULL
-	);
-#endif
-
-	if(!JobCharacter[jobIndex].lpDinaPattern2)
-	{
-#ifdef __MINGW32__
-		MINGW_CharCreateTraceV4(
-			"SetChangeJobFace NULL lpDinaPattern2",
-			jobIndex,
-			0,
-			&JobCharacter[jobIndex],
-			NULL,
-			NULL
-		);
-#endif
+	const int posX = JobCharacter[jobIndex].pX;
+	const int posY = JobCharacter[jobIndex].pY;
+	const int posZ = JobCharacter[jobIndex].pZ;
+	if (!AddJobCharacter(charFile1, chrFile2, jobIndex))
 		return FALSE;
-	}
 
-	if(!JobCharacter[jobIndex].lpDinaPattern2->Pat)
-	{
-#ifdef __MINGW32__
-		MINGW_CharCreateTraceV4(
-			"SetChangeJobFace NULL Pat",
-			jobIndex,
-			0,
-			JobCharacter[jobIndex].lpDinaPattern2,
-			NULL,
-			NULL
-		);
-#endif
-		return FALSE;
-	}
-
-	if(
-		!JobCharacter[jobIndex]
-			.lpDinaPattern2
-			->Pat
-			->smMaterialGroup
-	)
-	{
-#ifdef __MINGW32__
-		MINGW_CharCreateTraceV4(
-			"SetChangeJobFace NULL smMaterialGroup",
-			jobIndex,
-			0,
-			JobCharacter[jobIndex].lpDinaPattern2,
-			JobCharacter[jobIndex].lpDinaPattern2->Pat,
-			NULL
-		);
-#endif
-		return FALSE;
-	}
-
-#ifdef __MINGW32__
-	MINGW_CharCreateTraceV4(
-		"SetChangeJobFace BEFORE TextureSwap",
-		jobIndex,
-		0,
-		JobCharacter[jobIndex].lpDinaPattern2,
-		JobCharacter[jobIndex].lpDinaPattern2->Pat,
-		JobCharacter[jobIndex].lpDinaPattern2->Pat->smMaterialGroup
-	);
-#endif
-
-	JobCharacter[jobIndex]
-		.lpDinaPattern2
-		->Pat
-		->smMaterialGroup
-		->CheckMatreialTextureSwap();
-
-#ifdef __MINGW32__
-	MINGW_CharCreateTraceV4(
-		"SetChangeJobFace AFTER TextureSwap",
-		jobIndex,
-		0,
-		JobCharacter[jobIndex].lpDinaPattern2,
-		JobCharacter[jobIndex].lpDinaPattern2->Pat,
-		JobCharacter[jobIndex].lpDinaPattern2->Pat->smMaterialGroup
-	);
-#endif
-
+	// AddLoaderPattern publishes asynchronously. Preserve the current preview
+	// position while the new face/model is prepared; completion swaps the bundle
+	// atomically on the owner thread and prewarms its material textures.
+	JobCharacter[jobIndex].SetPosi(posX, posY, posZ, 0, ANGLE_180, 0);
 	return TRUE;
 }
 
@@ -1038,6 +1015,7 @@ int HoLogin::Close()
 		delete Stage;
 		Stage = NULL;
 	}
+	OpeningStageTexturesReady = false;
 
 	for (int index = 0; index < UserCharacterCount; index++)
 		UserCharacter[index].Init();
@@ -1107,6 +1085,13 @@ int HoLogin::CameraUpDown()
 
 int HoLogin::Main()
 {
+	PumpPreloadStage();
+    if (Stage && Stage->smMaterialGroup)
+    {
+        // Keep scene residency moving without a frame-sized decode burst.
+        AssetLoadV2PrewarmMaterialGroupStep(Stage->smMaterialGroup,
+            SMASSET_OWNER_UI, 1, 2u, 1);
+    }
 	if (ErrorSelect != ERROR_NONE)
 	{
 		if (StartErrorDelayFlag == FALSE)
@@ -1238,7 +1223,10 @@ int HoLogin::Main()
 		}
 
 		for (int index = 0; index < JobCharacterCount; index++)
-			JobCharacter[index].Main();
+		{
+			if (JobCharacter[index].DisplayFlag)
+				JobCharacter[index].Main();
+		}
 	}
 
 
@@ -1254,12 +1242,14 @@ int HoLogin::Main()
 		{
 
 
-			if (CharacterReturnFlag)
+			if (CharacterReturnFlag && Stage)
 			{
 				CharacterStopFlag = FALSE;
 				CharacterReturnFlag = FALSE;
 				for (int index = 0; index < JobCharacterCount; index++)
 				{
+					if (!JobCharacter[index].DisplayFlag)
+						continue;
 					int classPosX = 0;
 			int classPosZ = 0;
 			GetJobCharacterWorldPosition(index, classPosX, classPosZ);
@@ -1285,7 +1275,7 @@ int HoLogin::Main()
 				static int s_completeTraceCount = 0;
 				if (s_completeTraceCount < 120)
 				{
-					FILE *fp = fopen("LOGS\\mingw_complete_state.txt", "a");
+					FILE *fp = SummitHoLoginRuntimeTraceFile("LOGS\\mingw_complete_state.txt", "a");
 					if (fp)
 					{
 						fprintf(fp,
@@ -1464,16 +1454,14 @@ int HoLogin::MainDefaultButton()
 				userCount++;
 		}
 
-		if (userCount == 0)
+		// Character creation depends on free account slots, not on the account
+		// being completely empty.  The old userCount == 0 guard made the
+		// button stop receiving input as soon as one character existed.
+		if (UserCharacterCount < CHARACTER_USER_MAX &&
+			NewCharButton.Main(pCursorPos.x, pCursorPos.y, MouseButton[0]))
 		{
-			if (NewCharButton.Main(pCursorPos.x, pCursorPos.y, MouseButton[0]))
-			{
-				if (userCount == 0)
-				{
-					SelectNextState = RACE_SELECT_STATE;
-					PlayWav2(9 - 1);
-				}
-			}
+			SelectNextState = RACE_SELECT_STATE;
+			PlayWav2(9 - 1);
 		}
 	}
 
@@ -1573,7 +1561,7 @@ int HoLogin::MainDefaultButton()
 
 		// MINGW_SELECT_QUIT_TRACE_V1
 		{
-			FILE *mingwQuitTrace = fopen(
+			FILE *mingwQuitTrace = SummitHoLoginRuntimeTraceFile(
 				"LOGS\\mingw_select_quit_trace.txt",
 				"a"
 			);
@@ -1598,7 +1586,7 @@ int HoLogin::MainDefaultButton()
 		PlayWav(4 - 1);
 		SelectSubState = SUB_SELECT_BACK;
 		{
-			FILE *mingwQuitTrace = fopen(
+			FILE *mingwQuitTrace = SummitHoLoginRuntimeTraceFile(
 				"LOGS\\mingw_select_quit_trace.txt",
 				"a"
 			);
@@ -1629,10 +1617,7 @@ int HoLogin::MainDefaultButton()
 int HoLogin::InitUserCharacter()
 {
 	for (int index = 0; index < CHARACTER_USER_MAX; index++)
-	{
-		if (UserCharacter[index].DisplayFlag != FALSE)
-			UserCharacter[index].Init();
-	}
+		UserCharacter[index].Init();
 	UserCharacterCount = 0;
 
 	return TRUE;
@@ -1640,11 +1625,16 @@ int HoLogin::InitUserCharacter()
 
 int HoLogin::DrawJobCharacter(int x, int y, int z, int ax, int ay, int az)
 {
+	if (!Stage)
+		return TRUE;
 	smCHAR_SetCameraPosi(x, y, z, ax, ay, az);
 	int index;
 	BOOL mouseDownFlag = FALSE;
 	for (index = 0; index < JobCharacterCount; index++)
 	{
+		if (!JobCharacter[index].DisplayFlag)
+			continue;
+
 		if (SelectCurrentState == JOB_SELECT_STATE
 			&& ErrorSelect == ERROR_NONE
 			&& SelectCurrentState == SelectNextState)
@@ -1881,6 +1871,8 @@ int HoLogin::DrawJobCharacter(int x, int y, int z, int ax, int ay, int az)
 
 int HoLogin::DrawUserCharacter(int x, int y, int z, int ax, int ay, int az)
 {
+	if (!Stage)
+		return TRUE;
 	smCHAR_SetCameraPosi(x, y, z, ax, ay, az);
 
 	BOOL mouseDownFlag = FALSE;
@@ -2240,7 +2232,7 @@ int HoLogin::DrawSelectSubState()
 			if ((MouseButton[0] || VRKeyBuff[VK_RETURN]) &&
 				s_newConfirmTraceCount < 40)
 			{
-				FILE *fp = fopen("LOGS\\mingw_new_confirm.txt", "a");
+				FILE *fp = SummitHoLoginRuntimeTraceFile("LOGS\\mingw_new_confirm.txt", "a");
 				if (fp)
 				{
 					fprintf(fp,
@@ -2266,7 +2258,7 @@ int HoLogin::DrawSelectSubState()
 			if ((MouseButton[0] || VRKeyBuff[VK_RETURN] || flag != 0) &&
 				s_newConfirmAfterCount < 40)
 			{
-				FILE *fp = fopen("LOGS\\mingw_new_confirm.txt", "a");
+				FILE *fp = SummitHoLoginRuntimeTraceFile("LOGS\\mingw_new_confirm.txt", "a");
 				if (fp)
 				{
 					fprintf(fp,
@@ -2295,7 +2287,7 @@ int HoLogin::DrawSelectSubState()
 #ifdef __MINGW32__
 			// MINGW_NEW_SERVER_TRACE_V1
 			{
-				FILE *fp = fopen("LOGS\\mingw_new_server.txt", "a");
+				FILE *fp = SummitHoLoginRuntimeTraceFile("LOGS\\mingw_new_server.txt", "a");
 				if (fp)
 				{
 					fprintf(fp,
@@ -2313,7 +2305,7 @@ int HoLogin::DrawSelectSubState()
 
 #ifdef __MINGW32__
 			{
-				FILE *fp = fopen("LOGS\\mingw_new_server.txt", "a");
+				FILE *fp = SummitHoLoginRuntimeTraceFile("LOGS\\mingw_new_server.txt", "a");
 				if (fp)
 				{
 					fprintf(fp,
@@ -2348,7 +2340,7 @@ int HoLogin::DrawSelectSubState()
 
 			if (s_newServerWaitTrace < 120)
 			{
-				FILE *fp = fopen("LOGS\\mingw_new_server.txt", "a");
+				FILE *fp = SummitHoLoginRuntimeTraceFile("LOGS\\mingw_new_server.txt", "a");
 				if (fp)
 				{
 					if (ServerReturn)
@@ -2891,11 +2883,21 @@ int HoLogin::Draw()
 				DeleteButton.Draw(0, SETTINGSHANDLER->getHeight() - 40);
 
 			if (userCount == 0)
+			{
 				NewCharButton.Draw(twoButtonStartPos, SETTINGSHANDLER->getHeight() - 40);
+				QuitButton.Draw(twoButtonStartPos + 110, SETTINGSHANDLER->getHeight() - 40);
+			}
+			else if (UserCharacterCount < CHARACTER_USER_MAX)
+			{
+				OkButton.Draw(threeButtonStartPos, SETTINGSHANDLER->getHeight() - 40);
+				NewCharButton.Draw(threeButtonStartPos + 100, SETTINGSHANDLER->getHeight() - 40);
+				QuitButton.Draw(threeButtonStartPos + 200, SETTINGSHANDLER->getHeight() - 40);
+			}
 			else
+			{
 				OkButton.Draw(twoButtonStartPos, SETTINGSHANDLER->getHeight() - 40);
-
-			QuitButton.Draw(twoButtonStartPos + 110, SETTINGSHANDLER->getHeight() - 40);
+				QuitButton.Draw(twoButtonStartPos + 110, SETTINGSHANDLER->getHeight() - 40);
+			}
 		}
 		else if (SelectCurrentState == RACE_SELECT_STATE)
 		{
@@ -2927,8 +2929,6 @@ int HoLogin::Draw()
 
 					LoadSelectableJobCharacters();
 
-					ReadTextures();
-
 				}
 			}
 			else
@@ -2957,8 +2957,6 @@ int HoLogin::Draw()
 
 
 					LoadSelectableJobCharacters();
-
-					ReadTextures();
 				}
 			}
 			else

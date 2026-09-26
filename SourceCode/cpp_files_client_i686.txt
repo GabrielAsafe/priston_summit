@@ -5,6 +5,9 @@ Shared/gameplay/classes/v2/content/LegacyClassCatalog.cpp
 Shared/gameplay/classes/v2/content/ReservedClassCatalog.cpp
 Shared/gameplay/classes/v2/PlayableClassRegistry.cpp
 Shared/gameplay/classes/v2/services/ClassService.cpp
+Shared/gameplay/skills/v2/content/LegacySkillCatalog.cpp
+Shared/gameplay/skills/v2/services/SkillService.cpp
+Shared/gameplay/skills/v2/SkillRegistry.cpp
 SrcGame/src/compat/client_server/client_server_stubs.cpp
 SrcGame/src/compat/client_server/server_legacy/DllServer.cpp
 SrcGame/src/compat/directx/d3dx9/d3dx_font_alias.cpp
@@ -218,9 +221,11 @@ SrcGame/src/systems/ui/v2/hud/PlayerHud.cpp
 SrcGame/src/systems/ui/v2/input/UIFocusManager.cpp
 SrcGame/src/systems/ui/v2/input/UIInputRouter.cpp
 SrcGame/src/systems/ui/v2/input/UIPointerCapture.cpp
+SrcGame/src/systems/ui/v2/legacy/CovenantEffectHud.cpp
 SrcGame/src/systems/ui/v2/legacy/LegacyCharacterStatsGateway.cpp
 SrcGame/src/systems/ui/v2/legacy/LegacyCompanionGateway.cpp
 SrcGame/src/systems/ui/v2/legacy/LegacyContextGateway.cpp
+SrcGame/src/systems/ui/v2/legacy/LegacyCovenantGateway.cpp
 SrcGame/src/systems/ui/v2/legacy/LegacyInventoryGateway.cpp
 SrcGame/src/systems/ui/v2/legacy/LegacyMessageWindow.cpp
 SrcGame/src/systems/ui/v2/legacy/LegacyNotificationHud.cpp
@@ -231,6 +236,7 @@ SrcGame/src/systems/ui/v2/legacy/LegacySkillNpcWindow.cpp
 SrcGame/src/systems/ui/v2/legacy/LegacyUIV2Bridge.cpp
 SrcGame/src/systems/ui/v2/pages/AttributesPage.cpp
 SrcGame/src/systems/ui/v2/pages/CompanionsPage.cpp
+SrcGame/src/systems/ui/v2/pages/CovenantsPage.cpp
 SrcGame/src/systems/ui/v2/pages/InventoryPage.cpp
 SrcGame/src/systems/ui/v2/pages/SkillsPage.cpp
 SrcGame/src/systems/ui/v2/panels/ContextPanel.cpp

@@ -396,44 +396,39 @@ int sinDrawEffect(int x, int y, int z, int ax, int ay, int az)
 
 	for(i = 0; i < Count; i++)
 	{
-		if(sinEffect_ZDepth[i].Index && sinEffect[sinEffect_ZDepth[i].Index - 1].State == SIN_EFFECT_ALIVE)
+		const int effectIndex = sinEffect_ZDepth[i].Index - 1;
+		if(effectIndex >= 0 && effectIndex < SIN_MAX_EFFECT &&
+			sinEffect[effectIndex].State == SIN_EFFECT_ALIVE)
 		{
-			if(sinEffect[i].MeshFlag)
+			sinEFFECT &effect = sinEffect[effectIndex];
+			if(effect.MeshFlag && effect.sinPatMesh && effect.sinPatMesh->nObj3d > 0 && effect.sinPatMesh->obj3d[0])
 			{
 				LegacySinEffectPolicy::BeginMeshScene();
 
 				POINT3D angle;
-				memcpy(&angle, &sinEffect[sinEffect_ZDepth[i].Index - 1].MoveAngle, sizeof(POINT3D));
+				memcpy(&angle, &effect.MoveAngle, sizeof(POINT3D));
 
 				angle.y = (-angle.y + ANGLE_180)&ANGCLIP;
 
-				sinEffect[i].sinPatMesh->SetPosi(&sinEffect[sinEffect_ZDepth[i].Index - 1].ObjectPosi, &angle);
-
-
-
-				sinEffect[i].sinPatMesh->TmLastFrame = -1;
-				sinEffect[i].sinPatMesh->SetFrame(0);
+				effect.sinPatMesh->SetPosi(&effect.ObjectPosi, &angle);
+				effect.sinPatMesh->TmLastFrame = -1;
+				effect.sinPatMesh->SetFrame(0);
 
 				smMATRIX	Mat;
 				smIdentityMatrix(Mat);
-
 				Mat._22 *= 4;
 
-				smMatrixMult(sinEffect[i].sinPatMesh->obj3d[0]->mWorld, Mat, sinEffect[i].sinPatMesh->obj3d[0]->mWorld);
-
-				sinEffect[i].sinPatMesh->Frame = -1;
-
-
-
-				sinEffect[i].sinPatMesh->RenderD3D(&tPosi, &tAngle);
+				smMatrixMult(effect.sinPatMesh->obj3d[0]->mWorld, Mat, effect.sinPatMesh->obj3d[0]->mWorld);
+				effect.sinPatMesh->Frame = -1;
+				effect.sinPatMesh->RenderD3D(&tPosi, &tAngle);
 				LegacySinEffectPolicy::EndMeshScene();
 			}
-			else
-				cSin3D.sinDrawTexture(x, y, z, ax, ay, az, &sinEffect[sinEffect_ZDepth[i].Index - 1].sinFace, sinEffect[sinEffect_ZDepth[i].Index - 1].FaceAngle);
-			sinEffect_ZDepth[i].Index = 0;
-
+			else if(!effect.MeshFlag)
+			{
+				cSin3D.sinDrawTexture(x, y, z, ax, ay, az, &effect.sinFace, effect.FaceAngle);
+			}
 		}
-
+		sinEffect_ZDepth[i].Index = 0;
 	}
 
 	return TRUE;

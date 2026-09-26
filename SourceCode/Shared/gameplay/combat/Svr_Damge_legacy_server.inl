@@ -3315,6 +3315,29 @@ int RecvRangeAttackUser(rsPLAYINFO *lpPlayInfo, TRANS_SKIL_ATTACKDATA *lpTransSk
 
 
 
+static int SummitT5TraceEnabledServer()
+{
+	char value[8] = { 0 };
+	DWORD len = GetEnvironmentVariableA("SUMMIT_T5_TRACE", value, sizeof(value));
+	return (len > 0 && value[0] != '0') ? TRUE : FALSE;
+}
+
+static void SummitTraceT5ServerAuthority(rsPLAYINFO *playInfo, DWORD skillCode, int point, const char *result)
+{
+	DWORD playCode = skillCode & 0xFF;
+	if(playCode < SKILL_PLAY_T51 || playCode > SKILL_PLAY_T54 || !SummitT5TraceEnabledServer()) return;
+	FILE *fp = fopen("LOGS\\summit_t5_protocol_server.txt", "a");
+	if(!fp) fp = fopen("summit_t5_protocol_server.txt", "a");
+	if(!fp) return;
+	int slot = (int)(playCode - SKILL_PLAY_T51);
+	int learned = (playInfo && slot >= 0 && slot < 4) ? (int)playInfo->bSkillPoint[16 + slot] : -1;
+	fprintf(fp, "server-cast result=%s job=%u rank=%d skill=0x%02X point=%d learned=%d object=%u\n",
+		result ? result : "?", playInfo ? (unsigned int)playInfo->smCharInfo.JOB_CODE : 0u,
+		playInfo ? (int)playInfo->smCharInfo.ChangeJob : -1, (unsigned int)playCode, point, learned,
+		playInfo ? (unsigned int)playInfo->dwObjectSerial : 0u);
+	fclose(fp);
+}
+
 // Tier 5 play IDs 0xE1..0xE4 are Summit-owned logical slot IDs:
 // T51 -> UseSkill[17], T52 -> UseSkill[18], T53 -> UseSkill[19], T54 -> UseSkill[20].
 // Passive skills keep their logical slot but never emit a play packet.
@@ -3323,14 +3346,32 @@ int rsCheckTier5SkillAuthority(rsPLAYINFO *lpPlayInfo, DWORD dwSkillCode, int po
 	DWORD dwCode = dwSkillCode & 0xFF;
 
 	if(dwCode < SKILL_PLAY_T51 || dwCode > SKILL_PLAY_T54) return TRUE;
-	if(!lpPlayInfo || point < 0 || point >= 10) return FALSE;
-	if(!gameplay::classes::DefaultClassService().UsesLegacyTier5Slots(lpPlayInfo->smCharInfo.JOB_CODE)) return FALSE;
+	if(!lpPlayInfo || point < 0 || point >= 10)
+	{
+		SummitTraceT5ServerAuthority(lpPlayInfo, dwSkillCode, point, "reject-invalid-point");
+		return FALSE;
+	}
+	if(!gameplay::classes::DefaultClassService().UsesLegacyTier5Slots(lpPlayInfo->smCharInfo.JOB_CODE))
+	{
+		SummitTraceT5ServerAuthority(lpPlayInfo, dwSkillCode, point, "reject-job-contract");
+		return FALSE;
+	}
 
 	int slot = (int)(dwCode - SKILL_PLAY_T51);
 	BYTE learnedPoint = lpPlayInfo->bSkillPoint[16 + slot];
 
-	if(learnedPoint < 1 || learnedPoint > 10) return FALSE;
-	return (learnedPoint == (BYTE)(point + 1)) ? TRUE : FALSE;
+	if(learnedPoint < 1 || learnedPoint > 10)
+	{
+		SummitTraceT5ServerAuthority(lpPlayInfo, dwSkillCode, point, "reject-not-learned");
+		return FALSE;
+	}
+	if(learnedPoint != (BYTE)(point + 1))
+	{
+		SummitTraceT5ServerAuthority(lpPlayInfo, dwSkillCode, point, "reject-point-mismatch");
+		return FALSE;
+	}
+	SummitTraceT5ServerAuthority(lpPlayInfo, dwSkillCode, point, "authority-ok");
+	return TRUE;
 }
 
 int rsCheckSkillLevel(rsPLAYINFO *lpPlayInfo, DWORD dwSkillCode)
@@ -3342,8 +3383,17 @@ int rsCheckSkillLevel(rsPLAYINFO *lpPlayInfo, DWORD dwSkillCode)
 	// Tier 5 requires both the logical rank and the canonical server-side Rank5 quest completion.
 	if(dwCode >= SKILL_PLAY_T51 && dwCode <= SKILL_PLAY_T54)
 	{
-		if(lpPlayInfo->smCharInfo.ChangeJob < CHARACTER_RANK5) return FALSE;
-		return cQuestHandler.HasCompletedRank5Quest(lpPlayInfo) ? TRUE : FALSE;
+		if(lpPlayInfo->smCharInfo.ChangeJob < CHARACTER_RANK5)
+		{
+			SummitTraceT5ServerAuthority(lpPlayInfo, dwSkillCode, -1, "reject-rank");
+			return FALSE;
+		}
+		if(!cQuestHandler.HasCompletedRank5Quest(lpPlayInfo))
+		{
+			SummitTraceT5ServerAuthority(lpPlayInfo, dwSkillCode, -1, "reject-rank5-quest");
+			return FALSE;
+		}
+		return TRUE;
 	}
 
 	if(dwCode >= 0xC0) return TRUE;

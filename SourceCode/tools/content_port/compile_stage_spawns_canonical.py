@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+import argparse,hashlib,json,struct
+from pathlib import Path
+MAGIC=b'SSPB';VERSION=2
+HEADER=struct.Struct('<4sHHIIIIIIIIII32s');RECORD=struct.Struct('<IIiiIiIIII');ACTOR=struct.Struct('<IIi');BOSS=struct.Struct('<IIIIiII');HOUR=struct.Struct('<I')
+def main():
+ ap=argparse.ArgumentParser();ap.add_argument('canonical',type=Path);ap.add_argument('output',type=Path);a=ap.parse_args();root=a.canonical.resolve();idx=json.loads((root/'index.json').read_text(encoding='utf-8'))['documents'];docs=[json.loads((root/e['json_path']).read_text(encoding='utf-8')) for e in idx];docs.sort(key=lambda d:d['logical_path'].casefold())
+ strings=bytearray();off={}
+ def ib(b):
+  if b'\0' in b:raise ValueError('NUL in SSPB string')
+  if b not in off:off[b]=len(strings);strings.extend(b+b'\0')
+  return off[b]
+ def it(s):return ib(s.encode('utf-8'))
+ empty=ib(b'');actors=[];bosses=[];hours=[];records=[]
+ for d in docs:
+  ast=len(actors)
+  for x in d.get('actors',[]):
+   raw=bytes.fromhex(x['legacy_name_bytes_hex']);mid=x.get('monster_id','');actors.append((ib(raw),it(mid) if mid else empty,int(x.get('weight',0))))
+  bst=len(bosses)
+  for x in d.get('bosses',[]):
+   hs=[int(v) for v in x.get('open_hours',[])];hst=len(hours);hours.extend(hs);mr=bytes.fromhex(x['master_legacy_name_bytes_hex']);sr=bytes.fromhex(x['slave_legacy_name_bytes_hex']);mid=x.get('master_monster_id','');sid=x.get('slave_monster_id','');bosses.append((ib(mr),ib(sr),it(mid) if mid else empty,it(sid) if sid else empty,int(x.get('slave_count',0)),hst,len(hs)))
+  delay=d.get('delay') or {};shift=int(delay.get('shift',7));oi=(1<<shift);oi=oi-1 if oi>1 else oi;records.append((it(d['logical_path'].lower()),it(d['id']),int(d.get('limit_max',0)),oi,int(delay.get('milliseconds',0)),int(d.get('open_limit',3)),ast,len(actors)-ast,bst,len(bosses)-bst))
+ ro=HEADER.size;ao=ro+len(records)*RECORD.size;bo=ao+len(actors)*ACTOR.size;ho=bo+len(bosses)*BOSS.size;so=ho+len(hours)*HOUR.size;body=bytearray()
+ for x in records:body.extend(RECORD.pack(*x))
+ for x in actors:body.extend(ACTOR.pack(*x))
+ for x in bosses:body.extend(BOSS.pack(*x))
+ for x in hours:body.extend(HOUR.pack(x))
+ body.extend(strings);digest=hashlib.sha256(body).digest();header=HEADER.pack(MAGIC,VERSION,0,len(records),ro,len(actors),ao,len(bosses),bo,len(hours),ho,so,len(strings),digest);a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_bytes(header+body);print(json.dumps({'format':'SSPB','version':VERSION,'maps':len(records),'actors':len(actors),'bosses':len(bosses),'bytes':a.output.stat().st_size,'sha256':hashlib.sha256(a.output.read_bytes()).hexdigest()}))
+if __name__=='__main__':main()

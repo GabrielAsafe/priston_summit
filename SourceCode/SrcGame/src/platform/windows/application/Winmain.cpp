@@ -20,6 +20,7 @@
 #include "systems/gameplay/character/core/character.h"
 #include "systems/gameplay/character/core/CharacterModelStreamingV3.h"
 #include "systems/rendering/sky/SkyStreamingV3.h"
+#include "systems/rendering/effects/legacy_sin/AssaUtil.h"
 #include "core/concurrency/JobSystem.h"
 #include "systems/rendering/assets/v3/AssetStreamingV3.h"
 #include "core/gameplay/runtime/playmain.h"
@@ -1284,8 +1285,9 @@ switch (messg)
 
 		if (g_IsDxProjectZoomIn > 0)
 		{
-			// Full map remains open while typing/chatting. Only Escape closes it.
-			if (wParam == VK_ESCAPE)
+			// Keep the map key symmetric: M opens the full map and M closes it.
+			// Escape remains the universal close path.
+			if (wParam == VK_ESCAPE || wParam == 'M')
 			{
 				SetFullZoomMap(0);
 				pCursorPos.x = g_iFzmCursorPosX;
@@ -1389,17 +1391,17 @@ switch (messg)
 			}
 		}
 
-		if (wParam == VK_F9)
+		if (wParam == VK_F9 && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 		{
 			if (!cCoinShop.isOpen())
 				cCoinShop.Open();
 		}
-		if (wParam == VK_F10)
+		if (wParam == VK_F10 && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 		{
 			if (!cCoinShop_T.isOpen())
 				cCoinShop_T.Open();
 		}
-		if (wParam == VK_F11)
+		if (wParam == VK_F11 && !VRKeyBuff[VK_CONTROL] && !VRKeyBuff[VK_SHIFT] && !VRKeyBuff[VK_MENU])
 		{
 			if (!cSettings.isOpen())
 				cSettings.Open();
@@ -2820,16 +2822,18 @@ void PlayD3D()
 {
 	DWORD dwTime = GetCurrentTime();
 
-	// Streaming V3: worker completions are owned by the frame loop, not by
-	// character/field simulation.  This is important during bootstrap because
-	// gameplay is intentionally gated until collision geometry is resident.
+	// Streaming V3 completions have one owner: the frame loop. Always advance
+	// stage publication/prewarm here, including while gameplay is behind the
+	// bootstrap barrier. Keeping these pumps independent from FieldMain avoids
+	// changing streaming cadence at the exact frame gameplay becomes enabled.
 	SummitPumpModelStreamingV3();
 	SummitPumpSkyStreamingV3();
-	if (IsStageBootstrapBlockingGameplayAsync())
-	{
-		PumpStageStreamingV3();
-		PumpStageTexturePrewarm();
-	}
+	PumpStageStreamingV3();
+	PumpStageTexturePrewarm();
+	// Keep low-priority effect materials moving even after opening/selection.
+	// If gameplay reaches an effect before this finishes, AssaSearchRes has an
+	// exact synchronous fallback for that one texture instead of drawing white.
+	SummitPrewarmAssaEffectTexturesStep(1, 2);
 	AssetLoadV3PumpTextureUploads();
 
 	if (dwLastPlayTime)
@@ -2962,9 +2966,11 @@ void PlayD3D()
 	{
 		EnterCriticalSection(&cDrawSection);
 		smEnterTextureCriticalSection();
-		BeginRender();
-		d3ddev->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, smBackColor, 1.0f, 0);
-		EndRender();
+		if (BeginRender())
+		{
+			d3ddev->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, smBackColor, 1.0f, 0);
+			EndRender();
+		}
 		IncTextureFrame();
 		smLeaveTextureCriticalSection();
 		LeaveCriticalSection(&cDrawSection);
@@ -4852,7 +4858,8 @@ void smPlayD3D(int x, int y, int z, int ax, int ay, int az)
 
 	DispPolyCnt = 0;
 
-	BeginRender();
+	if (!BeginRender())
+		return;
 
 	SetRendSight();
 
@@ -5250,7 +5257,9 @@ DWORD GameWindowMessage(HWND hWnd, UINT messg, WPARAM wParam, LPARAM lParam)
 			if (smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
 			{
 
-				if (wParam == VK_F9 && VRKeyBuff[VK_F9] == 0)
+				// F9 is the player CoinShop shortcut. Keep the GM debug overlay on
+				// Ctrl+F9 so one key press cannot open two unrelated surfaces.
+				if (VRKeyBuff[VK_CONTROL] && wParam == VK_F9 && VRKeyBuff[VK_F9] == 0)
 				{
 					if (DisplayDebug) DisplayDebug = FALSE;
 					else DisplayDebug = TRUE;

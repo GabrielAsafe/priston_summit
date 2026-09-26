@@ -148,7 +148,11 @@
  Shared/authentication/character_selection/ClassSelectionAdapter.h \
  Shared/gameplay/classes/v2/services/ClassService.h \
  Shared/gameplay/classes/v2/PlayableClassRegistry.h \
- Shared/gameplay/classes/v2/domain/ClassDefinition.h
+ Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ SrcGame/src/core/concurrency/JobSystem.h \
+ SrcGame/src/core/concurrency/SourceAssetLock.h \
+ SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h \
+ SrcGame/src/systems/gameplay/character/core/CharacterModelStreamingV3.h
 Shared/authentication/character_selection/HoLogin_legacy_client.inl:
 Shared/opcodes.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
@@ -301,3 +305,7 @@ Shared/authentication/character_selection/ClassSelectionAdapter.h:
 Shared/gameplay/classes/v2/services/ClassService.h:
 Shared/gameplay/classes/v2/PlayableClassRegistry.h:
 Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+SrcGame/src/core/concurrency/JobSystem.h:
+SrcGame/src/core/concurrency/SourceAssetLock.h:
+SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h:
+SrcGame/src/systems/gameplay/character/core/CharacterModelStreamingV3.h:

@@ -1,5 +1,8 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_server_i686/objects/SrcServer/src/systems/social/clan/legacy/Help.o: \
  SrcServer/src/systems/social/clan/legacy/Help.cpp \
+ Shared/content/v1/text_resource/content/TextResourceRuntime.h \
+ Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
+ Shared/content/v1/common/Sha256.h \
  SrcServer/src/systems/social/clan/legacy/tjclanDEF.h \
  SrcServer/src/systems/localization/config/language.h \
  SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h \
@@ -121,6 +124,9 @@
  SrcServer/src/systems/social/clan/legacy/cE_Notice.h \
  SrcServer/src/systems/social/clan/legacy/Help.h \
  SrcServer/src/systems/social/clan/legacy/GuideHelp.h
+Shared/content/v1/text_resource/content/TextResourceRuntime.h:
+Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
+Shared/content/v1/common/Sha256.h:
 SrcServer/src/systems/social/clan/legacy/tjclanDEF.h:
 SrcServer/src/systems/localization/config/language.h:
 SrcServer/src/core/server/legacy_sin_runtime/sinLinkHeader.h:

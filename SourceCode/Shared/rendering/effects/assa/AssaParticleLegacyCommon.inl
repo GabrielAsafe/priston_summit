@@ -625,8 +625,14 @@ void cASSAPARTSHOT::Start(POINT3D *pCurPosi, POINT3D *pDestPosi, cASSAEFFECT *pE
 
 void cASSAPARTSHOT::SetChainLighting(smCHAR **pCharList, int count)
 {
-	memcpy(CharList, pCharList, 4 * count);
-	CharCount = count;
+	CharCount = 0;
+	ChainLightingFlag = false;
+	if(!pCharList || count <= 0)
+		return;
+	const int safeCount = count > static_cast<int>(sizeof(CharList) / sizeof(CharList[0]))
+		? static_cast<int>(sizeof(CharList) / sizeof(CharList[0])) : count;
+	memcpy(CharList, pCharList, sizeof(CharList[0]) * safeCount);
+	CharCount = safeCount;
 	ChainLightingFlag = true;
 }
 
@@ -7399,10 +7405,12 @@ void AssaRunicGuardianBossHit::Start(POINT3D *pCur, smCHAR *destChar, LegacyAssa
 	CharCount = 0;
 
 	TempMyIndex = -1;
-	if(charCount > 0)
+	if(charList && charCount > 0)
 	{
-		memcpy(CharList, charList, 4 * charCount);
-		CharCount = charCount;
+		const int safeCount = charCount > static_cast<int>(sizeof(CharList) / sizeof(CharList[0]))
+			? static_cast<int>(sizeof(CharList) / sizeof(CharList[0])) : charCount;
+		memcpy(CharList, charList, sizeof(CharList[0]) * safeCount);
+		CharCount = safeCount;
 
 		for(int index = 0; index < CharCount; index++)
 		{

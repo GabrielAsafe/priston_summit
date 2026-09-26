@@ -23,6 +23,7 @@
 #include "core/server/legacy_runtime/PartyMsg.h"
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/gameplay/companions/CompanionSystem.h"
+#include "systems/gameplay/progression/v2/ProgressionRuntime.h"
 
 extern DWORD	dwPlayServTime;
 
@@ -603,6 +604,15 @@ int rsPLAYINFO::GetPartyExp(smCHAR* lpChar, rsPLAYINFO* lpPlayInfo)
 					if (ExpUp)
 					{
 						PlayerEXP += (PlayerEXP * ExpUp) / 100;
+					}
+
+					// Apply Covenant XP independently for each eligible party member.
+					{
+						const double covenantExp = gameplay::progression::ApplyServerCovenantModifierValue(
+							lpPartyPlayers[cnt]->getName() ? lpPartyPlayers[cnt]->getName() : "",
+							"xp.monster_gain", "monster", static_cast<double>(PlayerEXP), true,
+							lpChar->dwObjectSerial);
+						PlayerEXP = covenantExp > 0.0 ? static_cast<INT64>(covenantExp) : 0;
 					}
 
 					lpPartyPlayers[cnt]->spEXP_Out += PlayerEXP;

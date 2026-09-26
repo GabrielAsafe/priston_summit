@@ -34,16 +34,20 @@ public:
     bool Join(const std::string& playerKey,
               CovenantId covenantId,
               const conditions::ConditionContext& context);
+    CovenantActivationResult Activate(const std::string& playerKey, CovenantId covenantId);
     bool Leave(const std::string& playerKey, CovenantId covenantId);
     bool AddReputation(const std::string& playerKey,
                        CovenantId covenantId,
                        int amount,
                        const std::string& sourceKey);
+    bool AddRepeatableReputation(const std::string& playerKey, CovenantId covenantId, int amount, const std::string& activityKey);
     bool ReevaluateRank(const std::string& playerKey, CovenantId covenantId);
 
     bool GetMembership(const std::string& playerKey,
                        CovenantId covenantId,
                        CovenantMembershipState& membership);
+    bool GetActiveMembership(const std::string& playerKey,
+                             CovenantMembershipState& membership);
     CovenantRankId GetRank(const std::string& playerKey, CovenantId covenantId);
     bool HasRankAtLeast(const std::string& playerKey,
                         CovenantId covenantId,

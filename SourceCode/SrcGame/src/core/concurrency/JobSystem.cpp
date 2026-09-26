@@ -271,8 +271,16 @@ void JobSystem::Execute(QueuedJob &job)
 
     if (job.group)
         job.group->CompleteOne();
+
+    // WaitIdle() sleeps on idleCv_ while holding mutex_. The transition to
+    // zero must synchronize with that same mutex; otherwise the waiter can
+    // observe pendingJobs_ > 0, the last worker can decrement+notify before
+    // wait() has actually armed, and the notification is lost forever.
     if (pendingJobs_.fetch_sub(1, std::memory_order_acq_rel) == 1)
+    {
+        std::lock_guard<std::mutex> lock(mutex_);
         idleCv_.notify_all();
+    }
     completedJobs_.fetch_add(1, std::memory_order_relaxed);
 }
 

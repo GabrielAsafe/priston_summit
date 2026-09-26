@@ -1,6 +1,14 @@
 int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 {
 
+	if(summit::content::definition::CompiledDefinitionsEnabled())
+	{
+		if(summit::content::definition::ApplyCompiledItemDefinition(szItemFile, *lpDefItem))
+			return TRUE;
+		if(summit::content::definition::DefinitionStrictMode())
+			return FALSE;
+	}
+
 	// Legacy OpenItem parser tokens.
 	// OpenItem files use historical CP949 byte sequences.
 	// Byte escapes keep this source independent of source-file encoding.
@@ -36,7 +44,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 
 	ZeroMemory(lpDefItem, sizeof(sDEF_ITEMINFO));
 
-	fp = fopen(szItemFile, "rb");
+	fp = summit::content::text_resource::OpenTextResourceFile(szItemFile, "rb");
 	if(fp == NULL) return FALSE;
 
 	while(!feof(fp))
@@ -669,7 +677,7 @@ int DecodeItemInfo(char *szItemFile, sDEF_ITEMINFO *lpDefItem)
 			NextFlag = TRUE;
 			fclose(fp);
 
-			fp = fopen(szNextFile, "rb");
+			fp = summit::content::text_resource::OpenTextResourceFile(szNextFile, "rb");
 			if(fp == NULL) break;
 		}
 

@@ -2,8 +2,10 @@
 
 #include <cstdint>
 #include <string>
+#include <vector>
 
 #include "gameplay/events/v2/GameplayEventHub.h"
+#include "gameplay/covenants/v2/ICovenantGameplayBridge.h"
 #include "gameplay/gathering/v2/GatheringTypes.h"
 #include "gameplay/professions/v2/ProfessionService.h"
 #include "systems/gameplay/gathering/v2/GatheringService.h"
@@ -31,11 +33,14 @@ class MiningService
 {
 public:
     MiningService(professions::ProfessionService& professions,
-                  events::GameplayEventHub* eventHub = 0);
+                  events::GameplayEventHub* eventHub = 0,
+                  covenants::ICovenantGameplayBridge* covenantBridge = 0);
 
     bool RegisterResource(const gathering::ResourceDefinition& definition);
     bool RegisterNode(const gathering::GatheringNodeDefinition& definition);
     gathering::HarvestResult Harvest(const MiningRequest& request);
+    void ListResources(std::vector<gathering::ResourceDefinition>& out) const;
+    void ListNodes(std::vector<gathering::GatheringNodeDefinition>& out) const;
 
     gathering::GatheringService& Gathering() { return gathering_; }
     const gathering::GatheringService& Gathering() const { return gathering_; }
@@ -43,6 +48,7 @@ public:
 private:
     professions::ProfessionService& professions_;
     events::GameplayEventHub* eventHub_;
+    covenants::ICovenantGameplayBridge* covenantBridge_;
     gathering::GatheringService gathering_;
 };
 }

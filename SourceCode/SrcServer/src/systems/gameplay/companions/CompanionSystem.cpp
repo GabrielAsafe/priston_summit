@@ -1,5 +1,8 @@
+#include "content/v1/gameplay_config/content/GameplayConfigRuntime.h"
 #include "systems/gameplay/companions/CompanionSystem.h"
 #include "systems/gameplay/companions/CompanionProfileStore.h"
+#include "systems/gameplay/companions/CompanionTacticsStore.h"
+#include "systems/gameplay/companions/CompanionSkillExecutor.h"
 #include "opcodes.h"
 
 #include <algorithm>
@@ -21,6 +24,7 @@
 #include "core/server/gameplay_runtime/playmain.h"
 #include "core/gameplay/legacy_support/playsub.h"
 #include "core/server/legacy_runtime/onserver.h"
+#include "systems/combat/skills/legacy/sinSkill.h"
 #include "modules/File/File.h"
 
 extern DWORD dwPlayServTime;
@@ -40,6 +44,23 @@ namespace companions
 
 namespace
 {
+
+// Used by early AI/loot helpers; definition lives later with the other
+// companion target helpers.
+bool IsValidHostile(smCHAR *candidate);
+
+static int SummitCompanionConfigInt(const char *key, int fallback)
+{
+    if(summit::content::gameplay_config::CompiledGameplayConfigEnabled())
+    {
+        int value = 0;
+        if(summit::content::gameplay_config::TryGameplayConfigInt("Configs/Companion.ini", "Companion", key, value))
+            return value;
+        if(summit::content::gameplay_config::GameplayConfigStrictMode())
+            return fallback;
+    }
+    return GetPrivateProfileIntA("Companion", key, fallback, ".//Configs//Companion.ini");
+}
 
 static bool CompanionDebugEnabled()
 {
@@ -80,12 +101,34 @@ static bool CompanionDebugTick(DWORD serial, DWORD intervalMs)
     return true;
 }
 
+static bool ShouldLogCompanionSkillReject(CompanionSkillRuntime &runtime, int lane,
+    const CompanionSkillAttempt &attempt, DWORD now, DWORD intervalMs)
+{
+    if(lane < 0 || lane >= 3)
+        return false;
+
+    const int reason = (int)attempt.reason;
+    const bool changed = runtime.lastSkillRejectCode[lane] != attempt.skillCode ||
+        runtime.lastSkillRejectReason[lane] != reason;
+    if(!changed && runtime.nextSkillRejectLogTime[lane] &&
+       (int)(runtime.nextSkillRejectLogTime[lane] - now) > 0)
+        return false;
+
+    runtime.lastSkillRejectCode[lane] = attempt.skillCode;
+    runtime.lastSkillRejectReason[lane] = reason;
+    runtime.nextSkillRejectLogTime[lane] = now + intervalMs;
+    return true;
+}
+
 struct CompanionSlot
 {
     CompanionSlot()
         : entity(NULL), cachedLevel(0), changeJob(0),
           cachedExp(0), pendingExp(0), lastExpFlushTime(0),
           retreatLatched(false), retreatUntil(0), deadSince(0),
+          lastProgressCheckTime(0), lastProgressX(0), lastProgressZ(0), stuckTicks(0),
+          nextIdentityCheckTime(0), lootArea(NULL), lootTarget(NULL), lootTargetSince(0),
+          nextLootScanTime(0), nextLootPickupTime(0),
           visualMotionState(0), visualMotionSequence(0), visualMotionFrame(0)
     {
         characterName[0] = 0;
@@ -101,9 +144,20 @@ struct CompanionSlot
     bool retreatLatched;
     DWORD retreatUntil;
     DWORD deadSince;
+    DWORD lastProgressCheckTime;
+    int lastProgressX;
+    int lastProgressZ;
+    int stuckTicks;
+    DWORD nextIdentityCheckTime;
+    STG_AREA *lootArea;
+    STG_ITEMS *lootTarget;
+    DWORD lootTargetSince;
+    DWORD nextLootScanTime;
+    DWORD nextLootPickupTime;
     DWORD visualMotionState;
     DWORD visualMotionSequence;
     int visualMotionFrame;
+    CompanionSkillRuntime skillRuntime;
 };
 
 static const int COMPANION_UI_MAX_EQUIP_CHOICES = 64;
@@ -124,6 +178,7 @@ struct CharacterEquipmentSnapshot
           defaultRight(0), defaultLeft(0), rightCount(0), leftCount(0)
     {
         characterName[0] = 0;
+        ZeroMemory(skillPoints, sizeof(skillPoints));
         defaultRightName[0] = 0;
         defaultLeftName[0] = 0;
     }
@@ -136,6 +191,7 @@ struct CharacterEquipmentSnapshot
     int maxLife;
     int mana;
     int maxMana;
+    BYTE skillPoints[COMPANION_MAX_SKILL_SLOTS];
     DWORD defaultRight;
     DWORD defaultLeft;
     char defaultRightName[32];
@@ -151,9 +207,17 @@ struct LoadoutOverride
     LoadoutOverride()
         : loaded(false), active(false), rightCode(0), leftCode(0),
           mode(COMPANION_MODE_AGGRESSIVE), tactic(COMPANION_TACTIC_BALANCED),
-          retreatHpPercent(0), preferredRange(0), formationSlot(-1)
+          retreatHpPercent(0), preferredRange(0), formationSlot(-1),
+          skillLoadoutActive(false), buffLoadoutActive(false)
     {
         characterName[0] = 0;
+        ZeroMemory(activeSkillSlots, sizeof(activeSkillSlots));
+        ZeroMemory(activeMinResourcePercent, sizeof(activeMinResourcePercent));
+        ZeroMemory(activeTargetModes, sizeof(activeTargetModes));
+        for(int i = 0; i < 4; ++i) activeMinimumTargets[i] = 1;
+        ZeroMemory(buffSkillSlots, sizeof(buffSkillSlots));
+        ZeroMemory(buffIntervalSeconds, sizeof(buffIntervalSeconds));
+        ZeroMemory(buffTargetModes, sizeof(buffTargetModes));
     }
 
     bool loaded;
@@ -166,6 +230,16 @@ struct LoadoutOverride
     int retreatHpPercent;
     int preferredRange;
     int formationSlot;
+    CompanionTacticsConfig customTactics;
+    bool skillLoadoutActive;
+    BYTE activeSkillSlots[4];
+    BYTE activeMinResourcePercent[4];
+    BYTE activeMinimumTargets[4];
+    BYTE activeTargetModes[4];
+    bool buffLoadoutActive;
+    BYTE buffSkillSlots[4];
+    WORD buffIntervalSeconds[4];
+    BYTE buffTargetModes[4];
 };
 
 struct OwnerState
@@ -209,10 +283,18 @@ bool IsSlotActive(const OwnerState &state, const CompanionSlot &slot)
 
 int GetExpFlushSeconds()
 {
-    int seconds = GetPrivateProfileIntA(
-        "Companion", "ExpFlushSeconds", 30, ".//Configs//Companion.ini");
+    int seconds = SummitCompanionConfigInt("ExpFlushSeconds", 30);
     if(seconds < 5) seconds = 5;
     if(seconds > 300) seconds = 300;
+    return seconds;
+}
+
+int GetResurrectionCorpseSeconds()
+{
+    int seconds = GetPrivateProfileIntA(
+        "Companion", "ResurrectionCorpseSeconds", 30, ".//Configs//Companion.ini");
+    if(seconds < 5) seconds = 5;
+    if(seconds > 120) seconds = 120;
     return seconds;
 }
 
@@ -228,9 +310,20 @@ void ClearSlot(CompanionSlot &slot)
     slot.retreatLatched = false;
     slot.retreatUntil = 0;
     slot.deadSince = 0;
+    slot.lastProgressCheckTime = 0;
+    slot.lastProgressX = 0;
+    slot.lastProgressZ = 0;
+    slot.stuckTicks = 0;
+    slot.nextIdentityCheckTime = 0;
+    slot.lootArea = NULL;
+    slot.lootTarget = NULL;
+    slot.lootTargetSince = 0;
+    slot.nextLootScanTime = 0;
+    slot.nextLootPickupTime = 0;
     slot.visualMotionState = 0;
     slot.visualMotionSequence = 0;
     slot.visualMotionFrame = 0;
+    slot.skillRuntime.Reset();
 }
 
 bool FlushSlotExperience(OwnerState &state, CompanionSlot &slot)
@@ -244,6 +337,7 @@ bool FlushSlotExperience(OwnerState &state, CompanionSlot &slot)
     if(!state.owner || !state.owner->getAccount() || !state.owner->getAccount()[0])
         return false;
 
+    const int previousLevel = slot.cachedLevel;
     int newLevel = slot.cachedLevel;
     INT64 newExperience = slot.cachedExp;
     if(!rsAddOfflineCharacterExp(
@@ -258,7 +352,36 @@ bool FlushSlotExperience(OwnerState &state, CompanionSlot &slot)
     slot.cachedLevel = newLevel;
     slot.lastExpFlushTime = dwPlayServTime;
     if(slot.entity && slot.entity->Flag)
+    {
+        // Keep the live companion's progression header coherent with the DAT
+        // that rsAddOfflineCharacterExp just committed.  The legacy helper
+        // grants level StatePoint through ReformCharStatePoint(), but an
+        // already-summoned companion previously kept the old StatePoint/EXP
+        // until dismiss + resummon.  Preserve combat/resources/equipment and
+        // only refresh the progression fields that were authoritatively
+        // persisted by the offline EXP path.
         slot.entity->smCharInfo.Level = newLevel;
+        SetExp64(&slot.entity->smCharInfo, newExperience);
+
+        if(newLevel != previousLevel)
+        {
+            TRANS_RECORD_DATA refreshed;
+            ZeroMemory(&refreshed, sizeof(refreshed));
+            if(rsLoadAccountCharacterRecord(state.owner->getAccount(), slot.characterName, &refreshed))
+            {
+                slot.entity->smCharInfo.StatePoint = refreshed.smCharInfo.StatePoint;
+                slot.entity->smCharInfo.Next_Exp = refreshed.smCharInfo.Next_Exp;
+                slot.entity->smCharInfo.ChangeJob = refreshed.smCharInfo.ChangeJob;
+                slot.entity->smCharInfo.JobBitMask = refreshed.smCharInfo.JobBitMask;
+            }
+
+            CompanionDebugLog(
+                "LEVEL_UP name='%s' serial=%lu level=%d->%d exp=%lld statePoint=%d",
+                slot.characterName, (unsigned long)slot.entity->dwObjectSerial,
+                previousLevel, newLevel, (long long)newExperience,
+                slot.entity->smCharInfo.StatePoint);
+        }
+    }
     return true;
 }
 
@@ -278,7 +401,7 @@ bool FlushSlotExperienceRetry(OwnerState &state, CompanionSlot &slot, int attemp
 
 void PruneState(OwnerState &state)
 {
-    static const DWORD kDeadVisualHoldMs = 3000U;
+    const DWORD kDeadVisualHoldMs = (DWORD)GetResurrectionCorpseSeconds() * 1000U;
     for(int i = 0; i < COMPANION_MAX_ACTIVE; ++i)
     {
         CompanionSlot &slot = state.slots[i];
@@ -400,7 +523,303 @@ smCHAR *FindNearestHostile(smCHAR *character)
     return best;
 }
 
-void EngageTarget(smCHAR *character, smCHAR *target, int preferredRange)
+smCHAR *FindNearestThreatToParty(smCHAR *character, rsPLAYINFO *owner, const OwnerState &state)
+{
+    if(!character || !owner)
+        return NULL;
+    STG_AREA *area = static_cast<STG_AREA *>(character->lpExt4);
+    if(!area)
+        return NULL;
+
+    smCHAR *best = NULL;
+    long long bestDistance = 0x7FFFFFFFFFFFFFFFLL;
+    for(int i = 0; i < area->MonsterLastPoint; ++i)
+    {
+        smCHAR *candidate = area->lpCharMonster[i];
+        if(!IsValidHostile(candidate))
+            continue;
+
+        bool threatensParty = candidate->lpTargetPlayInfo == owner;
+        if(!threatensParty && candidate->lpTargetChar)
+        {
+            for(int slot = 0; slot < COMPANION_MAX_ACTIVE; ++slot)
+            {
+                if(state.slots[slot].entity == candidate->lpTargetChar &&
+                   state.slots[slot].entity && state.slots[slot].entity->Flag)
+                {
+                    threatensParty = true;
+                    break;
+                }
+            }
+        }
+        if(!threatensParty)
+            continue;
+
+        const long long dx = (candidate->pX - character->pX) >> FLOATNS;
+        const long long dz = (candidate->pZ - character->pZ) >> FLOATNS;
+        const long long distance = dx * dx + dz * dz;
+        if(!best || distance < bestDistance)
+        {
+            best = candidate;
+            bestDistance = distance;
+        }
+    }
+    return best;
+}
+
+
+long long ScoreHostileForCompanion(smCHAR *character, rsPLAYINFO *owner,
+    const OwnerState &state, smCHAR *candidate, smCHAR *currentTarget, smCHAR *ownerTarget)
+{
+    if(!character || !IsValidHostile(candidate))
+        return 0x7FFFFFFFFFFFFFFFLL;
+
+    const long long dx = (candidate->pX - character->pX) >> FLOATNS;
+    const long long dz = (candidate->pZ - character->pZ) >> FLOATNS;
+    long long score = dx * dx + dz * dz;
+
+    // Explicit owner focus is handled before scoring. The bonuses below are
+    // deliberately smaller than the full sight-radius delta, so a very distant
+    // stale target can still be replaced by a clearly better nearby threat.
+    if(candidate == currentTarget)
+        score -= 40000;
+    if(candidate == ownerTarget)
+        score -= 60000;
+    if(candidate->lpTargetPlayInfo == owner)
+        score -= 50000;
+
+    if(candidate->lpTargetChar)
+    {
+        for(int slot = 0; slot < COMPANION_MAX_ACTIVE; ++slot)
+        {
+            if(state.slots[slot].entity == candidate->lpTargetChar &&
+               state.slots[slot].entity && state.slots[slot].entity->Flag)
+            {
+                score -= 35000;
+                break;
+            }
+        }
+    }
+    return score;
+}
+
+smCHAR *FindBestHostile(smCHAR *character, rsPLAYINFO *owner, const OwnerState &state,
+    smCHAR *currentTarget, smCHAR *ownerTarget)
+{
+    if(!character)
+        return NULL;
+    STG_AREA *area = static_cast<STG_AREA *>(character->lpExt4);
+    if(!area)
+        return NULL;
+
+    int sight = character->smCharInfo.Sight;
+    if(sight < 220) sight = 220;
+    if(sight > 450) sight = 450;
+    const long long maxDistance = (long long)sight * (long long)sight;
+
+    smCHAR *best = NULL;
+    long long bestScore = 0x7FFFFFFFFFFFFFFFLL;
+    for(int i = 0; i < area->MonsterLastPoint; ++i)
+    {
+        smCHAR *candidate = area->lpCharMonster[i];
+        if(!IsValidHostile(candidate))
+            continue;
+        const long long dx = (candidate->pX - character->pX) >> FLOATNS;
+        const long long dz = (candidate->pZ - character->pZ) >> FLOATNS;
+        if(dx * dx + dz * dz > maxDistance)
+            continue;
+
+        const long long score = ScoreHostileForCompanion(
+            character, owner, state, candidate, currentTarget, ownerTarget);
+        if(!best || score < bestScore)
+        {
+            best = candidate;
+            bestScore = score;
+        }
+    }
+    return best;
+}
+
+int CountNearbyHostiles(smCHAR *character, int radius)
+{
+    if(!character || radius <= 0)
+        return 0;
+    STG_AREA *area = static_cast<STG_AREA *>(character->lpExt4);
+    if(!area)
+        return 0;
+
+    const long long limit = (long long)radius * (long long)radius;
+    int count = 0;
+    for(int i = 0; i < area->MonsterLastPoint; ++i)
+    {
+        smCHAR *candidate = area->lpCharMonster[i];
+        if(!IsValidHostile(candidate))
+            continue;
+        const long long dx = (candidate->pX - character->pX) >> FLOATNS;
+        const long long dz = (candidate->pZ - character->pZ) >> FLOATNS;
+        if(dx * dx + dz * dz <= limit)
+            ++count;
+    }
+    return count;
+}
+
+bool CustomTacticConditionMatches(const protocol::CompanionUITacticRule &rule,
+    smCHAR *character, rsPLAYINFO *owner, const OwnerState &state, smCHAR *ownerTarget)
+{
+    if(!rule.enabled || !character || !owner)
+        return false;
+
+    switch(rule.condition)
+    {
+        case protocol::COMPANION_TACTIC_CONDITION_ALWAYS:
+            return true;
+
+        case protocol::COMPANION_TACTIC_CONDITION_SELF_HP_BELOW:
+            return character->smCharInfo.Life[1] > 0 &&
+                (character->smCharInfo.Life[0] * 100) / character->smCharInfo.Life[1] < rule.threshold;
+
+        case protocol::COMPANION_TACTIC_CONDITION_OWNER_HP_BELOW:
+            return owner->smCharInfo.Life[1] > 0 &&
+                (owner->smCharInfo.Life[0] * 100) / owner->smCharInfo.Life[1] < rule.threshold;
+
+        case protocol::COMPANION_TACTIC_CONDITION_ENEMIES_NEARBY_AT_LEAST:
+            return CountNearbyHostiles(character, 300) >= rule.threshold;
+
+        case protocol::COMPANION_TACTIC_CONDITION_OWNER_HAS_TARGET:
+            return ownerTarget != NULL;
+
+        case protocol::COMPANION_TACTIC_CONDITION_PARTY_THREATENED:
+            return FindNearestThreatToParty(character, owner, state) != NULL;
+
+        default:
+            return false;
+    }
+}
+
+int EvaluateCustomTactic(const CompanionTacticsConfig &config, smCHAR *character,
+    rsPLAYINFO *owner, const OwnerState &state, smCHAR *ownerTarget, int *matchedRule)
+{
+    if(matchedRule) *matchedRule = -1;
+    if(!config.enabled)
+        return -1;
+
+    for(int i = 0; i < protocol::COMPANION_UI_TACTIC_RULES; ++i)
+    {
+        if(CustomTacticConditionMatches(config.rules[i], character, owner, state, ownerTarget))
+        {
+            if(matchedRule) *matchedRule = i;
+            return config.rules[i].action;
+        }
+    }
+    return -1;
+}
+
+bool HasOtherCompanionTargeting(const OwnerState &state, smCHAR *character, smCHAR *target)
+{
+    if(!target)
+        return false;
+    for(int slot = 0; slot < COMPANION_MAX_ACTIVE; ++slot)
+    {
+        smCHAR *entity = state.slots[slot].entity;
+        if(entity && entity != character && entity->Flag && entity->lpTargetChar == target)
+            return true;
+    }
+    return false;
+}
+
+
+void DisengageTarget(smCHAR *character);
+
+bool MoveTowardInjuredAlly(smCHAR *healer, rsPLAYINFO *owner,
+    smCHAR *const *companions, int companionCount, DWORD *targetSerial)
+{
+    if(targetSerial) *targetSerial = 0;
+    if(!healer || !owner)
+        return false;
+
+    int bestPercent = 101;
+    long long bestDistance = 0x7FFFFFFFFFFFFFFFLL;
+    int targetX = 0;
+    int targetZ = 0;
+    DWORD serial = 0;
+
+    if(owner->smCharInfo.Life[0] > 0 && owner->smCharInfo.Life[1] > 0)
+    {
+        const int percent = (owner->smCharInfo.Life[0] * 100) / owner->smCharInfo.Life[1];
+        const long long dx = (owner->Position.x - healer->pX) >> FLOATNS;
+        const long long dz = (owner->Position.z - healer->pZ) >> FLOATNS;
+        const long long distance = dx * dx + dz * dz;
+        if(percent < 70 && distance > (320LL * 320LL) && distance <= (600LL * 600LL))
+        {
+            bestPercent = percent;
+            bestDistance = distance;
+            targetX = owner->Position.x;
+            targetZ = owner->Position.z;
+            serial = owner->dwObjectSerial;
+        }
+    }
+
+    for(int i = 0; i < companionCount; ++i)
+    {
+        smCHAR *candidate = companions ? companions[i] : NULL;
+        if(!candidate || candidate == healer || !candidate->Flag ||
+           candidate->smCharInfo.Life[0] <= 0 || candidate->smCharInfo.Life[1] <= 0)
+            continue;
+        const int percent = (candidate->smCharInfo.Life[0] * 100) / candidate->smCharInfo.Life[1];
+        const long long dx = (candidate->pX - healer->pX) >> FLOATNS;
+        const long long dz = (candidate->pZ - healer->pZ) >> FLOATNS;
+        const long long distance = dx * dx + dz * dz;
+        if(percent >= 70 || distance <= (320LL * 320LL) || distance > (600LL * 600LL))
+            continue;
+        if(percent < bestPercent || (percent == bestPercent && distance < bestDistance))
+        {
+            bestPercent = percent;
+            bestDistance = distance;
+            targetX = candidate->pX;
+            targetZ = candidate->pZ;
+            serial = candidate->dwObjectSerial;
+        }
+    }
+
+    if(!serial)
+        return false;
+
+    DisengageTarget(healer);
+    healer->SetTargetPosi2(targetX >> FLOATNS, targetZ >> FLOATNS);
+    healer->TargetMoveCount = 2;
+    healer->TragetTraceMode = FALSE;
+    healer->AutoMoveStep = 0;
+    healer->SetNextTarget(0, 0, 0);
+    if(healer->MotionInfo &&
+       healer->MotionInfo->State != CHRMOTION_STATE_DAMAGE &&
+       healer->MotionInfo->State != CHRMOTION_STATE_DEAD &&
+       healer->MotionInfo->State != CHRMOTION_STATE_ATTACK &&
+       healer->MotionInfo->State != CHRMOTION_STATE_SKILL)
+    {
+        healer->SetMotionFromCode(CHRMOTION_STATE_RUN);
+        if(!healer->MotionInfo || healer->MotionInfo->State != CHRMOTION_STATE_RUN)
+            healer->SetMotionFromCode(CHRMOTION_STATE_WALK);
+    }
+    if(targetSerial) *targetSerial = serial;
+    return true;
+}
+
+void CombatFormationOffset(int slot, int &x, int &z)
+{
+    static const int offsets[COMPANION_MAX_ACTIVE][2] =
+    {
+        { -36, -36 },
+        {  36, -36 },
+        { -36,  36 },
+        {  36,  36 }
+    };
+    if(slot < 0 || slot >= COMPANION_MAX_ACTIVE)
+        slot = 0;
+    x = offsets[slot][0];
+    z = offsets[slot][1];
+}
+
+void EngageTarget(smCHAR *character, smCHAR *target, int preferredRange, int formationSlot, bool combatSpacing)
 {
     if(!character || !target)
         return;
@@ -430,25 +849,73 @@ void EngageTarget(smCHAR *character, smCHAR *target, int preferredRange)
     const int distance = dx * dx + dz * dz;
     const int rangeSquared = range * range;
 
-    if(distance >= rangeSquared)
+    // preferredRange is an explicit player policy. When configured, ranged
+    // companions should also back away when an enemy collapses the distance
+    // instead of only using the value as a stop-chasing threshold. Keep a
+    // generous inner hysteresis so melee contact does not cause oscillation.
+    const int innerRange = preferredRange > 0 ? std::max(64, (range * 55) / 100) : 0;
+    if(innerRange > 0 && distance < innerRange * innerRange)
     {
-        character->SetTargetPosi2(target->pX >> FLOATNS, target->pZ >> FLOATNS);
-        character->TragetTraceMode = TRUE;
+        int awayX = (character->pX - target->pX) >> FLOATNS;
+        int awayZ = (character->pZ - target->pZ) >> FLOATNS;
+        if(awayX == 0 && awayZ == 0)
+            awayX = 1;
+        const int normalizer = std::max(1, std::max(abs(awayX), abs(awayZ)));
+        const int step = std::max(32, std::min(120, range - innerRange));
+        const int moveX = (character->pX >> FLOATNS) + (awayX * step) / normalizer;
+        const int moveZ = (character->pZ >> FLOATNS) + (awayZ * step) / normalizer;
+        character->SetTargetPosi2(moveX, moveZ);
+        character->TargetMoveCount = 2;
+        character->TragetTraceMode = FALSE;
+        character->SetNextTarget(0, 0, 0);
+        if(character->MotionInfo &&
+           character->MotionInfo->State != CHRMOTION_STATE_DAMAGE &&
+           character->MotionInfo->State != CHRMOTION_STATE_DEAD &&
+           character->MotionInfo->State != CHRMOTION_STATE_ATTACK &&
+           character->MotionInfo->State != CHRMOTION_STATE_SKILL)
+        {
+            character->SetMotionFromCode(CHRMOTION_STATE_RUN);
+            if(!character->MotionInfo || character->MotionInfo->State != CHRMOTION_STATE_RUN)
+                character->SetMotionFromCode(CHRMOTION_STATE_WALK);
+        }
+    }
+    else if(distance >= rangeSquared)
+    {
+        if(combatSpacing)
+        {
+            int offsetX = 0;
+            int offsetZ = 0;
+            CombatFormationOffset(formationSlot, offsetX, offsetZ);
+            character->SetTargetPosi2((target->pX >> FLOATNS) + offsetX,
+                                      (target->pZ >> FLOATNS) + offsetZ);
+            // ApplyAI refreshes this moving anchor every tick. Do not let the
+            // legacy trace overwrite it with the target's exact centre.
+            character->TragetTraceMode = FALSE;
+        }
+        else
+        {
+            character->SetTargetPosi2(target->pX >> FLOATNS, target->pZ >> FLOATNS);
+            character->TragetTraceMode = TRUE;
+        }
         // We drive the trace every AI tick, so do not also arm the legacy
         // deferred ptNextTarget state machine. It can restart STAND/RUN on
         // animation boundaries and causes visible animation popping.
         character->SetNextTarget(0, 0, 0);
 
         if(character->MotionInfo &&
-            character->MotionInfo->State != CHRMOTION_STATE_WALK &&
-            character->MotionInfo->State != CHRMOTION_STATE_RUN &&
             character->MotionInfo->State != CHRMOTION_STATE_DAMAGE &&
             character->MotionInfo->State != CHRMOTION_STATE_DEAD &&
             character->MotionInfo->State != CHRMOTION_STATE_ATTACK &&
             character->MotionInfo->State != CHRMOTION_STATE_SKILL)
         {
-            if(!character->SetMotionFromCode(CHRMOTION_STATE_RUN))
-                character->SetMotionFromCode(CHRMOTION_STATE_WALK);
+            // Combat chase should use the RUN clip/speed even if another legacy
+            // movement path previously left the companion in WALK.
+            if(character->MotionInfo->State != CHRMOTION_STATE_RUN)
+            {
+                character->SetMotionFromCode(CHRMOTION_STATE_RUN);
+                if(!character->MotionInfo || character->MotionInfo->State != CHRMOTION_STATE_RUN)
+                    character->SetMotionFromCode(CHRMOTION_STATE_WALK);
+            }
         }
     }
     else
@@ -485,6 +952,313 @@ void DisengageTarget(smCHAR *character)
     character->SetNextTarget(0, 0, 0);
 }
 
+
+struct CompanionLootConfig
+{
+    CompanionLootConfig()
+        : enabled(false), radius(260), ownerLeash(520), pickupDistance(36),
+          scanMs(350), pickupCooldownMs(300), maxChaseMs(4500), spawnDelayMs(650),
+          allowGold(true), allowCrystals(true), allowQuest(false),
+          allowConsumables(true), allowEquipment(true), allowOther(false),
+          allowUnique(true), minimumPrice(0), minimumDropLevel(0), loadedAt(0)
+    {
+    }
+
+    bool enabled;
+    int radius;
+    int ownerLeash;
+    int pickupDistance;
+    DWORD scanMs;
+    DWORD pickupCooldownMs;
+    DWORD maxChaseMs;
+    DWORD spawnDelayMs;
+    bool allowGold;
+    bool allowCrystals;
+    bool allowQuest;
+    bool allowConsumables;
+    bool allowEquipment;
+    bool allowOther;
+    bool allowUnique;
+    int minimumPrice;
+    int minimumDropLevel;
+    DWORD loadedAt;
+};
+
+static int ClampLootConfigInt(int value, int low, int high)
+{
+    if(value < low) return low;
+    if(value > high) return high;
+    return value;
+}
+
+static const CompanionLootConfig &GetCompanionLootConfig()
+{
+    static CompanionLootConfig config;
+    if(config.loadedAt && (DWORD)(dwPlayServTime - config.loadedAt) < 5000U)
+        return config;
+
+    config.enabled = GetPrivateProfileIntA("Companion", "LootEnabled", 0, ".//Configs//Companion.ini") != 0;
+    config.radius = ClampLootConfigInt(
+        GetPrivateProfileIntA("Companion", "LootRadius", 260, ".//Configs//Companion.ini"), 80, 600);
+    config.ownerLeash = ClampLootConfigInt(
+        GetPrivateProfileIntA("Companion", "LootOwnerLeash", 520, ".//Configs//Companion.ini"), 120, 900);
+    config.pickupDistance = ClampLootConfigInt(
+        GetPrivateProfileIntA("Companion", "LootPickupDistance", 36, ".//Configs//Companion.ini"), 18, 90);
+    config.scanMs = (DWORD)ClampLootConfigInt(
+        GetPrivateProfileIntA("Companion", "LootScanMs", 350, ".//Configs//Companion.ini"), 100, 3000);
+    config.pickupCooldownMs = (DWORD)ClampLootConfigInt(
+        GetPrivateProfileIntA("Companion", "LootPickupCooldownMs", 300, ".//Configs//Companion.ini"), 100, 5000);
+    config.maxChaseMs = (DWORD)ClampLootConfigInt(
+        GetPrivateProfileIntA("Companion", "LootMaxChaseMs", 4500, ".//Configs//Companion.ini"), 1000, 15000);
+    config.spawnDelayMs = (DWORD)ClampLootConfigInt(
+        GetPrivateProfileIntA("Companion", "LootSpawnDelayMs", 650, ".//Configs//Companion.ini"), 0, 10000);
+    config.allowGold = GetPrivateProfileIntA("Companion", "LootGold", 1, ".//Configs//Companion.ini") != 0;
+    config.allowCrystals = GetPrivateProfileIntA("Companion", "LootCrystals", 1, ".//Configs//Companion.ini") != 0;
+    config.allowQuest = GetPrivateProfileIntA("Companion", "LootQuestItems", 0, ".//Configs//Companion.ini") != 0;
+    config.allowConsumables = GetPrivateProfileIntA("Companion", "LootConsumables", 1, ".//Configs//Companion.ini") != 0;
+    config.allowEquipment = GetPrivateProfileIntA("Companion", "LootEquipment", 1, ".//Configs//Companion.ini") != 0;
+    config.allowOther = GetPrivateProfileIntA("Companion", "LootOther", 0, ".//Configs//Companion.ini") != 0;
+    config.allowUnique = GetPrivateProfileIntA("Companion", "LootUnique", 1, ".//Configs//Companion.ini") != 0;
+    config.minimumPrice = ClampLootConfigInt(
+        GetPrivateProfileIntA("Companion", "LootMinimumPrice", 0, ".//Configs//Companion.ini"), 0, 2000000000);
+    config.minimumDropLevel = ClampLootConfigInt(
+        GetPrivateProfileIntA("Companion", "LootMinimumDropLevel", 0, ".//Configs//Companion.ini"), 0, 1000);
+    config.loadedAt = dwPlayServTime ? dwPlayServTime : 1U;
+    return config;
+}
+
+enum CompanionLootCategory
+{
+    COMPANION_LOOT_GOLD = 0,
+    COMPANION_LOOT_CRYSTAL,
+    COMPANION_LOOT_QUEST,
+    COMPANION_LOOT_CONSUMABLE,
+    COMPANION_LOOT_EQUIPMENT,
+    COMPANION_LOOT_OTHER
+};
+
+static CompanionLootCategory GetCompanionLootCategory(const sITEMINFO &item)
+{
+    const DWORD code = item.CODE;
+    if(code == (sinGG1 | sin01) || code == (sinGG1 | sin05))
+        return COMPANION_LOOT_GOLD;
+    if((code & sinITEM_MASK2) == sinEC1)
+        return COMPANION_LOOT_CRYSTAL;
+    if(item.ItemKindCode == ITEM_KIND_QUEST || item.ItemKindCode == ITEM_KIND_QUEST_WEAPON ||
+       (code & sinITEM_MASK2) == sinQT1)
+        return COMPANION_LOOT_QUEST;
+    if((code & sinITEM_MASK1) == (sinPM1 & sinITEM_MASK1))
+        return COMPANION_LOOT_CONSUMABLE;
+
+    const DWORD family = code & sinITEM_MASK1;
+    if(family == 0x01000000 || family == 0x02000000 || family == 0x03000000)
+        return COMPANION_LOOT_EQUIPMENT;
+    return COMPANION_LOOT_OTHER;
+}
+
+static bool IsCompanionLootEligible(const STG_ITEMS &stageItem, rsPLAYINFO *owner,
+    const CompanionLootConfig &config)
+{
+    if(!stageItem.state || !owner)
+        return false;
+    if(stageItem.dwExclusiveOwnerCode && stageItem.dwExclusiveOwnerCode != owner->dwObjectSerial)
+        return false;
+    if((int)stageItem.Item.ItemInfo.Price < config.minimumPrice)
+        return false;
+    if(stageItem.Item.ItemInfo.Level < config.minimumDropLevel)
+        return false;
+    if(stageItem.Item.ItemInfo.UniqueItem && !config.allowUnique)
+        return false;
+
+    // Tier-5 Cry pickup is intentionally kept out of Companion Loot while
+    // Rank5 remains outside the current contract. It has quest-token side
+    // effects beyond generic inventory pickup.
+    if(stageItem.Item.ItemInfo.CODE == sinQT136)
+        return false;
+
+    switch(GetCompanionLootCategory(stageItem.Item.ItemInfo))
+    {
+        case COMPANION_LOOT_GOLD: return config.allowGold;
+        case COMPANION_LOOT_CRYSTAL: return config.allowCrystals;
+        case COMPANION_LOOT_QUEST: return config.allowQuest;
+        case COMPANION_LOOT_CONSUMABLE: return config.allowConsumables;
+        case COMPANION_LOOT_EQUIPMENT: return config.allowEquipment;
+        default: return config.allowOther;
+    }
+}
+
+static bool IsCompanionLootClaimed(STG_ITEMS *item, const CompanionSlot *requester)
+{
+    if(!item)
+        return false;
+    for(std::map<rsPLAYINFO *, OwnerState>::iterator it = g_states.begin(); it != g_states.end(); ++it)
+    {
+        OwnerState &state = it->second;
+        for(int i = 0; i < COMPANION_MAX_ACTIVE; ++i)
+        {
+            CompanionSlot &slot = state.slots[i];
+            if(&slot != requester && slot.lootTarget == item && slot.entity && slot.entity->Flag)
+                return true;
+        }
+    }
+    return false;
+}
+
+static void ReleaseCompanionLootTarget(CompanionSlot &slot)
+{
+    slot.lootArea = NULL;
+    slot.lootTarget = NULL;
+    slot.lootTargetSince = 0;
+}
+
+static STG_ITEMS *FindCompanionLootTarget(smCHAR *character, rsPLAYINFO *owner,
+    CompanionSlot &slot, const CompanionLootConfig &config)
+{
+    if(!character || !owner)
+        return NULL;
+    STG_AREA *area = static_cast<STG_AREA *>(character->lpExt4);
+    if(!area)
+        return NULL;
+
+    STG_ITEMS *best = NULL;
+    long long bestDistance = 0x7FFFFFFFFFFFFFFFLL;
+    const int charX = character->pX >> FLOATNS;
+    const int charZ = character->pZ >> FLOATNS;
+    const int ownerX = owner->Position.x >> FLOATNS;
+    const int ownerZ = owner->Position.z >> FLOATNS;
+    const long long radius2 = (long long)config.radius * config.radius;
+    const long long leash2 = (long long)config.ownerLeash * config.ownerLeash;
+
+    for(int i = 0; i < STG_ITEM_MAX; ++i)
+    {
+        STG_ITEMS *candidate = &area->StgItems[i];
+        if(!IsCompanionLootEligible(*candidate, owner, config))
+            continue;
+        // Some drops intentionally move dwCreateTime into the future for a
+        // short ownership/presentation delay. Never let Companion Loot bypass
+        // the same visibility gate used by STG_AREA::SendStgItem().
+        if((int)(candidate->dwCreateTime - dwPlayServTime) > 0)
+            continue;
+        if(config.spawnDelayMs && (DWORD)(dwPlayServTime - candidate->dwCreateTime) < config.spawnDelayMs)
+            continue;
+        if(candidate->dwLoseTime && (int)(candidate->dwLoseTime - dwPlayServTime) <= 1000)
+            continue;
+        if(IsCompanionLootClaimed(candidate, &slot))
+            continue;
+
+        const long long cdx = (long long)candidate->x - charX;
+        const long long cdz = (long long)candidate->z - charZ;
+        const long long distance = cdx * cdx + cdz * cdz;
+        if(distance > radius2)
+            continue;
+
+        const long long odx = (long long)candidate->x - ownerX;
+        const long long odz = (long long)candidate->z - ownerZ;
+        if(odx * odx + odz * odz > leash2)
+            continue;
+
+        if(!best || distance < bestDistance ||
+           (distance == bestDistance && candidate->dwExclusiveOwnerCode == owner->dwObjectSerial))
+        {
+            best = candidate;
+            bestDistance = distance;
+        }
+    }
+    return best;
+}
+
+static bool TryHandleCompanionLoot(smCHAR *character, rsPLAYINFO *owner,
+    CompanionSlot &slot, CompanionMode mode)
+{
+    const CompanionLootConfig &config = GetCompanionLootConfig();
+    if(!config.enabled || !character || !owner)
+    {
+        ReleaseCompanionLootTarget(slot);
+        return false;
+    }
+
+    STG_AREA *area = static_cast<STG_AREA *>(character->lpExt4);
+    if(!area)
+    {
+        ReleaseCompanionLootTarget(slot);
+        return false;
+    }
+
+    // Do not steal time from a live combat decision. Aggressive companions also
+    // decline fresh loot while a hostile is in sight, even before target lock.
+    if(IsValidHostile(character->lpTargetChar) || IsValidHostile(owner->lpChrTarget) ||
+       (mode == COMPANION_MODE_AGGRESSIVE && FindNearestHostile(character)))
+    {
+        ReleaseCompanionLootTarget(slot);
+        return false;
+    }
+
+    if(slot.lootTarget)
+    {
+        if(slot.lootArea != area ||
+           !IsCompanionLootEligible(*slot.lootTarget, owner, config) ||
+           IsCompanionLootClaimed(slot.lootTarget, &slot) ||
+           (slot.lootTargetSince && (DWORD)(dwPlayServTime - slot.lootTargetSince) > config.maxChaseMs))
+            ReleaseCompanionLootTarget(slot);
+    }
+
+    if(!slot.lootTarget)
+    {
+        if(slot.nextLootScanTime && (int)(slot.nextLootScanTime - dwPlayServTime) > 0)
+            return false;
+        slot.nextLootScanTime = dwPlayServTime + config.scanMs;
+        slot.lootTarget = FindCompanionLootTarget(character, owner, slot, config);
+        if(!slot.lootTarget)
+            return false;
+        slot.lootArea = area;
+        slot.lootTargetSince = dwPlayServTime;
+        CompanionDebugLog("LOOT_TARGET name='%s' serial=%lu code=0x%08lX item='%s' x=%d z=%d exclusive=%lu",
+            slot.characterName, (unsigned long)character->dwObjectSerial,
+            (unsigned long)slot.lootTarget->Item.ItemInfo.CODE,
+            slot.lootTarget->Item.ItemInfo.ItemName, slot.lootTarget->x, slot.lootTarget->z,
+            (unsigned long)slot.lootTarget->dwExclusiveOwnerCode);
+    }
+
+    STG_ITEMS *item = slot.lootTarget;
+    const int charX = character->pX >> FLOATNS;
+    const int charZ = character->pZ >> FLOATNS;
+    const int dx = item->x - charX;
+    const int dz = item->z - charZ;
+    const int distance2 = dx * dx + dz * dz;
+    const int pickup2 = config.pickupDistance * config.pickupDistance;
+
+    if(distance2 <= pickup2)
+    {
+        if(slot.nextLootPickupTime && (int)(slot.nextLootPickupTime - dwPlayServTime) > 0)
+            return true;
+        slot.nextLootPickupTime = dwPlayServTime + config.pickupCooldownMs;
+
+        const DWORD code = item->Item.ItemInfo.CODE;
+        char itemName[32] = { 0 };
+        strncpy_s(itemName, sizeof(itemName), item->Item.ItemInfo.ItemName, _TRUNCATE);
+        const int result = rsCompanionPickupStageItem(owner, area, item);
+        CompanionDebugLog("LOOT_PICKUP name='%s' serial=%lu code=0x%08lX item='%s' result=%d",
+            slot.characterName, (unsigned long)character->dwObjectSerial,
+            (unsigned long)code, itemName, result);
+        ReleaseCompanionLootTarget(slot);
+        return result == TRUE;
+    }
+
+    DisengageTarget(character);
+    character->SetTargetPosi2(item->x, item->z);
+    character->TargetMoveCount = 2;
+    character->TragetTraceMode = FALSE;
+    if(character->MotionInfo &&
+       character->MotionInfo->State != CHRMOTION_STATE_DEAD &&
+       character->MotionInfo->State != CHRMOTION_STATE_DAMAGE)
+    {
+        character->SetMotionFromCode(CHRMOTION_STATE_RUN);
+        if(!character->MotionInfo || character->MotionInfo->State != CHRMOTION_STATE_RUN)
+            character->SetMotionFromCode(CHRMOTION_STATE_WALK);
+    }
+    return true;
+}
+
 bool IsNameActive(const OwnerState &state, const char *name)
 {
     for(int i = 0; i < COMPANION_MAX_ACTIVE; ++i)
@@ -506,7 +1280,8 @@ int FindFreeSlot(OwnerState &state)
     return -1;
 }
 
-void CopyText32(char (&dest)[32], const char *source)
+template <size_t N>
+void CopyText32(char (&dest)[N], const char *source)
 {
     dest[0] = 0;
     if(source && source[0])
@@ -543,6 +1318,31 @@ const char *ChoiceName(const EquipmentChoice *choices, int count, DWORD code)
     return "";
 }
 
+void ReadCompanionLogicalSkillPoints(const TRANS_RECORD_DATA &recordData, BYTE *outPoints, int capacity)
+{
+    if(!outPoints || capacity <= 0)
+        return;
+
+    const int logicalCapacity = std::min(capacity, COMPANION_MAX_SKILL_SLOTS);
+    ZeroMemory(outPoints, logicalCapacity * sizeof(BYTE));
+
+    // T1-T4 keep the historical RecordSkill layout: logical slot 16 is byte 0.
+    for(int useSlot = 1; useSlot <= 16 && useSlot <= logicalCapacity; ++useSlot)
+        outPoints[useSlot - 1] = (BYTE)std::min(10,
+            (int)recordData.GameSaveInfo.SkillInfo.bSkillPoint[useSlot & 15]);
+
+    // Rank5 is the first legacy extension and lives in dwTemp2. Future persisted
+    // tiers are added only in this bridge; executor/catalog/UI already address 1..64.
+    for(int tier5Index = 0; tier5Index < 4; ++tier5Index)
+    {
+        const int logicalIndex = 16 + tier5Index;
+        if(logicalIndex >= logicalCapacity)
+            break;
+        outPoints[logicalIndex] = (BYTE)std::min(10,
+            GetTier5RecordSkillPoint(&recordData.GameSaveInfo, tier5Index));
+    }
+}
+
 bool ReadEquipmentSnapshot(const TRANS_RECORD_DATA &recordData, CharacterEquipmentSnapshot &snapshot)
 {
     snapshot = CharacterEquipmentSnapshot();
@@ -554,6 +1354,7 @@ bool ReadEquipmentSnapshot(const TRANS_RECORD_DATA &recordData, CharacterEquipme
     snapshot.maxLife = recordData.smCharInfo.Life[1];
     snapshot.mana = recordData.smCharInfo.Mana[0];
     snapshot.maxMana = recordData.smCharInfo.Mana[1];
+    ReadCompanionLogicalSkillPoints(recordData, snapshot.skillPoints, COMPANION_MAX_SKILL_SLOTS);
 
     // Always allow an empty hand from the UI. It is a visual/combat loadout
     // override only and never deletes or moves an inventory record.
@@ -693,7 +1494,18 @@ LoadoutOverride *FindLoadoutOverride(OwnerState &state, const char *characterNam
             entry->retreatHpPercent = profile.retreatHpPercent;
             entry->preferredRange = profile.preferredRange;
             entry->formationSlot = profile.formationSlot;
+            entry->skillLoadoutActive = profile.skillLoadoutActive;
+            entry->buffLoadoutActive = profile.buffLoadoutActive;
+            memcpy(entry->activeSkillSlots, profile.activeSkillSlots, sizeof(entry->activeSkillSlots));
+            memcpy(entry->activeMinResourcePercent, profile.activeMinResourcePercent, sizeof(entry->activeMinResourcePercent));
+            memcpy(entry->activeMinimumTargets, profile.activeMinimumTargets, sizeof(entry->activeMinimumTargets));
+            memcpy(entry->activeTargetModes, profile.activeTargetModes, sizeof(entry->activeTargetModes));
+            memcpy(entry->buffSkillSlots, profile.buffSkillSlots, sizeof(entry->buffSkillSlots));
+            memcpy(entry->buffIntervalSeconds, profile.buffIntervalSeconds, sizeof(entry->buffIntervalSeconds));
+            memcpy(entry->buffTargetModes, profile.buffTargetModes, sizeof(entry->buffTargetModes));
         }
+        if(state.owner && state.owner->getAccount())
+            LoadCompanionTactics(state.owner->getAccount(), characterName, &entry->customTactics);
         entry->loaded = true;
     }
     return entry;
@@ -714,6 +1526,15 @@ bool PersistLoadoutOverride(OwnerState &state, const LoadoutOverride &loadout)
     profile.retreatHpPercent = loadout.retreatHpPercent;
     profile.preferredRange = loadout.preferredRange;
     profile.formationSlot = loadout.formationSlot;
+    profile.skillLoadoutActive = loadout.skillLoadoutActive;
+    profile.buffLoadoutActive = loadout.buffLoadoutActive;
+    memcpy(profile.activeSkillSlots, loadout.activeSkillSlots, sizeof(profile.activeSkillSlots));
+    memcpy(profile.activeMinResourcePercent, loadout.activeMinResourcePercent, sizeof(profile.activeMinResourcePercent));
+    memcpy(profile.activeMinimumTargets, loadout.activeMinimumTargets, sizeof(profile.activeMinimumTargets));
+    memcpy(profile.activeTargetModes, loadout.activeTargetModes, sizeof(profile.activeTargetModes));
+    memcpy(profile.buffSkillSlots, loadout.buffSkillSlots, sizeof(profile.buffSkillSlots));
+    memcpy(profile.buffIntervalSeconds, loadout.buffIntervalSeconds, sizeof(profile.buffIntervalSeconds));
+    memcpy(profile.buffTargetModes, loadout.buffTargetModes, sizeof(profile.buffTargetModes));
     return SaveCompanionProfile(state.owner->getAccount(), loadout.characterName, profile);
 }
 
@@ -767,6 +1588,22 @@ CompanionSlot *FindSlotByName(OwnerState &state, const char *characterName)
     return NULL;
 }
 
+bool HasIncomingCompanionThreat(smCHAR *companion)
+{
+    if(!companion || !companion->Flag)
+        return false;
+    STG_AREA *area = static_cast<STG_AREA *>(companion->lpExt4);
+    if(!area)
+        return false;
+    for(int i = 0; i < area->MonsterLastPoint; ++i)
+    {
+        smCHAR *candidate = area->lpCharMonster[i];
+        if(IsValidHostile(candidate) && candidate->lpTargetChar == companion)
+            return true;
+    }
+    return false;
+}
+
 void SendRuntimeStateLocked(OwnerState &state, bool force)
 {
     if(!IsOwnerValid(state) || !state.owner->lpsmSock)
@@ -797,8 +1634,69 @@ void SendRuntimeStateLocked(OwnerState &state, bool force)
         entry.mana = slot.entity->smCharInfo.Mana[0];
         entry.maxMana = slot.entity->smCharInfo.Mana[1];
         entry.dead = entry.maxLife > 0 && entry.life <= 0 ? TRUE : FALSE;
-        entry.casting = slot.entity->MotionInfo &&
-            slot.entity->MotionInfo->State == CHRMOTION_STATE_SKILL ? TRUE : FALSE;
+        const DWORD now = dwPlayServTime;
+        const bool locked = slot.skillRuntime.skillLockUntil &&
+            (int)(slot.skillRuntime.skillLockUntil - now) > 0;
+        entry.casting = locked ? TRUE : FALSE;
+        entry.castingSkillCode = locked ? slot.skillRuntime.lastSkillCode : 0;
+        if(locked && slot.skillRuntime.skillLockStartedAt &&
+           (int)(slot.skillRuntime.skillLockUntil - slot.skillRuntime.skillLockStartedAt) > 0)
+        {
+            const DWORD duration = slot.skillRuntime.skillLockUntil - slot.skillRuntime.skillLockStartedAt;
+            const DWORD elapsed = now - slot.skillRuntime.skillLockStartedAt;
+            entry.castProgressPermille = (int)std::min<unsigned long long>(1000ULL,
+                ((unsigned long long)elapsed * 1000ULL) / duration);
+        }
+        if(entry.castingSkillCode)
+        {
+            CompanionSkillCatalogEntry catalogEntry;
+            if(GetCompanionSkillCatalogEntry(entry.castingSkillCode, &catalogEntry))
+                CopyText32(entry.castingSkillName, catalogEntry.name);
+        }
+
+        DWORD cooldownUntil = 0;
+        if(slot.skillRuntime.nextDamageSkillTime && (int)(slot.skillRuntime.nextDamageSkillTime - now) > 0)
+            cooldownUntil = slot.skillRuntime.nextDamageSkillTime;
+        if(slot.skillRuntime.nextHealSkillTime && (int)(slot.skillRuntime.nextHealSkillTime - now) > 0 &&
+           (!cooldownUntil || (int)(slot.skillRuntime.nextHealSkillTime - cooldownUntil) < 0))
+            cooldownUntil = slot.skillRuntime.nextHealSkillTime;
+        for(int buffSlot = 0; buffSlot < 4; ++buffSlot)
+        {
+            const DWORD due = slot.skillRuntime.nextBuffSkillTime[buffSlot];
+            if(due && (int)(due - now) > 0 && (!cooldownUntil || (int)(due - cooldownUntil) < 0))
+                cooldownUntil = due;
+        }
+        entry.cooldownMs = cooldownUntil ? std::max(0, (int)(cooldownUntil - now)) : 0;
+
+        if(slot.entity->PlaySlowCount) entry.statusFlags |= protocol::COMPANION_RUNTIME_STATUS_SLOW;
+        if(slot.entity->PlayStunCount > 0) entry.statusFlags |= protocol::COMPANION_RUNTIME_STATUS_STUN;
+        if(slot.entity->PlayPoison[1] > 0) entry.statusFlags |= protocol::COMPANION_RUNTIME_STATUS_POISON;
+        if(slot.entity->PlayDistortion > 0) entry.statusFlags |= protocol::COMPANION_RUNTIME_STATUS_DISTORTION;
+        if(HasIncomingCompanionThreat(slot.entity)) entry.statusFlags |= protocol::COMPANION_RUNTIME_STATUS_THREAT;
+
+        const auto addEffect = [&](DWORD code, DWORD expiresAt)
+        {
+            if(!code || !expiresAt || (int)(expiresAt - now) <= 0 ||
+               entry.effectCount >= protocol::COMPANION_RUNTIME_MAX_EFFECTS)
+                return;
+            protocol::CompanionRuntimeEffect &effect = entry.effects[entry.effectCount++];
+            effect.effectCode = code;
+            effect.remainingMs = std::max(0, (int)(expiresAt - now));
+            effect.positive = TRUE;
+        };
+        for(int buffSlot = 0; buffSlot < 4; ++buffSlot)
+            addEffect(slot.skillRuntime.buffModifiers[buffSlot].skillCode,
+                slot.skillRuntime.buffModifiers[buffSlot].expiresAt);
+        addEffect(SKILL_FORCE_OF_NATURE, slot.skillRuntime.forceNatureExpiresAt);
+        addEffect(SKILL_HOLY_VALOR, slot.skillRuntime.holyValorExpiresAt);
+        addEffect(SKILL_TRIUMPH_OF_VALHALLA, slot.skillRuntime.triumphValhallaExpiresAt);
+        addEffect(SKILL_HALL_OF_VALHALLA, slot.skillRuntime.hallValhallaExpiresAt);
+        addEffect(SKILL_REGENERATION_FIELD, std::max(slot.skillRuntime.regenerationFieldExpiresAt,
+            slot.skillRuntime.regenerationFieldPulseExpiresAt));
+        addEffect(SKILL_ENCHANT_WEAPON, slot.skillRuntime.enchantWeaponExpiresAt);
+        addEffect(slot.skillRuntime.goldenFalconPoint > 0 ? SKILL_GOLDEN_FALCON : SKILL_FALCON,
+            slot.skillRuntime.falconExpiresAt);
+        addEffect(slot.skillRuntime.persistentEffectSkillCode, slot.skillRuntime.persistentEffectExpiresAt);
 
         LoadoutOverride *profile = FindLoadoutOverride(state, slot.characterName, true);
         entry.mode = profile ? static_cast<int>(profile->mode) : static_cast<int>(state.mode);
@@ -828,6 +1726,19 @@ void UpdateVisualMotionSequence(CompanionSlot &slot)
     DWORD motionState = CHRMOTION_STATE_STAND;
     if(slot.entity->MotionInfo)
         motionState = (DWORD)slot.entity->MotionInfo->State;
+
+    // The server-side entity borrows a monster pattern and may legitimately
+    // lack a RUN clip. In that case SetMotionFromCode falls back to WALK even
+    // though account companions are always supposed to run while locomoting.
+    // The client owns the real player model, so publish RUN for this internal
+    // WALK fallback and let the client select its proper player run animation.
+    if(motionState == CHRMOTION_STATE_WALK &&
+       slot.entity->smCharInfo.State == smCHAR_STATE_USER &&
+       slot.entity->smCharInfo.Brood == smCHAR_MONSTER_USER &&
+       slot.entity->lpMasterPlayInfo)
+    {
+        motionState = CHRMOTION_STATE_RUN;
+    }
 
     const int motionFrame = slot.entity->frame;
     bool advance = false;
@@ -895,6 +1806,15 @@ void SendVisualStateLocked(OwnerState &state, bool force)
         entry.equipmentRevision = slot.entity->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_EQUIP_REVISION];
         if(entry.equipmentRevision == 0)
             entry.equipmentRevision = 1;
+        entry.logicalSkillCode = slot.skillRuntime.lastSkillCode;
+        entry.skillPlayCode = slot.skillRuntime.lastSkillPlayCode;
+        entry.skillPoint = slot.skillRuntime.lastSkillPoint;
+        entry.skillTargetSerial = slot.skillRuntime.lastSkillTargetSerial;
+        entry.skillTargetX = slot.skillRuntime.lastSkillTargetX;
+        entry.skillTargetY = slot.skillRuntime.lastSkillTargetY;
+        entry.skillTargetZ = slot.skillRuntime.lastSkillTargetZ;
+        entry.skillMotionState = slot.skillRuntime.lastSkillMotionState;
+        entry.skillSequence = slot.skillRuntime.skillVisualSequence;
         if(entry.maxLife > 0 && entry.life <= 0)
             entry.flags |= protocol::COMPANION_VISUAL_FLAG_DEAD;
     }
@@ -1108,6 +2028,249 @@ int ResetEquipmentInternal(rsPLAYINFO *owner, const char *characterName)
     return TRUE;
 }
 
+int ChangeSkillLoadout(rsPLAYINFO *owner, const char *characterName, bool buffSkill, int encodedSlotDirection)
+{
+    if(!encodedSlotDirection)
+        return -10;
+    const int slotValue = encodedSlotDirection < 0 ? -encodedSlotDirection : encodedSlotDirection;
+    const int slot = slotValue - 1;
+    const int direction = encodedSlotDirection >= 0 ? +1 : -1;
+    if(slot < 0 || slot >= 4)
+        return -10;
+
+    CharacterEquipmentSnapshot snapshot;
+    if(!LoadCharacterSnapshot(owner, characterName, snapshot))
+        return -3;
+
+    std::lock_guard<std::mutex> guard(g_mutex);
+    OwnerState &state = GetOrCreateState(owner);
+    PruneState(state);
+    LoadoutOverride *loadout = FindLoadoutOverride(state, characterName, true);
+    if(!loadout)
+        return -9;
+
+    const LoadoutOverride previous = *loadout;
+    BYTE *slots = buffSkill ? loadout->buffSkillSlots : loadout->activeSkillSlots;
+
+    // Slots are independent. When cycling, skip a skill already assigned to
+    // another slot instead of silently clearing that other slot.
+    BYTE candidate = slots[slot];
+    for(int attempt = 0; attempt < COMPANION_MAX_SKILL_SLOTS + 1; ++attempt)
+    {
+        candidate = (BYTE)CycleCompanionSkillUseSlot(snapshot.jobCode, snapshot.skillPoints,
+            candidate, direction, buffSkill);
+        if(!candidate)
+            break;
+
+        bool duplicate = false;
+        for(int other = 0; other < 4; ++other)
+        {
+            if(other != slot && slots[other] == candidate)
+            {
+                duplicate = true;
+                break;
+            }
+        }
+        if(!duplicate)
+            break;
+    }
+    slots[slot] = candidate;
+
+    if(buffSkill)
+    {
+        loadout->buffLoadoutActive =
+            loadout->buffSkillSlots[0] || loadout->buffSkillSlots[1] ||
+            loadout->buffSkillSlots[2] || loadout->buffSkillSlots[3];
+        if(slots[slot] && slots[slot] != previous.buffSkillSlots[slot])
+        {
+            CompanionSkillDescriptor descriptor;
+            int interval = 60;
+            if(GetCompanionSkillDescriptor(snapshot.jobCode, snapshot.skillPoints,
+                slots[slot], &descriptor))
+            {
+                const int duration = GetCompanionSupportDefaultIntervalSeconds(
+                    descriptor.skillCode, descriptor.point);
+                if(duration > 0)
+                    interval = duration;
+            }
+            if(interval < 5) interval = 5;
+            if(interval > 3600) interval = 3600;
+            loadout->buffIntervalSeconds[slot] = (WORD)interval;
+        }
+        else if(slots[slot] && loadout->buffIntervalSeconds[slot] < 5)
+        {
+            loadout->buffIntervalSeconds[slot] = 60;
+        }
+        if(!slots[slot])
+            loadout->buffIntervalSeconds[slot] = 0;
+    }
+    else
+    {
+        if(!slots[slot])
+        {
+            loadout->activeMinResourcePercent[slot] = 0;
+            loadout->activeMinimumTargets[slot] = 1;
+            loadout->activeTargetModes[slot] = 0;
+        }
+        else if(slots[slot] != previous.activeSkillSlots[slot])
+        {
+            loadout->activeMinResourcePercent[slot] = 0;
+            loadout->activeMinimumTargets[slot] = 1;
+            loadout->activeTargetModes[slot] = 0;
+        }
+        loadout->skillLoadoutActive =
+            loadout->activeSkillSlots[0] || loadout->activeSkillSlots[1] ||
+            loadout->activeSkillSlots[2] || loadout->activeSkillSlots[3];
+    }
+
+    if(!PersistLoadoutOverride(state, *loadout))
+    {
+        *loadout = previous;
+        return -11;
+    }
+
+    CompanionSlot *activeSlot = FindSlotByName(state, characterName);
+    if(buffSkill && activeSlot && IsSlotActive(state, *activeSlot) &&
+       previous.buffSkillSlots[slot] != loadout->buffSkillSlots[slot])
+    {
+        // Editing one buff slot must not tear down unrelated active buffs.
+        ResetCompanionBuffModifier(activeSlot->entity, activeSlot->skillRuntime, slot);
+    }
+
+    CompanionDebugLog(
+        "LOADOUT_EDIT name='%s' kind=%s slot=%d old=%u new=%u slots=[%u,%u,%u,%u] active=%d",
+        characterName, buffSkill ? "buff" : "active", slot + 1,
+        (unsigned)(buffSkill ? previous.buffSkillSlots[slot] : previous.activeSkillSlots[slot]),
+        (unsigned)slots[slot],
+        (unsigned)slots[0], (unsigned)slots[1], (unsigned)slots[2], (unsigned)slots[3],
+        buffSkill ? (loadout->buffLoadoutActive ? 1 : 0) : (loadout->skillLoadoutActive ? 1 : 0));
+    return TRUE;
+}
+
+int AdjustBuffInterval(rsPLAYINFO *owner, const char *characterName, int encodedSlotDirection)
+{
+    if(!encodedSlotDirection)
+        return -10;
+    const int slotValue = encodedSlotDirection < 0 ? -encodedSlotDirection : encodedSlotDirection;
+    const int slot = slotValue - 1;
+    const int direction = encodedSlotDirection >= 0 ? +1 : -1;
+    if(slot < 0 || slot >= 4)
+        return -10;
+
+    std::lock_guard<std::mutex> guard(g_mutex);
+    OwnerState &state = GetOrCreateState(owner);
+    PruneState(state);
+    LoadoutOverride *loadout = FindLoadoutOverride(state, characterName, true);
+    if(!loadout)
+        return -9;
+    if(!loadout->buffSkillSlots[slot])
+        return -10;
+
+    const LoadoutOverride previous = *loadout;
+    int interval = loadout->buffIntervalSeconds[slot];
+    if(interval < 5) interval = 60;
+    interval += direction * 15;
+    if(interval < 5) interval = 5;
+    if(interval > 3600) interval = 3600;
+    loadout->buffIntervalSeconds[slot] = (WORD)interval;
+    loadout->buffLoadoutActive =
+        loadout->buffSkillSlots[0] || loadout->buffSkillSlots[1] ||
+        loadout->buffSkillSlots[2] || loadout->buffSkillSlots[3];
+    if(!PersistLoadoutOverride(state, *loadout))
+    {
+        *loadout = previous;
+        return -11;
+    }
+
+    CompanionSlot *activeSlot = FindSlotByName(state, characterName);
+    if(activeSlot && IsSlotActive(state, *activeSlot))
+        activeSlot->skillRuntime.nextBuffSkillTime[slot] =
+            dwPlayServTime + (DWORD)interval * 1000U;
+
+    CompanionDebugLog(
+        "LOADOUT_INTERVAL name='%s' slot=%d old=%u new=%u",
+        characterName, slot + 1,
+        (unsigned)previous.buffIntervalSeconds[slot],
+        (unsigned)loadout->buffIntervalSeconds[slot]);
+    return TRUE;
+}
+
+int CycleActiveSkillPolicy(rsPLAYINFO *owner, const char *characterName, int slotValue, int policyKind)
+{
+    const int slot = slotValue - 1;
+    if(!owner || !characterName || !characterName[0] || slot < 0 || slot >= 4)
+        return -10;
+    std::lock_guard<std::mutex> guard(g_mutex);
+    OwnerState &state = GetOrCreateState(owner);
+    PruneState(state);
+    LoadoutOverride *loadout = FindLoadoutOverride(state, characterName, true);
+    if(!loadout || !loadout->activeSkillSlots[slot])
+        return -10;
+    const LoadoutOverride previous = *loadout;
+    if(policyKind == 0)
+        loadout->activeMinResourcePercent[slot] = (BYTE)((loadout->activeMinResourcePercent[slot] + 10) % 100);
+    else if(policyKind == 1)
+        loadout->activeMinimumTargets[slot] = (BYTE)((loadout->activeMinimumTargets[slot] % 5) + 1);
+    else if(policyKind == 2)
+        loadout->activeTargetModes[slot] = (BYTE)((loadout->activeTargetModes[slot] + 1) % 3);
+    else
+        return -10;
+    if(!PersistLoadoutOverride(state, *loadout))
+    {
+        *loadout = previous;
+        return -11;
+    }
+    CompanionDebugLog("LOADOUT_POLICY name='%s' slot=%d reserve=%u minTargets=%u targetMode=%u",
+        characterName, slot + 1, (unsigned)loadout->activeMinResourcePercent[slot],
+        (unsigned)loadout->activeMinimumTargets[slot], (unsigned)loadout->activeTargetModes[slot]);
+    return TRUE;
+}
+
+int ResetSkillLoadout(rsPLAYINFO *owner, const char *characterName, bool buffSkill)
+{
+    std::lock_guard<std::mutex> guard(g_mutex);
+    OwnerState &state = GetOrCreateState(owner);
+    PruneState(state);
+    LoadoutOverride *loadout = FindLoadoutOverride(state, characterName, true);
+    if(!loadout)
+        return -9;
+
+    const LoadoutOverride previous = *loadout;
+    if(buffSkill)
+    {
+        loadout->buffLoadoutActive = false;
+        ZeroMemory(loadout->buffSkillSlots, sizeof(loadout->buffSkillSlots));
+        ZeroMemory(loadout->buffIntervalSeconds, sizeof(loadout->buffIntervalSeconds));
+        ZeroMemory(loadout->buffTargetModes, sizeof(loadout->buffTargetModes));
+    }
+    else
+    {
+        loadout->skillLoadoutActive = false;
+        ZeroMemory(loadout->activeSkillSlots, sizeof(loadout->activeSkillSlots));
+        ZeroMemory(loadout->activeMinResourcePercent, sizeof(loadout->activeMinResourcePercent));
+        ZeroMemory(loadout->activeTargetModes, sizeof(loadout->activeTargetModes));
+        for(int i = 0; i < 4; ++i) loadout->activeMinimumTargets[i] = 1;
+    }
+
+    if(!PersistLoadoutOverride(state, *loadout))
+    {
+        *loadout = previous;
+        return -11;
+    }
+
+    CompanionSlot *activeSlot = FindSlotByName(state, characterName);
+    if(activeSlot && IsSlotActive(state, *activeSlot))
+    {
+        if(buffSkill)
+            ResetAllCompanionBuffModifiers(activeSlot->entity, activeSlot->skillRuntime);
+        else
+            activeSlot->skillRuntime.activeSkillCursor = 0;
+    }
+    CompanionDebugLog("LOADOUT_RESET name='%s' kind=%s",
+        characterName, buffSkill ? "buff" : "active");
+    return TRUE;
+}
+
 INT64 ComputeBaseExperience(INT64 rawExp, int monsterLevel, int companionLevel)
 {
     int levelDifference = monsterLevel - companionLevel;
@@ -1202,9 +2365,49 @@ int Summon(rsPLAYINFO *owner, const char *characterName)
     slot.pendingExp = 0;
     slot.lastExpFlushTime = dwPlayServTime;
     slot.deadSince = 0;
+    slot.lastProgressCheckTime = 0;
+    slot.lastProgressX = 0;
+    slot.lastProgressZ = 0;
+    slot.stuckTicks = 0;
+    slot.nextIdentityCheckTime = 0;
+    slot.lootArea = NULL;
+    slot.lootTarget = NULL;
+    slot.lootTargetSince = 0;
+    slot.nextLootScanTime = 0;
+    slot.nextLootPickupTime = 0;
     slot.visualMotionState = 0;
     slot.visualMotionSequence = 0;
     slot.visualMotionFrame = 0;
+    slot.skillRuntime.Reset();
+    BYTE logicalSkillPoints[COMPANION_MAX_SKILL_SLOTS] = {};
+    ReadCompanionLogicalSkillPoints(recordData, logicalSkillPoints, COMPANION_MAX_SKILL_SLOTS);
+    LoadCompanionLogicalSkillPoints(slot.skillRuntime, logicalSkillPoints, COMPANION_MAX_SKILL_SLOTS);
+    ApplyCompanionPassiveSkills(entity, slot.skillRuntime);
+    if(CompanionDebugEnabled())
+    {
+        CompanionDebugLog(
+            "SKILL_LOAD name='%s' serial=%lu job=%lu level=%d mana=%d/%d stamina=%d/%d points=[%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u]",
+            slot.characterName, (unsigned long)entity->dwObjectSerial,
+            (unsigned long)entity->smCharInfo.JOB_CODE, entity->smCharInfo.Level,
+            entity->smCharInfo.Mana[0], entity->smCharInfo.Mana[1],
+            entity->smCharInfo.Stamina[0], entity->smCharInfo.Stamina[1],
+            (unsigned)slot.skillRuntime.skillPoints[0],
+            (unsigned)slot.skillRuntime.skillPoints[1],
+            (unsigned)slot.skillRuntime.skillPoints[2],
+            (unsigned)slot.skillRuntime.skillPoints[3],
+            (unsigned)slot.skillRuntime.skillPoints[4],
+            (unsigned)slot.skillRuntime.skillPoints[5],
+            (unsigned)slot.skillRuntime.skillPoints[6],
+            (unsigned)slot.skillRuntime.skillPoints[7],
+            (unsigned)slot.skillRuntime.skillPoints[8],
+            (unsigned)slot.skillRuntime.skillPoints[9],
+            (unsigned)slot.skillRuntime.skillPoints[10],
+            (unsigned)slot.skillRuntime.skillPoints[11],
+            (unsigned)slot.skillRuntime.skillPoints[12],
+            (unsigned)slot.skillRuntime.skillPoints[13],
+            (unsigned)slot.skillRuntime.skillPoints[14],
+            (unsigned)slot.skillRuntime.skillPoints[15]);
+    }
 
     // Session-only companion loadouts survive dismiss/resummon but never alter
     // the offline character record. Reapply the override after the DAT-backed
@@ -1428,6 +2631,161 @@ bool IsManagedCompanion(smCHAR *character)
     return false;
 }
 
+int GetPassiveEvadePercent(smCHAR *character)
+{
+    if(!character || !character->lpMasterPlayInfo)
+        return 0;
+
+    std::lock_guard<std::mutex> guard(g_mutex);
+    for(std::map<rsPLAYINFO *, OwnerState>::iterator it = g_states.begin(); it != g_states.end(); ++it)
+    {
+        OwnerState &state = it->second;
+        if(!IsOwnerValid(state))
+            continue;
+        for(int i = 0; i < COMPANION_MAX_ACTIVE; ++i)
+        {
+            CompanionSlot &slot = state.slots[i];
+            if(IsSlotActive(state, slot) && slot.entity == character)
+            {
+                int evade = (int)slot.skillRuntime.passiveEvadePercent;
+                for(int b = 0; b < 4; ++b)
+                    evade += slot.skillRuntime.buffModifiers[b].evadePercent;
+                return std::max(0, std::min(95, evade));
+            }
+        }
+    }
+    return 0;
+}
+
+
+int GetReactiveDamage(smCHAR *character, int receivedDamage)
+{
+    if(!character || !character->lpMasterPlayInfo || receivedDamage <= 0)
+        return 0;
+
+    std::lock_guard<std::mutex> guard(g_mutex);
+    for(std::map<rsPLAYINFO *, OwnerState>::iterator it = g_states.begin(); it != g_states.end(); ++it)
+    {
+        OwnerState &state = it->second;
+        if(!IsOwnerValid(state))
+            continue;
+        for(int i = 0; i < COMPANION_MAX_ACTIVE; ++i)
+        {
+            CompanionSlot &slot = state.slots[i];
+            if(!IsSlotActive(state, slot) || slot.entity != character)
+                continue;
+            int reflected = 0;
+            for(int b = 0; b < 4; ++b)
+            {
+                const CompanionBuffModifier &modifier = slot.skillRuntime.buffModifiers[b];
+                reflected += modifier.reactiveDamageFlat;
+                if(modifier.reactiveDamagePercent > 0)
+                    reflected += (receivedDamage * modifier.reactiveDamagePercent) / 100;
+            }
+            return std::max(0, reflected);
+        }
+    }
+    return 0;
+}
+
+bool CanMonsterTargetCompanion(smCHAR *monster, smCHAR *target)
+{
+    if(!monster || !target)
+        return true;
+
+    std::lock_guard<std::mutex> guard(g_mutex);
+    for(std::map<rsPLAYINFO *, OwnerState>::iterator it = g_states.begin();
+        it != g_states.end(); ++it)
+    {
+        OwnerState &state = it->second;
+        if(!IsOwnerValid(state))
+            continue;
+        for(int i = 0; i < COMPANION_MAX_ACTIVE; ++i)
+        {
+            CompanionSlot &slot = state.slots[i];
+            if(IsSlotActive(state, slot) && slot.entity == target)
+                return CanMonsterSeeCompanionWithVanish(target, monster, slot.skillRuntime, dwPlayServTime);
+        }
+    }
+    return true;
+}
+
+void ApplyIncomingDamage(smCHAR *target, smCHAR *attacker, int *damage)
+{
+    if(!target || !damage || *damage <= 0)
+        return;
+
+    std::lock_guard<std::mutex> guard(g_mutex);
+    for(std::map<rsPLAYINFO *, OwnerState>::iterator it = g_states.begin();
+        it != g_states.end(); ++it)
+    {
+        OwnerState &state = it->second;
+        if(!IsOwnerValid(state))
+            continue;
+        for(int i = 0; i < COMPANION_MAX_ACTIVE; ++i)
+        {
+            CompanionSlot &slot = state.slots[i];
+            if(IsSlotActive(state, slot) && slot.entity == target)
+            {
+                ApplyCompanionIncomingDamageModifiers(target, attacker, state.owner,
+                    slot.skillRuntime, damage, dwPlayServTime);
+                return;
+            }
+        }
+    }
+}
+
+void ApplyOutgoingBasicDamage(smCHAR *attacker, smCHAR *target, int *damage)
+{
+    if(!attacker || !target || !damage || *damage <= 0)
+        return;
+
+    std::lock_guard<std::mutex> guard(g_mutex);
+    for(std::map<rsPLAYINFO *, OwnerState>::iterator it = g_states.begin();
+        it != g_states.end(); ++it)
+    {
+        OwnerState &state = it->second;
+        if(!IsOwnerValid(state))
+            continue;
+        for(int i = 0; i < COMPANION_MAX_ACTIVE; ++i)
+        {
+            CompanionSlot &slot = state.slots[i];
+            if(IsSlotActive(state, slot) && slot.entity == attacker)
+            {
+                const DWORD rightItemCode = attacker->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_RIGHT_ITEM_CODE];
+                ApplyCompanionOutgoingBasicDamageModifiers(attacker, target, rightItemCode,
+                    slot.skillRuntime, damage, dwPlayServTime);
+                return;
+            }
+        }
+    }
+}
+
+void ApplyOutgoingBasicPostAbsorption(smCHAR *attacker, smCHAR *target, int *damage)
+{
+    if(!attacker || !target || !damage || *damage <= 0)
+        return;
+
+    std::lock_guard<std::mutex> guard(g_mutex);
+    for(std::map<rsPLAYINFO *, OwnerState>::iterator it = g_states.begin();
+        it != g_states.end(); ++it)
+    {
+        OwnerState &state = it->second;
+        if(!IsOwnerValid(state))
+            continue;
+        for(int i = 0; i < COMPANION_MAX_ACTIVE; ++i)
+        {
+            CompanionSlot &slot = state.slots[i];
+            if(IsSlotActive(state, slot) && slot.entity == attacker)
+            {
+                ApplyCompanionOutgoingBasicPostAbsorptionModifiers(attacker, target,
+                    slot.skillRuntime, damage, dwPlayServTime);
+                return;
+            }
+        }
+    }
+}
+
 void PublishVisualState(smCHAR *character)
 {
     if(!character || !character->lpMasterPlayInfo)
@@ -1475,6 +2833,36 @@ void ApplyAI(smCHAR *character)
         return;
 
     rsPLAYINFO *owner = state->owner;
+
+    // The summon path already rejects an alt that is online as a real player.
+    // Re-check periodically so a later login cannot leave the same character
+    // alive both as rsPLAYINFO and as an account companion.  Retire the
+    // companion before running any more AI/combat and preserve pending EXP if
+    // the persistence flush transiently fails.
+    if(!managedSlot->nextIdentityCheckTime ||
+       (int)(dwPlayServTime - managedSlot->nextIdentityCheckTime) >= 0)
+    {
+        managedSlot->nextIdentityCheckTime = dwPlayServTime + 2000U;
+        rsPLAYINFO *onlineCharacter = FindUserFromName(managedSlot->characterName);
+        if(onlineCharacter && onlineCharacter != owner && onlineCharacter->lpsmSock)
+        {
+            char retiringName[32] = { 0 };
+            CopyText32(retiringName, managedSlot->characterName);
+            const DWORD retiringSerial = character->dwObjectSerial;
+            const bool flushed = FlushSlotExperience(*state, *managedSlot);
+            KillEntity(*managedSlot);
+            if(flushed)
+                ClearSlot(*managedSlot);
+            CompanionDebugLog(
+                "IDENTITY_CONFLICT_DISMISS name='%s' serial=%lu onlineSerial=%lu expFlushed=%d",
+                retiringName, (unsigned long)retiringSerial,
+                (unsigned long)onlineCharacter->dwObjectSerial, flushed ? 1 : 0);
+            SendRuntimeStateLocked(*state, true);
+            SendVisualStateLocked(*state, true);
+            return;
+        }
+    }
+
     LoadoutOverride *profile = FindLoadoutOverride(*state, managedSlot->characterName, true);
     const CompanionMode mode = profile ? profile->mode : state->mode;
     const CompanionTacticPreset tactic = profile ? profile->tactic : COMPANION_TACTIC_BALANCED;
@@ -1498,7 +2886,224 @@ void ApplyAI(smCHAR *character)
     // state; it never reloads the character DAT or item catalogue.
     SendRuntimeStateLocked(*state, false);
 
-    // Companion V1 has no heal/recovery executor yet. A permanent low-HP
+    // Owner-dead policy: companions hold/follow the owner's corpse but do not
+    // keep fighting or consuming resources while their controlling character
+    // is dead.  Cancel delayed offensive events so they cannot land after a
+    // later owner revive; persistent timed buffs/familiars keep their absolute
+    // expiry and simply resume if still valid.
+    if(owner->smCharInfo.Life[0] <= 0)
+    {
+        managedSlot->skillRuntime.multiHitSkillCode = 0;
+        managedSlot->skillRuntime.multiHitTargetSerial = 0;
+        managedSlot->skillRuntime.multiHitRemaining = 0;
+        managedSlot->skillRuntime.multiHitNextTime = 0;
+        managedSlot->skillRuntime.chargedStrikeTargetSerial = 0;
+        managedSlot->skillRuntime.chargedStrikeExecuteAt = 0;
+        character->lpTargetChar = NULL;
+        character->lpTargetPlayInfo = NULL;
+        character->TargetMoveCount = 0;
+        character->AutoMoveStep = 0;
+        if(character->MotionInfo &&
+           (character->MotionInfo->State == CHRMOTION_STATE_ATTACK ||
+            character->MotionInfo->State == CHRMOTION_STATE_SKILL))
+            character->SetMotionFromCode(CHRMOTION_STATE_STAND);
+        return;
+    }
+
+    const DWORD rightItemCode = character->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_RIGHT_ITEM_CODE];
+    const DWORD leftItemCode = character->smCharInfo.dwTemp[smCOMPANION_NET_TEMP_LEFT_ITEM_CODE];
+
+    // Match the legacy player resource loop before emergency consumables.
+    // This uses the character's authoritative Life/Mana/Stamina_Regen stats
+    // and fractional accumulators so low per-second values are not lost.
+    if(UpdateCompanionResourceRegeneration(character, managedSlot->skillRuntime, dwPlayServTime) &&
+       CompanionDebugEnabled() &&
+       CompanionDebugTick(character->dwObjectSerial + 59U, 5000U))
+    {
+        CompanionDebugLog(
+            "RESOURCE_REGEN name='%s' serial=%lu life=%d/%d mana=%d/%d stamina=%d/%d",
+            managedSlot->characterName, (unsigned long)character->dwObjectSerial,
+            character->smCharInfo.Life[0], character->smCharInfo.Life[1],
+            character->smCharInfo.Mana[0], character->smCharInfo.Mana[1],
+            character->smCharInfo.Stamina[0], character->smCharInfo.Stamina[1]);
+    }
+
+    if(CompanionDebugEnabled() && CompanionDebugTick(character->dwObjectSerial + 67U, 5000U))
+        LogCompanionPotionState(managedSlot->characterName, character, managedSlot->skillRuntime, dwPlayServTime);
+
+    // Consumables belong to the offline alt itself. The persistence helper
+    // validates the restore payload first, then decrements and persists the DAT
+    // stack before applying HP/MP/Stamina so a failed write cannot duplicate it.
+    if(owner->getAccount() && owner->getAccount()[0])
+    {
+        if(TryUseCompanionConsumable(owner->getAccount(), managedSlot->characterName,
+            character, managedSlot->skillRuntime, dwPlayServTime))
+        {
+            CompanionDebugLog("ITEM_USE name='%s' serial=%lu life=%d/%d mana=%d/%d stamina=%d/%d",
+                managedSlot->characterName, (unsigned long)character->dwObjectSerial,
+                character->smCharInfo.Life[0], character->smCharInfo.Life[1],
+                character->smCharInfo.Mana[0], character->smCharInfo.Mana[1],
+                character->smCharInfo.Stamina[0], character->smCharInfo.Stamina[1]);
+            SendRuntimeStateLocked(*state, true);
+        }
+    }
+
+    // Buff modifiers are server-authoritative stats. Expire them even while the
+    // companion is Passive or temporarily skill-locked.
+    UpdateCompanionBuffModifiers(character, managedSlot->skillRuntime, dwPlayServTime);
+
+    // V9: scheduled hits belong to the original cast and must advance even
+    // while the short action lock suppresses the basic-attack state machine.
+    if(UpdateCompanionMultiHit(character, owner, managedSlot->skillRuntime, dwPlayServTime))
+    {
+        SendRuntimeStateLocked(*state, true);
+        if(CompanionDebugEnabled())
+            CompanionDebugLog("SKILL_HIT name='%s' serial=%lu code=0x%08lX remaining=%d target=%lu",
+                managedSlot->characterName, (unsigned long)character->dwObjectSerial,
+                (unsigned long)managedSlot->skillRuntime.multiHitSkillCode,
+                managedSlot->skillRuntime.multiHitRemaining,
+                (unsigned long)managedSlot->skillRuntime.multiHitTargetSerial);
+    }
+
+    if(UpdateCompanionChargedStrike(character, owner, managedSlot->skillRuntime, dwPlayServTime))
+    {
+        SendRuntimeStateLocked(*state, true);
+        if(CompanionDebugEnabled())
+            CompanionDebugLog("SKILL_CHARGED_HIT name='%s' serial=%lu target=%lu",
+                managedSlot->characterName, (unsigned long)character->dwObjectSerial,
+                character->lpTargetChar ? (unsigned long)character->lpTargetChar->dwObjectSerial : 0UL);
+    }
+
+    if(UpdateCompanionPersistentEffect(character, owner, managedSlot->skillRuntime, dwPlayServTime))
+    {
+        SendRuntimeStateLocked(*state, true);
+        if(CompanionDebugEnabled())
+            CompanionDebugLog("SKILL_FAMILIAR_HIT name='%s' serial=%lu code=0x%08lX target=%lu",
+                managedSlot->characterName, (unsigned long)character->dwObjectSerial,
+                (unsigned long)managedSlot->skillRuntime.persistentEffectSkillCode,
+                character->lpTargetChar ? (unsigned long)character->lpTargetChar->dwObjectSerial : 0UL);
+    }
+
+    // A server-authoritative cast owns this short window. Do not let the
+    // monster/basic-attack state machine add an extra hit at FrameCounter 40.
+    if(IsCompanionSkillLocked(managedSlot->skillRuntime, dwPlayServTime))
+    {
+        character->lpTargetChar = NULL;
+        character->lpTargetPlayInfo = NULL;
+        character->TargetMoveCount = 0;
+        character->AutoMoveStep = 0;
+        return;
+    }
+
+    // Follow may still provide support, but Passive never consumes MP/casts.
+    if(mode != COMPANION_MODE_PASSIVE)
+    {
+        smCHAR *party[COMPANION_MAX_ACTIVE] = {};
+        CompanionSkillRuntime *partyRuntimes[COMPANION_MAX_ACTIVE] = {};
+        int partyCount = 0;
+        for(int i = 0; i < COMPANION_MAX_ACTIVE; ++i)
+        {
+            CompanionSlot &partySlot = state->slots[i];
+            // Keep owned corpses in the support view so Resurrection can select
+            // them during the configured corpse window. Other support handlers
+            // already reject Life <= 0 recipients explicitly.
+            if(partySlot.entity && partySlot.entity->Flag &&
+               partySlot.entity->lpMasterPlayInfo == state->owner)
+            {
+                party[partyCount] = partySlot.entity;
+                partyRuntimes[partyCount] = &partySlot.skillRuntime;
+                ++partyCount;
+            }
+        }
+
+        UpdateCompanionRegenerationFieldAura(character, party, partyRuntimes, partyCount,
+            managedSlot->skillRuntime, dwPlayServTime);
+
+        CompanionSkillAttempt buffAttempt;
+        if(profile && TryExecuteCompanionSupportLoadout(character, owner, party, partyRuntimes, partyCount,
+            rightItemCode, leftItemCode, profile->buffSkillSlots, profile->buffIntervalSeconds,
+            profile->buffLoadoutActive, managedSlot->skillRuntime, dwPlayServTime, &buffAttempt))
+        {
+            CompanionDebugLog("SKILL_CAST name='%s' serial=%lu code=0x%08lX kind=support point=%d mana=%d/%d stamina=%d/%d",
+                managedSlot->characterName, (unsigned long)character->dwObjectSerial,
+                (unsigned long)managedSlot->skillRuntime.lastSkillCode, buffAttempt.point,
+                character->smCharInfo.Mana[0], character->smCharInfo.Mana[1],
+                character->smCharInfo.Stamina[0], character->smCharInfo.Stamina[1]);
+            SendRuntimeStateLocked(*state, true);
+            SendVisualStateLocked(*state, true);
+            return;
+        }
+        else if(profile && profile->buffLoadoutActive &&
+                buffAttempt.reason != COMPANION_SKILL_INVALID &&
+                buffAttempt.reason != COMPANION_SKILL_COOLDOWN &&
+                buffAttempt.reason != COMPANION_SKILL_LOCKED &&
+                buffAttempt.reason != COMPANION_SKILL_NOT_NEEDED &&
+                CompanionDebugEnabled() &&
+                ShouldLogCompanionSkillReject(managedSlot->skillRuntime, 0, buffAttempt, dwPlayServTime, 5000U))
+        {
+            CompanionDebugLog(
+                "SKILL_CHECK name='%s' serial=%lu kind=support code=0x%08lX point=%d reason=%s level=%d reqLevel=%d RH=0x%08lX LH=0x%08lX mana=%d/%d reqMana=%d reserveMana=%d stamina=%d/%d reqStamina=%d reserveStamina=%d",
+                managedSlot->characterName, (unsigned long)character->dwObjectSerial,
+                (unsigned long)buffAttempt.skillCode, buffAttempt.point,
+                CompanionSkillRejectReasonName(buffAttempt.reason),
+                character->smCharInfo.Level, buffAttempt.requiredLevel,
+                (unsigned long)rightItemCode, (unsigned long)leftItemCode,
+                character->smCharInfo.Mana[0], character->smCharInfo.Mana[1], buffAttempt.manaCost, buffAttempt.manaReserve,
+                character->smCharInfo.Stamina[0], character->smCharInfo.Stamina[1], buffAttempt.staminaCost, buffAttempt.staminaReserve);
+        }
+
+        CompanionSkillAttempt healAttempt;
+        if(TryExecuteCompanionHeal(character, owner, party, partyCount,
+            rightItemCode, leftItemCode, managedSlot->skillRuntime, dwPlayServTime, &healAttempt))
+        {
+            CompanionDebugLog("SKILL_CAST name='%s' serial=%lu code=0x%08lX kind=heal point=%d mana=%d/%d stamina=%d/%d",
+                managedSlot->characterName, (unsigned long)character->dwObjectSerial,
+                (unsigned long)managedSlot->skillRuntime.lastSkillCode, healAttempt.point,
+                character->smCharInfo.Mana[0], character->smCharInfo.Mana[1],
+                character->smCharInfo.Stamina[0], character->smCharInfo.Stamina[1]);
+            SendRuntimeStateLocked(*state, true);
+            SendVisualStateLocked(*state, true);
+            return;
+        }
+        else if(character->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS &&
+                healAttempt.reason != COMPANION_SKILL_NO_TARGET &&
+                healAttempt.reason != COMPANION_SKILL_COOLDOWN &&
+                healAttempt.reason != COMPANION_SKILL_LOCKED &&
+                CompanionDebugEnabled() &&
+                ShouldLogCompanionSkillReject(managedSlot->skillRuntime, 1, healAttempt, dwPlayServTime, 5000U))
+        {
+            CompanionDebugLog(
+                "SKILL_CHECK name='%s' serial=%lu kind=heal code=0x%08lX point=%d reason=%s level=%d reqLevel=%d mana=%d/%d reqMana=%d reserveMana=%d stamina=%d/%d reqStamina=%d reserveStamina=%d",
+                managedSlot->characterName, (unsigned long)character->dwObjectSerial,
+                (unsigned long)healAttempt.skillCode, healAttempt.point,
+                CompanionSkillRejectReasonName(healAttempt.reason),
+                character->smCharInfo.Level, healAttempt.requiredLevel,
+                character->smCharInfo.Mana[0], character->smCharInfo.Mana[1], healAttempt.manaCost, healAttempt.manaReserve,
+                character->smCharInfo.Stamina[0], character->smCharInfo.Stamina[1], healAttempt.staminaCost, healAttempt.staminaReserve);
+        }
+
+        // Healing already chooses the lowest-health owner/companion inside
+        // 320 units. If Healing is learned but every injured recipient is just
+        // outside that range, spend this AI tick closing the distance instead
+        // of immediately returning to offensive target selection. Resource or
+        // cooldown rejects do not trigger repositioning.
+        if(character->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS &&
+           GetCompanionSkillPoint(managedSlot->skillRuntime, 1) > 0 &&
+           healAttempt.reason == COMPANION_SKILL_NO_TARGET)
+        {
+            DWORD healMoveTarget = 0;
+            if(MoveTowardInjuredAlly(character, owner, party, partyCount, &healMoveTarget))
+            {
+                if(CompanionDebugEnabled() && CompanionDebugTick(character->dwObjectSerial + 83U, 1000U))
+                    CompanionDebugLog("AI_HEAL_POSITION name='%s' serial=%lu target=%lu",
+                        managedSlot->characterName, (unsigned long)character->dwObjectSerial,
+                        (unsigned long)healMoveTarget);
+                return;
+            }
+        }
+    }
+
+    // Retreat is explicit/opt-in only. A zero threshold disables it entirely. A permanent low-HP
     // early-return made companions stop fighting forever after crossing the
     // configured threshold. Keep retreat meaningful, but make it a one-shot
     // short disengage until HP recovers above a small hysteresis window.
@@ -1532,12 +3137,19 @@ void ApplyAI(smCHAR *character)
                 character->MotionInfo->State != CHRMOTION_STATE_DEAD &&
                 character->MotionInfo->State != CHRMOTION_STATE_DAMAGE)
             {
-                if(!character->SetMotionFromCode(CHRMOTION_STATE_RUN))
+                character->SetMotionFromCode(CHRMOTION_STATE_RUN);
+                if(!character->MotionInfo || character->MotionInfo->State != CHRMOTION_STATE_RUN)
                     character->SetMotionFromCode(CHRMOTION_STATE_WALK);
             }
             return;
         }
     }
+
+    // V43 Loot runs only after emergency/support/retreat decisions. Aggressive
+    // companions additionally refuse loot while a hostile is visible, so pickup
+    // cannot pre-empt normal combat target selection.
+    if(TryHandleCompanionLoot(character, owner, *managedSlot, mode))
+        return;
 
     if(mode == COMPANION_MODE_PASSIVE || mode == COMPANION_MODE_FOLLOW)
     {
@@ -1555,62 +3167,139 @@ void ApplyAI(smCHAR *character)
     smCHAR *currentTarget = IsValidHostile(character->lpTargetChar) ? character->lpTargetChar : NULL;
     smCHAR *target = NULL;
 
-    switch(tactic)
+    int matchedCustomRule = -1;
+    const int customAction = profile ?
+        EvaluateCustomTactic(profile->customTactics, character, owner, *state, ownerTarget, &matchedCustomRule) : -1;
+
+    if(customAction == protocol::COMPANION_TACTIC_ACTION_RETREAT)
     {
-        case COMPANION_TACTIC_OWNER_FOCUS:
-            // Owner target has priority, but the preset must remain useful while
-            // the owner has nothing selected.
-            if(ownerTarget)
-                target = ownerTarget;
-            else if(currentTarget)
-                target = currentTarget;
-            else
-                target = FindNearestHostile(character);
-            break;
-
-        case COMPANION_TACTIC_DEFENSIVE:
-            // Retaliate first; otherwise keep participating in normal combat.
-            if(currentTarget &&
-                (currentTarget->lpTargetChar == character || currentTarget->lpTargetPlayInfo == owner))
-                target = currentTarget;
-            else if(ownerTarget)
-                target = ownerTarget;
-            else if(currentTarget)
-                target = currentTarget;
-            else
-                target = FindNearestHostile(character);
-            break;
-
-        case COMPANION_TACTIC_HOLD_POSITION:
+        DisengageTarget(character);
+        int offsetX = 0;
+        int offsetZ = 0;
+        FormationOffset(profile ? profile->formationSlot : 0, offsetX, offsetZ);
+        character->SetTargetPosi2(
+            (owner->Position.x + offsetX) >> FLOATNS,
+            (owner->Position.z + offsetZ) >> FLOATNS);
+        character->TargetMoveCount = 2;
+        character->TragetTraceMode = FALSE;
+        if(character->MotionInfo &&
+           character->MotionInfo->State != CHRMOTION_STATE_DEAD &&
+           character->MotionInfo->State != CHRMOTION_STATE_DAMAGE)
         {
-            // Acquire enemies normally, but only fight them while they remain
-            // close to this companion's formation anchor.
-            smCHAR *candidate = currentTarget ? currentTarget : ownerTarget;
-            if(!candidate)
-                candidate = FindNearestHostile(character);
-
-            if(candidate)
-            {
-                int offsetX = 0;
-                int offsetZ = 0;
-                FormationOffset(profile ? profile->formationSlot : 0, offsetX, offsetZ);
-                const int dx = (candidate->pX - (owner->Position.x + offsetX)) >> FLOATNS;
-                const int dz = (candidate->pZ - (owner->Position.z + offsetZ)) >> FLOATNS;
-                if(dx * dx + dz * dz <= (260 * 260))
-                    target = candidate;
-            }
-            break;
+            character->SetMotionFromCode(CHRMOTION_STATE_RUN);
+            if(!character->MotionInfo || character->MotionInfo->State != CHRMOTION_STATE_RUN)
+                character->SetMotionFromCode(CHRMOTION_STATE_WALK);
         }
+        if(CompanionDebugEnabled() && CompanionDebugTick(character->dwObjectSerial + 101U, 1000U))
+            CompanionDebugLog("TACTIC_RULE name='%s' rule=%d action=RETREAT", managedSlot->characterName, matchedCustomRule);
+        return;
+    }
 
-        case COMPANION_TACTIC_BALANCED:
-        default:
-            if(ownerTarget)
-                target = ownerTarget;
-            else if(currentTarget)
-                target = currentTarget;
-            else
+    if(customAction >= 0)
+    {
+        switch(customAction)
+        {
+            case protocol::COMPANION_TACTIC_ACTION_ATTACK_OWNER_TARGET:
+                target = ownerTarget ? ownerTarget : (currentTarget ? currentTarget :
+                    FindBestHostile(character, owner, *state, currentTarget, ownerTarget));
+                break;
+
+            case protocol::COMPANION_TACTIC_ACTION_DEFEND_PARTY:
+                target = FindNearestThreatToParty(character, owner, *state);
+                if(!target && ownerTarget) target = ownerTarget;
+                if(!target && currentTarget) target = currentTarget;
+                if(!target) target = FindBestHostile(character, owner, *state, currentTarget, ownerTarget);
+                break;
+
+            case protocol::COMPANION_TACTIC_ACTION_ATTACK_NEAREST:
                 target = FindNearestHostile(character);
-            break;
+                break;
+
+            case protocol::COMPANION_TACTIC_ACTION_HOLD_POSITION:
+            {
+                smCHAR *candidate = currentTarget ? currentTarget : ownerTarget;
+                if(!candidate)
+                    candidate = FindNearestHostile(character);
+                if(candidate)
+                {
+                    int offsetX = 0;
+                    int offsetZ = 0;
+                    FormationOffset(profile ? profile->formationSlot : 0, offsetX, offsetZ);
+                    const int dx = (candidate->pX - (owner->Position.x + offsetX)) >> FLOATNS;
+                    const int dz = (candidate->pZ - (owner->Position.z + offsetZ)) >> FLOATNS;
+                    if(dx * dx + dz * dz <= (260 * 260))
+                        target = candidate;
+                }
+                break;
+            }
+
+            default:
+                break;
+        }
+    }
+    else
+    {
+        switch(tactic)
+        {
+            case COMPANION_TACTIC_OWNER_FOCUS:
+                // Owner target has priority, but the preset must remain useful while
+                // the owner has nothing selected.
+                if(ownerTarget)
+                    target = ownerTarget;
+                else if(currentTarget)
+                    target = currentTarget;
+                else
+                    target = FindBestHostile(character, owner, *state, currentTarget, ownerTarget);
+                break;
+
+            case COMPANION_TACTIC_DEFENSIVE:
+            {
+                // Prefer an enemy that is actually threatening the owner/party,
+                // not merely the geometrically nearest monster. Retain a current
+                // retaliating target first to avoid target thrash.
+                if(currentTarget &&
+                    (currentTarget->lpTargetChar == character || currentTarget->lpTargetPlayInfo == owner))
+                    target = currentTarget;
+                else
+                    target = FindNearestThreatToParty(character, owner, *state);
+                if(!target && ownerTarget)
+                    target = ownerTarget;
+                if(!target && currentTarget)
+                    target = currentTarget;
+                if(!target)
+                    target = FindBestHostile(character, owner, *state, currentTarget, ownerTarget);
+                break;
+            }
+
+            case COMPANION_TACTIC_HOLD_POSITION:
+            {
+                // Acquire enemies normally, but only fight them while they remain
+                // close to this companion's formation anchor.
+                smCHAR *candidate = currentTarget ? currentTarget : ownerTarget;
+                if(!candidate)
+                    candidate = FindNearestHostile(character);
+
+                if(candidate)
+                {
+                    int offsetX = 0;
+                    int offsetZ = 0;
+                    FormationOffset(profile ? profile->formationSlot : 0, offsetX, offsetZ);
+                    const int dx = (candidate->pX - (owner->Position.x + offsetX)) >> FLOATNS;
+                    const int dz = (candidate->pZ - (owner->Position.z + offsetZ)) >> FLOATNS;
+                    if(dx * dx + dz * dz <= (260 * 260))
+                        target = candidate;
+                }
+                break;
+            }
+
+            case COMPANION_TACTIC_BALANCED:
+            default:
+                if(ownerTarget)
+                    target = ownerTarget;
+                else
+                    target = FindBestHostile(character, owner, *state, currentTarget, ownerTarget);
+                break;
+        }
     }
 
     if(CompanionDebugTick(character->dwObjectSerial, 1000U))
@@ -1622,9 +3311,10 @@ void ApplyAI(smCHAR *character)
             const int dz = (target->pZ - character->pZ) >> FLOATNS;
             dist2 = dx * dx + dz * dz;
         }
-        CompanionDebugLog("AI name='%s' serial=%lu mode=%d tactic=%d life=%d/%d motion=%d ownerTarget=%lu currentTarget=%lu chosen=%lu dist2=%d preferredRange=%d",
+        CompanionDebugLog("AI name='%s' serial=%lu mode=%d tactic=%d custom=%d rule=%d action=%d life=%d/%d motion=%d ownerTarget=%lu currentTarget=%lu chosen=%lu dist2=%d preferredRange=%d",
             managedSlot->characterName, (unsigned long)character->dwObjectSerial,
-            (int)mode, (int)tactic, character->smCharInfo.Life[0], character->smCharInfo.Life[1],
+            (int)mode, (int)tactic, profile && profile->customTactics.enabled ? 1 : 0, matchedCustomRule, customAction,
+            character->smCharInfo.Life[0], character->smCharInfo.Life[1],
             character->MotionInfo ? (int)character->MotionInfo->State : -1,
             ownerTarget ? (unsigned long)ownerTarget->dwObjectSerial : 0UL,
             currentTarget ? (unsigned long)currentTarget->dwObjectSerial : 0UL,
@@ -1632,9 +3322,93 @@ void ApplyAI(smCHAR *character)
     }
 
     if(target)
-        EngageTarget(character, target, preferredRange);
+    {
+        CompanionSkillAttempt damageAttempt;
+        const BYTE *activeSkillSlots = profile ? profile->activeSkillSlots : NULL;
+        const bool skillLoadoutActive = profile && profile->skillLoadoutActive;
+        if(TryExecuteCompanionDamageLoadout(character, owner, target, rightItemCode, leftItemCode,
+            activeSkillSlots,
+            profile ? profile->activeMinResourcePercent : NULL,
+            profile ? profile->activeMinimumTargets : NULL,
+            profile ? profile->activeTargetModes : NULL,
+            skillLoadoutActive, managedSlot->skillRuntime, dwPlayServTime, &damageAttempt))
+        {
+            CompanionDebugLog("SKILL_CAST name='%s' serial=%lu code=0x%08lX kind=damage point=%d target=%lu mana=%d/%d stamina=%d/%d targetLife=%d/%d",
+                managedSlot->characterName, (unsigned long)character->dwObjectSerial,
+                (unsigned long)managedSlot->skillRuntime.lastSkillCode, damageAttempt.point,
+                (unsigned long)target->dwObjectSerial,
+                character->smCharInfo.Mana[0], character->smCharInfo.Mana[1],
+                character->smCharInfo.Stamina[0], character->smCharInfo.Stamina[1],
+                target->smCharInfo.Life[0], target->smCharInfo.Life[1]);
+            SendRuntimeStateLocked(*state, true);
+            SendVisualStateLocked(*state, true);
+            return;
+        }
+        else if(damageAttempt.reason != COMPANION_SKILL_COOLDOWN &&
+                damageAttempt.reason != COMPANION_SKILL_LOCKED &&
+                CompanionDebugEnabled() &&
+                ShouldLogCompanionSkillReject(managedSlot->skillRuntime, 2, damageAttempt, dwPlayServTime, 5000U))
+        {
+            CompanionDebugLog(
+                "SKILL_CHECK name='%s' serial=%lu kind=damage code=0x%08lX point=%d reason=%s job=%lu level=%d reqLevel=%d RH=0x%08lX LH=0x%08lX mana=%d/%d reqMana=%d reserveMana=%d stamina=%d/%d reqStamina=%d reserveStamina=%d range=%d dist2=%d target=%lu",
+                managedSlot->characterName, (unsigned long)character->dwObjectSerial,
+                (unsigned long)damageAttempt.skillCode, damageAttempt.point,
+                CompanionSkillRejectReasonName(damageAttempt.reason),
+                (unsigned long)character->smCharInfo.JOB_CODE, character->smCharInfo.Level,
+                damageAttempt.requiredLevel,
+                (unsigned long)rightItemCode, (unsigned long)leftItemCode,
+                character->smCharInfo.Mana[0], character->smCharInfo.Mana[1], damageAttempt.manaCost, damageAttempt.manaReserve,
+                character->smCharInfo.Stamina[0], character->smCharInfo.Stamina[1], damageAttempt.staminaCost, damageAttempt.staminaReserve,
+                damageAttempt.range, damageAttempt.distanceSquared,
+                target ? (unsigned long)target->dwObjectSerial : 0UL);
+        }
+        // Lightweight stuck/path recovery: if an out-of-range companion has
+        // moved less than eight world units across two one-second probes, reset
+        // the legacy move state before reissuing the combat trace. This avoids
+        // leaving AutoMoveStep/TargetMoveCount wedged indefinitely without
+        // introducing a second pathfinder.
+        if((DWORD)(dwPlayServTime - managedSlot->lastProgressCheckTime) >= 1000U)
+        {
+            const int movedX = (character->pX - managedSlot->lastProgressX) >> FLOATNS;
+            const int movedZ = (character->pZ - managedSlot->lastProgressZ) >> FLOATNS;
+            const int targetDx = (target->pX - character->pX) >> FLOATNS;
+            const int targetDz = (target->pZ - character->pZ) >> FLOATNS;
+            int combatRange = preferredRange > 0 ? preferredRange : character->smCharInfo.Shooting_Range + 32;
+            combatRange = std::max(80, std::min(600, combatRange));
+            if(targetDx * targetDx + targetDz * targetDz > combatRange * combatRange &&
+               managedSlot->lastProgressCheckTime && movedX * movedX + movedZ * movedZ < (8 * 8))
+                ++managedSlot->stuckTicks;
+            else
+                managedSlot->stuckTicks = 0;
+
+            managedSlot->lastProgressCheckTime = dwPlayServTime;
+            managedSlot->lastProgressX = character->pX;
+            managedSlot->lastProgressZ = character->pZ;
+            if(managedSlot->stuckTicks >= 2)
+            {
+                character->TargetMoveCount = 0;
+                character->AutoMoveStep = 0;
+                character->TragetTraceMode = 0;
+                character->SetNextTarget(0, 0, 0);
+                managedSlot->stuckTicks = 0;
+                CompanionDebugLog("AI_STUCK_RECOVER name='%s' serial=%lu target=%lu",
+                    managedSlot->characterName, (unsigned long)character->dwObjectSerial,
+                    (unsigned long)target->dwObjectSerial);
+            }
+        }
+
+        int formationSlot = profile ? profile->formationSlot : -1;
+        if(formationSlot < 0 || formationSlot >= COMPANION_MAX_ACTIVE)
+            formationSlot = (int)(managedSlot - &state->slots[0]);
+        const bool combatSpacing = HasOtherCompanionTargeting(*state, character, target);
+        EngageTarget(character, target, preferredRange, formationSlot, combatSpacing);
+    }
     else
+    {
+        managedSlot->stuckTicks = 0;
+        managedSlot->lastProgressCheckTime = 0;
         DisengageTarget(character);
+    }
 }
 
 bool GetFollowPosition(smCHAR *character, int *x, int *z)
@@ -1754,11 +3528,7 @@ INT64 AwardExperience(rsPLAYINFO *owner, smCHAR *killedMonster, float partyShare
 DWORD GetConfiguredCrystalItemCode()
 {
     // Decimal item code. 0 disables item interception while keeping commands.
-    return (DWORD)GetPrivateProfileIntA(
-        "Companion",
-        "CrystalItemCode",
-        0,
-        ".//Configs//Companion.ini");
+    return (DWORD)SummitCompanionConfigInt("CrystalItemCode", 0);
 }
 
 int HandleCrystalUse(rsPLAYINFO *owner, DWORD itemCode)
@@ -1832,6 +3602,112 @@ int UpdateCompanionBehavior(
         profile->retreatHpPercent, profile->preferredRange);
     return TRUE;
 }
+int UpdateCustomTactics(rsPLAYINFO *owner, const char *characterName, int operation, int value)
+{
+    if(!owner || !owner->getAccount() || !owner->getAccount()[0] ||
+       !characterName || !characterName[0])
+        return -8;
+
+    std::lock_guard<std::mutex> guard(g_mutex);
+    OwnerState &state = GetOrCreateState(owner);
+    LoadoutOverride *profile = FindLoadoutOverride(state, characterName, true);
+    if(!profile)
+        return -9;
+
+    CompanionTacticsConfig previous = profile->customTactics;
+    int slot = value < 0 ? -value - 1 : value - 1;
+
+    switch(operation)
+    {
+        case 0: // enable/disable custom engine
+            profile->customTactics.enabled = !profile->customTactics.enabled;
+            break;
+
+        case 1: // toggle rule enabled
+            if(slot < 0 || slot >= protocol::COMPANION_UI_TACTIC_RULES) return -10;
+            profile->customTactics.rules[slot].enabled = !profile->customTactics.rules[slot].enabled;
+            break;
+
+        case 2: // cycle condition
+            if(slot < 0 || slot >= protocol::COMPANION_UI_TACTIC_RULES) return -10;
+            profile->customTactics.rules[slot].condition =
+                (profile->customTactics.rules[slot].condition + 1) %
+                (protocol::COMPANION_TACTIC_CONDITION_PARTY_THREATENED + 1);
+            switch(profile->customTactics.rules[slot].condition)
+            {
+                case protocol::COMPANION_TACTIC_CONDITION_SELF_HP_BELOW:
+                case protocol::COMPANION_TACTIC_CONDITION_OWNER_HP_BELOW:
+                    profile->customTactics.rules[slot].threshold = 25;
+                    break;
+                case protocol::COMPANION_TACTIC_CONDITION_ENEMIES_NEARBY_AT_LEAST:
+                    profile->customTactics.rules[slot].threshold = 3;
+                    break;
+                default:
+                    profile->customTactics.rules[slot].threshold = 0;
+                    break;
+            }
+            break;
+
+        case 3: // cycle action
+            if(slot < 0 || slot >= protocol::COMPANION_UI_TACTIC_RULES) return -10;
+            profile->customTactics.rules[slot].action =
+                (profile->customTactics.rules[slot].action + 1) %
+                (protocol::COMPANION_TACTIC_ACTION_HOLD_POSITION + 1);
+            break;
+
+        case 4: // cycle threshold
+            if(slot < 0 || slot >= protocol::COMPANION_UI_TACTIC_RULES) return -10;
+            switch(profile->customTactics.rules[slot].condition)
+            {
+                case protocol::COMPANION_TACTIC_CONDITION_SELF_HP_BELOW:
+                case protocol::COMPANION_TACTIC_CONDITION_OWNER_HP_BELOW:
+                {
+                    int next = profile->customTactics.rules[slot].threshold + 5;
+                    if(next > 95) next = 5;
+                    profile->customTactics.rules[slot].threshold = next;
+                    break;
+                }
+                case protocol::COMPANION_TACTIC_CONDITION_ENEMIES_NEARBY_AT_LEAST:
+                {
+                    int next = profile->customTactics.rules[slot].threshold + 1;
+                    if(next > 8) next = 1;
+                    profile->customTactics.rules[slot].threshold = next;
+                    break;
+                }
+                default:
+                    profile->customTactics.rules[slot].threshold = 0;
+                    break;
+            }
+            break;
+
+        case 5: // reorder; negative value moves that slot up, positive moves down
+        {
+            if(slot < 0 || slot >= protocol::COMPANION_UI_TACTIC_RULES) return -10;
+            const int other = value < 0 ? slot - 1 : slot + 1;
+            if(other < 0 || other >= protocol::COMPANION_UI_TACTIC_RULES)
+                return TRUE;
+            const protocol::CompanionUITacticRule temp = profile->customTactics.rules[slot];
+            profile->customTactics.rules[slot] = profile->customTactics.rules[other];
+            profile->customTactics.rules[other] = temp;
+            break;
+        }
+
+        default:
+            return -10;
+    }
+
+    if(!SaveCompanionTactics(owner->getAccount(), characterName, profile->customTactics))
+    {
+        profile->customTactics = previous;
+        CompanionDebugLog("TACTIC_EDIT_FAIL name='%s' operation=%d value=%d", characterName, operation, value);
+        return -11;
+    }
+
+    CompanionDebugLog("TACTIC_EDIT name='%s' operation=%d value=%d enabled=%d",
+        characterName, operation, value, profile->customTactics.enabled ? 1 : 0);
+    return TRUE;
+}
+
 } // namespace
 
 int SetMode(rsPLAYINFO *owner, CompanionMode mode)
@@ -1986,6 +3862,42 @@ void SendUIState(rsPLAYINFO *owner, int lastResult)
                 {
                     rightCode = profile->rightCode;
                     leftCode = profile->leftCode;
+                }
+
+                if(entry.selected && profile)
+                {
+                    packet.skillLoadoutActive = profile->skillLoadoutActive ? TRUE : FALSE;
+                    packet.buffLoadoutActive = profile->buffLoadoutActive ? TRUE : FALSE;
+                    packet.customTacticsEnabled = profile->customTactics.enabled ? TRUE : FALSE;
+                    for(int tacticRule = 0; tacticRule < protocol::COMPANION_UI_TACTIC_RULES; ++tacticRule)
+                        packet.tacticRules[tacticRule] = profile->customTactics.rules[tacticRule];
+                    for(int skillSlot = 0; skillSlot < 4; ++skillSlot)
+                    {
+                        protocol::CompanionUISkillSlot &active = packet.activeSkills[skillSlot];
+                        active.useSlot = profile->activeSkillSlots[skillSlot];
+                        active.minResourcePercent = profile->activeMinResourcePercent[skillSlot];
+                        active.minimumTargets = profile->activeMinimumTargets[skillSlot];
+                        active.targetMode = profile->activeTargetModes[skillSlot];
+                        CompanionSkillDescriptor descriptor;
+                        if(active.useSlot > 0 && GetCompanionSkillDescriptor(snapshot.jobCode,
+                            snapshot.skillPoints, active.useSlot, &descriptor))
+                        {
+                            active.skillCode = descriptor.skillCode;
+                            active.point = descriptor.point;
+                            CopyText32(active.skillName, descriptor.name);
+                        }
+
+                        protocol::CompanionUISkillSlot &buff = packet.buffSkills[skillSlot];
+                        buff.useSlot = profile->buffSkillSlots[skillSlot];
+                        buff.intervalSeconds = profile->buffIntervalSeconds[skillSlot];
+                        if(buff.useSlot > 0 && GetCompanionSkillDescriptor(snapshot.jobCode,
+                            snapshot.skillPoints, buff.useSlot, &descriptor))
+                        {
+                            buff.skillCode = descriptor.skillCode;
+                            buff.point = descriptor.point;
+                            CopyText32(buff.skillName, descriptor.name);
+                        }
+                    }
                 }
 
                 entry.rightItemCode = rightCode;
@@ -2146,6 +4058,50 @@ void HandleUIAction(rsPLAYINFO *owner, const protocol::CompanionUIActionPacket *
 
         case protocol::COMPANION_UI_SET_PREFERRED_RANGE:
             result = name[0] ? UpdateCompanionBehavior(owner, name, 3, packet->value) : -8;
+            break;
+
+        case protocol::COMPANION_UI_TOGGLE_CUSTOM_TACTICS:
+            result = name[0] ? UpdateCustomTactics(owner, name, 0, packet->value) : -8;
+            break;
+        case protocol::COMPANION_UI_TOGGLE_TACTIC_RULE:
+            result = name[0] ? UpdateCustomTactics(owner, name, 1, packet->value) : -8;
+            break;
+        case protocol::COMPANION_UI_CYCLE_TACTIC_CONDITION:
+            result = name[0] ? UpdateCustomTactics(owner, name, 2, packet->value) : -8;
+            break;
+        case protocol::COMPANION_UI_CYCLE_TACTIC_ACTION:
+            result = name[0] ? UpdateCustomTactics(owner, name, 3, packet->value) : -8;
+            break;
+        case protocol::COMPANION_UI_CYCLE_TACTIC_THRESHOLD:
+            result = name[0] ? UpdateCustomTactics(owner, name, 4, packet->value) : -8;
+            break;
+        case protocol::COMPANION_UI_MOVE_TACTIC_RULE:
+            result = name[0] ? UpdateCustomTactics(owner, name, 5, packet->value) : -8;
+            break;
+
+        case protocol::COMPANION_UI_CYCLE_ACTIVE_SKILL:
+            result = name[0] ? ChangeSkillLoadout(owner, name, false, packet->value) : -8;
+            break;
+        case protocol::COMPANION_UI_RESET_ACTIVE_SKILLS:
+            result = name[0] ? ResetSkillLoadout(owner, name, false) : -8;
+            break;
+        case protocol::COMPANION_UI_CYCLE_BUFF_SKILL:
+            result = name[0] ? ChangeSkillLoadout(owner, name, true, packet->value) : -8;
+            break;
+        case protocol::COMPANION_UI_ADJUST_BUFF_INTERVAL:
+            result = name[0] ? AdjustBuffInterval(owner, name, packet->value) : -8;
+            break;
+        case protocol::COMPANION_UI_RESET_BUFFS:
+            result = name[0] ? ResetSkillLoadout(owner, name, true) : -8;
+            break;
+        case protocol::COMPANION_UI_CYCLE_ACTIVE_MIN_RESOURCE:
+            result = name[0] ? CycleActiveSkillPolicy(owner, name, packet->value, 0) : -8;
+            break;
+        case protocol::COMPANION_UI_CYCLE_ACTIVE_MIN_TARGETS:
+            result = name[0] ? CycleActiveSkillPolicy(owner, name, packet->value, 1) : -8;
+            break;
+        case protocol::COMPANION_UI_CYCLE_ACTIVE_TARGET_MODE:
+            result = name[0] ? CycleActiveSkillPolicy(owner, name, packet->value, 2) : -8;
             break;
 
         case protocol::COMPANION_UI_EQUIP_RIGHT_NEXT:

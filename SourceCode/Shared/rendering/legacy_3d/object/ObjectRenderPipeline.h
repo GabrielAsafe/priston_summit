@@ -48,10 +48,33 @@ inline bool SubmitGeometry(smOBJ3D &object, DWORD head)
 		(object.nFace > 0 && !object.Face))
 		return false;
 
-	for(int index = 0; index < object.nVertex; ++index)
-		smRender.AddObjectVertex(&object.WorldVertex[index], head);
+	const int vertexCapacity = smRender.m_GameFieldView ? 40000 : RENDER_VERTEX_MAX;
+	const int faceCapacity = smRender.m_GameFieldView ? 40000 : RENDER_FACE_MAX;
+	if(object.nVertex > vertexCapacity - smRender.nRendVertex ||
+		object.nFace > faceCapacity - smRender.nRendFace)
+		return false;
+
 	for(int index = 0; index < object.nFace; ++index)
-		smRender.AddObjectFace(&object.Face[index]);
+	{
+		const smFACE &face = object.Face[index];
+		if(static_cast<int>(face.v[0]) >= object.nVertex ||
+			static_cast<int>(face.v[1]) >= object.nVertex ||
+			static_cast<int>(face.v[2]) >= object.nVertex ||
+			static_cast<int>(face.v[3]) >= smRender.nMaterial ||
+			static_cast<int>(face.v[3]) >= MATRIAL_MAX)
+			return false;
+	}
+
+	for(int index = 0; index < object.nVertex; ++index)
+	{
+		if(!smRender.AddObjectVertex(&object.WorldVertex[index], head))
+			return false;
+	}
+	for(int index = 0; index < object.nFace; ++index)
+	{
+		if(!smRender.AddObjectFace(&object.Face[index]))
+			return false;
+	}
 	return true;
 }
 

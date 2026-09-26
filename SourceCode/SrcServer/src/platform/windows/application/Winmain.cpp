@@ -120,6 +120,7 @@ void smPlayD3D(int x, int y, int z, int ax, int ay, int az);
 
 #include "platform/windows/input/ime_legacy/Ime.h"
 #include "systems/gameplay/progression/v2/ProgressionRuntime.h"
+#include "systems/gameplay/gathering/v2/GatheringRuntime.h"
 
 ImeClass IMETest;
 CStrClass sz;
@@ -291,6 +292,13 @@ int main(int argv, char* argc[])
 	if(!gameplay::progression::InitializeServerProgressionRuntime(&progressionError))
 	{
 		fprintf(stderr, "Progression V2 startup failed: %s\n", progressionError.c_str());
+		return 1;
+	}
+
+	std::string gatheringError;
+	if(!gameplay::gathering::InitializeServerGatheringRuntime(&gatheringError))
+	{
+		fprintf(stderr, "Gathering/Mining V2 startup failed: %s\n", gatheringError.c_str());
 		return 1;
 	}
 

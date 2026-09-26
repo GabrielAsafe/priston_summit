@@ -5,6 +5,26 @@
 #include <math.h>
 #include <stdio.h>
 
+#include "content/v1/text_resource/content/TextResourceRuntime.h"
+
+static DWORD SummitGetImmutableProfileString(const char* section, const char* key, const char* fallback, char* out, DWORD outSize, const char* path)
+{
+    if(summit::content::text_resource::CompiledTextResourcesEnabled())
+    {
+        std::string value;
+        if(summit::content::text_resource::GetTextResourceProfileString(path, section, key, value))
+        {
+            if(!out || outSize == 0) return 0;
+            const std::size_t n = value.size() < std::size_t(outSize - 1) ? value.size() : std::size_t(outSize - 1);
+            std::memcpy(out, value.data(), n);
+            out[n] = 0;
+            return static_cast<DWORD>(n);
+        }
+        if(summit::content::text_resource::TextResourceStrictMode()) return 0;
+    }
+    return GetPrivateProfileStringA(section, key, fallback, out, outSize, path);
+}
+
 #include "systems/social/clan/legacy/tjclanDEF.h"
 
 #ifdef USE_PROSTONTALE		
@@ -485,8 +505,8 @@ void CHelp::LoadGuideImage(char* file)
 void CHelp::GetHelpContent(char* section, char* key, char* ImageKey)
 {
 	DWORD dwSaveSize = 100;
-	char  szSaveStr[100];
-	char  szImageDir[100];
+	char  szSaveStr[1024];
+	char  szImageDir[1024];
 	DWORD dwReturn, dwFileSize = 0, dwRead = 0;
 	HANDLE hFile = NULL;
 	char *HelpContent;
@@ -494,26 +514,26 @@ void CHelp::GetHelpContent(char* section, char* key, char* ImageKey)
 	ZeroMemory(m_HelpContent, sizeof(m_HelpContent));
 	ZeroMemory(szImageDir, sizeof(szImageDir));
 
-	dwReturn = GetPrivateProfileString(section, key, "Error", szSaveStr, 1024, HELP_CONTENT);
+	dwReturn = SummitGetImmutableProfileString(section, key, "Error", szSaveStr, 1024, HELP_CONTENT);
 
 	if(dwReturn == 0) return;
-	dwReturn = GetPrivateProfileString(section, ImageKey, "Error", szImageDir, 1024, HELP_CONTENT);
+	dwReturn = SummitGetImmutableProfileString(section, ImageKey, "Error", szImageDir, 1024, HELP_CONTENT);
 	if(dwReturn == 0) return;
 
 	LoadGuideImage(szImageDir);
 
-	hFile = CreateFile(szSaveStr, GENERIC_READ, FILE_SHARE_READ,
-					   NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-
-	if(hFile == INVALID_HANDLE_VALUE) return;
-
-	dwFileSize = GetFileSize(hFile, NULL);
-
-	HelpContent = new char[dwFileSize];
-	ZeroMemory(HelpContent, sizeof(char)*dwFileSize);
-
-	ReadFile(hFile, HelpContent, dwFileSize, &dwRead, NULL);
-	CloseHandle(hFile);
+	{
+		FILE* packedHelp = summit::content::text_resource::OpenTextResourceFile(szSaveStr, "rb");
+		if(!packedHelp) return;
+		if(std::fseek(packedHelp, 0, SEEK_END) != 0) { std::fclose(packedHelp); return; }
+		long packedSize = std::ftell(packedHelp);
+		if(packedSize < 0) { std::fclose(packedHelp); return; }
+		std::rewind(packedHelp);
+		HelpContent = new char[static_cast<std::size_t>(packedSize) + 1];
+		const std::size_t packedRead = packedSize ? std::fread(HelpContent, 1, static_cast<std::size_t>(packedSize), packedHelp) : 0;
+		std::fclose(packedHelp);
+		HelpContent[packedRead] = 0;
+	}
 
 	Parsing(HelpContent);
 

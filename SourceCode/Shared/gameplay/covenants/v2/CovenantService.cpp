@@ -127,6 +127,7 @@ bool CovenantService::ValidateDefinitions(std::string* error) const
         }
         int previousRankId = 0;
         bool havePreviousRank = false;
+        const CovenantRankDefinition* previousRank = 0;
         for (std::vector<CovenantRankDefinition>::const_iterator rankIt = rankListIt->second.begin();
              rankIt != rankListIt->second.end(); ++rankIt)
         {
@@ -144,6 +145,7 @@ bool CovenantService::ValidateDefinitions(std::string* error) const
                 if (error) *error = "rank threshold is outside covenant reputation bounds";
                 return false;
             }
+            std::set<std::string> benefitKeys;
             for (std::vector<modifiers::GameplayModifier>::const_iterator benefit = rankIt->benefits.begin();
                  benefit != rankIt->benefits.end(); ++benefit)
             {
@@ -155,7 +157,44 @@ bool CovenantService::ValidateDefinitions(std::string* error) const
                     if (error) *error = "covenant rank contains an invalid gameplay modifier";
                     return false;
                 }
+                const std::string benefitKey = benefit->statKey + "\n" + benefit->scopeKey +
+                                               "\n" + std::to_string(operation);
+                if (!benefitKeys.insert(benefitKey).second)
+                {
+                    if (error) *error = "covenant rank contains a duplicate gameplay modifier";
+                    return false;
+                }
             }
+            // Covenant content uses cumulative ranks (Option A): every effect key present in
+            // a lower rank must remain declared in the next rank. Values may grow/shrink, but
+            // the semantic stat/scope/operation contract cannot silently disappear.
+            if (previousRank)
+            {
+                for (std::vector<modifiers::GameplayModifier>::const_iterator previousBenefit =
+                         previousRank->benefits.begin();
+                     previousBenefit != previousRank->benefits.end(); ++previousBenefit)
+                {
+                    bool carriedForward = false;
+                    for (std::vector<modifiers::GameplayModifier>::const_iterator currentBenefit =
+                             rankIt->benefits.begin();
+                         currentBenefit != rankIt->benefits.end(); ++currentBenefit)
+                    {
+                        if (currentBenefit->statKey == previousBenefit->statKey &&
+                            currentBenefit->scopeKey == previousBenefit->scopeKey &&
+                            currentBenefit->operation == previousBenefit->operation)
+                        {
+                            carriedForward = true;
+                            break;
+                        }
+                    }
+                    if (!carriedForward)
+                    {
+                        if (error) *error = "covenant cumulative rank benefits must carry forward prior effects";
+                        return false;
+                    }
+                }
+            }
+            previousRank = &*rankIt;
             for (std::vector<CovenantRewardDefinition>::const_iterator rewardIt = rankIt->entryRewards.begin();
                  rewardIt != rankIt->entryRewards.end(); ++rewardIt)
             {
@@ -289,20 +328,22 @@ CovenantJoinEligibility CovenantService::CheckJoinEligibility(
     if (!LoadMemberships(playerKey, memberships))
         return CovenantJoinEligibility::PersistenceFailure;
 
+    int activeCount = 0;
     for (std::vector<CovenantMembershipState>::const_iterator it = memberships.begin();
          it != memberships.end(); ++it)
     {
-        if (!it->active)
-            continue;
+        if (it->active)
+            ++activeCount;
         if (it->covenantId == covenantId)
-            return CovenantJoinEligibility::AlreadyActive;
-
-        const CovenantDefinition* other = FindDefinition(it->covenantId);
-        if (!other)
+            return it->active ? CovenantJoinEligibility::AlreadyActive
+                              : CovenantJoinEligibility::AlreadyMember;
+        if (!FindDefinition(it->covenantId))
             return CovenantJoinEligibility::PersistenceFailure;
-        if (definition->exclusiveMembership || other->exclusiveMembership)
-            return CovenantJoinEligibility::ExclusiveConflict;
     }
+
+    // A corrupted row-set with more than one active Covenant must fail closed.
+    if (activeCount > 1)
+        return CovenantJoinEligibility::PersistenceFailure;
     return CovenantJoinEligibility::Eligible;
 }
 
@@ -325,11 +366,29 @@ bool CovenantService::Join(const std::string& playerKey,
     if (!definition)
         return false;
 
+    std::vector<CovenantMembershipState> memberships;
+    if (!LoadMemberships(playerKey, memberships))
+        return false;
+
+    bool hasActiveMembership = false;
+    for (std::vector<CovenantMembershipState>::const_iterator it = memberships.begin();
+         it != memberships.end(); ++it)
+    {
+        if (it->active)
+        {
+            if (hasActiveMembership)
+                return false;
+            hasActiveMembership = true;
+        }
+    }
+
     CovenantMembershipState membership;
     membership.covenantId = covenantId;
     membership.reputation = 0;
     membership.rankId = CalculateRank(covenantId, membership.reputation);
-    membership.active = true;
+    // The first Covenant joined becomes active automatically. Further memberships
+    // preserve the current specialization until Activate() is explicitly requested.
+    membership.active = !hasActiveMembership;
 
     std::vector<CovenantId> knownCovenantIds;
     std::vector<CovenantId> exclusiveCovenantIds;
@@ -349,8 +408,70 @@ bool CovenantService::Join(const std::string& playerKey,
         event.playerKey = playerKey;
         event.covenantId = covenantId;
         eventHub_->Publish(event);
+
+        if (membership.active)
+        {
+            CovenantActivatedEvent activated;
+            activated.playerKey = playerKey;
+            activated.covenantId = covenantId;
+            activated.previousCovenantId = 0;
+            eventHub_->Publish(activated);
+        }
     }
     return true;
+}
+
+CovenantActivationResult CovenantService::Activate(const std::string& playerKey,
+                                                    CovenantId covenantId)
+{
+    if (playerKey.empty() || covenantId <= 0)
+        return CovenantActivationResult::InvalidRequest;
+    if (!FindDefinition(covenantId))
+        return CovenantActivationResult::UnknownCovenant;
+
+    std::vector<CovenantMembershipState> memberships;
+    if (!LoadMemberships(playerKey, memberships))
+        return CovenantActivationResult::PersistenceFailure;
+
+    bool foundTarget = false;
+    CovenantId previousCovenantId = 0;
+    int activeCount = 0;
+    for (std::vector<CovenantMembershipState>::const_iterator it = memberships.begin();
+         it != memberships.end(); ++it)
+    {
+        if (!FindDefinition(it->covenantId))
+            return CovenantActivationResult::PersistenceFailure;
+        if (it->covenantId == covenantId)
+            foundTarget = true;
+        if (it->active)
+        {
+            ++activeCount;
+            previousCovenantId = it->covenantId;
+        }
+    }
+    if (!foundTarget)
+        return CovenantActivationResult::NotMember;
+    if (activeCount > 1)
+        return CovenantActivationResult::PersistenceFailure;
+    if (previousCovenantId == covenantId)
+        return CovenantActivationResult::AlreadyActive;
+
+    std::vector<CovenantId> knownCovenantIds;
+    for (DefinitionMap::const_iterator it = definitions_.begin(); it != definitions_.end(); ++it)
+        knownCovenantIds.push_back(it->first);
+
+    if (!repository_.SwitchActive(playerKey, covenantId, knownCovenantIds))
+        return CovenantActivationResult::PersistenceFailure;
+
+    if (eventHub_)
+    {
+        CovenantActivatedEvent activated;
+        activated.playerKey = playerKey;
+        activated.covenantId = covenantId;
+        activated.previousCovenantId = previousCovenantId;
+        eventHub_->Publish(activated);
+    }
+    return CovenantActivationResult::Activated;
 }
 
 bool CovenantService::Leave(const std::string& playerKey, CovenantId covenantId)
@@ -434,6 +555,59 @@ bool CovenantService::AddReputation(const std::string& playerKey,
     return false;
 }
 
+bool CovenantService::AddRepeatableReputation(const std::string& playerKey,
+                                               CovenantId covenantId,
+                                               int amount,
+                                               const std::string& activityKey)
+{
+    const CovenantDefinition* definition = FindDefinition(covenantId);
+    if (!definition || playerKey.empty() || playerKey.size() > 255u ||
+        activityKey.empty() || activityKey.size() > 255u || amount == 0)
+        return false;
+
+    const int maxAttempts = 4;
+    for (int attempt = 0; attempt < maxAttempts; ++attempt)
+    {
+        CovenantMembershipState expected;
+        if (!GetMembership(playerKey, covenantId, expected) || !expected.active)
+            return false;
+
+        CovenantMembershipState membership = expected;
+        membership.reputation = ClampReputation(*definition,
+            static_cast<long long>(expected.reputation) + static_cast<long long>(amount));
+        membership.rankId = CalculateRank(covenantId, membership.reputation);
+
+        const CovenantReputationSaveResult saveResult =
+            repository_.SaveRepeatableReputationChangeChecked(playerKey, expected, membership, amount);
+        if (saveResult == CovenantReputationSaveResult::Conflict)
+            continue;
+        if (saveResult != CovenantReputationSaveResult::Applied)
+            return false;
+
+        if (eventHub_ && expected.reputation != membership.reputation)
+        {
+            CovenantReputationChangedEvent reputationEvent;
+            reputationEvent.playerKey = playerKey;
+            reputationEvent.covenantId = covenantId;
+            reputationEvent.oldReputation = expected.reputation;
+            reputationEvent.newReputation = membership.reputation;
+            reputationEvent.sourceKey = std::string("activity:") + activityKey;
+            eventHub_->Publish(reputationEvent);
+        }
+        if (eventHub_ && expected.rankId != membership.rankId)
+        {
+            CovenantRankChangedEvent rankEvent;
+            rankEvent.playerKey = playerKey;
+            rankEvent.covenantId = covenantId;
+            rankEvent.oldRankId = expected.rankId;
+            rankEvent.newRankId = membership.rankId;
+            eventHub_->Publish(rankEvent);
+        }
+        return true;
+    }
+    return false;
+}
+
 bool CovenantService::ReevaluateRank(const std::string& playerKey, CovenantId covenantId)
 {
     const CovenantDefinition* definition = FindDefinition(covenantId);
@@ -488,10 +662,30 @@ bool CovenantService::GetMembership(const std::string& playerKey,
     return false;
 }
 
+bool CovenantService::GetActiveMembership(const std::string& playerKey,
+                                           CovenantMembershipState& membership)
+{
+    std::vector<CovenantMembershipState> memberships;
+    if (!LoadMemberships(playerKey, memberships))
+        return false;
+    bool found = false;
+    for (std::vector<CovenantMembershipState>::const_iterator it = memberships.begin();
+         it != memberships.end(); ++it)
+    {
+        if (!it->active)
+            continue;
+        if (found)
+            return false;
+        membership = *it;
+        found = true;
+    }
+    return found;
+}
+
 CovenantRankId CovenantService::GetRank(const std::string& playerKey, CovenantId covenantId)
 {
     CovenantMembershipState membership;
-    return GetMembership(playerKey, covenantId, membership) && membership.active ? membership.rankId : 0;
+    return GetMembership(playerKey, covenantId, membership) ? membership.rankId : 0;
 }
 
 bool CovenantService::HasRankAtLeast(const std::string& playerKey,
@@ -499,7 +693,7 @@ bool CovenantService::HasRankAtLeast(const std::string& playerKey,
                                      CovenantRankId rankId)
 {
     CovenantMembershipState membership;
-    if (!GetMembership(playerKey, covenantId, membership) || !membership.active)
+    if (!GetMembership(playerKey, covenantId, membership))
         return false;
 
     const CovenantRankDefinition* required = FindRank(covenantId, rankId);
@@ -531,10 +725,19 @@ bool CovenantService::GetAllActiveBenefits(
     if (!LoadMemberships(playerKey, memberships))
         return false;
 
+    int activeCount = 0;
     for (std::vector<CovenantMembershipState>::const_iterator membership = memberships.begin();
          membership != memberships.end(); ++membership)
     {
-        if (!membership->active || membership->rankId == 0)
+        if (!membership->active)
+            continue;
+        ++activeCount;
+        if (activeCount > 1)
+        {
+            benefits.clear();
+            return false;
+        }
+        if (membership->rankId == 0)
             continue;
         const CovenantDefinition* definition = FindDefinition(membership->covenantId);
         const CovenantRankDefinition* rank = FindRank(membership->covenantId, membership->rankId);
@@ -615,11 +818,18 @@ bool CovenantService::GetActiveSnapshots(const std::string& playerKey,
     if (!LoadMemberships(playerKey, memberships))
         return false;
 
+    int activeCount = 0;
     for (std::vector<CovenantMembershipState>::const_iterator membership = memberships.begin();
          membership != memberships.end(); ++membership)
     {
         if (!membership->active)
             continue;
+        ++activeCount;
+        if (activeCount > 1)
+        {
+            snapshots.clear();
+            return false;
+        }
 
         const CovenantDefinition* definition = FindDefinition(membership->covenantId);
         if (!definition)
@@ -685,6 +895,7 @@ void CovenantService::GetCatalog(std::vector<CovenantCatalogEntry>& entries) con
                 rankEntry.key = rankIt->key;
                 rankEntry.displayNameKey = rankIt->displayNameKey;
                 rankEntry.minReputation = rankIt->minReputation;
+                rankEntry.benefits = rankIt->benefits;
                 entry.ranks.push_back(rankEntry);
             }
         }

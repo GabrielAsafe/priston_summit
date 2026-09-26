@@ -40,9 +40,13 @@ int main()
     visual.entries[0].motionSequence = 7;
     visual.entries[0].rightItemCode = 0x01060100u;
     visual.entries[0].equipmentRevision = 3;
+    visual.entries[0].logicalSkillCode = 0x05120001u;
+    visual.entries[0].skillPlayCode = 0x000000E1u;
     assert(visual.entryCount <= COMPANION_VISUAL_MAX_ACTIVE);
     assert(visual.entries[0].motionSequence > 0);
     assert(visual.entries[0].equipmentRevision > 0);
+    assert(visual.entries[0].logicalSkillCode != 0);
+    assert(visual.entries[0].logicalSkillCode != visual.entries[0].skillPlayCode);
     assert(sizeof(CompanionVisualStatePacket) < 1024);
     return 0;
 }

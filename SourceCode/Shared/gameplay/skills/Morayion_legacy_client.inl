@@ -892,6 +892,7 @@ int F_Magician_T5_Stone_Skin()
 {
 	if(!pUseSkill || pUseSkill->Point < 1 || pUseSkill->Point > 10 || !pUseSkill->Skill_Info.UseMana) return FALSE;
 	pUseSkill->UseTime = Magician_T5_StoneSkin_Duration[pUseSkill->Point - 1];
+	sinContinueSkillSet(pUseSkill);
 	sinUseManaStamina(pUseSkill);
 	return TRUE;
 }

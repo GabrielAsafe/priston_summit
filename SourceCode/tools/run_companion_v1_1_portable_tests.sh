@@ -8,6 +8,8 @@ mkdir -p "$OUT"
 
 python3 "$ROOT/tools/validate_companion_ui_v1_1.py"
 python3 "$ROOT/tools/validate_companion_equipment_contract.py"
+python3 "$ROOT/tools/validate_companion_visual_runtime_v2.py"
+python3 "$ROOT/tools/validate_companion_skill_executor_v1.py"
 
 "$CXX" -std=c++17 -Wall -Wextra -pedantic \
   -I "$ROOT/Shared" \

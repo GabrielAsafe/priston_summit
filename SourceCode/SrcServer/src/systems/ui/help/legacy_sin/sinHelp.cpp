@@ -1,3 +1,4 @@
+#include "content/v1/text_resource/content/TextResourceRuntime.h"
 #include <cstring>
 #include "gameplay/classes/v2/services/ClassService.h"
 #include "gameplay/quests/legacy/LegacyClassQuestAdapter.h"
@@ -2565,27 +2566,31 @@ int sinDrawTexImage(int Mat, float x, float y, float w, float h, float surW, flo
 
 int cSINHELP::sinReadFileData(char *name)
 {
-
-	HANDLE hFile;
-	DWORD dwAcess = 0;
-	hFile = CreateFile(name,
-					   GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-
-
 	ZeroMemory((void*)szFileReadBuf2, sizeof(szFileReadBuf2));
 
+	if(summit::content::text_resource::CompiledTextResourcesEnabled())
+	{
+		std::vector<unsigned char> bytes;
+		if(summit::content::text_resource::LoadTextResourceBytes(name, bytes))
+		{
+			const size_t copySize = bytes.size() < (sizeof(szFileReadBuf2) - 1) ? bytes.size() : (sizeof(szFileReadBuf2) - 1);
+			if(copySize) CopyMemory((void*)szFileReadBuf2, &bytes[0], copySize);
+			szFileReadBuf2[copySize] = 0;
+			return TRUE;
+		}
+		if(summit::content::text_resource::TextResourceStrictMode()) return FALSE;
+	}
+
+	HANDLE hFile = CreateFile(name, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFile != INVALID_HANDLE_VALUE)
 	{
-		DWORD rbyte;
-		int chk = ReadFile(hFile, (LPVOID)szFileReadBuf2, sizeof(szFileReadBuf2), &rbyte, NULL);
-
-
+		DWORD rbyte = 0;
+		ReadFile(hFile, (LPVOID)szFileReadBuf2, sizeof(szFileReadBuf2) - 1, &rbyte, NULL);
+		if(rbyte < sizeof(szFileReadBuf2)) szFileReadBuf2[rbyte] = 0;
 		CloseHandle(hFile);
 		return TRUE;
 	}
-
 	return FALSE;
-
 }
 
 

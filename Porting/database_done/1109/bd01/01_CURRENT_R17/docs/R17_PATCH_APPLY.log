@@ -1,3 +1,0 @@
-patching file Shared/security/integrity/isaocheck_legacy_server.inl
-patching file SrcServer/src/systems/presentation/opening/HoOpening.cpp
-patching file validate_server_http_surface.py

@@ -1,5 +1,8 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/social/clan/Help.o: \
  SrcGame/src/systems/social/clan/Help.cpp \
+ Shared/content/v1/text_resource/content/TextResourceRuntime.h \
+ Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
+ Shared/content/v1/common/Sha256.h \
  SrcGame/src/systems/social/clan/tjclanDEF.h \
  SrcGame/src/systems/localization/legacy_catalog/language.h \
  SrcGame/src/compat/legacy/sin/sinLinkHeader.h \
@@ -143,6 +146,9 @@
  SrcGame/src/systems/social/clan/cE_Notice.h \
  SrcGame/src/systems/social/clan/Help.h \
  SrcGame/src/systems/social/clan/GuideHelp.h
+Shared/content/v1/text_resource/content/TextResourceRuntime.h:
+Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
+Shared/content/v1/common/Sha256.h:
 SrcGame/src/systems/social/clan/tjclanDEF.h:
 SrcGame/src/systems/localization/legacy_catalog/language.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:

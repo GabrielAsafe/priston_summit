@@ -1,3 +1,6 @@
+#include "content/v1/text_resource/content/TextResourceRuntime.h"
+#include "content/v1/definition/content/DefinitionRuntime.h"
+#include "content/v1/text_resource/legacy/LegacyContentIdRegistry.h"
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
 #endif
@@ -30,6 +33,7 @@ static const int DELETE_ITEM_PREMIUM = OpCode::DELETE_ITEM_PREMIUM;
 #include <mutex>
 #include <thread>
 #include <functional>
+#include <vector>
 
 // Packet/login diagnostics are intentionally opt-in: RecvMessage is a hot path.
 static FILE *SummitServerRuntimeTraceFile(const char *path)
@@ -77,6 +81,12 @@ static FILE *SummitServerRuntimeTraceFile(const char *path)
 
 #include "core/server/legacy_runtime/onserver.h"
 #include "systems/gameplay/progression/v2/ProgressionRuntime.h"
+#include "systems/gameplay/covenants/v2/CovenantChatCommand.h"
+#include "systems/gameplay/covenants/v2/CovenantUIHandler.h"
+#include "gameplay/covenants/v2/CovenantUIProtocol.h"
+#include "systems/gameplay/mining/v2/MiningRuntime.h"
+#include "systems/gameplay/mining/v2/MiningInteractionRuntime.h"
+#include "systems/gameplay/gathering/v2/GatheringRuntime.h"
 #include "systems/combat/server_legacy/svr_Damage.h"
 #include "systems/combat/server_legacy/CRollHandler.h"
 
@@ -1988,38 +1998,50 @@ int InitMonster()
 	//ZeroMemory(chrMonsterList, sizeof(smCHAR_INFO)*CHR_MONSTER_MAX);
 	//ZeroMemory(chrMonInfoList, sizeof(smCHAR_MONSTER_INFO)*CHR_MONSTER_MAX);
 
-	strcpy_s(szFindPath, MonsterPath);
-	lstrcat(szFindPath, "*.inf");
-
-	hFindHandle = FindFirstFile(szFindPath, &fd);
-	if(hFindHandle != INVALID_HANDLE_VALUE)
+	bool summitCompiledMonsters = false;
+	if(summit::content::definition::CompiledDefinitionsEnabled())
 	{
-		while(1)
+		std::vector<summit::content::definition::DefinitionEntry> entries;
+		if(summit::content::definition::ListCompiledDefinitions(MonsterPath, ".inf", true, entries, summit::content::definition::DefinitionKindMonster))
 		{
-			strcpy_s(szFilePath, MonsterPath);
-			lstrcat(szFilePath, fd.cFileName);
-
-			smCharDecode(szFilePath, &chrMonsterList[chrMonsterCnt], &chrMonInfoList[chrMonsterCnt], 0);
-
-
-			chrMonInfoList[chrMonsterCnt].dwAutoCharCode = GetSpeedSum(chrMonsterList[chrMonsterCnt].szName);
-
-
-			if(rsServerConfig.TestSeverMode)
+			summitCompiledMonsters = true;
+			summit::content::text_resource::ClearLegacyContentIdBindings();
+			for(std::size_t index=0; index<entries.size() && chrMonsterCnt<CHR_MONSTER_MAX; ++index)
 			{
-				chrMonsterList[chrMonsterCnt].Exp *= 4;
-				chrMonInfoList[chrMonsterCnt].GetExp *= 4;
+				strcpy_s(szFilePath, entries[index].logicalPath.c_str());
+				if(!smCharDecode(szFilePath, &chrMonsterList[chrMonsterCnt], &chrMonInfoList[chrMonsterCnt], 0))
+				{
+					if(summit::content::definition::DefinitionStrictMode()) return FALSE;
+					continue;
+				}
+				summit::content::text_resource::RegisterLegacyContentPointer(entries[index].contentId, &chrMonsterList[chrMonsterCnt]);
+				chrMonInfoList[chrMonsterCnt].dwAutoCharCode = GetSpeedSum(chrMonsterList[chrMonsterCnt].szName);
+				if(rsServerConfig.TestSeverMode) { chrMonsterList[chrMonsterCnt].Exp *= 4; chrMonInfoList[chrMonsterCnt].GetExp *= 4; }
+				ReformCharForm(&chrMonsterList[chrMonsterCnt]);
+				chrMonsterCnt++;
 			}
-
-			ReformCharForm(&chrMonsterList[chrMonsterCnt]);
-
-			chrMonsterCnt++;
-
-			if(FindNextFile(hFindHandle, &fd) == FALSE) break;
-			if(chrMonsterCnt >= CHR_MONSTER_MAX) break;
+		}
+		else if(summit::content::definition::DefinitionStrictMode()) return FALSE;
+	}
+	if(!summitCompiledMonsters)
+	{
+		strcpy_s(szFindPath, MonsterPath);
+		lstrcat(szFindPath, "*.inf");
+		hFindHandle = FindFirstFile(szFindPath, &fd);
+		if(hFindHandle != INVALID_HANDLE_VALUE)
+		{
+			while(1)
+			{
+				strcpy_s(szFilePath, MonsterPath); lstrcat(szFilePath, fd.cFileName);
+				smCharDecode(szFilePath, &chrMonsterList[chrMonsterCnt], &chrMonInfoList[chrMonsterCnt], 0);
+				chrMonInfoList[chrMonsterCnt].dwAutoCharCode = GetSpeedSum(chrMonsterList[chrMonsterCnt].szName);
+				if(rsServerConfig.TestSeverMode) { chrMonsterList[chrMonsterCnt].Exp *= 4; chrMonInfoList[chrMonsterCnt].GetExp *= 4; }
+				ReformCharForm(&chrMonsterList[chrMonsterCnt]); chrMonsterCnt++;
+				if(FindNextFile(hFindHandle, &fd) == FALSE) break; if(chrMonsterCnt >= CHR_MONSTER_MAX) break;
+			}
+			FindClose(hFindHandle);
 		}
 	}
-	FindClose(hFindHandle);
 
 
 
@@ -2301,6 +2323,29 @@ int InitItems()
 
 	DefaultItemCount = 0;
 
+	bool summitCompiledItems=false;
+	if(summit::content::definition::CompiledDefinitionsEnabled())
+	{
+		std::vector<summit::content::definition::DefinitionEntry> entries;
+		if(summit::content::definition::ListCompiledDefinitions(ItemPath, ".txt", true, entries, summit::content::definition::DefinitionKindOpenItem))
+		{
+			summitCompiledItems=true;
+			if(fpItemAudit) fprintf(fpItemAudit, "Source=SCFG count=%u\n\n", (unsigned)entries.size());
+			for(std::size_t index=0; index<entries.size() && DefaultItemCount<DEF_ITEM_MAX; ++index)
+			{
+				strcpy_s(szFilePath, entries[index].logicalPath.c_str());
+				if(fpItemAudit) fprintf(fpItemAudit, "[BEFORE] INDEX=%d FILE=%s ID=%s\n", DefaultItemCount, szFilePath, entries[index].contentId.c_str());
+				if(!DecodeItemInfo(szFilePath, &DefaultItems[DefaultItemCount])) { if(summit::content::definition::DefinitionStrictMode()) { if(fpItemAudit) fclose(fpItemAudit); return FALSE; } else continue; }
+				if(fpItemAudit) fprintf(fpItemAudit, "[AFTER ] INDEX=%d CODE=0x%08lX NAME=\"%s\" ITEM_INDEX=%d UNIQUE=0x%08lX PRICE=%d LEVEL=%d\n", DefaultItemCount,(unsigned long)DefaultItems[DefaultItemCount].Item.CODE,DefaultItems[DefaultItemCount].Item.ItemName,DefaultItems[DefaultItemCount].Item.Index,(unsigned long)DefaultItems[DefaultItemCount].Item.UniqueItem,DefaultItems[DefaultItemCount].Item.Price,DefaultItems[DefaultItemCount].Item.Level);
+				memcpy(&DefItem,&DefaultItems[DefaultItemCount],sizeof(sDEF_ITEMINFO)); SetLowerItem(&DefItem); DefItem.Item.BackUpKey=0; DefItem.Item.BackUpChkSum=0; DefItem.Item.dwCreateTime=0;
+				DefaultItems[DefaultItemCount].DefCompressDataLen=EecodeCompress((BYTE *)&DefItem.Item,(BYTE *)DefaultItems[DefaultItemCount].DefCompressData,sizeof(sITEMINFO),sizeof(DefaultItems[DefaultItemCount].DefCompressData));
+				if(fpItemAudit) fprintf(fpItemAudit, "[COMP  ] INDEX=%d LEN=%d\n\n",DefaultItemCount,DefaultItems[DefaultItemCount].DefCompressDataLen); DefaultItemCount++;
+			}
+		}
+		else if(summit::content::definition::DefinitionStrictMode()) { if(fpItemAudit) fclose(fpItemAudit); return FALSE; }
+	}
+	if(!summitCompiledItems)
+	{
 	strcpy_s(szFindPath, ItemPath);
 	lstrcat(szFindPath, "*.txt");
 
@@ -2405,6 +2450,8 @@ int InitItems()
 		}
 
 		FindClose(hFindHandle);
+	}
+
 	}
 
 	if(fpItemAudit)
@@ -5228,6 +5275,15 @@ smCHAR *OpenCharacterCompanionFromRecord(rsPLAYINFO *owner, const TRANS_RECORD_D
         stageInfo.smCharInfo.Mana[1] = 100;
     stageInfo.smCharInfo.Mana[0] = stageInfo.smCharInfo.Mana[1];
 
+    // Stamina is a transient runtime resource just like current HP/MP. Raw DAT
+    // snapshots can legitimately contain 0/old current stamina; using that value
+    // for an offline companion silently rejects every active skill. Start each
+    // summon at its saved/recomputed maximum, matching the full-resource spawn
+    // contract already used above for Life and Mana.
+    if(stageInfo.smCharInfo.Stamina[1] <= 0)
+        stageInfo.smCharInfo.Stamina[1] = 100;
+    stageInfo.smCharInfo.Stamina[0] = stageInfo.smCharInfo.Stamina[1];
+
     smCHAR *companion = srFindEmptyChar();
     if(!companion)
         return NULL;
@@ -5448,6 +5504,11 @@ smCHAR *OpenMonsterFromSkill(DWORD SkillCode, int x, int y, int z, rsPLAYINFO *l
 
 
 	int	SkillMonsterAttackFlag = 0;
+	const int CompanionSkillOwner =
+		lpPlayInfo && lpEnemyChar && lpEnemyChar->Flag &&
+		lpEnemyChar->smCharInfo.State == smCHAR_STATE_USER &&
+		lpEnemyChar->smCharInfo.Brood == smCHAR_MONSTER_USER &&
+		lpEnemyChar->lpMasterPlayInfo == lpPlayInfo;
 
 	switch(SkillCode)
 	{
@@ -5479,10 +5540,11 @@ smCHAR *OpenMonsterFromSkill(DWORD SkillCode, int x, int y, int z, rsPLAYINFO *l
 
 		for(cnt = 0; cnt < AUTOPLAYER_MAX; cnt++)
 		{
-			if(chrAutoPlayer[cnt].Flag &&
-				chrAutoPlayer[cnt].lpMasterPlayInfo == lpPlayInfo &&
-				chrAutoPlayer[cnt].HoSkillCode == SkillCode &&
-				chrAutoPlayer[cnt].smCharInfo.Life[0] > 0)
+			const int sameOwner = chrAutoPlayer[cnt].lpMasterPlayInfo == lpPlayInfo;
+			const int replaceCompanionPet = CompanionSkillOwner && chrAutoPlayer[cnt].lpLinkChar == lpEnemyChar;
+			const int replacePlayerPet = !CompanionSkillOwner && chrAutoPlayer[cnt].HoSkillCode == SkillCode;
+			if(chrAutoPlayer[cnt].Flag && sameOwner && (replaceCompanionPet || replacePlayerPet) &&
+				chrAutoPlayer[cnt].HoSkillCode && chrAutoPlayer[cnt].smCharInfo.Life[0] > 0)
 			{
 
 				chrAutoPlayer[cnt].smCharInfo.Life[0] = 0;
@@ -5565,6 +5627,22 @@ smCHAR *OpenMonsterFromSkill(DWORD SkillCode, int x, int y, int z, rsPLAYINFO *l
 
 				lpPlayInfo->lpLinkChar = lpChar;
 				lpPlayInfo->dwLinkCharCode = lpChar->dwObjectSerial;
+				lpChar->Clan_CastleMasterFlag = SkillMonsterAttackFlag;
+				rsSendCommandUser(lpPlayInfo, &TransCommandEx);
+			}
+
+			if(CompanionSkillOwner)
+			{
+				lpChar->lpMasterPlayInfo = lpPlayInfo;
+				lpChar->lpLinkChar = lpEnemyChar;
+				lpChar->dwLinkObjectCode = lpEnemyChar->dwObjectSerial;
+				lpChar->smMonsterInfo.dwAutoCharCode = 0;
+				lpChar->HoSkillCode = SkillCode;
+				lpChar->HoSkillMode = 1;
+				lpChar->smCharInfo.Brood = smCHAR_MONSTER_USER;
+				strcpy_s(lpChar->smCharInfo.szModelName2 + 1, sizeof(lpChar->smCharInfo.szModelName2) - 1, lpEnemyChar->smCharInfo.szName);
+				lpChar->smCharInfo.Next_Exp = lpPlayInfo->dwObjectSerial;
+				lpChar->dwUpdateCharInfoTime = dwPlayServTime + 4 * 60 * 1000;
 				lpChar->Clan_CastleMasterFlag = SkillMonsterAttackFlag;
 				rsSendCommandUser(lpPlayInfo, &TransCommandEx);
 			}
@@ -8852,6 +8930,94 @@ int STG_AREA::SendStgItemToPartyUsers(rsPLAYINFO *lpPlayInfo, STG_ITEMS *lpStgIt
 
 
 
+// Companion V43: server-authoritative ground pickup bridge.  Keep this path
+// deliberately aligned with the legacy OPCODE_PUTITEM handling: the owner
+// receives the same TRANS_ITEMINFO/security code and the normal client path
+// either stores the item or throws it back to the field when it cannot fit.
+// The companion never owns a second inventory.
+int rsCompanionPickupStageItem(rsPLAYINFO *lpPlayInfo, STG_AREA *lpStgArea, STG_ITEMS *lpStgItem)
+{
+    if(!lpPlayInfo || !lpPlayInfo->lpsmSock || !lpStgArea || !lpStgItem || !lpStgItem->state)
+        return FALSE;
+
+    if(lpStgItem->dwExclusiveOwnerCode &&
+       lpStgItem->dwExclusiveOwnerCode != lpPlayInfo->dwObjectSerial)
+        return FALSE;
+
+    // Preserve special SoD catch semantics instead of turning the event token
+    // into a normal inventory item.
+    if((lpStgItem->Item.ItemInfo.CODE & sinITEM_MASK2) == sinSD2)
+    {
+        rsSoD_CatchItem(lpStgItem->Item.ItemInfo.CODE, lpPlayInfo);
+        lpStgArea->DeleteItem(lpStgItem);
+        return TRUE;
+    }
+
+    // Party gold has its own authoritative splitter and must not be converted
+    // into a private owner pickup by the companion.
+    if(lpPlayInfo->dwPartyInfo &&
+       lpStgItem->Item.ItemInfo.CODE == (sinGG1 | sin01) &&
+       lpStgItem->Item.ItemInfo.Money < 10000)
+    {
+        if(!lpPlayInfo->lpPartyMaster ||
+           lpPlayInfo->lpPartyMaster->GetPartyMoney(&lpStgItem->Item.ItemInfo, lpPlayInfo) == FALSE)
+        {
+            lpPlayInfo->dwPartyInfo = PARTY_STATE_NONE;
+            lpPlayInfo->lpPartyMaster = NULL;
+        }
+        lpStgArea->DeleteItem(lpStgItem);
+        return TRUE;
+    }
+
+    TRANS_ITEMINFO transItemInfo;
+    ZeroMemory(&transItemInfo, sizeof(transItemInfo));
+    transItemInfo.code = OpCode::OPCODE_PUTITEM;
+    transItemInfo.size = sizeof(TRANS_ITEMINFO);
+    memcpy(&transItemInfo.Item, &lpStgItem->Item.ItemInfo, sizeof(sITEMINFO));
+
+    if(lpStgItem->Item.ItemInfo.CODE == (sinGG1 | sin01))
+    {
+        lpPlayInfo->spMoney_Out += lpStgItem->Item.ItemInfo.Money;
+        transItemInfo.x = dwPlayServTime;
+        transItemInfo.y = transItemInfo.Item.ItemHeader.dwChkSum;
+        transItemInfo.z = lpPlayInfo->spMoney_Out ^ (transItemInfo.x + transItemInfo.y);
+    }
+
+    if(lpStgItem->Item.ItemInfo.CODE == (sinGG1 | sin05))
+        cCoinShop.AddPlayerCoin(lpPlayInfo, lpStgItem->Item.ItemInfo.Money);
+
+    if(lpStgItem->dwExclusiveOwnerCode == lpPlayInfo->dwObjectSerial &&
+       lpStgItem->Item.ItemInfo.CODE == sinQT136)
+        RegisterT5CryPickupToken(lpPlayInfo, &lpStgItem->Item.ItemInfo);
+
+    rsRegist_ItemSecCode(lpPlayInfo, &transItemInfo, lpStgItem->BeginMode);
+    lpPlayInfo->lpsmSock->Send((char *)&transItemInfo, transItemInfo.size, TRUE);
+
+    if((lpStgItem->Item.ItemInfo.CODE & sinITEM_MASK3) >= sin09 ||
+       ((lpStgItem->Item.ItemInfo.CODE & sinITEM_MASK2) == sinOS1 &&
+        (lpStgItem->Item.ItemInfo.CODE & sinITEM_MASK3) >= sin05))
+        RecordGetHighItem(lpPlayInfo, lpStgItem);
+
+    if(lpStgItem->BeginMode)
+    {
+        TRANS_CHATMESSAGE transChatMessage;
+        ZeroMemory(&transChatMessage, sizeof(transChatMessage));
+        wsprintf(transChatMessage.szMessage, srMsg_037,
+            lpPlayInfo->smCharInfo.szName, lpStgItem->Item.ItemInfo.ItemName);
+        if(lpPlayInfo->dwPartyInfo && rsServerConfig.Enable_PartyItem && lpPlayInfo->lpPartyMaster)
+            lpPlayInfo->lpPartyMaster->SendPartyMessage(transChatMessage.szMessage, 9);
+        else
+            lpPlayInfo->SendPartyMessage(transChatMessage.szMessage, 9);
+    }
+
+    // Delete only after the secure owner packet has been queued.  If the
+    // client's grid/weight check cannot accept it, sinSetInvenItem follows the
+    // established legacy path and throws the same item back to the field.
+    lpStgArea->DeleteItem(lpStgItem);
+    return TRUE;
+}
+
+
 int STG_AREA::SendStgItems()
 {
 	int cnt;
@@ -10746,6 +10912,19 @@ int rsSendTransSkillAttack(smCHAR *lpChar, rsPLAYINFO *lpPlayInfo)
 		TransAttackData.sRating[1] = 0;
 	}
 
+	// Covenant risk is applied after legacy defensive skills so the configured
+	// tradeoff represents final incoming monster damage. Hunter modifiers are
+	// scoped to boss/special Hunt Targets; Fortune is global.
+	if(TransAttackData.Power > 0 && lpPlayInfo->getName())
+	{
+		const char* covenantDamageScope =
+			lpChar->smCharInfo.wPlayClass[0] == MONSTER_CLASS_BOSS ? "hunt_target" : "global";
+		const double covenantPower = gameplay::progression::ApplyServerCovenantModifierValue(
+			lpPlayInfo->getName(), "combat.damage_taken", covenantDamageScope,
+			static_cast<double>(TransAttackData.Power), true, lpChar->dwObjectSerial);
+		TransAttackData.Power = covenantPower > 0.0 ? static_cast<int>(covenantPower) : 0;
+	}
+
 	TransAttackData.dwChkSum = TransAttackData.Power * 2002 +
 		(TransAttackData.x * TransAttackData.y * TransAttackData.z);
 
@@ -11286,6 +11465,38 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 		}
 	}
 
+	// Covenant loot modifies only the normal monster-drop loop. Event items,
+	// guaranteed drops and FallItems_Plus above intentionally keep legacy rules.
+	if(FallItemMax > 0 && lprsPlayInfo && lprsPlayInfo->getName())
+	{
+		double covenantDropCount = gameplay::progression::ApplyServerCovenantModifierValue(
+			lprsPlayInfo->getName(), "monster.drop_chance", "monster",
+			static_cast<double>(FallItemMax), true, lpChar->dwObjectSerial);
+		if(lpChar->smCharInfo.wPlayClass[0] == MONSTER_CLASS_BOSS)
+		{
+			covenantDropCount = gameplay::progression::ApplyServerCovenantModifierValue(
+				lprsPlayInfo->getName(), "hunt.drop_chance", "hunt_target",
+				covenantDropCount, true, lpChar->dwObjectSerial);
+		}
+		if(covenantDropCount < 0.0) covenantDropCount = 0.0;
+		FallItemMax = static_cast<int>(covenantDropCount);
+		const double fractionalDrop = covenantDropCount - static_cast<double>(FallItemMax);
+		if(fractionalDrop > 0.0 && (rand() % 10000) < static_cast<int>(fractionalDrop * 10000.0))
+			++FallItemMax;
+
+		gameplay::covenants::CovenantModifierAggregate extraRoll;
+		if(gameplay::progression::GetServerCovenantModifierAggregate(
+			lprsPlayInfo->getName(), "loot.extra_roll_chance", "monster", extraRoll,
+			true, lpChar->dwObjectSerial) && extraRoll.matched)
+		{
+			double chance = extraRoll.flat + extraRoll.additivePercent;
+			if(extraRoll.multiplicativeFactor != 1.0) chance *= extraRoll.multiplicativeFactor;
+			if(chance > 1.0) chance = 1.0;
+			if(chance > 0.0 && (rand() % 10000) < static_cast<int>(chance * 10000.0))
+				++FallItemMax;
+		}
+	}
+
 
 
 	for(cnt = 0; cnt < FallItemMax; cnt++)
@@ -11573,6 +11784,16 @@ int rsOpen_MonsterItemExp(smCHAR *lpChar, rsPLAYINFO *lprsPlayInfo)
 			if (ExpUp)
 			{
 				PlayerEXP += (PlayerEXP * ExpUp) / 100;
+			}
+
+			// Covenant XP affects monster experience only. Keeping this here, rather
+			// than inside AddExp(), prevents it from altering quest/admin rewards.
+			{
+				const double covenantExp = gameplay::progression::ApplyServerCovenantModifierValue(
+					lprsPlayInfo->getName() ? lprsPlayInfo->getName() : "",
+					"xp.monster_gain", "monster", static_cast<double>(PlayerEXP), true,
+					lpChar->dwObjectSerial);
+				PlayerEXP = covenantExp > 0.0 ? static_cast<INT64>(covenantExp) : 0;
 			}
 
 			lprsPlayInfo->spEXP_Out += PlayerEXP;
@@ -12119,8 +12340,22 @@ int srAutoCharMain(smCHAR *lpChar)
 			if(lpChar->dwCompulsionTime)
 			{
 
-				if(lpChar->dwCompulsionTime > dwPlayServTime && lpChar->lpCompulsionPlayInfo && lpChar->lpCompulsionPlayInfo->lpsmSock)
+				if(lpChar->dwCompulsionTime > dwPlayServTime && lpChar->lpCompulsionChar &&
+				   lpChar->lpCompulsionChar->Flag && lpChar->lpCompulsionChar->smCharInfo.Life[0] > 0)
 				{
+					lpChar->lpTargetPlayInfo = 0;
+					lpChar->lpTargetChar = lpChar->lpCompulsionChar;
+
+					lpChar->SetNextTarget(
+						lpChar->lpTargetChar->pX,
+						lpChar->lpTargetChar->pY,
+						lpChar->lpTargetChar->pZ);
+
+					TragetSerachFlag = TRUE;
+				}
+				else if(lpChar->dwCompulsionTime > dwPlayServTime && lpChar->lpCompulsionPlayInfo && lpChar->lpCompulsionPlayInfo->lpsmSock)
+				{
+					lpChar->lpTargetChar = 0;
 					lpChar->lpTargetPlayInfo = lpChar->lpCompulsionPlayInfo;
 
 					lpChar->SetNextTarget(
@@ -12134,6 +12369,7 @@ int srAutoCharMain(smCHAR *lpChar)
 				{
 					lpChar->dwCompulsionTime = 0;
 					lpChar->lpCompulsionPlayInfo = 0;
+					lpChar->lpCompulsionChar = 0;
 				}
 			}
 
@@ -16599,6 +16835,153 @@ int rsRecvAgingItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 }
 
 
+// Covenant Artisan bridge. The Covenant domain deliberately does not know
+// sITEMINFO; the legacy crafting boundary owns item mutation and uses the
+// existing authoritative item builders/checksum path.
+enum SummitCovenantArtisanCraftMode
+{
+    SUMMIT_ARTISAN_NONE = 0,
+    SUMMIT_ARTISAN_REFORGE = 1,
+    SUMMIT_ARTISAN_FORGEMASTER = 2,
+    SUMMIT_ARTISAN_MASTER = 3
+};
+
+static bool SummitCovenantFlagEnabled(rsPLAYINFO* lpPlayInfo, const char* statKey)
+{
+    if(!lpPlayInfo || !lpPlayInfo->getName() || !statKey)
+        return false;
+    gameplay::covenants::CovenantModifierAggregate aggregate;
+    if(!gameplay::progression::GetServerCovenantModifierAggregate(
+            lpPlayInfo->getName(), statKey, "crafting", aggregate))
+        return false;
+    return gameplay::covenants::CovenantFlagEnabled(aggregate);
+}
+
+static bool SummitConsumeCovenantInventoryPrefix(rsPLAYINFO* lpPlayInfo, const char* prefix)
+{
+    if(!lpPlayInfo || !lpPlayInfo->getName() || !prefix || !prefix[0])
+        return false;
+    std::vector<gameplay::covenants::CovenantInventoryItem> items;
+    if(!gameplay::progression::GetServerCovenantInventory(lpPlayInfo->getName(), items))
+        return false;
+    const std::string prefixValue(prefix);
+    for(std::vector<gameplay::covenants::CovenantInventoryItem>::const_iterator it = items.begin();
+        it != items.end(); ++it)
+    {
+        if(it->quantity > 0 && it->key.compare(0, prefixValue.size(), prefixValue) == 0)
+            return gameplay::progression::ConsumeServerCovenantInventoryItem(
+                lpPlayInfo->getName(), it->covenantId, it->key, 1);
+    }
+    return false;
+}
+
+static int SummitFindDefaultItemIndex(DWORD itemCode)
+{
+    for(int cnt = 0; cnt < DefaultItemCount; ++cnt)
+        if(DefaultItems[cnt].Item.CODE == itemCode && !DefaultItems[cnt].Item.UniqueItem)
+            return cnt;
+    return -1;
+}
+
+static bool SummitReforgeOneSpecialProperty(
+    sITEMINFO* item, const sDEF_ITEMINFO* definition, int jobCode)
+{
+    if(!item || !definition)
+        return false;
+
+    sITEMINFO candidate;
+    ZeroMemory(&candidate, sizeof(candidate));
+    CreateDefItem(&candidate, const_cast<sDEF_ITEMINFO*>(definition), jobCode);
+
+    // Only one specialization property is copied. The item header/base stats
+    // stay intact and ReformItem() below rebuilds the authoritative checksum.
+    int choices[8];
+    int choiceCount = 0;
+    if(candidate.JobItem.Add_Attack_Speed != item->JobItem.Add_Attack_Speed) choices[choiceCount++] = 0;
+    if(candidate.JobItem.Add_Critical_Hit != item->JobItem.Add_Critical_Hit) choices[choiceCount++] = 1;
+    if(candidate.JobItem.Add_Defence != item->JobItem.Add_Defence) choices[choiceCount++] = 2;
+    if(candidate.JobItem.Add_fAbsorb != item->JobItem.Add_fAbsorb) choices[choiceCount++] = 3;
+    if(candidate.JobItem.Add_fBlock_Rating != item->JobItem.Add_fBlock_Rating) choices[choiceCount++] = 4;
+    if(candidate.JobItem.Add_fMagic_Mastery != item->JobItem.Add_fMagic_Mastery) choices[choiceCount++] = 5;
+    if(candidate.JobItem.Add_fSpeed != item->JobItem.Add_fSpeed) choices[choiceCount++] = 6;
+    if(candidate.JobItem.Add_Shooting_Range != item->JobItem.Add_Shooting_Range) choices[choiceCount++] = 7;
+    if(choiceCount <= 0)
+        return false;
+
+    const unsigned int selector = static_cast<unsigned int>(
+        item->CODE ^ item->ItemHeader.Head ^ item->ItemHeader.dwChkSum);
+    switch(choices[selector % static_cast<unsigned int>(choiceCount)])
+    {
+    case 0: item->JobItem.Add_Attack_Speed = candidate.JobItem.Add_Attack_Speed; break;
+    case 1: item->JobItem.Add_Critical_Hit = candidate.JobItem.Add_Critical_Hit; break;
+    case 2: item->JobItem.Add_Defence = candidate.JobItem.Add_Defence; break;
+    case 3: item->JobItem.Add_fAbsorb = candidate.JobItem.Add_fAbsorb; break;
+    case 4: item->JobItem.Add_fBlock_Rating = candidate.JobItem.Add_fBlock_Rating; break;
+    case 5: item->JobItem.Add_fMagic_Mastery = candidate.JobItem.Add_fMagic_Mastery; break;
+    case 6: item->JobItem.Add_fSpeed = candidate.JobItem.Add_fSpeed; break;
+    case 7: item->JobItem.Add_Shooting_Range = candidate.JobItem.Add_Shooting_Range; break;
+    default: return false;
+    }
+    if(candidate.JobCodeMask)
+        item->JobCodeMask = candidate.JobCodeMask;
+    return true;
+}
+
+static SummitCovenantArtisanCraftMode SummitApplyArtisanCraftingOutput(
+    rsPLAYINFO* lpPlayInfo, sITEMINFO* item)
+{
+    if(!lpPlayInfo || !item || !item->CODE || !lpPlayInfo->getName())
+        return SUMMIT_ARTISAN_NONE;
+
+    int artisanMode = 0;
+    if(!gameplay::progression::GetServerCovenantArtisanMode(
+            lpPlayInfo->getName(), artisanMode) || artisanMode <= SUMMIT_ARTISAN_NONE)
+        return SUMMIT_ARTISAN_NONE;
+
+    const int definitionIndex = SummitFindDefaultItemIndex(item->CODE);
+    if(definitionIndex < 0)
+        return SUMMIT_ARTISAN_NONE;
+
+    const int jobCode = static_cast<int>(lpPlayInfo->smCharInfo.JOB_CODE);
+
+    // Mode 3: perfect class-specialized output, paid with one refined
+    // Gatherer material. No fallback: the player explicitly selected the mode.
+    if(artisanMode == SUMMIT_ARTISAN_MASTER)
+    {
+        if(!SummitCovenantFlagEnabled(lpPlayInfo, "crafting.master_artisan_enabled") ||
+           !SummitConsumeCovenantInventoryPrefix(lpPlayInfo, "refined_material:"))
+            return SUMMIT_ARTISAN_NONE;
+        CreateDefItemPerf(item, &DefaultItems[definitionIndex], jobCode);
+        return SUMMIT_ARTISAN_MASTER;
+    }
+
+    // Mode 2: class-specialized full reroll, paid with one refined Hunter trophy.
+    if(artisanMode == SUMMIT_ARTISAN_FORGEMASTER)
+    {
+        if(!SummitCovenantFlagEnabled(lpPlayInfo, "crafting.forgemaster_enabled") ||
+           !SummitConsumeCovenantInventoryPrefix(lpPlayInfo, "refined_trophy:"))
+            return SUMMIT_ARTISAN_NONE;
+        CreateDefItem(item, &DefaultItems[definitionIndex], jobCode);
+        return SUMMIT_ARTISAN_FORGEMASTER;
+    }
+
+    // Mode 1: reforge exactly one specialization property, paid with one
+    // Gatherer special material. Preview first so a non-eligible item is free.
+    if(artisanMode == SUMMIT_ARTISAN_REFORGE)
+    {
+        if(!SummitCovenantFlagEnabled(lpPlayInfo, "crafting.reforge_enabled"))
+            return SUMMIT_ARTISAN_NONE;
+        sITEMINFO preview = *item;
+        if(!SummitReforgeOneSpecialProperty(&preview, &DefaultItems[definitionIndex], jobCode) ||
+           !SummitConsumeCovenantInventoryPrefix(lpPlayInfo, "special_material:"))
+            return SUMMIT_ARTISAN_NONE;
+        *item = preview;
+        return SUMMIT_ARTISAN_REFORGE;
+    }
+
+    return SUMMIT_ARTISAN_NONE;
+}
+
 int rsRecvCraftItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server)
 {
 	cCRAFTITEM	ccItem;
@@ -16784,6 +17167,12 @@ int rsRecvCraftItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 		}
 	}
 
+	// Covenant Artisan enhancement runs only after legacy crafting has produced
+	// a valid non-unique output. The normal result remains unchanged when the
+	// player lacks the capability or required Covenant material.
+	if(sCraftItem_Recv.Result == TRUE)
+		(void)SummitApplyArtisanCraftingOutput(lpPlayInfo, &sCraftItem_Recv.DesCraftItem.sItemInfo);
+
 	spJobCode = 0;
 	sCraftItem_Recv.code = OpCode::OPCODE_CRAFTITEM;
 
@@ -16816,6 +17205,12 @@ int rsRecvCraftItem(rsPLAYINFO *lpPlayInfo, sCRAFTITEM_SERVER *pCraftItem_Server
 			}
 
 			rsSaveAgingItemToHDD(&sCraftItem_Recv.DesCraftItem.sItemInfo);
+
+			// A successful authoritative mix/reconstruction advances Artisan
+			// Covenant content only after the replacement item was accepted.
+			if(lpPlayInfo->getName())
+				(void)gameplay::progression::RecordServerCovenantActivity(
+					lpPlayInfo->getName(), "crafting.success", 1);
 		}
 		else
 		{
@@ -17626,6 +18021,8 @@ int rsRecvManufactureItem(rsPLAYINFO* lpPlayInfo, SManufactureItem_Server* pManu
 
 	if (g_sManufactureItem_Recv.Result == TRUE)
 	{
+		(void)SummitApplyArtisanCraftingOutput(
+			lpPlayInfo, &g_sManufactureItem_Recv.DesManufactureItem.sItemInfo);
 		ReformItem(&g_sManufactureItem_Recv.DesManufactureItem.sItemInfo);
 		g_sManufactureItem_Recv.size = sizeof(sITEM) + 32;
 
@@ -17640,6 +18037,11 @@ int rsRecvManufactureItem(rsPLAYINFO* lpPlayInfo, SManufactureItem_Server* pManu
 
 
 		RecordManufactureItem(lpPlayInfo, &g_sManufactureItem_Recv.DesManufactureItem.sItemInfo);
+
+		// A successful authoritative manufacture advances Artisan Covenant content.
+		if(lpPlayInfo->getName())
+			(void)gameplay::progression::RecordServerCovenantActivity(
+				lpPlayInfo->getName(), "crafting.success", 1);
 
 		TRANS_CHATMESSAGE	TransChatMessage;
 		wsprintf(TransChatMessage.szMessage, "Parab\351ns %s Acabouu de Craftar o Item %s", lpPlayInfo->getName(), g_sManufactureItem_Recv.DesManufactureItem.sItemInfo.ItemName);
@@ -19545,7 +19947,22 @@ int rsRecvSellShopItem(rsPLAYINFO *lpPlayInfo, TRANS_ITEMINFO *lpTransItemInfo)
 			smTransCommand.EParam = (int)Price;
 		}
 
-
+		// Artisan Tier II+: equipment sold through the authoritative blacksmith
+		// path receives the data-driven vendor value modifier. Apply this after
+		// all legacy durability/cap calculations so the Covenant bonus is not
+		// accidentally clipped by PriceMax. The server remains authoritative.
+		if(smTransCommand.EParam > 0 && lpPlayInfo->getName())
+		{
+			const double covenantSellValue = gameplay::progression::ApplyServerCovenantModifierValue(
+				lpPlayInfo->getName(), "vendor.blacksmith_sell_value", "blacksmith",
+				static_cast<double>(smTransCommand.EParam));
+			if(covenantSellValue > 0.0)
+			{
+				const double maxServerMoneyDelta = 2147483647.0;
+				smTransCommand.EParam = static_cast<int>(
+					covenantSellValue > maxServerMoneyDelta ? maxServerMoneyDelta : covenantSellValue);
+			}
+		}
 
 
 		if(lpPlayInfo->lpsmSock)
@@ -22667,6 +23084,24 @@ AccountTypes getMasterLevel(rsPLAYINFO* playInfo)
 }
 
 
+static const char* SummitGatheringStatusText(gameplay::gathering::HarvestStatus status)
+{
+    using gameplay::gathering::HarvestStatus;
+    switch(status)
+    {
+    case HarvestStatus::Success: return "success";
+    case HarvestStatus::InvalidPlayer: return "invalid player";
+    case HarvestStatus::UnknownNode: return "unknown node";
+    case HarvestStatus::UnknownResource: return "unknown resource";
+    case HarvestStatus::WrongArea: return "wrong area";
+    case HarvestStatus::TooFar: return "too far from node";
+    case HarvestStatus::WrongProfession: return "wrong profession";
+    case HarvestStatus::ProfessionLevelTooLow: return "profession level too low";
+    case HarvestStatus::Depleted: return "node depleted / respawning";
+    }
+    return "unknown harvest error";
+}
+
 int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 {
 	int cnt = 0;
@@ -22686,6 +23121,240 @@ int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 
 
 #pragma region Player Commands
+
+
+	// Mining/Gathering V2: command-first world interaction until 3D node entities
+	// are available. Nodes are persistent and data-driven; the future entity only
+	// needs to invoke the same harvest-by-nodeId contract.
+	if(rsCompString("/resources", szChatCommand))
+	{
+		std::vector<gameplay::gathering::GatheringInventoryEntry> inventory;
+		if(!gameplay::gathering::ServerGatheringRepository().GetInventory(
+			lpPlayInfo->getName() ? lpPlayInfo->getName() : "", inventory))
+		{
+			SendQuickMessage(lpPlayInfo, "Resource inventory unavailable.");
+			return TRUE;
+		}
+		if(inventory.empty())
+			SendQuickMessage(lpPlayInfo, "Resource inventory is empty.");
+		for(std::vector<gameplay::gathering::GatheringInventoryEntry>::const_iterator it=inventory.begin();
+			it!=inventory.end(); ++it)
+		{
+			sprintf_s(szTempBuff,sizeof(szTempBuff),"%s x%d",it->resourceKey.c_str(),it->quantity);
+			SendQuickMessage(lpPlayInfo,szTempBuff);
+		}
+		return TRUE;
+	}
+
+	int summitHarvestCommandLen = rsCompString("/mine", szChatCommand);
+	const bool summitMiningCommand = summitHarvestCommandLen != 0;
+	if(!summitHarvestCommandLen)
+		summitHarvestCommandLen = rsCompString("/gather", szChatCommand);
+	if(summitHarvestCommandLen)
+	{
+		char sub[64] = {0};
+		char arg1[64] = {0};
+		char arg2[64] = {0};
+		char arg3[64] = {0};
+		char* cursor = szChatCommand + summitHarvestCommandLen;
+		cursor = rsGetWord(sub,cursor);
+		if(cursor) cursor = rsGetWord(arg1,cursor);
+		if(cursor) cursor = rsGetWord(arg2,cursor);
+		if(cursor) cursor = rsGetWord(arg3,cursor);
+
+		const int playerArea = lpPlayInfo->Position.Area;
+		const int playerX = lpPlayInfo->Position.x >> FLOATNS;
+		const int playerY = lpPlayInfo->Position.y >> FLOATNS;
+		const int playerZ = lpPlayInfo->Position.z >> FLOATNS;
+
+		if(sub[0] && lstrcmpi(sub,"list") == 0)
+		{
+			std::vector<gameplay::gathering::GatheringNodeDefinition> nodes;
+			std::vector<gameplay::gathering::ResourceDefinition> resources;
+			if(summitMiningCommand)
+			{
+				gameplay::mining::ServerMiningService().ListNodes(nodes);
+				gameplay::mining::ServerMiningService().ListResources(resources);
+			}
+			else
+			{
+				gameplay::gathering::ServerGatheringService().ListNodes(nodes);
+				gameplay::gathering::ServerGatheringService().ListResources(resources);
+			}
+			int shown=0;
+			for(std::vector<gameplay::gathering::GatheringNodeDefinition>::const_iterator n=nodes.begin();
+				n!=nodes.end() && shown<12; ++n)
+			{
+				if(n->area!=playerArea) continue;
+				const char* key="resource";
+				for(std::vector<gameplay::gathering::ResourceDefinition>::const_iterator r=resources.begin();r!=resources.end();++r)
+					if(r->resourceId==n->resourceId){ key=r->key.c_str(); break; }
+				const int dx=playerX-n->x, dz=playerZ-n->z;
+				const int distance=(int)sqrt((double)(dx*dx+dz*dz));
+				sprintf_s(szTempBuff,sizeof(szTempBuff),"node %u | %s | distance %d",(unsigned)n->nodeId,key,distance);
+				SendQuickMessage(lpPlayInfo,szTempBuff); ++shown;
+			}
+			if(!shown) SendQuickMessage(lpPlayInfo,"No resource nodes registered in this area.");
+			return TRUE;
+		}
+
+		if(sub[0] && lstrcmpi(sub,"place") == 0)
+		{
+			if(lpPlayInfo->getSecurity() < AccountTypes::SEC_MODERATOR)
+			{
+				SendQuickMessage(lpPlayInfo,"Only moderators can place resource nodes.");
+				return TRUE;
+			}
+			if(!arg1[0])
+			{
+				SendQuickMessage(lpPlayInfo,"Usage: /mine place <resourceKey> [radius] [respawnSec]");
+				return TRUE;
+			}
+			const int radius=arg2[0]?atoi(arg2):160;
+			const int respawnSeconds=arg3[0]?atoi(arg3):30;
+			gameplay::gathering::GatheringNodeDefinition node;
+			std::string error;
+			if(!gameplay::gathering::AddServerGatheringNode(arg1,playerArea,playerX,playerY,playerZ,
+				radius,(std::uint64_t)(respawnSeconds>0?respawnSeconds:30)*1000ULL,node,&error))
+			{
+				sprintf_s(szTempBuff,sizeof(szTempBuff),"Node placement failed: %s",error.c_str());
+				SendQuickMessage(lpPlayInfo,szTempBuff); return TRUE;
+			}
+			sprintf_s(szTempBuff,sizeof(szTempBuff),"Resource node %u placed: %s",(unsigned)node.nodeId,arg1);
+			SendQuickMessage(lpPlayInfo,szTempBuff); return TRUE;
+		}
+
+		std::uint32_t nodeId=0;
+		if(sub[0] && sub[0]>='0' && sub[0]<='9') nodeId=(std::uint32_t)strtoul(sub,0,10);
+		if(!nodeId)
+		{
+			gameplay::gathering::GatheringNodeDefinition nearest;
+			gameplay::gathering::ResourceDefinition resource;
+			const gameplay::gathering::GatheringKind kind=summitMiningCommand?
+				gameplay::gathering::GatheringKind::Mining:gameplay::gathering::GatheringKind::Custom;
+			if(!gameplay::gathering::FindNearestGatheringNode(playerArea,playerX,playerY,playerZ,kind,summitMiningCommand,nearest,resource))
+			{
+				SendQuickMessage(lpPlayInfo,"No resource node registered in this area."); return TRUE;
+			}
+			nodeId=nearest.nodeId;
+		}
+
+		gameplay::gathering::HarvestResult harvest;
+		if(summitMiningCommand)
+			harvest=gameplay::mining::HarvestMiningNodeForPlayer(lpPlayInfo,nodeId,(std::uint64_t)dwPlayServTime,(std::uint32_t)rand());
+		else
+			harvest=gameplay::gathering::HarvestGatheringNodeForPlayer(lpPlayInfo,nodeId,(std::uint64_t)dwPlayServTime,(std::uint32_t)rand());
+		if(!harvest.Succeeded())
+		{
+			sprintf_s(szTempBuff,sizeof(szTempBuff),"Harvest failed: %s",SummitGatheringStatusText(harvest.status));
+			SendQuickMessage(lpPlayInfo,szTempBuff); return TRUE;
+		}
+		sprintf_s(szTempBuff,sizeof(szTempBuff),"Harvested %s x%d",harvest.resourceKey.c_str(),harvest.amount);
+		SendQuickMessage(lpPlayInfo,szTempBuff); return TRUE;
+	}
+
+	// Covenant V1: chat is the first player-facing surface. Keep business rules in
+	// ProgressionRuntime/CovenantService so a future UI or world altar can reuse them.
+	if(rsCompString("/covenant", szChatCommand))
+	{
+		gameplay::covenants::CovenantChatCommandContext covenantContext;
+		covenantContext.playerKey = lpPlayInfo->getName() ? lpPlayInfo->getName() : "";
+		covenantContext.playerLevel = lpPlayInfo->smCharInfo.Level;
+		covenantContext.legacyJobCode = lpPlayInfo->smCharInfo.JOB_CODE;
+		covenantContext.allowAdminCommands =
+			lpPlayInfo->getSecurity() >= AccountTypes::SEC_MODERATOR;
+
+		// Switching is deliberately blocked during volatile player states. The
+		// persisted cooldown is enforced again inside ProgressionRuntime.
+		if(lpPlayInfo->smCharInfo.Life[0] <= 0)
+		{
+			covenantContext.canSwitch = false;
+			covenantContext.switchBlockReason = "cannot switch Covenant while dead";
+		}
+		else if(lpPlayInfo->dwLastAttackTime &&
+			(dwPlayServTime - lpPlayInfo->dwLastAttackTime) < 10000)
+		{
+			covenantContext.canSwitch = false;
+			covenantContext.switchBlockReason = "cannot switch Covenant during combat";
+		}
+		else if(lpPlayInfo->dwLastTradeTime &&
+			(dwPlayServTime - lpPlayInfo->dwLastTradeTime) < 8000)
+		{
+			covenantContext.canSwitch = false;
+			covenantContext.switchBlockReason = "cannot switch Covenant during trade";
+		}
+
+		if(lpPlayInfo->lpChrTarget)
+		{
+			covenantContext.currentTargetSerial = lpPlayInfo->lpChrTarget->dwObjectSerial;
+			covenantContext.currentTargetIsHuntTarget =
+				lpPlayInfo->lpChrTarget->smCharInfo.wPlayClass[0] == MONSTER_CLASS_BOSS;
+		}
+
+		// Surveyor consumes the Mining registry but intentionally exposes only
+		// resource/area/count, never exact node coordinates. The same registry can
+		// later feed a map UI without changing Covenant rules.
+		{
+			std::vector<gameplay::gathering::ResourceDefinition> covenantResources;
+			std::vector<gameplay::gathering::GatheringNodeDefinition> covenantNodes;
+			gameplay::mining::ServerMiningService().ListResources(covenantResources);
+			gameplay::mining::ServerMiningService().ListNodes(covenantNodes);
+			std::vector<gameplay::gathering::ResourceDefinition> extraResources;
+			std::vector<gameplay::gathering::GatheringNodeDefinition> extraNodes;
+			gameplay::gathering::ServerGatheringService().ListResources(extraResources);
+			gameplay::gathering::ServerGatheringService().ListNodes(extraNodes);
+			covenantResources.insert(covenantResources.end(),extraResources.begin(),extraResources.end());
+			covenantNodes.insert(covenantNodes.end(),extraNodes.begin(),extraNodes.end());
+			for(std::vector<gameplay::gathering::GatheringNodeDefinition>::const_iterator node = covenantNodes.begin();
+				node != covenantNodes.end(); ++node)
+			{
+				std::string resourceKey;
+				for(std::vector<gameplay::gathering::ResourceDefinition>::const_iterator resource = covenantResources.begin();
+					resource != covenantResources.end(); ++resource)
+				{
+					if(resource->resourceId == node->resourceId)
+					{
+						resourceKey = resource->key;
+						break;
+					}
+				}
+				if(resourceKey.empty())
+					continue;
+				bool merged = false;
+				for(std::vector<gameplay::covenants::CovenantSurveyArea>::iterator area = covenantContext.surveyAreas.begin();
+					area != covenantContext.surveyAreas.end(); ++area)
+				{
+					if(area->area == node->area && area->resourceKey == resourceKey)
+					{
+						++area->nodeCount;
+						merged = true;
+						break;
+					}
+				}
+				if(!merged)
+				{
+					gameplay::covenants::CovenantSurveyArea area;
+					area.resourceKey = resourceKey;
+					area.area = node->area;
+					area.nodeCount = 1;
+					covenantContext.surveyAreas.push_back(area);
+				}
+			}
+		}
+
+		const gameplay::covenants::CovenantChatCommandResponse covenantResponse =
+			gameplay::covenants::HandleServerCovenantChatCommand(covenantContext, szChatCommand);
+		if(covenantResponse.handled)
+		{
+			for(std::vector<std::string>::const_iterator line = covenantResponse.lines.begin();
+				line != covenantResponse.lines.end(); ++line)
+			{
+				sprintf_s(szTempBuff, sizeof(szTempBuff), "%s", line->c_str());
+				SendQuickMessage(lpPlayInfo, szTempBuff);
+			}
+			return TRUE;
+		}
+	}
 
 	int len = rsCompString("/companion", szChatCommand);
 	if(len)
@@ -25442,6 +26111,24 @@ int	SendFindCrack(smWINSOCK *lpsmSock)
 	return TRUE;
 }
 
+static const char* SummitGatheringStatusText(gameplay::gathering::HarvestStatus status)
+{
+    using gameplay::gathering::HarvestStatus;
+    switch(status)
+    {
+    case HarvestStatus::Success: return "success";
+    case HarvestStatus::InvalidPlayer: return "invalid player";
+    case HarvestStatus::UnknownNode: return "unknown node";
+    case HarvestStatus::UnknownResource: return "unknown resource";
+    case HarvestStatus::WrongArea: return "wrong area";
+    case HarvestStatus::TooFar: return "too far from node";
+    case HarvestStatus::WrongProfession: return "wrong profession";
+    case HarvestStatus::ProfessionLevelTooLow: return "profession level too low";
+    case HarvestStatus::Depleted: return "node depleted / respawning";
+    }
+    return "unknown harvest error";
+}
+
 int RecvCommand(rsPLAYINFO *lpPlayInfo, char *szChatCommand)
 {
 	return TRUE;
@@ -26232,6 +26919,17 @@ int RecvMessage(smTHREADSOCK *SockInfo)
 			ROLLHANDLER->HandlePacket(lpPlayInfo, (smTRANS_COMMAND*)SockInfo->Buff);
 			break;
 
+
+		case gameplay::covenants::protocol::OPCODE_COVENANT_UI_ACTION:
+		{
+			if(dwTransSize == sizeof(gameplay::covenants::protocol::CovenantUIActionPacket))
+			{
+				const gameplay::covenants::protocol::CovenantUIActionPacket *packet =
+					reinterpret_cast<const gameplay::covenants::protocol::CovenantUIActionPacket *>(SockInfo->Buff);
+				gameplay::covenants::HandleCovenantUIAction(lpPlayInfo, packet);
+			}
+		}
+		break;
 
 		case gameplay::companions::protocol::OPCODE_COMPANION_UI_ACTION:
 		{
@@ -38801,7 +39499,7 @@ int	rsRecvSkillPartyUser(rsPLAYINFO *playInfo, TRANS_PARTY_SKILL *lpTransPartySk
 }
 
 
-static smCHAR *OpenTier5SummonFromCanonicalName(const char *szCanonicalName, int x, int y, int z, rsPLAYINFO *lpPlayInfo)
+smCHAR *rsOpenTier5SummonFromCanonicalName(const char *szCanonicalName, int x, int y, int z, rsPLAYINFO *lpPlayInfo)
 {
 	if(!szCanonicalName || !szCanonicalName[0])
 		return NULL;
@@ -38826,6 +39524,51 @@ static smCHAR *OpenTier5SummonFromCanonicalName(const char *szCanonicalName, int
 	}
 
 	return NULL;
+}
+
+static bool SummitMonsterIgnoresVanish(const smCHAR *lpChar)
+{
+	if(!lpChar) return true;
+
+	const DWORD soundCode = lpChar->smCharInfo.dwCharSoundCode;
+	return soundCode == snCHAR_SOUND_BABEL ||
+		soundCode == snCHAR_SOUND_DEATHKNIGHT ||
+		soundCode == snCHAR_SOUND_KELVEZU ||
+		soundCode == snCHAR_SOUND_MOKOVA;
+}
+
+// Legacy Vanish changes the acquisition radius during the periodic target scan,
+// but an already acquired lpTargetPlayInfo bypasses that scan and keeps attacking.
+// Release normal monsters at cast time so Vanish applies immediately. Bosses that
+// are explicitly immune in the legacy sight rule and active Compulsion targets
+// intentionally keep their target.
+static void SummitReleaseTargetsForVanish(rsPLAYINFO *lpPlayInfo)
+{
+	if(!lpPlayInfo) return;
+
+	STG_AREA *lpStgArea = FindStageField(lpPlayInfo->Position.x, lpPlayInfo->Position.z);
+	if(!lpStgArea) return;
+
+	for(int cnt = 0; cnt < lpStgArea->MonsterLastPoint; cnt++)
+	{
+		smCHAR *lpMonster = lpStgArea->lpCharMonster[cnt];
+		if(!lpMonster || !lpMonster->Flag || lpMonster->smCharInfo.Life[0] <= 0)
+			continue;
+		if(lpMonster->lpTargetPlayInfo != lpPlayInfo)
+			continue;
+		if(SummitMonsterIgnoresVanish(lpMonster))
+			continue;
+
+		// Compulsion is an explicit forced-target mechanic and must outrank stealth.
+		if(lpMonster->dwCompulsionTime > dwPlayServTime &&
+			lpMonster->lpCompulsionPlayInfo == lpPlayInfo)
+			continue;
+
+		lpMonster->lpTargetPlayInfo = 0;
+		lpMonster->dwTargetLockTime = 0;
+		lpMonster->TragetTraceMode = 0;
+		lpMonster->TargetMoveCount = 0;
+	}
 }
 
 int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
@@ -38874,7 +39617,7 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 	case SKILL_PLAY_T51:
 		if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_ATALANTA)
 		{
-			lpChar = OpenTier5SummonFromCanonicalName("Summon Tiger", lpPlayInfo->Position.x, lpPlayInfo->Position.y, lpPlayInfo->Position.z, lpPlayInfo);
+			lpChar = rsOpenTier5SummonFromCanonicalName("Summon Tiger", lpPlayInfo->Position.x, lpPlayInfo->Position.y, lpPlayInfo->Position.z, lpPlayInfo);
 			if(!lpChar) return FALSE;
 
 			lpChar->dwUpdateCharInfoTime = dwPlayServTime + (DWORD)Atalanta_T5_SummonTiger_Duration[point] * 1000;
@@ -38894,7 +39637,7 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 		}
 		if(lpPlayInfo->smCharInfo.JOB_CODE == JOBCODE_PRIESTESS)
 		{
-			lpChar = OpenTier5SummonFromCanonicalName("Ice Elemental", lpPlayInfo->Position.x, lpPlayInfo->Position.y, lpPlayInfo->Position.z, lpPlayInfo);
+			lpChar = rsOpenTier5SummonFromCanonicalName("Ice Elemental", lpPlayInfo->Position.x, lpPlayInfo->Position.y, lpPlayInfo->Position.z, lpPlayInfo);
 			if(!lpChar) return FALSE;
 
 			lpChar->dwUpdateCharInfoTime = dwPlayServTime + (DWORD)Priestess_T5_IceElemental_Duration[point] * 1000;
@@ -39254,6 +39997,7 @@ int rsRecvProcessSkill(rsPLAYINFO *lpPlayInfo, smTRANS_COMMAND *lpTransCommand)
 		{
 			lpPlayInfo->dwSkill_Vanish_Time = dwPlayServTime + Vanish_Time[point] * 1000;
 			lpPlayInfo->dwSkill_Vanish_Param = point;
+			SummitReleaseTargetsForVanish(lpPlayInfo);
 		}
 		break;
 

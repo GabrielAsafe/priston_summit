@@ -139,7 +139,12 @@
  SrcGame/src/systems/progression/rankings/general/Ranking.h \
  SrcGame/src/platform/database/odbc/SQL.h \
  Dependency/DirectX9/Include/d3dx9math.h \
- SrcGame/src/systems/world/field/field.h
+ SrcGame/src/systems/world/field/field.h \
+ Shared/content/v1/map/legacy/LegacyMapAdapter.h \
+ Shared/content/v1/map/content/CompiledMapContentSource.h \
+ Shared/content/v1/map/content/IMapContentSource.h \
+ Shared/content/v1/map/domain/MapDefinition.h \
+ Shared/content/v1/common/Sha256.h
 Shared/world/field/field_legacy_client.inl:
 Shared/gameplay/classes/v2/services/ClassService.h:
 Shared/gameplay/classes/v2/PlayableClassRegistry.h:
@@ -282,3 +287,8 @@ SrcGame/src/systems/progression/rankings/general/Ranking.h:
 SrcGame/src/platform/database/odbc/SQL.h:
 Dependency/DirectX9/Include/d3dx9math.h:
 SrcGame/src/systems/world/field/field.h:
+Shared/content/v1/map/legacy/LegacyMapAdapter.h:
+Shared/content/v1/map/content/CompiledMapContentSource.h:
+Shared/content/v1/map/content/IMapContentSource.h:
+Shared/content/v1/map/domain/MapDefinition.h:
+Shared/content/v1/common/Sha256.h:

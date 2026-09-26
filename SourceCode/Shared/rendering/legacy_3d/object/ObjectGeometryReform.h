@@ -63,7 +63,7 @@ inline bool NormalizeRotationScale(smMATRIX &matrix, int scale)
 	for(std::size_t index = 0; index < sizeof(entries) / sizeof(entries[0]); ++index)
 	{
 		int value = 0;
-		if(!ToInt((static_cast<long long>(*entries[index]) << FLOATNS) / scale, value))
+		if(!ToInt((static_cast<long long>(*entries[index]) * (1LL << FLOATNS)) / scale, value))
 			return false;
 		*entries[index] = value;
 	}

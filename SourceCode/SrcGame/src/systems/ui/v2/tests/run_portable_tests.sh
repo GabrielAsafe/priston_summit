@@ -29,6 +29,7 @@ COMMON=(
   "$SRC/systems/ui/v2/pages/SkillsPage.cpp"
   "$SRC/systems/ui/v2/pages/InventoryPage.cpp"
   "$SRC/systems/ui/v2/pages/CompanionsPage.cpp"
+  "$SRC/systems/ui/v2/pages/CovenantsPage.cpp"
   "$SRC/systems/ui/v2/hud/PlayerHud.cpp"
   "$SRC/systems/ui/v2/hud/CompanionPartyHud.cpp"
   "$SRC/systems/ui/v2/quests/QuestJournalWindow.cpp"

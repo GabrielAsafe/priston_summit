@@ -5,9 +5,21 @@
 #include "platform/windows/registry/smreg.h"
 #include "systems/localization/legacy_catalog/language.h"
 #include "systems/combat/pvp/war_mode/WarMode.h"
+#include "systems/rendering/assets/v3/AssetStreamingV3.h"
+#include "systems/rendering/effects/legacy_sin/AssaUtil.h"
 
 HoLogin		*lpLogin = 0;
 HoOpening	*lpOpening = 0;
+
+static inline FILE *SummitOpeningLinkTraceFile(const char *path)
+{
+#if defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
+	return fopen(path, "a");
+#else
+	(void)path;
+	return NULL;
+#endif
+}
 
 char CharacterName1[256];
 char CharacterName2[256];
@@ -20,6 +32,12 @@ int CursorShowFlag = TRUE;
 int LoginEndFlag = FALSE;
 bool bCaptureOpening = FALSE;
 DWORD dwTickCap = 0;
+
+// Network/fade can finish before the future character-selection scene has
+// published its async assets. Keep the faded opening visible until ready.
+static bool gCharacterSelectionPreloadWait = false;
+static DWORD gCharacterSelectionPreloadWaitStart = 0;
+static const DWORD kCharacterSelectionPreloadMaxWaitMs = 8000;
 
 void HoReLoad()
 {
@@ -45,38 +63,42 @@ void CaptureOpening()
 
 int InitOpening()
 {
-	{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"ENTER InitOpening WorkMode=%d lpLogin=%p lpOpening=%p\n", WorkMode, (void*)lpLogin, (void*)lpOpening); fclose(f);} }
+	{ FILE *f=SummitOpeningLinkTraceFile("LOGS\\mingw_initopening_probe.txt"); if(f){ fprintf(f,"ENTER InitOpening WorkMode=%d lpLogin=%p lpOpening=%p\n", WorkMode, (void*)lpLogin, (void*)lpOpening); fclose(f);} }
 
 	memset(CharacterName1, 0, sizeof(CharacterName1));
 	memset(CharacterName2, 0, sizeof(CharacterName2));
-	{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after memset names\n"); fclose(f);} }
+	{ FILE *f=SummitOpeningLinkTraceFile("LOGS\\mingw_initopening_probe.txt"); if(f){ fprintf(f,"after memset names\n"); fclose(f);} }
 
 	InitCursor();
-	{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after InitCursor\n"); fclose(f);} }
+	{ FILE *f=SummitOpeningLinkTraceFile("LOGS\\mingw_initopening_probe.txt"); if(f){ fprintf(f,"after InitCursor\n"); fclose(f);} }
 
 	lpLogin = new HoLogin();
-	{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after new HoLogin lpLogin=%p\n", (void*)lpLogin); fclose(f);} }
+	{ FILE *f=SummitOpeningLinkTraceFile("LOGS\\mingw_initopening_probe.txt"); if(f){ fprintf(f,"after new HoLogin lpLogin=%p\n", (void*)lpLogin); fclose(f);} }
 
 	lpOpening = new HoOpening();
-	{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after new HoOpening lpOpening=%p\n", (void*)lpOpening); fclose(f);} }
+	{ FILE *f=SummitOpeningLinkTraceFile("LOGS\mingw_initopening_probe.txt"); if(f){ fprintf(f,"after new HoOpening lpOpening=%p\n", (void*)lpOpening); fclose(f);} }
+
+	// Start the future selection scene before opening initialization finishes.
+	// Its CPU parse can overlap login interaction instead of beginning at transition.
+	lpLogin->BeginPreload();
 
 	if(WorkMode == OPENING_MODE)
 	{
-		{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"before lpOpening->Init\n"); fclose(f);} }
+		{ FILE *f=SummitOpeningLinkTraceFile("LOGS\\mingw_initopening_probe.txt"); if(f){ fprintf(f,"before lpOpening->Init\n"); fclose(f);} }
 		lpOpening->Init();
-		{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after lpOpening->Init\n"); fclose(f);} }
+		{ FILE *f=SummitOpeningLinkTraceFile("LOGS\\mingw_initopening_probe.txt"); if(f){ fprintf(f,"after lpOpening->Init\n"); fclose(f);} }
 	}
 	else if(WorkMode == LOGIN_MODE)
 	{
-		{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"before lpLogin->Init\n"); fclose(f);} }
+		{ FILE *f=SummitOpeningLinkTraceFile("LOGS\\mingw_initopening_probe.txt"); if(f){ fprintf(f,"before lpLogin->Init\n"); fclose(f);} }
 		lpLogin->Init();
-		{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"after lpLogin->Init\n"); fclose(f);} }
+		{ FILE *f=SummitOpeningLinkTraceFile("LOGS\\mingw_initopening_probe.txt"); if(f){ fprintf(f,"after lpLogin->Init\n"); fclose(f);} }
 	}
 
 	CursorShowFlag = TRUE;
 	LoginEndFlag = FALSE;
 
-	{ FILE *f=fopen("LOGS\\mingw_initopening_probe.txt","a"); if(f){ fprintf(f,"LEAVE InitOpening\n"); fclose(f);} }
+	{ FILE *f=SummitOpeningLinkTraceFile("LOGS\\mingw_initopening_probe.txt"); if(f){ fprintf(f,"LEAVE InitOpening\n"); fclose(f);} }
 
 	return TRUE;
 }
@@ -88,23 +110,40 @@ int DrawOpening()
 {
 	static int drawLogCount = 0;
 	drawLogCount++;
-	{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW #%d ENTER WorkMode=%d lpOpening=%p lpLogin=%p LoginEndFlag=%d\n", drawLogCount, WorkMode, (void*)lpOpening, (void*)lpLogin, LoginEndFlag); fflush(f); fclose(f);} }
+	{ FILE *f=SummitOpeningLinkTraceFile("NUL"); if(f){ fprintf(f,"DRAW #%d ENTER WorkMode=%d lpOpening=%p lpLogin=%p LoginEndFlag=%d\n", drawLogCount, WorkMode, (void*)lpOpening, (void*)lpLogin, LoginEndFlag); fflush(f); fclose(f);} }
 	if(lpOpening == NULL || lpLogin == NULL)
 	{
 		return FALSE;
 	}
 
-    BeginRender();
+	// Use opening/login frames as look-ahead for the next screen and for
+	// commonly used effect textures. Both operations are bounded per frame.
+	lpLogin->PumpOpeningPreload();
+	SummitPrewarmAssaEffectTexturesStep(2, 2);
+
+    if (!BeginRender())
+        return FALSE;
 
 	if(WorkMode == OPENING_MODE)
 	{
-		{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW #%d before lpOpening->Draw\n", drawLogCount); fflush(f); fclose(f);} }
+		{ FILE *f=SummitOpeningLinkTraceFile("NUL"); if(f){ fprintf(f,"DRAW #%d before lpOpening->Draw\n", drawLogCount); fflush(f); fclose(f);} }
 		lpOpening->Draw();
-		{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW #%d after lpOpening->Draw\n", drawLogCount); fflush(f); fclose(f);} }
+		{ FILE *f=SummitOpeningLinkTraceFile("NUL"); if(f){ fprintf(f,"DRAW #%d after lpOpening->Draw\n", drawLogCount); fflush(f); fclose(f);} }
 	}
 	else if(WorkMode == LOGIN_MODE)
 	{
 		lpLogin->Draw();
+	}
+
+	if (gCharacterSelectionPreloadWait)
+	{
+		const char *loadingText = "Carregando personagens...";
+		const int loadingTextLength = static_cast<int>(strlen(loadingText));
+		SetFontTextColor(RGB(255, 255, 255));
+		// Keep this overlay independent from the legacy font-measurement path:
+		// the login transition itself must never pull extra UI dependencies.
+		dsTextLineOut(smScreenWidth / 2 - 90, smScreenHeight / 2,
+			const_cast<char *>(loadingText), loadingTextLength);
 	}
 
 	if(d3ddev && LoginEndFlag == FALSE)
@@ -117,9 +156,9 @@ int DrawOpening()
 	showFPS();
 	Client_Version;
 
-	{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW #%d before EndRender\n", drawLogCount); fflush(f); fclose(f);} }
+	{ FILE *f=SummitOpeningLinkTraceFile("NUL"); if(f){ fprintf(f,"DRAW #%d before EndRender\n", drawLogCount); fflush(f); fclose(f);} }
 	EndRender();
-	{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW #%d after EndRender\n", drawLogCount); fflush(f); fclose(f);} }
+	{ FILE *f=SummitOpeningLinkTraceFile("NUL"); if(f){ fprintf(f,"DRAW #%d after EndRender\n", drawLogCount); fflush(f); fclose(f);} }
 
 	if(LoginEndFlag)
 	{
@@ -143,20 +182,38 @@ int MainOpening()
 {
 	static int mainLogCount = 0;
 	mainLogCount++;
-	{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"MAIN #%d ENTER WorkMode=%d lpOpening=%p lpLogin=%p LoginEndFlag=%d\n", mainLogCount, WorkMode, (void*)lpOpening, (void*)lpLogin, LoginEndFlag); fflush(f); fclose(f);} }
+	{ FILE *f=SummitOpeningLinkTraceFile("NUL"); if(f){ fprintf(f,"MAIN #%d ENTER WorkMode=%d lpOpening=%p lpLogin=%p LoginEndFlag=%d\n", mainLogCount, WorkMode, (void*)lpOpening, (void*)lpLogin, LoginEndFlag); fflush(f); fclose(f);} }
 	if(lpOpening == NULL || lpLogin == NULL)
 		return FALSE;
 
 	if(WorkMode == OPENING_MODE)
 	{
-		{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"MAIN #%d before lpOpening->Main\n", mainLogCount); fflush(f); fclose(f);} }
+		{ FILE *f=SummitOpeningLinkTraceFile("NUL"); if(f){ fprintf(f,"MAIN #%d before lpOpening->Main\n", mainLogCount); fflush(f); fclose(f);} }
 		int openingMainResult = lpOpening->Main();
-		{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"MAIN #%d after lpOpening->Main result=%d WorkMode=%d\n", mainLogCount, openingMainResult, WorkMode); fflush(f); fclose(f);} }
+		{ FILE *f=SummitOpeningLinkTraceFile("NUL"); if(f){ fprintf(f,"MAIN #%d after lpOpening->Main result=%d WorkMode=%d\n", mainLogCount, openingMainResult, WorkMode); fflush(f); fclose(f);} }
 		if(openingMainResult == 2)
 		{
-			if(mainLogCount < 20){ FILE *f=fopen("LOGS\\mingw_opening_loop.txt","a"); if(f){ fprintf(f,"before lpLogin->Init from opening transition\n"); fclose(f);} }
+			lpLogin->PumpOpeningPreload();
+			if (!lpLogin->IsOpeningPreloadReady())
+			{
+				if (!gCharacterSelectionPreloadWait)
+				{
+					gCharacterSelectionPreloadWait = true;
+					gCharacterSelectionPreloadWaitStart = GetTickCount();
+				}
+
+				// Never turn an asset failure into a permanent login lock. The normal
+				// V3 first-use fallback can still finish an individual resource later.
+				if (GetTickCount() - gCharacterSelectionPreloadWaitStart <
+					kCharacterSelectionPreloadMaxWaitMs)
+					return FALSE;
+			}
+
+			gCharacterSelectionPreloadWait = false;
+			gCharacterSelectionPreloadWaitStart = 0;
+			if(mainLogCount < 20){ FILE *f=SummitOpeningLinkTraceFile("LOGS\\mingw_opening_loop.txt"); if(f){ fprintf(f,"before lpLogin->Init from opening transition\n"); fclose(f);} }
 			lpLogin->Init();
-			if(mainLogCount < 20){ FILE *f=fopen("LOGS\\mingw_opening_loop.txt","a"); if(f){ fprintf(f,"after lpLogin->Init from opening transition\n"); fclose(f);} }
+			if(mainLogCount < 20){ FILE *f=SummitOpeningLinkTraceFile("LOGS\\mingw_opening_loop.txt"); if(f){ fprintf(f,"after lpLogin->Init from opening transition\n"); fclose(f);} }
 			WorkMode = LOGIN_MODE;
 		}
 	}
@@ -174,6 +231,7 @@ int MainOpening()
 
 		if(LoginEndFlag && CursorShowFlag == FALSE)
 		{
+			AssetLoadV3SetLoadingBoost(false);
 			WorkMode = MODE_NONE;
 			StopAllWav();
 			StopBGM();
@@ -306,6 +364,12 @@ int HoRecvMessage(DWORD dwCode, void *RecvBuff)
 
 		}
 		DownUserCharacterCount = characterCount;
+
+		// The selection object already exists while the opening screen is active.
+		// Start parsing the visible character models immediately when the list
+		// arrives, so the fade/transition overlaps the expensive legacy ASE work.
+		if (lpLogin)
+			lpLogin->BeginUserCharacterPreload();
 	}
 	else if(dwCode == OpCode::OPCODE_SERVER_INFO)
 	{

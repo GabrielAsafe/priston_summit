@@ -4601,6 +4601,417 @@ int rsAddOfflineCharacterExp(const char *szID, const char *szName, INT64 Exp, in
 }
 
 
+int rsConsumeOfflineCharacterPotion(const char *szID, const char *szName, int PotionType,
+    int *lpTier, int *lpRemainingCount, int *lpRestoreAmount, DWORD *lpItemCode, int *lpStatus)
+{
+    if(lpTier) *lpTier = -1;
+    if(lpRemainingCount) *lpRemainingCount = 0;
+    if(lpRestoreAmount) *lpRestoreAmount = 0;
+    if(lpItemCode) *lpItemCode = 0;
+    if(lpStatus) *lpStatus = 0;
+
+    if(!szID || !szID[0] || !szName || !szName[0] || PotionType < 0 || PotionType >= 3)
+    {
+        if(lpStatus) *lpStatus = -1; // invalid arguments
+        return FALSE;
+    }
+    if(!rsCheckAccountChar(szID, (char *)szName))
+    {
+        if(lpStatus) *lpStatus = -2; // character is not owned by account
+        return FALSE;
+    }
+
+    DWORD potionBase = 0;
+    if(PotionType == 0) potionBase = sinPL1;
+    else if(PotionType == 1) potionBase = sinPM1;
+    else potionBase = sinPS1;
+
+    char szFile[256];
+    char szBackupFile[256];
+    char szTempFile[320];
+    GetUserDataFile(szName, szFile);
+    GetUserDataBackupFile(szName, szBackupFile);
+    _snprintf_s(szTempFile, sizeof(szTempFile), _TRUNCATE, "%s.companion.tmp", szFile);
+
+    TRANS_RECORD_DATA recordData;
+    ZeroMemory(&recordData, sizeof(recordData));
+
+    if(sRecDataBuff)
+        EnterCriticalSection(&cSaveDataSection);
+
+    FILE *fp = fopen(szFile, "rb");
+    size_t readBytes = 0;
+    if(fp)
+    {
+        readBytes = fread(&recordData, 1, sizeof(TRANS_RECORD_DATA), fp);
+        fclose(fp);
+    }
+
+    if(readBytes < sizeof(int) * 2 ||
+        recordData.size <= 0 ||
+        recordData.size > (int)sizeof(TRANS_RECORD_DATA) ||
+        (size_t)recordData.size > readBytes ||
+        lstrcmpi(recordData.smCharInfo.szName, szName) != 0 ||
+        recordData.ItemCount < 0 || recordData.ItemCount > RECORD_ITEM_MAX ||
+        recordData.ItemSubStart < 0 || recordData.ItemSubStart > recordData.ItemCount ||
+        recordData.DataSize < 0 || recordData.DataSize > (int)sizeof(recordData.Data))
+    {
+        if(sRecDataBuff)
+            LeaveCriticalSection(&cSaveDataSection);
+        if(lpStatus) *lpStatus = fp ? -4 : -3; // invalid record / file open-read failure
+        return FALSE;
+    }
+
+    // Locate the highest-tier real stack in the compressed inventory. Do not
+    // rely on GameSaveInfo.sPotionCount: on old servers that field is an
+    // optional monitor and can be stale or disabled.
+    int tier = -1;
+    const BYTE *cursor = recordData.Data;
+    const BYTE *endData = recordData.Data + recordData.DataSize;
+    for(int item = 0; item < recordData.ItemCount; ++item)
+    {
+        if(cursor + sizeof(int) > endData)
+        {
+            if(sRecDataBuff) LeaveCriticalSection(&cSaveDataSection);
+            if(lpStatus) *lpStatus = -6;
+            return FALSE;
+        }
+        const int packedSize = *(const int *)cursor;
+        if(packedSize <= (int)sizeof(int) || cursor + packedSize > endData)
+        {
+            if(sRecDataBuff) LeaveCriticalSection(&cSaveDataSection);
+            if(lpStatus) *lpStatus = -6;
+            return FALSE;
+        }
+
+        sRECORD_ITEM recordItem;
+        ZeroMemory(&recordItem, sizeof(recordItem));
+        DecodeCompress((BYTE *)cursor, (BYTE *)&recordItem, sizeof(recordItem));
+        cursor += packedSize;
+
+        if(recordItem.sItemInfo.PotionCount <= 0)
+            continue;
+        for(int candidate = 4; candidate >= 0; --candidate)
+        {
+            const DWORD code = potionBase | ((DWORD)(candidate + 1) << 8);
+            if(recordItem.sItemInfo.CODE == code)
+            {
+                if(candidate > tier)
+                    tier = candidate;
+                break;
+            }
+        }
+    }
+
+    if(tier < 0)
+    {
+        // PotionMonitor is a second, valid legacy representation of potion
+        // ownership.  Some old records keep the synchronized potion counts in
+        // GameSaveInfo while no physical potion stack is present in Data[];
+        // the companion path previously treated those records as empty and
+        // returned status=-5 forever.  Only trust the monitor when both update
+        // keys agree, exactly like ResetClientRecordPotion/rsCompareServerPotion.
+        const bool potionMonitorValid =
+            recordData.GameSaveInfo.sPotionUpdate[0] != 0 &&
+            recordData.GameSaveInfo.sPotionUpdate[0] == recordData.GameSaveInfo.sPotionUpdate[1];
+
+        int monitorCandidate = -1;
+        // rsSaveServerPotion historically persists four monitored tiers.
+        // Tier 5 still works through a real compressed stack above.
+        for(int candidate = 3; candidate >= 0; --candidate)
+        {
+            if(recordData.GameSaveInfo.sPotionCount[PotionType][candidate] > 0)
+            {
+                monitorCandidate = candidate;
+                break;
+            }
+        }
+        if(potionMonitorValid)
+            tier = monitorCandidate;
+        else if(monitorCandidate >= 0)
+        {
+            // Do not consume an untrusted monitor count, but expose this as a
+            // distinct state so runtime diagnostics can distinguish stale
+            // monitor metadata from a genuinely empty character.
+            if(sRecDataBuff)
+                LeaveCriticalSection(&cSaveDataSection);
+            if(lpTier) *lpTier = monitorCandidate;
+            if(lpRemainingCount) *lpRemainingCount = recordData.GameSaveInfo.sPotionCount[PotionType][monitorCandidate];
+            if(lpItemCode) *lpItemCode = potionBase | ((DWORD)(monitorCandidate + 1) << 8);
+            if(lpStatus) *lpStatus = -13; // monitor count exists but update keys are not synchronized
+            return FALSE;
+        }
+
+        if(tier >= 0)
+        {
+            const DWORD monitorCode = potionBase | ((DWORD)(tier + 1) << 8);
+            int restore = 0;
+            for(int i = 0; i < MAX_ITEM; ++i)
+            {
+                if(sItem[i].CODE != monitorCode)
+                    continue;
+
+                int low = 0;
+                int high = 0;
+                if(PotionType == 0)
+                {
+                    low = sItem[i].sItemInfo.Life[0];
+                    high = sItem[i].sItemInfo.Life[1];
+                }
+                else if(PotionType == 1)
+                {
+                    low = sItem[i].sItemInfo.Mana[0];
+                    high = sItem[i].sItemInfo.Mana[1];
+                }
+                else
+                {
+                    low = sItem[i].sItemInfo.Stamina[0];
+                    high = sItem[i].sItemInfo.Stamina[1];
+                }
+                if(high < low)
+                {
+                    const int swapValue = low;
+                    low = high;
+                    high = swapValue;
+                }
+                restore = low;
+                if(high > low)
+                    restore = low + (rand() % (high - low));
+                break;
+            }
+
+            if(restore <= 0)
+            {
+                if(sRecDataBuff)
+                    LeaveCriticalSection(&cSaveDataSection);
+                if(lpTier) *lpTier = tier;
+                if(lpItemCode) *lpItemCode = monitorCode;
+                if(lpStatus) *lpStatus = -12; // monitor count exists but item restore metadata is unavailable
+                return FALSE;
+            }
+
+            --recordData.GameSaveInfo.sPotionCount[PotionType][tier];
+            recordData.GameSaveInfo.SaveTime = (int)tServerTime;
+
+            int writeSize = recordData.size;
+            if(writeSize < srRECORD_DEFAULT_SIZE)
+                writeSize = srRECORD_DEFAULT_SIZE;
+            if(writeSize > (int)sizeof(TRANS_RECORD_DATA))
+                writeSize = sizeof(TRANS_RECORD_DATA);
+
+            DeleteFileA(szTempFile);
+            FILE *temp = NULL;
+            const bool opened = fopen_s(&temp, szTempFile, "wb") == 0 && temp;
+            const bool wrote = opened && fwrite(&recordData, 1, writeSize, temp) == (size_t)writeSize;
+            const bool flushed = opened && fflush(temp) == 0;
+            if(temp)
+                fclose(temp);
+
+            if(!wrote || !flushed)
+            {
+                DeleteFileA(szTempFile);
+                if(sRecDataBuff) LeaveCriticalSection(&cSaveDataSection);
+                if(lpStatus) *lpStatus = -9;
+                return FALSE;
+            }
+
+            CopyFile(szFile, szBackupFile, FALSE);
+            const bool replaced = MoveFileExA(
+                szTempFile, szFile, MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH) != FALSE;
+            if(!replaced)
+                DeleteFileA(szTempFile);
+
+            if(sRecDataBuff)
+                LeaveCriticalSection(&cSaveDataSection);
+
+            if(!replaced)
+            {
+                if(lpStatus) *lpStatus = -10;
+                return FALSE;
+            }
+
+            if(lpTier) *lpTier = tier;
+            if(lpRemainingCount) *lpRemainingCount = recordData.GameSaveInfo.sPotionCount[PotionType][tier];
+            if(lpRestoreAmount) *lpRestoreAmount = restore;
+            if(lpItemCode) *lpItemCode = monitorCode;
+            if(lpStatus) *lpStatus = 2; // consumed from synchronized PotionMonitor fallback
+            return TRUE;
+        }
+
+        if(sRecDataBuff)
+            LeaveCriticalSection(&cSaveDataSection);
+        if(lpStatus) *lpStatus = -5; // no physical stack and no synchronized monitor count
+        return FALSE;
+    }
+
+    BYTE rebuilt[sizeof(recordData.Data)];
+    ZeroMemory(rebuilt, sizeof(rebuilt));
+    int newDataSize = 0;
+    int newItemCount = 0;
+    int newItemSubStart = 0;
+    int remaining = 0;
+    int restore = 0;
+    bool consumed = false;
+    const DWORD selectedCode = potionBase | ((DWORD)(tier + 1) << 8);
+
+    cursor = recordData.Data;
+    for(int item = 0; item < recordData.ItemCount; ++item)
+    {
+        if(cursor + sizeof(int) > endData)
+        {
+            if(sRecDataBuff) LeaveCriticalSection(&cSaveDataSection);
+            if(lpStatus) *lpStatus = -6;
+            return FALSE;
+        }
+        const int packedSize = *(const int *)cursor;
+        if(packedSize <= (int)sizeof(int) || cursor + packedSize > endData)
+        {
+            if(sRecDataBuff) LeaveCriticalSection(&cSaveDataSection);
+            if(lpStatus) *lpStatus = -6;
+            return FALSE;
+        }
+
+        sRECORD_ITEM recordItem;
+        ZeroMemory(&recordItem, sizeof(recordItem));
+        DecodeCompress((BYTE *)cursor, (BYTE *)&recordItem, sizeof(recordItem));
+        cursor += packedSize;
+
+        bool keep = true;
+        if(!consumed && recordItem.sItemInfo.CODE == selectedCode && recordItem.sItemInfo.PotionCount > 0)
+        {
+            // The persisted stack itself is the source of truth for restore
+            // values. Previously the item was removed first and then a global
+            // sItem lookup was attempted; a missing catalogue entry could eat
+            // the potion while restoring zero HP/MP/RES.
+            int low = 0;
+            int high = 0;
+            if(PotionType == 0)
+            {
+                low = recordItem.sItemInfo.Life[0];
+                high = recordItem.sItemInfo.Life[1];
+            }
+            else if(PotionType == 1)
+            {
+                low = recordItem.sItemInfo.Mana[0];
+                high = recordItem.sItemInfo.Mana[1];
+            }
+            else
+            {
+                low = recordItem.sItemInfo.Stamina[0];
+                high = recordItem.sItemInfo.Stamina[1];
+            }
+            if(high < low)
+            {
+                const int swapValue = low;
+                low = high;
+                high = swapValue;
+            }
+            restore = low;
+            if(high > low)
+                restore = low + (rand() % (high - low));
+            if(restore <= 0)
+            {
+                if(sRecDataBuff) LeaveCriticalSection(&cSaveDataSection);
+                if(lpStatus) *lpStatus = -7; // stack exists but has no valid restore payload
+                return FALSE;
+            }
+
+            --recordItem.sItemInfo.PotionCount;
+            consumed = true;
+            if(recordItem.sItemInfo.PotionCount <= 0)
+                keep = false;
+            else
+                ReformItem(&recordItem.sItemInfo);
+        }
+
+        if(recordItem.sItemInfo.CODE == selectedCode && recordItem.sItemInfo.PotionCount > 0)
+            remaining += recordItem.sItemInfo.PotionCount;
+
+        if(!keep)
+            continue;
+
+        const int compSize = EecodeCompress(
+            (BYTE *)&recordItem,
+            rebuilt + newDataSize,
+            sizeof(recordItem),
+            (int)sizeof(rebuilt) - newDataSize);
+        if(compSize <= 0)
+        {
+            if(sRecDataBuff) LeaveCriticalSection(&cSaveDataSection);
+            if(lpStatus) *lpStatus = -8;
+            return FALSE;
+        }
+        newDataSize += compSize;
+        ++newItemCount;
+        if(item < recordData.ItemSubStart)
+            ++newItemSubStart;
+    }
+
+    if(!consumed)
+    {
+        if(sRecDataBuff)
+            LeaveCriticalSection(&cSaveDataSection);
+        if(lpStatus) *lpStatus = -5;
+        return FALSE;
+    }
+
+    ZeroMemory(recordData.Data, sizeof(recordData.Data));
+    if(newDataSize > 0)
+        memcpy(recordData.Data, rebuilt, newDataSize);
+    recordData.DataSize = newDataSize;
+    recordData.ItemCount = newItemCount;
+    recordData.ItemSubStart = newItemSubStart;
+    recordData.size = (int)((recordData.Data + recordData.DataSize) - (BYTE *)&recordData);
+    recordData.GameSaveInfo.SaveTime = (int)tServerTime;
+    if(recordData.GameSaveInfo.sPotionCount[PotionType][tier] > 0)
+        --recordData.GameSaveInfo.sPotionCount[PotionType][tier];
+
+    int writeSize = recordData.size;
+    if(writeSize < srRECORD_DEFAULT_SIZE)
+        writeSize = srRECORD_DEFAULT_SIZE;
+    if(writeSize > (int)sizeof(TRANS_RECORD_DATA))
+        writeSize = sizeof(TRANS_RECORD_DATA);
+
+    DeleteFileA(szTempFile);
+    FILE *temp = NULL;
+    const bool opened = fopen_s(&temp, szTempFile, "wb") == 0 && temp;
+    const bool wrote = opened && fwrite(&recordData, 1, writeSize, temp) == (size_t)writeSize;
+    const bool flushed = opened && fflush(temp) == 0;
+    if(temp)
+        fclose(temp);
+
+    if(!wrote || !flushed)
+    {
+        DeleteFileA(szTempFile);
+        if(sRecDataBuff) LeaveCriticalSection(&cSaveDataSection);
+        if(lpStatus) *lpStatus = -9;
+        return FALSE;
+    }
+
+    CopyFile(szFile, szBackupFile, FALSE);
+    const bool replaced = MoveFileExA(
+        szTempFile, szFile, MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH) != FALSE;
+    if(!replaced)
+        DeleteFileA(szTempFile);
+
+    if(sRecDataBuff)
+        LeaveCriticalSection(&cSaveDataSection);
+
+    if(!replaced)
+    {
+        if(lpStatus) *lpStatus = -10;
+        return FALSE;
+    }
+
+    if(lpTier) *lpTier = tier;
+    if(lpRemainingCount) *lpRemainingCount = remaining;
+    if(lpRestoreAmount) *lpRestoreAmount = restore;
+    if(lpItemCode) *lpItemCode = selectedCode;
+    if(lpStatus) *lpStatus = 1;
+    return TRUE;
+}
+
+
 int rsLoadServerForce(rsPLAYINFO *lpPlayInfo, sGAME_SAVE_INFO *lpGameSaveInfo)
 {
 	int cnt;

@@ -45,6 +45,33 @@ const char* TacticName(CompanionUiTactic tactic)
     }
 }
 
+const char* CustomConditionName(int condition)
+{
+    switch(condition)
+    {
+        case 1: return "Self HP";
+        case 2: return "Owner HP";
+        case 3: return "Enemies";
+        case 4: return "Owner target";
+        case 5: return "Party threat";
+        case 0:
+        default: return "Always";
+    }
+}
+
+const char* CustomActionName(int action)
+{
+    switch(action)
+    {
+        case 0: return "Owner target";
+        case 1: return "Defend";
+        case 2: return "Nearest";
+        case 3: return "Retreat";
+        case 4: return "Hold";
+        default: return "Nearest";
+    }
+}
+
 std::string ItemDisplay(const std::string& name, std::uint32_t code)
 {
     if (!code)
@@ -54,6 +81,16 @@ std::string ItemDisplay(const std::string& name, std::uint32_t code)
     char buffer[32] = {};
     std::snprintf(buffer, sizeof(buffer), "0x%08X", static_cast<unsigned>(code));
     return buffer;
+}
+
+std::string SkillDisplay(const CompanionUiSkillSlot& skill)
+{
+    if (!skill.useSlot || !skill.skillCode)
+        return "Desligado";
+    std::string text = skill.name.empty() ? ("Skill " + std::to_string(skill.useSlot)) : skill.name;
+    if (skill.point > 0)
+        text += " L" + std::to_string(skill.point);
+    return text;
 }
 }
 
@@ -175,6 +212,154 @@ void CompanionsPage::BuildControls()
     resync.SetOnClick([this](const UIEvent&) { ExecuteForSelected(CompanionUiAction::ResyncData); });
     resyncButton_ = &resync;
 
+    auto& equipmentMode = AddChild<Button>(655, "Equipamento");
+    equipmentMode.SetOnClick([this](const UIEvent&)
+    {
+        tacticsView_ = false;
+        skillsView_ = false;
+        buffSkillsView_ = false;
+        RefreshControls();
+    });
+    equipmentModeButton_ = &equipmentMode;
+
+    auto& detailMode = AddChild<Button>(652, "Skills");
+    detailMode.SetOnClick([this](const UIEvent&)
+    {
+        tacticsView_ = false;
+        skillsView_ = true;
+        buffSkillsView_ = false;
+        RefreshControls();
+    });
+    detailModeButton_ = &detailMode;
+
+    auto& skillMode = AddChild<Button>(653, "Suporte");
+    skillMode.SetOnClick([this](const UIEvent&)
+    {
+        tacticsView_ = false;
+        skillsView_ = true;
+        buffSkillsView_ = true;
+        RefreshControls();
+    });
+    skillModeButton_ = &skillMode;
+
+    auto& tacticsMode = AddChild<Button>(654, "Taticas custom");
+    tacticsMode.SetOnClick([this](const UIEvent&)
+    {
+        tacticsView_ = !tacticsView_;
+        if (tacticsView_) skillsView_ = false;
+        RefreshControls();
+    });
+    tacticsModeButton_ = &tacticsMode;
+
+    auto& customToggle = AddChild<Button>(719, "Custom OFF");
+    customToggle.SetOnClick([this](const UIEvent&)
+    {
+        ExecuteForSelected(CompanionUiAction::ToggleCustomTactics);
+    });
+    customTacticsToggleButton_ = &customToggle;
+
+    for (std::size_t slot = 0; slot < 4; ++slot)
+    {
+        auto& activePrev = AddChild<Button>(660 + static_cast<UIId>(slot) * 2, "<");
+        activePrev.SetOnClick([this, slot](const UIEvent&)
+        {
+            ExecuteForSelected(CompanionUiAction::CycleActiveSkill, -static_cast<int>(slot + 1));
+        });
+        activeSkillPrevButtons_[slot] = &activePrev;
+
+        auto& activeNext = AddChild<Button>(661 + static_cast<UIId>(slot) * 2, ">");
+        activeNext.SetOnClick([this, slot](const UIEvent&)
+        {
+            ExecuteForSelected(CompanionUiAction::CycleActiveSkill, static_cast<int>(slot + 1));
+        });
+        activeSkillNextButtons_[slot] = &activeNext;
+
+        auto& minResource = AddChild<Button>(700 + static_cast<UIId>(slot) * 3, "R0");
+        minResource.SetOnClick([this, slot](const UIEvent&)
+        {
+            ExecuteForSelected(CompanionUiAction::CycleActiveMinResource, static_cast<int>(slot + 1));
+        });
+        activeMinResourceButtons_[slot] = &minResource;
+
+        auto& minTargets = AddChild<Button>(701 + static_cast<UIId>(slot) * 3, "N1");
+        minTargets.SetOnClick([this, slot](const UIEvent&)
+        {
+            ExecuteForSelected(CompanionUiAction::CycleActiveMinTargets, static_cast<int>(slot + 1));
+        });
+        activeMinTargetsButtons_[slot] = &minTargets;
+
+        auto& targetMode = AddChild<Button>(702 + static_cast<UIId>(slot) * 3, "TA");
+        targetMode.SetOnClick([this, slot](const UIEvent&)
+        {
+            ExecuteForSelected(CompanionUiAction::CycleActiveTargetMode, static_cast<int>(slot + 1));
+        });
+        activeTargetModeButtons_[slot] = &targetMode;
+
+        auto& buffPrev = AddChild<Button>(670 + static_cast<UIId>(slot) * 4, "<");
+        buffPrev.SetOnClick([this, slot](const UIEvent&)
+        {
+            ExecuteForSelected(CompanionUiAction::CycleBuffSkill, -static_cast<int>(slot + 1));
+        });
+        buffSkillPrevButtons_[slot] = &buffPrev;
+
+        auto& buffNext = AddChild<Button>(671 + static_cast<UIId>(slot) * 4, ">");
+        buffNext.SetOnClick([this, slot](const UIEvent&)
+        {
+            ExecuteForSelected(CompanionUiAction::CycleBuffSkill, static_cast<int>(slot + 1));
+        });
+        buffSkillNextButtons_[slot] = &buffNext;
+
+        auto& intervalPrev = AddChild<Button>(672 + static_cast<UIId>(slot) * 4, "-");
+        intervalPrev.SetOnClick([this, slot](const UIEvent&)
+        {
+            ExecuteForSelected(CompanionUiAction::AdjustBuffInterval, -static_cast<int>(slot + 1));
+        });
+        buffIntervalPrevButtons_[slot] = &intervalPrev;
+
+        auto& intervalNext = AddChild<Button>(673 + static_cast<UIId>(slot) * 4, "+");
+        intervalNext.SetOnClick([this, slot](const UIEvent&)
+        {
+            ExecuteForSelected(CompanionUiAction::AdjustBuffInterval, static_cast<int>(slot + 1));
+        });
+        buffIntervalNextButtons_[slot] = &intervalNext;
+    }
+
+    for (std::size_t slot = 0; slot < 4; ++slot)
+    {
+        const int value = static_cast<int>(slot + 1);
+        auto& enabled = AddChild<Button>(720 + static_cast<UIId>(slot) * 6, "ON");
+        enabled.SetOnClick([this, value](const UIEvent&) { ExecuteForSelected(CompanionUiAction::ToggleTacticRule, value); });
+        tacticRuleEnabledButtons_[slot] = &enabled;
+
+        auto& condition = AddChild<Button>(721 + static_cast<UIId>(slot) * 6, "Always");
+        condition.SetOnClick([this, value](const UIEvent&) { ExecuteForSelected(CompanionUiAction::CycleTacticCondition, value); });
+        tacticRuleConditionButtons_[slot] = &condition;
+
+        auto& action = AddChild<Button>(722 + static_cast<UIId>(slot) * 6, "Nearest");
+        action.SetOnClick([this, value](const UIEvent&) { ExecuteForSelected(CompanionUiAction::CycleTacticAction, value); });
+        tacticRuleActionButtons_[slot] = &action;
+
+        auto& threshold = AddChild<Button>(723 + static_cast<UIId>(slot) * 6, "-");
+        threshold.SetOnClick([this, value](const UIEvent&) { ExecuteForSelected(CompanionUiAction::CycleTacticThreshold, value); });
+        tacticRuleThresholdButtons_[slot] = &threshold;
+
+        auto& up = AddChild<Button>(724 + static_cast<UIId>(slot) * 6, "^");
+        up.SetOnClick([this, value](const UIEvent&) { ExecuteForSelected(CompanionUiAction::MoveTacticRule, -value); });
+        tacticRuleUpButtons_[slot] = &up;
+
+        auto& down = AddChild<Button>(725 + static_cast<UIId>(slot) * 6, "v");
+        down.SetOnClick([this, value](const UIEvent&) { ExecuteForSelected(CompanionUiAction::MoveTacticRule, value); });
+        tacticRuleDownButtons_[slot] = &down;
+    }
+
+    auto& resetActive = AddChild<Button>(690, "Ativas: auto V1");
+    resetActive.SetOnClick([this](const UIEvent&) { ExecuteForSelected(CompanionUiAction::ResetActiveSkills); });
+    resetActiveSkillsButton_ = &resetActive;
+
+    auto& resetBuffs = AddChild<Button>(691, "Desligar suporte");
+    resetBuffs.SetOnClick([this](const UIEvent&) { ExecuteForSelected(CompanionUiAction::ResetBuffs); });
+    resetBuffsButton_ = &resetBuffs;
+
     LayoutControls();
 }
 
@@ -205,6 +390,40 @@ void CompanionsPage::LayoutControls()
 
     resetEquipmentButton_->SetBounds({282, 404, 190, 32});
     resyncButton_->SetBounds({482, 404, 170, 32});
+    equipmentModeButton_->SetBounds({292, 246, 100, 28});
+    tacticsModeButton_->SetBounds({398, 246, 100, 28});
+    skillModeButton_->SetBounds({504, 246, 100, 28});
+    detailModeButton_->SetBounds({610, 246, 114, 28});
+    customTacticsToggleButton_->SetBounds({292, 282, 120, 26});
+
+    for (std::size_t slot = 0; slot < 4; ++slot)
+    {
+        const int y = 292 + static_cast<int>(slot) * 29;
+        // Active and buff controls share the same wide row geometry, but only
+        // one group is visible at a time. This gives long skill names room.
+        activeSkillPrevButtons_[slot]->SetBounds({292, y, 30, 24});
+        activeMinResourceButtons_[slot]->SetBounds({558, y, 38, 24});
+        activeMinTargetsButtons_[slot]->SetBounds({600, y, 38, 24});
+        activeTargetModeButtons_[slot]->SetBounds({642, y, 38, 24});
+        activeSkillNextButtons_[slot]->SetBounds({684, y, 30, 24});
+
+        buffSkillPrevButtons_[slot]->SetBounds({292, y, 30, 24});
+        buffSkillNextButtons_[slot]->SetBounds({566, y, 30, 24});
+        buffIntervalPrevButtons_[slot]->SetBounds({650, y, 28, 24});
+        buffIntervalNextButtons_[slot]->SetBounds({686, y, 28, 24});
+    }
+    for (std::size_t slot = 0; slot < 4; ++slot)
+    {
+        const int y = 316 + static_cast<int>(slot) * 29;
+        tacticRuleEnabledButtons_[slot]->SetBounds({292, y, 38, 24});
+        tacticRuleConditionButtons_[slot]->SetBounds({334, y, 112, 24});
+        tacticRuleActionButtons_[slot]->SetBounds({450, y, 100, 24});
+        tacticRuleThresholdButtons_[slot]->SetBounds({554, y, 44, 24});
+        tacticRuleUpButtons_[slot]->SetBounds({602, y, 30, 24});
+        tacticRuleDownButtons_[slot]->SetBounds({636, y, 30, 24});
+    }
+    resetActiveSkillsButton_->SetBounds({292, 410, 220, 28});
+    resetBuffsButton_->SetBounds({292, 410, 220, 28});
 }
 
 const CompanionUiEntry* CompanionsPage::SelectedEntry() const
@@ -282,12 +501,94 @@ void CompanionsPage::RefreshControls()
     summonDismissButton_->SetEnabled(hasSelected);
     summonDismissButton_->SetText(hasSelected && selected->active ? "Dispensar" : "Invocar");
     dismissAllButton_->SetEnabled(snapshot.valid && snapshot.activeCount > 0);
-    rightPrevButton_->SetEnabled(hasSelected);
-    rightNextButton_->SetEnabled(hasSelected);
-    leftPrevButton_->SetEnabled(hasSelected);
-    leftNextButton_->SetEnabled(hasSelected);
-    resetEquipmentButton_->SetEnabled(hasSelected);
-    resyncButton_->SetEnabled(hasSelected);
+    const bool equipmentView = !skillsView_ && !tacticsView_;
+    equipmentModeButton_->SetEnabled(hasSelected);
+    equipmentModeButton_->SetSelected(hasSelected && equipmentView);
+    equipmentModeButton_->SetText("Equipamento");
+    detailModeButton_->SetEnabled(hasSelected);
+    detailModeButton_->SetSelected(hasSelected && skillsView_ && !tacticsView_ && !buffSkillsView_);
+    detailModeButton_->SetText("Skills");
+    skillModeButton_->SetVisible(!tacticsView_);
+    skillModeButton_->SetEnabled(hasSelected && !tacticsView_);
+    skillModeButton_->SetSelected(hasSelected && skillsView_ && !tacticsView_ && buffSkillsView_);
+    skillModeButton_->SetText("Suporte");
+    tacticsModeButton_->SetEnabled(hasSelected);
+    tacticsModeButton_->SetSelected(tacticsView_);
+    tacticsModeButton_->SetText("Taticas custom");
+
+    rightPrevButton_->SetVisible(equipmentView);
+    rightNextButton_->SetVisible(equipmentView);
+    leftPrevButton_->SetVisible(equipmentView);
+    leftNextButton_->SetVisible(equipmentView);
+    resetEquipmentButton_->SetVisible(equipmentView);
+    resyncButton_->SetVisible(equipmentView);
+    rightPrevButton_->SetEnabled(hasSelected && equipmentView);
+    rightNextButton_->SetEnabled(hasSelected && equipmentView);
+    leftPrevButton_->SetEnabled(hasSelected && equipmentView);
+    leftNextButton_->SetEnabled(hasSelected && equipmentView);
+    resetEquipmentButton_->SetEnabled(hasSelected && equipmentView);
+    resyncButton_->SetEnabled(hasSelected && equipmentView);
+
+    customTacticsToggleButton_->SetVisible(tacticsView_);
+    customTacticsToggleButton_->SetEnabled(hasSelected && tacticsView_);
+    customTacticsToggleButton_->SetSelected(snapshot.customTacticsEnabled);
+    customTacticsToggleButton_->SetText(snapshot.customTacticsEnabled ? "Custom ON" : "Custom OFF");
+    for(std::size_t ruleIndex = 0; ruleIndex < 4; ++ruleIndex)
+    {
+        const auto& rule = snapshot.tacticRules[ruleIndex];
+        Button* controls[] = { tacticRuleEnabledButtons_[ruleIndex], tacticRuleConditionButtons_[ruleIndex],
+            tacticRuleActionButtons_[ruleIndex], tacticRuleThresholdButtons_[ruleIndex],
+            tacticRuleUpButtons_[ruleIndex], tacticRuleDownButtons_[ruleIndex] };
+        for(Button* control : controls)
+        {
+            control->SetVisible(tacticsView_);
+            control->SetEnabled(hasSelected && tacticsView_);
+        }
+        tacticRuleEnabledButtons_[ruleIndex]->SetSelected(rule.enabled);
+        tacticRuleEnabledButtons_[ruleIndex]->SetText(rule.enabled ? "ON" : "OFF");
+        tacticRuleConditionButtons_[ruleIndex]->SetText(CustomConditionName(rule.condition));
+        tacticRuleActionButtons_[ruleIndex]->SetText(CustomActionName(rule.action));
+        tacticRuleThresholdButtons_[ruleIndex]->SetText(rule.threshold > 0 ? std::to_string(rule.threshold) : "--");
+        tacticRuleUpButtons_[ruleIndex]->SetEnabled(hasSelected && tacticsView_ && ruleIndex > 0);
+        tacticRuleDownButtons_[ruleIndex]->SetEnabled(hasSelected && tacticsView_ && ruleIndex + 1 < 4);
+    }
+
+    for (std::size_t slot = 0; slot < 4; ++slot)
+    {
+        const bool buffConfigured = snapshot.valid && snapshot.buffSkills[slot].useSlot != 0;
+        const bool activeView = skillsView_ && !tacticsView_ && !buffSkillsView_;
+        const bool buffView = skillsView_ && !tacticsView_ && buffSkillsView_;
+        activeSkillPrevButtons_[slot]->SetVisible(activeView);
+        activeSkillNextButtons_[slot]->SetVisible(activeView);
+        activeMinResourceButtons_[slot]->SetVisible(activeView);
+        activeMinTargetsButtons_[slot]->SetVisible(activeView);
+        activeTargetModeButtons_[slot]->SetVisible(activeView);
+        buffSkillPrevButtons_[slot]->SetVisible(buffView);
+        buffSkillNextButtons_[slot]->SetVisible(buffView);
+        buffIntervalPrevButtons_[slot]->SetVisible(buffView);
+        buffIntervalNextButtons_[slot]->SetVisible(buffView);
+        activeSkillPrevButtons_[slot]->SetEnabled(hasSelected && activeView);
+        activeSkillNextButtons_[slot]->SetEnabled(hasSelected && activeView);
+        const bool activeConfigured = snapshot.valid && snapshot.activeSkills[slot].useSlot != 0;
+        activeMinResourceButtons_[slot]->SetEnabled(hasSelected && activeView && activeConfigured);
+        activeMinTargetsButtons_[slot]->SetEnabled(hasSelected && activeView && activeConfigured);
+        activeTargetModeButtons_[slot]->SetEnabled(hasSelected && activeView && activeConfigured);
+        if(snapshot.valid)
+        {
+            const auto& policy = snapshot.activeSkills[slot];
+            activeMinResourceButtons_[slot]->SetText("R" + std::to_string(policy.minResourcePercent));
+            activeMinTargetsButtons_[slot]->SetText("N" + std::to_string(policy.minimumTargets));
+            activeTargetModeButtons_[slot]->SetText(policy.targetMode == 1 ? "TO" : (policy.targetMode == 2 ? "TN" : "TA"));
+        }
+        buffSkillPrevButtons_[slot]->SetEnabled(hasSelected && buffView);
+        buffSkillNextButtons_[slot]->SetEnabled(hasSelected && buffView);
+        buffIntervalPrevButtons_[slot]->SetEnabled(hasSelected && buffView && buffConfigured);
+        buffIntervalNextButtons_[slot]->SetEnabled(hasSelected && buffView && buffConfigured);
+    }
+    resetActiveSkillsButton_->SetVisible(skillsView_ && !tacticsView_ && !buffSkillsView_);
+    resetBuffsButton_->SetVisible(skillsView_ && !tacticsView_ && buffSkillsView_);
+    resetActiveSkillsButton_->SetEnabled(hasSelected && skillsView_ && !tacticsView_ && !buffSkillsView_);
+    resetBuffsButton_->SetEnabled(hasSelected && skillsView_ && !tacticsView_ && buffSkillsView_);
 
     aggressiveButton_->SetEnabled(hasSelected);
     followButton_->SetEnabled(hasSelected);
@@ -361,40 +662,132 @@ void CompanionsPage::OnRender(UIRenderContext& context)
     }
 
     const int detailY = root.y + 246;
-    r.DrawRect({root.x + 274, detailY, root.width - 298, 146}, UITheme::Surface);
-    r.DrawTextUtf8(FontHandle{}, "EQUIPAMENTO DO COMPANION", {root.x + 292, detailY + 12, 310, 20},
-                   TextStyle{UITheme::TextMuted, true, TextAlign::Left});
+    r.DrawRect({root.x + 274, detailY, root.width - 298, 192}, UITheme::Surface);
 
-    if (selected)
+    if (tacticsView_)
     {
-        r.DrawTextUtf8(FontHandle{}, selected->name + " - Lv " + std::to_string(selected->level),
-                       {root.x + 292, detailY + 34, 380, 22},
-                       TextStyle{UITheme::Text, true, TextAlign::Left});
+        // The mode buttons occupy detailY..detailY+28. Do not render a second
+        // title/status underneath them; the Custom ON/OFF button already shows
+        // state. Keep the guidance short enough to stay inside the detail panel.
+        if(selected)
+        {
+            r.DrawTextUtf8(FontHandle{}, "Regras 1 -> 4; executor valida skills.",
+                           {root.x + 420, detailY + 39, 286, 18},
+                           TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+            for(std::size_t rule = 0; rule < 4; ++rule)
+            {
+                const int y = detailY + 70 + static_cast<int>(rule) * 29;
+                r.DrawTextUtf8(FontHandle{}, std::to_string(rule + 1),
+                               {root.x + 278, y, 18, 20},
+                               TextStyle{UITheme::TextMuted, true, TextAlign::Left});
+            }
+        }
+        else
+        {
+            r.DrawTextUtf8(FontHandle{}, "Selecione outro personagem da conta.",
+                           {root.x + 292, detailY + 72, 390, 24},
+                           TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+        }
+    }
+    else if (skillsView_)
+    {
+        if (!buffSkillsView_)
+        {
+            r.DrawTextUtf8(FontHandle{}, "SKILLS ATIVAS", {root.x + 292, detailY + 8, 220, 20},
+                           TextStyle{UITheme::TextMuted, true, TextAlign::Left});
+            const std::string activeMode = snapshot.skillLoadoutActive ? "CUSTOM" : "AUTO V1";
+            r.DrawTextUtf8(FontHandle{}, activeMode, {root.x + 600, detailY + 8, 104, 20},
+                           TextStyle{snapshot.skillLoadoutActive ? UITheme::Accent : UITheme::TextMuted, true, TextAlign::Right});
 
-        std::string status = selected->active ? (selected->dead ? "Morto" : "Ativo") : "Offline";
-        if (selected->maxLife > 0)
-            status += "  HP " + std::to_string(selected->life) + "/" + std::to_string(selected->maxLife);
-        if (selected->maxMana > 0)
-            status += "  MP " + std::to_string(selected->mana) + "/" + std::to_string(selected->maxMana);
-        r.DrawTextUtf8(FontHandle{}, status, {root.x + 292, detailY + 56, 390, 20},
-                       TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+            if (selected)
+            {
+                for (std::size_t slot = 0; slot < 4; ++slot)
+                {
+                    const int y = detailY + 46 + static_cast<int>(slot) * 29;
+                    const auto& active = snapshot.activeSkills[slot];
+                    r.DrawTextUtf8(FontHandle{},
+                                   std::to_string(slot + 1) + ". " + SkillDisplay(active),
+                                   {root.x + 330, y, 218, 22},
+                                   TextStyle{UITheme::Text, false, TextAlign::Left});
+                }
+            }
+            else
+            {
+                r.DrawTextUtf8(FontHandle{}, "Selecione outro personagem da conta.",
+                               {root.x + 292, detailY + 72, 390, 24},
+                               TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+            }
+        }
+        else
+        {
+            r.DrawTextUtf8(FontHandle{}, "SUPORTE / RECAST", {root.x + 292, detailY + 8, 240, 20},
+                           TextStyle{UITheme::TextMuted, true, TextAlign::Left});
+            const std::string buffMode = snapshot.buffLoadoutActive ? "ON" : "OFF";
+            r.DrawTextUtf8(FontHandle{}, buffMode, {root.x + 600, detailY + 8, 104, 20},
+                           TextStyle{snapshot.buffLoadoutActive ? UITheme::Accent : UITheme::TextMuted, true, TextAlign::Right});
 
-        if (selected->active && !selected->targetName.empty())
-            r.DrawTextUtf8(FontHandle{}, "Alvo: " + selected->targetName, {root.x + 292, detailY + 76, 390, 20},
-                           TextStyle{UITheme::Accent, false, TextAlign::Left});
+            if (selected)
+            {
+                for (std::size_t slot = 0; slot < 4; ++slot)
+                {
+                    const int y = detailY + 46 + static_cast<int>(slot) * 29;
+                    const auto& buff = snapshot.buffSkills[slot];
+                    r.DrawTextUtf8(FontHandle{},
+                                   std::to_string(slot + 1) + ". " + SkillDisplay(buff),
+                                   {root.x + 330, y, 226, 22},
+                                   TextStyle{UITheme::Text, false, TextAlign::Left});
 
-        r.DrawTextUtf8(FontHandle{}, "Mao direita: " + ItemDisplay(selected->rightItemName, selected->rightItemCode),
-                       {root.x + 330, detailY + 80, 350, 24},
-                       TextStyle{UITheme::Text, false, TextAlign::Left});
-        r.DrawTextUtf8(FontHandle{}, "Mao esquerda: " + ItemDisplay(selected->leftItemName, selected->leftItemCode),
-                       {root.x + 330, detailY + 112, 350, 24},
-                       TextStyle{UITheme::Text, false, TextAlign::Left});
+                    const std::string interval = (buff.useSlot && buff.intervalSeconds > 0)
+                        ? std::to_string(buff.intervalSeconds) + "s"
+                        : std::string("--");
+                    r.DrawTextUtf8(FontHandle{}, interval,
+                                   {root.x + 602, y, 44, 22},
+                                   TextStyle{UITheme::Accent, false, TextAlign::Right});
+                }
+            }
+            else
+            {
+                r.DrawTextUtf8(FontHandle{}, "Selecione outro personagem da conta.",
+                               {root.x + 292, detailY + 72, 390, 24},
+                               TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+            }
+        }
     }
     else
     {
-        r.DrawTextUtf8(FontHandle{}, "Selecione outro personagem da conta.",
-                       {root.x + 292, detailY + 52, 390, 24},
-                       TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+        r.DrawTextUtf8(FontHandle{}, "EQUIPAMENTO DO COMPANION", {root.x + 292, detailY + 12, 300, 20},
+                       TextStyle{UITheme::TextMuted, true, TextAlign::Left});
+        if (selected)
+        {
+            r.DrawTextUtf8(FontHandle{}, selected->name + " - Lv " + std::to_string(selected->level),
+                           {root.x + 292, detailY + 34, 280, 22},
+                           TextStyle{UITheme::Text, true, TextAlign::Left});
+
+            std::string status = selected->active ? (selected->dead ? "Morto" : "Ativo") : "Offline";
+            if (selected->maxLife > 0)
+                status += "  HP " + std::to_string(selected->life) + "/" + std::to_string(selected->maxLife);
+            if (selected->maxMana > 0)
+                status += "  MP " + std::to_string(selected->mana) + "/" + std::to_string(selected->maxMana);
+            r.DrawTextUtf8(FontHandle{}, status, {root.x + 292, detailY + 56, 390, 20},
+                           TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+
+            if (selected->active && !selected->targetName.empty())
+                r.DrawTextUtf8(FontHandle{}, "Alvo: " + selected->targetName, {root.x + 292, detailY + 76, 390, 20},
+                               TextStyle{UITheme::Accent, false, TextAlign::Left});
+
+            r.DrawTextUtf8(FontHandle{}, "Mao direita: " + ItemDisplay(selected->rightItemName, selected->rightItemCode),
+                           {root.x + 330, detailY + 80, 350, 24},
+                           TextStyle{UITheme::Text, false, TextAlign::Left});
+            r.DrawTextUtf8(FontHandle{}, "Mao esquerda: " + ItemDisplay(selected->leftItemName, selected->leftItemCode),
+                           {root.x + 330, detailY + 112, 350, 24},
+                           TextStyle{UITheme::Text, false, TextAlign::Left});
+        }
+        else
+        {
+            r.DrawTextUtf8(FontHandle{}, "Selecione outro personagem da conta.",
+                           {root.x + 292, detailY + 52, 390, 24},
+                           TextStyle{UITheme::TextMuted, false, TextAlign::Left});
+        }
     }
 
     const std::string result = ResultText(snapshot.lastResult);

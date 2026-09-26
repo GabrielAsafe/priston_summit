@@ -18,6 +18,7 @@
 #include "systems/ui/v2/legacy/LegacyCharacterStatsGateway.h"
 #include "systems/ui/v2/legacy/LegacyInventoryGateway.h"
 #include "systems/ui/v2/legacy/LegacyCompanionGateway.h"
+#include "systems/ui/v2/legacy/LegacyCovenantGateway.h"
 #include "systems/ui/v2/legacy/LegacyContextGateway.h"
 #include "systems/ui/v2/legacy/LegacyQuestGateway.h"
 #include "systems/ui/v2/legacy/LegacySkillGateway.h"
@@ -27,6 +28,7 @@
 #include "systems/ui/v2/legacy/LegacySkillNpcWindow.h"
 #include "systems/ui/v2/hud/PlayerHud.h"
 #include "systems/ui/v2/hud/CompanionPartyHud.h"
+#include "systems/ui/v2/hud/CovenantEffectHud.h"
 #include "systems/ui/v2/quests/QuestJournalWindow.h"
 #include "systems/ui/v2/quests/QuestTrackerHud.h"
 #include "systems/ui/v2/rendering/Dx9UIRenderer.h"
@@ -67,7 +69,10 @@ LegacyInventoryGateway inventoryGateway;
 LegacyContextGateway contextGateway;
 LegacyQuestGateway questGateway;
 LegacyCompanionGateway& companionGateway = GetLegacyCompanionGateway();
+LegacyCovenantGateway& covenantGateway = GetLegacyCovenantGateway();
 bool companionTabRequested = false;
+bool covenantTabRequested = false;
+CovenantEffectHud covenantEffectHud;
 
 bool RequiresLegacyInventoryUI()
 {
@@ -153,7 +158,7 @@ void ClearLegacyCharacterFlags()
 
 void ApplyLegacyTab(CharacterTab tab)
 {
-    if (tab == CharacterTab::Companions)
+    if (tab == CharacterTab::Companions || tab == CharacterTab::Covenants)
     {
         // Companions is a pure V2 surface. Do not alias it to the legacy
         // inventory button: doing so makes SyncCharacterWindow() immediately
@@ -174,7 +179,7 @@ void ApplyLegacyTab(CharacterTab tab)
 void BuildCharacterWindow()
 {
 #if UI_V2_CHARACTER_WINDOW
-    auto window = std::make_unique<CharacterWindow>(statsGateway, skillGateway, inventoryGateway, contextGateway, companionGateway, 100);
+    auto window = std::make_unique<CharacterWindow>(statsGateway, skillGateway, inventoryGateway, contextGateway, companionGateway, covenantGateway, 100);
     characterWindow = window.get();
     characterWindow->SetViewport(WinSizeX, WinSizeY);
     characterWindow->SetOnTabChanged([](CharacterTab tab)
@@ -182,6 +187,7 @@ void BuildCharacterWindow()
         if (MigratedContextActive() && tab != CharacterTab::Inventory)
         {
             companionTabRequested = false;
+            covenantTabRequested = false;
             cInvenTory.OpenFlag = SIN_OPEN;
             if (characterWindow)
                 characterWindow->SetActiveTab(CharacterTab::Inventory, false);
@@ -189,6 +195,7 @@ void BuildCharacterWindow()
         }
 
         companionTabRequested = tab == CharacterTab::Companions;
+        covenantTabRequested = tab == CharacterTab::Covenants;
         ApplyLegacyTab(tab);
     });
     characterWindow->SetOnClose([]()
@@ -198,6 +205,7 @@ void BuildCharacterWindow()
         if (MigratedContextActive())
             contextGateway.CloseContext();
         companionTabRequested = false;
+        covenantTabRequested = false;
         ClearLegacyCharacterFlags();
         ResetLegacyCharacterInterfaceMotion();
         runtime.Windows().Close(CharacterWindowId);
@@ -213,11 +221,13 @@ void ToggleCharacterTab(CharacterTab tab)
         tab = CharacterTab::Inventory;
 
     companionTabRequested = tab == CharacterTab::Companions;
+    covenantTabRequested = tab == CharacterTab::Covenants;
     const bool open = runtime.Windows().IsOpen(CharacterWindowId);
     if (open && characterWindow->ActiveTab() == tab && !MigratedContextActive())
     {
         characterWindow->PrepareClose();
         companionTabRequested = false;
+        covenantTabRequested = false;
         ClearLegacyCharacterFlags();
         runtime.Windows().Close(CharacterWindowId);
         return;
@@ -450,9 +460,13 @@ void SyncCharacterWindow()
     const bool wantsSkills = cSkill.OpenFlag != 0;
     const bool wantsInventory = InventoryRequestedForV2();
     if (MigratedContextActive())
+    {
         companionTabRequested = false;
+        covenantTabRequested = false;
+    }
     const bool wantsCompanions = companionTabRequested && !MigratedContextActive();
-    const bool wantsWindow = wantsAttributes || wantsSkills || wantsInventory || wantsCompanions;
+    const bool wantsCovenants = covenantTabRequested && !MigratedContextActive();
+    const bool wantsWindow = wantsAttributes || wantsSkills || wantsInventory || wantsCompanions || wantsCovenants;
 
     if (!wantsWindow)
     {
@@ -471,6 +485,8 @@ void SyncCharacterWindow()
     // all three legacy character flags closed.
     if (wantsInventory)
         desired = CharacterTab::Inventory;
+    else if (wantsCovenants)
+        desired = CharacterTab::Covenants;
     else if (wantsCompanions)
         desired = CharacterTab::Companions;
     else if (wantsSkills)
@@ -559,7 +575,9 @@ void Shutdown()
     skillNpcWindow = nullptr;
     questGateway.ShutdownBackend();
     companionGateway.Reset();
+    covenantGateway.Reset();
     companionTabRequested = false;
+    covenantTabRequested = false;
     runtime.Shutdown();
     lastTick = 0;
 }
@@ -574,10 +592,15 @@ void Update()
     SyncCharacterWindow();
     SyncQuestJournal();
     SyncLegacyDialogUI();
+    if (playerHud)
+        playerHud->SetLegacyControlState(cInterFace.sInterFlags.RunFlag != 0,
+                                         cInterFace.sInterFlags.CameraAutoFlag,
+                                         cInterFace.sInterFlags.MapOnFlag != 0);
     if (cMixGuide::GetInstance()->IsOpen())
         cMixGuide::GetInstance()->Close();
 
     const DWORD now = GetTickCount();
+    covenantGateway.Tick(now);
     const DWORD elapsed = lastTick ? (now - lastTick) : 0;
     lastTick = now;
     const float deltaSeconds = static_cast<float>(elapsed) / 1000.0f;
@@ -587,6 +610,7 @@ void Update()
 void Render()
 {
     runtime.Render();
+    covenantEffectHud.Render(covenantGateway.Snapshot());
 }
 
 bool HandleLegacyMessage(int message)
@@ -650,18 +674,26 @@ bool HandleCharacterHotkeys()
         requestedTab = CharacterTab::Inventory;
         pressed = true;
     }
+    else if (sinGetKeyClick('N'))
+    {
+        requestedTab = CharacterTab::Covenants;
+        pressed = true;
+    }
 
     if (!pressed)
         return false;
 
-    // Legacy C/S/V hotkeys explicitly leave the pure V2 companions tab.
-    companionTabRequested = false;
+    // Legacy C/S/V and the V2 N shortcut explicitly choose one character tab.
+    companionTabRequested = requestedTab == CharacterTab::Companions;
+    covenantTabRequested = requestedTab == CharacterTab::Covenants;
 
     // A blacksmith/shop requires the inventory to stay visible. Consume the
     // character hotkeys while that context is active and keep the shell on
     // Inventory rather than briefly closing the shop's working inventory.
     if (MigratedContextActive())
     {
+        companionTabRequested = false;
+        covenantTabRequested = false;
         cInvenTory.OpenFlag = SIN_OPEN;
         characterWindow->SetActiveTab(CharacterTab::Inventory, false);
         ResetLegacyCharacterInterfaceMotion();
@@ -673,6 +705,8 @@ bool HandleCharacterHotkeys()
     if (isOpen && characterWindow->ActiveTab() == requestedTab)
     {
         characterWindow->PrepareClose();
+        companionTabRequested = false;
+        covenantTabRequested = false;
         ClearLegacyCharacterFlags();
         ResetLegacyCharacterInterfaceMotion();
         runtime.Windows().Close(CharacterWindowId);
@@ -858,14 +892,22 @@ bool BlocksWorldInputAt(int x, int y)
         return false;
     if (runtime.PointerCapture().Captured() != nullptr)
         return true;
+    // The permanent bottom HUD is interactive UI too.  SetMousePlay() asks
+    // this function before starting world movement, so include the HUD bounds
+    // just like inventory/quest windows instead of letting clicks pass through.
+    if (playerHud && runtime.Windows().IsOpen(PlayerHudWindowId) &&
+        playerHud->GlobalBounds().Contains(Point{x, y}))
+        return true;
     if ((legacyMessageWindow && legacyMessageWindow->HasModalInput()) ||
         (characterWindow && characterWindow->HasModalInput()) ||
         (questJournal && questJournal->HasModalInput()))
         return true;
     if (characterWindow && runtime.Windows().IsOpen(CharacterWindowId))
     {
-        if (characterWindow->ActiveTab() == CharacterTab::Inventory && MouseItem.Flag)
-            return true;
+        // Do not globally block world input just because the V2 inventory owns
+        // a MouseItem.  The original game intentionally supports picking an
+        // inventory item and clicking outside the inventory to throw/drop it on
+        // the field.  Window bounds still block clicks over the V2 UI itself.
         if (characterWindow->GlobalBounds().Contains(Point{x, y}))
             return true;
     }

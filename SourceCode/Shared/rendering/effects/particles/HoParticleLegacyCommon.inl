@@ -1870,6 +1870,8 @@ bool HoParticleSpark::AddFace2D(smFACE2D *face, int particleIndex)
 	float dx = endProj.x - begProj.x;
 	float dy = endProj.y - begProj.y;
 	float oolen = (float)sqrt(dx*dx + dy*dy);
+	if(oolen <= 0.0001f)
+		return false;
 
 	dx = dx / oolen * 150;
 	dy = dy / oolen * 150;
@@ -1896,6 +1898,10 @@ bool HoParticleSpark::AddFace2D(smFACE2D *face, int particleIndex)
 	v[3] = smRender.AddRendVertex(int(begProj.x + persp.x), int(begProj.y + persp.y), int(begProj.z), sColor);
 	v[2] = smRender.AddRendVertex(int(begProj.x - persp.x), int(begProj.y - persp.y), int(begProj.z), sColor);
 
+
+	if(!v[0] || !v[1] || !v[2] || !v[3] ||
+		!smRender.CanReserveRenderSpace(0, 2, 2))
+		return FALSE;
 
 	rf = &smRender.RendFace[smRender.nRendFace++];
 	rf->lpRendVertex[0] = v[0];

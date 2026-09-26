@@ -176,6 +176,10 @@
  SrcGame/src/systems/ui/v2/domain/ICompanionGateway.h \
  SrcGame/src/systems/ui/v2/domain/CompanionUIModels.h \
  Shared/gameplay/companions/CompanionProtocol.h \
+ SrcGame/src/systems/ui/v2/legacy/LegacyCovenantGateway.h \
+ Shared/gameplay/covenants/v2/CovenantUIProtocol.h \
+ SrcGame/src/systems/ui/v2/domain/ICovenantGateway.h \
+ SrcGame/src/systems/ui/v2/domain/CovenantUIModels.h \
  SrcGame/src/systems/ui/v2/legacy/LegacyContextGateway.h \
  SrcGame/src/systems/ui/v2/domain/IContextGateway.h \
  SrcGame/src/systems/ui/v2/domain/ContextUIModels.h \
@@ -193,6 +197,7 @@
  SrcGame/src/systems/ui/v2/viewmodels/InventoryViewModel.h \
  SrcGame/src/systems/ui/v2/viewmodels/SkillsViewModel.h \
  SrcGame/src/systems/ui/v2/hud/CompanionPartyHud.h \
+ SrcGame/src/systems/ui/v2/hud/CovenantEffectHud.h \
  SrcGame/src/systems/ui/v2/quests/QuestJournalWindow.h \
  SrcGame/src/systems/ui/v2/quests/QuestTrackerHud.h \
  SrcGame/src/systems/ui/v2/rendering/Dx9UIRenderer.h \
@@ -381,6 +386,10 @@ SrcGame/src/systems/ui/v2/legacy/LegacyCompanionGateway.h:
 SrcGame/src/systems/ui/v2/domain/ICompanionGateway.h:
 SrcGame/src/systems/ui/v2/domain/CompanionUIModels.h:
 Shared/gameplay/companions/CompanionProtocol.h:
+SrcGame/src/systems/ui/v2/legacy/LegacyCovenantGateway.h:
+Shared/gameplay/covenants/v2/CovenantUIProtocol.h:
+SrcGame/src/systems/ui/v2/domain/ICovenantGateway.h:
+SrcGame/src/systems/ui/v2/domain/CovenantUIModels.h:
 SrcGame/src/systems/ui/v2/legacy/LegacyContextGateway.h:
 SrcGame/src/systems/ui/v2/domain/IContextGateway.h:
 SrcGame/src/systems/ui/v2/domain/ContextUIModels.h:
@@ -398,6 +407,7 @@ SrcGame/src/systems/ui/v2/viewmodels/AttributesViewModel.h:
 SrcGame/src/systems/ui/v2/viewmodels/InventoryViewModel.h:
 SrcGame/src/systems/ui/v2/viewmodels/SkillsViewModel.h:
 SrcGame/src/systems/ui/v2/hud/CompanionPartyHud.h:
+SrcGame/src/systems/ui/v2/hud/CovenantEffectHud.h:
 SrcGame/src/systems/ui/v2/quests/QuestJournalWindow.h:
 SrcGame/src/systems/ui/v2/quests/QuestTrackerHud.h:
 SrcGame/src/systems/ui/v2/rendering/Dx9UIRenderer.h:

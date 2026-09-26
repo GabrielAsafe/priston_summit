@@ -3,6 +3,8 @@
 #include <string>
 
 #include "gameplay/covenants/v2/CovenantService.h"
+#include "gameplay/covenants/v2/CovenantModifierEvaluation.h"
+#include "gameplay/covenants/v2/CovenantRuntimeTypes.h"
 #include "gameplay/rewards/v2/Reward.h"
 #include "gameplay/reputation/v2/ReputationService.h"
 #include "gameplay/story/v2/StoryService.h"
@@ -13,7 +15,7 @@
 
 namespace gameplay
 {
-namespace covenants { class SQLiteCovenantRepository; class CovenantRewardProcessor; }
+namespace covenants { class SQLiteCovenantRepository; class SQLiteCovenantRuntimeRepository; class CovenantRewardProcessor; }
 namespace reputation { class SQLiteReputationRepository; }
 namespace story { class SQLiteStoryRepository; }
 namespace progression
@@ -71,6 +73,11 @@ bool JoinServerCovenant(const std::string& playerKey,
                         int covenantId,
                         int playerLevel,
                         int legacyJobCode);
+covenants::CovenantActivationResult ActivateServerCovenant(
+    const std::string& playerKey,
+    int covenantId,
+    int playerLevel,
+    int legacyJobCode);
 bool LeaveServerCovenant(const std::string& playerKey, int covenantId);
 bool LeaveServerCovenant(const std::string& playerKey,
                          int covenantId,
@@ -92,9 +99,50 @@ bool AddServerCovenantReputation(const std::string& playerKey,
 bool GetServerCovenantSnapshot(const std::string& playerKey,
                                int covenantId,
                                covenants::CovenantSnapshot& snapshot);
+bool GetServerActiveCovenantSnapshot(const std::string& playerKey,
+                                     covenants::CovenantSnapshot& snapshot);
 bool GetServerActiveCovenantBenefits(
     const std::string& playerKey,
     std::vector<modifiers::GameplayModifier>& benefits);
+bool GetServerCovenantModifierAggregate(
+    const std::string& playerKey,
+    const std::string& statKey,
+    const std::string& scopeKey,
+    covenants::CovenantModifierAggregate& aggregate,
+    bool includeGlobalScope = true,
+    unsigned int contextTargetSerial = 0);
+double ApplyServerCovenantModifierValue(
+    const std::string& playerKey,
+    const std::string& statKey,
+    const std::string& scopeKey,
+    double baseValue,
+    bool includeGlobalScope = true,
+    unsigned int contextTargetSerial = 0);
+
+bool RecordServerCovenantActivity(const std::string& playerKey,
+                                  const std::string& activityKey,
+                                  int amount = 1);
+bool UseServerCovenantPower(const std::string& playerKey,
+                            const std::string& powerKey,
+                            unsigned int targetSerial,
+                            std::string* error = 0);
+bool GetServerCovenantChallenges(const std::string& playerKey,
+                                 int covenantId,
+                                 std::vector<covenants::CovenantChallengeState>& states);
+bool GetServerCovenantMasteries(const std::string& playerKey, std::vector<int>& covenantIds);
+bool GetServerCovenantCollectibles(const std::string& playerKey, std::vector<std::string>& keys);
+bool AddServerCovenantInventoryItem(const std::string& playerKey, int covenantId, const std::string& itemKey, int amount);
+bool ConsumeServerCovenantInventoryItem(const std::string& playerKey, int covenantId, const std::string& itemKey, int amount);
+bool GetServerCovenantInventory(const std::string& playerKey, std::vector<covenants::CovenantInventoryItem>& items);
+bool GetServerCovenantArtisanMode(const std::string& playerKey, int& mode);
+bool SetServerCovenantArtisanMode(const std::string& playerKey, int mode);
+bool RefineServerCovenantTrophy(const std::string& playerKey, const std::string& trophyKey, std::string* refinedKey = 0);
+bool GetServerCovenantSwitchCooldown(const std::string& playerKey, long long& cooldownUntil);
+bool GetServerCovenantPowerState(const std::string& playerKey,
+                                  const std::string& powerKey,
+                                  covenants::CovenantPowerDefinition& definition,
+                                  covenants::CovenantPowerState& state);
+void InvalidateServerCovenantModifierCache(const std::string& playerKey);
 bool GetServerStorySnapshot(const std::string& playerKey,
                             int storyId,
                             story::StorySnapshot& snapshot);

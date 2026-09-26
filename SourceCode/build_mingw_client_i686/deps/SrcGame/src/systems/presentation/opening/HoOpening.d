@@ -161,7 +161,10 @@
  SrcGame/src/systems/ui/core/UIList.h \
  SrcGame/src/systems/ui/core/UICombobox.h \
  SrcGame/src/systems/ui/core/UIItemFrame.h \
- SrcGame/src/systems/ui/core/UIPlaceholder.h
+ SrcGame/src/systems/ui/core/UIPlaceholder.h \
+ SrcGame/src/core/concurrency/JobSystem.h \
+ SrcGame/src/core/concurrency/SourceAssetLock.h \
+ SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
@@ -327,3 +330,6 @@ SrcGame/src/systems/ui/core/UIList.h:
 SrcGame/src/systems/ui/core/UICombobox.h:
 SrcGame/src/systems/ui/core/UIItemFrame.h:
 SrcGame/src/systems/ui/core/UIPlaceholder.h:
+SrcGame/src/core/concurrency/JobSystem.h:
+SrcGame/src/core/concurrency/SourceAssetLock.h:
+SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h:

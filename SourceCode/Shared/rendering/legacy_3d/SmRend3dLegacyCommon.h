@@ -252,6 +252,20 @@ public:
 	smRENDFACE *AddRendFace(smRENDVERTEX *v0, smRENDVERTEX *v1, smRENDVERTEX *v2,
 							DWORD matrial, smTEXLINK *lpTexLink);
 
+	// Legacy effects still assemble quads directly in the public render buffers.
+	// Give those paths a cheap capacity query so they can fail closed instead of
+	// incrementing past the fixed 30k/40k face/vertex arrays.
+	bool CanReserveRenderSpace(int vertices, int faces, int texLinks) const
+	{
+		const int vertexCapacity = m_GameFieldView ? 40000 : RENDER_VERTEX_MAX;
+		const int faceCapacity = m_GameFieldView ? 40000 : RENDER_FACE_MAX;
+		return vertices >= 0 && faces >= 0 && texLinks >= 0 &&
+			nRendVertex >= 0 && nRendFace >= 0 && nTempTexLink >= 0 &&
+			nRendVertex <= vertexCapacity - vertices &&
+			nRendFace <= faceCapacity - faces &&
+			nTempTexLink <= TEMPTEXLINK_MAX - texLinks;
+	}
+
 	int GetFaceSide(smRENDFACE *rendface);
 
 	int AddRendFaceClip(smRENDFACE *rendface, DWORD dwClipMode);

@@ -1,6 +1,0 @@
-SUMMIT TALE PORT MASTER
-
-1) 01_PLANO_MIGRACAO_SQLITE.docx: banco e dados somente.
-2) 02_PLANO_REIMPLEMENTACAO_CPP.docx: serviços C++, runtime, codecs e apps.
-
-Regra de trabalho solo: escolha um ID, complete o Gate e marque o checklist. Quando um documento cita DB-xx ou CPP-xx, consulte o outro; conteúdo sobreposto não foi duplicado intencionalmente.

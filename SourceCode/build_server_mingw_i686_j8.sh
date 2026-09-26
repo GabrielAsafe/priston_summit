@@ -162,6 +162,9 @@ Shared/gameplay/classes/v2/content/DefaultClassContent.cpp
 Shared/gameplay/classes/v2/content/LegacyClassCatalog.cpp
 Shared/gameplay/classes/v2/content/ReservedClassCatalog.cpp
 Shared/gameplay/classes/v2/services/ClassService.cpp
+Shared/gameplay/skills/v2/SkillRegistry.cpp
+Shared/gameplay/skills/v2/content/LegacySkillCatalog.cpp
+Shared/gameplay/skills/v2/services/SkillService.cpp
 Shared/gameplay/covenants/v2/CovenantService.cpp
 Shared/gameplay/covenants/v2/CovenantRewardProcessor.cpp
 Shared/gameplay/progression/v2/ProgressionGateways.cpp

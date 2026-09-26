@@ -361,7 +361,7 @@ void SkillsPage::DrawDetails(UIRenderContext& context)
     r.DrawTextUtf8(FontHandle{}, binding,
                    {panel.x + 10, panel.y + panel.height - 58, panel.width - 20, 18},
                    TextStyle{UITheme::TextMuted, false, TextAlign::Left});
-    r.DrawTextUtf8(FontHandle{}, "Segure L/R na skill + F1-F8 para atribuir macro",
+    r.DrawTextUtf8(FontHandle{}, "Segure L/R + F1-F8 para macro",
                    {panel.x + 10, panel.y + panel.height - 40, panel.width - 20, 18},
                    TextStyle{UITheme::TextMuted, false, TextAlign::Left});
 }

@@ -1,5 +1,9 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_server_i686/objects/SrcServer/src/core/server/gameplay_runtime/playmain.o: \
  SrcServer/src/core/server/gameplay_runtime/playmain.cpp \
+ Shared/content/v1/definition/content/DefinitionRuntime.h \
+ Shared/content/v1/definition/content/CompiledDefinitionSource.h \
+ Shared/content/v1/common/Sha256.h \
+ Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
  SrcServer/src/systems/network/protocol/server/opcodes.h \
  SrcServer/src/systems/rendering/legacy_3d/smd3d.h \
  SrcServer/src/systems/rendering/legacy_3d/smDsx.h \
@@ -129,6 +133,10 @@
  SrcServer/src/systems/rendering/background/legacy/pbackground.h \
  SrcServer/src/systems/media/video/ParkDXPlayer.h \
  Shared/media/video/ParkDXPlayerLegacyShared.h
+Shared/content/v1/definition/content/DefinitionRuntime.h:
+Shared/content/v1/definition/content/CompiledDefinitionSource.h:
+Shared/content/v1/common/Sha256.h:
+Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
 SrcServer/src/systems/network/protocol/server/opcodes.h:
 SrcServer/src/systems/rendering/legacy_3d/smd3d.h:
 SrcServer/src/systems/rendering/legacy_3d/smDsx.h:

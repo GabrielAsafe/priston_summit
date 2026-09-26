@@ -2,7 +2,7 @@
 
 // Semantic version of the character UI migration layer.
 #define UI_V2_VERSION_MAJOR 1
-#define UI_V2_VERSION_MINOR 10
+#define UI_V2_VERSION_MINOR 11
 #define UI_V2_VERSION_PATCH 0
 
 // UI V2 release switches. The v1.3 character window/HUD are enabled by default;

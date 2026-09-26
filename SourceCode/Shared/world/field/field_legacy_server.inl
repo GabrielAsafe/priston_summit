@@ -15,6 +15,8 @@
 #include "core/server/legacy_sin_runtime/sinLinkHeader.h"
 
 #include "systems/world/field/field.h"
+#include <cstdlib>
+#include "content/v1/map/legacy/LegacyMapAdapter.h"
 #include "systems/audio/effects/legacy/effectsnd.h"
 #include "systems/localization/config/language.h"
 
@@ -428,18 +430,84 @@ int CustomField = 0;
 static int SelCount = 0;
 
 
-int InitField()
+static void ResetLegacyFieldCatalogStorage()
 {
-	int cnt;
-
 	strcpy_s(szFieldDirectory, "field//");
 	strcpy_s(szMapDirectory, "field//map//");
 	strcpy_s(szTitleDirectory, "field//title//");
 
 	ZeroMemory(sField, sizeof(sFIELD) * FIELD_MAX);
-
-	for (cnt = 0; cnt < FIELD_MAX; cnt++)
+	for (int cnt = 0; cnt < FIELD_MAX; cnt++)
 		sField[cnt].FieldCode = cnt;
+}
+
+static int FinalizeLegacyFieldCatalog(int cnt)
+{
+	if (smConfig.szFile_Stage[0])
+	{
+		CustomField = cnt;
+		sField[cnt].SetName(smConfig.szFile_Stage);
+
+
+
+		for (int cnt2 = 0; cnt2 < smConfig.StageObjCnt; cnt2++)
+		{
+			if (smConfig.szFile_StageObject[cnt2][0])
+			{
+				if (smConfig.IsStageAniObject[cnt2])
+					sField[cnt].AddStageObject(smConfig.szFile_StageObject[cnt2], 1);
+				else
+					sField[cnt].AddStageObject(smConfig.szFile_StageObject[cnt2]);
+			}
+		}
+
+
+
+
+
+
+
+
+		if (strstr(smConfig.szFile_Stage, "dun") != 0)
+			sField[cnt].State = FIELD_STATE_DUNGEON;
+		else if (strstr(smConfig.szFile_Stage, "ice") != 0)
+			sField[cnt].State = FIELD_STATE_ICE;
+		else
+			sField[cnt].State = FIELD_STATE_FOREST;
+
+
+		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAY;
+		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWDAY;
+		sField[cnt].BackImageCode[2] = FIELD_BACKIMAGE_NIGHTDESERT;
+		sField[cnt].BackMusicCode = BGM_CODE_TOWN1;
+		sField[cnt].ServerCode = PLAY_SERVER_CODE_USER;
+		sField[cnt].SetCenterPos(smConfig.Posi_Stage.x >> FLOATNS, smConfig.Posi_Stage.y >> FLOATNS);
+
+		cnt++;
+	}
+
+	FieldCount = cnt;
+
+
+	if (smWsockServer && smWsockServer == smWsockExtendServer)
+	{
+		for (cnt = 0; cnt < FieldCount; cnt++)
+		{
+			if (sField[cnt].ServerCode == PLAY_SERVER_CODE_EXTEND)
+			{
+				sField[cnt].ServerCode = PLAY_SERVER_CODE_USER;
+			}
+		}
+	}
+
+	return TRUE;
+}
+
+static int InitFieldLegacy()
+{
+	int cnt;
+
+	ResetLegacyFieldCatalogStorage();
 
 	cnt = 0;
 
@@ -1844,64 +1912,40 @@ int InitField()
 
 
 
-	if (smConfig.szFile_Stage[0])
+	return FinalizeLegacyFieldCatalog(cnt);
+}
+
+static unsigned int SummitMapRuntimeFeatureMask()
+{
+	unsigned int mask = 0;
+#ifdef WORLDCUP_FIELD
+	mask |= summit::content::map::MapFeatureWorldCupField;
+#endif
+	return mask;
+}
+
+static int InitFieldCompiled(const char *packPath)
+{
+	ResetLegacyFieldCatalogStorage();
+	std::string error;
+	const summit::content::map::LegacyMapPathContext paths(szFieldDirectory, szMapDirectory, szTitleDirectory);
+	if (!summit::content::map::LoadCompiledMapsIntoLegacyFields(
+		packPath, summit::content::map::MapProfileServer, SummitMapRuntimeFeatureMask(),
+		sField, FIELD_MAX, paths, 53, 53, &error))
+		return FALSE;
+	return FinalizeLegacyFieldCatalog(53);
+}
+
+int InitField()
+{
+	const char *packPath = std::getenv("SUMMIT_MAP_PACK");
+	if (packPath && packPath[0])
 	{
-		CustomField = cnt;
-		sField[cnt].SetName(smConfig.szFile_Stage);
-
-
-
-		for (int cnt2 = 0; cnt2 < smConfig.StageObjCnt; cnt2++)
-		{
-			if (smConfig.szFile_StageObject[cnt2][0])
-			{
-				if (smConfig.IsStageAniObject[cnt2])
-					sField[cnt].AddStageObject(smConfig.szFile_StageObject[cnt2], 1);
-				else
-					sField[cnt].AddStageObject(smConfig.szFile_StageObject[cnt2]);
-			}
-		}
-
-
-
-
-
-
-
-
-		if (strstr(smConfig.szFile_Stage, "dun") != 0)
-			sField[cnt].State = FIELD_STATE_DUNGEON;
-		else if (strstr(smConfig.szFile_Stage, "ice") != 0)
-			sField[cnt].State = FIELD_STATE_ICE;
-		else
-			sField[cnt].State = FIELD_STATE_FOREST;
-
-
-		sField[cnt].BackImageCode[0] = FIELD_BACKIMAGE_DAY;
-		sField[cnt].BackImageCode[1] = FIELD_BACKIMAGE_GLOWDAY;
-		sField[cnt].BackImageCode[2] = FIELD_BACKIMAGE_NIGHTDESERT;
-		sField[cnt].BackMusicCode = BGM_CODE_TOWN1;
-		sField[cnt].ServerCode = PLAY_SERVER_CODE_USER;
-		sField[cnt].SetCenterPos(smConfig.Posi_Stage.x >> FLOATNS, smConfig.Posi_Stage.y >> FLOATNS);
-
-		cnt++;
+		if (InitFieldCompiled(packPath)) return TRUE;
+		const char *strict = std::getenv("SUMMIT_MAP_STRICT");
+		if (strict && strict[0] == '1') return FALSE;
 	}
-
-	FieldCount = cnt;
-
-
-	if (smWsockServer && smWsockServer == smWsockExtendServer)
-	{
-		for (cnt = 0; cnt < FieldCount; cnt++)
-		{
-			if (sField[cnt].ServerCode == PLAY_SERVER_CODE_EXTEND)
-			{
-				sField[cnt].ServerCode = PLAY_SERVER_CODE_USER;
-			}
-		}
-	}
-
-	return TRUE;
+	return InitFieldLegacy();
 }
 
 
@@ -2181,10 +2225,11 @@ int	WingWarpGate_Field(int dwFieldCode)
 {
 	int dist, x, y, z;
 
-	dwNextWarpDelay = 1;
-	dwWarpDelayTime = 5000;
 	WingWarpField = -1;
 
+	// Do not arm the movement/warp lock until the request has passed all
+	// validation. The legacy order set dwNextWarpDelay first and returned FALSE
+	// on invalid field/distance, leaving SetMousePlay() blocked indefinitely.
 	if (!lpLastWarpField) return FALSE;
 	if (dwFieldCode < 0) return FALSE;
 	/*if(FieldLimitLevel_Table[dwFieldCode] > lpCurPlayer->smCharInfo.Level) return FALSE;*/
@@ -2196,10 +2241,10 @@ int	WingWarpGate_Field(int dwFieldCode)
 
 	if (dist > DIST_TRANSLEVEL_LOW) return FALSE;
 
-	StartEffect(lpCurPlayer->pX, lpCurPlayer->pY + 48 * fONE, lpCurPlayer->pZ, EFFECT_RETURN1);
-	SkillPlaySound(SKILL_SOUND_LEARN, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 	dwNextWarpDelay = TRUE;
 	dwWarpDelayTime = dwPlayTime - 1000;
+	StartEffect(lpCurPlayer->pX, lpCurPlayer->pY + 48 * fONE, lpCurPlayer->pZ, EFFECT_RETURN1);
+	SkillPlaySound(SKILL_SOUND_LEARN, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
 	WingWarpField = dwFieldCode;
 
 	return TRUE;

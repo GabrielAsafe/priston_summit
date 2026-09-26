@@ -1,5 +1,8 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/core/data/legacy_loader/fileread.o: \
- SrcGame/src/core/data/legacy_loader/fileread.cpp Shared/opcodes.h \
+ SrcGame/src/core/data/legacy_loader/fileread.cpp \
+ Shared/content/v1/text_resource/content/TextResourceRuntime.h \
+ Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
+ Shared/content/v1/common/Sha256.h Shared/opcodes.h \
  Shared/gameplay/classes/v2/services/ClassService.h \
  Shared/gameplay/classes/v2/PlayableClassRegistry.h \
  Shared/gameplay/classes/v2/domain/ClassDefinition.h \
@@ -63,14 +66,42 @@
  Shared/formats/model_config/LegacyModelConfigExact_client.inl \
  Shared/formats/server_config/LegacyServerConfigExact_client.inl \
  Shared/formats/legacy_config/LegacyMainConfigExact_client.inl \
+ Shared/content/v1/definition/legacy/CompiledDefinitionAdapter.inl \
+ Shared/content/v1/definition/content/DefinitionRuntime.h \
+ Shared/content/v1/definition/content/CompiledDefinitionSource.h \
+ Shared/content/v1/localization/content/LocalizationRuntime.h \
+ Shared/content/v1/localization/content/CompiledLocalizationSource.h \
+ Shared/formats/character_config/CharacterConfigReader.inl \
+ Shared/formats/character_config/CharacterCoreReader.h \
+ Shared/formats/character_config/CharacterConfigCommon.h \
+ Shared/formats/legacy_config/LegacyLineCursor.h \
+ Shared/formats/character_config/CharacterConfigServices.h \
+ Shared/formats/character_config/CharacterConfigTokens.h \
+ Shared/formats/character_config/CharacterMonsterReader.h \
+ Shared/formats/character_config/CharacterNpcReader.h \
+ Shared/io/LegacyFile.h Shared/io/LegacyPath.h \
+ Shared/formats/character_config/CharacterConfigLegacyAdapter.inl \
+ Shared/formats/character_config/CharacterSoundCodeLookup.inl \
+ Shared/formats/item_config/ItemDefinitionReader.inl \
  Shared/formats/item_config/LegacyItemDefinitionExact_client.inl \
  Shared/formats/character_config/LegacyCharacterConfigExact_client.inl \
  Shared/formats/stage_spawn/LegacyStageSpawnExact_client.inl \
+ Shared/content/v1/stage_spawn/legacy/LegacyStageSpawnAdapter.h \
+ Shared/content/v1/stage_spawn/content/CompiledStageSpawnContentSource.h \
+ Shared/content/v1/stage_spawn/content/IStageSpawnContentSource.h \
+ Shared/content/v1/stage_spawn/domain/StageSpawnDefinition.h \
+ Shared/content/v1/stage_spawn/content/StageSpawnPath.h \
+ Shared/content/v1/stage_spawn/content/LegacyStageSpawnContentSource.h \
+ Shared/content/v1/stage_spawn/content/StageSpawnService.h \
+ Shared/content/v1/text_resource/legacy/LegacyContentIdRegistry.h \
  Shared/formats/item_config/LegacyItemRuntimeExact_client.inl \
  SrcGame/src/systems/localization/legacy_catalog/Brazil/b_JobCode.h \
  Shared/formats/model_config/LegacyModelKeywordExact_client.inl \
  Shared/formats/belatra/LegacyBelatraExact_client.inl \
  Shared/formats/security/LegacyCrackerConfigExact_client.inl
+Shared/content/v1/text_resource/content/TextResourceRuntime.h:
+Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
+Shared/content/v1/common/Sha256.h:
 Shared/opcodes.h:
 Shared/gameplay/classes/v2/services/ClassService.h:
 Shared/gameplay/classes/v2/PlayableClassRegistry.h:
@@ -137,9 +168,35 @@ SrcGame/src/systems/configuration/client/Settings.h:
 Shared/formats/model_config/LegacyModelConfigExact_client.inl:
 Shared/formats/server_config/LegacyServerConfigExact_client.inl:
 Shared/formats/legacy_config/LegacyMainConfigExact_client.inl:
+Shared/content/v1/definition/legacy/CompiledDefinitionAdapter.inl:
+Shared/content/v1/definition/content/DefinitionRuntime.h:
+Shared/content/v1/definition/content/CompiledDefinitionSource.h:
+Shared/content/v1/localization/content/LocalizationRuntime.h:
+Shared/content/v1/localization/content/CompiledLocalizationSource.h:
+Shared/formats/character_config/CharacterConfigReader.inl:
+Shared/formats/character_config/CharacterCoreReader.h:
+Shared/formats/character_config/CharacterConfigCommon.h:
+Shared/formats/legacy_config/LegacyLineCursor.h:
+Shared/formats/character_config/CharacterConfigServices.h:
+Shared/formats/character_config/CharacterConfigTokens.h:
+Shared/formats/character_config/CharacterMonsterReader.h:
+Shared/formats/character_config/CharacterNpcReader.h:
+Shared/io/LegacyFile.h:
+Shared/io/LegacyPath.h:
+Shared/formats/character_config/CharacterConfigLegacyAdapter.inl:
+Shared/formats/character_config/CharacterSoundCodeLookup.inl:
+Shared/formats/item_config/ItemDefinitionReader.inl:
 Shared/formats/item_config/LegacyItemDefinitionExact_client.inl:
 Shared/formats/character_config/LegacyCharacterConfigExact_client.inl:
 Shared/formats/stage_spawn/LegacyStageSpawnExact_client.inl:
+Shared/content/v1/stage_spawn/legacy/LegacyStageSpawnAdapter.h:
+Shared/content/v1/stage_spawn/content/CompiledStageSpawnContentSource.h:
+Shared/content/v1/stage_spawn/content/IStageSpawnContentSource.h:
+Shared/content/v1/stage_spawn/domain/StageSpawnDefinition.h:
+Shared/content/v1/stage_spawn/content/StageSpawnPath.h:
+Shared/content/v1/stage_spawn/content/LegacyStageSpawnContentSource.h:
+Shared/content/v1/stage_spawn/content/StageSpawnService.h:
+Shared/content/v1/text_resource/legacy/LegacyContentIdRegistry.h:
 Shared/formats/item_config/LegacyItemRuntimeExact_client.inl:
 SrcGame/src/systems/localization/legacy_catalog/Brazil/b_JobCode.h:
 Shared/formats/model_config/LegacyModelKeywordExact_client.inl:

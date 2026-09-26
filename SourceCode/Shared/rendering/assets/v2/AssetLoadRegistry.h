@@ -55,7 +55,7 @@ struct AssetLoadPolicy
         p.maxExternalRuntimeDimension = 2048u;
         p.maxExternalRuntimePixels = 2048ull * 2048ull;
         p.maxTransientFailures = 3u;
-        p.residentBudgetBytes = 512ull * 1024ull * 1024ull;
+        p.residentBudgetBytes = 1024ull * 1024ull * 1024ull;
         p.largeTextureRgbaBytes = 16ull * 1024ull * 1024ull;
         p.recentTouchProtection = 16ull;
         p.globalPrewarmLimit = 32u;

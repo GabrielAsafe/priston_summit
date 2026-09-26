@@ -4,6 +4,7 @@
 #include "systems/ui/v2/pages/AttributesPage.h"
 #include "systems/ui/v2/pages/InventoryPage.h"
 #include "systems/ui/v2/pages/CompanionsPage.h"
+#include "systems/ui/v2/pages/CovenantsPage.h"
 #include "systems/ui/v2/pages/SkillsPage.h"
 #include "systems/ui/v2/theme/UITheme.h"
 #include "systems/ui/v2/widgets/Button.h"
@@ -15,6 +16,7 @@ CharacterWindow::CharacterWindow(ICharacterStatsGateway& statsGateway,
                                  IInventoryGateway& inventoryGateway,
                                  IContextGateway& contextGateway,
                                  ICompanionGateway& companionGateway,
+                                 ICovenantGateway& covenantGateway,
                                  UIId id)
     : Window(id, "Personagem")
 {
@@ -31,6 +33,8 @@ CharacterWindow::CharacterWindow(ICharacterStatsGateway& statsGateway,
     inventoryPage_ = &inventory;
     auto& companions = AddChild<CompanionsPage>(companionGateway, 513);
     companionsPage_ = &companions;
+    auto& covenants = AddChild<CovenantsPage>(covenantGateway, 514);
+    covenantsPage_ = &covenants;
 
     BuildChrome();
     Layout();
@@ -55,6 +59,10 @@ void CharacterWindow::BuildChrome()
     companions.SetOnClick([this](const UIEvent&) { SetActiveTab(CharacterTab::Companions); });
     companionsTab_ = &companions;
 
+    auto& covenants = AddChild<Button>(505, "Covenants");
+    covenants.SetOnClick([this](const UIEvent&) { SetActiveTab(CharacterTab::Covenants); });
+    covenantsTab_ = &covenants;
+
     auto& close = AddChild<Button>(503, "X");
     close.SetOnClick([this](const UIEvent&)
     {
@@ -73,6 +81,7 @@ void CharacterWindow::Layout()
     skillsTab_->SetBounds({136, top, 116, 30});
     inventoryTab_->SetBounds({258, top, 116, 30});
     companionsTab_->SetBounds({380, top, 126, 30});
+    covenantsTab_->SetBounds({512, top, 126, 30});
     closeButton_->SetBounds({bounds.width - 42, 5, 30, 24});
 
     const Rect pageBounds{8, 74, bounds.width - 16, bounds.height - 82};
@@ -80,6 +89,7 @@ void CharacterWindow::Layout()
     skillsPage_->SetBounds(pageBounds);
     inventoryPage_->SetBounds(pageBounds);
     companionsPage_->SetBounds(pageBounds);
+    covenantsPage_->SetBounds(pageBounds);
 }
 
 void CharacterWindow::SetActiveTab(CharacterTab tab, bool notify)
@@ -89,17 +99,21 @@ void CharacterWindow::SetActiveTab(CharacterTab tab, bool notify)
 
     if (tab == CharacterTab::Companions && companionsPage_)
         companionsPage_->ForceRefresh();
+    if (tab == CharacterTab::Covenants && covenantsPage_)
+        covenantsPage_->ForceRefresh();
 
     activeTab_ = tab;
     attributesPage_->SetVisible(tab == CharacterTab::Attributes);
     skillsPage_->SetVisible(tab == CharacterTab::Skills);
     inventoryPage_->SetVisible(tab == CharacterTab::Inventory);
     companionsPage_->SetVisible(tab == CharacterTab::Companions);
+    covenantsPage_->SetVisible(tab == CharacterTab::Covenants);
 
     attributesTab_->SetSelected(tab == CharacterTab::Attributes);
     skillsTab_->SetSelected(tab == CharacterTab::Skills);
     inventoryTab_->SetSelected(tab == CharacterTab::Inventory);
     companionsTab_->SetSelected(tab == CharacterTab::Companions);
+    covenantsTab_->SetSelected(tab == CharacterTab::Covenants);
 
     if (notify && onTabChanged_)
         onTabChanged_(tab);

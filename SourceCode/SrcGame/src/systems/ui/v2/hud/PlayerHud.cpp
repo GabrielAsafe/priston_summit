@@ -93,6 +93,22 @@ void PlayerHud::LayoutShortcuts()
     }
 }
 
+void PlayerHud::SetLegacyControlState(bool running, int cameraMode, bool mapVisible)
+{
+    if (shortcutButtons_[6])
+        shortcutButtons_[6]->SetText(running ? "R Andar" : "R Correr");
+
+    if (shortcutButtons_[7])
+    {
+        const char* cameraText = cameraMode == 1 ? "Z Cam Auto" :
+                                 cameraMode == 2 ? "Z Cam Fixa" : "Z Cam Manual";
+        shortcutButtons_[7]->SetText(cameraText);
+    }
+
+    if (shortcutButtons_[8])
+        shortcutButtons_[8]->SetText(mapVisible ? "Tab Fechar mapa" : "Tab Abrir mapa");
+}
+
 void PlayerHud::Update(float deltaSeconds)
 {
     refreshAccumulator_ += deltaSeconds;

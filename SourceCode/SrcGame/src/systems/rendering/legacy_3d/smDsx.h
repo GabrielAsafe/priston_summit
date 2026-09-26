@@ -62,7 +62,7 @@ BOOL SetDisplayMode(HWND hWnd, DWORD Width, DWORD Height, DWORD BPP);
 void InitRender();
 
 
-void BeginRender();
+BOOL BeginRender();
 
 
 void EndRender();

@@ -128,6 +128,10 @@ static bool UpdateBillboardDefault(const SBillboardRenderInfo *renderInfo)
 	v[3] = smRender.AddRendVertex ( x+outVertex[3].x , y+outVertex[3].y , z+outVertex[3].z, sColor );
 
 	
+	if(!v[0] || !v[1] || !v[2] || !v[3] ||
+		!smRender.CanReserveRenderSpace(0, 2, 2))
+		return FALSE;
+
 	rf = &smRender.RendFace[ smRender.nRendFace++ ];
 	rf->lpRendVertex[0] = v[0];
 	rf->lpRendVertex[1] = v[1];
@@ -219,6 +223,8 @@ static bool UpdateBillboardAxial(const SBillboardRenderInfo *renderInfo)
     float dx     = float(destPos.x - currentPos.x); 
     float dy     = float(destPos.y - currentPos.y); 
     float length = (float)sqrt(dx*dx+dy*dy);        
+    if(length <= 0.0001f)
+        return false;
 
     dx = dx/length*renderInfo->m_Size.x*256.f; 
     dy = dy/length*renderInfo->m_Size.x*256.f;
@@ -236,6 +242,10 @@ static bool UpdateBillboardAxial(const SBillboardRenderInfo *renderInfo)
     v[3] = smRender.AddRendVertex ( int(currentPos.x+persp.x), int(currentPos.y+persp.y), int(currentPos.z), sColor );
 
     
+    if(!v[0] || !v[1] || !v[2] || !v[3] ||
+        !smRender.CanReserveRenderSpace(0, 2, 2))
+        return FALSE;
+
     rf = &smRender.RendFace[ smRender.nRendFace++ ];
     rf->lpRendVertex[0] = v[0];
     rf->lpRendVertex[1] = v[1];
@@ -415,6 +425,10 @@ static bool UpdateCreateMesh(const SBillboardRenderInfo *renderInfo)
     v[3] = smRender.AddRendVertex ( outVertex[3].x , outVertex[3].y , outVertex[3].z, sColor);
 
 		
+		if(!v[0] || !v[1] || !v[2] || !v[3] ||
+			!smRender.CanReserveRenderSpace(0, 2, 2))
+			return FALSE;
+
 		rf = &smRender.RendFace[ smRender.nRendFace++ ];
 		rf->lpRendVertex[0] = v[0];
 		rf->lpRendVertex[1] = v[1];
@@ -569,6 +583,10 @@ bool HoEffectView::UpdateLineList(const SLineListRenderInfo *renderInfo, int iX,
         v[3] = smRender.AddRendVertex ( int(currentPos.x+persp.x), int(currentPos.y+persp.y), int(currentPos.z), sColor );
 
         
+        if(!v[0] || !v[1] || !v[2] || !v[3] ||
+            !smRender.CanReserveRenderSpace(0, 2, 2))
+            return FALSE;
+
         rf = &smRender.RendFace[ smRender.nRendFace++ ];
         rf->lpRendVertex[0] = v[0];
         rf->lpRendVertex[1] = v[1];

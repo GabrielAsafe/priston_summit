@@ -26,6 +26,7 @@ static void MINGW_ClanTrace(const char *, ...)
 }
 #endif
 
+#include "content/v1/text_resource/content/TextResourceRuntime.h"
 #include "opcodes.h"
 #define TJCLAN_CPP
 
@@ -3171,51 +3172,46 @@ int LoadClanMessage()
 {
 	MINGW_ClanTrace("LoadClanMessage ENTER path=[%s]", CLANMESSAGE_DIR);
 
-	char *g_ClanMessage;
-
-
-	HANDLE hFile = INVALID_HANDLE_VALUE;
-	DWORD dwFileSize;
+	char *g_ClanMessage = NULL;
+	DWORD dwFileSize = 0;
 	DWORD dwRead = 0;
-	char c;
-	c = '\n';
-	hFile = CreateFile(CLANMESSAGE_DIR, GENERIC_READ, FILE_SHARE_READ,
-					   NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	BOOL mingwClanReadOK = FALSE;
 
-	if(hFile == INVALID_HANDLE_VALUE)
+	if(summit::content::text_resource::CompiledTextResourcesEnabled())
 	{
-		MINGW_ClanTrace(
-			"LoadClanMessage OPEN FAILED error=%lu",
-			(unsigned long)GetLastError()
-		);
-		return -1;
+		std::vector<unsigned char> bytes;
+		if(summit::content::text_resource::LoadTextResourceBytes(CLANMESSAGE_DIR, bytes))
+		{
+			dwFileSize = (DWORD)bytes.size();
+			g_ClanMessage = new char[dwFileSize + 1];
+			if(dwFileSize) CopyMemory(g_ClanMessage, &bytes[0], dwFileSize);
+			dwRead = dwFileSize;
+			mingwClanReadOK = TRUE;
+		}
+		else if(summit::content::text_resource::TextResourceStrictMode())
+		{
+			MINGW_ClanTrace("LoadClanMessage SRES MISSING");
+			return -1;
+		}
 	}
 
-	dwFileSize = GetFileSize(hFile, NULL);
-	MINGW_ClanTrace("LoadClanMessage SIZE=%lu", (unsigned long)dwFileSize);
+	if(!g_ClanMessage)
+	{
+		HANDLE hFile = CreateFile(CLANMESSAGE_DIR, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+		if(hFile == INVALID_HANDLE_VALUE)
+		{
+			MINGW_ClanTrace("LoadClanMessage OPEN FAILED error=%lu", (unsigned long)GetLastError());
+			return -1;
+		}
+		dwFileSize = GetFileSize(hFile, NULL);
+		g_ClanMessage = new char[dwFileSize + 1];
+		mingwClanReadOK = ReadFile(hFile, g_ClanMessage, dwFileSize, &dwRead, NULL);
+		CloseHandle(hFile);
+	}
 
-	g_ClanMessage = new char[dwFileSize + 1];
-
-	BOOL mingwClanReadOK =
-		ReadFile(
-			hFile,
-			g_ClanMessage,
-			dwFileSize,
-			&dwRead,
-			NULL
-		);
-
-	MINGW_ClanTrace(
-		"LoadClanMessage READ ok=%d size=%lu read=%lu",
-		(int)mingwClanReadOK,
-		(unsigned long)dwFileSize,
-		(unsigned long)dwRead
-	);
-	CloseHandle(hFile);
-
+	MINGW_ClanTrace("LoadClanMessage SIZE=%lu READ ok=%d read=%lu", (unsigned long)dwFileSize, (int)mingwClanReadOK, (unsigned long)dwRead);
 	if(!mingwClanReadOK)
 	{
-		MINGW_ClanTrace("LoadClanMessage READ FAILED");
 		delete[] g_ClanMessage;
 		return -1;
 	}

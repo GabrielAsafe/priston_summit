@@ -13,9 +13,25 @@ MIGRATIONS = [
     ROOT / "Database" / "migrations" / "036_covenant_rewards.sql",
     ROOT / "Database" / "migrations" / "037_story_dialogue_choices.sql",
     ROOT / "Database" / "migrations" / "038_generic_reputation.sql",
+    ROOT / "Database" / "migrations" / "039_covenant_single_active.sql",
+    ROOT / "Database" / "migrations" / "040_covenant_default_content.sql",
+    ROOT / "Database" / "migrations" / "041_covenant_runtime_complete.sql",
+    ROOT / "Database" / "migrations" / "042_covenant_inventory.sql",
+    ROOT / "Database" / "migrations" / "043_covenant_artisan_mode.sql",
 ]
 
 EXPECTED_TABLES = {
+    "ServerDB__CovenantPlayerState",
+    "ServerDB__CovenantMastery",
+    "ServerDB__CovenantCollection",
+    "ServerDB__CovenantActivityDefinition",
+    "ServerDB__CovenantChallengeDefinition",
+    "ServerDB__CovenantChallengeProgress",
+    "ServerDB__CovenantPowerDefinition",
+    "ServerDB__CovenantPowerModifier",
+    "ServerDB__CovenantPowerState",
+    "ServerDB__CovenantInventory",
+    "ServerDB__CovenantArtisanState",
     "ServerDB__CovenantMembership",
     "ServerDB__CovenantReputationLedger",
     "ServerDB__StoryProgress",
@@ -53,6 +69,7 @@ EXPECTED_TABLES = {
 
 EXPECTED_INDEXES = {
     "ServerDB__CovenantMembership_Active",
+    "ServerDB__CovenantMembership_OneActive",
     "ServerDB__StoryEffectReceipt_Pending",
     "ServerDB__StoryNodeState_ByStory",
     "ServerDB__ProgressionCovenantRank_ByCovenant",
@@ -62,6 +79,7 @@ EXPECTED_INDEXES = {
     "ServerDB__CovenantEffectReceipt_Pending",
     "ServerDB__ProgressionCovenantReward_ByMilestone",
     "ServerDB__ProgressionStoryDialogueChoice_ByNode",
+    "ServerDB__CovenantInventory_ByPlayer",
 }
 
 
@@ -70,7 +88,80 @@ def fail(message: str) -> None:
     raise SystemExit(1)
 
 
+
+def validate_single_active_upgrade() -> None:
+    """Migration 039 must repair pre-existing invalid multi-active state."""
+    db = sqlite3.connect(":memory:")
+    try:
+        for migration in MIGRATIONS[:6]:
+            db.executescript(migration.read_text(encoding="utf-8"))
+        with db:
+            db.execute(
+                "INSERT INTO ServerDB__CovenantMembership"
+                "(PlayerKey,CovenantId,Reputation,RankId,Active) VALUES(?,?,?,?,?)",
+                ("legacy-duplicate", 1, 1250, 2, 1),
+            )
+            db.execute(
+                "INSERT INTO ServerDB__CovenantMembership"
+                "(PlayerKey,CovenantId,Reputation,RankId,Active) VALUES(?,?,?,?,?)",
+                ("legacy-duplicate", 2, 400, 1, 1),
+            )
+        db.executescript(MIGRATIONS[6].read_text(encoding="utf-8"))
+        rows = db.execute(
+            "SELECT CovenantId,Reputation,RankId,Active FROM ServerDB__CovenantMembership "
+            "WHERE PlayerKey=? ORDER BY CovenantId", ("legacy-duplicate",)
+        ).fetchall()
+        if rows != [(1, 1250, 2, 0), (2, 400, 1, 1)]:
+            fail(f"migration 039 did not preserve progress/repair active state: {rows}")
+    finally:
+        db.close()
+
+def validate_covenant_inventory_upgrade() -> None:
+    """Migration 042 must backfill one Sigil per pre-existing membership."""
+    db = sqlite3.connect(":memory:")
+    try:
+        for migration in MIGRATIONS[:9]:
+            db.executescript(migration.read_text(encoding="utf-8"))
+        with db:
+            db.execute(
+                "INSERT INTO ServerDB__CovenantMembership"
+                "(PlayerKey,CovenantId,Reputation,RankId,Active) VALUES(?,?,?,?,?)",
+                ("legacy-sigil", 1, 2500, 2, 1),
+            )
+            db.execute(
+                "INSERT INTO ServerDB__CovenantMembership"
+                "(PlayerKey,CovenantId,Reputation,RankId,Active) VALUES(?,?,?,?,?)",
+                ("legacy-sigil", 2, 400, 1, 0),
+            )
+        db.executescript(MIGRATIONS[9].read_text(encoding="utf-8"))
+        inventory = db.execute(
+            "SELECT CovenantId,ItemKey,Quantity FROM ServerDB__CovenantInventory "
+            "WHERE PlayerKey=? ORDER BY CovenantId", ("legacy-sigil",)
+        ).fetchall()
+        if inventory != [(1, "sigil:hunters", 1), (2, "sigil:gatherers", 1)]:
+            fail(f"migration 042 did not backfill Sigils correctly: {inventory}")
+        collection = db.execute(
+            "SELECT CovenantId,CollectibleKey FROM ServerDB__CovenantCollection "
+            "WHERE PlayerKey=? ORDER BY CovenantId", ("legacy-sigil",)
+        ).fetchall()
+        if collection != [(1, "sigil:hunters"), (2, "sigil:gatherers")]:
+            fail(f"migration 042 did not backfill Sigil collection correctly: {collection}")
+        # Idempotency must not stack the backfilled Sigil.
+        db.executescript(MIGRATIONS[9].read_text(encoding="utf-8"))
+        quantity = db.execute(
+            "SELECT Quantity FROM ServerDB__CovenantInventory "
+            "WHERE PlayerKey=? AND CovenantId=1 AND ItemKey='sigil:hunters'",
+            ("legacy-sigil",),
+        ).fetchone()
+        if quantity != (1,):
+            fail(f"migration 042 duplicated backfilled Sigil: {quantity}")
+    finally:
+        db.close()
+
 def main() -> None:
+    validate_single_active_upgrade()
+    validate_covenant_inventory_upgrade()
+
     sql_parts = []
     for migration in MIGRATIONS:
         if not migration.is_file():
@@ -102,6 +193,80 @@ def main() -> None:
         }
         if not EXPECTED_INDEXES.issubset(indexes):
             fail(f"missing indexes: {sorted(EXPECTED_INDEXES - indexes)}")
+
+        default_covenants = db.execute(
+            "SELECT CovenantId,Key FROM ServerDB__ProgressionCovenantDefinition "
+            "WHERE CovenantId BETWEEN 1 AND 5 ORDER BY CovenantId"
+        ).fetchall()
+        if default_covenants != [
+            (1, "hunters"), (2, "gatherers"), (3, "artisans"),
+            (4, "fortune"), (5, "ascendants")
+        ]:
+            fail(f"unexpected default Covenant catalog: {default_covenants}")
+        if db.execute(
+            "SELECT COUNT(*) FROM ServerDB__ProgressionCovenantRank WHERE CovenantId BETWEEN 1 AND 5"
+        ).fetchone()[0] != 15:
+            fail("default Covenant catalog does not contain exactly 15 Tier I-III ranks")
+
+        if db.execute("SELECT COUNT(*) FROM ServerDB__CovenantActivityDefinition WHERE Enabled=1").fetchone()[0] != 5:
+            fail("Covenant runtime content must seed exactly 5 enabled activities")
+        if db.execute("SELECT COUNT(*) FROM ServerDB__CovenantChallengeDefinition WHERE Enabled=1").fetchone()[0] != 15:
+            fail("Covenant runtime content must seed exactly 15 enabled challenges")
+        if db.execute("SELECT COUNT(*) FROM ServerDB__CovenantPowerDefinition WHERE Enabled=1").fetchone()[0] != 3:
+            fail("Covenant runtime content must seed exactly 3 Tier III powers")
+        if db.execute("SELECT COUNT(*) FROM ServerDB__CovenantPowerModifier").fetchone()[0] != 8:
+            fail("Covenant runtime content must seed exactly 8 power modifiers")
+
+        # Covenant virtual inventory is persistent, stackable and independent of activation.
+        with db:
+            db.execute(
+                "INSERT INTO ServerDB__CovenantInventory(PlayerKey,CovenantId,ItemKey,Quantity) VALUES(?,?,?,?)",
+                ("inventory-validator", 1, "sigil:hunters", 1),
+            )
+            db.execute(
+                "INSERT INTO ServerDB__CovenantInventory(PlayerKey,CovenantId,ItemKey,Quantity) VALUES(?,?,?,?) "
+                "ON CONFLICT(PlayerKey,CovenantId,ItemKey) DO UPDATE SET Quantity=Quantity+excluded.Quantity",
+                ("inventory-validator", 1, "sigil:hunters", 2),
+            )
+        if db.execute(
+            "SELECT Quantity FROM ServerDB__CovenantInventory WHERE PlayerKey=? AND CovenantId=1 AND ItemKey=?",
+            ("inventory-validator", "sigil:hunters"),
+        ).fetchone() != (3,):
+            fail("Covenant inventory stacking contract failed")
+
+        # Option A: every later rank carries all prior stat/scope/operation keys.
+        for covenant_id in range(1, 6):
+            prior = set()
+            ranks = db.execute(
+                "SELECT RankId FROM ServerDB__ProgressionCovenantRank "
+                "WHERE CovenantId=? ORDER BY MinReputation,RankId", (covenant_id,)
+            ).fetchall()
+            for (rank_id,) in ranks:
+                current = set(db.execute(
+                    "SELECT StatKey,ScopeKey,Operation FROM ServerDB__ProgressionCovenantRankBenefit "
+                    "WHERE CovenantId=? AND RankId=?", (covenant_id, rank_id)
+                ).fetchall())
+                if not prior.issubset(current):
+                    fail(f"Covenant {covenant_id} rank {rank_id} is not cumulative: {sorted(prior-current)}")
+                prior = current
+
+        with db:
+            db.execute(
+                "INSERT INTO ServerDB__CovenantMembership"
+                "(PlayerKey,CovenantId,Reputation,RankId,Active) VALUES(?,?,?,?,?)",
+                ("one-active-validator", 1, 0, 1, 1),
+            )
+        try:
+            with db:
+                db.execute(
+                    "INSERT INTO ServerDB__CovenantMembership"
+                    "(PlayerKey,CovenantId,Reputation,RankId,Active) VALUES(?,?,?,?,?)",
+                    ("one-active-validator", 2, 0, 1, 1),
+                )
+        except sqlite3.IntegrityError:
+            pass
+        else:
+            fail("database accepted two active Covenants for one player")
 
         with db:
             db.execute(

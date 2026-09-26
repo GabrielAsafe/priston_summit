@@ -1,5 +1,8 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/systems/social/clan/tjclan.o: \
- SrcGame/src/systems/social/clan/tjclan.cpp Shared/opcodes.h \
+ SrcGame/src/systems/social/clan/tjclan.cpp \
+ Shared/content/v1/text_resource/content/TextResourceRuntime.h \
+ Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
+ Shared/content/v1/common/Sha256.h Shared/opcodes.h \
  SrcGame/src/systems/social/clan/tjclanDEF.h \
  SrcGame/src/systems/localization/legacy_catalog/language.h \
  SrcGame/src/compat/legacy/sin/sinLinkHeader.h \
@@ -160,6 +163,9 @@
  SrcGame/src/systems/audio/voice/ipc/memmap.h \
  SrcGame/src/systems/audio/voice/legacy_client/PacketStruct.h \
  SrcGame/src/systems/audio/voice/legacy_client/Packet.h
+Shared/content/v1/text_resource/content/TextResourceRuntime.h:
+Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
+Shared/content/v1/common/Sha256.h:
 Shared/opcodes.h:
 SrcGame/src/systems/social/clan/tjclanDEF.h:
 SrcGame/src/systems/localization/legacy_catalog/language.h:

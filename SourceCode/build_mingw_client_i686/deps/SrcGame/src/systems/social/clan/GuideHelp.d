@@ -145,7 +145,10 @@
  SrcGame/src/systems/social/clan/cE_Notice.h \
  SrcGame/src/systems/social/clan/clan_Enti.h \
  SrcGame/src/systems/social/clan/GuideHelp.h \
- Shared/social/clan/GuideHelp_legacy_client_body.inl
+ Shared/social/clan/GuideHelp_legacy_client_body.inl \
+ Shared/content/v1/text_resource/content/TextResourceRuntime.h \
+ Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
+ Shared/content/v1/common/Sha256.h
 Shared/gameplay/classes/v2/services/ClassService.h:
 Shared/gameplay/classes/v2/PlayableClassRegistry.h:
 Shared/gameplay/classes/v2/domain/ClassDefinition.h:
@@ -294,3 +297,6 @@ SrcGame/src/systems/social/clan/cE_Notice.h:
 SrcGame/src/systems/social/clan/clan_Enti.h:
 SrcGame/src/systems/social/clan/GuideHelp.h:
 Shared/social/clan/GuideHelp_legacy_client_body.inl:
+Shared/content/v1/text_resource/content/TextResourceRuntime.h:
+Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
+Shared/content/v1/common/Sha256.h:

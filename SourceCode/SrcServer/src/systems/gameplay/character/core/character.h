@@ -597,6 +597,7 @@ public:
 	int				EnchantEffect_Point;
 
 	rsPLAYINFO		*lpCompulsionPlayInfo;
+	smCHAR			*lpCompulsionChar;
 	DWORD			dwCompulsionTime;
 
 	DWORD			dwAssassinEyeTime;

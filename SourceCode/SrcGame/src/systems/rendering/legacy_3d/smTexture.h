@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 
 
 
@@ -246,10 +248,16 @@ enum smASSET_OWNER_V2
 };
 
 int  AssetLoadV2EnsureTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap = 0);
+// Exact-demand helpers. RequestTexture keeps work asynchronous; LoadTextureNow is
+// reserved for tiny first-frame UI / first-use effect fallback on the owner thread.
+int  AssetLoadV2RequestTexture(smTEXTUREHANDLE *lpTexHandle, DWORD ownerMask, int MipMap = 0, int requestPriority = 1);
+int  AssetLoadV2LoadTextureNow(smTEXTUREHANDLE *lpTexHandle, DWORD ownerMask, int MipMap = 0);
 LPDIRECT3DTEXTURE9 AssetLoadV2GetResidentTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap = 0);
 void AssetLoadV2TouchTexture(smTEXTUREHANDLE *lpTexHandle);
 void AssetLoadV2AddOwner(smTEXTUREHANDLE *lpTexHandle, DWORD ownerMask);
 int  AssetLoadV2ReadMaterialGroup(smMATERIAL_GROUP *group, DWORD ownerMask, int MipMap = 0);
+int  AssetLoadV2PrewarmMaterialGroupStep(smMATERIAL_GROUP *group, DWORD ownerMask,
+	int MipMap, std::uint32_t maxAttempts, int requestPriority);
 int  AssetLoadV2ReleaseMaterial(smMATERIAL_GROUP *group, int materialIndex);
 void AssetLoadV2TrimToBudget(const char *reason);
 void AssetLoadV2DumpTelemetry(const char *reason);

@@ -15,9 +15,17 @@
 #include "File/File.h"
 #include "systems/authentication/Login.h"
 #include "systems/ui/settings/legacy_window/cSettingsWindow.h"
+#include "core/concurrency/JobSystem.h"
+#include "core/concurrency/SourceAssetLock.h"
+#include "systems/rendering/legacy_3d/smRead3d.h"
+#include "systems/rendering/assets/v3/AssetStreamingV3.h"
+#include "systems/rendering/legacy_3d/smTexture.h"
 #include <stdarg.h>
+#include <atomic>
+#include <mutex>
+#include <new>
 
-static FILE *SummitOpeningRuntimeTraceFile(const char *path)
+static inline FILE *SummitOpeningRuntimeTraceFile(const char *path)
 {
 #if defined(SUMMIT_ENABLE_MINGW_RUNTIME_TRACE)
 	return fopen(path, "a");
@@ -25,6 +33,17 @@ static FILE *SummitOpeningRuntimeTraceFile(const char *path)
 	(void)path;
 	return NULL;
 #endif
+}
+
+static void SummitLoadOpeningMaterialNow(int materialIndex)
+{
+	if (!smMaterialGroup || materialIndex < 0 ||
+		materialIndex >= static_cast<int>(smMaterialGroup->MaterialCount))
+		return;
+	smMATERIAL &material = smMaterialGroup->smMaterial[materialIndex];
+	if (!material.InUse || material.TextureCounter <= 0 || !material.smTexture[0])
+		return;
+	AssetLoadV2LoadTextureNow(material.smTexture[0], SMASSET_OWNER_UI, 0);
 }
 
 
@@ -37,6 +56,124 @@ extern int			iSettingsCheckBox[2];
 
 
 static CAutoCamera		s_AutoCamera;
+
+
+// The opening/login 3D scene used to be parsed in HoOpening::Load(), which is
+// called from the constructor before the first login frame. Build it on the V3
+// worker pool and publish it from the owner thread so the 2D login UI can
+// appear immediately.
+enum SummitOpeningStagePreloadState
+{
+    SUMMIT_OPENING_STAGE_IDLE = 0,
+    SUMMIT_OPENING_STAGE_LOADING,
+    SUMMIT_OPENING_STAGE_READY,
+    SUMMIT_OPENING_STAGE_FAILED
+};
+
+static std::atomic<int> gSummitOpeningStageState(SUMMIT_OPENING_STAGE_IDLE);
+static std::mutex gSummitOpeningStageMutex;
+static smSTAGE3D *gSummitOpeningPreparedStage = NULL;
+
+static void SummitQueueOpeningStagePreload()
+{
+    int expected = SUMMIT_OPENING_STAGE_IDLE;
+    if (!gSummitOpeningStageState.compare_exchange_strong(
+        expected, SUMMIT_OPENING_STAGE_LOADING, std::memory_order_acq_rel))
+        return;
+
+    const bool submitted = summit::core::concurrency::JobSystem::Instance().Submit([]() {
+        smSTAGE3D *stage = new(std::nothrow) smSTAGE3D;
+        if (!stage)
+        {
+            gSummitOpeningStageState.store(SUMMIT_OPENING_STAGE_FAILED, std::memory_order_release);
+            return;
+        }
+
+        stage->VectLight.x = smConfig.MapLightVector.x;
+        stage->VectLight.y = smConfig.MapLightVector.y;
+        stage->VectLight.z = smConfig.MapLightVector.z;
+        stage->Bright = smConfig.MapBright;
+        stage->Contrast = smConfig.MapContrast;
+
+        // HoOpening and HoLogin may both preload ASE scenes while the login UI
+        // is active. Serialize those two legacy scene builders because parser
+        // scratch is thread-local but material registration still has legacy
+        // global state.
+        summit::core::concurrency::SourceAssetLock sceneBuildLock("__summit_login_scene_build__");
+        if (!smSTAGE3D_ReadASE(const_cast<char *>("StartImage//Opening//map//stage.ASE"), stage))
+        {
+            delete stage;
+            gSummitOpeningStageState.store(SUMMIT_OPENING_STAGE_FAILED, std::memory_order_release);
+            return;
+        }
+
+        stage->Head = TRUE;
+        if (stage->StageObject)
+        {
+            stage->StageObject->AddObjectFile("StartImage//Opening//map//st-ani02.ASE");
+            stage->StageObject->AddObjectFile("StartImage//Opening//map//st-ani03.ASE");
+            stage->StageObject->AddObjectFile("StartImage//Opening//babel//st-ani04.ASE", "StartImage//Opening//babel//st-ani04.ASE");
+            stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_A.ASE", "StartImage//Opening//npc//opening_NPC_A.ASE");
+            stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_B.ASE", "StartImage//Opening//npc//opening_NPC_B.ASE");
+            stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_C.ASE", "StartImage//Opening//npc//opening_NPC_C.ASE");
+            stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_D.ASE", "StartImage//Opening//npc//opening_NPC_D.ASE");
+            stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_E.ASE", "StartImage//Opening//npc//opening_NPC_E.ASE");
+            stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_F.ASE", "StartImage//Opening//npc//opening_NPC_F.ASE");
+        }
+
+        {
+            std::lock_guard<std::mutex> lock(gSummitOpeningStageMutex);
+            gSummitOpeningPreparedStage = stage;
+        }
+        gSummitOpeningStageState.store(SUMMIT_OPENING_STAGE_READY, std::memory_order_release);
+    }, summit::core::concurrency::JobPriority::Low);
+
+    if (!submitted)
+        gSummitOpeningStageState.store(SUMMIT_OPENING_STAGE_IDLE, std::memory_order_release);
+}
+
+static smSTAGE3D *SummitTakeOpeningPreparedStage()
+{
+    if (gSummitOpeningStageState.load(std::memory_order_acquire) != SUMMIT_OPENING_STAGE_READY)
+        return NULL;
+
+    smSTAGE3D *stage = NULL;
+    {
+        std::lock_guard<std::mutex> lock(gSummitOpeningStageMutex);
+        stage = gSummitOpeningPreparedStage;
+        gSummitOpeningPreparedStage = NULL;
+    }
+    gSummitOpeningStageState.store(SUMMIT_OPENING_STAGE_IDLE, std::memory_order_release);
+    return stage;
+}
+
+static void SummitPumpOpeningStagePreload(HoOpening *opening)
+{
+    if (!opening || opening->Stage)
+        return;
+
+    smSTAGE3D *prepared = SummitTakeOpeningPreparedStage();
+    if (!prepared)
+        return;
+
+    opening->Stage = prepared;
+    smGameStage[0] = prepared;
+    smGameStage[1] = NULL;
+
+    // Camera state is globally owned by the opening presentation; publish it
+    // on the owner thread rather than mutating it from the worker.
+    s_AutoCamera.ReadASE_AutoCamera("StartImage//Opening//opening_camera.ASE");
+    s_AutoCamera.SetWarpFrame(472, 473);
+
+    if (prepared->smMaterialGroup)
+    {
+        // Keep the opening scene subordinate to the 2D login UI. Only a tiny
+        // slice is admitted here; the rest advances incrementally from Main().
+        AssetLoadV2PrewarmMaterialGroupStep(prepared->smMaterialGroup,
+            SMASSET_OWNER_UI, 1, 4u, 1);
+        prepared->smMaterialGroup->CheckMatreialTextureSwap();
+    }
+}
 
 #ifdef _LANGUAGE_BRAZIL	
 char* szJoinWebUrl = "http://www.PristonTale.com.br";
@@ -201,6 +338,8 @@ HoOpening::~HoOpening()
 int HoOpening::Init()
 {
 
+	AssetLoadV3SetLoadingBoost(true);
+	SummitPumpOpeningStagePreload(this);
 	{ FILE *f=SummitOpeningRuntimeTraceFile("LOGS\\mingw_hoopening_init.txt"); if(f){ fprintf(f,"ENTER HoOpening::Init\\n"); fclose(f);} }
 	GameErrorValue = -1;
 	ConnectErrorCount = 0;
@@ -261,10 +400,17 @@ int HoOpening::Init()
 	StopBGM();
 
 	{ FILE *f=SummitOpeningRuntimeTraceFile("LOGS\\mingw_hoopening_init.txt"); if(f){ fprintf(f,"after StopBGM\\n"); fclose(f);} }
-	OpenBGM("game//GUI//Opening//Login//UI//Intro.wav");
+	// Prefer the reorganized UI asset, but keep the original opening BGM as a
+	// compatibility fallback. Some client data packs still ship the music only
+	// under StartImage/Opening; silently continuing after OpenBGM() failed left
+	// the login screen without music.
+	BOOL openingBgmReady = OpenBGM("game//GUI//Opening//Login//UI//Intro.wav");
+	if (!openingBgmReady)
+		openingBgmReady = OpenBGM("StartImage//Opening//Intro.wav");
 
-	{ FILE *f=SummitOpeningRuntimeTraceFile("LOGS\\mingw_hoopening_init.txt"); if(f){ fprintf(f,"after OpenBGM Intro.wav\\n"); fclose(f);} }
-	PlayBGM();
+	{ FILE *f=SummitOpeningRuntimeTraceFile("LOGS\\mingw_hoopening_init.txt"); if(f){ fprintf(f,"after OpenBGM Intro.wav ready=%d\\n", openingBgmReady ? 1 : 0); fclose(f);} }
+	if (openingBgmReady)
+		PlayBGM();
 
 	{ FILE *f=SummitOpeningRuntimeTraceFile("LOGS\\mingw_hoopening_init.txt"); if(f){ fprintf(f,"after PlayBGM\\n"); fclose(f);} }
 
@@ -599,35 +745,16 @@ int HoOpening::Load()
 
 	if (IsLoad == FALSE)
 	{
-		Stage = smSTAGE3D_ReadASE("StartImage//Opening//map//stage.ASE");
-
-		if (Stage)
-		{
-			Stage->Head = TRUE;
-
-			s_AutoCamera.ReadASE_AutoCamera("StartImage//Opening//opening_camera.ASE");
-			m_AutoCameraFrameTime = 50;
-			s_AutoCamera.SetWarpFrame(472, 473);
-
-			Stage->StageObject->AddObjectFile("StartImage//Opening//map//st-ani02.ASE");
-			Stage->StageObject->AddObjectFile("StartImage//Opening//map//st-ani03.ASE");
-
-			Stage->StageObject->AddObjectFile("StartImage//Opening//babel//st-ani04.ASE", "StartImage//Opening//babel//st-ani04.ASE");
-			Stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_A.ASE", "StartImage//Opening//npc//opening_NPC_A.ASE");
-			Stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_B.ASE", "StartImage//Opening//npc//opening_NPC_B.ASE");
-			Stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_C.ASE", "StartImage//Opening//npc//opening_NPC_C.ASE");
-			Stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_D.ASE", "StartImage//Opening//npc//opening_NPC_D.ASE");
-			Stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_E.ASE", "StartImage//Opening//npc//opening_NPC_E.ASE");
-			Stage->StageObject->AddObjectFile("StartImage//Opening//npc//opening_NPC_F.ASE", "StartImage//Opening//npc//opening_NPC_F.ASE");
-
-		}
+		// Do not block construction of the login presentation on ASE parsing.
+		SummitQueueOpeningStagePreload();
 	}
-
-	if (Stage == NULL)
-		return FALSE;
-
-	smGameStage[0] = Stage;
-	smGameStage[1] = NULL;
+	else if (Stage)
+	{
+		// Debug-mode custom field loading remains synchronous and immediately
+		// publishes the field selected by OpeningField.txt.
+		smGameStage[0] = Stage;
+		smGameStage[1] = NULL;
+	}
 
 
 	/*GameLogo[0] = CreateTextureMaterial("game//GUI//Opening//Login//UI//GameLogo1.tga", 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
@@ -659,12 +786,28 @@ int HoOpening::Load()
 	BlackBoxImage = CreateTextureMaterial("game//Login//UI//BlackBox.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 	WhiteBoxImage = CreateTextureMaterial("game//Login//UI//WhiteBox.tga", 0, TRUE, FALSE, FALSE, SMMAT_BLEND_ALPHA);
 
+	// The login chrome is a first-frame correctness boundary, not a streaming
+	// showcase. Make only this small, explicit set resident from the original
+	// source before the first frame. Stage/world/effects remain asynchronous.
+	SummitLoadOpeningMaterialNow(Back);
+	SummitLoadOpeningMaterialNow(bk);
+	SummitLoadOpeningMaterialNow(iInputID);
+	SummitLoadOpeningMaterialNow(iBtnLogin[0]);
+	SummitLoadOpeningMaterialNow(iBtnLogin[1]);
+	SummitLoadOpeningMaterialNow(iBtnExit[0]);
+	SummitLoadOpeningMaterialNow(iBtnExit[1]);
+	SummitLoadOpeningMaterialNow(ButtonLoginImage[0]);
+	SummitLoadOpeningMaterialNow(ButtonLoginImage[1]);
+	SummitLoadOpeningMaterialNow(ButtonQuitImage[0]);
+	SummitLoadOpeningMaterialNow(ButtonQuitImage[1]);
+	SummitLoadOpeningMaterialNow(PristonLogoImage);
+	SummitLoadOpeningMaterialNow(BlackBoxImage);
+	SummitLoadOpeningMaterialNow(WhiteBoxImage);
 
 	Message.Init();
 	MessageBox.Init();
 
 	ReadTexSettings();
-	ReadTextures();
 
 	if (Stage)
 	{
@@ -743,6 +886,7 @@ bool clickable = true;
 
 int HoOpening::Draw()
 {
+	SummitPumpOpeningStagePreload(this);
 	smRender.SMMULT_PERSPECTIVE_HEIGHT = RENDCLIP_WIDE_MULT_PERSPECTIVE_HEIGHT;
 
 	MidX = SETTINGSHANDLER->getWidth() / 2;
@@ -757,9 +901,9 @@ int HoOpening::Draw()
 	startAccountAddX = 230;
 	startAccountAddY = 290;
 
-	{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW before FastFade MouseButton0=%d x=%ld y=%ld CWS=%d NWS=%d LB=%d SB=%d\n", MouseButton[0], pCursorPos.x, pCursorPos.y, CurrentWorkState, NextWorkState, LoginBlendValue, ScreenBlendValue); fclose(f);} }
+	{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"DRAW before FastFade MouseButton0=%d x=%ld y=%ld CWS=%d NWS=%d LB=%d SB=%d\n", MouseButton[0], pCursorPos.x, pCursorPos.y, CurrentWorkState, NextWorkState, LoginBlendValue, ScreenBlendValue); fclose(f);} }
 	FastFade();
-	{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW after FastFade MouseButton0=%d x=%ld y=%ld CWS=%d NWS=%d LB=%d SB=%d\n", MouseButton[0], pCursorPos.x, pCursorPos.y, CurrentWorkState, NextWorkState, LoginBlendValue, ScreenBlendValue); fclose(f);} }
+	{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"DRAW after FastFade MouseButton0=%d x=%ld y=%ld CWS=%d NWS=%d LB=%d SB=%d\n", MouseButton[0], pCursorPos.x, pCursorPos.y, CurrentWorkState, NextWorkState, LoginBlendValue, ScreenBlendValue); fclose(f);} }
 
 	dsDrawTexImage(Back, (smScreenWidth / 2 - smScreenWidth / 2), (smScreenHeight / 2 - smScreenHeight / 2), smScreenWidth, smScreenHeight, 255);
 
@@ -781,16 +925,16 @@ int HoOpening::Draw()
 	dsTextLineOut(SETTINGSHANDLER->getWidth() - 60, 15, Version, strlen(Version));
 
 
-	{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW before cSettings.isOpen block isOpen=%d MouseButton0=%d\n", cSettings.isOpen(), MouseButton[0]); fclose(f);} }
+	{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"DRAW before cSettings.isOpen block isOpen=%d MouseButton0=%d\n", cSettings.isOpen(), MouseButton[0]); fclose(f);} }
 	if (cSettings.isOpen())
 	{
 		if (MouseButton[0])
 			MouseButton[0] = 0;
 	}
-	{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW after cSettings.isOpen block MouseButton0=%d\n", MouseButton[0]); fclose(f);} }
+	{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"DRAW after cSettings.isOpen block MouseButton0=%d\n", MouseButton[0]); fclose(f);} }
 
 	//setings engrenagem
-	{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW before settings gear check MouseButton0=%d x=%ld y=%ld\n", MouseButton[0], pCursorPos.x, pCursorPos.y); fclose(f);} }
+	{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"DRAW before settings gear check MouseButton0=%d x=%ld y=%ld\n", MouseButton[0], pCursorPos.x, pCursorPos.y); fclose(f);} }
 	if ((pCursorPos.x > 590) && (pCursorPos.x < 750) &&
 		(pCursorPos.y > 15) && (pCursorPos.y < 51))
 	{
@@ -810,7 +954,7 @@ int HoOpening::Draw()
 		dsDrawTexImage(iSettingsButton[0], MidX - 98, MidY - 350, 161, 59, 255);
 	};
 
-	{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW before login hover/button checks MouseButton0=%d x=%ld y=%ld startLogoX=%d startLogoY=%d\n", MouseButton[0], pCursorPos.x, pCursorPos.y, startLogoX, startLogoY); fclose(f);} }
+	{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"DRAW before login hover/button checks MouseButton0=%d x=%ld y=%ld startLogoX=%d startLogoY=%d\n", MouseButton[0], pCursorPos.x, pCursorPos.y, startLogoX, startLogoY); fclose(f);} }
 	if (pCursorPos.x > (startLogoX + 165) &&
 		pCursorPos.y > (startLogoY + 320) &&
 		pCursorPos.x < (startLogoX + 286) &&
@@ -869,19 +1013,19 @@ int HoOpening::Draw()
 
 
 
-	{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW before login input block CWS=%d NWS=%d ScreenBlend=%d LoginBlend=%d MouseButton0=%d\n", CurrentWorkState, NextWorkState, ScreenBlendValue, LoginBlendValue, MouseButton[0]); fclose(f);} }
+	{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"DRAW before login input block CWS=%d NWS=%d ScreenBlend=%d LoginBlend=%d MouseButton0=%d\n", CurrentWorkState, NextWorkState, ScreenBlendValue, LoginBlendValue, MouseButton[0]); fclose(f);} }
 	if (CurrentWorkState == STATE_LOGIN_INPUT && NextWorkState == STATE_LOGIN_INPUT && ScreenBlendValue <= 100)
 	{
-		{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW ENTER login input block\n"); fclose(f);} }
+		{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"DRAW ENTER login input block\n"); fclose(f);} }
 
 		if (LoginBlendValue >= 255)
 		{
 			if (FocusWndFlag == FALSE)
 			{
-				FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"before focus assign hTextWnd=%p hFocusWnd=%p\n",(void*)hTextWnd,(void*)hFocusWnd); fclose(f); }
+				FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"before focus assign hTextWnd=%p hFocusWnd=%p\n",(void*)hTextWnd,(void*)hFocusWnd); fclose(f); }
 				FocusWndFlag = TRUE;
 				hFocusWnd = hTextWnd;
-				f=fopen("NUL","a"); if(f){ fprintf(f,"after focus assign hTextWnd=%p hFocusWnd=%p\n",(void*)hTextWnd,(void*)hFocusWnd); fclose(f); }
+				f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"after focus assign hTextWnd=%p hFocusWnd=%p\n",(void*)hTextWnd,(void*)hFocusWnd); fclose(f); }
 			}
 
 			if (pCursorPos.x > (startLogoX + 155) &&
@@ -961,7 +1105,7 @@ int HoOpening::Draw()
 						char className[64] = { 0 };
 						GetClassNameA(hFocusWnd, className, sizeof(className));
 
-						FILE *f = fopen("NUL", "a");
+						FILE *f = SummitOpeningRuntimeTraceFile("NUL");
 						if (f)
 						{
 							fprintf(
@@ -991,7 +1135,7 @@ int HoOpening::Draw()
 				MINGW_CheckUserAccount("after account KeyFilter");
 
 				{
-					FILE *f = fopen("NUL", "a");
+					FILE *f = SummitOpeningRuntimeTraceFile("NUL");
 					if (f)
 					{
 						fprintf(
@@ -1024,7 +1168,7 @@ int HoOpening::Draw()
 				MINGW_CheckUserAccount("after account KeyFilter");
 
 					{
-						FILE *f = fopen("NUL", "a");
+						FILE *f = SummitOpeningRuntimeTraceFile("NUL");
 						if (f)
 						{
 							fprintf(
@@ -1053,12 +1197,12 @@ int HoOpening::Draw()
 				}
 				else if (LoginInputState == 1)
 				{
-					{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"before GetWindowText UserPassword hFocusWnd=%p\n",(void*)hFocusWnd); fclose(f);} }
+					{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"before GetWindowText UserPassword hFocusWnd=%p\n",(void*)hFocusWnd); fclose(f);} }
 					
 #ifdef __MINGW32__
 				/* MINGW_PASSWORD_PROBE_V1 */
 				{
-					FILE *f = fopen("NUL", "a");
+					FILE *f = SummitOpeningRuntimeTraceFile("NUL");
 					if (f)
 					{
 						fprintf(
@@ -1074,11 +1218,11 @@ int HoOpening::Draw()
 				}
 #endif
 				GetWindowText(hFocusWnd, UserPassword, sizeof(UserPassword));
-					{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"after GetWindowText UserPassword\n"); fclose(f);} }
+					{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"after GetWindowText UserPassword\n"); fclose(f);} }
 					KeyFilter(UserPassword);
 #ifdef __MINGW32__
 				{
-					FILE *f = fopen("NUL", "a");
+					FILE *f = SummitOpeningRuntimeTraceFile("NUL");
 					if (f)
 					{
 						fprintf(
@@ -1094,7 +1238,7 @@ int HoOpening::Draw()
 				}
 #endif
 
-					{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"after KeyFilter UserPassword\n"); fclose(f);} }
+					{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"after KeyFilter UserPassword\n"); fclose(f);} }
 				}
 			}
 
@@ -1102,7 +1246,7 @@ int HoOpening::Draw()
 			{
 				MINGW_CheckUserAccount("before account EM_GETSEL");
 
-				FILE *f = fopen("NUL", "a");
+				FILE *f = SummitOpeningRuntimeTraceFile("NUL");
 				if (f)
 				{
 					fprintf(
@@ -1118,7 +1262,7 @@ int HoOpening::Draw()
 
 				MINGW_CheckUserAccount("after account EM_GETSEL");
 
-				f = fopen("NUL", "a");
+				f = SummitOpeningRuntimeTraceFile("NUL");
 				if (f)
 				{
 					fprintf(f, "after EM_GETSEL End=%d\n", End);
@@ -1126,30 +1270,30 @@ int HoOpening::Draw()
 				}
 			}
 
-			{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"before SetFontTextColor End=%d CaretCount=%d LoginInputState=%d hFocusWnd=%p\n", End, CaretCount, LoginInputState, (void*)hFocusWnd); fclose(f);} }
+			{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"before SetFontTextColor End=%d CaretCount=%d LoginInputState=%d hFocusWnd=%p\n", End, CaretCount, LoginInputState, (void*)hFocusWnd); fclose(f);} }
 			MINGW_CheckUserAccount("before account SetFontTextColor");
 			SetFontTextColor(RGB(255, 255, 255));
 			MINGW_CheckUserAccount("after account SetFontTextColor");
-			{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"after SetFontTextColor\n"); fclose(f);} }
+			{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"after SetFontTextColor\n"); fclose(f);} }
 
 			if (hFocusWnd)
 			{
-				{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"enter caret block CaretCount=%d End=%d\n", CaretCount, End); fclose(f);} }
+				{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"enter caret block CaretCount=%d End=%d\n", CaretCount, End); fclose(f);} }
 				if (CaretCount < 16)
 				{
 					if (End > DISP_LOGIN_LEN) End = DISP_LOGIN_LEN;
 
 					if (LoginInputState == 0)
 					{
-						{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"before caret account draw x=%d y=%d End=%d\n", startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY - 60, End); fclose(f);} }
+						{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"before caret account draw x=%d y=%d End=%d\n", startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY - 60, End); fclose(f);} }
 						dsTextLineOut(startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY - 60, "|", 1);
-						{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"after caret account draw\n"); fclose(f);} }
+						{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"after caret account draw\n"); fclose(f);} }
 					}
 					else if (LoginInputState == 1)
 					{
-						{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"before caret pass draw x=%d y=%d End=%d\n", startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY + 4, End); fclose(f);} }
+						{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"before caret pass draw x=%d y=%d End=%d\n", startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY + 4, End); fclose(f);} }
 						dsTextLineOut(startLogoX + startAccountAddX + 25 + End * 7 + 1, startLogoY + startAccountAddY + 4, "|", 1);
-						{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"after caret pass draw\n"); fclose(f);} }
+						{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"after caret pass draw\n"); fclose(f);} }
 					}
 				}
 
@@ -1158,7 +1302,7 @@ int HoOpening::Draw()
 					CaretCount = 0;
 				
 				{ 
-					FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"after caret block CaretCount=%d\n", CaretCount); fclose(f);} 
+					FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"after caret block CaretCount=%d\n", CaretCount); fclose(f);}
 					MINGW_CheckUserAccount("after account caret block");
 				}
 			}
@@ -1167,13 +1311,13 @@ int HoOpening::Draw()
 
 			sp = 0;
 			len = lstrlen(UserAccount);
-			{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"before account len=%d text=%s\n", len, UserAccount); fclose(f);} }
+			{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"before account len=%d text=%s\n", len, UserAccount); fclose(f);} }
 			if (len > DISP_LOGIN_LEN)
 			{
 				sp = len - DISP_LOGIN_LEN;
 				len -= sp;
 			}
-			{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"before account text draw sp=%d len=%d ptr=%p\n", sp, len, (void*)(UserAccount + sp)); fclose(f);} }
+			{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"before account text draw sp=%d len=%d ptr=%p\n", sp, len, (void*)(UserAccount + sp)); fclose(f);} }
 			MINGW_CheckUserAccount("before account dsTextLineOut");
 			/* MINGW_SAFE_ACCOUNT_DRAW_BEGIN
 			 *
@@ -1275,17 +1419,17 @@ int HoOpening::Draw()
 			/* MINGW_SAFE_ACCOUNT_DRAW_END */
 			MINGW_CheckUserAccount("after account dsTextLineOut");
 			
-			{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"after account text draw\n"); fclose(f);} }
+			{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"after account text draw\n"); fclose(f);} }
 
 			len = lstrlen(UserPassword);
-			{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"before password mask len=%d\n", len); fclose(f);} }
+			{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"before password mask len=%d\n", len); fclose(f);} }
 			if (len > DISP_LOGIN_LEN) len = DISP_LOGIN_LEN;
 
 			for (int count = 0; count < len; count++)
 			{
-				{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"before password star draw count=%d\n", count); fclose(f);} }
+				{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"before password star draw count=%d\n", count); fclose(f);} }
 				dsTextLineOut( startLogoX + startAccountAddX + 25 + count * 6, startLogoY + startAccountAddY + 8, "*", 1);
-				{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"after password star draw count=%d\n", count); fclose(f);} }
+				{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"after password star draw count=%d\n", count); fclose(f);} }
 			}
 
 		}
@@ -1334,13 +1478,13 @@ int HoOpening::Draw()
 	else if (ConnectError == ERROR_UNTIL_LOGINDENIED)
 		DrawMessage(295 + m_AddWidth, 300 + m_AddHeight, HoTextLoginMessage[18], 30);
 
-	{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW before cSettings.Draw\n"); fclose(f);} }
+	{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"DRAW before cSettings.Draw\n"); fclose(f);} }
 	MINGW_CheckUserAccount("before cSettings.Draw");
 	cSettings.Draw();
 	MINGW_CheckUserAccount("after cSettings.Draw");
 
 
-	{ FILE *f=fopen("NUL","a"); if(f){ fprintf(f,"DRAW after cSettings.Draw return TRUE\n"); fclose(f);} }
+	{ FILE *f=SummitOpeningRuntimeTraceFile("NUL"); if(f){ fprintf(f,"DRAW after cSettings.Draw return TRUE\n"); fclose(f);} }
 
 	MINGW_CheckUserAccount("before HoOpening Draw return");
 	return TRUE;
@@ -1791,6 +1935,12 @@ void HoOpening::Close()
 
 int HoOpening::Main()
 {
+	SummitPumpOpeningStagePreload(this);
+	if (Stage && Stage->smMaterialGroup)
+	{
+		AssetLoadV2PrewarmMaterialGroupStep(Stage->smMaterialGroup,
+			SMASSET_OWNER_UI, 1, 2u, 1);
+	}
 	if (ConnectError != ERROR_NONE)
 	{
 		if (ConnectErrorCount >= 160)

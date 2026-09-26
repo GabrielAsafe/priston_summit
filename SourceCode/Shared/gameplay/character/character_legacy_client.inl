@@ -50,6 +50,16 @@ extern BYTE VRKeyBuff[256];
 extern int MouseButton[3];
 extern DWORD dwPlayServTime;
 
+static sFIELD *SummitCharacterCurrentPlayerField()
+{
+	if(!lpCurPlayer)
+		return 0;
+	const int slot = lpCurPlayer->OnStageField;
+	if(slot < 0 || slot >= 2)
+		return 0;
+	return StageField[slot];
+}
+
 static int MatMBlur;
 
 static smTEXLINK smTexLinkMotionBlur[128];
@@ -1078,7 +1088,10 @@ smCHAR::smCHAR()
 
 smCHAR::~smCHAR()
 {
-
+	// Invalidate every async body/tool request before this address can be
+	// recycled.  The generation maps intentionally keep monotonic counters for
+	// the pointer so an old completion can never become current again (ABA).
+	SummitCancelCharacterModelV3(this);
 }
 
 bool smCHAR::isOnField(int Field)
@@ -1905,6 +1918,59 @@ static void CompanionClientDebugLog(const smCHAR *character, const char *eventNa
 	fclose(file);
 }
 
+static void CompanionClientDebugLogSkill(const smCHAR *character, const smCHAR *target, DWORD skillPlayCode,
+    DWORD point, DWORD targetSerial, DWORD desiredMotion, DWORD sequence,
+    int beginResult, int motionResult, bool fallbackUsed, bool targetProxy)
+{
+    if(!CompanionClientDebugEnabled() || !character)
+        return;
+
+    FILE *file = fopen("LOGS\\companion_debug_client.log", "a");
+    if(!file)
+        file = fopen("companion_debug_client.log", "a");
+    if(!file)
+        return;
+
+    fprintf(file,
+        "[%lu] VISUAL_SKILL_DETAIL name='%s' serial=%lu seq=%lu play=0x%02lX point=%lu target=%lu targetFound=%d targetProxy=%d targetState=%d AttackSkil=0x%08X actionItem=0x%08lX desired=%lu beginResult=%d motionResult=%d fallback=%d finalMotion=%d frame=%d RH=0x%08lX LH=0x%08lX\n",
+        (unsigned long)GetTickCount(), character->smCharInfo.szName,
+        (unsigned long)character->dwObjectSerial, (unsigned long)sequence,
+        (unsigned long)skillPlayCode, (unsigned long)point, (unsigned long)targetSerial,
+        target ? 1 : 0, targetProxy ? 1 : 0, target ? (int)target->smCharInfo.State : -1,
+        character->AttackSkil, (unsigned long)character->dwActionItemCode,
+        (unsigned long)desiredMotion, beginResult, motionResult, fallbackUsed ? 1 : 0,
+        character->MotionInfo ? (int)character->MotionInfo->State : -1, character->frame,
+        (unsigned long)character->HvRightHand.dwItemCode,
+        (unsigned long)character->HvLeftHand.dwItemCode);
+    fflush(file);
+    fclose(file);
+}
+
+
+static void CompanionClientDebugLogSkillEvent(const smCHAR *character, DWORD sequence,
+    bool forced, int eventResult, int motionEventBefore, int motionEventAfter)
+{
+    if(!CompanionClientDebugEnabled() || !character)
+        return;
+
+    FILE *file = fopen("LOGS\\companion_debug_client.log", "a");
+    if(!file)
+        file = fopen("companion_debug_client.log", "a");
+    if(!file)
+        return;
+
+    fprintf(file,
+        "[%lu] VISUAL_SKILL_EVENT name='%s' serial=%lu seq=%lu forced=%d eventResult=%d MotionEvent=%d->%d AttackSkil=0x%08X motion=%d frame=%d\\n",
+        (unsigned long)GetTickCount(), character->smCharInfo.szName,
+        (unsigned long)character->dwObjectSerial, (unsigned long)sequence,
+        forced ? 1 : 0, eventResult, motionEventBefore, motionEventAfter,
+        character->AttackSkil,
+        character->MotionInfo ? (int)character->MotionInfo->State : -1,
+        character->frame);
+    fflush(file);
+    fclose(file);
+}
+
 static bool IsCompanionTwoHandCodeClient(DWORD code)
 {
 	if(!code)
@@ -1943,7 +2009,11 @@ struct Runtime
         : active(false), objectSerial(0), targetX(0), targetY(0), targetZ(0), angleY(0),
           motionState(CHRMOTION_STATE_STAND), motionSequence(0), appliedMotionSequence(0),
           life(0), maxLife(0), rightItemCode(0), leftItemCode(0), equipmentRevision(0),
-          appliedEquipmentRevision(0), flags(0), lastPacketTick(0)
+          appliedEquipmentRevision(0), logicalSkillCode(0), skillPlayCode(0), skillPoint(0), skillTargetSerial(0),
+          skillTargetX(0), skillTargetY(0), skillTargetZ(0),
+          skillMotionState(0), skillSequence(0), appliedSkillSequence(0),
+          skillVisualPending(false), skillVisualStartedTick(0), skillAttackValue(0), skillEffectDispatched(false),
+          flags(0), lastPacketTick(0)
     {
         characterName[0] = 0;
     }
@@ -1964,11 +2034,91 @@ struct Runtime
     DWORD leftItemCode;
     DWORD equipmentRevision;
     DWORD appliedEquipmentRevision;
+    DWORD logicalSkillCode;
+    DWORD skillPlayCode;
+    DWORD skillPoint;
+    DWORD skillTargetSerial;
+    int skillTargetX;
+    int skillTargetY;
+    int skillTargetZ;
+    DWORD skillMotionState;
+    DWORD skillSequence;
+    DWORD appliedSkillSequence;
+    bool skillVisualPending;
+    DWORD skillVisualStartedTick;
+    int skillAttackValue;
+    bool skillEffectDispatched;
     DWORD flags;
     DWORD lastPacketTick;
 };
 
 static Runtime g_runtime[protocol::COMPANION_VISUAL_MAX_ACTIVE];
+
+// Visual-only target proxies keep legacy particle/projectile code working when
+// an authoritative skill killed its target before the visual packet arrived.
+// Some old effects retain the target pointer for a short time, so use a small
+// persistent pool instead of a stack object.
+struct SkillTargetProxy
+{
+    SkillTargetProxy() : character(NULL), serial(0), lastUseTick(0) {}
+    smCHAR *character;
+    DWORD serial;
+    DWORD lastUseTick;
+};
+
+static SkillTargetProxy g_skillTargetProxies[32];
+
+static smCHAR *AcquireSkillTargetProxy(DWORD serial, int x, int y, int z)
+{
+    if(!serial)
+        return NULL;
+
+    const DWORD now = GetTickCount();
+    int selected = -1;
+    DWORD oldestAge = 0;
+    for(int i = 0; i < 32; ++i)
+    {
+        if(g_skillTargetProxies[i].character && g_skillTargetProxies[i].serial == serial)
+        {
+            selected = i;
+            break;
+        }
+        if(!g_skillTargetProxies[i].character ||
+           (DWORD)(now - g_skillTargetProxies[i].lastUseTick) >= 8000U)
+        {
+            selected = i;
+            break;
+        }
+        const DWORD age = (DWORD)(now - g_skillTargetProxies[i].lastUseTick);
+        if(selected < 0 || age > oldestAge)
+        {
+            selected = i;
+            oldestAge = age;
+        }
+    }
+
+    if(selected < 0)
+        return NULL;
+    SkillTargetProxy &slot = g_skillTargetProxies[selected];
+    if(!slot.character)
+        slot.character = new smCHAR();
+    if(!slot.character)
+        return NULL;
+
+    slot.serial = serial;
+    slot.lastUseTick = now;
+    slot.character->Flag = TRUE;
+    slot.character->DisplayFlag = FALSE;
+    slot.character->dwObjectSerial = serial;
+    slot.character->pX = x;
+    slot.character->pY = y;
+    slot.character->pZ = z;
+    slot.character->PHeight = y;
+    slot.character->smCharInfo.State = smCHAR_STATE_ENEMY;
+    slot.character->smCharInfo.Life[0] = 1;
+    slot.character->smCharInfo.Life[1] = 1;
+    return slot.character;
+}
 
 static Runtime *Find(DWORD objectSerial)
 {
@@ -2028,6 +2178,7 @@ void ApplyPacket(const protocol::CompanionVisualStatePacket &packet)
         const DWORD oldSerial = runtime->objectSerial;
         const DWORD oldAppliedMotion = runtime->appliedMotionSequence;
         const DWORD oldAppliedEquipment = runtime->appliedEquipmentRevision;
+        const DWORD oldAppliedSkill = runtime->appliedSkillSequence;
         runtime->active = true;
         runtime->objectSerial = entry.objectSerial;
         strcpy_s(runtime->characterName, sizeof(runtime->characterName), entry.characterName);
@@ -2042,6 +2193,15 @@ void ApplyPacket(const protocol::CompanionVisualStatePacket &packet)
         runtime->rightItemCode = entry.rightItemCode;
         runtime->leftItemCode = entry.leftItemCode;
         runtime->equipmentRevision = entry.equipmentRevision ? entry.equipmentRevision : 1U;
+        runtime->logicalSkillCode = entry.logicalSkillCode;
+        runtime->skillPlayCode = entry.skillPlayCode;
+        runtime->skillPoint = entry.skillPoint;
+        runtime->skillTargetSerial = entry.skillTargetSerial;
+        runtime->skillTargetX = entry.skillTargetX;
+        runtime->skillTargetY = entry.skillTargetY;
+        runtime->skillTargetZ = entry.skillTargetZ;
+        runtime->skillMotionState = entry.skillMotionState;
+        runtime->skillSequence = entry.skillSequence;
         runtime->flags = entry.flags;
         runtime->lastPacketTick = GetTickCount();
         const int runtimeIndex = (int)(runtime - g_runtime);
@@ -2052,6 +2212,7 @@ void ApplyPacket(const protocol::CompanionVisualStatePacket &packet)
         {
             runtime->appliedMotionSequence = oldAppliedMotion;
             runtime->appliedEquipmentRevision = oldAppliedEquipment;
+            runtime->appliedSkillSequence = oldAppliedSkill;
         }
     }
 
@@ -2070,7 +2231,7 @@ void ApplyPacket(const protocol::CompanionVisualStatePacket &packet)
     }
 }
 
-static void AdvanceLocalMotion(smCHAR *character)
+static void AdvanceLocalMotion(smCHAR *character, Runtime &runtime)
 {
     if(!character || !character->MotionInfo)
         return;
@@ -2081,19 +2242,84 @@ static void AdvanceLocalMotion(smCHAR *character)
     if(character->frame < startFrame || character->frame > endFrame)
         character->frame = startFrame;
 
+    // Companion Visual Runtime owns ActionPattern 99 and therefore bypasses the
+    // legacy branch that normally calls EventAttack(). Keep the SKILL_PLAY token
+    // alive while advancing the local clip and explicitly bridge the animation
+    // event so EventSkill() can create sounds/particles/projectiles. Gameplay
+    // damage remains server-authoritative because this renderer is not lpCurPlayer.
+    if(runtime.skillVisualPending && runtime.skillAttackValue > 0)
+        character->AttackSkil = runtime.skillAttackValue;
+
     if(character->frame < endFrame)
         character->frame += 80;
+
+    if(runtime.skillVisualPending && runtime.skillAttackValue > 0 &&
+       character->MotionInfo &&
+       (character->MotionInfo->State == CHRMOTION_STATE_ATTACK ||
+        character->MotionInfo->State == CHRMOTION_STATE_SKILL))
+    {
+        const DWORD elapsed = (DWORD)(GetTickCount() - runtime.skillVisualStartedTick);
+        if(!runtime.skillEffectDispatched)
+        {
+            const int before = character->MotionEvent;
+            const int eventResult = character->EventAttack(FALSE);
+            const int after = character->MotionEvent;
+            if(after != before)
+            {
+                runtime.skillEffectDispatched = true;
+                CompanionClientDebugLogSkillEvent(character, runtime.skillSequence,
+                    false, eventResult, before, after);
+            }
+
+            // Some legacy player motion sets have no usable EventFrame for a
+            // remote renderer. Do not wait until the clip has already ended:
+            // after a short grace window dispatch EventSkill directly once.
+            // This is presentation-only because the companion is not lpCurPlayer.
+            if(!runtime.skillEffectDispatched && elapsed >= 350U)
+            {
+                character->AttackSkil = runtime.skillAttackValue;
+                const int directBefore = character->MotionEvent;
+                ++character->MotionEvent;
+                const int directResult = character->EventSkill();
+                runtime.skillEffectDispatched = true;
+                CompanionClientDebugLogSkillEvent(character, runtime.skillSequence,
+                    true, directResult, directBefore, character->MotionEvent);
+            }
+        }
+
+        if(elapsed >= 2500U)
+        {
+            runtime.skillVisualPending = false;
+            character->AttackSkil = 0;
+        }
+    }
 
     if(character->frame >= endFrame)
     {
         if(character->MotionInfo->Repeat && motionLength > 0 &&
-            character->MotionInfo->State != CHRMOTION_STATE_DEAD)
+            character->MotionInfo->State != CHRMOTION_STATE_DEAD &&
+            !runtime.skillVisualPending)
         {
             character->frame = startFrame + ((character->frame - startFrame) % motionLength);
         }
         else
         {
             character->frame = endFrame;
+            if(runtime.skillVisualPending)
+            {
+                if(!runtime.skillEffectDispatched && runtime.skillAttackValue > 0)
+                {
+                    character->AttackSkil = runtime.skillAttackValue;
+                    const int directBefore = character->MotionEvent;
+                    ++character->MotionEvent;
+                    const int directResult = character->EventSkill();
+                    runtime.skillEffectDispatched = true;
+                    CompanionClientDebugLogSkillEvent(character, runtime.skillSequence,
+                        true, directResult, directBefore, character->MotionEvent);
+                }
+                runtime.skillVisualPending = false;
+                character->AttackSkil = 0;
+            }
         }
     }
 
@@ -2134,6 +2360,97 @@ static void ApplyEquipment(smCHAR *character, Runtime &runtime)
     CompanionClientDebugLog(character, "VISUAL_EQUIP_AFTER", runtime.motionState, runtime.motionSequence);
 }
 
+static void ApplySkillEvent(smCHAR *character, Runtime &runtime)
+{
+    if(!character || !runtime.skillSequence ||
+       runtime.appliedSkillSequence == runtime.skillSequence || !runtime.skillPlayCode)
+        return;
+
+    DWORD point = runtime.skillPoint;
+    if(point < 1) point = 1;
+    if(point > 10) point = 10;
+
+    smCHAR *target = runtime.skillTargetSerial ? FindChrPlayer(runtime.skillTargetSerial) : NULL;
+    bool targetProxy = false;
+    if(!target && runtime.skillTargetSerial)
+    {
+        target = AcquireSkillTargetProxy(runtime.skillTargetSerial,
+            runtime.skillTargetX, runtime.skillTargetY, runtime.skillTargetZ);
+        targetProxy = target != NULL;
+    }
+    character->chrAttackTarget = target;
+    DWORD presentationPlayCode = runtime.skillPlayCode;
+    if(runtime.logicalSkillCode)
+    {
+        const int resolved = SummitT5PrepareRemoteCompanionVisual(character, (int)runtime.logicalSkillCode,
+            (int)runtime.skillPlayCode, (int)point, target);
+        if(resolved) presentationPlayCode = (DWORD)resolved;
+    }
+    const int attackSkill = (int)(presentationPlayCode | (point << 8));
+    character->AttackSkil = attackSkill;
+    character->MotionSelectFrame = 0;
+
+    // BeginSkill is client-side presentation here: casting sounds/particles and
+    // AttackEffect setup. Gameplay effects remain exclusively server-authoritative.
+    // AttackCritcal is a local presentation gate in many legacy EventSkill
+    // branches. SetTool and unrelated remote motion paths can leave it at -1;
+    // a remote companion has no client-side hit/miss authority, so always
+    // reset it before dispatching an authoritative visual cast.
+    character->AttackCritcal = 0;
+    const int beginResult = character->BeginSkill(character->AttackSkil, 0, target, 0, 0, 0);
+
+    DWORD desired = runtime.skillMotionState ? runtime.skillMotionState : (DWORD)CHRMOTION_STATE_SKILL;
+    const int motionResult = character->SetMotionFromCode(desired);
+
+    // Legacy SetMotionFromCode has a misleading return contract: it can select
+    // FoundNum[0] successfully and still return 0 when the second item-code
+    // filter produced no FoundNum2 entries. Never overwrite a clip that was
+    // actually selected just because that legacy return value is zero.
+    const bool desiredSelected = character->MotionInfo &&
+        (DWORD)character->MotionInfo->State == desired;
+    bool fallbackUsed = false;
+    if(!desiredSelected && desired == CHRMOTION_STATE_SKILL)
+    {
+        fallbackUsed = true;
+        character->SetMotionFromCode(CHRMOTION_STATE_ATTACK);
+    }
+
+    if(character->MotionInfo)
+    {
+        character->frame = character->MotionInfo->StartFrame * 160;
+        character->FrameInfo.StartFrame = character->MotionInfo->StartFrame * 160;
+        character->FrameInfo.EndFrame = character->MotionInfo->EndFrame * 160;
+    }
+    if((runtime.skillPlayCode & 0xFF) == SKILL_PLAY_FARINA)
+    {
+        character->MotionLoopSpeed = GetAttackSpeedFrame(character->smCharInfo.Attack_Speed, Farina_Speed[point - 1]);
+        character->MotionLoop = 1;
+    }
+    else if((runtime.skillPlayCode & 0xFF) == SKILL_PLAY_CHARGING_STRIKE)
+    {
+        character->MotionLoopSpeed = 60 + (Charging_Strike_Time[point - 1] * 2);
+        character->MotionLoop = 1;
+    }
+
+    // SetMotionFromCode(ATTACK) may clear AttackSkil. Restore it after selecting
+    // the clip so ranged/projectile skills still reach EventSkill().
+    character->AttackSkil = attackSkill;
+    character->MotionEvent = 0;
+    runtime.skillAttackValue = attackSkill;
+    runtime.skillVisualStartedTick = GetTickCount();
+    runtime.skillEffectDispatched = false;
+    runtime.skillVisualPending = true;
+
+    runtime.appliedSkillSequence = runtime.skillSequence;
+    // The skill event already applied the motion corresponding to this visual
+    // snapshot. Prevent generic ApplyMotion from immediately clearing AttackSkil
+    // and restarting the same clip on this frame.
+    runtime.appliedMotionSequence = runtime.motionSequence;
+    CompanionClientDebugLogSkill(character, target, runtime.skillPlayCode, point, runtime.skillTargetSerial,
+        desired, runtime.skillSequence, beginResult, motionResult, fallbackUsed, targetProxy);
+    CompanionClientDebugLog(character, "VISUAL_SKILL", desired, runtime.skillSequence);
+}
+
 static void ApplyMotion(smCHAR *character, Runtime &runtime)
 {
     if(!character)
@@ -2145,6 +2462,17 @@ static void ApplyMotion(smCHAR *character, Runtime &runtime)
     const bool stateMismatch = !character->MotionInfo || (DWORD)character->MotionInfo->State != desired;
     if(runtime.appliedMotionSequence == runtime.motionSequence && !(looping && stateMismatch))
         return;
+
+    // Do not let a newer generic ATTACK/STAND snapshot cut off the local skill
+    // clip before its EventFrame has had a chance to run. DEAD remains urgent.
+    if(runtime.skillVisualPending && desired != CHRMOTION_STATE_DEAD)
+        return;
+    if(desired == CHRMOTION_STATE_DEAD)
+    {
+        runtime.skillVisualPending = false;
+        runtime.skillAttackValue = 0;
+        runtime.skillEffectDispatched = false;
+    }
 
     character->AttackSkil = 0;
     character->MotionSelectFrame = 0;
@@ -2198,7 +2526,10 @@ bool Update(smCHAR *character)
     const int dx = runtime->targetX - character->pX;
     const int dy = runtime->targetY - character->pY;
     const int dz = runtime->targetZ - character->pZ;
-    const int snap = 512 * fONE;
+    // Server hard-leash teleports start at 500 units.  Snap slightly below that
+    // threshold so the client cannot interpolate a real teleport over several
+    // frames (which can make the model appear suspended above uneven ground).
+    const int snap = 400 * fONE;
     if(dx > snap || dx < -snap || dz > snap || dz < -snap)
     {
         character->pX = runtime->targetX;
@@ -2218,13 +2549,14 @@ bool Update(smCHAR *character)
     character->Angle.y = runtime->angleY;
 
     ApplyEquipment(character, *runtime);
+    ApplySkillEvent(character, *runtime);
     ApplyMotion(character, *runtime);
 
     character->MotionSelectFrame = 0;
     character->PatDispMode = (character->Pattern2 && character->lpDinaPattern2)
         ? (DISP_MODE_PATMAIN | DISP_MODE_PATSUB)
         : DISP_MODE_PATMAIN;
-    AdvanceLocalMotion(character);
+    AdvanceLocalMotion(character, *runtime);
     character->DisplayFlag = TRUE;
     character->MoveCnt = 0;
     if(character->MotionInfo)
@@ -3082,6 +3414,25 @@ static int SummitMotionSkillIndexMatches(
 }
 
 
+// Rank5 motion names are not guaranteed to exist in every legacy character pack.
+// Resolve a class-local animation fallback only when the requested T5 motion has
+// no direct match. AttackSkil remains T52/T53, so gameplay/network identity is
+// never rewritten to the legacy skill.
+static int SummitT5LegacyMotionFallbackPlayCode(DWORD jobCode, int playCode)
+{
+	if(jobCode == JOBCODE_PIKEMAN)
+	{
+		switch(playCode & 0xFF)
+		{
+		case SKILL_PLAY_T52: return SKILL_PLAY_VAGUE;
+		case SKILL_PLAY_T53: return SKILL_PLAY_SHADOW_MASTER;
+		case SKILL_PLAY_T54: return SKILL_PLAY_TORNADO;
+		}
+	}
+	return 0;
+}
+
+
 static const char *SummitMotionSkillABIName(int registryABI)
 {
     switch(registryABI)
@@ -3127,8 +3478,8 @@ static int SummitMotionTemporaryPlayCode(BYTE storedIndex, DWORD jobMask)
 }
 
 // EU's canonical SkillManager table stores only four T5 entries per class.
-// Diagnostic only: do not use this mapping for runtime matching until a trace
-// proves that an INX was produced with the EU canonical table ordering.
+// Runtime fallback only: this ABI is tested in a second pass after the normal
+// Summit/legacy mappings fail, because EU canonical indices overlap Summit indices.
 static int SummitMotionEUCanonicalT5PlayCode(BYTE storedIndex, DWORD jobMask)
 {
     int firstIndex = 0;
@@ -3551,6 +3902,68 @@ int smCHAR::SetMotionFromCode(DWORD MotionCode)
 
 	if(atSkill)
 		SummitTraceT5MotionLookup(smMotionInfo, lpDinaPattern, dwJobCodeMask, smCharInfo.JOB_CODE, atSkill, motionSkillRegistryABI, FindCnt, FoundNum);
+
+	// Some production INX/SMB packs were authored with the canonical EU SkillManager
+	// registry, which has exactly four Rank5 entries per class. Only try that ABI
+	// after every Summit/legacy ABI lookup failed; mixing the index spaces in the
+	// primary matcher would create false positives because their numeric ranges overlap.
+	if(FindCnt == 0 && atSkill &&
+		((atSkill & 0xFF) >= SKILL_PLAY_T51 && (atSkill & 0xFF) <= SKILL_PLAY_T54))
+	{
+		const int requestedT5 = atSkill & 0xFF;
+		for(cnt = 0; cnt < (int)smMotionInfo->MotionCount; cnt++)
+		{
+			if(smMotionInfo->MotionInfo[cnt].State != MotionCode ||
+				(smMotionInfo->MotionInfo[cnt].MapPosition && !(smMotionInfo->MotionInfo[cnt].MapPosition & StageVillage)) ||
+				(smMotionInfo->MotionInfo[cnt].dwJobCodeBit && dwJobCodeMask &&
+				 !(smMotionInfo->MotionInfo[cnt].dwJobCodeBit & dwJobCodeMask)))
+				continue;
+
+			for(cnt2 = 0; cnt2 < MOTION_SKIL_MAX; cnt2++)
+			{
+				const BYTE storedSkill = smMotionInfo->MotionInfo[cnt].SkillCodeList[cnt2];
+				if(!storedSkill) break;
+				if(SummitMotionEUCanonicalT5PlayCode(storedSkill, dwJobCodeMask) == requestedT5)
+				{
+					FoundNum[FindCnt++] = cnt;
+					break;
+				}
+			}
+			if(FindCnt >= 32) break;
+		}
+	}
+
+	// If a Rank5 motion is still absent from this model pack, select a proven
+	// class-local legacy motion when one exists, while keeping AttackSkil/logical
+	// T5 identity untouched. This is a visual-only fallback.
+	if(FindCnt == 0 && atSkill)
+	{
+		const int fallbackSkillCode = SummitT5LegacyMotionFallbackPlayCode(smCharInfo.JOB_CODE, atSkill & 0xFF);
+		if(fallbackSkillCode)
+		{
+			for(cnt = 0; cnt < (int)smMotionInfo->MotionCount; cnt++)
+			{
+				if(smMotionInfo->MotionInfo[cnt].State != MotionCode ||
+					(smMotionInfo->MotionInfo[cnt].MapPosition && !(smMotionInfo->MotionInfo[cnt].MapPosition & StageVillage)) ||
+					(smMotionInfo->MotionInfo[cnt].dwJobCodeBit && dwJobCodeMask &&
+					 !(smMotionInfo->MotionInfo[cnt].dwJobCodeBit & dwJobCodeMask)))
+					continue;
+
+				for(cnt2 = 0; cnt2 < MOTION_SKIL_MAX; cnt2++)
+				{
+					const BYTE storedSkill = smMotionInfo->MotionInfo[cnt].SkillCodeList[cnt2];
+					if(!storedSkill) break;
+					if(SummitMotionSkillIndexMatches(storedSkill, fallbackSkillCode,
+						dwJobCodeMask, motionSkillRegistryABI))
+					{
+						FoundNum[FindCnt++] = cnt;
+						break;
+					}
+				}
+				if(FindCnt >= 32) break;
+			}
+		}
+	}
 
 	if (FindCnt == 0 && AnimDispMode && lpDinaPattern2)
 	{
@@ -6374,12 +6787,12 @@ int smCHAR::Main()
 					cTrade.CancelTradeItem();
 				}
 
-				if (FrameCounter >= 70 * 10 && lpCurPlayer->OnStageField >= 0)
+				if (FrameCounter >= 70 * 10 && SummitCharacterCurrentPlayerField())
 				{
 
 					sITEMINFO *lpItemInfo = 0;
                     //Mapas Ressu
-					if (StageField[lpCurPlayer->OnStageField]->State == FIELD_STATE_CASTLE)
+					if (SummitCharacterCurrentPlayerField()->State == FIELD_STATE_CASTLE)
 						lpItemInfo = FindItemFromCode(sinBC1 | sin05);
 
 
@@ -11187,7 +11600,7 @@ int smCHAR::PlayAttack(int EventFlag)
 					{
 
 						if (sinQuest_ChangeJob4.CODE == SIN_QUEST_CODE_CHANGEJOB4 &&
-							lpCurPlayer->OnStageField >= 0 && StageField[lpCurPlayer->OnStageField]->FieldCode == QUEST_ARENA_FIELD)
+							SummitCharacterCurrentPlayerField() && SummitCharacterCurrentPlayerField()->FieldCode == QUEST_ARENA_FIELD)
 						{
 
 							OpenEachPlayer(this);
@@ -11551,9 +11964,9 @@ int smCHAR::FormSetPlayerInfo()
 
 	if (this != lpCurPlayer && lpCurPlayer->MotionInfo->State == CHRMOTION_STATE_STAND && abs(lpCurPlayer->pX - pX) < 32 * fONE && abs(lpCurPlayer->pZ - pZ) < 32 * fONE)
 	{
-		if (lpCurPlayer->OnStageField >= 0)
+		if (SummitCharacterCurrentPlayerField())
 		{
-			if (StageField[lpCurPlayer->OnStageField]->CheckStartPoint(lpCurPlayer->pX, lpCurPlayer->pZ) == TRUE)
+			if (SummitCharacterCurrentPlayerField()->CheckStartPoint(lpCurPlayer->pX, lpCurPlayer->pZ) == TRUE)
 			{
 				lpCurPlayer->MoveFlag = TRUE;
 				lpCurPlayer->MoveCnt = 100;
@@ -12197,9 +12610,9 @@ int smCHAR::RecvPlayData2(char *lpData)
 			}
 		}
 		
-		if (lpCurPlayer->OnStageField >= 0 &&
-			((StageField[lpCurPlayer->OnStageField]->State == FIELD_STATE_CASTLE && CastleBattleZone_LineZ > lpCurPlayer->pZ) ||
-			(StageField[lpCurPlayer->OnStageField]->FieldCode == PK_FieldState.FieldCode && PK_FieldState.dwPlay_FieldTime > dwPlayTime && !PartyFlag)
+		if (SummitCharacterCurrentPlayerField() &&
+			((SummitCharacterCurrentPlayerField()->State == FIELD_STATE_CASTLE && CastleBattleZone_LineZ > lpCurPlayer->pZ) ||
+			(SummitCharacterCurrentPlayerField()->FieldCode == PK_FieldState.FieldCode && PK_FieldState.dwPlay_FieldTime > dwPlayTime && !PartyFlag)
 				))
 		{
 			{
@@ -12207,7 +12620,7 @@ int smCHAR::RecvPlayData2(char *lpData)
 					(smCharInfo.ClassClan == 0 || smCharInfo.ClassClan != lpCurPlayer->smCharInfo.ClassClan))
 				{
 
-					if (StageField[lpCurPlayer->OnStageField]->FieldCode != PK_FieldState.FieldCode || !PartyFlag)
+					if (SummitCharacterCurrentPlayerField()->FieldCode != PK_FieldState.FieldCode || !PartyFlag)
 					{
 						PkMode_CharState = smCharInfo.State;
 						smCharInfo.State = smCHAR_STATE_ENEMY;
@@ -12216,8 +12629,8 @@ int smCHAR::RecvPlayData2(char *lpData)
 			}
 		}
 		//PvP Mode
-  else if (lpCurPlayer->OnStageField >= 0 && PlayerPvPMode == 1 && PlayerPvPMode == lpCurPlayer->PlayerPvPMode && StageField[lpCurPlayer->OnStageField]->State != FIELD_STATE_CASTLE &&
-			    StageField[lpCurPlayer->OnStageField]->State != FIELD_STATE_VILLAGE && StageField[lpCurPlayer->OnStageField]->FieldCode != 23 && !PartyFlag)
+  else if (SummitCharacterCurrentPlayerField() && PlayerPvPMode == 1 && PlayerPvPMode == lpCurPlayer->PlayerPvPMode && SummitCharacterCurrentPlayerField()->State != FIELD_STATE_CASTLE &&
+			    SummitCharacterCurrentPlayerField()->State != FIELD_STATE_VILLAGE && SummitCharacterCurrentPlayerField()->FieldCode != 23 && !PartyFlag)
 	   {
 			if (PkMode_CharState == 0 && smCharInfo.State == smCHAR_STATE_USER &&
 				(smCharInfo.ClassClan == 0 || smCharInfo.ClassClan != lpCurPlayer->smCharInfo.ClassClan))
@@ -12542,7 +12955,7 @@ int smCHAR::RecvPlayData(smTHREADSOCK *pData)
 		{
 			memcpy(&AttackTrans, (TRANS_ATTACKDATA *)pData->Buff, sizeof(TRANS_ATTACKDATA));
 			XorAttackTrans();
-			if (PkMode_CharState || (lpCurPlayer->OnStageField >= 0 && StageField[lpCurPlayer->OnStageField]->FieldCode == rsCASTLE_FIELD))
+			if (PkMode_CharState || (SummitCharacterCurrentPlayerField() && SummitCharacterCurrentPlayerField()->FieldCode == rsCASTLE_FIELD))
 				PlayAttack(TRUE);
 			else
 				PlayAttack();
@@ -18074,7 +18487,7 @@ int scITEM::Draw()
 
 
 
-	if ((lpCurPlayer->OnStageField >= 0 && StageField[lpCurPlayer->OnStageField]->FieldCode == rsSOD_FIELD))//
+	if ((SummitCharacterCurrentPlayerField() && SummitCharacterCurrentPlayerField()->FieldCode == rsSOD_FIELD))//
 	{ // coloca mana no chão de sod
 		if ((ItemCode&sinITEM_MASK2) == sinPM1 || (ItemCode&sinITEM_MASK2) == sinSD2)
 		{

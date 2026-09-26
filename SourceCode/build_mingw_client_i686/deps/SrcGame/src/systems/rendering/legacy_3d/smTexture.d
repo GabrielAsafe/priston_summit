@@ -3,6 +3,7 @@
  Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl \
  SrcGame/src/core/concurrency/JobSystem.h \
  Shared/rendering/assets/v2/AssetLoadRegistry.h \
+ SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h \
  SrcGame/src/systems/rendering/legacy_3d/smd3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
  Dependency/DirectX9/Include/d3d9.h \
@@ -49,6 +50,7 @@
 Shared/rendering/legacy_3d/material/smTexture_legacy_client.inl:
 SrcGame/src/core/concurrency/JobSystem.h:
 Shared/rendering/assets/v2/AssetLoadRegistry.h:
+SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h:
 SrcGame/src/systems/rendering/legacy_3d/smd3d.h:
 SrcGame/src/systems/rendering/legacy_3d/smDsx.h:
 Dependency/DirectX9/Include/d3d9.h:

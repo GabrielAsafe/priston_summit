@@ -49,6 +49,7 @@
  SrcGame/src/systems/combat/pvp/Score.h \
  SrcGame/src/systems/gameplay/character/core/CharacterModelStreamingV3.h \
  SrcGame/src/systems/rendering/sky/SkyStreamingV3.h \
+ SrcGame/src/systems/rendering/effects/legacy_sin/AssaUtil.h \
  SrcGame/src/core/concurrency/JobSystem.h \
  SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h \
  SrcGame/src/core/gameplay/runtime/playmain.h \
@@ -116,7 +117,6 @@
  SrcGame/src/systems/combat/skills/legacy_sin/sinSkillEffect.h \
  SrcGame/src/systems/gameplay/world_events/legacy_sin/sinEvent.h \
  SrcGame/src/systems/rendering/effects/legacy_sin/sinPublicEffect.h \
- SrcGame/src/systems/rendering/effects/legacy_sin/AssaUtil.h \
  SrcGame/src/systems/rendering/effects/legacy_sin/AssaEffect.h \
  SrcGame/src/systems/rendering/effects/legacy_sin/sinAssaParticle.h \
  SrcGame/src/systems/rendering/effects/legacy_sin/AssaTestParticle.h \
@@ -248,6 +248,7 @@ SrcGame/src/systems/gameplay/character/core/character.h:
 SrcGame/src/systems/combat/pvp/Score.h:
 SrcGame/src/systems/gameplay/character/core/CharacterModelStreamingV3.h:
 SrcGame/src/systems/rendering/sky/SkyStreamingV3.h:
+SrcGame/src/systems/rendering/effects/legacy_sin/AssaUtil.h:
 SrcGame/src/core/concurrency/JobSystem.h:
 SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h:
 SrcGame/src/core/gameplay/runtime/playmain.h:
@@ -315,7 +316,6 @@ Shared/gameplay/quests/legacy/SinQuestLegacyShared.h:
 SrcGame/src/systems/combat/skills/legacy_sin/sinSkillEffect.h:
 SrcGame/src/systems/gameplay/world_events/legacy_sin/sinEvent.h:
 SrcGame/src/systems/rendering/effects/legacy_sin/sinPublicEffect.h:
-SrcGame/src/systems/rendering/effects/legacy_sin/AssaUtil.h:
 SrcGame/src/systems/rendering/effects/legacy_sin/AssaEffect.h:
 SrcGame/src/systems/rendering/effects/legacy_sin/sinAssaParticle.h:
 SrcGame/src/systems/rendering/effects/legacy_sin/AssaTestParticle.h:

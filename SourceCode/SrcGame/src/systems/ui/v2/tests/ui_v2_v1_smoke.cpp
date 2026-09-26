@@ -9,6 +9,7 @@
 #include "systems/ui/v2/domain/IContextGateway.h"
 #include "systems/ui/v2/domain/IInventoryGateway.h"
 #include "systems/ui/v2/domain/ICompanionGateway.h"
+#include "systems/ui/v2/domain/ICovenantGateway.h"
 #include "systems/ui/v2/domain/ISkillGateway.h"
 #include "systems/ui/v2/rendering/IUIRenderer.h"
 #include "systems/ui/v2/windows/CharacterWindow.h"
@@ -148,6 +149,17 @@ public:
         snapshot.entries[1].level = 72;
         snapshot.entries[1].rightItemName = "Test Staff";
         snapshot.entries[1].rightItemCode = 0x01020304;
+        snapshot.skillLoadoutActive = true;
+        snapshot.activeSkills[0].useSlot = 7;
+        snapshot.activeSkills[0].skillCode = 0x12070000;
+        snapshot.activeSkills[0].point = 6;
+        snapshot.activeSkills[0].name = "Fire Bolt";
+        snapshot.buffLoadoutActive = true;
+        snapshot.buffSkills[0].useSlot = 11;
+        snapshot.buffSkills[0].skillCode = 0x120B0000;
+        snapshot.buffSkills[0].point = 4;
+        snapshot.buffSkills[0].intervalSeconds = 60;
+        snapshot.buffSkills[0].name = "Maximize";
         runtime.valid = true;
         runtime.entryCount = 1;
         runtime.entries[0].name = "MageAlt";
@@ -181,6 +193,52 @@ public:
     int lastValue = 0;
 };
 
+
+class FakeCovenants final : public ICovenantGateway
+{
+public:
+    FakeCovenants()
+    {
+        snapshot.valid = true;
+        snapshot.selectedCovenantId = 5;
+        snapshot.entryCount = 5;
+        for (int i = 0; i < 5; ++i)
+        {
+            snapshot.entries[static_cast<std::size_t>(i)].covenantId = i + 1;
+            snapshot.entries[static_cast<std::size_t>(i)].key =
+                i == 0 ? "hunters" : i == 1 ? "gatherers" : i == 2 ? "artisans" : i == 3 ? "fortune" : "ascendants";
+            snapshot.entries[static_cast<std::size_t>(i)].canJoin = true;
+        }
+        snapshot.entries[4].joined = true;
+        snapshot.entries[4].active = true;
+        snapshot.entries[4].rankId = 2;
+        snapshot.entries[4].rankKey = "training";
+        snapshot.entries[4].reputation = 1500;
+        snapshot.entries[4].nextRankReputation = 3000;
+        snapshot.rankCount = 3;
+        snapshot.ranks[0] = {1, 0, "disciple"};
+        snapshot.ranks[1] = {2, 1000, "training"};
+        snapshot.ranks[2] = {3, 3000, "ascension"};
+        snapshot.modifierCount = 2;
+        snapshot.modifiers[0] = {1, 1500, "xp.monster_gain", "monster"};
+        snapshot.modifiers[1] = {1, -1500, "monster.drop_chance", "monster"};
+        snapshot.challengeCount = 1;
+        snapshot.challenges[0].key = "ascendant_trial_i";
+        snapshot.challenges[0].targetCount = 25;
+        snapshot.challenges[0].progress = 8;
+        snapshot.challenges[0].reputationReward = 100;
+    }
+    const CovenantUiSnapshot& Snapshot() const override { return snapshot; }
+    void SelectCovenant(int covenantId) override { snapshot.selectedCovenantId = covenantId; ++selects; }
+    void RequestRefresh() override { ++refreshes; }
+    void Execute(CovenantUiAction action, int value = 0, const std::string& key = {}) override
+    { lastAction = action; lastValue = value; lastKey = key; ++actions; }
+    mutable CovenantUiSnapshot snapshot;
+    int refreshes = 0, selects = 0, actions = 0, lastValue = 0;
+    CovenantUiAction lastAction = CovenantUiAction::Refresh;
+    std::string lastKey;
+};
+
 class FakeContext final : public IContextGateway
 {
 public:
@@ -210,7 +268,7 @@ static void Click(UIRuntime& runtime, int x, int y, MouseButton button = MouseBu
 
 int main()
 {
-    FakeStats stats; FakeSkills skills; FakeInventory inventory; FakeContext context; FakeCompanions companions;
+    FakeStats stats; FakeSkills skills; FakeInventory inventory; FakeContext context; FakeCompanions companions; FakeCovenants covenants;
     auto renderer = std::make_unique<FakeRenderer>();
     auto* raw = renderer.get();
     UIRuntime runtime;
@@ -230,7 +288,7 @@ int main()
     assert(runtime.Windows().Register(companionHudId, std::move(companionHud), UIWindowLayer::Hud));
     assert(runtime.Windows().Open(companionHudId));
 
-    auto character = std::make_unique<CharacterWindow>(stats, skills, inventory, context, companions, 1000);
+    auto character = std::make_unique<CharacterWindow>(stats, skills, inventory, context, companions, covenants, 1000);
     auto* rawCharacter = character.get();
     constexpr WindowId id = 9000;
     assert(runtime.Windows().Register(id, std::move(character)));
@@ -245,6 +303,15 @@ int main()
     assert(HasText("Personagem"));
     assert(HasText("ATRIBUTOS / POR PONTO"));
     assert(HasText("RESISTENCIAS"));
+
+    raw->texts.clear();
+    rawCharacter->SetActiveTab(CharacterTab::Covenants, false);
+    runtime.Update(0.1f);
+    runtime.Render();
+    assert(HasText("COVENANTS"));
+    assert(HasText("Ascendants"));
+    assert(covenants.refreshes > 0);
+    rawCharacter->SetActiveTab(CharacterTab::Attributes, false);
 
     // Default tab is Attributes. Exercise a real +1 action through the
     // widget -> view-model -> gateway path before switching tabs.
@@ -508,6 +575,35 @@ int main()
     assert(HasText("COMPANIONS DA CONTA"));
     assert(HasText("MageAlt - Lv 72"));
     assert(HasText("MageAlt  Lv 72  [AGR/BAL]"));
+
+    // Skill Loadout V2 is opt-in from the companion detail surface. The
+    // equipment view remains the compatibility default, then the Skills
+    // toggle exposes four active slots plus four timed self-buffs.
+    Click(runtime, movedPageX + 598 + 63, movedPageY + 246 + 14);
+    raw->texts.clear();
+    runtime.Render();
+    assert(HasText("SKILLS ATIVAS"));
+    assert(HasText("1. Fire Bolt L6"));
+
+    Click(runtime, movedPageX + 684 + 15, movedPageY + 292 + 12);
+    assert(companions.lastAction == CompanionUiAction::CycleActiveSkill);
+    assert(companions.lastName == "MageAlt" && companions.lastValue == 1);
+
+    // Switch the skill detail panel to the buff page. Long names use the full
+    // row and interval controls no longer overlap the label.
+    Click(runtime, movedPageX + 466 + 61, movedPageY + 246 + 14);
+    raw->texts.clear();
+    runtime.Render();
+    assert(HasText("SUPORTE / RECAST"));
+    assert(HasText("1. Maximize L4"));
+    assert(HasText("60s"));
+
+    Click(runtime, movedPageX + 566 + 15, movedPageY + 292 + 12);
+    assert(companions.lastAction == CompanionUiAction::CycleBuffSkill);
+    assert(companions.lastName == "MageAlt" && companions.lastValue == 1);
+    Click(runtime, movedPageX + 686 + 14, movedPageY + 292 + 12);
+    assert(companions.lastAction == CompanionUiAction::AdjustBuffInterval);
+    assert(companions.lastName == "MageAlt" && companions.lastValue == 1);
 
     // Combat HUD quick controls: left cycles the selected companion mode;
     // middle requests owner-focus tactics; right dismisses.

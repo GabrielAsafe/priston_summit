@@ -147,6 +147,8 @@
  Shared/gameplay/rewards/v2/Reward.h \
  Shared/gameplay/covenants/v2/ICovenantRepository.h \
  Shared/gameplay/events/v2/GameplayEventHub.h \
+ Shared/gameplay/covenants/v2/CovenantModifierEvaluation.h \
+ Shared/gameplay/covenants/v2/CovenantRuntimeTypes.h \
  Shared/gameplay/reputation/v2/ReputationService.h \
  Shared/gameplay/reputation/v2/IReputationRepository.h \
  Shared/gameplay/reputation/v2/ReputationTypes.h \
@@ -158,6 +160,11 @@
  Shared/gameplay/progression/v2/ProgressionPlayerRuntime.h \
  Shared/gameplay/progression/v2/ProgressionSnapshot.h \
  SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h \
+ SrcServer/src/systems/gameplay/gathering/v2/GatheringRuntime.h \
+ Shared/gameplay/gathering/v2/GatheringTypes.h \
+ Shared/gameplay/professions/v2/ProfessionService.h \
+ SrcServer/src/systems/gameplay/gathering/v2/GatheringService.h \
+ SrcServer/src/systems/gameplay/gathering/v2/SQLiteGatheringRepository.h \
  SrcServer/src/systems/gameplay/quests/legacy/HaQuestBoard.h \
  Shared/gameplay/quests/HaQuestBoardLegacyCommon.inl \
  Shared/gameplay/classes/v2/services/ClassService.h \
@@ -313,6 +320,8 @@ Shared/gameplay/modifiers/v2/GameplayModifier.h:
 Shared/gameplay/rewards/v2/Reward.h:
 Shared/gameplay/covenants/v2/ICovenantRepository.h:
 Shared/gameplay/events/v2/GameplayEventHub.h:
+Shared/gameplay/covenants/v2/CovenantModifierEvaluation.h:
+Shared/gameplay/covenants/v2/CovenantRuntimeTypes.h:
 Shared/gameplay/reputation/v2/ReputationService.h:
 Shared/gameplay/reputation/v2/IReputationRepository.h:
 Shared/gameplay/reputation/v2/ReputationTypes.h:
@@ -324,6 +333,11 @@ Shared/gameplay/progression/v2/ProgressionCustomHandlers.h:
 Shared/gameplay/progression/v2/ProgressionPlayerRuntime.h:
 Shared/gameplay/progression/v2/ProgressionSnapshot.h:
 SrcServer/src/systems/gameplay/progression/v2/ServerProgressionConditionContext.h:
+SrcServer/src/systems/gameplay/gathering/v2/GatheringRuntime.h:
+Shared/gameplay/gathering/v2/GatheringTypes.h:
+Shared/gameplay/professions/v2/ProfessionService.h:
+SrcServer/src/systems/gameplay/gathering/v2/GatheringService.h:
+SrcServer/src/systems/gameplay/gathering/v2/SQLiteGatheringRepository.h:
 SrcServer/src/systems/gameplay/quests/legacy/HaQuestBoard.h:
 Shared/gameplay/quests/HaQuestBoardLegacyCommon.inl:
 Shared/gameplay/classes/v2/services/ClassService.h:

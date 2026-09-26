@@ -1,6 +1,7 @@
 
 
 #include "compat/legacy/sin/sinLinkHeader.h"
+#include <new>
 
 
 #define MAX_RES_PATH	300
@@ -389,10 +390,8 @@ void CloseAssaRes()
 
 void LoadAssaRes()
 {
-	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"ENTER LoadAssaRes AssaResCount=%d security=%d\n", AssaResCount, smConfig.getSecurity()); fclose(f);} }
 
 	CloseAssaRes();
-	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"after CloseAssaRes AssaResCount=%d\n", AssaResCount); fclose(f);} }
 
 	char Path[MAX_RES_PATH] = { 0 };
 
@@ -400,19 +399,60 @@ void LoadAssaRes()
 		DeleteFile(AssaLoadingFile);
 
 	strcpy(Path, "image//Sinimage//AssaEffect//*.*");
-	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"before LoadResFile path1=%s\n", Path); fclose(f);} }
 	LoadResFile(Path, false);
-	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"after LoadResFile path1 AssaResCount=%d\n", AssaResCount); fclose(f);} }
 
 	strcpy(Path, "Effect//AssaEffect//*.*");
-	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"before LoadResFile path2=%s\n", Path); fclose(f);} }
 	LoadResFile(Path, false);
-	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"after LoadResFile path2 AssaResCount=%d\n", AssaResCount); fclose(f);} }
 
 	if(smConfig.getSecurity() >= AccountTypes::SEC_MODERATOR)
 		DeleteFile(AssaErrorFile);
 
-	{ FILE *f=fopen("LOGS\\mingw_loadassares.txt","a"); if(f){ fprintf(f,"LEAVE LoadAssaRes AssaResCount=%d\n", AssaResCount); fclose(f);} }
+}
+
+void SummitPrewarmAssaEffectTexturesStep(int maxAttempts, int requestPriority)
+{
+    static int cursor = 0;
+    if (maxAttempts <= 0 || AssaResCount <= 0 || !smMaterialGroup)
+        return;
+
+    int attempts = 0;
+    int scanned = 0;
+    while (attempts < maxAttempts && scanned < AssaResCount)
+    {
+        if (cursor >= AssaResCount)
+            cursor = 0;
+        const int index = cursor++;
+        ++scanned;
+        if (AssaRes[index].type != TYPE_MAT)
+            continue;
+
+        if (AssaRes[index].LoadFlag == FALSE)
+        {
+            int *matNum = new(std::nothrow) int;
+            if (!matNum)
+                continue;
+            *matNum = CreateTextureMaterial(AssaRes[index].resFullName, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
+            if (*matNum < 0)
+            {
+                delete matNum;
+                continue;
+            }
+            AssaRes[index].res = matNum;
+            AssaRes[index].LoadFlag = TRUE;
+        }
+
+        if (!AssaRes[index].res)
+            continue;
+        const int matNum = *((int *)AssaRes[index].res);
+        if (matNum < 0 || matNum >= static_cast<int>(smMaterialGroup->MaterialCount))
+            continue;
+        smMATERIAL &material = smMaterialGroup->smMaterial[matNum];
+        if (!material.InUse || material.TextureCounter <= 0 || !material.smTexture[0])
+            continue;
+
+        AssetLoadV2RequestTexture(material.smTexture[0], SMASSET_OWNER_EFFECT, 1, requestPriority);
+        ++attempts;
+    }
 }
 
 void *AssaSearchRes(char *resName, int blendType)
@@ -498,13 +538,18 @@ void *AssaSearchRes(char *resName, int blendType)
 					(*matNum) = CreateTextureMaterial(AssaRes[index].resFullName, 0, 0, 0, 0, SMMAT_BLEND_LAMP);
 					AssaRes[index].res = matNum;
 					AssaRes[index].LoadFlag = TRUE;
-					AssetLoadV2ReadMaterialGroup(smMaterialGroup, SMASSET_OWNER_EFFECT);
-
 				}
 
 				int matNum = *((int *)AssaRes[index].res);
-				smMaterialGroup->smMaterial[matNum].TwoSide = TRUE;
-				smMaterialGroup->smMaterial[matNum].BlendType = blendType;
+				smMATERIAL &material = smMaterialGroup->smMaterial[matNum];
+				material.TwoSide = TRUE;
+				material.BlendType = blendType;
+				// A first-use effect must not render a white quad while its material
+				// waits behind background streaming. Progressive prewarm normally
+				// makes this a cache hit; if it did not, take over this exact texture
+				// synchronously on the owner thread and invalidate any stale async job.
+				if(material.TextureCounter > 0 && material.smTexture[0])
+					AssetLoadV2LoadTextureNow(material.smTexture[0], SMASSET_OWNER_EFFECT, 1);
 				return AssaRes[index].res;
 			}
 

@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <map>
 #include "gameplay/classes/v2/services/ClassService.h"
+#include "gameplay/skills/v2/legacy/LegacySkillAdapter.h"
 
 cSKILL	cSkill;
 sUSESKILL sinSkill;
@@ -18,16 +19,10 @@ sSKILL  TempContinueSkill[MAX_CONTINUE_SKILL];
 // proven EU timer files when available, otherwise reuse the canonical skill button.
 static const char *SummitT5CanonicalTimerPath(DWORD code)
 {
-	switch(code)
-	{
-	case SKILL_T5_LETHAL_SIGHT: return "game\\images\\skills\\timers\\Ac5_LethalSight.tga";
-	case SKILL_T5_MAGNETIC_DISCHARGE: return "game\\images\\skills\\timers\\Ms5_MagneticDischarge.tga";
-	case SKILL_T5_HOLY_CONVICTION: return "game\\images\\skills\\timers\\Kn5_HolyConviction.tga";
-	case SKILL_T5_SUMMON_TIGER: return "game\\images\\skills\\timers\\Ata5_SummonTiger.tga";
-	case SKILL_T5_ICE_ELEMENTAL: return "game\\images\\skills\\timers\\Pr5_IceElemental.tga";
-	case SKILL_T5_WIZARD_TRANCE: return "game\\images\\skills\\timers\\Mg5_WizardTrance.tga";
-	}
-	return 0;
+	const gameplay::skills::SkillDefinition *definition =
+		gameplay::skills::DefaultLegacySkillAdapter().Find((gameplay::skills::SkillId)code);
+	if(!definition || definition->presentation.canonicalTimerPath.empty()) return 0;
+	return definition->presentation.canonicalTimerPath.c_str();
 }
 
 static const char *SummitT5SkillFolder(DWORD code)
@@ -46,6 +41,26 @@ static const char *SummitT5SkillFolder(DWORD code)
 	return 0;
 }
 
+// Some Rank5 art/motions are intentionally absent from the legacy client pack.
+// Keep logical Rank5 identity, but use proven Rank4 Pike art as a visual-only
+// fallback so continue-skill timers do not disappear when TP103/TP106 assets
+// have not been deployed yet.
+static int SummitT5SkillButtonExists(const char *folder, const char *fileName)
+{
+	if(!folder || !fileName || !fileName[0]) return FALSE;
+	char path[260] = { 0 };
+	wsprintf(path, "image//Sinimage//skill//%s//Button//%s.bmp", folder, fileName);
+	return GetFileAttributesA(path) != INVALID_FILE_ATTRIBUTES ? TRUE : FALSE;
+}
+
+static const char *SummitT5LegacyTimerFallbackPath(DWORD code)
+{
+	const gameplay::skills::SkillDefinition *definition =
+		gameplay::skills::DefaultLegacySkillAdapter().Find((gameplay::skills::SkillId)code);
+	if(!definition || definition->presentation.fallbackTimerPath.empty()) return 0;
+	return definition->presentation.fallbackTimerPath.c_str();
+}
+
 static int SummitT5ResolveTimerMaterial(DWORD code)
 {
 	if((code & 0x00FF0000) != CHANGE_JOB5) return 0;
@@ -59,12 +74,22 @@ static int SummitT5ResolveTimerMaterial(DWORD code)
 		char path[260] = { 0 };
 		const char *canonical = SummitT5CanonicalTimerPath(code);
 		if(canonical && GetFileAttributesA(canonical) != INVALID_FILE_ATTRIBUTES)
+		{
 			strcpy_s(path, canonical);
+		}
 		else
 		{
 			const char *folder = SummitT5SkillFolder(code);
 			if(!folder) return 0;
 			wsprintf(path, "image//Sinimage//skill//%s//Button//%s.bmp", folder, skill->FileName);
+
+			// Prefer the real Rank5 button when present. If the client pack does not
+			// contain it, use a proven legacy Pike asset rather than an empty icon.
+			if(GetFileAttributesA(path) == INVALID_FILE_ATTRIBUTES)
+			{
+				const char *fallback = SummitT5LegacyTimerFallbackPath(code);
+				if(fallback) strcpy_s(path, fallback);
+			}
 		}
 
 		skill->MatIcon = CreateTextureMaterial(path, 0, 0, 0, 0, SMMAT_BLEND_ALPHA);
@@ -1770,7 +1795,8 @@ static void InitSummitTier5PikemanSkillMetadata()
 	skill = &sinSkill.UseSkill[18];
 	if(skill->CODE != SKILL_T5_FOCUS) ZeroMemory(skill, sizeof(sSKILL));
 	strcpy_s(skill->sSkillName, "Death Mantra");
-	strcpy_s(skill->FileName, "TP103 Focus");
+	strcpy_s(skill->FileName, SummitT5SkillButtonExists("Pikeman", "TP103 Focus") ?
+		"TP103 Focus" : "TP66 Vague");
 	skill->CODE = SKILL_T5_FOCUS; skill->Flag = 1;
 	skill->Skill_Info.RequireLevel = 103;
 	skill->Skill_Info.UseStamina[0] = 70; skill->Skill_Info.UseStamina[1] = 2;
@@ -1785,7 +1811,8 @@ static void InitSummitTier5PikemanSkillMetadata()
 	skill = &sinSkill.UseSkill[19];
 	if(skill->CODE != SKILL_T5_DEATH_MASTER) ZeroMemory(skill, sizeof(sSKILL));
 	strcpy_s(skill->sSkillName, "Ex-Death");
-	strcpy_s(skill->FileName, "TP106 Death_Master");
+	strcpy_s(skill->FileName, SummitT5SkillButtonExists("Pikeman", "TP106 Death_Master") ?
+		"TP106 Death_Master" : "TP70 S_Master");
 	skill->CODE = SKILL_T5_DEATH_MASTER; skill->Flag = 1;
 	skill->Skill_Info.RequireLevel = 106;
 	skill->Skill_Info.UseStamina[0] = 93; skill->Skill_Info.UseStamina[1] = 2;

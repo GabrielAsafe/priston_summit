@@ -46,7 +46,8 @@ enum SummitModelTargetKind
 struct SummitPreparedModel
 {
     SummitPreparedModel()
-        : body(0), motion(0), talk(0), talkSharesMotion(false), success(false)
+        : body(0), motion(0), talk(0), talkSharesMotion(false),
+          motionBorrowedFromPrimary(false), talkBorrowedFromPrimary(false), success(false)
     {
         ZeroMemory(&modelInfo, sizeof(modelInfo));
     }
@@ -57,6 +58,8 @@ struct SummitPreparedModel
     smPAT3D *motion;
     smPAT3D *talk;
     bool talkSharesMotion;
+    bool motionBorrowedFromPrimary;
+    bool talkBorrowedFromPrimary;
     bool success;
 };
 
@@ -79,12 +82,16 @@ struct SummitModelTarget
 struct SummitModelRequest
 {
     SummitModelRequest()
-        : id(0), targetKind(SUMMIT_MODEL_TARGET_CHARACTER), dataServerCompanion(false), success(false), cancelled(false)
+        : id(0), targetKind(SUMMIT_MODEL_TARGET_CHARACTER),
+          jobPriority(summit::core::concurrency::JobPriority::Normal),
+          interactive(false), dataServerCompanion(false), success(false), cancelled(false)
     {
     }
 
     std::uint64_t id;
     SummitModelTargetKind targetKind;
+    summit::core::concurrency::JobPriority jobPriority;
+    bool interactive;
     std::string key;
     std::string primaryName;
     std::string requestedSecondary;
@@ -203,17 +210,15 @@ static void SummitDestroyPreparedModel(SummitPreparedModel &model)
         SummitDeletePatternOnOwningThread(model.body);
         model.body = 0;
     }
-    if (model.motion)
-    {
+    if (model.motion && !model.motionBorrowedFromPrimary)
         SummitDeletePatternOnOwningThread(model.motion);
-        model.motion = 0;
-    }
-    if (model.talk && !model.talkSharesMotion)
-    {
+    if (model.talk && !model.talkSharesMotion && !model.talkBorrowedFromPrimary)
         SummitDeletePatternOnOwningThread(model.talk);
-        model.talk = 0;
-    }
+    model.motion = 0;
     model.talk = 0;
+    model.talkSharesMotion = false;
+    model.motionBorrowedFromPrimary = false;
+    model.talkBorrowedFromPrimary = false;
     model.success = false;
 }
 
@@ -244,7 +249,8 @@ static bool SummitDecodeModelInfo(const std::string &source, smMODELINFO &info, 
     return smModelDecode(const_cast<char *>(source.c_str()), &info) != FALSE;
 }
 
-static bool SummitPrepareModel(const std::string &source, SummitPreparedModel &out, bool allowRepair)
+static bool SummitPrepareModel(const std::string &source, SummitPreparedModel &out, bool allowRepair,
+    const SummitPreparedModel *sharedPrimary = 0)
 {
     out.sourceName = source;
     if (source.empty())
@@ -259,6 +265,17 @@ static bool SummitPrepareModel(const std::string &source, SummitPreparedModel &o
     smASE_SetPhysique(0);
     if (out.modelInfo.szMotionFile[0])
     {
+        if (sharedPrimary && sharedPrimary->motion && sharedPrimary->modelInfo.szMotionFile[0] &&
+            _stricmp(out.modelInfo.szMotionFile, sharedPrimary->modelInfo.szMotionFile) == 0)
+        {
+            // Body + face/head must be built against the same physique object.
+            // smCHAR::SetDinaPattern2() compares Pattern->TmParent by identity;
+            // parsing the secondary against a second copy of the same BIP makes
+            // the legacy renderer hide Pattern2 (the classic headless preview).
+            motion = sharedPrimary->motion;
+            out.motionBorrowedFromPrimary = true;
+        }
+        else
         {
             summit::core::concurrency::SourceAssetLock motionLock(out.modelInfo.szMotionFile);
             motion = smASE_ReadBone(out.modelInfo.szMotionFile);
@@ -278,18 +295,22 @@ static bool SummitPrepareModel(const std::string &source, SummitPreparedModel &o
             talk = motion;
             out.talkSharesMotion = true;
         }
+        else if (sharedPrimary && sharedPrimary->talk && sharedPrimary->modelInfo.szTalkMotionFile[0] &&
+            _stricmp(out.modelInfo.szTalkMotionFile, sharedPrimary->modelInfo.szTalkMotionFile) == 0)
+        {
+            talk = sharedPrimary->talk;
+            out.talkBorrowedFromPrimary = true;
+        }
         else
         {
-            {
-                summit::core::concurrency::SourceAssetLock talkLock(out.modelInfo.szTalkMotionFile);
-                talk = smASE_ReadBone(out.modelInfo.szTalkMotionFile);
-            }
-            if (!talk)
-            {
-                if (motion) SummitDeletePatternOnOwningThread(motion);
-                smASE_SetPhysique(0);
-                return false;
-            }
+            summit::core::concurrency::SourceAssetLock talkLock(out.modelInfo.szTalkMotionFile);
+            talk = smASE_ReadBone(out.modelInfo.szTalkMotionFile);
+        }
+        if (!talk)
+        {
+            if (motion && !out.motionBorrowedFromPrimary) SummitDeletePatternOnOwningThread(motion);
+            smASE_SetPhysique(0);
+            return false;
         }
     }
 
@@ -302,8 +323,8 @@ static bool SummitPrepareModel(const std::string &source, SummitPreparedModel &o
     smASE_SetPhysique(0);
     if (!body)
     {
-        if (talk && talk != motion) SummitDeletePatternOnOwningThread(talk);
-        if (motion) SummitDeletePatternOnOwningThread(motion);
+        if (talk && talk != motion && !out.talkBorrowedFromPrimary) SummitDeletePatternOnOwningThread(talk);
+        if (motion && !out.motionBorrowedFromPrimary) SummitDeletePatternOnOwningThread(motion);
         return false;
     }
 
@@ -360,38 +381,50 @@ static std::vector<std::string> SummitSecondaryCandidates(const SummitModelReque
 
 static void SummitPrepareRequestOnWorker(const std::shared_ptr<SummitModelRequest> &request)
 {
-    if (!request || request->cancelled.load(std::memory_order_acquire) ||
-        SummitModelState().shuttingDown.load(std::memory_order_acquire))
+    if (!request)
         return;
 
-    if (!SummitPrepareModel(request->primaryName, request->primary, false))
+    try
+    {
+        const bool cancelled = request->cancelled.load(std::memory_order_acquire);
+        const bool shuttingDown = SummitModelState().shuttingDown.load(std::memory_order_acquire);
+        if (!cancelled && !shuttingDown)
+        {
+            if (!SummitPrepareModel(request->primaryName, request->primary, false))
+            {
+                request->success = false;
+            }
+            else
+            {
+                request->success = true;
+                if (request->targetKind == SUMMIT_MODEL_TARGET_CHARACTER)
+                {
+                    const std::vector<std::string> candidates = SummitSecondaryCandidates(*request);
+                    for (std::size_t i = 0; i < candidates.size(); ++i)
+                    {
+                        if (request->cancelled.load(std::memory_order_acquire) ||
+                            SummitModelState().shuttingDown.load(std::memory_order_acquire))
+                            break;
+                        if (SummitPrepareModel(candidates[i], request->secondary, true, &request->primary))
+                            break;
+                        SummitDestroyPreparedModel(request->secondary);
+                    }
+                }
+            }
+        }
+        else
+        {
+            request->success = false;
+        }
+    }
+    catch (...)
     {
         request->success = false;
     }
-    else
-    {
-        request->success = true;
-        if (request->targetKind == SUMMIT_MODEL_TARGET_CHARACTER)
-        {
-            const std::vector<std::string> candidates = SummitSecondaryCandidates(*request);
-            for (std::size_t i = 0; i < candidates.size(); ++i)
-            {
-                if (request->cancelled.load(std::memory_order_acquire))
-                    break;
-                if (SummitPrepareModel(candidates[i], request->secondary, true))
-                    break;
-                SummitDestroyPreparedModel(request->secondary);
-            }
-        }
-    }
 
-    if (SummitModelState().shuttingDown.load(std::memory_order_acquire))
-    {
-        SummitDestroyPreparedModel(request->secondary);
-        SummitDestroyPreparedModel(request->primary);
-        return;
-    }
-
+    // Prepared smPAT3D/material objects are never destroyed on workers: legacy
+    // destructors can release texture/D3D state. Even cancellation/shutdown is
+    // transferred to the owner-thread completion/reset queue for cleanup.
     std::lock_guard<std::mutex> lock(SummitModelState().mutex);
     SummitModelState().completed.push_back(request);
 }
@@ -429,50 +462,81 @@ static void SummitClearPatternEntry(smDPAT &entry)
     ZeroMemory(&entry, sizeof(entry));
 }
 
-static smDPAT *SummitInstallPreparedModelLocked(SummitPreparedModel &prepared)
+static smDPAT *SummitInstallPreparedModelLocked(SummitPreparedModel &prepared,
+    smDPAT *sharedPrimary = 0, bool reuseExisting = true)
 {
     if (!prepared.success || !prepared.body || prepared.sourceName.empty())
         return 0;
 
-    const int existingIndex = SummitFindExactPattern(smPattern, prepared.sourceName);
+    const int existingIndex = reuseExisting ? SummitFindExactPattern(smPattern, prepared.sourceName) : -1;
     if (existingIndex >= 0)
     {
         smDPAT *existing = &smPattern.DinaPat[existingIndex];
-        ++existing->UseCount;
-        SummitDestroyPreparedModel(prepared);
-        return existing;
+        bool skeletonCompatible = true;
+        if (sharedPrimary && prepared.motionBorrowedFromPrimary)
+        {
+            smPAT3D *expectedParent = sharedPrimary->smDinaLink ? sharedPrimary->smDinaLink->Pat : 0;
+            skeletonCompatible = existing->Pat && existing->Pat->TmParent == expectedParent;
+        }
+        if (skeletonCompatible)
+        {
+            ++existing->UseCount;
+            SummitDestroyPreparedModel(prepared);
+            return existing;
+        }
+        // Same logical head/face name can exist in the cache attached to a
+        // different copy of the skeleton. Reusing it would make
+        // SetDinaPattern2() hide Pattern2; install this prepared paired copy.
     }
 
     const int bodySlot = SummitFindFreePatternSlot(smPattern, -1, -1);
     if (bodySlot < 0)
         return 0;
 
+    smDPAT *borrowedMotionEntry = 0;
+    smDPAT *borrowedTalkEntry = 0;
+    if (prepared.motionBorrowedFromPrimary)
+    {
+        if (!sharedPrimary || !sharedPrimary->smDinaLink ||
+            sharedPrimary->smDinaLink->Pat != prepared.motion)
+            return 0;
+        borrowedMotionEntry = sharedPrimary->smDinaLink;
+    }
+    if (prepared.talkBorrowedFromPrimary)
+    {
+        if (!sharedPrimary || !sharedPrimary->lpTalkLink ||
+            sharedPrimary->lpTalkLink->Pat != prepared.talk)
+            return 0;
+        borrowedTalkEntry = sharedPrimary->lpTalkLink;
+    }
+
     int motionSlot = -1;
     int talkSlot = -1;
-    if (prepared.motion)
+    if (prepared.motion && !prepared.motionBorrowedFromPrimary)
     {
         motionSlot = SummitFindFreePatternSlot(smBipPattern, -1, -1);
         if (motionSlot < 0)
             return 0;
     }
-    if (prepared.talk)
+    if (prepared.talk && !prepared.talkSharesMotion && !prepared.talkBorrowedFromPrimary)
     {
-        if (prepared.talkSharesMotion)
-        {
-            talkSlot = motionSlot;
-        }
-        else
-        {
-            talkSlot = SummitFindFreePatternSlot(smBipPattern, motionSlot, -1);
-            if (talkSlot < 0)
-                return 0;
-        }
+        talkSlot = SummitFindFreePatternSlot(smBipPattern, motionSlot, -1);
+        if (talkSlot < 0)
+            return 0;
     }
 
     smDPAT *motionEntry = 0;
     smDPAT *talkEntry = 0;
+    int motionRefsAcquired = 0;
+    int talkRefsAcquired = 0;
 
-    if (motionSlot >= 0)
+    if (borrowedMotionEntry)
+    {
+        motionEntry = borrowedMotionEntry;
+        ++motionEntry->UseCount;
+        ++motionRefsAcquired;
+    }
+    else if (motionSlot >= 0)
     {
         smDPAT &entry = smBipPattern.DinaPat[motionSlot];
         SummitClearPatternEntry(entry);
@@ -480,16 +544,28 @@ static smDPAT *SummitInstallPreparedModelLocked(SummitPreparedModel &prepared)
         prepared.motion = 0;
         strcpy_s(entry.szPatName, sizeof(entry.szPatName), prepared.modelInfo.szMotionFile);
         entry.dwSpeedFindSum = GetSpeedSum(entry.szPatName);
-        entry.UseCount = prepared.talkSharesMotion ? 2 : 1;
+        entry.UseCount = 1;
+        motionRefsAcquired = 1;
         motionEntry = &entry;
-        if (prepared.talkSharesMotion)
-        {
-            prepared.talk = 0;
-            talkEntry = &entry;
-        }
     }
 
-    if (talkSlot >= 0 && talkSlot != motionSlot)
+    if (prepared.talkSharesMotion)
+    {
+        talkEntry = motionEntry;
+        if (talkEntry)
+        {
+            ++talkEntry->UseCount;
+            ++motionRefsAcquired;
+        }
+        prepared.talk = 0;
+    }
+    else if (borrowedTalkEntry)
+    {
+        talkEntry = borrowedTalkEntry;
+        ++talkEntry->UseCount;
+        ++talkRefsAcquired;
+    }
+    else if (talkSlot >= 0)
     {
         smDPAT &entry = smBipPattern.DinaPat[talkSlot];
         SummitClearPatternEntry(entry);
@@ -498,6 +574,7 @@ static smDPAT *SummitInstallPreparedModelLocked(SummitPreparedModel &prepared)
         strcpy_s(entry.szPatName, sizeof(entry.szPatName), prepared.modelInfo.szTalkMotionFile);
         entry.dwSpeedFindSum = GetSpeedSum(entry.szPatName);
         entry.UseCount = 1;
+        talkRefsAcquired = 1;
         talkEntry = &entry;
     }
 
@@ -511,14 +588,10 @@ static smDPAT *SummitInstallPreparedModelLocked(SummitPreparedModel &prepared)
     if (!body.lpModelInfo)
     {
         if (body.Pat) { delete body.Pat; body.Pat = 0; }
-        if (talkEntry && talkEntry != motionEntry) smDPAT_Delete(talkEntry);
-        if (motionEntry)
-        {
-            // A shared talk/motion entry starts at 2 because the body releases
-            // both links independently.
-            while (motionEntry->UseCount > 0)
-                smDPAT_Delete(motionEntry);
-        }
+        for (int i = 0; i < talkRefsAcquired; ++i)
+            if (talkEntry) smDPAT_Delete(talkEntry);
+        for (int i = 0; i < motionRefsAcquired; ++i)
+            if (motionEntry) smDPAT_Delete(motionEntry);
         SummitClearPatternEntry(body);
         return 0;
     }
@@ -528,6 +601,14 @@ static smDPAT *SummitInstallPreparedModelLocked(SummitPreparedModel &prepared)
     body.dwSpeedFindSum = GetSpeedSum(body.szPatName);
     body.UseCount = 1;
     body.LastUsedTime = GetCurrentTime();
+
+    // Borrowed skeleton pointers are now owned by the installed cache links.
+    // Clear them so cleanup of the prepared bundle can never touch the primary.
+    prepared.motion = 0;
+    prepared.talk = 0;
+    prepared.motionBorrowedFromPrimary = false;
+    prepared.talkBorrowedFromPrimary = false;
+    prepared.talkSharesMotion = false;
     prepared.success = false;
     return &body;
 }
@@ -564,12 +645,12 @@ static bool SummitToolTargetCurrent(const SummitModelTarget &target)
     return it != generations.end() && it->second == target.generation;
 }
 
-static void SummitPrewarmPatternTextures(smDPAT *pattern)
+static void SummitPrewarmPatternTextures(smDPAT *pattern, int requestPriority)
 {
     if (!pattern || !pattern->Pat || !pattern->Pat->smMaterialGroup)
         return;
     AssetLoadV2PrewarmMaterialGroupStep(pattern->Pat->smMaterialGroup,
-        SMASSET_OWNER_CHARACTER, 1, SummitModelTexturePrewarm(), 1);
+        SMASSET_OWNER_CHARACTER, 1, SummitModelTexturePrewarm(), requestPriority);
 }
 
 static void SummitCompleteRequestOnMain(const std::shared_ptr<SummitModelRequest> &request)
@@ -640,9 +721,19 @@ static void SummitCompleteRequestOnMain(const std::shared_ptr<SummitModelRequest
     smDPAT *secondary = 0;
     {
         std::lock_guard<std::recursive_mutex> lock(SummitPatternMutexStorage());
-        primary = SummitInstallPreparedModelLocked(request->primary);
+        const bool primaryAlreadyCached =
+            SummitFindExactPattern(smPattern, request->primary.sourceName) >= 0;
+        const bool needsPairedPrimary =
+            primaryAlreadyCached && request->secondary.motionBorrowedFromPrimary;
+
+        // When the secondary was parsed against this request's primary motion,
+        // keep that pair together. Reusing an older cached primary with a
+        // different (though logically identical) skeleton pointer recreates the
+        // legacy headless-preview bug. The duplicate cache entry is temporary
+        // and is reclaimed normally when this character releases its references.
+        primary = SummitInstallPreparedModelLocked(request->primary, 0, !needsPairedPrimary);
         if (primary && request->secondary.success)
-            secondary = SummitInstallPreparedModelLocked(request->secondary);
+            secondary = SummitInstallPreparedModelLocked(request->secondary, primary);
 
         if (!primary)
         {
@@ -679,8 +770,9 @@ static void SummitCompleteRequestOnMain(const std::shared_ptr<SummitModelRequest
         return;
     }
 
-    SummitPrewarmPatternTextures(primary);
-    SummitPrewarmPatternTextures(secondary);
+    const int texturePriority = request->interactive ? 0 : 1;
+    SummitPrewarmPatternTextures(primary, texturePriority);
+    SummitPrewarmPatternTextures(secondary, texturePriority);
 
     if (request->targetKind == SUMMIT_MODEL_TARGET_TOOL)
     {
@@ -796,9 +888,7 @@ static int SummitQueueRequest(const std::shared_ptr<SummitModelRequest> &request
 
     if (!summit::core::concurrency::JobSystem::Instance().Submit(
         [request]() { SummitPrepareRequestOnWorker(request); },
-        request->targetKind == SUMMIT_MODEL_TARGET_TOOL
-            ? summit::core::concurrency::JobPriority::High
-            : summit::core::concurrency::JobPriority::Normal))
+        request->jobPriority))
     {
         std::lock_guard<std::mutex> lock(SummitModelState().mutex);
         std::unordered_map<std::string, std::weak_ptr<SummitModelRequest> >::iterator it =
@@ -835,7 +925,8 @@ smDPAT *SummitAcquireCachedModelV3(const char *modelName)
     return entry;
 }
 
-int SummitRequestCharacterModelV3(smCHAR *character, const char *primaryName, const char *secondaryName)
+static int SummitRequestCharacterModelV3WithPriority(smCHAR *character, const char *primaryName,
+    const char *secondaryName, summit::core::concurrency::JobPriority jobPriority, bool interactive)
 {
     if (!character || !primaryName || !primaryName[0])
         return FALSE;
@@ -860,6 +951,8 @@ int SummitRequestCharacterModelV3(smCHAR *character, const char *primaryName, co
     std::shared_ptr<SummitModelRequest> request(new SummitModelRequest());
     request->id = SummitModelState().requestSerial.fetch_add(1u, std::memory_order_acq_rel);
     request->targetKind = SUMMIT_MODEL_TARGET_CHARACTER;
+    request->jobPriority = jobPriority;
+    request->interactive = interactive;
     request->primaryName = primaryName;
     request->requestedSecondary = secondaryName ? secondaryName : "";
     request->faceHair = face ? face : "";
@@ -871,6 +964,18 @@ int SummitRequestCharacterModelV3(smCHAR *character, const char *primaryName, co
     if (!queued)
         character->PatLoading = FALSE;
     return queued;
+}
+
+int SummitRequestCharacterModelV3(smCHAR *character, const char *primaryName, const char *secondaryName)
+{
+    return SummitRequestCharacterModelV3WithPriority(character, primaryName, secondaryName,
+        summit::core::concurrency::JobPriority::Normal, false);
+}
+
+int SummitRequestCharacterModelV3Interactive(smCHAR *character, const char *primaryName, const char *secondaryName)
+{
+    return SummitRequestCharacterModelV3WithPriority(character, primaryName, secondaryName,
+        summit::core::concurrency::JobPriority::High, true);
 }
 
 int SummitRequestItemModelV3(scITEM *item, const char *modelName)
@@ -891,6 +996,7 @@ int SummitRequestItemModelV3(scITEM *item, const char *modelName)
     std::shared_ptr<SummitModelRequest> request(new SummitModelRequest());
     request->id = SummitModelState().requestSerial.fetch_add(1u, std::memory_order_acq_rel);
     request->targetKind = SUMMIT_MODEL_TARGET_ITEM;
+    request->jobPriority = summit::core::concurrency::JobPriority::Normal;
     request->primaryName = modelName;
     request->key = SummitMakeItemKey(modelName);
     const int queued = SummitQueueRequest(request, target);
@@ -921,6 +1027,7 @@ int SummitRequestToolModelV3(smCHAR *character, unsigned long itemCode, int tool
     std::shared_ptr<SummitModelRequest> request(new SummitModelRequest());
     request->id = SummitModelState().requestSerial.fetch_add(1u, std::memory_order_acq_rel);
     request->targetKind = SUMMIT_MODEL_TARGET_TOOL;
+    request->jobPriority = summit::core::concurrency::JobPriority::High;
     request->primaryName = modelName;
     request->key = SummitMakeToolKey(modelName);
     return SummitQueueRequest(request, target);

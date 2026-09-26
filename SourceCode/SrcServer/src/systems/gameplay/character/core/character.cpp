@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cstring>
 #include "systems/network/protocol/server/opcodes.h"
 
@@ -1312,6 +1313,7 @@ void smCHAR::Init()
 	dwTargetLockTime = 0;
 
 	lpCompulsionPlayInfo = 0;
+	lpCompulsionChar = 0;
 	dwCompulsionTime = 0;
 
 	dwAssassinEyeTime = 0;
@@ -5533,6 +5535,16 @@ int smCHAR::Main()
 		{
 			if(MotionInfo->State == CHRMOTION_STATE_WALK || MotionInfo->State == CHRMOTION_STATE_RUN)
 			{
+				// Account companions use a borrowed monster model only for server-side
+				// motion simulation. Some templates have no RUN clip, so the companion
+				// layer intentionally falls back to WALK. Preserve run-speed semantics
+				// for those player companions even when that internal fallback occurs.
+				const bool companionRunFallback =
+					MotionInfo->State == CHRMOTION_STATE_WALK &&
+					smCharInfo.State == smCHAR_STATE_USER &&
+					smCharInfo.Brood == smCHAR_MONSTER_USER &&
+					lpMasterPlayInfo != NULL;
+
 				OldPos.x = pX;
 				OldPos.y = pY;
 				OldPos.z = pZ;
@@ -5545,7 +5557,7 @@ int smCHAR::Main()
 					for(cnt = 0; cnt < sMoveStepCount[0]; cnt++)
 					{
 						MoveAngle(moveStep);
-						if(MotionInfo->State == CHRMOTION_STATE_RUN)
+						if(MotionInfo->State == CHRMOTION_STATE_RUN || companionRunFallback)
 							MoveAngle(moveStep);
 					}
 				}
@@ -5560,7 +5572,7 @@ int smCHAR::Main()
 					else
 						MoveAngle(moveStep);
 
-					if(MotionInfo->State == CHRMOTION_STATE_RUN)
+					if(MotionInfo->State == CHRMOTION_STATE_RUN || companionRunFallback)
 					{
 						if(smCharInfo.dwCharSoundCode == snCHAR_SOUND_GREVEN)
 						{
@@ -5892,9 +5904,55 @@ int smCHAR::Main()
 		if(lpMasterPlayInfo && lpMasterPlayInfo->lpsmSock && smCharInfo.Life[0] > 0)
 		{
 
+			// Account companions can survive owner warps/map transitions without
+			// being reconstructed.  If the owner has already moved to a different
+			// server StageArea, move the companion to that authoritative stage
+			// before the normal hard-leash height query.  Querying the old lpStage
+			// at new-map coordinates used to return an invalid floor and kill the
+			// companion during otherwise valid teleports.
+			const bool accountCompanion =
+				smCharInfo.State == smCHAR_STATE_USER &&
+				smCharInfo.Brood == smCHAR_MONSTER_USER &&
+				lpMasterPlayInfo != NULL;
+			if(accountCompanion && lpMasterPlayInfo->Position.Area >= 0 &&
+				lpMasterPlayInfo->Position.Area < STAGE_AREA_MAX)
+			{
+				STG_AREA *ownerArea = &StageArea[lpMasterPlayInfo->Position.Area];
+				if(ownerArea && ownerArea->lpStage && ownerArea->lpStage != lpStage)
+				{
+					int followX = lpMasterPlayInfo->Position.x;
+					int followZ = lpMasterPlayInfo->Position.z;
+					gameplay::companions::GetFollowPosition(this, &followX, &followZ);
+
+					lpStage = ownerArea->lpStage;
+					int followY = lpMasterPlayInfo->Position.y + (2 * fONE);
+					const int floorY = lpStage->GetHeight(followX, followZ);
+					if(floorY >= 0)
+						followY = floorY + (2 * fONE);
+
+					pX = followX;
+					pY = followY;
+					pZ = followZ;
+					PosiAround.x = pX;
+					PosiAround.y = pY;
+					PosiAround.z = pZ;
+					ptNextTarget.x = ptNextTarget.y = ptNextTarget.z = 0;
+					TargetMoveCount = 0;
+					AutoMoveStep = 0;
+					TragetTraceMode = 0;
+					lpTargetChar = 0;
+					lpTargetPlayInfo = 0;
+				}
+			}
+
 			gameplay::companions::ApplyAI(this);
 
-			if(HoSkillCode && lpMasterPlayInfo->lpLinkChar != this)
+			const int companionOwnedSkillPet = HoSkillCode && lpLinkChar && lpLinkChar->Flag &&
+				lpLinkChar->smCharInfo.State == smCHAR_STATE_USER &&
+				lpLinkChar->smCharInfo.Brood == smCHAR_MONSTER_USER &&
+				lpLinkChar->lpMasterPlayInfo == lpMasterPlayInfo && lpLinkChar->smCharInfo.Life[0] > 0;
+
+			if(HoSkillCode && !companionOwnedSkillPet && lpMasterPlayInfo->lpLinkChar != this)
 			{
 				smCharInfo.Life[0] = 0;
 				SetMotionFromCode(CHRMOTION_STATE_DEAD);
@@ -5902,15 +5960,22 @@ int smCHAR::Main()
 			else
 			{
 
-				int followX = lpMasterPlayInfo->Position.x;
-				int followZ = lpMasterPlayInfo->Position.z;
-				gameplay::companions::GetFollowPosition(this, &followX, &followZ);
+				int followX = companionOwnedSkillPet ? lpLinkChar->pX : lpMasterPlayInfo->Position.x;
+				int followZ = companionOwnedSkillPet ? lpLinkChar->pZ : lpMasterPlayInfo->Position.z;
+				int followY = companionOwnedSkillPet ? lpLinkChar->pY : lpMasterPlayInfo->Position.y;
+				if(!companionOwnedSkillPet)
+					gameplay::companions::GetFollowPosition(this, &followX, &followZ);
 
 				x = (followX - pX) >> FLOATNS;
 				z = (followZ - pZ) >> FLOATNS;
 				dist = x*x + z*z;
 				if(dist >= (500 * 500))
 				{
+					// Hard-leash teleport uses the owner's height as a fallback, but when
+					// the destination floor is known it should land just above that floor.
+					// The previous ownerY+16 minimum prevented burying but could leave a
+					// companion visibly floating on downhill formation offsets.
+					int safeTeleportY = followY + (2 * fONE);
 					if(lpStage)
 					{
 						y = lpStage->GetHeight(followX, followZ);
@@ -5919,15 +5984,25 @@ int smCHAR::Main()
 							smCharInfo.Life[0] = 0;
 							SetMotionFromCode(CHRMOTION_STATE_DEAD);
 						}
+						else
+						{
+							// Floor is authoritative at the actual formation X/Z.  Two world
+							// units of clearance are enough to avoid clipping without floating.
+							safeTeleportY = y + (2 * fONE);
+						}
 					}
 					if(smCharInfo.Life[0] > 0)
 					{
 						pX = followX;
-						pY = lpMasterPlayInfo->Position.y;
+						pY = safeTeleportY;
 						pZ = followZ;
+						PosiAround.x = pX;
+						PosiAround.y = pY;
+						PosiAround.z = pZ;
 
-						ptNextTarget.x = ptNextTarget.z = 0;
+						ptNextTarget.x = ptNextTarget.y = ptNextTarget.z = 0;
 						TargetMoveCount = 0;
+						AutoMoveStep = 0;
 						TragetTraceMode = 0;
 
 						lpTargetChar = 0;
@@ -5940,10 +6015,20 @@ int smCHAR::Main()
 					TargetMoveCount = 2;
 					TragetTraceMode = 0;
 					lpTargetChar = 0;
-					if(MotionInfo->State != CHRMOTION_STATE_DEAD && (MotionInfo->State >= 0x100 || MotionInfo->State == CHRMOTION_STATE_STAND))
+					if(MotionInfo->State != CHRMOTION_STATE_DEAD &&
+						MotionInfo->State != CHRMOTION_STATE_DAMAGE &&
+						MotionInfo->State != CHRMOTION_STATE_ATTACK &&
+						MotionInfo->State != CHRMOTION_STATE_SKILL)
 					{
-						if(!SetMotionFromCode(CHRMOTION_STATE_RUN))
-							SetMotionFromCode(CHRMOTION_STATE_WALK);
+						// Follow/chase should visibly run.  Previously WALK was excluded from
+						// this transition, so once any legacy path selected WALK the companion
+						// remained walking until another state happened to replace it.
+						if(MotionInfo->State != CHRMOTION_STATE_RUN)
+						{
+							SetMotionFromCode(CHRMOTION_STATE_RUN);
+							if(!MotionInfo || MotionInfo->State != CHRMOTION_STATE_RUN)
+								SetMotionFromCode(CHRMOTION_STATE_WALK);
+						}
 					}
 				}
 			}
@@ -6113,6 +6198,9 @@ int smCHAR::Main()
 				}
 
 
+				if(lpTargetChar && !gameplay::companions::CanMonsterTargetCompanion(this, lpTargetChar))
+					lpTargetChar = NULL;
+
 				if(FrameCounter == 40 && lpTargetChar)
 				{
 
@@ -6177,13 +6265,33 @@ int smCHAR::Main()
 
 
 							if(lpTargetChar)
-								cnt -= (cnt*lpTargetChar->smCharInfo.Absorption) / 100;
+							{
+								gameplay::companions::ApplyOutgoingBasicDamage(this, lpTargetChar, &cnt);
+								gameplay::companions::ApplyIncomingDamage(lpTargetChar, this, &cnt);
+								if(cnt > 0)
+								{
+									const int companionEvade = gameplay::companions::GetPassiveEvadePercent(lpTargetChar);
+									if(companionEvade > 0 && (rand() % 100) < companionEvade)
+										cnt = 0;
+									else
+									{
+										cnt -= (cnt*lpTargetChar->smCharInfo.Absorption) / 100;
+										gameplay::companions::ApplyOutgoingBasicPostAbsorption(this, lpTargetChar, &cnt);
+									}
+								}
+							}
 							else
 								cnt = 0;
 
 							if(cnt > 0)
 							{
 								lpTargetChar->smCharInfo.Life[0] -= cnt;
+								const int companionReflect = gameplay::companions::GetReactiveDamage(lpTargetChar, cnt);
+								if(companionReflect > 0 && smCharInfo.Life[0] > 0)
+								{
+									smCharInfo.Life[0] = (short)std::max(0, (int)smCharInfo.Life[0] - companionReflect);
+									if(smCharInfo.Life[0] <= 0) SetMotionFromCode(CHRMOTION_STATE_DEAD);
+								}
 
 								if(smCharInfo.dwCharSoundCode == snCHAR_SOUND_WEB)
 								{
@@ -6344,6 +6452,9 @@ int smCHAR::Main()
 		}
 
 
+		if (lpTargetChar && !gameplay::companions::CanMonsterTargetCompanion(this, lpTargetChar))
+			lpTargetChar = NULL;
+
 		if (FrameCounter == 40 && lpTargetChar) {
 
 			if (MotionInfo->State == CHRMOTION_STATE_ATTACK || MotionInfo->State == CHRMOTION_STATE_SKILL) {
@@ -6396,13 +6507,32 @@ int smCHAR::Main()
 					}
 
 
-					if (lpTargetChar)
-						cnt -= (cnt*lpTargetChar->smCharInfo.Absorption) / 100;
+					if (lpTargetChar) {
+						gameplay::companions::ApplyOutgoingBasicDamage(this, lpTargetChar, &cnt);
+						gameplay::companions::ApplyIncomingDamage(lpTargetChar, this, &cnt);
+						if(cnt > 0)
+						{
+							const int companionEvade = gameplay::companions::GetPassiveEvadePercent(lpTargetChar);
+							if(companionEvade > 0 && (rand() % 100) < companionEvade)
+								cnt = 0;
+							else
+							{
+								cnt -= (cnt*lpTargetChar->smCharInfo.Absorption) / 100;
+								gameplay::companions::ApplyOutgoingBasicPostAbsorption(this, lpTargetChar, &cnt);
+							}
+						}
+					}
 					else
 						cnt = 0;
 
 					if (cnt > 0) {
 						lpTargetChar->smCharInfo.Life[0] -= cnt;
+						const int companionReflect = gameplay::companions::GetReactiveDamage(lpTargetChar, cnt);
+						if(companionReflect > 0 && smCharInfo.Life[0] > 0)
+						{
+							smCharInfo.Life[0] = (short)std::max(0, (int)smCharInfo.Life[0] - companionReflect);
+							if(smCharInfo.Life[0] <= 0) SetMotionFromCode(CHRMOTION_STATE_DEAD);
+						}
 
 						if (smCharInfo.dwCharSoundCode == snCHAR_SOUND_WEB) {	
 							if (lpTargetChar->smCharInfo.dwCharSoundCode != snCHAR_SOUND_KELVEZU)	

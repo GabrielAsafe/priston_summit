@@ -1,4 +1,5 @@
 #include "systems/gameplay/companions/CompanionProfileStore.h"
+#include "systems/gameplay/companions/CompanionSkillExecutor.h"
 #include "systems/gameplay/companions/CompanionSystem.h"
 
 #include <stddef.h>
@@ -14,9 +15,13 @@ namespace
 {
 
 static const uint32_t COMPANION_PROFILE_MAGIC = 0x32504D43u; // "CMP2" little-endian
-static const uint16_t COMPANION_PROFILE_VERSION = 2;
+static const uint16_t COMPANION_PROFILE_VERSION = 4;
+static const uint16_t COMPANION_PROFILE_SKILL_LOADOUT_VERSION = 3;
+static const uint16_t COMPANION_PROFILE_V2_VERSION = 2;
 static const uint16_t COMPANION_PROFILE_LEGACY_VERSION = 1;
 static const uint32_t COMPANION_PROFILE_LOADOUT_ACTIVE = 0x00000001u;
+static const uint32_t COMPANION_PROFILE_SKILL_LOADOUT_ACTIVE = 0x00000002u;
+static const uint32_t COMPANION_PROFILE_BUFF_LOADOUT_ACTIVE = 0x00000004u;
 
 #pragma pack(push, 1)
 struct CompanionProfileDiskV1
@@ -34,10 +39,22 @@ struct CompanionProfileDiskV1
     int32_t retreatHpPercent;
     int32_t preferredRange;
     int32_t formationSlot;
-    uint32_t reserved[8];
+    // V3 reuses the original 32-byte reserved tail. The disk structure size
+    // remains byte-identical to V1/V2, so existing .cmp files can be migrated
+    // in place without a second profile format.
+    uint8_t activeSkillSlots[4];
+    uint8_t buffSkillSlots[4];
+    uint16_t buffIntervalSeconds[4];
+    uint8_t buffTargetModes[4];
+    // V4 consumes the original 12-byte reserved tail without changing ABI.
+    uint8_t activeMinResourcePercent[4];
+    uint8_t activeMinimumTargets[4];
+    uint8_t activeTargetModes[4];
     uint32_t checksum;
 };
 #pragma pack(pop)
+
+static_assert(sizeof(CompanionProfileDiskV1) == 84, "companion profile disk ABI must remain V1/V2 compatible");
 
 uint32_t HashIdentity(const char *text)
 {
@@ -120,8 +137,16 @@ CompanionProfile::CompanionProfile()
     : loadoutActive(false), rightItemCode(0), leftItemCode(0),
       mode(static_cast<int>(COMPANION_MODE_AGGRESSIVE)),
       tactic(COMPANION_TACTIC_BALANCED), retreatHpPercent(0),
-      preferredRange(0), formationSlot(-1)
+      preferredRange(0), formationSlot(-1), skillLoadoutActive(false),
+      buffLoadoutActive(false)
 {
+    ZeroMemory(activeSkillSlots, sizeof(activeSkillSlots));
+    ZeroMemory(activeMinResourcePercent, sizeof(activeMinResourcePercent));
+    ZeroMemory(activeTargetModes, sizeof(activeTargetModes));
+    for(int i = 0; i < 4; ++i) activeMinimumTargets[i] = 1;
+    ZeroMemory(buffSkillSlots, sizeof(buffSkillSlots));
+    ZeroMemory(buffIntervalSeconds, sizeof(buffIntervalSeconds));
+    ZeroMemory(buffTargetModes, sizeof(buffTargetModes));
 }
 
 bool LoadCompanionProfile(const char *account, const char *characterName, CompanionProfile *profile)
@@ -147,6 +172,8 @@ bool LoadCompanionProfile(const char *account, const char *characterName, Compan
     if(read != sizeof(disk) ||
         disk.magic != COMPANION_PROFILE_MAGIC ||
         (disk.version != COMPANION_PROFILE_VERSION &&
+         disk.version != COMPANION_PROFILE_SKILL_LOADOUT_VERSION &&
+         disk.version != COMPANION_PROFILE_V2_VERSION &&
          disk.version != COMPANION_PROFILE_LEGACY_VERSION) ||
         disk.size != sizeof(disk) ||
         disk.accountHash != HashIdentity(account) ||
@@ -164,11 +191,35 @@ bool LoadCompanionProfile(const char *account, const char *characterName, Compan
         static_cast<CompanionTacticPreset>(disk.tactic) : COMPANION_TACTIC_BALANCED;
     // V1 shipped with an implicit 25% retreat default. Treat that legacy
     // value as disabled during migration: retreat becomes opt-in only. Any
-    // explicit value saved after this build is written as V2 and is honored.
-    profile->retreatHpPercent = disk.version >= COMPANION_PROFILE_VERSION ?
+    // explicit value saved after this build is written as V3 and is honored.
+    profile->retreatHpPercent = disk.version >= COMPANION_PROFILE_V2_VERSION ?
         ClampInt(disk.retreatHpPercent, 0, 90) : 0;
     profile->preferredRange = ClampInt(disk.preferredRange, 0, 600);
     profile->formationSlot = ClampInt(disk.formationSlot, -1, COMPANION_MAX_ACTIVE - 1);
+
+    if(disk.version >= COMPANION_PROFILE_SKILL_LOADOUT_VERSION)
+    {
+        profile->skillLoadoutActive = (disk.flags & COMPANION_PROFILE_SKILL_LOADOUT_ACTIVE) != 0;
+        profile->buffLoadoutActive = (disk.flags & COMPANION_PROFILE_BUFF_LOADOUT_ACTIVE) != 0;
+        for(int i = 0; i < 4; ++i)
+        {
+            profile->activeSkillSlots[i] = disk.activeSkillSlots[i] <= COMPANION_MAX_SKILL_SLOTS ? disk.activeSkillSlots[i] : 0;
+            profile->buffSkillSlots[i] = disk.buffSkillSlots[i] <= COMPANION_MAX_SKILL_SLOTS ? disk.buffSkillSlots[i] : 0;
+            profile->buffIntervalSeconds[i] = (WORD)ClampInt((int)disk.buffIntervalSeconds[i], 5, 3600);
+            if(!disk.buffSkillSlots[i])
+                profile->buffIntervalSeconds[i] = 0;
+            profile->buffTargetModes[i] = disk.buffTargetModes[i] <= 2 ? disk.buffTargetModes[i] : 0;
+        }
+    }
+    if(disk.version >= COMPANION_PROFILE_VERSION)
+    {
+        for(int i = 0; i < 4; ++i)
+        {
+            profile->activeMinResourcePercent[i] = (BYTE)ClampInt((int)disk.activeMinResourcePercent[i], 0, 90);
+            profile->activeMinimumTargets[i] = (BYTE)ClampInt((int)disk.activeMinimumTargets[i], 1, 16);
+            profile->activeTargetModes[i] = disk.activeTargetModes[i] <= 2 ? disk.activeTargetModes[i] : 0;
+        }
+    }
     return true;
 }
 
@@ -187,6 +238,10 @@ bool SaveCompanionProfile(const char *account, const char *characterName, const 
     disk.characterHash = HashIdentity(characterName);
     if(profile.loadoutActive)
         disk.flags |= COMPANION_PROFILE_LOADOUT_ACTIVE;
+    if(profile.skillLoadoutActive)
+        disk.flags |= COMPANION_PROFILE_SKILL_LOADOUT_ACTIVE;
+    if(profile.buffLoadoutActive)
+        disk.flags |= COMPANION_PROFILE_BUFF_LOADOUT_ACTIVE;
     disk.rightItemCode = profile.rightItemCode;
     disk.leftItemCode = profile.leftItemCode;
     disk.mode = IsModeValid(profile.mode) ? profile.mode : static_cast<int>(COMPANION_MODE_AGGRESSIVE);
@@ -195,6 +250,17 @@ bool SaveCompanionProfile(const char *account, const char *characterName, const 
     disk.retreatHpPercent = ClampInt(profile.retreatHpPercent, 0, 90);
     disk.preferredRange = ClampInt(profile.preferredRange, 0, 600);
     disk.formationSlot = ClampInt(profile.formationSlot, -1, COMPANION_MAX_ACTIVE - 1);
+    for(int i = 0; i < 4; ++i)
+    {
+        disk.activeSkillSlots[i] = profile.activeSkillSlots[i] <= COMPANION_MAX_SKILL_SLOTS ? profile.activeSkillSlots[i] : 0;
+        disk.buffSkillSlots[i] = profile.buffSkillSlots[i] <= COMPANION_MAX_SKILL_SLOTS ? profile.buffSkillSlots[i] : 0;
+        disk.buffIntervalSeconds[i] = profile.buffSkillSlots[i] ?
+            (uint16_t)ClampInt((int)profile.buffIntervalSeconds[i], 5, 3600) : 0;
+        disk.buffTargetModes[i] = profile.buffTargetModes[i] <= 2 ? profile.buffTargetModes[i] : 0;
+        disk.activeMinResourcePercent[i] = (uint8_t)ClampInt((int)profile.activeMinResourcePercent[i], 0, 90);
+        disk.activeMinimumTargets[i] = (uint8_t)ClampInt((int)profile.activeMinimumTargets[i], 1, 16);
+        disk.activeTargetModes[i] = profile.activeTargetModes[i] <= 2 ? profile.activeTargetModes[i] : 0;
+    }
     disk.checksum = ComputeChecksum(disk);
 
     char tempPath[MAX_PATH] = { 0 };

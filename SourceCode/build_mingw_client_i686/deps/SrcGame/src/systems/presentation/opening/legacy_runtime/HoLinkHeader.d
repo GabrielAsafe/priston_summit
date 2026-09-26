@@ -135,6 +135,7 @@
  Dependency/DirectX9/Include/d3dx9math.h \
  SrcGame/src/platform/windows/registry/smreg.h \
  SrcGame/src/systems/combat/pvp/war_mode/WarMode.h \
+ SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h \
  SrcGame/src/systems/commerce/coin_shop/CoinShop.h Shared/skillsPacket.h \
  Shared/items.h SrcGame/src/systems/commerce/coin_shop/CoinShop_T.h \
  SrcGame/src/systems/social/party/ui/cPartyWindow.h \
@@ -295,6 +296,7 @@ SrcGame/src/platform/database/odbc/SQL.h:
 Dependency/DirectX9/Include/d3dx9math.h:
 SrcGame/src/platform/windows/registry/smreg.h:
 SrcGame/src/systems/combat/pvp/war_mode/WarMode.h:
+SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h:
 SrcGame/src/systems/commerce/coin_shop/CoinShop.h:
 Shared/skillsPacket.h:
 Shared/items.h:

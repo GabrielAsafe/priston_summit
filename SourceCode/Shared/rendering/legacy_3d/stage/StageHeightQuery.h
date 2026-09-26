@@ -65,22 +65,22 @@ inline bool OrderTriangleByZ(const smSTAGE_VERTEX &first, const smSTAGE_VERTEX &
 	return ordered.top && ordered.middle && ordered.bottom;
 }
 
-inline bool FixedSlope(int delta, int distance, std::int64_t &slope)
+inline bool FixedSlope(std::int64_t delta, std::int64_t distance, std::int64_t &slope)
 {
 	if(distance == 0)
 	{
 		slope = 0;
 		return true;
 	}
-	const std::int64_t numerator = static_cast<std::int64_t>(delta) << FLOATNS;
+	const std::int64_t numerator = delta * (std::int64_t{1} << FLOATNS);
 	slope = numerator / distance;
 	return true;
 }
 
-inline bool SampleCoordinate(int origin, std::int64_t slope, int distance, int &value)
+inline bool SampleCoordinate(int origin, std::int64_t slope, std::int64_t distance, int &value)
 {
 	const std::int64_t sample =
-		((slope * static_cast<std::int64_t>(distance)) >> FLOATNS) + origin;
+		((slope * distance) >> FLOATNS) + origin;
 	if(!FitsInt(sample))
 		return false;
 	value = static_cast<int>(sample);
@@ -90,13 +90,13 @@ inline bool SampleCoordinate(int origin, std::int64_t slope, int distance, int &
 inline bool SampleEdgeAtZ(const smSTAGE_VERTEX &start, const smSTAGE_VERTEX &end,
 	int z, EdgeSample &sample)
 {
-	const int dz = end.z - start.z;
+	const std::int64_t dz = static_cast<std::int64_t>(end.z) - start.z;
 	std::int64_t xSlope = 0;
 	std::int64_t ySlope = 0;
-	if(!FixedSlope(end.x - start.x, dz, xSlope) ||
-		!FixedSlope(end.y - start.y, dz, ySlope))
+	if(!FixedSlope(static_cast<std::int64_t>(end.x) - start.x, dz, xSlope) ||
+		!FixedSlope(static_cast<std::int64_t>(end.y) - start.y, dz, ySlope))
 		return false;
-	const int offset = z - start.z;
+	const std::int64_t offset = static_cast<std::int64_t>(z) - start.z;
 	return SampleCoordinate(start.x, xSlope, offset, sample.x) &&
 		SampleCoordinate(start.y, ySlope, offset, sample.y);
 }
@@ -134,15 +134,15 @@ inline int TriangleHeightAtXZ(const smSTAGE_VERTEX &first, const smSTAGE_VERTEX 
 	if(x < longEdge.x || x > shortEdge.x)
 		return CLIP_OUT;
 
-	const int dx = shortEdge.x - longEdge.x;
+	const std::int64_t dx = static_cast<std::int64_t>(shortEdge.x) - longEdge.x;
 	if(dx == 0)
 		return longEdge.y;
 
 	std::int64_t ySlope = 0;
-	if(!FixedSlope(shortEdge.y - longEdge.y, dx, ySlope))
+	if(!FixedSlope(static_cast<std::int64_t>(shortEdge.y) - longEdge.y, dx, ySlope))
 		return CLIP_OUT;
 	int height = 0;
-	return SampleCoordinate(longEdge.y, ySlope, x - longEdge.x, height)
+	return SampleCoordinate(longEdge.y, ySlope, static_cast<std::int64_t>(x) - longEdge.x, height)
 		? height : CLIP_OUT;
 }
 

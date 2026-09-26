@@ -3,6 +3,7 @@
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include "systems/gameplay/mining/v2/MiningInteractionService.h"
 #include "systems/gameplay/mining/v2/MiningRuntime.h"
+#include "systems/gameplay/gathering/v2/GatheringRuntime.h"
 
 namespace gameplay
 {
@@ -30,7 +31,10 @@ gathering::HarvestResult HarvestMiningNodeForPlayer(rsPLAYINFO* player,
     actor.z = player->Position.z >> FLOATNS;
 
     static MiningInteractionService interaction(ServerMiningService());
-    return interaction.Harvest(actor, nodeId, nowMilliseconds, roll);
+    gathering::HarvestResult result = interaction.Harvest(actor, nodeId, nowMilliseconds, roll);
+    if (result.Succeeded())
+        (void)gathering::ServerGatheringRepository().AddInventory(actor.playerName, result.resourceKey, result.amount);
+    return result;
 }
 }
 }

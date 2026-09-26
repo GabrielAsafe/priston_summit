@@ -1,3 +1,4 @@
+#include "content/v1/text_resource/content/TextResourceRuntime.h"
 #include "items.h"
 #include "compat/server_build/server_build_compat.h"
 #include <cstring>
@@ -118,6 +119,8 @@ char	*SetNPCMsg(char *szMsg)
 #include "formats/model_config/LegacyModelConfigExact_server.inl"
 #include "formats/server_config/LegacyServerConfigExact_server.inl"
 #include "formats/legacy_config/LegacyMainConfigExact_server.inl"
+extern char *szCharSizeCodeName[];
+#include "content/v1/definition/legacy/CompiledDefinitionAdapter.inl"
 #include "formats/item_config/LegacyItemDefinitionExact_server.inl"
 #include "formats/character_config/LegacyCharacterConfigExact_server.inl"
 #include "formats/stage_spawn/LegacyStageSpawnExact_server.inl"

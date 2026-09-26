@@ -139,6 +139,10 @@
  Shared/gameplay/classes/v2/services/ClassService.h \
  Shared/gameplay/classes/v2/PlayableClassRegistry.h \
  Shared/gameplay/classes/v2/domain/ClassDefinition.h \
+ Shared/gameplay/skills/v2/legacy/LegacySkillAdapter.h \
+ Shared/gameplay/skills/v2/services/SkillService.h \
+ Shared/gameplay/skills/v2/SkillRegistry.h \
+ Shared/gameplay/skills/v2/domain/SkillDefinition.h \
  SrcGame/src/systems/combat/skills/legacy_sin/sinSkill_Info.h \
  SrcGame/src/systems/localization/legacy_catalog/Brazil/b_sinSkill_Info.h
 Shared/gameplay/skills/sinSkill_legacy_client.inl:
@@ -282,5 +286,9 @@ SrcGame/src/systems/world/field/field.h:
 Shared/gameplay/classes/v2/services/ClassService.h:
 Shared/gameplay/classes/v2/PlayableClassRegistry.h:
 Shared/gameplay/classes/v2/domain/ClassDefinition.h:
+Shared/gameplay/skills/v2/legacy/LegacySkillAdapter.h:
+Shared/gameplay/skills/v2/services/SkillService.h:
+Shared/gameplay/skills/v2/SkillRegistry.h:
+Shared/gameplay/skills/v2/domain/SkillDefinition.h:
 SrcGame/src/systems/combat/skills/legacy_sin/sinSkill_Info.h:
 SrcGame/src/systems/localization/legacy_catalog/Brazil/b_sinSkill_Info.h:

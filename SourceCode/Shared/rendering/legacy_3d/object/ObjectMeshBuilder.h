@@ -30,11 +30,18 @@ inline bool HasFaceCapacity(const smOBJ3D &object)
 	return object.Face && object.nFace >= 0 && object.nFace < object.MaxFace;
 }
 
+inline int SaturatingAbs(int value)
+{
+	if(value == std::numeric_limits<int>::min())
+		return std::numeric_limits<int>::max();
+	return value < 0 ? -value : value;
+}
+
 inline void UpdateBounds(smOBJ3D &object, int x, int y, int z)
 {
-	const int absX = std::abs(x);
-	const int absY = std::abs(y);
-	const int absZ = std::abs(z);
+	const int absX = SaturatingAbs(x);
+	const int absY = SaturatingAbs(y);
+	const int absZ = SaturatingAbs(z);
 	if(object.maxX < absX) object.maxX = absX;
 	if(object.maxZ < absY) object.maxZ = absY;
 	if(object.maxY < absZ) object.maxY = absZ;

@@ -63,7 +63,8 @@ inline int HighestWalkableHeight(const smSTAGE3D &stage, smSTAGE_FACE *const *fa
 	VisitSolidFaces(stage, faces, faceCount, [&](smSTAGE_FACE &face) {
 		const int candidate = summit::rendering::legacy3d::stage_height::FaceHeightAtXZ(
 			stage, face, x, z);
-		if(candidate != CLIP_OUT && candidate - y < maximumRise && candidate > height)
+		if(candidate != CLIP_OUT &&
+			static_cast<long long>(candidate) - y < maximumRise && candidate > height)
 			height = candidate;
 		return true;
 	});
@@ -88,7 +89,7 @@ inline EmptyHeightResult QueryEmptyHeight(const smSTAGE3D &stage,
 			return true;
 		if(candidate > result.highest)
 			result.highest = candidate;
-		if(candidate < y + objectHeight && candidate > y)
+		if(static_cast<long long>(candidate) < static_cast<long long>(y) + objectHeight && candidate > y)
 			result.occupied = true;
 		return true;
 	});
@@ -128,7 +129,7 @@ inline bool FindHighestIceSurface(smSTAGE3D &stage, smSTAGE_FACE *const *faces, 
 
 		const int candidate = summit::rendering::legacy3d::stage_height::FaceHeightAtXZ(
 			stage, *face, x, z);
-		if(candidate == CLIP_OUT || candidate - y >= maximumAbove)
+		if(candidate == CLIP_OUT || static_cast<long long>(candidate) - y >= maximumAbove)
 			continue;
 		if(!hit.face || candidate > hit.height)
 		{

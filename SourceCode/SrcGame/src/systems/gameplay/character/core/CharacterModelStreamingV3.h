@@ -10,6 +10,9 @@ class scITEM;
 std::recursive_mutex &SummitPatternCacheMutexV3();
 
 int SummitRequestCharacterModelV3(smCHAR *character, const char *primaryName, const char *secondaryName);
+// Character-selection previews are visible immediately and therefore use the
+// HIGH worker lane plus HIGH texture prewarm. Gameplay callers keep the normal API.
+int SummitRequestCharacterModelV3Interactive(smCHAR *character, const char *primaryName, const char *secondaryName);
 int SummitRequestItemModelV3(scITEM *item, const char *modelName);
 int SummitRequestToolModelV3(smCHAR *character, unsigned long itemCode, int toolPosition, const char *modelName);
 // Fast path used by legacy callers that can consume an already-resident model

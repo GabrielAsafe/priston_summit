@@ -76,6 +76,48 @@ public:
         (void)expected;
         return Save(playerKey, membership);
     }
+    virtual bool SwitchActive(const std::string& playerKey,
+                              CovenantId targetCovenantId,
+                              const std::vector<CovenantId>& knownCovenantIds)
+    {
+        if (playerKey.empty() || targetCovenantId <= 0)
+            return false;
+        std::vector<CovenantMembershipState> memberships;
+        if (!LoadAll(playerKey, memberships))
+            return false;
+        bool foundTarget = false;
+        for (std::vector<CovenantMembershipState>::const_iterator it = memberships.begin();
+             it != memberships.end(); ++it)
+        {
+            bool known = false;
+            for (std::vector<CovenantId>::const_iterator knownIt = knownCovenantIds.begin();
+                 knownIt != knownCovenantIds.end(); ++knownIt)
+            {
+                if (*knownIt == it->covenantId)
+                {
+                    known = true;
+                    break;
+                }
+            }
+            if (!known)
+                return false;
+            if (it->covenantId == targetCovenantId)
+                foundTarget = true;
+        }
+        if (!foundTarget)
+            return false;
+        for (std::vector<CovenantMembershipState>::iterator it = memberships.begin();
+             it != memberships.end(); ++it)
+        {
+            const bool shouldBeActive = it->covenantId == targetCovenantId;
+            if (it->active == shouldBeActive)
+                continue;
+            it->active = shouldBeActive;
+            if (!Save(playerKey, *it))
+                return false;
+        }
+        return true;
+    }
     virtual CovenantReputationSaveResult SaveReputationChange(
         const std::string& playerKey,
         const CovenantMembershipState& membership,
@@ -90,6 +132,17 @@ public:
     {
         (void)expected;
         return SaveReputationChange(playerKey, membership, delta, sourceKey);
+    }
+    virtual CovenantReputationSaveResult SaveRepeatableReputationChangeChecked(
+        const std::string& playerKey,
+        const CovenantMembershipState& expected,
+        const CovenantMembershipState& membership,
+        int delta)
+    {
+        (void)delta;
+        return SaveIfUnchanged(playerKey, expected, membership)
+                   ? CovenantReputationSaveResult::Applied
+                   : CovenantReputationSaveResult::Conflict;
     }
     virtual CovenantEffectClaimResult ClaimEffect(const std::string& playerKey,
                                                    CovenantId covenantId,

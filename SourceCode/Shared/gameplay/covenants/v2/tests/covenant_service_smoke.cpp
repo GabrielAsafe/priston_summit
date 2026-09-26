@@ -189,12 +189,41 @@ int main()
     assert(unorderedService.RegisterRank(lowIdLater));
     assert(!unorderedService.ValidateDefinitions());
 
+    // Option A contract: later ranks must repeat earlier effects.
+    FakeRepo cumulativeRepo;
+    covenants::CovenantService cumulativeService(cumulativeRepo);
+    covenants::CovenantDefinition cumulative;
+    cumulative.id = 77;
+    cumulative.key = "guild.cumulative";
+    assert(cumulativeService.RegisterCovenant(cumulative));
+    covenants::CovenantRankDefinition cumulativeFirst;
+    cumulativeFirst.id = 1;
+    cumulativeFirst.covenantId = 77;
+    cumulativeFirst.key = "one";
+    cumulativeFirst.minReputation = 0;
+    modifiers::GameplayModifier carried;
+    carried.statKey = "cumulative.effect";
+    cumulativeFirst.benefits.push_back(carried);
+    assert(cumulativeService.RegisterRank(cumulativeFirst));
+    covenants::CovenantRankDefinition cumulativeSecond;
+    cumulativeSecond.id = 2;
+    cumulativeSecond.covenantId = 77;
+    cumulativeSecond.key = "two";
+    cumulativeSecond.minReputation = 100;
+    modifiers::GameplayModifier replacementOnly;
+    replacementOnly.statKey = "different.effect";
+    cumulativeSecond.benefits.push_back(replacementOnly);
+    assert(cumulativeService.RegisterRank(cumulativeSecond));
+    assert(!cumulativeService.ValidateDefinitions());
+
     int joins = 0;
     int leaves = 0;
+    int activations = 0;
     int repChanges = 0;
     int rankChanges = 0;
     hub.Subscribe<covenants::CovenantJoinedEvent>([&](const covenants::CovenantJoinedEvent&) { ++joins; });
     hub.Subscribe<covenants::CovenantLeftEvent>([&](const covenants::CovenantLeftEvent&) { ++leaves; });
+    hub.Subscribe<covenants::CovenantActivatedEvent>([&](const covenants::CovenantActivatedEvent&) { ++activations; });
     hub.Subscribe<covenants::CovenantReputationChangedEvent>([&](const covenants::CovenantReputationChangedEvent&) { ++repChanges; });
     hub.Subscribe<covenants::CovenantRankChangedEvent>([&](const covenants::CovenantRankChangedEvent&) { ++rankChanges; });
 
@@ -213,10 +242,17 @@ int main()
     assert(service.CheckJoinEligibility("Alice", 1, eligible) ==
            covenants::CovenantJoinEligibility::AlreadyActive);
     assert(joins == 1);
+    assert(activations == 1);
     assert(service.CheckJoinEligibility("Alice", 2, eligible) ==
-           covenants::CovenantJoinEligibility::ExclusiveConflict);
-    assert(!service.Join("Alice", 2, eligible));
+           covenants::CovenantJoinEligibility::Eligible);
+    assert(service.Join("Alice", 2, eligible));
+    assert(joins == 2);
+    assert(activations == 1);
+    covenants::CovenantMembershipState rivalState;
+    assert(service.GetMembership("Alice", 2, rivalState));
+    assert(!rivalState.active);
     assert(service.GetRank("Alice", 1) == 10);
+    assert(service.GetRank("Alice", 2) == 10);
 
     assert(!service.AddReputation("Alice", 1, 0, "quest.noop"));
     assert(!service.AddReputation("Alice", 1, 1, std::string(256, 'x')));
@@ -270,11 +306,29 @@ int main()
     assert(service.GetAllActiveBenefits("Alice", allBenefits));
     assert(allBenefits.empty());
 
-    assert(service.Leave("Alice", 1));
+    // Switching preserves progress on the inactive membership and activates an
+    // already-joined Covenant without recreating it.
+    assert(service.Activate("Alice", 2) == covenants::CovenantActivationResult::Activated);
+    assert(activations == 2);
+    assert(service.GetMembership("Alice", 1, state));
+    assert(!state.active);
+    assert(state.reputation == -100);
+    assert(service.GetMembership("Alice", 2, rivalState));
+    assert(rivalState.active);
+    assert(rivalState.reputation == 0);
+    assert(service.GetRank("Alice", 1) == 0);
+    assert(service.GetRank("Alice", 2) == 10);
+    assert(service.CheckJoinEligibility("Alice", 1, eligible) ==
+           covenants::CovenantJoinEligibility::AlreadyMember);
+    assert(service.Activate("Alice", 2) == covenants::CovenantActivationResult::AlreadyActive);
+
+    assert(service.Leave("Alice", 2));
     assert(leaves == 1);
     assert(service.GetActiveSnapshots("Alice", activeSnapshots));
     assert(activeSnapshots.empty());
-    assert(service.Join("Alice", 2, eligible));
-    assert(joins == 2);
+    assert(service.Activate("Alice", 1) == covenants::CovenantActivationResult::Activated);
+    assert(activations == 3);
+    assert(service.GetMembership("Alice", 1, state));
+    assert(state.active && state.reputation == -100);
     return 0;
 }

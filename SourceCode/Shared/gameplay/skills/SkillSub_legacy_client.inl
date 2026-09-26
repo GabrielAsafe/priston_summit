@@ -24,6 +24,7 @@
 #include "systems/combat/skills/client/SkillSub.h"
 #include "systems/combat/damage/damage.h"
 #include "systems/network/region/AreaServer.h"
+#include "gameplay/skills/v2/legacy/LegacySkillAdapter.h"
 
 #include "systems/social/party/ui/cPartyWindow.h"
 
@@ -229,6 +230,63 @@ void SummitT5MotionEventArm(smCHAR *actor, int logicalSkillCode, int networkSkil
 	state->Active = TRUE;
 }
 
+// All player/companion presentation now resolves through the same clean skill
+// domain. The legacy network/play code remains independent from the visual alias.
+static const gameplay::skills::SkillDefinition *SummitSkillDefinition(int logicalSkillCode)
+{
+    return gameplay::skills::DefaultLegacySkillAdapter().Find(
+        (gameplay::skills::SkillId)logicalSkillCode);
+}
+
+static int SummitSkillPresentationPlayCode(int logicalSkillCode, int networkSkillCode)
+{
+    const gameplay::skills::SkillDefinition *definition = SummitSkillDefinition(logicalSkillCode);
+    if(!definition) return networkSkillCode;
+    const std::uint32_t presentation = definition->legacy.presentationPlayCode;
+    return presentation ? (int)presentation : networkSkillCode;
+}
+
+static int SummitSkillNetworkPlayCode(int logicalSkillCode)
+{
+    return (int)gameplay::skills::DefaultLegacySkillAdapter().PlayCode(
+        (gameplay::skills::SkillId)logicalSkillCode);
+}
+
+static int SummitSkillEncodedNetworkPlayCode(int logicalSkillCode, int level)
+{
+    return SummitSkillNetworkPlayCode(logicalSkillCode) | (level << 8);
+}
+
+static int SummitSkillEncodedPresentationPlayCode(int logicalSkillCode, int level)
+{
+    const int networkSkillCode = SummitSkillNetworkPlayCode(logicalSkillCode);
+    return SummitSkillPresentationPlayCode(logicalSkillCode, networkSkillCode) | (level << 8);
+}
+
+int SummitT5PrepareRemoteCompanionVisual(smCHAR *actor, int logicalSkillCode,
+    int networkSkillCode, int level, smCHAR *target)
+{
+    if(!actor || level < 1 || level > 10) return networkSkillCode;
+
+    const gameplay::skills::SkillDefinition *definition = SummitSkillDefinition(logicalSkillCode);
+    if(!definition) return networkSkillCode;
+
+    const gameplay::skills::SkillPresentationProfile &presentation = definition->presentation;
+    if(!presentation.actorParticle.empty())
+        SummitT5StartParticle(presentation.actorParticle.c_str(), actor);
+    if(!presentation.targetParticle.empty() && target)
+        SummitT5StartParticle(presentation.targetParticle.c_str(), target);
+    if(presentation.persistentVisual)
+        SummitT5PersistentVisualApply(actor, logicalSkillCode, level);
+    if(presentation.castSound)
+        SkillPlaySound(presentation.castSound, actor->pX, actor->pY, actor->pZ);
+    if(definition->legacy.logicalMotionEvents)
+        SummitT5MotionEventArm(actor, logicalSkillCode, networkSkillCode, level, target,
+            definition->legacy.finalMotionEvent);
+
+    return SummitSkillPresentationPlayCode(logicalSkillCode, networkSkillCode);
+}
+
 void SummitT5MotionEventClear(smCHAR *actor)
 {
 	SummitT5MotionEventState *state = SummitT5FindMotionEventState(actor, FALSE);
@@ -375,15 +433,22 @@ int SummitT5MotionEventDispatch(smCHAR *actor)
 
 	case SKILL_T5_RING_OF_SPEARS:
 		if(eventIndex == 1)
+		{
+			// The .part starts at cast time; the legacy Lua layer belongs to the
+			// first motion event for both local players and remote companions.
+			SummitT5StartLegacyLuaEffectAt("game//scripts//particles//PS5RingOfSpears.lua",
+				impact.x, impact.y, impact.z);
 			SkillPlaySound(0x4857, actor->pX, actor->pY, actor->pZ);
+		}
 		break;
 
 	case SKILL_T5_WIZARD_TRANCE:
 		if(eventIndex == 1)
 		{
-			// EU also starts MG5WizardTrance.luac here. Summit does not yet have
-			// the matching owner-aware .luac particle engine path, so only preserve
-			// the verified MotionEvent sound instead of inventing a fallback visual.
+			// MG5WizardTrance.luac belongs to the EU PARTICLEENGINE bytecode loader.
+			// Summit MainWindow.LoadScript is a different legacy Lua/Ho loader and
+			// reports the bytecode header as a syntax error. MG5OrbMastery.part is
+			// already started when the cast begins, so keep that compatible layer.
 			SkillPlaySound(SKILL_SOUND_SKILL_ENERGY_SHIELD, actor->pX, actor->pY, actor->pZ);
 		}
 		break;
@@ -2344,13 +2409,13 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		if(lpSkill->Point && lpChar && lpSkill->Skill_Info.FuncPointer() == TRUE)
 		{
 			RetryPlayAttack(lpChar);
-			int summitRuptureNetworkSkill = SKILL_PLAY_T51 | (lpSkill->Point << 8);
+			int summitRuptureNetworkSkill = SummitSkillEncodedNetworkPlayCode(SKILL_T5_RUPTURE, lpSkill->Point);
 			lpCurPlayer->AttackSkil = summitRuptureNetworkSkill;
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed, 4);
 			lpCurPlayer->MotionLoop = 1;
-			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_RUPTURE, SKILL_PLAY_T51, lpSkill->Point, lpChar, 3);
+			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_RUPTURE, SummitSkillNetworkPlayCode(SKILL_T5_RUPTURE), lpSkill->Point, lpChar, 3);
 			lpCurPlayer->AttackSkil = summitRuptureNetworkSkill;
 			return TRUE;
 		}
@@ -2403,18 +2468,15 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			RetryPlayAttack(lpChar);
 			// EU Ring of Spears animates with T41, then sends the T51 skill.
 			// Summit T41 maps to Pikeman Tier-4 slot 1 (Assassin Eye).
-			int summitRingNetworkSkill = SKILL_PLAY_T51 | (lpSkill->Point << 8);
-			lpCurPlayer->AttackSkil = SKILL_PLAY_ASSASSIN_EYE | (lpSkill->Point << 8);
+			int summitRingNetworkSkill = SummitSkillEncodedNetworkPlayCode(SKILL_T5_RING_OF_SPEARS, lpSkill->Point);
+			lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_RING_OF_SPEARS, lpSkill->Point);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
 			lpCurPlayer->MotionLoop = 1;
 			// Keep AttackSkil on the T41 animation alias; damage uses the explicit T51 network code.
 			SummitT5StartParticle("PS5RingOfSpears", lpChar);
-			// EU layers PS5RingOfSpears.lua over the .part effect at the target.
-			SummitT5StartLegacyLuaEffectAt("game//scripts//particles//PS5RingOfSpears.lua",
-				lpChar->pX, lpChar->pY, lpChar->pZ);
-			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_RING_OF_SPEARS, SKILL_PLAY_T51, lpSkill->Point, lpChar, 1);
+			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_RING_OF_SPEARS, SummitSkillNetworkPlayCode(SKILL_T5_RING_OF_SPEARS), lpSkill->Point, lpChar, 1);
 
 			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, summitRingNetworkSkill, TRUE);
 			if(!cnt) lpCurPlayer->AttackCritcal = -1;
@@ -2803,7 +2865,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		return TRUE;
 
 		case SKILL_BONE_CRASH:
-			 
+
 		if(lpSkill->Skill_Info.FuncPointer() == TRUE)
 		{
 			RetryPlayAttack(lpChar);
@@ -2840,15 +2902,15 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			{
 				// EU Stone Skin uses the visual T51 motion. Keep Summit T52 only as the
 				// logical/server skill slot so visual routing and server authority stay independent.
-				lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
+				lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_STONE_SKIN, lpSkill->Point);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				lpCurPlayer->MotionLoopSpeed = 80;
 				lpCurPlayer->MotionLoop = 1;
 				SummitT5StartParticle("R5StoneSkin", lpCurPlayer);
 				// EU applies the client no-death window in CStoneSkinHandler::OnAnimationEnd.
-				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_STONE_SKIN, SKILL_PLAY_T52, lpSkill->Point, 0, 0);
-				SendProcessSKillToServer(SKILL_PLAY_T52, lpSkill->Point, 0, 0);
+				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_STONE_SKIN, SummitSkillNetworkPlayCode(SKILL_T5_STONE_SKIN), lpSkill->Point, 0, 0);
+				SendProcessSKillToServer(SummitSkillNetworkPlayCode(SKILL_T5_STONE_SKIN), lpSkill->Point, 0, 0);
 			}
 		}
 		return TRUE;
@@ -2858,12 +2920,12 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		{
 			if(lpSkill->Skill_Info.FuncPointer() == TRUE)
 			{
-				lpCurPlayer->AttackSkil = SKILL_PLAY_T54 | (lpSkill->Point << 8);
+				lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_CONSECRATION, lpSkill->Point);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				lpCurPlayer->MotionLoopSpeed = 80;
 				lpCurPlayer->MotionLoop = 1;
-				SendPartySkillToServer(SKILL_PLAY_T54, lpSkill->Point, 450, 0, 0, 0, 0);
+				SendPartySkillToServer(SummitSkillNetworkPlayCode(SKILL_T5_CONSECRATION), lpSkill->Point, 450, 0, 0, 0, 0);
 			}
 		}
 		return TRUE;
@@ -2874,15 +2936,15 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			if(lpSkill->Skill_Info.FuncPointer() == TRUE)
 			{
 				// EU CWizardTrance casts through Magician T33 (Spirit Elemental), then processes T51.
-				lpCurPlayer->AttackSkil = SKILL_PLAY_SPIRIT_ELEMENTAL | (lpSkill->Point << 8);
+				lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_WIZARD_TRANCE, lpSkill->Point);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				lpCurPlayer->MotionLoopSpeed = 70;
 				lpCurPlayer->MotionLoop = 1;
 				SummitT5StartParticle("MG5OrbMastery", lpCurPlayer);
 				// Keep AttackSkil on the legacy T33 animation alias; logical/network T51 lives in the T5 event state.
-				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_WIZARD_TRANCE, SKILL_PLAY_T51, lpSkill->Point, 0, 1);
-				SendProcessSKillToServer(SKILL_PLAY_T51, lpSkill->Point, 0, 0);
+				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_WIZARD_TRANCE, SummitSkillNetworkPlayCode(SKILL_T5_WIZARD_TRANCE), lpSkill->Point, 0, 1);
+				SendProcessSKillToServer(SummitSkillNetworkPlayCode(SKILL_T5_WIZARD_TRANCE), lpSkill->Point, 0, 0);
 			}
 		}
 		return TRUE;
@@ -2894,15 +2956,15 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			{
 				// EU CIceElementalHandler casts through Priestess T44 (Summon Muspell), then processes T51.
 				// Keep the animation alias in AttackSkil; the logical/network ID lives in the isolated T5 state.
-				lpCurPlayer->AttackSkil = SKILL_PLAY_SUMMON_MUSPELL | (lpSkill->Point << 8);
+				lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_ICE_ELEMENTAL, lpSkill->Point);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				lpCurPlayer->MotionLoopSpeed = 70;
 				lpCurPlayer->MotionLoop = 1;
 				// EU Ice Elemental reuses the legacy Fire Elemental sound (0x4710).
 				SkillPlaySound(SKILL_SOUND_SKILL_FIRE_ELEMENTAL, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
-				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_ICE_ELEMENTAL, SKILL_PLAY_T51, lpSkill->Point, 0, 0);
-				SendProcessSKillToServer(SKILL_PLAY_T51, lpSkill->Point, 0, 0);
+				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_ICE_ELEMENTAL, SummitSkillNetworkPlayCode(SKILL_T5_ICE_ELEMENTAL), lpSkill->Point, 0, 0);
+				SendProcessSKillToServer(SummitSkillNetworkPlayCode(SKILL_T5_ICE_ELEMENTAL), lpSkill->Point, 0, 0);
 			}
 		}
 		return TRUE;
@@ -2914,14 +2976,14 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			{
 				// EU Summon Tiger starts with Atalanta T41 animation, then routes as T51.
 				// Keep the animation alias in AttackSkil; logical/network T51 stays isolated.
-				lpCurPlayer->AttackSkil = SKILL_PLAY_HALL_OF_VALHALLA | (lpSkill->Point << 8);
+				lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_SUMMON_TIGER, lpSkill->Point);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				lpCurPlayer->MotionLoopSpeed = 70;
 				lpCurPlayer->MotionLoop = 1;
 				lpCurPlayer->HideWeapon = TRUE;
-				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_SUMMON_TIGER, SKILL_PLAY_T51, lpSkill->Point, 0, 0);
-				SendProcessSKillToServer(SKILL_PLAY_T51, lpSkill->Point, 0, 0);
+				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_SUMMON_TIGER, SummitSkillNetworkPlayCode(SKILL_T5_SUMMON_TIGER), lpSkill->Point, 0, 0);
+				SendProcessSKillToServer(SummitSkillNetworkPlayCode(SKILL_T5_SUMMON_TIGER), lpSkill->Point, 0, 0);
 			}
 		}
 		return TRUE;
@@ -2933,17 +2995,17 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			{
 				// EU Holy Conviction animates with T43, then switches to T51.
 				// Summit T43 maps to Knight Tier-4 slot 3 (Gods Blessing).
-				lpCurPlayer->AttackSkil = SKILL_PLAY_GODS_BLESS | (lpSkill->Point << 8);
+				lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_HOLY_CONVICTION, lpSkill->Point);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				// EU CHolyConvictionHandler uses a fixed 70 motion speed.
 				lpCurPlayer->MotionLoopSpeed = 70;
 				lpCurPlayer->MotionLoop = 1;
-				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_HOLY_CONVICTION, SKILL_PLAY_T51, lpSkill->Point, 0, 0);
+				SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_HOLY_CONVICTION, SummitSkillNetworkPlayCode(SKILL_T5_HOLY_CONVICTION), lpSkill->Point, 0, 0);
 				SummitT5PersistentVisualApply(lpCurPlayer, SKILL_T5_HOLY_CONVICTION, lpSkill->Point);
 				// EU Holy Conviction reuses the legacy Holy Valor sound (0x2510).
 				SkillPlaySound(SKILL_SOUND_SKILL_HOLY_VALOR1, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
-				SendPartySkillToServer(SKILL_PLAY_T51, lpSkill->Point, 300, 0, 0, 0, 0);
+				SendPartySkillToServer(SummitSkillNetworkPlayCode(SKILL_T5_HOLY_CONVICTION), lpSkill->Point, 300, 0, 0, 0, 0);
 			}
 		}
 		return TRUE;
@@ -2953,7 +3015,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		{
 			if(lpSkill->Skill_Info.FuncPointer() == TRUE)
 			{
-				lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
+				lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_LETHAL_SIGHT, lpSkill->Point);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				// EU CLethalSightHandler uses a fixed 70 motion speed.
@@ -2963,7 +3025,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				SummitT5PersistentVisualApply(lpCurPlayer, SKILL_T5_LETHAL_SIGHT, lpSkill->Point);
 				// EU Lethal Sight reuses the legacy Force of Nature sound (0x4340).
 				SkillPlaySound(SKILL_SOUND_SKILL_FORCE_OF_NATURE, lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ);
-				SendProcessSKillToServer(SKILL_PLAY_T51, lpSkill->Point, 0, 0);
+				SendProcessSKillToServer(SummitSkillNetworkPlayCode(SKILL_T5_LETHAL_SIGHT), lpSkill->Point, 0, 0);
 			}
 		}
 		return TRUE;
@@ -2973,12 +3035,12 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		{
 			if(lpSkill->Skill_Info.FuncPointer() == TRUE)
 			{
-				lpCurPlayer->AttackSkil = SKILL_PLAY_T52 | (lpSkill->Point << 8);
+				lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_FOCUS, lpSkill->Point);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				lpCurPlayer->MotionLoopSpeed = 80;
 				lpCurPlayer->MotionLoop = 1;
-				SendProcessSKillToServer(SKILL_PLAY_T52, lpSkill->Point, 0, 0);
+				SendProcessSKillToServer(SummitSkillNetworkPlayCode(SKILL_T5_FOCUS), lpSkill->Point, 0, 0);
 			}
 		}
 		return TRUE;
@@ -2987,7 +3049,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		if(lpSkill->Point && lpChar && lpSkill->Skill_Info.FuncPointer() == TRUE)
 		{
 			RetryPlayAttack(lpChar);
-			lpCurPlayer->AttackSkil = SKILL_PLAY_T52 | (lpSkill->Point << 8);
+			lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_PARASIT_SHOT, lpSkill->Point);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
@@ -3007,7 +3069,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		if(lpSkill->Point && lpChar && lpSkill->Skill_Info.FuncPointer() == TRUE)
 		{
 			RetryPlayAttack(lpChar);
-			lpCurPlayer->AttackSkil = SKILL_PLAY_T52 | (lpSkill->Point << 8);
+			lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_LIGHTNING_SURGE, lpSkill->Point);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			lpCurPlayer->MotionLoopSpeed = 80;
@@ -3026,7 +3088,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		if(lpSkill->Point && lpChar && lpSkill->Skill_Info.FuncPointer() == TRUE)
 		{
 			RetryPlayAttack(lpChar);
-			lpCurPlayer->AttackSkil = SKILL_PLAY_T53 | (lpSkill->Point << 8);
+			lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_HEAVENLY_LIGHT, lpSkill->Point);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			lpCurPlayer->MotionLoopSpeed = 80;
@@ -3045,7 +3107,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		if(lpSkill->Point && lpChar && lpSkill->Skill_Info.FuncPointer() == TRUE)
 		{
 			RetryPlayAttack(lpChar);
-			lpCurPlayer->AttackSkil = SKILL_PLAY_T52 | (lpSkill->Point << 8);
+			lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_DIVINE_INQUISITON, lpSkill->Point);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			dm_SelectRange(lpChar->pX, lpChar->pY, lpChar->pZ, Knight_T5_DivineInquisition_Area[lpSkill->Point - 1], TRUE);
@@ -3062,7 +3124,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			RetryPlayAttack(lpChar);
 			// EU Fierce Wind animates through Tier-5 slot T51.
 			// Logical/network T52 is stored in the isolated MotionEvent state.
-			lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
+			lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_FIERCE_WIND, lpSkill->Point);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			// EU OnCastMember keeps this one-shot cast visual separate from the projectile MotionEvent.
@@ -3071,7 +3133,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackCriticalCount = 0;
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
 			lpCurPlayer->MotionLoop = 1;
-			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_FIERCE_WIND, SKILL_PLAY_T52, lpSkill->Point, lpChar, 2);
+			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_FIERCE_WIND, SummitSkillNetworkPlayCode(SKILL_T5_FIERCE_WIND), lpSkill->Point, lpChar, 2);
 			return TRUE;
 		}
 		if(lpSkill == sinSkill.pLeftSkill && RetryPlayAttack(lpChar)) break;
@@ -3082,12 +3144,12 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		{
 			RetryPlayAttack(lpChar);
 			// EU Seismic Impact animates through T51; logical/network T52 stays in the isolated event state.
-			lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
+			lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_SEISMIC_IMPACT, lpSkill->Point);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
 			lpCurPlayer->MotionLoop = 1;
-			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_SEISMIC_IMPACT, SKILL_PLAY_T52, lpSkill->Point, lpChar, 4);
+			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_SEISMIC_IMPACT, SummitSkillNetworkPlayCode(SKILL_T5_SEISMIC_IMPACT), lpSkill->Point, lpChar, 4);
 			return TRUE;
 		}
 
@@ -3099,13 +3161,13 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		{
 			RetryPlayAttack(lpChar);
 			// EU CRedRayHandler animates with T52. Summit keeps T53 as the logical/network slot.
-			int summitRedRayNetworkSkill = SKILL_PLAY_T53 | (lpSkill->Point << 8);
-			lpCurPlayer->AttackSkil = SKILL_PLAY_T52 | (lpSkill->Point << 8);
+			int summitRedRayNetworkSkill = SummitSkillEncodedNetworkPlayCode(SKILL_T5_RED_RAY, lpSkill->Point);
+			lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_RED_RAY, lpSkill->Point);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
 			lpCurPlayer->MotionLoop = 1;
-			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_RED_RAY, SKILL_PLAY_T53, lpSkill->Point, lpChar, 0);
+			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_RED_RAY, SummitSkillNetworkPlayCode(SKILL_T5_RED_RAY), lpSkill->Point, lpChar, 0);
 			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, summitRedRayNetworkSkill, TRUE);
 			if(!cnt) lpCurPlayer->AttackCritcal = -1; else DamageExp(lpChar, cnt);
 			return TRUE;
@@ -3117,7 +3179,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		if(lpSkill->Point && lpChar && lpSkill->Skill_Info.FuncPointer() == TRUE)
 		{
 			RetryPlayAttack(lpChar);
-			lpCurPlayer->AttackSkil = SKILL_PLAY_T53 | (lpSkill->Point << 8);
+			lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_PLAGUE_JAVELIN, lpSkill->Point);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
@@ -3133,7 +3195,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		if(lpSkill->Point && lpChar && lpSkill->Skill_Info.FuncPointer() == TRUE)
 		{
 			RetryPlayAttack(lpChar);
-			lpCurPlayer->AttackSkil = SKILL_PLAY_T53 | (lpSkill->Point << 8);
+			lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_ENTALING_ROOTS, lpSkill->Point);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, FALSE);
@@ -3149,12 +3211,12 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		{
 			if(lpSkill->Skill_Info.FuncPointer() == TRUE)
 			{
-				lpCurPlayer->AttackSkil = SKILL_PLAY_T53 | (lpSkill->Point << 8);
+				lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_GLORIOUS_SHIELD, lpSkill->Point);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				lpCurPlayer->MotionLoopSpeed = 80;
 				lpCurPlayer->MotionLoop = 1;
-				SendProcessSKillToServer(SKILL_PLAY_T53, lpSkill->Point, 0, 0);
+				SendProcessSKillToServer(SummitSkillNetworkPlayCode(SKILL_T5_GLORIOUS_SHIELD), lpSkill->Point, 0, 0);
 			}
 		}
 		return TRUE;
@@ -3164,12 +3226,12 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		{
 			if(lpSkill->Skill_Info.FuncPointer() == TRUE)
 			{
-				lpCurPlayer->AttackSkil = SKILL_PLAY_T53 | (lpSkill->Point << 8);
+				lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_DEATH_MASTER, lpSkill->Point);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				lpCurPlayer->MotionLoopSpeed = 80;
 				lpCurPlayer->MotionLoop = 1;
-				SendProcessSKillToServer(SKILL_PLAY_T53, lpSkill->Point, 0, 0);
+				SendProcessSKillToServer(SummitSkillNetworkPlayCode(SKILL_T5_DEATH_MASTER), lpSkill->Point, 0, 0);
 			}
 		}
 		return TRUE;
@@ -3179,12 +3241,12 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		{
 			if(lpSkill->Skill_Info.FuncPointer() == TRUE)
 			{
-				lpCurPlayer->AttackSkil = SKILL_PLAY_T53 | (lpSkill->Point << 8);
+				lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_HARDENING_SHIELD, lpSkill->Point);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				lpCurPlayer->MotionLoopSpeed = 80;
 				lpCurPlayer->MotionLoop = 1;
-				SendProcessSKillToServer(SKILL_PLAY_T53, lpSkill->Point, 0, 0);
+				SendProcessSKillToServer(SummitSkillNetworkPlayCode(SKILL_T5_HARDENING_SHIELD), lpSkill->Point, 0, 0);
 			}
 		}
 		return TRUE;
@@ -3194,12 +3256,12 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		{
 			if(lpSkill->Skill_Info.FuncPointer() == TRUE)
 			{
-				lpCurPlayer->AttackSkil = SKILL_PLAY_T53 | (lpSkill->Point << 8);
+				lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_RUTHLESS_OF_ZECRAM, lpSkill->Point);
 				lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 				lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 				lpCurPlayer->MotionLoopSpeed = 80;
 				lpCurPlayer->MotionLoop = 1;
-				SendProcessSKillToServer(SKILL_PLAY_T53, lpSkill->Point, 0, 0);
+				SendProcessSKillToServer(SummitSkillNetworkPlayCode(SKILL_T5_RUTHLESS_OF_ZECRAM), lpSkill->Point, 0, 0);
 			}
 		}
 		return TRUE;
@@ -3207,7 +3269,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		case SKILL_T5_TWISTER:
 		if(lpSkill->Point && lpSkill->Skill_Info.FuncPointer() == TRUE)
 		{
-			lpCurPlayer->AttackSkil = SKILL_PLAY_T54 | (lpSkill->Point << 8);
+			lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_TWISTER, lpSkill->Point);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(lpCurPlayer->smCharInfo.Attack_Speed);
@@ -3216,14 +3278,14 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			dm_SelectRange(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ,
 				Tornado_Range[lpSkill->Point - 1], TRUE);
 			dm_SendRangeDamage(lpCurPlayer->pX, lpCurPlayer->pY, lpCurPlayer->pZ,
-				0, 0, 0, 0, 0, lpCurPlayer->AttackSkil);
+				0, 0, 0, 0, 0, SummitSkillEncodedNetworkPlayCode(SKILL_T5_TWISTER, lpSkill->Point));
 		}
 		return TRUE;
 
 		case SKILL_T5_MAGNETIC_DISCHARGE:
 		if(lpSkill->Point && lpSkill->Skill_Info.FuncPointer() == TRUE)
 		{
-			lpCurPlayer->AttackSkil = SKILL_PLAY_T54 | (lpSkill->Point << 8);
+			lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_MAGNETIC_DISCHARGE, lpSkill->Point);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, 0, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 
@@ -3239,7 +3301,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		if(lpSkill->Point && lpChar && lpSkill->Skill_Info.FuncPointer() == TRUE)
 		{
 			RetryPlayAttack(lpChar);
-			lpCurPlayer->AttackSkil = SKILL_PLAY_T54 | (lpSkill->Point << 8);
+			lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_DIVINE_CROSS, lpSkill->Point);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			cnt = dm_SendTransDamage(lpChar, 0, 0, 0, 0, lpCurPlayer->AttackSkil, TRUE);
@@ -3254,13 +3316,13 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 		{
 			RetryPlayAttack(lpChar);
 			// EU SkillManager maps ComboJavelin to the Atalanta T51 animation.
-			int summitComboNetworkSkill = SKILL_PLAY_T54 | (lpSkill->Point << 8);
-			lpCurPlayer->AttackSkil = SKILL_PLAY_T51 | (lpSkill->Point << 8);
+			int summitComboNetworkSkill = SummitSkillEncodedNetworkPlayCode(SKILL_T5_COMBO_JAVELIN, lpSkill->Point);
+			lpCurPlayer->AttackSkil = SummitSkillEncodedPresentationPlayCode(SKILL_T5_COMBO_JAVELIN, lpSkill->Point);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
 			lpCurPlayer->MotionLoopSpeed = GetAttackSpeedFrame(6);
 			lpCurPlayer->MotionLoop = 1;
-			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_COMBO_JAVELIN, SKILL_PLAY_T54, lpSkill->Point, lpChar, 0);
+			SummitT5MotionEventArm(lpCurPlayer, SKILL_T5_COMBO_JAVELIN, SummitSkillNetworkPlayCode(SKILL_T5_COMBO_JAVELIN), lpSkill->Point, lpChar, 0);
 
 			for(int comboHit = 0; comboHit < 3; comboHit++)
 			{
@@ -3287,7 +3349,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				gSummitCataclysmEndTime = dwPlayTime + (DWORD)Magician_T5_Cataclysm_Duration[point] * 1000;
 				gSummitCataclysmNextTick = dwPlayTime;
 				gSummitCataclysmTarget = lpChar;
-				SendProcessSKillToServer(SKILL_PLAY_T54, lpSkill->Point, 0, 0);
+				SendProcessSKillToServer(SummitSkillNetworkPlayCode(SKILL_T5_CATACLYSM), lpSkill->Point, 0, 0);
 				SummitMagicianCataclysmTick();
 			}
 		}
@@ -3308,7 +3370,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				gSummitBombardmentEndTime = dwPlayTime + (DWORD)Archer_T5_Bombard_Duration[point] * 1000;
 				gSummitBombardmentNextTick = dwPlayTime;
 				gSummitBombardmentTarget = lpChar;
-				SendProcessSKillToServer(SKILL_PLAY_T54, lpSkill->Point, 0, 0);
+				SendProcessSKillToServer(SummitSkillNetworkPlayCode(SKILL_T5_BOMBARDMENT), lpSkill->Point, 0, 0);
 				SummitArcherBombardmentTick();
 			}
 		}
@@ -3328,7 +3390,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 				gSummitWhirlwindPoint = lpSkill->Point;
 				gSummitWhirlwindEndTime = dwPlayTime + (DWORD)Fighter_T5_Whirlwind_Duration[point] * 1000;
 				gSummitWhirlwindNextTick = dwPlayTime;
-				SendProcessSKillToServer(SKILL_PLAY_T54, lpSkill->Point, 0, 0);
+				SendProcessSKillToServer(SummitSkillNetworkPlayCode(SKILL_T5_WHIRLWIND), lpSkill->Point, 0, 0);
 				SummitWhirlwindTick();
 			}
 		}
@@ -4330,7 +4392,7 @@ int PlaySkillAttack(sSKILL *lpSkill, smCHAR *lpChar)
 			lpCurPlayer->AttackSkil |= (lpSkill->Point << 8);
 			lpCurPlayer->BeginSkill(lpCurPlayer->AttackSkil, 0, lpChar, 0, 0, 0);
 			lpCurPlayer->SetMotionFromCode(CHRMOTION_STATE_SKILL);
-			
+
             //Carregamento da Skill
 			//SkillChargingFlag = 1;
 			lpCurPlayer->MotionLoopSpeed = 60 + (Phoenix_Shot_Time[lpSkill->Point - 1] * 2);

@@ -173,6 +173,10 @@
  SrcGame/src/systems/combat/skills/client/SkillSub.h \
  SrcGame/src/systems/combat/damage/damage.h \
  SrcGame/src/systems/network/region/AreaServer.h \
+ Shared/gameplay/skills/v2/legacy/LegacySkillAdapter.h \
+ Shared/gameplay/skills/v2/services/SkillService.h \
+ Shared/gameplay/skills/v2/SkillRegistry.h \
+ Shared/gameplay/skills/v2/domain/SkillDefinition.h \
  SrcGame/src/systems/social/party/ui/cPartyWindow.h
 Shared/gameplay/skills/SkillSub_legacy_client.inl:
 Shared/opcodes.h:
@@ -350,4 +354,8 @@ Dependency/DirectX9/Include/d3dx9math.h:
 SrcGame/src/systems/combat/skills/client/SkillSub.h:
 SrcGame/src/systems/combat/damage/damage.h:
 SrcGame/src/systems/network/region/AreaServer.h:
+Shared/gameplay/skills/v2/legacy/LegacySkillAdapter.h:
+Shared/gameplay/skills/v2/services/SkillService.h:
+Shared/gameplay/skills/v2/SkillRegistry.h:
+Shared/gameplay/skills/v2/domain/SkillDefinition.h:
 SrcGame/src/systems/social/party/ui/cPartyWindow.h:

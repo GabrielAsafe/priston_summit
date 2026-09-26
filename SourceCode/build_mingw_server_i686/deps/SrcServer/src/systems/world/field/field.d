@@ -117,7 +117,12 @@
  SrcServer/src/systems/progression/class_rank/Rank.h \
  SrcServer/src/systems/persistence/database/core/Database.h \
  Shared/persistence/database/Database_sqlite_server.h \
- SrcServer/src/systems/world/field/field.h
+ SrcServer/src/systems/world/field/field.h \
+ Shared/content/v1/map/legacy/LegacyMapAdapter.h \
+ Shared/content/v1/map/content/CompiledMapContentSource.h \
+ Shared/content/v1/map/content/IMapContentSource.h \
+ Shared/content/v1/map/domain/MapDefinition.h \
+ Shared/content/v1/common/Sha256.h
 Shared/world/field/field_legacy_server.inl:
 Shared/gameplay/classes/v2/services/ClassService.h:
 Shared/gameplay/classes/v2/PlayableClassRegistry.h:
@@ -238,3 +243,8 @@ SrcServer/src/systems/progression/class_rank/Rank.h:
 SrcServer/src/systems/persistence/database/core/Database.h:
 Shared/persistence/database/Database_sqlite_server.h:
 SrcServer/src/systems/world/field/field.h:
+Shared/content/v1/map/legacy/LegacyMapAdapter.h:
+Shared/content/v1/map/content/CompiledMapContentSource.h:
+Shared/content/v1/map/content/IMapContentSource.h:
+Shared/content/v1/map/domain/MapDefinition.h:
+Shared/content/v1/common/Sha256.h:

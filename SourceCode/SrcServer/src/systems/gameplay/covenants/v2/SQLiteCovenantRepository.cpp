@@ -29,12 +29,37 @@ bool BindAndSaveMembership(SQLConnection& db,
                            const std::string& playerKey,
                            const CovenantMembershipState& membership)
 {
+    // Use INSERT OR REPLACE instead of SQLite UPSERT (ON CONFLICT ... DO UPDATE).
+    // The production server loads sqlite3.dll dynamically and may run an older
+    // SQLite version where modern UPSERT syntax is unavailable. The membership
+    // row is complete, so REPLACE is safe for this table and works on legacy SQLite.
+    if (!db.Prepare(
+            "INSERT OR REPLACE INTO CovenantMembership"
+            "(PlayerKey,CovenantId,Reputation,RankId,Active,UpdatedAt) "
+            "VALUES(?,?,?,?,?,datetime('now','localtime'))"))
+        return false;
+
+    char key[256];
+    CopyKey(key, sizeof(key), playerKey);
+    int covenantId = membership.covenantId;
+    int reputation = membership.reputation;
+    int rankId = membership.rankId;
+    int active = membership.active ? 1 : 0;
+    return db.BindInputParameter(key, 1, PARAMTYPE_String) &&
+           db.BindInputParameter(&covenantId, 2, PARAMTYPE_Integer) &&
+           db.BindInputParameter(&reputation, 3, PARAMTYPE_Integer) &&
+           db.BindInputParameter(&rankId, 4, PARAMTYPE_Integer) &&
+           db.BindInputParameter(&active, 5, PARAMTYPE_Integer) &&
+           db.Execute(false);
+}
+
+bool BindAndInsertMembership(SQLConnection& db,
+                             const std::string& playerKey,
+                             const CovenantMembershipState& membership)
+{
     if (!db.Prepare(
             "INSERT INTO CovenantMembership(PlayerKey,CovenantId,Reputation,RankId,Active,UpdatedAt) "
-            "VALUES(?,?,?,?,?,datetime('now','localtime')) "
-            "ON CONFLICT(PlayerKey,CovenantId) DO UPDATE SET "
-            "Reputation=excluded.Reputation, RankId=excluded.RankId, Active=excluded.Active, "
-            "UpdatedAt=datetime('now','localtime')"))
+            "VALUES(?,?,?,?,?,datetime('now','localtime'))"))
         return false;
 
     char key[256];
@@ -75,10 +100,17 @@ bool SQLiteCovenantRepository::EnsureSchema()
         "Applied INTEGER NOT NULL DEFAULT 0 CHECK(Applied IN (0,1)), "
         "ClaimedAt TEXT NOT NULL DEFAULT (datetime('now','localtime')), "
         "UpdatedAt TEXT NOT NULL DEFAULT (datetime('now','localtime')), "
-        "PRIMARY KEY(PlayerKey, CovenantId, EffectKey))"
+        "PRIMARY KEY(PlayerKey, CovenantId, EffectKey))",
+        // Defensive repair for databases created before migration 039. Keep the
+        // most recently inserted active row and preserve all membership progress.
+        "UPDATE ServerDB__CovenantMembership SET Active=0, UpdatedAt=datetime('now','localtime') "
+        "WHERE Active=1 AND rowid NOT IN ("
+        "SELECT MAX(rowid) FROM ServerDB__CovenantMembership WHERE Active=1 GROUP BY PlayerKey)",
+        "CREATE UNIQUE INDEX IF NOT EXISTS ServerDB__CovenantMembership_OneActive "
+        "ON ServerDB__CovenantMembership(PlayerKey) WHERE Active=1"
     };
     bool ok = true;
-    for (int i = 0; i < 3 && ok; ++i)
+    for (int i = 0; i < 5 && ok; ++i)
         ok = db->Prepare(statements[i]) && db->Execute(false);
     db->Close();
     return ok;
@@ -147,8 +179,11 @@ bool SQLiteCovenantRepository::TryJoin(
     const std::vector<CovenantId>& knownCovenantIds,
     const std::vector<CovenantId>& exclusiveCovenantIds)
 {
+    (void)targetExclusive;
+    (void)knownCovenantIds;
+    (void)exclusiveCovenantIds;
     if (playerKey.empty() || playerKey.size() > 255u || membership.covenantId <= 0 ||
-        !membership.active || !EnsureSchema())
+        !EnsureSchema())
         return false;
 
     std::shared_ptr<SQLConnection> db;
@@ -157,54 +192,43 @@ bool SQLiteCovenantRepository::TryJoin(
 
     char player[256];
     CopyKey(player, sizeof(player), playerKey);
-    if (!db->Prepare("SELECT CovenantId FROM CovenantMembership WHERE PlayerKey=? AND Active=1") ||
-        !db->BindInputParameter(player, 1, PARAMTYPE_String) || !db->Execute(false))
+    int covenantId = membership.covenantId;
+
+    // Joining never overwrites preserved progress. Existing memberships must use
+    // Activate() instead of being recreated with reputation zero.
+    if (!db->Prepare("SELECT CovenantId FROM CovenantMembership WHERE PlayerKey=? AND CovenantId=?") ||
+        !db->BindInputParameter(player, 1, PARAMTYPE_String) ||
+        !db->BindInputParameter(&covenantId, 2, PARAMTYPE_Integer))
+    {
+        db->RollbackTransaction(); db->Close(); return false;
+    }
+    if (db->Execute())
+    {
+        db->RollbackTransaction(); db->Close(); return false;
+    }
+    if (db->GetLastError() && db->GetLastError()[0] != 0)
     {
         db->RollbackTransaction(); db->Close(); return false;
     }
 
-    bool blocked = false;
-    while (db->NextRow())
+    if (membership.active)
     {
-        int activeCovenantId = 0;
-        if (!db->GetData(&activeCovenantId, sizeof(activeCovenantId), 1, PARAMTYPE_Integer) ||
-            activeCovenantId <= 0)
+        if (!db->Prepare("SELECT CovenantId FROM CovenantMembership WHERE PlayerKey=? AND Active=1") ||
+            !db->BindInputParameter(player, 1, PARAMTYPE_String))
         {
             db->RollbackTransaction(); db->Close(); return false;
         }
-        if (activeCovenantId == membership.covenantId || targetExclusive)
+        if (db->Execute())
         {
-            blocked = true;
-            break;
+            db->RollbackTransaction(); db->Close(); return false;
         }
-        bool known = false;
-        for (std::vector<CovenantId>::const_iterator it = knownCovenantIds.begin();
-             it != knownCovenantIds.end(); ++it)
+        if (db->GetLastError() && db->GetLastError()[0] != 0)
         {
-            if (*it == activeCovenantId)
-            {
-                known = true;
-                break;
-            }
+            db->RollbackTransaction(); db->Close(); return false;
         }
-        if (!known)
-        {
-            blocked = true;
-            break;
-        }
-        for (std::vector<CovenantId>::const_iterator it = exclusiveCovenantIds.begin();
-             it != exclusiveCovenantIds.end(); ++it)
-        {
-            if (*it == activeCovenantId)
-            {
-                blocked = true;
-                break;
-            }
-        }
-        if (blocked) break;
     }
 
-    if (blocked || !BindAndSaveMembership(*db, playerKey, membership) || !db->CommitTransaction())
+    if (!BindAndInsertMembership(*db, playerKey, membership) || !db->CommitTransaction())
     {
         db->RollbackTransaction(); db->Close(); return false;
     }
@@ -249,6 +273,79 @@ bool SQLiteCovenantRepository::SaveIfUnchanged(
     }
 
     if (!BindAndSaveMembership(*db, playerKey, membership) || !db->CommitTransaction())
+    {
+        db->RollbackTransaction(); db->Close(); return false;
+    }
+    db->Close();
+    return true;
+}
+
+bool SQLiteCovenantRepository::SwitchActive(
+    const std::string& playerKey,
+    CovenantId targetCovenantId,
+    const std::vector<CovenantId>& knownCovenantIds)
+{
+    if (playerKey.empty() || playerKey.size() > 255u || targetCovenantId <= 0 ||
+        !EnsureSchema())
+        return false;
+
+    std::shared_ptr<SQLConnection> db;
+    if (!OpenServerDatabase(db) || !db->BeginTransaction())
+        return false;
+
+    char player[256];
+    CopyKey(player, sizeof(player), playerKey);
+    if (!db->Prepare("SELECT CovenantId FROM CovenantMembership WHERE PlayerKey=?") ||
+        !db->BindInputParameter(player, 1, PARAMTYPE_String) || !db->Execute(false))
+    {
+        db->RollbackTransaction(); db->Close(); return false;
+    }
+
+    bool foundTarget = false;
+    while (db->NextRow())
+    {
+        int covenantId = 0;
+        if (!db->GetData(&covenantId, sizeof(covenantId), 1, PARAMTYPE_Integer) || covenantId <= 0)
+        {
+            db->RollbackTransaction(); db->Close(); return false;
+        }
+        bool known = false;
+        for (std::vector<CovenantId>::const_iterator it = knownCovenantIds.begin();
+             it != knownCovenantIds.end(); ++it)
+        {
+            if (*it == covenantId)
+            {
+                known = true;
+                break;
+            }
+        }
+        if (!known)
+        {
+            db->RollbackTransaction(); db->Close(); return false;
+        }
+        if (covenantId == targetCovenantId)
+            foundTarget = true;
+    }
+    if (!foundTarget)
+    {
+        db->RollbackTransaction(); db->Close(); return false;
+    }
+
+    if (!db->Prepare(
+            "UPDATE CovenantMembership SET Active=0,UpdatedAt=datetime('now','localtime') "
+            "WHERE PlayerKey=? AND Active=1") ||
+        !db->BindInputParameter(player, 1, PARAMTYPE_String) || !db->Execute(false))
+    {
+        db->RollbackTransaction(); db->Close(); return false;
+    }
+
+    int target = targetCovenantId;
+    if (!db->Prepare(
+            "UPDATE CovenantMembership SET Active=1,UpdatedAt=datetime('now','localtime') "
+            "WHERE PlayerKey=? AND CovenantId=?") ||
+        !db->BindInputParameter(player, 1, PARAMTYPE_String) ||
+        !db->BindInputParameter(&target, 2, PARAMTYPE_Integer) || !db->Execute(false) ||
+        !db->CommitTransaction())
     {
         db->RollbackTransaction(); db->Close(); return false;
     }
@@ -372,6 +469,50 @@ CovenantReputationSaveResult SQLiteCovenantRepository::SaveReputationChangeCheck
     }
 
     if (!db->CommitTransaction())
+    {
+        db->RollbackTransaction(); db->Close(); return CovenantReputationSaveResult::Failed;
+    }
+    db->Close();
+    return CovenantReputationSaveResult::Applied;
+}
+
+CovenantReputationSaveResult SQLiteCovenantRepository::SaveRepeatableReputationChangeChecked(
+    const std::string& playerKey,
+    const CovenantMembershipState& expected,
+    const CovenantMembershipState& membership,
+    int delta)
+{
+    (void)delta;
+    if (playerKey.empty() || playerKey.size() > 255u || membership.covenantId <= 0 ||
+        expected.covenantId != membership.covenantId || !EnsureSchema())
+        return CovenantReputationSaveResult::Failed;
+
+    std::shared_ptr<SQLConnection> db;
+    if (!OpenServerDatabase(db) || !db->BeginTransaction())
+        return CovenantReputationSaveResult::Failed;
+
+    char player[256];
+    CopyKey(player, sizeof(player), playerKey);
+    int covenantId = membership.covenantId;
+    if (!db->Prepare(
+            "SELECT Reputation,RankId,Active FROM CovenantMembership WHERE PlayerKey=? AND CovenantId=?") ||
+        !db->BindInputParameter(player, 1, PARAMTYPE_String) ||
+        !db->BindInputParameter(&covenantId, 2, PARAMTYPE_Integer) || !db->Execute())
+    {
+        db->RollbackTransaction(); db->Close(); return CovenantReputationSaveResult::Conflict;
+    }
+
+    int currentReputation = 0, currentRank = 0, currentActive = 0;
+    if (!db->GetData(&currentReputation, sizeof(currentReputation), 1, PARAMTYPE_Integer) ||
+        !db->GetData(&currentRank, sizeof(currentRank), 2, PARAMTYPE_Integer) ||
+        !db->GetData(&currentActive, sizeof(currentActive), 3, PARAMTYPE_Integer) ||
+        currentReputation != expected.reputation || currentRank != expected.rankId ||
+        ((currentActive != 0) != expected.active))
+    {
+        db->RollbackTransaction(); db->Close(); return CovenantReputationSaveResult::Conflict;
+    }
+
+    if (!BindAndSaveMembership(*db, playerKey, membership) || !db->CommitTransaction())
     {
         db->RollbackTransaction(); db->Close(); return CovenantReputationSaveResult::Failed;
     }

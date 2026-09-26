@@ -34,6 +34,9 @@ ID3DXFont *FontRank = nullptr;
 ID3DXFont *      FontDamageShadow = nullptr;
 extern D3DCOLOR         FontColor = { 0 };
 
+static bool gD3DSceneBegun = false;
+static bool gD3DLostResources = false;
+
 int MESSAGE(char *t)
 {
 	FILE *fp;
@@ -49,7 +52,8 @@ int MESSAGE(char *t)
 
 BOOL CreateD3D()
 {
-	if (FAILED(lpD3D = Direct3DCreate9(D3D_SDK_VERSION)))
+	lpD3D = Direct3DCreate9(D3D_SDK_VERSION);
+	if (!lpD3D)
 	{
 		MessageBox(0, "Could not Create Direct3D", "Engine Graphic", 0);
 		return FALSE;
@@ -61,44 +65,34 @@ BOOL CreateD3D()
 
 void ReleaseD3D()
 {
-	if (lpD3D)
-	{
-		lpD3D->Release();
-		lpD3D = NULL;
-	}
+	gD3DSceneBegun = false;
+	gD3DLostResources = false;
+
+	// D3DX helpers hold device references/resources. Release them before the
+	// device, then release the parent IDirect3D9 object last.
+	if (Font) { Font->Release(); Font = NULL; }
+	if (FontBold) { FontBold->Release(); FontBold = NULL; }
+	if (FontTitle) { FontTitle->Release(); FontTitle = NULL; }
+	if (FontRank) { FontRank->Release(); FontRank = NULL; }
+	if (FontDamageShadow) { FontDamageShadow->Release(); FontDamageShadow = NULL; }
 
 	if (d3ddev)
 	{
 		d3ddev->Release();
 		d3ddev = NULL;
 	}
-
-	if (Font)
+	if (lpD3D)
 	{
-		Font->Release();
-		Font = NULL;
-	}
-
-	if (FontBold)
-	{
-		FontBold->Release();
-		FontBold = NULL;
-	}
-
-	if (FontTitle)
-	{
-		FontTitle->Release();
-		FontTitle = NULL;
-	}
-
-	if (FontDamageShadow)
-	{
-		FontDamageShadow->Release();
+		lpD3D->Release();
+		lpD3D = NULL;
 	}
 }
 
 BOOL SetDisplayMode(HWND hWnd, DWORD Width, DWORD Height, DWORD BPP)
 {
+	if(!lpD3D || !hWnd || Width == 0 || Height == 0 || (BPP != 16 && BPP != 32))
+		return FALSE;
+
 	D3DCAPS9  d3dCaps;
 	ZeroMemory(&d3dpp, sizeof(D3DPRESENT_PARAMETERS));
 	d3dpp.BackBufferWidth = Width;
@@ -247,28 +241,46 @@ void OnResetDevice()
 
 void RestoreDevice()
 {
-	if (d3ddev)
-	{
-		HRESULT Result = d3ddev->TestCooperativeLevel();
+	if (!d3ddev)
+		return;
 
-		switch (Result)
+	const HRESULT result = d3ddev->TestCooperativeLevel();
+	if (result == D3DERR_DEVICELOST)
+	{
+		if (!gD3DLostResources)
 		{
-		case D3DERR_DEVICELOST:
 			OnLostDevice();
-			break;
-		case D3DERR_DEVICENOTRESET:
-			OnLostDevice();
-			Result = d3ddev->Reset(&d3dpp);
-			InitRender();
-			OnResetDevice();
-			break;
+			gD3DLostResources = true;
 		}
+		gD3DSceneBegun = false;
+		return;
 	}
+
+	if (result == D3DERR_DEVICENOTRESET)
+	{
+		if (!gD3DLostResources)
+		{
+			OnLostDevice();
+			gD3DLostResources = true;
+		}
+		gD3DSceneBegun = false;
+		const HRESULT resetResult = d3ddev->Reset(&d3dpp);
+		if (FAILED(resetResult))
+			return;
+
+		InitRender();
+		OnResetDevice();
+		gD3DLostResources = false;
+		return;
+	}
+
 }
 
 
 void InitRender()
 {
+	if(!d3ddev)
+		return;
 	d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE);
 	d3ddev->SetRenderState(D3DRS_CLIPPING, FALSE);
 	d3ddev->SetRenderState(D3DRS_CULLMODE, 2);
@@ -300,22 +312,36 @@ void InitRender()
 extern DWORD smBackColor;
 
 
-void BeginRender()
+BOOL BeginRender()
 {
-	d3ddev->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_RGBA(0, 0, 0, 255), 1.0f, 0);
-	d3ddev->BeginScene();
+	gD3DSceneBegun = false;
+	if (!d3ddev)
+		return FALSE;
+	if (FAILED(d3ddev->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
+		D3DCOLOR_RGBA(0, 0, 0, 255), 1.0f, 0)))
+		return FALSE;
+	if (FAILED(d3ddev->BeginScene()))
+		return FALSE;
+	gD3DSceneBegun = true;
+	return TRUE;
 }
 
 
 void EndRender()
 {
-	d3ddev->EndScene();
-	d3ddev->Present(NULL, NULL, NULL, NULL);
+	if (!d3ddev || !gD3DSceneBegun)
+		return;
+	const HRESULT endResult = d3ddev->EndScene();
+	gD3DSceneBegun = false;
+	if (SUCCEEDED(endResult))
+		d3ddev->Present(NULL, NULL, NULL, NULL);
 }
 
 
 void DrawTexture(LPDIRECT3DTEXTURE9 Texture, D3DTLVERTEX * Vertex, int AlphaBlend)
 {
+	if(!d3ddev || !Vertex)
+		return;
 	d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 	d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 	d3ddev->SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);

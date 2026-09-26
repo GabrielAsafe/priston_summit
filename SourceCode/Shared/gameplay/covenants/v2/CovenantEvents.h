@@ -20,6 +20,15 @@ struct CovenantLeftEvent
     CovenantId covenantId;
 };
 
+struct CovenantActivatedEvent
+{
+    std::string playerKey;
+    CovenantId covenantId;
+    CovenantId previousCovenantId;
+
+    CovenantActivatedEvent() : covenantId(0), previousCovenantId(0) {}
+};
+
 struct CovenantReputationChangedEvent
 {
     std::string playerKey;

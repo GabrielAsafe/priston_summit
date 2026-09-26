@@ -15,14 +15,17 @@ class ISkillGateway;
 class IInventoryGateway;
 class IContextGateway;
 class ICompanionGateway;
+class ICovenantGateway;
 class CompanionsPage;
+class CovenantsPage;
 
 enum class CharacterTab
 {
     Attributes,
     Skills,
     Inventory,
-    Companions
+    Companions,
+    Covenants
 };
 
 class CharacterWindow final : public Window
@@ -36,6 +39,7 @@ public:
                     IInventoryGateway& inventoryGateway,
                     IContextGateway& contextGateway,
                     ICompanionGateway& companionGateway,
+                    ICovenantGateway& covenantGateway,
                     UIId id = InvalidUIId);
 
     void SetActiveTab(CharacterTab tab, bool notify = true);
@@ -60,11 +64,13 @@ private:
     Button* skillsTab_ = nullptr;
     Button* inventoryTab_ = nullptr;
     Button* companionsTab_ = nullptr;
+    Button* covenantsTab_ = nullptr;
     Button* closeButton_ = nullptr;
     AttributesPage* attributesPage_ = nullptr;
     SkillsPage* skillsPage_ = nullptr;
     InventoryPage* inventoryPage_ = nullptr;
     CompanionsPage* companionsPage_ = nullptr;
+    CovenantsPage* covenantsPage_ = nullptr;
     CloseHandler onClose_;
     TabChangedHandler onTabChanged_;
 };

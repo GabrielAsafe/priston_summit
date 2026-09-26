@@ -138,6 +138,7 @@ struct Rune_Formula
 class smSTAGE3D;
 class sFIELD;
 
+
 class STG_AREA
 {
 public:
@@ -237,6 +238,11 @@ public:
 
 	int LoadEnemyList(char *szFile);
 };
+
+// Server-authoritative bridge used by account companions. It intentionally
+// reuses the legacy player pickup packet/security contract so inventory-full
+// behavior stays identical to a normal ground pickup.
+int rsCompanionPickupStageItem(rsPLAYINFO *lpPlayInfo, STG_AREA *lpStgArea, STG_ITEMS *lpStgItem);
 
 
 #define STAGE_AREA_MAX		64
@@ -514,6 +520,10 @@ int rsGetServerPotion(rsPLAYINFO *lpPlayInfo, DWORD dwPotionCode);
 int RecordHackLogFile(rsPLAYINFO *lpPlayInfo, void *lpBuff);
 
 class rsPLAYINFO;
+
+// Shared Tier-5 summon resolver. Uses canonical monster names and falls back to
+// the localized runtime template with the same auto-character code.
+smCHAR *rsOpenTier5SummonFromCanonicalName(const char *szCanonicalName, int x, int y, int z, rsPLAYINFO *lpPlayInfo);
 
 rsPLAYINFO *FindUserFromName(char *szName);
 rsPLAYINFO *FindUserFromName2(char *szName);

@@ -9,10 +9,12 @@
 #include <memory>
 #include <mutex>
 #include <vector>
+#include <sys/stat.h>
 
 #include "core/concurrency/JobSystem.h"
 
 #include "rendering/assets/v2/AssetLoadRegistry.h"
+#include "systems/rendering/assets/v3/AssetStreamingV3.h"
 
 #include "systems/rendering/legacy_3d/smd3d.h"
 #include <io.h>
@@ -141,6 +143,25 @@ static std::atomic<std::uint32_t> SummitTextureAsyncGenerations[MAX_TEXTURE];
 static std::atomic<std::uint32_t> SummitTextureAsyncInFlight(0);
 static std::atomic<std::uint64_t> SummitTextureStagingBytes(0);
 static std::atomic<bool> SummitTextureLoadingBoost(false);
+// Worker-side model/stage destructors can drop the last texture reference.
+// Keep the slot reserved until the render thread releases its D3D objects and
+// updates the residency registry; this prevents slot ABA and worker-thread COM
+// destruction without enabling D3DCREATE_MULTITHREADED globally.
+static std::atomic<bool> SummitTextureDeletePending[MAX_TEXTURE];
+static std::mutex SummitDeferredTextureDeleteMutex;
+static std::deque<int> SummitDeferredTextureDeletes;
+
+// Interactive login/selection textures are created in a burst, while V3 keeps
+// worker admission deliberately bounded. A rejected HIGH request must not be
+// forgotten: keep logical UI demand alive and retry a small fair slice every
+// render frame until the texture becomes resident or terminally fails.
+struct SummitInteractiveTextureRetry
+{
+    int index;
+    std::uint32_t generation;
+};
+static std::deque<SummitInteractiveTextureRetry> SummitInteractiveTextureRetries;
+static bool SummitInteractiveTextureRetryQueued[MAX_TEXTURE] = { false };
 
 struct SummitTextureCriticalSectionGuard
 {
@@ -371,6 +392,7 @@ void smTEXTURE::Init()
 	{
 		SummitTextureAsyncGenerations[asyncIndex].fetch_add(1u, std::memory_order_acq_rel);
 		SummitTextureAsyncStates[asyncIndex].store(SUMMIT_TEX_ASYNC_IDLE, std::memory_order_release);
+		SummitTextureDeletePending[asyncIndex].store(false, std::memory_order_release);
 	}
 	SummitTextureAsyncInFlight.store(0u, std::memory_order_release);
 	SummitTextureStagingBytes.store(0u, std::memory_order_release);
@@ -460,7 +482,8 @@ smTEXTUREHANDLE *smTEXTURE::Add(char *name, char *nameA)
 
     int cnt = 0;
     for (; cnt < MAX_TEXTURE; ++cnt)
-        if (Texture[cnt].UseCounter == 0)
+        if (Texture[cnt].UseCounter == 0 &&
+            !SummitTextureDeletePending[cnt].load(std::memory_order_acquire))
             break;
 
     if (cnt == MAX_TEXTURE)
@@ -511,6 +534,35 @@ int smTEXTURE::Delete(smTEXTUREHANDLE *lpTex)
     if (lpTex->UseCounter > 0)
         return lpTex->UseCounter;
 
+    int textureIndex = -1;
+    for (int cnt = 0; cnt < MAX_TEXTURE; ++cnt)
+    {
+        if (&Texture[cnt] == lpTex)
+        {
+            textureIndex = cnt;
+            break;
+        }
+    }
+
+    // A worker may own the last legacy reference after an async stage/model
+    // bundle is discarded.  Do not Release D3D interfaces or recycle the slot
+    // on that worker: invalidate in-flight generations immediately, reserve
+    // the slot, and let the render thread perform the final cleanup.
+    if (textureIndex >= 0 &&
+        summit::core::concurrency::JobSystem::Instance().IsWorkerThread())
+    {
+        SummitTextureAsyncGenerations[textureIndex].fetch_add(1u, std::memory_order_acq_rel);
+        SummitTextureAsyncStates[textureIndex].store(SUMMIT_TEX_ASYNC_IDLE, std::memory_order_release);
+        bool expected = false;
+        if (SummitTextureDeletePending[textureIndex].compare_exchange_strong(
+                expected, true, std::memory_order_acq_rel))
+        {
+            std::lock_guard<std::mutex> deferredLock(SummitDeferredTextureDeleteMutex);
+            SummitDeferredTextureDeletes.push_back(textureIndex);
+        }
+        return 0;
+    }
+
     // DeleteSwapTexture() also acquires cTextureSection, so perform the same
     // cleanup inline while this lock is held instead of recursively locking it.
     if (lpTex->lpD3DTextureLarge)
@@ -544,16 +596,12 @@ int smTEXTURE::Delete(smTEXTUREHANDLE *lpTex)
     lpTex->lpDDSurface = 0;
     lpTex->lpDDSSysMemory = 0;
 
-    for (int cnt = 0; cnt < MAX_TEXTURE; ++cnt)
+    if (textureIndex >= 0)
     {
-        if (&Texture[cnt] != lpTex)
-            continue;
-
-        SummitTextureAsyncGenerations[cnt].fetch_add(1u, std::memory_order_acq_rel);
-        SummitTextureAsyncStates[cnt].store(SUMMIT_TEX_ASYNC_IDLE, std::memory_order_release);
-        if (!summit::core::concurrency::JobSystem::Instance().IsWorkerThread())
-            SummitAssetRegistry.MarkReleased(static_cast<std::size_t>(cnt));
-        break;
+        SummitTextureAsyncGenerations[textureIndex].fetch_add(1u, std::memory_order_acq_rel);
+        SummitTextureAsyncStates[textureIndex].store(SUMMIT_TEX_ASYNC_IDLE, std::memory_order_release);
+        SummitTextureDeletePending[textureIndex].store(false, std::memory_order_release);
+        SummitAssetRegistry.MarkReleased(static_cast<std::size_t>(textureIndex));
     }
 
     const DWORD releasedBytes = static_cast<DWORD>(lpTex->Width * lpTex->Height * 2);
@@ -695,6 +743,72 @@ static int SummitTextureHandleIndex(const smTEXTUREHANDLE *lpTexHandle)
     return index < MAX_TEXTURE ? static_cast<int>(index) : -1;
 }
 
+static void SummitDrainDeferredTextureDeletes()
+{
+    std::deque<int> pending;
+    {
+        std::lock_guard<std::mutex> lock(SummitDeferredTextureDeleteMutex);
+        pending.swap(SummitDeferredTextureDeletes);
+    }
+
+    for (std::deque<int>::const_iterator it = pending.begin(); it != pending.end(); ++it)
+    {
+        const int index = *it;
+        if (index < 0 || index >= MAX_TEXTURE)
+            continue;
+
+        SummitTextureCriticalSectionGuard guard(&smTexture.cTextureSection);
+        if (!SummitTextureDeletePending[index].load(std::memory_order_acquire))
+            continue;
+
+        smTEXTUREHANDLE *handle = &smTexture.Texture[index];
+        if (handle->UseCounter > 0)
+        {
+            // Defensive: a pending slot is never admitted by Add(), but if a
+            // legacy path resurrected it directly, keep it alive and clear the
+            // deferred marker rather than releasing live resources.
+            SummitTextureDeletePending[index].store(false, std::memory_order_release);
+            continue;
+        }
+
+        if (handle->lpD3DTextureLarge)
+        {
+            for (int swap = 0; swap < SWAPTEXTURE_MAX; ++swap)
+            {
+                if (!smTexture.SwapTexture[swap].SwapState ||
+                    smTexture.SwapTexture[swap].smTextureMaster != handle)
+                    continue;
+                if (smTexture.SwapTexture[swap].lpDDSurface)
+                {
+                    smTexture.SwapTexture[swap].lpDDSurface->Release();
+                    smTexture.SwapTexture[swap].lpDDSurface = 0;
+                }
+                if (smTexture.SwapTexture[swap].lpD3DTexture)
+                {
+                    smTexture.SwapTexture[swap].lpD3DTexture->Release();
+                    smTexture.SwapTexture[swap].lpD3DTexture = 0;
+                }
+                smTexture.SwapTexture[swap].SwapState = FALSE;
+                smTexture.SwapTexture[swap].smTextureMaster = 0;
+                handle->lpD3DTextureLarge = NULL;
+                break;
+            }
+        }
+
+        if (handle->lpDDSurface) handle->lpDDSurface->Release();
+        if (handle->lpD3DTexture) handle->lpD3DTexture->Release();
+        if (handle->lpDDSSysMemory) handle->lpDDSSysMemory->Release();
+        handle->lpD3DTexture = 0;
+        handle->lpDDSurface = 0;
+        handle->lpDDSSysMemory = 0;
+
+        const DWORD releasedBytes = static_cast<DWORD>(handle->Width * handle->Height * 2);
+        VramTotal = VramTotal > releasedBytes ? VramTotal - releasedBytes : 0;
+        SummitAssetRegistry.MarkReleased(static_cast<std::size_t>(index));
+        SummitTextureDeletePending[index].store(false, std::memory_order_release);
+    }
+}
+
 
 static ULONGLONG SummitEstimateSurfaceBytes(UINT width, UINT height, D3DFORMAT format)
 {
@@ -723,6 +837,29 @@ static ULONGLONG SummitEstimateSurfaceBytes(UINT width, UINT height, D3DFORMAT f
     default:
         return static_cast<ULONGLONG>(width) * height * 4ULL;
     }
+}
+
+static ULONGLONG SummitEstimateMipChainBytes(UINT width, UINT height, D3DFORMAT format, UINT mipLevels)
+{
+    if (!width || !height)
+        return 0;
+    if (!mipLevels)
+        mipLevels = 1;
+
+    ULONGLONG bytes = 0;
+    UINT levelWidth = width;
+    UINT levelHeight = height;
+    for (UINT level = 0; level < mipLevels; ++level)
+    {
+        bytes += SummitEstimateSurfaceBytes(levelWidth, levelHeight, format);
+        if (levelWidth == 1u && levelHeight == 1u)
+            break;
+        if (levelWidth > 1u) levelWidth >>= 1u;
+        if (levelHeight > 1u) levelHeight >>= 1u;
+        if (!levelWidth) levelWidth = 1u;
+        if (!levelHeight) levelHeight = 1u;
+    }
+    return bytes;
 }
 
 static ULONGLONG SummitEstimateTextureBytes(LPDIRECT3DTEXTURE9 texture, UINT *residentWidth = NULL, UINT *residentHeight = NULL)
@@ -818,6 +955,8 @@ static void SummitTextureRecordCreateSuccess(smTEXTUREHANDLE *lpTexHandle, UINT 
     UINT residentWidth = 0;
     UINT residentHeight = 0;
     const ULONGLONG bytes = SummitEstimateTextureBytes(lpTexHandle->lpD3DTexture, &residentWidth, &residentHeight);
+    const bool wasEvicted =
+        SummitAssetRegistry.Record(static_cast<std::size_t>(index)).state == summit::rendering::assets::v2::ASSET_EVICTED;
     SummitAssetRegistry.MarkLoaded(
         static_cast<std::size_t>(index),
         sourceWidth,
@@ -825,6 +964,8 @@ static void SummitTextureRecordCreateSuccess(smTEXTUREHANDLE *lpTexHandle, UINT 
         residentWidth,
         residentHeight,
         bytes);
+    if (wasEvicted)
+        SummitLogAssetEvent("RELOAD_AFTER_EVICT", lpTexHandle, bytes, "resident_again");
 }
 
 static void SummitAssetEvictIndex(std::size_t index, const char *reason)
@@ -907,6 +1048,45 @@ int AssetLoadV2EnsureTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap)
     // render thread later commits a bounded number of ready uploads.
     AssetLoadV3RequestTexture(lpTexHandle, MipMap, 0);
     return lpTexHandle->lpD3DTexture ? TRUE : FALSE;
+}
+
+int AssetLoadV2RequestTexture(smTEXTUREHANDLE *lpTexHandle, DWORD ownerMask, int MipMap, int requestPriority)
+{
+    if (!lpTexHandle || lpTexHandle->UseCounter <= 0)
+        return FALSE;
+    AssetLoadV2AddOwner(lpTexHandle, ownerMask);
+    return AssetLoadV3RequestTexture(lpTexHandle, MipMap, requestPriority);
+}
+
+int AssetLoadV2LoadTextureNow(smTEXTUREHANDLE *lpTexHandle, DWORD ownerMask, int MipMap)
+{
+    if (!lpTexHandle || lpTexHandle->UseCounter <= 0)
+        return FALSE;
+    if (summit::core::concurrency::JobSystem::Instance().IsWorkerThread())
+        return FALSE;
+
+    const int index = SummitTextureHandleIndex(lpTexHandle);
+    if (index < 0)
+        return FALSE;
+
+    AssetLoadV2AddOwner(lpTexHandle, ownerMask);
+    if (lpTexHandle->lpD3DTexture)
+    {
+        SummitAssetRegistry.Touch(static_cast<std::size_t>(index));
+        return TRUE;
+    }
+
+    // Exact first-use correctness may overtake an async request that has not
+    // published yet. Invalidate that generation; stale worker/completion work
+    // will be discarded instead of racing the synchronous owner-thread load.
+    if (SummitTextureAsyncStates[index].load(std::memory_order_acquire) != SUMMIT_TEX_ASYNC_IDLE)
+    {
+        SummitTextureAsyncGenerations[index].fetch_add(1u, std::memory_order_acq_rel);
+        SummitTextureAsyncStates[index].store(SUMMIT_TEX_ASYNC_IDLE, std::memory_order_release);
+    }
+
+    const int loaded = new_smCreateTexture(lpTexHandle, MipMap);
+    return loaded > 0 && lpTexHandle->lpD3DTexture ? TRUE : FALSE;
 }
 
 LPDIRECT3DTEXTURE9 AssetLoadV2GetResidentTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap)
@@ -1460,6 +1640,152 @@ int smMATERIAL_GROUP::AddMaterial(ASE_MATERIAL *aseMaterial, char *szScript)
 }
 
 
+static bool SummitIsInteractiveLoginTexture(const char *path)
+{
+    if (!path || !*path)
+        return false;
+
+    std::string normalized(path);
+    for (std::size_t i = 0; i < normalized.size(); ++i)
+    {
+        if (normalized[i] == '\\') normalized[i] = '/';
+        else normalized[i] = static_cast<char>(tolower(static_cast<unsigned char>(normalized[i])));
+    }
+    return normalized.find("startimage/login/") == 0 ||
+           normalized.find("game/login/") == 0 ||
+           normalized.find("game/ui/") == 0 ||
+           normalized.find("game/gui/opening/login/ui/") == 0;
+}
+
+static bool SummitIsOpeningCriticalTexture(const char *path)
+{
+    if (!path || !*path)
+        return false;
+
+    std::string normalized(path);
+    for (std::size_t i = 0; i < normalized.size(); ++i)
+    {
+        if (normalized[i] == '\\') normalized[i] = '/';
+        else normalized[i] = static_cast<char>(tolower(static_cast<unsigned char>(normalized[i])));
+    }
+
+    return normalized.find("game/login/") == 0 ||
+           normalized.find("game/ui/") == 0 ||
+           normalized.find("game/gui/opening/login/ui/") == 0;
+}
+
+static void SummitQueueInteractiveLoginTexture(smTEXTUREHANDLE *texture)
+{
+    if (!texture)
+        return;
+
+    AssetLoadV2AddOwner(texture, SMASSET_OWNER_UI);
+
+    const int index = SummitTextureHandleIndex(texture);
+    if (index < 0)
+        return;
+
+    // Always remember interactive demand. AssetLoadV3RequestTexture() can
+    // legitimately reject this first attempt when the bounded HIGH admission
+    // lane is already full; the retry queue prevents that rejection from
+    // turning into a permanently blank login/selection material.
+    if (!SummitInteractiveTextureRetryQueued[index])
+    {
+        SummitInteractiveTextureRetry entry;
+        entry.index = index;
+        entry.generation = SummitTextureAsyncGenerations[index].load(std::memory_order_acquire);
+        SummitInteractiveTextureRetries.push_back(entry);
+        SummitInteractiveTextureRetryQueued[index] = true;
+    }
+
+    AssetLoadV3RequestTexture(texture, 0, 0);
+}
+
+bool AssetLoadV3HasPendingInteractiveLoginTextures()
+{
+    return !SummitInteractiveTextureRetries.empty();
+}
+
+static void SummitPumpInteractiveTextureRetries()
+{
+    if (SummitInteractiveTextureRetries.empty())
+        return;
+
+    // Bound both queue scanning and new worker admissions per frame. This keeps
+    // the opening responsive while guaranteeing eventual progress for assets
+    // that lost the initial admission race.
+    const std::size_t scanLimit =
+        SummitInteractiveTextureRetries.size() < 32u ? SummitInteractiveTextureRetries.size() : 32u;
+    std::uint32_t admitted = 0u;
+
+    for (std::size_t scanned = 0; scanned < scanLimit; ++scanned)
+    {
+        SummitInteractiveTextureRetry entry = SummitInteractiveTextureRetries.front();
+        SummitInteractiveTextureRetries.pop_front();
+
+        if (entry.index < 0 || entry.index >= MAX_TEXTURE)
+            continue;
+
+        SummitInteractiveTextureRetryQueued[entry.index] = false;
+        if (SummitTextureAsyncGenerations[entry.index].load(std::memory_order_acquire) != entry.generation)
+            continue;
+        if (SummitTextureDeletePending[entry.index].load(std::memory_order_acquire))
+            continue;
+
+        smTEXTUREHANDLE *texture = &smTexture.Texture[entry.index];
+        if (texture->UseCounter <= 0)
+            continue;
+
+        const int readiness = AssetLoadV3GetTextureReadiness(texture);
+        if (readiness == ASSET_LOAD_V3_TEXTURE_RESIDENT ||
+            readiness == ASSET_LOAD_V3_TEXTURE_FAILED_PERMANENT)
+            continue;
+
+        if (readiness == ASSET_LOAD_V3_TEXTURE_RETRYABLE && admitted < 4u)
+        {
+            AssetLoadV3RequestTexture(texture, 0, 0);
+            if (AssetLoadV3IsTexturePending(texture))
+                ++admitted;
+        }
+
+        // Keep demand queued while the worker/GPU path is pending or retryable.
+        // Generation validation above makes this safe across slot reuse.
+        if (!SummitInteractiveTextureRetryQueued[entry.index])
+        {
+            entry.generation = SummitTextureAsyncGenerations[entry.index].load(std::memory_order_acquire);
+            SummitInteractiveTextureRetries.push_back(entry);
+            SummitInteractiveTextureRetryQueued[entry.index] = true;
+        }
+    }
+}
+
+int AssetLoadV3LoadOpeningUiNow()
+{
+    if (!d3ddev)
+        return 0;
+
+    int loaded = 0;
+    for (int index = 0; index < MAX_TEXTURE; ++index)
+    {
+        smTEXTUREHANDLE *texture = &smTexture.Texture[index];
+        if (texture->UseCounter <= 0 || texture->lpD3DTexture ||
+            !SummitIsOpeningCriticalTexture(texture->Name))
+            continue;
+
+        // Opening/login UI is a first-frame correctness boundary. Keep this
+        // tiny source set on the owner thread instead of showing an incomplete
+        // screen while V3 progressively fills it. World/selection assets remain
+        // asynchronous. This deliberately bypasses cooked DDS for the UI path.
+        AssetLoadV2AddOwner(texture, SMASSET_OWNER_UI);
+        const int result = new_smCreateTexture(texture, 0);
+        if (result > 0 && texture->lpD3DTexture)
+            ++loaded;
+        else if (!texture->lpD3DTexture)
+            SummitQueueInteractiveLoginTexture(texture);
+    }
+    return loaded;
+}
+
 int smMATERIAL_GROUP::CreateTextureMaterial(char *szBitmap, char *szOpacity, int TwoSide, int Shade, DWORD TexSwap, DWORD BlendType)
 {
 	int MatNum = -1;
@@ -1516,6 +1842,17 @@ int smMATERIAL_GROUP::CreateTextureMaterial(char *szBitmap, char *szOpacity, int
 
 
 	smMaterial[MatNum].InUse++;
+
+    // Login/selection assets are immediately visible and should never wait
+    // behind global/effect prewarm. Registration remains non-blocking: CPU I/O
+    // goes to V3 workers and D3D publication stays on the render thread.
+    if (SummitIsInteractiveLoginTexture(szBitmap))
+    {
+        if (SummitIsOpeningCriticalTexture(szBitmap))
+            AssetLoadV2AddOwner(smMaterial[MatNum].smTexture[0], SMASSET_OWNER_UI);
+        else
+            SummitQueueInteractiveLoginTexture(smMaterial[MatNum].smTexture[0]);
+    }
 
 	return MatNum;
 }
@@ -2096,6 +2433,7 @@ void smLeaveTextureCriticalSection()
 #define smTEXFILETYPE_JPG		1
 #define smTEXFILETYPE_TGA		2
 #define smTEXFILETYPE_PNG		3
+#define smTEXFILETYPE_DDS		4
 
 int GetTextureFileType(char *Filename)
 {
@@ -2129,6 +2467,10 @@ int GetTextureFileType(char *Filename)
 		(szFileExt[1] == 'n' || szFileExt[1] == 'N') &&
 		(szFileExt[2] == 'g' || szFileExt[2] == 'G'))
 		return smTEXFILETYPE_PNG;
+	if ((szFileExt[0] == 'd' || szFileExt[0] == 'D') &&
+		(szFileExt[1] == 'd' || szFileExt[1] == 'D') &&
+		(szFileExt[2] == 's' || szFileExt[2] == 'S'))
+		return smTEXFILETYPE_DDS;
 	if ((szFileExt[0] == 's' || szFileExt[0] == 'S') &&
 		(szFileExt[1] == 't' || szFileExt[1] == 'T') &&
 		(szFileExt[2] == 'g' || szFileExt[2] == 'G'))
@@ -2235,8 +2577,8 @@ enum SummitTexturePrepareResult
 struct SummitPreparedTexture
 {
     SummitPreparedTexture()
-        : index(-1), generation(0), mipMap(0), result(SUMMIT_PREPARE_OPEN_FAILED),
-          mapOpacity(FALSE), stagingBytes(0)
+        : index(-1), generation(0), mipMap(0), priority(1), result(SUMMIT_PREPARE_OPEN_FAILED),
+          mapOpacity(FALSE), cookedDDS(false), stagingBytes(0)
     {
         ZeroMemory(&imageInfo, sizeof(imageInfo));
         target.width = 0;
@@ -2253,17 +2595,24 @@ struct SummitPreparedTexture
     int index;
     std::uint32_t generation;
     int mipMap;
+    int priority;
     SummitTexturePrepareResult result;
+    // path remains the logical legacy asset identity stored in smTEXTUREHANDLE.
+    // resolvedPath may point at cooked/<logical>.dds without changing render/material semantics.
     std::string path;
+    std::string resolvedPath;
     std::vector<char> bytes;
     D3DXIMAGE_INFO imageInfo;
     summit::rendering::assets::v2::AssetTargetDimensions target;
     BOOL mapOpacity;
+    bool cookedDDS;
     std::uint64_t stagingBytes;
 };
 
 static std::mutex SummitPreparedTextureMutex;
 static std::deque<std::shared_ptr<SummitPreparedTexture> > SummitPreparedTextureQueue;
+static std::mutex SummitRejectedCookedTextureMutex;
+static std::set<std::string> SummitRejectedCookedTexturePaths;
 
 static std::uint32_t SummitParseBoundedEnv(const char *name, std::uint32_t fallback,
     std::uint32_t minimum, std::uint32_t maximum)
@@ -2291,6 +2640,20 @@ static std::uint32_t SummitTextureMaxInFlight()
             automatic > 6u ? 6u : automatic, 1u, 16u);
     }();
     return configured;
+}
+
+static std::uint32_t SummitTextureAdmissionLimit(int priority)
+{
+    const std::uint32_t normalLimit = SummitTextureMaxInFlight();
+    if (priority > 0)
+        return normalLimit;
+
+    // Keep a tiny emergency lane for render/bootstrap demand. Low/normal
+    // prewarm is allowed to fill the normal pool, but must not prevent the
+    // ground under the player from even entering the worker queue. The staging
+    // byte budget remains the hard memory limit.
+    const std::uint32_t withReserve = normalLimit + 2u;
+    return withReserve > 16u ? 16u : withReserve;
 }
 
 static std::uint64_t SummitTextureStagingBudgetBytes()
@@ -2347,6 +2710,82 @@ static std::uint32_t SummitTextureUploadBudgetMicros()
     return SummitTextureLoadingBoost.load(std::memory_order_acquire) ? 10000u : 1800u;
 }
 
+static std::uint32_t SummitTextureSlowUploadThresholdMicros()
+{
+    const char *value = getenv("SUMMIT_TEXTURE_SLOW_UPLOAD_US");
+    if (value && *value)
+    {
+        const unsigned long parsed = strtoul(value, 0, 10);
+        if (parsed < 500ul) return 500u;
+        if (parsed > 50000ul) return 50000u;
+        return static_cast<std::uint32_t>(parsed);
+    }
+    return 2500u;
+}
+
+static std::size_t SummitPreparedTextureQueueDepth()
+{
+    std::lock_guard<std::mutex> lock(SummitPreparedTextureMutex);
+    return SummitPreparedTextureQueue.size();
+}
+
+static void SummitLogSlowTextureUpload(const SummitPreparedTexture &prepared,
+    std::uint64_t micros, std::size_t queueBefore, std::size_t queueAfter)
+{
+    if (!SummitAssetTraceEnabled())
+        return;
+
+    FILE *f = NULL;
+    fopen_s(&f, "LOGS\\asset_load_v2_events.txt", "a");
+    if (!f)
+        return;
+
+    fprintf(
+        f,
+        "SLOW_UPLOAD | %s | us=%llu | queue_before=%llu | queue_after=%llu | priority=%d | cooked=%d | source=%ux%u | target=%ux%u | staging=%llu\n",
+        prepared.path.empty() ? "(null)" : prepared.path.c_str(),
+        static_cast<unsigned long long>(micros),
+        static_cast<unsigned long long>(queueBefore),
+        static_cast<unsigned long long>(queueAfter),
+        prepared.priority,
+        prepared.cookedDDS ? 1 : 0,
+        static_cast<unsigned>(prepared.imageInfo.Width),
+        static_cast<unsigned>(prepared.imageInfo.Height),
+        static_cast<unsigned>(prepared.target.width),
+        static_cast<unsigned>(prepared.target.height),
+        static_cast<unsigned long long>(prepared.stagingBytes));
+    fclose(f);
+}
+
+static void SummitLogTextureUploadBacklog(std::uint64_t pumpMicros,
+    std::uint32_t processed, std::size_t remaining, std::uint32_t budgetMicros)
+{
+    if (!SummitAssetTraceEnabled() || remaining == 0)
+        return;
+
+    // A frame can legitimately hit the upload budget. Sample instead of
+    // logging every frame so instrumentation itself stays cheap.
+    static std::uint32_t budgetHitSamples = 0;
+    ++budgetHitSamples;
+    if (budgetHitSamples != 1u && (budgetHitSamples % 60u) != 0u)
+        return;
+
+    FILE *f = NULL;
+    fopen_s(&f, "LOGS\\asset_load_v2_events.txt", "a");
+    if (!f)
+        return;
+
+    fprintf(
+        f,
+        "UPLOAD_BACKLOG | (pump) | us=%llu | processed=%u | remaining=%llu | budget_us=%u | sample=%u\n",
+        static_cast<unsigned long long>(pumpMicros),
+        static_cast<unsigned>(processed),
+        static_cast<unsigned long long>(remaining),
+        static_cast<unsigned>(budgetMicros),
+        static_cast<unsigned>(budgetHitSamples));
+    fclose(f);
+}
+
 static void SummitQueuePreparedTexture(const std::shared_ptr<SummitPreparedTexture> &prepared)
 {
     if (!prepared)
@@ -2363,25 +2802,179 @@ static void SummitQueuePreparedTexture(const std::shared_ptr<SummitPreparedTextu
 
     {
         std::lock_guard<std::mutex> lock(SummitPreparedTextureMutex);
-        SummitPreparedTextureQueue.push_back(prepared);
+        // CPU jobs already respect request priority, but GPU commits used to be
+        // FIFO-only. A bootstrap floor texture could therefore finish on a HIGH
+        // worker and still sit behind speculative LOW uploads. Keep FIFO order
+        // within each class while allowing critical demand to overtake prewarm.
+        std::deque<std::shared_ptr<SummitPreparedTexture> >::iterator position =
+            SummitPreparedTextureQueue.begin();
+        while (position != SummitPreparedTextureQueue.end() &&
+            *position && (*position)->priority <= prepared->priority)
+            ++position;
+        SummitPreparedTextureQueue.insert(position, prepared);
     }
     SummitTextureAsyncStates[prepared->index].store(SUMMIT_TEX_ASYNC_READY, std::memory_order_release);
 }
 
-static void SummitPrepareTextureOnWorker(const std::shared_ptr<SummitPreparedTexture> &prepared,
-    summit::rendering::assets::v2::AssetLoadPolicy policy, unsigned qualityShift)
+static bool SummitCookedTexturesEnabled()
+{
+    const char *value = getenv("SUMMIT_TEXTURE_COOKED");
+    return !(value && *value == '0');
+}
+
+static std::string SummitCookedTextureRoot()
+{
+    const char *value = getenv("SUMMIT_TEXTURE_COOKED_ROOT");
+    return (value && *value) ? std::string(value) : std::string("cooked");
+}
+
+static bool SummitCookedInteractiveUIEnabled()
+{
+    const char *value = getenv("SUMMIT_TEXTURE_COOKED_UI");
+    return value && *value && *value != '0';
+}
+
+static bool SummitIsInteractiveUILogicalPath(const std::string &logicalPath)
+{
+    if (logicalPath.empty())
+        return false;
+
+    std::string normalized = logicalPath;
+    for (std::size_t i = 0; i < normalized.size(); ++i)
+    {
+        if (normalized[i] == '\\')
+            normalized[i] = '/';
+        else if (normalized[i] >= 'A' && normalized[i] <= 'Z')
+            normalized[i] = static_cast<char>(normalized[i] - 'A' + 'a');
+    }
+
+    while (normalized.size() >= 2 && normalized[0] == '.' && normalized[1] == '/')
+        normalized.erase(0, 2);
+    while (!normalized.empty() && normalized[0] == '/')
+        normalized.erase(0, 1);
+
+    static const char *const prefixes[] =
+    {
+        "game/login/",
+        "game/ui/",
+        "game/gui/opening/login/ui/",
+        "startimage/login/"
+    };
+
+    for (std::size_t i = 0; i < sizeof(prefixes) / sizeof(prefixes[0]); ++i)
+    {
+        const std::size_t prefixLength = strlen(prefixes[i]);
+        if (normalized.size() >= prefixLength &&
+            normalized.compare(0, prefixLength, prefixes[i]) == 0)
+            return true;
+    }
+    return false;
+}
+
+static bool SummitCookedTextureRuntimeEligible(const std::string &logicalPath)
+{
+    // The current A8R8G8B8 cooked UI path renders incorrectly on the tested
+    // Wine/D3DX9 stack. Keep cooked DDS enabled for world textures, but use
+    // the proven source path for login/selection UI until the format/import
+    // path is replaced. SUMMIT_TEXTURE_COOKED_UI=1 is an explicit A/B opt-in.
+    return !SummitIsInteractiveUILogicalPath(logicalPath) || SummitCookedInteractiveUIEnabled();
+}
+
+static std::string SummitBuildCookedTexturePath(const std::string &logicalPath)
+{
+    if (logicalPath.empty())
+        return std::string();
+
+    const int logicalType = GetTextureFileType(const_cast<char *>(logicalPath.c_str()));
+    if (logicalType < 0 || logicalType == smTEXFILETYPE_DDS)
+        return std::string();
+
+    // Cooked lookup is deliberately limited to relative game asset paths.
+    // Absolute/parent paths continue through the legacy source loader.
+    if (logicalPath.find(':') != std::string::npos)
+        return std::string();
+
+    std::string relative = logicalPath;
+    for (std::size_t i = 0; i < relative.size(); ++i)
+    {
+        if (relative[i] == '/')
+            relative[i] = '\\';
+    }
+    while (relative.size() >= 2 && relative[0] == '.' && relative[1] == '\\')
+        relative.erase(0, 2);
+    while (!relative.empty() && relative[0] == '\\')
+        relative.erase(0, 1);
+    if (relative.find("..\\") != std::string::npos || relative == "..")
+        return std::string();
+
+    const std::size_t slash = relative.find_last_of("\\/");
+    const std::size_t dot = relative.find_last_of('.');
+    if (dot == std::string::npos || (slash != std::string::npos && dot < slash))
+        return std::string();
+    relative.replace(dot, std::string::npos, ".dds");
+
+    std::string root = SummitCookedTextureRoot();
+    while (!root.empty() && (root[root.size() - 1] == '\\' || root[root.size() - 1] == '/'))
+        root.erase(root.size() - 1);
+    if (root.empty())
+        return relative;
+    return root + "\\" + relative;
+}
+
+static bool SummitCookedTextureIsFresh(const std::string &logicalPath, const std::string &cookedPath)
+{
+    struct _stat cookedStat;
+    if (_stat(cookedPath.c_str(), &cookedStat) != 0 || cookedStat.st_size <= 0)
+        return false;
+
+    struct _stat sourceStat;
+    if (_stat(logicalPath.c_str(), &sourceStat) == 0 && cookedStat.st_mtime < sourceStat.st_mtime)
+        return false;
+    return true;
+}
+
+static bool SummitCookedTextureRejected(const std::string &logicalPath)
+{
+    std::lock_guard<std::mutex> lock(SummitRejectedCookedTextureMutex);
+    return SummitRejectedCookedTexturePaths.find(logicalPath) != SummitRejectedCookedTexturePaths.end();
+}
+
+static void SummitRejectCookedTexture(const std::string &logicalPath)
+{
+    if (logicalPath.empty())
+        return;
+    std::lock_guard<std::mutex> lock(SummitRejectedCookedTextureMutex);
+    SummitRejectedCookedTexturePaths.insert(logicalPath);
+}
+
+static void SummitReleasePreparedTextureBytes(const std::shared_ptr<SummitPreparedTexture> &prepared)
 {
     if (!prepared)
         return;
+    if (prepared->stagingBytes)
+    {
+        SummitTextureStagingBytes.fetch_sub(prepared->stagingBytes, std::memory_order_acq_rel);
+        prepared->stagingBytes = 0;
+    }
+    std::vector<char>().swap(prepared->bytes);
+    ZeroMemory(&prepared->imageInfo, sizeof(prepared->imageInfo));
+    prepared->target.width = 0;
+    prepared->target.height = 0;
+    prepared->target.downscaled = false;
+    prepared->resolvedPath.clear();
+}
+
+static SummitTexturePrepareResult SummitReadPreparedTextureFile(
+    const std::shared_ptr<SummitPreparedTexture> &prepared,
+    const std::string &sourcePath)
+{
+    if (!prepared)
+        return SUMMIT_PREPARE_OPEN_FAILED;
 
     FILE *file = NULL;
-    fopen_s(&file, prepared->path.c_str(), "rb");
+    fopen_s(&file, sourcePath.c_str(), "rb");
     if (!file)
-    {
-        prepared->result = SUMMIT_PREPARE_FILE_NOT_FOUND;
-        SummitQueuePreparedTexture(prepared);
-        return;
-    }
+        return SUMMIT_PREPARE_FILE_NOT_FOUND;
 
     fseek(file, 0, SEEK_END);
     const long fileSize = ftell(file);
@@ -2389,17 +2982,13 @@ static void SummitPrepareTextureOnWorker(const std::shared_ptr<SummitPreparedTex
     if (fileSize <= 0)
     {
         fclose(file);
-        prepared->result = SUMMIT_PREPARE_EMPTY_FILE;
-        SummitQueuePreparedTexture(prepared);
-        return;
+        return SUMMIT_PREPARE_EMPTY_FILE;
     }
 
     if (!SummitReserveTextureStaging(static_cast<std::uint64_t>(fileSize)))
     {
         fclose(file);
-        prepared->result = SUMMIT_PREPARE_STAGING_BUDGET;
-        SummitQueuePreparedTexture(prepared);
-        return;
+        return SUMMIT_PREPARE_STAGING_BUDGET;
     }
     prepared->stagingBytes = static_cast<std::uint64_t>(fileSize);
 
@@ -2410,70 +2999,131 @@ static void SummitPrepareTextureOnWorker(const std::shared_ptr<SummitPreparedTex
     catch (...)
     {
         fclose(file);
-        prepared->result = SUMMIT_PREPARE_OPEN_FAILED;
-        SummitQueuePreparedTexture(prepared);
-        return;
+        return SUMMIT_PREPARE_OPEN_FAILED;
     }
 
     const size_t readCount = fread(prepared->bytes.data(), static_cast<std::size_t>(fileSize), 1, file);
     fclose(file);
     if (readCount != 1)
-    {
-        prepared->bytes.clear();
-        prepared->result = SUMMIT_PREPARE_READ_FAILED;
-        SummitQueuePreparedTexture(prepared);
-        return;
-    }
+        return SUMMIT_PREPARE_READ_FAILED;
 
-    const int fileType = GetTextureFileType(const_cast<char *>(prepared->path.c_str()));
-    if (fileType == smTEXFILETYPE_TGA)
+    prepared->resolvedPath = sourcePath;
+    return SUMMIT_PREPARE_OK;
+}
+
+static SummitTexturePrepareResult SummitInspectPreparedTexture(
+    const std::shared_ptr<SummitPreparedTexture> &prepared,
+    summit::rendering::assets::v2::AssetLoadPolicy policy,
+    unsigned qualityShift)
+{
+    if (!prepared || prepared->bytes.empty())
+        return SUMMIT_PREPARE_READ_FAILED;
+
+    const int resolvedFileType = GetTextureFileType(const_cast<char *>(prepared->resolvedPath.c_str()));
+    const int logicalFileType = GetTextureFileType(const_cast<char *>(prepared->path.c_str()));
+
+    if (resolvedFileType == smTEXFILETYPE_TGA)
     {
         if (!DecryptTGA(prepared->bytes.data(), static_cast<unsigned int>(prepared->bytes.size())))
-        {
-            prepared->result = SUMMIT_PREPARE_INVALID_HEADER;
-            SummitQueuePreparedTexture(prepared);
-            return;
-        }
-        prepared->mapOpacity = TRUE;
+            return SUMMIT_PREPARE_INVALID_HEADER;
     }
-    else if (fileType == smTEXFILETYPE_BMP)
+    else if (resolvedFileType == smTEXFILETYPE_BMP)
     {
         if (!DecryptBMP(prepared->bytes.data(), static_cast<unsigned int>(prepared->bytes.size())))
-        {
-            prepared->result = SUMMIT_PREPARE_INVALID_HEADER;
-            SummitQueuePreparedTexture(prepared);
-            return;
-        }
-        prepared->mapOpacity = FALSE;
+            return SUMMIT_PREPARE_INVALID_HEADER;
     }
-    else if (fileType == smTEXFILETYPE_PNG)
-    {
-        prepared->mapOpacity = TRUE;
-    }
-    else
-    {
-        prepared->mapOpacity = FALSE;
-    }
+
+    // Preserve material semantics from the logical source name even when the
+    // worker reads a cooked DDS from a different physical path.
+    prepared->mapOpacity =
+        (logicalFileType == smTEXFILETYPE_TGA || logicalFileType == smTEXFILETYPE_PNG) ? TRUE : FALSE;
 
     if (FAILED(D3DXGetImageInfoFromFileInMemory(
         prepared->bytes.data(), static_cast<UINT>(prepared->bytes.size()), &prepared->imageInfo)))
+        return SUMMIT_PREPARE_INVALID_IMAGE_INFO;
+
+    if (logicalFileType == smTEXFILETYPE_DDS)
     {
-        prepared->result = SUMMIT_PREPARE_INVALID_IMAGE_INFO;
-        SummitQueuePreparedTexture(prepared);
-        return;
+        switch (prepared->imageInfo.Format)
+        {
+        case D3DFMT_DXT2:
+        case D3DFMT_DXT3:
+        case D3DFMT_DXT4:
+        case D3DFMT_DXT5:
+        case D3DFMT_A8R8G8B8:
+        case D3DFMT_A1R5G5B5:
+        case D3DFMT_A4R4G4B4:
+            prepared->mapOpacity = TRUE;
+            break;
+        default:
+            prepared->mapOpacity = FALSE;
+            break;
+        }
     }
 
     if (!summit::rendering::assets::v2::IsStructurallyValidSource(
         prepared->imageInfo.Width, prepared->imageInfo.Height, policy))
-    {
-        prepared->result = SUMMIT_PREPARE_INVALID_DIMENSIONS;
-        SummitQueuePreparedTexture(prepared);
-        return;
-    }
+        return SUMMIT_PREPARE_INVALID_DIMENSIONS;
 
     prepared->target = summit::rendering::assets::v2::ComputeTargetDimensions(
         prepared->imageInfo.Width, prepared->imageInfo.Height, policy, qualityShift, true);
-    prepared->result = SUMMIT_PREPARE_OK;
+    return SUMMIT_PREPARE_OK;
+}
+
+static void SummitPrepareTextureOnWorker(const std::shared_ptr<SummitPreparedTexture> &prepared,
+    summit::rendering::assets::v2::AssetLoadPolicy policy, unsigned qualityShift)
+{
+    if (!prepared)
+        return;
+
+    SummitTexturePrepareResult result = SUMMIT_PREPARE_OPEN_FAILED;
+
+    // The cooked path is resolved on the worker: no filesystem probe is added
+    // to the main/render thread. Quality-shifted textures keep the legacy path
+    // for now so the existing runtime downscale policy remains byte-for-byte in
+    // control of their requested dimensions.
+    if (SummitCookedTexturesEnabled() && SummitCookedTextureRuntimeEligible(prepared->path) &&
+        qualityShift == 0u && !SummitCookedTextureRejected(prepared->path))
+    {
+        const std::string cookedPath = SummitBuildCookedTexturePath(prepared->path);
+        if (!cookedPath.empty() && SummitCookedTextureIsFresh(prepared->path, cookedPath))
+        {
+            prepared->cookedDDS = true;
+            result = SummitReadPreparedTextureFile(prepared, cookedPath);
+            if (result == SUMMIT_PREPARE_OK)
+                result = SummitInspectPreparedTexture(prepared, policy, qualityShift);
+
+            // A cooked artifact that needs runtime resizing would reintroduce
+            // the expensive conversion we are trying to remove. Fall back to
+            // the source file and preserve the old adaptive path instead.
+            if (result == SUMMIT_PREPARE_OK && !prepared->target.downscaled)
+            {
+                prepared->result = SUMMIT_PREPARE_OK;
+                SummitQueuePreparedTexture(prepared);
+                return;
+            }
+
+            // Staging pressure is transient and the source file is normally
+            // larger, so do not double the I/O/memory attempt in this case.
+            if (result == SUMMIT_PREPARE_STAGING_BUDGET)
+            {
+                prepared->result = result;
+                SummitQueuePreparedTexture(prepared);
+                return;
+            }
+
+            if (result != SUMMIT_PREPARE_OK)
+                SummitRejectCookedTexture(prepared->path);
+            SummitReleasePreparedTextureBytes(prepared);
+            prepared->cookedDDS = false;
+        }
+    }
+
+    result = SummitReadPreparedTextureFile(prepared, prepared->path);
+    if (result == SUMMIT_PREPARE_OK)
+        result = SummitInspectPreparedTexture(prepared, policy, qualityShift);
+
+    prepared->result = result;
     SummitQueuePreparedTexture(prepared);
 }
 
@@ -2574,6 +3224,66 @@ static void SummitCommitPreparedTexture(const std::shared_ptr<SummitPreparedText
             target.width = summit::rendering::assets::v2::AlignDown4(static_cast<std::uint32_t>(target.width * scale));
             target.height = summit::rendering::assets::v2::AlignDown4(static_cast<std::uint32_t>(target.height * scale));
             target.downscaled = true;
+        }
+    }
+
+    // Fast path for offline-cooked DDS. When dimensions match the authored
+    // DDS, D3DX can import the already compressed payload directly instead of
+    // decoding PNG/TGA and recompressing it on the render thread.
+    if (prepared->cookedDDS &&
+        target.width == prepared->imageInfo.Width &&
+        target.height == prepared->imageInfo.Height)
+    {
+        const UINT sourceMipLevels = prepared->imageInfo.MipLevels ? prepared->imageInfo.MipLevels : 1u;
+        const UINT budgetMipLevels = prepared->mipMap ? sourceMipLevels : 1u;
+        const UINT requestedMipLevels = prepared->mipMap ? D3DX_FROM_FILE : 1u;
+        const ULONGLONG cookedBytes = SummitEstimateMipChainBytes(
+            prepared->imageInfo.Width, prepared->imageInfo.Height,
+            prepared->imageInfo.Format, budgetMipLevels);
+
+        if (SummitAssetEnsureBudget(cookedBytes, static_cast<std::size_t>(index)))
+        {
+            HRESULT cookedHr = D3DXCreateTextureFromFileInMemoryEx(
+                d3ddev,
+                prepared->bytes.data(),
+                static_cast<UINT>(prepared->bytes.size()),
+                D3DX_FROM_FILE,
+                D3DX_FROM_FILE,
+                requestedMipLevels,
+                0,
+                D3DFMT_FROM_FILE,
+                D3DPOOL_MANAGED,
+                D3DX_FILTER_NONE,
+                D3DX_FILTER_NONE,
+                0,
+                &prepared->imageInfo,
+                NULL,
+                &handle->lpD3DTexture);
+
+            if (SUCCEEDED(cookedHr) && handle->lpD3DTexture)
+            {
+                SummitLogAssetEvent("COOKED_DDS_HIT", handle, cookedBytes, prepared->resolvedPath.c_str());
+                SummitTextureRecordCreateSuccess(handle, prepared->imageInfo.Width, prepared->imageInfo.Height);
+                return;
+            }
+
+            if (handle->lpD3DTexture)
+            {
+                handle->lpD3DTexture->Release();
+                handle->lpD3DTexture = NULL;
+            }
+
+            if (SummitIsDeviceUnavailableHRESULT(cookedHr))
+            {
+                SummitTextureRecordCreateFailure(handle, cookedHr,
+                    prepared->imageInfo.Width, prepared->imageInfo.Height);
+                return;
+            }
+
+            // Do not trap the asset in a bad cooked artifact. Future retries
+            // use the original source path for the rest of this process.
+            SummitRejectCookedTexture(prepared->path);
+            SummitLogAssetEvent("COOKED_DDS_REJECT", handle, cookedBytes, prepared->resolvedPath.c_str());
         }
     }
 
@@ -2685,6 +3395,8 @@ static void SummitCommitPreparedTexture(const std::shared_ptr<SummitPreparedText
 
 void AssetLoadV3ResetAsyncState()
 {
+    // Session reset runs on the owner thread after workers are drained.
+    SummitDrainDeferredTextureDeletes();
     SummitTextureLoadingBoost.store(false, std::memory_order_release);
     // Must be called after JobSystem::WaitIdle() during a session teardown.
     // No worker can append after this point, so dropping the completion queue
@@ -2699,8 +3411,12 @@ void AssetLoadV3ResetAsyncState()
     {
         SummitTextureAsyncGenerations[index].fetch_add(1u, std::memory_order_acq_rel);
         SummitTextureAsyncStates[index].store(SUMMIT_TEX_ASYNC_IDLE, std::memory_order_release);
+        SummitTextureDeletePending[index].store(false, std::memory_order_release);
     }
     SummitTextureAsyncInFlight.store(0u, std::memory_order_release);
+    SummitInteractiveTextureRetries.clear();
+    for (int index = 0; index < MAX_TEXTURE; ++index)
+        SummitInteractiveTextureRetryQueued[index] = false;
 
     // Destruction of abandoned prepared objects releases their accounted bytes.
     abandoned.clear();
@@ -2720,6 +3436,28 @@ bool AssetLoadV3IsTexturePending(smTEXTUREHANDLE *lpTexHandle)
     return SummitTextureAsyncStates[index].load(std::memory_order_acquire) != SUMMIT_TEX_ASYNC_IDLE;
 }
 
+int AssetLoadV3GetTextureReadiness(smTEXTUREHANDLE *lpTexHandle)
+{
+    if (!lpTexHandle || lpTexHandle->UseCounter <= 0)
+        return ASSET_LOAD_V3_TEXTURE_FAILED_PERMANENT;
+    if (lpTexHandle->lpD3DTexture)
+        return ASSET_LOAD_V3_TEXTURE_RESIDENT;
+
+    const int index = SummitTextureHandleIndex(lpTexHandle);
+    if (index < 0)
+        return ASSET_LOAD_V3_TEXTURE_FAILED_PERMANENT;
+
+    if (SummitTextureAsyncStates[index].load(std::memory_order_acquire) != SUMMIT_TEX_ASYNC_IDLE)
+        return ASSET_LOAD_V3_TEXTURE_PENDING;
+
+    const summit::rendering::assets::v2::AssetLoadRecord &record =
+        SummitAssetRegistry.Record(static_cast<std::size_t>(index));
+    if (record.state == summit::rendering::assets::v2::ASSET_FAILED_PERMANENT)
+        return ASSET_LOAD_V3_TEXTURE_FAILED_PERMANENT;
+
+    return ASSET_LOAD_V3_TEXTURE_RETRYABLE;
+}
+
 int AssetLoadV3RequestTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap, int priority)
 {
     if (!lpTexHandle || lpTexHandle->UseCounter <= 0)
@@ -2735,7 +3473,7 @@ int AssetLoadV3RequestTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap, int prio
     if (!SummitAssetRegistry.CanAttempt(static_cast<std::size_t>(index)))
         return FALSE;
 
-    if (SummitTextureAsyncInFlight.load(std::memory_order_acquire) >= SummitTextureMaxInFlight())
+    if (SummitTextureAsyncInFlight.load(std::memory_order_acquire) >= SummitTextureAdmissionLimit(priority))
         return FALSE;
 
     unsigned char expected = SUMMIT_TEX_ASYNC_IDLE;
@@ -2750,6 +3488,7 @@ int AssetLoadV3RequestTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap, int prio
     prepared->index = index;
     prepared->generation = SummitTextureAsyncGenerations[index].load(std::memory_order_acquire);
     prepared->mipMap = MipMap;
+    prepared->priority = priority;
     prepared->path = lpTexHandle->Name;
 
     const summit::rendering::assets::v2::AssetLoadPolicy policy = SummitAssetRegistry.Policy();
@@ -2777,12 +3516,26 @@ int AssetLoadV3RequestTexture(smTEXTUREHANDLE *lpTexHandle, int MipMap, int prio
 
 void AssetLoadV3PumpTextureUploads()
 {
+    // Final releases and registry cleanup are owner/render-thread work.
+    SummitDrainDeferredTextureDeletes();
+    SummitPumpInteractiveTextureRetries();
     if (!d3ddev)
+        return;
+
+    // Do not consume a prepared upload while the device cannot accept it.
+    // Keeping it queued preserves the worker I/O/decode work across a device
+    // lost/reset cycle instead of converting a transient D3D state into an
+    // asset failure/retry.
+    const HRESULT cooperative = d3ddev->TestCooperativeLevel();
+    if (cooperative == D3DERR_DEVICELOST || cooperative == D3DERR_DEVICENOTRESET)
         return;
 
     const std::uint32_t uploadLimit = SummitTextureUploadsPerFrame();
     const std::uint32_t budgetMicros = SummitTextureUploadBudgetMicros();
+    const std::uint32_t slowUploadMicros = SummitTextureSlowUploadThresholdMicros();
     const std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+    std::uint32_t processed = 0;
+    bool stoppedByBudget = false;
 
     for (std::uint32_t uploaded = 0; uploaded < uploadLimit; ++uploaded)
     {
@@ -2792,14 +3545,19 @@ void AssetLoadV3PumpTextureUploads()
                 std::chrono::duration_cast<std::chrono::microseconds>(
                     std::chrono::steady_clock::now() - begin).count());
             if (elapsed >= budgetMicros)
+            {
+                stoppedByBudget = true;
                 break;
+            }
         }
 
         std::shared_ptr<SummitPreparedTexture> prepared;
+        std::size_t queueBefore = 0;
         {
             std::lock_guard<std::mutex> lock(SummitPreparedTextureMutex);
             if (SummitPreparedTextureQueue.empty())
                 break;
+            queueBefore = SummitPreparedTextureQueue.size();
             prepared = SummitPreparedTextureQueue.front();
             SummitPreparedTextureQueue.pop_front();
         }
@@ -2811,12 +3569,29 @@ void AssetLoadV3PumpTextureUploads()
         const bool generationMatches = index >= 0 && index < MAX_TEXTURE &&
             SummitTextureAsyncGenerations[index].load(std::memory_order_acquire) == prepared->generation;
 
+        const std::chrono::steady_clock::time_point commitBegin = std::chrono::steady_clock::now();
         if (generationMatches)
             SummitCommitPreparedTexture(prepared);
+        const std::uint64_t commitMicros = static_cast<std::uint64_t>(
+            std::chrono::duration_cast<std::chrono::microseconds>(
+                std::chrono::steady_clock::now() - commitBegin).count());
+
+        if (generationMatches && commitMicros >= slowUploadMicros)
+            SummitLogSlowTextureUpload(*prepared, commitMicros, queueBefore, SummitPreparedTextureQueueDepth());
 
         if (generationMatches)
             SummitTextureAsyncStates[index].store(SUMMIT_TEX_ASYNC_IDLE, std::memory_order_release);
         SummitTextureAsyncInFlight.fetch_sub(1u, std::memory_order_acq_rel);
+        ++processed;
+    }
+
+    if (stoppedByBudget)
+    {
+        const std::uint64_t pumpMicros = static_cast<std::uint64_t>(
+            std::chrono::duration_cast<std::chrono::microseconds>(
+                std::chrono::steady_clock::now() - begin).count());
+        SummitLogTextureUploadBacklog(
+            pumpMicros, processed, SummitPreparedTextureQueueDepth(), budgetMicros);
     }
 }
 

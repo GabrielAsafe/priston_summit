@@ -145,6 +145,30 @@ bool GatheringService::GetNode(std::uint32_t nodeId, GatheringNodeDefinition& ou
     return true;
 }
 
+void GatheringService::ListResources(std::vector<ResourceDefinition>& out) const
+{
+    out.clear();
+    out.reserve(resources_.size());
+    for (std::unordered_map<std::uint32_t, ResourceDefinition>::const_iterator it = resources_.begin();
+         it != resources_.end(); ++it)
+        out.push_back(it->second);
+    std::sort(out.begin(), out.end(), [](const ResourceDefinition& a, const ResourceDefinition& b) {
+        return a.resourceId < b.resourceId;
+    });
+}
+
+void GatheringService::ListNodes(std::vector<GatheringNodeDefinition>& out) const
+{
+    out.clear();
+    out.reserve(nodes_.size());
+    for (std::unordered_map<std::uint32_t, GatheringNodeDefinition>::const_iterator it = nodes_.begin();
+         it != nodes_.end(); ++it)
+        out.push_back(it->second);
+    std::sort(out.begin(), out.end(), [](const GatheringNodeDefinition& a, const GatheringNodeDefinition& b) {
+        return a.nodeId < b.nodeId;
+    });
+}
+
 std::uint64_t GatheringService::NextAvailableAt(std::uint32_t nodeId) const
 {
     const std::unordered_map<std::uint32_t, std::uint64_t>::const_iterator it = nextAvailableAt_.find(nodeId);

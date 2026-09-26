@@ -1,4 +1,5 @@
 
+#include "content/v1/text_resource/content/TextResourceRuntime.h"
 #include "compat/legacy/sin/sinLinkHeader.h"
 #include "gameplay/classes/v2/services/ClassService.h"
 
@@ -286,7 +287,7 @@ int cHELPPET::GetFileData()
 	char *p;
 	int CmdNum;
 
-	fp = fopen(szFilePath, "rb");
+	fp = summit::content::text_resource::OpenTextResourceFile(szFilePath, "rb");
 	if(fp == NULL) return FALSE;
 
 	CmdNum = 0;

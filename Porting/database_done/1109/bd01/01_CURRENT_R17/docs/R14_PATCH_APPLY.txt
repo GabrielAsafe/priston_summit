@@ -1,6 +1,0 @@
-patching file Database/migrations/018_billingdb_catalog.sql
-patching file SrcServer/src/systems/persistence/database/sqlite/SQLiteConnection.cpp
-patching file validate_billingdb_sqlite_contract.py
-patching file validate_sqlite_migrations.py
-R13 -> R14 patch compare: expected=2020 actual=2020 missing=0 extra=0 hash_mismatch=0
-RESULT: PASS

@@ -194,6 +194,9 @@ Shared/gameplay/classes/v2/content/DefaultClassContent.cpp
 Shared/gameplay/classes/v2/content/LegacyClassCatalog.cpp
 Shared/gameplay/classes/v2/content/ReservedClassCatalog.cpp
 Shared/gameplay/classes/v2/services/ClassService.cpp
+Shared/gameplay/skills/v2/SkillRegistry.cpp
+Shared/gameplay/skills/v2/content/LegacySkillCatalog.cpp
+Shared/gameplay/skills/v2/services/SkillService.cpp
 LISTEOF
 sort -u -o "$CPP_LIST" "$CPP_LIST"
 
@@ -387,4 +390,35 @@ fi
 echo
 echo "COMPILAÇÃO DO CLIENTE CONCLUÍDA"
 printf 'PASS\n' > "$COMPILE_OK_MARKER"
+
+################################################################################
+# DDS COOKER — LOGIN / CHARACTER SELECTION
+################################################################################
+
+# DDS cooking stays opt-in at build time. The current lossless login/UI DDS
+# import path is bypassed by default at runtime on Wine because it regressed
+# startup rendering; world cooking remains available with SUMMIT_AUTO_COOK_DDS=full.
+AUTO_COOK_DDS="${SUMMIT_AUTO_COOK_DDS:-0}"
+CLIENT_ASSET_ROOT="${SUMMIT_CLIENT_ASSET_ROOT:-$ROOT/../cliente}"
+if [ "$AUTO_COOK_DDS" != "0" ] && [ "$AUTO_COOK_DDS" != "off" ] && [ -d "$CLIENT_ASSET_ROOT" ]; then
+    if command -v python3 >/dev/null 2>&1 && python3 -c 'import PIL' >/dev/null 2>&1; then
+        echo
+        echo "===================================="
+        echo "DDS COOKER"
+        echo "===================================="
+        if [ "$AUTO_COOK_DDS" = "full" ]; then
+            python3 "$ROOT/tools/cook_textures_dds.py" --input "$CLIENT_ASSET_ROOT" --quiet || {
+                echo "AVISO: DDS cooker falhou; cliente continua com fallback source." >&2
+            }
+        else
+            python3 "$ROOT/tools/cook_textures_dds.py" --input "$CLIENT_ASSET_ROOT" --login-ui-only --quiet || {
+                echo "AVISO: DDS cooker de login falhou; cliente continua com fallback source." >&2
+            }
+        fi
+    else
+        echo "AVISO: Pillow não disponível; DDS auto-cook ignorado." >&2
+        echo "       Instale com: python3 -m pip install --user Pillow" >&2
+    fi
+fi
+
 exit 0

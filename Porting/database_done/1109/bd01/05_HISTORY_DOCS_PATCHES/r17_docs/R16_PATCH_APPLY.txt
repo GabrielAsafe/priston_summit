@@ -1,7 +1,0 @@
-R15 -> R16 patch apply SHA comparison
-expected_files= 2032
-actual_files= 2032
-missing= 0
-extra= 0
-hash_mismatch= 0
-RESULT= PASS

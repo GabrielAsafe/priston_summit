@@ -1,8 +1,14 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_server_i686/objects/SrcServer/src/systems/gameplay/companions/CompanionSystem.o: \
  SrcServer/src/systems/gameplay/companions/CompanionSystem.cpp \
+ Shared/content/v1/gameplay_config/content/GameplayConfigRuntime.h \
+ Shared/content/v1/gameplay_config/content/CompiledGameplayConfigSource.h \
+ Shared/content/v1/common/Sha256.h \
+ Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
  SrcServer/src/systems/gameplay/companions/CompanionSystem.h \
  Shared/gameplay/companions/CompanionProtocol.h \
  SrcServer/src/systems/gameplay/companions/CompanionProfileStore.h \
+ SrcServer/src/systems/gameplay/companions/CompanionTacticsStore.h \
+ SrcServer/src/systems/gameplay/companions/CompanionSkillExecutor.h \
  Shared/opcodes.h \
  SrcServer/src/systems/network/transport/legacy/smwsock.h \
  Shared/network/transport/legacy/smwsock_legacy_server.h \
@@ -37,10 +43,18 @@
  SrcServer/src/core/gameplay/legacy_support/playsub.h \
  Shared/gameplay/legacy_support/playsub_legacy_server.h \
  SrcServer/src/core/server/legacy_runtime/onserver.h \
- SrcServer/src/core/data/legacy_loader/fileread.h modules/File/File.h
+ SrcServer/src/core/data/legacy_loader/fileread.h \
+ SrcServer/src/systems/combat/skills/legacy/sinSkill.h \
+ modules/File/File.h
+Shared/content/v1/gameplay_config/content/GameplayConfigRuntime.h:
+Shared/content/v1/gameplay_config/content/CompiledGameplayConfigSource.h:
+Shared/content/v1/common/Sha256.h:
+Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
 SrcServer/src/systems/gameplay/companions/CompanionSystem.h:
 Shared/gameplay/companions/CompanionProtocol.h:
 SrcServer/src/systems/gameplay/companions/CompanionProfileStore.h:
+SrcServer/src/systems/gameplay/companions/CompanionTacticsStore.h:
+SrcServer/src/systems/gameplay/companions/CompanionSkillExecutor.h:
 Shared/opcodes.h:
 SrcServer/src/systems/network/transport/legacy/smwsock.h:
 Shared/network/transport/legacy/smwsock_legacy_server.h:
@@ -78,4 +92,5 @@ SrcServer/src/core/gameplay/legacy_support/playsub.h:
 Shared/gameplay/legacy_support/playsub_legacy_server.h:
 SrcServer/src/core/server/legacy_runtime/onserver.h:
 SrcServer/src/core/data/legacy_loader/fileread.h:
+SrcServer/src/systems/combat/skills/legacy/sinSkill.h:
 modules/File/File.h:

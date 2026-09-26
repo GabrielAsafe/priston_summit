@@ -74,6 +74,20 @@ struct MECH_INFO{
 	int Metal_Golem_Defense[10];
 	int Metal_Golem_Life[10];
 	int Metal_Golem_UseMana[10];
+
+	// Summit Tier 5 - Mechanician. Keep byte-identical with client/main server MECH_INFO.
+	int Rupture_DamageBoost[10];
+	int Rupture_UseMana[10];
+	int Parasit_Shot_DamageBoost[10];
+	int Parasit_Shot_PoisonDuration[10];
+	int Parasit_Shot_PoisonDamagePercent[10];
+	int Parasit_Shot_UseMana[10];
+	int Hardening_Shield_DamageReduction[10];
+	int Hardening_Shield_AttackRateReduction[10];
+	int Hardening_Shield_Time[10];
+	int Hardening_Shield_UseMana[10];
+	int Magnetic_Discharge_DamageBoost[10];
+	int Magnetic_Discharge_UseMana[10];
 };
 
 struct FIGHTER_INFO{

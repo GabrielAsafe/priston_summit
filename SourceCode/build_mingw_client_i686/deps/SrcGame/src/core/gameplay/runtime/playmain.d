@@ -1,6 +1,10 @@
 /home/gabriel/Área\ de\ Trabalho/summit/SourceCode/build_mingw_client_i686/objects/SrcGame/src/core/gameplay/runtime/playmain.o: \
- SrcGame/src/core/gameplay/runtime/playmain.cpp Shared/opcodes.h \
- SrcGame/src/core/concurrency/JobSystem.h \
+ SrcGame/src/core/gameplay/runtime/playmain.cpp \
+ Shared/content/v1/definition/content/DefinitionRuntime.h \
+ Shared/content/v1/definition/content/CompiledDefinitionSource.h \
+ Shared/content/v1/common/Sha256.h \
+ Shared/content/v1/text_resource/content/CompiledTextResourceSource.h \
+ Shared/opcodes.h SrcGame/src/core/concurrency/JobSystem.h \
  SrcGame/src/core/concurrency/SourceAssetLock.h \
  SrcGame/src/systems/rendering/legacy_3d/smd3d.h \
  SrcGame/src/systems/rendering/legacy_3d/smDsx.h \
@@ -45,6 +49,12 @@
  SrcGame/src/systems/rendering/legacy_3d/smGeosub.h \
  SrcGame/src/systems/rendering/legacy_3d/smJpeg.h \
  Shared/rendering/legacy_3d/smJpeg.h \
+ Shared/rendering/legacy_3d/stage/StageAreaQuery.h \
+ Shared/rendering/legacy_3d/stage/StageGeometryAccess.h \
+ Shared/rendering/legacy_3d/stage/StageAreaStorage.h \
+ Shared/rendering/legacy_3d/stage/StageQueryStamp.h \
+ Shared/rendering/legacy_3d/stage/StageHeightQuery.h \
+ Shared/rendering/legacy_3d/stage/StageSurfaceQuery.h \
  SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h \
  SrcGame/src/systems/security/legacy/process_integrity/cracker.h \
  SrcGame/src/systems/gameplay/character/core/character.h \
@@ -157,6 +167,10 @@
  SrcGame/src/systems/ui/targeting/cTarget.h \
  SrcGame/src/systems/media/video/ParkDXPlayer.h \
  Shared/media/video/ParkDXPlayerLegacyShared.h
+Shared/content/v1/definition/content/DefinitionRuntime.h:
+Shared/content/v1/definition/content/CompiledDefinitionSource.h:
+Shared/content/v1/common/Sha256.h:
+Shared/content/v1/text_resource/content/CompiledTextResourceSource.h:
 Shared/opcodes.h:
 SrcGame/src/core/concurrency/JobSystem.h:
 SrcGame/src/core/concurrency/SourceAssetLock.h:
@@ -205,6 +219,12 @@ Shared/rendering/legacy_3d/smmatrix.h:
 SrcGame/src/systems/rendering/legacy_3d/smGeosub.h:
 SrcGame/src/systems/rendering/legacy_3d/smJpeg.h:
 Shared/rendering/legacy_3d/smJpeg.h:
+Shared/rendering/legacy_3d/stage/StageAreaQuery.h:
+Shared/rendering/legacy_3d/stage/StageGeometryAccess.h:
+Shared/rendering/legacy_3d/stage/StageAreaStorage.h:
+Shared/rendering/legacy_3d/stage/StageQueryStamp.h:
+Shared/rendering/legacy_3d/stage/StageHeightQuery.h:
+Shared/rendering/legacy_3d/stage/StageSurfaceQuery.h:
 SrcGame/src/systems/rendering/assets/v3/AssetStreamingV3.h:
 SrcGame/src/systems/security/legacy/process_integrity/cracker.h:
 SrcGame/src/systems/gameplay/character/core/character.h:

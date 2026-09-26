@@ -62,9 +62,9 @@ inline bool BuildImpactVector(const POINT3D &start, const POINT3D &end,
 	bool reverse, POINT3D &vector)
 {
 	const std::int64_t direction = reverse ? -1 : 1;
-	const std::int64_t x = direction * (static_cast<std::int64_t>(end.x) - start.x) << 8;
-	const std::int64_t y = direction * (static_cast<std::int64_t>(end.y) - start.y) << 8;
-	const std::int64_t z = direction * (static_cast<std::int64_t>(end.z) - start.z) << 8;
+	const std::int64_t x = direction * (static_cast<std::int64_t>(end.x) - start.x) * 256;
+	const std::int64_t y = direction * (static_cast<std::int64_t>(end.y) - start.y) * 256;
+	const std::int64_t z = direction * (static_cast<std::int64_t>(end.z) - start.z) * 256;
 	if(!FitsInt(x) || !FitsInt(y) || !FitsInt(z))
 		return false;
 	vector.x = static_cast<int>(x);
@@ -160,7 +160,7 @@ inline bool SegmentIntersectsFacePlane(const smSTAGE3D &stage, const smSTAGE_FAC
 
 	const std::int64_t numerator =
 		(-nx * sx + nx * px[0]) + (-ny * sy + ny * py[0]) + (-nz * sz + nz * pz[0]);
-	const std::int64_t t = (numerator << 3) / denominator;
+	const std::int64_t t = (numerator * 8) / denominator;
 	return t >= 0 && t <= 8;
 }
 

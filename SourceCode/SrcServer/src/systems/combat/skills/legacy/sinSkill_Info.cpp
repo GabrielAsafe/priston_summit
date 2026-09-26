@@ -13,6 +13,7 @@ ________________________________________________________________________________
 
 #include "systems/combat/skills/legacy/sinSkill_InfoIni.h"
 #include "modules/File/File.h"
+#include "content/v1/gameplay_config/content/GameplayConfigRuntime.h"
 
 
 char* GetWords(char* q, char* p)
@@ -43,6 +44,49 @@ char* GetWords(char* q, char* p)
 #include <string>
 #include <sstream>
 
+static bool SummitSkillConfigValue(const char* fileName, const char* skillName, std::string& out)
+{
+	char path[260];
+	wsprintf(path, "Configs/Skill/%s", fileName);
+	return summit::content::gameplay_config::GetGameplayConfigValue(path, "", skillName, out);
+}
+
+static bool SummitParseSkillFloats(const std::string& raw, float* out)
+{
+	const char* p = raw.c_str();
+	for(int i = 0; i < 10; ++i)
+	{
+		while(*p && (*p == ',' || *p == ' ' || *p == '\t' || *p == '=')) ++p;
+		if(!*p || *p == ';') return i > 0;
+		char* end = 0;
+		double v = strtod(p, &end);
+		if(end == p) return false;
+		out[i] = static_cast<float>(v);
+		p = end;
+		while(*p && *p != ',' && *p != ';') ++p;
+		if(*p == ';') return true;
+	}
+	return true;
+}
+
+static bool SummitParseSkillInts(const std::string& raw, int* out, int count)
+{
+	const char* p = raw.c_str();
+	for(int i = 0; i < count; ++i)
+	{
+		while(*p && (*p == ',' || *p == ' ' || *p == '\t' || *p == '=' || *p == '(' || *p == ')')) ++p;
+		if(!*p || *p == ';') return i > 0;
+		char* end = 0;
+		long v = strtol(p, &end, 10);
+		if(end == p) return false;
+		out[i] = static_cast<int>(v);
+		p = end;
+		while(*p && *p != ',' && *p != ';') ++p;
+		if(*p == ';') return true;
+	}
+	return true;
+}
+
 int ReadSkillFloat(float* Skill, char* szFileName, char* szSkillName)
 {
 	int found = FALSE;
@@ -51,6 +95,14 @@ int ReadSkillFloat(float* Skill, char* szFileName, char* szSkillName)
 	char Path[255], decode[255], line[255];
 	FILE* file;
 	char* skill;
+
+	if(summit::content::gameplay_config::CompiledGameplayConfigEnabled())
+	{
+		std::string raw;
+		if(SummitSkillConfigValue(szFileName, szSkillName, raw))
+			return SummitParseSkillFloats(raw, Skill) ? TRUE : FALSE;
+		if(summit::content::gameplay_config::GameplayConfigStrictMode()) return FALSE;
+	}
 
 	GetCurrentDirectoryA(sizeof(Path), Path);
 	wsprintf(Path, "%s//Configs//Skill//%s", Path, szFileName);
@@ -110,6 +162,14 @@ int ReadSkillInt(int* Skill, char* szFileName, char* szSkillName)
 	FILE* file;
 	char* skill;
 
+	if(summit::content::gameplay_config::CompiledGameplayConfigEnabled())
+	{
+		std::string raw;
+		if(SummitSkillConfigValue(szFileName, szSkillName, raw))
+			return SummitParseSkillInts(raw, Skill, 10) ? TRUE : FALSE;
+		if(summit::content::gameplay_config::GameplayConfigStrictMode()) return FALSE;
+	}
+
 	GetCurrentDirectoryA(sizeof(Path), Path);
 	wsprintf(Path, "%s//Configs//Skill//%s", Path, szFileName);
 
@@ -153,6 +213,14 @@ int ReadSkillInt2(int Skill[][2], char* szFileName, char* szSkillName)
 	char Path[255], decode[255], line[255];
 	FILE* file;
 	char* skill;
+
+	if(summit::content::gameplay_config::CompiledGameplayConfigEnabled())
+	{
+		std::string raw;
+		if(SummitSkillConfigValue(szFileName, szSkillName, raw))
+			return SummitParseSkillInts(raw, &Skill[0][0], 20) ? TRUE : FALSE;
+		if(summit::content::gameplay_config::GameplayConfigStrictMode()) return FALSE;
+	}
 
 	GetCurrentDirectoryA(sizeof(Path), Path);
 	wsprintf(Path, "%s//Configs//Skill//%s", Path, szFileName);

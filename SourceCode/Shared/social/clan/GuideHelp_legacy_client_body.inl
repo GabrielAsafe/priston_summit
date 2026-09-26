@@ -1,3 +1,24 @@
+#include <cstring>
+
+#include "content/v1/text_resource/content/TextResourceRuntime.h"
+
+static DWORD SummitGetImmutableProfileString(const char* section, const char* key, const char* fallback, char* out, DWORD outSize, const char* path)
+{
+    if(summit::content::text_resource::CompiledTextResourcesEnabled())
+    {
+        std::string value;
+        if(summit::content::text_resource::GetTextResourceProfileString(path, section, key, value))
+        {
+            if(!out || outSize == 0) return 0;
+            const std::size_t n = value.size() < std::size_t(outSize - 1) ? value.size() : std::size_t(outSize - 1);
+            std::memcpy(out, value.data(), n);
+            out[n] = 0;
+            return static_cast<DWORD>(n);
+        }
+        if(summit::content::text_resource::TextResourceStrictMode()) return 0;
+    }
+    return GetPrivateProfileStringA(section, key, fallback, out, outSize, path);
+}
 extern int GuideHelpButton[3];
 extern BOOL IsDrawGuideHelp;
 
@@ -921,66 +942,66 @@ void CGuideHelp::InitLevelHelpLabel()
 
 	if(gameplay::classes::DefaultClassService().IsInBrood(sinChar->JOB_CODE, gameplay::classes::brood::Tempskron))
 	{
-		GetPrivateProfileString("Level_1", "Subj", "Error", LevelHelp[0], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_2", "Subj", "Error", LevelHelp[1], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_3", "Subj", "Error", LevelHelp[2], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_4", "Subj", "Error", LevelHelp[3], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_5", "Subj", "Error", LevelHelp[4], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_6", "Subj", "Error", LevelHelp[5], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_7", "Subj", "Error", LevelHelp[6], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_8", "Subj", "Error", LevelHelp[7], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_9", "Subj", "Error", LevelHelp[8], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_10", "Subj", "Error", LevelHelp[9], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_11", "Subj", "Error", LevelHelp[10], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_12", "Subj", "Error", LevelHelp[11], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_15", "Subj", "Error", LevelHelp[12], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_17", "Subj", "Error", LevelHelp[13], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_20", "Subj", "Error", LevelHelp[14], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_22", "Subj", "Error", LevelHelp[15], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_25", "Subj", "Error", LevelHelp[16], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_30", "Subj", "Error", LevelHelp[17], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_39", "Subj", "Error", LevelHelp[18], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_40", "Subj", "Error", LevelHelp[19], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_50", "Subj", "Error", LevelHelp[20], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_55", "Subj", "Error", LevelHelp[21], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_60", "Subj", "Error", LevelHelp[22], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_65", "Subj", "Error", LevelHelp[23], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_70", "Subj", "Error", LevelHelp[24], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_75", "Subj", "Error", LevelHelp[25], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_79", "Subj", "Error", LevelHelp[26], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_80", "Subj", "Error", LevelHelp[27], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_1", "Subj", "Error", LevelHelp[0], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_2", "Subj", "Error", LevelHelp[1], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_3", "Subj", "Error", LevelHelp[2], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_4", "Subj", "Error", LevelHelp[3], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_5", "Subj", "Error", LevelHelp[4], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_6", "Subj", "Error", LevelHelp[5], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_7", "Subj", "Error", LevelHelp[6], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_8", "Subj", "Error", LevelHelp[7], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_9", "Subj", "Error", LevelHelp[8], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_10", "Subj", "Error", LevelHelp[9], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_11", "Subj", "Error", LevelHelp[10], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_12", "Subj", "Error", LevelHelp[11], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_15", "Subj", "Error", LevelHelp[12], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_17", "Subj", "Error", LevelHelp[13], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_20", "Subj", "Error", LevelHelp[14], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_22", "Subj", "Error", LevelHelp[15], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_25", "Subj", "Error", LevelHelp[16], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_30", "Subj", "Error", LevelHelp[17], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_39", "Subj", "Error", LevelHelp[18], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_40", "Subj", "Error", LevelHelp[19], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_50", "Subj", "Error", LevelHelp[20], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_55", "Subj", "Error", LevelHelp[21], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_60", "Subj", "Error", LevelHelp[22], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_65", "Subj", "Error", LevelHelp[23], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_70", "Subj", "Error", LevelHelp[24], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_75", "Subj", "Error", LevelHelp[25], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_79", "Subj", "Error", LevelHelp[26], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_80", "Subj", "Error", LevelHelp[27], 1024, LEVELLABEL);
 	}
 	else
 	{
 
-		GetPrivateProfileString("Level_1", "Subj", "Error", LevelHelp[0], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_2", "Subj", "Error", LevelHelp[1], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_3", "Subj", "Error", LevelHelp[2], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_4", "Subj", "Error", LevelHelp[3], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_5", "Subj", "Error", LevelHelp[4], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_6", "Subj", "Error", LevelHelp[5], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_7", "Subj", "Error", LevelHelp[6], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_8", "Subj", "Error", LevelHelp[7], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_9", "Subj", "Error", LevelHelp[8], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_10", "Subj", "Error", LevelHelp[9], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_11", "Subj", "Error", LevelHelp[10], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_12", "Subj", "Error", LevelHelp[11], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_15", "Subj", "Error", LevelHelp[12], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_17", "Subj", "Error", LevelHelp[13], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_20", "Subj", "Error", LevelHelp[14], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_22", "Subj", "Error", LevelHelp[15], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_25", "Subj", "Error", LevelHelp[16], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_30", "Subj", "Error", LevelHelp[17], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_39", "Subj", "Error", LevelHelp[18], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_40", "Subj", "Error", LevelHelp[19], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_50", "Subj", "Error", LevelHelp[20], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_55", "Subj", "Error", LevelHelp[21], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_60", "Subj", "Error", LevelHelp[22], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_65", "Subj", "Error", LevelHelp[23], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_70", "Subj", "Error", LevelHelp[24], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_75", "Subj", "Error", LevelHelp[25], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_79", "Subj", "Error", LevelHelp[26], 1024, LEVELLABEL);
-		GetPrivateProfileString("Level_80", "Subj", "Error", LevelHelp[27], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_1", "Subj", "Error", LevelHelp[0], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_2", "Subj", "Error", LevelHelp[1], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_3", "Subj", "Error", LevelHelp[2], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_4", "Subj", "Error", LevelHelp[3], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_5", "Subj", "Error", LevelHelp[4], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_6", "Subj", "Error", LevelHelp[5], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_7", "Subj", "Error", LevelHelp[6], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_8", "Subj", "Error", LevelHelp[7], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_9", "Subj", "Error", LevelHelp[8], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_10", "Subj", "Error", LevelHelp[9], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_11", "Subj", "Error", LevelHelp[10], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_12", "Subj", "Error", LevelHelp[11], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_15", "Subj", "Error", LevelHelp[12], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_17", "Subj", "Error", LevelHelp[13], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_20", "Subj", "Error", LevelHelp[14], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_22", "Subj", "Error", LevelHelp[15], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_25", "Subj", "Error", LevelHelp[16], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_30", "Subj", "Error", LevelHelp[17], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_39", "Subj", "Error", LevelHelp[18], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_40", "Subj", "Error", LevelHelp[19], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_50", "Subj", "Error", LevelHelp[20], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_55", "Subj", "Error", LevelHelp[21], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_60", "Subj", "Error", LevelHelp[22], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_65", "Subj", "Error", LevelHelp[23], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_70", "Subj", "Error", LevelHelp[24], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_75", "Subj", "Error", LevelHelp[25], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_79", "Subj", "Error", LevelHelp[26], 1024, LEVELLABEL);
+		SummitGetImmutableProfileString("Level_80", "Subj", "Error", LevelHelp[27], 1024, LEVELLABEL);
 	}
 
 }
@@ -1171,8 +1192,8 @@ void CGuideHelp::CheckLevel(int level)
 void CGuideHelp::GetHelpContent(char* section, char* key, char* ImageKey)
 {
 	DWORD dwSaveSize = 100;
-	char  szSaveStr[100];
-	char  szImageDir[100];
+	char  szSaveStr[1024];
+	char  szImageDir[1024];
 	DWORD dwReturn, dwFileSize = 0, dwRead = 0;
 	HANDLE hFile = NULL;
 	char *HelpContent;
@@ -1180,26 +1201,26 @@ void CGuideHelp::GetHelpContent(char* section, char* key, char* ImageKey)
 	ZeroMemory(m_HelpContent, sizeof(m_HelpContent));
 	ZeroMemory(szImageDir, sizeof(szImageDir));
 
-	dwReturn = GetPrivateProfileString(section, key, "Error", szSaveStr, 1024, HELP_CONTENT);
+	dwReturn = SummitGetImmutableProfileString(section, key, "Error", szSaveStr, 1024, HELP_CONTENT);
 
 	if(dwReturn == 0) return;
-	dwReturn = GetPrivateProfileString(section, ImageKey, "Error", szImageDir, 1024, HELP_CONTENT);
+	dwReturn = SummitGetImmutableProfileString(section, ImageKey, "Error", szImageDir, 1024, HELP_CONTENT);
 	if(dwReturn == 0) return;
 
 	LoadGuideImage(szImageDir);
 
-	hFile = CreateFile(szSaveStr, GENERIC_READ, FILE_SHARE_READ,
-					   NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-
-	if(hFile == INVALID_HANDLE_VALUE) return;
-
-	dwFileSize = GetFileSize(hFile, NULL);
-
-	HelpContent = new char[dwFileSize];
-	ZeroMemory(HelpContent, sizeof(char)*dwFileSize);
-
-	ReadFile(hFile, HelpContent, dwFileSize, &dwRead, NULL);
-	CloseHandle(hFile);
+	{
+		FILE* packedHelp = summit::content::text_resource::OpenTextResourceFile(szSaveStr, "rb");
+		if(!packedHelp) return;
+		if(std::fseek(packedHelp, 0, SEEK_END) != 0) { std::fclose(packedHelp); return; }
+		long packedSize = std::ftell(packedHelp);
+		if(packedSize < 0) { std::fclose(packedHelp); return; }
+		std::rewind(packedHelp);
+		HelpContent = new char[static_cast<std::size_t>(packedSize) + 1];
+		const std::size_t packedRead = packedSize ? std::fread(HelpContent, 1, static_cast<std::size_t>(packedSize), packedHelp) : 0;
+		std::fclose(packedHelp);
+		HelpContent[packedRead] = 0;
+	}
 
 	Parsing(HelpContent);
 

@@ -14,7 +14,7 @@ files = {
 }
 text = {name: path.read_text(errors="ignore") for name, path in files.items()}
 checks = [
-    ("protocol v3", "protocol", "COMPANION_UI_PROTOCOL_VERSION = 3"),
+    ("protocol v4+", "protocol", "COMPANION_UI_PROTOCOL_VERSION = 6"),
     ("tactic action", "protocol", "COMPANION_UI_SET_TACTIC"),
     ("retreat action", "protocol", "COMPANION_UI_SET_RETREAT_HP"),
     ("range action", "protocol", "COMPANION_UI_SET_PREFERRED_RANGE"),
@@ -28,7 +28,7 @@ checks = [
     ("defensive evaluator", "server", "COMPANION_TACTIC_DEFENSIVE"),
     ("hold evaluator", "server", "COMPANION_TACTIC_HOLD_POSITION"),
     ("retreat evaluator", "server", "lifePercent <= retreatHpPercent"),
-    ("preferred range combat", "server", "EngageTarget(character, target, preferredRange)"),
+    ("preferred range combat", "server", "EngageTarget(character, target, preferredRange"),
     ("formation API", "server", "bool GetFollowPosition"),
     ("legacy follow bridge", "character", "gameplay::companions::GetFollowPosition(this, &followX, &followZ)"),
     ("client tactic model", "models", "enum class CompanionUiTactic"),

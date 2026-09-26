@@ -133,7 +133,9 @@ inline int SampleScale(const smOBJ3D &object, int &x, int &y, int &z, smTM_SCALE
 
 	const int startFrame = scale[pair].frame;
 	const int endFrame = scale[pair + 1].frame;
-	const int alpha = ((frame - startFrame) << 8) / (endFrame - startFrame);
+	const std::int64_t alpha64 = ((static_cast<std::int64_t>(frame) - startFrame) * 256) /
+		(static_cast<std::int64_t>(endFrame) - startFrame);
+	const int alpha = static_cast<int>(alpha64);
 	x = scale[pair].x + (((scale[pair + 1].x - scale[pair].x) * alpha) >> 8);
 	y = scale[pair].y + (((scale[pair + 1].y - scale[pair].y) * alpha) >> 8);
 	z = scale[pair].z + (((scale[pair + 1].z - scale[pair].z) * alpha) >> 8);

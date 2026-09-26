@@ -1,5 +1,0 @@
-
-char *parkTextTalk = "%s said.";
-
-
-

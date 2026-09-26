@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <unordered_map>
+#include <vector>
 
 #include "gameplay/gathering/v2/GatheringTypes.h"
 
@@ -20,6 +21,8 @@ public:
 
     bool GetResource(std::uint32_t resourceId, ResourceDefinition& out) const;
     bool GetNode(std::uint32_t nodeId, GatheringNodeDefinition& out) const;
+    void ListResources(std::vector<ResourceDefinition>& out) const;
+    void ListNodes(std::vector<GatheringNodeDefinition>& out) const;
     std::uint64_t NextAvailableAt(std::uint32_t nodeId) const;
     void ResetNode(std::uint32_t nodeId);
     void Clear();

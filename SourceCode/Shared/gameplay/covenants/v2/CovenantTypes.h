@@ -22,7 +22,19 @@ enum class CovenantJoinEligibility
     UnknownCovenant,
     ConditionsNotMet,
     AlreadyActive,
+    AlreadyMember,
     ExclusiveConflict,
+    PersistenceFailure
+};
+
+enum class CovenantActivationResult
+{
+    Activated,
+    InvalidRequest,
+    UnknownCovenant,
+    NotMember,
+    AlreadyActive,
+    CooldownActive,
     PersistenceFailure
 };
 
@@ -93,6 +105,7 @@ struct CovenantRankCatalogEntry
     std::string key;
     std::string displayNameKey;
     int minReputation;
+    std::vector<modifiers::GameplayModifier> benefits;
 
     CovenantRankCatalogEntry() : id(0), minReputation(0) {}
 };

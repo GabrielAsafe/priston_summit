@@ -18,6 +18,9 @@
  SrcGame/src/systems/ui/v2/pages/CompanionsPage.h \
  SrcGame/src/systems/ui/v2/domain/ICompanionGateway.h \
  SrcGame/src/systems/ui/v2/domain/CompanionUIModels.h \
+ SrcGame/src/systems/ui/v2/pages/CovenantsPage.h \
+ SrcGame/src/systems/ui/v2/domain/ICovenantGateway.h \
+ SrcGame/src/systems/ui/v2/domain/CovenantUIModels.h \
  SrcGame/src/systems/ui/v2/pages/SkillsPage.h \
  SrcGame/src/systems/ui/v2/viewmodels/SkillsViewModel.h \
  SrcGame/src/systems/ui/v2/domain/ISkillGateway.h \
@@ -43,6 +46,9 @@ SrcGame/src/systems/ui/v2/domain/IInventoryGateway.h:
 SrcGame/src/systems/ui/v2/pages/CompanionsPage.h:
 SrcGame/src/systems/ui/v2/domain/ICompanionGateway.h:
 SrcGame/src/systems/ui/v2/domain/CompanionUIModels.h:
+SrcGame/src/systems/ui/v2/pages/CovenantsPage.h:
+SrcGame/src/systems/ui/v2/domain/ICovenantGateway.h:
+SrcGame/src/systems/ui/v2/domain/CovenantUIModels.h:
 SrcGame/src/systems/ui/v2/pages/SkillsPage.h:
 SrcGame/src/systems/ui/v2/viewmodels/SkillsViewModel.h:
 SrcGame/src/systems/ui/v2/domain/ISkillGateway.h:

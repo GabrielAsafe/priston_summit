@@ -34,6 +34,14 @@ void OnOwnerDisconnect(rsPLAYINFO *owner);
 int GetActiveCount(rsPLAYINFO *owner);
 int GetPartyActiveCount(rsPLAYINFO *partyMaster, int area);
 bool IsManagedCompanion(smCHAR *character);
+// Local scalable passive layer.
+int GetPassiveEvadePercent(smCHAR *character);
+int GetReactiveDamage(smCHAR *character, int receivedDamage);
+// V14+ defensive/offensive runtime hooks.
+bool CanMonsterTargetCompanion(smCHAR *monster, smCHAR *target);
+void ApplyIncomingDamage(smCHAR *target, smCHAR *attacker, int *damage);
+void ApplyOutgoingBasicDamage(smCHAR *attacker, smCHAR *target, int *damage);
+void ApplyOutgoingBasicPostAbsorption(smCHAR *attacker, smCHAR *target, int *damage);
 void ApplyAI(smCHAR *character);
 // Publishes the client-only visual runtime packet after the authoritative
 // server character tick has finalized movement/motion for this frame.

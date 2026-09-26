@@ -52,31 +52,44 @@ static SummitSkyStreamingState &SummitSkyState()
 
 static void SummitPrepareSkyOnWorker(const std::shared_ptr<SummitSkyRequest> &request)
 {
-    if (!request || request->sourceName.empty())
+    if (!request)
         return;
 
-    smPAT3D *pattern = 0;
+    try
     {
-        summit::core::concurrency::SourceAssetLock sourceLock(request->sourceName.c_str());
-        pattern = smASE_Read(const_cast<char *>(request->sourceName.c_str()));
-    }
-
-    if (pattern)
-    {
-        pattern->ZeroNormals();
-        for (int i = 0; i < pattern->nObj3d; ++i)
+        if (!request->sourceName.empty())
         {
-            if (!pattern->obj3d[i])
-                continue;
-            pattern->obj3d[i]->ClipStates = request->clipping
-                ? (SMCLIP_NEARZ | SMCLIP_LEFT | SMCLIP_RIGHT | SMCLIP_TOP | SMCLIP_BOTTOM)
-                : (SMCLIP_NEARZ | SMCLIP_TOP);
-            pattern->obj3d[i]->ColorEffect = FALSE;
+            smPAT3D *pattern = 0;
+            {
+                summit::core::concurrency::SourceAssetLock sourceLock(request->sourceName.c_str());
+                pattern = smASE_Read(const_cast<char *>(request->sourceName.c_str()));
+            }
+
+            // Publish worker ownership into the request immediately. If any
+            // post-parse operation throws, cleanup stays on the main thread.
+            request->prepared = pattern;
+            if (pattern)
+            {
+                pattern->ZeroNormals();
+                for (int i = 0; i < pattern->nObj3d; ++i)
+                {
+                    if (!pattern->obj3d[i])
+                        continue;
+                    pattern->obj3d[i]->ClipStates = request->clipping
+                        ? (SMCLIP_NEARZ | SMCLIP_LEFT | SMCLIP_RIGHT | SMCLIP_TOP | SMCLIP_BOTTOM)
+                        : (SMCLIP_NEARZ | SMCLIP_TOP);
+                    pattern->obj3d[i]->ColorEffect = FALSE;
+                }
+                request->success = true;
+            }
         }
-        request->prepared = pattern;
-        request->success = true;
+    }
+    catch (...)
+    {
+        request->success = false;
     }
 
+    // Every accepted request reaches exactly one main-thread completion.
     std::lock_guard<std::mutex> lock(SummitSkyState().mutex);
     SummitSkyState().completed.push_back(request);
 }
@@ -155,8 +168,22 @@ void SummitPumpSkyStreamingV3()
         return;
     }
 
+    // Retire this generation before touching the target. A completed request
+    // must not leave a stale target pointer in the generation table.
+    {
+        std::lock_guard<std::mutex> lock(SummitSkyState().mutex);
+        const std::unordered_map<skyResInfo *, std::uint64_t>::iterator it =
+            SummitSkyState().generations.find(request->target);
+        if (it != SummitSkyState().generations.end() && it->second == request->generation)
+            SummitSkyState().generations.erase(it);
+    }
+
     if (!request->success || !request->prepared)
+    {
+        delete request->prepared;
+        request->prepared = 0;
         return;
+    }
 
     skyResInfo *target = request->target;
     if (target->stageSky)

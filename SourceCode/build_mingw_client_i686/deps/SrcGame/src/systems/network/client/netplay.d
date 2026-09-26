@@ -53,9 +53,13 @@
  SrcGame/src/core/data/legacy_loader/fileread.h \
  Shared/persistence/character_record/WarehouseRecordValidation.h \
  Shared/gameplay/companions/CompanionProtocol.h \
+ Shared/gameplay/covenants/v2/CovenantUIProtocol.h \
  SrcGame/src/systems/ui/v2/legacy/LegacyCompanionGateway.h \
  SrcGame/src/systems/ui/v2/domain/ICompanionGateway.h \
  SrcGame/src/systems/ui/v2/domain/CompanionUIModels.h \
+ SrcGame/src/systems/ui/v2/legacy/LegacyCovenantGateway.h \
+ SrcGame/src/systems/ui/v2/domain/ICovenantGateway.h \
+ SrcGame/src/systems/ui/v2/domain/CovenantUIModels.h \
  SrcGame/src/systems/rendering/effects/particle/legacy/particle.h \
  SrcGame/src/compat/legacy/sin/sinLinkHeader.h \
  SrcGame/src/systems/rendering/2d/legacy/drawsub.h \
@@ -233,9 +237,13 @@ Shared/gameplay/classes/v2/domain/ClassDefinition.h:
 SrcGame/src/core/data/legacy_loader/fileread.h:
 Shared/persistence/character_record/WarehouseRecordValidation.h:
 Shared/gameplay/companions/CompanionProtocol.h:
+Shared/gameplay/covenants/v2/CovenantUIProtocol.h:
 SrcGame/src/systems/ui/v2/legacy/LegacyCompanionGateway.h:
 SrcGame/src/systems/ui/v2/domain/ICompanionGateway.h:
 SrcGame/src/systems/ui/v2/domain/CompanionUIModels.h:
+SrcGame/src/systems/ui/v2/legacy/LegacyCovenantGateway.h:
+SrcGame/src/systems/ui/v2/domain/ICovenantGateway.h:
+SrcGame/src/systems/ui/v2/domain/CovenantUIModels.h:
 SrcGame/src/systems/rendering/effects/particle/legacy/particle.h:
 SrcGame/src/compat/legacy/sin/sinLinkHeader.h:
 SrcGame/src/systems/rendering/2d/legacy/drawsub.h:

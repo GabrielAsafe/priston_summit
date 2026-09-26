@@ -1,3 +1,4 @@
+#include "content/v1/definition/content/DefinitionRuntime.h"
 #include <cstring>
 #include "systems/network/protocol/server/opcodes.h"
 #include "systems/rendering/legacy_3d/smd3d.h"
@@ -1293,37 +1294,36 @@ char *NpcSelectedName = 0;
 int SetNpcFileList(char *szNpcDirectory)
 {
 	NpcFileCnt = 0;
+	if(summit::content::definition::CompiledDefinitionsEnabled())
+	{
+		std::vector<summit::content::definition::DefinitionEntry> entries;
+		if(summit::content::definition::ListCompiledDefinitions(szNpcDirectory, ".npc", true, entries, summit::content::definition::DefinitionKindNpc))
+		{
+			for(std::size_t index=0; index<entries.size() && NpcFileCnt<64; ++index)
+			{
+				strcpy_s(szNpcFileList[NpcFileCnt], entries[index].logicalPath.c_str());
+				NpcFileCnt++;
+			}
+			return NpcFileCnt ? TRUE : 0;
+		}
+		if(summit::content::definition::DefinitionStrictMode()) return 0;
+	}
+
 	char szFindPath[256];
-
-
-
 	HANDLE hFindHandle;
-	WIN32_FIND_DATA	fd;
-
+	WIN32_FIND_DATA fd;
 	strcpy_s(szFindPath, szNpcDirectory);
 	lstrcat(szFindPath, "*.npc");
-
-
 	hFindHandle = FindFirstFile(szFindPath, &fd);
-	if(hFindHandle == INVALID_HANDLE_VALUE)
-	{
-		return 0;
-
-	}
+	if(hFindHandle == INVALID_HANDLE_VALUE) return 0;
 	while(1)
 	{
 		strcpy_s(szNpcFileList[NpcFileCnt], szNpcDirectory);
 		lstrcat(szNpcFileList[NpcFileCnt], fd.cFileName);
 		NpcFileCnt++;
-
-		if(FindNextFile(hFindHandle, &fd) == FALSE)
-			break;
-		if(NpcFileCnt >= 64)
-			break;
-
+		if(FindNextFile(hFindHandle, &fd) == FALSE || NpcFileCnt >= 64) break;
 	}
 	FindClose(hFindHandle);
-
 	return TRUE;
 }
 

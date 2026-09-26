@@ -13,11 +13,16 @@ static const std::int32_t OPCODE_COMPANION_UI_ACTION = 0x48479C10;
 static const std::int32_t OPCODE_COMPANION_UI_STATE  = 0x48479C11;
 static const std::int32_t OPCODE_COMPANION_RUNTIME_STATE = 0x48479C12;
 static const std::int32_t OPCODE_COMPANION_VISUAL_STATE = 0x48479C13;
-static const std::int32_t COMPANION_UI_PROTOCOL_VERSION = 3;
+static const std::int32_t COMPANION_UI_PROTOCOL_VERSION = 6;
 static const int COMPANION_UI_MAX_CHARACTERS = 11;
-static const std::int32_t COMPANION_RUNTIME_PROTOCOL_VERSION = 1;
+static const int COMPANION_UI_TACTIC_RULES = 4;
+static const std::int32_t COMPANION_RUNTIME_PROTOCOL_VERSION = 2;
 static const int COMPANION_RUNTIME_MAX_ACTIVE = 4;
-static const std::int32_t COMPANION_VISUAL_PROTOCOL_VERSION = 1;
+static const int COMPANION_RUNTIME_MAX_EFFECTS = 6;
+// Visual v4 is the current local extension: it carries logicalSkillCode in
+// addition to the legacy play code. V43 runtime-state additions use their own
+// protocol version and do not require downgrading this packet.
+static const std::int32_t COMPANION_VISUAL_PROTOCOL_VERSION = 4;
 static const int COMPANION_VISUAL_MAX_ACTIVE = 4;
 
 enum CompanionUIAction : std::int32_t
@@ -36,7 +41,21 @@ enum CompanionUIAction : std::int32_t
     COMPANION_UI_RESYNC_DAT,
     COMPANION_UI_SET_TACTIC,
     COMPANION_UI_SET_RETREAT_HP,
-    COMPANION_UI_SET_PREFERRED_RANGE
+    COMPANION_UI_SET_PREFERRED_RANGE,
+    COMPANION_UI_CYCLE_ACTIVE_SKILL,
+    COMPANION_UI_RESET_ACTIVE_SKILLS,
+    COMPANION_UI_CYCLE_BUFF_SKILL,
+    COMPANION_UI_ADJUST_BUFF_INTERVAL,
+    COMPANION_UI_RESET_BUFFS,
+    COMPANION_UI_CYCLE_ACTIVE_MIN_RESOURCE,
+    COMPANION_UI_CYCLE_ACTIVE_MIN_TARGETS,
+    COMPANION_UI_CYCLE_ACTIVE_TARGET_MODE,
+    COMPANION_UI_TOGGLE_CUSTOM_TACTICS,
+    COMPANION_UI_TOGGLE_TACTIC_RULE,
+    COMPANION_UI_CYCLE_TACTIC_CONDITION,
+    COMPANION_UI_CYCLE_TACTIC_ACTION,
+    COMPANION_UI_CYCLE_TACTIC_THRESHOLD,
+    COMPANION_UI_MOVE_TACTIC_RULE
 };
 
 struct CompanionUIActionPacket
@@ -73,6 +92,45 @@ struct CompanionUIEntry
     std::int32_t preferredRange;
 };
 
+struct CompanionUISkillSlot
+{
+    std::int32_t useSlot;
+    std::uint32_t skillCode;
+    std::int32_t point;
+    std::int32_t intervalSeconds;
+    std::int32_t minResourcePercent;
+    std::int32_t minimumTargets;
+    std::int32_t targetMode;
+    char skillName[32];
+};
+
+enum CompanionCustomTacticCondition : std::int32_t
+{
+    COMPANION_TACTIC_CONDITION_ALWAYS = 0,
+    COMPANION_TACTIC_CONDITION_SELF_HP_BELOW,
+    COMPANION_TACTIC_CONDITION_OWNER_HP_BELOW,
+    COMPANION_TACTIC_CONDITION_ENEMIES_NEARBY_AT_LEAST,
+    COMPANION_TACTIC_CONDITION_OWNER_HAS_TARGET,
+    COMPANION_TACTIC_CONDITION_PARTY_THREATENED
+};
+
+enum CompanionCustomTacticAction : std::int32_t
+{
+    COMPANION_TACTIC_ACTION_ATTACK_OWNER_TARGET = 0,
+    COMPANION_TACTIC_ACTION_DEFEND_PARTY,
+    COMPANION_TACTIC_ACTION_ATTACK_NEAREST,
+    COMPANION_TACTIC_ACTION_RETREAT,
+    COMPANION_TACTIC_ACTION_HOLD_POSITION
+};
+
+struct CompanionUITacticRule
+{
+    std::int32_t enabled;
+    std::int32_t condition;
+    std::int32_t action;
+    std::int32_t threshold;
+};
+
 struct CompanionUIStatePacket
 {
     std::int32_t size;
@@ -83,7 +141,30 @@ struct CompanionUIStatePacket
     std::int32_t maxActive;
     std::int32_t entryCount;
     std::int32_t lastResult;
+    std::int32_t skillLoadoutActive;
+    std::int32_t buffLoadoutActive;
+    std::int32_t customTacticsEnabled;
+    CompanionUITacticRule tacticRules[COMPANION_UI_TACTIC_RULES];
+    CompanionUISkillSlot activeSkills[4];
+    CompanionUISkillSlot buffSkills[4];
     CompanionUIEntry entries[COMPANION_UI_MAX_CHARACTERS];
+};
+
+enum CompanionRuntimeStatusFlags : std::uint32_t
+{
+    COMPANION_RUNTIME_STATUS_NONE = 0,
+    COMPANION_RUNTIME_STATUS_SLOW = 1u << 0,
+    COMPANION_RUNTIME_STATUS_STUN = 1u << 1,
+    COMPANION_RUNTIME_STATUS_POISON = 1u << 2,
+    COMPANION_RUNTIME_STATUS_DISTORTION = 1u << 3,
+    COMPANION_RUNTIME_STATUS_THREAT = 1u << 4
+};
+
+struct CompanionRuntimeEffect
+{
+    std::uint32_t effectCode;
+    std::int32_t remainingMs;
+    std::int32_t positive;
 };
 
 struct CompanionRuntimeEntry
@@ -100,6 +181,13 @@ struct CompanionRuntimeEntry
     std::int32_t mode;
     std::int32_t tactic;
     std::int32_t casting;
+    std::uint32_t castingSkillCode;
+    std::int32_t castProgressPermille;
+    std::int32_t cooldownMs;
+    std::uint32_t statusFlags;
+    std::int32_t effectCount;
+    char castingSkillName[24];
+    CompanionRuntimeEffect effects[COMPANION_RUNTIME_MAX_EFFECTS];
     char targetName[32];
 };
 
@@ -138,6 +226,25 @@ struct CompanionVisualEntry
     std::uint32_t rightItemCode;
     std::uint32_t leftItemCode;
     std::uint32_t equipmentRevision;
+    // Explicit skill event. CHRMOTION_STATE_SKILL by itself is insufficient:
+    // player motion selection depends on AttackSkil (SKILL_PLAY_* + point).
+    // skillSequence changes once per authoritative cast, even if the logical
+    // motion state is identical to the previous cast.
+    // Logical skill identity is independent of the legacy SKILL_PLAY_* motion/network alias.
+    // This is required for Rank5 aliases (and future tiers) where multiple skills share T51..T54.
+    std::uint32_t logicalSkillCode;
+    std::uint32_t skillPlayCode;
+    std::uint32_t skillPoint;
+    std::uint32_t skillTargetSerial;
+    // Snapshot the target position at authoritative cast time.  A damage cast
+    // can kill/remove its target before the visual packet reaches the client;
+    // keeping coordinates here lets presentation still spawn the projectile /
+    // particle at the correct location instead of silently losing the effect.
+    std::int32_t skillTargetX;
+    std::int32_t skillTargetY;
+    std::int32_t skillTargetZ;
+    std::uint32_t skillMotionState;
+    std::uint32_t skillSequence;
     std::uint32_t flags;
 };
 

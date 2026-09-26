@@ -1,5 +1,6 @@
 #pragma once
 
+#include <atomic>
 #include <cstring>
 #include <limits>
 #include <memory>
@@ -17,11 +18,11 @@ using summit::rendering::legacy3d::AseImportContext;
 static const int ASE_MATERIAL_CAPACITY = summit::rendering::legacy3d::AseMaterialCapacity;
 static const int ASE_TEXTURE_SLOT_MAX = summit::rendering::legacy3d::AseTextureSlotMax;
 
-char DataDirectory[128];
+thread_local char DataDirectory[128];
 
 
-static int smMeshReload = TRUE;
-static int smMeshSave = 0;
+static std::atomic<int> smMeshReload(TRUE);
+static std::atomic<int> smMeshSave(0);
 
 struct smTFACE
 {
@@ -109,7 +110,7 @@ char *SetDirectoryFromFile(char *filename)
 }
 
 
-char szChangeFileExt[64];
+thread_local char szChangeFileExt[64];
 
 
 char *ChangeFileExt(char *filename, char *FileExt)

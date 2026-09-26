@@ -10,7 +10,9 @@
 #include "core/data/legacy_loader/fileread.h"
 #include "persistence/character_record/WarehouseRecordValidation.h"
 #include "gameplay/companions/CompanionProtocol.h"
+#include "gameplay/covenants/v2/CovenantUIProtocol.h"
 #include "systems/ui/v2/legacy/LegacyCompanionGateway.h"
+#include "systems/ui/v2/legacy/LegacyCovenantGateway.h"
 
 namespace gameplay
 {
@@ -1672,6 +1674,20 @@ DWORD	dwGetCharInfoTime = 0;
 
 extern AntiCheat * pcAntiCheat;
 
+static void SummitLogSkillInfoSizeMismatch(const char *name, DWORD opcode, int received, int expected)
+{
+	FILE *fp = fopen("LOGS\\summit_t5_protocol.txt", "a");
+	if(!fp) fp = fopen("summit_t5_protocol.txt", "a");
+	if(!fp) return;
+	fprintf(fp, "skill-info-size-mismatch class=%s opcode=0x%08X received=%d expected=%d\n",
+		name ? name : "?", (unsigned int)opcode, received, expected);
+	fclose(fp);
+}
+
+#define SUMMIT_SKILL_INFO_SIZE_OK(ptr, type, opcode) \
+	((ptr) && (ptr)->size == (int)sizeof(type) ? TRUE : \
+	 (SummitLogSkillInfoSizeMismatch(#type, (opcode), (ptr) ? (ptr)->size : -1, (int)sizeof(type)), FALSE))
+
 int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 {	
 	MECH_INFO* lpMechInfo;
@@ -1800,6 +1816,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 	
 	case smTRANSCODE_MECH_INFO:
 		lpMechInfo = (MECH_INFO*)pData->Buff;
+		if(!SUMMIT_SKILL_INFO_SIZE_OK(lpMechInfo, MECH_INFO, smTRANSCODE_MECH_INFO)) break;
 
 		memcpy(E_Shield_BlockRate, lpMechInfo->E_Shield_BlockRate, sizeof(E_Shield_BlockRate));
 		memcpy(E_Shield_UseTime, lpMechInfo->E_Shield_UseTime, sizeof(E_Shield_UseTime));
@@ -1888,7 +1905,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 		break;
 	case smTRANSCODE_FIGHTER_INFO:
 		lpFighterInfo = (FIGHTER_INFO*)pData->Buff;
-		if(lpFighterInfo->size != sizeof(FIGHTER_INFO)) break;
+		if(!SUMMIT_SKILL_INFO_SIZE_OK(lpFighterInfo, FIGHTER_INFO, smTRANSCODE_FIGHTER_INFO)) break;
 
 
 		memcpy(Melee_Mastery_DamagePercent, lpFighterInfo->Melee_Mastery_DamagePercent, sizeof(Melee_Mastery_DamagePercent));
@@ -1972,7 +1989,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	case smTRANSCODE_PIKE_INFO:
 		lpPikeInfo = (PIKE_INFO*)pData->Buff;
-		if(lpPikeInfo->size != sizeof(PIKE_INFO)) break;
+		if(!SUMMIT_SKILL_INFO_SIZE_OK(lpPikeInfo, PIKE_INFO, smTRANSCODE_PIKE_INFO)) break;
 
 		memcpy(Pike_Wind_Throw_Height, lpPikeInfo->Pike_Wind_Throw_Height, sizeof(Pike_Wind_Throw_Height));
 		memcpy(Pike_Wind_DamagePercent, lpPikeInfo->Pike_Wind_DamagePercent, sizeof(Pike_Wind_DamagePercent));
@@ -2058,6 +2075,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	case smTRANSCODE_ARCHER_INFO:
 		lpArcherInfo = (ARCHER_INFO*)pData->Buff;
+		if(!SUMMIT_SKILL_INFO_SIZE_OK(lpArcherInfo, ARCHER_INFO, smTRANSCODE_ARCHER_INFO)) break;
 
 		memcpy(Scout_Hawk_Attack_Rate, lpArcherInfo->Scout_Hawk_Attack_Rate, sizeof(Scout_Hawk_Attack_Rate));
 		memcpy(Scout_Hawk_UseTime, lpArcherInfo->Scout_Hawk_UseTime, sizeof(Scout_Hawk_UseTime));
@@ -2153,6 +2171,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	case smTRANSCODE_KINA_INFO:
 		lpKinaInfo = (KINA_INFO*)pData->Buff;
+		if(!SUMMIT_SKILL_INFO_SIZE_OK(lpKinaInfo, KINA_INFO, smTRANSCODE_KINA_INFO)) break;
 
 		memcpy(Sword_Blast_UseMana, lpKinaInfo->Sword_Blast_UseMana, sizeof(Sword_Blast_UseMana));
 		memcpy(Sword_Blast_DamagePercent, lpKinaInfo->Sword_Blast_DamagePercent, sizeof(Sword_Blast_DamagePercent));
@@ -2239,6 +2258,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	case smTRANSCODE_ATA_INFO:
 		lpAtaInfo = (ATA_INFO*)pData->Buff;
+		if(!SUMMIT_SKILL_INFO_SIZE_OK(lpAtaInfo, ATA_INFO, smTRANSCODE_ATA_INFO)) break;
 
 		memcpy(S_Strike_UseMana, lpAtaInfo->S_Strike_UseMana, sizeof(S_Strike_UseMana));
 		memcpy(S_Strike_DamagePercent, lpAtaInfo->S_Strike_DamagePercent, sizeof(S_Strike_DamagePercent));
@@ -2322,6 +2342,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	case smTRANSCODE_SACER_INFO:
 		lpSacerInfo = (SACER_INFO*)pData->Buff;
+		if(!SUMMIT_SKILL_INFO_SIZE_OK(lpSacerInfo, SACER_INFO, smTRANSCODE_SACER_INFO)) break;
 
 		memcpy(Healing_UseMana, lpSacerInfo->Healing_UseMana, sizeof(Healing_UseMana));
 		memcpy(Healing_Heal, lpSacerInfo->Healing_Heal, sizeof(Healing_Heal));
@@ -2412,6 +2433,7 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 
 	case smTRANSCODE_MAGE_INFO:
 		lpMageInfo = (MAGE_INFO*)pData->Buff;
+		if(!SUMMIT_SKILL_INFO_SIZE_OK(lpMageInfo, MAGE_INFO, smTRANSCODE_MAGE_INFO)) break;
 
 		memcpy(Agony_UseMana, lpMageInfo->Agony_UseMana, sizeof(Agony_UseMana));
 		memcpy(Agony_ConvLife, lpMageInfo->Agony_ConvLife, sizeof(Agony_ConvLife));
@@ -2667,6 +2689,19 @@ int rsTRANS_SERVER::RecvMessage(smTHREADSOCK *pData)
 	case OpCode::OPCODE_PLAYLIST:
 		break;
 
+
+	case gameplay::covenants::protocol::OPCODE_COVENANT_UI_STATE:
+	{
+		const gameplay::covenants::protocol::CovenantUIStatePacket *packet =
+			reinterpret_cast<const gameplay::covenants::protocol::CovenantUIStatePacket *>(pData->Buff);
+		if(packet &&
+			packet->size == sizeof(gameplay::covenants::protocol::CovenantUIStatePacket) &&
+			packet->version == gameplay::covenants::protocol::COVENANT_UI_PROTOCOL_VERSION)
+		{
+			ui::v2::ApplyLegacyCovenantStatePacket(*packet);
+		}
+	}
+	break;
 
 	case gameplay::companions::protocol::OPCODE_COMPANION_UI_STATE:
 	{
@@ -12698,11 +12733,33 @@ int SendUpdateSkillToServer(DWORD dwSkillCode, int lParam, int sParam, int ePara
 }
 
 
+static int SummitT5TraceEnabledClient()
+{
+	char value[8] = { 0 };
+	DWORD len = GetEnvironmentVariableA("SUMMIT_T5_TRACE", value, sizeof(value));
+	return (len > 0 && value[0] != '0') ? TRUE : FALSE;
+}
+
+static void SummitTraceT5ClientCast(DWORD skillCode, int point, int param1, int param2)
+{
+	DWORD playCode = skillCode & 0xFF;
+	if(playCode < SKILL_PLAY_T51 || playCode > SKILL_PLAY_T54 || !SummitT5TraceEnabledClient()) return;
+	FILE *fp = fopen("LOGS\\summit_t5_protocol.txt", "a");
+	if(!fp) fp = fopen("summit_t5_protocol.txt", "a");
+	if(!fp) return;
+	fprintf(fp, "client-cast job=%u skill=0x%02X point=%d param1=%d param2=%d object=%u\n",
+		(unsigned int)lpCurPlayer->smCharInfo.JOB_CODE, (unsigned int)playCode, point, param1, param2,
+		(unsigned int)lpCurPlayer->dwObjectSerial);
+	fclose(fp);
+}
+
 int SendProcessSKillToServer(DWORD dwSkillCode, int point, int Param1, int Param2)
 {
 
 	smWINSOCK	*lpsmSock;
 	smTRANS_COMMAND smTransCommand;
+
+	SummitTraceT5ClientCast(dwSkillCode, point, Param1, Param2);
 
 	smTransCommand.code = OpCode::OPCODE_PROCESS_SKILL2;
 	smTransCommand.size = sizeof(smTRANS_COMMAND);

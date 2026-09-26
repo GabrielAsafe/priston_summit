@@ -89,6 +89,13 @@ echo "CovenantService smoke: PASS"
 echo "Covenant reward processor smoke: PASS"
 
 "$CXX" "${COMMON[@]}" \
+    "$ROOT/Shared/gameplay/covenants/v2/tests/covenant_modifier_evaluation_smoke.cpp" \
+    -o "$BUILD_DIR/covenant_modifier_evaluation_smoke"
+"$BUILD_DIR/covenant_modifier_evaluation_smoke"
+
+echo "Covenant modifier evaluation smoke: PASS"
+
+"$CXX" "${COMMON[@]}" \
     "$ROOT/Shared/gameplay/reputation/v2/ReputationService.cpp" \
     "$ROOT/Shared/gameplay/reputation/v2/tests/reputation_service_smoke.cpp" \
     -o "$BUILD_DIR/reputation_service_smoke"

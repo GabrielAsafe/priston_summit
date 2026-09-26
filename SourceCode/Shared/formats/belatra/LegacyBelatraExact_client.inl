@@ -45,7 +45,7 @@ int	Open_SODConfig(char *szFileName, void *lphCoreMonster, int *SodTax, char *sz
 	}
 
 
-	fp = fopen(szFileName, "rb");
+	fp = summit::content::text_resource::OpenTextResourceFile(szFileName, "rb");
 	if(fp == NULL) return FALSE;
 
 

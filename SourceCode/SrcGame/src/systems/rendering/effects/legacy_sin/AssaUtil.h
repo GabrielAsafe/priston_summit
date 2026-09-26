@@ -11,6 +11,8 @@ void CloseAssaRes();
 void LoadAssaRes();
 
 void *AssaSearchRes(char *resName, int blendType);
+// Gradually makes catalogued effect textures resident before first use.
+void SummitPrewarmAssaEffectTexturesStep(int maxAttempts = 2, int requestPriority = 2);
 
 
 #include <list>

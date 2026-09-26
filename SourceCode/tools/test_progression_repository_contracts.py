@@ -15,6 +15,11 @@ MIGRATIONS = [
     ROOT / "Database" / "migrations" / "036_covenant_rewards.sql",
     ROOT / "Database" / "migrations" / "037_story_dialogue_choices.sql",
     ROOT / "Database" / "migrations" / "038_generic_reputation.sql",
+    ROOT / "Database" / "migrations" / "039_covenant_single_active.sql",
+    ROOT / "Database" / "migrations" / "040_covenant_default_content.sql",
+    ROOT / "Database" / "migrations" / "041_covenant_runtime_complete.sql",
+    ROOT / "Database" / "migrations" / "042_covenant_inventory.sql",
+    ROOT / "Database" / "migrations" / "043_covenant_artisan_mode.sql",
 ]
 
 
@@ -152,6 +157,63 @@ def main() -> None:
             "WHERE PlayerKey='Alice' AND CovenantId=1 AND EffectKey='join.gold'",
         ) != (1,):
             fail("Covenant reward acknowledgement was not persisted")
+
+        # Covenant V1 runtime state survives restart: switch cooldown, mastery,
+        # collection, challenges and Tier III power state.
+        now = 123456789
+        with db:
+            db.execute(
+                "INSERT INTO ServerDB__CovenantPlayerState(PlayerKey,SwitchCooldownUntil) VALUES(?,?)",
+                ("Alice", now + 300),
+            )
+            db.execute(
+                "INSERT INTO ServerDB__CovenantMastery(PlayerKey,CovenantId,MasteredAt) VALUES(?,?,?)",
+                ("Alice", 1, now),
+            )
+            db.execute(
+                "INSERT INTO ServerDB__CovenantCollection(PlayerKey,CovenantId,CollectibleKey,AcquiredAt) VALUES(?,?,?,?)",
+                ("Alice", 1, "sigil:hunters", now),
+            )
+            db.execute(
+                "INSERT INTO ServerDB__CovenantChallengeProgress"
+                "(PlayerKey,CovenantId,ChallengeKey,Progress,Completed,RewardClaimed) VALUES(?,?,?,?,?,?)",
+                ("Alice", 1, "hunter_trial_i", 5, 1, 1),
+            )
+            db.execute(
+                "INSERT INTO ServerDB__CovenantPowerState"
+                "(PlayerKey,CovenantId,PowerKey,ActiveUntil,CooldownUntil,TargetSerial) VALUES(?,?,?,?,?,?)",
+                ("Alice", 1, "hunters_mark", now + 120, now + 600, 777),
+            )
+            db.execute(
+                "INSERT INTO ServerDB__CovenantInventory"
+                "(PlayerKey,CovenantId,ItemKey,Quantity) VALUES(?,?,?,?)",
+                ("Alice", 1, "trophy:777", 2),
+            )
+        db.close()
+        db = sqlite3.connect(db_path)
+        if row(db, "SELECT SwitchCooldownUntil FROM ServerDB__CovenantPlayerState WHERE PlayerKey='Alice'") != (now + 300,):
+            fail("Covenant switch cooldown did not survive restart")
+        if row(db, "SELECT CovenantId FROM ServerDB__CovenantMastery WHERE PlayerKey='Alice'") != (1,):
+            fail("Covenant mastery did not survive restart")
+        if row(db, "SELECT CollectibleKey FROM ServerDB__CovenantCollection WHERE PlayerKey='Alice'") != ("sigil:hunters",):
+            fail("Covenant collection did not survive restart")
+        if row(db, "SELECT Progress,Completed,RewardClaimed FROM ServerDB__CovenantChallengeProgress WHERE PlayerKey='Alice' AND ChallengeKey='hunter_trial_i'") != (5, 1, 1):
+            fail("Covenant challenge state did not survive restart")
+        if row(db, "SELECT ActiveUntil,CooldownUntil,TargetSerial FROM ServerDB__CovenantPowerState WHERE PlayerKey='Alice' AND PowerKey='hunters_mark'") != (now + 120, now + 600, 777):
+            fail("Covenant power state did not survive restart")
+        if row(db, "SELECT Quantity FROM ServerDB__CovenantInventory WHERE PlayerKey='Alice' AND CovenantId=1 AND ItemKey='trophy:777'") != (2,):
+            fail("Covenant inventory stack did not survive restart")
+
+        # Switching away cancels an active Tier III effect but must preserve the
+        # original cooldown, preventing switch-away/switch-back cooldown resets.
+        with db:
+            db.execute(
+                "UPDATE ServerDB__CovenantPowerState SET ActiveUntil=0,TargetSerial=0 "
+                "WHERE PlayerKey=? AND CovenantId=? AND ActiveUntil>0",
+                ("Alice", 1),
+            )
+        if row(db, "SELECT ActiveUntil,CooldownUntil,TargetSerial FROM ServerDB__CovenantPowerState WHERE PlayerKey='Alice' AND PowerKey='hunters_mark'") != (0, now + 600, 0):
+            fail("Covenant power deactivation did not preserve cooldown")
 
         # Story initial state is durable and node/progress agree.
         with db:

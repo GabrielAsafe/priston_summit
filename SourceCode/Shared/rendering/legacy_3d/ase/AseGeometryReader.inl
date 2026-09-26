@@ -1,6 +1,6 @@
 #pragma once
 
-smPAT3D *smPhysique = 0;
+thread_local smPAT3D *smPhysique = 0;
 
 #define SCENE_TICKSPERFRAME		160
 static const int ASE_TM_SAMPLE_MAX = 4096;

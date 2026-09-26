@@ -871,6 +871,8 @@ BOOL HoPrimitiveBillboard::AddFace2D(smFACE2D *face)
 		float dx = float(destPos.x - currentPos.x);
 		float dy = float(destPos.y - currentPos.y);
 		float oolen = (float)sqrt(dx*dx + dy*dy);
+		if(oolen <= 0.0001f)
+			return FALSE;
 
 		dx = dx / oolen*SizeHeight;
 		dy = dy / oolen*SizeHeight;
@@ -951,6 +953,10 @@ BOOL HoPrimitiveBillboard::AddFace2D(smFACE2D *face)
 		v[3] = smRender.AddRendVertex((int)fx[3], (int)fy[3], camera.z, sColor);
 	}
 
+
+	if(!v[0] || !v[1] || !v[2] || !v[3] ||
+		!smRender.CanReserveRenderSpace(0, 2, 2))
+		return FALSE;
 
 	rf = &smRender.RendFace[smRender.nRendFace++];
 	rf->lpRendVertex[0] = v[0];
@@ -3426,20 +3432,26 @@ struct EFFECT_ZDEPTH
 EFFECT_ZDEPTH EffectObjDepth[MAX_EFFECTOBJECT_BUFFER];
 void BubbleSort(EFFECT_ZDEPTH *list, int num)
 {
-	EFFECT_ZDEPTH temp;
-	int i, j;
+	if(!list || num <= 1)
+		return;
+	if(num > MAX_EFFECTOBJECT_BUFFER)
+		num = MAX_EFFECTOBJECT_BUFFER;
 
-	for(i = num; i > 0; i--)
+	for(int end = num - 1; end > 0; --end)
 	{
-		for(j = 0; j < i; j++)
+		bool swapped = false;
+		for(int j = 0; j < end; ++j)
 		{
 			if(list[j].ZDepth < list[j + 1].ZDepth)
 			{
-				temp = list[j + 1];
+				const EFFECT_ZDEPTH temp = list[j + 1];
 				list[j + 1] = list[j];
 				list[j] = temp;
+				swapped = true;
 			}
 		}
+		if(!swapped)
+			break;
 	}
 }
 
@@ -3461,9 +3473,11 @@ int HoEffectMgr::Draw(int x, int y, int z, int ax, int ay, int az)
 			if(EffectZSortBuffer[index]->GetState())
 			{
 
-				EffectObjDepth[index].ObjIndex = index;
+				if(objCount >= MAX_EFFECTOBJECT_BUFFER)
+					break;
+				EffectObjDepth[objCount].ObjIndex = index;
 				POINT3D pos = EffectZSortBuffer[index]->GetPos();
-				EffectObjDepth[index].ZDepth = smRender.GetDepthZ(pos.x, pos.y, pos.z);
+				EffectObjDepth[objCount].ZDepth = smRender.GetDepthZ(pos.x, pos.y, pos.z);
 				objCount++;
 			}
 		}

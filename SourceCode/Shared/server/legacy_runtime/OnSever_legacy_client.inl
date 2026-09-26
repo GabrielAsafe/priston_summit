@@ -1,3 +1,6 @@
+#include "content/v1/definition/content/DefinitionRuntime.h"
+#include "content/v1/text_resource/content/TextResourceRuntime.h"
+#include "content/v1/text_resource/legacy/LegacyContentIdRegistry.h"
 #include "compat/client_server/server_legacy/protocol/opcodes.h"
 #define _WIN32_WINNT    0x0403  
 #define _WIN32_WINDOWS  0x0403
@@ -1382,38 +1385,61 @@ int InitMonster()
 	//ZeroMemory(chrMonsterList, sizeof(smCHAR_INFO)*CHR_MONSTER_MAX);
 	//ZeroMemory(chrMonInfoList, sizeof(smCHAR_MONSTER_INFO)*CHR_MONSTER_MAX);
 
-	strcpy_s(szFindPath, MonsterPath);
-	lstrcat(szFindPath, "*.inf");
-
-	hFindHandle = FindFirstFile(szFindPath, &fd);
-	if(hFindHandle != INVALID_HANDLE_VALUE)
+	bool summitCompiledMonsters = false;
+	if(summit::content::definition::CompiledDefinitionsEnabled())
 	{
-		while(1)
+		std::vector<summit::content::definition::DefinitionEntry> entries;
+		if(summit::content::definition::ListCompiledDefinitions(MonsterPath, ".inf", true, entries, summit::content::definition::DefinitionKindMonster))
 		{
-			strcpy_s(szFilePath, MonsterPath);
-			lstrcat(szFilePath, fd.cFileName);
-
-			smCharDecode(szFilePath, &chrMonsterList[chrMonsterCnt], &chrMonInfoList[chrMonsterCnt], 0);
-
-
-			chrMonInfoList[chrMonsterCnt].dwAutoCharCode = GetSpeedSum(chrMonsterList[chrMonsterCnt].szName);
-
-
-			if(rsServerConfig.TestSeverMode)
+			summitCompiledMonsters = true;
+			summit::content::text_resource::ClearLegacyContentIdBindings();
+			for(std::size_t index = 0; index < entries.size() && chrMonsterCnt < CHR_MONSTER_MAX; ++index)
 			{
-				chrMonsterList[chrMonsterCnt].Exp *= 4;
-				chrMonInfoList[chrMonsterCnt].GetExp *= 4;
+				strcpy_s(szFilePath, entries[index].logicalPath.c_str());
+				if(!smCharDecode(szFilePath, &chrMonsterList[chrMonsterCnt], &chrMonInfoList[chrMonsterCnt], 0))
+				{
+					if(summit::content::definition::DefinitionStrictMode()) return FALSE;
+					continue;
+				}
+				summit::content::text_resource::RegisterLegacyContentPointer(entries[index].contentId, &chrMonsterList[chrMonsterCnt]);
+				chrMonInfoList[chrMonsterCnt].dwAutoCharCode = GetSpeedSum(chrMonsterList[chrMonsterCnt].szName);
+				if(rsServerConfig.TestSeverMode)
+				{
+					chrMonsterList[chrMonsterCnt].Exp *= 4;
+					chrMonInfoList[chrMonsterCnt].GetExp *= 4;
+				}
+				ReformCharForm(&chrMonsterList[chrMonsterCnt]);
+				chrMonsterCnt++;
 			}
-
-			ReformCharForm(&chrMonsterList[chrMonsterCnt]);
-
-			chrMonsterCnt++;
-
-			if(FindNextFile(hFindHandle, &fd) == FALSE) break;
-			if(chrMonsterCnt >= CHR_MONSTER_MAX) break;
+		}
+		else if(summit::content::definition::DefinitionStrictMode()) return FALSE;
+	}
+	if(!summitCompiledMonsters)
+	{
+		strcpy_s(szFindPath, MonsterPath);
+		lstrcat(szFindPath, "*.inf");
+		hFindHandle = FindFirstFile(szFindPath, &fd);
+		if(hFindHandle != INVALID_HANDLE_VALUE)
+		{
+			while(1)
+			{
+				strcpy_s(szFilePath, MonsterPath);
+				lstrcat(szFilePath, fd.cFileName);
+				smCharDecode(szFilePath, &chrMonsterList[chrMonsterCnt], &chrMonInfoList[chrMonsterCnt], 0);
+				chrMonInfoList[chrMonsterCnt].dwAutoCharCode = GetSpeedSum(chrMonsterList[chrMonsterCnt].szName);
+				if(rsServerConfig.TestSeverMode)
+				{
+					chrMonsterList[chrMonsterCnt].Exp *= 4;
+					chrMonInfoList[chrMonsterCnt].GetExp *= 4;
+				}
+				ReformCharForm(&chrMonsterList[chrMonsterCnt]);
+				chrMonsterCnt++;
+				if(FindNextFile(hFindHandle, &fd) == FALSE) break;
+				if(chrMonsterCnt >= CHR_MONSTER_MAX) break;
+			}
+			FindClose(hFindHandle);
 		}
 	}
-	FindClose(hFindHandle);
 
 
 
@@ -1645,36 +1671,57 @@ int InitItems()
 
 	DefaultItemCount = 0;
 
-	strcpy_s(szFindPath, ItemPath);
-	lstrcat(szFindPath, "*.txt");
-
-	hFindHandle = FindFirstFile(szFindPath, &fd);
-	if(hFindHandle != INVALID_HANDLE_VALUE)
+	bool summitCompiledItems = false;
+	if(summit::content::definition::CompiledDefinitionsEnabled())
 	{
-		while(1)
+		std::vector<summit::content::definition::DefinitionEntry> entries;
+		if(summit::content::definition::ListCompiledDefinitions(ItemPath, ".txt", true, entries, summit::content::definition::DefinitionKindOpenItem))
 		{
-			strcpy_s(szFilePath, ItemPath);
-			lstrcat(szFilePath, fd.cFileName);
-
-			DecodeItemInfo(szFilePath, &DefaultItems[DefaultItemCount]);
-
-			memcpy(&DefItem, &DefaultItems[DefaultItemCount], sizeof(sDEF_ITEMINFO));
-			SetLowerItem(&DefItem);
-
-
-			DefItem.Item.BackUpKey = 0;
-			DefItem.Item.BackUpChkSum = 0;
-			DefItem.Item.dwCreateTime = 0;
-
-			DefaultItems[DefaultItemCount].DefCompressDataLen = EecodeCompress((BYTE *)&DefItem.Item, (BYTE *)DefaultItems[DefaultItemCount].DefCompressData, sizeof(sITEMINFO), sizeof(DefaultItems[DefaultItemCount].DefCompressData));
-
-			DefaultItemCount++;
-
-			if(FindNextFile(hFindHandle, &fd) == FALSE) break;
-			if(DefaultItemCount >= DEF_ITEM_MAX) break;
+			summitCompiledItems = true;
+			for(std::size_t index = 0; index < entries.size() && DefaultItemCount < DEF_ITEM_MAX; ++index)
+			{
+				strcpy_s(szFilePath, entries[index].logicalPath.c_str());
+				if(!DecodeItemInfo(szFilePath, &DefaultItems[DefaultItemCount]))
+				{
+					if(summit::content::definition::DefinitionStrictMode()) return FALSE;
+					continue;
+				}
+				memcpy(&DefItem, &DefaultItems[DefaultItemCount], sizeof(sDEF_ITEMINFO));
+				SetLowerItem(&DefItem);
+				DefItem.Item.BackUpKey = 0;
+				DefItem.Item.BackUpChkSum = 0;
+				DefItem.Item.dwCreateTime = 0;
+				DefaultItems[DefaultItemCount].DefCompressDataLen = EecodeCompress((BYTE *)&DefItem.Item, (BYTE *)DefaultItems[DefaultItemCount].DefCompressData, sizeof(sITEMINFO), sizeof(DefaultItems[DefaultItemCount].DefCompressData));
+				DefaultItemCount++;
+			}
+		}
+		else if(summit::content::definition::DefinitionStrictMode()) return FALSE;
+	}
+	if(!summitCompiledItems)
+	{
+		strcpy_s(szFindPath, ItemPath);
+		lstrcat(szFindPath, "*.txt");
+		hFindHandle = FindFirstFile(szFindPath, &fd);
+		if(hFindHandle != INVALID_HANDLE_VALUE)
+		{
+			while(1)
+			{
+				strcpy_s(szFilePath, ItemPath);
+				lstrcat(szFilePath, fd.cFileName);
+				DecodeItemInfo(szFilePath, &DefaultItems[DefaultItemCount]);
+				memcpy(&DefItem, &DefaultItems[DefaultItemCount], sizeof(sDEF_ITEMINFO));
+				SetLowerItem(&DefItem);
+				DefItem.Item.BackUpKey = 0;
+				DefItem.Item.BackUpChkSum = 0;
+				DefItem.Item.dwCreateTime = 0;
+				DefaultItems[DefaultItemCount].DefCompressDataLen = EecodeCompress((BYTE *)&DefItem.Item, (BYTE *)DefaultItems[DefaultItemCount].DefCompressData, sizeof(sITEMINFO), sizeof(DefaultItems[DefaultItemCount].DefCompressData));
+				DefaultItemCount++;
+				if(FindNextFile(hFindHandle, &fd) == FALSE) break;
+				if(DefaultItemCount >= DEF_ITEM_MAX) break;
+			}
+			FindClose(hFindHandle);
 		}
 	}
-	FindClose(hFindHandle);
 
 
 	return TRUE;

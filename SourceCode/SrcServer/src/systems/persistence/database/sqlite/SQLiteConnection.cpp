@@ -285,7 +285,14 @@ struct SQLiteConnection::Impl
 			{ 35, "035_progression_content.sql" },
 			{ 36, "036_covenant_rewards.sql" },
 			{ 37, "037_story_dialogue_choices.sql" },
-			{ 38, "038_generic_reputation.sql" }
+			{ 38, "038_generic_reputation.sql" },
+			{ 39, "039_covenant_single_active.sql" },
+			{ 40, "040_covenant_default_content.sql" },
+			{ 41, "041_covenant_runtime_complete.sql" },
+			{ 42, "042_covenant_inventory.sql" },
+			{ 43, "043_covenant_artisan_mode.sql" },
+			{ 44, "044_gathering_mining_runtime.sql" },
+			{ 45, "045_gathering_serverdb_namespace_fix.sql" }
 		};
 
 		int currentVersion = 0;

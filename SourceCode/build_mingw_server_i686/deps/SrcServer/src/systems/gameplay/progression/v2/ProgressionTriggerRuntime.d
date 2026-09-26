@@ -26,6 +26,8 @@
  SrcServer/src/systems/gameplay/progression/v2/ProgressionRuntime.h \
  Shared/gameplay/covenants/v2/CovenantService.h \
  Shared/gameplay/covenants/v2/ICovenantRepository.h \
+ Shared/gameplay/covenants/v2/CovenantModifierEvaluation.h \
+ Shared/gameplay/covenants/v2/CovenantRuntimeTypes.h \
  Shared/gameplay/reputation/v2/ReputationService.h \
  Shared/gameplay/reputation/v2/IReputationRepository.h \
  Shared/gameplay/reputation/v2/ReputationTypes.h \
@@ -62,6 +64,8 @@ Shared/gameplay/events/v2/GameplayEventHub.h:
 SrcServer/src/systems/gameplay/progression/v2/ProgressionRuntime.h:
 Shared/gameplay/covenants/v2/CovenantService.h:
 Shared/gameplay/covenants/v2/ICovenantRepository.h:
+Shared/gameplay/covenants/v2/CovenantModifierEvaluation.h:
+Shared/gameplay/covenants/v2/CovenantRuntimeTypes.h:
 Shared/gameplay/reputation/v2/ReputationService.h:
 Shared/gameplay/reputation/v2/IReputationRepository.h:
 Shared/gameplay/reputation/v2/ReputationTypes.h:

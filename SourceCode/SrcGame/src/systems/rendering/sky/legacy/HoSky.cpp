@@ -246,8 +246,16 @@ void HoSky::ParticleEffectSpawn()
 
 	float length = (float)sqrt(termX*termX + termZ*termZ);
 
-	termX = termX / length;
-	termZ = termZ / length;
+	if(length > 0.0001f)
+	{
+		termX = termX / length;
+		termZ = termZ / length;
+	}
+	else
+	{
+		termX = 0.0f;
+		termZ = 0.0f;
+	}
 
 	POINT3D curPos;
 	POINT3D desPos;
@@ -271,6 +279,12 @@ void HoSky::ParticleEffectSpawn()
 
 int HoSky::Main()
 {
+	const int skyCount = static_cast<int>(SkyDrawInfoList.size());
+	if(DrawIndex < -1 || DrawIndex >= skyCount)
+		DrawIndex = -1;
+	if(DrawOldIndex < -1 || DrawOldIndex >= skyCount)
+		DrawOldIndex = -1;
+
 	if(((DrawIndex == 21) && (CodeID == FIELD_BACKIMAGE_IRONBOSS)) ||
 		(CodeID == 0x80))
 	{
@@ -468,9 +482,12 @@ int HoSky::Main()
 			smRender.m_fFogEndNum = (float)FogEndPos1*4.f;
 			d3ddev->SetRenderState(D3DRS_FOGEND, *((DWORD*)(&smRender.m_fFogEndNum)));
 
-			if(!SkyDrawInfoList[DrawIndex].FogFlag)
+			if(DrawIndex >= 0 && DrawIndex < static_cast<int>(SkyDrawInfoList.size()) &&
+				!SkyDrawInfoList[DrawIndex].FogFlag)
+			{
 				if(smRender.m_FogMode)
 					smRender.m_FogMode = 0;
+			}
 		}
 	}
 
@@ -508,7 +525,7 @@ void HoSky::Create()
 	}
 	else
 	{
-		fp = fopen("Effect//Sky//test16.txt ", "rt");
+		fp = fopen("Effect//Sky//test16.txt", "rt");
 	}
 
 	if(fp == NULL)
@@ -519,70 +536,77 @@ void HoSky::Create()
 	char	bufferLine[256];
 	char	bufferResName[256];
 	char	token[256];
-	while(!feof(fp))
+	char	secondToken[256];
+	while(fgets(bufferLine, sizeof(bufferLine), fp))
 	{
-		fgets(bufferLine, 256, fp);
-		sscanf(bufferLine, "%s", token);
+		token[0] = 0;
+		secondToken[0] = 0;
+		if(sscanf(bufferLine, "%255s", token) != 1)
+			continue;
 		if(_stricmp(token, "TestMode:") == 0)
-			sscanf(bufferLine, "%s%d", token, &TestModeFlag);
+			sscanf(bufferLine, "%255s%d", token, &TestModeFlag);
 		if(_stricmp(token, "StartSky:") == 0)
-			sscanf(bufferLine, "%s%d", token, &DrawIndex);
-		sscanf(bufferLine, "%s%s", token, token);
+			sscanf(bufferLine, "%255s%d", token, &DrawIndex);
+
+		// Legacy files commonly write an index/name before the opening brace.
+		// Preserve that format without aliasing the same sscanf destination.
+		if(sscanf(bufferLine, "%255s%255s", token, secondToken) == 2)
+			strcpy_s(token, sizeof(token), secondToken);
 
 		if(_stricmp(token, "{") == 0)
 		{
 			tempSkyDrawInfo.FogFlag = false;
-			while(_stricmp(token, "}") != 0)
+			bool blockClosed = false;
+			while(!blockClosed)
 			{
 				if(_stricmp(token, "LightColor:") == 0)
-					sscanf(bufferLine, "%s%d%d%d", token, &tempSkyDrawInfo.LightColorR, &tempSkyDrawInfo.LightColorG, &tempSkyDrawInfo.LightColorB);
+					sscanf(bufferLine, "%255s%d%d%d", token, &tempSkyDrawInfo.LightColorR, &tempSkyDrawInfo.LightColorG, &tempSkyDrawInfo.LightColorB);
 				if(_stricmp(token, "LightDark:") == 0)
-					sscanf(bufferLine, "%s%d", token, &tempSkyDrawInfo.LightDark);
+					sscanf(bufferLine, "%255s%d", token, &tempSkyDrawInfo.LightDark);
 				if(_stricmp(token, "FileName:") == 0)
 				{
-					sscanf(bufferLine, "%s%s%s%d%s%d%d%d%d",
-						   token, bufferResName, token, &tempSkyResInfo.fadeSlowFlag, token,
-						   &tempSkyResInfo.colorR,
-						   &tempSkyResInfo.colorG,
-						   &tempSkyResInfo.colorB,
-						   &tempSkyResInfo.colorA);
-
-					tempSkyResInfo.resName = bufferResName;
-					tempSkyDrawInfo.SkyResInfoList.push_back(tempSkyResInfo);
-					tempSkyResInfo.fadeSlowFlag = 0;
+					if(sscanf(bufferLine, "%255s%255s%255s%d%255s%d%d%d%d",
+						token, bufferResName, secondToken, &tempSkyResInfo.fadeSlowFlag, token,
+						&tempSkyResInfo.colorR,
+						&tempSkyResInfo.colorG,
+						&tempSkyResInfo.colorB,
+						&tempSkyResInfo.colorA) >= 2)
+					{
+						tempSkyResInfo.resName = bufferResName;
+						tempSkyDrawInfo.SkyResInfoList.push_back(tempSkyResInfo);
+						tempSkyResInfo.fadeSlowFlag = 0;
+					}
 				}
-
 
 				if(_stricmp(token, "Fog:") == 0)
 				{
 					tempSkyDrawInfo.FogFlag = true;
-					sscanf(bufferLine, "%s%s%d%s%d%s%d%d%d%d", token, token
-						   , &tempSkyDrawInfo.FogStartPos, token, &tempSkyDrawInfo.FogEndPos, token, &tempSkyDrawInfo.FogColorR,
-						   &tempSkyDrawInfo.FogColorG, &tempSkyDrawInfo.FogColorB, &tempSkyDrawInfo.FogColorA);
-
+					sscanf(bufferLine, "%255s%255s%d%255s%d%255s%d%d%d%d", token, secondToken,
+						&tempSkyDrawInfo.FogStartPos, token, &tempSkyDrawInfo.FogEndPos, secondToken, &tempSkyDrawInfo.FogColorR,
+						&tempSkyDrawInfo.FogColorG, &tempSkyDrawInfo.FogColorB, &tempSkyDrawInfo.FogColorA);
 				}
-
 
 				if(_stricmp(token, "Clipping:") == 0)
+					sscanf(bufferLine, "%255s%d", token, &tempSkyDrawInfo.ClippingFlag);
+
+				if(!fgets(bufferLine, sizeof(bufferLine), fp))
+					break;
+				if(sscanf(bufferLine, "%255s", token) != 1)
 				{
-					sscanf(bufferLine, "%s%d", token, &tempSkyDrawInfo.ClippingFlag);
+					token[0] = 0;
+					continue;
 				}
 
-
-				fgets(bufferLine, 256, fp);
-				sscanf(bufferLine, "%s", token);
-
-				if(strlen(token) >= 10)
+				if(token[0] == '/' && token[1] == '/')
 				{
-					if(token[0] == '/' && token[1] == '/')
-					{
-						fgets(bufferLine, 256, fp);
-						sscanf(bufferLine, "%s", token);
-					}
+					if(!fgets(bufferLine, sizeof(bufferLine), fp))
+						break;
+					if(sscanf(bufferLine, "%255s", token) != 1)
+						token[0] = 0;
 				}
+
+				blockClosed = (_stricmp(token, "}") == 0);
 			}
-
-
 
 			SkyDrawInfoList.push_back(tempSkyDrawInfo);
 			tempSkyDrawInfo.FogFlag = false;
@@ -590,16 +614,16 @@ void HoSky::Create()
 			tempSkyDrawInfo.ChangeSkyNum = 0;
 			tempSkyDrawInfo.ChangeSkyTime = 0;
 			tempSkyDrawInfo.ChangeNextSkyEnd = false;
-			tempSkyDrawInfo.SkyResInfoList.erase(tempSkyDrawInfo.SkyResInfoList.begin(), tempSkyDrawInfo.SkyResInfoList.end());
-
-
+			tempSkyDrawInfo.SkyResInfoList.clear();
 		}
 	}
-
 	if(fp)
 		fclose(fp);
 
 	LoadRes();
+
+	if(DrawIndex < -1 || DrawIndex >= static_cast<int>(SkyDrawInfoList.size()))
+		DrawIndex = -1;
 
 	if(DrawIndex != -1 && TestModeFlag)
 	{
@@ -691,8 +715,9 @@ void HoSky::Init()
 void HoSky::Destroy()
 {
 	DestroyRes();
-	SkyDrawInfoList.erase(SkyDrawInfoList.begin(), SkyDrawInfoList.end());
+	SkyDrawInfoList.clear();
 	DrawIndex = -1;
+	DrawOldIndex = -1;
 }
 
 
@@ -700,8 +725,16 @@ unsigned int HoSky::SetDrawIndex(unsigned drawIndex, int codeID)
 {
 
 	CodeID = codeID;
-	if(drawIndex >= SkyDrawInfoList.size() && drawIndex < -1)
-		return -1;
+	const unsigned int disabledIndex = static_cast<unsigned int>(-1);
+	if(drawIndex != disabledIndex && drawIndex >= SkyDrawInfoList.size())
+		return disabledIndex;
+	if(drawIndex == disabledIndex)
+	{
+		DrawOldIndex = DrawIndex;
+		DrawIndex = -1;
+		DrawAlphaCount = 0;
+		return disabledIndex;
+	}
 
 
 	if(DrawIndex == -1)
@@ -770,6 +803,13 @@ unsigned int HoSky::SetDrawIndex(unsigned drawIndex, int codeID)
 
 unsigned int HoSky::SetNextDrawIndex()
 {
+	if(SkyDrawInfoList.empty())
+	{
+		DrawOldIndex = -1;
+		DrawIndex = -1;
+		return static_cast<unsigned int>(-1);
+	}
+
 	DrawOldIndex = DrawIndex;
 	DrawIndex++;
 	if(DrawIndex >= (int)SkyDrawInfoList.size())
@@ -868,7 +908,7 @@ int DrawSky(int x, int y, int z, int ax, int ay, int az)
 	else
 		OnStageField = lpCurPlayer->OnStageField;
 
-	if(StageField[OnStageField] != NULL)
+	if(OnStageField >= 0 && OnStageField < 2 && StageField[OnStageField] != NULL)
 	{
 		if(StageField[OnStageField]->State != FIELD_STATE_DUNGEON && StageField[OnStageField]->State != FIELD_STATE_ROOM)
 			SkyBackGround.Draw(x, y, z, ax, ay, az);
@@ -899,7 +939,7 @@ int MainSky()
 		OnStageField = lpCurPlayer->OnStageField;
 
 
-	if(StageField[OnStageField] &&
+	if(OnStageField >= 0 && OnStageField < 2 && StageField[OnStageField] &&
 		(StageField[OnStageField]->State == FIELD_STATE_DUNGEON ||
 		 StageField[OnStageField]->State == FIELD_STATE_ROOM))
 	{
@@ -1106,7 +1146,7 @@ int ChangeSky(int codeID)
 				else
 					OnStageField = lpCurPlayer->OnStageField;
 
-				if(StageField[OnStageField] != NULL)
+				if(OnStageField >= 0 && OnStageField < 2 && StageField[OnStageField] != NULL)
 				{
 
 					if(StageField[OnStageField]->State != FIELD_STATE_DUNGEON && StageField[OnStageField]->State != FIELD_STATE_ROOM)

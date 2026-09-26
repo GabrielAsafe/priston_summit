@@ -22,6 +22,7 @@ COMMON=(-std=gnu++14 -Wall -Wextra -Werror -pedantic -I"$FAKE_WIN" -I"$ROOT/Shar
 
 for source in \
     "$ROOT/SrcServer/src/systems/gameplay/covenants/v2/SQLiteCovenantRepository.cpp" \
+    "$ROOT/SrcServer/src/systems/gameplay/covenants/v2/SQLiteCovenantRuntimeRepository.cpp" \
     "$ROOT/SrcServer/src/systems/gameplay/reputation/v2/SQLiteReputationRepository.cpp" \
     "$ROOT/SrcServer/src/systems/gameplay/story/v2/SQLiteStoryRepository.cpp" \
     "$ROOT/SrcServer/src/systems/gameplay/progression/v2/SQLiteProgressionContentLoader.cpp"

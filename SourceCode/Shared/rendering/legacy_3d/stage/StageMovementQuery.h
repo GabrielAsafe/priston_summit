@@ -47,7 +47,7 @@ inline SurfaceScanResult ScanSurfaces(const smSTAGE3D &stage, smSTAGE_FACE *cons
 				stage, *face, x, z);
 			if(candidate == CLIP_OUT)
 				continue;
-			if(candidate - y < maximumRise && candidate > result.groundHeight)
+			if(static_cast<long long>(candidate) - y < maximumRise && candidate > result.groundHeight)
 				result.groundHeight = candidate;
 			result.lastWalkableFace = face;
 			continue;
@@ -68,9 +68,11 @@ inline bool WaterTransitionBlocksMove(int groundHeight, int waterHeight, int obj
 {
 	if(groundHeight == CLIP_OUT || waterHeight == CLIP_OUT)
 		return false;
-	const int fixedOne = (1 << FLOATNS);
-	const int threshold = groundHeight + (objectHeight >> 1) + 10 * fixedOne;
-	return waterHeight > threshold && waterHeight < threshold + 5 * fixedOne;
+	const long long fixedOne = (1LL << FLOATNS);
+	const long long threshold = static_cast<long long>(groundHeight) +
+		(objectHeight >> 1) + 10 * fixedOne;
+	return static_cast<long long>(waterHeight) > threshold &&
+		static_cast<long long>(waterHeight) < threshold + 5 * fixedOne;
 }
 
 template <typename Intersector>

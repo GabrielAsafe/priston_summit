@@ -48,7 +48,10 @@ bool CovenantRewardProcessor::ApplyReward(const std::string& playerKey,
 bool CovenantRewardProcessor::ProcessMembership(const std::string& playerKey,
                                                   const CovenantMembershipState& membership)
 {
-    if (playerKey.empty() || !membership.active || membership.covenantId <= 0)
+    // Join/rank rewards belong to durable membership progress, not to the
+    // currently active specialization. An inactive Covenant can still have
+    // already-earned milestones that need idempotent delivery.
+    if (playerKey.empty() || membership.covenantId <= 0)
         return false;
 
     std::vector<CovenantRewardDefinition> definitions;
@@ -73,8 +76,6 @@ bool CovenantRewardProcessor::ProcessPlayer(const std::string& playerKey)
     for (std::vector<CovenantMembershipState>::const_iterator it = memberships.begin();
          it != memberships.end(); ++it)
     {
-        if (!it->active)
-            continue;
         if (!ProcessMembership(playerKey, *it))
             return false;
     }

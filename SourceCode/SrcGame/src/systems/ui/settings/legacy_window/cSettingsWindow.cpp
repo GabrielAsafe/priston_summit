@@ -97,13 +97,23 @@ void cSettingsWindow::OnKeyDown(char Code)
 
 void cSettingsWindow::Open()
 {
+	// Hotkeys/HUD can request Settings during mode transitions where the legacy
+	// window has not been initialized yet (or has just been rebuilt). Never
+	// dereference the backing window blindly; rebuild it on demand and bail out
+	// safely if allocation failed.
+	if (!pWindow1)
+		Init();
+	if (!pWindow1)
+		return;
+
 	LoadSettings();
 	pWindow1->show();
 }
 
 void cSettingsWindow::Close()
 {
-	pWindow1->hide();
+	if (pWindow1)
+		pWindow1->hide();
 }
 void cSettingsWindow::BuildWindow1()
 {

@@ -271,6 +271,17 @@ int ConvMoveSpeed(float fSpeed)
 int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	*lpMonInfo, char *lpDialogMessage, size_t DialogMessageSize)
 {
 
+	if(summit::content::definition::CompiledDefinitionsEnabled())
+	{
+		summit::formats::character_config::CharacterConfigServices services =
+			summit::formats::character_config::MakeLegacyCharacterConfigServices(rsServerConfig.TestSeverMode != 0, true);
+		if(summit::content::definition::ApplyCompiledCharacterDefinition(
+			szCharFile, *lpCharInfo, lpMonInfo, lpDialogMessage, DialogMessageSize, services))
+			return TRUE;
+		if(summit::content::definition::DefinitionStrictMode())
+			return FALSE;
+	}
+
 	FILE	*fp;
 
 	char strBuff[256];
@@ -288,7 +299,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 
 	strcpy_s(szFile, szCharFile);
 
-	fp = fopen(szFile, "rb");
+	fp = summit::content::text_resource::OpenTextResourceFile(szFile, "rb");
 	if(fp == NULL) return FALSE;
 
 
@@ -1335,7 +1346,7 @@ int smCharDecode(char *szCharFile, smCHAR_INFO *lpCharInfo, smCHAR_MONSTER_INFO	
 			NextFlag = TRUE;
 			fclose(fp);
 
-			fp = fopen(szNextFile, "rb");
+			fp = summit::content::text_resource::OpenTextResourceFile(szNextFile, "rb");
 			if(fp == NULL) break;
 		}
 

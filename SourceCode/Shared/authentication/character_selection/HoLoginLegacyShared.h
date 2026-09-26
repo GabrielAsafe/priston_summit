@@ -115,6 +115,8 @@ public:
 private:
 
 	smSTAGE3D	*Stage;
+	BOOL			ResourcesLoaded;
+	bool			OpeningStageTexturesReady;
 	POINT3D		CaAngle;
 	POINT3D		TarPosi;
 	int			TarDist;
@@ -210,6 +212,10 @@ private:
 	int						LoginVolume;
 public:
 	int		Load();
+	void	BeginPreload();
+	void	PumpOpeningPreload();
+	void	BeginUserCharacterPreload();
+	bool	IsOpeningPreloadReady() const;
 	int		Init();
 	int		Close();
 	int		Main();
@@ -247,6 +253,8 @@ public:
 	HoLogin();
 	~HoLogin();
 private:
+	void	PumpPreloadStage();
+	void	FinalizeStageReady();
 	int		DrawSelectSubState();
 	int		CameraUpDown();
 	int		AddUserCharacter(char *chrFile1, char *chrFile2, int jobCode = 0);

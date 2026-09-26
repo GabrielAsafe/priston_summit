@@ -9,6 +9,8 @@
  Shared/gameplay/rewards/v2/Reward.h \
  Shared/gameplay/covenants/v2/ICovenantRepository.h \
  Shared/gameplay/events/v2/GameplayEventHub.h \
+ Shared/gameplay/covenants/v2/CovenantModifierEvaluation.h \
+ Shared/gameplay/covenants/v2/CovenantRuntimeTypes.h \
  Shared/gameplay/reputation/v2/ReputationService.h \
  Shared/gameplay/reputation/v2/IReputationRepository.h \
  Shared/gameplay/reputation/v2/ReputationTypes.h \
@@ -28,6 +30,8 @@
  Shared/gameplay/progression/v2/ProgressionTriggerCoordinator.h \
  SrcServer/src/systems/gameplay/progression/v2/SQLiteProgressionContentLoader.h \
  SrcServer/src/systems/gameplay/covenants/v2/SQLiteCovenantRepository.h \
+ SrcServer/src/systems/gameplay/covenants/v2/SQLiteCovenantRuntimeRepository.h \
+ Shared/gameplay/covenants/v2/CovenantCatalog.h \
  SrcServer/src/systems/gameplay/reputation/v2/SQLiteReputationRepository.h \
  Shared/gameplay/covenants/v2/CovenantRewardProcessor.h \
  SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.h \
@@ -41,6 +45,8 @@ Shared/gameplay/modifiers/v2/GameplayModifier.h:
 Shared/gameplay/rewards/v2/Reward.h:
 Shared/gameplay/covenants/v2/ICovenantRepository.h:
 Shared/gameplay/events/v2/GameplayEventHub.h:
+Shared/gameplay/covenants/v2/CovenantModifierEvaluation.h:
+Shared/gameplay/covenants/v2/CovenantRuntimeTypes.h:
 Shared/gameplay/reputation/v2/ReputationService.h:
 Shared/gameplay/reputation/v2/IReputationRepository.h:
 Shared/gameplay/reputation/v2/ReputationTypes.h:
@@ -60,6 +66,8 @@ Shared/gameplay/progression/v2/ProgressionContent.h:
 Shared/gameplay/progression/v2/ProgressionTriggerCoordinator.h:
 SrcServer/src/systems/gameplay/progression/v2/SQLiteProgressionContentLoader.h:
 SrcServer/src/systems/gameplay/covenants/v2/SQLiteCovenantRepository.h:
+SrcServer/src/systems/gameplay/covenants/v2/SQLiteCovenantRuntimeRepository.h:
+Shared/gameplay/covenants/v2/CovenantCatalog.h:
 SrcServer/src/systems/gameplay/reputation/v2/SQLiteReputationRepository.h:
 Shared/gameplay/covenants/v2/CovenantRewardProcessor.h:
 SrcServer/src/systems/gameplay/events/v2/GameplayEventRuntime.h:

@@ -39,6 +39,7 @@ public:
     using ShortcutHandler = std::function<void(HudShortcutAction)>;
     void SetOnShortcut(ShortcutHandler handler) { onShortcut_ = std::move(handler); }
     void SetViewport(int width, int height);
+    void SetLegacyControlState(bool running, int cameraMode, bool mapVisible);
     void Update(float deltaSeconds) override;
     UIEventResult OnEvent(const UIEvent& event) override;
 

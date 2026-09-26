@@ -22,6 +22,9 @@ public:
     bool SaveIfUnchanged(const std::string& playerKey,
                          const CovenantMembershipState& expected,
                          const CovenantMembershipState& membership);
+    bool SwitchActive(const std::string& playerKey,
+                      CovenantId targetCovenantId,
+                      const std::vector<CovenantId>& knownCovenantIds);
     CovenantReputationSaveResult SaveReputationChange(
         const std::string& playerKey,
         const CovenantMembershipState& membership,
@@ -33,6 +36,11 @@ public:
         const CovenantMembershipState& membership,
         int delta,
         const std::string& sourceKey);
+    CovenantReputationSaveResult SaveRepeatableReputationChangeChecked(
+        const std::string& playerKey,
+        const CovenantMembershipState& expected,
+        const CovenantMembershipState& membership,
+        int delta);
     CovenantEffectClaimResult ClaimEffect(const std::string& playerKey,
                                           CovenantId covenantId,
                                           const std::string& effectKey);
